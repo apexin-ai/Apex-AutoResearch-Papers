@@ -1,0 +1,748 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-618_Q4",
+    "problem": "Anne is kind. Bob is cold. Bob is rough. Bob is white. Dave is cold. Dave is green. Dave is white. Fiona is cold. Fiona is nice. Fiona is rough. Kind things are nice. White, round things are green. If something is nice and round then it is white. If something is rough then it is round. Cold things are rough. If Anne is kind and Anne is nice then Anne is cold.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is not nice.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\n\nFacts:\nKind(Anne, True) ::: Anne is kind.\nCold(Bob, True) ::: Bob is cold.\nRough(Bob, True) ::: Bob is rough.\nWhite(Bob, True) ::: Bob is white.\nCold(Dave, True) ::: Dave is cold.\nGreen(Dave, True) ::: Dave is green.\nWhite(Dave, True) ::: Dave is white.\nCold(Fiona, True) ::: Fiona is cold.\nNice(Fiona, True) ::: Fiona is nice.\nRough(Fiona, True) ::: Fiona is rough.\n\nRules:\nKind($x, True) >>> Nice($x, True) ::: Kind things are nice.\nWhite($x, True) && Round($x, True) >>> Green($x, True) ::: White, round things are green.\nNice($x, True) && Round($x, True) >>> White($x, True) ::: If something is nice and round then it is white.\nRough($x, True) >>> Round($x, True) ::: If something is rough then it is round.\nCold($x, True) >>> Rough($x, True) ::: Cold things are rough.\nKind(Anne, True) && Nice(Anne, True) >>> Cold(Anne, True) ::: If Anne is kind and Anne is nice then Anne is cold.\n\nQuery:\nNice(Anne, False) ::: Anne is not nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 64.5,
+      "Unknown": 67.0
+    },
+    "answer_counts": {
+      "False": 7,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Anne is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n\n1. Anne is kind.\n2. Kind things are nice.\n3. If Anne is kind and Anne is nice, then Anne is cold.\n\nWe need to check if \"Anne is kind\" implies \"Anne is nice\" or not. If it does, then we can proceed further. \n\nFrom statement 2, \"Kind things are nice,\" we can infer that if something is kind, it is also nice. Since \"Anne is kind\" (statement 1), we can conclude that \"Anne is nice.\"\n\nNow, let's check if \"Anne is nice\" implies \"Anne is cold.\" We can use the following statements:\n\n1. If Anne is kind and Anne is nice, then Anne is cold.\n2. Anne is kind.\n3. We already concluded that Anne is nice.\n\nFrom statement 1, we can say that if Anne is kind and nice, then she is cold. Since Anne is kind (statement 2) and we concluded that Anne is nice, it implies that Anne is indeed cold.\n\nHowever, the original problem statement doesn't explicitly state that a cold thing is not nice or not kind. \n\nGiven the following statements:\n\n- Anne is kind. \n- Anne is not cold.\n\nWe cannot conclude the statement \"Anne is not nice\" as true or false. Therefore, the answer to whether \"Anne is not nice\" is true, false, or unknown is unknown.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not nice\" is true, false, or unknown, we need to use the given information and logical deductions.\n\nStep 1:\nWe are given that \"Anne is kind.\" \n\nStep 2:\nWe are also given that \"Kind things are nice.\" \n\nFrom this, we can deduce that Anne is nice because being kind makes something nice.\n\nStep 3:\nNow we have two pieces of information about Anne: \"Anne is kind\" and \"Anne is nice.\" We need to determine if Anne is cold.\n\nStep 4:\nWe are given that \"If Anne is kind and Anne is nice then Anne is cold.\" \n\nSince we know Anne is kind and nice, we can conclude that Anne is cold.\n\nStep 5:\nWe are given that \"Cold things are rough.\" \n\nSince Anne is cold, we can conclude that Anne is rough.\n\nStep 6:\nWe are given that \"Rough things are round.\" \n\nSince Anne is rough, we can conclude that Anne is round.\n\nStep 7:\nWe are given that \"White, round things are green.\" \n\nHowever, we are also given that \"Bob is white\" and \"Dave is white.\" This information does not help us determine Anne's color.\n\nStep 8:\nWe are given that \"If something is nice and round then it is white.\" \n\nHowever, since we already know that Anne is nice (Step 2) and round (Step 6), we can conclude that Anne is white.\n\nStep 9:\nWe are given that \"Fiona is cold\" and \"Fiona is nice.\" \n\nHowever, this information does not help us determine Anne's niceness.\n\nStep 10:\nWe are given that \"Anne is kind.\" \n\nWe are also given that \"If Anne is kind and Anne is nice then Anne is cold.\" \n\nWe have already concluded that Anne is kind (Step 1) and nice (Step 2), and also that Anne is cold (Step 4).\n\nThe statement \"Anne is not nice\" is therefore false because we have already concluded that Anne is nice.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Anne is kind. (Given information)\n\n2. We also know that kind things are nice. (Given information)\n\nFrom steps 1 and 2, we can conclude that Anne is nice because she is kind and kind things are nice.\n\nHowever, the statement we need to evaluate is \"Anne is not nice.\" Since we have already concluded that Anne is nice, this statement is false.\n\nTherefore, the statement \"Anne is not nice\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Kind things are nice. (This is a given statement)\n\n2. Anne is kind. (This is a given statement)\n\nFrom statement 1 and 2, we can conclude that Anne is nice. However, we need to check if this conclusion affects the statement \"Anne is not nice.\" If Anne is nice, then \"Anne is not nice\" would be false.\n\nNow, we need to check if there is any information that contradicts the statement \"Anne is nice.\" We have the following statement:\n\nIf Anne is kind and Anne is nice then Anne is cold. (This is a given statement)\n\nWe already know that Anne is kind (from statement 2), but we don't know if Anne is nice or not. However, we also know that Anne is nice from statement 2. So, if Anne is kind and nice, then Anne is cold.\n\nBut, we also have the following statement:\n\nCold things are rough. (This is a given statement)\n\nIf Anne is cold, then Anne is rough. However, we also know that rough things are round (from the given statement).\n\nWe have the following statement:\n\nWhite, round things are green. (This is a given statement)\n\nThis statement seems to be a contradiction to the statement \"If something is nice and round then it is white\" (which we can infer from the given statement \"If something is nice and round then it is white\"). However, we can ignore the statement \"White, round things are green\" since it's a specific case and doesn't contradict the general statement \"If something is nice and round then it is white\" directly.\n\nHowever, we don't have enough information to conclude that Anne is not nice. We only know that Anne is kind (which makes Anne nice) and cold (which makes Anne rough). We don't know if Anne is round or green.\n\nSo, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that: \n   - Anne is kind.\n   - Kind things are nice.\n\nFrom these two statements, we can infer that:\n   - Anne is nice.\n\nNow, let's analyze the given statement \"Anne is not nice\". \n\n2. We have already established that Anne is nice. \n   - If Anne is nice, then the statement \"Anne is not nice\" is false.\n\nTherefore, based on the given information and the logical inferences we have made, we can conclude that the statement \"Anne is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. \"Anne is kind.\" \nThis statement directly tells us that Anne has a specific property. \n\n2. \"Kind things are nice.\" \nFrom this statement, we can infer that since Anne is kind, she must be nice.\n\nNow, we need to check if there's any other information that contradicts this conclusion. \n\n3. \"If Anne is kind and Anne is nice then Anne is cold.\" \nThis statement provides a condition under which Anne is cold. However, we don't know if Anne is cold yet, so we can't conclude anything from this statement directly. \n\n4. \"Anne is not nice.\" \nWe are asked to determine the truth value of this statement. Since we already concluded that Anne is nice (from step 2), this statement directly contradicts our previous conclusion.\n\nHowever, we still need to verify if there's any other information that could affect our conclusion. \n\n5. \"If Anne is kind and Anne is nice then Anne is cold.\"\nThis statement still doesn't provide any new information about Anne's properties.\n\nNow, let's analyze the information given about Bob, Dave, and Fiona to see if it affects our conclusion about Anne. \n\n6. \"Bob is cold. Bob is rough. Bob is white. Bob is white.\" \nThis information is about Bob and doesn't provide any new information about Anne.\n\n7. \"Dave is cold. Dave is green. Dave is white. Dave is green.\" \nThis information is about Dave and doesn't provide any new information about Anne.\n\n8. \"Fiona is cold. Fiona is nice. Fiona is rough. Fiona is nice.\" \nThis information is about Fiona and doesn't provide any new information about Anne.\n\nFrom the given information, we only have two statements directly related to Anne:\n\n- \"Anne is kind.\"\n- \"If Anne is kind and Anne is nice then Anne is cold.\"\n\nSince we concluded that Anne is nice, we can infer that Anne is cold (from the last statement). \n\nHowever, we still don't have any information that directly contradicts the statement \"Anne is not nice.\" \n\nTherefore, based on the given information, we can't determine the truth value of the statement \"Anne is not nice.\" It remains unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not nice\" is true, false, or unknown, we need to use the given information and logical deductions.\n\nGiven Information:\n\n1. Anne is kind.\n2. Bob is cold.\n3. Bob is rough.\n4. Bob is white.\n5. Dave is cold.\n6. Dave is green.\n7. Dave is white.\n8. Fiona is cold.\n9. Fiona is nice.\n10. Fiona is rough.\n11. Kind things are nice.\n12. White, round things are green.\n13. If something is nice and round then it is white.\n14. If something is rough then it is round.\n15. Cold things are rough.\n16. If Anne is kind and Anne is nice then Anne is cold.\n\nDeductions:\n\n- From (1), we know Anne is kind.\n- From (11), we know kind things are nice.\n- Combining (1) and (11), we can infer that Anne is nice, because kind things are nice.\n\nNow, let's examine the statement \"Anne is not nice.\"\n\nSince we inferred that Anne is nice based on the information that kind things are nice, we can now use the statement \"If Anne is kind and Anne is nice then Anne is cold\" to make another deduction.\n\n- From (1), we know Anne is kind.\n- We already know Anne is nice (from the previous step).\n- Combining (1) and (the fact that Anne is nice), we can infer that Anne is cold, because the statement \"If Anne is kind and Anne is nice then Anne is cold\" applies.\n\nSo, the statement \"Anne is not nice\" is false, because we have found that Anne is actually cold, which is a contradictory property of being nice.\n\nTherefore, the answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is not nice' is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n1. Anne is kind.\n2. Bob is cold.\n3. Bob is rough.\n4. Bob is white.\n5. Dave is cold.\n6. Dave is green.\n7. Dave is white.\n8. Fiona is cold.\n9. Fiona is nice.\n10. Fiona is rough.\n11. Kind things are nice.\n12. White, round things are green.\n13. If something is nice and round then it is white.\n14. If something is rough then it is round.\n15. Cold things are rough.\n16. If Anne is kind and Anne is nice then Anne is cold.\n\nFrom statement 11, we know that kind things are nice. Since Anne is kind (from statement 1), we can conclude that Anne is nice (from statement 11).\n\nNow, we are trying to determine whether the statement 'Anne is not nice' is true, false, or unknown. Since we already concluded that Anne is nice, the statement 'Anne is not nice' is false.\n\nTherefore, the answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not nice\" is true, false, or unknown, we need to use the given information and apply logical reasoning.\n\n1. Anne is kind. (Given)\n2. Kind things are nice. (Given)\nFrom (1) and (2), we can conclude that Anne is nice because kind things are nice.\n\nNow, we need to check if Anne is not nice. However, we already have a conclusion that Anne is nice. Therefore, if Anne is not nice, it would contradict the conclusion we made in step 2.\n\nTo check if Anne is not nice, we need to see if there is any information that suggests Anne is not nice.\n\n3. If Anne is kind and Anne is nice then Anne is cold. (Given)\nWe know from step 1 that Anne is kind. However, we do not know if Anne is nice. If Anne is nice, then we would know that Anne is cold. But we are trying to find out if Anne is not nice.\n\n4. We cannot determine if Anne is not nice directly from the given information. However, we can use the given information to see if there is any condition that would make Anne not nice.\n\n5. If something is nice and round then it is white. (Given)\n6. White, round things are green. (Given)\nWe do not have any information that suggests Anne is round or white.\n\n7. We also know that:\n- Cold things are rough. (Given)\n- If something is rough then it is round. (Given)\n- Fiona is cold and rough, but we do not have any information that suggests Anne is cold or rough.\n\n8. We also know that:\n- Bob is cold and rough, but we do not have any information that suggests Anne is cold or rough.\n\n9. Since we cannot determine if Anne is round or white, and we do not have any information that suggests Anne is cold or rough, we cannot conclude that Anne is not nice.\n\nTherefore, the statement \"Anne is not nice\" is unknown because we cannot determine if Anne is not nice based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is not nice' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Kind things are nice.\n   - Anne is kind.\n   - If Anne is kind and Anne is nice then Anne is cold.\n\n2. Since Anne is kind, and kind things are nice, we can conclude:\n   - Anne is nice.\n\nNow, let's analyze the statement 'Anne is not nice.'\n\nSince we have concluded that Anne is nice, we can say that the statement 'Anne is not nice' is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given several statements about Anne, Bob, Dave, and Fiona. These statements can be broken down into the following properties:\n   - Anne: kind\n   - Bob: cold, rough, white\n   - Dave: cold, green, white\n   - Fiona: cold, nice, rough\n\n2. We have the following rules:\n   - Kind things are nice.\n   - White, round things are green.\n   - If something is nice and round then it is white.\n   - If something is rough then it is round.\n   - Cold things are rough.\n   - If Anne is kind and Anne is nice then Anne is cold.\n\n3. We need to determine whether \"Anne is not nice\" is true, false, or unknown. To do this, we need to determine whether Anne is nice.\n\nFrom the given information, we know that Anne is kind. We can use the rule \"Kind things are nice\" to conclude that Anne is nice.\n\nTherefore, since Anne is nice, the statement \"Anne is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the relationship between Anne's niceness and the other characteristics.\n\n1. Anne is kind. \n2. Kind things are nice. \n   Since Anne is kind (1), and kind things are nice (2), we can conclude that Anne is nice.\n\nHowever, we need to check if this conclusion is affected by the following statements:\n\n3. If Anne is kind and Anne is nice then Anne is cold. \n   Since we already concluded that Anne is nice (from 1 and 2), we can use this rule (3) to determine that Anne is cold.\n\nNow, let's analyze the statement we need to evaluate: \"Anne is not nice.\"\n\nSince we've concluded that Anne is nice, the statement \"Anne is not nice\" is false.\n\nTherefore, the final answer is: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne) & nice(anne) -> cold(anne)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == False",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne) & nice(anne) -> cold(anne)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne) -> rough(anne)",
+          "z3_formula": "Implies(cold_anne, rough_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne) -> round(anne)",
+          "z3_formula": "Implies(rough_anne, round_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne) & round(anne) -> green(anne)",
+          "z3_formula": "Implies(And(white_anne, round_anne), green_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(nice_anne, round_anne), white_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona) & nice(fiona)",
+          "z3_formula": "And(cold_fiona, nice_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne) & nice(anne) -> cold(anne)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_anne, rough_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_anne, round_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_anne, white_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_anne, white_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(white_anne, round_anne), green_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> Not(not_nice(X))",
+          "z3_formula": "Implies(nice_anne, Not(not_nice_anne))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not_nice(anne)",
+          "z3_formula": "not_nice_anne == False",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(white_X, round_X), green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(nice_X, round_X), white_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_X, round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_X, rough_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_X, nice_X), cold_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne) & nice(anne) -> cold(anne)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> not nice(X)",
+          "z3_formula": "Implies(nice_anne, Not(nice_anne))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_anne, white_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(white_anne, round_anne), green_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona) & rough(fiona)",
+          "z3_formula": "cold_fiona == True & rough_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_anne, round_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob) & rough(bob)",
+          "z3_formula": "cold_bob == True & rough_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne) | white(anne) | cold(anne) | rough(anne)",
+          "z3_formula": "Or(round_anne, white_anne, cold_anne, rough_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not round(anne) & not white(anne) & not cold(anne) & not rough(anne)",
+          "z3_formula": "Not(Or(round_anne, white_anne, cold_anne, rough_anne))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not (not nice(anne))",
+          "z3_formula": "Not(Not(nice_anne))",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Not(nice_anne)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne) == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 103,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 35
+    },
+    "maxsat_stats": {
+      "satisfied": 32,
+      "excluded": 3,
+      "total_weight": 90,
+      "solve_time_ms": 1.001833938062191
+    },
+    "timing": {
+      "trace_gen_s": 5.837,
+      "extraction_s": 17.371,
+      "dedup_s": 0.609,
+      "maxsat_s": 0.003,
+      "total_s": 23.82
+    }
+  }
+}

@@ -1,0 +1,987 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-572_Q4",
+    "problem": "Anne is nice. Anne is white. Anne is young. Dave is cold. Dave is nice. Dave is smart. Erin is cold. Erin is not kind. Erin is not nice. Erin is smart. Erin is young. Fiona is kind. Smart people are white. Kind, cold people are smart. Kind people are big. If Fiona is cold and Fiona is big then Fiona is nice. If someone is nice and big then they are cold. If someone is young and white then they are cold. If Anne is nice then Anne is cold. Big, young people are nice. Big people are young.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not big.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nSmart($x, bool) ::: Is x smart?\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\n\nFacts:\nNice(Anne, True) ::: Anne is nice.\nWhite(Anne, True) ::: Anne is white.\nYoung(Anne, True) ::: Anne is young.\nCold(Dave, True) ::: Dave is cold.\nNice(Dave, True) ::: Dave is nice.\nSmart(Dave, True) ::: Dave is smart.\nCold(Erin, True) ::: Erin is cold.\nKind(Erin, False) ::: Erin is not kind.\nNice(Erin, False) ::: Erin is not nice.\nSmart(Erin, True) ::: Erin is smart.\nYoung(Erin, True) ::: Erin is young.\nKind(Fiona, True) ::: Fiona is kind.\n\nRules:\nSmart($x, True) >>> White($x, True) ::: Smart people are white.\nKind($x, True) && Cold($x, True) >>> Smart($x, True) ::: Kind, cold people are smart.\nKind($x, True) >>> Big($x, True) ::: Kind people are big.\nCold(Fiona, True) && Big(Fiona, True) >>> Nice(Fiona, True) ::: If Fiona is cold and Fiona is big then Fiona is nice.\nNice($x, True) && Big($x, True) >>> Cold($x, True) ::: If someone is nice and big then they are cold.\nYoung($x, True) && White($x, True) >>> Cold($x, True) ::: If someone is young and white then they are cold.\nNice(Anne, True) >>> Cold(Anne, True) ::: If Anne is nice then Anne is cold.\nBig($x, True) && Young($x, True) >>> Nice($x, True) ::: Big, young people are nice.\nBig($x, True) >>> Young($x, True) ::: Big people are young.\n\nQuery:\nBig(Fiona, False) ::: Fiona is not big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 133.5,
+      "Unknown": 61.0
+    },
+    "answer_counts": {
+      "Unknown": 2,
+      "False": 10
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply it to the statement \"Fiona is not big.\" We'll use a combination of deductive reasoning and logical inference.\n\nGiven Information:\n\n1. Anne is nice.\n2. Anne is white.\n3. Anne is young.\n4. Dave is cold.\n5. Dave is nice.\n6. Dave is smart.\n7. Erin is cold.\n8. Erin is not kind.\n9. Erin is not nice.\n10. Erin is smart.\n11. Erin is young.\n12. Fiona is kind.\n13. Smart people are white.\n14. Kind, cold people are smart.\n15. Kind people are big.\n16. If Fiona is cold and Fiona is big then Fiona is nice.\n17. If someone is nice and big then they are cold.\n18. If someone is young and white then they are cold.\n19. If Anne is nice then Anne is cold.\n20. Big, young people are nice.\n21. Big people are young.\n\nNow, let's analyze the statement \"Fiona is not big.\"\n\nFrom statement 12, we know that Fiona is kind. Using statement 15, we can infer that Fiona is big.\n\nHowever, this conclusion conflicts with the statement \"Fiona is not big.\" To resolve this, we must examine the premises that led to the conclusion that Fiona is big.\n\nFrom statement 12, we know that Fiona is kind. Using statement 15, we can infer that Fiona is big. Now, let's examine statement 16: \"If Fiona is cold and Fiona is big then Fiona is nice.\" We do not have any information about Fiona being cold. However, if Fiona is not big, then we cannot apply statement 16.\n\nNow, let's examine the statement \"If Fiona is cold and Fiona is big then Fiona is nice.\" We do not have any information about Fiona being cold. However, if Fiona is not big, then we cannot apply statement 16. If we assume Fiona is not cold, then statement 16 does not apply.\n\nFrom statement 12, we know that Fiona is kind. Using statement 20, we can infer that Fiona is young, as kind, big people are nice. Now, if Fiona is young and kind, then using statement 14, Fiona is smart. \n\nFrom statement 13, we know that smart people are white. However, this statement does not provide any information about Fiona. \n\nHowever, we can use statement 18 to infer that Fiona is cold, as she is young and white. \n\nNow, let's examine the statement \"If Fiona is cold and Fiona is big then Fiona is nice.\" We now have information about Fiona being cold. We also have information about Fiona being big from statement 15. Using statement 16, we can infer that Fiona is nice.\n\nHowever, statement 17 states \"If someone is nice and big then they are cold.\" This conflicts with the information we previously obtained that Fiona is not big. \n\nNow, let's re-examine our conclusions. We previously inferred that Fiona is young, and using statement 18, we can infer that Fiona is cold. Using statement 17, we can infer that Fiona is nice, as Fiona is young and big.\n\nWe previously inferred that Fiona is big, but we now have information that conflicts with this conclusion. We must re-examine our premises to resolve this conflict.\n\nFrom statement 12, we know that Fiona is kind. Using statement 15, we can infer that Fiona is big. However, this conclusion conflicts with the information that Fiona is not big.\n\nNow, let's re-examine the statement \"Big, young people are nice.\" Using statement 12 and statement 21, we can infer that Fiona is big and young. Using statement 17, we can infer that Fiona is cold.\n\nHowever, we previously inferred that Fiona is not big, which conflicts with this conclusion. We must re-examine our premises to resolve this conflict.\n\nFrom statement 12, we know that Fiona is kind. Using statement 15, we can infer that Fiona is big. However, this conclusion conflicts with the information that Fiona is not big.\n\nNow, let's re-examine the statement \"Fiona is not big.\" We previously inferred that Fiona is big, but this conclusion conflicts with the information that Fiona is not big. We must re-examine our premises to resolve this conflict.\n\nFrom statement 12, we know that Fiona is kind. Using statement 20, we can infer that Fiona is young. Using statement 21, we can infer that Fiona is big. However, this conclusion conflicts with the information that Fiona is not big.\n\nNow, let's re-examine the statement \"Fiona is not big.\" We previously inferred that Fiona is big, but this conclusion conflicts with the information that Fiona is not big. We must re-examine our premises to resolve this conflict.\n\nFrom statement 12, we know that Fiona is kind. Using statement 15, we can infer that Fiona is big. However, this conclusion conflicts with the information that Fiona is not big.\n\nHowever, using statement 20, we can infer that Fiona is young, as kind, big people are nice. Using statement 21, we can infer that Fiona is big. However, this conclusion conflicts with the information that Fiona is not big.\n\nWe previously inferred that Fiona is not big, which conflicts with the information that Fiona is big. We must re-examine our premises to resolve this conflict.\n\nFrom statement 12, we know that Fiona is kind. Using statement 20, we can infer that Fiona is young. Using statement 21, we can infer that Fiona is big. However, this conclusion conflicts with the information that Fiona is not big.\n\nHowever, we previously inferred that Fiona is young and big, and using statement 17, we can infer that Fiona is cold. We previously inferred that Fiona is kind, and using statement 15, we can infer that Fiona is big. However, this conclusion conflicts with the information that Fiona is not big.\n\nNow, let's re-examine the statement \"Fiona is not big.\" We previously inferred that Fiona is big, but this conclusion conflicts with the information that Fiona is not big. We must re-examine our premises to resolve this conflict.\n\nFrom statement 12, we know that Fiona is kind. Using statement 15, we can infer that Fiona is big. However, this conclusion conflicts with the information that Fiona is not big.\n\nHowever, we previously inferred that Fiona is young, and using statement 18, we can infer that Fiona is cold. Using statement 17, we can infer that Fiona is nice.\n\nHowever, we previously inferred that Fiona is nice, but we do not have enough information to determine whether Fiona is big or not.\n\nThe conclusion that Fiona is not big cannot be determined with the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the truth value of the statement \"Fiona is not big,\" we need to analyze the given statements and use logical deductions.\n\nGiven statements:\n\n1. Anne is nice.\n2. Anne is white.\n3. Anne is young.\n4. Dave is cold.\n5. Dave is nice.\n6. Dave is smart.\n7. Erin is cold.\n8. Erin is not kind.\n9. Erin is not nice.\n10. Erin is smart.\n11. Erin is young.\n12. Fiona is kind.\n13. Smart people are white.\n14. Kind, cold people are smart.\n15. Kind people are big.\n16. If Fiona is cold and Fiona is big then Fiona is nice.\n17. If someone is nice and big then they are cold.\n18. If someone is young and white then they are cold.\n19. If Anne is nice then Anne is cold.\n20. Big, young people are nice.\n21. Big people are young.\n\nNow, let's analyze the statement we need to evaluate: \"Fiona is not big.\"\n\nUsing statement 12, Fiona is kind. \nUsing statement 15, Kind people are big. \nTherefore, Fiona is big (using the implication rule: if P then Q, and P is true, then Q must be true).\n\nHowever, we have a contradiction: we have deduced that Fiona is big and the statement \"Fiona is not big\" is being evaluated.\n\nNow we will check if our conclusion that Fiona is big is incorrect by looking at the other statements and the given conclusion from statement 16: If Fiona is cold and Fiona is big then Fiona is nice.\n\nUsing statement 12, Fiona is kind. \nUsing statement 13, Kind, cold people are smart. \nUsing statement 14, Kind people are big. \nUsing statement 18, If someone is young and white then they are cold. \nSince we know that Fiona is big (from statement 15 and statement 12), and big people are young (from statement 21), and young people are white (from statement 13), then Fiona is cold (from statement 18).\n\nNow we can use statement 16, If Fiona is cold and Fiona is big then Fiona is nice. \nSince we have already deduced that Fiona is cold, and big, then Fiona is nice.\n\nNow we can use statement 17, If someone is nice and big then they are cold. \nSince we have already deduced that Fiona is nice, and big, then Fiona is cold.\n\nNow we have a contradiction: we have deduced that Fiona is cold and nice, and also that Fiona is not nice.\n\nHowever, we can use statement 20, Big, young people are nice. \nSince we have already deduced that Fiona is big, and young, then Fiona is nice.\n\nTherefore, the conclusion that Fiona is not big is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not big' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given that Smart people are white.\n   We don't have enough information about Fiona being smart, so we can't conclude anything about Fiona's color yet.\n\n2. Given that Kind, cold people are smart.\n   We know that Fiona is kind (from the statement 'Fiona is kind'). However, we don't know about Fiona's temperature (cold or not), and we also don't know if Fiona is smart or not, so we can't conclude anything yet.\n\n3. Given that Fiona is kind. \n   From this, we can only conclude that Fiona might be smart if she is also cold, but we don't know if Fiona is cold or not.\n\n4. Given that Fiona is cold and Fiona is big then Fiona is nice.\n   We know that Fiona is kind (from the statement 'Fiona is kind'), but we don't know about Fiona's size. This statement only gives a condition for Fiona being nice if she is both big and cold.\n\n5. Given that Kind people are big.\n   We know that Fiona is kind (from the statement 'Fiona is kind'). This statement tells us that Fiona is big.\n\n6. Since we have concluded that Fiona is big (from the statement 'Kind people are big'), we can now analyze the statement 'Fiona is not big' based on this information.\n\nGiven that Fiona is big, the statement 'Fiona is not big' is False.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is kind. (Given)\n2. Smart people are white. (Given)\n3. Kind, cold people are smart. (Given)\n   From this, we can infer that kind people can be smart.\n4. Fiona is big. (Conclusion from steps 1 and 3: if Fiona is kind, and kind people can be smart, and smart people are white, then we cannot determine whether Fiona is big or not directly from this information. However, we do not have any other information that contradicts the fact that Fiona is big. We will keep this information in mind.)\n\n5. If Fiona is cold and Fiona is big then Fiona is nice. (Given)\n   Since we do not have any information that contradicts Fiona being cold and big, we cannot determine whether this statement is true or false.\n\n6. Kind people are big. (Given)\n   If Fiona is kind, then Fiona is big (from step 6). However, we already concluded that Fiona might be big (from step 4).\n\n7. Big people are young. (Given)\n   If Fiona is big, then Fiona is young. However, we already concluded that Fiona might be big (from step 4).\n\n8. If someone is young and white then they are cold. (Given)\n   If Fiona is young and white, then Fiona is cold. However, we do not have any information that contradicts the fact that Fiona is young and white.\n\n9. If Anne is nice then Anne is cold. (Given)\n   However, we cannot determine whether Anne is nice or not, so we cannot use this information.\n\n10. Big, young people are nice. (Given)\n    If Fiona is big and young, then Fiona is nice. However, we already concluded that Fiona might be big and young (from steps 6 and 7).\n\nSince we have the information that Fiona is kind (from step 1) and kind people are big (from step 6), we can conclude that Fiona is big.\n\nTherefore, the statement \"Fiona is not big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions to determine the truth of the statement \"Fiona is not big.\"\n\nGiven statements:\n\n1. Anne is nice.\n2. Anne is white.\n3. Anne is young.\n4. Dave is cold.\n5. Dave is nice.\n6. Dave is smart.\n7. Erin is cold.\n8. Erin is not kind.\n9. Erin is not nice.\n10. Erin is smart.\n11. Erin is young.\n12. Fiona is kind.\n13. Smart people are white.\n14. Kind, cold people are smart.\n15. Kind people are big.\n16. If Fiona is cold and Fiona is big then Fiona is nice.\n17. If someone is nice and big then they are cold.\n18. If someone is young and white then they are cold.\n19. If Anne is nice then Anne is cold.\n20. Big, young people are nice.\n21. Big people are young.\n\nWe are asked to determine whether the statement \"Fiona is not big\" is true, false, or unknown.\n\nFrom statements 12 and 15, we know that Fiona is kind and Fiona is big.\n\nUsing statement 16, we can conclude that if Fiona is cold and Fiona is big then Fiona is nice. However, we do not know if Fiona is cold.\n\nTo find out if Fiona is cold, let's analyze the given statements.\n\nFrom statement 13, we know that smart people are white. Since Fiona is kind (statement 12) and kind people are big (statement 15), we can conclude that Fiona is big (already known) and Fiona is white.\n\nFrom statement 18, if someone is young and white then they are cold. However, we do not know if Fiona is young.\n\nWe can use statement 11 to analyze Fiona's age. Since Erin is young (statement 11) and Fiona is white (concluded earlier), we can conclude that Fiona is not young.\n\nFrom statement 21, big people are young. However, we concluded earlier that Fiona is not young.\n\nFrom statement 17, if someone is nice and big then they are cold. However, we do not know if Fiona is nice.\n\nWe can use statement 16 to analyze Fiona's niceness. Since Fiona is kind (statement 12) and Fiona is big (known), we can conclude that Fiona is nice (using statement 16).\n\nNow we have two conflicting conclusions:\n\n1. Fiona is not young.\n2. Big people are young.\n\nFrom statement 21, big people are young. However, we concluded earlier that Fiona is not young. This is a contradiction.\n\nUsing the principle of non-contradiction, we can conclude that statement 21 is false.\n\nHowever, we cannot conclude that Fiona is big or not big using the given statements.\n\nTherefore, the statement \"Fiona is not big\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not big\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Given statements:\n   - Fiona is kind.\n   - Kind people are big.\n   - If Fiona is cold and Fiona is big then Fiona is nice.\n   - If someone is nice and big then they are cold.\n   - If someone is young and white then they are cold.\n   - If Anne is nice then Anne is cold.\n   - Big, young people are nice.\n   - Big people are young.\n\n2. From the given statements, we can derive the following information:\n   - Since Fiona is kind, Fiona is big (kind people are big).\n   - Big people are young, so Fiona is young.\n   - Since Fiona is young and big, Fiona is nice (big, young people are nice).\n   - Since Fiona is nice and big, Fiona is cold (someone is nice and big then they are cold).\n\n3. Now, we need to analyze the statement \"Fiona is not big\" based on the derived information:\n   - From the given statements, we have already concluded that Fiona is big.\n   - The derived information also supports that Fiona is big.\n   - Therefore, the statement \"Fiona is not big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will break down the given statements and analyze them step by step. \n\n1. Anne is nice. \n2. Anne is white. \n3. Anne is young. \n4. Dave is cold. \n5. Dave is nice. \n6. Dave is smart. \n7. Erin is cold. \n8. Erin is not kind. \n9. Erin is not nice. \n10. Erin is smart. \n11. Erin is young. \n12. Fiona is kind. \n13. Smart people are white. \n14. Kind, cold people are smart. \n15. Kind people are big. \n16. If Fiona is cold and Fiona is big then Fiona is nice. \n17. If someone is nice and big then they are cold. \n18. If someone is young and white then they are cold. \n19. If Anne is nice then Anne is cold. \n20. Big, young people are nice. \n21. Big people are young.\n\nNow, we will use the statements to determine whether Fiona is not big.\n\nFirst, let's analyze the given statements about Fiona:\n- Fiona is kind (Statement 12).\n- Kind people are big (Statement 15).\nFrom these two statements, we can conclude that Fiona is big.\n\nNow, let's analyze the statement \"Fiona is not big.\"\nSince we have already concluded that Fiona is big, this statement is false.\n\nSo, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information given, we have the following premises:\n\n   - Fiona is kind.\n   - Kind people are big.\n   - If Fiona is cold and Fiona is big then Fiona is nice.\n   - If someone is nice and big then they are cold.\n   - If someone is young and white then they are cold.\n   - If Anne is nice then Anne is cold.\n   - Big, young people are nice.\n   - Big people are young.\n\n2. We can deduce the following from the premises:\n\n   - Since Fiona is kind, Fiona is big (from the premise \"Kind people are big\").\n   - From the premises \"Big people are young\" and \"Big, young people are nice,\" we cannot determine if Fiona is nice or not based on the information alone, but we know Fiona is big.\n\n3. Now, considering the statement \"Fiona is not big,\" we can compare it with our deduction that \"Fiona is big.\" \n\n4. Based on the given premises and our deductions, we can conclude that the statement \"Fiona is not big\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not big\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\n1. Fiona is kind. (Given)\n2. Kind people are big. (From the given information)\n   Therefore, Fiona is big. (Logical deduction)\n\nNow, we have a direct contradiction with the statement we're trying to evaluate: \"Fiona is not big.\"\n\nSo, our answer would be that the statement \"Fiona is not big\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not big\" is true, false, or unknown, we need to use the given premises and infer the properties of Fiona.\n\nFrom the premises, we have the following information:\n\n1. Smart people are white.\n2. Kind, cold people are smart.\n3. Kind people are big.\n4. If Fiona is cold and Fiona is big then Fiona is nice.\n5. If someone is nice and big then they are cold.\n6. If someone is young and white then they are cold.\n7. If Anne is nice then Anne is cold.\n8. Big, young people are nice.\n9. Big people are young.\n\nWe can use these premises to infer the following:\n\n- From premise 3, we can deduce that Fiona is big because we know Fiona is kind (premise 4).\n- From premise 8, we can deduce that Fiona is young because we know Fiona is big.\n\nNow we have a contradiction. We know Fiona is big (premise 3), but from premise 9, we also know that big people are young. Therefore, we can deduce that Fiona is young.\n\n- From premise 8, we can deduce that Fiona is nice because we know Fiona is big and young.\n- From premise 5, we can deduce that Fiona is cold because we know Fiona is nice and big.\n\nNow, we have the following properties of Fiona: Fiona is big, Fiona is young, and Fiona is cold.\n\nThe statement \"Fiona is not big\" contradicts the information we inferred from the premises. Therefore, we can conclude that the statement \"Fiona is not big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not big\" is true, false, or unknown, we need to analyze the given information step by step and use logical reasoning.\n\n1. Given information:\n   - Fiona is kind.\n   - Smart people are white.\n   - Kind, cold people are smart.\n   - Kind people are big.\n   - If Fiona is cold and Fiona is big then Fiona is nice.\n   - If someone is nice and big then they are cold.\n   - If someone is young and white then they are cold.\n   - If Anne is nice then Anne is cold.\n   - Big, young people are nice.\n   - Big people are young.\n\n2. Analyze the information about Fiona:\n   - Fiona is kind. (From the given information)\n   - Kind people are big. (From the given information)\n   - Therefore, Fiona is big. (By using the rule \"Kind people are big\")\n\n3. Now, let's check if the statement \"Fiona is not big\" is true or false:\n   - Since we've found out that Fiona is big, the statement \"Fiona is not big\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information about Fiona:\n   - Fiona is kind.\n   - Fiona is cold.\n   - Fiona is big.\n\nHowever, we are also given the statement \"Fiona is not big.\" \n\n2. We need to determine whether this statement is consistent with the given information.\n\nFrom the given statements:\n- Kind people are big.\n- If Fiona is cold and Fiona is big then Fiona is nice.\n- If someone is nice and big then they are cold.\n\nHowever, we are given another statement \"Big, young people are nice.\" But this statement is not necessary to determine if Fiona is big or not. Since we already know that Fiona is big, this additional information is not needed.\n\nWe also have information that might seem useful but is not directly relevant to the question at hand. For example, \"If someone is young and white then they are cold.\" This statement is not necessary because we already know that Fiona is cold.\n\nNow, let's analyze the statements that are directly relevant to the question. We have:\n- Fiona is kind.\n- Kind people are big.\n\nFrom this, we can conclude that Fiona is indeed big, which directly contradicts the statement \"Fiona is not big.\" \n\nTherefore, the statement \"Fiona is not big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_fiona, white_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_fiona, cold_fiona), smart_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_fiona, kind_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_fiona, young_fiona)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_fiona, white_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_fiona, kind_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_fiona, young_fiona)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_fiona, white_fiona), cold_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(cold_fiona, big_fiona), nice_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(nice_fiona, big_fiona), cold_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_fiona, young_fiona), nice_fiona)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_fiona, white_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_fiona, cold_fiona), smart_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(cold_fiona, big_fiona), nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not big(fiona)",
+          "z3_formula": "Not(big_fiona) == False",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_fiona, young_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_fiona, white_fiona), cold_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_fiona, young_fiona), nice_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(cold_fiona, big_fiona), nice_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(nice_fiona, big_fiona), cold_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_fiona, white_fiona), cold_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_fiona, big_fiona)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_fiona, young_fiona)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not young(fiona)",
+          "z3_formula": "Not(young_fiona) == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not big(fiona)",
+          "z3_formula": "Not(big_fiona) == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_fiona, young_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_fiona, big_fiona), nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(nice_fiona, big_fiona), cold_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_X, white_X), cold_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(anne) -> cold(anne)",
+          "z3_formula": "Implies(nice_anne, cold_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_X, nice_X), cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_X, young_X), nice_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_X, young_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not big(fiona)",
+          "z3_formula": "Not(big_fiona) == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(erin))",
+          "z3_formula": "Not(kind_erin) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(nice(erin))",
+          "z3_formula": "Not(nice_erin) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_X, white_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_X, cold_X), smart_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_X, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(eats_X_squirrel, red_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(nice_X, big_X), cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_X, white_X), cold_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_X, cold_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_X, young_X), nice_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_X, young_X)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not(big(fiona))",
+          "z3_formula": "Not(big_fiona) == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_fiona, young_fiona), nice_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(nice_fiona, big_fiona), cold_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_fiona, white_fiona), cold_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(anne) -> cold(anne)",
+          "z3_formula": "Implies(nice_anne, cold_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_fiona, young_fiona), nice_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_fiona, young_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not big(fiona)",
+          "z3_formula": "Not(big_fiona) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_fiona, young_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_fiona, cold_fiona), smart_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_fiona, white_fiona), cold_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(nice_fiona, big_fiona), cold_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_fiona, cold_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_fiona, young_fiona), nice_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_fiona, young_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not big(fiona)",
+          "z3_formula": "Not(big_fiona) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_fiona, white_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_fiona, cold_fiona), smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(cold_fiona, big_fiona), nice_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(nice_fiona, big_fiona), cold_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_fiona, white_fiona), cold_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_anne, cold_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_fiona, young_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_fiona, young_fiona), nice_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_fiona, young_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not big(fiona)",
+          "z3_formula": "Not(big_fiona) == False",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(cold_fiona, big_fiona), nice_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(nice_fiona, big_fiona), cold_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 143,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 43
+    },
+    "maxsat_stats": {
+      "satisfied": 41,
+      "excluded": 2,
+      "total_weight": 137,
+      "solve_time_ms": 1.113569363951683
+    },
+    "timing": {
+      "trace_gen_s": 16.541,
+      "extraction_s": 27.053,
+      "dedup_s": 1.019,
+      "maxsat_s": 0.004,
+      "total_s": 44.617
+    }
+  }
+}

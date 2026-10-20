@@ -1,0 +1,720 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-428_Q17",
+    "problem": "The cat is rough. The mouse likes the rabbit. The mouse sees the rabbit. The rabbit sees the squirrel. The squirrel eats the cat. The squirrel eats the rabbit. The squirrel is red. All red people are young. If the squirrel is green and the squirrel likes the rabbit then the rabbit eats the mouse. If someone sees the cat and they like the squirrel then the squirrel sees the cat. If someone is young then they see the mouse. If someone eats the rabbit and they see the mouse then the mouse is red. If someone is cold then they eat the squirrel. If someone sees the rabbit and the rabbit is green then they are young. If someone likes the squirrel and they are red then they are young. If someone sees the squirrel and the squirrel sees the mouse then they like the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat does not eat the squirrel.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\nGreen($x, bool) ::: Is x green?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nRough(cat, True) ::: The cat is rough.\nLikes(mouse, rabbit, True) ::: The mouse likes the rabbit.\nSees(mouse, rabbit, True) ::: The mouse sees the rabbit.\nSees(rabbit, squirrel, True) ::: The rabbit sees the squirrel.\nEats(squirrel, cat, True) ::: The squirrel eats the cat.\nEats(squirrel, rabbit, True) ::: The squirrel eats the rabbit.\nRed(squirrel, True) ::: The squirrel is red.\n\nRules:\nRed($x, True) >>> Young($x, True) ::: All red people are young.\nGreen(squirrel, True) && Likes(squirrel, rabbit, True) >>> Eats(rabbit, mouse, True) ::: If the squirrel is green and the squirrel likes the rabbit then the rabbit eats the mouse.\nSees($x, cat, True) && Likes($x, squirrel, True) >>> Sees(squirrel, cat, True) ::: If someone sees the cat and they like the squirrel then the squirrel sees the cat.\nYoung($x, True) >>> Sees($x, mouse, True) ::: If someone is young then they see the mouse.\nEats($x, rabbit, True) && Sees($x, mouse, True) >>> Red(mouse, True) ::: If someone eats the rabbit and they see the mouse then the mouse is red.\nCold($x, True) >>> Eats($x, squirrel, True) ::: If someone is cold then they eat the squirrel.\nSees($x, rabbit, True) && Green(rabbit, True) >>> Young($x, True) ::: If someone sees the rabbit and the rabbit is green then they are young.\nLikes($x, squirrel, True) && Red($x, True) >>> Young($x, True) ::: If someone likes the squirrel and they are red then they are young.\nSees($x, squirrel, True) && Sees(squirrel, mouse, True) >>> Likes($x, rabbit, True) ::: If someone sees the squirrel and the squirrel sees the mouse then they like the rabbit.\n\nQuery:\nEats(cat, squirrel, False) ::: The cat does not eat the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 63.5,
+      "True": 63.0,
+      "Unknown": 76.0
+    },
+    "answer_counts": {
+      "Unknown": 4,
+      "False": 6,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement 'The cat does not eat the squirrel' is true, false, or unknown, we need to analyze the given information and find any relevant rules that may lead to a conclusion.\n\n1. The cat is rough.\n2. The mouse likes the rabbit.\n3. The mouse sees the rabbit.\n4. The rabbit sees the squirrel.\n5. The squirrel eats the cat.\n6. The squirrel eats the rabbit.\n7. The squirrel is red.\n8. All red people are young.\n\nFrom rule 8, we can infer that 'red' is an adjective used to describe 'people', not objects like 'squirrel'. Therefore, we cannot conclude that the squirrel is young.\n\n9. If the squirrel is green and the squirrel likes the rabbit then the rabbit eats the mouse.\n10. If someone sees the cat and they like the squirrel then the squirrel sees the cat.\n11. If someone is young then they see the mouse.\n12. If someone eats the rabbit and they see the mouse then the mouse is red.\n13. If someone is cold then they eat the squirrel.\n14. If someone sees the rabbit and the rabbit is green then they are young.\n15. If someone likes the squirrel and they are red then they are young.\n16. If someone sees the squirrel and the squirrel sees the mouse then they like the rabbit.\n\nWe are given that 'The squirrel eats the cat' (rule 5). To determine whether the statement 'The cat does not eat the squirrel' is true or false, we need to find any rule that contradicts this statement.\n\nHowever, we cannot find any rule that directly states the cat eats the squirrel or does not eat the squirrel. Since we do not have any information that directly supports or contradicts the statement 'The cat does not eat the squirrel', we have to conclude that the truth value is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the relationships between the objects and actions.\n\n1. The squirrel eats the cat. \n   - We are looking for whether the cat eats the squirrel. Since the squirrel eats the cat, it doesn't provide any information about the cat eating the squirrel.\n\n2. The squirrel eats the rabbit.\n   - This statement does not provide any information about the cat eating the squirrel.\n\n3. The squirrel is red.\n   - We don't have enough information about the cat eating the squirrel from this statement.\n\n4. All red people are young. \n   - This statement is not relevant to the cat eating the squirrel.\n\n5. If the squirrel is green and the squirrel likes the rabbit then the rabbit eats the mouse. \n   - We don't have enough information about the cat eating the squirrel from this statement.\n\n6. If someone sees the cat and they like the squirrel then the squirrel sees the cat. \n   - This statement does not provide any information about the cat eating the squirrel.\n\n7. If someone is young then they see the mouse. \n   - This statement is not relevant to the cat eating the squirrel.\n\n8. If someone eats the rabbit and they see the mouse then the mouse is red. \n   - We don't have enough information about the cat eating the squirrel from this statement.\n\n9. If someone is cold then they eat the squirrel. \n   - This statement is not relevant to the cat eating the squirrel.\n\n10. If someone sees the rabbit and the rabbit is green then they are young. \n    - We don't have enough information about the cat eating the squirrel from this statement.\n\n11. If someone likes the squirrel and they are red then they are young. \n    - We don't have enough information about the cat eating the squirrel from this statement.\n\n12. If someone sees the squirrel and the squirrel sees the mouse then they like the rabbit. \n    - We don't have enough information about the cat eating the squirrel from this statement.\n\nNow, let's analyze the information we have so far:\n- The squirrel eats the cat.\n- The squirrel eats the rabbit.\n\nFrom these two statements, we can conclude that the cat is eaten by the squirrel, but we cannot determine whether the cat eats the squirrel. The statements do not provide any information about the cat eating the squirrel. Therefore, we cannot conclude whether the statement \"The cat does not eat the squirrel\" is true or false. We can only conclude that it is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not eat the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The squirrel eats the cat. (Given)\n   - This directly states that the squirrel eats the cat, making it true that the cat is eaten by the squirrel.\n\n2. The cat does not eat the squirrel.\n   - Since we already know that the squirrel eats the cat, this statement is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not eat the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The squirrel eats the cat.\n   - This statement directly contradicts the statement we are trying to determine. If the squirrel eats the cat, then it's not possible for the cat to eat the squirrel.\n\n2. The squirrel eats the rabbit.\n   - This statement doesn't directly relate to the cat eating the squirrel. However, it gives us information about the squirrel's behavior.\n\n3. The squirrel is red.\n   - This statement gives us information about the color of the squirrel. However, it doesn't directly relate to the cat eating the squirrel.\n\n4. All red people are young.\n   - This statement gives us a general rule about people, but we don't have any information about people in this scenario.\n\n5. If the squirrel is green and the squirrel likes the rabbit then the rabbit eats the mouse.\n   - This statement provides a condition about the squirrel's color and behavior. However, it doesn't relate to the cat eating the squirrel.\n\n6. If someone sees the cat and they like the squirrel then the squirrel sees the cat.\n   - This statement doesn't provide any information about the cat eating the squirrel.\n\n7. If someone is young then they see the mouse.\n   - This statement doesn't provide any information about the cat eating the squirrel.\n\n8. If someone eats the rabbit and they see the mouse then the mouse is red.\n   - This statement doesn't provide any information about the cat eating the squirrel.\n\n9. If someone is cold then they eat the squirrel.\n   - This statement doesn't provide any information about the cat eating the squirrel.\n\n10. If someone sees the rabbit and the rabbit is green then they are young.\n    - This statement doesn't provide any information about the cat eating the squirrel.\n\n11. If someone likes the squirrel and they are red then they are young.\n    - This statement doesn't provide any information about the cat eating the squirrel.\n\n12. If someone sees the squirrel and the squirrel sees the mouse then they like the rabbit.\n    - This statement doesn't provide any information about the cat eating the squirrel.\n\nFrom the given information, we have one statement that directly contradicts the cat eating the squirrel: \"The squirrel eats the cat.\" Therefore, the statement \"The cat does not eat the squirrel\" is **false** because the squirrel eats the cat.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements and rules to determine the relationship between the cat and the squirrel.\n\nGiven statements:\n1. The cat is rough.\n2. The mouse likes the rabbit.\n3. The mouse sees the rabbit.\n4. The rabbit sees the squirrel.\n5. The squirrel eats the cat.\n6. The squirrel eats the rabbit.\n7. The squirrel is red.\n8. If the squirrel is green and the squirrel likes the rabbit then the rabbit eats the mouse.\n9. If someone sees the cat and they like the squirrel then the squirrel sees the cat.\n10. If someone is young then they see the mouse.\n11. If someone eats the rabbit and they see the mouse then the mouse is red.\n12. If someone is cold then they eat the squirrel.\n13. If someone sees the rabbit and the rabbit is green then they are young.\n14. If someone likes the squirrel and they are red then they are young.\n15. If someone sees the squirrel and the squirrel sees the mouse then they like the rabbit.\n\nFrom statement 7, we know the squirrel is red.\n\nFrom statement 10, since the squirrel is young (because it's red, from statement 14), we know the squirrel sees the mouse.\n\nFrom statement 15, since the squirrel sees the mouse, we know the squirrel likes the rabbit.\n\nFrom statement 6, we know the squirrel eats the rabbit.\n\nFrom statement 8, we know if the squirrel is green and it likes the rabbit, then the rabbit eats the mouse. But the squirrel is red, not green, so this statement does not apply.\n\nFrom statement 9, we know if someone sees the cat and they like the squirrel, then the squirrel sees the cat. However, we do not have enough information to determine whether anyone sees the cat, so we cannot conclude whether the squirrel sees the cat.\n\nFrom statement 5, we know the cat is eaten by the squirrel.\n\nTherefore, the statement \"The cat does not eat the squirrel\" is false because the cat is eaten by the squirrel, which is a direct conclusion from statement 5.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the validity of the statement \"The cat does not eat the squirrel,\" we need to analyze the given information step by step.\n\n1. The squirrel eats the cat. \n   From this statement, we can directly conclude that the cat does eat the squirrel, making the statement \"The cat does not eat the squirrel\" false.\n\nHowever, since we have found enough information to conclude the statement is false, there's no need to continue further.\n\nSo, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze each statement and its implications. \n\n1. The squirrel eats the cat. \n2. The squirrel eats the rabbit. \n3. The squirrel is red. \n4. All red people are young. (Note: People are mentioned, but it doesn't directly relate to the squirrel, which is an animal. However, we will consider it as a given statement for the sake of this problem.)\n\nFrom the given statements, we can conclude that the squirrel eats the cat (Statement 1). This directly contradicts the given statement that we need to evaluate: \"The cat does not eat the squirrel.\" Since the squirrel eats the cat, it is not possible for the cat to not eat the squirrel.\n\nTherefore, the statement \"The cat does not eat the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the truth value of the statement \"The cat does not eat the squirrel.\"\n\nStep 1: Identify the relevant statements:\n\n- The squirrel eats the cat.\n- If someone sees the cat and they like the squirrel then the squirrel sees the cat.\n\nStep 2: Analyze the statements to determine the relationship between the cat and the squirrel.\n\nFrom statement 1, we know that the squirrel eats the cat. This statement directly implies that the cat is being eaten by the squirrel.\n\nStep 3: Consider the implications of the given statements.\n\nThere is no statement that directly contradicts the fact that the squirrel eats the cat. However, we need to examine the other statements to see if they provide any additional information that could affect the conclusion.\n\nStep 4: Analyze the remaining statements.\n\nUpon reviewing the remaining statements, we find that none of them contradict the statement \"The squirrel eats the cat.\" Some statements provide additional information about the relationships between other entities (e.g., the rabbit and the mouse), but they do not affect the conclusion about the cat and the squirrel.\n\nStep 5: Draw a conclusion based on the analysis.\n\nGiven the direct statement that the squirrel eats the cat, we can conclude that the statement \"The cat does not eat the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not eat the squirrel\" is true, false, or unknown, we need to analyze the given statements and find any information related to the cat eating the squirrel.\n\n1. The squirrel eats the cat. \nThis statement directly contradicts the given statement, but it's about the reverse scenario. We need to find a direct connection or a chain of events that can lead to the cat eating the squirrel.\n\n2. The squirrel eats the rabbit. \nThis statement doesn't provide any information about the cat eating the squirrel.\n\n3. The squirrel is red. \nThis statement doesn't provide any information about the cat eating the squirrel.\n\n4. All red people are young. \nThis statement doesn't provide any information about the cat eating the squirrel.\n\n5. If the squirrel is green and the squirrel likes the rabbit then the rabbit eats the mouse. \nThis statement doesn't provide any information about the cat eating the squirrel.\n\n6. If someone sees the cat and they like the squirrel then the squirrel sees the cat. \nThis statement implies that someone who likes the squirrel sees the cat, but it doesn't provide any information about the cat eating the squirrel.\n\n7. If someone is young then they see the mouse. \nThis statement doesn't provide any information about the cat eating the squirrel.\n\n8. If someone eats the rabbit and they see the mouse then the mouse is red. \nThis statement doesn't provide any information about the cat eating the squirrel.\n\n9. If someone is cold then they eat the squirrel. \nThis statement doesn't provide any information about the cat eating the squirrel.\n\n10. If someone sees the rabbit and the rabbit is green then they are young. \nThis statement doesn't provide any information about the cat eating the squirrel.\n\n11. If someone likes the squirrel and they are red then they are young. \nThis statement doesn't provide any information about the cat eating the squirrel.\n\n12. If someone sees the squirrel and the squirrel sees the mouse then they like the rabbit. \nThis statement doesn't provide any information about the cat eating the squirrel.\n\nHowever, we can deduce the following:\n\n- The squirrel eats the cat (1).\n- It implies that the cat is eaten by the squirrel, which is the opposite of the statement \"The cat does not eat the squirrel.\"\n\nHowever, since the statement says \"The cat does not eat the squirrel\", the squirrel eating the cat is indeed the opposite. So, the statement \"The cat does not eat the squirrel\" is indeed true.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and find a path from the cat to the statement \"The cat does not eat the squirrel.\"\n\nFrom the given statements, we can conclude the following:\n\n1. The squirrel eats the cat. (S1)\n2. The squirrel eats the rabbit. (S2)\n3. The squirrel is red. (S3)\n4. All red people are young. (S4)\n5. The squirrel is green. (We will come back to this statement later)\n6. The squirrel likes the rabbit. (S7)\n7. If the squirrel is green and the squirrel likes the rabbit then the rabbit eats the mouse. (S8)\n8. If someone sees the cat and they like the squirrel then the squirrel sees the cat. (S9)\n9. If someone is young then they see the mouse. (S10)\n10. If someone eats the rabbit and they see the mouse then the mouse is red. (S11)\n11. If someone sees the rabbit and the rabbit is green then they are young. (S12)\n12. If someone likes the squirrel and they are red then they are young. (S13)\n13. If someone sees the squirrel and the squirrel sees the mouse then they like the rabbit. (S14)\n\nNow, let's analyze the given statements to determine if the cat eats the squirrel:\n\n- S1: The squirrel eats the cat.\n- S5: The squirrel is green.\n- S7: The squirrel likes the rabbit.\n- S8: If the squirrel is green and the squirrel likes the rabbit then the rabbit eats the mouse.\n- S2: The squirrel eats the rabbit.\n\nFrom S5 and S8, we can conclude that the rabbit eats the mouse. \nHowever, we cannot determine if the cat eats the squirrel. To do so, we need more information. \n\nThe statement \"The cat does not eat the squirrel\" is not directly supported by the given information. Since we cannot determine if the cat eats the squirrel, the statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will use a truth table and a set of rules to determine the relationships between the statements.\n\nLet's assign the following variables:\n- C: The cat eats the squirrel.\n- R: The rabbit eats the mouse.\n- S: The squirrel sees the cat.\n- Y: The squirrel is young.\n- M: The mouse is red.\n- G: The squirrel is green.\n- I: The rabbit likes the mouse.\n- Z: The person (or animal) is young.\n\nFrom the given information, we can deduce the following rules:\n\n1. The squirrel eats the cat (S) and the squirrel eats the rabbit (R).\n2. If the squirrel is green (G) and the squirrel likes the rabbit (I), then the rabbit eats the mouse (R).\n3. If someone sees the cat (S) and they like the squirrel (I), then the squirrel sees the cat (S).\n4. If someone is young (Z), then they see the mouse.\n5. If someone eats the rabbit (R) and they see the mouse, then the mouse is red (M).\n6. If someone is cold, then they eat the squirrel (this statement does not affect the current problem, so we can ignore it).\n7. If someone sees the rabbit (S) and the rabbit is green, then they are young (Z).\n8. If someone likes the squirrel (I) and they are red (M), then they are young (Z).\n9. If someone sees the squirrel (S) and the squirrel sees the mouse, then they like the rabbit (I).\n\nNow, we can analyze the given statements:\n- The cat is rough.\n- The mouse likes the rabbit.\n- The mouse sees the rabbit.\n- The rabbit sees the squirrel.\n- The squirrel eats the cat.\n- The squirrel eats the rabbit.\n- The squirrel is red.\n- The squirrel is green.\n- The squirrel likes the rabbit.\n\nWe can start by analyzing the given statements. \n\n1. The squirrel eats the cat (S) and the squirrel eats the rabbit (R).\n2. The squirrel is red (M) and the squirrel is green (G). This creates a contradiction. However, we can ignore this contradiction and continue the analysis.\n\nFrom statement 2, we can conclude that the squirrel eats the cat and the rabbit.\n\nNow, let's analyze the given rules.\n\n1. Rule 1: The squirrel eats the cat (S) and the squirrel eats the rabbit (R).\n2. Rule 2: If the squirrel is green (G) and the squirrel likes the rabbit (I), then the rabbit eats the mouse (R). However, we cannot conclude that the rabbit eats the mouse, because the squirrel is red (M).\n3. Rule 3: If someone sees the cat (S) and they like the squirrel (I), then the squirrel sees the cat (S). This rule does not affect the current problem.\n4. Rule 4: If someone is young (Z), then they see the mouse. This rule does not affect the current problem.\n5. Rule 5: If someone eats the rabbit (R) and they see the mouse, then the mouse is red (M). However, we cannot conclude that the mouse is red, because the squirrel eats the cat and the rabbit.\n6. Rule 6: This statement does not affect the current problem.\n7. Rule 7: If someone sees the rabbit (S) and the rabbit is green, then they are young (Z). However, the rabbit is not green, so this rule does not affect the current problem.\n8. Rule 8: If someone likes the squirrel (I) and they are red (M), then they are young (Z). However, we cannot conclude that the person is young, because the squirrel is red.\n9. Rule 9: If someone sees the squirrel (S) and the squirrel sees the mouse, then they like the rabbit (I). This rule does not affect the current problem.\n\nNow, let's analyze the statement: The cat does not eat the squirrel.\n\nFrom the given information, we can conclude that the squirrel eats the cat (S).\n\nHowever, we cannot conclude that the cat eats the squirrel (C), because the squirrel eats the cat.\n\nTherefore, the statement \"The cat does not eat the squirrel\" is unknown, because we cannot conclude that the cat eats the squirrel, but we also cannot conclude that the cat does not eat the squirrel.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not eat the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The squirrel eats the cat. (From the given information)\n2. If someone eats the rabbit and they see the mouse then the mouse is red. (From the given information)\n3. We do not have any information that the cat eats the rabbit or sees the mouse. \n4. We do not have any information that the squirrel sees the mouse or the mouse is red.\n5. The rabbit sees the squirrel. (From the given information)\n6. If someone sees the rabbit and the rabbit is green then they are young. (From the given information)\n7. We do not have any information that the rabbit is green.\n8. The squirrel is red. (From the given information)\n9. All red people are young. (From the given information)\n10. If the squirrel is green and the squirrel likes the rabbit then the rabbit eats the mouse. (From the given information)\n11. We do not have any information that the squirrel is green.\n12. The squirrel eats the rabbit. (From the given information)\n13. If someone eats the rabbit and they see the mouse then the mouse is red. (From the given information)\n14. We do not have any information that the squirrel sees the mouse or the mouse is red.\n15. The squirrel sees the cat. (From the given information) \n16. If someone sees the cat and they like the squirrel then the squirrel sees the cat. (From the given information)\n17. We do not have any information that someone likes the squirrel.\n18. The cat is rough. (From the given information)\n19. The mouse likes the rabbit. (From the given information)\n20. The mouse sees the rabbit. (From the given information)\n21. If someone sees the squirrel and the squirrel sees the mouse then they like the rabbit. (From the given information)\n22. We do not have any information that someone sees the squirrel and the squirrel sees the mouse.\n23. The squirrel is red. (From the given information)\n24. All red people are young. (From the given information)\n25. If someone likes the squirrel and they are red then they are young. (From the given information)\n26. We do not have any information that someone likes the squirrel.\n27. The squirrel likes the rabbit. (From the given information)\n28. The squirrel eats the cat. (From the given information)\n29. We do not have any information that the cat eats the squirrel.\n\nFrom the above steps, we have information that the squirrel eats the cat but we do not have any information that the cat eats the squirrel. \n\nSo, the statement \"The cat does not eat the squirrel\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, rabbit)",
+          "z3_formula": "likes_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_squirrel, young_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, rabbit) -> eats(rabbit, mouse)",
+          "z3_formula": "Implies(And(green_squirrel, likes_squirrel_rabbit), eats_rabbit_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, squirrel) -> sees(squirrel, cat)",
+          "z3_formula": "Implies(And(sees_X_cat, likes_X_squirrel), sees_squirrel_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(young_squirrel, sees_squirrel_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & sees(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(And(eats_X_rabbit, sees_X_mouse), red_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(cold_squirrel, eats_squirrel_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & green(rabbit) -> young(X)",
+          "z3_formula": "Implies(And(sees_X_rabbit, green_rabbit), young_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(likes_X_squirrel, red_X), young_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, mouse) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_squirrel, sees_squirrel_mouse), likes_X_rabbit)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> eats(Y, X)",
+          "z3_formula": "Implies(eats_squirrel_cat, eats_cat_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(cat, squirrel)",
+          "z3_formula": "Not(eats_cat_squirrel) == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(cat, squirrel)",
+          "z3_formula": "Not(eats_cat_squirrel) == True",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, rabbit)",
+          "z3_formula": "likes_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(squirrel) & likes(squirrel, rabbit) -> eats(rabbit, mouse)",
+          "z3_formula": "Implies(And(red_squirrel, Not(likes_squirrel_rabbit)), eats_rabbit_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, squirrel) -> sees(squirrel, cat)",
+          "z3_formula": "Implies(And(sees_X_cat, likes_X_squirrel), sees_squirrel_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(young_X, sees_X_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & sees(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(And(eats_X_rabbit, sees_X_mouse), red_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> eats(X, squirrel)",
+          "z3_formula": "Implies(cold_X, eats_X_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & green(rabbit) -> young(X)",
+          "z3_formula": "Implies(And(sees_X_rabbit, green_rabbit), young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(likes_X_squirrel, red_X), young_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, mouse) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_squirrel, sees_squirrel_mouse), likes_X_rabbit)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_squirrel, young_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, squirrel) == False",
+          "z3_formula": "Not(eats_cat_squirrel == True)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(Y, squirrel) -> sees(Y, cat)",
+          "z3_formula": "Implies(And(sees_squirrel_cat, likes_X_squirrel), sees_X_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(cat, squirrel)",
+          "z3_formula": "Not(eats_cat_squirrel)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> Implies(eats(Y, X), Not(eats(X, Y)))",
+          "z3_formula": "Implies(eats_squirrel_cat, Implies(eats_cat_squirrel, Not(eats_cat_squirrel)))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "Not(eats_cat_squirrel)",
+          "z3_formula": "Not(eats_cat_squirrel) == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_squirrel, young_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(squirrel) & likes(squirrel, rabbit) -> eats(rabbit, mouse)",
+          "z3_formula": "Implies(And(green_squirrel, likes_squirrel_rabbit), eats_rabbit_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, squirrel) -> sees(squirrel, cat)",
+          "z3_formula": "Implies(And(sees_cat, likes_squirrel_rabbit), sees_squirrel_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(young_squirrel, sees_squirrel_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & sees(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(And(eats_squirrel_rabbit, sees_squirrel_mouse), red_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & green(rabbit) -> young(X)",
+          "z3_formula": "Implies(And(sees_rabbit, green_rabbit), young_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(likes_squirrel_rabbit, red_rabbit), young_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, mouse) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(sees_gary_mouse, sees_squirrel_mouse), likes_gary_rabbit)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(squirrel) & likes(rabbit, squirrel) -> eats(rabbit, mouse)",
+          "z3_formula": "Implies(And(green_squirrel, likes_rabbit_squirrel), eats_rabbit_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(cat, squirrel) & likes(squirrel, rabbit) -> sees(squirrel, cat)",
+          "z3_formula": "Implies(And(sees_cat_squirrel, likes_squirrel_rabbit), sees_squirrel_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(young, sees_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(rabbit, mouse) & sees(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(And(eats_rabbit_mouse, sees_mouse), red_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(rabbit, squirrel) & green(rabbit) -> young(X)",
+          "z3_formula": "Implies(And(sees_rabbit_squirrel, green_rabbit), young)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(squirrel, rabbit) & red(squirrel) -> young(X)",
+          "z3_formula": "Implies(And(likes_squirrel_rabbit, red_squirrel), young)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(squirrel, mouse) & sees(squirrel, mouse) -> likes(rabbit, squirrel)",
+          "z3_formula": "Implies(And(sees_squirrel_mouse, sees_squirrel_mouse), likes_rabbit_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(cat, squirrel)",
+          "z3_formula": "Not(Or(cat_eats_squirrel, Not(cat_eats_squirrel)))",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & sees(Y, mouse) -> red(mouse)",
+          "z3_formula": "Implies(And(eats_squirrel_rabbit, sees_mouse), red_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & green(rabbit) -> young(X)",
+          "z3_formula": "Implies(And(sees_rabbit, green_rabbit), young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_squirrel, young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & likes(X, rabbit) -> eats(rabbit, mouse)",
+          "z3_formula": "Implies(And(green_squirrel, likes_squirrel_rabbit), eats_rabbit_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & sees(Y, mouse) -> red(mouse)",
+          "z3_formula": "Implies(And(eats_squirrel_rabbit, sees_mouse), red_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, cat)",
+          "z3_formula": "sees_squirrel_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & likes(X, squirrel) -> sees(X, cat)",
+          "z3_formula": "Implies(And(sees_squirrel_cat, likes_squirrel), sees_squirrel_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, rabbit)",
+          "z3_formula": "likes_mouse_rabbit == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, mouse) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_squirrel, sees_squirrel_mouse), likes_X_rabbit)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_squirrel, young_X)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(likes_X_squirrel, red_X), young_X)",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cat)",
+          "z3_formula": "eats_squirrel_cat == True",
+          "source_step": 28
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel) == False",
+          "z3_formula": "Not(eats_cat_squirrel)",
+          "source_step": 29
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 98,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 45
+    },
+    "maxsat_stats": {
+      "satisfied": 42,
+      "excluded": 3,
+      "total_weight": 95,
+      "solve_time_ms": 1.5968559309840202
+    },
+    "timing": {
+      "trace_gen_s": 10.95,
+      "extraction_s": 24.309,
+      "dedup_s": 0.941,
+      "maxsat_s": 0.004,
+      "total_s": 36.205
+    }
+  }
+}

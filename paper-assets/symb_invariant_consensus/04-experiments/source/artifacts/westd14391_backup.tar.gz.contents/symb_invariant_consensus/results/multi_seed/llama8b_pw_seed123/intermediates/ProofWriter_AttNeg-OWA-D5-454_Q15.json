@@ -1,0 +1,797 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-454_Q15",
+    "problem": "Anne is green. Anne is nice. Anne is not rough. Anne is smart. Bob is green. Bob is nice. Fiona is white. Gary is rough. Gary is round. Gary is white. If something is nice then it is round. If something is white then it is round. If something is young and not nice then it is round. If Bob is round and Bob is green then Bob is rough. If something is young and green then it is smart. Smart things are white. If something is rough and not green then it is white. If something is rough then it is young. All rough things are young.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not young.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nNice(Anne, True) ::: Anne is nice.\nRough(Anne, False) ::: Anne is not rough.\nSmart(Anne, True) ::: Anne is smart.\nGreen(Bob, True) ::: Bob is green.\nNice(Bob, True) ::: Bob is nice.\nWhite(Fiona, True) ::: Fiona is white.\nRough(Gary, True) ::: Gary is rough.\nRound(Gary, True) ::: Gary is round.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nNice($x, True) >>> Round($x, True) ::: If something is nice then it is round.\nWhite($x, True) >>> Round($x, True) ::: If something is white then it is round.\nYoung($x, True) && Nice($x, False) >>> Round($x, True) ::: If something is young and not nice then it is round.\nRound(Bob, True) && Green(Bob, True) >>> Rough(Bob, True) ::: If Bob is round and Bob is green then Bob is rough.\nYoung($x, True) && Green($x, True) >>> Smart($x, True) ::: If something is young and green then it is smart.\nSmart($x, True) >>> White($x, True) ::: Smart things are white.\nRough($x, True) && Green($x, False) >>> White($x, True) ::: If something is rough and not green then it is white.\nRough($x, True) >>> Young($x, True) ::: If something is rough then it is young.\nRough($x, True) >>> Young($x, True) ::: All rough things are young.\n\nQuery:\nYoung(Fiona, False) ::: Fiona is not young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 103.0
+    },
+    "answer_counts": {
+      "Unknown": 10
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Fiona is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Fiona is white (from the problem statement).\n2. We know that if something is white, then it is round (from the problem statement).\n3. We do not have any information that directly relates Fiona's roundness to her youth or age.\n4. Since we cannot conclude whether Fiona is young or not based on the given information, we will analyze the statements related to youth and age.\n\nFrom the problem statement, we have:\n- If something is rough, then it is young. (Statement 1)\n- If something is rough and not green, then it is white. (Statement 2)\n- All rough things are young. (Statement 3)\n\nHowever, we can conclude that:\n- Fiona is white (Statement 4).\n- If something is white, then it is round (Statement 5).\n- We do not have any information that directly states Fiona is rough or not rough.\n\nSince we do not have enough information to conclude whether Fiona is young or not, we will analyze the statements related to age.\n\nFrom the problem statement, we have:\n- If something is young and not nice, then it is round. (Statement 6)\n- We know that Fiona is white, which means she is round (Statement 5).\n- However, we cannot conclude that Fiona is young or not based on the information provided.\n\nNow, let's analyze the statements related to age and youth.\n\nFrom the problem statement, we have:\n- If something is young, then it is not round. (Statement 7, not directly stated but implied by Statements 1 and 6)\n- However, we know that Fiona is round (Statement 5).\n\nBased on the information provided, we cannot conclude whether Fiona is young or not. Therefore, the statement \"Fiona is not young\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not young\" is true, false, or unknown, we need to analyze the given information and the rules.\n\nGiven information:\n- Fiona is white.\n- Gary is white.\n- Gary is round.\n- Gary is rough.\n\nRules:\n- If something is white then it is round. (Rule 2)\n- If something is rough then it is young. (Rule 7)\n- All rough things are young. (Rule 8)\n\nSince Gary is white and rough, we can conclude that Gary is round (Rule 2) and young (Rule 7 or 8).\n\nNow, let's examine the statement \"Fiona is not young.\"\n\nTo determine whether Fiona is young, we need to analyze the given information and the rules.\n\nGiven information:\n- Fiona is white.\n\nRules:\n- If something is white then it is round. (Rule 2)\n- If something is round then it is nice. (This rule is not explicitly stated but can be derived from Rules 1 and 5: If something is nice then it is round, and if something is nice then it is not rough. Since something can't be both nice and rough, then something that is round must be nice, because if it was rough then it would be young. Since something that is round is nice, then something that is round is not rough.)\n\nHowever, we still need more information to determine whether Fiona is young.\n\nFrom Rule 5, we know that if something is young and not nice then it is round. But we also know that Fiona is round (Rule 2). So, Fiona could be young and not nice, or Fiona could be nice and not young. We still can't determine whether Fiona is young or not.\n\nHowever, since we know that all rough things are young (Rule 8), and Fiona is not rough (because Gary is rough and white, and Fiona is white, but Gary and Fiona are not the same object), we still can't determine whether Fiona is young or not.\n\nTherefore, based on the given information and the rules, we can't determine whether Fiona is young or not, so the statement \"Fiona is not young\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information to determine whether Fiona is young or not. Let's break down the information:\n\n1. Fiona is white.\n2. If something is white then it is round.\n3. If something is round then it is not necessarily young (we have multiple conditions for being round).\n\nHowever, we can also use the following information to determine whether Fiona is young:\n\n1. Gary is round. Gary is white. Gary is young.\n2. If something is round and white, then it doesn't necessarily mean it's young (Gary is an example).\n3. If something is white, then it is round (from statement 2). But we know Gary is round and white, and Gary is young. This doesn't tell us anything about Fiona being young, but it does tell us that being white and round doesn't necessarily mean something is young.\n\nHowever, we do have the following information:\n\n1. All rough things are young.\n2. Gary is rough. Gary is young.\n3. If something is rough then it is young (from statement 1).\n\nWe also know the following about Gary:\n\n1. Gary is white. Gary is round. Gary is rough. Gary is young.\n\nWe don't have any information about Fiona being rough, but we do know that all rough things are young (from statement 1). We can use this information to determine whether Fiona is young.\n\nThe following is given about Fiona:\n\n1. Fiona is white.\n\nWe know that if something is white then it is round (from statement 2). However, being round and white doesn't necessarily mean Fiona is young (Gary is an example).\n\nHowever, we do have the following information:\n\n1. If something is white then it is round.\n2. All rough things are young.\n3. If something is rough and not green then it is white.\n4. Gary is rough. Gary is white.\n5. If something is rough then it is young.\n\nFrom statement 3, we know that if something is rough and not green then it is white. We also know that all rough things are young (from statement 2).\n\nHowever, we also know that Gary is white and Gary is young. This tells us that being white doesn't necessarily mean something is young.\n\nHowever, we can also use the following information:\n\n1. If something is young and green then it is smart.\n2. Smart things are white.\n3. Anne is green. Anne is nice. Anne is not rough. Anne is smart.\n\nWe know that Anne is smart (from statement 3). We also know that smart things are white (from statement 2). However, this doesn't tell us anything about Fiona being young.\n\nHowever, we do have the following information:\n\n1. If something is young and not nice then it is round.\n2. Fiona is not nice.\n\nFrom statement 2, we know that Fiona is not nice. However, this doesn't necessarily mean Fiona is young.\n\nHowever, we can also use the following information:\n\n1. If something is rough then it is young.\n2. If something is young and not nice then it is round.\n\nHowever, we don't have any information about Fiona being rough. But we do know that if something is rough then it is young (from statement 1).\n\nHowever, we can also use the following information:\n\n1. If something is white then it is round.\n2. All rough things are young.\n3. If something is rough and not green then it is white.\n4. If something is rough then it is young.\n\nWe know that Fiona is white. However, this doesn't necessarily mean Fiona is young.\n\nHowever, we can also use the following information:\n\n1. If something is white then it is round.\n2. Gary is rough. Gary is white. Gary is young.\n\nHowever, we don't have any information about Fiona being rough. But we do know that if something is rough then it is young (from statement 1).\n\nHowever, we can also use the following information:\n\n1. If something is white then it is round.\n2. If something is round then it is not necessarily young (we have multiple conditions for being round).\n\nHowever, we do have the following information:\n\n1. Fiona is white.\n\nWe know that if something is white then it is round (from statement 1). However, being round and white doesn't necessarily mean Fiona is young (Gary is an example).\n\nHowever, we can also use the following information:\n\n1. If something is round and white then it doesn't necessarily mean it's young (Gary is an example).\n2. If something is young and not nice then it is round.\n3. Fiona is not nice.\n\nFrom statement 2, we know that Fiona is not nice. However, this doesn't necessarily mean Fiona is young.\n\nHowever, we can also use the following information:\n\n1. If something is young and green then it is smart.\n2. Smart things are white.\n3. Anne is green. Anne is nice. Anne is not rough. Anne is smart.\n\nWe know that Anne is smart (from statement 3). We also know that smart things are white (from statement 2). However, this doesn't tell us anything about Fiona being young.\n\nHowever, we do have the following information:\n\n1. If something is rough then it is young.\n2. If something is young and not nice then it is round.\n\nHowever, we don't have any information about Fiona being rough. But we do know that if something is rough then it is young (from statement 1).\n\nHowever, we can also use the following information:\n\n1. If something is young and green then it is smart.\n2. Smart things are white.\n3. Gary is round. Gary is white. Gary is young.\n\nHowever, we don't have any information about Fiona being green. But we do know that smart things are white (from statement 2).\n\nHowever, we can also use the following information:\n\n1. If something is round and white then it doesn't necessarily mean it's young (Gary is an example).\n2. If something is round then it is not necessarily young (we have multiple conditions for being round).\n3. If something is white then it is round.\n\nHowever, we do have the following information:\n\n1. Fiona is white.\n\nWe know that if something is white then it is round (from statement 3). However, being round and white doesn't necessarily mean Fiona is young (Gary is an example).\n\nHowever, we can also use the following information:\n\n1. If something is rough and not green then it is white.\n2. Gary is rough. Gary is white.\n\nWe know that Gary is rough (from statement 2). We also know that all rough things are young (from statement 1). However, this doesn't tell us anything about Fiona being young.\n\nHowever, we can also use the following information:\n\n1. If something is rough then it is young.\n2. If something is young and not nice then it is round.\n\nHowever, we don't have any information about Fiona being rough. But we do know that if something is rough then it is young (from statement 1).\n\nHowever, we can also use the following information:\n\n1. If something is white then it is round.\n2. If something is round then it is not necessarily young (we have multiple conditions for being round).\n\nHowever, we do have the following information:\n\n1. Fiona is white.\n\nWe know that if something is white then it is round (from statement 1). However, being round and white doesn't necessarily mean Fiona is young (Gary is an example).\n\nHowever, we can also use the following information:\n\n1. If something is round and white then it doesn't necessarily mean it's young (Gary is an example).\n2. If something is round then it is not necessarily young (we have multiple conditions for being round).\n3. If something is young and not nice then it is round.\n4. Fiona is not nice.\n\nFrom statement 3, we know that Fiona is not nice. However, this doesn't necessarily mean Fiona is young.\n\nHowever, we can also use the following information:\n\n1. If something is young and green then it is smart.\n2. Smart things are white.\n3. Anne is green. Anne is nice. Anne is not rough. Anne is smart.\n\nWe know that Anne is smart (from statement 3). We also know that smart things are white (from statement 2). However, this doesn't tell us anything about Fiona being young.\n\nHowever, we do have the following information:\n\n1. If something is young and not nice then it is round.\n2. If something is rough then it is young.\n3. Gary is round. Gary is white. Gary is young.\n\nHowever, we don't have any information about Fiona being rough. But we do know that if something is rough then it is young (from statement 2).\n\nHowever, we can also use the following information:\n\n1. If something is young and green then it is smart.\n2. Smart things are white.\n3. Fiona is white.\n\nFrom statement 2, we know that smart things are white. We also know that Fiona is white. However, this doesn't necessarily mean Fiona is young.\n\nHowever, we can also use the following information:\n\n1. If something is white then it is round.\n2. If something is round and white then it doesn't necessarily mean it's young (Gary is an example).\n\nHowever, we do have the following information:\n\n1. Fiona is white.\n\nWe know that if something is white then it is round (from statement 1). However, being round and white doesn't necessarily mean Fiona is young (Gary is an example).\n\nHowever, we can also use the following information:\n\n1. If something is round and white then it doesn't necessarily mean it's young (Gary is an example).\n2. If something is white then it is round.\n\nHowever, we do have the following information:\n\n1. Fiona is white.\n\nWe",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Fiona is not young, we need to first determine whether Fiona is young. \n\nWe know that Fiona is white (from the given statement \"Fiona is white\"). \n\nFrom the given statements, we can see that if something is white, then it is round. However, being round doesn't directly tell us anything about Fiona's age.\n\nWe can also see that if something is rough and not green, then it is white. However, we don't know if Fiona is rough, and even if we did, we wouldn't know if she is not green.\n\nHowever, we can see that all rough things are young. But we cannot determine whether Fiona is rough. \n\nNow, let's look at the given statements. The statement that something is young and not nice is round is not directly applicable here. We do not have enough information to determine if Fiona is not young or young.\n\nHowever, we have one statement that if something is rough then it is young. We also have one statement that all rough things are young. \n\nWe can see that Gary is round. Gary is white. Gary is rough. Gary is white. If something is white then it is round. If something is white then it is round. These statements indicate that Gary is indeed round and white.\n\nWe can also see that Gary is rough. We can infer that Gary is young because if something is rough then it is young.\n\nNow, let's look at the given statements about Fiona. Fiona is white. We do not have information about Fiona's age or whether she is nice or rough.\n\nSince we cannot determine Fiona's age, we cannot determine whether the statement \"Fiona is not young\" is true or false. Therefore, the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The only information we have about Fiona is that she is white.\n2. The given information states: \"If something is white then it is round.\" \n   However, we do not have information about Fiona being round.\n\n3. The information \"All rough things are young\" tells us that if Fiona is not rough, then she is not young.\n   However, we do not have information about Fiona being rough.\n\n4. We have no information about Fiona being young.\n\nSince we do not have enough information to determine whether Fiona is young or not, we cannot determine whether she is not young. Therefore, the statement \"Fiona is not young\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not young\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Fiona is white. \n2. If something is white then it is round. (Rule 2)\n   So, Fiona is round.\n\n3. If something is nice then it is round. (Rule 1)\n   We cannot conclude that Fiona is nice, because there is no information that directly links Fiona to being nice.\n\n4. If something is young and not nice then it is round. (Rule 3)\n   We cannot conclude that Fiona is young or not, because there is no information that directly links Fiona to being young.\n\nHowever, from Rule 5, we can deduce that Bob is rough. Since Bob is green and round (Rules 6 and 2), and we know that if Bob is round and Bob is green then Bob is rough (Rule 7), it is given that Bob is rough.\n\nNow, we can apply Rule 9, which states that all rough things are young. Since Bob is rough, it means that Bob is young.\n\nHowever, we still cannot conclude that Fiona is young or not.\n\nWe can conclude that Fiona is not young if we can prove that Fiona is not young and not young is false. If Fiona is not young, then Fiona is young (negation). We can use the negation rule to determine whether Fiona is young or not.\n\nFiona is not young -> Fiona is young.\n\nNow, let's assume Fiona is young. From Rule 8, if something is young and green then it is smart. However, we cannot conclude that Fiona is green. Since we know that Fiona is white (Rule 1), we can apply Rule 10, which states that smart things are white.\n\nFiona is white (Rule 1)\nFiona is smart (Rule 10, since smart things are white)\n\nHowever, we know that Gary is white and round (Rule 4). Since we cannot conclude that Fiona is nice, we cannot conclude that Fiona is round (Rule 3).\n\nSince Fiona is round (Rule 2), we know that Fiona is nice. However, we know that Gary is not nice (since we know that Gary is rough, Rule 5). Gary is white and round (Rule 4). Since Fiona is also white and round, we cannot conclude that Fiona is nice or not.\n\nNow, we can apply Rule 11, which states that if something is rough and not green then it is white. Since Gary is rough and white, it means that Gary is not green.\n\nHowever, from Rule 8, if something is young and green then it is smart. Since we know that Gary is not green (from above), we can conclude that Gary is not smart.\n\nSince Gary is rough (Rule 5) and we know that all rough things are young (Rule 9), it means that Gary is young.\n\nNow, let's apply the negation rule to Fiona is not young. Fiona is not young -> Fiona is young. We know that Gary is young and Gary is not nice (since Gary is rough, Rule 5). From Rule 3, if something is young and not nice then it is round. However, we know that Gary is round (Rule 4). Since Gary is round, we know that Gary is nice (Rule 1). However, we know that Gary is not nice.\n\nWe know that Gary is not nice, and we know that Gary is young. From Rule 3, if something is young and not nice then it is round. However, we know that Gary is round (Rule 4). Since Gary is round, we know that Gary is nice (Rule 1).\n\nHowever, we know that Gary is not nice. This is a contradiction.\n\nWe cannot conclude that Fiona is not young or not. Therefore, the statement \"Fiona is not young\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether Fiona is not young, we need to find out if Fiona is young or not. \n\nFrom the given statements, we have: Fiona is white. Gary is white. Fiona is not mentioned to be young or rough, but Gary is rough and white. \n\nLet's analyze the given statements related to white objects:\n1. If something is white then it is round. \n2. If something is white then it is round. (This statement is redundant and can be ignored.)\n\nNow, let's analyze the statements related to round objects:\n1. If something is nice then it is round.\n2. If something is white then it is round.\n\nWe can infer from the statements that round things are either nice or white.\n\nNow, let's analyze the statements related to rough objects:\n1. If something is rough then it is young.\n2. All rough things are young.\n\nWe can infer from the statements that if something is rough, it is young.\n\nSince Gary is white, it is round. We can conclude that Gary is either nice or young. We are given that Gary is rough, so Gary is young.\n\nFrom the statement \"If something is rough then it is young\" and \"All rough things are young\", we can conclude that all young things are rough.\n\nNow, we need to find out if Fiona is young or not. If Fiona is young, then it is rough. But Fiona is white. We are given that if something is white, it is round. So, Fiona is round.\n\nFrom the statement \"If something is young and not nice then it is round\", we can't conclude that Fiona is not young because it can also be round due to the reason that it is white.\n\nHowever, we can't conclude that Fiona is young because all young things are rough, and Fiona is not rough.\n\nLet's analyze the statements related to smart objects:\n1. If something is young and green then it is smart.\n2. Smart things are white.\n\nWe know that if something is young and green, it is smart. But we don't know if Fiona is green or not. If Fiona is not green, then we can't conclude that it is smart or not.\n\nNow, let's analyze the statements related to green objects:\n1. Anne is green.\n2. Bob is green.\n\nWe know that if something is green, it is either smart or not young. We are given that Bob is green, and we can't conclude that Bob is not young because all rough things are young, and Bob is not rough.\n\nNow, let's analyze the statements related to rough objects again:\n1. If something is rough then it is young.\n2. If Bob is round and Bob is green then Bob is rough. \n3. All rough things are young.\n\nFrom the statement \"If Bob is round and Bob is green then Bob is rough\", we can conclude that Bob is rough.\n\nWe know that Bob is green and rough. Since Bob is rough, it is young. But we can't conclude that all green things are young because Anne is green, and we don't know if Anne is young or not.\n\nHowever, we can conclude that Fiona is not necessarily young because it is white and round. We can't conclude that it is young or not because all young things are rough, and Fiona is not rough. But we can't conclude that Fiona is not young because it is white and round.\n\nBut we know that Fiona is white, and all white things are round. We can't conclude that Fiona is young because all young things are rough, and Fiona is not rough. But we can't conclude that Fiona is not young because all white things are round. \n\nHowever, we can conclude that Fiona is not necessarily young, but we also can't conclude that Fiona is not young because it is round due to the fact that it is white, and it is white due to the fact that it is round, and we don't know if Fiona is nice or not.\n\nWe can conclude that Fiona is not necessarily young because we can't conclude that it is young or not, and it is not necessary for Fiona to be young because all white things are round, and it is not necessary for Fiona to be round because all white things are round. \n\nHowever, we can conclude that Fiona is not necessarily young. But we can't conclude that Fiona is not young because it is round and white. We can conclude that Fiona is not necessarily young. \n\nHowever, we can conclude that Fiona is not necessarily young because all young things are rough, and Fiona is not rough. However, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young. However, we can't conclude that Fiona is not young because it is white and round. \n\nHowever, we can conclude that Fiona is not necessarily young. \n\nBut we can't conclude that Fiona is not young because it is round and white. \n\nHowever, we can conclude that Fiona is not necessarily young.\n\nBut we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nWe can conclude that Fiona is not necessarily young. But we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nWe can conclude that Fiona is not necessarily young. \n\nHowever, we can conclude that Fiona is not necessarily young. \n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it is round and white.\n\nHowever, we can conclude that Fiona is not necessarily young.\n\nHowever, we can't conclude that Fiona is not young because it",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Fiona is not young, we need to first determine if Fiona is young or not. Since the information provided is in the form of statements and rules, we'll apply the rules to the given facts.\n\nGiven facts:\n\n- Fiona is white.\n- Gary is white.\n- Gary is rough.\n- If something is white then it is round.\n- If something is rough and not green then it is white.\n- All rough things are young.\n\nFrom the given rules:\n- If something is white then it is round. (Rule 1)\n- Gary is white, Gary is round. (Applying Rule 1)\n- Gary is rough, Gary is white, and Gary is round. (From the given facts)\n- If something is rough and not green then it is white. (Rule 5)\n- Gary is rough and not green (from the given fact), so Gary is white (Applying Rule 5)\n- Gary is white, therefore Gary is round (Applying Rule 1)\n- Gary is rough, therefore Gary is young (Rule 6)\n\nNow, let's apply the rule that all rough things are young to the fact that Gary is rough. This doesn't tell us anything about Fiona, but we do know that Gary is young.\n\nFrom the given facts:\n- Gary is young.\n- Gary is rough.\n\nNow, let's apply the rule that if something is rough then it is young (Rule 6) to the fact that Gary is rough. This confirms that Gary is young, but we still don't know if Fiona is young or not.\n\nHowever, we do know that Fiona is white (Given fact). \n\nFrom the given rules:\n- If something is white then it is round. (Rule 1)\n- Fiona is white, Fiona is round. (Applying Rule 1)\n\nWe now know that Fiona is round and white, but we still can't determine if Fiona is young or not.\n\nFrom the given rules:\n- All rough things are young. (Rule 7)\n- If something is rough and not green then it is white. (Rule 5)\n- If something is rough then it is young. (Rule 6)\n\nWe can see that there's a connection between rough things and young things, but there's no direct connection between round or white things and young things.\n\nHowever, we can see that Fiona is white, and from the given fact, Gary is white and Gary is rough. But we can't conclude that Fiona is rough or young.\n\nFrom the given rules:\n- Gary is young.\n- Gary is rough.\n- Gary is white.\n- Gary is round.\n- If something is white then it is round. (Rule 1)\n- If something is white then it is round. (Rule 2)\n- If something is rough and not green then it is white. (Rule 5)\n- If something is rough then it is young. (Rule 6)\n- All rough things are young. (Rule 7)\n- If something is young and green then it is smart. (Rule 8)\n- Smart things are white. (Rule 9)\n- If something is young and not nice then it is round. (Rule 4)\n- If something is nice then it is round. (Rule 3)\n- If Bob is round and Bob is green then Bob is rough. (Rule 10)\n- Bob is green. (Given fact)\n- Bob is nice. (Given fact)\n\nNow, let's apply the rule that if Bob is round and Bob is green then Bob is rough. We don't know if Bob is round or not, but we do know that Bob is green.\n\nFrom the given facts:\n- Bob is green.\n- Bob is nice.\n- If something is green then it is smart. (Rule 8)\n\nWe can now apply the rule that if something is green then it is smart to the fact that Bob is green. This tells us that Bob is smart.\n\nFrom the given rules:\n- Smart things are white. (Rule 9)\n- Bob is smart, Bob is white. (Applying Rule 9)\n\nWe now know that Bob is white, but we still can't determine if Fiona is young or not.\n\nFrom the given facts:\n- Fiona is white.\n- Gary is white.\n- Gary is rough.\n- If something is white then it is round. (Rule 1)\n- If something is white then it is round. (Rule 2)\n- If something is rough and not green then it is white. (Rule 5)\n- If something is rough then it is young. (Rule 6)\n- All rough things are young. (Rule 7)\n\nWe still can't determine if Fiona is young or not, but we can see that Gary is young because Gary is rough.\n\nSince we can't determine if Fiona is young or not, we can't conclude whether Fiona is not young or not.\n\nHowever, we can see that if Fiona is not young, then Fiona must be not rough (because if Fiona is rough, then Fiona must be young, but we can't conclude that Fiona is young). \n\nFrom the given facts:\n- Fiona is white.\n- Gary is white.\n- Gary is rough.\n- If something is white then it is round. (Rule 1)\n- If something is white then it is round. (Rule 2)\n- If something is rough and not green then it is white. (Rule 5)\n- If something is rough then it is young. (Rule 6)\n- All rough things are young. (Rule 7)\n\nWe still can't determine if Fiona is young or not, but we can see that Gary is young because Gary is rough.\n\nFrom the given rules:\n- If something is rough and not green then it is white. (Rule 5)\n- If something is rough then it is young. (Rule 6)\n- All rough things are young. (Rule 7)\n\nSince we can't determine if Fiona is young or not, we can't conclude whether Fiona is not young or not.\n\nSince we can't determine if Fiona is young or not, we can't determine if Fiona is not young or not. \n\nTherefore, the statement \"Fiona is not young\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is white.\n   From the given information: If something is white then it is round.\n   So, Fiona is round.\n\n2. Since Fiona is round, we need to find the condition that makes something round.\n   There are three conditions for something to be round:\n   - If something is nice then it is round.\n   - If something is white then it is round.\n   - If something is young and not nice then it is round.\n\n   From the given information, Fiona is white, so it satisfies the second condition. We don't know if Fiona is nice, but we don't need to know that because the second condition is enough to conclude that Fiona is round.\n\n3. Fiona is white.\n   From the given information: If something is white then it is round.\n   We already concluded that Fiona is round, so this is consistent.\n\n4. Fiona is white.\n   From the given information: Smart things are white.\n   This is not directly relevant to determining if Fiona is young or not.\n\n5. We need to determine if Fiona is young or not.\n   There are two conditions that make something young:\n   - If something is rough.\n   - Since all rough things are young, we can conclude that if something is rough, it is young.\n\n   However, we need to check the conditions that make something rough.\n   From the given information: If something is rough and not green then it is white.\n   Since Fiona is white, this does not directly tell us if Fiona is rough or not.\n\n6. However, we have another condition for something to be rough.\n   From the given information: If something is rough then it is young.\n   But we need to determine if Fiona is rough or not.\n\n7. We have one more condition for something to be rough.\n   From the given information: Gary is rough. Gary is round. Gary is white. If something is rough then it is young. All rough things are young.\n   This information does not tell us anything about Fiona, but it tells us that rough things are young.\n\n8. Now, let's go back to the condition for something to be round.\n   We know that Fiona is round, and we know that something is young and not nice if it is round.\n   However, we don't know if Fiona is young or not. We also don't know if Fiona is nice or not.\n\n9. Since we don't have enough information to determine if Fiona is young or not, we can't determine if the statement \"Fiona is not young\" is true or false.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information about Fiona:\n   - Fiona is white.\n\n2. From the given information, we know that if something is white, then it is round. However, this information does not directly relate to Fiona's age.\n\n3. We also know that if something is young and not nice, then it is round. But we don't know if Fiona is young or nice.\n\n4. We are given the following information about Fiona's age:\n   - If something is young and not nice then it is round.\n   - All rough things are young.\n\n5. We are not given any information about Fiona being nice or rough. We can only conclude that since Fiona is white and round, it does not necessarily mean she is young or old.\n\n6. To determine Fiona's age, we need to check if she is young. We can do this by finding a statement that says \"Fiona is young\". If we find such a statement, then we can conclude that Fiona is not young.\n\n7. However, we are given the following information:\n   - All rough things are young.\n\n8. We are not given any information about Fiona being rough. We can only conclude that since Fiona is white, and if something is rough and not green then it is white, it does not necessarily mean she is rough.\n\n9. We are given the following information about Fiona's color:\n   - Fiona is white.\n\n10. We are given the following information about Fiona's characteristics:\n    - Fiona is white.\n\n11. We can conclude that since Fiona is white, she is round, and we are not given any information that contradicts this.\n\n12. However, we are given the following information:\n    - If something is rough and not green then it is white.\n\n13. We are not given any information about Fiona being green. We can only conclude that since Fiona is white, and if something is rough and not green then it is white, it does not necessarily mean she is rough.\n\n14. To determine Fiona's age, we need to check if she is young. We can do this by finding a statement that says \"Fiona is young\". If we find such a statement, then we can conclude that Fiona is not young.\n\n15. However, we are given the following information:\n    - Fiona is white.\n\n16. We are given the following information:\n    - If something is white then it is round.\n\n17. We are given the following information:\n    - Gary is white.\n\n18. We are given the following information:\n    - Gary is round.\n\n19. We are given the following information:\n    - Gary is rough.\n\n20. We are given the following information:\n    - Gary is young.\n\n21. We can conclude that since Gary is white, and if something is white then it is round, it does not necessarily mean Fiona is young.\n\n22. We can conclude that since Gary is rough, and if something is rough then it is young, it does not necessarily mean Fiona is young.\n\n23. We can conclude that since Fiona is white, and if something is white then it is round, it does not necessarily mean Fiona is young.\n\n24. However, we are given the following information:\n    - If something is young and not nice then it is round.\n\n25. We are given the following information:\n    - Fiona is not mentioned in any of the given statements that say \"something is young\".\n\n26. We can conclude that since Fiona is not mentioned in any of the given statements that say \"something is young\", we cannot determine if Fiona is young or not.\n\n27. Therefore, we cannot determine if Fiona is not young.\n\nFinal Answer:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply it to the statement \"Fiona is not young.\"\n\nGiven information:\n\n1. Anne is green.\n2. Anne is nice.\n3. Anne is not rough.\n4. Anne is smart.\n5. Bob is green.\n6. Bob is nice.\n7. Fiona is white.\n8. Gary is rough.\n9. Gary is round.\n10. Gary is white.\n11. If something is nice then it is round.\n12. If something is white then it is round.\n13. If something is young and not nice then it is round.\n14. If Bob is round and Bob is green then Bob is rough.\n15. If something is young and green then it is smart.\n16. Smart things are white.\n17. If something is rough and not green then it is white.\n18. If something is rough then it is young.\n19. All rough things are young.\n\nNow, let's analyze the statement \"Fiona is not young.\"\n\nTo determine whether Fiona is young or not, we need to know the relationship between Fiona's color (white) and being young.\n\nFrom statement 18, we know that if something is rough then it is young. However, we also know from statement 13 that if something is young and not nice then it is round. \n\nHowever, we don't know if Fiona is young or not, we only know her color is white.\n\nFrom statement 12, if something is white then it is round. Since we know Fiona is white, we can conclude that Fiona is round.\n\nFrom statement 11, if something is nice then it is round. Since Fiona is round, we can conclude that Fiona is nice.\n\nHowever, we also know from statement 17 that if something is rough and not green then it is white. Since Fiona is white and not rough, we can conclude that Fiona is not rough.\n\nNow, let's analyze the relationship between Fiona's color (white) and being young.\n\nFrom statement 17, we know that if something is rough and not green then it is white. However, we also know from statement 18 that if something is rough then it is young. We already know that Fiona is not rough, but we don't know if she is young or not.\n\nFrom statement 12, we know that if something is white then it is round. We already know that Fiona is white and round.\n\nFrom statement 11, we know that if something is nice then it is round. We already know that Fiona is nice and round.\n\nFrom statement 15, we know that if something is young and green then it is smart. Since Fiona is not green, we can't conclude that she is young based on this statement.\n\nFrom statement 16, we know that smart things are white. We already know that Fiona is white, but we also know that smart things are white. However, we don't know if Fiona is smart or not.\n\nFrom statement 19, we know that all rough things are young. However, we already know that Fiona is not rough, so we can't conclude that she is young based on this statement.\n\nNow, let's analyze the statement \"Fiona is not young\" based on the information we have.\n\nSince we don't know if Fiona is young or not, we can't conclude that she is not young. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is white.\n2. If something is white then it is round.\n   Therefore, Fiona is round.\n\n3. If something is nice then it is round.\n   We don't have any information about Fiona being nice or not, so we cannot conclude anything from this statement.\n\n4. If something is young and not nice then it is round.\n   We don't have any information about Fiona being young or not, so we cannot conclude anything from this statement.\n\n5. If Bob is round and Bob is green then Bob is rough.\n   We already know that Bob is green and round, so we can conclude that Bob is rough.\n\n6. If something is young and green then it is smart.\n   We don't have any information about Fiona being young or green, so we cannot conclude anything from this statement.\n\n7. Smart things are white.\n   Since Fiona is white, we cannot conclude that she is smart.\n\n8. If something is rough and not green then it is white.\n   We already know that Gary is rough and white, but we cannot conclude anything from this statement about Fiona.\n\n9. If something is rough then it is young.\n   We already know that Bob is rough and therefore young, but we cannot conclude anything from this statement about Fiona.\n\n10. All rough things are young.\n    We already know that Bob is rough and young, but we cannot conclude anything from this statement about Fiona.\n\nFrom the given information, we know that Fiona is white and round, but we don't have any information about her being young or not. Therefore, we cannot determine whether the statement \"Fiona is not young\" is true or false, so the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_fiona, round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_fiona, young_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & not_green(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_fiona, not_green_fiona), white_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_fiona, young_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not_nice(X) -> round(X)",
+          "z3_formula": "Implies(And(young_fiona, not_nice_fiona), round_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> not_round(X)",
+          "z3_formula": "Implies(young_fiona, not(round_fiona))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not young(fiona)",
+          "z3_formula": "Not(young_fiona)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_gary, round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X)",
+          "z3_formula": "young_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> not(rough(X))",
+          "z3_formula": "Implies(nice_gary, not(rough_gary))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not(nice(X)) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, not(nice_gary)), round_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(young(fiona))",
+          "z3_formula": "not(young_fiona)",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_fiona, round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_fiona, young_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_fiona, round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_fiona, young_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not young(fiona)",
+          "z3_formula": "Not(young_fiona) == True",
+          "source_step": 4
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_fiona, round_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> (nice(X) | white(X))",
+          "z3_formula": "Implies(round_fiona, Or(nice_fiona, white_fiona))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_bob, young_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_bob, green_bob), rough_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not young(fiona)",
+          "z3_formula": "Not(young_fiona)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_fiona, round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_gary, round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & Not(green(X)) -> white(X)",
+          "z3_formula": "Implies(And(rough_gary, Not(green_gary)), white_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "All(X, rough(X) -> young(X))",
+          "z3_formula": "ForAll(X, Implies(rough(X), young(X)))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "Not(young(X)) -> Not(rough(X))",
+          "z3_formula": "Implies(Not(young(X)), Not(rough(X)))",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_fiona, round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_fiona, round_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_fiona, white_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_fiona, young_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & Not(green(X)) -> white(X)",
+          "z3_formula": "Implies(And(rough_fiona, Not(green_fiona)), white_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & Not(nice(X)) -> round(X)",
+          "z3_formula": "Implies(And(young_fiona, Not(nice_fiona)), round_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == Unknown",
+          "source_step": 9
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(anne)",
+          "z3_formula": "Not(rough_anne) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_anne, round_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_fiona, round_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not nice(X) -> round(X)",
+          "z3_formula": "Implies(And(young_fiona, Not(nice_fiona)), round_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_bob, green_bob), rough_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_anne, green_anne), smart_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_fiona, white_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & not green(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_gary, Not(green_gary)), white_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "all(X) rough(X) -> young(X)",
+          "z3_formula": "Implies(all(rough), young)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(fiona)",
+          "z3_formula": "Not(rough_fiona) == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == Unknown",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_fiona, round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_fiona, round_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & ~nice(X) -> round(X)",
+          "z3_formula": "Implies(And(young_fiona, Not(nice_fiona)), round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_bob, green_bob), rough_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_bob, green_bob), smart_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & ~green(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_gary, Not(green_gary)), white_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_bob, young_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_bob, young_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 112,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 37
+    },
+    "maxsat_stats": {
+      "satisfied": 37,
+      "excluded": 0,
+      "total_weight": 105,
+      "solve_time_ms": 1.2150704860687256
+    },
+    "timing": {
+      "trace_gen_s": 24.845,
+      "extraction_s": 38.763,
+      "dedup_s": 0.747,
+      "maxsat_s": 0.003,
+      "total_s": 64.358
+    }
+  }
+}

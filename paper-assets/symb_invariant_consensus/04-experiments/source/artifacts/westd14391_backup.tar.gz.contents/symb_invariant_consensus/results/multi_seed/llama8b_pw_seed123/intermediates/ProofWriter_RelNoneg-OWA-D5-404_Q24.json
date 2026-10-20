@@ -1,0 +1,1016 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-404_Q24",
+    "problem": "The bear chases the lion. The bear is cold. The bear is nice. The bear visits the rabbit. The lion is red. The rabbit chases the bear. The rabbit is green. The squirrel chases the bear. The squirrel likes the bear. The squirrel visits the lion. If something chases the squirrel then the squirrel is red. If something likes the lion then it chases the squirrel. If something is red then it likes the lion. If something is nice and it chases the lion then it likes the rabbit. If something likes the bear and the bear likes the rabbit then the bear is green. If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit likes the bear.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nVisits($x, $y, bool) ::: Does x visit y?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\nLikes($x, $y, bool) ::: Does x like y?\n\nFacts:\nChases(Bear, Lion, True) ::: The bear chases the lion.\nCold(Bear, True) ::: The bear is cold.\nNice(Bear, True) ::: The bear is nice.\nVisits(Bear, Rabbit, True) ::: The bear visits the rabbit.\nRed(Lion, True) ::: The lion is red.\nChases(Rabbit, Bear, True) ::: The rabbit chases the bear.\nGreen(Rabbit, True) ::: The rabbit is green.\nChases(Squirrel, Bear, True) ::: The squirrel chases the bear.\nLikes(Squirrel, Bear, True) ::: The squirrel likes the bear.\nVisits(Squirrel, Lion, True) ::: The squirrel visits the lion.\n\nRules:\nChases($x, Squirrel, True) >>> Red(Squirrel, True) ::: If something chases the squirrel then the squirrel is red.\nLikes($x, Lion, True) >>> Chases($x, Squirrel, True) ::: If something likes the lion then it chases the squirrel.\nRed($x, True) >>> Likes($x, Lion, True) ::: If something is red then it likes the lion.\nNice($x, True) && Chases($x, Lion, True) >>> Likes($x, Rabbit, True) ::: If something is nice and it chases the lion then it likes the rabbit.\nLikes($x, Bear, True) && Likes(Bear, Rabbit, True) >>> Green(Bear, True) ::: If something likes the bear and the bear likes the rabbit then the bear is green.\nVisits(Squirrel, Rabbit, True) && Likes(Rabbit, Bear, True) >>> Visits(Bear, Squirrel, True) ::: If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n\nQuery:\nLikes(Rabbit, Bear, True) ::: The rabbit likes the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 61.0,
+      "True": 85.5,
+      "Unknown": 119.0
+    },
+    "answer_counts": {
+      "Unknown": 4,
+      "True": 3,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The rabbit likes the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is red. (From the given statements)\n2. If something is red then it likes the lion. (From the given statements)\n   Therefore, the lion likes the lion. (This statement is true, but it doesn't help us with the original question)\n\n3. The rabbit is green. (From the given statements)\n4. The squirrel chases the bear. (From the given statements)\n5. The squirrel is green. (Since the squirrel chases the bear and the bear visits the rabbit, and the rabbit is green, by the given statement 'If something likes the bear and the bear likes the rabbit then the bear is green', the squirrel must be green as well, however this does not directly relate to the rabbit)\n6. The rabbit chases the bear. (From the given statements)\n7. The squirrel likes the bear. (From the given statements)\n8. If something likes the bear and the bear likes the rabbit then the bear is green. (From the given statements)\n   We know the bear likes the rabbit because the rabbit chases the bear, but we cannot directly infer that the bear is green from this statement alone. We can only infer that the bear likes the rabbit if the bear is green.\n   Therefore, we need to find more information about the bear.\n\n9. The bear is cold. (From the given statements)\n   This statement does not provide any useful information about the bear's color or its relationship with the rabbit.\n10. The bear visits the rabbit. (From the given statements)\n11. The rabbit likes the bear. (This is the statement we are trying to determine)\n12. If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel. (From the given statements)\n    We know the bear visits the rabbit and the squirrel visits the rabbit. Therefore, we can conclude that the bear visits the squirrel.\n\nHowever, we still cannot determine whether the statement \"The rabbit likes the bear\" is true or false. We need more information about the relationship between the rabbit and the bear.\n\n13. The bear chases the lion. (From the given statements)\n14. The bear is nice. (From the given statements)\n15. If something chases the lion then it is nice. (From the given statements)\n   This statement is true for the bear, but it does not provide any useful information about the bear's color or its relationship with the rabbit.\n16. If something is nice and it chases the lion then it likes the rabbit. (From the given statements)\n   We know the bear is nice and it chases the lion. Therefore, we can conclude that the bear likes the rabbit.\n\n17. The squirrel chases the bear. (From the given statements)\n18. The squirrel likes the bear. (From the given statements)\n19. If something likes the bear then it chases the squirrel. (From the given statements)\n   We cannot conclude that the rabbit likes the bear from this statement alone.\n\n20. If something chases the squirrel then the squirrel is red. (From the given statements)\n   We cannot conclude that the rabbit likes the bear from this statement alone.\n\nBased on the given information, we can conclude that the bear likes the rabbit (from statement 16), but we still cannot determine whether the rabbit likes the bear.\n\nTherefore, the statement \"The rabbit likes the bear\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit likes the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - The bear chases the lion.\n   - The bear is cold.\n   - The bear is nice.\n   - The bear visits the rabbit.\n   - The lion is red.\n   - The rabbit chases the bear.\n   - The rabbit is green.\n   - The squirrel chases the bear.\n   - The squirrel likes the bear.\n   - The squirrel visits the lion.\n   - If something chases the squirrel then the squirrel is red.\n   - If something likes the lion then it chases the squirrel.\n   - If something is red then it likes the lion.\n   - If something is nice and it chases the lion then it likes the rabbit.\n   - If something likes the bear and the bear likes the rabbit then the bear is green.\n   - If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n\n2. We need to determine whether the statement \"The rabbit likes the bear\" is true, false, or unknown.\n\nLet's break it down:\n\n- Statement 7: The rabbit is green. This doesn't directly tell us whether the rabbit likes the bear or not.\n\n- Statement 9: The squirrel likes the bear. However, this is not enough information to conclude whether the rabbit likes the bear or not.\n\n- Statement 2: The bear is nice. Statement 1: The bear chases the lion. Statement 4: The bear visits the rabbit. Statement 10: If something is nice and it chases the lion then it likes the rabbit. This combination implies that the bear likes the rabbit because it is nice and chases the lion.\n\n- Statement 12: If something likes the bear and the bear likes the rabbit then the bear is green. However, we already know that the bear is nice (Statement 2), not green (Statement 7: The rabbit is green). This is not directly related to the statement \"The rabbit likes the bear\".\n\n- Statement 8: The squirrel chases the bear. Statement 11: The squirrel likes the bear. However, this information is not sufficient to conclude whether the rabbit likes the bear or not.\n\n- Statement 5: The lion is red. Statement 6: The rabbit chases the bear. Statement 3: The bear is nice. Statement 1: The bear chases the lion. Statement 10: If something is nice and it chases the lion then it likes the rabbit. This combination implies that the bear likes the rabbit. \n\n- Statement 6: The rabbit chases the bear. This does not provide enough information to conclude whether the rabbit likes the bear or not.\n\n- Statement 1: The bear chases the lion. Statement 2: The bear is nice. Statement 10: If something is nice and it chases the lion then it likes the rabbit. This combination implies that the bear likes the rabbit.\n\nNow, let's analyze the information given in the problem statement about the relationship between the bear, the rabbit, and the squirrel.\n\n- Statement 9: The squirrel likes the bear.\n- Statement 10: The bear is nice.\n- Statement 4: The bear visits the rabbit.\n- Statement 2: The bear is nice.\n- Statement 10: If something is nice and it chases the lion then it likes the rabbit.\n- Statement 1: The bear chases the lion.\n- Statement 3: The bear is nice.\n\n- Statement 4: The bear visits the rabbit.\n- Statement 9: The squirrel likes the bear.\n- Statement 11: The squirrel visits the lion.\n- Statement 13: If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n- Statement 7: The rabbit is green.\n- Statement 6: The rabbit chases the bear.\n\n- Statement 6: The rabbit chases the bear.\n- Statement 7: The rabbit is green.\n- Statement 5: The lion is red.\n- Statement 14: If something is red then it likes the lion.\n- Statement 15: If something likes the lion then it chases the squirrel.\n- Statement 11: The squirrel likes the bear.\n- Statement 8: The squirrel chases the bear.\n- Statement 16: If something chases the squirrel then the squirrel is red.\n\n- Statement 3: The bear is nice.\n- Statement 10: If something is nice and it chases the lion then it likes the rabbit.\n- Statement 1: The bear chases the lion.\n- Statement 4: The bear visits the rabbit.\n- Statement 9: The squirrel likes the bear.\n- Statement 11: The squirrel visits the lion.\n- Statement 13: If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n- Statement 7: The rabbit is green.\n- Statement 6: The rabbit chases the bear.\n\n- Statement 9: The squirrel likes the bear.\n- Statement 11: The squirrel visits the lion.\n- Statement 5: The lion is red.\n- Statement 14: If something is red then it likes the lion.\n- Statement 15: If something likes the lion then it chases the squirrel.\n- Statement 8: The squirrel chases the bear.\n- Statement 16: If something chases the squirrel then the squirrel is red.\n\n- Statement 7: The rabbit is green.\n- Statement 9: The squirrel likes the bear.\n- Statement 11: The squirrel visits the lion.\n- Statement 13: If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n- Statement 6: The rabbit chases the bear.\n- Statement 5: The lion is red.\n- Statement 14: If something is red then it likes the lion.\n- Statement 15: If something likes the lion then it chases the squirrel.\n- Statement 8: The squirrel chases the bear.\n- Statement 16: If something chases the squirrel then the squirrel is red.\n\n- Statement 5: The lion is red.\n- Statement 14: If something is red then it likes the lion.\n- Statement 15: If something likes the lion then it chases the squirrel.\n- Statement 8: The squirrel chases the bear.\n- Statement 16: If something chases the squirrel then the squirrel is red.\n- Statement 11: The squirrel visits the lion.\n- Statement 9: The squirrel likes the bear.\n\n- Statement 9: The squirrel likes the bear.\n- Statement 11: The squirrel visits the lion.\n- Statement 5: The lion is red.\n- Statement 14: If something is red then it likes the lion.\n- Statement 15: If something likes the lion then it chases the squirrel.\n- Statement 8: The squirrel chases the bear.\n- Statement 16: If something chases the squirrel then the squirrel is red.\n\n- Statement 6: The rabbit chases the bear.\n- Statement 7: The rabbit is green.\n- Statement 5: The lion is red.\n- Statement 14: If something is red then it likes the lion.\n- Statement 15: If something likes the lion then it chases the squirrel.\n- Statement 8: The squirrel chases the bear.\n- Statement 16: If something chases the squirrel then the squirrel is red.\n- Statement 9: The squirrel likes the bear.\n- Statement 11: The squirrel visits the lion.\n- Statement 13: If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n\nFrom the above analysis, we can see that the bear likes the rabbit (Statement 10) because it is nice and chases the lion. However, we cannot directly conclude whether the rabbit likes the bear or not from the given information. \n\nBut we can try to find the relationship between the rabbit and the bear using the information given in the problem statement.\n\n- Statement 6: The rabbit chases the bear.\n- Statement 4: The bear visits the rabbit.\n- Statement 9: The squirrel likes the bear.\n- Statement 11: The squirrel visits the lion.\n- Statement 13: If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n- Statement 7: The rabbit is green.\n- Statement 5: The lion is red.\n- Statement 14: If something is red then it likes the lion.\n- Statement 15: If something likes the lion then it chases the squirrel.\n- Statement 8: The squirrel chases the bear.\n- Statement 16: If something chases the squirrel then the squirrel is red.\n\nHowever, Statement 13 is crucial in determining the relationship between the bear and the rabbit. \n\nStatement 13: If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel. \n\nThis implies that the bear does not visit the squirrel if the squirrel does not visit the rabbit. Therefore, if the bear visits the rabbit, then the bear does not visit the squirrel, unless the squirrel visits the rabbit.\n\nFrom Statement 4, we know that the bear visits the rabbit.\n\nTherefore, from Statement 13, it can be inferred that the squirrel must visit the rabbit for the bear to visit the squirrel. \n\nBut Statement 6 implies that the rabbit chases the bear, which does not necessarily imply that the rabbit likes the bear.\n\nHowever, we can see that the squirrel likes the bear (Statement 9) and the squirrel visits the lion (Statement 11). \n\nStatement 14: If something is red then it likes the lion.\n\nStatement 15: If something likes the lion then it chases the squirrel.\n\nStatement 8: The squirrel chases the bear.\n\nStatement 16:",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit likes the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is red. (Statement 6)\n   From Statement 8, if something is red then it likes the lion. \n   So, the lion likes itself.\n\n2. The squirrel likes the bear. (Statement 9)\n   From Statement 9, the squirrel likes the bear.\n\n3. The squirrel is nice. (Implication from Statement 9 and Statement 5)\n   Since the squirrel likes the bear and the bear is nice (Statement 5), the squirrel must also be nice.\n\n4. The squirrel chases the bear. (Implication from Statement 8 and Statement 9)\n   From Statement 8, if something is red then it likes the lion. \n   But the squirrel is not red, so it does not like the lion.\n   However, Statement 9 says the squirrel likes the bear.\n   So, from Statement 8, the squirrel cannot be red, so from Statement 7, the squirrel does not chase the squirrel.\n   However, Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 10 says if something likes the bear and the bear likes the rabbit then the bear is green.\n   Statement 10 also says if the squirrel likes the bear and the bear likes the rabbit then the bear is green. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 1 says the bear chases the lion. Statement 7 says the rabbit chases the bear.\n   Therefore, the squirrel is not red. Statement 7 says the rabbit chases the bear. Statement 3 says the squirrel is nice. Statement 1 says the bear chases the lion. Statement 10 says if the squirrel likes the bear and the bear likes the rabbit then the bear is green. Statement 5 says the bear is nice. Statement 9 says the squirrel likes the bear.\n   Since the squirrel is nice and it chases the lion (indirectly, since it chases the bear, who chases the lion), it must like the rabbit (Statement 11).\n   However, Statement 11 does not apply here because Statement 11 is \"If something is nice and it chases the lion then it likes the rabbit.\" Statement 1 says the bear chases the lion. Statement 5 says the bear is nice. Statement 11 does not apply here because Statement 11 says \"it\", not \"the bear\".\n   Statement 11 says \"If something is nice and it chases the lion then it likes the rabbit.\" Statement 1 says the bear chases the lion. Statement 5 says the bear is nice. Statement 11 says \"it\", not \"the bear\". Statement 5 says the bear is nice. Statement 11 says \"it\", not \"the bear\". Statement 5 says the bear is nice. Statement 5 says the bear is nice. Statement 1 says the bear chases the lion. Statement 5 says the bear is nice. Statement 11 says \"it\", not \"the bear\". Statement 10 says if something likes the bear and the bear likes the rabbit then the bear is green. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice.\n   Since the squirrel is nice and it chases the lion (indirectly, since it chases the bear, who chases the lion), it must like the rabbit. Since the squirrel likes the bear and the bear likes the rabbit, the bear is green.\n   Statement 4 says the squirrel chases the bear. Statement 5 says the bear is nice. Statement 1 says the bear chases the lion. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 10 says if something likes the bear and the bear likes the rabbit then the bear is green. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice.\n   Since the squirrel is nice and it chases the lion (indirectly, since it chases the bear, who chases the lion), it must like the rabbit. Since the squirrel likes the bear and the bear likes the rabbit, the bear is green. Statement 5 says the bear is nice. Statement 1 says the bear chases the lion. Statement 5 says the bear is nice. Statement 11 says \"If something is nice and it chases the lion then it likes the rabbit.\"\n   Statement 11 says \"it\", not \"the bear\". Statement 5 says the bear is nice. Statement 11 says \"it\", not \"the bear\". Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 5 says the bear is nice. Statement 1 says the bear chases the lion. Statement 5 says the bear is nice. Statement 10 says if something likes the bear and the bear likes the rabbit then the bear is green. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 5 says the bear is nice.\n   Statement 4 says the squirrel chases the bear. Statement 5 says the bear is nice. Statement 1 says the bear chases the lion. Statement 5 says the bear is nice. Statement 10 says if something likes the bear and the bear likes the rabbit then the bear is green. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 5 says the bear is nice.\n   Statement 4 says the squirrel chases the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear.\n   Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 5 says the bear is nice. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 5 says the bear is nice. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 5 says the bear is nice. Statement 9 says the squirrel likes the bear.\n   Statement 4 says the squirrel chases the bear. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 1 says the bear chases the lion. Statement 4 says the squirrel chases the bear. Statement 10 says if something likes the bear and the bear likes the rabbit then the bear is green. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear.\n   Statement 4 says the squirrel chases the bear. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 9 says the squirrel likes the bear.\n   Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 9 says the squirrel likes the bear.\n   Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 4 says the squirrel chases the bear. Statement 9 says the squirrel likes the bear. Statement 5 says the bear is nice. Statement 9 says the squirrel likes the bear",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit likes the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The squirrel visits the lion. (Given statement)\n\nFrom this, we cannot directly determine if the squirrel likes the lion, but we can use other statements to help us.\n\n2. The lion is red. (Given statement)\n\nNow, we know the lion is red.\n\n3. If something is red then it likes the lion. (Given rule)\n\nSince the lion is red, it likes the lion. However, this doesn't directly help us with the statement we're trying to determine.\n\n4. The squirrel chases the bear. (Given statement)\n\nThis is a separate fact, and we'll keep it in mind as we continue.\n\n5. The squirrel likes the bear. (Given statement)\n\nNow we know the squirrel likes the bear.\n\n6. The squirrel is green. (Given statement)\n\nHowever, we can use another rule to determine if this statement is consistent with the given information.\n\n7. If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel. (Given rule)\n\nBut first, let's look at the other part of the statement.\n\n8. The rabbit visits the squirrel. (We can infer this from the given statement \"The squirrel visits the lion\" and the statement that the squirrel visits the rabbit. We know from the original problem the squirrel visits the rabbit and the rabbit chases the bear.)\n\nNow we know the rabbit visits the squirrel.\n\n9. The rabbit chases the bear. (Given statement)\n\nNow we know the rabbit chases the bear.\n\n10. If something is nice and it chases the lion then it likes the rabbit. (Given rule)\n\nHowever, we can see that the rabbit does not like the lion since the lion is red, and the rabbit is not nice (since the bear is nice and the bear is not green).\n\n11. The bear is cold. (Given statement)\n\nThis is a separate fact, and we'll keep it in mind as we continue.\n\n12. The bear is nice. (Given statement)\n\nThis is a separate fact, and we'll keep it in mind as we continue.\n\n13. The bear visits the rabbit. (Given statement)\n\nThis is a separate fact, and we'll keep it in mind as we continue.\n\n14. If something likes the bear and the bear likes the rabbit then the bear is green. (Given rule)\n\nNow we know the bear likes the rabbit.\n\n15. The bear likes the rabbit. (We can infer this from statement 14)\n\nHowever, we still need to determine if the rabbit likes the bear.\n\n16. The bear is nice. (Given statement)\n\nThis is a separate fact, and we'll keep it in mind as we continue.\n\n17. The bear is not green. (Since the bear is nice and the bear chases the lion, the bear likes the rabbit.)\n\nThis is a separate fact, and we'll keep it in mind as we continue.\n\n18. The bear chases the lion. (Given statement)\n\nNow we know the bear chases the lion.\n\n19. If the bear is nice and it chases the lion then it likes the rabbit. (Given rule)\n\nSince the bear is nice and it chases the lion, the bear likes the rabbit.\n\n20. The bear likes the rabbit. (We can infer this from statement 19)\n\nHowever, we still need to determine if the rabbit likes the bear.\n\n21. The squirrel likes the bear. (Given statement)\n\nNow we know the squirrel likes the bear.\n\n22. The squirrel is green. (Given statement)\n\nHowever, we can use another rule to determine if this statement is consistent with the given information.\n\n23. The squirrel chases the bear. (Given statement)\n\nNow we know the squirrel chases the bear.\n\n24. The squirrel visits the lion. (Given statement)\n\nNow we know the squirrel visits the lion.\n\n25. If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel. (Given rule)\n\nBut first, let's look at the other part of the statement.\n\n26. The squirrel visits the rabbit. (Given statement)\n\nNow we know the squirrel visits the rabbit.\n\n27. The rabbit chases the bear. (Given statement)\n\nNow we know the rabbit chases the bear.\n\n28. The rabbit is green. (Given statement)\n\nHowever, we can see that this statement is inconsistent with the given information. If the rabbit is green, then the statement \"The squirrel is green\" would be inconsistent with the information given by the statement \"The squirrel likes the bear\" and the rule \"If something likes the bear and the bear likes the rabbit then the bear is green.\"\n\nHowever, we can use another rule to determine if the statement \"The rabbit is green\" is true.\n\n29. If something chases the squirrel then the squirrel is red. (Given rule)\n\nHowever, we can see that this rule is not applicable in this case.\n\n30. The squirrel likes the bear. (Given statement)\n\nNow we know the squirrel likes the bear.\n\n31. The squirrel is not red. (Since the squirrel likes the bear, the squirrel is not red.)\n\nThis is a separate fact, and we'll keep it in mind as we continue.\n\n32. The squirrel is green. (Given statement)\n\nNow we know the squirrel is green.\n\n33. If the squirrel is green then the bear is not green. (We can infer this from statement 31 and the rule \"If something likes the bear and the bear likes the rabbit then the bear is green.\")\n\nNow we know the bear is not green.\n\n34. The bear likes the rabbit. (We can infer this from statement 13 and the rule \"If something is nice and it chases the lion then it likes the rabbit.\")\n\nNow we know the bear likes the rabbit.\n\n35. The bear is nice. (Given statement)\n\nNow we know the bear is nice.\n\n36. The bear chases the lion. (Given statement)\n\nNow we know the bear chases the lion.\n\n37. If the bear is nice and it chases the lion then it likes the rabbit. (Given rule)\n\nSince the bear is nice and it chases the lion, the bear likes the rabbit.\n\n38. The bear likes the rabbit. (We can infer this from statement 37)\n\nHowever, we still need to determine if the rabbit likes the bear.\n\n39. The squirrel is green. (Given statement)\n\nNow we know the squirrel is green.\n\n40. The squirrel chases the bear. (Given statement)\n\nNow we know the squirrel chases the bear.\n\n41. The squirrel visits the lion. (Given statement)\n\nNow we know the squirrel visits the lion.\n\n42. If something chases the squirrel then the squirrel is red. (Given rule)\n\nHowever, we can see that this rule is not applicable in this case.\n\n43. The squirrel likes the bear. (Given statement)\n\nNow we know the squirrel likes the bear.\n\n44. The squirrel is not red. (Since the squirrel likes the bear, the squirrel is not red.)\n\nThis is a separate fact, and we'll keep it in mind as we continue.\n\n45. The rabbit chases the bear. (Given statement)\n\nNow we know the rabbit chases the bear.\n\n46. The rabbit is green. (Given statement)\n\nHowever, we can see that this statement is inconsistent with the given information. If the rabbit is green, then the statement \"The squirrel is green\" would be inconsistent with the information given by the statement \"The squirrel likes the bear\" and the rule \"If something likes the bear and the bear likes the rabbit then the bear is green.\"\n\nHowever, we can use another rule to determine if the statement \"The rabbit is green\" is true.\n\n47. If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel. (Given rule)\n\nBut first, let's look at the other part of the statement.\n\n48. The squirrel visits the rabbit. (Given statement)\n\nNow we know the squirrel visits the rabbit.\n\n49. The rabbit likes the bear. (We can infer this from statement 48 and the rule \"If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\")\n\nNow we know the rabbit likes the bear.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. We can represent the relationships between the animals using a truth table or by analyzing the statements step by step.\n\nLet's denote:\n- B: The bear is green\n- C: The bear likes the rabbit\n- L: The bear is nice\n- M: The bear is cold\n- N: The bear chases the lion\n- R: The rabbit likes the bear\n- S: The rabbit is green\n- T: The rabbit chases the bear\n- U: The squirrel chases the lion\n- V: The squirrel likes the bear\n- W: The squirrel is red\n- X: The squirrel visits the lion\n- Y: The squirrel visits the rabbit\n- Z: The bear visits the squirrel\n\nFrom the given statements, we have the following implications:\n\n1. The bear chases the lion (N).\n2. The bear is cold (M).\n3. The bear is nice (L).\n4. The bear visits the rabbit (Z).\n5. The lion is red (W).\n6. The rabbit chases the bear (T).\n7. The rabbit is green (S).\n8. The squirrel chases the bear (T).\n9. The squirrel likes the bear (V).\n10. The squirrel visits the lion (X).\n11. If something chases the squirrel then the squirrel is red (W => U).\n12. If something likes the lion then it chases the squirrel (W => T).\n13. If something is red then it likes the lion (W => W).\n14. If something is nice and it chases the lion then it likes the rabbit (L \u2227 N => C).\n15. If something likes the bear and the bear likes the rabbit then the bear is green (V \u2227 C => B).\n16. If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel (X \u2227 R => Z).\n\nNow, we can analyze the statements to find the implication of the rabbit liking the bear (R).\n\nWe know that the bear is nice (L) and the bear chases the lion (N). According to statement 14, this means the bear likes the rabbit (C).\n\nWe know that the squirrel likes the bear (V). However, we do not know if the bear likes the rabbit (C) yet. If the bear likes the rabbit, then it would mean the bear is green (B). But we cannot determine this yet.\n\nHowever, since the bear visits the rabbit (Z), we can see that the statement X \u2227 R is true.\n\nWe know that the squirrel visits the lion (X). Since the lion is red (W), this means the squirrel likes the lion (W). According to statement 12, this means the squirrel chases the bear (T).\n\nHowever, we already know that the squirrel chases the bear (T) from statement 8. \n\nFrom statement 8, we also know that the bear is chased by the squirrel. However, we don't know the color of the bear.\n\nThe bear visits the rabbit (Z). Since the squirrel visits the lion (X), we cannot conclude anything from this.\n\nNow, let's look at statement 16: If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel. Since the squirrel visits the lion (X), we cannot conclude that the squirrel visits the rabbit (Y). However, we know the bear visits the rabbit (Z). This means the statement Y is unknown.\n\nWe know the squirrel chases the bear (T) and the bear is chased by the squirrel. We also know the bear visits the rabbit (Z).\n\nHowever, we do not know the color of the bear. If the bear likes the rabbit, then it would be green (B). However, we cannot determine this yet.\n\nSince we know the bear is chased by the squirrel (T) and the bear visits the rabbit (Z), we can conclude that the statement Y is true.\n\nNow, since we know the statement X \u2227 R is true, we can conclude that the statement Y is true.\n\nFrom statement 15, we know that if the bear likes the rabbit (C) and the squirrel likes the bear (V), then the bear is green (B). \n\nHowever, we do not know if the bear likes the rabbit (C) yet.\n\nWe know that the rabbit chases the bear (T) and the bear is chased by the squirrel (T). However, we do not know the color of the bear.\n\nNow, since the bear is chased by the squirrel (T) and the squirrel likes the bear (V), we can conclude that the bear likes the rabbit (C) is true.\n\nThis is because if the bear likes the rabbit (C) and the squirrel likes the bear (V), then the bear is green (B). However, we know the bear is chased by the squirrel (T).\n\nFrom statement 15, we know that if the bear likes the rabbit (C) and the squirrel likes the bear (V), then the bear is green (B). Since we know the bear is green (B), we can conclude that the statement C is true.\n\nSince the bear is nice (L) and chases the lion (N), we can conclude that the statement C is true.\n\nWe know that the bear likes the rabbit (C) is true and the squirrel likes the bear (V). However, we do not know if the rabbit likes the bear (R).\n\nSince the bear is nice (L) and chases the lion (N), we can conclude that the statement C is true.\n\nSince the bear likes the rabbit (C) and the squirrel likes the bear (V), we can conclude that the statement R is true.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and deduce the information about the rabbit and the bear.\n\n1. The bear chases the lion. \n2. The bear is cold. \n3. The bear is nice. \n4. The bear visits the rabbit. \n5. The lion is red. \n6. The rabbit chases the bear. \n7. The rabbit is green. \n8. The squirrel chases the bear. \n9. The squirrel likes the bear. \n10. The squirrel visits the lion. \n11. If something chases the squirrel then the squirrel is red. \n12. If something likes the lion then it chases the squirrel. \n13. If something is red then it likes the lion. \n14. If something is nice and it chases the lion then it likes the rabbit. \n15. If something likes the bear and the bear likes the rabbit then the bear is green. \n16. If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n\nFrom statement 4, we know that the bear visits the rabbit. \nFrom statement 3, we know that the bear is nice.\n\nNow, let's consider the possibilities:\n\na) If the bear is nice and it chases the lion (statement 1), then it likes the rabbit (statement 14). \nHowever, this doesn't provide any information about the rabbit.\n\nb) If the bear likes the rabbit, then it is green (statement 15). \nWe know the bear visits the rabbit (statement 4) and the bear is nice (statement 3). \nBut we cannot conclude that the bear likes the rabbit yet.\n\nc) If the rabbit likes the bear, then we have a new piece of information.\n\nFrom statement 6, we know that the rabbit chases the bear. \nFrom statement 4, we know that the bear visits the rabbit. \nWe also know that the bear is nice (statement 3). \nCombining this information, we can conclude that the rabbit likes the bear (because the rabbit chases the bear and the bear is nice, which makes it possible for the rabbit to like the bear).\n\nHowever, we need to check if this conclusion leads to any contradictions.\n\nFrom statement 9, we know that the squirrel likes the bear. \nFrom statement 10, we know that the squirrel visits the lion. \nFrom statement 13, we know that the lion is red. \nFrom statement 12, we know that the squirrel likes the lion. \nFrom statement 11, we know that the squirrel is not red (because it likes the lion and the lion is red).\n\nNow, let's consider the last statement:\nIf the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel (statement 16).\n\nWe know that the squirrel visits the rabbit (statement 10). \nWe also know that the rabbit likes the bear (from our conclusion above). \nTherefore, the bear visits the squirrel (statement 16).\n\nHowever, we already know that the bear visits the rabbit (statement 4). \nThis creates a contradiction, which means our initial conclusion is incorrect.\n\nSo, we cannot conclude that the rabbit likes the bear. \nThe final answer is: \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit likes the bear\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The lion is red. (Given)\n2. If something is red then it likes the lion. (Given)\n   - From this, we can conclude that the lion likes itself (not directly relevant to the statement, but useful for later deductions).\n   - However, we also know that if something likes the lion, then it chases the squirrel. (Given)\n   - Since the lion is red and likes the lion, it chases the squirrel. (From step 2 and step 3)\n\n3. The rabbit chases the bear. (Given)\n4. The squirrel chases the bear. (Given)\n5. The squirrel likes the bear. (Given)\n6. The bear is nice. (Given)\n7. The bear is cold. (Given)\n8. The bear visits the rabbit. (Given)\n9. The squirrel is green. (Given)\n10. If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel. (Given)\n   - From this, we know that the bear visits the squirrel, but we still need to determine if the rabbit likes the bear.\n\nNow, let's analyze the statement \"The rabbit likes the bear\" using the given information.\n\nFrom step 3, we know that the rabbit chases the bear. Now, let's analyze the bear's characteristics:\n- The bear is nice. (Given)\n- The bear is cold. (Given)\n- The bear visits the rabbit. (Given)\n\nWe need to find a connection between the bear and the statement \"The rabbit likes the bear.\" Since the bear is nice and it chases the lion, we can use the following rule:\n- If something is nice and it chases the lion then it likes the rabbit. (Given)\n   - However, this rule does not directly relate to the statement \"The rabbit likes the bear.\" We need to find another connection.\n\nFrom step 6, we know that the bear is nice. Now, let's analyze the bear's relationships with other animals:\n- The bear visits the rabbit. (Given)\n- The bear likes the rabbit is not given, but we can use the following rule:\n- If something likes the bear and the bear likes the rabbit then the bear is green. (Given)\n   - However, this rule does not directly relate to the statement \"The rabbit likes the bear.\" We need to find another connection.\n\nNow, let's analyze the squirrel's relationships with the bear and the rabbit:\n- The squirrel likes the bear. (Given)\n- The squirrel visits the lion. (Given)\n- The squirrel is green. (Given)\n- If something chases the squirrel then the squirrel is red. (Given)\n   - However, we already know that the squirrel is green, so there must be something that does not chase the squirrel.\n\nWe can conclude that the rabbit does not chase the squirrel, so the squirrel is not red. Since the squirrel is green, it likes the lion (from step 1 and step 2).\n\nNow, let's analyze the rabbit's relationships with the bear and the squirrel:\n- The rabbit chases the bear. (Given)\n- The squirrel likes the bear. (Given)\n- The squirrel is green. (Given)\n- The squirrel visits the lion. (Given)\n- The squirrel visits the rabbit. (Given)\n- If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel. (Given)\n   - However, this rule does not directly relate to the statement \"The rabbit likes the bear.\" We need to find another connection.\n\nWe can conclude that the rabbit likes the bear is not directly given, and there is no information that allows us to deduce it. Therefore, the statement \"The rabbit likes the bear\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit likes the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear visits the rabbit: This statement gives us some information, but we still don't know much about the relationships between the animals.\n\n2. The lion is red: This statement tells us about the color of the lion, but we don't know much about its relationship with the other animals.\n\n3. The rabbit chases the bear: This statement tells us about the relationship between the rabbit and the bear.\n\n4. The rabbit is green: This statement tells us about the color of the rabbit, but we don't know how it relates to the other information.\n\n5. The squirrel chases the bear: This statement tells us about the relationship between the squirrel and the bear.\n\n6. The squirrel likes the bear: This statement tells us about the relationship between the squirrel and the bear.\n\n7. The squirrel visits the lion: This statement tells us about the relationship between the squirrel and the lion.\n\n8. If something chases the squirrel then the squirrel is red: We can use this statement to conclude that the squirrel is not red because the squirrel is chased by the bear and the squirrel is also chased by the rabbit. \n\n9. If something likes the lion then it chases the squirrel: We can use this statement to conclude that the bear likes the lion because the bear visits the lion and the bear is nice. Therefore, the bear likes the lion and chases the squirrel.\n\n10. If something is red then it likes the lion: We already know that the lion is red. \n\n11. If something is nice and it chases the lion then it likes the rabbit: The bear is nice and chases the lion. Therefore, the bear likes the rabbit.\n\n12. If something likes the bear and the bear likes the rabbit then the bear is green: We know that the bear likes the rabbit and the bear likes the squirrel. However, we can't conclude that the bear is green because we don't know if the bear likes the squirrel.\n\n13. If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel: We can use this statement to conclude that the bear visits the squirrel because the squirrel visits the rabbit and the rabbit likes the bear.\n\nNow we know the following information:\n- The bear is nice.\n- The bear likes the lion.\n- The bear likes the rabbit.\n- The bear is chased by the rabbit.\n- The bear is chased by the squirrel.\n- The bear visits the squirrel.\n- The squirrel likes the bear.\n- The squirrel chases the bear.\n- The squirrel visits the lion.\n- The lion is red.\n- The rabbit chases the bear.\n- The rabbit is green.\n\nNow let's analyze the statement \"The rabbit likes the bear.\" \n\nWe know that the rabbit chases the bear and the bear is nice. However, there is no direct statement that tells us about the relationship between the rabbit and the bear. \n\nBased on the statements \"The bear is nice\" and \"The bear likes the lion,\" we can conclude that the bear is nice and the bear likes the lion. However, we don't have enough information to conclude that the rabbit likes the bear.\n\nTherefore, the statement \"The rabbit likes the bear\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we'll analyze the given information step by step and use logical deductions to determine the statement's truth value.\n\n1. The bear is cold. (This statement doesn't provide any useful information for this problem.)\n\n2. The bear is nice. (This statement doesn't provide any useful information for this problem.)\n\n3. The bear visits the rabbit. (This statement doesn't provide any useful information for this problem.)\n\n4. The lion is red. (This statement doesn't provide any useful information for this problem.)\n\n5. The rabbit chases the bear. (This statement doesn't provide any useful information for this problem.)\n\n6. The rabbit is green. (This statement doesn't provide any useful information for this problem.)\n\n7. The squirrel chases the bear. (This statement doesn't provide any useful information for this problem.)\n\n8. The squirrel likes the bear. (This statement doesn't provide any useful information for this problem.)\n\n9. The squirrel visits the lion. (This statement doesn't provide any useful information for this problem.)\n\nNow, let's analyze the given conditions:\n\n1. If something chases the squirrel then the squirrel is red.\n   - Since the bear chases the squirrel (from statement 7), the squirrel is red.\n\n2. If something likes the lion then it chases the squirrel.\n   - Since the lion is red (from statement 4) and something that is red likes the lion (from condition 3), the squirrel chases the squirrel, which is a contradiction and thus unknown.\n\n3. If something is red then it likes the lion.\n   - Since the lion is red, it likes the lion, which is a tautology.\n\n4. If something is nice and it chases the lion then it likes the rabbit.\n   - Since the bear is nice (from statement 2), it doesn't like the lion. Thus, this condition doesn't provide any useful information.\n\n5. If something likes the bear and the bear likes the rabbit then the bear is green.\n   - Since the squirrel likes the bear (from statement 8) and it's unknown whether the bear likes the rabbit, this condition doesn't provide any useful information.\n\n6. If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n   - Since the squirrel visits the lion (from statement 9) and it's unknown whether the rabbit likes the bear, this condition doesn't provide any useful information.\n\nNow, let's re-analyze the statement in the light of the conditions.\n\nFrom condition 1, we know the squirrel is red.\n\nFrom condition 2, we know that something that likes the lion chases the squirrel. Since the lion is red, it likes the lion, which means it chases the squirrel.\n\nSince the squirrel is red, it likes the lion (from condition 3), which means it chases the squirrel.\n\nThis creates a contradiction, so the conditions are inconsistent. However, we can analyze the statement we're interested in.\n\nSince the rabbit chases the bear (from statement 5), if the rabbit likes the bear, it would mean that the bear likes the rabbit. However, we don't know whether the bear likes the rabbit.\n\nTo determine whether the bear likes the rabbit, we need to know whether the squirrel likes the bear and the bear likes the rabbit. Since the squirrel likes the bear (from statement 8), if the bear likes the rabbit, then the bear is green (from condition 5). However, this condition doesn't provide any useful information.\n\nNow, let's re-analyze the statement in the light of the conditions and the information we've deduced.\n\nFrom condition 5, if the squirrel likes the bear and the bear likes the rabbit, then the bear is green. Since the squirrel likes the bear (from statement 8), if the bear likes the rabbit, then the bear is green.\n\nHowever, we don't know whether the bear likes the rabbit. If it does, then the bear is green. If it doesn't, then we can't determine whether the rabbit likes the bear.\n\nTherefore, the statement \"The rabbit likes the bear\" is unknown.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the rabbit likes the bear, we need to analyze the given statements and their implications.\n\n1. The bear is cold.\n   - This statement does not provide any relevant information about the relationship between the rabbit and the bear.\n\n2. The bear is nice.\n   - This statement does not provide any relevant information about the relationship between the rabbit and the bear.\n\n3. The bear visits the rabbit.\n   - This statement does not provide any relevant information about whether the rabbit likes the bear.\n\n4. The lion is red.\n   - This statement does not provide any relevant information about the relationship between the rabbit and the bear.\n\n5. The rabbit chases the bear.\n   - This statement does not provide any relevant information about whether the rabbit likes the bear.\n\n6. The rabbit is green.\n   - This statement does not provide any relevant information about whether the rabbit likes the bear.\n\n7. The squirrel chases the bear.\n   - This statement does not provide any relevant information about whether the rabbit likes the bear.\n\n8. The squirrel likes the bear.\n   - This statement does not provide any relevant information about whether the rabbit likes the bear.\n\n9. The squirrel visits the lion.\n   - This statement does not provide any relevant information about the relationship between the rabbit and the bear.\n\n10. If something chases the squirrel then the squirrel is red.\n    - This statement does not provide any relevant information about the relationship between the rabbit and the bear.\n\n11. If something likes the lion then it chases the squirrel.\n    - This statement does not provide any relevant information about the relationship between the rabbit and the bear.\n\n12. If something is red then it likes the lion.\n    - This statement does not provide any relevant information about the relationship between the rabbit and the bear.\n\n13. If something is nice and it chases the lion then it likes the rabbit.\n    - This statement does not provide any relevant information about the relationship between the rabbit and the bear.\n\n14. If something likes the bear and the bear likes the rabbit then the bear is green.\n    - This statement does not provide any relevant information about the relationship between the rabbit and the bear.\n\n15. If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n    - This statement does not provide any relevant information about whether the rabbit likes the bear.\n\nHowever, we can use statement 14 to deduce the relationship between the bear and the rabbit. Since statement 15 does not directly provide information about the rabbit's liking for the bear, we need to look at statement 3 and 8, where it is stated that the bear visits the rabbit and the squirrel likes the bear. \n\nTo get information about the bear's color, we need to use the information provided in statement 14 and 8. From statement 14, we can see that if something likes the bear and the bear likes the rabbit then the bear is green. From statement 8, we know that the squirrel likes the bear, and statement 3 shows that the bear visits the rabbit. \n\nNow, we can use statement 14 and 8 to deduce that the bear is green. \n\nFrom statement 3 and 8, we can see that the bear visits the rabbit, and the squirrel likes the bear. Also, statement 8 shows that the squirrel likes the bear.\n\nTo get information about the rabbit's liking for the bear, we need to look at the implications of the statements. \n\nFrom statement 8, we know that the squirrel likes the bear. Since statement 8 and 14 do not provide any information about the rabbit's liking for the bear, we need to use statement 15. Statement 15 says that if the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n\nWe can use statement 3 and 15 to deduce that the rabbit likes the bear. Since statement 3 shows that the bear visits the rabbit, and statement 15 says that if the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel, we can conclude that the rabbit likes the bear.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit likes the bear\" is true, false, or unknown, we need to analyze the given information and the logical rules provided.\n\n1. The bear visits the rabbit.\n2. The rabbit chases the bear.\n3. The rabbit is green.\n4. The lion is red.\n5. The squirrel chases the bear.\n6. The squirrel likes the bear.\n7. The squirrel visits the lion.\n8. If something chases the squirrel then the squirrel is red.\n9. If something likes the lion then it chases the squirrel.\n10. If something is red then it likes the lion.\n11. If something is nice and it chases the lion then it likes the rabbit.\n12. If something likes the bear and the bear likes the rabbit then the bear is green.\n13. If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n\nLet's break down the information:\n\n- The rabbit is green (statement 3) and chases the bear (statement 2).\n- There is no information that the rabbit likes the bear or that the bear likes the rabbit.\n\nNow, let's analyze the logical rules:\n\n- There is no direct rule that states if something is green then it likes the bear.\n- There is no direct rule that states if something chases the bear then it likes the bear.\n- However, we can deduce information from the given statements.\n\nFrom statement 12, if the bear likes the rabbit, then the bear is green. But we do not have information that the bear likes the rabbit.\n\nFrom statement 13, if the squirrel visits the rabbit and the rabbit likes the bear, then the bear visits the squirrel. But again, we do not have information that the rabbit likes the bear.\n\nFrom the information given, we can deduce the following:\n\n- The bear is nice (statement 3).\n- The bear chases the lion (implied from the fact that the lion is red).\n- The bear is nice and chases the lion (from statement 11), so the bear likes the rabbit.\n- From statement 12, if the bear likes the rabbit, then the bear is green.\n\nHowever, the bear is not green. This implies that the bear does not like the rabbit.\n\nFrom the initial information, we know that the rabbit is green and chases the bear. There is no information that the rabbit likes the bear.\n\nHowever, the information that the rabbit chases the bear (statement 2) implies that the rabbit does not like the bear.\n\nSo, the final answer is: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit likes the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given statements are:\n   - The bear chases the lion.\n   - The bear is cold.\n   - The bear is nice.\n   - The bear visits the rabbit.\n   - The lion is red.\n   - The rabbit chases the bear.\n   - The rabbit is green.\n   - The squirrel chases the bear.\n   - The squirrel likes the bear.\n   - The squirrel visits the lion.\n   - If something chases the squirrel then the squirrel is red.\n   - If something likes the lion then it chases the squirrel.\n   - If something is red then it likes the lion.\n   - If something is nice and it chases the lion then it likes the rabbit.\n   - If something likes the bear and the bear likes the rabbit then the bear is green.\n   - If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel.\n\n2. Analyzing the statements:\n   - The rabbit chases the bear (statement 6) and is green (statement 7). We can't determine if the rabbit likes the bear from this information.\n   - The squirrel likes the bear (statement 8) and visits the lion (statement 9). We can't determine if the squirrel likes the lion from this information.\n   - The squirrel chases the bear (statement 8), and the bear is nice (statement 3). We can't determine if the squirrel likes the lion from this information.\n   - The bear is nice (statement 3) and chases the lion (statement 1), so it likes the rabbit (statement 14). This doesn't provide information about the rabbit.\n   - The bear visits the rabbit (statement 4), but we can't determine if the bear likes the rabbit from this information.\n\n3. We can try to find the missing information by using the given rules:\n\n   - The squirrel likes the bear (statement 8), and the bear likes the rabbit (statement 4). If the bear likes the rabbit, then the bear is green (statement 15). However, we already know that the bear is nice (statement 3), so this is not possible.\n\n   - However, we know the squirrel visits the lion (statement 9), the squirrel likes the bear (statement 8), and if the squirrel likes the bear then the bear likes the rabbit (statement 15). But we can't conclude the bear is green.\n\n   - Now let's analyze the statement \"If something likes the lion then it chases the squirrel\" (statement 11) and \"If something is red then it likes the lion\" (statement 12). The lion is red (statement 5), so it likes the lion (statement 12). This means the lion chases the squirrel (statement 11).\n\n   - We also know that the squirrel chases the bear (statement 8) and the bear visits the rabbit (statement 4). The squirrel visits the lion (statement 9), but we don't know if the squirrel likes the lion.\n\n   - We can analyze the situation by using the statement \"If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel\" (statement 16). The squirrel visits the rabbit (statement 9), and the rabbit chases the bear (statement 6). We don't know if the rabbit likes the bear.\n\n   - From the statement \"If something likes the bear and the bear likes the rabbit then the bear is green\" (statement 15), we know the bear is nice (statement 3) and visits the rabbit (statement 4). But we can't determine if the bear likes the rabbit from this information.\n\n4. The only information we have about the bear and the rabbit is that the bear is nice (statement 3) and visits the rabbit (statement 4). We also know that the bear is cold (statement 2), but we don't know if this is related to the other statements.\n\n5. To solve the problem, let's go back to the statement \"The squirrel likes the bear\" (statement 8) and \"The squirrel visits the lion\" (statement 9). We also know that the squirrel chases the bear (statement 8), and if something chases the squirrel then the squirrel is red (statement 10). However, we don't know if the squirrel is red.\n\n6. Let's try to find the missing information by using the statement \"If something likes the lion then it chases the squirrel\" (statement 11) and \"If something is red then it likes the lion\" (statement 12). The lion is red (statement 5), so it likes the lion (statement 12). This means the lion chases the squirrel (statement 11).\n\n7. We know that the squirrel visits the lion (statement 9) and the lion chases the squirrel (statement 11). We also know that the squirrel chases the bear (statement 8). If the squirrel is red (statement 10), then it likes the lion (statement 12), which means the squirrel chases the lion (statement 11).\n\n8. We know that the squirrel visits the lion (statement 9) and the lion chases the squirrel (statement 11). This means the squirrel is red (statement 10).\n\n9. Now let's analyze the situation by using the statement \"If something likes the lion then it chases the squirrel\" (statement 11) and \"If something is red then it likes the lion\" (statement 12). The lion is red (statement 5), so it likes the lion (statement 12). This means the lion chases the squirrel (statement 11).\n\n10. We know that the squirrel is red (statement 10), so it likes the lion (statement 12). This means the squirrel chases the lion (statement 11).\n\n11. We know that the squirrel is red (statement 10), so it likes the lion (statement 12). We also know that the squirrel chases the bear (statement 8) and the bear visits the rabbit (statement 4).\n\n12. We can analyze the situation by using the statement \"If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel\" (statement 16). The squirrel visits the rabbit (statement 9), and the rabbit chases the bear (statement 6). We don't know if the rabbit likes the bear.\n\n13. We know that the bear is nice (statement 3) and visits the rabbit (statement 4). We also know that the rabbit chases the bear (statement 6).\n\n14. We can analyze the situation by using the statement \"If something is nice and it chases the lion then it likes the rabbit\" (statement 14). The bear is nice (statement 3) and chases the lion (statement 1), so it likes the rabbit (statement 14).\n\n15. We know that the bear visits the rabbit (statement 4) and likes the rabbit (statement 14). We also know that the bear is nice (statement 3).\n\n16. We can analyze the situation by using the statement \"If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel\" (statement 16). The squirrel visits the rabbit (statement 9), and the rabbit chases the bear (statement 6). We don't know if the rabbit likes the bear.\n\n17. We know that the bear is nice (statement 3) and visits the rabbit (statement 4). We also know that the bear is cold (statement 2).\n\n18. We can analyze the situation by using the statement \"If something likes the bear and the bear likes the rabbit then the bear is green\" (statement 15). The bear likes the rabbit (statement 14), but we don't know if the bear is green.\n\n19. We know that the bear visits the rabbit (statement 4) and likes the rabbit (statement 14). We also know that the bear is nice (statement 3).\n\n20. We can analyze the situation by using the statement \"If the squirrel visits the rabbit and the rabbit likes the bear then the bear visits the squirrel\" (statement 16). The squirrel visits the rabbit (statement 9), and the rabbit chases the bear (statement 6). We don't know if the rabbit likes the bear.\n\n21. We know that the bear is nice (statement 3) and visits the rabbit (statement 4). We also know that the rabbit chases the bear (statement 6).\n\n22. We can analyze the situation by using the statement \"If something likes the bear and the bear likes the rabbit then the bear is green\" (statement 15). The bear likes the rabbit (statement 14), but we don't know if the bear is green.\n\n23. We know that the bear visits the rabbit (statement 4) and likes the rabbit (statement 14). We also know that the bear is nice (statement 3).\n\n24. Now let's analyze the situation by using the statement \"The rabbit chases the bear\" (statement 6) and \"The bear visits the rabbit\" (statement 4). We don't know if the rabbit likes the bear.\n\n25. We know that the bear visits the rabbit (statement 4) and is nice (statement 3). We also know that the bear is cold (statement 2).\n\n26. We can analyze the situation by using the statement \"If something likes the bear and the bear likes the rabbit then the bear is green\" (statement 15). The bear likes the rabbit (statement 14), but we don't know if the bear is green.\n\n27. We know that the bear visits the rabbit (statement 4) and likes the rabbit",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "lion_red == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(lion_red, lion_likes_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, lion)",
+          "z3_formula": "lion_likes_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "rabbit_green == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "squirrel_chases_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(squirrel)",
+          "z3_formula": "squirrel_green == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "rabbit_chases_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "squirrel_likes_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & bear_likes_rabbit -> green(bear)",
+          "z3_formula": "Implies(And(squirrel_likes_bear, bear_likes_rabbit), bear_green)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "bear_cold == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "bear_visits_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & rabbit_likes_bear -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(bear_visits_rabbit, rabbit_likes_bear), bear_visits_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "bear_visits_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "bear_chases_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "bear_nice == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> nice(X)",
+          "z3_formula": "Implies(bear_chases_lion, bear_nice)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(bear_nice, bear_chases_lion), bear_likes_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "squirrel_chases_bear == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "squirrel_likes_bear == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> chases(X, squirrel)",
+          "z3_formula": "Implies(squirrel_likes_bear, squirrel_chases_bear)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(squirrel_chases_bear, squirrel_red)",
+          "source_step": 21
+        }
+      ],
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(red_lion, likes_lion_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & likes(rabbit, bear) -> visits(bear, X)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, likes_rabbit_bear), visits_bear_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_X_squirrel, red_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not red(squirrel)",
+          "z3_formula": "Not(red_squirrel) == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear) == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, rabbit)",
+          "z3_formula": "likes_bear_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(nice_bear, chases_bear_lion), likes_bear_rabbit)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, rabbit)",
+          "z3_formula": "likes_bear_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_X_squirrel, red_squirrel)",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "not red(squirrel)",
+          "z3_formula": "Not(red_squirrel) == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & likes(rabbit, bear) -> visits(bear, X)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, likes_rabbit_bear), visits_bear_squirrel)",
+          "source_step": 29
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, bear)",
+          "z3_formula": "likes_rabbit_bear == True",
+          "source_step": 31
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_squirrel_bear, red_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_squirrel_lion, chases_squirrel_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(red_squirrel, likes_squirrel_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(nice_bear, chases_bear_lion), likes_bear_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, rabbit) -> green(bear)",
+          "z3_formula": "Implies(And(likes_bear_rabbit, likes_bear_rabbit), green_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & likes(rabbit, X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, likes_rabbit_bear), visits_bear_squirrel)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "lion_red == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(lion_red, lion_likes_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> chases(X, squirrel)",
+          "z3_formula": "Implies(lion_likes_lion, lion_chases_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, squirrel)",
+          "z3_formula": "lion_chases_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "rabbit_chases_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "squirrel_chases_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "squirrel_likes_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "bear_nice == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "bear_cold == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "bear_visits_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "squirrel_green == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(bear_nice, lion_chases_squirrel), bear_likes_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(squirrel_likes_bear, bear_likes_rabbit), squirrel_green)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(rabbit_chases_squirrel, squirrel_red)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "squirrel_green == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(squirrel, rabbit) & likes(rabbit, bear) -> visits(bear, squirrel)",
+          "z3_formula": "Implies(And(squirrel_visits_rabbit, rabbit_likes_bear), bear_visits_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(likes(rabbit, bear))",
+          "z3_formula": "Not(rabbit_likes_bear)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_bear_squirrel, red_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_rabbit_squirrel, red_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_bear_lion, chases_bear_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_squirrel_lion, chases_squirrel_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(red_lion, likes_lion_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & likes(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(nice_bear, likes_bear_lion), likes_bear_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(X, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(likes_bear_bear, likes_bear_rabbit), green_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & likes(X, bear) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, likes_squirrel_bear), visits_squirrel_squirrel)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_bear_squirrel, red_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_lion_bear, chases_bear_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(red_lion, likes_lion_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(nice_bear, chases_bear_lion), likes_bear_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(likes_bear_bear, likes_bear_rabbit), green_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & likes(rabbit, bear) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, likes_rabbit_bear), visits_squirrel_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, squirrel)",
+          "z3_formula": "chases_squirrel_squirrel == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, lion)",
+          "z3_formula": "likes_lion_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == Unknown",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, bear)",
+          "z3_formula": "likes_rabbit_bear == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_squirrel_bear, red_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_lion_X, chases_X_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(red_X, likes_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(nice_X, chases_X_lion), likes_X_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & likes(bear, Y) -> green(X)",
+          "z3_formula": "Implies(And(likes_X_bear, likes_bear_Y), green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & likes(Y, bear) -> visits(bear, X)",
+          "z3_formula": "Implies(And(visits_X_Y, likes_Y_bear), visits_bear_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bear)",
+          "z3_formula": "chases_rabbit_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(chases_squirrel_bear, red_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_lion_X, chases_X_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, lion)",
+          "z3_formula": "Implies(red_X, likes_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & chases(X, lion) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(nice_X, chases_X_lion), likes_X_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & visits(bear, X) -> green(X)",
+          "z3_formula": "Implies(And(likes_X_bear, visits_bear_X), green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(squirrel, rabbit) & likes(rabbit, bear) -> visits(bear, squirrel)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, likes_rabbit_bear), visits_bear_squirrel)",
+          "source_step": 13
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 148,
+      "traces_with_constraints": 8,
+      "unique_after_dedup": 70
+    },
+    "maxsat_stats": {
+      "satisfied": 68,
+      "excluded": 2,
+      "total_weight": 145,
+      "solve_time_ms": 1.9762320443987846
+    },
+    "timing": {
+      "trace_gen_s": 25.108,
+      "extraction_s": 63.923,
+      "dedup_s": 2.509,
+      "maxsat_s": 0.006,
+      "total_s": 91.546
+    }
+  }
+}

@@ -1,0 +1,579 @@
+{
+  "problem": {
+    "id": "folio_192",
+    "problem": "Given the following premises:\nSome basketball players are not American. All basketball players are tall. If someone is tall, they wear large shoes. If someone wears large shoes, they wear large-sized clothes. Yuri does not wear large-size clothes.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf Yuri is not an American basketball player, then Yuri is a basketball player.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (BasketballPlayer(x) \u2227 \u00acAmerican(x))",
+      "\u2200x (BasketballPlayer(x) \u2192 Tall(x))",
+      "\u2200x (Tall(x) \u2192 WearLargeShoes(x))",
+      "\u2200x (WearLargeShoes(x) \u2192 WearLargeClothes(x))",
+      "\u00acWearLargeClothes(yuri)"
+    ],
+    "conclusion_fol": "\u00ac(American(yuri) \u2227 BasketballPlayer(yuri)) \u2192 BasketballPlayer(yuri)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 9.0,
+      "Unknown": 60.5
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to evaluate the given premises and the conclusion step by step.\n\nPremise 1: Some basketball players are not American.\nThis premise only tells us that there are non-American basketball players, but it doesn't tell us anything about Yuri specifically.\n\nPremise 2: All basketball players are tall.\nThis premise tells us that basketball players are tall, but it doesn't tell us anything about Yuri specifically.\n\nPremise 3: If someone is tall, they wear large shoes.\nThis premise tells us the consequence of being tall, but it doesn't tell us anything about Yuri specifically.\n\nPremise 4: If someone wears large shoes, they wear large-sized clothes.\nThis premise tells us the consequence of wearing large shoes, but it doesn't tell us anything about Yuri specifically.\n\nPremise 5: Yuri does not wear large-size clothes.\nThis premise tells us that Yuri doesn't wear large-size clothes, which might imply that Yuri is not tall, but we can't be sure.\n\nConclusion: If Yuri is not an American basketball player, then Yuri is a basketball player.\n\nTo determine the validity of this conclusion, we need to examine the premises and see if we can logically derive the conclusion.\n\nFrom Premise 1, we know that some basketball players are not American. This doesn't tell us anything about Yuri, but it tells us that being a non-American basketball player is possible.\n\nFrom Premise 2, we know that all basketball players are tall. This doesn't tell us anything about Yuri, but it tells us that if Yuri is a basketball player, then Yuri is tall.\n\nFrom Premise 3, we know that if someone is tall, they wear large shoes. This doesn't tell us anything about Yuri, but it tells us that if Yuri is tall, then Yuri wears large shoes.\n\nFrom Premise 4, we know that if someone wears large shoes, they wear large-sized clothes. This doesn't tell us anything about Yuri, but it tells us that if Yuri wears large shoes, then Yuri wears large-sized clothes.\n\nFrom Premise 5, we know that Yuri does not wear large-size clothes. This tells us that Yuri cannot wear large shoes, because if Yuri wears large shoes, then Yuri must wear large-sized clothes.\n\nHowever, this information doesn't tell us anything about Yuri being a basketball player or not. We can't conclude that Yuri is a basketball player just because Yuri doesn't wear large-size clothes.\n\nSince we can't logically derive the conclusion from the premises, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will use a method called \"deductive reasoning.\" We will break down the premises and the conclusion into individual statements, then analyze each statement to determine the validity of the conclusion.\n\nPremises:\n\n1. Some basketball players are not American.\n2. All basketball players are tall.\n3. If someone is tall, they wear large shoes.\n4. If someone wears large shoes, they wear large-sized clothes.\n5. Yuri does not wear large-size clothes.\n\nConclusion:\nIf Yuri is not an American basketball player, then Yuri is a basketball player.\n\nWe can break down the conclusion into two parts:\n\nPart 1: If Yuri is not an American basketball player.\nPart 2: Then Yuri is a basketball player.\n\nNow, let's analyze the premises to see if we can derive the conclusion.\n\nFrom Premise 1, we know that some basketball players are not American. This means that Yuri could be a non-American basketball player, but it does not provide any information about Yuri's nationality.\n\nFrom Premise 2, we know that all basketball players are tall. Since Yuri is tall (we will assume this is the case), we can conclude that Yuri is a basketball player.\n\nHowever, we need to be cautious here. Just because Yuri is a basketball player, it does not necessarily mean that Yuri is not an American basketball player.\n\nNow, let's examine the rest of the premises:\n\nFrom Premise 3, we know that if someone is tall, they wear large shoes. Since Yuri is tall, we can conclude that Yuri wears large shoes.\n\nFrom Premise 4, we know that if someone wears large shoes, they wear large-sized clothes. Since Yuri wears large shoes, we can conclude that Yuri wears large-sized clothes.\n\nBut wait, this contradicts Premise 5, which states that Yuri does not wear large-size clothes. This means that our assumption about Yuri wearing large shoes is false.\n\nTherefore, we cannot conclude that Yuri is a basketball player from the premises. In fact, the premises suggest that Yuri is not a basketball player, since we cannot derive the conclusion that Yuri wears large shoes.\n\nNow, let's go back to the original conclusion:\nIf Yuri is not an American basketball player, then Yuri is a basketball player.\n\nWe have found that Yuri may not be a basketball player, but we cannot conclude that Yuri is not an American basketball player. The premises do not provide any information about Yuri's nationality.\n\nTherefore, the conclusion is uncertain, since we cannot derive a definite conclusion from the premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises step by step.\n\nPremise 1: Some basketball players are not American.\nPremise 2: All basketball players are tall.\nPremise 3: If someone is tall, they wear large shoes.\nPremise 4: If someone wears large shoes, they wear large-sized clothes.\nPremise 5: Yuri does not wear large-size clothes.\n\nWe need to evaluate the conclusion: If Yuri is not an American basketball player, then Yuri is a basketball player.\n\nLet's break it down:\n\n1. From Premise 1, we know that some basketball players are not American. This does not necessarily mean that Yuri is a basketball player or not.\n\n2. From Premise 2, we know that all basketball players are tall. This also does not necessarily mean that Yuri is a basketball player or not.\n\n3. From Premise 3, we know that if someone is tall, they wear large shoes. However, we don't know if Yuri is tall or not.\n\n4. From Premise 4, we know that if someone wears large shoes, they wear large-sized clothes. Again, we don't know if Yuri wears large shoes or not.\n\n5. From Premise 5, we know that Yuri does not wear large-size clothes. This is crucial information.\n\nNow, let's analyze the conclusion. If Yuri is not an American basketball player, then the only way the conclusion can be true is if Yuri is indeed a basketball player.\n\nHowever, from Premise 5, we know that Yuri does not wear large-size clothes. If Yuri wears large shoes (which would be the case if Yuri is a basketball player), then Yuri would wear large-sized clothes (from Premise 4). But we know Yuri does not wear large-size clothes, so Yuri cannot be a basketball player.\n\nTherefore, the conclusion is uncertain because we cannot conclude with certainty that Yuri is a basketball player, even if Yuri is not an American basketball player.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's break down the given premises and analyze the conclusion step by step.\n\nPremise 1: Some basketball players are not American.\n- This premise establishes that there are non-American basketball players, but it doesn't tell us anything about Yuri specifically.\n\nPremise 2: All basketball players are tall.\n- This premise tells us that being a basketball player implies being tall.\n\nPremise 3: If someone is tall, they wear large shoes.\n- This premise establishes a relationship between being tall and wearing large shoes.\n\nPremise 4: If someone wears large shoes, they wear large-sized clothes.\n- This premise establishes a relationship between wearing large shoes and wearing large-sized clothes.\n\nPremise 5: Yuri does not wear large-size clothes.\n- This premise tells us that Yuri doesn't wear large-sized clothes, which we can use to infer that Yuri doesn't wear large shoes.\n\nConclusion: If Yuri is not an American basketball player, then Yuri is a basketball player.\n- We need to determine if this conclusion logically follows from the premises.\n\nAnalysis:\n1. From Premise 5, we can infer that Yuri doesn't wear large shoes (since wearing large shoes implies wearing large-sized clothes, which Yuri doesn't do).\n2. From Premise 3, we know that if someone is tall, they wear large shoes. Since Yuri doesn't wear large shoes, it's possible that Yuri is not tall.\n3. If Yuri is not tall, then Yuri is not a basketball player (according to Premise 2).\n4. However, the conclusion states that if Yuri is not an American basketball player, then Yuri is a basketball player. This seems to be a contradiction unless Yuri is indeed a basketball player.\n\nHowever, Yuri being a basketball player is not guaranteed, even if Yuri is not an American basketball player. The conclusion does not logically follow from the premises because Yuri's nationality and basketball status are not directly related. The premises provide information about basketball players in general, but they don't provide enough information to determine Yuri's status as a basketball player.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the truth value of the given conclusion, we need to analyze the premises and the conclusion step by step.\n\nPremise 1: Some basketball players are not American. \nThis premise tells us that there is at least one non-American basketball player, but it doesn't tell us anything about Yuri.\n\nPremise 2: All basketball players are tall. \nThis premise tells us that being a basketball player and being tall are equivalent, but it doesn't tell us anything about Yuri.\n\nPremise 3: If someone is tall, they wear large shoes. \nThis premise tells us that if someone is tall, then they must wear large shoes. We don't know if Yuri is tall or not yet.\n\nPremise 4: If someone wears large shoes, they wear large-sized clothes. \nThis premise tells us that if someone wears large shoes, then they must wear large-sized clothes. We don't know if Yuri wears large shoes or not yet.\n\nPremise 5: Yuri does not wear large-size clothes. \nThis premise tells us that Yuri does not wear large-sized clothes. From premise 4, we can infer that Yuri does not wear large shoes.\n\nConclusion: If Yuri is not an American basketball player, then Yuri is a basketball player.\nTo determine the truth value of the conclusion, we need to examine the premises that support it.\n\nFrom premise 1, we know that some basketball players are not American, so it's possible that Yuri is a basketball player who is not American. However, we need to examine the premises that connect Yuri to being a basketball player.\n\nFrom premise 3 and premise 4, we know that if Yuri is tall, then they must wear large shoes, and if they wear large shoes, then they must wear large-sized clothes. However, we know that Yuri does not wear large-sized clothes (premise 5), so Yuri cannot be tall (from premise 3).\n\nHowever, we still don't know if Yuri is a basketball player or not. \n\nWe can deduce the following from the premises: \n- Yuri is not tall.\n- Yuri does not wear large shoes.\n- Yuri does not wear large-sized clothes.\n- Yuri being a basketball player would imply that Yuri is tall (from premise 2), but we know that Yuri is not tall.\n- Yuri being a basketball player would imply that Yuri wears large shoes (from premise 3), but we know that Yuri does not wear large shoes.\n- Yuri being a basketball player would imply that Yuri wears large-sized clothes (from premise 4), but we know that Yuri does not wear large-sized clothes.\n\nSince Yuri being a basketball player leads to a contradiction (Yuri being tall, wearing large shoes, and wearing large-sized clothes), we cannot conclude that Yuri is a basketball player.\n\nHowever, we cannot conclude that Yuri is not a basketball player either, because we cannot prove it. \n\nSo, the truth value of the conclusion \"If Yuri is not an American basketball player, then Yuri is a basketball player\" is uncertain.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises step by step.\n\n1. \"Some basketball players are not American.\"\nThis premise establishes that there is at least one basketball player who is not an American.\n\n2. \"All basketball players are tall.\"\nThis premise indicates that being tall is a characteristic of all basketball players.\n\n3. \"If someone is tall, they wear large shoes.\"\nThis premise provides a conditional relationship between being tall and wearing large shoes.\n\n4. \"If someone wears large shoes, they wear large-sized clothes.\"\nThis premise gives another conditional relationship, this time between wearing large shoes and wearing large-sized clothes.\n\n5. \"Yuri does not wear large-size clothes.\"\nThis premise directly states a characteristic of Yuri.\n\nNow, let's examine the conclusion: \"If Yuri is not an American basketball player, then Yuri is a basketball player.\"\n\nWe are trying to determine the truth value of this conclusion based on the given premises. To do this, let's consider the possible scenarios for Yuri:\n\nScenario 1: Yuri is an American basketball player.\n\nIn this case, the conclusion is irrelevant because we are examining the scenario where Yuri is not an American basketball player. So, we can disregard this scenario.\n\nScenario 2: Yuri is not an American basketball player.\n\nWe are interested in this scenario because it's the one mentioned in the conclusion. However, we still need to determine whether Yuri is a basketball player.\n\nFrom premise 1, we know that some basketball players are not American. However, this does not necessarily mean that Yuri is a basketball player. Yuri could be a non-American basketball player or a non-basketball player who is not American.\n\nNow, let's examine the given premises to see if we can infer any information about Yuri being a basketball player:\n\n- From premise 2, we know that all basketball players are tall.\n- From premise 3, we know that if someone is tall, they wear large shoes.\n- From premise 4, we know that if someone wears large shoes, they wear large-sized clothes.\n- From premise 5, we know that Yuri does not wear large-size clothes.\n\nCombining premises 3 and 4, we can conclude that if someone is tall, they wear large-sized clothes (because if they wear large shoes, they will wear large-sized clothes). However, we know that Yuri does not wear large-size clothes (premise 5).\n\nFrom this information, we can infer that Yuri is not tall (because if Yuri were tall, they would wear large-sized clothes, but they don't).\n\nSince Yuri is not tall (and all basketball players are tall, premise 2), we can conclude that Yuri is not a basketball player.\n\nTherefore, the conclusion \"If Yuri is not an American basketball player, then Yuri is a basketball player\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises and see if they lead to a certain conclusion.\n\nPremise 1: Some basketball players are not American. (This does not provide any direct information about Yuri, but it sets the stage for the possibility of non-American basketball players.)\n\nPremise 2: All basketball players are tall. (This provides a characteristic of basketball players, but it does not provide any information about Yuri specifically.)\n\nPremise 3: If someone is tall, they wear large shoes. (This provides a consequence of being tall, but it does not provide any information about Yuri specifically.)\n\nPremise 4: If someone wears large shoes, they wear large-sized clothes. (This provides a consequence of wearing large shoes, but it does not provide any information about Yuri specifically.)\n\nPremise 5: Yuri does not wear large-size clothes. (This provides a characteristic of Yuri, but it does not provide any information about Yuri being a basketball player or an American.)\n\nNow, let's analyze the conclusion:\nIf Yuri is not an American basketball player, then Yuri is a basketball player.\n\nTo evaluate this conclusion, we need to consider the following:\n\n1. If Yuri is not an American basketball player, it implies that Yuri is either a non-American basketball player (from Premise 1) or an American basketball player who is not American (which is a contradiction, so we can ignore this possibility).\n2. Since Yuri is not an American basketball player, we know that Yuri is a non-American basketball player (from Premise 1).\n3. As a non-American basketball player, Yuri is tall (from Premise 2).\n4. As someone who is tall, Yuri wears large shoes (from Premise 3).\n5. As someone who wears large shoes, Yuri wears large-sized clothes (from Premise 4).\n6. However, Yuri does not wear large-size clothes (from Premise 5), which contradicts the previous statement.\n\nThis means that the assumption that Yuri is a non-American basketball player leads to a contradiction. Therefore, we cannot conclude that Yuri is a basketball player based solely on the information that Yuri is not an American basketball player.\n\nConclusion: The conclusion is uncertain, as the premises do not provide enough information to determine whether Yuri is a basketball player or not.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the truth value of the given conclusion, let's break down the premises and the conclusion step by step:\n\n1. Some basketball players are not American.\n   - This premise only gives us information about the nationality of some basketball players. It does not provide any information about Yuri.\n\n2. All basketball players are tall.\n   - This premise tells us that all basketball players have a specific characteristic (being tall). However, it does not provide any information about Yuri.\n\n3. If someone is tall, they wear large shoes.\n   - This premise gives us a relationship between being tall and wearing large shoes. However, we cannot directly apply this premise to Yuri yet.\n\n4. If someone wears large shoes, they wear large-sized clothes.\n   - This premise provides another relationship, but it is conditional upon wearing large shoes. We cannot apply this premise directly to Yuri yet.\n\n5. Yuri does not wear large-size clothes.\n   - This premise gives us information about Yuri's clothing size. However, we do not know if this information is relevant to the conclusion we are trying to evaluate.\n\nNow, let's evaluate the conclusion:\n\nIf Yuri is not an American basketball player, then Yuri is a basketball player.\n\nTo determine if this conclusion is true, false, or uncertain, let's analyze the premises:\n\n- Premise 1 only tells us that some basketball players are not American, but it does not provide any information about Yuri's nationality or basketball status.\n- Premise 2 tells us that all basketball players are tall, but it does not provide any information about Yuri's status.\n- Premise 3 gives us a relationship between being tall and wearing large shoes, but we do not know if Yuri is tall or not.\n- Premise 4 gives us another relationship, but we do not know if Yuri wears large shoes or not.\n- Premise 5 tells us that Yuri does not wear large-size clothes, but this information is not relevant to the conclusion.\n\nSince we do not have any information about Yuri's basketball status, nationality, or any other relevant characteristics, we cannot determine if the conclusion is true or false. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: Some basketball players are not American.\nThis premise tells us that not all basketball players are American, but it doesn't provide any information about Yuri.\n\nPremise 2: All basketball players are tall.\nThis premise tells us that every basketball player is tall. However, it still doesn't provide any information about Yuri.\n\nPremise 3: If someone is tall, they wear large shoes.\nThis premise establishes a relationship between being tall and wearing large shoes. However, it's still uncertain whether Yuri is tall or not.\n\nPremise 4: If someone wears large shoes, they wear large-sized clothes.\nThis premise establishes a relationship between wearing large shoes and wearing large-sized clothes. Again, it's still uncertain whether Yuri wears large shoes or not.\n\nPremise 5: Yuri does not wear large-size clothes.\nThis premise tells us that Yuri does not wear large-size clothes, which suggests that Yuri may not wear large shoes either (according to Premise 4).\n\nHowever, we cannot conclude that Yuri is not a basketball player from this information. We only know that Yuri does not wear large-size clothes, which could be a reason Yuri is not a basketball player, but it's not the only possible reason.\n\nTo determine the conclusion, we need to examine the conclusion itself: \"If Yuri is not an American basketball player, then Yuri is a basketball player.\"\n\nThe conclusion is uncertain because we don't know whether Yuri is an American basketball player or not. If Yuri is an American basketball player, then the conclusion would be false because Yuri is an American basketball player. If Yuri is not an American basketball player, we cannot conclude that Yuri is a basketball player because we don't have enough information.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step:\n\nPremises:\n\n1. Some basketball players are not American.\n2. All basketball players are tall.\n3. If someone is tall, they wear large shoes.\n4. If someone wears large shoes, they wear large-sized clothes.\n5. Yuri does not wear large-size clothes.\n\nWe need to evaluate the conclusion: \n\"If Yuri is not an American basketball player, then Yuri is a basketball player.\"\n\nTo do this, let's assume that Yuri is not an American basketball player. We need to check if it logically follows that Yuri is a basketball player.\n\nFrom premise 1, we know that some basketball players are not American. This means that being a basketball player and not being American are compatible.\n\nNow, let's assume that Yuri is a basketball player. We need to check if it leads to any contradictions.\n\nFrom premise 2, we know that all basketball players are tall. Therefore, if Yuri is a basketball player, then Yuri is tall.\n\nFrom premise 3, we know that if someone is tall, they wear large shoes. Therefore, if Yuri is tall, then Yuri wears large shoes.\n\nFrom premise 4, we know that if someone wears large shoes, they wear large-sized clothes. Therefore, if Yuri wears large shoes, then Yuri wears large-sized clothes.\n\nHowever, from premise 5, we know that Yuri does not wear large-size clothes. This leads to a contradiction, as we have concluded that Yuri wears large-sized clothes.\n\nTherefore, the assumption that Yuri is a basketball player leads to a contradiction.\n\nSince we have a contradiction, the original assumption that Yuri is not an American basketball player cannot logically lead to Yuri being a basketball player.\n\nHence, the conclusion is uncertain, as we cannot logically deduce it from the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we'll break it down step by step using the premises and the conclusion.\n\nPremises:\n1. Some basketball players are not American. (This premise is a general statement about basketball players, not directly related to Yuri)\n2. All basketball players are tall. (This premise is a general characteristic of basketball players)\n3. If someone is tall, they wear large shoes. (This premise establishes a condition for wearing large shoes)\n4. If someone wears large shoes, they wear large-sized clothes. (This premise establishes a condition for wearing large-sized clothes)\n5. Yuri does not wear large-size clothes. (This premise is a direct statement about Yuri)\n\nConclusion:\nIf Yuri is not an American basketball player, then Yuri is a basketball player. (We need to determine if this conclusion is true, false, or uncertain based on the premises)\n\nStep 1: Analyze the premises to determine any relationships or inferences that can be made about Yuri.\n\nFrom premise 5, we know Yuri does not wear large-size clothes. Since premise 4 states that if someone wears large shoes, they wear large-sized clothes, we can infer that Yuri does not wear large shoes.\n\nFrom premise 3, we know that if someone is tall, they wear large shoes. Therefore, since Yuri is not tall (because they do not wear large shoes), we can infer that Yuri is not a basketball player.\n\nHowever, the conclusion states that \"If Yuri is not an American basketball player, then Yuri is a basketball player.\" The key word here is \"American.\" Since premise 1 states that \"Some basketball players are not American,\" we can infer that Yuri could be one of those basketball players who is not American.\n\nIn other words, being an American basketball player is not a necessary condition for being a basketball player. Yuri being a non-American basketball player does not preclude them from being a basketball player.\n\nStep 2: Determine if the conclusion is true, false, or uncertain based on the premises.\n\nSince Yuri could be a non-American basketball player (as inferred from premise 1), the conclusion is uncertain. We cannot definitively say that Yuri is a basketball player based solely on the information provided.\n\nTherefore, the conclusion is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will break it down step by step using logical reasoning and the given premises.\n\nPremise 1: Some basketball players are not American.\nPremise 2: All basketball players are tall.\nPremise 3: If someone is tall, they wear large shoes.\nPremise 4: If someone wears large shoes, they wear large-sized clothes.\nPremise 5: Yuri does not wear large-size clothes.\n\nWe need to determine the truth value of the conclusion:\nIf Yuri is not an American basketball player, then Yuri is a basketball player.\n\nLet's analyze the conclusion step by step:\n\n1. If Yuri is not an American basketball player, then we can't conclude that Yuri is a basketball player directly from the premises. However, we can infer that Yuri is tall because all basketball players are tall (Premise 2).\n\n2. If Yuri is tall, then Yuri wears large shoes (Premise 3).\n\n3. If Yuri wears large shoes, then Yuri wears large-sized clothes (Premise 4).\n\nHowever, we know that Yuri does not wear large-size clothes (Premise 5). This means that our inference from step 3 is false, and Yuri does not wear large shoes.\n\n4. Since Yuri is not tall (because they don't wear large shoes), we can't conclude that Yuri is a basketball player because all basketball players are tall (Premise 2).\n\nHowever, we can see that Yuri is not necessarily a basketball player, but we can't conclude that Yuri is not a basketball player either because the premises do not provide any information about Yuri's basketball status. We can only conclude that Yuri is not an American basketball player because the premises only state that some basketball players are not American (Premise 1), but do not provide any information about Yuri's American status.\n\nTherefore, the conclusion is uncertain. We cannot definitively conclude that if Yuri is not an American basketball player, then Yuri is a basketball player.\n\nThe final answer is \\boxed{Uncertain}.",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "not_american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(basketball_player)",
+          "z3_formula": "tall_basketball_player == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> wears_large_shoes(X)",
+          "z3_formula": "Implies(tall_basketball_player, wears_large_shoes_basketball_player)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "wears_large_shoes(X) -> wears_large_clothes(X)",
+          "z3_formula": "Implies(wears_large_shoes_basketball_player, wears_large_clothes_basketball_player)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not wears_large_clothes(yuri)",
+          "z3_formula": "not_wears_large_clothes_yuri == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not wears_large_shoes(yuri)",
+          "z3_formula": "not_wears_large_shoes_yuri == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "if not american(yuri) then basketball_player(yuri)",
+          "z3_formula": "Implies(not_american_yuri, basketball_player_yuri)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "not_american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(yuri)",
+          "z3_formula": "tall_yuri == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> large_shoes(X)",
+          "z3_formula": "Implies(tall_yuri, large_shoes_yuri)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "large_shoes(X) -> large_clothes(X)",
+          "z3_formula": "Implies(large_shoes_yuri, large_clothes_yuri)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not large_clothes(yuri)",
+          "z3_formula": "not_large_clothes_yuri == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "not american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(basketball_player)",
+          "z3_formula": "tall_basketball_player == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> wears_large_shoes(X)",
+          "z3_formula": "Implies(tall_basketball_player, wears_large_shoes_basketball_player)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "wears_large_shoes(X) -> wears_large_size_clothes(X)",
+          "z3_formula": "Implies(wears_large_shoes_basketball_player, wears_large_size_clothes_basketball_player)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not wears_large_size_clothes(yuri)",
+          "z3_formula": "not wears_large_size_clothes_yuri == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "not american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(basketball_player)",
+          "z3_formula": "tall_basketball_player == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> large_shoes(X)",
+          "z3_formula": "Implies(tall_basketball_player, large_shoes_basketball_player)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "large_shoes(X) -> large_clothes(X)",
+          "z3_formula": "Implies(large_shoes_basketball_player, large_clothes_basketball_player)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not large_clothes(yuri)",
+          "z3_formula": "not large_clothes_yuri == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not large_shoes(yuri)",
+          "z3_formula": "not large_shoes_yuri == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not tall(yuri)",
+          "z3_formula": "not tall_yuri == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not basketball_player(yuri)",
+          "z3_formula": "not basketball_player_yuri == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not american_basketball_player(yuri)",
+          "z3_formula": "not american_basketball_player_yuri == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "basketball_player(yuri)",
+          "z3_formula": "basketball_player_yuri == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "not_american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "basketball_player(X) -> tall(X)",
+          "z3_formula": "Implies(basketball_player_yuri, tall_yuri)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> wears_large_shoes(X)",
+          "z3_formula": "Implies(tall_yuri, wears_large_shoes_yuri)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "wears_large_shoes(X) -> wears_large_clothes(X)",
+          "z3_formula": "Implies(wears_large_shoes_yuri, wears_large_clothes_yuri)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not wears_large_clothes(yuri)",
+          "z3_formula": "not_wears_large_clothes_yuri == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not tall(yuri)",
+          "z3_formula": "not_tall_yuri == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not wears_large_shoes(yuri)",
+          "z3_formula": "not_wears_large_shoes_yuri == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not wears_large_clothes(yuri)",
+          "z3_formula": "not_wears_large_clothes_yuri == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not basketball_player(yuri)",
+          "z3_formula": "not_basketball_player_yuri == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "not_american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(X) -> large_shoes(X)",
+          "z3_formula": "Implies(tall_X, large_shoes_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "large_shoes(X) -> large_clothes(X)",
+          "z3_formula": "Implies(large_shoes_X, large_clothes_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not large_clothes(yuri)",
+          "z3_formula": "not_large_clothes_yuri == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "all(X: basketball_player, tall(X))",
+          "z3_formula": "Forall(basketball_player, tall_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not basketball(yuri)",
+          "z3_formula": "not_basketball_yuri == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not american_basketball_player(yuri)",
+          "z3_formula": "american_basketball_player_yuri == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(basketball_player)",
+          "z3_formula": "tall_basketball_player == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> large_shoes(X)",
+          "z3_formula": "Implies(tall_basketball_player, large_shoes_basketball_player)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "large_shoes(X) -> large_size_clothes(X)",
+          "z3_formula": "Implies(large_shoes_basketball_player, large_size_clothes_basketball_player)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not large_size_clothes(yuri)",
+          "z3_formula": "large_size_clothes_yuri == False",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not american(basketball_player)",
+          "z3_formula": "not american_basketball_player == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(basketball_player)",
+          "z3_formula": "tall_basketball_player == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> wears_large_shoes(X)",
+          "z3_formula": "Implies(tall_basketball_player, wears_large_shoes_basketball_player)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "wears_large_shoes(X) -> wears_large_clothes(X)",
+          "z3_formula": "Implies(wears_large_shoes_basketball_player, wears_large_clothes_basketball_player)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not wears_large_clothes(yuri)",
+          "z3_formula": "not wears_large_clothes_yuri == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not american(yuri) -> basketball_player(yuri)",
+          "z3_formula": "Implies(not american_yuri, basketball_player_yuri)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "not american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(yuri)",
+          "z3_formula": "tall_yuri == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> large_shoes(X)",
+          "z3_formula": "Implies(tall_yuri, large_shoes_yuri)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "large_shoes(X) -> large_clothes(X)",
+          "z3_formula": "Implies(large_shoes_yuri, large_clothes_yuri)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not large_clothes(yuri)",
+          "z3_formula": "not large_clothes_yuri == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "not american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(basketball_player)",
+          "z3_formula": "tall_basketball_player == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> large_shoes(X)",
+          "z3_formula": "Implies(tall_basketball_player, large_shoes_basketball_player)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "large_shoes(X) -> large_clothes(X)",
+          "z3_formula": "Implies(large_shoes_basketball_player, large_clothes_basketball_player)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not large_clothes(yuri)",
+          "z3_formula": "not large_clothes_yuri == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "not american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(yuri)",
+          "z3_formula": "tall_yuri == False",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> wears_large_shoes(X)",
+          "z3_formula": "Implies(tall_yuri, wears_large_shoes_yuri)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "wears_large_shoes(X) -> wears_large_clothes(X)",
+          "z3_formula": "Implies(wears_large_shoes_yuri, wears_large_clothes_yuri)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not wears_large_clothes(yuri)",
+          "z3_formula": "not wears_large_clothes_yuri == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not american(X) -> basketball_player(X)",
+          "z3_formula": "Implies(not american_yuri, basketball_player_yuri)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "not american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(basketball_player)",
+          "z3_formula": "tall_basketball_player == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> large_shoes(X)",
+          "z3_formula": "Implies(tall_basketball_player, large_shoes_basketball_player)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "large_shoes(X) -> large_clothes(X)",
+          "z3_formula": "Implies(large_shoes_basketball_player, large_clothes_basketball_player)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not large_clothes(yuri)",
+          "z3_formula": "not large_clothes_yuri == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 74,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 28
+    },
+    "maxsat_stats": {
+      "satisfied": 27,
+      "excluded": 1,
+      "total_weight": 70,
+      "solve_time_ms": 0.8464641869068146
+    },
+    "timing": {
+      "trace_gen_s": 7.461,
+      "extraction_s": 13.783,
+      "dedup_s": 0.484,
+      "maxsat_s": 0.003,
+      "total_s": 21.731
+    }
+  }
+}

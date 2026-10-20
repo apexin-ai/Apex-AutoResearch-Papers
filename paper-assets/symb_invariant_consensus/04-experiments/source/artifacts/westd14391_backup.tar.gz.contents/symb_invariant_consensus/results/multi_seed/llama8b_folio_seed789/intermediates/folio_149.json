@@ -1,0 +1,730 @@
+{
+  "problem": {
+    "id": "folio_149",
+    "problem": "Given the following premises:\nAll students are humans.  If someone studies, then they are a student. A person either studys or teaches. No young person teaches. Jerry neither teaches nor is a manager. Rose is young or a student.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIt is not true that Rose is a student and Jerry is a human.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Student(x) \u2192 Human(x))",
+      "\u2200x (Study(x) \u2192 Student(x))",
+      "\u2200x (Study(x) \u2228 Teach(x))",
+      "\u2200x (Young(x) \u2192 \u00acTeach(x))",
+      "\u00acTeach(jerry) \u2227 \u00acManager(jerry)",
+      "Young(rose) \u2228 Student(rose)"
+    ],
+    "conclusion_fol": "\u00ac(Student(rose) \u2227 Human(jerry))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 54.0,
+      "Unknown": 53.0
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "False": 4
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will use the premises to determine the validity of the given conclusion.\n\nPremises:\n1. All students are humans.\n2. If someone studies, then they are a student.\n3. A person either studies or teaches.\n4. No young person teaches.\n5. Jerry neither teaches nor is a manager.\n6. Rose is young or a student.\n\nConclusion: It is not true that Rose is a student and Jerry is a human.\n\nStep 1: Analyze the premises to understand their implications.\n\nFrom premise 3, we can infer that if someone does not teach, then they must study. This is because a person is either a student or a teacher.\n\nFrom premise 4, we can conclude that if Rose is young, then she cannot teach. This is because no young person teaches.\n\nStep 2: Determine the implications for Jerry.\n\nSince Jerry neither teaches nor is a manager (premise 5), we can infer that Jerry studies. This is because, according to premise 3, if Jerry does not teach, then he must study.\n\nFrom premise 1, we can conclude that Jerry is a human because all students are humans.\n\nStep 3: Determine the implications for Rose.\n\nFrom premise 6, we can conclude that Rose is either young or a student.\n\nStep 4: Determine the validity of the conclusion.\n\nThe conclusion states that it is not true that Rose is a student and Jerry is a human.\n\nWe have already determined that Jerry is a human from premise 1. However, we do not have enough information to determine whether Rose is a student or not.\n\nFrom premise 6, we can conclude that Rose is either young or a student. However, we cannot conclude that Rose is not a student.\n\nTherefore, we cannot determine the validity of the conclusion \"It is not true that Rose is a student and Jerry is a human.\" We will classify it as uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"It is not true that Rose is a student and Jerry is a human\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: All students are humans.\nPremise 2: If someone studies, then they are a student.\nPremise 3: A person either studies or teaches.\nPremise 4: No young person teaches.\nPremise 5: Jerry neither teaches nor is a manager.\nPremise 6: Rose is young or a student.\n\nFrom Premise 1, we know that students are a subset of humans.\n\nFrom Premise 2, we know that if someone studies, they are a student.\n\nFrom Premise 3, we know that a person can either study or teach, but not both.\n\nFrom Premise 4, we know that young people cannot teach.\n\nFrom Premise 5, we know that Jerry does not teach and does not manage.\n\nFrom Premise 6, we know that Rose is either young or a student.\n\nNow, let's consider the conclusion: \"It is not true that Rose is a student and Jerry is a human.\"\n\nWe need to determine if this conclusion is true, false, or uncertain.\n\nStep 1: Analyze the first part of the conclusion: \"Rose is a student.\"\n\nFrom Premise 2, if someone studies, then they are a student. However, we cannot directly conclude that Rose studies from the given premises. \n\nStep 2: Analyze the second part of the conclusion: \"Jerry is a human.\"\n\nFrom Premise 1, all students are humans. However, we cannot conclude that Jerry is a student from the given premises.\n\nStep 3: Analyze the entire conclusion: \"Rose is a student and Jerry is a human.\"\n\nFrom Premise 1, we know that students are humans. However, we cannot conclude that Rose is a student from the given premises.\n\nNow, let's try to find a possible scenario where the conclusion is true.\n\nSuppose Rose is young (from Premise 6). Then, from Premise 4, we know that Rose cannot teach. \n\nFrom Premise 5, we know that Jerry does not teach and does not manage. Therefore, we cannot conclude that Jerry is not a human.\n\nIn this scenario, we cannot conclude that Rose is a student.\n\nNow, let's try to find a possible scenario where the conclusion is uncertain.\n\nSuppose Rose is a student (from Premise 6). Then, from Premise 2, we know that Rose studies.\n\nFrom Premise 3, we know that a person either studies or teaches. Since Rose studies, we cannot conclude that Jerry teaches.\n\nFrom Premise 5, we know that Jerry does not teach and does not manage. Therefore, we cannot conclude that Jerry is not a human.\n\nIn this scenario, we cannot conclude that Rose is not a student and Jerry is not a human.\n\nHowever, from Premise 5, we know that Jerry is a human. \n\nTherefore, the conclusion \"It is not true that Rose is a student and Jerry is a human\" is uncertain because we cannot conclude that Rose is not a student.\n\nSo, the final answer is:\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will break it down into smaller steps and use the premises to deduce the conclusion.\n\nStep 1: Analyze the premises\n\nPremise 1: All students are humans.\nPremise 2: If someone studies, then they are a student.\nPremise 3: A person either studies or teaches.\nPremise 4: No young person teaches.\nPremise 5: Jerry neither teaches nor is a manager.\nPremise 6: Rose is young or a student.\n\nStep 2: Analyze the conclusion\n\nThe conclusion is: It is not true that Rose is a student and Jerry is a human.\n\nTo determine the truth of this conclusion, we need to examine the premises and see if we can derive a contradiction or a conclusion that supports or refutes the given statement.\n\nStep 3: Examine the relationship between Rose and being a student\n\nFrom Premise 6, we know that Rose is young or a student. This statement does not necessarily imply that Rose is a student, but it does imply that we cannot rule out the possibility that Rose is a student.\n\nHowever, to determine if Rose is a student, we need to consider the relationship between studying and being a student. From Premise 2, we know that if someone studies, then they are a student.\n\nStep 4: Examine the relationship between Jerry and being human\n\nFrom Premise 1, we know that all students are humans. However, this premise does not provide any information about Jerry's status as a human. We can only infer that if Jerry is a student, then he is a human.\n\nStep 5: Examine the conclusion\n\nTo determine the truth of the conclusion, we need to examine the relationship between Rose being a student and Jerry being a human.\n\nFrom the premises, we can infer that if Rose is a student, then she is a human (from Premise 1). However, we cannot rule out the possibility that Rose is a student.\n\nFrom the premises, we can also infer that Jerry is a human if he is a student (from Premise 1). However, we do not have any information that suggests Jerry is a student.\n\nStep 6: Determine the truth of the conclusion\n\nBased on the analysis, we cannot derive a contradiction or a conclusion that refutes the statement that Rose is a student and Jerry is a human.\n\nHowever, we can derive a conclusion that makes the statement uncertain. From Premise 5, we know that Jerry neither teaches nor is a manager. This premise does not provide any information about Jerry's status as a human or a student.\n\nFrom the analysis, we can conclude that the statement \"It is not true that Rose is a student and Jerry is a human\" is uncertain because we cannot rule out the possibility that Rose is a student and Jerry is a human.\n\nTherefore, the final answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will use the premises to determine if the conclusion is true, false, or uncertain. We will break down the premises and apply them to the conclusion step by step.\n\nPremise 1: All students are humans.\nPremise 2: If someone studies, then they are a student.\nPremise 3: A person either studies or teaches.\nPremise 4: No young person teaches.\nPremise 5: Jerry neither teaches nor is a manager.\nPremise 6: Rose is young or a student.\n\nConclusion: It is not true that Rose is a student and Jerry is a human.\n\nStep 1: We know from Premise 1 that all students are humans. Therefore, if Rose is a student, then she is a human. However, we need to determine if Rose is a student.\n\nStep 2: From Premise 2, we can infer that if someone studies, then they are a student. However, this premise alone does not tell us if Rose studies or not.\n\nStep 3: From Premise 3, we know that a person either studies or teaches. This premise does not provide any information about Rose or Jerry, so we will move on to the next premise.\n\nStep 4: From Premise 4, we know that no young person teaches. This premise does not provide any information about Rose or Jerry, so we will move on to the next premise.\n\nStep 5: From Premise 5, we know that Jerry neither teaches nor is a manager. This premise does not provide any information about Rose, so we will move on to the next premise.\n\nStep 6: From Premise 6, we know that Rose is young or a student. This premise does not tell us if Rose is a student, but it does provide a condition for Rose.\n\nNow, let's analyze the conclusion: It is not true that Rose is a student and Jerry is a human.\n\nStep 7: From Premise 1, we know that if Rose is a student, then she is a human. However, we need to determine if Rose is a student.\n\nStep 8: From Premise 6, we know that Rose is young or a student. If Rose is young, then she does not teach (from Premise 4) and she is not a student (by definition of young). Therefore, if Rose is young, then the conclusion is true (Rose is not a student and Jerry is a human).\n\nHowever, if Rose is a student, then she is a human (from Premise 1) and the conclusion is false (Rose is a student and Jerry is a human).\n\nSince we cannot determine if Rose is a student or not, the conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will use a process of elimination and deduction based on the given premises.\n\nPremise 1: All students are humans.\nPremise 2: If someone studies, then they are a student.\nPremise 3: A person either studies or teaches.\nPremise 4: No young person teaches.\nPremise 5: Jerry neither teaches nor is a manager.\nPremise 6: Rose is young or a student.\n\nConclusion: It is not true that Rose is a student and Jerry is a human.\n\nStep 1: \nWe need to determine if Jerry is a human. From Premise 1, we know that all students are humans. We also know from Premise 2 that if someone studies, then they are a student. Since Jerry neither teaches nor is a manager (Premise 5), it's possible that Jerry studies. However, we cannot conclude that Jerry is a human at this point, as we have to examine the conclusion further.\n\nStep 2: \nNow we need to examine the conclusion \"It is not true that Rose is a student and Jerry is a human.\" The conclusion is in the form of \"It is not true that...\" which means we are trying to prove that the statement \"Rose is a student and Jerry is a human\" is false.\n\nStep 3: \nTo prove the conclusion, we need to show that either \"Rose is a student\" is false, or \"Jerry is a human\" is false, or both.\n\nStep 4: \nLet's start by examining \"Rose is a student.\" From Premise 2, we know that if someone studies, then they are a student. However, we cannot directly say that Rose studies or does not study. \n\nHowever, from Premise 6, we know that Rose is young or a student. This means we can say that Rose is a student if we can show that Rose is not young.\n\nStep 5: \nHowever, there is no direct information about Rose's age. But we can use Premise 4: No young person teaches. This premise does not directly apply to Rose, but it tells us that a person cannot be both young and a teacher.\n\nStep 6: \nSince we are trying to prove the conclusion, we need to examine if Rose can be young. If Rose is young, then from Premise 6, Rose is a student. But we also know that if Rose is a student, then Jerry must be a human because all students are humans (Premise 1).\n\nHowever, we know that Jerry is a human if and only if Jerry is a student or a teacher. Since Jerry neither teaches nor is a manager (Premise 5), Jerry must be a student if he is a human.\n\nStep 7: \nHowever, this creates a contradiction. If Rose is young, then Rose is a student, and if Rose is a student, then Jerry must be a human, and if Jerry is a human, then Jerry must be a student, which means Jerry must either teach or study. But Jerry neither teaches nor is a manager (Premise 5).\n\nStep 8: \nThis means our assumption that Rose is young is false. So, Rose is not young. From Premise 6, if Rose is not young, then Rose is a student.\n\nStep 9: \nNow that we know Rose is a student, we can conclude that Jerry is a human because all students are humans (Premise 1).\n\nStep 10: \nHowever, this means our initial assumption that the conclusion \"It is not true that Rose is a student and Jerry is a human\" is false is actually true.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze each premise and draw conclusions step by step.\n\nPremise 1: All students are humans.\n- This means that being a student implies being a human.\n\nPremise 2: If someone studies, then they are a student.\n- This means that if someone studies, then they must be a student, and therefore, a human.\n\nPremise 3: A person either studies or teaches.\n- This means that a person can either be a student (which implies they study) or a teacher.\n\nPremise 4: No young person teaches.\n- This means that a person cannot be a teacher if they are young.\n\nPremise 5: Jerry neither teaches nor is a manager.\n- This means that Jerry cannot be a teacher, manager, or any other occupation that requires a certain level of age or experience.\n\nPremise 6: Rose is young or a student.\n- This means that Rose can be either a young person or a student.\n\nNow, let's analyze the conclusion:\n\"It is not true that Rose is a student and Jerry is a human.\"\n\nWe can break down the conclusion into two parts:\n\n1. Rose is a student.\n2. Jerry is a human.\n\nFrom Premise 1, we know that being a student implies being a human. Therefore, if Rose is a student, it is true that Jerry is a human, regardless of Jerry's occupation or age.\n\nNow, let's analyze the first part of the conclusion:\n\"Rose is a student.\"\n\nFrom Premise 3, we know that a person either studies or teaches. If Rose is a student, then she must be studying.\n\nFrom Premise 2, we know that if someone studies, then they are a student. This means that Rose is indeed a student if she is studying.\n\nHowever, we have a problem: Premise 6 states that Rose is young or a student. If Rose is a young person, then she cannot teach (from Premise 4). But if she is not a student, then she is not studying (from Premise 2). This means that Rose cannot be a young person and not a student at the same time.\n\nTherefore, the only way Rose can be a young person is if she is a student. But if she is a student, then she must be studying.\n\nNow, let's analyze Jerry's status:\n\"Jerry is a human.\"\n\nFrom Premise 1, we know that all students are humans. We have already established that Rose is a student. Therefore, it is true that Rose is a human.\n\nHowever, Jerry's status as a human is not directly related to Rose's status as a student. Jerry's status is determined by Premise 5, which states that Jerry neither teaches nor is a manager. This does not provide any information about Jerry's age or occupation.\n\nHowever, from Premise 3, we know that a person either studies or teaches. If Jerry does not teach, then he must be studying. But if Jerry is studying, then he is a student (from Premise 2).\n\nSince Jerry is a student, then he must be a human (from Premise 1).\n\nHowever, we also know that Jerry neither teaches nor is a manager. This means that Jerry must be studying, which in turn means that Jerry is a student.\n\nSince Jerry is a student, then he is a human.\n\nNow, let's go back to the conclusion:\n\"It is not true that Rose is a student and Jerry is a human.\"\n\nWe have established that Jerry is indeed a human.\n\nHowever, we have also established that Rose is a student.\n\nThis means that the conclusion is false, as it states that it is not true that Rose is a student and Jerry is a human, but we have found that both statements are true.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will use the principles of logic, specifically the rules of inference in predicate logic.\n\nGiven premises:\n\n1. All students are humans. \n   This can be written as \u2200x (Student(x) \u2192 Human(x)).\n\n2. If someone studies, then they are a student. \n   This can be written as \u2200x (Studies(x) \u2192 Student(x)).\n\n3. A person either studies or teaches. \n   This can be written as \u2200x (Studies(x) \u2228 Teaches(x)).\n\n4. No young person teaches. \n   This can be written as \u2200x (Young(x) \u2192 \u00acTeaches(x)).\n\n5. Jerry neither teaches nor is a manager. \n   This can be written as \u00acTeaches(Jerry) \u2227 \u00acManager(Jerry).\n\n6. Rose is young or a student. \n   This can be written as Young(Rose) \u2228 Student(Rose).\n\nWe need to determine whether the conclusion \"It is not true that Rose is a student and Jerry is a human\" is true, false, or uncertain.\n\nTo do this, let's analyze each premise and the conclusion step by step:\n\nFrom premise 1, we know that if someone is a student, then they are a human.\n\nFrom premise 2, we know that if someone studies, then they are a student.\n\nFrom premise 3, we know that a person either studies or teaches.\n\nFrom premise 4, we know that no young person teaches.\n\nFrom premise 5, we know that Jerry neither teaches nor is a manager.\n\nFrom premise 6, we know that Rose is young or a student.\n\nConclusion: It is not true that Rose is a student and Jerry is a human.\n\nTo determine the truth of this conclusion, we need to analyze the possible scenarios.\n\nScenario 1: Rose is a student.\n\nFrom premise 1, we know that if Rose is a student, then she is a human. Therefore, it is true that Rose is a human.\n\nFrom premise 2, we know that if Rose studies, then she is a student. We don't know whether Rose studies or not, but we know that she is a student.\n\nFrom premise 3, we know that a person either studies or teaches. We don't know whether Rose teaches or not, but we know that she is a student.\n\nFrom premise 4, we know that no young person teaches. We don't know whether Rose teaches or not, but we know that she is young (from premise 6).\n\nFrom premise 5, we know that Jerry neither teaches nor is a manager. We don't know whether Jerry is a human or not.\n\nFrom premise 6, we know that Rose is young or a student. We know that Rose is a student.\n\nNow, let's analyze the conclusion: \"It is not true that Rose is a student and Jerry is a human.\"\n\nIf Rose is a student, then it is true that Rose is a student. If Jerry is a human, then it is true that Jerry is a human.\n\nHowever, premise 1 states that all students are humans, and premise 6 states that Rose is young or a student. Therefore, if Rose is a student, then it is true that Rose is a human.\n\nThe conclusion states that it is not true that Rose is a student and Jerry is a human. However, we have established that if Rose is a student, then it is true that Rose is a human.\n\nTherefore, the conclusion is uncertain, because we don't know whether Jerry is a human or not.\n\nBut we can prove that Jerry is a human by contradiction:\n\nLet's assume that Jerry is not a human.\n\nIf Jerry is not a human, then he is not a student (from premise 1).\n\nFrom premise 2, we know that if someone studies, then they are a student. Therefore, Jerry does not study.\n\nFrom premise 3, we know that a person either studies or teaches. Therefore, Jerry does not teach.\n\nFrom premise 4, we know that no young person teaches. Therefore, Jerry is not young.\n\nFrom premise 5, we know that Jerry neither teaches nor is a manager. We already know that Jerry does not teach, and we know that he is not young.\n\nHowever, we also know that Jerry is either young or a student (from premise 3). We know that Jerry is not young, so he must be a student.\n\nBut from premise 1, we know that all students are humans. Therefore, Jerry is a human.\n\nThis contradicts our initial assumption that Jerry is not a human.\n\nTherefore, Jerry must be a human.\n\nNow, let's go back to the conclusion: \"It is not true that Rose is a student and Jerry is a human.\"\n\nWe have established that Jerry is a human. Therefore, the conclusion states that it is not true that Rose is a student and Jerry is a human.\n\nHowever, we have also established that if Rose is a student, then it is true that Rose is a human.\n\nTherefore, the conclusion is false, because Jerry is indeed a human.\n\nSo the final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we'll analyze each premise step by step and use them to derive conclusions.\n\n1. All students are humans.\n   This premise states a generalization about students being humans, which doesn't provide specific information about Rose or Jerry.\n\n2. If someone studies, then they are a student.\n   This premise establishes a necessary condition for someone to be a student, i.e., studying is a sufficient condition for being a student.\n\n3. A person either studies or teaches.\n   This premise implies that any person is either a student (if they study) or a teacher (if they teach).\n\n4. No young person teaches.\n   This premise provides information about young people and their professions. It doesn't directly mention Rose or Jerry, but it sets a boundary for young people's professions.\n\n5. Jerry neither teaches nor is a manager.\n   This premise provides specific information about Jerry's profession, stating that he is neither a teacher nor a manager.\n\n6. Rose is young or a student.\n   This premise provides a condition that Rose must satisfy, either being young or a student.\n\nNow, let's analyze the conclusion: \"It is not true that Rose is a student and Jerry is a human.\"\n\nWe need to determine if this conclusion is true, false, or uncertain.\n\nFrom Premise 1, we know that all students are humans. This means if Rose is a student, then Rose is a human. However, we also need to consider Jerry, who is a human according to Premise 1 indirectly (as a student), but we know that Jerry is a human from Premise 5 directly.\n\nNow, let's focus on the first part of the conclusion: \"Rose is a student.\" \n\nFrom Premise 2, if someone studies, then they are a student. However, there is no information about Rose studying. \n\nFrom Premise 6, Rose is young or a student. If Rose is young, then Premise 4 implies that Rose cannot be a teacher. But we know from Premise 3 that a person is either a student or a teacher. So, if Rose is young, then Rose is a student.\n\nHowever, since Rose is a student, then Rose is a human from Premise 1.\n\nNow let's look at the second part of the conclusion: \"Jerry is a human.\" We know this is true from Premise 1 indirectly and Premise 5 directly.\n\nCombining both parts, we have the statement: \"Rose is a student and Jerry is a human.\" \n\nSince we have established that Rose is a student (and therefore human) and Jerry is human, we can conclude that the original statement is false.\n\nTherefore, the conclusion: \"It is not true that Rose is a student and Jerry is a human\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the premises and the conclusion step by step.\n\nPremise 1: All students are humans.\nThis premise tells us that being a student implies being a human. It does not provide any information about Jerry or Rose.\n\nPremise 2: If someone studies, then they are a student.\nThis premise tells us that studying implies being a student. Again, it does not provide any information about Jerry or Rose.\n\nPremise 3: A person either studies or teaches.\nThis premise tells us that everyone either studies or teaches. However, it does not provide any information about Jerry or Rose.\n\nPremise 4: No young person teaches.\nThis premise tells us that if someone is young, they cannot teach. It does not provide any information about Jerry or Rose.\n\nPremise 5: Jerry neither teaches nor is a manager.\nThis premise tells us that Jerry does not teach and is not a manager. This premise does not provide any information about Rose.\n\nPremise 6: Rose is young or a student.\nThis premise tells us that Rose is either young or a student. It does not provide any information about Jerry.\n\nConclusion: It is not true that Rose is a student and Jerry is a human.\n\nTo evaluate the conclusion, we need to analyze the premises and see if we can derive the conclusion.\n\nFrom Premise 1, we know that if Rose is a student, then she is a human.\n\nFrom Premise 2, we know that if Rose studies, then she is a student.\n\nFrom Premise 3, we know that Jerry either studies or teaches. However, from Premise 5, we know that Jerry neither teaches nor is a manager, so we can conclude that Jerry studies (since he must either study or teach).\n\nFrom Premise 6, we know that Rose is either young or a student. However, Premise 4 tells us that no young person teaches, and Jerry does not teach (from Premise 5), so Jerry must be a student (since he studies, from Premise 3).\n\nFrom Premise 1, we know that if Rose is a student, then she is a human. However, we also know that Jerry is a student (from the analysis above), and from Premise 1, we know that Jerry is a human (since he is a student). \n\nThe conclusion is that it is not true that Rose is a student and Jerry is a human. However, from the analysis above, we know that Jerry is a student, and from Premise 1, we know that if Jerry is a student, then he is a human. \n\nTherefore, the conclusion is uncertain, as it is possible that Rose is not a student (but still a human), but Jerry is a human (since he is a student). However, we cannot be certain that Rose is not a student and Jerry is a human, since the premises do not provide enough information to derive this conclusion.\n\nSo, the final answer is \\boxed{Uncertain}.",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will analyze each premise and apply the rules of logic.\n\nPremise 1: All students are humans.\nThis premise tells us that if someone is a student, then they must be a human.\n\nPremise 2: If someone studies, then they are a student.\nThis premise gives us a condition for someone to be a student: they must study.\n\nPremise 3: A person either studies or teaches.\nThis premise gives us two options for someone's profession: they either study or teach.\n\nPremise 4: No young person teaches.\nThis premise tells us that if someone is young, then they cannot teach.\n\nPremise 5: Jerry neither teaches nor is a manager.\nThis premise gives us two facts about Jerry: he does not teach, and he is not a manager.\n\nPremise 6: Rose is young or a student.\nThis premise gives us two options for Rose's status: she is either young or a student.\n\nNow, let's analyze the conclusion: \"It is not true that Rose is a student and Jerry is a human.\"\n\nConclusion: \u00ac(Rose is a student \u2227 Jerry is a human)\n\nWe need to determine whether this conclusion is true, false, or uncertain.\n\nLet's start by analyzing the first part of the conclusion: \"Rose is a student.\"\n\nFrom Premise 2, we know that if someone studies, then they are a student. However, we do not know if Rose studies. \n\nFrom Premise 6, we know that Rose is young or a student. This does not tell us that Rose is a student; it only tells us that she is either young or a student.\n\nHowever, we can use Premise 3 to analyze this further. Premise 3 tells us that a person either studies or teaches. If Rose is a student, then she must either study (which would make her a student, but we don't know if she studies) or teach (which would contradict Premise 4, since Rose would be young and teach). \n\nSince we cannot determine if Rose is a student based on the premises, we cannot determine if the first part of the conclusion (\"Rose is a student\") is true or false.\n\nNow, let's analyze the second part of the conclusion: \"Jerry is a human.\"\n\nFrom Premise 1, we know that all students are humans. However, we do not know if Jerry is a student.\n\nFrom Premise 5, we know that Jerry does not teach. This does not tell us if Jerry is a human, but it does tell us that Jerry is not a teacher.\n\nHowever, we can use Premise 3 to analyze this further. Premise 3 tells us that a person either studies or teaches. If Jerry is a human, then he must either study or teach. Since we know that Jerry does not teach (Premise 5), it follows that Jerry must study in order to be a human.\n\nFrom Premise 2, we know that if someone studies, then they are a student. Therefore, if Jerry studies, then he must be a student.\n\nSince we can determine that Jerry is a student, we can use Premise 1 to conclude that Jerry is a human.\n\nTherefore, the second part of the conclusion (\"Jerry is a human\") is true.\n\nSince the second part of the conclusion is true, but we cannot determine if the first part of the conclusion is true or false, we cannot determine if the conclusion is true or false.\n\nTherefore, the conclusion is uncertain. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the premises and analyze the given statement. \n\nPremise 1: All students are humans.\nPremise 2: If someone studies, then they are a student.\nPremise 3: A person either studies or teaches.\nPremise 4: No young person teaches.\nPremise 5: Jerry neither teaches nor is a manager.\nPremise 6: Rose is young or a student.\n\nGiven statement: It is not true that Rose is a student and Jerry is a human.\n\nWe can start by analyzing the given statement. It says that it is not true that Rose is a student and Jerry is a human. This means we need to evaluate two parts: \"Rose is a student\" and \"Jerry is a human.\"\n\nFrom Premise 1, we know that all students are humans. Therefore, if Rose is a student, then Rose must be a human. This does not directly affect our conclusion, but it's good to note.\n\nNow, let's look at the second part of the statement: \"Jerry is a human.\" From Premise 1, we know that all students are humans. However, we cannot directly conclude that Jerry is a student from the premises. We can only say that Jerry is a human because humans are not explicitly excluded from being Jerry. Since all students are humans, Jerry being a human does not conflict with our conclusion.\n\nNext, let's look at the first part of the statement: \"Rose is a student.\" From Premise 2, if someone studies, then they are a student. However, we cannot conclude that Rose studies from the premises. \n\nHowever, from Premise 3, a person either studies or teaches. If Rose is not a student, then Rose must teach. But Premise 4 states that no young person teaches. This implies that Rose is either a student or an older person who can teach.\n\nNow, let's look at the statement \"Rose is young or a student.\" From Premise 6, we know that Rose is young or a student. This statement does not directly imply that Rose is a student, but it does imply that if Rose is not a student, then Rose must be young.\n\nHowever, we know from Premise 4 that no young person teaches. If Rose is young and not a student, then Rose cannot teach, but this is a contradiction because if Rose is young, then Rose cannot teach according to Premise 4. \n\nTherefore, if Rose is young, then Rose must be a student. This is because we have a contradiction if Rose is young and does not teach, and since Rose can't be a teacher (according to the premises given), Rose must be a student. \n\nHowever, since we have concluded that if Rose is young then Rose is a student, and we have previously stated that all students are humans (Premise 1), this means that if Rose is young, then Rose is a student and a human. \n\nHowever, this does not affect the statement \"Jerry is a human.\" From our premises, we know that Jerry is a human, but we cannot conclude that Jerry is a student.\n\nNow, let's put it all together. From our analysis, we can conclude that it is true that if Rose is young, then Rose is a student and a human. \n\nHowever, since we have concluded that it is true that if Rose is young then Rose is a student and a human, this implies that it is not true that Rose is not a student and Jerry is a human. This means that our conclusion \"It is not true that Rose is a student and Jerry is a human\" can be false.\n\nTherefore, the conclusion \"It is not true that Rose is a student and Jerry is a human\" is false.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and the given premises.\n\nPremise 1: All students are humans.\nPremise 2: If someone studies, then they are a student.\nPremise 3: A person either studies or teaches.\nPremise 4: No young person teaches.\nPremise 5: Jerry neither teaches nor is a manager.\nPremise 6: Rose is young or a student.\n\nConclusion: It is not true that Rose is a student and Jerry is a human.\n\nLet's break down the conclusion:\n\n1. To determine if it's true that Rose is a student, we need to check the premises. From Premise 6, we know that Rose is young or a student. This means that Rose can be either young or a student, but it doesn't necessarily mean that she is both. However, Premise 2 states that if someone studies, then they are a student. This implies that if Rose studies, then she is a student. \n\n2. Now, let's consider the possibilities for Rose being a student. If Rose is a student, then from Premise 1, she is a human. However, this does not provide any information about Jerry.\n\n3. To determine if it's true that Jerry is a human, we need to check the premises. From Premise 1, we know that all students are humans. However, this does not provide any information about Jerry. We need to consider the other premises. From Premise 3, we know that a person either studies or teaches. Since Jerry neither teaches nor is a manager (Premise 5), it does not necessarily mean that Jerry studies. However, if Jerry does not study, then Jerry is not a student (by Premise 2). But since Jerry is not a manager (Premise 5), Jerry is a human (by Premise 1, as all students are humans, and Jerry is not a student).\n\nHowever, this does not directly help us with the conclusion. To determine the truth of the conclusion, we need to check if it's possible that Rose is a student and Jerry is a human.\n\nAs we have established that Jerry is a human, we now need to check the possibilities for Rose being a student. If Rose is a student, then she is a human (by Premise 1). Now, let's consider the possibilities for Jerry being a human given that Rose is a student. We have already established that Jerry is a human.\n\nNow, let's check the possibilities for Rose being a student and Jerry being a human. From Premise 3, we know that a person either studies or teaches. Since Jerry neither teaches nor is a manager (Premise 5), it does not necessarily mean that Jerry studies. However, if Jerry does not study, then Jerry is not a student (by Premise 2). But since Jerry is not a manager (Premise 5), Jerry is a human (by Premise 1, as all students are humans, and Jerry is not a student). This does not provide any information about Rose being a student.\n\nHowever, we can analyze the situation using a truth table:\n\n| Rose is a student | Jerry studies |\n|-------------------|--------------|\n| True              | True         |\n| True              | False        |\n| False             | True         |\n| False             | False        |\n\nFrom Premise 4, we know that no young person teaches. This means that if Rose is young (from Premise 6), then she does not teach. Now, let's consider the possibilities for Jerry being a human given that Rose is a student. If Jerry studies, then Jerry is a student (by Premise 2). Since Jerry is not a manager (Premise 5), Jerry is a human (by Premise 1, as all students are humans, and Jerry is not a manager). \n\nNow, let's check the possibilities for Rose being a student and Jerry being a human.\n\n| Rose is a student | Jerry studies |\n|-------------------|--------------|\n| True              | True         | \n| True              | False        |\n| False             | True         |\n| False             | False        |\n\nIf Rose is a student, then she is a human (by Premise 1). Since we have established that Jerry is a human, then it is possible that Rose is a student and Jerry is a human.\n\nHowever, we also need to check the case where Rose is not a student. If Rose is not a student, then from Premise 6, she is young. Now, let's consider the possibilities for Jerry being a human given that Rose is not a student. Since Jerry is not a manager (Premise 5), Jerry is a human (by Premise 1, as all students are humans, and Jerry is not a manager).\n\nNow, let's check the possibilities for Rose being a student and Jerry being a human.\n\n| Rose is a student | Jerry studies |\n|-------------------|--------------|\n| True              | True         | \n| True              | False        |\n| False             | True         |\n| False             | False        |\n\nWe have two possible cases where Rose is a student: \n1. Rose is a student and Jerry studies.\n2. Rose is a student and Jerry does not study.\n\nAnd we have two possible cases where Rose is not a student:\n1. Rose is not a student and Jerry studies.\n2. Rose is not a student and Jerry does not study.\n\nSo, it is possible that Rose is a student and Jerry is a human.\n\nHowever, let's re-examine the possibilities for Rose being a student and Jerry being a human:\n\nIf Rose is a student, then she is a human (by Premise 1). Since Jerry is not a manager (Premise 5), Jerry is a human (by Premise 1, as all students are humans, and Jerry is not a manager).\n\nNow, let's consider the possibilities for Rose being a student and Jerry being a human.\n\n| Rose is a student | Jerry studies |\n|-------------------|--------------|\n| True              | True         | \n| True              | False        |\n| False             | True         |\n| False             | False        |\n\nFrom Premise 6, we know that Rose is young or a student. This means that Rose can be either young or a student, but it doesn't necessarily mean that she is both. However, Premise 2 states that if someone studies, then they are a student. This implies that if Rose studies, then she is a student.\n\nNow, let's consider the possibilities for Rose being a student and Jerry being a human.\n\n| Rose is a student | Jerry studies |\n|-------------------|--------------|\n| True              | True         | \n| True              | False        |\n| False             | True         |\n| False             | False        |\n\nIf Rose is a student, then she is a human (by Premise 1). Since Jerry is not a manager (Premise 5), Jerry is a human (by Premise 1, as all students are humans, and Jerry is not a manager).\n\nNow, let's consider the possibilities for Rose being a student and Jerry being a human.\n\n| Rose is a student | Jerry studies |\n|-------------------|--------------|\n| True              | True         | \n| True              | False        |\n| False             | True         |\n| False             | False        |\n\nNow, let's consider the possibilities for Jerry being a human given that Rose is a student.\n\nIf Rose is a student, then she is a human (by Premise 1). Now, let's consider the possibilities for Jerry being a human given that Rose is a student.\n\nSince Jerry is not a manager (Premise 5), Jerry is a human (by Premise 1, as all students are humans, and Jerry is not a manager).\n\nNow, let's consider the possibilities for Rose being a student and Jerry being a human.\n\n| Rose is a student | Jerry studies |\n|-------------------|--------------|\n| True              | True         | \n| True              | False        |\n| False             | True         |\n| False             | False        |\n\nNow, let's consider the possibilities for Rose being a student and Jerry being a human.\n\n| Rose is a student | Jerry studies |\n|-------------------|--------------|\n| True              | True         | \n| True              | False        |\n| False             | True         |\n| False             | False        |\n\nIf Rose is a student, then she is a human (by Premise 1). Since Jerry is not a manager (Premise 5), Jerry is a human (by Premise 1, as all students are humans, and Jerry is not a manager).\n\nNow, let's consider the possibilities for Rose being a student and Jerry being a human.\n\n| Rose is a student | Jerry studies |\n|-------------------|--------------|\n| True              | True         | \n| True              | False        |\n| False             | True         |\n| False             | False        |\n\nNow, let's consider the possibilities for Rose being a student and Jerry being a human.\n\n| Rose is a student | Jerry studies |\n|-------------------|--------------|\n| True              | True         | \n| True              | False        |\n| False             | True         |\n| False             | False        |\n\nNow, let's consider the possibilities for Rose being a student and Jerry being a human.\n\n| Rose is a student | Jerry studies |\n|-------------------|--------------|\n| True              | True         | \n| True              | False        |\n| False             | True         |\n| False             | False        |\n\nWe have established that it is possible that Rose is a student and Jerry is a human.\n\nTherefore, the conclusion \"It is not true that Rose is a student and Jerry is a human\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "human(student)",
+          "z3_formula": "human_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(teaches(young))",
+          "z3_formula": "Not(teaches_young) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(teaches(jerry) | manager(jerry))",
+          "z3_formula": "Not(Or(teaches_jerry, manager_jerry)) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(rose) | student(rose)",
+          "z3_formula": "Or(young_rose, student_rose) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "student(X) -> human(X)",
+          "z3_formula": "Implies(student_X, human_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> \u00acteaches(X)",
+          "z3_formula": "Implies(young_X, Not(teaches_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "\u00acteaches(Jerry) & \u00acmanages(Jerry)",
+          "z3_formula": "And(Not(teaches_Jerry), Not(manages_Jerry))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) | student(X)",
+          "z3_formula": "Or(young_X, student_X)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "human(student)",
+          "z3_formula": "human_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not young(X) -> not teaches(X)",
+          "z3_formula": "Not(young_X) == teaches_X",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "neither teaches(jerry) nor manager(jerry)",
+          "z3_formula": "Not(teaches_jerry) == Not(manager_jerry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(rose) | student(rose)",
+          "z3_formula": "Or(young_rose, student_rose)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "human(student)",
+          "z3_formula": "human_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not teaches(young)",
+          "z3_formula": "Not(teaches_young) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not manager(jerry)",
+          "z3_formula": "Not(manager_jerry) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young | student(rose)",
+          "z3_formula": "Or(young, student_rose) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "human(student)",
+          "z3_formula": "human_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_jerry, student_jerry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_jerry, teaches_jerry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "teaches(X) | manager(X)",
+          "z3_formula": "Or(teaches_jerry, manager_jerry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> not(teaches(X))",
+          "z3_formula": "Implies(young_rose, Not(teaches_rose))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "neither(teaches(X), manager(X))",
+          "z3_formula": "Not(And(teaches_jerry, manager_jerry))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) | student(X)",
+          "z3_formula": "Or(young_rose, student_rose)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(student(X) & human(X))",
+          "z3_formula": "Not(And(student_jerry, human_jerry))",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "student(x)",
+          "z3_formula": "student_x == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "student(X) -> human(X)",
+          "z3_formula": "Implies(student_x, human_x)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "studies(x)",
+          "z3_formula": "studies_x == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_x, student_x)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "teaches(x) | studies(x)",
+          "z3_formula": "Or(teaches_x, studies_x)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not teaches(x) & not manager(x)",
+          "z3_formula": "Not(And(teaches_x, manager_x))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(x) | student(x)",
+          "z3_formula": "Or(young_x, student_x)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not young(x) -> not teaches(x)",
+          "z3_formula": "Implies(Not(young_x), Not(teaches_x))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "student(x)",
+          "z3_formula": "student_x == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "human(x)",
+          "z3_formula": "human_x == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "student(jerry)",
+          "z3_formula": "student_jerry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "human(jerry)",
+          "z3_formula": "human_jerry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not (student(rose) & human(jerry))",
+          "z3_formula": "Not(And(student_rose, human_jerry))",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "Human(x)",
+          "z3_formula": "Human_x == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "Student(x) -> Human(x)",
+          "z3_formula": "Implies(Student_x, Human_x)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "Studies(x) -> Student(x)",
+          "z3_formula": "Implies(Studies_x, Student_x)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "Studies(x) \u2228 Teaches(x)",
+          "z3_formula": "Or(Studies_x, Teaches_x)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "\u00acTeaches(x)",
+          "z3_formula": "Not(Teaches_x)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "\u00acManager(x)",
+          "z3_formula": "Not(Manager_x)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "Young(x) \u2228 Student(x)",
+          "z3_formula": "Or(Young_x, Student_x)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "\u00ac(Student(x) & Human(x))",
+          "z3_formula": "Not(And(Student_x, Human_x))",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "human(student)",
+          "z3_formula": "human_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "student(X) | teacher(X)",
+          "z3_formula": "Or(student_X, teacher_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(teacher(young))",
+          "z3_formula": "Not(teacher_young) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(teacher(jerry))",
+          "z3_formula": "Not(teacher_jerry) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(Rose) | student(Rose)",
+          "z3_formula": "Or(young_Rose, student_Rose)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "human(student)",
+          "z3_formula": "human_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "student(X) -> human(X)",
+          "z3_formula": "Implies(student_X, human_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(teaches(jerry))",
+          "z3_formula": "Not(teaches_jerry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(manages(jerry))",
+          "z3_formula": "Not(manages_jerry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> not(teaches(X))",
+          "z3_formula": "Implies(young_X, Not(teaches_X))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(rose) | student(rose)",
+          "z3_formula": "Or(young_rose, student_rose)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "student(jerry)",
+          "z3_formula": "student_jerry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "human(jerry)",
+          "z3_formula": "human_jerry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(student(rose) & human(jerry))",
+          "z3_formula": "Not(And(student_rose, human_jerry))",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "human(student)",
+          "z3_formula": "human_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "student(X) -> human(X)",
+          "z3_formula": "Implies(student_X, human_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "student(X) -> study(X)",
+          "z3_formula": "Implies(student_X, study_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "study(X) -> student(X)",
+          "z3_formula": "Implies(study_X, student_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "study(X) | teach(X)",
+          "z3_formula": "Or(study_X, teach_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "\u00acyoung(X) -> \u00acteach(X)",
+          "z3_formula": "Not(young_X) -> Not(teach_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "\u00acteach(jerry)",
+          "z3_formula": "Not(teach_jerry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) | student(X)",
+          "z3_formula": "Or(young_X, student_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "\u00acstudent(jerry)",
+          "z3_formula": "Not(student_jerry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "human(jerry)",
+          "z3_formula": "human_jerry == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "human(student)",
+          "z3_formula": "human_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(teaches(young))",
+          "z3_formula": "Not(teaches_young) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(teaches(jerry))",
+          "z3_formula": "Not(teaches_jerry) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young_or_student(rose)",
+          "z3_formula": "Or(young_rose, student_rose)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young -> student",
+          "z3_formula": "Implies(young_rose, student_rose)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young -> human",
+          "z3_formula": "Implies(young_rose, human_rose)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(young & not(student))",
+          "z3_formula": "Not(And(young_rose, Not(student_rose))) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(not(student) & human)",
+          "z3_formula": "Not(And(Not(student_rose), human_jerry)) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(not(student) & human)",
+          "z3_formula": "Not(And(Not(student_rose), human_jerry)) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "false",
+          "z3_formula": "False",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "student(X) -> human(X)",
+          "z3_formula": "Implies(student_X, human_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "teaches(Y) -> ~young(Y)",
+          "z3_formula": "Not(teaches_Y)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "manager(Y) -> ~human(Y)",
+          "z3_formula": "Not(manager_Y)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(Y) | student(Y)",
+          "z3_formula": "Or(young_Y, student_Y)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "~(student(rose) & human(jerry))",
+          "z3_formula": "Not(And(student_rose, human_jerry))",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 99,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 58
+    },
+    "maxsat_stats": {
+      "satisfied": 53,
+      "excluded": 5,
+      "total_weight": 91,
+      "solve_time_ms": 2.446230500936508
+    },
+    "timing": {
+      "trace_gen_s": 24.08,
+      "extraction_s": 15.334,
+      "dedup_s": 1.178,
+      "maxsat_s": 0.006,
+      "total_s": 40.599
+    }
+  }
+}

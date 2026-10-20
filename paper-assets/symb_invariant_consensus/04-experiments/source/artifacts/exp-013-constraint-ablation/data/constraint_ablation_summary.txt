@@ -1,0 +1,14 @@
+See remote: /root/symb_invariant_consensus/results/exp013_constraint_ablation/constraint_ablation_summary.json on westd-25068
+
+Key results (N=804, K=12):
+- SICA-MaxSAT:         42.29% (340/804)  Δ vs SC = -0.87pp
+- SICA-count-only:     42.16% (339/804)  Δ vs SC = -1.00pp
+- SICA-random-weight:  42.06% ± 0.42%    Δ vs SC = -1.09pp
+- SC baseline:         43.16% (347/804)
+
+MaxSAT vs count-only: Δ = +0.12pp, agreement = 94.4%
+Disagreement (45 problems): MaxSAT wins 18, Count wins 17, net +1
+
+Per-dataset:
+  FOLIO (204): MaxSAT=59.31%, Count=56.86%, SC=54.41%
+  ProofWriter (600): MaxSAT=36.50%, Count=37.17%, SC=39.33%

@@ -1,0 +1,456 @@
+{
+  "problem": {
+    "id": "folio_45",
+    "problem": "Given the following premises:\nAll cats are mammals. Some pets are not mammals.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nNo pets are cats.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Cat(x) \u2192 Mammal(x))",
+      "\u2203x (Pet(x) \u2227 \u00acMammal(x))"
+    ],
+    "conclusion_fol": "\u2200x (Pet(x) \u2192 \u00acCat(x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 15.0,
+      "Unknown": 42.0
+    },
+    "answer_counts": {
+      "False": 1,
+      "Unknown": 10
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion \"No pets are cats\" is true, false, or uncertain, we need to analyze the given premises and see if they lead to a logical conclusion.\n\nPremise 1: All cats are mammals.\nPremise 2: Some pets are not mammals.\n\nWe need to find out if the conclusion \"No pets are cats\" is logically consistent with the premises.\n\nLet's break it down:\n\nPremise 1 tells us that all cats are mammals, which means that cats are a subset of mammals.\n\nPremise 2 tells us that some pets are not mammals, which means that not all pets are mammals.\n\nNow, let's examine the conclusion: \"No pets are cats.\"\n\nTo determine if this conclusion is true or false, we need to see if it contradicts the premises.\n\nIf we assume that no pets are cats, then we can conclude that all cats are not pets. This is because cats are mammals (Premise 1), and all mammals are either pets or non-pets. Since some pets are not mammals (Premise 2), we can conclude that some cats are non-pets.\n\nHowever, this conclusion contradicts the assumption that no pets are cats. This means that the conclusion \"No pets are cats\" is logically inconsistent with the premises.\n\nTherefore, the conclusion \"No pets are cats\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they support or contradict the conclusion.\n\nPremise 1: All cats are mammals. \nThis premise tells us that cats are a subset of mammals.\n\nPremise 2: Some pets are not mammals.\nThis premise tells us that not all pets are mammals, but it doesn't give us any information about cats specifically.\n\nNow, let's analyze the conclusion: No pets are cats.\n\nTo determine if the conclusion is true, we need to see if it logically follows from the premises. \n\nFrom Premise 1, we know that cats are mammals. \n\nFrom Premise 2, we know that some pets are not mammals. \n\nHowever, there is no information that suggests all pets are not mammals, just some. \n\nSo, we can't conclude that no pets are cats because there is no information that contradicts the possibility of pets being cats.\n\nIn fact, since cats are mammals (Premise 1), and some pets are mammals (because cats are a type of pet), it is possible for pets to be cats.\n\nTherefore, the conclusion \"No pets are cats\" is uncertain, as it is possible for pets to be cats based on the given premises.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion \"No pets are cats\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: All cats are mammals.\nPremise 2: Some pets are not mammals.\n\nNow, let's break down the conclusion and try to relate it to the premises.\n\nConclusion: No pets are cats.\n\nTo evaluate this conclusion, we can use a process of elimination or contradiction. \n\nFrom Premise 1, we know that all cats are mammals. \n\nFrom Premise 2, we know that some pets are not mammals. \n\nNow, if we assume that some pets are cats (let's say there is at least one pet that is a cat), then we have a contradiction. \n\nIf some pets are cats, then those cats are mammals (from Premise 1). However, we know from Premise 2 that some pets are not mammals, which creates a contradiction.\n\nTherefore, we cannot assume that any pets are cats, as it would create a contradiction with the given premises.\n\nSince we cannot rule out the possibility that no pets are cats (i.e., there are no cats among the pets), we cannot conclude that the statement is false.\n\nThe conclusion \"No pets are cats\" is uncertain, as we cannot definitively determine whether it is true or false based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the premises and see if they lead to the conclusion.\n\nPremise 1: All cats are mammals.\nPremise 2: Some pets are not mammals.\n\nNow, let's examine the conclusion: No pets are cats.\n\nIf we assume that all cats are mammals (Premise 1), it means that all cats are a subset of mammals. However, we also know that some pets are not mammals (Premise 2). This does not provide any information about cats specifically.\n\nTo determine if the conclusion is true, we need to find a connection between pets and cats. However, the premises do not provide any information that would lead us to conclude that no pets are cats. The fact that some pets are not mammals does not necessarily mean that all pets are not mammals, or that cats do not fit into the category of pets.\n\nSince the premises do not provide any information that would lead us to conclude that no pets are cats, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the validity of the conclusion \"No pets are cats,\" we can use a logical approach based on the given premises.\n\nPremise 1: All cats are mammals.\nPremise 2: Some pets are not mammals.\n\nFrom Premise 1, we can infer that cats are a subset of mammals. \n\nSince cats are mammals (Premise 1), and some pets are not mammals (Premise 2), we can conclude that not all pets are mammals. However, this does not directly relate to whether \"No pets are cats.\"\n\nTo determine if \"No pets are cats,\" we need to consider if there can be a pet that is a cat. Since cats are mammals (Premise 1), and mammals can be pets, there is no inherent contradiction in a pet being a cat.\n\nHowever, Premise 2 states that some pets are not mammals, which could potentially imply that there are pets that are not cats. \n\nGiven the premises do not directly support or contradict the conclusion \"No pets are cats,\" we can consider that the premises do not provide sufficient information to make a definitive conclusion about whether \"No pets are cats\" is true or false.\n\nTherefore, the conclusion \"No pets are cats\" is uncertain based on the given premises. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the premises and apply logical reasoning.\n\nPremise 1: All cats are mammals.\nPremise 2: Some pets are not mammals.\n\nWe need to evaluate the conclusion: No pets are cats.\n\nTo do this, let's consider the possible relationships between cats, pets, and mammals.\n\nFrom Premise 1, we know that cats are a subset of mammals. This means that all cats are mammals.\n\nNow, let's consider Premise 2, which states that some pets are not mammals. This means that not all pets are mammals.\n\nWe can infer that the set of pets is a superset of the set of mammals, and there are some elements in the set of pets that are not in the set of mammals.\n\nNow, let's analyze the conclusion: No pets are cats.\n\nIf we assume that there are pets that are cats, then we would be contradicting Premise 1, which states that all cats are mammals.\n\nHowever, Premise 2 does not provide any information about cats being mammals or not. It only states that some pets are not mammals.\n\nTherefore, we cannot conclude that no pets are cats based on the given premises. We can only say that some pets may be cats, and some pets may not be cats.\n\nThe conclusion is uncertain because we lack sufficient information to make a definitive statement about the relationship between pets and cats.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the validity of the conclusion \"No pets are cats,\" we need to analyze the given premises and their relationships to the conclusion.\n\nPremise 1: All cats are mammals.\nPremise 2: Some pets are not mammals.\n\nWe can start by examining the relationship between cats and mammals. From Premise 1, we know that all cats are mammals. This implies that being a cat is a subset of being a mammal.\n\nNow, let's consider the relationship between pets and mammals. From Premise 2, we know that some pets are not mammals. This implies that not all pets are mammals.\n\nThe conclusion we are trying to evaluate is \"No pets are cats.\" To determine its validity, we need to consider whether the premises provide any information that would lead us to conclude that there are no pets that are cats.\n\nFrom Premise 1, we know that all cats are mammals. However, this premise does not provide any information about pets that are not mammals. \n\nThe critical insight here is that the premises do not provide any direct information about cats being pets or not. Cats are mammals, and some pets are not mammals, but we don't know if any cats are pets.\n\nTherefore, based on the given premises, we cannot conclude that no pets are cats. The conclusion is uncertain because the premises do not provide enough information to rule out the possibility that some pets are cats.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion \"No pets are cats\" is true, false, or uncertain based on the given premises, we need to analyze the premises and their relationship to the conclusion.\n\nPremise 1: All cats are mammals.\nPremise 2: Some pets are not mammals.\n\nFrom Premise 1, we can infer that cats are a type of mammal. \n\nFrom Premise 2, we can infer that not all pets are mammals, but this does not provide any information about cats being pets or not.\n\nNow, let's examine the conclusion: \"No pets are cats.\"\n\nFor the conclusion to be true, we need to show that there is no pet that is also a cat. However, from Premise 1, we know that cats are mammals, and from Premise 2, we know that not all pets are mammals.\n\nSince the premises do not provide any direct information about cats being pets or not, we cannot conclusively determine whether the conclusion is true or false. The premises do not provide enough information to rule out the possibility that some pets are cats.\n\nTherefore, based on the given premises, the conclusion \"No pets are cats\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"No pets are cats\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: All cats are mammals.\nPremise 2: Some pets are not mammals.\n\nFrom Premise 1, we know that all cats are mammals, but it doesn't tell us anything about other pets. \nFrom Premise 2, we know that some pets are not mammals, which means not all pets are mammals.\n\nWe can conclude that the category of \"pets\" is broader than the category of \"mammals.\" However, this does not necessarily mean that the category of \"pets\" is broader than the category of \"cats.\"\n\nThe conclusion \"No pets are cats\" implies that all pets are not cats. However, we cannot conclude this from the given premises. \n\nThere might be some pets that are cats, as long as those pets are mammals. Since we have no information about the relationship between \"pets\" and \"cats\" other than the fact that all cats are mammals, we cannot determine the truth of the conclusion.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion \"No pets are cats\" is true, false, or uncertain based on the given premises, let's analyze the information step by step:\n\n1. The first premise states, \"All cats are mammals.\" This implies that any cat is indeed a mammal.\n\n2. The second premise states, \"Some pets are not mammals.\" This implies that there are pets that are not mammals, but it does not provide any information about cats being pets or not.\n\nNow, let's examine the conclusion: \"No pets are cats.\"\n\nIf we assume that \"No pets are cats\" is true, it means that all pets are not cats. However, based on the first premise, we know that all cats are mammals. Combining this information with the second premise, we can infer that some pets are mammals (specifically, cats), which contradicts the second premise.\n\nTherefore, if the conclusion \"No pets are cats\" is true, it would create a contradiction with the given premises. Hence, the conclusion cannot be true.\n\nSince the conclusion cannot be true, we cannot determine its validity based on the given premises alone. However, we can say that the conclusion is uncertain because we cannot logically conclude its truth value based on the information provided.\n\nGiven this analysis, the final answer is: \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises and apply the rules of logic.\n\nPremise 1: All cats are mammals.\nPremise 2: Some pets are not mammals.\n\nWe want to evaluate the conclusion: No pets are cats.\n\nTo do this, let's break down the conclusion into its components and see how it relates to the premises:\n\n1. \"No pets are cats\" can be rewritten as \"All pets are not cats.\"\n2. To determine the validity of this conclusion, we need to see if it follows logically from the premises.\n\nFrom Premise 1, we know that all cats are mammals.\nFrom Premise 2, we know that some pets are not mammals.\n\nNow, let's examine the relationship between the premises and the conclusion:\n\n- If all cats are mammals (Premise 1), it doesn't necessarily imply that all pets are not cats. This is because the premises do not provide information about the relationship between cats and pets.\n- The fact that some pets are not mammals (Premise 2) also doesn't provide any direct information about the relationship between cats and pets.\n\nTherefore, based on the given premises, we cannot logically conclude that \"No pets are cats.\" The premises do not provide sufficient information to establish a direct relationship between the two.\n\nAs a result, the conclusion is uncertain, and we cannot definitively determine its truth value based on the provided premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the validity of the conclusion \"No pets are cats,\" we need to analyze the given premises and see if they support or contradict this conclusion.\n\nPremise 1: All cats are mammals.\nPremise 2: Some pets are not mammals.\n\nFrom Premise 1, we know that all cats are mammals. However, this premise does not tell us anything about other pets that are not cats. \n\nFrom Premise 2, we know that some pets are not mammals. This premise does not provide any information about cats specifically, but it gives us a general idea that not all pets are mammals.\n\nNow, let's examine the conclusion \"No pets are cats.\" This conclusion claims that there are no pets that are cats. To verify this, we need to check if the premises support or contradict this statement.\n\nThe first premise states that all cats are mammals. This does not directly support the conclusion, as it does not rule out the possibility of cats being pets.\n\nThe second premise states that some pets are not mammals. This premise does not provide any information about cats, but it gives us a general idea that not all pets are mammals. However, it does not rule out the possibility of cats being pets.\n\nSince the premises do not directly support or contradict the conclusion, we cannot determine the validity of the conclusion with certainty. Therefore, the conclusion \"No pets are cats\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(cats)",
+          "z3_formula": "mammal_cats == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_mammal(some_pets)",
+          "z3_formula": "not_mammal_some_pets == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cat(X) -> mammal(X)",
+          "z3_formula": "Implies(cat, mammal)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "pet(X) -> mammal(X) | not_mammal(X)",
+          "z3_formula": "Implies(pet, Or(mammal, not_mammal))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not cat(pets)",
+          "z3_formula": "Not(cat_pets) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(cat)",
+          "z3_formula": "mammal_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(cat)",
+          "z3_formula": "pet_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not mammal(pet)",
+          "z3_formula": "Not(And(pet, mammal_pet)) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> mammal(pet)",
+          "z3_formula": "Implies(mammal_cat, mammal_pet)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not pet(cat)",
+          "z3_formula": "Not(pet_cat) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(cat)",
+          "z3_formula": "mammal_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & ~mammal(X)",
+          "z3_formula": "Or(pet_X, Not(mammal_X))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cat(X) -> mammal(X)",
+          "z3_formula": "Implies(cat_X, mammal_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "No pet is a cat",
+          "z3_formula": "Not(And(pet_X, cat_X))",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(cat)",
+          "z3_formula": "mammal_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_mammal(some_pet)",
+          "z3_formula": "not_mammal_some_pet == True",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(cats)",
+          "z3_formula": "mammal_cats == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & ~mammal(X)",
+          "z3_formula": "And(pet_X, Not(mammal_X)) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> pet(X)",
+          "z3_formula": "Implies(mammal_cats, pet_cats)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "pet(X) & mammal(X)",
+          "z3_formula": "And(pet_X, mammal_X) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "pet(X) & ~mammal(X)",
+          "z3_formula": "And(pet_X, Not(mammal_X)) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "pet(X) & mammal(X) | pet(X) & ~mammal(X)",
+          "z3_formula": "Or(And(pet_X, mammal_X), And(pet_X, Not(mammal_X))) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "~(pet(X) & ~mammal(X))",
+          "z3_formula": "Not(And(pet_X, Not(mammal_X))) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "pet(X) & ~mammal(X) -> pet(X) & mammal(X)",
+          "z3_formula": "Implies(And(pet_X, Not(mammal_X)), And(pet_X, mammal_X))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "pet(X) & ~mammal(X) -> False",
+          "z3_formula": "Implies(And(pet_X, Not(mammal_X)), False)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "No pets are cats",
+          "z3_formula": "Not(Or(pet_X, cats_X)) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(cats)",
+          "z3_formula": "mammal_cats == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & ~mammal(X)",
+          "z3_formula": "Or(pet_X, Not(mammal_X)) == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cat(X) -> mammal(X)",
+          "z3_formula": "Implies(cat_X, mammal_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "pet(X) & cat(X)",
+          "z3_formula": "And(pet_X, cat_X) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "No pets are cats",
+          "z3_formula": "Not(And(pet_X, cat_X)) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(cat)",
+          "z3_formula": "mammal_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cat(X) -> mammal(X)",
+          "z3_formula": "Implies(cat, mammal)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_mammal(pet)",
+          "z3_formula": "not_mammal_pet == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "pet(X) -> mammal(X)",
+          "z3_formula": "Implies(pet, mammal)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not cat(pet)",
+          "z3_formula": "not_cat_pet == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(cats)",
+          "z3_formula": "mammal_cats == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not mammal(pets)",
+          "z3_formula": "not_mammal_pets == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> mammal(cats)",
+          "z3_formula": "Implies(mammal_cats, mammal_cats)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not mammal(X) -> not mammal(pets)",
+          "z3_formula": "Implies(not_mammal_pets, not_mammal_pets)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not pet(cats)",
+          "z3_formula": "not_pet_cats == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(cats)",
+          "z3_formula": "mammal_cats == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & ~mammal(X)",
+          "z3_formula": "Or(pet_X, Not(mammal_X))",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(cat)",
+          "z3_formula": "mammal_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cat(X) -> mammal(X)",
+          "z3_formula": "Implies(cat, mammal)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(mammal(pet))",
+          "z3_formula": "not(mammal_pet) == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(pet(cat))",
+          "z3_formula": "not(pet_cat) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(cats)",
+          "z3_formula": "mammal_cats == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_mammal(some_pets)",
+          "z3_formula": "not_mammal_some_pets == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cat(X) -> mammal(X)",
+          "z3_formula": "Implies(cat_X, mammal_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not_cat(some_pets)",
+          "z3_formula": "not_cat_some_pets == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not_cat(all_pets)",
+          "z3_formula": "not_cat_all_pets == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(cats)",
+          "z3_formula": "mammal_cats == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_mammal(some_pets)",
+          "z3_formula": "not_mammal_some_pets == True",
+          "source_step": 2
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 54,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 29
+    },
+    "maxsat_stats": {
+      "satisfied": 25,
+      "excluded": 4,
+      "total_weight": 49,
+      "solve_time_ms": 1.2120064347982407
+    },
+    "timing": {
+      "trace_gen_s": 3.795,
+      "extraction_s": 9.048,
+      "dedup_s": 0.42,
+      "maxsat_s": 0.003,
+      "total_s": 13.266
+    }
+  }
+}

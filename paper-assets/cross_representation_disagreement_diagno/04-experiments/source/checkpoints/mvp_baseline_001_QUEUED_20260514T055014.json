@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_baseline_001",
+  "project": "cross_representation_disagreement_diagno",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:15:58.566Z",
+    "updated_at": "2026-05-14T05:50:14.586Z",
+    "hypothesis": "Qwen3.6-plus direct answer on FOLIO ≤ 85% (sufficient error room for disagreement analysis)"
+  },
+  "timestamp": "2026-05-14T05:50:14.628169+00:00",
+  "trigger": "update_registry"
+}

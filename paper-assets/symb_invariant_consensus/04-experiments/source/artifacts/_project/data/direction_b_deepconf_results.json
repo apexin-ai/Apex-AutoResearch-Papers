@@ -1,0 +1,24 @@
+Direction B DeepConf Confidence Filtering + SICA Results
+
+Model: Mistral-7B-Instruct-v0.3 | Dataset: FOLIO-204 | Date: 2026-05-20
+
+Original exp-033 baseline: SC=54.4% (111/204), SICA=59.3% (121/204)
+
+Filtered Results:
+- top 100%: SC=55.9%, SICA(reconstructed)=55.9%, avg_K=10.5
+- top 75%:  SC=52.9%, SICA(reconstructed)=54.4%, avg_K=8.2
+- top 50%:  SC=52.9%, SICA(reconstructed)=52.9%, avg_K=5.5
+
+Logprob Distribution: min=-1.71, p25=-0.15, median=-0.06, p75=-0.03, max=-0.00
+
+Logprob vs Correctness (no correlation):
+- Correct traces: mean=-0.1351, median=-0.0751 (1136 traces)
+- Wrong traces:   mean=-0.1410, median=-0.0525 (1008 traces)
+- Q1 lowest conf: 53.0% correct
+- Q2: 61.6% correct
+- Q3: 48.5% correct
+- Q4 highest conf: 48.9% correct
+
+CONCLUSION: NEGATIVE RESULT. Logprob filtering does NOT improve accuracy. Model equally overconfident on correct and incorrect answers. Highest-confidence traces (Q4) are LESS correct than lowest-confidence (Q1).
+
+Server path: /root/symb_invariant_consensus/results/direction_b_deepconf/results.json

@@ -1,0 +1,1152 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-532_Q19",
+    "problem": "Anne is furry. Anne is rough. Bob is cold. Bob is green. Bob is red. Gary is cold. Gary is quiet. Gary is red. Harry is not cold. Harry is red. Red things are not kind. If something is cold and not furry then it is not kind. Green, rough things are quiet. If something is furry and cold then it is quiet. If Bob is furry then Bob is green. Rough things are green. If something is kind and not furry then it is green. All quiet things are cold. Cold things are red.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nQuiet($x, bool) ::: Is x quiet?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nRough(Anne, True) ::: Anne is rough.\nCold(Bob, True) ::: Bob is cold.\nGreen(Bob, True) ::: Bob is green.\nRed(Bob, True) ::: Bob is red.\nCold(Gary, True) ::: Gary is cold.\nQuiet(Gary, True) ::: Gary is quiet.\nRed(Gary, True) ::: Gary is red.\nCold(Harry, False) ::: Harry is not cold.\nRed(Harry, True) ::: Harry is red.\n\nRules:\nRed($x, True) >>> Kind($x, False) ::: Red things are not kind.\nCold($x, True) && Furry($x, False) >>> Kind($x, False) ::: If something is cold and not furry then it is not kind.\nGreen($x, True) && Rough($x, True) >>> Quiet($x, True) ::: Green, rough things are quiet.\nFurry($x, True) && Cold($x, True) >>> Quiet($x, True) ::: If something is furry and cold then it is quiet.\nFurry(Bob, True) >>> Green(Bob, True) ::: If Bob is furry then Bob is green.\nRough($x, True) >>> Green($x, True) ::: Rough things are green.\nKind($x, True) && Furry($x, False) >>> Green($x, True) ::: If something is kind and not furry then it is green.\nQuiet($x, True) >>> Cold($x, True) ::: All quiet things are cold.\nCold($x, True) >>> Red($x, True) ::: Cold things are red.\n\nQuery:\nRough(Bob, False) ::: Bob is not rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 130.0,
+      "True": 133.0,
+      "Unknown": 93.0
+    },
+    "answer_counts": {
+      "False": 7,
+      "True": 2,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Bob is not rough\" is true, false, or unknown, we need to analyze the given statements and apply them step by step.\n\n1. Bob is cold.\n2. Bob is green.\n3. Bob is red.\n4. Gary is cold.\n5. Gary is quiet.\n6. Gary is red.\n7. Harry is not cold.\n8. Harry is red.\n9. Red things are not kind.\n10. If something is cold and not furry then it is not kind.\n11. Green, rough things are quiet.\n12. If something is furry and cold then it is quiet.\n13. If Bob is furry then Bob is green.\n14. Rough things are green.\n15. If something is kind and not furry then it is green.\n16. All quiet things are cold.\n17. Cold things are red.\n\nFrom statement 13: If Bob is furry then Bob is green.\n\nFrom statement 14: Rough things are green.\n\nFrom statement 16: All quiet things are cold.\n\nFrom statement 17: Cold things are red.\n\nFrom statement 2: Bob is green.\n\nFrom statement 14: Rough things are green.\n\nWe can conclude that Bob is green and rough.\n\nSo the statement \"Bob is not rough\" is false, because Bob is actually rough.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is green. (Given statement)\n2. Bob is red. (Given statement)\n3. Red things are not kind. (Given statement)\n4. Bob is cold. (Given statement)\n5. Gary is cold. (Given statement)\n6. Gary is quiet. (Given statement)\n7. Gary is red. (Given statement)\n8. Harry is not cold. (Given statement)\n9. Harry is red. (Given statement)\n10. If something is cold and not furry then it is not kind. (Given statement)\n11. If something is furry and cold then it is quiet. (Given statement)\n12. If something is cold and not furry then it is not kind. (Given statement)\n13. Green, rough things are quiet. (Given statement)\n14. If Bob is furry then Bob is green. (Given statement)\n15. Rough things are green. (Given statement)\n16. If something is kind and not furry then it is green. (Given statement)\n17. All quiet things are cold. (Given statement)\n18. Cold things are red. (Given statement)\n\nFrom statement 17 and 18, we can conclude that all cold things are red. Therefore, Bob being cold (statement 4) means Bob is also red (statement 2).\n\nNow, let's analyze the relationship between Bob's color and being rough. From statement 15, we know that rough things are green. However, we also know that Bob is red (statement 2) and green (statement 1). This information alone is not sufficient to determine whether Bob is rough or not.\n\nHowever, we also know that if Bob is furry then Bob is green (statement 14). If Bob is furry, it would imply that Bob is green because of being furry, not because of being rough. This implies that Bob is not rough because rough things are green (statement 15) and furry things that are green are actually green because of being furry (not because of being rough).\n\nTherefore, based on the given information, we can conclude that \"Bob is not rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not rough\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the given information:\n\n1. Bob is green. \n2. Bob is red.\n3. Bob is cold.\n\nWe can conclude that Bob is cold and red.\n\nFrom the given information:\n\n1. Cold things are red.\nThis confirms that Bob is indeed red and cold.\n\nNow, we need to determine if Bob is rough or not.\n\nFrom the given information:\n\n1. Red things are not kind.\n2. If something is cold and not furry then it is not kind.\nWe cannot conclude that Bob is not kind because we do not have enough information about Bob's kind nature.\n\nHowever, we can analyze the information related to Bob's roughness:\n\n1. Bob is green.\n2. Green, rough things are quiet.\nWe cannot conclude that Bob is rough because the information only tells us that green, rough things are quiet, but it does not tell us that Bob is quiet.\n\nHowever, we can analyze the information related to Bob's green color:\n\n1. If Bob is furry then Bob is green.\nThis implies that Bob is not furry because if Bob were furry, then Bob would be green, but we know that Bob is indeed green.\n\nNow, we can analyze the information related to Bob's furry nature:\n\n1. Anne is furry. \n2. Anne is rough.\n3. Gary is cold. \n4. Gary is quiet. \n5. Gary is red.\n6. Harry is not cold. \n7. Harry is red.\n\nWe can conclude that we do not have enough information about Anne's, Gary's, and Harry's furry nature to relate to Bob's furry nature.\n\nHowever, we can analyze the information related to Bob's furry nature and rough nature:\n\n1. Rough things are green.\nThis implies that Bob is indeed rough because we know that Bob is green.\n\nTherefore, we can conclude that Bob is rough.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not rough\" is true, false, or unknown, we need to analyze the given statements and their implications. \n\n1. Bob is cold.\n2. Bob is green.\n3. Bob is red.\n4. Gary is cold.\n5. Gary is quiet.\n6. Gary is red.\n7. Harry is not cold.\n8. Harry is red.\n9. Red things are not kind.\n10. If something is cold and not furry then it is not kind.\n11. Green, rough things are quiet.\n12. If something is furry and cold then it is quiet.\n13. If Bob is furry then Bob is green.\n14. Rough things are green.\n15. If something is kind and not furry then it is green.\n16. All quiet things are cold.\n17. Cold things are red.\n\nFrom statement 13, if Bob is furry then Bob is green. Since Bob is already identified as green in statement 2, we can conclude that Bob cannot be furry, as being furry and green at the same time would create a contradiction.\n\nFrom statement 14, rough things are green. Since Bob is green and we have concluded that Bob cannot be furry, it implies that Bob is rough.\n\nTherefore, based on the given statements, the statement \"Bob is not rough\" is false. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Bob is green (given statement).\n2. We know that green, rough things are quiet (given statement). This implies that Bob is rough because if he were not rough, he would not be quiet.\n3. However, we also know that rough things are green (given statement). This statement is true regardless of whether Bob is rough or not, but it does not affect the previous conclusion.\n4. We know that if Bob is furry then Bob is green (given statement). This statement does not help us determine whether Bob is rough or not.\n5. We know that Anne is furry and Anne is rough (given statement). This statement is irrelevant to Bob.\n6. We know that Bob is red (given statement).\n7. We know that cold things are red (given statement). This implies that Bob is cold.\n8. We know that all quiet things are cold (given statement). Since we already concluded that Bob is rough and thus quiet, this statement confirms that Bob is cold.\n9. We know that if something is cold and not furry then it is not kind (given statement). This statement is irrelevant to Bob because we don't know whether Bob is furry or not.\n\nNow, let's analyze the statement \"Bob is not rough.\"\n\nFrom the given information, we concluded that Bob is rough because he is quiet (step 2) and rough things are quiet (step 2). However, we have no direct information about whether Bob is rough or not. We only have information that leads us to conclude that Bob is rough indirectly.\n\nSince we don't have direct information about whether Bob is rough or not, we cannot determine whether the statement \"Bob is not rough\" is true or false. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not rough\" is true, false, or unknown, we need to analyze the given information and derive conclusions using logical reasoning.\n\n1. Bob is green. (Given)\n2. Bob is red. (Given)\n3. Red things are not kind. (Given)\n4. Green, rough things are quiet. (Given)\n5. If Bob is furry then Bob is green. (Given)\n6. Anne is furry. (Given)\n   Since there is no information that connects Anne to Bob, we cannot conclude anything about Bob's furiness from this statement.\n7. Rough things are green. (Given)\n8. If something is kind and not furry then it is green. (Given)\n9. If something is cold and not furry then it is not kind. (Given)\n10. All quiet things are cold. (Given)\n11. Cold things are red. (Given)\n12. Gary is cold. (Given)\n13. Gary is quiet. (Given)\n14. Gary is red. (Given)\n15. Harry is not cold. (Given)\n16. Harry is red. (Given)\n\nFrom statement 1, we know that Bob is green.\nFrom statement 7, we know that rough things are green.\nFrom statement 4, we know that green, rough things are quiet.\nWe cannot conclude that Bob is rough or not rough from the given information. However, we can conclude that if Bob is green and rough, then he is quiet.\n\nStatement 5 says that if Bob is furry then Bob is green. However, we cannot conclude that Bob is furry. We only know that Anne is furry, but there is no information that connects Anne to Bob.\n\nTo determine whether the statement \"Bob is not rough\" is true or false, we need to consider the possibility that Bob is green and rough. If Bob is green and rough, then he is quiet (statement 4). However, we cannot conclude that Bob is not rough.\n\nSince we cannot conclude that Bob is rough or not rough, the statement \"Bob is not rough\" is unknown.\n\nHowever, looking at the given information again, since Bob is green (statement 1), and rough things are green (statement 7), we can conclude that Bob is rough.\n\nTherefore, the statement \"Bob is not rough\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is not rough' is true, false, or unknown, we need to use the given premises and apply logical reasoning.\n\n1. Bob is cold. (Premise)\n2. Bob is green. (Premise)\n3. Bob is red. (Premise)\n4. If Bob is furry then Bob is green. (Premise)\n5. If something is green and rough then it is quiet. (Premise)\n6. Rough things are green. (Premise)\n7. If something is kind and not furry then it is green. (Premise)\n8. Red things are not kind. (Premise)\n9. If something is cold and not furry then it is not kind. (Premise)\n10. All quiet things are cold. (Premise)\n11. Cold things are red. (Premise)\n12. Gary is cold. (Premise)\n13. Gary is quiet. (Premise)\n14. Gary is red. (Premise)\n15. Harry is not cold. (Premise)\n16. Harry is red. (Premise)\n17. If something is furry and cold then it is quiet. (Premise)\n18. Green, rough things are quiet. (Premise)\n19. If something is furry and cold then it is quiet. (Premise)\n\nNow, let's analyze the given statement 'Bob is not rough.' \n\nTo do this, we can use a process of elimination and contradiction. If we assume 'Bob is rough,' then we can see if it leads to any contradictions.\n\nFrom premise 6, we have 'Rough things are green.' If we assume 'Bob is rough,' then it implies 'Bob is green.' However, we already have 'Bob is green' as a premise, so this doesn't lead to any immediate contradiction.\n\nFrom premise 8, we have 'Red things are not kind.' If we assume 'Bob is rough,' then we cannot conclude anything directly about 'Bob is kind.' However, we can use premise 9, which states 'If something is cold and not furry then it is not kind.' Since 'Bob is cold' and we assumed 'Bob is rough,' we cannot conclude that 'Bob is not furry' from this assumption alone.\n\nHowever, we can use the information that if Bob is furry, then Bob is green (Premise 4). If Bob is green, then Bob is rough (Premise 6). This creates a loop where we can't directly conclude 'Bob is not rough' or 'Bob is rough' from this information alone.\n\nBut we can make another observation from the premises. If Bob is furry (Premise 4), then Bob is green (Premise 4). If Bob is furry and cold (Premise 1), then Bob is quiet (Premise 17). However, we know Gary is quiet (Premise 13) and Gary is cold (Premise 12). We also know that Bob is cold (Premise 1). If something is cold and not furry then it is not kind (Premise 9). Since we don't have any information that Gary is furry or not, we can't directly conclude anything about Bob from this information alone.\n\nHowever, if we look at the premises 1 and 4, we have 'Bob is cold' and 'If Bob is furry then Bob is green.' We can also see from premise 4 that 'Bob is not furry' doesn't imply anything directly about 'Bob is not rough.'\n\nHowever, we can make another observation from premise 6. We know that 'Rough things are green.' Since we know 'Bob is green' (Premise 2), it doesn't directly imply anything about 'Bob is rough.' However, if we assume 'Bob is green,' then it implies 'Bob is rough' (Premise 6).\n\nWe can make another observation from premise 7. We know 'Red things are not kind' (Premise 8) and 'Bob is red' (Premise 3). If 'Bob is not kind,' then we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, we can make another observation from premise 9. We know 'Bob is cold' (Premise 1) and 'If something is cold and not furry then it is not kind' (Premise 9). However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, from premise 9 and premise 1, we have 'Bob is cold' and 'If something is cold and not furry then it is not kind.' We can see from premise 4 that 'Bob is furry' implies 'Bob is green.' However, we also know that 'Bob is green' (Premise 2) implies 'Bob is rough' (Premise 6). \n\nHowever, if we look at premise 4, we have 'If Bob is furry then Bob is green.' We can see from premise 17 that 'If something is furry and cold then it is quiet.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, we can see from premise 4 and premise 1 that 'Bob is furry' implies 'Bob is green' and 'Bob is cold.' We can see from premise 17 that 'If something is furry and cold then it is quiet.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, if we look at premise 2, we have 'Bob is green.' We can see from premise 6 that 'Rough things are green.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, we can make another observation from premise 4. We know 'Bob is furry' implies 'Bob is green.' However, we also know 'Bob is green' (Premise 2) implies 'Bob is rough' (Premise 6).\n\nHowever, from premise 2 and premise 6, we have 'Bob is green' and 'Rough things are green.' We can see from premise 4 that 'Bob is furry' implies 'Bob is green.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, from premise 4 and premise 6, we have 'Bob is furry' implies 'Bob is green' and 'Rough things are green.' We can see from premise 4 that 'Bob is furry' implies 'Bob is green.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, we can make another observation from premise 6. We know 'Rough things are green.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, from premise 6 and premise 2, we have 'Rough things are green' and 'Bob is green.' We can see from premise 4 that 'Bob is furry' implies 'Bob is green.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, from premise 6 and premise 4, we have 'Rough things are green' and 'Bob is furry' implies 'Bob is green.' We can see from premise 4 that 'Bob is furry' implies 'Bob is green.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, we can make another observation from premise 6. We know 'Rough things are green.' We can see from premise 2 that 'Bob is green.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, from premise 6 and premise 2, we have 'Rough things are green' and 'Bob is green.' We can see from premise 4 that 'Bob is furry' implies 'Bob is green.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, we can make another observation from premise 4. We know 'Bob is furry' implies 'Bob is green.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, we can see from premise 4 that 'Bob is furry' implies 'Bob is green.' We can see from premise 6 that 'Rough things are green.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, from premise 4 and premise 6, we have 'Bob is furry' implies 'Bob is green' and 'Rough things are green.' We can see from premise 4 that 'Bob is furry' implies 'Bob is green.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, we can make another observation from premise 4. We know 'Bob is furry' implies 'Bob is green.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, from premise 4 and premise 2, we have 'Bob is furry' implies 'Bob is green' and 'Bob is green.' We can see from premise 6 that 'Rough things are green.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, we can see from premise 4 that 'Bob is furry' implies 'Bob is green.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, we can make another observation from premise 6. We know 'Rough things are green.' However, we can't conclude anything directly about 'Bob is rough' from this information alone.\n\nHowever, from premise 6 and premise 2, we have 'Rough things are green' and 'Bob is green.' We can see",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is green. (Given)\n2. Green, rough things are quiet. (Given)\n   From this, we can infer that Bob is rough because if Bob were not rough, then the statement would not be true. So, let's proceed with the assumption that Bob is rough.\n\n3. Bob is rough. (Inferred)\n4. Rough things are green. (Given)\n   From this, we can confirm that our previous inference is correct, and Bob is indeed green and rough.\n\n5. Bob is cold. (Given)\n6. Cold things are red. (Given)\n   From this, we can infer that Bob is red, as he is cold.\n\n7. Bob is red. (Inferred)\n\nNow, let's analyze the statement \"Bob is not rough\" based on our findings:\n\nThe statement \"Bob is not rough\" is false because we have already determined that Bob is rough.\n\nTherefore, the answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is not rough' is true, false, or unknown, we need to analyze the given information.\n\n1. Bob is green. \n2. Bob is red. \n3. Bob is cold. \n4. Bob is rough. (From statement 4, we directly know Bob is rough)\n\nHowever, the statement 'Bob is not rough' contradicts the information given by statement 4. Since statement 4 directly states that Bob is rough, and this directly conflicts with the statement 'Bob is not rough', we can determine the truth value of the given statement.\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements about Bob:\n   - Bob is cold.\n   - Bob is green.\n   - Bob is red.\n   - If Bob is furry then Bob is green.\n\n2. From the given information, we can conclude that Bob is not furry because if he were furry, then he would be green, which is already stated. However, since we don't have any information about Bob being green because he is furry, this implies that Bob is not furry.\n\n3. Now we need to determine whether Bob is rough or not. We are given:\n   - Rough things are green.\n   - Bob is green.\n\n   From this, we can conclude that Bob is rough.\n\n4. Finally, we need to determine whether the statement \"Bob is not rough\" is true, false, or unknown. Since we concluded that Bob is rough, the statement \"Bob is not rough\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is green.\n2. Bob is red.\n3. Bob is cold.\n4. Bob is rough.\n\nFrom statements 1 and 4, we can deduce that green things are rough.\n\nFrom statement 3, we can deduce that Bob is cold, which implies that Bob is red (since cold things are red).\n\nNow, let's consider statement 5: If something is furry and cold then it is quiet.\n\nFrom statement 1, we can deduce that Bob is green, but it doesn't tell us if Bob is furry or not. However, from statement 9, if Bob is furry, then Bob is green. This is a contradiction because we already know that Bob is green regardless of whether he is furry or not.\n\nSince we have a contradiction, we cannot conclude anything about Bob being furry or not. However, we can still analyze the given statements.\n\nWe can see that Bob is green (statement 1) and Bob is red (statement 2), but it doesn't tell us anything about Bob being rough or not. \n\nHowever, from statement 6, we can deduce that Green, rough things are quiet. But from statement 5, we can deduce that If something is furry and cold then it is quiet. Since Bob is green and red (cold), it can be quiet. But from statement 6, since Bob is green and rough, it can also be quiet. \n\nWe cannot conclude anything about Bob being rough or not from the given statements. The statement \"Bob is not rough\" is therefore unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will use a step-by-step approach and analyze the given statements one by one.\n\n1. Given statements:\n   - Anne is furry.\n   - Anne is rough.\n   - Bob is cold.\n   - Bob is green.\n   - Bob is red.\n   - Gary is cold.\n   - Gary is quiet.\n   - Gary is red.\n   - Harry is not cold.\n   - Harry is red.\n   - Red things are not kind.\n   - If something is cold and not furry then it is not kind.\n   - Green, rough things are quiet.\n   - If something is furry and cold then it is quiet.\n   - If Bob is furry then Bob is green.\n   - Rough things are green.\n   - If something is kind and not furry then it is green.\n   - All quiet things are cold.\n   - Cold things are red.\n\n2. Now, let's analyze the given statement: \"Bob is not rough.\"\n\n3. From the given statements, we have:\n   - If Bob is furry then Bob is green. (Statement 13)\n   - If something is furry and cold then it is quiet. (Statement 6)\n   - Gary is cold and quiet. (Statement 2 and Statement 7)\n   - Cold things are red. (Statement 19)\n   - Gary is red. (Statement 3)\n\n4. Since Gary is cold and Gary is red, and all quiet things are cold (Statement 17), we can say that Gary is quiet. This implies that Gary is furry (since something furry and cold is quiet) and cold. Therefore, we can say that Gary is furry and Gary is not kind (since something furry and cold is not kind).\n\n5. Now, if something is furry and not red then it is not rough. (We can infer this from the given statements: Anne is furry and rough, and Gary is furry and red. Therefore, if something is furry and not red, then it is not rough.)\n\n6. However, we still don't know if Bob is furry or not. But we do know that if Bob is furry, then Bob is green (Statement 13). Also, we know that rough things are green (Statement 10).\n\n7. From the given statements, we can conclude that:\n   - If something is furry and red then it is not rough (Gary is furry, Gary is red, so Gary is not rough).\n   - If something is furry and not red then it is not rough (as inferred in step 5).\n   - If something is not furry then it is not rough (since we have no evidence that something that is not furry is rough).\n   - If something is rough then it is green (Statement 10).\n   - If something is green then it is rough (since we have no evidence that something that is green is not rough).\n\n8. From the given statements, we have:\n   - Bob is cold.\n   - Bob is green.\n   - Bob is red.\n\n9. Since Bob is cold, and Bob is red, and cold things are red (Statement 19), we can say that Bob is indeed cold. But we still don't know if Bob is furry or not.\n\n10. Since Bob is green, and green, rough things are quiet (Statement 8), we can say that Bob is rough (since Bob is green).\n\n11. However, we still don't know if Bob is furry or not.\n\n12. But we know that Bob is rough (from step 10), and if Bob is furry then Bob is green (Statement 13). Also, we know that rough things are green (Statement 10).\n\n13. Since Bob is rough, and Bob is green, we can say that Bob is indeed green (Statement 10).\n\n14. However, we still don't know if Bob is furry or not.\n\n15. But we know that Bob is cold (Statement 3), and if something is cold then it is red (Statement 19). However, Bob is also green, and green things are not necessarily cold.\n\n16. Since Bob is cold and red, we can say that Bob is indeed cold (Statement 3).\n\n17. However, we still don't know if Bob is furry or not.\n\n18. Since Bob is green, and green things are not necessarily furry, we cannot conclude that Bob is furry or not.\n\n19. Therefore, we can conclude that the statement \"Bob is not rough\" is true because we have evidence that Bob is rough (Step 10).\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(harry))",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(kind(X))",
+          "z3_formula": "Implies(red_bob, not(kind_bob))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(furry(X)) -> not(kind(X))",
+          "z3_formula": "Implies(And(cold_bob, Not(furry_bob)), not(kind_bob))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_bob, rough_bob), quiet_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_bob, cold_bob), quiet_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_bob, green_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(furry(X)) -> green(X)",
+          "z3_formula": "Implies(And(kind_bob, Not(furry_bob)), green_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_bob, cold_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(kind(X))",
+          "z3_formula": "Implies(red_bob, not(kind_bob))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(harry))",
+          "z3_formula": "not(cold_harry) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(furry(X)) -> not(kind(X))",
+          "z3_formula": "Implies(And(cold_bob, not(furry_bob)), not(kind_bob))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_bob, cold_bob), quiet_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(furry(X)) -> not(kind(X))",
+          "z3_formula": "Implies(And(cold_bob, not(furry_bob)), not(kind_bob))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_bob, rough_bob), quiet_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_bob, green_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(furry(X)) -> green(X)",
+          "z3_formula": "Implies(And(kind_bob, not(furry_bob)), green_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "all(quiet(X), cold(X))",
+          "z3_formula": "ForAll(quiet, Implies(quiet, cold))",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "all(cold(X), red(X))",
+          "z3_formula": "ForAll(cold, Implies(cold, red))",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(bob))",
+          "z3_formula": "not(rough_bob) == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X)",
+          "z3_formula": "Implies(And(cold_bob, red_bob), True)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X)",
+          "z3_formula": "Implies(And(cold_bob, red_bob), red_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(kind(X))",
+          "z3_formula": "Implies(red_bob, not(kind_bob))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(furry(X)) -> not(kind(X))",
+          "z3_formula": "Implies(And(cold_bob, not(furry_bob)), not(kind_bob))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_bob, rough_bob), quiet_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob) & cold(bob)",
+          "z3_formula": "And(red_bob, cold_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == False",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == False",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(harry))",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(kind(X))",
+          "z3_formula": "Implies(red_bob, not(kind_bob))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(furry(X)) -> not(kind(X))",
+          "z3_formula": "Implies(And(cold_bob, Not(furry_bob)), not(kind_bob))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_bob, rough_bob), quiet_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_bob, cold_bob), quiet_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_bob, green_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(furry(X)) -> green(X)",
+          "z3_formula": "Implies(And(kind_bob, Not(furry_bob)), green_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_bob, cold_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_bob, rough_bob), quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_bob, green_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_bob, cold_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> Not(kind(X))",
+          "z3_formula": "Implies(And(cold_bob, Not(furry_bob)), Not(kind_bob))",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not kind(X)",
+          "z3_formula": "Implies(red_bob, not kind_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_bob, rough_bob), quiet_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_bob, green_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not furry(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_bob, not furry_bob), green_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not furry(X) -> not kind(X)",
+          "z3_formula": "Implies(And(cold_bob, not furry_bob), not kind_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_bob, cold_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(harry)",
+          "z3_formula": "not cold_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_bob, rough_bob), quiet_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_bob, green_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not furry(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_bob, Not(furry_bob)), green_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not kind(X)",
+          "z3_formula": "Implies(red_bob, Not(kind_bob))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not furry(X) -> not kind(X)",
+          "z3_formula": "Implies(And(cold_bob, Not(furry_bob)), Not(kind_bob))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_bob, quiet_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(harry)",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_bob, cold_bob), quiet_bob)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_bob, rough_bob), quiet_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_bob, cold_bob), quiet_bob)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_bob, rough_bob), quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(bob))",
+          "z3_formula": "Not(rough_bob)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(bob)",
+          "z3_formula": "Not(furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_bob, green_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(bob)",
+          "z3_formula": "Not(rough_bob)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_bob, rough_bob), quiet_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_bob, cold_bob), quiet_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(bob) -> green(bob)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(harry)",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not kind(X) -> red(X)",
+          "z3_formula": "Implies(Not(kind_X), red_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not furry(X) -> not kind(X)",
+          "z3_formula": "Implies(And(cold_X, Not(furry_X)), Not(kind_X))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_X, rough_X), quiet_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_X, cold_X), quiet_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_X, green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not furry(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_X, Not(furry_X)), green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "all quiet(X) -> cold(X)",
+          "z3_formula": "Implies(ForAll(quiet_X), cold_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & not red(X) -> not rough(X)",
+          "z3_formula": "Implies(And(furry_X, Not(red_X)), Not(rough_X))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_X, green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "not furry(X) -> not rough(X)",
+          "z3_formula": "Implies(Not(furry_X), Not(rough_X))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_X, green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X)",
+          "z3_formula": "Implies(green_X, rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(bob)",
+          "z3_formula": "Not(furry_bob) == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(bob)",
+          "z3_formula": "Not(kind_bob) == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "True",
+          "z3_formula": "True",
+          "source_step": 19
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 170,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 38
+    },
+    "maxsat_stats": {
+      "satisfied": 37,
+      "excluded": 1,
+      "total_weight": 152,
+      "solve_time_ms": 1.2969421222805977
+    },
+    "timing": {
+      "trace_gen_s": 24.256,
+      "extraction_s": 35.246,
+      "dedup_s": 1.06,
+      "maxsat_s": 0.003,
+      "total_s": 60.565
+    }
+  }
+}

@@ -1,0 +1,1277 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-483_Q10",
+    "problem": "The bear does not need the lion. The bear needs the mouse. The bear visits the cat. The bear does not visit the lion. The bear visits the mouse. The cat likes the lion. The lion is green. The lion visits the bear. The lion visits the cat. The lion visits the mouse. The mouse needs the lion. The mouse visits the bear. If something visits the lion and the lion is not blue then the lion is not green. If something is green then it likes the mouse. If something likes the mouse then the mouse needs the lion. If something visits the bear then it is not nice. If something likes the cat then it needs the bear. If something is young and it visits the mouse then it likes the cat. If something visits the cat and it is not nice then it is young. If something needs the bear then it needs the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion does not need the bear.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeed($x, $y, bool) ::: Does x need y?\nVisit($x, $y, bool) ::: Does x visit y?\nLike($x, $y, bool) ::: Does x like y?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nNeed(Bear, Lion, False) ::: The bear does not need the lion.\nNeed(Bear, Mouse, True) ::: The bear needs the mouse.\nVisit(Bear, Cat, True) ::: The bear visits the cat.\nVisit(Bear, Lion, False) ::: The bear does not visit the lion.\nVisit(Bear, Mouse, True) ::: The bear visits the mouse.\nLike(Cat, Lion, True) ::: The cat likes the lion.\nGreen(Lion, True) ::: The lion is green.\nVisit(Lion, Bear, True) ::: The lion visits the bear.\nVisit(Lion, Cat, True) ::: The lion visits the cat.\nVisit(Lion, Mouse, True) ::: The lion visits the mouse.\nNeed(Mouse, Lion, True) ::: The mouse needs the lion.\nVisit(Mouse, Bear, True) ::: The mouse visits the bear.\n\nRules:\nVisit($x, Lion, True) && Blue(Lion, False) >>> Green(Lion, False) ::: If something visits the lion and the lion is not blue then the lion is not green.\nGreen($x, True) >>> Like($x, Mouse, True) ::: If something is green then it likes the mouse.\nLike($x, Mouse, True) >>> Need(Mouse, Lion, True) ::: If something likes the mouse then the mouse needs the lion.\nVisit($x, Bear, True) >>> Nice($x, False) ::: If something visits the bear then it is not nice.\nLike($x, Cat, True) >>> Need($x, Bear, True) ::: If something likes the cat then it needs the bear.\nYoung($x, True) && Visit($x, Mouse, True) >>> Like($x, Cat, True) ::: If something is young and it visits the mouse then it likes the cat.\nVisit($x, Cat, True) && Nice($x, False) >>> Young($x, True) ::: If something visits the cat and it is not nice then it is young.\nNeed($x, Bear, True) >>> Need($x, Mouse, True) ::: If something needs the bear then it needs the mouse.\n\nQuery:\nNeed(Lion, Bear, False) ::: The lion does not need the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 162.0,
+      "True": 48.0,
+      "Unknown": 29.0
+    },
+    "answer_counts": {
+      "True": 1,
+      "False": 8,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions. Let's break down the information step by step:\n\n1. The lion is green. (From statement 7)\n2. If something visits the lion and the lion is not blue then the lion is not green. (From statement 8)\n   Since the lion is green, we can assume that there is no statement that says the lion is blue. Therefore, we cannot use this condition to conclude anything about the lion's color.\n   However, we can use this condition to conclude that if something visits the lion, then the lion must be blue. But since the lion is green, this condition will not be used.\n\n3. If something is green then it likes the mouse. (From statement 9)\n   Since the lion is green (from statement 7), we can conclude that the lion likes the mouse.\n\n4. If something likes the mouse then the mouse needs the lion. (From statement 10)\n   Since the lion likes the mouse (from statement 3), we can conclude that the mouse needs the lion.\n\n5. The mouse needs the lion. (From statement 4)\n   We already concluded this in step 4.\n\n6. The mouse visits the bear. (From statement 13)\n   This statement implies that the mouse is not nice (from statement 15).\n\n7. The bear visits the mouse. (From statement 5)\n   This implies that the bear is not nice (from statement 15).\n\n8. The bear needs the mouse. (From statement 2)\n   Since the mouse needs the lion (from step 4) and the bear needs the mouse (from statement 2), we can conclude that the bear needs the lion.\n\n9. The lion visits the bear. (From statement 10)\n   This implies that the lion is young (from statement 14).\n\n10. The lion is green. (From statement 7)\n    Since the lion is green, we cannot conclude that the lion is young from this statement alone.\n\nHowever, we know from statement 11 that the lion likes the cat, and from statement 6 that the bear visits the cat. Therefore, the bear likes the cat (from statement 12), and since the bear needs the mouse (from statement 2), we can conclude that the mouse needs the bear.\n\nSince the mouse needs the lion (from statement 4), we can conclude that the bear needs the lion.\n\nBut what about the statement \"The lion does not need the bear\"? We know that the lion is green (from statement 7) and likes the mouse (from statement 3). Since the lion likes the mouse, we can conclude that the lion needs the mouse, but we cannot conclude that the lion needs the bear.\n\nHowever, from statement 2, we know that if something needs the bear, then it needs the mouse. Therefore, if the lion needs the bear, then the lion needs the mouse, but we already know that the lion likes the mouse (from statement 3). Therefore, the lion does not need the bear.\n\nFinal Answer:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use a process of elimination and logical reasoning.\n\nFrom the given statements:\n1. The lion is green.\n2. If something visits the lion and the lion is not blue then the lion is not green. (This statement seems to be incorrect as it is given that the lion is green. However, we will ignore this statement as we have a direct statement about the lion being green.)\n3. The lion visits the bear.\n4. The lion visits the cat.\n5. The lion visits the mouse.\n6. The mouse needs the lion.\n7. The mouse visits the bear.\n8. If something is green then it likes the mouse.\n9. If something likes the mouse then the mouse needs the lion. (This statement is repeated, but it is the same meaning as statement 6.)\n10. If something visits the bear then it is not nice.\n11. If something likes the cat then it needs the bear.\n12. If something is young and it visits the mouse then it likes the cat.\n13. If something visits the cat and it is not nice then it is young.\n14. If something needs the bear then it needs the mouse.\n\nFrom statement 1, we know the lion is green.\n\nFrom statement 8, we know that something that is green likes the mouse. Since the lion is green, the lion likes the mouse.\n\nFrom statement 6, we know the mouse needs the lion.\n\nFrom statement 14, we know that something that needs the bear needs the mouse. Since the mouse needs the lion, the mouse needs the bear.\n\nFrom statement 7, we know the mouse visits the bear.\n\nSince the mouse visits the bear, from statement 10, we know the mouse is not nice.\n\nFrom statement 13, we know that something that visits the cat and is not nice is young. Since the mouse is not nice and it visits the cat, the mouse is young.\n\nFrom statement 12, we know that something young that visits the mouse likes the cat. Since the mouse is young, the mouse likes the cat.\n\nFrom statement 11, we know that something that likes the cat needs the bear. Since the mouse likes the cat, the mouse needs the bear.\n\nNow, let's analyze the statement \"The lion does not need the bear.\"\n\nWe know from statement 6 that the mouse needs the lion. Since the mouse needs the bear (from statement 14), the lion needs the bear.\n\nTherefore, the statement \"The lion does not need the bear\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not need the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"The lion visits the bear\", we can conclude that the bear is not nice because it visits the bear. \n\n   So, the bear is not nice.\n\n2. From the statement \"If something visits the bear then it is not nice\", we can conclude that the lion is not nice because it visits the bear. However, it doesn't tell us about the lion needing the bear.\n\n3. From the statement \"If something needs the bear then it needs the mouse\", we know that the mouse needs the lion because it visits the bear and we know the bear needs the mouse from \"The bear needs the mouse\".\n\n   So, we have a connection between the bear, the mouse, and the lion.\n\n4. From the statement \"If something is green then it likes the mouse\", we know that the lion is green because it is not blue.\n\n   So, the lion likes the mouse.\n\n5. From the statement \"If something likes the mouse then the mouse needs the lion\", we know that the mouse needs the lion because the lion likes the mouse.\n\n   We already knew this from step 3.\n\n6. From the statement \"If something likes the cat then it needs the bear\", we know that the lion likes the cat because the lion visits the cat.\n\n   So, the lion needs the bear.\n\nBased on our analysis, we can conclude that the lion needs the bear, which means the statement \"The lion does not need the bear\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will break down the given information and use logical deductions to determine whether the statement \"The lion does not need the bear\" is true, false, or unknown.\n\n1. The bear does not need the lion. \n2. The bear needs the mouse. \n3. The bear visits the cat. \n4. The bear does not visit the lion. \n5. The bear visits the mouse. \n6. The cat likes the lion. \n7. The lion is green. \n8. The lion visits the bear. \n9. The lion visits the cat. \n10. The lion visits the mouse. \n11. The mouse needs the lion. \n12. The mouse visits the bear. \n\nFrom the given statements, we can derive the following conclusions:\n\n- Since the lion is green (statement 7), and if something is green then it likes the mouse (statement 4), the lion likes the mouse.\n\n- The mouse needs the lion (statement 11), and if something needs the bear (statement 2), then it needs the mouse (statement 5), so the lion needs the bear (indirectly through mouse).\n\nHowever, the statement \"If something visits the lion and the lion is not blue then the lion is not green\" does not provide any information that would contradict the lion's green color or the lion's relationship with the bear.\n\nNow, let's determine the nature of the lion and the bear using the information provided:\n\n- Since the lion is green (statement 7), the lion likes the mouse (statement 4).\n\n- The lion visits the mouse (statement 10), and since the mouse needs the lion (statement 11), the lion and the mouse have a positive relationship.\n\n- The lion visits the bear (statement 8), and since the bear does not need the lion (statement 1), this visitation does not necessarily indicate a need.\n\nHowever, since the mouse needs the lion (statement 11), and the bear needs the mouse (statement 2), the bear indirectly needs the lion.\n\nThus, the statement \"The lion does not need the bear\" is:\n\n\\boxed{false}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "Let's break down the given information into statements and analyze them step by step.\n\n1. The bear does not need the lion. \n2. The bear needs the mouse.\n3. The bear visits the cat.\n4. The bear does not visit the lion.\n5. The bear visits the mouse.\n6. The cat likes the lion.\n7. The lion is green.\n8. The lion visits the bear.\n9. The lion visits the cat.\n10. The lion visits the mouse.\n11. The mouse needs the lion.\n12. The mouse visits the bear.\n13. If something visits the lion and the lion is not blue then the lion is not green. \n14. If something is green then it likes the mouse. \n15. If something likes the mouse then the mouse needs the lion. \n16. If something visits the bear then it is not nice. \n17. If something likes the cat then it needs the bear. \n18. If something is young and it visits the mouse then it likes the cat. \n19. If something visits the cat and it is not nice then it is young. \n20. If something needs the bear then it needs the mouse.\n\nTo determine whether the lion needs the bear, let's use the given statements to deduce information about the lion.\n\nFrom statement 7, we know the lion is green.\n\nUsing statement 13, we can conclude that since the lion is green and green is not blue, then the lion indeed is green (as the statement does not provide any other colors for comparison).\n\nNow, using statement 14, we know that something being green means it likes the mouse. Therefore, the lion likes the mouse.\n\nUsing statement 15, we know that if something likes the mouse, then the mouse needs the lion. Therefore, the mouse needs the lion.\n\nHowever, from statement 2, we know that the bear needs the mouse. Using statement 20, we can conclude that since the bear needs the mouse, the mouse also needs the bear.\n\nNow, let's analyze the relationships between the bear and the lion. From statement 1, we know the bear does not need the lion. We also know that the lion visits the bear (statement 8), but the bear does not visit the lion (statement 4).\n\nUsing statement 16, we can conclude that the lion is not nice because it visits the bear.\n\nFrom statement 19, we know that if something visits the cat and it is not nice, then it is young. Since the lion is not nice (from statement 16), we can conclude that the lion is young.\n\nHowever, we don't have enough information to determine whether the lion needs the bear. We know the bear needs the mouse and the lion likes the mouse, but we don't know the relationship between the lion and the bear.\n\nTherefore, the answer is unknown.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "Let's break down the given information and the rules into smaller parts to understand their implications.\n\n1. If something visits the lion and the lion is not blue then the lion is not green.\n   - This implies that if the lion's color is not blue, then it's not green. However, we don't have any information about the lion's color, so we cannot conclude anything from this statement directly.\n\n2. If something is green then it likes the mouse.\n   - This implies that green objects like the mouse. Since we don't have any green objects in our problem, this rule doesn't directly apply.\n\n3. If something likes the mouse then the mouse needs the lion.\n   - Since the lion likes the mouse, the mouse needs the lion. (From the statement \"The cat likes the lion.\")\n\n4. If something visits the bear then it is not nice.\n   - This implies that visiting the bear is a characteristic of being not nice. We don't have any information about the lion visiting the bear, so we cannot conclude anything from this statement directly.\n\n5. If something likes the cat then it needs the bear.\n   - Since the lion likes the cat, the lion needs the bear. (From the statement \"The cat likes the lion.\")\n\n6. If something is young and it visits the mouse then it likes the cat.\n   - Since we don't have any information about the age of any object or the mouse's relationship with the cat, this rule doesn't directly apply.\n\n7. If something visits the cat and it is not nice then it is young.\n   - We cannot directly conclude anything from this statement as we don't have any information about the cat being visited and the visitor's age.\n\n8. If something needs the bear then it needs the mouse.\n   - Since the lion needs the bear (from rule 5), the lion needs the mouse. (From the statement \"The cat likes the lion\" and rule 3.)\n\nNow, let's apply these rules to determine if the lion needs the bear. We have two main points:\n\n1. The lion likes the cat. (From the statement)\n2. The cat likes the lion. (From the statement)\n\nFrom rule 5, since the lion likes the cat, the lion needs the bear. However, from rule 8, since the lion needs the bear, the lion also needs the mouse. We also know that the bear needs the mouse (from rule 8).\n\nNow, to solve the problem \"The lion does not need the bear\", we need to determine if the lion needs the bear. We already established that the lion needs the bear.\n\nHowever, given the rule \"The bear needs the mouse\", we can infer that the lion needs the bear because the lion needs the mouse. But we also know that the bear needs the mouse. \n\nTherefore, since we cannot definitively say that the lion does not need the bear, the statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply logical reasoning.\n\n1. The bear does not need the lion. (This statement implies that the bear's needs and the lion's needs are unrelated.)\n2. The bear needs the mouse. (This statement implies that the mouse is related to the bear's needs.)\n3. The bear visits the cat. (This statement implies that the cat is not nice, because if something visits the bear, then it is not nice.)\n4. The bear does not visit the lion. (This statement implies that the lion and the bear do not have a direct relationship.)\n5. The bear visits the mouse. (This statement implies that the mouse is related to the bear's needs.)\n6. The cat likes the lion. (This statement implies that the lion is green, because if something likes the mouse, then it is green.)\n7. The lion is green. (This statement confirms that the lion is indeed green.)\n8. The lion visits the bear. (This statement implies that the lion is not nice, because if something visits the bear, then it is not nice.)\n9. The lion visits the cat. (This statement implies that the lion is not nice, because if something visits the cat and it is not nice, then it is young, but we cannot conclude anything from this statement alone.)\n10. The lion visits the mouse. (This statement implies that the mouse is related to the lion's needs.)\n11. The mouse needs the lion. (This statement implies that the mouse and the lion have a direct relationship.)\n12. The mouse visits the bear. (This statement implies that the mouse is related to the bear's needs.)\n\nNow, we need to apply the given statements to determine whether the lion needs the bear.\n\nFrom statement 6, we know that the lion is green, and from statement 7, we know that the lion is indeed green.\n\nFrom statement 6, we know that the lion likes the mouse, and from statement 11, we know that the mouse needs the lion. This implies that the lion needs the mouse.\n\nFrom statement 2, we know that the bear needs the mouse, and from statement 5, we know that the bear visits the mouse. This implies that the bear and the mouse have a direct relationship.\n\nFrom statement 9, we know that the lion visits the cat, but we cannot conclude anything from this statement alone. However, from statement 3, we know that the bear visits the cat, and from statement 3, we know that the bear is not nice. This implies that the lion is not nice.\n\nFrom statement 5, we know that the bear visits the mouse, and from statement 12, we know that the mouse visits the bear. This implies that the bear and the mouse have a direct relationship.\n\nFrom statement 1, we know that the bear does not need the lion, and from statement 11, we know that the mouse needs the lion. This implies that the lion needs the mouse, but we cannot conclude whether the lion needs the bear.\n\nHowever, from statement 5, we know that the bear visits the mouse, and from statement 11, we know that the mouse needs the lion. This implies that the lion needs the mouse, and from statement 2, we know that the bear needs the mouse. This implies that the lion needs the bear.\n\nFrom statement 5, we know that the bear visits the mouse, and from statement 2, we know that the bear needs the mouse. This implies that the bear and the mouse have a direct relationship.\n\nFrom statement 5, we know that the bear visits the mouse, and from statement 11, we know that the mouse needs the lion. This implies that the lion needs the mouse.\n\nFrom statement 1, we know that the bear does not need the lion, and from statement 11, we know that the mouse needs the lion. This implies that the lion needs the mouse.\n\nFrom statement 5, we know that the bear visits the mouse, and from statement 2, we know that the bear needs the mouse. This implies that the bear and the mouse have a direct relationship.\n\nFrom statement 2, we know that the bear needs the mouse, and from statement 11, we know that the mouse needs the lion. This implies that the lion needs the mouse.\n\nFrom statement 5, we know that the bear visits the mouse, and from statement 11, we know that the mouse needs the lion. This implies that the lion needs the mouse.\n\nFrom statement 5, we know that the bear visits the mouse, and from statement 2, we know that the bear needs the mouse. This implies that the bear and the mouse have a direct relationship.\n\nFrom statement 5, we know that the bear visits the mouse, and from statement 11, we know that the mouse needs the lion. This implies that the lion needs the mouse.\n\nHowever, from statement 5, we know that the bear visits the mouse, and from statement 11, we know that the mouse needs the lion. This implies that the lion needs the mouse, and from statement 2, we know that the bear needs the mouse. This implies that the lion needs the bear.\n\nThe statement to be evaluated is: The lion does not need the bear.\n\nFrom statement 1, we know that the bear does not need the lion, but we cannot conclude anything about the lion needing the bear. However, from statement 5, we know that the bear visits the mouse, and from statement 11, we know that the mouse needs the lion. This implies that the lion needs the mouse, and from statement 2, we know that the bear needs the mouse. This implies that the lion needs the bear.\n\nSince we have found that the lion needs the bear, we can conclude that the statement \"The lion does not need the bear\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not need the bear\" is true, false, or unknown, we need to analyze the given information and the logical deductions.\n\nFrom the statements, we can derive the following conclusions:\n\n1. The lion is green. (Given)\n2. If something visits the lion and the lion is not blue then the lion is not green. (Given)\n3. The lion visits the cat, the mouse, and the bear. (Given)\n4. If something is green then it likes the mouse. (Given)\n5. The lion is green, so the lion likes the mouse. (From 1 and 4)\n6. If something likes the mouse then the mouse needs the lion. (Given)\n7. The mouse needs the lion. (From 5 and 6)\n8. If something needs the bear then it needs the mouse. (Given)\n9. The mouse needs the bear. (From 7 and 8)\n10. The lion visits the bear. (Given)\n11. If something visits the bear then it is not nice. (Given)\n12. The lion is not nice. (From 10 and 11)\n13. If something likes the cat then it needs the bear. (Given)\n14. The cat likes the lion. (Given)\n15. The lion needs the bear. (From 12 and 14)\n\nNow, let's analyze the statement \"The lion does not need the bear.\"\n\nFrom the deductions above, we know that the lion needs the bear (From 15). Therefore, the statement \"The lion does not need the bear\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information and apply the rules to determine the relationship between the lion and the bear.\n\nGiven Information:\n1. The lion is green.\n2. The lion visits the cat.\n3. The lion visits the mouse.\n4. The cat likes the lion.\n5. The lion likes the cat.\n\nFrom Rule 1: If something is green then it likes the mouse.\nWe can conclude that the lion likes the mouse.\n\nFrom Rule 5: If something likes the cat then it needs the bear.\nSince the lion likes the cat, we can conclude that the lion needs the bear.\n\nSo, the statement \"The lion does not need the bear\" is False.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The lion is green. (Rule: If something is green then it likes the mouse)\n   Since the lion is green, it likes the mouse.\n\n2. The mouse likes the lion. (Rule: If something is green then it likes the mouse)\n   From the first point, we know the lion likes the mouse. \n\n3. The mouse needs the lion. (Rule: If something likes the mouse then the mouse needs the lion)\n   From the second point, we know the mouse likes the lion.\n\n4. The mouse visits the bear. (Given)\n   Since the mouse visits the bear, it is not nice. (Rule: If something visits the bear then it is not nice)\n\n5. The lion visits the bear. (Given)\n   Since the lion visits the bear, it is not nice. (Rule: If something visits the bear then it is not nice)\n\n6. The lion visits the cat. (Given)\n   The lion is not blue (Given), so it is not green. (Rule: If something visits the lion and the lion is not blue then the lion is not green)\n\n7. The cat likes the lion. (Given)\n   Since the cat likes the lion, the cat needs the bear. (Rule: If something likes the cat then it needs the bear)\n\n8. The cat visits the bear. (Given)\n   Since the cat visits the bear, it is not nice. (Rule: If something visits the bear then it is not nice)\n\n9. The lion visits the mouse. (Given)\n   Since the lion visits the mouse, it is not young. (Rule: If something is young and it visits the mouse then it likes the cat)\n\n10. The lion is not young. (Implicit from the 9th point)\n    However, since the lion is green, it likes the mouse (Rule: If something is green then it likes the mouse) and since the lion visits the mouse, it is not young.\n\n11. The mouse needs the bear. (Rule: If something needs the bear then it needs the mouse)\n    Since the lion is not young and it visits the mouse, it is not young. However, from the 10th point we know the lion is not young.\n\n12. The bear needs the mouse. (Given)\n    Since the bear needs the mouse, the lion needs the bear. (Rule: If something needs the bear then it needs the mouse)\n\nFrom points 3 and 12, we can conclude that the lion needs the bear.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will break down the given information and use it to determine the truth value of the statement.\n\nFrom the given information:\n\n1. The lion is green.\n2. If something visits the lion and the lion is not blue then the lion is not green. \n   (This statement does not give any information about the lion, but it tells us that if something visits the lion, the lion must be blue for this statement to be true. \n   However, we already know the lion is green, so it must be blue for this statement to be true.)\n\n3. If something is green then it likes the mouse.\n   From statement 1, we know the lion is green. Therefore, the lion likes the mouse.\n\n4. If something likes the mouse then the mouse needs the lion.\n   From statement 3, we know the lion likes the mouse. Therefore, the mouse needs the lion.\n\n5. If something visits the bear then it is not nice.\n   The bear visits the cat, the lion visits the bear, and the mouse visits the bear. \n   Therefore, the cat, the lion, and the mouse are not nice.\n\n6. If something likes the cat then it needs the bear.\n   This statement does not give any information about the lion.\n\n7. If something is young and it visits the mouse then it likes the cat.\n   This statement does not give any information about the lion.\n\n8. If something visits the cat and it is not nice then it is young.\n   The lion visits the cat and is not nice. Therefore, the lion is young.\n\n9. If something needs the bear then it needs the mouse.\n   From statement 4, we know the mouse needs the lion. Therefore, the mouse needs the bear.\n\nNow we can analyze the given statements to find information about the lion and the bear.\n\nFrom statement 8, we know the lion is young. \nFrom statement 9, we know the mouse needs the bear. \nFrom statement 4, we know the mouse needs the lion. \nFrom statement 3, we know the lion likes the mouse.\n\nHowever, we are given that the lion does not need the bear. To determine if this is true, we need to find out if the lion needs the bear.\n\nWe know the lion is young (statement 8). However, statement 7 tells us that if something is young and it visits the mouse then it likes the cat. \nWe do not know if the lion visits the mouse, but we do know the lion visits the cat (statement 6). \nFrom statement 6, we know that if something likes the cat then it needs the bear. \nHowever, we already know the lion is not nice (statement 5), and from statement 8, we know the lion is young. \nTherefore, the lion is young and not nice, which means it visits the cat (statement 8).\n\nNow we know the lion likes the cat (because it visits the cat), and from statement 6, we know that if something likes the cat then it needs the bear. \nTherefore, the lion needs the bear.\n\nHowever, this contradicts the statement that the lion does not need the bear. \n\nSince we found a contradiction with the given statement that the lion does not need the bear, we can conclude that the statement is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not need the bear\" is true, false, or unknown, we will analyze the given information step by step.\n\n1. The lion is green. \n   This information is given.\n\n2. If something visits the lion and the lion is not blue then the lion is not green. \n   This rule does not apply to our current situation as we have no information about the lion being blue.\n\n3. If something is green then it likes the mouse. \n   From step 1, we know the lion is green, so it likes the mouse.\n\n4. If something likes the mouse then the mouse needs the lion. \n   From step 3, we know the lion likes the mouse, and therefore, the mouse needs the lion.\n\n5. The mouse needs the lion. \n   This information is consistent with step 4.\n\n6. If something needs the bear then it needs the mouse. \n   This rule does not apply to our current situation as we are looking for information about the lion needing the bear.\n\n7. The lion visits the bear. \n   This information is given.\n\n8. If something visits the bear then it is not nice. \n   From step 7, we know the lion visits the bear, and therefore, the lion is not nice.\n\n9. If something likes the cat then it needs the bear. \n   This rule does not apply to our current situation as we are looking for information about the lion needing the bear.\n\n10. The cat likes the lion. \n    This information is given.\n\n11. The lion is green. \n    This information is given, and we know from step 3 that if something is green then it likes the mouse.\n\n12. If something is young and it visits the mouse then it likes the cat. \n    This rule does not apply to our current situation as we have no information about the lion being young.\n\n13. If something visits the cat and it is not nice then it is young. \n    This rule does not apply to our current situation as we have no information about the lion visiting the cat.\n\n14. The lion visits the cat. \n    This information is given.\n\n15. If something is not nice then it is not young. \n    We can infer from step 8 that the lion is not nice (because it visits the bear), but this does not tell us about the lion's age.\n\n16. The lion needs the mouse. \n    We cannot determine this directly from the given information, but we can look at the relationships between the lion, the bear, and the mouse.\n\n17. If something visits the mouse then it needs the lion. \n    The lion visits the mouse, but this does not necessarily mean it needs the lion.\n\n18. The mouse visits the bear. \n    This information is given.\n\n19. The bear needs the mouse. \n    This information is given.\n\n20. The lion needs the mouse. \n    We can infer from steps 4 and 19 that if something needs the mouse, then it also needs the lion. Since the bear needs the mouse, the bear needs the lion.\n\n21. The lion does not need the bear. \n    We can infer from step 20 that the bear needs the lion, but this does not tell us about the lion needing the bear. However, since the lion is not nice (step 8) and the lion visits the bear (step 7), we can look for other relationships.\n\n22. The lion is green. \n    This information is given, and we know from step 3 that if something is green then it likes the mouse.\n\n23. The lion likes the mouse. \n    We know from step 3 that if something is green then it likes the mouse.\n\n24. The mouse needs the lion. \n    We know from step 4 that if something likes the mouse then the mouse needs the lion.\n\n25. The lion needs the mouse. \n    We can infer from steps 4 and 24 that if something likes the mouse then it also needs the mouse. Since the lion likes the mouse, the lion needs the mouse.\n\n26. The lion is not nice. \n    We can infer from step 8 that if something visits the bear then it is not nice.\n\n27. The lion visits the bear. \n    This information is given.\n\n28. The lion is not nice. \n    We can infer from step 26 that if something visits the bear then it is not nice.\n\n29. The lion is not young. \n    We can infer from step 28 that the lion is not young because it is not nice.\n\n30. The lion is not young. \n    This information is consistent with step 29.\n\n31. The lion visits the cat. \n    This information is given.\n\n32. The lion is not nice. \n    We can infer from step 28 that if something visits the bear then it is not nice.\n\n33. The lion is not young. \n    We can infer from step 32 that the lion is not young because it is not nice.\n\n34. The lion likes the cat. \n    We know from step 3 that if something is green then it likes the mouse, but we can also look at the relationship between the lion and the cat.\n\n35. The cat likes the lion. \n    This information is given.\n\n36. The lion needs the bear. \n    We can infer from steps 6 and 35 that if something needs the bear then it needs the mouse, and if something likes the cat then it needs the bear. Since the lion likes the cat, the lion needs the bear.\n\nThe lion is green, and we know from step 3 that if something is green then it likes the mouse. We also know that the lion is not nice (step 8), and we can infer that the lion is not young (steps 28 and 33). However, we cannot directly determine whether the lion needs the bear.\n\nFrom the given information, we know the following:\n- The lion is green.\n- The lion likes the mouse.\n- The mouse needs the lion.\n- The lion is not nice.\n- The lion is not young.\n- The lion visits the bear.\n- The lion visits the cat.\n- The cat likes the lion.\n\nWe also know that if something needs the bear then it needs the mouse (step 6). Since the mouse needs the lion (step 4), we can infer that the lion needs the mouse.\n\nHowever, we cannot directly determine whether the lion needs the bear. We can only infer that the lion needs the mouse.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & Not(blue(lion)) -> Not(green(lion))",
+          "z3_formula": "Implies(And(visits_lion, Not(blue_lion)), Not(green_lion))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(green_lion, likes_lion_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> needs(X, lion)",
+          "z3_formula": "Implies(likes_lion_mouse, needs_lion_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, lion)",
+          "z3_formula": "needs_lion_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(nice(mouse))",
+          "z3_formula": "Not(nice_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, mouse)",
+          "z3_formula": "visits_bear_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(nice(bear))",
+          "z3_formula": "Not(nice_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_lion_mouse, needs_lion_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(X, bear)",
+          "z3_formula": "Implies(needs_lion_bear, needs_bear_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, mouse)",
+          "z3_formula": "needs_bear_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, lion)",
+          "z3_formula": "needs_bear_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(needs_bear_lion, needs_lion_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == False",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & Not(blue(lion)) -> Not(green(lion))",
+          "z3_formula": "Implies(And(visits_lion_bear, Not(blue_lion)), Not(green_lion))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(green_lion, likes_lion_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(X, mouse)",
+          "z3_formula": "Implies(needs_lion_mouse, needs_mouse_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> Not(nice(X))",
+          "z3_formula": "Implies(visits_mouse_bear, Not(nice_mouse))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> needs(X, bear)",
+          "z3_formula": "Implies(likes_lion_cat, needs_lion_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, mouse) -> likes(X, cat)",
+          "z3_formula": "Implies(And(young_mouse, visits_mouse_mouse), likes_mouse_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & Not(nice(X)) -> young(X)",
+          "z3_formula": "Implies(And(visits_lion_cat, Not(nice_lion)), young_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(needs_lion_bear, needs_lion_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == False",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(bear)",
+          "z3_formula": "Not(nice_bear) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> not nice(X)",
+          "z3_formula": "Implies(visits_lion_bear, Not(nice_lion))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(lion)",
+          "z3_formula": "Not(nice_lion) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, mouse)",
+          "z3_formula": "needs_bear_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & needs(bear, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(And(visits_lion_bear, needs_bear_mouse), needs_lion_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(lion)",
+          "z3_formula": "Not(blue_lion) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(Not(blue_lion), likes_lion_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "likes_lion_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> needs(mouse, X)",
+          "z3_formula": "Implies(likes_lion_mouse, needs_mouse_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> needs(X, bear)",
+          "z3_formula": "Implies(likes_lion_cat, needs_lion_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bear, lion)",
+          "z3_formula": "needs_bear_lion == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, mouse)",
+          "z3_formula": "needs_bear_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cat)",
+          "z3_formula": "visits_bear_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == False",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, mouse)",
+          "z3_formula": "visits_bear_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, lion)",
+          "z3_formula": "likes_cat_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(green_lion, likes_lion_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(needs_mouse_lion, needs_bear_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "likes_lion_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "lion_green == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits_lion & Not(blue_lion) -> Not(green_lion)",
+          "z3_formula": "Implies(And(visits_lion, Not(blue_lion)), Not(lion_green))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "lion_green == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes_mouse(X)",
+          "z3_formula": "Implies(lion_green, likes_lion_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "likes_mouse(lion)",
+          "z3_formula": "likes_lion_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes_mouse(X) -> needs_lion(X)",
+          "z3_formula": "Implies(likes_lion_mouse, needs_lion_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs_lion(mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs_mouse(bear)",
+          "z3_formula": "bear_needs_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs_mouse(X) -> needs_bear(X)",
+          "z3_formula": "Implies(bear_needs_mouse, needs_bear_mouse)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "needs_bear(mouse)",
+          "z3_formula": "needs_bear_mouse == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "Not(needs_lion(bear))",
+          "z3_formula": "Not(bear_needs_lion) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits_bear(lion)",
+          "z3_formula": "lion_visits_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "Not(visits_lion(bear))",
+          "z3_formula": "Not(bear_visits_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits_bear(X) -> Not(nice(X))",
+          "z3_formula": "Implies(lion_visits_bear, Not(nice_lion))",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "Not(nice(lion))",
+          "z3_formula": "Not(nice_lion) == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "visits_cat(lion)",
+          "z3_formula": "lion_visits_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits_cat(X) & Not(nice(X)) -> young(X)",
+          "z3_formula": "Implies(And(lion_visits_cat, Not(nice_lion)), young_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, lion)",
+          "z3_formula": "likes_cat_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> needs(X, bear)",
+          "z3_formula": "Implies(likes_lion_cat, needs_lion_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(needs_lion_bear, needs_lion_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> needs(X, bear)",
+          "z3_formula": "Implies(needs_lion_mouse, needs_lion_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bear, lion)",
+          "z3_formula": "needs_bear_lion == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> green(Y)",
+          "z3_formula": "Implies(likes_lion_mouse, green_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(likes_lion_mouse, needs_lion_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> not nice(Y)",
+          "z3_formula": "Implies(visits_bear_cat, not_nice_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cat)",
+          "z3_formula": "visits_bear_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> not nice(Y)",
+          "z3_formula": "Implies(visits_lion_cat, not_nice_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(visits_lion_mouse, needs_lion_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> needs(Y, X)",
+          "z3_formula": "Implies(needs_bear_mouse, needs_mouse_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, mouse)",
+          "z3_formula": "needs_bear_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(visits_bear_mouse, needs_bear_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, mouse)",
+          "z3_formula": "visits_bear_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(visits_mouse_bear, needs_mouse_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & needs(Y, Z) -> needs(X, Z)",
+          "z3_formula": "Implies(And(needs_bear_mouse, needs_mouse_lion), needs_bear_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> needs(Y, X)",
+          "z3_formula": "Implies(needs_bear_mouse, needs_mouse_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> needs(Y, X)",
+          "z3_formula": "Implies(needs_mouse_lion, needs_lion_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> needs(Y, X)",
+          "z3_formula": "Implies(needs_bear_lion, needs_lion_bear)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & Not(blue(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(visits_lion_cat, Not(blue_lion)), Not(green_lion))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(green_lion, likes_lion_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "likes_lion_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> needs(X, lion)",
+          "z3_formula": "Implies(likes_lion_mouse, needs_lion_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(needs_bear_mouse, needs_mouse_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> Not(nice(X))",
+          "z3_formula": "Implies(visits_bear_lion, Not(nice_lion))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(nice(lion))",
+          "z3_formula": "Not(nice_lion) == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> needs(X, bear)",
+          "z3_formula": "Implies(likes_cat_lion, needs_lion_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, lion)",
+          "z3_formula": "likes_cat_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, lion)",
+          "z3_formula": "likes_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(green_lion, likes_lion_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> needs(X, bear)",
+          "z3_formula": "Implies(likes_lion_cat, needs_lion_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "likes_lion_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(green_lion, likes_lion_mouse)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "likes_lion_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> needs(X, lion)",
+          "z3_formula": "Implies(likes_mouse_lion, needs_mouse_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, bear)",
+          "z3_formula": "visits_mouse_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> not nice(X)",
+          "z3_formula": "Implies(visits_mouse_bear, not_nice_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(mouse)",
+          "z3_formula": "not_nice_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> not nice(X)",
+          "z3_formula": "Implies(visits_lion_bear, not_nice_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(lion)",
+          "z3_formula": "not_nice_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(lion)",
+          "z3_formula": "not_blue_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & not blue(lion) -> not green(X)",
+          "z3_formula": "Implies(And(visits_lion_cat, not_blue_lion), not_green_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not green(lion)",
+          "z3_formula": "not_green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, lion)",
+          "z3_formula": "likes_cat_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> needs(X, bear)",
+          "z3_formula": "Implies(likes_cat_lion, needs_cat_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bear)",
+          "z3_formula": "visits_cat_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> not nice(X)",
+          "z3_formula": "Implies(visits_cat_bear, not_nice_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(cat)",
+          "z3_formula": "not_nice_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, mouse) -> likes(X, cat)",
+          "z3_formula": "Implies(And(young_lion, visits_lion_mouse), likes_lion_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not young(lion)",
+          "z3_formula": "not_young_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not young(lion)",
+          "z3_formula": "not_young_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(needs_mouse_lion, needs_lion_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, mouse)",
+          "z3_formula": "needs_bear_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(needs_bear_mouse, needs_mouse_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & Not(blue(lion)) -> Not(green(lion))",
+          "z3_formula": "Implies(And(visits_X_lion, Not(blue_lion)), Not(green_lion))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(green_lion, likes_lion_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "likes_lion_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> needs(X, lion)",
+          "z3_formula": "Implies(likes_lion_mouse, needs_lion_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(X, bear)",
+          "z3_formula": "Implies(needs_lion_mouse, needs_mouse_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & Not(nice(X)) -> young(X)",
+          "z3_formula": "Implies(And(visits_lion_cat, Not(nice_lion)), young_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, mouse) -> likes(X, cat)",
+          "z3_formula": "Implies(And(young_lion, visits_lion_mouse), likes_lion_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> needs(X, bear)",
+          "z3_formula": "Implies(likes_lion_cat, needs_lion_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "Not(needs(lion, bear))",
+          "z3_formula": "Not(needs_lion_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, cat)",
+          "z3_formula": "visits_bear_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> Not(nice(X))",
+          "z3_formula": "Implies(visits_bear_cat, Not(nice_cat))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Not(nice(cat))",
+          "z3_formula": "Not(nice_cat) == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> young(X)",
+          "z3_formula": "Implies(visits_lion_cat, young_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & Not(nice(X)) -> visits(X, cat)",
+          "z3_formula": "Implies(And(young_lion, Not(nice_lion)), visits_lion_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> needs(X, bear)",
+          "z3_formula": "Implies(likes_lion_cat, needs_lion_bear)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 22
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 191,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 92
+    },
+    "maxsat_stats": {
+      "satisfied": 87,
+      "excluded": 5,
+      "total_weight": 184,
+      "solve_time_ms": 2.5408631190657616
+    },
+    "timing": {
+      "trace_gen_s": 16.333,
+      "extraction_s": 45.621,
+      "dedup_s": 3.634,
+      "maxsat_s": 0.007,
+      "total_s": 65.596
+    }
+  }
+}

@@ -1,0 +1,1403 @@
+# analysis exp 001 gt true cases
+
+**Cross-Representation Disagreement as a Diagnostic Signal for LLM Reasoning Errors** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/chats/worker_analysis_exp_001_gt_true_cases_20260515T063140.jsonl`
+- **Structured JSON:** [`aee6a22072f49a339128.json`](../../sessions/ae/aee6a22072f49a339128.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+45 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T06:38:33.155825+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T06:38:33.156263+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T06:38:33.156447+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/crdd/results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\nsample = data[0] if isinstance(data, list) else list(data.values())[0]\nprint(json.dumps(sample, indent=2, ensure_ascii=False)[:5000])\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/crdd/results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\nsample = data[0] if isinstance(data, list) else list(data.values())[0]\nprint(json.dumps(sample, indent=2, ensure_ascii=False)[:5000])\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T06:38:33.156888+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T06:38:33.157065+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "head -200 /root/autodl-tmp/crdd/results/mvp_v4_repair_fixed.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "head -200 /root/autodl-tmp/crdd/results/mvp_v4_repair_fixed.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T06:38:33.157386+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"id\\\": \\\"folio_validation_0\\\",\\n    \\\"premises\\\": \\\"If people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school. \\\",\\n    \\\"conclusion\\\": \\\"Bonnie performs in school talent shows often.\\\",\\n    \\\"ground_truth\\\": \\\"Unknown\\\",\\n    \\\"fol_raw\\\": \\\"```python\\\\nfrom z3 import *\\\\n\\\\nPerson = DeclareSort('Person')\\\\np = Const('p', Person)\\\\nbonnie = Const('bonnie', Person)\\\\n\\\\nPerforms = Function('Performs', Person, BoolSort())\\\\nAttendsEngaged = Function('AttendsEngaged', Person, BoolSort())\\\\nInactiveDisinterested = Function('InactiveDisinterested', Person, BoolSort())\\\\nChaperone = Function('Chaperone', Person, BoolSort())\\\\nIsStudent = Function('IsStudent', Person, BoolSort())\\\\nYoungTeen = Function('YoungTeen', Person, BoolSort())\\\\n\\\\ns = Solver()\\\\n\\\\n# Premise 1: If performs, then attends and engaged\\\\ns.add(ForAll([p], Implies(Performs(p), AttendsEngaged(p))))\\\\n\\\\n# Premise 2: Either performs or inactive/disinterested\\\\ns.add(ForAll([p], Or(Performs(p), InactiveDisinterested(p))))\\\\n\\\\n# Premise 3: If chaperone, then not student\\\\ns.add(ForAll([p], Implies(Chaperone(p), Not(IsStudent(p)))))\\\\n\\\\n# Premise 4: Ina
+…[truncated 7361 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T06:38:33.157987+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "python3 -c \"\nimport json, sys\nwith open('/root/autodl-tmp/crdd/results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n# Show all top-level keys of first sample\nprint('=== Keys ===')\nprint(list(data[0].keys()))\nprint()\n# Find a sample with non-empty repair\nfor s in data:\n    if s.get('repair') and len(s['repair']) > 0:\n        print('=== Repair keys (sample', s['id'], ') ===')\n        print(json.dumps({k: type(v).__name__ for k,v in s['repair'].items()}))\n        print()\n        print('=== Repair content ===')\n        print(json.dumps(s['repair'], indent=2, ensure_ascii=False)[:3000])\n        break\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "python3 -c \"\nimport json, sys\nwith open('/root/autodl-tmp/crdd/results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n# Show all top-level keys of first sample\nprint('=== Keys ===')\nprint(list(data[0].keys()))\nprint()\n# Find a sample with non-empty repair\nfor s in data:\n    if s.get('repair') and len(s['repair']) > 0:\n        print('=== Repair keys (sample', s['id'], ') ===')\n        print(json.dumps({k: type(v).__name__ for k,v in s['repair'].items()}))\n        print()\n        print('=== Repair content ===')\n        print(json.dumps(s['repair'], indent=2, ensure_ascii=False)[:3000])\n        break\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T06:38:33.158174+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T06:38:33.158316+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\n# Show keys\nprint('=== Top-level keys ===')\nprint(list(data[0].keys()))\n\n# Find sample with non-empty repair\nfor s in data:\n    if s.get('repair') and len(s['repair']) > 0:\n        print('\\n=== Sample with repair:', s['id'], '===')\n        print('Repair keys:', list(s['repair'].keys()))\n        repair_str = json.dumps(s['repair'], indent=2, ensure_ascii=False)\n        print(repair_str[:3000])\n        break\n\n# Find sample with diagnosis\nfor s in data:\n    if s.get('diagnosis'):\n        print('\\n=== Sample with diagnosis:', s['id'], '===')\n        print('Diagnosis keys:', list(s['diagnosis'].keys()))\n        diag_str = json.dumps(s['diagnosis'], indent=2, ensure_ascii=False)\n        print(diag_str[:2000])\n        break\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\n# Show keys\nprint('=== Top-level keys ===')\nprint(list(data[0].keys()))\n\n# Find sample with non-empty repair\nfor s in data:\n    if s.get('repair') and len(s['repair']) > 0:\n        print('\\n=== Sample with repair:', s['id'], '===')\n        print('Repair keys:', list(s['repair'].keys()))\n        repair_str = json.dumps(s['repair'], indent=2, ensure_ascii=False)\n        print(repair_str[:3000])\n        break\n\n# Find sample with diagnosis\nfor s in data:\n    if s.get('diagnosis'):\n        print('\\n=== Sample with diagnosis:', s['id'], '===')\n        print('Diagnosis keys:', list(s['diagnosis'].keys()))\n        diag_str = json.dumps(s['diagnosis'], indent=2, ensure_ascii=False)\n        print(diag_str[:2000])\n        break\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T06:38:33.158646+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Top-level keys ===\\n['id', 'premises', 'conclusion', 'ground_truth', 'fol_raw', 'fol_code', 'code_raw', 'code_code', 'fol_exec', 'code_exec', 'disagreement', 'repair', 'api_usage']\\n\\n=== Sample with repair: folio_validation_1 ===\\nRepair keys: ['code_targeted', 'code_blind']\\n{\\n  \\\"code_targeted\\\": [\\n    {\\n      \\\"method\\\": \\\"targeted\\\",\\n      \\\"round_num\\\": 1,\\n      \\\"new_code\\\": \\\"# Define the entities and relationships\\\\npeople = set()\\\\nperform_in_shows = set()\\\\ninactive_disinterested = set()\\\\nchaperone_dances = set()\\\\nstudents_attend_school = set()\\\\nyoung_teen_academic_wishers = set()\\\\n\\\\n# Define entities\\\\npeople.add(\\\\\\\"Bonnie\\\\\\\")\\\\n\\\\n# Premise: If people perform in school talent shows often, then they attend and are very engaged with school events.\\\\n# Implemented as: perform_in_shows ⊆ students_attend_school\\\\n# We will enforce this during model setup.\\\\n\\\\n# Premise: People either perform in school talent shows often or are inactive and disinterested members of their community.\\\\n# Implemented as: for all p in people, p ∈ perform_in_shows or p ∈ inactive_disinterested\\\\n# This is a logical constraint and will be enforced manually.\\\\n\\\\n# Premise: If people chaperone high school dances, then they are not students who attend the school.\\\\n# Implemented as: chaperone_dances ∩ students_attend_school = ∅\\\\n\\\\n# Premise: All people who are inactive and disinterested members of their community chaperone high school dances.\\\\n# Implemented as: inactive_disinterested ⊆ chaperone_dances\\\\n\\\\n# Premise: All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\\\\n# Implemented as: young_teen_academic_wishers ⊆ students_attend_school\\\\n\\\\n# Premise: Bonnie either both attends and is very engaged with school events and i
+…[truncated 1801 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T06:38:33.158896+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\n# Find a sample with repair that has GT=True\nfor s in data:\n    if s.get('ground_truth') == 'True' and s.get('repair') and len(s['repair']) > 0:\n        print('=== Sample:', s['id'], '===')\n        print('GT:', s['ground_truth'])\n        print('Disagreement keys:', list(s['disagreement'].keys()) if s.get('disagreement') else 'None')\n        print()\n        \n        # Show disagreement\n        if s.get('disagreement'):\n            d = s['disagreement']\n            print('FOL result:', d.get('fol_result'))\n            print('Code result:', d.get('code_result'))\n            print('FOL correct:', d.get('fol_correct'))\n            print('Code correct:', d.get('code_correct'))\n            print('Error type:', d.get('error_type'))\n            print('Error side:', d.get('error_side'))\n            print()\n        \n        # Show repair structure\n        r = s['repair']\n        for k, v in r.items():\n            print(f'Repair key: {k}, type: {type(v).__name__}')\n            if isinstance(v, list) and len(v) > 0:\n                print(f'  Length: {len(v)}')\n                item = v[0]\n                print(f'  Item keys: {list(item.keys()) if isinstance(item, dict) else \\\"N/A\\\"}')\n                if isinstance(item, dict):\n                    for ik, iv in item.items():\n                        val_str = str(iv)[:200]\n                        print(f'  {ik}: {val_str}')\n        break\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\n# Find a sample with repair that has GT=True\nfor s in data:\n    if s.get('ground_truth') == 'True' and s.get('repair') and len(s['repair']) > 0:\n        print('=== Sample:', s['id'], '===')\n        print('GT:', s['ground_truth'])\n        print('Disagreement keys:', list(s['disagreement'].keys()) if s.get('disagreement') else 'None')\n        print()\n        \n        # Show disagreement\n        if s.get('disagreement'):\n            d = s['disagreement']\n            print('FOL result:', d.get('fol_result'))\n            print('Code result:', d.get('code_result'))\n            print('FOL correct:', d.get('fol_correct'))\n            print('Code correct:', d.get('code_correct'))\n            print('Error type:', d.get('error_type'))\n            print('Error side:', d.get('error_side'))\n            print()\n        \n        # Show repair structure\n        r = s['repair']\n        for k, v in r.items():\n            print(f'Repair key: {k}, type: {type(v).__name__}')\n            if isinstance(v, list) and len(v) > 0:\n                print(f'  Length: {len(v)}')\n                item = v[0]\n                print(f'  Item keys: {list(item.keys()) if isinstance(item, dict) else \\\"N/A\\\"}')\n                if isinstance(item, dict):\n                    for ik, iv in item.items():\n                        val_str = str(iv)[:200]\n                        print(f'  {ik}: {val_str}')\n        break\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T06:38:33.159088+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Sample: folio_validation_1 ===\\nGT: True\\nDisagreement keys: ['agreement_type', 'fol_verdict', 'code_verdict', 'ground_truth', 'fol_correct', 'code_correct', 'error_type', 'error_side']\\n\\nFOL result: None\\nCode result: None\\nFOL correct: True\\nCode correct: False\\nError type: negation_error\\nError side: code\\n\\nRepair key: code_targeted, type: list\\n  Length: 2\\n  Item keys: ['method', 'round_num', 'new_code', 'exec_result', 'verdict', 'success', 'raw_response']\\n  method: targeted\\n  round_num: 1\\n  new_code: # Define the entities and relationships\\npeople = set()\\nperform_in_shows = set()\\ninactive_disinterested = set()\\nchaperone_dances = set()\\nstudents_attend_school = set()\\nyoung_teen_academic_wishers = set\\n  exec_result: {'output': 'Unknown\\\\n', 'error': None, 'verdict': 'Unknown', 'timed_out': False}\\n  verdict: Unknown\\n  success: False\\n  raw_response: ```python\\n# Define the entities and relationships\\npeople = set()\\nperform_in_shows = set()\\ninactive_disinterested = set()\\nchaperone_dances = set()\\nstudents_attend_school = set()\\nyoung_teen_academic_wis\\nRepair key: code_blind, type: list\\n  Length: 2\\n  Item keys: ['method', 'round_num', 'new_code', 'exec_result', 'verdict', 'success', 'raw_response']\\n  method: blind\\n  round_num: 1\\n  new_code: # Define categories and relationships\\nperform_in_school_shows = set()\\nattend_and_engaged = set()\\ninactive_disinterested = set()\\nchaperone_dances = set()\\nstudents_attend_school = set()\\nyoung_teen_acade\\n  exec_result: {'output': '', 'error': 'NameError: name \\\\'bonnie\\\\' is not defined\\\\nTraceback (most recent call last):\\\\n  File \\\"/root/autodl-tmp/crdd/src/executor.py\\\", line 59, in execute_code\\\\n    exec(code, {\\\"__bui\\n  verdict: Error\\n  success: False\\n  raw_response: ```python\\n# Define categories and relationships\\nperform_in_school_shows = set()\\nattend_and_engaged 
+…[truncated 216 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T06:38:33.159258+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\n# Count GT=True samples and their repair outcomes\ngt_true = [s for s in data if s.get('ground_truth') == 'True']\nprint(f'Total samples: {len(data)}')\nprint(f'GT=True samples: {len(gt_true)}')\n\n# Among GT=True, count those with repair\ngt_true_with_repair = [s for s in gt_true if s.get('repair') and len(s['repair']) > 0]\nprint(f'GT=True with repair: {len(gt_true_with_repair)}')\n\n# Check disagreement info\nfor s in gt_true_with_repair[:3]:\n    d = s['disagreement']\n    r = s['repair']\n    print(f'\\n--- {s[\\\"id\\\"]} ---')\n    print(f'  fol_correct={d[\\\"fol_correct\\\"]}, code_correct={d[\\\"code_correct\\\"]}')\n    print(f'  error_type={d[\\\"error_type\\\"]}, error_side={d[\\\"error_side\\\"]}')\n    print(f'  Repair keys: {list(r.keys())}')\n    for rk, rv in r.items():\n        if isinstance(rv, list):\n            last = rv[-1]\n            print(f'  {rk}: rounds={len(rv)}, final_verdict={last.get(\\\"verdict\\\")}, success={last.get(\\\"success\\\")}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\n# Count GT=True samples and their repair outcomes\ngt_true = [s for s in data if s.get('ground_truth') == 'True']\nprint(f'Total samples: {len(data)}')\nprint(f'GT=True samples: {len(gt_true)}')\n\n# Among GT=True, count those with repair\ngt_true_with_repair = [s for s in gt_true if s.get('repair') and len(s['repair']) > 0]\nprint(f'GT=True with repair: {len(gt_true_with_repair)}')\n\n# Check disagreement info\nfor s in gt_true_with_repair[:3]:\n    d = s['disagreement']\n    r = s['repair']\n    print(f'\\n--- {s[\\\"id\\\"]} ---')\n    print(f'  fol_correct={d[\\\"fol_correct\\\"]}, code_correct={d[\\\"code_correct\\\"]}')\n    print(f'  error_type={d[\\\"error_type\\\"]}, error_side={d[\\\"error_side\\\"]}')\n    print(f'  Repair keys: {list(r.keys())}')\n    for rk, rv in r.items():\n        if isinstance(rv, list):\n            last = rv[-1]\n            print(f'  {rk}: rounds={len(rv)}, final_verdict={last.get(\\\"verdict\\\")}, success={last.get(\\\"success\\\")}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T06:38:33.159415+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total samples: 204\\nGT=True samples: 72\\nGT=True with repair: 22\\n\\n--- folio_validation_1 ---\\n  fol_correct=True, code_correct=False\\n  error_type=negation_error, error_side=code\\n  Repair keys: ['code_targeted', 'code_blind']\\n  code_targeted: rounds=2, final_verdict=Unknown, success=False\\n  code_blind: rounds=2, final_verdict=True, success=True\\n\\n--- folio_validation_100 ---\\n  fol_correct=True, code_correct=False\\n  error_type=logic_error, error_side=code\\n  Repair keys: ['code_targeted', 'code_blind']\\n  code_targeted: rounds=1, final_verdict=True, success=True\\n  code_blind: rounds=2, final_verdict=True, success=True\\n\\n--- folio_validation_104 ---\\n  fol_correct=True, code_correct=False\\n  error_type=logic_error, error_side=code\\n  Repair keys: ['code_targeted', 'code_blind']\\n  code_targeted: rounds=1, final_verdict=True, success=True\\n  code_blind: rounds=1, final_verdict=True, success=True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T06:38:33.159573+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\ngt_true_with_repair = [s for s in data if s.get('ground_truth') == 'True' and s.get('repair') and len(s['repair']) > 0]\n\n# Find: targeted fail + blind success\ntarget_fail_blind_success = []\n# Find: targeted fail (regardless of blind)\ntarget_fail = []\n# Find: blind fail (regardless of targeted)\nblind_fail = []\n\nfor s in gt_true_with_repair:\n    r = s['repair']\n    # Get final results\n    targeted_key = [k for k in r if 'targeted' in k]\n    blind_key = [k for k in r if 'blind' in k]\n    \n    t_success = None\n    b_success = None\n    \n    for tk in targeted_key:\n        rounds = r[tk]\n        if isinstance(rounds, list) and len(rounds) > 0:\n            t_success = rounds[-1].get('success', False)\n    \n    for bk in blind_key:\n        rounds = r[bk]\n        if isinstance(rounds, list) and len(rounds) > 0:\n            b_success = rounds[-1].get('success', False)\n    \n    if t_success is False:\n        target_fail.append(s)\n    if b_success is False:\n        blind_fail.append(s)\n    if t_success is False and b_success is True:\n        target_fail_blind_success.append(s)\n\nprint(f'GT=True with repair: {len(gt_true_with_repair)}')\nprint(f'Targeted fail: {len(target_fail)}')\nprint(f'Blind fail: {len(blind_fail)}')\nprint(f'Targeted fail + Blind success: {len(target_fail_blind_success)}')\nprint()\nprint('Target cases (targeted fail + blind success):')\nfor s in target_fail_blind_success:\n    d = s['disagreement']\n    r = s['repair']\n    targeted_key = [k for k in r if 'targeted' in k][0]\n    blind_key = [k for k in r if 'blind' in k][0]\n    t_verdict = r[targeted_key][-1]['verdict']\n    b_verdict = r[blind_key][-1]['verdict']\n    print(f'  {s[\\\"id\\\"]}: error_type={d[\\\"error_type\\\"]}, error_side={d[\\\"error_side\\\"]}, targeted_verdict={t_verdict}, blind_verdict={b_verdict}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\ngt_true_with_repair = [s for s in data if s.get('ground_truth') == 'True' and s.get('repair') and len(s['repair']) > 0]\n\n# Find: targeted fail + blind success\ntarget_fail_blind_success = []\n# Find: targeted fail (regardless of blind)\ntarget_fail = []\n# Find: blind fail (regardless of targeted)\nblind_fail = []\n\nfor s in gt_true_with_repair:\n    r = s['repair']\n    # Get final results\n    targeted_key = [k for k in r if 'targeted' in k]\n    blind_key = [k for k in r if 'blind' in k]\n    \n    t_success = None\n    b_success = None\n    \n    for tk in targeted_key:\n        rounds = r[tk]\n        if isinstance(rounds, list) and len(rounds) > 0:\n            t_success = rounds[-1].get('success', False)\n    \n    for bk in blind_key:\n        rounds = r[bk]\n        if isinstance(rounds, list) and len(rounds) > 0:\n            b_success = rounds[-1].get('success', False)\n    \n    if t_success is False:\n        target_fail.append(s)\n    if b_success is False:\n        blind_fail.append(s)\n    if t_success is False and b_success is True:\n        target_fail_blind_success.append(s)\n\nprint(f'GT=True with repair: {len(gt_true_with_repair)}')\nprint(f'Targeted fail: {len(target_fail)}')\nprint(f'Blind fail: {len(blind_fail)}')\nprint(f'Targeted fail + Blind success: {len(target_fail_blind_success)}')\nprint()\nprint('Target cases (targeted fail + blind success):')\nfor s in target_fail_blind_success:\n    d = s['disagreement']\n    r = s['repair']\n    targeted_key = [k for k in r if 'targeted' in k][0]\n    blind_key = [k for k in r if 'blind' in k][0]\n    t_verdict = r[targeted_key][-1]['verdict']\n    b_verdict = r[blind_key][-1]['verdict']\n    print(f'  {s[\\\"id\\\"]}: error_type={d[\\\"error_type\\\"]}, error_side={d[\\\"error_side\\\"]}, targeted_verdict={t_verdict}, blind_verdict={b_verdict}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T06:38:33.159741+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"GT=True with repair: 22\\nTargeted fail: 8\\nBlind fail: 5\\nTargeted fail + Blind success: 5\\n\\nTarget cases (targeted fail + blind success):\\n  folio_validation_1: error_type=negation_error, error_side=code, targeted_verdict=Unknown, blind_verdict=True\\n  folio_validation_110: error_type=negation_error, error_side=both, targeted_verdict=False, blind_verdict=False\\n  folio_validation_155: error_type=logic_error, error_side=code, targeted_verdict=False, blind_verdict=True\\n  folio_validation_80: error_type=logic_error, error_side=code, targeted_verdict=Unknown, blind_verdict=True\\n  folio_validation_87: error_type=logic_error, error_side=fol, targeted_verdict=Unknown, blind_verdict=True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.62}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T06:38:33.159925+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\ngt_true_with_repair = [s for s in data if s.get('ground_truth') == 'True' and s.get('repair') and len(s['repair']) > 0]\n\nprint('ALL GT=True samples with repair:')\nfor s in gt_true_with_repair:\n    d = s['disagreement']\n    r = s['repair']\n    targeted_key = [k for k in r if 'targeted' in k]\n    blind_key = [k for k in r if 'blind' in k]\n    \n    t_info = 'N/A'\n    b_info = 'N/A'\n    \n    for tk in targeted_key:\n        rounds = r[tk]\n        if isinstance(rounds, list) and len(rounds) > 0:\n            last = rounds[-1]\n            t_info = f'verdict={last[\\\"verdict\\\"]}, success={last[\\\"success\\\"]}, rounds={len(rounds)}'\n    \n    for bk in blind_key:\n        rounds = r[bk]\n        if isinstance(rounds, list) and len(rounds) > 0:\n            last = rounds[-1]\n            b_info = f'verdict={last[\\\"verdict\\\"]}, success={last[\\\"success\\\"]}, rounds={len(rounds)}'\n    \n    print(f'  {s[\\\"id\\\"]}: err={d[\\\"error_type\\\"]}/{d[\\\"error_side\\\"]}, T=[{t_info}], B=[{b_info}]')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\ngt_true_with_repair = [s for s in data if s.get('ground_truth') == 'True' and s.get('repair') and len(s['repair']) > 0]\n\nprint('ALL GT=True samples with repair:')\nfor s in gt_true_with_repair:\n    d = s['disagreement']\n    r = s['repair']\n    targeted_key = [k for k in r if 'targeted' in k]\n    blind_key = [k for k in r if 'blind' in k]\n    \n    t_info = 'N/A'\n    b_info = 'N/A'\n    \n    for tk in targeted_key:\n        rounds = r[tk]\n        if isinstance(rounds, list) and len(rounds) > 0:\n            last = rounds[-1]\n            t_info = f'verdict={last[\\\"verdict\\\"]}, success={last[\\\"success\\\"]}, rounds={len(rounds)}'\n    \n    for bk in blind_key:\n        rounds = r[bk]\n        if isinstance(rounds, list) and len(rounds) > 0:\n            last = rounds[-1]\n            b_info = f'verdict={last[\\\"verdict\\\"]}, success={last[\\\"success\\\"]}, rounds={len(rounds)}'\n    \n    print(f'  {s[\\\"id\\\"]}: err={d[\\\"error_type\\\"]}/{d[\\\"error_side\\\"]}, T=[{t_info}], B=[{b_info}]')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T06:38:33.160099+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ALL GT=True samples with repair:\\n  folio_validation_1: err=negation_error/code, T=[verdict=Unknown, success=False, rounds=2], B=[verdict=True, success=True, rounds=2]\\n  folio_validation_100: err=logic_error/code, T=[verdict=True, success=True, rounds=1], B=[verdict=True, success=True, rounds=2]\\n  folio_validation_104: err=logic_error/code, T=[verdict=True, success=True, rounds=1], B=[verdict=True, success=True, rounds=1]\\n  folio_validation_110: err=negation_error/both, T=[verdict=False, success=False, rounds=2], B=[verdict=True, success=True, rounds=1]\\n  folio_validation_124: err=exec_crash/fol, T=[verdict=True, success=True, rounds=2], B=[verdict=True, success=True, rounds=1]\\n  folio_validation_126: err=negation_error/both, T=[verdict=Unknown, success=False, rounds=2], B=[verdict=Unknown, success=False, rounds=2]\\n  folio_validation_148: err=negation_error/code, T=[verdict=True, success=True, rounds=1], B=[verdict=True, success=True, rounds=1]\\n  folio_validation_155: err=logic_error/code, T=[verdict=False, success=False, rounds=2], B=[verdict=True, success=True, rounds=1]\\n  folio_validation_159: err=negation_error/code, T=[verdict=True, success=True, rounds=1], B=[verdict=True, success=True, rounds=1]\\n  folio_validation_166: err=logic_error/fol, T=[verdict=Unknown, success=False, rounds=2], B=[verdict=Error, success=False, rounds=2]\\n  folio_validation_175: err=negation_error/code, T=[verdict=True, success=True, rounds=1], B=[verdict=True, success=True, rounds=1]\\n  folio_validation_178: err=logic_error/fol, T=[verdict=True, success=True, rounds=1], B=[verdict=True, success=True, rounds=1]\\n  folio_validation_18: err=negation_error/code, T=[verdict=True, success=True, rounds=1], B=[verdict=Unknown, success=False, rounds=2]\\n  folio_validation_19: err=negation_error/code, T=[verdict=True, success=True, rounds=1], B=[verdict=Unknown, success=False, rounds=2]\\n  folio_validation_28: err=lo
+…[truncated 1121 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T06:38:33.160279+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\n# Look at folio_validation_1 in detail\nfor s in data:\n    if s['id'] == 'folio_validation_1':\n        r = s['repair']\n        # Targeted round 1\n        t1 = r['code_targeted'][0]\n        print('=== TARGETED Round 1 ===')\n        print('raw_response (first 2000 chars):')\n        print(t1.get('raw_response', '')[:2000])\n        print()\n        print('exec_result:', t1.get('exec_result'))\n        print()\n        \n        # Targeted round 2\n        t2 = r['code_targeted'][1]\n        print('=== TARGETED Round 2 ===')\n        print('raw_response (first 2000 chars):')\n        print(t2.get('raw_response', '')[:2000])\n        print()\n        print('exec_result:', t2.get('exec_result'))\n        break\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\n# Look at folio_validation_1 in detail\nfor s in data:\n    if s['id'] == 'folio_validation_1':\n        r = s['repair']\n        # Targeted round 1\n        t1 = r['code_targeted'][0]\n        print('=== TARGETED Round 1 ===')\n        print('raw_response (first 2000 chars):')\n        print(t1.get('raw_response', '')[:2000])\n        print()\n        print('exec_result:', t1.get('exec_result'))\n        print()\n        \n        # Targeted round 2\n        t2 = r['code_targeted'][1]\n        print('=== TARGETED Round 2 ===')\n        print('raw_response (first 2000 chars):')\n        print(t2.get('raw_response', '')[:2000])\n        print()\n        print('exec_result:', t2.get('exec_result'))\n        break\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T06:38:33.160480+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== TARGETED Round 1 ===\\nraw_response (first 2000 chars):\\n```python\\n# Define the entities and relationships\\npeople = set()\\nperform_in_shows = set()\\ninactive_disinterested = set()\\nchaperone_dances = set()\\nstudents_attend_school = set()\\nyoung_teen_academic_wishers = set()\\n\\n# Define entities\\npeople.add(\\\"Bonnie\\\")\\n\\n# Premise: If people perform in school talent shows often, then they attend and are very engaged with school events.\\n# Implemented as: perform_in_shows ⊆ students_attend_school\\n# We will enforce this during model setup.\\n\\n# Premise: People either perform in school talent shows often or are inactive and disinterested members of their community.\\n# Implemented as: for all p in people, p ∈ perform_in_shows or p ∈ inactive_disinterested\\n# This is a logical constraint and will be enforced manually.\\n\\n# Premise: If people chaperone high school dances, then they are not students who attend the school.\\n# Implemented as: chaperone_dances ∩ students_attend_school = ∅\\n\\n# Premise: All people who are inactive and disinterested members of their community chaperone high school dances.\\n# Implemented as: inactive_disinterested ⊆ chaperone_dances\\n\\n# Premise: All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school.\\n# Implemented as: young_teen_academic_wishers ⊆ students_attend_school\\n\\n# Premise: Bonnie either both attends and is very engaged with school events and is a student who attends the school,\\n# or she neither attends and is very engaged with school events nor is a student who attends the school.\\n# Implemented as: (Bonnie ∈ students_attend_school) or (Bonnie ∉ students_attend_school)\\n\\n# Assume Bonnie does not perform in shows and is inactive/disinterested (to test the case that contradicts the conclusion)\\nperform_in_shows = set()\\ninactive_disinterested.add(
+…[truncated 2689 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T06:38:33.160639+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\n# Check if there's a diagnosis/prompt field somewhere\nfor s in data:\n    if s['id'] == 'folio_validation_1':\n        # Check all keys recursively\n        print('Top keys:', list(s.keys()))\n        # Check repair sub-items for any prompt/diagnosis fields\n        t1 = s['repair']['code_targeted'][0]\n        print('Targeted item keys:', list(t1.keys()))\n        # Check if there's a prompt field\n        for k in t1.keys():\n            if k not in ['new_code', 'raw_response']:\n                print(f'  {k}:', t1[k])\n        break\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\n# Check if there's a diagnosis/prompt field somewhere\nfor s in data:\n    if s['id'] == 'folio_validation_1':\n        # Check all keys recursively\n        print('Top keys:', list(s.keys()))\n        # Check repair sub-items for any prompt/diagnosis fields\n        t1 = s['repair']['code_targeted'][0]\n        print('Targeted item keys:', list(t1.keys()))\n        # Check if there's a prompt field\n        for k in t1.keys():\n            if k not in ['new_code', 'raw_response']:\n                print(f'  {k}:', t1[k])\n        break\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T06:38:33.160787+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Top keys: ['id', 'premises', 'conclusion', 'ground_truth', 'fol_raw', 'fol_code', 'code_raw', 'code_code', 'fol_exec', 'code_exec', 'disagreement', 'stability', 'repair', 'api_usage', 'repair_rerun_usage']\\nTargeted item keys: ['method', 'round_num', 'new_code', 'exec_result', 'verdict', 'success', 'raw_response']\\n  method: targeted\\n  round_num: 1\\n  exec_result: {'output': 'Unknown\\\\n', 'error': None, 'verdict': 'Unknown', 'timed_out': False}\\n  verdict: Unknown\\n  success: False\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T06:38:33.160967+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\nfor s in data:\n    if s['id'] == 'folio_validation_1':\n        print('=== fol_exec ===')\n        print(json.dumps(s.get('fol_exec'), indent=2, ensure_ascii=False)[:500])\n        print()\n        print('=== code_exec ===')\n        print(json.dumps(s.get('code_exec'), indent=2, ensure_ascii=False)[:500])\n        print()\n        print('=== stability ===')\n        print(json.dumps(s.get('stability'), indent=2, ensure_ascii=False)[:500])\n        print()\n        print('=== disagreement ===')\n        print(json.dumps(s.get('disagreement'), indent=2, ensure_ascii=False))\n        break\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\nfor s in data:\n    if s['id'] == 'folio_validation_1':\n        print('=== fol_exec ===')\n        print(json.dumps(s.get('fol_exec'), indent=2, ensure_ascii=False)[:500])\n        print()\n        print('=== code_exec ===')\n        print(json.dumps(s.get('code_exec'), indent=2, ensure_ascii=False)[:500])\n        print()\n        print('=== stability ===')\n        print(json.dumps(s.get('stability'), indent=2, ensure_ascii=False)[:500])\n        print()\n        print('=== disagreement ===')\n        print(json.dumps(s.get('disagreement'), indent=2, ensure_ascii=False))\n        break\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T06:38:33.161130+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== fol_exec ===\\n{\\n  \\\"output\\\": \\\"True\\\\n\\\",\\n  \\\"error\\\": null,\\n  \\\"verdict\\\": \\\"True\\\",\\n  \\\"timed_out\\\": false\\n}\\n\\n=== code_exec ===\\n{\\n  \\\"output\\\": \\\"False\\\\n\\\",\\n  \\\"error\\\": null,\\n  \\\"verdict\\\": \\\"False\\\",\\n  \\\"timed_out\\\": false\\n}\\n\\n=== stability ===\\n{\\n  \\\"fol_verdict_2\\\": \\\"True\\\",\\n  \\\"code_verdict_2\\\": \\\"True\\\",\\n  \\\"fol_consistent\\\": true,\\n  \\\"code_consistent\\\": false,\\n  \\\"predicted_error_side\\\": \\\"code\\\"\\n}\\n\\n=== disagreement ===\\n{\\n  \\\"agreement_type\\\": \\\"disagree\\\",\\n  \\\"fol_verdict\\\": \\\"True\\\",\\n  \\\"code_verdict\\\": \\\"False\\\",\\n  \\\"ground_truth\\\": \\\"True\\\",\\n  \\\"fol_correct\\\": true,\\n  \\\"code_correct\\\": false,\\n  \\\"error_type\\\": \\\"negation_error\\\",\\n  \\\"error_side\\\": \\\"code\\\"\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T06:38:33.161259+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "find /root/autodl-tmp/crdd/src -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "find /root/autodl-tmp/crdd/src -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T06:38:33.161395+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/crdd/src/data_loader.py\\n/root/autodl-tmp/crdd/src/formalize.py\\n/root/autodl-tmp/crdd/src/executor.py\\n/root/autodl-tmp/crdd/src/disagree.py\\n/root/autodl-tmp/crdd/src/repair.py\\n/root/autodl-tmp/crdd/src/pipeline.py\\n/root/autodl-tmp/crdd/src/baseline.py\\n/root/autodl-tmp/crdd/src/analyze.py\\n/root/autodl-tmp/crdd/src/config.py\\n/root/autodl-tmp/crdd/src/evaluate_mvp.py\\n/root/autodl-tmp/crdd/src/repair_only.py\\n/root/autodl-tmp/crdd/src/deep_analysis.py\\n/root/autodl-tmp/crdd/src/proofwriter_adapter.py\\n/root/autodl-tmp/crdd/src/math_adapter.py\\n/root/autodl-tmp/crdd/src/analysis_supplement_ef.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T06:38:33.161530+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "cat /root/autodl-tmp/crdd/src/repair.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "cat /root/autodl-tmp/crdd/src/repair.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T06:38:33.165412+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\n定向修复 + 盲目重生成（对照组）。\\n对 disagreement 样本，对比\\\"带诊断信息修复\\\" vs \\\"不带诊断信息重生成\\\"的成功率。\\n\\\"\\\"\\\"\\n\\nfrom dataclasses import dataclass, asdict\\nfrom typing import Optional, List\\n\\nfrom formalize import (\\n    _call_llm, _extract_code,\\n    FOL_SYSTEM_PROMPT, CODE_SYSTEM_PROMPT,\\n)\\nfrom executor import execute_code\\nfrom config import MAX_REPAIR_ROUNDS\\n\\n# ---------------------------------------------------------------------------\\n# Prompt templates\\n# ---------------------------------------------------------------------------\\n\\nTARGETED_REPAIR_PROMPT = \\\"\\\"\\\"\\\\\\nThe following {repr_type} code was generated for a logical reasoning problem\\nbut produced an INCORRECT result.\\n\\n## Problem\\nPremises:\\n{premises}\\n\\nConclusion:\\n{conclusion}\\n\\n## Your previous code\\n```python\\n{original_code}\\n```\\n\\n## Diagnostic information\\n- Your verdict: {wrong_verdict}\\n- The other representation ({other_type}) got: {other_verdict}\\n- Identified error pattern: {error_type}\\n{hint}\\n\\nFix the code. Output ONLY the corrected **{repr_type}** script in a ```python``` block.\\nPrint exactly one word: True, False, or Unknown.\\\"\\\"\\\"\\n\\n\\nBLIND_REGEN_PROMPT = \\\"\\\"\\\"\\\\\\nThe following {repr_type} code was generated for a logical reasoning problem\\nbut may be incorrect. Regenerate a correct solution from scratch.\\n\\n## Problem\\nPremises:\\n{premises}\\n\\nConclusion:\\n{conclusion}\\n\\nOutput ONLY a complete **{repr_type}** script in a ```python``` block.\\nPrint exactly one word: True, False, or Unknown.\\\"\\\"\\\"\\n\\n# ---------------------------------------------------------------------------\\n# Hints per error type\\n# ---------------------------------------------------------------------------\\n\\n_HINTS = {\\n    \\\"quantifier_error\\\":   \\\"Check that every universal/existential quantifier in the premises is encoded.\\\",\\n    \\\"neg
+…[truncated 4283 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T06:38:33.165979+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+````json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > src/gt_true_case_study.py << 'PYEOF'\n\"\"\"\nGT=True subgroup: targeted repair failure case study.\nIdentifies cases where targeted repair fails but blind repair succeeds,\nanalyzes failure mechanisms, and generates detailed reports.\n\"\"\"\nimport json\nimport textwrap\nfrom collections import Counter\n\nDATA_PATH = \"results/mvp_v4_repair_fixed.json\"\nOUT_JSON = \"results/exp001_gt_true_case_study.json\"\nOUT_TXT = \"results/exp001_gt_true_case_study.txt\"\n\n_HINTS = {\n    \"quantifier_error\":   \"Check that every universal/existential quantifier in the premises is encoded.\",\n    \"negation_error\":     \"Check that all negations (not, no, never …) are handled correctly.\",\n    \"constraint_missing\": \"Some premises may not be encoded. Ensure every premise is represented.\",\n    \"constraint_extra\":   \"There may be extra constraints not in the premises. Remove them.\",\n    \"type_boundary\":      \"There may be a type or index error in the code.\",\n    \"timeout\":            \"The code timed out — simplify the approach.\",\n    \"logic_error\":        \"\",\n}\n\ndef reconstruct_targeted_prompt(sample, repair_side):\n    d = sample[\"disagreement\"]\n    error_type = d[\"error_type\"]\n    \n    if repair_side == \"code\":\n        repr_type = \"Python code\"\n        other_type = \"FOL (Z3)\"\n        wrong_verdict = sample[\"code_exec\"][\"verdict\"]\n        other_verdict = sample[\"fol_exec\"][\"verdict\"]\n        original_code = sample[\"code_code\"]\n    else:\n        repr_type = \"FOL (Z3)\"\n        other_type = \"Python code\"\n        wrong_verdict = sample[\"fol_exec\"][\"verdict\"]\n        other_verdict = sample[\"code_exec\"][\"verdict\"]\n        original_code = sample[\"fol_code\"]\n    \n    hint_text = _HINTS.get(error_type, \"\")\n    if error_type == \"exec_crash\":\n        hint_text = (\n            f\"Your code crashed during execution. \"\n            f\"The other representation produced: {other_verdict}. \"\n            \"Rewrite from scratch with correct syntax and API usage.\"\n        )\n    hint = f\"- Hint: {hint_text}\" if hint_text else \"\"\n    \n    prompt = f\"\"\"The following {repr_type} code was generated for a logical reasoning problem\nbut produced an INCORRECT result.\n\n## Problem\nPremises:\n{sample['premises']}\n\nConclusion:\n{sample['conclusion']}\n\n## Your previous code\n```python\n{original_code}\n```\n\n## Diagnostic information\n- Your verdict: {wrong_verdict}\n- The other representation ({other_type}) got: {other_verdict}\n- Identified error pattern: {error_type}\n{hint}\n\nFix the code. Output ONLY the corrected **{repr_type}** script in a ```python``` block.\nPrint exactly one word: True, False, or Unknown.\"\"\"\n    return prompt\n\ndef classify_failure(sample, repair_side):\n    \"\"\"Classify the failure mechanism based on analysis of the case.\"\"\"\n    d = sample[\"disagreement\"]\n    r = sample[\"repair\"]\n    \n    repair_key = f\"{repair_side}_targeted\"\n    targeted_rounds = r[repair_key]\n    \n    fol_v = sample[\"fol_exec\"][\"verdict\"]\n    code_v = sample[\"code_exec\"][\"verdict\"]\n    gt = sample[\"ground_truth\"]\n    error_type = d[\"error_type\"]\n    error_side = d[\"error_side\"]\n    \n    final_targeted_verdict = targeted_rounds[-1][\"verdict\"]\n    \n    if error_side == \"both\":\n        return \"misleading_diagnosis\", (\n            f\"error_side=both means both representations are wrong, but targeted repair \"\n            f\"is told the OTHER representation's verdict as reference. Since the other \"\n            f\"side is also wrong, the diagnostic info points toward a wrong answer.\"\n        )\n    \n    if final_targeted_verdict == \"Unknown\" and gt == \"True\":\n        correct_side_verdict = fol_v if d[\"fol_correct\"] else code_v\n        return \"overcorrection\", (\n            f\"The repair overcorrected: original {repair_side} said '{code_v if repair_side == 'code' else fol_v}', \"\n            f\"but after being told the other side got '{correct_side_verdict}' with error_type='{error_type}', \"\n            f\"the model hedged to 'Unknown' instead of committing to '{gt}'. \"\n            f\"The diagnostic info made the model doubt itself too much.\"\n        )\n    \n    if final_targeted_verdict != gt and final_targeted_verdict != \"Unknown\":\n        return \"wrong_fix_direction\", (\n            f\"Repair produced '{final_targeted_verdict}' instead of '{gt}'. \"\n            f\"The error_type='{error_type}' diagnosis was {'correct' if error_side == repair_side else 'misdirected'}, \"\n            f\"but the model applied the fix in the wrong direction.\"\n        )\n    \n    return \"other\", \"Does not fit standard categories.\"\n\ndef analyze_case(sample):\n    d = sample[\"disagreement\"]\n    r = sample[\"repair\"]\n    \n    repair_keys_targeted = [k for k in r if \"targeted\" in k]\n    repair_keys_blind = [k for k in r if \"blind\" in k]\n    \n    repair_side = repair_keys_targeted[0].replace(\"_targeted\", \"\")\n    \n    targeted_rounds = r[repair_keys_targeted[0]]\n    blind_rounds = r[repair_keys_blind[0]]\n    \n    prompt = reconstruct_targeted_prompt(sample, repair_side)\n    \n    failure_type, failure_explanation = classify_failure(sample, repair_side)\n    \n    case = {\n        \"sample_id\": sample[\"id\"],\n        \"premises_summary\": sample[\"premises\"][:300] + (\"...\" if len(sample[\"premises\"]) > 300 else \"\"),\n        \"premises_full\": sample[\"premises\"],\n        \"conclusion\": sample[\"conclusion\"],\n        \"ground_truth\": sample[\"ground_truth\"],\n        \n        \"fol_verdict\": sample[\"fol_exec\"][\"verdict\"],\n        \"code_verdict\": sample[\"code_exec\"][\"verdict\"],\n        \"fol_correct\": d[\"fol_correct\"],\n        \"code_correct\": d[\"code_correct\"],\n        \"error_type\": d[\"error_type\"],\n        \"error_side\": d[\"error_side\"],\n        \"repair_side\": repair_side,\n        \n        \"stability\": sample.get(\"stability\", {}),\n        \n        \"diagnosis_info\": {\n            \"wrong_verdict\": sample[\"code_exec\"][\"verdict\"] if repair_side == \"code\" else sample[\"fol_exec\"][\"verdict\"],\n            \"other_verdict\": sample[\"fol_exec\"][\"verdict\"] if repair_side == \"code\" else sample[\"code_exec\"][\"verdict\"],\n            \"error_type\": d[\"error_type\"],\n            \"hint\": _HINTS.get(d[\"error_type\"], \"\"),\n        },\n        \"reconstructed_targeted_prompt\": prompt,\n        \n        \"targeted_repair\": [\n            {\n                \"round\": t[\"round_num\"],\n                \"verdict\": t[\"verdict\"],\n                \"success\": t[\"success\"],\n                \"code_snippet\": t[\"new_code\"][:500] + (\"...\" if len(t[\"new_code\"]) > 500 else \"\"),\n            }\n            for t in targeted_rounds\n        ],\n        \"blind_repair\": [\n            {\n                \"round\": b[\"round_num\"],\n                \"verdict\": b[\"verdict\"],\n                \"success\": b[\"success\"],\n                \"code_snippet\": b[\"new_code\"][:500] + (\"...\" if len(b[\"new_code\"]) > 500 else \"\"),\n            }\n            for b in blind_rounds\n        ],\n        \n        \"targeted_final_verdict\": targeted_rounds[-1][\"verdict\"],\n        \"blind_final_verdict\": blind_rounds[-1][\"verdict\"],\n        \n        \"failure_mechanism\": failure_type,\n        \"failure_explanation\": failure_explanation,\n        \n        \"original_code\": sample[f\"{repair_side}_code\"][:800] + (\"...\" if len(sample[f\"{repair_side}_code\"]) > 800 else \"\"),\n        \"targeted_final_code\": targeted_rounds[-1][\"new_code\"],\n        \"blind_final_code\": blind_rounds[-1][\"new_code\"],\n    }\n    \n    return case\n\ndef generate_txt_report(cases, all_gt_true_repair, output_path):\n    lines = []\n    lines.append(\"=\" * 80)\n    lines.append(\"GT=True TARGETED REPAIR FAILURE: DEEP CASE ANALYSIS\")\n    lines.append(\"=\" * 80)\n    lines.append(\"\")\n    \n    # Summary stats\n    mechanism_counts = Counter(c[\"failure_mechanism\"] for c in cases)\n    error_type_counts = Counter(c[\"error_type\"] for c in cases)\n    \n    lines.append(\"SUMMARY STATISTICS\")\n    lines.append(\"-\" * 40)\n    lines.append(f\"Total GT=True samples with repair: {len(all_gt_true_repair)}\")\n    \n    t_success = sum(1 for s in all_gt_true_repair \n                    for k in s[\"repair\"] if \"targeted\" in k \n                    if isinstance(s[\"repair\"][k], list) and s[\"repair\"][k][-1].get(\"success\"))\n    b_success = sum(1 for s in all_gt_true_repair \n                    for k in s[\"repair\"] if \"blind\" in k \n                    if isinstance(s[\"repair\"][k], list) and s[\"repair\"][k][-1].get(\"success\"))\n    lines.append(f\"Targeted repair success: {t_success}/{len(all_gt_true_repair)} ({100*t_success/len(all_gt_true_repair):.1f}%)\")\n    lines.append(f\"Blind repair success: {b_success}/{len(all_gt_true_repair)} ({100*b_success/len(all_gt_true_repair):.1f}%)\")\n    lines.append(f\"Cases where targeted fails + blind succeeds: {len(cases)}\")\n    lines.append(\"\")\n    \n    lines.append(\"FAILURE MECHANISM DISTRIBUTION\")\n    lines.append(\"-\" * 40)\n    for mech, count in mechanism_counts.most_common():\n        lines.append(f\"  {mech}: {count}\")\n    lines.append(\"\")\n    \n    lines.append(\"ERROR TYPE DISTRIBUTION\")\n    lines.append(\"-\" * 40)\n    for et, count in error_type_counts.most_common():\n        lines.append(f\"  {et}: {count}\")\n    lines.append(\"\")\n    \n    # Detailed cases\n    for i, c in enumerate(cases, 1):\n        lines.append(\"=\" * 80)\n        lines.append(f\"CASE {i}: {c['sample_id']}\")\n        lines.append(\"=\" * 80)\n        lines.append(\"\")\n        \n        lines.append(f\"Ground Truth: {c['ground_truth']}\")\n        lines.append(f\"Conclusion: {c['conclusion']}\")\n        lines.append(f\"Premises: {c['premises_full']}\")\n        lines.append(\"\")\n        \n        lines.append(\"--- Original Representations ---\")\n        lines.append(f\"FOL verdict: {c['fol_verdict']} ({'CORRECT' if c['fol_correct'] else 'WRONG'})\")\n        lines.append(f\"Code verdict: {c['code_verdict']} ({'CORRECT' if c['code_correct'] else 'WRONG'})\")\n        lines.append(f\"Error type: {c['error_type']}\")\n        lines.append(f\"Error side: {c['error_side']}\")\n        lines.append(f\"Repair applied to: {c['repair_side']}\")\n        lines.append(\"\")\n        \n        stab = c.get(\"stability\", {})\n        if stab:\n            lines.append(\"--- Stability Check ---\")\n            lines.append(f\"FOL 2nd run: {stab.get('fol_verdict_2', 'N/A')}, consistent: {stab.get('fol_consistent', 'N/A')}\")\n            lines.append(f\"Code 2nd run: {stab.get('code_verdict_2', 'N/A')}, consistent: {stab.get('code_consistent', 'N/A')}\")\n            lines.append(f\"Predicted error side: {stab.get('predicted_error_side', 'N/A')}\")\n            lines.append(\"\")\n        \n        lines.append(\"--- Diagnostic Info Fed to Targeted Repair ---\")\n        di = c[\"diagnosis_info\"]\n        lines.append(f\"Your verdict: {di['wrong_verdict']}\")\n        lines.append(f\"Other representation got: {di['other_verdict']}\")\n        lines.append(f\"Error pattern: {di['error_type']}\")\n        lines.append(f\"Hint: {di['hint'] or '(none)'}\")\n        lines.append(\"\")\n        \n        lines.append(\"--- Targeted Repair Attempts ---\")\n        for t in c[\"targeted_repair\"]:\n            lines.append(f\"Round {t['round']}: verdict={t['verdict']}, success={t['success']}\")\n        lines.append(f\"Final targeted verdict: {c['targeted_final_verdict']} (GT={c['ground_truth']})\")\n        lines.append(\"\")\n        \n        lines.append(\"--- Blind Repair Attempts ---\")\n        for b in c[\"blind_repair\"]:\n            lines.append(f\"Round {b['round']}: verdict={b['verdict']}, success={b['success']}\")\n        lines.append(f\"Final blind verdict: {c['blind_final_verdict']} (GT={c['ground_truth']})\")\n        lines.append(\"\")\n        \n        lines.append(\"--- Failure Mechanism ---\")\n        lines.append(f\"Classification: {c['failure_mechanism']}\")\n        lines.append(f\"Explanation: {c['failure_explanation']}\")\n        lines.append(\"\")\n        \n        lines.append(\"--- Original Erring Code (truncated) ---\")\n        lines.append(c[\"original_code\"][:600])\n        lines.append(\"\")\n        \n        lines.append(\"--- Targeted Final Code (truncated) ---\")\n        lines.append(c[\"targeted_final_code\"][:600])\n        lines.append(\"\")\n        \n        lines.append(\"--- Blind Final Code (truncated) ---\")\n        lines.append(c[\"blind_final_code\"][:600])\n        lines.append(\"\")\n    \n    # Analysis section\n    lines.append(\"=\" * 80)\n    lines.append(\"CROSS-CASE ANALYSIS\")\n    lines.append(\"=\" * 80)\n    lines.append(\"\")\n    \n    lines.append(\"1. WHY GT=True IS ESPECIALLY VULNERABLE\")\n    lines.append(\"-\" * 40)\n    lines.append(textwrap.fill(\n        \"When GT=True, both FOL and Code representations can arrive at 'True' through \"\n        \"different valid reasoning paths. When one representation errs (typically producing \"\n        \"'False' or 'Unknown'), the disagreement often arises from subtle encoding issues \"\n        \"rather than fundamental logical errors. The targeted repair prompt tells the model \"\n        \"'the other side got True' and 'your error type is X', which can cause the model to \"\n        \"overcorrect — especially on nuanced problems where the original code was partially \"\n        \"correct. The model, upon being told its answer is wrong, often hedges to 'Unknown' \"\n        \"rather than fixing the specific issue.\", width=80))\n    lines.append(\"\")\n    \n    lines.append(\"2. OVERCORRECTION PATTERN\")\n    lines.append(\"-\" * 40)\n    oc_count = mechanism_counts.get(\"overcorrection\", 0)\n    lines.append(textwrap.fill(\n        f\"Overcorrection accounts for {oc_count}/{len(cases)} cases. The pattern: \"\n        \"the model is told its verdict is wrong and given an error type hint. Instead \"\n        \"of surgically fixing the identified issue, it rewrites the code more cautiously, \"\n        \"often producing 'Unknown' — a safe but incorrect hedge. This suggests the \"\n        \"diagnostic information increases model uncertainty without providing enough \"\n        \"specific guidance for correct repair.\", width=80))\n    lines.append(\"\")\n    \n    lines.append(\"3. MISLEADING DIAGNOSIS (error_side=both)\")\n    lines.append(\"-\" * 40)\n    md_count = mechanism_counts.get(\"misleading_diagnosis\", 0)\n    lines.append(textwrap.fill(\n        f\"Misleading diagnosis accounts for {md_count}/{len(cases)} cases. When \"\n        \"error_side='both', both representations are wrong, but the targeted repair \"\n        \"prompt tells the erring side what the OTHER side produced — which is also wrong. \"\n        \"This creates a fundamentally flawed repair signal: the model tries to match \"\n        \"a wrong reference answer.\", width=80))\n    lines.append(\"\")\n    \n    lines.append(\"4. IMPROVEMENT RECOMMENDATIONS\")\n    lines.append(\"-\" * 40)\n    lines.append(\"a) Confidence-based filtering: Do not attempt targeted repair when\")\n    lines.append(\"   stability check shows the 'correct' side is itself unstable.\")\n    lines.append(\"b) Skip targeted repair when error_side='both' — blind regen is safer.\")\n    lines.append(\"c) Reduce diagnostic info strength: instead of revealing the other\")\n    lines.append(\"   side's verdict directly, provide softer hints ('reconsider your\")\n    lines.append(\"   encoding of negations') without revealing the expected answer.\")\n    lines.append(\"d) For GT=True cases with error_type in {negation_error, logic_error},\")\n    lines.append(\"   consider falling back to blind regen, since the targeted repair\")\n    lines.append(\"   success rate is significantly lower than blind regen in this subgroup.\")\n    lines.append(\"\")\n    \n    return \"\\n\".join(lines)\n\n\ndef main():\n    with open(DATA_PATH) as f:\n        data = json.load(f)\n    \n    gt_true_with_repair = [\n        s for s in data \n        if s.get(\"ground_truth\") == \"True\" \n        and s.get(\"repair\") \n        and len(s[\"repair\"]) > 0\n    ]\n    \n    target_cases = []\n    for s in gt_true_with_repair:\n        r = s[\"repair\"]\n        targeted_keys = [k for k in r if \"targeted\" in k]\n        blind_keys = [k for k in r if \"blind\" in k]\n        \n        t_success = False\n        b_success = False\n        \n        for tk in targeted_keys:\n            rounds = r[tk]\n            if isinstance(rounds, list) and len(rounds) > 0:\n                t_success = rounds[-1].get(\"success\", False)\n        \n        for bk in blind_keys:\n            rounds = r[bk]\n            if isinstance(rounds, list) and len(rounds) > 0:\n                b_success = rounds[-1].get(\"success\", False)\n        \n        if not t_success and b_success:\n            target_cases.append(s)\n    \n    print(f\"Found {len(target_cases)} cases (targeted fail + blind success)\")\n    \n    cases = []\n    for s in target_cases:\n        case = analyze_case(s)\n        cases.append(case)\n        print(f\"  Analyzed: {case['sample_id']} -> {case['failure_mechanism']}\")\n    \n    # Also analyze targeted-fail + blind-fail cases for completeness\n    both_fail = []\n    for s in gt_true_with_repair:\n        r = s[\"repair\"]\n        targeted_keys = [k for k in r if \"targeted\" in k]\n        blind_keys = [k for k in r if \"blind\" in k]\n        \n        t_success = False\n        b_success = False\n        \n        for tk in targeted_keys:\n            rounds = r[tk]\n            if isinstance(rounds, list) and len(rounds) > 0:\n                t_success = rounds[-1].get(\"success\", False)\n        \n        for bk in blind_keys:\n            rounds = r[bk]\n            if isinstance(rounds, list) and len(rounds) > 0:\n                b_success = rounds[-1].get(\"success\", False)\n        \n        if not t_success and not b_success:\n            both_fail.append(analyze_case(s))\n    \n    output = {\n        \"summary\": {\n            \"total_gt_true_with_repair\": len(gt_true_with_repair),\n            \"targeted_fail_blind_success\": len(cases),\n            \"both_fail\": len(both_fail),\n            \"failure_mechanisms\": dict(Counter(c[\"failure_mechanism\"] for c in cases)),\n            \"error_types\": dict(Counter(c[\"error_type\"] for c in cases)),\n        },\n        \"targeted_fail_blind_success_cases\": cases,\n        \"both_fail_cases\": both_fail,\n    }\n    \n    with open(OUT_JSON, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n    print(f\"JSON report saved to {OUT_JSON}\")\n    \n    txt = generate_txt_report(cases, gt_true_with_repair, OUT_TXT)\n    with open(OUT_TXT, \"w\") as f:\n        f.write(txt)\n    print(f\"TXT report saved to {OUT_TXT}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\npython3 src/gt_true_case_study.py\n",
+  "account": "root"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > src/gt_true_case_study.py << 'PYEOF'\n\"\"\"\nGT=True subgroup: targeted repair failure case study.\nIdentifies cases where targeted repair fails but blind repair succeeds,\nanalyzes failure mechanisms, and generates detailed reports.\n\"\"\"\nimport json\nimport textwrap\nfrom collections import Counter\n\nDATA_PATH = \"results/mvp_v4_repair_fixed.json\"\nOUT_JSON = \"results/exp001_gt_true_case_study.json\"\nOUT_TXT = \"results/exp001_gt_true_case_study.txt\"\n\n_HINTS = {\n    \"quantifier_error\":   \"Check that every universal/existential quantifier in the premises is encoded.\",\n    \"negation_error\":     \"Check that all negations (not, no, never …) are handled correctly.\",\n    \"constraint_missing\": \"Some premises may not be encoded. Ensure every premise is represented.\",\n    \"constraint_extra\":   \"There may be extra constraints not in the premises. Remove them.\",\n    \"type_boundary\":      \"There may be a type or index error in the code.\",\n    \"timeout\":            \"The code timed out — simplify the approach.\",\n    \"logic_error\":        \"\",\n}\n\ndef reconstruct_targeted_prompt(sample, repair_side):\n    d = sample[\"disagreement\"]\n    error_type = d[\"error_type\"]\n    \n    if repair_side == \"code\":\n        repr_type = \"Python code\"\n        other_type = \"FOL (Z3)\"\n        wrong_verdict = sample[\"code_exec\"][\"verdict\"]\n        other_verdict = sample[\"fol_exec\"][\"verdict\"]\n        original_code = sample[\"code_code\"]\n    else:\n        repr_type = \"FOL (Z3)\"\n        other_type = \"Python code\"\n        wrong_verdict = sample[\"fol_exec\"][\"verdict\"]\n        other_verdict = sample[\"code_exec\"][\"verdict\"]\n        original_code = sample[\"fol_code\"]\n    \n    hint_text = _HINTS.get(error_type, \"\")\n    if error_type == \"exec_crash\":\n        hint_text = (\n            f\"Your code crashed during execution. \"\n            f\"The other representation produced: {other_verdict}. \"\n            \"Rewrite from scratch with correct syntax and API usage.\"\n        )\n    hint = f\"- Hint: {hint_text}\" if hint_text else \"\"\n    \n    prompt = f\"\"\"The following {repr_type} code was generated for a logical reasoning problem\nbut produced an INCORRECT result.\n\n## Problem\nPremises:\n{sample['premises']}\n\nConclusion:\n{sample['conclusion']}\n\n## Your previous code\n```python\n{original_code}\n```\n\n## Diagnostic information\n- Your verdict: {wrong_verdict}\n- The other representation ({other_type}) got: {other_verdict}\n- Identified error pattern: {error_type}\n{hint}\n\nFix the code. Output ONLY the corrected **{repr_type}** script in a ```python``` block.\nPrint exactly one word: True, False, or Unknown.\"\"\"\n    return prompt\n\ndef classify_failure(sample, repair_side):\n    \"\"\"Classify the failure mechanism based on analysis of the case.\"\"\"\n    d = sample[\"disagreement\"]\n    r = sample[\"repair\"]\n    \n    repair_key = f\"{repair_side}_targeted\"\n    targeted_rounds = r[repair_key]\n    \n    fol_v = sample[\"fol_exec\"][\"verdict\"]\n    code_v = sample[\"code_exec\"][\"verdict\"]\n    gt = sample[\"ground_truth\"]\n    error_type = d[\"error_type\"]\n    error_side = d[\"error_side\"]\n    \n    final_targeted_verdict = targeted_rounds[-1][\"verdict\"]\n    \n    if error_side == \"both\":\n        return \"misleading_diagnosis\", (\n            f\"error_side=both means both representations are wrong, but targeted repair \"\n            f\"is told the OTHER representation's verdict as reference. Since the other \"\n            f\"side is also wrong, the diagnostic info points toward a wrong answer.\"\n        )\n    \n    if final_targeted_verdict == \"Unknown\" and gt == \"True\":\n        correct_side_verdict = fol_v if d[\"fol_correct\"] else code_v\n        return \"overcorrection\", (\n            f\"The repair overcorrected: original {repair_side} said '{code_v if repair_side == 'code' else fol_v}', \"\n            f\"but after being told the other side got '{correct_side_verdict}' with error_type='{error_type}', \"\n            f\"the model hedged to 'Unknown' instead of committing to '{gt}'. \"\n            f\"The diagnostic info made the model doubt itself too much.\"\n        )\n    \n    if final_targeted_verdict != gt and final_targeted_verdict != \"Unknown\":\n        return \"wrong_fix_direction\", (\n            f\"Repair produced '{final_targeted_verdict}' instead of '{gt}'. \"\n            f\"The error_type='{error_type}' diagnosis was {'correct' if error_side == repair_side else 'misdirected'}, \"\n            f\"but the model applied the fix in the wrong direction.\"\n        )\n    \n    return \"other\", \"Does not fit standard categories.\"\n\ndef analyze_case(sample):\n    d = sample[\"disagreement\"]\n    r = sample[\"repair\"]\n    \n    repair_keys_targeted = [k for k in r if \"targeted\" in k]\n    repair_keys_blind = [k for k in r if \"blind\" in k]\n    \n    repair_side = repair_keys_targeted[0].replace(\"_targeted\", \"\")\n    \n    targeted_rounds = r[repair_keys_targeted[0]]\n    blind_rounds = r[repair_keys_blind[0]]\n    \n    prompt = reconstruct_targeted_prompt(sample, repair_side)\n    \n    failure_type, failure_explanation = classify_failure(sample, repair_side)\n    \n    case = {\n        \"sample_id\": sample[\"id\"],\n        \"premises_summary\": sample[\"premises\"][:300] + (\"...\" if len(sample[\"premises\"]) > 300 else \"\"),\n        \"premises_full\": sample[\"premises\"],\n        \"conclusion\": sample[\"conclusion\"],\n        \"ground_truth\": sample[\"ground_truth\"],\n        \n        \"fol_verdict\": sample[\"fol_exec\"][\"verdict\"],\n        \"code_verdict\": sample[\"code_exec\"][\"verdict\"],\n        \"fol_correct\": d[\"fol_correct\"],\n        \"code_correct\": d[\"code_correct\"],\n        \"error_type\": d[\"error_type\"],\n        \"error_side\": d[\"error_side\"],\n        \"repair_side\": repair_side,\n        \n        \"stability\": sample.get(\"stability\", {}),\n        \n        \"diagnosis_info\": {\n            \"wrong_verdict\": sample[\"code_exec\"][\"verdict\"] if repair_side == \"code\" else sample[\"fol_exec\"][\"verdict\"],\n            \"other_verdict\": sample[\"fol_exec\"][\"verdict\"] if repair_side == \"code\" else sample[\"code_exec\"][\"verdict\"],\n            \"error_type\": d[\"error_type\"],\n            \"hint\": _HINTS.get(d[\"error_type\"], \"\"),\n        },\n        \"reconstructed_targeted_prompt\": prompt,\n        \n        \"targeted_repair\": [\n            {\n                \"round\": t[\"round_num\"],\n                \"verdict\": t[\"verdict\"],\n                \"success\": t[\"success\"],\n                \"code_snippet\": t[\"new_code\"][:500] + (\"...\" if len(t[\"new_code\"]) > 500 else \"\"),\n            }\n            for t in targeted_rounds\n        ],\n        \"blind_repair\": [\n            {\n                \"round\": b[\"round_num\"],\n                \"verdict\": b[\"verdict\"],\n                \"success\": b[\"success\"],\n                \"code_snippet\": b[\"new_code\"][:500] + (\"...\" if len(b[\"new_code\"]) > 500 else \"\"),\n            }\n            for b in blind_rounds\n        ],\n        \n        \"targeted_final_verdict\": targeted_rounds[-1][\"verdict\"],\n        \"blind_final_verdict\": blind_rounds[-1][\"verdict\"],\n        \n        \"failure_mechanism\": failure_type,\n        \"failure_explanation\": failure_explanation,\n        \n        \"original_code\": sample[f\"{repair_side}_code\"][:800] + (\"...\" if len(sample[f\"{repair_side}_code\"]) > 800 else \"\"),\n        \"targeted_final_code\": targeted_rounds[-1][\"new_code\"],\n        \"blind_final_code\": blind_rounds[-1][\"new_code\"],\n    }\n    \n    return case\n\ndef generate_txt_report(cases, all_gt_true_repair, output_path):\n    lines = []\n    lines.append(\"=\" * 80)\n    lines.append(\"GT=True TARGETED REPAIR FAILURE: DEEP CASE ANALYSIS\")\n    lines.append(\"=\" * 80)\n    lines.append(\"\")\n    \n    # Summary stats\n    mechanism_counts = Counter(c[\"failure_mechanism\"] for c in cases)\n    error_type_counts = Counter(c[\"error_type\"] for c in cases)\n    \n    lines.append(\"SUMMARY STATISTICS\")\n    lines.append(\"-\" * 40)\n    lines.append(f\"Total GT=True samples with repair: {len(all_gt_true_repair)}\")\n    \n    t_success = sum(1 for s in all_gt_true_repair \n                    for k in s[\"repair\"] if \"targeted\" in k \n                    if isinstance(s[\"repair\"][k], list) and s[\"repair\"][k][-1].get(\"success\"))\n    b_success = sum(1 for s in all_gt_true_repair \n                    for k in s[\"repair\"] if \"blind\" in k \n                    if isinstance(s[\"repair\"][k], list) and s[\"repair\"][k][-1].get(\"success\"))\n    lines.append(f\"Targeted repair success: {t_success}/{len(all_gt_true_repair)} ({100*t_success/len(all_gt_true_repair):.1f}%)\")\n    lines.append(f\"Blind repair success: {b_success}/{len(all_gt_true_repair)} ({100*b_success/len(all_gt_true_repair):.1f}%)\")\n    lines.append(f\"Cases where targeted fails + blind succeeds: {len(cases)}\")\n    lines.append(\"\")\n    \n    lines.append(\"FAILURE MECHANISM DISTRIBUTION\")\n    lines.append(\"-\" * 40)\n    for mech, count in mechanism_counts.most_common():\n        lines.append(f\"  {mech}: {count}\")\n    lines.append(\"\")\n    \n    lines.append(\"ERROR TYPE DISTRIBUTION\")\n    lines.append(\"-\" * 40)\n    for et, count in error_type_counts.most_common():\n        lines.append(f\"  {et}: {count}\")\n    lines.append(\"\")\n    \n    # Detailed cases\n    for i, c in enumerate(cases, 1):\n        lines.append(\"=\" * 80)\n        lines.append(f\"CASE {i}: {c['sample_id']}\")\n        lines.append(\"=\" * 80)\n        lines.append(\"\")\n        \n        lines.append(f\"Ground Truth: {c['ground_truth']}\")\n        lines.append(f\"Conclusion: {c['conclusion']}\")\n        lines.append(f\"Premises: {c['premises_full']}\")\n        lines.append(\"\")\n        \n        lines.append(\"--- Original Representations ---\")\n        lines.append(f\"FOL verdict: {c['fol_verdict']} ({'CORRECT' if c['fol_correct'] else 'WRONG'})\")\n        lines.append(f\"Code verdict: {c['code_verdict']} ({'CORRECT' if c['code_correct'] else 'WRONG'})\")\n        lines.append(f\"Error type: {c['error_type']}\")\n        lines.append(f\"Error side: {c['error_side']}\")\n        lines.append(f\"Repair applied to: {c['repair_side']}\")\n        lines.append(\"\")\n        \n        stab = c.get(\"stability\", {})\n        if stab:\n            lines.append(\"--- Stability Check ---\")\n            lines.append(f\"FOL 2nd run: {stab.get('fol_verdict_2', 'N/A')}, consistent: {stab.get('fol_consistent', 'N/A')}\")\n            lines.append(f\"Code 2nd run: {stab.get('code_verdict_2', 'N/A')}, consistent: {stab.get('code_consistent', 'N/A')}\")\n            lines.append(f\"Predicted error side: {stab.get('predicted_error_side', 'N/A')}\")\n            lines.append(\"\")\n        \n        lines.append(\"--- Diagnostic Info Fed to Targeted Repair ---\")\n        di = c[\"diagnosis_info\"]\n        lines.append(f\"Your verdict: {di['wrong_verdict']}\")\n        lines.append(f\"Other representation got: {di['other_verdict']}\")\n        lines.append(f\"Error pattern: {di['error_type']}\")\n        lines.append(f\"Hint: {di['hint'] or '(none)'}\")\n        lines.append(\"\")\n        \n        lines.append(\"--- Targeted Repair Attempts ---\")\n        for t in c[\"targeted_repair\"]:\n            lines.append(f\"Round {t['round']}: verdict={t['verdict']}, success={t['success']}\")\n        lines.append(f\"Final targeted verdict: {c['targeted_final_verdict']} (GT={c['ground_truth']})\")\n        lines.append(\"\")\n        \n        lines.append(\"--- Blind Repair Attempts ---\")\n        for b in c[\"blind_repair\"]:\n            lines.append(f\"Round {b['round']}: verdict={b['verdict']}, success={b['success']}\")\n        lines.append(f\"Final blind verdict: {c['blind_final_verdict']} (GT={c['ground_truth']})\")\n        lines.append(\"\")\n        \n        lines.append(\"--- Failure Mechanism ---\")\n        lines.append(f\"Classification: {c['failure_mechanism']}\")\n        lines.append(f\"Explanation: {c['failure_explanation']}\")\n        lines.append(\"\")\n        \n        lines.append(\"--- Original Erring Code (truncated) ---\")\n        lines.append(c[\"original_code\"][:600])\n        lines.append(\"\")\n        \n        lines.append(\"--- Targeted Final Code (truncated) ---\")\n        lines.append(c[\"targeted_final_code\"][:600])\n        lines.append(\"\")\n        \n        lines.append(\"--- Blind Final Code (truncated) ---\")\n        lines.append(c[\"blind_final_code\"][:600])\n        lines.append(\"\")\n    \n    # Analysis section\n    lines.append(\"=\" * 80)\n    lines.append(\"CROSS-CASE ANALYSIS\")\n    lines.append(\"=\" * 80)\n    lines.append(\"\")\n    \n    lines.append(\"1. WHY GT=True IS ESPECIALLY VULNERABLE\")\n    lines.append(\"-\" * 40)\n    lines.append(textwrap.fill(\n        \"When GT=True, both FOL and Code representations can arrive at 'True' through \"\n        \"different valid reasoning paths. When one representation errs (typically producing \"\n        \"'False' or 'Unknown'), the disagreement often arises from subtle encoding issues \"\n        \"rather than fundamental logical errors. The targeted repair prompt tells the model \"\n        \"'the other side got True' and 'your error type is X', which can cause the model to \"\n        \"overcorrect — especially on nuanced problems where the original code was partially \"\n        \"correct. The model, upon being told its answer is wrong, often hedges to 'Unknown' \"\n        \"rather than fixing the specific issue.\", width=80))\n    lines.append(\"\")\n    \n    lines.append(\"2. OVERCORRECTION PATTERN\")\n    lines.append(\"-\" * 40)\n    oc_count = mechanism_counts.get(\"overcorrection\", 0)\n    lines.append(textwrap.fill(\n        f\"Overcorrection accounts for {oc_count}/{len(cases)} cases. The pattern: \"\n        \"the model is told its verdict is wrong and given an error type hint. Instead \"\n        \"of surgically fixing the identified issue, it rewrites the code more cautiously, \"\n        \"often producing 'Unknown' — a safe but incorrect hedge. This suggests the \"\n        \"diagnostic information increases model uncertainty without providing enough \"\n        \"specific guidance for correct repair.\", width=80))\n    lines.append(\"\")\n    \n    lines.append(\"3. MISLEADING DIAGNOSIS (error_side=both)\")\n    lines.append(\"-\" * 40)\n    md_count = mechanism_counts.get(\"misleading_diagnosis\", 0)\n    lines.append(textwrap.fill(\n        f\"Misleading diagnosis accounts for {md_count}/{len(cases)} cases. When \"\n        \"error_side='both', both representations are wrong, but the targeted repair \"\n        \"prompt tells the erring side what the OTHER side produced — which is also wrong. \"\n        \"This creates a fundamentally flawed repair signal: the model tries to match \"\n        \"a wrong reference answer.\", width=80))\n    lines.append(\"\")\n    \n    lines.append(\"4. IMPROVEMENT RECOMMENDATIONS\")\n    lines.append(\"-\" * 40)\n    lines.append(\"a) Confidence-based filtering: Do not attempt targeted repair when\")\n    lines.append(\"   stability check shows the 'correct' side is itself unstable.\")\n    lines.append(\"b) Skip targeted repair when error_side='both' — blind regen is safer.\")\n    lines.append(\"c) Reduce diagnostic info strength: instead of revealing the other\")\n    lines.append(\"   side's verdict directly, provide softer hints ('reconsider your\")\n    lines.append(\"   encoding of negations') without revealing the expected answer.\")\n    lines.append(\"d) For GT=True cases with error_type in {negation_error, logic_error},\")\n    lines.append(\"   consider falling back to blind regen, since the targeted repair\")\n    lines.append(\"   success rate is significantly lower than blind regen in this subgroup.\")\n    lines.append(\"\")\n    \n    return \"\\n\".join(lines)\n\n\ndef main():\n    with open(DATA_PATH) as f:\n        data = json.load(f)\n    \n    gt_true_with_repair = [\n        s for s in data \n        if s.get(\"ground_truth\") == \"True\" \n        and s.get(\"repair\") \n        and len(s[\"repair\"]) > 0\n    ]\n    \n    target_cases = []\n    for s in gt_true_with_repair:\n        r = s[\"repair\"]\n        targeted_keys = [k for k in r if \"targeted\" in k]\n        blind_keys = [k for k in r if \"blind\" in k]\n        \n        t_success = False\n        b_success = False\n        \n        for tk in targeted_keys:\n            rounds = r[tk]\n            if isinstance(rounds, list) and len(rounds) > 0:\n                t_success = rounds[-1].get(\"success\", False)\n        \n        for bk in blind_keys:\n            rounds = r[bk]\n            if isinstance(rounds, list) and len(rounds) > 0:\n                b_success = rounds[-1].get(\"success\", False)\n        \n        if not t_success and b_success:\n            target_cases.append(s)\n    \n    print(f\"Found {len(target_cases)} cases (targeted fail + blind success)\")\n    \n    cases = []\n    for s in target_cases:\n        case = analyze_case(s)\n        cases.append(case)\n        print(f\"  Analyzed: {case['sample_id']} -> {case['failure_mechanism']}\")\n    \n    # Also analyze targeted-fail + blind-fail cases for completeness\n    both_fail = []\n    for s in gt_true_with_repair:\n        r = s[\"repair\"]\n        targeted_keys = [k for k in r if \"targeted\" in k]\n        blind_keys = [k for k in r if \"blind\" in k]\n        \n        t_success = False\n        b_success = False\n        \n        for tk in targeted_keys:\n            rounds = r[tk]\n            if isinstance(rounds, list) and len(rounds) > 0:\n                t_success = rounds[-1].get(\"success\", False)\n        \n        for bk in blind_keys:\n            rounds = r[bk]\n            if isinstance(rounds, list) and len(rounds) > 0:\n                b_success = rounds[-1].get(\"success\", False)\n        \n        if not t_success and not b_success:\n            both_fail.append(analyze_case(s))\n    \n    output = {\n        \"summary\": {\n            \"total_gt_true_with_repair\": len(gt_true_with_repair),\n            \"targeted_fail_blind_success\": len(cases),\n            \"both_fail\": len(both_fail),\n            \"failure_mechanisms\": dict(Counter(c[\"failure_mechanism\"] for c in cases)),\n            \"error_types\": dict(Counter(c[\"error_type\"] for c in cases)),\n        },\n        \"targeted_fail_blind_success_cases\": cases,\n        \"both_fail_cases\": both_fail,\n    }\n    \n    with open(OUT_JSON, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n    print(f\"JSON report saved to {OUT_JSON}\")\n    \n    txt = generate_txt_report(cases, gt_true_with_repair, OUT_TXT)\n    with open(OUT_TXT, \"w\") as f:\n        f.write(txt)\n    print(f\"TXT report saved to {OUT_TXT}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\npython3 src/gt_true_case_study.py\n",
+    "account": "root"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T06:38:33.166445+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Found 5 cases (targeted fail + blind success)\\n  Analyzed: folio_validation_1 -> overcorrection\\n  Analyzed: folio_validation_110 -> misleading_diagnosis\\n  Analyzed: folio_validation_155 -> wrong_fix_direction\\n  Analyzed: folio_validation_80 -> overcorrection\\n  Analyzed: folio_validation_87 -> overcorrection\\nJSON report saved to results/exp001_gt_true_case_study.json\\nTXT report saved to results/exp001_gt_true_case_study.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T06:38:33.166601+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "cat /root/autodl-tmp/crdd/results/exp001_gt_true_case_study.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "cat /root/autodl-tmp/crdd/results/exp001_gt_true_case_study.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T06:38:33.166821+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"================================================================================\\nGT=True TARGETED REPAIR FAILURE: DEEP CASE ANALYSIS\\n================================================================================\\n\\nSUMMARY STATISTICS\\n----------------------------------------\\nTotal GT=True samples with repair: 22\\nTargeted repair success: 14/22 (63.6%)\\nBlind repair success: 17/22 (77.3%)\\nCases where targeted fails + blind succeeds: 5\\n\\nFAILURE MECHANISM DISTRIBUTION\\n----------------------------------------\\n  overcorrection: 3\\n  misleading_diagnosis: 1\\n  wrong_fix_direction: 1\\n\\nERROR TYPE DISTRIBUTION\\n----------------------------------------\\n  logic_error: 3\\n  negation_error: 2\\n\\n================================================================================\\nCASE 1: folio_validation_1\\n================================================================================\\n\\nGround Truth: True\\nConclusion: If Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\\nPremises: If people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is
+…[truncated 6548 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T06:38:33.167046+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/exp001_gt_true_case_study.json') as f:\n    report = json.load(f)\n\nprint('=== SUMMARY ===')\nprint(json.dumps(report['summary'], indent=2))\nprint()\n\nfor c in report['targeted_fail_blind_success_cases']:\n    print(f'=== {c[\\\"sample_id\\\"]} ===')\n    print(f'Conclusion: {c[\\\"conclusion\\\"]}')\n    print(f'FOL: {c[\\\"fol_verdict\\\"]} (correct={c[\\\"fol_correct\\\"]})')\n    print(f'Code: {c[\\\"code_verdict\\\"]} (correct={c[\\\"code_correct\\\"]})')\n    print(f'Error: {c[\\\"error_type\\\"]}/{c[\\\"error_side\\\"]}')\n    print(f'Stability: fol_consistent={c[\\\"stability\\\"].get(\\\"fol_consistent\\\")}, code_consistent={c[\\\"stability\\\"].get(\\\"code_consistent\\\")}')\n    print(f'Targeted final: {c[\\\"targeted_final_verdict\\\"]}')\n    print(f'Blind final: {c[\\\"blind_final_verdict\\\"]}')\n    print(f'Failure: {c[\\\"failure_mechanism\\\"]} - {c[\\\"failure_explanation\\\"][:200]}')\n    print()\n\nprint('=== BOTH-FAIL CASES ===')\nfor c in report['both_fail_cases']:\n    print(f'{c[\\\"sample_id\\\"]}: err={c[\\\"error_type\\\"]}/{c[\\\"error_side\\\"]}, T={c[\\\"targeted_final_verdict\\\"]}, B={c[\\\"blind_final_verdict\\\"]}, mech={c[\\\"failure_mechanism\\\"]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/exp001_gt_true_case_study.json') as f:\n    report = json.load(f)\n\nprint('=== SUMMARY ===')\nprint(json.dumps(report['summary'], indent=2))\nprint()\n\nfor c in report['targeted_fail_blind_success_cases']:\n    print(f'=== {c[\\\"sample_id\\\"]} ===')\n    print(f'Conclusion: {c[\\\"conclusion\\\"]}')\n    print(f'FOL: {c[\\\"fol_verdict\\\"]} (correct={c[\\\"fol_correct\\\"]})')\n    print(f'Code: {c[\\\"code_verdict\\\"]} (correct={c[\\\"code_correct\\\"]})')\n    print(f'Error: {c[\\\"error_type\\\"]}/{c[\\\"error_side\\\"]}')\n    print(f'Stability: fol_consistent={c[\\\"stability\\\"].get(\\\"fol_consistent\\\")}, code_consistent={c[\\\"stability\\\"].get(\\\"code_consistent\\\")}')\n    print(f'Targeted final: {c[\\\"targeted_final_verdict\\\"]}')\n    print(f'Blind final: {c[\\\"blind_final_verdict\\\"]}')\n    print(f'Failure: {c[\\\"failure_mechanism\\\"]} - {c[\\\"failure_explanation\\\"][:200]}')\n    print()\n\nprint('=== BOTH-FAIL CASES ===')\nfor c in report['both_fail_cases']:\n    print(f'{c[\\\"sample_id\\\"]}: err={c[\\\"error_type\\\"]}/{c[\\\"error_side\\\"]}, T={c[\\\"targeted_final_verdict\\\"]}, B={c[\\\"blind_final_verdict\\\"]}, mech={c[\\\"failure_mechanism\\\"]}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T06:38:33.167255+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== SUMMARY ===\\n{\\n  \\\"total_gt_true_with_repair\\\": 22,\\n  \\\"targeted_fail_blind_success\\\": 5,\\n  \\\"both_fail\\\": 3,\\n  \\\"failure_mechanisms\\\": {\\n    \\\"overcorrection\\\": 3,\\n    \\\"misleading_diagnosis\\\": 1,\\n    \\\"wrong_fix_direction\\\": 1\\n  },\\n  \\\"error_types\\\": {\\n    \\\"negation_error\\\": 2,\\n    \\\"logic_error\\\": 3\\n  }\\n}\\n\\n=== folio_validation_1 ===\\nConclusion: If Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\\nFOL: True (correct=True)\\nCode: False (correct=False)\\nError: negation_error/code\\nStability: fol_consistent=True, code_consistent=False\\nTargeted final: Unknown\\nBlind final: True\\nFailure: overcorrection - The repair overcorrected: original code said 'False', but after being told the other side got 'True' with error_type='negation_error', the model hedged to 'Unknown' instead of committing to 'True'. Th\\n\\n=== folio_validation_110 ===\\nConclusion: Peter is either a foodie who goes out frequently to find new food restaurants to try and belong to a household with a high net income or he is a foodie who goes out frequently to find new food restaurants to try nor belongs to a household with a high net income.\\nFOL: False (correct=False)\\nCode: Unknown (correct=False)\\nError: negation_error/both\\nStability: fol_consistent=True, code_consistent=True\\nTargeted final: False\\nBlind final: False\\nFailure: misleading_diagnosis - error_side=both means both representations are wrong, but targeted repair is told the OTHER representation's verdict as reference. Since the other side is also wrong, the diagno
+…[truncated 2102 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T06:38:33.167446+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\nfor s in data:\n    if s['id'] == 'folio_validation_110':\n        r = s['repair']\n        print('Repair keys:', list(r.keys()))\n        for k, v in r.items():\n            if isinstance(v, list):\n                for item in v:\n                    print(f'  {k} round {item[\\\"round_num\\\"]}: verdict={item[\\\"verdict\\\"]}, success={item[\\\"success\\\"]}')\n        break\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('results/mvp_v4_repair_fixed.json') as f:\n    data = json.load(f)\n\nfor s in data:\n    if s['id'] == 'folio_validation_110':\n        r = s['repair']\n        print('Repair keys:', list(r.keys()))\n        for k, v in r.items():\n            if isinstance(v, list):\n                for item in v:\n                    print(f'  {k} round {item[\\\"round_num\\\"]}: verdict={item[\\\"verdict\\\"]}, success={item[\\\"success\\\"]}')\n        break\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T06:38:33.167590+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Repair keys: ['fol_targeted', 'fol_blind', 'code_targeted', 'code_blind']\\n  fol_targeted round 1: verdict=False, success=False\\n  fol_targeted round 2: verdict=False, success=False\\n  fol_blind round 1: verdict=False, success=False\\n  fol_blind round 2: verdict=False, success=False\\n  code_targeted round 1: verdict=False, success=False\\n  code_targeted round 2: verdict=False, success=False\\n  code_blind round 1: verdict=True, success=True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T06:38:33.167825+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > src/gt_true_case_study.py << 'PYEOF'\n\"\"\"\nGT=True subgroup: targeted repair failure case study.\nIdentifies cases where targeted repair fails but blind repair succeeds,\nanalyzes failure mechanisms, and generates detailed reports.\n\"\"\"\nimport json\nimport textwrap\nfrom collections import Counter\n\nDATA_PATH = \"results/mvp_v4_repair_fixed.json\"\nOUT_JSON = \"results/exp001_gt_true_case_study.json\"\nOUT_TXT = \"results/exp001_gt_true_case_study.txt\"\n\n_HINTS = {\n    \"quantifier_error\":   \"Check that every universal/existential quantifier in the premises is encoded.\",\n    \"negation_error\":     \"Check that all negations (not, no, never …) are handled correctly.\",\n    \"constraint_missing\": \"Some premises may not be encoded. Ensure every premise is represented.\",\n    \"constraint_extra\":   \"There may be extra constraints not in the premises. Remove them.\",\n    \"type_boundary\":      \"There may be a type or index error in the code.\",\n    \"timeout\":            \"The code timed out — simplify the approach.\",\n    \"logic_error\":        \"\",\n}\n\ndef get_repair_outcomes(sample):\n    \"\"\"Get all repair outcomes, handling both single-side and both-side repairs.\"\"\"\n    r = sample[\"repair\"]\n    outcomes = {}\n    for key, rounds in r.items():\n        if isinstance(rounds, list) and len(rounds) > 0:\n            last = rounds[-1]\n            outcomes[key] = {\n                \"verdict\": last[\"verdict\"],\n                \"success\": last[\"success\"],\n                \"rounds\": rounds,\n            }\n    return outcomes\n\ndef is_targeted_fail_blind_success(sample):\n    \"\"\"Check if ANY targeted fails while ANY blind succeeds.\"\"\"\n    outcomes = get_repair_outcomes(sample)\n    any_targeted_fail = any(not v[\"success\"] for k, v in outcomes.items() if \"targeted\" in k)\n    any_blind_success = any(v[\"success\"] for k, v in outcomes.items() if \"blind\" in k)\n    return any_targeted_fail and any_blind_success\n\ndef is_all_fail(sample):\n    \"\"\"Check if ALL repairs fail.\"\"\"\n    outcomes = get_repair_outcomes(sample)\n    return all(not v[\"success\"] for v in outcomes.values())\n\ndef reconstruct_targeted_prompt(sample, repair_side):\n    d = sample[\"disagreement\"]\n    error_type = d[\"error_type\"]\n    \n    if repair_side == \"code\":\n        repr_type = \"Python code\"\n        other_type = \"FOL (Z3)\"\n        wrong_verdict = sample[\"code_exec\"][\"verdict\"]\n        other_verdict = sample[\"fol_exec\"][\"verdict\"]\n        original_code = sample[\"code_code\"]\n    else:\n        repr_type = \"FOL (Z3)\"\n        other_type = \"Python code\"\n        wrong_verdict = sample[\"fol_exec\"][\"verdict\"]\n        other_verdict = sample[\"code_exec\"][\"verdict\"]\n        original_code = sample[\"fol_code\"]\n    \n    hint_text = _HINTS.get(error_type, \"\")\n    if error_type == \"exec_crash\":\n        hint_text = (\n            f\"Your code crashed during execution. \"\n            f\"The other representation produced: {other_verdict}. \"\n            \"Rewrite from scratch with correct syntax and API usage.\"\n        )\n    hint = f\"- Hint: {hint_text}\" if hint_text else \"\"\n    \n    return {\n        \"repr_type\": repr_type,\n        \"wrong_verdict\": wrong_verdict,\n        \"other_type\": other_type,\n        \"other_verdict\": other_verdict,\n        \"error_type\": error_type,\n        \"hint\": hint_text,\n    }\n\ndef classify_failure(sample, targeted_key, blind_key):\n    d = sample[\"disagreement\"]\n    r = sample[\"repair\"]\n    error_side = d[\"error_side\"]\n    error_type = d[\"error_type\"]\n    gt = sample[\"ground_truth\"]\n    \n    targeted_rounds = r[targeted_key]\n    blind_rounds = r[blind_key]\n    final_t = targeted_rounds[-1][\"verdict\"]\n    final_b = blind_rounds[-1][\"verdict\"]\n    \n    repair_side = targeted_key.replace(\"_targeted\", \"\")\n    \n    if error_side == \"both\":\n        orig_fol = sample[\"fol_exec\"][\"verdict\"]\n        orig_code = sample[\"code_exec\"][\"verdict\"]\n        return \"misleading_diagnosis\", (\n            f\"error_side=both: BOTH representations are wrong (FOL={orig_fol}, Code={orig_code}, GT={gt}). \"\n            f\"Targeted repair tells {repair_side} that the OTHER side got \"\n            f\"'{orig_code if repair_side == 'fol' else orig_fol}' — which is also wrong. \"\n            f\"Repair anchors on a wrong reference. Targeted produced '{final_t}', blind produced '{final_b}'.\"\n        )\n    \n    if final_t == \"Unknown\" and gt != \"Unknown\":\n        return \"overcorrection\", (\n            f\"Original {repair_side} said '{sample[repair_side + '_exec']['verdict']}'. \"\n            f\"After being told error_type='{error_type}' and the other side got \"\n            f\"'{sample['fol_exec']['verdict'] if repair_side == 'code' else sample['code_exec']['verdict']}', \"\n            f\"the model hedged to 'Unknown' instead of committing to '{gt}'. \"\n            f\"Diagnostic info increased uncertainty without guiding the fix.\"\n        )\n    \n    if final_t != gt and final_t != \"Unknown\":\n        return \"wrong_fix_direction\", (\n            f\"Targeted repair produced '{final_t}' instead of '{gt}'. \"\n            f\"The error_type='{error_type}' hint led the model to 'fix' in the wrong direction — \"\n            f\"it flipped the answer but landed on the wrong side.\"\n        )\n    \n    return \"other\", f\"Targeted: {final_t}, Blind: {final_b}, GT: {gt}.\"\n\ndef analyze_case(sample):\n    d = sample[\"disagreement\"]\n    r = sample[\"repair\"]\n    outcomes = get_repair_outcomes(sample)\n    \n    # Find the most interesting targeted-fail / blind-success pair\n    failing_targeted = [(k, v) for k, v in outcomes.items() if \"targeted\" in k and not v[\"success\"]]\n    succeeding_blind = [(k, v) for k, v in outcomes.items() if \"blind\" in k and v[\"success\"]]\n    \n    # Pick matching side if possible\n    primary_targeted_key = None\n    primary_blind_key = None\n    \n    for tk, tv in failing_targeted:\n        side = tk.replace(\"_targeted\", \"\")\n        bk = f\"{side}_blind\"\n        if bk in outcomes and outcomes[bk][\"success\"]:\n            primary_targeted_key = tk\n            primary_blind_key = bk\n            break\n    \n    if not primary_targeted_key:\n        primary_targeted_key = failing_targeted[0][0] if failing_targeted else list(r.keys())[0]\n        primary_blind_key = succeeding_blind[0][0] if succeeding_blind else [k for k in r if \"blind\" in k][0]\n    \n    repair_side = primary_targeted_key.replace(\"_targeted\", \"\")\n    targeted_rounds = r[primary_targeted_key]\n    blind_rounds = r[primary_blind_key]\n    blind_side = primary_blind_key.replace(\"_blind\", \"\")\n    \n    diag_info = reconstruct_targeted_prompt(sample, repair_side)\n    failure_type, failure_explanation = classify_failure(sample, primary_targeted_key, primary_blind_key)\n    \n    # Build all repair outcomes summary\n    all_outcomes = {}\n    for k, v in outcomes.items():\n        all_outcomes[k] = {\n            \"final_verdict\": v[\"verdict\"],\n            \"success\": v[\"success\"],\n            \"num_rounds\": len(v[\"rounds\"]),\n        }\n    \n    case = {\n        \"sample_id\": sample[\"id\"],\n        \"premises_full\": sample[\"premises\"],\n        \"conclusion\": sample[\"conclusion\"],\n        \"ground_truth\": sample[\"ground_truth\"],\n        \n        \"fol_verdict\": sample[\"fol_exec\"][\"verdict\"],\n        \"code_verdict\": sample[\"code_exec\"][\"verdict\"],\n        \"fol_correct\": d[\"fol_correct\"],\n        \"code_correct\": d[\"code_correct\"],\n        \"error_type\": d[\"error_type\"],\n        \"error_side\": d[\"error_side\"],\n        \n        \"stability\": sample.get(\"stability\", {}),\n        \n        \"all_repair_outcomes\": all_outcomes,\n        \"primary_repair_side\": repair_side,\n        \"primary_blind_side\": blind_side,\n        \n        \"diagnosis_info\": diag_info,\n        \n        \"targeted_repair\": [\n            {\"round\": t[\"round_num\"], \"verdict\": t[\"verdict\"], \"success\": t[\"success\"]}\n            for t in targeted_rounds\n        ],\n        \"blind_repair\": [\n            {\"round\": b[\"round_num\"], \"verdict\": b[\"verdict\"], \"success\": b[\"success\"]}\n            for b in blind_rounds\n        ],\n        \n        \"targeted_final_verdict\": targeted_rounds[-1][\"verdict\"],\n        \"blind_final_verdict\": blind_rounds[-1][\"verdict\"],\n        \n        \"failure_mechanism\": failure_type,\n        \"failure_explanation\": failure_explanation,\n        \n        \"original_erring_code\": sample[f\"{repair_side}_code\"][:1000],\n        \"targeted_final_code\": targeted_rounds[-1][\"new_code\"][:1000],\n        \"blind_final_code\": blind_rounds[-1][\"new_code\"][:1000],\n    }\n    \n    return case\n\ndef generate_txt_report(cases, all_gt_true_repair):\n    lines = []\n    lines.append(\"=\" * 80)\n    lines.append(\"GT=True TARGETED REPAIR FAILURE: DEEP CASE ANALYSIS\")\n    lines.append(\"=\" * 80)\n    lines.append(\"\")\n    \n    mechanism_counts = Counter(c[\"failure_mechanism\"] for c in cases)\n    error_type_counts = Counter(c[\"error_type\"] for c in cases)\n    \n    lines.append(\"SUMMARY STATISTICS\")\n    lines.append(\"-\" * 40)\n    lines.append(f\"Total GT=True samples with repair: {len(all_gt_true_repair)}\")\n    \n    t_success = 0\n    b_success = 0\n    for s in all_gt_true_repair:\n        outcomes = get_repair_outcomes(s)\n        t_any = any(v[\"success\"] for k, v in outcomes.items() if \"targeted\" in k)\n        b_any = any(v[\"success\"] for k, v in outcomes.items() if \"blind\" in k)\n        if t_any: t_success += 1\n        if b_any: b_success += 1\n    \n    lines.append(f\"Targeted repair success: {t_success}/{len(all_gt_true_repair)} ({100*t_success/len(all_gt_true_repair):.1f}%)\")\n    lines.append(f\"Blind repair success: {b_success}/{len(all_gt_true_repair)} ({100*b_success/len(all_gt_true_repair):.1f}%)\")\n    lines.append(f\"Cases where targeted fails + blind succeeds: {len(cases)}\")\n    lines.append(\"\")\n    \n    lines.append(\"FAILURE MECHANISM DISTRIBUTION\")\n    lines.append(\"-\" * 40)\n    for mech, count in mechanism_counts.most_common():\n        lines.append(f\"  {mech}: {count}\")\n    lines.append(\"\")\n    \n    lines.append(\"ERROR TYPE DISTRIBUTION (in failure cases)\")\n    lines.append(\"-\" * 40)\n    for et, count in error_type_counts.most_common():\n        lines.append(f\"  {et}: {count}\")\n    lines.append(\"\")\n    \n    for i, c in enumerate(cases, 1):\n        lines.append(\"=\" * 80)\n        lines.append(f\"CASE {i}: {c['sample_id']}\")\n        lines.append(\"=\" * 80)\n        lines.append(\"\")\n        \n        lines.append(f\"Ground Truth: {c['ground_truth']}\")\n        lines.append(f\"Conclusion: {c['conclusion']}\")\n        lines.append(f\"Premises: {c['premises_full']}\")\n        lines.append(\"\")\n        \n        lines.append(\"--- Original Representations ---\")\n        lines.append(f\"FOL verdict: {c['fol_verdict']} ({'CORRECT' if c['fol_correct'] else 'WRONG'})\")\n        lines.append(f\"Code verdict: {c['code_verdict']} ({'CORRECT' if c['code_correct'] else 'WRONG'})\")\n        lines.append(f\"Error type: {c['error_type']}, Error side: {c['error_side']}\")\n        lines.append(\"\")\n        \n        stab = c.get(\"stability\", {})\n        if stab:\n            lines.append(\"--- Stability ---\")\n            lines.append(f\"FOL consistent: {stab.get('fol_consistent', 'N/A')}, Code consistent: {stab.get('code_consistent', 'N/A')}\")\n            lines.append(f\"Predicted error side: {stab.get('predicted_error_side', 'N/A')}\")\n            lines.append(\"\")\n        \n        lines.append(\"--- All Repair Outcomes ---\")\n        for k, v in c[\"all_repair_outcomes\"].items():\n            lines.append(f\"  {k}: verdict={v['final_verdict']}, success={v['success']}, rounds={v['num_rounds']}\")\n        lines.append(\"\")\n        \n        lines.append(f\"--- Targeted Repair Analysis (repairing: {c['primary_repair_side']}) ---\")\n        di = c[\"diagnosis_info\"]\n        lines.append(f\"Diagnostic signal: 'Your ({di['repr_type']}) said {di['wrong_verdict']}, \"\n                     f\"the other ({di['other_type']}) got {di['other_verdict']}'\")\n        lines.append(f\"Error pattern hint: {di['error_type']} -> '{di['hint'] or '(none)'}'\")\n        for t in c[\"targeted_repair\"]:\n            lines.append(f\"  Round {t['round']}: verdict={t['verdict']}, success={t['success']}\")\n        lines.append(\"\")\n        \n        lines.append(f\"--- Blind Repair (repairing: {c['primary_blind_side']}) ---\")\n        for b in c[\"blind_repair\"]:\n            lines.append(f\"  Round {b['round']}: verdict={b['verdict']}, success={b['success']}\")\n        lines.append(\"\")\n        \n        lines.append(f\"--- Failure Mechanism: {c['failure_mechanism'].upper()} ---\")\n        lines.append(textwrap.fill(c['failure_explanation'], width=80))\n        lines.append(\"\")\n    \n    lines.append(\"=\" * 80)\n    lines.append(\"CROSS-CASE ANALYSIS\")\n    lines.append(\"=\" * 80)\n    lines.append(\"\")\n    \n    lines.append(\"1. WHY GT=True IS ESPECIALLY VULNERABLE TO TARGETED REPAIR FAILURE\")\n    lines.append(\"-\" * 60)\n    lines.append(textwrap.fill(\n        \"When GT=True, the correct answer requires affirming the conclusion follows \"\n        \"from the premises. The erring representation typically produces 'False' or \"\n        \"'Unknown' due to subtle encoding issues (missing constraint, negation flip, \"\n        \"incomplete case analysis). The targeted repair tells the model: 'you said X, \"\n        \"but the other side got True'. This creates a tension: the model knows its \"\n        \"answer is wrong but the hint (e.g., 'check negations') is generic. Instead of \"\n        \"finding the precise bug, the model often hedges to 'Unknown' — acknowledging \"\n        \"uncertainty rather than committing to 'True'. In blind regen, the model starts \"\n        \"fresh without this anchoring effect and can correctly derive 'True' from \"\n        \"scratch.\", width=80))\n    lines.append(\"\")\n    \n    oc_count = mechanism_counts.get(\"overcorrection\", 0)\n    lines.append(f\"2. OVERCORRECTION ({oc_count}/{len(cases)} cases)\")\n    lines.append(\"-\" * 60)\n    lines.append(textwrap.fill(\n        \"The dominant failure mode. The model is told its code is wrong and given a \"\n        \"diagnostic hint. Rather than surgically fixing the specific issue, it rewrites \"\n        \"cautiously and produces 'Unknown'. This is rational model behavior: when told \"\n        \"'your answer is wrong' with a vague hint, hedging to 'Unknown' minimizes \"\n        \"perceived risk. But for GT=True problems, 'Unknown' is always wrong. The \"\n        \"diagnostic information paradoxically increases uncertainty.\", width=80))\n    lines.append(\"\")\n    \n    md_count = mechanism_counts.get(\"misleading_diagnosis\", 0)\n    lines.append(f\"3. MISLEADING DIAGNOSIS ({md_count}/{len(cases)} cases)\")\n    lines.append(\"-\" * 60)\n    lines.append(textwrap.fill(\n        \"When error_side='both', both FOL and Code are wrong. The targeted repair prompt \"\n        \"tells one side 'the other side got X' — but X is also wrong. The model tries to \"\n        \"converge toward a wrong reference answer. This is a systemic flaw in the \"\n        \"targeted repair design: it assumes the non-repaired side is correct.\", width=80))\n    lines.append(\"\")\n    \n    wf_count = mechanism_counts.get(\"wrong_fix_direction\", 0)\n    lines.append(f\"4. WRONG FIX DIRECTION ({wf_count}/{len(cases)} cases)\")\n    lines.append(\"-\" * 60)\n    lines.append(textwrap.fill(\n        \"The model correctly identifies something needs fixing but applies the fix \"\n        \"in the wrong direction — e.g., flipping a negation that was actually correct, \"\n        \"or restructuring logic that changes the conclusion direction. The error type \"\n        \"hint ('logic_error') is too vague to prevent this.\", width=80))\n    lines.append(\"\")\n    \n    lines.append(\"5. ACTIONABLE RECOMMENDATIONS\")\n    lines.append(\"-\" * 60)\n    lines.append(\"a) SKIP targeted repair when error_side='both': fall back to blind\")\n    lines.append(\"   regen, since the reference signal is fundamentally corrupted.\")\n    lines.append(\"b) For overcorrection-prone cases (GT likely True, error_type in\")\n    lines.append(\"   {negation_error, logic_error}): use softer diagnostic prompts that\")\n    lines.append(\"   don't reveal the other side's verdict, only the error type hint.\")\n    lines.append(\"c) Confidence-gated repair: if stability check shows the 'correct'\")\n    lines.append(\"   side is itself inconsistent across runs, prefer blind regen.\")\n    lines.append(\"d) Hybrid strategy: run targeted repair, but if it produces 'Unknown',\")\n    lines.append(\"   automatically fall back to blind regen (since 'Unknown' on a case\")\n    lines.append(\"   where the system has a directional diagnosis is likely overcorrection).\")\n    lines.append(\"\")\n    \n    return \"\\n\".join(lines)\n\n\ndef main():\n    with open(DATA_PATH) as f:\n        data = json.load(f)\n    \n    gt_true_with_repair = [\n        s for s in data \n        if s.get(\"ground_truth\") == \"True\" \n        and s.get(\"repair\") \n        and len(s[\"repair\"]) > 0\n    ]\n    \n    target_cases = [s for s in gt_true_with_repair if is_targeted_fail_blind_success(s)]\n    both_fail_cases = [s for s in gt_true_with_repair if is_all_fail(s)]\n    \n    print(f\"GT=True with repair: {len(gt_true_with_repair)}\")\n    print(f\"Targeted fail + Blind success: {len(target_cases)}\")\n    print(f\"All fail: {len(both_fail_cases)}\")\n    \n    cases = []\n    for s in target_cases:\n        case = analyze_case(s)\n        cases.append(case)\n        print(f\"  {case['sample_id']}: {case['failure_mechanism']} | \"\n              f\"T={case['targeted_final_verdict']} B={case['blind_final_verdict']}\")\n    \n    both_fail_analyzed = [analyze_case(s) for s in both_fail_cases]\n    \n    output = {\n        \"summary\": {\n            \"total_gt_true_with_repair\": len(gt_true_with_repair),\n            \"targeted_fail_blind_success\": len(cases),\n            \"both_fail\": len(both_fail_analyzed),\n            \"failure_mechanisms\": dict(Counter(c[\"failure_mechanism\"] for c in cases)),\n            \"error_types\": dict(Counter(c[\"error_type\"] for c in cases)),\n        },\n        \"targeted_fail_blind_success_cases\": cases,\n        \"both_fail_cases\": both_fail_analyzed,\n    }\n    \n    with open(OUT_JSON, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n    print(f\"\\nSaved: {OUT_JSON}\")\n    \n    txt = generate_txt_report(cases, gt_true_with_repair)\n    with open(OUT_TXT, \"w\") as f:\n        f.write(txt)\n    print(f\"Saved: {OUT_TXT}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\npython3 src/gt_true_case_study.py\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "cd /root/autodl-tmp/crdd && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > src/gt_true_case_study.py << 'PYEOF'\n\"\"\"\nGT=True subgroup: targeted repair failure case study.\nIdentifies cases where targeted repair fails but blind repair succeeds,\nanalyzes failure mechanisms, and generates detailed reports.\n\"\"\"\nimport json\nimport textwrap\nfrom collections import Counter\n\nDATA_PATH = \"results/mvp_v4_repair_fixed.json\"\nOUT_JSON = \"results/exp001_gt_true_case_study.json\"\nOUT_TXT = \"results/exp001_gt_true_case_study.txt\"\n\n_HINTS = {\n    \"quantifier_error\":   \"Check that every universal/existential quantifier in the premises is encoded.\",\n    \"negation_error\":     \"Check that all negations (not, no, never …) are handled correctly.\",\n    \"constraint_missing\": \"Some premises may not be encoded. Ensure every premise is represented.\",\n    \"constraint_extra\":   \"There may be extra constraints not in the premises. Remove them.\",\n    \"type_boundary\":      \"There may be a type or index error in the code.\",\n    \"timeout\":            \"The code timed out — simplify the approach.\",\n    \"logic_error\":        \"\",\n}\n\ndef get_repair_outcomes(sample):\n    \"\"\"Get all repair outcomes, handling both single-side and both-side repairs.\"\"\"\n    r = sample[\"repair\"]\n    outcomes = {}\n    for key, rounds in r.items():\n        if isinstance(rounds, list) and len(rounds) > 0:\n            last = rounds[-1]\n            outcomes[key] = {\n                \"verdict\": last[\"verdict\"],\n                \"success\": last[\"success\"],\n                \"rounds\": rounds,\n            }\n    return outcomes\n\ndef is_targeted_fail_blind_success(sample):\n    \"\"\"Check if ANY targeted fails while ANY blind succeeds.\"\"\"\n    outcomes = get_repair_outcomes(sample)\n    any_targeted_fail = any(not v[\"success\"] for k, v in outcomes.items() if \"targeted\" in k)\n    any_blind_success = any(v[\"success\"] for k, v in outcomes.items() if \"blind\" in k)\n    return any_targeted_fail and any_blind_success\n\ndef is_all_fail(sample):\n    \"\"\"Check if ALL repairs fail.\"\"\"\n    outcomes = get_repair_outcomes(sample)\n    return all(not v[\"success\"] for v in outcomes.values())\n\ndef reconstruct_targeted_prompt(sample, repair_side):\n    d = sample[\"disagreement\"]\n    error_type = d[\"error_type\"]\n    \n    if repair_side == \"code\":\n        repr_type = \"Python code\"\n        other_type = \"FOL (Z3)\"\n        wrong_verdict = sample[\"code_exec\"][\"verdict\"]\n        other_verdict = sample[\"fol_exec\"][\"verdict\"]\n        original_code = sample[\"code_code\"]\n    else:\n        repr_type = \"FOL (Z3)\"\n        other_type = \"Python code\"\n        wrong_verdict = sample[\"fol_exec\"][\"verdict\"]\n        other_verdict = sample[\"code_exec\"][\"verdict\"]\n        original_code = sample[\"fol_code\"]\n    \n    hint_text = _HINTS.get(error_type, \"\")\n    if error_type == \"exec_crash\":\n        hint_text = (\n            f\"Your code crashed during execution. \"\n            f\"The other representation produced: {other_verdict}. \"\n            \"Rewrite from scratch with correct syntax and API usage.\"\n        )\n    hint = f\"- Hint: {hint_text}\" if hint_text else \"\"\n    \n    return {\n        \"repr_type\": repr_type,\n        \"wrong_verdict\": wrong_verdict,\n        \"other_type\": other_type,\n        \"other_verdict\": other_verdict,\n        \"error_type\": error_type,\n        \"hint\": hint_text,\n    }\n\ndef classify_failure(sample, targeted_key, blind_key):\n    d = sample[\"disagreement\"]\n    r = sample[\"repair\"]\n    error_side = d[\"error_side\"]\n    error_type = d[\"error_type\"]\n    gt = sample[\"ground_truth\"]\n    \n    targeted_rounds = r[targeted_key]\n    blind_rounds = r[blind_key]\n    final_t = targeted_rounds[-1][\"verdict\"]\n    final_b = blind_rounds[-1][\"verdict\"]\n    \n    repair_side = targeted_key.replace(\"_targeted\", \"\")\n    \n    if error_side == \"both\":\n        orig_fol = sample[\"fol_exec\"][\"verdict\"]\n        orig_code = sample[\"code_exec\"][\"verdict\"]\n        return \"misleading_diagnosis\", (\n            f\"error_side=both: BOTH representations are wrong (FOL={orig_fol}, Code={orig_code}, GT={gt}). \"\n            f\"Targeted repair tells {repair_side} that the OTHER side got \"\n            f\"'{orig_code if repair_side == 'fol' else orig_fol}' — which is also wrong. \"\n            f\"Repair anchors on a wrong reference. Targeted produced '{final_t}', blind produced '{final_b}'.\"\n        )\n    \n    if final_t == \"Unknown\" and gt != \"Unknown\":\n        return \"overcorrection\", (\n            f\"Original {repair_side} said '{sample[repair_side + '_exec']['verdict']}'. \"\n            f\"After being told error_type='{error_type}' and the other side got \"\n            f\"'{sample['fol_exec']['verdict'] if repair_side == 'code' else sample['code_exec']['verdict']}', \"\n            f\"the model hedged to 'Unknown' instead of committing to '{gt}'. \"\n            f\"Diagnostic info increased uncertainty without guiding the fix.\"\n        )\n    \n    if final_t != gt and final_t != \"Unknown\":\n        return \"wrong_fix_direction\", (\n            f\"Targeted repair produced '{final_t}' instead of '{gt}'. \"\n            f\"The error_type='{error_type}' hint led the model to 'fix' in the wrong direction — \"\n            f\"it flipped the answer but landed on the wrong side.\"\n        )\n    \n    return \"other\", f\"Targeted: {final_t}, Blind: {final_b}, GT: {gt}.\"\n\ndef analyze_case(sample):\n    d = sample[\"disagreement\"]\n    r = sample[\"repair\"]\n    outcomes = get_repair_outcomes(sample)\n    \n    # Find the most interesting targeted-fail / blind-success pair\n    failing_targeted = [(k, v) for k, v in outcomes.items() if \"targeted\" in k and not v[\"success\"]]\n    succeeding_blind = [(k, v) for k, v in outcomes.items() if \"blind\" in k and v[\"success\"]]\n    \n    # Pick matching side if possible\n    primary_targeted_key = None\n    primary_blind_key = None\n    \n    for tk, tv in failing_targeted:\n        side = tk.replace(\"_targeted\", \"\")\n        bk = f\"{side}_blind\"\n        if bk in outcomes and outcomes[bk][\"success\"]:\n            primary_targeted_key = tk\n            primary_blind_key = bk\n            break\n    \n    if not primary_targeted_key:\n        primary_targeted_key = failing_targeted[0][0] if failing_targeted else list(r.keys())[0]\n        primary_blind_key = succeeding_blind[0][0] if succeeding_blind else [k for k in r if \"blind\" in k][0]\n    \n    repair_side = primary_targeted_key.replace(\"_targeted\", \"\")\n    targeted_rounds = r[primary_targeted_key]\n    blind_rounds = r[primary_blind_key]\n    blind_side = primary_blind_key.replace(\"_blind\", \"\")\n    \n    diag_info = reconstruct_targeted_prompt(sample, repair_side)\n    failure_type, failure_explanation = classify_failure(sample, primary_targeted_key, primary_blind_key)\n    \n    # Build all repair outcomes summary\n    all_outcomes = {}\n    for k, v in outcomes.items():\n        all_outcomes[k] = {\n            \"final_verdict\": v[\"verdict\"],\n            \"success\": v[\"success\"],\n            \"num_rounds\": len(v[\"rounds\"]),\n        }\n    \n    case = {\n        \"sample_id\": sample[\"id\"],\n        \"premises_full\": sample[\"premises\"],\n        \"conclusion\": sample[\"conclusion\"],\n        \"ground_truth\": sample[\"ground_truth\"],\n        \n        \"fol_verdict\": sample[\"fol_exec\"][\"verdict\"],\n        \"code_verdict\": sample[\"code_exec\"][\"verdict\"],\n        \"fol_correct\": d[\"fol_correct\"],\n        \"code_correct\": d[\"code_correct\"],\n        \"error_type\": d[\"error_type\"],\n        \"error_side\": d[\"error_side\"],\n        \n        \"stability\": sample.get(\"stability\", {}),\n        \n        \"all_repair_outcomes\": all_outcomes,\n        \"primary_repair_side\": repair_side,\n        \"primary_blind_side\": blind_side,\n        \n        \"diagnosis_info\": diag_info,\n        \n        \"targeted_repair\": [\n            {\"round\": t[\"round_num\"], \"verdict\": t[\"verdict\"], \"success\": t[\"success\"]}\n            for t in targeted_rounds\n        ],\n        \"blind_repair\": [\n            {\"round\": b[\"round_num\"], \"verdict\": b[\"verdict\"], \"success\": b[\"success\"]}\n            for b in blind_rounds\n        ],\n        \n        \"targeted_final_verdict\": targeted_rounds[-1][\"verdict\"],\n        \"blind_final_verdict\": blind_rounds[-1][\"verdict\"],\n        \n        \"failure_mechanism\": failure_type,\n        \"failure_explanation\": failure_explanation,\n        \n        \"original_erring_code\": sample[f\"{repair_side}_code\"][:1000],\n        \"targeted_final_code\": targeted_rounds[-1][\"new_code\"][:1000],\n        \"blind_final_code\": blind_rounds[-1][\"new_code\"][:1000],\n    }\n    \n    return case\n\ndef generate_txt_report(cases, all_gt_true_repair):\n    lines = []\n    lines.append(\"=\" * 80)\n    lines.append(\"GT=True TARGETED REPAIR FAILURE: DEEP CASE ANALYSIS\")\n    lines.append(\"=\" * 80)\n    lines.append(\"\")\n    \n    mechanism_counts = Counter(c[\"failure_mechanism\"] for c in cases)\n    error_type_counts = Counter(c[\"error_type\"] for c in cases)\n    \n    lines.append(\"SUMMARY STATISTICS\")\n    lines.append(\"-\" * 40)\n    lines.append(f\"Total GT=True samples with repair: {len(all_gt_true_repair)}\")\n    \n    t_success = 0\n    b_success = 0\n    for s in all_gt_true_repair:\n        outcomes = get_repair_outcomes(s)\n        t_any = any(v[\"success\"] for k, v in outcomes.items() if \"targeted\" in k)\n        b_any = any(v[\"success\"] for k, v in outcomes.items() if \"blind\" in k)\n        if t_any: t_success += 1\n        if b_any: b_success += 1\n    \n    lines.append(f\"Targeted repair success: {t_success}/{len(all_gt_true_repair)} ({100*t_success/len(all_gt_true_repair):.1f}%)\")\n    lines.append(f\"Blind repair success: {b_success}/{len(all_gt_true_repair)} ({100*b_success/len(all_gt_true_repair):.1f}%)\")\n    lines.append(f\"Cases where targeted fails + blind succeeds: {len(cases)}\")\n    lines.append(\"\")\n    \n    lines.append(\"FAILURE MECHANISM DISTRIBUTION\")\n    lines.append(\"-\" * 40)\n    for mech, count in mechanism_counts.most_common():\n        lines.append(f\"  {mech}: {count}\")\n    lines.append(\"\")\n    \n    lines.append(\"ERROR TYPE DISTRIBUTION (in failure cases)\")\n    lines.append(\"-\" * 40)\n    for et, count in error_type_counts.most_common():\n        lines.append(f\"  {et}: {count}\")\n    lines.append(\"\")\n    \n    for i, c in enumerate(cases, 1):\n        lines.append(\"=\" * 80)\n        lines.append(f\"CASE {i}: {c['sample_id']}\")\n        lines.append(\"=\" * 80)\n        lines.append(\"\")\n        \n        lines.append(f\"Ground Truth: {c['ground_truth']}\")\n        lines.append(f\"Conclusion: {c['conclusion']}\")\n        lines.append(f\"Premises: {c['premises_full']}\")\n        lines.append(\"\")\n        \n        lines.append(\"--- Original Representations ---\")\n        lines.append(f\"FOL verdict: {c['fol_verdict']} ({'CORRECT' if c['fol_correct'] else 'WRONG'})\")\n        lines.append(f\"Code verdict: {c['code_verdict']} ({'CORRECT' if c['code_correct'] else 'WRONG'})\")\n        lines.append(f\"Error type: {c['error_type']}, Error side: {c['error_side']}\")\n        lines.append(\"\")\n        \n        stab = c.get(\"stability\", {})\n        if stab:\n            lines.append(\"--- Stability ---\")\n            lines.append(f\"FOL consistent: {stab.get('fol_consistent', 'N/A')}, Code consistent: {stab.get('code_consistent', 'N/A')}\")\n            lines.append(f\"Predicted error side: {stab.get('predicted_error_side', 'N/A')}\")\n            lines.append(\"\")\n        \n        lines.append(\"--- All Repair Outcomes ---\")\n        for k, v in c[\"all_repair_outcomes\"].items():\n            lines.append(f\"  {k}: verdict={v['final_verdict']}, success={v['success']}, rounds={v['num_rounds']}\")\n        lines.append(\"\")\n        \n        lines.append(f\"--- Targeted Repair Analysis (repairing: {c['primary_repair_side']}) ---\")\n        di = c[\"diagnosis_info\"]\n        lines.append(f\"Diagnostic signal: 'Your ({di['repr_type']}) said {di['wrong_verdict']}, \"\n                     f\"the other ({di['other_type']}) got {di['other_verdict']}'\")\n        lines.append(f\"Error pattern hint: {di['error_type']} -> '{di['hint'] or '(none)'}'\")\n        for t in c[\"targeted_repair\"]:\n            lines.append(f\"  Round {t['round']}: verdict={t['verdict']}, success={t['success']}\")\n        lines.append(\"\")\n        \n        lines.append(f\"--- Blind Repair (repairing: {c['primary_blind_side']}) ---\")\n        for b in c[\"blind_repair\"]:\n            lines.append(f\"  Round {b['round']}: verdict={b['verdict']}, success={b['success']}\")\n        lines.append(\"\")\n        \n        lines.append(f\"--- Failure Mechanism: {c['failure_mechanism'].upper()} ---\")\n        lines.append(textwrap.fill(c['failure_explanation'], width=80))\n        lines.append(\"\")\n    \n    lines.append(\"=\" * 80)\n    lines.append(\"CROSS-CASE ANALYSIS\")\n    lines.append(\"=\" * 80)\n    lines.append(\"\")\n    \n    lines.append(\"1. WHY GT=True IS ESPECIALLY VULNERABLE TO TARGETED REPAIR FAILURE\")\n    lines.append(\"-\" * 60)\n    lines.append(textwrap.fill(\n        \"When GT=True, the correct answer requires affirming the conclusion follows \"\n        \"from the premises. The erring representation typically produces 'False' or \"\n        \"'Unknown' due to subtle encoding issues (missing constraint, negation flip, \"\n        \"incomplete case analysis). The targeted repair tells the model: 'you said X, \"\n        \"but the other side got True'. This creates a tension: the model knows its \"\n        \"answer is wrong but the hint (e.g., 'check negations') is generic. Instead of \"\n        \"finding the precise bug, the model often hedges to 'Unknown' — acknowledging \"\n        \"uncertainty rather than committing to 'True'. In blind regen, the model starts \"\n        \"fresh without this anchoring effect and can correctly derive 'True' from \"\n        \"scratch.\", width=80))\n    lines.append(\"\")\n    \n    oc_count = mechanism_counts.get(\"overcorrection\", 0)\n    lines.append(f\"2. OVERCORRECTION ({oc_count}/{len(cases)} cases)\")\n    lines.append(\"-\" * 60)\n    lines.append(textwrap.fill(\n        \"The dominant failure mode. The model is told its code is wrong and given a \"\n        \"diagnostic hint. Rather than surgically fixing the specific issue, it rewrites \"\n        \"cautiously and produces 'Unknown'. This is rational model behavior: when told \"\n        \"'your answer is wrong' with a vague hint, hedging to 'Unknown' minimizes \"\n        \"perceived risk. But for GT=True problems, 'Unknown' is always wrong. The \"\n        \"diagnostic information paradoxically increases uncertainty.\", width=80))\n    lines.append(\"\")\n    \n    md_count = mechanism_counts.get(\"misleading_diagnosis\", 0)\n    lines.append(f\"3. MISLEADING DIAGNOSIS ({md_count}/{len(cases)} cases)\")\n    lines.append(\"-\" * 60)\n    lines.append(textwrap.fill(\n        \"When error_side='both', both FOL and Code are wrong. The targeted repair prompt \"\n        \"tells one side 'the other side got X' — but X is also wrong. The model tries to \"\n        \"converge toward a wrong reference answer. This is a systemic flaw in the \"\n        \"targeted repair design: it assumes the non-repaired side is correct.\", width=80))\n    lines.append(\"\")\n    \n    wf_count = mechanism_counts.get(\"wrong_fix_direction\", 0)\n    lines.append(f\"4. WRONG FIX DIRECTION ({wf_count}/{len(cases)} cases)\")\n    lines.append(\"-\" * 60)\n    lines.append(textwrap.fill(\n        \"The model correctly identifies something needs fixing but applies the fix \"\n        \"in the wrong direction — e.g., flipping a negation that was actually correct, \"\n        \"or restructuring logic that changes the conclusion direction. The error type \"\n        \"hint ('logic_error') is too vague to prevent this.\", width=80))\n    lines.append(\"\")\n    \n    lines.append(\"5. ACTIONABLE RECOMMENDATIONS\")\n    lines.append(\"-\" * 60)\n    lines.append(\"a) SKIP targeted repair when error_side='both': fall back to blind\")\n    lines.append(\"   regen, since the reference signal is fundamentally corrupted.\")\n    lines.append(\"b) For overcorrection-prone cases (GT likely True, error_type in\")\n    lines.append(\"   {negation_error, logic_error}): use softer diagnostic prompts that\")\n    lines.append(\"   don't reveal the other side's verdict, only the error type hint.\")\n    lines.append(\"c) Confidence-gated repair: if stability check shows the 'correct'\")\n    lines.append(\"   side is itself inconsistent across runs, prefer blind regen.\")\n    lines.append(\"d) Hybrid strategy: run targeted repair, but if it produces 'Unknown',\")\n    lines.append(\"   automatically fall back to blind regen (since 'Unknown' on a case\")\n    lines.append(\"   where the system has a directional diagnosis is likely overcorrection).\")\n    lines.append(\"\")\n    \n    return \"\\n\".join(lines)\n\n\ndef main():\n    with open(DATA_PATH) as f:\n        data = json.load(f)\n    \n    gt_true_with_repair = [\n        s for s in data \n        if s.get(\"ground_truth\") == \"True\" \n        and s.get(\"repair\") \n        and len(s[\"repair\"]) > 0\n    ]\n    \n    target_cases = [s for s in gt_true_with_repair if is_targeted_fail_blind_success(s)]\n    both_fail_cases = [s for s in gt_true_with_repair if is_all_fail(s)]\n    \n    print(f\"GT=True with repair: {len(gt_true_with_repair)}\")\n    print(f\"Targeted fail + Blind success: {len(target_cases)}\")\n    print(f\"All fail: {len(both_fail_cases)}\")\n    \n    cases = []\n    for s in target_cases:\n        case = analyze_case(s)\n        cases.append(case)\n        print(f\"  {case['sample_id']}: {case['failure_mechanism']} | \"\n              f\"T={case['targeted_final_verdict']} B={case['blind_final_verdict']}\")\n    \n    both_fail_analyzed = [analyze_case(s) for s in both_fail_cases]\n    \n    output = {\n        \"summary\": {\n            \"total_gt_true_with_repair\": len(gt_true_with_repair),\n            \"targeted_fail_blind_success\": len(cases),\n            \"both_fail\": len(both_fail_analyzed),\n            \"failure_mechanisms\": dict(Counter(c[\"failure_mechanism\"] for c in cases)),\n            \"error_types\": dict(Counter(c[\"error_type\"] for c in cases)),\n        },\n        \"targeted_fail_blind_success_cases\": cases,\n        \"both_fail_cases\": both_fail_analyzed,\n    }\n    \n    with open(OUT_JSON, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n    print(f\"\\nSaved: {OUT_JSON}\")\n    \n    txt = generate_txt_report(cases, gt_true_with_repair)\n    with open(OUT_TXT, \"w\") as f:\n        f.write(txt)\n    print(f\"Saved: {OUT_TXT}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\npython3 src/gt_true_case_study.py\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T06:38:33.168221+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"GT=True with repair: 22\\nTargeted fail + Blind success: 5\\nAll fail: 3\\n  folio_validation_1: overcorrection | T=Unknown B=True\\n  folio_validation_110: misleading_diagnosis | T=False B=True\\n  folio_validation_155: wrong_fix_direction | T=False B=True\\n  folio_validation_80: overcorrection | T=Unknown B=True\\n  folio_validation_87: overcorrection | T=Unknown B=True\\n\\nSaved: results/exp001_gt_true_case_study.json\\nSaved: results/exp001_gt_true_case_study.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T06:38:33.168390+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "wc -l /root/autodl-tmp/crdd/results/exp001_gt_true_case_study.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "wc -l /root/autodl-tmp/crdd/results/exp001_gt_true_case_study.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T06:38:33.168524+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"254 /root/autodl-tmp/crdd/results/exp001_gt_true_case_study.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T06:38:33.168647+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "wc -c /root/autodl-tmp/crdd/results/exp001_gt_true_case_study.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "wc -c /root/autodl-tmp/crdd/results/exp001_gt_true_case_study.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T06:38:33.168768+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"47350 /root/autodl-tmp/crdd/results/exp001_gt_true_case_study.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T06:38:33.168910+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-rtx6000pro",
+  "command": "cat /root/autodl-tmp/crdd/results/exp001_gt_true_case_study.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-rtx6000pro",
+    "command": "cat /root/autodl-tmp/crdd/results/exp001_gt_true_case_study.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T06:38:33.169122+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"================================================================================\\nGT=True TARGETED REPAIR FAILURE: DEEP CASE ANALYSIS\\n================================================================================\\n\\nSUMMARY STATISTICS\\n----------------------------------------\\nTotal GT=True samples with repair: 22\\nTargeted repair success: 14/22 (63.6%)\\nBlind repair success: 17/22 (77.3%)\\nCases where targeted fails + blind succeeds: 5\\n\\nFAILURE MECHANISM DISTRIBUTION\\n----------------------------------------\\n  overcorrection: 3\\n  misleading_diagnosis: 1\\n  wrong_fix_direction: 1\\n\\nERROR TYPE DISTRIBUTION (in failure cases)\\n----------------------------------------\\n  logic_error: 3\\n  negation_error: 2\\n\\n================================================================================\\nCASE 1: folio_validation_1\\n================================================================================\\n\\nGround Truth: True\\nConclusion: If Bonnie is either both a young child or teenager who wishes to further her academic career and educational opportunities and chaperones high school dances or neither is a young child nor teenager who wishes to further her academic career and educational opportunities, then Bonnie is either a student who attends the school or is an inactive and disinterested member of the community.\\nPremises: If people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either 
+…[truncated 6481 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-15T06:38:33.169343+00:00_
+
+产出文件已生成。以下是完整分析结果：
+
+---
+
+## GT=True Targeted Repair 反效果：5 案例深度分析
+
+### 统计概览
+
+| 指标 | 数值 |
+|------|------|
+| GT=True 有 repair 的样本 | 22 |
+| Targeted 成功率 | 14/22 (63.6%) |
+| Blind 成功率 | 17/22 (77.3%) |
+| Targeted 失败 + Blind 成功 | **5 例** |
+| 双失败 | 3 例 |
+
+### 失败机制分布
+
+| 机制 | 数量 | 占比 |
+|------|------|------|
+| **Overcorrection（过度纠正）** | 3 | 60% |
+| Misleading diagnosis（误导性诊断） | 1 | 20% |
+| Wrong fix direction（修错方向） | 1 | 20% |
+
+---
+
+### 5 个案例详情
+
+**Case 1: folio_validation_1** — Overcorrection
+- 结论：Bonnie 的学校参与推导（复合条件句）
+- FOL=True(正确), Code=False(错误), 诊断: negation_error/code
+- Targeted 两轮都输出 Unknown，Blind 第二轮输出 True
+- **机制**：被告知"你说 False，对方说 True，检查否定词"后，模型不敢承诺 True，对冲到 Unknown
+
+**Case 2: folio_validation_110** — Misleading Diagnosis
+- 结论：Peter 是否既是美食家又高收入（error_side=both）
+- FOL=False(错), Code=Unknown(错), GT=True
+- FOL targeted→False, FOL blind→False; **Code blind→True(成功)**
+- **机制**：error_side=both 时 targeted repair 告诉 FOL"Code 说 Unknown"作为参考，但 Code 也是错的。参考信号本身就是错的
+
+**Case 3: folio_validation_155** — Wrong Fix Direction
+- 结论：Remy 的作息与家庭办公推导
+- FOL=True(正确), Code=Unknown(错误), 诊断: logic_error/code
+- Targeted 最终输出 False（比原来的 Unknown 更错），Blind 输出 True
+- **机制**：模型尝试修复 logic_error 但把逻辑改反了，从 Unknown 翻到了 False
+
+**Case 4: folio_validation_80** — Overcorrection
+- 结论："Dried Thai chilies are not a product of Baked by Melissa"
+- FOL=True(正确), Code=Unknown(错误), 诊断: logic_error/code
+- Targeted 两轮都 Unknown, Blind 第二轮 True
+- **机制**：Code 本来就输出 Unknown，被告知"对方说 True"后仍然无法突破，停在 Unknown
+
+**Case 5: folio_validation_87** — Overcorrection
+- 结论："Sir Digby's nemesis loses"
+- FOL=Unknown(错误), Code=True(正确), 诊断: logic_error/fol
+- FOL targeted 两轮 Unknown, FOL blind 第二轮 True
+- **机制**：FOL 被告知"Code 说 True，你有 logic_error"，但 logic_error 没有具体 hint（为空），模型无法定位 bug，维持 Unknown
+
+---
+
+### 核心发现
+
+1. **Overcorrection 是主导模式（3/5）**：诊断信息告诉模型"你错了"但 hint 太模糊，模型理性地对冲到 Unknown。对 GT=True 问题来说 Unknown 永远是错的，所以诊断信息反而增加了不确定性。
+
+2. **GT=True 特别脆弱的原因**：正确答案需要 affirm conclusion，这比否定更需要完整的推理链。模型被告知"你错了"后，更容易退缩到 Unknown（安全但错误的对冲）而不是大胆修正到 True。Blind regen 没有这个锚定效应，反而能从零开始正确推导。
+
+3. **error_side=both 是系统性缺陷**：targeted repair 假设"对方是对的"来提供参考信号，当双方都错时参考信号本身就是错的。
+
+### 改进建议
+
+1. **error_side=both 时跳过 targeted repair**，直接 blind regen
+2. **弱化诊断信号**：不透露对方的 verdict，只给 error type hint（防止锚定效应）
+3. **Hybrid fallback**：targeted 输出 Unknown 时自动 fallback 到 blind regen
+4. **Confidence-gated**：stability check 显示"正确方"自身不一致时，优先 blind regen
+
+---
+
+产出文件：
+- `src/gt_true_case_study.py` — 分析脚本
+- `results/exp001_gt_true_case_study.json` — 完整 JSON（含代码片段）
+- `results/exp001_gt_true_case_study.txt` — 可读文本报告
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_exp_001_gt_true_cases_20260515T063140"
+}
+```
+
+</details>
+
+---

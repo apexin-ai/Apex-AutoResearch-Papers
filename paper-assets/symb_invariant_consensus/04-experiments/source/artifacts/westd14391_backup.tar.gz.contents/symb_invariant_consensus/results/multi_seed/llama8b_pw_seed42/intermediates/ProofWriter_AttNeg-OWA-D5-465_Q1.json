@@ -1,0 +1,1186 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-465_Q1",
+    "problem": "Anne is big. Anne is furry. Anne is green. Anne is not kind. Bob is furry. Bob is green. Bob is red. Bob is round. Erin is not blue. Erin is red. Gary is not furry. Big people are round. All blue people are not round. If someone is big and round then they are green. If Bob is not red then Bob is not big. If Bob is round then Bob is big. Red people are kind. If Gary is not blue then Gary is furry. If someone is kind and green then they are furry. Kind people are big.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is round.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nFurry(Anne, True) ::: Anne is furry.\nGreen(Anne, True) ::: Anne is green.\nKind(Anne, False) ::: Anne is not kind.\nFurry(Bob, True) ::: Bob is furry.\nGreen(Bob, True) ::: Bob is green.\nRed(Bob, True) ::: Bob is red.\nRound(Bob, True) ::: Bob is round.\nBlue(Erin, False) ::: Erin is not blue.\nRed(Erin, True) ::: Erin is red.\nFurry(Gary, False) ::: Gary is not furry.\n\nRules:\nBig($x, True) >>> Round($x, True) ::: Big people are round.\nBlue($x, True) >>> Round($x, False) ::: All blue people are not round.\nBig($x, True) && Round($x, True) >>> Green($x, True) ::: If someone is big and round then they are green.\nRed(Bob, False) >>> Big(Bob, False) ::: If Bob is not red then Bob is not big.\nRound(Bob, True) >>> Big(Bob, True) ::: If Bob is round then Bob is big.\nRed($x, True) >>> Kind($x, True) ::: Red people are kind.\nBlue(Gary, False) >>> Furry(Gary, True) ::: If Gary is not blue then Gary is furry.\nKind($x, True) && Green($x, True) >>> Furry($x, True) ::: If someone is kind and green then they are furry.\nKind($x, True) >>> Big($x, True) ::: Kind people are big.\n\nQuery:\nRound(Bob, True) ::: Bob is round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 174.0,
+      "Unknown": 162.5
+    },
+    "answer_counts": {
+      "True": 9,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Bob is round\" is true, false, or unknown, we need to use the given information and logical deductions.\n\n1. We know the following about Bob:\n   - Bob is furry.\n   - Bob is green.\n   - Bob is red.\n   - Bob is round.\n\n2. We have the following rules:\n   - Big people are round.\n   - Red people are kind.\n   - If someone is kind and green, then they are furry.\n   - If Bob is not red, then Bob is not big.\n   - If Bob is round, then Bob is big.\n\nSince we already know that \"Bob is round\" is one of the given statements, we can directly use it to make a conclusion.\n\nHowever, let's analyze the rules to see if they provide any additional information:\n- If Bob is round, then Bob is big. This means that since Bob is round, he must be big.\n- Big people are round. This rule is not necessary since we already know that Bob is round.\n- If Bob is not red, then Bob is not big. This rule will not be applicable as we already know that Bob is round.\n\nNow, let's analyze the given information again:\n- Bob is round. We are trying to determine if this statement is true, false, or unknown.\n\nSince we already know that \"Bob is round\" is one of the given statements, we can conclude that the statement is true.\n\nHowever, we should also check if this conclusion can be derived from the other rules.\n\nThe final conclusion is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information about Bob:\n   - Bob is furry.\n   - Bob is green.\n   - Bob is red.\n   - Bob is round.\n\n2. We also have the following conditional statements:\n   - If Bob is not red then Bob is not big.\n   - If Bob is round then Bob is big.\n\nFrom the first point, we have two different pieces of information about Bob's color and size: Bob is red and Bob is round. \n\nFrom the second point, we have a conditional statement about Bob's roundness and size: If Bob is round then Bob is big.\n\nNow, we can conclude that if Bob is round, then he must be big.\n\nHowever, we also have another conditional statement: If Bob is not red then Bob is not big.\n\nIf we consider the information that Bob is red, we can't conclude anything about Bob's size because the conditional statement \"If Bob is not red then Bob is not big\" doesn't provide any information about the case where Bob is red.\n\nHowever, we have the information that big people are round and Bob is round. So we can conclude that Bob is big.\n\nCombining this information with the fact that Bob is red and big, and considering the statement \"If Bob is not red then Bob is not big,\" we can't conclude anything about Bob's roundness from this statement alone because we already have the information that Bob is round.\n\nHowever, the statement \"If Bob is round then Bob is big\" already tells us that Bob is big. \n\nNow, we have the information that Bob is big and we also have the statement \"If someone is big and round then they are green.\" \n\nSince we already know that Bob is big and round, we can conclude that Bob is green.\n\nSo, we have the following information about Bob:\n- Bob is furry.\n- Bob is green.\n- Bob is red.\n- Bob is round.\n\nNow, let's analyze the information about Bob's characteristics.\n- Big people are round.\n- Bob is round, so Bob is big.\n- If someone is big and round then they are green.\n- Bob is big and round, so Bob is green.\n\nWe also have the following information about other people:\n- Anne is big. Anne is furry. Anne is green. Anne is not kind.\n- Bob is furry. Bob is green. Bob is red. Bob is round.\n- Erin is not blue. Erin is red.\n- Gary is not furry.\n\nNow, let's analyze the information about other people's characteristics:\n- If someone is big and round then they are green.\n- If Bob is not red then Bob is not big.\n- If Bob is round then Bob is big.\n- Red people are kind.\n- If Gary is not blue then Gary is furry.\n- If someone is kind and green then they are furry.\n- Kind people are big.\n\nNow, let's analyze the statement \"Bob is round.\"\nFrom the given information, we know that Bob is round.\n\nWe can conclude that Bob is big because Bob is round.\n\nWe also know that Bob is green because Bob is big and round.\n\nThe statement \"Bob is round\" is true.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is round\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. We know that Bob is furry. (Given statement)\n2. We know that Bob is green. (Given statement)\n3. We know that Bob is red. (Given statement)\n4. We know that Bob is round. (Statement to be evaluated)\n\nFrom the given information, we have the following conclusions:\n\n- All blue people are not round. (Given statement)\n- If someone is kind and green then they are furry. (Given statement)\n- Red people are kind. (Given statement)\n- If Bob is not red then Bob is not big. (Given statement)\n- If Bob is round then Bob is big. (Given statement)\n- Big people are round. (Given statement)\n- Kind people are big. (Given statement)\n- If someone is big and round then they are green. (Given statement)\n\nFrom point 3, we know that Bob is red, and from point 6, we know that red people are kind. Using point 7, we conclude that kind people are big, so Bob is big.\n\nNow, we have a contradiction between points 4 and 5. If Bob is round, then Bob is big (point 5), but if Bob is big, then Bob is round (point 8). However, this is a valid conclusion. But what does it mean that Bob is round? \n\nUsing point 5, we can conclude that if Bob is round, then Bob is big. Then, using point 8, we conclude that if Bob is big, then Bob is round. However, this is a circular argument and doesn't tell us anything about whether Bob is round or not.\n\nHowever, we can use point 5 to say that if Bob is round, then Bob is big. But then, we can use point 7 to say that big people are kind. Since Bob is kind, we can use point 3 to say that Bob is red. Now we have a contradiction between points 3 and 4. If Bob is red, then Bob is not round. \n\nSince we have a contradiction between points 3 and 4, we cannot conclude that Bob is round or not. We have to conclude that the statement \"Bob is round\" is unknown.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Bob is furry.\n   - Bob is green.\n   - Bob is red.\n   - Bob is round.\n   - Erin is not blue.\n   - Erin is red.\n   - Gary is not furry.\n   - Big people are round.\n   - All blue people are not round.\n   - If someone is big and round then they are green.\n   - If Bob is not red then Bob is not big.\n   - If Bob is round then Bob is big.\n   - Red people are kind.\n   - If Gary is not blue then Gary is furry.\n   - If someone is kind and green then they are furry.\n   - Kind people are big.\n\n2. Analyzing the statements:\n   - From the statement \"Big people are round,\" we can infer that if a person is big, then they are round.\n   - From the statement \"If Bob is round then Bob is big,\" we can infer that if Bob is round, then Bob is big.\n   - From the statement \"If Bob is not red then Bob is not big,\" we can infer that if Bob is red, then Bob is big.\n   - Combining the above inferences, if Bob is round, then Bob is big (from the second statement), and if Bob is big, then Bob is round (from the first statement). This creates a loop, but it does not affect the truth value of the statement \"Bob is round.\"\n\n3. Since we know that \"Bob is round\" is one of the given statements, it is already provided as true.\n\nHowever, to find whether \"Bob is round\" is true or false based on the information, let's find the truth value of Bob being big first and then see if it can be concluded that he is round.\n\nFrom the statement \"If Bob is red then Bob is big,\" we can infer that Bob is big.\nFrom the statement \"If Bob is big then Bob is round,\" we can conclude that Bob is round.\n\nSo, considering the given information and our inferences, the statement \"Bob is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will use a series of logical deductions based on the given statements.\n\n1. Given statement: \n   - Bob is round.\n\nHowever, we need to determine whether this statement is true, false, or unknown based on the provided information.\n\n2. The statements about Bob:\n   - Bob is furry.\n   - Bob is green.\n   - Bob is red.\n   - Bob is round.\n\n3. The statements about Anne:\n   - Anne is big.\n   - Anne is furry.\n   - Anne is green.\n   - Anne is not kind.\n\n4. The statements about Erin:\n   - Erin is not blue.\n   - Erin is red.\n\n5. The statements about Gary:\n   - Gary is not furry.\n   - Gary is not blue.\n\n6. The statements about colors and shapes:\n   - Big people are round.\n   - All blue people are not round.\n   - If someone is big and round, then they are green.\n   - If Bob is not red, then Bob is not big.\n   - If Bob is round, then Bob is big.\n   - Red people are kind.\n   - If Gary is not blue, then Gary is furry.\n   - If someone is kind and green, then they are furry.\n   - Kind people are big.\n\nLet's analyze the given statement \"Bob is round\" using these statements.\n\nFrom statement 5: If Bob is round, then Bob is big. (This is a conditional statement.)\n\nHowever, we need to check the conditions first. \n\nFrom statement 1: Bob is round. This means Bob is big according to statement 5.\n\nNow, let's check if Bob is big and round, then he is green (Statement 6). Since Bob is big and round, it follows that Bob is green.\n\nWe can also check if Bob is big. If Bob is big, then he is kind (Statement 9).\n\nNow, we need to check if Bob is kind and green, then he is furry (Statement 8). Since Bob is kind and green, it follows that Bob is furry.\n\nHowever, there is no direct information that Bob is furry. The statements about Bob being furry, green, and red are given, but there is no direct information about Bob being furry.\n\nNow let's check if Bob is not red then Bob is not big (Statement 7). This statement cannot be applied because we have already established that Bob is big.\n\nWe can also check if Gary is not blue, then Gary is furry (Statement 10). Gary is not blue, so Gary is furry.\n\nHowever, there is no direct information that links Bob to Gary.\n\nNow let's check if someone is kind and green, then they are furry (Statement 8). Bob is kind and green, so Bob is furry.\n\nHowever, we still cannot conclude whether Bob is round or not because we cannot establish whether Bob is furry or not.\n\nBut we can check if someone is big and round, then they are green (Statement 6). Since Bob is big and round, it follows that Bob is green.\n\nNow, we can conclude that the statement \"Bob is round\" is true because we have established that Bob is round, big, and green.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"Big people are round,\" we can infer that if a person is big, then they are round.\n\n2. We are given two statements about Bob: \"Bob is furry\" and \"Bob is green.\" \n\n3. There's also the statement \"If someone is kind and green then they are furry,\" but since we don't know if Bob is kind, we can't make a conclusion about Bob's furiness based on this information.\n\n4. The statement \"Kind people are big\" tells us that if someone is kind, then they are big.\n\n5. We are also given the statement \"Red people are kind,\" which tells us that if someone is red, then they are kind.\n\n6. Finally, there's the statement \"If Bob is not red then Bob is not big,\" which means if Bob is big, then he must be red.\n\nFrom steps 1 and 6, we can conclude that if Bob is round, then Bob is big. And from step 2, we know that Bob is big and green.\n\nNow, using the information that if someone is big and round then they are green (step 1), we can conclude that if Bob is round, then he must be green.\n\nFrom step 2, we know that Bob is green. So, if Bob is green, then he must be round (using the information from step 1).\n\nNow, we have a situation where we can use the information from steps 1 and 6 together. We know that Bob is round, and we know that if Bob is round, then he must be big.\n\nNow we can conclude that Bob is big.\n\nSince we know that Bob is big and green, and we know that if someone is big and round then they are green, we can also conclude that Bob is round.\n\nTherefore, the statement \"Bob is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply them step by step to determine the truth of the statement \"Bob is round.\"\n\n1. Given statements:\n   - Anne is big.\n   - Anne is furry.\n   - Anne is green.\n   - Anne is not kind.\n   - Bob is furry.\n   - Bob is green.\n   - Bob is red.\n   - Bob is round.\n   - Erin is not blue.\n   - Erin is red.\n   - Gary is not furry.\n   - Big people are round.\n   - All blue people are not round.\n   - If someone is big and round then they are green.\n   - If Bob is not red then Bob is not big.\n   - If Bob is round then Bob is big.\n   - Red people are kind.\n   - If Gary is not blue then Gary is furry.\n   - If someone is kind and green then they are furry.\n   - Kind people are big.\n\n2. We want to determine the truth of the statement \"Bob is round.\"\n\n3. From the given statements, we already know that \"Bob is round.\" However, we should verify if this statement is consistent with the other given statements.\n\n4. Since \"Bob is round\" is already given, let's use the other statements to see if they lead to any contradictions or conclusions about Bob.\n\n   - Statement 5: Bob is furry.\n   - Statement 6: Bob is green.\n   - Statement 7: Bob is red.\n   - Statement 8: Bob is round.\n\n5. Using the statement \"If Bob is round then Bob is big\" (Statement 13), we can conclude that Bob is big.\n\n6. Now, let's use the statement \"Big people are round\" (Statement 2) to see if it leads to any contradiction.\n\n   - Statement 2: Big people are round.\n   - We already concluded that Bob is big (Step 5).\n   - Therefore, Bob should be round, which is consistent with the given statement \"Bob is round\" (Statement 8).\n\n7. Now, let's use the statement \"If Bob is not red then Bob is not big\" (Statement 14) to see if it leads to any contradiction.\n\n   - Statement 14: If Bob is not red then Bob is not big.\n   - Statement 7: Bob is red.\n   - Since Bob is red, it means that Bob is big (because Statement 14 is not applicable in this case).\n\n8. We already concluded that Bob is big (Step 5). Now, let's use the statement \"If someone is big and round then they are green\" (Statement 11) to see if it leads to any contradiction.\n\n   - Statement 11: If someone is big and round then they are green.\n   - We already concluded that Bob is big (Step 5) and Bob is round (Statement 8).\n   - Therefore, Bob should be green, which is consistent with the given statement \"Bob is green\" (Statement 6).\n\n9. Now, let's use the statement \"If Bob is round then Bob is big\" (Statement 13) to see if it leads to any contradiction.\n\n   - Statement 13: If Bob is round then Bob is big.\n   - We already concluded that Bob is round (Statement 8) and Bob is big (Step 5).\n\n10. Now, let's use the statement \"Kind people are big\" (Statement 10) to see if it leads to any contradiction.\n\n    - Statement 10: Kind people are big.\n    - Statement 7: Bob is red.\n    - Statement 9: Red people are kind.\n    - Since Bob is red, it means that Bob is kind.\n    - Therefore, Bob should be big, which is consistent with the conclusion that Bob is big (Step 5).\n\n11. Now, let's use the statement \"If someone is kind and green then they are furry\" (Statement 15) to see if it leads to any contradiction.\n\n    - Statement 15: If someone is kind and green then they are furry.\n    - We already concluded that Bob is kind (Step 10) and Bob is green (Statement 6).\n    - Therefore, Bob should be furry, which is consistent with the given statement \"Bob is furry\" (Statement 5).\n\n12. Now, let's use the statement \"Gary is not furry\" (Statement 10) to see if it leads to any contradiction.\n\n    - Statement 10: Gary is not furry.\n    - Statement 16: If Gary is not blue then Gary is furry.\n    - If Gary is not blue, then he is furry, which contradicts Statement 10.\n\n13. Since the statement \"If Gary is not blue then Gary is furry\" (Statement 16) leads to a contradiction with the given statement \"Gary is not furry\" (Statement 10), we cannot determine the truth of the statement \"Bob is round.\"\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is round' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that:\n   - Bob is furry.\n   - Bob is green.\n   - Bob is red.\n   - Bob is round.\n\n2. We also know that:\n   - Big people are round.\n   - All blue people are not round.\n   - If someone is big and round then they are green.\n   - If Bob is not red then Bob is not big.\n   - If Bob is round then Bob is big.\n   - Red people are kind.\n   - If Bob is not red then Bob is not big.\n   - If Gary is not blue then Gary is furry.\n   - If someone is kind and green then they are furry.\n   - Kind people are big.\n\n3. Since we already know that Bob is round from the given information, we can directly conclude that the statement 'Bob is round' is indeed true.\n\nTherefore, the final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to use a process of elimination and logical deductions based on the given statements.\n\nGiven statements:\n1. Anne is big. Anne is furry. Anne is green. Anne is not kind.\n2. Bob is furry. Bob is green. Bob is red. Bob is round.\n3. Erin is not blue. Erin is red.\n4. Gary is not furry. \n5. Big people are round.\n6. All blue people are not round.\n7. If someone is big and round then they are green.\n8. If Bob is not red then Bob is not big.\n9. If Bob is round then Bob is big.\n10. Red people are kind.\n11. If Gary is not blue then Gary is furry.\n12. If someone is kind and green then they are furry.\n13. Kind people are big.\n\nStatement to determine: Bob is round.\n\nFrom statement 2, we know that Bob is round.\n\nHowever, we need to check if this statement is consistent with the other given statements.\n\nFrom statement 5, we know that big people are round. \nFrom statement 9, we know that if Bob is round then Bob is big.\n\nThis implies that Bob is both round and big.\n\nFrom statement 13, we know that kind people are big. \nFrom statement 10, we know that red people are kind.\n\nSince Bob is red (from statement 2), Bob is kind, and therefore Bob is big.\n\nFrom statement 7, we know that if someone is big and round then they are green.\n\nSince Bob is both big and round, Bob is green.\n\nHowever, from statement 2, we already know that Bob is green.\n\nSo, statement 2 is consistent with statements 5, 7, 9, 10, and 13.\n\nTherefore, based on the given statements, the statement \"Bob is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given:\n   - Bob is furry.\n   - Bob is green.\n   - Bob is red.\n   - Bob is round.\n\n2. We are asked to determine if the statement \"Bob is round\" is true, false, or unknown. Since we already have this information, we can directly use it.\n\nHowever, let's analyze the information further using the given rules:\n\n- Bob is round. (Given)\n\n- Rule: If Bob is round then Bob is big.\n  - Conclusion: Bob is big.\n\n- Rule: Big people are round.\n  - This is a tautology, meaning it does not provide any new information.\n\n- Rule: If Bob is not red then Bob is not big.\n  - Given that Bob is red, this rule does not apply to our conclusion.\n\n- Rule: Red people are kind.\n  - This information is not relevant to the statement \"Bob is round.\"\n\n- Rule: Kind people are big.\n  - This information is consistent with our previous conclusion that Bob is big.\n\nSince we have established that Bob is big, and we know that big people are round, we can conclude that the statement \"Bob is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know:\n   - Bob is furry.\n   - Bob is green.\n   - Bob is red.\n   - Bob is round.\n\n2. From the information given, we have the following conclusions:\n   - If someone is big and round then they are green. (This implies that being big and round is a characteristic of green people.)\n   - If Bob is not red then Bob is not big. (This implies that being red is a characteristic of big people.)\n   - If Bob is round then Bob is big. (This implies that being round is a characteristic of big people.)\n\n3. We also know:\n   - Big people are round.\n   - If someone is big and round then they are green.\n\n4. Now, we need to analyze the statement \"Bob is round\":\n   - From the conclusion that if Bob is round then Bob is big, we can say that Bob is big if he is round.\n   - We also know that big people are round. This means that if Bob is big, then he is round.\n   - If someone is big and round then they are green. This means that if Bob is big and round, then he is green.\n\n5. Combining all this information, we can conclude that:\n   - If Bob is round, then he is big (from the conclusion that if Bob is round then Bob is big).\n   - If Bob is big, then he is round (from the conclusion that big people are round).\n   - If Bob is big and round, then he is green (from the conclusion that if someone is big and round then they are green).\n\n6. Given that Bob is green (from the initial information), we can conclude that:\n   - The statement \"Bob is round\" is true.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will break it down into smaller parts and use the given information to make deductions.\n\nGiven information:\n\n1. Anne is big. Anne is furry. Anne is green. Anne is not kind.\n2. Bob is furry. Bob is green. Bob is red. Bob is round.\n3. Erin is not blue. Erin is red.\n4. Gary is not furry. \n5. Big people are round.\n6. All blue people are not round.\n7. If someone is big and round then they are green.\n8. If Bob is not red then Bob is not big.\n9. If Bob is round then Bob is big.\n10. Red people are kind.\n11. If Gary is not blue then Gary is furry.\n12. If someone is kind and green then they are furry.\n13. Kind people are big.\n\nNow, let's analyze the statement \"Bob is round.\"\n\nFrom statement 2, we know Bob is round. However, we need to check if this statement can be proven or disproven using the given information.\n\nLet's check if statement 9, \"If Bob is round then Bob is big,\" is true or false. Since we know Bob is round (from statement 2), and statement 9 is true, we can conclude that Bob is big.\n\nNow, let's check if statement 8, \"If Bob is not red then Bob is not big,\" is true or false. We know Bob is red (from statement 2), and statement 8 is true. However, we already concluded that Bob is big, and statement 8 does not contradict this.\n\nNow, let's check if statement 7, \"If someone is big and round then they are green,\" is true or false. Since we know Bob is big and round, and statement 7 is true, we can conclude that Bob is green.\n\nWe have concluded that Bob is big, Bob is green, and Bob is round.\n\nSince we can prove the statement \"Bob is round\" using the given information, the answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bob, big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> red(X)",
+          "z3_formula": "Implies(kind_bob, red_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, green_bob), furry_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_bob, kind_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "Not(red(X)) -> Not(big(X))",
+          "z3_formula": "Implies(Not(red_bob), Not(big_bob))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bob, big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(big_bob, round_bob), green_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(round(X))",
+          "z3_formula": "Implies(blue_bob, Not(round_bob))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, green_bob), furry_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_bob, kind_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "Not(red(X)) -> Not(big(X))",
+          "z3_formula": "Implies(Not(red_bob), Not(big_bob))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bob, big_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(big_bob, round_bob), green_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(erin)",
+          "z3_formula": "not blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not furry(gary)",
+          "z3_formula": "not furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> not round(X)",
+          "z3_formula": "Implies(blue_bob, not round_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(big_bob, round_bob), green_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not red(X) -> not big(X)",
+          "z3_formula": "Implies(Not(red_bob), Not(big_bob))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bob, big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_bob, big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_bob, kind_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not blue(X) -> furry(X)",
+          "z3_formula": "Implies(Not(blue_gary), furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, green_bob), furry_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_bob, big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bob, big_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(big_bob, round_bob), green_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_bob, kind_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, green_bob), furry_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, green_bob), furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_bob, big_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_bob, kind_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "Not(red(X)) -> Not(big(X))",
+          "z3_formula": "Implies(Not(red_bob), Not(big_bob))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(anne)",
+          "z3_formula": "Not(kind_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(erin)",
+          "z3_formula": "Not(blue_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not furry(gary)",
+          "z3_formula": "Not(furry_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> not round(X)",
+          "z3_formula": "Implies(blue_X, Not(round_X))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(big_X, round_X), green_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not red(X) -> not big(X)",
+          "z3_formula": "Implies(Not(red_X), Not(big_X))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> big(X)",
+          "z3_formula": "Implies(big_X, big_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_X, kind_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not blue(X) -> furry(X)",
+          "z3_formula": "Implies(Not(blue_X), furry_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, green_X), furry_X)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(gary)",
+          "z3_formula": "Not(furry_gary)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(round(X))",
+          "z3_formula": "Implies(blue_bob, Not(round_bob))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(big_bob, round_bob), green_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "Not(red(X)) -> Not(big(X))",
+          "z3_formula": "Implies(Not(red_bob), Not(big_bob))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bob, big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_bob, kind_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "Not(red(X)) -> Not(big(X))",
+          "z3_formula": "Implies(Not(red_bob), Not(big_bob))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "Not(blue(X)) -> furry(X)",
+          "z3_formula": "Implies(Not(blue_gary), furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, green_bob), furry_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_bob, kind_bob)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(anne))",
+          "z3_formula": "Not(kind_anne) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(blue(erin))",
+          "z3_formula": "Not(blue_erin) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(furry(gary))",
+          "z3_formula": "Not(furry_gary) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_X, round_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_X, big_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_X, kind_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(big_X, round_X), green_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "not(blue(X)) -> furry(X)",
+          "z3_formula": "Implies(Not(blue_X), furry_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, green_X), furry_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bob, big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "not red(X) -> not big(X)",
+          "z3_formula": "Implies(Not(red_bob), Not(big_bob))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_bob, kind_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_bob, big_bob)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(big_bob, round_bob), green_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "Not(red(X)) -> Not(big(X))",
+          "z3_formula": "Implies(Not(red_bob), Not(big_bob))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bob, big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_bob, round_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(big_bob, round_bob), green_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(anne))",
+          "z3_formula": "Not(kind_anne) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(blue(erin))",
+          "z3_formula": "Not(blue_erin) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(furry(gary))",
+          "z3_formula": "Not(furry_gary) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_X, round_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> not(round(X))",
+          "z3_formula": "Implies(blue_X, Not(round_X))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(big_X, round_X), green_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not(red(X)) -> not(big(X))",
+          "z3_formula": "Implies(Not(red_X), Not(big_X))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_X, kind_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not(blue(X)) -> furry(X)",
+          "z3_formula": "Implies(Not(blue_X), furry_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, green_X), furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_X, big_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 176,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 36
+    },
+    "maxsat_stats": {
+      "satisfied": 35,
+      "excluded": 1,
+      "total_weight": 174,
+      "solve_time_ms": 1.0492103174328804
+    },
+    "timing": {
+      "trace_gen_s": 12.344,
+      "extraction_s": 29.444,
+      "dedup_s": 1.285,
+      "maxsat_s": 0.003,
+      "total_s": 43.076
+    }
+  }
+}

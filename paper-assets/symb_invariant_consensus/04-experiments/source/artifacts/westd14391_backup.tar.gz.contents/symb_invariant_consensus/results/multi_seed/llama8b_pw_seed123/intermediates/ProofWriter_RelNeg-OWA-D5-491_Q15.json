@@ -1,0 +1,1097 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-491_Q15",
+    "problem": "The bear chases the lion. The bear is not young. The dog chases the bear. The dog chases the lion. The dog chases the squirrel. The dog sees the lion. The dog visits the squirrel. The lion does not chase the bear. The lion does not chase the squirrel. The lion is not red. The squirrel chases the bear. The squirrel chases the dog. The squirrel is green. The squirrel is round. The squirrel is young. The squirrel sees the dog. If something visits the bear then it sees the bear. If something sees the bear then the bear sees the dog. If something visits the dog and the dog is young then the dog sees the bear. If something is green then it sees the dog. If something sees the dog then it visits the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion does not visit the bear.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nYoung($x, bool) ::: Is x young?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\nRound($x, bool) ::: Is x round?\n\nFacts:\nChases(Bear, Lion, True) ::: The bear chases the lion.\nYoung(Bear, False) ::: The bear is not young.\nChases(Dog, Bear, True) ::: The dog chases the bear.\nChases(Dog, Lion, True) ::: The dog chases the lion.\nChases(Dog, Squirrel, True) ::: The dog chases the squirrel.\nSees(Dog, Lion, True) ::: The dog sees the lion.\nVisits(Dog, Squirrel, True) ::: The dog visits the squirrel.\nChases(Lion, Bear, False) ::: The lion does not chase the bear.\nChases(Lion, Squirrel, False) ::: The lion does not chase the squirrel.\nRed(Lion, False) ::: The lion is not red.\nChases(Squirrel, Bear, True) ::: The squirrel chases the bear.\nChases(Squirrel, Dog, True) ::: The squirrel chases the dog.\nGreen(Squirrel, True) ::: The squirrel is green.\nRound(Squirrel, True) ::: The squirrel is round.\nYoung(Squirrel, True) ::: The squirrel is young.\nSees(Squirrel, Dog, True) ::: The squirrel sees the dog.\n\nRules:\nVisits($x, Bear, True) >>> Sees($x, Bear, True) ::: If something visits the bear then it sees the bear.\nSees($x, Bear, True) >>> Sees(Bear, Dog, True) ::: If something sees the bear then the bear sees the dog.\nVisits($x, Dog, True) && Young(Dog, True) >>> Sees(Dog, Bear, True) ::: If something visits the dog and the dog is young then the dog sees the bear.\nGreen($x, True) >>> Sees($x, Dog, True) ::: If something is green then it sees the dog.\nSees($x, Dog, True) >>> Visits($x, Bear, True) ::: If something sees the dog then it visits the bear.\n\nQuery:\nVisits(Lion, Bear, False) ::: The lion does not visit the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 19.5,
+      "True": 116.0,
+      "Unknown": 137.0
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "True": 4,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to use the given information and the rules provided.\n\n1. The lion does not chase the bear. (Given)\n2. The lion is not red. (Given)\n3. The lion does not chase the squirrel. (Given)\n4. If something visits the bear then it sees the bear. (Rule 1)\n5. If something sees the bear then the bear sees the dog. (Rule 2)\n6. If something visits the dog and the dog is young then the dog sees the bear. (Rule 3)\n7. If something is green then it sees the dog. (Rule 4)\n8. If something sees the dog then it visits the bear. (Rule 5)\n\nFrom the given information, we can conclude the following:\n\n- The lion does not chase the bear (Statement 1).\n- The lion does not chase the squirrel (Statement 3).\n- The squirrel chases the bear (Given).\n- The squirrel chases the dog (Given).\n- The squirrel is green (Given).\n- The squirrel sees the dog (Rule 7).\n- The squirrel sees the dog, so the squirrel visits the bear (Rule 5).\n\nHowever, we cannot determine whether the lion visits the bear or not from the given information.\n\nThe only thing we know is that if the lion sees the bear then it must see the dog (Rule 2), but we don't have any information that the lion sees the bear.\n\nSo, we cannot determine whether the statement \"The lion does not visit the bear\" is true or false. It is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will use a combination of logical deduction and the given rules. \n\nLet's break down the given rules:\n\n1. If something visits the bear then it sees the bear.\n2. If something sees the bear then the bear sees the dog.\n3. If something visits the dog and the dog is young then the dog sees the bear.\n4. If something is green then it sees the dog.\n5. If something sees the dog then it visits the bear.\n\nNow, let's analyze the given statements:\n\n- The bear chases the lion.\n- The bear is not young.\n- The dog chases the bear.\n- The dog chases the lion.\n- The dog chases the squirrel.\n- The dog sees the lion.\n- The dog visits the squirrel.\n- The lion does not chase the bear.\n- The lion does not chase the squirrel.\n- The lion is not red.\n- The squirrel chases the bear.\n- The squirrel chases the dog.\n- The squirrel is green.\n- The squirrel is round.\n- The squirrel is young.\n- The squirrel sees the dog.\n- If something visits the bear then it sees the bear.\n- If something sees the bear then the bear sees the dog.\n- If something visits the dog and the dog is young then the dog sees the bear.\n- If something is green then it sees the dog.\n- If something sees the dog then it visits the bear.\n\nWe need to determine whether the lion does not visit the bear. Let's assume that the lion visits the bear (Lion_visits_bear) and the lion does not see the bear (Lion_does_not_see_bear). \n\nUsing rule 1, if the lion visits the bear, then the lion sees the bear (Lion_sees_bear).\n\nHowever, we assumed Lion_does_not_see_bear, which contradicts Lion_sees_bear. Therefore, our assumption that Lion_visits_bear is incorrect. \n\nNow, let's assume that the lion visits the bear (Lion_visits_bear) and the lion sees the bear (Lion_sees_bear). \n\nUsing rule 2, if the lion sees the bear, then the bear sees the dog (Bear_sees_dog).\n\nUsing rule 5, if the lion sees the dog, then the lion visits the bear (Lion_visits_bear), which we assumed in the first place. This creates a loop, and we cannot conclude anything from this assumption.\n\nHowever, we can use the assumption that the lion does not chase the bear (Lion_does_not_chase_bear). \n\nUsing rule 3, if the dog visits the lion and the lion is young, then the lion sees the dog. But the lion is not young, so this rule does not apply to the lion.\n\nNow, let's analyze the statement that the lion sees the squirrel (Lion_sees_squirrel). \n\nWe know that the lion does not chase the squirrel (Lion_does_not_chase_squirrel). \n\nUsing rule 1, if the lion visits the squirrel, then the lion sees the squirrel (Lion_sees_squirrel).\n\nWe also know that the squirrel is green (Squirrel_is_green).\n\nUsing rule 4, if the squirrel is green, then the squirrel sees the dog (Squirrel_sees_dog).\n\nUsing rule 5, if the squirrel sees the dog, then the squirrel visits the bear (Squirrel_visits_bear).\n\nNow, let's analyze the statement that the lion visits the squirrel (Lion_visits_squirrel). \n\nWe know that the lion does not chase the squirrel (Lion_does_not_chase_squirrel). \n\nUsing rule 1, if the lion visits the squirrel, then the lion sees the squirrel (Lion_sees_squirrel).\n\nWe also know that the lion sees the squirrel (Lion_sees_squirrel). \n\nUsing rule 5, if the lion sees the squirrel, then the lion visits the squirrel (Lion_visits_squirrel).\n\nHowever, this creates a loop, and we cannot conclude anything from this assumption.\n\nNow, let's analyze the statement that the lion sees the dog (Lion_sees_dog). \n\nWe know that the lion does not chase the bear (Lion_does_not_chase_bear).\n\nUsing rule 1, if the lion visits the bear, then the lion sees the bear (Lion_sees_bear).\n\nHowever, we assumed Lion_sees_bear, which is incorrect.\n\nUsing rule 3, if the dog visits the lion and the lion is young, then the lion sees the dog. But the lion is not young, so this rule does not apply to the lion.\n\nNow, let's analyze the statement that the lion visits the dog (Lion_visits_dog). \n\nWe know that the lion does not chase the bear (Lion_does_not_chase_bear).\n\nUsing rule 3, if the dog visits the lion and the lion is young, then the lion sees the dog. But the lion is not young, so this rule does not apply to the lion.\n\nWe also know that the squirrel is green (Squirrel_is_green).\n\nUsing rule 4, if the squirrel is green, then the squirrel sees the dog (Squirrel_sees_dog).\n\nUsing rule 5, if the squirrel sees the dog, then the squirrel visits the bear (Squirrel_visits_bear).\n\nNow, let's analyze the statement that the lion visits the bear (Lion_visits_bear). \n\nWe know that the lion does not chase the bear (Lion_does_not_chase_bear).\n\nUsing rule 3, if the dog visits the lion and the lion is young, then the lion sees the dog. But the lion is not young, so this rule does not apply to the lion.\n\nWe also know that the squirrel is green (Squirrel_is_green).\n\nUsing rule 4, if the squirrel is green, then the squirrel sees the dog (Squirrel_sees_dog).\n\nUsing rule 5, if the squirrel sees the dog, then the squirrel visits the bear (Squirrel_visits_bear).\n\nNow, let's analyze the statement that the lion visits the dog (Lion_visits_dog). \n\nWe know that the lion does not chase the bear (Lion_does_not_chase_bear).\n\nUsing rule 3, if the dog visits the lion and the lion is young, then the lion sees the dog. But the lion is not young, so this rule does not apply to the lion.\n\nWe also know that the squirrel is green (Squirrel_is_green).\n\nUsing rule 4, if the squirrel is green, then the squirrel sees the dog (Squirrel_sees_dog).\n\nUsing rule 5, if the squirrel sees the dog, then the squirrel visits the bear (Squirrel_visits_bear).\n\nHowever, the statement \"If something sees the dog then it visits the bear\" is a tautology. It means that if something sees the dog, then it is not possible for it to visit the bear. Therefore, we can conclude that the lion does not see the dog.\n\nTherefore, we can conclude that the lion does not visit the bear.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'The lion does not visit the bear' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion does not chase the bear. \nThis statement does not provide any information about the lion visiting the bear.\n\n2. If something visits the bear then it sees the bear. \nThis statement does not provide any information about the lion visiting the bear.\n\n3. If something sees the bear then the bear sees the dog. \nThis statement does not provide any information about the lion visiting the bear.\n\n4. If something visits the dog and the dog is young then the dog sees the bear. \nThis statement does not provide any information about the lion visiting the bear.\n\n5. If something is green then it sees the dog. \nThis statement does not provide any information about the lion visiting the bear.\n\n6. If something sees the dog then it visits the bear. \nThis statement does not provide any information about the lion visiting the bear.\n\n7. The lion is not red. \nThis statement does not provide any information about the lion visiting the bear.\n\n8. The squirrel chases the bear. \nThis statement does not provide any information about the lion visiting the bear.\n\n9. The squirrel sees the dog. \nThis statement does not provide any information about the lion visiting the bear.\n\n10. The squirrel is green. \nThis statement, combined with statement 6, implies that the squirrel visits the bear. However, it does not provide any information about the lion visiting the bear.\n\n11. The lion does not chase the squirrel. \nThis statement does not provide any information about the lion visiting the bear.\n\n12. The lion does not chase the bear. \nThis statement does not provide any information about the lion visiting the bear.\n\n13. The lion is not red. \nThis statement does not provide any information about the lion visiting the bear.\n\n14. The dog chases the bear. \nThis statement does not provide any information about the lion visiting the bear.\n\n15. The dog chases the lion. \nThis statement does not provide any information about the lion visiting the bear.\n\n16. The dog chases the squirrel. \nThis statement does not provide any information about the lion visiting the bear.\n\n17. The dog sees the lion. \nThis statement does not provide any information about the lion visiting the bear.\n\n18. The dog visits the squirrel. \nThis statement does not provide any information about the lion visiting the bear.\n\n19. The dog is not young. \nThis statement does not provide any information about the lion visiting the bear.\n\n20. The bear is not young. \nThis statement does not provide any information about the lion visiting the bear.\n\n21. The squirrel is not green. \nThis statement is false because statement 10 says the squirrel is green.\n\n22. The squirrel is round. \nThis statement does not provide any information about the lion visiting the bear.\n\n23. The squirrel is young. \nThis statement does not provide any information about the lion visiting the bear.\n\n24. The squirrel chases the dog. \nThis statement does not provide any information about the lion visiting the bear.\n\nSince none of the given statements provide any information about the lion visiting the bear, we cannot determine whether the statement 'The lion does not visit the bear' is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not visit the bear\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the given information:\n\n1. The lion is not red. (This statement does not provide any relevant information about the lion visiting the bear.)\n2. The lion does not chase the bear. (This statement does not provide any relevant information about the lion visiting the bear.)\n3. The lion does not chase the squirrel. (This statement does not provide any relevant information about the lion visiting the bear.)\n4. The lion sees the dog. (This statement does not provide any relevant information about the lion visiting the bear.)\n\nHowever, we can use the following rules to analyze the situation:\n\n1. If something visits the bear then it sees the bear.\n2. If something sees the bear then the bear sees the dog.\n3. If something visits the dog and the dog is young then the dog sees the bear.\n4. If something is green then it sees the dog.\n5. If something sees the dog then it visits the bear.\n\nFrom the given information, we know that the squirrel is green (Statement 8), the squirrel sees the dog (Statement 10), and the squirrel visits the bear (Statement 5). \n\nHowever, we cannot directly infer whether the lion visits the bear or not, but we can see if there's a possible path that leads to it. \n\nFrom Statement 4, we can infer that the squirrel sees the dog (Statement 10). \n\nStatement 5 says the squirrel chases the bear. \n\nHowever, Statement 5 also says the squirrel sees the dog, and Statement 2 says that the squirrel is green. \n\nStatement 4 says that if something is green then it sees the dog. \n\nThis creates a loop where the squirrel sees the dog and the squirrel is green. \n\nSince Statement 5 says the squirrel sees the dog and Statement 7 says the squirrel is green, we can infer that the squirrel sees the dog.\n\nNow, we use Statement 5, which says that the squirrel sees the dog.\n\nStatement 1 says that if something sees the bear then the bear sees the dog. \n\nHowever, we have no information about the bear seeing the dog in this case.\n\nNow, let's look at the dog's situation:\n\nThe dog chases the bear (Statement 3), the dog chases the lion (Statement 4), the dog sees the lion (Statement 6), the dog visits the squirrel (Statement 7), and the dog is not mentioned to be young in any of the statements.\n\nStatement 3 says the dog chases the bear.\n\nStatement 3 also says the dog chases the bear.\n\nNow, we can use Statement 3 to infer that the dog sees the bear, and Statement 2 to infer that the bear sees the dog.\n\nHowever, Statement 3 says the dog chases the bear, which does not tell us whether the dog visits the bear.\n\nNow, we can use Statement 3 to infer that the dog sees the bear, and Statement 2 to infer that the bear sees the dog.\n\nNow, let's look at the lion's situation:\n\nStatement 6 says that the lion sees the dog.\n\nStatement 1 says that if something sees the bear then the bear sees the dog.\n\nHowever, Statement 6 says that the lion sees the dog.\n\nStatement 4 says that if something visits the dog and the dog is young then the dog sees the bear.\n\nHowever, Statement 6 says that the lion sees the dog, not that the lion visits the dog.\n\nNow, let's look at Statement 7: the dog visits the squirrel.\n\nSince Statement 7 says that the dog visits the squirrel, we can use Statement 5 to infer that the dog sees the squirrel.\n\nNow, we can use Statement 4 to infer that the squirrel sees the dog.\n\nNow, let's look at Statement 3: the dog chases the bear.\n\nSince Statement 3 says that the dog chases the bear, we can use Statement 1 to infer that the bear sees the dog.\n\nNow, we can use Statement 2 to infer that the lion sees the dog.\n\nNow, let's look at Statement 2: the lion does not chase the bear.\n\nHowever, Statement 2 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 1: if something visits the bear then it sees the bear.\n\nHowever, Statement 1 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 5: the squirrel chases the bear.\n\nSince Statement 5 says that the squirrel chases the bear, we can use Statement 1 to infer that the squirrel sees the bear.\n\nHowever, Statement 1 says that if something sees the bear then the bear sees the dog.\n\nNow, we can use Statement 2 to infer that the lion sees the dog.\n\nHowever, Statement 2 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 7: the dog visits the squirrel.\n\nSince Statement 7 says that the dog visits the squirrel, we can use Statement 5 to infer that the dog sees the squirrel.\n\nHowever, Statement 5 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 6: the dog sees the lion.\n\nSince Statement 6 says that the dog sees the lion, we can use Statement 5 to infer that the dog visits the lion.\n\nHowever, Statement 5 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 4: the dog chases the lion.\n\nSince Statement 4 says that the dog chases the lion, we can use Statement 1 to infer that the lion sees the dog.\n\nNow, we can use Statement 5 to infer that the lion visits the dog.\n\nHowever, Statement 5 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 8: the squirrel is green.\n\nSince Statement 8 says that the squirrel is green, we can use Statement 4 to infer that the squirrel sees the dog.\n\nNow, we can use Statement 5 to infer that the squirrel visits the dog.\n\nHowever, Statement 5 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 9: the squirrel is round.\n\nStatement 9 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 10: the squirrel is young.\n\nSince Statement 10 says that the squirrel is young, we can use Statement 4 to infer that the squirrel sees the bear.\n\nHowever, Statement 4 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 11: the squirrel sees the dog.\n\nSince Statement 11 says that the squirrel sees the dog, we can use Statement 5 to infer that the squirrel visits the bear.\n\nHowever, Statement 5 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 12: the squirrel is green.\n\nSince Statement 12 says that the squirrel is green, we can use Statement 4 to infer that the squirrel sees the dog.\n\nHowever, Statement 4 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 13: the dog sees the lion.\n\nSince Statement 13 says that the dog sees the lion, we can use Statement 5 to infer that the dog visits the lion.\n\nHowever, Statement 5 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 14: the lion does not chase the squirrel.\n\nStatement 14 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 15: the lion is not red.\n\nStatement 15 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 16: the squirrel chases the dog.\n\nSince Statement 16 says that the squirrel chases the dog, we can use Statement 1 to infer that the dog sees the squirrel.\n\nNow, we can use Statement 5 to infer that the dog visits the squirrel.\n\nHowever, Statement 5 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 17: the dog chases the squirrel.\n\nSince Statement 17 says that the dog chases the squirrel, we can use Statement 1 to infer that the squirrel sees the dog.\n\nNow, we can use Statement 5 to infer that the squirrel visits the dog.\n\nHowever, Statement 5 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 18: the squirrel is round.\n\nStatement 18 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 19: the squirrel is young.\n\nSince Statement 19 says that the squirrel is young, we can use Statement 4 to infer that the squirrel sees the bear.\n\nHowever, Statement 4 does not provide any information about the lion visiting the bear.\n\nNow, let's look at Statement 20: the squirrel sees the dog.\n\nSince Statement 20 says that the squirrel sees the dog, we can use Statement 5 to infer that the squirrel visits the bear.\n\nHowever, Statement 5 does not provide any information about the lion visiting the bear.\n\nSince we have not found any information that directly relates to the lion visiting the bear, we must conclude that the lion visiting the bear is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not visit the bear\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nLet's analyze the rules and the given information:\n\n1. The bear chases the lion. (This does not provide any information about the lion visiting the bear.)\n2. The bear is not young. (This does not provide any information about the lion visiting the bear.)\n3. The dog chases the bear. (This does not provide any information about the lion visiting the bear.)\n4. The dog chases the lion. (This does not provide any information about the lion visiting the bear.)\n5. The dog chases the squirrel. (This does not provide any information about the lion visiting the bear.)\n6. The dog sees the lion. (This does not provide any information about the lion visiting the bear.)\n7. The dog visits the squirrel. (This does not provide any information about the lion visiting the bear.)\n8. The lion does not chase the bear. (This does not provide any information about the lion visiting the bear.)\n9. The lion does not chase the squirrel. (This does not provide any information about the lion visiting the bear.)\n10. The lion is not red. (This does not provide any information about the lion visiting the bear.)\n11. The squirrel chases the bear. (This does not provide any information about the lion visiting the bear.)\n12. The squirrel chases the dog. (This does not provide any information about the lion visiting the bear.)\n13. The squirrel is green. (This does not provide any information about the lion visiting the bear.)\n14. The squirrel is round. (This does not provide any information about the lion visiting the bear.)\n15. The squirrel is young. (This does not provide any information about the lion visiting the bear.)\n16. The squirrel sees the dog. (This does not provide any information about the lion visiting the bear.)\n17. If something visits the bear then it sees the bear. (This rule does not help us determine whether the lion visits the bear.)\n18. If something sees the bear then the bear sees the dog. (This rule does not help us determine whether the lion visits the bear.)\n19. If something visits the dog and the dog is young then the dog sees the bear. (This rule does not help us determine whether the lion visits the bear.)\n20. If something is green then it sees the dog. (This rule does not help us determine whether the lion visits the bear.)\n21. If something sees the dog then it visits the bear. (This rule does not help us determine whether the lion visits the bear.)\n\nHowever, we have the following information:\n\n- The lion does not chase the bear. (Rule 8)\n- The lion does not chase the squirrel. (Rule 9)\n\nThis implies that the lion does not chase anything else either, but it does not provide any information about the lion visiting the bear.\n\nWe also have the following information:\n\n- The dog chases the lion. (Rule 4)\n- The dog sees the lion. (Rule 6)\n- The squirrel chases the dog. (Rule 12)\n- The squirrel sees the dog. (Rule 16)\n- The squirrel is green. (Rule 13)\n\nThis implies that the squirrel sees the dog (Rule 20), but it does not provide any information about the lion visiting the bear.\n\nHowever, we also have the following information:\n\n- The squirrel sees the dog. (Rule 16)\n- If something sees the dog then it visits the bear. (Rule 21)\n\nThis implies that the squirrel visits the bear, but it does not provide any information about the lion visiting the bear.\n\nHowever, we also have the following information:\n\n- The squirrel visits the bear. (Implication of Rule 21)\n- If something visits the bear then it sees the bear. (Rule 17)\n\nThis implies that the squirrel sees the bear, but it does not provide any information about the lion visiting the bear.\n\nHowever, we also have the following information:\n\n- The squirrel sees the bear. (Implication of Rule 17)\n- If something sees the bear then the bear sees the dog. (Rule 18)\n\nThis implies that the bear sees the dog, but it does not provide any information about the lion visiting the bear.\n\nHowever, we also have the following information:\n\n- The bear sees the dog. (Implication of Rule 18)\n- The dog chases the lion. (Rule 4)\n\nThis implies that the bear chases the lion, but it does not provide any information about the lion visiting the bear.\n\nHowever, we also have the following information:\n\n- The bear chases the lion. (Implication of the previous information)\n- The bear is not young. (Rule 2)\n\nThis implies that the bear is not young, but it does not provide any information about the lion visiting the bear.\n\nHowever, we also have the following information:\n\n- The lion does not chase the bear. (Rule 8)\n- The lion does not chase the squirrel. (Rule 9)\n- The bear chases the lion. (Implication of the previous information)\n- The bear is not young. (Rule 2)\n- The squirrel chases the bear. (Rule 11)\n- The squirrel chases the dog. (Rule 12)\n- The squirrel is green. (Rule 13)\n- The squirrel sees the dog. (Rule 16)\n- The squirrel visits the bear. (Implication of Rule 21)\n- The squirrel sees the bear. (Implication of Rule 17)\n- The bear sees the dog. (Implication of Rule 18)\n- The bear chases the lion. (Implication of the previous information)\n\nThis implies that the lion does not visit the bear, because there is no information that implies that the lion visits the bear.\n\nTherefore, the statement \"The lion does not visit the bear\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not visit the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion does not chase the bear. (Given)\n2. The lion does not chase the squirrel. (Given)\n3. The lion is not red. (Given)\n4. The squirrel chases the bear. (Given)\n5. The squirrel chases the dog. (Given)\n6. The squirrel is green. (Given)\n7. The squirrel is round. (Given)\n8. The squirrel is young. (Given)\n9. The squirrel sees the dog. (Given)\n10. If something visits the bear then it sees the bear. (Given rule)\n11. If something sees the bear then the bear sees the dog. (Given rule)\n12. If something visits the dog and the dog is young then the dog sees the bear. (Given rule)\n13. If something is green then it sees the dog. (Given rule)\n14. If something sees the dog then it visits the bear. (Given rule)\n\nFrom the given rules, we can deduce the following information:\n\n- The squirrel visits the bear because it chases the bear (Rule 10).\n- The bear sees the dog because the squirrel visits the bear and the squirrel sees the dog (Rules 11 and 14).\n- The squirrel is green, so it sees the dog (Rule 13).\n- Since the squirrel sees the dog and the squirrel visits the bear, the dog sees the bear (Rules 11 and 14).\n\nHowever, we cannot determine whether the lion visits the bear or not using the given information. The only information related to the lion's action is that it does not chase the bear (Rule 1). Therefore, we cannot conclude whether the lion visits the bear or not.\n\nHowever, we can make use of the fact that the dog is not mentioned to be young, but it does visit the bear, as per rule 12 (if something visits the dog and the dog is young then the dog sees the bear).  We know that the dog chases the bear. Therefore, the dog sees the bear. As per rule 11, the bear sees the dog.\n\nNow, let's look at the statement \"The lion does not visit the bear\". If the lion visits the bear, then it should see the bear according to rule 10. As per rule 11, the bear sees the dog. Since the bear sees the dog, the lion should also see the dog (because it visits the bear) which is not mentioned.\n\nNow, we can use the fact that the dog sees the bear, the dog chases the bear, and the fact that the lion does not chase the bear (rule 1). If the lion visits the bear, then it should chase the bear (as per rule 10), which contradicts the given information that the lion does not chase the bear.\n\nTherefore, if the lion visits the bear, it leads to a contradiction with the given information. Hence, the lion does not visit the bear.\n\nSo, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not visit the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear chases the lion. (This sentence does not provide any useful information regarding the relationship between the lion and the bear in this context.)\n\n2. The bear is not young. (This sentence does not provide any useful information regarding the relationship between the lion and the bear in this context.)\n\n3. The dog chases the bear. (This sentence does not provide any useful information regarding the relationship between the lion and the bear in this context.)\n\n4. The dog chases the lion. (This sentence does not provide any useful information regarding the relationship between the lion and the bear in this context.)\n\n5. The dog chases the squirrel. (This sentence does not provide any useful information regarding the relationship between the lion and the bear in this context.)\n\n6. The dog sees the lion. (This sentence does not provide any useful information regarding the relationship between the lion and the bear in this context.)\n\n7. The dog visits the squirrel. (This sentence does not provide any useful information regarding the relationship between the lion and the bear in this context.)\n\n8. The lion does not chase the bear. (This sentence does not provide any useful information regarding the relationship between the lion and the bear in this context.)\n\n9. The lion does not chase the squirrel. (This sentence does not provide any useful information regarding the relationship between the lion and the bear in this context.)\n\n10. The lion is not red. (This sentence does not provide any useful information regarding the relationship between the lion and the bear in this context.)\n\n11. The squirrel chases the bear. (This sentence does not provide any useful information regarding the relationship between the lion and the bear in this context.)\n\n12. The squirrel chases the dog. (This sentence does not provide any useful information regarding the relationship between the lion and the bear in this context.)\n\n13. The squirrel is green. (This sentence is important, but it will be used later.)\n\n14. The squirrel is round. (This sentence is important, but it will be used later.)\n\n15. The squirrel is young. (This sentence is important, but it will be used later.)\n\n16. The squirrel sees the dog. (This sentence does not provide any useful information regarding the relationship between the lion and the bear in this context.)\n\n17. If something visits the bear then it sees the bear. (This sentence is useful. We will use it later.)\n\n18. If something sees the bear then the bear sees the dog. (This sentence is useful. We will use it later.)\n\n19. If something visits the dog and the dog is young then the dog sees the bear. (This sentence is useful. We will use it later.)\n\n20. If something is green then it sees the dog. (This sentence is useful. We will use it later.)\n\n21. If something sees the dog then it visits the bear. (This sentence is useful. We will use it later.)\n\nNow, we will determine whether the statement \"The lion does not visit the bear\" is true, false, or unknown.\n\nFrom sentence 21, we know that if something sees the dog then it visits the bear. This is a useful information for our problem.\n\nFrom sentence 6, we know that the dog sees the lion.\n\nFrom sentence 21, we can conclude that the lion visits the bear because the lion sees the dog.\n\nHowever, sentence 1 says \"The bear chases the lion.\" The bear does not visit the lion. According to sentence 17, the bear sees the lion. From sentence 18, we know that if the lion sees the bear then the bear sees the dog. However, the statement that we are trying to evaluate is \"The lion does not visit the bear\" not \"The bear does not see the lion\". \n\nWe also have sentence 13, \"The squirrel is green\", and sentence 20, \"If something is green then it sees the dog.\" From these two sentences, we can conclude that the squirrel sees the dog.\n\nFrom sentence 21, we can conclude that the squirrel visits the bear because the squirrel sees the dog.\n\nNow, let's look at sentence 11, \"The squirrel chases the bear.\" This sentence is a problem. According to sentence 17, if something visits the bear then it sees the bear. However, according to sentence 21, if something sees the dog then it visits the bear. Sentence 11 says \"The squirrel chases the bear.\" Sentence 15 says \"The squirrel is young.\" If the squirrel sees the dog then the squirrel visits the bear according to sentence 21. However, according to sentence 19, if the squirrel visits the dog and the dog is young then the dog sees the bear. Sentence 6 says \"The dog sees the lion.\" Sentence 18 says that if something sees the bear then the bear sees the dog. The statement \"The squirrel visits the bear\" is a problem because it would create a contradiction. The statement \"The squirrel visits the bear\" would mean that the squirrel sees the bear, and the bear sees the dog, and the dog sees the lion.\n\nHowever, sentence 11 says \"The squirrel chases the bear.\" According to sentence 17, if something visits the bear then it sees the bear. Sentence 21 says that if something sees the dog then it visits the bear. However, sentence 15 says that the squirrel is young. Sentence 19 says that if the squirrel visits the dog and the dog is young then the dog sees the bear. Sentence 6 says that the dog sees the lion. Sentence 18 says that if something sees the bear then the bear sees the dog. The statement \"The squirrel visits the bear\" would create a contradiction. \n\nHowever, sentence 10 says that the lion is not red. Sentence 8 says that the lion does not chase the bear. The statement \"The lion does not visit the bear\" is true.\n\nTherefore, the statement \"The lion does not visit the bear\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not visit the bear\" is true, false, or unknown, we need to use the given information and the rules to deduce the relationship between the lion and the bear.\n\nFrom the given information, we know:\n1. The bear chases the lion.\n2. The lion does not chase the bear.\n3. If something visits the bear then it sees the bear.\n\nWe can't directly determine the relationship between the lion and the bear from the given information. However, we can use the rules to deduce the relationship.\n\nRule 5 states: If something sees the bear then the bear sees the dog.\n\nHowever, this rule doesn't help us directly. We need to look for other relationships.\n\nRule 6 states: If something visits the dog and the dog is young then the dog sees the bear.\n\nBut this rule also doesn't help us directly.\n\nRule 1 states: The bear chases the lion.\n\nThis means the bear sees the lion (from Rule 3). \n\nNow, let's look at the rules again:\n\nRule 5: If something sees the bear then the bear sees the dog.\n\nThis means the bear sees the dog.\n\nFrom Rule 3: If something visits the bear then it sees the bear.\n\nThis means the bear sees the dog.\n\nFrom Rule 5: If something sees the bear then the bear sees the dog.\n\nThis means the bear sees the dog.\n\nNow we know that the bear sees the dog.\n\nHowever, we still can't determine whether the lion sees the bear or not.\n\nNow, let's look at the rules again:\n\nRule 7 states: If something is green then it sees the dog.\n\nThe squirrel is green.\n\nThis means the squirrel sees the dog.\n\nFrom Rule 8: If something sees the dog then it visits the bear.\n\nThis means the squirrel visits the bear.\n\nFrom Rule 3: If something visits the bear then it sees the bear.\n\nThis means the squirrel sees the bear.\n\nNow we know that the squirrel sees the bear.\n\nFrom Rule 1: The bear chases the lion.\n\nThis means the bear sees the lion.\n\nNow, let's look at the rules again:\n\nRule 5: If something sees the bear then the bear sees the dog.\n\nThis means the bear sees the dog.\n\nNow we know that the bear sees the dog.\n\nFrom Rule 4: The dog chases the bear.\n\nThis means the dog sees the bear.\n\nFrom Rule 2: The lion does not chase the bear.\n\nThis means the lion does not see the bear.\n\nHowever, this conclusion is not directly related to the given statement \"The lion does not visit the bear.\"\n\nTo determine the relationship between the lion and the bear, we need to look for other relationships.\n\nFrom Rule 1: The bear chases the lion.\n\nThis means the bear sees the lion.\n\nFrom Rule 3: If something visits the bear then it sees the bear.\n\nThis means the lion sees the bear.\n\nHowever, this conclusion is not directly related to the given statement \"The lion does not visit the bear.\"\n\nNow, let's look at the rules again:\n\nRule 9 states: The squirrel chases the bear.\n\nThis means the squirrel sees the bear.\n\nFrom Rule 5: If something sees the bear then the bear sees the dog.\n\nThis means the bear sees the dog.\n\nFrom Rule 7: If something is green then it sees the dog.\n\nThis means the squirrel sees the dog.\n\nFrom Rule 8: If something sees the dog then it visits the bear.\n\nThis means the squirrel visits the bear.\n\nFrom Rule 3: If something visits the bear then it sees the bear.\n\nThis means the squirrel sees the bear.\n\nFrom Rule 3: If something visits the bear then it sees the bear.\n\nThis means the lion sees the bear.\n\nHowever, this conclusion is not directly related to the given statement \"The lion does not visit the bear.\"\n\nNow, let's look at the rules again:\n\nRule 5: If something sees the bear then the bear sees the dog.\n\nThis means the bear sees the dog.\n\nFrom Rule 3: If something visits the bear then it sees the bear.\n\nThis means the lion sees the bear.\n\nHowever, this conclusion is not directly related to the given statement \"The lion does not visit the bear.\"\n\nNow, let's look at the rules again:\n\nRule 6 states: If something visits the dog and the dog is young then the dog sees the bear.\n\nHowever, this rule is not helpful because we don't know whether the dog is young or not.\n\nHowever, we can look at Rule 7: If something is green then it sees the dog.\n\nThe squirrel is green.\n\nThis means the squirrel sees the dog.\n\nFrom Rule 8: If something sees the dog then it visits the bear.\n\nThis means the squirrel visits the bear.\n\nFrom Rule 3: If something visits the bear then it sees the bear.\n\nThis means the squirrel sees the bear.\n\nNow we know that the squirrel sees the bear.\n\nFrom Rule 1: The bear chases the lion.\n\nThis means the bear sees the lion.\n\nNow we know that the bear sees the lion.\n\nHowever, we still can't determine whether the lion visits the bear or not.\n\nFrom Rule 5: If something sees the bear then the bear sees the dog.\n\nThis means the bear sees the dog.\n\nFrom Rule 4: The dog chases the bear.\n\nThis means the dog sees the bear.\n\nNow we know that the dog sees the bear.\n\nFrom Rule 2: The lion does not chase the bear.\n\nThis means the lion does not see the bear.\n\nHowever, this conclusion is not directly related to the given statement \"The lion does not visit the bear.\"\n\nHowever, we can look at Rule 6: If something visits the dog and the dog is young then the dog sees the bear.\n\nHowever, this rule is not helpful because we don't know whether the dog is young or not.\n\nHowever, we can look at Rule 7: If something is green then it sees the dog.\n\nThe squirrel is green.\n\nThis means the squirrel sees the dog.\n\nFrom Rule 8: If something sees the dog then it visits the bear.\n\nThis means the squirrel visits the bear.\n\nFrom Rule 3: If something visits the bear then it sees the bear.\n\nThis means the squirrel sees the bear.\n\nNow we know that the squirrel sees the bear.\n\nHowever, we still can't determine whether the lion visits the bear or not.\n\nNow, let's look at the rules again:\n\nRule 5: If something sees the bear then the bear sees the dog.\n\nThis means the bear sees the dog.\n\nNow we know that the bear sees the dog.\n\nFrom Rule 4: The dog chases the bear.\n\nThis means the dog sees the bear.\n\nNow we know that the dog sees the bear.\n\nFrom Rule 2: The lion does not chase the bear.\n\nThis means the lion does not see the bear.\n\nHowever, this conclusion is not directly related to the given statement \"The lion does not visit the bear.\"\n\nHowever, we can look at Rule 1: The bear chases the lion.\n\nThis means the bear sees the lion.\n\nNow we know that the bear sees the lion.\n\nFrom Rule 3: If something visits the bear then it sees the bear.\n\nThis means the lion sees the bear.\n\nHowever, this conclusion is not directly related to the given statement \"The lion does not visit the bear.\"\n\nFrom Rule 5: If something sees the bear then the bear sees the dog.\n\nThis means the bear sees the dog.\n\nNow we know that the bear sees the dog.\n\nFrom Rule 4: The dog chases the bear.\n\nThis means the dog sees the bear.\n\nNow we know that the dog sees the bear.\n\nHowever, we still can't determine whether the lion visits the bear or not.\n\nNow, let's look at the rules again:\n\nRule 9 states: The squirrel chases the bear.\n\nThis means the squirrel sees the bear.\n\nFrom Rule 5: If something sees the bear then the bear sees the dog.\n\nThis means the bear sees the dog.\n\nFrom Rule 7: If something is green then it sees the dog.\n\nThis means the squirrel sees the dog.\n\nFrom Rule 8: If something sees the dog then it visits the bear.\n\nThis means the squirrel visits the bear.\n\nFrom Rule 3: If something visits the bear then it sees the bear.\n\nThis means the squirrel sees the bear.\n\nNow we know that the squirrel sees the bear.\n\nHowever, we still can't determine whether the lion visits the bear or not.\n\nHowever, we can look at Rule 6: If something visits the dog and the dog is young then the dog sees the bear.\n\nHowever, this rule is not helpful because we don't know whether the dog is young or not.\n\nHowever, we can look at Rule 7: If something is green then it sees the dog.\n\nThe squirrel is green.\n\nThis means the squirrel sees the dog.\n\nFrom Rule 8: If something sees the dog then it visits the bear.\n\nThis means the squirrel visits the bear.\n\nFrom Rule 3: If something visits the bear then it sees the bear.\n\nThis means the squirrel sees the bear.\n\nNow we know that the squirrel sees the bear.\n\nHowever, we still can't determine whether the lion visits the bear or not.\n\nHowever, we can look at Rule 3: If something visits the bear then it sees the bear.\n\nThis means the lion sees the bear.\n\nHowever, this conclusion is not directly related to the given statement \"The lion does not visit the bear.\"\n\nNow, let's look at the rules again:\n\nRule 5: If something sees the bear then the bear sees the dog.\n\nThis means the bear sees the dog.\n\nNow we know that the bear sees the dog.\n\nFrom Rule 4: The dog chases the bear.\n\nThis means the dog sees the bear.\n\nNow we know that the dog sees the bear.\n\nHowever, we still can't determine whether the lion visits the bear or not.\n\nHowever, we can look at",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and find any relationship between the lion and the bear.\n\nGiven Statements:\n1. The bear chases the lion.\n2. The bear is not young.\n3. The dog chases the bear.\n4. The dog chases the lion.\n5. The dog chases the squirrel.\n6. The dog sees the lion.\n7. The dog visits the squirrel.\n8. The lion does not chase the bear.\n9. The lion does not chase the squirrel.\n10. The lion is not red.\n11. The squirrel chases the bear.\n12. The squirrel chases the dog.\n13. The squirrel is green.\n14. The squirrel is round.\n15. The squirrel is young.\n16. The squirrel sees the dog.\n17. If something visits the bear then it sees the bear.\n18. If something sees the bear then the bear sees the dog.\n19. If something visits the dog and the dog is young then the dog sees the bear.\n20. If something is green then it sees the dog.\n21. If something sees the dog then it visits the bear.\n\nWe are looking for the relationship between the lion and the bear in statement 8, which says that the lion does not chase the bear. However, to confirm this, we need to see if the lion visits the bear.\n\nFrom statement 21, we know that if something sees the dog then it visits the bear. However, there is no direct connection between the lion and the dog seeing the lion in the given statements, but there are indirect connections.\n\nFrom statement 6, we know that the dog sees the lion. Now let's use statement 21, which says if something sees the dog then it visits the bear. Since the lion does not chase the bear, we cannot directly conclude that the lion sees the dog from the given statements, but we can conclude that the dog sees the lion and from statement 6, the dog sees the lion.\n\nNow let's examine the statements related to the dog and the lion, and the dog and the bear:\n\nThe dog chases the bear (statement 3), and the bear chases the lion (statement 1). This creates a connection between the dog and the bear and the bear and the lion.\n\nHowever, there is no direct connection between the lion and the bear visiting each other. But, if the lion sees the dog, then it would visit the bear according to statement 21.\n\nWe can see that the squirrel is green and sees the dog from statement 13 and statement 16, but the lion is not red (statement 10), so we cannot conclude that the lion sees the dog.\n\nSince the lion is not directly related to seeing the dog and visiting the bear from the given statements, and the lion is not chasing the bear (statement 8), we cannot directly conclude that the lion does not visit the bear.\n\nHowever, we can conclude that if the lion sees the dog, then it would visit the bear according to statement 21, but the lion is not directly related to seeing the dog from the given statements.\n\nTherefore, the relationship between the lion and the bear in statement 8 is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and the rules provided to determine if the lion visits the bear.\n\n1. The lion does not chase the bear. (This statement does not provide any information about visiting the bear.)\n2. The lion does not chase the squirrel. (This statement does not provide any information about visiting the bear.)\n3. The lion is not red. (This statement does not provide any information about visiting the bear.)\n4. If something visits the bear then it sees the bear. (This rule does not provide any information about the lion visiting the bear.)\n5. If something sees the bear then the bear sees the dog. (This rule does not provide any information about the lion visiting the bear.)\n6. If something visits the dog and the dog is young then the dog sees the bear. (This rule does not provide any information about the lion visiting the bear.)\n7. If something is green then it sees the dog. (This rule does not provide any information about the lion visiting the bear.)\n8. If something sees the dog then it visits the bear. (This rule does not provide any information about the lion visiting the bear.)\n\nHowever, we need to analyze the given statements:\n- The dog chases the bear. (This implies that the dog sees the bear.)\n- The bear is not young. (This does not provide any information about the lion visiting the bear.)\n- The dog chases the lion. (This implies that the dog sees the lion.)\n- The dog sees the lion. (This implies that the lion sees the dog.)\n- The lion does not chase the bear. (This statement does not provide any information about visiting the bear.)\n- The lion is not red. (This statement does not provide any information about visiting the bear.)\n\nNow, let's look at the statements that involve the squirrel:\n- The squirrel chases the bear. (This implies that the squirrel sees the bear.)\n- The squirrel chases the dog. (This implies that the squirrel sees the dog.)\n- The squirrel is green. (This implies that the squirrel sees the dog, using rule 7.)\n- The squirrel is round. (This does not provide any information about visiting the bear.)\n- The squirrel is young. (This does not provide any information about visiting the bear.)\n- The squirrel sees the dog. (This implies that the squirrel visits the bear, using rule 8.)\n- The squirrel does not visit the bear. (This implies that the squirrel does not see the bear.)\n\nHowever, from the above analysis, we know that the squirrel sees the dog. And the squirrel is green, which implies that the squirrel sees the dog. Also, we know that the squirrel sees the dog, which implies that the squirrel visits the bear.\n\nNow let's go back to the dog's statements:\n- The dog chases the bear. (This implies that the dog sees the bear.)\n- The dog chases the lion. (This implies that the dog sees the lion.)\n- The dog sees the lion. (This implies that the lion sees the dog.)\n- The dog visits the squirrel. (This implies that the dog sees the squirrel.)\n\nNow let's use the rule: If something sees the dog then it visits the bear.\n- The lion sees the dog. (This implies that the lion visits the bear.)\n\nHowever, we need to be careful here. We cannot conclude that the lion visits the bear because we do not know if the lion is young or not. We only know that the lion does not chase the bear. We cannot determine if the lion visits the bear or not.\n\nTherefore, the answer is: \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not visit the bear\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nFrom the given information:\n\n1. The bear chases the lion.\n2. The lion does not chase the bear.\n3. The lion is not red.\n4. The lion does not chase the squirrel.\n5. The lion does not visit the squirrel.\n6. The lion sees the dog.\n7. The squirrel chases the bear.\n8. The squirrel chases the dog.\n9. The squirrel is green.\n10. The squirrel is round.\n11. The squirrel is young.\n12. The squirrel sees the dog.\n\nFrom the rules provided:\n\n1. If something visits the bear then it sees the bear.\n2. If something sees the bear then the bear sees the dog.\n3. If something visits the dog and the dog is young then the dog sees the bear.\n4. If something is green then it sees the dog.\n5. If something sees the dog then it visits the bear.\n\nNow, let's analyze the statement \"The lion does not visit the bear.\"\n\nIf the lion visits the bear, then it must see the bear according to rule 1.\nIf the lion sees the bear, then the bear sees the dog according to rule 2.\nSince the bear sees the dog, it must be true that the dog is not young (because if the dog were young, the lion would see the bear and the bear would see the dog, which would imply that the bear sees the dog, and then the lion sees the bear, which is not the case).\nHowever, this information is not provided in the initial statements, but rather in the rules. So we cannot deduce the statement as true or false using the information given in the initial statements.\n\nHowever, we can deduce the following:\nThe dog sees the lion.\nThe lion does not chase the bear.\nThe lion does not chase the squirrel.\nThe lion does not visit the squirrel.\n\nWe can conclude that the lion sees the dog, but we do not have enough information to conclude whether the lion visits the bear or not.\n\nSince the lion is not mentioned as visiting the bear, we cannot conclude that the lion visits the bear. Hence, we can't conclude the statement as true. The information given doesn't provide any evidence that the lion visits the bear, but we cannot conclude it as false either because it does not explicitly state that the lion visits the bear.\n\nTherefore, the statement \"The lion does not visit the bear\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not visit the bear\" is true, false, or unknown, we need to analyze the given information and the rules.\n\nFrom the given information:\n\n1. The bear chases the lion.\n2. The lion does not chase the bear.\n3. The lion is not red.\n4. The lion does not chase the squirrel.\n\nFrom the rules:\n\n1. If something visits the bear then it sees the bear. \n   (This rule will be useful if we find something that visits the bear.)\n\n2. If something sees the bear then the bear sees the dog. \n   (This rule will be useful if we find something that sees the bear.)\n\n3. If something visits the dog and the dog is young then the dog sees the bear. \n   (This rule will be useful if we find something that visits the dog and the dog is young.)\n\n4. If something is green then it sees the dog. \n   (This rule will be useful if we find something that is green.)\n\n5. If something sees the dog then it visits the bear. \n   (This rule will be useful if we find something that sees the dog.)\n\nNow, let's try to connect the lion to the rules and given information.\n\nFrom rule 2, if the bear sees the dog, then the bear sees the dog. However, we don't have any information that connects the lion to the bear seeing the dog.\n\nFrom rule 1, if the lion visits the bear, then the lion sees the bear. However, we don't have any information that connects the lion visiting the bear.\n\nFrom rule 5, if the lion sees the dog, then the lion visits the bear. However, we don't have any information that connects the lion seeing the dog.\n\nFrom rule 4, if the lion is green, then the lion sees the dog. However, we know that the lion is not red, but we don't have any information that connects the lion's color to the statement.\n\nHowever, we can use the information \"The squirrel is green\" and rule 4, which states that if something is green, it sees the dog. So, we know that the squirrel sees the dog.\n\nNow, let's use the information \"The squirrel sees the dog\" and rule 5, which states that if something sees the dog, then it visits the bear. Therefore, we know that the squirrel visits the bear.\n\nNow, let's use the information \"The squirrel visits the bear\" and rule 1, which states that if something visits the bear, then it sees the bear. Therefore, we know that the squirrel sees the bear.\n\nNow, let's use the information \"The squirrel sees the bear\" and rule 2, which states that if something sees the bear, then the bear sees the dog. Therefore, we know that the bear sees the dog.\n\nNow, let's use the information \"The bear sees the dog\" and the fact that the lion chases the bear. Since the lion is chasing the bear and the bear sees the dog, we can conclude that the lion sees the dog.\n\nNow, let's use the information \"The lion sees the dog\" and rule 5, which states that if something sees the dog, then it visits the bear. Therefore, we know that the lion visits the bear.\n\nSince we have found that the lion visits the bear, we can conclude that the statement \"The lion does not visit the bear\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, bear))",
+          "z3_formula": "not(chases_lion_bear) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(lion))",
+          "z3_formula": "not(red_lion) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, squirrel))",
+          "z3_formula": "not(chases_lion_squirrel) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_lion_bear, sees_lion_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_lion_bear, sees_bear_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(X, bear)",
+          "z3_formula": "Implies(And(visits_lion_dog, young_dog), sees_lion_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_squirrel, sees_squirrel_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_squirrel_dog, visits_squirrel_bear)",
+          "source_step": 8
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "not red(lion)",
+          "z3_formula": "not red_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_lion_bear, sees_lion_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_lion_bear, sees_bear_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(X) -> sees(X, bear)",
+          "z3_formula": "Implies(And(visits_dog_bear, young_dog), sees_dog_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_squirrel, sees_squirrel_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_squirrel_dog, visits_squirrel_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not green(squirrel)",
+          "z3_formula": "not green_squirrel == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, bear)",
+          "z3_formula": "visits_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not red(lion)",
+          "z3_formula": "not red_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dog)",
+          "z3_formula": "not young_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "not young(bear)",
+          "z3_formula": "not young_bear == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "not green(squirrel)",
+          "z3_formula": "not green_squirrel == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not red(lion)",
+          "z3_formula": "not red_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not chase(lion, bear)",
+          "z3_formula": "not chase_lion_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not chase(lion, squirrel)",
+          "z3_formula": "not chase_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "see(lion, dog)",
+          "z3_formula": "see_lion_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, bear) -> see(X, bear)",
+          "z3_formula": "Implies(visit_lion_bear, see_lion_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "see(X, bear) -> see(bear, dog)",
+          "z3_formula": "Implies(see_lion_bear, see_bear_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, dog) & young(X) -> see(X, bear)",
+          "z3_formula": "Implies(And(visit_dog_squirrel, young_squirrel), see_squirrel_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> see(X, dog)",
+          "z3_formula": "Implies(green_squirrel, see_squirrel_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "see(X, dog) -> visit(X, bear)",
+          "z3_formula": "Implies(see_squirrel_dog, visit_squirrel_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(visit(lion, bear))",
+          "z3_formula": "unknown(visit_lion_bear)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, bear)",
+          "z3_formula": "chases_lion_bear == False",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, squirrel)",
+          "z3_formula": "chases_lion_squirrel == False",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(chases_lion_bear, sees_lion_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, Y)",
+          "z3_formula": "Implies(sees_lion_bear, sees_bear_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & young(Y) -> sees(Y, bear)",
+          "z3_formula": "Implies(And(chases_dog_lion, young_dog), sees_dog_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_squirrel, sees_squirrel_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_squirrel_dog, visits_squirrel_bear)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == False",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not_chases(lion, bear)",
+          "z3_formula": "not_chases_lion_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_chases(lion, squirrel)",
+          "z3_formula": "not_chases_lion_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_red(lion)",
+          "z3_formula": "not_red_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_X_bear, sees_X_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_X_bear, sees_bear_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(dog, bear)",
+          "z3_formula": "Implies(And(visits_X_dog, young_dog), sees_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_squirrel, sees_squirrel_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_X_dog, visits_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, bear)",
+          "z3_formula": "visits_squirrel_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(lion, bear))",
+          "z3_formula": "Not(visits_lion_bear)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(bear)",
+          "z3_formula": "not_young_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, lion)",
+          "z3_formula": "chases_dog_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, squirrel)",
+          "z3_formula": "chases_dog_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, squirrel)",
+          "z3_formula": "visits_dog_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(lion, bear)",
+          "z3_formula": "not_chases_lion_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(lion, squirrel)",
+          "z3_formula": "not_chases_lion_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not red(lion)",
+          "z3_formula": "not_red_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_X_bear, sees_X_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_X_bear, sees_bear_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(X, bear)",
+          "z3_formula": "Implies(And(visits_X_dog, young_dog), sees_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_X_dog, visits_X_bear)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, bear))",
+          "z3_formula": "Not(chases_lion_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(visits_X_Y, sees_X_Y)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> sees(Y, dog)",
+          "z3_formula": "Implies(sees_X_Y, sees_Y_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(dog, Y)",
+          "z3_formula": "Implies(And(visits_X_dog, young_dog), sees_dog_Y)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_X_dog, visits_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, bear)",
+          "z3_formula": "visits_squirrel_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(lion, bear))",
+          "z3_formula": "Not(visits_lion_bear) == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(bear)",
+          "z3_formula": "not_young_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, lion)",
+          "z3_formula": "chases_dog_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, squirrel)",
+          "z3_formula": "chases_dog_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, squirrel)",
+          "z3_formula": "visits_dog_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(lion, bear)",
+          "z3_formula": "not_chases_lion_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(lion, squirrel)",
+          "z3_formula": "not_chases_lion_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not red(lion)",
+          "z3_formula": "not_red_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_X_bear, sees_X_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_X_bear, sees_bear_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(X, bear)",
+          "z3_formula": "Implies(And(visits_X_dog, young_dog), sees_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_X_dog, visits_X_bear)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, bear))",
+          "z3_formula": "Not(chases_lion_bear) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, squirrel))",
+          "z3_formula": "Not(chases_lion_squirrel) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(lion))",
+          "z3_formula": "Not(red_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_X_bear, sees_X_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_X_bear, sees_bear_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(X, bear)",
+          "z3_formula": "Implies(And(visits_X_dog, young_dog), sees_X_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_X_dog, visits_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(young(bear))",
+          "z3_formula": "Not(young_bear) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, lion)",
+          "z3_formula": "chases_dog_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(squirrel, bear))",
+          "z3_formula": "Not(visits_squirrel_bear) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == Unknown",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, bear))",
+          "z3_formula": "Not(chases_lion_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(lion))",
+          "z3_formula": "Not(red_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, squirrel))",
+          "z3_formula": "Not(chases_lion_squirrel) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(lion, squirrel))",
+          "z3_formula": "Not(visits_lion_squirrel) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_lion_bear, sees_lion_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_lion_bear, sees_bear_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(X, bear)",
+          "z3_formula": "Implies(And(visits_lion_dog, young_dog), sees_lion_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_squirrel, sees_squirrel_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_lion_dog, visits_lion_bear)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, bear)",
+          "z3_formula": "chases_lion_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(bear, lion))",
+          "z3_formula": "Not(chases_bear_lion) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(lion))",
+          "z3_formula": "Not(red_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, squirrel))",
+          "z3_formula": "Not(chases_lion_squirrel) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_bear_X, sees_bear_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_bear_X, sees_bear_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(X, bear)",
+          "z3_formula": "Implies(And(visits_dog_X, young_dog), sees_X_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_X_dog, visits_X_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 161,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 61
+    },
+    "maxsat_stats": {
+      "satisfied": 56,
+      "excluded": 5,
+      "total_weight": 155,
+      "solve_time_ms": 1.7034467309713364
+    },
+    "timing": {
+      "trace_gen_s": 25.047,
+      "extraction_s": 31.465,
+      "dedup_s": 2.141,
+      "maxsat_s": 0.005,
+      "total_s": 58.659
+    }
+  }
+}

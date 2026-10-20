@@ -1,0 +1,18 @@
+Power Analysis + Bootstrap CIs (10 conditions)
+
+Power Analysis (MDE at alpha=0.05, power=0.80):
+| Model | Domain | n | obs_Δ(pp) | disc | MDE_80%(pp) | obs_power |
+|---|---|---|---|---|---|---|
+| Qwen2.5-14B | FOLIO+PW | 804 | +0.25 | 30 | 1.86 | 0.057 |
+| Qwen2.5-14B | StrategyQA | 60 | +3.33 | 2 | inf | 0.000 |
+| Qwen2.5-14B | ARC-Chall | 60 | -1.67 | 1 | inf | 0.000 |
+| Qwen2.5-14B | GSM8K | 30 | 0.00 | 0 | inf | 0.000 |
+| Mistral-7B | FOLIO+PW | 60 | 0.00 | 4 | 5.94 | 0.050 |
+| LLaMA-3.1-8B | FOLIO+PW | 60 | +6.67 | 6 | 9.27 | 0.335 |
+| LLaMA-3.1-8B | StrategyQA | 200 | +2.00 | 14 | 4.64 | 0.206 |
+| LLaMA-3.1-8B | FOLIO | 204 | -2.45 | 13 | 4.84 | 0.186 |
+| DeepSeek-R1-7B | FOLIO+PW | 60 | -3.33 | 2 | inf | 0.000 |
+| Qwen2.5-7B | FOLIO+PW | 60 | 0.00 | 4 | 5.94 | 0.050 |
+
+All CIs include 0. Narrowest: Qwen14B FOLIO+PW [-1.12, +1.62] (n=804).
+Remote files: analysis/power_analysis.json, analysis/bootstrap_cis.json

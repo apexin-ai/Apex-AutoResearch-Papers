@@ -1,0 +1,1232 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-13_Q11",
+    "problem": "The bald eagle chases the dog. The bald eagle chases the tiger. The bald eagle needs the tiger. The dog chases the tiger. The dog does not like the squirrel. The dog needs the squirrel. The squirrel chases the dog. The squirrel is young. The squirrel likes the tiger. The tiger is not cold. The tiger does not like the dog. The tiger needs the squirrel. If someone likes the tiger and they need the tiger then the tiger is young. If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog. If someone needs the tiger then they are not cold. If someone is young and they need the bald eagle then they need the tiger. If someone is young then they need the bald eagle. If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger needs the tiger.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nNeeds($x, $y, bool) ::: Does x need y?\nLikes($x, $y, bool) ::: Does x like y?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\n\nFacts:\nChases(BaldEagle, Dog, True) ::: The bald eagle chases the dog.\nChases(BaldEagle, Tiger, True) ::: The bald eagle chases the tiger.\nNeeds(BaldEagle, Tiger, True) ::: The bald eagle needs the tiger.\nChases(Dog, Tiger, True) ::: The dog chases the tiger.\nLikes(Dog, Squirrel, False) ::: The dog does not like the squirrel.\nNeeds(Dog, Squirrel, True) ::: The dog needs the squirrel.\nChases(Squirrel, Dog, True) ::: The squirrel chases the dog.\nYoung(Squirrel, True) ::: The squirrel is young.\nLikes(Squirrel, Tiger, True) ::: The squirrel likes the tiger.\nCold(Tiger, False) ::: The tiger is not cold.\nLikes(Tiger, Dog, False) ::: The tiger does not like the dog.\nNeeds(Tiger, Squirrel, True) ::: The tiger needs the squirrel.\n\nRules:\nLikes($x, Tiger, True) && Needs($x, Tiger, True) >>> Young(Tiger, True) ::: If someone likes the tiger and they need the tiger then the tiger is young.\nNeeds($x, Squirrel, True) && Needs(Squirrel, BaldEagle, True) >>> Needs(BaldEagle, Dog, True) ::: If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog.\nNeeds($x, Tiger, True) >>> Cold($x, False) ::: If someone needs the tiger then they are not cold.\nYoung($x, True) && Needs($x, BaldEagle, True) >>> Needs($x, Tiger, True) ::: If someone is young and they need the bald eagle then they need the tiger.\nYoung($x, True) >>> Needs($x, BaldEagle, True) ::: If someone is young then they need the bald eagle.\nChases(Dog, BaldEagle, True) && Needs(Dog, Tiger, False) >>> Red(Tiger, False) ::: If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red.\n\nQuery:\nNeeds(Tiger, Tiger, True) ::: The tiger needs the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 131.0,
+      "Unknown": 164.0
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The tiger needs the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the information given:\n1. The bald eagle chases the dog. \n2. The bald eagle chases the tiger. \n3. The bald eagle needs the tiger. \n4. The dog chases the tiger. \n5. The dog does not like the squirrel. \n6. The dog needs the squirrel. \n7. The squirrel chases the dog. \n8. The squirrel is young. \n9. The squirrel likes the tiger. \n10. The tiger is not cold. \n11. The tiger does not like the dog. \n12. The tiger needs the squirrel. \n\nWe also have the following rules:\n1. If someone likes the tiger and they need the tiger then the tiger is young.\n2. If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog.\n3. If someone needs the tiger then they are not cold.\n4. If someone is young and they need the bald eagle then they need the tiger.\n5. If someone is young then they need the bald eagle.\n6. If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red.\n\nLet's start by analyzing rule 1: \"If someone likes the tiger and they need the tiger then the tiger is young.\"\nThe squirrel likes the tiger (statement 9) and the tiger needs the squirrel (statement 12). So from rule 1, we can conclude that the tiger is young.\n\nNow, let's analyze rule 3: \"If someone needs the tiger then they are not cold.\"\nThe tiger needs the squirrel (statement 12), so from rule 3, we can conclude that the tiger is not cold (which is already given in statement 10).\n\nNow, let's analyze rule 4: \"If someone is young and they need the bald eagle then they need the tiger.\"\nThe squirrel is young (statement 8) and the squirrel needs the bald eagle (we can't conclude this directly but we can conclude the squirrel needs the bald eagle from rule 5 if the squirrel needs the bald eagle then the squirrel is young which is already known from statement 8). So from rule 4, we can conclude that the squirrel needs the tiger (already given in statement 12).\n\nNow, let's analyze rule 5: \"If someone is young then they need the bald eagle.\"\nThe squirrel is young (statement 8), so from rule 5, we can conclude that the squirrel needs the bald eagle (already concluded in the previous step).\n\nNow, let's analyze rule 6: \"If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red.\"\nThe dog chases the bald eagle (statement 1), but we don't know if the dog needs the tiger or not. However, we can conclude that if the dog needs the tiger then the tiger is not cold (rule 3), but we already know that the tiger is not cold (statement 10). So, we can't conclude anything from this rule.\n\nNow, let's analyze rule 2: \"If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog.\"\nThe dog needs the squirrel (statement 6), and the squirrel needs the bald eagle. So from rule 2, we can conclude that the bald eagle needs the dog.\n\nNow, let's analyze rule 7: \"If someone is young and they need the bald eagle then they need the tiger.\"\nThe squirrel is young (statement 8) and the squirrel needs the bald eagle (already concluded). So from rule 7, we can conclude that the squirrel needs the tiger (already given in statement 12).\n\nNow, let's come back to the statement \"The tiger needs the tiger.\"\nWe can conclude that the tiger is young (from rule 1) and the squirrel is young (statement 8). Since the squirrel is young, the squirrel needs the bald eagle (from rule 5). And since the squirrel needs the bald eagle, the bald eagle needs the dog (from rule 2). But we don't have any information about the dog needing the tiger. So, we can't conclude if the statement \"The tiger needs the tiger\" is true or false.\n\nTherefore, the statement \"The tiger needs the tiger\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger needs the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle chases the dog.\n2. The bald eagle chases the tiger.\n3. The bald eagle needs the tiger.\n4. The dog chases the tiger.\n5. The dog does not like the squirrel.\n6. The dog needs the squirrel.\n7. The squirrel chases the dog.\n8. The squirrel is young.\n9. The squirrel likes the tiger.\n10. The tiger is not cold.\n11. The tiger does not like the dog.\n12. The tiger needs the squirrel.\n\nFrom statement 12, we know that the tiger needs the squirrel.\n\nFrom statement 8, we know that the squirrel is young.\n\nFrom statement 6, we know that the dog needs the squirrel.\n\nFrom statement 3, we know that the bald eagle needs the tiger.\n\nFrom statement 2, we know that the bald eagle chases the tiger.\n\nFrom statement 1, we know that the bald eagle chases the dog.\n\nFrom statement 4, we know that the dog chases the tiger.\n\nNow, let's analyze the given conditions:\n\n- If someone likes the tiger and they need the tiger then the tiger is young. (We have this situation with the squirrel, but we don't have any information about the squirrel liking the tiger and needing the tiger. We only know the squirrel is young, and the squirrel likes the tiger. But we also know that the squirrel needs the bald eagle, and the bald eagle needs the tiger, which is not directly related to the condition.)\n- If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog. (From statement 6, we know the dog needs the squirrel, and from statement 7, we know the squirrel chases the dog, so we can say that the squirrel needs the dog. From statement 3, we know the bald eagle needs the tiger, and from statement 2, we know the bald eagle chases the tiger. We also know from statement 4 that the dog chases the tiger, but this does not directly relate to the condition. However, we can say that the condition is related to the situation where the squirrel needs the bald eagle, the squirrel needs the dog, and the bald eagle needs the tiger, which is a chain of needs.)\n- If someone needs the tiger then they are not cold. (From statement 10, we know that the tiger is not cold.)\n- If someone is young and they need the bald eagle then they need the tiger. (From statement 8, we know the squirrel is young, but we don't know if the squirrel needs the bald eagle. However, we know the squirrel needs the bald eagle from statement 7, and the squirrel is young. This situation matches the condition.)\n- If someone is young then they need the bald eagle. (From statement 8, we know the squirrel is young, and from statement 7, we know the squirrel chases the dog, which means the squirrel needs the bald eagle.)\n- If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red. (From statement 1, we know the bald eagle chases the dog, and from statement 4, we know the dog chases the tiger. However, we also know from statement 6 that the dog needs the squirrel, and from statement 3 that the bald eagle needs the tiger. This does not directly relate to the condition.)\n\nNow, let's try to relate the given conditions to the statement \"The tiger needs the tiger.\"\n\nFrom statement 12, we know that the tiger needs the squirrel.\n\nWe also know from statement 3 that the bald eagle needs the tiger.\n\nHowever, we don't have any direct information about the tiger needing the tiger.\n\nBut we can use the condition: If someone needs the tiger then they are not cold. (From statement 10, we know that the tiger is not cold.)\n\nSince the tiger is not cold, and we know that the tiger needs the squirrel (from statement 12), we can conclude that the tiger needs the squirrel.\n\nHowever, we don't have any information about the tiger needing the tiger directly.\n\nTherefore, we cannot conclude that the statement \"The tiger needs the tiger\" is true or false based on the given information. It is unknown.\n\nSo, the final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply logical reasoning.\n\n1. The bald eagle chases the dog. \n2. The bald eagle chases the tiger. \n3. The bald eagle needs the tiger. \n4. The dog chases the tiger. \n5. The dog does not like the squirrel. \n6. The dog needs the squirrel. \n7. The squirrel chases the dog. \n8. The squirrel is young. \n9. The squirrel likes the tiger. \n10. The tiger is not cold. \n11. The tiger does not like the dog. \n12. The tiger needs the squirrel. \n\nFrom statement 8, we know the squirrel is young.\n\nFrom statement 5, we know the dog does not like the squirrel.\n\nFrom statement 6, we know the dog needs the squirrel.\n\nFrom statement 7, we know the squirrel chases the dog.\n\nFrom statement 9, we know the squirrel likes the tiger.\n\nFrom statement 12, we know the tiger needs the squirrel.\n\nFrom statement 10, we know the tiger is not cold.\n\nFrom statement 11, we know the tiger does not like the dog.\n\nFrom statement 3, we know the bald eagle needs the tiger.\n\nFrom statement 2, we know the bald eagle chases the tiger.\n\nFrom statement 1, we know the bald eagle chases the dog.\n\nNow we need to analyze the given rules:\n\n1. If someone likes the tiger and they need the tiger then the tiger is young.\n   From statement 9, we know the squirrel likes the tiger.\n   From statement 12, we know the tiger needs the squirrel.\n   So, the tiger is young (from rule 1).\n\n2. If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog.\n   From statement 6, we know the dog needs the squirrel.\n   From statement 7, we know the squirrel chases the dog.\n   From statement 1, we know the bald eagle chases the dog.\n   From statement 2, we know the bald eagle chases the tiger.\n   From statement 3, we know the bald eagle needs the tiger.\n   From statement 12, we know the tiger needs the squirrel.\n   So, the bald eagle needs the dog (from rule 2).\n\n3. If someone needs the tiger then they are not cold.\n   From statement 10, we know the tiger is not cold.\n   From statement 12, we know the tiger needs the squirrel.\n\n4. If someone is young and they need the bald eagle then they need the tiger.\n   From statement 8, we know the squirrel is young.\n   From statement 7, we know the squirrel chases the dog.\n   From statement 1, we know the bald eagle chases the dog.\n   From statement 2, we know the bald eagle chases the tiger.\n   From statement 3, we know the bald eagle needs the tiger.\n   From statement 12, we know the tiger needs the squirrel.\n   So, the squirrel needs the tiger (from rule 4).\n\n5. If someone is young then they need the bald eagle.\n   From statement 8, we know the squirrel is young.\n   From statement 4, we know the squirrel needs the tiger.\n\n6. If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red.\n   We do not have any information that the dog chases the bald eagle and the dog does not need the tiger.\n   So, this rule is irrelevant to our current analysis.\n\nNow, let's evaluate the statement \"The tiger needs the tiger.\"\n\nFrom statement 12, we know the tiger needs the squirrel.\n\nNow we need to apply rule 3: If someone needs the tiger then they are not cold.\n   From statement 12, we know the tiger needs the squirrel.\n   So, the squirrel is not cold.\n\nWe can now apply rule 4: If someone is young and they need the bald eagle then they need the tiger.\n   From statement 8, we know the squirrel is young.\n   From statement 5, we know the dog does not like the squirrel.\n   From statement 6, we know the dog needs the squirrel.\n   From statement 7, we know the squirrel chases the dog.\n   From statement 1, we know the bald eagle chases the dog.\n   From statement 2, we know the bald eagle chases the tiger.\n   From statement 3, we know the bald eagle needs the tiger.\n   From statement 12, we know the tiger needs the squirrel.\n   So, the squirrel needs the tiger (from rule 4).\n\nFrom statement 5, we know the dog does not like the squirrel.\nFrom statement 6, we know the dog needs the squirrel.\nFrom statement 7, we know the squirrel chases the dog.\n\nWe can now apply rule 5: If someone is young then they need the bald eagle.\n   From statement 8, we know the squirrel is young.\n   From statement 4, we know the squirrel needs the tiger.\n\nHowever, we cannot determine whether the tiger needs the tiger or not because we do not have any information that directly states this relationship.\n\nTherefore, our final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve the given problem, we will use a truth table to represent the given statements and determine the conditions for each statement. \n\nLet's assign variables to each statement:\n\nA - The bald eagle chases the dog.\nB - The bald eagle chases the tiger.\nC - The bald eagle needs the tiger.\nD - The dog chases the tiger.\nE - The dog does not like the squirrel.\nF - The dog needs the squirrel.\nG - The squirrel chases the dog.\nH - The squirrel is young.\nI - The squirrel likes the tiger.\nJ - The tiger is not cold.\nK - The tiger does not like the dog.\nL - The tiger needs the squirrel.\n\nThe given conditions can be translated into the following logical expressions:\n\n1. If someone likes the tiger and they need the tiger then the tiger is young.\n   I \u2227 L \u2192 H\n\n2. If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog.\n   F \u2227 L' \u2192 C \u2227 D\n\n3. If someone needs the tiger then they are not cold.\n   L \u2192 J\n\n4. If someone is young and they need the bald eagle then they need the tiger.\n   H \u2227 C \u2192 L\n\n5. If someone is young then they need the bald eagle.\n   H \u2192 C\n\n6. If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red.\n   A \u2227 \u00acD \u2192 \u00acR (Note: R is not given as a variable in the problem, but we can assume it as a variable for the sake of the problem)\n\nNow, we will use the above expressions to determine whether the statement \"The tiger needs the tiger\" (L) is true, false, or unknown.\n\nFrom condition 3, we know that if someone needs the tiger then they are not cold.\n   L \u2192 J\n\nBut from condition 7, we know that if the dog chases the bald eagle and the dog does not need the tiger, then the tiger is not red. However, we do not have any information about the color of the tiger. \n\nHowever, since we cannot determine the color of the tiger, we cannot determine whether the tiger is young or not. \n\nBut from condition 5, we know that if someone is young then they need the bald eagle. Since we cannot determine whether the tiger is young or not, we cannot determine whether the tiger needs the bald eagle or not. \n\nHowever, from condition 4, we know that if someone is young and they need the bald eagle then they need the tiger. We still cannot determine whether the tiger needs the tiger or not.\n\nBut from condition 1, we know that if someone likes the tiger and they need the tiger then the tiger is young. Since we do not know whether the tiger likes the tiger, we cannot determine whether the tiger is young or not. \n\nHowever, since we cannot determine whether the tiger is young or not, we cannot determine whether the tiger needs the bald eagle or not. \n\nBut from condition 2, we know that if someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog. We still cannot determine whether the tiger needs the squirrel or not.\n\nHowever, from condition 6, we know that if the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red. We still cannot determine whether the dog needs the tiger or not.\n\nBut from condition 3, we know that if someone needs the tiger then they are not cold. Since we still cannot determine whether the tiger needs the tiger or not, we still cannot determine whether the tiger is not cold or not.\n\nBut from condition 7, we know that if the dog chases the bald eagle and the dog does not need the tiger, then the tiger is not red. We still cannot determine whether the dog chases the bald eagle or not.\n\nHowever, from condition 4, we know that if someone is young and they need the bald eagle then they need the tiger. We still cannot determine whether the tiger is young or not.\n\nBut from condition 5, we know that if someone is young then they need the bald eagle. We still cannot determine whether the tiger is young or not.\n\nHowever, from condition 1, we know that if someone likes the tiger and they need the tiger then the tiger is young. We still cannot determine whether someone likes the tiger or not.\n\nSince we cannot determine whether the tiger is young or not, we still cannot determine whether the tiger needs the bald eagle or not. \n\nHowever, from condition 3, we know that if someone needs the tiger then they are not cold. We still cannot determine whether the tiger needs the tiger or not.\n\nSince we still cannot determine whether the tiger needs the tiger or not, we cannot determine the truth value of the statement \"The tiger needs the tiger\" (L).\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information into individual statements and analyze the relationships between them. We will then apply these relationships to determine the truth value of the given statement.\n\nGiven information:\n\n1. The bald eagle chases the dog.\n2. The bald eagle chases the tiger.\n3. The bald eagle needs the tiger.\n4. The dog chases the tiger.\n5. The dog does not like the squirrel.\n6. The dog needs the squirrel.\n7. The squirrel chases the dog.\n8. The squirrel is young.\n9. The squirrel likes the tiger.\n10. The tiger is not cold.\n11. The tiger does not like the dog.\n12. The tiger needs the squirrel.\n13. If someone likes the tiger and they need the tiger then the tiger is young.\n14. If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog.\n15. If someone needs the tiger then they are not cold.\n16. If someone is young and they need the bald eagle then they need the tiger.\n17. If someone is young then they need the bald eagle.\n18. If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red.\n\nNow, let's analyze the given statement: \"The tiger needs the tiger.\"\n\nTo determine the truth value of this statement, we need to find a connection between the given information and the statement.\n\nFrom statement 12, we know that \"The tiger needs the squirrel.\" \n\nNow, let's see if we can find a connection between the tiger and itself using the given information.\n\nFrom statement 17, we know that \"If someone is young then they need the bald eagle.\" Since the squirrel is young (statement 8), the squirrel needs the bald eagle (statement 17).\n\nFrom statement 16, we know that \"If someone is young and they need the bald eagle then they need the tiger.\" Since the squirrel needs the bald eagle, the squirrel needs the tiger.\n\nFrom statement 12, we know that \"The tiger needs the squirrel.\" We can also infer from the above steps that the squirrel needs the tiger, which means the tiger needs the squirrel.\n\nSince we have found a chain of relationships between the tiger, the squirrel, and the bald eagle, we can conclude that the tiger needs the squirrel, but we cannot directly determine whether the tiger needs the tiger.\n\nHowever, we can find a connection between the tiger and itself using the given information.\n\nFrom statement 15, we know that \"If someone needs the tiger then they are not cold.\" Since the tiger needs the squirrel (statement 12), the tiger is not cold.\n\nFrom statement 13, we know that \"If someone likes the tiger and they need the tiger then the tiger is young.\" We can infer that the squirrel likes the tiger (statement 9), so the tiger is young (statement 13).\n\nFrom statement 17, we know that \"If someone is young then they need the bald eagle.\" Since the tiger is young (statement 13), the tiger needs the bald eagle.\n\nNow, let's see if we can find a connection between the bald eagle and the tiger.\n\nFrom statement 3, we know that \"The bald eagle needs the tiger.\"\n\nFrom statement 14, we know that \"If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog.\" Since the squirrel needs the bald eagle, the bald eagle needs the dog.\n\nHowever, we cannot determine whether the tiger needs the tiger or not.\n\nTherefore, the statement \"The tiger needs the tiger\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we'll break it down into steps and use a truth table to determine the relationships between the statements.\n\nFrom the given statements:\n\n1. The bald eagle chases the dog. \n2. The bald eagle chases the tiger. \n3. The bald eagle needs the tiger. \n4. The dog chases the tiger. \n5. The dog does not like the squirrel. \n6. The dog needs the squirrel. \n7. The squirrel chases the dog. \n8. The squirrel is young. \n9. The squirrel likes the tiger. \n10. The tiger is not cold. \n11. The tiger does not like the dog. \n12. The tiger needs the squirrel. \n\nWe can start by determining the relationships between the statements.\n\n- Since the tiger needs the squirrel (statement 12), and the squirrel is young (statement 8), the tiger is young (by the rule: If someone likes the tiger and they need the tiger then the tiger is young).\n\nHowever, we cannot directly conclude that the tiger is young from the given rule (If the squirrel likes the tiger and the squirrel needs the tiger then the tiger is young) since it is the squirrel that likes and needs the tiger. \n\nHowever, we can use the following rule to infer that the tiger is young: If someone is young and they need the bald eagle then they need the tiger. Since the squirrel is young and needs the bald eagle (we will find out if the squirrel needs the bald eagle later) then the squirrel needs the tiger. \n\n- Since the squirrel needs the tiger, the squirrel likes the tiger, and the squirrel is young, we can conclude that the tiger is young (by the rule: If someone likes the tiger and they need the tiger then the tiger is young).\n\nHowever, we cannot directly conclude that the tiger is young from the given rule (If someone is young then they need the bald eagle) since it is the squirrel that is young and we have not established that the squirrel needs the bald eagle.\n\nNow, let's examine the statement that the squirrel needs the bald eagle. \n\n- Since the dog needs the squirrel (statement 6) and the squirrel needs the bald eagle (we are trying to determine this), and the bald eagle needs the dog (by the rule: If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog), then the bald eagle needs the dog.\n\nHowever, we cannot directly conclude that the squirrel needs the bald eagle from the given statement that the dog needs the squirrel and the rule (If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog) since it is the dog that needs the squirrel.\n\nHowever, we can use the following rule to infer that the squirrel needs the bald eagle: If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red. \n\nSince we cannot determine whether the tiger is red or not (we cannot determine whether the dog chases the bald eagle or not) we cannot use this rule to determine if the squirrel needs the bald eagle.\n\nHowever, we can use the following rule to infer that the squirrel needs the bald eagle: If someone is young and they need the bald eagle then they need the tiger. Since the squirrel is young (statement 8) then the squirrel needs the bald eagle.\n\nNow that we have established that the squirrel is young and needs the bald eagle, we can conclude that the squirrel needs the tiger.\n\nSince the tiger needs the squirrel (statement 12), and the squirrel needs the tiger, we can conclude that the tiger does not need the tiger.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger needs the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle chases the dog.\n2. The bald eagle chases the tiger.\n3. The bald eagle needs the tiger.\n4. The dog chases the tiger.\n5. The dog does not like the squirrel.\n6. The dog needs the squirrel.\n7. The squirrel chases the dog.\n8. The squirrel is young.\n9. The squirrel likes the tiger.\n10. The tiger is not cold.\n11. The tiger does not like the dog.\n12. The tiger needs the squirrel.\n\nFrom the given information, we can derive the following conclusions:\n\n- If someone likes the tiger and they need the tiger then the tiger is young. \n  Since we have no information that the tiger likes the tiger, we cannot conclude the age of the tiger based on this rule.\n\n- If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog. \n  However, we do not have any information that the squirrel needs the bald eagle. We only know that the tiger needs the squirrel, and we cannot conclude the relationship between the squirrel and the bald eagle.\n\n- If someone needs the tiger then they are not cold. \n  The tiger is not cold, which means the tiger needs the tiger is unknown based on this rule.\n\n- If someone is young and they need the bald eagle then they need the tiger. \n  We know the squirrel is young (statement 8) and the squirrel needs the bald eagle (unknown), so this rule does not provide any direct information about the tiger.\n\n- If someone is young then they need the bald eagle. \n  The squirrel is young (statement 8), so the squirrel needs the bald eagle.\n\n- If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red. \n  However, we do not have any information that the dog chases the bald eagle, or that the dog does not need the tiger. This rule is irrelevant to our analysis.\n\nGiven the information provided, we cannot determine whether the statement \"The tiger needs the tiger\" is true or false. We do not have any information that directly supports or refutes the statement. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger needs the tiger\" is true, false, or unknown, we need to analyze the given information and use the given rules.\n\nFrom the given information:\n- The bald eagle chases the dog.\n- The bald eagle chases the tiger.\n- The bald eagle needs the tiger.\n- The dog chases the tiger.\n- The dog does not like the squirrel.\n- The dog needs the squirrel.\n- The squirrel chases the dog.\n- The squirrel is young.\n- The squirrel likes the tiger.\n- The tiger is not cold.\n- The tiger does not like the dog.\n- The tiger needs the squirrel.\n\nWe will use the given rules to analyze the statement:\n\n1. If someone likes the tiger and they need the tiger then the tiger is young.\n   - We know the squirrel likes the tiger and the squirrel needs the tiger, but the squirrel is young, not the tiger. So, the tiger is not necessarily young.\n\n2. If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog.\n   - The squirrel needs the bald eagle, and we don't know if the squirrel needs the dog or not.\n\n3. If someone needs the tiger then they are not cold.\n   - The tiger needs the squirrel, but we don't know if the tiger is cold or not.\n\n4. If someone is young and they need the bald eagle then they need the tiger.\n   - The squirrel is young and needs the bald eagle, so the squirrel needs the tiger. But we already know the tiger needs the squirrel.\n\n5. If someone is young then they need the bald eagle.\n   - The squirrel is young and needs the bald eagle.\n\n6. If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red.\n   - We don't have any information about the tiger being red or not.\n\nNow, let's determine the statement \"The tiger needs the tiger\". We can use the rule:\n- If someone needs the tiger then they are not cold.\n- The tiger needs the squirrel, but we don't know if the tiger is cold or not.\n\nWe also know the tiger is not cold, which is true according to the rule. However, this information alone doesn't tell us if the statement \"The tiger needs the tiger\" is true or false.\n\nHowever, we can use the rule:\n- If someone needs the tiger then they are not cold.\n- The tiger is not cold.\n\nBut we have another rule that says:\n- If someone is young and they need the bald eagle then they need the tiger.\n- The squirrel is young and needs the bald eagle.\n\nWe already know the squirrel needs the tiger. But we can use the rule:\n- If someone needs the tiger then they are not cold.\n- The tiger needs the squirrel.\n\nWe can use another rule to get more information:\n- The squirrel needs the bald eagle.\n- The bald eagle needs the dog.\n- The dog needs the squirrel.\n\nWe can conclude that the squirrel needs the tiger, but we don't have enough information to conclude that the tiger needs the tiger.\n\nHowever, since the tiger is not cold and needs the squirrel, we can't conclude that the tiger needs the tiger.\n\nTherefore, the statement \"The tiger needs the tiger\" is unknown.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the validity of the statement \"The tiger needs the tiger,\" we need to analyze the given information step by step.\n\n1. The bald eagle chases the dog. (This statement doesn't provide any useful information for our problem.)\n\n2. The bald eagle chases the tiger. (This statement doesn't provide any useful information for our problem.)\n\n3. The bald eagle needs the tiger. (This statement doesn't provide any useful information for our problem.)\n\n4. The dog chases the tiger. (This statement doesn't provide any useful information for our problem.)\n\n5. The dog does not like the squirrel. (This statement doesn't provide any useful information for our problem.)\n\n6. The dog needs the squirrel. (This statement doesn't provide any useful information for our problem.)\n\n7. The squirrel chases the dog. (This statement doesn't provide any useful information for our problem.)\n\n8. The squirrel is young. (This statement provides useful information.)\n\n9. The squirrel likes the tiger. (This statement doesn't provide any useful information for our problem.)\n\n10. The tiger is not cold. (This statement doesn't provide any useful information for our problem.)\n\n11. The tiger does not like the dog. (This statement doesn't provide any useful information for our problem.)\n\n12. The tiger needs the squirrel. (This statement provides useful information.)\n\nFrom statement 8, we know that the squirrel is young.\n\nFrom statement 1, we can derive that the dog is young because it is being chased by the squirrel, who is young.\n\nFrom statement 8, we know that the squirrel is young and it needs the bald eagle.\n\nFrom statement 13, we can derive that the squirrel needs the bald eagle and the bald eagle needs the dog.\n\nFrom statement 13, we can derive that the dog needs the squirrel and the squirrel needs the bald eagle, and the bald eagle needs the dog.\n\nFrom statement 12, we can derive that the tiger needs the squirrel.\n\nFrom statement 4, we can derive that the dog chases the tiger.\n\nFrom statement 11, we can derive that the tiger does not like the dog.\n\nFrom statement 11, we can derive that the tiger does not need the dog.\n\nFrom statement 14, we can derive that if someone needs the tiger then they are not cold.\n\nFrom statement 12, we can derive that the tiger needs the squirrel.\n\nFrom statement 14, we can derive that the tiger is not cold.\n\nFrom statement 7, we can derive that the squirrel is being chased by the dog.\n\nFrom statement 6, we can derive that the dog needs the squirrel.\n\nFrom statement 7, we can derive that the squirrel chases the dog.\n\nFrom statement 6, we can derive that the dog needs the squirrel.\n\nFrom statement 6, we can derive that the dog does not like the squirrel.\n\nFrom statement 13, we can derive that if someone is young and they need the bald eagle then they need the tiger.\n\nFrom statement 8, we can derive that the squirrel is young and it needs the bald eagle.\n\nFrom statement 13, we can derive that the squirrel is young and it needs the bald eagle, and the squirrel is young and it needs the tiger.\n\nFrom statement 8, we can derive that the squirrel is young and it needs the tiger.\n\nFrom statement 12, we can derive that the tiger needs the squirrel.\n\nFrom statement 13, we can derive that if someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog.\n\nFrom statement 12, we can derive that the tiger needs the squirrel.\n\nFrom statement 13, we can derive that the tiger needs the squirrel and the squirrel needs the bald eagle, and the bald eagle needs the dog.\n\nFrom statement 13, we can derive that the tiger needs the squirrel and the squirrel needs the bald eagle, and the bald eagle needs the dog, and the dog needs the squirrel.\n\nFrom statement 13, we can derive that if someone likes the tiger and they need the tiger then the tiger is young.\n\nFrom statement 9, we can derive that the squirrel likes the tiger.\n\nFrom statement 12, we can derive that the tiger needs the squirrel.\n\nFrom statement 13, we can derive that the squirrel likes the tiger and the squirrel needs the bald eagle, and the bald eagle needs the dog, and the dog needs the squirrel, and the squirrel likes the tiger, and the tiger needs the squirrel.\n\nFrom statement 12, we can derive that the tiger needs the squirrel.\n\nFrom statement 9, we can derive that the squirrel likes the tiger, and the squirrel needs the bald eagle, and the bald eagle needs the dog, and the dog needs the squirrel, and the squirrel likes the tiger.\n\nFrom statement 12, we can derive that the tiger needs the squirrel.\n\nFrom statement 13, we can derive that if the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red.\n\nFrom statement 1, we can derive that the bald eagle is being chased by the dog.\n\nFrom statement 1, we can derive that the dog chases the bald eagle.\n\nFrom statement 6, we can derive that the dog does not need the tiger.\n\nFrom statement 13, we can derive that the dog chases the bald eagle and the dog does not need the tiger.\n\nFrom statement 13, we can derive that the tiger is not red.\n\nFrom statement 12, we can derive that the tiger needs the squirrel.\n\nFrom statement 9, we can derive that the squirrel likes the tiger.\n\nFrom statement 8, we can derive that the squirrel is young.\n\nFrom statement 9, we can derive that the squirrel likes the tiger.\n\nFrom statement 9, we can derive that the squirrel likes the tiger.\n\nFrom statement 12, we can derive that the tiger needs the squirrel.\n\nFrom statement 12, we can derive that the tiger needs the squirrel.\n\nFrom statement 13, we can derive that if someone is young and they need the bald eagle then they need the tiger.\n\nFrom statement 8, we can derive that the squirrel is young and it needs the bald eagle.\n\nFrom statement 13, we can derive that the squirrel is young and it needs the bald eagle, and the squirrel needs the tiger.\n\nFrom statement 8, we can derive that the squirrel is young and it needs the tiger.\n\nFrom statement 12, we can derive that the tiger needs the squirrel.\n\nFrom statement 12, we can derive that the tiger needs the squirrel.\n\nNow, to determine the validity of the statement \"The tiger needs the tiger,\" we need to check if any of the information we have derived is useful for this statement.\n\nWe have derived that the tiger needs the squirrel.\n\nHowever, we have not derived any information that the tiger needs the tiger.\n\nSince we have not derived any information that the tiger needs the tiger, the statement \"The tiger needs the tiger\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will break it down into smaller steps and use a truth table to determine the relationships between the given statements.\n\nLet's define the following variables:\n- B: The bald eagle is young.\n- D: The dog is young.\n- S: The squirrel is young.\n- T: The tiger is young.\n- E: The bald eagle needs the dog.\n- F: The bald eagle needs the tiger.\n- G: The dog needs the squirrel.\n- H: The dog does not like the squirrel.\n- I: The dog chases the bald eagle.\n- J: The tiger does not like the dog.\n- K: The tiger needs the squirrel.\n- L: The tiger is not cold.\n- M: The squirrel chases the dog.\n- N: The squirrel is young.\n- O: The squirrel likes the tiger.\n- P: The tiger is not red.\n\nGiven Statements:\n1. The bald eagle chases the dog. - This implies I is true.\n2. The bald eagle chases the tiger. - This implies F is true.\n3. The bald eagle needs the tiger. - This implies F is true.\n4. The dog chases the tiger. - This implies J is true.\n5. The dog does not like the squirrel. - This implies H is true.\n6. The dog needs the squirrel. - This implies G is true.\n7. The squirrel chases the dog. - This implies M is true.\n8. The squirrel is young. - This implies N is true.\n9. The squirrel likes the tiger. - This implies O is true.\n10. The tiger is not cold. - This implies L is true.\n11. The tiger does not like the dog. - This implies J is true.\n12. The tiger needs the squirrel. - This implies K is true.\n\nNow, let's use the given rules to derive new information:\n- If someone likes the tiger and they need the tiger then the tiger is young. - This implies O implies T.\n- If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog. - This implies G and N implies E.\n- If someone needs the tiger then they are not cold. - This implies K implies L.\n- If someone is young and they need the bald eagle then they need the tiger. - This implies B and N implies F.\n- If someone is young then they need the bald eagle. - This implies N implies F.\n- If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red. - This implies I and not K implies P.\n\nNow, we can analyze the statement \"The tiger needs the tiger\" which is K implies K. From statement 12, we know K is true. \n\nHowever, we don't have enough information to determine the truth of this statement. The statement K implies K is a self-referential statement, and its truth value cannot be determined based on the given information. Therefore, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the given conditions step by step.\n\n1. The bald eagle chases the dog. \n   - No information about the tiger is provided in this statement.\n\n2. The bald eagle chases the tiger. \n   - No information about the tiger is provided in this statement.\n\n3. The bald eagle needs the tiger. \n   - We now know that the bald eagle needs the tiger.\n\n4. The dog chases the tiger. \n   - No information about the tiger is provided in this statement.\n\n5. The dog does not like the squirrel. \n   - No information about the tiger is provided in this statement.\n\n6. The dog needs the squirrel. \n   - No information about the tiger is provided in this statement.\n\n7. The squirrel chases the dog. \n   - No information about the tiger is provided in this statement.\n\n8. The squirrel is young. \n   - We now know that the squirrel is young.\n\n9. The squirrel likes the tiger. \n   - No information about the tiger is provided in this statement.\n\n10. The tiger is not cold. \n    - We now know that the tiger is not cold.\n\n11. The tiger does not like the dog. \n    - No information about the tiger is provided in this statement.\n\n12. The tiger needs the squirrel. \n    - We now know that the tiger needs the squirrel.\n\nNow, let's analyze the given conditions that could be related to our statement:\n\n- If someone likes the tiger and they need the tiger then the tiger is young. \n  - This condition is irrelevant to our statement.\n\n- If someone needs the tiger then they are not cold. \n  - This condition is not applicable to our statement because the statement is about the tiger needing the tiger, not the tiger being needed by someone.\n\n- If someone is young and they need the bald eagle then they need the tiger. \n  - This condition is irrelevant to our statement.\n\n- If someone is young then they need the bald eagle. \n  - This condition is irrelevant to our statement.\n\n- If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red. \n  - This condition is irrelevant to our statement.\n\nBased on the given conditions, we have no information that directly states or implies whether the tiger needs the tiger. However, we can infer that the tiger is not cold, but we cannot conclude that the tiger needs the tiger based on the given conditions.\n\nTherefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger needs the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle chases the dog. (This information is irrelevant for now, so we can ignore it.)\n2. The bald eagle chases the tiger. (This information is also irrelevant for now.)\n3. The bald eagle needs the tiger. (We don't know why the bald eagle needs the tiger yet, so let's move on.)\n4. The dog chases the tiger. (This information is also irrelevant for now.)\n5. The dog does not like the squirrel. (This information is irrelevant for now.)\n6. The dog needs the squirrel. (We don't know why the dog needs the squirrel yet, so let's move on.)\n7. The squirrel chases the dog. (This information is also irrelevant for now.)\n8. The squirrel is young. (We can use this information later.)\n9. The squirrel likes the tiger. (This information is also irrelevant for now.)\n10. The tiger is not cold. (We can use this information later.)\n11. The tiger does not like the dog. (This information is also irrelevant for now.)\n12. The tiger needs the squirrel. (Now we have a clue about why the tiger needs the squirrel.)\n\nFrom the given statements, we can conclude the following:\n\n- If someone likes the tiger and they need the tiger then the tiger is young. (Statement 8 implies that the tiger is young because the squirrel likes the tiger and needs the tiger.)\n- If someone needs the squirrel and the squirrel needs the bald eagle then the bald eagle needs the dog. (We don't have enough information to determine why the bald eagle needs the dog yet.)\n- If someone needs the tiger then they are not cold. (Statement 10 implies that the tiger is not cold because the tiger needs the squirrel.)\n- If someone is young and they need the bald eagle then they need the tiger. (Statement 1 implies that the squirrel is young and needs the bald eagle, so the squirrel needs the tiger.)\n- If someone is young then they need the bald eagle. (Statement 8 implies that the squirrel is young and needs the bald eagle.)\n- If the dog chases the bald eagle and the dog does not need the tiger then the tiger is not red. (We don't have enough information to determine why the dog chases the bald eagle yet, so we can't conclude anything about the color of the tiger.)\n\nNow we can determine the truth value of the statement \"The tiger needs the tiger.\" Based on statement 12, \"The tiger needs the squirrel,\" and the fact that the tiger is young (statement 8), the statement \"The tiger needs the tiger\" can be true because it's a generalization of statement 12.\n\nTherefore, the statement \"The tiger needs the tiger\" is \\boxed{true}.",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, tiger)",
+          "z3_formula": "chases_dog_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(dog, squirrel)",
+          "z3_formula": "not likes_dog_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, squirrel)",
+          "z3_formula": "needs_dog_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(tiger)",
+          "z3_formula": "not cold_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(tiger, dog)",
+          "z3_formula": "not likes_tiger_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & needs(X, tiger) -> young(tiger)",
+          "z3_formula": "Implies(And(likes_squirrel_tiger, needs_squirrel_tiger), young_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(squirrel, bald_eagle) -> needs(bald_eagle, dog)",
+          "z3_formula": "Implies(And(needs_dog_squirrel, needs_squirrel_bald_eagle), needs_bald_eagle_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> not cold(X)",
+          "z3_formula": "Implies(needs_tiger_squirrel, not cold_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & needs(X, bald_eagle) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(young_squirrel, needs_squirrel_bald_eagle), needs_squirrel_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & not needs(X, tiger) -> not red(tiger)",
+          "z3_formula": "Implies(And(chases_dog_bald_eagle, not needs_dog_tiger), not red_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bald_eagle, dog)",
+          "z3_formula": "needs_bald_eagle_dog == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, tiger)",
+          "z3_formula": "needs_tiger_tiger == Unknown",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, tiger)",
+          "z3_formula": "chases_dog_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_like(dog, squirrel)",
+          "z3_formula": "does_not_like_dog_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, squirrel)",
+          "z3_formula": "needs_dog_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(tiger))",
+          "z3_formula": "not(cold_tiger) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & needs(X, tiger) -> young(X)",
+          "z3_formula": "Implies(And(likes_squirrel_tiger, needs_squirrel_tiger), young_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(squirrel, bald_eagle) -> needs(bald_eagle, dog)",
+          "z3_formula": "Implies(And(needs_dog_squirrel, needs_squirrel_bald_eagle), needs_bald_eagle_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> not(cold(X))",
+          "z3_formula": "Implies(needs_tiger_squirrel, not(cold_squirrel))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & needs(X, bald_eagle) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(young_squirrel, needs_squirrel_bald_eagle), needs_squirrel_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & not(needs(X, tiger)) -> not(red(tiger))",
+          "z3_formula": "Implies(And(chases_dog_bald_eagle, not(needs_dog_tiger)), not(red_tiger))",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, tiger)",
+          "z3_formula": "chases_dog_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(dog, squirrel)",
+          "z3_formula": "not likes_dog_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, squirrel)",
+          "z3_formula": "needs_dog_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(tiger)",
+          "z3_formula": "not cold_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(tiger, dog)",
+          "z3_formula": "not likes_tiger_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & needs(X, tiger) -> young(tiger)",
+          "z3_formula": "Implies(And(likes_squirrel_tiger, needs_squirrel_tiger), young_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(squirrel, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(And(needs_dog_squirrel, needs_squirrel_tiger), needs_dog_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> not cold(X)",
+          "z3_formula": "Implies(needs_tiger_squirrel, not cold_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & needs(X, bald_eagle) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(young_squirrel, needs_squirrel_bald_eagle), needs_squirrel_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & not needs(X, tiger) -> not red(tiger)",
+          "z3_formula": "Implies(And(chases_dog_bald_eagle, not needs_dog_tiger), not red_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, tiger)",
+          "z3_formula": "needs_tiger_tiger == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(squirrel)",
+          "z3_formula": "not cold_squirrel == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "not red(tiger)",
+          "z3_formula": "not red_tiger == True",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "I \u2227 L \u2192 H",
+          "z3_formula": "Implies(And(I, L), H)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "F \u2227 L' \u2192 C \u2227 D",
+          "z3_formula": "Implies(And(F, Not(L)), And(C, D))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "L \u2192 J",
+          "z3_formula": "Implies(L, J)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "H \u2227 C \u2192 L",
+          "z3_formula": "Implies(And(H, C), L)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "H \u2192 C",
+          "z3_formula": "Implies(H, C)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "A \u2227 \u00acD \u2192 \u00acR",
+          "z3_formula": "Implies(And(A, Not(D)), Not(R))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, tiger)",
+          "z3_formula": "chases_dog_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(dog, squirrel)",
+          "z3_formula": "not likes_dog_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, squirrel)",
+          "z3_formula": "needs_dog_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(tiger)",
+          "z3_formula": "not cold_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(tiger, dog)",
+          "z3_formula": "not likes_tiger_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X) & needs(X, Y) -> young(Y)",
+          "z3_formula": "Implies(And(likes_squirrel_tiger, needs_squirrel_tiger), young_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & needs(Y, Z) -> needs(X, Z)",
+          "z3_formula": "Implies(And(needs_dog_squirrel, needs_squirrel_bald_eagle), needs_dog_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> not cold(Y)",
+          "z3_formula": "Implies(needs_tiger_squirrel, not cold_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & needs(X, Y) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(young_squirrel, needs_squirrel_bald_eagle), needs_squirrel_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & not needs(Y, tiger) -> not red(tiger)",
+          "z3_formula": "Implies(And(chases_dog_bald_eagle, not needs_bald_eagle_tiger), not red_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, tiger)",
+          "z3_formula": "needs_tiger_tiger == Unknown",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, tiger)",
+          "z3_formula": "chases_dog_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(dog, squirrel)",
+          "z3_formula": "not likes_dog_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, squirrel)",
+          "z3_formula": "needs_dog_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(tiger)",
+          "z3_formula": "not cold_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(tiger, dog)",
+          "z3_formula": "not likes_tiger_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X) & needs(X, Y) -> young(Y)",
+          "z3_formula": "Implies(And(likes_squirrel_tiger, needs_squirrel_tiger), young_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & needs(X, Y) -> needs(Y, tiger)",
+          "z3_formula": "Implies(And(young_squirrel, needs_squirrel_tiger), needs_tiger_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> needs(Y, dog)",
+          "z3_formula": "Implies(needs_squirrel_bald_eagle, needs_bald_eagle_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & not needs(X, Z) -> not red(Z)",
+          "z3_formula": "Implies(And(chases_dog_bald_eagle, not needs_dog_tiger), not red_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & needs(X, Y) -> needs(Y, bald_eagle)",
+          "z3_formula": "Implies(And(young_squirrel, needs_squirrel_bald_eagle), needs_bald_eagle_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, tiger)",
+          "z3_formula": "needs_tiger_tiger == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, tiger)",
+          "z3_formula": "chases_dog_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_like(dog, squirrel)",
+          "z3_formula": "does_not_like_dog_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, squirrel)",
+          "z3_formula": "needs_dog_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(tiger))",
+          "z3_formula": "not(cold_tiger) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_like(tiger, dog)",
+          "z3_formula": "does_not_like_tiger_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X) & needs(X, Y) -> young(Y)",
+          "z3_formula": "Implies(And(likes_X, needs_X_Y), young_Y)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & needs(Y, Z) -> needs(X, Z)",
+          "z3_formula": "Implies(And(needs_X_Y, needs_Y_Z), needs_X_Z)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X) -> not(cold(X))",
+          "z3_formula": "Implies(needs_X, not(cold_X))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & needs(X, Y) -> needs(X, Z)",
+          "z3_formula": "Implies(And(young_X, needs_X_Y), needs_X_Z)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, Y)",
+          "z3_formula": "Implies(young_X, needs_X_Y)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & does_not_need(X, Z) -> not(red(Z))",
+          "z3_formula": "Implies(And(chases_X_Y, does_not_need_X_Z), not(red_Z))",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, tiger)",
+          "z3_formula": "chases_dog_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(dog, squirrel)",
+          "z3_formula": "not likes_dog_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, squirrel)",
+          "z3_formula": "needs_dog_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(tiger)",
+          "z3_formula": "not cold_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(tiger, dog)",
+          "z3_formula": "not likes_tiger_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X) & needs(X, tiger) -> young(tiger)",
+          "z3_formula": "Implies(And(likes_squirrel_tiger, needs_squirrel_tiger), young_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(squirrel, bald_eagle) -> needs(bald_eagle, dog)",
+          "z3_formula": "Implies(And(needs_squirrel_bald_eagle, needs_bald_eagle_dog), needs_bald_eagle_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> not cold(X)",
+          "z3_formula": "Implies(needs_tiger_tiger, not cold_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & needs(X, bald_eagle) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(young_squirrel, needs_squirrel_bald_eagle), needs_squirrel_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) & not needs(X, tiger) -> not red(tiger)",
+          "z3_formula": "Implies(And(chases_dog_bald_eagle, not needs_dog_tiger), not red_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(tiger, tiger)",
+          "z3_formula": "not needs_tiger_tiger == True",
+          "source_step": 19
+        }
+      ],
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, tiger)",
+          "z3_formula": "chases_dog_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(dog, squirrel)",
+          "z3_formula": "not likes_dog_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, squirrel)",
+          "z3_formula": "needs_dog_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(tiger)",
+          "z3_formula": "not cold_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X) & needs(X, Y) -> young(Y)",
+          "z3_formula": "Implies(And(likes_X, needs_X_Y), young_Y)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X) -> not cold(X)",
+          "z3_formula": "Implies(needs_X, not cold_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & needs(X, Y) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(young_X, needs_X_Y), needs_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(young_X, needs_X_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & not needs(X, Z) -> not red(Z)",
+          "z3_formula": "Implies(And(chases_X_Y, not needs_X_Z), not red_Z)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, dog)",
+          "z3_formula": "chases_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, tiger)",
+          "z3_formula": "chases_dog_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_like(dog, squirrel)",
+          "z3_formula": "does_not_like_dog_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, squirrel)",
+          "z3_formula": "needs_dog_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(tiger))",
+          "z3_formula": "not(cold_tiger) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_like(tiger, dog)",
+          "z3_formula": "does_not_like_tiger_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X) & needs(X, Y) -> young(Y)",
+          "z3_formula": "Implies(And(likes_squirrel_tiger, needs_squirrel_tiger), young_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & needs(Y, Z) -> needs(X, Z)",
+          "z3_formula": "Implies(And(needs_dog_squirrel, needs_squirrel_bald_eagle), needs_dog_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X) -> not(cold(X))",
+          "z3_formula": "Implies(needs_tiger, not(cold_tiger))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & needs(X, Y) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(young_squirrel, needs_squirrel_bald_eagle), needs_squirrel_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & not(needs(X, Z)) -> not(red(Z))",
+          "z3_formula": "Implies(And(chases_dog_bald_eagle, not(needs_dog_tiger)), not(red_tiger))",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, tiger)",
+          "z3_formula": "needs_tiger_tiger == True",
+          "source_step": 20
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 184,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 40
+    },
+    "maxsat_stats": {
+      "satisfied": 40,
+      "excluded": 0,
+      "total_weight": 167,
+      "solve_time_ms": 1.2980932369828224
+    },
+    "timing": {
+      "trace_gen_s": 17.157,
+      "extraction_s": 51.394,
+      "dedup_s": 1.211,
+      "maxsat_s": 0.004,
+      "total_s": 69.766
+    }
+  }
+}

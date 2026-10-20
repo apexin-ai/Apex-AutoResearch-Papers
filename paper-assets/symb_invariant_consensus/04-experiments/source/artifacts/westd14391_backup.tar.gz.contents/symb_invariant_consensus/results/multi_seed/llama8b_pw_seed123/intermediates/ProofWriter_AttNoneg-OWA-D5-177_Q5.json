@@ -1,0 +1,1222 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-177_Q5",
+    "problem": "Anne is furry. Anne is smart. Bob is kind. Bob is nice. Charlie is big. Charlie is green. Charlie is nice. Charlie is young. Gary is furry. Gary is kind. Gary is nice. Gary is young. If something is young then it is nice. If Anne is green then Anne is big. Smart things are nice. All smart, kind things are green. Young, big things are kind. Kind, smart things are furry. If something is nice and big then it is young. All nice things are kind. If Anne is young and Anne is big then Anne is nice.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is kind.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nSmart($x, bool) ::: Is x smart?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nSmart(Anne, True) ::: Anne is smart.\nKind(Bob, True) ::: Bob is kind.\nNice(Bob, True) ::: Bob is nice.\nBig(Charlie, True) ::: Charlie is big.\nGreen(Charlie, True) ::: Charlie is green.\nNice(Charlie, True) ::: Charlie is nice.\nYoung(Charlie, True) ::: Charlie is young.\nFurry(Gary, True) ::: Gary is furry.\nKind(Gary, True) ::: Gary is kind.\nNice(Gary, True) ::: Gary is nice.\nYoung(Gary, True) ::: Gary is young.\n\nRules:\nYoung($x, True) >>> Nice($x, True) ::: If something is young then it is nice.\nGreen(Anne, True) >>> Big(Anne, True) ::: If Anne is green then Anne is big.\nSmart($x, True) >>> Nice($x, True) ::: Smart things are nice.\nSmart($x, True) && Kind($x, True) >>> Green($x, True) ::: All smart, kind things are green.\nYoung($x, True) && Big($x, True) >>> Kind($x, True) ::: Young, big things are kind.\nKind($x, True) && Smart($x, True) >>> Furry($x, True) ::: Kind, smart things are furry.\nNice($x, True) && Big($x, True) >>> Young($x, True) ::: If something is nice and big then it is young.\nNice($x, True) >>> Kind($x, True) ::: All nice things are kind.\nYoung(Anne, True) && Big(Anne, True) >>> Nice(Anne, True) ::: If Anne is young and Anne is big then Anne is nice.\n\nQuery:\nKind(Anne, True) ::: Anne is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 180.0,
+      "Unknown": 163.0
+    },
+    "answer_counts": {
+      "True": 9,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement 'Anne is kind' is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\n1. Given statements:\n   - Anne is furry.\n   - Anne is smart.\n   - Bob is kind.\n   - Bob is nice.\n   - Charlie is big.\n   - Charlie is green.\n   - Charlie is nice.\n   - Charlie is young.\n   - Gary is furry.\n   - Gary is kind.\n   - Gary is nice.\n   - Gary is young.\n   - If something is young then it is nice.\n   - If Anne is green then Anne is big.\n   - Smart things are nice.\n   - All smart, kind things are green.\n   - Young, big things are kind.\n   - Kind, smart things are furry.\n   - If something is nice and big then it is young.\n   - All nice things are kind.\n   - If Anne is young and Anne is big then Anne is nice.\n\n2. We need to find a connection between 'Anne is kind' and the given statements. \n\nFirst, let's analyze the statement 'Smart things are nice' and 'Anne is smart.' This tells us that Anne is nice because Anne is smart.\n\nNext, we know 'All nice things are kind.' This means that since Anne is nice, Anne is kind.\n\nTherefore, based on the given information and logical deductions, the statement 'Anne is kind' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is kind\" is true, false, or unknown, we need to use the given information and deduce the possible characteristics of Anne.\n\nFrom the given information:\n\n1. Anne is furry.\n2. Anne is smart.\n3. If something is smart, then it is nice. (From \"Smart things are nice\")\n   So, Anne is nice.\n\nFrom the given information:\n\n4. If something is smart and kind, then it is green. (From \"All smart, kind things are green\")\n   However, we don't know if Anne is kind. We can only assume she is kind if we know that she is kind.\n\nHowever, given that we do know Anne is nice and smart from the above, we can use the following statement:\n   All nice things are kind.\n\n   So, from \"All nice things are kind\" and \"Anne is nice\" we can infer that Anne is kind.\n\nTherefore, from the given information and the deductions, we can determine that the statement \"Anne is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is kind\" is true, false, or unknown, we need to analyze the given information and use the rules to derive conclusions about Anne's properties.\n\nGiven statements:\n1. Anne is furry.\n2. Anne is smart.\n3. Bob is kind.\n4. Bob is nice.\n5. Charlie is big.\n6. Charlie is green.\n7. Charlie is nice.\n8. Charlie is young.\n9. Gary is furry.\n10. Gary is kind.\n11. Gary is nice.\n12. Gary is young.\n13. If something is young then it is nice.\n14. If Anne is green then Anne is big.\n15. Smart things are nice.\n16. All smart, kind things are green.\n17. Young, big things are kind.\n18. Kind, smart things are furry.\n19. If something is nice and big then it is young.\n20. All nice things are kind.\n21. If Anne is young and Anne is big then Anne is nice.\n\nWe want to determine if Anne is kind. To do this, we need to find a path from Anne to \"kind\" using the given rules.\n\nFrom statement 2, we know Anne is smart. \n\nUsing statement 15, we can conclude that Anne is nice because smart things are nice.\n\nNow, we have two options to proceed:\nOption 1: Using statement 20, we can conclude that Anne is young because Anne is nice and big (from statement 21). Then, we can use statement 13 to conclude that Anne is nice (which we already know).\n\nOption 2: We can use statement 20 directly to conclude that Anne is kind because all nice things are kind (from statement 20).\n\nHowever, the second option seems more direct and efficient. We can conclude that Anne is kind without using any additional information.\n\nTherefore, the statement \"Anne is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is kind\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nRule 1: If something is young then it is nice.\nRule 2: If Anne is green then Anne is big.\nRule 3: Smart things are nice.\nRule 4: All smart, kind things are green.\nRule 5: Young, big things are kind.\nRule 6: Kind, smart things are furry.\nRule 7: If something is nice and big then it is young.\nRule 8: All nice things are kind.\nRule 9: If Anne is young and Anne is big then Anne is nice.\n\nFrom the given information, we have:\n- Anne is furry.\n- Anne is smart.\n\nWe can use Rule 3 to conclude that Anne is nice (since smart things are nice).\n\nNow, we need to check if the statement \"Anne is kind\" is true, false, or unknown.\n\nFrom Rule 8, we know that all nice things are kind. Since we concluded that Anne is nice, it follows that Anne is kind.\n\nTherefore, the statement \"Anne is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we'll need to use the given statements and the rules provided to determine whether Anne is kind. \n\nFirst, let's list all the given statements:\n1. Anne is furry.\n2. Anne is smart.\n3. Bob is kind.\n4. Bob is nice.\n5. Charlie is big.\n6. Charlie is green.\n7. Charlie is nice.\n8. Charlie is young.\n9. Gary is furry.\n10. Gary is kind.\n11. Gary is nice.\n12. Gary is young.\n13. If something is young then it is nice.\n14. If Anne is green then Anne is big.\n15. Smart things are nice.\n16. All smart, kind things are green.\n17. Young, big things are kind.\n18. Kind, smart things are furry.\n19. If something is nice and big then it is young.\n20. All nice things are kind.\n21. If Anne is young and Anne is big then Anne is nice.\n\nNow, let's analyze the given statement: \"Anne is kind.\"\n\nFrom statement 2, we know that Anne is smart. \n\nUsing rule 15, since Anne is smart, we can conclude that Anne is nice.\n\nNow, using rule 20, since Anne is nice and big, we can conclude that Anne is young.\n\nNow, we have a conflict in the rules. If Anne is young, then according to rule 13, Anne is nice, which is true. But we also know that Anne is young and big, which means Anne should be nice (rule 21). However, this doesn't directly tell us whether Anne is kind.\n\nLet's see if we can derive the kindness of Anne using other rules. Since we know that Anne is nice (from being smart) and big, and from rule 21, Anne is young, we can't derive that Anne is kind from the young, big condition (rule 17). \n\nHowever, we can use rule 15 to conclude that Anne is kind because Anne is smart and all smart things are nice (rule 15). \n\nUsing rule 16, since Anne is smart and nice, Anne should be green. But we don't have any information that directly states Anne is green.\n\nHowever, rule 14 tells us that if Anne is green, then Anne is big. Since we already know that Anne is big, we can't use this rule to derive any new information.\n\nNow, let's look at the given information about other characters. We know that Gary is nice, kind, and young. But we can't use this information to derive the kindness of Anne.\n\nIn conclusion, we can't directly derive the kindness of Anne from the given rules, but we can use the given rules to conclude that Anne is nice (because Anne is smart), and from rule 21, we can conclude that Anne is young.\n\nTherefore, the statement \"Anne is kind\" is unknown.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is kind\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Given information:\n   - Anne is furry.\n   - Anne is smart.\n   - Smart things are nice.\n   - If Anne is green then Anne is big.\n   - All smart, kind things are green.\n   - Young, big things are kind.\n   - Kind, smart things are furry.\n   - If something is nice and big then it is young.\n   - All nice things are kind.\n   - If Anne is young and Anne is big then Anne is nice.\n\n2. Analyzing the given information:\n   - We know Anne is smart, and smart things are nice.\n   - Since Anne is nice, and all nice things are kind, Anne is kind.\n\nTherefore, the statement \"Anne is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is kind\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nFrom the information given, we can start by analyzing the properties of Anne.\n\n1. Anne is furry.\n2. Anne is smart.\n\nNow, let's look at the relationships between the properties.\n\n1. If something is young then it is nice.\n2. If Anne is young and Anne is big then Anne is nice.\n\nWe don't have any direct information that Anne is young or big, but we do have some indirect information that might be useful.\n\n1. If something is nice and big then it is young.\n2. All nice things are kind.\n\nHowever, we still don't have enough information to determine whether Anne is kind or not.\n\nBut, let's continue analyzing the information.\n\n1. Smart things are nice.\n2. Anne is smart. (So, Anne is nice.)\n\nNow, we have two properties of Anne: Anne is nice and Anne is smart.\n\n1. All smart, kind things are green.\n2. Anne is smart. (So, Anne is kind.)\n\nHowever, we need to be careful. We cannot directly conclude that Anne is kind from this information because we don't know if Anne is green. But, let's look at the properties of green things.\n\n1. Young, big things are kind.\n2. If Anne is young and Anne is big then Anne is nice.\n3. If something is nice and big then it is young.\n\nWe still don't have enough information to determine whether Anne is green or not.\n\nHowever, we can conclude that if Anne is green, then Anne is kind. But, we cannot determine if Anne is green or not.\n\nSo, we can conclude that the statement \"Anne is kind\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is kind\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nGiven information:\n\n1. Anne is furry.\n2. Anne is smart.\n3. Bob is kind.\n4. Bob is nice.\n5. Charlie is big.\n6. Charlie is green.\n7. Charlie is nice.\n8. Charlie is young.\n9. Gary is furry.\n10. Gary is kind.\n11. Gary is nice.\n12. Gary is young.\n13. If something is young then it is nice. (Rule 1)\n14. If Anne is green then Anne is big. (Rule 2)\n15. Smart things are nice. (Rule 3)\n16. All smart, kind things are green. (Rule 4)\n17. Young, big things are kind. (Rule 5)\n18. Kind, smart things are furry. (Rule 6)\n19. If something is nice and big then it is young. (Rule 7)\n20. All nice things are kind. (Rule 8)\n21. If Anne is young and Anne is big then Anne is nice. (Rule 9)\n\nTo determine whether Anne is kind, we need to find a relationship between Anne and the concept of kindness.\n\nFrom Rule 2, we have: If Anne is green then Anne is big. (We don't know if Anne is green, so we can't conclude anything about Anne's size.)\n\nFrom Rule 3, we have: Smart things are nice. (Since Anne is smart, we can conclude that Anne is nice.)\n\nFrom Rule 8, we have: All nice things are kind. (Since Anne is nice, we can conclude that Anne is kind.)\n\nHowever, we need to be careful and check if there are any other rules that might affect our conclusion.\n\nFrom Rule 5, we have: Young, big things are kind. (We don't know if Anne is young or big, so we can't conclude anything about Anne's kindness based on this rule.)\n\nFrom Rule 6, we have: Kind, smart things are furry. (We know that Anne is smart, but we don't know if Anne is kind, so we can't conclude anything about Anne's furiness.)\n\nFrom Rule 7, we have: If something is nice and big then it is young. (We don't know if Anne is big, so we can't conclude anything about Anne's youth.)\n\nFrom Rule 9, we have: If Anne is young and Anne is big then Anne is nice. (We don't know if Anne is young or big, so we can't conclude anything about Anne's niceness based on this rule.)\n\nConsidering all the rules, we can conclude that:\n\nAnne is smart. (Rule 2 is not necessary for this conclusion.)\nAnne is nice. (Rule 3)\nAnne is kind. (Rule 8)\n\nTherefore, the statement \"Anne is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we'll break it down step by step based on the given information and logical deductions.\n\n1.  Let's analyze the given statements:\n    - Anne is furry.\n    - Anne is smart.\n    - Bob is kind.\n    - Bob is nice.\n    - Charlie is big.\n    - Charlie is green.\n    - Charlie is nice.\n    - Charlie is young.\n    - Gary is furry.\n    - Gary is kind.\n    - Gary is nice.\n    - Gary is young.\n    - If something is young then it is nice. (Rule 1)\n    - If Anne is green then Anne is big. (Rule 2)\n    - Smart things are nice. (Rule 3)\n    - All smart, kind things are green. (Rule 4)\n    - Young, big things are kind. (Rule 5)\n    - Kind, smart things are furry. (Rule 6)\n    - If something is nice and big then it is young. (Rule 7)\n    - All nice things are kind. (Rule 8)\n    - If Anne is young and Anne is big then Anne is nice. (Rule 9)\n\n2.  We are asked to determine whether the statement \"Anne is kind\" is true, false, or unknown.\n\n3.  To check if Anne is kind, we need to find out if Anne satisfies any of the rules that directly or indirectly relate to being kind.\n\n4.  Since we know that Anne is smart (Rule 2), let's analyze the rules related to smart things:\n    - Smart things are nice (Rule 3)\n    - All smart, kind things are green (Rule 4)\n\n    From Rule 3, we know that smart things are nice. However, to determine if Anne is kind, we need to see if she is kind or not.\n\n    Since we don't directly know if Anne is kind, let's analyze other rules related to Anne:\n    - Anne is furry (given statement)\n    - Anne is smart (given statement)\n\n    We know that Kind, smart things are furry (Rule 6). But this rule tells us that if Anne is kind, then she is furry, not that she is kind because she is furry.\n\n    We also know that Gary is furry, kind, and nice (given statement). However, being furry does not necessarily mean that Anne is kind.\n\n5.  Now, let's see if we can find any other connections that might help us determine if Anne is kind:\n    - If something is nice and big then it is young (Rule 7)\n    - If Anne is young and Anne is big then Anne is nice (Rule 9)\n\n    However, we don't know if Anne is big, and we also don't know if Anne is young.\n\n6.  We know that Charlie is big, and if something is young and big, then it is kind (Rule 5). But Charlie is young (given statement), and we don't know if Anne is young or big.\n\n7.  From Rule 1, we know that if something is young, then it is nice. However, this rule doesn't directly relate to Anne being kind.\n\n8.  We also know that All nice things are kind (Rule 8). However, to determine if Anne is nice, we need more information.\n\n9.  From Rule 3, we know that smart things are nice. However, we don't know if Anne is nice or not.\n\n10. Now, let's analyze the given statements again:\n    - Gary is furry, kind, and nice (given statement)\n    - Anne is furry and smart (given statement)\n\n    Since Gary is kind, nice, and furry, and Anne is furry and smart, we can use the rules to connect Anne's characteristics to being kind.\n\n    From Rule 6, Kind, smart things are furry. This means that if Anne is kind, then she is furry, which is true. However, this doesn't directly tell us if Anne is kind.\n\n    Since we know that Anne is furry and smart, let's see if we can use Rule 3: Smart things are nice.\n\n    From Rule 3, we know that smart things are nice. And we know that Anne is smart. Therefore, Anne is nice.\n\n11. Now, let's use Rule 8: All nice things are kind.\n\n    Since we know that Anne is nice, we can conclude that Anne is kind.\n\n12. Therefore, based on the given information and the logical deductions, we can conclude that the statement \"Anne is kind\" is true.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is kind\" is true, false, or unknown, we need to analyze the given information and apply it to the statement.\n\nGiven information:\n1. Anne is furry.\n2. Anne is smart.\n3. Bob is kind.\n4. Bob is nice.\n5. Charlie is big.\n6. Charlie is green.\n7. Charlie is nice.\n8. Charlie is young.\n9. Gary is furry.\n10. Gary is kind.\n11. Gary is nice.\n12. Gary is young.\n13. If something is young then it is nice.\n14. If Anne is green then Anne is big.\n15. Smart things are nice.\n16. All smart, kind things are green.\n17. Young, big things are kind.\n18. Kind, smart things are furry.\n19. If something is nice and big then it is young.\n20. All nice things are kind.\n21. If Anne is young and Anne is big then Anne is nice.\n\nNow, we need to apply this information to the statement \"Anne is kind.\"\n\nFrom the given information, we know:\n- Anne is smart (2)\n- Smart things are nice (15)\n- Therefore, Anne is nice (by 15)\n\nHowever, being nice does not necessarily mean being kind. We need more information to determine if Anne is kind.\n\nLet's look at the information about kind things:\n- Gary is kind (10)\n- Gary is nice (11)\n- All nice things are kind (20)\n- Therefore, Gary is kind (by 20)\n\nHowever, this information about Gary is not related to Anne.\n\nLet's look at the information about green things:\n- All smart, kind things are green (16)\n- Anne is smart (2)\n- However, we don't know if Anne is kind yet.\n- We also don't know if Anne is green.\n\nLet's look at the information about young, big things:\n- Young, big things are kind (17)\n- However, we don't know if Anne is young or big.\n\nFrom the given information, we can't directly determine if Anne is kind or not. However, we can make some inferences:\n\n- If Anne is young, then she is nice (by 13)\n- If Anne is nice, then she is kind (by 20)\n- However, we don't know if Anne is young.\n\nTherefore, based on the given information, the statement \"Anne is kind\" is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is kind\" is true, false, or unknown, we need to analyze the given information step by step and use the rules provided.\n\n1. Given Information:\n   - Anne is furry.\n   - Anne is smart.\n   - If something is young then it is nice.\n   - If Anne is green then Anne is big.\n   - Smart things are nice.\n   - All smart, kind things are green.\n   - Young, big things are kind.\n   - Kind, smart things are furry.\n   - If something is nice and big then it is young.\n   - All nice things are kind.\n   - If Anne is young and Anne is big then Anne is nice.\n\n2. Analyze the information related to Anne:\n   - We know that Anne is smart, and from the rule \"Smart things are nice,\" we can conclude that Anne is nice.\n   - From the rule \"All nice things are kind,\" we can further conclude that Anne is kind.\n\nTherefore, based on the given information and the rules provided, the statement \"Anne is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following premises:\n   - Anne is furry.\n   - Anne is smart.\n   - If something is young then it is nice.\n   - If Anne is green then Anne is big.\n   - Smart things are nice.\n   - All smart, kind things are green.\n   - Young, big things are kind.\n   - Kind, smart things are furry.\n   - If something is nice and big then it is young.\n   - All nice things are kind.\n   - If Anne is young and Anne is big then Anne is nice.\n\n2. We need to determine whether Anne is kind. To do this, we need to find a connection between Anne and the property of being kind.\n\n3. Since Anne is smart, we can use the premise that smart things are nice to conclude that Anne is nice.\n\n4. We can now use the premise that all nice things are kind to conclude that Anne is kind.\n\nHowever, we can also use the premise that if something is nice and big then it is young and the premise that Anne is nice and big to conclude that Anne is young.\n\n5. Since Anne is young and smart, we can use the premise that young, big things are kind to conclude that Anne is kind.\n\n6. But, we can also use the premise that all smart, kind things are green to conclude that Anne is green.\n\n7. Using the premise that if Anne is green then Anne is big, we can conclude that Anne is big.\n\n8. Now, we have two different conclusions:\n   - Anne is kind (from the premises in steps 3 and 4).\n   - Anne is kind (from the premises in steps 5 and 7).\n\nBoth conclusions lead to the same result, which is that Anne is kind.\n\nTherefore, the statement \"Anne is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(anne) -> big(anne)",
+          "z3_formula": "Implies(green_anne, big_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_X, kind_X), green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_X, big_X), kind_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, smart_X), furry_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_X, big_X), young_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_X, nice_X)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_anne, nice_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_anne, kind_anne), green_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_anne, kind_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(anne) -> big(anne)",
+          "z3_formula": "Implies(green_anne, big_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_X, kind_X), green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_X, big_X), kind_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, smart_X), furry_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_X, big_X), young_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_X, kind_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_X, big_X), nice_X)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_anne, nice_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_anne, big_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_anne, nice_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_anne, kind_anne), green_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_anne, big_anne), kind_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_anne, smart_anne), furry_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, big_anne), young_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_anne, kind_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(anne) -> big(anne)",
+          "z3_formula": "Implies(green_anne, big_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_X, kind_X), green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_X, big_X), kind_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_X, kind_X), furry_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_X, big_X), young_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_X, kind_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_X, big_X), nice_X)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_anne, kind_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_anne, smart_anne), green_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_anne, big_anne), kind_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_anne, smart_anne), furry_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, big_anne), young_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_anne, kind_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_anne, big_anne), nice_anne)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_anne, nice_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_anne, big_anne), nice_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, big_anne), young_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_anne, kind_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_anne, nice_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_anne, kind_anne), green_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_anne, big_anne), kind_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, big_anne), young_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_X, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_X, kind_X), green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_X, big_X), kind_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, smart_X), furry_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_X, big_X), young_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_X, kind_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_X, big_X), nice_X)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_anne, nice_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_anne, kind_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(anne) -> big(anne)",
+          "z3_formula": "Implies(green_anne, big_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_X, kind_X), green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_X, big_X), kind_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_X, furry_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_X, big_X), young_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_X, kind_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_X, big_X), nice_X)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_anne, big_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_anne, kind_anne), green_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_anne, big_anne), kind_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_anne, smart_anne), furry_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, big_anne), young_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_anne, kind_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_anne, big_anne), nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_anne, big_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_anne, nice_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_anne, kind_anne), green_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_anne, big_anne), kind_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_anne, smart_anne), furry_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, big_anne), young_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_anne, big_anne), kind_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 182,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 37
+    },
+    "maxsat_stats": {
+      "satisfied": 37,
+      "excluded": 0,
+      "total_weight": 182,
+      "solve_time_ms": 1.0257307440042496
+    },
+    "timing": {
+      "trace_gen_s": 11.426,
+      "extraction_s": 28.327,
+      "dedup_s": 1.664,
+      "maxsat_s": 0.003,
+      "total_s": 41.42
+    }
+  }
+}

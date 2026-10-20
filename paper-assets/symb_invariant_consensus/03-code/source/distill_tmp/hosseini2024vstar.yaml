@@ -1,0 +1,26 @@
+paper_key: "hosseini2024vstar"
+title: "V-STaR: Training Verifiers for Self-Taught Reasoners"
+venue: "NeurIPS 2024"
+full_text_available: false
+
+research:
+  baselines: ["STaR", "REST-EM", "majority_voting", "ORM"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "GSM8K", size: "1319"}
+    - {name: "MATH", size: "500"}
+    - {name: "ARC-Challenge", size: "2590"}
+  ablation_dimensions: ["verifier_training_data", "iteration_count", "generator_vs_verifier_scaling"]
+  training_recipe: {info: "iterative self-training with DPO verifier"}
+  method_family: "self-training with verifier"
+
+positioning:
+  core_claim: "Training verifiers on both correct and incorrect solutions from self-taught reasoners creates a virtuous cycle improving both generator and verifier"
+  key_results: "GSM8K: +4.7% over STaR; MATH: +2.1% over STaR with verification"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,1521 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-960_Q12",
+    "problem": "The dog is round. The dog needs the tiger. The lion chases the dog. The lion chases the mouse. The lion needs the dog. The lion sees the dog. The mouse is red. The mouse sees the tiger. The tiger is blue. The tiger is red. The tiger is round. The tiger sees the lion. If something chases the mouse and it is round then the mouse is kind. If the mouse sees the tiger and the tiger is red then the tiger is kind. If something chases the mouse then it sees the mouse. If something chases the lion and the lion sees the tiger then the tiger chases the lion. If something is round then it needs the tiger. If something chases the dog then it is round. If something is round then it sees the lion. If something is kind then it chases the dog. If something needs the lion then it is round.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not see the lion.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nNeeds($x, $y, bool) ::: Does x need y?\nChases($x, $y, bool) ::: Does x chase y?\nSees($x, $y, bool) ::: Does x see y?\nRed($x, bool) ::: Is x red?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nRound(dog, True) ::: The dog is round.\nNeeds(dog, tiger, True) ::: The dog needs the tiger.\nChases(lion, dog, True) ::: The lion chases the dog.\nChases(lion, mouse, True) ::: The lion chases the mouse.\nNeeds(lion, dog, True) ::: The lion needs the dog.\nSees(lion, dog, True) ::: The lion sees the dog.\nRed(mouse, True) ::: The mouse is red.\nSees(mouse, tiger, True) ::: The mouse sees the tiger.\nBlue(tiger, True) ::: The tiger is blue.\nRed(tiger, True) ::: The tiger is red.\nRound(tiger, True) ::: The tiger is round.\nSees(tiger, lion, True) ::: The tiger sees the lion.\n\nRules:\nChases($x, mouse, True) && Round($x, True) >>> Kind(mouse, True) ::: If something chases the mouse and it is round then the mouse is kind.\nSees(mouse, tiger, True) && Red(tiger, True) >>> Kind(tiger, True) ::: If the mouse sees the tiger and the tiger is red then the tiger is kind.\nChases($x, mouse, True) >>> Sees($x, mouse, True) ::: If something chases the mouse then it sees the mouse.\nChases($x, lion, True) && Sees(lion, tiger, True) >>> Chases(tiger, lion, True) ::: If something chases the lion and the lion sees the tiger then the tiger chases the lion.\nRound($x, True) >>> Needs($x, tiger, True) ::: If something is round then it needs the tiger.\nChases($x, dog, True) >>> Round($x, True) ::: If something chases the dog then it is round.\nRound($x, True) >>> Sees($x, lion, True) ::: If something is round then it sees the lion.\nKind($x, True) >>> Chases($x, dog, True) ::: If something is kind then it chases the dog.\nNeeds($x, lion, True) >>> Round($x, True) ::: If something needs the lion then it is round.\n\nQuery:\nSees(mouse, lion, False) ::: The mouse does not see the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 163.5,
+      "Unknown": 219.5
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "False": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them to the statement we are trying to determine. Let's break it down step by step.\n\n1. The tiger is blue. \n2. The tiger is red. \n3. The tiger is round. \n\nFrom statement 3, we know that the tiger is round. \n\n4. If something chases the mouse and it is round then the mouse is kind. \n   Since there's no information about the tiger chasing the mouse, we can't apply this rule directly.\n\n5. The mouse sees the tiger. \n6. If the mouse sees the tiger and the tiger is red then the tiger is kind. \n   Since the tiger is both red and round, and we don't know if the mouse chases the tiger, we still can't directly apply this rule.\n\n7. If something chases the mouse then it sees the mouse. \n   There's no information about what chases the mouse, so we can't apply this rule directly.\n\n8. The lion chases the dog. \n9. The lion chases the mouse. \n10. The lion needs the dog. \n11. The lion sees the dog. \n\nFrom statement 11, we know the lion sees the dog.\n\n12. If something chases the lion and the lion sees the tiger then the tiger chases the lion. \n   There's no information about what chases the lion, so we can't apply this rule directly.\n\n13. If something is round then it needs the tiger. \n   Since the tiger is round (from statement 3), the tiger needs the tiger. However, this statement doesn't provide any relevant information about the mouse or the lion.\n\n14. If something chases the dog then it is round. \n   Since the lion chases the dog (from statement 8), the lion is round.\n\n15. If something is round then it sees the lion. \n   Since the lion is round (from statement 14), the lion sees the lion. However, this statement doesn't provide any relevant information about the mouse.\n\n16. If something is kind then it chases the dog. \n   There's no information about what is kind, so we can't apply this rule directly.\n\n17. If something needs the lion then it is round. \n   Since the dog needs the lion (from statement 10), the dog is round.\n\n18. The dog is round. \n   This statement is already given, so it doesn't provide any new information.\n\nFrom the given statements, we know that the lion sees the dog (statement 11) and the lion chases the mouse (statement 9). \n\nIf we apply statement 12, we get: If something chases the lion and the lion sees the tiger then the tiger chases the lion. \n   However, we still don't know what chases the lion.\n\nWe can't determine if the statement \"The mouse does not see the lion\" is true or false directly from the given statements. We only know that the mouse sees the tiger (statement 5), but we don't have enough information to determine if the mouse sees the lion or not.\n\nTherefore, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions that lead to the mouse seeing the lion. \n\nFrom the given statements, we have the following information:\n\n- If something chases the mouse and it is round then the mouse is kind. (Statement 1)\n- If the mouse sees the tiger and the tiger is red then the tiger is kind. (Statement 2)\n- If something chases the mouse then it sees the mouse. (Statement 3)\n- If something chases the lion and the lion sees the tiger then the tiger chases the lion. (Statement 4)\n- If something is round then it needs the tiger. (Statement 5)\n- If something chases the dog then it is round. (Statement 6)\n- If something is round then it sees the lion. (Statement 7)\n- If something is kind then it chases the dog. (Statement 8)\n- If something needs the lion then it is round. (Statement 9)\n\nThe statement we need to evaluate is: The mouse does not see the lion.\n\nTo determine this, we need to find a path that leads to the mouse seeing the lion. \n\nFrom Statement 6, we know that if something chases the dog, then it is round. Since the lion chases the dog (Statement 3), the lion is round.\n\nFrom Statement 7, if something is round, then it sees the lion. Since the lion is round, it sees the lion.\n\nNow, from Statement 3, if something chases the mouse, then it sees the mouse. However, there is no direct information about the mouse chasing the lion or the lion chasing the mouse.\n\nBut from Statement 8, if something is kind, then it chases the dog. Since the mouse is red (Statement 10), the tiger is red (Statement 11), and the tiger sees the mouse (Statement 12), we can conclude that the tiger is kind (Statement 2). However, the tiger chases the lion (Statement 4) and the lion sees the tiger (Statement 13), which means the tiger is kind because it chases the lion.\n\nNow, we can conclude that the mouse is kind (Statement 1) because the tiger chases the mouse. \n\nHowever, there is a contradiction in the statements. Statement 1 says that if something chases the mouse and it is round then the mouse is kind. Since the tiger chases the mouse, the mouse is kind. However, the tiger is round (Statement 14) because it is round. \n\nSince the tiger is round, it needs the tiger (Statement 5). This is a contradiction because it implies that the tiger needs itself.\n\nTherefore, we cannot conclude anything about the mouse seeing the lion. \n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given statements and use the rules provided to determine the relationship between the mouse and the lion.\n\nGiven statements:\n1. The dog is round.\n2. The dog needs the tiger.\n3. The lion chases the dog.\n4. The lion chases the mouse.\n5. The lion needs the dog.\n6. The lion sees the dog.\n7. The mouse is red.\n8. The mouse sees the tiger.\n9. The tiger is blue.\n10. The tiger is red.\n11. The tiger is round.\n12. The tiger sees the lion.\nRules:\n1. If something chases the mouse and it is round then the mouse is kind.\n2. If the mouse sees the tiger and the tiger is red then the tiger is kind.\n3. If something chases the mouse then it sees the mouse.\n4. If something chases the lion and the lion sees the tiger then the tiger chases the lion.\n5. If something is round then it needs the tiger.\n6. If something chases the dog then it is round.\n7. If something is round then it sees the lion.\n8. If something is kind then it chases the dog.\n9. If something needs the lion then it is round.\n\nGiven statement to evaluate: The mouse does not see the lion.\n\nTo determine the truth of this statement, we need to analyze the information given and the rules provided.\n\nFrom statement 8, we know that the mouse sees the tiger. \n\nNow, let's analyze the rules:\n- Rule 2 states that if the mouse sees the tiger and the tiger is red, then the tiger is kind.\n- Rule 10 states that the tiger is red.\n- Rule 2 can be applied here: since the mouse sees the tiger and the tiger is red, the tiger is kind.\n\nFrom rule 8, we know that if something is kind, then it chases the dog. \nSince the tiger is kind, it chases the dog.\n\nFrom rule 6, we know that if something chases the dog, then it is round.\nSo, the tiger is round.\n\nFrom rule 5, we know that if something is round, then it needs the tiger. \nHowever, this does not help us with the mouse and the lion.\n\nFrom rule 3, we know that if something chases the mouse, then it sees the mouse.\nSince the tiger chases the mouse, it sees the mouse.\n\nNow, let's consider the given statement: The mouse does not see the lion.\n\nWe know from statement 12 that the tiger sees the lion.\nFrom rule 4, we know that the lion chases the mouse.\nWe also know from rule 3 that if something chases the mouse, then it sees the mouse.\nSo, the lion sees the mouse.\n\nHowever, we still do not know if the mouse sees the lion or not.\n\nFrom rule 7, we know that if something is round, then it sees the lion.\nWe do not know if the mouse is round or not.\n\nFrom rule 1, we know that if something chases the mouse and it is round, then the mouse is kind.\nHowever, this does not help us with the mouse and the lion.\n\nFrom rule 9, we know that if something needs the lion, then it is round.\nWe do not know if the mouse needs the lion or not.\n\nFrom rule 6, we know that if something chases the dog, then it is round.\nHowever, this does not help us with the mouse and the lion.\n\nFrom rule 7, we know that if something is round, then it sees the lion.\nWe do not know if the mouse is round or not.\n\nSince the mouse is red (statement 7), we cannot determine if the mouse sees the lion or not based on the given information and rules.\n\nTherefore, the final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to use the given premises and rules to deduce the relationship between the mouse and the lion.\n\nPremises:\n1. The dog is round.\n2. The dog needs the tiger.\n3. The lion chases the dog.\n4. The lion chases the mouse.\n5. The lion needs the dog.\n6. The lion sees the dog.\n7. The mouse is red.\n8. The mouse sees the tiger.\n9. The tiger is blue.\n10. The tiger is red.\n11. The tiger is round.\n12. The tiger sees the lion.\n\nRules:\n1. If something chases the mouse and it is round then the mouse is kind.\n2. If the mouse sees the tiger and the tiger is red then the tiger is kind.\n3. If something chases the mouse then it sees the mouse.\n4. If something chases the lion and the lion sees the tiger then the tiger chases the lion.\n5. If something is round then it needs the tiger.\n6. If something chases the dog then it is round.\n7. If something is round then it sees the lion.\n8. If something is kind then it chases the dog.\n9. If something needs the lion then it is round.\n\nWe want to determine whether the mouse does not see the lion.\n\nLet's start by analyzing the premises and rules related to the mouse and the lion:\n\nFrom premise 4, we know the lion chases the mouse.\nFrom premise 3, we know the lion chases the dog.\nFrom premise 6, since the lion chases the dog, it is round.\nFrom premise 9, since the lion is round, it needs the tiger.\n\nNow, let's analyze the relationship between the mouse and the lion using the given rules.\n\nFrom premise 8, we know the mouse sees the tiger.\nFrom premise 10, we know the tiger is red.\nFrom rule 2, since the mouse sees the tiger and the tiger is red, the tiger is kind.\n\nFrom premise 4, we know the lion chases the mouse.\nFrom premise 12, we know the tiger sees the lion.\nFrom premise 11, we know the tiger is round.\nFrom premise 5, since the tiger is round, it needs the tiger. (This statement is redundant and can be ignored.)\n\nFrom premise 12, we know the tiger sees the lion.\nFrom premise 11, we know the tiger is round.\nFrom rule 7, since the tiger is round, it sees the lion.\n\nNow, let's use the rules to deduce the relationship between the mouse and the lion.\n\nFrom premise 4, we know the lion chases the mouse.\nFrom premise 12, we know the tiger sees the lion.\nFrom premise 11, we know the tiger is round.\nFrom rule 6, since the lion chases the mouse, it sees the mouse.\nFrom premise 6, since the lion is round, it sees the lion.\n\nFrom premise 12, we know the tiger sees the lion.\nFrom premise 11, we know the tiger is round.\nFrom premise 8, we know the mouse sees the tiger.\nFrom premise 10, we know the tiger is red.\nFrom rule 2, since the mouse sees the tiger and the tiger is red, the tiger is kind.\n\nFrom premise 4, we know the lion chases the mouse.\nFrom premise 12, we know the tiger sees the lion.\nFrom premise 11, we know the tiger is round.\nFrom rule 4, since the lion chases the mouse and the lion sees the tiger, the tiger chases the lion.\n\nHowever, from premise 12, we know the tiger sees the lion.\nFrom premise 11, we know the tiger is round.\nFrom premise 6, since the lion is round, it sees the lion.\nFrom premise 12, we know the tiger sees the lion.\nFrom premise 11, we know the tiger is round.\nFrom premise 8, we know the mouse sees the tiger.\nFrom premise 10, we know the tiger is red.\nFrom rule 2, since the mouse sees the tiger and the tiger is red, the tiger is kind.\n\nWe know the tiger is round and kind. From premise 12, we know the tiger sees the lion.\nHowever, from premise 11, we know the tiger is round.\nFrom premise 6, since the lion is round, it sees the lion.\nFrom premise 12, we know the tiger sees the lion.\n\nFrom premise 4, we know the lion chases the mouse.\nFrom premise 12, we know the tiger sees the lion.\nFrom premise 11, we know the tiger is round.\nFrom premise 8, we know the mouse sees the tiger.\nFrom premise 10, we know the tiger is red.\nFrom rule 2, since the mouse sees the tiger and the tiger is red, the tiger is kind.\n\nWe know the tiger is round and kind. From premise 12, we know the tiger sees the lion.\n\nNow, let's use rule 3, which states that if something chases the mouse then it sees the mouse.\nFrom premise 4, we know the lion chases the mouse.\nFrom premise 12, we know the tiger sees the lion.\nFrom premise 11, we know the tiger is round.\nFrom premise 6, since the lion is round, it sees the lion.\nFrom premise 12, we know the tiger sees the lion.\nFrom premise 8, we know the mouse sees the tiger.\nFrom premise 10, we know the tiger is red.\nFrom rule 2, since the mouse sees the tiger and the tiger is red, the tiger is kind.\n\nWe know the tiger is round and kind. From premise 12, we know the tiger sees the lion.\nFrom premise 11, we know the tiger is round.\nFrom premise 6, since the lion is round, it sees the lion.\nFrom premise 12, we know the tiger sees the lion.\n\nFrom rule 3, since the lion chases the mouse, the lion sees the mouse.\n\nSo, the mouse is seen by the lion.\n\nTherefore, the statement \"The mouse does not see the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not see the lion\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The mouse sees the tiger. (Given)\n2. The tiger is blue. (Given)\n3. The tiger is red. (Given)\n   We can deduce that the tiger is both blue and red, but the rules do not provide any information about the color of the tiger being relevant to the mouse seeing the lion.\n\n4. The tiger is round. (Given)\n   The rule states that if something is round, it needs the tiger. However, this does not directly relate to the mouse seeing the lion.\n\n5. The mouse is red. (Given)\n   The rule states that if the mouse sees the tiger and the tiger is red, then the tiger is kind. However, this does not provide any information about the mouse seeing the lion.\n\n6. If something chases the mouse and it is round then the mouse is kind. (Rule)\n   We know that the mouse is red, but there is no information about the mouse being round.\n\n7. If something chases the mouse then it sees the mouse. (Rule)\n   We know that the lion chases the mouse, but we do not know if the lion sees the mouse.\n\n8. If something chases the lion and the lion sees the tiger then the tiger chases the lion. (Rule)\n   We know that the lion sees the tiger, but we do not know if the lion is being chased.\n\n9. If something is round then it needs the tiger. (Rule)\n   We know that the tiger is round, but we do not know if the mouse needs the tiger.\n\n10. If something chases the dog then it is round. (Rule)\n    We know that the lion chases the dog and the lion is round.\n\n11. If something is round then it sees the lion. (Rule)\n    We know that the lion is round, and the mouse sees the tiger, but we do not know if the mouse sees the lion.\n\n12. If something is kind then it chases the dog. (Rule)\n    We do not know if the mouse is kind.\n\n13. If something needs the lion then it is round. (Rule)\n    We know that the lion is round, but we do not know if the mouse needs the lion.\n\nFrom the given information and the rules, we can deduce that the lion is round (10) and sees the tiger (11). However, we do not have enough information to determine if the mouse sees the lion.\n\nTherefore, the statement \"The mouse does not see the lion\" is unknown.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply logical reasoning to determine whether the statement is true, false, or unknown.\n\nGiven statements:\n\n1. The dog is round.\n2. The dog needs the tiger.\n3. The lion chases the dog.\n4. The lion chases the mouse.\n5. The lion needs the dog.\n6. The lion sees the dog.\n7. The mouse is red.\n8. The mouse sees the tiger.\n9. The tiger is blue.\n10. The tiger is red.\n11. The tiger is round.\n12. The tiger sees the lion.\n13. If something chases the mouse and it is round then the mouse is kind.\n14. If the mouse sees the tiger and the tiger is red then the tiger is kind.\n15. If something chases the mouse then it sees the mouse.\n16. If something chases the lion and the lion sees the tiger then the tiger chases the lion.\n17. If something is round then it needs the tiger.\n18. If something chases the dog then it is round.\n19. If something is round then it sees the lion.\n20. If something is kind then it chases the dog.\n21. If something needs the lion then it is round.\n\nTo determine whether the statement \"The mouse does not see the lion\" is true, false, or unknown, we can use the following steps:\n\nFrom statement 4, we know that the lion chases the mouse. \n\nUsing statement 15, we know that if something chases the mouse, then it sees the mouse. Therefore, the lion sees the mouse.\n\nHowever, we cannot directly determine whether the mouse sees the lion. \n\nBut we can deduce that the mouse does not see the lion is unknown because we don't have enough information to confirm or deny it.\n\nBut we can prove it is false using the following method.\n\nStatement 12: The tiger sees the lion.\nStatement 14: If the mouse sees the tiger and the tiger is red then the tiger is kind.\nStatement 8: The mouse sees the tiger.\nStatement 10: The tiger is red.\nTherefore, the tiger is kind (Statement 14).\nStatement 20: If something is kind then it chases the dog.\nTherefore, the tiger chases the dog.\nStatement 18: If something chases the dog then it is round.\nTherefore, the tiger is round.\nStatement 17: If something is round then it needs the tiger.\nTherefore, the mouse needs the tiger.\nStatement 19: If something is round then it sees the lion.\nTherefore, the tiger sees the lion.\nStatement 16: If something chases the lion and the lion sees the tiger then the tiger chases the lion.\nTherefore, the lion chases the mouse (Statement 4) and the tiger chases the lion.\nBut, the mouse is not round (Statement 7).\nStatement 13: If something chases the mouse and it is round then the mouse is kind.\nTherefore, the statement \"The mouse does not see the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply logical reasoning to determine if the mouse does not see the lion.\n\n1. The dog is round.\n   This statement does not directly relate to the mouse or the lion, so we can ignore it for now.\n\n2. The dog needs the tiger.\n   Similar to the previous statement, this does not directly relate to the mouse or the lion.\n\n3. The lion chases the dog.\n   This statement implies that the lion is round, since statement 7 says \"If something chases the dog then it is round.\"\n\n4. The lion chases the mouse.\n   This statement implies that the lion sees the mouse, since statement 8 says \"If something chases the mouse then it sees the mouse.\"\n\n5. The lion needs the dog.\n   This statement implies that the lion is round, since statement 9 says \"If something needs the lion then it is round.\"\n\n6. The lion sees the dog.\n   This statement is consistent with statement 3.\n\n7. The mouse is red.\n   This statement does not directly relate to the mouse seeing the lion.\n\n8. The mouse sees the tiger.\n   This statement implies that the mouse is not seeing the lion, but we need to check if the mouse is seeing the tiger based on other conditions.\n\n9. The tiger is blue.\n   This statement does not directly relate to the mouse seeing the lion.\n\n10. The tiger is red.\n    This statement is consistent with statement 7, but we need to check if the tiger is kind based on other conditions.\n\n11. The tiger is round.\n    This statement is consistent with statement 6, but we need to check if the tiger is kind based on other conditions.\n\n12. The tiger sees the lion.\n    This statement is not directly related to the mouse seeing the lion.\n\n13. If something chases the mouse and it is round then the mouse is kind.\n    We do not know if the mouse is round or if it is kind, so we cannot determine if this statement is true or false.\n\n14. If the mouse sees the tiger and the tiger is red then the tiger is kind.\n    We do not know if the mouse is seeing the tiger or if the tiger is kind, so we cannot determine if this statement is true or false.\n\n15. If something chases the mouse then it sees the mouse.\n    This statement is consistent with statement 4, but we need to check if the mouse sees the lion.\n\n16. If something chases the lion and the lion sees the tiger then the tiger chases the lion.\n    This statement implies that the tiger chases the lion, but we do not know if the mouse sees the lion.\n\n17. If something is round then it needs the tiger.\n    This statement is consistent with statement 1, but we do not know if the mouse or the lion is round.\n\n18. If something chases the dog then it is round.\n    This statement is consistent with statement 3, but we do not know if the mouse or the lion chases the dog.\n\n19. If something is round then it sees the lion.\n    This statement implies that the mouse or the lion may see the lion, but we need to check the conditions.\n\n20. If something is kind then it chases the dog.\n    We do not know if the mouse is kind or if it chases the dog, so we cannot determine if this statement is true or false.\n\nBased on the given statements, we can infer that:\n\n* The lion is round (statements 3, 5, and 18).\n* The lion sees the dog (statements 3 and 6).\n* The mouse sees the tiger (statement 8).\n* The tiger is red (statements 7 and 10).\n* The tiger is round (statements 10 and 11).\n\nHowever, we do not have enough information to determine if the mouse sees the lion. Therefore, the final answer is:\n\nThe mouse does not see the lion: **Unknown**\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the rules. Let's break down the rules:\n\n1. If something chases the mouse and it is round then the mouse is kind.\n2. If the mouse sees the tiger and the tiger is red then the tiger is kind.\n3. If something chases the mouse then it sees the mouse.\n4. If something chases the lion and the lion sees the tiger then the tiger chases the lion.\n5. If something is round then it needs the tiger.\n6. If something chases the dog then it is round.\n7. If something is round then it sees the lion.\n8. If something is kind then it chases the dog.\n9. If something needs the lion then it is round.\n\nGiven information:\n- The lion chases the dog.\n- The lion chases the mouse.\n- The lion needs the dog.\n- The lion sees the dog.\n- The mouse is red.\n- The mouse sees the tiger.\n- The tiger is blue.\n- The tiger is red.\n- The tiger is round.\n- The tiger sees the lion.\n\nNow, let's determine whether the mouse sees the lion. We can break this down step by step:\n\n1. The lion chases the mouse (given).\n2. According to rule 3, if something chases the mouse, then it sees the mouse. Since the lion chases the mouse, the lion sees the mouse.\n3. However, the question is whether the mouse sees the lion. We need to find a connection between the mouse and the lion.\n\nGiven that the lion sees the mouse and the mouse sees the tiger, we can use rule 4 to establish a connection between the lion and the tiger. However, this rule doesn't directly help us determine if the mouse sees the lion.\n\nConsidering the information that the lion sees the dog (rule 7) and the lion needs the dog (rule 9), we know the lion is round. According to rule 6, if something chases the dog then it is round. Since the lion chases the dog, the lion is round.\n\nNow, let's use the information that the tiger is round (given) and apply rule 5: if something is round then it needs the tiger. Since the lion is round, the lion needs the tiger.\n\nWe are still unsure if the mouse sees the lion. To determine this, let's analyze the given information and rules. We know that the mouse sees the tiger (given), and the tiger is red (given). However, the rules don't provide a direct connection between the mouse and the lion.\n\nConsidering the information that the mouse is red (given) and the tiger is red (given), we can use rule 2 to determine if the tiger is kind. However, this doesn't help us determine if the mouse sees the lion.\n\nSince we don't have enough information to determine if the mouse sees the lion, the statement \"The mouse does not see the lion\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not see the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse sees the tiger. (Given)\n2. The tiger is red. (Given)\n3. If the mouse sees the tiger and the tiger is red then the tiger is kind. (Given)\n   - From this rule, we can deduce that the tiger is kind. However, this information is not directly related to the mouse seeing the lion.\n4. If something chases the mouse and it is round then the mouse is kind. (Given)\n   - This rule is not applicable here because the mouse does not chase anything, and we don't have any information about the mouse being round.\n5. If something chases the mouse then it sees the mouse. (Given)\n   - We don't have any information that something chases the mouse, so we cannot conclude that the mouse is seen by something.\n6. If something chases the lion and the lion sees the tiger then the tiger chases the lion. (Given)\n   - This rule is not applicable here because the lion sees the tiger, but we don't have any information about something chasing the lion.\n7. The lion sees the dog. (Given)\n8. The dog is round. (Given)\n9. If something is round then it needs the tiger. (Given)\n   - From this rule, we can deduce that the dog needs the tiger. However, this information is not directly related to the mouse seeing the lion.\n10. If something chases the dog then it is round. (Given)\n    - We don't have any information that something chases the dog, so we cannot conclude that the dog is chased by something.\n11. If something is round then it sees the lion. (Given)\n    - From this rule, we can deduce that the dog sees the lion. However, this information is not directly related to the mouse seeing the lion.\n12. If something is round then it needs the lion. (Given)\n    - This rule is not applicable here because the dog is round, but we don't have any information about the dog needing the lion.\n13. If something is kind then it chases the dog. (Given)\n    - We know that the tiger is kind from rule 3. However, this information is not directly related to the mouse seeing the lion.\n14. The lion chases the dog. (Given)\n15. The lion chases the mouse. (Given)\n16. The lion needs the dog. (Given)\n17. The mouse is red. (Given)\n18. The tiger is blue. (Given)\n19. The tiger is red. (Given)\n20. The tiger is round. (Given)\n21. The tiger sees the lion. (Given)\n\nNow, let's focus on the statement \"The mouse does not see the lion.\" To determine whether this statement is true or false, we need to find a reason why the mouse sees the lion or why the mouse does not see the lion.\n\nFrom the given information, we know that the lion sees the dog (rule 7), and the dog is round (rule 8). However, we don't have any direct information about the mouse seeing the lion.\n\nWe also know that the tiger sees the lion (rule 21), but we don't have any information about the mouse seeing the lion.\n\nWe can conclude that the statement \"The mouse does not see the lion\" is unknown because we don't have enough information to determine whether the mouse sees the lion or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information and statements, and then use the rules to determine the relationships between the characters.\n\n1. Given Information:\n   - The dog is round.\n   - The mouse is red.\n   - The tiger is blue and red.\n   - The tiger is round.\n   - The mouse sees the tiger.\n\n2. Rules:\n   - If something chases the mouse and it is round, then the mouse is kind.\n   - If the mouse sees the tiger and the tiger is red, then the tiger is kind.\n   - If something chases the mouse, then it sees the mouse.\n   - If something chases the lion and the lion sees the tiger, then the tiger chases the lion.\n   - If something is round, then it needs the tiger.\n   - If something chases the dog, then it is round.\n   - If something is round, then it sees the lion.\n   - If something is kind, then it chases the dog.\n   - If something needs the lion, then it is round.\n\n3. Analyzing the given information and rules:\n   - From the given information, we know the tiger is round (Rule 5) and needs the tiger itself (Rule 5).\n   - The mouse sees the tiger (given information).\n   - The tiger is red (given information), but we do not know if the mouse sees the lion.\n\n4. Determine the relationships:\n   - Since the tiger is round and needs the tiger, we can conclude that the tiger sees the lion (Rule 7).\n   - The lion sees the tiger (given information).\n   - Since the lion chases the dog and the lion sees the tiger, we can conclude that the tiger chases the lion (Rule 4).\n   - Since the tiger chases the lion, we can conclude that the tiger sees the lion (Rule 3).\n   - Since the lion chases the dog, we can conclude that the lion is round (Rule 6).\n\n5. Determine if the mouse does not see the lion:\n   - Since the mouse sees the tiger and the tiger is round, we can conclude that the mouse is kind (Rule 1).\n   - Since the mouse is kind, we can conclude that the mouse chases the dog (Rule 8).\n   - Since the mouse chases the dog, we can conclude that the mouse is round (Rule 6).\n   - However, we cannot conclude that the mouse sees the lion from the given information and rules.\n\n6. Conclusion:\n   - Since we cannot conclude that the mouse sees the lion from the given information and rules, we cannot determine if the mouse does not see the lion.\n   - The statement \"The mouse does not see the lion\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules to determine whether the mouse sees the lion.\n\n1. The dog is round. (This statement doesn't directly affect the problem, but we can use it later.)\n2. The dog needs the tiger. (This statement doesn't directly affect the problem, but we can use it later.)\n3. The lion chases the dog. (This statement doesn't directly affect the problem, but we can use it later.)\n4. The lion chases the mouse. (This statement doesn't directly affect the problem, but we can use it later.)\n5. The lion needs the dog. (This statement doesn't directly affect the problem, but we can use it later.)\n6. The lion sees the dog. (This statement doesn't directly affect the problem, but we can use it later.)\n7. The mouse is red. (This statement doesn't directly affect the problem, but we can use it later.)\n8. The mouse sees the tiger. (This statement doesn't directly affect the problem, but we can use it later.)\n9. The tiger is blue. (This statement doesn't directly affect the problem, but we can use it later.)\n10. The tiger is red. (This statement doesn't directly affect the problem, but we can use it later.)\n11. The tiger is round. (This statement doesn't directly affect the problem, but we can use it later.)\n12. The tiger sees the lion. (This statement doesn't directly affect the problem, but we can use it later.)\n13. If something chases the mouse and it is round then the mouse is kind. (This statement doesn't directly affect the problem, but we can use it later.)\n14. If the mouse sees the tiger and the tiger is red then the tiger is kind. (This statement doesn't directly affect the problem, but we can use it later.)\n15. If something chases the mouse then it sees the mouse. (This rule will be used later.)\n16. If something chases the lion and the lion sees the tiger then the tiger chases the lion. (This rule will be used later.)\n17. If something is round then it needs the tiger. (This rule will be used later.)\n18. If something chases the dog then it is round. (This rule will be used later.)\n19. If something is round then it sees the lion. (This rule will be used later.)\n20. If something is kind then it chases the dog. (This rule will be used later.)\n21. If something needs the lion then it is round. (This rule will be used later.)\n\nNow, let's try to find out whether the mouse sees the lion. We can use the following steps:\n\nStep 1: From statement 8, we know that the mouse sees the tiger.\n\nStep 2: From statement 10, we know that the tiger is red.\n\nStep 3: From statement 14, we can conclude that if the mouse sees the tiger and the tiger is red then the tiger is kind. However, this is not directly related to our problem, but we can use it later.\n\nStep 4: From statement 15, we know that if something chases the mouse then it sees the mouse. However, this rule is not directly applicable here, but we can use it later.\n\nStep 5: From statement 12, we know that the tiger sees the lion.\n\nStep 6: From statement 18, we know that if something chases the dog then it is round. However, this rule is not directly applicable here, but we can use it later.\n\nStep 7: From statement 21, we know that if something needs the lion then it is round. However, this rule is not directly applicable here, but we can use it later.\n\nNow, let's try to find out whether the mouse sees the lion:\n\nThe problem doesn't directly mention whether the mouse sees the lion. However, we can try to find out whether the mouse sees the lion indirectly:\n\nStep 1: From statement 8, we know that the mouse sees the tiger.\n\nStep 2: From statement 12, we know that the tiger sees the lion.\n\nStep 3: Since the tiger sees the lion, we can use the rule in statement 15 to conclude that the tiger chases the mouse (because the tiger sees the mouse in statement 8).\n\nStep 4: However, this contradicts statement 8 because the mouse sees the tiger, not the other way around.\n\nStep 5: Therefore, we cannot conclude that the mouse sees the lion.\n\nSince we cannot conclude that the mouse sees the lion, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we'll use the given rules and try to determine whether the statement \"The mouse does not see the lion\" is true, false, or unknown.\n\nLet's start by analyzing the given information:\n\n1. The tiger is blue.\n2. The tiger is red.\n3. The tiger is round.\n4. The mouse sees the tiger.\n5. The tiger sees the lion.\n\nFrom rule 1, we have two conflicting statements about the tiger's color. However, rule 2 states that the tiger is red, and rule 3 states that the tiger is round.\n\nUsing rule 8, since the tiger is round, it needs the tiger. However, this statement is a tautology.\n\nUsing rule 7, since the tiger is round, it sees the lion.\n\nUsing rule 9, since the tiger is round, it sees the lion. This statement is already covered by rule 7.\n\nNow, let's examine the statement \"The mouse does not see the lion.\"\n\nWe know from rule 4 that the mouse sees the tiger. \n\nUsing rule 6, if something chases the mouse and it is round, then the mouse is kind. However, there is no information that the mouse is chased by something round.\n\nUsing rule 5, if something chases the lion and the lion sees the tiger, then the tiger chases the lion. However, there is no information that the mouse chases the lion.\n\nUsing rule 1, we have two conflicting statements about the tiger's color, but the mouse sees the tiger, so it does not directly affect the mouse's ability to see the lion.\n\nUsing rule 3, since the tiger is round, it sees the lion. However, this does not directly affect the mouse's ability to see the lion.\n\nUsing rule 4, since the mouse sees the tiger, and rule 10 states that if something chases the dog then it is round, then the mouse does not chase the dog. However, this does not directly affect the mouse's ability to see the lion.\n\nHowever, using rule 5, if something chases the lion and the lion sees the tiger, then the tiger chases the lion. From rule 5, we know that the lion sees the tiger. However, there is no information that the mouse chases the lion. This does not directly affect the mouse's ability to see the lion.\n\nHowever, using rule 5, if something chases the lion and the lion sees the tiger, then the tiger chases the lion. From rule 5, we know that the lion sees the tiger. Using rule 11, if the mouse sees the tiger and the tiger is red, then the tiger is kind. However, there is no information that the tiger is kind.\n\nHowever, using rule 5, if something chases the lion and the lion sees the tiger, then the tiger chases the lion. From rule 5, we know that the lion sees the tiger. Using rule 11, if the mouse sees the tiger and the tiger is red, then the tiger is kind. However, there is no information that the tiger is kind.\n\nHowever, we do not have enough information to determine whether the mouse sees the lion or not.\n\nTherefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) & round(X) -> kind(mouse)",
+          "z3_formula": "Implies(And(chases_tiger_mouse, round_tiger), kind_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & red(tiger) -> kind(tiger)",
+          "z3_formula": "Implies(And(sees_mouse_tiger, red_tiger), kind_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(chases_tiger_mouse, sees_tiger_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, dog)",
+          "z3_formula": "chases_lion_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, mouse)",
+          "z3_formula": "chases_lion_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & sees(lion, tiger) -> chases(tiger, lion)",
+          "z3_formula": "Implies(And(chases_tiger_lion, sees_lion_tiger), chases_tiger_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(round_tiger, needs_tiger_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> round(X)",
+          "z3_formula": "Implies(chases_lion_dog, round_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, lion)",
+          "z3_formula": "Implies(round_lion, sees_lion_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, dog)",
+          "z3_formula": "Implies(kind_tiger, chases_tiger_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, lion)",
+          "z3_formula": "needs_dog_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> round(X)",
+          "z3_formula": "Implies(needs_dog_lion, round_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 18
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, tiger)",
+          "z3_formula": "needs_dog_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, dog)",
+          "z3_formula": "chases_lion_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, mouse)",
+          "z3_formula": "chases_lion_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, lion)",
+          "z3_formula": "sees_tiger_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) & round(X) -> kind(X)",
+          "z3_formula": "Implies(And(chases_X_mouse, round_X), kind_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & red(tiger) -> kind(tiger)",
+          "z3_formula": "Implies(And(sees_X_tiger, red_tiger), kind_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(chases_X_mouse, sees_X_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & sees(lion, tiger) -> sees(X, lion)",
+          "z3_formula": "Implies(And(chases_X_lion, sees_lion_tiger), sees_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(round_X, needs_X_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> round(X)",
+          "z3_formula": "Implies(chases_X_dog, round_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, lion)",
+          "z3_formula": "Implies(round_X, sees_X_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, dog)",
+          "z3_formula": "Implies(kind_X, chases_X_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> round(X)",
+          "z3_formula": "Implies(needs_X_lion, round_X)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, dog)",
+          "z3_formula": "chases_tiger_dog == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, lion)",
+          "z3_formula": "sees_tiger_lion == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, mouse)",
+          "z3_formula": "sees_lion_mouse == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == Unknown",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, tiger)",
+          "z3_formula": "needs_dog_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, dog)",
+          "z3_formula": "chases_lion_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, mouse)",
+          "z3_formula": "chases_lion_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, lion)",
+          "z3_formula": "sees_tiger_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) & round(X) -> kind(mouse)",
+          "z3_formula": "Implies(And(chases_lion_mouse, round_lion), kind_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & red(tiger) -> kind(tiger)",
+          "z3_formula": "Implies(And(sees_mouse_tiger, red_tiger), kind_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(chases_lion_mouse, sees_lion_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & sees(X, tiger) -> sees(X, lion)",
+          "z3_formula": "Implies(And(chases_X_lion, sees_X_tiger), sees_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(round_dog, needs_dog_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> round(X)",
+          "z3_formula": "Implies(chases_X_dog, round_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, lion)",
+          "z3_formula": "Implies(round_dog, sees_dog_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, dog)",
+          "z3_formula": "Implies(kind_X, chases_X_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> round(X)",
+          "z3_formula": "Implies(needs_X_lion, round_X)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == False",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, lion)",
+          "z3_formula": "sees_tiger_lion == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, mouse)",
+          "z3_formula": "sees_lion_mouse == True",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(round_tiger, needs_tiger_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & red(Y) -> kind(Y)",
+          "z3_formula": "Implies(And(sees_mouse_tiger, red_tiger), kind_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(chases_lion_mouse, sees_lion_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & sees(lion, Y) -> chases(Y, lion)",
+          "z3_formula": "Implies(And(chases_lion_tiger, sees_lion_tiger), chases_tiger_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, lion)",
+          "z3_formula": "Implies(round_lion, sees_lion_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, dog)",
+          "z3_formula": "chases_lion_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> True",
+          "z3_formula": "Implies(round_lion, round_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> round(X)",
+          "z3_formula": "Implies(chases_lion_dog, round_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, dog)",
+          "z3_formula": "Implies(kind_mouse, chases_mouse_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> round(X)",
+          "z3_formula": "Implies(needs_mouse_lion, round_lion)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, tiger)",
+          "z3_formula": "needs_dog_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, dog)",
+          "z3_formula": "chases_lion_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, mouse)",
+          "z3_formula": "chases_lion_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, lion)",
+          "z3_formula": "sees_tiger_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) & round(X) -> kind(mouse)",
+          "z3_formula": "Implies(And(chases_X_mouse, round_X), kind_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & red(tiger) -> kind(tiger)",
+          "z3_formula": "Implies(And(sees_X_tiger, red_tiger), kind_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(chases_X_mouse, sees_X_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & sees(lion, tiger) -> sees(X, lion)",
+          "z3_formula": "Implies(And(chases_X_lion, sees_lion_tiger), sees_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(round_X, needs_X_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> round(X)",
+          "z3_formula": "Implies(chases_X_dog, round_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, lion)",
+          "z3_formula": "Implies(round_X, sees_X_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, dog)",
+          "z3_formula": "Implies(kind_X, chases_X_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> round(X)",
+          "z3_formula": "Implies(needs_X_lion, round_X)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, dog)",
+          "z3_formula": "chases_tiger_dog == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, tiger)",
+          "z3_formula": "needs_mouse_tiger == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, lion)",
+          "z3_formula": "sees_tiger_lion == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, mouse)",
+          "z3_formula": "chases_lion_mouse == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == False",
+          "source_step": 29
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, tiger)",
+          "z3_formula": "needs_dog_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> round(X)",
+          "z3_formula": "Implies(chases_lion_dog, round_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, dog)",
+          "z3_formula": "chases_lion_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(chases_lion_mouse, sees_lion_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, mouse)",
+          "z3_formula": "chases_lion_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> round(X)",
+          "z3_formula": "Implies(needs_lion_dog, round_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) & round(X) -> kind(X)",
+          "z3_formula": "Implies(And(chases_lion_mouse, round_lion), kind_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & red(tiger) -> kind(tiger)",
+          "z3_formula": "Implies(And(sees_mouse_tiger, red_tiger), kind_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(chases_lion_mouse, sees_lion_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & sees(lion, tiger) -> chases(tiger, lion)",
+          "z3_formula": "Implies(And(chases_tiger_lion, sees_lion_tiger), chases_tiger_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(round_dog, needs_dog_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> round(X)",
+          "z3_formula": "Implies(chases_lion_dog, round_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, lion)",
+          "z3_formula": "Implies(round_lion, sees_lion_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, dog)",
+          "z3_formula": "Implies(kind_lion, chases_lion_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, mouse)",
+          "z3_formula": "chases_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(chases_lion_mouse, sees_lion_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, mouse)",
+          "z3_formula": "sees_lion_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & sees(lion, tiger) -> chases(tiger, lion)",
+          "z3_formula": "Implies(And(chases_lion_mouse, sees_lion_tiger), chases_tiger_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, lion)",
+          "z3_formula": "sees_tiger_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> round(X)",
+          "z3_formula": "Implies(chases_lion_dog, round_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(round_lion, needs_lion_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, dog)",
+          "z3_formula": "chases_lion_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(round_lion, needs_lion_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, tiger)",
+          "z3_formula": "needs_lion_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & red(tiger) -> kind(tiger)",
+          "z3_formula": "Implies(And(sees_mouse_tiger, red_tiger), kind_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, lion)",
+          "z3_formula": "sees_tiger_lion == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(mouse, lion)",
+          "z3_formula": "Not(sees_mouse_lion)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & red(Y) -> kind(Y)",
+          "z3_formula": "Implies(And(sees_mouse_tiger, red_tiger), kind_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(chases_X_mouse, sees_X_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, mouse)",
+          "z3_formula": "chases_lion_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, mouse)",
+          "z3_formula": "sees_lion_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, lion)",
+          "z3_formula": "Implies(round_dog, sees_dog_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) -> chases(X, dog)",
+          "z3_formula": "Implies(kind_tiger, chases_tiger_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, dog)",
+          "z3_formula": "chases_lion_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, dog)",
+          "z3_formula": "chases_lion_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, lion)",
+          "z3_formula": "sees_tiger_lion == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(sees_mouse_lion, Not(sees_mouse_lion)))",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger) & red(tiger)",
+          "z3_formula": "blue_tiger == True & red_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mouse_sees_tiger",
+          "z3_formula": "mouse_sees_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) & round(X) -> kind(mouse)",
+          "z3_formula": "Implies(And(chases_X_mouse, round_X), kind_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "mouse_sees_tiger & red(tiger) -> kind(tiger)",
+          "z3_formula": "Implies(And(mouse_sees_tiger, red_tiger), kind_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) -> mouse_sees(X)",
+          "z3_formula": "Implies(chases_X_mouse, mouse_sees_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & lion_sees_tiger -> tiger_chases(lion)",
+          "z3_formula": "Implies(And(chases_X_lion, lion_sees_tiger), tiger_chases_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> needs_X(lion)",
+          "z3_formula": "Implies(round_X, needs_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> round(X)",
+          "z3_formula": "Implies(chases_X_dog, round_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees_X(lion)",
+          "z3_formula": "Implies(round_X, sees_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases_X(dog)",
+          "z3_formula": "Implies(kind_X, chases_X_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs_X(lion) -> round(X)",
+          "z3_formula": "Implies(needs_X_lion, round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "tiger_sees_lion",
+          "z3_formula": "tiger_sees_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "lion_sees_tiger",
+          "z3_formula": "lion_sees_tiger == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "tiger_chases_lion",
+          "z3_formula": "tiger_chases_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "tiger_sees_lion",
+          "z3_formula": "tiger_sees_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "lion_chases_dog",
+          "z3_formula": "lion_chases_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "lion_is_round",
+          "z3_formula": "lion_is_round == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "mouse_is_kind",
+          "z3_formula": "mouse_is_kind == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "mouse_chases_dog",
+          "z3_formula": "mouse_chases_dog == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "mouse_is_round",
+          "z3_formula": "mouse_is_round == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "mouse_sees_lion",
+          "z3_formula": "mouse_sees_lion == Unknown",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & red(Y) -> kind(Y)",
+          "z3_formula": "Implies(And(sees_mouse_tiger, red_tiger), kind_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(chases_tiger_mouse, sees_tiger_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, lion)",
+          "z3_formula": "sees_tiger_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & sees(Y, Z) -> chases(Z, Y)",
+          "z3_formula": "Implies(And(chases_tiger_lion, sees_tiger_lion), chases_lion_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(round_tiger, needs_tiger_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> round(X)",
+          "z3_formula": "Implies(chases_tiger_dog, round_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> round(X)",
+          "z3_formula": "Implies(needs_tiger_lion, round_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, lion)",
+          "z3_formula": "Implies(round_tiger, sees_tiger_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, dog)",
+          "z3_formula": "Implies(kind_tiger, chases_tiger_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(chases_tiger_mouse, sees_tiger_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(mouse, lion)",
+          "z3_formula": "Not(sees_mouse_lion)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, lion)",
+          "z3_formula": "sees_tiger_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> needs(X)",
+          "z3_formula": "Implies(round_tiger, needs_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> sees(X, lion)",
+          "z3_formula": "Implies(round_tiger, sees_tiger_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & round(X) -> kind(Y)",
+          "z3_formula": "Implies(And(chases_mouse_lion, round_tiger), kind_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & sees(lion, tiger) -> chases(tiger, lion)",
+          "z3_formula": "Implies(And(chases_X_lion, sees_lion_tiger), chases_tiger_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> round(X)",
+          "z3_formula": "Implies(chases_mouse_dog, round_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & sees(lion, tiger) -> chases(tiger, lion)",
+          "z3_formula": "Implies(And(chases_X_lion, sees_lion_tiger), chases_tiger_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) & red(tiger) -> kind(tiger)",
+          "z3_formula": "Implies(And(sees_mouse_tiger, red_tiger), kind_tiger)",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 232,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 80
+    },
+    "maxsat_stats": {
+      "satisfied": 78,
+      "excluded": 2,
+      "total_weight": 229,
+      "solve_time_ms": 2.1120617166161537
+    },
+    "timing": {
+      "trace_gen_s": 15.517,
+      "extraction_s": 46.172,
+      "dedup_s": 3.2,
+      "maxsat_s": 0.006,
+      "total_s": 64.896
+    }
+  }
+}

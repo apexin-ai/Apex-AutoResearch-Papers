@@ -1,0 +1,958 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-461_Q16",
+    "problem": "Anne is big. Anne is kind. Anne is quiet. Anne is rough. Anne is white. Fiona is big. Gary is big. Gary is cold. Gary is kind. Harry is kind. If something is kind then it is big. If something is white and kind then it is rough. If Harry is quiet and Harry is cold then Harry is big. If something is quiet then it is big. If something is cold and rough then it is quiet. All kind things are young. If Harry is kind and Harry is cold then Harry is white. If something is young and kind then it is cold.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is young.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nKind(Anne, True) ::: Anne is kind.\nQuiet(Anne, True) ::: Anne is quiet.\nRough(Anne, True) ::: Anne is rough.\nWhite(Anne, True) ::: Anne is white.\nBig(Fiona, True) ::: Fiona is big.\nBig(Gary, True) ::: Gary is big.\nCold(Gary, True) ::: Gary is cold.\nKind(Gary, True) ::: Gary is kind.\nKind(Harry, True) ::: Harry is kind.\n\nRules:\nKind($x, True) >>> Big($x, True) ::: If something is kind then it is big.\nWhite($x, True) && Kind($x, True) >>> Rough($x, True) ::: If something is white and kind then it is rough.\nQuiet(Harry, True) && Cold(Harry, True) >>> Big(Harry, True) ::: If Harry is quiet and Harry is cold then Harry is big.\nQuiet($x, True) >>> Big($x, True) ::: If something is quiet then it is big.\nCold($x, True) && Rough($x, True) >>> Quiet($x, True) ::: If something is cold and rough then it is quiet.\nKind($x, True) >>> Young($x, True) ::: All kind things are young.\nKind(Harry, True) && Cold(Harry, True) >>> White(Harry, True) ::: If Harry is kind and Harry is cold then Harry is white.\nYoung($x, True) && Kind($x, True) >>> Cold($x, True) ::: If something is young and kind then it is cold.\n\nQuery:\nYoung(Fiona, True) ::: Fiona is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 110.0,
+      "Unknown": 130.0
+    },
+    "answer_counts": {
+      "True": 4,
+      "Unknown": 7
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Fiona is young, we need to analyze the given statements and the properties of Fiona.\n\nFrom the problem, we have the following statements:\n\n1. Fiona is big.\n2. If something is kind then it is big. \n   Since Fiona is big, we can't directly conclude that Fiona is kind, but it's possible.\n3. All kind things are young. \n   Since we don't know if Fiona is kind, we can't conclude if Fiona is young.\n4. If Harry is kind and Harry is cold then Harry is white. \n   This statement is not relevant to Fiona, but we can use it to analyze Harry later.\n\nFrom the given problem, we know that Fiona is big, but we can't directly determine if Fiona is young. However, we can analyze Harry to see if we can get any information about Fiona.\n\nFor Harry:\n1. Harry is kind.\n2. Harry is cold.\n3. If Harry is kind and Harry is cold then Harry is white.\n   So, Harry is white.\n4. If Harry is quiet and Harry is cold then Harry is big.\n   We don't know if Harry is quiet, so we can't conclude that Harry is big.\n5. If something is quiet then it is big.\n   We don't know if Harry is quiet, so we can't conclude that Harry is big.\n6. If something is young and kind then it is cold.\n   Since Harry is kind and cold, Harry is young.\n\nNow, we have some information about Harry: Harry is kind, Harry is cold, Harry is white, and Harry is young.\n\nHowever, this information doesn't help us determine if Fiona is young. To determine if Fiona is young, we need to find a connection between Fiona and the property \"young.\" We can use the property \"If something is kind then it is big\" and the fact that Fiona is big to see if Fiona is kind.\n\nFrom the problem, we have the following statements:\n\n1. Fiona is big.\n2. If something is kind then it is big.\n   Since Fiona is big, Fiona is kind.\n3. All kind things are young.\n   Since Fiona is kind, Fiona is young.\n\nSo, we can conclude that Fiona is young.\n\nTherefore, the answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is big. (Given statement)\n\n2. If something is kind then it is big. (Rule 2) \n   Since Fiona is big, Fiona could be kind.\n\n3. If something is kind then it is big. (Rule 2) \n   However, we have no information that states Fiona is kind, but we can proceed with the given information.\n\n4. If Harry is kind and Harry is cold then Harry is white. (Rule 6) \n   However, this rule does not provide any information about Fiona.\n\n5. If something is white and kind then it is rough. (Rule 3) \n   We do not have enough information to determine if Fiona is white or kind.\n\n6. If something is quiet then it is big. (Rule 7) \n   We do not have enough information to determine if Fiona is quiet.\n\n7. If something is cold and rough then it is quiet. (Rule 9) \n   We do not have enough information to determine if Fiona is cold and rough.\n\n8. If Harry is quiet and Harry is cold then Harry is big. (Rule 8) \n   However, this rule does not provide any information about Fiona.\n\n9. If something is young and kind then it is cold. (Rule 10) \n   We do not have enough information to determine if Fiona is young or kind.\n\n10. If Harry is kind and Harry is cold then Harry is white. (Rule 6) \n    However, this rule does not provide any information about Fiona.\n\n11. All kind things are young. (Rule 11) \n    However, we do not have enough information to determine if Fiona is kind.\n\n12. Anne is big. Anne is kind. Anne is quiet. Anne is rough. Anne is white. \n    We do not have enough information to determine if Fiona is related to Anne.\n\nBased on the given information, we cannot determine if Fiona is young. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether Fiona is young, we need to analyze the given statements and apply them to Fiona's properties.\n\nFrom the given statements, we know:\n1. Fiona is big.\n2. If something is kind, then it is big. (This statement does not directly apply to Fiona, but it implies that being big and kind are related.)\n3. If something is white and kind, then it is rough. (This statement does not directly apply to Fiona.)\n4. If something is quiet, then it is big. (This statement does not directly apply to Fiona.)\n5. If something is cold and rough, then it is quiet. (This statement does not directly apply to Fiona.)\n\nHowever, we can analyze Fiona's properties using the given statements. Since Fiona is big (Statement 1), and we know that being big and kind are related (Statement 2), we can infer that Fiona might be kind. But this is not directly applicable to Fiona's statement as we do not have a direct relation between Fiona being big and Fiona being kind.\n\nHowever, we have no information about Fiona being white, kind, quiet, or cold. Therefore, we cannot determine whether Fiona is young or not using the given statements.\n\nSince we do not have enough information to determine whether Fiona is young, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Fiona is big. \n\nFrom the given statements, we have:\n- If something is kind then it is big. \nHowever, we do not know if Fiona is kind. So, we cannot conclude that Fiona is young based on this statement alone.\n\n2. We also have:\n- If something is quiet then it is big.\n- If something is quiet then it is big.\nSince we don't know if Fiona is quiet, we cannot conclude that Fiona is young.\n\n3. We have another statement:\n- If something is white and kind then it is rough.\nHowever, we do not know if Fiona is white, so we cannot conclude that Fiona is young based on this statement.\n\n4. We know that:\n- If Harry is quiet and Harry is cold then Harry is big.\nHowever, this information does not relate to Fiona, so it does not help us determine if Fiona is young.\n\n5. We have another statement:\n- If something is cold and rough then it is quiet.\nAgain, this information does not relate to Fiona, so it does not help us determine if Fiona is young.\n\n6. We have another statement:\n- All kind things are young.\nHowever, we do not know if Fiona is kind, so we cannot conclude that Fiona is young.\n\n7. We have another statement:\n- If Harry is kind and Harry is cold then Harry is white.\nHowever, this information does not relate to Fiona, so it does not help us determine if Fiona is young.\n\n8. We have another statement:\n- If something is young and kind then it is cold.\nHowever, we do not know if Fiona is kind, so we cannot conclude that Fiona is young.\n\n9. We have another statement:\n- If something is white and kind then it is rough.\nHowever, we do not know if Fiona is white, so we cannot conclude that Fiona is young.\n\n10. We have another statement:\n- If Harry is quiet and Harry is cold then Harry is big.\nHowever, this information does not relate to Fiona, so it does not help us determine if Fiona is young.\n\nHowever, there is one statement that directly relates to Fiona: \"Fiona is big.\" This statement is given.\n\nFrom the statements:\n- If something is quiet then it is big.\nWe know that Fiona is big, and since the only other statement that directly relates to Fiona is \"Fiona is big,\" we cannot use the other statements to conclude if Fiona is quiet. However, we can use the other statement:\n- If Fiona is big and Fiona is quiet then Fiona is young.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether Fiona is young, we need to analyze the given statements and their relationships. Let's break down the information step by step:\n\n1.  If something is kind then it is big.\n2.  Fiona is big.\nFrom statement 1, we can infer that Fiona is kind since it is big.\n3.  If something is young and kind then it is cold.\n4.  If something is kind then it is big.\nFrom statement 3, we can infer that Fiona is cold since it is kind and young (we assume Fiona is young, and we'll determine its truth value later).\n5.  If something is cold and rough then it is quiet.\nWe cannot determine if Fiona is rough yet.\n6.  If something is white and kind then it is rough.\nWe don't have any information about Fiona being white.\n7.  If Harry is kind and Harry is cold then Harry is white.\nThis statement doesn't relate to Fiona.\n8.  If Harry is quiet and Harry is cold then Harry is big.\nThis statement doesn't relate to Fiona.\n9.  If something is quiet then it is big.\nWe don't have any information about Fiona being quiet.\n10. Anne is big. Anne is kind. Anne is quiet. Anne is rough. Anne is white.\nThis statement doesn't provide any information about Fiona.\n\nFrom statements 2 and 4, we know that Fiona is kind and big, but we cannot directly determine its age or other properties. We can only infer that Fiona is cold from statement 3, but we cannot confirm if this inference is correct without knowing more about Fiona's age.\n\nSince we cannot directly determine if Fiona is young or not from the given statements, the truth value of the statement \"Fiona is young\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Fiona is young, we need to analyze the given information step by step.\n\n1. Fiona is big. \nFrom this statement, we cannot directly conclude that Fiona is young or old. So, the information is not sufficient.\n\n2. If something is kind then it is big. \nSince Fiona is big, we can infer that Fiona is kind.\n\n3. If something is kind then it is big. \nWe already know that Fiona is big and kind.\n\n4. If something is white and kind then it is rough. \nWe know that Fiona is kind, but we don't know if Fiona is white. So, we cannot conclude if Fiona is rough or not.\n\n5. If Harry is quiet and Harry is cold then Harry is big. \nThis statement is irrelevant to Fiona.\n\n6. If something is quiet then it is big. \nWe don't know if Fiona is quiet or not.\n\n7. If something is cold and rough then it is quiet. \nWe don't know if Fiona is cold or rough.\n\n8. All kind things are young. \nSince Fiona is kind, we can infer that Fiona is young.\n\nTherefore, based on the given information, Fiona is young.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller steps and use the given information to determine whether the statement is true, false, or unknown.\n\nStep 1: Analyze the given statements.\n\n1. Anne is big.\n2. Anne is kind.\n3. Anne is quiet.\n4. Anne is rough.\n5. Anne is white.\n6. Fiona is big.\n7. Gary is big.\n8. Gary is cold.\n9. Gary is kind.\n10. Harry is kind.\n11. If something is kind then it is big. (From 11 to 9: Gary is big)\n12. If something is white and kind then it is rough. (From 5, 9 and 4: Anne is rough)\n13. If Harry is quiet and Harry is cold then Harry is big. (From 10, 8 and 3: Harry is big)\n14. If something is quiet then it is big. (From 3 and 1: Anne is big)\n15. If something is cold and rough then it is quiet. (From 8, 4 and 3: Anne is quiet)\n16. All kind things are young. (From 10, 16: Harry is young)\n17. If Harry is kind and Harry is cold then Harry is white. (From 10, 8 and 5: Harry is white)\n18. If something is young and kind then it is cold. (From 10, 16 and 8: Gary is cold)\n\nStep 2: Determine whether the statement 'Fiona is young' is true, false, or unknown.\n\nTo determine whether 'Fiona is young', we need to look for any information that relates to Fiona and the concept of 'young'.\n\nFrom the given information, we know:\n- If something is kind then it is big (Statement 11)\n- Gary is kind (Statement 9) and Gary is big (Statement 7), so Gary is indeed big because he is kind.\n- Harry is kind (Statement 10), and we already know that Harry is big because he is quiet (Statement 13).\n- All kind things are young (Statement 16), which means that both Gary and Harry are young because they are kind.\n\nHowever, we don't have any information about Fiona being kind or not. We only know that Fiona is big (Statement 6). Since 'Fiona is big', we cannot conclude whether Fiona is young or not because 'being big' does not necessarily relate to 'being young'.\n\nTherefore, based on the given information, we cannot determine whether Fiona is young or not.\n\nThe answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications on the properties of Anne, Fiona, Gary, and Harry.\n\n1. If something is kind then it is big.\n   - This statement implies that if something is kind, it has the property of being big.\n\n2. If something is white and kind then it is rough.\n   - This statement implies that if something has the properties of being white and kind, it has the property of being rough.\n\n3. If Harry is quiet and Harry is cold then Harry is big.\n   - This statement implies that Harry has the property of being big if he is both quiet and cold.\n\n4. If something is quiet then it is big.\n   - This statement implies that if something has the property of being quiet, it has the property of being big.\n\n5. If something is cold and rough then it is quiet.\n   - This statement implies that if something has the properties of being cold and rough, it has the property of being quiet.\n\n6. All kind things are young.\n   - This statement implies that if something has the property of being kind, it has the property of being young.\n\n7. If Harry is kind and Harry is cold then Harry is white.\n   - This statement implies that Harry has the property of being white if he is both kind and cold.\n\n8. If something is young and kind then it is cold.\n   - This statement implies that if something has the properties of being young and kind, it has the property of being cold.\n\nNow, let's analyze the given properties of Anne, Fiona, Gary, and Harry:\n\n- Anne is big, kind, quiet, rough, and white.\n- Fiona is big.\n- Gary is big, cold, and kind.\n- Harry is kind, quiet, and cold.\n\nTo determine whether Fiona is young, we need to analyze the given statements and find the implications on Fiona's properties. Since we don't have any information about Fiona being kind, we cannot use statement 1 or statement 6. However, we know that Fiona is big, and if something is big, it does not necessarily mean it is kind (statement 1 does not apply here because Fiona is not kind).\n\nSince Fiona is not kind, we cannot use statement 8 to determine whether Fiona is cold. However, we can analyze the implications of Fiona being big (statement 4). This means that if Fiona is quiet, then it is big. But we do not have any information about Fiona being quiet or not quiet.\n\nHowever, we do have the statement: \"If something is quiet then it is big.\" This statement (4) is a general statement. And we have the statement: \"If something is cold and rough then it is quiet.\" This statement (5) also implies that something can be quiet if it is cold and rough.\n\nSo if Fiona is quiet, then it is big (statement 4). However, if Fiona is not quiet, then we have no way of knowing whether it is young or not.\n\nNow, let's look at the properties of Gary and Harry. Gary is kind and cold, but we do not have any information about Gary being young or not young.\n\nHarry is kind and cold, and we know that Harry is quiet. Since Harry is quiet, it is big (statement 4).\n\nWe also know that if Harry is quiet and Harry is cold, then Harry is big (statement 3). But Harry is big anyway (statement 4). This statement (3) does not provide any additional information about Harry's properties.\n\nSince Harry is kind, it is young (statement 6). And if Harry is kind, then it is cold (statement 8).\n\nNow, we need to analyze the given statement about Harry being kind and cold, and Harry being white. Since Harry is kind and cold, then Harry is white (statement 7).\n\nHowever, this does not help us to determine whether Fiona is young or not.\n\nNow, let's look at the properties of Anne. Anne is kind, but we do not have any information about Anne being young or not young.\n\nSince Anne is kind, it is young (statement 6). But this does not help us to determine whether Fiona is young or not.\n\nNow, let's summarize the given statements and their implications on the properties of Anne, Fiona, Gary, and Harry.\n\n- Anne is big, kind, quiet, rough, and white.\n- Fiona is big.\n- Gary is big, cold, and kind.\n- Harry is kind, quiet, and cold.\n\nSince Fiona is big, it does not necessarily mean it is kind. However, we cannot use the given statements to determine whether Fiona is young or not.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Fiona is young, we need to analyze the given statements and apply them step by step.\n\n1. Given statements:\n   - If something is kind then it is big.\n   - If something is white and kind then it is rough.\n   - If Harry is quiet and Harry is cold then Harry is big.\n   - If something is quiet then it is big.\n   - If something is cold and rough then it is quiet.\n   - All kind things are young.\n   - If Harry is kind and Harry is cold then Harry is white.\n   - If something is young and kind then it is cold.\n\n2. We know that Fiona is big (given statement). Since \"If something is kind then it is big\" is also given, we can conclude that Fiona is kind.\n\n3. Now, since Fiona is kind and big, we can conclude that Fiona is young (from the statement \"All kind things are young\").\n\nHowever, we also know from the statement \"If something is young and kind then it is cold\" that if Fiona is young and kind, she should be cold. We cannot conclude this from the given information about Fiona, so we cannot determine whether Fiona is cold.\n\nTherefore, based on the given information, we can conclude that Fiona is young. But we cannot conclude whether she is cold.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is young' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Fiona is big. \n\n2. We know that if something is kind then it is big. However, we cannot conclude that Fiona is kind because we don't have enough information about Fiona being kind.\n\n3. Since we don't have enough information to classify Fiona as kind or not, we cannot determine whether Fiona is young or not because we know that all kind things are young.\n\nHowever, we can analyze the given information further to see if there are any other ways to determine whether Fiona is young or not.\n\n4. We are given that if Harry is kind and Harry is cold then Harry is white. However, this information does not help us determine whether Fiona is young or not.\n\n5. We are given that if something is cold and rough then it is quiet. However, this information does not help us determine whether Fiona is young or not.\n\n6. We are given that if Harry is quiet and Harry is cold then Harry is big. However, this information does not help us determine whether Fiona is young or not.\n\n7. We are given that if something is quiet then it is big. However, this information does not help us determine whether Fiona is young or not.\n\n8. We are given that if something is white and kind then it is rough. However, this information does not help us determine whether Fiona is young or not.\n\n9. We are given that if something is young and kind then it is cold. However, this information does not help us determine whether Fiona is young or not because we don't have enough information to classify Fiona as young or not.\n\n10. We are given that Anne is big, Anne is kind, Anne is quiet, Anne is rough, and Anne is white. However, this information does not help us determine whether Fiona is young or not.\n\n11. We are given that Gary is big, Gary is cold, and Gary is kind. However, this information does not help us determine whether Fiona is young or not.\n\n12. We are given that Harry is kind and Harry is cold. However, this information does not help us determine whether Fiona is young or not.\n\nSince we don't have enough information to classify Fiona as young or not, the statement 'Fiona is young' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether Fiona is young, we need to analyze the given statements and their implications.\n\n1. Anne is big. Anne is kind. Anne is quiet. Anne is rough. Anne is white.\n   - This statement does not provide any information about Fiona.\n\n2. Fiona is big.\n   - This statement alone does not provide any information about Fiona's age.\n\n3. Gary is big. Gary is cold. Gary is kind.\n   - This statement alone does not provide any information about Fiona's age.\n\n4. Harry is kind.\n   - This statement alone does not provide any information about Fiona's age.\n\n5. If something is kind then it is big.\n   - This statement implies that kind things are big, but it does not provide any information about age.\n\n6. If something is white and kind then it is rough.\n   - This statement does not provide any information about Fiona.\n\n7. If Harry is quiet and Harry is cold then Harry is big.\n   - This statement does not provide any information about Fiona.\n\n8. If something is quiet then it is big.\n   - This statement does not provide any information about Fiona.\n\n9. If something is cold and rough then it is quiet.\n   - This statement does not provide any information about Fiona.\n\n10. All kind things are young.\n    - This statement implies that kind things are young, but Fiona's kind status is not known.\n\n11. If Harry is kind and Harry is cold then Harry is white.\n    - This statement does not provide any information about Fiona.\n\n12. If something is young and kind then it is cold.\n    - This statement does not provide any information about Fiona.\n\nFrom the given statements, we can conclude that Fiona is big (Statement 2) and kind is not a direct characteristic of Fiona, but since we do not have enough information about Fiona being kind, we can't say that Fiona is young (Statement 10 implies that kind things are young, but we don't have enough information about Fiona's kind status). However, from statements 5 and 8, we know that Fiona being big is enough for her to be big, but Fiona being big does not necessarily mean she is young (since we don't know her kind status). But we can use the fact that Harry is kind and Harry is quiet and from the statement 8, being quiet means being big, and from statement 7, if Harry is big and Harry is quiet, then we can use the fact that if Harry is kind and Harry is cold, then Harry is white (statement 11), and if Harry is white and kind, then Harry is rough (statement 6). We cannot directly conclude Fiona's age, but we can try to find the information about Harry's age since we have some information about Harry. We can't find Fiona's age, so the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is young\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n\n1. Anne is big. \n2. Anne is kind. \n3. Anne is quiet. \n4. Anne is rough. \n5. Anne is white. \n6. Fiona is big. \n7. Gary is big. \n8. Gary is cold. \n9. Gary is kind. \n10. Harry is kind. \n11. If something is kind then it is big. \n12. If something is white and kind then it is rough. \n13. If Harry is quiet and Harry is cold then Harry is big. \n14. If something is quiet then it is big. \n15. If something is cold and rough then it is quiet. \n16. All kind things are young. \n17. If Harry is kind and Harry is cold then Harry is white. \n18. If something is young and kind then it is cold.\n\nTo determine whether Fiona is young, we need to find a relationship between Fiona and the concept of being young.\n\nFrom statement 11, we know that if something is kind then it is big. Since Fiona is big (statement 6), we can conclude that Fiona is kind (by the contrapositive of statement 11: if Fiona is big, then Fiona is kind).\n\nNow we have a relationship between Fiona and the concept of being young: since Fiona is kind (deduced from statement 6 and statement 11), we can use statement 16 to conclude that Fiona is young.\n\nSo the statement \"Fiona is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_fiona, young_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_fiona, kind_fiona), rough_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_fiona, big_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_fiona, rough_fiona), quiet_fiona)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_fiona, big_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(quiet_fiona, big_fiona), young_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_fiona, kind_fiona), rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_fiona, rough_fiona), quiet_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_fiona, young_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_fiona, kind_fiona), cold_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_fiona, kind_fiona), rough_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == Or(And(quiet_fiona, big_fiona), kind_fiona)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_fiona, kind_fiona), cold_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_fiona, rough_fiona), quiet_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_fiona, kind_fiona), rough_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_fiona, kind_fiona), rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_harry, cold_harry), big_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_fiona, big_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_fiona, rough_fiona), quiet_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_fiona, young_fiona)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_gary, big_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_anne, kind_anne), rough_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_anne, cold_anne), big_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_anne, cold_anne), white_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_anne, rough_anne), quiet_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_harry, young_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & young(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_gary, young_gary), cold_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), white_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_fiona, big_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_fiona, big_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_fiona, rough_fiona), quiet_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_fiona, big_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_fiona, young_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_fiona, kind_fiona), cold_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), white_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_fiona, kind_fiona), cold_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_fiona, kind_fiona), rough_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_harry, cold_harry), big_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_harry, big_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_harry, rough_harry), quiet_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_fiona, young_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_fiona, kind_fiona), cold_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_anne, white_anne), rough_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_fiona, young_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), big_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_gary, cold_gary), white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), white_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_harry, cold_harry), big_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_harry, big_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_harry, white_harry), rough_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_harry, young_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_harry, big_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_harry, big_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> big(X)",
+          "z3_formula": "Implies(big_harry, big_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), white_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_harry, kind_harry), rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_anne, big_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_anne, kind_anne), rough_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_harry, cold_harry), big_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_anne, big_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_anne, rough_anne), quiet_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_fiona, young_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & young(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_fiona, young_fiona), cold_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 20
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 138,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 46
+    },
+    "maxsat_stats": {
+      "satisfied": 46,
+      "excluded": 0,
+      "total_weight": 138,
+      "solve_time_ms": 1.4082398265600204
+    },
+    "timing": {
+      "trace_gen_s": 11.57,
+      "extraction_s": 24.898,
+      "dedup_s": 1.32,
+      "maxsat_s": 0.004,
+      "total_s": 37.792
+    }
+  }
+}

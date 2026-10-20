@@ -1,0 +1,1272 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-270_Q8",
+    "problem": "Charlie is green. Dave is quiet. Dave is red. Dave is not white. Erin is not big. Erin is not cold. Erin is green. Harry is big. Harry is cold. Harry is green. If someone is red then they are not white. If Charlie is quiet then Charlie is blue. If someone is quiet and red then they are blue. All white people are cold. All green people are quiet. All blue, green people are red. If someone is red and not white then they are big.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is not red.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nQuiet($x, bool) ::: Is x quiet?\nRed($x, bool) ::: Is x red?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nGreen(Charlie, True) ::: Charlie is green.\nQuiet(Dave, True) ::: Dave is quiet.\nRed(Dave, True) ::: Dave is red.\nWhite(Dave, False) ::: Dave is not white.\nBig(Erin, False) ::: Erin is not big.\nCold(Erin, False) ::: Erin is not cold.\nGreen(Erin, True) ::: Erin is green.\nBig(Harry, True) ::: Harry is big.\nCold(Harry, True) ::: Harry is cold.\nGreen(Harry, True) ::: Harry is green.\n\nRules:\nRed($x, True) >>> White($x, False) ::: If someone is red then they are not white.\nQuiet(Charlie, True) >>> Blue(Charlie, True) ::: If Charlie is quiet then Charlie is blue.\nQuiet($x, True) && Red($x, True) >>> Blue($x, True) ::: If someone is quiet and red then they are blue.\nWhite($x, True) >>> Cold($x, True) ::: All white people are cold.\nGreen($x, True) >>> Quiet($x, True) ::: All green people are quiet.\nBlue($x, True) && Green($x, True) >>> Red($x, True) ::: All blue, green people are red.\nRed($x, True) && White($x, False) >>> Big($x, True) ::: If someone is red and not white then they are big.\n\nQuery:\nRed(Charlie, False) ::: Charlie is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 170.5,
+      "True": 96.0,
+      "Unknown": 140.0
+    },
+    "answer_counts": {
+      "Unknown": 2,
+      "False": 6,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Charlie is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is green. \n   This statement directly tells us that Charlie is green, but it does not tell us anything about his color being red or not red.\n\n2. All green people are quiet. \n   Since Charlie is green, this statement implies that Charlie is quiet.\n\n3. If Charlie is quiet then Charlie is blue. \n   However, since we already know that all green people are quiet, we can conclude that Charlie is both green and quiet. The statement \"If Charlie is quiet then Charlie is blue\" might seem to imply that Charlie is blue. But this conclusion is not necessarily correct because it doesn't take into account that green people are quiet. So, we cannot conclude that Charlie is blue.\n\n4. Dave is quiet. \n   This statement tells us that Dave is quiet but does not tell us anything about Charlie.\n\n5. Dave is red. \n   This statement tells us that Dave is red but does not tell us anything about Charlie.\n\n6. If someone is quiet and red then they are blue. \n   Since we know that Dave is both quiet and red, this statement implies that Dave is blue.\n\n7. If someone is red then they are not white. \n   This statement tells us that if someone is red, then they cannot be white.\n\n8. Dave is not white. \n   This statement tells us that Dave is not white, but we already knew that Dave is red and therefore cannot be white.\n\n9. All blue, green people are red. \n   Since we cannot conclude that Charlie is blue, we cannot use this statement to determine whether Charlie is red or not.\n\n10. If someone is red and not white then they are big. \n    However, this statement does not provide any information about Charlie.\n\nConsidering all the given information, we cannot conclude that Charlie is not red. We cannot conclude that Charlie is red either. Therefore, the statement \"Charlie is not red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine if the statement 'Charlie is not red' is true, false, or unknown, we need to analyze the given information and the properties of the people mentioned.\n\nGiven statements:\n\n1. Charlie is green.\n2. Dave is quiet.\n3. Dave is red.\n4. Dave is not white.\n5. Erin is not big.\n6. Erin is not cold.\n7. Erin is green.\n8. Harry is big.\n9. Harry is cold.\n10. Harry is green.\n11. If someone is red then they are not white.\n12. If Charlie is quiet then Charlie is blue.\n13. If someone is quiet and red then they are blue.\n14. All white people are cold.\n15. All green people are quiet.\n16. All blue, green people are red.\n17. If someone is red and not white then they are big.\n\nFrom statement 1, we know Charlie is green. And from statement 15, we know that all green people are quiet. This does not directly tell us about Charlie's color being red, but we can use other information to deduce this.\n\nSince we know Charlie is quiet (from statement 1 and 15), we can check if there's a connection between quiet and red or blue. From statement 13, if someone is quiet and red, they are blue. However, we do not have any information that Charlie is red.\n\nTo check if Charlie can be red or not, let's consider Dave's properties. Dave is quiet (statement 2), and Dave is red (statement 3). This matches the condition in statement 13, so Dave is blue.\n\nHowever, we do not know if Charlie is red. If Charlie were red, then from statement 11, Charlie would not be white. But we do not have any information that would directly contradict Charlie being red.\n\nSo, our analysis so far has not directly concluded whether Charlie is red or not. However, we can use the information in statement 16: All blue, green people are red. Since we know Charlie is green (statement 1) and Dave is blue (from the analysis of statement 13), and since all blue, green people are red (statement 16), we can deduce that Charlie is red.\n\nNow that we know Charlie is red, we can answer the original question. Given the statement 'Charlie is not red', we can conclude that this statement is false, since we have determined that Charlie is indeed red.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve the given problem, we need to break it down step by step and analyze the given information.\n\n1. Given Information:\n\n- Charlie is green.\n- Dave is quiet.\n- Dave is red.\n- Dave is not white.\n- Erin is not big.\n- Erin is not cold.\n- Erin is green.\n- Harry is big.\n- Harry is cold.\n- Harry is green.\n- If someone is red then they are not white.\n- If Charlie is quiet then Charlie is blue.\n- If someone is quiet and red then they are blue.\n- All white people are cold.\n- All green people are quiet.\n- All blue, green people are red.\n- If someone is red and not white then they are big.\n\n2. We need to determine whether the statement \"Charlie is not red\" is true, false, or unknown.\n\nTo solve this, we need to analyze the given information about Charlie.\n\n- Charlie is green.\n- All green people are quiet.\n\nThis implies that Charlie is quiet.\n\n- If Charlie is quiet, then Charlie is blue (from the given rule).\n- Charlie is blue.\n- All blue, green people are red.\n- Since Charlie is both blue and green, Charlie must be red.\n\nHowever, we also know that Dave is red, and Dave is not white. So, we need to verify if the statement \"Charlie is not red\" is true or false.\n\n3. Conclusion:\n\nSince we have concluded that Charlie is indeed red, we can determine that the statement \"Charlie is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is green. (Given)\n2. All green people are quiet. (Given)\n   So, Charlie is quiet. (Inference)\n\n3. Dave is quiet. (Given)\n4. Dave is red. (Given)\n5. If someone is quiet and red then they are blue. (Given)\n   So, Dave is blue. (Inference)\n\n6. If Charlie is quiet then Charlie is blue. (Given)\n   We already know Charlie is quiet (step 2), but we cannot conclude Charlie is blue because the given information does not state that being quiet is a necessary condition for being blue.\n\n7. All blue, green people are red. (Given)\n   Since Charlie is green (step 1) and Dave is blue (step 5), we can conclude that Charlie is red (because Charlie is blue and green, and therefore red).\n\nNow, let's evaluate the original statement: \"Charlie is not red.\"\nSince we concluded in step 7 that Charlie is red, the statement \"Charlie is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is green. (Given)\n2. If someone is green, then they are quiet. (From the given information)\n   Since Charlie is green, Charlie is quiet. (By the above rule)\n\n3. Dave is quiet. (Given)\n4. Charlie is quiet. (From the previous step)\n   We can conclude that Charlie is not the only quiet person. There are at least two quiet people: Charlie and Dave.\n\n5. Dave is red. (Given)\n6. If someone is quiet and red, then they are blue. (From the given information)\n   Since Dave is quiet and red, Dave is blue. (By the above rule)\n\n7. If someone is quiet, then they are green. (From the given information)\n   However, we already know that Dave is blue, not green. This information is contradictory.\n\n8. The information in step 7 indicates that the statement \"If someone is quiet, then they are green\" is false.\n   However, this does not affect the original conclusion about Charlie. Charlie is still green.\n\n9. If someone is red and not white, then they are big. (From the given information)\n   Since Dave is red, we cannot conclude that Dave is big because we do not know whether Dave is white or not.\n\n10. If someone is red and not white, then they are big. (From the given information)\n    However, we know that if someone is red and not white, then they are big. But we also know that all blue, green people are red. (From the given information)\n    Since Charlie is green, Charlie is red. (By the above rule)\n\n11. Charlie is red. (From the previous step)\n\nBased on the analysis, we can conclude that the statement \"Charlie is not red\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Charlie is green.\n   - Dave is quiet. \n   - Dave is red.\n   - Dave is not white.\n   - Erin is not big.\n   - Erin is not cold.\n   - Erin is green.\n   - Harry is big.\n   - Harry is cold.\n   - Harry is green.\n   - If someone is red then they are not white.\n   - If Charlie is quiet then Charlie is blue.\n   - If someone is quiet and red then they are blue.\n   - All white people are cold.\n   - All green people are quiet.\n   - All blue, green people are red.\n   - If someone is red and not white then they are big.\n\n2. From the given information, we know that Charlie is green. So, Charlie is quiet (since all green people are quiet).\n\n3. Since Charlie is quiet and green, we can infer that Charlie is blue (because all green people are quiet, and all blue, green people are red, but we do not need the last statement for this problem).\n\n4. However, the fact that Charlie is blue does not necessarily mean he is red. The statement \"If someone is quiet and red then they are blue\" is a special case. This means if someone is both quiet and red, they are blue. But Charlie is not red (he is green). So, this special case does not apply to Charlie.\n\n5. Now, since we cannot directly conclude whether Charlie is red or not, we need to look at the general statements. We know Charlie is green, and green people are quiet. But we do not have any information that directly contradicts Charlie being red.\n\nHowever, we can use the statement \"If someone is red and not white then they are big.\" We do not have any information about Charlie's size, but we can use the statement \"If Charlie is quiet then Charlie is blue\" to conclude that Charlie is not quiet and red. We also know that Charlie is green and that is sufficient to conclude that Charlie is not red.\n\n6. We cannot determine if Charlie is red or not based on the given information.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is green. (Given)\n2. All green people are quiet. (Given)\n3. If Charlie is quiet then Charlie is blue. (Given)\n   Since Charlie is green, it doesn't directly say Charlie is quiet. We can't conclude Charlie is blue yet. We need more information about Charlie's quietness.\n\n4. Dave is quiet. (Given)\n5. Dave is red. (Given)\n6. If someone is quiet and red then they are blue. (Given)\n   Since Dave is quiet and red, we can conclude that Dave is blue.\n\n7. All blue, green people are red. (Given)\n   We know Dave is blue, but this statement doesn't tell us anything about Charlie's color.\n\n8. If someone is red then they are not white. (Given)\n   This statement doesn't tell us anything about Charlie's color.\n\n9. Erin is not big. (Given)\n10. Erin is not cold. (Given)\n11. Erin is green. (Given)\n12. All green people are quiet. (Given)\n    Since Erin is green, it doesn't tell us anything about Erin's color.\n\n13. Harry is big. (Given)\n14. Harry is cold. (Given)\n15. Harry is green. (Given)\n16. All green people are quiet. (Given)\n    Since Harry is green, it doesn't tell us anything about Harry's color.\n\n17. If someone is red and not white then they are big. (Given)\n   We know Dave is red and not white, but this doesn't tell us anything about Charlie's color.\n\nNow, we need to look at the statement we're trying to determine: \"Charlie is not red.\"\n\nFrom the given information, we know that Charlie is green, but we don't know if Charlie is red or not. Since Charlie is green, it doesn't directly say Charlie is red. The only way we can determine Charlie's redness is if we know Charlie's quietness.\n\nHowever, we have a statement that says: If Charlie is quiet then Charlie is blue. (Given)\nSince Charlie is green and all green people are quiet, we can conclude Charlie is quiet. Now, using the statement: If Charlie is quiet then Charlie is blue. (Given), we can conclude Charlie is blue.\n\nUsing the statement: All blue, green people are red. (Given), we can conclude Charlie is red.\n\nTherefore, since Charlie is red, we can conclude that the statement \"Charlie is not red\" is FALSE.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, let's break down the given information step by step.\n\n1. Charlie is green. (We know Charlie's color, which is green.)\n2. Dave is quiet. (We know Dave's personality, which is quiet.)\n3. Dave is red. (We know Dave's color, which is red.)\n4. Dave is not white. (We know Dave is not white.)\n5. Erin is not big. (We know Erin's size, which is not big.)\n6. Erin is not cold. (We know Erin's temperature, which is not cold.)\n7. Erin is green. (We know Erin's color, which is green.)\n8. Harry is big. (We know Harry's size, which is big.)\n9. Harry is cold. (We know Harry's temperature, which is cold.)\n10. Harry is green. (We know Harry's color, which is green.)\n\nNow, let's look at the rules:\n\n1. If someone is red then they are not white. (Rule 1)\n   Since Dave is red, we can conclude that Dave is not white (already given) and also that Dave is not blue because if someone is red and not white, then they must be blue. However, the rule about blue and green people also being red makes it a bit confusing.\n\n2. If Charlie is quiet then Charlie is blue. (Rule 2)\n   We know Charlie is green, but we don't know if Charlie is quiet or not. We do know that all green people are quiet (Rule 7), so we can conclude that Charlie is quiet.\n\n3. If someone is quiet and red then they are blue. (Rule 3)\n   Since we already concluded that Charlie is quiet (from Rule 2) and Dave is red, we can apply this rule. However, we also need to consider the rule about blue and green people also being red.\n\n4. All white people are cold. (Rule 4)\n   We don't have any information about white people, so we cannot make any conclusions.\n\n5. All green people are quiet. (Rule 5)\n   We know Charlie and Erin are both green, so they must both be quiet.\n\n6. All blue, green people are red. (Rule 6)\n   Since we already know that Charlie is green and quiet, we can apply this rule. However, we also need to consider the rule about quiet and red people being blue.\n\n7. If someone is red and not white then they are big. (Rule 7)\n   Since Dave is red and not white, we can conclude that Dave is big.\n\nNow, let's analyze the statement \"Charlie is not red.\"\n\nFrom the given information, we know Charlie is green (Statement 1) and green people are quiet (Rule 5). We also know that Charlie is quiet (from Rule 2 and Statement 1). \n\nSince Charlie is quiet and green, we can apply Rule 3: If someone is quiet and red then they are blue. However, we also know that all green people are quiet (Rule 5) and if someone is blue and green, then they are red (Rule 6). This creates a loop of information.\n\nHowever, we know that Charlie is green (Statement 1), and from Rule 5 we know that all green people are quiet, and from Rule 2 we know that if Charlie is quiet then Charlie is blue. \n\nBut from Rule 6 we know that all blue, green people are red, so Charlie must be red.\n\nSo the statement \"Charlie is not red\" is false.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we have the following statements:\n   - Charlie is green.\n   - Dave is quiet.\n   - Dave is red.\n   - Dave is not white.\n   - Erin is not big.\n   - Erin is not cold.\n   - Erin is green.\n   - Harry is big.\n   - Harry is cold.\n   - Harry is green.\n   - If someone is red then they are not white.\n   - If Charlie is quiet then Charlie is blue.\n   - If someone is quiet and red then they are blue.\n   - All white people are cold.\n   - All green people are quiet.\n   - All blue, green people are red.\n   - If someone is red and not white then they are big.\n\n2. Now, let's analyze the statement \"Charlie is not red.\" To do this, we need to find any information that contradicts this statement or any information that is relevant to the characteristics of Charlie.\n\n3. We already know that Charlie is green. This means Charlie is quiet (from the statement \"All green people are quiet\").\n\n4. Now we need to analyze the relationship between green and quiet people. We know that \"If someone is quiet and red then they are blue.\" However, we also know that \"If Charlie is quiet then Charlie is blue.\" This information is not enough to conclude that Charlie is red, but we still don't know if Charlie is red or not.\n\n5. Let's analyze the relationship between red and blue people. We know that \"All blue, green people are red.\" Since Charlie is green and Charlie is blue (from the information that Charlie is quiet), this means Charlie is also red (from the statement \"All blue, green people are red\").\n\n6. Since Charlie is red, we can conclude that Charlie is not white (from the statement \"If someone is red then they are not white\"). But this conclusion doesn't help us to determine whether the statement \"Charlie is not red\" is true or false.\n\n7. However, we also know that \"If someone is red and not white then they are big.\" Since Charlie is red and not white, this means Charlie is big.\n\n8. We know that \"Harry is big\" and \"Harry is cold.\" We also know that \"All white people are cold.\" Since Charlie is not white, we can't conclude that Charlie is cold.\n\n9. Now we can conclude that the statement \"Charlie is not red\" is false because we have found that Charlie is red.\n\nThe final answer is \\boxed{false}.",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is green. (From the given information)\n\n2. All green people are quiet. (From the given information)\n   So, Charlie is quiet.\n\n3. Now we have two pieces of information about Charlie: Charlie is quiet and Charlie is green. We need to analyze the given information to see if it has any relation with being red.\n\n4. If Charlie is quiet then Charlie is blue. (From the given information)\n   However, this statement is conditional and only applies if Charlie is quiet. Since Charlie is indeed quiet from step 2, this statement can be applied to Charlie.\n\n   So, Charlie is blue.\n\n5. All blue, green people are red. (From the given information)\n   Since Charlie is both blue and green, this statement applies to Charlie.\n\n   So, Charlie is red.\n\nHowever, we initially found that Charlie is green (step 1) and also determined that Charlie is red (step 5). We need to analyze if this creates a contradiction with the given information.\n\n6. Dave is red. (From the given information)\n\n7. If someone is red then they are not white. (From the given information)\n   This statement is true for Dave.\n\n8. However, since Charlie is also red, this statement should also be true for Charlie.\n\n   Therefore, Charlie is not white.\n\n9. Dave is not white. (From the given information)\n\n10. All white people are cold. (From the given information)\n    This statement is false for Dave, which is a contradiction. However, we initially determined that Charlie is red and not white.\n\n    Since all white people are cold, we can conclude that Charlie is not cold.\n\n11. We also know that Harry is cold. (From the given information)\n\n12. Erin is not cold. (From the given information)\n\n13. Erin is not big. (From the given information)\n\n14. Harry is big. (From the given information)\n\n15. If someone is red and not white then they are big. (From the given information)\n    Since Charlie is red and not white, this statement applies to Charlie.\n\n    Therefore, Charlie is big.\n\nHowever, we previously determined that Charlie is not big (step 14) and also found that Charlie is big (step 15). This creates a contradiction.\n\nSince we have a contradiction in our analysis, we need to revisit our initial conclusion that Charlie is red.\n\nUpon re-examining our analysis, we find that Charlie being red is the source of the contradiction. If we remove the conclusion that Charlie is red, we can resolve the contradiction.\n\nTherefore, we need to re-analyze our conclusion that Charlie is red.\n\nHowever, we can also look at the initial statements we made about Charlie, specifically that Charlie is green.\n\nWe can use the information that Charlie is green to look at the information about green people.\n\n16. All green people are quiet. (From the given information)\n    Since Charlie is green, this statement applies to Charlie.\n\n    Therefore, Charlie is quiet.\n\n17. We previously determined that Charlie is quiet (step 2).\n\n18. If Charlie is quiet then Charlie is blue. (From the given information)\n    This statement applies to Charlie since Charlie is quiet.\n\n    Therefore, Charlie is blue.\n\nHowever, we previously determined that Charlie is blue (step 4).\n\n19. All blue, green people are red. (From the given information)\n    This statement does not apply to Charlie since it is conditional and only applies to people who are both blue and green.\n\n    Therefore, we cannot conclude that Charlie is red.\n\n20. Since Charlie is green and not red, the statement \"Charlie is not red\" can be determined.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve the problem, let's break down the given information and analyze each statement.\n\n1. Charlie is green.\n2. Dave is quiet.\n3. Dave is red.\n4. Dave is not white.\n5. Erin is not big.\n6. Erin is not cold.\n7. Erin is green.\n8. Harry is big.\n9. Harry is cold.\n10. Harry is green.\n\nNow, let's analyze the rules:\n\n1. If someone is red then they are not white. (Rule 1)\n2. If Charlie is quiet then Charlie is blue. (Rule 2)\n3. If someone is quiet and red then they are blue. (Rule 3)\n4. All white people are cold. (Rule 4)\n5. All green people are quiet. (Rule 5)\n6. All blue, green people are red. (Rule 6)\n7. If someone is red and not white then they are big. (Rule 7)\n\nNow, let's analyze the statement \"Charlie is not red.\"\n\nTo determine whether this statement is true, false, or unknown, we need to find any information that can be related to Charlie being red.\n\nFrom the given information, we know that:\n- Charlie is green (Statement 1)\n- All green people are quiet (Rule 5)\n- Charlie being quiet does not necessarily make Charlie blue, but there's a rule that if Charlie is quiet then Charlie is blue (Rule 2), however, the statement does not directly say Charlie is quiet, only that Charlie is green and green people are quiet.\n\nHowever, we also know that Dave is red (Statement 3) and Dave is quiet (Statement 2). Since Dave is quiet and red, according to Rule 3, Dave is blue. However, we have no information about Charlie being red or blue.\n\nThe only information we have about Charlie is that he is green (Statement 1) and green people are quiet (Rule 5). There is no direct information about Charlie being red or not.\n\nTherefore, we cannot conclude whether the statement \"Charlie is not red\" is true or false based on the given information. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine if the statement \"Charlie is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is green. (Given information)\n2. If someone is red then they are not white. (Given information)\n3. If Charlie is quiet then Charlie is blue. (Given information)\n4. All green people are quiet. (Given information)\n5. All blue, green people are red. (Given information)\n6. Dave is quiet. (Given information)\n7. Dave is red. (Given information)\n8. Dave is not white. (Given information)\n9. If someone is quiet and red then they are blue. (Given information)\n10. All white people are cold. (Given information)\n11. All green people are quiet. (Given information)\n12. Erin is not big. (Given information)\n13. Erin is not cold. (Given information)\n14. Erin is green. (Given information)\n15. Harry is big. (Given information)\n16. Harry is cold. (Given information)\n17. Harry is green. (Given information)\n18. If someone is red and not white then they are big. (Given information)\n\nFrom step 4, we know that all green people are quiet. \nSince Charlie is green (step 1), Charlie is quiet.\n\nFrom step 3, we know that if Charlie is quiet, then Charlie is blue.\n\nNow, we need to determine if Charlie is red or not. \nFrom step 5, we know that all blue, green people are red. \nSince Charlie is blue (because Charlie is quiet) and Charlie is green, Charlie must be red.\n\nHowever, we also know that Dave is red (step 7) and Dave is quiet (step 6). \nFrom step 9, we know that if someone is quiet and red, then they are blue.\nSo, Dave is blue.\n\nThis means that Charlie is red (because Charlie is blue and green) and Dave is blue (because Dave is quiet and red).\nFrom step 5, we know that all blue, green people are red. \nThis means that Charlie is red.\n\nThe statement \"Charlie is not red\" is false.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_charlie, blue_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_dave, red_dave), blue_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not white(X)",
+          "z3_formula": "Implies(red_dave, Not(white_dave))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), red_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not white(X) -> big(X)",
+          "z3_formula": "Implies(And(red_dave, Not(white_dave)), big_dave)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_dave, red_dave), blue_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_dave, green_charlie), red_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not big(erin)",
+          "z3_formula": "Not(big_erin) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(erin)",
+          "z3_formula": "Not(cold_erin) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not white(X)",
+          "z3_formula": "Implies(red_dave, Not(white_dave))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> blue(charlie)",
+          "z3_formula": "Implies(quiet_charlie, blue_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_dave, red_dave), blue_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_dave, cold_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_erin, quiet_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), red_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not white(X) -> big(X)",
+          "z3_formula": "Implies(And(red_dave, Not(white_dave)), big_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not red(charlie)",
+          "z3_formula": "Not(red_charlie) == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_dave, red_dave), blue_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_charlie, blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), red_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_dave, red_dave), blue_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_dave, green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(green(dave))",
+          "z3_formula": "Not(green_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X) -> green(X))",
+          "z3_formula": "Not(Implies(quiet_dave, green_dave))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(X) -> green(X))",
+          "z3_formula": "Not(Implies(quiet_dave, green_dave))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & Not(white(X)) -> big(X)",
+          "z3_formula": "Implies(And(red_dave, Not(white_dave)), big_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(big(dave))",
+          "z3_formula": "Not(big_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & Not(white(X)) -> big(X)",
+          "z3_formula": "Implies(And(red_dave, Not(white_dave)), big_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_charlie, red_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not big(erin)",
+          "z3_formula": "Not(big_erin) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(erin)",
+          "z3_formula": "Not(cold_erin) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not white(X)",
+          "z3_formula": "Implies(red_dave, Not(white_dave))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> blue(charlie)",
+          "z3_formula": "Implies(quiet_charlie, blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_dave, red_dave), blue_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_dave, cold_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), red_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not white(X) -> big(X)",
+          "z3_formula": "Implies(And(red_charlie, Not(white_charlie)), big_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(charlie) & not red(charlie)",
+          "z3_formula": "And(Not(quiet_charlie), Not(red_charlie)) == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not red(charlie)",
+          "z3_formula": "Not(red_charlie) == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_charlie, blue_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), red_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not big(erin)",
+          "z3_formula": "Not(big_erin) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(erin)",
+          "z3_formula": "Not(cold_erin) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not white(X)",
+          "z3_formula": "Implies(red_dave, Not(white_dave))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_charlie, blue_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_dave, red_dave), blue_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_dave, cold_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), red_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not white(X) -> big(X)",
+          "z3_formula": "Implies(And(red_dave, Not(white_dave)), big_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not big(erin)",
+          "z3_formula": "Not(big_erin) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(erin)",
+          "z3_formula": "Not(cold_erin) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not white(X)",
+          "z3_formula": "Implies(red_dave, Not(white_dave))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> blue(charlie)",
+          "z3_formula": "Implies(quiet_charlie, blue_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_dave, red_dave), blue_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_dave, cold_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_harry, quiet_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), red_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not white(X) -> big(X)",
+          "z3_formula": "Implies(And(red_charlie, Not(white_charlie)), big_charlie)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_charlie, blue_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), red_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not white(X)",
+          "z3_formula": "Implies(red_charlie, not white_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not white(charlie)",
+          "z3_formula": "not white_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "not white_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_dave, cold_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(dave)",
+          "z3_formula": "not cold_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(erin)",
+          "z3_formula": "not cold_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not big(erin)",
+          "z3_formula": "not big_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not white(X) -> big(X)",
+          "z3_formula": "Implies(And(red_charlie, not white_charlie), big_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not big(charlie)",
+          "z3_formula": "not big_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_charlie, blue_charlie)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), red_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "not red(charlie)",
+          "z3_formula": "not red_charlie == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not big(erin)",
+          "z3_formula": "Not(big_erin) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(erin)",
+          "z3_formula": "Not(cold_erin) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not white(X)",
+          "z3_formula": "Implies(red_dave, Not(white_dave))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> blue(charlie)",
+          "z3_formula": "Implies(quiet_charlie, blue_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_dave, red_dave), blue_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_dave, cold_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), red_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not white(X) -> big(X)",
+          "z3_formula": "Implies(And(red_dave, Not(white_dave)), big_dave)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> Not(white(X))",
+          "z3_formula": "Implies(red_charlie, Not(white_charlie))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_charlie, blue_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), red_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "Not(white(dave))",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_dave, red_dave), blue_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_dave, cold_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "Not(big(erin))",
+          "z3_formula": "Not(big_erin) == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "Not(cold(erin))",
+          "z3_formula": "Not(cold_erin) == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & Not(white(X)) -> big(X)",
+          "z3_formula": "Implies(And(red_charlie, Not(white_charlie)), big_charlie)",
+          "source_step": 18
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 190,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 36
+    },
+    "maxsat_stats": {
+      "satisfied": 31,
+      "excluded": 5,
+      "total_weight": 182,
+      "solve_time_ms": 1.8971357494592667
+    },
+    "timing": {
+      "trace_gen_s": 9.413,
+      "extraction_s": 29.582,
+      "dedup_s": 1.302,
+      "maxsat_s": 0.004,
+      "total_s": 40.301
+    }
+  }
+}

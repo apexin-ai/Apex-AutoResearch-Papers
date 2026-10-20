@@ -1,0 +1,518 @@
+{
+  "problem": {
+    "id": "folio_14",
+    "problem": "Given the following premises:\nA Japanese game company created the game the Legend of Zelda. All games in the Top 10 list are made by Japanese game companies. [BG] If a game sells more than one million copies, then it will be selected into the Top 10 list. The Legend of Zelda sold more than one million copies.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nThe Legend of Zelda is not in the Top 10 list.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (Japanese(x) \u2227 VideoGameCompany(x) \u2227 Game(thelegendofzelda) \u2227 Created(x, thelegendofzelda))",
+      "\u2200x \u2200y (Game(x) \u2227 InTop10(x) \u2227 Created(x, y) \u2192 Japanese(y))",
+      "\u2200x (Game(x) \u2227 SellsMoreThan(x, onemillioncopies) \u2192 Top10(x))",
+      "SellsMoreThan(thelegendofzelda, onemillioncopies)"
+    ],
+    "conclusion_fol": "\u00acTop10(thelegendofzelda)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 51.5,
+      "Unknown": 10.5
+    },
+    "answer_counts": {
+      "False": 10,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine the validity of the conclusion, we will break down the given premises and apply logical reasoning.\n\nPremise 1: A Japanese game company created the game the Legend of Zelda.\nPremise 2: All games in the Top 10 list are made by Japanese game companies.\nPremise 3: If a game sells more than one million copies, then it will be selected into the Top 10 list.\nPremise 4: The Legend of Zelda sold more than one million copies.\n\nConclusion: The Legend of Zelda is not in the Top 10 list.\n\nStep 1: We know from Premise 3 that if a game sells more than one million copies, it will be selected into the Top 10 list. This implies that selling more than one million copies is a sufficient condition for a game to be in the Top 10 list.\n\nStep 2: We also know from Premise 4 that The Legend of Zelda sold more than one million copies, which satisfies the condition mentioned in Step 1.\n\nStep 3: Therefore, we can conclude that The Legend of Zelda should be in the Top 10 list, as it has met the necessary condition (selling more than one million copies).\n\nHowever, let's examine Premise 2, which states that all games in the Top 10 list are made by Japanese game companies. \n\nStep 4: From Premise 1, we know that The Legend of Zelda is created by a Japanese game company. \n\nStep 5: We can now combine the information from Steps 3 and 4 to form a conclusion. If The Legend of Zelda is in the Top 10 list (from Step 3) and it is created by a Japanese game company (from Premise 1 and Step 4), then it should indeed be in the Top 10 list.\n\nHowever, the conclusion given is that The Legend of Zelda is not in the Top 10 list.\n\nStep 6: Since we have logically deduced that The Legend of Zelda should be in the Top 10 list (Steps 3 and 5), the conclusion \"The Legend of Zelda is not in the Top 10 list\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremises:\n\n1. A Japanese game company created the game the Legend of Zelda.\n2. All games in the Top 10 list are made by Japanese game companies.\n3. If a game sells more than one million copies, then it will be selected into the Top 10 list.\n4. The Legend of Zelda sold more than one million copies.\n\nConclusion: The Legend of Zelda is not in the Top 10 list.\n\nTo evaluate the conclusion, let's analyze the premises step by step:\n\n1. From premise 1, we know that the Legend of Zelda is a game created by a Japanese game company.\n2. From premise 2, we can infer that if a game is in the Top 10 list, it must be made by a Japanese game company.\n3. From premise 3, we know that if a game sells more than one million copies, it will be in the Top 10 list.\n4. From premise 4, we know that the Legend of Zelda sold more than one million copies.\n\nNow, let's combine the information:\n\nSince the Legend of Zelda is a game made by a Japanese game company (premise 1) and it sold more than one million copies (premise 4), we can conclude that it will be in the Top 10 list (premise 3).\n\nHowever, the conclusion states that the Legend of Zelda is not in the Top 10 list. This conclusion contradicts the information derived from the premises.\n\nTherefore, the conclusion \"The Legend of Zelda is not in the Top 10 list\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply the rules of logic.\n\nPremises:\n\n1. A Japanese game company created the game the Legend of Zelda.\n2. All games in the Top 10 list are made by Japanese game companies.\n3. If a game sells more than one million copies, then it will be selected into the Top 10 list.\n4. The Legend of Zelda sold more than one million copies.\n\nConclusion:\nThe Legend of Zelda is not in the Top 10 list.\n\nStep 1: Analyze premise 1 and 2\nFrom premise 1, we know that the Legend of Zelda is created by a Japanese game company.\nFrom premise 2, we know that all games in the Top 10 list are made by Japanese game companies.\n\nThis implies that if the Legend of Zelda is in the Top 10 list, it must be made by a Japanese game company, which is true according to premise 1.\n\nStep 2: Analyze premise 3\nPremise 3 states that if a game sells more than one million copies, then it will be selected into the Top 10 list.\n\nThis is a conditional statement, and we need to consider two cases:\n\nCase 1: The Legend of Zelda sells more than one million copies (premise 4).\nCase 2: The Legend of Zelda does not sell more than one million copies.\n\nIn Case 1, premise 3 implies that the Legend of Zelda will be selected into the Top 10 list.\n\nIn Case 2, premise 3 does not imply anything about the Legend of Zelda being in the Top 10 list.\n\nStep 3: Analyze premise 4\nPremise 4 states that the Legend of Zelda sold more than one million copies.\n\nThis implies that Case 1 is true, and we can apply premise 3 to conclude that the Legend of Zelda will be selected into the Top 10 list.\n\nStep 4: Combine the results\nFrom steps 1-3, we have the following:\n\n* The Legend of Zelda is created by a Japanese game company (premise 1 and 2).\n* The Legend of Zelda sells more than one million copies (premise 4).\n* If the Legend of Zelda sells more than one million copies, it will be selected into the Top 10 list (premise 3).\n\nTherefore, we can conclude that the Legend of Zelda is indeed in the Top 10 list.\n\nConclusion:\nThe Legend of Zelda is in the Top 10 list.\n\nThis conclusion is the opposite of the given conclusion, \"The Legend of Zelda is not in the Top 10 list.\"\n\nSince we have determined that the Legend of Zelda is in the Top 10 list, we can conclude that the given conclusion is FALSE.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we can use a logical approach, specifically using a combination of the premises and the conclusion to determine its truth value.\n\nGiven premises:\n\n1. A Japanese game company created the game the Legend of Zelda.\n2. All games in the Top 10 list are made by Japanese game companies.\n3. If a game sells more than one million copies, then it will be selected into the Top 10 list.\n4. The Legend of Zelda sold more than one million copies.\n\nConclusion: The Legend of Zelda is not in the Top 10 list.\n\nLet's analyze the premises and the conclusion step by step:\n\n1. From premise 1, we know that the Legend of Zelda was created by a Japanese game company.\n2. From premise 2, we know that all games in the Top 10 list are made by Japanese game companies.\n3. From premise 3, we know that if a game sells more than one million copies, it will be in the Top 10 list.\n4. From premise 4, we know that the Legend of Zelda sold more than one million copies.\n\nNow, let's evaluate the conclusion:\n\n- If the Legend of Zelda sold more than one million copies (premise 4), then it should be in the Top 10 list (premise 3).\n- Since the Legend of Zelda was created by a Japanese game company (premise 1), which is the same as the type of game companies in the Top 10 list (premise 2), we can conclude that the Legend of Zelda should indeed be in the Top 10 list.\n\nHowever, the conclusion states that the Legend of Zelda is not in the Top 10 list. This contradicts our analysis based on the premises.\n\nTherefore, the conclusion \"The Legend of Zelda is not in the Top 10 list\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to evaluate the given premises and the conclusion using logical reasoning.\n\nPremises:\n\n1. A Japanese game company created the game the Legend of Zelda.\n2. All games in the Top 10 list are made by Japanese game companies.\n3. If a game sells more than one million copies, then it will be selected into the Top 10 list.\n4. The Legend of Zelda sold more than one million copies.\n\nConclusion:\nThe Legend of Zelda is not in the Top 10 list.\n\nTo evaluate the conclusion, we can use a logical diagram or truth table. However, in this case, we can use simple logical reasoning.\n\nFrom premise 1, we know that the Legend of Zelda is a Japanese game.\nFrom premise 2, we know that all games in the Top 10 list are Japanese games.\nFrom premise 4, we know that the Legend of Zelda sold more than one million copies.\n\nNow, let's apply premise 3 to the information we have. We know that if a game sells more than one million copies, it will be selected into the Top 10 list. Since the Legend of Zelda sold more than one million copies, it should be selected into the Top 10 list.\n\nHowever, the conclusion states that the Legend of Zelda is not in the Top 10 list. This conclusion contradicts the information we obtained from premise 3.\n\nTherefore, the conclusion \"The Legend of Zelda is not in the Top 10 list\" is false.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use the method of logical deduction.\n\nGiven premises:\n1. A Japanese game company created the game the Legend of Zelda.\n2. All games in the Top 10 list are made by Japanese game companies.\n3. If a game sells more than one million copies, then it will be selected into the Top 10 list.\n4. The Legend of Zelda sold more than one million copies.\n\nNow, let's break down the information step by step:\n\nFrom premise 4, we know that the Legend of Zelda sold more than one million copies.\n\nFrom premise 3, we can conclude that since the Legend of Zelda sold more than one million copies, it will be selected into the Top 10 list.\n\nFrom premise 2, we know that all games in the Top 10 list are made by Japanese game companies.\n\nFrom premise 1, we know that the Legend of Zelda was created by a Japanese game company.\n\nNow, we have two pieces of information that relate to the Legend of Zelda being in the Top 10 list:\n- The Legend of Zelda will be selected into the Top 10 list (from premise 3 and premise 4).\n- The Legend of Zelda is created by a Japanese game company (from premise 1).\n\nSince the Legend of Zelda is created by a Japanese game company (which is true) and all games in the Top 10 list are made by Japanese game companies (which is also true), it is certain that the Legend of Zelda will be in the Top 10 list.\n\nNow, let's analyze the given conclusion: \n\"The Legend of Zelda is not in the Top 10 list.\"\n\nHowever, based on our analysis, we have determined that the Legend of Zelda will be in the Top 10 list, which contradicts the given conclusion. Therefore, the conclusion \"The Legend of Zelda is not in the Top 10 list\" is false.\n\nFinal answer: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and apply logical reasoning.\n\nPremise 1: A Japanese game company created the game the Legend of Zelda. \nPremise 2: All games in the Top 10 list are made by Japanese game companies. \nPremise 3: If a game sells more than one million copies, then it will be selected into the Top 10 list. \nPremise 4: The Legend of Zelda sold more than one million copies.\n\nWe can analyze the premises as follows:\n\n- Premise 1 and Premise 2 together imply that the Legend of Zelda must be in the Top 10 list because it is a game made by a Japanese company.\n- Premise 3 and Premise 4 imply that the Legend of Zelda is in the Top 10 list because it sold more than one million copies.\n\nCombining the information from Premise 1, 2, 3, and 4, we can conclude that the Legend of Zelda is indeed in the Top 10 list.\n\nNow, we can evaluate the conclusion: \n\"The Legend of Zelda is not in the Top 10 list.\"\n\nGiven the analysis above, the conclusion is false. The Legend of Zelda is actually in the Top 10 list.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises and their relationships to the conclusion.\n\nPremise 1: A Japanese game company created the game the Legend of Zelda.\nPremise 2: All games in the Top 10 list are made by Japanese game companies.\nPremise 3: If a game sells more than one million copies, then it will be selected into the Top 10 list.\nPremise 4: The Legend of Zelda sold more than one million copies.\n\nFrom Premise 3, we can infer that if a game sells more than one million copies, it will be in the Top 10 list. This is a conditional statement with a consequent that is an implication of being in the Top 10 list.\n\nFrom Premise 4, we can conclude that The Legend of Zelda meets the condition of selling more than one million copies, which implies that it should be in the Top 10 list.\n\nNow, we can combine the information from Premise 1 and Premise 2. Since the Legend of Zelda is made by a Japanese game company, and all games in the Top 10 list are made by Japanese game companies, it is possible that The Legend of Zelda is in the Top 10 list.\n\nHowever, we need to consider the relationship between the premises and the conclusion. The conclusion is \"The Legend of Zelda is not in the Top 10 list.\" To determine the validity of this conclusion, we need to check if it contradicts any of the premises.\n\nSince Premise 1 and Premise 2 together imply that The Legend of Zelda could be in the Top 10 list, and Premise 4 implies that it should be in the Top 10 list, the conclusion \"The Legend of Zelda is not in the Top 10 list\" contradicts these premises.\n\nHowever, we also need to consider the fact that we do not have direct information about the Top 10 list, so we can't be certain about the conclusion.\n\nBased on the given information and the rules of inference, we can conclude that the conclusion \"The Legend of Zelda is not in the Top 10 list\" is uncertain because it contradicts the implications from the premises, but we do not have enough information to be certain about the conclusion.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: A Japanese game company created the game \"The Legend of Zelda.\"\nPremise 2: All games in the Top 10 list are made by Japanese game companies.\nPremise 3: If a game sells more than one million copies, then it will be selected into the Top 10 list.\nPremise 4: The Legend of Zelda sold more than one million copies.\n\nFrom Premise 1, we know that \"The Legend of Zelda\" is a game created by a Japanese game company.\n\nFrom Premise 2, we know that all games in the Top 10 list are made by Japanese game companies.\n\nFrom Premise 3, we can infer that selling more than one million copies is a sufficient condition for a game to be selected into the Top 10 list.\n\nFrom Premise 4, we know that \"The Legend of Zelda\" sold more than one million copies.\n\nNow, let's combine the information:\n\nSince \"The Legend of Zelda\" is a game created by a Japanese game company (Premise 1) and all games in the Top 10 list are made by Japanese game companies (Premise 2), we can conclude that \"The Legend of Zelda\" is likely to be in the Top 10 list.\n\nHowever, we need to check the condition for being selected into the Top 10 list (Premise 3). Since \"The Legend of Zelda\" sold more than one million copies (Premise 4), it satisfies the condition and is likely to be in the Top 10 list.\n\nTherefore, the conclusion \"The Legend of Zelda is not in the Top 10 list\" is uncertain, but we can conclude that it is likely to be true.\n\nHowever, to determine if the statement is true or false we need to find a contradiction with the information given.\n\nThere is no information that would contradict the conclusion \"The Legend of Zelda is not in the Top 10 list.\" However, the premises suggest that it is likely to be in the Top 10 list.\n\nThe only way for the conclusion \"The Legend of Zelda is not in the Top 10 list\" to be true is if there is a game in the Top 10 list that is not made by a Japanese game company, or if there is a game that sold more than one million copies but is not in the Top 10 list.\n\nHowever, this is not directly stated in the premises. The premises do not provide information about the existence of a game that is not made by a Japanese game company and is in the Top 10 list, or about a game that sold more than one million copies but is not in the Top 10 list.\n\nTherefore, the conclusion \"The Legend of Zelda is not in the Top 10 list\" is uncertain, but we cannot determine its truth value based on the given premises.\n\nHowever, based on the information given we can conclude that the most likely outcome is that The Legend of Zelda is in the Top 10 list.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we'll use the method of deduction in logic. We'll analyze the given premises and the conclusion to determine its validity.\n\nPremises:\n1. A Japanese game company created the game the Legend of Zelda.\n2. All games in the Top 10 list are made by Japanese game companies.\n3. If a game sells more than one million copies, then it will be selected into the Top 10 list.\n4. The Legend of Zelda sold more than one million copies.\n\nConclusion:\nThe Legend of Zelda is not in the Top 10 list.\n\nNow, let's analyze the premises to determine if the conclusion is true, false, or uncertain.\n\nFrom premise 1, we know that the Legend of Zelda is created by a Japanese game company.\nFrom premise 2, we know that all games in the Top 10 list are made by Japanese game companies. Since the Legend of Zelda is created by a Japanese game company, it can potentially be in the Top 10 list.\nFrom premise 3, we know that if a game sells more than one million copies, it will be selected into the Top 10 list. Since the Legend of Zelda sold more than one million copies (premise 4), it will be selected into the Top 10 list.\nTherefore, the conclusion \"The Legend of Zelda is not in the Top 10 list\" is false.\n\nSo, the final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the premises and apply logical reasoning.\n\nPremise 1: A Japanese game company created the game the Legend of Zelda.\nPremise 2: All games in the Top 10 list are made by Japanese game companies.\nPremise 3: If a game sells more than one million copies, then it will be selected into the Top 10 list.\nPremise 4: The Legend of Zelda sold more than one million copies.\n\nWe can use the modus ponens rule to evaluate the conclusion. Modus ponens states that if we have a conditional statement (if A, then B) and we know A, then we can conclude B.\n\nFrom Premise 1, we know the Legend of Zelda is made by a Japanese game company.\nFrom Premise 2, we know all games in the Top 10 list are made by Japanese game companies. \nThis implies that the Legend of Zelda can be in the Top 10 list because it's made by a Japanese game company.\n\nFrom Premise 3, we have a conditional statement: if a game sells more than one million copies, then it will be selected into the Top 10 list.\nFrom Premise 4, we know the Legend of Zelda sold more than one million copies. \n\nUsing modus ponens, we can conclude that the Legend of Zelda will be selected into the Top 10 list.\n\nNow we can evaluate the conclusion: The Legend of Zelda is not in the Top 10 list.\n\nThis conclusion is false because we have evidence (Premise 3 and Premise 4) that the Legend of Zelda should be in the Top 10 list, given that it's made by a Japanese game company and it sold more than one million copies.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we will use the given premises and logical reasoning.\n\nPremise 1: A Japanese game company created the game the Legend of Zelda.\nPremise 2: All games in the Top 10 list are made by Japanese game companies.\nPremise 3: If a game sells more than one million copies, then it will be selected into the Top 10 list.\nPremise 4: The Legend of Zelda sold more than one million copies.\n\nConclusion: The Legend of Zelda is not in the Top 10 list.\n\nWe will analyze the premises to determine the validity of the conclusion:\n\nFrom Premise 1 and Premise 2, we can conclude that the Legend of Zelda is a game made by a Japanese game company, and therefore, it is possible that it could be in the Top 10 list.\n\nFrom Premise 3 and Premise 4, we can conclude that since the Legend of Zelda sold more than one million copies, it is possible that it will be selected into the Top 10 list.\n\nCombining the above conclusions, we can see that the Legend of Zelda meets the criteria for being in the Top 10 list (being made by a Japanese game company and selling more than one million copies).\n\nSince the Legend of Zelda meets the criteria, it is uncertain whether the conclusion \"The Legend of Zelda is not in the Top 10 list\" is true or false. However, in the context of logic, we often use the term \"uncertain\" to mean \"there is not enough information to determine the truth.\" In this case, we actually do have enough information to determine the truth. The information given leads us to believe that The Legend of Zelda should be in the top 10 list, which means that the conclusion \"The Legend of Zelda is not in the Top 10 list\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_game_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_game_company_the_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million_copies(X) -> in_top_10_list(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_copies_the_legend_of_zelda, in_top_10_list_the_legend_of_zelda)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million_copies(the_legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_copies_the_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "in_top_10_list(X) -> made_by_japanese_game_company(X)",
+          "z3_formula": "Implies(in_top_10_list_the_legend_of_zelda, made_by_japanese_game_company_the_legend_of_zelda)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "in_top_10_list(the_legend_of_zelda)",
+          "z3_formula": "in_top_10_list_the_legend_of_zelda == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "made_by_japanese_game_company(X) -> in_top_10_list(X)",
+          "z3_formula": "Implies(made_by_japanese_game_company_the_legend_of_zelda, in_top_10_list_the_legend_of_zelda)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not in_top_10_list(the_legend_of_zelda)",
+          "z3_formula": "Not(in_top_10_list_the_legend_of_zelda) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "japanese_game_company_created_legend_of_zelda",
+          "z3_formula": "japanese_game_company_created_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_top_10_games_made_by_japanese_game_companies",
+          "z3_formula": "all_top_10_games_made_by_japanese_game_companies == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million_copies -> selected_into_top_10_list",
+          "z3_formula": "Implies(sells_more_than_one_million_copies, selected_into_top_10_list)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "legend_of_zelda_sold_more_than_one_million_copies",
+          "z3_formula": "legend_of_zelda_sold_more_than_one_million_copies == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_company_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_top_10_games_made_by_japanese_companies",
+          "z3_formula": "all_top_10_games_made_by_japanese_companies == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million_copies(X) -> selected_into_top_10_list(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_copies_the_legend_of_zelda, selected_into_top_10_list_the_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million_copies(the_legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_copies_the_legend_of_zelda == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "japanese_game_company_created_legend_of_zelda",
+          "z3_formula": "japanese_game_company_created_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_games_in_top_10_are_made_by_japanese_game_companies",
+          "z3_formula": "all_games_in_top_10_are_made_by_japanese_game_companies == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million_copies -> in_top_10_list",
+          "z3_formula": "Implies(sells_more_than_one_million_copies, in_top_10_list)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "legend_of_zelda_sold_more_than_one_million_copies",
+          "z3_formula": "legend_of_zelda_sold_more_than_one_million_copies == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not_in_top_10_list",
+          "z3_formula": "Not(in_top_10_list)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "japanese_game_company(legend_of_zelda)",
+          "z3_formula": "japanese_game_company_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "top_10_japanese_game_company",
+          "z3_formula": "top_10_japanese_game_company == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million(X) -> top_10(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_legend_of_zelda, top_10_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million(legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "top_10(legend_of_zelda)",
+          "z3_formula": "top_10_legend_of_zelda == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not_top_10(legend_of_zelda)",
+          "z3_formula": "not_top_10_legend_of_zelda == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_game_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_game_company_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sold_more_than_one_million_copies(the_legend_of_zelda)",
+          "z3_formula": "sold_more_than_one_million_copies_the_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "all_games_in_top_10_made_by_japanese_game_companies",
+          "z3_formula": "all_games_in_top_10_made_by_japanese_game_companies == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sold_more_than_one_million_copies(X) -> selected_into_top_10_list(X)",
+          "z3_formula": "Implies(sold_more_than_one_million_copies_the_legend_of_zelda, selected_into_top_10_list_the_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "selected_into_top_10_list(the_legend_of_zelda)",
+          "z3_formula": "selected_into_top_10_list_the_legend_of_zelda == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "in_top_10_list(the_legend_of_zelda)",
+          "z3_formula": "in_top_10_list_the_legend_of_zelda == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not in_top_10_list(the_legend_of_zelda)",
+          "z3_formula": "Not(in_top_10_list_the_legend_of_zelda) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "japanese_game_company_created_legend_of_zelda",
+          "z3_formula": "japanese_game_company_created_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_top_10_games_are_made_by_japanese_game_companies",
+          "z3_formula": "all_top_10_games_are_made_by_japanese_game_companies == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "game_sold_more_than_one_million_copies -> game_in_top_10_list",
+          "z3_formula": "Implies(game_sold_more_than_one_million_copies, game_in_top_10_list)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "legend_of_zelda_sold_more_than_one_million_copies",
+          "z3_formula": "legend_of_zelda_sold_more_than_one_million_copies == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "legend_of_zelda_in_top_10_list",
+          "z3_formula": "legend_of_zelda_in_top_10_list == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_game_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_game_company_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_top_10_games_made_by_japanese_game_companies",
+          "z3_formula": "all_top_10_games_made_by_japanese_game_companies == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million_copies(X) -> top_10_list(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_copies_the_legend_of_zelda, top_10_list_the_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million_copies(the_legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_copies_the_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "top_10_list(the_legend_of_zelda)",
+          "z3_formula": "top_10_list_the_legend_of_zelda == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "top_10_list(the_legend_of_zelda)",
+          "z3_formula": "top_10_list_the_legend_of_zelda == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not top_10_list(the_legend_of_zelda)",
+          "z3_formula": "Not(top_10_list_the_legend_of_zelda)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "game_company_japanese",
+          "z3_formula": "game_company_japanese == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "top_10_japanese",
+          "z3_formula": "top_10_japanese == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sell_over_1m -> top_10",
+          "z3_formula": "Implies(sell_over_1m, top_10)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sell_over_1m_zelda",
+          "z3_formula": "sell_over_1m_zelda == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "japanese_game_company(legend_of_zelda)",
+          "z3_formula": "japanese_game_company_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "top_10_list(japanese_game_company)",
+          "z3_formula": "top_10_list_japanese_game_company == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million(X) -> top_10_list(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_legend_of_zelda, top_10_list_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million(legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "top_10_list(legend_of_zelda)",
+          "z3_formula": "top_10_list_legend_of_zelda == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not top_10_list(legend_of_zelda)",
+          "z3_formula": "Not(top_10_list_legend_of_zelda) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "japanese_game_company_created_legend_of_zelda",
+          "z3_formula": "japanese_game_company_created_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_top_10_games_are_made_by_japanese_game_companies",
+          "z3_formula": "all_top_10_games_are_made_by_japanese_game_companies == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million_copies -> selected_into_top_10_list",
+          "z3_formula": "Implies(sells_more_than_one_million_copies, selected_into_top_10_list)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "legend_of_zelda_sold_more_than_one_million_copies",
+          "z3_formula": "legend_of_zelda_sold_more_than_one_million_copies == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "selected_into_top_10_list",
+          "z3_formula": "selected_into_top_10_list == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "japanese_game_company(legend_of_zelda)",
+          "z3_formula": "japanese_game_company_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "top_10_list(japanese_game_company)",
+          "z3_formula": "top_10_list_japanese_game_company == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million(X) -> top_10_list(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_legend_of_zelda, top_10_list_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million(legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_legend_of_zelda == True",
+          "source_step": 4
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 64,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 42
+    },
+    "maxsat_stats": {
+      "satisfied": 39,
+      "excluded": 3,
+      "total_weight": 60,
+      "solve_time_ms": 0.9525036439299583
+    },
+    "timing": {
+      "trace_gen_s": 7.584,
+      "extraction_s": 13.69,
+      "dedup_s": 0.7,
+      "maxsat_s": 0.003,
+      "total_s": 21.977
+    }
+  }
+}

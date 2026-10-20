@@ -1,0 +1,688 @@
+{
+  "problem": {
+    "id": "folio_27",
+    "problem": "Given the following premises:\nAll aliens are extraterrestrial. If someone is from Mars, then they are aliens. No extraterrestrial is human. Everyone from Earth is a human. Marvin cannot be from Earth and from Mars. If Marvin is not from Earth, then Marvin is an extraterrestrial.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nMarvin is an alien.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Alien(x) \u2192 Extraterrestrial(x))",
+      "\u2200x (FromMars(x) \u2192 Alien(x))",
+      "\u2200x (Extraterrestrial(x) \u2192 \u00acHuman(x))",
+      "\u2200x (FromEarth(x) \u2192 Human(x))",
+      "\u00acFromEarth(marvin) \u2227 \u00acFromMars(marvin)",
+      "\u00acFromEarth(marvin) \u2192 Extraterrestrial(marvin)"
+    ],
+    "conclusion_fol": "Alien(marvin)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 70.0,
+      "Unknown": 65.5
+    },
+    "answer_counts": {
+      "True": 8,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion \"Marvin is an alien\" is true, false, or uncertain, we need to analyze the given premises and use logical deductions.\n\nPremise 1: All aliens are extraterrestrial.\nThis premise establishes the relationship between aliens and extraterrestrial beings. It implies that if someone is an alien, they must be extraterrestrial.\n\nPremise 2: If someone is from Mars, then they are aliens.\nThis premise establishes a relationship between being from Mars and being an alien. However, it does not imply that all aliens are from Mars. It only provides a condition for being an alien.\n\nPremise 3: No extraterrestrial is human.\nThis premise is a direct negation of the possibility that an extraterrestrial can be human.\n\nPremise 4: Everyone from Earth is a human.\nThis premise establishes a relationship between being from Earth and being human.\n\nPremise 5: Marvin cannot be from Earth and from Mars.\nThis premise establishes a direct contradiction between being from Earth and being from Mars for Marvin.\n\nPremise 6: If Marvin is not from Earth, then Marvin is an extraterrestrial.\nThis premise provides a condition for Marvin to be an extraterrestrial, which is not being from Earth.\n\nNow, let's analyze the conclusion: \"Marvin is an alien.\"\nTo determine whether this conclusion is true, false, or uncertain, we need to use the given premises and logical deductions.\n\nFrom Premise 5, we know that Marvin cannot be from Earth and from Mars. However, this does not directly tell us whether Marvin is an alien or not.\n\nFrom Premise 6, we know that if Marvin is not from Earth, then Marvin is an extraterrestrial. This provides a condition for Marvin to be an extraterrestrial, but it does not directly imply that Marvin is an alien.\n\nSince Premise 1 states that all aliens are extraterrestrial, we can infer that if Marvin is an extraterrestrial, then Marvin is an alien. However, we cannot directly conclude that Marvin is an extraterrestrial from the given premises.\n\nNow, let's analyze the possible cases for Marvin:\n\nCase 1: Marvin is from Earth. (Contradiction with Premise 5)\nSince Marvin cannot be from Earth and from Mars (Premise 5), and Marvin is from Earth, we can conclude that this case is impossible.\n\nCase 2: Marvin is from Mars.\nFrom Premise 2, if Marvin is from Mars, then Marvin is an alien. This provides a direct implication of Marvin being an alien.\n\nHowever, we also know that if Marvin is not from Earth, then Marvin is an extraterrestrial (Premise 6). Since Marvin is from Mars, we can conclude that Marvin is not from Earth. Therefore, Marvin is an extraterrestrial.\n\nSince all aliens are extraterrestrial (Premise 1), and Marvin is an extraterrestrial, we can conclude that Marvin is an alien.\n\nTherefore, based on the given premises and logical deductions, the conclusion \"Marvin is an alien\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"Marvin is an alien\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: All aliens are extraterrestrial.\nThis premise tells us that being an alien is equivalent to being extraterrestrial. Therefore, if someone is an alien, they must be extraterrestrial.\n\nPremise 2: If someone is from Mars, then they are aliens.\nThis premise tells us that if someone is from Mars, they are considered an alien. However, it does not directly tell us that being from Mars implies being extraterrestrial.\n\nPremise 3: No extraterrestrial is human.\nThis premise tells us that extraterrestrial beings are not human. However, it does not directly tell us that being extraterrestrial implies being an alien.\n\nPremise 4: Everyone from Earth is a human.\nThis premise tells us that anyone from Earth is a human. However, it does not directly tell us that being human implies being from Earth.\n\nPremise 5: Marvin cannot be from Earth and from Mars.\nThis premise tells us that Marvin cannot be from both Earth and Mars. However, it does not directly tell us that Marvin is from either Earth or Mars.\n\nPremise 6: If Marvin is not from Earth, then Marvin is an extraterrestrial.\nThis premise tells us that if Marvin is not from Earth, he must be an extraterrestrial.\n\nFrom Premise 5, we know that Marvin cannot be from both Earth and Mars. However, it does not tell us that Marvin is from either Earth or Mars.\n\nHowever, Premise 4 tells us that everyone from Earth is a human. If Marvin is from Earth, then he must be a human (by Premise 4). Since Premise 5 tells us that Marvin cannot be from Earth and from Mars, Marvin cannot be from Earth (because if he were, he would be a human, which contradicts Premise 5).\n\nSince Marvin cannot be from Earth, we can use Premise 6, which tells us that if Marvin is not from Earth, then Marvin is an extraterrestrial. Therefore, we can conclude that Marvin is an extraterrestrial.\n\nNow, using Premise 1, which tells us that all aliens are extraterrestrial, we can conclude that Marvin is an alien (since Marvin is an extraterrestrial, and all aliens are extraterrestrial).\n\nTherefore, the conclusion \"Marvin is an alien\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to evaluate the given premises and conclusion step by step.\n\n1. All aliens are extraterrestrial. \nThis premise establishes that the terms \"alien\" and \"extraterrestrial\" are equivalent.\n\n2. If someone is from Mars, then they are aliens. \nThis premise implies that being from Mars is a sufficient condition for being an alien (or extraterrestrial).\n\n3. No extraterrestrial is human. \nThis premise tells us that extraterrestrial beings are not humans.\n\n4. Everyone from Earth is a human. \nThis premise establishes that being from Earth is a sufficient condition for being human.\n\n5. Marvin cannot be from Earth and from Mars. \nThis premise provides information about Marvin's possible origins.\n\n6. If Marvin is not from Earth, then Marvin is an extraterrestrial. \nThis premise tells us that if Marvin is not from Earth, then he must be an extraterrestrial.\n\nNow, let's consider the conclusion: Marvin is an alien.\n\nTo determine if this conclusion is true, false, or uncertain, we need to evaluate the possible scenarios based on the premises.\n\nScenario 1: Marvin is from Earth.\nIf Marvin is from Earth, then (from premise 4) he is a human. But (from premise 5) Marvin cannot be from Earth and from Mars. So, Marvin cannot be from Earth.\n\nScenario 2: Marvin is from Mars.\nIf Marvin is from Mars, then (from premise 2) he is an alien (or extraterrestrial).\n\nScenario 3: Marvin is not from Earth and not from Mars.\nIn this case, we cannot determine Marvin's alien status from the given premises.\n\nNow, let's combine the information from the premises and scenarios.\n\n- If Marvin is from Mars (Scenario 2), then he is an alien (or extraterrestrial) (Premise 2).\n- Since all aliens are extraterrestrial (Premise 1), being an alien is equivalent to being extraterrestrial.\n- Therefore, if Marvin is from Mars, then he is an extraterrestrial (or alien).\n\n- We know that Marvin cannot be from Earth (Scenario 1).\n- If Marvin is not from Earth, then he is an extraterrestrial (Premise 6).\n- Therefore, Marvin is an extraterrestrial (or alien) if he is not from Earth.\n\nConsidering all possible scenarios, we can conclude that Marvin is an alien if he is from Mars or not from Earth.\n\nTherefore, the conclusion \"Marvin is an alien\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Marvin is an alien, we need to analyze the given premises step by step.\n\n1. All aliens are extraterrestrial. (Premise 1)\n2. If someone is from Mars, then they are aliens. (Premise 2)\n3. No extraterrestrial is human. (Premise 3)\n4. Everyone from Earth is a human. (Premise 4)\n5. Marvin cannot be from Earth and from Mars. (Premise 5)\n6. If Marvin is not from Earth, then Marvin is an extraterrestrial. (Premise 6)\n\nWe need to determine whether Marvin is an alien, which means we need to find out if Marvin is extraterrestrial or not.\n\nLet's start with Premise 5: Marvin cannot be from Earth and from Mars. This implies that Marvin can either be from Earth or from Mars, but not both.\n\nNow, let's consider Premise 4: Everyone from Earth is a human. If Marvin is from Earth, then Marvin is a human (by Premise 4). However, Premise 3 states that no extraterrestrial is human. Therefore, if Marvin is from Earth, then Marvin is not an extraterrestrial (and hence not an alien).\n\nHowever, Premise 6 states that if Marvin is not from Earth, then Marvin is an extraterrestrial. This implies that Marvin is either from Earth (and not an extraterrestrial) or not from Earth (and an extraterrestrial).\n\nWe know that Marvin is either from Earth or from Mars (by Premise 5). If Marvin is from Earth, then Marvin is not an extraterrestrial (as shown earlier). But we also know that Marvin cannot be from both Earth and Mars (by Premise 5). Therefore, Marvin must be from Mars.\n\nNow, let's apply Premise 2: If someone is from Mars, then they are aliens. Since Marvin is from Mars, Marvin is an alien.\n\nSo, based on the premises, we can conclude that Marvin is indeed an alien.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion \"Marvin is an alien\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. All aliens are extraterrestrial.\n   This premise establishes a relationship between aliens and extraterrestrial beings. It does not provide any information about Marvin, but it will be useful later.\n\n2. If someone is from Mars, then they are aliens.\n   This premise links the location \"Mars\" with being an alien. Again, it does not provide any information about Marvin, but it will be useful later.\n\n3. No extraterrestrial is human.\n   This premise establishes a relationship between extraterrestrial beings and humans. It does not provide any information about Marvin, but it will be useful later.\n\n4. Everyone from Earth is a human.\n   This premise links the location \"Earth\" with being human. Again, it does not provide any information about Marvin, but it will be useful later.\n\n5. Marvin cannot be from Earth and from Mars.\n   This premise establishes a relationship between Marvin and his possible locations. It implies that Marvin can either be from Earth or from Mars, but not both.\n\n6. If Marvin is not from Earth, then Marvin is an extraterrestrial.\n   This premise links Marvin's location with his status as an extraterrestrial. It does not provide any information about Marvin's status as an alien directly, but it will be useful later.\n\nNow, let's analyze the conclusion \"Marvin is an alien.\" To determine whether this conclusion is true, false, or uncertain, we need to determine whether Marvin is an alien based on the given premises.\n\nFrom premise 5, we know that Marvin cannot be from Earth and from Mars. This means Marvin can either be from Earth or from Mars, but not both.\n\nFrom premise 4, we know that everyone from Earth is a human. This implies that if Marvin is from Earth, then Marvin is a human.\n\nFrom premise 3, we know that no extraterrestrial is human. This implies that if Marvin is an extraterrestrial, then Marvin is not a human.\n\nNow, let's analyze the possible locations of Marvin. \n\nIf Marvin is from Earth, then Marvin is a human (from premise 4). Then Marvin is not an extraterrestrial (from premise 3). \n\nHowever, from premise 1, we know that all aliens are extraterrestrial. Therefore, if Marvin is not an extraterrestrial, then Marvin is not an alien.\n\nIf Marvin is from Mars, then Marvin is an alien (from premise 2). We do not have any information about Marvin's status as a human in this case, but we do not need to determine whether Marvin is a human to determine whether Marvin is an alien.\n\nTherefore, based on the given premises, we can conclude that Marvin is an alien if and only if Marvin is from Mars.\n\nWe do not have any information about Marvin's location. Therefore, we cannot determine whether Marvin is an alien based on the given premises.\n\nThe conclusion \"Marvin is an alien\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we'll analyze each premise and apply logical reasoning to determine the validity of the conclusion.\n\nPremise 1: All aliens are extraterrestrial.\n- This premise establishes a relationship between aliens and extraterrestrial beings, stating that all aliens are extraterrestrial.\n\nPremise 2: If someone is from Mars, then they are aliens.\n- This premise introduces a condition that being from Mars implies being an alien.\n\nPremise 3: No extraterrestrial is human.\n- This premise establishes a clear distinction between extraterrestrial beings and humans, stating that they are mutually exclusive.\n\nPremise 4: Everyone from Earth is a human.\n- This premise helps us understand the relationship between being from Earth and being human, stating that all Earthlings are humans.\n\nPremise 5: Marvin cannot be from Earth and from Mars.\n- This premise restricts Marvin's possible origins, stating that he cannot be from both Earth and Mars.\n\nPremise 6: If Marvin is not from Earth, then Marvin is an extraterrestrial.\n- This premise introduces a conditional statement that connects Marvin's non-terrestrial origin with being an extraterrestrial.\n\nConclusion: Marvin is an alien.\n- We need to determine whether this conclusion logically follows from the premises.\n\nNow, let's break down the possible scenarios for Marvin's origin and analyze the conclusions we can draw:\n\n1. **Marvin is from Earth:** From Premise 4, if Marvin is from Earth, he is a human. However, Premise 3 states that no extraterrestrial is human, so Marvin cannot be an extraterrestrial. From Premise 1, since Marvin is not an extraterrestrial, he is not an alien (by definition). Therefore, in this scenario, the conclusion \"Marvin is an alien\" is false.\n\n2. **Marvin is from Mars:** From Premise 2, if Marvin is from Mars, he is an alien. This scenario directly supports the conclusion \"Marvin is an alien,\" making it true in this case.\n\n3. **Marvin is not from Earth and not from Mars:** This scenario is not explicitly addressed by any premises, so we cannot determine whether Marvin is an alien or not in this case. Therefore, the conclusion is uncertain in this scenario.\n\nConsidering all possible scenarios, the conclusion \"Marvin is an alien\" is true when Marvin is from Mars and false when Marvin is from Earth. Since we cannot determine the conclusion's validity when Marvin is neither from Earth nor Mars, the overall conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion \"Marvin is an alien\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: All aliens are extraterrestrial.\nThis means that if someone is an alien, then they are also an extraterrestrial.\n\nPremise 2: If someone is from Mars, then they are aliens.\nThis means that if someone is from Mars, then they are also extraterrestrial (from Premise 1).\n\nPremise 3: No extraterrestrial is human.\nThis means that if someone is an extraterrestrial, then they are not human.\n\nPremise 4: Everyone from Earth is a human.\nThis means that if someone is from Earth, then they are human.\n\nPremise 5: Marvin cannot be from Earth and from Mars.\nThis means that Marvin cannot be from both Earth and Mars.\n\nPremise 6: If Marvin is not from Earth, then Marvin is an extraterrestrial.\nThis means that if Marvin is not from Earth, then he must be from Mars (since he can't be from both Earth and Mars) and therefore is an extraterrestrial.\n\nNow, let's analyze the conclusion \"Marvin is an alien.\"\n\nFor Marvin to be an alien, he must be an extraterrestrial (from Premise 1).\n\nFrom Premise 6, if Marvin is not from Earth, then he is an extraterrestrial. But Premise 5 states that Marvin cannot be from Earth and from Mars. Therefore, if Marvin is not from Earth, he must be from Mars.\n\nSince Marvin being from Mars implies that he is an extraterrestrial (from Premise 2), we can conclude that Marvin is indeed an extraterrestrial.\n\nCombining this with Premise 1, we know that Marvin is an alien.\n\nTherefore, the conclusion \"Marvin is an alien\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion \"Marvin is an alien\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. All aliens are extraterrestrial.\n   This premise establishes a relationship between aliens and extraterrestrial beings. It does not provide any information about Marvin, but it sets the stage for understanding what it means to be an alien.\n\n2. If someone is from Mars, then they are aliens.\n   This premise establishes a relationship between being from Mars and being an alien. However, it does not directly relate to Marvin.\n\n3. No extraterrestrial is human.\n   This premise establishes a relationship between extraterrestrial beings and humans. It implies that extraterrestrial beings cannot be human.\n\n4. Everyone from Earth is a human.\n   This premise establishes a relationship between being from Earth and being human. However, it does not provide any information about Marvin.\n\n5. Marvin cannot be from Earth and from Mars.\n   This premise establishes a relationship between Marvin's possible origins and the locations of Earth and Mars. It implies that Marvin cannot be from both Earth and Mars.\n\n6. If Marvin is not from Earth, then Marvin is an extraterrestrial.\n   This premise establishes a relationship between Marvin's possible origin and being an extraterrestrial. If Marvin is not from Earth, then he is an extraterrestrial.\n\nNow, let's analyze the conclusion \"Marvin is an alien.\" Since we know that all aliens are extraterrestrial (premise 1), being an alien implies being extraterrestrial.\n\nTo determine whether the conclusion is true, false, or uncertain, we need to find out if Marvin is an extraterrestrial. \n\nWe know from premise 5 that Marvin cannot be from Earth and from Mars. We also know from premise 4 that everyone from Earth is a human, so Marvin is not from Earth. \n\nFrom premise 6, we know that if Marvin is not from Earth, then Marvin is an extraterrestrial. Since Marvin is not from Earth, we can conclude that Marvin is an extraterrestrial.\n\nNow, since we know that Marvin is an extraterrestrial, and from premise 1 that all aliens are extraterrestrial, we can conclude that Marvin is an alien.\n\nTherefore, the conclusion \"Marvin is an alien\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"Marvin is an alien\" is true, false, or uncertain, we need to analyze the given premises and use logical reasoning.\n\nPremise 1: All aliens are extraterrestrial.\nPremise 2: If someone is from Mars, then they are aliens.\nPremise 3: No extraterrestrial is human.\nPremise 4: Everyone from Earth is a human.\nPremise 5: Marvin cannot be from Earth and from Mars.\nPremise 6: If Marvin is not from Earth, then Marvin is an extraterrestrial.\n\nFrom Premise 4, we can infer that if Marvin is from Earth, then Marvin is a human (since everyone from Earth is a human). However, Premise 5 states that Marvin cannot be from Earth and from Mars, but it does not exclude the possibility that Marvin is from Earth.\n\nSince Premise 1 states that all aliens are extraterrestrial, and Premise 3 states that no extraterrestrial is human, we can conclude that all aliens are not humans.\n\nIf Marvin is a human, then he must be from Earth (by Premise 4). However, Premise 5 states that Marvin cannot be from Earth and from Mars, but it does not exclude the possibility that Marvin is from Earth. This creates a contradiction, but it does not necessarily mean that Marvin is not a human.\n\nOn the other hand, if Marvin is not a human, then he must be an extraterrestrial (by Premise 3). Since Premise 6 states that if Marvin is not from Earth, then Marvin is an extraterrestrial, we can conclude that Marvin is an extraterrestrial.\n\nFrom Premise 2, we know that if someone is from Mars, then they are aliens. Since all aliens are extraterrestrial (by Premise 1), we can conclude that if Marvin is from Mars, then Marvin is an extraterrestrial.\n\nCombining the information from Premise 5, Premise 6, and the conclusion from the previous paragraph, we can conclude that Marvin is an extraterrestrial (either from Mars or from another planet).\n\nSince Marvin is an extraterrestrial, and all aliens are extraterrestrial (by Premise 1), we can conclude that Marvin is an alien.\n\nTherefore, the conclusion \"Marvin is an alien\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: All aliens are extraterrestrial.\nPremise 2: If someone is from Mars, then they are aliens.\nPremise 3: No extraterrestrial is human.\nPremise 4: Everyone from Earth is a human.\nPremise 5: Marvin cannot be from Earth and from Mars.\nPremise 6: If Marvin is not from Earth, then Marvin is an extraterrestrial.\n\nFrom Premise 2, we can infer that if someone is from Mars, then they are extraterrestrial (aliens).\n\nFrom Premise 4, we know that everyone from Earth is a human. This implies that if Marvin is from Earth, then he is a human.\n\nFrom Premise 5, we know that Marvin cannot be from Earth and from Mars. This implies that Marvin is either from Earth, from Mars, or from neither.\n\nNow, let's consider two cases:\n\nCase 1: Marvin is from Earth.\nIn this case, from Premise 4, we know that Marvin is a human. Since Marvin is not from Mars, we can conclude that Marvin is not an alien (because aliens are extraterrestrial, and humans are not extraterrestrial).\n\nCase 2: Marvin is from Mars.\nIn this case, from Premise 2, we know that Marvin is an alien (because someone from Mars is an alien). This conclusion is certain.\n\nHowever, we need to consider another case: Marvin is not from Earth and not from Mars.\n\nFrom Premise 6, we know that if Marvin is not from Earth, then Marvin is an extraterrestrial. This does not necessarily mean that Marvin is an alien, because aliens are a subset of extraterrestrial (according to Premise 1).\n\nTherefore, we cannot conclude that Marvin is an alien with certainty.\n\nThe conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion \"Marvin is an alien\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: All aliens are extraterrestrial.\nPremise 2: If someone is from Mars, then they are aliens.\nPremise 3: No extraterrestrial is human.\nPremise 4: Everyone from Earth is a human.\nPremise 5: Marvin cannot be from Earth and from Mars.\nPremise 6: If Marvin is not from Earth, then Marvin is an extraterrestrial.\n\nFrom Premise 2, we can infer that being from Mars is a sufficient condition for being an alien. \n\nFrom Premise 3 and Premise 4, we can infer that being from Earth is a sufficient condition for not being an alien.\n\nWe are given Premise 5, which states that Marvin cannot be from both Earth and Mars. However, it doesn't explicitly state that Marvin cannot be from Earth or Mars. \n\nFrom Premise 6, we can infer that if Marvin is not from Earth, then Marvin is an extraterrestrial.\n\nNow, let's consider two possible scenarios:\n\nScenario 1: Marvin is from Earth.\nIf Marvin is from Earth, then he is a human (by Premise 4). Since Marvin is a human, he cannot be an alien (by Premise 3). However, Premise 5 states that Marvin cannot be from both Earth and Mars. This implies that Marvin is not from Earth, which contradicts our initial assumption.\n\nScenario 2: Marvin is from Mars.\nIf Marvin is from Mars, then he is an alien (by Premise 2). Since Marvin is an alien, he is an extraterrestrial (by Premise 1).\n\nHowever, if Marvin is from Mars, then he cannot be from Earth (by Premise 5), which implies that Marvin is not from Earth (by definition). By Premise 6, if Marvin is not from Earth, then Marvin is an extraterrestrial. Therefore, if Marvin is from Mars, he is indeed an extraterrestrial.\n\nConsidering both scenarios, we can conclude that Marvin being from Mars is a valid possibility. Since Marvin being an alien is equivalent to Marvin being an extraterrestrial (by Premise 1), and Marvin being from Mars implies that he is an extraterrestrial, we can conclude that the conclusion \"Marvin is an alien\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion \"Marvin is an alien\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: All aliens are extraterrestrial.\nThis premise establishes a relationship between aliens and extraterrestrial beings.\n\nPremise 2: If someone is from Mars, then they are aliens.\nThis premise introduces a specific condition for being an alien, which is being from Mars.\n\nPremise 3: No extraterrestrial is human.\nThis premise distinguishes extraterrestrial beings from humans.\n\nPremise 4: Everyone from Earth is a human.\nThis premise establishes a relationship between Earth and humanity.\n\nPremise 5: Marvin cannot be from Earth and from Mars.\nThis premise introduces a condition that Marvin cannot be from both Earth and Mars.\n\nPremise 6: If Marvin is not from Earth, then Marvin is an extraterrestrial.\nThis premise introduces a condition for Marvin's origin and its relationship to being extraterrestrial.\n\nNow, let's analyze the conclusion \"Marvin is an alien.\"\n\nFrom Premise 1, we know that all aliens are extraterrestrial. \n\nFrom Premise 6, we know that if Marvin is not from Earth, then Marvin is an extraterrestrial. \n\nSince Marvin cannot be from Earth and from Mars (Premise 5), we can infer that Marvin is not from Earth.\n\nTherefore, using Premise 6, we can conclude that Marvin is an extraterrestrial.\n\nFrom Premise 2, if someone is from Mars, then they are aliens. However, we cannot directly infer that Marvin is from Mars. Instead, we can use the fact that all aliens are extraterrestrial (Premise 1) and the fact that Marvin is an extraterrestrial (Premise 6) to conclude that Marvin is an alien.\n\nSince all aliens are extraterrestrial, and Marvin is an extraterrestrial, we can conclude that Marvin is an alien.\n\nTherefore, the conclusion \"Marvin is an alien\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "alien(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(alien_marvin, extraterrestrial_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not human(extraterrestrial)",
+          "z3_formula": "Not(human_extraterrestrial) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "human(everyone_from_earth)",
+          "z3_formula": "human_everyone_from_earth == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not from_earth_and_from_mars(marvin)",
+          "z3_formula": "Not(from_earth_and_from_mars_marvin) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not from_earth(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(Not(from_earth_marvin), extraterrestrial_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "alien(marvin)",
+          "z3_formula": "alien_marvin == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "alien(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(alien_marvin, extraterrestrial_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(X) -> ~human(X)",
+          "z3_formula": "Implies(extraterrestrial_marvin, ~human_marvin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "from_earth(X) -> human(X)",
+          "z3_formula": "Implies(from_earth_marvin, human_marvin)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "~from_earth(X) & ~from_mars(X)",
+          "z3_formula": "~And(from_earth_marvin, from_mars_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "~from_earth(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(~from_earth_marvin, extraterrestrial_marvin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "extraterrestrial_marvin",
+          "z3_formula": "extraterrestrial_marvin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "alien_marvin",
+          "z3_formula": "alien_marvin == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_human(extraterrestrial)",
+          "z3_formula": "not_human_extraterrestrial == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_earth(human)",
+          "z3_formula": "from_earth_human == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(from_earth(marvin) & from_mars(marvin))",
+          "z3_formula": "not_and(from_earth_marvin, from_mars_marvin) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not(from_earth(X)) -> extraterrestrial(X)",
+          "z3_formula": "Implies(Not(from_earth_marvin), extraterrestrial_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "alien(marvin)",
+          "z3_formula": "alien_marvin == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not human(extraterrestrial)",
+          "z3_formula": "Not(human_extraterrestrial)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_earth(X) -> human(X)",
+          "z3_formula": "Implies(from_earth_marvin, human_marvin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not from_earth_marvin & not from_mars_marvin",
+          "z3_formula": "Not(And(from_earth_marvin, from_mars_marvin))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not from_earth(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(Not(from_earth_marvin), extraterrestrial_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "alien(marvin)",
+          "z3_formula": "alien_marvin == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "alien(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(alien_marvin, extraterrestrial_marvin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(X) -> not human(X)",
+          "z3_formula": "Implies(extraterrestrial_marvin, not human_marvin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_earth(X) -> human(X)",
+          "z3_formula": "Implies(from_earth_marvin, human_marvin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not from_earth_marvin & not from_mars_marvin",
+          "z3_formula": "Not(And(from_earth_marvin, from_mars_marvin))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not from_earth_marvin -> extraterrestrial_marvin",
+          "z3_formula": "Implies(Not(from_earth_marvin), extraterrestrial_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "extraterrestrial_marvin -> not alien_marvin",
+          "z3_formula": "Implies(extraterrestrial_marvin, Not(alien_marvin))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "alien_marvin",
+          "z3_formula": "alien_marvin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not alien_marvin",
+          "z3_formula": "Not(alien_marvin) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_human(extraterrestrial)",
+          "z3_formula": "not_human_extraterrestrial == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "human(from_earth)",
+          "z3_formula": "human_from_earth == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(from_earth, and, from_mars)(marvin)",
+          "z3_formula": "not_from_earth_and_from_mars_marvin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not(from_earth)(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(not_from_earth_marvin, extraterrestrial_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "alien(marvin)",
+          "z3_formula": "alien_marvin == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(X, alien(X) -> extraterrestrial(X))",
+          "z3_formula": "Implies(alien_marvin, extraterrestrial_marvin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all(X, extraterrestrial(X) -> not human(X))",
+          "z3_formula": "Implies(extraterrestrial_marvin, not_human_marvin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all(X, from_earth(X) -> human(X))",
+          "z3_formula": "Implies(from_earth_marvin, human_marvin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not (from_earth_marvin & from_mars_marvin)",
+          "z3_formula": "Not(And(from_earth_marvin, from_mars_marvin))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not from_earth(X) -> from_mars(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(Or(Not(from_earth_marvin), from_mars_marvin), extraterrestrial_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "alien(marvin)",
+          "z3_formula": "alien_marvin == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "alien(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(alien_marvin, extraterrestrial_marvin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(X) -> not human(X)",
+          "z3_formula": "Implies(extraterrestrial_marvin, not human_marvin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_earth(X) -> human(X)",
+          "z3_formula": "Implies(from_earth_marvin, human_marvin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not from_earth_marvin & not from_mars_marvin",
+          "z3_formula": "Not(And(from_earth_marvin, from_mars_marvin))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not from_earth(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(Not(from_earth_marvin), extraterrestrial_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "extraterrestrial_marvin",
+          "z3_formula": "extraterrestrial_marvin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "alien_marvin",
+          "z3_formula": "alien_marvin == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "alien(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(alien_marvin, extraterrestrial_marvin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not extraterrestrial(X) -> not alien(X)",
+          "z3_formula": "Not(Implies(Not(extraterrestrial_marvin), Not(alien_marvin)))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not extraterrestrial(X) -> not human(X)",
+          "z3_formula": "Not(Implies(Not(extraterrestrial_marvin), Not(human_marvin)))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "from_earth(X) -> human(X)",
+          "z3_formula": "Implies(from_earth_marvin, human_marvin)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not from_earth(X) & not from_mars(X)",
+          "z3_formula": "Not(And(Not(from_earth_marvin), Not(from_mars_marvin)))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not from_earth(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(Not(from_earth_marvin), extraterrestrial_marvin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "alien_marvin",
+          "z3_formula": "alien_marvin == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(alien)",
+          "z3_formula": "extraterrestrial_alien == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not human(extraterrestrial)",
+          "z3_formula": "not human_extraterrestrial == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "human(from_earth)",
+          "z3_formula": "human_from_earth == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "from_earth(X) -> human(X)",
+          "z3_formula": "Implies(from_earth_marvin, human_marvin)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not from_earth_and_mars(marvin)",
+          "z3_formula": "not from_earth_and_mars_marvin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not from_earth(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(not from_earth_marvin, extraterrestrial_marvin)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "alien(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(alien_marvin, extraterrestrial_marvin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(X) -> not human(X)",
+          "z3_formula": "Implies(extraterrestrial_marvin, not human_marvin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "human(X) -> from_earth(X)",
+          "z3_formula": "Implies(human_marvin, from_earth_marvin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "from_earth(X) -> not from_mars(X)",
+          "z3_formula": "Implies(from_earth_marvin, not from_mars_marvin)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "from_earth(X) & from_mars(X)",
+          "z3_formula": "And(from_earth_marvin, from_mars_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not from_earth(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(not from_earth_marvin, extraterrestrial_marvin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "alien_marvin == True or alien_marvin == False or alien_marvin == Unknown",
+          "z3_formula": "Or(alien_marvin == True, alien_marvin == False, alien_marvin == Unknown)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "alien(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(alien_marvin, extraterrestrial_marvin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_mars(X) -> alien(X)",
+          "z3_formula": "Implies(from_mars_marvin, alien_marvin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "extraterrestrial(X) -> not human(X)",
+          "z3_formula": "Implies(extraterrestrial_marvin, not human_marvin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_earth(X) -> human(X)",
+          "z3_formula": "Implies(from_earth_marvin, human_marvin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not from_earth_marvin & from_mars_marvin",
+          "z3_formula": "Not(And(from_earth_marvin, from_mars_marvin))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not from_earth(X) -> extraterrestrial(X)",
+          "z3_formula": "Implies(Not(from_earth_marvin), extraterrestrial_marvin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "extraterrestrial(marvin)",
+          "z3_formula": "extraterrestrial_marvin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "alien(marvin)",
+          "z3_formula": "alien_marvin == True",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 92,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 27
+    },
+    "maxsat_stats": {
+      "satisfied": 22,
+      "excluded": 5,
+      "total_weight": 79,
+      "solve_time_ms": 1.531924121081829
+    },
+    "timing": {
+      "trace_gen_s": 8.04,
+      "extraction_s": 15.594,
+      "dedup_s": 0.498,
+      "maxsat_s": 0.003,
+      "total_s": 24.136
+    }
+  }
+}

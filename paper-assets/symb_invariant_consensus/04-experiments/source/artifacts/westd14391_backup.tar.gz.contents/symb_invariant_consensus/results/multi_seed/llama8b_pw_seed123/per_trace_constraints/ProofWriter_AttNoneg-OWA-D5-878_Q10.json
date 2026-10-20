@@ -1,0 +1,942 @@
+{
+  "pid": "ProofWriter_AttNoneg-OWA-D5-878_Q10",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), rough_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_dave, quiet_dave), young_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_dave, quiet_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_dave, quiet_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_bob, young_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_bob, young_bob), round_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_bob, rough_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), big_bob)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), rough_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), young_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_charlie, blue_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_dave, quiet_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_charlie, young_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_charlie, young_charlie), round_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_charlie, rough_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_charlie, round_charlie), big_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie) == False",
+          "z3_formula": "Not(blue_charlie) == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), young_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> (blue(X) | ~blue(X))",
+          "z3_formula": "Implies(young_charlie, Or(blue_charlie, Not(blue_charlie)))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_charlie, round_charlie), big_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_charlie, blue_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_charlie, round_charlie), rough_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_charlie, young_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_charlie, rough_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_charlie, young_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_charlie, round_charlie), big_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "Not(Not(blue_charlie))",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_charlie, rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_charlie, rough_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_charlie, round_charlie), rough_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_charlie, round_charlie), big_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_charlie, young_charlie), round_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(charlie)",
+          "z3_formula": "Not(blue_charlie) == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), rough_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_dave, quiet_dave), young_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_bob, quiet_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_dave, quiet_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_bob, young_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_bob, young_bob), round_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_bob, rough_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), big_bob)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), rough_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_dave, quiet_dave), young_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_bob, quiet_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_dave, quiet_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_bob, young_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_bob, young_bob), round_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_bob, rough_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), big_bob)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_charlie, young_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie) & blue(charlie)",
+          "z3_formula": "And(young_charlie, blue_charlie) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(charlie)",
+          "z3_formula": "Not(blue_charlie) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue_round_rough(X, Y, Z)",
+          "z3_formula": "blue_round_rough_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_charlie, blue_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(charlie)",
+          "z3_formula": "Not(blue_charlie) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), rough_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_dave, quiet_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_bob, young_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_bob, young_bob), round_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_bob, rough_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), big_bob)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), young_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_charlie, young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_charlie, blue_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_charlie, round_charlie), rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_charlie, rough_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_charlie, young_charlie), round_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_charlie, blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(young_charlie, rough_charlie), round_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_charlie, blue_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 7
+        }
+      ]
+    }
+  ]
+}

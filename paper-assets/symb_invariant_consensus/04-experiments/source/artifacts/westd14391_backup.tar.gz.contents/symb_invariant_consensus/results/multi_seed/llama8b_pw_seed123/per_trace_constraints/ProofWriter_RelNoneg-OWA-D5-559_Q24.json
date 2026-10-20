@@ -1,0 +1,1275 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-559_Q24",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_X, likes_X_mouse), sees_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_tiger, likes_X_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_X, likes_X_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> sees(mouse, tiger)",
+          "z3_formula": "Implies(needs_X_mouse, sees_mouse_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(rabbit) -> likes(rabbit, bear)",
+          "z3_formula": "Implies(nice_rabbit, likes_rabbit_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_X, nice_X), needs_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(bear, mouse)",
+          "z3_formula": "Implies(And(round_X, sees_X_bear), likes_bear_mouse)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(rabbit, tiger) -> likes(tiger, rabbit)",
+          "z3_formula": "Implies(And(likes_X_rabbit, needs_rabbit_tiger), likes_tiger_rabbit)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, tiger)",
+          "z3_formula": "likes_bear_tiger == Unknown",
+          "source_step": 22
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 2,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_X_mouse, likes_X_mouse), sees_X_bear)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_tiger, likes_X_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_X, likes_X_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> sees(X, bear)",
+          "z3_formula": "Implies(needs_X_rabbit, sees_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_X_rabbit, needs_X_tiger), likes_X_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_X, nice_X), needs_X_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(round_X, sees_X_bear), likes_X_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == Unknown",
+          "source_step": 1
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_X_mouse, likes_X_mouse), sees_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_tiger, likes_X_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_X, likes_X_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> sees_tiger_mouse",
+          "z3_formula": "Implies(needs_X_mouse, sees_tiger_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> likes(X, bear)",
+          "z3_formula": "Implies(nice_X, likes_X_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_X, nice_X), needs_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(bear, mouse)",
+          "z3_formula": "Implies(And(round_X, sees_X_bear), likes_bear_mouse)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(rabbit, tiger) -> likes(rabbit, tiger)",
+          "z3_formula": "Implies(And(likes_X_rabbit, needs_rabbit_tiger), likes_rabbit_tiger)",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_bear, nice_bear), needs_bear_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(mouse, X)",
+          "z3_formula": "Implies(needs_tiger_tiger, likes_mouse_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(bear, X)",
+          "z3_formula": "Implies(And(round_rabbit, sees_rabbit_bear), likes_bear_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(rabbit, Y) -> likes(Y, rabbit)",
+          "z3_formula": "Implies(And(likes_rabbit_tiger, needs_rabbit_tiger), likes_tiger_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_tiger, likes_tiger_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_tiger_mouse, likes_tiger_mouse), sees_tiger_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & needs(rabbit, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(And(sees_bear_rabbit, needs_rabbit_tiger), sees_bear_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> sees(mouse, tiger)",
+          "z3_formula": "Implies(needs_rabbit_mouse, sees_mouse_tiger)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, mouse)",
+          "z3_formula": "likes_bear_mouse == True",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_X_mouse, likes_X_mouse), sees_X_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_tiger, likes_X_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_X, likes_X_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> sees(mouse, tiger)",
+          "z3_formula": "Implies(needs_X_mouse, sees_mouse_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> likes(X, bear)",
+          "z3_formula": "Implies(nice_X, likes_X_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_X, nice_X), needs_X_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(bear, mouse)",
+          "z3_formula": "Implies(And(round_X, sees_X_bear), likes_bear_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(rabbit, tiger) -> likes(tiger, rabbit)",
+          "z3_formula": "Implies(And(likes_X_rabbit, needs_rabbit_tiger), likes_tiger_rabbit)",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, rabbit)",
+          "z3_formula": "likes_tiger_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_X_mouse, likes_X_mouse), sees_X_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_tiger, likes_X_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_X, likes_X_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> sees(X, tiger)",
+          "z3_formula": "Implies(needs_X_mouse, sees_X_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_X_rabbit, needs_X_tiger), likes_X_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_X, nice_X), needs_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(bear, mouse)",
+          "z3_formula": "Implies(And(round_X, sees_X_bear), likes_bear_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, mouse)",
+          "z3_formula": "likes_bear_mouse == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, rabbit)",
+          "z3_formula": "eats_bear_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_X_mouse, likes_X_mouse), sees_X_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_X, nice_X), needs_X_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(round_X, sees_X_bear), likes_X_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_X, likes_X_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & sees(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(likes_X_mouse, sees_X_mouse), sees_X_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(X, tiger) -> likes(X, tiger)",
+          "z3_formula": "Implies(And(likes_X_rabbit, needs_X_tiger), likes_X_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == False",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit) & sees(bear, rabbit)",
+          "z3_formula": "And(round_rabbit, sees_bear_rabbit) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(bear, X) -> likes(bear, mouse)",
+          "z3_formula": "Implies(And(round_rabbit, sees_bear_rabbit), likes_bear_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(bear, X)",
+          "z3_formula": "Implies(And(sees_tiger_mouse, likes_tiger_mouse), sees_bear_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_tiger, likes_tiger_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_mouse_tiger, likes_mouse_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(rabbit, tiger) -> likes(tiger, rabbit)",
+          "z3_formula": "Implies(And(likes_mouse_rabbit, needs_rabbit_tiger), likes_tiger_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(rabbit, tiger) -> likes(tiger, rabbit)",
+          "z3_formula": "Implies(And(likes_rabbit_tiger, needs_rabbit_tiger), likes_tiger_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, rabbit)",
+          "z3_formula": "likes_tiger_rabbit == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit) & sees(bear, rabbit)",
+          "z3_formula": "And(round_rabbit, sees_bear_rabbit) == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(bear, X) -> likes(bear, mouse)",
+          "z3_formula": "Implies(And(round_rabbit, sees_bear_rabbit), likes_bear_mouse)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> likes(X, bear)",
+          "z3_formula": "Implies(nice_rabbit, likes_rabbit_bear)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_bear, nice_bear), needs_bear_bear)",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_bear, nice_bear), needs_bear_bear)",
+          "source_step": 29
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 30
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, rabbit)",
+          "z3_formula": "likes_bear_rabbit == True",
+          "source_step": 31
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 32
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, rabbit)",
+          "z3_formula": "likes_bear_rabbit == True",
+          "source_step": 33
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, tiger)",
+          "z3_formula": "likes_bear_tiger == True",
+          "source_step": 34
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 35
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, rabbit)",
+          "z3_formula": "likes_bear_rabbit == True",
+          "source_step": 36
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, tiger)",
+          "z3_formula": "likes_bear_tiger == True",
+          "source_step": 37
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_X_mouse, likes_X_mouse), sees_X_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_tiger, likes_X_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_X, likes_X_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> sees(mouse, tiger)",
+          "z3_formula": "Implies(needs_X_mouse, sees_mouse_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> likes(X, bear)",
+          "z3_formula": "Implies(nice_X, likes_X_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_X, nice_X), needs_X_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(bear, mouse)",
+          "z3_formula": "Implies(And(round_X, sees_X_bear), likes_bear_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(X, tiger) -> likes(tiger, rabbit)",
+          "z3_formula": "Implies(And(likes_X_rabbit, needs_X_tiger), likes_tiger_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, tiger)",
+          "z3_formula": "likes_bear_tiger == Unknown",
+          "source_step": 19
+        }
+      ]
+    }
+  ]
+}

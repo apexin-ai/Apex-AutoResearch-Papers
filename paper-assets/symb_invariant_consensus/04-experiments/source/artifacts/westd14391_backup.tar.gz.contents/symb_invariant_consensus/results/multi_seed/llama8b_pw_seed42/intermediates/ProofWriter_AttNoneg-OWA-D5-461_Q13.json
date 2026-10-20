@@ -1,0 +1,1259 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-461_Q13",
+    "problem": "Anne is big. Anne is kind. Anne is quiet. Anne is rough. Anne is white. Fiona is big. Gary is big. Gary is cold. Gary is kind. Harry is kind. If something is kind then it is big. If something is white and kind then it is rough. If Harry is quiet and Harry is cold then Harry is big. If something is quiet then it is big. If something is cold and rough then it is quiet. All kind things are young. If Harry is kind and Harry is cold then Harry is white. If something is young and kind then it is cold.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is not rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nKind(Anne, True) ::: Anne is kind.\nQuiet(Anne, True) ::: Anne is quiet.\nRough(Anne, True) ::: Anne is rough.\nWhite(Anne, True) ::: Anne is white.\nBig(Fiona, True) ::: Fiona is big.\nBig(Gary, True) ::: Gary is big.\nCold(Gary, True) ::: Gary is cold.\nKind(Gary, True) ::: Gary is kind.\nKind(Harry, True) ::: Harry is kind.\n\nRules:\nKind($x, True) >>> Big($x, True) ::: If something is kind then it is big.\nWhite($x, True) && Kind($x, True) >>> Rough($x, True) ::: If something is white and kind then it is rough.\nQuiet(Harry, True) && Cold(Harry, True) >>> Big(Harry, True) ::: If Harry is quiet and Harry is cold then Harry is big.\nQuiet($x, True) >>> Big($x, True) ::: If something is quiet then it is big.\nCold($x, True) && Rough($x, True) >>> Quiet($x, True) ::: If something is cold and rough then it is quiet.\nKind($x, True) >>> Young($x, True) ::: All kind things are young.\nKind(Harry, True) && Cold(Harry, True) >>> White(Harry, True) ::: If Harry is kind and Harry is cold then Harry is white.\nYoung($x, True) && Kind($x, True) >>> Cold($x, True) ::: If something is young and kind then it is cold.\n\nQuery:\nRough(Gary, False) ::: Gary is not rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 71.5,
+      "True": 36.5,
+      "Unknown": 175.0
+    },
+    "answer_counts": {
+      "True": 1,
+      "Unknown": 7,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use the given statements to determine the properties of Gary.\n\nGiven statements:\n1. Anne is big. \n2. Anne is kind. \n3. Anne is quiet. \n4. Anne is rough. \n5. Anne is white. \n6. Fiona is big. \n7. Gary is big. \n8. Gary is cold. \n9. Gary is kind. \n10. Harry is kind. \n11. If something is kind then it is big. \n12. If something is white and kind then it is rough. \n13. If Harry is quiet and Harry is cold then Harry is big. \n14. If something is quiet then it is big. \n15. If something is cold and rough then it is quiet. \n16. All kind things are young. \n17. If Harry is kind and Harry is cold then Harry is white. \n18. If something is young and kind then it is cold.\n\nThe statement to determine is: Gary is not rough.\n\nStep 1: Analyze statement 11. It says that if something is kind then it is big. \nWe have Gary is kind (statement 9) and Gary is big (statement 7).\n\nStep 2: Analyze statement 14. It says that if something is quiet then it is big. \nWe don't know if Gary is quiet or not. However, we have Gary is big (statement 7).\n\nStep 3: Analyze statement 15. It says that if something is cold and rough then it is quiet. \nWe have Gary is cold (statement 8). But we don't know if Gary is rough or not. We need to analyze the statements related to being rough.\n\nStep 4: Analyze statement 12. It says that if something is white and kind then it is rough. \nWe have Gary is kind (statement 9), but we don't know if Gary is white or not.\n\nStep 5: Analyze statement 16. It says that all kind things are young. \nWe have Gary is kind (statement 9), but this statement does not give us any information about Gary being rough or not.\n\nStep 6: Analyze statement 18. It says that if something is young and kind then it is cold. \nWe have Gary is kind (statement 9), but this statement does not give us any information about Gary being rough or not.\n\nStep 7: Analyze statement 17. It says that if Harry is kind and Harry is cold then Harry is white. \nWe don't have any information about Harry being rough or not. But this statement does not give us any information about Gary being rough or not.\n\nStep 8: Analyze statement 13. It says that if Harry is quiet and Harry is cold then Harry is big. \nWe don't have any information about Harry being rough or not. But this statement does not give us any information about Gary being rough or not.\n\nStep 9: Since we have Gary is cold (statement 8) and we are trying to determine if Gary is rough, let's look for a statement that could relate being cold to being rough. \nWe have statement 15, which says that if something is cold and rough then it is quiet. But we don't know if Gary is quiet or not.\n\nStep 10: Since we don't know if Gary is quiet or not, let's look for a statement that could relate being quiet to being rough. \nWe have statement 15, which says that if something is cold and rough then it is quiet. But we don't know if Gary is cold and rough or not.\n\nStep 11: Since we have Gary is kind (statement 9) and we know that all kind things are young (statement 16), let's look for a statement that could relate being kind and young to being rough. \nWe have statement 18, which says that if something is young and kind then it is cold. But this statement does not give us any information about Gary being rough or not.\n\nStep 12: We know that all kind things are young (statement 16) and we have Gary is kind (statement 9). Let's look for a statement that could relate being young to being rough. \nWe don't have any information about Gary being rough or not.\n\nStep 13: We know that if something is white and kind then it is rough (statement 12). But we don't know if Gary is white or not.\n\nStep 14: We know that if something is cold and rough then it is quiet (statement 15). But we don't know if Gary is cold and rough or not.\n\nSince we have Gary is kind (statement 9) and Gary is big (statement 7), we can conclude that Gary is not rough, because if Gary is kind, then it is big (statement 11), and there is no statement that links being big and kind to being rough. Therefore, the statement \"Gary is not rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given information step by step and use the rules to determine whether Gary is not rough.\n\n1. We are given that Gary is cold and Gary is kind.\n2. We know that if something is kind, then it is big. So, Gary is big.\n3. We also know that if something is kind, then it is young.\n4. Since Gary is kind and young, we can conclude that Gary is cold.\n\nNow, let's analyze the statements that relate to roughness:\n\n1. If something is white and kind, then it is rough.\n2. If something is cold and rough, then it is quiet.\n\nWe don't know whether Gary is white or not, so we cannot conclude that Gary is rough based on rule 1.\n\nHowever, we do know that Gary is cold, so if Gary were rough, we could conclude that Gary is quiet based on rule 2.\n\nNow, let's analyze the statements that relate to quietness:\n\n1. If Harry is quiet and Harry is cold, then Harry is big.\n2. If something is quiet, then it is big.\n3. If something is cold and rough, then it is quiet.\n\nWe don't have enough information about Harry's characteristics to use rule 1. We also don't know whether Gary is quiet or not, so we cannot use rule 2 to conclude that Gary is big.\n\nHowever, we can use rule 3 to conclude that if Gary were rough, then Gary would be quiet.\n\nNow, let's analyze the statements that relate to the relationship between rough and quiet:\n\n1. If something is quiet, then it is big.\n2. If Harry is quiet and Harry is cold, then Harry is big.\n3. If Harry is quiet and Harry is cold then Harry is big.\n\nWe already concluded that if Gary were rough, then Gary would be quiet. We also know that if Gary were quiet, then Gary would be big (based on rule 1).\n\nHowever, we don't know whether Gary is quiet or not, and we don't know whether Gary is big or not.\n\nSo, we cannot conclude that Gary is not rough.\n\nTherefore, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to determine the properties of each person based on the given information and then check if Gary is not rough.\n\n1. Anne is big, kind, quiet, rough, and white.\n2. Fiona is big, but we don't have enough information to determine other properties.\n3. Gary is big, cold, and kind.\n4. Harry is kind, and cold, but we don't have enough information to determine if he is quiet or white.\n\nFrom the given rules:\n\n1. If something is kind then it is big. (Rule 1)\n   - Gary is kind, so Gary is big (matches with point 3).\n   - Harry is kind, so Harry is big (matches with point 4).\n\n2. If something is white and kind then it is rough. (Rule 2)\n   - We don't have enough information about Fiona or Harry being white.\n\n3. If Harry is quiet and Harry is cold then Harry is big. (Rule 3)\n   - We don't have enough information about Harry being quiet yet.\n\n4. If something is quiet then it is big. (Rule 4)\n   - We don't have enough information about Anne, Fiona, or Gary being quiet.\n\n5. If something is cold and rough then it is quiet. (Rule 5)\n   - Gary is cold, but we don't know if Gary is rough yet.\n\n6. All kind things are young. (Rule 6)\n   - We don't have enough information about Anne, Fiona, or Gary being young.\n\n7. If Harry is kind and Harry is cold then Harry is white. (Rule 7)\n   - We know Harry is kind and cold, so Harry is white.\n\n8. If something is young and kind then it is cold. (Rule 8)\n   - We don't have enough information about Anne, Fiona, or Gary being young.\n\nNow, let's analyze the properties of Gary and Harry:\n\n- Gary is big (from Rule 1), cold, and kind (from point 3).\n- Harry is kind, cold, and white (from points 4 and 7).\n\nFrom Rule 5, if something is cold and rough then it is quiet. To determine if Gary is rough or not, let's analyze the possible scenarios:\n\n- If Gary is rough, then Gary is quiet (from Rule 5), but we don't have enough information to confirm if Gary is quiet or not.\n- If Gary is not rough, we need to check if there are any other properties that can be applied to Gary.\n\nFrom Rule 4, if something is quiet then it is big. We don't have enough information about Gary being quiet, but we know Gary is big (from Rule 1).\n\nFrom Rule 3, if Harry is quiet and Harry is cold then Harry is big. We know Harry is cold, but we don't have enough information about Harry being quiet yet.\n\nFrom Rule 1, if something is kind then it is big. Gary is kind, so Gary is big (matches with point 3).\n\nSince Gary is big (from point 3) and we know Harry is big (from Rule 1), Rule 3 cannot be applied to Harry.\n\nFrom Rule 8, if something is young and kind then it is cold. We don't have enough information about Anne, Fiona, or Gary being young.\n\nFrom Rule 7, if Harry is kind and Harry is cold then Harry is white. We know Harry is kind and cold, so Harry is white.\n\nFrom Rule 6, all kind things are young. We don't have enough information about Anne, Fiona, or Gary being young.\n\nFrom Rule 5, if something is cold and rough then it is quiet. We don't have enough information about Gary being rough yet.\n\nFrom Rule 4, if something is quiet then it is big. We don't have enough information about Gary being quiet.\n\nFrom Rule 3, if Harry is quiet and Harry is cold then Harry is big. We don't have enough information about Harry being quiet.\n\nFrom Rule 2, if something is white and kind then it is rough. We don't have enough information about Fiona or Harry being white.\n\nFrom Rule 1, if something is kind then it is big. Gary is kind, so Gary is big (matches with point 3).\n\nNow, let's go back to the statement: Gary is not rough.\n\nWe don't have enough information to confirm if Gary is rough or not. Therefore, the statement \"Gary is not rough\" is unknown.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and apply them step by step to determine whether Gary is not rough.\n\nGiven statements:\n\n1. Anne is big.\n2. Anne is kind.\n3. Anne is quiet.\n4. Anne is rough.\n5. Anne is white.\n6. Fiona is big.\n7. Gary is big.\n8. Gary is cold.\n9. Gary is kind.\n10. Harry is kind.\n11. If something is kind then it is big.\n12. If something is white and kind then it is rough.\n13. If Harry is quiet and Harry is cold then Harry is big.\n14. If something is quiet then it is big.\n15. If something is cold and rough then it is quiet.\n16. All kind things are young.\n17. If Harry is kind and Harry is cold then Harry is white.\n18. If something is young and kind then it is cold.\n\nNow, we will apply these statements to determine whether Gary is not rough.\n\n1. Gary is kind (given statement 9).\n2. If something is kind then it is big (statement 11).\n   Therefore, Gary is big (Gary is kind and all kind things are big).\n\n3. Gary is big (already determined).\n4. If something is big and quiet then it is true that it is quiet (statement 14).\n   Since we don't have any statement saying Gary is quiet, we can't determine if Gary is quiet or not.\n\n5. Gary is cold (given statement 8).\n6. If something is cold and rough then it is quiet (statement 15).\n   We can't determine if Gary is quiet or not (see above), but we can say if Gary is rough then Gary is quiet.\n\n7. If something is white and kind then it is rough (statement 12).\n   Since we don't have any statement saying Gary is white, we can't determine if Gary is rough or not.\n\nHowever, since Gary is kind (1) and all kind things are young (statement 16), Gary is young.\nAlso, since Gary is kind (1) and young (Gary is kind and all kind things are young), Gary is cold (statement 18).\n\nWe can now use the given statements to find a contradiction.\n\n1. Gary is cold (determined above).\n2. Gary is kind (given statement 9).\n3. If Gary is kind and Gary is cold then Gary is white (statement 17).\n   Therefore, Gary is white.\n\n4. Gary is white (determined above).\n5. Gary is kind (given statement 9).\n6. If something is white and kind then it is rough (statement 12).\n   Therefore, Gary is rough.\n\nHowever, if Gary is rough, then Gary is quiet (statement 15). But since Gary is quiet, then Gary is big (statement 14). But we already know that Gary is big, so this doesn't provide any contradiction.\n\nBut we have a statement that says: If Harry is quiet and Harry is cold then Harry is big (statement 13).\nWe know that: Harry is kind (given statement 10).\nWe also know that: Harry is kind and Harry is cold then Harry is white (statement 17).\nAnd we know that: If Harry is white and Harry is kind then Harry is rough (statement 12).\n\nSince Harry is kind (given statement 10), then Harry is young (all kind things are young, statement 16).\nAlso, since Harry is kind (given statement 10) and young, Harry is cold (statement 18).\nAnd since Harry is kind (given statement 10) and cold, Harry is white (statement 17).\nAnd since Harry is white (determined above) and kind (given statement 10), Harry is rough (statement 12).\n\nNow we have: Harry is quiet and Harry is cold (since we don't have any statement saying Harry is quiet or cold, we are assuming it for a moment).\nTherefore, Harry is big (statement 13).\nBut since Harry is big (determined above), then Harry is quiet (statement 14).\nAnd since Harry is quiet (determined above), then Harry is big (statement 14).\nAnd since Harry is big (determined above), then Harry is quiet (statement 14).\nThis creates a loop and we can't determine if Harry is quiet or not.\n\nHowever, since we have already determined that Harry is quiet and cold, then Harry is big (statement 13).\nAnd since Harry is big, then Harry is quiet (statement 14).\nNow we have a contradiction.\n\nGiven statements 1-18, we have a contradiction, which means that some statement in the set of given statements is false. However, we can't determine which statement is false.\n\nWe can't determine if Gary is rough or not (see above).\nSince we don't have any statement saying Gary is rough or not, we can't determine if the statement \"Gary is not rough\" is true or false.\n\nTherefore, the statement \"Gary is not rough\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n1. Anne is big. Anne is kind. Anne is quiet. Anne is rough. Anne is white.\n2. Fiona is big.\n3. Gary is big. Gary is cold. Gary is kind.\n4. Harry is kind. \n5. If something is kind then it is big.\n6. If something is white and kind then it is rough.\n7. If Harry is quiet and Harry is cold then Harry is big.\n8. If something is quiet then it is big.\n9. If something is cold and rough then it is quiet.\n10. All kind things are young.\n11. If Harry is kind and Harry is cold then Harry is white.\n12. If something is young and kind then it is cold.\n\nStatement to be determined: Gary is not rough.\n\nWe can start by looking at the statement \"Gary is not rough.\" Since we do not have a direct information about Gary being rough or not, we need to derive it from the given information.\n\nFrom statement 5, we know that if something is kind, then it is big. Since Gary is kind (statement 3), we can conclude that Gary is big.\n\nFrom statement 6, we know that if something is white and kind, then it is rough. However, we do not know if Gary is white. We need to find out if Gary is white to determine if he is rough.\n\nFrom statement 3, we know that Gary is cold. From statement 9, if something is cold and rough, then it is quiet. However, we do not have any information about Gary being quiet or not.\n\nLet's try to derive information about Harry to see if we can find any clues about Gary.\n\nFrom statement 10, we know that all kind things are young. Since Harry is kind (statement 4), we can conclude that Harry is young.\n\nFrom statement 11, we know that if Harry is kind and Harry is cold, then Harry is white. Since we know Harry is kind (statement 4) and Harry is cold (derived from statement 7), we can conclude that Harry is white.\n\nFrom statement 12, we know that if something is young and kind, then it is cold. Since Harry is young (derived from statement 10) and kind (statement 4), we can conclude that Harry is cold.\n\nNow we know that Harry is white (derived from statement 11), but we still do not know if Gary is white.\n\nHowever, from statement 1, we know that Anne is white and rough. Since we do not have any other information about Anne being kind or not, we cannot conclude that being white and rough is exclusive to kind things. Therefore, we cannot conclude that Gary is not rough based on the information about Anne.\n\nTherefore, we still do not have enough information to determine if Gary is rough or not. The statement \"Gary is not rough\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. \n\n1. Anne is big. \n2. Anne is kind. \n3. Anne is quiet. \n4. Anne is rough. \n5. Anne is white. \n6. Fiona is big. \n7. Gary is big. \n8. Gary is cold. \n9. Gary is kind. \n10. Harry is kind. \n11. If something is kind then it is big. \n12. If something is white and kind then it is rough. \n13. If Harry is quiet and Harry is cold then Harry is big. \n14. If something is quiet then it is big. \n15. If something is cold and rough then it is quiet. \n16. All kind things are young. \n17. If Harry is kind and Harry is cold then Harry is white. \n18. If something is young and kind then it is cold.\n\nFrom statement 11, we know that if something is kind, then it is big.\n\nFrom statement 9, we know that Gary is kind, so Gary is big (by statement 11).\n\nFrom statement 17, we know that if Harry is kind and Harry is cold then Harry is white. \nFrom statement 10, we know that Harry is kind.\nFrom statement 8, we know that Harry is cold. \nTherefore, Harry is white (by statement 17).\n\nFrom statement 12, we know that if something is white and kind then it is rough. \nFrom statement 9, we know that Gary is kind.\nFrom statement 8, we know that Gary is cold.\nSince Gary is big and Gary is kind, we can't determine whether Gary is white or not. However, from statement 17, we know that Harry is white, not Gary. \n\nFrom statement 10, we know that Harry is kind.\nFrom statement 8, we know that Harry is cold.\nFrom statement 18, we know that if something is young and kind then it is cold. \nFrom statement 16, we know that all kind things are young. \nTherefore, Harry is young.\n\nFrom statement 16, we know that all kind things are young.\nFrom statement 10, we know that Harry is kind. \nTherefore, Harry is young.\n\nNow we need to determine whether Harry is quiet or not. \nFrom statement 14, we know that if something is quiet then it is big. \nFrom statement 13, we know that if Harry is quiet and Harry is cold then Harry is big. \nFrom statement 8, we know that Harry is cold. \nWe still don't know whether Harry is quiet or not.\n\nFrom statement 15, we know that if something is cold and rough then it is quiet. \nFrom statement 8, we know that Harry is cold. \nWe still don't know whether Harry is rough or not.\n\nFrom statement 10, we know that Harry is kind. \nFrom statement 11, we know that if something is kind then it is big. \nFrom statement 16, we know that all kind things are young. \nTherefore, Harry is big (by transitive property).\n\nFrom statement 13, we know that if Harry is quiet and Harry is cold then Harry is big. \nFrom statement 8, we know that Harry is cold. \nFrom the result above, we know that Harry is big. \nTherefore, we can't determine whether Harry is quiet or not.\n\nNow let's go back to Gary. \nFrom statement 14, we know that if something is quiet then it is big. \nFrom statement 8, we know that Gary is cold. \nWe still don't know whether Gary is quiet or not.\n\nFrom statement 15, we know that if something is cold and rough then it is quiet. \nWe still don't know whether Gary is rough or not.\n\nFrom statement 11, we know that if something is kind then it is big. \nFrom statement 9, we know that Gary is kind. \nTherefore, Gary is big.\n\nFrom statement 12, we know that if something is white and kind then it is rough. \nWe still don't know whether Gary is white or not.\n\nFrom statement 12, we know that if something is white and kind then it is rough. \nFrom statement 17, we know that if Harry is kind and Harry is cold then Harry is white. \nFrom statement 8, we know that Harry is cold. \nFrom statement 10, we know that Harry is kind. \nTherefore, Harry is white.\n\nFrom statement 12, we know that if something is white and kind then it is rough. \nFrom the result above, we know that Harry is white and Harry is kind. \nTherefore, Harry is rough.\n\nFrom statement 15, we know that if something is cold and rough then it is quiet. \nFrom statement 8, we know that Harry is cold. \nFrom the result above, we know that Harry is rough. \nTherefore, Harry is quiet.\n\nFrom statement 13, we know that if Harry is quiet and Harry is cold then Harry is big. \nFrom the result above, we know that Harry is quiet and Harry is cold. \nTherefore, Harry is big.\n\nWe have finally found the contradiction: statement 3 says that Anne is quiet, statement 4 says that Anne is rough, and statement 13 says that if Harry is quiet and Harry is cold then Harry is big. However, we know that Harry is quiet (from the result above), Harry is cold (from statement 8), and Harry is big (from the result above). Therefore, we can conclude that statement 3 is true and statement 4 is true. However, statement 13 is also true, and from statement 13, we know that if Harry is quiet and Harry is cold then Harry is big, which is true. This means that statement 13 is true, and therefore, Harry is big. However, statement 4 is true, and from statement 4, we know that Anne is rough. Since Harry is big, we can conclude that Anne is not rough.\n\nFrom statement 12, we know that if something is white and kind then it is rough. \nFrom statement 17, we know that if Harry is kind and Harry is cold then Harry is white. \nFrom statement 8, we know that Harry is cold. \nFrom statement 10, we know that Harry is kind. \nTherefore, Harry is white.\n\nFrom statement 12, we know that if something is white and kind then it is rough. \nFrom the result above, we know that Harry is white and Harry is kind. \nTherefore, Harry is rough.\n\nFrom statement 15, we know that if something is cold and rough then it is quiet. \nFrom statement 8, we know that Harry is cold. \nFrom the result above, we know that Harry is rough. \nTherefore, Harry is quiet.\n\nFrom statement 14, we know that if something is quiet then it is big. \nFrom the result above, we know that Harry is quiet. \nTherefore, Harry is big.\n\nNow we need to determine whether Gary is rough or not. \nFrom statement 11, we know that if something is kind then it is big. \nFrom statement 9, we know that Gary is kind. \nTherefore, Gary is big.\n\nFrom statement 12, we know that if something is white and kind then it is rough. \nWe still don't know whether Gary is white or not.\n\nFrom statement 12, we know that if something is white and kind then it is rough. \nFrom statement 17, we know that if Harry is kind and Harry is cold then Harry is white. \nFrom statement 8, we know that Harry is cold. \nFrom statement 10, we know that Harry is kind. \nTherefore, Harry is white.\n\nFrom statement 12, we know that if something is white and kind then it is rough. \nFrom the result above, we know that Harry is white and Harry is kind. \nTherefore, Harry is rough.\n\nFrom statement 15, we know that if something is cold and rough then it is quiet. \nFrom statement 8, we know that Harry is cold. \nFrom the result above, we know that Harry is rough. \nTherefore, Harry is quiet.\n\nFrom statement 14, we know that if something is quiet then it is big. \nFrom the result above, we know that Harry is quiet. \nTherefore, Harry is big.\n\nFrom statement 16, we know that all kind things are young. \nFrom statement 10, we know that Harry is kind. \nTherefore, Harry is young.\n\nFrom statement 18, we know that if something is young and kind then it is cold. \nFrom the result above, we know that Harry is young and Harry is kind. \nTherefore, Harry is cold.\n\nFrom statement 8, we know that Gary is cold.\n\nFrom statement 11, we know that if something is kind then it is big. \nFrom statement 9, we know that Gary is kind. \nTherefore, Gary is big.\n\nFrom statement 14, we know that if something is quiet then it is big. \nWe still don't know whether Gary is quiet or not.\n\nFrom statement 15, we know that if something is cold and rough then it is quiet. \nWe still don't know whether Gary is rough or not.\n\nFrom statement 8, we know that Gary is cold.\n\nNow let's go back to statement 12. \nFrom statement 12, we know that if something is white and kind then it is rough. \nFrom statement 17, we know that if Harry is kind and Harry is cold then Harry is white. \nFrom statement 8, we know that Harry is cold. \nFrom statement 10, we know that Harry is kind. \nTherefore, Harry is white.\n\nFrom statement 12, we know that if",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'Gary is not rough' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given statements:\n   - Gary is big.\n   - Gary is cold.\n   - Gary is kind.\n\n2. We know that if something is kind then it is big. \n   - Since Gary is kind, we can conclude that Gary is indeed big (this is already given).\n\n3. We also know that if something is kind, then it is young.\n   - Since Gary is kind, we can conclude that Gary is young.\n\n4. Now, we need to find a relation between Gary's characteristics and 'rough'. \n   - We know that if something is white and kind then it is rough.\n   - We also know that if Harry is quiet and Harry is cold then Harry is big, but this does not directly relate to Gary.\n   - If something is quiet then it is big, but we don't know if Gary is quiet or not.\n   - If something is cold and rough then it is quiet, but we don't have enough information to conclude if Gary is quiet or not.\n\n5. Now let's focus on Harry. \n   - We know that Harry is kind.\n   - If Harry is kind and Harry is cold then Harry is white.\n   - If Harry is kind and Harry is cold, then we can't conclude if Harry is rough or not, but we know Harry is white.\n   - If something is young and kind then it is cold, and we know Harry is young and kind, so we can conclude that Harry is cold.\n\n6. Now, let's connect Gary and Harry. \n   - We don't have enough information to directly conclude that Gary is rough or not, but we can infer that since Gary is big, kind, and cold, and Harry is also kind and cold, they might share some characteristics.\n\n7. Given that we know Gary is big, kind, and cold, but we don't have enough information to directly conclude that Gary is rough or not, we cannot determine whether 'Gary is not rough' is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve the given problem, let's break it down into steps and use the given information to determine the properties of each person.\n\n1. We are given the following statements:\n   - Anne is big.\n   - Anne is kind.\n   - Anne is quiet.\n   - Anne is rough.\n   - Anne is white.\n   - Fiona is big.\n   - Gary is big.\n   - Gary is cold.\n   - Gary is kind.\n   - Harry is kind.\n   - If something is kind then it is big.\n   - If something is white and kind then it is rough.\n   - If Harry is quiet and Harry is cold then Harry is big.\n   - If something is quiet then it is big.\n   - If something is cold and rough then it is quiet.\n   - All kind things are young.\n   - If Harry is kind and Harry is cold then Harry is white.\n   - If something is young and kind then it is cold.\n\n2. We need to determine whether Gary is not rough. This is equivalent to saying Gary is rough.\n\n3. Let's start with the given information about Gary:\n   - Gary is big.\n   - Gary is cold.\n   - Gary is kind.\n\n4. We can use the given rules to analyze Gary's properties:\n   - Since Gary is kind, we know that Gary is big (Rule 1).\n   - There is no direct rule that says Gary is rough, but we can try to derive it from other rules.\n\n5. We will try to find a contradiction or a conclusion that leads us to the answer.\n\n6. Since Gary is big (Rule 1) and Gary is kind (Rule 2), we can't derive any new information about Gary from these two statements.\n\n7. Let's consider the statement \"If something is cold and rough then it is quiet\" (Rule 5). We can try to apply this rule to Gary.\n\n8. However, this rule does not directly apply to Gary because we don't know if Gary is quiet. But we can try to derive Gary's quietness from other rules.\n\n9. The statement \"If Harry is quiet and Harry is cold then Harry is big\" (Rule 3) implies that if Harry is cold, Harry is quiet or big. We can use this rule to analyze Gary.\n\n10. Since Gary is cold, we can use Rule 3 to conclude that either Gary is quiet or big. But we already know that Gary is big (Rule 1), so this rule does not provide any new information.\n\n11. Now let's consider the statement \"If something is quiet then it is big\" (Rule 4). We can try to apply this rule to Gary.\n\n12. Since Gary is big (Rule 1) and there is no direct information about Gary's quietness, we can use Rule 4 to conclude that if Gary is quiet, then Gary is big, which is already known.\n\n13. We still can't derive Gary's roughness from these rules.\n\n14. Now let's consider the statement \"If something is white and kind then it is rough\" (Rule 2). We can try to apply this rule to Gary.\n\n15. Since Gary is kind (Rule 2), we can try to derive Gary's color. But we can't do that because there is no information about Gary's color.\n\n16. However, we can consider the statement \"If Harry is kind and Harry is cold then Harry is white\" (Rule 6). We can use this rule to analyze Gary.\n\n17. Since Gary is kind (Rule 2) and Gary is cold (Rule 2), we can use Rule 6 to conclude that Gary is white.\n\n18. Now we can use Rule 2 to analyze Gary's roughness.\n\n19. Since Gary is white and kind, we can use Rule 2 to conclude that Gary is rough.\n\n20. Since Gary is rough, the statement \"Gary is not rough\" is false.\n\nThe final answer is: $\\boxed{\\text{False}}$",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Gary is not rough' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is big. Gary is big. \n   This information tells us that Gary is big, but it doesn't tell us anything about Gary being rough.\n\n2. Gary is cold. Gary is kind.\n   We now know that Gary is kind and cold, but we still don't know anything about Gary being rough.\n\n3. If something is kind then it is big. \n   Since Gary is kind, this statement tells us that Gary is indeed big, but again, it doesn't tell us anything about Gary being rough.\n\n4. If something is white and kind then it is rough. \n   This statement gives us information about something being white and kind, but it doesn't tell us anything about Gary being rough.\n\n5. Harry is kind. Harry is cold. If Harry is kind and Harry is cold then Harry is white.\n   This information tells us that Harry is white because he is kind and cold. It doesn't tell us anything about Gary being rough.\n\n6. If something is white and kind then it is rough. \n   Since Harry is white and kind, this statement tells us that Harry is rough. However, it still doesn't tell us anything about Gary being rough.\n\n7. If Harry is quiet and Harry is cold then Harry is big. \n   This statement tells us that if Harry is quiet and cold, he is big. However, we don't know if Harry is quiet or not.\n\n8. If something is quiet then it is big. \n   This statement tells us that if something is quiet, it is big. However, we still don't know if Harry is quiet or not.\n\n9. If something is cold and rough then it is quiet. \n   Since Harry is cold and rough, this statement tells us that Harry is quiet.\n\n10. If Harry is quiet and Harry is cold then Harry is big.\n    Now that we know Harry is quiet and cold, this statement tells us that Harry is indeed big.\n\n11. If Harry is quiet and Harry is cold then Harry is big. If something is quiet then it is big. \n    From these two statements, we can conclude that since Harry is quiet, he is big. However, we still don't know anything about Gary being rough.\n\n12. All kind things are young.\n    This statement tells us that kind things are young, but it doesn't tell us anything about Gary being rough.\n\n13. If Harry is kind and Harry is cold then Harry is white. \n    We already know that Harry is white because he is kind and cold.\n\n14. If something is young and kind then it is cold.\n    This statement tells us that if something is young and kind, it is cold. However, it still doesn't tell us anything about Gary being rough.\n\nNow, let's analyze the statements again and see if we can find any information about Gary being rough.\n\nFrom statement 4, we know that if something is white and kind, it is rough. We know that Harry is white and kind, so Harry is indeed rough. However, we still don't know anything about Gary being rough.\n\nFrom statement 9, we know that if something is cold and rough, it is quiet. Since Harry is cold and rough, Harry is quiet. However, we still don't know anything about Gary being rough.\n\nFrom statement 1, we know that Gary is big. From statement 3, we know that if something is kind, it is big. Since Gary is kind, we can conclude that Gary is indeed big.\n\nFrom statement 2, we know that Gary is cold. From statement 6, we know that if something is white and kind, it is rough. Since Gary is cold and kind, we can't conclude that Gary is rough.\n\nHowever, we can't conclude that Gary is rough or not rough. We can only conclude that Gary is big and cold. \n\nTherefore, we can't determine whether the statement 'Gary is not rough' is true or false. It is unknown. \n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we'll use a set of rules and logical deductions to determine the properties of each person. \n\nGiven statements:\n1. Anne is big.\n2. Anne is kind.\n3. Anne is quiet.\n4. Anne is rough.\n5. Anne is white.\n6. Fiona is big.\n7. Gary is big.\n8. Gary is cold.\n9. Gary is kind.\n10. Harry is kind.\n11. If something is kind then it is big.\n12. If something is white and kind then it is rough.\n13. If Harry is quiet and Harry is cold then Harry is big.\n14. If something is quiet then it is big.\n15. If something is cold and rough then it is quiet.\n16. All kind things are young.\n17. If Harry is kind and Harry is cold then Harry is white.\n18. If something is young and kind then it is cold.\n\nFirst, we'll check the given information about Gary:\n- Gary is big (7)\n- Gary is cold (8)\n- Gary is kind (9)\n\nNow, let's use the given rules to find the properties of Gary:\n- Gary is big (7) and kind (9), so Gary is young (16) because all kind things are young (11).\n- Since Gary is young (16) and kind (9), Gary is cold (18) because something is young and kind then it is cold.\n\nNow, we need to determine whether Gary is rough or not. \n\nFrom the given information, we have:\n- Gary is cold (8)\n- Gary is kind (9)\n\nWe don't have any direct information about Gary being white or quiet. However, we can use the rule (15) that \"If something is cold and rough then it is quiet.\" This implies that if Gary is quiet, then he is rough. But we have to check whether Gary is quiet or not.\n\nFrom the given information, we have:\n- Anne is quiet (3)\n- Anne is big (1)\n\nUsing the rule (14) that \"If something is quiet then it is big,\" we can't determine whether Anne is quiet because we already know that Anne is big.\n\nNow, let's check the given information about Harry:\n- Harry is kind (10)\n- If Harry is kind and Harry is cold then Harry is white (17)\n- If Harry is quiet and Harry is cold then Harry is big (13)\n\nWe know that Harry is kind (10) and cold (if Harry is kind and Harry is cold then Harry is white (17)). Using the rule (16) that all kind things are young, Harry is young.\n\nSince Harry is young (16) and kind (10), Harry is cold (18).\n\nUsing the rule (15) that \"If something is cold and rough then it is quiet,\" we can't determine whether Harry is rough or quiet because we don't have any information about Harry being cold and rough.\n\nHowever, we can use the rule (14) that \"If something is quiet then it is big.\" Since we know that Harry is quiet and cold, Harry is big (13).\n\nNow, let's go back to Gary and determine whether Gary is rough or not.\n\nFrom the given information, we have:\n- Gary is big (7)\n- Gary is kind (9)\n- Gary is cold (8)\n- Harry is big (Harry is quiet and Harry is cold then Harry is big (13))\n\nSince Gary is big (7) and kind (9), Gary is young (16). Using the rule (18) that \"If something is young and kind then it is cold,\" we can confirm that Gary is cold (8).\n\nNow, we need to check whether Gary is quiet or not.\n\nIf Gary is quiet, then he is rough (15). But we have to check whether Gary is quiet or not.\n\nFrom the given information, we have:\n- Anne is quiet (3)\n- Anne is big (1)\n\nUsing the rule (14) that \"If something is quiet then it is big,\" we can't determine whether Anne is quiet because we already know that Anne is big.\n\nHowever, we can use the rule (12) that \"If something is white and kind then it is rough.\" We don't have any information about Gary being white. \n\nNow, let's check the given information about Gary again:\n- Gary is big (7)\n- Gary is cold (8)\n- Gary is kind (9)\n\nWe don't have any direct information about Gary being white or quiet. However, we can use the rule (12) that \"If something is white and kind then it is rough.\" This implies that if Gary is white, then he is rough.\n\nBut we have to check whether Gary is white or not.\n\nFrom the given information, we have:\n- Anne is white (5)\n- Anne is kind (2)\n\nWe know that Anne is white (5) and kind (2). Using the rule (12) that \"If something is white and kind then it is rough,\" Anne is rough (4).\n\nNow, let's go back to Gary and determine whether Gary is white or not.\n\nFrom the given information, we have:\n- Gary is big (7)\n- Gary is cold (8)\n- Gary is kind (9)\n\nWe don't have any direct information about Gary being white. However, we can use the rule (17) that \"If Harry is kind and Harry is cold then Harry is white.\" We don't have any information about Harry being white.\n\nHowever, we can use the rule (16) that \"All kind things are young,\" and rule (18) that \"If something is young and kind then it is cold,\" to confirm that Gary is cold (8).\n\nNow, let's check the given information about Gary again:\n- Gary is big (7)\n- Gary is cold (8)\n- Gary is kind (9)\n\nWe don't have any direct information about Gary being white or quiet. However, we can use the rule (12) that \"If something is white and kind then it is rough.\" This implies that if Gary is white, then he is rough.\n\nBut we have to check whether Gary is white or not.\n\nFrom the given information, we have:\n- Anne is white (5)\n- Anne is kind (2)\n\nWe know that Anne is white (5) and kind (2). Using the rule (12) that \"If something is white and kind then it is rough,\" Anne is rough (4).\n\nNow, let's go back to Gary and determine whether Gary is white or not.\n\nFrom the given information, we have:\n- Gary is big (7)\n- Gary is cold (8)\n- Gary is kind (9)\n\nWe don't have any direct information about Gary being white. However, we can use the rule (17) that \"If Harry is kind and Harry is cold then Harry is white.\" We don't have any information about Harry being white.\n\nHowever, we can use the rule (11) that \"If something is kind then it is big,\" to confirm that Gary is big (7).\n\nNow, let's check the given information about Gary again:\n- Gary is big (7)\n- Gary is cold (8)\n- Gary is kind (9)\n\nWe don't have any direct information about Gary being white or quiet. However, we can use the rule (12) that \"If something is white and kind then it is rough.\" This implies that if Gary is white, then he is rough.\n\nBut we have to check whether Gary is white or not.\n\nFrom the given information, we have:\n- Anne is white (5)\n- Anne is kind (2)\n\nWe know that Anne is white (5) and kind (2). Using the rule (12) that \"If something is white and kind then it is rough,\" Anne is rough (4).\n\nNow, let's go back to Gary and determine whether Gary is white or not.\n\nFrom the given information, we have:\n- Gary is big (7)\n- Gary is cold (8)\n- Gary is kind (9)\n\nWe don't have any direct information about Gary being white. However, we can use the rule (17) that \"If Harry is kind and Harry is cold then Harry is white.\" We don't have any information about Harry being white.\n\nHowever, we can use the rule (11) that \"If something is kind then it is big,\" to confirm that Gary is big (7).\n\nNow, let's check the given information about Gary again:\n- Gary is big (7)\n- Gary is cold (8)\n- Gary is kind (9)\n\nWe don't have any direct information about Gary being white or quiet. However, we can use the rule (12) that \"If something is white and kind then it is rough.\" This implies that if Gary is white, then he is rough.\n\nBut we have to check whether Gary is white or not.\n\nFrom the given information, we have:\n- Anne is white (5)\n- Anne is kind (2)\n\nWe know that Anne is white (5) and kind (2). Using the rule (12) that \"If something is white and kind then it is rough,\" Anne is rough (4).\n\nNow, let's go back to Gary and determine whether Gary is white or not.\n\nFrom the given information, we have:\n- Gary is big (7)\n- Gary is cold (8)\n- Gary is kind (9)\n\nWe don't have any direct information about Gary being white. However, we can use the rule (17) that \"If Harry is kind and Harry is cold then Harry is white.\" We don't have any information about Harry being white.\n\nHowever, we can use the rule (11) that \"If something is kind then it is big,\" to confirm that Gary is big (7).\n\nNow, let's check the given information about Gary again:\n- Gary is big (7)\n- Gary is cold (8)\n- Gary is kind (9)\n\nWe don't",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is big. Gary is big. \n   From the information given, we know that Gary is big.\n\n2. Gary is cold. Gary is kind. \n   We know that Gary is cold and Gary is kind.\n\n3. If something is kind then it is big. \n   Since Gary is kind, we can conclude that Gary is big (which we already knew).\n\n4. If something is white and kind then it is rough. \n   We do not have any information that Gary is white, so we cannot use this rule.\n\n5. Harry is kind. If Harry is quiet and Harry is cold then Harry is big. If something is quiet then it is big. \n   We do not have any information that Harry is quiet or Harry is cold.\n\n6. If something is cold and rough then it is quiet. \n   We do not have any information that Gary is rough.\n\n7. All kind things are young. If Harry is kind and Harry is cold then Harry is white. If something is young and kind then it is cold. \n   We do not have any information that Harry is white or Harry is young.\n\n8. Since Gary is big, kind, and cold, we can use rule 1: If something is kind then it is big. But this does not tell us anything about Gary being rough or not.\n\n9. To determine whether Gary is rough or not, we need to look at rule 4: If something is white and kind then it is rough. However, we do not know whether Gary is white or not. \n\n10. We also know that Gary is not quiet (because if something is quiet then it is big, and Gary is big, but we already knew Gary is big, so this does not tell us anything about Gary being rough or not).\n\nSince we do not have enough information to determine whether Gary is white or not, we cannot determine whether Gary is rough or not. Therefore, the statement \"Gary is not rough\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Gary is big.\n2. We know that Gary is cold.\n3. We know that Gary is kind.\n\nNow, let's examine the given rules:\n\n- If something is kind then it is big. (This rule is not applicable here because we already know Gary is big.)\n- If something is white and kind then it is rough. (We don't know if Gary is white, so we can't conclude if Gary is rough or not.)\n- If Harry is quiet and Harry is cold then Harry is big. (This rule is not applicable here because it involves Harry, not Gary.)\n- If something is quiet then it is big. (We don't know if Gary is quiet, so we can't conclude if Gary is big or not based on this rule.)\n- If something is cold and rough then it is quiet. (We don't have enough information to conclude if Gary is quiet or not.)\n- All kind things are young. (We know Gary is kind, but we don't know if he is young or not.)\n- If Harry is kind and Harry is cold then Harry is white. (This rule is not applicable here because it involves Harry, not Gary.)\n- If something is young and kind then it is cold. (We know Gary is kind, but we don't know if he is young or not.)\n\nNow, let's analyze the information about Gary's roughness. We don't have any direct rule that says \"if Gary is kind then Gary is rough\" or \"if Gary is cold then Gary is rough.\" We only have the rule that \"if something is white and kind then it is rough.\" However, we don't know if Gary is white or not.\n\nHowever, since we know Gary is cold and Gary is kind, we can use the rule \"if something is kind then it is big\" to conclude that since Gary is big and Gary is kind, then we can apply the rule \"if Harry is quiet and Harry is cold then Harry is big\" and since we know Harry is kind and Harry is cold then Harry is white, but we don't know if Harry is quiet or not.\n\nHowever, let's analyze the rules again for a better understanding.\n\nSince we don't know if Gary is white or not, we can't conclude if Gary is rough or not. However, we know Gary is cold and Gary is kind. We also know that if something is cold and rough then it is quiet. But we don't know if Gary is quiet or not.\n\nLet's re-analyze the given information to see if we can conclude anything about Gary's roughness.\n\nWe know that if something is white and kind then it is rough. We also know that if Harry is kind and Harry is cold then Harry is white. However, this rule does not apply to Gary.\n\nWe also know that if something is cold and rough then it is quiet. But we don't know if Gary is quiet or not.\n\nHowever, we do know that if something is quiet then it is big. And we know Gary is big. But this does not help us conclude anything about Gary's roughness.\n\nNow, let's re-analyze the given information again to see if we can conclude anything about Gary's roughness.\n\nWe know that if something is quiet then it is big. We also know that if something is cold and rough then it is quiet. However, we don't know if Gary is quiet or not. But we do know that if something is quiet then it is big, and we know Gary is big.\n\nWe also know that if Harry is quiet and Harry is cold then Harry is big. But we don't know if Harry is quiet or not.\n\nWe also know that if something is young and kind then it is cold. But we don't know if Gary is young or not.\n\nHowever, we know that if something is cold and rough then it is quiet. And if something is quiet then it is big. But we don't know if Gary is quiet or not.\n\nNow, let's analyze the information about Gary's roughness one more time.\n\nWe know that if something is white and kind then it is rough. But we don't know if Gary is white or not.\n\nHowever, since we know Gary is cold and Gary is kind, we can use the rule \"if something is cold and rough then it is quiet\" to conclude that if Gary is rough then Gary is quiet. But we don't know if Gary is quiet or not.\n\nHowever, we do know that if something is quiet then it is big. And we know Gary is big. But this does not help us conclude anything about Gary's roughness.\n\nNow, let's re-analyze the given information one last time to see if we can conclude anything about Gary's roughness.\n\nWe know that if something is cold and rough then it is quiet. And if something is quiet then it is big. But we don't know if Gary is quiet or not.\n\nHowever, since we know Gary is cold and Gary is kind, we can use the rule \"if something is young and kind then it is cold\" to conclude that Gary is young. But we don't know if Gary is quiet or not.\n\nNow, let's analyze the information about Gary's roughness one last time.\n\nWe know that if something is white and kind then it is rough. But we don't know if Gary is white or not.\n\nHowever, since we know Gary is cold and Gary is kind, we can use the rule \"if something is cold and rough then it is quiet\" to conclude that if Gary is rough then Gary is quiet. But we don't know if Gary is quiet or not.\n\nHowever, we do know that if something is quiet then it is big. And we know Gary is big. But this does not help us conclude anything about Gary's roughness.\n\nSince we can't conclude whether Gary is rough or not, the statement \"Gary is not rough\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_gary, big_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(gary)",
+          "z3_formula": "Not(rough_gary)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_gary, big_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_gary, young_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & young(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_gary, young_gary), cold_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_gary, kind_gary), rough_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_gary, rough_gary), quiet_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), big_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_gary, rough_gary), quiet_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_anne, big_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_gary, big_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_harry, big_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_anne, kind_anne), rough_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_harry, cold_harry), big_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_anne, big_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_gary, rough_gary), quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_anne, kind_anne), cold_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), white_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_gary, kind_gary), cold_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(gary))",
+          "z3_formula": "Not(rough_gary)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_anne, big_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_anne, kind_anne), rough_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_anne, big_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_gary, rough_gary), quiet_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_gary, kind_gary), cold_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & young(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_gary, young_gary), cold_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), white_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_harry, kind_harry), cold_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 29
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_gary, big_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_X, kind_X), rough_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_X, cold_X), white_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_X, cold_X), big_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_X, big_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_X, rough_X), quiet_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_X, kind_X), cold_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_X, cold_X), white_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_X, kind_X), cold_X)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == Unknown",
+          "source_step": 17
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_gary, big_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_gary, young_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_gary, kind_gary), cold_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), white_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> ?rough(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), ?rough_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_harry, cold_harry), big_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_harry, ?rough_harry), quiet_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "?rough(harry)",
+          "z3_formula": "?rough_harry == Unknown",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "?rough(gary)",
+          "z3_formula": "?rough_gary == Unknown",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_gary, big_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_gary, kind_gary), rough_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_gary, cold_gary), white_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_gary, young_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_gary, kind_gary), cold_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(gary)",
+          "z3_formula": "Not(rough_gary) == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_gary, big_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_gary, kind_gary), rough_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_gary, rough_gary), quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), white_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_harry, big_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_harry, kind_harry), cold_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_harry, kind_harry), rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == Unknown",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_gary, big_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_gary, cold_gary), white_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_gary, rough_gary), quiet_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_gary, kind_gary), cold_gary)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_gary, kind_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_anne, kind_anne), rough_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), white_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_harry, cold_harry), big_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_harry, kind_harry), cold_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_gary, big_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_gary, kind_gary), rough_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_gary, big_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_gary, kind_gary), rough_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_gary, rough_gary), quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_harry, cold_harry), big_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_harry, big_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_gary, kind_gary), cold_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_harry, big_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == Unknown",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 188,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 50
+    },
+    "maxsat_stats": {
+      "satisfied": 49,
+      "excluded": 1,
+      "total_weight": 181,
+      "solve_time_ms": 1.6540009528398514
+    },
+    "timing": {
+      "trace_gen_s": 24.92,
+      "extraction_s": 35.221,
+      "dedup_s": 1.754,
+      "maxsat_s": 0.004,
+      "total_s": 61.899
+    }
+  }
+}

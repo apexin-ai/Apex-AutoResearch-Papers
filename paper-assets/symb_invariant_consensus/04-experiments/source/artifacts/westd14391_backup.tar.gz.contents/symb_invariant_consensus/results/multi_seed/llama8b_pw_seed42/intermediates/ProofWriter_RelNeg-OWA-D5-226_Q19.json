@@ -1,0 +1,1126 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-226_Q19",
+    "problem": "The bear is not big. The bear needs the squirrel. The dog is nice. The dog sees the tiger. The squirrel sees the bear. The squirrel sees the tiger. The tiger eats the dog. The tiger is green. The tiger needs the bear. The tiger sees the squirrel. If someone eats the dog then the dog needs the bear. If someone eats the bear then they eat the tiger. If someone needs the tiger and they see the dog then they eat the tiger. If someone is nice and they need the bear then they eat the bear. If someone sees the dog then they eat the squirrel. If someone needs the tiger and the tiger eats the bear then they eat the squirrel. If someone eats the tiger then the tiger eats the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog does not see the bear.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nNeeds($x, $y, bool) ::: Does x need y?\nNice($x, bool) ::: Is x nice?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nBig(Bear, False) ::: The bear is not big.\nNeeds(Bear, Squirrel, True) ::: The bear needs the squirrel.\nNice(Dog, True) ::: The dog is nice.\nSees(Dog, Tiger, True) ::: The dog sees the tiger.\nSees(Squirrel, Bear, True) ::: The squirrel sees the bear.\nSees(Squirrel, Tiger, True) ::: The squirrel sees the tiger.\nEats(Tiger, Dog, True) ::: The tiger eats the dog.\nGreen(Tiger, True) ::: The tiger is green.\nNeeds(Tiger, Bear, True) ::: The tiger needs the bear.\nSees(Tiger, Squirrel, True) ::: The tiger sees the squirrel.\n\nRules:\nEats($x, Dog, True) >>> Needs(Dog, Bear, True) ::: If someone eats the dog then the dog needs the bear.\nEats($x, Bear, True) >>> Eats($x, Tiger, True) ::: If someone eats the bear then they eat the tiger.\nNeeds($x, Tiger, True) && Sees($x, Dog, True) >>> Eats($x, Tiger, True) ::: If someone needs the tiger and they see the dog then they eat the tiger.\nNice($x, True) && Needs($x, Bear, True) >>> Eats($x, Bear, True) ::: If someone is nice and they need the bear then they eat the bear.\nSees($x, Dog, True) >>> Eats($x, Squirrel, True) ::: If someone sees the dog then they eat the squirrel.\nNeeds($x, Tiger, True) && Eats(Tiger, Bear, True) >>> Eats($x, Squirrel, True) ::: If someone needs the tiger and the tiger eats the bear then they eat the squirrel.\nEats($x, Tiger, True) >>> Eats(Tiger, Bear, True) ::: If someone eats the tiger then the tiger eats the bear.\n\nQuery:\nSees(Dog, Bear, False) ::: The dog does not see the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 82.0,
+      "Unknown": 161.0
+    },
+    "answer_counts": {
+      "Unknown": 11,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The dog does not see the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"The dog sees the tiger\" is given.\n2. There is no direct information about whether the dog sees the bear.\n3. However, if someone eats the dog, then the dog needs the bear. But this doesn't imply the dog sees the bear directly.\n4. The statement \"The squirrel sees the bear\" is given, but it doesn't provide any information about the dog's sight.\n5. Since there's no direct or indirect evidence that the dog sees the bear, we cannot conclude that the dog sees the bear or not.\n\nTherefore, based on the given information, the statement \"The dog does not see the bear\" is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not see the bear\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The dog is nice.\n2. The squirrel sees the bear.\n3. The squirrel sees the tiger.\n4. The tiger eats the dog.\n5. The tiger is green.\n6. The tiger needs the bear.\n7. The tiger sees the squirrel.\n8. If someone eats the dog then the dog needs the bear.\n9. If someone eats the bear then they eat the tiger.\n10. If someone needs the tiger and they see the dog then they eat the tiger.\n11. If someone is nice and they need the bear then they eat the bear.\n12. If someone sees the dog then they eat the squirrel.\n13. If someone needs the tiger and the tiger eats the bear then they eat the squirrel.\n14. If someone eats the tiger then the tiger eats the bear.\n\nFrom rule 4, we know that the tiger eats the dog, but we don't know if the dog sees the bear. To determine this, we need to look for any rule that implies the dog sees the bear.\n\nFrom rule 2, we know the squirrel sees the bear. However, we cannot directly infer the dog sees the bear from this information.\n\nFrom rule 12, we know if someone sees the dog then they eat the squirrel. However, this does not imply that the dog sees the bear.\n\nFrom rule 13, we know if someone needs the tiger and the tiger eats the bear then they eat the squirrel. Again, we cannot directly infer the dog sees the bear from this information.\n\nFrom rule 14, we know if someone eats the tiger then the tiger eats the bear. However, we cannot directly infer the dog sees the bear from this information.\n\nFrom rule 7, we know the tiger sees the squirrel. However, we cannot directly infer the dog sees the bear from this information.\n\nFrom rule 3, we know the squirrel sees the tiger. However, we cannot directly infer the dog sees the bear from this information.\n\nFrom rule 1, we know the dog is nice. However, we cannot directly infer the dog sees the bear from this information.\n\nFrom rule 11, we know if someone is nice and they need the bear then they eat the bear. However, we cannot directly infer the dog sees the bear from this information.\n\nFrom rule 10, we know if someone needs the tiger and they see the dog then they eat the tiger. However, we cannot directly infer the dog sees the bear from this information.\n\nFrom rule 9, we know if someone eats the bear then they eat the tiger. However, we cannot directly infer the dog sees the bear from this information.\n\nFrom rule 8, we know if someone eats the dog then the dog needs the bear. However, we cannot directly infer the dog sees the bear from this information.\n\nFrom rule 6, we know the tiger needs the bear. However, we cannot directly infer the dog sees the bear from this information.\n\nFrom rule 5, we know the tiger is green. However, we cannot directly infer the dog sees the bear from this information.\n\nFrom rule 4, we know the tiger eats the dog. However, we cannot directly infer the dog sees the bear from this information.\n\nFrom rule 3, we know the squirrel sees the tiger. However, we cannot directly infer the dog sees the bear from this information.\n\nFrom rule 2, we know the squirrel sees the bear. However, we cannot directly infer the dog sees the bear from this information.\n\nFrom rule 1, we know the dog is nice. However, we cannot directly infer the dog sees the bear from this information.\n\nSince we cannot directly infer the dog sees the bear from any of the given information and rules, we cannot determine whether the statement \"The dog does not see the bear\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not see the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement we are evaluating is: \"The dog does not see the bear.\"\n2. The given information includes:\n   - The dog is nice.\n   - The dog sees the tiger.\n   - The squirrel sees the bear.\n   - The squirrel sees the tiger.\n   - The tiger eats the dog.\n   - The tiger is green.\n   - The tiger needs the bear.\n   - The tiger sees the squirrel.\n3. From the given information, we know that the dog sees the tiger, but we do not have any information about whether the dog sees the bear directly.\n\nHowever, we can use the given rules to make an educated guess about the statement.\n\nThe rules provided are:\n1. If someone eats the dog then the dog needs the bear.\n2. If someone eats the bear then they eat the tiger.\n3. If someone needs the tiger and they see the dog then they eat the tiger.\n4. If someone is nice and they need the bear then they eat the bear.\n5. If someone sees the dog then they eat the squirrel.\n6. If someone needs the tiger and the tiger eats the bear then they eat the squirrel.\n7. If someone eats the tiger then the tiger eats the bear.\n\nThese rules do not directly provide information about whether the dog sees the bear. However, rule 5 states that \"If someone sees the dog then they eat the squirrel.\" Since the squirrel sees the bear, we can infer that the squirrel sees the dog indirectly (because the squirrel sees the tiger and the tiger sees the dog). This implies that the squirrel sees the dog, and based on rule 5, this means that the squirrel eats the squirrel. However, this does not provide any information about the dog seeing the bear.\n\nTo find any information about the dog seeing the bear, let's look at other possible inferences:\n\nFrom the rules, we have the following information:\n- The tiger eats the dog, but this does not provide any information about the dog seeing the bear.\n- The tiger sees the squirrel, but this also does not provide any information about the dog seeing the bear.\n- The tiger needs the bear, but this does not provide any information about the dog seeing the bear.\n\nHowever, if we use rule 4: \"If someone is nice and they need the bear then they eat the bear,\" and we know that the dog is nice, then we might be able to make an inference about the dog seeing the bear.\n\nHowever, there is one rule that might be helpful: \"If someone eats the tiger then the tiger eats the bear.\" Since the tiger eats the dog, we can use this rule to make an inference about the dog eating the tiger.\n\nBased on this, we can see that the statement about the dog seeing the bear is actually related to the tiger eating the bear. Since the tiger eats the dog, and based on rule 7, if someone eats the tiger then the tiger eats the bear, we can say that the tiger eats the bear after the dog eats the tiger.\n\nHowever, this does not provide any information about the dog seeing the bear directly.\n\nTo make an educated guess about the statement \"The dog does not see the bear,\" we must realize that we do not have enough information to say whether the dog sees the bear or not. The given rules do not provide any direct information about whether the dog sees the bear.\n\nTherefore, the answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not see the bear\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The statement we are trying to evaluate is \"The dog does not see the bear.\"\n2. We need to find any information that supports or refutes this statement.\n\nFrom the given information:\n\n- We know that \"The squirrel sees the bear.\"\n- We know that \"The squirrel sees the tiger.\"\n- We know that \"The dog sees the tiger.\"\n- We know that \"The tiger sees the squirrel.\"\n- We know that \"The tiger eats the dog.\"\n\nNow, let's analyze the rules:\n\n1. If someone eats the dog then the dog needs the bear. (This rule does not provide any information about the dog seeing the bear.)\n2. If someone eats the bear then they eat the tiger. (This rule does not provide any information about the dog seeing the bear.)\n3. If someone needs the tiger and they see the dog then they eat the tiger. (This rule does not provide any information about the dog seeing the bear.)\n4. If someone is nice and they need the bear then they eat the bear. (This rule does not provide any information about the dog seeing the bear.)\n5. If someone sees the dog then they eat the squirrel. (This rule does not provide any information about the dog seeing the bear.)\n6. If someone needs the tiger and the tiger eats the bear then they eat the squirrel. (This rule does not provide any information about the dog seeing the bear.)\n7. If someone eats the tiger then the tiger eats the bear. (This rule does not provide any information about the dog seeing the bear.)\n\nHowever, we have a rule that might be relevant:\n\n- We do not have a rule that directly says the dog sees the bear, but we do have a rule that says \"If someone sees the dog then they eat the squirrel.\" This implies that someone seeing the dog is a condition for eating the squirrel, but it does not directly imply that the dog sees the bear.\n\nHowever, we also have the information that \"The dog sees the tiger.\" This does not provide information about whether the dog sees the bear, but it shows that the dog is capable of seeing other animals.\n\nSince we have no information that directly says the dog sees the bear, and we have no information that directly says the dog does not see the bear, we cannot conclude that the statement \"The dog does not see the bear\" is true or false based on the given information. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not see the bear\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\nGiven information:\n- The bear is not big.\n- The bear needs the squirrel.\n- The dog is nice.\n- The dog sees the tiger.\n- The squirrel sees the bear.\n- The squirrel sees the tiger.\n- The tiger eats the dog.\n- The tiger is green.\n- The tiger needs the bear.\n- The tiger sees the squirrel.\n\nRules:\n1. If someone eats the dog then the dog needs the bear.\n2. If someone eats the bear then they eat the tiger.\n3. If someone needs the tiger and they see the dog then they eat the tiger.\n4. If someone is nice and they need the bear then they eat the bear.\n5. If someone sees the dog then they eat the squirrel.\n6. If someone needs the tiger and the tiger eats the bear then they eat the squirrel.\n7. If someone eats the tiger then the tiger eats the bear.\n\nTo determine whether the dog sees the bear, we need to find any information related to the dog seeing the bear.\n\nFrom the given information, we can see that:\n- The dog sees the tiger (rule 3 is not applicable here because it talks about seeing the dog first).\n- There is no direct statement that says the dog sees the bear.\n\nHowever, we can analyze the rules to see if they provide any information about the dog seeing the bear. \n\nIn rule 3, it talks about someone needing the tiger and seeing the dog, but it doesn't mention the dog seeing the bear. \n\nIn rule 5, it talks about someone seeing the dog and eating the squirrel, but it doesn't mention the dog seeing the bear.\n\nIn rule 6, it talks about someone needing the tiger and the tiger eating the bear, but it doesn't mention the dog seeing the bear.\n\nIn rule 7, it talks about someone eating the tiger and the tiger eating the bear, but it doesn't mention the dog seeing the bear.\n\nThere is no rule or information that directly says the dog sees the bear. However, we can analyze the situation based on the given information and rules.\n\nSince the dog sees the tiger, it implies that the dog can see the tiger, which is in the same scene as the bear. However, there is no direct information or rule that says the dog sees the bear.\n\nTherefore, based on the given information and rules, we cannot determine with certainty whether the dog sees the bear or not. It's a case of unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine if the statement \"The dog does not see the bear\" is true, false, or unknown, we need to analyze the given information.\n\n1. The bear is not big.\n2. The bear needs the squirrel.\n3. The dog is nice.\n4. The dog sees the tiger.\n5. The squirrel sees the bear.\n6. The squirrel sees the tiger.\n7. The tiger eats the dog.\n8. The tiger is green.\n9. The tiger needs the bear.\n10. The tiger sees the squirrel.\n\nNow, let's examine the given conditions that might affect the dog seeing the bear:\n\n- If someone eats the dog then the dog needs the bear. (This doesn't directly tell us about the dog seeing the bear.)\n- If someone eats the bear then they eat the tiger. (This doesn't directly tell us about the dog seeing the bear.)\n- If someone needs the tiger and they see the dog then they eat the tiger. (This doesn't directly tell us about the dog seeing the bear.)\n- If someone is nice and they need the bear then they eat the bear. (This doesn't directly tell us about the dog seeing the bear.)\n- If someone sees the dog then they eat the squirrel. (This doesn't directly tell us about the dog seeing the bear.)\n- If someone needs the tiger and the tiger eats the bear then they eat the squirrel. (This doesn't directly tell us about the dog seeing the bear.)\n- If someone eats the tiger then the tiger eats the bear. (This doesn't directly tell us about the dog seeing the bear.)\n\nHowever, we can infer information from the statement \"The dog sees the tiger.\" This tells us that the dog has some visual perception. Since we don't have any information that contradicts the dog's ability to see the bear, we can make an educated guess.\n\nThere is no explicit statement saying the dog sees the bear or the dog does not see the bear. However, since the dog sees the tiger (which is a separate entity), it is possible for the dog to see the bear as well. \n\nTherefore, the statement \"The dog does not see the bear\" is unknown because we cannot definitively say whether the dog sees the bear or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we'll break down the information given into individual statements and their implications. \n\n1. The bear is not big.\n2. The bear needs the squirrel.\n3. The dog is nice.\n4. The dog sees the tiger.\n5. The squirrel sees the bear.\n6. The squirrel sees the tiger.\n7. The tiger eats the dog.\n8. The tiger is green.\n9. The tiger needs the bear.\n10. The tiger sees the squirrel.\n \nNow, we'll analyze the given rules:\n1. If someone eats the dog then the dog needs the bear.\n2. If someone eats the bear then they eat the tiger.\n3. If someone needs the tiger and they see the dog then they eat the tiger.\n4. If someone is nice and they need the bear then they eat the bear.\n5. If someone sees the dog then they eat the squirrel.\n6. If someone needs the tiger and the tiger eats the bear then they eat the squirrel.\n7. If someone eats the tiger then the tiger eats the bear.\n\nTo determine whether the statement \"The dog does not see the bear\" is true, false, or unknown, we need to analyze the information given and the rules provided.\n\nFrom statement 4, we know the dog sees the tiger. However, we don't have any information about the dog seeing the bear. We can't assume that the dog sees the bear based on the given information.\n\nStatement 5, \"The squirrel sees the bear,\" might imply that the squirrel has information about the bear, but it doesn't directly affect the dog's ability to see the bear.\n\nSince we don't have any information about the dog seeing the bear, we cannot confirm or deny the statement. Therefore, the statement \"The dog does not see the bear\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine if the statement \"The dog does not see the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is nice.\n2. The dog sees the tiger.\n3. If someone sees the dog then they eat the squirrel.\n   - From this rule, we can't directly conclude anything about the dog seeing the bear.\n4. The squirrel sees the bear.\n   - This doesn't provide any information about the dog seeing the bear.\n5. The squirrel sees the tiger.\n   - This also doesn't provide any information about the dog seeing the bear.\n6. The tiger eats the dog.\n   - This doesn't provide any information about the dog seeing the bear.\n7. The tiger is green.\n   - This doesn't provide any information about the dog seeing the bear.\n8. The tiger needs the bear.\n   - This doesn't provide any information about the dog seeing the bear.\n9. The tiger sees the squirrel.\n   - This also doesn't provide any information about the dog seeing the bear.\n10. If someone needs the tiger and they see the dog then they eat the tiger.\n    - From this rule, we can't directly conclude anything about the dog seeing the bear.\n11. If someone eats the dog then the dog needs the bear.\n    - This doesn't provide any information about the dog seeing the bear.\n12. If someone eats the bear then they eat the tiger.\n    - This doesn't provide any information about the dog seeing the bear.\n13. If someone is nice and they need the bear then they eat the bear.\n    - Since the dog is nice, but this rule doesn't mention anything about the dog seeing the bear.\n14. If someone sees the dog then they eat the squirrel.\n    - This implies that there is an indirect relationship, but it's still not directly related to the dog seeing the bear.\n15. If someone needs the tiger and the tiger eats the bear then they eat the squirrel.\n    - This also doesn't provide any information about the dog seeing the bear.\n16. If someone eats the tiger then the tiger eats the bear.\n    - This doesn't provide any information about the dog seeing the bear.\n\nFrom the given information, we can't directly conclude whether the dog sees the bear or not. Therefore, the statement \"The dog does not see the bear\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not see the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that the dog is nice (from the statement \"The dog is nice\"). However, this information alone does not help us determine if the dog sees the bear.\n\n2. We know that the squirrel sees the bear (from the statement \"The squirrel sees the bear\"). However, this information alone does not help us determine if the dog sees the bear.\n\n3. We know that the squirrel sees the tiger (from the statement \"The squirrel sees the tiger\"). However, this information alone does not help us determine if the dog sees the bear.\n\n4. We know that the tiger eats the dog (from the statement \"The tiger eats the dog\"). However, this information alone does not help us determine if the dog sees the bear.\n\n5. We know that the tiger is green (from the statement \"The tiger is green\"). However, this information alone does not help us determine if the dog sees the bear.\n\n6. We know that the tiger needs the bear (from the statement \"The tiger needs the bear\"). However, this information alone does not help us determine if the dog sees the bear.\n\n7. We know that the tiger sees the squirrel (from the statement \"The tiger sees the squirrel\"). However, this information alone does not help us determine if the dog sees the bear.\n\nNow, let's analyze the rules:\n\n1. If someone eats the dog then the dog needs the bear. We don't have any information that someone eats the dog, so this rule does not apply.\n\n2. If someone eats the bear then they eat the tiger. We don't have any information that someone eats the bear, so this rule does not apply.\n\n3. If someone needs the tiger and they see the dog then they eat the tiger. We know that the tiger needs the bear (rule 6), but we don't know if the tiger sees the dog. However, the tiger eats the dog (rule 4), so we can conclude that the tiger sees the dog.\n\n4. If someone is nice and they need the bear then they eat the bear. We know that the dog is nice (rule 1), but we don't know if the dog needs the bear. However, if the dog sees the bear, then we might be able to conclude that the dog needs the bear.\n\n5. If someone sees the dog then they eat the squirrel. We know that the squirrel sees the tiger (rule 3) and the squirrel sees the bear (rule 2), but we don't know if someone sees the dog.\n\n6. If someone needs the tiger and the tiger eats the bear then they eat the squirrel. We know that the tiger eats the bear (rule 8), but we don't know if someone needs the tiger.\n\n7. If someone eats the tiger then the tiger eats the bear. We know that the tiger eats the dog (rule 4), but we don't know if someone eats the tiger.\n\nNow, let's analyze the statement \"The dog does not see the bear.\" If the dog sees the bear, then we might be able to conclude that the dog needs the bear (rule 4). However, we don't have any information that the dog sees the bear. On the other hand, if the dog does not see the bear, then we might be able to conclude that the dog does not need the bear. However, we don't have any information that the dog does not need the bear.\n\nUnfortunately, we cannot determine whether the statement \"The dog does not see the bear\" is true or false. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not see the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that \"The dog is nice.\" \n2. From the information \"If someone is nice and they need the bear then they eat the bear,\" we cannot conclude anything about the dog seeing the bear since we don't have any information about the dog needing the bear.\n3. We are given that \"The dog sees the tiger.\" \n4. However, we are also given that \"If someone sees the dog then they eat the squirrel.\" This information does not relate to the dog seeing the bear.\n5. We are given that \"The tiger eats the dog.\" \n6. From the information \"If someone eats the tiger then the tiger eats the bear,\" we cannot conclude anything about the dog seeing the bear since we don't have any information about the tiger eating the dog.\n7. We are given that \"The tiger needs the bear.\" \n8. From the information \"If someone needs the tiger and they see the dog then they eat the tiger,\" we cannot conclude anything about the dog seeing the bear since we don't have any information about the tiger needing the bear and seeing the dog.\n9. We are given that \"The squirrel sees the bear.\" \n10. However, we are also given that \"The squirrel sees the tiger.\" This information does not relate to the dog seeing the bear.\n11. We are given that \"The bear needs the squirrel.\" \n12. From the information \"The tiger sees the squirrel,\" we cannot conclude anything about the dog seeing the bear since we don't have any information about the tiger seeing the squirrel.\n\nSince we don't have any direct information about the dog seeing the bear, we cannot conclude whether the statement \"The dog does not see the bear\" is true or false. However, we also cannot conclude that it is unknown because we have not found any information that would imply that the dog sees the bear. \n\nTherefore, the statement \"The dog does not see the bear\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not see the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement we are analyzing is: \"The dog does not see the bear.\"\n\n2. The given information is:\n   - The dog sees the tiger.\n   - The squirrel sees the bear and the tiger.\n   - The tiger sees the squirrel.\n\n3. From the given information, we do not have any direct statement that says the dog sees the bear. However, we can make some inferences.\n\n4. If the dog sees the tiger, it does not necessarily mean the dog sees the bear. We cannot directly conclude the relationship between the dog and the bear from this information.\n\n5. However, we can analyze the information about the squirrel and the tiger. Since the squirrel sees the bear, we can infer that the tiger, who sees the squirrel, may also see the bear indirectly through the squirrel.\n\n6. Now, we need to consider the conditions that affect the relationships between the animals. \n   - If someone eats the dog then the dog needs the bear. (This does not directly affect our statement.)\n   - If someone eats the bear then they eat the tiger. (This does not directly affect our statement.)\n   - If someone needs the tiger and they see the dog then they eat the tiger. (This does not directly affect our statement.)\n   - If someone is nice and they need the bear then they eat the bear. (This does not directly affect our statement.)\n   - If someone sees the dog then they eat the squirrel. (This does not directly affect our statement.)\n   - If someone needs the tiger and the tiger eats the bear then they eat the squirrel. (This does not directly affect our statement.)\n   - If someone eats the tiger then the tiger eats the bear. (This does not directly affect our statement.)\n\n7. Since there is no direct information about the dog seeing the bear and no indirect information that would necessarily make the dog see the bear, we cannot conclude whether the statement is true or false based on the given information.\n\nTherefore, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and the rules provided. \n\nFrom the given information:\n- The dog is nice.\n- The squirrel sees the bear.\n- The squirrel sees the tiger.\n- The tiger eats the dog.\n- The tiger is green.\n- The tiger needs the bear.\n- The tiger sees the squirrel.\n\nFrom the given rules:\n- If someone eats the dog then the dog needs the bear.\n- If someone eats the bear then they eat the tiger.\n- If someone needs the tiger and they see the dog then they eat the tiger.\n- If someone is nice and they need the bear then they eat the bear.\n- If someone sees the dog then they eat the squirrel.\n- If someone needs the tiger and the tiger eats the bear then they eat the squirrel.\n- If someone eats the tiger then the tiger eats the bear.\n\nNow, we need to determine whether the statement \"The dog does not see the bear\" is true, false, or unknown.\n\nTo do this, let's analyze the given information and rules related to the dog and the bear.\n\nFrom the given information, we don't directly know whether the dog sees the bear or not. \n\nHowever, we can analyze the given rules related to the dog and the bear:\n- There's no rule that directly states the dog sees the bear.\n- There's also no rule that states the dog does not see the bear.\n\nWe need to find a connection between the dog and the bear using the given rules.\n\nFrom the given information, the tiger eats the dog. This means the dog is eaten by the tiger.\n\nNow, let's apply the rule: If someone eats the dog then the dog needs the bear.\n\nThis rule implies that the tiger needs the bear because the tiger eats the dog.\n\nNow, we have a connection between the tiger and the bear.\n\nUsing another rule: If someone needs the tiger and they see the dog then they eat the tiger.\n\nSince the tiger sees the squirrel, we cannot directly apply this rule.\n\nHowever, we can use another rule: If someone eats the tiger then the tiger eats the bear.\n\nThis rule implies that the tiger eats the bear, but this rule is not directly applicable to our current situation.\n\nNow, we can use the rule: If someone sees the dog then they eat the squirrel.\n\nWe know the squirrel sees the bear, but this does not directly connect the dog and the bear.\n\nHowever, let's use another rule: If someone is nice and they need the bear then they eat the bear.\n\nSince the dog is nice, we can apply this rule if we can find a connection between the dog and the bear.\n\nWe already know that the dog does not eat the bear, but we need to find out if the dog sees the bear.\n\nNow, we can use another rule: If someone eats the tiger then the tiger eats the bear.\n\nSince the tiger eats the dog, we can apply this rule to see if it helps us determine whether the dog sees the bear.\n\nHowever, this rule does not directly connect the dog and the bear.\n\nNow, let's go back to the rule: If someone is nice and they need the bear then they eat the bear.\n\nSince the dog is nice, we can apply this rule if we can find a connection between the dog and the bear.\n\nWe can use another rule: If someone needs the tiger and the tiger eats the bear then they eat the squirrel.\n\nWe know the tiger eats the bear, but we need to find out if the dog sees the bear.\n\nWe already know the squirrel sees the bear, but this does not directly connect the dog and the bear.\n\nHowever, let's use another rule: If someone sees the dog then they eat the squirrel.\n\nWe know the squirrel sees the bear, but this does not directly connect the dog and the bear.\n\nNow, let's go back to the rule: If someone eats the tiger then the tiger eats the bear.\n\nWe know the tiger eats the dog, but this rule does not directly connect the dog and the bear.\n\nHowever, we can use the rule: If someone is nice and they need the bear then they eat the bear.\n\nSince the dog is nice, we can apply this rule if we can find a connection between the dog and the bear.\n\nWe already know the squirrel sees the bear, but this does not directly connect the dog and the bear.\n\nHowever, let's analyze the rule: If someone sees the dog then they eat the squirrel.\n\nWe can use this rule to see if the dog sees the bear.\n\nIf the dog sees the bear, then the squirrel eats the squirrel, which is a contradiction.\n\nTherefore, the dog does not see the bear.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "sees(dog, tiger)",
+          "z3_formula": "sees_dog_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> needs(X, bear)",
+          "z3_formula": "Implies(eats_X_dog, needs_X_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> needs(X, bear)",
+          "z3_formula": "Implies(eats_tiger_dog, needs_tiger_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(X, tiger)",
+          "z3_formula": "Implies(eats_X_bear, eats_X_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, dog) -> eats(X, tiger)",
+          "z3_formula": "Implies(And(needs_X_tiger, sees_X_dog), eats_X_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & needs(X, bear) -> eats(X, bear)",
+          "z3_formula": "Implies(And(nice_X, needs_X_bear), eats_X_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> eats(X, squirrel)",
+          "z3_formula": "Implies(sees_X_dog, eats_X_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & eats(tiger, bear) -> eats(X, squirrel)",
+          "z3_formula": "Implies(And(needs_X_tiger, eats_tiger_bear), eats_X_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(eats_X_tiger, eats_tiger_bear)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, tiger)",
+          "z3_formula": "sees_dog_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> needs(X, bear)",
+          "z3_formula": "Implies(eats_dog_dog, needs_dog_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(X, tiger)",
+          "z3_formula": "Implies(eats_dog_bear, eats_dog_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, dog) -> eats(X, tiger)",
+          "z3_formula": "Implies(And(needs_dog_tiger, sees_dog_dog), eats_dog_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & needs(X, bear) -> eats(X, bear)",
+          "z3_formula": "Implies(And(nice_dog, needs_dog_bear), eats_dog_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> eats(X, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_dog, eats_squirrel_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & eats(X, bear) -> eats(X, squirrel)",
+          "z3_formula": "Implies(And(needs_dog_tiger, eats_dog_bear), eats_squirrel_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> eats(X, bear)",
+          "z3_formula": "Implies(eats_dog_tiger, eats_dog_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, tiger)",
+          "z3_formula": "sees_dog_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> needs(X, bear)",
+          "z3_formula": "Implies(eats_tiger_dog, needs_tiger_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(X, tiger)",
+          "z3_formula": "Implies(eats_X_bear, eats_X_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, dog) -> eats(X, tiger)",
+          "z3_formula": "Implies(And(needs_X_tiger, sees_X_dog), eats_X_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & needs(X, bear) -> eats(X, bear)",
+          "z3_formula": "Implies(And(nice_X, needs_X_bear), eats_X_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> eats(X, squirrel)",
+          "z3_formula": "Implies(sees_X_dog, eats_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & eats(tiger, bear) -> eats(X, squirrel)",
+          "z3_formula": "Implies(And(needs_X_tiger, eats_tiger_bear), eats_X_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(eats_X_tiger, eats_tiger_bear)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(bear)",
+          "z3_formula": "not big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, squirrel)",
+          "z3_formula": "needs_bear_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, tiger)",
+          "z3_formula": "sees_dog_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> needs(X, bear)",
+          "z3_formula": "Implies(eats_X_dog, needs_X_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(X, tiger)",
+          "z3_formula": "Implies(eats_X_bear, eats_X_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, dog) -> eats(X, tiger)",
+          "z3_formula": "Implies(And(needs_X_tiger, sees_X_dog), eats_X_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & needs(X, bear) -> eats(X, bear)",
+          "z3_formula": "Implies(And(nice_X, needs_X_bear), eats_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> eats(X, squirrel)",
+          "z3_formula": "Implies(sees_X_dog, eats_X_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & eats(tiger, bear) -> eats(X, squirrel)",
+          "z3_formula": "Implies(And(needs_X_tiger, eats_tiger_bear), eats_X_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(eats_X_tiger, eats_tiger_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(dog, bear)",
+          "z3_formula": "not sees_dog_bear == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(bear)",
+          "z3_formula": "not big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, squirrel)",
+          "z3_formula": "needs_bear_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, tiger)",
+          "z3_formula": "sees_dog_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> needs(X, bear)",
+          "z3_formula": "Implies(eats_X_dog, needs_X_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(X, tiger)",
+          "z3_formula": "Implies(eats_X_bear, eats_X_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, dog) -> eats(X, tiger)",
+          "z3_formula": "Implies(And(needs_X_tiger, sees_X_dog), eats_X_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & needs(X, bear) -> eats(X, bear)",
+          "z3_formula": "Implies(And(nice_X, needs_X_bear), eats_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> eats(X, squirrel)",
+          "z3_formula": "Implies(sees_X_dog, eats_X_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & eats(tiger, bear) -> eats(X, squirrel)",
+          "z3_formula": "Implies(And(needs_X_tiger, eats_tiger_bear), eats_X_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(eats_X_tiger, eats_tiger_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(bear)",
+          "z3_formula": "not big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, squirrel)",
+          "z3_formula": "needs_bear_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, tiger)",
+          "z3_formula": "sees_dog_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> needs(X, bear)",
+          "z3_formula": "Implies(eats_X_dog, needs_X_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(X, tiger)",
+          "z3_formula": "Implies(eats_X_bear, eats_X_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, dog) -> eats(X, tiger)",
+          "z3_formula": "Implies(And(needs_X_tiger, sees_X_dog), eats_X_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & needs(X, bear) -> eats(X, bear)",
+          "z3_formula": "Implies(And(nice_X, needs_X_bear), eats_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> eats(X, squirrel)",
+          "z3_formula": "Implies(sees_X_dog, eats_X_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & eats(tiger, bear) -> eats(X, squirrel)",
+          "z3_formula": "Implies(And(needs_X_tiger, eats_tiger_bear), eats_X_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(eats_X_tiger, eats_tiger_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(dog, bear)",
+          "z3_formula": "not sees_dog_bear == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, tiger)",
+          "z3_formula": "sees_dog_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> eats(X, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_dog, eats_squirrel == True)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, dog) -> eats(X, tiger)",
+          "z3_formula": "Implies(And(needs_tiger_bear, sees_dog_tiger), eats_tiger == True)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> needs(X, bear)",
+          "z3_formula": "Implies(eats_dog, needs_bear == True)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(X, tiger)",
+          "z3_formula": "Implies(eats_bear, eats_tiger == True)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & needs(X, bear) -> eats(X, bear)",
+          "z3_formula": "Implies(And(nice_dog, needs_bear), eats_bear == True)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> eats(X, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_dog, eats_squirrel == True)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & eats(X, bear) -> eats(X, squirrel)",
+          "z3_formula": "Implies(And(needs_tiger_bear, eats_bear), eats_squirrel == True)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> eats(X, bear)",
+          "z3_formula": "Implies(eats_tiger, eats_bear == True)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> needs(X, bear)",
+          "z3_formula": "Implies(eats_X_dog, needs_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(X, tiger)",
+          "z3_formula": "Implies(eats_X_bear, eats_X_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, dog) -> eats(X, tiger)",
+          "z3_formula": "Implies(And(needs_X_tiger, sees_X_dog), eats_X_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & needs(X, bear) -> eats(X, bear)",
+          "z3_formula": "Implies(And(nice_X, needs_X_bear), eats_X_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> eats(X, squirrel)",
+          "z3_formula": "Implies(sees_X_dog, eats_X_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & eats(tiger, bear) -> eats(X, squirrel)",
+          "z3_formula": "Implies(And(needs_X_tiger, eats_tiger_bear), eats_X_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(eats_X_tiger, eats_tiger_bear)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "(nice(X) & needs(X, Y)) -> eats(X, Y)",
+          "z3_formula": "Implies(And(nice_dog, needs_dog_bear), eats_dog_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, tiger)",
+          "z3_formula": "sees_dog_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> eats(X, squirrel)",
+          "z3_formula": "Implies(sees_dog_tiger, eats_dog_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> eats(Y, bear)",
+          "z3_formula": "Implies(eats_tiger_dog, eats_dog_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "(needs(X, Y) & sees(Z, Y)) -> eats(X, Y)",
+          "z3_formula": "Implies(And(needs_tiger_bear, sees_tiger_squirrel), eats_tiger_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, squirrel)",
+          "z3_formula": "needs_bear_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(dog, tiger)",
+          "z3_formula": "sees_dog_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> sees(X, Z) | sees(Z, Y)",
+          "z3_formula": "Implies(sees_tiger_squirrel, Or(sees_tiger_bear, sees_bear_tiger))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> needs(X, Z) | eats(X, Z)",
+          "z3_formula": "Implies(sees_dog_tiger, Or(needs_dog_bear, eats_dog_tiger))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & sees(Y, Z) -> eats(X, Z)",
+          "z3_formula": "Implies(And(needs_tiger_bear, sees_tiger_bear), eats_tiger_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> eats(Y, Z)",
+          "z3_formula": "Implies(eats_dog_tiger, eats_tiger_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(eats_dog_tiger, sees_dog_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> sees(Y, X)",
+          "z3_formula": "Implies(eats_tiger_bear, sees_bear_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "Or(sees_dog_bear, sees_bear_dog) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, dog)",
+          "z3_formula": "eats_tiger_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> needs(X, bear)",
+          "z3_formula": "Implies(eats_tiger_dog, needs_tiger_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(X, tiger)",
+          "z3_formula": "Implies(eats_tiger_bear, eats_tiger_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, dog) -> eats(X, tiger)",
+          "z3_formula": "Implies(And(needs_tiger_bear, sees_tiger_dog), eats_tiger_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & needs(X, bear) -> eats(X, bear)",
+          "z3_formula": "Implies(And(nice_dog, needs_dog_bear), eats_dog_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> eats(X, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_dog, eats_squirrel_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & eats(X, tiger) -> eats(X, bear)",
+          "z3_formula": "Implies(And(needs_tiger_bear, eats_tiger_tiger), eats_tiger_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> eats(X, bear)",
+          "z3_formula": "Implies(eats_tiger_tiger, eats_tiger_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(dog, bear)",
+          "z3_formula": "Not(sees_dog_bear)",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 166,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 49
+    },
+    "maxsat_stats": {
+      "satisfied": 49,
+      "excluded": 0,
+      "total_weight": 166,
+      "solve_time_ms": 1.2225015088915825
+    },
+    "timing": {
+      "trace_gen_s": 11.595,
+      "extraction_s": 31.757,
+      "dedup_s": 1.328,
+      "maxsat_s": 0.004,
+      "total_s": 44.685
+    }
+  }
+}

@@ -1,0 +1,678 @@
+{
+  "pid": "folio_120",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "named_after_barutin(cove)",
+          "z3_formula": "named_after_barutin_cove == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "on_sw_coast_of_snow_island(cove)",
+          "z3_formula": "on_sw_coast_of_snow_island_cove == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "south_shetland_islands_include_snow_island",
+          "z3_formula": "south_shetland_islands_include_snow_island == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "south_shetland_islands_part_of_antarctica",
+          "z3_formula": "south_shetland_islands_part_of_antarctica == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_b & located_in_c -> located_in_c",
+          "z3_formula": "Implies(And(located_in_b, located_in_c), located_in_c)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_antarctica(cove)",
+          "z3_formula": "located_in_antarctica_cove == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "named_after_barutin(barutin)",
+          "z3_formula": "named_after_barutin_barutin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_antarctica(barutin)",
+          "z3_formula": "located_in_antarctica_barutin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not located_in_antarctica(barutin)",
+          "z3_formula": "Not(located_in_antarctica_barutin)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "named_after_barutin_cove(barutin)",
+          "z3_formula": "named_after_barutin_cove_barutin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "on_snow_island(barutin_cove)",
+          "z3_formula": "on_snow_island_barutin_cove == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_south_shetland_islands(snow_island)",
+          "z3_formula": "part_of_south_shetland_islands_snow_island == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_antarctica(south_shetland_islands)",
+          "z3_formula": "part_of_antarctica_south_shetland_islands == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "part_of_antarctica(X) & on_X(Y) -> part_of_antarctica(Y)",
+          "z3_formula": "Implies(And(part_of_antarctica_snow_island, on_snow_island_barutin_cove), part_of_antarctica_barutin_cove)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "named_after_barutin_cove(barutin)",
+          "z3_formula": "named_after_barutin_cove_barutin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "part_of_antarctica(barutin_cove)",
+          "z3_formula": "part_of_antarctica_barutin_cove == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "part_of_antarctica(barutin)",
+          "z3_formula": "part_of_antarctica_barutin == Unknown",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "named_after(bulgar_settlement, barutin_cove)",
+          "z3_formula": "named_after_bulgar_settlement_barutin_cove == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "located_on(barutin_cove, snow_island)",
+          "z3_formula": "located_on_barutin_cove_snow_island == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "part_of(snow_island, south_shetland_islands)",
+          "z3_formula": "part_of_snow_island_south_shetland_islands == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of(south_shetland_islands, antarctica)",
+          "z3_formula": "part_of_south_shetland_islands_antarctica == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "located_in(B, C) & located_in(C, D) -> located_in(B, D)",
+          "z3_formula": "Implies(And(located_in_B_C, located_in_C_D), located_in_B_D)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "located_in(barutin_cove, antarctica)",
+          "z3_formula": "located_in_barutin_cove_antarctica == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "located_in(barutin, antarctica)",
+          "z3_formula": "located_in_barutin_antarctica == False",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "named_after_barutin_cove",
+          "z3_formula": "named_after_barutin_cove == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "on_snow_island_barutin_cove",
+          "z3_formula": "on_snow_island_barutin_cove == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_south_shetland_islands_snow_island",
+          "z3_formula": "part_of_south_shetland_islands_snow_island == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_antarctica_south_shetland_islands",
+          "z3_formula": "part_of_antarctica_south_shetland_islands == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_B & located_in_C -> located_in_C",
+          "z3_formula": "Implies(And(on_snow_island_barutin_cove, part_of_south_shetland_islands_snow_island), part_of_antarctica_barutin_cove)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_antarctica_barutin_cove",
+          "z3_formula": "part_of_antarctica_barutin_cove == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "named_after_barutin_barutin_cove",
+          "z3_formula": "named_after_barutin_barutin_cove == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "on_snow_island_barutin_cove",
+          "z3_formula": "on_snow_island_barutin_cove == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "south_shetland_islands_include_snow_island",
+          "z3_formula": "south_shetland_islands_include_snow_island == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "south_shetland_islands_part_of_antarctica",
+          "z3_formula": "south_shetland_islands_part_of_antarctica == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "on_X_island_Y & part_of_X_islands_Z -> part_of_Z_Y",
+          "z3_formula": "Implies(And(on_snow_island_barutin_cove, part_of_snow_island_south_shetland_islands), part_of_south_shetland_islands_barutin_cove)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "part_of_south_shetland_islands_barutin_cove",
+          "z3_formula": "part_of_south_shetland_islands_barutin_cove == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "part_of_X_islands_Y -> part_of_Y_X",
+          "z3_formula": "Implies(part_of_south_shetland_islands_barutin_cove, part_of_antarctica_barutin_cove)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "part_of_antarctica_barutin_cove",
+          "z3_formula": "part_of_antarctica_barutin_cove == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_X_Y & part_of_Z_Y -> part_of_Z_X",
+          "z3_formula": "Implies(And(named_after_barutin_barutin_cove, part_of_antarctica_barutin_cove), part_of_antarctica_barutin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "part_of_antarctica_barutin",
+          "z3_formula": "part_of_antarctica_barutin == Unknown",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "named_after(barutin_cove, barutin)",
+          "z3_formula": "named_after_barutin_cove_barutin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "located(barutin_cove, snow_island)",
+          "z3_formula": "located_barutin_cove_snow_island == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "part_of(south_shetland_islands, snow_island)",
+          "z3_formula": "part_of_south_shetland_islands_snow_island == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of(south_shetland_islands, antarctica)",
+          "z3_formula": "part_of_south_shetland_islands_antarctica == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "located(A, B) & located(B, C) -> located(A, C)",
+          "z3_formula": "Implies(And(located_barutin_cove_snow_island, located_snow_island_antarctica), located_barutin_cove_antarctica)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "located(barutin_cove, antarctica)",
+          "z3_formula": "located_barutin_cove_antarctica == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "named_after(barutin, barutin_cove)",
+          "z3_formula": "named_after_barutin_barutin_cove == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "located(A, B) -> located(A, B)",
+          "z3_formula": "Implies(located_barutin_barutin_cove, located_barutin_barutin_cove)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "located(barutin, antarctica)",
+          "z3_formula": "located_barutin_antarctica == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not located(barutin, antarctica)",
+          "z3_formula": "Not(located_barutin_antarctica)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "named_after_barutin(barutin_cove)",
+          "z3_formula": "named_after_barutin_barutin_cove == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "on_snow_island(barutin_cove)",
+          "z3_formula": "on_snow_island_barutin_cove == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_south_shetland_islands(snow_island)",
+          "z3_formula": "part_of_south_shetland_islands_snow_island == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_south_shetland_islands(south_shetland_islands)",
+          "z3_formula": "part_of_south_shetland_islands_south_shetland_islands == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_antarctica(south_shetland_islands)",
+          "z3_formula": "part_of_antarctica_south_shetland_islands == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_b & located_in_c -> located_in_c",
+          "z3_formula": "Implies(And(on_snow_island_barutin_cove, part_of_south_shetland_islands_snow_island), part_of_south_shetland_islands_barutin_cove)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "part_of_south_shetland_islands(barutin_cove)",
+          "z3_formula": "part_of_south_shetland_islands_barutin_cove == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "part_of_antarctica(barutin_cove)",
+          "z3_formula": "part_of_antarctica_barutin_cove == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "named_after_barutin(barutin)",
+          "z3_formula": "named_after_barutin_barutin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "part_of_antarctica(barutin)",
+          "z3_formula": "part_of_antarctica_barutin == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not located_in_antarctica(barutin)",
+          "z3_formula": "Not(part_of_antarctica_barutin)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "named_after(barutin_cove, barutin)",
+          "z3_formula": "named_after_barutin_cove_barutin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "located(barutin_cove, snow_island)",
+          "z3_formula": "located_barutin_cove_snow_island == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "located(A, B) & located(B, C) -> located(A, C)",
+          "z3_formula": "Implies(And(located_barutin_cove_snow_island, located_snow_island_south_shetland_islands), located_barutin_cove_south_shetland_islands)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of(snow_island, south_shetland_islands)",
+          "z3_formula": "part_of_snow_island_south_shetland_islands == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "part_of(south_shetland_islands, antarctica)",
+          "z3_formula": "part_of_south_shetland_islands_antarctica == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "located(barutin_cove, antarctica)",
+          "z3_formula": "located_barutin_cove_antarctica == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "named_after_barutin_cove",
+          "z3_formula": "named_after_barutin_cove == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "on_snow_island_barutin_cove",
+          "z3_formula": "on_snow_island_barutin_cove == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_south_shetland_islands_snow_island",
+          "z3_formula": "part_of_south_shetland_islands_snow_island == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_antarctica_south_shetland_islands",
+          "z3_formula": "part_of_antarctica_south_shetland_islands == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_B & located_in_C -> located_in_C",
+          "z3_formula": "Implies(And(on_snow_island_barutin_cove, part_of_south_shetland_islands_snow_island), part_of_antarctica_barutin_cove)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_antarctica_barutin_cove",
+          "z3_formula": "part_of_antarctica_barutin_cove == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not_located_in_antarctica_barutin",
+          "z3_formula": "not_located_in_antarctica_barutin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain",
+          "z3_formula": "Or(not_located_in_antarctica_barutin, located_in_antarctica_barutin)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "named_after_barutin_cove(bulgarian_settlement_of_barutin)",
+          "z3_formula": "named_after_bulgarian_settlement_of_barutin_bulgarian_settlement_of_barutin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_barutin_cove(snow_island)",
+          "z3_formula": "located_in_barutin_cove_snow_island == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "includes_snow_island(south_shetland_islands)",
+          "z3_formula": "includes_snow_island_south_shetland_islands == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "includes_snow_island(greenwich_island) == False",
+          "z3_formula": "includes_snow_island_greenwich_island == False",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "includes_snow_island(deception_island) == False",
+          "z3_formula": "includes_snow_island_deception_island == False",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_antarctica(south_shetland_islands)",
+          "z3_formula": "part_of_antarctica_south_shetland_islands == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_b(c) & located_in_c(d) -> located_in_c(b)",
+          "z3_formula": "Implies(And(located_in_b_snow_island, located_in_c_south_shetland_islands), located_in_c_snow_island)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_antarctica(bulgarian_settlement_of_barutin)",
+          "z3_formula": "located_in_antarctica_bulgarian_settlement_of_barutin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_antarctica(barutin_cove)",
+          "z3_formula": "located_in_antarctica_barutin_cove == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "named_after_barutin_cove(bulgarian_settlement_of_barutin)",
+          "z3_formula": "named_after_bulgarian_settlement_of_barutin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "located_on_barutin_cove(snow_island)",
+          "z3_formula": "located_on_snow_island_barutin_cove == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_south_shetland_islands(snow_island)",
+          "z3_formula": "part_of_snow_island_south_shetland_islands == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_south_shetland_islands(greenwich_island)",
+          "z3_formula": "part_of_greenwich_island_south_shetland_islands == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_south_shetland_islands(deception_island)",
+          "z3_formula": "part_of_deception_island_south_shetland_islands == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_antarctica(south_shetland_islands)",
+          "z3_formula": "part_of_south_shetland_islands_antarctica == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_B(A) & located_in_C(B) -> located_in_C(A)",
+          "z3_formula": "Implies(And(located_in_B_A, located_in_C_B), located_in_C_A)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_antarctica(snow_island)",
+          "z3_formula": "located_in_snow_island_antarctica == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_antarctica(barutin_cove)",
+          "z3_formula": "located_in_barutin_cove_antarctica == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_antarctica(bulgarian_settlement_of_barutin)",
+          "z3_formula": "located_in_bulgarian_settlement_of_barutin_antarctica == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "named_after(barutin_cove, barutin)",
+          "z3_formula": "named_after_barutin_cove_barutin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "location(barutin_cove, snow_island)",
+          "z3_formula": "location_barutin_cove_snow_island == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "part_of(south_shetland_islands, snow_island)",
+          "z3_formula": "part_of_south_shetland_islands_snow_island == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of(south_shetland_islands, antarctica)",
+          "z3_formula": "part_of_south_shetland_islands_antarctica == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_antarctica(barutin_cove)",
+          "z3_formula": "located_in_antarctica_barutin_cove == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_antarctica(barutin)",
+          "z3_formula": "located_in_antarctica_barutin == Unknown",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

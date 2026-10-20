@@ -1,0 +1,552 @@
+{
+  "pid": "folio_143",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "artificial_selection(breeding_back)",
+          "z3_formula": "artificial_selection_breeding_back == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "breeding_back(heck_cattle)",
+          "z3_formula": "breeding_back_heck_cattle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(heck_cattle)",
+          "z3_formula": "animal_heck_cattle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(aurochs)",
+          "z3_formula": "animal_aurochs == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_extinct(animal)",
+          "z3_formula": "some_animals_extinct_animal == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "artificially_selected(heck_cattle)",
+          "z3_formula": "artificially_selected_heck_cattle == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "artificial_selection(breeding_back)",
+          "z3_formula": "artificial_selection_breeding_back == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "artificial_selection(heck_cattle)",
+          "z3_formula": "artificial_selection_heck_cattle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle == True",
+          "z3_formula": "heck_cattle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs == True",
+          "z3_formula": "aurochs == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back -> artificial_selection",
+          "z3_formula": "Implies(breeding_back, artificial_selection)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle & artificial_selection(heck_cattle)",
+          "z3_formula": "And(heck_cattle, artificial_selection_heck_cattle)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back_involves_artificial_selection",
+          "z3_formula": "breeding_back_involves_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_bred_back",
+          "z3_formula": "heck_cattle_bred_back == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back_involves_artificial_selection -> artificial_selection",
+          "z3_formula": "Implies(breeding_back_involves_artificial_selection, artificial_selection)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle_are_artificially_selected",
+          "z3_formula": "heck_cattle_are_artificially_selected == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "artificial_selection(breeding_back)",
+          "z3_formula": "artificial_selection_breeding_back == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_bred_back",
+          "z3_formula": "heck_cattle_bred_back == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back -> artificial_selection",
+          "z3_formula": "Implies(heck_cattle_bred_back, artificial_selection_heck_cattle)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "artificial_selection(heck_cattle)",
+          "z3_formula": "artificial_selection_heck_cattle == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_bred_back",
+          "z3_formula": "heck_cattle_bred_back == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back_is_artificial_selection -> artificial_selection",
+          "z3_formula": "Implies(breeding_back_is_artificial_selection, artificial_selection)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle_are_artificially_selected",
+          "z3_formula": "heck_cattle_are_artificially_selected == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back_is_artificial_selection -> artificial_selection",
+          "z3_formula": "Implies(breeding_back_is_artificial_selection, artificial_selection)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_bred_back -> heck_cattle_artificially_selected",
+          "z3_formula": "Implies(heck_cattle_bred_back, heck_cattle_artificially_selected)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle_are_artificially_selected",
+          "z3_formula": "heck_cattle_artificially_selected == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "artificial_selection(breeding_back)",
+          "z3_formula": "artificial_selection_breeding_back == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "artificial_selection(breeding_back) -> artificially_selected(X)",
+          "z3_formula": "Implies(artificial_selection_breeding_back, artificially_selected_heck_cattle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_are_animals -> artificially_selected(heck_cattle)",
+          "z3_formula": "Implies(heck_cattle_are_animals, artificially_selected_heck_cattle)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "artificially_selected(heck_cattle)",
+          "z3_formula": "artificially_selected_heck_cattle == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back(is_a_form_of, artificial_selection, by_the_deliberate_selective_breeding_of, domestic_animals)",
+          "z3_formula": "breeding_back_is_a_form_of_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back(X, Y, Z, W) -> artificial_selection(X, Y, Z, W)",
+          "z3_formula": "Implies(breeding_back_is_a_form_of_artificial_selection, artificial_selection_heck_cattle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle(were_bred_back_in, the_1920s, to_resemble, the_aurochs)",
+          "z3_formula": "heck_cattle_were_bred_back_in_the_1920s_to_resemble_the_aurochs == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle(are_animals)",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs(are_animals)",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals(to_be_bred_back, resemble, animals, that_are_extinct)",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_animals_that_are_extinct == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "some_heck_cattle(are_artificially_selected)",
+          "z3_formula": "some_heck_cattle_are_artificially_selected == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back_is_artificial_selection -> artificial_selection",
+          "z3_formula": "Implies(breeding_back_is_artificial_selection, artificial_selection)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_were_bred_back -> heck_cattle_are_artificially_selected",
+          "z3_formula": "Implies(heck_cattle_were_bred_back, heck_cattle_are_artificially_selected)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle_are_artificially_selected",
+          "z3_formula": "heck_cattle_are_artificially_selected == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "artificial_selection_by_breeding_back",
+          "z3_formula": "artificial_selection_by_breeding_back == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_bred_back",
+          "z3_formula": "heck_cattle_bred_back == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back -> artificial_selection",
+          "z3_formula": "Implies(heck_cattle_bred_back, artificial_selection_heck_cattle)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "some_heck_cattle_are_artificially_selected",
+          "z3_formula": "some_heck_cattle_are_artificially_selected == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back(is_form_of_artificial_selection)",
+          "z3_formula": "breeding_back_is_form_of_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle(were_bred_back)",
+          "z3_formula": "heck_cattle_were_bred_back == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle(are_animals)",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs(are_animals)",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals(to_be_bred_back,resemble_extinct_animals)",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle(were_bred_back) -> heck_cattle(are_artificially_selected)",
+          "z3_formula": "Implies(heck_cattle_were_bred_back, heck_cattle_are_artificially_selected)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle(are_artificially_selected)",
+          "z3_formula": "heck_cattle_are_artificially_selected == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back(is_a_form_of, artificial_selection)",
+          "z3_formula": "breeding_back_is_a_form_of_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle(were_bred_back, in_the_1920s)",
+          "z3_formula": "heck_cattle_were_bred_back_in_the_1920s == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back(is_a_form_of, artificial_selection) -> artificial_selection(heck_cattle)",
+          "z3_formula": "Implies(breeding_back_is_a_form_of_artificial_selection, artificial_selection_heck_cattle)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle(are_animals)",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs(are_animals)",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals(to_be_bred_back, resemble_animals, that_are_extinct)",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_animals_that_are_extinct == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "some_heck_cattle(are_artificially_selected)",
+          "z3_formula": "some_heck_cattle_are_artificially_selected == True",
+          "source_step": 7
+        }
+      ]
+    }
+  ]
+}

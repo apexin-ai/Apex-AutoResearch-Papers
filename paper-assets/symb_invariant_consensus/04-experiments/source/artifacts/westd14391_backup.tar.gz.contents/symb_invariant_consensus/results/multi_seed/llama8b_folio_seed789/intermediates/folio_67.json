@@ -1,0 +1,565 @@
+{
+  "problem": {
+    "id": "folio_67",
+    "problem": "Given the following premises:\nYale University is a private Ivy League research university. Yale University moved to New Haven in 1716. Yale university's endowment was valued at $42.3 billion. Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools. A list of residential colleges at Yale: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nYale University has the largest university endowment of any educational institution.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "PrivateIvyLeagueResearchUniversity(yale)",
+      "MovedTo(yale, newhaven) \u2227 MovedIn(yale, y1716)",
+      "ValuedAt(yalesendowment, y42.3billion)",
+      "\u2203x (OrganizedInto(yale, x) \u2227 ConstituentCollegesandSchools(x) \u2227 ((ResidentialCollege(x) \u2295 GraduateSchool(x)) \u2295 ProfessionalSchool(x)))",
+      "ResidentialCollege(benjaminfranklincollege) \u2227 AtYale(benjaminfranklincollege) \u2227 ResidentialCollege(berkeleycollege) \u2227 AtYale(berkeleycollege) \u2227 ResidentialCollege(branfordcollege) \u2227 AtYale(branfordcollege) \u2227 ResidentialCollege(davenportcollege) \u2227 AtYale(davenportcollege) \u2227 ResidentialCollege(ezrastilescollege) \u2227 AtYale(ezrastilescollege) \u2227 ResidentialCollege(gracehoppercollege) \u2227 AtYale(gracehoppercollege) \u2227 ResidentialCollege(jonathanedwardscollege) \u2227 AtYale(jonathanedwardscollege) \u2227 ResidentialCollege(morsecollege) \u2227 AtYale(morsecollege) \u2227 ResidentialCollege(paulimurraycollege) \u2227 AtYale(paulimurraycollege) \u2227 ResidentialCollege(piersoncollege) \u2227 AtYale(piersoncollege) \u2227 ResidentialCollege(saybrookcollege) \u2227 AtYale(saybrookcollege) \u2227 ResidentialCollege(sillimancollege) \u2227 AtYale(sillimancollege) \u2227 ResidentialCollege(timothydwightcollege) \u2227 AtYale(timothydwightcollege) \u2227 ResidentialCollege(trumbullcollege) \u2227 AtYale(trumbullcollege)"
+    ],
+    "conclusion_fol": "LargestUniversityEndowmentOf(yale, anyeducationalinstitution)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 59.5
+    },
+    "answer_counts": {
+      "Unknown": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and use logical reasoning.\n\nPremise 1: Yale University is a private Ivy League research university. \nThis premise does not provide information about the size of Yale's endowment, so it is not relevant to the conclusion.\n\nPremise 2: Yale University moved to New Haven in 1716. \nThis premise provides historical information about Yale's location but does not provide any information about the university's endowment.\n\nPremise 3: Yale university's endowment was valued at $42.3 billion.\nThis premise provides information about Yale's endowment, but we do not know if it is the largest among all educational institutions.\n\nPremise 4: Yale University has been organized into 27 constituent colleges and schools.\nThis premise provides information about Yale's organizational structure but does not provide any information about the size of its endowment compared to other institutions.\n\nPremise 5: A list of residential colleges at Yale is provided.\nThis premise provides information about Yale's residential colleges but does not provide any information about the size of its endowment compared to other institutions.\n\nSince the premises do not provide any information about the endowments of other educational institutions, we cannot determine whether Yale University has the largest university endowment of any educational institution.\n\nTherefore, the conclusion is uncertain because there is no evidence to support or deny the claim that Yale University has the largest university endowment of any educational institution.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and draw a conclusion based on the available information.\n\nPremises:\n\n1. Yale University is a private Ivy League research university.\n2. Yale University moved to New Haven in 1716.\n3. Yale university's endowment was valued at $42.3 billion.\n4. Yale University has been organized into 27 constituent colleges and schools.\n5. A list of residential colleges at Yale is provided.\n\nConclusion: Yale University has the largest university endowment of any educational institution.\n\nAnalysis:\n\nThe given information states that Yale University's endowment was valued at $42.3 billion. However, it does not provide any information about other educational institutions' endowments. Therefore, we cannot conclude that Yale University has the largest university endowment of any educational institution.\n\nTo determine whether Yale has the largest university endowment, we would need to know the endowments of other educational institutions. Without this information, we cannot make a definitive conclusion.\n\nConclusion: The conclusion is uncertain because we lack information about other educational institutions' endowments.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises and the conclusion.\n\nPremise 1: Yale University is a private Ivy League research university.\nThis premise doesn't provide any information about Yale's endowment or the endowments of other educational institutions.\n\nPremise 2: Yale University moved to New Haven in 1716.\nThis premise doesn't provide any information about Yale's endowment or the endowments of other educational institutions.\n\nPremise 3: Yale university's endowment was valued at $42.3 billion.\nThis premise provides information about Yale's endowment, but it doesn't provide any information about the endowments of other educational institutions.\n\nPremise 4: Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools.\nThis premise doesn't provide any information about Yale's endowment or the endowments of other educational institutions.\n\nPremise 5: A list of residential colleges at Yale: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\nThis premise doesn't provide any information about Yale's endowment or the endowments of other educational institutions.\n\nConclusion: Yale University has the largest university endowment of any educational institution.\n\nFrom the given premises, we only know the value of Yale's endowment, which is $42.3 billion. However, we don't know if this is the largest university endowment of any educational institution. To determine the truth of the conclusion, we would need to know the endowments of other educational institutions.\n\nTherefore, the conclusion is uncertain because we lack information about the endowments of other educational institutions.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Yale University is a private Ivy League research university.\nThis premise provides information about Yale's status as a research university but doesn't provide information about its endowment.\n\nPremise 2: Yale University moved to New Haven in 1716.\nThis premise provides historical information about Yale's relocation but is irrelevant to the comparison of endowments.\n\nPremise 3: Yale university's endowment was valued at $42.3 billion.\nThis premise provides the value of Yale's endowment but does not compare it with other institutions.\n\nPremise 4: Yale University has been organized into 27 constituent colleges and schools.\nThis premise provides information about Yale's organizational structure but is irrelevant to the comparison of endowments.\n\nPremise 5: A list of residential colleges at Yale is provided.\nThis premise provides a list of residential colleges at Yale but is irrelevant to the comparison of endowments.\n\nTo determine if Yale has the largest university endowment, we would need information about the endowments of other educational institutions for comparison.\n\nSince the given premises do not provide information about other institutions' endowments, we cannot make a definitive conclusion about whether Yale has the largest university endowment.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and see if they provide enough information to support the conclusion.\n\nPremise 1: Yale University is a private Ivy League research university.\nThis premise provides information about Yale University's type, but it does not provide any information about its endowment.\n\nPremise 2: Yale University moved to New Haven in 1716.\nThis premise provides information about Yale University's location and its history but does not provide any information about its endowment.\n\nPremise 3: Yale university's endowment was valued at $42.3 billion.\nThis premise provides information about Yale University's endowment. However, it does not provide any information about other educational institutions' endowments.\n\nPremise 4: Yale University has been organized into 27 constituent colleges and schools.\nThis premise provides information about Yale University's organizational structure but does not provide any information about its endowment.\n\nPremise 5: Yale University has the following residential colleges: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\nThis premise provides information about Yale University's residential colleges but does not provide any information about its endowment.\n\nTo determine whether Yale University has the largest university endowment of any educational institution, we need to know the endowments of other educational institutions. However, the given premises do not provide this information.\n\nSince the premises do not provide enough information to support the conclusion, the conclusion is uncertain. We cannot determine whether Yale University has the largest university endowment of any educational institution based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given information and any additional information that might be required to make a conclusion.\n\nGiven information:\n1. Yale University is a private Ivy League research university.\n2. Yale University moved to New Haven in 1716.\n3. Yale university's endowment was valued at $42.3 billion.\n4. Yale University has been organized into 27 constituent colleges and schools.\n5. List of residential colleges at Yale.\n\nTo make a conclusion about whether Yale University has the largest university endowment of any educational institution, we need to know the endowments of other educational institutions. However, the given information does not provide this data.\n\nSince we do not have information about the endowments of other educational institutions, we cannot make a definitive conclusion about whether Yale University has the largest university endowment of any educational institution.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they provide enough information to support the conclusion.\n\nPremise 1: Yale University is a private Ivy League research university.\n\nThis premise provides some general information about Yale University, but it does not provide any information about its endowment or the endowments of other educational institutions.\n\nPremise 2: Yale University moved to New Haven in 1716.\n\nThis premise provides some historical information about Yale University, but it does not provide any information about its endowment or the endowments of other educational institutions.\n\nPremise 3: Yale university's endowment was valued at $42.3 billion.\n\nThis premise provides specific information about Yale University's endowment, but it does not provide any information about the endowments of other educational institutions.\n\nPremise 4: Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools.\n\nThis premise provides some information about Yale University's organizational structure, but it does not provide any information about its endowment or the endowments of other educational institutions.\n\nPremise 5: A list of residential colleges at Yale: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\n\nThis premise provides a list of residential colleges at Yale, but it does not provide any information about its endowment or the endowments of other educational institutions.\n\nFrom the given premises, we only know that Yale University's endowment is valued at $42.3 billion, but we do not know the endowments of other educational institutions. Therefore, we cannot conclude that Yale University has the largest university endowment of any educational institution.\n\nConclusion: The conclusion is uncertain, as we do not have enough information to support it.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the information available about other educational institutions.\n\nPremises:\n1. Yale University is a private Ivy League research university.\n2. Yale University moved to New Haven in 1716.\n3. Yale university's endowment was valued at $42.3 billion.\n4. Yale University has been organized into 27 constituent colleges and schools.\n5. A list of residential colleges at Yale is provided.\n\nWe know that Yale University has a large endowment, but we cannot conclude that it is the largest without comparing it to other educational institutions.\n\nTo determine the truth value of the conclusion, we need to consider the following:\n- The endowment of Yale University is $42.3 billion.\n- There might be other educational institutions with larger endowments.\n\nUnfortunately, the provided premises do not give us information about other educational institutions' endowments. \n\nHowever, based on general knowledge, some of the educational institutions with large endowments include:\n- Harvard University: approximately $50 billion\n- University of Oxford: approximately $7.1 billion (but note that the University of Oxford's endowment figure may vary depending on the source and date, and it's known to be one of the largest in the world but not the largest)\n- Stanford University: approximately $29.4 billion\n\nSince we cannot conclude that Yale University has the largest endowment without knowing the endowments of other institutions, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion.\n\nPremise 1: Yale University is a private Ivy League research university.\n- This premise does not provide any information about Yale's endowment.\n\nPremise 2: Yale University moved to New Haven in 1716.\n- This premise does not provide any information about Yale's endowment.\n\nPremise 3: Yale university's endowment was valued at $42.3 billion.\n- This premise provides information about Yale's endowment, but it does not tell us if it is the largest among all educational institutions.\n\nPremise 4: Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools.\n- This premise does not provide any information about Yale's endowment.\n\nPremise 5: A list of residential colleges at Yale: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\n- This premise does not provide any information about Yale's endowment.\n\nConclusion: Yale University has the largest university endowment of any educational institution.\n- We cannot determine if this conclusion is true because we do not have any information about the endowments of other educational institutions.\n\nTherefore, based on the given premises, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's break down the given premises and analyze the conclusion.\n\nPremise 1: Yale University is a private Ivy League research university. \nThis premise does not provide any information about the size of Yale's endowment in comparison to other institutions.\n\nPremise 2: Yale University moved to New Haven in 1716. \nThis premise does not provide any information about the size of Yale's endowment in comparison to other institutions.\n\nPremise 3: Yale university's endowment was valued at $42.3 billion. \nThis premise gives us information about the size of Yale's endowment, but it does not provide any information about the size of other institutions' endowments.\n\nPremise 4: Yale University has been organized into 27 constituent colleges and schools.\nThis premise does not provide any information about the size of Yale's endowment in comparison to other institutions.\n\nPremise 5: A list of residential colleges at Yale is provided.\nThis premise does not provide any information about the size of Yale's endowment in comparison to other institutions.\n\nTo determine whether the conclusion is true, we need to know the endowments of other educational institutions. Without this information, we cannot conclude that Yale University has the largest university endowment of any educational institution.\n\nConclusion: \nSince we do not have information about the endowments of other educational institutions, we cannot determine whether Yale University has the largest endowment. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to examine the given premises and see if they provide sufficient evidence to support the conclusion.\n\nPremise 1: Yale University is a private Ivy League research university.\n- This premise provides general information about Yale University but does not give us any information about its endowment.\n\nPremise 2: Yale University moved to New Haven in 1716.\n- This premise gives us information about Yale University's history but does not provide any information about its endowment.\n\nPremise 3: Yale university's endowment was valued at $42.3 billion.\n- This premise provides specific information about Yale University's endowment. It tells us that the endowment is valued at $42.3 billion.\n\nHowever, we do not have any information about the endowments of other educational institutions. To determine whether Yale University has the largest university endowment, we need to compare its endowment to that of other institutions.\n\nSince we do not have any information about other institutions' endowments, we cannot definitively say whether Yale University has the largest university endowment. We can only say that its endowment is valued at $42.3 billion.\n\nTherefore, the conclusion is uncertain because we do not have enough information to compare Yale University's endowment to that of other institutions.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises provided.\n\nPremise 1: Yale University is a private Ivy League research university.\nThis premise alone does not provide information about Yale's endowment compared to other educational institutions.\n\nPremise 2: Yale University moved to New Haven in 1716.\nThis premise is irrelevant to determining the size of Yale's endowment.\n\nPremise 3: Yale university's endowment was valued at $42.3 billion.\nThis premise gives us specific information about Yale's endowment. However, to determine whether it's the largest, we need to compare it with other institutions.\n\nPremise 4: Yale University has been organized into 27 constituent colleges and schools.\nThis premise provides information about Yale's organizational structure but does not relate to the size of its endowment.\n\nPremise 5: A list of residential colleges at Yale is provided.\nThis premise is irrelevant to determining the size of Yale's endowment.\n\nTo determine whether the conclusion is true, we need to know if Yale's endowment is the largest among all educational institutions. Since we only have information about Yale's endowment, we cannot make a definitive comparison.\n\nHowever, considering that the endowment of many top universities, such as Harvard University, Stanford University, and others, is also in the tens of billions, it is uncertain whether Yale University has the largest university endowment of any educational institution.\n\nTherefore, the conclusion is uncertain. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_value(yale_university, 42.3)",
+          "z3_formula": "endowment_value_yale_university_42.3 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges_and_schools(yale_university, 27)",
+          "z3_formula": "constituent_colleges_and_schools_yale_university_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale_university)",
+          "z3_formula": "residential_colleges_yale_university == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "largest_university_endowment(yale_university)",
+          "z3_formula": "largest_university_endowment_yale_university == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment(yale_university, 42.3)",
+          "z3_formula": "endowment_yale_university_42.3 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges_and_schools(yale_university, 27)",
+          "z3_formula": "constituent_colleges_and_schools_yale_university_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale_university)",
+          "z3_formula": "residential_colleges_yale_university == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "largest_university_endowment(yale_university)",
+          "z3_formula": "largest_university_endowment_yale_university == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven_in_1716(yale_university)",
+          "z3_formula": "moved_to_new_haven_in_1716_yale_university == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "valued_at_42_point_3_billion(yale_university)",
+          "z3_formula": "valued_at_42_point_3_billion_yale_university == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale_university)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale_university == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "list_of_residential_colleges_at_yale(yale_university)",
+          "z3_formula": "list_of_residential_colleges_at_yale_yale_university == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "largest_university_endowment_of_any_educational_institution(yale_university)",
+          "z3_formula": "largest_university_endowment_of_any_educational_institution_yale_university == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale)",
+          "z3_formula": "private_ivy_league_research_university_yale == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven_in_1716(yale)",
+          "z3_formula": "moved_to_new_haven_in_1716_yale == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_was_valued_at_42_point_3_billion(yale)",
+          "z3_formula": "endowment_was_valued_at_42_point_3_billion_yale == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "list_of_residential_colleges_at_yale_provided(yale)",
+          "z3_formula": "list_of_residential_colleges_at_yale_provided_yale == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(yale)",
+          "z3_formula": "uncertain_yale == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale)",
+          "z3_formula": "private_ivy_league_research_university_yale == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven_in_1716(yale)",
+          "z3_formula": "moved_to_new_haven_in_1716_yale == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "valued_at_42_point_3_billion(yale)",
+          "z3_formula": "valued_at_42_point_3_billion_yale == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "has_residential_colleges(yale)",
+          "z3_formula": "has_residential_colleges_yale == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "largest_university_endowment(yale)",
+          "z3_formula": "largest_university_endowment_yale == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment(yale_university, 42.3)",
+          "z3_formula": "endowment_yale_university_42.3 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges(yale_university, 27)",
+          "z3_formula": "constituent_colleges_yale_university_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(largest_university_endowment(yale_university))",
+          "z3_formula": "uncertain_largest_university_endowment_yale_university == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment(yale_university, 42.3)",
+          "z3_formula": "endowment_yale_university_42.3 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges_and_schools(yale_university, 27)",
+          "z3_formula": "constituent_colleges_and_schools_yale_university_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale_university, [benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college])",
+          "z3_formula": "residential_colleges_yale_university_benjamin_franklin_college_berkeley_college_branford_college_davenport_college_ezra_stiles_college_grace_hopper_college_jonathan_edwards_college_morse_college_pauli_murray_college_pierson_college_saybrook_college_silliman_college_timothy_dwight_college_trumbull_college == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "largest_university_endowment(yale_university)",
+          "z3_formula": "Not(Or(endowment_yale_university_42.3, Not(endowment_others))) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale)",
+          "z3_formula": "private_ivy_league_research_university_yale == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment(yale, 42.3)",
+          "z3_formula": "endowment_yale_42.3 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges_and_schools(yale, 27)",
+          "z3_formula": "constituent_colleges_and_schools_yale_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "large_endowment(X) -> largest_endowment(X)",
+          "z3_formula": "Implies(large_endowment_yale, largest_endowment_yale)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "large_endowment(yale)",
+          "z3_formula": "large_endowment_yale == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "endowment(harvard, 50)",
+          "z3_formula": "endowment_harvard_50 == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "endowment(oxford, 7.1)",
+          "z3_formula": "endowment_oxford_7.1 == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "endowment(stanford, 29.4)",
+          "z3_formula": "endowment_stanford_29.4 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(largest_endowment(yale))",
+          "z3_formula": "Not(largest_endowment_yale)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale)",
+          "z3_formula": "private_ivy_league_research_university_yale == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven_in_1716(yale)",
+          "z3_formula": "moved_to_new_haven_in_1716_yale == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_was_valued_at_42_point_3_billion(yale)",
+          "z3_formula": "endowment_was_valued_at_42_point_3_billion_yale == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "list_of_residential_colleges_at_yale(benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college)",
+          "z3_formula": "list_of_residential_colleges_at_yale == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "largest_university_endowment_of_any_educational_institution(yale)",
+          "z3_formula": "largest_university_endowment_of_any_educational_institution_yale == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale)",
+          "z3_formula": "private_ivy_league_research_university_yale == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_value(yale, 42.3)",
+          "z3_formula": "endowment_value_yale_42.3 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges_and_schools(yale, 27)",
+          "z3_formula": "constituent_colleges_and_schools_yale_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale)",
+          "z3_formula": "residential_colleges_yale == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain_largest_endowment(yale)",
+          "z3_formula": "uncertain_largest_endowment_yale == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment(yale_university, 42.3)",
+          "z3_formula": "endowment_yale_university_42.3 == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment(yale_university, 42.3e9)",
+          "z3_formula": "endowment_yale_university_42.3e9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges_and_schools(yale_university, 27)",
+          "z3_formula": "constituent_colleges_and_schools_yale_university_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale_university)",
+          "z3_formula": "residential_colleges_yale_university == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain_largest_university_endowment(yale_university)",
+          "z3_formula": "uncertain_largest_university_endowment_yale_university == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 72,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 32
+    },
+    "maxsat_stats": {
+      "satisfied": 31,
+      "excluded": 1,
+      "total_weight": 60,
+      "solve_time_ms": 1.0861651971936226
+    },
+    "timing": {
+      "trace_gen_s": 5.139,
+      "extraction_s": 17.845,
+      "dedup_s": 0.458,
+      "maxsat_s": 0.003,
+      "total_s": 23.445
+    }
+  }
+}

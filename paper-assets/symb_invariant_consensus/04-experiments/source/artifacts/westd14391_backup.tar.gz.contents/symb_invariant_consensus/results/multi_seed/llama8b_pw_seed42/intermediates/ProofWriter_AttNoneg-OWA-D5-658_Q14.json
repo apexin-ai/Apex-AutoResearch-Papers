@@ -1,0 +1,709 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-658_Q14",
+    "problem": "Anne is rough. Charlie is quiet. Charlie is smart. Charlie is white. Erin is quiet. Erin is red. Fiona is quiet. Fiona is red. Fiona is round. Fiona is smart. Fiona is white. If someone is furry and round then they are smart. All round, red people are furry. All smart, furry people are rough. If Erin is red then Erin is white. All smart, rough people are furry. All furry, rough people are round. If someone is white then they are rough. If someone is red and rough then they are smart. All red, rough people are white.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is white.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nFurry($x, bool) ::: Is x furry?\nRound($x, bool) ::: Is x round?\nRed($x, bool) ::: Is x red?\n\nFacts:\nRough(Anne, True) ::: Anne is rough.\nQuiet(Charlie, True) ::: Charlie is quiet.\nSmart(Charlie, True) ::: Charlie is smart.\nWhite(Charlie, True) ::: Charlie is white.\nQuiet(Erin, True) ::: Erin is quiet.\nRed(Erin, True) ::: Erin is red.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRed(Fiona, True) ::: Fiona is red.\nRound(Fiona, True) ::: Fiona is round.\nSmart(Fiona, True) ::: Fiona is smart.\nWhite(Fiona, True) ::: Fiona is white.\n\nRules:\nFurry($x, True) && Round($x, True) >>> Smart($x, True) ::: If someone is furry and round then they are smart.\nRound($x, True) && Red($x, True) >>> Furry($x, True) ::: All round, red people are furry.\nSmart($x, True) && Furry($x, True) >>> Rough($x, True) ::: All smart, furry people are rough.\nRed(Erin, True) >>> White(Erin, True) ::: If Erin is red then Erin is white.\nSmart($x, True) && Rough($x, True) >>> Furry($x, True) ::: All smart, rough people are furry.\nFurry($x, True) && Rough($x, True) >>> Round($x, True) ::: All furry, rough people are round.\nWhite($x, True) >>> Rough($x, True) ::: If someone is white then they are rough.\nRed($x, True) && Rough($x, True) >>> Smart($x, True) ::: If someone is red and rough then they are smart.\nRed($x, True) && Rough($x, True) >>> White($x, True) ::: All red, rough people are white.\n\nQuery:\nWhite(Anne, True) ::: Anne is white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 18.0,
+      "Unknown": 84.5
+    },
+    "answer_counts": {
+      "Unknown": 3,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Anne is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. There is no direct statement that says Anne is white or not. However, we can analyze the information provided.\n\n2. The statement \"If someone is white then they are rough.\" suggests that being white is related to being rough.\n\n3. The statement \"If someone is red and rough then they are smart.\" and \"If someone is white then they are rough.\" implies that being white is not necessarily related to being smart or red.\n\n4. There is no statement that says Anne is red, furry, round, or smart.\n\n5. We also know that \"All smart, furry people are rough.\" and \"All furry, rough people are round.\" This implies that being round is related to being rough and furry.\n\n6. Since we do not have any information about Anne being red, furry, or smart, we cannot directly conclude whether Anne is white or not.\n\nHowever, we can analyze the statement \"All round, red people are furry.\" and \"If someone is red and rough then they are smart.\" and \"All red, rough people are white.\" implies that being red and rough is related to being white.\n\n7. But we also have \"All round, red people are furry.\" which implies that being round and red is related to being furry.\n\n8. And we know that \"All furry, rough people are round.\" which implies that being furry and rough is related to being round.\n\n9. Combining these statements, we can see that being red, furry, and rough is related to being round and white.\n\n10. However, we still cannot conclude whether Anne is white or not, because we do not have any information about Anne being red, furry, or rough.\n\nBased on the given information, the statement \"Anne is white\" is unknown.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply them step by step.\n\n1. Given statements:\n   - Anne is rough.\n   - Charlie is quiet.\n   - Charlie is smart.\n   - Charlie is white.\n   - Erin is quiet.\n   - Erin is red.\n   - Fiona is quiet.\n   - Fiona is red.\n   - Fiona is round.\n   - Fiona is smart.\n   - Fiona is white.\n   - If someone is furry and round then they are smart.\n   - All round, red people are furry.\n   - All smart, furry people are rough.\n   - All furry, rough people are round.\n   - If Erin is red then Erin is white.\n   - All smart, rough people are furry.\n   - All furry, rough people are round.\n   - If someone is white then they are rough.\n   - If someone is red and rough then they are smart.\n   - All red, rough people are white.\n\n2. To determine whether Anne is white, we need to analyze the given statements. We can see that there is no direct statement that says Anne is white. However, we can use the given statements to find a connection.\n\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 1: Anne is rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough. (But it was already given that Charlie is white, we need to find a connection to Anne using the statement \"If someone is white then they are rough\".)\n   From statement 10: If someone is red and rough then they are smart.\n   From statement 1: Anne is rough.\n   From statement 10: If someone is red and rough then they are smart. (But it was already given that Anne is rough, we need to find a connection to Anne using the statement \"If someone is red and rough then they are smart\".)\n   From statement 10: If someone is red and rough then they are smart.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 1: Anne is rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 1: Anne is rough.\n   From statement 10: If someone is red and rough then they are smart.\n   From statement 10: If someone is red and rough then they are smart.\n   From statement 1: Anne is rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 1: Anne is rough.\n   From statement 10: If someone is red and rough then they are smart.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 1: Anne is rough.\n   From statement 10: If someone is red and rough then they are smart.\n   From statement 10: If someone is red and rough then they are smart.\n   From statement 10: If someone is red and rough then they are smart.\n   From statement 1: Anne is rough.\n   From statement 10: If someone is red and rough then they are smart.\n   From statement 1: Anne is rough.\n   From statement 10: If someone is red and rough then they are smart.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 3: Charlie is white.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white then they are rough.\n   From statement 9: If someone is white",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deductions and infer information based on the given statements.\n\nLet's start by analyzing the given statements:\n\n1. Anne is rough. \n2. Charlie is quiet. \n3. Charlie is smart. \n4. Charlie is white. \n5. Erin is quiet. \n6. Erin is red. \n7. Fiona is quiet. \n8. Fiona is red. \n9. Fiona is round. \n10. Fiona is smart. \n11. Fiona is white. \n12. If someone is furry and round then they are smart. \n13. All round, red people are furry. \n14. All smart, furry people are rough. \n15. All furry, rough people are round. \n16. If Erin is red then Erin is white. \n17. All smart, rough people are furry. \n18. All furry, rough people are round. \n19. If someone is white then they are rough. \n20. If someone is red and rough then they are smart. \n21. All red, rough people are white.\n\nNow, let's analyze the statement \"Anne is white.\"\n\nWe can start by looking for direct information about Anne. However, there is no direct statement about Anne's color. \n\nLet's look at the information we have about Anne: Anne is rough (statement 1). \n\nWe can try to find information that connects rough people with their color. \n\nFrom statement 19, if someone is white then they are rough. However, this statement is not sufficient to conclude that Anne is white, as it is an \"if-then\" statement, and we do not have information about Anne's color.\n\nFrom statement 21, all red, rough people are white. However, we do not know if Anne is red. \n\nFrom statement 19, if someone is white then they are rough. And from statement 1, Anne is rough. However, we cannot conclude that Anne is white from this information alone, as there may be other colors that make someone rough.\n\nSince we cannot find any direct information or logical deduction that links Anne's color to \"white\" based on the given statements, we cannot conclude whether the statement \"Anne is white\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is white' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we have the following statements:\n   - Anne is rough.\n   - Charlie is quiet.\n   - Charlie is smart.\n   - Charlie is white.\n   - Erin is quiet.\n   - Erin is red.\n   - Fiona is quiet.\n   - Fiona is red.\n   - Fiona is round.\n   - Fiona is smart.\n   - Fiona is white.\n   - If someone is furry and round then they are smart.\n   - All round, red people are furry.\n   - All smart, furry people are rough.\n   - All furry, rough people are round.\n   - If Erin is red then Erin is white.\n   - All smart, rough people are furry.\n   - All furry, rough people are round.\n   - If someone is white then they are rough.\n   - If someone is red and rough then they are smart.\n   - All red, rough people are white.\n\n2. Now, we will try to deduce information about Anne using the given statements.\n\n3. We know that Anne is rough. But we also know that if someone is white then they are rough. However, we also know that all red, rough people are white. Since we do not have any information about Anne being red or not, we cannot directly determine whether Anne is white or not.\n\n4. However, we have the information that if someone is red and rough then they are smart. But we already know that all smart, rough people are furry. So, if Anne is red and rough, then Anne is furry.\n\n5. We also know that all furry, rough people are round. So, if Anne is furry, then Anne is round.\n\n6. Since we know that Anne is round and furry, we can use the statement 'If someone is furry and round then they are smart.' to conclude that Anne is smart.\n\n7. But now we have a problem. We know that Anne is smart, and we also know that all smart, rough people are furry. However, we do not have any information about Anne being furry or not. We only know that if Anne is smart, then Anne is rough.\n\n8. However, if Anne is white, then Anne is rough, but all red, rough people are white. Since we do not have any information about Anne being red or not, we cannot directly determine whether Anne is white or not.\n\n9. But we know that if Anne is red and rough, then Anne is smart. And we also know that if Anne is smart, then Anne is rough. And we also know that all red, rough people are white.\n\n10. So, we can conclude that if Anne is red and rough, then Anne is white.\n\n11. We know that Anne is rough, and we also know that all red, rough people are white. Since we do not have any information about Anne being red or not, we cannot directly determine whether Anne is white or not.\n\n12. However, we have the information that if someone is white then they are rough. But we already know that all red, rough people are white. Since we do not have any information about Anne being red or not, we cannot directly determine whether Anne is white or not.\n\n13. However, we have the information that all red, rough people are white. We also know that if someone is white then they are rough. So, we can conclude that all red people are rough.\n\n14. But we also know that Erin is red and rough, so Erin is white. And we also know that Erin is white, so Erin is rough.\n\n15. But now we have a problem. We know that all red people are rough, and we also know that all red, rough people are white. However, we do not have any information about Erin being red or not. We only know that Erin is red.\n\n16. So, we can conclude that if Erin is red, then Erin is white.\n\n17. We know that Erin is red, so Erin is white. And we also know that if someone is white then they are rough. So, we can conclude that Erin is rough.\n\n18. But we already know that if someone is white then they are rough. And we also know that Erin is white, so Erin is rough.\n\n19. We also know that if someone is red and rough then they are smart. And we also know that Erin is red and rough, so Erin is smart.\n\n20. But we already know that if someone is white then they are rough. And we also know that all red, rough people are white. So, we can conclude that Erin is white.\n\n21. However, we have the information that all red people are rough. We also know that all red, rough people are white. So, we can conclude that Erin is white.\n\n22. But we already know that Erin is red, so Erin is white.\n\n23. However, we have the information that if someone is red then they are white. We also know that Erin is red, so Erin is white.\n\n24. So, we can conclude that if someone is red, then they are white.\n\n25. Now, let's go back to the statement 'Anne is white.' We know that Anne is rough. But we also know that all red people are rough. And we know that all red people are white.\n\n26. So, we can conclude that all red people are white.\n\n27. But we also know that if someone is white then they are rough. And we also know that all red, rough people are white.\n\n28. So, we can conclude that all red, rough people are white.\n\n29. However, we have the information that if someone is white then they are rough. And we also know that all red, rough people are white.\n\n30. So, we can conclude that all red people are white.\n\n31. But we already know that if someone is red, then they are white.\n\n32. So, we can conclude that if someone is red, then they are white.\n\n33. However, we have the information that all red people are white. And we also know that if someone is red, then they are white.\n\n34. So, we can conclude that all red people are white.\n\n35. However, we have the information that if someone is red then they are white. And we also know that all red, rough people are white.\n\n36. So, we can conclude that all red people are white.\n\n37. However, we have the information that if someone is red then they are white. And we also know that Erin is red, so Erin is white.\n\n38. So, we can conclude that if someone is red, then they are white.\n\n39. However, we have the information that if someone is red, then they are white. And we also know that Erin is red, so Erin is white.\n\n40. However, we have the information that if someone is red, then they is white. We also know that Erin is red, so Erin is white.\n\n41. We also know that Erin is red, so Erin is white.\n\n42. However, we have the information that if someone is red, then they are white. We also know that Erin is red, so Erin is white.\n\n43. However, we have the information that if someone is red then they are white. We also know that Erin is red, so Erin is white.\n\n44. So, we can conclude that if someone is red, then they are white.\n\n45. However, we have the information that if someone is red, then they are white. We also know that Erin is red, so Erin is white.\n\n46. So, we can conclude that if someone is red, then they are white.\n\n47. However, we have the information that if someone is red then they are white. We also know that Erin is red, so Erin is white.\n\n48. So, we can conclude that if someone is red, then they are white.\n\n49. However, we have the information that if someone is red then they are white. We also know that Erin is red, so Erin is white.\n\n50. So, we can conclude that if someone is red, then they are white.\n\n51. However, we have the information that if someone is red, then they are white. We also know that Erin is red, so Erin is white.\n\n52. So, we can conclude that if someone is red, then they are white.\n\n53. However, we have the information that if someone is red, then they are white. We also know that Erin is red, so Erin is white.\n\n54. So, we can conclude that if someone is red, then they are white.\n\n55. However, we have the information that if someone is red, then they are white. We also know that Erin is red, so Erin is white.\n\n56. So, we can conclude that if someone is red, then they are white.\n\n57. However, we have the information that if someone is red, then they are white. We also know that Erin is red, so Erin is white.\n\n58. So, we can conclude that if someone is red, then they are white.\n\n59. However, we have the information that if someone is red, then they are white. We also know that Erin is red, so Erin is white.\n\n60. So, we can conclude that if someone is red, then they are white.\n\n61. However, we have the information that if someone is red, then they are white. We also know that Erin is red, so Erin is white.\n\n62. So, we can conclude that if someone is red, then they are white.\n\n63. However, we have the information that if someone is red, then they are white. We also know that Erin is red, so Erin is white.\n\n64. So, we can conclude that if someone is red, then they are white",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1.  We are given that Anne is rough. \n    (Given statement: Anne is rough)\n\n2.  If someone is white, then they are rough. \n    (Given statement: If someone is white then they are rough)\n\n3.  From steps 1 and 2, we can infer that Anne is white.\n    (Reasoning: If someone is white, then they are rough. And Anne is rough. Therefore, Anne is white)\n\n4.  Now we can conclude that the statement \"Anne is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Anne is white, we need to find out if she is rough. \n\nWe are given the following statements:\n1. If someone is white then they are rough.\n2. All red, rough people are white.\n3. If Erin is red then Erin is white. \n\nHowever, we don't have any information about Anne's color or whether she is red or white. To conclude that Anne is white, we need to establish that she is rough.\n\nFrom the given statements, we can derive that if someone is red, they are white. But this does not apply to Anne. \n\nWe also know that if someone is round, red, and furry, then they are smart. However, we don't have any information about Anne's shape, color, or whether she is furry.\n\nTo find out if Anne is rough, we need to consider the following statements:\n1. All smart, furry people are rough.\n2. All furry, rough people are round.\n3. If someone is white then they are rough.\n\nHowever, we don't have any information about Anne's intelligence or whether she is furry. We also don't know if she is round or not.\n\nNow, let's consider the statement \"If someone is furry and round then they are smart.\" Since we don't have any information about Anne being furry or round, we cannot conclude that she is smart.\n\nConsidering all the statements, we cannot find any direct evidence that Anne is rough, smart, or furry. We also cannot conclude that she is white or red based on the given information.\n\nTherefore, the statement \"Anne is white\" is unknown because we don't have enough information to determine whether Anne is rough.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements step by step to find out whether Anne is white.\n\nGiven statements:\n\n1. Anne is rough.\n2. Charlie is quiet.\n3. Charlie is smart.\n4. Charlie is white.\n5. Erin is quiet.\n6. Erin is red.\n7. Fiona is quiet.\n8. Fiona is red.\n9. Fiona is round.\n10. Fiona is smart.\n11. Fiona is white.\n12. If someone is furry and round then they are smart.\n13. All round, red people are furry.\n14. All smart, furry people are rough.\n15. All furry, rough people are round.\n16. If Erin is red then Erin is white.\n17. All smart, rough people are furry.\n18. All furry, rough people are round.\n19. If someone is white then they are rough.\n20. If someone is red and rough then they are smart.\n21. All red, rough people are white.\n\nNow, let's apply these statements to determine whether Anne is white:\n\nFrom statement 1, we know Anne is rough.\nFrom statement 19, if someone is white then they are rough. This does not directly tell us about Anne but we have a rough statement for Anne. \nFrom statement 1 and 19, we can't tell if Anne is white, as it is not a direct statement but rather a condition that may or may not apply.\n\nHowever, we need to look for more information. From statement 21, all red, rough people are white. This implies that a person can be white if they are red and rough.\n\nNow, let's check if Anne is red and rough. We do not have a direct statement about Anne being red. However, if Anne is not red, then we can't make any conclusion about her being white based on this information alone.\n\nSince we are not given enough information about Anne being red, we can't make a conclusion.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and apply the rules of inference to determine whether Anne is white.\n\nGiven statements:\n1. Anne is rough.\n2. Charlie is quiet.\n3. Charlie is smart.\n4. Charlie is white.\n5. Erin is quiet.\n6. Erin is red.\n7. Fiona is quiet.\n8. Fiona is red.\n9. Fiona is round.\n10. Fiona is smart.\n11. Fiona is white.\n12. If someone is furry and round then they are smart.\n13. All round, red people are furry.\n14. All smart, furry people are rough.\n15. If Erin is red then Erin is white.\n16. All smart, rough people are furry.\n17. All furry, rough people are round.\n18. If someone is white then they are rough.\n19. If someone is red and rough then they are smart.\n20. All red, rough people are white.\n\nFrom statement 1, we know that Anne is rough.\n\nUsing rule 18, if someone is white then they are rough. However, we don't know if Anne is white yet, but we know that being white is a possibility.\n\nNow, let's examine the given statements to see if we can find any relation between Anne and white.\n\nFrom statement 20, all red, rough people are white. Since Anne is rough, this might be a possibility for Anne.\n\nHowever, since Anne is rough, we need to check the relation between red and rough.\n\nFrom statement 19, if someone is red and rough then they are smart. However, there is no direct statement that says Anne is red.\n\nFrom statement 6, Erin is red. And from statement 15, if Erin is red then Erin is white. This does not directly relate to Anne.\n\nFrom statement 6, Erin is red. And from statement 18, if someone is white then they are rough. This does not directly relate to Anne.\n\nWe still do not have enough information to conclude whether Anne is white or not.\n\nHowever, from statement 1, we know that Anne is rough. \n\nFrom statement 18, if someone is white then they are rough.\n\nCombining the above information, it seems that Anne could potentially be white.\n\nBut we still have to check if the other conditions (red, rough) are met for Anne.\n\nFrom statement 1, we know that Anne is rough. \n\nHowever, we still do not have enough information to determine if Anne is red.\n\nSince we cannot conclude if Anne is red, we cannot use the rule that all red, rough people are white to determine if Anne is white.\n\nFrom statement 2, we know that Charlie is quiet, but this does not relate to Anne.\n\nFrom statement 3, we know that Charlie is smart, but this does not relate to Anne.\n\nFrom statement 4, we know that Charlie is white, but this does not relate to Anne.\n\nSince we cannot conclude if Anne is red, we cannot use the rule that all round, red people are furry to determine if Anne is furry.\n\nHowever, we still have to check if the other conditions (smart, furry) are met for Anne.\n\nFrom statement 14, all smart, furry people are rough. However, we do not have enough information to determine if Anne is smart.\n\nHowever, from statement 12, if someone is furry and round then they are smart. But we still do not have enough information to determine if Anne is furry or round.\n\nSince we still do not have enough information, let's try to find other conditions that could make Anne white.\n\nFrom statement 1, we know that Anne is rough.\n\nFrom statement 20, all red, rough people are white. However, we still do not have enough information to determine if Anne is red.\n\nHowever, from statement 18, if someone is white then they are rough.\n\nCombining the above information, it seems that Anne could potentially be white.\n\nHowever, we still have to check if the other conditions (red, rough) are met for Anne.\n\nFrom statement 1, we know that Anne is rough.\n\nHowever, we still do not have enough information to determine if Anne is red.\n\nSince we cannot conclude if Anne is red, we cannot use the rule that all round, red people are furry to determine if Anne is furry.\n\nHowever, we still have to check if the other conditions (smart, furry) are met for Anne.\n\nFrom statement 14, all smart, furry people are rough. However, we do not have enough information to determine if Anne is smart.\n\nHowever, from statement 12, if someone is furry and round then they are smart. But we still do not have enough information to determine if Anne is furry or round.\n\nHowever, we still have to check if the other conditions (round) are met for Anne.\n\nFrom statement 17, all furry, rough people are round. However, we do not have enough information to determine if Anne is furry.\n\nSince we still do not have enough information, let's try to find other conditions that could make Anne white.\n\nFrom statement 1, we know that Anne is rough.\n\nFrom statement 18, if someone is white then they are rough.\n\nCombining the above information, it seems that Anne could potentially be white.\n\nHowever, we still have to check if the other conditions (red, rough) are met for Anne.\n\nFrom statement 1, we know that Anne is rough.\n\nHowever, we still do not have enough information to determine if Anne is red.\n\nSince we cannot conclude if Anne is red, we cannot use the rule that all red, rough people are white to determine if Anne is white.\n\nHowever, we still have to check if the other conditions (smart, furry) are met for Anne.\n\nFrom statement 14, all smart, furry people are rough. However, we do not have enough information to determine if Anne is smart.\n\nHowever, from statement 12, if someone is furry and round then they are smart. But we still do not have enough information to determine if Anne is furry or round.\n\nHowever, we still have to check if the other conditions (round) are met for Anne.\n\nFrom statement 17, all furry, rough people are round. However, we do not have enough information to determine if Anne is furry.\n\nHowever, from statement 1, we know that Anne is rough.\n\nFrom statement 18, if someone is white then they are rough.\n\nFrom statement 1, we know that Anne is rough.\n\nWe still cannot conclude if Anne is white.\n\nHowever, we still have to check if the other conditions (smart, furry, round) are met for Anne.\n\nFrom statement 14, all smart, furry people are rough. However, we do not have enough information to determine if Anne is smart.\n\nHowever, from statement 12, if someone is furry and round then they are smart. But we still do not have enough information to determine if Anne is furry or round.\n\nHowever, we still have to check if the other conditions (red) are met for Anne.\n\nFrom statement 20, all red, rough people are white. However, we still do not have enough information to determine if Anne is red.\n\nHowever, from statement 1, we know that Anne is rough.\n\nFrom statement 18, if someone is white then they are rough.\n\nCombining the above information, it seems that Anne could potentially be white.\n\nHowever, we still have to check if the other conditions (red, rough) are met for Anne.\n\nFrom statement 1, we know that Anne is rough.\n\nHowever, we still do not have enough information to determine if Anne is red.\n\nSince we cannot conclude if Anne is red, we cannot use the rule that all round, red people are furry to determine if Anne is furry.\n\nHowever, we still have to check if the other conditions (smart, furry) are met for Anne.\n\nFrom statement 14, all smart, furry people are rough. However, we do not have enough information to determine if Anne is smart.\n\nHowever, from statement 12, if someone is furry and round then they are smart. But we still do not have enough information to determine if Anne is furry or round.\n\nHowever, we still have to check if the other conditions (round) are met for Anne.\n\nFrom statement 17, all furry, rough people are round. However, we do not have enough information to determine if Anne is furry.\n\nHowever, from statement 1, we know that Anne is rough.\n\nFrom statement 18, if someone is white then they are rough.\n\nCombining the above information, it seems that Anne could potentially be white.\n\nHowever, we still have to check if the other conditions (red, rough) are met for Anne.\n\nFrom statement 1, we know that Anne is rough.\n\nHowever, we still do not have enough information to determine if Anne is red.\n\nSince we cannot conclude if Anne is red, we cannot use the rule that all round, red people are furry to determine if Anne is furry.\n\nHowever, we still have to check if the other conditions (smart, furry) are met for Anne.\n\nFrom statement 14, all smart, furry people are rough. However, we do not have enough information to determine if Anne is smart.\n\nHowever, from statement 12, if someone is furry and round then they are smart. But we still do not have enough information to determine if Anne is furry or round.\n\nHowever, we still have to check if the other conditions (round) are met for Anne.\n\nFrom statement 17, all furry, rough people are round. However, we do not have enough information to determine if Anne is furry.\n\nHowever, from statement 1, we know that Anne is rough.\n\nFrom statement 18, if someone is white then they are rough.\n\nCombining the above information, it seems that Anne could potentially be white.\n\nHowever, we still have to check if the other conditions (red, rough) are met for Anne.\n\nFrom statement 1, we know that Anne is rough.\n\nHowever,",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is white\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n1. Anne is rough.\n2. Charlie is quiet.\n3. Charlie is smart.\n4. Charlie is white.\n5. Erin is quiet.\n6. Erin is red.\n7. Fiona is quiet.\n8. Fiona is red.\n9. Fiona is round.\n10. Fiona is smart.\n11. Fiona is white.\n12. If someone is furry and round then they are smart.\n13. All round, red people are furry.\n14. All smart, furry people are rough.\n15. All furry, rough people are round.\n16. If Erin is red then Erin is white.\n17. All smart, rough people are furry.\n18. All furry, rough people are round.\n19. If someone is white then they are rough.\n20. If someone is red and rough then they are smart.\n21. All red, rough people are white.\n\nLet's break down the information step by step:\n\nFrom (1), Anne is rough.\nFrom (19), if someone is white then they are rough.\nHowever, there's no information stating Anne is white.\n\nFrom (20), if someone is red and rough then they are smart. \nWe can't conclude Anne is red or white from the given information.\n\nFrom (21), all red, rough people are white.\nThis statement contradicts (20) since we can't conclude red and rough people are white from the given information.\n\nFrom (20) and (21), it seems to be a contradiction in the given statements. However, let's analyze the given statements more closely:\n\nFrom (12), if someone is furry and round then they are smart.\nFrom (13), all round, red people are furry.\nWe can't conclude Anne is red or furry.\n\nFrom (16), if Erin is red then Erin is white.\nWe can't conclude Anne is red or white from the given information.\n\nFrom (14), all smart, furry people are rough.\nFrom (15), all furry, rough people are round.\nWe can't conclude Anne is furry, rough, or round from the given information.\n\nFrom (10), Fiona is smart.\nFrom (14), all smart, furry people are rough.\nFrom (15), all furry, rough people are round.\nHowever, we can't conclude Anne is furry, rough, or round from the given information.\n\nSince we can't conclude Anne is white from the given information, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is white\" is true, false, or unknown, we need to analyze the given information step by step and use the rules of logic to infer the answer.\n\n1. Given information:\n   - Anne is rough.\n   - Charlie is quiet.\n   - Charlie is smart.\n   - Charlie is white.\n   - Erin is quiet.\n   - Erin is red.\n   - Fiona is quiet.\n   - Fiona is red.\n   - Fiona is round.\n   - Fiona is smart.\n   - Fiona is white.\n   - If someone is furry and round then they are smart.\n   - All round, red people are furry.\n   - All smart, furry people are rough.\n   - All furry, rough people are round.\n   - If Erin is red then Erin is white.\n   - All smart, rough people are furry.\n   - All furry, rough people are round.\n   - If someone is white then they are rough.\n   - If someone is red and rough then they are smart.\n   - All red, rough people are white.\n\n2. Analyze the given rules and information:\n   - From rule 7, we know that all round, red people are furry.\n   - From rule 8, we know that all smart, furry people are rough.\n   - From rule 9, we know that all furry, rough people are round.\n   - From rule 14, we know that if someone is red and rough then they are smart.\n   - From rule 15, we know that all red, rough people are white.\n\n3. Now we have a problem: we know that all round, red people are furry (rule 7) and all furry, round people are rough (rule 9). Also, all red, round people are furry (rule 7) and all furry, red people are round (rule 7). \n\n   Therefore, all red, round people are furry (rule 7) and all furry, round people are rough (rule 9). Hence all red, round people are rough (rule 9).\n\n   From rule 14, we know that if someone is red and rough then they are smart. Therefore, all red, round people are smart (rule 14).\n\n   From rule 7, we know that all round, red people are furry. Therefore, all round, red people are rough (rule 9) and all round, red people are smart (rule 14).\n\n4. We need to determine whether Anne is white or not. To do this, we need to use the information we have about Anne.\n\n   We know that Anne is rough (given information). From rule 15, we know that all red, rough people are white. However, we don't know whether Anne is red or not.\n\n   We also know that all red, round people are rough (rule 9) and all red, round people are smart (rule 14). However, we don't know whether Anne is round or not.\n\n   We also know that all round, red people are furry (rule 7) and all furry, round people are rough (rule 9). However, we don't know whether Anne is furry or not.\n\n   We also know that all round, red people are smart (rule 14) and all furry, round people are rough (rule 9). However, we don't know whether Anne is round or not.\n\n   We also know that all round, red people are furry (rule 7) and all furry, red people are round (rule 7). However, we don't know whether Anne is round or not.\n\n   We also know that if someone is white then they are rough (rule 11) and all smart, rough people are furry (rule 6). However, we don't know whether Anne is smart or not.\n\n5. Analyze the given information about Erin:\n   - Erin is quiet.\n   - Erin is red.\n   - If Erin is red then Erin is white (rule 10).\n\n   From rule 10, we know that Erin is white.\n\n6. Analyze the given information about Fiona:\n   - Fiona is quiet.\n   - Fiona is red.\n   - Fiona is round.\n   - Fiona is smart.\n   - Fiona is white.\n   - All round, red people are furry (rule 7).\n   - All furry, round people are rough (rule 9).\n   - All round, red people are rough (rule 9).\n   - All round, red people are smart (rule 14).\n\n7. Now we have a problem: we know that all round, red people are furry (rule 7) and all furry, round people are rough (rule 9). Also, all red, round people are furry (rule 7) and all furry, red people are round (rule 7).\n\n   Therefore, all red, round people are furry (rule 7) and all furry, round people are rough (rule 9). Hence all red, round people are rough (rule 9).\n\n   From rule 14, we know that if someone is red and rough then they are smart. Therefore, all red, round people are smart (rule 14).\n\n   From rule 7, we know that all round, red people are furry. Therefore, all round, red people are rough (rule 9) and all round, red people are smart (rule 14).\n\n8. We need to determine whether Anne is white or not. To do this, we need to use the information we have about Anne.\n\n   We know that Anne is rough (given information). From rule 15, we know that all red, rough people are white. However, we don't know whether Anne is red or not.\n\n   We also know that all red, round people are rough (rule 9) and all red, round people are smart (rule 14). However, we don't know whether Anne is round or not.\n\n   We also know that all round, red people are furry (rule 7) and all furry, round people are rough (rule 9). However, we don't know whether Anne is furry or not.\n\n   We also know that all round, red people are smart (rule 14) and all furry, round people are rough (rule 9). However, we don't know whether Anne is round or not.\n\n   We also know that all round, red people are furry (rule 7) and all furry, red people are round (rule 7). However, we don't know whether Anne is round or not.\n\n   We also know that if someone is white then they are rough (rule 11) and all smart, rough people are furry (rule 6). However, we don't know whether Anne is smart or not.\n\n9. Now we know that all round, red people are furry (rule 7), all furry, red people are round (rule 7), all round, red people are rough (rule 9), all round, red people are smart (rule 14), and all round, red people are white (rule 10).\n\n   Therefore, all round, red people are furry (rule 7), all round, red people are rough (rule 9), all round, red people are smart (rule 14), and all round, red people are white (rule 10).\n\n10. We know that all red, rough people are white (rule 15). However, we don't know whether Anne is red or not.\n\n11. We know that if someone is red and rough then they are smart (rule 14). However, we don't know whether Anne is red or not.\n\n12. We know that all round, red people are furry (rule 7), all furry, red people are round (rule 7), all round, red people are rough (rule 9), all round, red people are smart (rule 14), and all round, red people are white (rule 10).\n\n13. From the above, we can conclude that all round, red people are white. However, we don't know whether Anne is round or red.\n\n14. From the above, we can conclude that if someone is round and red, then they are white. However, we don't know whether Anne is round or red.\n\n15. We know that all red, round people are furry (rule 7) and all furry, red people are round (rule 7). However, we don't know whether Anne is round or red.\n\n16. We know that all red, round people are rough (rule 9) and all red, round people are smart (rule 14). However, we don't know whether Anne is round or red.\n\n17. We know that all round, red people are furry (rule 7), all furry, round people are rough (rule 9), all round, red people are rough (rule 9), and all round, red people are smart (rule 14). However, we don't know whether Anne is round or red.\n\n18. We know that all round, red people are white (rule 10). However, we don't know whether Anne is round or red.\n\n19. We can conclude that if someone is round and red, then they are white. However, we don't know whether Anne is round or red.\n\n20. We know that all round, red people are furry (rule 7), all furry, red people are round (rule 7), all round, red people are rough (rule 9), all round, red people are smart (rule 14), and all round, red people are white (rule 10). However, we don't know whether Anne is round or red.\n\n21. We can conclude that all round, red people are white. However, we don't know whether Anne is round or red.\n\n22. We know that if someone is red and rough then they are",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine if the statement 'Anne is white' is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. Given information:\n   - Anne is rough.\n   - Charlie is quiet.\n   - Charlie is smart.\n   - Charlie is white.\n   - Erin is quiet.\n   - Erin is red.\n   - Fiona is quiet.\n   - Fiona is red.\n   - Fiona is round.\n   - Fiona is smart.\n   - Fiona is white.\n\n2. Rules:\n   - If someone is furry and round then they are smart.\n   - All round, red people are furry.\n   - All smart, furry people are rough.\n   - All furry, rough people are round.\n   - If Erin is red then Erin is white. (This is a specific rule, not a general one. However, it is not directly related to Anne.)\n   - If someone is white then they are rough.\n   - If someone is red and rough then they are smart.\n   - All red, rough people are white.\n\nNow, let's analyze the information given about Anne and the rules to determine if Anne is white.\n\n- Anne is rough (given information).\n- If someone is white then they are rough (rule).\n- This rule implies that being rough does not necessarily mean being white, but being white does imply being rough.\n\nSince we cannot directly apply any rule that says 'if someone is rough then they are white', we cannot conclude that Anne is white based on the given information.\n\nHowever, there is another rule that might help: 'All red, rough people are white.' But we don't know if Anne is red.\n\nTo check if Anne is red, we need to apply another rule: 'If Erin is red then Erin is white.' However, this rule is not applicable to Anne. It only applies to Erin.\n\nNow, let's examine if we can infer whether Anne is red or not.\n\n- We can't directly say if Anne is red based on the given information.\n- However, we can see that there are two people who are red: Erin and Fiona.\n\nSince we don't have any information that directly relates Anne to being red, we cannot conclude whether Anne is red or not.\n\nNow, to check if Anne is white, let's analyze if we can infer any other information that might help.\n\n- We already concluded that we cannot directly say if Anne is white or not.\n- We also cannot conclude if Anne is red or not.\n\nHowever, we can see that there is one person who is both red and rough: Erin.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All red, rough people are white.'\n\n- Since Erin is red and rough, according to this rule, Erin must be white.\n- But this rule does not say anything about Anne.\n\nHowever, let's examine if we can infer any information about Anne from the rule 'If someone is white then they are rough.'\n\n- This rule does not say that if someone is rough then they are white.\n- But this rule, combined with the rule 'All red, rough people are white,' implies that if someone is red and rough, then they must be white.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All red, rough people are white.'\n\n- We already concluded that if Erin is red then Erin is white.\n- However, this rule does not say anything about Anne.\n\nHowever, we can see that there is one person who is both red and rough: Erin.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All smart, furry people are rough.'\n\n- We don't have any information that says Anne is furry or smart.\n\nHowever, we can see that there is one person who is smart and furry: Fiona.\n\nNow, let's examine if we can infer any information about Anne from the rule 'If someone is furry and round then they are smart.'\n\n- We don't have any information that says Anne is furry or round.\n\nHowever, we can see that there is one person who is round and furry: Fiona.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All round, red people are furry.'\n\n- We don't have any information that says Anne is round or red.\n\nHowever, we can see that there is one person who is round and red: Fiona.\n\nNow, let's examine if we can infer any information about Anne from the rule 'If Erin is red then Erin is white.'\n\n- This rule does not say anything about Anne.\n\nHowever, we can see that there is one person who is red and white: Erin.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All red, rough people are white.'\n\n- We already concluded that if Erin is red then Erin is white.\n- However, this rule does not say anything about Anne.\n\nHowever, we can see that there is one person who is both red and rough: Erin.\n\nNow, let's examine if we can infer any information about Anne from the rule 'If someone is white then they are rough.'\n\n- This rule does not say that if someone is rough then they are white.\n- But this rule, combined with the rule 'All red, rough people are white,' implies that if someone is red and rough, then they must be white.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All red, rough people are white.'\n\n- We already concluded that if Erin is red then Erin is white.\n- However, this rule does not say anything about Anne.\n\nHowever, we can see that there is one person who is both red and rough: Erin.\n\nNow, let's examine if we can infer any information about Anne from the rule 'If someone is red and rough then they are smart.'\n\n- We already concluded that if Erin is red then Erin is white.\n- However, this rule does not say anything about Anne.\n\nHowever, we can see that there is one person who is red and rough: Erin.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All furry, rough people are round.'\n\n- We don't have any information that says Anne is furry or rough.\n\nHowever, we can see that there is one person who is furry and rough: Fiona.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All red, rough people are white.'\n\n- We already concluded that if Erin is red then Erin is white.\n- However, this rule does not say anything about Anne.\n\nHowever, we can see that there is one person who is both red and rough: Erin.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All round, red people are furry.'\n\n- We don't have any information that says Anne is round or red.\n\nHowever, we can see that there is one person who is round and red: Fiona.\n\nNow, let's examine if we can infer any information about Anne from the rule 'If someone is round and furry then they are smart.'\n\n- We don't have any information that says Anne is round or furry.\n\nHowever, we can see that there is one person who is round and furry: Fiona.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All round, red people are furry.'\n\n- We don't have any information that says Anne is round or red.\n\nHowever, we can see that there is one person who is round and red: Fiona.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All furry, rough people are round.'\n\n- We don't have any information that says Anne is furry or rough.\n\nHowever, we can see that there is one person who is furry and rough: Fiona.\n\nNow, let's examine if we can infer any information about Anne from the rule 'If someone is red and rough then they are smart.'\n\n- We already concluded that if Erin is red then Erin is white.\n- However, this rule does not say anything about Anne.\n\nHowever, we can see that there is one person who is red and rough: Erin.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All red, rough people are white.'\n\n- We already concluded that if Erin is red then Erin is white.\n- However, this rule does not say anything about Anne.\n\nHowever, we can see that there is one person who is both red and rough: Erin.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All furry, rough people are round.'\n\n- We don't have any information that says Anne is furry or rough.\n\nHowever, we can see that there is one person who is furry and rough: Fiona.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All round, red people are furry.'\n\n- We don't have any information that says Anne is round or red.\n\nHowever, we can see that there is one person who is round and red: Fiona.\n\nNow, let's examine if we can infer any information about Anne from the rule 'If someone is furry and round then they are smart.'\n\n- We don't have any information that says Anne is furry or round.\n\nHowever, we can see that there is one person who is round and furry: Fiona.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All furry, round people are smart.'\n\n- We don't have any information that says Anne is furry or round.\n\nHowever, we can see that there is one person who is round and furry: Fiona.\n\nNow, let's examine if we can infer any information about Anne from the rule 'All round, red people are furry.'\n\n- We don't have any information that says Anne is round or red.\n\nHowever, we can see that there is one person who is round and red: Fiona.\n\nNow, let's examine if we can infer",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and use it to determine whether the statement \"Anne is white\" is true, false, or unknown.\n\nGiven information:\n\n1. Anne is rough. \n2. Charlie is quiet. \n3. Charlie is smart. \n4. Charlie is white. \n5. Erin is quiet. \n6. Erin is red. \n7. Fiona is quiet. \n8. Fiona is red. \n9. Fiona is round. \n10. Fiona is smart. \n11. Fiona is white. \n12. If someone is furry and round then they are smart. \n13. All round, red people are furry. \n14. All smart, furry people are rough. \n15. All furry, rough people are round. \n16. If Erin is red then Erin is white. \n17. All smart, rough people are furry. \n18. All furry, rough people are round. \n19. If someone is white then they are rough. \n20. If someone is red and rough then they are smart. \n21. All red, rough people are white.\n\nNow, we need to analyze the statements to find a connection between Anne and being white.\n\nFrom statement 19: If someone is white then they are rough.\nWe can infer that if Anne is white, then Anne is rough (using modus ponens).\n\nFrom statement 1: Anne is rough.\nNow, we have a direct connection between Anne and being rough.\n\nFrom statement 21: All red, rough people are white.\nWe can infer that if Anne is red and rough, then Anne is white.\n\nHowever, we don't have any information about Anne's color. So, we cannot directly conclude whether Anne is red or not.\n\nFrom statement 17: All smart, furry people are rough.\nWe can infer that if Anne is furry and smart, then Anne is rough (using modus ponens).\n\nFrom statement 4: Charlie is white and smart.\nWe can infer that Charlie is furry (using statement 12: If someone is furry and round then they are smart, and statement 10: Fiona is round and smart).\n\nNow, we have a connection between Charlie being furry and white, and being smart.\n\nFrom statement 14: All smart, furry people are rough.\nWe can infer that Charlie is rough.\n\nFrom statement 1: Anne is rough.\nNow, we have a direct connection between Anne and being rough.\n\nFrom statement 3: Charlie is smart.\nWe can infer that Anne is not smart, because statement 17: All smart, furry people are rough, and Charlie is furry and smart.\n\nNow, we have a connection between Charlie being smart and furry, and being rough, and Anne being rough but not smart.\n\nFrom statement 13: All round, red people are furry.\nWe can infer that if Anne is round and red, then Anne is furry.\n\nHowever, we don't have any information about Anne's shape. So, we cannot directly conclude whether Anne is round or not.\n\nFrom statement 20: If someone is red and rough then they are smart.\nWe can infer that if Anne is red and rough, then Anne is smart.\n\nHowever, we already concluded that Anne is rough, and we don't have any information about Anne's color. So, we cannot directly conclude whether Anne is red or not.\n\nNow, we need to look at statement 16: If Erin is red then Erin is white.\nWe can infer that if Erin is red, then Erin is white.\n\nFrom statement 6: Erin is red.\nWe can infer that Erin is white (using statement 16).\n\nFrom statement 6: Erin is red.\nFrom statement 19: If someone is white then they are rough.\nWe can infer that Erin is rough (using modus ponens).\n\nFrom statement 6: Erin is red.\nFrom statement 19: If someone is white then they are rough.\nFrom statement 20: If someone is red and rough then they are smart.\nWe can infer that Erin is smart.\n\nFrom statement 6: Erin is red.\nFrom statement 6: Erin is red.\nFrom statement 21: All red, rough people are white.\nWe can infer that Erin is white.\n\nFrom statement 6: Erin is red.\nFrom statement 6: Erin is red.\nFrom statement 19: If someone is white then they are rough.\nWe can infer that Erin is rough.\n\nNow, we have a direct connection between Erin being red and being rough and white.\n\nFrom statement 6: Erin is red.\nFrom statement 19: If someone is white then they are rough.\nWe can infer that Erin is rough.\n\nNow, we have a direct connection between Erin being red and being rough and white.\n\nFrom statement 6: Erin is red.\nFrom statement 19: If someone is white then they are rough.\nWe can infer that Erin is rough.\n\nFrom statement 6: Erin is red.\nFrom statement 6: Erin is red.\nFrom statement 19: If someone is white then they are rough.\nFrom statement 20: If someone is red and rough then they are smart.\nWe can infer that Erin is smart.\n\nFrom statement 6: Erin is red.\nFrom statement 6: Erin is red.\nFrom statement 21: All red, rough people are white.\nWe can infer that Erin is white.\n\nFrom statement 6: Erin is red.\nFrom statement 6: Erin is red.\nFrom statement 19: If someone is white then they are rough.\nWe can infer that Erin is rough.\n\nNow, we have a direct connection between Erin being red and being rough and white.\n\nWe have a contradiction here. We cannot have Erin being both red and white. So, this statement is false.\n\nHowever, we are not trying to determine whether Erin is red and white. We are trying to determine whether Anne is white.\n\nWe still don't have any information about Anne's color. So, we cannot directly conclude whether Anne is red or not.\n\nFrom statement 18: All furry, rough people are round.\nWe can infer that if Anne is furry and rough, then Anne is round.\n\nHowever, we don't have any information about Anne's shape. So, we cannot directly conclude whether Anne is round or not.\n\nFrom statement 12: If someone is furry and round then they are smart.\nWe can infer that if Anne is furry and round, then Anne is smart.\n\nHowever, we already concluded that Anne is rough, and we don't have any information about Anne's shape. So, we cannot directly conclude whether Anne is furry or round.\n\nFrom statement 4: Charlie is white and smart.\nWe can infer that Charlie is furry (using statement 12: If someone is furry and round then they are smart, and statement 10: Fiona is round and smart).\n\nNow, we have a connection between Charlie being furry and white, and being smart.\n\nFrom statement 14: All smart, furry people are rough.\nWe can infer that Charlie is rough.\n\nFrom statement 1: Anne is rough.\nNow, we have a direct connection between Anne and being rough.\n\nFrom statement 3: Charlie is smart.\nWe can infer that Anne is not smart, because statement 17: All smart, furry people are rough, and Charlie is furry and smart.\n\nNow, we have a connection between Charlie being smart and furry, and being rough, and Anne being rough but not smart.\n\nFrom statement 13: All round, red people are furry.\nWe can infer that if Anne is round and red, then Anne is furry.\n\nHowever, we don't have any information about Anne's shape. So, we cannot directly conclude whether Anne is round or not.\n\nFrom statement 20: If someone is red and rough then they are smart.\nWe can infer that if Anne is red and rough, then Anne is smart.\n\nHowever, we already concluded that Anne is rough, and we don't have any information about Anne's color. So, we cannot directly conclude whether Anne is red or not.\n\nFrom statement 21: All red, rough people are white.\nWe can infer that if Anne is red and rough, then Anne is white.\n\nHowever, we already concluded that Anne is rough, and we don't have any information about Anne's color. So, we cannot directly conclude whether Anne is red or not.\n\nNow, we need to look at statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is quiet.\nFrom statement 5: Erin is",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_anne, rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_anne, rough_anne), smart_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_anne, rough_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_anne, furry_anne), rough_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_anne, rough_anne), round_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_anne, red_anne), furry_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_anne, rough_anne), round_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne) & white(anne)",
+          "z3_formula": "And(round_anne, white_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_X, round_X), smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_X, red_X), furry_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_X, furry_X), rough_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_X, rough_X), round_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> white(X)",
+          "z3_formula": "Implies(red_X, white_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_X, rough_X), smart_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(red_X, rough_X), white_X)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_X, round_X), smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_X, red_X), furry_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_X, furry_X), rough_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_X, rough_X), round_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> white(X)",
+          "z3_formula": "Implies(red_erin, white_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_X, smart_X), rough_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_X, rough_X), round_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_X, rough_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_X, rough_X), smart_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(red_X, rough_X), white_X)",
+          "source_step": 21
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_anne, rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(X) -> white(X)",
+          "z3_formula": "Implies(rough_X, white_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(red_X, rough_X), white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin) -> white(erin)",
+          "z3_formula": "Implies(red_erin, white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_X, red_X, furry_X), smart_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_X, furry_X), rough_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_X, rough_X), round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_X, round_X), smart_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_anne, rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(red_anne, rough_anne), white_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not red(anne)",
+          "z3_formula": "Not(red_anne) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_anne, rough_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_anne, rough_anne), smart_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(red_anne, rough_anne), white_anne)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_anne, round_anne), smart_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_anne, rough_anne), round_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_anne, furry_anne), rough_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_anne, red_anne), furry_anne)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_anne, rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_anne, rough_anne), smart_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(red_anne, rough_anne), white_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_anne, round_anne), smart_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_anne, red_anne), furry_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_anne, furry_anne), rough_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_anne, rough_anne), round_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> white(X)",
+          "z3_formula": "Implies(red_anne, white_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_anne, rough_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(anne)",
+          "z3_formula": "Not(Or(white_anne, Not(white_anne)))",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_anne, round_anne), smart_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_anne, red_anne), furry_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_anne, red_anne), rough_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_anne, red_anne), smart_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_anne, red_anne), white_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(red_anne, rough_anne), white_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_anne, rough_anne), smart_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_anne, rough_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_anne, rough_anne), furry_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_anne, rough_anne), round_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> white(X)",
+          "z3_formula": "Implies(red_erin, white_erin)",
+          "source_step": 13
+        }
+      ],
+      [],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 97,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 40
+    },
+    "maxsat_stats": {
+      "satisfied": 39,
+      "excluded": 1,
+      "total_weight": 96,
+      "solve_time_ms": 1.1148694902658463
+    },
+    "timing": {
+      "trace_gen_s": 25.363,
+      "extraction_s": 46.459,
+      "dedup_s": 0.966,
+      "maxsat_s": 0.003,
+      "total_s": 72.792
+    }
+  }
+}

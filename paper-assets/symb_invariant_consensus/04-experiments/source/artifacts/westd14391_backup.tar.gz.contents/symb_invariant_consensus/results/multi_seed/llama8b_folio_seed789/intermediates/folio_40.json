@@ -1,0 +1,622 @@
+{
+  "problem": {
+    "id": "folio_40",
+    "problem": "Given the following premises:\nAll of Zaha Hadid's design styles are timeless. No mass product design is timeless. Either Zaha Hadid's design style or Kelly Wearstler's design style.  All of Kelly Wearstler's design styles are evocative. All of Kelly Wearstler's design styles are dreamy. If a design by Max is timeless, then a design by Max is a mass product design and evocative.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nA design by Max is evocative and dreamy.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (ZahaHadidDesignStyle(x) \u2192 Timeless(x))",
+      "\u2200x (MassProductDesign(x) \u2192 \u00acTimeless(x))",
+      "\u2200x (ZahaHadidDesignStyle(x) \u2228 KellyWearstlerDesignStyle(x)) ",
+      "\u2200x (KellyWearstlerDesignStyle(x) \u2192 Evocative(x))",
+      "\u2200x (KellyWearstlerDesignStyle(x) \u2192 Dreamy(x))",
+      "Timeless(aDesignByMax) \u2192 MassProductDesign(aDesignByMax) \u2227 Evocative(aDesignByMax)"
+    ],
+    "conclusion_fol": "Evocative(aDesignByMax) \u2227 Dreamy(aDesignByMax)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 69.0,
+      "Unknown": 78.5
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to use the premises to derive the conclusion. \n\nPremises:\n1. All of Zaha Hadid's design styles are timeless.\n2. No mass product design is timeless.\n3. Either Zaha Hadid's design style or Kelly Wearstler's design style.\n4. All of Kelly Wearstler's design styles are evocative.\n5. All of Kelly Wearstler's design styles are dreamy.\n6. If a design by Max is timeless, then a design by Max is a mass product design and evocative.\n\nWe are given the following conclusion to evaluate:\nA design by Max is evocative and dreamy.\n\nLet's start by analyzing premise 6, which is related to Max's design.\n\nPremise 6: If a design by Max is timeless, then a design by Max is a mass product design and evocative.\n\nFrom this premise, we can deduce two conditions for Max's design:\n- Condition 1: A design by Max is timeless, then it is evocative.\n- Condition 2: A design by Max is timeless, then it is a mass product design and evocative.\n\nWe don't have any information that directly links Max's design to Kelly Wearstler's design style or Zaha Hadid's design style. However, premise 3 states that either Zaha Hadid's design style or Kelly Wearstler's design style, but we don't have any information that connects Max's design to either of these design styles.\n\nNow let's analyze the conclusion: A design by Max is evocative and dreamy.\n\nFrom premise 4, we know that all of Kelly Wearstler's design styles are evocative. From premise 5, we also know that all of Kelly Wearstler's design styles are dreamy. However, we don't have any information that links Max's design to Kelly Wearstler's design style.\n\nFrom premise 6, we know that if a design by Max is timeless, then it is evocative. However, we don't know if Max's design is timeless or not.\n\nFrom premise 2, we know that no mass product design is timeless. If a design by Max is a mass product design, then it is not timeless. However, we don't know if Max's design is a mass product design or not.\n\nWe can conclude that the information provided is insufficient to determine whether the conclusion is true or false. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we will use the given premises and apply the rules of logical deduction.\n\nPremise 1: All of Zaha Hadid's design styles are timeless.\nPremise 2: No mass product design is timeless.\nPremise 3: Either Zaha Hadid's design style or Kelly Wearstler's design style.\nPremise 4: All of Kelly Wearstler's design styles are evocative.\nPremise 5: All of Kelly Wearstler's design styles are dreamy.\nPremise 6: If a design by Max is timeless, then a design by Max is a mass product design and evocative.\n\nConclusion: A design by Max is evocative and dreamy.\n\nTo evaluate this conclusion, we will start by looking at the premises and see if we can derive the conclusion using logical deduction.\n\nFrom Premise 3, we can conclude that Zaha Hadid's design style is not Kelly Wearstler's design style, or vice versa.\n\nWe do not have any information that directly relates Max's design style to Zaha Hadid's or Kelly Wearstler's design style. However, we can use Premise 6 to make a conclusion about Max's design style.\n\nPremise 6 states that if a design by Max is timeless, then a design by Max is a mass product design and evocative. However, from Premise 2, we know that no mass product design is timeless. This creates a contradiction with Premise 6.\n\nFrom this contradiction, we can conclude that Max's design style is not timeless. Since there is no direct information about Max's design style being evocative or dreamy, we cannot make a conclusion about whether a design by Max is evocative and dreamy.\n\nHowever, we know that Premise 4 and Premise 5 state that all of Kelly Wearstler's design styles are evocative and dreamy, respectively. We also know that either Zaha Hadid's design style or Kelly Wearstler's design style (Premise 3). Since we have concluded that Max's design style is not timeless and there is no information that relates Max's design style to Zaha Hadid's, it is possible that Max's design style is Kelly Wearstler's design style.\n\nIf Max's design style is Kelly Wearstler's design style, then from Premise 4 and Premise 5, we can conclude that a design by Max is indeed evocative and dreamy.\n\nTherefore, the conclusion \"A design by Max is evocative and dreamy\" is uncertain, but it could potentially be true if Max's design style is Kelly Wearstler's design style.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we'll use the given premises and apply logical reasoning.\n\nPremise 1: All of Zaha Hadid's design styles are timeless.\nPremise 2: No mass product design is timeless.\nPremise 3: Either Zaha Hadid's design style or Kelly Wearstler's design style.\nPremise 4: All of Kelly Wearstler's design styles are evocative.\nPremise 5: All of Kelly Wearstler's design styles are dreamy.\nPremise 6: If a design by Max is timeless, then a design by Max is a mass product design and evocative.\n\nConclusion: A design by Max is evocative and dreamy.\n\nLet's break down the premises:\n\nFrom Premise 1 and Premise 2, we can conclude that Zaha Hadid's design styles are not mass product designs. \n\nFrom Premise 3, we know that either Zaha Hadid's design style or Kelly Wearstler's design style is possible. \n\nPremises 4 and 5 establish that Kelly Wearstler's design styles are both evocative and dreamy.\n\nPremise 6 states that if a design by Max is timeless, then it is a mass product design and evocative.\n\nNow, let's examine the conclusion. \n\nIf a design by Max is evocative and dreamy, it must be either Zaha Hadid's design style, Kelly Wearstler's design style, or a mass product design.\n\nHowever, we know that all of Zaha Hadid's design styles are timeless (Premise 1), so a design by Max can't be Zaha Hadid's design style if it's evocative and dreamy, because then it would be timeless (contradicting Premise 2).\n\nWe also know that all of Kelly Wearstler's design styles are evocative and dreamy (Premises 4 and 5), so a design by Max can't be Kelly Wearstler's design style if it's evocative and dreamy, because then it would be both evocative and dreamy without being timeless (contradicting Premise 6).\n\nSo, the only possibility is that the design by Max is a mass product design, which is evocative (Premise 6). \n\nTherefore, the conclusion is uncertain because we can only infer that a design by Max is evocative, not dreamy, since we don't have enough information about the dreamy characteristic.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we will use a logical approach to analyze the given premises.\n\nPremise 1: All of Zaha Hadid's design styles are timeless.\n\nPremise 2: No mass product design is timeless.\n\nPremise 3: Either Zaha Hadid's design style or Kelly Wearstler's design style.\n\nPremise 4: All of Kelly Wearstler's design styles are evocative.\n\nPremise 5: All of Kelly Wearstler's design styles are dreamy.\n\nPremise 6: If a design by Max is timeless, then a design by Max is a mass product design and evocative.\n\nWe are asked to determine whether the conclusion \"A design by Max is evocative and dreamy\" is true, false, or uncertain.\n\nTo do this, let's consider the possible relationships between Max's design and the design styles of Zaha Hadid and Kelly Wearstler.\n\nFrom Premise 3, we can infer that either Zaha Hadid's design style is timeless, or Kelly Wearstler's design style is timeless, or both.\n\nHowever, from Premise 2, we know that no mass product design is timeless. This means that if a design is timeless, it cannot be a mass product design.\n\nNow, let's examine the relationship between Max's design and the design styles of Zaha Hadid and Kelly Wearstler.\n\nFrom Premise 6, we know that if a design by Max is timeless, then it is a mass product design and evocative.\n\nWe can also infer that if a design by Max is evocative, it must be a design style of Kelly Wearstler, since all of Kelly Wearstler's design styles are evocative (Premise 4).\n\nHowever, we cannot conclude that a design by Max is dreamy, since Kelly Wearstler's design styles are dreamy, but Max's design style is not necessarily a design style of Kelly Wearstler.\n\nTo determine whether a design by Max is dreamy, we need more information. Specifically, we need to know whether a design by Max is a design style of Kelly Wearstler or not.\n\nSince we do not have enough information to determine whether a design by Max is dreamy or not, we must conclude that the statement \"A design by Max is evocative and dreamy\" is uncertain.\n\nHowever, we can conclude that the statement \"A design by Max is evocative\" is true, since if a design by Max is timeless, then it is evocative (Premise 6).\n\nTherefore, the final answer is:\n\n\\boxed{Uncertain for \"A design by Max is evocative and dreamy\" but True for \"A design by Max is evocative\".",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to evaluate the premises and use logical deduction.\n\nPremise 1: All of Zaha Hadid's design styles are timeless.\nPremise 2: No mass product design is timeless.\nPremise 3: Either Zaha Hadid's design style or Kelly Wearstler's design style.\nPremise 4: All of Kelly Wearstler's design styles are evocative.\nPremise 5: All of Kelly Wearstler's design styles are dreamy.\nPremise 6: If a design by Max is timeless, then a design by Max is a mass product design and evocative.\n\nWe want to determine the truth value of the conclusion: A design by Max is evocative and dreamy.\n\nFrom Premise 3, we know that either Zaha Hadid's design style or Kelly Wearstler's design style is true. But from Premise 2, we know that Zaha Hadid's design style cannot be timeless. Therefore, Kelly Wearstler's design style must be true.\n\nNow, we can use this information to evaluate the conclusion.\n\nIf a design by Max is timeless, then it must be a mass product design and evocative (Premise 6). But we know that Kelly Wearstler's design style is evocative (Premise 4) and dreamy (Premise 5). Since Kelly Wearstler's design style is either true or false, and it is evocative and dreamy, then a design by Max cannot be timeless.\n\nHowever, from the premises, we cannot determine if a design by Max is evocative and dreamy or not. The conclusion is uncertain because we do not have enough information to make a definitive conclusion.\n\nTherefore, the answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: All of Zaha Hadid's design styles are timeless.\nPremise 2: No mass product design is timeless.\nPremise 3: Either Zaha Hadid's design style or Kelly Wearstler's design style.\nPremise 4: All of Kelly Wearstler's design styles are evocative.\nPremise 5: All of Kelly Wearstler's design styles are dreamy.\nPremise 6: If a design by Max is timeless, then a design by Max is a mass product design and evocative.\n\nConclusion: A design by Max is evocative and dreamy.\n\nLet's break down the premises and conclusion step by step:\n\n1. From Premise 3, we know that either Zaha Hadid's design style or Kelly Wearstler's design style is timeless. However, Premise 2 states that no mass product design is timeless. Therefore, we can conclude that Zaha Hadid's design style is not timeless.\n\n2. Since we concluded that Zaha Hadid's design style is not timeless, we can infer that Kelly Wearstler's design style must be timeless, as it is the only other option from Premise 3.\n\n3. From Premise 4, we know that all of Kelly Wearstler's design styles are evocative, and from Premise 5, we know that all of Kelly Wearstler's design styles are dreamy. Therefore, we can conclude that Kelly Wearstler's design style is both evocative and dreamy.\n\n4. Now, let's examine the conclusion: A design by Max is evocative and dreamy. We can see that the conclusion is not directly related to the premises about Zaha Hadid and Kelly Wearstler. We need to look at Premise 6, which states that if a design by Max is timeless, then a design by Max is a mass product design and evocative.\n\n5. Since we concluded that Kelly Wearstler's design style is timeless in step 2, we can use this information to analyze Premise 6. However, Premise 6 does not directly state that a design by Max is timeless; it only provides a conditional statement. Therefore, we cannot directly conclude that a design by Max is evocative and dreamy based on Premise 6.\n\nHowever, we can re-examine the premises again to see if we missed anything. Since we concluded that Kelly Wearstler's design style is both evocative and dreamy in step 3, we can look for any direct connections between Kelly Wearstler's design style and Max's design style.\n\nUnfortunately, there is no direct information in the premises that links Kelly Wearstler's design style to Max's design style. Therefore, we cannot conclude that a design by Max is evocative and dreamy based on the given premises.\n\nConclusion: The conclusion is uncertain, as there is no direct information in the premises that logically leads to the conclusion.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the conclusion, we need to evaluate the premises and the given conclusion step by step.\n\nPremise 1: All of Zaha Hadid's design styles are timeless.\n\nPremise 2: No mass product design is timeless.\n\nPremise 3: Either Zaha Hadid's design style or Kelly Wearstler's design style.\n\nPremise 4: All of Kelly Wearstler's design styles are evocative.\n\nPremise 5: All of Kelly Wearstler's design styles are dreamy.\n\nPremise 6: If a design by Max is timeless, then a design by Max is a mass product design and evocative.\n\nConclusion: A design by Max is evocative and dreamy.\n\nFrom Premise 6, we can see that if a design by Max is timeless, then it is also evocative. But, from Premise 2, we know that no mass product design is timeless. So, a design by Max cannot be timeless. \n\nSince a design by Max is not timeless, we cannot conclude that it is evocative. However, we can use Premise 6 to conclude that if a design by Max is evocative, then it is also a mass product design. \n\nNow, let's analyze the conclusion. We know that if a design by Max is evocative, then it is a mass product design. But we cannot conclude that it is dreamy from the premises. We only know that all of Kelly Wearstler's design styles are dreamy. So, the conclusion is uncertain.\n\nHowever, we can further analyze the premises. From Premise 3, we can say that if a design is not Zaha Hadid's design style, then it is Kelly Wearstler's design style. We can use this information to analyze the conclusion.\n\nIf a design by Max is evocative, then from Premise 4, it is Kelly Wearstler's design style. We know that all of Kelly Wearstler's design styles are dreamy, so a design by Max is dreamy. \n\nCombining this with the previous result, we can conclude that a design by Max is evocative and dreamy.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and use logical reasoning.\n\nPremises:\n\n1. All of Zaha Hadid's design styles are timeless.\n2. No mass product design is timeless.\n3. Either Zaha Hadid's design style or Kelly Wearstler's design style.\n4. All of Kelly Wearstler's design styles are evocative.\n5. All of Kelly Wearstler's design styles are dreamy.\n6. If a design by Max is timeless, then a design by Max is a mass product design and evocative.\n\nConclusion: A design by Max is evocative and dreamy.\n\nTo evaluate the conclusion, we need to see if we can derive it from the premises. \n\nFrom premises 4 and 5, we know that all of Kelly Wearstler's design styles are both evocative and dreamy. \n\nFrom premise 3, we know that either Zaha Hadid's design style or Kelly Wearstler's design style is applicable, but it does not specify which one. \n\nNow, we examine the conclusion. The conclusion says that a design by Max is evocative and dreamy. \n\nFrom premise 6, we have an \"if-then\" statement. If a design by Max is timeless, then it is both a mass product design and evocative. \n\nHowever, premises 1 and 2 create a contradiction. Zaha Hadid's design styles are timeless (premise 1), but no mass product design is timeless (premise 2). This means that Zaha Hadid's design styles cannot be mass product designs. \n\nSince we cannot conclude that a design by Max is timeless based on the premises, we cannot use premise 6 to derive the conclusion. \n\nTherefore, the conclusion is uncertain. We cannot determine whether a design by Max is evocative and dreamy based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the given premises and apply them to the conclusion.\n\nPremises:\n\n1. All of Zaha Hadid's design styles are timeless.\n2. No mass product design is timeless.\n3. Either Zaha Hadid's design style or Kelly Wearstler's design style.\n4. All of Kelly Wearstler's design styles are evocative.\n5. All of Kelly Wearstler's design styles are dreamy.\n6. If a design by Max is timeless, then a design by Max is a mass product design and evocative.\n\nConclusion:\nA design by Max is evocative and dreamy.\n\nLet's break down the information given:\n\n- From premise 6, we know that if a design by Max is timeless, then it is both a mass product design and evocative.\n- However, from premise 2, we know that no mass product design is timeless. This creates a contradiction with premise 6.\n- Therefore, we can conclude that a design by Max cannot be timeless.\n\nNow, let's see if we can derive the conclusion from the given premises.\n\n- We know that if a design by Max is timeless, then it is both a mass product design and evocative (premise 6).\n- However, we also know that a design by Max cannot be timeless (contradiction from premise 6 and premise 2).\n- Since we cannot conclude that a design by Max is timeless, we cannot conclude that it is a mass product design or evocative based on premise 6.\n- We need to look at other premises to see if we can derive the conclusion.\n\n- From premise 3, we know that either Zaha Hadid's design style or Kelly Wearstler's design style is the case.\n- However, we do not have any information about Max's design style being either Zaha Hadid's or Kelly Wearstler's.\n- We cannot derive the conclusion that a design by Max is evocative and dreamy from the given premises.\n\nSince we cannot derive the conclusion from the given premises, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we'll break down the given premises and analyze their implications step by step.\n\n1. All of Zaha Hadid's design styles are timeless.\n   - This premise establishes a characteristic of Zaha Hadid's designs, but it doesn't directly relate to Max's designs.\n\n2. No mass product design is timeless.\n   - This premise implies that any design that is timeless cannot be a mass product design.\n\n3. Either Zaha Hadid's design style or Kelly Wearstler's design style.\n   - This premise doesn't provide any direct information about Max's designs, but it suggests that there are only two possible design styles: Zaha Hadid's or Kelly Wearstler's.\n\n4. All of Kelly Wearstler's design styles are evocative.\n   - This premise establishes a characteristic of Kelly Wearstler's designs, but it doesn't directly relate to Max's designs.\n\n5. All of Kelly Wearstler's design styles are dreamy.\n   - This premise also establishes a characteristic of Kelly Wearstler's designs, but it doesn't directly relate to Max's designs.\n\n6. If a design by Max is timeless, then a design by Max is a mass product design and evocative.\n   - This premise is a conditional statement that links Max's timeless designs with mass product and evocative characteristics.\n\nNow, let's analyze the conclusion:\n\nA design by Max is evocative and dreamy.\n\nTo evaluate this conclusion, we need to determine if it logically follows from the given premises. The conclusion involves Max's designs being both evocative and dreamy. \n\nWe know from premise 6 that if a design by Max is timeless, then it is also evocative. However, there is no information about whether a design by Max is dreamy. \n\nMoreover, we know from premise 2 that a design cannot be both timeless and a mass product design. However, premise 6 links Max's timeless designs with mass product designs, but this doesn't directly relate to the conclusion about Max's designs being evocative and dreamy.\n\nSince we cannot determine the truth value of the conclusion based on the given premises, we will classify it as uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises step by step.\n\n1. All of Zaha Hadid's design styles are timeless.\n   - This premise tells us about Zaha Hadid's design styles but doesn't give us any information about Max or Kelly Wearstler's designs.\n\n2. No mass product design is timeless.\n   - This premise tells us that mass product designs cannot be timeless.\n\n3. Either Zaha Hadid's design style or Kelly Wearstler's design style.\n   - This premise tells us that at least one of Zaha Hadid's or Kelly Wearstler's design styles exists.\n\n4. All of Kelly Wearstler's design styles are evocative.\n   - This premise tells us about Kelly Wearstler's design styles but doesn't give us any information about Max or Zaha Hadid's designs.\n\n5. All of Kelly Wearstler's design styles are dreamy.\n   - This premise tells us about Kelly Wearstler's design styles but doesn't give us any information about Max or Zaha Hadid's designs.\n\n6. If a design by Max is timeless, then a design by Max is a mass product design and evocative.\n   - This premise gives us a condition for Max's design. If Max's design is timeless, then it is a mass product design and evocative.\n\nNow, we need to analyze the conclusion: \"A design by Max is evocative and dreamy.\"\n\nTo determine the truth of this conclusion, we need to see if it follows from the premises.\n\nFrom premise 6, we know that if a design by Max is timeless, then it is evocative. However, there is no information about Max's designs being timeless or dreamy.\n\nPremises 4 and 5 tell us about Kelly Wearstler's design styles, but they don't give us any information about Max or Zaha Hadid's designs.\n\nThere is no direct or indirect information in the premises that supports the conclusion \"A design by Max is evocative and dreamy.\" Therefore, the conclusion is uncertain because we cannot determine its truth from the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises and see if we can infer the conclusion from them.\n\nPremise 1: All of Zaha Hadid's design styles are timeless.\nPremise 2: No mass product design is timeless.\nPremise 3: Either Zaha Hadid's design style or Kelly Wearstler's design style.\nPremise 4: All of Kelly Wearstler's design styles are evocative.\nPremise 5: All of Kelly Wearstler's design styles are dreamy.\nPremise 6: If a design by Max is timeless, then a design by Max is a mass product design and evocative.\n\nConclusion: A design by Max is evocative and dreamy.\n\nFrom Premise 4 and Premise 5, we know that Kelly Wearstler's design styles are both evocative and dreamy.\n\nFrom Premise 3, we know that either Zaha Hadid's design style or Kelly Wearstler's design style is true. However, we don't have any information about Zaha Hadid's design style being evocative or dreamy.\n\nFrom Premise 1, we know that Zaha Hadid's design styles are timeless, but Premise 2 tells us that no mass product design is timeless. This implies that Zaha Hadid's design styles cannot be mass product designs.\n\nHowever, Premise 6 tells us that if a design by Max is timeless, then it is a mass product design and evocative. But, this premise is not relevant to the conclusion. \n\nWe cannot conclude anything about Max's design style from the given premises. The premises do not provide any information about Max's design style.\n\nTherefore, we cannot determine the truth value of the conclusion. It is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "timeless(max)",
+          "z3_formula": "timeless_max == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid) & timeless(kelly_wearstler)",
+          "z3_formula": "Or(And(timeless_zaha_hadid, timeless_kelly_wearstler), timeless_max)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product & evocative)(max)",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "not timeless_mass_product == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not timeless(max)",
+          "z3_formula": "Not(timeless_max) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "or timeless(kelly_wearstler), timeless(max)",
+          "z3_formula": "Or(timeless_kelly_wearstler, timeless_max) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "evocative(kelly_wearstler) & dreamy(kelly_wearstler)",
+          "z3_formula": "And(evocative_kelly_wearstler, dreamy_kelly_wearstler) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "or timeless(kelly_wearstler), timeless(max)",
+          "z3_formula": "Or(timeless_kelly_wearstler, timeless_max) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "evocative(max) & dreamy(max)",
+          "z3_formula": "And(evocative_max, dreamy_max) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "evocative(kelly_wearstler) -> evocative(max)",
+          "z3_formula": "Implies(evocative_kelly_wearstler, evocative_max)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product & evocative)(max)",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "evocative(max) & dreamy(max)",
+          "z3_formula": "And(evocative_max, dreamy_max) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "Not(timeless(X)) -> Not(timeless_mass_product(X))",
+          "z3_formula": "Implies(Not(timeless_mass_product), Not(timeless))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "timeless(zaha_hadid) | timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "evocative(max) & dreamy(max)",
+          "z3_formula": "And(evocative_max, dreamy_max)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "Not(timeless_mass_product) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "timeless(kelly_wearstler) -> evocative(kelly_wearstler)",
+          "z3_formula": "Implies(timeless_kelly_wearstler, evocative_kelly_wearstler) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "timeless(kelly_wearstler) -> dreamy(kelly_wearstler)",
+          "z3_formula": "Implies(timeless_kelly_wearstler, dreamy_kelly_wearstler) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "timeless(zaha_hadid)",
+          "z3_formula": "timeless_zaha_hadid == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not timeless(mass_product)",
+          "z3_formula": "not timeless_mass_product == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or timeless(zaha_hadid), timeless(kelly_wearstler)",
+          "z3_formula": "Or(timeless_zaha_hadid, timeless_kelly_wearstler) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "evocative(kelly_wearstler)",
+          "z3_formula": "evocative_kelly_wearstler == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dreamy(kelly_wearstler)",
+          "z3_formula": "dreamy_kelly_wearstler == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "timeless(max) -> (mass_product(max) & evocative(max))",
+          "z3_formula": "Implies(timeless_max, And(mass_product_max, evocative_max))",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 81,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 17
+    },
+    "maxsat_stats": {
+      "satisfied": 16,
+      "excluded": 1,
+      "total_weight": 80,
+      "solve_time_ms": 0.7950011640787125
+    },
+    "timing": {
+      "trace_gen_s": 7.862,
+      "extraction_s": 17.103,
+      "dedup_s": 0.356,
+      "maxsat_s": 0.002,
+      "total_s": 25.322
+    }
+  }
+}

@@ -1,0 +1,607 @@
+{
+  "problem": {
+    "id": "folio_143",
+    "problem": "Given the following premises:\nBreeding back is a form of artificial selection by the deliberate selective breeding of domestic animals. Heck cattle were bred-back in the 1920s to resemble the aurochs. [BG] Heck cattle are animals. [BG] Aurochs are animals. Some animals to be bred-back resemble animals that are extinct.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSome Heck cattle are artificially selected.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x \u2200y (BreedingBack(x, y) \u2192 ArtificiallySelect(x))",
+      "\u2203x \u2203y (HeckCattle(x) \u2227 Aurochs(y) \u2227 BreedingBack(x, y))",
+      "\u2200x (HeckCattle(x) \u2192 Animal(x))",
+      "\u2200x (Aurochs(x) \u2192 Animal(x))",
+      "\u2203x \u2203y (Animal(x) \u2227 Animal(y) \u2227 BreedingBack(x, y) \u2227 Extinct(y))"
+    ],
+    "conclusion_fol": "\u2203x (HeckCattle(x) \u2227 ArtificiallySelect(x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 79.0
+    },
+    "answer_counts": {
+      "True": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and the conclusion step by step.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals. \nThis premise tells us that breeding back is a process of artificial selection.\n\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\nThis premise tells us that Heck cattle were subjected to the breeding back process.\n\nPremise 3: Heck cattle are animals. \nThis premise tells us that Heck cattle are living things, which is a general fact.\n\nPremise 4: Aurochs are animals. \nThis premise also tells us that aurochs are living things, which is a general fact.\n\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\nThis premise tells us that the breeding back process can be used to recreate extinct species or their likeness.\n\nConclusion: Some Heck cattle are artificially selected.\nThe conclusion is based on the information given in the premises, particularly Premise 1 and Premise 2.\n\nStep 1: From Premise 1, we know that breeding back is a form of artificial selection.\nStep 2: From Premise 2, we know that Heck cattle were subjected to the breeding back process.\nStep 3: Since Heck cattle are animals (Premise 3), and the breeding back process is a form of artificial selection (Premise 1), we can infer that Heck cattle were artificially selected through the breeding back process.\n\nTherefore, the conclusion \"Some Heck cattle are artificially selected\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we will analyze the premises step by step.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\nThis premise tells us that breeding back is a type of artificial selection. Artificial selection involves intentionally selecting for certain traits in animals.\n\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\nThis premise tells us that Heck cattle were subjected to the breeding back process, which is a type of artificial selection (as mentioned in premise 1). \n\nPremise 3: Heck cattle are animals.\nThis premise tells us that Heck cattle are living beings, but it doesn't provide any information about how they were selected or bred.\n\nPremise 4: Aurochs are animals.\nThis premise tells us that aurochs are living beings, but it also doesn't provide any information about how Heck cattle were selected or bred.\n\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\nThis premise tells us that some animals that were bred back have traits similar to extinct animals. However, this premise doesn't directly relate to the conclusion we want to evaluate.\n\nNow, let's evaluate the conclusion: Some Heck cattle are artificially selected.\nGiven that Heck cattle were bred back (Premise 2) and breeding back is a form of artificial selection (Premise 1), we can conclude that Heck cattle were artificially selected.\n\nTherefore, the conclusion \"Some Heck cattle are artificially selected\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\n- This premise tells us that breeding back involves artificial selection.\n\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\n- This premise establishes that Heck cattle are a result of breeding back.\n\nPremise 3: Heck cattle are animals.\n- This premise is a simple fact about Heck cattle.\n\nPremise 4: Aurochs are animals.\n- This premise provides additional information about aurochs.\n\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\n- This premise is a general statement about breeding back.\n\nNow, let's analyze the conclusion:\n\nConclusion: Some Heck cattle are artificially selected.\n\nFrom Premise 1, we know that breeding back involves artificial selection. \nFrom Premise 2, we know that Heck cattle were bred-back.\nFrom Premise 3, we know that Heck cattle are animals.\n\nUsing the information from these premises, we can infer that Heck cattle are a result of artificial selection (breeding back), which is a form of artificial selection.\n\nTherefore, the conclusion is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some Heck cattle are artificially selected\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\n\nThis premise tells us that breeding back is a type of artificial selection, but it does not directly relate to Heck cattle.\n\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\n\nThis premise directly relates to Heck cattle and tells us that they were bred back, which means they were subjected to artificial selection.\n\nPremise 3: Heck cattle are animals.\n\nThis premise is a general statement about Heck cattle and is not relevant to the conclusion.\n\nPremise 4: Aurochs are animals.\n\nThis premise is also a general statement about aurochs and is not relevant to the conclusion.\n\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\n\nThis premise is also not directly relevant to Heck cattle and is more of a general statement about the breeding back process.\n\nNow, let's analyze the conclusion: \"Some Heck cattle are artificially selected.\"\n\nBased on Premise 1, we know that breeding back is a form of artificial selection. Based on Premise 2, we know that Heck cattle were bred back in the 1920s. Since breeding back is a form of artificial selection, it logically follows that Heck cattle, which were bred back, are artificially selected.\n\nTherefore, the conclusion \"Some Heck cattle are artificially selected\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to examine the premises and see if they logically lead to the conclusion.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\nThis premise establishes a relationship between breeding back and artificial selection.\n\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\nThis premise tells us that Heck cattle were involved in the breeding back process.\n\nPremise 3: Heck cattle are animals.\nThis premise simply states that Heck cattle are a type of living organism.\n\nPremise 4: Aurochs are animals.\nThis premise tells us that aurochs are also living organisms.\n\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\nThis premise provides additional context about the purpose of breeding back.\n\nNow, let's examine the conclusion: Some Heck cattle are artificially selected.\n\nTo determine if this conclusion is true, false, or uncertain, we need to see if the premises logically lead to it.\n\nFrom Premise 1, we know that breeding back is a form of artificial selection. \n\nFrom Premise 2, we know that Heck cattle were involved in the breeding back process.\n\nTherefore, by combining these two premises, we can conclude that Heck cattle are artificially selected as part of the breeding back process.\n\nThe other premises provide additional context and information about Heck cattle and aurochs, but they do not affect the conclusion that Heck cattle are artificially selected.\n\nSo, based on the premises, the conclusion \"Some Heck cattle are artificially selected\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we'll analyze the premises and apply the rules of logical inference.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\nThis premise establishes a relationship between breeding back and artificial selection.\n\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\nThis premise connects Heck cattle to the breeding back process.\n\nPremise 3: Heck cattle are animals.\nThis premise provides a basic fact about Heck cattle.\n\nPremise 4: Aurochs are animals.\nThis premise provides a basic fact about aurochs.\n\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\nThis premise implies that breeding back is used for extinct species, which may include aurochs.\n\nFrom Premise 1, we know that breeding back is a form of artificial selection. \n\nFrom Premise 2 and Premise 3, we can infer that Heck cattle are the result of artificial selection (breeding back) because they were bred-back.\n\nThe conclusion we are evaluating is: Some Heck cattle are artificially selected.\n\nSince Heck cattle are the result of breeding back (artificial selection), we can conclude that:\n\nSome Heck cattle are artificially selected.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some Heck cattle are artificially selected\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\nPremise 3: Heck cattle are animals.\nPremise 4: Aurochs are animals.\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\n\nFrom Premise 1, we know that breeding back is a form of artificial selection. This implies that the animals being bred-back are being artificially selected.\n\nFrom Premise 2, we know that Heck cattle were bred-back in the 1920s to resemble the aurochs. This implies that Heck cattle are the result of artificial selection.\n\nFrom Premise 3 and Premise 4, we know that Heck cattle and aurochs are both animals.\n\nFrom Premise 5, we know that some animals to be bred-back resemble animals that are extinct. This implies that Heck cattle, being bred-back to resemble the aurochs, are artificially selected.\n\nTherefore, based on the given premises, we can conclude that:\nSome Heck cattle are artificially selected.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the premises step by step:\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\n\nThis premise establishes a connection between breeding back and artificial selection. It implies that breeding back involves the deliberate selection of certain traits in domestic animals.\n\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\n\nThis premise tells us that Heck cattle underwent breeding back. However, it doesn't explicitly state that they were artificially selected. We can infer this from Premise 1, which links breeding back to artificial selection.\n\nPremise 3: Heck cattle are animals.\n\nThis premise is a tautology, as Heck cattle are, by definition, animals.\n\nPremise 4: Aurochs are animals.\n\nThis premise provides additional information about aurochs but is not directly relevant to the conclusion.\n\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\n\nThis premise provides more context about the breeding back process but doesn't affect the conclusion.\n\nNow, let's analyze the conclusion:\n\nSome Heck cattle are artificially selected.\n\nWe can infer from Premise 1 that breeding back is a form of artificial selection. Since Heck cattle underwent breeding back (Premise 2), we can conclude that they were artificially selected.\n\nTherefore, the conclusion \"Some Heck cattle are artificially selected\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some Heck cattle are artificially selected\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\n\nThis premise tells us that breeding back is a form of artificial selection. However, it doesn't directly state that all Heck cattle are artificially selected.\n\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\n\nThis premise tells us that Heck cattle were bred back, which implies that they are the result of breeding back. However, it doesn't explicitly state that they are artificially selected.\n\nPremise 3: Heck cattle are animals.\n\nThis premise is a general statement about Heck cattle and doesn't provide any information about their breeding process.\n\nPremise 4: Aurochs are animals.\n\nThis premise is also a general statement about aurochs and doesn't provide any information about Heck cattle.\n\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\n\nThis premise tells us that some animals that are bred back resemble extinct animals. However, it doesn't provide any information about Heck cattle specifically.\n\nNow, let's analyze the conclusion: \"Some Heck cattle are artificially selected.\"\n\nWe know that breeding back is a form of artificial selection (Premise 1), and Heck cattle were bred back (Premise 2). Therefore, it's reasonable to conclude that some Heck cattle are artificially selected, as they are the result of breeding back.\n\nThe premises don't provide any information that contradicts this conclusion, so we can't determine it as false. The conclusion is not uncertain, as we have sufficient information to support it.\n\nTherefore, the conclusion \"Some Heck cattle are artificially selected\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\n- This premise tells us that breeding back is a specific type of artificial selection.\n\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\n- This premise specifically mentions Heck cattle and tells us that they were bred-back, which means they were subjected to breeding back.\n\nPremise 3: Heck cattle are animals.\n- This premise tells us that Heck cattle are a type of living thing.\n\nPremise 4: Aurochs are animals.\n- This premise tells us that aurochs are also a type of living thing.\n\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\n- This premise gives us a general idea that some animals that are bred-back have similarities with extinct animals.\n\nNow, let's analyze the conclusion:\nSome Heck cattle are artificially selected.\n\nBased on the premises, we can infer that Heck cattle were bred-back, which means they were subjected to artificial selection (Premise 1 and Premise 2). Since Heck cattle are animals (Premise 3), and they were artificially selected through breeding back, we can conclude that some Heck cattle are indeed artificially selected.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\nThis premise tells us that breeding back is a form of artificial selection. \n\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\nThis premise tells us that Heck cattle were a result of breeding back.\n\nPremise 3: Heck cattle are animals.\nThis premise tells us that Heck cattle are living organisms.\n\nPremise 4: Aurochs are animals.\nThis premise tells us that aurochs are living organisms.\n\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\nThis premise tells us that some animals that are bred back are similar to extinct animals.\n\nFrom the premises, we can infer that Heck cattle were bred back to resemble aurochs, which are extinct. \n\nNow, we need to determine if the conclusion \"Some Heck cattle are artificially selected\" is true, false, or uncertain.\n\nWe know from Premise 1 that breeding back is a form of artificial selection. Since Heck cattle were bred back (Premise 2), it follows that Heck cattle are a result of artificial selection.\n\nTherefore, the conclusion \"Some Heck cattle are artificially selected\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises and see if they support the conclusion.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\n- This premise states that breeding back is a form of artificial selection. Artificial selection involves selectively breeding domestic animals.\n\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\n- This premise tells us that Heck cattle were bred back. Since breeding back is a form of artificial selection (Premise 1), Heck cattle are artificially selected.\n\nPremise 3: Heck cattle are animals.\n- This premise is a simple statement that Heck cattle are animals, but it does not directly relate to the conclusion.\n\nPremise 4: Aurochs are animals.\n- This premise is also a simple statement that aurochs are animals, but it does not directly relate to the conclusion.\n\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\n- This premise is also a simple statement that some animals bred back resemble extinct animals, but it does not directly relate to the conclusion.\n\nSince Heck cattle were bred back (Premise 2) and breeding back is a form of artificial selection (Premise 1), it follows that Heck cattle are artificially selected. This conclusion does not depend on the other premises.\n\nTherefore, the conclusion \"Some Heck cattle are artificially selected\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "artificial_selection(breeding_back)",
+          "z3_formula": "artificial_selection_breeding_back == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "breeding_back(heck_cattle)",
+          "z3_formula": "breeding_back_heck_cattle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(heck_cattle)",
+          "z3_formula": "animal_heck_cattle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(aurochs)",
+          "z3_formula": "animal_aurochs == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_extinct(animal)",
+          "z3_formula": "some_animals_extinct_animal == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "artificially_selected(heck_cattle)",
+          "z3_formula": "artificially_selected_heck_cattle == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "artificial_selection(breeding_back)",
+          "z3_formula": "artificial_selection_breeding_back == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "artificial_selection(heck_cattle)",
+          "z3_formula": "artificial_selection_heck_cattle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle == True",
+          "z3_formula": "heck_cattle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs == True",
+          "z3_formula": "aurochs == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back -> artificial_selection",
+          "z3_formula": "Implies(breeding_back, artificial_selection)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle & artificial_selection(heck_cattle)",
+          "z3_formula": "And(heck_cattle, artificial_selection_heck_cattle)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back_involves_artificial_selection",
+          "z3_formula": "breeding_back_involves_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_bred_back",
+          "z3_formula": "heck_cattle_bred_back == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back_involves_artificial_selection -> artificial_selection",
+          "z3_formula": "Implies(breeding_back_involves_artificial_selection, artificial_selection)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle_are_artificially_selected",
+          "z3_formula": "heck_cattle_are_artificially_selected == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "artificial_selection(breeding_back)",
+          "z3_formula": "artificial_selection_breeding_back == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_bred_back",
+          "z3_formula": "heck_cattle_bred_back == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back -> artificial_selection",
+          "z3_formula": "Implies(heck_cattle_bred_back, artificial_selection_heck_cattle)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "artificial_selection(heck_cattle)",
+          "z3_formula": "artificial_selection_heck_cattle == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_bred_back",
+          "z3_formula": "heck_cattle_bred_back == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back_is_artificial_selection -> artificial_selection",
+          "z3_formula": "Implies(breeding_back_is_artificial_selection, artificial_selection)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle_are_artificially_selected",
+          "z3_formula": "heck_cattle_are_artificially_selected == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back_is_artificial_selection -> artificial_selection",
+          "z3_formula": "Implies(breeding_back_is_artificial_selection, artificial_selection)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_bred_back -> heck_cattle_artificially_selected",
+          "z3_formula": "Implies(heck_cattle_bred_back, heck_cattle_artificially_selected)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle_are_artificially_selected",
+          "z3_formula": "heck_cattle_artificially_selected == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "artificial_selection(breeding_back)",
+          "z3_formula": "artificial_selection_breeding_back == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "artificial_selection(breeding_back) -> artificially_selected(X)",
+          "z3_formula": "Implies(artificial_selection_breeding_back, artificially_selected_heck_cattle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_are_animals -> artificially_selected(heck_cattle)",
+          "z3_formula": "Implies(heck_cattle_are_animals, artificially_selected_heck_cattle)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "artificially_selected(heck_cattle)",
+          "z3_formula": "artificially_selected_heck_cattle == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back(is_a_form_of, artificial_selection, by_the_deliberate_selective_breeding_of, domestic_animals)",
+          "z3_formula": "breeding_back_is_a_form_of_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back(X, Y, Z, W) -> artificial_selection(X, Y, Z, W)",
+          "z3_formula": "Implies(breeding_back_is_a_form_of_artificial_selection, artificial_selection_heck_cattle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle(were_bred_back_in, the_1920s, to_resemble, the_aurochs)",
+          "z3_formula": "heck_cattle_were_bred_back_in_the_1920s_to_resemble_the_aurochs == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle(are_animals)",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs(are_animals)",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals(to_be_bred_back, resemble, animals, that_are_extinct)",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_animals_that_are_extinct == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "some_heck_cattle(are_artificially_selected)",
+          "z3_formula": "some_heck_cattle_are_artificially_selected == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back_is_artificial_selection -> artificial_selection",
+          "z3_formula": "Implies(breeding_back_is_artificial_selection, artificial_selection)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_were_bred_back -> heck_cattle_are_artificially_selected",
+          "z3_formula": "Implies(heck_cattle_were_bred_back, heck_cattle_are_artificially_selected)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle_are_artificially_selected",
+          "z3_formula": "heck_cattle_are_artificially_selected == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "artificial_selection_by_breeding_back",
+          "z3_formula": "artificial_selection_by_breeding_back == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_bred_back",
+          "z3_formula": "heck_cattle_bred_back == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back -> artificial_selection",
+          "z3_formula": "Implies(heck_cattle_bred_back, artificial_selection_heck_cattle)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "some_heck_cattle_are_artificially_selected",
+          "z3_formula": "some_heck_cattle_are_artificially_selected == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back(is_form_of_artificial_selection)",
+          "z3_formula": "breeding_back_is_form_of_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle(were_bred_back)",
+          "z3_formula": "heck_cattle_were_bred_back == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle(are_animals)",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs(are_animals)",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals(to_be_bred_back,resemble_extinct_animals)",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle(were_bred_back) -> heck_cattle(are_artificially_selected)",
+          "z3_formula": "Implies(heck_cattle_were_bred_back, heck_cattle_are_artificially_selected)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle(are_artificially_selected)",
+          "z3_formula": "heck_cattle_are_artificially_selected == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back(is_a_form_of, artificial_selection)",
+          "z3_formula": "breeding_back_is_a_form_of_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle(were_bred_back, in_the_1920s)",
+          "z3_formula": "heck_cattle_were_bred_back_in_the_1920s == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "breeding_back(is_a_form_of, artificial_selection) -> artificial_selection(heck_cattle)",
+          "z3_formula": "Implies(breeding_back_is_a_form_of_artificial_selection, artificial_selection_heck_cattle)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle(are_animals)",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs(are_animals)",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals(to_be_bred_back, resemble_animals, that_are_extinct)",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_animals_that_are_extinct == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "some_heck_cattle(are_artificially_selected)",
+          "z3_formula": "some_heck_cattle_are_artificially_selected == True",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 79,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 35
+    },
+    "maxsat_stats": {
+      "satisfied": 35,
+      "excluded": 0,
+      "total_weight": 79,
+      "solve_time_ms": 0.913507305085659
+    },
+    "timing": {
+      "trace_gen_s": 4.54,
+      "extraction_s": 16.226,
+      "dedup_s": 0.752,
+      "maxsat_s": 0.003,
+      "total_s": 21.521
+    }
+  }
+}

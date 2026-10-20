@@ -1,0 +1,1006 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-974_Q16",
+    "problem": "Dave is cold. Dave is kind. Dave is quiet. Erin is green. Fiona is cold. Fiona is green. Fiona is quiet. Fiona is round. Gary is cold. Gary is kind. Gary is young. If someone is kind then they are cold. All green people are quiet. If Erin is green and Erin is cold then Erin is round. All cold, smart people are round. All quiet, kind people are green. Quiet people are kind. If Erin is round then Erin is young.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is quiet.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nGreen($x, bool) ::: Is x green?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nCold(Dave, True) ::: Dave is cold.\nKind(Dave, True) ::: Dave is kind.\nQuiet(Dave, True) ::: Dave is quiet.\nGreen(Erin, True) ::: Erin is green.\nCold(Fiona, True) ::: Fiona is cold.\nGreen(Fiona, True) ::: Fiona is green.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRound(Fiona, True) ::: Fiona is round.\nCold(Gary, True) ::: Gary is cold.\nKind(Gary, True) ::: Gary is kind.\nYoung(Gary, True) ::: Gary is young.\n\nRules:\nKind($x, True) >>> Cold($x, True) ::: If someone is kind then they are cold.\nGreen($x, True) >>> Quiet($x, True) ::: All green people are quiet.\nGreen(Erin, True) && Cold(Erin, True) >>> Round(Erin, True) ::: If Erin is green and Erin is cold then Erin is round.\nCold($x, True) && Smart($x, True) >>> Round($x, True) ::: All cold, smart people are round.\nQuiet($x, True) && Kind($x, True) >>> Green($x, True) ::: All quiet, kind people are green.\nQuiet($x, True) >>> Kind($x, True) ::: Quiet people are kind.\nRound(Erin, True) >>> Young(Erin, True) ::: If Erin is round then Erin is young.\n\nQuery:\nQuiet(Gary, True) ::: Gary is quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 76.0,
+      "Unknown": 128.0
+    },
+    "answer_counts": {
+      "True": 5,
+      "Unknown": 6
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Gary is quiet\" is true, false, or unknown, we need to analyze the given information and the rules provided. \n\n1. Gary is cold.\n2. Gary is kind.\n3. Gary is young.\n4. If someone is kind then they are cold.\n5. Gary is cold, so Gary is kind (from rule 4).\n6. Quiet people are kind (rule).\n7. Since Gary is kind, Gary is quiet (from rule 6).\n\nTherefore, based on the given information and the rules, \"Gary is quiet\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is quiet\" is true, false, or unknown, we need to analyze the given information and the premises.\n\n1. Dave is cold. Dave is kind. Dave is quiet. \n   We can't conclude anything directly from this statement.\n\n2. Erin is green. Fiona is cold. Fiona is green. Fiona is quiet. Fiona is round. Gary is cold. Gary is kind. Gary is young.\n   Again, this information is not directly related to whether Gary is quiet.\n\n3. Premise 1: If someone is kind then they are cold.\n   This premise links being kind to being cold, but we don't know if Gary being kind means he is cold.\n\n4. Premise 2: All green people are quiet.\n   This premise tells us that green people are quiet, but we don't know if Gary is green.\n\n5. Premise 3: If Erin is green and Erin is cold then Erin is round.\n   This premise does not apply to Gary directly.\n\n6. Premise 4: All cold, smart people are round.\n   We don't know if Gary is smart or not, and even if he is, we can't conclude if he is round.\n\n7. Premise 5: All quiet, kind people are green.\n   This premise implies a relationship between quiet, kind people and being green, but we still don't know if Gary is quiet or not.\n\n8. Premise 6: Quiet people are kind.\n   This premise tells us that quiet people are kind, which means if Gary is quiet, then he must be kind.\n\n9. Premise 7: If Erin is round then Erin is young.\n   This premise does not apply to Gary directly.\n\nNow, let's combine the premises that are relevant to Gary's situation. From premise 1, we know Gary is kind. From premise 8, we know quiet people are kind, which implies that Gary is quiet if he is kind.\n\nHowever, there's a catch. Premise 6 says that quiet people are kind. If Gary is quiet, then he must be kind. But premise 3 says that if someone is kind, then they are cold. If Gary is kind, then he is cold.\n\nWe don't know if Gary is cold or not, but premise 6 does not tell us anything about Gary's color or roundness. \n\nWe do not have enough information to conclude if Gary is quiet or not, so the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we'll use the given information and the rules to determine if Gary is quiet.\n\nGiven information:\n\n- Dave is cold.\n- Dave is kind.\n- Dave is quiet.\n- Erin is green.\n- Fiona is cold.\n- Fiona is green.\n- Fiona is quiet.\n- Fiona is round.\n- Gary is cold.\n- Gary is kind.\n- Gary is young.\n\nRules:\n\n1. If someone is kind then they are cold.\n2. All green people are quiet.\n3. If Erin is green and Erin is cold then Erin is round.\n4. All cold, smart people are round.\n5. All quiet, kind people are green.\n6. Quiet people are kind.\n7. If Erin is round then Erin is young.\n\nLet's apply the rules to determine if Gary is quiet:\n\nFrom rule 1, since Gary is kind, we can conclude that Gary is cold (Gary is kind \u2192 Gary is cold).\n\nHowever, we don't have any direct rule to conclude that Gary is quiet. We need to find a path from \"Gary is kind\" to \"Gary is quiet.\"\n\nWe have the following information:\n\n- All quiet, kind people are green. (Rule 5)\n- Quiet people are kind. (Rule 6)\n- Gary is kind.\n\nHowever, we don't have any information that links Gary being kind to being quiet. We do have information that Gary is cold, but we don't have any rule that links cold people to quiet people.\n\nLooking at the given information:\n\n- Dave is quiet.\n- Dave is cold.\n- However, we don't have any rule that links cold people to quiet people.\n\nFrom rule 5, we know that all quiet, kind people are green. However, we don't have any information that links Gary being kind to being green.\n\nWe can conclude that Gary is green if we can link Gary being kind to being quiet, but we don't have any direct rule to do that. \n\nHowever, we can analyze Gary's attributes: Gary is cold, Gary is kind, and Gary is young. \n\nWe can conclude that Gary is green if we can link Gary being kind to being quiet.\n\nWe have the following information:\n\n- All quiet, kind people are green. (Rule 5)\n- Quiet people are kind. (Rule 6)\n- Gary is kind.\n\nHowever, we don't have any information that links Gary being kind to being quiet. We do have information that Gary is cold, but we don't have any rule that links cold people to quiet people.\n\nBut we do have the following information:\n\n- Dave is cold.\n- Dave is kind.\n- Dave is quiet.\n\nWe can see that Dave is cold and Dave is kind. \n\nWe know that all cold, smart people are round, but we don't have any information that Gary is smart. \n\nHowever, we don't have any information that links Gary being kind to being quiet. \n\nBut we do have the following information:\n\n- All quiet, kind people are green. (Rule 5)\n- Quiet people are kind. (Rule 6)\n- Gary is kind.\n\nHowever, we don't have any information that links Gary being kind to being quiet.\n\nHowever, we can analyze Gary's attributes: Gary is cold, Gary is kind, and Gary is young. \n\nWe can conclude that Gary is green if we can link Gary being kind to being quiet.\n\nWe don't have any information that links Gary being kind to being quiet.\n\nWe do have information that Gary is cold, but we don't have any rule that links cold people to quiet people.\n\nHowever, we do have the following information:\n\n- All quiet, kind people are green. (Rule 5)\n- Quiet people are kind. (Rule 6)\n- Gary is kind.\n\nHowever, we don't have any information that links Gary being kind to being quiet.\n\nHowever, we can conclude that we don't have enough information to determine if Gary is quiet.\n\nSo, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Gary is quiet, we need to analyze the given statements and their relationships. \n\nFrom the given statements, we have:\n1. Gary is cold.\n2. Gary is kind.\n3. Gary is young.\n\nWe are also given the following relationships:\n1. If someone is kind, then they are cold.\n   From this, we can infer that Gary is cold because he is kind.\n\n2. All green people are quiet. (We don't know Gary's color yet, so we can't directly apply this statement.)\n3. If Erin is green and Erin is cold, then Erin is round. (This statement is not relevant to Gary.)\n4. All cold, smart people are round. (We don't know if Gary is smart or not, so we can't directly apply this statement.)\n5. All quiet, kind people are green. (This statement is not relevant to Gary because we don't know if he is quiet or not.)\n6. Quiet people are kind. (This statement is not directly relevant to Gary because we are trying to determine if Gary is quiet, not if he is kind.)\n7. If Erin is round, then Erin is young. (This statement is not relevant to Gary.)\n\nHowever, we need to find a connection between Gary and the given relationships to determine if he is quiet. \n\nFrom statement 1 (If someone is kind, then they are cold) and statement 2 (Gary is kind), we can infer that Gary is cold.\n\nFrom statement 6 (Quiet people are kind), we can infer that quiet people are also kind. Since we know Gary is kind from statement 2, we can conclude that Gary is quiet.\n\nTherefore, based on the given statements and their relationships, Gary is quiet.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is quiet\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. Gary is cold.\n2. Gary is kind.\n3. Gary is young.\n\nRule 1: If someone is kind then they are cold. \nFrom this rule and statement 2, we can infer that Gary is cold. This is consistent with statement 1.\n\nRule 2: All green people are quiet.\nWe do not have any information that directly links Gary to being green. So, we cannot conclude that Gary is quiet based on this rule.\n\nRule 3: If Erin is green and Erin is cold then Erin is round.\nThis rule is irrelevant to Gary, so we can ignore it.\n\nRule 4: All cold, smart people are round.\nWe do not have any information about Gary's intelligence. Therefore, this rule is irrelevant to Gary.\n\nRule 5: All quiet, kind people are green.\nWe cannot determine whether Gary is quiet or kind based on this rule because it is a conditional statement. \n\nRule 6: Quiet people are kind.\nThis rule is also a conditional statement, and we cannot determine whether Gary is quiet based on this rule because it is the opposite of what we are trying to determine.\n\nRule 7: If Erin is round then Erin is young.\nThis rule is irrelevant to Gary, so we can ignore it.\n\nFrom the given information, we cannot directly determine whether Gary is quiet or not. However, we can make a logical conclusion using the rules. \n\nSince Gary is kind (statement 2), and quiet people are kind (Rule 6), we can infer that Gary might be quiet. However, this is a conditional statement, and we cannot be certain.\n\nBut, we can also infer that Gary is cold (Rule 1 and statement 1). And all quiet, kind people are green (Rule 5). This implies that Gary might be green.\n\nHowever, Gary being green (Rule 2) does not directly imply that Gary is quiet. This creates a logical contradiction because Gary cannot be both quiet and not quiet at the same time.\n\nTherefore, the statement \"Gary is quiet\" is unknown because the given information and rules create a logical contradiction. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is quiet\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Given statements:\n   - Dave is cold.\n   - Dave is kind.\n   - Dave is quiet.\n   - Erin is green.\n   - Fiona is cold.\n   - Fiona is green.\n   - Fiona is quiet.\n   - Fiona is round.\n   - Gary is cold.\n   - Gary is kind.\n   - Gary is young.\n   - If someone is kind then they are cold.\n   - All green people are quiet.\n   - If Erin is green and Erin is cold then Erin is round.\n   - All cold, smart people are round.\n   - All quiet, kind people are green.\n   - Quiet people are kind.\n   - If Erin is round then Erin is young.\n\n2. To determine whether Gary is quiet, we need to find a connection between Gary's characteristics and the characteristics that lead to being quiet.\n\n3. Given that \"Quiet people are kind\" and \"Gary is kind,\" we can infer that Gary might be quiet, but we need to confirm this.\n\n4. However, we also know that \"All quiet, kind people are green\" and we don't have any information that links Gary's greenness to being quiet or kind.\n\n5. Since we don't have enough information to link Gary's greenness to being quiet, we cannot conclude that Gary is quiet based on the given information.\n\n6. However, we do know that \"Gary is cold\" and \"Gary is kind.\" Since \"If someone is kind then they are cold,\" we can conclude that Gary is indeed cold.\n\n7. Unfortunately, we cannot conclude that Gary is quiet based on the given information, but we can confirm that Gary is cold.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and the rules provided. We will apply these rules to determine whether Gary is quiet or not.\n\nGiven Statements:\n1. Dave is cold.\n2. Dave is kind.\n3. Dave is quiet.\n4. Erin is green.\n5. Fiona is cold.\n6. Fiona is green.\n7. Fiona is quiet.\n8. Fiona is round.\n9. Gary is cold.\n10. Gary is kind.\n11. Gary is young.\n12. If someone is kind then they are cold.\n13. All green people are quiet.\n14. If Erin is green and Erin is cold then Erin is round.\n15. All cold, smart people are round.\n16. All quiet, kind people are green.\n17. Quiet people are kind.\n18. If Erin is round then Erin is young.\n\nRules:\n1. If P then Q (P \u2192 Q) is equivalent to: If not Q then not P (\u00acQ \u2192 \u00acP).\n2. If P then Q (P \u2192 Q) is equivalent to: P and (P \u2192 Q) is equivalent to Q (P \u2227 (P \u2192 Q) \u2192 Q).\n3. All A are B (A \u2192 B) is equivalent to: If A then B (A \u2192 B).\n4. All A are B (A \u2192 B) is equivalent to: If B then A (B \u2192 A) is equivalent to: There exists an A that is B (\u00acB \u2192 \u00acA).\n\nFrom the given statements, we can derive the following:\n\n17. Quiet people are kind. (Given)\n18. Gary is kind. (Given)\n19. Gary is quiet. (To be determined)\n\nFrom 17 and 18, we can infer that Gary is quiet because quiet people are kind and Gary is kind.\n\nHowever, we need to ensure that this conclusion is not contradicted by any other given statement. \n\nNow we will use Modus Ponens to derive more conclusions:\n\nFrom 12 and 10, we can infer that Gary is cold.\n\nFrom 13 and 4, we can infer that Erin is quiet.\n\nFrom 14 and 4, we can infer that Erin is round.\n\nFrom 18, we can infer that Erin is quiet, which is consistent with our previous conclusion.\n\nFrom 15, we can infer that Erin is smart because Erin is cold and round.\n\nFrom 16 and 18, we can infer that Erin is green.\n\nFrom 18 and 10, we can infer that Gary is quiet.\n\nFrom 18 and 3, we can infer that Fiona is quiet, which is consistent with our previous conclusion.\n\nFrom 18 and 2, we can infer that Dave is quiet.\n\nFrom 1, 2, and 12, we can infer that Dave is cold.\n\nFrom 3, we can infer that Dave is quiet, which is consistent with our previous conclusion.\n\nFrom 4, 5, 6, and 13, we can infer that Fiona is quiet.\n\nFrom 4, 5, 6, and 16, we can infer that Fiona is green.\n\nFrom 7, we can infer that Fiona is quiet, which is consistent with our previous conclusion.\n\nFrom 8, we can infer that Fiona is round.\n\nFrom 9, we can infer that Gary is cold.\n\nFrom 10, we can infer that Gary is kind.\n\nFrom 11, we can infer that Gary is young.\n\nFrom 14 and 4, we can infer that Erin is round.\n\nFrom 18 and 10, we can infer that Gary is quiet.\n\nFrom 15 and 9, we can infer that Gary is not round.\n\nFrom 4, 5, 6, and 13, we can infer that Fiona is quiet.\n\nFrom 4, 5, 6, and 16, we can infer that Fiona is green.\n\nFrom 7, we can infer that Fiona is quiet, which is consistent with our previous conclusion.\n\nFrom 8, we can infer that Fiona is round.\n\nFrom 9, we can infer that Gary is cold.\n\nFrom 10, we can infer that Gary is kind.\n\nFrom 11, we can infer that Gary is young.\n\nFrom 14 and 4, we can infer that Erin is round.\n\nFrom 18 and 10, we can infer that Gary is quiet.\n\nFrom 18 and 3, we can infer that Fiona is quiet.\n\nFrom 18 and 2, we can infer that Dave is quiet.\n\nFrom 1, 2, and 12, we can infer that Dave is cold.\n\nFrom 3, we can infer that Dave is quiet, which is consistent with our previous conclusion.\n\nFrom 4, 5, 6, and 13, we can infer that Fiona is quiet.\n\nFrom 4, 5, 6, and 16, we can infer that Fiona is green.\n\nFrom 7, we can infer that Fiona is quiet, which is consistent with our previous conclusion.\n\nFrom 8, we can infer that Fiona is round.\n\nFrom 9, we can infer that Gary is cold.\n\nFrom 10, we can infer that Gary is kind.\n\nFrom 11, we can infer that Gary is young.\n\nFrom 14 and 4, we can infer that Erin is round.\n\nFrom 18 and 10, we can infer that Gary is quiet.\n\nFrom 18 and 3, we can infer that Fiona is quiet.\n\nFrom 18 and 2, we can infer that Dave is quiet.\n\nFrom 1, 2, and 12, we can infer that Dave is cold.\n\nFrom 3, we can infer that Dave is quiet, which is consistent with our previous conclusion.\n\nFrom 4, 5, 6, and 13, we can infer that Fiona is quiet.\n\nFrom 4, 5, 6, and 16, we can infer that Fiona is green.\n\nFrom 7, we can infer that Fiona is quiet, which is consistent with our previous conclusion.\n\nFrom 8, we can infer that Fiona is round.\n\nFrom 9, we can infer that Gary is cold.\n\nFrom 10, we can infer that Gary is kind.\n\nFrom 11, we can infer that Gary is young.\n\nFrom 14 and 4, we can infer that Erin is round.\n\nFrom 18 and 10, we can infer that Gary is quiet.\n\nFrom 18 and 3, we can infer that Fiona is quiet.\n\nFrom 18 and 2, we can infer that Dave is quiet.\n\nFrom 1, 2, and 12, we can infer that Dave is cold.\n\nFrom 3, we can infer that Dave is quiet, which is consistent with our previous conclusion.\n\nFrom 4, 5, 6, and 13, we can infer that Fiona is quiet.\n\nFrom 4, 5, 6, and 16, we can infer that Fiona is green.\n\nFrom 7, we can infer that Fiona is quiet, which is consistent with our previous conclusion.\n\nFrom 8, we can infer that Fiona is round.\n\nFrom 9, we can infer that Gary is cold.\n\nFrom 10, we can infer that Gary is kind.\n\nFrom 11, we can infer that Gary is young.\n\nFrom 14 and 4, we can infer that Erin is round.\n\nFrom 18 and 10, we can infer that Gary is quiet.\n\nFrom 18 and 3, we can infer that Fiona is quiet.\n\nFrom 18 and 2, we can infer that Dave is quiet.\n\nFrom 1, 2, and 12, we can infer that Dave is cold.\n\nFrom 3, we can infer that Dave is quiet, which is consistent with our previous conclusion.\n\nFrom 4, 5, 6, and 13, we can infer that Fiona is quiet.\n\nFrom 4, 5, 6, and 16, we can infer that Fiona is green.\n\nFrom 7, we can infer that Fiona is quiet, which is consistent with our previous conclusion.\n\nFrom 8, we can infer that Fiona is round.\n\nFrom 9, we can infer that Gary is cold.\n\nFrom 10, we can infer that Gary is kind.\n\nFrom 11, we can infer that Gary is young.\n\nFrom 14 and 4, we can infer that Erin is round.\n\nFrom 18 and 10, we can infer that Gary is quiet.\n\nFrom 18 and 3, we can infer that Fiona is quiet.\n\nFrom 18 and 2, we can infer that Dave is quiet.\n\nFrom 1, 2, and 12, we can infer that Dave is cold.\n\nFrom 3, we can infer that Dave is quiet, which is consistent with our previous conclusion.\n\nFrom 4, 5, 6, and 13, we can infer that Fiona is quiet.\n\nFrom 4, 5, 6, and 16, we can infer that Fiona is green.\n\nFrom 7, we can infer that Fiona is quiet, which is consistent with our previous conclusion.\n\nFrom 8, we can infer that Fiona is round.\n\nFrom 9, we can infer that Gary is cold.\n\nFrom 10, we can infer that Gary is kind.\n\nFrom 11, we can infer that Gary is young.\n\nFrom 14 and 4, we can infer that Erin is round.\n\nFrom 18 and 10, we can infer that Gary is quiet.\n\nFrom 18 and 3, we can infer that Fiona is quiet.\n\nFrom 18 and 2, we can infer that Dave is quiet.\n\nFrom 1, 2, and 12, we can infer that Dave is cold.\n\nFrom 3, we can infer that Dave is quiet, which is consistent with our previous conclusion.\n\nFrom 4, 5, 6, and 13, we can infer that Fiona is quiet.\n\nFrom 4, 5, 6,",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Gary is quiet, we need to analyze the given information and apply the rules.\n\nGiven information:\n- Dave is cold. \n- Dave is kind. \n- Dave is quiet. \n- Erin is green. \n- Fiona is cold. \n- Fiona is green. \n- Fiona is quiet. \n- Fiona is round. \n- Gary is cold. \n- Gary is kind. \n- Gary is young. \n- If someone is kind then they are cold. \n- All green people are quiet. \n- If Erin is green and Erin is cold then Erin is round. \n- All cold, smart people are round. \n- All quiet, kind people are green. \n- Quiet people are kind. \n- If Erin is round then Erin is young.\n\nLet's start by finding the relationships between the given statements.\n\n1. If someone is kind then they are cold. \n   This implies that since Gary is kind, Gary is cold.\n\n2. Quiet people are kind. \n   Since Gary is kind, we can infer that Gary is quiet (because all quiet people are kind, and Gary is kind).\n\nNow, let's verify this conclusion using the given information and rules.\n\n- Gary is cold (from rule 1).\n- Gary is kind (given).\n- Gary is young (given).\n- Gary is quiet (inferred from rule 2 and given).\n\nTherefore, the statement \"Gary is quiet\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is quiet\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. Given statements:\n   - Dave is cold.\n   - Dave is kind.\n   - Dave is quiet.\n   - Erin is green.\n   - Fiona is cold.\n   - Fiona is green.\n   - Fiona is quiet.\n   - Fiona is round.\n   - Gary is cold.\n   - Gary is kind.\n   - Gary is young.\n   - If someone is kind then they are cold.\n   - All green people are quiet.\n   - If Erin is green and Erin is cold then Erin is round.\n   - All cold, smart people are round.\n   - All quiet, kind people are green.\n   - Quiet people are kind.\n   - If Erin is round then Erin is young.\n\n2. Analyzing the given statements:\n   - We know that Gary is kind (Gary is kind) and Gary is cold (Gary is cold).\n   - From the given statement \"If someone is kind then they are cold,\" we can conclude that being kind implies being cold, but we cannot directly conclude that Gary is quiet or Gary is not quiet from this statement.\n   - However, we also know that Quiet people are kind (Quiet people are kind) and All quiet, kind people are green (All quiet, kind people are green).\n   - This implies that being quiet and kind implies being green.\n   - Since Gary is kind, we cannot directly conclude that Gary is quiet or Gary is not quiet from this implication alone.\n\n3. To determine whether Gary is quiet, we need to analyze the possible combinations of Gary's characteristics and use the given implications to draw conclusions.\n   - Let's assume Gary is quiet.\n   - If Gary is quiet, then from the implication \"Quiet people are kind,\" we can conclude that Gary is kind, which we already know.\n   - However, we also know that \"All quiet, kind people are green,\" and since Gary is kind and quiet, this implies that Gary is green.\n   - But we also know that Gary is cold (Gary is cold), and we cannot conclude that Gary is not green from this statement alone.\n\n4. To determine whether Gary is quiet, let's analyze the possible combinations of Gary's characteristics and use the given implications to draw conclusions.\n   - Let's assume Gary is not quiet.\n   - If Gary is not quiet, then from the implication \"Quiet people are kind,\" we cannot conclude that Gary is not kind, because being quiet and being kind are not necessarily mutually exclusive.\n   - However, we know that Gary is kind (Gary is kind), and from the implication \"If someone is kind then they are cold,\" we can conclude that Gary is cold, which we already know.\n\n5. Since we cannot draw a definitive conclusion about Gary being quiet or not quiet from the given information, we cannot determine whether the statement \"Gary is quiet\" is true or false.\n\nTherefore, the answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Gary is quiet, we need to analyze the given information and the statements related to Gary. \n\n1. Gary is cold.\n2. Gary is kind.\n3. Gary is young.\n\nFrom the given information, we have the following statements:\n- If someone is kind, then they are cold.\n- Quiet people are kind.\n- Gary is cold and Gary is kind.\n\nFrom statement 2 and 3, we can conclude that Gary is kind, which means Gary is quiet as per the statement 'Quiet people are kind'.\n\nSo, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is quiet\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Gary is cold. (Given)\n2. Gary is kind. (Given)\n3. If someone is kind then they are cold. (Rule 1)\n   However, we already know that Gary is cold. This rule doesn't provide any additional information about Gary being quiet.\n\n4. Gary is young. (Given)\n5. All quiet, kind people are green. (Rule 2)\n   Since Gary is kind, we can apply this rule. However, we don't know if Gary is quiet or not.\n\n6. Gary is not mentioned as green. If Gary were quiet, then based on Rule 2, he would be green. But since Gary is not green, it is possible that he is not quiet.\n\nHowever, let's analyze further:\n\n7. All quiet people are kind. (Rule 3)\n   We already know that Gary is kind. This rule implies that if Gary is quiet, then he would be kind, which is true. However, this rule alone does not confirm if Gary is quiet or not.\n\n8. We don't have any direct information about Gary being quiet.\n\n9. Fiona is quiet. (Given)\n   This information doesn't provide any direct connection between Gary and being quiet.\n\n10. All cold people are not necessarily quiet. (From Rule 1)\n    Gary is cold, but this does not imply that he is quiet.\n\n11. All green people are quiet. (Rule 4)\n    Since Gary is not green, this rule does not apply to him.\n\n12. All quiet, kind people are green. (Rule 2)\n    We already discussed this rule. Gary is kind, but we don't know if he is quiet.\n\nConsidering all the given information and rules, we cannot conclude that Gary is quiet with absolute certainty. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Gary is quiet, we need to follow the given statements and deduce the truth value of the statement.\n\n1. Gary is cold.\n2. Gary is kind.\n3. Gary is young.\n\nFrom the given statements, we also know:\n- If someone is kind, then they are cold.\n- Gary is kind, so Gary is cold (from statement 1).\n- Gary is cold, so Gary is kind (from statement 2).\n- Gary is cold, and Gary is kind, so Gary is quiet (Quiet people are kind, but we need more information to confirm this).\n\nHowever, we are missing a crucial piece of information to confirm Gary's quietness. We know Gary is young (statement 3), but we do not know if being young affects Gary's quietness.\n\nTo make a decision, we must consider all the given statements and see if there is any information that might indicate Gary's quietness:\n\n- All quiet, kind people are green.\n- Quiet people are kind.\n- If someone is kind, then they are cold.\n- All green people are quiet.\n- All cold, smart people are round.\n- All green people are quiet.\n- If Erin is green and Erin is cold then Erin is round.\n- If Erin is round then Erin is young.\n\nWe do not have any information that links Gary's quietness directly to the given statements. However, we can infer that Gary is kind (statement 2) and kind people are quiet (Quiet people are kind). Therefore, the statement \"Gary is quiet\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_gary, cold_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_gary, cold_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_gary, cold_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_gary, kind_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_gary, quiet_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_gary, cold_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_gary, kind_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_gary, cold_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary) & quiet(gary)",
+          "z3_formula": "And(kind_gary, quiet_gary)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_gary, cold_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), green_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_gary, kind_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_X, kind_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(green_erin, cold_erin), round_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(cold_dave, smart_dave), round_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_erin, young_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_gary, cold_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_gary, kind_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_gary, cold_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_gary, quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(green_erin, cold_erin), round_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(cold_gary, smart_gary), round_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), green_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_gary, kind_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_erin, young_erin)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_dave, cold_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(green_erin, cold_erin), round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(cold_fiona, smart_fiona), round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), green_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_erin, young_erin)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_dave, cold_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_erin, quiet_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "(green(X) & cold(X)) -> round(X)",
+          "z3_formula": "Implies(And(green_erin, cold_erin), round_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(cold_erin, smart_erin), round_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), green_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_dave, kind_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_erin, young_erin)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_gary, cold_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_gary, kind_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_dave, cold_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(green_erin, cold_erin), round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(cold_fiona, smart_fiona), round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_dave, kind_dave), green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_dave, kind_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_erin, young_erin)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_gary, cold_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_gary, kind_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary) & cold(gary)",
+          "z3_formula": "And(kind_gary, cold_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_gary, cold_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), green_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not green(gary)",
+          "z3_formula": "Not(green_gary) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_gary, kind_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> not quiet(X)",
+          "z3_formula": "Implies(cold_gary, Not(quiet_gary))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_gary, quiet_gary)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_gary, cold_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_gary, kind_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_gary, kind_gary), quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_gary, kind_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_gary, cold_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_gary, quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_gary, green_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_gary, quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(cold_gary, green_gary), round_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(green_gary, cold_gary), round_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_gary, young_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(green_gary, cold_gary), round_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 146,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 42
+    },
+    "maxsat_stats": {
+      "satisfied": 40,
+      "excluded": 2,
+      "total_weight": 144,
+      "solve_time_ms": 1.6956944018602371
+    },
+    "timing": {
+      "trace_gen_s": 24.17,
+      "extraction_s": 24.592,
+      "dedup_s": 1.157,
+      "maxsat_s": 0.004,
+      "total_s": 49.924
+    }
+  }
+}

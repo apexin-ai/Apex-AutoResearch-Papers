@@ -1,0 +1,43 @@
+{
+  "exp_id": "mvp_pipeline_004",
+  "project": "cross_representation_disagreement_diagno",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:07:01.774Z",
+    "updated_at": "2026-05-14T15:51:57.806Z",
+    "hypothesis": "v4 truncation detection + thinking-off retry, 204 samples full run (resume from mvp_pipeline_003 killed run)",
+    "server": "autodl-rtx6000pro",
+    "gpu": "cuda:0",
+    "spec": {
+      "command": "cd /root/autodl-tmp/crdd && nohup python src/pipeline.py --output results/mvp_v4_full.json --resume results/mvp_v4_full.json > pipeline_v4_full.log 2>&1 &",
+      "server": "autodl-rtx6000pro",
+      "data_path": "FOLIO validation set (full)",
+      "data_count": 204,
+      "model_name": "Qwen3-32B-AWQ (awq_marlin)",
+      "seed": 0
+    },
+    "metrics": {
+      "progress": "83/204",
+      "C1_disagree_rate": 0.321,
+      "C2_diagnostic_rate": 0.88,
+      "C3_error_types": 3,
+      "C4_targeted_vs_blind_pp": 21.9,
+      "C5_localization": 0.8,
+      "C5_localization_n": 15,
+      "C4_targeted_repair": "24/32=75.0%",
+      "C4_blind_repair": "17/32=53.1%",
+      "fol_accuracy": null,
+      "code_accuracy": null,
+      "mvp_pass": "5/5 (C5 fixed: stability-based)",
+      "interim": true,
+      "c5_fix_applied": true,
+      "c5_before_fix": "100% (circular bug)",
+      "audit_ref": "artifacts/c1c5_audit.md"
+    }
+  },
+  "timestamp": "2026-05-14T15:51:57.846769+00:00",
+  "trigger": "update_registry"
+}

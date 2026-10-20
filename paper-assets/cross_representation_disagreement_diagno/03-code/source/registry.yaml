@@ -1,0 +1,239 @@
+baseline: null
+experiments:
+  mvp_baseline_001:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T05:15:58.566Z'
+    updated_at: '2026-05-14T07:24:48.219Z'
+    hypothesis: Qwen3-32B-AWQ direct answer on FOLIO ≤ 85% (sufficient error room
+      for disagreement analysis)
+    spec:
+      command: python baseline.py --max-examples 50 --output /root/autodl-tmp/crdd/results/baseline.json
+      server: autodl-rtx6000pro
+      data_path: FOLIO validation set
+      data_count: 50
+      model_name: Qwen3-32B-AWQ
+      seed: 0
+    checkpoint_path: /root/autodl-tmp/crdd/results/baseline.json
+    log_path: /root/autodl-tmp/crdd/results/baseline.json
+    conclusion: success
+    completed_at: '2026-05-14T07:24:47.233Z'
+    metrics:
+      accuracy: 0.74
+      correct: 37
+      total: 50
+      gate: PASS_FOLIO
+  mvp_pipeline_001:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T05:16:01.044Z'
+    updated_at: '2026-05-14T08:14:26.843Z'
+    hypothesis: 'Cross-representation disagreement (Qwen3-32B-AWQ, FOL+Python dual
+      formalization) provides diagnostic signal: disagree≥10%, one-side-correct≥40%,
+      targeted repair > blind+5pp, localization≥60%'
+    spec:
+      command: python pipeline.py --max-examples 50 --output /root/autodl-tmp/crdd/results/results.json
+      server: autodl-rtx6000pro
+      data_path: FOLIO validation set
+      data_count: 50
+      model_name: Qwen3-32B-AWQ
+      seed: 0
+    conclusion: negative
+    metrics:
+      disagree_rate: 0.04
+      diagnostic_rate: 1
+      error_types: 4
+      targeted_repair: 0.1875
+      blind_repair: 0.4688
+      delta_pp: -28.12
+      localization: 0.4186
+      fol_accuracy: 0.14
+      code_accuracy: 0.52
+      C1: false
+      C2: true
+      C3: true
+      C4: false
+      C5: false
+    checkpoint_path: /root/autodl-tmp/crdd/results/results.json
+    log_path: /root/autodl-tmp/crdd/results/pipeline.log
+    completed_at: '2026-05-14T08:14:26.843Z'
+  mvp_pipeline_002:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T08:20:37.695Z'
+    updated_at: '2026-05-14T10:43:19.329Z'
+    spec:
+      model_name: Qwen3-32B-AWQ (awq_marlin)
+      server: autodl-rtx6000pro
+      data_path: FOLIO validation set
+      data_count: 10
+      seed: 0
+      parent: mvp_pipeline_001
+      changes: FOL prompt few-shot examples + Z3 template + syntax fix retry layer
+      command: python pipeline.py --max-examples 10 --output results/results_v2_test10.json
+    hypothesis: Z3 prompt few-shot + syntax fix retry + repair hint fix → crash rate
+      from 78% to <30%, enabling meaningful C1-C5 evaluation
+    metrics:
+      fol_crash_rate_v2: 0.1
+      code_crash_rate_v2: 0.4
+      fol_crash_rate_v3: 0.8
+      code_crash_rate_v3: 0
+      fol_accuracy_v3: 0.2
+      code_accuracy_v3: 0.6
+      oracle_accuracy_v3: 0.6
+      disagree_rate_v3: 0
+      effective_disagree_rate_v3: 0
+      diagnostic_rate_v3: null
+      targeted_rate_v3: 0.5
+      blind_rate_v3: 0.625
+      delta_pp_v3: -12.5
+      localization_accuracy_v3: 0.5
+      error_types_v3: 3
+      C1_v3: false
+      C2_v3: false
+      C3_v3: true
+      C4_v3: false
+      C5_v3: false
+      avg_time_per_sample_s_v3: 218.5
+      total_api_calls_v3: 48
+      input_tokens_v3: 50558
+      output_tokens_v3: 139706
+      samples_v3: 10
+      v3_changes: enable_thinking=False for Code generation, _strip_thinking unclosed
+        tag handling
+    conclusion: negative
+    log_path: results/results_v3_test10.json (on autodl-rtx6000pro)
+    checkpoint_path: N/A (API pipeline, no checkpoint)
+    completed_at: '2026-05-14T10:43:19.329Z'
+  mvp_pipeline_003:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T10:45:17.358Z'
+    updated_at: '2026-05-14T11:06:43.230Z'
+    spec:
+      command: cd /root/autodl-tmp/crdd && nohup python src/pipeline.py --output results/mvp_v4_full.json
+        > pipeline_v4_full.log 2>&1 &
+      server: autodl-rtx6000pro
+      gpu:
+      - cuda:0
+      pid: '28608'
+      log_path: ~/runs/cross_representation_disagreement_diagno/mvp_pipeline_003.log
+      submitted_at: '2026-05-14T10:53:10.956Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: FOLIO validation set (full)
+      data_count: 204
+      model_name: Qwen3-32B-AWQ (awq_marlin)
+      seed: 0
+      wall_clock_seconds: 812.3
+      gpu_hours: 0.23
+    hypothesis: truncation detection + thinking-off retry fixes FOL empty output (80%→<10%),
+      enabling meaningful full-dataset C1-C5 evaluation on 204 samples
+    server: autodl-rtx6000pro
+    gpu: cuda:0
+    pid: '28495'
+    log_path: ~/runs/cross_representation_disagreement_diagno/mvp_pipeline_003.log
+    reproduce:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/autodl-tmp/crdd && python src/pipeline.py --output results/mvp_v4_full.json"
+      finished_at: '2026-05-14T10:58:29.429Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-14T10:58:30.500762+00:00'
+    conclusion: killed
+    completed_at: '2026-05-14T11:06:43.230Z'
+  mvp_pipeline_003b:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T11:06:50.709Z'
+    updated_at: '2026-05-14T14:31:44.812Z'
+    hypothesis: v4 truncation detection + thinking-off retry, 204 samples full run
+      (resumed from 003 killed run, ~1 sample completed)
+    server: autodl-rtx6000pro
+    gpu: cuda:0
+    spec:
+      command: cd /root/autodl-tmp/crdd && nohup python src/pipeline.py --output results/mvp_v4_full.json
+        --resume results/mvp_v4_full.json > pipeline_v4_full.log 2>&1 &
+      server: autodl-rtx6000pro
+      data_path: FOLIO validation set (full)
+      data_count: 204
+      model_name: Qwen3-32B-AWQ (awq_marlin)
+      seed: 0
+      pid: '29177'
+    conclusion: killed
+    completed_at: '2026-05-14T14:31:44.812Z'
+  mvp_pipeline_004:
+    status: ANALYZING
+    retry_count: 0
+    created_at: '2026-05-14T11:07:01.774Z'
+    updated_at: '2026-05-15T06:54:34.590Z'
+    hypothesis: v4 truncation detection + thinking-off retry, 204 samples full run
+      (resume from mvp_pipeline_003 killed run)
+    server: autodl-rtx6000pro
+    gpu: cuda:0
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/autodl-tmp/crdd && python3 src/pipeline.py --resume results/mvp_v4_full.jsonl"
+      server: autodl-rtx6000pro
+      gpu:
+      - cuda:0
+      pid: '57877'
+      log_path: ~/runs/cross_representation_disagreement_diagno/mvp_pipeline_004.log
+      submitted_at: '2026-05-14T21:50:15.506Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+    metrics:
+      progress: 204/204 (deduped from 211)
+      deduped: true
+      unified_per_sample:
+        all_mode:
+          C1_disagree_rate: 42.16% (86/204)
+          C2_diagnostic_rate: 87.21% (75/86)
+          C3_error_types: 4 types
+          C4_targeted_delta: +4.65pp
+          C5_localization_acc: 53.03% (35/66)
+          C5_CI_95: '[41.0%, 65.1%]'
+          mvp_pass: 3/5 (C4 FAIL, C5 FAIL)
+        excl_unknown:
+          C1_disagree_rate: 38.52% (52/135)
+          C2_diagnostic_rate: 84.62% (44/52)
+          C3_error_types: 3 types
+          C4_targeted_delta: -1.92pp
+          C5_localization_acc: 65.79% (25/38)
+          C5_CI_95: '[50.0%, 80.6%]'
+          mvp_pass: 2/5 (C4 FAIL, C5 borderline PASS)
+      evaluate_mvp_per_side:
+        note: 保留为内部参考，不用于论文
+        all_mode_mvp_pass: 5/5 PASS
+      deep_analysis:
+        bootstrap_CI:
+          C1: '[35.3%, 49.0%]'
+          C2: '[81.3%, 94.7%]'
+          C4_delta: '[-8.8%, +18.1%]'
+          C5: '[41.0%, 65.1%]'
+        fisher_C4_pvalue:
+          all_mode: 0.626
+          excl_unknown: 1
+        asymmetry: FOL_correct_Code_wrong=56, Code_correct_FOL_wrong=10 (5.6:1)
+        gt_subset_C4:
+          'True': -13.6%
+          'False': +11.6%
+          Unknown: +14.7%
+        dominant_error: logic_error 25.5% (52/204)
+        phi_coefficient:
+          overall: 0.189
+          overall_p: 0.007
+        complementary_errors: 75/100 (75%) one-side-only failures
+        cost_effectiveness:
+          cost_multiplier: 5.76x
+          code_only_acc: 0.598
+          pipeline_acc: 0.814
+          oracle_acc: 0.878
+          accuracy_gain: +21.6pp
+    checkpoint_path: results/mvp_v4_full.json (on autodl-rtx6000pro, 109/204)
+    log_path: pipeline_v4_full.log (on autodl-rtx6000pro)
+    conclusion: success

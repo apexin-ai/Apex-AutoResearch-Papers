@@ -1,0 +1,58 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Method}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Problem Setup}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}SICA Pipeline}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage 1: Constraint Extraction.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage 2: Constraint Weighting.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage 3: Weighted Partial MAX-SAT.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Multi-Candidate Rate ($C_0$)}{3}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Relationship to Tiebreaking}{3}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experiments}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Setup}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hyperparameters.}{3}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main accuracy results (\%). $^\dagger $FOLIO subset (204 questions); other instruction models on D012 (60 questions). *$p=0.038$ (bootstrap). Reasoning models show SICA$\equiv $SC due to near-zero $C_0$.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{4}{Main accuracy results (\%). $^\dagger $FOLIO subset (204 questions); other instruction models on D012 (60 questions). *$p=0.038$ (bootstrap). Reasoning models show SICA$\equiv $SC due to near-zero $C_0$}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Main Results}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domain decomposition.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Tiebreak Analysis}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Operating Regime Analysis}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:regime}{{3.4}{4}{Operating Regime Analysis}{subsection.3.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Tiebreak accuracy on $n=47$ tied questions from the 804-question evaluation (Qwen2.5-14B). SICA significantly outperforms random resolution (binomial test $p=0.031$).}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:tiebreak}{{2}{5}{Tiebreak accuracy on $n=47$ tied questions from the 804-question evaluation (Qwen2.5-14B). SICA significantly outperforms random resolution (binomial test $p=0.031$)}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Operating regime characterization. $^\ddagger $Low extraction quality (rate=0.85). $^\S  $Restricted 3-class answer space limits tie frequency.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:regime}{{3}{5}{Operating regime characterization. $^\ddagger $Low extraction quality (rate=0.85). $^\S $Restricted 3-class answer space limits tie frequency}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-architecture validation.}{5}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces SICA--SC gap as a function of $K$ (Qwen2.5-14B, D012 60 questions). Gap correlates with tie rate: more traces stabilize majorities, reducing tiebreaking opportunities.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:k_sensitivity}{{4}{6}{SICA--SC gap as a function of $K$ (Qwen2.5-14B, D012 60 questions). Gap correlates with tie rate: more traces stabilize majorities, reducing tiebreaking opportunities}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Per-question wall-time decomposition (Qwen2.5-14B, 804 questions). SICA adds 14.3\% overhead to SC, with trace generation (shared with SC) dominating cost.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:overhead}{{5}{6}{Per-question wall-time decomposition (Qwen2.5-14B, 804 questions). SICA adds 14.3\% overhead to SC, with trace generation (shared with SC) dominating cost}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}K Sensitivity Analysis}{6}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Overhead Analysis}{6}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Constraint Extraction Quality}{6}{subsection.3.7}\protected@file@percent }
+\newlabel{sec:extraction}{{3.7}{6}{Constraint Extraction Quality}{subsection.3.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-family extraction rates.}{6}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Constraint ablation on 804 questions (Qwen2.5-14B). MAX-SAT vs.\ count-only difference is not statistically significant ($p=0.33$), but both substantially outperform random weighting on ties.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:ablation}{{6}{7}{Constraint ablation on 804 questions (Qwen2.5-14B). MAX-SAT vs.\ count-only difference is not statistically significant ($p=0.33$), but both substantially outperform random weighting on ties}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Case study analysis.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Cross-Domain Validation: GSM8K}{7}{subsection.3.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Constraint Ablation}{7}{section.4}\protected@file@percent }
+\newlabel{sec:ablation}{{4}{7}{Constraint Ablation}{section.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When does symbolic consensus help?}{8}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for practitioners.}{8}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Connection to epistemic uncertainty.}{8}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Related Work}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency and variants.}{8}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Symbolic reasoning with LLMs.}{8}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM confidence and uncertainty.}{9}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{9}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}\protected@file@percent }
+\bibdata{custom}
+\gdef \@abspage@last{10}

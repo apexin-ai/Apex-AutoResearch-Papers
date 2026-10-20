@@ -1,0 +1,1206 @@
+{
+  "pid": "ProofWriter_AttNeg-OWA-D5-1208_Q15",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, green_bob), furry_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not rough(X)",
+          "z3_formula": "Implies(kind_bob, not_rough_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_bob, green_bob), cold_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_bob, round_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> quiet(X)",
+          "z3_formula": "Implies(rough_bob, quiet_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bob)",
+          "z3_formula": "Not(green_bob) == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(bob)",
+          "z3_formula": "Not(quiet_bob) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not(rough(X))",
+          "z3_formula": "Implies(kind_bob, not_rough_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_X, round_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> rough(X)",
+          "z3_formula": "Implies(quiet_X, rough_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_X, quiet_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, green_erin), furry_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_erin, green_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not(quiet(bob))",
+          "z3_formula": "Not(quiet_bob) == False",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(anne)",
+          "z3_formula": "Not(green_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(anne)",
+          "z3_formula": "Not(kind_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> rough(X)",
+          "z3_formula": "Implies(quiet_X, rough_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_X, round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & quiet(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_X, quiet_X), rough_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_X, quiet_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, green_X), furry_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_X, green_X), cold_X)",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, green_bob), furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(bob)",
+          "z3_formula": "not_rough_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_bob, round_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_bob, quiet_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> rough(X)",
+          "z3_formula": "Implies(quiet_bob, rough_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_bob, green_bob), cold_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_charlie, quiet_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> rough(X)",
+          "z3_formula": "Implies(quiet_charlie, rough_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not green(anne)",
+          "z3_formula": "not_green_anne == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_bob, round_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, green_bob), furry_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not rough(X)",
+          "z3_formula": "Implies(kind_bob, not_rough_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_bob, green_bob), cold_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(bob)",
+          "z3_formula": "not_rough_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "unknown quiet(bob)",
+          "z3_formula": "Or(Not(round_bob), Not(kind_bob), Not(not_rough_bob), Not(cold_bob)) == False",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(anne)",
+          "z3_formula": "Not(green_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(anne)",
+          "z3_formula": "Not(kind_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> rough(X)",
+          "z3_formula": "Implies(quiet_X, rough_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_X, round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & quiet(X)",
+          "z3_formula": "And(cold_X, quiet_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, green_X), furry_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not rough(X)",
+          "z3_formula": "Implies(kind_X, Not(rough_X))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_X, green_X), cold_X)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(bob)",
+          "z3_formula": "Not(quiet_bob)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(anne)",
+          "z3_formula": "Not(green_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(anne)",
+          "z3_formula": "Not(kind_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> rough(X)",
+          "z3_formula": "Implies(quiet_X, rough_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_X, round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_X, quiet_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, green_X), furry_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not rough(X)",
+          "z3_formula": "Implies(kind_X, Not(rough_X))",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_X, green_X), cold_X)",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(anne)",
+          "z3_formula": "Not(green_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(anne)",
+          "z3_formula": "Not(kind_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> rough(X)",
+          "z3_formula": "Implies(quiet_X, rough_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_X, round_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_X, quiet_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, green_X), furry_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(bob) -> not rough(bob)",
+          "z3_formula": "Implies(kind_bob, Not(rough_bob))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_X, green_X), cold_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(anne)",
+          "z3_formula": "Not(green_anne) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(anne)",
+          "z3_formula": "Not(kind_anne) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> rough(X)",
+          "z3_formula": "Implies(quiet_X, rough_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_X, round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_X, quiet_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, green_X), furry_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(bob) -> not rough(bob)",
+          "z3_formula": "Implies(kind_bob, Not(rough_bob))",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_X, green_X), cold_X)",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, green_bob), furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not(rough(X))",
+          "z3_formula": "Implies(kind_bob, Not(rough_bob))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_bob, round_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> rough(X)",
+          "z3_formula": "Implies(quiet_anne, rough_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(bob)",
+          "z3_formula": "Not(quiet_bob)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> rough(X)",
+          "z3_formula": "Implies(quiet_bob, rough_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_bob, round_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, green_bob), furry_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> Not(rough(X))",
+          "z3_formula": "Implies(kind_bob, Not(rough_bob))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(bob))",
+          "z3_formula": "Not(quiet_bob) == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, green_bob), furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not rough(X)",
+          "z3_formula": "Implies(kind_bob, not_rough_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> rough(X)",
+          "z3_formula": "Implies(quiet_bob, rough_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_bob, round_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_bob, round_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_bob, green_bob), cold_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(bob)",
+          "z3_formula": "not quiet_bob == True",
+          "source_step": 11
+        }
+      ]
+    }
+  ]
+}

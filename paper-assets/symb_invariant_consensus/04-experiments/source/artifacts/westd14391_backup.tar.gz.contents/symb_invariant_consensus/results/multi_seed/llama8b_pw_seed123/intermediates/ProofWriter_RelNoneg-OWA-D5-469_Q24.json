@@ -1,0 +1,1107 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-469_Q24",
+    "problem": "The cat chases the cow. The cat chases the lion. The cat chases the mouse. The cat eats the mouse. The cat visits the lion. The cow chases the cat. The cow is green. The lion chases the cow. The lion eats the cow. The lion eats the mouse. The lion visits the cat. The mouse eats the cow. The mouse is rough. The mouse is round. If something is cold then it visits the mouse. If something is round and it eats the mouse then the mouse chases the cow. If something visits the lion then it is big. If the mouse chases the cat and the mouse chases the lion then the mouse visits the cat. If something is cold and it chases the cat then it eats the cow. If something eats the lion and the lion eats the cow then the lion is cold. If something is cold and it visits the mouse then the mouse eats the lion. Big things are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion is green.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nVisits($x, $y, bool) ::: Does x visit y?\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nBig($x, bool) ::: Is x big?\n\nFacts:\nChases(cat, cow, True) ::: The cat chases the cow.\nChases(cat, lion, True) ::: The cat chases the lion.\nChases(cat, mouse, True) ::: The cat chases the mouse.\nEats(cat, mouse, True) ::: The cat eats the mouse.\nVisits(cat, lion, True) ::: The cat visits the lion.\nChases(cow, cat, True) ::: The cow chases the cat.\nGreen(cow, True) ::: The cow is green.\nChases(lion, cow, True) ::: The lion chases the cow.\nEats(lion, cow, True) ::: The lion eats the cow.\nEats(lion, mouse, True) ::: The lion eats the mouse.\nVisits(lion, cat, True) ::: The lion visits the cat.\nEats(mouse, cow, True) ::: The mouse eats the cow.\nRough(mouse, True) ::: The mouse is rough.\nRound(mouse, True) ::: The mouse is round.\n\nRules:\nCold($x, True) >>> Visits($x, mouse, True) ::: If something is cold then it visits the mouse.\nRound($x, True) && Eats($x, mouse, True) >>> Chases($x, cow, True) ::: If something is round and it eats the mouse then the mouse chases the cow.\nVisits($x, lion, True) >>> Big($x, True) ::: If something visits the lion then it is big.\nChases(mouse, cat, True) && Chases(mouse, lion, True) >>> Visits(mouse, cat, True) ::: If the mouse chases the cat and the mouse chases the lion then the mouse visits the cat.\nCold($x, True) && Chases($x, cat, True) >>> Eats($x, cow, True) ::: If something is cold and it chases the cat then it eats the cow.\nEats($x, lion, True) && Eats(lion, cow, True) >>> Cold(lion, True) ::: If something eats the lion and the lion eats the cow then the lion is cold.\nCold($x, True) && Visits($x, mouse, True) >>> Eats(mouse, lion, True) ::: If something is cold and it visits the mouse then the mouse eats the lion.\nBig($x, True) >>> Cold($x, True) ::: Big things are cold.\n\nQuery:\nGreen(lion, True) ::: The lion is green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 65.0,
+      "Unknown": 160.0
+    },
+    "answer_counts": {
+      "Unknown": 11,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The lion is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that \"The cow is green.\" \n2. There is no direct information about the lion's color.\n3. However, we can use the information: \"If something visits the lion then it is big.\" \n   From this, we can conclude that the lion is big.\n\n4. Now, we can use another piece of information: \"Big things are cold.\"\n   From this, we can conclude that the lion is cold.\n\n5. We can use another piece of information: \"If something eats the lion and the lion eats the cow then the lion is cold.\"\n   However, there is no information that the lion eats the cow. But we can use another piece of information: \"The lion eats the cow.\" \n   So, from this information, we can conclude that the lion is cold.\n\n6. We have two pieces of information that conclude the lion is cold. However, the first conclusion was derived from the lion being big and the second conclusion was derived from the lion eating the cow and being cold. This information was not necessary to conclude that the lion is cold. \n7. There is no information that links the lion's color to being cold or big. The statement \"The lion is green\" is not directly supported or disproven by the given information.\n\nSince there is no information that directly links the lion's color to being green, the statement \"The lion is green\" is unknown based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is green\" is true, false, or unknown, we need to analyze the given information and apply the logical rules step by step.\n\n1. The lion chases the cow. (Direct information)\n2. The lion eats the cow. (Direct information)\n3. If something eats the lion and the lion eats the cow then the lion is cold. (Logical rule)\n4. The lion eats the cow. (From step 2)\n5. The lion is cold. (From step 3 and step 4)\n\nNow, we have a new piece of information: The cow is green. (Direct information)\n\n6. If something is cold and it visits the mouse then the mouse eats the lion. (Logical rule)\n7. The lion is cold. (From step 5)\n8. The lion visits the cat. (Direct information)\n9. The lion is big. (Logical rule: If something visits the lion then it is big.)\n10. Big things are cold. (Logical rule)\n11. The lion is cold. (From step 10 and step 9)\n\nNow we will look at the given statement \"The mouse is round.\" (Direct information)\n\n12. If something is round and it eats the mouse then the mouse chases the cow. (Logical rule)\n13. The mouse is round. (From step 12)\n14. The mouse eats the cow. (Direct information)\n15. The mouse chases the cow. (From step 12 and step 13 and step 14)\n\nNow we will look at the given statement \"The mouse is rough.\" (Direct information)\n\n16. If the mouse chases the cat and the mouse chases the lion then the mouse visits the cat. (Logical rule)\n17. The mouse chases the lion. (From step 15)\n18. The mouse chases the cat. (Direct information)\n19. The mouse visits the cat. (From step 16 and step 17 and step 18)\n\nNow we will look at the given statement \"The cow chases the cat.\" (Direct information)\n\n20. If something is cold then it visits the mouse. (Logical rule)\n21. The lion is cold. (From step 5)\n22. The lion visits the mouse. (From step 20 and step 21)\n23. The mouse eats the lion. (Direct information)\n24. The mouse is big. (Logical rule: If something visits the lion then it is big.)\n25. Big things are cold. (Logical rule)\n26. The mouse is cold. (From step 25 and step 24)\n27. The mouse chases the cat. (Direct information)\n28. The mouse chases the lion. (Direct information)\n29. The mouse visits the cat. (From step 16 and step 27 and step 28)\n\nNow we will look at the given statement \"The lion visits the cat.\" (Direct information)\n\n30. The lion is big. (Logical rule: If something visits the lion then it is big.)\n31. Big things are cold. (Logical rule)\n32. The lion is cold. (From step 31 and step 30)\n33. The lion visits the mouse. (From step 20 and step 32)\n34. The mouse eats the lion. (Direct information)\n\nNow, we will check the given statement \"The lion is green.\" (Statement to be evaluated)\n\nWe have the following information: The lion eats the cow, The cow is green. However, we do not have any information that directly states the lion is green. The only information we have about the lion's color is that it is cold. We cannot conclude the lion's color from this information.\n\nTherefore, the statement \"The lion is green\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion chases the cow. (Given)\n2. The lion eats the cow. (Given)\n3. If the lion eats the cow and something eats the lion then the lion is cold. (Given rule)\n4. The lion is cold. (Rule 3 implies this)\n\nNow, we have a new piece of information: \nThe cow is green. (Given)\n\nHowever, there is no direct relationship given between the lion and green. But we have another rule: \nBig things are cold. (Given rule)\n5. If something visits the lion then it is big. (Given rule)\n6. The cat visits the lion. (Given)\n7. The cat is big. (Rule 5 implies this)\n8. Big things are cold. (Rule)\n9. The cat is cold. (Rule 8 implies this)\n\nBut, we have another rule:\nIf something is cold and it chases the cat then it eats the cow. (Given rule)\n10. The cat is cold. (Rule 9)\n11. The cat chases the cow. (Given)\n12. The cat eats the cow. (Rule 10 and 11 imply this)\n\nNow, let's go back to rule 3: \nIf the lion eats the cow and something eats the lion then the lion is cold. (Given rule)\n13. The lion eats the cow. (Given)\n14. The cat eats the cow. (Rule 12)\n15. The lion is cold. (Rule 3 implies this)\n\nNow we have the lion as cold. However, we still don't know if the lion is green.\n\nThe only information we have that is related to color is:\nThe cow is green. (Given)\n\nThere is no given rule that directly relates the color of the cow to the lion. Therefore, we cannot determine if the lion is green based on the given information. \n\nThus, the answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine if the statement \"The lion is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that \"The cow is green.\" This does not provide any information about the lion.\n\n2. We are given that \"The lion chases the cow.\" This does not provide any information about the color of the lion.\n\n3. We are given that \"The lion eats the cow.\" This does not provide any information about the color of the lion.\n\n4. We are given that \"The lion eats the mouse.\" This does not provide any information about the color of the lion.\n\n5. We are given that \"The lion visits the cat.\" This does not provide any information about the color of the lion.\n\n6. We are given that \"Big things are cold\" and \"If something visits the lion then it is big.\" This implies that the lion is big. Since \"Big things are cold,\" we can conclude that the lion is cold.\n\n7. We are given that \"If something eats the lion and the lion eats the cow then the lion is cold.\" We know the lion is cold from step 6, but this rule does not provide any new information.\n\n8. We are given that \"If something is cold and it visits the mouse then the mouse eats the lion.\" Since the lion is cold (from step 6) and it visits the mouse, we can infer that the mouse eats the lion. However, this is not relevant to determining the color of the lion.\n\n9. We are given that \"The mouse eats the cow.\" This does not provide any information about the color of the lion.\n\n10. We are given that \"The mouse is rough\" and \"The mouse is round.\" These statements do not provide any information about the color of the lion.\n\n11. We are given that \"If something is round and it eats the mouse then the mouse chases the cow.\" We know the mouse is round (from step 10), but this rule does not provide any new information.\n\n12. We are given that \"If the mouse chases the cat and the mouse chases the lion then the mouse visits the cat.\" This rule does not provide any information about the color of the lion.\n\n13. We are given that \"If something is cold and it chases the cat then it eats the cow.\" Since the lion is cold (from step 6) and it chases the cat (from the initial statement \"The cat chases the lion\"), this rule does not provide any new information about the color of the lion.\n\nFrom the given information, we cannot determine the color of the lion. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is green\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nFrom the given information:\n\n- The cow is green.\n- The lion chases the cow.\n- Big things are cold.\n- If something eats the lion and the lion eats the cow then the lion is cold.\n- If the lion is cold, then it is big.\n\nFrom the above information, we can deduce that the lion is cold because it eats the cow and the lion chases the cow. Since the lion is cold, we can conclude that the lion is big.\n\nHowever, there is no information that links the color green to the lion. The only information we have about the cow's color is that it is green, but there is no direct relationship between the cow's color and the lion's color.\n\nTherefore, based on the given information, we cannot determine whether the lion is green or not. The statement \"The lion is green\" is unknown because we do not have enough information to make a conclusion.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is green\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\n1. The cow is green. (Given)\n2. The lion chases the cow. (Given)\n3. If something is green and it chases the cow, then the lion chases the cow. (This is a weak inference, but we'll use it to draw conclusions later)\n4. The lion chases the cow. (From 2, no new information, but we can relate it to 1)\n5. Since the lion chases the cow and the cow is green, it is possible that the lion chases the green cow.\n6. The lion eats the cow. (Given)\n7. The lion eats the mouse. (Given)\n8. The lion eats the cow and then the lion eats the mouse. This suggests a chronological order of events, but it does not provide any information about the color of the lion.\n9. The lion visits the cat. (Given)\n10. If something visits the lion, then it is big. (Given)\n11. The lion is big. (From 10)\n12. Big things are cold. (Given)\n13. The lion is cold. (From 12)\n14. If something eats the lion and the lion eats the cow, then the lion is cold. (Given)\n15. This statement is true for the lion (From 14 and 13)\n16. We do not have any information about the lion's color, so we cannot determine whether the lion is green or not.\n\nBased on the given information, we cannot determine whether the lion is green or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is green\" is true, false, or unknown, we need to analyze the given information step by step:\n\n1. The given statements:\n   - The cow is green.\n   - If something eats the lion and the lion eats the cow then the lion is cold.\n   - Big things are cold.\n   - If something is cold then it visits the mouse.\n   - If something is cold and it visits the mouse then the mouse eats the lion.\n   - The lion eats the cow.\n   - The lion eats the mouse.\n   - The lion visits the cat.\n   - The lion chases the cow.\n   - The lion chases the cat.\n   - The lion chases the mouse.\n\n2. Analyzing the statements:\n   - From the statement \"The lion eats the cow\" and \"The lion eats the mouse,\" we can conclude that the lion is not cold because if it were, it would eat the mouse (which is the case) but also, it would eat the lion which is not true.\n   - From \"Big things are cold,\" we can conclude that the lion is not cold because it is big and it doesn't visit the mouse, so it doesn't eat the lion.\n   - Since the lion is not cold, we can't determine its color.\n   - The statement \"The cow is green\" does not provide any information about the lion's color.\n\n3. Conclusion:\n   Since we can't determine the lion's color from the given information, we will mark it as unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion chases the cow. (Given)\n2. The lion eats the cow. (Given)\n3. If something eats the lion and the lion eats the cow then the lion is cold. (Given)\n   - This rule is applicable as we have the lion eating the cow.\n4. Big things are cold. (Given)\n   - From rule 3, we know that the lion is cold.\n5. The lion is big. (We need to prove this)\n   - If something visits the lion then it is big. (Given)\n   - The cat visits the lion. (Given)\n   - So, the cat is big.\n   - Now we need to prove that the cat is cold.\n6. The cat chases the cow. (Given)\n7. The cow is green. (Given)\n8. If something is cold and it chases the cat then it eats the cow. (Given)\n   - This rule is not applicable as we have the cat chasing the cow, not the cow chasing the cat.\n9. The cat is not cold. (We cannot conclude this from the given rules)\n10. The cat eats the mouse. (Given)\n    - Now we need to prove that the mouse is big.\n    - The mouse chases the cat and the mouse chases the lion. (Given)\n    - If the mouse chases the cat and the mouse chases the lion then the mouse visits the cat. (Given)\n    - So, the mouse visits the cat.\n    - The cat is big. (From rule 5)\n    - If something visits the lion then it is big. (Given)\n    - The lion is big. (From rule 4)\n    - So, the mouse is big.\n11. Big things are cold. (Given)\n    - The mouse is big. (From rule 10)\n    - The mouse is cold.\n12. If something is cold and it visits the mouse then the mouse eats the lion. (Given)\n    - The lion is cold. (From rule 3)\n    - The lion visits the mouse. (Given)\n    - The mouse eats the lion. (From rule 12)\n13. The mouse eats the lion and the lion eats the cow. (Given)\n    - If something eats the lion and the lion eats the cow then the lion is cold. (Given)\n    - This rule is already proved in rule 3.\n\nFrom rule 4, we know that big things are cold, and the lion is big (from rule 5). However, we cannot directly conclude that the lion is green from the given rules. The given rules do not provide any information about the color of the lion.\n\nHowever, since the cow is green (Given), we can use the rule \"If something is cold and it chases the cat then it eats the cow\" (Given). But this rule is not applicable here because we have the cat chasing the cow (Given), not the cow chasing the cat.\n\nSince we cannot conclude that the lion is green from the given rules, the statement \"The lion is green\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is green\" is true, false, or unknown, we need to analyze the given information.\n\n1. The lion chases the cow. (This statement does not give any information about the lion's color.)\n2. The lion eats the cow. (This statement does not give any information about the lion's color.)\n3. The lion eats the mouse. (This statement does not give any information about the lion's color.)\n4. The lion visits the cat. (This statement does not give any information about the lion's color.)\n5. The cow chases the cat. (This statement does not give any information about the lion's color.)\n6. The cow is green. (This statement gives information about the cow's color, but not the lion's color.)\n7. The lion chases the cow. (This statement does not give any information about the lion's color.)\n8. If something eats the lion and the lion eats the cow then the lion is cold. (This statement does not directly relate to the lion's color.)\n9. Big things are cold. (This statement does not directly relate to the lion's color.)\n10. If something visits the lion then it is big. (This statement does not directly relate to the lion's color.)\n11. The mouse is round. (This statement does not give any information about the lion's color.)\n12. The mouse is rough. (This statement does not give any information about the lion's color.)\n13. If the mouse chases the cat and the mouse chases the lion then the mouse visits the cat. (This statement does not directly relate to the lion's color.)\n14. If something is cold then it visits the mouse. (This statement does not directly relate to the lion's color.)\n15. If the mouse chases the cat and the mouse chases the lion then the mouse visits the cat. (This statement does not directly relate to the lion's color.)\n16. If something is cold and it visits the mouse then the mouse eats the lion. (This statement does not directly relate to the lion's color.)\n17. The lion is cold. (This statement is not directly related to the lion's color, but we can use it in conjunction with other statements.)\n18. Big things are cold. (This statement does not directly relate to the lion's color.)\n19. If something visits the lion then it is big. (This statement does not directly relate to the lion's color.)\n20. The lion visits the cat. (This statement does not give any information about the lion's color.)\n21. The cat eats the mouse. (This statement does not give any information about the lion's color.)\n22. The cat visits the lion. (This statement does not give any information about the lion's color.)\n23. The cat chases the lion. (This statement does not give any information about the lion's color.)\n24. The mouse eats the cow. (This statement does not give any information about the lion's color.)\n\nHowever, there is one statement that we can use to determine the lion's color:\n\"If the mouse chases the cat and the mouse chases the lion then the mouse visits the cat.\" \n\nFrom this statement, we cannot determine the lion's color directly. However, we can look at the statement \"The cow is green.\" We can try to find a chain of statements that relates the lion's color to the cow's color.\n\nLooking at the given statements, we find the following chain:\n\n- The lion eats the cow. (Statement 2)\n- The lion is cold. (Statement 17)\n- Big things are cold. (Statement 9)\n- If something visits the lion then it is big. (Statement 10)\n\nHowever, the statement \"Big things are cold\" does not imply that the lion is green.\n\nLooking at the given statements again, we find that there is no direct or indirect information that relates the lion's color to the cow's color.\n\nTherefore, we cannot determine the lion's color based on the given information, so the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"The cow is green\" is given in the problem.\n2. There is no direct information about the lion's color.\n3. We need to find any indirect information that might be related to the lion's color.\n\nFrom the given rules, there is no information about the lion's color. However, we can use the rules to analyze the cow's relationship to the lion, as the cow's color might indirectly affect the lion's properties.\n\n4. The lion eats the cow. (Direct information)\n5. There is no rule that states the cow's color affects the lion's properties directly.\n6. The cow is green, but this does not imply that the lion is green.\n\nSince we have no direct or indirect information about the lion's color, we cannot determine whether the statement \"The lion is green\" is true or false.\n\nHowever, we can analyze the properties of the lion using the given rules.\n\n7. The lion visits the cat. (Direct information)\n8. If something visits the lion then it is big. (Rule)\n9. Since the cat visits the lion, the cat is big. (Inference)\n10. Big things are cold. (Rule)\n11. Since the cat is big, the cat is cold. (Inference)\n\nFrom this analysis, we cannot determine whether the lion is green or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is green\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The cow is green. (This statement directly tells us that something is green, but it's the cow, not the lion.)\n\n2. If something is cold then it visits the mouse. (This rule doesn't directly relate to the lion or its color.)\n\n3. If something is round and it eats the mouse then the mouse chases the cow. (This rule doesn't relate to the lion or its color.)\n\n4. If something visits the lion then it is big. (This rule might be relevant, but we need to find out if the lion is big or not.)\n\n5. If the mouse chases the cat and the mouse chases the lion then the mouse visits the cat. (This rule doesn't relate to the lion's color.)\n\n6. If something is cold and it chases the cat then it eats the cow. (This rule doesn't relate to the lion or its color.)\n\n7. If something eats the lion and the lion eats the cow then the lion is cold. (This rule is relevant. The lion eats the cow, so we can apply this rule.)\n\n8. Big things are cold. (This rule is relevant. We found out in rule 7 that the lion is cold.)\n\n9. The lion eats the cow. (This statement directly tells us that the lion eats the cow, which is relevant for rule 7.)\n\nNow, let's analyze the rules that directly relate to the lion's color:\n\n- The lion chases the cow. (This statement doesn't tell us anything about the lion's color.)\n- The lion eats the cow. (This statement doesn't tell us anything about the lion's color.)\n- The lion eats the mouse. (This statement doesn't tell us anything about the lion's color.)\n- The lion visits the cat. (This statement doesn't tell us anything about the lion's color.)\n- The lion is cold. (We found this out in rule 8, but being cold doesn't tell us about the lion's color.)\n- Big things are cold. (We found out in rule 8 that the lion is cold, but this rule doesn't tell us anything about the lion's color.)\n\nHowever, we found that the cow is green in statement 1. There's no rule that says the lion's color is the same as the cow's, or that the lion's color is related to the cow's color.\n\nTherefore, based on the given information, we cannot determine the lion's color, so the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion chases the cow.\n2. The lion eats the cow.\n3. The lion eats the mouse.\n4. The lion visits the cat.\n\nFrom these statements, we can't directly determine the color of the lion. However, we can use the given rules to make some deductions.\n\nRule 1: If the mouse is round and it eats the mouse, then the mouse chases the cow. \nSince we don't know the mouse eats itself, we can ignore this rule.\n\nRule 2: If something visits the lion, then it is big. \nThe lion visits the cat, so the cat is big (rule 2).\n\nRule 3: If the mouse chases the cat and the mouse chases the lion, then the mouse visits the cat. \nThe mouse chases the lion (statement 3), but we can't determine if the mouse chases the cat or not. However, we can't determine the mouse visits the cat directly.\n\nRule 4: If something is cold and it chases the cat, then it eats the cow. \nWe can't determine if the lion is cold or not, but we can use rule 5 to determine if the lion is cold or not.\n\nRule 5: If something eats the lion and the lion eats the cow, then the lion is cold. \nWe know the lion eats the cow (statement 2), but we can't determine who eats the lion. However, we can use rule 6 to determine if the lion is cold or not.\n\nRule 6: Big things are cold. \nThe cat is big (rule 2), but we can't determine if the lion is big or not.\n\nRule 7: The lion is green. \nWe are trying to determine if this statement is true or false.\n\nFrom the given statements, we can't directly determine the color of the lion. However, we can use the given rules to make some deductions.\n\nFrom rule 6, the cat is big, but we can't determine if the lion is big or not.\n\nFrom rule 5, we can't determine if the lion is cold or not.\n\nFrom rule 4, we can't determine if the lion is cold or not.\n\nFrom rule 2, the cat is big, but we can't determine if the lion is big or not.\n\nFrom rule 7, the lion is green.\n\nHowever, from statement 7, we can see that the cow is green. This information can be used to determine if the lion is green or not.\n\nStatement 8: The cow is green.\n\nThis statement can be used to determine if rule 7 is true or false.\n\nWe can use rule 7 to make a conclusion. If the lion is green (rule 7), then the lion is green. However, from the given statements, we can't determine if the lion is green or not. \n\nHowever, we can use rule 7 to make a conclusion. If the lion is green (rule 7), then the lion is green. However, from the given statements, we can see that the lion is not green.\n\nSince the cow is green (statement 8), and we can see that the lion is not green, we can conclude that the lion is not green.\n\nThe statement \"The lion is green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(X, lion) -> big(X)",
+          "z3_formula": "Implies(visits_lion, big_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_lion, cold_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & eats_lion(cow) -> cold(X)",
+          "z3_formula": "Implies(And(eats_lion_cow, eats_lion_cow), cold_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, cow)",
+          "z3_formula": "chases_lion_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & eats(lion, Y) -> cold(X)",
+          "z3_formula": "Implies(And(eats_lion_lion, eats_lion_cow), cold_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, mouse) -> eats(mouse, lion)",
+          "z3_formula": "Implies(And(cold_lion, visits_lion_mouse), eats_mouse_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> big(X)",
+          "z3_formula": "Implies(visits_lion_cat, big_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_cat, cold_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, mouse) -> chases(mouse, cow)",
+          "z3_formula": "Implies(And(round_mouse, eats_mouse_cow), chases_mouse_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, cow)",
+          "z3_formula": "chases_mouse_cow == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & chases(X, lion) -> visits(X, cat)",
+          "z3_formula": "Implies(And(chases_mouse_cat, chases_mouse_lion), visits_mouse_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, lion)",
+          "z3_formula": "chases_mouse_lion == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(cold_lion, visits_lion_mouse)",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> big(X)",
+          "z3_formula": "Implies(visits_lion_mouse, big_mouse)",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_mouse, cold_mouse)",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 30
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 32
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_lion, cold_lion)",
+          "source_step": 33
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 34
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, lion)",
+          "z3_formula": "eats_mouse_lion == True",
+          "source_step": 35
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 36
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == Unknown",
+          "source_step": 37
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, cow)",
+          "z3_formula": "chases_lion_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) & eats(Y, X) -> cold(X)",
+          "z3_formula": "Implies(And(eats_lion_cow, eats_Y_lion), cold_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> big(X)",
+          "z3_formula": "Implies(visits_cat_lion, big_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_cat, cold_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & chases(X, cat) -> eats(X, cow)",
+          "z3_formula": "Implies(And(cold_cat, chases_cat_cow), eats_cat_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, cow)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) & eats(Y, X) -> cold(X)",
+          "z3_formula": "Implies(And(eats_cat_cow, eats_lion_cat), cold_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_lion, cold_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> big(X)",
+          "z3_formula": "Implies(visits_lion_cat, big_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & eats(lion, cow) -> cold(lion)",
+          "z3_formula": "Implies(And(eats_lion_cow, eats_lion_mouse), cold_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, mouse) -> eats(mouse, lion)",
+          "z3_formula": "Implies(And(cold_lion, visits_lion_mouse), eats_mouse_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, mouse) -> chases(mouse, cow)",
+          "z3_formula": "Implies(And(round_mouse, eats_mouse_cow), chases_mouse_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & chases(X, lion) -> visits(X, cat)",
+          "z3_formula": "Implies(And(chases_mouse_cat, chases_mouse_lion), visits_mouse_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & chases(X, cat) -> eats(X, cow)",
+          "z3_formula": "Implies(And(cold_lion, chases_cat_lion), eats_lion_cow)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cow)",
+          "z3_formula": "chases_lion_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_lion, cold_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(Y, lion) & eats(lion, cow) -> cold(lion)",
+          "z3_formula": "Implies(And(eats_lion_cow, eats_y_lion), cold_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_lion, big_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cow)",
+          "z3_formula": "chases_lion_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & chases(X, cow) -> chases(lion, cow)",
+          "z3_formula": "Implies(And(green_X, chases_X_cow), chases_lion_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, cow)",
+          "z3_formula": "chases_lion_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cow)",
+          "z3_formula": "chases_lion_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, green_cow)",
+          "z3_formula": "chases_lion_green_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "eats(lion, cow) & eats(lion, mouse)",
+          "z3_formula": "And(eats_lion_cow, eats_lion_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> big(X)",
+          "z3_formula": "Implies(visits_X_lion, big_X)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_X, cold_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & eats(lion, cow) -> cold(X)",
+          "z3_formula": "Implies(And(eats_X_lion, eats_lion_cow), cold_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion) == True",
+          "z3_formula": "cold_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion) == True",
+          "z3_formula": "cold_lion == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Unknown",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & eats(lion, Y) -> cold(lion)",
+          "z3_formula": "Implies(And(eats_lion_cow, eats_lion_mouse), cold_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_lion, cold_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(cold_lion, visits_lion_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, mouse) -> eats(mouse, lion)",
+          "z3_formula": "Implies(And(cold_lion, visits_lion_mouse), eats_mouse_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cow)",
+          "z3_formula": "chases_lion_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, mouse)",
+          "z3_formula": "chases_lion_mouse == True",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_lion, big_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> big(X)",
+          "z3_formula": "Implies(visits_lion_cat, big_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> big(X)",
+          "z3_formula": "Implies(visits_cat_lion, big_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_cat, cold_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(cold_X, visits_X_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, mouse) -> chases(mouse, cow)",
+          "z3_formula": "Implies(And(round_X, eats_X_mouse), chases_mouse_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> big(X)",
+          "z3_formula": "Implies(visits_X_lion, big_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(mouse, cat) & chases(mouse, lion) -> visits(mouse, cat)",
+          "z3_formula": "Implies(And(chases_mouse_cat, chases_mouse_lion), visits_mouse_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & chases(X, cat) -> eats(X, cow)",
+          "z3_formula": "Implies(And(cold_X, chases_X_cat), eats_X_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & eats(lion, cow) -> cold(lion)",
+          "z3_formula": "Implies(And(eats_X_lion, eats_lion_cow), cold_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_X, cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "lion_chases_cow",
+          "z3_formula": "lion_chases_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "lion_eats_cow",
+          "z3_formula": "lion_eats_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "lion_eats_mouse",
+          "z3_formula": "lion_eats_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "lion_visits_cat",
+          "z3_formula": "lion_visits_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "lion_is_cold",
+          "z3_formula": "lion_is_cold == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "lion_is_big",
+          "z3_formula": "lion_is_big == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "cow_is_green",
+          "z3_formula": "cow_is_green == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "lion_is_green",
+          "z3_formula": "lion_is_green == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, cow)",
+          "z3_formula": "chases_lion_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, X) -> chases(X, cow)",
+          "z3_formula": "Implies(And(round_mouse, eats_mouse_mouse), chases_mouse_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> big(X)",
+          "z3_formula": "Implies(visits_cat_lion, big_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & chases(X, lion) -> visits(X, cat)",
+          "z3_formula": "Implies(And(chases_mouse_cat, chases_mouse_lion), visits_mouse_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & chases(X, cat) -> eats(X, cow)",
+          "z3_formula": "Implies(And(cold_X, chases_X_cat), eats_X_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & eats(lion, cow) -> cold(X)",
+          "z3_formula": "Implies(And(eats_X_lion, eats_lion_cow), cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_cat, cold_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == True",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 163,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 68
+    },
+    "maxsat_stats": {
+      "satisfied": 68,
+      "excluded": 0,
+      "total_weight": 162,
+      "solve_time_ms": 1.3149874284863472
+    },
+    "timing": {
+      "trace_gen_s": 10.251,
+      "extraction_s": 35.499,
+      "dedup_s": 2.122,
+      "maxsat_s": 0.005,
+      "total_s": 47.877
+    }
+  }
+}

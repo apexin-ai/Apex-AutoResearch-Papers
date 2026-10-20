@@ -1,0 +1,1041 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-329_Q19",
+    "problem": "The bald eagle is cold. The bald eagle is rough. The bald eagle needs the tiger. The bald eagle visits the squirrel. The lion is cold. The lion is kind. The lion needs the tiger. The squirrel chases the bald eagle. The squirrel chases the tiger. The squirrel visits the tiger. The tiger is red. If someone needs the squirrel then they chase the tiger. If someone is rough and they chase the squirrel then the squirrel visits the lion. If someone visits the tiger and they visit the lion then the lion needs the bald eagle. If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel. If someone is red then they chase the lion. If someone chases the lion and they visit the bald eagle then they need the bald eagle. If someone visits the bald eagle then they need the bald eagle. If someone chases the lion then they visit the bald eagle. If someone chases the tiger then the tiger chases the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle does not visit the lion.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nChases($x, $y, bool) ::: Does x chase y?\nKind($x, bool) ::: Is x kind?\nRed($x, bool) ::: Is x red?\n\nFacts:\nCold(BaldEagle, True) ::: The bald eagle is cold.\nRough(BaldEagle, True) ::: The bald eagle is rough.\nNeeds(BaldEagle, Tiger, True) ::: The bald eagle needs the tiger.\nVisits(BaldEagle, Squirrel, True) ::: The bald eagle visits the squirrel.\nCold(Lion, True) ::: The lion is cold.\nKind(Lion, True) ::: The lion is kind.\nNeeds(Lion, Tiger, True) ::: The lion needs the tiger.\nChases(Squirrel, BaldEagle, True) ::: The squirrel chases the bald eagle.\nChases(Squirrel, Tiger, True) ::: The squirrel chases the tiger.\nVisits(Squirrel, Tiger, True) ::: The squirrel visits the tiger.\nRed(Tiger, True) ::: The tiger is red.\n\nRules:\nNeeds($x, Squirrel, True) >>> Chases($x, Tiger, True) ::: If someone needs the squirrel then they chase the tiger.\nRough($x, True) && Chases($x, Squirrel, True) >>> Visits(Squirrel, Lion, True) ::: If someone is rough and they chase the squirrel then the squirrel visits the lion.\nVisits($x, Tiger, True) && Visits($x, Lion, True) >>> Needs(Lion, BaldEagle, True) ::: If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\nVisits($x, BaldEagle, True) && Visits(BaldEagle, Squirrel, True) >>> Chases(BaldEagle, Squirrel, True) ::: If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel.\nRed($x, True) >>> Chases($x, Lion, True) ::: If someone is red then they chase the lion.\nChases($x, Lion, True) && Visits($x, BaldEagle, True) >>> Needs($x, BaldEagle, True) ::: If someone chases the lion and they visit the bald eagle then they need the bald eagle.\nVisits($x, BaldEagle, True) >>> Needs($x, BaldEagle, True) ::: If someone visits the bald eagle then they need the bald eagle.\nChases($x, Lion, True) >>> Visits($x, BaldEagle, True) ::: If someone chases the lion then they visit the bald eagle.\nChases($x, Tiger, True) >>> Chases(Tiger, BaldEagle, True) ::: If someone chases the tiger then the tiger chases the bald eagle.\n\nQuery:\nVisits(BaldEagle, Lion, False) ::: The bald eagle does not visit the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 26.5,
+      "True": 55.5,
+      "Unknown": 117.5
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "True": 1,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will break it down into smaller statements and analyze the information given.\n\n1. The bald eagle visits the squirrel. \n2. The squirrel chases the tiger.\n3. The squirrel chases the bald eagle.\n4. The tiger is red.\n5. The tiger chases the bald eagle (from statement 2 and 3, or directly from the information that if someone chases the tiger then the tiger chases the bald eagle).\n\nNow we will consider the different scenarios that can lead to the bald eagle visiting the lion.\n\nScenario 1: \n- The squirrel visits the tiger. \n- The lion visits the tiger (if someone visits the tiger and they visit the lion then the lion needs the bald eagle). \n- The lion needs the bald eagle (from the previous statement).\n\nHowever, we cannot conclude this scenario directly because we don't have any information about the lion visiting the tiger.\n\nScenario 2: \n- The squirrel chases the tiger. \n- The squirrel visits the lion (if someone is rough and they chase the squirrel then the squirrel visits the lion).\n- The lion visits the tiger (if someone visits the tiger and they visit the lion then the lion needs the bald eagle).\n- The lion needs the bald eagle (from the previous statement).\n\nHowever, we cannot conclude this scenario directly because we don't have any information about the lion visiting the tiger.\n\nScenario 3: \n- The lion is kind and cold. \n- The lion needs the tiger (The lion is kind and cold, but we do not know if the lion needs the tiger directly).\n\nHowever, we cannot conclude this scenario directly because we don't have any information about the lion needing the tiger.\n\nNow we will consider the different scenarios that can lead to the bald eagle not visiting the lion.\n\nScenario 1: \n- The bald eagle is cold and rough.\n- The bald eagle visits the lion (if someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel).\n\nHowever, this statement is not true because the bald eagle visits the squirrel. \n\nScenario 2: \n- The bald eagle is not cold and not rough.\n- We do not have any information that can conclude the bald eagle does not visit the lion.\n\nHowever, we cannot conclude this scenario directly because we don't have any information that the bald eagle does not visit the lion.\n\nScenario 3: \n- The lion is not cold or rough.\n- We do not have any information that can conclude the lion does not visit the bald eagle.\n\nHowever, we cannot conclude this scenario directly because we don't have any information that the lion does not visit the bald eagle.\n\nScenario 4: \n- The bald eagle is not red.\n- We do not have any information that can conclude the lion does not visit the bald eagle.\n\nHowever, we cannot conclude this scenario directly because we don't have any information that the lion does not visit the bald eagle.\n\nScenario 5: \n- The lion is not red.\n- We do not have any information that can conclude the lion does not visit the bald eagle.\n\nHowever, we cannot conclude this scenario directly because we don't have any information that the lion does not visit the bald eagle.\n\nSince we do not have any information that can conclude the bald eagle does not visit the lion, we cannot determine if the statement is true or false. Therefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The bald eagle needs the tiger. (Rule 1)\n2. The bald eagle visits the squirrel. (Statement)\n3. If someone needs the squirrel then they chase the tiger. (Rule 1) - The bald eagle needs the squirrel because it needs the tiger.\n   - The bald eagle chases the tiger.\n4. The squirrel chases the tiger. (Statement)\n5. If someone is rough and they chase the squirrel then the squirrel visits the lion. (Rule 2) - The bald eagle is rough and chases the squirrel.\n   - The squirrel visits the lion.\n6. The squirrel visits the tiger. (Statement)\n7. The tiger is red. (Statement)\n8. If someone is red then they chase the lion. (Rule 4) - The tiger is red.\n   - The tiger chases the lion.\n9. The lion is cold. (Statement)\n10. The lion is kind. (Statement)\n11. The lion needs the tiger. (Rule 1)\n12. The tiger chases the bald eagle. (Rule 7)\n13. If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel. (Rule 5) - Since we don't know if the bald eagle visits the lion, we cannot determine if the bald eagle chases the squirrel.\n   - We will continue with the other conditions.\n\nFrom the given information and the rules, we cannot determine if the statement \"The bald eagle does not visit the lion\" is true or false. Therefore, the answer is unknown.\n\nHowever, let's consider the rule that states: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\" (Rule 3) - The squirrel visits the tiger and the lion.\n   - The lion needs the bald eagle.\n\nIf the lion needs the bald eagle, it does not necessarily mean that the bald eagle visits the lion. But we can determine the condition where the bald eagle does visit the lion. \n\nIf the tiger visits the lion and the squirrel visits the tiger, then the lion needs the bald eagle. \nThe tiger chases the lion and then visits the bald eagle (Rule 6, Rule 8, Rule 9). \nThe bald eagle is cold and it needs the tiger. The tiger chases the bald eagle (Rule 1, Rule 7).\nHowever, we already know that the tiger chases the lion and then visits the bald eagle. We can also know that the lion is kind and the lion needs the tiger. The lion needs the tiger because the lion needs the bald eagle and the bald eagle needs the tiger.\n\nThe statement \"The lion is kind\" is given. The lion is kind and the lion needs the tiger. The lion needs the tiger because the lion needs the bald eagle and the bald eagle needs the tiger.\nNow let's consider the statement \"The bald eagle does not visit the lion.\" If the bald eagle does not visit the lion, the lion needs the bald eagle because the squirrel visits the tiger and the lion. This situation is possible.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, let's break it down into smaller parts and use logical deductions.\n\n1. We have the following information:\n   - The bald eagle visits the squirrel.\n   - The lion is kind.\n   - The squirrel chases the bald eagle.\n   - The squirrel chases the tiger.\n   - The squirrel visits the tiger.\n   - The tiger is red.\n\n2. We need to determine if the statement \"The bald eagle does not visit the lion\" is true, false, or unknown.\n\nLet's use the given rules to find any connections between the bald eagle and the lion:\n\n- Rule 1: If someone needs the squirrel then they chase the tiger. (This rule does not apply here.)\n- Rule 2: If someone is rough and they chase the squirrel then the squirrel visits the lion. (The bald eagle is rough, but we don't have any information about the bald eagle chasing the squirrel.)\n- Rule 3: If someone visits the tiger and they visit the lion then the lion needs the bald eagle. (We don't have any information about someone visiting both the tiger and the lion.)\n- Rule 4: If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel. (We know the bald eagle visits the squirrel, but we don't have any information about someone visiting the bald eagle.)\n- Rule 5: If someone is red then they chase the lion. (The tiger is red, but we don't have any information about the tiger chasing the lion.)\n- Rule 6: If someone chases the lion and they visit the bald eagle then they need the bald eagle. (We don't have any information about someone chasing the lion and visiting the bald eagle.)\n- Rule 7: If someone visits the bald eagle then they need the bald eagle. (This rule might be relevant, but we don't have any information about someone visiting the bald eagle.)\n- Rule 8: If someone chases the lion then they visit the bald eagle. (This rule might be relevant, but we don't have any information about someone chasing the lion.)\n- Rule 9: If someone chases the tiger then the tiger chases the bald eagle. (The squirrel chases the tiger, but we don't have any information about the squirrel chasing the tiger and visiting the bald eagle.)\n\nNow, let's re-evaluate the given information:\n\n- The bald eagle is rough.\n- The squirrel chases the bald eagle.\n- The squirrel visits the tiger.\n- The tiger is red.\n\nUsing rule 2, since the bald eagle is rough and the squirrel chases the bald eagle, we know the squirrel visits the lion.\n\nNow we have the following information:\n\n- The squirrel visits the lion.\n- The lion is kind.\n\nUsing rule 3, we can conclude that the lion needs the bald eagle.\n\nHowever, we still need to determine if the bald eagle visits the lion.\n\nUsing rule 7, if someone visits the bald eagle, then they need the bald eagle. However, this rule alone does not provide any information about the bald eagle visiting the lion.\n\nUsing rule 8, if someone chases the lion, then they visit the bald eagle. We know the squirrel chases the lion, but we don't have any information about the squirrel visiting the bald eagle.\n\nHowever, using the information that the lion needs the bald eagle (rule 3) and the squirrel chases the lion, we can conclude that the squirrel visits the bald eagle (rule 8).\n\nNow we have the following information:\n\n- The squirrel visits the bald eagle.\n- The bald eagle visits the squirrel.\n\nUsing rule 4, we know that the bald eagle chases the squirrel.\n\nSince we have a cycle of the bald eagle visiting the squirrel, the squirrel visiting the tiger, the squirrel chasing the bald eagle, and the bald eagle chasing the squirrel, we can conclude that the statement \"The bald eagle does not visit the lion\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and create a truth table or determine the sequence of events based on the given conditions. Let's break down the information step by step.\n\n1. The bald eagle is cold. (Statement 1)\n2. The bald eagle is rough. (Statement 2)\n3. The bald eagle needs the tiger. (Statement 3)\n4. The bald eagle visits the squirrel. (Statement 4)\n5. The lion is cold. (Statement 5)\n6. The lion is kind. (Statement 6)\n7. The lion needs the tiger. (Statement 7)\n8. The squirrel chases the bald eagle. (Statement 8)\n9. The squirrel chases the tiger. (Statement 9)\n10. The squirrel visits the tiger. (Statement 10)\n11. The tiger is red. (Statement 11)\n\nGiven conditions:\n\n- If someone needs the squirrel then they chase the tiger.\n- If someone is rough and they chase the squirrel then the squirrel visits the lion.\n- If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\n- If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel.\n- If someone is red then they chase the lion.\n- If someone chases the lion and they visit the bald eagle then they need the bald eagle.\n- If someone visits the bald eagle then they need the bald eagle.\n- If someone chases the lion then they visit the bald eagle.\n- If someone chases the tiger then the tiger chases the bald eagle.\n\nTo determine whether the statement \"The bald eagle does not visit the lion\" is true, false, or unknown, we need to follow the sequence of events.\n\nFrom Statement 4, we know the bald eagle visits the squirrel. \n\nNow let's see what happens when the bald eagle visits the squirrel.\n\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 8, the squirrel chases the bald eagle. \n- From Statement 9, the squirrel chases the tiger.\n\nNow the tiger is involved. \n\n- From Statement 9, the squirrel chases the tiger.\n- From Statement 10, the squirrel visits the tiger.\n- From Statement 11, the tiger is red.\n\nNow we know the tiger is red.\n\n- From Statement 11, the tiger is red.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 3, the bald eagle needs the tiger.\n- From Statement 4, the bald eagle visits the squirrel.\n\nNow let's see what happens when the bald eagle visits the squirrel.\n\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 8, the squirrel chases the bald eagle.\n\nFrom Statement 8, the squirrel chases the bald eagle.\n\n- From Statement 8, the squirrel chases the bald eagle.\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 8, the squirrel chases the bald eagle.\n- From Statement 3, the bald eagle needs the tiger.\n- From Statement 9, the squirrel chases the tiger.\n\nNow the tiger is involved. \n\n- From Statement 9, the squirrel chases the tiger.\n- From Statement 10, the squirrel visits the tiger.\n- From Statement 11, the tiger is red.\n\nNow we know the tiger is red.\n\n- From Statement 11, the tiger is red.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 4, the bald eagle visits the squirrel.\n\nSince the lion needs the tiger and the tiger is red, the tiger will chase the lion.\n\n- From Statement 11, the tiger is red.\n- From Statement 6, the lion is kind.\n- From Statement 11, the tiger is red.\n- From Statement 6, the lion is kind.\n- From Statement 5, the lion is cold.\n- From Statement 11, the tiger is red.\n- From Statement 6, the lion is kind.\n- From Statement 7, the lion needs the tiger.\n- From Statement 11, the tiger is red.\n- From Statement 7, the lion needs the tiger.\n\nNow the lion and the tiger are involved.\n\n- From Statement 11, the tiger is red.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 7, the lion needs the tiger.\n- From Statement 11, the tiger is red.\n- From Statement 7, the lion needs the tiger.\n\nNow the lion and the tiger are involved.\n\n- From Statement 11, the tiger is red.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 4, the bald eagle visits the squirrel.\n\nSince the lion needs the tiger and the tiger is red, the lion will visit the bald eagle.\n\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 8, the squirrel chases the bald eagle.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 4, the bald eagle visits the squirrel.\n\nNow the lion and the bald eagle are involved.\n\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 8, the squirrel chases the bald eagle.\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 7, the lion needs the tiger.\n\nSince the lion visits the bald eagle, the lion needs the bald eagle.\n\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 8, the squirrel chases the bald eagle.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n\nSince the lion visits the bald eagle and the lion is cold, the lion will need the bald eagle.\n\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 8, the squirrel chases the bald eagle.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 4, the bald eagle visits the squirrel.\n\nSince the lion visits the bald eagle, the lion needs the bald eagle.\n\nSince the lion needs the bald eagle and the lion visits the bald eagle, the lion will visit the lion.\n\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 8, the squirrel chases the bald eagle.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 4, the bald eagle visits the squirrel.\n\nNow the lion and the bald eagle are involved.\n\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 8, the squirrel chases the bald eagle.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 4, the bald eagle visits the squirrel.\n\nSince the lion visits the bald eagle, the lion will visit the lion.\n\nNow the lion and the bald eagle are involved.\n\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 8, the squirrel chases the bald eagle.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 8, the squirrel chases the bald eagle.\n- From Statement 4, the bald eagle visits the squirrel.\n- From Statement 7, the lion needs the tiger.\n- From Statement 5, the lion is cold.\n- From Statement 6, the lion is kind.\n\nSince the lion visits the bald eagle, the lion will visit the lion.\n\nNow",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. The bald eagle is cold. \n2. The bald eagle is rough. \n3. The bald eagle needs the tiger. \n4. The bald eagle visits the squirrel. \n5. The lion is cold. \n6. The lion is kind. \n7. The lion needs the tiger. \n8. The squirrel chases the bald eagle. \n9. The squirrel chases the tiger. \n10. The squirrel visits the tiger. \n11. The tiger is red. \n12. If someone needs the squirrel then they chase the tiger. \n13. If someone is rough and they chase the squirrel then the squirrel visits the lion. \n14. If someone visits the tiger and they visit the lion then the lion needs the bald eagle. \n15. If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel. \n16. If someone is red then they chase the lion. \n17. If someone chases the lion and they visit the bald eagle then they need the bald eagle. \n18. If someone visits the bald eagle then they need the bald eagle. \n19. If someone chases the lion then they visit the bald eagle. \n20. If someone chases the tiger then the tiger chases the bald eagle.\n\nNow, let's analyze the statement \"The bald eagle does not visit the lion.\"\n\nFrom statement 4, we know the bald eagle visits the squirrel.\n\nFrom statement 8, we know the squirrel chases the bald eagle.\n\nNow, let's consider the implications of the bald eagle visiting the squirrel.\n\nStatement 15 says: If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel.\n\nThis means the bald eagle visits the squirrel implies that the bald eagle chases the squirrel. However, statement 8 says the squirrel chases the bald eagle.\n\nThis creates a contradiction, but we can continue by following the rules.\n\nFrom statement 9, we know the squirrel chases the tiger.\n\nStatement 20 says: If someone chases the tiger then the tiger chases the bald eagle.\n\nThis means the squirrel chases the tiger implies that the tiger chases the bald eagle.\n\nNow, let's consider the implications of the lion visiting the tiger.\n\nStatement 10 says the squirrel visits the tiger.\n\nFrom statement 2, we know the bald eagle is rough.\n\nStatement 13 says: If someone is rough and they chase the squirrel then the squirrel visits the lion.\n\nThis means the bald eagle being rough implies that the squirrel visits the lion, but we don't know that the bald eagle chases the squirrel.\n\nHowever, we know that the bald eagle visits the squirrel from statement 4.\n\nSince we don't have enough information to determine that the bald eagle chases the squirrel, we cannot determine that the squirrel visits the lion.\n\nBut we do know that the squirrel visits the tiger from statement 10.\n\nFrom statement 6, we know the lion is kind.\n\nStatement 14 says: If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\n\nThis means the squirrel visiting the tiger and the lion implies that the lion needs the bald eagle.\n\nHowever, we don't know that the lion visits the squirrel.\n\nFrom statement 7, we know the lion needs the tiger.\n\nStatement 12 says: If someone needs the squirrel then they chase the tiger.\n\nThis means the lion needing the squirrel implies that the lion chases the tiger.\n\nHowever, we don't know that the lion needs the squirrel.\n\nFrom statement 17, we know that if someone chases the lion and they visit the bald eagle then they need the bald eagle.\n\nHowever, we don't know that the lion is chased.\n\nFrom statement 19, we know that if someone chases the lion then they visit the bald eagle.\n\nHowever, we don't know that the lion is chased.\n\nFrom statement 16, we know that if someone is red then they chase the lion.\n\nStatement 11 says the tiger is red.\n\nThis means the tiger being red implies that the tiger chases the lion.\n\nHowever, we don't know that the tiger visits the lion.\n\nFrom statement 19, we know that if someone chases the lion then they visit the bald eagle.\n\nThis means the tiger chasing the lion implies that the tiger visits the bald eagle.\n\nHowever, we don't know that the tiger chases the lion.\n\nFrom statement 5, we know the lion is cold.\n\nStatement 17 says: If someone chases the lion and they visit the bald eagle then they need the bald eagle.\n\nThis means the lion being cold implies that the lion needs the bald eagle.\n\nHowever, we don't know that the lion is chased.\n\nFrom statement 18, we know that if someone visits the bald eagle then they need the bald eagle.\n\nHowever, we don't know that the lion visits the bald eagle.\n\nFrom statement 4, we know the bald eagle visits the squirrel.\n\nFrom statement 8, we know the squirrel chases the bald eagle.\n\nFrom statement 20, we know that if someone chases the tiger then the tiger chases the bald eagle.\n\nThis means the squirrel chases the tiger implies that the tiger chases the bald eagle.\n\nHowever, we don't know that the squirrel chases the tiger.\n\nFrom statement 7, we know the lion needs the tiger.\n\nStatement 12 says: If someone needs the squirrel then they chase the tiger.\n\nHowever, we don't know that the lion needs the squirrel.\n\nHowever, statement 20 says that if someone chases the tiger then the tiger chases the bald eagle.\n\nThis means that if the lion chases the tiger then the tiger chases the bald eagle.\n\nHowever, we don't know that the lion chases the tiger.\n\nFrom statement 19, we know that if someone chases the lion then they visit the bald eagle.\n\nThis means the tiger chasing the lion implies that the tiger visits the bald eagle.\n\nHowever, we don't know that the tiger chases the lion.\n\nFrom statement 18, we know that if someone visits the bald eagle then they need the bald eagle.\n\nHowever, we don't know that the lion visits the bald eagle.\n\nHowever, statement 4 says the bald eagle visits the squirrel.\n\nStatement 8 says the squirrel chases the bald eagle.\n\nStatement 20 says that if someone chases the tiger then the tiger chases the bald eagle.\n\nThis means the squirrel chases the tiger implies that the tiger chases the bald eagle.\n\nHowever, we don't know that the squirrel chases the tiger.\n\nHowever, statement 7 says the lion needs the tiger.\n\nStatement 12 says: If someone needs the squirrel then they chase the tiger.\n\nHowever, we don't know that the lion needs the squirrel.\n\nHowever, statement 19 says that if someone chases the lion then they visit the bald eagle.\n\nThis means the tiger chasing the lion implies that the tiger visits the bald eagle.\n\nHowever, we don't know that the tiger chases the lion.\n\nHowever, statement 20 says that if someone chases the tiger then the tiger chases the bald eagle.\n\nThis means the lion chases the tiger implies that the tiger chases the bald eagle.\n\nHowever, we don't know that the lion chases the tiger.\n\nHowever, statement 19 says that if someone chases the lion then they visit the bald eagle.\n\nThis means the lion chases the tiger implies that the lion visits the bald eagle.\n\nHowever, we don't know that the lion chases the tiger.\n\nHowever, statement 4 says the bald eagle visits the squirrel.\n\nStatement 8 says the squirrel chases the bald eagle.\n\nStatement 20 says that if someone chases the tiger then the tiger chases the bald eagle.\n\nThis means the squirrel chases the tiger implies that the tiger chases the bald eagle.\n\nHowever, we don't know that the squirrel chases the tiger.\n\nHowever, statement 19 says that if someone chases the lion then they visit the bald eagle.\n\nThis means the tiger chasing the lion implies that the tiger visits the bald eagle.\n\nHowever, we don't know that the tiger chases the lion.\n\nHowever, statement 18 says that if someone visits the bald eagle then they need the bald eagle.\n\nHowever, we don't know that the lion visits the bald eagle.\n\nHowever, statement 20 says that if someone chases the tiger then the tiger chases the bald eagle.\n\nThis means the lion chases the tiger implies that the tiger chases the bald eagle.\n\nHowever, we don't know that the lion chases the tiger.\n\nHowever, statement 19 says that if someone chases the lion then they visit the bald eagle.\n\nThis means the lion chases the tiger implies that the lion visits the bald eagle.\n\nHowever, we don't know that the lion chases the tiger.\n\nHowever, statement 4 says the bald eagle visits the squirrel.\n\nStatement 8 says the squirrel chases the bald eagle.\n\nStatement 20 says that if someone chases the tiger then the tiger chases the bald eagle.\n\nThis means the squirrel chases the tiger implies that the tiger chases the bald eagle.\n\nHowever, we don't know that the squirrel chases the tiger.\n\nHowever, statement 19 says that if someone chases the lion then they visit the bald eagle.\n\nThis means the tiger chasing the lion implies that the tiger visits the bald eagle.\n\nHowever, we don't know that the tiger chases the lion.\n\nHowever, statement 18 says that if someone visits the bald eagle then they need the bald eagle.\n\nHowever, we don't know that the lion visits the bald eagle.\n\nHowever, statement 20 says that if someone chases the tiger then the tiger chases the bald eagle.\n\nThis means the lion chases the tiger implies that the tiger chases the bald eagle.\n\nHowever, we don't know that the lion chases the tiger.\n\nHowever, statement 19 says that if someone chases the lion then",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and try to deduce the relationship between the animals. We will break down the statements into different cases and examine each condition to determine if the statement \"The bald eagle does not visit the lion\" is true, false, or unknown.\n\nFrom the given statements:\n\n1. The bald eagle visits the squirrel.\n2. The lion is kind.\n3. The squirrel chases the bald eagle.\n4. The squirrel chases the tiger.\n5. The squirrel visits the tiger.\n6. The tiger is red.\n7. If someone needs the squirrel then they chase the tiger.\n8. If someone is rough and they chase the squirrel then the squirrel visits the lion.\n9. If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\n10. If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel.\n11. If someone is red then they chase the lion.\n12. If someone chases the lion and they visit the bald eagle then they need the bald eagle.\n13. If someone visits the bald eagle then they need the bald eagle.\n14. If someone chases the lion then they visit the bald eagle.\n15. If someone chases the tiger then the tiger chases the bald eagle.\n\nNow, we will analyze each condition to determine if the statement \"The bald eagle does not visit the lion\" is true, false, or unknown.\n\nFrom statement 1, we know that the bald eagle visits the squirrel.\n\nFrom statement 8, if someone is rough and they chase the squirrel, then the squirrel visits the lion. However, we don't have any information that the bald eagle is rough.\n\nFrom statement 9, if someone visits the tiger and they visit the lion, then the lion needs the bald eagle. We don't have any information that connects the bald eagle to the lion through this condition.\n\nFrom statement 13, if someone visits the bald eagle, then they need the bald eagle. This does not provide any information about the relationship between the bald eagle and the lion.\n\nFrom statement 14, if someone chases the lion, then they visit the bald eagle. We don't have any information that connects the lion to the bald eagle through this condition.\n\nFrom statement 1, we know that the bald eagle visits the squirrel. However, we don't have any information that connects the squirrel to the lion.\n\nWe can deduce that the lion is kind (statement 2), and the tiger is red (statement 6). We also know that the squirrel chases the bald eagle (statement 3) and the tiger (statement 4).\n\nSince we don't have any information that directly connects the bald eagle to the lion, we cannot determine if the statement \"The bald eagle does not visit the lion\" is true or false.\n\nHowever, we can deduce that if the bald eagle visits the lion, then the lion needs the bald eagle (statement 9). But we don't have any information that suggests the lion needs the bald eagle.\n\nTherefore, we cannot determine if the statement \"The bald eagle does not visit the lion\" is true or false, and we will classify it as unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle does not visit the lion\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nGiven information:\n- The bald eagle visits the squirrel.\n- The lion is kind.\n\nRules:\n1. If someone needs the squirrel then they chase the tiger.\n2. If someone is rough and they chase the squirrel then the squirrel visits the lion.\n3. If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\n4. If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel.\n5. If someone is red then they chase the lion.\n6. If someone chases the lion and they visit the bald eagle then they need the bald eagle.\n7. If someone visits the bald eagle then they need the bald eagle.\n8. If someone chases the lion then they visit the bald eagle.\n9. If someone chases the tiger then the tiger chases the bald eagle.\n\nWe need to determine if the bald eagle visits the lion. To do this, we can analyze the given information and the rules.\n\nFrom rule 3, if someone visits the tiger and they visit the lion, then the lion needs the bald eagle. We know the tiger is the one visiting the lion in this scenario because the bald eagle visits the squirrel. This means the bald eagle must visit the tiger for the lion to need the bald eagle.\n\nFrom the given information, the bald eagle visits the squirrel. \n\nWe can then use rule 4 which states: \"If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel.\"\n\nHowever, this is not relevant to whether the eagle visits the lion. \n\nWe can use rule 8: \"If someone chases the lion then they visit the bald eagle.\"\n\nSince the lion is not being chased in this case, we cannot apply this rule.\n\nWe can use rule 7: \"If someone visits the bald eagle then they need the bald eagle.\"\n\nThis is not relevant to whether the eagle visits the lion.\n\nThe relevant information is that the bald eagle is cold and rough, and the bald eagle needs the tiger. This can be used to determine if the bald eagle visits the lion.\n\nFrom rule 2, if someone is rough and they chase the squirrel then the squirrel visits the lion.\n\nSince the bald eagle is rough, this rule might be relevant. However, this is not the case here as the bald eagle does not chase the squirrel.\n\nHowever, if we apply rule 5: \"If someone is red then they chase the lion.\"\n\nThis rule is not relevant to the bald eagle.\n\nIf we apply rule 9: \"If someone chases the tiger then the tiger chases the bald eagle.\"\n\nWe can see that the tiger is not being chased in this case.\n\nHowever, the lion is not being chased in this case either.\n\nWe need to find a way to determine if the bald eagle visits the lion.\n\nSince the lion needs the bald eagle, the lion must visit the tiger for the lion to need the bald eagle. The bald eagle must visit the squirrel. The tiger is red and chases the lion. The squirrel chases the tiger.\n\nHowever, we do not know if the lion is being chased.\n\nWe can use rule 1: \"If someone needs the squirrel then they chase the tiger.\"\n\nThis rule is not relevant to the lion.\n\nHowever, rule 3: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\"\n\nThis rule is relevant to the lion.\n\nWe can see that the tiger visits the lion. \n\nSince the tiger is red, it chases the lion. However, the lion is not being chased in this case.\n\nThe lion is kind, and the lion needs the bald eagle. This means that the lion must visit the tiger for the lion to need the bald eagle.\n\nSince the tiger is red and chases the lion, we know that the lion is being chased.\n\nHowever, we still do not know if the bald eagle visits the lion.\n\nFrom the given information, the bald eagle is cold and rough. The bald eagle needs the tiger.\n\nHowever, this information is not relevant to whether the eagle visits the lion.\n\nWe can use rule 8: \"If someone chases the lion then they visit the bald eagle.\"\n\nSince the lion is being chased by the tiger, we can apply this rule.\n\nSince the tiger chases the lion, the lion must visit the bald eagle.\n\nSince the lion visits the bald eagle, the bald eagle must visit the lion.\n\nThe statement \"The bald eagle does not visit the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle does not visit the lion\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The bald eagle is cold. (Initial information)\n2. The bald eagle is rough. (Initial information)\n3. The bald eagle needs the tiger. (Initial information)\n4. The bald eagle visits the squirrel. (Initial information)\n5. The lion is cold. (Initial information)\n6. The lion is kind. (Initial information)\n7. The lion needs the tiger. (Initial information)\n8. The squirrel chases the bald eagle. (Initial information)\n9. The squirrel chases the tiger. (Initial information)\n10. The squirrel visits the tiger. (Initial information)\n11. The tiger is red. (Initial information)\n\nGiven rules:\n\n1. If someone needs the squirrel then they chase the tiger. \n   - This is not directly related to the statement, so we can ignore it.\n\n2. If someone is rough and they chase the squirrel then the squirrel visits the lion.\n   - The bald eagle is rough, but it does not chase the squirrel. It visits the squirrel. So, this rule is not applicable.\n\n3. If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\n   - The squirrel visits the tiger (rule 10), and there is no information that the squirrel visits the lion. However, the lion needs the tiger (rule 7). This rule is not directly related to the statement, so we can ignore it.\n\n4. If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel.\n   - The bald eagle visits the squirrel (rule 4). This rule is not directly related to the statement, so we can ignore it.\n\n5. If someone is red then they chase the lion.\n   - The tiger is red (rule 11). This rule is not directly related to the statement, so we can ignore it.\n\n6. If someone chases the lion and they visit the bald eagle then they need the bald eagle.\n   - There is no information that someone chases the lion and visits the bald eagle. This rule is not directly related to the statement, so we can ignore it.\n\n7. If someone visits the bald eagle then they need the bald eagle.\n   - This rule is not directly related to the statement, so we can ignore it.\n\n8. If someone chases the lion then they visit the bald eagle.\n   - There is no information that someone chases the lion and visits the bald eagle. This rule is not directly related to the statement, so we can ignore it.\n\n9. If someone chases the tiger then the tiger chases the bald eagle.\n   - The squirrel chases the tiger (rule 9). This rule is not directly related to the statement, so we can ignore it.\n\nNow, let's analyze the given information to see if there is any rule or information that contradicts the statement \"The bald eagle does not visit the lion.\"\n\nGiven information:\n- The lion needs the tiger (rule 7).\n- The squirrel visits the tiger (rule 10).\n- The bald eagle visits the squirrel (rule 4).\n- The lion is cold (rule 5).\n- The lion is kind (rule 6).\n\nThere is no information that directly states the bald eagle visits the lion. However, there is a chain of events that involves the lion and the bald eagle indirectly.\n\nIf the squirrel visits the tiger (rule 10) and the lion needs the tiger (rule 7), then the lion might visit the squirrel to get the tiger. If the lion visits the squirrel, it might visit the bald eagle because the lion is cold (rule 5). However, this is an indirect chain of events, and there is no information that directly states the bald eagle visits the lion.\n\nSince there is no information that directly contradicts the statement \"The bald eagle does not visit the lion,\" we cannot determine the truth value of the statement based on the given information.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle does not visit the lion\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the problem statement, we have the following facts:\n\n1. The bald eagle is cold. (Fact 1)\n2. The bald eagle is rough. (Fact 2)\n3. The bald eagle needs the tiger. (Fact 3)\n4. The bald eagle visits the squirrel. (Fact 4)\n5. The lion is cold. (Fact 5)\n6. The lion is kind. (Fact 6)\n7. The lion needs the tiger. (Fact 7)\n8. The squirrel chases the bald eagle. (Fact 8)\n9. The squirrel chases the tiger. (Fact 9)\n10. The squirrel visits the tiger. (Fact 10)\n11. The tiger is red. (Fact 11)\n12. If someone needs the squirrel then they chase the tiger. (Rule 1)\n13. If someone is rough and they chase the squirrel then the squirrel visits the lion. (Rule 2)\n14. If someone visits the tiger and they visit the lion then the lion needs the bald eagle. (Rule 3)\n15. If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel. (Rule 4)\n16. If someone is red then they chase the lion. (Rule 5)\n17. If someone chases the lion and they visit the bald eagle then they need the bald eagle. (Rule 6)\n18. If someone visits the bald eagle then they need the bald eagle. (Rule 7)\n19. If someone chases the lion then they visit the bald eagle. (Rule 8)\n20. If someone chases the tiger then the tiger chases the bald eagle. (Rule 9)\n\nNow, let's analyze the given statement \"The bald eagle does not visit the lion.\"\n\nTo determine whether this statement is true, false, or unknown, we need to see if we can find any information that supports or contradicts this statement.\n\nFrom the problem statement, we have the following information related to the bald eagle visiting the lion:\n\n- Fact 4: The bald eagle visits the squirrel.\n- Rule 3: If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\n\nSince the bald eagle visits the squirrel (Fact 4), we can conclude that the bald eagle does visit the squirrel. However, this does not directly tell us whether the bald eagle visits the lion or not.\n\nWe also have Rule 3, which states that if someone visits the tiger and they visit the lion, then the lion needs the bald eagle. However, this rule does not mention the bald eagle visiting the lion.\n\nWe also have Rule 8, which states that if someone chases the lion then they visit the bald eagle. However, this rule does not mention the bald eagle visiting the lion.\n\nWe also have Rule 9, which states that if someone chases the tiger then the tiger chases the bald eagle. However, this rule does not mention the bald eagle visiting the lion.\n\nWe also have Rule 2, which states that if someone is rough and they chase the squirrel then the squirrel visits the lion. However, this rule does not mention the bald eagle visiting the lion.\n\nWe also have Rule 5, which states that if someone is red then they chase the lion. However, this rule does not mention the bald eagle visiting the lion.\n\nWe also have Rule 6, which states that if someone chases the lion and they visit the bald eagle then they need the bald eagle. However, this rule does not mention the bald eagle visiting the lion.\n\nWe also have Rule 7, which states that if someone visits the bald eagle then they need the bald eagle. However, this rule does not mention the bald eagle visiting the lion.\n\nWe also have Rule 4, which states that if someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel. However, this rule does not mention the bald eagle visiting the lion.\n\nWe also have Rule 1, which states that if someone needs the squirrel then they chase the tiger. However, this rule does not mention the bald eagle visiting the lion.\n\nNow, let's analyze the given statement \"The bald eagle does not visit the lion\" from the perspective of the given rules.\n\nWe know that the bald eagle is rough (Fact 2) and the bald eagle visits the squirrel (Fact 4). \n\nHowever, the statement does not mention the lion in Rule 2, so we cannot conclude that the bald eagle visits the lion from this rule.\n\nWe also know that the bald eagle is rough (Fact 2) and the bald eagle visits the squirrel (Fact 4). \n\nHowever, the statement does not mention the lion in Rule 4, so we cannot conclude that the bald eagle visits the lion from this rule.\n\nWe also know that the bald eagle is rough (Fact 2) and the bald eagle visits the squirrel (Fact 4). \n\nHowever, the statement does not mention the lion in Rule 5, so we cannot conclude that the bald eagle visits the lion from this rule.\n\nWe also know that the bald eagle is rough (Fact 2) and the bald eagle visits the squirrel (Fact 4). \n\nHowever, the statement does not mention the lion in Rule 6, so we cannot conclude that the bald eagle visits the lion from this rule.\n\nWe also know that the bald eagle is rough (Fact 2) and the bald eagle visits the squirrel (Fact 4). \n\nHowever, the statement does not mention the lion in Rule 7, so we cannot conclude that the bald eagle visits the lion from this rule.\n\nWe also know that the bald eagle is rough (Fact 2) and the bald eagle visits the squirrel (Fact 4). \n\nHowever, the statement does not mention the lion in Rule 8, so we cannot conclude that the bald eagle visits the lion from this rule.\n\nWe also know that the bald eagle is rough (Fact 2) and the bald eagle visits the squirrel (Fact 4). \n\nHowever, the statement does not mention the lion in Rule 9, so we cannot conclude that the bald eagle visits the lion from this rule.\n\nTherefore, the statement \"The bald eagle does not visit the lion\" cannot be proven true or false using the given information.\n\nSince the statement cannot be proven true or false, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we will analyze each condition step by step.\n\n1. The statement we are evaluating is: \"The bald eagle does not visit the lion.\"\n2. If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\n   - We are not given information that the bald eagle visits the tiger. We only know the bald eagle needs the tiger and the bald eagle is cold and rough. So, this condition is not directly relevant to our current statement.\n\n3. If someone is rough and they chase the squirrel then the squirrel visits the lion.\n   - The bald eagle is rough, but we do not have information that the bald eagle chases the squirrel. We know the squirrel chases the bald eagle. So, this condition is not directly relevant to our current statement.\n\n4. If someone needs the squirrel then they chase the tiger.\n   - We do not have information that the bald eagle needs the squirrel. We know the bald eagle is cold and rough, and the bald eagle needs the tiger. So, this condition is not directly relevant to our current statement.\n\n5. If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel.\n   - We know the squirrel chases the bald eagle, but we do not have information that the bald eagle visits the squirrel. So, this condition is not directly relevant to our current statement.\n\n6. If someone is red then they chase the lion.\n   - The tiger is red, but we do not have information that the tiger chases the lion. We know the tiger is red, and the tiger chases the bald eagle if someone chases the tiger. So, this condition is not directly relevant to our current statement.\n\n7. If someone chases the lion and they visit the bald eagle then they need the bald eagle.\n   - This condition is not directly relevant to our current statement.\n\n8. If someone visits the bald eagle then they need the bald eagle.\n   - This condition is not directly relevant to our current statement.\n\n9. If someone chases the lion then they visit the bald eagle.\n   - This condition is not directly relevant to our current statement.\n\n10. If someone chases the tiger then the tiger chases the bald eagle.\n   - We know the squirrel chases the tiger. So, the tiger chases the bald eagle.\n\nWe know the squirrel chases the bald eagle, but we do not have information that the bald eagle visits the lion. However, we also know the squirrel visits the tiger, and the squirrel visits the lion. Therefore, we can conclude that the squirrel visits the lion.\n\nGiven the statement: \"The bald eagle does not visit the lion.\"\nBased on the conditions and given information, the statement cannot be definitively classified as true or false because it is not directly related to the given information. However, it can be definitively classified as false because we know the squirrel visits the lion, which indirectly implies that the lion is visited.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, let's break down the given information and rules into a more organized format. We will analyze each statement based on the given rules.\n\n1. The bald eagle is cold.\n2. The bald eagle is rough.\n3. The bald eagle needs the tiger.\n4. The bald eagle visits the squirrel.\n5. The lion is cold.\n6. The lion is kind.\n7. The lion needs the tiger.\n8. The squirrel chases the bald eagle.\n9. The squirrel chases the tiger.\n10. The squirrel visits the tiger.\n11. The tiger is red.\n\nRules:\n1. If someone needs the squirrel then they chase the tiger.\n2. If someone is rough and they chase the squirrel then the squirrel visits the lion.\n3. If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\n4. If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel.\n5. If someone is red then they chase the lion.\n6. If someone chases the lion and they visit the bald eagle then they need the bald eagle.\n7. If someone visits the bald eagle then they need the bald eagle.\n8. If someone chases the lion then they visit the bald eagle.\n9. If someone chases the tiger then the tiger chases the bald eagle.\n\nNow, let's determine whether the statement \"The bald eagle does not visit the lion\" is true, false, or unknown.\n\nFrom the given information, we can see that the bald eagle visits the squirrel (statement 4), but we do not have any information about the bald eagle visiting the lion.\n\nHowever, statement 3 says \"The bald eagle needs the tiger.\" We need to find out if visiting the lion is related to needing the tiger.\n\nLet's use rule 3: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\" However, we are given that the bald eagle needs the tiger, not the lion. But, this does not necessarily mean the bald eagle visits the lion.\n\nStatement 8 says \"If someone chases the lion then they visit the bald eagle.\" But, we are not given any information about the bald eagle chasing the lion.\n\nStatement 7 says \"If someone visits the bald eagle then they need the bald eagle.\" However, we do not have any information about the bald eagle visiting the lion.\n\nStatement 5 says \"If someone is red then they chase the lion.\" The tiger is red, so it chases the lion. Statement 9 says \"If someone chases the tiger then the tiger chases the bald eagle.\" However, we are not given any information about the tiger chasing the bald eagle because of visiting the lion.\n\nStatement 10 says \"The squirrel visits the tiger.\" Using rule 2: \"If someone is rough and they chase the squirrel then the squirrel visits the lion.\" However, the bald eagle is rough and chases the squirrel (statement 8), so the squirrel visits the lion. \n\nNow, we have a situation where the squirrel visits the lion, and the lion is cold (statement 5) and needs the tiger (statement 7). \n\nGiven that the squirrel visits the lion, we can use rule 3: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\" Since the lion needs the tiger and the squirrel visits the lion, it implies that the lion needs the tiger because the squirrel visits the lion. However, we do not have information about the bald eagle visiting the lion.\n\nSince the lion needs the tiger and the squirrel visits the lion, it implies that the lion needs the tiger because the squirrel visits the lion, however we still do not have enough information to determine whether the bald eagle visits the lion.\n\nHowever, we can still use rule 9: \"If someone chases the lion then they visit the bald eagle.\" If the bald eagle is chasing the lion, then the bald eagle must visit the lion. However, we are given that the squirrel visits the lion, not the bald eagle.\n\nHowever, we are not given any information about the bald eagle chasing the lion. Therefore, we still do not have enough information to determine whether the bald eagle visits the lion or not.\n\nHowever, we can use rule 8: \"If someone is rough and they chase the squirrel then the squirrel visits the lion.\" The bald eagle is rough (statement 2) and chases the squirrel (statement 8), so the squirrel visits the lion.\n\nGiven that the squirrel visits the lion, we can use rule 3: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\" However, we are given that the lion needs the tiger (statement 7), not the bald eagle.\n\nHowever, we can use rule 3: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\" However, we do not have information about the lion visiting the tiger.\n\nHowever, we can use rule 8: \"If someone chases the lion then they visit the bald eagle.\" We do not have any information about the lion being chased by the bald eagle or the squirrel.\n\nHowever, we can use rule 7: \"If someone visits the bald eagle then they need the bald eagle.\" However, we do not have any information about the bald eagle being visited by the lion.\n\nHowever, we can use rule 8: \"If someone chases the lion then they visit the bald eagle.\" We do not have any information about the lion being chased by the squirrel or the tiger.\n\nHowever, we can use rule 9: \"If someone chases the tiger then the tiger chases the bald eagle.\" If the squirrel chases the tiger (statement 9), then the tiger chases the bald eagle. However, we are not given any information about the squirrel chasing the tiger because the squirrel visits the tiger.\n\nHowever, we can use rule 2: \"If someone is rough and they chase the squirrel then the squirrel visits the lion.\" The bald eagle is rough (statement 2) and chases the squirrel (statement 8), so the squirrel visits the lion.\n\nGiven that the squirrel visits the lion, we can use rule 3: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\" However, we are given that the lion needs the tiger (statement 7), not the bald eagle.\n\nHowever, we can use rule 2: \"If someone is rough and they chase the squirrel then the squirrel visits the lion.\" The bald eagle is rough (statement 2) and chases the squirrel (statement 8), so the squirrel visits the lion.\n\nGiven that the squirrel visits the lion, we can use rule 3: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\" However, we are given that the lion needs the tiger (statement 7), not the bald eagle.\n\nHowever, we can use rule 3: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\" However, we do not have information about the lion visiting the tiger.\n\nHowever, we can use rule 2: \"If someone is rough and they chase the squirrel then the squirrel visits the lion.\" The bald eagle is rough (statement 2) and chases the squirrel (statement 8), so the squirrel visits the lion.\n\nGiven that the squirrel visits the lion, we can use rule 3: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\" However, we are given that the lion needs the tiger (statement 7), not the bald eagle.\n\nHowever, we can use rule 3: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\" However, we do not have information about the lion visiting the tiger.\n\nHowever, we can use rule 2: \"If someone is rough and they chase the squirrel then the squirrel visits the lion.\" The bald eagle is rough (statement 2) and chases the squirrel (statement 8), so the squirrel visits the lion.\n\nGiven that the squirrel visits the lion, we can use rule 3: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\" However, we are given that the lion needs the tiger (statement 7), not the bald eagle.\n\nHowever, we can use rule 3: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\" However, we do not have information about the lion visiting the tiger.\n\nHowever, we can use rule 2: \"If someone is rough and they chase the squirrel then the squirrel visits the lion.\" The bald eagle is rough (statement 2) and chases the squirrel (statement 8), so the squirrel visits the lion.\n\nGiven that the squirrel visits the lion, we can use rule 3: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\" However, we are given that the lion needs the tiger (statement 7), not the bald eagle.\n\nHowever, we can use rule 3: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\" However, we do not have information about the lion visiting the tiger.\n\nHowever, we can use rule 2: \"If someone is rough and they chase the squirrel then the squirrel visits the lion.\" The bald eagle is rough (statement 2) and chases the squirrel (statement 8), so the squirrel visits the lion.\n\nGiven that the squirrel visits the lion, we can use rule 3: \"If someone visits the tiger and they visit the lion then the lion needs the bald eagle.\" However, we are given that the lion needs the tiger (statement 7), not the bald eagle.\n\nHowever, we can use rule 3: \"If someone visits the tiger and they visit the",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle does not visit the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle is cold. The bald eagle is rough. The bald eagle needs the tiger. The bald eagle visits the squirrel. \n   - We know the bald eagle visits the squirrel.\n\n2. The lion is cold. The lion is kind. The lion needs the tiger. \n   - We know the lion needs the tiger, but we don't have any information about the lion visiting the bald eagle.\n\n3. The squirrel chases the bald eagle. The squirrel chases the tiger. The squirrel visits the tiger. The tiger is red. \n   - We know the squirrel visits the tiger, but this information is not directly related to the statement we are trying to evaluate.\n\n4. If someone needs the squirrel then they chase the tiger. \n   - This rule is not relevant to the statement.\n\n5. If someone is rough and they chase the squirrel then the squirrel visits the lion. \n   - The bald eagle is rough, but we don't know if it chases the squirrel.\n\n6. If someone visits the tiger and they visit the lion then the lion needs the bald eagle. \n   - We don't have any information about someone visiting the tiger and the lion.\n\n7. If someone visits the bald eagle and the bald eagle visits the squirrel then the bald eagle chases the squirrel. \n   - We know the bald eagle visits the squirrel, but we don't have any information about someone visiting the bald eagle.\n\n8. If someone is red then they chase the lion. \n   - The tiger is red, but this rule is not directly related to the statement.\n\n9. If someone chases the lion and they visit the bald eagle then they need the bald eagle. \n   - We don't have any information about someone chasing the lion and visiting the bald eagle.\n\n10. If someone visits the bald eagle then they need the bald eagle. \n    - We know the bald eagle visits the squirrel.\n\n11. If someone chases the lion then they visit the bald eagle. \n    - This rule is not relevant to the statement.\n\n12. If someone chases the tiger then the tiger chases the bald eagle. \n    - The squirrel chases the tiger, so the tiger chases the bald eagle.\n\nNow, let's consider the statement \"The bald eagle does not visit the lion.\" \n\nThe only information we have about the bald eagle visiting someone is that it visits the squirrel. We don't have any information about the bald eagle visiting the lion.\n\nBased on the given information, we cannot conclude whether the statement is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, squirrel)",
+          "z3_formula": "visits_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, tiger)",
+          "z3_formula": "chases_squirrel_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> chases(Y, X)",
+          "z3_formula": "Implies(chases_squirrel_tiger, chases_tiger_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & visits(X, Z) -> visits(Z, Y)",
+          "z3_formula": "Implies(And(chases_squirrel_tiger, visits_squirrel_tiger), visits_tiger_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, bald_eagle)",
+          "z3_formula": "chases_tiger_bald_eagle == True",
+          "source_step": 7
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, squirrel)",
+          "z3_formula": "visits_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, tiger)",
+          "z3_formula": "chases_squirrel_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) <- rough(X) & chases(Y, X)",
+          "z3_formula": "Implies(And(rough_bald_eagle, chases_squirrel_bald_eagle), needs_squirrel_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) <- rough(X) & chases(squirrel, X)",
+          "z3_formula": "Implies(And(rough_bald_eagle, chases_squirrel_bald_eagle), visits_bald_eagle_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) <- visits(X, Y) & visits(X, lion)",
+          "z3_formula": "Implies(And(visits_bald_eagle_lion, visits_bald_eagle_squirrel), needs_lion_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) <- visits(X, Y)",
+          "z3_formula": "Implies(visits_bald_eagle_squirrel, needs_bald_eagle_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) <- visits(X, Y) & red(Y)",
+          "z3_formula": "Implies(And(visits_bald_eagle_squirrel, red_tiger), chases_bald_eagle_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) <- chases(X, lion) & visits(X, Y)",
+          "z3_formula": "Implies(And(chases_squirrel_lion, visits_squirrel_bald_eagle), needs_lion_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) <- chases(X, lion) & visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(chases_squirrel_lion, visits_squirrel_bald_eagle), visits_squirrel_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) <- chases(X, Y)",
+          "z3_formula": "Implies(chases_squirrel_tiger, chases_tiger_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not visits(bald_eagle, lion)",
+          "z3_formula": "Not(visits_bald_eagle_lion) == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, squirrel)",
+          "z3_formula": "visits_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, tiger)",
+          "z3_formula": "needs_lion_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, tiger)",
+          "z3_formula": "chases_squirrel_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> chases(X, tiger)",
+          "z3_formula": "Implies(needs_X_Y, chases_X_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, squirrel) -> visits(squirrel, lion)",
+          "z3_formula": "Implies(And(rough_X, chases_X_squirrel), visits_squirrel_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & visits(X, lion) -> needs(lion, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_tiger, visits_X_lion), needs_lion_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits(squirrel, X) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(visits_X_squirrel, visits_squirrel_X), chases_X_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, lion)",
+          "z3_formula": "Implies(red_X, chases_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & visits(X, bald_eagle) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(chases_X_lion, visits_X_bald_eagle), needs_X_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chases_X_lion, visits_X_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> chases(tiger, bald_eagle)",
+          "z3_formula": "Implies(chases_X_tiger, chases_tiger_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(bald_eagle, lion))",
+          "z3_formula": "Not(visits_bald_eagle_lion)",
+          "source_step": 20
+        }
+      ],
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, squirrel)",
+          "z3_formula": "visits_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> chases(X, tiger)",
+          "z3_formula": "Implies(needs_squirrel, chases_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, squirrel) -> visits(squirrel, lion)",
+          "z3_formula": "Implies(And(rough_bald_eagle, chases_bald_eagle_squirrel), visits_squirrel_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & visits(X, lion) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_tiger_lion, visits_bald_eagle_squirrel), needs_lion_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & visits(bald_eagle, squirrel) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(visits_bald_eagle, visits_bald_eagle_squirrel), chases_bald_eagle_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, lion)",
+          "z3_formula": "Implies(red_tiger, chases_tiger_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & visits(X, bald_eagle) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(chases_lion, visits_bald_eagle), needs_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(visits_bald_eagle, needs_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chases_lion, visits_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> chases(tiger, bald_eagle)",
+          "z3_formula": "Implies(chases_tiger, chases_tiger_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, lion)",
+          "z3_formula": "visits_bald_eagle_lion == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, squirrel)",
+          "z3_formula": "visits_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, tiger)",
+          "z3_formula": "needs_lion_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, tiger)",
+          "z3_formula": "chases_squirrel_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> chases(X, tiger)",
+          "z3_formula": "Implies(needs_X_squirrel, chases_X_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, squirrel) -> visits(squirrel, lion)",
+          "z3_formula": "Implies(And(rough_bald_eagle, chases_bald_eagle_squirrel), visits_squirrel_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & visits(X, lion) -> needs(lion, X)",
+          "z3_formula": "Implies(And(visits_X_tiger, visits_X_lion), needs_lion_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(visits_X_bald_eagle, needs_X_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, lion)",
+          "z3_formula": "Implies(red_tiger, chases_tiger_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & visits(X, bald_eagle) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(chases_X_lion, visits_X_bald_eagle), needs_X_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(visits_X_bald_eagle, needs_X_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> chases(tiger, X)",
+          "z3_formula": "Implies(chases_X_tiger, chases_tiger_X)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not visits(bald_eagle, lion)",
+          "z3_formula": "Not(visits_bald_eagle_lion)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, squirrel)",
+          "z3_formula": "visits_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, tiger)",
+          "z3_formula": "needs_lion_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, tiger)",
+          "z3_formula": "chases_squirrel_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> chases(X, tiger)",
+          "z3_formula": "Implies(needs_X_squirrel, chases_X_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, squirrel) -> visits(squirrel, lion)",
+          "z3_formula": "Implies(And(rough_X, chases_X_squirrel), visits_squirrel_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & visits(X, lion) -> needs(lion, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_tiger, visits_X_lion), needs_lion_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & visits(bald_eagle, squirrel) -> chases(bald_eagle, squirrel)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, visits_bald_eagle_squirrel), chases_bald_eagle_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, lion)",
+          "z3_formula": "Implies(red_X, chases_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & visits(X, bald_eagle) -> needs(bald_eagle, bald_eagle)",
+          "z3_formula": "Implies(And(chases_X_lion, visits_X_bald_eagle), needs_bald_eagle_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> needs(bald_eagle, bald_eagle)",
+          "z3_formula": "Implies(visits_X_bald_eagle, needs_bald_eagle_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chases_X_lion, visits_X_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> chases(tiger, bald_eagle)",
+          "z3_formula": "Implies(chases_X_tiger, chases_tiger_bald_eagle)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(needs_X_tiger, needs_X_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, squirrel) -> visits(X, lion)",
+          "z3_formula": "Implies(And(rough_X, chases_X_squirrel), visits_X_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> chases(X, tiger)",
+          "z3_formula": "Implies(needs_X_squirrel, chases_X_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(visits_X_bald_eagle, needs_X_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chases_X_lion, visits_X_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> chases(tiger, X)",
+          "z3_formula": "Implies(chases_X_tiger, chases_tiger_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, bald_eagle)",
+          "z3_formula": "chases_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, bald_eagle)",
+          "z3_formula": "visits_lion_bald_eagle == False",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, squirrel)",
+          "z3_formula": "visits_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, tiger)",
+          "z3_formula": "needs_lion_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "squirrel_chases(bald_eagle)",
+          "z3_formula": "squirrel_chases_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "squirrel_chases(tiger)",
+          "z3_formula": "squirrel_chases_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> squirrel_chases(X)",
+          "z3_formula": "Implies(needs_X_squirrel, squirrel_chases_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & squirrel_chases(X) -> visits(squirrel, X)",
+          "z3_formula": "Implies(And(rough_X, squirrel_chases_X), visits_squirrel_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & visits(X, lion) -> needs(lion, X)",
+          "z3_formula": "Implies(And(visits_X_tiger, visits_X_lion), needs_lion_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) & visits(bald_eagle, squirrel) -> bald_eagle_chases(squirrel)",
+          "z3_formula": "Implies(And(visits_X_bald_eagle, visits_bald_eagle_squirrel), bald_eagle_chases_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> squirrel_chases(lion)",
+          "z3_formula": "Implies(red_X, squirrel_chases_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "squirrel_chases(lion) & visits(X, bald_eagle) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(squirrel_chases_lion, visits_X_bald_eagle), needs_X_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(visits_X_bald_eagle, needs_X_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "squirrel_chases(lion) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(squirrel_chases_lion, visits_X_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "squirrel_chases(tiger) -> tiger_chases(bald_eagle)",
+          "z3_formula": "Implies(squirrel_chases_tiger, tiger_chases_bald_eagle)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, squirrel)",
+          "z3_formula": "visits_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, tiger)",
+          "z3_formula": "needs_lion_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "squirrel_chases_bald_eagle",
+          "z3_formula": "squirrel_chases_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "squirrel_chases_tiger",
+          "z3_formula": "squirrel_chases_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> chases(X, tiger)",
+          "z3_formula": "Implies(needs_squirrel_tiger, chases_squirrel_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & chases(X, squirrel) -> visits(X, lion)",
+          "z3_formula": "Implies(And(rough_bald_eagle, chases_bald_eagle_squirrel), visits_bald_eagle_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) & visits(X, lion) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_tiger_lion, visits_tiger_lion), needs_tiger_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(visits_bald_eagle_squirrel, needs_squirrel_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & visits(X, bald_eagle) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(chases_squirrel_lion, visits_squirrel_bald_eagle), needs_squirrel_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, lion)",
+          "z3_formula": "Implies(red_tiger, chases_tiger_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chases_tiger_lion, visits_tiger_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(chases_squirrel_tiger, chases_squirrel_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(bald_eagle, lion))",
+          "z3_formula": "Not(visits_bald_eagle_lion) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, lion)",
+          "z3_formula": "visits_bald_eagle_lion == Unknown",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 152,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 72
+    },
+    "maxsat_stats": {
+      "satisfied": 69,
+      "excluded": 3,
+      "total_weight": 149,
+      "solve_time_ms": 2.0064134150743484
+    },
+    "timing": {
+      "trace_gen_s": 25.145,
+      "extraction_s": 54.735,
+      "dedup_s": 2.378,
+      "maxsat_s": 0.006,
+      "total_s": 82.264
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72f2b2034390e9cb6fbc",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "analysis mvp final gate evaluation",
+  "task_key": "worker_analysis_mvp_final_gate_evaluation_20260514T211825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp_final_gate_evaluation_20260514T211825_result.json",
+    "occurrence": 1,
+    "bytes": 530,
+    "sha256": "d394eaf2ed66a9d6ecd2ec9b4359066ca7147c75e8233e1d0a956012b5db2191"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态总结：**\n\n1. **Pipeline**：原进程（PID 47964）已退出，在 148/204 处无错中断。已用 JSONL resume 启动新进程（PID 56393），正在处理剩余 57 个样本。\n2. **148 样本预评估**：All-mode 5/5 PASS（MVP gate 通过），Excl-Unknown 4/5（C4 -2.5pp FAIL）。\n3. **vLLM**：PID 19633 正常运行。\n4. **预计完成时间**：约 3 小时后（~08:20 UTC）。\n\n等 pipeline 跑完后会自动做最终合并、评估、repair dry-run 和 registry 更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp-final-gate-evaluation.md"
+}

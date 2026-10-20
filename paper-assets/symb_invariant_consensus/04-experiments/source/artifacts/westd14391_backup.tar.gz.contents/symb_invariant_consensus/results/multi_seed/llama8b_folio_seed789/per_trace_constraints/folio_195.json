@@ -1,0 +1,647 @@
+{
+  "pid": "folio_195",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "winner(1992_du_maurier_classic, steinhauer)",
+          "z3_formula": "winner_1992_du_maurier_classic_steinhauer == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "participated(steinhauer, 1992_du_maurier_classic)",
+          "z3_formula": "participated_steinhauer_1992_du_maurier_classic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "six_way_tie(1992_du_maurier_classic)",
+          "z3_formula": "six_way_tie_1992_du_maurier_classic == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_belgium(descampe)",
+          "z3_formula": "from_belgium_descampe == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "on_leaderboard(descampe, 1992_du_maurier_classic)",
+          "z3_formula": "on_leaderboard_descampe_1992_du_maurier_classic == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all_leaderboard_participated(1992_du_maurier_classic)",
+          "z3_formula": "all_leaderboard_participated_1992_du_maurier_classic == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "six_way_tie(X) & from_belgium(Y) -> ?(Y in six-way tie of X)",
+          "z3_formula": "Implies(And(six_way_tie_1992_du_maurier_classic, from_belgium_descampe), descampe_in_six_way_tie_1992_du_maurier_classic)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "on_leaderboard(X, Y) & not(Y in six-way tie of Y) -> more_than_six_people_on_leaderboard(Y)",
+          "z3_formula": "Implies(And(on_leaderboard_descampe_1992_du_maurier_classic, Not(descampe_in_six_way_tie_1992_du_maurier_classic)), more_than_six_people_on_leaderboard_1992_du_maurier_classic)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "more_than_six_people_on_leaderboard(X) -> not(six_way_tie(X))",
+          "z3_formula": "Implies(more_than_six_people_on_leaderboard_1992_du_maurier_classic, Not(six_way_tie_1992_du_maurier_classic))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "descampe in six-way tie of 1992 du Maurier Classic",
+          "z3_formula": "descampe_in_six_way_tie_1992_du_maurier_classic == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "winner(1992_du_maurier_classic, steinhauer)",
+          "z3_formula": "winner_1992_du_maurier_classic_steinhauer == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "participated(steinhauer, 1992_du_maurier_classic)",
+          "z3_formula": "participated_steinhauer_1992_du_maurier_classic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "from_belgium(descampe)",
+          "z3_formula": "from_belgium_descampe == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "on_leaderboard(descampe, 1992_du_maurier_classic)",
+          "z3_formula": "on_leaderboard_descampe_1992_du_maurier_classic == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "six_way_tie(1992_du_maurier_classic)",
+          "z3_formula": "six_way_tie_1992_du_maurier_classic == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "participated_all_leaderboard(1992_du_maurier_classic)",
+          "z3_formula": "participated_all_leaderboard_1992_du_maurier_classic == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "from_belgium(X) & on_leaderboard(X, Y) & six_way_tie(Y) -> in_six_way_tie(X, Y)",
+          "z3_formula": "Implies(And(from_belgium_descampe, on_leaderboard_descampe_1992_du_maurier_classic, six_way_tie_1992_du_maurier_classic), in_six_way_tie_descampe_1992_du_maurier_classic == True)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "in_six_way_tie(descampe, 1992_du_maurier_classic)",
+          "z3_formula": "in_six_way_tie_descampe_1992_du_maurier_classic == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "winner(steinhauer, 1992_du_maurier_classic)",
+          "z3_formula": "winner_steinhauer_1992_du_maurier_classic == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "participated(steinhauer, 1992_du_maurier_classic)",
+          "z3_formula": "participated_steinhauer_1992_du_maurier_classic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "six_way_tie(1992_du_maurier_classic)",
+          "z3_formula": "six_way_tie_1992_du_maurier_classic == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_belgium(descampe)",
+          "z3_formula": "from_belgium_descampe == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "on_leaderboard(descampe, 1992_du_maurier_classic)",
+          "z3_formula": "on_leaderboard_descampe_1992_du_maurier_classic == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all_participants_on_leaderboard(1992_du_maurier_classic)",
+          "z3_formula": "all_participants_on_leaderboard_1992_du_maurier_classic == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "six_way_tie(X) & from_belgium(Y) -> in_six_way_tie(Y, X)",
+          "z3_formula": "Implies(And(six_way_tie_1992_du_maurier_classic, from_belgium_descampe), in_six_way_tie_descampe_1992_du_maurier_classic)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "in_six_way_tie(descampe, 1992_du_maurier_classic)",
+          "z3_formula": "in_six_way_tie_descampe_1992_du_maurier_classic == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "winner(1992_du_maurier_classic, steinhauer)",
+          "z3_formula": "winner_1992_du_maurier_classic_steinhauer == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "participated(steinhauer, 1992_du_maurier_classic)",
+          "z3_formula": "participated_steinhauer_1992_du_maurier_classic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "six_way_tie(leaderboard_1992_du_maurier_classic)",
+          "z3_formula": "six_way_tie_leaderboard_1992_du_maurier_classic == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_belgium(one_person_in_six_way_tie, leaderboard_1992_du_maurier_classic)",
+          "z3_formula": "from_belgium_one_person_in_six_way_tie_leaderboard_1992_du_maurier_classic == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "from_belgium(descampe, leaderboard_1992_du_maurier_classic)",
+          "z3_formula": "from_belgium_descampe_leaderboard_1992_du_maurier_classic == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "on_leaderboard(descampe, leaderboard_1992_du_maurier_classic)",
+          "z3_formula": "on_leaderboard_descampe_leaderboard_1992_du_maurier_classic == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "participated_all_on_leaderboard(leaderboard_1992_du_maurier_classic, 1992_du_maurier_classic)",
+          "z3_formula": "participated_all_on_leaderboard_leaderboard_1992_du_maurier_classic_1992_du_maurier_classic == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "in_six_way_tie(descampe, leaderboard_1992_du_maurier_classic)",
+          "z3_formula": "in_six_way_tie_descampe_leaderboard_1992_du_maurier_classic == Unknown",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "winner(steinhauer, 1992_du_maurier_classic)",
+          "z3_formula": "winner_steinhauer_1992_du_maurier_classic == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "participated(steinhauer, 1992_du_maurier_classic)",
+          "z3_formula": "participated_steinhauer_1992_du_maurier_classic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "six_way_tie(1992_du_maurier_classic)",
+          "z3_formula": "six_way_tie_1992_du_maurier_classic == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_belgium(descampe)",
+          "z3_formula": "from_belgium_descampe == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "on_leaderboard(descampe, 1992_du_maurier_classic)",
+          "z3_formula": "on_leaderboard_descampe_1992_du_maurier_classic == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all_participants_on_leaderboard(1992_du_maurier_classic)",
+          "z3_formula": "all_participants_on_leaderboard_1992_du_maurier_classic == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "from_belgium(X) -> possible_in_six_way_tie(X, 1992_du_maurier_classic)",
+          "z3_formula": "Implies(from_belgium_descampe, possible_in_six_way_tie_descampe_1992_du_maurier_classic)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "on_leaderboard(X, 1992_du_maurier_classic) & six_way_tie(1992_du_maurier_classic) -> possible_in_six_way_tie(X, 1992_du_maurier_classic)",
+          "z3_formula": "Implies(And(on_leaderboard_descampe_1992_du_maurier_classic, six_way_tie_1992_du_maurier_classic), possible_in_six_way_tie_descampe_1992_du_maurier_classic)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "in_six_way_tie(descampe, 1992_du_maurier_classic)",
+          "z3_formula": "in_six_way_tie_descampe_1992_du_maurier_classic == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "winner(1992_du_maurier_classic, steinhauer)",
+          "z3_formula": "winner_1992_du_maurier_classic_steinhauer == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "participated(steinhauer, 1992_du_maurier_classic)",
+          "z3_formula": "participated_steinhausuer_1992_du_maurier_classic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "six_way_tie(1992_du_maurier_classic)",
+          "z3_formula": "six_way_tie_1992_du_maurier_classic == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_belgium(one_of_six_way_tie, 1992_du_maurier_classic)",
+          "z3_formula": "from_belgium_one_of_six_way_tie_1992_du_maurier_classic == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_belgium(descampe, 1992_du_maurier_classic)",
+          "z3_formula": "from_belgium_descampe_1992_du_maurier_classic == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "on_leaderboard(descampe, 1992_du_maurier_classic)",
+          "z3_formula": "on_leaderboard_descampe_1992_du_maurier_classic == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "all_participants_on_leaderboard(1992_du_maurier_classic)",
+          "z3_formula": "all_participants_on_leaderboard_1992_du_maurier_classic == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "in_six_way_tie(descampe, 1992_du_maurier_classic)",
+          "z3_formula": "in_six_way_tie_descampe_1992_du_maurier_classic == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "winner(steinhauer, 1992_du_maurier_classic)",
+          "z3_formula": "winner_steinhauer_1992_du_maurier_classic == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "participated(steinhauer, 1992_du_maurier_classic)",
+          "z3_formula": "participated_steinhauer_1992_du_maurier_classic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "six_way_tie(1992_du_maurier_classic)",
+          "z3_formula": "six_way_tie_1992_du_maurier_classic == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_belgium(descampe)",
+          "z3_formula": "from_belgium_descampe == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "on_leaderboard(descampe, 1992_du_maurier_classic)",
+          "z3_formula": "on_leaderboard_descampe_1992_du_maurier_classic == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "participated_all(1992_du_maurier_classic)",
+          "z3_formula": "participated_all_1992_du_maurier_classic == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "six_way_tie(X) & from_belgium(Y) -> in_six_way_tie(Y, X)",
+          "z3_formula": "Implies(And(six_way_tie_1992_du_maurier_classic, from_belgium_descampe), in_six_way_tie_descampe_1992_du_maurier_classic)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "in_six_way_tie(descampe, 1992_du_maurier_classic)",
+          "z3_formula": "in_six_way_tie_descampe_1992_du_maurier_classic == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "winner(1992_du_maurier_classic, steinhauer)",
+          "z3_formula": "winner_1992_du_maurier_classic_steinhauer == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "participated(steinhauer, 1992_du_maurier_classic)",
+          "z3_formula": "participated_steinhauer_1992_du_maurier_classic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "six_way_tie(1992_du_maurier_classic)",
+          "z3_formula": "six_way_tie_1992_du_maurier_classic == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_belgium(descampe)",
+          "z3_formula": "from_belgium_descampe == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "on_leaderboard(descampe, 1992_du_maurier_classic)",
+          "z3_formula": "on_leaderboard_descampe_1992_du_maurier_classic == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "all_participants_on_leaderboard(1992_du_maurier_classic)",
+          "z3_formula": "all_participants_on_leaderboard_1992_du_maurier_classic == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "in_six_way_tie(descampe, 1992_du_maurier_classic)",
+          "z3_formula": "in_six_way_tie_descampe_1992_du_maurier_classic == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "winner(steinhauer, 1992, du_maurier_classic)",
+          "z3_formula": "winner_steinhauer_1992_du_maurier_classic == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "participated(steinhauer, 1992, du_maurier_classic)",
+          "z3_formula": "participated_steinhauer_1992_du_maurier_classic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "six_way_tie(1992, du_maurier_classic)",
+          "z3_formula": "six_way_tie_1992_du_maurier_classic == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_belgium(descampe)",
+          "z3_formula": "from_belgium_descampe == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "on_leaderboard(descampe, 1992, du_maurier_classic)",
+          "z3_formula": "on_leaderboard_descampe_1992_du_maurier_classic == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all_leaderboard_participated(1992, du_maurier_classic)",
+          "z3_formula": "all_leaderboard_participated_1992_du_maurier_classic == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "participated(X, Y, Z) -> on_leaderboard(X, Y, Z)",
+          "z3_formula": "Implies(participated_steinhauer_1992_du_maurier_classic, on_leaderboard_steinhauer_1992_du_maurier_classic)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "six_way_tie(X, Y) & from_belgium(Z) -> from_belgium(X)",
+          "z3_formula": "Implies(And(six_way_tie_1992_du_maurier_classic, from_belgium_descampe), from_belgium_1992_du_maurier_classic)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "from_belgium(1992, du_maurier_classic)",
+          "z3_formula": "from_belgium_1992_du_maurier_classic == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "winner(steinhauer, 1992, du_maurier_classic)",
+          "z3_formula": "winner_steinhauer_1992_du_maurier_classic == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "participated(steinhauer, 1992, du_maurier_classic)",
+          "z3_formula": "participated_steinhauer_1992_du_maurier_classic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "six_way_tie(1992, du_maurier_classic)",
+          "z3_formula": "six_way_tie_1992_du_maurier_classic == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_belgium(descampe)",
+          "z3_formula": "from_belgium_descampe == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "on_leaderboard(descampe, 1992, du_maurier_classic)",
+          "z3_formula": "on_leaderboard_descampe_1992_du_maurier_classic == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all_leaderboard_participated(1992, du_maurier_classic)",
+          "z3_formula": "all_leaderboard_participated_1992_du_maurier_classic == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "from_belgium(descampe) & on_leaderboard(descampe, 1992, du_maurier_classic) -> six_way_tie(1992, du_maurier_classic)",
+          "z3_formula": "Implies(And(from_belgium_descampe, on_leaderboard_descampe_1992_du_maurier_classic), six_way_tie_1992_du_maurier_classic)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "winner(steinhauer, 1992, du_maurier_classic) & participated(steinhauer, 1992, du_maurier_classic) -> six_way_tie(1992, du_maurier_classic)",
+          "z3_formula": "Implies(And(winner_steinhauer_1992_du_maurier_classic, participated_steinhauer_1992_du_maurier_classic), six_way_tie_1992_du_maurier_classic)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "six_way_tie(1992, du_maurier_classic) & on_leaderboard(descampe, 1992, du_maurier_classic) -> from_belgium(descampe)",
+          "z3_formula": "Implies(And(six_way_tie_1992_du_maurier_classic, on_leaderboard_descampe_1992_du_maurier_classic), from_belgium_descampe)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "six_way_tie(1992, du_maurier_classic)",
+          "z3_formula": "six_way_tie_1992_du_maurier_classic == Unknown",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "winner(1992_du_maurier_classic, steinhauer)",
+          "z3_formula": "winner_1992_du_maurier_classic_steinhauer == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "participated(1992_du_maurier_classic, steinhauer)",
+          "z3_formula": "participated_1992_du_maurier_classic_steinhauer == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "six_way_tie(1992_du_maurier_classic)",
+          "z3_formula": "six_way_tie_1992_du_maurier_classic == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_belgium(descampe)",
+          "z3_formula": "from_belgium_descampe == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "on_leaderboard(1992_du_maurier_classic, descampe)",
+          "z3_formula": "on_leaderboard_1992_du_maurier_classic_descampe == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all_on_leaderboard_participated(1992_du_maurier_classic)",
+          "z3_formula": "all_on_leaderboard_participated_1992_du_maurier_classic == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "from_belgium(X) & six_way_tie(Y) -> one_from_belgium_in_tie(X, Y)",
+          "z3_formula": "Implies(And(from_belgium_descampe, six_way_tie_1992_du_maurier_classic), one_from_belgium_in_tie_descampe_1992_du_maurier_classic)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "from_belgium(X) & on_leaderboard(Y, X) -> from_belgium_and_on_leaderboard(X, Y)",
+          "z3_formula": "Implies(And(from_belgium_descampe, on_leaderboard_1992_du_maurier_classic_descampe), from_belgium_and_on_leaderboard_descampe_1992_du_maurier_classic)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "all_on_leaderboard_participated(Y) -> all_participated_in_tie(Y)",
+          "z3_formula": "Implies(all_on_leaderboard_participated_1992_du_maurier_classic, all_participated_in_tie_1992_du_maurier_classic)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "in_six_way_tie(descampe, 1992_du_maurier_classic)",
+          "z3_formula": "in_six_way_tie_descampe_1992_du_maurier_classic == True",
+          "source_step": 10
+        }
+      ]
+    }
+  ]
+}

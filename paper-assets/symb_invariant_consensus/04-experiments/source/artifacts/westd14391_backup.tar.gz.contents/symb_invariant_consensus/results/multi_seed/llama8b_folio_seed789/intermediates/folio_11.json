@@ -1,0 +1,549 @@
+{
+  "problem": {
+    "id": "folio_11",
+    "problem": "Given the following premises:\nThere are six types of wild turkeys: Eastern wild turkey, Osceola wild turkey, Gould\u2019s wild turkey, Merriam\u2019s wild turkey, Rio Grande wild turkey, and Ocellated wild turkey. Tom is not an Eastern wild turkey. Tom is not an Osceola wild turkey. Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey. Tom is a wild turkey.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nJoey is a wild turkey.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (WildTurkey(x) \u2192 (Eastern(x) \u2228 Osceola(x) \u2228 Goulds(x) \u2228 Merriams(x) \u2228 Riogrande(x) \u2228 Ocellated(x)))",
+      "\u00ac(WildTurkey(tom) \u2227 Eastern(tom))",
+      "\u00ac(WildTurkey(tom) \u2227 Osceola(tom))",
+      "WildTurkey(tom) \u2192 \u00ac(Goulds(tom) \u2228 Merriams(tom) \u2228 Riogrande(tom))",
+      "WildTurkey(tom)"
+    ],
+    "conclusion_fol": "WildTurkey(joey)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 8.0,
+      "Unknown": 63.5
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and their implications.\n\nPremise 1: Tom is a wild turkey.\nThis premise directly tells us that Tom is a wild turkey. However, it doesn't give us any information about Joey.\n\nPremise 2: There are six types of wild turkeys: \n- Eastern wild turkey\n- Osceola wild turkey\n- Gould\u2019s wild turkey\n- Merriam\u2019s wild turkey\n- Rio Grande wild turkey\n- Ocellated wild turkey.\n\nThis premise lists the different types of wild turkeys but doesn't give us any information about Joey or Tom's type.\n\nPremise 3: Tom is not an Eastern wild turkey.\nThis premise eliminates one possibility for Tom but doesn't give us any information about Joey.\n\nPremise 4: Tom is not an Osceola wild turkey.\nThis premise further eliminates one possibility for Tom but doesn't give us any information about Joey.\n\nPremise 5: Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey.\nThis premise eliminates three more possibilities for Tom. Given that Tom is one of the six types of wild turkeys, and he is not one of the five mentioned (Eastern, Osceola, Gould's, Merriam's, or Rio Grande), we can conclude that Tom must be an Ocellated wild turkey.\n\nConclusion: Joey is a wild turkey.\n\nSince we have determined that Tom is an Ocellated wild turkey, we still don't know anything about Joey. There is no information provided about Joey's type, age, or any other characteristic that could be related to the conclusion.\n\nTherefore, the conclusion \"Joey is a wild turkey\" is uncertain, as we have no information to confirm or deny it.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises.\n\nPremises:\n\n1. There are six types of wild turkeys: Eastern wild turkey, Osceola wild turkey, Gould\u2019s wild turkey, Merriam\u2019s wild turkey, Rio Grande wild turkey, and Ocellated wild turkey.\n2. Tom is not an Eastern wild turkey.\n3. Tom is not an Osceola wild turkey.\n4. Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey.\n5. Tom is a wild turkey.\n\nConclusion: Joey is a wild turkey.\n\nAnalysis:\n\nFrom premise 5, we know Tom is a wild turkey. However, premise 1 tells us there are six types of wild turkeys, and premise 2 to 4 rule out five of them for Tom (Eastern, Osceola, Gould's, Merriam's, and Rio Grande). This leaves only one type: Ocellated wild turkey. \n\nHowever, since we are trying to determine whether the conclusion \"Joey is a wild turkey\" is true or not, and we do not have any information about Joey, we cannot determine that Joey is indeed an Ocellated wild turkey or any type of wild turkey. \n\nTherefore, we cannot confirm that Joey is a wild turkey, but we can confirm that Tom is an Ocellated wild turkey. Since we cannot determine the type of wild turkey that Joey is, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremises:\n\n1. There are six types of wild turkeys: Eastern wild turkey, Osceola wild turkey, Gould\u2019s wild turkey, Merriam\u2019s wild turkey, Rio Grande wild turkey, and Ocellated wild turkey.\n2. Tom is not an Eastern wild turkey.\n3. Tom is not an Osceola wild turkey.\n4. Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey.\n5. Tom is a wild turkey.\n\nFrom premise 1, we know that there are six types of wild turkeys, but we don't know any specific information about Joey.\n\nFrom premise 5, we know that Tom is a wild turkey.\n\nFrom premise 2-4, we can conclude that Tom is an Ocellated wild turkey, since he cannot be any of the other types.\n\nNow, let's analyze the conclusion: \"Joey is a wild turkey.\"\n\nThe conclusion is uncertain because we don't have any information about Joey's type of wild turkey. We only know about Tom, and the premises don't provide any information about Joey.\n\nHowever, since the conclusion asks only if Joey is a wild turkey, we can say that the conclusion is true because all the types of wild turkeys include Joey, and there are no other types of turkeys mentioned in the premises.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine if the conclusion is true, false, or uncertain, we need to analyze the given premises and the statement about Joey.\n\nPremises:\n\n1. There are six types of wild turkeys: \n   a. Eastern wild turkey\n   b. Osceola wild turkey\n   c. Gould\u2019s wild turkey\n   d. Merriam\u2019s wild turkey\n   e. Rio Grande wild turkey\n   f. Ocellated wild turkey\n\n2. Tom is not an Eastern wild turkey.\n3. Tom is not an Osceola wild turkey.\n4. Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey.\n5. Tom is a wild turkey.\n\nFrom premise 5, we can infer that Tom must be one of the six types of wild turkeys mentioned. \n\nFrom premises 2-4, we know that Tom is not any of the following types of wild turkeys: \n   a. Eastern wild turkey\n   b. Osceola wild turkey\n   c. Gould\u2019s wild turkey\n   d. Merriam\u2019s wild turkey\n   e. Rio Grande wild turkey\n\nCombining premises 5 and 2-4, we can infer that Tom must be the Ocellated wild turkey, since it's the only type of wild turkey left.\n\nNow, let's look at the statement about Joey:\nJoey is a wild turkey.\n\nWe don't have any direct information about Joey from the premises. Since the premises don't mention Joey, we can't make any conclusions about Joey's species.\n\nHowever, we can infer that Joey must be one of the six types of wild turkeys mentioned (a-f) since the statement \"Joey is a wild turkey\" is true. \n\nBut we can't conclude which specific type of wild turkey Joey is.\n\nTherefore, the conclusion \"Joey is a wild turkey\" is true, but the specific type of wild turkey Joey is remains uncertain.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion \"Joey is a wild turkey\" is true, false, or uncertain, we need to analyze the given premises and see if we can infer any information about Joey.\n\nPremise 1: There are six types of wild turkeys: Eastern wild turkey, Osceola wild turkey, Gould\u2019s wild turkey, Merriam\u2019s wild turkey, Rio Grande wild turkey, and Ocellated wild turkey.\n\nThis premise only lists the different types of wild turkeys, but it doesn't provide any information about Tom or Joey.\n\nPremise 2: Tom is not an Eastern wild turkey.\n\nThis premise tells us that Tom is not one specific type of wild turkey, but it doesn't tell us anything about the other types of wild turkeys.\n\nPremise 3: Tom is not an Osceola wild turkey.\n\nSimilar to Premise 2, this premise tells us that Tom is not another specific type of wild turkey.\n\nPremise 4: Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey.\n\nThis premise tells us that Tom is not three more specific types of wild turkeys.\n\nPremise 5: Tom is a wild turkey.\n\nThis premise tells us that Tom is a wild turkey, but it doesn't tell us which specific type of wild turkey he is.\n\nFrom the premises, we can conclude that Tom is one of the following types of wild turkeys: Ocellated wild turkey.\n\nNow, let's consider the conclusion: \"Joey is a wild turkey.\"\n\nSince we don't have any information about Joey, we can't determine whether the conclusion is true or false. However, we can conclude that Joey is not necessarily one of the six specific types of wild turkeys listed, but that doesn't necessarily mean he's not a wild turkey.\n\nTherefore, the conclusion \"Joey is a wild turkey\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion \"Joey is a wild turkey\" is true, false, or uncertain, we need to analyze the given premises.\n\n1. There are six types of wild turkeys: Eastern wild turkey, Osceola wild turkey, Gould\u2019s wild turkey, Merriam\u2019s wild turkey, Rio Grande wild turkey, and Ocellated wild turkey.\n   - This premise only lists the types of wild turkeys, but it does not provide any information about Tom or Joey.\n\n2. Tom is not an Eastern wild turkey.\n   - This premise tells us that Tom is not one specific type of wild turkey, but it does not exclude Tom from being any other type of wild turkey.\n\n3. Tom is not an Osceola wild turkey.\n   - Similar to premise 2, this tells us that Tom is not one specific type of wild turkey, but it does not exclude Tom from being any other type of wild turkey.\n\n4. Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey.\n   - This premise tells us that Tom is not three more specific types of wild turkeys. However, it does not exclude Tom from being an Ocellated wild turkey.\n\n5. Tom is a wild turkey.\n   - This premise tells us that Tom is indeed a wild turkey, but it does not specify which type of wild turkey he is.\n\nNow, let's analyze the given information about Joey:\nWe have no premises about Joey being a wild turkey or not. \n\nSince we have no information about Joey, we cannot determine whether the conclusion \"Joey is a wild turkey\" is true or false. \n\nTherefore, the conclusion \"Joey is a wild turkey\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will use a process of elimination. Given the information about Tom and the six types of wild turkeys, we need to determine if Joey being a wild turkey can be logically deduced.\n\nStep 1: Analyze the information about Tom.\n\n- Tom is not an Eastern wild turkey.\n- Tom is not an Osceola wild turkey.\n- Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey.\n- Tom is a wild turkey.\n\nFrom this information, we can conclude that Tom is an Ocellated wild turkey because that's the only type left.\n\nStep 2: Analyze the information about Joey.\n\nThere is no information provided about Joey being a wild turkey or being one of the six specific types of wild turkeys.\n\nStep 3: Determine if Joey being a wild turkey can be logically deduced.\n\nSince there is no information about Joey being a wild turkey, we cannot logically conclude that Joey is a wild turkey based on the information provided about Tom.\n\nStep 4: Conclusion.\n\nGiven the information provided, the conclusion that Joey is a wild turkey is uncertain.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will use the process of elimination and logical reasoning.\n\nPremises:\n\n1. There are six types of wild turkeys: Eastern wild turkey, Osceola wild turkey, Gould\u2019s wild turkey, Merriam\u2019s wild turkey, Rio Grande wild turkey, and Ocellated wild turkey.\n2. Tom is not an Eastern wild turkey.\n3. Tom is not an Osceola wild turkey.\n4. Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey.\n5. Tom is a wild turkey.\n\nConclusion: Joey is a wild turkey.\n\nTo evaluate the conclusion, we need to see if we can determine the type of wild turkey Joey is. However, the premises do not provide any information about Joey. They only provide information about Tom.\n\nFrom premise 5, we know that Tom is a wild turkey. We also know from premises 2-4 that Tom is not any of the five other types of wild turkeys (Eastern, Osceola, Gould's, Merriam's, or Rio Grande). This means that Tom must be an Ocellated wild turkey, as it is the only remaining type of wild turkey.\n\nThe conclusion states that Joey is a wild turkey. However, we do not have any information about Joey's type of wild turkey. We only know that Tom is an Ocellated wild turkey.\n\nTherefore, the conclusion is uncertain, as we cannot determine whether Joey is an Ocellated wild turkey or one of the other five types of wild turkeys.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to use the given premises to deduce the conclusion.\n\nPremise 1: Tom is a wild turkey.\nPremise 2: There are six types of wild turkeys: Eastern wild turkey, Osceola wild turkey, Gould's wild turkey, Merriam's wild turkey, Rio Grande wild turkey, and Ocellated wild turkey.\nPremise 3: Tom is not an Eastern wild turkey.\nPremise 4: Tom is not an Osceola wild turkey.\nPremise 5: Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey.\n\nWe are asked to determine whether the conclusion \"Joey is a wild turkey\" is true, false, or uncertain.\n\nFrom Premise 1, we know that Tom is a wild turkey. However, we do not have any information about Joey. \n\nLet's look at the types of wild turkeys mentioned in Premise 2. We can create a list of the six types of wild turkeys:\n\n1. Eastern wild turkey\n2. Osceola wild turkey\n3. Gould's wild turkey\n4. Merriam's wild turkey\n5. Rio Grande wild turkey\n6. Ocellated wild turkey\n\nFrom Premise 3, we know that Tom is not an Eastern wild turkey. This means Tom could be any of the other five types of wild turkeys.\n\nFrom Premise 4, we know that Tom is not an Osceola wild turkey. This means Tom could be any of the other four types of wild turkeys.\n\nFrom Premise 5, we know that Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey. This means Tom could be the Ocellated wild turkey, as it is the only type of wild turkey left.\n\nSo, we can conclude that Tom is the Ocellated wild turkey. However, we still do not have any information about Joey.\n\nSince there is no information about Joey, we cannot determine whether Joey is a wild turkey or not. Therefore, the conclusion \"Joey is a wild turkey\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion \"Joey is a wild turkey\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremises:\n1. Tom is not an Eastern wild turkey.\n2. Tom is not an Osceola wild turkey.\n3. Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey.\n4. Tom is a wild turkey.\n\nFrom premise 4, we know Tom is a wild turkey. \n\nGiven the six types of wild turkeys are: \n- Eastern wild turkey\n- Osceola wild turkey\n- Gould\u2019s wild turkey\n- Merriam\u2019s wild turkey\n- Rio Grande wild turkey\n- Ocellated wild turkey\n\nSince Tom is a wild turkey (premise 4), but Tom cannot be any of the 5 types (Eastern, Osceola, Gould's, Merriam's, Rio Grande) mentioned in premises 1-3, then Tom must be an Ocellated wild turkey.\n\nNow, we are asked to determine whether \"Joey is a wild turkey\" is true, false, or uncertain.\n\nThe premises do not mention Joey at all. The premises only discuss Tom. Since there is no information about Joey, we cannot determine whether Joey is a wild turkey with certainty.\n\nTherefore, the conclusion \"Joey is a wild turkey\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion \"Joey is a wild turkey\" is true, false, or uncertain, we need to examine the premises and analyze the information given.\n\nPremises:\n\n1. There are six types of wild turkeys: Eastern wild turkey, Osceola wild turkey, Gould\u2019s wild turkey, Merriam\u2019s wild turkey, Rio Grande wild turkey, and Ocellated wild turkey.\n2. Tom is not an Eastern wild turkey.\n3. Tom is not an Osceola wild turkey.\n4. Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey.\n5. Tom is a wild turkey.\n\nFrom the premises, we know that Tom is a wild turkey (premise 5), and he is not any of the specific types of wild turkeys mentioned (premises 2-4).\n\nThe conclusion is \"Joey is a wild turkey.\" To determine whether this conclusion is true, false, or uncertain, we need to see if we can deduce any information about Joey from the premises.\n\nSince Tom is a wild turkey (premise 5), and he is not any of the specific types of wild turkeys mentioned, it means that Tom must be an Ocellated wild turkey, as this is the only type of wild turkey not mentioned in premises 2-4.\n\nHowever, we cannot conclude anything about Joey from the premises. The information given is only about Tom, and there is no mention of Joey. Therefore, we cannot determine whether the conclusion \"Joey is a wild turkey\" is true or false.\n\nConclusion: The conclusion is uncertain, as we do not have enough information to determine whether Joey is a wild turkey or not. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. There are six types of wild turkeys:\n   - Eastern wild turkey\n   - Osceola wild turkey\n   - Gould\u2019s wild turkey\n   - Merriam\u2019s wild turkey\n   - Rio Grande wild turkey\n   - Ocellated wild turkey\n\n2. Tom is not an Eastern wild turkey.\n   - This means Tom can be any of the other five types of wild turkeys.\n\n3. Tom is not an Osceola wild turkey.\n   - Combining this with the previous statement, Tom can be any of the four remaining types of wild turkeys: Gould\u2019s, Merriam\u2019s, Rio Grande, or Ocellated.\n\n4. Tom is also not a Gould's wild turkey, or a Merriam's wild turkey, or a Rio Grande wild turkey.\n   - This means Tom can only be an Ocellated wild turkey, as it's the only type not excluded.\n\n5. Tom is a wild turkey.\n   - This premise is already given and doesn't add any new information.\n\nNow, let's examine the conclusion:\n\"Joey is a wild turkey.\"\n\nSince we don't have any information about Joey, we cannot determine whether the conclusion is true or false. The premises only provide information about Tom, not Joey.\n\nTherefore, the conclusion is uncertain, as there's no information about Joey to make a determination. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "Not(eastern_wild_turkey_tom) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "Not(osceola_wild_turkey_tom) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not goulds_wild_turkey(tom) & not merriams_wild_turkey(tom) & not rio_grande_wild_turkey(tom)",
+          "z3_formula": "And(Not(goulds_wild_turkey_tom), Not(merriams_wild_turkey_tom), Not(rio_grande_wild_turkey_tom)) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "Not(eastern_wild_turkey_tom) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "Not(osceola_wild_turkey_tom) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not (goulds_wild_turkey(tom) | merriam_wild_turkey(tom) | rio_grande_wild_turkey(tom))",
+          "z3_formula": "Not(Or(goulds_wild_turkey_tom, merriam_wild_turkey_tom, rio_grande_wild_turkey_tom)) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "Not(eastern_wild_turkey_tom) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "Not(osceola_wild_turkey_tom) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not (goulds_wild_turkey(tom) | merriams_wild_turkey(tom) | rio_grande_wild_turkey(tom))",
+          "z3_formula": "Not(Or(goulds_wild_turkey_tom, merriams_wild_turkey_tom, rio_grande_wild_turkey_tom)) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "wild_turkey(X) -> (eastern_wild_turkey(X) | osceola_wild_turkey(X) | goulds_wild_turkey(X) | merriams_wild_turkey(X) | rio_grande_wild_turkey(X) | ocellated_wild_turkey(X))",
+          "z3_formula": "Implies(wild_turkey_joey, Or(eastern_wild_turkey_joey, osceola_wild_turkey_joey, goulds_wild_turkey_joey, merriams_wild_turkey_joey, rio_grande_wild_turkey_joey, ocellated_wild_turkey_joey))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "not eastern_wild_turkey_tom == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "not osceola_wild_turkey_tom == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not goulds_wild_turkey(tom)",
+          "z3_formula": "not goulds_wild_turkey_tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not merriams_wild_turkey(tom)",
+          "z3_formula": "not merriams_wild_turkey_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not rio_grande_wild_turkey(tom)",
+          "z3_formula": "not rio_grande_wild_turkey_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "wild_turkey(X) -> (eastern_wild_turkey(X) | osceola_wild_turkey(X) | goulds_wild_turkey(X) | merriams_wild_turkey(X) | rio_grande_wild_turkey(X) | ocellated_wild_turkey(X))",
+          "z3_formula": "Implies(wild_turkey_tom, Or(eastern_wild_turkey_tom, osceola_wild_turkey_tom, goulds_wild_turkey_tom, merriams_wild_turkey_tom, rio_grande_wild_turkey_tom, ocellated_wild_turkey_tom))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not (eastern_wild_turkey(joey) | osceola_wild_turkey(joey) | goulds_wild_turkey(joey) | merriams_wild_turkey(joey) | rio_grande_wild_turkey(joey) | ocellated_wild_turkey(joey))",
+          "z3_formula": "Not(Or(eastern_wild_turkey_joey, osceola_wild_turkey_joey, goulds_wild_turkey_joey, merriams_wild_turkey_joey, rio_grande_wild_turkey_joey, ocellated_wild_turkey_joey))",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "not eastern_wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "not osceola_wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not goulds_wild_turkey(tom)",
+          "z3_formula": "not goulds_wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not merriams_wild_turkey(tom)",
+          "z3_formula": "not merriams_wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not rio_grande_wild_turkey(tom)",
+          "z3_formula": "not rio_grande_wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "wild_turkey(X) -> ocellated_wild_turkey(X)",
+          "z3_formula": "Implies(wild_turkey_tom, ocellated_wild_turkey_tom)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "wild_turkey(X) -> eastern_wild_turkey(X) | osceola_wild_turkey(X) | goulds_wild_turkey(X) | merriams_wild_turkey(X) | rio_grande_wild_turkey(X)",
+          "z3_formula": "Implies(wild_turkey_joey, Or(eastern_wild_turkey_joey, osceola_wild_turkey_joey, goulds_wild_turkey_joey, merriams_wild_turkey_joey, rio_grande_wild_turkey_joey))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(joey)",
+          "z3_formula": "unknown_joey == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "Not(eastern_wild_turkey_tom) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "Not(osceola_wild_turkey_tom) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not (goulds_wild_turkey(tom) | merriams_wild_turkey(tom) | rio_grande_wild_turkey(tom))",
+          "z3_formula": "Not(Or(goulds_wild_turkey_tom, merriams_wild_turkey_tom, rio_grande_wild_turkey_tom)) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "Not(eastern_wild_turkey_tom) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "Not(osceola_wild_turkey_tom) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not (goulds_wild_turkey(tom) | merriams_wild_turkey(tom) | rio_grande_wild_turkey(tom))",
+          "z3_formula": "Not(Or(goulds_wild_turkey_tom, merriams_wild_turkey_tom, rio_grande_wild_turkey_tom)) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "not eastern_wild_turkey_tom == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "not osceola_wild_turkey_tom == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not (goulds_wild_turkey(tom) | merriams_wild_turkey(tom) | rio_grande_wild_turkey(tom))",
+          "z3_formula": "not (goulds_wild_turkey_tom | merriams_wild_turkey_tom | rio_grande_wild_turkey_tom) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not known(joey)",
+          "z3_formula": "not known_joey == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(joey)",
+          "z3_formula": "uncertain_joey == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not eastern_wild_turkey(tom)",
+          "z3_formula": "not eastern_wild_turkey_tom == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not osceola_wild_turkey(tom)",
+          "z3_formula": "not osceola_wild_turkey_tom == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not (goulds_wild_turkey(tom) or merriams_wild_turkey(tom) or rio_grande_wild_turkey(tom))",
+          "z3_formula": "not (goulds_wild_turkey_tom or merriams_wild_turkey_tom or rio_grande_wild_turkey_tom) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "wild_turkey(tom)",
+          "z3_formula": "wild_turkey_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "ocellated_wild_turkey(tom)",
+          "z3_formula": "ocellated_wild_turkey_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "wild_turkey(joey)",
+          "z3_formula": "wild_turkey_joey == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 69,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 19
+    },
+    "maxsat_stats": {
+      "satisfied": 18,
+      "excluded": 1,
+      "total_weight": 67,
+      "solve_time_ms": 1.1041294783353806
+    },
+    "timing": {
+      "trace_gen_s": 5.487,
+      "extraction_s": 24.889,
+      "dedup_s": 0.327,
+      "maxsat_s": 0.002,
+      "total_s": 30.705
+    }
+  }
+}

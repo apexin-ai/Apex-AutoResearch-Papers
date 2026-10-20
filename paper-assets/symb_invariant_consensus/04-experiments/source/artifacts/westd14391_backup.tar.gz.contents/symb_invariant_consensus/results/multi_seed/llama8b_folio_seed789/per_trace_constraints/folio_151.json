@@ -1,0 +1,582 @@
+{
+  "pid": "folio_151",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishes(new_vessel_press, english)",
+          "z3_formula": "publishes_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(harry_potter)",
+          "z3_formula": "uncertain_harry_potter == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press)",
+          "z3_formula": "publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_published_books_in_english(new_vessel_press)",
+          "z3_formula": "all_published_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "book(neapolitan_chronicles, new_vessel_press)",
+          "z3_formula": "book_neapolitan_chronicles_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "book(palace_of_flies, new_vessel_press)",
+          "z3_formula": "book_palace_of_flies_new_vessel_press == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "published_by(new_vessel_press, harry_potter)",
+          "z3_formula": "published_by_new_vessel_press_harry_potter == False",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press)",
+          "z3_formula": "publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "book(neapolitan_chronicles, new_vessel_press)",
+          "z3_formula": "book_neapolitan_chronicles_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "book(palace_of_flies, new_vessel_press)",
+          "z3_formula": "book_palace_of_flies_new_vessel_press == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "book(harry_potter, new_vessel_press)",
+          "z3_formula": "book_harry_potter_new_vessel_press == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishes(New Vessel Press, English)",
+          "z3_formula": "publishes_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_of(New Vessel Press) are in English",
+          "z3_formula": "all_books_of_new_vessel_press_are_in_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(New Vessel Press, Neapolitan Chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from(Italian, Neapolitan Chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(New Vessel Press, Palace of Flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "publishes(X, English) & all_books_of(X) are in English -> publishes(X, English translations of foreign literature)",
+          "z3_formula": "Implies(And(publishes_new_vessel_press_english, all_books_of_new_vessel_press_are_in_english), publishes_new_vessel_press_english_translations_of_foreign_literature)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "publishes(New Vessel Press, English translations of foreign literature)",
+          "z3_formula": "publishes_new_vessel_press_english_translations_of_foreign_literature == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "published_by(New Vessel Press, Neapolitan Chronicles) & translated_from(Italian, Neapolitan Chronicles)",
+          "z3_formula": "And(published_by_new_vessel_press_neapolitan_chronicles, translated_from_italian_neapolitan_chronicles)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "published_by(New Vessel Press, Harry Potter)",
+          "z3_formula": "published_by_new_vessel_press_harry_potter == False",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "specializes_in_translating_foreign_literature(new_vessel_press)",
+          "z3_formula": "specializes_in_translating_foreign_literature_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(harry_potter_published_by_new_vessel_press)",
+          "z3_formula": "harry_potter_published_by_new_vessel_press == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishes(new_vessel_press, english)",
+          "z3_formula": "publishes_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_of(new_vessel_press, english)",
+          "z3_formula": "all_books_of_new_vessel_press_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "published_by(new_vessel_press, harry_potter)",
+          "z3_formula": "published_by_new_vessel_press_harry_potter == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press, specializes_in_translating_foreign_literature_into_english)",
+          "z3_formula": "publishing_house_new_vessel_press_specializes_in_translating_foreign_literature_into_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_published_by_new_vessel_press_are_in_english",
+          "z3_formula": "all_books_published_by_new_vessel_press_are_in_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "neapolitan_chronicles_published_by_new_vessel_press",
+          "z3_formula": "neapolitan_chronicles_published_by_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "neapolitan_chronicles_translated_from_italian",
+          "z3_formula": "neapolitan_chronicles_translated_from_italian == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "palace_of_flies_published_by_new_vessel_press",
+          "z3_formula": "palace_of_flies_published_by_new_vessel_press == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "publishing_house(X, specializes_in_translating_foreign_literature_into_english) -> ?(X, publishes, Y) & language(Y) == english",
+          "z3_formula": "Implies(publishing_house_new_vessel_press_specializes_in_translating_foreign_literature_into_english, And(?_new_vessel_press_publishes_harry_potter, language_harry_potter == english))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "?(X, publishes, Y) -> language(Y) == english",
+          "z3_formula": "Implies(?_new_vessel_press_publishes_harry_potter, language_harry_potter == english)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(harry_potter_published_by_new_vessel_press)",
+          "z3_formula": "uncertain_harry_potter_published_by_new_vessel_press == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press)",
+          "z3_formula": "publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "specializes_in_translation(new_vessel_press)",
+          "z3_formula": "specializes_in_translation_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_book(neapolitan_chronicles, new_vessel_press)",
+          "z3_formula": "published_book_neapolitan_chronicles_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_book(palace_of_flies, new_vessel_press)",
+          "z3_formula": "published_book_palace_of_flies_new_vessel_press == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "publishing_house(X) & specializes_in_translation(X) -> all_books_in_english(X)",
+          "z3_formula": "Implies(And(publishing_house_new_vessel_press, specializes_in_translation_new_vessel_press), all_books_in_english_new_vessel_press)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "published_book(X, Y) -> book_in_language(X, Y)",
+          "z3_formula": "Implies(published_book_neapolitan_chronicles_new_vessel_press, book_in_language_neapolitan_chronicles_new_vessel_press)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "published_book(X, Y) -> book_in_language(X, Y)",
+          "z3_formula": "Implies(published_book_palace_of_flies_new_vessel_press, book_in_language_palace_of_flies_new_vessel_press)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "translated_from_italian(X) -> book_in_language(X, italian)",
+          "z3_formula": "Implies(translated_from_italian_neapolitan_chronicles, book_in_language_neapolitan_chronicles_italian)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "published_by(new_vessel_press, harry_potter)",
+          "z3_formula": "published_by_new_vessel_press_harry_potter == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "specializes_in_new_vessel_press(english)",
+          "z3_formula": "specializes_in_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_new_vessel_press_books_in_english",
+          "z3_formula": "all_new_vessel_press_books_in_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by_new_vessel_press(neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by_new_vessel_press(palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishes(new_vessel_press, english)",
+          "z3_formula": "publishes_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books(new_vessel_press, english)",
+          "z3_formula": "all_books_new_vessel_press_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(harry_potter)",
+          "z3_formula": "uncertain_harry_potter == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishes(New Vessel Press, foreign literature)",
+          "z3_formula": "publishes_new_vessel_press_foreign_literature == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_of(New Vessel Press) are in English",
+          "z3_formula": "all_books_of_new_vessel_press_in_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(New Vessel Press, Neapolitan Chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from(Italian, Neapolitan Chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(New Vessel Press, Palace of Flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "published_by(New Vessel Press, Harry Potter)",
+          "z3_formula": "published_by_new_vessel_press_harry_potter == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press)",
+          "z3_formula": "publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "english_books(new_vessel_press)",
+          "z3_formula": "english_books_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "book(neapolitan_chronicles)",
+          "z3_formula": "book_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "book(palace_of_flies)",
+          "z3_formula": "book_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "publishing_house(X) & english_books(X) -> translations_of_foreign_literature(X)",
+          "z3_formula": "Implies(And(publishing_house_new_vessel_press, english_books_new_vessel_press), translations_of_foreign_literature_new_vessel_press)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "translations_of_foreign_literature(new_vessel_press)",
+          "z3_formula": "translations_of_foreign_literature_new_vessel_press == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not_connection(harry_potter, new_vessel_press)",
+          "z3_formula": "not_connection_harry_potter_new_vessel_press == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(harry_potter_published_by_new_vessel_press)",
+          "z3_formula": "uncertain_harry_potter_published_by_new_vessel_press == True",
+          "source_step": 9
+        }
+      ]
+    }
+  ]
+}

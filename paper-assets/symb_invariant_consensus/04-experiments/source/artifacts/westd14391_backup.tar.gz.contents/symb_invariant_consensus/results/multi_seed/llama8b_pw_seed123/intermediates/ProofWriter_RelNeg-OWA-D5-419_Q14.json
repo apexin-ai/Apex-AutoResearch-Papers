@@ -1,0 +1,1214 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-419_Q14",
+    "problem": "The bear likes the cow. The bear does not see the cow. The cow chases the bear. The cow is cold. The cow sees the dog. The dog likes the bear. The dog does not like the tiger. The tiger is not big. The tiger does not see the bear. The tiger sees the cow. If something likes the dog then it is round. If something sees the cow then it is round. If the cow is young and the bear does not see the cow then the bear is young. If something chases the dog then it likes the tiger. If something chases the dog and it is cold then it is young. If the bear likes the cow then the cow chases the dog. If something sees the bear and the bear is young then the bear is rough. If something chases the bear and the bear is young then the bear chases the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger likes the tiger.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nChases($x, $y, bool) ::: Does x chase y?\nCold($x, bool) ::: Is x cold?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nLikes(Bear, Cow, True) ::: The bear likes the cow.\nSees(Bear, Cow, False) ::: The bear does not see the cow.\nChases(Cow, Bear, True) ::: The cow chases the bear.\nCold(Cow, True) ::: The cow is cold.\nSees(Cow, Dog, True) ::: The cow sees the dog.\nLikes(Dog, Bear, True) ::: The dog likes the bear.\nLikes(Dog, Tiger, False) ::: The dog does not like the tiger.\nBig(Tiger, False) ::: The tiger is not big.\nSees(Tiger, Bear, False) ::: The tiger does not see the bear.\nSees(Tiger, Cow, True) ::: The tiger sees the cow.\n\nRules:\nLikes($x, Dog, True) >>> Round($x, True) ::: If something likes the dog then it is round.\nSees($x, Cow, True) >>> Round($x, True) ::: If something sees the cow then it is round.\nYoung(Cow, True) && Sees(Bear, Cow, False) >>> Young(Bear, True) ::: If the cow is young and the bear does not see the cow then the bear is young.\nChases($x, Dog, True) >>> Likes($x, Tiger, True) ::: If something chases the dog then it likes the tiger.\nChases($x, Dog, True) && Cold($x, True) >>> Young($x, True) ::: If something chases the dog and it is cold then it is young.\nLikes(Bear, Cow, True) >>> Chases(Cow, Dog, True) ::: If the bear likes the cow then the cow chases the dog.\nSees($x, Bear, True) && Young(Bear, True) >>> Rough(Bear, True) ::: If something sees the bear and the bear is young then the bear is rough.\nChases($x, Bear, True) && Young(Bear, True) >>> Chases(Bear, Dog, True) ::: If something chases the bear and the bear is young then the bear chases the dog.\n\nQuery:\nLikes(Tiger, Tiger, True) ::: The tiger likes the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 164.0
+    },
+    "answer_counts": {
+      "Unknown": 9
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The tiger likes the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given information:\n- The tiger is not big. (1)\n- The tiger does not see the bear. (5)\n- The tiger sees the cow. (8)\n\nWe can start by analyzing the statement \"If something likes the dog then it is round.\" (2) However, we cannot directly connect this to the tiger.\n\nThe statement \"If something sees the cow then it is round.\" (3) also does not directly relate to the tiger.\n\nHowever, we can analyze the statement \"If something chases the dog then it likes the tiger.\" (6) This statement implies that if something chases the dog, it might like the tiger. However, we have no information about the tiger chasing the dog.\n\nWe can also look at the statement \"If the cow is young and the bear does not see the cow then the bear is young.\" (4) However, this statement does not provide any information about the tiger.\n\nThe statement \"If something sees the bear and the bear is young then the bear is rough.\" (9) also does not provide any information about the tiger.\n\nThe statement \"If something chases the bear and the bear is young then the bear chases the dog.\" (10) is also irrelevant to the tiger.\n\nNow, let's analyze the statement \"If the bear likes the cow then the cow chases the dog.\" (7) However, we have no information about the bear liking the cow.\n\nWe can also analyze the statement \"If something is cold then it is young.\" (8) However, we have no information about the tiger being cold.\n\nGiven the information that the tiger sees the cow, we can look at the statement \"If something sees the cow then it is round.\" (3) However, we cannot conclude that the tiger is round.\n\nNow, we need to find any information that might help us conclude whether the tiger likes the tiger. Let's look at the given statements again.\n\nFrom the given information:\n- The dog likes the bear. (6)\n- The dog does not like the tiger. (7)\n\nHowever, we still cannot conclude that the tiger likes the tiger from this information.\n\nWe also have the statement \"If something chases the dog then it likes the tiger.\" (6) However, we still do not have any information about the tiger chasing the dog.\n\nLooking at the statement \"The bear likes the cow.\" (1) However, we still do not have any information about the tiger liking the bear or the tiger liking itself.\n\nNow, let's analyze the statement \"The dog likes the bear.\" (6) However, this does not help us conclude whether the tiger likes the tiger.\n\nIn order to conclude whether the tiger likes the tiger, we need information about the tiger liking or disliking something.\n\nUnfortunately, the given information does not provide any information about the tiger liking or disliking the tiger. However, it does provide information about the tiger seeing the cow, but this does not help us conclude whether the tiger likes the tiger.\n\nTherefore, the statement \"The tiger likes the tiger\" is unknown because we have no information about the tiger's feelings towards itself.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger likes the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger is not big.\n   This statement does not provide any information about the tiger's preferences.\n\n2. The tiger does not see the bear.\n   This statement does not provide any information about the tiger's preferences.\n\n3. The tiger sees the cow.\n   This statement does not provide any information about the tiger's preferences.\n\nWe need to find a statement that connects the tiger's preferences to the given conditions.\n\nFrom the given information, we know that:\n- If something likes the dog then it is round.\n- If something sees the cow then it is round.\n\nHowever, the tiger is not directly related to these conditions. \n\nAnother condition states:\n- If the cow is young and the bear does not see the cow then the bear is young.\n\nThis condition does not provide any information about the tiger.\n\nThe condition:\n- If something chases the dog then it likes the tiger.\n\nDoes not apply to the tiger, as there is no information that the tiger chases the dog.\n\nThe condition:\n- If something chases the dog and it is cold then it is young.\n\nDoes not apply to the tiger, as there is no information that the tiger chases the dog and it is cold.\n\nThe condition:\n- If the bear likes the cow then the cow chases the dog.\n\nDoes not apply to the tiger.\n\nThe condition:\n- If something sees the bear and the bear is young then the bear is rough.\n\nDoes not apply to the tiger, as there is no information that the tiger sees the bear and the bear is young.\n\nThe condition:\n- If something chases the bear and the bear is young then the bear chases the dog.\n\nDoes not apply to the tiger, as there is no information that the tiger chases the bear.\n\nSince we cannot find a condition that connects the tiger's preferences to the given conditions, we need to look for a condition that directly states the tiger's preferences.\n\nHowever, there is no condition that directly states \"The tiger likes the tiger.\"\n\nTherefore, the statement \"The tiger likes the tiger\" is unknown, as there is no information that directly connects the tiger's preferences to the given conditions.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger likes the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given information, we know:\n1. The dog likes the bear.\n2. If something likes the dog then it is round.\nSo, the bear is round.\n\n3. The bear does not see the cow.\n4. If the cow is young and the bear does not see the cow then the bear is young.\nWe cannot conclude that the bear is young based on the given information because we don't know if the cow is young or not.\n\n5. The tiger does not see the bear.\n6. The tiger sees the cow.\nWe do not have enough information to conclude that the tiger is round.\n\n7. The dog likes the bear.\n8. The tiger does not like the dog.\n9. If something chases the dog then it likes the tiger.\nWe cannot conclude that the tiger likes the tiger based on the given information because we do not know if anything chases the dog.\n\n10. The cow chases the bear.\n11. The bear likes the cow.\n12. If the bear likes the cow then the cow chases the dog.\nThis is a contradiction because the cow chases the bear, not the dog.\n\nBased on the information given, the statement \"The tiger likes the tiger\" is unknown because we do not have enough information to conclude if the tiger likes the tiger or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger likes the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger sees the cow. \n   We don't have any information about the tiger being round or not, but since it sees the cow, we can conclude that the tiger is round.\n\n2. The tiger is not big. \n   This statement is given, but it doesn't have any relation to the tiger liking or disliking another animal.\n\n3. The tiger does not see the bear. \n   This statement doesn't provide any new information to the tiger's characteristics.\n\nNow, let's analyze the information related to the tiger liking or disliking other animals.\n\n4. The dog likes the bear. \n   Since the dog likes the bear, we can't conclude anything about the tiger liking the bear.\n\n5. The dog does not like the tiger. \n   This information tells us that the tiger is not liked by the dog.\n\n6. If something likes the dog then it is round. \n   Since the dog is liked by the bear, we know that the bear is round.\n\n7. If something sees the cow then it is round. \n   Since the tiger sees the cow, we already concluded that the tiger is round.\n\n8. If the cow is young and the bear does not see the cow then the bear is young. \n   We don't have any information about the cow's age, so we can't determine the bear's age.\n\n9. If something chases the dog then it likes the tiger. \n   Since we don't have any information about any animal chasing the dog, we can't conclude anything about the tiger's likes.\n\n10. If something chases the dog and it is cold then it is young. \n    We don't have any information about an animal chasing the dog and being cold.\n\n11. If the bear likes the cow then the cow chases the dog. \n    Since the bear likes the cow, but we don't have any information about the cow chasing the dog.\n\n12. If something sees the bear and the bear is young then the bear is rough. \n    We don't have any information about the bear's age.\n\n13. If something chases the bear and the bear is young then the bear chases the dog. \n    We don't have any information about an animal chasing the bear.\n\nNow, let's look at the statement \"The tiger likes the tiger.\" To determine whether it's true or false, we need to see if we have any information about the tiger liking or disliking the tiger. \n\nFrom the information given, we know that:\n\n- The tiger sees the cow (round)\n- The tiger is not big\n- The dog does not like the tiger\n\nWe don't have any information about the tiger liking or disliking the tiger. Since we don't have any information about the tiger liking itself, we can't conclude whether the statement \"The tiger likes the tiger\" is true or false.\n\nTherefore, the answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger likes the tiger\" is true, false, or unknown, we need to use the given information and the rules to deduce the relationship between the tiger and itself.\n\n1. The dog likes the bear. \n   Since the dog likes the bear, the dog is round (rule 1).\n\n2. The tiger does not see the bear.\n   Since the tiger does not see the bear, the tiger is not round (rule 2).\n\n3. The tiger does not see the bear, but this does not directly relate to the tiger liking the tiger. \n\n4. The tiger sees the cow. \n   Since the tiger sees the cow, the tiger is round (rule 2). However, from rule 2, if something sees the cow then it is round. This means the tiger being round does not directly relate to it seeing the cow. Therefore, this statement is not enough to conclude the relationship between the tiger and the tiger.\n\n5. The dog does not like the tiger. \n   Since the dog does not like the tiger, we cannot conclude anything about the tiger liking the tiger from this statement.\n\n6. The tiger is not big.\n   This statement does not provide any information about the tiger liking the tiger.\n\n7. The bear likes the cow. \n   Since the bear likes the cow, the cow chases the dog (rule 8).\n\n8. The cow chases the bear. \n   Since the cow chases the bear, we cannot conclude anything about the tiger liking the tiger from this statement.\n\n9. The cow is cold. \n   Since the cow is cold, it is young (rule 4). However, this does not provide any information about the tiger liking the tiger.\n\n10. The bear does not see the cow. \n    Since the bear does not see the cow and the cow is young, the bear is young (rule 3).\n\n11. Since the bear is young, the bear chases the dog (rule 6).\n\n12. The dog likes the bear. \n    Since the dog likes the bear, the dog is round (rule 1).\n\n13. Since the dog is round and the bear is young, we cannot conclude anything about the tiger liking the tiger from this statement.\n\n14. The tiger sees the cow. \n    Since the tiger sees the cow and the cow is young, we cannot conclude anything about the tiger liking the tiger from this statement.\n\n15. The tiger does not see the bear. \n    Since the tiger does not see the bear and the bear is young, we cannot conclude anything about the tiger liking the tiger from this statement.\n\n16. The tiger does not like the dog. \n    This statement does not provide any information about the tiger liking the tiger.\n\n17. The tiger is not big. \n    This statement does not provide any information about the tiger liking the tiger.\n\nSince we cannot conclude anything about the tiger liking the tiger from the given information, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\nFrom the given conditions:\n\n1. If something likes the dog then it is round.\n2. If something sees the cow then it is round.\n3. If the cow is young and the bear does not see the cow then the bear is young.\n4. If something chases the dog then it likes the tiger.\n5. If something chases the dog and it is cold then it is young.\n6. If the bear likes the cow then the cow chases the dog.\n7. If something sees the bear and the bear is young then the bear is rough.\n8. If something chases the bear and the bear is young then the bear chases the dog.\n\nGiven information:\n- The bear likes the cow.\n- The bear does not see the cow.\n- The cow chases the bear.\n- The cow is cold.\n- The cow sees the dog.\n- The dog likes the bear.\n- The dog does not like the tiger.\n- The tiger is not big.\n- The tiger does not see the bear.\n- The tiger sees the cow.\n\nWe need to determine if the tiger likes the tiger.\n\nFrom condition 4: If something chases the dog then it likes the tiger. However, there is no information that the tiger chases the dog.\n\nFrom condition 5: If something chases the dog and it is cold then it is young. There is no information that the tiger chases the dog.\n\nFrom condition 1: If something likes the dog then it is round. There is no information that the tiger likes the dog.\n\nFrom condition 2: If something sees the cow then it is round. The tiger sees the cow, so the tiger is round.\n\nSince we cannot find any information that directly states the tiger likes the tiger or directly states the tiger does not like the tiger, we cannot determine if the statement \"The tiger likes the tiger\" is true or false.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications step by step.\n\n1. The bear likes the cow. \n2. The bear does not see the cow.\n3. The cow chases the bear.\n4. The cow is cold.\n5. The cow sees the dog.\n6. The dog likes the bear.\n7. The dog does not like the tiger.\n8. The tiger is not big.\n9. The tiger does not see the bear.\n10. The tiger sees the cow.\n\nLet's first determine the properties of the cow and the bear based on the given statements.\n\nFrom statement 4: The cow is cold.\nFrom statement 5: The cow sees the dog.\n\nSince the cow sees the dog, the cow is round (statement 6).\n\nFrom statement 3: The cow chases the bear.\nFrom statement 2: The bear does not see the cow.\nFrom statement 1: The bear likes the cow.\nHowever, if the bear likes the cow, then the cow must chase the dog (statement 5 and 1). \nThis is a contradiction because the cow is chasing the bear. \nHowever, we can still determine some properties of the bear and the cow.\n\nSince the cow is round, and the cow is cold, then the cow is young (statement 4 and statement 5).\n\nNow we can apply this information to the bear. \nSince the bear does not see the cow, and the cow is young, then the bear is young (statement 2 and 5).\n\nWe know the bear is young, but we do not know if the bear is rough or not. \n\nNow let's determine the properties of the dog.\n\nFrom statement 6: The dog likes the bear.\nFrom statement 7: The dog does not like the tiger.\nSince the dog likes the bear, then the dog is round (statement 5).\n\nNow let's determine the properties of the tiger.\n\nFrom statement 9: The tiger does not see the bear.\nFrom statement 10: The tiger sees the cow.\n\nSince the tiger sees the cow, then the tiger is round (statement 5).\n\nNow let's determine the properties of the statement \"The tiger likes the tiger.\"\n\nSince the tiger is round, then the tiger likes the dog (statement 6 is not directly related to the tiger, however, there is a rule that states if something sees the cow then it is round, and the tiger sees the cow, but we do not have a rule that states if something is round then it likes something. However, there is a rule that states if the bear likes the cow, then the cow chases the dog, but the bear does not like the cow, and the cow is round, and the cow does not chase the dog, therefore, there is no rule that states if the tiger is round then it likes something. We can only apply the rule that states if something is round then it likes the dog. This is not enough information to determine if the tiger likes the tiger or not. We can only say that the tiger likes the dog.) \n\nHowever, we also have the rule that if something chases the dog then it likes the tiger. We do not have any information that the tiger likes the tiger, but we do not have any information that something chases the dog and likes the tiger.\n\nHowever, we can apply another rule. If the cow is young and the bear does not see the cow, then the bear is young. We already determined that the bear is young, and the cow is young. However, we also have the rule that if something sees the bear and the bear is young then the bear is rough. We do not have any information that the tiger sees the bear, however, we can apply another rule that states if the bear likes the cow, then the cow chases the dog. This is not enough information to determine if the tiger likes the tiger or not. We can only say that the bear likes the cow, and the cow is young, and the bear is young.\n\nWe can apply another rule that states if something chases the dog and it is cold then it is young. We already determined that the cow is young, and the cow is cold.\n\nWe can apply another rule that states if something chases the dog then it likes the tiger. However, we do not have any information that something chases the dog and likes the tiger.\n\nSince we do not have any information that the tiger chases the dog, then we can conclude that the tiger likes the tiger is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller parts and apply the given conditions step by step.\n\n1. The bear likes the cow. (Initial condition)\n\n2. The bear does not see the cow. (Initial condition)\n\n3. The cow chases the bear. (Initial condition)\n\n4. The cow is cold. (Initial condition)\n\n5. The cow sees the dog. (Initial condition)\n\n6. The dog likes the bear. (Initial condition)\n\n7. The dog does not like the tiger. (Initial condition)\n\n8. The tiger is not big. (Initial condition)\n\n9. The tiger does not see the bear. (Initial condition)\n\n10. The tiger sees the cow. (Initial condition)\n\nNow, let's analyze the given conditions and apply them to determine the characteristics of the objects:\n\n- The cow sees the dog (Step 5), so the cow is round. (Condition 2)\n\n- The dog likes the bear (Step 6), but we don't know if the dog is round yet. \n\n- The tiger sees the cow (Step 10), so the tiger is round. (Condition 2)\n\n- The tiger does not like the dog (by transitive property of 'likes'). We know this because the dog does not like the tiger (Step 7).\n\n- The bear does not see the cow (Step 2), but the cow chases the bear (Step 3). This means the bear is not young because if the cow is young and the bear does not see the cow, then the bear is young (Condition 5). But the cow chases the bear, so the cow cannot be young.\n\n- The cow chases the bear (Step 3) and is cold (Step 4), so the cow is young. (Condition 6)\n\n- Since the cow is young (Step 11) and the bear does not see the cow (Step 2), the bear is young. (Condition 5)\n\n- However, we already established that the bear is not young (Step 12), so we have a contradiction here. Let's resolve it:\n\n- The bear is not young, which means the cow is not young (by transitive property of 'is young'). But we already established that the cow is young (Step 11), which is a contradiction. This means that our initial assumption about the bear's age was incorrect. The bear is actually young.\n\n- Since the bear is young (Step 13) and the tiger sees the bear (Step 9), the bear is rough. (Condition 9)\n\n- However, we have another contradiction here. We established that the bear is young (Step 13), but we already established that the bear is not young (Step 12). Let's resolve it:\n\n- The bear is young, which means the bear chases the dog (Condition 8).\n\n- The dog likes the bear (Step 6), so by transitive property of 'likes', the dog likes the dog.\n\n- Since the dog likes the dog (Step 16), the dog is round. (Condition 1)\n\n- The cow sees the dog (Step 5), so by transitive property of 'sees', the cow is round. But we already established that the cow is round (Step 11). \n\n- The dog likes the bear (Step 6) and the bear is young (Step 13), so the dog chases the bear. (Condition 7)\n\n- However, we already established that the bear is young (Step 13), and if the bear is young, then the bear chases the dog (Condition 8).\n\n- The tiger sees the cow (Step 10) and the cow is round (Step 11), so the tiger is round. (Condition 2)\n\nNow, let's get back to the original problem:\n\nThe tiger likes the tiger.\n\nWe have not seen any information that directly relates to the tiger liking the tiger. However, we know that the tiger sees the cow (Step 10) and the cow is round (Step 11), so the tiger is round. (Condition 2)\n\nWe also know that the tiger is not big (Step 8), and we know that the dog is round (Step 16), but we don't have any information that directly relates to the tiger liking the tiger.\n\nHowever, if something sees the cow and the cow is round, then it is round (Condition 3). We know that the tiger sees the cow (Step 10), but we don't know if the cow is round. However, we established that the cow is round (Step 11). \n\nWe also know that if something chases the bear and the bear is young, then the bear chases the dog (Condition 9). However, we established that the bear is young (Step 13), and if the bear is young, then the bear chases the dog (Condition 8).\n\nWe also know that if something chases the dog and it is cold, then it is young (Condition 6). We know that the cow is cold (Step 4) and chases the dog (Step 3), so the cow is young. (Condition 6)\n\nNow, let's analyze the given conditions and apply them to determine the characteristics of the objects:\n\n- The tiger sees the cow (Step 10), and the cow is round (Step 11), so the tiger is round. (Condition 2)\n\n- The tiger is round (Step 18), but we don't know if the tiger likes the tiger.\n\nHowever, we know that if the bear likes the cow, then the cow chases the dog (Condition 4). We know that the bear likes the cow (Step 1), but we don't have any information that directly relates to the cow chasing the dog. However, we established that the cow chases the dog (Step 3).\n\nWe also know that if the cow chases the bear, then the bear is young (Condition 5). However, we established that the bear is young (Step 13). However, we also established that the bear is not young (Step 12). Let's resolve it:\n\n- The bear is young, which means the cow is not young (by transitive property of 'is young'). But we already established that the cow is young (Step 11), which is a contradiction. This means that our initial assumption about the bear's age was incorrect. The bear is actually young.\n\nHowever, we established that the bear is not young (Step 12), which means that the cow is not young (by transitive property of 'is young'). But we already established that the cow is young (Step 11), which is a contradiction. This means that our initial assumption about the cow's age was incorrect. The cow is actually young.\n\nWe also know that if something sees the bear and the bear is young, then the bear is rough (Condition 9). We know that the tiger sees the bear (Step 9), but we don't know if the bear is young. However, we established that the bear is young (Step 13), and if the bear is young, then the bear is rough (Condition 9). However, we established that the bear is not young (Step 12), which means that the bear is not rough. However, we established that the bear is young (Step 13), which means that the bear is rough. Let's resolve it:\n\n- The bear is young, which means the bear is rough. (Condition 9)\n\nWe also know that if something chases the dog and it is cold, then it is young (Condition 6). We know that the cow is cold (Step 4) and chases the dog (Step 3), so the cow is young. (Condition 6)\n\nWe also know that if the bear likes the cow, then the cow chases the dog (Condition 4). We know that the bear likes the cow (Step 1), but we don't have any information that directly relates to the cow chasing the dog. However, we established that the cow chases the dog (Step 3).\n\nHowever, we established that the bear is young (Step 13), and if the bear is young, then the bear chases the dog (Condition 8).\n\nWe also know that if something chases the bear and the bear is young, then the bear chases the dog (Condition 8). We know that the cow chases the bear (Step 3), and the bear is young (Step 13), so the bear chases the dog. (Condition 8)\n\nHowever, we already established that the bear is young (Step 13), and if the bear is young, then the bear chases the dog (Condition 8).\n\nWe also know that if something likes the dog, then it is round (Condition 1). However, we don't have any information that directly relates to the tiger liking the dog. However, we established that the tiger is round (Step 18).\n\nHowever, we established that the bear likes the cow (Step 1), and we don't have any information that directly relates to the bear liking the tiger.\n\nHowever, we established that the tiger sees the cow (Step 10), and the cow is round (Step 11), so the tiger is round. (Condition 2)\n\nHowever, we established that the tiger is round (Step 18), but we don't know if the tiger likes the tiger.\n\nHowever, we know that if something sees the bear and the bear is young, then the bear is rough (Condition 9). We know that the tiger sees the bear (Step 9), but we don't know if the bear is young. However, we established that the bear is young (Step 13), and if the bear is young, then the bear is rough (Condition 9).\n\nHowever, we established that the bear is not",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger likes the tiger\" is true, false, or unknown, we need to analyze the given information and the logical rules.\n\nFrom the given information:\n- The tiger does not see the bear.\n- The tiger sees the cow.\n\nFrom the logical rules:\n- If something sees the cow then it is round. (Rule 2)\n- If something sees the cow then it is round. (This rule does not provide any new information, so we can ignore the repetition.)\n- If the cow is young and the bear does not see the cow then the bear is young. (Rule 5)\n- If something chases the dog then it likes the tiger. (Rule 7)\n- If something chases the dog and it is cold then it is young. (Rule 8)\n- If the bear likes the cow then the cow chases the dog. (Rule 10)\n- If something sees the bear and the bear is young then the bear is rough. (Rule 12)\n- If something chases the bear and the bear is young then the bear chases the dog. (Rule 13)\n\nNow, let's try to find the information we need to determine whether the tiger likes the tiger.\n\nFrom the given information:\n- The tiger does not like the dog (Implicit: If the dog likes the bear, then it is round. But it is not given that the tiger likes the bear.)\n\nFrom the logical rules:\n- If something likes the dog then it is round. (Rule 1)\n- This rule does not provide any information about the tiger's preference.\n\nSince we do not have any information about the tiger's preference for the dog, we cannot directly determine whether the tiger likes the tiger.\n\nHowever, we can conclude that the tiger is round because it sees the cow (Rule 2).\n\nNow, let's examine the statement: \"The tiger likes the tiger.\"\n\nWe cannot determine whether the tiger likes the tiger because we do not have any information about the tiger's preference for the dog. But we can see that the tiger is round.\n\nSo, the answer is: Unknown",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. Let's break it down step by step.\n\n1. The bear likes the cow. \n   - We don't have enough information to determine if the tiger likes the tiger yet, so we'll keep this in mind.\n\n2. The bear does not see the cow.\n   - No information about the tiger.\n\n3. The cow chases the bear.\n   - This statement gives us a relationship between the cow and the bear, but not directly related to the tiger.\n\n4. The cow is cold.\n   - This statement alone doesn't give us any information about the tiger or the statement we want to evaluate.\n\n5. The cow sees the dog.\n   - Since the cow sees the dog, it implies that the cow is round (from statement 6).\n\n6. The dog likes the bear.\n   - We know the dog likes the bear, but this doesn't tell us anything about the tiger.\n\n7. The dog does not like the tiger.\n   - This tells us that the tiger is not liked by the dog.\n\n8. The tiger is not big.\n   - No information about the tiger liking the tiger yet.\n\n9. The tiger does not see the bear.\n   - This statement implies that the tiger is not round because it doesn't see the cow (from statement 5).\n\n10. The tiger sees the cow.\n    - Since the tiger sees the cow, it implies that the tiger is round (from statement 5).\n\n11. If something likes the dog then it is round.\n    - This statement is a general rule, but it's already covered in the previous rules.\n\n12. If something sees the cow then it is round.\n    - This statement is also a general rule and is already covered in the previous rules.\n\n13. If the cow is young and the bear does not see the cow then the bear is young.\n    - We don't have enough information to determine if the cow is young, so this statement is irrelevant.\n\n14. If something chases the dog then it likes the tiger.\n    - This statement is a general rule, but we don't have any information about anything chasing the dog.\n\n15. If something chases the dog and it is cold then it is young.\n    - We don't have enough information to determine if the cow is young, so this statement is irrelevant.\n\n16. If the bear likes the cow then the cow chases the dog.\n    - This statement is a general rule, but it's not directly related to the statement we want to evaluate.\n\n17. If something sees the bear and the bear is young then the bear is rough.\n    - We don't have enough information to determine if the bear is young, so this statement is irrelevant.\n\n18. If something chases the bear and the bear is young then the bear chases the dog.\n    - We don't have enough information to determine if the bear is young, so this statement is irrelevant.\n\nNow, let's go back to our main goal: to determine if the statement \"The tiger likes the tiger\" is true, false, or unknown.\n\nFrom statement 7, we know that the tiger does not like the dog. Statement 10 tells us that the tiger is round because it sees the cow. Statement 9 tells us that the tiger does not see the bear.\n\nHowever, we don't have any information about the tiger liking itself. There are no rules that directly relate to \"something likes itself,\" so we can't make any conclusions based on the given statements.\n\nTherefore, the statement \"The tiger likes the tiger\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger likes the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger does not see the bear. (Statement 8)\n2. The tiger sees the cow. (Statement 10)\n\nFrom statement 2, since the tiger sees the cow, the tiger is round. (Rule 2)\n\n3. The dog likes the bear. (Statement 5)\n4. The dog does not like the tiger. (Statement 6)\n\nThis information does not provide any direct relation between the tiger and the bear. However, it shows that the dog, which likes the bear, does not like the tiger. This does not directly affect the statement \"The tiger likes the tiger\" but it is worth noting.\n\n5. The tiger is not big. (Statement 9)\n\nThis information does not provide any direct relation to the statement \"The tiger likes the tiger\".\n\n6. If something chases the dog, then it likes the tiger. (Rule 5)\n\nSince there is no information that the tiger chases the dog, this rule does not apply to the tiger.\n\n7. If something sees the bear and the bear is young, then the bear is rough. (Rule 7)\n\nWe do not have any information that the bear is young. However, if the bear is young, this rule might be applicable in the future. \n\n8. If the cow is young and the bear does not see the cow, then the bear is young. (Rule 3)\n\nWe do not have any information that the cow is young or that the bear does not see the cow. However, if the cow is young and the bear does not see the cow, then the bear is young. This rule might be applicable in the future.\n\n9. If the bear likes the cow, then the cow chases the dog. (Rule 8)\n\nWe do not have any information that the bear likes the cow.\n\n10. If the bear is young and the cow is young, then the bear chases the dog. (Rule 6)\n\nWe do not have any information that the bear or the cow are young.\n\n11. The cow is cold. (Statement 4)\n\nThis information does not provide any direct relation to the statement \"The tiger likes the tiger\".\n\n12. The cow chases the bear. (Statement 2)\n\nThis information does not provide any direct relation to the statement \"The tiger likes the tiger\".\n\n13. The bear does not see the cow. (Statement 2)\n\nThis information does not provide any direct relation to the statement \"The tiger likes the tiger\".\n\n14. The bear likes the cow. (Statement 1)\n\nThis information does not provide any direct relation to the statement \"The tiger likes the tiger\".\n\nNow, we need to find a relation between the tiger and itself.\n\nFrom the information given, we know that the tiger sees the cow (Statement 10), which means the tiger is round (Rule 2). However, we do not have any information about the tiger liking itself.\n\nSince there is no information provided that directly relates to the statement \"The tiger likes the tiger\", we cannot determine whether the statement is true or false. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, let's break it down into smaller parts and use the given information to determine the truth of the statement.\n\n1. The tiger is not big.\n2. The tiger sees the cow.\n3. If something sees the cow, then it is round. (This does not apply to the tiger, as it is a 'sees the cow' statement, but we will keep it in mind for other animals.)\n4. The tiger does not see the bear.\n\nFrom the information given, we know that the tiger sees the cow, but we cannot determine if the tiger is round. However, we can use other information to determine if the tiger likes the tiger.\n\n5. If something chases the dog, then it likes the tiger. (This does not apply to the tiger.)\n6. The tiger does not see the bear, so it does not chase the bear.\n7. The tiger sees the cow, but we do not have any information about the tiger chasing the cow.\n\nNow, let's consider the possible statements that could lead us to determine if the tiger likes the tiger.\n\n8. If something sees the bear and the bear is young then the bear is rough.\n9. If something chases the bear and the bear is young then the bear chases the dog.\n10. If the bear likes the cow then the cow chases the dog.\n11. The bear does not see the cow.\n12. The cow chases the bear.\n13. The cow is cold.\n\nFrom the above information, we can determine that the cow is cold and chases the bear, but we cannot determine if the bear is young.\n\nHowever, let's look at the statement \"If the cow is young and the bear does not see the cow then the bear is young.\" We do not know if the cow is young, but we can use the fact that the bear does not see the cow and the cow chases the bear to determine that the cow is not young.\n\n14. If the cow is not young and the bear does not see the cow, then the cow is young is false. (This means that the cow is not young because the bear does not see the cow, but this is not the case. The correct interpretation is that the bear does not see the cow because the cow is young.)\n15. If the bear does not see the cow and the cow is young then the bear is young. (This is a correct interpretation of the statement.)\n\nFrom the information given, we can conclude that the bear does not see the cow because the cow is young. Now, let's consider the statement \"If the bear sees the cow, then the bear is round.\" We do not have any information about the bear seeing the cow, but we can use the fact that the bear does not see the cow and the cow is young to determine that the bear is not round.\n\nHowever, we can use the fact that the bear likes the cow to determine if the bear is round.\n\n16. If the bear likes the cow, then the cow chases the dog. (This is the case.)\n17. The cow is cold.\n18. If something chases the dog and it is cold, then it is young. (This applies to the cow.)\n19. The cow is young. (This is a correct interpretation of the statement.)\n\nFrom the information given, we can conclude that the cow is young and the bear likes the cow, which means that the bear is young.\n\nNow, let's consider the statement \"If something sees the bear and the bear is young then the bear is rough.\" We know that the bear is young, but we do not have any information about something seeing the bear.\n\nHowever, we can use the fact that the bear does not see the cow and the cow is young to determine that the bear is young, which means that the bear is rough.\n\n20. The bear is rough. (This is a correct interpretation of the statement.)\n\nNow, let's consider the statement \"The tiger likes the tiger.\" We know that the tiger does not see the bear and does not chase the bear, but we do not have any information about the tiger chasing the dog or liking the dog.\n\nHowever, we can use the fact that the tiger sees the cow to determine that the tiger is round.\n\n21. If something sees the cow, then it is round. (This applies to the tiger.)\n22. The tiger is round. (This is a correct interpretation of the statement.)\n\nNow, let's consider the possible statements that could lead us to determine if the tiger likes the tiger.\n\n23. If something likes the dog, then it is round. (This does not apply to the tiger.)\n24. The tiger sees the cow, but we do not have any information about the tiger liking the dog.\n\nHowever, we can use the fact that the tiger is round to determine if the tiger likes the tiger.\n\n25. If something is round, then it likes the tiger. (This is the only possible interpretation.)\n26. The tiger is round.\n27. The tiger likes the tiger. (This is a correct interpretation of the statement.)\n\nThe final answer is \\boxed{Unknown}, because the information given is not sufficient to determine if the tiger likes the tiger.",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "not big(tiger)",
+          "z3_formula": "not big_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(tiger, bear)",
+          "z3_formula": "not sees_tiger_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> round(X)",
+          "z3_formula": "Implies(likes_tiger_dog, round_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> round(X)",
+          "z3_formula": "Implies(sees_tiger_cow, round_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_dog, likes_tiger_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_cow, cold_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bear, cow) -> chases(cow, dog)",
+          "z3_formula": "Implies(likes_bear_cow, chases_cow_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, tiger)",
+          "z3_formula": "likes_tiger_tiger == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(tiger)",
+          "z3_formula": "not big_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(tiger, bear)",
+          "z3_formula": "not sees_tiger_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> round(X)",
+          "z3_formula": "Implies(likes_tiger_dog, round_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> round(X)",
+          "z3_formula": "Implies(sees_tiger_cow, round_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(likes_tiger_dog, cold_tiger), young_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_dog, likes_tiger_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(chases_tiger_dog, cold_tiger), young_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bear, cow) -> chases(cow, dog)",
+          "z3_formula": "Implies(likes_bear_cow, chases_cow_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & young(bear) -> rough(bear)",
+          "z3_formula": "Implies(And(sees_tiger_bear, young_bear), rough_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & young(bear) -> chases(bear, dog)",
+          "z3_formula": "Implies(And(chases_tiger_bear, young_bear), chases_bear_dog)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> round(X)",
+          "z3_formula": "Implies(likes_dog_bear, round_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_see(bear, cow)",
+          "z3_formula": "does_not_see_bear_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(cow) & does_not_see(bear, cow) -> young(bear)",
+          "z3_formula": "Implies(And(young_cow, does_not_see_bear_cow), young_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_see(tiger, bear)",
+          "z3_formula": "does_not_see_tiger_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, tiger)",
+          "z3_formula": "Implies(chases_dog_tiger, likes_tiger_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, tiger)",
+          "z3_formula": "likes_tiger_tiger == Unknown",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cow)",
+          "z3_formula": "likes_bear_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bear, cow) -> chases(cow, dog)",
+          "z3_formula": "Implies(likes_bear_cow, chases_cow_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cow, dog)",
+          "z3_formula": "chases_cow_dog == False",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not big(tiger)",
+          "z3_formula": "Not(big_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(tiger, bear)",
+          "z3_formula": "Not(sees_tiger_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(dog, tiger)",
+          "z3_formula": "Not(likes_dog_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> round(X)",
+          "z3_formula": "Implies(likes_dog_bear, round_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> round(X)",
+          "z3_formula": "Implies(sees_tiger_cow, round_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(cow) & not sees(bear, cow) -> young(bear)",
+          "z3_formula": "Implies(And(young_cow, Not(sees_bear_cow)), young_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, tiger)",
+          "z3_formula": "Implies(chases_X_dog, likes_X_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(chases_X_dog, cold_X), young_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bear, cow) -> chases(cow, dog)",
+          "z3_formula": "Implies(likes_bear_cow, chases_cow_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & young(bear) -> rough(bear)",
+          "z3_formula": "Implies(And(sees_X_bear, young_bear), rough_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & young(bear) -> chases(bear, dog)",
+          "z3_formula": "Implies(And(chases_X_bear, young_bear), chases_bear_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, tiger)",
+          "z3_formula": "likes_tiger_tiger == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> round(X)",
+          "z3_formula": "Implies(likes_dog_bear, round_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(tiger, bear)",
+          "z3_formula": "not sees_tiger_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not sees(X, Y) -> not round(X)",
+          "z3_formula": "Implies(not sees_tiger_bear, not round_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> round(X)",
+          "z3_formula": "Implies(sees_tiger_cow, round_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(dog, tiger)",
+          "z3_formula": "not likes_dog_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not big(tiger)",
+          "z3_formula": "not big_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cow)",
+          "z3_formula": "likes_bear_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> chases(Y, X)",
+          "z3_formula": "Implies(likes_bear_cow, chases_cow_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_cow, young_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(bear, cow)",
+          "z3_formula": "not sees_bear_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "not sees(X, Y) & young(Y) -> young(X)",
+          "z3_formula": "Implies(And(not sees_bear_cow, young_cow), young_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, dog)",
+          "z3_formula": "chases_bear_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(tiger, dog)",
+          "z3_formula": "not likes_tiger_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "not big(tiger)",
+          "z3_formula": "not big_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & young(Y) -> round(X)",
+          "z3_formula": "Implies(And(sees_tiger_cow, young_cow), round_tiger)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(tiger, bear)",
+          "z3_formula": "not sees_tiger_bear == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "not sees(X, Y) & young(Y) -> young(X)",
+          "z3_formula": "Implies(And(not sees_tiger_bear, young_bear), young_tiger)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(tiger, dog)",
+          "z3_formula": "not likes_tiger_dog == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "not big(tiger)",
+          "z3_formula": "not big_tiger == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cow)",
+          "z3_formula": "likes_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(bear, cow)",
+          "z3_formula": "Not(sees_bear_cow) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, dog)",
+          "z3_formula": "sees_cow_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(dog, tiger)",
+          "z3_formula": "Not(likes_dog_tiger) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not big(tiger)",
+          "z3_formula": "Not(big_tiger) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(tiger, bear)",
+          "z3_formula": "Not(sees_tiger_bear) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, tiger)",
+          "z3_formula": "Implies(chases_X_dog, likes_X_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(chases_X_dog, cold_X), young_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> round(X)",
+          "z3_formula": "Implies(likes_X_dog, round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> round(X)",
+          "z3_formula": "Implies(sees_X_cow, round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bear, cow) -> chases(cow, dog)",
+          "z3_formula": "Implies(likes_bear_cow, chases_cow_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & young(bear) -> rough(X)",
+          "z3_formula": "Implies(And(sees_X_bear, young_bear), rough_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & young(bear) -> chases(bear, dog)",
+          "z3_formula": "Implies(And(chases_X_bear, young_bear), chases_bear_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cow)",
+          "z3_formula": "likes_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(bear, cow)",
+          "z3_formula": "Not(sees_bear_cow) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, dog)",
+          "z3_formula": "sees_cow_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> likes(X, bear)",
+          "z3_formula": "Implies(round_cow, likes_cow_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> likes(X, dog)",
+          "z3_formula": "Implies(round_tiger, likes_tiger_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> chases(X, dog)",
+          "z3_formula": "Implies(likes_bear_cow, chases_bear_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(young_cow, cold_cow), young_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not sees(Y, X) -> young(Y)",
+          "z3_formula": "Implies(And(young_bear, Not(sees_bear_cow)), young_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & young(bear) -> rough(bear)",
+          "z3_formula": "Implies(And(sees_tiger_bear, young_bear), rough_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(chases_cow_dog, cold_cow), young_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_dog, likes_tiger_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, dog)",
+          "z3_formula": "likes_tiger_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, tiger)",
+          "z3_formula": "likes_tiger_tiger == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cow)",
+          "z3_formula": "likes_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(bear, cow)",
+          "z3_formula": "not_sees_bear_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, dog)",
+          "z3_formula": "sees_cow_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(dog, tiger)",
+          "z3_formula": "not_likes_dog_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not big(tiger)",
+          "z3_formula": "not_big_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(tiger, bear)",
+          "z3_formula": "not_sees_tiger_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & round(Y) -> round(X)",
+          "z3_formula": "Implies(And(sees_tiger_cow, round_cow), round_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> chases(Y, dog)",
+          "z3_formula": "Implies(likes_bear_cow, chases_cow_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & young(Y) -> chases(X, dog)",
+          "z3_formula": "Implies(And(chases_cow_bear, young_bear), chases_cow_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(chases_cow_dog, cold_cow), young_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_bear, rough_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & young(Y) -> rough(Y)",
+          "z3_formula": "Implies(And(sees_tiger_bear, young_bear), rough_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> likes(Y, Y)",
+          "z3_formula": "Implies(likes_dog_bear, likes_bear_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> round(X)",
+          "z3_formula": "Implies(sees_tiger_cow, round_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, cow) -> young(bear)",
+          "z3_formula": "Implies(And(young_bear, sees_tiger_cow), young_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_dog, likes_tiger_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(chases_tiger_dog, cold_tiger), young_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> chases(X, dog)",
+          "z3_formula": "Implies(likes_tiger_cow, chases_tiger_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & young(X) -> rough(X)",
+          "z3_formula": "Implies(And(sees_tiger_bear, young_bear), rough_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & young(X) -> chases(X, dog)",
+          "z3_formula": "Implies(And(chases_tiger_bear, young_bear), chases_tiger_dog)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cow)",
+          "z3_formula": "likes_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(tiger, cow)",
+          "z3_formula": "Not(sees_tiger_cow) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, dog)",
+          "z3_formula": "sees_cow_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bear)",
+          "z3_formula": "likes_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(dog, tiger)",
+          "z3_formula": "Not(likes_dog_tiger) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not big(tiger)",
+          "z3_formula": "Not(big_tiger) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(tiger, bear)",
+          "z3_formula": "Not(sees_tiger_bear) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> round(X)",
+          "z3_formula": "Implies(likes_dog_bear, round_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> round(X)",
+          "z3_formula": "Implies(sees_cow_dog, round_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not sees(Y, X) -> young(Y)",
+          "z3_formula": "Implies(And(young_cow, Not(sees_bear_cow)), young_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, tiger)",
+          "z3_formula": "Implies(chases_dog_bear, likes_bear_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(chases_dog_bear, cold_bear), young_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> chases(X, dog)",
+          "z3_formula": "Implies(likes_cow_bear, chases_bear_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & young(X) -> rough(X)",
+          "z3_formula": "Implies(And(sees_bear_dog, young_dog), rough_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & young(X) -> chases(X, dog)",
+          "z3_formula": "Implies(And(chases_bear_dog, young_dog), chases_dog_dog)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> round(X)",
+          "z3_formula": "Implies(sees_tiger_cow, round_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not big(tiger)",
+          "z3_formula": "Not(big_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> likes(X, tiger)",
+          "z3_formula": "Implies(chases_X_dog, likes_X_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & young(bear) -> rough(bear)",
+          "z3_formula": "Implies(And(sees_X_bear, young_bear), rough_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(cow) & not sees(bear, cow) -> young(bear)",
+          "z3_formula": "Implies(And(young_cow, Not(sees_bear_cow)), young_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bear, cow) -> chases(cow, dog)",
+          "z3_formula": "Implies(likes_bear_cow, chases_cow_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(bear) & young(cow) -> chases(bear, dog)",
+          "z3_formula": "Implies(And(young_bear, young_cow), chases_bear_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(bear, cow)",
+          "z3_formula": "Not(sees_bear_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cow)",
+          "z3_formula": "likes_bear_cow == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(tiger)",
+          "z3_formula": "Not(big_tiger)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> round(X)",
+          "z3_formula": "Implies(sees_tiger_cow, round_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(tiger, bear)",
+          "z3_formula": "Not(sees_tiger_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(chases_cow_dog, cold_cow), young_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & young(bear) -> rough(bear)",
+          "z3_formula": "Implies(And(sees_bear_bear, young_bear), rough_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> round(X)",
+          "z3_formula": "Implies(sees_tiger_cow, round_tiger)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(round_tiger, likes_tiger_tiger)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, tiger)",
+          "z3_formula": "likes_tiger_tiger == True",
+          "source_step": 27
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 181,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 75
+    },
+    "maxsat_stats": {
+      "satisfied": 73,
+      "excluded": 2,
+      "total_weight": 176,
+      "solve_time_ms": 2.1552294492721558
+    },
+    "timing": {
+      "trace_gen_s": 24.361,
+      "extraction_s": 32.191,
+      "dedup_s": 2.57,
+      "maxsat_s": 0.006,
+      "total_s": 59.128
+    }
+  }
+}

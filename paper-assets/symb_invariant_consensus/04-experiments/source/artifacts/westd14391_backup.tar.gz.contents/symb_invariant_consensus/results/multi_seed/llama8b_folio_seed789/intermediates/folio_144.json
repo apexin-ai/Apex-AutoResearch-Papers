@@ -1,0 +1,573 @@
+{
+  "problem": {
+    "id": "folio_144",
+    "problem": "Given the following premises:\nBreeding back is a form of artificial selection by the deliberate selective breeding of domestic animals. Heck cattle were bred-back in the 1920s to resemble the aurochs. [BG] Heck cattle are animals. [BG] Aurochs are animals. Some animals to be bred-back resemble animals that are extinct.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nAurochs are extinct.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x \u2200y (BreedingBack(x, y) \u2192 ArtificiallySelect(x))",
+      "\u2203x \u2203y (HeckCattle(x) \u2227 Aurochs(y) \u2227 BreedingBack(x, y))",
+      "\u2200x (HeckCattle(x) \u2192 Animal(x))",
+      "\u2200x (Aurochs(x) \u2192 Animal(x))",
+      "\u2203x \u2203y (Animal(x) \u2227 Animal(y) \u2227 BreedingBack(x, y) \u2227 Extinct(y))"
+    ],
+    "conclusion_fol": "\u2200x (Aurochs(x) \u2192 Extinct(x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 36.0,
+      "Unknown": 70.0
+    },
+    "answer_counts": {
+      "Unknown": 11,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion \"Aurochs are extinct\" is true, false, or uncertain, we need to analyze the given premises and see if they provide any information about the extant status of aurochs.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals. \nThis premise does not provide any information about the extant status of aurochs.\n\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\nThis premise indicates that aurochs were used as a model for breeding, but it does not provide information about whether aurochs are extinct or not.\n\nPremise 3: Heck cattle are animals.\nThis premise is a statement of fact about Heck cattle, but it does not provide any information about the extant status of aurochs.\n\nPremise 4: Aurochs are animals.\nThis premise is a statement of fact about aurochs, but it does not provide any information about the extant status of aurochs.\n\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\nThis premise provides a clue about the relationship between breeding back and extant status. However, it does not provide any direct information about aurochs.\n\nFrom the premises, we can infer that the Heck cattle were bred-back to resemble aurochs, but this does not necessarily mean that aurochs are extinct. The fact that some animals to be bred-back resemble extinct animals (Premise 5) suggests that aurochs might be extinct, but this is not explicitly stated.\n\nHowever, the Heck cattle were bred-back to resemble the aurochs, which implies that aurochs were alive at some point in the past. Since we do not have any information that contradicts this, we can conclude that aurochs are likely extinct, but the premises do not provide definitive proof.\n\nTherefore, the conclusion \"Aurochs are extinct\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises and see if they provide sufficient information to support or reject the conclusion.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals. Heck cattle were bred-back in the 1920s to resemble the aurochs.\n\nThis premise doesn't provide any information about the current status of the aurochs. It only tells us that aurochs were used as a model for breeding back, but it doesn't tell us if they still exist or not.\n\nPremise 2: Heck cattle are animals. \nThis premise is irrelevant to the conclusion because it doesn't provide any information about the aurochs.\n\nPremise 3: Aurochs are animals.\nThis premise is also irrelevant to the conclusion because it doesn't provide any information about the current status of the aurochs.\n\nPremise 4: Some animals to be bred-back resemble animals that are extinct.\n\nThis premise is also irrelevant to the conclusion because it talks about animals that are being bred back to resemble extinct animals, but it doesn't provide any information about the aurochs.\n\nGiven these premises, we can conclude that none of them provide any information about the current status of the aurochs. Therefore, we can neither confirm nor deny the conclusion.\n\nThe conclusion \"Aurochs are extinct\" is uncertain based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we will analyze the given premises and apply logical reasoning.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\nPremise 3: Heck cattle are animals.\nPremise 4: Aurochs are animals.\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\n\nWe are given the conclusion: Aurochs are extinct.\n\nLet's analyze the premises:\n\nFrom Premise 3 and Premise 4, we know that Heck cattle and aurochs are both animals.\n\nFrom Premise 2, we know that Heck cattle were bred-back to resemble aurochs. This implies that Heck cattle have characteristics similar to aurochs.\n\nFrom Premise 5, we know that some animals to be bred-back resemble animals that are extinct. This means that if the animals being bred-back (in this case, Heck cattle) have characteristics similar to an extinct animal (in this case, aurochs), then it's possible that the aurochs may be extinct.\n\nHowever, the key word here is \"resemble.\" Breeding back doesn't necessarily mean that the domestic animals being bred-back are the actual extinct species. It means that they have characteristics similar to the extinct species.\n\nTherefore, based on the given premises, we cannot conclude that aurochs are extinct. We can only say that Heck cattle have characteristics similar to aurochs, but we don't know for sure if aurochs are extinct.\n\nConclusion: The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion \"Aurochs are extinct\" is true, false, or uncertain based on the given premises, we'll analyze the information step by step.\n\n1. \"Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\"\n   - This premise tells us about the process of breeding back, but it doesn't provide information about the aurochs or their current status.\n\n2. \"Heck cattle were bred-back in the 1920s to resemble the aurochs.\"\n   - This premise provides a specific example of breeding back and connects it to the aurochs. However, it doesn't directly indicate that the aurochs are extinct.\n\n3. \"Heck cattle are animals.\"\n   - This premise is a simple statement that Heck cattle are a type of animal, but it doesn't provide any information about the aurochs.\n\n4. \"Aurochs are animals.\"\n   - Like premise 3, this statement simply confirms that aurochs are animals, but it doesn't provide any information about their current status.\n\n5. \"Some animals to be bred-back resemble animals that are extinct.\"\n   - This premise is the key to our solution. It tells us that some animals that are being bred back (like the Heck cattle, which are bred to resemble aurochs) are being bred back because they resemble animals that are extinct.\n\nFrom premise 5, we can infer that the aurochs are among the animals that are extinct, since Heck cattle were bred back to resemble them. This is the only direct information we have about the aurochs.\n\nTherefore, based on the given premises, the conclusion \"Aurochs are extinct\" is **true**.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the premises and see if they logically lead to the conclusion.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\nThis premise tells us about the process of breeding back, but it doesn't provide any information about the aurochs or their current status.\n\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\nThis premise tells us about the breeding of Heck cattle, but it doesn't provide any information about the current status of the aurochs.\n\nPremise 3: Heck cattle are animals.\nThis premise is a trivial statement that tells us that Heck cattle are living things, but it doesn't provide any information about the aurochs.\n\nPremise 4: Aurochs are animals.\nThis premise is another trivial statement that tells us that aurochs are living things, but it doesn't provide any information about their current status.\n\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\nThis premise provides a crucial link between the breeding back process and the current status of the aurochs. However, it only says that some animals to be bred-back resemble extinct animals, not that all animals to be bred-back are extinct.\n\nFrom the premises, we can conclude that some animals that resemble the aurochs are currently alive (Heck cattle), and therefore, the aurochs themselves are not extinct, as there are living animals that resemble them. However, we don't have any information about the aurochs themselves being alive or dead.\n\nTherefore, based on the premises, the conclusion \"Aurochs are extinct\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion \"Aurochs are extinct\" is true, false, or uncertain, we will analyze the given premises step by step.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\nThis premise only tells us about the process of breeding back, but it doesn't provide any information about the aurochs or their status.\n\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\nThis premise tells us that Heck cattle were bred to resemble aurochs, but it doesn't provide any information about the aurochs themselves.\n\nPremise 3: Heck cattle are animals.\nThis premise is a tautology, as Heck cattle are indeed animals. It doesn't provide any new information.\n\nPremise 4: Aurochs are animals.\nSimilar to premise 3, this premise is a tautology. It doesn't provide any new information.\n\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\nThis premise is the most relevant to our conclusion. It tells us that some animals that are being bred back are extinct. However, it doesn't specifically state that the aurochs are extinct.\n\nNow, let's analyze the conclusion: \"Aurochs are extinct.\"\n\nThe premises don't directly state that the aurochs are extinct. However, premise 5 suggests that some animals that are being bred back are extinct. We know from premise 2 that Heck cattle were bred back to resemble aurochs, and premise 5 implies that some animals being bred back are extinct. But we cannot conclude that the aurochs themselves are extinct based on this information.\n\nTherefore, the conclusion \"Aurochs are extinct\" is uncertain, because we don't have enough information to confirm or deny it.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they support or contradict the conclusion.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\nThis premise does not provide any information about the aurochs or their current status.\n\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\nThis premise tells us that Heck cattle are being bred to resemble aurochs, but it does not provide any information about the current status of aurochs.\n\nPremise 3: Heck cattle are animals.\nThis premise is a tautology and does not provide any new information.\n\nPremise 4: Aurochs are animals.\nSimilar to premise 3, this premise is a tautology and does not provide any new information.\n\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\nThis premise implies that some animals that are being bred back are extinct, but it does not provide any information about the aurochs.\n\nFrom the given premises, we can infer that Heck cattle are being bred to resemble aurochs, but we cannot determine the current status of aurochs. The fact that some animals to be bred-back resemble extinct animals does not necessarily mean that aurochs are extinct, as the aurochs are the target of the breeding process, not the animals being bred back.\n\nTherefore, based on the given premises, we cannot conclude that aurochs are extinct. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion \"Aurochs are extinct\" is true, false, or uncertain based on the given premises, let's analyze the information step by step:\n\n1. Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals. \n   - This premise provides a definition of breeding back and doesn't directly relate to the extinction status of aurochs. (This is a neutral premise)\n\n2. Heck cattle were bred-back in the 1920s to resemble the aurochs. \n   - This premise shows that there are attempts to breed back the characteristics of aurochs in Heck cattle. However, it doesn't provide information about the original status of aurochs or whether they are still alive. (This is a neutral premise)\n\n3. Heck cattle are animals. \n   - This premise is a simple statement that Heck cattle are living beings. However, it doesn't provide any information about aurochs. (This is a neutral premise)\n\n4. Aurochs are animals. \n   - This premise also states that aurochs are living beings. However, it doesn't provide any information about their current status or whether they are still alive. (This is a neutral premise)\n\n5. Some animals to be bred-back resemble animals that are extinct. \n   - This premise provides a general statement about breeding back, but it's too vague to determine the extinction status of aurochs. It could imply that aurochs are extinct if Heck cattle resemble them, but it's not a direct statement. (This is an uncertain premise)\n\nSince none of the premises directly state that aurochs are extinct or still alive, the conclusion \"Aurochs are extinct\" cannot be confirmed as true or false based on the given information. Therefore, the conclusion is uncertain. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"Aurochs are extinct\" is true, false, or uncertain, we need to analyze the premises and see if they provide any information that directly or indirectly supports or contradicts this conclusion.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals. Heck cattle were bred-back in the 1920s to resemble the aurochs.\n\nThis premise doesn't provide any direct information about the extinction status of aurochs. It only mentions that Heck cattle were bred-back to resemble aurochs, which means that aurochs are the target for breeding back, but it doesn't provide any information about their current status.\n\nPremise 2: Heck cattle are animals.\n\nThis premise is irrelevant to the conclusion \"Aurochs are extinct.\" It only mentions that Heck cattle are animals, which is a fact that doesn't provide any information about aurochs.\n\nPremise 3: Aurochs are animals.\n\nThis premise is also irrelevant to the conclusion \"Aurochs are extinct.\" Like premise 2, it only mentions that aurochs are animals, which is a fact that doesn't provide any information about their current status.\n\nPremise 4: Some animals to be bred-back resemble animals that are extinct.\n\nThis premise is the most relevant to the conclusion. If some animals to be bred-back resemble animals that are extinct, then it implies that the target animals for breeding back (in this case, aurochs) might be extinct.\n\nHowever, we need to be careful here. The fact that aurochs are a target for breeding back doesn't necessarily mean they are extinct. They might be a species that is critically endangered or rare, but still exists.\n\nBased on the premises provided, we cannot conclude with certainty that aurochs are extinct. The premises suggest that aurochs might be extinct, but they don't provide any direct evidence or information that confirms their extinction.\n\nTherefore, the conclusion \"Aurochs are extinct\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the truth value of the conclusion \"Aurochs are extinct,\" we need to analyze the given premises and their relationships.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals. Heck cattle were bred-back in the 1920s to resemble the aurochs.\n\nThis premise does not provide any information about the extinction status of aurochs. It only mentions that breeding back is a form of artificial selection and that Heck cattle were bred-back to resemble aurochs.\n\nPremise 2: Heck cattle are animals. \n\nThis premise is a tautology, as it simply states that Heck cattle are animals, which is a category that aurochs also belong to.\n\nPremise 3: Aurochs are animals. \n\nThis premise also states a tautology, similar to Premise 2. It simply categorizes aurochs as animals.\n\nPremise 4: Some animals to be bred-back resemble animals that are extinct.\n\nThis premise provides the crucial information needed to assess the conclusion. It states that some animals being bred-back resemble extinct animals. Since Heck cattle were bred-back to resemble aurochs, we can infer that aurochs are one of the animals that resemble extinct animals.\n\nHowever, this premise does not explicitly state that aurochs are extinct. It only implies that aurochs might be an extinct animal based on the fact that Heck cattle, which resemble aurochs, are being bred-back.\n\nSince the premises do not explicitly state that aurochs are extinct, we cannot confidently conclude that they are. The conclusion \"Aurochs are extinct\" is uncertain, as it is based on an implication rather than a direct statement.\n\nTherefore, the answer is:\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion \"Aurochs are extinct\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals. Heck cattle were bred-back in the 1920s to resemble the aurochs.\n\nThis premise tells us about the process of breeding back, but it doesn't provide any information about the current status of aurochs (whether they exist or not).\n\nPremise 2: Heck cattle are animals.\n\nThis premise simply states that Heck cattle are a type of animal, but it doesn't provide any relevant information about aurochs.\n\nPremise 3: Aurochs are animals.\n\nThis premise tells us that aurochs are a type of animal, which is a fact, but it doesn't provide any information about their current status.\n\nPremise 4: Some animals to be bred-back resemble animals that are extinct.\n\nThis premise provides crucial information about the connection between breeding back and extinct animals. However, it doesn't directly say that aurochs are extinct.\n\nNow, let's examine the connection between the premises and the conclusion. The conclusion \"Aurochs are extinct\" is not directly supported by any of the premises. However, premise 4 creates a possibility that aurochs might be one of the animals that are being bred back because they are extinct.\n\nBased on this analysis, we can conclude that the given information is not sufficient to determine whether aurochs are extinct or not. The conclusion is uncertain because we can't be sure whether aurochs are being bred back because they are extinct or for some other reason.\n\nTherefore, the final answer is: \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion \"Aurochs are extinct\" is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to this conclusion.\n\nPremise 1: Breeding back is a form of artificial selection by the deliberate selective breeding of domestic animals.\nPremise 2: Heck cattle were bred-back in the 1920s to resemble the aurochs.\nPremise 3: Heck cattle are animals.\nPremise 4: Aurochs are animals.\nPremise 5: Some animals to be bred-back resemble animals that are extinct.\n\nFrom Premise 2, we know that Heck cattle were bred-back to resemble aurochs. This implies that Heck cattle have characteristics similar to those of aurochs.\n\nFrom Premise 3 and Premise 4, we know that Heck cattle and aurochs are both animals.\n\nPremise 5 states that some animals to be bred-back resemble animals that are extinct. This means that the resemblance between Heck cattle and aurochs could be due to the fact that aurochs are extinct and Heck cattle were bred-back to resemble them.\n\nNow, considering the information provided, it is uncertain whether aurochs are actually extinct or not. The fact that Heck cattle were bred-back to resemble aurochs does not provide conclusive evidence about the current status of aurochs.\n\nTherefore, the conclusion \"Aurochs are extinct\" is uncertain based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back_form_of_artificial_selection",
+          "z3_formula": "breeding_back_form_of_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_bred_back_to_resemble_aurochs",
+          "z3_formula": "heck_cattle_bred_back_to_resemble_aurochs == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_bred_back_to_resemble_aurochs -> aurochs_are_extinct",
+          "z3_formula": "Implies(heck_cattle_bred_back_to_resemble_aurochs, aurochs_are_extinct)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "aurochs_are_extinct",
+          "z3_formula": "aurochs_are_extinct == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_were_bred_back",
+          "z3_formula": "heck_cattle_were_bred_back == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_resemble_aurochs",
+          "z3_formula": "Implies(heck_cattle_resemble_aurochs, True)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals -> aurochs_may_be_extinct",
+          "z3_formula": "Implies(some_animals_to_be_bred_back_resemble_extinct_animals, aurochs_may_be_extinct)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle_have_characteristics_similar_to_aurochs",
+          "z3_formula": "heck_cattle_have_characteristics_similar_to_aurochs == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "aurochs_may_be_extinct",
+          "z3_formula": "aurochs_may_be_extinct == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_resemble_aurochs",
+          "z3_formula": "heck_cattle_resemble_aurochs == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "Implies(And(heck_cattle_resemble_aurochs, aurochs_are_animals), aurochs_are_extinct)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "aurochs_are_extinct",
+          "z3_formula": "aurochs_are_extinct == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_bred_back_in_1920s",
+          "z3_formula": "heck_cattle_bred_back_in_1920s == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_were_bred_back",
+          "z3_formula": "heck_cattle_were_bred_back == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_bred_back_animals_are_extinct",
+          "z3_formula": "some_bred_back_animals_are_extinct == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back_form_of_artificial_selection",
+          "z3_formula": "breeding_back_form_of_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_bred_back_in_1920s",
+          "z3_formula": "heck_cattle_bred_back_in_1920s == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_bred_back_to_resemble_aurochs",
+          "z3_formula": "Implies(heck_cattle_bred_back_in_1920s, heck_cattle_bred_back_to_resemble_aurochs)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle_bred_back_to_resemble_aurochs",
+          "z3_formula": "heck_cattle_bred_back_to_resemble_aurochs == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_were_bred_back_in_1920s",
+          "z3_formula": "heck_cattle_were_bred_back_in_1920s == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "aurochs_are_extinct",
+          "z3_formula": "aurochs_are_extinct == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_resemble_aurochs",
+          "z3_formula": "heck_cattle_resemble_aurochs == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "Implies(some_animals_to_be_bred_back_resemble_extinct_animals, aurochs_might_be_extinct)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "aurochs_might_be_extinct",
+          "z3_formula": "aurochs_might_be_extinct == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_resemble_aurochs",
+          "z3_formula": "heck_cattle_resemble_aurochs == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "Implies(some_animals_to_be_bred_back_resemble_extinct_animals, aurochs_are_extinct)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "aurochs are animals",
+          "z3_formula": "aurochs_animal == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "heck cattle are animals",
+          "z3_formula": "heck_cattle_animal == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "breeding back is artificial selection",
+          "z3_formula": "breeding_back_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "some animals to be bred-back resemble extinct animals",
+          "z3_formula": "Implies(Some(animals_to_be_bred_back, And(resemble_extinct_animals)), True)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_were_bred_back_to_resemble_aurochs",
+          "z3_formula": "heck_cattle_were_bred_back_to_resemble_aurochs == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_have_characteristics_similar_to_aurochs",
+          "z3_formula": "Implies(heck_cattle_were_bred_back_to_resemble_aurochs, heck_cattle_have_characteristics_similar_to_aurochs)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_and_aurochs_are_animals",
+          "z3_formula": "Implies(And(heck_cattle_are_animals, aurochs_are_animals), heck_cattle_and_aurochs_are_animals)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "resemblance_between_heck_cattle_and_aurochs_could_be_due_to_aurochs_being_extinct",
+          "z3_formula": "Implies(And(some_animals_to_be_bred_back_resemble_extinct_animals, heck_cattle_and_aurochs_are_animals), resemblance_between_heck_cattle_and_aurochs_could_be_due_to_aurochs_being_extinct)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "it_is_uncertain_if_aurochs_are_extinct",
+          "z3_formula": "it_is_uncertain_if_aurochs_are_extinct == True",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 73,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 31
+    },
+    "maxsat_stats": {
+      "satisfied": 31,
+      "excluded": 0,
+      "total_weight": 72,
+      "solve_time_ms": 0.8691875264048576
+    },
+    "timing": {
+      "trace_gen_s": 5.042,
+      "extraction_s": 18.13,
+      "dedup_s": 0.459,
+      "maxsat_s": 0.003,
+      "total_s": 23.634
+    }
+  }
+}

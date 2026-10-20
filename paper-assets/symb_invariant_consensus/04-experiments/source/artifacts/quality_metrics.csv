@@ -1,0 +1,8 @@
+experiment,model,domain,n,sc_acc,sica_acc,delta_pp,c0_disagree_rate,avg_total_extracted,avg_unique_constraints,avg_traces_with_constraints,avg_satisfied,avg_excluded,avg_satisfied_ratio,avg_dedup_ratio,avg_constraint_density,sica_wins,sc_wins,both_correct,both_wrong
+exp001_qwen14b_pw_folio,Qwen2.5-14B,PW+FOLIO,804,0.7624,0.7649,0.25,0.0386,110.0,21.5,12.0,21.0,0.5,0.9773,0.2148,9.17,16,14,599,175
+exp010_mistral7b_pw_folio,Mistral-7B,PW+FOLIO,60,0.4833,0.4833,0.0,0.0667,65.7,20.5,12.0,19.3,1.1,0.9477,0.2997,5.47,2,2,27,29
+exp011_llama8b_pw_folio,LLaMA-8B,PW+FOLIO,60,0.6,0.6667,6.67,0.1167,101.0,30.1,11.6,28.5,1.6,0.9496,0.3025,8.73,5,1,35,19
+exp017_qwen14b_strategyqa,Qwen2.5-14B,StrategyQA,60,0.5333,0.5667,3.33,0.0333,8.6,1.0,8.4,0.9,0.1,0.9537,0.1377,1.02,2,0,32,26
+exp018_qwen14b_arc,Qwen2.5-14B,ARC,60,0.9667,0.95,-1.67,0.0167,12.3,1.1,12.0,1.1,0.1,0.975,0.0903,1.02,0,1,57,2
+exp019_llama8b_strategyqa,LLaMA-8B,StrategyQA,200,0.72,0.74,2.0,0.07,19.9,6.2,9.6,5.4,0.9,0.8534,0.2862,1.94,9,5,139,47
+exp020_llama8b_folio,LLaMA-8B,FOLIO,204,0.6324,0.6078,-2.45,0.0637,96.0,33.3,11.9,31.2,2.1,0.9384,0.3423,8.05,4,9,120,71

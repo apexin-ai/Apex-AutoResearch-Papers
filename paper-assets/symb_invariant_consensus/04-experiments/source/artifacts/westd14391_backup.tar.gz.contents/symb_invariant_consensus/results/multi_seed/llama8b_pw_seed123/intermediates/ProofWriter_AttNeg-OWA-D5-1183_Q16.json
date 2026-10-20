@@ -1,0 +1,1426 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1183_Q16",
+    "problem": "Bob is round. Bob is smart. Charlie is not smart. Fiona is young. Gary is nice. Gary is smart. Gary is white. If someone is young then they are smart. If Fiona is young then Fiona is smart. If someone is green and young then they are white. If someone is smart then they are green. If someone is quiet then they are round. If someone is round and not smart then they are not quiet. If someone is nice then they are quiet. If someone is white then they are quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is white.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\nNotSmart($x, bool) ::: Is x not smart?\nYoung($x, bool) ::: Is x young?\nNice($x, bool) ::: Is x nice?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nRound(Bob, True) ::: Bob is round.\nSmart(Bob, True) ::: Bob is smart.\nNotSmart(Charlie, True) ::: Charlie is not smart.\nYoung(Fiona, True) ::: Fiona is young.\nNice(Gary, True) ::: Gary is nice.\nSmart(Gary, True) ::: Gary is smart.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nYoung($x, True) >>> Smart($x, True) ::: If someone is young then they are smart.\nYoung(Fiona, True) >>> Smart(Fiona, True) ::: If Fiona is young then Fiona is smart.\nGreen($x, True) && Young($x, True) >>> White($x, True) ::: If someone is green and young then they are white.\nSmart($x, True) >>> Green($x, True) ::: If someone is smart then they are green.\nQuiet($x, True) >>> Round($x, True) ::: If someone is quiet then they are round.\nRound($x, True) && NotSmart($x, True) >>> Quiet($x, False) ::: If someone is round and not smart then they are not quiet.\nNice($x, True) >>> Quiet($x, True) ::: If someone is nice then they are quiet.\nWhite($x, True) >>> Quiet($x, True) ::: If someone is white then they are quiet.\n\nQuery:\nWhite(Bob, True) ::: Bob is white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 126.0,
+      "Unknown": 201.0
+    },
+    "answer_counts": {
+      "False": 2,
+      "Unknown": 9
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Bob is round.\n   - Bob is smart.\n   - Charlie is not smart.\n   - Fiona is young.\n   - Gary is nice.\n   - Gary is smart.\n   - Gary is white.\n   - If someone is young then they are smart.\n   - If Fiona is young then Fiona is smart.\n   - If someone is green and young then they are white.\n   - If someone is smart then they are green.\n   - If someone is quiet then they are round.\n   - If someone is round and not smart then they are not quiet.\n   - If someone is nice then they are quiet.\n   - If someone is white then they are quiet.\n\n2. From statement 7, we know that if someone is young, then they are smart. Since Fiona is young (statement 4), we can conclude that Fiona is smart (statement 8).\n\n3. From statement 9, we know that if someone is smart, then they are green. Since Fiona is smart (from step 2), we can conclude that Fiona is green.\n\n4. From statement 10, we know that if someone is green and young, then they are white. Since Fiona is green (from step 3) and young (statement 4), we can conclude that Fiona is white.\n\n5. Now, let's focus on Bob. We know that Bob is round (statement 1) and smart (statement 2).\n\n6. From statement 13, we know that if someone is round and not smart, then they are not quiet. However, we cannot conclude that Bob is not smart, so we cannot use this statement to determine whether Bob is quiet or not.\n\n7. From statement 14, we know that if someone is nice, then they are quiet. Since Gary is nice (statement 5) and smart (statement 6), we can conclude that Gary is quiet (from statement 14).\n\n8. From statement 15, we know that if someone is white, then they are quiet. Since Gary is white (statement 7), we can conclude that Gary is quiet (from step 7).\n\n9. From statement 12, we know that if someone is round, then they are quiet. However, we cannot conclude that Bob is quiet, because we cannot determine whether Bob is not smart (which would make him not quiet, from statement 13).\n\n10. We still cannot determine whether Bob is white or not, because we have not found any direct connection between Bob and the color white.\n\nHowever, we can use the information about Bob being round (statement 1) and smart (statement 2) to conclude that Bob is not quiet (from statement 13). \n\nFrom statement 15, we know that if someone is white, then they are quiet. Since we have concluded that Bob is not quiet (from step 9), we can conclude that Bob is not white.\n\nTherefore, the statement \"Bob is white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Bob is white, we need to analyze the given information step by step.\n\n1. We are given that Bob is round. \nFrom the given information, we have: \n- If someone is round and not smart then they are not quiet. \nHowever, we don't know if Bob is smart or not, so we cannot conclude if Bob is quiet or not.\n\n2. Since we don't know if Bob is quiet or not, we cannot conclude if he is white or not using the fact that someone who is white is quiet.\n\n3. We also know that Bob is smart. \nFrom the given information, we have: \n- If someone is smart then they are green. \nSo, Bob is green.\n\n4. Now we have two pieces of information about Bob: \n- Bob is round.\n- Bob is green.\n\n5. We know that Fiona is young. \nFrom the given information, we have: \n- If someone is young then they are smart.\nHowever, we are given that Charlie is not smart, and we don't have any information about Charlie being young or not. This information is irrelevant to Bob, so we can ignore it.\n\n6. Now we have two pieces of information about Fiona: \n- Fiona is young.\n- If Fiona is young then Fiona is smart.\n\n7. We also know that Gary is nice and smart. \nFrom the given information, we have: \n- If someone is nice then they are quiet. \nSo, Gary is quiet.\n\n8. Now we have three pieces of information about Gary: \n- Gary is nice.\n- Gary is smart.\n- Gary is quiet.\n\n9. We also know that Gary is white. \nFrom the given information, we have: \n- If someone is white then they are quiet.\nThis is consistent with the information we already have about Gary.\n\n10. We also know that Gary is white and Gary is green. \nHowever, from the given information, we have: \n- If someone is green and young then they are white.\nSince Gary is not young, this fact does not apply to Gary.\n\n11. Now we can look at the statement \"Bob is white\". \nWe know that Bob is green, and we don't have any information that links being green to being white.\n\nHowever, since we know that Fiona is young and smart, and we are given that if Fiona is young then Fiona is smart, we can use this information to analyze the statement further. \n\nFrom the given information, we have: \n- If someone is young then they are smart.\n- If someone is smart then they are green.\nHowever, we are also given that if Fiona is young then Fiona is smart. \nSince Fiona is young, we can conclude that Fiona is smart, which means Fiona is green.\n\n12. Since we don't have any information that links Bob to Fiona, we cannot conclude if Bob is white or not based on the information that Fiona is young and smart.\n\nHowever, we know that Bob is round, and we also know that someone who is round and not smart is not quiet. \nWe also know that Gary is quiet. \nHowever, we don't know if Bob is quiet or not.\n\n13. Since we don't have any information that links Bob to being white, we cannot conclude if the statement \"Bob is white\" is true or false. \nHowever, based on the given information, we can conclude that the statement \"Bob is white\" is unknown.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to use the given information and logical deductions.\n\n1. From the given information, we know: \n- Bob is round.\n- Bob is smart.\n\n2. From the given information, we know:\n- If someone is smart then they are green.\n- Since Bob is smart, we can conclude that Bob is green.\n\n3. From the given information, we know:\n- If someone is green and young then they are white.\n- Since Bob is green, but we don't know if Bob is young, we cannot conclude that Bob is white based on this information.\n\n4. From the given information, we know:\n- If someone is white then they are quiet.\n- Since we don't know if Bob is white, we cannot conclude anything about Bob's quietness.\n\n5. From the given information, we know:\n- If someone is round and not smart then they are not quiet.\n- Since Bob is round and smart, we cannot apply this information.\n\n6. From the given information, we know:\n- If someone is nice then they are quiet.\n- We also know that Gary is nice and smart, so Gary is green. But we don't have any information that connects Gary's characteristics to Bob's characteristics.\n\n7. From the given information, we know:\n- If someone is quiet then they are round.\n- This is a two-way statement. However, we already know that Bob is round.\n\n8. We also have a separate statement saying that \"If someone is young then they are smart.\" \n- However, we cannot use this information because there is no connection to Bob or any of his characteristics.\n\n9. We also have a separate statement saying that \"If Fiona is young then Fiona is smart.\"\n- However, we cannot use this information because there is no connection to Bob or any of his characteristics.\n\n10. Now, combining all the given information and logical deductions, we know that Bob is round and smart. We also know that Bob is green because he is smart. However, we do not have enough information to determine whether Bob is white or not.\n\nSince we do not have enough information to conclude whether Bob is white or not, we cannot determine the truth value of the statement \"Bob is white.\"\n\nTherefore, the answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know that:\n   - Bob is round.\n   - Bob is smart.\n\n2. We are given the following rules:\n   - If someone is round and not smart then they are not quiet. (Rule 1)\n   - If someone is round then they are quiet. (From Rule 1, we can infer this as a contrapositive)\n   - If someone is nice then they are quiet. (Rule 3)\n   - If someone is white then they are quiet. (Rule 4)\n\n3. Let's analyze the given information about Bob. We know Bob is round and smart.\n\n4. Using Rule 1, we can infer that since Bob is round and smart, he must be quiet.\n\n5. Now, we can use the information that Bob is quiet and analyze the rules related to quiet people.\n\n6. From Rule 3, we know that if someone is nice, they are quiet. However, we do not have any information about Bob being nice.\n\n7. From Rule 4, we know that if someone is white, they are quiet. However, we do not have any information about Bob being white.\n\n8. Now, let's analyze the rules related to smart and green people.\n\n9. We are given the rule: If someone is smart then they are green. (Rule 5)\n\n10. Since Bob is smart, we can infer that he is green.\n\n11. However, we have another rule: If someone is green and young then they are white. (Rule 6)\n\n12. We do not have any information about Bob being young. This rule is not applicable to Bob.\n\n13. Now, let's analyze the rules related to young people.\n\n14. We are given the rule: If someone is young then they are smart. (Rule 2)\n\n15. We are also given the rule: If Fiona is young then Fiona is smart. (Rule 7)\n\n16. We do not have any information about Bob being young. This rule is not applicable to Bob.\n\n17. Since we cannot conclude that Bob is white using the given information, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use them to determine if Bob is white.\n\n1. Bob is round. \n2. Bob is smart.\n3. Charlie is not smart. \n4. Fiona is young.\n5. Gary is nice.\n6. Gary is smart.\n7. Gary is white.\n8. If someone is young then they are smart.\n9. If Fiona is young then Fiona is smart.\n10. If someone is green and young then they are white.\n11. If someone is smart then they are green.\n12. If someone is quiet then they are round.\n13. If someone is round and not smart then they are not quiet.\n14. If someone is nice then they are quiet.\n15. If someone is white then they are quiet.\n\nWe need to determine if Bob is white. To do this, we can try to find a path from statement 1 (Bob is round) to statement 15 (If someone is white then they are quiet).\n\nFrom statement 1 (Bob is round), we know Bob is round.\n\nFrom statement 12 (If someone is quiet then they are round), we know Bob is quiet.\n\nFrom statement 14 (If someone is nice then they are quiet), we know Gary is nice (statement 5), so Gary is quiet.\n\nFrom statement 13 (If someone is round and not smart then they are not quiet), we know Bob is not round and not smart (because statement 2 says Bob is smart) or Bob is quiet (because we already know this from statement 12). Since we already know Bob is quiet, we can ignore this statement.\n\nFrom statement 14 (If someone is nice then they are quiet), we know Gary is nice (statement 5), so Gary is quiet.\n\nFrom statement 14 (If someone is nice then they are quiet), we know Gary is nice (statement 5), so Gary is quiet.\n\nFrom statement 15 (If someone is white then they are quiet), we know Gary is white (statement 7), so Gary is quiet.\n\nHowever, there is no direct connection between Bob being round and Bob being white. We need to use other statements to find a connection.\n\nFrom statement 11 (If someone is smart then they are green), we know Bob is smart (statement 2), so Bob is green.\n\nFrom statement 10 (If someone is green and young then they are white), we do not know if Bob is young or not. However, from statement 8 (If someone is young then they are smart), we know that if someone is young, they are smart. From statement 9 (If Fiona is young then Fiona is smart), we know that if Fiona is young, Fiona is smart. However, we do not know if Fiona is young, so we cannot conclude anything from this statement.\n\nHowever, from statement 4 (Fiona is young), we know that Fiona is young. From statement 9 (If Fiona is young then Fiona is smart), we know that Fiona is smart.\n\nNow we have a connection between statement 4 (Fiona is young) and statement 2 (Bob is smart). We can use this connection to find a path from Bob being round to Bob being white.\n\nFrom statement 4 (Fiona is young), we know Fiona is young.\n\nFrom statement 9 (If Fiona is young then Fiona is smart), we know Fiona is smart.\n\nFrom statement 8 (If someone is young then they are smart), we know that if someone is young, they are smart.\n\nFrom statement 11 (If someone is smart then they are green), we know that if someone is smart, they are green.\n\nFrom statement 10 (If someone is green and young then they are white), we know that if someone is green and young, they are white.\n\nNow we can conclude that since Bob is not young (because statement 2 says Bob is smart), Bob is not white.\n\nHowever, since we cannot conclude that Bob is not white, we cannot conclude that Bob is not white. We cannot conclude anything about Bob being white.\n\nTherefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Bob is round.\n   - Bob is smart.\n   - Charlie is not smart.\n   - Fiona is young.\n   - Gary is nice.\n   - Gary is smart.\n   - Gary is white.\n   - If someone is young then they are smart.\n   - If Fiona is young then Fiona is smart.\n   - If someone is green and young then they are white.\n   - If someone is smart then they are green.\n   - If someone is round and not smart then they are not quiet.\n   - If someone is nice then they are quiet.\n   - If someone is white then they are quiet.\n\n2. Analyzing the given information:\n   - Since Bob is round and smart, we can't directly conclude anything about his color or quietness.\n\n3. Since Fiona is young, we can apply the rule: If someone is young then they are smart.\n   - Fiona is young, so Fiona is smart.\n   - However, this information does not directly affect Bob.\n\n4. Since Gary is smart, we can apply the rule: If someone is smart then they are green.\n   - Gary is smart, so Gary is green.\n\n5. Since Gary is green and young, we can apply the rule: If someone is green and young then they are white.\n   - Gary is green and young, so Gary is white.\n\n6. Now, let's analyze Bob again. We already know that Bob is round and smart. \n   - Since Bob is smart, we can apply the rule: If someone is smart then they are green.\n   - So, Bob is green.\n\n7. Now, since Bob is round and smart, we can apply the rule: If someone is round and not smart then they are not quiet.\n   - However, we know that Bob is smart, so we can't conclude anything about Bob being quiet or not.\n\n8. Since Bob is green and smart, we can apply the rule: If someone is green and young then they are white.\n   - However, we don't know if Bob is young or not, so we can't conclude anything about Bob's color.\n\n9. Since Bob is round and not quiet, we can apply the rule: If someone is round and not smart then they are not quiet.\n   - However, we know that Bob is smart, so this rule does not apply to Bob.\n\n10. Since Bob is green, we can apply the rule: If someone is green then they are smart.\n    - However, this rule is already applied to Bob in step 6.\n\n11. Since Bob is smart, we can apply the rule: If someone is smart then they are green.\n    - However, this rule is already applied to Bob in step 6.\n\n12. Since Gary is white, we can apply the rule: If someone is white then they are quiet.\n    - However, this rule does not directly affect Bob.\n\n13. Since Gary is nice, we can apply the rule: If someone is nice then they are quiet.\n    - However, this rule does not directly affect Bob.\n\n14. Since Bob is round, we can apply the rule: If someone is round then they are quiet.\n    - However, this rule does not apply to Bob because we know that Bob is smart.\n\n15. Since Bob is round and smart, we can apply the rule: If someone is round and not smart then they are not quiet.\n    - However, we know that Bob is smart, so this rule does not apply to Bob.\n\n16. Since Bob is green, we can apply the rule: If someone is green and young then they are white.\n    - However, we don't know if Bob is young or not, so we can't conclude anything about Bob's color.\n\n17. Since Bob is smart, we can apply the rule: If someone is smart then they are green.\n    - However, this rule is already applied to Bob in step 6.\n\n18. Since Bob is round, we can apply the rule: If someone is round then they are quiet.\n    - However, we know that Bob is smart, so this rule does not apply to Bob.\n\n19. Since Bob is green, we can apply the rule: If someone is green then they are smart.\n    - However, this rule is already applied to Bob in step 6.\n\n20. Since Bob is green, we can apply the rule: If someone is green and young then they are white.\n    - However, we don't know if Bob is young or not, so we can't conclude anything about Bob's color.\n\n21. Since Bob is green, we can apply the rule: If someone is green then they are smart.\n    - However, this rule is already applied to Bob in step 6.\n\n22. Since Bob is green, we can apply the rule: If someone is green and young then they are white.\n    - However, we don't know if Bob is young or not, so we can't conclude anything about Bob's color.\n\n23. Since Bob is green, we can apply the rule: If someone is green then they are smart.\n    - However, this rule is already applied to Bob in step 6.\n\n24. Since Bob is round and smart, we can apply the rule: If someone is round and not smart then they are not quiet.\n    - However, we know that Bob is smart, so this rule does not apply to Bob.\n\n25. Since Bob is smart, we can apply the rule: If someone is smart then they are green.\n    - However, this rule is already applied to Bob in step 6.\n\n26. Since Bob is round, we can apply the rule: If someone is round then they are quiet.\n    - However, we know that Bob is smart, so this rule does not apply to Bob.\n\n27. Since Gary is white, we can apply the rule: If someone is white then they are quiet.\n    - However, this rule does not directly affect Bob.\n\n28. Since Gary is nice, we can apply the rule: If someone is nice then they are quiet.\n    - However, this rule does not directly affect Bob.\n\n29. Since Bob is green, we can apply the rule: If someone is green and young then they are white.\n    - However, we don't know if Bob is young or not, so we can't conclude anything about Bob's color.\n\n30. Since Bob is round and smart, we can apply the rule: If someone is round and not smart then they are not quiet.\n    - However, we know that Bob is smart, so this rule does not apply to Bob.\n\n31. Since Bob is green, we can apply the rule: If someone is green and young then they are white.\n    - However, we don't know if Bob is young or not, so we can't conclude anything about Bob's color.\n\n32. Since Bob is green, we can apply the rule: If someone is green then they are smart.\n    - However, this rule is already applied to Bob in step 6.\n\n33. Since Bob is round, we can apply the rule: If someone is round then they are quiet.\n    - However, we know that Bob is smart, so this rule does not apply to Bob.\n\n34. Since Bob is green, we can apply the rule: If someone is green then they are smart.\n    - However, this rule is already applied to Bob in step 6.\n\n35. Since Bob is green, we can apply the rule: If someone is green and young then they are white.\n    - However, we don't know if Bob is young or not, so we can't conclude anything about Bob's color.\n\n36. Since Bob is green, we can apply the rule: If someone is green then they are smart.\n    - However, this rule is already applied to Bob in step 6.\n\n37. Since Bob is green, we can apply the rule: If someone is green and young then they are white.\n    - However, we don't know if Bob is young or not, so we can't conclude anything about Bob's color.\n\n38. Since Bob is green, we can apply the rule: If someone is green then they are smart.\n    - However, this rule is already applied to Bob in step 6.\n\n39. Since Bob is green, we can apply the rule: If someone is green and young then they are white.\n    - However, we don't know if Bob is young or not, so we can't conclude anything about Bob's color.\n\n40. Since Bob is smart, we can apply the rule: If someone is smart then they are green.\n    - However, this rule is already applied to Bob in step 6.\n\n41. Since Bob is round, we can apply the rule: If someone is round then they are quiet.\n    - However, we know that Bob is smart, so this rule does not apply to Bob.\n\n42. Since Bob is round and smart, we can apply the rule: If someone is round and not smart then they are not quiet.\n    - However, we know that Bob is smart, so this rule does not apply to Bob.\n\n43. Since Bob is round, we can apply the rule: If someone is round then they are quiet.\n    - However, we know that Bob is smart, so this rule does not apply to Bob.\n\n44. Since Bob is green, we can apply the rule: If someone is green then they are smart.\n    - However, this rule is already applied to Bob in step 6.\n\n45. Since Bob is green, we can apply the rule: If someone is green and young then they are white.\n    - However, we don't know if Bob is young or not, so we can't conclude anything about Bob's color.\n\n46. Since Bob is round, we can apply the rule",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given information and use the rules to derive conclusions.\n\n1. Bob is round. \n2. Bob is smart. \n3. Charlie is not smart. \n4. Fiona is young. \n5. Gary is nice. \n6. Gary is smart. \n7. Gary is white. \n8. If someone is young then they are smart. \n9. If Fiona is young then Fiona is smart. \n10. If someone is green and young then they are white. \n11. If someone is smart then they are green. \n12. If someone is quiet then they are round. \n13. If someone is round and not smart then they are not quiet. \n14. If someone is nice then they are quiet. \n15. If someone is white then they are quiet.\n\nFirst, let's analyze rule 8: If someone is young then they are smart.\nFrom this rule, we know that if someone is young, we can conclude they are smart. However, this rule doesn't directly apply to Bob.\n\nNext, let's analyze rule 9: If Fiona is young then Fiona is smart.\nThis rule tells us that Fiona is smart because she is young. However, this rule doesn't directly apply to Bob.\n\nNow, let's analyze rule 11: If someone is smart then they are green.\nSince we know Bob is smart (rule 2), we can conclude that Bob is green.\n\nNext, let's analyze rule 10: If someone is green and young then they are white.\nSince we know Bob is green (derived from rule 11 and Bob is smart) but we don't have enough information to conclude whether Bob is young, we cannot determine whether Bob is white using this rule.\n\nNext, let's analyze rule 7: Gary is white. \nThis rule tells us that Gary is white, but it doesn't directly apply to Bob.\n\nNext, let's analyze rule 15: If someone is white then they are quiet.\nSince we know Gary is white (rule 7), we can conclude that Gary is quiet (rule 15). However, this rule doesn't directly apply to Bob.\n\nNow, let's analyze rule 14: If someone is nice then they are quiet.\nSince we know Gary is nice (rule 5) and Gary is quiet (derived from rule 15), we can conclude that being nice and being quiet are equivalent for Gary. However, this rule doesn't directly apply to Bob.\n\nNext, let's analyze rule 12: If someone is quiet then they are round.\nSince we know Bob is round (rule 1) and we know that if someone is round and not smart then they are not quiet (rule 13), we can conclude that Bob is not quiet.\n\nFinally, let's analyze rule 13: If someone is round and not smart then they are not quiet.\nSince we know Bob is round (rule 1) and Bob is smart (rule 2), we cannot apply this rule to Bob.\n\nFrom the given information, we cannot determine whether Bob is white. The given information is insufficient to conclude whether the statement \"Bob is white\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Bob is round. \n\n   There is no direct information about Bob's color, but we can start by analyzing the properties of being round.\n   \n2. If someone is round and not smart then they are not quiet. \n   Since Bob is round, and we don't know if he is smart or not, we can't conclude anything about Bob's quietness yet.\n\n3. If someone is nice then they are quiet. \n   We know that Gary is nice, but there is no information about Bob's niceness.\n\n4. If someone is white then they are quiet. \n   We are trying to determine if Bob is white, and if so, this statement might be helpful, but we need more information.\n\n5. If someone is smart then they are green. \n   We know that Gary is smart, so Gary must be green.\n\n6. If someone is green and young then they are white. \n   We don't know if Gary is young, but we can't conclude anything about Gary's color yet.\n\n7. If someone is young then they are smart. \n   We don't know if Bob is young, but we can't conclude anything about Bob's smartness yet.\n\n8. Fiona is young. Fiona is smart. \n   This statement only provides information about Fiona, not Bob.\n\n9. Gary is white. \n   We know that Gary is smart, and we know that Gary is white. However, this does not provide any information about Bob.\n\nNow, let's summarize the information we have about Bob and Gary:\n- Bob is round.\n- Gary is white, smart, and nice.\n- There is no direct information about Bob's color or smartness.\n\nSince there is no direct information about Bob's color, and we can't conclude anything about Bob's quietness or niceness, we can't determine if the statement \"Bob is white\" is true or false.\n\nHowever, we can analyze the properties of being white. \n\nIf someone is white then they are quiet (statement 4). \nIf someone is nice then they are quiet (statement 3). \nIf someone is round and not smart then they are not quiet (statement 2).\n\nSince we know that Bob is round, and there is no direct information about Bob's smartness or niceness, we can't conclude anything about Bob's quietness.\n\nBut, if Bob is white, then Bob must be quiet. \nAnd if Bob is quiet, then Bob must be round and not smart (because if he was smart, he would be quiet, which is a contradiction).\n\nHowever, if Bob is round and not smart, then he is not quiet (statement 2), which is also a contradiction.\n\nThis means that our assumption that \"Bob is white\" is false because it leads to a contradiction.\n\nTherefore, the statement \"Bob is white\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given statements and use logical deductions.\n\nGiven statements:\n1. Bob is round.\n2. Bob is smart.\n3. Charlie is not smart.\n4. Fiona is young.\n5. Gary is nice.\n6. Gary is smart.\n7. Gary is white.\n8. If someone is young then they are smart.\n9. If Fiona is young then Fiona is smart.\n10. If someone is green and young then they are white.\n11. If someone is smart then they are green.\n12. If someone is quiet then they are round.\n13. If someone is round and not smart then they are not quiet.\n14. If someone is nice then they are quiet.\n15. If someone is white then they are quiet.\n\nFirst, let's analyze the given statements about Gary. We know that Gary is smart (6), and if someone is smart (6), then they are green (11). Therefore, Gary is green.\n\nNext, we know that Gary is young (because someone who is young is smart, and Gary is smart, so Gary is young), and Gary is green and young, so Gary is white (10).\n\nNow, we need to analyze the given statements about Bob. We know that Bob is smart (2), so Bob is green (11). However, we do not have enough information to determine whether Bob is young or not. Therefore, we cannot determine whether Bob is white or not.\n\nGiven statements about Bob are:\n1. Bob is round.\n2. Bob is smart.\nWe cannot use statement 2 to determine whether Bob is white or not because we do not know whether Bob is young or not.\n\nWe cannot determine whether the statement \"Bob is white\" is true or false, but we cannot conclude that it is unknown either. The problem statement does not provide enough information to determine whether Bob is white or not, so we have to conclude that the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is white' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information:\n   - Bob is round.\n   - Bob is smart.\n   - Charlie is not smart.\n   - Fiona is young.\n   - Gary is nice.\n   - Gary is smart.\n   - Gary is white.\n   - If someone is young then they are smart.\n   - If Fiona is young then Fiona is smart.\n   - If someone is green and young then they are white.\n   - If someone is smart then they are green.\n   - If someone is round and not smart then they are not quiet.\n   - If someone is nice then they are quiet.\n   - If someone is white then they are quiet.\n\n2. We know that Bob is round and smart. \n\n3. From the information 'If someone is smart then they are green' and 'If someone is green and young then they are white', we cannot directly conclude that Bob is white because we don't know whether Bob is young or not.\n\n4. We are given 'If someone is round and not smart then they are not quiet' and 'If someone is nice then they are quiet'. We can use this information to determine whether Bob is quiet or not. Since Bob is smart, we cannot directly use the information that if someone is nice then they are quiet, because we don't know whether Bob is nice or not.\n\n5. We can use the information 'Bob is smart' and 'If someone is smart then they are green' to conclude that Bob is green.\n\n6. We know that Bob is green and round.\n\n7. Since Bob is round and smart, we can use the information 'If someone is round and not smart then they are not quiet' to conclude that Bob is not quiet.\n\n8. We cannot conclude that Bob is white using the given information.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that:\n   - Bob is round.\n   - Bob is smart.\n   - Charlie is not smart. (This information is not relevant to our analysis.)\n   - Fiona is young.\n   - Gary is nice.\n   - Gary is smart.\n   - Gary is white.\n   - If someone is young then they are smart.\n   - If Fiona is young then Fiona is smart.\n   - If someone is green and young then they are white.\n   - If someone is smart then they are green.\n   - If someone is round and not smart then they are not quiet.\n   - If someone is nice then they are quiet.\n   - If someone is white then they are quiet.\n\n2. We know that Bob is round and smart. We need to find a connection between Bob's roundness and whiteness.\n\n3. Since Bob is smart, we can infer that Bob is green (from the statement \"If someone is smart then they are green\").\n\n4. However, we cannot directly conclude that Bob is white from the fact that he is green. We need more information.\n\n5. Now, let's examine the statement \"If someone is round and not smart then they are not quiet.\" Since Bob is round and smart, this statement does not apply to Bob.\n\n6. We are also given that \"If someone is round then they are not quiet.\" Since Bob is round, this means that Bob is not quiet.\n\n7. Furthermore, we are given that \"If someone is not quiet then they are not round.\" This statement is a contradiction of the previous statement, but we need to analyze it further.\n\n8. From the statement \"If someone is nice then they are quiet,\" we can infer that Gary is quiet (since he is nice).\n\n9. We also know that \"If someone is white then they are quiet.\" Since Gary is white and quiet, this statement is true.\n\n10. However, we still cannot conclude that Bob is white. We need to find a connection between Bob's roundness and whiteness.\n\n11. Since Bob is not quiet, we can infer that Bob is not round (from the statement \"If someone is round then they are not quiet\"). This is a contradiction of the previous statement that Bob is round.\n\n12. However, this contradiction does not affect our analysis of Bob's whiteness.\n\n13. Now, let's examine the statement \"If Fiona is young then Fiona is smart.\" We know that Fiona is young, so this statement is true, and we can infer that Fiona is smart.\n\n14. We are also given that \"If someone is young then they are smart.\" Since Fiona is young, this statement is true, and we can infer that Fiona is smart.\n\n15. However, we cannot conclude that Bob is white from the fact that Fiona is young or smart.\n\n16. Now, let's examine the statement \"If someone is green and young then they are white.\" We know that Gary is green, but we cannot conclude that Gary is young.\n\n17. However, we can conclude that Gary is not white (from the statement \"If someone is green and young then they are white\"), because we know that Gary is not young.\n\n18. Since Gary is not white, we cannot conclude that Bob is white.\n\n19. Finally, we cannot conclude that Bob is white from the given information. The statement \"Bob is white\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information about Bob: Bob is round. Bob is smart.\n   - Since Bob is smart, according to the given rules, if someone is smart then they are green. So, Bob is green.\n\n2. Now, we have two pieces of information about Bob: Bob is green and Bob is smart.\n   - We are not given any information that links green and smart to white or not white. Therefore, we cannot determine whether Bob is white or not white directly from this information.\n\n3. However, we can use the given rule \"If someone is young then they are smart.\" We do not know whether Bob is young, but we can use this rule to analyze the information about Fiona.\n   - Fiona is young, and we are given the rule \"If Fiona is young then Fiona is smart.\" This implies that Fiona is smart. However, this information does not help us determine whether Bob is white.\n\n4. Let's analyze the information about Gary.\n   - Gary is smart, and we are given the rule \"If someone is smart then they are green.\" Therefore, Gary is green.\n   - We are also given the rule \"If someone is green and young then they are white.\" However, we do not know whether Gary is young or not. This information alone does not help us determine whether Bob is white.\n\n5. We can now look at the rules related to being white.\n   - We are given the rule \"If someone is white then they are quiet.\" However, we do not have enough information to determine whether Bob is white or not white.\n\n6. The information \"Bob is round\" and \"Bob is not smart\" can help us determine whether Bob is quiet or not.\n   - According to the rule \"If someone is round and not smart then they are not quiet.\" Therefore, Bob is not quiet.\n\n7. We are also given the rule \"If someone is nice then they are quiet.\" We do not know whether Bob is nice or not. However, we can analyze the information about Gary.\n   - Gary is nice, and according to the rule \"If someone is nice then they are quiet.\" Therefore, Gary is quiet.\n\n8. Since Bob is not quiet and Gary is quiet, we can conclude that Bob is not nice.\n\n9. We are given the rule \"If someone is white then they are quiet.\" However, we cannot determine whether Bob is white or not white.\n\n10. Now, let's analyze the information about Charlie.\n    - Charlie is not smart. We are given the rule \"If someone is not smart then they are not green.\" Therefore, Charlie is not green.\n\n11. We are given the rule \"If someone is green and young then they are white.\" Since Charlie is not green, we cannot determine whether Charlie is white or not white.\n\n12. We can now look at the rule \"If someone is white then they are quiet.\"\n    - Since Charlie is not quiet, we can conclude that Charlie is not white.\n\n13. We are given the rule \"If someone is white then they are quiet.\" However, we cannot determine whether Bob is white or not white.\n\n14. We are given the information about Gary: Gary is white. However, this information alone does not help us determine whether Bob is white or not white.\n\n15. Based on the information we have gathered, we cannot determine whether Bob is white or not white directly from the given rules. Therefore, the statement \"Bob is white\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(smart(charlie))",
+          "z3_formula": "not_smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_fiona, young_fiona), white_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_fiona, green_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_fiona, young_fiona), white_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_bob, quiet_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & not(smart(X)) -> not(quiet(X))",
+          "z3_formula": "Implies(And(round_bob, not_smart_bob), not_quiet_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_gary, quiet_gary)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & Not(smart(X)) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(round_bob, Not(smart_bob)), Not(quiet_bob))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_gary, quiet_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_gary, young_gary), white_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> ",
+          "z3_formula": "",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_bob, young_bob), white_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == Unknown",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & Not(smart(X)) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(round_bob, Not(smart_bob)), Not(quiet_bob))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == Unknown",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_bob, round_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_bob, smart_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == Unknown",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(Fiona) -> smart(Fiona)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(Fiona)",
+          "z3_formula": "young_fiona == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & Not(smart(X)) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(round_bob, Not(smart_bob)), Not(quiet_bob))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_bob, quiet_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_bob, quiet_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_bob, young_bob), white_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_bob, smart_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(fiona) -> smart(fiona)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(white(bob))",
+          "z3_formula": "Not(white_bob) | Not(Not(white_bob))",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not smart(charlie)",
+          "z3_formula": "not smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(fiona) -> smart(fiona)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_X, young_X), white_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_X, green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_X, round_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & not smart(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(round_X, not smart_X), not quiet_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_X, quiet_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(smart(charlie))",
+          "z3_formula": "not_smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(young_fiona, young_fiona), white_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_gary, smart_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_gary, young_gary), white_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & not(smart(X)) -> not(quiet(X))",
+          "z3_formula": "Implies(And(round_bob, not_smart_bob), not_quiet_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_gary, quiet_gary)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(smart(charlie))",
+          "z3_formula": "not_smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_X, smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(fiona) -> smart(fiona)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_X, young_X), white_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_X, green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_X, young_X), white_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_X, quiet_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & not(smart(X)) -> not(quiet(X))",
+          "z3_formula": "Implies(And(round_X, not_smart_X), not_quiet_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_X, quiet_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & Not(smart(X)) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(round_bob, Not(smart_bob)), Not(quiet_bob))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_bob, quiet_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_gary, green_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_gary, young_gary), white_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_bob, smart_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona) -> smart(fiona)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(white(bob))",
+          "z3_formula": "Not(white_bob) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_bob, smart_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_bob, smart_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_bob, young_bob), white_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_bob, round_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & Not(smart(X)) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(round_bob, Not(smart_bob)), Not(quiet_bob))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_bob, quiet_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(smart(charlie))",
+          "z3_formula": "not_smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_X, smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(fiona) -> smart(fiona)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_X, young_X), white_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_X, green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & not(smart(X)) -> not(quiet(X))",
+          "z3_formula": "Implies(And(round_X, not_smart_X), not_quiet_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_X, quiet_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not smart(charlie)",
+          "z3_formula": "not smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(fiona) -> smart(fiona)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_X, young_X), white_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_X, green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & not smart(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(round_X, not smart_X), not quiet_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not quiet(X)",
+          "z3_formula": "Implies(round_X, not quiet_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not quiet(X) -> not round(X)",
+          "z3_formula": "Implies(not quiet_X, not round_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_X, quiet_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(bob)",
+          "z3_formula": "not quiet_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not round(bob)",
+          "z3_formula": "not round_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not white(gary)",
+          "z3_formula": "not white_gary == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not white(bob)",
+          "z3_formula": "not white_bob == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_bob, smart_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(fiona) -> smart(fiona)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_gary, green_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_gary, young_gary), white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_gary, quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(smart(bob))",
+          "z3_formula": "not(smart_bob) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & not(smart(X)) -> not(quiet(X))",
+          "z3_formula": "Implies(And(round_bob, not(smart_bob)), not(quiet_bob))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(quiet(bob))",
+          "z3_formula": "not(quiet_bob) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(quiet(bob))",
+          "z3_formula": "not(quiet_bob) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(bob))",
+          "z3_formula": "not(nice_bob) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_gary, quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(quiet(bob))",
+          "z3_formula": "not(quiet_bob) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(white(bob))",
+          "z3_formula": "not(white_bob) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(smart(charlie))",
+          "z3_formula": "not(smart_charlie) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not(smart(X)) -> not(green(X))",
+          "z3_formula": "Implies(not(smart_charlie), not(green_charlie))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(green(charlie))",
+          "z3_formula": "not(green_charlie) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_charlie, young_charlie), white_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not(green(charlie))",
+          "z3_formula": "not(green_charlie) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(white(charlie))",
+          "z3_formula": "not(white_charlie) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_charlie, quiet_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not(quiet(charlie))",
+          "z3_formula": "not(quiet_charlie) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(white(charlie))",
+          "z3_formula": "not(white_charlie) == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == Unknown",
+          "source_step": 15
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 216,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 49
+    },
+    "maxsat_stats": {
+      "satisfied": 49,
+      "excluded": 0,
+      "total_weight": 209,
+      "solve_time_ms": 1.4461921527981758
+    },
+    "timing": {
+      "trace_gen_s": 24.237,
+      "extraction_s": 38.543,
+      "dedup_s": 2.205,
+      "maxsat_s": 0.004,
+      "total_s": 64.99
+    }
+  }
+}

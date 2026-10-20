@@ -1,0 +1,1392 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-979_Q9",
+    "problem": "Charlie is red. Dave is red. Dave is rough. Dave is round. Dave is young. Fiona is quiet. Fiona is red. Harry is furry. Harry is kind. Harry is young. All rough things are round. All rough things are round. All round, rough things are young. All red things are young. If Fiona is young and Fiona is not furry then Fiona is kind. If something is furry then it is rough. Quiet, kind things are rough. All quiet, young things are kind. Young things are quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is round.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nQuiet($x, bool) ::: Is x quiet?\nFurry($x, bool) ::: Is x furry?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nRed(Charlie, True) ::: Charlie is red.\nRed(Dave, True) ::: Dave is red.\nRough(Dave, True) ::: Dave is rough.\nRound(Dave, True) ::: Dave is round.\nYoung(Dave, True) ::: Dave is young.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRed(Fiona, True) ::: Fiona is red.\nFurry(Harry, True) ::: Harry is furry.\nKind(Harry, True) ::: Harry is kind.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nRough($x, True) >>> Round($x, True) ::: All rough things are round.\nRound($x, True) && Rough($x, True) >>> Young($x, True) ::: All round, rough things are young.\nRed($x, True) >>> Young($x, True) ::: All red things are young.\nYoung(Fiona, True) && Furry(Fiona, False) >>> Kind(Fiona, True) ::: If Fiona is young and Fiona is not furry then Fiona is kind.\nFurry($x, True) >>> Rough($x, True) ::: If something is furry then it is rough.\nQuiet($x, True) && Kind($x, True) >>> Rough($x, True) ::: Quiet, kind things are rough.\nQuiet($x, True) && Young($x, True) >>> Kind($x, True) ::: All quiet, young things are kind.\nYoung($x, True) >>> Quiet($x, True) ::: Young things are quiet.\n\nQuery:\nRound(Fiona, True) ::: Fiona is round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 63.5,
+      "True": 124.0,
+      "Unknown": 183.5
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "True": 3,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Fiona is round\" is true, false, or unknown, we need to use the given information and logical deductions.\n\n1. We know that:\n   - Fiona is red (given)\n   - Fiona is quiet (given)\n   - All quiet, young things are kind (given)\n   - Young things are quiet (given)\n\n   From \"All quiet, young things are kind\" and \"Young things are quiet,\" we can conclude that all young things are kind and quiet. However, we do not have any information that says Fiona is young or not.\n\n2. We also know that:\n   - All red things are young (given)\n   - Fiona is red (given)\n   - If Fiona is young and Fiona is not furry then Fiona is kind (given)\n\n   From \"All red things are young\" and \"Fiona is red,\" we can conclude that Fiona is young. We also know that if Fiona is not furry, then Fiona is kind. However, we still do not know whether Fiona is furry or not.\n\n3. We also know that:\n   - If something is furry then it is rough (given)\n   - Harry is furry (given)\n   - Harry is not Fiona (given)\n\n   From \"If something is furry then it is rough,\" we can conclude that Harry is rough. However, this information does not help us determine whether Fiona is furry or not.\n\n4. We also know that:\n   - All rough things are round (given)\n   - All round, rough things are young (given)\n   - Dave is rough (given)\n   - Dave is round (given)\n   - Dave is young (given)\n\n   From \"All rough things are round\" and \"Dave is rough,\" we can conclude that Dave is round. From \"All round, rough things are young\" and \"Dave is round,\" we can conclude that Dave is young. However, this information does not help us determine whether Fiona is round or not.\n\nNow, considering the information that we have about Fiona:\n- Fiona is red\n- Fiona is quiet\n- Fiona is young (because all red things are young)\n- If Fiona is not furry, then Fiona is kind\n\nWe still do not have enough information to determine whether Fiona is furry or not. Since we do not know whether Fiona is furry or not, we cannot conclude whether Fiona is rough or not.\n\nHowever, we can conclude that if Fiona is round, then Fiona is young (because all round, rough things are young), but we already know that Fiona is young. Therefore, we cannot conclude whether Fiona is round or not.\n\nSince we do not have enough information to determine whether Fiona is round or not, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Fiona is round, we need to analyze the given information step by step.\n\n1. All rough things are round. \n2. All round, rough things are young. \n3. All red things are young. \n4. Fiona is red (from statement 3).\n5. Since Fiona is red, she must be young (from statement 3).\n\nNow we need to find a connection between Fiona and the characteristics \"round\" and \"rough.\"\n\n6. All quiet, young things are kind. \n7. Young things are quiet. \n8. Since Fiona is young, she must be quiet (from statement 7).\n9. Since Fiona is quiet and young, she must be kind (from statement 6).\n\n10. Quiet, kind things are rough (from statement 6).\n11. Since Fiona is quiet and kind, she must be rough (from statement 10).\n\n12. All rough things are round (from statement 1).\n13. Since Fiona is rough, she must be round (from statement 12).\n\nTherefore, Fiona is round.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following facts:\n   - Fiona is quiet.\n   - Fiona is red.\n   - If Fiona is young and Fiona is not furry then Fiona is kind.\n   - If something is furry then it is rough.\n   - Quiet, kind things are rough.\n   - All quiet, young things are kind.\n   - Young things are quiet.\n   - All red things are young.\n   - All round, rough things are young.\n   - All rough things are round.\n\n2. From the given facts, we know that Fiona is quiet and red. Since all red things are young, we can infer that Fiona is young.\n\n3. Now, we need to determine whether Fiona is furry or not. If Fiona is furry, then it would be rough (from the fact \"If something is furry then it is rough\"). However, we already know that Fiona is quiet and young. From the fact \"All quiet, young things are kind,\" we can infer that Fiona is kind. If Fiona is kind, then it would not be rough (from the fact \"Quiet, kind things are rough\"). This creates a contradiction, so Fiona cannot be furry.\n\n4. Since Fiona is not furry, we can infer that Fiona is not rough (from the fact \"If something is furry then it is rough\"). Now, we need to determine whether Fiona is round or not.\n\n5. From the fact \"All round, rough things are young,\" we can infer that all round things must be rough. However, we already know that Fiona is not rough. Therefore, we cannot conclude that Fiona is round.\n\n6. However, we can conclude that the statement \"Fiona is round\" is unknown because we cannot determine whether Fiona is round or not based on the given information.\n\nSo, the final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine if the statement \"Fiona is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Charlie is red.\n   - Dave is red.\n   - Dave is rough.\n   - Dave is round.\n   - Dave is young.\n   - Fiona is quiet.\n   - Fiona is red.\n   - Harry is furry.\n   - Harry is kind.\n   - Harry is young.\n   - All rough things are round.\n   - All round, rough things are young.\n   - All red things are young.\n   - If Fiona is young and Fiona is not furry then Fiona is kind.\n   - If something is furry then it is rough.\n   - Quiet, kind things are rough.\n   - All quiet, young things are kind.\n   - Young things are quiet.\n\n2. Analyzing the given information:\n   - From \"All red things are young\" and \"Fiona is red,\" we can conclude that Fiona is young.\n   - From \"Fiona is young\" and \"Young things are quiet,\" we can conclude that Fiona is quiet (which we already know).\n   - From \"Fiona is young\" and \"Fiona is not furry,\" we can conclude that Fiona is kind using the given implication.\n\n3. Now we need to determine if Fiona is round or not. Since \"All red things are young\" and we know Fiona is young, it doesn't directly tell us if Fiona is round. However, from \"All red things are young\" and \"Dave is red,\" we can conclude that Dave is young, but this doesn't tell us about Fiona.\n\n4. From \"Fiona is quiet,\" \"Fiona is kind,\" and \"All quiet, young things are kind,\" we can confirm that Fiona is indeed kind, but this doesn't help in determining if Fiona is round.\n\n5. From \"Fiona is red\" and \"All red things are young,\" we already concluded that Fiona is young. However, this information doesn't help in determining if Fiona is round.\n\n6. Now we need to find the relationship between being red, round, or rough. From \"All red things are young\" and \"Dave is red,\" we know Dave is young, but we also know that Dave is round and rough. This tells us that rough things are round. However, it doesn't tell us if Fiona is round.\n\n7. To determine if Fiona is round, we need to analyze the given information more closely. From \"All rough things are round,\" we can conclude that if something is rough, then it is round. However, this doesn't help us directly.\n\n8. From \"Fiona is quiet\" and \"Fiona is kind,\" we know that Fiona is quiet and kind. From \"Quiet, kind things are rough,\" we can conclude that Fiona is rough.\n\n9. From \"Fiona is rough\" and \"All rough things are round,\" we can conclude that Fiona is round.\n\nTherefore, the statement \"Fiona is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given statements, we know that:\n   - Fiona is quiet.\n   - Fiona is red.\n   - All quiet things are young.\n   - Young things are quiet.\n   - All quiet, young things are kind.\n   - If Fiona is young and Fiona is not furry, then Fiona is kind.\n\n2. Since Fiona is quiet and young (from \"All quiet things are young\" and \"Young things are quiet\"), we can conclude that Fiona is kind (from \"All quiet, young things are kind\").\n\n3. From the given statements, we also know that:\n   - If something is furry then it is rough.\n   - If Fiona is young and Fiona is not furry, then Fiona is kind.\n   - Since we already know that Fiona is kind, we can conclude that Fiona is not furry (because if Fiona were furry, we wouldn't be able to conclude that Fiona is kind).\n\n4. Since Fiona is not furry, we know that Fiona is not rough (from \"If something is furry then it is rough\").\n\n5. From the given statements, we know that:\n   - All rough things are round.\n   - All round, rough things are young.\n   - All red things are young.\n\n   However, we cannot conclude that Fiona is round from these statements alone, because we do not know if Fiona is rough or not (the statements only talk about rough things being round, but do not make a direct connection between Fiona being not rough and not round).\n\n6. Since Fiona is red and all red things are young (from \"All red things are young\"), we already know that Fiona is young.\n\n7. Since we have concluded that Fiona is young, we can now combine this with the statement \"If Fiona is young and Fiona is not furry, then Fiona is kind\" to confirm that Fiona is indeed kind, which we already knew.\n\n8. Now, we need to find out if Fiona is round or not. We cannot directly conclude this from the given information alone because we do not have enough information to determine whether Fiona is rough or not.\n\nHowever, we can try to find out if there is any contradiction or any other conclusion that can be drawn about Fiona being round. \n\nSince we know that Fiona is not furry, we cannot conclude that Fiona is rough (from \"If something is furry then it is rough\"). However, we still cannot conclude that Fiona is not round.\n\nBut, we can try to find a conclusion about Fiona's roundness by looking at other given statements. From the statement \"All rough things are round,\" we can try to conclude that Fiona is not round by contradiction.\n\nIf we assume that Fiona is round, then we would need to find out if Fiona is rough or not. However, from the statement \"All round, rough things are young,\" we can conclude that Fiona is young if Fiona is round and rough. But we already know that Fiona is young, and we cannot conclude that Fiona is round from this statement alone.\n\nHowever, we can use another given statement to try to find a conclusion about Fiona's roundness. From the statement \"All quiet, young things are kind,\" we already know that Fiona is kind, and we can conclude that Fiona is not furry (from \"If Fiona is young and Fiona is not furry, then Fiona is kind\").\n\nNow, we can try to find a conclusion about Fiona's roundness by looking at other given statements. From the statement \"Quiet, kind things are rough,\" we can conclude that Fiona is rough (because Fiona is quiet and kind).\n\nHowever, we still cannot conclude that Fiona is round. But, we can use another given statement to try to find a conclusion about Fiona's roundness. From the statement \"All rough things are round,\" we can conclude that Fiona is round (because Fiona is rough).\n\nTherefore, the statement \"Fiona is round\" is true.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we'll use a step-by-step approach and apply the given statements to determine if Fiona is round.\n\n1. All red things are young. (Statement 5)\n2. Fiona is red. (Statement 10)\n3. From statement 1 and 2, we can conclude that Fiona is young. (By Transitive Property)\n\n4. If Fiona is young and Fiona is not furry then Fiona is kind. (Statement 11)\n5. We already know Fiona is young from statement 3.\n6. We also know that Harry is furry (Statement 7), but we don't know if Fiona is furry or not yet.\n7. To determine if Fiona is kind, we need to know if she is furry or not.\n\n8. If something is furry then it is rough. (Statement 8)\n9. We know that Harry is furry (Statement 7) and Harry is rough (Statement 6), but this doesn't directly tell us if Fiona is furry or not.\n\n10. Quiet, kind things are rough. (Statement 12)\n11. Young things are quiet. (Statement 14)\n12. All quiet, young things are kind. (Statement 13)\n13. From statement 11 and 12, we can conclude that young things are kind.\n\n14. Since we know from statement 3 that Fiona is young, we can conclude that Fiona is kind. (From statement 12 and 13)\n\n15. We know from statement 4 that if Fiona is young and Fiona is not furry then Fiona is kind. We have already concluded that Fiona is kind in step 14.\n16. This implies that Fiona is either furry or not furry (because if she is not furry, then she is kind).\n17. However, since we know that Fiona is kind (from step 14), we can apply statement 4, which tells us that Fiona is not furry (because we know she is young from step 3).\n\n18. From step 17, we know that Fiona is not furry.\n19. Since all furry things are rough (from statement 8), Fiona being not furry implies that Fiona is not rough.\n\n20. All rough things are round. (Statement 2)\n21. From step 19, we know that Fiona is not rough.\n22. Therefore, we cannot conclude that Fiona is round, as the only thing we can say is that Fiona is not round (because all rough things are round, and Fiona is not rough).\n\n**Conclusion:** Fiona is round is an unknown statement.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is round' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know the following facts about Fiona:\n   - Fiona is red.\n   - Fiona is quiet.\n   - Fiona is not furry.\n\n2. From the given information, we can derive the following conclusions:\n   - All red things are young. (From 'All red things are young.')\n   - Since Fiona is red, Fiona is young. (From 'All red things are young.')\n   - All quiet, young things are kind. (From 'All quiet, young things are kind.')\n   - Since Fiona is quiet and young, Fiona is kind. (From 'All quiet, young things are kind.')\n   - If Fiona is young and Fiona is not furry then Fiona is kind. (From 'If Fiona is young and Fiona is not furry then Fiona is kind.')\n   - Since Fiona is young and not furry, Fiona is kind. (This is the same as the previous conclusion.)\n\n3. We are also given the following facts about Dave:\n   - Dave is rough.\n   - Dave is round.\n\n4. From the given information, we can derive the following conclusions:\n   - All rough things are round. (From 'All rough things are round.')\n   - All round, rough things are young. (From 'All round, rough things are young.')\n   - Since Dave is rough and round, Dave is young. (From 'All round, rough things are young.')\n\n5. We are also given the following facts about Harry:\n   - Harry is furry.\n   - Harry is kind.\n\n6. From the given information, we can derive the following conclusions:\n   - If something is furry then it is rough. (From 'If something is furry then it is rough.')\n   - Since Harry is furry, Harry is rough. (From 'If something is furry then it is rough.')\n   - Quiet, kind things are rough. (From 'Quiet, kind things are rough.')\n   - Since Harry is kind and rough, Harry is quiet. (From 'Quiet, kind things are rough.')\n   - All quiet, young things are kind. (From 'All quiet, young things are kind.')\n   - Since Harry is quiet, Harry is young. (From 'All quiet, young things are kind.')\n\n7. Now, let's analyze the statement 'Fiona is round.' We need to determine whether it is true, false, or unknown.\n\n   - From the given information, we know that all rough things are round. (From 'All rough things are round.')\n   - We also know that if something is furry, then it is rough. (From 'If something is furry then it is rough.')\n   - Since Fiona is not furry, Fiona is not rough. (From 'If something is furry then it is rough.')\n   - Therefore, Fiona is not round. (From 'All rough things are round.')\n\n   - We cannot conclude that Fiona is round, so the statement 'Fiona is round' is unknown based on the given information.\n\nHowever, the statement 'Fiona is not round' can be concluded from the given information.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information about Fiona:\n   - Fiona is quiet.\n   - Fiona is red.\n   - Fiona is not furry.\n\n2. We are also given the following general information:\n   - All quiet things are young. (Since Fiona is quiet, Fiona is young.)\n   - All young things are quiet. (This is consistent with the previous information.)\n   - All red things are young. (Since Fiona is red, Fiona is young. This is consistent with the previous information.)\n   - If something is furry, then it is rough.\n   - If Fiona is young and Fiona is not furry then Fiona is kind.\n   - All quiet, young things are kind. (Since Fiona is young and quiet, Fiona is kind. This is consistent with the previous information.)\n   - Quiet, kind things are rough. (Since Fiona is quiet and kind, Fiona is rough.)\n   - If all rough things are round, then all round things are rough. (This is a tautology, so it's always true.)\n\n3. However, we are given the following information about Dave:\n   - Dave is rough.\n   - Dave is round.\n\n4. We are also given the following general information:\n   - All rough things are round. (This is consistent with the information about Dave.)\n   - All round, rough things are young. (Since Dave is round and rough, Dave is young.)\n   - All red things are young. (Since Dave is red, Dave is young. This is consistent with the previous information.)\n\n5. Now, we can use the information about Fiona and Dave to determine whether Fiona is round or not. From the information about Fiona, we know that Fiona is quiet, young, and rough (from step 2). \n\n   From the information about Dave, we know that Dave is round and rough. However, we do not know whether all rough things are round or not. If all rough things are round, then all round things are rough (as mentioned in step 2). This implies that all round, rough things are young. Since Fiona is young, rough, and round, it seems like Fiona is a round, rough thing.\n\n   However, we need to be careful here. We cannot conclude that Fiona is round based on this information alone. We need to check if all rough things are round.\n\n   In the given information, we have the following statement: All rough things are round. However, this statement is repeated twice. The second time it appears, it is followed by the statement \"All round, rough things are young.\" However, the first time it appears, it is not followed by any other information. This means that we can treat the first statement as a separate statement, which we will call statement A.\n\n   Statement A: All rough things are round.\n\n   The second statement: All round, rough things are young.\n\n   We can then ask: Is statement A true? If statement A is true, then all rough things are round, which implies that Fiona is round (since Fiona is rough). However, if statement A is false, then not all rough things are round, and we cannot conclude that Fiona is round.\n\n   Unfortunately, we do not have enough information to determine whether statement A is true or false. Therefore, we cannot conclude whether Fiona is round or not.\n\n   In conclusion, the statement \"Fiona is round\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Fiona is round, we need to analyze the given statements and their implications. We will use the following statements:\n\n1. All rough things are round.\n2. All round, rough things are young.\n3. All red things are young.\n4. Fiona is quiet.\n5. Fiona is red.\n6. If Fiona is young and Fiona is not furry then Fiona is kind.\n7. If something is furry then it is rough.\n8. Quiet, kind things are rough.\n9. All quiet, young things are kind.\n10. Young things are quiet.\n\nFirst, we know that Fiona is red (statement 5) and all red things are young (statement 3). Therefore, Fiona is young (since she is a red thing).\n\nFrom statement 6, we can deduce that Fiona is not furry (because if she were furry, she would be young and kind, but since she is not furry, she must be young and not kind).\n\nWe also know that Fiona is quiet (statement 4) and all quiet, young things are kind (statement 9). However, we deduced earlier that Fiona is not kind. This seems to be a contradiction.\n\nHowever, we can resolve this by noticing that we have two paths to deduce whether Fiona is kind or not:\n\n- Fiona is quiet and young, so she is kind (statement 9).\n- Fiona is young and not furry, so she is kind (statement 6).\n\nThe two statements are contradictory, and we cannot conclude that Fiona is kind or not. \n\nSince we cannot conclude whether Fiona is kind or not, we cannot conclude whether Fiona is rough or not (because quiet, kind things are rough, and quiet, young things are kind).\n\nHowever, we can conclude that Fiona is round if she is rough (because all rough things are round, statement 1). Since we cannot conclude that Fiona is rough or not, we cannot conclude whether Fiona is round or not.\n\nTherefore, the answer is: Fiona is round is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven Information:\n1. Charlie is red.\n2. Dave is red.\n3. Dave is rough.\n4. Dave is round.\n5. Dave is young.\n6. Fiona is quiet.\n7. Fiona is red.\n8. Harry is furry.\n9. Harry is kind.\n10. Harry is young.\n11. All rough things are round.\n12. All round, rough things are young.\n13. All red things are young.\n14. If Fiona is young and Fiona is not furry then Fiona is kind.\n15. If something is furry then it is rough.\n16. Quiet, kind things are rough.\n17. All quiet, young things are kind.\n18. Young things are quiet.\n\nWe need to determine whether Fiona is round. To do this, let's analyze the information we have about Fiona:\n\n- Fiona is quiet (6).\n- Fiona is red (7).\n- Fiona is young (This is not directly stated, but we can derive it from other information).\n\nWe can derive that Fiona is young because:\n- All red things are young (13).\n- Since Fiona is red (7), she must be young.\n\nNow, let's try to find information about Fiona being round:\n\n- We don't have a direct statement saying Fiona is round.\n- However, we do have information that might help us:\n  - All rough things are round (11).\n  - If something is furry then it is rough (15).\n  - Harry is furry (8) and therefore rough (15).\n  - Harry is round (because he is rough, and all rough things are round, 11).\n  - Harry is young (10).\n  - Young things are quiet (18).\n\nHowever, this does not directly help us determine if Fiona is round. We still need to find a connection between Fiona and being round.\n\nLet's analyze the information again:\n\n- If Fiona is young and Fiona is not furry, then Fiona is kind (14).\n- Young things are quiet (18).\n- Since Fiona is young (and not furry), Fiona is kind (14).\n- Quiet, kind things are rough (16).\n- Therefore, Fiona is rough (16).\n- All rough things are round (11).\n- Therefore, Fiona is round.\n\nSo, based on the given information, we can conclude that Fiona is round.\n\nFinal Answer: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following facts:\n   - Fiona is quiet.\n   - Fiona is red.\n   - If Fiona is young and Fiona is not furry, then Fiona is kind.\n\n2. We are also given the following rules:\n   - All quiet, young things are kind.\n   - Young things are quiet.\n   - If something is furry, then it is rough.\n   - All red things are young.\n   - All rough things are round.\n   - All round, rough things are young.\n\n3. We can start by using the rule \"Young things are quiet\" and the fact that Fiona is quiet to infer that Fiona is young, since quiet things are young.\n\n   - Fiona is young.\n\n4. Using the fact that Fiona is young and the rule \"All red things are young,\" we can also infer that Fiona is red.\n\n   - Fiona is young.\n   - Fiona is red.\n\n5. Since we already know that Fiona is red and the rule states \"All red things are young,\" it's redundant to say that Fiona is young. However, we can use the fact that Fiona is red to infer that she is young using the rule \"All red things are young.\"\n\n6. Now, we can use the fact that Fiona is not furry (since we are trying to determine if she is round and we have not been given any facts stating she is furry) and the rule \"If something is furry, then it is rough\" to infer that Fiona is not rough.\n\n   - Fiona is not rough.\n\n7. Using the rule \"All quiet, young things are kind\" and the facts that Fiona is quiet and young, we can infer that Fiona is kind.\n\n   - Fiona is young.\n   - Fiona is red.\n   - Fiona is kind.\n\n8. Since we know that Fiona is not rough and the rule states \"All rough things are round,\" we can infer that Fiona is not round.\n\n   - Fiona is not round.\n\n9. Since Fiona is not round and the rule states \"All round things are round,\" we can infer that Fiona is not round. However, the rule \"All round, rough things are young\" does not directly apply to Fiona since we have established that Fiona is not round.\n\n   - Fiona is not round.\n\n10. Therefore, we can conclude that the statement \"Fiona is round\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Charlie is red.\n   - Dave is red.\n   - Dave is rough.\n   - Dave is round.\n   - Dave is young.\n   - Fiona is quiet.\n   - Fiona is red.\n   - Harry is furry.\n   - Harry is kind.\n   - Harry is young.\n   - All rough things are round.\n   - All round, rough things are young.\n   - All red things are young.\n   - If Fiona is young and Fiona is not furry then Fiona is kind.\n   - If something is furry then it is rough.\n   - Quiet, kind things are rough.\n   - All quiet, young things are kind.\n   - Young things are quiet.\n\n2. From the given information, we know:\n   - All red things are young. (From \"All red things are young\")\n   - Fiona is red, so Fiona is young. (From \"Fiona is red\" and \"All red things are young\")\n\n3. Now we have:\n   - Fiona is quiet.\n   - Fiona is young.\n\n4. We can use the rule \"All quiet, young things are kind\" to conclude that:\n   - Fiona is kind.\n\n5. Now we have:\n   - Fiona is quiet.\n   - Fiona is kind.\n   - Fiona is young.\n\n6. We can use the rule \"If Fiona is young and Fiona is not furry then Fiona is kind\" to conclude that:\n   - Fiona is not furry, because we already know Fiona is kind.\n\n7. We can use the rule \"If something is furry then it is rough\" to conclude that:\n   - Since Fiona is not furry, Fiona is not rough.\n\n8. From the rule \"Quiet, kind things are rough\" and the fact that Fiona is not rough, we cannot conclude that Fiona is round.\n\n9. Since we don't have enough information to determine whether Fiona is round or not, we conclude that the statement \"Fiona is round\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_X, rough_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_X, rough_X)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_X, round_X)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_X, young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(round_X, rough_X), young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_X, quiet_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_X, quiet_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & young(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_X, young_X), kind_X)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_X, kind_X), rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_X, young_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_X, young_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & Not(furry(X)) -> kind(X)",
+          "z3_formula": "Implies(And(young_fiona, Not(furry_fiona)), kind_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_fiona, rough_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_fiona, quiet_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_fiona, young_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(round_fiona, rough_fiona), young_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "Not(furry(fiona))",
+          "z3_formula": "Not(furry_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == Unknown",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(round_X, rough_X), young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_X, young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & Not(furry(X)) -> kind(X)",
+          "z3_formula": "Implies(And(young_X, Not(furry_X)), kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_X, rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_X, kind_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_X, young_X), kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_X, quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_fiona, young_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_fiona, quiet_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_fiona, young_fiona), kind_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & Not(furry(X)) -> kind(X)",
+          "z3_formula": "Implies(And(young_fiona, Not(furry_fiona)), kind_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "Not(furry(fiona))",
+          "z3_formula": "Not(furry_fiona) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "Not(furry(fiona)) -> Not(rough(fiona))",
+          "z3_formula": "Implies(Not(furry_fiona), Not(rough_fiona))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(round_fiona, rough_fiona), young_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_fiona, young_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_fiona, young_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_fiona, quiet_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_fiona, young_fiona), kind_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_fiona, quiet_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_fiona, young_fiona), kind_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & Not(furry(X)) -> kind(X)",
+          "z3_formula": "Implies(And(young_fiona, Not(furry_fiona)), kind_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "Not(furry(fiona))",
+          "z3_formula": "Not(furry_fiona) == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona) == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_fiona, rough_fiona)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona))",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(furry(fiona))",
+          "z3_formula": "Not(furry_fiona) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_fiona, young_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_fiona, young_fiona), kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not(furry(X)) -> kind(X)",
+          "z3_formula": "Implies(And(young_fiona, Not(furry_fiona)), kind_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_dave, round_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(round_dave, rough_dave), young_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_harry, kind_harry), rough_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_harry, young_harry), kind_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_dave, rough_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not(furry(fiona))",
+          "z3_formula": "Not(furry_fiona) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_dave, round_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not(furry(fiona))",
+          "z3_formula": "Not(furry_fiona) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not furry(fiona)",
+          "z3_formula": "not furry_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_fiona, young_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_fiona, quiet_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_fiona, young_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_X, rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_fiona, not furry_fiona), kind_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_X, round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_X, rough_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_dave, round_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(round_dave, rough_dave), young_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_dave, young_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_fiona, young_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_fiona, rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_fiona, young_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_fiona, young_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_fiona, quiet_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_fiona, rough_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & young(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_fiona, young_fiona), kind_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_fiona, quiet_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_fiona, rough_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_fiona, young_fiona), kind_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_fiona, quiet_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(fiona)",
+          "z3_formula": "Not(furry_fiona) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(fiona)",
+          "z3_formula": "Not(kind_fiona) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_X, round_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(round_X, rough_X), young_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_X, young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & Not(furry(X)) -> kind(X)",
+          "z3_formula": "Implies(And(young_X, Not(furry_X)), kind_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_X, rough_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_X, kind_X), rough_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_X, young_X), kind_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_X, quiet_X)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_fiona, quiet_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_fiona, quiet_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_fiona, rough_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_fiona, young_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_fiona, rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(round_fiona, rough_fiona), young_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(fiona)",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not round(fiona)",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not round(fiona)",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_X, round_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(round_X, rough_X), young_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_X, young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & Not(furry(X)) -> kind(X)",
+          "z3_formula": "Implies(And(young_X, Not(furry_X)), kind_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_X, rough_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_X, kind_X), rough_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_X, young_X), kind_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_X, quiet_X)",
+          "source_step": 18
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 210,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 52
+    },
+    "maxsat_stats": {
+      "satisfied": 48,
+      "excluded": 4,
+      "total_weight": 198,
+      "solve_time_ms": 1.9144127145409584
+    },
+    "timing": {
+      "trace_gen_s": 9.895,
+      "extraction_s": 35.84,
+      "dedup_s": 2.479,
+      "maxsat_s": 0.005,
+      "total_s": 48.22
+    }
+  }
+}

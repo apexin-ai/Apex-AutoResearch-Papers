@@ -1,0 +1,588 @@
+{
+  "pid": "folio_135",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "appliance(duster)",
+          "z3_formula": "appliance_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "appliance(X) & suck(X) -> sucks(X)",
+          "z3_formula": "Implies(And(appliance_X, suck_X), sucks_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sucks(space)",
+          "z3_formula": "sucks_space == Unknown",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(suck(duster))",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "vacuum(X) -> suck(X)",
+          "z3_formula": "Implies(vacuum_space, suck_space)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(suck(duster))",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(suck(space))",
+          "z3_formula": "not_suck_space == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_suck(duster)",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "vacuum(X) -> suck(X)",
+          "z3_formula": "Implies(vacuum_space, suck_space)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "suck(X) -> suck(X)",
+          "z3_formula": "Implies(suck_vacuum, suck_space)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(suck(space))",
+          "z3_formula": "Or(suck_space, Not(suck_space))",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "plungers_suck",
+          "z3_formula": "plungers_suck == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "vacuums_suck",
+          "z3_formula": "vacuums_suck == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "vampires_suck",
+          "z3_formula": "vampires_suck == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "space_is_a_vacuum",
+          "z3_formula": "space_is_a_vacuum == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "duster_does_not_suck",
+          "z3_formula": "duster_does_not_suck == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "vacuum(X) -> sucks(X)",
+          "z3_formula": "Implies(space_is_a_vacuum, sucks_space)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sucks_space",
+          "z3_formula": "sucks_space == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "plunger_suck == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "vacuum_suck == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "vampire_suck == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(suck(duster))",
+          "z3_formula": "not_duster_suck == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "suck(space)",
+          "z3_formula": "space_suck == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(suck(duster))",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "vacuum(X) -> suck(X)",
+          "z3_formula": "Implies(vacuum_space, suck_space)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_suck(duster)",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "suck(X) -> X is a physical property",
+          "z3_formula": "Implies(suck_plunger, is_physical_plunger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "suck(X) -> X is a physical property",
+          "z3_formula": "Implies(suck_vacuum, is_physical_vacuum)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "suck(X) -> X is a metaphorical property",
+          "z3_formula": "Implies(suck_vampire, is_metaphorical_vampire)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "vacuum(X) -> X is a region devoid of matter",
+          "z3_formula": "Implies(vacuum_space, is_devoid_space)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "suck(space)",
+          "z3_formula": "suck_space == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "is_vacuum(space)",
+          "z3_formula": "is_vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_suck(duster)",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "is_vacuum(X) -> suck(X)",
+          "z3_formula": "Implies(is_vacuum_space, suck_space)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(suck(space))",
+          "z3_formula": "Not(Implies(suck_vacuum, suck_space))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "plunger_suck == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "vacuum_suck == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "vampire_suck == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_suck(duster)",
+          "z3_formula": "not_duster_suck == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not_suck(space)",
+          "z3_formula": "not_space_suck == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "plungers_suck",
+          "z3_formula": "plungers_suck == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "vacuums_suck",
+          "z3_formula": "vacuums_suck == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "vampires_suck",
+          "z3_formula": "vampires_suck == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "space_is_vacuum",
+          "z3_formula": "space_is_vacuum == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "duster_is_household_appliance",
+          "z3_formula": "duster_is_household_appliance == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "space_is_vacuum",
+          "z3_formula": "space_is_vacuum == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "space_sucks",
+          "z3_formula": "space_sucks == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(suck(duster))",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "suction(X) -> suck(X)",
+          "z3_formula": "Implies(suction_plunger, suck_plunger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "suction(X) -> suck(X)",
+          "z3_formula": "Implies(suction_vacuum, suck_vacuum)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "suck(X)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "suck(space)",
+          "z3_formula": "suck_space == Unknown",
+          "source_step": 9
+        }
+      ]
+    }
+  ]
+}

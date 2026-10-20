@@ -1,0 +1,555 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-199_Q4",
+    "problem": "The dog is blue. The dog sees the mouse. The mouse is not round. The mouse sees the dog. The rabbit is cold. The rabbit is red. The rabbit sees the mouse. The squirrel is green. The squirrel needs the mouse. The squirrel sees the dog. The squirrel does not visit the dog. If something sees the dog then it sees the squirrel. If something is red and blue then it sees the squirrel. If something needs the squirrel and it is green then it visits the rabbit. If something needs the rabbit and the rabbit is blue then the rabbit does not need the dog. If the mouse needs the rabbit and the rabbit is cold then the mouse is green. If something sees the squirrel then it needs the rabbit. If something sees the rabbit then it needs the mouse. If something is blue then it needs the dog. If something is green and it sees the dog then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel does not see the squirrel.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\n\nFacts:\nBlue(Dog, True) ::: The dog is blue.\nSees(Dog, Mouse, True) ::: The dog sees the mouse.\nRound(Mouse, False) ::: The mouse is not round.\nSees(Mouse, Dog, True) ::: The mouse sees the dog.\nCold(Rabbit, True) ::: The rabbit is cold.\nRed(Rabbit, True) ::: The rabbit is red.\nSees(Rabbit, Mouse, True) ::: The rabbit sees the mouse.\nGreen(Squirrel, True) ::: The squirrel is green.\nNeeds(Squirrel, Mouse, True) ::: The squirrel needs the mouse.\nSees(Squirrel, Dog, True) ::: The squirrel sees the dog.\nVisits(Squirrel, Dog, False) ::: The squirrel does not visit the dog.\n\nRules:\nSees($x, Dog, True) >>> Sees($x, Squirrel, True) ::: If something sees the dog then it sees the squirrel.\nRed($x, True) && Blue($x, True) >>> Sees($x, Squirrel, True) ::: If something is red and blue then it sees the squirrel.\nNeeds($x, Squirrel, True) && Green($x, True) >>> Visits($x, Rabbit, True) ::: If something needs the squirrel and it is green then it visits the rabbit.\nNeeds($x, Rabbit, True) && Blue(Rabbit, True) >>> Needs(Rabbit, Dog, False) ::: If something needs the rabbit and the rabbit is blue then the rabbit does not need the dog.\nNeeds(Mouse, Rabbit, True) && Cold(Rabbit, True) >>> Green(Mouse, True) ::: If the mouse needs the rabbit and the rabbit is cold then the mouse is green.\nSees($x, Squirrel, True) >>> Needs($x, Rabbit, True) ::: If something sees the squirrel then it needs the rabbit.\nSees($x, Rabbit, True) >>> Needs($x, Mouse, True) ::: If something sees the rabbit then it needs the mouse.\nBlue($x, True) >>> Needs($x, Dog, True) ::: If something is blue then it needs the dog.\nGreen($x, True) && Sees($x, Dog, True) >>> Blue($x, True) ::: If something is green and it sees the dog then it is blue.\n\nQuery:\nSees(Squirrel, Squirrel, False) ::: The squirrel does not see the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 38.0,
+      "True": 52.0
+    },
+    "answer_counts": {
+      "False": 9,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The squirrel does not see the squirrel\" is true, false, or unknown, we need to analyze the given information and rules.\n\nGiven statements:\n- The squirrel sees the dog.\n- If something sees the dog then it sees the squirrel.\n- The squirrel does not visit the dog.\n\nFrom the given statements, we can conclude that the squirrel sees the squirrel because it sees the dog and according to the rule \"If something sees the dog then it sees the squirrel\".\n\nNow, we need to determine whether the statement \"The squirrel does not see the squirrel\" is true or false based on the conclusion we made.\n\nSince we concluded that the squirrel sees the squirrel, the statement \"The squirrel does not see the squirrel\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step and apply the rules provided.\n\n1. The squirrel sees the dog (given information).\n2. If something sees the dog then it sees the squirrel (rule 1). \n   Therefore, the squirrel sees the squirrel.\n\nSince the statement \"The squirrel does not see the squirrel\" contradicts the conclusion we obtained from the given rules, we can determine that this statement is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel does not see the squirrel\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nFrom the given information:\n\n1. The squirrel sees the dog (rule 7).\n2. If something sees the dog then it sees the squirrel (rule 8).\n3. The squirrel is green (rule 10).\n4. The squirrel does not visit the dog (rule 11).\n\nNow, we need to analyze the rules to see if they provide any information about the squirrel seeing itself.\n\nFrom rule 8, we know that since the squirrel sees the dog, it must also see the squirrel. However, this conclusion is based on the premise that the squirrel sees the dog, which we already know is true. \n\nNow let's analyze the rules to see if they provide any information that would lead to a contradiction with \"The squirrel sees the squirrel\" being true.\n\nSince we already know the squirrel sees the dog, and it is green, we can use rule 1 which states \"If something sees the dog then it sees the squirrel.\" So the squirrel sees the squirrel which is true.\n\nHowever, there's a problem here: since the squirrel sees the squirrel, we can use rule 8 again and say that since the squirrel sees the squirrel, it sees the dog. But we know the squirrel sees the dog. This creates an infinite loop. We must consider the fact that we can't deduce that the squirrel sees itself directly from the rules.\n\nHowever we can determine that the statement is not false. If the squirrel sees the dog, it must also see the squirrel as per rule 8. This means that the squirrel sees itself. \n\nBut can we be certain that the squirrel sees itself? From rule 8, we know that since the squirrel sees the dog, it sees the squirrel. This creates a loop, and the rules do not provide any information about the squirrel not seeing itself. \n\nWe can say that the squirrel sees itself, but we can't say that the squirrel does not see the squirrel. The statement is not false.\n\nSo the final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel does not see the squirrel\" is true, false, or unknown, we need to analyze the given conditions and their implications.\n\nFrom the given conditions, we know:\n1. The squirrel sees the dog.\n2. If something sees the dog then it sees the squirrel. (This means the squirrel sees the squirrel.)\n\nBased on the second condition, we can conclude that the squirrel sees the squirrel. \n\nTherefore, the statement \"The squirrel does not see the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel does not see the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The squirrel sees the dog. \nThis is given in the problem statement.\n\n2. If something sees the dog then it sees the squirrel. \nThis is a rule given in the problem statement. Therefore, the squirrel sees the squirrel.\n\nSince we found that the squirrel sees the squirrel, we can conclude that the statement \"The squirrel does not see the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is blue.\n   This statement tells us that the dog is blue, but we don't know about the other animals yet.\n\n2. The dog sees the mouse.\n   This statement tells us that the dog sees the mouse. However, it doesn't tell us anything about the mouse seeing the dog.\n\n3. The mouse is not round.\n   This statement is irrelevant to our problem.\n\n4. The mouse sees the dog.\n   This statement tells us that the mouse sees the dog. Based on the given rules, if something sees the dog, then it sees the squirrel. Therefore, the mouse sees the squirrel.\n\n5. The rabbit is cold.\n   This statement tells us that the rabbit is cold, but we don't know about the other animals yet.\n\n6. The rabbit is red.\n   This statement tells us that the rabbit is red.\n\n7. The rabbit sees the mouse.\n   This statement tells us that the rabbit sees the mouse. Based on the given rules, if something sees the rabbit then it needs the mouse. However, we don't know if the rabbit needs the mouse yet.\n\n8. The squirrel is green.\n   This statement tells us that the squirrel is green.\n\n9. The squirrel needs the mouse.\n   This statement tells us that the squirrel needs the mouse.\n\n10. The squirrel sees the dog.\n    This statement tells us that the squirrel sees the dog. Based on the given rules, if something sees the dog then it sees the squirrel. Therefore, the squirrel sees the squirrel.\n\nHowever, based on the given rules, we can conclude that the squirrel sees the squirrel, but it is not necessarily the case that the squirrel does not see the squirrel.\n\nBased on rule 1, the squirrel is green. Based on rule 7, the squirrel sees the dog. Based on rule 8, if the squirrel sees the dog and it is green, then it is blue.\n\nHowever, we cannot conclude that the squirrel does not see the squirrel because based on rule 10, the squirrel sees the dog and based on rule 4, the mouse sees the dog, and based on rule 4, the mouse sees the squirrel. \n\nHowever, this means the mouse needs the rabbit because based on rule 5, the rabbit sees the mouse. \n\nThis also means that based on rule 1, the rabbit is red. Based on rule 6, the rabbit is cold. Based on rule 7, the rabbit sees the mouse. Based on rule 9, the squirrel needs the mouse. Based on rule 8, the squirrel is green. Based on rule 9, the squirrel needs the mouse. Based on rule 10, the squirrel sees the dog. Based on rule 4, the mouse sees the dog. Based on rule 4, the mouse sees the squirrel.\n\nBased on rule 3, if the mouse sees the squirrel and the mouse needs the rabbit, then the mouse is green. \n\nHowever, this is not possible because based on rule 5, the rabbit is cold and based on rule 6, the rabbit is red. Based on rule 7, the rabbit sees the mouse. Based on rule 9, the squirrel needs the mouse. Based on rule 8, the squirrel is green. Based on rule 10, the squirrel sees the dog. Based on rule 4, the mouse sees the dog. Based on rule 4, the mouse sees the squirrel.\n\nBased on rule 5, the rabbit is cold and based on rule 6, the rabbit is red. Based on rule 7, the rabbit sees the mouse. Based on rule 9, the squirrel needs the mouse. Based on rule 8, the squirrel is green. Based on rule 10, the squirrel sees the dog. Based on rule 4, the mouse sees the dog. Based on rule 4, the mouse sees the squirrel.\n\nBased on rule 5, the rabbit is cold and based on rule 6, the rabbit is red. Based on rule 7, the rabbit sees the mouse. Based on rule 9, the squirrel needs the mouse. Based on rule 8, the squirrel is green. Based on rule 10, the squirrel sees the dog. Based on rule 4, the mouse sees the dog. Based on rule 4, the mouse sees the squirrel.\n\nThis means that the statement that the squirrel does not see the squirrel is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel does not see the squirrel\" is true, false, or unknown, we need to analyze the given information and apply the given rules.\n\nRule 1: If something sees the dog then it sees the squirrel. \nWe know that the dog sees the mouse (Rule 3), but we don't know if the dog sees the squirrel directly. However, we can infer that the dog sees the squirrel because the mouse sees the dog (Rule 3) and if something sees the dog then it sees the squirrel (Rule 1). \n\nSince the dog sees the squirrel, we can apply Rule 1 again to infer that the mouse sees the squirrel (because the mouse sees the dog) and the rabbit sees the squirrel (because the rabbit sees the mouse). \n\nRule 2: If something is red and blue then it sees the squirrel. \nThere is no information that the squirrel is red and blue, so we can't apply this rule.\n\nRule 3: If something needs the squirrel and it is green then it visits the rabbit. \nThere is no information that the squirrel needs the rabbit, so we can't apply this rule.\n\nRule 4: If something needs the rabbit and the rabbit is blue then the rabbit does not need the dog. \nWe don't know if the rabbit is blue or not. \n\nRule 5: If the mouse needs the rabbit and the rabbit is cold then the mouse is green. \nWe don't know if the mouse needs the rabbit or not.\n\nRule 6: If something sees the squirrel then it needs the rabbit. \nThe mouse sees the squirrel (because the mouse sees the dog and if something sees the dog then it sees the squirrel), so the mouse needs the rabbit.\n\nRule 7: If something sees the rabbit then it needs the mouse. \nThe squirrel sees the rabbit, so the squirrel needs the mouse.\n\nRule 8: If something is blue then it needs the dog. \nThe dog is blue, so the dog needs the dog.\n\nRule 9: If something is green and it sees the dog then it is blue. \nWe don't know if something is green and it sees the dog.\n\nNow, we can conclude that the statement \"The squirrel does not see the squirrel\" is unknown because we don't have enough information to determine whether the squirrel sees the squirrel or not.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given information and apply the rules to determine the relationships between the entities (dog, mouse, rabbit, squirrel).\n\n1. The dog is blue.\n2. The dog sees the mouse.\n3. The mouse is not round.\n4. The mouse sees the dog.\n5. The rabbit is cold.\n6. The rabbit is red.\n7. The rabbit sees the mouse.\n8. The squirrel is green.\n9. The squirrel needs the mouse.\n10. The squirrel sees the dog.\n11. The squirrel does not visit the dog.\n\nFrom rule 10, we know the squirrel sees the dog. \n\nFrom rule 1, we know the dog is blue.\n\nFrom rule 6, we know the rabbit is red.\n\nFrom rule 8, we know the squirrel is green.\n\nFrom rule 12, we know that if something sees the dog then it sees the squirrel. We can apply this rule to the dog, which we know sees the mouse. So, the mouse sees the squirrel.\n\nFrom rule 13, we know that if something sees the squirrel then it needs the rabbit. We can apply this rule to the squirrel, which we know sees the mouse. However, the mouse does not see the squirrel directly, but we know the mouse sees the dog, which means the mouse sees the squirrel. Therefore, the mouse needs the rabbit.\n\nFrom rule 14, we know that if something sees the rabbit then it needs the mouse. We can apply this rule to the rabbit. However, we do not have a direct relationship between the rabbit and any other entity that sees the rabbit. But we know that the rabbit sees the mouse. Therefore, the rabbit needs the mouse.\n\nFrom rule 8, we know the squirrel is green.\n\nFrom rule 16, we know that if something is green and it sees the dog then it is blue. However, we do not have information about the squirrel seeing the dog directly. But we know the squirrel sees the dog, so the squirrel is blue (according to rule 1).\n\nFrom rule 15, we know that if something needs the rabbit and the rabbit is blue then the rabbit does not need the dog. However, we do not have information about the rabbit needing the dog. But we know the rabbit is red, and from rule 1, we know the dog is blue, so we cannot apply this rule directly.\n\nFrom rule 17, we know that if the mouse needs the rabbit and the rabbit is cold then the mouse is green. We can apply this rule to the mouse, which we know needs the rabbit. However, we do not have information about the mouse being green. But we know the rabbit is cold, so we can apply the rule. Therefore, the mouse is green.\n\nFrom rule 18, we know that if something needs the squirrel and it is green then it visits the rabbit. We can apply this rule to the squirrel, which we know is green. However, we do not have information about the squirrel needing the rabbit. But we know the squirrel needs the mouse (rule 9), and we also know the mouse is not round (rule 3) and sees the squirrel (from the relationship we derived earlier). So, the mouse needs the rabbit (rule 13). Therefore, the squirrel visits the rabbit.\n\nFrom rule 19, we know that if something sees the squirrel then it needs the rabbit. We can apply this rule to the dog, which we know sees the squirrel. Therefore, the dog needs the rabbit.\n\nFrom rule 20, we know that if something sees the rabbit then it needs the mouse. We can apply this rule to the rabbit, which we know sees the mouse. However, this rule is not applicable in this scenario.\n\nFrom rule 21, we know that if something is blue then it needs the dog. We can apply this rule to the dog, which we know is blue. Therefore, the dog needs the dog.\n\nFrom rule 16, we know that if something is green and it sees the dog then it is blue. We can apply this rule to the squirrel, which we know is green and sees the dog. Therefore, the squirrel is blue.\n\nFrom rule 15, we know that if something needs the rabbit and the rabbit is blue then the rabbit does not need the dog. We can apply this rule to the mouse, which we know needs the rabbit and the rabbit is red (rule 6). However, the rabbit is not blue, so we cannot apply this rule directly.\n\nFrom rule 19, we know that if something sees the squirrel then it needs the rabbit. We can apply this rule to the squirrel, which we know sees the mouse. However, the mouse does not see the squirrel directly, but we know the mouse sees the dog, which means the mouse sees the squirrel. Therefore, the mouse needs the rabbit.\n\nFrom rule 18, we know that if something needs the squirrel and it is green then it visits the rabbit. We can apply this rule to the mouse, which we know needs the squirrel and is not green. However, we know the mouse needs the rabbit (rule 19), and we also know the rabbit is cold (rule 5). But we also know the mouse is green (rule 17). So, the mouse visits the rabbit.\n\nFrom rule 11, we know the squirrel does not visit the dog.\n\nFrom rule 12, we know that if something sees the dog then it sees the squirrel. We can apply this rule to the dog, which we know sees the mouse. Therefore, the mouse sees the squirrel.\n\nFrom rule 12, we know that if something sees the dog then it sees the squirrel. We can apply this rule to the rabbit, which we know sees the mouse. However, we do not have information about the rabbit seeing the dog directly. But we know the rabbit sees the mouse, so the rabbit sees the squirrel.\n\nFrom rule 19, we know that if something sees the squirrel then it needs the rabbit. We can apply this rule to the rabbit, which we know sees the squirrel. Therefore, the rabbit needs the rabbit.\n\nFrom rule 13, we know that if something sees the rabbit then it needs the mouse. We can apply this rule to the rabbit. However, we do not have a direct relationship between the rabbit and any other entity that sees the rabbit. But we know the rabbit sees the mouse. Therefore, the rabbit needs the mouse.\n\nFrom rule 14, we know that if something sees the rabbit then it needs the mouse. We can apply this rule to the squirrel, which we know sees the rabbit. Therefore, the squirrel needs the mouse.\n\nFrom rule 9, we know the squirrel needs the mouse.\n\nFrom rule 15, we know that if something needs the rabbit and the rabbit is blue then the rabbit does not need the dog. However, we do not have information about the rabbit needing the dog. But we know the rabbit is red, and from rule 1, we know the dog is blue, so we cannot apply this rule directly.\n\nFrom rule 10, we know the squirrel sees the dog.\n\nFrom rule 16, we know that if something is green and it sees the dog then it is blue. We can apply this rule to the squirrel, which we know is green and sees the dog. Therefore, the squirrel is blue.\n\nFrom rule 12, we know that if something sees the dog then it sees the squirrel. We can apply this rule to the mouse, which we know sees the dog. Therefore, the mouse sees the squirrel.\n\nFrom rule 12, we know that if something sees the dog then it sees the squirrel. We can apply this rule to the rabbit, which we know sees the mouse. However, we do not have information about the rabbit seeing the dog directly. But we know the rabbit sees the mouse, so the rabbit sees the squirrel.\n\nFrom rule 19, we know that if something sees the squirrel then it needs the rabbit. We can apply this rule to the rabbit, which we know sees the squirrel. Therefore, the rabbit needs the rabbit.\n\nFrom rule 13, we know that if something sees the rabbit then it needs the mouse. We can apply this rule to the rabbit. However, we do not have a direct relationship between the rabbit and any other entity that sees the rabbit. But we know the rabbit sees the mouse. Therefore, the rabbit needs the mouse.\n\nFrom rule 14, we know that if something sees the rabbit then it needs the mouse. We can apply this rule to the squirrel, which we know sees the rabbit. Therefore, the squirrel needs the mouse.\n\nNow, let's address the original question: Does the squirrel see the squirrel?\n\nFrom the rules and relationships we have derived, we know that the squirrel sees the dog (rule 10), and from rule 12, if something sees the dog then it sees the squirrel. However, we cannot directly apply this rule to the squirrel because it already sees the squirrel.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel does not see the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information given, we have the following statements:\n\n- The squirrel sees the dog.\n- If something sees the dog, then it sees the squirrel.\n\nUsing the second statement, we can infer that the squirrel sees the squirrel, because the squirrel sees the dog. Therefore, the statement \"The squirrel does not see the squirrel\" is actually false.\n\nThe final answer is \\boxed{false}.",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel does not see the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The squirrel sees the dog (from the statement: The squirrel sees the dog).\n2. If something sees the dog then it sees the squirrel (from the statement: If something sees the dog then it sees the squirrel).\n3. Since the squirrel sees the dog, it sees the squirrel (from step 1 and step 2).\n\nNow, we can conclude that the statement \"The squirrel does not see the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel does not see the squirrel\" is true, false, or unknown, we need to analyze the given conditions and infer the relationships between the entities.\n\n1. The squirrel sees the dog. (From the given statement)\n2. If something sees the dog then it sees the squirrel. (From the given conditions)\n   Therefore, the squirrel sees the squirrel. (Combining steps 1 and 2)\n\nNow, we need to determine the truth value of the statement \"The squirrel does not see the squirrel.\"\n\nSince we have found that the squirrel sees the squirrel, the statement \"The squirrel does not see the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel does not see the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given statements:\n\n1. The squirrel sees the dog.\n   Since the squirrel sees the dog, we can infer that the squirrel sees the squirrel (itself) because it sees everything the dog sees, as per the rule \"If something sees the dog then it sees the squirrel.\"\n\nHowever, to verify if the statement is true or false, we must check all possible inferences and rules related to the squirrel.\n\n2. The squirrel is green.\n   From this, we know the squirrel needs the mouse (rule \"If something needs the squirrel and it is green then it visits the rabbit\").\n\n3. The squirrel sees the dog.\n   As mentioned earlier, the squirrel sees the squirrel.\n\n4. The squirrel does not visit the dog.\n   This statement does not directly relate to whether the squirrel sees itself.\n\nConsidering all the given information, we can conclude that the squirrel sees itself. Therefore, the statement \"The squirrel does not see the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_dog, sees_squirrel_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_visit(squirrel, dog)",
+          "z3_formula": "does_not_visit_squirrel_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, squirrel)",
+          "z3_formula": "sees_squirrel_squirrel == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_dog, sees_squirrel_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, squirrel)",
+          "z3_formula": "sees_squirrel_squirrel == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_dog, sees_squirrel_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(squirrel, dog)",
+          "z3_formula": "not_visits_squirrel_dog == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_dog, sees_squirrel_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, squirrel)",
+          "z3_formula": "sees_squirrel_squirrel == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_dog, sees_squirrel_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, squirrel)",
+          "z3_formula": "sees_squirrel_squirrel == True",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, mouse)",
+          "z3_formula": "sees_dog_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(mouse))",
+          "z3_formula": "Not(round_mouse) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, dog)",
+          "z3_formula": "sees_mouse_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, mouse)",
+          "z3_formula": "sees_rabbit_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_dog, sees_squirrel_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_rabbit_mouse, needs_mouse_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & sees(X, dog) -> blue(X)",
+          "z3_formula": "Implies(And(green_squirrel, sees_squirrel_dog), blue_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, squirrel)",
+          "z3_formula": "sees_squirrel_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(sees(squirrel, squirrel))",
+          "z3_formula": "Not(sees_squirrel_squirrel) == True",
+          "source_step": 13
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, mouse)",
+          "z3_formula": "sees_dog_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(mouse))",
+          "z3_formula": "not(round_mouse) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, dog)",
+          "z3_formula": "sees_mouse_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, mouse)",
+          "z3_formula": "sees_rabbit_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(squirrel, dog))",
+          "z3_formula": "not(visits_squirrel_dog) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_dog_X, sees_X_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> needs(X, rabbit)",
+          "z3_formula": "Implies(sees_X_squirrel, needs_X_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_X_rabbit, needs_X_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & sees(X, dog) -> blue(X)",
+          "z3_formula": "Implies(And(green_X, sees_X_dog), blue_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & blue(rabbit) -> not(needs(X, dog))",
+          "z3_formula": "Implies(And(needs_X_rabbit, blue_rabbit), not(needs_X_dog))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & cold(rabbit) -> green(X)",
+          "z3_formula": "Implies(And(needs_X_rabbit, cold_rabbit), green_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & green(squirrel) -> visits(X, rabbit)",
+          "z3_formula": "Implies(And(needs_X_squirrel, green_squirrel), visits_X_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> needs(X, rabbit)",
+          "z3_formula": "Implies(sees_X_squirrel, needs_X_rabbit)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_X_rabbit, needs_X_mouse)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> needs(X, dog)",
+          "z3_formula": "Implies(blue_X, needs_X_dog)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_dog, sees_squirrel_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, squirrel)",
+          "z3_formula": "sees_squirrel_squirrel == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_dog, sees_squirrel_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, squirrel)",
+          "z3_formula": "sees_squirrel_squirrel == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_dog, sees_squirrel_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, squirrel)",
+          "z3_formula": "sees_squirrel_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "Not(sees(squirrel, squirrel))",
+          "z3_formula": "Not(sees_squirrel_squirrel) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_squirrel_dog, sees_squirrel_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & green(X) -> visits(X, rabbit)",
+          "z3_formula": "Implies(And(needs_squirrel_squirrel, green_squirrel), visits_squirrel_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, squirrel)",
+          "z3_formula": "sees_squirrel_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(squirrel, dog))",
+          "z3_formula": "Not(visits_squirrel_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, squirrel)",
+          "z3_formula": "sees_squirrel_squirrel == True",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 71,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 28
+    },
+    "maxsat_stats": {
+      "satisfied": 27,
+      "excluded": 1,
+      "total_weight": 68,
+      "solve_time_ms": 0.8582193404436111
+    },
+    "timing": {
+      "trace_gen_s": 21.8,
+      "extraction_s": 27.597,
+      "dedup_s": 0.404,
+      "maxsat_s": 0.003,
+      "total_s": 49.804
+    }
+  }
+}

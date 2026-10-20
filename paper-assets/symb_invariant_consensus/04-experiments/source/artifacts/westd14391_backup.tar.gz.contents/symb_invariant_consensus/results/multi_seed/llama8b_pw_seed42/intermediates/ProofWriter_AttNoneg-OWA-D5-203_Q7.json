@@ -1,0 +1,822 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-203_Q7",
+    "problem": "Bob is nice. Bob is round. Bob is young. Dave is round. Erin is big. Erin is red. Gary is young. All round things are nice. All nice, big things are white. If something is big and white then it is round. Young things are nice. Big, red things are young. All nice things are quiet. All quiet things are big. Young, quiet things are red.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is big.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\nWhite($x, bool) ::: Is x white?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nNice(Bob, True) ::: Bob is nice.\nRound(Bob, True) ::: Bob is round.\nYoung(Bob, True) ::: Bob is young.\nRound(Dave, True) ::: Dave is round.\nBig(Erin, True) ::: Erin is big.\nRed(Erin, True) ::: Erin is red.\nYoung(Gary, True) ::: Gary is young.\n\nRules:\nRound($x, True) >>> Nice($x, True) ::: All round things are nice.\nNice($x, True) && Big($x, True) >>> White($x, True) ::: All nice, big things are white.\nBig($x, True) && White($x, True) >>> Round($x, True) ::: If something is big and white then it is round.\nYoung($x, True) >>> Nice($x, True) ::: Young things are nice.\nBig($x, True) && Red($x, True) >>> Young($x, True) ::: Big, red things are young.\nNice($x, True) >>> Quiet($x, True) ::: All nice things are quiet.\nQuiet($x, True) >>> Big($x, True) ::: All quiet things are big.\nYoung($x, True) && Quiet($x, True) >>> Red($x, True) ::: Young, quiet things are red.\n\nQuery:\nBig(Gary, True) ::: Gary is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 79.5,
+      "True": 107.0,
+      "Unknown": 96.0
+    },
+    "answer_counts": {
+      "Unknown": 2,
+      "False": 1,
+      "True": 8
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Gary is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is young. (Given)\n2. All young things are nice. (Given)\n3. All round things are nice. (Given)\n4. Gary is round. (We can infer this from steps 2 and 3, since Gary is young and all young things are nice, and all round things are nice)\n\nNow, let's look at the information about \"big\" things:\n\n1. All nice, big things are white. (Given)\n2. All round things are nice. (Given)\n3. All round things are nice. (Repeated for clarity)\n\nSince Gary is round and all round things are nice, we can conclude that Gary is nice.\n\nNow, let's look at the information about \"big\" things:\n\n1. Gary is nice. (From step 4)\n2. All big, red things are young. (Given)\n3. All quiet things are big. (Given)\n4. All nice things are quiet. (Given)\n5. Gary is quiet. (We can infer this from steps 1 and 4, since Gary is nice and all nice things are quiet)\n\nNow, let's look at the information about \"red\" things:\n\n1. Gary is quiet. (From step 5)\n2. Young, quiet things are red. (Given)\n3. Gary is young. (From step 1)\n\nSince Gary is young and quiet, we can conclude that Gary is red.\n\nNow, let's look at the information about \"big\" things again:\n\n1. Gary is red. (From step 2)\n2. All big, red things are young. (Given)\n3. Gary is young. (From step 1)\n\nWe know that Gary is red and young, but we cannot conclude that Gary is big from the given information. There is no direct statement that says \"All young, red things are big.\" Therefore, we cannot determine whether the statement \"Gary is big\" is true or false.\n\nThe answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is big\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven statements:\n\n1. Bob is nice. \n2. Bob is round. \n3. Bob is young. \n4. Dave is round. \n5. Erin is big. \n6. Erin is red. \n7. Gary is young. \n8. All round things are nice. \n9. All nice, big things are white. \n10. If something is big and white then it is round. \n11. Young things are nice. \n12. Big, red things are young. \n13. All nice things are quiet. \n14. All quiet things are big. \n15. Young, quiet things are red.\n\nWe want to determine whether Gary is big. Let's break down the information related to Gary.\n\nFrom statement 7, we know Gary is young.\n\nWe also know from statement 12 that big, red things are young. However, we cannot conclude that Gary is big or red from this information alone. We need to consider other possibilities.\n\nIf Gary were big, then we could infer that he is round (by statement 10), and subsequently, that he is nice (by statement 8). However, this contradicts statement 13, which states that all nice things are quiet. But we do not know if Gary is quiet or not.\n\nNow, let's consider another possibility. If Gary is not big, then we cannot directly conclude that he is not round or not nice. However, from statement 11, we know that young things are nice. So, Gary is nice.\n\nNow, let's analyze the statement \"Gary is big\" based on the new information.\n\nIf Gary is big, then he would be quiet (by statement 14), and subsequently, he would be red (by statement 15). However, we already know that Gary is young (from statement 7), and we have the statement \"Big, red things are young\" (statement 12). This creates a contradiction, as being big, red, and young cannot be true simultaneously.\n\nTherefore, the statement \"Gary is big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is big\" is true, false, or unknown, we need to analyze the given information and apply the rules.\n\n1. Gary is young. (Given)\n2. Young things are nice. (Rule)\n3. All round things are nice. (Rule)\n   Since Gary is young and nice (from rule 2), it implies that Gary is round (from rule 3).\n\n4. All round things are nice. (Rule)\n   Since Gary is round, it implies that Gary is nice (from rule 4).\n\n5. All nice things are quiet. (Rule)\n   Since Gary is nice, it implies that Gary is quiet (from rule 5).\n\n6. All quiet things are big. (Rule)\n   Since Gary is quiet, it implies that Gary is big (from rule 6).\n\nTherefore, based on the given information and rules, we can conclude that Gary is indeed big.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is young. (Given)\n\nFrom the given information, we know that:\n- Young things are nice. (So, Gary is nice)\n- Young things are nice. (So, Gary is nice, and we already know this from the previous point)\n- All round things are nice. (So, Gary is round)\n\n2. Since Gary is round, we can conclude that Gary is nice (from the previous point).\n\n3. We also know that Gary is young, and all young things are nice. Since Gary is nice, we can conclude that:\n- All nice things are quiet. (So, Gary is quiet)\n- All quiet things are big. (So, Gary is big)\n\nHowever, this conclusion is contradictory to the statement \"Gary is big\" being true. The information given states that \"All round things are nice\" and \"All nice, big things are white.\" Since Gary is round and nice, and we have not been given any information that directly states that all round things are big or that all nice things are big, we cannot conclude that Gary is big.\n\nHowever, based on the conclusion we made earlier (Gary is big) which was based on the fact that all quiet things are big, we must re-evaluate our steps. Given that we already concluded that Gary is big, we must check if this conclusion is valid based on the information given.\n\nGiven that we have not found any information that contradicts the fact that Gary is big, we can re-evaluate the statement \"Gary is big\" based on the fact that Gary is round and that all round things are nice. Since Gary is nice and big, we can use the information that \"All nice, big things are white\" to check if Gary is white.\n\nHowever, we do not have any information that directly states that all round things are white or that all big things are round. Therefore, we must rely on the fact that all quiet things are big, and we already concluded that Gary is quiet.\n\nGiven that Gary is quiet, and all quiet things are big, we can conclude that Gary is big.\n\nTherefore, based on the given information, we can conclude that the statement \"Gary is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is big\" is true, false, or unknown, we need to analyze the given information and the relationships between the characteristics.\n\nGiven information:\n\n1. Gary is young. \n2. Young things are nice.\n3. All round things are nice. \n4. All nice, big things are white.\n5. If something is big and white then it is round.\n6. Gary is young.\n7. Young, quiet things are red.\n8. All quiet things are big.\n9. All nice things are quiet.\n\nFrom 1, we know that Gary is young.\n\nFrom 2, we know that young things are nice. So, Gary is nice.\n\nFrom 3, we know that round things are nice. But we already know Gary is nice from 2. This statement doesn't provide any additional information about Gary.\n\nFrom 4, we know that nice, big things are white. But we don't know if Gary is big or nice and big. We only know Gary is nice from 2.\n\nFrom 5, we know that if something is big and white, then it is round. But we don't know if Gary is big or white.\n\nFrom 6, we know that Gary is young. This is the same information as 1.\n\nFrom 7, we know that young, quiet things are red. But we don't know if Gary is quiet.\n\nFrom 8, we know that all quiet things are big. But we don't know if Gary is quiet.\n\nFrom 9, we know that all nice things are quiet. But we already know Gary is nice from 2.\n\nNow, let's try to find a relationship between Gary's characteristics and the statement \"Gary is big.\"\n\nWe know Gary is young (1 and 6), which means Gary is nice (2).\n\nFrom 8, we know that all quiet things are big. And from 9, we know that all nice things are quiet. Since Gary is nice (2), it means Gary is quiet (9). Now, since Gary is quiet (9), we can conclude that Gary is big (8).\n\nTherefore, the statement \"Gary is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is big\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given statements:\n\n1. All round things are nice.\n2. All nice, big things are white.\n3. If something is big and white then it is round.\n4. Young things are nice.\n5. Big, red things are young.\n6. All nice things are quiet.\n7. All quiet things are big.\n8. Young, quiet things are red.\n\nWe know the following about Gary:\n\n- Gary is young. (Statement 4)\n- Gary is young, so he is nice. (Statement 4)\n- Gary is nice, so he is quiet. (Statement 6)\n- Gary is quiet, so he is big. (Statement 7)\n\nNow we can determine whether Gary is big.\n\nGary is big. \n\nThe answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is young. (Given)\n2. All young things are nice. (Given)\n3. Gary is nice. (From 1 and 2)\n4. Gary is round. (From the fact that all round things are nice, and Gary is nice)\n5. All quiet things are big. (Given)\n6. All nice things are quiet. (Given)\n7. Gary is quiet. (From 3 and 6)\n8. Gary is big. (From 7 and 5)\n\nTherefore, based on the given information, the statement \"Gary is big\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is young. \n   This is given directly from the information.\n\n2. Young things are nice. \n   From the information, we can conclude that Gary is nice.\n\n3. All round things are nice. \n   However, we cannot conclude that Gary is round. We only know that he is young and nice.\n\n4. All nice, big things are white. \n   This does not provide any information about Gary's size.\n\n5. Something is big and white then it is round. \n   Again, this does not provide any information about Gary's size.\n\n6. Young, quiet things are red. \n   We do not have enough information about Gary being quiet to use this statement.\n\n7. All quiet things are big. \n   We do not have enough information about Gary being quiet to use this statement.\n\n8. All nice things are quiet. \n   We do not have enough information about Gary being quiet to use this statement.\n\nFrom the given information, we cannot conclude that Gary is big. However, we can conclude that Gary is young and nice, but we cannot determine his size. Therefore, the answer is unknown.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them to determine if Gary is big or not.\n\nGiven statements:\n\n1. All round things are nice.\n2. All nice, big things are white.\n3. If something is big and white then it is round.\n4. Young things are nice.\n5. Big, red things are young.\n6. All nice things are quiet.\n7. All quiet things are big.\n8. Young, quiet things are red.\n\nNow, let's analyze the statement \"Gary is young\" (from the initial problem). \n\nWe know from statement 4 that young things are nice. We also know from statement 6 that all nice things are quiet. We can infer from statement 7 that quiet things are big.\n\nHowever, from statement 5, we know that big, red things are young. But, we cannot conclude that Gary is big, red, or white (from statement 2) because there is no information that directly links Gary to these characteristics.\n\nWe can conclude that Gary is young (from the initial problem), and therefore, nice (from statement 4). However, we cannot determine if Gary is big or not because the information given does not provide a direct link between Gary and the characteristic \"big.\"\n\nTherefore, the statement \"Gary is big\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is big\" is true, false, or unknown, we need to use the given information and logical deductions.\n\n1. Gary is young. \n   Reasoning: From the information \"Gary is young.\"\n\n2. All round things are nice.\n   Reasoning: This is a general statement given in the problem.\n\n3. Young things are nice.\n   Reasoning: This is also a general statement given in the problem. It supports statement 2.\n\n4. All young things are nice.\n   Reasoning: From statements 1 and 3, we can conclude that Gary is nice.\n\n5. All round things are nice.\n   Reasoning: From statement 2.\n\n6. Gary is nice.\n   Reasoning: From statement 1 and statement 3.\n\n7. All nice things are quiet.\n   Reasoning: This is a general statement given in the problem.\n\n8. Gary is quiet.\n   Reasoning: From statements 6 and 7.\n\n9. All quiet things are big.\n   Reasoning: This is a general statement given in the problem.\n\n10. Gary is big.\n    Reasoning: From statements 8 and 9.\n\nTherefore, the statement \"Gary is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is big\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Gary is young. \n   Given statement: Gary is young.\n\n2. All round things are nice.\n   Since Gary is round (given statement: Bob is round, Dave is round, which does not directly apply to Gary, but it can be inferred that Gary is round as well, since no other information about Gary is given, however, Gary is young and young things are nice), Gary is nice.\n\n3. All nice, big things are white.\n   We don't know if Gary is big, so we can't apply this statement directly to Gary.\n\n4. If something is big and white then it is round.\n   We still don't know if Gary is big, so we can't apply this statement directly to Gary.\n\n5. Young things are nice.\n   Given statement: Gary is young, and we inferred that Gary is nice.\n\n6. Big, red things are young.\n   We don't know if Gary is big or red, so we can't apply this statement directly to Gary.\n\n7. All nice things are quiet.\n   Given statement: Gary is nice, so Gary is quiet.\n\n8. All quiet things are big.\n   Given statement: Gary is quiet, so Gary is big.\n\nBased on the given statements and their implications, we can conclude that Gary is big.\n\nTherefore, the answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is big\" is true, false, or unknown, we need to analyze the given information and apply it to the statement step by step.\n\n1. Gary is young. (Given)\n2. Young things are nice. (Given)\n3. All nice things are quiet. (Given)\n4. All quiet things are big. (Given)\nFrom the above steps, we can conclude that Gary is big because he is young (Step 1) and being young makes him nice (Step 2), which in turn makes him quiet (Step 3), and being quiet makes him big (Step 4).\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_gary, nice_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> nice(X)",
+          "z3_formula": "Implies(And(nice_gary, round_gary), nice_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> red(X)",
+          "z3_formula": "Implies(And(young_gary, quiet_gary), red_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & young(X) -> ?big(X)",
+          "z3_formula": "Implies(And(red_gary, young_gary), big_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(big_gary, white_gary), round_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_gary, red_gary), young_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_gary, nice_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_gary, red_gary), young_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == False",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_gary, nice_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_gary, nice_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_gary, nice_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(nice_gary, big_gary), white_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_gary, nice_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(nice_gary, big_gary), white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(big_gary, white_gary), round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(nice_gary, big_gary), white_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(big_gary, white_gary), round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_gary, young_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_gary, nice_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> red(X)",
+          "z3_formula": "Implies(And(young_gary, quiet_gary), red_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_gary, nice_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_gary, nice_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(nice_gary, big_gary), white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(big_gary, white_gary), round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> red(X)",
+          "z3_formula": "Implies(And(young_gary, quiet_gary), red_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(big_gary, white_gary), round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_gary, nice_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_gary, red_gary), young_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_gary, nice_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_gary, nice_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_gary, quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_gary, big_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 115,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 22
+    },
+    "maxsat_stats": {
+      "satisfied": 21,
+      "excluded": 1,
+      "total_weight": 114,
+      "solve_time_ms": 0.9199930354952812
+    },
+    "timing": {
+      "trace_gen_s": 5.754,
+      "extraction_s": 17.055,
+      "dedup_s": 0.598,
+      "maxsat_s": 0.002,
+      "total_s": 23.41
+    }
+  }
+}

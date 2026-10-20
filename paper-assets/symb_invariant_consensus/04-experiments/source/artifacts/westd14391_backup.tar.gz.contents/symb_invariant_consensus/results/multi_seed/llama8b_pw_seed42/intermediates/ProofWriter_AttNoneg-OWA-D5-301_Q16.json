@@ -1,0 +1,1246 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-301_Q16",
+    "problem": "Bob is cold. Bob is kind. Bob is red. Bob is smart. Bob is young. Fiona is blue. Gary is blue. Gary is kind. Harry is kind. Harry is young. All red people are blue. All blue people are smart. All young people are cold. Cold people are red. If someone is kind and smart then they are white.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is cold.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\nRed($x, bool) ::: Is x red?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nCold(Bob, True) ::: Bob is cold.\nKind(Bob, True) ::: Bob is kind.\nRed(Bob, True) ::: Bob is red.\nSmart(Bob, True) ::: Bob is smart.\nYoung(Bob, True) ::: Bob is young.\nBlue(Fiona, True) ::: Fiona is blue.\nBlue(Gary, True) ::: Gary is blue.\nKind(Gary, True) ::: Gary is kind.\nKind(Harry, True) ::: Harry is kind.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nRed($x, True) >>> Blue($x, True) ::: All red people are blue.\nBlue($x, True) >>> Smart($x, True) ::: All blue people are smart.\nYoung($x, True) >>> Cold($x, True) ::: All young people are cold.\nCold($x, True) >>> Red($x, True) ::: Cold people are red.\nKind($x, True) && Smart($x, True) >>> White($x, True) ::: If someone is kind and smart then they are white.\n\nQuery:\nCold(Fiona, True) ::: Fiona is cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 58.0,
+      "Unknown": 171.0
+    },
+    "answer_counts": {
+      "True": 1,
+      "Unknown": 11
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Fiona is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is blue. (Given)\n2. All blue people are smart. (Given)\n   From this, we can infer that Fiona is smart.\n\n3. Fiona is smart. (Inferred from step 2)\n4. If someone is kind and smart then they are white. (Given)\n   Since we don't have information about Fiona's kindness, we can't directly apply this rule to Fiona.\n\nHowever, we can look at the other people mentioned to see if any of them are kind and smart:\n- Gary is kind, but we don't know if Gary is smart.\n- Harry is kind and young, but we don't know if Harry is smart.\n- Bob is smart, but we don't know if Bob is kind.\n\nSo, we still can't determine Fiona's color based on the information provided.\n\n5. Fiona is blue. (Given)\n6. All red people are blue. (Given)\n   From this, we can infer that Fiona is a red person.\n\n7. Cold people are red. (Given)\n   From this, we can infer that Fiona is a cold person.\n\nBased on the information given, we have found that Fiona is both blue and cold. However, since \"All red people are blue,\" it is possible that Fiona is red even though she is blue.\n\nSo, we can conclude that the statement \"Fiona is cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Fiona is cold, we need to analyze the given statements and apply the rules of logic.\n\n1. All red people are blue. (Statement 1)\n   Since Bob is red (given), then Bob is blue (by Statement 1).\n\n2. All blue people are smart. (Statement 2)\n   Since Bob is blue (from Statement 1), then Bob is smart (by Statement 2).\n\n3. All young people are cold. (Statement 3)\n   Since Bob is young (given), then Bob is cold (by Statement 3).\n\n4. Cold people are red. (Statement 4)\n   Since Bob is cold (from Statement 3), then Bob is red (by Statement 4).\n\nNow, let's examine the given information about Fiona:\n   Fiona is blue (given).\n\nFrom Statement 2, we know that all blue people are smart. Therefore, Fiona is smart.\n\nHowever, we cannot conclude that Fiona is cold because there is no direct statement linking blue people to cold people. We can only infer that if someone is blue, then they are smart, but we do not know anything about their temperature.\n\nSince we cannot determine whether Fiona is cold or not based on the given information, the statement \"Fiona is cold\" is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All red people are blue. \n   - Since Bob is red, it means Bob is blue.\n\n2. All blue people are smart. \n   - Since Bob is blue, it means Bob is smart.\n\n3. All young people are cold. \n   - We don't have any direct information about Fiona's age, but we know that Harry is young.\n\n4. Cold people are red. \n   - We don't have any direct information about Fiona's temperature, but we know that if someone is red, they might be cold.\n\n5. If someone is kind and smart then they are white. \n   - Since Bob is smart and kind, it means Bob is white.\n\n6. Fiona is blue. \n   - Since Fiona is blue, we can infer that she is smart (from statement 2).\n\n7. We are trying to determine whether Fiona is cold.\n\nFrom statement 3, we know that all young people are cold. However, we don't have any direct information about Fiona's age. If Fiona is young, then she is cold. But if Fiona is not young, then we cannot determine her temperature.\n\nTherefore, the statement \"Fiona is cold\" is unknown because we don't have enough information to determine Fiona's age, which is the only information that could help us determine her temperature. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them to Fiona. \n\n1. All red people are blue: This statement implies that red people are also blue. However, it doesn't mean that blue people are red. It's a one-way relationship.\n2. All blue people are smart: This statement implies that blue people are smart, but it doesn't mean that smart people are blue.\n3. All young people are cold: This statement implies that young people are cold, but it doesn't mean that cold people are young.\n4. Cold people are red: This statement implies that cold people are red, but it doesn't mean that red people are cold.\n5. If someone is kind and smart then they are white: This statement implies that if a person is both kind and smart, they are white. However, it doesn't mean that white people are kind and smart.\n\nNow, let's analyze the given information about Fiona:\nFiona is blue.\n\nWe don't have any information about Fiona being young or not. We don't have any information about Fiona being red or not.\n\nBased on statement 2, since Fiona is blue, she must be smart. \n\nHowever, we can't determine if Fiona is cold or not. We know that cold people are red, but we don't know if Fiona is red or not. \n\nTherefore, we can't determine if Fiona is cold or not, so the answer is unknown. \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is cold' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Bob is cold. \n   - Bob is kind. \n   - Bob is red. \n   - Bob is smart. \n   - Bob is young. \n   - Fiona is blue. \n   - Gary is blue. \n   - Gary is kind. \n   - Harry is kind. \n   - Harry is young. \n   - All red people are blue. \n   - All blue people are smart. \n   - All young people are cold. \n   - Cold people are red. \n   - If someone is kind and smart then they are white.\n\n2. Analyzing the given information:\n   - Since Fiona is blue, and all blue people are smart, then Fiona is smart.\n   - We cannot determine whether Fiona is red, blue, or white because we don't have any information linking blue people with red or white.\n\n3. Determining Fiona's age:\n   - Since we don't have any information about Fiona's age, we cannot determine whether she is young or not.\n\n4. Determining Fiona's coldness:\n   - We know that all young people are cold, but we don't know whether Fiona is young or not.\n   - We also know that cold people are red, but we don't know whether Fiona is red or not.\n\n5. Conclusion:\n   - Since we cannot determine whether Fiona is young, red, or not, we cannot determine whether she is cold or not.\n\nTherefore, the statement 'Fiona is cold' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is cold\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nGiven information:\n1. All red people are blue.\n2. All blue people are smart.\n3. All young people are cold.\n4. Cold people are red.\n5. Fiona is blue.\n6. Fiona's color is not mentioned.\n7. If someone is kind and smart then they are white.\n\nWe do not have any information about Fiona's age.\n\nHowever, we do have information about Bob, who is young and red, and Fiona, who is blue.\n\nFrom statement 1, we know that all red people are blue. But from statement 4, we know that cold people are red. This implies that young people (who are cold) are red. Since Fiona is blue, we cannot conclude her age or color directly from the given statements.\n\nHowever, we do not have enough information to conclude that Fiona is not young. Since we cannot determine Fiona's age and it is a necessary condition for her to be cold (from statement 3), we cannot conclude that Fiona is cold.\n\nTherefore, the statement \"Fiona is cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether Fiona is cold, we need to analyze the given information step by step.\n\n1. All red people are blue.\n   Since Bob is red, then Bob is blue. However, we don't know if this applies to Fiona yet.\n\n2. All blue people are smart.\n   Since Bob is blue (from step 1), then Bob is smart. However, we still don't know if this applies to Fiona yet.\n\n3. All young people are cold.\n   We don't know if Fiona is young yet, so we can't determine if she is cold.\n\n4. Cold people are red.\n   We don't know if Fiona is cold yet, so we can't determine if she is red.\n\n5. Fiona is blue.\n   We are given this information directly.\n\n6. Since Fiona is blue (from step 5), then Fiona is smart (from step 2).\n\n7. Since Fiona is smart (from step 6), then we can't determine if she is white because we don't know if she is kind.\n\n8. Now let's consider the information about Fiona being blue. Since we know all blue people are smart (from step 2), and Fiona is smart (from step 6), it still doesn't tell us anything about her being cold.\n\n9. Since all young people are cold (from step 3), and we don't know if Fiona is young yet, we can't determine if she is cold.\n\n10. Fiona is not mentioned as being young, red, or cold. However, Fiona is mentioned as blue, and from step 1, all red people are blue. This implies that Fiona is not red.\n\n11. Since we are trying to determine if Fiona is cold and we know that Fiona is not red (from step 10), and all red people are blue (from step 1), then Fiona is not cold.\n\nHowever, based on step 3, we know that all young people are cold, but we do not know if Fiona is young. We still do not know if Fiona is young, but if she is young, then she is cold.\n\nSince the only information that we do have is that Fiona is blue, and we do not have any information that says blue people are not young, we can say that Fiona could be young.\n\nSince Fiona could be young (from step 12) and all young people are cold (from step 3), then Fiona could be cold.\n\nWe know that Fiona is blue, and all blue people are smart (from step 2), so Fiona is smart.\n\nSince Fiona is smart and we do not have any information that says smart people are not kind, we can say that Fiona could be kind.\n\nSince we do not know if Fiona is kind, we also do not know if someone is kind and smart then they are white. \n\nFrom steps 12-15, we have found that Fiona could be young and therefore could be cold. We also know that Fiona is blue and smart.\n\nSince all red people are blue (from step 1) and we do not know if Fiona is red, we can say that Fiona could be red.\n\nHowever, since Fiona could be red and all red people are blue (from step 1), then Fiona could be blue.\n\nWe already know that Fiona is blue (from step 5), so this doesn't tell us anything new.\n\nSo, Fiona could be young and therefore could be cold.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules of logic.\n\nGiven statements:\n1. Bob is cold.\n2. Bob is kind.\n3. Bob is red.\n4. Bob is smart.\n5. Bob is young.\n6. Fiona is blue.\n7. Gary is blue.\n8. Gary is kind.\n9. Harry is kind.\n10. Harry is young.\n11. All red people are blue.\n12. All blue people are smart.\n13. All young people are cold.\n14. Cold people are red.\n15. If someone is kind and smart then they are white.\n\nNow, we need to determine whether the statement \"Fiona is cold\" is true, false, or unknown.\n\nFrom statement 6, we know that Fiona is blue. \n\nFrom statement 11, we know that all red people are blue. However, this statement does not directly affect Fiona's color, but it tells us that if someone is red, then they are blue.\n\nFrom statement 14, we know that cold people are red. \n\nFrom statement 13, we know that all young people are cold. However, this statement does not directly affect Fiona's coldness, but it tells us that if someone is young, then they are cold.\n\nFrom statement 5, we do not know Fiona's age, but we know that Harry is young.\n\nNow, let's analyze the possibilities:\n- If Fiona is young, then from statement 13, she is cold.\n- However, we do not know if Fiona is young, but from statement 14, if she is cold, then she is red.\n- From statement 11, if she is red, then she is blue.\n\nNow, let's look at statement 6, which says Fiona is blue. We also know that all blue people are smart (from statement 12).\n\nHowever, we cannot determine Fiona's age, and therefore, we cannot determine if she is cold.\n\nSo, the statement \"Fiona is cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Fiona is cold, we need to analyze the given information step by step.\n\n1. All red people are blue. \n   Since Bob is red, Bob must be blue.\n\n2. All blue people are smart. \n   Since Bob is blue, Bob must be smart.\n\n3. All young people are cold. \n   We do not know if Bob is young, but we will come back to this.\n\n4. Cold people are red. \n   We will come back to this statement later.\n\n5. Fiona is blue. \n   Since Fiona is blue, Fiona must be smart (from statement 2).\n\n6. Gary is blue. \n   Since Gary is blue, Gary must be smart (from statement 2).\n\n7. Gary is kind. \n   Since Gary is kind and smart, Gary must be white (from the given condition).\n\n8. Harry is kind. \n   Harry is also kind, but we do not know if Harry is smart or white.\n\n9. Harry is young. \n   Since Harry is young, Harry must be cold (from statement 3).\n\n10. Bob is young. \n    Although we do not know if Bob is young initially, since all young people are cold (from statement 3) and Bob is cold (from statement 4), we can conclude that Bob is young.\n\n11. Bob is red. \n    Since Bob is red, Bob must be blue (from statement 1). But we already know Bob is blue, so this statement is consistent.\n\n12. Cold people are red. \n    Since Bob is cold and red, this statement is consistent.\n\n13. If someone is kind and smart then they are white. \n    We have already concluded that Gary is kind and smart, so Gary is white.\n\nNow, to determine whether Fiona is cold, we need to analyze Fiona's characteristics.\n\nFiona is blue (statement 5), which means Fiona is smart (from statement 2). However, we do not know if Fiona is young or not.\n\nSince all young people are cold (from statement 3), if Fiona is young, then Fiona must be cold. However, we do not have any information that directly connects Fiona's age to her being young.\n\nTherefore, based on the given information, we cannot determine whether Fiona is cold or not. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply logical reasoning. \n\nGiven statements:\n1. Bob is cold.\n2. Bob is kind.\n3. Bob is red.\n4. Bob is smart.\n5. Bob is young.\n6. Fiona is blue.\n7. Gary is blue.\n8. Gary is kind.\n9. Harry is kind.\n10. Harry is young.\n11. All red people are blue.\n12. All blue people are smart.\n13. All young people are cold.\n14. Cold people are red.\n15. If someone is kind and smart then they are white.\n\nNow, we need to determine whether the statement \"Fiona is cold\" is true, false, or unknown.\n\nFirst, let's analyze the given statements about Fiona:\n- Fiona is blue (statement 6)\n\nFrom statement 12, we know that all blue people are smart. Therefore, Fiona is smart.\n\nNow, we need to check the statements that might be related to Fiona being cold. We have two main possibilities:\n- Fiona is blue and smart, which means she is white (based on statement 15).\n- If Fiona is not white, we need to analyze other possibilities.\n\nFrom statement 11, we know that all red people are blue. This implies that if Fiona is blue, she might not be red (since being red is a characteristic that leads to being blue). However, statement 14 says that cold people are red. This means that Fiona's coldness (if she were cold) would make her red. But we already know that red people are blue (statement 11), which creates a contradiction.\n\nHowever, we can't directly conclude that Fiona is not cold because of this contradiction. We need to examine other possibilities.\n\nFrom statement 13, we know that all young people are cold. But there's no direct information about Fiona's age. \n\nHowever, we can use the fact that Fiona is blue and smart. From statement 12, we know that all blue people are smart. This means Fiona is indeed smart, but we still don't have enough information about her being young or old.\n\nTo conclude, since we have no direct information about Fiona's age, and since there's no information that would contradict the statement \"Fiona is cold\" directly, we cannot determine whether the statement is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is blue.\n2. All blue people are smart. \n   From this, we can conclude that Fiona is smart.\n\n3. All red people are blue. \n   From this, we cannot conclude that Fiona is red or blue because Fiona is already given to be blue.\n\n4. Fiona is kind and smart. \n   Since Fiona is smart, and we don't know anything about Fiona being kind or not, we can't determine her color yet.\n\n5. All red people are blue. \n   This statement is inconsistent with the given information that Fiona is blue. However, it is not necessary for determining the color of Fiona.\n\n6. Fiona is young.\n   This statement is not given in the problem. \n\n7. All young people are cold.\n   If Fiona were young, then she would be cold. However, we don't know if Fiona is young or not.\n\n8. Cold people are red.\n   If Fiona were cold, then she would be red. However, we don't know if Fiona is cold or not.\n\nSince we don't have enough information to determine whether Fiona is young or not, we cannot conclude whether Fiona is cold or not. Therefore, the statement \"Fiona is cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules of logic.\n\nGiven statements:\n1. Bob is cold.\n2. Bob is kind.\n3. Bob is red.\n4. Bob is smart.\n5. Bob is young.\n6. Fiona is blue.\n7. Gary is blue.\n8. Gary is kind.\n9. Harry is kind.\n10. Harry is young.\n11. All red people are blue.\n12. All blue people are smart.\n13. All young people are cold.\n14. Cold people are red.\n15. If someone is kind and smart then they are white.\n\nWe are asked to determine whether the statement \"Fiona is cold\" is true, false, or unknown.\n\nFrom statement 11, we know that all red people are blue. Since Bob is red (statement 3), we can conclude that Bob is blue (statement 11). However, statement 12 states that all blue people are smart, so Bob is smart (statement 4). This information is not directly relevant to the statement \"Fiona is cold,\" but it is useful to understand the relationships between the properties.\n\nStatement 13 states that all young people are cold, and statement 5 states that Bob is young. So, from statement 13, we can conclude that Bob is cold (statement 1).\n\nNow, let's examine Fiona. Statement 6 states that Fiona is blue. From statement 12, we know that all blue people are smart, so Fiona is smart.\n\nHowever, we cannot directly determine whether Fiona is cold or not. Statement 14 states that cold people are red, but we do not have enough information to conclude that Fiona is red. Since Fiona is blue (statement 6), we cannot apply the rule from statement 14.\n\nFurthermore, statement 13 states that all young people are cold, but we do not know whether Fiona is young or not.\n\nSince we do not have enough information to conclude that Fiona is cold or not, the answer to the statement \"Fiona is cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_fiona, smart_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_gary, smart_gary), white_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_harry, smart_harry), white_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_bob, smart_bob), white_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_fiona, blue_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(red)",
+          "z3_formula": "cold_red == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_bob, blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_bob, smart_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_bob, cold_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_fiona, smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all red people are blue",
+          "z3_formula": "forall X (red(X) -> blue(X))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "bob is red",
+          "z3_formula": "red_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "bob is blue",
+          "z3_formula": "blue_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all blue people are smart",
+          "z3_formula": "forall X (blue(X) -> smart(X))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "bob is smart",
+          "z3_formula": "smart_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all young people are cold",
+          "z3_formula": "forall X (young(X) -> cold(X))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "harry is young",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "all cold people are red",
+          "z3_formula": "forall X (cold(X) -> red(X))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_bob, smart_bob), white_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "bob is white",
+          "z3_formula": "white_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "fiona is blue",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is smart",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is cold",
+          "z3_formula": "cold_fiona == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_fiona, smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_fiona, red_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_fiona, smart_fiona), white_fiona)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_bob, blue_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_fiona, smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_bob, cold_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_gary, smart_gary), white_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == Unknown",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all red people are blue",
+          "z3_formula": "Forall(X, Implies(red(X), blue(X)))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all blue people are smart",
+          "z3_formula": "Forall(X, Implies(blue(X), smart(X)))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all young people are cold",
+          "z3_formula": "Forall(X, Implies(young(X), cold(X)))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold people are red",
+          "z3_formula": "Forall(X, Implies(cold(X), red(X)))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "fiona is blue",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "fiona's color is not mentioned",
+          "z3_formula": "Not(color_fiona == True)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_fiona, smart_fiona), white_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "bob is young and red",
+          "z3_formula": "And(young_bob, red_bob) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is not cold",
+          "z3_formula": "Not(cold_fiona == True)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_fiona, blue_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_fiona, smart_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_fiona, red_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(fiona))",
+          "z3_formula": "Not(cold_fiona) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "could_be(cold(fiona))",
+          "z3_formula": "Or(young_fiona, cold_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "could_be(red(fiona))",
+          "z3_formula": "Or(red_fiona, Not(round_fiona))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "could_be(blue(fiona))",
+          "z3_formula": "Or(blue_fiona, red_fiona)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_X, blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_X, smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_X, smart_X), white_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all red people are blue",
+          "z3_formula": "all_red_people_are_blue == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "bob is red",
+          "z3_formula": "bob_is_red == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "bob is blue",
+          "z3_formula": "bob_is_blue == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all blue people are smart",
+          "z3_formula": "all_blue_people_are_smart == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "bob is smart",
+          "z3_formula": "bob_is_smart == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all young people are cold",
+          "z3_formula": "all_young_people_are_cold == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold people are red",
+          "z3_formula": "cold_people_are_red == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "fiona is blue",
+          "z3_formula": "fiona_is_blue == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is smart",
+          "z3_formula": "fiona_is_smart == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "gary is blue",
+          "z3_formula": "gary_is_blue == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "gary is smart",
+          "z3_formula": "gary_is_smart == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "gary is kind",
+          "z3_formula": "gary_is_kind == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(gary_is_kind, gary_is_smart), gary_is_white)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "gary is white",
+          "z3_formula": "gary_is_white == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "gary is kind",
+          "z3_formula": "gary_is_kind == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "gary is smart",
+          "z3_formula": "gary_is_smart == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "gary is white",
+          "z3_formula": "gary_is_white == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "gary is kind",
+          "z3_formula": "gary_is_kind == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "gary is smart",
+          "z3_formula": "gary_is_smart == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "gary is white",
+          "z3_formula": "gary_is_white == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "gary is kind",
+          "z3_formula": "gary_is_kind == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "gary is smart",
+          "z3_formula": "gary_is_smart == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "gary is white",
+          "z3_formula": "gary_is_white == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "harry is kind",
+          "z3_formula": "harry_is_kind == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "harry is young",
+          "z3_formula": "harry_is_young == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "all young people are cold",
+          "z3_formula": "all_young_people_are_cold == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "harry is cold",
+          "z3_formula": "harry_is_cold == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "bob is young",
+          "z3_formula": "bob_is_young == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "all young people are cold",
+          "z3_formula": "all_young_people_are_cold == True",
+          "source_step": "17"
+        },
+        {
+          "type": "fact",
+          "expression": "bob is cold",
+          "z3_formula": "bob_is_cold == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "bob is red",
+          "z3_formula": "bob_is_red == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "bob is blue",
+          "z3_formula": "bob_is_blue == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "bob is cold",
+          "z3_formula": "bob_is_cold == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "bob is red",
+          "z3_formula": "bob_is_red == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(gary_is_kind, gary_is_smart), gary_is_white)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "fiona is young",
+          "z3_formula": "fiona_is_young == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "all young people are cold",
+          "z3_formula": "all_young_people_are_cold == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is cold",
+          "z3_formula": "fiona_is_cold == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "fiona is young",
+          "z3_formula": "fiona_is_young == True",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "all young people are cold",
+          "z3_formula": "all_young_people_are_cold == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is cold",
+          "z3_formula": "fiona_is_cold == Unknown",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_X, blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_X, smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_X, smart_X), white_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_fiona, smart_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_fiona, blue_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona) & smart(fiona)",
+          "z3_formula": "And(kind_fiona, smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_fiona, blue_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_fiona, red_fiona)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_bob, blue_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_bob, smart_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_bob, cold_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_gary, smart_gary), white_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 19
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 186,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 65
+    },
+    "maxsat_stats": {
+      "satisfied": 64,
+      "excluded": 1,
+      "total_weight": 176,
+      "solve_time_ms": 1.8085241317749023
+    },
+    "timing": {
+      "trace_gen_s": 8.351,
+      "extraction_s": 32.311,
+      "dedup_s": 2.407,
+      "maxsat_s": 0.009,
+      "total_s": 43.077
+    }
+  }
+}

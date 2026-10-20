@@ -1,0 +1,1168 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-780_Q5",
+    "problem": "Anne is big. Anne is blue. Anne is kind. Anne is nice. Charlie is big. Charlie is blue. Charlie is nice. Dave is blue. Dave is cold. Dave is nice. Harry is blue. If Charlie is cold then Charlie is nice. If Harry is kind and Harry is nice then Harry is quiet. All blue things are cold. If something is quiet then it is kind. All kind things are big. Cold things are nice. If Harry is nice and Harry is big then Harry is kind. If something is nice then it is quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is kind.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nCold($x, bool) ::: Is x cold?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nBlue(Anne, True) ::: Anne is blue.\nKind(Anne, True) ::: Anne is kind.\nNice(Anne, True) ::: Anne is nice.\nBig(Charlie, True) ::: Charlie is big.\nBlue(Charlie, True) ::: Charlie is blue.\nNice(Charlie, True) ::: Charlie is nice.\nBlue(Dave, True) ::: Dave is blue.\nCold(Dave, True) ::: Dave is cold.\nNice(Dave, True) ::: Dave is nice.\nBlue(Harry, True) ::: Harry is blue.\n\nRules:\nCold(Charlie, True) >>> Nice(Charlie, True) ::: If Charlie is cold then Charlie is nice.\nKind(Harry, True) && Nice(Harry, True) >>> Quiet(Harry, True) ::: If Harry is kind and Harry is nice then Harry is quiet.\nBlue($x, True) >>> Cold($x, True) ::: All blue things are cold.\nQuiet($x, True) >>> Kind($x, True) ::: If something is quiet then it is kind.\nKind($x, True) >>> Big($x, True) ::: All kind things are big.\nCold($x, True) >>> Nice($x, True) ::: Cold things are nice.\nNice(Harry, True) && Big(Harry, True) >>> Kind(Harry, True) ::: If Harry is nice and Harry is big then Harry is kind.\nNice($x, True) >>> Quiet($x, True) ::: If something is nice then it is quiet.\n\nQuery:\nKind(Charlie, True) ::: Charlie is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 157.5,
+      "Unknown": 166.0
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "True": 6
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Charlie is kind\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n1. Anne is big. Anne is blue. Anne is kind. Anne is nice. \n2. Charlie is big. Charlie is blue. Charlie is nice.\n3. Dave is blue. Dave is cold. Dave is nice.\n4. Harry is blue. Harry is kind. Harry is nice.\n5. If Charlie is cold then Charlie is nice.\n6. If Harry is kind and Harry is nice then Harry is quiet.\n7. All blue things are cold.\n8. If something is quiet then it is kind.\n9. All kind things are big.\n10. Cold things are nice.\n11. If Harry is nice and Harry is big then Harry is kind.\n12. If something is nice then it is quiet.\n\nNow, we will analyze the given information to determine whether the statement \"Charlie is kind\" is true, false, or unknown.\n\nFrom statement 2, we know that Charlie is blue. \nFrom statement 7, we know that all blue things are cold. Therefore, we can conclude that Charlie is cold.\n\nNow, we need to check if Charlie is nice. \nFrom statement 2, we know that Charlie is nice. \nWe have two possible conclusions: \n1. Charlie is cold and nice (from statement 5), or \n2. Charlie is blue and nice (from statement 10). \n\nWe have already concluded that Charlie is cold, so statement 5 is applicable. Therefore, we can conclude that Charlie is nice.\n\nWe still need to check if Charlie is kind. \nFrom statement 2, we know that Charlie is big. \nFrom statement 9, we know that all kind things are big. Therefore, we can conclude that Charlie might be kind.\n\nHowever, we have another possible conclusion: \n1. If Charlie is cold and Charlie is nice, then we cannot conclude that Charlie is kind. \n2. But, from statement 11, if Harry is nice and Harry is big then Harry is kind. Although this statement is about Harry, not Charlie, it implies that if someone is nice and big, they might not be kind. \n3. Furthermore, from statement 12, if something is nice then it is quiet, and from statement 8, if something is quiet then it is kind. Therefore, if Charlie is nice, it implies that Charlie is quiet, and hence Charlie is kind.\n\nHowever, there is a catch. If Charlie is nice, it implies that Charlie is quiet, and from statement 6, if Harry is kind and Harry is nice then Harry is quiet. Although this statement is about Harry, not Charlie, it implies that if someone is nice and quiet, it does not necessarily mean they are kind. Therefore, we cannot conclude that Charlie is kind.\n\nSo, the statement \"Charlie is kind\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is kind' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is big. \n   - Anne is blue. \n   - Anne is kind. \n   - Anne is nice. \n   - Charlie is big. \n   - Charlie is blue. \n   - Charlie is nice. \n   - Dave is blue. \n   - Dave is cold. \n   - Dave is nice. \n   - Harry is blue. \n   - If Charlie is cold then Charlie is nice. \n   - If Harry is kind and Harry is nice then Harry is quiet. \n   - All blue things are cold. \n   - If something is quiet then it is kind. \n   - All kind things are big. \n   - Cold things are nice. \n   - If Harry is nice and Harry is big then Harry is kind. \n   - If something is nice then it is quiet.\n\n2. We are given that Charlie is blue. From the given information, 'All blue things are cold.' Therefore, Charlie is cold.\n\n3. We are also given that Charlie is nice. From the given information, 'Cold things are nice.' This confirms that Charlie is indeed nice.\n\n4. Now, we need to determine if Charlie is kind. We have two pieces of information that relate to Charlie and kindness: 'Charlie is cold then Charlie is nice' and 'If Charlie is cold then Charlie is nice.' However, these do not directly tell us if Charlie is kind. We must look for another path.\n\n5. From the given information, 'All kind things are big' and 'Charlie is big.' However, this still does not directly tell us if Charlie is kind. \n\n6. However, we have the information that 'Cold things are nice' and 'Charlie is cold' and 'Charlie is nice.' We also know that 'If something is nice then it is quiet.' This means Charlie must be quiet. We also know that 'If something is quiet then it is kind.'\n\n7. Based on this, we can conclude that Charlie is indeed kind.\n\nTherefore, the final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n\n1. Charlie is big.\n2. Charlie is blue.\n3. Charlie is nice.\n4. If Charlie is cold then Charlie is nice.\n5. All blue things are cold.\n6. If something is quiet then it is kind.\n7. All kind things are big.\n8. Cold things are nice.\n9. If Harry is kind and Harry is nice then Harry is quiet.\n10. If Harry is nice and Harry is big then Harry is kind.\n11. If something is nice then it is quiet.\n\nAnalysis:\n\nFrom statement 5 and 8, we can infer that all blue things are nice because if something is cold, it is nice, and all blue things are cold.\n\nFrom statement 1, 2, and 3, we know Charlie is blue, big, and nice.\n\nWe can't directly determine whether Charlie is kind or not from the given information.\n\nHowever, we can use the information to find a contradiction or a conclusion.\n\nFrom statement 7, all kind things are big. We know Charlie is big (statement 1) but we still need to find out if Charlie is kind.\n\nFrom statement 3, we know Charlie is nice, and from statement 11, if something is nice then it is quiet. This leads to a contradiction because if Charlie is nice, it should be quiet, but we can't conclude that Charlie is quiet from the given information.\n\nLet's continue analyzing the information.\n\nFrom statement 6, if something is quiet then it is kind. But we can't directly conclude that Charlie is quiet.\n\nHowever, from statement 10, if Harry is nice and Harry is big then Harry is kind. This is a different conclusion, not related to Charlie.\n\nFrom statement 9, if Harry is kind and Harry is nice then Harry is quiet. This is another unrelated conclusion.\n\nNow, let's use the information from statement 8 and 5: all blue things are cold and cold things are nice. We know Charlie is blue and nice.\n\nFrom statement 4, if Charlie is cold then Charlie is nice. This statement doesn't provide any new information, but we can use it to infer that Charlie is cold.\n\nWe now have two pieces of information: Charlie is blue and cold.\n\nFrom statement 5, all blue things are cold. This is already given.\n\nFrom statement 8, cold things are nice. We know Charlie is cold and nice.\n\nHowever, we can't conclude that Charlie is kind from the given information.\n\nSince we can't conclude that Charlie is kind from the given information and there are no direct contradictions, we can say that the statement \"Charlie is kind\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is kind\" is true, false, or unknown, we need to analyze the given information and the provided conditions.\n\nGiven conditions:\n1. All blue things are cold.\n2. If Charlie is cold then Charlie is nice.\n3. If something is quiet then it is kind.\n4. All kind things are big.\n5. Cold things are nice.\n6. If Harry is kind and Harry is nice then Harry is quiet.\n7. If something is nice then it is quiet.\n8. Charlie is blue.\n9. Charlie is big.\n10. Charlie is nice.\n\nWe are looking for information about Charlie being kind. Let's see if we can infer it from the given conditions.\n\nFrom condition 8, we know that Charlie is blue.\n\nFrom condition 1, we know that all blue things are cold.\n\nSo, we can infer that Charlie is cold.\n\nFrom condition 2, we know that if Charlie is cold, then Charlie is nice. Since we already know Charlie is cold, we can conclude that Charlie is indeed nice.\n\nNow, we need to find a connection between Charlie being nice and Charlie being kind.\n\nFrom condition 5, we know that cold things are nice. We already know Charlie is cold, but this condition doesn't directly connect being nice to being kind.\n\nFrom condition 7, we know that if something is nice, then it is quiet. Since we know Charlie is nice, we can infer that Charlie is quiet.\n\nFrom condition 3, we know that if something is quiet, then it is kind. Since we know Charlie is quiet, we can conclude that Charlie is indeed kind.\n\nNow that we have all the necessary information, we can conclude that the statement \"Charlie is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is kind\" is true, false, or unknown, we need to analyze the given information and the conditions.\n\n1. Given Information:\n   - Anne is big. \n   - Anne is blue. \n   - Anne is kind. \n   - Anne is nice. \n   - Charlie is big. \n   - Charlie is blue. \n   - Charlie is nice. \n   - Dave is blue. \n   - Dave is cold. \n   - Dave is nice. \n   - Harry is blue. \n   - If Charlie is cold then Charlie is nice. \n   - If Harry is kind and Harry is nice then Harry is quiet. \n   - All blue things are cold. \n   - If something is quiet then it is kind. \n   - All kind things are big. \n   - Cold things are nice. \n   - If Harry is nice and Harry is big then Harry is kind. \n   - If something is nice then it is quiet.\n\n2. We need to determine whether Charlie is kind.\n\nFrom the given information, we have:\n- Charlie is big.\n- Charlie is blue.\n- Charlie is nice.\n\nTo determine whether Charlie is kind, we need to use the conditions:\n- If Charlie is cold then Charlie is nice. (This is not relevant, because we don't have any information about Charlie being cold.)\n- All blue things are cold. (This implies that Charlie is cold, since Charlie is blue.)\n- Cold things are nice. (This implies that Charlie is nice, since Charlie is cold.)\n- All kind things are big. (This is not relevant, because we don't have any information about Charlie being kind or not.)\n- If something is nice then it is quiet. (This is not relevant, because we don't have any information about Charlie being quiet or not.)\n\nHowever, we also have the condition:\n- If Harry is nice and Harry is big then Harry is kind. (This condition does not directly apply to Charlie, but we can use it to find the relationship between Harry and Charlie.)\n\nWe don't have any information about Harry being kind or not. However, we can use the condition:\n- If Harry is kind and Harry is nice then Harry is quiet. (This implies that if Harry is nice, then he is quiet, but we don't have any information about Harry being quiet or not.)\n\nFrom the given information, we have:\n- Charlie is big.\n- Charlie is blue.\n- Charlie is nice.\n\nUsing the condition \"If something is blue then it is cold\", we can conclude that Charlie is cold.\nUsing the condition \"Cold things are nice\", we can conclude that Charlie is nice.\n\nHowever, we can't determine whether Charlie is kind or not using the given information.\n\nTherefore, the statement \"Charlie is kind\" is unknown.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is kind\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nGiven information:\n1. Charlie is big.\n2. Charlie is blue.\n3. Charlie is nice.\n4. If Charlie is cold then Charlie is nice.\n5. All blue things are cold.\n6. If something is quiet then it is kind.\n7. All kind things are big.\n8. Cold things are nice.\n9. If Harry is kind and Harry is nice then Harry is quiet.\n10. If Harry is nice and Harry is big then Harry is kind.\n11. If something is nice then it is quiet.\n\nLet's analyze the given information step by step:\n\nFrom (5), we know that all blue things are cold, so since Charlie is blue (from (2)), Charlie must be cold.\n\nNow, from (4), we know that if Charlie is cold, then Charlie is nice. Since we already know Charlie is cold, we can conclude that Charlie is indeed nice, which aligns with (3).\n\nWe need to determine if Charlie is kind. \n\nFrom (10), we know that if Harry is nice and Harry is big, then Harry is kind. However, this information is about Harry, not Charlie. We have no information about Harry's size or kindness being related to Charlie's.\n\nFrom (7), we know that all kind things are big. Since Charlie is big (from (1)), this doesn't directly tell us if Charlie is kind.\n\nFrom (6), we know that if something is quiet then it is kind. However, this information is not applicable to Charlie.\n\nFrom (11), we know that if something is nice then it is quiet. Since Charlie is nice (from (3)), this doesn't directly tell us if Charlie is kind.\n\nFrom (3), we know Charlie is nice. However, being nice doesn't necessarily mean Charlie is kind.\n\nSince we have no information directly linking Charlie's kindness to his size, niceness, or any other characteristics, we can't conclude that Charlie is kind or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is kind\" is true, false, or unknown, we will use the given information and apply logical reasoning.\n\nGiven information:\n1. Anne is big. Anne is blue. Anne is kind. Anne is nice.\n2. Charlie is big. Charlie is blue. Charlie is nice.\n3. Dave is blue. Dave is cold. Dave is nice.\n4. Harry is blue. Harry is kind. Harry is nice.\n5. If Charlie is cold then Charlie is nice. (Charlie is cold -> Charlie is nice)\n6. If Harry is kind and Harry is nice then Harry is quiet. (Harry is kind and Harry is nice -> Harry is quiet)\n7. All blue things are cold. (Blue -> Cold)\n8. If something is quiet then it is kind. (Quiet -> Kind)\n9. All kind things are big. (Kind -> Big)\n10. Cold things are nice. (Cold -> Nice)\n11. If Harry is nice and Harry is big then Harry is kind. (Harry is nice and Harry is big -> Harry is kind)\n12. If something is nice then it is quiet. (Nice -> Quiet)\n\nTo determine whether Charlie is kind, we need to find a connection between Charlie and the concept of kindness.\n\nFrom the given information, we know that Charlie is blue (point 2) and all blue things are cold (point 7). Therefore, Charlie is cold.\n\nFrom point 5, if Charlie is cold, then Charlie is nice. Therefore, Charlie is nice.\n\nNow, we need to find a connection between Charlie's niceness and kindness.\n\nFrom point 12, if something is nice then it is quiet. We know Charlie is nice, so Charlie is quiet.\n\nFrom point 8, if something is quiet then it is kind. Since Charlie is quiet, Charlie is kind.\n\nTherefore, the statement \"Charlie is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is blue. (Given)\n\n2. All blue things are cold. (Given)\n   So, Charlie is cold. (By definition)\n\n3. Charlie is cold. (From step 2)\n   Cold things are nice. (Given)\n   So, Charlie is nice. (By definition)\n\n4. Charlie is nice. (From step 3)\n   If something is nice, then it is quiet. (Given)\n   So, Charlie is quiet. (By definition)\n\n5. Charlie is quiet. (From step 4)\n   If something is quiet, then it is kind. (Given)\n   So, Charlie is kind. (By definition)\n\nTherefore, based on the given information, we can conclude that the statement \"Charlie is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is kind\" is true, false, or unknown, we need to analyze the given information and the provided premises.\n\nGiven information:\n\n- Anne is big. \n- Anne is blue. \n- Anne is kind. \n- Anne is nice. \n- Charlie is big. \n- Charlie is blue. \n- Charlie is nice. \n- Dave is blue. \n- Dave is cold. \n- Dave is nice. \n- Harry is blue. \n- Harry is cold. \n- Harry is nice. \n\nPremises:\n\n1. If Charlie is cold then Charlie is nice. \n2. If Harry is kind and Harry is nice then Harry is quiet. \n3. All blue things are cold. \n4. If something is quiet then it is kind. \n5. All kind things are big. \n6. Cold things are nice. \n7. If Harry is nice and Harry is big then Harry is kind. \n8. If something is nice then it is quiet.\n\nNow, let's evaluate the statement \"Charlie is kind\" using the given information and premises.\n\nFrom the given information, we know that Charlie is blue.\n\nUsing premise 3, we can conclude that since Charlie is blue, Charlie is cold.\n\nNow, using premise 1, we can conclude that since Charlie is cold, Charlie is nice.\n\nUsing premise 6, we can conclude that since Charlie is nice, Charlie is cold.\n\nWe already know that Charlie is cold from the given information.\n\nNow, using premise 6 again, we can conclude that since Charlie is cold, Charlie is nice.\n\nWe already know that Charlie is nice from the given information.\n\nNow, using premise 8, we can conclude that since Charlie is nice, Charlie is quiet.\n\nNow, using premise 4, we can conclude that since Charlie is quiet, Charlie is kind.\n\nTherefore, based on the given information and premises, the statement \"Charlie is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is kind' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is big. \nCharlie is blue. \nCharlie is nice.\n\nFrom the given information, we know Charlie is blue, and all blue things are cold. So, we can infer that Charlie is cold.\n\n2. If Charlie is cold then Charlie is nice.\nSince Charlie is cold, we can conclude that the statement 'Charlie is nice' is already established. However, the given information does not directly link being cold to being kind.\n\n3. Charlie is nice.\nFrom the given information, we have a statement 'If something is nice then it is quiet.' However, this does not directly relate to Charlie being kind.\n\n4. We need to consider another statement 'If Harry is kind and Harry is nice then Harry is quiet.' However, this statement only applies to Harry, not Charlie.\n\n5. To determine if Charlie is kind, we need to look for any statements that directly link Charlie's properties to being kind. However, there is no direct information linking Charlie's properties (being big, blue, and nice) to being kind.\n\nBased on the given information, we cannot directly conclude whether Charlie is kind. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is kind\" is true, false, or unknown, we need to analyze the given information and the provided conditions.\n\n1. Given information:\n   - Anne is big.\n   - Anne is blue.\n   - Anne is kind.\n   - Anne is nice.\n   - Charlie is big.\n   - Charlie is blue.\n   - Charlie is nice.\n   - Dave is blue.\n   - Dave is cold.\n   - Dave is nice.\n   - Harry is blue.\n   - Harry is kind.\n   - Harry is nice.\n\n2. Conditions:\n   - If Charlie is cold then Charlie is nice. (Condition 1)\n   - If Harry is kind and Harry is nice then Harry is quiet. (Condition 2)\n   - All blue things are cold. (Condition 3)\n   - If something is quiet then it is kind. (Condition 4)\n   - All kind things are big. (Condition 5)\n   - Cold things are nice. (Condition 6)\n   - If Harry is nice and Harry is big then Harry is kind. (Condition 7)\n   - If something is nice then it is quiet. (Condition 8)\n\nNow, we will analyze the given information and conditions to determine the truth value of the statement \"Charlie is kind\".\n\nFrom the given information:\n- Charlie is blue.\n- Charlie is big.\n- Charlie is nice.\n\nUsing Condition 3, we know that all blue things are cold.\nHowever, from the given information, we do not know if Charlie is cold or not.\n\nUsing Condition 6, we know that cold things are nice. Since Charlie is nice (given information), it does not directly relate to the statement \"Charlie is kind\".\n\nUsing Condition 1, if Charlie is cold then Charlie is nice. However, we cannot conclude that Charlie is cold from the given information.\n\nUsing Condition 5, we know that all kind things are big. However, we cannot conclude that Charlie is kind from this condition.\n\nUsing Condition 8, if something is nice then it is quiet. However, we cannot conclude that Charlie is quiet from this condition.\n\nNow, let's analyze the information we have about Harry.\n\nFrom the given information:\n- Harry is blue.\n- Harry is kind.\n- Harry is nice.\n\nUsing Condition 3, we know that all blue things are cold.\nUsing Condition 6, we know that cold things are nice.\n\nFrom the given information, we know that Harry is both kind and nice. Using Condition 2, if Harry is kind and Harry is nice then Harry is quiet.\n\nUsing Condition 4, if something is quiet then it is kind. Since Harry is quiet (derived from Condition 2), it confirms that Harry is kind.\n\nHowever, the statement \"Charlie is kind\" is independent of Harry's kind nature. We cannot conclude that Charlie is kind based on the information about Harry.\n\nBased on the analysis, we cannot determine the truth value of the statement \"Charlie is kind\" using the given information and conditions.\n\nTherefore, the answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is kind\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\n1. From the premises, we know:\n   - Charlie is big.\n   - Charlie is blue.\n   - Charlie is nice.\n   - If Charlie is cold, then Charlie is nice.\n   - All blue things are cold.\n   - If something is quiet, then it is kind.\n   - All kind things are big.\n   - Cold things are nice.\n   - If Harry is kind and Harry is nice, then Harry is quiet. (This information is about Harry, not Charlie, so we can ignore it for now.)\n   - If something is nice, then it is quiet.\n\n2. Since Charlie is blue, we can conclude that Charlie is cold (by the premise \"All blue things are cold\").\n3. Since Charlie is cold, we can conclude that Charlie is nice (by the premise \"Cold things are nice\").\n4. We already know that Charlie is nice, which matches our previous conclusion.\n\n5. However, we need to determine if Charlie is kind. From the premises, we know:\n   - If something is quiet, then it is kind.\n   - If something is nice, then it is quiet.\n   - Charlie is nice (and therefore quiet).\n\n6. Since Charlie is quiet (because Charlie is nice), we can conclude that Charlie is kind (by the premise \"If something is quiet, then it is kind\").\n\nTherefore, based on the given information and logical deductions, we can conclude that the statement \"Charlie is kind\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_harry, nice_harry), quiet_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_X, kind_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_X, nice_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_harry, big_harry), kind_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_X, quiet_X)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == Unknown",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(charlie) -> nice(charlie)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(harry) & nice(harry) -> quiet(harry)",
+          "z3_formula": "Implies(And(kind_harry, nice_harry), quiet_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_charlie, kind_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_charlie, kind_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_charlie, quiet_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_charlie, kind_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_charlie, kind_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_charlie, quiet_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_harry, nice_harry), quiet_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_harry, big_harry), kind_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_harry, quiet_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_charlie, quiet_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_charlie, kind_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_charlie, quiet_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == Unknown",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_charlie, kind_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_charlie, kind_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_charlie, quiet_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_harry, nice_harry), quiet_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_harry, big_harry), kind_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_harry, quiet_harry)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_harry, big_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_charlie, kind_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_charlie, quiet_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_charlie, quiet_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_charlie, kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_charlie, quiet_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_charlie, kind_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_charlie, quiet_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> ? (no direct information)",
+          "z3_formula": "Implies(kind_charlie, ?)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_harry, nice_harry), quiet_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_charlie, kind_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_charlie, quiet_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_charlie, kind_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_charlie, kind_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_charlie, quiet_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 173,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 32
+    },
+    "maxsat_stats": {
+      "satisfied": 31,
+      "excluded": 1,
+      "total_weight": 171,
+      "solve_time_ms": 0.9956192225217819
+    },
+    "timing": {
+      "trace_gen_s": 7.623,
+      "extraction_s": 26.766,
+      "dedup_s": 1.401,
+      "maxsat_s": 0.003,
+      "total_s": 35.793
+    }
+  }
+}

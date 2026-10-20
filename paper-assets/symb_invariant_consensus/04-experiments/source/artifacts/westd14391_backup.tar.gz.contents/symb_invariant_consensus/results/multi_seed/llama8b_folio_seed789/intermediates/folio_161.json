@@ -1,0 +1,535 @@
+{
+  "problem": {
+    "id": "folio_161",
+    "problem": "Given the following premises:\nIf George likes music, he wants to compose. If George has access to a program, he can compose. If George can compose and wants to compose, he will compose.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf George likes music and has access to a program, he will compose.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "LikesMusic(george) \u2192 WantsToCompose(george)",
+      "AccesstoProgram(george) \u2192 CanCompose(george)",
+      "(WantsToCompose(george) \u2227 CanCompose(george)) \u2192 WillCompose(george)"
+    ],
+    "conclusion_fol": "(LikesMusic(george) \u2227 AccesstoProgram(george)) \u2192 WillCompose(george)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 62.0,
+      "Unknown": 41.0
+    },
+    "answer_counts": {
+      "True": 9,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to break down the premises and analyze the relationship between them.\n\nPremise 1: If George likes music, he wants to compose.\nPremise 2: If George has access to a program, he can compose.\nPremise 3: If George can compose and wants to compose, he will compose.\n\nWe want to determine the validity of the conclusion:\nConclusion: If George likes music and has access to a program, he will compose.\n\nTo evaluate this conclusion, let's analyze the premises and the conclusion step by step:\n\n1. From Premise 1, we know that if George likes music, he wants to compose.\n2. From Premise 2, we know that if George has access to a program, he can compose.\n3. We can combine Premises 1 and 2 to get: If George likes music and has access to a program, he wants to compose and can compose.\n\nNow, we can use Premise 3 to conclude that if George wants to compose and can compose, he will compose. However, we need to be careful because Premise 3 states that he will compose if he can compose AND wants to compose. In this case, we are assuming he wants to compose (from Premise 1) when he likes music and has access to a program.\n\nTherefore, if George likes music and has access to a program, he will compose.\n\nSo, the conclusion is TRUE.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: If George likes music, he wants to compose.\nPremise 2: If George has access to a program, he can compose.\nPremise 3: If George can compose and wants to compose, he will compose.\n\nNow, let's break down the conclusion and see if it follows logically from the premises:\n\nConclusion: If George likes music and has access to a program, he will compose.\n\nLet's analyze the conclusion step by step:\n\n1. George likes music (given in the conclusion).\n2. George has access to a program (given in the conclusion).\n3. From Premise 2, we know that if George has access to a program, he can compose. So, George can compose.\n4. From Premise 1, we know that if George likes music, he wants to compose. So, since George likes music, we can infer that he wants to compose.\n5. From Premise 3, we know that if George can compose and wants to compose, he will compose. Since we've already established that George can compose (step 3) and wants to compose (step 4), we can conclude that George will compose.\n\nTherefore, the conclusion logically follows from the premises, and the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the validity of the given conclusion, we need to analyze the given premises step by step.\n\nPremise 1: If George likes music, he wants to compose.\nPremise 2: If George has access to a program, he can compose.\nPremise 3: If George can compose and wants to compose, he will compose.\n\nThe conclusion we need to evaluate is:\nIf George likes music and has access to a program, he will compose.\n\nLet's break it down:\n\nPremise 1 states that if George likes music, he wants to compose. \nPremise 2 states that if George has access to a program, he can compose.\n\nNow, let's combine these two premises with the conclusion:\nIf George likes music and has access to a program, he wants to compose (from Premise 1) and he can compose (from Premise 2).\n\nHowever, we still need to consider Premise 3: If George can compose and wants to compose, he will compose.\n\nSince we have established that George can compose (from Premise 2) and wants to compose (from Premise 1), we can use Premise 3 to conclude that he will compose.\n\nTherefore, the conclusion \"If George likes music and has access to a program, he will compose\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "Let's analyze the given premises step by step.\n\nPremise 1: If George likes music, he wants to compose.\nThis can be represented as:\nG (George likes music) \u2192 W (George wants to compose)\n\nPremise 2: If George has access to a program, he can compose.\nThis can be represented as:\nP (George has access to a program) \u2192 C (George can compose)\n\nPremise 3: If George can compose and wants to compose, he will compose.\nThis can be represented as:\nC (George can compose) \u2227 W (George wants to compose) \u2192 W (George will compose)\n\nWe need to determine if the conclusion \"If George likes music and has access to a program, he will compose\" is true, false, or uncertain.\n\nConclusion: If George likes music and has access to a program, he will compose.\nThis can be represented as:\nG (George likes music) \u2227 P (George has access to a program) \u2192 W (George will compose)\n\nTo determine the validity of the conclusion, let's try to find any contradictions or missing information.\n\nFrom Premise 1 and Premise 2, we can see that if George likes music, he wants to compose, and if he has access to a program, he can compose. However, Premise 3 states that if George can compose and wants to compose, he will compose.\n\nThe key here is to realize that Premise 3 does not directly link \"likes music\" or \"has access to a program\" to \"will compose.\" Instead, it states that if George can compose (which is related to having access to a program) and wants to compose, he will compose.\n\nTherefore, we can infer that if George likes music (which implies he wants to compose), and he has access to a program (which implies he can compose), then he will compose.\n\nBased on the given premises, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises step by step.\n\nPremise 1: If George likes music, he wants to compose.\nThis premise tells us that George's liking for music directly leads to his desire to compose.\n\nPremise 2: If George has access to a program, he can compose.\nThis premise establishes the necessary condition for George to be able to compose.\n\nPremise 3: If George can compose and wants to compose, he will compose.\nThis premise states the sufficient condition for George to actually compose.\n\nNow, let's examine the conclusion: If George likes music and has access to a program, he will compose.\n\nFrom Premise 1, we know that if George likes music, he wants to compose. However, Premise 2 tells us that having access to a program is a separate condition from liking music. Therefore, just because George likes music and has access to a program, it doesn't necessarily mean he wants to compose.\n\nHowever, even if we assume George wants to compose, we still need to consider Premise 3. This premise states that both the ability to compose and the desire to compose are required for George to actually compose.\n\nGiven the premises, we can't be certain that George will compose even if he likes music and has access to a program. There are two missing links: his desire to compose (which may not be present) and the combination of both his desire and ability to compose.\n\nTherefore, the conclusion is uncertain. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we will analyze the premises and the conclusion step by step.\n\nPremise 1: If George likes music, he wants to compose.\nThis premise tells us that liking music is a necessary condition for wanting to compose. However, it does not guarantee that George will compose even if he wants to, because there might be other factors at play.\n\nPremise 2: If George has access to a program, he can compose.\nThis premise tells us that having access to a program is a necessary condition for George being able to compose.\n\nPremise 3: If George can compose and wants to compose, he will compose.\nThis premise tells us that if George has both the ability and the desire to compose, he will indeed compose.\n\nNow, let's analyze the conclusion:\n\nConclusion: If George likes music and has access to a program, he will compose.\n\nFrom Premise 1, we know that if George likes music, he wants to compose. \nFrom Premise 2, we know that if George has access to a program, he can compose. \nFrom Premise 3, we know that if George can compose and wants to compose, he will compose.\n\nCombining these premises, we can conclude that if George likes music, wants to compose, has access to a program, and can compose, he will compose.\n\nHowever, the conclusion states that if George likes music and has access to a program, he will compose. \nBut Premise 3 implies that in addition to having access to a program, George also needs to want to compose, which is a separate condition that is not explicitly stated in the conclusion.\n\nTherefore, the conclusion is uncertain because it does not take into account the possibility that George might not want to compose, even if he likes music and has access to a program.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "Let's break down the given premises step by step to evaluate the conclusion.\n\nPremise 1: If George likes music, he wants to compose.\nThis premise establishes a relationship between George liking music and his desire to compose.\n\nPremise 2: If George has access to a program, he can compose.\nThis premise links George's access to a program with his ability to compose.\n\nPremise 3: If George can compose and wants to compose, he will compose.\nThis premise creates a chain of conditions for George to actually compose.\n\nNow, let's examine the conclusion: \"If George likes music and has access to a program, he will compose.\"\n\nTo evaluate this conclusion, we need to see if it logically follows from the given premises. \n\nGiven the premises, we can combine them as follows:\n\n- If George likes music (Premise 1), he wants to compose.\n- If George has access to a program (Premise 2), he can compose.\n- If George can compose and wants to compose (combining Premises 1 and 2), he will compose (Premise 3).\n\nNow, if George likes music and has access to a program, it means he wants to compose (from Premise 1) and can compose (from Premise 2). As a result, we can apply Premise 3, which states that if George can compose and wants to compose, he will compose.\n\nTherefore, the conclusion logically follows from the given premises. The final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the premises and see if they logically lead to the conclusion. \n\nLet's break down the premises:\n\n1. If George likes music, he wants to compose.\n   This can be expressed as:\n   (G likes music) -> (G wants to compose)\n\n2. If George has access to a program, he can compose.\n   This can be expressed as:\n   (G has access to a program) -> (G can compose)\n\n3. If George can compose and wants to compose, he will compose.\n   This can be expressed as:\n   (G can compose & G wants to compose) -> (G will compose)\n\nNow, we need to see if the conclusion logically follows from these premises. The conclusion is:\n\nIf George likes music and has access to a program, he will compose.\n\nWe can express this as:\n(G likes music & G has access to a program) -> (G will compose)\n\nTo see if this conclusion logically follows, let's try to derive it from the premises:\n\n1. (G likes music) -> (G wants to compose)\n2. (G has access to a program) -> (G can compose)\n3. (G can compose & G wants to compose) -> (G will compose)\n\nFrom premise 1 and premise 2, we can derive:\n(G likes music & G has access to a program) -> (G wants to compose & G can compose)\n\nNow, we can substitute this expression into premise 3 to get:\n(G likes music & G has access to a program) -> (G will compose)\n\nThis is the conclusion we were given, so we can conclude that the conclusion logically follows from the premises.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the validity of the conclusion, let's break down the premises step by step:\n\n1. If George likes music, he wants to compose. \n   - This statement can be represented as: L \u2192 W (If George likes music, L, then he wants to compose, W)\n\n2. If George has access to a program, he can compose. \n   - This statement can be represented as: A \u2192 C (If George has access to a program, A, then he can compose, C)\n\n3. If George can compose and wants to compose, he will compose. \n   - This statement can be represented as: (C \u2227 W) \u2192 W (If George can compose, C, and wants to compose, W, then he will compose, W)\n\nNow, we need to determine the conclusion: \nIf George likes music and has access to a program, he will compose.\n\nThis can be represented as: (L \u2227 A) \u2192 W\n\nTo determine the validity of the conclusion, let's analyze the premises. We have the following conditions:\n\n- If George likes music (L), he wants to compose (W).\n- If George has access to a program (A), he can compose (C).\n\nFrom the premises, we know that if George has access to a program (A), he can compose (C), but we don't directly know if he likes music (L). However, if we assume that George likes music (L) and has access to a program (A), then:\n\n- He wants to compose (W) because he likes music (L).\n- He can compose (C) because he has access to a program (A).\n\nSince he wants to compose (W) and can compose (C), the third premise states that he will compose (W).\n\nHowever, there is an implicit assumption in our analysis. The original premises do not explicitly state that George's ability to compose and his desire to compose are mutually exclusive. The third premise only states that if George can compose and wants to compose, he will compose, but it does not rule out the possibility that George might want to compose even if he cannot.\n\nTo resolve this, we need to examine the original premises more closely. If George likes music (L) and has access to a program (A), the premises state that he will want to compose (W), and he can compose (C). However, the third premise (C \u2227 W) \u2192 W is not entirely clear because C can be a result of A, not L.\n\nTherefore, given the premises, we can conclude that if George likes music (L) and has access to a program (A), it is uncertain whether he will compose (W). The premises do not provide sufficient information to guarantee that George will compose (W) if he likes music (L) and has access to a program (A).\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we will analyze the given premises and the conclusion step by step.\n\nPremise 1: If George likes music, he wants to compose.\n- This premise tells us that if George likes music, then he has a desire to compose.\n\nPremise 2: If George has access to a program, he can compose.\n- This premise states that if George has access to a program, then he has the capability to compose.\n\nPremise 3: If George can compose and wants to compose, he will compose.\n- This premise tells us that if George has both the capability and the desire to compose, then he will indeed compose.\n\nConclusion: If George likes music and has access to a program, he will compose.\n- We need to determine if this conclusion logically follows from the given premises.\n\nStep 1: Analyze the given premises.\n- From Premise 1, we know that if George likes music, then he wants to compose.\n- From Premise 2, we know that if George has access to a program, then he can compose.\n- From Premise 3, we know that if George can compose and wants to compose, then he will compose.\n\nStep 2: Determine the logical connection between the premises and the conclusion.\n- The conclusion states that if George likes music and has access to a program, he will compose.\n- We can use the premises to analyze the conclusion as follows:\n  - If George likes music (Premise 1), then he wants to compose.\n  - If George has access to a program (Premise 2), then he can compose.\n  - Combining these two premises, we can infer that if George likes music and has access to a program, then he wants to compose and can compose.\n  - According to Premise 3, if George can compose and wants to compose, then he will compose.\n\nStep 3: Evaluate the conclusion.\n- Based on the analysis in Step 2, we can see that the conclusion logically follows from the given premises.\n- The premises provide a chain of logical connections that lead to the conclusion.\n- Therefore, the conclusion is true.\n\nFinal Answer:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will use the rules of propositional logic and the given premises. \n\nGiven premises:\n1. If George likes music, he wants to compose. (p \u2192 q)\n2. If George has access to a program, he can compose. (r \u2192 s)\n3. If George can compose and wants to compose, he will compose. (q \u2227 s \u2192 t)\n\nWe want to determine if the following conclusion is true or false:\nIf George likes music and has access to a program, he will compose. (p \u2227 r \u2192 t)\n\nTo do this, we need to first convert the premises and the conclusion into a propositional logic format. Let's assign:\np: George likes music\nq: George wants to compose\nr: George has access to a program\ns: George can compose\nt: George will compose\n\nGiven premises:\n1. p \u2192 q\n2. r \u2192 s\n3. (q \u2227 s) \u2192 t\n\nConclusion:\n(p \u2227 r) \u2192 t\n\nNow, let's use the rules of propositional logic to determine if the conclusion is true or false.\n\nUsing modus ponens on premise 1 (p \u2192 q) and premise 2 (r \u2192 s), we cannot directly conclude anything. However, we can use modus ponens on premise 3 ((q \u2227 s) \u2192 t) and premise 1 (p \u2192 q), if we also assume s.\n\nTherefore, we can derive the following:\n\n(q \u2227 s) \u2192 t (premise 3)\np \u2192 q (premise 1)\np (premise 1, with q)\ns (premise 2, with r)\nq \u2227 s (modus ponens)\nt (modus ponens)\n\nHowever, we still need to establish the truth of the conclusion (p \u2227 r) \u2192 t, given the premises. \n\nTo do this, we can use the rule of hypothetical syllogism on the conclusion. Since we don't have (p \u2192 r) explicitly stated, we cannot conclude (p \u2227 r) \u2192 t directly from the premises. However, we can derive:\n\np \u2192 q (premise 1)\nr \u2192 s (premise 2)\n\u2234 (p \u2227 r) \u2192 t (hypothetical syllogism)\n\nThis shows that if George likes music and has access to a program, he will compose.\n\nSo the conclusion (p \u2227 r) \u2192 t is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply the rules of logical deduction.\n\nPremise 1: If George likes music, he wants to compose. \nThis can be represented as: L \u2192 W (where L is 'George likes music' and W is 'George wants to compose')\n\nPremise 2: If George has access to a program, he can compose.\nThis can be represented as: P \u2192 C (where P is 'George has access to a program' and C is 'George can compose')\n\nPremise 3: If George can compose and wants to compose, he will compose.\nThis can be represented as: C \u2227 W \u2192 W (where \u2227 represents 'and')\n\nWe are given the conclusion:\nIf George likes music and has access to a program, he will compose.\nThis can be represented as: L \u2227 P \u2192 W\n\nTo determine the truth of the conclusion, we need to see if we can logically deduce it from the premises.\n\nUsing the rules of logical deduction, we can start by breaking down the conclusion:\n\nL \u2227 P \u2192 W \n\nUsing the transitive property of implication (if A \u2192 B and B \u2192 C, then A \u2192 C), we can rewrite the conclusion as:\n\n(L \u2192 W) \u2227 (P \u2192 W)\n\nNow, we can see that the first part of the conclusion (L \u2192 W) is equivalent to Premise 1. However, the second part of the conclusion (P \u2192 W) is not directly equivalent to Premise 2.\n\nHowever, Premise 2 states that if George has access to a program, he can compose (P \u2192 C). Since we know that if George can compose and wants to compose, he will compose (C \u2227 W \u2192 W), we can infer that if George can compose (C), he will compose (W) regardless of whether he wants to compose or not.\n\nTherefore, we can conclude that if George has access to a program (P), he can compose (C) (from Premise 2), and if he can compose and wants to compose, he will compose (C \u2227 W \u2192 W). This implies that if George has access to a program, he will compose (W), regardless of whether he likes music or not.\n\nThus, we can conclude that if George likes music and has access to a program, he will compose.\n\nSo, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "likes(george, music)",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, music) -> wants_to_compose(X)",
+          "z3_formula": "Implies(likes_george_music, wants_to_compose_george)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_access(george, program)",
+          "z3_formula": "has_access_george_program == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_access(X, program) -> can_compose(X)",
+          "z3_formula": "Implies(has_access_george_program, can_compose_george)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "wants_to_compose(george) & can_compose(george)",
+          "z3_formula": "And(wants_to_compose_george, can_compose_george)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "wants_to_compose(X) & can_compose(X) -> will_compose(X)",
+          "z3_formula": "Implies(And(wants_to_compose_george, can_compose_george), will_compose_george)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "will_compose(george)",
+          "z3_formula": "will_compose_george == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(george, music)",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "access(george, program)",
+          "z3_formula": "access_george_program == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, music) -> wants(X, compose)",
+          "z3_formula": "Implies(likes_george_music, wants_george_compose)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "access(X, program) -> can(X, compose)",
+          "z3_formula": "Implies(access_george_program, can_george_compose)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can(X, compose) & wants(X, compose) -> will(X, compose)",
+          "z3_formula": "Implies(And(can_george_compose, wants_george_compose), will_george_compose)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "will(george, compose)",
+          "z3_formula": "will_george_compose == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(george, music)",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, music) -> wants_to_compose(X)",
+          "z3_formula": "Implies(likes_george_music, wants_to_compose_george)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_access(george, program)",
+          "z3_formula": "has_access_george_program == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_access(X, program) -> can_compose(X)",
+          "z3_formula": "Implies(has_access_george_program, can_compose_george)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can_compose(X) & wants_to_compose(X) -> will_compose(X)",
+          "z3_formula": "Implies(And(can_compose_george, wants_to_compose_george), will_compose_george)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "will_compose(george)",
+          "z3_formula": "will_compose_george == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "likes_music(George) -> wants_to_compose(George)",
+          "z3_formula": "Implies(likes_george_music, wants_george_to_compose)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_access_to_program(George) -> can_compose(George)",
+          "z3_formula": "Implies(has_george_access_to_program, can_george_compose)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "can_compose(George) & wants_to_compose(George) -> will_compose(George)",
+          "z3_formula": "Implies(And(can_george_compose, wants_george_to_compose), will_george_compose)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "likes_music(George) & has_access_to_program(George) -> will_compose(George)",
+          "z3_formula": "Implies(And(likes_george_music, has_george_access_to_program), will_george_compose)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "likes(X, music) -> wants(X, compose)",
+          "z3_formula": "Implies(likes_george_music, wants_george_compose)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "has_access(george, program)",
+          "z3_formula": "has_access_george_program == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "has_access(X, program) -> can_compose(X)",
+          "z3_formula": "Implies(has_access_george_program, can_compose_george)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "can_compose(X) & wants(X, compose) -> will_compose(X)",
+          "z3_formula": "Implies(And(can_compose_george, wants_george_compose), will_compose_george)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "will_compose(george)",
+          "z3_formula": "will_compose_george == Unknown",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "likes_music(X) -> wants_to_compose(X)",
+          "z3_formula": "Implies(likes_music_george, wants_to_compose_george)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_access_to_program(X) -> can_compose(X)",
+          "z3_formula": "Implies(has_access_to_program_george, can_compose_george)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "can_compose(X) & wants_to_compose(X) -> will_compose(X)",
+          "z3_formula": "Implies(And(can_compose_george, wants_to_compose_george), will_compose_george)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "likes_music(X) & has_access_to_program(X) -> will_compose(X)",
+          "z3_formula": "Implies(And(likes_music_george, has_access_to_program_george), will_compose_george)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "likes_music(X) -> wants_to_compose(X)",
+          "z3_formula": "Implies(likes_george_music, wants_to_compose_george)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_access_to_program(X) -> can_compose(X)",
+          "z3_formula": "Implies(has_access_to_program_george, can_compose_george)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "can_compose(X) & wants_to_compose(X) -> will_compose(X)",
+          "z3_formula": "Implies(And(can_compose_george, wants_to_compose_george), will_compose_george)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "likes_music(X) & has_access_to_program(X) -> will_compose(X)",
+          "z3_formula": "Implies(And(likes_george_music, has_access_to_program_george), will_compose_george)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(george, music)",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, music) -> wants_to_compose(X)",
+          "z3_formula": "Implies(likes_george_music, wants_to_compose_george)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_access_to_program(george)",
+          "z3_formula": "has_access_to_program_george == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_access_to_program(X) -> can_compose(X)",
+          "z3_formula": "Implies(has_access_to_program_george, can_compose_george)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can_compose(X) & wants_to_compose(X) -> will_compose(X)",
+          "z3_formula": "Implies(And(can_compose_george, wants_to_compose_george), will_compose_george)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(george, music) & has_access_to_program(george) -> will_compose(george)",
+          "z3_formula": "Implies(And(likes_george_music, has_access_to_program_george), will_compose_george)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(george, music)",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(george, music) -> wants(george, compose)",
+          "z3_formula": "Implies(likes_george_music, wants_george_compose)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "access(george, program)",
+          "z3_formula": "access_george_program == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "access(george, program) -> can(george, compose)",
+          "z3_formula": "Implies(access_george_program, can_george_compose)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can(george, compose) & wants(george, compose) -> will(george, compose)",
+          "z3_formula": "Implies(And(can_george_compose, wants_george_compose), will_george_compose)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "will(george, compose)",
+          "z3_formula": "will_george_compose == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(george, music)",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(george, music) -> wants(george, compose)",
+          "z3_formula": "Implies(likes_george_music, wants_george_compose)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_access(george, program)",
+          "z3_formula": "has_access_george_program == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_access(george, program) -> can(george, compose)",
+          "z3_formula": "Implies(has_access_george_program, can_george_compose)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "can(george, compose) & wants(george, compose) -> will(george, compose)",
+          "z3_formula": "Implies(And(can_george_compose, wants_george_compose), will_george_compose)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "will(george, compose)",
+          "z3_formula": "will_george_compose == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "p -> q",
+          "z3_formula": "Implies(p, q)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "r -> s",
+          "z3_formula": "Implies(r, s)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "(q & s) -> t",
+          "z3_formula": "Implies(And(q, s), t)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "(p & r) -> t",
+          "z3_formula": "Implies(And(p, r), t)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(george, music)",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(george, music) -> wants(george, compose)",
+          "z3_formula": "Implies(likes_george_music, wants_george_compose)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "access(george, program)",
+          "z3_formula": "access_george_program == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "access(george, program) -> can(george, compose)",
+          "z3_formula": "Implies(access_george_program, can_george_compose)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can(george, compose) & wants(george, compose) -> wants(george, compose)",
+          "z3_formula": "Implies(And(can_george_compose, wants_george_compose), wants_george_compose)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "wants(george, compose)",
+          "z3_formula": "wants_george_compose == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "can(george, compose) -> wants(george, compose)",
+          "z3_formula": "Implies(can_george_compose, wants_george_compose)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "wants(george, compose)",
+          "z3_formula": "wants_george_compose == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "wants(george, compose)",
+          "z3_formula": "wants_george_compose == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 67,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 32
+    },
+    "maxsat_stats": {
+      "satisfied": 32,
+      "excluded": 0,
+      "total_weight": 67,
+      "solve_time_ms": 0.9565800428390503
+    },
+    "timing": {
+      "trace_gen_s": 7.1,
+      "extraction_s": 15.008,
+      "dedup_s": 0.559,
+      "maxsat_s": 0.003,
+      "total_s": 22.67
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b360265dcf3e89bed4c8",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "code write repair only script",
+  "task_key": "worker_code_write_repair_only_script_20260514T181201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_write_repair_only_script_20260514T181201_result.json",
+    "occurrence": 1,
+    "bytes": 539,
+    "sha256": "8ce8690e44e11a18ebf524936afc1a9082b823eb7b41b5bd73a3f8970b58f987"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`repair_only.py` 已创建并通过验证。\n\n- 当前 JSON 有 126 条记录，其中 50 条需要 repair（43 disagree + 7 single_error）\n- `--dry-run` 正常工作，参数解析正确\n- pipeline 完成后合并 JSONL 时加 `--input-jsonl results/mvp_v4_full.jsonl` 即可覆盖全部 204 样本\n\n运行命令：\n```bash\ncd /root/autodl-tmp/crdd\npython3 src/repair_only.py \\\n  --input results/mvp_v4_full.json \\\n  --input-jsonl results/mvp_v4_full.jsonl \\\n  --output results/mvp_v4_repair_fixed.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-write-repair-only-script.md"
+}

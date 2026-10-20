@@ -1,0 +1,4 @@
+'_ssl.c:983: The handshake operation timed out' thrown while requesting GET https://hf-mirror.com/datasets/tasksource/proofwriter/resolve/ee4d22d49b8486786cbc01c0b6f6f6266e56f3bd/data/validation-00000-of-00001-8f79b25dd5b0f2c3.parquet
+Retrying in 1s [Retry 1/5].
+'_ssl.c:983: The handshake operation timed out' thrown while requesting GET https://hf-mirror.com/datasets/tasksource/proofwriter/resolve/ee4d22d49b8486786cbc01c0b6f6f6266e56f3bd/data/validation-00000-of-00001-8f79b25dd5b0f2c3.parquet
+Retrying in 1s [Retry 1/5].

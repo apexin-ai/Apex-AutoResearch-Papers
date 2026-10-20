@@ -1,0 +1,771 @@
+# Writing Plan — symb_invariant_consensus
+# V4.1 STRATEGIC RESTRUCTURE + THEORETICAL DEPTH
+# Target: EMNLP 2026 ARR May cycle, DDL 2026-05-25
+# Updated: 2026-05-23T17:30:00Z
+
+meta:
+  venue: EMNLP 2026
+  track: main (ARR May cycle)
+  template: docs/paper/acl.sty
+  page_limit: 8
+  deadline: 2026-05-25
+  title: >
+    Beyond Self-Consistency: Why Self-Extracted Constraints
+    Fail to Improve LLM Logical Reasoning
+  title_alternative: >
+    The Symbolic Mirage: Why Formal Self-Verification
+    Adds No Information Beyond Majority Voting
+  title_note: >
+    Alternative title is punchier and highlights the paradox.
+    Director decides. Current title is safe; alternative is higher-impact.
+  core_claim: >
+    Provably sound Z3 verification becomes informationally vacuous
+    under self-extraction: MAX-SAT agrees with majority voting on
+    94.4% of problems because self-extracted constraints inherit
+    the model's distributional bias (BR 1.66-4.97x across nine models).
+    Three zero-cost diagnostics classify all 60 tested conditions.
+    Cross-architecture NLI provides preliminary evidence of escaping
+    the bottleneck.
+  paper_type: >
+    Diagnostic negative-result paper with constructive escape.
+    Primary value: quantified diagnosis + practitioner framework.
+  previous_version: "v3 (2026-05-20): G+R Dual Method (abandoned)"
+  change_rationale: >
+    Round 14 scored 3.5. Soundness 4/5 but Significance (2.5-3.5)
+    and Presentation drag. V4.1 combines presentation restructuring
+    with four theoretical depth enhancements (A/B/C/D) to upgrade
+    SCB from empirical observation to theoretical result:
+    (1) SCB probabilistic proof, (2) CIL information-theoretic
+    framework, (3) Capability gap derivation, (4) Causal DAG.
+    Quality over speed.
+
+# ──────────────────────────────────────────────
+# DIAGNOSIS: 7 Problems → 7 Solutions
+# ──────────────────────────────────────────────
+restructure_rationale:
+
+  problem_1_info_density:
+    issue: "13 technical abbreviations in 8 pages"
+    solution: "Reduce to 6 essential abbreviations"
+    keep: [SC, SICA, BR, "K_eff", NLI, MAX-SAT]
+    eliminate:
+      - SCB: "spell out 'symbolic confirmation bias' (use abbreviation only in tables)"
+      - CJT: "spell out 'Condorcet Jury Theorem' (only used 2-3 times)"
+      - CCR: "appendix only"
+      - DRC: "appendix only"
+      - ICG: "spell out 'iterative constraint generation'"
+      - ProcessSim: "use 'process similarity'"
+      - TOST: "spell out or remove from main text"
+      - FOL: "use 'logical constraints' or spell out"
+    net_reduction: "13 → 6 abbreviations (-54%)"
+
+  problem_2_depth_imbalance:
+    issue: "§3.1 CJT (half page, non-original) vs §5.4 Remediation (15 lines, major finding) vs §7 Discussion (1/3 page)"
+    solution: |
+      - CJT: 2 sentences in intro (save 0.4 pages)
+      - Remediation: expand to 25-30 lines (independence-accuracy trade-off is key)
+      - Discussion: expand from 2 to 4 paragraphs (diagnostics 60/60 is strongest practical contribution)
+      - Mirage Hypothesis: remove from §3, present in §5 emerging from data
+
+  problem_3_text_wall:
+    issue: "Pages 3-5 have zero display items (Related Work + Background & Setup)"
+    solution: |
+      - Move experimental setup into §3 Method → Table 1 appears ~page 4-5 (was page 6)
+      - Move regime scatter figure into §4 Results → visual relief on page 5
+      - Add diagnostic decision tree figure in §5 → another display item
+      - Net: every 2-page spread gets at least one display item
+
+  problem_4_mirage_hypothesis:
+    issue: "Empirical Finding 1-2 are post-hoc observations in theorem-like boxes; only P1 is testable"
+    solution: |
+      - Remove Finding 1 and Finding 2 tcolorboxes from §3
+      - Remove O1/O2/P1 labels (too formulaic for observations)
+      - Present the Mirage Hypothesis in §5 AFTER showing SCB data
+      - Frame as: "Three patterns emerge from the data → we formulate the Symbolic Mirage"
+      - The hypothesis is then TESTED by §6 (cross-architecture)
+      - More natural scientific narrative: data → hypothesis → test
+
+  problem_5_cross_arch_overstatement:
+    issue: "Cross-architecture results treated as established finding; only Mistral-7B is significant"
+    solution: |
+      - "escapes the bottleneck" → "preliminary evidence of escaping"
+      - "validates" → "is consistent with"
+      - Add explicit caveat: "significant only for Mistral-7B (SC below verifier)"
+      - In abstract: add "on the weakest generator" qualifier
+      - Section title: "Escaping the Bottleneck" → keep (describes aspiration)
+
+  problem_6_power_caveat:
+    issue: "10/16 conditions underpowered; abstract doesn't acknowledge"
+    solution: |
+      - Abstract: add "with equivalence established in four conditions,
+        ten remaining underpowered for effects below ~2 percentage points"
+      - Results: keep existing TOST discussion but condense to essentials
+
+  problem_7_surprise:
+    issue: "Core finding predictable after Huang et al.; Z3 specificity underemphasized"
+    solution: |
+      Reframe the hook throughout the paper:
+      - OLD: "Another self-correction failure study"
+      - NEW: "Even provably sound formal verification becomes vacuous under self-extraction"
+      Key differentiators to emphasize:
+      1. Z3 is a FORMAL solver (not another LLM trick) — provably correct
+      2. 99% of constraints pass Z3 validation — no syntax issues
+      3. Oracle controls prove the MECHANISM works (+30pp possible)
+      4. The failure is specifically in EXTRACTION — new kind of bias
+      5. MAX-SAT = majority voting on 94.4% of problems — the formal apparatus is a "mirage"
+      This is distinct from Huang: they show NL self-correction fails;
+      we show FORMAL self-verification fails even with a correct solver.
+
+# ──────────────────────────────────────────────
+# THEORETICAL DEPTH ENHANCEMENTS (A/B/C/D)
+# ──────────────────────────────────────────────
+theoretical_enhancements:
+
+  A_scb_proof:
+    priority: highest
+    placement: "§3.2 (The Information Bottleneck)"
+    space_cost: "~5 lines + 1 equation = ~0.10 pages"
+    core_argument: |
+      Proposition (BR ≥ 1 under same-trace coupling):
+      When a_M ≠ a* (model errs), n_M > n_* by definition of majority.
+      Under same-trace coupling (constraint c supports its source trace's
+      answer), |C_{a_M}| ∝ n_M and |C_{a*}| ∝ n_*.
+      Therefore BR = n_M / n_* > 1.
+      This is a mathematical necessity, not an empirical finding.
+    key_equation: >
+      BR = |C_{a_M}| / |C_{a*}| = n_M / n_* > 1
+      (when a_M ≠ a*, by definition of majority voting)
+    validation: >
+      Shuffle control: BR_null ≈ BR_obs (p > 0.7) confirms the bias
+      is structural — proportional to trace-count distribution, not
+      extraction-specific error.
+    elegance_note: >
+      The proof is 3 lines. Core insight: constraints are a lossy function
+      of traces that already contain the answer. BR > 1 follows from the
+      definition of majority voting. No assumptions about model capability.
+
+  B_cil:
+    priority: REMOVED
+    status: "REMOVED per D155 — data quality issues (3/4 combo_gain values inconsistent with D061), ρ=0.8389 unreliable. Marginal benefit below Capability Gap (ρ=1.0). CCR remains in §5 as independent process-level analysis, NOT reframed as CIL proxy."
+    removal_impact: |
+      - §3.2: no CIL definition needed
+      - §5.3 Diagnostic Framework: no CIL integration point
+      - CCR stays in appendix as-is, not promoted to main text
+      - Saves ~0.08 pages
+
+  C_capability_gap:
+    priority: medium
+    placement: "§6.1 (before empirical results)"
+    space_cost: "~5 lines + 1 equation = ~0.10 pages"
+    derivation: |
+      Under conditional independence between G (accuracy SC_G) and V
+      (accuracy V_acc):
+      ΔCombo ≈ (1 - SC_G) · V_acc - SC_G · (1 - V_acc)
+             = V_acc - SC_G
+      Properties:
+      - Monotonically decreasing in SC_G ✓
+      - ΔCombo = 0 when SC_G = V_acc (breakeven at capability parity) ✓
+      - ΔCombo > 0 when SC_G < V_acc (verifier stronger) ✓
+      - As SC_G → 1, gain → 0 (ceiling: few errors to correct) ✓
+    empirical_validation: >
+      DeBERTa standalone V_acc = 55%. Model predicts breakeven at
+      SC_G ≈ 55%. Empirically: Mistral (SC 39%) gains (+7pp),
+      all generators above 72% show no significant gain.
+      Spearman ρ = 1.0, p = 0.003, n=6 matches the monotonic prediction.
+      Magnitude attenuated vs linear model due to imperfect independence
+      and vote-weighting mechanics — state this as expected.
+    note: >
+      This is a first-order approximation. State it as such:
+      "Under a simplified independence model..." with the caveat that
+      real combo voting involves weighted margins.
+
+  D_causal_dag:
+    priority: highest
+    placement: "§3.2 (The Information Bottleneck) — as Figure"
+    space_cost: "~0.20 pages (TikZ figure, single-column)"
+    dag_structure: |
+      Self-extraction DAG:
+        Q → GT (ground truth)
+        Q, M → T (trace)
+        T → A (answer, contained in trace)
+        T, M → C (constraint, extracted by same model)
+        {A, C} → S (MAX-SAT score)
+
+      d-separation: C ⊥ GT | A
+      All paths from C to GT: C ← (T,M) ← Q → GT
+      Conditioning on A (which is T → A) blocks the chain.
+      Interpretation: constraints carry no information about GT
+      beyond what's already in the answer.
+    cross_arch_contrast: |
+      Cross-architecture DAG:
+        Q → GT
+        Q, M_G → T → A → S
+        Q, M_V → V_out → S (independent path)
+
+      V_out ⊥̸ GT | A because V has an independent path Q → M_V → V_out
+      that doesn't pass through A. Hence CIL > 0.
+    figure_design: >
+      Two-panel TikZ figure (a) Self-extraction (b) Cross-architecture.
+      Panel (a): show A as an information bottleneck node (highlighted).
+      Panel (b): show V_out with independent path to GT (highlighted).
+      Compact, ~0.5 column width per panel. Breaks pages 3-4 text wall.
+      Gray/blue color scheme matching Figure 1.
+
+# ──────────────────────────────────────────────
+# NEW SECTION STRUCTURE
+# ──────────────────────────────────────────────
+paper_outline:
+
+  - section_id: abstract
+    file: abstract.tex
+    title: Abstract
+    word_budget: 220
+    change_type: rewrite
+    key_changes:
+      - "Lead with paradox: formal verification + self-extraction = vacuous"
+      - "Add power caveat: ten conditions underpowered"
+      - "Soften cross-architecture: 'preliminary evidence', 'on the weakest generator'"
+      - "Reduce number density: max 3-4 key numbers"
+      - "Eliminate SCB abbreviation (spell out)"
+
+  - section_id: sec1_introduction
+    file: introduction.tex
+    title: Introduction
+    page_budget: 1.0
+    word_budget: 800
+    change_type: rewrite
+    key_changes:
+      - "Sharper hook: Z3 formal solver paradox as the opening move"
+      - "CJT as 2 sentences (not a subsection reference) — just Keff equation mention"
+      - "Contribution list: 3 items, max 3 lines each (currently 5-8 lines each)"
+      - "Add power caveat to results preview"
+      - "Soften cross-architecture claim"
+      - "Keep Figure 1 (pipeline)"
+    contributions_rewrite:
+      C1:
+        label: "The Symbolic Mirage in formal self-verification"
+        target_lines: 3
+        content: >
+          Provably sound Z3 verification becomes vacuous under self-extraction:
+          83.3% of constraints support the wrong answer (BR 1.66-4.97x, nine models),
+          MAX-SAT agrees with majority voting on 94.4% of problems. A shuffle control
+          confirms the bias is structural. 27 remediation strategies fail.
+      C2:
+        label: "Practitioner diagnostic framework"
+        target_lines: 2
+        content: >
+          Three zero-cost diagnostics (K_eff, BR, C0) correctly classify
+          all 60 tested conditions, providing a priori viability prediction.
+      C3:
+        label: "Cross-architecture escape"
+        target_lines: 2
+        content: >
+          Preliminary evidence that structurally independent NLI verification
+          escapes the bottleneck (+7pp on the weakest generator, p<0.001),
+          consistent with the diagnostic framework's predictions.
+    display_items: [fig:pipeline]
+
+  - section_id: sec2_related_work
+    file: related_work.tex
+    title: Related Work
+    page_budget: 0.65
+    word_budget: 520
+    change_type: trim
+    key_changes:
+      - "Merge CJT paragraph into SC paragraph (save ~6 lines)"
+      - "Cut 'Positioning' paragraph by 50% (much repeats intro)"
+      - "3 tight paragraphs: SC+CJT, Neuro-symbolic, Test-time+self-verification"
+      - "Remove detailed method comparisons (readers can find in appendix)"
+    display_items: []
+
+  - section_id: sec3_method
+    file: method.tex
+    title: Method
+    page_budget: 0.85
+    word_budget: 680
+    change_type: major_rewrite
+    rationale: >
+      §3 becomes lean: SICA pipeline + setup. All theory (A/B/D)
+      moves to §5 where it emerges from data (Director-approved
+      data-first narrative). CJT subsection removed. Mirage removed.
+    new_subsections:
+      - id: sec3_pipeline
+        title: "SICA Pipeline"
+        content: >
+          Keep Eqs 1-4 (K_eff, MAX-SAT, scoring, degeneration).
+          Keep C0 diagnostic (inline). Tighten prose.
+      - id: sec3_setup
+        title: "Experimental Setup"
+        content: >
+          Merge from current §4.1: models, datasets, parameters.
+          Table 1 appears in §4 on ~page 4-5 instead of page 6.
+    removed_content:
+      - "§3.1 CJT derivation → 2 sentences in intro"
+      - "§3.3 Mirage Hypothesis → theory in §5 (data-first)"
+      - "Empirical Finding 1-2 boxes → Proposition 1 in §5.1"
+    display_items: []
+
+  - section_id: sec4_results
+    file: experiments.tex
+    title: Results
+    page_budget: 1.4
+    word_budget: 550
+    change_type: major_rewrite
+    key_changes:
+      - "Remove §4.1 Setup (moved to §3)"
+      - "Keep Table 1 (tab:main_results) — now appears ~page 4-5"
+      - "Move regime scatter figure HERE from analysis (breaks text wall)"
+      - "Move regime-dependent analysis HERE from analysis §5.4"
+      - "Condense TOST/power to 2-3 sentences (details in appendix)"
+      - "Oracle mention: 1-2 sentences (details in appendix)"
+      - "Sign test and aggregate summary stays"
+    display_items: [tab:main_results, fig:regime-scatter]
+    notes: >
+      Moving regime scatter + analysis here serves two purposes:
+      (1) visual relief on pages 4-5, (2) results and their
+      regime-dependent patterns belong together.
+
+  - section_id: sec5_symbolic_mirage
+    file: analysis.tex
+    title: "The Symbolic Mirage"
+    page_budget: 2.1
+    word_budget: 950
+    change_type: major_rewrite
+    narrative_flow: >
+      Data-first: show empirical SCB → ask WHY → Proposition 1 proves
+      BR ≥ 1 is mathematical necessity → Causal DAG shows information
+      bottleneck → process independence confirms → remediation fails
+      → diagnostic framework with CIL and decision tree.
+    new_subsections:
+      - id: sec5_scb
+        title: "Symbolic Confirmation Bias"
+        content: >
+          (1) Empirical SCB first: BR quantification (1.66-4.97x),
+              shuffle control (BR_null ≈ BR_obs, p > 0.7),
+              Z3 vacuity (94.4% MAX-SAT=SC).
+              Table: frontier-scb (universality, 9 models).
+          (2) Proposition 1 [Direction A] — EMERGES from data:
+              "Why is BR > 1 universal? We now show it is a
+              mathematical consequence of same-trace coupling."
+              \textbf{Proposition 1} (Confirmation bias is structural).
+              Under same-trace coupling, when a_M ≠ a*:
+              BR = |C_{a_M}|/|C_{a*}| = n_M/n_* > 1.
+              Key insight: constraints are a lossy function of traces
+              that already contain the answer. BR > 1 follows from
+              the definition of majority voting. No assumptions about
+              model capability. (~5 lines + 1 equation)
+          (3) Causal DAG [Direction D] — explains the mechanism:
+              TikZ figure: M→T→A→C→S with C⊥GT|A.
+              "Constraints are d-separated from ground truth given
+              the answer: all information passes through the answer
+              bottleneck." Compact 1/3-page combination with Prop 1.
+              If space tight, DAG + Proposition = single compact block.
+          (4) Answer-leakage controls (2 sentences).
+      - id: sec5_process
+        title: null  # inline, no subsection header
+        content: >
+          CONDENSE to 3 sentences. ProcessSim 0.69 >> kappa 0.46.
+          Gap generalizes across families. Move figure to appendix.
+      - id: sec5_remediation
+        title: "Why Remediation Fails"
+        content: >
+          EXPAND from 15 to 25-30 lines.
+          Independence-accuracy trade-off: the core insight.
+          Debate (kappa=0.15, -18.6pp) vs SC/DP/ICG (kappa 0.40-0.47).
+          Three families all hit kappa≥0.41 ceiling.
+          27 strategies, 15 families, zero positive.
+          Figure: interventions compact.
+          Theory connection: "No training-free method escapes the
+          same-model ceiling — self-extraction is a hard information
+          barrier (Proposition 1)."
+      - id: sec5_diagnostics
+        title: "Diagnostic Framework"
+        content: >
+          Three diagnostics: C0, K_eff, BR with decision boundaries.
+          60/60 classification. Prospective validation on held-out LLaMA.
+          NEW FIGURE: diagnostic decision tree (TikZ).
+          [CIL REMOVED per D155 — CCR stays in appendix as independent
+          process-level analysis, not reframed as CIL proxy.]
+    display_items:
+      - tab:frontier-scb
+      - fig:interventions-summary
+      - "fig:causal-dag (NEW, TikZ inline, combined with Prop 1)"
+      - "fig:diagnostic-tree (NEW, TikZ inline)"
+    figure_request:
+      fig_id: diagnostic_tree
+      type: decision_tree
+      tool: tikz_inline
+      description: >
+        Diagnostic decision tree for symbolic aggregation viability.
+        Flow: K=12 pilot run → C0<5%? (Degenerate) → K_eff≤1.3?
+        (Diversity-limited) → SC≤40%? (Error amplification) → BR>2x?
+        (Confirmation bias) → External verifier? → Capability gap check
+        → Potential gain. Annotate with 60/60 classification accuracy.
+        Compact, single-column width, ~0.3 page.
+      narrative_intent: >
+        Visualize the practitioner diagnostic tool. Show that three
+        simple checks predict all outcomes. This is the paper's
+        most actionable contribution.
+      design_notes: >
+        Use TikZ directly in LaTeX (no external figure needed).
+        Rounded boxes, gray/blue color scheme matching Figure 1.
+        Decision nodes as diamonds, outcome nodes as rounded rectangles.
+        Compact vertical layout.
+
+  - section_id: sec6_escape
+    file: solutions.tex
+    title: "Cross-Architecture Escape"
+    page_budget: 1.1
+    word_budget: 520
+    change_type: moderate_rewrite
+    key_changes:
+      - "Open with capability gap derivation [Direction C]"
+      - "Soften claims: 'preliminary evidence', 'consistent with'"
+      - "Add explicit caveat: significant only for Mistral-7B"
+      - "Fix data values if D152 patch not applied (39.33→39.17, +6.67→+7.00)"
+      - "Frame as: 'The theory predicts when independent verification helps — we test this'"
+      - "Keep Table 3 and capability gap scatter figure"
+      - "Domain-adapted: keep brief paragraph"
+    capability_gap_theory:
+      placement: "Opening paragraph of §6, before empirical results"
+      content: >
+        Direction C: Under conditional independence, combo gain is:
+        ΔCombo ≈ (1 - SC_G) · V_acc - SC_G · (1 - V_acc) = V_acc - SC_G
+        This predicts: (1) monotonically decreasing gain with SC_G,
+        (2) breakeven at SC_G ≈ V_acc, (3) ceiling effect as SC_G → 1.
+        With V_acc = 55% (DeBERTa standalone), breakeven predicted
+        at SC_G ≈ 55%. Empirically: Mistral (39%) gains; all ≥72% flat.
+        State as "first-order approximation" — magnitude attenuated by
+        imperfect independence and vote-weighting mechanics.
+      space_cost: "~5 lines + 1 equation = ~0.10 pages"
+    display_items: [tab:cross_generator_nli, fig:capability-gap]
+
+  - section_id: sec7_discussion
+    file: discussion.tex
+    title: "Discussion and Conclusion"
+    page_budget: 0.6
+    word_budget: 480
+    change_type: major_expansion
+    current_state: "2 short paragraphs, ~0.3 pages"
+    new_structure:
+      para_1_diagnostics: >
+        Diagnostic framework as practitioner tool. Three checks
+        from a K=12 pilot run predict aggregation viability at zero cost.
+        60/60 conditions classified correctly. Decision boundaries
+        generalize prospectively to held-out model family.
+        Emphasize: this is actionable, not just analytical.
+      para_2_test_time: >
+        Implications for test-time scaling. With K_eff ≤ 3.6 for K=12,
+        same-model traces scale redundancy, not information.
+        Effective scaling requires structurally independent verifiers
+        or trained signals that escape the model's distributional prior.
+      para_3_self_verification: >
+        Broader implications. Symbolic confirmation bias applies to
+        any method extracting structured representations from LLM traces:
+        self-verification, self-refinement, chain-of-verification.
+        The key insight: formal soundness of the verifier is necessary
+        but not sufficient — extraction must be independent.
+      para_4_future: >
+        Future directions. Trained extractors, multi-modal verification,
+        larger-scale validation. Whether trained extractors can shift
+        the independence-accuracy trade-off boundary remains open.
+    remove: "\\enlargethispage{14\\baselineskip} hack"
+
+  - section_id: limitations
+    file: limitations_content.tex
+    title: Limitations
+    change_type: minor_edit
+    notes: >
+      Already concise per EMNLP rules (~3 points).
+      May need minor updates to match restructured claims.
+
+# ──────────────────────────────────────────────
+# DISPLAY ITEM REDISTRIBUTION
+# ──────────────────────────────────────────────
+display_item_plan:
+  target_distribution:
+    "pages 1-2": "Figure 1 (pipeline) — in introduction"
+    "pages 3-4": "Table 1 starts near bottom of page 4 (setup ends, results begin)"
+    "pages 4-5": "Table 1 — in §4 Results"
+    "pages 5-6": "Figure (regime scatter) + Table (frontier-scb) — in §4/§5"
+    "pages 6-7": "Figure (interventions) + Figure (diagnostic tree, NEW) — in §5"
+    "pages 7-8": "Table (cross_generator_nli) + Figure (capability gap) — in §6"
+
+  items_in_main_text:
+    - {id: fig:pipeline, type: figure, location: "§1 Introduction", status: keep}
+    - {id: fig:causal-dag, type: figure, location: "§5 Symbolic Mirage (SCB subsection)", status: "NEW (TikZ, two-panel)"}
+    - {id: tab:main_results, type: table, location: "§4 Results", status: keep}
+    - {id: fig:regime-scatter, type: figure, location: "§4 Results", status: "move from §5"}
+    - {id: tab:frontier-scb, type: table, location: "§5 Symbolic Mirage", status: keep}
+    - {id: fig:interventions-summary, type: figure, location: "§5 Symbolic Mirage", status: keep}
+    - {id: fig:diagnostic-tree, type: figure, location: "§5 Symbolic Mirage", status: "NEW (TikZ inline)"}
+    - {id: tab:cross_generator_nli, type: table, location: "§6 Escape", status: keep}
+    - {id: fig:capability-gap, type: figure, location: "§6 Escape", status: keep}
+
+  items_moved_to_appendix:
+    - {id: fig:process-kappa, reason: "Key stat in 3 sentences; figure is supporting evidence."}
+    - {id: tab:independence, reason: "Already in appendix (analysis.tex references it as 'Appendix')"}
+    - {id: tab:kappa_generalization, reason: "Key numbers absorbed into remediation text"}
+
+  display_count: "5 figures + 3 tables = 8 display items in 8 pages (1 per page average)"
+
+# ──────────────────────────────────────────────
+# PAGE BUDGET
+# ──────────────────────────────────────────────
+page_budget:
+  total_limit: 8
+  target: 7.9  # tight but achievable with spacing discipline
+  breakdown:
+    abstract: 0.5
+    sec1_introduction: 1.0
+    sec2_related_work: 0.65
+    sec3_method: 0.85  # lean: pipeline + setup only; theory in §5
+    sec4_results: 1.35  # slight trim from 1.4
+    sec5_symbolic_mirage: 2.1  # heaviest: A+D+B theory + SCB + remediation + diagnostics
+    sec6_escape: 1.1   # +0.1 for capability gap derivation (C)
+    sec7_discussion: 0.6
+    total_estimated: 8.1
+  savings:
+    "Remove CJT subsection from §3": -0.40
+    "Remove Mirage Hypothesis + Finding boxes from §3": -0.30
+    "Trim related work": -0.15
+    "Trim introduction contributions": -0.15
+    "Condense process-kappa to 3 sentences": -0.20
+    "Trim regime analysis in §4": -0.05
+  additions:
+    "Add setup to §3": +0.20
+    "Add theory (A+D+B) to §5": +0.35
+    "Add regime analysis to §4": +0.20
+    "Expand remediation in §5": +0.15
+    "Add diagnostic tree figure in §5": +0.20
+    "Expand discussion": +0.30
+    "Add capability gap derivation to §6": +0.10
+  net: +0.10  # 8.1 pages; manageable with \looseness=-1 and tight spacing
+  overflow_strategy: >
+    If over 8 pages after first compile:
+    1. Move process-kappa scatter figure entirely to appendix (save ~0.1)
+    2. Tighten spacing on Table 1 caption (save ~0.05)
+    3. Use \looseness=-1 on paragraphs with natural breaks
+    4. Last resort: condense CIL to 2 sentences (save ~0.05)
+
+# ──────────────────────────────────────────────
+# EXECUTION PLAN (serial, 9 steps)
+# ──────────────────────────────────────────────
+execution_order:
+  note: >
+    Execution order prioritizes foundational sections first (theory
+    in §3 establishes framework that §4-§6 reference). §7 Discussion
+    and §1 Intro written after body is stable. Abstract last.
+    Quality over speed — each step validated before proceeding.
+
+  - step: 1
+    task: "Rewrite method.tex — lean pipeline + setup"
+    task_type: paper_writing
+    file: method.tex
+    description: >
+      §3 becomes lean: pipeline + setup only. All theory (A/B/D)
+      goes to §5 (data-first narrative, Director-approved).
+      (a) Remove CJT subsection (→ 2 sentences in intro).
+      (b) Remove Mirage Hypothesis + Finding 1-2 tcolorboxes (→ §5).
+      (c) Keep SICA pipeline (§3.1) with Eqs 1-4.
+      (d) NEW §3.2 Experimental Setup (merge from experiments.tex §4.1).
+      (e) Keep BR definition equation (Eq 5) as definitional — §5 validates.
+      Target: 0.85 pages.
+      Read paper-writing-norms.skill.md.
+
+  - step: 2
+    task: "Rewrite experiments.tex → Results"
+    task_type: paper_writing
+    file: experiments.tex
+    description: >
+      (a) Remove §4.1 Setup (now in §3.3).
+      (b) Keep Table 1 (tab:main_results).
+      (c) Move regime-dependent analysis HERE from analysis.tex.
+      (d) Move regime scatter figure HERE.
+      (e) Condense TOST/power to 2-3 sentences.
+      (f) Oracle: 1-2 sentences (details in appendix).
+      (g) Reference §3.2 theory: "Proposition 1 predicts BR > 1;
+          Table 1 confirms no positive effect."
+
+  - step: 3
+    task: "Rewrite analysis.tex → The Symbolic Mirage"
+    task_type: paper_writing
+    file: analysis.tex
+    description: >
+      (a) Rename section to "The Symbolic Mirage".
+      (b) §5.1: Frame SCB as empirical VALIDATION of §3.2 theory.
+          "Proposition 1 predicts BR ≥ 1; we observe 1.66-4.97x."
+          Keep frontier-scb table, shuffle control, Z3 vacuity.
+      (c) Process-kappa: condense to 3 sentences (move figure to appendix).
+      (d) §5.3: EXPAND remediation (25-30 lines). Connect to CIL:
+          "No training-free method achieves CIL > 0."
+      (e) §5.4: Diagnostic framework with decision tree (TikZ inline).
+          Connect to CIL: "diagnostics approximate CIL at zero cost."
+      (f) Remove: Effective-K subsection (absorbed into §4).
+
+  - step: 4
+    task: "Rewrite solutions.tex with capability gap theory"
+    task_type: paper_writing
+    file: solutions.tex
+    description: >
+      (a) Open with capability gap derivation [Direction C]:
+          ΔCombo ≈ V_acc - SC_G. State as "first-order approximation."
+          Empirical validation: breakeven prediction matches data.
+      (b) Soften claims: "preliminary evidence", "consistent with".
+      (c) Add caveat: "significant only for Mistral-7B (SC below verifier)."
+      (d) Fix data values if D152 patch not applied.
+      (e) Connect to CIL: "CIL > 0 when V independent (Table in Appendix D)."
+
+  - step: 5
+    task: "Expand discussion.tex"
+    task_type: paper_writing
+    file: discussion.tex
+    description: >
+      From 2 to 4 paragraphs (~0.6 pages).
+      (a) Diagnostics as practitioner tool (60/60, zero-cost).
+      (b) Test-time scaling implications (K_eff ≤ 3.6 → redundancy).
+      (c) Broader: SCB applies to any self-extracted structured repr.
+      (d) Future: trained extractors, CIL as evaluation criterion.
+      Remove \\enlargethispage hack.
+
+  - step: 6
+    task: "Rewrite introduction.tex"
+    task_type: paper_writing
+    file: introduction.tex
+    description: >
+      (a) Sharper hook: Z3 formal solver paradox.
+      (b) CJT as 2 sentences (not a subsection reference).
+      (c) Mention information bottleneck framework briefly.
+      (d) Contributions: 3 items, max 3 lines each.
+          C1: Symbolic Mirage (theory + empirics).
+          C2: Diagnostic framework (60/60).
+          C3: Cross-architecture escape (preliminary).
+      (e) Add power caveat. Soften cross-architecture.
+      (f) Keep Figure 1 (pipeline).
+
+  - step: 7
+    task: "Trim related_work.tex"
+    task_type: paper_writing
+    file: related_work.tex
+    description: >
+      (a) Merge CJT paragraph into SC paragraph.
+      (b) Cut positioning by 50%.
+      (c) 3 tight paragraphs total.
+      (d) Reference our information bottleneck where positioning
+          against Huang et al.
+
+  - step: 8
+    task: "Rewrite abstract.tex"
+    task_type: paper_writing
+    file: abstract.tex
+    description: >
+      (a) Lead with paradox: "formal verification + self-extraction = vacuous."
+      (b) Mention the information bottleneck / d-separation briefly.
+      (c) Add power caveat.
+      (d) Soften cross-architecture.
+      (e) Max 3-4 key numbers. Spell out SCB.
+      (f) ~220 words.
+
+  - step: 9
+    task: "Consistency check + compile + page management"
+    task_type: verification
+    description: >
+      (a) check_paper_consistency → fix cross-section issues.
+      (b) Compile → verify 8-page compliance.
+      (c) If over 8 pages: apply overflow_strategy.
+      (d) Visual check: display item distribution on every page spread.
+      (e) Abbreviation audit: confirm ≤6 in main text.
+      (f) Theory coherence: §3.2 → §5 → §6 references chain.
+
+  - step: 10
+    task: "Submit to Reviewer"
+    task_type: review
+    description: >
+      paper_agent_request_review with restructuring context.
+      Focus areas: (1) theoretical depth and rigor of §3.2,
+      (2) narrative clarity, (3) display item distribution,
+      (4) claim strength calibration, (5) abbreviation reduction,
+      (6) overall coherence of theory → empirics → escape arc.
+
+# ──────────────────────────────────────────────
+# DATA CONSISTENCY FLAGS
+# ──────────────────────────────────────────────
+data_flags:
+  - file: solutions.tex
+    issue: "Shows old values (SC 39.33%, +6.67pp) vs D152 expected (39.17%, +7.00pp)"
+    action: "Fix during step 5 rewrite. Confirm with Director which values are correct."
+    note: >
+      Table 1 uses SC=39.33% (SICA pipeline PID alignment).
+      Table 3 uses SC=39.17% (combo eval PID alignment).
+      Both may be correct for their contexts. Director confirmed
+      this in prior session. Intro reference to +6.67 also needs fixing.
+  - file: introduction.tex
+    issue: "Line 28 shows +6.67pp (old value)"
+    action: "Fix during step 7 rewrite."
+
+# ──────────────────────────────────────────────
+# NO NEW EXPERIMENTS NEEDED
+# ──────────────────────────────────────────────
+agent_requests:
+  - type: figure_data
+    description: >
+      Diagnostic decision tree + Causal DAG: no new data needed.
+      Both are TikZ figures using existing paper content.
+      Worker writes TikZ directly in LaTeX.
+  - type: data_verification
+    description: >
+      Confirm solutions.tex values: should Table 3 show 39.17%/+7.00pp
+      or 39.33%/+6.67pp? Prior session summary says D152 updated to
+      39.17/+7.00 but current file shows old values.
+      If Director confirms 39.17/+7.00, also update intro line 28.
+  - type: optional_computation
+    priority: nice_to_have
+    description: >
+      CIL mutual information values: compute I(V_output; GT | G_answer)
+      from per-problem (G_answer, V_output, GT) tuples in existing
+      combo experimental data. Needed for 8 conditions (same as CCR
+      table in Appendix D). If Agent can provide, we get actual MI
+      values alongside CCR. If not, CCR suffices as proxy and the
+      d-separation argument provides the theoretical CIL ≈ 0 result.
+      NOT BLOCKING — proceed with CCR if unavailable.
+
+# ──────────────────────────────────────────────
+# CONTRIBUTIONS (updated for V4 framing)
+# ──────────────────────────────────────────────
+contributions:
+  - id: C1
+    label: "The Symbolic Mirage: theory + empirics"
+    status: VERIFIED
+    claim: >
+      Formal proof that self-extracted constraints inherit confirmation
+      bias (BR ≥ 1 under same-trace coupling) + causal DAG showing
+      constraints are d-separated from ground truth given the answer.
+      Empirical validation: BR 1.66-4.97x across nine models (7B to
+      frontier), MAX-SAT = majority voting on 94.4%. Shuffle control
+      confirms structural origin. 27 remediation strategies fail.
+      CIL ≈ 0 for self-extraction.
+    registry_refs: [exp-confirmation-bias, exp-031, exp-022]
+    theory_contribution: >
+      Upgrades SCB from empirical observation to theoretical result.
+      The information bottleneck (d-separation) + same-trace coupling
+      proof provide a principled explanation, not just pattern-matching.
+
+  - id: C2
+    label: "Practitioner diagnostic framework (60/60)"
+    status: VERIFIED
+    claim: >
+      Three zero-cost diagnostics (K_eff, BR, C0) correctly classify
+      all 60 tested conditions as CIL approximations. Decision boundaries
+      generalize prospectively to a held-out model family.
+    registry_refs: [exp-031, exp-077, exp-076]
+
+  - id: C3
+    label: "Cross-architecture escape (preliminary, theory-grounded)"
+    status: VERIFIED
+    claim: >
+      Capability gap derivation predicts monotonic gain decay with SC_G
+      and breakeven at SC_G ≈ V_acc. Empirically validated: significant
+      gain only for Mistral-7B (SC < V_acc), Spearman ρ = 1.0 (n=6).
+      Domain-adapted NLI amplifies to +12-26pp.
+    registry_refs: [exp-wave3-dir-r-nli-verifier, exp-wave3-dir-r-combo-extended]
+    strength_note: "preliminary evidence, theory-grounded prediction"

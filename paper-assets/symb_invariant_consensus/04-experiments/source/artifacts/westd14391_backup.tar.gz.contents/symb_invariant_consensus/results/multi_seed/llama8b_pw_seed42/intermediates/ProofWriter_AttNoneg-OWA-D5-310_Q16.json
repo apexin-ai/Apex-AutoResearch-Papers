@@ -1,0 +1,975 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-310_Q16",
+    "problem": "Anne is big. Anne is nice. Anne is round. Bob is nice. Bob is round. Dave is blue. Dave is red. Dave is smart. Erin is red. Erin is round. If someone is big and round then they are smart. All rough people are blue. Nice people are big. If someone is nice then they are round. Round, red people are rough. All round, smart people are red.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\nSmart($x, bool) ::: Is x smart?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nNice(Anne, True) ::: Anne is nice.\nRound(Anne, True) ::: Anne is round.\nNice(Bob, True) ::: Bob is nice.\nRound(Bob, True) ::: Bob is round.\nBlue(Dave, True) ::: Dave is blue.\nRed(Dave, True) ::: Dave is red.\nSmart(Dave, True) ::: Dave is smart.\nRed(Erin, True) ::: Erin is red.\nRound(Erin, True) ::: Erin is round.\n\nRules:\nBig($x, True) && Round($x, True) >>> Smart($x, True) ::: If someone is big and round then they are smart.\nRough($x, True) >>> Blue($x, True) ::: All rough people are blue.\nNice($x, True) >>> Big($x, True) ::: Nice people are big.\nNice($x, True) >>> Round($x, True) ::: If someone is nice then they are round.\nRound($x, True) && Red($x, True) >>> Rough($x, True) ::: Round, red people are rough.\nRound($x, True) && Smart($x, True) >>> Red($x, True) ::: All round, smart people are red.\n\nQuery:\nRough(Dave, True) ::: Dave is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 79.0,
+      "Unknown": 110.5
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "True": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we need to analyze the given information step by step:\n\n1. Given information:\n   - Anne is big. Anne is nice. Anne is round. \n   - Bob is nice. Bob is round. \n   - Dave is blue. Dave is red. Dave is smart. \n   - Erin is red. Erin is round. \n   - If someone is big and round then they are smart. \n   - All rough people are blue. \n   - Nice people are big. \n   - If someone is nice then they are round. \n   - Round, red people are rough. \n   - All round, smart people are red.\n\n2. We need to determine whether Dave is rough or not. To do this, we can start with the given information about Dave:\n   - Dave is blue.\n   - Dave is red.\n   - Dave is smart.\n\n3. Since we don't have any information directly stating that Dave is rough, we need to use the given rules to see if we can infer whether Dave is rough or not.\n\n4. Rule 7 states that round, red people are rough. However, we don't know if Dave is round or not. So, we cannot directly apply this rule.\n\n5. Rule 6 states that all round, smart people are red. Since Dave is smart (rule 3) and round (not explicitly given, but we will get to that), we can apply this rule. However, we cannot confirm if Dave is round yet.\n\n6. To confirm if Dave is round, we can look at the information given about Erin:\n   - Erin is red.\n   - Erin is round.\n\n7. Since Erin is round (rule 6), we can infer that Erin is smart (rule 5). However, we are not concerned with Erin's smartness, but rather with Dave's roundness.\n\n8. However, rule 5 tells us that all round, smart people are red. Since Erin is red and round, and Dave is smart, we can infer that Dave is also red.\n\n9. Now, let's revisit the information about Dave:\n   - Dave is blue.\n   - Dave is red.\n\n10. We have a contradiction here. Dave cannot be both blue and red at the same time. This means that we cannot accurately determine whether Dave is rough or not.\n\n11. Since we cannot determine whether Dave is rough or not, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\n1. Dave is blue. (Rule 4)\n2. Dave is red. (Rule 5)\n3. Dave is smart. (Rule 6)\n4. All rough people are blue. (Rule 7)\n5. Round, red people are rough. (Rule 10)\n\nFrom Rule 4, we know that Dave is blue. This indicates that he might be rough, but we need to confirm this.\n\nFrom Rule 5, we know that Dave is red. We need to combine this information with Rule 10 to see if it affects our conclusion.\n\nFrom Rule 6, we know that Dave is smart. \n\nFrom Rule 7, we know that all rough people are blue. This rule directly contradicts Rule 5, which states that Dave is red. However, this is not a direct conclusion for Dave, but rather it sets the condition for what a rough person is.\n\nFrom Rule 10, we know that round, red people are rough. Since Dave is red, this could potentially make him rough, but we also need to consider the information about round people.\n\nHowever, there is no information that directly links Dave to being round, except through his connection to being red. \n\nWe also have the following rules related to round people:\n\n1. Anne is round. (Rule 2)\n2. Bob is round. (Rule 3)\n3. Erin is round. (Rule 8)\n4. If someone is nice then they are round. (Rule 9)\n5. All round, smart people are red. (Rule 10)\n\nWe need to consider the information about round people in relation to Dave being smart and red.\n\nFrom Rule 9, we know that if someone is nice then they are round. However, we have no information that directly links Dave to being nice or round.\n\nFrom Rule 10, we know that all round, smart people are red. Since Dave is smart and red, this might make him round, but we need to consider the other rules that relate to round people.\n\nWe have no direct information about Dave being round, but we can try to infer it from the information about smart people. \n\nIf someone is big and round then they are smart. (Rule 1)\nNice people are big. (Rule 8)\nIf someone is nice then they are round. (Rule 9)\nAll round, smart people are red. (Rule 10)\n\nSince Dave is smart, he must be red from Rule 10. But we still need to determine if he is round.\n\nFrom the given rules, we can't directly conclude that Dave is round. However, we can conclude that if someone is big and round then they are smart, and since Dave is smart, this might make him big and round.\n\nBut there's no direct information about Dave being big. \n\nWe can conclude that Dave is red and smart. But we still can't determine whether he is rough or not.\n\nHowever, we can conclude that Dave is not rough from Rule 7, which states that all rough people are blue. Since Dave is red, not blue, he cannot be rough.\n\nTherefore, the statement \"Dave is rough\" is false.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether Dave is rough, we need to analyze the given information and use the provided rules to make conclusions.\n\n1. All rough people are blue. (Rule 1)\n2. Dave is blue. (Given)\n3. If someone is blue then they are rough. (From Rule 1)\n\nFrom step 2 and step 3, we can conclude that Dave is rough.\n\nTherefore, the statement \"Dave is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information:\n   - Dave is blue.\n   - Dave is red.\n   - Dave is smart.\n   - Erin is red.\n   - Erin is round.\n   - If someone is big and round then they are smart.\n   - All rough people are blue.\n   - Nice people are big.\n   - If someone is nice then they are round.\n   - Round, red people are rough.\n   - All round, smart people are red.\n\n2. From the information given, we can deduce the following:\n   - Since Dave is smart, and all round, smart people are red, Dave must be round. (This is because the statement \"all round, smart people are red\" implies that if someone is round and smart, then they are red.)\n   - Now, since Dave is round, and round, red people are rough, Dave must be rough. (This is because the statement \"round, red people are rough\" implies that if someone is round and red, then they are rough.)\n\nHowever, we have a contradiction here: Dave is blue, but we concluded that Dave must be rough, and all rough people are blue. This implies that Dave must be blue, which is consistent with the information given.\n\nTo resolve this contradiction, we need to analyze the information given again. We concluded that Dave must be round because he is smart, and all round, smart people are red. However, this conclusion was based on the assumption that Dave is round, which led to a contradiction.\n\nLet's re-examine the information given:\n- Dave is blue.\n- Dave is red.\n- Dave is smart.\n\nWe can deduce that Dave is red and blue, which does not necessarily mean that he is rough. However, we cannot conclude that Dave is not rough.\n\nSince we cannot conclude that Dave is rough or not, the statement \"Dave is rough\" is unknown.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we need to analyze the given information and apply it to the statement.\n\n1. Given information:\n   - Dave is blue.\n   - Dave is red.\n   - Dave is smart.\n   - Erin is red.\n   - Erin is round.\n   - If someone is big and round then they are smart.\n   - All rough people are blue.\n   - Nice people are big.\n   - If someone is nice then they are round.\n   - Round, red people are rough.\n   - All round, smart people are red.\n\n2. We need to determine whether Dave is rough or not. To do this, we can use the information given in the problem.\n\n   From the information, we can deduce the following:\n   - Dave is blue (given).\n   - Since Dave is blue, Dave is rough (from the given information that all rough people are blue).\n   - But, we also know that Dave is smart (given).\n   - Now we need to see if we can determine whether the statement \"Dave is rough\" is true or not.\n\n3. From the given information, we know that all round, smart people are red. But we do not have any information that Dave is round. If Dave is not round, we cannot conclude that Dave is not rough based on the given information.\n\nHowever, we do know that Dave is smart and that all round, smart people are red. This means that Dave can be red if he is round. But this does not directly help us determine whether Dave is rough.\n\n4. We also know that Dave is blue (given) and that all rough people are blue. This seems to suggest that Dave is rough. However, we need to be careful because the information that all round, smart people are red could potentially contradict this conclusion.\n\n5. Let's summarize the information we have:\n   - Dave is blue.\n   - All rough people are blue.\n   - Dave is smart.\n   - All round, smart people are red.\n\nBased on the information given, we can conclude that Dave is indeed rough because he is blue and all rough people are blue.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nGiven information:\n\n1. Anne is big. Anne is nice. Anne is round.\n2. Bob is nice. Bob is round.\n3. Dave is blue. Dave is red. Dave is smart.\n4. Erin is red. Erin is round.\n5. If someone is big and round then they are smart.\n6. All rough people are blue.\n7. Nice people are big.\n8. If someone is nice then they are round.\n9. Round, red people are rough.\n10. All round, smart people are red.\n\nNow, let's analyze the statement \"Dave is rough.\"\n\nTo determine whether Dave is rough, we need to find out if there is any information that directly or indirectly implies that Dave is rough.\n\nFrom statement 6, we know that all rough people are blue. Since Dave is blue (statement 3), we might think that Dave is rough. However, we need to consider other information that might contradict this conclusion.\n\nFrom statement 9, we know that round, red people are rough. We also know that Dave is red (statement 3) and round (unknown). However, we do not have enough information to determine if Dave is round.\n\nNow, let's consider the possibilities:\n\n* If Dave is round, then from statement 9, we know that Dave is rough (since round, red people are rough, and Dave is red). However, we do not have enough information to confirm if Dave is round.\n* If Dave is not round, then we cannot conclude that Dave is rough.\n\nSince we do not have enough information to determine if Dave is round, we cannot conclude that Dave is rough. Therefore, the statement \"Dave is rough\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Dave is blue (given information).\n2. We also know that all rough people are blue (rule 3).\n3. From rule 2, we can conclude that if someone is rough, then they must be blue. However, we cannot conclude that if someone is blue, then they are rough, as Dave is an exception (he is blue but we don't know if he is rough).\n\nSo, from the given information, we cannot directly conclude that Dave is rough. However, we can conclude that it is possible that Dave is rough because he is blue, which is a characteristic of rough people.\n\nNow, let's analyze the other given information to see if we can get more information about Dave being rough:\n\n1. Dave is red and smart (given information).\n2. We know that all round, smart people are red (rule 8).\n3. However, we cannot conclude that Dave is round because being red and smart does not necessarily mean that Dave is round.\n\nHowever, there is another piece of information that can help us:\n\n1. Round, red people are rough (rule 6).\n2. We also know that Dave is red and smart (given information).\n3. However, we cannot directly conclude that Dave is round from this information.\n\nBut wait, there is more information:\n\n1. If someone is round and smart, then they are red (rule 8).\n2. Therefore, if Dave is round, then he is red, which we already know.\n3. But if Dave is round, then he must also be red and smart (rule 8).\n4. From rule 6, we know that round, red people are rough.\n\nSo, we have a problem. We cannot conclude that Dave is round, but if he is round, then he must be rough. However, there is a contradiction:\n\n1. We know that Dave is red and smart (given information).\n2. If Dave is round, then he is red and smart (rule 8).\n3. However, if Dave is round, then he must be rough (rule 6), which would mean that he is blue (rule 2), but he is not blue (given information).\n\nThis means that Dave cannot be round.\n\nHowever, we still cannot conclude that Dave is rough from the given information. But we can conclude that it is possible that Dave is rough because he is blue.\n\nSo, the statement \"Dave is rough\" is unknown because we cannot determine whether it is true or false from the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply it to the statement \"Dave is rough.\"\n\nGiven information:\n\n1. If someone is big and round then they are smart. \n2. All rough people are blue. \n3. Nice people are big. \n4. If someone is nice then they are round. \n5. Round, red people are rough. \n6. All round, smart people are red.\n\nLet's analyze the given information about each person:\n\n- Anne: big, nice, round\n- Bob: nice, round\n- Dave: blue, red, smart\n- Erin: red, round\n\nNow, let's analyze the statement \"Dave is rough.\"\n\nWe know that Dave is blue (statement 2) and also smart (statement 6). However, we don't have any information about Dave being round. \n\nFrom the given information, we can deduce the following:\n\n- Since Dave is smart, he must be round (statement 6).\n- Since Dave is round, he must be red (statement 5).\n- However, being red and round doesn't necessarily mean Dave is rough (statement 5 says round, red people are rough, but it doesn't say all round, red people are rough).\n\nHowever, we also know that Dave is blue (statement 2), and all rough people are blue (statement 2). \n\nBut we also know that Dave is red (from the previous step), which seems to contradict the information that all rough people are blue (statement 2). \n\nHowever, this information alone is not enough to conclude that Dave is rough or not. We need more information to determine the truth of the statement \"Dave is rough.\"\n\nSince we have conflicting information (Dave is blue, but also red) and no direct information about Dave being round (which is necessary to conclude that he is rough), we cannot determine whether the statement \"Dave is rough\" is true or false based on the given information.\n\nTherefore, the answer is: \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we need to analyze the given information and apply the given rules.\n\nGiven information:\n1. Dave is blue. \n2. Dave is red. \n3. Dave is smart.\n4. Erin is red. Erin is round.\n5. If someone is big and round then they are smart. \n6. All rough people are blue. \n7. Nice people are big. \n8. If someone is nice then they are round. \n9. Round, red people are rough.\n10. All round, smart people are red.\n\nAnalysis:\nFrom rule 10, we know that round, smart people are red. Since Dave is smart (rule 3), we can infer that Dave is round, as smart people are round (rule 10 implies this). \n\nNow, we have two pieces of information about Dave's color: Dave is blue (rule 1) and Dave is red (rule 2). We cannot conclude that Dave is both blue and red at the same time, as these two statements conflict. However, we can apply the rule 9: \"Round, red people are rough.\" Since we determined that Dave is round and red, this rule implies that Dave is rough.\n\nTherefore, based on the given information and the rules provided, we can conclude that \"Dave is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we need to analyze the given information and use the provided rules to derive conclusions.\n\n1. Given information:\n   - Anne is big.\n   - Anne is nice.\n   - Anne is round.\n   - Bob is nice.\n   - Bob is round.\n   - Dave is blue.\n   - Dave is red.\n   - Dave is smart.\n   - Erin is red.\n   - Erin is round.\n   - If someone is big and round then they are smart.\n   - All rough people are blue.\n   - Nice people are big.\n   - If someone is nice then they are round.\n   - Round, red people are rough.\n   - All round, smart people are red.\n\n2. Analyzing the information:\n   - From the given information, we know that Dave is both blue and red. However, we do not know whether he is rough or not.\n\n3. Deriving conclusions:\n   - Rule 8: Round, red people are rough. This rule directly applies to Dave since he is red, but we need to determine whether he is round or not.\n   - Rule 1: If someone is big and round then they are smart. We do not have enough information to conclude whether Dave is big or not, so we cannot apply this rule directly.\n   - Rule 6: All round, smart people are red. We already know that Dave is smart, but we still need to determine whether he is round or not.\n\n4. Determining whether Dave is round:\n   - Rule 3: Nice people are big. Rule 4: If someone is nice then they are round. We do not have any information that directly links Dave to being nice or big, but we can conclude that Erin is round because she is red (Rule 9) and round, red people are rough (Rule 8). However, this does not provide any information about Dave's roundness.\n   - Since Dave is smart (Rule 7), and all round, smart people are red (Rule 6), we can conclude that Dave is red. However, we still need to determine whether he is round or not to apply Rule 8.\n   - Given that we do not have enough information to directly conclude whether Dave is round or not, we cannot apply Rule 8.\n\n5. Conclusion:\n   - Based on the given information and the derived conclusions, we cannot determine whether Dave is rough or not because we do not have enough information to conclude whether he is round or not.\n\nTherefore, the statement \"Dave is rough\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is rough\" is true, false, or unknown, we need to analyze the given information and the given rules step by step.\n\n1. Given information:\n   - Dave is blue.\n   - Dave is red.\n   - Dave is smart.\n\n2. Given rules:\n   - All rough people are blue. (Rule 1)\n   - Round, red people are rough. (Rule 4)\n   - All round, smart people are red. (Rule 5)\n   - If someone is big and round then they are smart. (Rule 3)\n   - Nice people are big. (Rule 2)\n   - If someone is nice then they are round. (Rule 2)\n   - Anne is big. Anne is nice. Anne is round. (Given example)\n   - Bob is nice. Bob is round. (Given example)\n   - Erin is red. Erin is round. (Given example)\n   - Dave is blue. Dave is red. Dave is smart. (Given example)\n\nFrom Rule 1, we know that all rough people are blue. But Dave is blue and red. We cannot conclude that Dave is rough from this rule alone.\n\nHowever, let's analyze further using Rule 4 and Rule 5. Rule 5 states that all round, smart people are red. Since Dave is smart, we can infer that Dave is round. This is because if Dave were not round, he wouldn't be red.\n\nNow, we know that Dave is round and smart. Rule 5 states that all round, smart people are red. Therefore, we can conclude that Dave is indeed red.\n\nHowever, Dave being red does not necessarily mean he is rough. Rule 4 states that round, red people are rough, but it does not say that all red people are rough. We can only conclude that round, red people are rough.\n\nWe still need to analyze whether Dave is round, which we have done earlier. We found that Dave is round and smart, and therefore, red.\n\nLet's analyze whether the combination of being red and round makes Dave rough.\n\nSince Dave is round and red, we can apply Rule 4, which states that round, red people are rough. Therefore, Dave is indeed rough.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Dave is rough, we need to analyze the given statements and the information provided about Dave. \n\nFrom the given statements:\n\n1. All rough people are blue. \n2. Dave is blue. \n3. Round, red people are rough. \n4. All round, smart people are red. \n5. Dave is smart. \n6. Dave is red.\n\nFrom statements 3 and 4, we can infer that smart people can be red, but there's no direct statement about round people being red. However, statement 4 implies that smart people are red if they are also round. \n\nSince Dave is smart (statement 5) and red (statement 6), we can conclude that Dave is round (from statement 4).\n\nNow we have the following information about Dave:\n\n- Dave is blue (statement 2)\n- Dave is round (from the inference above)\n\nFrom statement 3, we know that round, red people are rough. But Dave is blue, not red, and statement 1 says all rough people are blue. So, Dave being blue doesn't necessarily mean he's rough. \n\nHowever, there is no direct statement that says \"If someone is round and blue, then they are rough.\" But since we know Dave is round and blue, we can infer that Dave is rough from statement 1 and 2.\n\nTherefore, Dave is rough is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_X, round_X), smart_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> blue(X)",
+          "z3_formula": "Implies(rough_X, blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_X, big_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_X, round_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_X, red_X), rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(round_X, smart_X), red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave) == False",
+          "z3_formula": "Not(blue_dave)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> blue(X)",
+          "z3_formula": "Implies(rough_dave, blue_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_dave, red_dave), rough_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_dave, round_dave), smart_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_dave, big_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_dave, round_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(round_dave, smart_dave), red_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(dave)",
+          "z3_formula": "Not(rough_dave) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> blue(X)",
+          "z3_formula": "Implies(rough_dave, blue_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_dave, rough_dave)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_X, round_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> blue(X)",
+          "z3_formula": "Implies(rough_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_X, red_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(round_X, smart_X), red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave) & red(dave)",
+          "z3_formula": "And(round_dave, red_dave)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_X, round_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> blue(X)",
+          "z3_formula": "Implies(rough_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_X, red_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(round_X, smart_X), red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_X, round_X), smart_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> blue(X)",
+          "z3_formula": "Implies(rough_X, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_X, big_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_X, round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_X, red_X), rough_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(round_X, smart_X), red_X)",
+          "source_step": 16
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_X, round_X), smart_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> blue(X)",
+          "z3_formula": "Implies(rough_X, blue_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_X, big_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_X, round_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_X, red_X), rough_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(round_X, smart_X), red_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_dave, round_dave), smart_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> blue(X)",
+          "z3_formula": "Implies(rough_dave, blue_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_dave, big_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_dave, round_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_dave, red_dave), rough_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(round_dave, smart_dave), red_dave)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_anne, round_anne), smart_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_X, rough_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_anne, big_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_anne, round_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_erin, red_erin), rough_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(round_anne, smart_anne), red_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> blue(X)",
+          "z3_formula": "Implies(rough_dave, blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_dave, red_dave), rough_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(round_dave, smart_dave), red_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_dave, round_dave), smart_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_dave, big_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_dave, round_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(X) -> blue(X)",
+          "z3_formula": "Implies(rough_dave, blue_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_dave, red_dave), rough_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(round_dave, smart_dave), red_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 141,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 36
+    },
+    "maxsat_stats": {
+      "satisfied": 34,
+      "excluded": 2,
+      "total_weight": 139,
+      "solve_time_ms": 1.0756943374872208
+    },
+    "timing": {
+      "trace_gen_s": 8.211,
+      "extraction_s": 32.856,
+      "dedup_s": 1.056,
+      "maxsat_s": 0.003,
+      "total_s": 42.126
+    }
+  }
+}

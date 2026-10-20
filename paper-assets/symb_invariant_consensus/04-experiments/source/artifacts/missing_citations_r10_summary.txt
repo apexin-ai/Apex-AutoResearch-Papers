@@ -1,0 +1,14 @@
+Missing Citations R10 — Paper Summaries
+========================================
+
+1. wan2025unveiling (arXiv:2506.12301) — ACL 2025 Findings
+   Investigates how LLM internal beliefs create confirmation bias during CoT reasoning, showing that models selectively generate and evaluate reasoning steps to confirm pre-existing answers — directly relevant to our work on self-consistency verification and reasoning reliability.
+
+2. jhaveri2026failing (arXiv:2604.02485) — arXiv preprint 2026
+   Evaluates and proposes mitigations for confirmation bias in LMs, where models fail to falsify hypotheses and instead seek confirming evidence — relevant as a complementary perspective on why naive self-verification fails without structural invariant checks.
+
+3. miya2025eidoku (arXiv:2512.20664) — arXiv preprint 2025
+   Proposes a neuro-symbolic verification gate that validates LLM reasoning outputs against structural constraints (constraint satisfaction) — a closely related approach to our symbolic invariant consensus method, serving as a key baseline/comparison point.
+
+4. yao2023tree (arXiv:2305.10601) — NeurIPS 2023
+   Introduces Tree of Thoughts, a framework enabling LLMs to explore multiple reasoning paths with lookahead and backtracking — relevant as a foundational multi-path reasoning method that our invariant consensus approach extends with symbolic verification.

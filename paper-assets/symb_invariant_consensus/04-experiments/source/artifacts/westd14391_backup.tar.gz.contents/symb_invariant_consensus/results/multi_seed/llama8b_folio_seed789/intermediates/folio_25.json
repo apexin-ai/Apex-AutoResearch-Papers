@@ -1,0 +1,638 @@
+{
+  "problem": {
+    "id": "folio_25",
+    "problem": "Given the following premises:\nBeijing is the capital of the People's Republic of China.  Beijing is the world's most populous national capital city. Beijing is located in Northern China. Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games. Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nBeijing is located in southern China.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "CapitalOf(beijing, prx)",
+      "MostPopulousNationalCapitalCity(beijing)",
+      "InNorthernChina(beijing)",
+      "Hosted(beijing, summer2008olympic) \u2227 Hosted(beijing, summer2008paralympicgames)",
+      "Hosted(beijing, summerolympic) \u2227 Hosted(beijing, winterolympic) \u2227 Hosted(beijing, summerparalympicgames)  \u2227 Hosted(beijing, winterparalympicgames)",
+      "\u2203x (BeijingUniversity(x) \u2227 ConsistentlyRankAmongTheBest(x))"
+    ],
+    "conclusion_fol": "InSouthernChina(beijing)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 80.5
+    },
+    "answer_counts": {
+      "False": 11
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to examine the given premises and see if they provide any information about Beijing's location in relation to north or south China.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about Beijing's location in relation to north or south China.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise also does not provide any information about Beijing's location in relation to north or south China.\n\nPremise 3: Beijing is located in Northern China.\nThis premise directly contradicts the conclusion that Beijing is located in southern China. Since we have a direct statement about Beijing's location in relation to north or south China, we can conclude that the given information supports the fact that Beijing is not in southern China.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise does not provide any information about Beijing's location in relation to north or south China.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics\nThis premise also does not provide any information about Beijing's location in relation to north or south China.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise does not provide any information about Beijing's location in relation to north or south China.\n\nBased on the given premises, the conclusion that Beijing is located in southern China is directly contradicted by Premise 3, which states that Beijing is located in Northern China. Therefore, the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises and see if they provide any information about the location of Beijing in relation to the north or south of China.\n\nPremise 1: Beijing is the capital of the People's Republic of China. (This premise does not provide any information about the location of Beijing.)\n\nPremise 2: Beijing is the world's most populous national capital city. (This premise does not provide any information about the location of Beijing.)\n\nPremise 3: Beijing is located in Northern China. (This premise directly contradicts the conclusion that Beijing is located in southern China.)\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games. (This premise does not provide any information about the location of Beijing.)\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics (This premise does not provide any information about the location of Beijing.)\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world. (This premise does not provide any information about the location of Beijing.)\n\nNow, let's analyze the conclusion in relation to the premises. The conclusion states that \"Beijing is located in southern China.\" However, Premise 3 explicitly states that Beijing is located in Northern China, which directly contradicts the conclusion.\n\nTherefore, based on the given premises, the conclusion that \"Beijing is located in southern China\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they provide any information that directly or indirectly supports or contradicts the conclusion.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise doesn't provide any information about the location of Beijing in China, so it's irrelevant to the conclusion.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise also doesn't provide any information about the location of Beijing, so it's irrelevant to the conclusion.\n\nPremise 3: Beijing is located in Northern China.\nThis premise directly contradicts the conclusion, which states that Beijing is located in southern China. Therefore, based on this premise alone, we can conclude that the statement is false.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise doesn't provide any information about the location of Beijing, so it's irrelevant to the conclusion.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics\nThis premise also doesn't provide any information about the location of Beijing, so it's irrelevant to the conclusion.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise doesn't provide any information about the location of Beijing, so it's irrelevant to the conclusion.\n\nBased on the analysis of the premises, we can conclude that the statement \"Beijing is located in southern China\" is false because it contradicts Premise 3, which states that Beijing is located in Northern China.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the premises provided.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nPremise 2: Beijing is the world's most populous national capital city.\nPremise 3: Beijing is located in Northern China.\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\n\nThe conclusion we need to evaluate is: Beijing is located in southern China.\n\nFrom the premises, we can see that Premise 3 explicitly states that Beijing is located in Northern China. This directly contradicts the conclusion that Beijing is located in southern China.\n\nSince there is a clear contradiction between the premise and the conclusion, we can determine that the conclusion is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they lead to the conclusion.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about Beijing's location.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise also does not provide any information about Beijing's location.\n\nPremise 3: Beijing is located in Northern China.\nThis premise directly contradicts the conclusion. If Beijing is located in Northern China, then it cannot be located in southern China.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise does not provide any information about Beijing's location.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics\nThis premise also does not provide any information about Beijing's location.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise does not provide any information about Beijing's location.\n\nBased on Premise 3, we know that Beijing is located in Northern China, which directly contradicts the conclusion that Beijing is located in southern China.\n\nTherefore, the conclusion is false. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nPremise 2: Beijing is the world's most populous national capital city.\nPremise 3: Beijing is located in Northern China.\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\n\nNow, let's examine the conclusion: Beijing is located in southern China.\n\nTo make a conclusion, we need to see if there's any information in the premises that directly supports or contradicts the conclusion. \n\nWe can see that Premise 3 directly states that Beijing is located in Northern China. This information contradicts the conclusion, which states that Beijing is located in southern China. \n\nSince Premise 3 directly contradicts the conclusion, we can conclude that the conclusion is false.\n\nTherefore, the final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they provide any information about Beijing's location in relation to north and south.\n\nPremise 1: Beijing is the capital of the People's Republic of China. - This premise does not provide any information about Beijing's location in relation to north and south.\n\nPremise 2: Beijing is the world's most populous national capital city. - This premise does not provide any information about Beijing's location in relation to north and south.\n\nPremise 3: Beijing is located in Northern China. - This premise directly contradicts the conclusion. If Beijing is located in Northern China, then it cannot be located in Southern China.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games. - This premise does not provide any information about Beijing's location in relation to north and south.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics - This premise does not provide any information about Beijing's location in relation to north and south.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world. - This premise does not provide any information about Beijing's location in relation to north and south.\n\nBased on the analysis of the premises, the conclusion \"Beijing is located in southern China\" is false because it is directly contradicted by Premise 3, which states that Beijing is located in Northern China.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they lead to the conclusion.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise alone does not provide any information about the location of Beijing in terms of north or south.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise also does not provide any information about the location of Beijing.\n\nPremise 3: Beijing is located in Northern China.\nThis premise directly contradicts the conclusion that Beijing is located in southern China. \n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise does not provide any information about the location of Beijing.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics\nThis premise does not provide any information about the location of Beijing.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise also does not provide any information about the location of Beijing.\n\nBased on the given premises, the conclusion that Beijing is located in southern China is directly contradicted by Premise 3, which states that Beijing is located in Northern China. Therefore, the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nPremise 2: Beijing is the world's most populous national capital city.\nPremise 3: Beijing is located in Northern China.\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\n\nNow, let's evaluate the conclusion: \"Beijing is located in southern China.\"\n\nThe conclusion directly contradicts Premise 3, which states that Beijing is located in Northern China. There is no evidence in the given premises to support the conclusion that Beijing is located in southern China.\n\nBased on the information provided, we can conclude that the truth value of the given conclusion is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they provide any information related to the location of Beijing.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise does not provide any information about the location of Beijing.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise also does not provide any information about the location of Beijing.\n\nPremise 3: Beijing is located in Northern China.\nThis premise directly states the location of Beijing, which is in Northern China. \n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise does not provide any information about the location of Beijing.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics\nThis premise also does not provide any information about the location of Beijing.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise does not provide any information about the location of Beijing.\n\nBased on the premises, we have a direct statement that Beijing is located in Northern China (Premise 3). This information contradicts the conclusion that Beijing is located in southern China.\n\nTherefore, the conclusion \"Beijing is located in southern China\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\n1. The first premise states that Beijing is the capital of the People's Republic of China. This premise does not provide any information about the location of Beijing in terms of north or south.\n2. The second premise states that Beijing is the world's most populous national capital city. This premise also does not provide any information about the location of Beijing.\n3. The third premise states that Beijing is located in Northern China. This premise directly contradicts the conclusion that Beijing is located in southern China.\n4. The fourth premise states that Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games. This premise does not provide any information about the location of Beijing.\n5. The fifth premise states that Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics. This premise also does not provide any information about the location of Beijing.\n6. The sixth premise states that many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world. This premise does not provide any information about the location of Beijing.\n\nFrom the analysis of the premises, we can conclude that the information provided directly contradicts the conclusion that Beijing is located in southern China. Therefore, the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they lead to a conclusion about Beijing's location.\n\nPremise 1: Beijing is the capital of the People's Republic of China.\nThis premise provides general information about Beijing but doesn't give any information about its location.\n\nPremise 2: Beijing is the world's most populous national capital city.\nThis premise also doesn't provide any information about Beijing's location.\n\nPremise 3: Beijing is located in Northern China.\nThis premise directly contradicts the conclusion we are trying to evaluate. If Beijing is located in Northern China, then it cannot be located in Southern China.\n\nPremise 4: Beijing hosted the 2008 Summer Olympics and 2008 Summer Paralympics Games.\nThis premise doesn't provide any information about Beijing's location.\n\nPremise 5: Beijing has hosted both the Summer and Winter Olympics, along with the Summer and Winter Paralympics.\nThis premise also doesn't provide any information about Beijing's location.\n\nPremise 6: Many of Beijing's 91 universities consistently rank among the best in the Asia-Pacific and the world.\nThis premise doesn't provide any information about Beijing's location.\n\nGiven the premises, we can conclude that the statement \"Beijing is located in southern China\" is directly contradicted by Premise 3, which states that Beijing is located in Northern China. Therefore, the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, people_s_republic_of_china)",
+          "z3_formula": "capital_beijing_people_s_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not located_in_southern_china(beijing)",
+          "z3_formula": "Not(located_in_southern_china_beijing)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, people_s_republic_of_china)",
+          "z3_formula": "capital_beijing_people_s_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_olympics(beijing, 2008)",
+          "z3_formula": "hosted_summer_olympics_beijing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_olympics(beijing, 2008)",
+          "z3_formula": "hosted_winter_olympics_beijing_2008 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "university_ranking(beijing, asia_pacific, world)",
+          "z3_formula": "university_ranking_beijing_asia_pacific_world == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_southern_china(beijing)",
+          "z3_formula": "located_in_southern_china_beijing == False",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(Beijing, People's Republic of China)",
+          "z3_formula": "capital_bei_jing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(Beijing)",
+          "z3_formula": "most_populous_national_capital_bei_jing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(Beijing, Northern China)",
+          "z3_formula": "located_in_bei_jing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_summer_olympics_bei_jing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_winter_olympics_bei_jing_2008 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "universities_ranked_among_best(Beijing)",
+          "z3_formula": "universities_ranked_among_best_bei_jing == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "located_in(Beijing, southern China)",
+          "z3_formula": "located_in_bei_jing_southern_china == False",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(Beijing, People's Republic of China)",
+          "z3_formula": "capital_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(Beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(Beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_and_winter_olympics(Beijing)",
+          "z3_formula": "hosted_summer_and_winter_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_and_winter_paralympics(Beijing)",
+          "z3_formula": "hosted_summer_and_winter_paralympics_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "top_universities(Beijing)",
+          "z3_formula": "top_universities_beijing == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_southern_china(Beijing)",
+          "z3_formula": "located_in_southern_china_beijing == False",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(Beijing, People's Republic of China)",
+          "z3_formula": "capital_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(Beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(Beijing, Northern China)",
+          "z3_formula": "located_in_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(Beijing, 2008, Summer)",
+          "z3_formula": "hosted_olympics_beijing_2008_summer == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(Beijing, 2008, Paralympics)",
+          "z3_formula": "hosted_olympics_beijing_2008_paralympics == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(Beijing, Winter, Summer)",
+          "z3_formula": "hosted_olympics_beijing_winter_summer == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_olympics(Beijing, Winter, Paralympics)",
+          "z3_formula": "hosted_olympics_beijing_winter_paralympics == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "university_ranking(Beijing, Asia-Pacific, world)",
+          "z3_formula": "university_ranking_beijing_asia_pacific_world == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "located_in(Beijing, Northern China) -> not(located_in(Beijing, southern China))",
+          "z3_formula": "Implies(located_in_beijing_northern_china, Not(located_in_beijing_southern_china))",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(Beijing, People's Republic of China)",
+          "z3_formula": "capital_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(Beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(Beijing, Northern China)",
+          "z3_formula": "located_in_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted(Beijing, 2008 Summer Olympics)",
+          "z3_formula": "hosted_beijing_2008_summer_olympics == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted(Beijing, 2008 Summer Paralympics)",
+          "z3_formula": "hosted_beijing_2008_summer_paralympics == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "university_rank(Beijing, Asia-Pacific)",
+          "z3_formula": "university_rank_beijing_asia_pacific == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "located_in(Beijing, southern China)",
+          "z3_formula": "located_in_beijing_southern_china == False",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, china)",
+          "z3_formula": "capital_beijing_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous(beijing)",
+          "z3_formula": "most_populous_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_southern_china(beijing)",
+          "z3_formula": "located_in_southern_china_beijing == False",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(Beijing, People's Republic of China)",
+          "z3_formula": "capital_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(Beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(Beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_summer_olympics_beijing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_winter_olympics_beijing_2008 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_paralympics(Beijing, 2008)",
+          "z3_formula": "hosted_summer_paralympics_beijing_2008 == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_paralympics(Beijing, 2008)",
+          "z3_formula": "hosted_winter_paralympics_beijing_2008 == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "universities_in_beijing_consistently_rank_among_best",
+          "z3_formula": "universities_in_beijing_consistently_rank_among_best == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_southern_china(X) -> False",
+          "z3_formula": "Implies(located_in_southern_china_beijing, False)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(Beijing, People's Republic of China)",
+          "z3_formula": "capital_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(Beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(Beijing, Northern China)",
+          "z3_formula": "located_in_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted(Beijing, 2008 Summer Olympics)",
+          "z3_formula": "hosted_beijing_2008_summer_olympics == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted(Beijing, 2008 Summer Paralympics)",
+          "z3_formula": "hosted_beijing_2008_summer_paralympics == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "hosted(Beijing, 2008 Winter Olympics)",
+          "z3_formula": "hosted_beijing_2008_winter_olympics == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "hosted(Beijing, 2008 Winter Paralympics)",
+          "z3_formula": "hosted_beijing_2008_winter_paralympics == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "university_ranking(Beijing, Asia-Pacific)",
+          "z3_formula": "university_ranking_beijing_asia_pacific == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_southern_china(X) -> False",
+          "z3_formula": "Implies(located_in_southern_china_beijing, False)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_southern_china(Beijing)",
+          "z3_formula": "located_in_southern_china_beijing == False",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital_of(Beijing, People's Republic of China)",
+          "z3_formula": "capital_of_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(Beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(Beijing, Northern China)",
+          "z3_formula": "located_in_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_summer_olympics_beijing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_winter_olympics_beijing_2008 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "has_universities(Beijing)",
+          "z3_formula": "has_universities_beijing == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(Beijing, People's Republic of China)",
+          "z3_formula": "capital_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(Beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(Beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_olympics(Beijing)",
+          "z3_formula": "hosted_2008_summer_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(Beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "universities_rank_among_best(Beijing)",
+          "z3_formula": "universities_rank_among_best_beijing == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_southern_china(Beijing)",
+          "z3_formula": "located_in_southern_china_beijing == False",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, people_republic_of_china)",
+          "z3_formula": "capital_beijing_people_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_olympics(beijing, 2008)",
+          "z3_formula": "hosted_summer_olympics_beijing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_olympics(beijing, 2008)",
+          "z3_formula": "hosted_winter_olympics_beijing_2008 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_southern_china(beijing)",
+          "z3_formula": "located_in_southern_china_beijing == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_northern_china(X) -> not located_in_southern_china(X)",
+          "z3_formula": "Implies(located_in_northern_china_beijing, Not(located_in_southern_china_beijing))",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 84,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 44
+    },
+    "maxsat_stats": {
+      "satisfied": 43,
+      "excluded": 1,
+      "total_weight": 83,
+      "solve_time_ms": 0.9613558650016785
+    },
+    "timing": {
+      "trace_gen_s": 4.626,
+      "extraction_s": 18.511,
+      "dedup_s": 0.678,
+      "maxsat_s": 0.004,
+      "total_s": 23.818
+    }
+  }
+}

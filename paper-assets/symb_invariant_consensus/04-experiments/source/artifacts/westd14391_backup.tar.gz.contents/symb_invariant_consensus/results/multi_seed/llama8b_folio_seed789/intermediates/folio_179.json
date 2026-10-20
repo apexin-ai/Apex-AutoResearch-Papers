@@ -1,0 +1,468 @@
+{
+  "problem": {
+    "id": "folio_179",
+    "problem": "Given the following premises:\nAll horses have hooves. No humans have hooves.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSome humans are horses.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Horse(x) \u2192 Hooves(x))",
+      "\u2200x (Human(x) \u2192 \u00acHooves(x))"
+    ],
+    "conclusion_fol": "\u2203x (Human(x) \u2227 Horse(x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 51.0,
+      "Unknown": 22.0
+    },
+    "answer_counts": {
+      "False": 10,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion \"Some humans are horses\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: All horses have hooves.\nPremise 2: No humans have hooves.\n\nNow, let's consider the conclusion \"Some humans are horses.\" To evaluate this conclusion, we need to check if it's possible to derive it from the given premises.\n\nIf some humans are horses, then it must be the case that all humans who are horses have hooves (because all horses have hooves). However, we know from the second premise that no humans have hooves. This creates a contradiction.\n\nTherefore, the conclusion \"Some humans are horses\" cannot be derived from the given premises. In fact, the premises contradict the conclusion, making it false.\n\nSo, the conclusion \"Some humans are horses\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some humans are horses\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: All horses have hooves.\nPremise 2: No humans have hooves.\n\nNow, let's examine the conclusion \"Some humans are horses.\" \n\nIf some humans were horses, then we would expect two things to be true:\n1. All horses have hooves (as stated in Premise 1), and \n2. Some humans have hooves.\n\nHowever, Premise 2 states that no humans have hooves, which contradicts the second point. Therefore, we cannot conclude that some humans are horses.\n\nSo, we need to analyze the relationship between the premises and the conclusion. Given that all horses have hooves, and no humans have hooves, it is impossible for any human to be a horse. This means the conclusion \"Some humans are horses\" is false.\n\nThe reasoning is as follows:\n\n1. All horses have hooves (Premise 1)\n2. No humans have hooves (Premise 2)\n3. If some humans were horses, then some humans would have hooves (contradiction with Premise 2)\n4. Therefore, it is impossible for any human to be a horse.\n\nHence, the conclusion \"Some humans are horses\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some humans are horses\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: All horses have hooves.\nPremise 2: No humans have hooves.\n\nWe need to evaluate the conclusion \"Some humans are horses\" based on these premises.\n\nTo do this, let's examine the relationship between the premises and the conclusion using a Venn diagram or a logical analysis.\n\nPremise 1 states that all horses have hooves. This means that if something has hooves, it must be a horse.\n\nPremise 2 states that no humans have hooves. This means that humans do not have hooves, and therefore, cannot be horses.\n\nNow, let's evaluate the conclusion \"Some humans are horses.\" \n\nIf some humans are horses, then these humans would have hooves (since all horses have hooves). However, this contradicts Premise 2, which states that no humans have hooves.\n\nTherefore, based on the given premises, the conclusion \"Some humans are horses\" is false.\n\nThe conclusion is false because it contradicts one of the premises (Premise 2). The premises do not provide any evidence or information that supports the conclusion, and in fact, they contradict it.\n\nFinal answer: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some humans are horses\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: All horses have hooves.\nPremise 2: No humans have hooves.\n\nWe can use a Venn diagram or a logical approach to analyze the relationship between the two premises. Let's use a logical approach.\n\nLet H be the set of horses and U be the set of humans.\n\nFrom Premise 1, we know that all elements of H have hooves. In other words, if an animal is a horse, then it has hooves.\n\nFrom Premise 2, we know that no elements of U have hooves. In other words, if an animal is a human, then it does not have hooves.\n\nNow, let's examine the conclusion \"Some humans are horses.\" This conclusion implies that there is at least one human who is also a horse.\n\nTo determine whether this conclusion is true, false, or uncertain, we need to see if we can derive it from the given premises.\n\nFrom Premise 1, we know that all horses have hooves.\nFrom Premise 2, we know that no humans have hooves.\n\nIf a human has hooves, then it contradicts Premise 2, which states that no humans have hooves. Therefore, it is not possible for a human to have hooves.\n\nNow, let's analyze the conclusion \"Some humans are horses.\" If some humans are horses, then those humans must have hooves, which contradicts Premise 2.\n\nSince the conclusion \"Some humans are horses\" contradicts the given premises, we can conclude that it is false.\n\nTherefore, the conclusion \"Some humans are horses\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will use the principles of logical reasoning, specifically the method of categorical syllogism. \n\nGiven the premises:\n1. All horses have hooves.\n2. No humans have hooves.\n\nWe are asked to evaluate the conclusion:\nSome humans are horses.\n\nStep 1: Analyze the premises and the conclusion to identify any possible relationships between them.\n\nFrom premise 1, we know that all horses have hooves. This gives us information about the characteristics of horses. \n\nFrom premise 2, we know that no humans have hooves. This gives us information about the characteristics of humans.\n\nThe conclusion is trying to establish a relationship between humans and horses.\n\nStep 2: Determine the validity of the conclusion using the premises.\n\nWe can use the method of categorical syllogism, which involves four basic categorical statements:\n1. All A are B (A is a subset of B)\n2. No A are B (A has no overlap with B)\n3. Some A are B (A and B have some overlap)\n4. Some A are not B (A and B have some difference)\n\nThe given premises fit into the second and third categories:\n1. All horses have hooves (All A are B)\n2. No humans have hooves (No A are B)\n\nHowever, the conclusion \"Some humans are horses\" does not logically follow from the premises. To make this conclusion true, we would need a premise like \"Some humans are horses\" (Some A are B) or \"Some horses are humans\" (Some B are A), but we do not have such premises.\n\nIn fact, the premises suggest the opposite: humans and horses are two distinct categories, as humans do not have hooves, and horses do have hooves.\n\nTherefore, the conclusion is uncertain because it does not logically follow from the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some humans are horses\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: All horses have hooves.\nPremise 2: No humans have hooves.\n\nNow, let's examine the conclusion: \"Some humans are horses.\"\n\nFor this conclusion to be true, we need to find a human who is also a horse. However, from Premise 2, we know that no humans have hooves, which is a characteristic of horses (from Premise 1). This means that humans and horses cannot be the same thing, since they have different characteristics.\n\nHowever, the conclusion states \"some humans are horses,\" which would imply that there exists at least one human who is also a horse. But this is impossible, given that no humans have hooves, and all horses have hooves.\n\nTherefore, the conclusion \"Some humans are horses\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some humans are horses\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: All horses have hooves.\nPremise 2: No humans have hooves.\n\nThe conclusion we're evaluating is: Some humans are horses.\n\nLet's examine this conclusion in the context of the premises:\n\nIf some humans are horses, then it implies that those humans should also have hooves, as per Premise 1 (All horses have hooves).\n\nHowever, according to Premise 2 (No humans have hooves), humans cannot have hooves.\n\nThis creates a contradiction, as we have two premises that cannot be true at the same time: humans have hooves (from the conclusion) and humans do not have hooves (from Premise 2).\n\nTherefore, the conclusion \"Some humans are horses\" is false, as it contradicts the given premises.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we'll use the principles of logical reasoning and syllogism. A syllogism is a form of logical argument that uses two or more premises to arrive at a conclusion.\n\nPremises:\n\n1. All horses have hooves.\n2. No humans have hooves.\n\nConclusion: Some humans are horses.\n\nLet's break down the conclusion and examine its validity:\n\nThe conclusion states that \"Some humans are horses.\" This implies that there is at least one human that is a horse.\n\nHowever, we have two premises that contradict this conclusion:\n\n1. All horses have hooves, which means that if a human is a horse, they must also have hooves.\n2. No humans have hooves, which means that humans cannot have hooves, regardless of whether they are horses or not.\n\nSince the premises state that all horses have hooves, and no humans have hooves, we can conclude that humans cannot be horses, as it would require them to have hooves, which is impossible.\n\nTherefore, the conclusion \"Some humans are horses\" is false, as it contradicts the given premises.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we can use a method called \"syllogism.\" A syllogism is a form of logical argument that consists of two premises and a conclusion.\n\nGiven premises:\n1. All horses have hooves.\n2. No humans have hooves.\n\nConclusion: Some humans are horses.\n\nLet's analyze the conclusion using the given premises:\n\nPremise 1 states that all horses have hooves. This implies that if something has hooves, it must be a horse. \n\nPremise 2 states that no humans have hooves. This implies that if someone is a human, they do not have hooves.\n\nNow, let's examine the conclusion: \"Some humans are horses.\" To determine its validity, we need to ask: \"Is it possible for something to be a human and also have hooves?\"\n\nAccording to Premise 1, having hooves implies being a horse. According to Premise 2, humans do not have hooves. Therefore, it is impossible for a human to have hooves.\n\nSince having hooves is a necessary condition for being a horse (according to Premise 1), it is also impossible for a human to be a horse.\n\nTherefore, the conclusion \"Some humans are horses\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the premises and see if they logically lead to the conclusion.\n\nPremise 1: All horses have hooves.\nPremise 2: No humans have hooves.\n\nWe are asked to evaluate the conclusion: Some humans are horses.\n\nLet's analyze the conclusion based on the premises.\n\nIf some humans are horses, then it would mean that these humans have hooves, as per Premise 1. However, this contradicts Premise 2, which states that no humans have hooves.\n\nTherefore, based on the premises, we cannot logically conclude that some humans are horses. In fact, the premises suggest the opposite - that humans and horses are two distinct categories with different characteristics.\n\nSince the premises do not support the conclusion, we cannot determine the conclusion to be true. Moreover, the premises provide evidence that contradicts the conclusion, making it impossible for the conclusion to be true. \n\nIn this case, the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we will analyze the premises and the conclusion step by step.\n\n**Premise 1:** All horses have hooves.\n**Premise 2:** No humans have hooves.\n\n**Conclusion:** Some humans are horses.\n\nLet's break down the conclusion. If we assume that some humans are horses, then we should be able to derive a contradiction from the premises or show that the premises support the conclusion.\n\nIf some humans are horses, then these humans should have hooves, based on Premise 1. However, according to Premise 2, no humans have hooves. This creates a contradiction, as we are assuming that some humans have hooves (because they are horses) and also assuming that no humans have hooves.\n\nHowever, this conclusion can be disproven by the premises alone. Given the premises, we can conclude that horses have hooves, and humans do not have hooves. This does not mean that humans are horses, but rather that humans and horses are two separate groups with distinct characteristics.\n\nTherefore, the conclusion \"Some humans are horses\" is **False**, as it can be disproven by the premises alone.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some humans are horses\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: All horses have hooves.\nPremise 2: No humans have hooves.\n\nFrom these premises, we can conclude the following:\n\n1. If an entity has hooves, it is a horse. (This is the contrapositive of Premise 1)\n2. If an entity is a human, it does not have hooves. (This is the contrapositive of Premise 2)\n\nNow, let's consider the conclusion: \"Some humans are horses.\"\n\nIf some humans are horses, then there must be at least one human that has hooves. However, according to Premise 2, no humans have hooves. This creates a contradiction.\n\nTherefore, based on the given premises, we can conclude that the conclusion \"Some humans are horses\" is false. The premises provide sufficient evidence to rule out the possibility of some humans being horses.\n\nFinal answer: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_humans_are_horses -> all_humans_who_are_horses_have_hooves",
+          "z3_formula": "Implies(some_humans_are_horses, all_humans_who_are_horses_have_hooves)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "all_humans_who_are_horses_have_hooves -> all_humans_have_hooves",
+          "z3_formula": "Implies(all_humans_who_are_horses_have_hooves, all_humans_have_hooves)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "all_humans_have_hooves -> no_humans_have_hooves",
+          "z3_formula": "Implies(all_humans_have_hooves, no_humans_have_hooves)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "some_humans_are_horses",
+          "z3_formula": "some_humans_are_horses == False",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_humans_are_horses -> some_humans_have_hooves",
+          "z3_formula": "Implies(some_humans_are_horses, some_humans_have_hooves)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "some_humans_have_hooves",
+          "z3_formula": "some_humans_have_hooves == False",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "hooves(X) -> horse(X)",
+          "z3_formula": "Implies(hooves_X, horse_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "some_humans_are_horses",
+          "z3_formula": "Not(Implies(no_humans_have_hooves, Not(humans_have_hooves))) == False",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(horses, hooves)",
+          "z3_formula": "all_horses_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(all(humans, hooves))",
+          "z3_formula": "not_all_humans_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "horse(X) -> hooves(X)",
+          "z3_formula": "Implies(horse_X, hooves_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> not(hooves(X))",
+          "z3_formula": "Implies(human_X, Not(hooves_X))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some(humans, horse)",
+          "z3_formula": "some_humans_horse == False",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "all_A_are_B -> some_B_are_A",
+          "z3_formula": "Implies(all_horses_have_hooves, some_horses_are_humans)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "no_A_are_B -> not_some_A_are_B",
+          "z3_formula": "Implies(no_humans_have_hooves, Not(some_humans_are_horses))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some_humans_are_horses",
+          "z3_formula": "some_humans_are_horses == Unknown",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "horse(X) -> has_hooves(X)",
+          "z3_formula": "Implies(horse_X, has_hooves_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> not has_hooves(X)",
+          "z3_formula": "Implies(human_X, Not(has_hooves_X))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not some_humans_are_horses",
+          "z3_formula": "Not(some_humans_are_horses)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_humans_are_horses -> all_humans_have_hooves",
+          "z3_formula": "Implies(some_humans_are_horses, all_humans_have_hooves)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "all_humans_have_hooves",
+          "z3_formula": "all_humans_have_hooves == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some_humans_are_horses",
+          "z3_formula": "some_humans_are_horses == False",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "horse(X) -> hooves(X)",
+          "z3_formula": "Implies(horse_X, hooves_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(humans_are_horses)",
+          "z3_formula": "Not(humans_are_horses) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "hooves(X) -> horse(X)",
+          "z3_formula": "Implies(hooves_X, horse_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> not(hooves(X))",
+          "z3_formula": "Implies(human_X, Not(hooves_X))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(human(X) & hooves(X))",
+          "z3_formula": "Not(And(human_X, hooves_X))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(horse(X) & human(X))",
+          "z3_formula": "Not(And(horse_X, human_X))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(horses, have(hooves))",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(all(humans, have(hooves)))",
+          "z3_formula": "not_all_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(humans, are(horses))",
+          "z3_formula": "some_humans_are_horses == False",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(horses, hooves)",
+          "z3_formula": "all_horses_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(all(humans, hooves))",
+          "z3_formula": "not_all_humans_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some(humans, horses) -> all(humans, hooves)",
+          "z3_formula": "Implies(some_humans_horses, all_humans_hooves)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(some(humans, horses))",
+          "z3_formula": "not_some_humans_horses == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "hooves(X) -> horse(X)",
+          "z3_formula": "Implies(hooves_X, horse_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> not(hooves(X))",
+          "z3_formula": "Implies(human_X, Not(hooves_X))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(some_humans_are_horses)",
+          "z3_formula": "Not(some_humans_are_horses)",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 56,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 27
+    },
+    "maxsat_stats": {
+      "satisfied": 27,
+      "excluded": 0,
+      "total_weight": 56,
+      "solve_time_ms": 0.8280640468001366
+    },
+    "timing": {
+      "trace_gen_s": 4.599,
+      "extraction_s": 10.809,
+      "dedup_s": 0.358,
+      "maxsat_s": 0.002,
+      "total_s": 15.768
+    }
+  }
+}

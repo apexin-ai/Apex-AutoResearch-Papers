@@ -1,0 +1,813 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-971_Q5",
+    "problem": "Charlie is green. Charlie is kind. Erin is blue. Erin is kind. Fiona is green. Gary is blue. Gary is furry. Gary is green. Gary is kind. Gary is round. If someone is round and kind then they are green. All green, round people are blue. Round people are big. If someone is kind then they are furry. All blue people are kind. If someone is green then they are big. If Erin is cold and Erin is green then Erin is blue. Cold, blue people are kind. All green, big people are round.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is round.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nBlue($x, bool) ::: Is x blue?\nFurry($x, bool) ::: Is x furry?\nRound($x, bool) ::: Is x round?\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nGreen(Charlie, True) ::: Charlie is green.\nKind(Charlie, True) ::: Charlie is kind.\nBlue(Erin, True) ::: Erin is blue.\nKind(Erin, True) ::: Erin is kind.\nGreen(Fiona, True) ::: Fiona is green.\nBlue(Gary, True) ::: Gary is blue.\nFurry(Gary, True) ::: Gary is furry.\nGreen(Gary, True) ::: Gary is green.\nKind(Gary, True) ::: Gary is kind.\nRound(Gary, True) ::: Gary is round.\n\nRules:\nRound($x, True) && Kind($x, True) >>> Green($x, True) ::: If someone is round and kind then they are green.\nGreen($x, True) && Round($x, True) >>> Blue($x, True) ::: All green, round people are blue.\nRound($x, True) >>> Big($x, True) ::: Round people are big.\nKind($x, True) >>> Furry($x, True) ::: If someone is kind then they are furry.\nBlue($x, True) >>> Kind($x, True) ::: All blue people are kind.\nGreen($x, True) >>> Big($x, True) ::: If someone is green then they are big.\nCold(Erin, True) && Green(Erin, True) >>> Blue(Erin, True) ::: If Erin is cold and Erin is green then Erin is blue.\nCold($x, True) && Blue($x, True) >>> Kind($x, True) ::: Cold, blue people are kind.\nGreen($x, True) && Big($x, True) >>> Round($x, True) ::: All green, big people are round.\n\nQuery:\nRound(Fiona, True) ::: Fiona is round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 111.0,
+      "Unknown": 82.0
+    },
+    "answer_counts": {
+      "True": 8,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Fiona is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is green. \n   - We know this from the given information.\n\n2. All green, big people are round. \n   - Since Fiona is green, we need to find out if she is big or not.\n\n3. If someone is green, then they are big. \n   - This statement directly tells us that Fiona is big because she is green.\n\n4. Now that we know Fiona is big and green, we can conclude that she is round because all green, big people are round.\n\nTherefore, based on the given information, we can conclude that the statement \"Fiona is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is round\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given information:\n\n1. Fiona is green. \n2. All green, round people are blue. \n3. All green, big people are round.\n\nWe can deduce the following:\n\n- Since Fiona is green (1), she must be big because all green people are big (6).\n- Since Fiona is big and green, she must be round because all green, big people are round (7).\n\nHowever, we have another piece of information:\n4. All green, round people are blue.\n\nThis information seems to contradict our previous conclusion that Fiona is round. However, we have not used this information yet, and we have another piece of information:\n5. Fiona is green.\n\nWe can deduce the following:\n\n- Since Fiona is green, she must be big because all green people are big (6).\n- Since Fiona is big and green, she must be round because all green, big people are round (7).\n- Since Fiona is round and green, she must be blue because all green, round people are blue (4).\n\nNow, we have two conflicting conclusions:\n\n- Fiona is round.\n- Fiona is blue.\n\nTo resolve this conflict, we need to use another piece of information:\n2. All green, round people are blue.\n\nThis information implies that if someone is green, round, and blue, then they satisfy the conditions. However, we have another piece of information:\n3. All blue people are kind.\n\nThis information is not relevant to our current conflict.\n\nNow, we have another piece of information:\n8. If someone is green then they are big.\n\nThis information does not provide any new information, but it reinforces our previous conclusion that Fiona is big.\n\nNow, we have another piece of information:\n9. If someone is kind then they are furry.\n\nThis information is not relevant to our current conflict.\n\nNow, we have another piece of information:\n10. All green, round people are blue.\n\nThis information is already used, and it does not provide any new information.\n\nNow, we have another piece of information:\n11. If Erin is cold and Erin is green then Erin is blue.\n\nThis information is not relevant to our current conflict.\n\nNow, we have another piece of information:\n12. Cold, blue people are kind.\n\nThis information is not relevant to our current conflict.\n\nNow, we have another piece of information:\n13. If someone is round and kind then they are green.\n\nThis information seems to contradict our previous conclusions that Fiona is green, round, and blue.\n\nHowever, we can use another piece of information:\n6. Gary is green. Gary is round. Gary is blue. Gary is kind.\n\nThis information implies that Gary is an exception to the rule that all round, kind people are green.\n\nNow, we have another piece of information:\n5. Fiona is green.\n\nWe can deduce the following:\n\n- Since Fiona is green, she must be big because all green people are big (8).\n- Since Fiona is big and green, she must be round because all green, big people are round (9).\n- Since Fiona is round and green, she must be blue because all green, round people are blue (10).\n\nHowever, we have another piece of information:\n13. If someone is round and kind then they are green.\n\nThis information seems to contradict our previous conclusions that Fiona is green, round, and blue.\n\nNow, we have another piece of information:\n14. Gary is kind. Gary is round. Gary is green.\n\nThis information implies that Gary is an exception to the rule that all round, kind people are green.\n\nHowever, we have another piece of information:\n15. If someone is kind then they are furry.\n\nThis information is not relevant to our current conflict.\n\nNow, we have another piece of information:\n16. Gary is furry.\n\nThis information implies that Gary is an exception to the rule that all green, round people are blue.\n\nHowever, we have another piece of information:\n17. Gary is green. Gary is round. Gary is blue.\n\nThis information implies that Gary is an exception to the rule that all green, round people are blue.\n\nNow, we have another piece of information:\n18. Gary is kind. Gary is round. Gary is green. Gary is blue.\n\nThis information implies that Gary is an exception to the rule that all green, round people are blue.\n\nHowever, we have another piece of information:\n19. Round people are big.\n\nThis information is not relevant to our current conflict.\n\nNow, we have another piece of information:\n20. If someone is green then they are big.\n\nThis information is already used, and it does not provide any new information.\n\nNow, we have another piece of information:\n21. Gary is blue. Gary is kind. Gary is round.\n\nThis information implies that Gary is an exception to the rule that all round, kind people are green.\n\nNow, we have another piece of information:\n22. Erin is blue. Erin is kind.\n\nThis information implies that Erin is an exception to the rule that all green, round people are blue.\n\nNow, we have another piece of information:\n23. Erin is green.\n\nThis information seems to contradict our previous conclusion that Erin is blue.\n\nNow, we have another piece of information:\n24. If Erin is cold and Erin is green then Erin is blue.\n\nThis information implies that Erin is an exception to the rule that all green people are big.\n\nHowever, we have another piece of information:\n25. All green people are big.\n\nThis information is already used, and it does not provide any new information.\n\nNow, we have another piece of information:\n26. Erin is cold.\n\nThis information is not relevant to our current conflict.\n\nNow, we have another piece of information:\n27. Cold, blue people are kind.\n\nThis information is already used, and it does not provide any new information.\n\nNow, we have another piece of information:\n28. Erin is kind.\n\nThis information implies that Erin is an exception to the rule that all green people are big.\n\nHowever, we have another piece of information:\n29. All green, big people are round.\n\nThis information seems to contradict our previous conclusion that Erin is blue.\n\nNow, we have another piece of information:\n30. All blue people are kind.\n\nThis information is already used, and it does not provide any new information.\n\nNow, we have another piece of information:\n31. Fiona is green.\n\nWe can deduce the following:\n\n- Since Fiona is green, she must be big because all green people are big (8).\n- Since Fiona is big and green, she must be round because all green, big people are round (9).\n- Since Fiona is round and green, she must be blue because all green, round people are blue (10).\n\nHowever, we have another piece of information:\n13. If someone is round and kind then they are green.\n\nThis information seems to contradict our previous conclusions that Fiona is green, round, and blue.\n\nNow, we have another piece of information:\n32. Gary is kind.\n\nThis information implies that Gary is an exception to the rule that all green people are big.\n\nHowever, we have another piece of information:\n33. Gary is round.\n\nThis information implies that Gary is an exception to the rule that all green people are big.\n\nHowever, we have another piece of information:\n34. Gary is green.\n\nThis information seems to contradict our previous conclusions that Gary is round and blue.\n\nNow, we have another piece of information:\n35. Gary is blue.\n\nThis information implies that Gary is an exception to the rule that all green people are big.\n\nNow, we have another piece of information:\n36. Gary is round. Gary is kind. Gary is green. Gary is blue.\n\nThis information implies that Gary is an exception to the rule that all green people are big.\n\nHowever, we have another piece of information:\n37. Erin is green.\n\nThis information seems to contradict our previous conclusion that Erin is blue.\n\nNow, we have another piece of information:\n38. If Erin is cold and Erin is green then Erin is blue.\n\nThis information implies that Erin is an exception to the rule that all green people are big.\n\nHowever, we have another piece of information:\n39. All green people are big.\n\nThis information is already used, and it does not provide any new information.\n\nNow, we have another piece of information:\n40. Erin is cold.\n\nThis information is not relevant to our current conflict.\n\nNow, we have another piece of information:\n41. Cold, blue people are kind.\n\nThis information is already used, and it does not provide any new information.\n\nNow, we have another piece of information:\n42. Erin is kind.\n\nThis information implies that Erin is an exception to the rule that all green people are big.\n\nHowever, we have another piece of information:\n43. All green, big people are round.\n\nThis information seems to contradict our previous conclusion that Erin is blue.\n\nNow, we have another piece of information:\n44. Erin is blue.\n\nThis information seems to contradict our previous conclusion that Erin is green.\n\nNow, we have another piece of information:\n45. Erin is green. Erin is kind.\n\nThis information implies that Erin is an exception to the rule that all green people are big.\n\nHowever, we have another piece of information:\n46. All green people are big.\n\nThis information is already used, and it does not provide any new information.\n\nNow, we have another piece of information:\n47. Erin is cold.\n\nThis information is not relevant to our current conflict.\n\nNow, we have another piece of information:\n48. Cold, blue people are kind.\n\nThis information is already used, and it does not provide any new information.\n\nNow, we have another piece of information:\n49. Erin is kind.\n\nThis information implies that Erin is an exception to the rule that all green people are big.\n\nHowever, we have another piece of information:\n50. All green, big people are round.\n\nThis information seems to",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is round\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. Given information:\n   - Charlie is green.\n   - Charlie is kind.\n   - Erin is blue.\n   - Erin is kind.\n   - Fiona is green.\n   - Gary is blue.\n   - Gary is furry.\n   - Gary is green.\n   - Gary is kind.\n   - Gary is round.\n   - If someone is round and kind then they are green.\n   - All green, round people are blue.\n   - Round people are big.\n   - If someone is kind then they are furry.\n   - All blue people are kind.\n   - If someone is green then they are big.\n   - If Erin is cold and Erin is green then Erin is blue.\n   - Cold, blue people are kind.\n   - All green, big people are round.\n\n2. We need to determine whether Fiona is round.\n   - We know Fiona is green (given information).\n\n3. Since Fiona is green, we can use the rule: If someone is green then they are big.\n   - Therefore, Fiona is big.\n\n4. Now we have two facts about Fiona: Fiona is green and Fiona is big.\n   - We can use the rule: All green, big people are round.\n   - Therefore, Fiona is round.\n\nBased on the given information and the rules applied, the statement \"Fiona is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Fiona is round, we need to analyze the given information step by step.\n\n1. Fiona is green. \n2. If someone is green, then they are big. (From statement 6)\n   - Therefore, Fiona is big.\n\n3. If someone is green and big, then they are round. (From statement 10)\n   - Therefore, Fiona is round.\n\nSo, based on the given information, the statement \"Fiona is round\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n\n1. Fiona is green.\n2. If someone is round and kind then they are green.\n3. All green, round people are blue.\n4. Round people are big.\n5. If someone is kind then they are furry.\n6. All blue people are kind.\n7. If someone is green then they are big.\n8. If Erin is cold and Erin is green then Erin is blue.\n9. Cold, blue people are kind.\n10. All green, big people are round.\n\nFrom statement 1, we know that Fiona is green.\n\nNow, let's try to find a connection between Fiona being green and her being round.\n\nStatement 7 says that if someone is green then they are big, and statement 10 says that all green, big people are round. Since Fiona is green, we can conclude that Fiona is big (by statement 7). Then, by statement 10, since Fiona is big and green, she must be round.\n\nHowever, we need to be cautious because statement 3 says that all green, round people are blue. So, even though we found that Fiona is round, we still don't know whether she is blue or not.\n\nTo determine whether Fiona is round, we can say that it is true, but we still can't say whether she is blue or not, so the statement \"Fiona is blue\" would be unknown.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Fiona is round, we need to analyze the given information and use logical deductions.\n\n1. Fiona is green.\n   From the statement \"If someone is green then they are big.\"\n   Therefore, Fiona is big.\n\n2. From the statement \"All green, big people are round.\"\n   Therefore, Fiona is round.\n\nHowever, before concluding, let's examine the given information and see if there's any contradiction. \n\n3. Fiona is green.\n   From the statement \"All green, round people are blue.\"\n   This statement directly contradicts the information we obtained from the previous step. \n\nFrom this analysis, we can see that there's a contradiction in the statements. Therefore, we cannot determine whether Fiona is round or not with absolute certainty, and the statement is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is round\" is true, false, or unknown, we need to use the given information and the rules provided.\n\nGiven information:\n- Charlie is green.\n- Charlie is kind.\n- Erin is blue.\n- Erin is kind.\n- Fiona is green.\n- Gary is blue.\n- Gary is furry.\n- Gary is green.\n- Gary is kind.\n- Gary is round.\n- If someone is round and kind then they are green.\n- All green, round people are blue.\n- Round people are big.\n- If someone is kind then they are furry.\n- All blue people are kind.\n- If someone is green then they are big.\n- If Erin is cold and Erin is green then Erin is blue.\n- Cold, blue people are kind.\n- All green, big people are round.\n\nWe are given that Fiona is green. We need to find out if she is round.\n\nFrom the given information, we know:\n- If someone is round and kind then they are green. (This doesn't directly help us, but we can use it later.)\n- All green, round people are blue. (This directly conflicts with our current information that Fiona is green, but we don't know if she is round yet.)\n- Fiona is green. (We already know this, but we need to find out if she is round.)\n\nNow, let's look at the statement \"All green, big people are round.\" Since Fiona is green, we can infer that she is big. \n\nUsing the statement \"All green, big people are round\" and the fact that Fiona is green and big, we can conclude that Fiona is round.\n\nTherefore, the statement \"Fiona is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Fiona is round, we need to analyze the given information step by step.\n\n1. We are given that: Fiona is green.\n2. We are also given that: If someone is green, then they are big. (From statement 6)\n3. From statement 2, we can infer that Fiona is big.\n4. We are given that: All green, big people are round. (From statement 10)\n5. From statement 4 and our inference in step 3, we can conclude that Fiona is round.\n\nTherefore, based on the given information, the statement \"Fiona is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Fiona is green.\n   - All green, big people are round.\n   - All blue people are kind.\n   - All green, round people are blue.\n   - If someone is round and kind then they are green.\n   - If someone is kind then they are furry.\n   - If someone is green then they are big.\n   - Cold, blue people are kind.\n   - All green, big people are round.\n\n2. We know that Fiona is green. However, we cannot directly conclude that Fiona is round or blue based on this information alone.\n\n3. We also know that Fiona is green. From the given information, we can conclude that \"If someone is green then they are big.\" So, Fiona is big.\n\n4. Now, we know that Fiona is big and green. From the given information, we can conclude that \"All green, big people are round.\" So, Fiona is round.\n\nBased on the given information, we can conclude that Fiona is round.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is round\" is true, false, or unknown, we need to use the given information to deduce the characteristics of Fiona.\n\nFrom the given information, we know:\n\n1. Fiona is green. (Direct statement)\n2. All green, round people are blue. (Contradicts with statement 1, but let's continue)\n3. If someone is green then they are big. (From statement 1, Fiona is green, so Fiona is big)\n4. All green, big people are round. (From statement 3, Fiona is big and green, so Fiona is round)\n\nNow, let's analyze the statement \"Fiona is round.\" We have deduced that Fiona is indeed round from the given information.\n\nHowever, we also know:\n\n5. Fiona is green. (Direct statement)\n6. All green, round people are blue. (From statement 5 and our previous conclusion, Fiona is round, so Fiona is blue)\n\nNow, we have two conflicting conclusions: Fiona is round and Fiona is green, so Fiona is round and Fiona is blue. This means that Fiona is both round and blue.\n\nWe can also conclude that Fiona is kind from the following statements:\n\n7. Erin is blue. (Direct statement)\n8. All blue people are kind. (From statement 7, Erin is blue, so Erin is kind)\n9. If someone is kind then they are furry. (From statement 8, Erin is kind, so Erin is furry)\n10. Fiona is green. (Direct statement)\n11. If someone is green then they are big. (From statement 10, Fiona is green, so Fiona is big)\n12. All green, big people are round. (From statement 11, Fiona is big and green, so Fiona is round)\n13. If someone is round and kind then they are green. (From statement 12 and our previous conclusion, Fiona is round, so Fiona is green and kind)\n14. If someone is kind then they are furry. (From statement 13, Fiona is kind, so Fiona is furry)\n15. Fiona is kind. (From statement 13, Fiona is green and kind, so Fiona is kind)\n16. Fiona is furry. (From statement 14, Fiona is kind, so Fiona is furry)\n\nFrom the given information, we have deduced the following characteristics of Fiona:\n\n- Fiona is green.\n- Fiona is round.\n- Fiona is blue.\n- Fiona is big.\n- Fiona is kind.\n- Fiona is furry.\n\nSince we have deduced that Fiona is both round and blue, the statement \"Fiona is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether Fiona is round, we need to analyze the given information step by step.\n\n1. Fiona is green. (From the problem statement)\n2. All green, round people are blue. (From the problem statement)\n   However, Fiona is green, so if she were round, she would be blue. But we have no information that Fiona is blue.\n   Therefore, we cannot conclude that Fiona is round based on this statement alone.\n\n3. If someone is green, then they are big. (From the problem statement)\n   Since Fiona is green, she is big. (Conclusion from step 3)\n4. All green, big people are round. (From the problem statement)\n   Since Fiona is green and big, she would be round if this statement were true.\n   However, we have not yet concluded that Fiona is round.\n\n5. Fiona is green. (From the problem statement)\n   If someone is green and kind, then they are green (we cannot conclude Fiona is kind yet). \n   However, we have no information that Fiona is kind.\n\n6. Gary is green. (From the problem statement)\n   Gary is kind. (From the problem statement)\n   Therefore, we cannot conclude Fiona is kind or round based on Gary's characteristics.\n\n7. If someone is kind, then they are furry. (From the problem statement)\n   We have no information that Fiona is kind.\n\n8. All green, round people are blue. (From the problem statement)\n   We still cannot conclude that Fiona is round.\n\n9. Fiona is green. (From the problem statement)\n   We still cannot conclude that Fiona is round.\n\n10. Erin is green. (From the problem statement)\n    Erin is kind. (From the problem statement)\n    However, we cannot conclude that Fiona is kind or round.\n\nNow, we can analyze the statement \"If someone is round and kind then they are green.\" (From the problem statement)\nWe still cannot conclude that Fiona is kind.\n\nHowever, we have one final statement to consider: \"Round people are big.\" (From the problem statement)\nWe cannot determine whether Fiona is round or not.\n\nHowever, based on the final statement \"All blue people are kind\" (From the problem statement) we can deduce that since Fiona is green, we cannot conclude she is blue. But this does not help us determine if she is round.\n\nNow, to determine if Fiona is round, we consider the statement \"If Erin is cold and Erin is green then Erin is blue.\" (From the problem statement)\nWe cannot determine whether Erin is cold or not.\n\nHowever, we know that \"Cold, blue people are kind\" (From the problem statement)\nWe still cannot conclude Fiona is round.\n\nNow, considering all the statements, we cannot determine whether Fiona is round or not.\n\nHowever, since we cannot conclude Fiona is round, we cannot conclude she is big.\n\nHowever, since we cannot conclude Fiona is big, we cannot conclude she is round (because all green, big people are round).\n\nTherefore, we cannot conclude Fiona is round based on the information given.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Fiona is round, we need to analyze the given statements and the information about Fiona.\n\n1. Fiona is green. (Given)\n2. All green, round people are blue. (Given)\n3. If someone is round and kind then they are green. (Given)\n4. All green, big people are round. (Given)\n\nFrom statement 3, we can conclude that if Fiona is round and kind, she would be green. However, we already know that Fiona is green (statement 1). \n\nSince Fiona is green, we can use statement 4 to conclude that Fiona is big. \n\nWe don't have enough information to determine if Fiona is round, but we can deduce that if Fiona is round, she would be green, and if she is green, she would be big. However, we don't have a direct statement that says Fiona is round, so we cannot conclude whether she is round or not.\n\nTherefore, the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_fiona, big_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(green_fiona, big_fiona), round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 4
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(round_X, kind_X), green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(green_X, round_X), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_X, furry_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_X, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(cold_X, green_X), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X)",
+          "z3_formula": "Implies(And(blue_X, kind_X), kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(green_X, big_X), round_X)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(green_fiona, big_fiona), round_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(round_fiona, kind_fiona), green_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(green_fiona, round_fiona), blue_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_fiona, big_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_fiona, furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_fiona, kind_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_fiona, big_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(cold_erin, green_erin), blue_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, cold_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(green_fiona, big_fiona), round_fiona)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(green_fiona, big_fiona), round_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(green_fiona, round_fiona), blue_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(round_X, kind_X), green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(green_X, round_X), blue_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_X, furry_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_X, kind_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_X, big_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(cold_X, green_X), blue_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X)",
+          "z3_formula": "Implies(And(blue_X, kind_X), cold_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(green_X, big_X), round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(green_fiona, big_fiona), round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_fiona, big_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(green_fiona, big_fiona), round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_fiona, big_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(green_fiona, big_fiona), round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_fiona, big_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(green_fiona, big_fiona), round_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(green_fiona, round_fiona), blue_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_fiona, big_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(green_fiona, big_fiona), round_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(round_fiona, kind_fiona), green_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_fiona, furry_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_fiona, furry_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_fiona, big_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(green_fiona, big_fiona), round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(round_fiona, kind_fiona), green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_fiona, furry_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(round_fiona, kind_fiona), green_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_fiona, blue_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_fiona, kind_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(cold_erin, green_erin), blue_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> kind(X)",
+          "z3_formula": "Implies(And(cold_erin, blue_erin), kind_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_fiona, big_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(green_fiona, big_fiona), round_fiona)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(round_fiona, kind_fiona), green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_fiona, big_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(green_fiona, big_fiona), round_fiona)",
+          "source_step": 4
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 114,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 36
+    },
+    "maxsat_stats": {
+      "satisfied": 36,
+      "excluded": 0,
+      "total_weight": 114,
+      "solve_time_ms": 1.0118912905454636
+    },
+    "timing": {
+      "trace_gen_s": 24.031,
+      "extraction_s": 25.438,
+      "dedup_s": 0.812,
+      "maxsat_s": 0.003,
+      "total_s": 50.285
+    }
+  }
+}

@@ -1,0 +1,837 @@
+{
+  "problem": {
+    "id": "folio_201",
+    "problem": "Given the following premises:\nAilton Silva, born in 1995, is commonly known as Ailton. Ailton is a football player who was loaned out to Braga. Ailton Silva is a Brazillian footballer who plays for Nautico. Nautico is a football club along with Braga. Fluminense is a football club.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nAilton was not loaned out to a football club.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "BornIn(ailtonsilva, y1995) \u2227 CommonlyKnownAs(ailtonsilva, ailton)",
+      "FootballPlayer(ailton) \u2227 LoanedTo(ailton, braga)",
+      "Brazilian(ailtonsilva) \u2227 Footballplayer(ailtonsilva) \u2227 PlaysFor(ailtonsilva, nautico)",
+      "FootballClub(nautico) \u2227 FootballClub(braga)",
+      "FootballClub(fluminense)"
+    ],
+    "conclusion_fol": "\u2200x (FootballClub(x) \u2192 \u00acLoanedTo(ailton, x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 104.5,
+      "Unknown": 72.5
+    },
+    "answer_counts": {
+      "False": 10,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises.\n\nPremises:\n1. Ailton Silva, born in 1995, is commonly known as Ailton.\n2. Ailton is a football player who was loaned out to Braga.\n3. Ailton Silva is a Brazilian footballer who plays for Nautico.\n4. Nautico is a football club along with Braga.\n5. Fluminense is a football club.\n\nConclusion: Ailton was not loaned out to a football club.\n\nFrom the given premises, we can make the following inferences:\n\n- Ailton is a football player (premise 1).\n- Ailton was loaned out to Braga (premise 2).\n- Ailton plays for Nautico (premise 3).\n- Nautico is a football club (premise 4).\n- Braga is a football club (inference from premise 4).\n- Since Braga and Nautico are both football clubs, Ailton was indeed loaned out to a football club (either Nautico or Braga).\n\nHowever, premise 2 states that Ailton was loaned out to Braga, which is a football club. Therefore, the conclusion that Ailton was not loaned out to a football club is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"Ailton was not loaned out to a football club\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremises:\n1. Ailton Silva, born in 1995, is commonly known as Ailton.\n2. Ailton is a football player who was loaned out to Braga.\n3. Ailton Silva is a Brazillian footballer who plays for Nautico.\n4. Nautico is a football club along with Braga.\n5. Fluminense is a football club.\n\nFrom premise 2, we know that Ailton was loaned out to Braga, which is a football club (premise 4). This information directly contradicts the conclusion \"Ailton was not loaned out to a football club.\"\n\nHowever, we also know that Ailton plays for Nautico (premise 3), which is a football club (premise 4). This additional information supports the idea that Ailton is associated with a football club.\n\nConsidering both pieces of information, we can conclude that the statement \"Ailton was not loaned out to a football club\" is false because Ailton was loaned out to Braga, which is a football club.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and draw conclusions based on the given information.\n\nPremise 1: Ailton Silva, born in 1995, is commonly known as Ailton.\nPremise 2: Ailton is a football player who was loaned out to Braga.\nPremise 3: Ailton Silva is a Brazilian footballer who plays for Nautico.\nPremise 4: Nautico is a football club along with Braga.\nPremise 5: Fluminense is a football club.\n\nFrom Premise 2, we know that Ailton was loaned out to Braga, which is a football club. \n\nFrom Premise 3, we know that Ailton plays for Nautico, which is also a football club.\n\nFrom Premise 4, we can infer that Ailton plays for either Nautico or Braga, as both are football clubs mentioned in the premises.\n\nGiven that Ailton plays for either Braga or Nautico, and both are football clubs, we can conclude that Ailton was indeed loaned out to a football club.\n\nTherefore, the conclusion \"Ailton was not loaned out to a football club\" is false. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and see if they support or contradict the conclusion.\n\nPremise 1: Ailton Silva, born in 1995, is commonly known as Ailton.\nThis premise provides information about Ailton's name and birth year, but does not provide any information about his football career.\n\nPremise 2: Ailton is a football player who was loaned out to Braga.\nThis premise directly states that Ailton was loaned out to Braga, a football club. This information contradicts the conclusion that Ailton was not loaned out to a football club.\n\nPremise 3: Ailton Silva is a Brazillian footballer who plays for Nautico.\nThis premise provides information about Ailton's nationality and the football club he plays for (Nautico). However, it does not directly contradict the conclusion, but we already have a direct contradiction from Premise 2.\n\nPremise 4: Nautico is a football club along with Braga.\nThis premise confirms that both Nautico and Braga are football clubs. It supports Premise 2 and further contradicts the conclusion.\n\nPremise 5: Fluminense is a football club.\nThis premise provides additional information about another football club (Fluminense), but it does not directly contradict or support the conclusion.\n\nBased on the given premises, we have a direct contradiction from Premise 2 that states Ailton was loaned out to Braga, a football club. Therefore, the conclusion that Ailton was not loaned out to a football club is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises.\n\nPremise 1: Ailton Silva, born in 1995, is commonly known as Ailton.\nThis premise tells us the name and birth year of Ailton, but it does not provide any information about his football career.\n\nPremise 2: Ailton is a football player who was loaned out to Braga.\nThis premise tells us that Ailton is a football player and that he was loaned out to Braga.\n\nPremise 3: Ailton Silva is a Brazillian footballer who plays for Nautico.\nThis premise contradicts Premise 2, as it states that Ailton plays for Nautico, not Braga.\n\nHowever, both Premise 2 and Premise 3 are valid premises, but they cannot both be true at the same time. This is a classic case of a contradiction.\n\nPremise 4: Nautico is a football club along with Braga.\nThis premise is irrelevant to the conclusion, as it does not provide any information about Ailton's football career.\n\nPremise 5: Fluminense is a football club.\nThis premise is also irrelevant to the conclusion, as it does not provide any information about Ailton's football career.\n\nConclusion: Ailton was not loaned out to a football club.\nGiven the contradiction between Premise 2 and Premise 3, we cannot determine whether the conclusion is true or false. However, we can say that the conclusion is uncertain, as there is conflicting information about Ailton's football career.\n\nSince we cannot determine the truth value of the conclusion, we will represent it as uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's break down the information given:\n\n1. Ailton Silva, born in 1995, is commonly known as Ailton.\n2. Ailton is a football player who was loaned out to Braga.\n3. Ailton Silva is a Brazilian footballer who plays for Nautico.\n4. Nautico is a football club along with Braga.\n5. Fluminense is a football club.\n\nFrom the given information, we can conclude the following:\n\n- Ailton is a football player (premise 1).\n- Ailton was loaned out to Braga (premise 2).\n- Ailton plays for Nautico (premise 3).\n- Nautico and Braga are football clubs (premise 4).\n- Fluminense is also a football club, but this information is not relevant to Ailton's loan status.\n\nThe conclusion states: \"Ailton was not loaned out to a football club.\"\n\nSince premise 2 explicitly states that Ailton was loaned out to Braga, which is a football club, we can infer that Ailton was indeed loaned out to a football club. Therefore, the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and find any information that directly or indirectly relates to the conclusion.\n\nPremise 1: Ailton Silva, born in 1995, is commonly known as Ailton. \n- This premise does not provide any information about Ailton being loaned out to a football club.\n\nPremise 2: Ailton is a football player who was loaned out to Braga.\n- This premise directly states that Ailton was loaned out to Braga, which is a football club.\n\nPremise 3: Ailton Silva is a Brazilian footballer who plays for Nautico.\n- This premise also states that Ailton plays for Nautico, which is a football club.\n\nPremise 4: Nautico is a football club along with Braga. \n- This premise confirms that Nautico is indeed a football club.\n\nPremise 5: Fluminense is a football club.\n- This premise is not directly related to the conclusion and does not provide any new information.\n\nFrom the premises, we can conclude that Ailton was indeed loaned out to Braga, which is a football club. However, we cannot conclude that this is the only football club he was loaned out to, as the premises also mention Nautico, another football club where Ailton plays.\n\nTherefore, based on the given premises, the conclusion that Ailton was not loaned out to a football club is false because we have evidence that he was loaned out to at least one football club (Braga).\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and find any information that directly relates to the conclusion.\n\nPremise 1: Ailton Silva, born in 1995, is commonly known as Ailton.\n- This premise provides information about Ailton's name and birth year but does not provide any information about his football career or loan status.\n\nPremise 2: Ailton is a football player who was loaned out to Braga.\n- This premise directly contradicts the conclusion. It states that Ailton was loaned out to a football club, specifically Braga.\n\nPremise 3: Ailton Silva is a Brazilian footballer who plays for Nautico.\n- This premise also provides information about Ailton's football career but does not directly relate to the conclusion.\n\nPremise 4: Nautico is a football club along with Braga.\n- This premise confirms that both Nautico and Braga are football clubs, further supporting Premise 2.\n\nPremise 5: Fluminense is a football club.\n- This premise provides additional information about football clubs but does not directly relate to the conclusion.\n\nBased on the analysis, Premise 2 directly states that Ailton was loaned out to Braga, a football club. Therefore, the conclusion that \"Ailton was not loaned out to a football club\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion.\n\nPremises:\n1. Ailton Silva, born in 1995, is commonly known as Ailton.\n2. Ailton is a football player who was loaned out to Braga.\n3. Ailton Silva is a Brazilian footballer who plays for Nautico.\n4. Nautico is a football club along with Braga.\n5. Fluminense is a football club.\n\nConclusion:\nAilton was not loaned out to a football club.\n\nAnalysis:\nFrom premise 2, we know Ailton was loaned out to Braga, which is a football club (premise 4). However, we also know Ailton plays for Nautico, which is another football club (premise 3). This information does not contradict the conclusion, but it does not provide any direct evidence to support or reject it either.\n\nHowever, we can infer that Ailton was loaned out to a football club (Braga) and also plays for a football club (Nautico). This information supports the conclusion that Ailton was loaned out to a football club.\n\nTherefore, based on the given premises, the conclusion \"Ailton was not loaned out to a football club\" is false. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion \"Ailton was not loaned out to a football club\" is true, false, or uncertain, we need to analyze the given premises.\n\n1. Ailton Silva, born in 1995, is commonly known as Ailton.\n   - This premise provides information about Ailton's name and birth year but does not provide any information about his football career.\n\n2. Ailton is a football player who was loaned out to Braga.\n   - This premise directly states that Ailton was loaned out to Braga, a football club.\n\n3. Ailton Silva is a Brazillian footballer who plays for Nautico.\n   - This premise provides information about Ailton's nationality and the football club he plays for, but it does not contradict the information provided in premise 2.\n\n4. Nautico is a football club along with Braga.\n   - This premise confirms that both Nautico and Braga are football clubs, which does not affect the information provided in premise 2.\n\n5. Fluminense is a football club.\n   - This premise provides information about another football club but does not affect the information provided in premise 2.\n\nFrom the given premises, we can conclude that Ailton was indeed loaned out to a football club, specifically Braga. Therefore, the conclusion \"Ailton was not loaned out to a football club\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Ailton Silva, born in 1995, is commonly known as Ailton. (This premise does not provide any information about Ailton being loaned out to a football club.)\n\nPremise 2: Ailton is a football player who was loaned out to Braga. (This premise directly states that Ailton was loaned out to Braga.)\n\nPremise 3: Ailton Silva is a Brazillian footballer who plays for Nautico. (This premise states that Ailton plays for Nautico, which is a football club, but it does not contradict the information that Ailton was loaned out to Braga.)\n\nPremise 4: Nautico is a football club along with Braga. (This premise confirms that both Nautico and Braga are football clubs, but it does not affect the conclusion about Ailton being loaned out.)\n\nPremise 5: Fluminense is a football club. (This premise is irrelevant to the conclusion about Ailton being loaned out.)\n\nNow, let's evaluate the conclusion: \"Ailton was not loaned out to a football club.\"\n\nSince Premise 2 directly states that Ailton was loaned out to Braga, a football club, we can conclude that the given statement is false. Ailton was indeed loaned out to a football club.\n\nTherefore, the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Ailton Silva, born in 1995, is commonly known as Ailton.\nThis premise provides information about Ailton's name and birth year but does not provide any information about his football career or loan status.\n\nPremise 2: Ailton is a football player who was loaned out to Braga.\nThis premise directly states that Ailton was loaned out to Braga. However, this statement can be uncertain because it only specifies one club (Braga) that Ailton was loaned to, but not the only club he was loaned to.\n\nPremise 3: Ailton Silva is a Brazilian footballer who plays for Nautico.\nThis premise provides information about Ailton's nationality and the club he currently plays for (Nautico). However, it does not provide any information about his loan status.\n\nPremise 4: Nautico is a football club along with Braga.\nThis premise confirms that both Nautico and Braga are football clubs, but it does not provide any information about Ailton's loan status.\n\nPremise 5: Fluminense is a football club.\nThis premise provides information about another football club (Fluminense), but it does not provide any information about Ailton's loan status.\n\nConclusion: Ailton was not loaned out to a football club.\n\nGiven the premises, we can deduce that Ailton was indeed loaned out to Braga (Premise 2). However, we do not know if this is the only club he was loaned to, and we also know that he plays for Nautico (Premise 3). Since the premises do not provide any information that contradicts the conclusion, we can say that the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "football_player(X) -> loaned_out(X, Y) | football_club(Y)",
+          "z3_formula": "Implies(football_player_ailton, Or(loaned_out_ailton_braga, football_club_braga))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "loaned_out(ailton, football_club)",
+          "z3_formula": "loaned_out_ailton_football_club == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fliminense)",
+          "z3_formula": "football_club_fliminense == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not loaned_out(ailton, football_club)",
+          "z3_formula": "Not(Or(loaned_out_ailton_braga, loaned_out_ailton_nautico, loaned_out_ailton_fliminense))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "born_in(1995, ailton)",
+          "z3_formula": "born_in_1995_aiilton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "commonly_known_as(ailton, ailton_silva)",
+          "z3_formula": "commonly_known_as_ailton_ailton_silva == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "footballer(ailton_silva)",
+          "z3_formula": "footballer_ailton_silva == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton_silva, nautico)",
+          "z3_formula": "plays_for_ailton_silva_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "loaned_out(X, Y) & football_club(Y) -> football_club(Y)",
+          "z3_formula": "Implies(And(loaned_out_ailton_braga, football_club_braga), football_club_braga)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "plays_for(X, Y) & football_club(Y) -> football_club(Y)",
+          "z3_formula": "Implies(And(plays_for_ailton_silva_nautico, football_club_nautico), football_club_nautico)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "football_club(X) & football_club(Y) -> football_club(X) | football_club(Y)",
+          "z3_formula": "Implies(And(football_club_braga, football_club_nautico), Or(football_club_braga, football_club_nautico))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "football_club(X)",
+          "z3_formula": "football_club_X == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "loaned_out(ailton, football_club)",
+          "z3_formula": "loaned_out_ailton_football_club == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not loaned_out(ailton, not football_club)",
+          "z3_formula": "Not(Not(loaned_out_ailton_football_club)) == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "born_in(ailton, 1995)",
+          "z3_formula": "born_in_ailton_1995 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "commonly_known_as(ailton, ailton)",
+          "z3_formula": "commonly_known_as_ailton_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "brazilian_footballer(ailton)",
+          "z3_formula": "brazilian_footballer_ailton == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not loaned_out_to_football_club(ailton)",
+          "z3_formula": "Not(loaned_out_ailton_braga)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "name(ailton, ailton_silva)",
+          "z3_formula": "name_ailton_ailton_silva == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "born(ailton, 1995)",
+          "z3_formula": "born_ailton_1995 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "brazilian_footballer(ailton)",
+          "z3_formula": "brazilian_footballer_ailton == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "football_player(X) & loaned_out(X, Y) -> loaned_out(X, Y)",
+          "z3_formula": "Implies(And(football_player_ailton, loaned_out_ailton_braga), loaned_out_ailton_braga)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "brazilian_footballer(X) & plays_for(X, Y) -> loaned_out(X, Y)",
+          "z3_formula": "Implies(And(brazilian_footballer_ailton, plays_for_ailton_nautico), loaned_out_ailton_nautico)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not loaned_out(ailton, Y)",
+          "z3_formula": "Not(Or(loaned_out_ailton_braga, loaned_out_ailton_nautico))",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(flinminense)",
+          "z3_formula": "football_club_flinminense == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not loaned_out(ailton, football_club)",
+          "z3_formula": "Not(Or(loaned_out_ailton_braga, loaned_out_ailton_flinminense, loaned_out_ailton_nautico))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "born_in_1995(ailton_silva)",
+          "z3_formula": "born_in_1995_ailton_silva == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "commonly_known_as(ailton_silva, ailton)",
+          "z3_formula": "commonly_known_as_ailton_silva_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(ailton_silva)",
+          "z3_formula": "football_player_ailton_silva == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out_to(ailton_silva, braga)",
+          "z3_formula": "loaned_out_to_ailton_silva_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "footballer(ailton_silva)",
+          "z3_formula": "footballer_ailton_silva == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton_silva, nautico)",
+          "z3_formula": "plays_for_ailton_silva_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "born_in(1995, ailton)",
+          "z3_formula": "born_in_1995_aiilton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "known_as(aiilton, ailton_silva)",
+          "z3_formula": "known_as_aiilton_aiilton_silva == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(aiilton)",
+          "z3_formula": "football_player_aiilton == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(aiilton, braga)",
+          "z3_formula": "loaned_out_aiilton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "footballer(aiilton)",
+          "z3_formula": "footballer_aiilton == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(aiilton, nautico)",
+          "z3_formula": "plays_for_aiilton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not loaned_out_to_football_club(aiilton)",
+          "z3_formula": "Not(loaned_out_aiilton_braga)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "born_in(ailton, 1995)",
+          "z3_formula": "born_in_ailton_1995 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "commonly_known_as(ailton, ailton_silva)",
+          "z3_formula": "commonly_known_as_ailton_ailton_silva == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "footballer(ailton_silva)",
+          "z3_formula": "footballer_ailton_silva == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton_silva, nautico)",
+          "z3_formula": "plays_for_ailton_silva_nautico == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(flinminense)",
+          "z3_formula": "football_club_flinminense == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "football_club(braga) & football_club(nautico)",
+          "z3_formula": "And(football_club_braga, football_club_nautico) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "football_club(braga) | football_club(nautico)",
+          "z3_formula": "Or(football_club_braga, football_club_nautico) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "loaned_out(ailton, football_club)",
+          "z3_formula": "loaned_out_ailton_football_club == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "loaned_out(ailton, football_club) == False",
+          "z3_formula": "Not(loaned_out_ailton_football_club) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "name(ailton, ailton)",
+          "z3_formula": "name_ailton_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "born(ailton, 1995)",
+          "z3_formula": "born_ailton_1995 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "loaned_out(ailton, football_club)",
+          "z3_formula": "loaned_out_ailton_football_club == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "born_in_1995(ailton)",
+          "z3_formula": "born_in_1995_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "commonly_known_as(ailton, ailton)",
+          "z3_formula": "commonly_known_as_ailton_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "brazillian_footballer(ailton)",
+          "z3_formula": "brazillian_footballer_ailton == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "born(ailton, 1995)",
+          "z3_formula": "born_ailton_1995 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "known_as(ailton, ailton)",
+          "z3_formula": "known_as_ailton_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "brazilian_footballer(ailton)",
+          "z3_formula": "brazilian_footballer_ailton == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "loaned_out(ailton, _)",
+          "z3_formula": "loaned_out_ailton__ == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 117,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 44
+    },
+    "maxsat_stats": {
+      "satisfied": 38,
+      "excluded": 6,
+      "total_weight": 111,
+      "solve_time_ms": 1.644941046833992
+    },
+    "timing": {
+      "trace_gen_s": 4.607,
+      "extraction_s": 22.219,
+      "dedup_s": 0.808,
+      "maxsat_s": 0.004,
+      "total_s": 27.639
+    }
+  }
+}

@@ -1,0 +1,516 @@
+{
+  "pid": "folio_144",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back_form_of_artificial_selection",
+          "z3_formula": "breeding_back_form_of_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_bred_back_to_resemble_aurochs",
+          "z3_formula": "heck_cattle_bred_back_to_resemble_aurochs == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_bred_back_to_resemble_aurochs -> aurochs_are_extinct",
+          "z3_formula": "Implies(heck_cattle_bred_back_to_resemble_aurochs, aurochs_are_extinct)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "aurochs_are_extinct",
+          "z3_formula": "aurochs_are_extinct == Unknown",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_were_bred_back",
+          "z3_formula": "heck_cattle_were_bred_back == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_resemble_aurochs",
+          "z3_formula": "Implies(heck_cattle_resemble_aurochs, True)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals -> aurochs_may_be_extinct",
+          "z3_formula": "Implies(some_animals_to_be_bred_back_resemble_extinct_animals, aurochs_may_be_extinct)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle_have_characteristics_similar_to_aurochs",
+          "z3_formula": "heck_cattle_have_characteristics_similar_to_aurochs == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "aurochs_may_be_extinct",
+          "z3_formula": "aurochs_may_be_extinct == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_resemble_aurochs",
+          "z3_formula": "heck_cattle_resemble_aurochs == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "Implies(And(heck_cattle_resemble_aurochs, aurochs_are_animals), aurochs_are_extinct)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "aurochs_are_extinct",
+          "z3_formula": "aurochs_are_extinct == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_bred_back_in_1920s",
+          "z3_formula": "heck_cattle_bred_back_in_1920s == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_were_bred_back",
+          "z3_formula": "heck_cattle_were_bred_back == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_bred_back_animals_are_extinct",
+          "z3_formula": "some_bred_back_animals_are_extinct == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back_form_of_artificial_selection",
+          "z3_formula": "breeding_back_form_of_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_bred_back_in_1920s",
+          "z3_formula": "heck_cattle_bred_back_in_1920s == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_bred_back_to_resemble_aurochs",
+          "z3_formula": "Implies(heck_cattle_bred_back_in_1920s, heck_cattle_bred_back_to_resemble_aurochs)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "heck_cattle_bred_back_to_resemble_aurochs",
+          "z3_formula": "heck_cattle_bred_back_to_resemble_aurochs == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_were_bred_back_in_1920s",
+          "z3_formula": "heck_cattle_were_bred_back_in_1920s == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "aurochs_are_extinct",
+          "z3_formula": "aurochs_are_extinct == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_resemble_aurochs",
+          "z3_formula": "heck_cattle_resemble_aurochs == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "Implies(some_animals_to_be_bred_back_resemble_extinct_animals, aurochs_might_be_extinct)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "aurochs_might_be_extinct",
+          "z3_formula": "aurochs_might_be_extinct == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_resemble_aurochs",
+          "z3_formula": "heck_cattle_resemble_aurochs == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "Implies(some_animals_to_be_bred_back_resemble_extinct_animals, aurochs_are_extinct)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "aurochs are animals",
+          "z3_formula": "aurochs_animal == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "heck cattle are animals",
+          "z3_formula": "heck_cattle_animal == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "breeding back is artificial selection",
+          "z3_formula": "breeding_back_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "some animals to be bred-back resemble extinct animals",
+          "z3_formula": "Implies(Some(animals_to_be_bred_back, And(resemble_extinct_animals)), True)",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "breeding_back_is_artificial_selection",
+          "z3_formula": "breeding_back_is_artificial_selection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "heck_cattle_are_animals",
+          "z3_formula": "heck_cattle_are_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "aurochs_are_animals",
+          "z3_formula": "aurochs_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_animals_to_be_bred_back_resemble_extinct_animals",
+          "z3_formula": "some_animals_to_be_bred_back_resemble_extinct_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_were_bred_back_to_resemble_aurochs",
+          "z3_formula": "heck_cattle_were_bred_back_to_resemble_aurochs == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_have_characteristics_similar_to_aurochs",
+          "z3_formula": "Implies(heck_cattle_were_bred_back_to_resemble_aurochs, heck_cattle_have_characteristics_similar_to_aurochs)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "heck_cattle_and_aurochs_are_animals",
+          "z3_formula": "Implies(And(heck_cattle_are_animals, aurochs_are_animals), heck_cattle_and_aurochs_are_animals)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "resemblance_between_heck_cattle_and_aurochs_could_be_due_to_aurochs_being_extinct",
+          "z3_formula": "Implies(And(some_animals_to_be_bred_back_resemble_extinct_animals, heck_cattle_and_aurochs_are_animals), resemblance_between_heck_cattle_and_aurochs_could_be_due_to_aurochs_being_extinct)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "it_is_uncertain_if_aurochs_are_extinct",
+          "z3_formula": "it_is_uncertain_if_aurochs_are_extinct == True",
+          "source_step": 8
+        }
+      ]
+    }
+  ]
+}

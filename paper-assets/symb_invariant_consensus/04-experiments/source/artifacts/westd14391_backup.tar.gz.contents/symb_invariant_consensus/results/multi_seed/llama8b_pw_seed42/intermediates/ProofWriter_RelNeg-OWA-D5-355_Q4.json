@@ -1,0 +1,736 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-355_Q4",
+    "problem": "The cow does not chase the mouse. The cow chases the squirrel. The cow eats the mouse. The cow likes the squirrel. The lion chases the squirrel. The lion eats the cow. The lion eats the squirrel. The lion is cold. The lion likes the cow. The mouse eats the cow. The mouse is not nice. The squirrel chases the lion. If someone is big then they chase the lion. If someone chases the lion then they eat the lion. If someone is nice then they do not eat the lion. If the lion is cold and the lion is not rough then the lion is nice. If the cow chases the lion and the cow likes the lion then the cow eats the lion. If someone eats the lion then the lion is big. If someone is big and they chase the mouse then the mouse does not chase the cow. If someone is rough then they like the lion. If someone eats the lion then they like the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel does not eat the lion.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChase($x, $y, bool) ::: Does x chase y?\nEat($x, $y, bool) ::: Does x eat y?\nLike($x, $y, bool) ::: Does x like y?\nNice($x, bool) ::: Is x nice?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nBig($x, bool) ::: Is x big?\n\nFacts:\nChase(cow, mouse, False) ::: The cow does not chase the mouse.\nChase(cow, squirrel, True) ::: The cow chases the squirrel.\nEat(cow, mouse, True) ::: The cow eats the mouse.\nLike(cow, squirrel, True) ::: The cow likes the squirrel.\nChase(lion, squirrel, True) ::: The lion chases the squirrel.\nEat(lion, cow, True) ::: The lion eats the cow.\nEat(lion, squirrel, True) ::: The lion eats the squirrel.\nCold(lion, True) ::: The lion is cold.\nLike(lion, cow, True) ::: The lion likes the cow.\nEat(mouse, cow, True) ::: The mouse eats the cow.\nNice(mouse, False) ::: The mouse is not nice.\nChase(squirrel, lion, True) ::: The squirrel chases the lion.\n\nRules:\nBig($x, True) >>> Chase($x, lion, True) ::: If someone is big then they chase the lion.\nChase($x, lion, True) >>> Eat($x, lion, True) ::: If someone chases the lion then they eat the lion.\nNice($x, True) >>> Eat($x, lion, False) ::: If someone is nice then they do not eat the lion.\nCold(lion, True) && Rough(lion, False) >>> Nice(lion, True) ::: If the lion is cold and the lion is not rough then the lion is nice.\nChase(cow, lion, True) && Like(cow, lion, True) >>> Eat(cow, lion, True) ::: If the cow chases the lion and the cow likes the lion then the cow eats the lion.\nEat($x, lion, True) >>> Big(lion, True) ::: If someone eats the lion then the lion is big.\nBig($x, True) && Chase($x, mouse, True) >>> Chase(mouse, cow, False) ::: If someone is big and they chase the mouse then the mouse does not chase the cow.\nRough($x, True) >>> Like($x, lion, True) ::: If someone is rough then they like the lion.\nEat($x, lion, True) >>> Like($x, squirrel, True) ::: If someone eats the lion then they like the squirrel.\n\nQuery:\nEat(squirrel, lion, False) ::: The squirrel does not eat the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 57.5,
+      "True": 52.0,
+      "Unknown": 58.5
+    },
+    "answer_counts": {
+      "False": 5,
+      "True": 2,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement 'The squirrel does not eat the lion' is true, false, or unknown, we need to analyze the given information.\n\nWe know that: \n- The lion eats the squirrel.\n- If someone eats the lion then they like the squirrel.\n\nFrom the first point, we can infer that the lion likes the squirrel because it eats the squirrel. However, we also know that the lion likes the squirrel from the statement.\n\nThe statement that we need to evaluate is: \n'The squirrel does not eat the lion.'\n\nLet's examine the conditions under which someone eats the lion:\n- If someone chases the lion then they eat the lion.\n- The squirrel chases the lion.\n\nNow we have a condition where the squirrel chases the lion, which implies that the squirrel eats the lion based on the first condition.\n\nHowever, there is another condition:\n- If someone eats the lion then they like the squirrel.\n\nSince the squirrel eats the lion, it implies that the squirrel likes the squirrel (which is always true) but this does not affect the outcome of the statement that we are evaluating.\n\nTherefore, the statement 'The squirrel does not eat the lion' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and find any information related to the squirrel eating the lion.\n\nFrom the statements, we can deduce the following:\n\n- The lion eats the squirrel (statement 8).\n- If someone eats the lion, then the lion is big (statement 9).\n- The lion is big (from statement 9, since the lion eats the squirrel).\n- If someone is big and they chase the mouse, then the mouse does not chase the cow (statement 14).\n- The lion is big and chases the mouse (since the lion is big and we can infer that the lion chases the mouse from statement 3).\n- Therefore, the mouse does not chase the cow (from statement 14).\n- The mouse eats the cow (statement 10).\n- If someone is big then they chase the lion (statement 1).\n- The lion is big (from statement 9).\n- The lion chases the squirrel (statement 3).\n- The squirrel chases the lion (statement 13).\n\nHowever, we are trying to determine whether the squirrel eats the lion. We can find a contradiction by analyzing the statements. \n\nThe squirrel chases the lion (statement 13). \nIf someone chases the lion then they eat the lion (statement 2). \nTherefore, the squirrel eats the lion.\n\nSo, the statement \"The squirrel does not eat the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The lion eats the squirrel. (Given)\n2. The squirrel does not chase the lion. (Given)\n3. If someone chases the lion then they eat the lion. (Given rule)\n   - From (2), the squirrel does not chase the lion. Therefore, the squirrel does not eat the lion. (From rule 3)\n\nHowever, we need to consider another possibility based on the rules:\n\n4. If someone is nice then they do not eat the lion. (Given rule)\n   - If the lion is cold and the lion is not rough then the lion is nice. (Given rule)\n   - From (1), the lion is not eating the squirrel. But we also have another statement that the lion eats the squirrel. This seems contradictory. However, we cannot directly conclude that the lion is not nice based on this. We need to find more information about the lion's state.\n\n5. The squirrel chases the lion. (Given)\n   - From (3), the squirrel eating the lion is possible.\n\nHowever, we have another statement that helps us determine the lion's state:\n\n6. The lion is cold. (Given)\n   - The lion is not rough. (From rule 4 and statement 6)\n\nNow we can determine the lion's state:\n\n7. If the lion is cold and the lion is not rough then the lion is nice. (Given rule)\n   - The lion is cold and not rough. Therefore, the lion is nice. (From rule 7)\n\nNow we can use this information to determine whether the squirrel eats the lion:\n\n8. If someone eats the lion then the lion is big. (Given rule)\n   - From (1), the lion eats the squirrel. Therefore, the lion is big. (From rule 8)\n\nNow we need to consider the squirrel's state:\n\n9. The squirrel chases the lion. (Given)\n   - The lion is big. (From rule 8)\n   - If someone is big then they chase the lion. (Given rule)\n   - The squirrel chases the lion and the lion is big. Therefore, the squirrel does not chase the cow. (From rule 9)\n\nHowever, this does not help us determine whether the squirrel eats the lion. To do that, we need to use another statement:\n\n10. If the lion is cold and the lion is not rough then the lion is nice. (Given rule)\n    - The lion is cold and not rough. Therefore, the lion is nice. (From rule 10)\n11. If someone is nice then they do not eat the lion. (Given rule)\n    - The lion is nice. Therefore, the squirrel does not eat the lion. (From rule 11)\n\nThe squirrel does not eat the lion.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions to find out whether the squirrel eats the lion or not.\n\nGiven statements:\n\n1. The cow does not chase the mouse.\n2. The cow chases the squirrel.\n3. The cow eats the mouse.\n4. The cow likes the squirrel.\n5. The lion chases the squirrel.\n6. The lion eats the cow.\n7. The lion eats the squirrel.\n8. The lion is cold.\n9. The lion likes the cow.\n10. The mouse eats the cow.\n11. The mouse is not nice.\n12. The squirrel chases the lion.\n13. If someone is big then they chase the lion.\n14. If someone chases the lion then they eat the lion.\n15. If someone is nice then they do not eat the lion.\n16. If the lion is cold and the lion is not rough then the lion is nice.\n17. If the cow chases the lion and the cow likes the lion then the cow eats the lion.\n18. If someone eats the lion then the lion is big.\n19. If someone is big and they chase the mouse then the mouse does not chase the cow.\n20. If someone is rough then they like the lion.\n21. If someone eats the lion then they like the squirrel.\n\nDeductions:\n\n- From statement 12, we know that the squirrel chases the lion.\n- From statement 13, we know that if someone is big then they chase the lion.\n- Since the lion eats the squirrel (statement 7), and if someone eats the lion then they like the squirrel (statement 21), the lion likes the squirrel.\n- However, the squirrel chases the lion (statement 12), so we can't conclude that the squirrel likes the lion yet.\n- Since the lion is cold and likes the cow (statements 8 and 9), we can infer that the lion is not rough (from statement 16).\n- Therefore, the lion is nice (from statement 16).\n- However, the mouse is not nice (statement 11), and the mouse eats the cow (statement 10). This implies that the mouse is not big.\n- The lion eats the cow (statement 6), which means the lion is big (from statement 18).\n- Now, we know that the lion is big and chases the squirrel (statements 5 and 7). We can't conclude that the lion likes the squirrel yet.\n- From statement 20, we know that if someone is rough then they like the lion. However, we know that the lion is not rough (from the previous deductions).\n- The lion likes the cow (statement 9) and the cow likes the squirrel (statement 4). However, we don't know the relationship between the lion and the squirrel yet.\n- Now, let's consider the statement \"The squirrel does not eat the lion.\" This implies that the squirrel is not big. If the squirrel is not big, then it doesn't chase the lion (from statement 13). However, we know that the squirrel chases the lion (statement 12), which is a contradiction.\n- Therefore, our initial assumption that the squirrel does not eat the lion must be false.\n\nHowever, we still can't conclude that the squirrel eats the lion directly. We need to look at the other statements.\n\n- The lion eats the squirrel (statement 7), which implies that the lion is big (from statement 18).\n- If the lion is big, then it chases the squirrel (from statement 13). However, we know that the squirrel chases the lion (statement 12), which is a contradiction.\n- This is a contradiction, but we still can't conclude that the squirrel eats the lion directly.\n\nHowever, let's look at another possible solution:\n- If the squirrel eats the lion, then the lion is big (from statement 18).\n- Since the lion is big, it chases the squirrel (from statement 13). However, we know that the squirrel chases the lion (statement 12), which is a contradiction.\n- We still can't conclude that the squirrel eats the lion directly.\n\nHowever, let's look at another possible solution:\n- If the squirrel does not eat the lion, then the lion is not big. However, we know that the lion is big (from statement 18).\n- We still can't conclude that the squirrel eats the lion directly.\n\nHowever, let's look at another possible solution:\n- If the squirrel eats the lion, then the squirrel is big (from statement 18).\n- Since the squirrel is big, it chases the lion (from statement 13). However, we know that the lion eats the squirrel (statement 7).\n- If the lion eats the squirrel, then the squirrel is not big (from statement 18).\n- Therefore, the squirrel is not big.\n- Since the squirrel is not big, it does not chase the lion (from statement 13).\n- However, we know that the squirrel chases the lion (statement 12), which is a contradiction.\n- This is a contradiction, but we still can't conclude that the squirrel eats the lion directly.\n\nHowever, let's look at another possible solution:\n- If the squirrel eats the lion, then the lion is big (from statement 18).\n- Since the lion is big, it chases the squirrel (from statement 13). However, we know that the squirrel chases the lion (statement 12), which is a contradiction.\n- We still can't conclude that the squirrel eats the lion directly.\n\nHowever, let's look at another possible solution:\n- If the squirrel eats the lion, then the lion is big (from statement 18).\n- If the lion is big, then it chases the squirrel (from statement 13). However, we know that the squirrel chases the lion (statement 12), which is a contradiction.\n- We still can't conclude that the squirrel eats the lion directly.\n\nHowever, let's look at another possible solution:\n- If the squirrel eats the lion, then the lion is big (from statement 18).\n- Since the lion is big, it chases the squirrel (from statement 13). However, we know that the squirrel chases the lion (statement 12), which is a contradiction.\n- We still can't conclude that the squirrel eats the lion directly.\n\nHowever, let's look at another possible solution:\n- If the squirrel eats the lion, then the lion is big (from statement 18).\n- Since the lion is big, it chases the squirrel (from statement 13). However, we know that the squirrel chases the lion (statement 12), which is a contradiction.\n- We still can't conclude that the squirrel eats the lion directly.\n\nHowever, let's look at another possible solution:\n- If the squirrel does not eat the lion, then the lion is not big. However, we know that the lion is big (from statement 18).\n- We still can't conclude that the squirrel eats the lion directly.\n\nHowever, let's look at another possible solution:\n- If the squirrel eats the lion, then the lion is big (from statement 18).\n- If the lion is big, then it chases the squirrel (from statement 13). However, we know that the squirrel chases the lion (statement 12), which is a contradiction.\n- We still can't conclude that the squirrel eats the lion directly.\n\nHowever, let's look at another possible solution:\n- If the squirrel eats the lion, then the lion is big (from statement 18).\n- Since the lion is big, it chases the squirrel (from statement 13). However, we know that the squirrel chases the lion (statement 12), which is a contradiction.\n- We still can't conclude that the squirrel eats the lion directly.\n\nHowever, let's look at another possible solution:\n- If the squirrel eats the lion, then the lion is big (from statement 18).\n- If the lion is big, then it chases the squirrel (from statement 13). However, we know that the squirrel chases the lion (statement 12), which is a contradiction.\n- We still can't conclude that the squirrel eats the lion directly.\n\nHowever, let's look at another possible solution:\n- If the squirrel eats the lion, then the lion is big (from statement 18).\n- Since the lion is big, it chases the squirrel (from statement 13). However, we know that the squirrel chases the lion (statement 12), which is a contradiction.\n- We still can't conclude that the squirrel eats the lion directly.\n\nHowever, let's look at another possible solution:\n- If the squirrel eats the lion, then the squirrel is big (from statement 18).\n- Since the squirrel is big, it chases the lion (from statement 13). However, we know that the lion eats the squirrel (statement 7).\n- If the lion eats the squirrel, then the squirrel is not big (from statement 18).\n- Therefore, the squirrel is not big.\n- Since the squirrel is not big, it does not chase the lion (from statement 13).\n- However, we know that the squirrel chases the lion (statement 12), which is a contradiction.\n- This is a contradiction, but we still can't conclude that the squirrel eats the lion directly.\n\nHowever, let's look at another possible solution:\n- If the squirrel does not eat the lion, then the lion is not big. However, we know that the lion is big (from statement 18).\n- We still can't conclude that the squirrel eats the lion directly.\n\nHowever, let's look at another possible solution:\n- If the squirrel eats the lion, then the lion is big (from statement 18).\n- Since the lion is big, it chases the squirrel (from statement 13). However, we know that the squirrel chases the lion (statement",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel does not eat the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion eats the cow. (Given)\n2. The cow chases the squirrel. (Given)\n3. The cow likes the squirrel. (Given)\n4. The lion chases the squirrel. (Given)\n5. If someone chases the lion then they eat the lion. (Rule)\n6. The squirrel chases the lion. (Given)\n7. If someone is big then they chase the lion. (Rule)\n8. If someone eats the lion then the lion is big. (Rule)\n9. The lion eats the squirrel. (Given)\n\nFrom step 5, we know that if the squirrel chases the lion, it means the squirrel eats the lion. However, this directly contradicts the given statement that the lion eats the squirrel (step 9).\n\nWe cannot directly conclude whether the squirrel eats the lion or not from the given statements. However, we can infer that the squirrel might be the one eating the lion because of the information in step 5. \n\nThe given statement \"The squirrel does not eat the lion\" could be false, but we cannot confirm this as the information does not directly state that the squirrel eats the lion. \n\nHowever, we can conclude that if the statement \"The squirrel does not eat the lion\" is true, then there must be some information missing. Therefore, we will mark this as \"unknown\" for now.\n\nHowever, after analyzing the rules and given statements again, we can see that the lion eats the squirrel (step 9), which directly implies that the squirrel does not eat the lion. This is because if the lion eats the squirrel, then according to the rule in step 5, someone who chases the lion (in this case, the squirrel) does not eat the lion.\n\nThe squirrel chases the lion (step 6) and the lion eats the squirrel (step 9), so we can conclude that the squirrel does not eat the lion.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given statements and the relationship between the animals.\n\n1. The lion eats the squirrel. (Given statement)\n2. If someone eats the lion then they like the squirrel. (Rule)\nFrom (1) and (2), we can conclude that the lion likes the squirrel.\nHowever, we also have:\n3. The lion eats the squirrel. (Given statement)\n4. If someone chases the lion then they eat the lion. (Rule)\nThe squirrel chases the lion. (Given statement)\nFrom (4) and (5), we can conclude that the squirrel eats the lion.\n\nFrom (3) and the conclusion from (4) and (5), we have conflicting information about the squirrel eating the lion. The first statement directly says that the lion eats the squirrel, and the second statement suggests that the squirrel eats the lion. However, since the first statement directly says the lion eats the squirrel and there is no direct contradiction to the squirrel eating the lion, we need to look at all the rules again to see if there is any contradiction.\n\nHowever, looking at the statement: If someone is big then they chase the lion. If someone eats the lion then they eat the squirrel. If someone is nice then they do not eat the lion. If the lion is cold and the lion is not rough then the lion is nice. If the cow chases the lion and the cow likes the lion then the cow eats the lion. If someone eats the lion then the lion is big. If someone is big and they chase the mouse then the mouse does not chase the cow. If someone is rough then they like the lion. If someone eats the lion then they like the squirrel. We can't find any contradiction from the rules for the statement: The squirrel does not eat the lion.\n\nHowever, analyzing the first statement again: The lion eats the squirrel. The second statement suggests that the squirrel eats the lion. Since we can't find any contradiction from the rules for the statement: The squirrel does not eat the lion, we need to analyze if the squirrel can eat the lion.\n\nSince we have two conflicting statements, we need to analyze the relationship between the statements and the rules to see if we can conclude whether the squirrel eats the lion.\n\nHowever, one thing we know for sure is that the lion eats the squirrel. But we also know that the squirrel chases the lion. From the rules: If someone chases the lion then they eat the lion. Therefore, the squirrel eats the lion.\n\nSince we have a clear conclusion from the rules that the squirrel eats the lion, we can conclude that the statement \"The squirrel does not eat the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we'll break it down into smaller steps and use the given information to determine the relationship between the squirrel and the lion.\n\n1. The lion eats the squirrel. (Given)\n2. If someone eats the lion then the lion is big. (Given)\n3. Since the lion eats the squirrel, the lion is big. (From step 1 and step 2)\n\nNow, let's analyze the relationship between the lion and the squirrel. We know the lion eats the squirrel, so the lion likes the squirrel (Given).\n\n4. If someone eats the lion then they like the squirrel. (Given)\n5. Since the lion eats the squirrel, the lion likes the squirrel (From step 1 and step 4)\n6. The lion likes the squirrel and the lion is big, but we don't know if the lion is nice or rough yet.\n\nNext, let's analyze the relationship between the lion and the cow. We know the lion eats the cow. (Given)\n\n7. The lion is big, as deduced in step 3.\n8. If someone is big and they chase the mouse then the mouse does not chase the cow. (Given)\n9. However, we don't have any information that the lion chases the mouse.\n\nNow, let's analyze the relationship between the lion and the cow. We know the lion eats the cow. (Given)\n\n10. The lion is big, as deduced in step 3.\n11. If someone chases the lion then they eat the lion. (Given)\n12. However, we don't have any information that someone chases the lion.\n\nNow, let's analyze the relationship between the lion and the statement \"The lion is nice\". We know the lion is cold and we don't know if the lion is rough or not.\n\n13. If the lion is cold and the lion is not rough then the lion is nice. (Given)\n14. However, we don't have enough information to determine if the lion is nice or not.\n\nNow, let's analyze the relationship between the lion and the statement \"The squirrel eats the lion\". We don't have any information that the squirrel eats the lion.\n\n15. The squirrel chases the lion. (Given)\n16. If someone chases the lion then they eat the lion. (Given)\n17. However, we don't have any information that the squirrel eats the lion.\n\nSince the squirrel chases the lion (From step 15), but we don't have any information that the squirrel eats the lion, we can't determine if the statement \"The squirrel does not eat the lion\" is true or false. Therefore, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the information provided in the problem and use logical reasoning to deduce the relationships between the animals.\n\nFrom the problem statement, we can derive the following relationships:\n\n1. The lion eats the squirrel. (From \"The lion eats the squirrel.\")\n2. The lion chases the squirrel. (From \"The lion chases the squirrel.\")\n3. The squirrel chases the lion. (From \"The squirrel chases the lion.\")\n4. If someone chases the lion then they eat the lion. (From \"If someone chases the lion then they eat the lion.\")\n5. The lion is cold. (From \"The lion is cold.\")\n6. The lion likes the cow. (From \"The lion likes the cow.\")\n7. If the lion is cold and the lion is not rough then the lion is nice. (From \"If the lion is cold and the lion is not rough then the lion is nice.\")\n8. The lion is not nice (since it eats the squirrel, mouse, and cow, which contradicts the condition of being nice). Thus, the lion is rough. (From point 7)\n9. If someone is rough then they like the lion. (From \"If someone is rough then they like the lion.\")\n10. The lion likes the squirrel (since it is rough, from point 9). (From point 9)\n11. If someone eats the lion then they like the squirrel. (From \"If someone eats the lion then they like the squirrel.\")\n12. The lion eats the squirrel. (From point 1)\n13. The lion likes the squirrel. (From point 10)\n14. Since the lion eats the squirrel (from point 12) and likes the squirrel (from point 13), we can conclude that someone who eats the lion likes the squirrel, which is true in this case.\n15. The lion eats the squirrel (from point 1). Therefore, the squirrel does not eat the lion because the lion eats the squirrel.\n\nBased on the analysis above, the statement \"The squirrel does not eat the lion\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we will analyze the given information step by step and use the rules provided.\n\n1. The lion eats the squirrel. (Given)\n2. The lion eats the squirrel. (From Rule 1)\n\nNow, we need to check if there's any information that contradicts this statement or if there's any rule that might help us find out if the squirrel eats the lion.\n\n3. If someone eats the lion then the lion is big. (Rule 4)\n   From Rule 4 and Statement 1, we can conclude that the lion is big.\n\n4. If someone is big then they chase the lion. (Rule 5)\n   From Rule 5 and Statement 3, we can conclude that the lion chases itself, but we don't have enough information to determine if the lion chases itself.\n\n5. If someone chases the lion then they eat the lion. (Rule 6)\n   This rule is contradictory to Rule 5 because it implies that if someone chases the lion, then they must be big. However, we can still use this rule to analyze the situation.\n\n6. The lion chases the squirrel. (Given)\n   From Rule 6, we can conclude that the lion eats the squirrel. (We already knew this from Rule 1)\n\n7. The lion eats the squirrel. (From Rule 6 and Statement 6)\n   We've already established this from Statement 1.\n\nNow, we need to analyze the rules that might help us determine if the squirrel eats the lion.\n\n8. If someone eats the lion then they like the squirrel. (Rule 7)\n   From Rule 7 and Statement 1, we can conclude that the lion likes the squirrel.\n\n9. The squirrel chases the lion. (Given)\n   This statement is crucial because it implies that the squirrel might eat the lion based on Rule 6.\n\n10. The squirrel chases the lion. (From Rule 9)\n    From Rule 6, we can conclude that the squirrel eats the lion. \n\nHowever, we've reached a contradiction. We initially concluded that the lion likes the squirrel from Rule 7 and Statement 1. But Rule 9 implies that the squirrel chases the lion, which suggests that the squirrel might eat the lion based on Rule 6. This is a contradiction because we initially concluded that the squirrel eats the lion, but the squirrel is also implied to be eating the lion through a different path.\n\nThe rules do not provide a clear solution, so we cannot determine if the statement \"The squirrel does not eat the lion\" is true or false. However, we can deduce that it is not true because we have a path that suggests the squirrel eats the lion.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and the rules provided. \n\nLet's break down the information into variables and rules:\n\nVariables: \n- C: The cow.\n- L: The lion.\n- M: The mouse.\n- S: The squirrel.\n\nRules:\n1. C does not chase M.\n2. C chases S.\n3. C eats M.\n4. C likes S.\n5. L chases S.\n6. L eats C.\n7. L eats S.\n8. L is cold.\n9. L likes C.\n10. M eats C.\n11. M is not nice.\n12. S chases L.\n\nAdditional rules:\n13. If someone is big, then they chase L.\n14. If someone chases L, then they eat L.\n15. If someone is nice, then they do not eat L.\n16. If L is cold and L is not rough, then L is nice.\n17. If C chases L and C likes L, then C eats L.\n18. If someone eats L, then L is big.\n19. If someone is big and they chase M, then M does not chase C.\n20. If someone is rough, then they like L.\n21. If someone eats L, then they like S.\n\nNow, let's analyze the statement \"The squirrel does not eat the lion.\"\n\nWe can deduce from rule 7 that L eats S. However, we need to determine if there is any rule that contradicts this or if S eats L.\n\nSince rule 21 states \"If someone eats L, then they like S\" and rule 7 states \"L eats S,\" it can be inferred that L likes S. However, we cannot directly conclude that S does not eat L.\n\nConsidering rule 14, \"If someone chases L, then they eat L,\" and rule 12, \"S chases L,\" it can be inferred that S eats L.\n\nHowever, this seems to contradict rule 21, which states \"If someone eats L, then they like S.\" This suggests that if S eats L, it should like S, not contradicting the conclusion.\n\nWe can also see that rule 21 indirectly supports our conclusion that S eats L by implying that the action of eating L is associated with liking S, and we've already established that S likes S.\n\nTo conclude, based on the given information and the rules, we can deduce that S eats L, so the statement \"The squirrel does not eat the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the squirrel does not eat the lion, we need to analyze the given statements and use the rules provided to deduce the relationship between the squirrel and the lion.\n\n1. The cow does not chase the mouse.\n2. The cow chases the squirrel.\n3. The cow eats the mouse.\n4. The cow likes the squirrel.\n5. The lion chases the squirrel.\n6. The lion eats the cow.\n7. The lion eats the squirrel.\n8. The lion is cold.\n9. The lion likes the cow.\n10. The mouse eats the cow.\n11. The mouse is not nice.\n12. The squirrel chases the lion.\n13. If someone is big then they chase the lion.\n14. If someone chases the lion then they eat the lion.\n15. If someone is nice then they do not eat the lion.\n16. If the lion is cold and the lion is not rough then the lion is nice.\n17. If the cow chases the lion and the cow likes the lion then the cow eats the lion.\n18. If someone eats the lion then the lion is big.\n19. If someone is big and they chase the mouse then the mouse does not chase the cow.\n20. If someone is rough then they like the lion.\n21. If someone eats the lion then they like the squirrel.\n\nFrom the given statements, we can conclude the following:\n\n- The squirrel chases the lion (statement 12).\n- If someone chases the lion then they eat the lion (statement 14).\n\nHowever, statement 12 is the only information we have about the squirrel and the lion, which directly states that the squirrel chases the lion. There is no statement that directly says the squirrel eats the lion.\n\nSince we have no information about the squirrel eating the lion, we cannot conclude whether the statement is true or false based on the given statements.\n\nTherefore, the answer is: \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information.\n\nFrom the statement \"The lion eats the squirrel,\" we can infer that the lion is big.\n\nFrom the statement \"If someone is big then they chase the lion,\" we can infer that the lion chases the lion (which is a contradiction), or that the lion is chased by someone else. \n\nSince the lion is not chasing itself, we can conclude that the lion is chased by someone else. \n\nFrom the statement \"The lion eats the squirrel,\" we can also infer that the squirrel is not big.\n\nFrom the statement \"If someone eats the lion then the lion is big,\" we can infer that the lion is big.\n\nFrom the statement \"The lion is big,\" and the statement \"If someone is big and they chase the mouse then the mouse does not chase the cow,\" we cannot determine whether the mouse chases the cow or not.\n\nHowever, from the statement \"The lion is big,\" and the statement \"If someone eats the lion then the lion is big,\" we can infer that the lion is eaten by someone.\n\nFrom the statement \"The lion eats the squirrel,\" we can infer that the squirrel is eaten by the lion.\n\nFrom the statement \"The lion eats the squirrel,\" and the statement \"If someone eats the lion then they like the squirrel,\" we can infer that the lion likes the squirrel.\n\nFrom the statement \"The lion likes the squirrel,\" and the statement \"If someone is rough then they like the lion,\" we cannot determine whether the lion is rough or not.\n\nHowever, from the statement \"The lion likes the squirrel,\" and the statement \"If the lion is cold and the lion is not rough then the lion is nice,\" we can infer that the lion is not cold, or that the lion is rough.\n\nSince we cannot determine whether the lion is rough or not, we cannot determine whether the lion is nice or not.\n\nFrom the statement \"The lion eats the cow,\" we can infer that the cow is not big.\n\nFrom the statement \"The lion eats the cow,\" we can infer that the lion eats the cow.\n\nFrom the statement \"The lion eats the cow,\" and the statement \"If someone eats the lion then the lion is big,\" we can infer that the lion is big.\n\nHowever, we already know that the lion is big, so this does not provide any new information.\n\nFrom the statement \"The cow likes the squirrel,\" and the statement \"If someone is nice then they do not eat the lion,\" we cannot determine whether the cow is nice or not.\n\nHowever, from the statement \"The cow likes the squirrel,\" and the statement \"If the lion is cold and the lion is not rough then the lion is nice,\" we cannot determine whether the lion is cold or not.\n\nHowever, from the statement \"The lion is cold,\" and the statement \"If the lion is cold and the lion is not rough then the lion is nice,\" we can infer that the lion is not rough.\n\nFrom the statement \"The lion is not rough,\" and the statement \"If someone is rough then they like the lion,\" we can infer that the lion does not like the lion.\n\nHowever, this is a contradiction, so we can conclude that the lion is not cold.\n\nFrom the statement \"The lion is not cold,\" and the statement \"If the lion is cold and the lion is not rough then the lion is nice,\" we can infer that the lion is rough.\n\nHowever, this contradicts the previous statement that the lion is not rough, so we can conclude that this statement is false.\n\nHowever, from the statement \"The lion is not cold,\" and the statement \"The lion is cold,\" we can infer that the lion is both cold and not cold, which is a contradiction.\n\nSo, we can conclude that the statement \"The lion is cold\" is false.\n\nSince the statement \"The lion is cold\" is false, we can conclude that the statement \"If the lion is cold and the lion is not rough then the lion is nice\" is false.\n\nHowever, from the statement \"The lion is not rough,\" and the statement \"If someone is rough then they like the lion,\" we can infer that the lion does not like the lion.\n\nHowever, from the statement \"The lion likes the squirrel,\" and the statement \"If someone eats the lion then they like the squirrel,\" we can infer that the lion is eaten by the squirrel.\n\nHowever, this contradicts the statement that the lion eats the squirrel, so we can conclude that this statement is false.\n\nFrom the statement \"The lion eats the squirrel,\" and the statement \"If someone eats the lion then the lion is big,\" we can infer that the lion is big.\n\nFrom the statement \"The lion is big,\" and the statement \"If someone is big then they chase the lion,\" we can infer that the lion chases the lion (which is a contradiction), or that the lion is chased by someone else.\n\nSince the lion is not chasing itself, we can conclude that the lion is chased by someone else.\n\nHowever, from the statement \"The lion is big,\" and the statement \"The lion chases the squirrel,\" we can infer that the lion chases the squirrel.\n\nFrom the statement \"The squirrel chases the lion,\" we can infer that the lion is chased by the squirrel.\n\nHowever, this contradicts the previous statement that the lion is chased by someone else, so we can conclude that the statement \"The squirrel chases the lion\" is false.\n\nFrom the statement \"The squirrel chases the lion,\" and the statement \"If someone chases the lion then they eat the lion,\" we can infer that the squirrel eats the lion.\n\nHowever, this contradicts the statement that the lion eats the squirrel, so we can conclude that the statement \"The squirrel chases the lion\" is false.\n\nFrom the statement \"The lion eats the squirrel,\" and the statement \"If someone eats the lion then they like the squirrel,\" we can infer that the lion likes the squirrel.\n\nFrom the statement \"The lion likes the squirrel,\" and the statement \"If someone is rough then they like the lion,\" we cannot determine whether the lion is rough or not.\n\nHowever, from the statement \"The lion likes the squirrel,\" and the statement \"If the lion is cold and the lion is not rough then the lion is nice,\" we cannot determine whether the lion is cold or not.\n\nHowever, from the statement \"The lion is cold,\" and the statement \"If the lion is cold and the lion is not rough then the lion is nice,\" we can infer that the lion is not rough.\n\nFrom the statement \"The lion is not rough,\" and the statement \"If someone is rough then they like the lion,\" we can infer that the lion does not like the lion.\n\nHowever, this is a contradiction, so we can conclude that the lion is not cold.\n\nFrom the statement \"The lion is not cold,\" and the statement \"If the lion is cold and the lion is not rough then the lion is nice,\" we can infer that the lion is rough.\n\nHowever, this contradicts the previous statement that the lion is not rough, so we can conclude that this statement is false.\n\nHowever, from the statement \"The lion is not cold,\" and the statement \"The lion is cold,\" we can infer that the lion is both cold and not cold, which is a contradiction.\n\nSo, we can conclude that the statement \"The lion is cold\" is false.\n\nHowever, we cannot determine whether the squirrel eats the lion or not.\n\nFrom the statement \"The lion eats the squirrel,\" and the statement \"If someone eats the lion then the lion is big,\" we can infer that the lion is big.\n\nFrom the statement \"The lion is big,\" and the statement \"If someone is big then they chase the lion,\" we can infer that the lion chases the lion (which is a contradiction), or that the lion is chased by someone else.\n\nSince the lion is not chasing itself, we can conclude that the lion is chased by someone else.\n\nHowever, from the statement \"The lion is big,\" and the statement \"The lion chases the squirrel,\" we can infer that the lion chases the squirrel.\n\nFrom the statement \"The squirrel chases the lion,\" we can infer that the lion is chased by the squirrel.\n\nHowever, this contradicts the previous statement that the lion is chased by someone else, so we can conclude that the statement \"The squirrel chases the lion\" is false.\n\nFrom the statement \"The lion eats the squirrel,\" and the statement \"If someone eats the lion then they like the squirrel,\" we can infer that the lion likes the squirrel.\n\nFrom the statement \"The lion likes the squirrel,\" and the statement \"If someone is rough then they like the lion,\" we cannot determine whether the lion is rough or not.\n\nHowever, from the statement \"The lion likes the squirrel,\" and the statement \"If the lion is cold and the lion is not rough then the lion is nice,\" we cannot determine whether the lion is cold or not.\n\nHowever, from the statement \"The lion is cold,\" and the statement \"If the lion is cold and the lion is not rough then the lion is nice,\" we can infer that the lion is not rough.\n\nFrom the statement \"The lion is not rough,\" and the statement \"If someone is rough then they like the lion,\" we can infer that the lion does not like the lion.\n\nHowever, this is a contradiction, so we can conclude that the lion is not cold.\n\nFrom the statement \"The lion is not cold,\" and the statement \"If the lion is cold and the lion is not rough then the lion is nice,\" we can infer that the lion is rough.\n\nHowever, this contradicts the previous statement that the lion is not rough, so we can conclude that this statement is false.\n\nHowever, from the statement \"The lion is not cold,\" and the statement \"The lion is cold,\" we can infer that the lion is both cold and not cold, which is a contradiction.\n\nSo, we can conclude that the",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(eats_lion_squirrel, likes_lion_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_squirrel_lion, eats_squirrel_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(eats_squirrel_lion, likes_squirrel_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, squirrel)",
+          "z3_formula": "likes_squirrel_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(squirrel, lion)",
+          "z3_formula": "Not(eats_squirrel_lion)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> big(X)",
+          "z3_formula": "Implies(eats_lion_squirrel, big_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & chase(X, mouse) -> ~chase(mouse, cow)",
+          "z3_formula": "Implies(And(big_lion, chase_lion_mouse), ~chase_mouse_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "chase(mouse, cow)",
+          "z3_formula": "chase_mouse_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chase(lion, mouse)",
+          "z3_formula": "chase_lion_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chase(X, lion)",
+          "z3_formula": "Implies(big_lion, chase_lion_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "chase(lion, lion)",
+          "z3_formula": "chase_lion_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chase(squirrel, lion)",
+          "z3_formula": "chase_squirrel_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chase(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(chase_squirrel_lion, eats_squirrel_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, lion) == True",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(squirrel, lion))",
+          "z3_formula": "Not(chases_squirrel_lion) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_squirrel_lion, eats_squirrel_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> not(eats(X, lion))",
+          "z3_formula": "Implies(nice_lion, Not(eats_squirrel_lion))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(rough(X)) -> nice(X)",
+          "z3_formula": "Implies(And(cold_lion, Not(rough_lion)), nice_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> big(X)",
+          "z3_formula": "Implies(eats_squirrel_lion, big_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, lion)",
+          "z3_formula": "Implies(big_lion, chases_squirrel_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases(squirrel, cow))",
+          "z3_formula": "Not(chases_squirrel_cow) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(squirrel, lion))",
+          "z3_formula": "Not(eats_squirrel_lion) == True",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, squirrel)",
+          "z3_formula": "likes_cow_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, squirrel)",
+          "z3_formula": "chases_lion_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_squirrel_lion, eats_squirrel_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, lion)",
+          "z3_formula": "Implies(big_X, chases_X_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> big(lion)",
+          "z3_formula": "Implies(eats_X_lion, big_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_squirrel_lion, eats_squirrel_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> big(X)",
+          "z3_formula": "Implies(eats_lion_squirrel, big_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(eats_lion_squirrel, likes_lion_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & chases(X, mouse) -> not(chases(mouse, cow))",
+          "z3_formula": "Implies(And(big_lion, chases_lion_mouse), Not(chases_mouse_cow))",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_lion_X, eats_lion_X)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_lion_X, eats_lion_X)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_lion_X, eats_lion_X)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_lion_X, eats_lion_X)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(lion))",
+          "z3_formula": "Not(rough_lion) == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(rough(X)) -> nice(X)",
+          "z3_formula": "Implies(And(cold_lion, Not(rough_lion)), nice_lion)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_lion_X, eats_lion_X)",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_lion_X, eats_lion_X)",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(squirrel, lion))",
+          "z3_formula": "Not(eats_squirrel_lion) == True",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, squirrel)",
+          "z3_formula": "chases_lion_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_lion_squirrel, eats_lion_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cow)",
+          "z3_formula": "likes_lion_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(rough(X)) -> nice(X)",
+          "z3_formula": "Implies(And(cold_lion, Not(rough_lion)), nice_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> likes(X, lion)",
+          "z3_formula": "Implies(rough_lion, likes_lion_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(eats_lion_squirrel, likes_lion_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "Not(eats(squirrel, lion))",
+          "z3_formula": "Not(eats_squirrel_lion) == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> big(X)",
+          "z3_formula": "Implies(eats_lion_squirrel, big_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, lion)",
+          "z3_formula": "Implies(big_lion, chases_lion_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_lion_lion, eats_lion_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, squirrel)",
+          "z3_formula": "chases_lion_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(eats_lion_squirrel, likes_lion_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_squirrel_lion, eats_squirrel_lion)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(S, L)",
+          "z3_formula": "chases_s_l == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, L) -> eats(X, L)",
+          "z3_formula": "Implies(chases_s_l, eats_s_l)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "eats(S, L)",
+          "z3_formula": "eats_s_l == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(chases_squirrel_lion, eats_squirrel_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, lion)",
+          "z3_formula": "eats_squirrel_lion == Unknown",
+          "source_step": 19
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 101,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 45
+    },
+    "maxsat_stats": {
+      "satisfied": 40,
+      "excluded": 5,
+      "total_weight": 93,
+      "solve_time_ms": 1.6194013878703117
+    },
+    "timing": {
+      "trace_gen_s": 24.765,
+      "extraction_s": 43.778,
+      "dedup_s": 0.951,
+      "maxsat_s": 0.004,
+      "total_s": 69.498
+    }
+  }
+}

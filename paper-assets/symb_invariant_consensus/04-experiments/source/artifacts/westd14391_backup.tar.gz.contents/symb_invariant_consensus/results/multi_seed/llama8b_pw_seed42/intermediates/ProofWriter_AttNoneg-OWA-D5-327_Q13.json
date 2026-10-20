@@ -1,0 +1,1143 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-327_Q13",
+    "problem": "Anne is cold. Anne is furry. Anne is rough. Anne is smart. Anne is white. Bob is nice. Bob is rough. Erin is cold. Erin is furry. Erin is nice. Erin is rough. Erin is smart. Erin is white. Erin is young. Fiona is cold. Fiona is furry. All smart things are cold. If Bob is young and Bob is cold then Bob is furry. Young things are cold. If Fiona is rough and Fiona is cold then Fiona is smart. Cold, furry things are white. All rough, nice things are young. If something is white and furry then it is smart.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not young.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nRough($x, bool) ::: Is x rough?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nFurry(Anne, True) ::: Anne is furry.\nRough(Anne, True) ::: Anne is rough.\nSmart(Anne, True) ::: Anne is smart.\nWhite(Anne, True) ::: Anne is white.\nNice(Bob, True) ::: Bob is nice.\nRough(Bob, True) ::: Bob is rough.\nCold(Erin, True) ::: Erin is cold.\nFurry(Erin, True) ::: Erin is furry.\nNice(Erin, True) ::: Erin is nice.\nRough(Erin, True) ::: Erin is rough.\nSmart(Erin, True) ::: Erin is smart.\nWhite(Erin, True) ::: Erin is white.\nYoung(Erin, True) ::: Erin is young.\nCold(Fiona, True) ::: Fiona is cold.\nFurry(Fiona, True) ::: Fiona is furry.\n\nRules:\nSmart($x, True) >>> Cold($x, True) ::: All smart things are cold.\nYoung(Bob, True) && Cold(Bob, True) >>> Furry(Bob, True) ::: If Bob is young and Bob is cold then Bob is furry.\nYoung($x, True) >>> Cold($x, True) ::: Young things are cold.\nRough(Fiona, True) && Cold(Fiona, True) >>> Smart(Fiona, True) ::: If Fiona is rough and Fiona is cold then Fiona is smart.\nCold($x, True) && Furry($x, True) >>> White($x, True) ::: Cold, furry things are white.\nRough($x, True) && Nice($x, True) >>> Young($x, True) ::: All rough, nice things are young.\nWhite($x, True) && Furry($x, True) >>> Smart($x, True) ::: If something is white and furry then it is smart.\n\nQuery:\nYoung(Fiona, False) ::: Fiona is not young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 153.5,
+      "Unknown": 158.5
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "False": 5
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Fiona is not young\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. All smart things are cold.\n2. If Bob is young and Bob is cold then Bob is furry.\n3. Young things are cold.\n4. If Fiona is rough and Fiona is cold then Fiona is smart.\n5. Cold, furry things are white.\n6. All rough, nice things are young.\n7. If something is white and furry then it is smart.\n\nFrom the given statements, we can deduce the following:\n\n- Fiona is cold (rule 1, rule 3)\n- Fiona is furry (rule 5, since cold, furry things are white)\n- Fiona is white (rule 5, since cold, furry things are white)\n- Fiona is smart (rule 4, since Fiona is rough and cold)\n\nNow, let's examine the given information about Fiona: Fiona is cold, Fiona is furry, Fiona is rough, Fiona is smart, and Fiona is white.\n\nThe statement we need to evaluate is \"Fiona is not young.\" To do this, we need to check if there's any rule or information that contradicts this statement.\n\nFrom the information we have:\n\n- Fiona is cold (young things are cold, rule 3)\n- Fiona is smart (all smart things are cold, rule 1)\n\nThis implies that Fiona is both young and not young, since young things are cold and all smart things are cold, and Fiona is both young and smart.\n\nHowever, this conclusion seems to be contradictory. \n\nLet's re-examine our analysis. \n\nFrom rule 3 (Young things are cold) and rule 1 (All smart things are cold), we cannot directly determine that Fiona is young.\n\nHowever, since Fiona is cold, and young things are cold, we cannot conclude that Fiona is not young. But we also cannot directly conclude that Fiona is young. \n\nIn this case, the information is not sufficient to determine whether Fiona is young or not. Therefore, the statement \"Fiona is not young\" cannot be definitively classified as true or false.\n\nThe answer is: $\\boxed{unknown}$",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will use a combination of logical reasoning and the given statements.\n\nGiven Statements:\n\n1. Anne is cold.\n2. Anne is furry.\n3. Anne is rough.\n4. Anne is smart.\n5. Anne is white.\n6. Bob is nice.\n7. Bob is rough.\n8. Erin is cold.\n9. Erin is furry.\n10. Erin is nice.\n11. Erin is rough.\n12. Erin is smart.\n13. Erin is white.\n14. Erin is young.\n15. Fiona is cold.\n16. Fiona is furry.\n17. All smart things are cold.\n18. If Bob is young and Bob is cold then Bob is furry.\n19. Young things are cold.\n20. If Fiona is rough and Fiona is cold then Fiona is smart.\n21. Cold, furry things are white.\n22. All rough, nice things are young.\n23. If something is white and furry then it is smart.\n\nStatement to be evaluated: Fiona is not young.\n\nLet's analyze the given statements:\n\nFrom statement 19, we know that young things are cold. \nFrom statement 14, we know that Erin is young. \nTherefore, we can conclude that Erin is cold.\n\nFrom statement 21, we know that cold, furry things are white. \nFrom statements 16 and 15, we know that Fiona is furry and cold.\nTherefore, we can conclude that Fiona is white.\n\nFrom statement 17, we know that all smart things are cold. \nFrom statement 15, we know that Fiona is cold.\nTherefore, we cannot conclude that Fiona is smart yet, as there might be other cold things that are not smart.\n\nFrom statement 20, we know that if Fiona is rough and Fiona is cold then Fiona is smart.\nHowever, we do not know whether Fiona is rough. We need more information to determine this.\n\nNow, let's consider the statement \"Fiona is not young.\"\n\nIf Fiona is not young, then Fiona is not cold (from statement 19).\nHowever, we already know that Fiona is cold (from statement 15).\n\nTherefore, we can conclude that the statement \"Fiona is not young\" is false.\n\nFinal Answer: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given statements and use them to determine the truth value of the statement \"Fiona is not young.\"\n\nStep 1: List the given statements.\n1. Anne is cold.\n2. Anne is furry.\n3. Anne is rough.\n4. Anne is smart.\n5. Anne is white.\n6. Bob is nice.\n7. Bob is rough.\n8. Erin is cold.\n9. Erin is furry.\n10. Erin is nice.\n11. Erin is rough.\n12. Erin is smart.\n13. Erin is white.\n14. Erin is young.\n15. Fiona is cold.\n16. Fiona is furry.\n17. All smart things are cold.\n18. If Bob is young and Bob is cold then Bob is furry.\n19. Young things are cold.\n20. If Fiona is rough and Fiona is cold then Fiona is smart.\n21. Cold, furry things are white.\n22. All rough, nice things are young.\n23. If something is white and furry then it is smart.\n\nStep 2: Analyze the given statements and derive new information.\n\n- From statement 17, we can deduce that since Fiona is smart (from statement 13), Fiona is cold.\n- From statement 19, we can deduce that since Fiona is cold, Fiona is young.\n- From statement 22, we can deduce that since Erin is nice and rough, Erin is young.\n- We have conflicting information about Fiona's age. Statement 19 implies that Fiona is young, while statement 14 implies that Erin is young.\n\nStep 3: Determine the truth value of the statement \"Fiona is not young.\"\n\nBased on our analysis, we have two possible conclusions:\n1. Fiona is young (from statement 19 and the fact that Fiona is cold).\n2. We do not have enough information to confirm or deny that Fiona is not young.\n\nSince we cannot confirm or deny the statement \"Fiona is not young,\" the truth value of the statement is unknown.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules of logic. We'll start by breaking down the given statements:\n\n1. All smart things are cold.\n2. If Bob is young and Bob is cold then Bob is furry.\n3. Young things are cold.\n4. If Fiona is rough and Fiona is cold then Fiona is smart.\n5. Cold, furry things are white.\n6. All rough, nice things are young.\n7. If something is white and furry then it is smart.\n\nNow, let's evaluate the statement \"Fiona is not young.\"\n\nTo do this, we need to determine whether Fiona is young or not. From the given statements, we have the following information about Fiona:\n\n- Fiona is cold (Statement 1, 3, 4, 5)\n- Fiona is furry (Statement 1, 3, 5)\n- Fiona is rough (Statement 4)\n\nNow, let's use the given statements to deduce whether Fiona is young or not.\n\nFrom Statement 3, we know that young things are cold, and we already know that Fiona is cold. However, we cannot directly conclude that Fiona is young from this statement.\n\nFrom Statement 4, we know that if Fiona is rough and cold, then Fiona is smart. We know that Fiona is rough and cold, so we can conclude that Fiona is smart.\n\nFrom Statement 1, we know that all smart things are cold, and we already know that Fiona is smart. However, this statement doesn't provide any new information about Fiona's youth.\n\nFrom Statement 5, we know that cold, furry things are white. We already know that Fiona is cold and furry, so we can conclude that Fiona is white.\n\nFrom Statement 7, we know that if something is white and furry, then it is smart. However, we already knew that Fiona is smart from Statement 4.\n\nNow, let's analyze the statement \"All rough, nice things are young\" (Statement 6). This statement implies that if something is rough and nice, then it is young. However, we don't have any information about Fiona being nice.\n\nSince we don't have any information about Fiona being nice, we cannot conclude that Fiona is young from Statement 6. We need more information about Fiona's niceness to determine her youth.\n\nIn conclusion, based on the given statements, we cannot determine whether Fiona is young or not. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether Fiona is not young, we need to analyze the given statements and use the rules of deduction.\n\n1. All smart things are cold. \n2. If Fiona is rough and Fiona is cold then Fiona is smart.\n3. Fiona is cold.\n4. Fiona is rough.\nUsing rule 2 and rules 3 and 4, we can conclude that Fiona is smart.\n\nNow, we have:\n1. Fiona is smart.\n2. All smart things are cold.\n3. Fiona is cold.\n\nFrom rule 2, we know that all smart things are cold, and we already know Fiona is smart. Therefore, we can conclude that Fiona is indeed cold, which doesn't help us determine if she is young or not.\n\nWe also know from the given statements that:\n1. Young things are cold.\n2. Erin is cold and Erin is young.\n\nHowever, this doesn't help us determine if Fiona is young or not, since we don't have enough information to conclude that Fiona is young.\n\nNow, let's consider the following statements:\n1. Cold, furry things are white.\n2. Fiona is cold and furry.\n\nFrom rule 1, we can conclude that Fiona is white.\n\nNow, we have:\n1. Fiona is white.\n2. If something is white and furry then it is smart.\n3. Fiona is furry.\nUsing rule 2 and rules 1 and 3, we can conclude that Fiona is smart (which we already knew), but it also tells us that Fiona is indeed white.\n\nHowever, we still don't know if Fiona is young or not. \n\nThe only statement left to analyze is:\n1. All rough, nice things are young.\n\nHowever, we don't have enough information to determine if Fiona is nice or not. \n\nNow, let's consider another statement:\n1. Bob is nice.\n2. Erin is nice.\n3. Erin is young.\n\nHowever, we still don't know if Fiona is nice or not.\n\nTo determine if Fiona is not young, we need to consider the following statement:\n1. If Bob is young and Bob is cold then Bob is furry.\n\nHowever, we don't have enough information to determine if Bob is young or not.\n\nWe also know from the given statements that:\n1. Young things are cold.\n2. Erin is young.\n3. Erin is cold.\n\nHowever, this doesn't help us determine if Fiona is young or not, since we don't have enough information to conclude that Fiona is young.\n\nNow, let's analyze the statement:\n1. All smart things are cold.\n2. Fiona is smart.\n3. Fiona is cold.\n\nAs we already concluded, Fiona is indeed cold, but this doesn't help us determine if Fiona is young or not.\n\nConsidering the above analysis, we can see that we don't have enough information to determine if Fiona is young or not. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and the rules provided. We will use the rules to derive new information and eventually determine the truth value of the statement.\n\n1. All smart things are cold.\n   - This rule does not provide any direct information about Fiona, but we will use it later.\n\n2. If Bob is young and Bob is cold then Bob is furry.\n   - This rule does not provide any direct information about Fiona, but we will use it later.\n\n3. Young things are cold.\n   - This rule does not provide any direct information about Fiona, but we will use it later.\n\n4. If Fiona is rough and Fiona is cold then Fiona is smart.\n   - This rule provides a condition for Fiona to be smart: she must be both rough and cold.\n\n5. Cold, furry things are white.\n   - This rule does not provide any direct information about Fiona, but we will use it later.\n\n6. All rough, nice things are young.\n   - This rule does not provide any direct information about Fiona, but we will use it later.\n\n7. If something is white and furry then it is smart.\n   - This rule provides a condition for something to be smart: it must be both white and furry.\n\nNow, let's use the rules to derive information about Fiona:\n\n1. Fiona is cold. (Given)\n2. Fiona is furry. (Given)\n3. Since Fiona is cold and furry, she is white. (Rule 5)\n4. Since Fiona is white and furry, she is smart. (Rule 7)\n5. Since Fiona is smart, she is cold. (Rule 1)\n6. From Rule 4, we know that Fiona is both rough and cold, which implies she is smart (Rule 1).\n\nNow, let's consider the statement \"Fiona is not young.\" To determine its truth value, we need to derive information about Fiona's age.\n\n1. We know that Fiona is smart (Rule 4) and smart things are cold (Rule 1).\n2. We also know that young things are cold (Rule 3), which implies that Fiona is young.\n\nHowever, we made a mistake in step 2 of the above derivation.  The statement \"Fiona is young\" is actually derived from rule 3, Young things are cold. Since Fiona is cold, she is indeed young. But we also know that Fiona is smart. Since smart things are cold (Rule 1), and since Fiona is cold, we can also conclude that she is indeed smart.\n\nBut we cannot conclude that Fiona is not young based on the information we derived. In fact, we concluded that Fiona is indeed young.\n\nSo, we need to reconsider the derivation of Fiona's age.\n\n1. Young things are cold. (Rule 3)\n2. Fiona is cold. (Given)\n3. From Rule 3, we can conclude that Fiona is young.\n\nHowever, we also know that Fiona is smart. Since smart things are cold (Rule 1), and since Fiona is cold, we can also conclude that she is indeed smart.\n\nNow, let's reconsider the statement \"Fiona is not young.\"\n\nSince we concluded that Fiona is indeed young (from Rule 3), the statement \"Fiona is not young\" is actually false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not young\" is true, false, or unknown, we need to analyze the given information.\n\n1. All smart things are cold. \n   - This rule implies that if something is smart, it must be cold.\n\n2. Young things are cold. \n   - This rule implies that if something is young, it must be cold.\n\n3. If Fiona is rough and Fiona is cold then Fiona is smart. \n   - This rule implies that if Fiona is rough and cold, then she is smart.\n\n4. Cold, furry things are white. \n   - This rule implies that if something is cold and furry, it must be white.\n\n5. If something is white and furry then it is smart. \n   - This rule implies that if something is white and furry, it must be smart.\n\n6. Fiona is cold. \n   - From this rule, we know Fiona is cold.\n\n7. Fiona is furry. \n   - From this rule, we know Fiona is furry.\n\n8. Fiona is rough. \n   - From this rule, we know Fiona is rough.\n\n9. Fiona is smart. \n   - Since Fiona is cold (rule 6), and Fiona is furry (rule 7), we can conclude that Fiona is white (rule 4), and then smart (rule 5).\n\nNow, let's consider the original statement: Fiona is not young.\n\nIf Fiona is not young, then she must be an adult (or old) based on the given options.\n\nHowever, we already have the following information:\n- Young things are cold (rule 2).\n- All smart things are cold (rule 1).\n- Fiona is smart (rule 9).\n\nThis implies that Fiona must be young because being young is a sufficient condition for being cold (rule 2), and being cold is a sufficient condition for being smart (rule 1). Therefore, the statement \"Fiona is not young\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not young\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\n1. All smart things are cold.\n2. If Bob is young and Bob is cold then Bob is furry.\n3. Young things are cold.\n4. If Fiona is rough and Fiona is cold then Fiona is smart.\n5. Cold, furry things are white.\n6. All rough, nice things are young.\n7. If something is white and furry then it is smart.\n\nFrom the given information, we know the following about Fiona:\n\n- Fiona is cold.\n- Fiona is furry.\n- Fiona is rough.\n- Fiona is cold.\n- Fiona is furry.\n- Fiona is rough.\n\nWe can use rule 3 to conclude that Fiona is young because she is cold.\n\nHowever, we need to determine if Fiona is young or not to evaluate the statement \"Fiona is not young.\" If Fiona is indeed young, then the statement \"Fiona is not young\" would be false.\n\nNow, let's analyze the given information to see if we can conclude that Fiona is young.\n\nFrom rule 3, we know that young things are cold, and Fiona is cold. However, this alone does not confirm that Fiona is young.\n\nFrom rule 4, we know that if Fiona is rough and Fiona is cold then Fiona is smart. Since Fiona is both rough and cold, we can conclude that Fiona is smart using this rule.\n\nFrom rule 1, we know that all smart things are cold, and since Fiona is cold and smart, this rule is satisfied.\n\nFrom rule 5, we know that cold, furry things are white. Since Fiona is both cold and furry, we can conclude that Fiona is white using this rule.\n\nFrom rule 7, we know that if something is white and furry then it is smart. Since Fiona is white and furry, we can conclude that Fiona is smart using this rule.\n\nHowever, we already concluded that Fiona is smart using rule 4.\n\nNow we have multiple rules that conclude Fiona is smart, cold, furry, and white.\n\nGiven that we have a conclusion that Fiona is young from rule 3 and that conclusion is supported by the fact that Fiona is cold, we can conclude that Fiona is young.\n\nSo, the statement \"Fiona is not young\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements and rules to determine whether Fiona is young or not. We will use the statements and rules in the order they are provided.\n\nGiven statements:\n1. Anne is cold.\n2. Anne is furry.\n3. Anne is rough.\n4. Anne is smart.\n5. Anne is white.\n6. Bob is nice.\n7. Bob is rough.\n8. Erin is cold.\n9. Erin is furry.\n10. Erin is nice.\n11. Erin is rough.\n12. Erin is smart.\n13. Erin is white.\n14. Erin is young.\n15. Fiona is cold.\n16. Fiona is furry.\n17. All smart things are cold.\n18. If Bob is young and Bob is cold then Bob is furry.\n19. Young things are cold.\n20. If Fiona is rough and Fiona is cold then Fiona is smart.\n21. Cold, furry things are white.\n22. All rough, nice things are young.\n23. If something is white and furry then it is smart.\n\nWe need to determine whether Fiona is not young. To do this, we need to see if we can prove that Fiona is young or if we cannot prove that Fiona is not young.\n\nLet's analyze the statements and rules one by one.\n\nFrom rule 19, we know that young things are cold. From statement 15, we know that Fiona is cold. This does not directly tell us if Fiona is young, but it gives us a clue.\n\nFrom rule 18, we know that if Bob is young and Bob is cold then Bob is furry. We cannot apply this rule to Fiona directly, but we can use it to deduce that if Fiona is young, then Fiona must be cold (from rule 19), and therefore, Fiona would be furry (if we apply rule 18 to Fiona, which is not directly stated, but we can infer it from the given information). However, we already know that Fiona is furry from statement 16.\n\nFrom statement 16, we know that Fiona is furry, and from statement 15, we know that Fiona is cold. From rule 21, we know that cold, furry things are white. This does not directly tell us if Fiona is young, but it gives us another clue.\n\nFrom rule 20, we know that if Fiona is rough and Fiona is cold then Fiona is smart. However, we do not know if Fiona is rough or not. If we assume that Fiona is not rough, then we cannot apply this rule to Fiona.\n\nFrom rule 22, we know that all rough, nice things are young. However, we do not know if Fiona is nice or rough. If we assume that Fiona is nice and rough, then we would know that Fiona is young from this rule.\n\nFrom statement 15, we know that Fiona is cold, and from statement 16, we know that Fiona is furry. From rule 23, we know that if something is white and furry then it is smart. Since we already know that Fiona is white (because she is cold and furry from rules 21 and 15-16) and furry from statement 16, we can conclude that Fiona is smart from rule 23.\n\nNow, let's analyze the statements and rules again. From rule 17, we know that all smart things are cold. We already know that Fiona is smart from rule 23, and we know that Fiona is cold from statement 15.\n\nFrom rule 19, we know that young things are cold. We already know that Fiona is cold from statement 15, but we cannot conclude that Fiona is young from this rule alone.\n\nHowever, from statement 14, we know that Erin is young, and from statement 8, we know that Erin is cold. From rule 19, we know that young things are cold. This does not directly tell us if Fiona is young, but it gives us a clue that young things are cold.\n\nFrom rule 18, we know that if Bob is young and Bob is cold then Bob is furry. We cannot apply this rule to Fiona directly, but we can use it to deduce that if Fiona is young, then Fiona must be cold (from rule 19), and therefore, Fiona would be furry (if we apply rule 18 to Fiona, which is not directly stated, but we can infer it from the given information). However, we already know that Fiona is furry from statement 16.\n\nNow, let's analyze the statements and rules again. From rule 20, we know that if Fiona is rough and Fiona is cold then Fiona is smart. However, we do not know if Fiona is rough or not. If we assume that Fiona is not rough, then we cannot apply this rule to Fiona.\n\nHowever, we can use rule 17 to conclude that Fiona is cold (because she is smart from rule 23). From rule 19, we know that young things are cold. We already know that Fiona is cold from rule 17, but we cannot conclude that Fiona is young from this rule alone.\n\nNow, let's analyze the statements and rules again. From statement 14, we know that Erin is young, and from statement 8, we know that Erin is cold. From rule 19, we know that young things are cold. This does not directly tell us if Fiona is young, but it gives us a clue that young things are cold.\n\nFrom rule 22, we know that all rough, nice things are young. However, we do not know if Fiona is nice or rough. If we assume that Fiona is nice and rough, then we would know that Fiona is young from this rule.\n\nHowever, we can also use the fact that we know that Fiona is smart from rule 23. From rule 17, we know that all smart things are cold. We already know that Fiona is smart from rule 23, and we know that Fiona is cold from rule 17.\n\nNow, let's analyze the statements and rules again. We cannot directly prove that Fiona is young or not from the given statements and rules.\n\nHowever, we can prove that the following statements are true:\n\n* Fiona is cold (from rule 17 and statement 15)\n* Fiona is furry (from statement 16)\n* Fiona is white (from rule 21 and statements 15-16)\n* Fiona is smart (from rule 23 and statements 15-16)\n\nSince we cannot prove that Fiona is not young, we cannot conclude that the statement \"Fiona is not young\" is true or false.\n\nTherefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not young' is true, false, or unknown, we need to analyze the given information and use the logical deductions.\n\n1. All smart things are cold.\n2. If Fiona is rough and Fiona is cold then Fiona is smart.\n   From this, we cannot conclude that Fiona is smart directly, but it is possible.\n\n3. Cold, furry things are white.\n   We do not have any information about Fiona being furry, but we do know that cold things are possible.\n\n4. If something is white and furry then it is smart.\n   This statement is not necessarily true, as we have not confirmed that Fiona is furry or white.\n\n5. Fiona is cold.\n   We know this, but it does not give us any direct information about Fiona's age.\n\n6. Fiona is furry.\n   We cannot confirm this directly, but it is possible.\n\n7. Fiona is rough.\n   We know this, but we do not have any direct information about Fiona's age.\n\n8. Young things are cold.\n   This statement does not directly apply to Fiona, but it tells us that if something is young, it can be cold.\n\n9. If Bob is young and Bob is cold then Bob is furry.\n   This statement does not directly apply to Fiona.\n\n10. All rough, nice things are young.\n    We do not know that Fiona is nice, but if we assume she is, then this could be true.\n\nSince we do not have enough information to confirm that Fiona is young or not, we cannot determine the truth of the statement 'Fiona is not young.' Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not young' is true, false, or unknown, we need to analyze the given information and the premises. \n\nFrom the given information, we have:\n1. All smart things are cold.\n2. If Bob is young and Bob is cold then Bob is furry.\n3. Young things are cold.\n4. If Fiona is rough and Fiona is cold then Fiona is smart.\n5. Cold, furry things are white.\n6. All rough, nice things are young.\n7. If something is white and furry then it is smart.\n\nFrom the premises:\n1. Fiona is cold.\n2. Fiona is furry.\n3. Fiona is rough.\n\nWe can start by combining premise 3 (Fiona is rough) and premise 2 (Fiona is cold) to get:\nIf Fiona is rough and Fiona is cold then Fiona is smart.\n\nThis is premise 4. Therefore, Fiona is smart.\n\nNow, using premise 1 (All smart things are cold), we can conclude that Fiona is indeed cold, which we already knew.\n\nNow let's look at the statement we need to evaluate: Fiona is not young.\n\nTo evaluate this statement, we need to determine whether Fiona is young or not. We can start by using premise 3 (Young things are cold) and premise 1 (All smart things are cold).\n\nFrom premise 1, we know that all smart things are cold. And we know that Fiona is smart (from the combination of premise 4 and premise 1). Therefore, Fiona is cold.\n\nNow, let's use premise 3 (Young things are cold) and the fact that Fiona is cold. We can conclude that Fiona is indeed young.\n\nHowever, we have a contradiction here. We previously concluded that Fiona is young, but we are trying to determine whether Fiona is not young.\n\nSince we have concluded that Fiona is indeed young, we can now use premise 6 (All rough, nice things are young) to further analyze this. However, we don't have any information about Fiona being nice.\n\nBut we do have information about Erin, who is both nice and rough. From premise 6, we can conclude that Erin is indeed young.\n\nNow, let's look at the original information again. We know that Fiona is young, and we know that all young things are cold (premise 3). Therefore, we can conclude that Fiona is indeed cold, which we already knew.\n\nWe also know that Fiona is cold, and we know that cold, furry things are white (premise 5). Therefore, we can conclude that Fiona is indeed white.\n\nNow, let's look at the statement we need to evaluate: Fiona is not young.\n\nWe have already concluded that Fiona is indeed young. However, we can also look at premise 7 (If something is white and furry then it is smart) and premise 2 (Fiona is furry) to get: If Fiona is white and Fiona is furry then Fiona is smart.\n\nWe know that Fiona is white, and we know that Fiona is furry. Therefore, Fiona is indeed smart, which we already knew.\n\nHowever, we still need to determine whether the statement 'Fiona is not young' is true or false.\n\nSince we have concluded that Fiona is indeed young, we can now say that the statement 'Fiona is not young' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not young\" is true, false, or unknown, we need to analyze the given information and apply the rules of inference.\n\n1. All smart things are cold. \n   This rule tells us the relationship between being smart and cold, but we do not have enough information to determine whether Fiona is smart or not.\n\n2. Young things are cold. \n   This rule tells us the relationship between being young and cold, but we do not have enough information to determine whether Fiona is young or not.\n\n3. If Fiona is rough and Fiona is cold then Fiona is smart. \n   This rule tells us the relationship between being rough, cold, and smart. However, we do not have enough information to determine whether Fiona is rough or cold.\n\n4. If Bob is young and Bob is cold then Bob is furry. \n   This rule is irrelevant to determining whether Fiona is young or not, so we can ignore it.\n\n5. Cold, furry things are white. \n   This rule tells us the relationship between being cold, furry, and white, but we do not have enough information to determine whether Fiona is furry or cold.\n\n6. If something is white and furry then it is smart. \n   This rule tells us the relationship between being white, furry, and smart. However, we do not have enough information to determine whether Fiona is white or furry.\n\n7. All rough, nice things are young. \n   This rule tells us the relationship between being rough, nice, and young. However, we do not have enough information to determine whether Fiona is rough or nice.\n\n8. If Fiona is rough and Fiona is cold then Fiona is smart. \n   This rule is the same as rule 3, so it does not provide any new information.\n\nFrom the given information, we know the following about Fiona:\n- Fiona is cold.\n- Fiona is furry.\n- Fiona is rough.\n- Fiona is smart.\n- Fiona is white.\n\nNow, let's apply the rules to determine whether the statement \"Fiona is not young\" is true, false, or unknown.\n\nFrom rule 2, we know that young things are cold. However, from rule 1, we know that all smart things are cold. Since Fiona is both smart and cold, it could be that Fiona is young, or it could be that Fiona is not young but still cold.\n\nHowever, we also know from rule 3 that if Fiona is rough and Fiona is cold then Fiona is smart. Since Fiona is both rough and cold, it follows that Fiona is smart. Now, from rule 1, we know that all smart things are cold. Since Fiona is smart and cold, it could be that Fiona is young, or it could be that Fiona is not young but still cold.\n\nNow, let's look at the given facts about Fiona:\n- Fiona is cold.\n- Fiona is furry.\n- Fiona is rough.\n- Fiona is smart.\n- Fiona is white.\n\nFrom rule 5, we know that cold, furry things are white. Since Fiona is both cold and furry, it follows that Fiona is white. Now, from rule 6, we know that if something is white and furry then it is smart. Since Fiona is both white and furry, it follows that Fiona is smart. We already knew this from rule 3.\n\nFrom rule 2, we know that young things are cold. However, we also know from rule 1 that all smart things are cold. Since Fiona is both smart and cold, it could be that Fiona is young, or it could be that Fiona is not young but still cold.\n\nHowever, we also know from rule 3 that if Fiona is rough and Fiona is cold then Fiona is smart. Since Fiona is both rough and cold, it follows that Fiona is smart. Now, from rule 1, we know that all smart things are cold. Since Fiona is smart and cold, it could be that Fiona is young, or it could be that Fiona is not young but still cold.\n\nHowever, we also know from rule 5 that cold, furry things are white. Since Fiona is both cold and furry, it follows that Fiona is white. Now, from rule 6, we know that if something is white and furry then it is smart. Since Fiona is both white and furry, it follows that Fiona is smart. We already knew this from rule 3.\n\nHowever, we also know from rule 4 that if Bob is young and Bob is cold then Bob is furry. Since this rule is irrelevant to determining whether Fiona is young or not, we can ignore it.\n\nFrom the given information, we know the following about Fiona:\n- Fiona is cold.\n- Fiona is furry.\n- Fiona is rough.\n- Fiona is smart.\n- Fiona is white.\n\nSince we cannot determine whether Fiona is young or not from the given information, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_fiona, cold_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), young_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not young(fiona)",
+          "z3_formula": "Not(young_fiona) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_erin, cold_erin)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_erin, cold_erin)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_fiona, cold_fiona)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_bob, nice_bob), young_bob)",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "not young(fiona)",
+          "z3_formula": "Not(young_fiona)",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(fiona)",
+          "z3_formula": "Not(cold_fiona)",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "False",
+          "z3_formula": "Not(cold_fiona)",
+          "source_step": 32
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_fiona, cold_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_erin, nice_erin), young_erin)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_bob, cold_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_bob, cold_bob), furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), young_X)",
+          "source_step": 6
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_fiona, cold_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not young(fiona)",
+          "z3_formula": "Not(young_fiona) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_fiona, cold_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_fiona, cold_fiona), furry_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_fiona, cold_fiona), furry_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_fiona, cold_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_fiona, cold_fiona), furry_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), young_fiona)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_fiona, cold_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_fiona, cold_fiona), furry_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), young_fiona)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X)",
+          "z3_formula": "And(young_fiona, cold_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_erin, nice_erin), young_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not young(fiona)",
+          "z3_formula": "Not(young_fiona) == False",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), young_fiona)",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 169,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 37
+    },
+    "maxsat_stats": {
+      "satisfied": 35,
+      "excluded": 2,
+      "total_weight": 164,
+      "solve_time_ms": 1.1268462985754013
+    },
+    "timing": {
+      "trace_gen_s": 16.072,
+      "extraction_s": 30.879,
+      "dedup_s": 1.235,
+      "maxsat_s": 0.003,
+      "total_s": 48.189
+    }
+  }
+}

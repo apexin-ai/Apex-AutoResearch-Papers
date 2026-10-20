@@ -1,0 +1,1 @@
+See full data on server at /root/symb_invariant_consensus/results/weighted_sc_results.json. Summary: uniform=76.24% (613/804), length_weighted=75.25% (605/804), inv_length_weighted=76.74% (617/804), constraint_count_weighted=75.25% (605/804). SICA ref=76.49%, SC ref=76.24%. All McNemar tests n.s. (p>0.05).

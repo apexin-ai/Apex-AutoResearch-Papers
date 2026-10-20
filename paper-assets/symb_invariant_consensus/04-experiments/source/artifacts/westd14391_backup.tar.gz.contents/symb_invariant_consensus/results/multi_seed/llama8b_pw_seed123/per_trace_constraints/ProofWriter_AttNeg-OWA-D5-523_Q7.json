@@ -1,0 +1,810 @@
+{
+  "pid": "ProofWriter_AttNeg-OWA-D5-523_Q7",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(dave) & white(dave) -> blue(dave)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, green_anne), young_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_anne, quiet_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not white(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_anne, Not(white_anne)), green_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_dave, green_dave), young_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave) == False",
+          "z3_formula": "green_dave == False",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave) == False",
+          "z3_formula": "blue_dave == False",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_dave, quiet_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, green_anne), young_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_anne, quiet_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_green, green_green), young_young)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_anne, quiet_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not white(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_anne, not white_anne), green_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(dave) -> blue(dave)",
+          "z3_formula": "Implies(white_dave, blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(dave) -> white(dave)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(dave) & blue(dave) -> green(dave)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(dave)",
+          "z3_formula": "Not(blue_dave) == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(dave) -> blue(dave)",
+          "z3_formula": "Implies(white_dave, blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(dave) -> white(dave)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(dave) & blue(dave) -> green(dave)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(dave) -> nice(dave)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(dave) -> kind(dave)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(dave) -> white(dave)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave) == False",
+          "z3_formula": "Not(blue_dave)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, green_anne), young_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_anne, quiet_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & not(white(X)) -> green(X)",
+          "z3_formula": "Implies(And(green_anne, Not(white_anne)), green_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == Unknown",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_dave, nice_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & kind(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_dave, kind_dave), blue_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_dave, quiet_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_dave, green_dave), young_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_dave, blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        }
+      ]
+    }
+  ]
+}

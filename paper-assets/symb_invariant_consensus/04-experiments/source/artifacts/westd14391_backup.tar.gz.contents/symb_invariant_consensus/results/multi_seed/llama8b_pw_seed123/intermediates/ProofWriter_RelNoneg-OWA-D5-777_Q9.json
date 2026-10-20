@@ -1,0 +1,1003 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-777_Q9",
+    "problem": "The bear is kind. The bear likes the cat. The cat likes the bear. The cat needs the cow. The cat sees the bear. The cat sees the cow. The cow is rough. The mouse likes the cat. The mouse needs the bear. The mouse sees the cow. If someone sees the bear then they need the mouse. If someone needs the bear and the bear needs the cow then the bear needs the cat. If someone likes the cow then the cow sees the bear. If the bear is red and the bear needs the cow then the cow needs the bear. If someone needs the mouse then they are big. If someone sees the bear and they are big then they like the cow. If the cat needs the mouse then the mouse needs the cow. If someone is kind then they see the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow sees the bear.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nLikes($x, $y, bool) ::: Does x like y?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nRough($x, bool) ::: Is x rough?\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\n\nFacts:\nKind(Bear, True) ::: The bear is kind.\nLikes(Bear, Cat, True) ::: The bear likes the cat.\nLikes(Cat, Bear, True) ::: The cat likes the bear.\nNeeds(Cat, Cow, True) ::: The cat needs the cow.\nSees(Cat, Bear, True) ::: The cat sees the bear.\nSees(Cat, Cow, True) ::: The cat sees the cow.\nRough(Cow, True) ::: The cow is rough.\nLikes(Mouse, Cat, True) ::: The mouse likes the cat.\nNeeds(Mouse, Bear, True) ::: The mouse needs the bear.\nSees(Mouse, Cow, True) ::: The mouse sees the cow.\n\nRules:\nSees($x, Bear, True) >>> Needs($x, Mouse, True) ::: If someone sees the bear then they need the mouse.\nNeeds($x, Bear, True) && Needs(Bear, Cow, True) >>> Needs(Bear, Cat, True) ::: If someone needs the bear and the bear needs the cow then the bear needs the cat.\nLikes($x, Cow, True) >>> Sees(Cow, Bear, True) ::: If someone likes the cow then the cow sees the bear.\nRed(Bear, True) && Needs(Bear, Cow, True) >>> Needs(Cow, Bear, True) ::: If the bear is red and the bear needs the cow then the cow needs the bear.\nNeeds($x, Mouse, True) >>> Big($x, True) ::: If someone needs the mouse then they are big.\nSees($x, Bear, True) && Big($x, True) >>> Likes($x, Cow, True) ::: If someone sees the bear and they are big then they like the cow.\nNeeds(Cat, Mouse, True) >>> Needs(Mouse, Cow, True) ::: If the cat needs the mouse then the mouse needs the cow.\nKind($x, True) >>> Sees($x, Cat, True) ::: If someone is kind then they see the cat.\n\nQuery:\nSees(Cow, Bear, True) ::: The cow sees the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 89.0,
+      "Unknown": 129.0
+    },
+    "answer_counts": {
+      "Unknown": 4,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The cow sees the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given information:\n   - The bear is kind.\n   - The bear likes the cat.\n   - The cat likes the bear.\n   - The cat needs the cow.\n   - The cat sees the bear.\n   - The cat sees the cow.\n   - The cow is rough.\n   - The mouse likes the cat.\n   - The mouse needs the bear.\n   - The mouse sees the cow.\n   - If someone sees the bear then they need the mouse.\n   - If someone needs the bear and the bear needs the cow then the bear needs the cat.\n   - If someone likes the cow then the cow sees the bear.\n   - If the bear is red and the bear needs the cow then the cow needs the bear.\n   - If someone needs the mouse then they are big.\n   - If someone sees the bear and they are big then they like the cow.\n   - If the cat needs the mouse then the mouse needs the cow.\n   - If someone is kind then they see the cat.\n\n2. From the given information, we know:\n   - The cat sees the cow.\n   - The cow is rough.\n\n3. Now, let's look for a rule that relates the cow and the bear.\n   - There is no direct rule stating that the cow sees the bear.\n   - However, there is a rule stating that if someone likes the cow, then the cow sees the bear. But we don't have any information about someone liking the cow.\n\n4. Now, let's look for another rule that might be related to the cow and the bear.\n   - We know that the cat sees the cow, but there is no information about the cow seeing the cat.\n\n5. Now, let's analyze the information about the bear and the cow.\n   - There is no information about the bear seeing the cow.\n\n6. Now, let's look for a rule that might be related to the cow and the bear.\n   - The only thing we know about the cow is that it is rough, but that doesn't give us any information about the cow seeing the bear.\n\n7. Now, let's look for a rule that might be related to the cow and the bear.\n   - We know that the bear likes the cat and the cat sees the cow. But we don't have any information about the bear seeing the cow.\n\n8. Now, let's analyze the information about the bear and the cow.\n   - There is no information about the bear needing the cow.\n\n9. Now, let's look for a rule that might be related to the cow and the bear.\n   - We know that the bear is kind, but that doesn't give us any information about the cow seeing the bear.\n\n10. Now, let's look for a rule that might be related to the cow and the bear.\n    - We know that if the bear is red and the bear needs the cow then the cow needs the bear. But we don't have any information about the bear being red.\n\n11. Now, let's look for a rule that might be related to the cow and the bear.\n    - We know that if someone sees the bear then they need the mouse. But we don't have any information about someone seeing the bear.\n\n12. Now, let's analyze the information about the cow and the bear.\n    - We know that the cat needs the cow and the cat sees the bear, but we don't have any information about the cow seeing the bear.\n\n13. Now, let's look for a rule that might be related to the cow and the bear.\n    - We know that if someone needs the mouse then they are big. But we don't have any information about someone needing the mouse.\n\n14. Now, let's look for a rule that might be related to the cow and the bear.\n    - We know that if someone sees the bear and they are big then they like the cow. But we don't have any information about someone seeing the bear and being big.\n\n15. Now, let's look for a rule that might be related to the cow and the bear.\n    - We know that if the cat needs the mouse then the mouse needs the cow. But we don't have any information about the cat needing the mouse.\n\n16. Now, let's look for a rule that might be related to the cow and the bear.\n    - We know that if someone is kind then they see the cat. But we don't have any information about someone being kind.\n\n17. After analyzing all the given information, we still don't have any direct or indirect rule that states whether the cow sees the bear or not.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller parts and analyze the given statements. We will use a truth table to determine the truth value of the statement \"The cow sees the bear.\"\n\n1. The bear is kind. (Statement 1)\n2. The bear likes the cat. (Statement 2)\n3. The cat likes the bear. (Statement 3)\n4. The cat needs the cow. (Statement 4)\n5. The cat sees the bear. (Statement 5)\n6. The cat sees the cow. (Statement 6)\n7. The cow is rough. (Statement 7)\n8. The mouse likes the cat. (Statement 8)\n9. The mouse needs the bear. (Statement 9)\n10. The mouse sees the cow. (Statement 10)\n11. If someone sees the bear then they need the mouse. (Rule 1)\n12. If someone needs the bear and the bear needs the cow then the bear needs the cat. (Rule 2)\n13. If someone likes the cow then the cow sees the bear. (Rule 3)\n14. If the bear is red and the bear needs the cow then the cow needs the bear. (Rule 4)\n15. If someone needs the mouse then they are big. (Rule 5)\n16. If someone sees the bear and they are big then they like the cow. (Rule 6)\n17. If the cat needs the mouse then the mouse needs the cow. (Rule 7)\n18. If someone is kind then they see the cat. (Rule 8)\n\nWe need to determine whether the cow sees the bear. Let's analyze the statements and rules to find any relevant information.\n\nFrom Statement 6, we know that the cat sees the cow. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Rule 3, we know that if someone likes the cow, then the cow sees the bear. However, we need to find out if anyone likes the cow.\n\nFrom Statement 3, we know that the cat likes the bear. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Statement 7, we know that the cow is rough. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Rule 1, we know that if someone sees the bear, then they need the mouse. However, we need to find out if anyone sees the bear.\n\nFrom Statement 5, we know that the cat sees the bear. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Rule 5, we know that if someone needs the mouse, then they are big. However, we need to find out if anyone needs the mouse.\n\nFrom Rule 6, we know that if someone sees the bear and they are big, then they like the cow. However, we need to find out if anyone sees the bear and is big.\n\nFrom Statement 8, we know that the mouse likes the cat. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Statement 9, we know that the mouse needs the bear. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Statement 10, we know that the mouse sees the cow. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Rule 7, we know that if the cat needs the mouse, then the mouse needs the cow. However, we need to find out if the cat needs the mouse.\n\nFrom Statement 4, we know that the cat needs the cow. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Rule 4, we know that if the bear is red and the bear needs the cow, then the cow needs the bear. However, we need to find out if the bear is red and needs the cow.\n\nFrom Statement 1, we know that the bear is kind. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Rule 8, we know that if someone is kind, then they see the cat. However, we need to find out if anyone is kind.\n\nFrom Statement 2, we know that the bear likes the cat. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Rule 2, we know that if someone needs the bear and the bear needs the cow, then the bear needs the cat. However, we need to find out if someone needs the bear and the bear needs the cow.\n\nFrom Statement 1, we know that the bear is kind. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Statement 4, we know that the cat needs the cow. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Rule 1, we know that if someone sees the bear, then they need the mouse. However, we need to find out if anyone sees the bear.\n\nFrom Statement 5, we know that the cat sees the bear. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Rule 5, we know that if someone needs the mouse, then they are big. However, we need to find out if anyone needs the mouse.\n\nFrom Rule 6, we know that if someone sees the bear and they are big, then they like the cow. However, we need to find out if anyone sees the bear and is big.\n\nFrom Statement 8, we know that the mouse likes the cat. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Statement 9, we know that the mouse needs the bear. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Statement 10, we know that the mouse sees the cow. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Rule 7, we know that if the cat needs the mouse, then the mouse needs the cow. However, we need to find out if the cat needs the mouse.\n\nFrom Statement 4, we know that the cat needs the cow. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Rule 4, we know that if the bear is red and the bear needs the cow, then the cow needs the bear. However, we need to find out if the bear is red and needs the cow.\n\nFrom Statement 1, we know that the bear is kind. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Rule 8, we know that if someone is kind, then they see the cat. However, we need to find out if anyone is kind.\n\nFrom Statement 2, we know that the bear likes the cat. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Rule 2, we know that if someone needs the bear and the bear needs the cow, then the bear needs the cat. However, we need to find out if someone needs the bear and the bear needs the cow.\n\nWe can see that there is a connection between the cow and the bear through Statement 4 and Rule 2. However, we also need to find out if the cat needs the mouse (Rule 7) and if someone sees the bear (Rule 1).\n\nFrom Statement 5, we know that the cat sees the bear. From Rule 1, we know that if someone sees the bear, then they need the mouse. However, we need to find out if the cat needs the mouse.\n\nFrom Statement 4, we know that the cat needs the cow. From Rule 7, we know that if the cat needs the mouse, then the mouse needs the cow. However, we need to find out if the cat needs the mouse.\n\nSince the cat needs the cow (Statement 4), we can conclude that the mouse needs the cow (Rule 7). Therefore, the cat needs the mouse.\n\nFrom Rule 7, we know that if the cat needs the mouse, then the mouse needs the cow. Since the cat needs the mouse, we can conclude that the mouse needs the cow.\n\nFrom Statement 10, we know that the mouse sees the cow. From Rule 5, we know that if someone needs the mouse, then they are big. However, we need to find out if anyone needs the mouse.\n\nFrom Rule 6, we know that if someone sees the bear and they are big, then they like the cow. However, we need to find out if anyone sees the bear and is big.\n\nFrom Statement 3, we know that the cat likes the bear. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Statement 1, we know that the bear is kind. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Rule 8, we know that if someone is kind, then they see the cat. However, we need to find out if anyone is kind.\n\nFrom Statement 2, we know that the bear likes the cat. However, this does not directly help us determine whether the cow sees the bear.\n\nFrom Rule 2, we know that if someone needs the bear and the bear needs the cow, then the bear needs the cat. However, we need to find out if someone needs the bear and the bear needs the cow.\n\nWe can see that there is a connection between the cow and the bear through Statement 4 and Rule 2. However, we also need to find out if the cat needs the mouse (Rule 7) and if someone sees the bear (Rule 1).\n\nFrom Statement 5, we know that the cat sees the bear. From Rule 1, we know that if someone sees the bear, then they need the mouse. However, we need to find",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The cow sees the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear is kind. \n   This statement does not provide any information about the cow or its relationship with the bear.\n\n2. The bear likes the cat.\n   This statement does not provide any information about the cow or its relationship with the bear.\n\n3. The cat likes the bear.\n   This statement does not provide any information about the cow or its relationship with the bear.\n\n4. The cat needs the cow.\n   This statement does not provide any information about the cow seeing the bear.\n\n5. The cat sees the bear.\n   This statement does not provide any information about the cow seeing the bear.\n\n6. The cat sees the cow.\n   This statement does not provide any information about the cow seeing the bear.\n\n7. The cow is rough.\n   This statement does not provide any information about the cow seeing the bear.\n\n8. The mouse likes the cat.\n   This statement does not provide any information about the cow seeing the bear.\n\n9. The mouse needs the bear.\n   This statement does not provide any information about the cow seeing the bear.\n\n10. The mouse sees the cow.\n    This statement does not provide any information about the cow seeing the bear.\n\n11. If someone sees the bear then they need the mouse.\n    This statement does not provide any information about the cow seeing the bear.\n\n12. If someone needs the bear and the bear needs the cow then the bear needs the cat.\n    This statement does not provide any information about the cow seeing the bear.\n\n13. If someone likes the cow then the cow sees the bear.\n    This statement provides a possible condition for the cow to see the bear.\n\n14. If the bear is red and the bear needs the cow then the cow needs the bear.\n    This statement does not provide any information about the cow seeing the bear.\n\n15. If someone needs the mouse then they are big.\n    This statement does not provide any information about the cow seeing the bear.\n\n16. If someone sees the bear and they are big then they like the cow.\n    This statement does not provide any information about the cow seeing the bear.\n\n17. If the cat needs the mouse then the mouse needs the cow.\n    This statement does not provide any information about the cow seeing the bear.\n\n18. If someone is kind then they see the cat.\n    This statement does not provide any information about the cow seeing the bear.\n\nNow, let's analyze the possible conditions for the cow to see the bear.\n\nFrom statement 13, we know that if someone likes the cow then the cow sees the bear. However, there is no information about who likes the cow. The statements only mention that the mouse likes the cat (statement 8) and the cat likes the bear (statement 3).\n\nSince we do not have any information about who likes the cow, we cannot determine whether the cow sees the bear. Therefore, the statement \"The cow sees the bear\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze each statement and its implications. \n\n1. The bear is kind. \n   We don't know any information about the bear's color yet. \n\n2. The bear likes the cat. \n   No new information.\n\n3. The cat likes the bear. \n   No new information.\n\n4. The cat needs the cow. \n   No new information.\n\n5. The cat sees the bear. \n   No new information.\n\n6. The cat sees the cow. \n   No new information.\n\n7. The cow is rough. \n   No new information.\n\n8. The mouse likes the cat. \n   No new information.\n\n9. The mouse needs the bear. \n   No new information.\n\n10. The mouse sees the cow. \n    No new information.\n\n11. If someone sees the bear then they need the mouse. \n    Let's denote 'x' as someone who sees the bear. Then 'x' needs the mouse.\n\n12. If someone needs the bear and the bear needs the cow then the bear needs the cat. \n    We can't infer this information yet.\n\n13. If someone likes the cow then the cow sees the bear. \n    Let's denote 'x' as someone who likes the cow. Then the cow sees the bear.\n\n14. If the bear is red and the bear needs the cow then the cow needs the bear. \n    We can't infer this information yet.\n\n15. If someone needs the mouse then they are big. \n    Let's denote 'x' as someone who needs the mouse. Then 'x' is big.\n\n16. If someone sees the bear and they are big then they like the cow. \n    Let's denote 'x' as someone who sees the bear and is big. Then 'x' likes the cow.\n\n17. If the cat needs the mouse then the mouse needs the cow. \n    Let's denote 'x' as someone who needs the mouse. Then 'x' needs the cow.\n\n18. If someone is kind then they see the cat. \n    The bear is kind, so the bear sees the cat.\n\nNow we have all the given information. Let's analyze the original question: \nThe cow sees the bear.\n\nFrom statement 13, if someone likes the cow then the cow sees the bear. However, we cannot directly find out who likes the cow from the given statements.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The cow sees the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement we are evaluating: The cow sees the bear.\n\n2. From the given information: \n   - If someone likes the cow then the cow sees the bear.\n   - The mouse likes the cat.\n   - The cat likes the bear.\n\nSo, we know the cat likes the bear, and we also know that the mouse likes the cat. However, we do not have any direct information about the mouse liking the cow. We do not know if the mouse likes the cow or not.\n\n3. From the given information: \n   - If someone needs the bear and the bear needs the cow then the bear needs the cat.\n   - The cat needs the cow.\n   - The cow is rough.\n\nWe know that the cat needs the cow, but we do not have any information about the bear needing the cow. We only know that the bear likes the cat, but we cannot conclude that the bear needs the cow.\n\n4. From the given information: \n   - If someone sees the bear then they need the mouse.\n   - The cat sees the bear.\n\nWe know that the cat sees the bear, but we do not have any information about the cat needing the mouse. We only know that the cat likes the bear.\n\n5. From the given information: \n   - If the bear is red and the bear needs the cow then the cow needs the bear.\n   - The bear is kind. (Not red, so this does not apply)\n   - The mouse sees the cow.\n\nWe know that the bear is not red, so the condition does not apply. We do not have any information about the bear needing the cow.\n\n6. From the given information: \n   - If someone needs the mouse then they are big.\n   - The cat needs the mouse.\n   - The cat sees the bear.\n\nWe know that the cat sees the bear, but we do not have any information about the cat being big. We also know that the cat needs the mouse.\n\n7. From the given information: \n   - If someone sees the bear and they are big then they like the cow.\n   - The cat sees the bear.\n\nWe know that the cat sees the bear, but we do not have any information about the cat being big or the cat liking the cow.\n\n8. From the given information: \n   - If the cat needs the mouse then the mouse needs the cow.\n   - The cat needs the mouse.\n   - The mouse needs the bear.\n\nWe know that the cat needs the mouse, and the mouse needs the bear. However, we do not have any information about the cat needing the mouse.\n\n9. From the given information: \n   - The bear is kind.\n   - If someone is kind then they see the cat.\n\nWe know that the bear is kind, and we also know that the bear likes the cat.\n\nNow, let's analyze the statement \"The cow sees the bear\" again.\n\nFrom the given information, we have the following possible paths to determine if the cow sees the bear:\n\n* If the mouse likes the cow, then the cow sees the bear. However, we do not have any information about the mouse liking the cow.\n* If the cat needs the mouse, then the mouse needs the cow. However, we do not have any information about the cat needing the mouse.\n* If the bear needs the cow, then the bear sees the cow, and the cow sees the bear. However, we do not have any information about the bear needing the cow.\n* If the bear is red and the bear needs the cow, then the cow needs the bear. However, the bear is not red.\n\nSince we do not have any direct information about the mouse liking the cow or the cat needing the mouse, we cannot conclude that the cow sees the bear. However, we can use the given information to infer that if the cat sees the bear, and the cat is big, then the cat likes the cow. We also know that if the bear is kind, then the bear sees the cat. But we cannot conclude that the cow sees the bear from the given information.\n\nTherefore, the statement \"The cow sees the bear\" is unknown.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The cow sees the bear\" is true, false, or unknown, we need to analyze the given information and rules.\n\n1. The cow is rough. (This doesn't directly relate to the statement, but we'll keep it in mind.)\n2. The cat sees the cow. (This is a fact.)\n3. If someone likes the cow then the cow sees the bear. (This is a rule.)\n4. The cat likes the cow. (This is a fact, from \"The cat needs the cow.\")\n5. Since the cat likes the cow, according to rule 3, the cow sees the bear.\n\nHowever, we have another rule: \n6. If the bear is red and the bear needs the cow then the cow needs the bear. (This doesn't directly relate to the statement, but we'll keep it in mind.)\n\nBut we also have this fact: \n7. The bear is kind. (This doesn't directly relate to the statement, but we'll keep it in mind.)\n\nWe need to check if there's any rule or fact that contradicts our conclusion. Since none of the rules or facts contradict our conclusion, we can proceed with the analysis.\n\nWe also need to check if there's any other rule or fact that can provide more information. We have this rule:\n8. If someone sees the bear then they need the mouse. (This doesn't directly relate to the statement, but we'll keep it in mind.)\n\nBut we also have this fact:\n9. The cat sees the bear. (This is a fact, from \"The cat sees the bear.\")\n\nAnd this rule:\n10. If someone needs the mouse then they are big. (This is a rule.)\n\nWe can't directly apply this rule to the cat, because the cat sees the bear, but we don't know if the cat needs the mouse.\n\nHowever, we have this fact:\n11. The mouse needs the bear. (This is a fact, from \"The mouse needs the bear.\")\n\nAnd this rule:\n12. If someone needs the bear and the bear needs the cow then the bear needs the cat. (This is a rule.)\n\nThis rule implies that the bear needs the cat, because the bear needs the cow. We know that the cat needs the mouse, and the mouse needs the bear.\n\nHowever, we can't directly apply this rule to the statement. We need to check if there's any other rule or fact that can provide more information.\n\nWe have this fact:\n13. The cat likes the bear. (This is a fact, from \"The bear likes the cat.\")\n\nAnd this fact:\n14. The mouse likes the cat. (This is a fact, from \"The mouse likes the cat.\")\n\nWe can't directly apply these facts to the statement. However, we have this rule:\n15. If someone likes the cow then the cow sees the bear. (This is a rule, which we already discussed.)\n\nWe also have this fact:\n16. The mouse sees the cow. (This is a fact, from \"The mouse sees the cow.\")\n\nThis fact implies that the mouse likes the cow, because the mouse sees the cow. However, we can't directly apply this fact to the statement.\n\nHowever, we have this rule:\n17. If someone sees the bear and they are big then they like the cow. (This is a rule.)\n\nWe can't directly apply this rule to the statement. However, we have this fact:\n18. If someone needs the mouse then they are big. (This is a rule, which we already discussed.)\n\nWe can apply this rule to the cat, because the cat sees the bear and the cat needs the mouse. However, this rule implies that the cat is big, but it doesn't directly relate to the statement.\n\nHowever, we have this rule:\n19. If the cat needs the mouse then the mouse needs the cow. (This is a rule.)\n\nThis rule implies that the mouse needs the cow, because the cat needs the mouse. We know that the mouse needs the bear.\n\nHowever, we can't directly apply this rule to the statement. However, we have this fact:\n20. The cow is rough. (This is a fact, which we already discussed.)\n\nThis fact doesn't directly relate to the statement. However, we have this rule:\n21. If someone is kind then they see the cat. (This is a rule.)\n\nWe know that the bear is kind. However, this rule implies that the bear sees the cat, but it doesn't directly relate to the statement.\n\nHowever, we have this fact:\n22. The bear likes the cat. (This is a fact, which we already discussed.)\n\nThis fact implies that the bear sees the cat, but it doesn't directly relate to the statement.\n\nHowever, we have this fact:\n23. The cat needs the cow. (This is a fact, which we already discussed.)\n\nThis fact implies that the cat sees the cow, because the cat needs the cow. However, we can't directly apply this fact to the statement.\n\nHowever, we have this rule:\n24. If someone sees the bear then they need the mouse. (This is a rule, which we already discussed.)\n\nWe can't directly apply this rule to the statement. However, we have this fact:\n25. The cat sees the bear. (This is a fact, which we already discussed.)\n\nThis fact implies that the cat needs the mouse, because the cat sees the bear. However, we can't directly apply this fact to the statement.\n\nHowever, we have this rule:\n26. If the bear is kind and the bear needs the cow then the cow needs the bear. (This is a rule.)\n\nWe know that the bear is kind and the bear needs the cow. However, this rule implies that the cow needs the bear, but it doesn't directly relate to the statement.\n\nHowever, we have this fact:\n27. The cat sees the cow. (This is a fact, which we already discussed.)\n\nThis fact implies that the cat likes the cow, because the cat sees the cow. However, we can't directly apply this fact to the statement.\n\nHowever, we have this rule:\n28. If someone needs the bear and the bear needs the cow then the bear needs the cat. (This is a rule, which we already discussed.)\n\nWe can't directly apply this rule to the statement. However, we have this fact:\n29. The mouse needs the bear. (This is a fact, which we already discussed.)\n\nThis fact implies that the mouse sees the bear, because the mouse needs the bear. However, we can't directly apply this fact to the statement.\n\nHowever, we have this fact:\n30. The bear is kind. (This is a fact, which we already discussed.)\n\nThis fact implies that the bear sees the cat, because the bear is kind. However, we can't directly apply this fact to the statement.\n\nHowever, we have this rule:\n31. If someone is kind then they see the cat. (This is a rule, which we already discussed.)\n\nWe know that the bear is kind. However, this rule implies that the bear sees the cat, but it doesn't directly relate to the statement.\n\nHowever, we have this rule:\n32. If someone sees the bear and they are big then they like the cow. (This is a rule, which we already discussed.)\n\nWe can't directly apply this rule to the statement. However, we have this fact:\n33. The mouse sees the cow. (This is a fact, which we already discussed.)\n\nThis fact implies that the mouse likes the cow, because the mouse sees the cow. However, we can't directly apply this fact to the statement.\n\nHowever, we have this rule:\n34. If the cat needs the mouse then the mouse needs the cow. (This is a rule, which we already discussed.)\n\nThis rule implies that the mouse needs the cow, because the cat needs the mouse. We know that the mouse needs the bear.\n\nHowever, we can't directly apply this rule to the statement. However, we have this fact:\n35. The bear likes the cat. (This is a fact, which we already discussed.)\n\nThis fact implies that the bear sees the cat, but it doesn't directly relate to the statement.\n\nHowever, we have this fact:\n36. The mouse likes the cat. (This is a fact, which we already discussed.)\n\nThis fact implies that the mouse sees the cat, but it doesn't directly relate to the statement.\n\nHowever, we have this rule:\n37. If someone needs the mouse then they are big. (This is a rule, which we already discussed.)\n\nWe can't directly apply this rule to the statement. However, we have this fact:\n38. The cat sees the bear. (This is a fact, which we already discussed.)\n\nThis fact implies that the cat needs the mouse, because the cat sees the bear. However, we can't directly apply this fact to the statement.\n\nHowever, we have this rule:\n39. If someone sees the bear then they need the mouse. (This is a rule, which we already discussed.)\n\nWe can't directly apply this rule to the statement. However, we have this fact:\n40. The mouse sees the cow. (This is a fact, which we already discussed.)\n\nThis fact implies that the mouse likes the cow, because the mouse sees the cow. However, we can't directly apply this fact to the statement.\n\nHowever, we have this rule:\n41. If someone needs the bear and the bear needs the cow then the bear needs the cat. (This is a rule, which we already discussed.)\n\nWe can't directly apply this rule to the statement. However, we have this fact:\n42. The cat needs the cow. (This is a fact, which we already discussed.)\n\nThis fact implies that the cat sees the cow, because the cat needs the cow. However, we can't directly apply this fact to the statement.\n\nHowever, we have this fact:\n43",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The cow sees the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cow is rough (from statement 8).\n2. The cat sees the cow (from statement 6).\n   - Since the cat sees the cow, we can't directly determine if the cow sees the bear from this information.\n\n3. If someone likes the cow then the cow sees the bear (from statement 7).\n   - However, we don't have any information about someone liking the cow. We only have information about the cat needing the cow (from statement 4), but this doesn't imply that the cat likes the cow.\n\n4. If the bear is red and the bear needs the cow then the cow needs the bear (from statement 10).\n   - We don't have any information about the bear's color, so we can't use this statement.\n\n5. The mouse sees the cow (from statement 8).\n   - We don't know if the mouse likes the cow, so we can't use this statement in conjunction with statement 7.\n\n6. The cat needs the cow (from statement 4).\n   - We don't have any information about the cat liking the cow. However, we do have information about the mouse needing the bear (from statement 9) and the mouse seeing the cow (from statement 8). The mouse needs the bear and the bear needs the cow, so this implies the mouse needs the cow. And from statement 5, if the cat needs the mouse then the mouse needs the cow. This means the cat needs the cow.\n\n7. If someone needs the bear and the bear needs the cow then the bear needs the cat (from statement 2).\n   - We know the mouse needs the bear (from statement 9) and the bear needs the cow (this is an implication from statement 5 and 6). So the bear needs the cat.\n\n8. The bear is kind (from statement 1).\n   - If someone is kind then they see the cat (from statement 11). Since the bear is kind, this means the bear sees the cat.\n\n9. The cat likes the bear (from statement 2).\n   - If someone sees the bear then they need the mouse (from statement 1). However, we know the cat sees the bear (from statement 8) but we don't know if the cat needs the mouse. We do know the cat needs the cow (from statement 4) and the mouse needs the cow (from statement 5). However, we can't determine if the cat needs the mouse.\n\n10. The cat sees the cow (from statement 6).\n    - We know the cat sees the cow but we still can't determine if the cow sees the bear.\n\nHowever, from statement 7, if someone likes the cow then the cow sees the bear. We can't directly determine if the cow likes the bear or not, but we do know the cat likes the bear (from statement 2) and the cat sees the cow (from statement 6). This doesn't directly imply that the cow sees the bear.\n\nHowever, if the cat likes the bear and the cat sees the cow, then we can use statement 8 which states that if someone sees the bear then they are big. If someone sees the bear and they are big then they like the cow. We know the cat sees the bear and the cat is not big. We do know the mouse sees the cow and the mouse is big (from statement 9 and statement 1). If the mouse sees the bear and the mouse is big, then the mouse likes the cow. However, this doesn't imply that the cat likes the cow. \n\nHowever, we do know the cat needs the mouse (from statement 5). If someone needs the mouse then they are big (from statement 4). This implies the cat is big. If the cat sees the bear and the cat is big then the cat likes the cow. We know the cat sees the bear and the cat is big, so the cat likes the cow.\n\nHowever, this doesn't directly imply that the cow sees the bear. \n\nHowever, we can use the information that the cat likes the cow (from statement 10) and statement 7 which states that if someone likes the cow then the cow sees the bear. \n\nFrom statement 7, if someone likes the cow then the cow sees the bear. We know the cat likes the cow (from statement 10) and the cat sees the cow (from statement 6). Therefore, the cow sees the bear.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The cow sees the bear\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nFrom the given statements:\n\n1. The cow is rough.\n2. If someone likes the cow then the cow sees the bear.\n3. If the bear is red and the bear needs the cow then the cow needs the bear.\n\nWe can start by assuming that the bear is not red, so we can focus on the first two statements.\n\nFrom statement 1, we know that the cow is rough.\n\nFrom statement 2, we know that if someone likes the cow, then the cow sees the bear. However, we cannot directly conclude that the cow sees the bear from this statement because we don't know if anyone likes the cow.\n\nNow, let's examine the relationship between the statements:\n\n- The cat likes the bear. (Statement 3)\n- The cat needs the cow. (Statement 4)\n- The cat sees the bear. (Statement 5)\n\nFrom statement 5, we know that the cat sees the bear.\n\nSince the cat likes the bear (statement 3) and the cat sees the bear (statement 5), we can conclude that the cat likes the bear and sees the bear.\n\nFrom statement 6, we know that the mouse likes the cat. Since the cat sees the bear (statement 5), we can infer that the mouse sees the bear as well.\n\nFrom statement 10, we know that if someone sees the bear then they need the mouse.\n\nNow, let's examine the relationship between the bear and the mouse:\n\n- The mouse needs the bear. (Statement 7)\n- The mouse sees the cow. (Statement 8)\n- The mouse likes the cat. (Statement 6)\n\nFrom statement 7, we know that the mouse needs the bear.\n\nNow, let's examine the relationship between the bear and the cow:\n\n- The bear likes the cat. (Statement 1)\n- The cat needs the cow. (Statement 4)\n- The cat sees the bear. (Statement 5)\n\nFrom statement 4, we know that the cat needs the cow.\n\nFrom statement 2, we know that if the bear is red and the bear needs the cow then the cow needs the bear. However, we don't have any information about the color of the bear, so we cannot conclude that the cow needs the bear.\n\nFrom statement 9, we know that if someone needs the bear and the bear needs the cow then the bear needs the cat.\n\nNow, let's examine the relationship between the statements:\n\n- The cat needs the cow. (Statement 4)\n- The bear likes the cat. (Statement 2)\n- The bear is kind. (Statement 1)\n\nFrom statement 1, we know that the bear is kind.\n\nFrom statement 11, we know that if someone is kind then they see the cat.\n\nNow, we can conclude that the bear sees the cat.\n\nHowever, we still need to determine whether the cow sees the bear.\n\nFrom statement 4, we know that the cat needs the cow.\n\nFrom statement 10, we know that if someone sees the bear then they need the mouse.\n\nFrom statement 6, we know that the mouse likes the cat.\n\nFrom statement 11, we know that if someone is kind then they see the cat.\n\nFrom statement 1, we know that the bear is kind.\n\nSo, we can conclude that the bear sees the cat.\n\nFrom statement 12, we know that if someone sees the bear and they are big then they like the cow.\n\nHowever, we cannot conclude that the cow sees the bear from this statement because we don't know if anyone sees the bear and is big.\n\nThe only information we have about the cow is that it is rough (statement 1) and that if someone likes the cow then the cow sees the bear (statement 2). However, we don't know if anyone likes the cow.\n\nTherefore, we cannot conclude whether the cow sees the bear with certainty. The statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The cow sees the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement to be determined is: \"The cow sees the bear.\"\n2. The given information is: \n   - The cow is rough.\n   - If someone likes the cow then the cow sees the bear.\n3. We need to find any information that directly relates to the statement or the given condition.\n\nFrom the given information, we know that \"If someone likes the cow then the cow sees the bear.\" However, there is no information that states someone likes the cow. \n\n4. We can start looking at other information that might relate to the statement or the condition. \n   - The cat likes the bear.\n   - The cat needs the cow.\n   - The cat sees the bear.\n   - The cat sees the cow.\n\nSince the cat sees the cow and the cat likes the bear, we cannot directly conclude that the cow sees the bear from this information.\n\n5. We need to continue looking for information that might relate to the statement or the condition.\n   - The mouse likes the cat.\n   - The mouse needs the bear.\n   - The mouse sees the cow.\n   - If someone needs the mouse then they are big.\n\nFrom this information, we still cannot directly conclude that the cow sees the bear.\n\n6. We can look at other conditions that might relate to the statement.\n   - If someone sees the bear then they need the mouse.\n   - If someone needs the bear and the bear needs the cow then the bear needs the cat.\n   - If the bear is red and the bear needs the cow then the cow needs the bear.\n   - If someone needs the mouse then they are big.\n   - If someone sees the bear and they are big then they like the cow.\n   - If the cat needs the mouse then the mouse needs the cow.\n   - If someone is kind then they see the cat.\n\nStill, we cannot directly conclude that the cow sees the bear from this information.\n\n7. We can look at the information again to see if we missed something.\n   - The bear is kind.\n   - The bear likes the cat.\n   - The cat likes the bear.\n   - The cat needs the cow.\n   - The cat sees the bear.\n   - The cat sees the cow.\n   - The cow is rough.\n   - The mouse likes the cat.\n   - The mouse needs the bear.\n   - The mouse sees the cow.\n   - If someone sees the bear then they need the mouse.\n   - If someone needs the bear and the bear needs the cow then the bear needs the cat.\n   - If someone likes the cow then the cow sees the bear.\n   - If the bear is red and the bear needs the cow then the cow needs the bear.\n   - If someone needs the mouse then they are big.\n   - If someone sees the bear and they are big then they like the cow.\n   - If the cat needs the mouse then the mouse needs the cow.\n   - If someone is kind then they see the cat.\n\nUpon reviewing the information again, we find that \"The bear is kind\" and \"If someone is kind then they see the cat.\" This means that the bear sees the cat.\n\n8. Now we need to see if we can use this information to determine whether the cow sees the bear.\n   - We know that the bear sees the cat.\n   - The cat sees the cow.\n\nFrom this information, we can conclude that the bear sees the cat and the cat sees the cow. However, we still cannot conclude that the cow sees the bear.\n\n9. We need to look at the information again to see if we can find a way to determine whether the cow sees the bear.\n   - The statement to be determined is: \"The cow sees the bear.\"\n   - The given information is: \n     - The cow is rough.\n     - If someone likes the cow then the cow sees the bear.\n   - We know that the bear is kind, and the bear sees the cat.\n   - The cat sees the cow.\n\nHowever, there is no information that states someone likes the cow.\n\n10. Upon reviewing the information again, we find that \"The bear is kind\" and \"If someone is kind then they see the cat.\" This means that the bear sees the cat.\n\nNow we can look at the statement \"If someone sees the bear and they are big then they like the cow.\" Since the bear sees the cat and the cat sees the cow, we can say that the cat sees the cow and sees the bear. However, we still cannot conclude that the cow sees the bear.\n\n11. Upon reviewing the information again, we find that \"The cat needs the mouse\" and \"If the cat needs the mouse then the mouse needs the cow.\" This means that the mouse needs the cow.\n\nWe also know that the mouse sees the cow.\n\n12. We can look at the information again to see if we can find a way to determine whether the cow sees the bear.\n   - The statement to be determined is: \"The cow sees the bear.\"\n   - The given information is: \n     - The cow is rough.\n     - If someone likes the cow then the cow sees the bear.\n   - We know that the bear is kind, and the bear sees the cat.\n   - The cat sees the cow.\n\nHowever, there is no information that states someone likes the cow.\n\n13. Upon reviewing the information again, we find that \"The cat sees the cow\" and \"The mouse sees the cow.\" \n\nHowever, there is no information that directly relates to the cow seeing the bear.\n\n14. We need to look at other information that might relate to the statement.\n   - The mouse needs the bear.\n   - If someone needs the mouse then they are big.\n   - If someone sees the bear and they are big then they like the cow.\n\nHowever, there is no information that directly relates to the cow seeing the bear.\n\n15. Upon reviewing the information again, we find that \"If someone sees the bear then they need the mouse.\" Since the cat sees the bear, the cat needs the mouse.\n\nWe also know that the mouse needs the cow.\n\n16. The cat sees the cow.\n\nHowever, there is no information that directly relates to the cow seeing the bear.\n\n17. We need to look at other information that might relate to the statement.\n   - If the bear is red and the bear needs the cow then the cow needs the bear.\n\nHowever, we do not know if the bear is red.\n\n18. We need to look at other information that might relate to the statement.\n   - The statement to be determined is: \"The cow sees the bear.\"\n   - The given information is: \n     - The cow is rough.\n     - If someone likes the cow then the cow sees the bear.\n   - We know that the bear is kind, and the bear sees the cat.\n   - The cat sees the cow.\n\nHowever, there is no information that states someone likes the cow.\n\n19. We need to look at the information again to see if we can find a way to determine whether the cow sees the bear.\n   - The statement to be determined is: \"The cow sees the bear.\"\n   - The given information is: \n     - The cow is rough.\n     - If someone likes the cow then the cow sees the bear.\n   - We know that the bear is kind, and the bear sees the cat.\n   - The cat sees the cow.\n\nHowever, there is no information that states someone likes the cow.\n\n20. We need to look at other information that might relate to the statement.\n   - If the bear needs the cow and someone needs the bear then the bear needs the cat.\n\nHowever, there is no information that states someone needs the bear.\n\n21. We need to look at the information again to see if we can find a way to determine whether the cow sees the bear.\n   - The statement to be determined is: \"The cow sees the bear.\"\n   - The given information is: \n     - The cow is rough.\n     - If someone likes the cow then the cow sees the bear.\n   - We know that the bear is kind, and the bear sees the cat.\n   - The cat sees the cow.\n\nHowever, there is no information that states someone likes the cow.\n\n22. We need to look at other information that might relate to the statement.\n   - If someone sees the bear and they are big then they like the cow.\n\nHowever, there is no information that states someone sees the bear and is big.\n\n23. We need to look at other information that might relate to the statement.\n   - The mouse sees the cow.\n\nHowever, there is no information that directly relates to the cow seeing the bear.\n\n24. We need to look at other information that might relate to the statement.\n   - The statement to be determined is: \"The cow sees the bear.\"\n   - The given information is: \n     - The cow is rough.\n     - If someone likes the cow then the cow sees the bear.\n   - We know that the bear is kind, and the bear sees the cat.\n   - The cat sees the cow.\n\nHowever, there is no information that states someone likes the cow.\n\n25. We need to look at other information that might relate to the statement.\n   - If the bear is red and the bear needs the cow then the cow needs the bear.\n\nHowever, we do not know if the bear is red.\n\n26. We need to look at other information that might relate to the statement.\n   - The mouse needs the bear.\n\nHowever, there is no information that directly relates to the cow seeing the bear.\n\n27. We need to look at other information that might relate to the statement.\n   - If someone sees the bear then they need the mouse.\n\nHowever, there is no information that directly relates to the cow seeing the bear.\n\n28. We need to look at other information that",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The cow sees the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that the cat likes the bear. \n2. The cat needs the cow.\n3. The cat sees the bear. \n4. The cow is rough.\n5. The mouse likes the cat.\n6. The mouse needs the bear.\n7. The mouse sees the cow.\n8. If someone sees the bear then they need the mouse. \n   - We cannot conclude anything from this statement yet.\n9. If someone needs the bear and the bear needs the cow then the bear needs the cat. \n   - We cannot conclude anything from this statement yet.\n10. If someone likes the cow then the cow sees the bear. \n    - This statement implies a relationship between the cow and something that likes the cow, but we do not know who likes the cow yet.\n11. If the bear is red and the bear needs the cow then the cow needs the bear. \n    - We do not have enough information to conclude whether the bear is red or not.\n12. If someone needs the mouse then they are big. \n    - We cannot conclude anything from this statement yet.\n13. If someone sees the bear and they are big then they like the cow. \n    - We cannot conclude anything from this statement yet.\n14. If the cat needs the mouse then the mouse needs the cow. \n    - This statement implies a relationship between the cat, the mouse, and the cow, but we do not know if the cat needs the mouse yet.\n15. If someone is kind then they see the cat. \n    - We cannot conclude anything from this statement yet.\n\nNow, let's analyze the statements related to the cow seeing the bear:\n\n- Statement 10 says that if someone likes the cow, then the cow sees the bear. \n- Statement 3 says that the cat sees the bear.\n\nFrom statement 10, we can conclude that if the cat likes the cow, then the cow sees the bear. \n\nHowever, we do not have any direct information that the cat likes the cow. \n\nBut, we do have some indirect information:\n\n- Statement 2 says that the cat needs the cow.\n- Statement 6 says that the mouse needs the bear.\n- Statement 9 says that if someone needs the bear and the bear needs the cow then the bear needs the cat.\n\nFrom statement 9, we can conclude that if the cat needs the cow, then the cat needs the bear. \n\nHowever, we do not have any direct information that the cat needs the cow.\n\nBut, we do have some indirect information:\n\n- Statement 14 says that if the cat needs the mouse then the mouse needs the cow. \n- Statement 6 says that the mouse needs the bear.\n\nFrom statement 14, we can conclude that if the cat needs the mouse, then the mouse needs the cow.\n\nFrom statement 6, we can conclude that the mouse needs the bear.\n\nNow, let's connect the information:\n\n- Statement 3 says that the cat sees the bear.\n- Statement 2 says that the cat needs the cow.\n- Statement 14 says that if the cat needs the mouse then the mouse needs the cow.\n- Statement 6 says that the mouse needs the bear.\n\nWe can conclude that the cat needs the mouse because the cat sees the bear and the mouse needs the bear.\n\nNow that we know the cat needs the mouse, we can conclude that the mouse needs the cow.\n\nSince the cat sees the bear, and the cat needs the cow, we can conclude that the cat likes the cow.\n\nNow that we know the cat likes the cow, we can conclude that the cow sees the bear.\n\nTherefore, the statement \"The cow sees the bear\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The cow sees the bear\" is true, false, or unknown, let's break down the given information step by step.\n\n1. The cow is rough. \n   This does not directly relate to the statement \"The cow sees the bear,\" so we can move on.\n\n2. If someone likes the cow then the cow sees the bear.\n   This rule implies that if we can find someone who likes the cow, then we can conclude that the cow sees the bear. However, we don't have any information about anyone liking the cow yet.\n\n3. The cat likes the bear.\n   This statement does not directly relate to the cow, so we can move on.\n\n4. The cat needs the cow.\n   This statement does not directly relate to the cow seeing the bear, so we can move on.\n\n5. The cat sees the bear.\n   This statement does not directly relate to the cow, so we can move on.\n\n6. The mouse likes the cat.\n   This statement does not directly relate to the cow, so we can move on.\n\n7. If someone needs the bear and the bear needs the cow then the bear needs the cat.\n   This rule does not relate to the cow seeing the bear, so we can move on.\n\n8. If the bear is red and the bear needs the cow then the cow needs the bear.\n   This rule does not relate to the cow seeing the bear, and we don't have any information about the bear's color, so we can move on.\n\n9. The mouse needs the bear.\n   This statement does not directly relate to the cow seeing the bear, so we can move on.\n\n10. The mouse sees the cow.\n    This statement does not directly relate to the cow seeing the bear, so we can move on.\n\n11. If someone sees the bear then they need the mouse.\n    This rule does not relate to the cow seeing the bear, so we can move on.\n\n12. If someone is kind then they see the cat.\n    This rule does not relate to the cow seeing the bear, so we can move on.\n\nHowever, let's look at the statement \"The cat needs the mouse\" from the rules again.\n\n13. If the cat needs the mouse then the mouse needs the cow.\n   This statement is not the exact opposite of the statement \"The cow needs the mouse,\" but it implies a chain of needs: cat -> mouse -> cow.\n\nNow, let's examine the statement \"If someone needs the mouse then they are big.\" From this, we can infer that the mouse needs the bear because the mouse is big, since someone needs the mouse.\n\nWe can now look at the rule \"If someone needs the mouse then they are big.\" This statement is true for the bear since the bear needs the mouse.\n\nWe can also look at the rule \"If someone sees the bear and they are big then they like the cow.\" Since the bear is big, the bear sees the bear (which is itself), but this is irrelevant. However, this rule implies that someone who is big and sees the bear likes the cow. Since the bear is big, the bear sees the cow.\n\nSince the bear is big, the bear sees the cow. However, we know from the rule \"If someone likes the cow then the cow sees the bear\" that if someone likes the cow then the cow sees the bear.\n\nNow, let's look at the rule \"The cat needs the mouse.\" Since the cat needs the mouse, the mouse needs the cow. Since the mouse needs the cow, the bear needs the cow.\n\nFrom the rule \"If someone needs the bear and the bear needs the cow then the bear needs the cat,\" we can conclude that the bear needs the cat.\n\nHowever, we know that the bear needs the cow, so the bear needs the cat.\n\nWe can now look at the rule \"If the bear is red and the bear needs the cow then the cow needs the bear.\" However, we don't have any information about the bear's color, so we can move on.\n\nNow, we have established that the bear needs the cat, the bear needs the cow, and the mouse needs the cow. Since the bear sees the cow, we can now look at the rule \"If someone sees the bear then they need the mouse.\"\n\nHowever, we know that the mouse is big, and the bear is big, so the mouse needs the bear.\n\nWe also know that the cat needs the mouse. However, we can conclude from the rule \"If someone is kind then they see the cat\" that the bear sees the cat.\n\nNow, we can look at the rule \"If someone sees the cat then the cat sees the bear.\" Since the bear sees the cat, the cat sees the bear.\n\nHowever, we know that the cat sees the bear, so we can look at the rule \"If the cat sees the bear then the cat needs the cow.\" Since the cat sees the bear, the cat needs the cow.\n\nWe can now look at the rule \"If someone needs the cow then the cow sees the bear.\" Since the cat needs the cow, the cow sees the bear.\n\nTherefore, the statement \"The cow sees the bear\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The cow sees the bear\" is true, false, or unknown, let's break down the information step by step.\n\n1. The statement we want to determine is \"The cow sees the bear.\"\n\nFrom the given information:\n- The cow is rough. (This does not directly relate to the statement we want to determine.)\n\n- If someone likes the cow then the cow sees the bear. (This is a clue that might relate to the statement we want to determine.)\n\nHowever, there is no direct information stating that someone likes the cow. So, we cannot conclude that the cow sees the bear using this clue.\n\n2. There is another clue that might be related to the statement we want to determine:\n- If the bear is red and the bear needs the cow then the cow needs the bear. (This does not directly relate to the statement we want to determine.)\n\n- The bear is kind. (This does not directly relate to the statement we want to determine.)\n\n- The bear likes the cat. (This does not directly relate to the statement we want to determine.)\n\n- The cat likes the bear. (This does not directly relate to the statement we want to determine.)\n\n- The cat needs the cow. (This does not directly relate to the statement we want to determine.)\n\n- The cat sees the bear. (This does not directly relate to the statement we want to determine.)\n\n- The cat sees the cow. (This does not directly relate to the statement we want to determine.)\n\n- The mouse likes the cat. (This does not directly relate to the statement we want to determine.)\n\n- The mouse needs the bear. (This does not directly relate to the statement we want to determine.)\n\n- The mouse sees the cow. (This does not directly relate to the statement we want to determine.)\n\n- If someone sees the bear then they need the mouse. (This does not directly relate to the statement we want to determine.)\n\n- If someone needs the bear and the bear needs the cow then the bear needs the cat. (This does not directly relate to the statement we want to determine.)\n\n- If someone is kind then they see the cat. (The bear is kind. Therefore, the bear sees the cat. However, this does not directly relate to the statement we want to determine.)\n\n- If the cat needs the mouse then the mouse needs the cow. (This does not directly relate to the statement we want to determine.)\n\nFrom the given information, there is a clue that might be related to the statement we want to determine:\n- If the bear is red and the bear needs the cow then the cow needs the bear. However, the bear is not red.\n\nHowever, there is another clue that might be related to the statement we want to determine:\n- If someone likes the cow then the cow sees the bear. But there is no information stating that someone likes the cow.\n\n3. There is no information that directly states the cow sees the bear. However, we can use a combination of clues to determine the relationship between the cow and the bear.\n\nFrom the given information:\n- The cat sees the cow.\n- The cat needs the cow.\n- The mouse sees the cow.\n- The mouse needs the bear.\n- The mouse likes the cat.\n- The cat likes the bear.\n- The bear is kind.\n\nUsing the clues, we can conclude that:\n- The cat sees the cow.\n- The mouse sees the cow.\n\nHowever, there is no information stating that the cow sees the bear.\n\nTherefore, the statement \"The cow sees the bear\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bear)",
+          "z3_formula": "likes_cat_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, cow)",
+          "z3_formula": "needs_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, cow)",
+          "z3_formula": "sees_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_X_bear, needs_X_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & needs(bear, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(And(needs_X_bear, needs_bear_Y), needs_X_Y)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(X, bear)",
+          "z3_formula": "Implies(likes_X_cow, sees_X_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, Y) -> needs(Y, X)",
+          "z3_formula": "Implies(And(red_X, needs_X_Y), needs_Y_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> big(X)",
+          "z3_formula": "Implies(needs_X_mouse, big_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & big(X) -> likes(X, cow)",
+          "z3_formula": "Implies(And(sees_X_bear, big_X), likes_X_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> needs(mouse, Y)",
+          "z3_formula": "Implies(needs_X_mouse, needs_mouse_Y)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> sees(X, cat)",
+          "z3_formula": "Implies(kind_X, sees_X_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, bear)",
+          "z3_formula": "sees_cow_bear == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bear)",
+          "z3_formula": "likes_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, cow)",
+          "z3_formula": "needs_cat_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, cow)",
+          "z3_formula": "sees_cat_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_X_bear, needs_X_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & needs(bear, cow) -> needs(bear, cat)",
+          "z3_formula": "Implies(And(needs_X_bear, needs_bear_cow), needs_bear_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(X, bear)",
+          "z3_formula": "Implies(likes_X_cow, sees_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(bear) & needs(bear, cow) -> needs(cow, bear)",
+          "z3_formula": "Implies(And(red_bear, needs_bear_cow), needs_cow_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> big(X)",
+          "z3_formula": "Implies(needs_X_mouse, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & big(X) -> likes(X, cow)",
+          "z3_formula": "Implies(And(sees_X_bear, big_X), likes_X_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cat, mouse) -> needs(mouse, cow)",
+          "z3_formula": "Implies(needs_cat_mouse, needs_mouse_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> sees(X, cat)",
+          "z3_formula": "Implies(kind_X, sees_X_cat)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bear)",
+          "z3_formula": "likes_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bear)",
+          "z3_formula": "likes_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, cow)",
+          "z3_formula": "needs_cat_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, cow)",
+          "z3_formula": "sees_cat_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_bear_X, needs_mouse_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & needs(bear, cow) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_bear_X, needs_bear_cow), needs_X_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(X, bear)",
+          "z3_formula": "Implies(likes_X_cow, sees_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(bear) & needs(bear, cow) -> needs(X, bear)",
+          "z3_formula": "Implies(And(red_bear, needs_bear_cow), needs_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> big(X)",
+          "z3_formula": "Implies(needs_mouse_X, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & big(X) -> likes(X, cow)",
+          "z3_formula": "Implies(And(sees_X_bear, big_X), likes_X_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cat, mouse) -> needs(mouse, cow)",
+          "z3_formula": "Implies(needs_cat_mouse, needs_mouse_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> sees(X, cat)",
+          "z3_formula": "Implies(kind_X, sees_X_cat)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_bear, needs_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & needs(bear, cow) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_bear, needs_bear_cow), needs_bear_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(cow, bear)",
+          "z3_formula": "Implies(likes_cow, sees_cow_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> sees(X, cat)",
+          "z3_formula": "Implies(kind_bear, sees_bear_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cow, bear)",
+          "z3_formula": "sees_cow_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(X, bear)",
+          "z3_formula": "Implies(likes_mouse_cow, sees_cow_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bear)",
+          "z3_formula": "likes_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & needs(bear, cow) -> needs(bear, cat)",
+          "z3_formula": "Implies(And(needs_bear_cow, needs_bear_cow), needs_bear_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, cow)",
+          "z3_formula": "needs_cat_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_cat_bear, needs_cat_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & red(bear) -> needs(cow, bear)",
+          "z3_formula": "Implies(And(needs_bear_cow, red_bear), needs_cow_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> big(X)",
+          "z3_formula": "Implies(needs_cat_mouse, big_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, mouse)",
+          "z3_formula": "needs_cat_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & big(X) -> likes(X, cow)",
+          "z3_formula": "Implies(And(sees_cat_bear, big_cat), likes_cat_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> needs(mouse, cow)",
+          "z3_formula": "Implies(needs_cat_mouse, needs_mouse_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, mouse)",
+          "z3_formula": "needs_cat_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> sees(X, cat)",
+          "z3_formula": "Implies(kind_bear, sees_bear_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 9
+        }
+      ],
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(cow, bear)",
+          "z3_formula": "Implies(likes_X_cow, sees_cow_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bear)",
+          "z3_formula": "likes_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, cow)",
+          "z3_formula": "needs_cat_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_X_bear, needs_X_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & needs(bear, cow) -> needs(bear, cat)",
+          "z3_formula": "Implies(And(needs_X_bear, needs_bear_cow), needs_bear_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, cow)",
+          "z3_formula": "needs_cat_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> sees(X, cat)",
+          "z3_formula": "Implies(kind_bear, sees_bear_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & big(X) -> likes(X, cow)",
+          "z3_formula": "Implies(And(sees_X_bear, big_X), likes_X_cow)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(cow, bear)",
+          "z3_formula": "Implies(likes_someone_cow, sees_cow_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> sees(X, cat)",
+          "z3_formula": "Implies(kind_bear, sees_bear_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, cow)",
+          "z3_formula": "sees_cat_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_cat_bear, needs_cat_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(cow, bear)",
+          "z3_formula": "Implies(likes_someone_cow, sees_cow_bear)",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(cat, bear)",
+          "z3_formula": "likes_cat_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, cow)",
+          "z3_formula": "needs_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_X_bear, needs_X_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & needs(bear, cow) -> needs(bear, cat)",
+          "z3_formula": "Implies(And(needs_X_bear, needs_bear_cow), needs_bear_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(X, bear)",
+          "z3_formula": "Implies(likes_X_cow, sees_X_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & needs(X, cow) -> needs(X, bear)",
+          "z3_formula": "Implies(And(red_X, needs_X_cow), needs_X_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> big(X)",
+          "z3_formula": "Implies(needs_X_mouse, big_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & big(X) -> likes(X, cow)",
+          "z3_formula": "Implies(And(sees_X_bear, big_X), likes_X_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cat, mouse) -> needs(mouse, cow)",
+          "z3_formula": "Implies(needs_cat_mouse, needs_mouse_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> sees(X, cat)",
+          "z3_formula": "Implies(kind_X, sees_X_cat)",
+          "source_step": 15
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cow)",
+          "z3_formula": "rough_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(cow, bear)",
+          "z3_formula": "Implies(likes_someone_cow, sees_cow_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(bear) & needs(bear, cow) -> needs(bear, cat)",
+          "z3_formula": "Implies(And(red_bear, needs_bear_cow), needs_bear_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bear)",
+          "z3_formula": "kind_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bear)",
+          "z3_formula": "likes_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bear)",
+          "z3_formula": "likes_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, cow)",
+          "z3_formula": "needs_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, cow)",
+          "z3_formula": "sees_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_someone_bear, needs_someone_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & needs(bear, cow) -> needs(bear, cat)",
+          "z3_formula": "Implies(And(needs_someone_bear, needs_bear_cow), needs_bear_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> sees(X, cat)",
+          "z3_formula": "Implies(kind_bear, sees_bear_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cat, mouse) -> needs(mouse, cow)",
+          "z3_formula": "Implies(needs_cat_mouse, needs_mouse_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, cow)",
+          "z3_formula": "sees_cat_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, bear)",
+          "z3_formula": "sees_cow_bear == Unknown",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 146,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 45
+    },
+    "maxsat_stats": {
+      "satisfied": 45,
+      "excluded": 0,
+      "total_weight": 146,
+      "solve_time_ms": 1.2060301378369331
+    },
+    "timing": {
+      "trace_gen_s": 25.194,
+      "extraction_s": 37.932,
+      "dedup_s": 1.229,
+      "maxsat_s": 0.004,
+      "total_s": 64.359
+    }
+  }
+}

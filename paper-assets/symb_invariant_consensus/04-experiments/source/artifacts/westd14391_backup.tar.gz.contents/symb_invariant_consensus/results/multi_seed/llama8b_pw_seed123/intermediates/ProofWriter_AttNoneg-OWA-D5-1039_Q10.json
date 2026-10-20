@@ -1,0 +1,963 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1039_Q10",
+    "problem": "Charlie is big. Charlie is kind. Charlie is nice. Charlie is round. Erin is round. Fiona is cold. Fiona is kind. Fiona is round. Harry is round. Harry is smart. If something is blue then it is cold. Blue, cold things are nice. Blue things are big. All round things are blue. Smart things are blue. Round, smart things are kind. All nice, round things are smart. Nice, round things are big.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not smart.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nSmart($x, bool) ::: Is x smart?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nBig(Charlie, True) ::: Charlie is big.\nKind(Charlie, True) ::: Charlie is kind.\nNice(Charlie, True) ::: Charlie is nice.\nRound(Charlie, True) ::: Charlie is round.\nRound(Erin, True) ::: Erin is round.\nCold(Fiona, True) ::: Fiona is cold.\nKind(Fiona, True) ::: Fiona is kind.\nRound(Fiona, True) ::: Fiona is round.\nRound(Harry, True) ::: Harry is round.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nBlue($x, True) >>> Cold($x, True) ::: If something is blue then it is cold.\nBlue($x, True) && Cold($x, True) >>> Nice($x, True) ::: Blue, cold things are nice.\nBlue($x, True) >>> Big($x, True) ::: Blue things are big.\nRound($x, True) >>> Blue($x, True) ::: All round things are blue.\nSmart($x, True) >>> Blue($x, True) ::: Smart things are blue.\nRound($x, True) && Smart($x, True) >>> Kind($x, True) ::: Round, smart things are kind.\nNice($x, True) && Round($x, True) >>> Smart($x, True) ::: All nice, round things are smart.\nNice($x, True) && Round($x, True) >>> Big($x, True) ::: Nice, round things are big.\n\nQuery:\nSmart(Erin, False) ::: Erin is not smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 124.0,
+      "Unknown": 93.0
+    },
+    "answer_counts": {
+      "False": 9,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Erin is not smart\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. From the information given:\n   - All round things are blue. \n   - Erin is round. \n   Therefore, Erin is blue.\n\n2. From the information given:\n   - Blue things are big.\n   - Erin is blue.\n   Therefore, Erin is big.\n\n3. From the information given:\n   - All nice, round things are smart.\n   - Erin is round and big, but we don't know if she is nice yet. \n   However, since all round things are blue, and blue things are big, we can conclude that Erin is nice because it is stated that \"Nice, round things are smart\" and \"Round, smart things are kind\". However, it is stated \"Blue, cold things are nice\" and \"Fiona is cold, Fiona is round\". However, since \"Round, smart things are kind\" it is safe to conclude that Erin is nice. \n\n4. Since Erin is round and nice, we can conclude that Erin is smart from the information given: \"All nice, round things are smart.\"\n\nNow, let's analyze the statement \"Erin is not smart\":\nGiven the conclusions we reached above, we know that Erin is smart. Therefore, the statement \"Erin is not smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given information to the statement \"Erin is not smart.\" We will use the rules:\n\n1. If something is blue then it is cold.\n2. Blue, cold things are nice.\n3. Blue things are big.\n4. All round things are blue.\n5. Smart things are blue.\n6. Round, smart things are kind.\n7. All nice, round things are smart.\n8. Nice, round things are big.\n\nFirst, we will analyze the statement \"Erin is not smart.\" To determine if this statement is true or false, we need to find out if Erin is smart or not. \n\nGiven rule 4: All round things are blue. Since Erin is round (given in the problem), Erin is blue.\n\nGiven rule 5: Smart things are blue. Since Erin is blue (from above), Erin is smart.\n\nNow we have a contradiction with the statement \"Erin is not smart\" because we found that Erin is indeed smart. \n\nTherefore, the statement \"Erin is not smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is round. (Given)\n2. All round things are blue. (Given)\n3. Blue things are big. (Given)\n4. Blue, cold things are nice. (Given)\n5. Blue things are big. (Repeated from step 3)\n6. All nice, round things are smart. (Given)\n7. Erin is round. (Repeated from step 1)\n8. Since Erin is round, Erin is blue. (From step 2)\n9. Since Erin is blue, Erin is big. (From step 3)\n10. Since Erin is blue and big, Erin is nice. (From steps 4 and 9)\n11. Since Erin is nice and round, Erin is smart. (From steps 10 and 6)\n\nNow, let's analyze the statement \"Erin is not smart\" based on our findings:\n- We determined that Erin is smart (From step 11).\n- If Erin is smart, then the statement \"Erin is not smart\" is false.\n\nTherefore, the statement \"Erin is not smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the truth of the statement \"Erin is not smart,\" we need to analyze the given information and use logical deductions.\n\n1. All round things are blue. \n2. Erin is round. \nTherefore, Erin is blue.\n\n3. If something is blue then it is cold.\n4. Erin is blue.\nTherefore, Erin is cold.\n\n5. Blue, cold things are nice.\n6. Erin is blue and cold.\nTherefore, Erin is nice.\n\n7. All nice, round things are smart.\n8. Erin is nice and round.\nTherefore, Erin is smart.\n\nSince we have deduced that Erin is smart, the statement \"Erin is not smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not smart\" is true, false, or unknown, we need to analyze the given information and the relationships between the characteristics (big, kind, nice, round, cold, blue, smart).\n\nGiven information:\n1. Charlie is big, kind, nice, round.\n2. Erin is round.\n3. Fiona is cold, kind, round.\n4. Harry is round, smart.\n5. If something is blue, then it is cold.\n6. Blue, cold things are nice.\n7. Blue things are big.\n8. All round things are blue.\n9. Smart things are blue.\n10. Round, smart things are kind.\n11. All nice, round things are smart.\n12. Nice, round things are big.\n\nFrom statements 8 and 11, we can conclude that all round, smart things are kind and blue. However, since round things are blue (statement 8), all round things are also kind and smart.\n\nFrom statement 4, we know Harry is round and smart, so Harry is also kind (statement 10).\n\nFrom statements 7 and 12, we can conclude that all nice, round things are big and blue.\n\nNow, let's examine Erin's characteristics. Erin is round (statement 2). Since all round things are blue (statement 8), Erin is blue.\n\nFrom statement 5, we can conclude that blue things are cold. Therefore, Erin is also cold.\n\nFrom statement 6, we know blue, cold things are nice. Since Erin is blue and cold, Erin is nice.\n\nFrom statement 11, we can conclude that all nice, round things are smart. Since Erin is nice and round, Erin is smart.\n\nNow, let's examine the statement \"Erin is not smart.\" Given that we have concluded Erin is smart, we can determine that this statement is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and the rules provided. Let's analyze the statements one by one:\n\n1. Charlie is big. Charlie is kind. Charlie is nice. Charlie is round.\n   - This statement doesn't help us determine if Erin is smart or not, so we can ignore it for now.\n\n2. Erin is round.\n   - We know that all round things are blue, so Erin is blue.\n\n3. Fiona is cold. Fiona is kind. Fiona is round.\n   - We know that Fiona is round, so Fiona is blue. However, this doesn't help us determine if Erin is smart or not.\n\n4. Harry is round. Harry is smart.\n   - We know that all round things are blue, so Harry is blue. We also know that smart things are blue, so this statement is consistent with the rules.\n\n5. If something is blue then it is cold.\n   - Since Erin is blue, Erin is cold.\n\n6. Blue, cold things are nice.\n   - Since Erin is blue and cold, Erin is nice.\n\n7. Blue things are big.\n   - Since Erin is blue, Erin is big.\n\n8. All round things are blue.\n   - This statement is consistent with the rules we've found so far.\n\n9. Smart things are blue.\n   - Since Harry is smart and blue, this statement is consistent with the rules.\n\n10. Round, smart things are kind.\n    - Since Harry is round, smart, and blue, Harry is kind. However, this doesn't help us determine if Erin is smart or not.\n\n11. All nice, round things are smart.\n    - Since Erin is nice and round, Erin is smart.\n\n12. Nice, round things are big.\n    - This statement is consistent with the rules we've found so far.\n\nNow, let's go back to the statement we're trying to evaluate: \"Erin is not smart.\"\n\nBased on the rules, we know that all nice, round things are smart. Since Erin is round and nice, Erin is smart. Therefore, the statement \"Erin is not smart\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not smart\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. All round things are blue. \n2. Erin is round (given in the problem statement).\n3. All round things are blue (from statement 1).\n4. Blue, cold things are nice (given in the problem statement).\n5. We cannot directly determine if Erin is cold or not, but we can proceed with what we know.\n\nFrom statement 2, we know Erin is round. \nFrom statement 3, we know Erin is blue.\nFrom statement 4, we know blue, cold things are nice. \n\nNow, let's analyze other given statements:\n\n6. If something is blue then it is cold.\n7. Blue things are big.\n8. All round things are blue (we already know this from statement 1).\n9. Erin is big (we cannot directly conclude this from the given information, but we can proceed with what we know).\n10. Erin is kind (we cannot directly conclude this from the given information, but we can proceed with what we know).\n\nFrom statement 6, we can infer that since Erin is blue (from statement 3), Erin must be cold.\nFrom statement 7, we can infer that since Erin is blue (from statement 3), Erin must be big.\n\nNow, let's analyze the relationship between being round, smart, and kind.\n\n11. Round, smart things are kind (given in the problem statement).\n12. All round things are blue (we already know this from statement 1).\n13. Erin is round (from statement 2).\n14. Erin is blue (from statement 3).\n15. Erin is kind (we cannot directly conclude this from the given information, but we can proceed with what we know).\n\nSince Erin is round (from statement 13), we know Erin is blue (from statement 12), but we do not know if Erin is smart.\n\nNow, let's analyze the relationship between being nice, round, and smart.\n\n16. All nice, round things are smart (given in the problem statement).\n17. Erin is nice (we cannot directly conclude this from the given information, but we can proceed with what we know).\n18. Erin is round (from statement 2).\n19. Erin is big (from statement 7).\n\nSince Erin is nice (which we cannot directly conclude from the given information), round (from statement 2), and big (from statement 7), we can infer that Erin is smart (from statement 16).\n\nNow, let's determine if the statement \"Erin is not smart\" is true, false, or unknown.\n\nSince we have concluded that Erin is smart, we can say that the statement \"Erin is not smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is round. \n   This statement is true based on the given information.\n\n2. All round things are blue. \n   Since Erin is round, we can conclude that Erin is blue.\n\n3. Blue, cold things are nice. \n   However, we don't have any information about Erin being cold or not. Therefore, we cannot conclude whether Erin is nice or not.\n\n4. Blue things are big. \n   Since Erin is blue, we can conclude that Erin is big.\n\n5. All nice, round things are smart. \n   We already know that Erin is round. However, we are still unsure whether Erin is nice or not.\n\n6. Nice, round things are big. \n   We already know that Erin is big. However, we are still unsure whether Erin is nice or not.\n\nSince we have a conditional statement \"All nice, round things are smart\" and we know that Erin is nice, round, and big, we need to further analyze the information to determine whether Erin is smart or not.\n\n7. Nice, round things are big. \n   We already know that Erin is big, and we are still unsure whether Erin is nice or not.\n\n8. Round, smart things are kind. \n   However, we don't have any information about Erin being smart or kind.\n\n9. Charlie is nice. Charlie is round. Charlie is big. Charlie is kind. \n   We can conclude that Charlie is a nice, round, big, and kind thing. However, we are still unsure whether Erin is nice, round, big, or kind.\n\n10. Erin is round. Erin is kind. Erin is big. \n    We can conclude that Erin is a round, big, and kind thing.\n\nHowever, we are still unsure whether Erin is smart or not.\n\nSince we cannot conclude whether Erin is smart or not based on the given information, the answer is: Erin is smart is unknown.\n\nNow we have enough information to answer the question. Since we know that Erin is big, kind, and round, we need to check the conditional statement \"Round, smart things are kind\" to determine whether Erin is smart or not.\n\nWe know that Erin is round and kind, so we can conclude that Erin is smart.\n\nTherefore, the statement \"Erin is not smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Erin is round. (From the given statements)\n2. All round things are blue. (From the given statements)\n   So, Erin is blue.\n\n3. We know that Erin is round and blue. \n4. Blue things are big. (From the given statements)\n   So, Erin is big.\n\n5. We know that Erin is round and big.\n6. All round things are blue. (From the given statements)\n   We already know that Erin is blue.\n7. Blue, cold things are nice. (From the given statements)\n   We don't know if Erin is cold or not, so we can't conclude if Erin is nice or not.\n\n8. We know that Erin is round and blue.\n9. All nice, round things are smart. (From the given statements)\n   We can't conclude if Erin is smart or not because we don't know if Erin is nice or not.\n\n10. We know that Erin is round and big.\n11. Nice, round things are big. (From the given statements)\n    We already know that Erin is big.\n\n12. We know that Erin is round.\n13. Round, smart things are kind. (From the given statements)\n    We can't conclude if Erin is kind or not because we don't know if Erin is smart or not.\n\nSo, from the given information, we can conclude that Erin is round, blue, and big. However, we can't determine if Erin is smart or not because there's not enough information to conclude that Erin is nice or not, and nice, round things are smart.\n\nTherefore, the answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is round. \n   From the statement \"All round things are blue,\" we can conclude that Erin is blue.\n\n2. Erin is blue.\n   From the statement \"Blue, cold things are nice,\" we can conclude that Erin is nice.\n\n3. Erin is nice and round.\n   From the statement \"Nice, round things are smart,\" we can conclude that Erin is smart.\n\nNow, considering the statement \"Erin is not smart,\" since we have found that Erin is indeed smart, we can conclude that the statement \"Erin is not smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine if the statement \"Erin is not smart\" is true, false, or unknown, we need to analyze the given information and apply it to Erin.\n\n1. Erin is round. (From the statement)\n2. All round things are blue. (From the statement)\n   Therefore, Erin is blue.\n\n3. Blue things are big. (From the statement)\n   Therefore, Erin is big.\n\n4. Blue, cold things are nice. (From the statement)\n   Since Erin is blue, but we don't know if Erin is cold, we cannot conclude if Erin is nice.\n\n5. Erin is not mentioned in the context of being smart or cold. However, we can use the information given about round, smart things.\n   Round, smart things are kind. (From the statement)\n   But we don't know if Erin is smart.\n\n6. Since we don't know if Erin is smart, we cannot conclude if Erin is kind or not.\n\n7. All nice, round things are smart. (From the statement)\n   However, we cannot conclude if Erin is nice from the information provided, so we cannot use this rule.\n\n8. All nice, round things are smart and Nice, round things are big, we can see that Erin is round and big but we still do not know if Erin is nice.\n\n9. Round, smart things are kind. (From the statement)\n   Again, we don't know if Erin is smart, so we cannot conclude if Erin is kind.\n\n10. To determine if Erin is smart or not, we need to analyze the last statement about nice, round things.\n    Nice, round things are big, and blue things are big. However, we cannot determine if Erin is nice.\n\n11. Therefore, we cannot determine if Erin is smart or not using the given information.\n\nSince we cannot determine if Erin is smart or not, the statement \"Erin is not smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. Charlie is big. Charlie is kind. Charlie is nice. Charlie is round. \n   - From the statement \"All round things are blue,\" we can conclude that Charlie is blue.\n   - From the statement \"Blue, cold things are nice,\" we cannot conclude if Charlie is cold or not, as we don't have enough information about Charlie's temperature.\n   - From the statement \"Blue things are big,\" we can confirm that Charlie is indeed big.\n\n2. Erin is round. \n   - From the statement \"All round things are blue,\" we can conclude that Erin is blue.\n   - From the statement \"Blue things are big,\" we cannot conclude if Erin is big or not, as we don't have enough information about Erin's size.\n\n3. Fiona is cold. Fiona is kind. Fiona is round. \n   - From the statement \"Fiona is cold\" and \"Blue, cold things are nice,\" we cannot conclude if Fiona is blue or not, as we don't have enough information about Fiona's color.\n   - From the statement \"Fiona is round\" and \"All round things are blue,\" we can conclude that Fiona is blue.\n\n4. Harry is round. Harry is smart. \n   - From the statement \"Harry is round\" and \"All round things are blue,\" we can conclude that Harry is blue.\n   - From the statement \"Smart things are blue,\" we cannot conclude if Harry is smart or not, as we don't have enough information about Harry's intelligence.\n\n5. If something is blue then it is cold.\n   - This statement is not necessarily true, as we have seen examples where things are blue but not cold (e.g., Erin).\n\n6. Blue, cold things are nice.\n   - This statement is not necessarily true, as we have seen examples where things are blue but not cold (e.g., Erin).\n\n7. Blue things are big.\n   - This statement is not necessarily true, as we have seen examples where things are blue but not big (e.g., Fiona).\n\n8. All round things are blue.\n   - This statement is true.\n\n9. Smart things are blue.\n   - This statement is not necessarily true, as we have seen examples where things are blue but not smart (e.g., Erin).\n\n10. Round, smart things are kind.\n    - This statement is not necessarily true, as we have seen examples where round things are blue but not smart or kind (e.g., Erin).\n\n11. All nice, round things are smart.\n    - This statement is not necessarily true, as we have seen examples where nice, round things are blue but not smart (e.g., Erin).\n\n12. Nice, round things are big.\n    - This statement is not necessarily true, as we have seen examples where nice, round things are blue but not big (e.g., Fiona).\n\nNow, to determine if the statement \"Erin is not smart\" is true, false, or unknown:\n\n- From the statement \"Erin is round,\" we can conclude that Erin is blue.\n- From the statement \"Blue things are big,\" we cannot conclude if Erin is smart or not, as we don't have enough information about Erin's intelligence.\n- From the statement \"All round things are blue,\" we can conclude that Erin is indeed blue.\n\nHowever, we have not enough information to determine if Erin is smart or not. Therefore, the statement \"Erin is not smart\" is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_erin, blue_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_erin, big_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), nice_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_erin, nice_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, nice_erin), smart_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_erin, blue_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_erin, cold_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_erin, cold_erin), nice_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_erin, big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_erin, blue_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_erin, smart_erin), kind_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), smart_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_erin, round_erin), smart_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not smart(erin)",
+          "z3_formula": "Not(smart_erin) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_erin, blue_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_erin, big_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_erin, cold_erin), nice_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_erin, big_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, nice_erin), smart_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(round(X))",
+          "z3_formula": "Implies(round_erin, blue_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_erin, cold_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_erin, cold_erin), nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), smart_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_X, cold_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), nice_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_X, big_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_X, blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> kind(X) & blue(X)",
+          "z3_formula": "Implies(And(round_X, smart_X), And(kind_X, blue_X))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_X, smart_X), kind_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X) & smart(X)",
+          "z3_formula": "Implies(round_X, And(kind_X, smart_X))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_X, round_X), smart_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> big(X) & blue(X)",
+          "z3_formula": "Implies(And(nice_X, round_X), And(big_X, blue_X))",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 21
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all(round(X), blue(X))",
+          "z3_formula": "Implies(round_erin, blue_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all(round(X), blue(X))",
+          "z3_formula": "Implies(round_erin, blue_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_erin, cold_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_erin, big_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_erin, cold_erin), nice_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_erin, smart_erin), kind_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "all(nice(X) & round(X), smart(X))",
+          "z3_formula": "Implies(And(nice_erin, round_erin), smart_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_erin, blue_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_erin, cold_erin), nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, nice_erin), smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, big_erin), smart_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_erin, smart_erin), kind_erin)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_erin, blue_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin) & blue(erin)",
+          "z3_formula": "And(round_erin, blue_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_erin, big_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin) & big(erin)",
+          "z3_formula": "And(round_erin, big_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), smart_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin) | not nice(erin)",
+          "z3_formula": "Or(nice_erin, Not(nice_erin))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_erin, cold_erin), nice_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin) | not kind(erin)",
+          "z3_formula": "Or(kind_erin, Not(kind_erin))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_erin, smart_erin), kind_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin) | not smart(erin)",
+          "z3_formula": "Or(smart_erin, Not(smart_erin))",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_erin, blue_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_erin, cold_erin), nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(erin)",
+          "z3_formula": "Not(smart_erin)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_erin, blue_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_erin, big_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_erin, cold_erin), nice_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_erin, smart_erin), kind_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == Unknown",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), smart_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_charlie, blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), nice_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 139,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 49
+    },
+    "maxsat_stats": {
+      "satisfied": 48,
+      "excluded": 1,
+      "total_weight": 137,
+      "solve_time_ms": 1.1946698650717735
+    },
+    "timing": {
+      "trace_gen_s": 8.735,
+      "extraction_s": 39.549,
+      "dedup_s": 1.231,
+      "maxsat_s": 0.004,
+      "total_s": 49.519
+    }
+  }
+}

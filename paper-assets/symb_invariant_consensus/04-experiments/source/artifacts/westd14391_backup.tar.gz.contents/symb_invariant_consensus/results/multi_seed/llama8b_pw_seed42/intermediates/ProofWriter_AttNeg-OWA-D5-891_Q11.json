@@ -1,0 +1,1002 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-891_Q11",
+    "problem": "Bob is green. Bob is kind. Charlie is green. Charlie is not smart. Erin is not young. Fiona is nice. Fiona is young. Green, smart things are quiet. If something is kind then it is green. Smart things are young. Young things are kind. Quiet things are furry. All quiet, nice things are furry. Nice, green things are smart. If Bob is kind and Bob is not green then Bob is furry.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is furry.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\nQuiet($x, bool) ::: Is x quiet?\nFurry($x, bool) ::: Is x furry?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nGreen(Bob, True) ::: Bob is green.\nKind(Bob, True) ::: Bob is kind.\nGreen(Charlie, True) ::: Charlie is green.\nSmart(Charlie, False) ::: Charlie is not smart.\nYoung(Erin, False) ::: Erin is not young.\nNice(Fiona, True) ::: Fiona is nice.\nYoung(Fiona, True) ::: Fiona is young.\n\nRules:\nGreen($x, True) && Smart($x, True) >>> Quiet($x, True) ::: Green, smart things are quiet.\nKind($x, True) >>> Green($x, True) ::: If something is kind then it is green.\nSmart($x, True) >>> Young($x, True) ::: Smart things are young.\nYoung($x, True) >>> Kind($x, True) ::: Young things are kind.\nQuiet($x, True) >>> Furry($x, True) ::: Quiet things are furry.\nQuiet($x, True) && Nice($x, True) >>> Furry($x, True) ::: All quiet, nice things are furry.\nNice($x, True) && Green($x, True) >>> Smart($x, True) ::: Nice, green things are smart.\nKind(Bob, True) && Green(Bob, False) >>> Furry(Bob, True) ::: If Bob is kind and Bob is not green then Bob is furry.\n\nQuery:\nFurry(Fiona, True) ::: Fiona is furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 67.5,
+      "True": 130.0,
+      "Unknown": 111.0
+    },
+    "answer_counts": {
+      "True": 7,
+      "Unknown": 3,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement 'Fiona is furry' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is nice. (Given information)\n2. Fiona is young. (Given information)\n3. Young things are kind. (From 'Young things are kind' in the given information)\n4. Since Fiona is young, Fiona is kind. (From step 3)\n5. Green, smart things are quiet. (From 'Green, smart things are quiet' in the given information)\n6. If something is kind then it is green. (From 'If something is kind then it is green' in the given information)\n7. Since Fiona is kind (from step 4), Fiona is green. (From step 6)\n8. Nice, green things are smart. (From 'Nice, green things are smart' in the given information)\n9. Since Fiona is nice (from step 1) and green (from step 7), Fiona is smart. (From step 8)\n10. Quiet things are furry. (From 'Quiet things are furry' in the given information)\n11. Since Fiona is green (from step 7) and smart (from step 9), Fiona is quiet. (From step 5)\n12. From step 11, since Fiona is quiet and nice (from step 1), Fiona is furry. (From 'All quiet, nice things are furry' in the given information)\n\nTherefore, based on the given information and our analysis, we can conclude that the statement 'Fiona is furry' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use them to determine whether the statement \"Fiona is furry\" is true, false, or unknown.\n\n1. We are given the following statements:\n   - Bob is green.\n   - Bob is kind.\n   - Charlie is green.\n   - Charlie is not smart.\n   - Erin is not young.\n   - Fiona is nice.\n   - Fiona is young.\n   - Green, smart things are quiet.\n   - If something is kind then it is green.\n   - Smart things are young.\n   - Young things are kind.\n   - Quiet things are furry.\n   - All quiet, nice things are furry.\n   - Nice, green things are smart.\n   - If Bob is kind and Bob is not green then Bob is furry.\n\n2. We need to use these statements to determine whether the statement \"Fiona is furry\" is true, false, or unknown.\n\nGiven the statements, we can deduce the following:\n\n- Since Fiona is nice and young, and all quiet, nice things are furry, and since we also know that young things are kind and smart things are young, it might suggest that Fiona is quiet. However, this is not directly given in the problem. We can't conclude that Fiona is quiet from this information alone.\n\n- Since Fiona is young and smart things are young, and young things are kind, it suggests that Fiona is kind. However, we can't directly conclude this from the given information.\n\n- Since Fiona is nice and green things are smart, it might suggest that Fiona is green. However, we can't conclude this directly.\n\nHowever, we can deduce the following using the statement \"If something is kind then it is green\" and \"Fiona is kind\". This statement tells us that Fiona is green.\n\nNow, we know that Fiona is green, young, and nice. Given the statement \"Nice, green things are smart\", it suggests that Fiona is smart.\n\nGiven that Fiona is green and smart, and the statement \"Green, smart things are quiet\", it suggests that Fiona is quiet.\n\nGiven that Fiona is quiet and nice, and the statement \"All quiet, nice things are furry\", it suggests that Fiona is furry.\n\nHowever, there is a problem with this conclusion. Given the statement \"Fiona is green\" and \"If Bob is kind and Bob is not green then Bob is furry\", we can't directly apply this to Fiona. We can't assume that the condition of \"Bob is kind and Bob is not green\" applies to Fiona.\n\nSo, we are left with the fact that Fiona is quiet and nice, and the statement \"All quiet, nice things are furry\", which suggests that Fiona is furry. However, we can't directly conclude this from the given information.\n\nTherefore, the statement \"Fiona is furry\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning and the given statements to deduce the truth of the statement \"Fiona is furry.\"\n\nGiven statements:\n1. Bob is green.\n2. Bob is kind.\n3. Charlie is green.\n4. Charlie is not smart.\n5. Erin is not young.\n6. Fiona is nice.\n7. Fiona is young.\n8. Green, smart things are quiet.\n9. If something is kind then it is green.\n10. Smart things are young.\n11. Young things are kind.\n12. Quiet things are furry.\n13. All quiet, nice things are furry.\n14. Nice, green things are smart.\n15. If Bob is kind and Bob is not green then Bob is furry.\n\nWe need to determine the truth of the statement \"Fiona is furry.\"\n\nStep 1: Using statement 7 (Fiona is young) and statement 11 (Young things are kind), we can conclude that Fiona is kind.\n\nStep 2: Using statement 9 (If something is kind then it is green) and the conclusion from step 1 (Fiona is kind), we can conclude that Fiona is green.\n\nStep 3: Using the conclusions from step 1 (Fiona is kind) and step 2 (Fiona is green), we can conclude that Fiona is quiet, because according to statement 8 (Green, smart things are quiet) and statement 14 (Nice, green things are smart), we know that Fiona is smart.\n\nStep 4: Using the conclusion from step 3 (Fiona is quiet) and statement 12 (Quiet things are furry), we can conclude that Fiona is furry.\n\nTherefore, the statement \"Fiona is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given:\n   - Fiona is nice. (Statement 1)\n   - Fiona is young. (Statement 2)\n   - Green, smart things are quiet. (Statement 3)\n   - If something is kind then it is green. (Statement 4)\n   - Smart things are young. (Statement 5)\n   - Young things are kind. (Statement 6)\n   - Quiet things are furry. (Statement 7)\n   - All quiet, nice things are furry. (Statement 8)\n   - Nice, green things are smart. (Statement 9)\n   - If Bob is kind and Bob is not green then Bob is furry. (Statement 10)\n\n2. From Statement 2: Fiona is young.\n   - From Statement 6: Young things are kind.\n   - Therefore, Fiona is kind.\n\n3. From Statement 4: If something is kind then it is green.\n   - Since Fiona is kind, Fiona is green.\n\n4. From Statement 1: Fiona is nice.\n   - From Statement 9: Nice, green things are smart.\n   - Therefore, Fiona is smart.\n\n5. From Statement 5: Smart things are young.\n   - We already know Fiona is young, but this statement confirms it.\n\n6. From Statement 3: Green, smart things are quiet.\n   - Since Fiona is green and smart, Fiona is quiet.\n\n7. From Statement 7: Quiet things are furry.\n   - Therefore, Fiona is furry.\n\nBased on our analysis, we can conclude that the statement \"Fiona is furry\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is furry' is true, false, or unknown, we need to analyze the given information and apply logical deductions. \n\nWe are given the following premises:\n\n1. Bob is green. \n2. Bob is kind.\n3. Charlie is green.\n4. Charlie is not smart.\n5. Erin is not young.\n6. Fiona is nice.\n7. Fiona is young.\n8. Green, smart things are quiet.\n9. If something is kind then it is green.\n10. Smart things are young.\n11. Young things are kind.\n12. Quiet things are furry.\n13. All quiet, nice things are furry.\n14. Nice, green things are smart.\n15. If Bob is kind and Bob is not green then Bob is furry.\n\nFrom premise 6 and 7, we know that Fiona is both nice and young.\n\nWe can now apply the following deductions:\n\n- Since Fiona is young (premise 7), we can deduce that Fiona is kind (premise 11).\n- Since Fiona is kind, and from premise 9, we know that if something is kind then it is green, we can deduce that Fiona is green.\n- Since Fiona is green and nice (premise 6), we can deduce that Fiona is smart (premise 14).\n- Since Fiona is smart and young (premise 10), we can deduce that Fiona is quiet (premise 8).\n- Since Fiona is quiet and nice (premise 6), we can deduce that Fiona is furry (premise 13).\n\nHowever, since we can deduce that Fiona is furry from the premises, we can directly conclude that the statement 'Fiona is furry' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"Fiona is young\" and the rule \"Young things are kind\", we can conclude that Fiona is kind.\n\n2. From the statement \"Fiona is kind\" and the rule \"If something is kind then it is green\", we can conclude that Fiona is green.\n\n3. From the statement \"Fiona is nice\" and the rule \"All quiet, nice things are furry\", we need to determine whether Fiona is quiet or not. However, we cannot directly conclude that Fiona is quiet from the given information.\n\n4. To determine whether Fiona is quiet, let's analyze the information again. From the statement \"Green, smart things are quiet\", we need to determine whether Fiona is smart or not. We can conclude that Fiona is smart from the rule \"Nice, green things are smart\" and the statements \"Fiona is nice\" and \"Fiona is green\".\n\n5. From the statement \"Fiona is smart\" and the rule \"Smart things are young\", we can conclude that Fiona is indeed young, which we already knew.\n\n6. Now that we know Fiona is smart and green, we can conclude that Fiona is quiet from the rule \"Green, smart things are quiet\".\n\n7. Since Fiona is quiet and nice, we can conclude that Fiona is furry from the rule \"All quiet, nice things are furry\".\n\nTherefore, the statement \"Fiona is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is nice. (Given)\n2. Fiona is young. (Given)\n3. Young things are kind. (From the given information)\n   Since Fiona is young, Fiona is kind. (From step 3)\n\n4. Green, smart things are quiet. (From the given information)\n   We don't know if Fiona is green or smart, but we can infer that if Fiona were green and smart, she would be quiet. However, this is not relevant to determining if Fiona is furry.\n\n5. All quiet, nice things are furry. (From the given information)\n   Since Fiona is nice (step 1) and quiet is not directly related to Fiona being furry, we need to look at other statements to determine if Fiona is furry.\n\n6. Nice, green things are smart. (From the given information)\n   We know Fiona is nice (step 1) and young (step 2), but we don't know if she is green or smart. This statement is not relevant to determining if Fiona is furry.\n\n7. If Bob is kind and Bob is not green then Bob is furry. (From the given information)\n   This statement is not relevant to determining if Fiona is furry.\n\n8. Quiet things are furry. (From the given information)\n   We don't know if Fiona is quiet or not, but if we assume she is quiet (which is possible), then she would be furry (from step 5). However, we need to determine if Fiona is quiet or not.\n\n9. Smart things are young. (From the given information)\n   We don't know if Fiona is smart or not, but we do know she is young (step 2).\n\n10. Charlie is green. Charlie is not smart. (From the given information)\n    This statement is not relevant to determining if Fiona is furry.\n\n11. Erin is not young. (From the given information)\n    This statement is not relevant to determining if Fiona is furry.\n\n12. Fiona is nice. Fiona is young. (From the given information)\n    We already know this information (steps 1 and 2).\n\n13. Since Fiona is young (step 2) and kind (from step 3), we can say that Fiona is kind and young.\n\nNow, let's analyze the given statements again to see if we can determine if Fiona is furry.\n\nFrom steps 5 and 8, we know that if Fiona is nice (step 1) and quiet (which is possible), then she would be furry.\n\nHowever, we don't know if Fiona is quiet or not. \n\nWe know that Fiona is kind (from step 3) and young (step 2). \n\nWe can infer that since Fiona is young (step 2), she is kind (from step 3), and we know that if something is kind then it is green (from the given information), but we cannot confirm this as we do not have enough information to confirm if Fiona is green or not.\n\nHowever, the statement \"Green, smart things are quiet.\" (from the given information) tells us that if Fiona were green and smart, she would be quiet. \n\nBut we don't have enough information to confirm if Fiona is green or smart.\n\nHowever, if we look at the statement \"If Bob is kind and Bob is not green then Bob is furry.\" (from the given information), we see that this statement does not provide any information about Fiona.\n\nHowever, we do know that Fiona is nice (step 1) and young (step 2).\n\nSince Fiona is young (step 2) and kind (from step 3), we can infer that Fiona is nice (step 1) and kind (from step 3).\n\nNow, let's look at the statement \"Nice, green things are smart.\" (from the given information).\n\nWe know that Fiona is nice (step 1) and we can infer that if Fiona were green, she would be smart. \n\nBut we cannot confirm if Fiona is green or not.\n\nHowever, the statement \"Green, smart things are quiet.\" (from the given information) tells us that if Fiona were green and smart, she would be quiet.\n\nBut we don't have enough information to confirm if Fiona is green or smart.\n\nHowever, we know that Fiona is nice (step 1) and young (step 2).\n\nSince Fiona is young (step 2) and kind (from step 3), we can infer that Fiona is nice (step 1) and kind (from step 3).\n\nNow, let's look at the statement \"All quiet, nice things are furry.\" (from the given information).\n\nWe know that Fiona is nice (step 1) and young (step 2).\n\nSince Fiona is young (step 2) and kind (from step 3), we can infer that Fiona is nice (step 1) and kind (from step 3).\n\nWe can also infer that if Fiona were quiet (which is possible), then she would be furry.\n\nHowever, we don't have enough information to confirm if Fiona is quiet or not.\n\nHowever, we can see that the statement \"Fiona is furry\" is dependent on Fiona being nice and quiet.\n\nSince Fiona is nice (step 1), we can infer that if Fiona were quiet (which is possible), then she would be furry.\n\nHowever, we cannot confirm if Fiona is quiet or not.\n\nTherefore, the statement \"Fiona is furry\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Fiona is furry, we need to analyze the given statements and their implications.\n\n1. Fiona is nice (Fiona is nice)\n2. Fiona is young (Fiona is young)\n\nFrom statement 2, we know that Fiona is young.\n\n3. Young things are kind (Young things are kind)\n\nSince Fiona is young, we can infer that Fiona is kind.\n\n4. Kind things are green (If something is kind then it is green)\n\nAs Fiona is kind, we can conclude that Fiona is green.\n\n5. Nice, green things are smart (Nice, green things are smart)\n\nFiona is both nice and green, so we can infer that Fiona is smart.\n\n6. Green, smart things are quiet (Green, smart things are quiet)\n\nFiona is both green and smart, so we can conclude that Fiona is quiet.\n\n7. All quiet, nice things are furry (All quiet, nice things are furry)\n\nFiona is quiet and nice, so we can infer that Fiona is furry.\n\nTherefore, based on the given statements, we can conclude that Fiona is furry.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is furry' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Fiona is nice and young.\n2. Since nice, green things are smart (rule 8), and green, smart things are quiet (rule 2), we can deduce that Fiona must be quiet and green to satisfy these conditions. However, since Fiona is not quiet, Fiona cannot be green, smart, and nice. \n3. We also know that green, smart things are quiet (rule 2), and if something is kind then it is green (rule 5). However, Fiona is not green, therefore Fiona cannot be kind.\n4. Since Fiona is nice, and all quiet, nice things are furry (rule 9), and Fiona is quiet (deduced in step 2), we can deduce that Fiona must be furry.\n\nBased on the steps above, the conclusion is that Fiona is furry.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is furry\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. Fiona is nice. (Direct information)\n2. Fiona is young. (Direct information)\n3. All quiet, nice things are furry. (Rule)\n   However, we don't know if Fiona is quiet or not, so we cannot apply this rule directly to Fiona.\n4. Nice, green things are smart. (Rule)\n   However, we don't know if Fiona is green or not, so we cannot apply this rule directly to Fiona.\n5. Green, smart things are quiet. (Rule)\n   However, we don't know if Fiona is green or smart, so we cannot apply this rule directly to Fiona.\n6. If something is kind then it is green. (Rule)\n   However, we don't know if Fiona is kind or not, so we cannot apply this rule directly to Fiona.\n7. Young things are kind. (Rule)\n   Fiona is young, so Fiona might be kind, but we cannot be sure.\n8. If Bob is kind and Bob is not green then Bob is furry. (Rule)\n   This rule is not applicable to Fiona.\n\nNow, let's analyze the information we have about Fiona:\n- Fiona is nice.\n- Fiona is young.\n\nFrom rule 7, we know that young things are kind, so Fiona might be kind. However, this is not certain.\n\nIf we assume Fiona is kind, then from rule 6, Fiona must be green. But this is not certain.\n\nIf we assume Fiona is green, then from rule 4, Fiona might be smart. However, this is not certain.\n\nNow, let's assume Fiona is smart. Then from rule 5, Fiona might be quiet. However, this is not certain.\n\nEven if we assume Fiona is quiet, we cannot be sure if she is furry or not because we don't know if she is nice or not in this scenario.\n\nHowever, from rule 3, all quiet, nice things are furry. If we assume Fiona is quiet and nice, then Fiona is furry. But we cannot be certain about this because we don't know if Fiona is quiet or not.\n\nBased on the information given, we cannot be certain if Fiona is furry or not. The statement \"Fiona is furry\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is furry\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Fiona is nice. (Given)\n2. Fiona is young. (Given)\n3. Green, smart things are quiet. (Given)\n4. If something is kind then it is green. (Given)\n5. Smart things are young. (Given)\n6. Young things are kind. (Given)\n7. Quiet things are furry. (Given)\n8. All quiet, nice things are furry. (Given)\n9. Nice, green things are smart. (Given)\n10. If Bob is kind and Bob is not green then Bob is furry. (Given)\n\nNow, let's analyze Fiona's characteristics based on the given statements:\n\n- Fiona is nice. (Statement 1)\n- Fiona is young. (Statement 2)\n- Since Fiona is young, she is kind. (Statement 6)\n- Since Fiona is kind, she is green. (Statement 4)\n- Since Fiona is green and nice, she is smart. (Statement 9)\n\nHowever, we don't directly know whether Fiona is quiet or not. But, we can deduce that since Fiona is young and kind, she should be quiet as per the statement \"Green, smart things are quiet\" is not applicable for Fiona. But, young things are quiet is not given. However, we can use another statement to determine whether Fiona is furry or not.\n\n- Since Fiona is kind, she is green. (Statement 4)\n- Since Fiona is green, she is quiet. (Statement 3) \n- Since Fiona is quiet and nice, she is furry. (Statement 8)\n\nHowever, we also have a contradictory statement for this scenario. Fiona is young, and young things are kind. But we can use another statement to determine whether Fiona is furry or not.\n\n- Since Fiona is green and nice, she is smart. (Statement 9)\n- Since Fiona is smart, she is young. (Statement 5)\n- Since Fiona is young, she is kind. (Statement 6)\n- Since Fiona is kind and green, she is not furry. (Statement 10)\n\nHowever, the statement \"If Bob is kind and Bob is not green then Bob is furry\" only applies to Bob, not Fiona. This statement is irrelevant to Fiona's characteristics.\n\nConsidering all the statements, we can conclude that Fiona is furry because she is quiet and nice (Statement 8), but we have another statement that makes it false. \n\nThe correct answer is: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is furry\" is true, false, or unknown, we need to analyze the given information and apply the rules.\n\nGiven information:\n1. Bob is green.\n2. Bob is kind.\n3. Charlie is green.\n4. Charlie is not smart.\n5. Erin is not young.\n6. Fiona is nice.\n7. Fiona is young.\n8. Green, smart things are quiet.\n9. If something is kind then it is green.\n10. Smart things are young.\n11. Young things are kind.\n12. Quiet things are furry.\n13. All quiet, nice things are furry.\n14. Nice, green things are smart.\n15. If Bob is kind and Bob is not green then Bob is furry.\n\nWe need to find a connection between Fiona and being furry.\n\nFrom rule 9: If something is kind then it is green.\nFrom rule 11: Young things are kind.\nSince Fiona is young (rule 7), Fiona is kind.\nFrom rule 9, since Fiona is kind, Fiona is green.\n\nFrom rule 8: Green, smart things are quiet.\nFrom rule 10: Smart things are young.\nSince Fiona is young (rule 7) and green (from rule 9 and 11), Fiona is smart.\nFrom rule 8, since Fiona is green and smart, Fiona is quiet.\n\nFrom rule 13: All quiet, nice things are furry.\nSince Fiona is quiet (from rule 8 and 10) and nice (rule 6), Fiona is furry.\n\nTherefore, the statement \"Fiona is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, smart_fiona), quiet_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_fiona, green_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, green_fiona), smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, smart_fiona), quiet_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_fiona, nice_fiona), furry_fiona)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not smart(charlie)",
+          "z3_formula": "not smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not young(erin)",
+          "z3_formula": "not young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_charlie, smart_charlie), quiet_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_bob, green_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_charlie, young_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_charlie, kind_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_charlie, furry_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_charlie, nice_charlie), furry_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_charlie, green_charlie), smart_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, not green_bob), furry_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_fiona, green_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "(green(X) & smart(X)) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, smart_fiona), quiet_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "(nice(X) & green(X)) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, green_fiona), smart_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "(green(X) & smart(X)) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, smart_fiona), quiet_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_fiona, furry_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_fiona, nice_fiona), furry_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, smart_fiona), quiet_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_fiona, young_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_fiona, furry_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_fiona, nice_fiona), furry_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, green_fiona), smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(green(X)) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, Not(green_bob)), furry_bob)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(smart(charlie))",
+          "z3_formula": "not(smart_charlie) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(young(erin))",
+          "z3_formula": "not(young_erin) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_X, smart_X), quiet_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_X, green_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_X, young_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_X, kind_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_X, furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_X, nice_X), furry_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_X, green_X), smart_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(green(X)) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, not(green_X)), furry_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_fiona, green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_fiona, nice_fiona), furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, smart_fiona), quiet_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, green_fiona), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_fiona, smart_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_fiona, green_fiona)",
+          "source_step": "inferred"
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, smart_fiona), quiet_fiona)",
+          "source_step": "inferred"
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_fiona, nice_fiona), furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_fiona, furry_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == Unknown",
+          "source_step": "final"
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, green_fiona), smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, smart_fiona), quiet_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_fiona, nice_fiona), furry_fiona)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, green_fiona), smart_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, smart_fiona), quiet_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_fiona, green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "Not(green_fiona) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> furry(X)",
+          "z3_formula": "Implies(And(nice_fiona, quiet_fiona), furry_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_fiona, green_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, smart_fiona), quiet_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_fiona, nice_fiona), furry_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(green(X)) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, Not(green_bob)), furry_bob)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, smart_fiona), quiet_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_fiona, young_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_fiona, furry_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_fiona, nice_fiona), furry_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(green(X)) -> furry(X)",
+          "z3_formula": "Implies(And(kind_fiona, Not(green_fiona)), furry_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == False",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not smart(charlie)",
+          "z3_formula": "not smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not young(erin)",
+          "z3_formula": "not young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_X, smart_X), quiet_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_X, green_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_X, young_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_X, kind_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_X, furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_X, nice_X), furry_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_X, green_X), smart_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, not green_X), furry_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 20
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 145,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 39
+    },
+    "maxsat_stats": {
+      "satisfied": 36,
+      "excluded": 3,
+      "total_weight": 139,
+      "solve_time_ms": 1.385626383125782
+    },
+    "timing": {
+      "trace_gen_s": 13.602,
+      "extraction_s": 27.332,
+      "dedup_s": 1.035,
+      "maxsat_s": 0.004,
+      "total_s": 41.973
+    }
+  }
+}

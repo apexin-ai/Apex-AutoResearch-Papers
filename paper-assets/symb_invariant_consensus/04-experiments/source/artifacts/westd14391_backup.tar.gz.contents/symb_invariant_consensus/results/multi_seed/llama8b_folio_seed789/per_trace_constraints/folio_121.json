@@ -1,0 +1,378 @@
+{
+  "pid": "folio_121",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "affection(X) & love(X)",
+          "z3_formula": "affection_love == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "love(X) & positive(X)",
+          "z3_formula": "love_positive == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "affection(X) & positive(X)",
+          "z3_formula": "affection_positive == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "some_affection_is_love",
+          "z3_formula": "some_affection_is_love == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "some_love_is_positive",
+          "z3_formula": "some_love_is_positive == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some_affection_is_positive",
+          "z3_formula": "some_affection_is_positive == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "affection \u2286 love",
+          "z3_formula": "affection \u2286 love == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "love \u2286 positive",
+          "z3_formula": "love \u2286 positive == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "A \u2286 L & L \u2286 P -> A \u2286 P",
+          "z3_formula": "Implies(And(affection \u2286 love, love \u2286 positive), affection \u2286 positive)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "affection \u2286 positive",
+          "z3_formula": "affection \u2286 positive == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "some_affection_is_love",
+          "z3_formula": "some_affection_is_love == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some_love_is_positive",
+          "z3_formula": "some_love_is_positive == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "love(X) -> positive(X)",
+          "z3_formula": "Implies(some_love_is_love, some_love_is_positive)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "some_affection_is_positive",
+          "z3_formula": "some_affection_is_positive == Unknown",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "\u2203x (A(x) \u2227 B(x))",
+          "z3_formula": "exists x (And(A(x), B(x)) == True)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "\u2203x (B(x) \u2227 C(x))",
+          "z3_formula": "exists x (And(B(x), C(x)) == True)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "\u2203x (A(x) \u2227 B(x)) -> \u2203x (A(x) \u2227 C(x))",
+          "z3_formula": "Implies(exists x (And(A(x), B(x)) == True), exists x (And(A(x), C(x)) == True))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "\u2203x (A(x) \u2227 C(x))",
+          "z3_formula": "exists x (And(A(x), C(x)) == True)",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True (but uncertain)",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "love(X) & affection(X)",
+          "z3_formula": "love_affection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "love(X) -> positive(X)",
+          "z3_formula": "Implies(love_affection, positive_love)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "affection(X) -> positive(X)",
+          "z3_formula": "Implies(affection, positive_affection)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "affection(X) -> positive(X)",
+          "z3_formula": "Implies(affection, positive_affection)",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "some_affection_is_love",
+          "z3_formula": "some_affection_is_love == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some_love_is_positive",
+          "z3_formula": "some_love_is_positive == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some A is B & some B is C -> some A is C",
+          "z3_formula": "Implies(And(some_affection_is_love, some_love_is_positive), some_affection_is_positive)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "some_affection_is_positive",
+          "z3_formula": "some_affection_is_positive == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "love(affection)",
+          "z3_formula": "love_affection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "love(X) -> positive(X)",
+          "z3_formula": "Implies(live_affection, positive_love)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "positive(affection)",
+          "z3_formula": "positive_affection == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "love(affection)",
+          "z3_formula": "love_affection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "positive(l)",
+          "z3_formula": "positive_l == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "love(X) -> affection(X)",
+          "z3_formula": "Implies(love_affection, affection_affection)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "love(X) -> love(X)",
+          "z3_formula": "Implies(love_affection, love_affection)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "love(X) & love(X) -> love(X)",
+          "z3_formula": "Implies(And(love_affection, love_affection), love_affection)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "love(X) & positive(X) -> positive(X)",
+          "z3_formula": "Implies(And(love_affection, positive_l), positive_l)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "love(X) & positive(X) -> positive(X)",
+          "z3_formula": "Implies(And(love_affection, positive_l), positive_l)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "affection(X) & love(X) & positive(X) -> positive(X)",
+          "z3_formula": "Implies(And(affection_affection, love_affection, positive_l), positive_l)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "positive(affection)",
+          "z3_formula": "positive_affection == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "affection(X) = love(X)",
+          "z3_formula": "affection_X == love_X",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "love(X) = positive(X)",
+          "z3_formula": "love_X == positive_X",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "A = B & B = C -> A = C",
+          "z3_formula": "Implies(And(A == B, B == C), A == C)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "affection(X) = positive(X)",
+          "z3_formula": "affection_X == positive_X",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "some_affection_is_love",
+          "z3_formula": "some_affection_is_love == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some_love_is_positive",
+          "z3_formula": "some_love_is_positive == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_affection_is_love -> some_affection_might_be_positive",
+          "z3_formula": "Implies(some_affection_is_love, some_affection_might_be_positive)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "some_love_is_positive & some_affection_is_love -> some_affection_might_be_positive",
+          "z3_formula": "Implies(And(some_love_is_positive, some_affection_is_love), some_affection_might_be_positive)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some_affection_might_be_positive",
+          "z3_formula": "some_affection_might_be_positive == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "affection \u2229 love \u2260 \u2205",
+          "z3_formula": "affection_love != False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "love \u2229 positive \u2260 \u2205",
+          "z3_formula": "love_positive != False",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "affection \u2229 positive \u2260 \u2205",
+          "z3_formula": "affection_positive == True",
+          "source_step": 3
+        }
+      ]
+    }
+  ]
+}

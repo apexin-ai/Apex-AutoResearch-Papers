@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b6c46ae1dd1b52336e5",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "code mvp v4 check output",
+  "task_key": "worker_code_mvp_v4_check_output_20260514T105933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_v4_check_output_20260514T105933_result.json",
+    "occurrence": 1,
+    "bytes": 1224,
+    "sha256": "18fa8b05b29e4f3229cdfdfa506284c2c949c62462e3870c5b875af038ad42a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**mvp_v4_full pipeline 只完成了 1/204 条，然后静默退出。**\n\n关键发现：\n\n| 项目 | 状态 |\n|------|------|\n| `mvp_v4_full.json` | 12KB，仅含 **1 条结果** (folio_validation_0) |\n| 完成的样本 | folio_validation_0: FOL=Unknown, Code=Unknown, GT=Unknown, AGREE_CORRECT |\n| 中断位置 | 第 2 条 (folio_validation_1) 的 \"targeted repair Code\" 步骤 |\n| 错误信息 | 无（日志中没有 error/exception/traceback） |\n| 进程状态 | 无 pipeline python 进程运行，仅 vLLM 服务器在线 |\n| tmux EXIT_CODE | 0（误导性——实际只完成了 1 条） |\n\n**两个并发实例问题**：`pipeline.log` 和 `pipeline_v4_full.log` 的时间戳显示在 18:53-18:55 期间有两个 pipeline 实例同时运行（一个 18:53 启动，一个 18:54 启动），日志交叉写入，可能导致竞争条件或互相干扰。\n\n**WARNING 信号**：两次出现 `output truncated with thinking ON, retrying with enable_thinking=False`，说明 Qwen3-32B 的 thinking 模式在 vLLM max-model-len=16384 下容易截断输出。\n\n先前版本对比：v2 和 v3 的 test10 各处理了 10 条，v1 baseline 处理了 50 条，均正常完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-v4-check-output.md"
+}

@@ -1,0 +1,1161 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-1029_Q16",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> sees(cat, lion)",
+          "z3_formula": "Implies(visits_rabbit_cat, sees_cat_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & visits(lion, rabbit) -> needs(lion, X)",
+          "z3_formula": "Implies(And(visits_lion_rabbit, visits_lion_rabbit), needs_lion_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(lion, X) & round(lion) -> needs(cat, X)",
+          "z3_formula": "Implies(And(needs_lion_X, round_lion), needs_cat_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(green_X, needs_X_rabbit), green_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_X, visits_X_lion)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & visits(cat, lion) -> not rough(X)",
+          "z3_formula": "Implies(And(sees_X_cat, visits_cat_lion), not_rough_X)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cat, X) & not green(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_cat_X, not_green_X), sees_X_cat)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_X, visits_X_bear), sees_X_cat)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 28
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(lion, bear)",
+          "z3_formula": "not(needs_lion_bear == True)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> sees(cat, lion)",
+          "z3_formula": "Implies(visits_rabbit_cat, sees_cat_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & visits(lion, rabbit) -> needs(X, lion)",
+          "z3_formula": "Implies(And(visits_rabbit_lion, visits_lion_rabbit), needs_rabbit_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & round(lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_lion, round_lion), needs_rabbit_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(green_X, needs_X_rabbit), green_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_X, visits_X_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & visits(cat, lion) -> not rough(X)",
+          "z3_formula": "Implies(And(sees_X_cat, visits_cat_lion), not(rough_X))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & not green(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, not(green_X)), sees_X_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_X, visits_X_bear), sees_X_cat)",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not green(lion)",
+          "z3_formula": "not_green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(lion, bear)",
+          "z3_formula": "not_needs_lion_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> sees(cat, lion)",
+          "z3_formula": "Implies(visits_rabbit_cat, sees_cat_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & visits(lion, rabbit) -> needs(X, lion)",
+          "z3_formula": "Implies(And(visits_rabbit_lion, visits_lion_rabbit), needs_rabbit_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & round(lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_lion, round_lion), needs_rabbit_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(green_rabbit, needs_rabbit_rabbit), green_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_lion, visits_lion_lion)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & visits(cat, lion) -> not rough(X)",
+          "z3_formula": "Implies(And(sees_rabbit_lion, visits_cat_lion), not_rough_rabbit)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & not green(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, not_green_rabbit), sees_rabbit_cat)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_bear, visits_bear_bear), sees_bear_cat)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 25
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & visits(lion, Y) -> needs(X, lion)",
+          "z3_formula": "Implies(And(visits_lion_rabbit, visits_lion_bear), needs_rabbit_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(green_rabbit, needs_rabbit_lion), green_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_lion, visits_lion_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & visits(cat, lion) -> not(rough(X))",
+          "z3_formula": "Implies(And(sees_cat_lion, visits_cat_lion), not(rough_rabbit))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & not(green(X)) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, not(green_rabbit)), sees_rabbit_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_bear, visits_bear_cat), sees_bear_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(lion)",
+          "z3_formula": "not_green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(lion, bear)",
+          "z3_formula": "not_needs_lion_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> sees(cat, lion)",
+          "z3_formula": "Implies(visits_rabbit_cat, sees_cat_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & visits(lion, Y) -> needs(X, lion)",
+          "z3_formula": "Implies(And(visits_rabbit_lion, visits_lion_rabbit), needs_rabbit_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & round(lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_lion, round_lion), needs_rabbit_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(green_rabbit, needs_rabbit_rabbit), green_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_cat, visits_cat_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & visits(cat, lion) -> not rough(X)",
+          "z3_formula": "Implies(And(sees_rabbit_lion, visits_cat_lion), not_rough_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & not green(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, not_green_rabbit), sees_rabbit_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_bear, visits_bear_lion), sees_bear_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> sees(cat, lion)",
+          "z3_formula": "Implies(visits_rabbit_cat, sees_cat_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & sees(lion, X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(visits_rabbit_lion, sees_lion_rabbit), needs_rabbit_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & round(lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_lion, round_lion), needs_rabbit_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(green_rabbit, needs_rabbit_rabbit), green_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_lion, visits_lion_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & visits(cat, lion) -> not(rough(X))",
+          "z3_formula": "Implies(And(sees_rabbit_cat, visits_cat_lion), Not(rough_rabbit))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & not(green(X)) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, Not(green_rabbit)), sees_rabbit_cat)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not green(lion)",
+          "z3_formula": "not_green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not green(rabbit)",
+          "z3_formula": "not_green_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> sees(cat, lion)",
+          "z3_formula": "Implies(visits_rabbit_cat, sees_cat_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & visits(lion, Y) -> needs(X, lion)",
+          "z3_formula": "Implies(And(visits_rabbit_lion, visits_lion_rabbit), needs_rabbit_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & round(lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_lion, round_lion), needs_rabbit_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(green_rabbit, needs_rabbit_rabbit), green_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_rabbit, visits_rabbit_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & visits(cat, lion) -> not rough(X)",
+          "z3_formula": "Implies(And(sees_rabbit_cat, visits_cat_lion), not_rough_rabbit)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & not green(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, not_green_rabbit), sees_rabbit_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_bear, visits_bear_lion), sees_cat_lion)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 22
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "lion visits rabbit",
+          "z3_formula": "lion_visits_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "lion visits rabbit",
+          "z3_formula": "lion_visits_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "bear visits lion",
+          "z3_formula": "bear_visits_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "bear visits lion",
+          "z3_formula": "bear_visits_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> sees(X, cat)",
+          "z3_formula": "Implies(visits_bear_cat, sees_bear_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & lion visits rabbit -> needs(X, lion)",
+          "z3_formula": "Implies(And(visits_bear_lion, lion_visits_rabbit), needs_bear_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & round(lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_bear_lion, round_lion), needs_bear_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(green_rabbit, needs_rabbit_rabbit), green_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_lion, visits_lion_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & cat visits lion -> not rough(X)",
+          "z3_formula": "Implies(And(sees_bear_cat, cat_visits_lion), not_rough_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & not green(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, not_green_rabbit), sees_rabbit_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_bear, visits_bear_bear), sees_bear_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, lion)",
+          "z3_formula": "needs_bear_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, cat)",
+          "z3_formula": "needs_bear_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cat) == Unknown",
+          "z3_formula": "needs_rabbit_cat == Unknown",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not_green(lion)",
+          "z3_formula": "not_green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not_need(lion, bear)",
+          "z3_formula": "not_need_lion_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> sees(cat, lion)",
+          "z3_formula": "Implies(visits_rabbit_cat, sees_cat_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & visits(lion, Y) -> needs(X, lion)",
+          "z3_formula": "Implies(And(visits_lion_bear, visits_lion_rabbit), needs_lion_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & round(lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_lion_cat, round_lion), needs_lion_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(green_rabbit, needs_rabbit_rabbit), green_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_lion, visits_lion_lion)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & visits(cat, lion) -> not(rough(X))",
+          "z3_formula": "Implies(And(sees_rabbit_lion, visits_cat_lion), not(rough_rabbit))",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & not(green(X)) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, not(green_rabbit)), sees_rabbit_cat)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_bear, visits_bear_lion), sees_cat_lion)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == Unknown",
+          "source_step": 25
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "",
+      "constraints": []
+    }
+  ]
+}

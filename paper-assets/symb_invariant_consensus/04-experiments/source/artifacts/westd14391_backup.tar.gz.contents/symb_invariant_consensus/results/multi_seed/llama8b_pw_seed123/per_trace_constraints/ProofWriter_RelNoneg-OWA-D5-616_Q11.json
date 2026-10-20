@@ -1,0 +1,1167 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-616_Q11",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_bald_eagle_cow, blue_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, big_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_cow, visits_cow_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(visits_rabbit_bald_eagle, round_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, cow) -> sees(cow, rabbit)",
+          "z3_formula": "Implies(And(round_bald_eagle, sees_bald_eagle_cow), sees_cow_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_bald_eagle, visits_bald_eagle_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_dog, visits_dog_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, cow) -> young(X)",
+          "z3_formula": "Implies(And(likes_dog_rabbit, visits_dog_cow), young_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, cow) -> young(X)",
+          "z3_formula": "Implies(And(likes_dog_rabbit, visits_dog_cow), young_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_bald_eagle, visits_bald_eagle_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_dog, visits_dog_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_bald_eagle, blue_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, cow) -> young(cow)",
+          "z3_formula": "Implies(And(likes_X_rabbit, visits_X_cow), young_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(visits_X_rabbit, round_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, cow) -> sees(cow, rabbit)",
+          "z3_formula": "Implies(And(round_X, sees_X_cow), sees_cow_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_bald_eagle, visits_bald_eagle_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> visits(rabbit, bald_eagle)",
+          "z3_formula": "Implies(sees_X_rabbit, visits_rabbit_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_dog, likes_dog_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & young(cow) -> blue(X)",
+          "z3_formula": "Implies(And(likes_X_cow, young_cow), blue_X)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> big(Y)",
+          "z3_formula": "Implies(sees_bald_eagle_rabbit, big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, cow)",
+          "z3_formula": "likes_cow_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_cow_cow, blue_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_cow, visits_cow_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cow, cow)",
+          "z3_formula": "visits_cow_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> round(Y)",
+          "z3_formula": "Implies(visits_rabbit_bald_eagle, round_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, cow) -> sees(cow, Y)",
+          "z3_formula": "Implies(And(round_bald_eagle, sees_cow_bald_eagle), sees_cow_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(rabbit, cow) -> young(Y)",
+          "z3_formula": "Implies(And(likes_bald_eagle_rabbit, visits_rabbit_cow), young_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & young(Y) -> blue(X)",
+          "z3_formula": "Implies(And(likes_cow_cow, young_cow), blue_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cow)",
+          "z3_formula": "sees_bald_eagle_cow == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 22
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> big(rabbit)",
+          "z3_formula": "Implies(sees_bald_eagle_rabbit, big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_bald_eagle, blue_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, cow) -> young(cow)",
+          "z3_formula": "Implies(And(likes_rabbit_cow, visits_rabbit_cow), young_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(visits_bald_eagle_rabbit, round_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, cow) -> sees(cow, rabbit)",
+          "z3_formula": "Implies(And(round_bald_eagle, sees_bald_eagle_cow), sees_cow_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cow)",
+          "z3_formula": "sees_bald_eagle_cow == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, cow)",
+          "z3_formula": "sees_bald_eagle_cow == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_rabbit, visits_rabbit_cow)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, cow)",
+          "z3_formula": "visits_rabbit_cow == True",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> visits(rabbit, bald_eagle)",
+          "z3_formula": "Implies(sees_bald_eagle_rabbit, visits_rabbit_bald_eagle)",
+          "source_step": 28
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 30
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_dog, likes_dog_rabbit)",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 32
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 33
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & young(cow) -> blue(X)",
+          "z3_formula": "Implies(And(likes_rabbit_cow, young_cow), blue_rabbit)",
+          "source_step": 34
+        },
+        {
+          "type": "derived",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 36
+        },
+        {
+          "type": "derived",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == False",
+          "source_step": 37
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, cow)",
+          "z3_formula": "likes_rabbit_cow == False",
+          "source_step": 38
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 39
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 40
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, cow) -> young(X)",
+          "z3_formula": "Implies(And(likes_X_rabbit, visits_X_cow), young_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(visits_X_rabbit, round_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, cow) -> sees_cow(X, rabbit)",
+          "z3_formula": "Implies(And(round_X, sees_X_cow), sees_cow_X_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_X, visits_X_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> visits_rabbit(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_rabbit, visits_rabbit_X_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_X, likes_X_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(likes_X_cow, young_X), blue_X)",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(likes_bald_eagle_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, cow) -> young(cow)",
+          "z3_formula": "Implies(And(likes_rabbit_X, visits_X_cow), young_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_X, likes_X_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_X, visits_X_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> big(rabbit)",
+          "z3_formula": "Implies(big_X, big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_X, likes_X_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(likes_cow_X, young_X), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(visits_X_rabbit, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, cow) -> sees(cow, rabbit)",
+          "z3_formula": "Implies(And(round_X, sees_X_cow), sees_cow_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> visits(rabbit, bald_eagle)",
+          "z3_formula": "Implies(sees_X_rabbit, visits_rabbit_bald_eagle)",
+          "source_step": 2
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_bald_eagle, visits_bald_eagle_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> visits(rabbit, X)",
+          "z3_formula": "Implies(sees_bald_eagle_rabbit, visits_rabbit_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> sees(cow, rabbit)",
+          "z3_formula": "Implies(sees_bald_eagle_cow, sees_cow_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_bald_eagle, blue_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_dog, likes_dog_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, cow)",
+          "z3_formula": "visits_bald_eagle_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": []
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "If S then B (Rabbit)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, big_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "If L then Bl (Something)",
+          "z3_formula": "Implies(likes_bald_eagle_cow, likes_bald_eagle_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "If L and V then Y (Cow)",
+          "z3_formula": "Implies(And(likes_dog_bald_eagle, visits_rabbit_bald_eagle), young_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "If V then R (Something)",
+          "z3_formula": "Implies(visits_rabbit_bald_eagle, round_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "If R and S then S (Cow)",
+          "z3_formula": "Implies(And(round_rabbit, sees_cow_bald_eagle), sees_cow_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "If B then V (Something)",
+          "z3_formula": "Implies(big_bald_eagle, visits_bald_eagle_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "If S then V (Rabbit)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, visits_bald_eagle_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "If Bl then L (Something)",
+          "z3_formula": "Implies(likes_dog_bald_eagle, likes_rabbit_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "If L and Y then Bl (Something)",
+          "z3_formula": "Implies(And(likes_dog_bald_eagle, young_cow), likes_rabbit_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(sees_bald_eagle_rabbit, big_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(likes_bald_eagle_cow, blue_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, cow) -> young(X)",
+          "z3_formula": "Implies(And(likes_rabbit_cow, visits_rabbit_cow), young_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(visits_bald_eagle_rabbit, round_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, cow) -> sees_cow(X)",
+          "z3_formula": "Implies(And(round_bald_eagle, sees_bald_eagle_cow), sees_cow_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_dog, visits_dog_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> visits_rabbit(X)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, visits_rabbit_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_dog, likes_dog_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(likes_cow_dog, young_dog), blue_dog)",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": []
+    }
+  ]
+}

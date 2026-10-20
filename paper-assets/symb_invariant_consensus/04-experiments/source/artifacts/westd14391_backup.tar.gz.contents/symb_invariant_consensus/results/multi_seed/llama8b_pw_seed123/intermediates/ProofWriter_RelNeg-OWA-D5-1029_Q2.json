@@ -1,0 +1,1017 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-1029_Q2",
+    "problem": "The bear is young. The bear visits the lion. The cat is round. The cat needs the bear. The lion is cold. The lion is not green. The lion is round. The lion does not need the bear. The lion sees the bear. The lion visits the bear. The lion visits the cat. The lion visits the rabbit. The rabbit is green. The rabbit is rough. The rabbit sees the lion. The rabbit visits the cat. If something visits the cat then the cat sees the lion. If something visits the lion and the lion visits the rabbit then it needs the lion. If something needs the lion and the lion is round then it needs the cat. If something is green and it needs the rabbit then the rabbit is green. If something is round then it visits the lion. If something sees the cat and the cat visits the lion then it is not rough. If something needs the cat and it is not green then it sees the cat. If something is young and it visits the bear then it sees the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion is not round.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nYoung($x, bool) ::: Is x young?\nVisits($x, $y, bool) ::: Does x visit y?\nRound($x, bool) ::: Is x round?\nNeeds($x, $y, bool) ::: Does x need y?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nSees($x, $y, bool) ::: Does x see y?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nYoung(bear, True) ::: The bear is young.\nVisits(bear, lion, True) ::: The bear visits the lion.\nRound(cat, True) ::: The cat is round.\nNeeds(cat, bear, True) ::: The cat needs the bear.\nCold(lion, True) ::: The lion is cold.\nGreen(lion, False) ::: The lion is not green.\nRound(lion, True) ::: The lion is round.\nNeeds(lion, bear, False) ::: The lion does not need the bear.\nSees(lion, bear, True) ::: The lion sees the bear.\nVisits(lion, bear, True) ::: The lion visits the bear.\nVisits(lion, cat, True) ::: The lion visits the cat.\nVisits(lion, rabbit, True) ::: The lion visits the rabbit.\nGreen(rabbit, True) ::: The rabbit is green.\nRough(rabbit, True) ::: The rabbit is rough.\nSees(rabbit, lion, True) ::: The rabbit sees the lion.\nVisits(rabbit, cat, True) ::: The rabbit visits the cat.\n\nRules:\nVisits($x, cat, True) >>> Sees(cat, lion, True) ::: If something visits the cat then the cat sees the lion.\nVisits($x, lion, True) && Visits(lion, rabbit, True) >>> Needs($x, lion, True) ::: If something visits the lion and the lion visits the rabbit then it needs the lion.\nNeeds($x, lion, True) && Round(lion, True) >>> Needs($x, cat, True) ::: If something needs the lion and the lion is round then it needs the cat.\nGreen($x, True) && Needs($x, rabbit, True) >>> Green(rabbit, True) ::: If something is green and it needs the rabbit then the rabbit is green.\nRound($x, True) >>> Visits($x, lion, True) ::: If something is round then it visits the lion.\nSees($x, cat, True) && Visits(cat, lion, True) >>> Rough($x, False) ::: If something sees the cat and the cat visits the lion then it is not rough.\nNeeds($x, cat, True) && Green($x, False) >>> Sees($x, cat, True) ::: If something needs the cat and it is not green then it sees the cat.\nYoung($x, True) && Visits($x, bear, True) >>> Sees($x, cat, True) ::: If something is young and it visits the bear then it sees the cat.\n\nQuery:\nRound(lion, False) ::: The lion is not round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 131.0,
+      "Unknown": 97.0
+    },
+    "answer_counts": {
+      "False": 10,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the provided conditions to deduce the relationship between the lion and being round.\n\nGiven statements:\n\n1. The lion is round.\n2. The lion does not need the bear.\n\nConditions:\n\n1. If something is round then it visits the lion. (This condition is not directly applicable here, but it implies that the lion is indeed round, as it visits the lion itself.)\n2. If something needs the lion and the lion is round then it needs the cat. (This condition is not directly applicable here, but it implies that the lion's roundness is a known fact.)\n\nHowever, we do not have enough information to directly determine if the statement \"The lion is not round\" is true, false, or unknown based on the provided conditions alone. \n\nThe statement \"The lion is round\" directly contradicts the statement \"The lion is not round\". Since we already have a statement that directly states the lion is round (Statement 1), we can conclude the original statement is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not round\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The lion is round. (Direct information)\n2. The lion visits the bear. (Direct information)\n3. The cat is round. (Direct information)\n4. The cat needs the bear. (Direct information)\n5. The lion is cold. (Direct information)\n6. The lion is not green. (Direct information)\n7. The lion is round. (From rule 1)\n8. The lion does not need the bear. (Direct information)\n9. The lion sees the bear. (Direct information)\n10. The lion visits the bear. (From rule 2)\n11. The lion visits the cat. (Direct information)\n12. The lion visits the rabbit. (Direct information)\n13. The rabbit is green. (Direct information)\n14. The rabbit is rough. (Direct information)\n15. The rabbit sees the lion. (Direct information)\n16. The rabbit visits the cat. (Direct information)\n17. If something visits the cat then the cat sees the lion. (Rule 1)\n18. If something visits the lion and the lion visits the rabbit then it needs the lion. (Rule 2)\n19. If something needs the lion and the lion is round then it needs the cat. (Rule 3)\n20. If something is green and it needs the rabbit then the rabbit is green. (Rule 4)\n21. If something is round then it visits the lion. (Rule 5)\n22. If something sees the cat and the cat visits the lion then it is not rough. (Rule 6)\n23. If something needs the cat and it is not green then it sees the cat. (Rule 7)\n24. If something is young and it visits the bear then it sees the cat. (Rule 8)\n\nNow, we will analyze the given information and rules to determine the truth value of the statement \"The lion is not round.\"\n\nThe lion is round (rule 1 and direct information). This is the key piece of information that will help us determine the truth value of the statement.\n\nHowever, we cannot determine the truth value of the statement \"The lion is not round\" directly from the given information. We can only determine that the lion is round.\n\nTherefore, the truth value of the statement \"The lion is not round\" is **unknown** because we do not have enough information to determine whether it is true or false.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and deduce the information step by step.\n\n1. The lion is round. (This statement directly contradicts the statement we are trying to evaluate, \"The lion is not round.\" So, we will continue with the analysis to see if we can confirm this statement.)\n\n2. The lion is not green. (This statement provides no information about the lion's roundness or otherwise.)\n\n3. The lion is round. (As mentioned earlier, this statement contradicts the statement we are trying to evaluate.)\n\n4. The lion does not need the bear. (This statement provides no information about the lion's roundness or otherwise.)\n\n5. The lion sees the bear. (This statement provides no information about the lion's roundness or otherwise.)\n\n6. The lion visits the bear. (This statement provides no information about the lion's roundness or otherwise.)\n\n7. The lion visits the cat. (This statement provides no information about the lion's roundness or otherwise.)\n\n8. The lion visits the rabbit. (This statement provides no information about the lion's roundness or otherwise.)\n\n9. The rabbit is green. (This statement provides no information about the lion's roundness or otherwise.)\n\n10. The rabbit is rough. (This statement provides no information about the lion's roundness or otherwise.)\n\n11. The rabbit sees the lion. (This statement provides no information about the lion's roundness or otherwise.)\n\n12. The rabbit visits the cat. (This statement provides no information about the lion's roundness or otherwise.)\n\n13. If something visits the cat then the cat sees the lion. (This statement provides no information about the lion's roundness or otherwise.)\n\n14. If something visits the lion and the lion visits the rabbit then it needs the lion. (This statement provides no information about the lion's roundness or otherwise.)\n\n15. If something needs the lion and the lion is round then it needs the cat. (This statement provides no information about the lion's roundness or otherwise.)\n\n16. If something is green and it needs the rabbit then the rabbit is green. (This statement provides no information about the lion's roundness or otherwise.)\n\n17. If something is round then it visits the lion. (This statement provides no information about the lion's roundness or otherwise.)\n\n18. If something sees the cat and the cat visits the lion then it is not rough. (This statement provides no information about the lion's roundness or otherwise.)\n\n19. If something needs the cat and it is not green then it sees the cat. (This statement provides no information about the lion's roundness or otherwise.)\n\n20. If something is young and it visits the bear then it sees the cat. (This statement provides no information about the lion's roundness or otherwise.)\n\nWe have analyzed all the given statements, but we are still unable to determine whether the lion is round or not. However, we have found a statement that directly contradicts the statement we are trying to evaluate: \"The lion is round\" (statement 1 and 3). This means that we can conclude the following statement:\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the given conditions. \n\n1. From the statement \"The lion is round,\" we know that the lion is round.\n\n2. We also have a condition: \"If something is round then it visits the lion.\" This does not apply to our situation, as we are looking at the properties of the lion itself.\n\n3. Now we have another condition: \"If the lion is round then it needs the cat.\" This implies that the lion does not need the cat, but this is a contradiction with the statement \"The lion needs the bear.\" We cannot directly determine the lion's roundness from this condition.\n\n4. The given conditions do not provide information about the lion's roundness directly. However, since we have already concluded that the lion is round from the initial statement, we can proceed with this information.\n\n5. The statement \"The lion is not round\" directly contradicts the statement \"The lion is round.\"\n\nTherefore, based on the information given, we can conclude that:\n\nThe lion is round.\n\nHowever, we have a condition stating that \"If the lion is round then it needs the cat.\" This means that the lion needs the cat, and since we know the lion is round, we can deduce the following:\n\nThe lion needs the cat.\n\nNow let's examine the statement \"The lion is not round.\" Since we have found that the lion is round, the statement \"The lion is not round\" is false.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not round\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The lion is round. (Direct information)\n2. If something is round then it visits the lion. (Rule 6)\n   This rule does not directly apply to the lion, but it implies that if something is round, it visits the lion. However, it does not mean that if the lion visits something, it is round.\n\n3. If something needs the lion and the lion is round then it needs the cat. (Rule 4)\n   This rule does not directly apply to the lion, but it implies that if something needs the lion, it needs the cat if the lion is round.\n\n4. The lion does not need the bear. (Direct information)\n   This does not provide any information about the lion's shape.\n\n5. The lion is not green. (Direct information)\n   This does not provide any information about the lion's shape.\n\n6. The lion is round. (Direct information, from statement 1)\n   This directly states that the lion is round.\n\nConsidering the given information and the rules, we can conclude that the lion is indeed round. The rules and information provided do not contradict this fact. Therefore, the statement \"The lion is not round\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and the rules provided to determine whether the statement \"The lion is not round\" is true, false, or unknown.\n\nStep 1: Analyze the given statements:\n\n- The bear is young.\n- The bear visits the lion.\n- The cat is round.\n- The cat needs the bear.\n- The lion is cold.\n- The lion is not green.\n- The lion is round.\n- The lion does not need the bear.\n- The lion sees the bear.\n- The lion visits the bear.\n- The lion visits the cat.\n- The lion visits the rabbit.\n- The rabbit is green.\n- The rabbit is rough.\n- The rabbit sees the lion.\n- The rabbit visits the cat.\n\nStep 2: Analyze the rules:\n\n1. If something visits the cat then the cat sees the lion.\n2. If something visits the lion and the lion visits the rabbit then it needs the lion.\n3. If something needs the lion and the lion is round then it needs the cat.\n4. If something is green and it needs the rabbit then the rabbit is green.\n5. If something is round then it visits the lion.\n6. If something sees the cat and the cat visits the lion then it is not rough.\n7. If something needs the cat and it is not green then it sees the cat.\n8. If something is young and it visits the bear then it sees the cat.\n\nStep 3: Apply the rules to the given statements:\n\nFrom rule 1, we cannot determine anything because there is no statement that something visits the cat.\n\nFrom rule 2, we cannot determine anything because there is no statement that something visits the lion and the lion visits the rabbit.\n\nFrom rule 3, we cannot determine anything because there is no statement that something needs the lion and the lion is round.\n\nFrom rule 4, we cannot determine anything because there is no statement that something is green and needs the rabbit.\n\nFrom rule 5, we know that the lion is round, which means the lion visits the lion. However, this is a contradiction because the lion cannot visit itself.\n\nFrom rule 6, we cannot determine anything because there is no statement that something sees the cat and the cat visits the lion.\n\nFrom rule 7, we cannot determine anything because there is no statement that something needs the cat and it is not green.\n\nFrom rule 8, we cannot determine anything because there is no statement that something is young and it visits the bear.\n\nHowever, we can use rule 5 to determine that the cat is round.\n\nNow, let's look at the statement \"The lion is not round\" and try to find a contradiction.\n\nIf the lion is not round, then from rule 5, the lion does not visit the lion. However, from the given statements, we know that the lion visits the lion. This is a contradiction, so the statement \"The lion is not round\" must be false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is round. (Given statement)\nThis statement directly contradicts the statement we are trying to evaluate. \n\n2. If something is round then it visits the lion. \nSince we know the lion is round, this rule applies to the lion itself. However, this does not affect the current statement.\n\n3. If something visits the lion and the lion visits the rabbit then it needs the lion.\nGiven that the lion visits the rabbit, but this rule is not directly applicable to the lion itself.\n\n4. The lion is cold. (Given statement)\nThis statement does not affect the current evaluation.\n\n5. The lion does not need the bear. (Given statement)\nThis statement does not affect the current evaluation.\n\n6. The lion sees the bear. (Given statement)\nThis statement does not affect the current evaluation.\n\n7. The lion visits the bear. (Given statement)\nThis statement does not affect the current evaluation.\n\n8. The lion visits the cat. (Given statement)\nThis statement does not affect the current evaluation.\n\n9. The lion visits the rabbit. (Given statement)\nThis statement does not affect the current evaluation.\n\n10. If something is green and it needs the rabbit then the rabbit is green.\nSince we do not have any information about the lion needing the rabbit, this rule is not applicable.\n\n11. If something sees the cat and the cat visits the lion then it is not rough.\nGiven that the cat visits the lion, but we do not know if the lion sees the cat, this rule is not applicable.\n\n12. If something needs the cat and it is not green then it sees the cat.\nGiven that the lion does not need the cat (it does not need the bear), but we do not know if the lion is green or not, this rule is not applicable.\n\n13. If something is young and it visits the bear then it sees the cat.\nSince the lion is not young and visits the bear, this rule is not applicable.\n\n14. The cat is round. (Given statement)\nThis statement does not affect the current evaluation.\n\n15. The cat needs the bear. (Given statement)\nThis statement does not affect the current evaluation.\n\n16. The lion is not green. (Given statement)\nThis statement does not affect the current evaluation.\n\nBased on the given information, we know the lion is round (1). However, we do not have any information that contradicts this. \n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the provided rules to determine the relationship between the lion and being round.\n\nGiven statements:\n\n1. The bear is young.\n2. The bear visits the lion.\n3. The cat is round.\n4. The cat needs the bear.\n5. The lion is cold.\n6. The lion is not green.\n7. The lion is round.\n8. The lion does not need the bear.\n9. The lion sees the bear.\n10. The lion visits the bear.\n11. The lion visits the cat.\n12. The lion visits the rabbit.\n13. The rabbit is green.\n14. The rabbit is rough.\n15. The rabbit sees the lion.\n16. The rabbit visits the cat.\n\nRules:\n\n1. If something visits the cat then the cat sees the lion.\n2. If something visits the lion and the lion visits the rabbit then it needs the lion.\n3. If something needs the lion and the lion is round then it needs the cat.\n4. If something is green and it needs the rabbit then the rabbit is green.\n5. If something is round then it visits the lion.\n6. If something sees the cat and the cat visits the lion then it is not rough.\n7. If something needs the cat and it is not green then it sees the cat.\n8. If something is young and it visits the bear then it sees the cat.\n\nWe are asked to determine whether the statement \"The lion is not round\" is true, false, or unknown.\n\nFrom rule 5, we know that if something is round then it visits the lion. We can infer that the lion itself must be round, as it visits the lion. Therefore, the statement \"The lion is not round\" is false, since we have already established that the lion is indeed round.\n\nHowever, let's continue analyzing the rules and statements to ensure that our conclusion is correct.\n\nFrom rule 5, we can directly conclude that the lion is round because it is implied that the lion itself is a round entity.\n\nTherefore, our final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and the rules to determine the truth of the statement \"The lion is not round.\"\n\n1. The bear is young. \n2. The bear visits the lion. \n3. The cat is round. \n4. The cat needs the bear. \n5. The lion is cold. \n6. The lion is not green. \n7. The lion is round. \n8. The lion does not need the bear. \n9. The lion sees the bear. \n10. The lion visits the bear. \n11. The lion visits the cat. \n12. The lion visits the rabbit. \n13. The rabbit is green. \n14. The rabbit is rough. \n15. The rabbit sees the lion. \n16. The rabbit visits the cat. \n\nNow, we will use the given rules to determine the truth of the statement \"The lion is not round.\"\n\nIf something is round then it visits the lion. (Rule 6)\nSince the lion is round, it visits the lion. (This statement is redundant and cannot be used to determine the truth of the statement \"The lion is not round.\")\n\nThe lion needs the rabbit. (Rule 2, because the lion visits the rabbit)\nThe lion is round. (Statement 7)\nSince the lion is round and it needs the rabbit, it needs the cat. (Rule 4)\nThe lion is round. (Statement 7)\nThe lion is not green. (Statement 6)\nThe lion is round. (Statement 7)\nThe cat is round. (Statement 3)\nThe cat visits the lion. (Statement 11)\nThe lion sees the cat. (Statement 9)\nThe lion is round. (Statement 7)\nThe lion sees the bear. (Statement 9)\nThe bear is young. (Statement 1)\nThe bear visits the lion. (Statement 2)\nThe lion sees the bear. (Statement 9)\nThe lion is round. (Statement 7)\nThe lion visits the bear. (Statement 10)\nThe lion is round. (Statement 7)\n\nNow, we know that the lion is round.\n\nTherefore, the statement \"The lion is not round\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the provided rules to determine the truth value of the statement \"The lion is not round.\"\n\nGiven statements:\n1. The bear is young.\n2. The bear visits the lion.\n3. The cat is round.\n4. The cat needs the bear.\n5. The lion is cold.\n6. The lion is not green.\n7. The lion is round.\n8. The lion does not need the bear.\n9. The lion sees the bear.\n10. The lion visits the bear.\n11. The lion visits the cat.\n12. The lion visits the rabbit.\n13. The rabbit is green.\n14. The rabbit is rough.\n15. The rabbit sees the lion.\n16. The rabbit visits the cat.\n\nRules:\n1. If something visits the cat then the cat sees the lion.\n2. If something visits the lion and the lion visits the rabbit then it needs the lion.\n3. If something needs the lion and the lion is round then it needs the cat.\n4. If something is green and it needs the rabbit then the rabbit is green.\n5. If something is round then it visits the lion.\n6. If something sees the cat and the cat visits the lion then it is not rough.\n7. If something needs the cat and it is not green then it sees the cat.\n8. If something is young and it visits the bear then it sees the cat.\n\nWe need to determine the truth value of the statement \"The lion is not round.\" Let's analyze the given statements and rules.\n\nFrom statement 7, we know that the lion is round. This directly contradicts the statement we are trying to determine, which is \"The lion is not round.\"\n\nSince statement 7 directly states that the lion is round, we can conclude that the statement \"The lion is not round\" is false.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply it to the statement we're trying to evaluate. Let's break it down step by step.\n\n1. The lion is round. (Direct statement)\n\nNow, let's analyze the statement we're trying to evaluate: \"The lion is not round.\"\n\nSince we already have a direct statement that says \"The lion is round,\" we can conclude that the statement \"The lion is not round\" is false.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is round. (This statement is given directly)\n\nHowever, the statement \"The lion is not round\" needs to be evaluated.\n\nFrom the given information, we know that:\n- If something is round then it visits the lion.\n- The lion is round.\n\nThis implies that the lion visits the lion itself, which is a tautology and doesn't provide any useful information.\n\nWe also know that:\n- If something is round then it visits the lion.\n- The lion is round.\n\nThis implies that the lion visits the lion, which is already stated.\n\nTo evaluate the statement \"The lion is not round\", we need to check if there's any information that contradicts the given fact \"The lion is round\".\n\nFrom the given information, we know that:\n- The lion is round.\n- If something needs the lion and the lion is round then it needs the cat.\n- The lion is cold.\n\nHowever, there's no information that directly contradicts the fact that the lion is round. Therefore, based on the given information, we can conclude that the statement \"The lion is not round\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == False",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_lion, visits_lion_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & round(lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_lion_bear, round_lion), needs_lion_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(lion))",
+          "z3_formula": "Not(round_lion) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not green(lion)",
+          "z3_formula": "not_green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> round(X)",
+          "z3_formula": "Implies(round_lion, round_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(lion, bear)",
+          "z3_formula": "not_needs_lion_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> sees(X, lion)",
+          "z3_formula": "Implies(visits_rabbit_cat, sees_rabbit_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & visits(lion, rabbit) -> needs(X, lion)",
+          "z3_formula": "Implies(And(visits_lion_rabbit, visits_lion_rabbit), needs_X_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & round(lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_X_lion, round_lion), needs_X_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(green_X, needs_X_rabbit), green_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_X, visits_X_lion)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & visits(cat, lion) -> not rough(X)",
+          "z3_formula": "Implies(And(sees_X_cat, visits_cat_lion), not_rough_X)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & not green(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, not_green_X), sees_X_cat)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_X, visits_X_bear), sees_X_cat)",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "Not(round_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not(round(X))",
+          "z3_formula": "Not(round_lion) == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_lion, visits_lion_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & visits(lion, rabbit) -> needs(X, lion)",
+          "z3_formula": "Implies(And(visits_lion_lion, visits_lion_rabbit), needs_lion_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & round(lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_lion_lion, round_lion), needs_lion_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(green_X, needs_X_rabbit), green_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> sees(cat, lion)",
+          "z3_formula": "Implies(visits_X_cat, sees_cat_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & visits(cat, lion) -> not(rough(X))",
+          "z3_formula": "Implies(And(sees_X_cat, visits_cat_lion), Not(rough_X))",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & not(green(X)) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, Not(green_X)), sees_X_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_X, visits_X_bear), sees_X_cat)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_lion, visits_lion_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> needs(X, cat)",
+          "z3_formula": "Implies(round_lion, needs_lion_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bear)",
+          "z3_formula": "needs_lion_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, cat)",
+          "z3_formula": "needs_lion_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "Not(round_lion) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(needs(lion, cat))",
+          "z3_formula": "Not(needs_lion_cat) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_lion, visits_X_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & round(lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_X_lion, round_lion), needs_X_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(bear, lion)",
+          "z3_formula": "Not(needs_bear_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not green(lion)",
+          "z3_formula": "Not(green_lion) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not_green(lion)",
+          "z3_formula": "not_green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not_needs(lion, bear)",
+          "z3_formula": "not_needs_lion_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> sees(cat, lion)",
+          "z3_formula": "Implies(visits_cat_cat, sees_cat_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & visits(lion, rabbit) -> needs(X, lion)",
+          "z3_formula": "Implies(And(visits_lion_lion, visits_lion_rabbit), needs_lion_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & round(lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_lion_lion, round_lion), needs_lion_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(green_X, needs_X_rabbit), green_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_lion, visits_lion_lion)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & visits(cat, lion) -> not(rough(X))",
+          "z3_formula": "Implies(And(sees_X_cat, visits_cat_lion), Not(rough_X))",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & not(green(X)) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, Not(green_X)), sees_X_cat)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_X, visits_X_bear), sees_X_cat)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(lion))",
+          "z3_formula": "Not(round_lion)",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_lion, visits_lion_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & visits(lion, rabbit) -> needs(X, lion)",
+          "z3_formula": "Implies(And(visits_lion_lion, visits_lion_rabbit), needs_lion_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(green_lion, needs_lion_rabbit), green_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & visits(cat, lion) -> not(rough(X))",
+          "z3_formula": "Implies(And(sees_lion_cat, visits_cat_lion), not(rough_lion))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & not(green(X)) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_lion_cat, not(green_lion)), sees_lion_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_lion, visits_lion_bear), sees_lion_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not(green(lion))",
+          "z3_formula": "not(green_lion) == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not green(lion)",
+          "z3_formula": "not_green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(lion, bear)",
+          "z3_formula": "not_needs_lion_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> sees(cat, lion)",
+          "z3_formula": "Implies(visits_lion_cat, sees_cat_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & visits(lion, rabbit) -> needs(X, lion)",
+          "z3_formula": "Implies(And(visits_lion_bear, visits_lion_rabbit), needs_lion_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & round(lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_lion_lion, round_lion), needs_lion_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(green_X, needs_X_rabbit), green_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_X, visits_X_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & visits(cat, lion) -> not rough(X)",
+          "z3_formula": "Implies(And(sees_X_cat, visits_cat_lion), not_rough_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & not green(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, not_green_X), sees_X_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_X, visits_X_bear), sees_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not round(lion)",
+          "z3_formula": "not_round_lion == False",
+          "source_step": 9
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, lion)",
+          "z3_formula": "visits_bear_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, bear)",
+          "z3_formula": "needs_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not green(lion)",
+          "z3_formula": "not_green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(lion, bear)",
+          "z3_formula": "not_needs_lion_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> sees(cat, lion)",
+          "z3_formula": "Implies(visits_lion_cat, sees_cat_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & visits(lion, rabbit) -> needs(X, lion)",
+          "z3_formula": "Implies(And(visits_lion_rabbit, visits_lion_lion), needs_X_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & round(lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_X_lion, round_lion), needs_X_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(green_X, needs_X_rabbit), green_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_X, visits_X_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & visits(cat, lion) -> not rough(X)",
+          "z3_formula": "Implies(And(sees_X_cat, visits_cat_lion), not_rough_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & not green(X) -> sees(X, cat)",
+          "z3_formula": "Implies(And(needs_X_cat, not_green_X), sees_X_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & visits(X, bear) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_X, visits_X_bear), sees_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not round(lion)",
+          "z3_formula": "not round_lion",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(lion))",
+          "z3_formula": "Not(round_lion)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_lion, visits_lion_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> visits(X, lion)",
+          "z3_formula": "Implies(round_lion, visits_lion_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & round(lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(needs_lion_lion, round_lion), needs_lion_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 148,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 48
+    },
+    "maxsat_stats": {
+      "satisfied": 45,
+      "excluded": 3,
+      "total_weight": 137,
+      "solve_time_ms": 1.3999296352267265
+    },
+    "timing": {
+      "trace_gen_s": 7.904,
+      "extraction_s": 39.408,
+      "dedup_s": 1.468,
+      "maxsat_s": 0.004,
+      "total_s": 48.784
+    }
+  }
+}

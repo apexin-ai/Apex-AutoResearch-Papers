@@ -1,0 +1,1098 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-808_Q5",
+    "problem": "Charlie is cold. Charlie is rough. Erin is not big. Erin is blue. Erin is cold. Erin is furry. Erin is red. Erin is rough. Erin is smart. Fiona is big. Fiona is cold. Harry is blue. Harry is red. Harry is smart. If someone is blue then they are rough. Smart people are furry. All big people are blue. All furry people are red. All rough people are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is rough.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nFurry($x, bool) ::: Is x furry?\nRed($x, bool) ::: Is x red?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nCold(Charlie, True) ::: Charlie is cold.\nRough(Charlie, True) ::: Charlie is rough.\nBig(Erin, False) ::: Erin is not big.\nBlue(Erin, True) ::: Erin is blue.\nCold(Erin, True) ::: Erin is cold.\nFurry(Erin, True) ::: Erin is furry.\nRed(Erin, True) ::: Erin is red.\nRough(Erin, True) ::: Erin is rough.\nSmart(Erin, True) ::: Erin is smart.\nBig(Fiona, True) ::: Fiona is big.\nCold(Fiona, True) ::: Fiona is cold.\nBlue(Harry, True) ::: Harry is blue.\nRed(Harry, True) ::: Harry is red.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nBlue($x, True) >>> Rough($x, True) ::: If someone is blue then they are rough.\nSmart($x, True) >>> Furry($x, True) ::: Smart people are furry.\nBig($x, True) >>> Blue($x, True) ::: All big people are blue.\nFurry($x, True) >>> Red($x, True) ::: All furry people are red.\nRough($x, True) >>> Smart($x, True) ::: All rough people are smart.\n\nQuery:\nRough(Fiona, True) ::: Fiona is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 94.5,
+      "True": 146.0,
+      "Unknown": 146.5
+    },
+    "answer_counts": {
+      "True": 6,
+      "Unknown": 5,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will break it down step by step using the given information.\n\nStep 1: Analyze the given statements about each person and their characteristics.\n\n- Charlie: cold and rough\n- Erin: not big, blue, cold, furry, red, rough, smart\n- Fiona: big, cold\n- Harry: blue, red, smart\n\nStep 2: Analyze the given rules.\n\n- If someone is blue then they are rough.\n- Smart people are furry.\n- All big people are blue.\n- All furry people are red.\n- All rough people are smart.\n\nStep 3: Determine the relationship between Fiona's characteristics and the given rules.\n\n- Fiona is big.\n- According to the rule \"All big people are blue\", Fiona must be blue.\n- Since Fiona is blue, according to the rule \"If someone is blue then they are rough\", Fiona must be rough.\n\nTherefore, based on the given information, the statement \"Fiona is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is big. \n   From the given statements, we know that \"All big people are blue.\"\n   Therefore, Fiona is blue.\n\n2. All blue people are rough.\n   Since Fiona is blue and from the previous conclusion, we can infer that Fiona is rough.\n\nHowever, we have to verify if this conclusion is consistent with other given statements. We know that \"Smart people are furry\" and \"All furry people are red.\" But since we already concluded that Fiona is rough, and \"All rough people are smart,\" we can infer that Fiona is smart.\n\nNow, we know that Fiona is both blue (from statement 1) and smart (from the conclusion in step 2). Given that \"All big people are blue,\" we can say Fiona is indeed big. \n\nWe also know that \"All blue people are rough\" and \"Smart people are furry\" and \"All furry people are red.\" Fiona being blue, smart, and rough, thus means she is also red.\n\nTherefore, the statement \"Fiona is rough\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information provided, we know that:\n   - All big people are blue. (Statement 1)\n   - All furry people are red. (Statement 2)\n   - All rough people are smart. (Statement 3)\n   - All rough people are smart. (Statement 3) implies that if someone is rough, they are smart.\n   - Smart people are furry. (Statement 4) implies that if someone is smart, they are furry.\n   - If someone is blue, then they are rough. (Statement 5) implies that if someone is blue, they are rough.\n\n2. We also know specific information about certain individuals:\n   - Fiona is big. (Statement 6)\n   - Harry is blue. (Statement 7)\n   - Harry is red. (Statement 8)\n   - Harry is smart. (Statement 9)\n\n3. From Statement 1, we know that all big people are blue, so since Fiona is big, she must be blue.\n\n4. From Statement 5, if someone is blue, then they are rough. However, this does not directly apply to Fiona, because Statement 5 only tells us that if someone is blue, they are rough, but it does not say that Fiona is blue because she is rough.\n\n5. To determine whether Fiona is rough, we need to find a direct connection between Fiona and the characteristics \"rough\" or \"not rough\". From the information we have, we cannot directly conclude that Fiona is rough. We cannot conclude that she is not rough either.\n\nTherefore, the statement \"Fiona is rough\" is unknown, as we do not have enough information to determine whether it is true or false.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Given information:\n   - Erin is not big.\n   - Erin is blue.\n   - Erin is cold.\n   - Erin is furry.\n   - Erin is red.\n   - Erin is rough.\n   - Erin is smart.\n   - Fiona is big.\n   - Fiona is cold.\n   - Harry is blue.\n   - Harry is red.\n   - Harry is smart.\n   - If someone is blue then they are rough.\n   - Smart people are furry.\n   - All big people are blue.\n   - All furry people are red.\n   - All rough people are smart.\n\n2. From the given information, we know:\n   - Fiona is big.\n   - All big people are blue.\n   - So, Fiona is blue.\n   - Harry is blue.\n   - If someone is blue then they are rough.\n   - So, Fiona is rough.\n\nHowever, we also know that:\n- All rough people are smart.\n- Fiona is rough.\n- So, Fiona is smart.\n\nTo check if our conclusion is consistent with the given information, let's look at Erin's characteristics:\n- Erin is smart.\n- Smart people are furry.\n- So, Erin is furry.\n- All furry people are red.\n- So, Erin is red.\n\nNow, we have a contradiction:\n- Erin is red.\n- Harry is red.\n- But Fiona is blue, not red.\n\nThe information about Fiona being big and blue led to a contradiction with the information about Erin and Harry being red. This means that our initial conclusion that Fiona is rough might be incorrect, and we need to revisit our deductions.\n\nLet's re-examine the given information and our deductions:\n- Fiona is big.\n- All big people are blue.\n- So, Fiona is blue.\n- This does not necessarily mean Fiona is rough.\n\nWe cannot conclude that Fiona is rough based on the given information. The statement \"Fiona is rough\" is unknown because we cannot determine it to be true or false with the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine if the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the given statements:\n1. Fiona is big.\n2. All big people are blue.\n3. Harry is blue.\n4. If someone is blue then they are rough.\n5. All rough people are smart.\n6. Harry is red.\n7. All furry people are red.\n8. Smart people are furry.\n9. Erin is furry.\n10. Erin is blue.\n\nFrom statement 2, we know that since Fiona is big, she must be blue (statement 4).\n\nHowever, from statement 8, we know that smart people are furry, and from statement 9, Erin is furry. From statement 3, we also know that Harry is red, and from statement 7, we know that all furry people are red. This leads to a contradiction because we cannot conclude that Erin is smart or not smart. This is because we cannot prove that all red people are not smart (statement 6, Harry is smart, but Harry is red) and we cannot conclude that all blue people are not smart (from statement 4 and statement 5, if someone is rough then they are smart, and we have concluded that Fiona is blue).\n\nTherefore, we cannot determine if Fiona is rough or not, so the final answer is \\boxed{Unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information and apply the rules provided.\n\nGiven information:\n1. Erin is not big.\n2. Erin is blue.\n3. Erin is cold.\n4. Erin is furry.\n5. Erin is red.\n6. Erin is rough.\n7. Erin is smart.\n8. Fiona is big.\n9. Fiona is cold.\n10. Harry is blue.\n11. Harry is red.\n12. Harry is smart.\n13. If someone is blue then they are rough.\n14. Smart people are furry.\n15. All big people are blue.\n16. All furry people are red.\n17. All rough people are smart.\n\nTo determine whether Fiona is rough, we need to follow the rules:\n\nFrom rule 15, we know that since Fiona is big (rule 8), she must be blue (rule 15).\nFrom rule 13, we know that if someone is blue, they are rough. However, we cannot conclude that Fiona is rough yet because we have not applied all the relevant rules.\nFrom rule 15, we also know that Fiona is blue, so we can conclude that Fiona is rough (rule 13).\n\nHowever, we need to check if there's any rule that contradicts this conclusion. We can do this by applying the other rules:\n\nFiona is big (rule 8) and from rule 15, all big people are blue, which we already concluded. \nFiona is blue (from rule 8 and rule 15), and from rule 13, all blue people are rough. \nFiona being blue and rough is consistent with the rules, but we have to check the other conditions.\n\nFrom rule 14, all furry people are red. However, Fiona is big (rule 8) and blue (rule 8 and rule 15), but we don't have any information about her being furry. Therefore, we cannot conclude that Fiona is red based on this rule.\n\nFrom rule 16, all rough people are smart. Since Fiona is rough (rule 13), she must be smart (rule 16). However, this conclusion is consistent with rule 17, which states that all rough people are smart.\n\nTherefore, based on the given rules and information, we can conclude that Fiona is rough.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information.\n\n1. Given statements:\n   - Erin is not big.\n   - Erin is blue.\n   - Erin is cold.\n   - Erin is furry.\n   - Erin is red.\n   - Erin is rough.\n   - Erin is smart.\n   - Fiona is big.\n   - Fiona is cold.\n   - Harry is blue.\n   - Harry is red.\n   - Harry is smart.\n   - If someone is blue then they are rough.\n   - Smart people are furry.\n   - All big people are blue.\n   - All furry people are red.\n   - All rough people are smart.\n\n2. Analysis of the statements:\n   - Since Fiona is big, we can infer that Fiona is blue because all big people are blue (statement 14).\n   - Now that we know Fiona is blue, we can infer that Fiona is rough because if someone is blue then they are rough (statement 7).\n   - However, we also need to consider other possible inferences.\n\n3. Considering other possible inferences:\n   - Fiona being big does not directly tell us if she is rough or not. We only know she is blue.\n   - We can't conclude that Fiona is rough based on her being blue alone. We need more information to determine if Fiona is rough.\n   - However, we know that all rough people are smart (statement 15), and we know that Erin is rough and smart (statements 8 and 9). This means that being rough and smart is not exclusive to Fiona.\n\n4. Conclusion:\n   - Since we know that all rough people are smart and Erin is both rough and smart, we cannot conclude that Fiona is rough or not based solely on her being big and blue.\n   - However, we can conclude that the statement \"Fiona is rough\" is unknown because we do not have enough information to determine if Fiona is rough or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. Given information:\n   - Charlie is cold. Charlie is rough.\n   - Erin is not big. Erin is blue. Erin is cold. Erin is furry. Erin is red. Erin is rough. Erin is smart.\n   - Fiona is big. Fiona is cold.\n   - Harry is blue. Harry is red. Harry is smart.\n   - If someone is blue then they are rough.\n   - Smart people are furry.\n   - All big people are blue.\n   - All furry people are red.\n   - All rough people are smart.\n\n2. From the given information:\n   - Since Fiona is big, using the rule \"All big people are blue,\" we can conclude that Fiona is blue.\n   - Using the rule \"If someone is blue then they are rough,\" we can conclude that Fiona is rough.\n\nBased on the analysis, we can determine that Fiona is indeed rough.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. We know that Fiona is big.\n2. We also know that all big people are blue. \n   Therefore, Fiona is blue.\n\n3. We know that someone who is blue is rough. \n   Since Fiona is blue, we can conclude that Fiona is rough.\n\nSo, based on the given information and logical reasoning, we can determine that the statement \"Fiona is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Fiona is rough, we need to analyze the given information and apply the given rules.\n\nGiven information:\n- Fiona is big.\n- All big people are blue.\n\nFrom the given rules:\n- All big people are blue.\n\nSince Fiona is big, according to the rule, Fiona must be blue. However, we also know that Erin is blue and Erin is rough. But there's no rule that says all blue people are rough or that being blue implies being rough.\n\nGiven information:\n- All blue people are big. (From the given rule: All big people are blue)\n\nGiven information:\n- Fiona is blue. \n\nFrom the given rule:\n- If someone is blue then they are rough.\n\nSince Fiona is blue, according to the given rule, Fiona must be rough.\n\nTherefore, the final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether Fiona is rough, we need to analyze the given information and the properties of Fiona.\n\n1. Fiona is big.\n2. All big people are blue. (From the given information)\n   - This implies that Fiona is blue.\n\n3. Fiona is cold.\n4. Erin is cold. Erin is blue.\n   - However, we don't know if being cold is a property of Fiona or Erin, so we cannot make any conclusions about Fiona's properties from Erin's.\n\n5. Harry is blue. Harry is red. Harry is smart.\n   - Since we know Fiona is blue, we can use the property \"All big people are blue\" to confirm this.\n   - However, the information about Harry being red does not affect our conclusion about Fiona.\n\n6. All big people are blue. (From the given information)\n   - We already know Fiona is big and blue, so this property does not add any new information.\n7. All furry people are red. (From the given information)\n   - We don't have any information about Fiona being furry, so we cannot make any conclusions about her being red.\n\n8. All rough people are smart. (From the given information)\n   - Since we need to determine if Fiona is rough, we will keep this in mind.\n\n9. If someone is blue then they are rough. (From the given information)\n   - We know Fiona is blue, but this property does not guarantee that Fiona is rough.\n\nHowever, there is one more property that we can use to make a conclusion about Fiona's roughness:\n\n10. Smart people are furry. (From the given information)\n    - We know Harry is smart and red, but this does not affect our conclusion about Fiona.\n    - However, we also know that Erin is furry and smart. Since Erin is not big and not blue (because Erin is not big and blue is a property of big people), and we know that Fiona is big and blue, we can conclude that Fiona is not furry.\n\n11. All rough people are smart. (From the given information)\n    - Since Fiona is not furry, we can use this property to make a conclusion about Fiona's roughness.\n    - If Fiona were rough, then she would be smart and furry. But we know Fiona is not furry.\n    - Therefore, we can conclude that Fiona is not rough.\n\nIn conclusion, based on the given information and the properties of Fiona, we can determine that the statement \"Fiona is rough\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Fiona is big.\n   - All big people are blue.\n   - All blue people are rough.\n   - All rough people are smart.\n   - All smart people are furry.\n   - All furry people are red.\n\n2. Analyzing the given information:\n   - Since Fiona is big, we can conclude that she is blue because all big people are blue.\n   - Since Fiona is blue, we can conclude that she is rough because all blue people are rough.\n\nHowever, we need to be careful and make sure we don't make any incorrect assumptions. Let's review the given information again:\n   - Erin is blue, rough, and furry ( Erin is not big).\n   - Harry is blue, red, and smart (Harry is not big).\n   - We have the following relationships between colors, roughness, and furiness:\n     - Blue people are rough.\n     - Smart people are furry.\n     - Furry people are red.\n\nNow let's analyze the relationships between colors:\n   - Blue people are rough.\n   - All blue people are big (from the given information), and we know that Harry is blue and not big.\n   - This means that there are two possible explanations for why Harry is blue:\n     1. Harry is not blue.\n     2. There are exceptions to the rule \"All big people are blue\" and \"All blue people are big.\"\n\nSince there are two possible explanations for why Harry is blue, we cannot conclude that all blue people are big. This means we cannot conclude that Fiona is big just because she is blue. However, we can conclude that Fiona is blue because all big people are blue.\n\nNow let's analyze the relationships between colors and roughness:\n   - Blue people are rough.\n   - We know that Fiona is blue, but we don't know if she is big or not.\n   - Since we don't know if Fiona is big or not, we cannot conclude that she is rough.\n\nBased on the analysis above, we cannot conclude that Fiona is rough.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not big(erin)",
+          "z3_formula": "Not(big_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_erin, rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_erin, furry_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_fiona, blue_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_fiona, blue_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_erin, red_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_erin, smart_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_fiona, smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_fiona, blue_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_fiona, furry_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_fiona, red_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_fiona, blue_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_fiona, smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_fiona, furry_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_harry, rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_erin, furry_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_fiona, blue_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_erin, red_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_harry, smart_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona) & smart(fiona) & blue(fiona) & furry(erin) & red(erin) & blue(harry) & red(harry) & smart(harry)",
+          "z3_formula": "And(rough_fiona, smart_fiona, blue_fiona, furry_erin, red_erin, blue_harry, red_harry, smart_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona) & smart(fiona) & blue(fiona) & furry(erin) & red(erin) & blue(harry) & red(harry) & smart(harry) == False",
+          "z3_formula": "Not(And(rough_fiona, smart_fiona, blue_fiona, furry_erin, red_erin, blue_harry, red_harry, smart_harry))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_fiona, smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_erin, red_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_harry, furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_fiona, furry_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_fiona, blue_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_fiona, blue_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_erin, smart_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_erin, furry_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == False",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_harry, rough_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_harry, blue_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_harry, red_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_harry, smart_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == Unknown",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not big(erin)",
+          "z3_formula": "Not(big_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_X, rough_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_X, red_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_X, smart_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_fiona, blue_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_X, red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_erin, furry_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_fiona, smart_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_fiona, rough_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_fiona, smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_fiona, furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_fiona, red_fiona)",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 161,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 43
+    },
+    "maxsat_stats": {
+      "satisfied": 41,
+      "excluded": 2,
+      "total_weight": 159,
+      "solve_time_ms": 1.051284372806549
+    },
+    "timing": {
+      "trace_gen_s": 6.162,
+      "extraction_s": 22.0,
+      "dedup_s": 1.477,
+      "maxsat_s": 0.003,
+      "total_s": 29.642
+    }
+  }
+}

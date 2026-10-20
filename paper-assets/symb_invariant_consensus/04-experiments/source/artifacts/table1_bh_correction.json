@@ -1,0 +1,207 @@
+{
+  "m": 16,
+  "alpha": 0.05,
+  "method": "Benjamini-Hochberg",
+  "conditions": [
+    {
+      "model": "Mistral-7B",
+      "dataset": "PW-D5",
+      "n": 600,
+      "sc_pct": 39.33,
+      "sica_pct": 36.5,
+      "delta_pp": -2.83,
+      "raw_p": 0.014,
+      "adjusted_p": 0.112,
+      "significant_raw": true,
+      "significant_bh": false
+    },
+    {
+      "model": "Mistral-7B",
+      "dataset": "LogiQA",
+      "n": 200,
+      "sc_pct": 51.0,
+      "sica_pct": 51.5,
+      "delta_pp": 0.5,
+      "raw_p": 1.0,
+      "adjusted_p": 1.0,
+      "significant_raw": false,
+      "significant_bh": false
+    },
+    {
+      "model": "Mistral-7B",
+      "dataset": "FOLIO (s123)",
+      "n": 204,
+      "sc_pct": 54.41,
+      "sica_pct": 57.35,
+      "delta_pp": 2.94,
+      "raw_p": 0.07,
+      "adjusted_p": 0.2976,
+      "significant_raw": false,
+      "significant_bh": false
+    },
+    {
+      "model": "Mistral-7B (4s)",
+      "dataset": "FOLIO",
+      "n": 204,
+      "sc_pct": 55.88,
+      "sica_pct": 59.31,
+      "delta_pp": 3.43,
+      "raw_p": 0.092,
+      "adjusted_p": 0.2976,
+      "significant_raw": false,
+      "significant_bh": false
+    },
+    {
+      "model": "Mistral-7B",
+      "dataset": "FOLIO (s456)",
+      "n": 204,
+      "sc_pct": 55.88,
+      "sica_pct": 55.88,
+      "delta_pp": 0.0,
+      "raw_p": 1.0,
+      "adjusted_p": 1.0,
+      "significant_raw": false,
+      "significant_bh": false
+    },
+    {
+      "model": "Mistral-7B",
+      "dataset": "FOLIO (s789)",
+      "n": 204,
+      "sc_pct": 54.41,
+      "sica_pct": 53.92,
+      "delta_pp": -0.49,
+      "raw_p": 1.0,
+      "adjusted_p": 1.0,
+      "significant_raw": false,
+      "significant_bh": false
+    },
+    {
+      "model": "LLaMA-3.1-8B",
+      "dataset": "FOLIO",
+      "n": 204,
+      "sc_pct": 66.18,
+      "sica_pct": 61.76,
+      "delta_pp": -4.41,
+      "raw_p": 0.093,
+      "adjusted_p": 0.2976,
+      "significant_raw": false,
+      "significant_bh": false
+    },
+    {
+      "model": "LLaMA-3.1-8B",
+      "dataset": "StrategyQA",
+      "n": 200,
+      "sc_pct": 72.0,
+      "sica_pct": 74.0,
+      "delta_pp": 2.0,
+      "raw_p": 0.424,
+      "adjusted_p": 1.0,
+      "significant_raw": false,
+      "significant_bh": false
+    },
+    {
+      "model": "Qwen2.5-14B",
+      "dataset": "FOLIO (ICL)",
+      "n": 199,
+      "sc_pct": 74.37,
+      "sica_pct": 74.87,
+      "delta_pp": 0.5,
+      "raw_p": 1.0,
+      "adjusted_p": 1.0,
+      "significant_raw": false,
+      "significant_bh": false
+    },
+    {
+      "model": "Qwen2.5-14B",
+      "dataset": "PW-D5",
+      "n": 600,
+      "sc_pct": 75.17,
+      "sica_pct": 72.67,
+      "delta_pp": -2.5,
+      "raw_p": 0.011,
+      "adjusted_p": 0.112,
+      "significant_raw": true,
+      "significant_bh": false
+    },
+    {
+      "model": "Qwen2.5-14B",
+      "dataset": "FOLIO",
+      "n": 204,
+      "sc_pct": 75.49,
+      "sica_pct": 74.51,
+      "delta_pp": -0.98,
+      "raw_p": 1.0,
+      "adjusted_p": 1.0,
+      "significant_raw": false,
+      "significant_bh": false
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "dataset": "FOLIO",
+      "n": 204,
+      "sc_pct": 75.98,
+      "sica_pct": 76.47,
+      "delta_pp": 0.49,
+      "raw_p": 1.0,
+      "adjusted_p": 1.0,
+      "significant_raw": false,
+      "significant_bh": false
+    },
+    {
+      "model": "Qwen2.5-14B",
+      "dataset": "LogiQA",
+      "n": 200,
+      "sc_pct": 78.5,
+      "sica_pct": 78.0,
+      "delta_pp": -0.5,
+      "raw_p": 1.0,
+      "adjusted_p": 1.0,
+      "significant_raw": false,
+      "significant_bh": false
+    },
+    {
+      "model": "Qwen3-14B",
+      "dataset": "FOLIO",
+      "n": 204,
+      "sc_pct": 84.8,
+      "sica_pct": 84.31,
+      "delta_pp": -0.49,
+      "raw_p": 1.0,
+      "adjusted_p": 1.0,
+      "significant_raw": false,
+      "significant_bh": false
+    },
+    {
+      "model": "Qwen3-14B",
+      "dataset": "PW-D5",
+      "n": 600,
+      "sc_pct": 85.0,
+      "sica_pct": 85.67,
+      "delta_pp": 0.67,
+      "raw_p": 1.0,
+      "adjusted_p": 1.0,
+      "significant_raw": false,
+      "significant_bh": false
+    },
+    {
+      "model": "Qwen3-14B (think)",
+      "dataset": "FOLIO",
+      "n": 204,
+      "sc_pct": 86.27,
+      "sica_pct": 86.76,
+      "delta_pp": 0.49,
+      "raw_p": 1.0,
+      "adjusted_p": 1.0,
+      "significant_raw": false,
+      "significant_bh": false
+    }
+  ],
+  "summary": {
+    "n_significant_raw": 2,
+    "n_significant_bh": 0,
+    "conditions_losing_significance": [
+      "Mistral-7B / PW-D5 (raw=0.014, adj=0.1120)",
+      "Qwen2.5-14B / PW-D5 (raw=0.011, adj=0.1120)"
+    ]
+  }
+}

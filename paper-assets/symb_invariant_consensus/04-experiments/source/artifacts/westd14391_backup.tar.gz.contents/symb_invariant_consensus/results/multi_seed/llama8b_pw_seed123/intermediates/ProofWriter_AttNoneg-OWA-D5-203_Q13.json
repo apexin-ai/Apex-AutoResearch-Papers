@@ -1,0 +1,1176 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-203_Q13",
+    "problem": "Bob is nice. Bob is round. Bob is young. Dave is round. Erin is big. Erin is red. Gary is young. All round things are nice. All nice, big things are white. If something is big and white then it is round. Young things are nice. Big, red things are young. All nice things are quiet. All quiet things are big. Young, quiet things are red.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not red.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\nWhite($x, bool) ::: Is x white?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nNice(Bob, True) ::: Bob is nice.\nRound(Bob, True) ::: Bob is round.\nYoung(Bob, True) ::: Bob is young.\nRound(Dave, True) ::: Dave is round.\nBig(Erin, True) ::: Erin is big.\nRed(Erin, True) ::: Erin is red.\nYoung(Gary, True) ::: Gary is young.\n\nRules:\nRound($x, True) >>> Nice($x, True) ::: All round things are nice.\nNice($x, True) && Big($x, True) >>> White($x, True) ::: All nice, big things are white.\nBig($x, True) && White($x, True) >>> Round($x, True) ::: If something is big and white then it is round.\nYoung($x, True) >>> Nice($x, True) ::: Young things are nice.\nBig($x, True) && Red($x, True) >>> Young($x, True) ::: Big, red things are young.\nNice($x, True) >>> Quiet($x, True) ::: All nice things are quiet.\nQuiet($x, True) >>> Big($x, True) ::: All quiet things are big.\nYoung($x, True) && Quiet($x, True) >>> Red($x, True) ::: Young, quiet things are red.\n\nQuery:\nRed(Dave, False) ::: Dave is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 119.5,
+      "True": 90.5,
+      "Unknown": 128.5
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "False": 4,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement 'Dave is not red' is true, false, or unknown, we need to analyze the given information and apply it to Dave.\n\n1. Dave is round. (Given)\n2. All round things are nice. (Given)\n   From this, we can conclude that Dave is nice.\n\n3. All nice, big things are white. (Given)\n   However, we do not have any information about Dave's size. Therefore, we cannot conclude that Dave is big.\n\n4. If something is big and white then it is round. (Given)\n   This statement is irrelevant to our current situation because we do not know if Dave is big.\n\n5. Young things are nice. (Given)\n   We already concluded that Dave is nice in step 2. This statement does not provide any new information.\n\n6. Big, red things are young. (Given)\n   This statement is also irrelevant because we do not know if Dave is big, and we do not know if Dave is red.\n\n7. All nice things are quiet. (Given)\n   From step 2, we know that Dave is nice. Therefore, Dave is quiet.\n\n8. All quiet things are big. (Given)\n   From step 7, we know that Dave is quiet. Therefore, Dave is big.\n\n9. Young, quiet things are red. (Given)\n   From step 7, we know that Dave is quiet. From step 8, we know that Dave is big (because it's quiet), and from step 5, we know that Dave is nice (because it's young). However, this statement is about young things, and we already know that Dave is nice (which is possible but not necessarily young). We cannot conclude that Dave is young.\n\nSince we have conflicting information, we cannot conclude whether Dave is red or not. We know that Dave is big and quiet, but we do not know if Dave is young. Therefore, the statement 'Dave is not red' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is round. (Given information)\n2. All round things are nice. (Given information)\n3. Dave is nice. (From 1 and 2)\n\nFrom the given information, we know that young things are nice. However, we cannot conclude that Dave is young yet.\n\n4. Young things are nice. (Given information)\n5. Dave is nice. (From 1 and 2)\n6. Dave is young or Dave is not young. (By definition of \"or\")\n7. If Dave is young, then Dave is round. (From 1 and 4, using the definition of implication)\n8. If Dave is round, then Dave is nice. (From 2, using the definition of implication)\n9. Dave is young and Dave is round, or Dave is not young. (From 6 and 7)\n10. Dave is young and Dave is nice, or Dave is not young. (From 9 and 8)\n11. Dave is not young. (From 5 and 10, using the definition of \"or\")\n12. Dave is big or Dave is not big. (By definition of \"or\")\n13. If Dave is big, then Dave is red. (From the given information, \"Big, red things are young.\")\n14. If Dave is not big, then Dave is not red. (From 13, using the definition of implication)\n\nNow we need to determine whether Dave is big or not. \n\n15. If Dave is big, then Dave is round. (From the given information, \"If something is big and white then it is round.\")\n16. Dave is big and Dave is round, or Dave is not big. (From 12 and 15)\n17. Dave is big and Dave is nice, or Dave is not big. (From 16 and 8)\n18. Dave is big, young, and nice, or Dave is not big. (From 17, using the definition of \"or\")\n19. Dave is big and Dave is not young, or Dave is not big. (From 11 and 18)\n20. Dave is big, red, and young, or Dave is not big. (From 13, 11, and 19)\n21. Dave is not big. (From 11 and 20, using the definition of \"or\")\n\nFrom steps 11 and 21, we know that Dave is not big and Dave is not young.\n\nNow we need to determine whether Dave is red or not. \n\n22. If Dave is big, then Dave is red. (From 13)\n23. Dave is not big. (From 21)\n24. Dave is not red. (From 23 and 22, using the definition of implication)\n\nTherefore, the statement \"Dave is not red\" is false. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\n1. We are given that Dave is round.\n2. We are also given that all round things are nice.\n   - From this, we can infer that Dave is nice.\n\n3. We are given that all nice things are quiet.\n   - From this, we can infer that Dave is quiet.\n\n4. We are given that all quiet things are big.\n   - From this, we can infer that Dave is big.\n\n5. We are given that all big, red things are young.\n   - However, we don't know if Dave is red or not. If Dave is red, then he is young. But if Dave is not red, then we can't determine if he is young or not.\n\nSince we can't determine if Dave is young or not, and we know that all young things are nice, we can't determine if Dave is nice or not. However, we do know that Dave is quiet and big.\n\nNow, let's consider the statement \"Dave is not red.\" If Dave is not red, then we can't determine if he is young or not. If Dave is not young, then we can't determine if he is nice or not. However, we do know that Dave is quiet and big.\n\nSince Dave is big and quiet, we can't determine if he is red or not. The statement \"Dave is not red\" might be true, but we can't be sure.\n\nHowever, if Dave were young, then he would be red. But if Dave were young, then he would be nice. Since Dave is quiet and big, we can infer that he is not young. \n\nIf Dave is not young, then we can't determine if he is red or not. But if Dave is not red, then we can't determine if he is young or not. However, we do know that all young things are nice, and all quiet things are big.\n\nSince Dave is quiet and big, we can infer that he is nice, but we can't be sure if he is young or not.\n\nHowever, since we know that all young things are nice, and all quiet things are big, and all big, red things are young, we can conclude that Dave is not red.\n\nTherefore, the statement \"Dave is not red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Dave is round.\n2. We are given that all round things are nice. \n   So, Dave is nice.\n\n3. We are given that all young things are nice. \n   We do not know if Dave is young, but we do know that Dave is nice.\n\n4. We are given that all quiet things are big.\n   We do not know if Dave is quiet, but we do know that Dave is nice and nice things are quiet.\n\n   So, Dave is big.\n\n5. We are given that all big, red things are young.\n   We do not know if Dave is red, but we do know that Dave is big.\n\n6. We are given that all nice, big things are white.\n   We do know that Dave is nice and big, but we do not know if Dave is white.\n\n7. We are given that all round things are nice.\n   We know that Dave is round and nice, but we do not know if Dave is red.\n\n8. We are given that Dave is round. We are given that all round things are nice. We are given that all big things are quiet. We are given that young things are nice. We are given that big, red things are young. We are given that all big, red things are young. We are given that all nice, big things are white. We are given that young, quiet things are red.\n\n   Dave is not known to be big, red. Dave is not known to be young, quiet.\n\n9. Since we do not know if Dave is red, we cannot determine if the statement \"Dave is not red\" is true or false.\n\nTherefore, the statement \"Dave is not red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. All round things are nice. \n   - We know that Bob is round and nice, so this statement is true.\n\n2. All nice, big things are white. \n   - We don't have any information about big, nice things being white yet.\n\n3. If something is big and white then it is round. \n   - This statement is a conditional statement, meaning it doesn't tell us anything about things that aren't big and white.\n\n4. Young things are nice. \n   - We know that Gary is young and Bob is young and nice, so this statement is true.\n\n5. Big, red things are young. \n   - We know that Erin is big and red, so Erin is young.\n\n6. All nice things are quiet. \n   - We know that Bob is nice, so Bob is quiet.\n\n7. All quiet things are big. \n   - We know that Bob is quiet, so Bob is big.\n\n8. Young, quiet things are red. \n   - We know that Erin is young, quiet, and red.\n\nNow, let's analyze the statement \"Dave is not red.\"\n\nFrom the given information, we know that Erin is big and red. However, we don't have any information about Dave's color.\n\nHowever, we do know that Dave is round from the initial statements, and we know that all round things are nice. But we also know that big, red things are young, and young things are nice. So, we can't conclude that Dave is not red without more information.\n\nTherefore, the answer is unknown.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. All round things are nice.\n2. All nice, big things are white.\n3. If something is big and white then it is round.\n4. Young things are nice.\n5. Big, red things are young.\n6. All nice things are quiet.\n7. All quiet things are big.\n8. Young, quiet things are red.\n\nNow, let's analyze the given statement \"Dave is not red.\"\n\nTo determine whether the statement is true, false, or unknown, we need to find out the properties of Dave.\n\nFrom the statements, we know that:\n- Dave is round (statement 1 and 2).\n- Round things are nice (statement 1).\n- Nice things are quiet (statement 6).\n- Quiet things are big (statement 7).\n- Young, quiet things are red (statement 8).\n\nHowever, we cannot directly infer whether Dave is young or not from the given information.\n\nIf Dave is young, then from statement 8, Dave is red. But if Dave is not young, we cannot determine whether Dave is red or not.\n\nSince we cannot determine whether Dave is young or not, we cannot determine whether the statement \"Dave is not red\" is true or false. Therefore, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to analyze the given information and apply it to the properties of Dave.\n\n1. We know that Dave is round. (Given)\n2. We know that all round things are nice. (Given)\n   - Since Dave is round, we can conclude that Dave is nice.\n\n3. We know that Dave is round and nice. \n   - We also know that all nice things are quiet. (Given)\n   - Therefore, Dave is quiet.\n\n4. We know that Dave is round, nice, and quiet. \n   - We also know that all quiet things are big. (Given)\n   - Therefore, Dave is big.\n\n5. We know that Dave is round, big, and quiet. \n   - We also know that young things are nice. (Given)\n   - We also know that Dave is round and nice, so Dave is not necessarily young.\n\n6. We know that Dave is round, big, and quiet. \n   - We also know that big, red things are young. (Given)\n   - Since Dave is big and not necessarily young, we cannot conclude that Dave is red.\n\nHowever, we do not have enough information to conclude that Dave is not red, so the statement \"Dave is not red\" is unknown. \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. Dave is round. (Given)\n2. All round things are nice. (Given)\n3. Since Dave is round, Dave is nice. (From rule 2)\n\nNow, we need to consider the relationships between being nice, big, and young.\n\n4. Young things are nice. (Given)\n5. Since Dave is nice (from step 3), and young things are nice (from step 4), Dave is young. (From rule 4)\n\nConsidering the properties of young and big things:\n\n6. Big, red things are young. (Given)\n7. Since Dave is young (from step 5), and if something is big and red then it is young (from rule 6), it implies Dave could be big and red, but we don't have enough information to confirm this.\n\nHowever, we also know that big, red things are young (rule 6). If Dave were big and red, then he would be young (rule 6), which is consistent with what we found in step 5 (Dave is young).\n\nNow, we need to consider the relationships between being big, red, and quiet.\n\n8. All quiet things are big. (Given)\n9. All big things are quiet. (From rule 8, and the fact that all nice things are quiet, which we know Dave is nice from step 3)\n\nConsidering the properties of young, quiet things:\n\n10. Young, quiet things are red. (Given)\n11. Since Dave is young (from step 5), and all quiet things are big (from rule 8), and if something is young and quiet, then it is red (from rule 10), it implies Dave is red.\n\nHowever, this conclusion contradicts the statement \"Dave is not red.\" Therefore, based on the given information and applying the rules, we can conclude that the statement \"Dave is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given information states:\n   - Dave is round.\n   - Erin is big and red.\n   - Gary is young.\n\n2. We know the following relationships between the given information:\n   - All round things are nice. (R \u2192 N)\n   - All nice, big things are white. (N, B \u2192 W)\n   - If something is big and white then it is round. (B, W \u2192 R)\n   - Young things are nice. (Y \u2192 N)\n   - Big, red things are young. (B, R \u2192 Y)\n   - All nice things are quiet. (N \u2192 Q)\n   - All quiet things are big. (Q \u2192 B)\n   - Young, quiet things are red. (Y, Q \u2192 R)\n\n3. Since Dave is round (D = R), and all round things are nice (R \u2192 N), Dave is nice (D = N).\n\n4. Since Dave is nice (D = N) and young things are nice (Y \u2192 N), we cannot conclude that Dave is young because being young is not the only condition for being nice.\n\n5. Since Dave is not explicitly mentioned to be big, young, or quiet, we cannot conclude whether he is red or not using the given information.\n\n6. The statement \"Dave is not red\" is unknown because we cannot determine whether Dave is red or not based on the given information.\n\nTherefore, the answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. Dave is round.\n   From the information given: \"All round things are nice.\"\n   Therefore, Dave is nice.\n\n2. Dave is round and nice.\n   From the information given: \"Young things are nice.\"\n   Therefore, Dave is young (because being young is one of the reasons why something can be nice).\n\n3. Dave is young.\n   From the information given: \"Big, red things are young.\"\n   We can't conclude that Dave is red or big from this statement because it's a two-way implication (young -> big, red or both).\n\n4. Dave is round and young.\n   From the information given: \"All round things are nice\" and \"Young things are nice.\"\n   We already know Dave is nice from being round.\n\n5. Dave is nice and young.\n   From the information given: \"All nice things are quiet\" and \"Young things are nice.\"\n   We already know Dave is nice, so Dave is quiet.\n\n6. Dave is quiet and young.\n   From the information given: \"Young, quiet things are red.\"\n   We can't conclude that Dave is red from this statement because it's a two-way implication (young, quiet -> red).\n\nHowever, we can look at the information given about Erin, who is described as big and red. This implies that Erin is not young (because big, red things are young). Now, we also know that Dave is young. \n\n7. Dave is young and Erin is not young.\n   From the information given: \"All round things are nice\" and \"Dave is round.\"\n   Dave is nice.\n\n8. Dave is nice, young and Erin is big.\n   From the information given: \"All quiet things are big\" and \"Dave is quiet.\"\n   Dave is big.\n\n9. Dave is young, big and quiet.\n   From the information given: \"Big, red things are young.\"\n   This statement is false, as Dave is not red.\n\nWe have concluded that Dave is not red. However, we cannot say that Dave is red is false because the statement \"young, quiet things are red\" also implies that Dave could be red, but it's not a necessary condition for the statement \"Dave is not red\" to be true.\n\nSo the final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Dave is round.\n2. All round things are nice.\n3. Since Dave is round, Dave is nice.\n\nNow, let's consider the statement \"Dave is not red.\" To determine the truth value of this statement, we need to see if we can derive any information about Dave's color.\n\n4. All big, red things are young.\n5. Since Dave is round and nice, we don't have any direct information about his age or size. However, we can look at the statement \"All round things are nice\" and the statement \"Young things are nice.\" This doesn't directly tell us if Dave is young or not.\n\n6. All nice things are quiet.\n7. All quiet things are big.\n8. Young, quiet things are red.\n\nFrom statement 8, we can see that if Dave were young and quiet, he would be red. However, we don't know if Dave is young or quiet.\n\nHowever, statement 4 tells us that big, red things are young. If Dave were red, then we could conclude that he is young. Since statement 8 implies that young, quiet things are red, this would mean Dave would also be quiet.\n\nHowever, from statement 6, all nice things are quiet. Since Dave is nice (from statement 3), we can conclude that Dave is quiet.\n\nNow we know that Dave is quiet, and from statement 8, if he were young and quiet, he would be red. So, we cannot conclude that Dave is not red.\n\nTherefore, we have to determine if Dave can be red. \n\nFrom statement 4, if Dave were big and red, then he would be young. But from statement 7, we know that all quiet things are big. Since Dave is quiet, then he would be big. And from statement 4, if he is big and red, then he would be young.\n\nSo, from statement 4, if Dave is big and red, then he would be young. And from statement 8, if he is young and quiet, then he would be red.\n\nTherefore, we can conclude that Dave can be red.\n\nTherefore, the statement \"Dave is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to analyze the given statements and apply them to the properties of Dave.\n\n1. Dave is round. (Given)\n2. All round things are nice. (Given)\n   So, Dave is nice.\n\n3. Dave is not mentioned as being big or small. However, from the statement \"Young things are nice,\" we can infer that Dave is young because he is nice (from step 2) and young things are nice (from the given statement).\n   So, Dave is young.\n\nNow, let's examine the properties related to being red:\n\n1. Big, red things are young. (Given)\n   Since we've established that Dave is young (from step 3), this statement doesn't directly apply to Dave because it specifies \"big\" as a necessary condition, and we don't know if Dave is big or not.\n\n2. Young, quiet things are red. (Given)\n   We've established that Dave is young (from step 3), but we don't have enough information to determine if Dave is quiet or not.\n\n3. All quiet things are big. (Given)\n   We cannot conclude that Dave is big because we don't know if Dave is quiet or not.\n\nHowever, we can analyze the properties related to being red using a different statement:\n\n1. Erin is big, Erin is red. (Given)\n   From this, we can infer that Erin is big and red, but we cannot directly apply this to Dave.\n\nNow, we can analyze the given statement \"Dave is not red\" by considering the properties of Dave:\n\n- We don't know if Dave is big or not.\n- We don't know if Dave is quiet or not.\n- Since we cannot determine that Dave is big and red or young and red, we cannot directly apply the statements \"Big, red things are young\" or \"Young, quiet things are red\" to conclude whether Dave is red or not.\n\nHowever, we can use the statement \"All quiet things are big\" to infer that if Dave were quiet, he would be big. But we don't know if Dave is quiet or not.\n\nGiven that we cannot determine if Dave is red or not based on the provided information, the statement \"Dave is not red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(nice_dave, big_dave), white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(big_dave, white_dave), round_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_dave, big_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_dave, red_dave), young_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> red(X)",
+          "z3_formula": "Implies(And(young_dave, quiet_dave), red_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave) & big(dave)",
+          "z3_formula": "And(quiet_dave, big_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave) & quiet(dave)",
+          "z3_formula": "And(nice_dave, quiet_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave) | big(dave)",
+          "z3_formula": "Or(young_dave, big_dave)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave) or not young(dave)",
+          "z3_formula": "Or(young_dave, Not(young_dave))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_dave, young_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dave, nice_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave) and round(dave) or not young(dave)",
+          "z3_formula": "Or(And(young_dave, round_dave), Not(young_dave))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave) and nice(dave) or not young(dave)",
+          "z3_formula": "Or(And(young_dave, nice_dave), Not(young_dave))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not young(dave)",
+          "z3_formula": "Not(young_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave) or not big(dave)",
+          "z3_formula": "Or(big_dave, Not(big_dave))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(big_dave, white_dave), round_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave) and round(dave) or not big(dave)",
+          "z3_formula": "Or(And(big_dave, round_dave), Not(big_dave))",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave) and nice(dave) or not big(dave)",
+          "z3_formula": "Or(And(big_dave, nice_dave), Not(big_dave))",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave) and young(dave) and nice(dave) or not big(dave)",
+          "z3_formula": "Or(And(big_dave, young_dave, nice_dave), Not(big_dave))",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave) and not young(dave) or not big(dave)",
+          "z3_formula": "Or(And(big_dave, Not(young_dave)), Not(big_dave))",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_dave, red_dave)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave) and young(dave) and red(dave) or not big(dave)",
+          "z3_formula": "Or(And(big_dave, young_dave, red_dave), Not(big_dave))",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not big(dave)",
+          "z3_formula": "Not(big_dave)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_dave, red_dave)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not red(dave)",
+          "z3_formula": "Not(red_dave)",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave) -> quiet(dave)",
+          "z3_formula": "Implies(nice_dave, quiet_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave) -> big(dave)",
+          "z3_formula": "Implies(quiet_dave, big_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_dave, red_dave), young_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave) == False",
+          "z3_formula": "Not(young_dave) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave) == False",
+          "z3_formula": "Not(nice_dave) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not red(dave) -> not young(dave)",
+          "z3_formula": "Implies(Not(red_dave), Not(young_dave))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not red(dave)",
+          "z3_formula": "Not(red_dave) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_dave, big_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_dave, red_dave), young_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(big_dave, nice_dave), white_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave) & nice(dave)",
+          "z3_formula": "And(big_dave, nice_dave) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) & quiet(X) -> red(X)",
+          "z3_formula": "Implies(And(young_dave, quiet_dave), red_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_bob, nice_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_erin, red_erin), young_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_gary, nice_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_bob, nice_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_erin, nice_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_bob, quiet_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_bob, big_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_dave, big_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> red(X)",
+          "z3_formula": "Implies(And(young_erin, quiet_erin), red_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not red(dave)",
+          "z3_formula": "Not(red_dave) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not red(dave)",
+          "z3_formula": "Not(red_dave) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dave, nice_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_dave, quiet_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_dave, big_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> red(X)",
+          "z3_formula": "Implies(And(young_dave, quiet_dave), red_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave) | Not(young(dave))",
+          "z3_formula": "Or(young_dave, Not(young_dave))",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_dave, quiet_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_dave, big_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave) & nice(dave) -> not young(dave)",
+          "z3_formula": "Not(And(round_dave, nice_dave))",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_dave, red_dave), young_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not red(dave)",
+          "z3_formula": "Not(red_dave)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_dave, red_dave), young_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dave, nice_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_dave, quiet_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_dave, big_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> red(X)",
+          "z3_formula": "Implies(And(young_dave, quiet_dave), red_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin) & red(erin)",
+          "z3_formula": "big_erin == True & red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(nice_dave, big_dave), white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(big_dave, white_dave), round_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_erin, red_erin), young_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_dave, quiet_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_dave, big_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> red(X)",
+          "z3_formula": "Implies(And(young_dave, quiet_dave), red_dave)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_erin, red_erin), young_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave) & not young(erin)",
+          "z3_formula": "And(young_dave, Not(young_erin)) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_dave, big_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_dave, red_dave), young_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not red(dave)",
+          "z3_formula": "Not(red_dave) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> red(X)",
+          "z3_formula": "Implies(And(young_dave, quiet_dave), red_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave) & quiet(dave) & not red(dave)",
+          "z3_formula": "And(And(young_dave, quiet_dave), Not(red_dave)) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not red(dave)",
+          "z3_formula": "not red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_dave, red_dave), young_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dave, nice_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> red(X)",
+          "z3_formula": "Implies(And(young_dave, quiet_dave), red_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_dave, big_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_dave, red_dave), young_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> red(X)",
+          "z3_formula": "Implies(And(young_dave, quiet_dave), red_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_X, red_X), young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> red(X)",
+          "z3_formula": "Implies(And(young_X, quiet_X), red_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_X, big_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin) & red(erin)",
+          "z3_formula": "big_erin & red_erin == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 174,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 57
+    },
+    "maxsat_stats": {
+      "satisfied": 48,
+      "excluded": 9,
+      "total_weight": 158,
+      "solve_time_ms": 2.6594754308462143
+    },
+    "timing": {
+      "trace_gen_s": 7.53,
+      "extraction_s": 27.797,
+      "dedup_s": 1.559,
+      "maxsat_s": 0.006,
+      "total_s": 36.892
+    }
+  }
+}

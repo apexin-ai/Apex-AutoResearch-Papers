@@ -1,0 +1,1658 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1421_Q14",
+    "problem": "Anne is cold. Anne is rough. Bob is cold. Bob is kind. Dave is big. Dave is red. Dave is smart. Harry is big. Harry is kind. Harry is smart. Big people are young. Red people are smart. If Anne is young and Anne is rough then Anne is smart. Young, cold people are red. Rough people are big. All kind people are rough. If Anne is kind and Anne is cold then Anne is smart. All young people are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is cold.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nRough(Anne, True) ::: Anne is rough.\nCold(Bob, True) ::: Bob is cold.\nKind(Bob, True) ::: Bob is kind.\nBig(Dave, True) ::: Dave is big.\nRed(Dave, True) ::: Dave is red.\nSmart(Dave, True) ::: Dave is smart.\nBig(Harry, True) ::: Harry is big.\nKind(Harry, True) ::: Harry is kind.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nBig($x, True) >>> Young($x, True) ::: Big people are young.\nRed($x, True) >>> Smart($x, True) ::: Red people are smart.\nYoung(Anne, True) && Rough(Anne, True) >>> Smart(Anne, True) ::: If Anne is young and Anne is rough then Anne is smart.\nYoung($x, True) && Cold($x, True) >>> Red($x, True) ::: Young, cold people are red.\nRough($x, True) >>> Big($x, True) ::: Rough people are big.\nKind($x, True) >>> Rough($x, True) ::: All kind people are rough.\nCold(Anne, True) && Kind(Anne, True) >>> Smart(Anne, True) ::: If Anne is kind and Anne is cold then Anne is smart.\nYoung($x, True) >>> Kind($x, True) ::: All young people are kind.\n\nQuery:\nCold(Harry, True) ::: Harry is cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 240.0
+    },
+    "answer_counts": {
+      "Unknown": 9
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Harry is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given:\n   - Anne is cold.\n   - Anne is rough.\n   - Bob is cold.\n   - Bob is kind.\n   - Dave is big.\n   - Dave is red.\n   - Dave is smart.\n   - Harry is big.\n   - Harry is kind.\n   - Harry is smart.\n   - Big people are young.\n   - Red people are smart.\n   - If Anne is young and Anne is rough then Anne is smart.\n   - Young, cold people are red.\n   - Rough people are big.\n   - All kind people are rough.\n   - If Anne is kind and Anne is cold then Anne is smart.\n   - All young people are kind.\n\n2. We need to find a relationship between Harry and the given information to determine whether he is cold.\n\n3. From the given information, we have two pieces of information related to Harry: \n   - Harry is big.\n   - Big people are young.\n   - Harry is kind.\n   - All kind people are rough.\n   - Harry is smart.\n\n4. Since Harry is big and big people are young, we can conclude that Harry is young.\n\n5. Since Harry is young and all young people are kind, we can conclude that Harry is kind.\n\n6. Since Harry is kind and all kind people are rough, we can conclude that Harry is rough.\n\n7. From the given information, we have a conditional statement: If Anne is young and Anne is rough then Anne is smart.\n\n8. However, we don't have a direct relationship between Harry's characteristics and the statement that if Anne is young and Anne is rough then Anne is smart.\n\n9. We need to find another way to determine whether Harry is cold.\n\n10. Since Harry is kind and all kind people are rough, we can conclude that Harry is rough.\n\n11. From the given information, we have another conditional statement: Rough people are big.\n\n12. However, we already know that Harry is big from the given information, so this does not provide any new information.\n\n13. We need to find another way to determine whether Harry is cold.\n\n14. Since Harry is big and big people are young, we can conclude that Harry is young.\n\n15. From the given information, we have another conditional statement: Young, cold people are red.\n\n16. However, we don't have any information about Harry being red or not.\n\n17. We need to find another way to determine whether Harry is cold.\n\n18. Since Harry is kind and all kind people are rough, we can conclude that Harry is rough.\n\n19. From the given information, we have another conditional statement: If Anne is kind and Anne is cold then Anne is smart.\n\n20. However, we already know that Harry is kind and all kind people are rough, and we also know that Harry is rough.\n\n21. We need to find another way to determine whether Harry is cold.\n\n22. Since Harry is young and all young people are kind, we can conclude that Harry is kind.\n\n23. Since Harry is kind and all kind people are rough, we can conclude that Harry is rough.\n\n24. Since Harry is rough and rough people are big, we can conclude that Harry is big.\n\n25. Since Harry is big and big people are young, we can conclude that Harry is young.\n\n26. Since Harry is young and all young people are kind, we can conclude that Harry is kind.\n\n27. Since Harry is kind and all kind people are rough, we can conclude that Harry is rough.\n\n28. Since Harry is young, cold people are red, and rough people are big, but we don't have any information about Harry being red or not, we can't determine whether Harry is cold.\n\nHowever, let's look at the conclusion that we can draw from the information about Anne:\n\n- If Anne is young and Anne is rough then Anne is smart.\n- Young, cold people are red.\n- Rough people are big.\n\nSince Harry is young and Harry is rough, we can conclude that Harry is big. But we can't conclude that Harry is red or not.\n\nNow, let's look at the information about Bob:\n\n- Bob is cold.\n- Bob is kind.\n\nSince Harry is kind and all kind people are rough, we can conclude that Harry is rough.\n\nSince Harry is rough and rough people are big, we can conclude that Harry is big.\n\nHowever, we still can't determine whether Harry is cold.\n\nFrom the information about Harry, we know that:\n- Harry is big.\n- Harry is kind.\n- Harry is smart.\n\nSince Harry is kind and all kind people are rough, we can conclude that Harry is rough.\n\nSince Harry is young and all young people are kind, we can conclude that Harry is kind.\n\nSince Harry is big and big people are young, we can conclude that Harry is young.\n\nSince Harry is young and Harry is rough, we can conclude that Harry is big.\n\nHowever, we still can't determine whether Harry is cold.\n\nLet's look at the information about Dave:\n\n- Dave is big.\n- Dave is red.\n- Dave is smart.\n\nSince Harry is big and big people are young, we can conclude that Harry is young.\n\nSince Harry is young and all young people are kind, we can conclude that Harry is kind.\n\nSince Harry is kind and all kind people are rough, we can conclude that Harry is rough.\n\nHowever, we still can't determine whether Harry is cold.\n\nNow, let's look at the information about Anne:\n\n- Anne is cold.\n- Anne is rough.\n\nSince Harry is kind and all kind people are rough, we can conclude that Harry is rough.\n\nSince Harry is young and all young people are kind, we can conclude that Harry is kind.\n\nSince Harry is big and big people are young, we can conclude that Harry is young.\n\nSince Harry is young and Harry is rough, we can conclude that Harry is big.\n\nHowever, we still can't determine whether Harry is cold.\n\nSince Harry is big and big people are young, we can conclude that Harry is young.\n\nSince Harry is young, cold people are red, and rough people are big, but we don't have any information about Harry being red or not, we can't determine whether Harry is cold.\n\nHowever, we can conclude that the statement \"Harry is cold\" is unknown because we can't find a direct relationship between Harry's characteristics and the information that would allow us to determine whether he is cold.\n\nBut let's look at it from another perspective:\n\n- Young, cold people are red.\n- Rough people are big.\n- All kind people are rough.\n\nSince Harry is kind and all kind people are rough, we can conclude that Harry is rough.\n\nSince Harry is young and all young people are kind, we can conclude that Harry is kind.\n\nSince Harry is big and big people are young, we can conclude that Harry is young.\n\nSince Harry is young and Harry is rough, we can conclude that Harry is big.\n\nHowever, we still can't determine whether Harry is cold.\n\nNow, let's look at the conclusion that we can draw from the information about Anne:\n\n- If Anne is young and Anne is rough then Anne is smart.\n- Young, cold people are red.\n- Rough people are big.\n\nSince Harry is young and Harry is rough, we can conclude that Harry is big. But we can't conclude that Harry is red or not.\n\nNow, let's look at the information about Bob:\n\n- Bob is cold.\n- Bob is kind.\n\nSince Harry is kind and all kind people are rough, we can conclude that Harry is rough.\n\nSince Harry is young and all young people are kind, we can conclude that Harry is kind.\n\nHowever, we still can't determine whether Harry is cold.\n\nSince Harry is big and big people are young, we can conclude that Harry is young.\n\nSince Harry is young, cold people are red, and rough people are big, but we don't have any information about Harry being red or not, we can't determine whether Harry is cold.\n\nHowever, let's look at the information about Anne:\n\n- Anne is cold.\n- Anne is rough.\n\nSince Harry is kind and all kind people are rough, we can conclude that Harry is rough.\n\nSince Harry is young and all young people are kind, we can conclude that Harry is kind.\n\nSince Harry is big and big people are young, we can conclude that Harry is young.\n\nHowever, we still can't determine whether Harry is cold.\n\nSince Harry is big and big people are young, we can conclude that Harry is young.\n\nSince Harry is young, cold people are red, and rough people are big, but we don't have any information about Harry being red or not, we can't determine whether Harry is cold.\n\nHowever, we can conclude that the statement \"Harry is cold\" is unknown because we can't find a direct relationship between Harry's characteristics and the information that would allow us to determine whether he is cold.\n\nBut let's look at it from another perspective:\n\n- Young, cold people are red.\n- Rough people are big.\n- All kind people are rough.\n\nSince Harry is kind and all kind people are rough, we can conclude that Harry is rough.\n\nSince Harry is young and all young people are kind, we can conclude that Harry is kind.\n\nHowever, we still can't determine whether Harry is cold.\n\nSince Harry is big and big people are young, we can conclude that Harry is young.\n\nSince Harry is young, cold people are red, and rough people are big, but we don't have any information about Harry being red or not, we can't determine whether Harry is cold.\n\nHowever, we can conclude that the statement \"Harry is cold\" is unknown because we can't find a direct relationship between Harry's characteristics and the information that would allow us to determine whether he is cold.\n\nAfter re-evaluating the given information, we can conclude that the statement \"Harry is cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is cold' is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. We are given the following information:\n   - Anne is cold.\n   - Anne is rough.\n   - Bob is cold.\n   - Bob is kind.\n   - Dave is big.\n   - Dave is red.\n   - Dave is smart.\n   - Harry is big.\n   - Harry is kind.\n   - Harry is smart.\n   - Big people are young.\n   - Red people are smart.\n   - If Anne is young and Anne is rough then Anne is smart.\n   - Young, cold people are red.\n   - Rough people are big.\n   - All kind people are rough.\n   - If Anne is kind and Anne is cold then Anne is smart.\n   - All young people are kind.\n\n2. Now, let's analyze the statement 'Harry is cold.'\n   From the given information, we know that Harry is big (Harry is big) and Harry is kind (Harry is kind). \n\n3. Since all kind people are rough (All kind people are rough), we can infer that Harry is rough.\n\n4. Now, we can use the rule 'Rough people are big' (Rough people are big). Since Harry is rough, we can infer that Harry is indeed big, but this does not give us any new information about Harry being cold.\n\n5. However, we can use the rule 'Big people are young' (Big people are young). Since Harry is big, we can infer that Harry is young.\n\n6. From the rule 'All young people are kind' (All young people are kind), we can infer that Harry is indeed kind, but this does not give us any new information about Harry being cold.\n\n7. Now, let's look at the rule 'Young, cold people are red' (Young, cold people are red). Since Harry is young (Harry is young), we need to determine if Harry is cold to apply this rule.\n\n8. We cannot directly conclude that Harry is cold from the given information, but we can look at the rule 'All kind people are rough' (All kind people are rough). Since Harry is kind, we can infer that Harry is rough.\n\n9. Now, we can use the rule 'Rough people are big' (Rough people are big). Since Harry is rough, we can infer that Harry is indeed big, but this does not give us any new information about Harry being cold.\n\n10. However, we can look at the rule 'Anne is cold.' We know that Anne is kind and Anne is cold, but we also know that Anne is rough. We can use the rule 'If Anne is kind and Anne is cold then Anne is smart' (If Anne is kind and Anne is cold then Anne is smart), but this does not give us any new information about Harry being cold.\n\n11. However, we can use the rule 'If Anne is young and Anne is rough then Anne is smart' (If Anne is young and Anne is rough then Anne is smart). Since Anne is rough and all kind people are rough, we can infer that Anne is kind. Since Anne is young, we can infer that Anne is kind and Anne is young. \n\n12. We can use the rule 'All young people are kind' (All young people are kind) and we can infer that Anne is indeed kind and Anne is indeed young.\n\n13. Now, we can look at the rule 'If Anne is young and Anne is rough then Anne is smart' (If Anne is young and Anne is rough then Anne is smart). Since Anne is young and Anne is rough, we can indeed infer that Anne is smart.\n\n14. However, we can use the rule 'Young, cold people are red' (Young, cold people are red). Since Anne is young and Anne is cold, we can infer that Anne is red.\n\n15. Now, let's look at the rule 'Red people are smart' (Red people are smart). Since Anne is red, we can infer that Anne is indeed smart.\n\n16. However, we can use the rule 'If Anne is kind and Anne is cold then Anne is smart' (If Anne is kind and Anne is cold then Anne is smart). Since Anne is kind and Anne is cold, we can indeed infer that Anne is smart.\n\n17. Now, we can look at the rule 'Rough people are big' (Rough people are big). Since Anne is rough, we can infer that Anne is indeed big.\n\n18. However, we can use the rule 'Big people are young' (Big people are young). Since Anne is big, we can infer that Anne is indeed young.\n\n19. However, we can use the rule 'All young people are kind' (All young people are kind). Since Anne is young, we can infer that Anne is indeed kind.\n\n20. Now, let's go back to Harry. We know that Harry is kind and Harry is big, but we still cannot determine if Harry is cold.\n\nHowever, we can use the rule 'All kind people are rough' (All kind people are rough). Since Harry is kind, we can infer that Harry is rough.\n\nWe can use the rule 'Rough people are big' (Rough people are big). Since Harry is rough, we can infer that Harry is indeed big, but this does not give us any new information about Harry being cold.\n\nHowever, we can use the rule 'Big people are young' (Big people are young). Since Harry is big, we can infer that Harry is indeed young.\n\nWe can use the rule 'All young people are kind' (All young people are kind). Since Harry is young, we can indeed infer that Harry is kind.\n\nNow, we can look at the rule 'Young, cold people are red' (Young, cold people are red). Since Harry is young, we need to determine if Harry is cold to apply this rule.\n\nWe cannot directly conclude that Harry is cold from the given information, but we can use the rule 'All kind people are rough' (All kind people are rough). Since Harry is kind, we can infer that Harry is rough.\n\nWe can use the rule 'Rough people are big' (Rough people are big). Since Harry is rough, we can infer that Harry is indeed big, but this does not give us any new information about Harry being cold.\n\nHowever, we can look at the rule 'Anne is cold.' We know that Anne is kind and Anne is cold, but we also know that Anne is rough. We can use the rule 'If Anne is kind and Anne is cold then Anne is smart' (If Anne is kind and Anne is cold then Anne is smart), but this does not give us any new information about Harry being cold.\n\nHowever, we can use the rule 'If Anne is young and Anne is rough then Anne is smart' (If Anne is young and Anne is rough then Anne is smart). Since Anne is rough and all kind people are rough, we can infer that Anne is kind. Since Anne is young, we can infer that Anne is kind and Anne is young. \n\nWe can use the rule 'All young people are kind' (All young people are kind) and we can infer that Anne is indeed kind and Anne is indeed young.\n\nNow, we can look at the rule 'If Anne is young and Anne is rough then Anne is smart' (If Anne is young and Anne is rough then Anne is smart). Since Anne is young and Anne is rough, we can indeed infer that Anne is smart.\n\nHowever, we can use the rule 'Young, cold people are red' (Young, cold people are red). Since Anne is young and Anne is cold, we can infer that Anne is red.\n\nNow, let's look at the rule 'Red people are smart' (Red people are smart). Since Anne is red, we can infer that Anne is indeed smart.\n\nHowever, we can use the rule 'If Anne is kind and Anne is cold then Anne is smart' (If Anne is kind and Anne is cold then Anne is smart). Since Anne is kind and Anne is cold, we can indeed infer that Anne is smart.\n\nNow, we can look at the rule 'Rough people are big' (Rough people are big). Since Anne is rough, we can infer that Anne is indeed big.\n\nHowever, we can use the rule 'Big people are young' (Big people are young). Since Anne is big, we can infer that Anne is indeed young.\n\nHowever, we can use the rule 'All young people are kind' (All young people are kind). Since Anne is young, we can infer that Anne is indeed kind.\n\nHowever, let's look at the rule 'Harry is kind' and 'Harry is big.' Since 'All kind people are rough' and 'Rough people are big' we can conclude that Harry is indeed big and Harry is indeed rough. \n\nNow, we can use the rule 'Young, cold people are red' (Young, cold people are red). Since Harry is young, we need to determine if Harry is cold to apply this rule.\n\nNow, we can look at the rule 'Anne is cold.' We know that Anne is kind and Anne is cold, but we also know that Anne is rough. We can use the rule 'If Anne is kind and Anne is cold then Anne is smart' (If Anne is kind and Anne is cold then Anne is smart), but this does not give us any new information about Harry being cold.\n\nHowever, we can use the rule 'If Anne is young and Anne is rough then Anne is smart' (If Anne is young and Anne is rough then Anne is smart). Since Anne is rough and all kind people are rough, we can infer that Anne is kind. Since Anne is young, we can infer that Anne is kind and Anne is young. \n\nWe can use the rule 'All young people are kind' (All young",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we'll break it down into steps based on the given information.\n\nGiven statements:\n\n1. Anne is cold.\n2. Anne is rough.\n3. Bob is cold.\n4. Bob is kind.\n5. Dave is big.\n6. Dave is red.\n7. Dave is smart.\n8. Harry is big.\n9. Harry is kind.\n10. Harry is smart.\n11. Big people are young.\n12. Red people are smart.\n13. If Anne is young and Anne is rough then Anne is smart.\n14. Young, cold people are red.\n15. Rough people are big.\n16. All kind people are rough.\n17. If Anne is kind and Anne is cold then Anne is smart.\n18. All young people are kind.\n\nNow, we'll determine the truth value of the statement \"Harry is cold.\"\n\nStep 1: Analyze the given information about Harry.\n- Harry is big (statement 8).\n- Harry is kind (statement 9).\n- Harry is smart (statement 10).\n\nStep 2: Analyze the given information about big people.\n- Big people are young (statement 11).\nSince Harry is big, Harry must be young (from statement 11).\n\nStep 3: Analyze the given information about young people.\n- All young people are kind (statement 18).\nSince Harry is young, Harry must be kind (from statement 18).\n\nStep 4: Analyze the given information about kind people.\n- All kind people are rough (statement 16).\nSince Harry is kind, Harry must be rough (from statement 16).\n\nStep 5: Analyze the given information about rough people.\n- Rough people are big (statement 15).\nSince Harry is rough, Harry must be big (from statement 15), which we already know.\n\nStep 6: Analyze the given information about red people.\n- Red people are smart (statement 12).\nSince we don't have any information that Harry is red, we cannot conclude that Harry is smart.\n\nStep 7: Analyze the given information about cold people.\n- We don't have any direct information that Harry is cold or not.\n\nStep 8: Analyze the given information about Anne's conditions.\n- If Anne is young and Anne is rough then Anne is smart (statement 13).\n- If Anne is kind and Anne is cold then Anne is smart (statement 17).\nWe can't directly apply these conditions to Harry.\n\nConclusion:\nBased on the given information, we can't determine whether Harry is cold or not. The conditions about Anne's conditions don't apply to Harry, and we don't have any direct information that Harry is cold.\n\nTherefore, the truth value of the statement \"Harry is cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that:\n   - Harry is big.\n   - Harry is kind.\n   - Harry is smart.\n   - Big people are young.\n   - Young, cold people are red.\n   - Young people are kind.\n\n2. From the information above, we can deduce that:\n   - Since Harry is big, Harry is young (from \"Big people are young\").\n   - Since Harry is young, Harry is kind (from \"All young people are kind\").\n\n3. Now, we need to determine whether Harry is cold or not. To do this, we'll analyze the possibilities based on the information given.\n\n   a. If Harry is red, then he must be smart (from \"Red people are smart\"). However, we don't have enough information to determine whether Harry is red or not. So, this path does not lead to a definitive conclusion.\n\n   b. If Harry is not red, then we need to look at other possibilities. Since Harry is young and kind, we can consider the following:\n\n      i. If Harry is red, then he is smart (as mentioned earlier). However, this is not possible since we are considering the case where Harry is not red.\n\n      ii. If Harry is not red, then he must be cold (from \"Young, cold people are red\" does not apply here since we are considering the case where Harry is not red).\n\n4. Since we have not yet considered all possibilities, we need to examine the information about rough people. We know that:\n   - All kind people are rough.\n   - Harry is kind, so Harry is rough.\n\n5. Now, we can use the fact that rough people are big (from \"Rough people are big\") to conclude that Harry is big (which we already know) and also that Harry is young (from \"Big people are young\").\n\n6. Since Harry is young and rough, we can use the fact that if Anne is young and Anne is rough then Anne is smart to deduce that Harry is not necessarily smart. However, this does not help us determine whether Harry is cold or not.\n\n7. We still need to consider the fact that if Anne is kind and Anne is cold then Anne is smart. However, this does not apply to Harry since we are trying to determine whether Harry is cold.\n\n8. Unfortunately, we have exhausted all the possibilities, and we still cannot determine whether Harry is cold or not. Therefore, the statement \"Harry is cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is big. Dave is red. Dave is smart. \n   - Since Dave is big and Dave is red, we can conclude that red people are big (from the given facts).\n   - Since Dave is big and Dave is smart, we can conclude that big people are smart (from the given facts).\n\n2. Harry is big. Harry is kind. Harry is smart. \n   - From the previous conclusion, we know that big people are smart. Therefore, Harry is smart.\n\n3. Big people are young. \n   - Since Harry is big, we can conclude that Harry is young.\n\n4. All young people are kind. \n   - Since Harry is young, we can conclude that Harry is kind.\n\n5. All kind people are rough. \n   - Since Harry is kind, we can conclude that Harry is rough.\n\nHowever, we cannot conclude that Harry is cold using the given information.\n\nTherefore, the statement \"Harry is cold\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that:\n   - Dave is big.\n   - Harry is big.\n   - Big people are young.\n   - Young people are kind.\n   - All kind people are rough.\n   - Young, cold people are red.\n   - Red people are smart.\n   - Rough people are big.\n\n2. From the above information, we can deduce that:\n   - Harry is young (because Harry is big and big people are young).\n   - Harry is kind (because Harry is young and young people are kind).\n   - Harry is rough (because all kind people are rough).\n   - Harry is big (already given).\n   - Harry is red (because young, cold people are red, but we don't know Harry's temperature yet).\n\n3. Now, we need to determine if Harry is cold or not. We have the following information:\n   - Bob is cold.\n   - Bob is kind.\n   - All kind people are rough.\n   - Rough people are big.\n   - Young people are kind.\n\n4. However, we don't have any direct information that connects Harry's temperature to his other characteristics. But we can try to find a connection using the given information.\n\n5. Since Harry is young, he is kind (young people are kind). And all kind people are rough, so Harry is rough.\n\n6. But we also know that rough people are big. And we already know that Harry is big, which doesn't give us any new information.\n\n7. We still don't know Harry's temperature. However, we can use the fact that young, cold people are red. If Harry were cold, then he would be red, but we already know that red people are smart, and we don't have any information that Harry is smart.\n\n8. Since we don't have any direct information that connects Harry's temperature to his other characteristics, and we also don't have any information that contradicts Harry being cold, we can't conclude anything about Harry's temperature.\n\nTherefore, the statement \"Harry is cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is cold' is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven Information:\n\n1. Anne is cold.\n2. Anne is rough.\n3. Bob is cold.\n4. Bob is kind.\n5. Dave is big.\n6. Dave is red.\n7. Dave is smart.\n8. Harry is big.\n9. Harry is kind.\n10. Harry is smart.\n11. Big people are young.\n12. Red people are smart.\n13. If Anne is young and Anne is rough then Anne is smart.\n14. Young, cold people are red.\n15. Rough people are big.\n16. All kind people are rough.\n17. If Anne is kind and Anne is cold then Anne is smart.\n18. All young people are kind.\n\nTo solve the problem, let's first try to find a direct or indirect connection between Harry and the property 'cold'.\n\nWe know that Harry is big (Statement 8), and all big people are young (Statement 11). This implies that Harry is young.\n\nWe also know that all young people are kind (Statement 18), so Harry is kind.\n\nHowever, there's no direct connection between Harry and being cold. We cannot conclude that Harry is cold based on the given information.\n\nTherefore, the statement 'Harry is cold' is unknown.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is cold' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is big. (Given)\n2. Big people are young. (Given)\n   Therefore, Harry is young. (From 1 and 2)\n\n3. Young people are kind. (Given)\n   Therefore, Harry is kind. (From 2 and 3)\n\n4. Harry is kind. Harry is big. Harry is smart. (Given)\n   We already know that Harry is big (from 1) and Harry is kind (from 3).\n\n5. Big people are young. Young, cold people are red. (Given)\n   Since Harry is big and big people are young, Harry is young. \n   Since Harry is young and young people are kind, Harry is kind.\n   But we cannot conclude that Harry is cold from this information.\n\n6. We need to find a connection between Harry being cold and other given information.\n\n7. Rough people are big. All kind people are rough. (Given)\n   Since Harry is kind (from 3), Harry is rough. (From 3 and 7)\n\n8. If Anne is young and Anne is rough then Anne is smart. (Given)\n   This information is about Anne, and we cannot conclude anything about Harry from this statement.\n\n9. Anne is cold. Anne is rough. (Given)\n   We cannot conclude that Anne is smart from this statement. We need to look for other information.\n\n10. Young, cold people are red. (Given)\n    We cannot conclude that Harry is cold from this information because it is about young, cold people and we do not know if Harry is young and cold.\n\n11. If Anne is kind and Anne is cold then Anne is smart. (Given)\n    This information is about Anne, and we cannot conclude anything about Harry from this statement.\n\n12. Dave is big. Dave is red. Dave is smart. (Given)\n    This information is about Dave, and we cannot conclude anything about Harry from this statement.\n\n13. Bob is cold. Bob is kind. (Given)\n    We cannot conclude that Harry is cold from this statement.\n\nAfter analyzing all the given information, we cannot conclude whether Harry is cold or not. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the process of elimination to find out if Harry is cold.\n\n1. The given statements are:\n   - Anne is cold. \n   - Anne is rough. \n   - Bob is cold. \n   - Bob is kind. \n   - Dave is big. \n   - Dave is red. \n   - Dave is smart. \n   - Harry is big. \n   - Harry is kind. \n   - Harry is smart. \n   - Big people are young. \n   - Red people are smart. \n   - If Anne is young and Anne is rough then Anne is smart. \n   - Young, cold people are red. \n   - Rough people are big. \n   - All kind people are rough. \n   - If Anne is kind and Anne is cold then Anne is smart. \n   - All young people are kind.\n\n2. We need to determine whether Harry is cold.\n\nFrom statement 6, we know that big people are young. From statement 7, we know that red people are smart. From statement 9, we know that rough people are big. From statement 10, we know that all kind people are rough.\n\nFrom statement 11, we know that all young people are kind. Since Harry is young (from statement 6), Harry is kind. Since Harry is kind, Harry is rough (from statement 10).\n\nWe know that Harry is big (from statement 7) and rough (from the conclusion above), so Harry is young (from statement 6).\n\nFrom statement 8, we know that Harry is big, so Harry is young (from statement 6) and therefore Harry is kind (from statement 11). This is consistent with the conclusion above.\n\nNow we have the following facts about Harry: \n- Harry is big.\n- Harry is young.\n- Harry is kind.\n- Harry is rough.\n\nWe also know that young people are kind (from statement 11), and kind people are rough (from statement 10). \n\nWe know that red people are smart (from statement 7), but we do not know the color of Harry.\n\nWe know that Harry is not cold from the fact that Harry is young (from statement 6), and young, cold people are red (from statement 5). If Harry was cold, then he would be red, and therefore smart (from statement 7). However, we also know that Harry is big (from statement 8), and big people are young (from statement 6), and young people are kind (from statement 11), and Harry is kind (from the conclusion above). If Harry was kind, then he would be rough (from statement 10), but if Harry was rough, then he would be big (from statement 9), and we already know that he is big, but this does not help us to determine whether Harry is cold.\n\nWe also know that if Anne is young and Anne is rough then Anne is smart (from statement 4), and if Anne is kind and Anne is cold then Anne is smart (from statement 12), and Anne is cold (from statement 1) and Anne is kind (from statement 2). However, we also know that all young people are kind (from statement 11), and Anne is young (from statement 1), and Anne is kind (from statement 2). This means that the two statements about Anne are contradictory, and we cannot use them to determine whether Harry is cold.\n\nTherefore, we cannot conclude whether Harry is cold based on the given statements.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is cold' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We have the following information about Harry:\n   - Harry is big.\n   - Harry is kind.\n   - Harry is smart.\n\n2. We know the following about big people:\n   - Big people are young.\n\n   From this, we can conclude that Harry is young.\n\n3. We also know the following about young people:\n   - All young people are kind.\n\n   Since Harry is young, we can confirm that Harry is indeed kind.\n\n4. Next, we have the following information about kind people:\n   - All kind people are rough.\n\n   Since Harry is kind, we can conclude that Harry is rough.\n\n5. We have the following information about rough people:\n   - Rough people are big.\n\n   Since Harry is rough, we can confirm that Harry is indeed big.\n\n6. We have the following information about big people:\n   - Big people are young.\n\n   As we've already determined, Harry is young.\n\n7. We have the following information about red people:\n   - Red people are smart.\n\n   However, we don't have any information about Harry's color.\n\n8. We have the following information about smart people:\n   - We don't have any specific information about smart people.\n\n9. Finally, we have the following information about cold people:\n   - We don't have any information about Harry being cold.\n\nBased on the given information, we can't determine whether Harry is cold or not. We have information about Harry being young, kind, rough, and big, but we don't have any information about his temperature.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following facts:\n   - Anne is cold.\n   - Anne is rough.\n   - Bob is cold.\n   - Bob is kind.\n   - Dave is big.\n   - Dave is red.\n   - Dave is smart.\n   - Harry is big.\n   - Harry is kind.\n   - Harry is smart.\n   - Big people are young.\n   - Red people are smart.\n   - If Anne is young and Anne is rough then Anne is smart.\n   - Young, cold people are red.\n   - Rough people are big.\n   - All kind people are rough.\n   - If Anne is kind and Anne is cold then Anne is smart.\n   - All young people are kind.\n\n2. Let's start with the statement \"Harry is cold.\" To find out if it's true or false, we need to see if we can derive it from the given information.\n\n3. From the fact \"Big people are young,\" we can derive that Harry is young because Harry is big.\n4. From the fact \"All young people are kind,\" we can derive that Harry is kind because Harry is young.\n5. From the fact \"All kind people are rough,\" we can derive that Harry is rough because Harry is kind.\n\n6. Now, we have the facts \"Harry is young,\" \"Harry is rough,\" and \"Harry is kind.\" Let's see if we can derive \"Harry is cold\" from these.\n\n7. However, we don't have any direct connection between \"Harry is rough\" and \"Harry is cold.\" We have the fact \"Rough people are big,\" but this does not imply that rough people are cold.\n\n8. We do have the fact \"Young, cold people are red.\" Since Harry is young, if we can find that Harry is cold, then we can conclude that Harry is red, and thus Harry is smart (because Red people are smart).\n\n9. However, we cannot directly derive \"Harry is cold\" from the given information. There is no direct fact or logical conclusion that connects Harry's characteristics (young, rough, kind, big, smart) with the fact \"Harry is cold.\"\n\n10. Therefore, we cannot determine whether the statement \"Harry is cold\" is true or false using the given information. The answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following premises:\n   - Anne is cold. \n   - Anne is rough.\n   - Bob is cold. \n   - Bob is kind.\n   - Dave is big. \n   - Dave is red. \n   - Dave is smart.\n   - Harry is big. \n   - Harry is kind. \n   - Harry is smart.\n   - Big people are young.\n   - Red people are smart.\n   - If Anne is young and Anne is rough then Anne is smart.\n   - Young, cold people are red.\n   - Rough people are big.\n   - All kind people are rough.\n   - If Anne is kind and Anne is cold then Anne is smart.\n   - All young people are kind.\n\n2. From the premises, we can deduce the following information:\n   - Since Harry is big and big people are young, we can conclude that Harry is young.\n   - Since Harry is young and all young people are kind, we can conclude that Harry is kind.\n   - Since Harry is kind and all kind people are rough, we can conclude that Harry is rough.\n   - Since Harry is rough and rough people are big, we can conclude that Harry is big.\n   - We already know that Harry is big, so this conclusion is consistent.\n\n3. Now, let's analyze the statement \"Harry is cold\" using the information we have deduced.\n   - Since Harry is young, and young, cold people are red, we can conclude that Harry is cold if Harry is red.\n   - However, we do not have any information that Harry is red.\n\n4. We also know that Harry is smart, but we cannot directly connect this information to Harry being cold.\n\nSince we cannot conclude that Harry is cold based on the given information, we need to look for any indirect connections. One such connection is through the information about Anne.\n\n- If Anne is young and Anne is rough, then Anne is smart. \n- However, we know that Anne is cold and we cannot directly connect this information to Anne being young and rough.\n- Since we know that Anne is cold and all cold people are not necessarily young, we cannot use this information to conclude anything about Harry.\n\nHowever, since we know that Harry is big and big people are young, we can conclude that Harry is young. \nSince we know that Harry is young and all young people are kind, we can conclude that Harry is kind. \nSince we know that Harry is kind and all kind people are rough, we can conclude that Harry is rough.\n\nHowever, since we also know that Harry is cold, we cannot directly connect Harry being cold to any of the other conclusions we have made about Harry.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_dave, smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_anne, rough_anne), smart_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), red_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_anne, big_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_harry, rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_bob, rough_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_anne, rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, kind_harry), rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == Unknown",
+          "source_step": 28
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_X, kind_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_X, young_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_X, young_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_X, kind_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_X, cold_X), smart_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_X, rough_X), smart_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_X, cold_X), red_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_X, cold_X), smart_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_X, young_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_X, kind_X)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_harry, rough_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_harry, smart_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_anne, rough_anne), smart_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_anne, cold_anne), smart_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_X, kind_X)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), red_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_harry, smart_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_harry, rough_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_harry, rough_harry), Not(smart_harry))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), smart_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> big_red(X)",
+          "z3_formula": "Implies(And(big_dave, red_dave), big_red_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> big_smart(X)",
+          "z3_formula": "Implies(And(big_dave, smart_dave), big_smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_harry, rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_harry, rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), red_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_harry, smart_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_bob, rough_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_bob, big_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_harry, smart_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_anne, rough_anne), smart_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), red_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_anne, big_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_anne, rough_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_anne, cold_anne), smart_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), red_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_harry, rough_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_anne, rough_anne), smart_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_anne, cold_anne), smart_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(cold)",
+          "z3_formula": "young_cold == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cold)",
+          "z3_formula": "cold_cold == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_cold, cold_cold), red_cold)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_harry, smart_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), red_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_harry, rough_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_anne, rough_anne), smart_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_anne, cold_anne), smart_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == False",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_harry, rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_harry, smart_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> ? ",
+          "z3_formula": "Not(cold_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_harry, rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), red_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_anne, big_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_bob, rough_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_anne, cold_anne), smart_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_X, kind_X)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_harry, rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_anne, rough_anne), smart_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), red_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> Not(young(X))",
+          "z3_formula": "Implies(cold_anne, Not(young_anne))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_bob, rough_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_harry, rough_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_anne, rough_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 255,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 47
+    },
+    "maxsat_stats": {
+      "satisfied": 45,
+      "excluded": 2,
+      "total_weight": 253,
+      "solve_time_ms": 2.02263705432415
+    },
+    "timing": {
+      "trace_gen_s": 25.076,
+      "extraction_s": 40.545,
+      "dedup_s": 2.299,
+      "maxsat_s": 0.005,
+      "total_s": 67.925
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3099e0dee44cebe5e25",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "code fix repair prompts",
+  "task_key": "worker_code_fix_repair_prompts_20260514T180357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_repair_prompts_20260514T180357_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "598d58c4e4372816c87dfad29b76ddfe4097182c8cbc485a62ca323c3cef2748"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。结果：\n\n- `BLIND_REGEN_PROMPT`：`Output ONLY a complete **{repr_type}** script` — FOL 时渲染为 \"**FOL (Z3)** script\"，Code 时渲染为 \"**Python code** script\"\n- `TARGETED_REPAIR_PROMPT`：`Output ONLY the corrected **{repr_type}** script` — 同上\n- 硬编码 \"Python script\" 已完全消除（grep 确认无残留）\n- 代码块标记保持 ` ```python``` `（Z3 是 Python 库，不变）\n- 原文件已备份为 `repair.py.bak_prompt_fix`\n- 未触碰 pipeline.py，未重启任何进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-repair-prompts.md"
+}

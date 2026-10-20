@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56fc559b894e398042b2",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "infra diagnose exit0 and resume",
+  "task_key": "worker_infra_diagnose_exit0_and_resume_20260514T214455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_diagnose_exit0_and_resume_20260514T214455_result.json",
+    "occurrence": 1,
+    "bytes": 1445,
+    "sha256": "53f175211a3f9cba828f7a8de7c0ad8a7833b71eec80b75f9e74e0d917e29e7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 排查报告\n\n### 1. 根因\n\n**`executor.py:59` 的 `exec()` 调用不捕获 `SystemExit`。**\n\nLLM 生成的代码通过 `exec(code, {\"__builtins__\": __builtins__})` 在主进程内执行。`__builtins__` 包含 `exit()` 和 `quit()`。如果 LLM 生成的代码含 `exit()`/`quit()`/`sys.exit(0)`，会抛出 `SystemExit`——这是 `BaseException` 的子类，**不是 `Exception` 的子类**，因此穿透 executor.py → pipeline.py 的所有 `except Exception` 块，导致进程以 EXIT_CODE=0 静默退出。\n\n无 bare `except:`，无其他 `sys.exit`（仅 `evaluate_mvp.py` 有一个不相关的）。`disagree.py`/`repair.py` 无退出路径。\n\n### 2. 修复内容\n\n`executor.py` L76 新增 `except SystemExit as e:` 捕获块（在 `except Exception` 之前），将 `SystemExit` 转为 `ExecResult(verdict=\"Error\")`，pipeline 继续处理下一个样本而非退出。\n\n备份：`src/executor.py.bak_exit_fix`\n\n### 3. JSONL 当前行数\n\n**154 行**（原始 147 + PID 56393 新增 7 行）。folio_validation_148 已被成功处理。\n\n### 4. PID 56393 状态\n\n**还活着**（运行 26 分钟，状态 S）。已过 folio_validation_148，正在继续处理后续样本。但它运行的是**未修复的代码**，仍可能在其他样本上遇到同样的 bug 而静默退出。\n\n建议：kill 56393 后用修复后的代码重启（resume 从 154 行继续），由你决定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-diagnose-exit0-and-resume.md"
+}

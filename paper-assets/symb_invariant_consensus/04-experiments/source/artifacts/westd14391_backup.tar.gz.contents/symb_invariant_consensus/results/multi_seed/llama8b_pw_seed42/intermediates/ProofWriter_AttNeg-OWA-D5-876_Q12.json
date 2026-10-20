@@ -1,0 +1,1246 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-876_Q12",
+    "problem": "Anne is kind. Anne is red. Anne is round. Charlie is blue. Charlie is quiet. Charlie is red. Dave is blue. Erin is quiet. Erin is red. Erin is smart. If something is round then it is rough. Smart things are kind. If something is rough then it is kind. All blue things are red. Red things are round. All kind, blue things are round. If Dave is kind and Dave is rough then Dave is quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not quiet.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nKind(Anne, True) ::: Anne is kind.\nRed(Anne, True) ::: Anne is red.\nRound(Anne, True) ::: Anne is round.\nBlue(Charlie, True) ::: Charlie is blue.\nQuiet(Charlie, True) ::: Charlie is quiet.\nRed(Charlie, True) ::: Charlie is red.\nBlue(Dave, True) ::: Dave is blue.\nQuiet(Erin, True) ::: Erin is quiet.\nRed(Erin, True) ::: Erin is red.\nSmart(Erin, True) ::: Erin is smart.\n\nRules:\nRound($x, True) >>> Rough($x, True) ::: If something is round then it is rough.\nSmart($x, True) >>> Kind($x, True) ::: Smart things are kind.\nRough($x, True) >>> Kind($x, True) ::: If something is rough then it is kind.\nBlue($x, True) >>> Red($x, True) ::: All blue things are red.\nRed($x, True) >>> Round($x, True) ::: Red things are round.\nKind($x, True) && Blue($x, True) >>> Round($x, True) ::: All kind, blue things are round.\nKind(Dave, True) && Rough(Dave, True) >>> Quiet(Dave, True) ::: If Dave is kind and Dave is rough then Dave is quiet.\n\nQuery:\nQuiet(Dave, False) ::: Dave is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 170.5,
+      "Unknown": 143.0
+    },
+    "answer_counts": {
+      "False": 7,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Dave is not quiet\" is true, false, or unknown, we need to analyze the given information and use the rules provided.\n\nGiven statements:\n1. Anne is kind.\n2. Anne is red.\n3. Anne is round.\n4. Charlie is blue.\n5. Charlie is quiet.\n6. Charlie is red.\n7. Dave is blue.\n8. Erin is quiet.\n9. Erin is red.\n10. Erin is smart.\nRules:\n1. If something is round then it is rough.\n2. Smart things are kind.\n3. If something is rough then it is kind.\n4. All blue things are red.\n5. Red things are round.\n6. All kind, blue things are round.\n7. If Dave is kind and Dave is rough then Dave is quiet.\n\nNow, let's analyze the given statements and rules to find any relationship between Dave and quiet.\n\nFrom rule 4, we know that all blue things are red. Since Dave is blue (statement 7), we can conclude that Dave is red.\n\nFrom rule 5, we know that red things are round. Since Dave is red (conclusion from rule 4), we can conclude that Dave is round.\n\nNow, let's consider the possible scenarios for Dave:\n- If Dave is kind, then from rule 7, we can conclude that Dave is quiet.\n- If Dave is rough, then from rule 3, we can conclude that Dave is kind.\n- However, if Dave is both kind and rough, then from rule 7, we can conclude that Dave is quiet.\n\nSince Dave is round (conclusion from rule 5), we can conclude from rule 1 that Dave is rough.\n\nNow, since Dave is rough (conclusion from rule 1), we can conclude from rule 3 that Dave is kind.\n\nFrom the above steps, we can conclude that Dave is both kind and rough. Therefore, from rule 7, we can conclude that Dave is quiet.\n\nNow, we need to evaluate the statement \"Dave is not quiet.\" Since we have concluded that Dave is quiet, this statement is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is not quiet' is true, false, or unknown, we need to analyze the given information and use the rules provided.\n\n1. From the rules, we know:\n   - All blue things are red.\n   - Red things are round.\n   - All kind, blue things are round.\n   - If something is round then it is rough.\n   - Smart things are kind.\n   - If something is rough then it is kind.\n   - If Dave is kind and Dave is rough then Dave is quiet.\n\n2. Given information:\n   - Dave is blue.\n   - Dave is blue, so Dave is red (Rule 1).\n   - Dave is red, so Dave is round (Rule 2).\n   - Dave is round, so Dave is rough (Rule 4).\n   - If Dave is kind and Dave is rough, then Dave is quiet. However, we don't know if Dave is kind.\n\n3. To determine if Dave is quiet, we need to know if Dave is kind. \n\n4. We know that smart things are kind (Rule 5). However, we don't have any information that links Dave to being smart.\n\n5. Since we don't have enough information to determine if Dave is kind, we cannot determine if Dave is quiet. The statement 'Dave is not quiet' is therefore unknown because we do not have enough information to conclude whether Dave is quiet or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is kind. \n   - Anne is red. \n   - Anne is round. \n   - Charlie is blue. \n   - Charlie is quiet. \n   - Charlie is red. \n   - Dave is blue. \n   - Erin is quiet. \n   - Erin is red. \n   - Erin is smart. \n   - If something is round then it is rough. \n   - Smart things are kind. \n   - If something is rough then it is kind. \n   - All blue things are red. \n   - Red things are round. \n   - All kind, blue things are round. \n   - If Dave is kind and Dave is rough then Dave is quiet.\n\n2. Analyzing the given information:\n   - From \"All blue things are red,\" we can conclude that Dave is red since Dave is blue.\n   - From \"Red things are round,\" we can conclude that Dave is round since Dave is red.\n   - From \"Dave is round\" and \"If something is round then it is rough,\" we can conclude that Dave is rough.\n   - From \"Dave is rough\" and \"If something is rough then it is kind,\" we can conclude that Dave is kind.\n\n3. Now let's look at the statement \"If Dave is kind and Dave is rough then Dave is quiet.\"\n   - We already know that Dave is kind and Dave is rough. \n   - Therefore, according to this statement, Dave should be quiet.\n\n4. However, we have another statement \"Smart things are kind\" and \"Erin is smart\" and \"Erin is red.\" \n   - From \"Erin is smart\" and \"Smart things are kind,\" we can conclude that Erin is kind.\n   - From \"Erin is red\" and \"Red things are round,\" we can conclude that Erin is round.\n   - From \"Erin is round\" and \"If something is round then it is rough,\" we can conclude that Erin is rough.\n   - From \"Erin is rough\" and \"If something is rough then it is kind,\" we can conclude that Erin is kind. \n   - Since both Dave and Erin are kind and rough, it means both Dave and Erin should be quiet. However, since Erin is quiet and Dave is quiet, the given information \"If Dave is kind and Dave is rough then Dave is quiet\" is not applicable here as it will also make Erin quiet which we already know.\n\nSince we know that Dave is quiet from the given information, we cannot determine whether the statement \"Dave is not quiet\" is true or false. Therefore, the answer is unknown.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not quiet\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nGiven statements:\n1. Anne is kind. \n2. Anne is red. \n3. Anne is round. \n4. Charlie is blue. \n5. Charlie is quiet. \n6. Charlie is red. \n7. Dave is blue. \n8. Erin is quiet. \n9. Erin is red. \n10. Erin is smart. \n11. If something is round then it is rough.\n12. Smart things are kind.\n13. If something is rough then it is kind.\n14. All blue things are red.\n15. Red things are round.\n16. All kind, blue things are round.\n17. If Dave is kind and Dave is rough then Dave is quiet.\n\nWe need to find a relationship between Dave and the given properties (quiet, kind, rough, blue, red, round).\n\nFrom statement 17, we know that if Dave is both kind and rough, then he is quiet. However, from statement 17, we also know that if Dave is kind and rough, then Dave is quiet. \n\nNow, let's examine the properties of Dave:\n- Dave is blue (statement 7).\n- Blue things are red (statement 14).\n- Red things are round (statement 15).\n- Round things are rough (statement 11).\n- If something is rough then it is kind (statement 13).\n\nSo, we can deduce the following properties for Dave:\n- Dave is blue (given).\n- Dave is red (because blue things are red).\n- Dave is round (because red things are round).\n- Dave is rough (because round things are rough).\n- Dave is kind (because rough things are kind).\n\nNow we have a problem. We know Dave is kind and rough, and from statement 17, we know that if Dave is both kind and rough, then he is quiet. So, Dave is quiet.\n\nHowever, statement 17 only applies if Dave is both kind and rough. We have already established that Dave is kind and rough. Therefore, we can conclude that Dave is indeed quiet.\n\nSo, the statement \"Dave is not quiet\" is FALSE.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the truth value of the statement \"Dave is not quiet,\" we need to analyze the given information step by step.\n\n1.  From the given information, we know that:\n    - All blue things are red.\n    - Red things are round.\n    - All kind, blue things are round.\n\n    We can infer that since Dave is blue, he must be red and round.\n\n2.  From the information \"Dave is blue,\" we cannot directly determine if Dave is kind. However, we do know that:\n    - All kind, blue things are round.\n    - Dave is round.\n\n    This information implies that Dave must be kind, as the condition of being blue is already met.\n\n3.  We have a new piece of information that states:\n    - If Dave is kind and Dave is rough then Dave is quiet.\n\n    Since we have concluded that Dave is kind, this statement becomes relevant. However, we still do not know if Dave is rough.\n\n4.  We have another piece of information that states:\n    - If something is round then it is rough.\n\n    Since we have concluded that Dave is round, this statement implies that Dave must be rough.\n\n5.  Given the information that Dave is kind and rough, we can now apply the previous statement: \"If Dave is kind and Dave is rough then Dave is quiet.\"\n\n    Since the conditions are met, Dave must indeed be quiet.\n\n6.  We can now determine the truth value of the statement \"Dave is not quiet.\" Since we have concluded that Dave is quiet, the statement \"Dave is not quiet\" is false.\n\nTherefore, the final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to follow the given rules and statements to determine the truth value of the statement \"Dave is not quiet.\"\n\n1. Let's start by analyzing the given information:\n   - Anne is kind, red, and round.\n   - Charlie is blue, quiet, and red.\n   - Dave is blue.\n   - Erin is quiet, red, and smart.\n\n2. Now, let's analyze the given rules:\n   - If something is round, then it is rough.\n   - Smart things are kind.\n   - If something is rough, then it is kind.\n   - All blue things are red.\n   - Red things are round.\n   - All kind, blue things are round.\n   - If Dave is kind and Dave is rough then Dave is quiet.\n\n3. From the rule \"All blue things are red\" and \"Dave is blue,\" we can conclude that Dave is red.\n\n4. From the rule \"Red things are round,\" we can conclude that Dave is round.\n\n5. Since Dave is round and from the rule \"If something is round then it is rough,\" we can conclude that Dave is rough.\n\n6. From the rule \"If something is rough then it is kind,\" we can conclude that Dave is kind.\n\n7. Now we have two statements: \"Dave is kind\" and \"Dave is rough.\" However, we have a rule that says \"If Dave is kind and Dave is rough then Dave is quiet.\" This means we cannot conclude that Dave is quiet from these two statements.\n\n8. However, this rule can be reinterpreted to mean that if Dave is both kind and rough, then he is quiet. However, the original problem statement says that Dave is kind and rough, so by this rule, Dave is quiet.\n\n9. However, since \"Dave is quiet\" is stated as a conclusion from \"Dave is kind\" and \"Dave is rough\" (which we have as two conclusions), we can then apply the rule that if something is quiet, then it's quiet (which isn't given). However, we don't have to. The rule that we do have that Dave is quiet from being kind and rough makes \"Dave is not quiet\" false because if Dave is quiet then he can't be not quiet.\n\nSo the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not quiet\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. Given information:\n   - Charlie is blue.\n   - Charlie is quiet.\n   - Charlie is red.\n   - Dave is blue.\n   - Erin is quiet.\n   - Erin is red.\n   - Erin is smart.\n   - Anne is kind.\n   - Anne is red.\n   - Anne is round.\n\n2. Rules:\n   - If something is round then it is rough.\n   - Smart things are kind.\n   - If something is rough then it is kind.\n   - All blue things are red.\n   - Red things are round.\n   - All kind, blue things are round.\n   - If Dave is kind and Dave is rough then Dave is quiet.\n\nLet's analyze the rules to determine the characteristics of Dave.\n\nFrom rule 3: All blue things are red. \nSince Dave is blue (given information), Dave is red (rule 3).\n\nFrom rule 5: Red things are round.\nSince Dave is red (from rule 3), Dave is round (rule 5).\n\nFrom rule 1: If something is round then it is rough.\nSince Dave is round (from rule 5), Dave is rough (rule 1).\n\nFrom rule 4: If something is rough then it is kind.\nSince Dave is rough (from rule 1), Dave is kind (rule 4).\n\nNow, we have the following characteristics for Dave:\n- Dave is blue\n- Dave is red\n- Dave is round\n- Dave is rough\n- Dave is kind\n\nFrom the given information and rules, we can conclude that Dave is kind, but we cannot determine whether Dave is quiet or not. \n\nHowever, rule 7 states: If Dave is kind and Dave is rough then Dave is quiet. \nSince we already know that Dave is kind and rough, we can conclude that Dave is quiet.\n\nTherefore, the statement \"Dave is not quiet\" is false.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Dave is blue. (Statement 1)\n   - All blue things are red. (Statement 2)\n   - Red things are round. (Statement 3)\n   - If something is round then it is rough. (Statement 4)\n   - If something is rough then it is kind. (Statement 5)\n   - Dave is kind and Dave is rough. (Statement 6)\n   - If Dave is kind and Dave is rough then Dave is quiet. (Statement 7)\n\n2. Analyzing the given statements:\n   - From Statement 1, we know that Dave is blue.\n   - From Statement 2, we know that all blue things are red, so Dave is red (because Dave is blue).\n   - From Statement 3, we know that red things are round, so Dave is round (because Dave is red).\n   - From Statement 4, we know that if something is round then it is rough, so Dave is rough (because Dave is round).\n   - From Statement 5, we know that if something is rough then it is kind, so Dave is kind (because Dave is rough).\n   - From Statement 6, we know that Dave is kind and Dave is rough.\n   - From Statement 7, we know that if Dave is kind and Dave is rough then Dave is quiet.\n\n3. Conclusion:\n   - From the given statements, we know that Dave is blue, which means Dave is red, which means Dave is round, which means Dave is rough, which means Dave is kind, and finally, Dave is quiet. (Statement 7)\n\nHowever, we are asked to determine whether the statement \"Dave is not quiet\" is true, false, or unknown.\n\n4. Final answer:\n   - Since we have concluded that Dave is quiet from the given statements, the statement \"Dave is not quiet\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is not quiet' is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. Charlie is blue. Charlie is quiet. Charlie is red. \n   - From the rule 'All blue things are red', we can conclude that Charlie is red because he is blue.\n   - From the rule 'Red things are round', we can conclude that Charlie is round because he is red.\n   - There is no direct information about Charlie being quiet, but we will use this example to understand the rules.\n\n2. Dave is blue. \n   - From the rule 'All blue things are red', we can conclude that Dave is red because he is blue.\n\n3. If Dave is kind and Dave is rough then Dave is quiet.\n   - There is no direct information about Dave being kind or rough.\n\n4. Smart things are kind. \n   - There is no direct information about Dave being smart.\n\n5. If something is round then it is rough. \n   - From the rule 'All blue things are red' and 'Red things are round', we can conclude that Dave is round because he is red.\n\n6. All kind, blue things are round.\n   - We do not have information about Dave being kind, so we cannot apply this rule directly.\n\nNow, let's analyze the given statement 'Dave is not quiet'. \n\nFrom the information given, we know that Dave is blue (rule 2), which means Dave is red (rule 1), which means Dave is round (rule 3).\n\nHowever, we do not have enough information to directly conclude whether Dave is quiet or not. We have an if-then statement that says 'If Dave is kind and Dave is rough then Dave is quiet', but we do not have enough information to confirm that Dave is either kind or rough.\n\nTherefore, we cannot determine whether the statement 'Dave is not quiet' is true or false based on the given information. The answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not quiet\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nGiven statements:\n\n1. Anne is kind.\n2. Anne is red.\n3. Anne is round.\n4. Charlie is blue.\n5. Charlie is quiet.\n6. Charlie is red.\n7. Dave is blue.\n8. Erin is quiet.\n9. Erin is red.\n10. Erin is smart.\n11. If something is round then it is rough.\n12. Smart things are kind.\n13. If something is rough then it is kind.\n14. All blue things are red.\n15. Red things are round.\n16. All kind, blue things are round.\n17. If Dave is kind and Dave is rough then Dave is quiet.\n\nRules we need to derive conclusions from:\n\n1. If something is round then it is rough.\n2. Smart things are kind.\n3. If something is rough then it is kind.\n4. All blue things are red.\n5. Red things are round.\n6. All kind, blue things are round.\n\nWe can start by analyzing the information given about Dave:\n\n- Dave is blue (Statement 7)\n- All blue things are red (Rule 4)\n- Therefore, Dave is red.\n\n- Red things are round (Rule 5)\n- Therefore, Dave is round.\n\n- Since Dave is round, Dave is rough (Rule 1).\n\n- Since Dave is rough, Dave is kind (Rule 3).\n\nNow we have: Dave is blue, Dave is red, Dave is round, Dave is rough, and Dave is kind.\n\nHowever, we also have the following rule: If Dave is kind and Dave is rough then Dave is quiet (Rule 17). But we have already established that Dave is kind and Dave is rough. \n\nTherefore, according to Rule 17, Dave is quiet.\n\nSince Dave is quiet, we cannot determine whether the statement \"Dave is not quiet\" is true or false. It is unknown because we have found evidence that Dave is quiet, which contradicts the statement.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is not quiet' is true, false, or unknown, we need to analyze the given premises and their implications.\n\n1. Premises:\n   - If something is round then it is rough.\n   - Smart things are kind.\n   - If something is rough then it is kind.\n   - All blue things are red.\n   - Red things are round.\n   - All kind, blue things are round.\n   - If Dave is kind and Dave is rough then Dave is quiet.\n\n2. Given information:\n   - Dave is blue.\n   - Dave is not mentioned as kind or rough, but we'll analyze the premises that can be applied to Dave.\n\nFrom 'All blue things are red' and 'Red things are round', we can conclude that Dave is round.\n\nFrom 'All kind, blue things are round', we can conclude that Dave is not kind (since we don't know if he's kind or not, this conclusion is based on the possibility that he's not kind, but this will be analyzed further).\n\nHowever, we also know that 'If something is round then it is rough' and 'If something is rough then it is kind'. From this, we can conclude that Dave is rough and Dave is kind.\n\nNow we have two conclusions that seem to contradict each other: Dave is kind and Dave is not kind. However, this is not a contradiction since we initially concluded Dave is not kind based on the possibility that he's not kind.\n\nNow we can analyze the statement 'If Dave is kind and Dave is rough then Dave is quiet.' Since we know that Dave is both kind and rough, we can conclude that Dave is quiet.\n\nThe statement we're trying to evaluate is 'Dave is not quiet.' However, we've concluded that Dave is quiet, which makes this statement false.\n\nTherefore, the statement 'Dave is not quiet' is \\boxed{false}.",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not quiet\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n\n1. All blue things are red.\n2. Red things are round.\n3. All kind, blue things are round.\n4. If something is round then it is rough.\n5. Smart things are kind.\n6. If something is rough then it is kind.\n7. Dave is blue.\n\nFrom the given information, we can deduce the following:\n\n1. Since Dave is blue, he is also red (from 1).\n2. Since Dave is red, he is round (from 2).\n3. Since Dave is round, he is rough (from 4).\n4. Since Dave is rough, he is kind (from 6).\n5. From 3, we know Dave is round, and from 3, we know round things are round, which is true, so we can't conclude anything new from this.\n6. From 5, we know Dave is kind, and from 3, we know round things are kind, which is true, so we can't conclude anything new from this.\n7. Since Dave is kind, and Dave is blue, then from 3, we know Dave is round.\n\nNow, we need to determine whether Dave is quiet or not. We are given the following information:\n\n8. If Dave is kind and Dave is rough then Dave is quiet.\n\nFrom the given information, we know:\n\n1. Dave is kind (from 4).\n2. Dave is rough (from 3).\n\nSince we have both conditions (Dave is kind and Dave is rough), we can use rule 8 to conclude that Dave is quiet.\n\nNow, we can determine the truth value of the statement \"Dave is not quiet\". Since we have concluded that Dave is quiet, the statement \"Dave is not quiet\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_anne, rough_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_anne, kind_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dave, red_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_anne, round_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_anne, blue_anne), round_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_dave, rough_dave), quiet_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dave, red_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_dave, round_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_dave, kind_dave), round_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_dave, rough_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_dave, kind_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_dave, kind_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_dave, rough_dave), quiet_dave)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_anne, rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_anne, kind_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dave, red_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_anne, round_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_anne, blue_anne), round_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_dave, rough_dave), quiet_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_anne, rough_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_anne, kind_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_charlie, red_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_anne, round_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_anne, blue_anne), round_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_dave, rough_dave), quiet_dave)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dave, red_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_dave, round_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_dave, blue_dave), round_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_dave, rough_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_dave, rough_dave), quiet_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_anne, rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_anne, kind_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dave, red_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_anne, round_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_anne, blue_anne), round_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_dave, rough_dave), quiet_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(dave)",
+          "z3_formula": "Not(quiet_dave) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_X, rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_X, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_X, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_X, red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_X, blue_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_X, rough_X), quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dave, red_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_dave, round_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_dave, rough_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_dave, kind_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave) & rough(dave)",
+          "z3_formula": "And(kind_dave, rough_dave) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_dave, rough_dave), quiet_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_charlie, red_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_charlie, round_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dave, red_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_dave, rough_dave), quiet_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_dave, kind_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_dave, rough_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_dave, kind_dave), round_dave)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_anne, rough_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_anne, kind_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dave, red_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_anne, round_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_anne, blue_anne), round_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_dave, rough_dave), quiet_dave)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_dave, rough_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_dave, kind_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_dave, kind_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dave, red_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_dave, round_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_dave, blue_dave), round_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_dave, rough_dave), quiet_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(dave)",
+          "z3_formula": "Not(kind_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_dave, red_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_dave, round_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_dave, kind_dave), round_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_dave, rough_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_dave, kind_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_dave, blue_dave), round_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_dave, rough_dave), quiet_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(dave)",
+          "z3_formula": "Not(quiet_dave) == True",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 186,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 42
+    },
+    "maxsat_stats": {
+      "satisfied": 40,
+      "excluded": 2,
+      "total_weight": 183,
+      "solve_time_ms": 1.0587405413389206
+    },
+    "timing": {
+      "trace_gen_s": 6.879,
+      "extraction_s": 26.919,
+      "dedup_s": 1.563,
+      "maxsat_s": 0.003,
+      "total_s": 35.364
+    }
+  }
+}

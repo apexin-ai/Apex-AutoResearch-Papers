@@ -1,0 +1,791 @@
+{
+  "pid": "ProofWriter_AttNeg-OWA-D5-372_Q4",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == False",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_gary, red_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_gary, green_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_gary, green_gary), blue_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, red_gary), smart_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, red_gary), smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_gary, red_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_gary, red_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_gary, green_gary), blue_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "Not(Not(smart_gary))",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all red things are furry",
+          "z3_formula": "forall X : red(X) -> furry(X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all furry things are red",
+          "z3_formula": "forall X : furry(X) -> red(X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young things are red",
+          "z3_formula": "forall X : young(X) -> red(X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not red(X) -> not green(X)",
+          "z3_formula": "Implies(And(smart_gary, Not(red_gary)), Not(green_gary))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "all furry things are green",
+          "z3_formula": "forall X : furry(X) -> green(X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_gary, green_gary), blue_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_gary, big_gary), smart_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, red_gary), smart_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "gary is blue",
+          "z3_formula": "blue_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "gary is green",
+          "z3_formula": "green_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "gary is not young",
+          "z3_formula": "Not(young_gary) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "gary is not big",
+          "z3_formula": "Not(big_gary) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "gary is smart",
+          "z3_formula": "smart_gary == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_gary, green_gary), blue_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, red_gary), smart_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_gary, red_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_gary, red_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, red_gary), smart_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_gary, red_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_gary, red_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_gary, green_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_gary, green_gary), blue_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(gary)",
+          "z3_formula": "Not(smart_gary)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_gary, green_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_gary, red_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_gary, green_gary), blue_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, red_gary), smart_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "not smart(X)",
+          "z3_formula": "Not(smart_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(gary)",
+          "z3_formula": "Not(smart_gary) == False",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_gary, red_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_gary, red_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(red(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(smart_gary, Not(red_gary)), Not(green_gary))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_gary, green_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_gary, green_gary), blue_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_gary, big_gary), smart_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, red_gary), smart_gary)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_gary, red_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_gary, red_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(red(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(smart_gary, Not(red_gary)), Not(green_gary))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_gary, green_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_gary, green_gary), blue_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_gary, big_gary), smart_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, red_gary), smart_gary)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_X, furry_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_X, red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_X, red_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "(smart(X) & Not(red(X))) -> Not(green(X))",
+          "z3_formula": "Implies(And(smart_X, Not(red_X)), Not(green_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_X, green_X), blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, green_X), smart_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_gary, red_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_gary, red_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_gary, big_gary), smart_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, red_gary), smart_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not young(gary)",
+          "z3_formula": "Not(young_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 12
+        }
+      ]
+    }
+  ]
+}

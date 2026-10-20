@@ -1,0 +1,720 @@
+{
+  "pid": "folio_72",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_company_stock)",
+          "z3_formula": "volatile_growth_company_stock == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(growth_company_stock) -> not(suitable_for_retirement(growth_company_stock))",
+          "z3_formula": "Implies(volatile_growth_company_stock, Not(suitable_for_retirement_growth_company_stock))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "growth_company_stock == some_company_stock",
+          "z3_formula": "growth_company_stock == some_company_stock == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company_stock == some_company_stock",
+          "z3_formula": "mature_company_stock == some_company_stock == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mature_company_stock -> suitable_for_retirement(mature_company_stock)",
+          "z3_formula": "Implies(mature_company_stock, suitable_for_retirement_mature_company_stock)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "ko == mature_company_stock",
+          "z3_formula": "ko == mature_company_stock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "suitable_for_retirement(ko)",
+          "z3_formula": "suitable_for_retirement_ko == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "growth_company_stock -> volatile(growth_company_stock)",
+          "z3_formula": "Implies(growth_company_stock, volatile_growth_company_stock)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(growth_company_stock)",
+          "z3_formula": "Not(growth_company_stock) == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_company_stock)",
+          "z3_formula": "volatile_growth_company_stock == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(stock) -> not_suitable_for_retirement_fund(stock)",
+          "z3_formula": "Implies(volatile_growth_company_stock, not_suitable_for_retirement_fund_growth_company_stock)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "some(growth_company_stock, company_stock)",
+          "z3_formula": "some_growth_company_stock_company_stock == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mature(ko)",
+          "z3_formula": "mature_ko == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mature(stock) -> suitable_for_retirement_fund(stock)",
+          "z3_formula": "Implies(mature_ko, suitable_for_retirement_fund_ko)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "suitable_for_retirement_fund(ko)",
+          "z3_formula": "suitable_for_retirement_fund_ko == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "company_stock(ko)",
+          "z3_formula": "company_stock_ko == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "growth_company_stock(X) -> volatile(X)",
+          "z3_formula": "Implies(growth_company_stock_ko, volatile_growth_company_stock)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(X) -> not_suitable_for_retirement_fund(X)",
+          "z3_formula": "Implies(volatile_growth_company_stock, not_suitable_for_retirement_fund_growth_company_stock)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(growth_company_stock(ko))",
+          "z3_formula": "growth_company_stock_ko == Unknown",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_companies)",
+          "z3_formula": "volatile_growth_companies == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(growth_companies) -> not(suitable_for_retirement(growth_companies))",
+          "z3_formula": "Implies(volatile_growth_companies, not(suitable_for_growth_companies))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "some(companies, growth_companies)",
+          "z3_formula": "some_companies_growth_companies == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mature(ko)",
+          "z3_formula": "mature_ko == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "mature(X) -> suitable_for_retirement(X)",
+          "z3_formula": "Implies(mature_ko, suitable_for_retirement_ko)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "suitable_for_retirement(ko)",
+          "z3_formula": "suitable_for_retirement_ko == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "company(ko)",
+          "z3_formula": "company_ko == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "company(X) & growth_companies(X) -> volatile(X)",
+          "z3_formula": "Implies(And(company_ko, growth_companies_ko), volatile_ko)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(X) -> not(suitable_for_retirement(X))",
+          "z3_formula": "Implies(volatile_ko, not(suitable_for_growth_companies))",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "growth_companies_stocks \u2192 volatile_stocks",
+          "z3_formula": "Implies(growth_companies_stocks, volatile_stocks)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "volatile_stocks \u2192 not_suitable_for_retirement_fund",
+          "z3_formula": "Implies(volatile_stocks, not_suitable_for_retirement_fund)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "some_stocks_are_growth_companies_stocks",
+          "z3_formula": "some_stocks_are_growth_companies_stocks == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mature_companies_stocks \u2192 suitable_for_retirement_fund",
+          "z3_formula": "Implies(mature_companies_stocks, suitable_for_retirement_fund)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "ko_is_mature_companies_stock",
+          "z3_formula": "ko_is_mature_companies_stock == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "ko_is_company_stock_and_growth_companies_stock",
+          "z3_formula": "Not(And(ko_is_mature_companies_stock, suitable_for_retirement_fund) | Not(Implies(growth_companies_stocks, volatile_stocks)))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_company_stock)",
+          "z3_formula": "volatile_growth_company_stock == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(stock) -> not(suitable_for_retirement_fund(stock))",
+          "z3_formula": "Implies(volatile_growth_company_stock, not_suitable_for_retirement_fund_growth_company_stock)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "growth_company_stock",
+          "z3_formula": "growth_company_stock == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "mature_company_stock -> suitable_for_retirement_fund(mature_company_stock)",
+          "z3_formula": "Implies(mature_company_stock, suitable_for_retirement_fund_mature_company_stock)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company_stock",
+          "z3_formula": "mature_company_stock == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(growth_company_stock)",
+          "z3_formula": "not_growth_company_stock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(suitable_for_retirement_fund(growth_company_stock))",
+          "z3_formula": "not_suitable_for_retirement_fund_growth_company_stock == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(suitable_for_retirement_fund(growth_company_stock)) & suitable_for_retirement_fund(mature_company_stock)",
+          "z3_formula": "And(not_suitable_for_retirement_fund_growth_company_stock, suitable_for_retirement_fund_mature_company_stock)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not KO is a company stock and a growth company's stock",
+          "z3_formula": "not_ko_is_a_company_stock_and_a_growth_company_stock == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_company_stock)",
+          "z3_formula": "volatile_growth_company_stock == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(stock) -> not_suitable_for_retirement_fund(stock)",
+          "z3_formula": "Implies(volatile_stock, not_suitable_for_retirement_fund_stock)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "growth_company_stock(stock)",
+          "z3_formula": "growth_company_stock_stock == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company_stock(stock)",
+          "z3_formula": "mature_company_stock_stock == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company_stock(ko)",
+          "z3_formula": "mature_company_stock_ko == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "suitable_for_retirement_fund(mature_company_stock_stock)",
+          "z3_formula": "suitable_for_retirement_fund_mature_company_stock_stock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not_volatile(mature_company_stock_stock)",
+          "z3_formula": "not_volatile_mature_company_stock_stock == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not_suitable_for_retirement_fund(mature_company_stock_stock)",
+          "z3_formula": "not_suitable_for_retirement_fund_mature_company_stock_stock == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not_suitable_for_retirement_fund(growth_company_stock_stock)",
+          "z3_formula": "not_suitable_for_retirement_fund_growth_company_stock_stock == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not_growth_company_stock(ko)",
+          "z3_formula": "not_growth_company_stock_ko == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_company_stock)",
+          "z3_formula": "volatile_growth_company_stock == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(stock) -> not(suitable_for_retirement_fund(stock))",
+          "z3_formula": "Implies(volatile_growth_company_stock, not_suitable_for_retirement_fund_growth_company_stock)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "growth_company_stock == some_company_stock",
+          "z3_formula": "growth_company_stock == some_company_stock == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company_stock == suitable_for_retirement_fund(mature_company_stock)",
+          "z3_formula": "mature_company_stock == suitable_for_retirement_fund_mature_company_stock == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "ko == mature_company_stock",
+          "z3_formula": "ko == mature_company_stock == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "suitable_for_retirement_fund(ko)",
+          "z3_formula": "suitable_for_retirement_fund_ko == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "ko == growth_company_stock",
+          "z3_formula": "ko == growth_company_stock == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(stock) -> not(suitable_for_retirement_fund(stock))",
+          "z3_formula": "Implies(volatile_growth_company_stock, not_suitable_for_retirement_fund_growth_company_stock)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "suitable_for_retirement_fund(ko)",
+          "z3_formula": "suitable_for_retirement_fund_ko == Unknown",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_company_stock)",
+          "z3_formula": "volatile_growth_company_stock == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(stock) -> not(suitable_for_retirement_fund(stock))",
+          "z3_formula": "Implies(volatile_stock, not_suitable_for_retirement_fund_stock)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "growth_company_stock == some_company_stock",
+          "z3_formula": "growth_company_stock == some_company_stock == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company_stock == suitable_for_retirement_fund",
+          "z3_formula": "mature_company_stock == suitable_for_retirement_fund == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "ko == mature_company_stock",
+          "z3_formula": "ko == mature_company_stock == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "ko == suitable_for_retirement_fund",
+          "z3_formula": "ko == suitable_for_retirement_fund == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "company_stock == ko",
+          "z3_formula": "company_stock == ko == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "company_stock == growth_company_stock -> False",
+          "z3_formula": "Implies(And(company_stock == ko, growth_company_stock == ko), False)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_company_stock)",
+          "z3_formula": "volatile_growth_company_stock == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(stock) -> not_suitable_for_retirement_fund(stock)",
+          "z3_formula": "Implies(volatile_growth_company_stock, not_suitable_for_retirement_fund_growth_company_stock)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "some(growth_company_stock, company_stock)",
+          "z3_formula": "some_growth_company_stock_company_stock == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all(mature_company_stock, suitable_for_retirement_fund)",
+          "z3_formula": "all_mature_company_stock_suitable_for_retirement_fund == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company_stock(ko)",
+          "z3_formula": "mature_company_stock_ko == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_company_stock)",
+          "z3_formula": "volatile_growth_company_stock == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(growth_company_stock) -> not(suitable_for_retirement(growth_company_stock))",
+          "z3_formula": "Implies(volatile_growth_company_stock, Not(suitable_for_retirement_growth_company_stock))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some(X) [growth_company_stock(X) -> growth_company_stock(X)]",
+          "z3_formula": "Implies(some_growth_company_stock, growth_company_stock_some)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company_stock(ko)",
+          "z3_formula": "mature_company_stock_ko == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "all(X) [mature_company_stock(X) -> suitable_for_retirement(X)]",
+          "z3_formula": "Implies(all_mature_company_stock, suitable_for_retirement_all_mature_company_stock)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company_stock(ko)",
+          "z3_formula": "mature_company_stock_ko == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "suitable_for_retirement(mature_company_stock(ko))",
+          "z3_formula": "suitable_for_retirement_mature_company_stock_ko == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "growth_company_stock(ko)",
+          "z3_formula": "growth_company_stock_ko == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(suitable_for_retirement(growth_company_stock(ko)))",
+          "z3_formula": "Not(suitable_for_retirement_growth_company_stock_ko)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(growth_company_stock(ko))",
+          "z3_formula": "Not(growth_company_stock_ko)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(growth_company_stock(ko))",
+          "z3_formula": "unknown_growth_company_stock_ko",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_company_stock)",
+          "z3_formula": "volatile_growth_company_stock == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(growth_company_stock) -> not(suitable_for_retirement(growth_company_stock))",
+          "z3_formula": "Implies(volatile_growth_company_stock, not_suitable_for_retirement_growth_company_stock)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "some(growth_company_stock, company_stock)",
+          "z3_formula": "some_growth_company_stock_company_stock == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company_stock == some(company_stock)",
+          "z3_formula": "mature_company_stock == some_company_stock == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mature_company_stock -> suitable_for_retirement(mature_company_stock)",
+          "z3_formula": "Implies(mature_company_stock, suitable_for_retirement_mature_company_stock)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "ko == mature_company_stock",
+          "z3_formula": "ko == mature_company_stock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "suitable_for_retirement(ko)",
+          "z3_formula": "suitable_for_retirement_ko == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "ko == some(growth_company_stock)",
+          "z3_formula": "ko == some_growth_company_stock == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(suitable_for_retirement(growth_company_stock))",
+          "z3_formula": "not_suitable_for_retirement_growth_company_stock == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(growth_company_stock == some(growth_company_stock))",
+          "z3_formula": "not_some_growth_company_stock_growth_company_stock == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(ko == some(growth_company_stock))",
+          "z3_formula": "not_some_growth_company_stock_ko == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "ko == some(growth_company_stock) & ko == some(company_stock)",
+          "z3_formula": "And(some_growth_company_stock_ko, some_company_stock_ko) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "ko == some(growth_company_stock) & ko == some(company_stock) & not(ko == some(growth_company_stock))",
+          "z3_formula": "And(some_growth_company_stock_ko, some_company_stock_ko, not_some_growth_company_stock_ko) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "ko == some(growth_company_stock) & ko == some(company_stock) & not(ko == some(growth_company_stock)) & not(suitable_for_retirement(growth_company_stock))",
+          "z3_formula": "And(some_growth_company_stock_ko, some_company_stock_ko, not_some_growth_company_stock_ko, not_suitable_for_retirement_growth_company_stock) == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "ko == some(growth_company_stock) & ko == some(company_stock) & not(ko == some(growth_company_stock)) & not(suitable_for_retirement(growth_company_stock)) & suitable_for_retirement(ko)",
+          "z3_formula": "And(some_growth_company_stock_ko, some_company_stock_ko, not_some_growth_company_stock_ko, not_suitable_for_retirement_growth_company_stock, suitable_for_retirement_ko) == True",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mature(ko)",
+          "z3_formula": "mature_ko == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "growth(X) -> volatile(X)",
+          "z3_formula": "Implies(growth_ko, volatile_ko)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(X) -> not(suitable_for_retirement(X))",
+          "z3_formula": "Implies(volatile_ko, Not(suitable_for_retirement_ko))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "mature(X) -> suitable_for_retirement(X)",
+          "z3_formula": "Implies(mature_ko, suitable_for_retirement_ko)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "some(X, growth(X) & stock(X))",
+          "z3_formula": "Or(growth_ko, Not(stock_ko))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(growth(ko) & stock(ko))",
+          "z3_formula": "Not(And(growth_ko, stock_ko))",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

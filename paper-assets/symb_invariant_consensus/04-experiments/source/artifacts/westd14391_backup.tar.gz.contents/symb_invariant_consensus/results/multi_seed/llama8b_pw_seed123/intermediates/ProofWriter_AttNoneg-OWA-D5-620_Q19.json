@@ -1,0 +1,1316 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-620_Q19",
+    "problem": "Anne is red. Bob is big. Bob is green. Bob is red. Charlie is furry. Dave is big. Dave is blue. If something is big then it is smart. If something is blue then it is green. All furry things are big. Smart things are blue. If something is green then it is furry. Green things are smart. All green things are quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not red.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRed($x, bool) ::: Is x red?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nFurry($x, bool) ::: Is x furry?\nBlue($x, bool) ::: Is x blue?\nSmart($x, bool) ::: Is x smart?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nRed(Anne, True) ::: Anne is red.\nBig(Bob, True) ::: Bob is big.\nGreen(Bob, True) ::: Bob is green.\nRed(Bob, True) ::: Bob is red.\nFurry(Charlie, True) ::: Charlie is furry.\nBig(Dave, True) ::: Dave is big.\nBlue(Dave, True) ::: Dave is blue.\n\nRules:\nBig($x, True) >>> Smart($x, True) ::: If something is big then it is smart.\nBlue($x, True) >>> Green($x, True) ::: If something is blue then it is green.\nFurry($x, True) >>> Big($x, True) ::: All furry things are big.\nSmart($x, True) >>> Blue($x, True) ::: Smart things are blue.\nGreen($x, True) >>> Furry($x, True) ::: If something is green then it is furry.\nGreen($x, True) >>> Smart($x, True) ::: Green things are smart.\nGreen($x, True) >>> Quiet($x, True) ::: All green things are quiet.\n\nQuery:\nRed(Dave, False) ::: Dave is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 197.0
+    },
+    "answer_counts": {
+      "Unknown": 10
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them to the information about Dave.\n\nGiven statements:\n1. If something is big then it is smart.\n2. If something is blue then it is green.\n3. All furry things are big.\n4. Smart things are blue.\n5. If something is green then it is furry.\n6. Green things are smart.\n7. All green things are quiet.\n\nNow, let's analyze the information about Dave:\n- Dave is big (statement 4).\n- Dave is blue (statement 5).\n\nFrom statement 1, since Dave is big, he must be smart.\nFrom statement 4, since Dave is smart, he must be blue.\nFrom statement 2, since Dave is blue, he must be green.\nFrom statement 5, since Dave is green, he must be furry.\nFrom statement 6, since Dave is green, he must be smart (this is already known).\nFrom statement 3, since Dave is furry, he must be big (this is already known).\n\nNow, let's analyze the information about red:\n- Anne is red (given).\n- Bob is red (given).\n- If something is green then it is furry (statement 5). Since Dave is green, he must be furry, but this doesn't mean anything about red.\n- All green things are quiet (statement 7). Since Dave is green, he must be quiet, but this doesn't mean anything about red.\n\nNow, let's check if Dave is red:\n- We have no information that directly links Dave to being red.\n- We have information that links green to furry (statement 5), and furry to big (statement 3), and big to smart (statement 1), and smart to blue (statement 4), but none of these link green or furry to red.\n- We have information that links green to quiet (statement 7), but this doesn't affect red.\n\nSince we have no information that directly links Dave to being red, we cannot conclude that Dave is red or not red.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is not red' is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\nGiven information:\n- Anne is red.\n- Bob is big.\n- Bob is green.\n- Bob is red.\n- Charlie is furry.\n- Dave is big.\n- Dave is blue.\nRules:\n1. If something is big then it is smart.\n2. If something is blue then it is green.\n3. All furry things are big.\n4. Smart things are blue.\n5. If something is green then it is furry.\n6. Green things are smart.\n7. All green things are quiet.\n\nFirst, let's analyze the given information about Dave. We know:\n- Dave is big.\n- Dave is blue.\n\nNow, let's apply the rules to Dave's information:\n1. Dave is big, which implies Dave is smart (rule 1).\n2. Dave is blue, which implies Dave is green (rule 2).\n\nNow we have:\n- Dave is smart (rule 1).\n- Dave is green.\n\nApplying further rules to Dave's information:\n- Since Dave is smart, it is blue (rule 4).\n- Since Dave is blue, it is green (rule 2).\n- Since Dave is green, it is furry (rule 5).\n- Since Dave is furry, it is big (rule 3).\n\nWe still don't know about Dave's color. We have a cycle where Dave is big, blue, smart, green, furry, and big. This cycle doesn't help us determine whether Dave is red or not.\n\nTo determine whether the statement 'Dave is not red' is true or false, we need to see if we can derive any information about Dave's color being red or not red.\n\nLooking at the given information about colors, we know:\n- Anne is red.\n- Bob is red.\n- All green things are quiet.\n\nFrom the information about Dave, we know:\n- Dave is big.\n- Dave is blue.\n- Dave is green.\n- Dave is furry.\n\nWe don't have any direct information about Dave being red. However, since we know that green things are smart (rule 6), and Dave is green, it implies that Dave is smart. But rule 4 states that smart things are blue, not necessarily that they are not red.\n\nThere is no rule that directly says 'red things are not green' or 'green things are not red'. Since we can't derive any information about Dave's color being red or not red from the given information, we must conclude that the statement 'Dave is not red' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and logical deductions. \n\nGiven statements:\n1. Anne is red.\n2. Bob is big.\n3. Bob is green.\n4. Bob is red.\n5. Charlie is furry.\n6. Dave is big.\n7. Dave is blue.\n8. If something is big then it is smart. (From 6 and 7, we can conclude that Dave is smart.)\n9. If something is blue then it is green. (From 7, we can conclude that Dave is green.)\n10. All furry things are big. (From 5, we can conclude that Charlie is big.)\n11. Smart things are blue. (From 8, we can conclude that Dave is blue, and from 9, we can conclude that Dave is green.)\n12. If something is green then it is furry. (From 11, we can conclude that Dave is furry.)\n13. Green things are smart. (From 11, we can conclude that Dave is smart.)\n14. All green things are quiet. (From 13, we can conclude that Dave is quiet.)\n\nNow, we need to determine whether the statement \"Dave is not red\" is true, false, or unknown.\n\nFrom statement 4, we know that Bob is red. We cannot conclude anything about Dave from this statement.\nFrom statement 1, we know that Anne is red. We cannot conclude anything about Dave from this statement.\nFrom statement 7, we know that Dave is blue. We cannot conclude anything about Dave's color from this statement.\n\nHowever, from statement 9, we know that if something is blue, then it is green. And from statement 4, we know that Bob is red. We also know that all green things are quiet, but this does not tell us about Dave's color.\n\nFrom statement 13, we know that green things are smart. We know that Dave is smart (from statement 8), but this does not tell us about Dave's color.\n\nWe cannot determine whether the statement \"Dave is not red\" is true or false based on the given statements. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to analyze the given information.\n\n1. Dave is big. (Given)\n2. If something is big then it is smart. (Given)\n   Therefore, Dave is smart. (From 1 and 2)\n\n3. Dave is blue. (Given)\n4. If something is blue then it is green. (Given)\n   Therefore, Dave is green. (From 3 and 4)\n\nNow we have the following information about Dave: Dave is big, smart, blue, and green.\n\nGiven the following statements:\n\n1. If something is green then it is furry. (Given)\n   Therefore, Dave is furry. (From 3 and 4, and 1)\n\n2. All green things are smart. (Given)\n   This is already known from 2.\n\n3. Green things are smart. (Given)\n   This is already known from 2.\n\n4. All furry things are big. (Given)\n   This is already known from 1.\n\n5. If something is green then it is furry. (Given)\n   This is already known from 1.\n\n6. All green things are quiet. (Given)\n\nNow we need to check if Dave is red or not.\n\n1. Bob is green. (Given)\n2. Bob is red. (Given)\n3. All green things are quiet. (Given)\n4. If something is green then it is furry. (Given)\n5. If something is green then it is furry. (Given)\n\nFrom statement 2, we know Bob is red and green, but we cannot conclude that all red things are green.\n\nNow let's check if Dave is red or not.\n\n1. Dave is big. (Given)\n2. Dave is blue. (Given)\n3. Dave is green. (From 2 and 4)\n4. Dave is furry. (From 3 and 1)\n\nWe cannot conclude that Dave is red from the given information.\n\nTherefore, the statement \"Dave is not red\" is unknown because we do not have enough information to determine whether Dave is red or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to use the given information and apply it step by step.\n\n1. Dave is big. (Given)\n2. If something is big then it is smart. (Given)\n   - Therefore, Dave is smart. (From 2 and 1)\n\n3. Dave is smart. (From 2 and 1)\n4. Smart things are blue. (Given)\n   - Therefore, Dave is blue. (From 4 and 3)\n\n5. Dave is blue. (From 4 and 3)\n6. If something is blue then it is green. (Given)\n   - Therefore, Dave is green. (From 6 and 5)\n\n7. Dave is green. (From 6 and 5)\n8. Green things are furry. (Given)\n   - Therefore, Dave is furry. (From 8 and 7)\n\nHowever, we are given that \"Bob is red. Bob is green.\" and \"Anne is red.\" This implies that there can be multiple objects with the same color. \n\nSo, from the information given, we can conclude that Dave is green, and we know that green things are not necessarily red or not red.\n\nTherefore, we cannot conclude that \"Dave is not red\" is true or false, as we don't have enough information to make that determination.\n\nSo the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is big. \n2. If something is big then it is smart. \nFrom (1) and (2), we can conclude that Dave is smart.\n\n3. If something is smart then it is blue. \nFrom (2) and (3), we can conclude that Dave is blue.\n\n4. Dave is blue. \n5. If something is blue then it is green. \nFrom (4) and (5), we can conclude that Dave is green.\n\n6. Bob is green. \n7. Bob is red. \nSince Bob can be both green and red, we cannot conclude anything about Dave from this information.\n\n8. Charlie is furry. \n9. All furry things are big. \n10. All big things are smart. \nFrom (8), (9), and (10), we can conclude that Charlie is smart. \n\n11. If something is green then it is furry. \nFrom (5), we can conclude that Dave is furry.\n\n12. All green things are big. \nFrom (5), we can conclude that Dave is big.\n\n13. All big things are smart. \nFrom (12), we can conclude that Dave is smart.\n\n14. Smart things are blue. \nFrom (13), we can conclude that Dave is blue.\n\n15. Green things are smart. \nFrom (5) and (14), we can conclude that green things are blue.\n\n16. All green things are quiet. \nWe can conclude that green things are quiet, but we cannot conclude that Dave is quiet.\n\nNow, let's analyze the given statement \"Dave is not red.\"\n\nWe know that:\n- Dave is big (from 1).\n- Dave is blue (from 4 and 5).\n- Dave is green (from 4 and 5).\n- Dave is furry (from 11).\n\nWe also know that:\n- Bob is red (from 7).\n\nHowever, we do not have any information about the color of Dave directly. We only have information about the color of Bob.\n\nSince we cannot conclude that Dave is red or not red, the statement \"Dave is not red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know the following about Dave:\n   - Dave is big.\n   - Dave is blue.\n\n2. From the given information, we can infer the following:\n   - If something is big then it is smart. (So, Dave is smart.)\n   - Dave is smart. (From the previous inference)\n   - Smart things are blue. (From the given information)\n   - Dave is blue. (From the previous inference)\n   - Dave is indeed blue, but we need to check if he is red or not.\n\n3. We also know the following:\n   - If something is blue then it is green. (From the given information)\n   - Dave is blue. (From step 2)\n   - Therefore, Dave is green.\n\n4. Now we need to determine if Dave is red or not:\n   - We know that Bob is red. (From the given information)\n   - Dave is green. (From step 3)\n   - All green things are red. (This cannot be concluded from the given information. The given information states: Bob is red. Bob is green. Bob is red. Bob is red, but there is no information stating that green things are red. The statement \"All green things are red\" is not supported by the given information.)\n\nSince we cannot conclude that Dave is red or not based on the given information, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Dave is big. \n   We know that if something is big, then it is smart. \n   Therefore, Dave is smart.\n\n2. We know that smart things are blue.\n   Since Dave is smart, we can conclude that Dave is blue.\n\n3. We are given that if something is blue, then it is green.\n   Therefore, Dave is green.\n\n4. We are given that if something is green, then it is furry.\n   Therefore, Dave is furry.\n\n5. We are given that all furry things are big.\n   Since Dave is furry, we can conclude that Dave is big (which we already knew).\n\n6. We are given that green things are smart.\n   Since Dave is green, we can conclude that Dave is smart (which we already knew).\n\n7. We are given that all green things are quiet.\n   Since Dave is green, we can conclude that Dave is quiet.\n\n8. We are given that Bob is red.\n   There is no information given that connects Bob to Dave or states that Dave is not red based on the color of Bob.\n\n9. We are given that Charlie is furry.\n   There is no information given that connects Charlie to Dave or states that Dave is not red based on the characteristics of Charlie.\n\n10. We are given that Dave is big, and big things are smart, and smart things are blue, and blue things are green, and green things are furry, and furry things are big, and green things are smart, and all green things are quiet.\n    However, we are trying to determine whether Dave is not red, not whether Dave is big or smart or blue or green or furry or quiet.\n\nBased on the given information, we know that Dave is blue, and blue things are green, and green things are furry, and furry things are big, and big things are smart, and smart things are blue, and green things are smart, and all green things are quiet. However, we do not have any information that states whether Dave is red or not. \n\nTherefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to analyze the given information and the properties of the individuals mentioned.\n\n1. Dave is big. (From the statement)\n2. If something is big then it is smart. (From the rule)\n3. If something is smart then it is blue. (From the rule)\n4. Dave is blue. (From the statement and rules 1 and 3)\n5. If something is blue then it is green. (From the rule)\n6. Dave is green. (From the statement and rules 4 and 5)\n\nNow, let's analyze the properties of Bob:\n1. Bob is big. (From the statement)\n2. Bob is green. (From the statement)\n3. Bob is red. (From the statement)\n\nSince Bob is big and green, we can conclude that he is smart and blue. However, this does not affect our analysis of Dave.\n\nNow, let's analyze the properties of Charlie:\n1. Charlie is furry. (From the statement)\n2. All furry things are big. (From the rule)\n3. Charlie is big. (From rule 2 and statement 1)\n4. Charlie is green. (From the rule, since Bob is green and all green things are smart, and all green things are quiet)\n\nNow, let's analyze the properties of Anne:\n1. Anne is red. (From the statement)\n\nWe have not been given any information about Anne being big, smart, blue, green, or furry.\n\nSince Dave is green, we can conclude that the statement \"Dave is not red\" is false, because if Dave were not red, then he would not be green.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given rules and deduce information step by step.\n\n1. Given rules:\n   - If something is big then it is smart.\n   - If something is blue then it is green.\n   - All furry things are big.\n   - Smart things are blue.\n   - If something is green then it is furry.\n   - Green things are smart.\n   - All green things are quiet.\n\n2. From the given information:\n   - Dave is big.\n   - Dave is blue.\n\n3. Applying rule 2 (If something is blue then it is green) to Dave:\n   - Since Dave is blue, then Dave is green.\n\n4. Applying rule 5 (If something is green then it is furry) to Dave:\n   - Since Dave is green, then Dave is furry.\n\n5. Applying rule 3 (All furry things are big) to Dave:\n   - Since Dave is furry, then Dave is big. (We already knew this, but it confirms our previous information.)\n\n6. Applying rule 1 (If something is big then it is smart) to Dave:\n   - Since Dave is big, then Dave is smart.\n\n7. Applying rule 4 (Smart things are blue) to Dave:\n   - Since Dave is smart, then Dave is blue. (We already knew this, but it confirms our previous information.)\n\n8. Now, we need to determine if Dave is red. \n   - We can't directly determine this from the rules, so we need to look at the information about other people and animals. \n   - Anne is red.\n   - Bob is red (This doesn't tell us anything about Dave.)\n   - Dave has no information about being red.\n\n9. Since we have no information about Dave being red, we cannot determine if the statement \"Dave is not red\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not red\" is true, false, or unknown, we need to analyze the given information.\n\n1. Given information:\n   - Dave is big.\n   - Dave is blue.\n   - If something is big then it is smart.\n   - If something is blue then it is green.\n   - All furry things are big.\n   - Smart things are blue.\n   - If something is green then it is furry.\n   - Green things are smart.\n   - All green things are quiet.\n\n2. Analyze the information:\n   - From the given information, we know Dave is big and blue.\n   - Since Dave is big, we can infer that Dave is smart (as big things are smart).\n   - Since Dave is smart, we can infer that Dave is blue (as smart things are blue).\n   - Since Dave is blue, we can infer that Dave is green (as blue things are green).\n   - Since Dave is green, we can infer that Dave is furry (as green things are furry).\n   - Since Dave is furry, we can infer that Dave is big (as furry things are big).\n   - This creates a loop where Dave is big because he is furry, and he is furry because he is green. However, we already know that Dave is big and green.\n\n3. Conclusion:\n   - We can conclude that Dave is green, big, and furry.\n   - However, we cannot conclude anything about Dave being red or not red.\n   - The only information about red is related to Bob: Bob is red. But there is no information about Dave being red or not red.\n\n4. Final answer:\n   - Since we cannot determine whether Dave is red or not red based on the given information, the statement \"Dave is not red\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is not red' is true, false, or unknown, we need to analyze the given information and apply logical reasoning step by step.\n\n1. Dave is big: \nFrom the given information, we know that 'Dave is big.' This means we can infer that Dave is smart because 'If something is big then it is smart.'\n\n2. Dave is smart:\nSince Dave is big, we can conclude that Dave is smart.\n\n3. Smart things are blue: \nWe know that 'Smart things are blue.' Since Dave is smart, we can infer that Dave is blue.\n\n4. Dave is blue: \nFrom the information that 'Dave is blue,' we can conclude that Dave is green because 'If something is blue then it is green.'\n\n5. Green things are smart: \nAlthough we have already established that Dave is smart, this new information reinforces our previous conclusion.\n\n6. Green things are smart: \nWe also know that 'Green things are smart.' Since Dave is green, we can confirm that Dave is indeed smart.\n\n7. All green things are quiet: \nWe know that 'All green things are quiet.' However, we cannot conclude this about Dave because we do not have any information about his noise level.\n\n8. Dave is not red: \nFrom the given information, we know that 'Bob is red' and 'Bob is big' and 'Dave is big.' However, it does not mention that Dave is red.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_dave, smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_dave, furry_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_dave, smart_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_dave, quiet_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_dave, blue_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == Unknown",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_dave, smart_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_charlie, big_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_dave, blue_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_dave, furry_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_dave, smart_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_dave, smart_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_dave, smart_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_charlie, big_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_dave, blue_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_dave, furry_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_dave, smart_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_dave, quiet_dave)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_dave, smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_dave, furry_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_dave, smart_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> big(X)",
+          "z3_formula": "Implies(big_dave, big_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_dave, furry_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_dave, quiet_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_bob, furry_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_bob, furry_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == False",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_dave, smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_dave, blue_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_dave, furry_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_dave, smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_dave, blue_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_charlie, big_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_charlie, smart_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_dave, furry_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_dave, big_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_dave, smart_dave)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_dave, blue_dave)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_dave, blue_dave)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_dave, blue_dave)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_dave, quiet_dave)",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_dave, smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_dave, blue_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_dave, smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_dave, blue_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_dave, furry_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_dave, smart_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_dave, quiet_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not red(dave)",
+          "z3_formula": "Not(red_dave)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_dave, smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_dave, blue_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not red(dave)",
+          "z3_formula": "Not(red_dave) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_dave, smart_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_dave, furry_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_dave, furry_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_dave, blue_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_dave, smart_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_dave, furry_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_dave, quiet_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_dave, smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_dave, blue_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_dave, smart_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_dave, Not(red_dave)), quiet_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not red(dave)",
+          "z3_formula": "Not(red_dave)",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 198,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 29
+    },
+    "maxsat_stats": {
+      "satisfied": 29,
+      "excluded": 0,
+      "total_weight": 198,
+      "solve_time_ms": 1.163228414952755
+    },
+    "timing": {
+      "trace_gen_s": 6.55,
+      "extraction_s": 27.881,
+      "dedup_s": 1.063,
+      "maxsat_s": 0.003,
+      "total_s": 35.496
+    }
+  }
+}

@@ -1,0 +1,318 @@
+{
+  "pid": "folio_66",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_research_university(yale_university)",
+          "z3_formula": "private_ivy_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "private_ivy_research_university(X) -> private_ivy_research_university(X)",
+          "z3_formula": "Implies(private_ivy_research_university_yale_university, private_ivy_research_university_yale_university)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "private_ivy_research_university(X) & moved_to_new_haven(X, Y) -> moved_to_new_haven(private_ivy_research_university(X), Y)",
+          "z3_formula": "Implies(And(private_ivy_research_university_yale_university, moved_to_new_haven_yale_university_1716), moved_to_new_haven_private_ivy_research_university_yale_university_1716)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "moved_to_new_haven(private_ivy_research_university(yale_university), 1716)",
+          "z3_formula": "moved_to_new_haven_private_ivy_research_university_yale_university_1716 == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "private_ivy_league_research_university(yale_university) & moved_to_new_haven(yale_university, _)",
+          "z3_formula": "And(private_ivy_league_research_university_yale_university, moved_to_new_haven_yale_university_1716) == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "private_ivy_league_research_university(yale_university) & moved_to_new_haven(yale_university, _)",
+          "z3_formula": "And(private_ivy_league_research_university_yale_university, moved_to_new_haven_yale_university_1716) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "moved_to_new_haven(yale_university, _)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "moved_to_new_haven(private_ivy_league_research_university)",
+          "z3_formula": "moved_to_new_haven_private_ivy_league_research_university == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "private_ivy_league_research_university(yale_university) & moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "And(private_ivy_league_research_university_yale_university, moved_to_new_haven_yale_university_1716) == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_research(yale_university)",
+          "z3_formula": "private_ivy_research_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_42_3_billion(yale_university)",
+          "z3_formula": "endowment_42_3_billion_yale_university == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges_27(yale_university)",
+          "z3_formula": "constituent_colleges_27_yale_university == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges_list(yale_university)",
+          "z3_formula": "residential_colleges_list_yale_university == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "private_ivy_league_research_university(X) & moved_to_new_haven(X, 1716)",
+          "z3_formula": "And(private_ivy_league_research_university_X, moved_to_new_haven_X_1716)",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_research(yale_university)",
+          "z3_formula": "private_ivy_research_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "private_ivy_research(yale_university) & moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "And(private_ivy_research_yale_university, moved_to_new_haven_yale_university_1716) == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "a_private_ivy_league_research_university_moved_to_new_haven",
+          "z3_formula": "a_private_ivy_league_research_university_moved_to_new_haven == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "private_ivy_league_research_university(x) & moved_to_new_haven(x, 1716)",
+          "z3_formula": "And(private_ivy_league_research_university_x, moved_to_new_haven_x_1716)",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "yale_university == new_haven",
+          "z3_formula": "yale_university_new_haven == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "private_ivy_league_research_university(X) & X == new_haven",
+          "z3_formula": "And(private_ivy_league_research_university_X, yale_university_new_haven) == True",
+          "source_step": 3
+        }
+      ]
+    }
+  ]
+}

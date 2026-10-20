@@ -1,0 +1,1109 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-129_Q8",
+    "problem": "The lion is cold. The lion does not need the mouse. The lion visits the squirrel. The mouse is cold. The mouse does not visit the squirrel. The rabbit is cold. The rabbit is rough. The rabbit does not need the lion. The rabbit does not visit the squirrel. The squirrel is kind. The squirrel needs the mouse. The squirrel needs the rabbit. The squirrel does not see the lion. The squirrel does not see the rabbit. If something needs the rabbit and the rabbit sees the mouse then the mouse does not see the lion. If something is rough then it visits the mouse. If something needs the rabbit and it visits the mouse then the mouse needs the rabbit. If something needs the rabbit and the rabbit is cold then it is rough. If something needs the rabbit then the rabbit needs the squirrel. If the squirrel sees the lion and the squirrel is not green then the lion needs the squirrel. If something is big then it visits the lion. If something visits the squirrel and the squirrel sees the lion then the lion is not kind.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not need the rabbit.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nNeed($x, $y, bool) ::: Does x need y?\nVisit($x, $y, bool) ::: Does x visit y?\nRough($x, bool) ::: Is x rough?\nKind($x, bool) ::: Is x kind?\nSee($x, $y, bool) ::: Does x see y?\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\n\nFacts:\nCold(Lion, True) ::: The lion is cold.\nNeed(Lion, Mouse, False) ::: The lion does not need the mouse.\nVisit(Lion, Squirrel, True) ::: The lion visits the squirrel.\nCold(Mouse, True) ::: The mouse is cold.\nVisit(Mouse, Squirrel, False) ::: The mouse does not visit the squirrel.\nCold(Rabbit, True) ::: The rabbit is cold.\nRough(Rabbit, True) ::: The rabbit is rough.\nNeed(Rabbit, Lion, False) ::: The rabbit does not need the lion.\nVisit(Rabbit, Squirrel, False) ::: The rabbit does not visit the squirrel.\nKind(Squirrel, True) ::: The squirrel is kind.\nNeed(Squirrel, Mouse, True) ::: The squirrel needs the mouse.\nNeed(Squirrel, Rabbit, True) ::: The squirrel needs the rabbit.\nSee(Squirrel, Lion, False) ::: The squirrel does not see the lion.\nSee(Squirrel, Rabbit, False) ::: The squirrel does not see the rabbit.\n\nRules:\nNeed($x, Rabbit, True) && See(Rabbit, Mouse, True) >>> See(Mouse, Lion, False) ::: If something needs the rabbit and the rabbit sees the mouse then the mouse does not see the lion.\nRough($x, True) >>> Visit($x, Mouse, True) ::: If something is rough then it visits the mouse.\nNeed($x, Rabbit, True) && Visit($x, Mouse, True) >>> Need(Mouse, Rabbit, True) ::: If something needs the rabbit and it visits the mouse then the mouse needs the rabbit.\nNeed($x, Rabbit, True) && Cold(Rabbit, True) >>> Rough($x, True) ::: If something needs the rabbit and the rabbit is cold then it is rough.\nNeed($x, Rabbit, True) >>> Need(Rabbit, Squirrel, True) ::: If something needs the rabbit then the rabbit needs the squirrel.\nSee(Squirrel, Lion, True) && Green(Squirrel, False) >>> Need(Lion, Squirrel, True) ::: If the squirrel sees the lion and the squirrel is not green then the lion needs the squirrel.\nBig($x, True) >>> Visit($x, Lion, True) ::: If something is big then it visits the lion.\nVisit($x, Squirrel, True) && See(Squirrel, Lion, True) >>> Kind(Lion, False) ::: If something visits the squirrel and the squirrel sees the lion then the lion is not kind.\n\nQuery:\nNeed(Mouse, Rabbit, False) ::: The mouse does not need the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 101.0,
+      "True": 0.0,
+      "Unknown": 137.5
+    },
+    "answer_counts": {
+      "True": 1,
+      "False": 3,
+      "Unknown": 7
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions provided to determine the relationship between the entities. We will use a truth table and logical deductions to find the answer.\n\nLet's define some variables:\n- L: The lion is cold.\n- M: The mouse needs the rabbit.\n- R: The rabbit is rough.\n- S: The squirrel is kind.\n- T: The mouse is cold.\n- U: The mouse does not visit the squirrel.\n- V: The rabbit is cold.\n- W: The rabbit is cold and needs the mouse.\n- X: The rabbit is cold and needs the squirrel.\n- Y: The rabbit sees the mouse.\n- Z: The squirrel sees the lion.\n\nGiven statements:\n1. The lion is cold: L.\n2. The mouse does not need the rabbit: M (we need to determine this).\n3. The mouse does not visit the squirrel: U.\n4. The rabbit is cold: V.\n5. The rabbit is rough: R.\n6. The squirrel is kind: S.\n7. The squirrel needs the mouse: The squirrel needs the mouse.\n8. The squirrel needs the rabbit: The squirrel needs the rabbit.\n9. The squirrel does not see the lion: The squirrel does not see the lion.\n10. The squirrel does not see the rabbit: The squirrel does not see the rabbit.\n11. If something needs the rabbit and the rabbit sees the mouse then the mouse does not see the lion.\n12. If something is rough then it visits the mouse.\n13. If something needs the rabbit and it visits the mouse then the mouse needs the rabbit.\n14. If something needs the rabbit and the rabbit is cold then it is rough.\n15. If something needs the rabbit then the rabbit needs the squirrel.\n16. If the squirrel sees the lion and the squirrel is not green then the lion needs the squirrel.\n17. If something is big then it visits the lion.\n18. If something visits the squirrel and the squirrel sees the lion then the lion is not kind.\n\nDeductions:\n\nFrom 8, we know that the squirrel needs the rabbit. So, from 15, the rabbit needs the squirrel. \n\nFrom 4 and 5, we know that the rabbit is cold and rough. We can infer that the rabbit is rough because it is cold (14). \n\nFrom 12, since the rabbit is rough, it visits the mouse. \n\nNow, let's check the conditions where something needs the rabbit and the rabbit sees the mouse. We know that the rabbit sees the mouse (from the deduction above), and we also know that the squirrel needs the rabbit (8). So, from 11, the mouse does not see the lion.\n\nFrom 9 and 10, we know that the squirrel does not see the lion and the rabbit. \n\nFrom 3, we know that the mouse does not visit the squirrel.\n\nFrom 7, we know that the squirrel needs the mouse.\n\nNow, let's check if the conditions for statement 13 are met: something needs the rabbit and it visits the mouse. We know that the squirrel needs the rabbit (8) and it does not visit the mouse (3). However, the rabbit needs the squirrel (from 15). So, the conditions for statement 13 are not met.\n\nFrom 17, since the rabbit is big (unknown), it visits the lion. However, this is not relevant to our problem.\n\nNow, let's check the conditions for statement 16: the squirrel sees the lion and the squirrel is not green. We know that the squirrel is kind (6) and does not see the lion (9). So, the conditions for statement 16 are not met.\n\nFrom 18, since the squirrel visits the lion and the squirrel sees the lion, the lion is not kind. However, this is not relevant to our problem.\n\nNow, let's check if the conditions for statement 14 are met: something needs the rabbit and the rabbit is cold. We know that the rabbit is cold (4) and needs the squirrel (from 15). So, the conditions for statement 14 are met. Since the rabbit is cold and needs the squirrel, the squirrel is rough (14).\n\nNow, let's check if the conditions for statement 13 are met: something needs the rabbit and it visits the mouse. We know that the squirrel needs the rabbit (8) and visits the mouse is not relevant to our problem, since the mouse does not visit the squirrel (3).\n\nNow, we need to determine if the mouse needs the rabbit. We can infer that the mouse is cold (from 3 and 2). From 11, we know that the mouse does not see the lion. From 16, the conditions are not met, so the lion does not need the squirrel. From 13, the conditions are not met, so the mouse does not need the rabbit.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not need the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement to be determined is: The mouse does not need the rabbit.\n\nGiven information:\n- The squirrel needs the mouse (Statement 9)\n- The squirrel needs the rabbit (Statement 10)\n- If something needs the rabbit then the rabbit needs the squirrel (Statement 11)\n- The rabbit is cold (Statement 5)\n- If something needs the rabbit and the rabbit is cold then it is rough (Statement 8)\n\nFrom Statement 11, we know that since the squirrel needs the rabbit, the rabbit needs the squirrel. \n\nNow we have to determine if the mouse needs the rabbit. \n\nFrom Statement 9, we know that the squirrel needs the mouse. \n\nHowever, there is no direct statement that the mouse needs the rabbit. We will try to derive the information from the given statements.\n\nGiven that the rabbit is cold (Statement 5), and using Statement 8, we know that since the rabbit is cold and needs the squirrel, the rabbit is rough. \n\nFrom Statement 6, we know that the rabbit is rough, which means it visits the mouse (Statement 2).\n\nUsing Statement 3, we know that since the rabbit visits the mouse, the mouse needs the rabbit.\n\nNow we have the information that the mouse needs the rabbit.\n\nThe statement to be determined is: The mouse does not need the rabbit.\n\nSince we found that the mouse needs the rabbit, the statement \"The mouse does not need the rabbit\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not need the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"If something needs the rabbit and it visits the mouse then the mouse needs the rabbit,\" we can infer that if the mouse needs the rabbit, it will visit the mouse. However, we don't have any information about the mouse visiting the rabbit.\n\n2. From the statement \"The squirrel needs the mouse\" and \"The squirrel needs the rabbit,\" we can infer that the squirrel needs both the mouse and the rabbit. But we don't have any information about the mouse needing the rabbit.\n\n3. From the statement \"The squirrel needs the rabbit\" and \"If something needs the rabbit then the rabbit needs the squirrel,\" we can infer that the rabbit needs the squirrel.\n\n4. From the statement \"The rabbit is cold\" and \"If something needs the rabbit and the rabbit is cold then it is rough,\" we can infer that the rabbit is rough.\n\n5. From the statement \"The rabbit is rough\" and \"If something is rough then it visits the mouse,\" we can infer that the rabbit visits the mouse.\n\n6. From the statement \"The rabbit visits the mouse\" and \"If something needs the rabbit and it visits the mouse then the mouse needs the rabbit,\" we cannot infer that the mouse needs the rabbit. However, we can see a possible contradiction, but we still need to consider other conditions.\n\n7. From the statement \"The mouse does not visit the squirrel\" and \"The squirrel is kind,\" we cannot infer anything about the mouse needing the rabbit.\n\n8. From the statement \"The lion does not see the squirrel\" and \"The squirrel does not see the lion,\" we cannot infer anything about the mouse needing the rabbit.\n\n9. The statement \"If the squirrel sees the lion and the squirrel is not green then the lion needs the squirrel\" doesn't give us any information about the mouse needing the rabbit.\n\n10. The statement \"If something is big then it visits the lion\" doesn't give us any information about the mouse needing the rabbit.\n\n11. The statement \"If something visits the squirrel and the squirrel sees the lion then the lion is not kind\" doesn't give us any information about the mouse needing the rabbit.\n\nHowever, we have the following statements:\n\"If something needs the rabbit and the rabbit sees the mouse then the mouse does not see the lion\" and \n\"The rabbit sees the mouse.\"\n\nFrom the statement \"The rabbit sees the mouse,\" we can infer that the mouse does not see the lion, because the rabbit needs the mouse, and the rabbit sees the mouse. This means we can't infer anything about the mouse needing the rabbit from this information alone.\n\nBut if we consider the statement \"The rabbit is rough\" and \"The rabbit needs the squirrel,\" then we can infer that the rabbit needs the squirrel.\n\nHowever, we still can't conclude that the mouse does not need the rabbit based on the given information.\n\nTherefore, the final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not need the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information given, we have:\n   - The squirrel needs the rabbit.\n   - If something needs the rabbit, then the rabbit needs the squirrel. \n   - The squirrel needs the mouse.\n   - The squirrel needs the rabbit.\n\n2. We can conclude that the mouse and the rabbit are both needed by the squirrel.\n\n3. Now, we need to find a connection between the mouse and the rabbit. If something needs the rabbit and the rabbit sees the mouse, then the mouse does not see the lion. However, we do not have any information that the rabbit sees the mouse.\n\n4. From the information given:\n   - The rabbit is rough.\n   - If something is rough, then it visits the mouse. \n   This implies that the rabbit visits the mouse.\n\n5. Since the rabbit sees the mouse (because it visits the mouse), and the mouse does not visit the squirrel, we can conclude that:\n   - If something needs the rabbit and it visits the mouse, then the mouse needs the rabbit.\n   - The mouse needs the rabbit.\n\n6. We have two conclusions:\n   - The mouse needs the rabbit.\n   - The rabbit needs the squirrel.\n\nHowever, there is no direct information that the mouse needs the rabbit. We can infer this indirectly because both the mouse and the rabbit are needed by the squirrel. But there is no direct information that the mouse needs the rabbit.\n\nThe given information does not directly state that the mouse needs the rabbit. Therefore, the statement \"The mouse does not need the rabbit\" is unknown based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step and use logical deductions.\n\nFrom the given information:\n\n1. The squirrel needs the rabbit.\n2. The rabbit does not see the mouse.\n3. The rabbit is cold.\n\nNow, we will use the given rules to deduce the information:\n\n1. If something needs the rabbit and it visits the mouse then the mouse needs the rabbit. (Rule 4)\n2. If something is rough then it visits the mouse. (Rule 2)\n3. If something needs the rabbit and the rabbit is cold then it is rough. (Rule 5)\n4. The rabbit is cold (Given).\n5. The squirrel needs the rabbit (Given).\n6. The squirrel needs the rabbit and the rabbit is cold, so the squirrel is rough (Rule 5).\n7. The squirrel is rough, so it visits the mouse (Rule 2).\n8. The squirrel visits the mouse and it needs the rabbit, so the mouse needs the rabbit (Rule 4).\n\nFrom the given information and the deductions:\n\n1. The mouse needs the rabbit (Deduced).\n2. The statement is: The mouse does not need the rabbit.\n\nNow, we can conclude that the statement is false because we have deduced that the mouse needs the rabbit.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not need the rabbit\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. From the rules, we know that if something needs the rabbit and the rabbit sees the mouse then the mouse does not see the lion.\n2. We also know that if something needs the rabbit and it visits the mouse then the mouse needs the rabbit.\n3. However, we do not have any information that directly states whether the mouse needs the rabbit or not.\n\nTo make a conclusion, let's consider the given statements and the rules:\n\n- The squirrel needs the mouse (rule 8).\n- The squirrel needs the rabbit (rule 9).\n- If something needs the rabbit then the rabbit needs the squirrel (rule 10).\n- Therefore, the rabbit needs the squirrel.\n- The squirrel needs the mouse.\n- The squirrel needs the rabbit.\n\nHowever, we still do not have any information about the mouse needing the rabbit. \n\nWe also know that the rabbit is rough (rule 6) and the rabbit does not visit the squirrel (rule 7). \n\nFrom rule 3, if something is rough then it visits the mouse. However, we do not know whether the rabbit visits the mouse or not.\n\nSince we do not have any information that directly states whether the mouse needs the rabbit or not, we cannot conclude whether the statement is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not need the rabbit\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. From the statement \"The squirrel needs the rabbit\" (given information), we can deduce that the rabbit is needed by at least one entity, the squirrel.\n\n2. From the statement \"If something needs the rabbit then the rabbit needs the squirrel\" (given information), we can deduce that the rabbit needs the squirrel because the squirrel needs the rabbit.\n\n3. We are not given any information about the mouse needing the rabbit directly. However, we can analyze the given statements about the mouse.\n\n4. From the statement \"The mouse is cold\" (given information) and \"The rabbit is cold\" (given information), we cannot directly deduce anything about the mouse needing the rabbit.\n\n5. However, from the statement \"The rabbit is rough\" (given information) and \"If something is rough then it visits the mouse\" (given information), we can deduce that the rabbit visits the mouse.\n\n6. From the statement \"The mouse does not visit the squirrel\" (given information), we cannot directly deduce anything about the mouse needing the rabbit.\n\n7. Now, let's analyze the statement \"If something needs the rabbit and the rabbit sees the mouse then the mouse does not see the lion.\" We do not know if the rabbit sees the mouse, but we do know that the rabbit needs the squirrel, and from the statement \"If the squirrel sees the lion and the squirrel is not green then the lion needs the squirrel,\" we can deduce that the squirrel does not see the lion.\n\n8. However, this does not provide any information about the mouse needing the rabbit. We still cannot determine if the mouse needs the rabbit.\n\nTherefore, the statement \"The mouse does not need the rabbit\" is **unknown**.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning and deduction. We will analyze the given statements and rules one by one to determine the relationships between the animals.\n\nFrom the statements:\n\n1. The rabbit is rough.\n2. The squirrel is kind.\n3. The mouse is cold.\n4. The rabbit does not need the lion.\n5. The rabbit does not visit the squirrel.\n6. The squirrel needs the mouse.\n7. The squirrel needs the rabbit.\n8. The squirrel does not see the lion.\n9. The squirrel does not see the rabbit.\n\nFrom the rules:\n\n1. If something needs the rabbit and the rabbit sees the mouse then the mouse does not see the lion.\n2. If something is rough then it visits the mouse.\n3. If something needs the rabbit and it visits the mouse then the mouse needs the rabbit.\n4. If something needs the rabbit and the rabbit is cold then it is rough.\n5. If something needs the rabbit then the rabbit needs the squirrel.\n6. If the squirrel sees the lion and the squirrel is not green then the lion needs the squirrel.\n7. If something is big then it visits the lion.\n8. If something visits the squirrel and the squirrel sees the lion then the lion is not kind.\n\nNow, let's analyze the statement: The mouse does not need the rabbit.\n\nFrom statement 6, we know that the squirrel needs the rabbit.\n\nFrom rule 5, we know that if something needs the rabbit, then the rabbit needs the squirrel.\n\nSo, the rabbit needs the squirrel.\n\nNow, let's examine the relationship between the mouse and the rabbit.\n\nFrom statement 6, we know that the squirrel needs the mouse.\n\nFrom rule 3, if something needs the rabbit and it visits the mouse, then the mouse needs the rabbit.\n\nHowever, there is no information that the mouse visits the rabbit. \n\nFrom statement 7, we know that the rabbit is rough.\n\nFrom rule 2, if something is rough, then it visits the mouse.\n\nSo, the rabbit visits the mouse.\n\nNow, we have a contradiction. \n\nFrom rule 3, if something needs the rabbit and it visits the mouse, then the mouse needs the rabbit.\n\nSince the rabbit visits the mouse, we can conclude that the mouse needs the rabbit.\n\nTherefore, the statement \"The mouse does not need the rabbit\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and the conditions that lead to the conclusion about the mouse needing or not needing the rabbit.\n\n1. The squirrel needs the mouse. (Given)\n2. The squirrel needs the rabbit. (Given)\n3. If something needs the rabbit and it visits the mouse then the mouse needs the rabbit. (Given)\n4. The squirrel sees the mouse. (This can be derived from the given information: The squirrel does not see the lion and The squirrel does not see the rabbit. Since the squirrel needs the rabbit, it must see the mouse or the rabbit, but it does not see the lion.)\n\nFrom (3) and (4), we can conclude that the mouse needs the rabbit.\n\nHowever, the conclusion about the mouse needing the rabbit does not directly affect the statement about the mouse not needing the rabbit. To determine if the statement is true or false, we need to consider all the information given.\n\nWe know that the statement 'The mouse does not need the rabbit' can be proven or disproven based on the following conditions:\n\n5. If something needs the rabbit and the rabbit is cold then it is rough. (Given)\n6. The rabbit is cold. (Given)\n7. The rabbit does not need the lion. (Given)\n8. The mouse is cold. (Given)\n\nFrom (5), (6), and (7), we can conclude that the mouse is rough.\n\n9. If something is rough then it visits the mouse. (Given)\n10. The mouse does not visit the squirrel. (Given)\n\nFrom (9) and (10), we can conclude that the mouse visits the rabbit.\n\n11. The mouse needs the rabbit. (Derived from (3) and (4))\n12. The mouse visits the rabbit. (Derived from (9) and (10))\n\nNow, let's examine the condition that leads to the conclusion about the mouse not needing the rabbit:\n\n13. If something needs the rabbit and it visits the mouse then the mouse needs the rabbit. (Given)\n14. The mouse needs the rabbit. (Derived from (3) and (4))\n15. The mouse visits the rabbit. (Derived from (9) and (10))\n\nHowever, we can derive another condition from the given information:\n\n16. The squirrel needs the rabbit. (Given)\n17. The squirrel needs the mouse. (Given)\n18. The squirrel does not see the rabbit. (Given)\n19. The squirrel does not see the lion. (Given)\n20. The squirrel sees the mouse. (This can be derived from the fact that the squirrel sees either the mouse or the rabbit, but it does not see the lion.)\n\nFrom (13), (16), and (18), we cannot directly conclude that the mouse needs the rabbit, but we can conclude that the mouse does not need the rabbit under certain conditions.\n\n21. If something needs the rabbit and the rabbit is cold then it is rough. (Given)\n22. The rabbit is cold. (Given)\n23. The rabbit does not need the lion. (Given)\n24. The mouse is rough. (Derived from (5), (6), and (7))\n\nFrom (21) and (22), we can conclude that the mouse is rough.\n\nHowever, we also have the following condition:\n\n25. If the rabbit sees the mouse then the mouse does not see the lion. (Given)\n\nWe cannot directly derive the conclusion that the mouse does not need the rabbit from the given information.\n\n26. The rabbit sees the mouse. (This can be derived from (9) and (10), and the fact that the rabbit is rough.)\n\nFrom (25), we can conclude that the mouse does not see the lion.\n\n27. The squirrel sees the lion. (This can be derived from the fact that the squirrel sees either the mouse or the lion, but it does not see the rabbit.)\n\nFrom (27), we can conclude that the lion is not kind.\n\nHowever, this conclusion does not affect the statement about the mouse not needing the rabbit.\n\n28. The mouse needs the rabbit. (Derived from (3) and (4))\n29. The mouse visits the rabbit. (Derived from (9) and (10))\n\nWe cannot derive the conclusion that the mouse does not need the rabbit from the given information.\n\nTherefore, we cannot determine whether the statement 'The mouse does not need the rabbit' is true or false based on the given information.\n\nThe final answer is \\boxed{Unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not need the rabbit\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The statement \"The mouse does not need the rabbit\" is what we are trying to prove or disprove.\n\nLet's analyze the rules:\n\n1. If something needs the rabbit and the rabbit sees the mouse then the mouse does not see the lion.\n   - This rule does not directly relate to the mouse needing the rabbit, so we can ignore it for now.\n\n2. If something is rough then it visits the mouse.\n   - This rule does not directly relate to the mouse needing the rabbit, so we can ignore it for now.\n\n3. If something needs the rabbit and it visits the mouse then the mouse needs the rabbit.\n   - This rule does not directly relate to the mouse needing the rabbit, so we can ignore it for now.\n\n4. If something needs the rabbit and the rabbit is cold then it is rough.\n   - This rule does not directly relate to the mouse needing the rabbit, so we can ignore it for now.\n\n5. If something needs the rabbit then the rabbit needs the squirrel.\n   - This rule does not directly relate to the mouse needing the rabbit, so we can ignore it for now.\n\n6. If the squirrel sees the lion and the squirrel is not green then the lion needs the squirrel.\n   - This rule does not directly relate to the mouse needing the rabbit, so we can ignore it for now.\n\n7. If something is big then it visits the lion.\n   - This rule does not directly relate to the mouse needing the rabbit, so we can ignore it for now.\n\n8. If something visits the squirrel and the squirrel sees the lion then the lion is not kind.\n   - This rule does not directly relate to the mouse needing the rabbit, so we can ignore it for now.\n\nNow, we need to look for a rule that can help us determine whether the mouse needs the rabbit or not. \n\nUnfortunately, there is no rule that directly states the mouse needs or does not need the rabbit. However, we can use the rules to try to find out if the mouse needs the rabbit.\n\nLet's look at the given information again:\n\n- The mouse is cold.\n- The mouse does not visit the squirrel.\n- The squirrel is kind.\n- The squirrel needs the mouse.\n- The squirrel needs the rabbit.\n\nSince the squirrel needs the rabbit, then the rabbit needs the squirrel (rule 5). \n\nThe only rule left to analyze is rule 1, which is \"If something needs the rabbit and the rabbit sees the mouse then the mouse does not see the lion.\" However, we don't have enough information to determine whether the mouse needs the rabbit or not.\n\nBut, let's try to figure out if the mouse needs the rabbit by using the given information.\n\nSince the squirrel needs the rabbit and the rabbit needs the squirrel, the rabbit and squirrel have a mutual need.\n\nHowever, we cannot determine if the mouse needs the rabbit directly.\n\nBut, if we can find out if the mouse needs the squirrel, then we might be able to find out if the mouse needs the rabbit.\n\nSince the squirrel needs the mouse, and the squirrel is kind, the mouse is likely to need the squirrel.\n\nHowever, we still cannot determine if the mouse needs the rabbit.\n\nUnfortunately, there is not enough information to determine whether the statement \"The mouse does not need the rabbit\" is true, false, or unknown.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not need the rabbit\" is true, false, or unknown, we need to analyze the given information and the rules.\n\nGiven information:\n\n1. The mouse is cold.\n2. The mouse does not visit the squirrel.\n3. The rabbit is cold.\n4. The rabbit is rough.\n5. The squirrel is kind.\n6. The squirrel needs the mouse.\n7. The squirrel needs the rabbit.\n8. The squirrel does not see the lion.\n9. The squirrel does not see the rabbit.\n10. If something needs the rabbit and the rabbit sees the mouse then the mouse does not see the lion.\n11. If something is rough then it visits the mouse.\n12. If something needs the rabbit and it visits the mouse then the mouse needs the rabbit.\n13. If something needs the rabbit and the rabbit is cold then it is rough.\n14. If something needs the rabbit then the rabbit needs the squirrel.\n15. If the squirrel sees the lion and the squirrel is not green then the lion needs the squirrel.\n16. If something is big then it visits the lion.\n17. If something visits the squirrel and the squirrel sees the lion then the lion is not kind.\n\nFrom rules 14 and 17, we can derive the following:\n\n- Since the squirrel needs the rabbit (rule 7), the rabbit needs the squirrel (rule 14).\n- The squirrel does not see the lion (rule 9), so we cannot apply rule 15.\n\nNow, let's examine the relationship between the mouse and the rabbit.\n\n- The mouse does not need the squirrel (since the squirrel needs the mouse, not the other way around, rule 6).\n- The mouse does not visit the squirrel (rule 2).\n- There is no direct rule stating that the mouse needs the rabbit or not.\n\nHowever, rule 10 implies that if the rabbit sees the mouse and something needs the rabbit, then the mouse does not see the lion. Since the rabbit is rough (rule 4), it visits the mouse (rule 11). The mouse is cold (rule 1).\n\nTo determine whether the mouse needs the rabbit, we need to consider the possibilities:\n\n- If the mouse needs the rabbit, then according to rule 13, the rabbit must be cold. This is already true (rule 3).\n- If the mouse does not need the rabbit, then we cannot apply rule 13, and we are left with an unknown.\n\nHowever, rule 12 states that if something needs the rabbit and it visits the mouse, then the mouse needs the rabbit. Since the squirrel needs the rabbit (rule 7), the squirrel visits the mouse is not necessary. However, we do know that the squirrel needs the rabbit (rule 7) and the rabbit needs the squirrel (rule 14). This suggests that there may be a connection between the mouse and the rabbit through the squirrel.\n\nSince the mouse does not need the squirrel (directly), and the squirrel needs the mouse (rule 6), we cannot apply rule 12. However, this suggests that there may be an indirect connection between the mouse and the rabbit through the squirrel.\n\nGiven the complexity of the statements and the rules, it is difficult to determine a definitive answer. However, let's consider the possibilities:\n\n- If the mouse needs the rabbit, then the rabbit needs the squirrel (rule 14), and the squirrel needs the mouse (rule 6). This creates a cycle, but we cannot determine whether the mouse needs the rabbit directly or indirectly.\n- If the mouse does not need the rabbit, then we are left with an unknown.\n\nHowever, rule 12 states that if something needs the rabbit and it visits the mouse, then the mouse needs the rabbit. This implies that the mouse may need the rabbit indirectly if the squirrel needs the rabbit (rule 7).\n\nConsidering the given information and the rules, we can conclude that the statement \"The mouse does not need the rabbit\" is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will use a step-by-step approach by analyzing the given statements and applying the rules.\n\nLet's denote:\n- L: The lion\n- M: The mouse\n- R: The rabbit\n- S: The squirrel\n\n1. Given statements:\n   - L is cold\n   - M does not need L\n   - M is cold\n   - M does not visit S\n   - R is cold\n   - R is rough\n   - R does not need L\n   - R does not visit S\n   - S is kind\n   - S needs M\n   - S needs R\n   - S does not see L\n   - S does not see R\n   - If something needs R and R sees M, then M does not see L.\n   - If something is rough, then it visits M.\n   - If something needs R and it visits M, then M needs R.\n   - If something needs R and R is cold, then it is rough.\n   - If something needs R, then R needs S.\n   - If S sees L and S is not green, then L needs S.\n   - If something is big, then it visits L.\n   - If something visits S and S sees L, then L is not kind.\n\n2. Analyze the rules:\n   - From the statement \"If something is rough then it visits the mouse,\" we can conclude that R visits M since R is rough.\n\n3. Analyze the rules:\n   - From the statement \"If something needs the rabbit and it visits the mouse then the mouse needs the rabbit,\" we can conclude that M needs R since S needs R and S visits M.\n\n4. Analyze the rules:\n   - From the statement \"If something needs the rabbit and the rabbit is cold then it is rough,\" we can conclude that it is rough. However, we already know S is kind, so this does not apply.\n\n5. Analyze the rules:\n   - From the statement \"If something needs the rabbit then the rabbit needs the squirrel,\" we can conclude that R needs S since S needs R.\n\n6. Analyze the rules:\n   - From the statement \"If something needs the rabbit and the rabbit sees the mouse then the mouse does not see the lion,\" we can conclude that M does not see L since S needs R, R is rough, and R sees M.\n\n7. Analyze the rules:\n   - From the statement \"If the squirrel sees the lion and the squirrel is not green then the lion needs the squirrel,\" we cannot conclude anything since we do not know if S sees L.\n\n8. Analyze the rules:\n   - From the statement \"If something is big then it visits the lion,\" we cannot conclude anything since we do not know if anything is big.\n\n9. Analyze the rules:\n   - From the statement \"If something visits the squirrel and the squirrel sees the lion then the lion is not kind,\" we cannot conclude anything since we do not know if anything visits S.\n\n10. Analyze the given statements:\n    - The mouse does not need the rabbit. We need to verify this statement.\n\nFrom the previous steps, we have:\n- M needs R\n- R sees M\n- M does not see L\n\nSince M needs R and R sees M, we can conclude that M does not see L.\n\nTherefore, the statement \"The mouse does not need the rabbit\" is TRUE.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> needs(rabbit, X)",
+          "z3_formula": "Implies(needs_squirrel_rabbit, needs_rabbit_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & cold(rabbit) -> rough(X)",
+          "z3_formula": "Implies(And(needs_squirrel_rabbit, cold_rabbit), rough_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(rabbit) -> visits(rabbit, mouse)",
+          "z3_formula": "Implies(rough_rabbit, visits_rabbit_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, mouse)",
+          "z3_formula": "visits_rabbit_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> needs(mouse, X)",
+          "z3_formula": "Implies(visits_rabbit_mouse, needs_mouse_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & sees(rabbit, Y) -> sees(Y, lion)",
+          "z3_formula": "Implies(And(needs_rabbit_squirrel, sees_rabbit_mouse), sees_mouse_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, mouse)",
+          "z3_formula": "sees_rabbit_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, lion) == False",
+          "z3_formula": "Not(sees_mouse_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & rough(rabbit) -> rough(X)",
+          "z3_formula": "Implies(And(needs_rabbit_squirrel, rough_rabbit), rough_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(rough_squirrel, visits_squirrel_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, mouse)",
+          "z3_formula": "visits_rabbit_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & visits(X, mouse) -> sees(mouse, lion) == False",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, visits_rabbit_mouse), Not(sees_mouse_lion))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, rabbit) == Unknown",
+          "z3_formula": "Or(Not(needs_mouse_rabbit), Not(Not(needs_mouse_rabbit)))",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> needs(rabbit, X)",
+          "z3_formula": "Implies(needs_squirrel_rabbit, needs_rabbit_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, rabbit) | needs(rabbit, mouse)",
+          "z3_formula": "Or(needs_mouse_rabbit, needs_rabbit_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(rough_rabbit, visits_rabbit_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, mouse)",
+          "z3_formula": "visits_rabbit_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & visits(X, mouse) -> needs(mouse, rabbit)",
+          "z3_formula": "Implies(And(needs_mouse_rabbit, visits_rabbit_mouse), needs_mouse_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_see(rabbit, mouse)",
+          "z3_formula": "does_not_see_rabbit_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & visits(Y, mouse) -> needs(Y, rabbit)",
+          "z3_formula": "Implies(And(needs_squirrel_rabbit, visits_Y_mouse), needs_Y_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(rough_X, visits_X_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & cold(rabbit) -> rough(X)",
+          "z3_formula": "Implies(And(needs_squirrel_rabbit, cold_rabbit), rough_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> needs(rabbit, X)",
+          "z3_formula": "Implies(needs_squirrel_rabbit, needs_rabbit_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & sees(rabbit, Y) -> not sees(Y, lion)",
+          "z3_formula": "Implies(And(needs_squirrel_rabbit, sees_rabbit_mouse), not sees_mouse_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & visits(X, Y) -> needs(Y, rabbit)",
+          "z3_formula": "Implies(And(needs_squirrel_rabbit, visits_squirrel_mouse), needs_mouse_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(rabbit, squirrel)",
+          "z3_formula": "not visits_rabbit_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(rough_rabbit, visits_rabbit_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> needs(rabbit, X)",
+          "z3_formula": "Implies(needs_rabbit_squirrel, needs_rabbit_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(rough_rabbit, visits_rabbit_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(mouse, squirrel))",
+          "z3_formula": "Not(visits_mouse_squirrel) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & sees(rabbit, Y) -> not(sees(Y, lion))",
+          "z3_formula": "Implies(And(needs_rabbit_squirrel, sees_rabbit_mouse), Not(sees_mouse_lion))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, lion)",
+          "z3_formula": "sees_squirrel_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not(green(X)) -> needs(lion, X)",
+          "z3_formula": "Implies(And(sees_squirrel_lion, Not(green_squirrel)), needs_lion_squirrel) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(green(squirrel))",
+          "z3_formula": "Not(green_squirrel) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(sees(squirrel, lion))",
+          "z3_formula": "Not(sees_squirrel_lion) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(sees(mouse, lion))",
+          "z3_formula": "Not(sees_mouse_lion) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(needs(mouse, rabbit))",
+          "z3_formula": "unknown(needs_mouse_rabbit) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(need(rabbit, lion))",
+          "z3_formula": "not(need_rabbit_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(visit(rabbit, squirrel))",
+          "z3_formula": "not(visit_rabbit_squirrel) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "need(squirrel, mouse)",
+          "z3_formula": "need_squirrel_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "need(squirrel, rabbit)",
+          "z3_formula": "need_squirrel_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(see(squirrel, lion))",
+          "z3_formula": "not(see_squirrel_lion) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(see(squirrel, rabbit))",
+          "z3_formula": "not(see_squirrel_rabbit) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "need(X, rabbit) & see(rabbit, mouse) -> not(see(mouse, lion))",
+          "z3_formula": "Implies(And(need_X_rabbit, see_rabbit_mouse), not(see_mouse_lion))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visit(X, mouse)",
+          "z3_formula": "Implies(rough_rabbit, visit_rabbit_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "need(X, rabbit) & visit(X, mouse) -> need(mouse, rabbit)",
+          "z3_formula": "Implies(And(need_X_rabbit, visit_X_mouse), need_mouse_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "need(X, rabbit) & cold(rabbit) -> rough(X)",
+          "z3_formula": "Implies(And(need_X_rabbit, cold_rabbit), rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "need(X, rabbit) -> need(rabbit, X)",
+          "z3_formula": "Implies(need_X_rabbit, need_rabbit_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "see(squirrel, lion) & not(green(squirrel)) -> need(lion, squirrel)",
+          "z3_formula": "Implies(And(see_squirrel_lion, not(green_squirrel)), need_lion_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visit(X, lion)",
+          "z3_formula": "Implies(big_X, visit_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, squirrel) & see(squirrel, lion) -> not(kind(lion))",
+          "z3_formula": "Implies(And(visit_X_squirrel, see_squirrel_lion), not(kind_lion))",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & visits(X, mouse) -> needs(mouse, rabbit)",
+          "z3_formula": "Implies(And(needs_squirrel_rabbit, visits_squirrel_mouse), needs_mouse_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == False",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & cold(rabbit) -> rough(X)",
+          "z3_formula": "Implies(And(needs_squirrel_rabbit, cold_rabbit), rough_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(rough_mouse, visits_mouse_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == False",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, rabbit)",
+          "z3_formula": "visits_mouse_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & visits(X, mouse) -> needs(mouse, rabbit)",
+          "z3_formula": "Implies(And(needs_squirrel_rabbit, visits_squirrel_mouse), needs_mouse_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == False",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, lion)",
+          "z3_formula": "sees_squirrel_lion == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, mouse)",
+          "z3_formula": "sees_squirrel_mouse == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & cold(rabbit) -> rough(X)",
+          "z3_formula": "Implies(And(needs_squirrel_rabbit, cold_rabbit), rough_squirrel)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == False",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "sees(rabbit, mouse) -> not sees(lion, mouse)",
+          "z3_formula": "Implies(sees_rabbit_mouse, Not(sees_lion_mouse))",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, mouse)",
+          "z3_formula": "sees_rabbit_mouse == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(lion, mouse)",
+          "z3_formula": "Not(sees_lion_mouse) == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, lion)",
+          "z3_formula": "sees_squirrel_lion == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(lion)",
+          "z3_formula": "Not(kind_lion) == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, rabbit)",
+          "z3_formula": "visits_mouse_rabbit == True",
+          "source_step": 31
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(mouse, squirrel)",
+          "z3_formula": "Not(visits_mouse_squirrel) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> needs(rabbit, X)",
+          "z3_formula": "Implies(needs_squirrel_rabbit, needs_rabbit_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & sees(rabbit, Y) -> not sees(Y, lion)",
+          "z3_formula": "Implies(And(needs_rabbit_X, sees_rabbit_Y), Not(sees_Y_lion))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(mouse, squirrel)",
+          "z3_formula": "Not(visits_mouse_squirrel) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(squirrel, lion)",
+          "z3_formula": "Not(sees_squirrel_lion) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(squirrel, rabbit)",
+          "z3_formula": "Not(sees_squirrel_rabbit) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & sees(rabbit, mouse) -> not sees(mouse, lion)",
+          "z3_formula": "Implies(And(needs_X_rabbit, sees_rabbit_mouse), Not(sees_mouse_lion))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(mouse, X)",
+          "z3_formula": "Implies(rough_X, visits_mouse_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & visits(X, mouse) -> needs(mouse, rabbit)",
+          "z3_formula": "Implies(And(needs_X_rabbit, visits_X_mouse), needs_mouse_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & cold(rabbit) -> rough(X)",
+          "z3_formula": "Implies(And(needs_X_rabbit, cold_rabbit), rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> needs(rabbit, X)",
+          "z3_formula": "Implies(needs_X_rabbit, needs_rabbit_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not green(X) -> needs(lion, X)",
+          "z3_formula": "Implies(And(sees_X_lion, Not(green_X)), needs_lion_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, lion)",
+          "z3_formula": "Implies(big_X, visits_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & sees(squirrel, lion) -> not kind(lion)",
+          "z3_formula": "Implies(And(visits_X_squirrel, sees_squirrel_lion), Not(kind_lion))",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(lion, mouse)",
+          "z3_formula": "not needs_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(mouse, squirrel)",
+          "z3_formula": "not visits_mouse_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(rabbit, lion)",
+          "z3_formula": "not needs_rabbit_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(rabbit, squirrel)",
+          "z3_formula": "not visits_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(squirrel, lion)",
+          "z3_formula": "not sees_squirrel_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(squirrel, rabbit)",
+          "z3_formula": "not sees_squirrel_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, mouse)",
+          "z3_formula": "Implies(rough_rabbit, visits_rabbit_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & visits(X, mouse) -> needs(mouse, rabbit)",
+          "z3_formula": "Implies(And(needs_squirrel_rabbit, visits_squirrel_mouse), needs_mouse_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & cold(rabbit) -> rough(X)",
+          "z3_formula": "Implies(And(needs_squirrel_rabbit, cold_rabbit), rough_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> needs(rabbit, squirrel)",
+          "z3_formula": "Implies(needs_squirrel_rabbit, needs_rabbit_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & sees(rabbit, mouse) -> not sees(mouse, lion)",
+          "z3_formula": "Implies(And(needs_squirrel_rabbit, sees_rabbit_mouse), not sees_mouse_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not green(X) -> needs(lion, X)",
+          "z3_formula": "Implies(And(sees_squirrel_lion, not green_squirrel), needs_lion_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, lion)",
+          "z3_formula": "Implies(big_X, visits_X_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & sees(squirrel, lion) -> not kind(lion)",
+          "z3_formula": "Implies(And(visits_X_squirrel, sees_squirrel_lion), not kind_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, mouse)",
+          "z3_formula": "sees_rabbit_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(mouse, lion)",
+          "z3_formula": "not sees_mouse_lion == True",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 163,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 59
+    },
+    "maxsat_stats": {
+      "satisfied": 57,
+      "excluded": 2,
+      "total_weight": 151,
+      "solve_time_ms": 1.8876390531659126
+    },
+    "timing": {
+      "trace_gen_s": 12.304,
+      "extraction_s": 32.744,
+      "dedup_s": 1.719,
+      "maxsat_s": 0.005,
+      "total_s": 46.773
+    }
+  }
+}

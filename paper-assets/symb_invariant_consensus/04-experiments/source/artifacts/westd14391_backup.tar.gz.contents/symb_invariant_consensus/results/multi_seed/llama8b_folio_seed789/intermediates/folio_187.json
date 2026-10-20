@@ -1,0 +1,736 @@
+{
+  "problem": {
+    "id": "folio_187",
+    "problem": "Given the following premises:\nA podcast is not a novel. [BG] If a person is born in American City, the person is American. [BG] If a book is novel and it is written by a person, then the person is a novel writer. Dani Shapiro is an American writer. Family History is written by Dani Shapiro. Family History is a novel written in 2003. Dani Shapiro created a podcast called Family Secrets. [BG] Boston is an American city.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nDani Shapiro was born in Boston.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (IsPodcast(x) \u2192 \u00acIsNovel(x))",
+      "\u2200x \u2203y (BornIn(x, y) \u2227 IsCity(y) \u2227 IsAmerican(y) \u2192 IsAmerican(x))",
+      "\u2200x \u2200y (IsNovel(x) \u2227 WrittenBy(x, y) \u2192 WritesNovel(y))",
+      "IsAmerican(dani_Shapiro) \u2227 IsWriter(dani_Shapiro)",
+      "WrittenBy(family_History, dani_Shapiro)",
+      "IsNovel(family_History) \u2227 WrittenIn(family_History, y2003)",
+      "IsPodcast(family_Secrets) \u2227 CreatedBy(family_Secrets, dani_Shapiro)",
+      "IsCity(boston) \u2227 IsAmerican(boston)"
+    ],
+    "conclusion_fol": "BornIn(dani_Shapiro, boston)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 99.0
+    },
+    "answer_counts": {
+      "Unknown": 11
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we will analyze the given premises step by step.\n\nPremise 1: A podcast is not a novel. [BG]\nThis premise tells us that a podcast and a novel are two different things. However, this premise does not provide any information about Dani Shapiro's birthplace.\n\nPremise 2: If a person is born in American City, the person is American. [BG]\nThis premise gives us a general rule about people born in an American city. It does not specify which city, but it provides a connection between birthplace and nationality.\n\nPremise 3: If a book is novel and it is written by a person, then the person is a novel writer. [BG]\nThis premise provides a rule about novel writers. However, it does not provide any information about Dani Shapiro's birthplace or nationality.\n\nPremise 4: Dani Shapiro is an American writer.\nThis premise tells us that Dani Shapiro is an American, but it does not provide any information about her birthplace.\n\nPremise 5: Family History is written by Dani Shapiro.\nThis premise tells us that Dani Shapiro wrote a book called Family History. However, it does not provide any information about Dani Shapiro's birthplace or nationality.\n\nPremise 6: Family History is a novel written in 2003.\nThis premise tells us that Family History is a novel written by Dani Shapiro, but it does not provide any information about Dani Shapiro's birthplace or nationality.\n\nPremise 7: Dani Shapiro created a podcast called Family Secrets.\nThis premise tells us that Dani Shapiro created a podcast, but it does not provide any information about Dani Shapiro's birthplace or nationality.\n\nPremise 8: Boston is an American city.\nThis premise tells us that Boston is an American city, but it does not provide any information about Dani Shapiro's birthplace.\n\nNow, we need to determine if Dani Shapiro was born in Boston. To do this, we need to find a connection between Dani Shapiro and Boston.\n\nFrom Premise 4, we know that Dani Shapiro is an American writer. From Premise 2, we know that if a person is born in an American city, the person is American. However, Premise 2 does not specify which city.\n\nPremise 8 tells us that Boston is an American city. However, there is no direct connection between Dani Shapiro and Boston. We cannot conclude that Dani Shapiro was born in Boston because there is no information provided in the premises that links Dani Shapiro to Boston.\n\nTherefore, the conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"Dani Shapiro was born in Boston\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: A podcast is not a novel. [BG]\nThis premise tells us that podcasts and novels are two distinct categories.\n\nPremise 2: If a person is born in American City, the person is American. [BG]\nThis premise tells us that being born in an American city makes a person American.\n\nPremise 3: If a book is novel and it is written by a person, then the person is a novel writer. [BG]\nThis premise connects the categories of novels and novel writers.\n\nPremise 4: Dani Shapiro is an American writer.\nThis premise tells us that Dani Shapiro is a writer and an American.\n\nPremise 5: Family History is written by Dani Shapiro.\nThis premise connects Dani Shapiro to the book \"Family History.\"\n\nPremise 6: Family History is a novel written in 2003.\nThis premise tells us that \"Family History\" is a novel.\n\nPremise 7: Dani Shapiro created a podcast called Family Secrets.\nThis premise tells us that Dani Shapiro created a podcast, which is not a novel.\n\nPremise 8: Boston is an American city.\nThis premise tells us that Boston is an American city.\n\nNow, let's analyze the conclusion: \"Dani Shapiro was born in Boston.\"\n\nFrom Premise 2, we know that being born in an American city makes a person American. However, we do not have direct information about Dani Shapiro's birthplace.\n\nFrom Premise 4, we know that Dani Shapiro is an American writer. This does not provide information about her birthplace.\n\nTo determine the conclusion's validity, we need to connect the premises to Dani Shapiro's birthplace. \n\nSince we do not have any information about Dani Shapiro's birthplace or any premises that directly link her to Boston, the conclusion \"Dani Shapiro was born in Boston\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion \"Dani Shapiro was born in Boston\" is true, false, or uncertain, let's break down the given premises and apply them step by step.\n\n1. A podcast is not a novel. [BG]\n   This premise tells us that a podcast and a novel are two different things. However, this information is not directly relevant to determining Dani Shapiro's birthplace.\n\n2. If a person is born in American City, the person is American. [BG]\n   This premise tells us that being born in an American city makes someone American. However, it does not specify a particular city.\n\n3. If a book is novel and it is written by a person, then the person is a novel writer. [BG]\n   This premise is not directly relevant to determining Dani Shapiro's birthplace.\n\n4. Dani Shapiro is an American writer.\n   This premise tells us that Dani Shapiro is a writer and American, but it does not tell us her birthplace.\n\n5. Family History is written by Dani Shapiro.\n   This premise tells us that Dani Shapiro wrote a book called Family History.\n\n6. Family History is a novel written in 2003.\n   This premise tells us that Family History is a novel, and it was written in 2003 by Dani Shapiro.\n\n7. Dani Shapiro created a podcast called Family Secrets.\n   This premise tells us that Dani Shapiro created a podcast, but it does not tell us anything about her birthplace.\n\n8. Boston is an American city. [BG]\n   This premise tells us that Boston is an American city, but it does not tell us that Dani Shapiro was born in Boston.\n\nGiven these premises, we can try to determine Dani Shapiro's birthplace. We know that Dani Shapiro is an American writer (premise 4) and that she wrote a book called Family History (premise 5). However, we do not have any information that directly links Dani Shapiro to Boston.\n\nHowever, premise 4 and premise 2 do not tell us that she was born in Boston. Given that we don't have a direct link between Dani Shapiro and Boston, we cannot confirm that the conclusion \"Dani Shapiro was born in Boston\" is true. There is not enough information provided in the premises to make this conclusion certain.\n\nTherefore, the conclusion \"Dani Shapiro was born in Boston\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion \"Dani Shapiro was born in Boston\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. A podcast is not a novel. [BG] \n   This premise is irrelevant to the conclusion about Dani Shapiro's birthplace.\n\n2. If a person is born in American City, the person is American. [BG]\n   This premise provides a general rule for being American, but it doesn't specify the city. It is also uncertain whether American City is the same as Boston.\n\n3. If a book is novel and it is written by a person, then the person is a novel writer.\n   This premise is also irrelevant to the conclusion about Dani Shapiro's birthplace.\n\n4. Dani Shapiro is an American writer.\n   This premise tells us that Dani Shapiro is American, but it doesn't provide information about her birthplace.\n\n5. Family History is written by Dani Shapiro.\n   This premise links Dani Shapiro to a book called Family History.\n\n6. Family History is a novel written in 2003.\n   This premise confirms that Family History is a novel, but it doesn't provide information about Dani Shapiro's birthplace.\n\n7. Dani Shapiro created a podcast called Family Secrets.\n   This premise is irrelevant to the conclusion about Dani Shapiro's birthplace.\n\n8. Boston is an American city.\n   This premise provides information about Boston, but it's not directly related to the conclusion about Dani Shapiro's birthplace.\n\nNow, let's analyze the information we have about Dani Shapiro's birthplace:\n\n- We know that Dani Shapiro is an American writer (Premise 4).\n- We know that Dani Shapiro wrote a book called Family History (Premise 5).\n- We know that Family History is a novel (Premise 6).\n\nHowever, there is no direct information about Dani Shapiro's birthplace in the given premises. The conclusion \"Dani Shapiro was born in Boston\" is uncertain because it is not supported by the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion \"Dani Shapiro was born in Boston\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: A podcast is not a novel. \nThis premise doesn't provide any information about Dani Shapiro's birthplace.\n\nPremise 2: If a person is born in American City, the person is American. \nThis premise provides a general rule about American cities, but we don't know if Boston is an American city yet.\n\nPremise 3: If a book is novel and it is written by a person, then the person is a novel writer. \nThis premise also doesn't provide any information about Dani Shapiro's birthplace.\n\nPremise 4: Dani Shapiro is an American writer. \nThis premise provides information about Dani Shapiro's profession but doesn't specify her birthplace.\n\nPremise 5: Family History is written by Dani Shapiro. \nThis premise tells us that Dani Shapiro wrote a book called Family History, but it doesn't provide any information about her birthplace.\n\nPremise 6: Family History is a novel written in 2003. \nThis premise provides more information about Family History but still doesn't mention Dani Shapiro's birthplace.\n\nPremise 7: Dani Shapiro created a podcast called Family Secrets. \nThis premise doesn't provide any information about Dani Shapiro's birthplace.\n\nPremise 8: Boston is an American city. \nThis premise provides the necessary information to connect Boston to American City in Premise 2.\n\nFrom Premise 2: If a person is born in American City, the person is American.\nAnd from Premise 8: Boston is an American city.\nWe can conclude that Boston is an American city.\n\nSince Dani Shapiro is an American writer (Premise 4) and Family History is a novel written by her (Premises 5 and 6), we can apply Premise 3 to conclude that Dani Shapiro is a novel writer.\n\nHowever, we are trying to determine Dani Shapiro's birthplace. From the given premises, we know that Dani Shapiro wrote Family History (Premise 5) and Family Secrets (Premise 7). Family History is a novel, and Family Secrets is a podcast. From Premise 1, we know that a podcast is not a novel. Therefore, Family Secrets is not a novel.\n\nSince we don't have any information about Dani Shapiro's birthplace from the premises, we cannot determine whether she was born in Boston or not. \n\nTherefore, the conclusion \"Dani Shapiro was born in Boston\" is **uncertain**.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use the given premises and logical deductions to determine whether Dani Shapiro was born in Boston.\n\nPremise 1: A podcast is not a novel. [BG]\n- This premise tells us that a podcast and a novel are two different things.\n\nPremise 2: If a person is born in American City, the person is American. [BG]\n- This premise tells us that being born in an American city means the person is American.\n\nPremise 3: If a book is novel and it is written by a person, then the person is a novel writer. [BG]\n- This premise gives us a condition for someone to be considered a novel writer.\n\nPremise 4: Dani Shapiro is an American writer. \n- This premise tells us that Dani Shapiro is a writer and an American.\n\nPremise 5: Family History is written by Dani Shapiro. \n- This premise tells us that Dani Shapiro wrote a book called Family History.\n\nPremise 6: Family History is a novel written in 2003. \n- This premise tells us that Family History is a novel written by Dani Shapiro in 2003.\n\nPremise 7: Dani Shapiro created a podcast called Family Secrets. \n- This premise tells us that Dani Shapiro created a podcast called Family Secrets.\n\nPremise 8: Boston is an American city. \n- This premise tells us that Boston is an American city.\n\nNow, we need to determine if the conclusion \"Dani Shapiro was born in Boston\" is true, false, or uncertain.\n\nFrom Premise 4, we know that Dani Shapiro is an American writer. \nFrom Premise 5 and Premise 6, we know that Dani Shapiro wrote a novel called Family History. \nFrom Premise 3, we can conclude that Dani Shapiro is a novel writer because Family History is a novel.\n\nHowever, there is no direct connection between Dani Shapiro being an American writer and being born in Boston. The only connection we can make is that being born in an American city (Premise 2) makes the person American. But we don't have any information about Dani Shapiro being born in an American city.\n\nSince we cannot determine if Dani Shapiro was born in Boston based on the given premises, we conclude that the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion \"Dani Shapiro was born in Boston\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. A podcast is not a novel. [BG]\n   - This premise establishes a distinction between podcasts and novels, but it doesn't provide any information about Dani Shapiro's birthplace or nationality.\n\n2. If a person is born in American City, the person is American. [BG]\n   - This premise is a general statement about people born in an American city. However, we don't know if Dani Shapiro was born in an American city or not.\n\n3. If a book is novel and it is written by a person, then the person is a novel writer. [BG]\n   - This premise is a general statement about novel writers, but it doesn't provide any information about Dani Shapiro's birthplace or nationality.\n\n4. Dani Shapiro is an American writer.\n   - This premise states that Dani Shapiro is an American writer, but it doesn't provide any information about her birthplace.\n\n5. Family History is written by Dani Shapiro.\n   - This premise states that Dani Shapiro is the author of the book \"Family History\", but it doesn't provide any information about her birthplace.\n\n6. Family History is a novel written in 2003.\n   - This premise states that \"Family History\" is a novel written in 2003, but it doesn't provide any information about Dani Shapiro's birthplace.\n\n7. Dani Shapiro created a podcast called Family Secrets.\n   - This premise states that Dani Shapiro created a podcast, but it doesn't provide any information about her birthplace.\n\n8. Boston is an American city.\n   - This premise states that Boston is an American city, but it doesn't provide any information about Dani Shapiro's birthplace.\n\nNow, let's try to find a connection between the premises and the conclusion. We know that Dani Shapiro is an American writer (premise 4), but we don't know if she was born in an American city (premise 2). However, we also know that Boston is an American city (premise 8).\n\nWe can make an inference that since Dani Shapiro is an American writer and \"Family History\" is a novel written by her (premise 5), she must be a novel writer (premise 3). However, this information still doesn't help us determine her birthplace.\n\nThe only information that could potentially connect Dani Shapiro to Boston is the fact that Boston is an American city (premise 8), but we don't have any direct information about her birthplace.\n\nTherefore, based on the given premises, we cannot conclude that Dani Shapiro was born in Boston. We can only conclude that she is an American writer, but we don't have enough information to determine her birthplace.\n\nThe answer is: $\\boxed{Uncertain}$",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion \"Dani Shapiro was born in Boston\" is true, false, or uncertain, we need to analyze the given premises step by step:\n\n1. The first premise states that a podcast is not a novel. \n   This premise is irrelevant to determining Dani Shapiro's birthplace.\n\n2. The second premise states that if a person is born in American City, the person is American.\n   This premise is relevant to determining Dani Shapiro's birthplace. However, we don't know the city of her birth yet.\n\n3. The third premise states that if a book is a novel and it is written by a person, then the person is a novel writer.\n   This premise is relevant to determining Dani Shapiro's profession. However, it is still uncertain whether Dani Shapiro is a novel writer or not.\n\n4. The fourth premise states that Dani Shapiro is an American writer.\n   This premise tells us that Dani Shapiro is a writer and an American, but it does not specify the type of writer or the city of her birth.\n\n5. The fifth premise states that Family History is written by Dani Shapiro.\n   This premise confirms that Dani Shapiro is a writer, but it does not tell us about her birthplace.\n\n6. The sixth premise states that Family History is a novel written in 2003.\n   This premise tells us that Family History is a novel, but it is still uncertain whether Dani Shapiro is a novel writer or not.\n\n7. The seventh premise states that Dani Shapiro created a podcast called Family Secrets.\n   This premise tells us that Dani Shapiro is capable of creating a podcast, but it does not tell us about her birthplace.\n\n8. The eighth premise states that Family History is a novel written in 2003.\n   This premise is a repeat of the sixth premise and is irrelevant.\n\n9. The ninth premise states that Boston is an American city.\n   This premise is irrelevant to determining Dani Shapiro's birthplace.\n\nNow, let's analyze the conclusion \"Dani Shapiro was born in Boston\". To determine whether this conclusion is true, we need to find a chain of premises that leads to it.\n\nFrom the second premise, we know that if a person is born in American City, the person is American. We also know that Dani Shapiro is an American (fourth premise).\n\nFrom the ninth premise, we know that Boston is an American city (this premise is not directly related to Dani Shapiro, but we can use it to make a connection later).\n\nWe don't have any direct information about Dani Shapiro's birthplace, but we can use the given information to make an inference. Since Family History is written by Dani Shapiro (fifth premise) and it is a novel (sixth premise), we can use the third premise to conclude that Dani Shapiro is a novel writer.\n\nHowever, we still don't know Dani Shapiro's birthplace. But we can use the fact that she is a writer (fourth premise) and created a podcast (seventh premise) to infer that she is a versatile writer or creator, but it doesn't tell us about her birthplace.\n\nSince we don't have any direct information about Dani Shapiro's birthplace, and there is no chain of premises that leads to the conclusion \"Dani Shapiro was born in Boston\", we can conclude that the statement is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: A podcast is not a novel.\nThis premise is irrelevant to the conclusion, so we can ignore it.\n\nPremise 2: If a person is born in American City, the person is American.\nThis premise is relevant, but it is incomplete. We need to know the specific American city to make a conclusion.\n\nPremise 3: If a book is novel and it is written by a person, then the person is a novel writer.\nThis premise is also irrelevant to the conclusion, so we can ignore it.\n\nPremise 4: Dani Shapiro is an American writer.\nThis premise is relevant, but it is incomplete. We need more information about Dani Shapiro's birthplace.\n\nPremise 5: Family History is written by Dani Shapiro.\nThis premise is relevant, but we already know that Dani Shapiro is a writer, so this premise doesn't provide new information.\n\nPremise 6: Family History is a novel written in 2003.\nThis premise is irrelevant to the conclusion, so we can ignore it.\n\nPremise 7: Dani Shapiro created a podcast called Family Secrets.\nThis premise is irrelevant to the conclusion, so we can ignore it.\n\nPremise 8: Boston is an American city.\nThis premise is relevant, but we need to know if Dani Shapiro was born in Boston to make a conclusion.\n\nNow, let's re-examine the premises and look for a connection between Dani Shapiro's birthplace and her being an American writer. We know that Dani Shapiro is an American writer (Premise 4), but we don't know her birthplace.\n\nHowever, we can use the following inference:\n\nIf a person is born in American City, the person is American. (Premise 2)\nBoston is an American city. (Premise 8)\nTherefore, if Dani Shapiro was born in Boston, she would be American.\n\nBut we still need to know if Dani Shapiro was born in Boston. Unfortunately, we don't have any direct information about her birthplace. Therefore, the conclusion \"Dani Shapiro was born in Boston\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion \"Dani Shapiro was born in Boston\" is true, false, or uncertain, we need to analyze the given premises step by step:\n\n1. A podcast is not a novel. [BG]\n   - This premise tells us that a podcast and a novel are not the same thing. It does not provide any information about Dani Shapiro's birthplace.\n\n2. If a person is born in American City, the person is American. [BG]\n   - This premise provides information about the relationship between a person's birthplace and their nationality. However, it does not specify which American city. It's possible that \"American City\" could refer to a different city.\n\n3. If a book is novel and it is written by a person, then the person is a novel writer. [BG]\n   - This premise is about the relationship between a person and their occupation as a novel writer. It does not provide any information about Dani Shapiro's birthplace or nationality.\n\n4. Dani Shapiro is an American writer.\n   - This premise tells us that Dani Shapiro is an American, but it does not specify where she was born. It also tells us that she is a writer, but it does not specify what type of writer.\n\n5. Family History is written by Dani Shapiro.\n   - This premise tells us that Dani Shapiro is the author of the book \"Family History\". It does not provide any information about Dani Shapiro's birthplace.\n\n6. Family History is a novel written in 2003.\n   - This premise tells us that \"Family History\" is a novel, but it does not provide any information about Dani Shapiro's birthplace.\n\n7. Dani Shapiro created a podcast called Family Secrets.\n   - This premise tells us that Dani Shapiro created a podcast, but it does not provide any information about Dani Shapiro's birthplace.\n\n8. Boston is an American city.\n   - This premise tells us that Boston is an American city, but it does not provide any information about Dani Shapiro's birthplace.\n\nNow, let's examine the conclusion \"Dani Shapiro was born in Boston\" in the context of the given premises. We know that Dani Shapiro is American (Premise 4) and that Boston is an American city (Premise 8). However, we do not have any direct information about Dani Shapiro's birthplace. The only information we have about her birthplace is a possible inference from the fact that \"American City\" could refer to Boston (Premise 2).\n\nSince the premises do not provide a direct connection between Dani Shapiro's birthplace and Boston, we cannot determine the truth value of the conclusion with certainty. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion \"Dani Shapiro was born in Boston\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: A podcast is not a novel. (BG) - This premise tells us that a podcast and a novel are different things, but it does not provide any information about Dani Shapiro's birthplace.\n\nPremise 2: If a person is born in American City, the person is American. (BG) - This premise provides a relationship between a person's birthplace and their nationality.\n\nPremise 3: If a book is novel and it is written by a person, then the person is a novel writer. (BG) - This premise defines what it means to be a novel writer, but it is not relevant to determining Dani Shapiro's birthplace.\n\nPremise 4: Dani Shapiro is an American writer. - This premise tells us that Dani Shapiro is an American, but it does not provide any information about her birthplace.\n\nPremise 5: Family History is written by Dani Shapiro. - This premise tells us that Dani Shapiro wrote a book called Family History, but it does not provide any information about her birthplace.\n\nPremise 6: Family History is a novel written in 2003. - This premise tells us that Family History is a novel, but it does not provide any information about Dani Shapiro's birthplace.\n\nPremise 7: Dani Shapiro created a podcast called Family Secrets. - This premise tells us that Dani Shapiro created a podcast, but it does not provide any information about her birthplace.\n\nPremise 8: Boston is an American city. - This premise tells us that Boston is an American city, but it does not provide any information about Dani Shapiro's birthplace.\n\nNow, let's analyze the conclusion: \"Dani Shapiro was born in Boston.\" To determine whether this conclusion is true, false, or uncertain, we need to find a logical connection between the premises and the conclusion.\n\nFrom Premise 2, we know that if a person is born in an American City, then the person is American. However, this premise does not specify that the American City is Boston.\n\nPremise 8 tells us that Boston is an American city, but it does not provide any information about Dani Shapiro's birthplace.\n\nWe do not have any direct information about Dani Shapiro's birthplace, but we do know that she is an American writer (Premise 4) and she wrote a book called Family History (Premise 5). However, this information does not provide any connection to Boston.\n\nTherefore, the conclusion \"Dani Shapiro was born in Boston\" is uncertain because we do not have enough information to determine whether it is true or false.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion \"Dani Shapiro was born in Boston\" is true, false, or uncertain, we need to analyze the given premises and the information provided.\n\nPremise 1: A podcast is not a novel. \nThis premise is irrelevant to the conclusion, so we can ignore it for now.\n\nPremise 2: If a person is born in American City, the person is American. \nThis premise is also irrelevant to the conclusion, as we don't know if Boston is an American City.\n\nPremise 3: If a book is novel and it is written by a person, then the person is a novel writer.\nThis premise is also irrelevant to the conclusion.\n\nPremise 4: Dani Shapiro is an American writer.\nThis premise is relevant, but we still need more information to connect it to the conclusion.\n\nPremise 5: Family History is written by Dani Shapiro.\nThis premise is relevant, but we still need more information to connect it to the conclusion.\n\nPremise 6: Family History is a novel written in 2003.\nThis premise is relevant, but we still need more information to connect it to the conclusion.\n\nPremise 7: Dani Shapiro created a podcast called Family Secrets.\nThis premise is irrelevant to the conclusion, as we already know that Dani Shapiro is an American writer.\n\nPremise 8: Boston is an American city.\nThis premise is relevant, but we still need to connect it to the conclusion.\n\nNow, let's analyze the premises together. From premise 4, we know that Dani Shapiro is an American writer. From premise 5 and premise 6, we know that Dani Shapiro wrote a novel called Family History. From premise 8, we know that Boston is an American city.\n\nHowever, we are trying to determine whether Dani Shapiro was born in Boston. There is no direct information connecting Dani Shapiro's birthplace to Boston. \n\nThe only information we have about Dani Shapiro's birthplace is that she is an American writer (Premise 4), which is not enough to determine her birthplace.\n\nTherefore, the conclusion \"Dani Shapiro was born in Boston\" is uncertain, as we do not have enough information to determine whether it is true or false.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city, american)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y) -> writer(Y)",
+          "z3_formula": "Implies(And(novel, written_by_dani_shapiro), writer_dani_shapiro)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american(writer(dani_shapiro))",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_podcast(dani_shapiro, family_secrets)",
+          "z3_formula": "created_podcast_dani_shapiro_family_secrets == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city_dani_shapiro, american_dani_shapiro)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by_person(X, Y) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel_family_history, written_by_person_family_history_dani_shapiro), novel_writer_dani_shapiro)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by_person(family_history, dani_shapiro)",
+          "z3_formula": "written_by_person_family_history_dani_shapiro == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not novel_podcast == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(born_in_boston_dani_shapiro)",
+          "z3_formula": "born_in_boston_dani_shapiro == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city, american)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel, written_by), novel_writer)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history) & written_in_2003(family_history)",
+          "z3_formula": "And(novel_family_history, written_in_2003_family_history) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_podcast(dani_shapiro, family_secrets)",
+          "z3_formula": "created_podcast_dani_shapiro_family_secrets == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "wrote(dani_shapiro, family_history)",
+          "z3_formula": "wrote_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "born_in(X, Y) -> american(X)",
+          "z3_formula": "Implies(born_in_dani_shapiro_boston, american_dani_shapiro)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "born_in(X, Y) -> american(X)",
+          "z3_formula": "Implies(born_in_dani_shapiro_boston, american_dani_shapiro)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "american(dani_shapiro)",
+          "z3_formula": "american_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "american(dani_shapiro)",
+          "z3_formula": "american_dani_shapiro == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not_novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city, american)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel, written_by), novel_writer)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_by(dani_shapiro, family_secrets)",
+          "z3_formula": "created_by_dani_shapiro_family_secrets == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "novel_writer(dani_shapiro)",
+          "z3_formula": "novel_writer_dani_shapiro == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not novel(family_secrets)",
+          "z3_formula": "not_novel_family_secrets == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(born_in_boston(dani_shapiro))",
+          "z3_formula": "unknown_born_in_boston_dani_shapiro == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city_dani, american_dani)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel_family_history, written_by_dani), novel_writer_dani)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani)",
+          "z3_formula": "american_writer_dani == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani, family_history)",
+          "z3_formula": "written_by_dani_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "novel_writer(dani)",
+          "z3_formula": "novel_writer_dani == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(born_in_boston_dani)",
+          "z3_formula": "born_in_boston_dani == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not_novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "american_city(X) -> american(X)",
+          "z3_formula": "Implies(american_city_X, american_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y, X) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel_X, written_by_Y_X), novel_writer_Y)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(born_in_boston(dani_shapiro))",
+          "z3_formula": "born_in_boston_dani_shapiro == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not_novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city_dani, american_dani)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by_person(X, Y) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel_family_history, written_by_person_family_history_dani), novel_writer_dani)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani)",
+          "z3_formula": "american_writer_dani == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by_dani(family_history)",
+          "z3_formula": "written_by_dani_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_podcast(dani, family_secrets)",
+          "z3_formula": "created_podcast_dani_family_secrets == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city, american)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y) -> writer(Y)",
+          "z3_formula": "Implies(And(novel, written_by_dani_shapiro), writer_dani_shapiro)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history) & year(2003)",
+          "z3_formula": "novel_family_history_year_2003 == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_podcast(dani_shapiro, family_secrets)",
+          "z3_formula": "created_podcast_dani_shapiro_family_secrets == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "american(dani_shapiro)",
+          "z3_formula": "american_dani_shapiro == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "born_in_boston(dani_shapiro)",
+          "z3_formula": "born_in_boston_dani_shapiro == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city, american)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel, written_by), novel_writer)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_podcast(dani_shapiro, family_secrets)",
+          "z3_formula": "created_podcast_dani_shapiro_family_secrets == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "podcast != novel",
+          "z3_formula": "podcast != novel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city, american)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel, written_by), novel_writer)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_podcast(dani_shapiro, family_secrets)",
+          "z3_formula": "created_podcast_dani_shapiro_family_secrets == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "american(X) -> american_city(Y) -> born_in(X, Y)",
+          "z3_formula": "Implies(And(american_writer_dani_shapiro, american_city_boston), born_in_dani_shapiro_boston)",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 100,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 34
+    },
+    "maxsat_stats": {
+      "satisfied": 34,
+      "excluded": 0,
+      "total_weight": 99,
+      "solve_time_ms": 1.4705881476402283
+    },
+    "timing": {
+      "trace_gen_s": 8.096,
+      "extraction_s": 17.318,
+      "dedup_s": 0.673,
+      "maxsat_s": 0.005,
+      "total_s": 26.092
+    }
+  }
+}

@@ -1,0 +1,786 @@
+{
+  "pid": "folio_32",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(djokovic) | oscar_nominated_actor(djokovic)",
+          "z3_formula": "grand_slam_champion_djokovic == True | oscar_nominated_actor_djokovic == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, celebrity_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> well_paid(X)",
+          "z3_formula": "Implies(And(famous_djokovic, athlete_djokovic), well_paid_djokovic)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "well_paid(djokovic)",
+          "z3_formula": "well_paid_djokovic == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not lives_in_tax_haven(djokovic)",
+          "z3_formula": "not lives_in_tax_haven_djokovic == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "lives_in_tax_haven(djokovic)",
+          "z3_formula": "lives_in_tax_haven_djokovic == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(djokovic)",
+          "z3_formula": "grand_slam_champion_djokovic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "oscar_nominated_actor(djokovic)",
+          "z3_formula": "oscar_nominated_actor_djokovic == False",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, celebrity_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "well_paid(X) -> tax_haven(X)",
+          "z3_formula": "Implies(well_paid_djokovic, tax_haven_djokovic)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "tax_haven(djokovic)",
+          "z3_formula": "tax_haven_djokovic == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(X) | oscar_nominated_actor(X)",
+          "z3_formula": "grand_slam_champion_djokovic == True or oscar_nominated_actor_djokovic == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, celebrity_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "famous_djokovic == True & athlete_djokovic == True",
+          "z3_formula": "And(famous_djokovic, athlete_djokovic) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "well_paid_djokovic == True",
+          "z3_formula": "well_paid_djokovic == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "well_paid(X) -> tax_haven(X)",
+          "z3_formula": "Implies(well_paid_djokovic, tax_haven_djokovic)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "tax_haven_djokovic == True",
+          "z3_formula": "tax_haven_djokovic == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(X) | oscar_nominated_actor(X)",
+          "z3_formula": "Or(grand_slam_champion_djokovic, oscar_nominated_actor_djokovic)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, celebrity_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> lives_in_well_paid(X)",
+          "z3_formula": "Implies(And(famous_djokovic, athlete_djokovic), lives_in_well_paid_djokovic)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not lives_in_tax_haven(djokovic)",
+          "z3_formula": "Not(lives_in_tax_haven_djokovic)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(X) | oscar_nominated_actor(X)",
+          "z3_formula": "grand_slam_champion_djokovic == True or oscar_nominated_actor_djokovic == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, celebrity_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> well_paid(X)",
+          "z3_formula": "Implies(And(famous_djokovic, athlete_djokovic), well_paid_djokovic)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "famous_djokovic == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "well_paid(X)",
+          "z3_formula": "well_paid_djokovic == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "tax_haven(X) -> well_paid(X)",
+          "z3_formula": "Implies(tax_haven_djokovic, well_paid_djokovic)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "well_paid(X)",
+          "z3_formula": "well_paid_djokovic == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "tax_haven(X)",
+          "z3_formula": "tax_haven_djokovic == True",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(X) | oscar_nominated_actor(X)",
+          "z3_formula": "grand_slam_champion_X | oscar_nominated_actor_X",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_X, professional_tennis_player_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_X, celebrity_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_X, athlete_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_X, famous_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> well_paid(X)",
+          "z3_formula": "Implies(And(famous_X, athlete_X), well_paid_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> lives_in_well_paid(X)",
+          "z3_formula": "Implies(And(famous_X, athlete_X), lives_in_well_paid_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "athlete(djokovic)",
+          "z3_formula": "athlete_djokovic",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "famous(djokovic)",
+          "z3_formula": "famous_djokovic",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(djokovic)",
+          "z3_formula": "grand_slam_champion_djokovic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "professional_tennis_player(djokovic)",
+          "z3_formula": "professional_tennis_player_djokovic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "athlete(djokovic)",
+          "z3_formula": "athlete_djokovic == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "famous(djokovic)",
+          "z3_formula": "famous_djokovic == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) & famous(X) -> well_paid(X)",
+          "z3_formula": "Implies(And(athlete_djokovic, famous_djokovic), well_paid_djokovic)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "well_paid(X) -> tax_haven(X)",
+          "z3_formula": "Implies(well_paid_djokovic, tax_haven_djokovic)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "tax_haven(djokovic)",
+          "z3_formula": "tax_haven_djokovic == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not tax_haven(djokovic)",
+          "z3_formula": "Not(tax_haven_djokovic) == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(X) | oscar_nominated_actor(X)",
+          "z3_formula": "grand_slam_champion_djokovic == True or oscar_nominated_actor_djokovic == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, celebrity_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, celebrity_djokovic)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> well_paid(X)",
+          "z3_formula": "Implies(And(famous_djokovic, athlete_djokovic), well_paid_djokovic)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "well_paid(djokovic)",
+          "z3_formula": "well_paid_djokovic == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "well_paid(djokovic) -> tax_haven(djokovic)",
+          "z3_formula": "Implies(well_paid_djokovic, tax_haven_djokovic)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not tax_haven(djokovic)",
+          "z3_formula": "Not(tax_haven_djokovic) == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion_or_oscar_nominated_actor(X)",
+          "z3_formula": "grand_slam_champion_or_oscar_nominated_actor == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion, professional_tennis_player)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor, celebrity)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player, athlete)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity, well_paid)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete, famous)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "well_paid(X) -> lives_in_tax_haven(X)",
+          "z3_formula": "Implies(well_paid, lives_in_tax_haven)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> lives_in_tax_haven(X)",
+          "z3_formula": "Implies(And(famous, athlete), lives_in_tax_haven)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(djokovic)",
+          "z3_formula": "grand_slam_champion_djokovic == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "professional_tennis_player(djokovic)",
+          "z3_formula": "professional_tennis_player_djokovic == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "athlete(djokovic)",
+          "z3_formula": "athlete_djokovic == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "celebrity(djokovic)",
+          "z3_formula": "celebrity_djokovic == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "well_paid_location(djokovic)",
+          "z3_formula": "well_paid_location_djokovic == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> well_paid_location(X)",
+          "z3_formula": "Implies(And(famous_djokovic, athlete_djokovic), well_paid_location_djokovic)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "well_paid_location(X) -> tax_haven(X)",
+          "z3_formula": "Implies(well_paid_location_djokovic, tax_haven_djokovic)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(X) | oscar_nominated_actor(X)",
+          "z3_formula": "grand_slam_champion_djokovic | oscar_nominated_actor_djokovic",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "grand_slam_champion(X) -> athlete(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, athlete_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "grand_slam_champion(X) -> famous(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, famous_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "oscar_nominated_actor_djokovic -> celebrity_djokovic",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "oscar_nominated_actor(X) -> well_paid(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, well_paid_djokovic)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "well_paid(X) -> lives_in_tax_haven(X)",
+          "z3_formula": "well_paid_djokovic -> lives_in_tax_haven_djokovic",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> well_paid(X)",
+          "z3_formula": "Implies(And(famous_djokovic, athlete_djokovic), well_paid_djokovic)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "grand_slam_champion(X) -> well_paid(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, well_paid_djokovic)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "grand_slam_champion(X) -> lives_in_tax_haven(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, lives_in_tax_haven_djokovic)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not lives_in_tax_haven(X)",
+          "z3_formula": "Not(lives_in_tax_haven_djokovic)",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(djokovic)",
+          "z3_formula": "grand_slam_champion_djokovic == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> well_paid(X)",
+          "z3_formula": "Implies(And(famous_djokovic, athlete_djokovic), well_paid_djokovic)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "well_paid(X) -> tax_haven(X)",
+          "z3_formula": "Implies(well_paid_djokovic, tax_haven_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "tax_haven(djokovic)",
+          "z3_formula": "tax_haven_djokovic == True",
+          "source_step": 7
+        }
+      ]
+    }
+  ]
+}

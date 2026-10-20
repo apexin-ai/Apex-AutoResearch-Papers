@@ -1,0 +1,438 @@
+{
+  "pid": "folio_181",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(flies(susan, lga))",
+          "z3_formula": "Not(flies_susan_lga)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "same_airport(X, X)",
+          "z3_formula": "same_airport_X_X == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "same_airport(X, Y) -> not(flies(X, Y))",
+          "z3_formula": "Implies(same_airport_X_Y, Not(flies_X_Y))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(same_airport(lga, lga))",
+          "z3_formula": "Not(same_airport_lga_lga) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(flies(john, lga))",
+          "z3_formula": "Not(flies_john_lga) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "departure(X) == arrival(X) -> False",
+          "z3_formula": "Not(Implies(flies_susan_lga, flies_john_lga))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not flies(john, lga)",
+          "z3_formula": "Not(flies_john_lga)",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lga != lga",
+          "z3_formula": "lga != lga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lga != lga",
+          "z3_formula": "lga != lga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "lga = john's departure airport",
+          "z3_formula": "lga == john_departure_airport",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "john's arrival airport is unknown",
+          "z3_formula": "john_arrival_airport == Unknown",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "john flies to lga airport",
+          "z3_formula": "john_flies_to_lga == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lga != lga",
+          "z3_formula": "lga != lga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(flies(susan, lga))",
+          "z3_formula": "Not(flies_susan_lga)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "flies(X, Y) -> not(flies(X, Y))",
+          "z3_formula": "Implies(flies_susan_lga, Not(flies_susan_lga))",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lga != lga",
+          "z3_formula": "lga != lga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "flies(X, Y) -> destination(X, Y)",
+          "z3_formula": "Implies(flies_susan_lga, destination_susan_lga)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "destination(X, Y) & destination(X, Z) -> Y == Z",
+          "z3_formula": "Implies(And(destination_susan_lga, destination_susan_lga), lga == lga)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "destination(john, lga)",
+          "z3_formula": "destination_john_lga == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(flies(susan, lga))",
+          "z3_formula": "Not(flies_susan_lga)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "flies(X, Y) -> flies(X, Y)",
+          "z3_formula": "Implies(flies_susan_lga, flies_susan_lga)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not(flies(X, Y)) -> not(flies(X, Y))",
+          "z3_formula": "Implies(Not(flies_susan_lga), Not(flies_susan_lga))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(flies(john, lga))",
+          "z3_formula": "Unknown(flies_john_lga)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "different_airports",
+          "z3_formula": "different_airports == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(john, lga)",
+          "z3_formula": "unknown_john_lga == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lga != lga",
+          "z3_formula": "lga != lga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "flies(X, Y) & Y != Y -> arrives(X, Y)",
+          "z3_formula": "Implies(And(flies_susan_lga, Not(lga != lga)), arrives_susan_lga)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "arrives(susan, lga)",
+          "z3_formula": "arrives_susan_lga == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "flies(X, Y) & Y != Y -> departs(X, Y)",
+          "z3_formula": "Implies(And(flies_john_lga, Not(lga != lga)), departs_john_lga)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "departs(john, lga)",
+          "z3_formula": "departs_john_lga == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "john_to_lga",
+          "z3_formula": "john_to_lga == Unknown",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "flies(susan, lga)",
+          "z3_formula": "flies_susan_lga == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lga != lga",
+          "z3_formula": "lga != lga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "X -> Y != X",
+          "z3_formula": "Implies(flies_susan_lga, lga != departure_airport)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "lga != departure_airport",
+          "z3_formula": "lga != departure_airport == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "X -> Y",
+          "z3_formula": "Implies(flies_john_lga, flies_john_lga)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "flies(john, lga)",
+          "z3_formula": "flies_john_lga == True",
+          "source_step": 3
+        }
+      ]
+    }
+  ]
+}

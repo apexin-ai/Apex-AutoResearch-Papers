@@ -1,0 +1,26 @@
+paper_key: "snell2025scaling_tts"
+title: "Scaling LLM Test-Time Compute Optimally Can be More Effective than Scaling Parameters"
+venue: "ICLR 2025 (Oral)"
+full_text_available: false
+
+research:
+  baselines: ["greedy decoding", "majority voting", "best-of-N", "reward-model reranking"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "compute_efficiency", direction: "higher_better"}
+  datasets:
+    - {name: "MATH", size: "500"}
+    - {name: "GSM8K", size: "1319"}
+  ablation_dimensions: ["compute_budget", "search_strategy", "verifier_type", "model_scale"]
+  training_recipe: {info: "process reward models for verification"}
+  method_family: "test-time compute scaling"
+
+positioning:
+  core_claim: "Optimal allocation of test-time compute (search + verification) can match or exceed 14x larger models"
+  key_results: "Smaller model + optimal test-time compute matches 14x larger model on MATH"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

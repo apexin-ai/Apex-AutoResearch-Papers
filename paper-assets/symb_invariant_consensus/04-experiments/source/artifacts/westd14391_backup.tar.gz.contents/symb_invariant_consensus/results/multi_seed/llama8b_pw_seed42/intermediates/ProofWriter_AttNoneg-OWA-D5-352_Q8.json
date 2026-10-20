@@ -1,0 +1,1173 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-352_Q8",
+    "problem": "Charlie is furry. Charlie is green. Charlie is white. Dave is blue. Dave is cold. Gary is cold. Gary is rough. Harry is blue. Harry is furry. Harry is rough. Harry is white. Nice, cold people are green. Rough people are green. Green people are blue. If someone is blue then they are nice. Furry, green people are rough. Green, nice people are furry. White people are nice. Cold people are blue. All rough, nice people are white.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not furry.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nFurry(Charlie, True) ::: Charlie is furry.\nGreen(Charlie, True) ::: Charlie is green.\nWhite(Charlie, True) ::: Charlie is white.\nBlue(Dave, True) ::: Dave is blue.\nCold(Dave, True) ::: Dave is cold.\nCold(Gary, True) ::: Gary is cold.\nRough(Gary, True) ::: Gary is rough.\nBlue(Harry, True) ::: Harry is blue.\nFurry(Harry, True) ::: Harry is furry.\nRough(Harry, True) ::: Harry is rough.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nNice($x, True) && Cold($x, True) >>> Green($x, True) ::: Nice, cold people are green.\nRough($x, True) >>> Green($x, True) ::: Rough people are green.\nGreen($x, True) >>> Blue($x, True) ::: Green people are blue.\nBlue($x, True) >>> Nice($x, True) ::: If someone is blue then they are nice.\nFurry($x, True) && Green($x, True) >>> Rough($x, True) ::: Furry, green people are rough.\nGreen($x, True) && Nice($x, True) >>> Furry($x, True) ::: Green, nice people are furry.\nWhite($x, True) >>> Nice($x, True) ::: White people are nice.\nCold($x, True) >>> Blue($x, True) ::: Cold people are blue.\nRough($x, True) && Nice($x, True) >>> White($x, True) ::: All rough, nice people are white.\n\nQuery:\nFurry(Dave, False) ::: Dave is not furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 37.5,
+      "Unknown": 152.0
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Dave is not furry\" is true, false, or unknown, we need to analyze the given information and use it to infer facts about Dave.\n\nFrom the information given:\n\n1. Dave is blue.\n2. Blue people are nice.\n3. Cold people are blue.\n4. Cold people are blue. (this statement is repeated, but it doesn't add any new information)\n5. Dave is cold.\n\nFrom statement 5, we can infer that Dave is blue (based on statement 3). We already knew that Dave is blue from statement 1.\n\nNow, let's look at the information related to being furry:\n\n1. Furry, green people are rough.\n2. Green people are blue.\n3. Nice, cold people are green.\n4. Green people are blue. (this statement is repeated, but it doesn't add any new information)\n\nWe know that Dave is blue (from statement 1), but we don't know if he is green or rough. However, we can use the information about nice, cold people being green (statement 3) to infer that since Dave is blue and cold, he might be green. But we still don't know if he is furry.\n\nStatement 1 says that furry, green people are rough. We don't know if Dave is furry or green, so we can't conclude if he is rough or not.\n\nHowever, we do know that white people are nice (from statement 6), and all rough, nice people are white (from statement 8). But we don't know if Dave is white or nice.\n\nFrom statement 2, we know that Charlie is green, but this doesn't help us determine if Dave is furry or not.\n\nThe statement \"Green, nice people are furry\" (from statement 7) gives us more information. If Dave is green, then he might be furry, but we still don't know if he is green or not.\n\nNow, let's analyze the information again:\n\n1. Dave is blue.\n2. Blue people are nice.\n3. Cold people are blue.\n4. Cold people are blue. (this statement is repeated, but it doesn't add any new information)\n5. Dave is cold.\n6. Nice, cold people are green.\n7. Green people are blue.\n8. All rough, nice people are white.\n9. Furry, green people are rough.\n10. Green, nice people are furry.\n11. Harry is blue. Harry is furry. Harry is rough. Harry is white. Harry is blue. (this statement is repeated, but it doesn't add any new information)\n12. Charlie is furry. Charlie is green. Charlie is white.\n\nWe can see that we have a lot of information, but we still can't conclude if Dave is furry or not.\n\nHowever, we can use the information from statement 10 to infer that if Dave is green and nice, then he might be furry. But we don't know if he is green or nice.\n\nThe only way we can be certain about Dave's furiness is if we know he is not green, or if we know he is not nice. But we don't have any information that suggests Dave is not green or nice.\n\nTherefore, we can't determine if the statement \"Dave is not furry\" is true or false based on the given information.\n\nThe answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not furry\" is true, false, or unknown, we need to analyze the given information and find any relevant rules or statements that relate to Dave's characteristics.\n\n1. We know the following facts about Dave:\n   - Dave is blue.\n   - Dave is cold.\n\n2. We also have the following rules:\n   - Nice, cold people are green.\n   - Rough people are green.\n   - Green people are blue.\n   - If someone is blue then they are nice.\n   - Cold people are blue.\n\n3. From the rules, we can conclude that since Dave is blue, he must be nice (because if someone is blue, then they are nice).\n\n4. Now, let's examine the rules related to fur:\n   - Furry, green people are rough.\n   - Green, nice people are furry.\n   - All rough, nice people are white.\n\n5. Since Dave is nice and blue, and we already know that green people are blue, we can infer that Dave is green (because green people are blue, and we have established that Dave is blue).\n\n6. However, we cannot conclude that Dave is furry. The rules do not directly relate Dave's characteristics to fur. There is no direct connection between being green, nice, or blue and being furry.\n\n7. Given the information provided, we cannot determine whether the statement \"Dave is not furry\" is true or false. The rules do not provide enough information to confirm whether Dave is furry or not.\n\nTherefore, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. Nice, cold people are green.\n2. Rough people are green.\n3. Green people are blue.\n4. If someone is blue then they are nice.\n5. Furry, green people are rough.\n6. Green, nice people are furry.\n7. White people are nice.\n8. Cold people are blue.\n9. All rough, nice people are white.\n\nFrom statement 8, we can infer that Dave is blue because he is cold (statement 2).\nFrom statement 4, we can infer that Dave is nice because he is blue (statement 3).\n\nNow, let's check the given options:\n- If Dave is blue, then from statement 3, green people are blue, but we don't have a direct statement that Dave is green.\n- If we consider the options and given statements, the only information we can derive about Dave's fur is from statement 5, \"Furry, green people are rough.\" However, we cannot conclude whether Dave is furry or not.\n\nTherefore, based on the given information, we cannot determine whether the statement \"Dave is not furry\" is true or false. It is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not furry\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nGiven information:\n\n1. Charlie is furry.\n2. Charlie is green.\n3. Charlie is white.\n4. Dave is blue.\n5. Dave is cold.\n6. Gary is cold.\n7. Gary is rough.\n8. Harry is blue.\n9. Harry is furry.\n10. Harry is rough.\n11. Harry is white.\n12. Nice, cold people are green.\n13. Rough people are green.\n14. Green people are blue.\n15. If someone is blue then they are nice.\n16. Furry, green people are rough.\n17. Green, nice people are furry.\n18. White people are nice.\n19. Cold people are blue.\n20. All rough, nice people are white.\n\nNow, let's analyze the information related to Dave:\n\n- Dave is blue (statement 4).\n- If someone is blue then they are nice (statement 15).\n\nFrom this, we can conclude that Dave is nice.\n\nHowever, we still don't know whether Dave is furry or not.\n\nNow, let's look at the information related to furry and nice people:\n\n- Green, nice people are furry (statement 17).\n- We know Dave is nice (from above).\n- However, we don't know if Dave is green or not.\n\nNow, let's look at the information related to green people:\n\n- Green people are blue (statement 14).\n- We know Dave is blue (statement 4).\n- However, we don't know if Dave is green or not.\n\nNow, let's analyze the information related to Charlie:\n\n- Charlie is furry (statement 1).\n- Charlie is green (statement 2).\n- We know that furry, green people are rough (statement 16).\n\nHowever, we don't know if Dave is furry, green, or rough.\n\nFrom the given information, we have the following conclusions:\n\n- Dave is blue.\n- Dave is nice.\n- We don't know if Dave is furry, green, or rough.\n\nSince we don't have enough information to determine whether Dave is furry or not, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is not furry' is true, false, or unknown, we need to analyze the given information. \n\n1. We are given that 'Nice, cold people are green.' and 'Cold people are blue.' From this, we can infer that 'Green, cold people are nice,' as green people are nice according to the given information. \n\n2. We are given that 'Rough people are green.' and 'Green people are blue.' From this, we can infer that 'Rough, green people are blue,' as green people are blue according to the given information.\n\n3. We are given that 'Furry, green people are rough.' From this, we can infer that 'Furry people who are green are blue,' as rough, green people are blue according to the given information.\n\n4. We are given that 'Green people are blue.' and 'Blue people are nice.' From this, we can infer that 'Green people are nice,' as blue people are nice according to the given information.\n\n5. We are given that 'Harry is blue.' and 'Harry is furry.' From this, we can infer that 'Furry people are blue,' as Harry is both blue and furry.\n\n6. We are given that 'Green people are blue.' and 'Green people are nice.' From this, we can infer that 'Blue people are green,' as green people are both blue and nice.\n\n7. We are given that 'Dave is cold.' From this, we can infer that 'Dave is blue,' as cold people are blue according to the given information.\n\n8. We are given that 'Harry is blue.' and 'Dave is blue.' From this, we can infer that 'Furry people are blue,' as Harry is both blue and furry. Since Dave is blue and we don't know whether he is furry or not, we cannot determine whether the statement 'Dave is not furry' is true or false.\n\nSo, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not furry\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nGiven information:\n\n1. Charlie is furry. Charlie is green. Charlie is white.\n2. Dave is blue. Dave is cold.\n3. Gary is cold. Gary is rough. \n4. Harry is blue. Harry is furry. Harry is rough. Harry is white.\n5. Nice, cold people are green.\n6. Rough people are green.\n7. Green people are blue.\n8. If someone is blue then they are nice.\n9. Furry, green people are rough.\n10. Green, nice people are furry.\n11. White people are nice.\n12. Cold people are blue.\n13. All rough, nice people are white.\n\nNow, let's analyze the statement \"Dave is not furry.\"\n\nTo prove that Dave is not furry, we need to find a reason why Dave must be non-furry.\n\nFrom point 12, we know that cold people are blue. Since Dave is cold (point 2), Dave is blue (point 12).\n\nFrom point 8, we know that if someone is blue, then they are nice. So, Dave is nice.\n\nFrom point 5, we know that nice, cold people are green. However, Dave is blue, not green. This statement doesn't directly apply to Dave.\n\nHowever, we can use point 6 to infer that since Dave is blue and rough people are green, Dave is not necessarily rough. But Dave is cold, so we can't conclude he is rough.\n\nHowever, from point 7, we know that green people are blue. This does not directly apply to Dave because we can't conclude Dave is green.\n\nFrom point 9, we know that furry, green people are rough. However, Dave is not green and we can't conclude he is furry or rough.\n\nFrom point 10, we know that green, nice people are furry. Dave is nice, but we can't conclude he is green.\n\nHowever, from point 11, we know that white people are nice. We already concluded that Dave is nice, and we can't conclude he is white.\n\nNow, let's consider the statement \"Dave is not furry.\"\n\nFrom point 4, we know that Harry is furry. We also know that Harry is blue (point 4 and point 12). Since Dave is blue (point 12), we can't conclude Dave is furry based on Harry's characteristics.\n\nHowever, from point 13, we know that all rough, nice people are white. Since Dave is nice and blue, we can't conclude he is rough or white.\n\nFrom point 3, we know that Gary is cold and rough. We also know that Gary is not furry (we can't conclude this from the information given, but we can't conclude he is furry either).\n\nFrom point 2, we know that Dave is cold. However, we can't conclude Dave is rough or furry.\n\nHowever, from point 1, we know that Charlie is furry and green. We also know that Charlie is white (point 1). However, we can't conclude Dave is furry or white.\n\nBased on the given information and logical deductions, we can't conclude that Dave is furry or not furry. Therefore, the statement \"Dave is not furry\" is unknown.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller steps and use the given information to deduce the answer.\n\n1. Given information:\n   - Charlie is furry.\n   - Charlie is green.\n   - Charlie is white.\n   - Dave is blue.\n   - Dave is cold.\n   - Gary is cold.\n   - Gary is rough.\n   - Harry is blue.\n   - Harry is furry.\n   - Harry is rough.\n   - Harry is white.\n   - Nice, cold people are green.\n   - Rough people are green.\n   - Green people are blue.\n   - If someone is blue then they are nice.\n   - Furry, green people are rough.\n   - Green, nice people are furry.\n   - White people are nice.\n   - Cold people are blue.\n   - All rough, nice people are white.\n\n2. We need to determine if Dave is not furry. To do this, we'll analyze the information related to Dave and 'furry'.\n\n3. From the given information:\n   - Dave is blue.\n   - Cold people are blue.\n   - This implies that Dave is cold.\n   - There is no direct information about Dave being furry or not.\n\n4. However, we can analyze the information about 'furry' people.\n   - Furry, green people are rough.\n   - Since Dave is blue (not green), this statement does not apply to Dave.\n   - There is no other information about 'furry' people that applies to Dave.\n\n5. Since we cannot determine whether Dave is furry or not using the given information, the answer is 'unknown'.\n\nSo, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the properties of each person. We'll start by creating a list of properties for each person.\n\nCharlie:\n- Furry\n- Green\n- White\n\nDave:\n- Blue\n- Cold\n\nGary:\n- Cold\n- Rough\n\nHarry:\n- Blue\n- Furry\n- Rough\n- White\n\nNow, let's analyze the given statements and identify any relationships between the properties.\n\n1. Nice, cold people are green.\n2. Rough people are green.\n3. Green people are blue.\n4. If someone is blue then they are nice.\n5. Furry, green people are rough.\n6. Green, nice people are furry.\n7. White people are nice.\n8. Cold people are blue.\n9. All rough, nice people are white.\n\nWe need to determine whether the statement \"Dave is not furry\" is true, false, or unknown.\n\nTo do this, let's analyze the properties of Dave. We know that Dave is blue (statement 8) and cold (statement 8). \n\nFrom statement 4, since Dave is blue, he is nice. However, from statement 8, we know that cold people are blue, which means Dave could be nice or rough, but not both. If Dave were rough, then from statement 9, all rough, nice people are white. However, we know that Dave is blue, so he can't be white. Therefore, Dave must be nice.\n\nFrom statement 7, we know that white people are nice. However, we also know that Dave is nice and blue, so he can't be white. Now, let's analyze the relationship between being green and being nice or rough.\n\nFrom statement 1, nice, cold people are green, but since Dave is not cold, this statement does not apply to Dave.\n\nFrom statement 2, rough people are green. However, we know that Dave is nice, not rough.\n\nFrom statement 3, green people are blue. However, this statement does not provide any information about Dave being green.\n\nFrom statement 5, furry, green people are rough. However, we know that Dave is not rough.\n\nFrom statement 6, green, nice people are furry. However, we know that Dave is nice, but not green.\n\nWe still can't determine whether Dave is furry or not. However, statement 6 also tells us that green, nice people are furry. We know that Dave is nice, so if Dave were green, then he would be furry. However, we don't know whether Dave is green or not.\n\nThe statement \"Dave is not furry\" is unknown because we don't know whether Dave is green or not.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not furry\" is true, false, or unknown, we need to analyze the given information.\n\n1. Given statements:\n   - Charlie is furry.\n   - Charlie is green.\n   - Charlie is white.\n   - Dave is blue.\n   - Dave is cold.\n   - Gary is cold.\n   - Gary is rough.\n   - Harry is blue.\n   - Harry is furry.\n   - Harry is rough.\n   - Harry is white.\n   - Nice, cold people are green.\n   - Rough people are green.\n   - Green people are blue.\n   - If someone is blue then they are nice.\n   - Furry, green people are rough.\n   - Green, nice people are furry.\n   - White people are nice.\n   - Cold people are blue.\n   - All rough, nice people are white.\n\n2. Analyze the statement \"Dave is not furry\":\n   - We know Dave is blue (given statement 5).\n   - If someone is blue then they are nice (given statement 8).\n   - Since Dave is nice and blue, we can infer he is green (given statement 3: Green people are blue).\n\n3. Now, let's see if we can determine if Dave is furry:\n   - Furry, green people are rough (given statement 5).\n   - We already know Dave is green, so he must be rough.\n   - However, we also know that white people are nice (given statement 10) and all rough, nice people are white (given statement 12).\n   - So, Dave being both rough and nice, makes him white.\n\n4. Since Dave is white (from step 3), and white people are nice (given statement 10), we can infer that he is not furry because there is no statement that directly relates white people to being furry. However, we can use a process of elimination to infer that Dave is not furry.\n   - We know that Green, nice people are furry (given statement 6).\n   - Since Dave is white (not green) and nice, we can eliminate this possibility.\n   - Therefore, we cannot say for certain whether Dave is furry or not based on the given statements.\n\nThe statement \"Dave is not furry\" is unknown because we cannot determine if Dave is furry or not based on the given information.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to determine the characteristics of Dave based on the given statements. We can start by analyzing the given statements.\n\n1. Nice, cold people are green.\n2. Rough people are green.\n3. Green people are blue.\n4. If someone is blue then they are nice.\n5. Furry, green people are rough.\n6. Green, nice people are furry.\n7. White people are nice.\n8. Cold people are blue.\n9. All rough, nice people are white.\n10. Dave is cold.\n\nFrom statement 10, we know Dave is cold. Based on statement 8, we can conclude that Dave is blue, as cold people are blue.\n\nNow, we can analyze the given statement \"Dave is not furry.\" To determine if this statement is true, false, or unknown, we need to consider the characteristics of blue people and furry people.\n\nWe know Dave is blue, and from statement 4, we can conclude that blue people are nice. However, we cannot directly determine if Dave is furry or not.\n\nLet's analyze the possible characteristics of Dave:\n\n- Dave is blue (from statement 10 and 8).\n- Blue people are nice (from statement 4).\n- We cannot determine if Dave is furry or not.\n\nNow, let's consider the statements that involve furry people. From statement 6, we know that green, nice people are furry. Since Dave is blue and blue people are nice (from statement 4), we cannot directly apply this statement to Dave. However, statement 5 says that furry, green people are rough. We cannot determine if Dave is furry or not, but we can conclude that if Dave is furry, he would be rough.\n\nHowever, from statement 9, we know that all rough, nice people are white. Since Dave is blue (and therefore nice), we cannot directly apply this statement to Dave.\n\nIn conclusion, we cannot determine if Dave is furry or not, and even if we assume that Dave is furry, we cannot directly apply the given statements to determine if the statement \"Dave is not furry\" is true or false.\n\nTherefore, the final answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not furry\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nFrom the given information:\n1. Cold people are blue. (Statement 5)\n2. Dave is cold. (Statement 2)\n3. Therefore, Dave is blue. (From statement 1 and 2)\n\nNow, we need to find a connection between being blue and being furry. From the given information:\n4. If someone is blue then they are nice. (Statement 6)\n5. Blue people are rough. (Statement 4, but the statement actually says green people are blue, but it's the inverse of what we are looking for, so it's useful information)\n\nThere is no direct statement that says blue people are furry. However, there is a statement that says green people are blue (Statement 4, but the inverse). Since we have a statement that says green people are blue (Statement 4), we need to find a connection between green people and being furry.\n\nFrom the given information:\n6. Furry, green people are rough. (Statement 9)\n7. Green people are blue. (The inverse of statement 4)\n8. Therefore, Furry, blue people are rough. (From statement 6 and 7)\n\nNow, we need to find a connection between being blue and being furry. We know that Dave is blue (From statement 1 and 2) and that furry, blue people are rough (From statement 8). We also know that Harry is blue, furry, and rough (Statement 10, 11, and 12). However, there is no information about Dave being furry or not being furry.\n\nHowever, we have the following statement:\n9. Nice, cold people are green. (Statement 5)\n10. Cold people are blue. (Statement 5)\n11. Therefore, Nice people are blue. (From statement 9 and 10)\n\nFrom the given information:\n12. White people are nice. (Statement 7)\n13. All rough, nice people are white. (Statement 8)\n14. Therefore, Blue people are not nice, because if they were, they would be white. (From statement 11, 12, and 13)\n\nSince we know that Dave is blue (From statement 1 and 2) and blue people are not nice (From statement 14), we can't determine if Dave is furry or not based on the given information.\n\nTherefore, the final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is blue. (From the given information)\n2. Blue people are nice. (From the given information)\n3. Nice people are green. (From the given information)\n4. Green people are blue. (From the given information)\n5. From steps 2 and 3, we can conclude that green and nice people are blue, which means being blue and nice are the same.\n6. Since Dave is blue, and being blue and nice are the same, Dave is nice.\n7. Since Dave is blue and nice, we can conclude that Dave is green from step 3.\n8. Now we know Dave is green, and we have two statements about green people: green people are blue, and green, nice people are furry.\n9. From step 8, since Dave is green and nice, we can conclude that Dave is furry.\n\nFrom the steps above, we know that Dave is furry. Therefore, the statement \"Dave is not furry\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_dave, blue_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_dave, blue_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_dave, cold_dave), green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_dave, blue_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_dave, nice_dave), white_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_dave, green_dave), rough_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_dave, nice_dave), furry_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "Not(furry_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_dave, nice_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_dave, cold_dave), green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_dave, blue_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_dave, nice_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_dave, green_dave), rough_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_dave, nice_dave), furry_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_dave, nice_dave), white_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_dave, blue_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_dave, nice_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_dave, blue_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_dave, green_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_dave, green_dave), rough_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_dave, nice_dave), furry_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_dave, nice_dave), white_dave)",
+          "source_step": 9
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "nice_cold(X) -> green(X)",
+          "z3_formula": "Implies(nice_cold_X, green_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "green_cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_X, cold_X), nice_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_X, green_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_X, blue_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough_green(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_X, green_X), blue_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry_green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_X, green_X), rough_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry_green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_X, green_X), blue_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_X, blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_X, nice_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_X, nice_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_X, blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry) & blue(dave) -> furry(X)",
+          "z3_formula": "Implies(And(blue_harry, blue_dave), furry_X)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_X, blue_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "blue(X) & blue(dave) -> furry(X)",
+          "z3_formula": "Implies(And(blue_X, blue_dave), furry_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "furry(X) | not furry(X)",
+          "z3_formula": "Or(furry_X, Not(furry_X))",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_dave, blue_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_dave, nice_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_dave, cold_dave), green_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_dave, cold_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_dave, nice_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_dave, green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_dave, blue_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_dave, green_dave), rough_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_dave, nice_dave), furry_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_dave, nice_dave), white_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_dave, cold_dave), green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_dave, green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_dave, blue_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_dave, nice_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_dave, green_dave), rough_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_dave, nice_dave), furry_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_dave, blue_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_dave, nice_dave), white_dave)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_dave, green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_dave, blue_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_dave, green_dave), rough_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_dave, nice_dave), furry_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_dave, blue_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_dave, nice_dave), white_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(dave)",
+          "z3_formula": "Not(furry_dave)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_gary, green_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_gary, blue_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_charlie, green_charlie), rough_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_dave, nice_dave), furry_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_harry, blue_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_harry, nice_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_harry, nice_harry), white_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_dave, blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_harry, green_harry), rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, nice_harry), furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_dave, nice_dave), white_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(dave)",
+          "z3_formula": "Not(furry_dave)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_dave, blue_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_dave, nice_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not furry(dave)",
+          "z3_formula": "Not(furry_dave) == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_dave, nice_dave), furry_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_dave, furry_dave), rough_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_dave, nice_dave), white_dave)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cold(X))",
+          "z3_formula": "blue_cold_X == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_dave, nice_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(nice(X))",
+          "z3_formula": "white_nice_X == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), white_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(dave)",
+          "z3_formula": "Not(nice_dave) == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == False",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> green(X)",
+          "z3_formula": "Implies(nice_dave, green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_dave, blue_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 174,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 57
+    },
+    "maxsat_stats": {
+      "satisfied": 55,
+      "excluded": 2,
+      "total_weight": 168,
+      "solve_time_ms": 1.6512107104063034
+    },
+    "timing": {
+      "trace_gen_s": 8.728,
+      "extraction_s": 36.435,
+      "dedup_s": 1.67,
+      "maxsat_s": 0.005,
+      "total_s": 46.838
+    }
+  }
+}

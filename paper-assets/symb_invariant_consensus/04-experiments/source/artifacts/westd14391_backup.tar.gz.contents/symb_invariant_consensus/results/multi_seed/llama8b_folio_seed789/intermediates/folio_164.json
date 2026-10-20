@@ -1,0 +1,639 @@
+{
+  "problem": {
+    "id": "folio_164",
+    "problem": "Given the following premises:\nOn some Mondays at 8 pm, roses are given out on TV. Every rose given out on TV is on the Bachelor. Everything on the Bachelor portrays the lives of real people. All shows portraying the lives of real people are reality TV shows. Breaking Bad is not a reality TV show.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nBreaking Bad is on Monday at 8 pm.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (Mondayat8(x) \u2227 RoseGivenOutOnTv(x))",
+      "\u2200x (RoseGivenOutOnTv(x) \u2192 OnBachelor(x))",
+      "\u2200x (OnBachelor(x) \u2192 PortrayLiveOfRealPeople(x))",
+      "\u2200x (PortrayLiveOfRealPeople(x) \u2192 RealityTVShow(x))",
+      "\u00acRealityTVShow(breakingbad)"
+    ],
+    "conclusion_fol": "Mondayat8(breakingbad)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 36.0,
+      "Unknown": 69.0
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "False": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they lead to the conclusion.\n\nPremise 1: On some Mondays at 8 pm, roses are given out on TV.\nThis premise doesn't tell us anything about Breaking Bad, so we can ignore it for now.\n\nPremise 2: Every rose given out on TV is on the Bachelor.\nThis premise also doesn't tell us anything about Breaking Bad, so we can ignore it for now.\n\nPremise 3: Everything on the Bachelor portrays the lives of real people.\nThis premise is also irrelevant to Breaking Bad, so we can ignore it for now.\n\nPremise 4: All shows portraying the lives of real people are reality TV shows.\nThis premise is also irrelevant to Breaking Bad, so we can ignore it for now.\n\nPremise 5: Breaking Bad is not a reality TV show.\nThis premise directly contradicts the previous premises, which seem to be about reality TV shows. It tells us that Breaking Bad is not a reality TV show, but it doesn't tell us anything about the time or day it airs.\n\nNow, we need to see if the premises lead to the conclusion. The only relevant information is that Breaking Bad is not a reality TV show, and there is no information about it airing on Monday at 8 pm. Since we don't have any information about the time or day Breaking Bad airs, we can't determine whether the conclusion is true or false.\n\nHowever, we can say that the conclusion is uncertain, because we don't have enough information to make a determination.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the given premises and see if they lead to a conclusion about Breaking Bad being on Monday at 8 pm.\n\nPremise 1: On some Mondays at 8 pm, roses are given out on TV.\nThis premise gives us information about the timing and content of some TV shows, but it doesn't specifically mention Breaking Bad.\n\nPremise 2: Every rose given out on TV is on the Bachelor.\nThis premise tells us that the only shows with roses on TV are related to the Bachelor. However, it doesn't mention anything about Breaking Bad.\n\nPremise 3: Everything on the Bachelor portrays the lives of real people.\nThis premise provides more context about the Bachelor, but it still doesn't mention Breaking Bad.\n\nPremise 4: All shows portraying the lives of real people are reality TV shows.\nThis premise gives us a characteristic of reality TV shows, which the Bachelor is part of, but it doesn't mention Breaking Bad.\n\nPremise 5: Breaking Bad is not a reality TV show.\nThis premise explicitly states that Breaking Bad is not a reality TV show, which is a key characteristic of the shows mentioned in the previous premises.\n\nNow, we need to evaluate the conclusion:\nBreaking Bad is on Monday at 8 pm.\n\nGiven the premises, we have no information about Breaking Bad being on Monday at 8 pm. The premises only discuss the timing and content of reality TV shows, particularly the Bachelor, and we know that Breaking Bad is not a reality TV show. Therefore, we cannot conclude that Breaking Bad is on Monday at 8 pm.\n\nConclusion: Uncertain\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion \"Breaking Bad is on Monday at 8 pm\" is true, false, or uncertain, let's analyze the given premises step by step.\n\nPremise 1: On some Mondays at 8 pm, roses are given out on TV.\n\nThis premise provides information about a specific time and day (Monday at 8 pm) when roses are given out on TV. However, it doesn't directly relate to the conclusion about Breaking Bad.\n\nPremise 2: Every rose given out on TV is on the Bachelor.\n\nThis premise links the roses given out on TV to the Bachelor, implying that if roses are given out on TV, they must be from the Bachelor.\n\nPremise 3: Everything on the Bachelor portrays the lives of real people.\n\nThis premise provides additional context about the Bachelor, stating that it portrays real people.\n\nPremise 4: All shows portraying the lives of real people are reality TV shows.\n\nThis premise connects shows that portray real people to reality TV shows.\n\nPremise 5: Breaking Bad is not a reality TV show.\n\nThis premise directly relates to Breaking Bad, stating that it's not a reality TV show.\n\nNow, let's examine the conclusion: \"Breaking Bad is on Monday at 8 pm.\"\n\nTo determine the validity of this conclusion, we need to see if it can be logically derived from the premises.\n\nFrom Premise 1, we know that roses are given out on TV on some Mondays at 8 pm. \n\nFrom Premise 2, we know that every rose given out on TV is on the Bachelor. \n\nFrom Premise 3, we know that the Bachelor portrays real people. \n\nFrom Premise 4, we know that all shows portraying real people are reality TV shows. \n\nHowever, Premise 5 states that Breaking Bad is not a reality TV show. \n\nThis implies that Breaking Bad cannot be a show that portrays real people (because if it did, it would be a reality TV show, which contradicts Premise 5).\n\nSince Breaking Bad is not a reality TV show, it cannot be on the Bachelor, as the Bachelor is a reality TV show (according to Premises 3 and 4).\n\nTherefore, we cannot conclude that Breaking Bad is on Monday at 8 pm, because it cannot be on the Bachelor, which is the only show that is on TV on Monday at 8 pm according to the premises.\n\nThe conclusion is uncertain because we cannot logically derive it from the premises, but we also don't have enough information to conclude that it's false. \n\nHowever, based on the information we have, we can conclude that Breaking Bad cannot be on Monday at 8 pm, because it's not a reality TV show and the only show on TV at that time is the Bachelor.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will break down the premises and apply them to the conclusion.\n\nPremise 1: On some Mondays at 8 pm, roses are given out on TV.\nThis premise tells us that roses are given out on TV at a specific time and day, but it does not tell us which show they are from.\n\nPremise 2: Every rose given out on TV is on the Bachelor.\nThis premise tells us that the only show that gives out roses on TV is the Bachelor.\n\nPremise 3: Everything on the Bachelor portrays the lives of real people.\nThis premise tells us that the Bachelor is a reality TV show.\n\nPremise 4: All shows portraying the lives of real people are reality TV shows.\nThis premise tells us that if a show portrays the lives of real people, it is a reality TV show.\n\nPremise 5: Breaking Bad is not a reality TV show.\nThis premise tells us that Breaking Bad is not a reality TV show.\n\nConclusion: Breaking Bad is on Monday at 8 pm.\n\nTo determine whether the conclusion is true, false, or uncertain, we need to apply the premises to the conclusion.\n\nFrom Premise 1 and Premise 2, we know that the show on TV at 8 pm on Monday gives out roses and is the Bachelor.\n\nFrom Premise 3, we know that the Bachelor is a reality TV show.\n\nFrom Premise 4, we know that all shows portraying the lives of real people are reality TV shows.\n\nHowever, we cannot directly apply this information to Breaking Bad because Breaking Bad is not mentioned in any of the premises as being on Monday at 8 pm.\n\nBut, we do know that the Bachelor is on Monday at 8 pm and that Breaking Bad is not a reality TV show (Premise 5).\n\nSince the Bachelor is a reality TV show (Premise 3) and Breaking Bad is not a reality TV show (Premise 5), they cannot be the same show.\n\nTherefore, the conclusion \"Breaking Bad is on Monday at 8 pm\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and the conclusion step by step.\n\nPremise 1: On some Mondays at 8 pm, roses are given out on TV.\nThis premise tells us about a specific time and day when roses are given out on TV.\n\nPremise 2: Every rose given out on TV is on the Bachelor.\nThis premise establishes a relationship between the rose-giving event and the Bachelor.\n\nPremise 3: Everything on the Bachelor portrays the lives of real people.\nThis premise provides more information about the content of the Bachelor.\n\nPremise 4: All shows portraying the lives of real people are reality TV shows.\nThis premise connects reality TV shows with the portrayal of real people.\n\nPremise 5: Breaking Bad is not a reality TV show.\nThis premise explicitly states that Breaking Bad is not a reality TV show.\n\nConclusion: Breaking Bad is on Monday at 8 pm.\n\nWe can now analyze the conclusion using the given premises:\n\n- If Breaking Bad is on Monday at 8 pm, then it would be part of the rose-giving event on TV (by Premise 1).\n- If it's part of the rose-giving event, then it would be related to the Bachelor (by Premise 2).\n- If it's related to the Bachelor, then it would portray the lives of real people (by Premise 3).\n- If it portrays the lives of real people, then it would be a reality TV show (by Premise 4).\n- However, we know that Breaking Bad is not a reality TV show (by Premise 5).\n\nGiven the premises, we have reached a contradiction. If Breaking Bad is on Monday at 8 pm, then it would be a reality TV show, which contradicts Premise 5.\n\nTherefore, the conclusion is uncertain because it leads to a logical contradiction with the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the given premises and see if they lead to the conclusion.\n\nPremise 1: On some Mondays at 8 pm, roses are given out on TV.\nPremise 2: Every rose given out on TV is on the Bachelor.\nPremise 3: Everything on the Bachelor portrays the lives of real people.\nPremise 4: All shows portraying the lives of real people are reality TV shows.\nPremise 5: Breaking Bad is not a reality TV show.\n\nConclusion: Breaking Bad is on Monday at 8 pm.\n\nNow, let's analyze the premises:\n\n1. Roses are given out on TV on some Mondays at 8 pm. This tells us nothing about Breaking Bad.\n2. Every rose given out on TV is on the Bachelor. This also tells us nothing about Breaking Bad.\n3. Everything on the Bachelor portrays the lives of real people. This is a characteristic of reality TV shows, but it's unrelated to Breaking Bad.\n4. All shows portraying the lives of real people are reality TV shows. This is a general statement about reality TV shows, but it doesn't mention Breaking Bad.\n5. Breaking Bad is not a reality TV show. This is crucial information, as it contradicts the conclusion that Breaking Bad is a reality TV show (which would be the case if it were on the Bachelor).\n\nNow, let's see if the premises lead to the conclusion:\n\nIf Breaking Bad is on the Bachelor, then it must portray the lives of real people (Premise 3).\nIf it portrays the lives of real people, then it must be a reality TV show (Premise 4).\nHowever, we know that Breaking Bad is not a reality TV show (Premise 5). This contradicts the previous statement, making the initial assumption (that Breaking Bad is on the Bachelor) false.\n\nTherefore, the conclusion that Breaking Bad is on Monday at 8 pm is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: On some Mondays at 8 pm, roses are given out on TV.\nThis premise doesn't provide any information about Breaking Bad.\n\nPremise 2: Every rose given out on TV is on the Bachelor.\nThis premise also doesn't provide any information about Breaking Bad. It only establishes a relationship between roses and the Bachelor.\n\nPremise 3: Everything on the Bachelor portrays the lives of real people.\nThis premise still doesn't provide any information about Breaking Bad. It only describes the nature of the Bachelor show.\n\nPremise 4: All shows portraying the lives of real people are reality TV shows.\nThis premise also doesn't provide any information about Breaking Bad. It only establishes a relationship between reality TV shows and shows that portray real people's lives.\n\nPremise 5: Breaking Bad is not a reality TV show.\nThis premise directly contradicts the information from Premise 4, but it's still not directly related to the conclusion we're trying to evaluate.\n\nTo evaluate the conclusion, we need to consider the following logical chain:\n\n- If a show is on the Bachelor, it portrays real people's lives.\n- If a show portrays real people's lives, it is a reality TV show.\n- Breaking Bad is not a reality TV show.\n- Therefore, Breaking Bad is not on the Bachelor.\n\nHowever, this chain of reasoning is not relevant to the conclusion we're trying to evaluate, which is: Breaking Bad is on Monday at 8 pm.\n\nTo evaluate this conclusion, we need to examine the premises again and look for any direct connections to Breaking Bad.\n\nUnfortunately, there are no premises that directly state: Breaking Bad is on Monday at 8 pm. The only information we have about Breaking Bad is that it is not a reality TV show.\n\nSince we have no information about Breaking Bad's airtime or day of the week, we cannot determine whether the conclusion is true or false. The conclusion is uncertain because it is not supported by any of the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: On some Mondays at 8 pm, roses are given out on TV.\nThis premise only tells us that roses are given out on TV on some Mondays at 8 pm, but it doesn't tell us which specific show is airing at this time.\n\nPremise 2: Every rose given out on TV is on the Bachelor.\nThis premise tells us that the show where roses are given out on TV is the Bachelor. However, it still doesn't tell us whether the Bachelor airs on Mondays at 8 pm.\n\nPremise 3: Everything on the Bachelor portrays the lives of real people.\nThis premise tells us something about the content of the Bachelor, but it doesn't tell us whether the show airs on Mondays at 8 pm.\n\nPremise 4: All shows portraying the lives of real people are reality TV shows.\nThis premise gives us a definition of reality TV shows, but it doesn't tell us whether the Bachelor is a reality TV show.\n\nPremise 5: Breaking Bad is not a reality TV show.\nThis premise tells us something about Breaking Bad, but it doesn't tell us whether the show airs on Mondays at 8 pm.\n\nTo determine the conclusion, we need to look for any connections between the Bachelor and Breaking Bad.\n\nFrom Premise 1, we know that roses are given out on TV on some Mondays at 8 pm.\nFrom Premise 2, we know that every rose given out on TV is on the Bachelor.\nFrom Premise 3, we know that everything on the Bachelor portrays the lives of real people.\nFrom Premise 4, we know that all shows portraying the lives of real people are reality TV shows.\nFrom Premise 5, we know that Breaking Bad is not a reality TV show.\n\nWe can conclude that the Bachelor is a reality TV show (Premise 3 and Premise 4), but we still don't know whether it airs on Mondays at 8 pm.\n\nWe don't have any information that directly connects Breaking Bad to the Bachelor or the time slot of 8 pm on Mondays. Breaking Bad is mentioned as a separate show that is not a reality TV show (Premise 5).\n\nTherefore, the conclusion is uncertain because we don't have enough information to determine whether Breaking Bad airs on Mondays at 8 pm.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"Breaking Bad is on Monday at 8 pm\" is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: On some Mondays at 8 pm, roses are given out on TV.\nPremise 2: Every rose given out on TV is on the Bachelor.\nPremise 3: Everything on the Bachelor portrays the lives of real people.\nPremise 4: All shows portraying the lives of real people are reality TV shows.\nPremise 5: Breaking Bad is not a reality TV show.\n\nFrom Premise 1, we know that some Mondays at 8 pm, roses are given out on TV. \nFrom Premise 2, we can conclude that everything that is on TV at 8 pm on those Mondays is the Bachelor.\n\nFrom Premise 3, we know that everything on the Bachelor portrays the lives of real people. \nFrom Premise 4, we can conclude that everything that portrays the lives of real people is a reality TV show.\n\nHowever, Premise 5 tells us that Breaking Bad is not a reality TV show. \n\nWe need to determine if Breaking Bad is on Monday at 8 pm. To do this, we need to see if the given premises logically lead to Breaking Bad being on Monday at 8 pm.\n\nWe can conclude that Breaking Bad is not on Monday at 8 pm because Breaking Bad is not a reality TV show, and the only shows that can be on Monday at 8 pm on the given premises are reality TV shows.\n\nTherefore, the conclusion \"Breaking Bad is on Monday at 8 pm\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if we can logically deduce the conclusion.\n\nPremise 1: On some Mondays at 8 pm, roses are given out on TV.\nPremise 2: Every rose given out on TV is on the Bachelor.\nPremise 3: Everything on the Bachelor portrays the lives of real people.\nPremise 4: All shows portraying the lives of real people are reality TV shows.\nPremise 5: Breaking Bad is not a reality TV show.\n\nConclusion: Breaking Bad is on Monday at 8 pm.\n\nLet's analyze the premises and conclusion step by step:\n\n1. From Premise 1, we know that roses are given out on TV on some Mondays at 8 pm.\n2. From Premise 2, we can infer that whatever is on TV at 8 pm on Mondays is the Bachelor.\n3. From Premise 3, we know that the Bachelor portrays the lives of real people.\n4. From Premise 4, we can infer that the Bachelor is a reality TV show.\n5. From Premise 5, we know that Breaking Bad is not a reality TV show.\n\nNow, let's examine the conclusion: Breaking Bad is on Monday at 8 pm.\n\nSince we know from Premise 2 that the Bachelor is on TV at 8 pm on Mondays, we can infer that the Bachelor is not on TV at 8 pm on Mondays. This is because Breaking Bad is not a reality TV show (Premise 5), and the Bachelor is a reality TV show (inferred from Premise 4), so they cannot be on TV at the same time.\n\nTherefore, we cannot conclude that Breaking Bad is on Monday at 8 pm. The conclusion is uncertain because we have conflicting information.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: On some Mondays at 8 pm, roses are given out on TV.\nThis premise states that roses are given out on TV on some Mondays at 8 pm, but it does not specify which TV shows are involved.\n\nPremise 2: Every rose given out on TV is on the Bachelor.\nThis premise tells us that the only TV shows that involve giving out roses on some Mondays at 8 pm are shows related to the Bachelor.\n\nPremise 3: Everything on the Bachelor portrays the lives of real people.\nThis premise informs us that the Bachelor is a reality TV show, as it portrays the lives of real people.\n\nPremise 4: All shows portraying the lives of real people are reality TV shows.\nThis premise confirms that if a show portrays the lives of real people, it is a reality TV show.\n\nPremise 5: Breaking Bad is not a reality TV show.\nThis premise directly states that Breaking Bad is not a reality TV show.\n\nNow, let's analyze the conclusion:\n\nConclusion: Breaking Bad is on Monday at 8 pm.\n\nTo determine whether the conclusion is true, false, or uncertain, we need to see if we can infer that Breaking Bad is a show that airs on Monday at 8 pm based on the given premises.\n\nFrom Premise 1, we know that some shows air on Monday at 8 pm, but we don't know which ones.\nFrom Premise 2, we know that the only shows that air on Monday at 8 pm and involve giving out roses are related to the Bachelor.\nFrom Premise 3, we know that the Bachelor is a reality TV show.\nFrom Premise 4, we know that if a show is a reality TV show, it portrays the lives of real people.\nFrom Premise 5, we know that Breaking Bad is not a reality TV show.\n\nSince Breaking Bad is not a reality TV show (Premise 5), we cannot conclude that it airs on Monday at 8 pm based on the given premises. The premises do not provide any information about Breaking Bad's airtime.\n\nTherefore, the conclusion is uncertain because we cannot determine whether Breaking Bad airs on Monday at 8 pm based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: On some Mondays at 8 pm, roses are given out on TV.\nThis premise only mentions Mondays at 8 pm, but it does not specify which show is on TV. So, it is possible that Breaking Bad is on TV on Mondays at 8 pm, but it's not confirmed.\n\nPremise 2: Every rose given out on TV is on the Bachelor.\nThis premise connects the rose given out on TV to the Bachelor, but it does not provide any information about other shows that might be on TV on Mondays at 8 pm.\n\nPremise 3: Everything on the Bachelor portrays the lives of real people.\nThis premise is irrelevant to the conclusion because it does not provide any information about Breaking Bad. It only talks about the Bachelor.\n\nPremise 4: All shows portraying the lives of real people are reality TV shows.\nThis premise is also irrelevant to the conclusion because it does not provide any information about Breaking Bad. It only talks about reality TV shows.\n\nPremise 5: Breaking Bad is not a reality TV show.\nThis premise directly contradicts the conclusion that Breaking Bad is a reality TV show (which is a possible interpretation of Premise 4). Since Breaking Bad is not a reality TV show, it is possible that it is on TV on Mondays at 8 pm, but it does not meet the criteria of being a reality TV show.\n\nHowever, the premises do not provide any information that directly confirms or denies the conclusion that Breaking Bad is on Monday at 8 pm. Since Breaking Bad is not a reality TV show, but we do not have any information about its broadcast schedule, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "gives_out_roses_on_tv(rose, bachelor)",
+          "z3_formula": "gives_out_roses_on_tv_rose_bachelor == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "on_tv(bachelor)",
+          "z3_formula": "on_tv_bachelor == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "portrays_real_people(bachelor)",
+          "z3_formula": "portrays_real_people_bachelor == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv_show(real_people)",
+          "z3_formula": "reality_tv_show_real_people == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(reality_tv_show(breaking_bad))",
+          "z3_formula": "not_reality_tv_show_breaking_bad == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "on_mondays_at_8pm(rose)",
+          "z3_formula": "on_mondays_at_8pm_rose == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "on_mondays_at_8pm(rose) -> on_bachelor(rose)",
+          "z3_formula": "Implies(on_mondays_at_8pm_rose, on_bachelor_rose)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(rose) -> on_bachelor(X)",
+          "z3_formula": "Implies(on_bachelor_rose, on_bachelor_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(X) -> reality_tv_show(X)",
+          "z3_formula": "Implies(on_bachelor_X, reality_tv_show_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "reality_tv_show(X) -> reality_tv_show(X)",
+          "z3_formula": "Implies(reality_tv_show_X, reality_tv_show_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv_show(breaking_bad) == False",
+          "z3_formula": "reality_tv_show_breaking_bad == False",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "on_tv(rose, monday, 8)",
+          "z3_formula": "on_tv_rose_monday_8 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "on_tv(rose, X, Y) -> on_bachelor(rose)",
+          "z3_formula": "Implies(on_tv_rose_monday_8, on_bachelor_rose)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(rose) -> on_bachelor(X)",
+          "z3_formula": "Implies(on_bachelor_rose, on_bachelor_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(X) -> reality_tv_show(X)",
+          "z3_formula": "Implies(on_bachelor_X, reality_tv_show_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "reality_tv_show(X) -> reality_tv_show(Y)",
+          "z3_formula": "Implies(reality_tv_show_X, reality_tv_show_Y)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(reality_tv_show(breaking_bad))",
+          "z3_formula": "not_reality_tv_show_breaking_bad == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(on_bachelor(breaking_bad))",
+          "z3_formula": "not_on_bachelor_breaking_bad == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(on_tv(breaking_bad, monday, 8))",
+          "z3_formula": "not_on_tv_breaking_bad_monday_8 == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "given_out_on_tv(rose, monday, 8)",
+          "z3_formula": "given_out_on_tv_rose_monday_8 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "given_out_on_tv(rose, X, Y) -> on_bachelor(X, Y)",
+          "z3_formula": "Implies(given_out_on_tv_rose_monday_8, on_bachelor_monday_8)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "on_bachelor(monday, 8)",
+          "z3_formula": "on_bachelor_monday_8 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "on_bachelor(X, Y) -> reality_tv_show(X, Y)",
+          "z3_formula": "Implies(on_bachelor_monday_8, reality_tv_show_monday_8)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv_show(X, Y) -> reality_tv_show(X, Y)",
+          "z3_formula": "Implies(reality_tv_show_monday_8, reality_tv_show_monday_8)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv_show(X, Y) -> reality_tv_show(X, Y)",
+          "z3_formula": "Implies(reality_tv_show_monday_8, reality_tv_show_monday_8)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not reality_tv_show(breaking_bad)",
+          "z3_formula": "not reality_tv_show_breaking_bad == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not on_bachelor(breaking_bad, monday, 8)",
+          "z3_formula": "not on_bachelor_breaking_bad_monday_8 == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rose_given_on_tv",
+          "z3_formula": "rose_given_on_tv == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rose_given_on_tv -> on_bachelor",
+          "z3_formula": "Implies(rose_given_on_tv, on_bachelor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor -> real_people",
+          "z3_formula": "Implies(on_bachelor, real_people)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "real_people -> reality_tv",
+          "z3_formula": "Implies(real_people, reality_tv)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_reality_tv_breaking_bad",
+          "z3_formula": "not_reality_tv_breaking_bad == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "on_tv(rose, monday, 8)",
+          "z3_formula": "on_tv_rose_monday_8 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "on_tv(rose, X, Y) -> on_bachelor(rose)",
+          "z3_formula": "Implies(on_tv_rose_monday_8, on_bachelor_rose)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(X) -> reality_tv_show(X)",
+          "z3_formula": "Implies(on_bachelor_rose, reality_tv_show_rose)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "reality_tv_show(X) -> reality_tv_show",
+          "z3_formula": "Implies(reality_tv_show_rose, reality_tv_show)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not reality_tv_show(breaking_bad)",
+          "z3_formula": "not reality_tv_show_breaking_bad == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not on_bachelor(breaking_bad)",
+          "z3_formula": "not on_bachelor_breaking_bad == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not on_monday_at_8(breaking_bad)",
+          "z3_formula": "not on_monday_at_8_breaking_bad == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "on_tv(rose, bachelor)",
+          "z3_formula": "on_tv_rose_bachelor == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "on_tv(rose, bachelor)",
+          "z3_formula": "on_tv_rose_bachelor == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "on_tv(bachelor, monday_8pm)",
+          "z3_formula": "on_tv_bachelor_monday_8pm == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "on_tv(X, bachelor) -> on_tv(X, monday_8pm)",
+          "z3_formula": "Implies(on_tv_rose_bachelor, on_tv_rose_monday_8pm)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "on_tv(X, monday_8pm) -> on_tv(X, monday_8pm)",
+          "z3_formula": "Implies(on_tv_rose_monday_8pm, on_tv_rose_monday_8pm)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv(shows_real_people)",
+          "z3_formula": "reality_tv_shows_real_people == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv(shows_real_people)",
+          "z3_formula": "reality_tv_shows_real_people == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "on_tv(X, bachelor) -> reality_tv(X)",
+          "z3_formula": "Implies(on_tv_rose_bachelor, reality_tv_rose)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "reality_tv(X) -> reality_tv(X)",
+          "z3_formula": "Implies(reality_tv_rose, reality_tv_rose)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not reality_tv(breaking_bad)",
+          "z3_formula": "not reality_tv_breaking_bad == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not on_tv(breaking_bad, monday_8pm)",
+          "z3_formula": "not on_tv_breaking_bad_monday_8pm == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "given_out_on_tv(rose, monday, 8)",
+          "z3_formula": "given_out_on_tv_rose_monday_8 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "given_out_on_tv(rose, X, Y) -> on_bachelor(rose)",
+          "z3_formula": "Implies(given_out_on_tv_rose_monday_8, on_bachelor_rose)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "on_bachelor(rose)",
+          "z3_formula": "on_bachelor_rose == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(rose) -> portrays_real_people(rose)",
+          "z3_formula": "Implies(on_bachelor_rose, portrays_real_people_rose)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "portrays_real_people(rose)",
+          "z3_formula": "portrays_real_people_rose == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "portrays_real_people(rose) -> reality_tv_show(rose)",
+          "z3_formula": "Implies(portrays_real_people_rose, reality_tv_show_rose)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv_show(rose)",
+          "z3_formula": "reality_tv_show_rose == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not reality_tv_show(breaking_bad)",
+          "z3_formula": "not reality_tv_show_breaking_bad == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "on_monday_at_8_pm(rose)",
+          "z3_formula": "on_monday_at_8_pm_rose == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "on_monday_at_8_pm(rose) -> on_bachelor(rose)",
+          "z3_formula": "Implies(on_monday_at_8_pm_rose, on_bachelor_rose)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(rose) -> on_bachelor(X)",
+          "z3_formula": "Implies(on_bachelor_rose, on_bachelor_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(X) -> portrays_real_people(X)",
+          "z3_formula": "Implies(on_bachelor_X, portrays_real_people_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "portrays_real_people(X) -> reality_tv_show(X)",
+          "z3_formula": "Implies(portrays_real_people_X, reality_tv_show_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv_show(X) -> reality_tv_show(Breaking_Bad)",
+          "z3_formula": "Implies(reality_tv_show_X, reality_tv_show_Breaking_Bad)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "reality_tv_show(Breaking_Bad) == False",
+          "z3_formula": "reality_tv_show_Breaking_Bad == False",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "on_monday_at_8_pm(Breaking_Bad) == False",
+          "z3_formula": "Not(Or(And(on_monday_at_8_pm_rose, on_bachelor_rose), And(on_bachelor_rose, portrays_real_people_rose), And(portrays_real_people_rose, reality_tv_show_rose), And(reality_tv_show_rose, reality_tv_show_Breaking_Bad))) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "given_out_on_tv(rose, monday, 8)",
+          "z3_formula": "given_out_on_tv_rose_monday_8 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "given_out_on_tv(X, Y, Z) -> bachelor(X, Y, Z)",
+          "z3_formula": "Implies(given_out_on_tv_rose_monday_8, bachelor_rose_monday_8)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bachelor(X, Y, Z) -> portrays_real_people(X, Y, Z)",
+          "z3_formula": "Implies(bachelor_rose_monday_8, portrays_real_people_rose_monday_8)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "portrays_real_people(X, Y, Z) -> reality_tv_show(X, Y, Z)",
+          "z3_formula": "Implies(portrays_real_people_rose_monday_8, reality_tv_show_rose_monday_8)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not reality_tv_show(breaking_bad)",
+          "z3_formula": "not_reality_tv_show_breaking_bad == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not bachelor(monday, 8)",
+          "z3_formula": "not_bachelor_monday_8 == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "given_out_on_tv(rose, monday, 8)",
+          "z3_formula": "given_out_on_tv_rose_monday_8 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "given_out_on_tv(X, Y, Z) -> on_bachelor(X, Y, Z)",
+          "z3_formula": "Implies(given_out_on_tv_rose_monday_8, on_bachelor_rose_monday_8)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(X, Y, Z) -> reality_tv_show(X, Y, Z)",
+          "z3_formula": "Implies(on_bachelor_rose_monday_8, reality_tv_show_rose_monday_8)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "reality_tv_show(X, Y, Z) -> portrays_real_people(X, Y, Z)",
+          "z3_formula": "Implies(reality_tv_show_rose_monday_8, portrays_real_people_rose_monday_8)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "portrays_real_people(X, Y, Z) -> reality_tv_show(X, Y, Z)",
+          "z3_formula": "Implies(portrays_real_people_rose_monday_8, reality_tv_show_rose_monday_8)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not reality_tv_show(breaking_bad)",
+          "z3_formula": "not reality_tv_show_breaking_bad == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(monday, 8, breaking_bad)",
+          "z3_formula": "unknown_monday_8_breaking_bad == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "on_tv(rose, monday, 8)",
+          "z3_formula": "on_tv_rose_monday_8 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "on_tv(rose, X, Y) -> on_bachelor(rose)",
+          "z3_formula": "Implies(on_tv_rose_monday_8, on_bachelor_rose)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "on_bachelor(rose) -> reality_tv(rose)",
+          "z3_formula": "Implies(on_bachelor_rose, reality_tv_rose)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "reality_tv(rose) -> reality_tv_show",
+          "z3_formula": "Implies(reality_tv_rose, reality_tv_show)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(reality_tv(breaking_bad))",
+          "z3_formula": "not_reality_tv_breaking_bad == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 84,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 55
+    },
+    "maxsat_stats": {
+      "satisfied": 53,
+      "excluded": 2,
+      "total_weight": 82,
+      "solve_time_ms": 1.667167991399765
+    },
+    "timing": {
+      "trace_gen_s": 6.773,
+      "extraction_s": 17.277,
+      "dedup_s": 1.121,
+      "maxsat_s": 0.005,
+      "total_s": 25.176
+    }
+  }
+}

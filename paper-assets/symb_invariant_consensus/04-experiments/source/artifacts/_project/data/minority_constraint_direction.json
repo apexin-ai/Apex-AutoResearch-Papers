@@ -1,0 +1,45 @@
+{
+  "summary": {
+    "total_problems": 204,
+    "non_unanimous_problems": 148,
+    "skipped_unanimous": 56,
+    "skipped_bad_data": 0,
+    "total_minority_unique_constraints": 2169,
+    "minority_exclusive_count": 1596,
+    "minority_exclusive_pct": 73.58,
+    "shared_count": 573,
+    "shared_pct": 26.42,
+    "per_problem_exclusive_ratio": {
+      "mean": 0.687,
+      "std": 0.2357,
+      "median": 0.7222
+    },
+    "per_problem_shared_ratio": {
+      "mean": 0.313,
+      "std": 0.2357,
+      "median": 0.2778
+    },
+    "variable_overlap_ratio": {
+      "mean": 0.6621,
+      "std": 0.2242,
+      "n": 146,
+      "description": "Fraction of predicate tokens in minority-exclusive constraints also in majority constraints"
+    }
+  },
+  "margin_breakdown": {
+    "-2": {"n_problems": 1, "exclusive_ratio_mean": 0.7037, "shared_ratio_mean": 0.2963},
+    "-1": {"n_problems": 7, "exclusive_ratio_mean": 0.8346, "shared_ratio_mean": 0.1654},
+    "0": {"n_problems": 15, "exclusive_ratio_mean": 0.791, "shared_ratio_mean": 0.209},
+    "1": {"n_problems": 17, "exclusive_ratio_mean": 0.7193, "shared_ratio_mean": 0.2807},
+    "2": {"n_problems": 10, "exclusive_ratio_mean": 0.8332, "shared_ratio_mean": 0.1668},
+    "3": {"n_problems": 12, "exclusive_ratio_mean": 0.62, "shared_ratio_mean": 0.38},
+    "4": {"n_problems": 17, "exclusive_ratio_mean": 0.6769, "shared_ratio_mean": 0.3231},
+    "5": {"n_problems": 17, "exclusive_ratio_mean": 0.6698, "shared_ratio_mean": 0.3302},
+    "6": {"n_problems": 7, "exclusive_ratio_mean": 0.4448, "shared_ratio_mean": 0.5552},
+    "7": {"n_problems": 18, "exclusive_ratio_mean": 0.7003, "shared_ratio_mean": 0.2997},
+    "8": {"n_problems": 10, "exclusive_ratio_mean": 0.6457, "shared_ratio_mean": 0.3543},
+    "9": {"n_problems": 10, "exclusive_ratio_mean": 0.6971, "shared_ratio_mean": 0.3029},
+    "10": {"n_problems": 7, "exclusive_ratio_mean": 0.46, "shared_ratio_mean": 0.54}
+  },
+  "note": "Full per_problem_details on server: /root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/minority_constraint_direction.json"
+}

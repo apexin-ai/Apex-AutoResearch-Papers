@@ -1,0 +1,624 @@
+{
+  "pid": "folio_190",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "american_yuri == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(basketball_player)",
+          "z3_formula": "tall_basketball_player == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> large_shoes(X)",
+          "z3_formula": "Implies(tall_basketball_player, large_shoes_basketball_player)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "large_shoes(X) -> large_clothes(X)",
+          "z3_formula": "Implies(large_shoes_basketball_player, large_clothes_basketball_player)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not large_clothes(yuri)",
+          "z3_formula": "large_clothes_yuri == False",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not large_shoes(yuri)",
+          "z3_formula": "large_shoes_yuri == False",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not tall(yuri)",
+          "z3_formula": "tall_yuri == False",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not basketball_player(yuri)",
+          "z3_formula": "basketball_player_yuri == False",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not american(basketball_player)",
+          "z3_formula": "american_basketball_player == False",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(american(yuri))",
+          "z3_formula": "american_yuri == Unknown",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "not american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(yuri)",
+          "z3_formula": "tall_yuri == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> large_shoes(X)",
+          "z3_formula": "Implies(tall_yuri, large_shoes_yuri)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "large_shoes(X) -> large_clothes(X)",
+          "z3_formula": "Implies(large_shoes_yuri, large_clothes_yuri)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not large_clothes(yuri)",
+          "z3_formula": "not large_clothes_yuri == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "basketball_player(yuri)",
+          "z3_formula": "basketball_player_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "not american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(yuri)",
+          "z3_formula": "tall_yuri == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> wears_large_shoes(X)",
+          "z3_formula": "Implies(tall_yuri, wears_large_shoes_yuri)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "wears_large_shoes(X) -> wears_large_clothes(X)",
+          "z3_formula": "Implies(wears_large_shoes_yuri, wears_large_clothes_yuri)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not wears_large_clothes(yuri)",
+          "z3_formula": "not wears_large_clothes_yuri == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "basketball_player(yuri)",
+          "z3_formula": "basketball_player_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "american(X) -> basketball_player(X)",
+          "z3_formula": "Implies(american_yuri, basketball_player_yuri)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "some_not_basketball_player(X)",
+          "z3_formula": "some_not_basketball_player == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "basketball_player(X) -> tall(X)",
+          "z3_formula": "Implies(basketball_player_yuri, tall_yuri)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> wears_large_shoes(X)",
+          "z3_formula": "Implies(tall_yuri, wears_large_shoes_yuri)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "wears_large_shoes(X) -> wears_large_clothes(X)",
+          "z3_formula": "Implies(wears_large_shoes_yuri, wears_large_clothes_yuri)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not_wears_large_clothes(yuri)",
+          "z3_formula": "not_wears_large_clothes_yuri == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not_wears_large_shoes(yuri)",
+          "z3_formula": "not_wears_large_shoes_yuri == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not_tall(yuri)",
+          "z3_formula": "not_tall_yuri == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not_basketball_player(yuri)",
+          "z3_formula": "not_basketball_player_yuri == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not_american_basketball_player(yuri)",
+          "z3_formula": "not_american_basketball_player_yuri == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "some_basketball_players_are_not_american",
+          "z3_formula": "some_basketball_players_are_not_american == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "basketball_player(X) -> tall(X)",
+          "z3_formula": "Implies(basketball_player_yuri, tall_yuri)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> wears_large_shoes(X)",
+          "z3_formula": "Implies(tall_yuri, wears_large_shoes_yuri)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "wears_large_shoes(X) -> wears_large_size_clothes(X)",
+          "z3_formula": "Implies(wears_large_shoes_yuri, wears_large_size_clothes_yuri)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "yuri_does_not_wear_large_size_clothes",
+          "z3_formula": "yuri_does_not_wear_large_size_clothes == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "yuri_does_not_wear_large_shoes",
+          "z3_formula": "Not(wears_large_shoes_yuri) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "yuri_is_not_tall",
+          "z3_formula": "Not(tall_yuri) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "yuri_is_not_a_basketball_player",
+          "z3_formula": "Not(basketball_player_yuri) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "yuri_is_american_basketball_player",
+          "z3_formula": "basketball_player_yuri & american_yuri",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not american(X)",
+          "z3_formula": "not american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> large_shoes(X)",
+          "z3_formula": "Implies(tall_yuri, large_shoes_yuri)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "large_shoes(X) -> large_clothes(X)",
+          "z3_formula": "Implies(large_shoes_yuri, large_clothes_yuri)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not large_clothes(yuri)",
+          "z3_formula": "large_clothes_yuri == False",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "tall(X)",
+          "z3_formula": "tall_yuri == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> american(X)",
+          "z3_formula": "Implies(tall_yuri, american_yuri)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "basketball_player(X) -> tall(X)",
+          "z3_formula": "Implies(basketball_player_yuri, tall_yuri)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not american(X)",
+          "z3_formula": "not american_yuri == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not basketball_player(X)",
+          "z3_formula": "not basketball_player_yuri == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not basketball_player(yuri)",
+          "z3_formula": "not basketball_player_yuri == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False (regarding being a basketball player), Uncertain (regarding being American)",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not american(basketball_player)",
+          "z3_formula": "not american_basketball_player == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(yuri)",
+          "z3_formula": "tall_yuri == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> large_shoes(X)",
+          "z3_formula": "Implies(tall_yuri, large_shoes_yuri)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "large_shoes(X) -> large_clothes(X)",
+          "z3_formula": "Implies(large_shoes_yuri, large_clothes_yuri)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not large_clothes(yuri)",
+          "z3_formula": "not large_clothes_yuri == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "tall(yuri)",
+          "z3_formula": "tall_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> wears_large_shoes(X)",
+          "z3_formula": "Implies(tall_yuri, wears_large_shoes_yuri)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "wears_large_shoes(X) -> wears_large_size_clothes(X)",
+          "z3_formula": "Implies(wears_large_shoes_yuri, wears_large_size_clothes_yuri)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not wears_large_size_clothes(yuri)",
+          "z3_formula": "Not(wears_large_size_clothes_yuri) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "Not(american_yuri) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "basketball_player(Yuri)",
+          "z3_formula": "basketball_player_yuri == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not american(Yuri)",
+          "z3_formula": "not_american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(Yuri)",
+          "z3_formula": "tall_yuri == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> large_shoes(X)",
+          "z3_formula": "Implies(tall_yuri, large_shoes_yuri)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "large_shoes(X) -> large_clothes(X)",
+          "z3_formula": "Implies(large_shoes_yuri, large_clothes_yuri)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "large_clothes(Yuri)",
+          "z3_formula": "large_clothes_yuri == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not large_clothes(Yuri)",
+          "z3_formula": "not_large_clothes_yuri == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "american(Yuri) | not american(Yuri)",
+          "z3_formula": "Or(american_yuri, not_american_yuri)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "not american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(basketball_player)",
+          "z3_formula": "tall_basketball_player == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> large_shoes(X)",
+          "z3_formula": "Implies(tall_basketball_player, large_shoes_basketball_player)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "large_shoes(X) -> large_clothes(X)",
+          "z3_formula": "Implies(large_shoes_basketball_player, large_clothes_basketball_player)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not large_clothes(yuri)",
+          "z3_formula": "not large_clothes_yuri == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "some_basketball_players_are_not_american",
+          "z3_formula": "some_basketball_players_are_not_american == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_basketball_players_are_tall",
+          "z3_formula": "all_basketball_players_are_tall == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> wears_large_shoes(X)",
+          "z3_formula": "Implies(tall_yuri, wears_large_shoes_yuri)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "wears_large_shoes(X) -> wears_large_size_clothes(X)",
+          "z3_formula": "Implies(wears_large_shoes_yuri, wears_large_size_clothes_yuri)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "yuri_does_not_wear_large_size_clothes",
+          "z3_formula": "yuri_does_not_wear_large_size_clothes == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "yuri_does_not_wear_large_shoes",
+          "z3_formula": "Not(wears_large_shoes_yuri) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "yuri_is_not_tall",
+          "z3_formula": "Not(tall_yuri) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "yuri_is_not_a_basketball_player",
+          "z3_formula": "Not(is_a_basketball_player_yuri) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "yuri_is_not_an_american_basketball_player",
+          "z3_formula": "Not(is_an_american_basketball_player_yuri) == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "basketball_player(yuri)",
+          "z3_formula": "basketball_player_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not american(yuri)",
+          "z3_formula": "not_american_yuri == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "tall(yuri)",
+          "z3_formula": "tall_yuri == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "basketball_player(X) -> tall(X)",
+          "z3_formula": "Implies(basketball_player_yuri, tall_yuri)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "tall(X) -> wears_large_shoes(X)",
+          "z3_formula": "Implies(tall_yuri, wears_large_shoes_yuri)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "wears_large_shoes(X) -> wears_large_size_clothes(X)",
+          "z3_formula": "Implies(wears_large_shoes_yuri, wears_large_size_clothes_yuri)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not wears_large_size_clothes(yuri)",
+          "z3_formula": "not_wears_large_size_clothes_yuri == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain",
+          "z3_formula": "Not(And(And(And(And(tall_yuri, wears_large_shoes_yuri), wears_large_size_clothes_yuri), not_wears_large_size_clothes_yuri), basketball_player_yuri, not_american_yuri))",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

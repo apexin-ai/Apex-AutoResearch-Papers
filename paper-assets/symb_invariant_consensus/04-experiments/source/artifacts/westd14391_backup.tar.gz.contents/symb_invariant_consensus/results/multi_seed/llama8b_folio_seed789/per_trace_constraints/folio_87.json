@@ -1,0 +1,894 @@
+{
+  "pid": "folio_87",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_guy(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, good_guy_sir_digby)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_guy_sir_digby == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(sir_digby) -> bad_guy(nemesis)",
+          "z3_formula": "Implies(good_guy_sir_digby, bad_guy_nemesis)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "bad_guy(nemesis)",
+          "z3_formula": "bad_guy_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(X) -> win(X)",
+          "z3_formula": "Implies(good_guy_sir_digby, win_sir_digby)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "win(sir_digby)",
+          "z3_formula": "win_sir_digby == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "win(sir_digby) -> lose(nemesis)",
+          "z3_formula": "Implies(win_sir_digby, lose_nemesis)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "lose(nemesis)",
+          "z3_formula": "lose_nemesis == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "good_guys_win",
+          "z3_formula": "good_guys_win == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_guys_win(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, good_guys_win)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy(X) -> bad_guy_opponent(X)",
+          "z3_formula": "Implies(good_guy_sir_digby, bad_guy_nemesis)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "good_guys_win(X) -> good_guy_wins(X)",
+          "z3_formula": "Implies(good_guys_win, good_guy_wins)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy_wins(X) -> bad_guy_loses(X)",
+          "z3_formula": "Implies(good_guy_wins, bad_guy_loses)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> character_appears(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, character_appears)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> character_appears(X)",
+          "z3_formula": "Implies(named_after_character, character_appears)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> good_guy(X)",
+          "z3_formula": "Implies(named_after_character, good_guy_sir_digby)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "bad_guy_nemesis_loses",
+          "z3_formula": "bad_guy_loses == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "good_movie(superhero)",
+          "z3_formula": "good_movie_superhero == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures)",
+          "z3_formula": "superhero_movie_surprising_adventures == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_movie(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures, good_movie_superhero)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> good(X)",
+          "z3_formula": "Implies(named_after_character_sir_digby, good_sir_digby)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "named_after_character(sir_digby)",
+          "z3_formula": "named_after_character_sir_digby == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> character_appears(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures, character_appears_sir_digby)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "wins_fight(X) -> loses_fight(Y)",
+          "z3_formula": "Implies(wins_fight_sir_digby, loses_fight_nemesis)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> character_appears(X)",
+          "z3_formula": "Implies(named_after_character_sir_digby, character_appears_sir_digby)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "good(sir_digby)",
+          "z3_formula": "good_sir_digby == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "wins_fight(sir_digby)",
+          "z3_formula": "wins_fight_sir_digby == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "loses_fight(nemesis)",
+          "z3_formula": "loses_fight_nemesis == True",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "good_guys_win",
+          "z3_formula": "good_guys_win == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_guys_win(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, good_guys_win_surprising_adventures_of_sir_digby_chicken_caesar)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> good_guy(X)",
+          "z3_formula": "Implies(named_after_character_sir_digby, good_guy_sir_digby)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> appears_in_movie(X)",
+          "z3_formula": "Implies(named_after_character_sir_digby, appears_in_movie_sir_digby)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy(X) -> good_guy_fights_bad_guy(X)",
+          "z3_formula": "Implies(good_guy_sir_digby, good_guy_fights_bad_guy_sir_digby)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy_fights_bad_guy(X) -> bad_guy(X)",
+          "z3_formula": "Implies(good_guy_fights_bad_guy_sir_digby, bad_guy_nemesis)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy(X) & bad_guy(Y) -> good_guy_wins(X, Y)",
+          "z3_formula": "Implies(And(good_guy_sir_digby, bad_guy_nemesis), good_guy_wins_sir_digby_nemesis)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy_wins(X, Y) -> Y_loses(X, Y)",
+          "z3_formula": "Implies(good_guy_wins_sir_digby_nemesis, nemesis_loses_sir_digby)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "named_after_character(sir_digby)",
+          "z3_formula": "named_after_character_sir_digby == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_guy_sir_digby == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "appears_in_movie(sir_digby)",
+          "z3_formula": "appears_in_movie_sir_digby == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "bad_guy(nemesis)",
+          "z3_formula": "bad_guy_nemesis == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "good_guy_wins(sir_digby, nemesis)",
+          "z3_formula": "good_guy_wins_sir_digby_nemesis == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "nemesis_loses(sir_digby)",
+          "z3_formula": "nemesis_loses_sir_digby == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "good_guys_always_win",
+          "z3_formula": "good_guys_always_win == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie_surprising_adventures",
+          "z3_formula": "superhero_movie_surprising_adventures == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie_named_after_character -> good_guy_character",
+          "z3_formula": "Implies(superhero_movie_named_after_character, good_guy_character)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie_surprising_adventures_named_after_sir_digby",
+          "z3_formula": "superhero_movie_surprising_adventures_named_after_sir_digby == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "somebody_wins_fight -> opponent_loses",
+          "z3_formula": "Implies(somebody_wins_fight, opponent_loses)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie_named_after_character -> character_appears_in_movie",
+          "z3_formula": "Implies(superhero_movie_named_after_character, character_appears_in_movie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sir_digby_is_good_guy",
+          "z3_formula": "good_guy_character == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sir_digby_wins",
+          "z3_formula": "good_guys_always_win == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sir_digby_nemesis_loses",
+          "z3_formula": "opponent_loses == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "good_guys_always_win",
+          "z3_formula": "good_guys_always_win == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie_surprising_adventures",
+          "z3_formula": "superhero_movie_surprising_adventures == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_guys_always_win",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures, good_guys_always_win)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_guys_fight_bad_guys",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures, good_guys_fight_bad_guys)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> good_guy(X)",
+          "z3_formula": "Implies(named_after_character_sir_digby, good_guy_sir_digby)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) & named_after_character(X) -> good_guy(X)",
+          "z3_formula": "Implies(And(superhero_movie_surprising_adventures, named_after_character_sir_digby), good_guy_sir_digby)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy(X) -> fights_bad_guy(X)",
+          "z3_formula": "Implies(good_guy_sir_digby, fights_bad_guy_sir_digby)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "fights_bad_guy(X) -> bad_guy(X)",
+          "z3_formula": "Implies(fights_bad_guy_sir_digby, bad_guy_sir_digby)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "wins_fight(X) -> loses_fight(Y)",
+          "z3_formula": "Implies(wins_fight_sir_digby, loses_fight_nemesis)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "loses_fight(nemesis)",
+          "z3_formula": "loses_fight_nemesis == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_guy_sir_digby == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_guy(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, good_guy_sir_digby)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy(X) -> bad_guy(opp(X))",
+          "z3_formula": "Implies(good_guy_sir_digby, bad_guy_nemesis)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "wins(X, Y) -> loses(opp(Y), X)",
+          "z3_formula": "Implies(wins_sir_digby_nemesis, loses_nemesis_sir_digby)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> wins(good_guy(X), opp(good_guy(X)))",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, wins_sir_digby_nemesis)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> appears_in_movie(X)",
+          "z3_formula": "Implies(named_after_character_sir_digby, appears_in_movie_sir_digby)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "good_guys_always_win",
+          "z3_formula": "good_guys_always_win == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "surprising_adventures_is_superhero_movie",
+          "z3_formula": "surprising_adventures_is_superhero_movie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie_named_after_character -> good_guy",
+          "z3_formula": "Implies(surprising_adventures_is_superhero_movie & named_after_character, good_guy)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie_named_after_character -> character_appears_in_movie",
+          "z3_formula": "Implies(surprising_adventures_is_superhero_movie & named_after_character, character_appears_in_movie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "wins_fight -> loses",
+          "z3_formula": "Implies(wins_fight, loses)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy -> wins_fight",
+          "z3_formula": "Implies(good_guy, wins_fight)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_sir_digby == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "bad_guy(nemesis)",
+          "z3_formula": "bad_nemesis == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sir_digby_wins_fight",
+          "z3_formula": "sir_digby_wins_fight == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nemesis_loses",
+          "z3_formula": "nemesis_loses == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "good_guys_win",
+          "z3_formula": "good_guys_win == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie_named_after_character(X) -> good_guy(X)",
+          "z3_formula": "Implies(superhero_movie_named_after_character_surprising_adventures_of_sir_digby_chicken_caesar, good_guy_sir_digby)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie_named_after_character(X) -> character_appears_in_movie(X)",
+          "z3_formula": "Implies(superhero_movie_named_after_character_surprising_adventures_of_sir_digby_chicken_caesar, character_appears_in_movie_sir_digby)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy(X) -> good_guy_fights_bad_guy(X)",
+          "z3_formula": "Implies(good_guy_sir_digby, good_guy_fights_bad_guy_sir_digby)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "wins_fight(X, Y) -> loses_fight(Y, X)",
+          "z3_formula": "Implies(wins_fight_sir_digby_nemesis, loses_fight_nemesis_sir_digby)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_guy_sir_digby == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "good_guy_fights_bad_guy(sir_digby)",
+          "z3_formula": "good_guy_fights_bad_guy_sir_digby == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "wins_fight(sir_digby, nemesis)",
+          "z3_formula": "wins_fight_sir_digby_nemesis == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "loses_fight(nemesis, sir_digby)",
+          "z3_formula": "loses_fight_nemesis_sir_digby == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_guy(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, good_guy_sir_digby)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_guy_sir_digby == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> named_after_character(X, Y)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, named_after_character_surprising_adventures_of_sir_digby_chicken_caesar_sir_digby)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "named_after_character(surprising_adventures_of_sir_digby_chicken_caesar, sir_digby)",
+          "z3_formula": "named_after_character_surprising_adventures_of_sir_digby_chicken_caesar_sir_digby == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_guy_sir_digby == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy(X) -> wins(X, Y)",
+          "z3_formula": "Implies(good_guy_sir_digby, wins_sir_digby_nemesis)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "wins(sir_digby, nemesis)",
+          "z3_formula": "wins_sir_digby_nemesis == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fights(sir_digby, nemesis)",
+          "z3_formula": "fights_sir_digby_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "fights(X, Y) -> good_guy(X) | bad_guy(Y)",
+          "z3_formula": "Implies(And(fights_sir_digby_nemesis, good_guy_sir_digby), Or(bad_guy_nemesis, Not(bad_guy_nemesis)))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "wins(X, Y) -> loses(Y)",
+          "z3_formula": "Implies(wins_sir_digby_nemesis, loses_nemesis)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "loses(nemesis)",
+          "z3_formula": "loses_nemesis == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "good_guys_always_win",
+          "z3_formula": "good_guys_always_win == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) & named_after_character(X, Y) -> good_guy(Y)",
+          "z3_formula": "Implies(And(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, named_after_character_sir_digby_chicken_caesar_sir_digby), good_guy_sir_digby)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) & named_after_character(X, Y) -> character_appears_in_movie(Y, X)",
+          "z3_formula": "Implies(And(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, named_after_character_sir_digby_chicken_caesar_sir_digby), character_appears_in_movie_sir_digby_surprising_adventures_of_sir_digby_chicken_caesar)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "wins_fight(X) -> loses_fight(Y)",
+          "z3_formula": "Implies(wins_fight_sir_digby, loses_fight_nemesis)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_guy_sir_digby == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sir_digby_wins_fight",
+          "z3_formula": "wins_fight_sir_digby == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nemesis_loses_fight",
+          "z3_formula": "loses_fight_nemesis == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "named_after_character(surprising_adventures_of_sir_digby_chicken_caesar, sir_digby)",
+          "z3_formula": "named_after_character_surprising_adventures_of_sir_digby_chicken_caesar_sir_digby == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "named_after_character(surprising_adventures_of_sir_digby_chicken_caesar, sir_digby) -> good_guy(sir_digby)",
+          "z3_formula": "Implies(named_after_character_surprising_adventures_of_sir_digby_chicken_caesar_sir_digby, good_guy_sir_digby)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(sir_digby) -> bad_guy(nemesis)",
+          "z3_formula": "Implies(good_guy_sir_digby, bad_guy_nemesis)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(sir_digby) -> win(sir_digby, nemesis)",
+          "z3_formula": "Implies(good_guy_sir_digby, win_sir_digby_nemesis)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "win(sir_digby, nemesis) -> lose(nemesis)",
+          "z3_formula": "Implies(win_sir_digby_nemesis, lose_nemesis)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "lose(nemesis)",
+          "z3_formula": "lose_nemesis == True",
+          "source_step": 8
+        }
+      ]
+    }
+  ]
+}

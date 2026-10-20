@@ -1,0 +1,746 @@
+{
+  "problem": {
+    "id": "folio_170",
+    "problem": "Given the following premises:\nIf something is a deadly disease, then its survival rate is low.  All severe cancers are deadly diseases. Bile duct cancer is a severe cancer.  All Cholangiocarcinoma is bile duct cancer. No one with mild flu has a low survival rate. If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nColorectal cancer is a severe cancer",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (DeadlyDiseases(x) \u2192 SurvivalRateIsLow(x))",
+      "\u2200x (SevereCancer(x) \u2192 DeadlyDiseases(x))",
+      "\u2200x (BileDuctCancer(x) \u2192 SevereCancer(x))",
+      "\u2200x (Cholangiocarcinoma(x) \u2192 BileDuctCancer(x))",
+      "\u2200x (MildFlu(x) \u2192 \u00acSurvivalRateIsLow(x)) ",
+      "BileDuctCancer(colorectalCancer) \u2228 SurvivalRateIsLow(colorectalCancer) \u2192 \u00acBileDuctCancer(colorectalCancer)"
+    ],
+    "conclusion_fol": "SevereCancer(colorectalCancer)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 86.0
+    },
+    "answer_counts": {
+      "Unknown": 11
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will break down the premises and analyze the conclusion step by step.\n\n1. If something is a deadly disease, then its survival rate is low. (Premise 1)\n\nThis premise states a relationship between being a deadly disease and having a low survival rate.\n\n2. All severe cancers are deadly diseases. (Premise 2)\n\nThis premise states that all severe cancers are classified as deadly diseases.\n\n3. Bile duct cancer is a severe cancer. (Premise 3)\n\nThis premise directly states that bile duct cancer is a severe cancer.\n\n4. All Cholangiocarcinoma is bile duct cancer. (Premise 4)\n\nThis premise states that Cholangiocarcinoma is a type of bile duct cancer.\n\n5. No one with mild flu has a low survival rate. (Premise 5)\n\nThis premise states that people with mild flu do not have low survival rates.\n\n6. If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer. (Premise 6)\n\nThis premise is a conditional statement. If the conditions (colorectal cancer is a bile duct cancer and the survival rate is low) are met, then the conclusion (colorectal cancer is not a bile duct cancer) is true.\n\nNow, let's analyze the conclusion:\n\nColorectal cancer is a severe cancer.\n\nTo determine if this conclusion is true, false, or uncertain, we need to see if it can be logically derived from the premises.\n\nFrom Premise 3, we know that bile duct cancer is a severe cancer. \n\nFrom Premise 4, we know that Cholangiocarcinoma is a type of bile duct cancer. \n\nHowever, we cannot conclude that all Cholangiocarcinoma is a severe cancer directly from these premises, because the relationship between Cholangiocarcinoma and severe cancers is indirect. \n\nBut, we can deduce that Cholangiocarcinoma is a type of bile duct cancer which is a severe cancer, and therefore, Cholangiocarcinoma is a severe cancer indirectly. However, this is not the focus.\n\nWe need to focus on whether colorectal cancer is a severe cancer.\n\nFrom Premise 6, we know that if colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nHowever, Premise 2 states that all severe cancers are deadly diseases, which means if the survival rate is low, then it is a deadly disease and therefore a severe cancer.\n\nNow, we need to consider if there is any information that directly relates colorectal cancer to a severe cancer. \n\nWe know that if colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer (Premise 6). \n\nBut, we do not have any information that directly states whether colorectal cancer has a low survival rate or not.\n\nHowever, from Premise 1, we know that if something is a deadly disease, then its survival rate is low. \n\nFrom Premise 2, we know that all severe cancers are deadly diseases. \n\nSo, if we can determine that colorectal cancer is a deadly disease, then it is a severe cancer.\n\nBut, we do not have any direct information that relates colorectal cancer to being a deadly disease.\n\nHowever, we have the following conditional statement from Premise 4: If something is a Cholangiocarcinoma, then it is a bile duct cancer. \n\nBut, we do not have any information that directly relates Cholangiocarcinoma to being a severe cancer. However, from Premise 3, we know that bile duct cancer is a severe cancer. \n\nTherefore, if Cholangiocarcinoma is a type of bile duct cancer, then it is a severe cancer. But we do not have any direct information that links Cholangiocarcinoma to colorectal cancer.\n\nHowever, Premise 6 states that if colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nWe can infer that if the survival rate is low, then it is a deadly disease and therefore a severe cancer (Premise 2).\n\nHowever, we do not have any information that directly states whether colorectal cancer has a low survival rate or not.\n\nWe can see that we do not have enough information to determine whether colorectal cancer is a severe cancer directly.\n\nHowever, from Premise 2, we know that all severe cancers are deadly diseases.\n\nAnd from Premise 6, we know that if colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nWe can infer that if the survival rate is low, then it is a deadly disease and therefore a severe cancer.\n\nWe can also see that if colorectal cancer has a low survival rate, then it must be a deadly disease (Premise 1), and therefore a severe cancer (Premise 2).\n\nHowever, we do not have any information that directly states whether colorectal cancer has a low survival rate or not.\n\nWe can see that we do not have enough information to determine whether colorectal cancer is a severe cancer directly.\n\nHowever, we can see that if we can determine whether colorectal cancer is a bile duct cancer and whether it has a low survival rate, then we can determine whether it is a severe cancer or not.\n\nBut, we do not have any direct information that links colorectal cancer to being a bile duct cancer.\n\nHowever, we can see that if Cholangiocarcinoma is a type of bile duct cancer and Cholangiocarcinoma is a type of colorectal cancer, then colorectal cancer is a type of bile duct cancer.\n\nHowever, we do not have any direct information that links Cholangiocarcinoma to colorectal cancer.\n\nHowever, we can see that if we can determine whether Cholangiocarcinoma is a type of colorectal cancer, then we can determine whether colorectal cancer is a type of bile duct cancer.\n\nBut, we do not have any direct information that links Cholangiocarcinoma to colorectal cancer.\n\nHowever, we can see that if we can determine whether colorectal cancer is a bile duct cancer and whether it has a low survival rate, then we can determine whether it is a severe cancer or not.\n\nBut, we do not have any direct information that links colorectal cancer to being a bile duct cancer.\n\nHowever, we can see that if we can determine whether colorectal cancer is a deadly disease, then we can determine whether it is a severe cancer or not.\n\nAnd we can see that if we can determine whether the survival rate of colorectal cancer is low, then we can determine whether it is a deadly disease or not.\n\nBut, we do not have any direct information that links colorectal cancer to having a low survival rate.\n\nHowever, we can see that if we can determine whether colorectal cancer is a type of bile duct cancer and whether it has a low survival rate, then we can determine whether it is a severe cancer or not.\n\nBut, we do not have any direct information that links colorectal cancer to being a type of bile duct cancer.\n\nHowever, we can see that if we can determine whether colorectal cancer is a type of Cholangiocarcinoma, then we can determine whether it is a type of bile duct cancer.\n\nAnd if we can determine whether Cholangiocarcinoma is a type of bile duct cancer, then we can determine whether colorectal cancer is a type of bile duct cancer.\n\nHowever, we do not have any direct information that links Cholangiocarcinoma to being a type of bile duct cancer.\n\nHowever, we can see that if we can determine whether colorectal cancer is a type of Cholangiocarcinoma, then we can determine whether it is a type of bile duct cancer.\n\nBut, we do not have any direct information that links colorectal cancer to being a type of Cholangiocarcinoma.\n\nHowever, we can see that if we can determine whether Cholangiocarcinoma is a type of colorectal cancer, then we can determine whether colorectal cancer is a type of bile duct cancer.\n\nBut, we do not have any direct information that links Cholangiocarcinoma to being a type of colorectal cancer.\n\nHowever, we can see that if we can determine whether the survival rate of Cholangiocarcinoma is low, then we can determine whether it is a deadly disease or not.\n\nAnd if we can determine whether Cholangiocarcinoma is a deadly disease, then we can determine whether it is a severe cancer or not.\n\nHowever, we do not have any direct information that links the survival rate of Cholangiocarcinoma to being low.\n\nHowever, we can see that if we can determine whether Cholangiocarcinoma is a type of bile duct cancer and whether it has a low survival rate, then we can determine whether it is a severe cancer or not.\n\nBut, we do not have any direct information that links Cholangiocarcinoma to being a type of bile duct cancer.\n\nHowever, we can see that if we can determine whether Cholangiocarcinoma is a type of colorectal cancer, then we can determine whether colorectal cancer is a type of bile duct cancer.\n\nAnd if we can determine whether Cholangiocarcinoma is a type of bile duct cancer, then we can determine whether colorectal cancer is a type of bile duct cancer.\n\nHowever, we do not have any direct information that links Cholangiocarcinoma to being a type of colorectal cancer.\n\nHowever, we can see that if we can determine whether Cholangiocarcinoma is a type of bile duct cancer and whether it has a low survival rate, then we can determine whether it is a severe cancer or not.\n\nBut, we do",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "Let's break down the given premises and analyze them step by step:\n\n1. If something is a deadly disease, then its survival rate is low.\n   This is a conditional statement where \"something\" is the subject. \n\n2. All severe cancers are deadly diseases.\n   This statement connects the concepts of severe cancers and deadly diseases.\n\n3. Bile duct cancer is a severe cancer.\n   This statement is an instance of a severe cancer.\n\n4. All Cholangiocarcinoma is bile duct cancer.\n   This statement connects the concepts of Cholangiocarcinoma and bile duct cancer.\n\n5. No one with mild flu has a low survival rate.\n   This statement is irrelevant to the relationship between cancers and survival rates.\n\n6. If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n   This statement seems to be an attempt to create a contradiction.\n\nNow, let's determine whether the conclusion is true, false, or uncertain.\n\nWe want to conclude whether Colorectal cancer is a severe cancer. \n\nFrom premise 3, we know that Bile duct cancer is a severe cancer. \n\nFrom premise 4, we know that All Cholangiocarcinoma is bile duct cancer.\n\nThis means that Cholangiocarcinoma is also a severe cancer. \n\nFrom premise 6, we can infer that if Colorectal cancer has a low survival rate, then it is not a bile duct cancer.\n\nHowever, we are not given any information about the survival rate of Colorectal cancer. \n\nBut we can infer that if Colorectal cancer is a bile duct cancer, then it is a severe cancer, because we know that Bile duct cancer is a severe cancer.\n\nNow, let's assume that Colorectal cancer is a bile duct cancer. \n\nFrom premise 1 and premise 2, we know that if Colorectal cancer is a deadly disease, then its survival rate is low.\n\nFrom premise 6, we know that if Colorectal cancer is a bile duct cancer and the survival rate is low, then Colorectal cancer is not a bile duct cancer. \n\nThis creates a contradiction. \n\nHowever, we cannot conclude that Colorectal cancer is not a bile duct cancer, because we are assuming it to be a bile duct cancer.\n\nSo, we cannot conclude that Colorectal cancer is not a severe cancer.\n\nWe can only conclude that the relationship between Colorectal cancer and its survival rate is uncertain.\n\nBut from premise 6, we know that if Colorectal cancer is a bile duct cancer and the survival rate is low, then Colorectal cancer is not a bile duct cancer.\n\nThis means that if Colorectal cancer has a low survival rate, it cannot be a bile duct cancer.\n\nHowever, we are not given any information about the survival rate of Colorectal cancer.\n\nSo, we cannot conclude that Colorectal cancer has a low survival rate.\n\nThis means that we cannot conclude that Colorectal cancer is not a bile duct cancer.\n\nHowever, we can conclude that if Colorectal cancer is a bile duct cancer, then it is a severe cancer.\n\nBut we are not given any information that confirms Colorectal cancer is a bile duct cancer.\n\nHowever, we can infer that if Colorectal cancer is a bile duct cancer, then it is a severe cancer.\n\nSo, we can conclude that the conclusion is uncertain.\n\nHowever, since we cannot confirm whether Colorectal cancer is a bile duct cancer or not, we cannot conclude that Colorectal cancer is a severe cancer.\n\nBut we can conclude that if Colorectal cancer is a severe cancer, then it is a deadly disease.\n\nFrom premise 1, we know that if something is a deadly disease, then its survival rate is low.\n\nThis means that if Colorectal cancer is a severe cancer, then its survival rate is low.\n\nHowever, premise 6 says that if Colorectal cancer is a bile duct cancer and the survival rate is low, then Colorectal cancer is not a bile duct cancer.\n\nHowever, this premise is trying to create a contradiction.\n\nWe are not given any information that confirms Colorectal cancer is a bile duct cancer.\n\nHowever, we can conclude that if Colorectal cancer is a bile duct cancer, then it is a severe cancer.\n\nBut we cannot conclude that Colorectal cancer is a bile duct cancer.\n\nHowever, we can conclude that if Colorectal cancer is a severe cancer, then it is a deadly disease.\n\nFrom premise 1, we know that if something is a deadly disease, then its survival rate is low.\n\nThis means that if Colorectal cancer is a severe cancer, then its survival rate is low.\n\nHowever, we are not given any information that confirms Colorectal cancer is a severe cancer.\n\nHowever, we can conclude that the conclusion is uncertain.\n\nBut we can conclude that if Colorectal cancer is a severe cancer, then its survival rate is low.\n\nHowever, we are not given any information that confirms Colorectal cancer is a severe cancer.\n\nHowever, we can conclude that the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use a step-by-step approach to evaluate the given premises and determine the conclusion.\n\nPremise 1: If something is a deadly disease, then its survival rate is low.\nPremise 2: All severe cancers are deadly diseases.\nPremise 3: Bile duct cancer is a severe cancer.\nPremise 4: All Cholangiocarcinoma is bile duct cancer.\nPremise 5: No one with mild flu has a low survival rate.\nPremise 6: If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nWe need to determine whether Colorectal cancer is a severe cancer.\n\nLet's break down the information:\n\nFrom Premise 4, we know that All Cholangiocarcinoma is bile duct cancer. Since Cholangiocarcinoma is also mentioned in Premise 3 as a type of severe cancer, it can be inferred that Bile duct cancer (which includes Cholangiocarcinoma) is a severe cancer.\n\nFrom Premise 1 and Premise 2, we can conclude that all severe cancers are associated with a low survival rate.\n\nNow, we need to determine the relationship between Colorectal cancer and the given information.\n\nThere is no direct information linking Colorectal cancer to the severe cancer category. However, Premise 6 states that if colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer. This premise is crucial in understanding the relationship between colorectal cancer and bile duct cancer.\n\nLet's consider the possible scenarios:\n\n1. If colorectal cancer is a bile duct cancer, then its survival rate would be low (since all bile duct cancers have a low survival rate). According to Premise 6, this would imply that colorectal cancer is not a bile duct cancer, which is a contradiction.\n\n2. If colorectal cancer is not a bile duct cancer, then its survival rate would not be low.\n\nHowever, we don't have any information that directly links colorectal cancer to a low survival rate. Since we can't conclude that colorectal cancer has a low survival rate, we can't determine whether it is a severe cancer or not.\n\nTherefore, the conclusion \"Colorectal cancer is a severe cancer\" is uncertain, as we don't have enough information to make a definitive conclusion.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will use the given premises to determine the truth of the conclusion. We will break down each premise and the conclusion step by step.\n\nPremise 1: If something is a deadly disease, then its survival rate is low.\n\nThis premise tells us that being a deadly disease implies a low survival rate.\n\nPremise 2: All severe cancers are deadly diseases.\n\nThis premise tells us that severe cancers are a subset of deadly diseases.\n\nPremise 3: Bile duct cancer is a severe cancer.\n\nThis premise tells us that bile duct cancer is a severe cancer.\n\nPremise 4: All Cholangiocarcinoma is bile duct cancer.\n\nThis premise tells us that Cholangiocarcinoma is a type of bile duct cancer.\n\nPremise 5: No one with mild flu has a low survival rate.\n\nThis premise tells us that having a mild flu does not imply a low survival rate.\n\nPremise 6: If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nThis premise tells us that if colorectal cancer is both a bile duct cancer and has a low survival rate, then it cannot be a bile duct cancer.\n\nConclusion: Colorectal cancer is a severe cancer.\n\nWe need to determine if this conclusion is true, false, or uncertain based on the given premises.\n\nFrom Premise 3, we know that bile duct cancer is a severe cancer. From Premise 4, we know that Cholangiocarcinoma is a type of bile duct cancer. Therefore, Cholangiocarcinoma is also a severe cancer.\n\nHowever, Premise 6 tells us that if colorectal cancer is a bile duct cancer and the survival rate is low, then it is not a bile duct cancer. This premise implies that if colorectal cancer has a low survival rate, it cannot be a bile duct cancer.\n\nFrom Premise 1, we know that a low survival rate implies being a deadly disease. From Premise 2, we know that severe cancers are a subset of deadly diseases. Therefore, if colorectal cancer has a low survival rate, it must be a severe cancer.\n\nHowever, we have a problem. If colorectal cancer has a low survival rate, then it cannot be a bile duct cancer (from Premise 6). But we also know that Cholangiocarcinoma is a type of bile duct cancer, and it is a severe cancer. Therefore, we cannot conclude that colorectal cancer is a bile duct cancer.\n\nSince we cannot conclude that colorectal cancer is a bile duct cancer, and we also cannot conclude that it is not a severe cancer, the truth of the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning and apply the given premises to the conclusion.\n\nPremise 1: If something is a deadly disease, then its survival rate is low.\nPremise 2: All severe cancers are deadly diseases.\nPremise 3: Bile duct cancer is a severe cancer.\nPremise 4: All Cholangiocarcinoma is bile duct cancer.\nPremise 5: No one with mild flu has a low survival rate.\nPremise 6: If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nNow, we will analyze the conclusion:\nColorectal cancer is a severe cancer.\n\nTo determine whether this conclusion is true, false, or uncertain, we need to see if we can derive it from the given premises.\n\nFirst, let's see if we can derive that colorectal cancer is a bile duct cancer, as it will be helpful for the conclusion:\n\nFrom Premise 4: All Cholangiocarcinoma is bile duct cancer.\nFrom Premise 6: If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\nBut there is no direct information about the survival rate of colorectal cancer from the premises.\nHowever, we can derive that Cholangiocarcinoma is a severe cancer:\nFrom Premise 2: All severe cancers are deadly diseases.\nFrom Premise 4: All Cholangiocarcinoma is bile duct cancer.\nFrom Premise 3: Bile duct cancer is a severe cancer.\nTherefore, Cholangiocarcinoma is a severe cancer.\n\nHowever, we still do not have any information about whether colorectal cancer is a severe cancer or not.\n\nTo make the conclusion true, we need to have a premise that links colorectal cancer to being a severe cancer or a deadly disease. But there is no such premise.\n\nTherefore, we cannot derive the conclusion from the premises, as it is uncertain based on the given information.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "Let's break down the given premises step by step to determine the validity of the conclusion.\n\nPremise 1: If something is a deadly disease, then its survival rate is low.\n\nThis premise establishes a relationship between the severity of a disease and its survival rate. However, it does not provide any specific information about the relationship between a disease and being a \"severe cancer.\"\n\nPremise 2: All severe cancers are deadly diseases.\n\nThis premise provides a relationship between severe cancers and being deadly diseases. However, it still does not directly relate to the conclusion we are trying to determine.\n\nPremise 3: Bile duct cancer is a severe cancer.\n\nThis premise establishes that bile duct cancer is a type of severe cancer. However, it does not provide any information about colorectal cancer.\n\nPremise 4: All Cholangiocarcinoma is bile duct cancer.\n\nThis premise provides a relationship between Cholangiocarcinoma and bile duct cancer. However, the relevance of this premise to the conclusion is unclear.\n\nPremise 5: No one with mild flu has a low survival rate.\n\nThis premise is irrelevant to the conclusion we are trying to determine.\n\nPremise 6: If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nThis premise provides a conditional statement about the relationship between colorectal cancer and bile duct cancer. However, it does not provide any information about the survival rate of colorectal cancer.\n\nNow, let's try to determine the validity of the conclusion \"Colorectal cancer is a severe cancer.\"\n\nWe can establish the following logical chain:\n\n1. If something is a deadly disease, then its survival rate is low. (Premise 1)\n2. All severe cancers are deadly diseases. (Premise 2)\n3. Bile duct cancer is a severe cancer. (Premise 3)\n4. All Cholangiocarcinoma is bile duct cancer. (Premise 4)\n5. Cholangiocarcinoma is a type of bile duct cancer, but it is also a type of colorectal cancer.\n\nFrom the given premises, we cannot directly determine whether colorectal cancer is a severe cancer. However, we can use the conditional statement in Premise 6 to derive a conclusion.\n\nIf we assume that colorectal cancer has a low survival rate (as would be expected for a severe cancer), then Premise 6 would imply that colorectal cancer is not a bile duct cancer. However, this is a contradiction, since we know that Cholangiocarcinoma is both a bile duct cancer and a type of colorectal cancer.\n\nTherefore, we can conclude that if colorectal cancer has a low survival rate, it is not a bile duct cancer. This does not provide any information about whether colorectal cancer is a severe cancer.\n\nHowever, we can establish the following logical chain:\n\n1. If something is a bile duct cancer, then it is a severe cancer. (Premise 3)\n2. All Cholangiocarcinoma is bile duct cancer. (Premise 4)\n3. Cholangiocarcinoma is a type of colorectal cancer.\n4. If all Cholangiocarcinoma is bile duct cancer, then all colorectal cancer is not a bile duct cancer. (from Premise 6)\n\nFrom the given premises, we can conclude that not all colorectal cancer is a bile duct cancer. However, we cannot determine whether all colorectal cancer is a severe cancer.\n\nTherefore, the conclusion \"Colorectal cancer is a severe cancer\" is uncertain based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we'll use logical reasoning and the premises provided.\n\nPremise 1: If something is a deadly disease, then its survival rate is low.\nPremise 2: All severe cancers are deadly diseases.\nPremise 3: Bile duct cancer is a severe cancer.\nPremise 4: All Cholangiocarcinoma is bile duct cancer.\nPremise 5: No one with mild flu has a low survival rate.\nPremise 6: If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nWe're trying to determine if Colorectal cancer is a severe cancer.\n\nLet's analyze the given information:\n\n- We know from Premise 2 that severe cancers are deadly diseases, and from Premise 1 that deadly diseases have a low survival rate.\n- We can conclude that severe cancers have a low survival rate.\n\nNow, let's consider the relationship between Bile duct cancer and Colorectal cancer.\n\n- Premise 3 states that Bile duct cancer is a severe cancer.\n- Premise 4 states that All Cholangiocarcinoma is bile duct cancer. Since Cholangiocarcinoma is a type of bile duct cancer, we can infer that Cholangiocarcinoma is also a severe cancer.\n- However, there's no direct information about Colorectal cancer being a severe cancer or not.\n\nLet's consider another relationship:\n\n- Premise 6 states that if Colorectal cancer is a bile duct cancer and the survival rate is low, then Colorectal cancer is not a bile duct cancer.\n- This implies that if Colorectal cancer is a severe cancer, it would have a low survival rate (from Premise 1), and it would be classified as a bile duct cancer (from Premise 4). But Premise 6 would then imply that it's not a bile duct cancer, which is a contradiction.\n\nConsidering this, we can conclude that if Colorectal cancer is a severe cancer, it would lead to a contradiction. Therefore, we cannot conclude that Colorectal cancer is a severe cancer.\n\nHowever, there's another possibility: Colorectal cancer might not be a severe cancer. In that case, it would not have a low survival rate (from Premise 1), and Premise 6 would not be triggered.\n\nSince we have this ambiguity, we cannot definitively conclude that Colorectal cancer is a severe cancer. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion \"Colorectal cancer is a severe cancer\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: If something is a deadly disease, then its survival rate is low.\nThis premise establishes a relationship between being a deadly disease and having a low survival rate.\n\nPremise 2: All severe cancers are deadly diseases.\nThis premise links severe cancers to deadly diseases.\n\nPremise 3: Bile duct cancer is a severe cancer.\nThis premise establishes that bile duct cancer is a severe cancer.\n\nPremise 4: All Cholangiocarcinoma is bile duct cancer.\nThis premise links Cholangiocarcinoma to bile duct cancer.\n\nPremise 5: No one with mild flu has a low survival rate.\nThis premise is not directly relevant to the conclusion, but it provides additional information about the relationship between having a mild flu and survival rate.\n\nPremise 6: If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\nThis premise is a conditional statement that creates a contradiction if both conditions are met.\n\nNow, let's analyze the conclusion \"Colorectal cancer is a severe cancer.\"\n\nTo determine the truth value of the conclusion, we need to find out if we can logically derive it from the premises.\n\nFrom Premise 3, we know that Bile duct cancer is a severe cancer.\nFrom Premise 4, we know that all Cholangiocarcinoma is bile duct cancer.\nHowever, we cannot directly conclude that Colorectal cancer is a severe cancer from these premises.\n\nLet's examine the possibility of Colorectal cancer being a severe cancer using the premises.\n\nIf Colorectal cancer is a severe cancer, then it is a deadly disease (from Premise 2).\nIf it is a deadly disease, then its survival rate is low (from Premise 1).\nHowever, Premise 6 states that if colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\nSince we cannot rule out the possibility that Colorectal cancer is a bile duct cancer, we cannot conclude that its survival rate is low.\nTherefore, we cannot logically derive that Colorectal cancer is a severe cancer from the premises.\n\nHowever, the premises do not provide any information that would directly contradict the possibility of Colorectal cancer being a severe cancer.\nTherefore, based on the given premises, the truth value of the conclusion \"Colorectal cancer is a severe cancer\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "Let's break down the given premises and the conclusion step by step:\n\nPremise 1: If something is a deadly disease, then its survival rate is low.\n\nPremise 2: All severe cancers are deadly diseases.\n\nPremise 3: Bile duct cancer is a severe cancer.\n\nPremise 4: All Cholangiocarcinoma is bile duct cancer.\n\nPremise 5: No one with mild flu has a low survival rate. (This premise is irrelevant to the conclusion, so we can ignore it.)\n\nPremise 6: If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nConclusion: Colorectal cancer is a severe cancer.\n\nTo determine the conclusion, we need to use the premises to find a relationship between colorectal cancer and severe cancers.\n\nFrom Premise 4, we know that all Cholangiocarcinoma is bile duct cancer. However, this premise does not directly relate to colorectal cancer.\n\nHowever, since we are given a conclusion that involves colorectal cancer, we need to see if we can link it to the premises involving severe cancers.\n\nFrom Premise 2, we know that all severe cancers are deadly diseases. \n\nFrom Premise 6, we know that if colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer. However, the premises do not mention the survival rate of colorectal cancer. But, they do mention the survival rate of \"deadly diseases\" (from Premise 1) which is low.\n\nWe can link these premises to conclude that if colorectal cancer is a deadly disease (which would have a low survival rate), then it is a severe cancer (since all severe cancers are deadly diseases, from Premise 2).\n\nHowever, we are not given a direct link from Premise 1 to Premise 2. We need to find another link.\n\nWe are given that \"Bile duct cancer is a severe cancer\" in Premise 3, and that \"All Cholangiocarcinoma is bile duct cancer\" in Premise 4. \n\nWe know that if something is a \"Cholangiocarcinoma\" then it is a \"bile duct cancer\" (from Premise 4). But we are not given a direct link from \"Cholangiocarcinoma\" to \"Colorectal cancer\".\n\nHowever, we are given a link between \"Colorectal cancer\" and \"bile duct cancer\" in Premise 6, but with a condition (if the survival rate is low). \n\nSince we are trying to find out whether \"Colorectal cancer is a severe cancer\", we can ignore Premise 6 for now and try to find a different link.\n\nWe know that \"All severe cancers are deadly diseases\" (from Premise 2). We can use this to link \"Colorectal cancer\" to \"severe cancer\".\n\nHowever, we still need to link \"Colorectal cancer\" to \"deadly disease\".\n\nSince we are not given a direct link from \"Colorectal cancer\" to \"deadly disease\", we cannot conclude whether \"Colorectal cancer is a severe cancer\" based on the given premises.\n\nTherefore, the conclusion is uncertain. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion \"Colorectal cancer is a severe cancer\" is true, false, or uncertain, let's break down the given premises and apply them step by step:\n\nPremises:\n\n1. If something is a deadly disease, then its survival rate is low.\n2. All severe cancers are deadly diseases.\n3. Bile duct cancer is a severe cancer.\n4. All Cholangiocarcinoma is bile duct cancer.\n5. No one with mild flu has a low survival rate.\n6. If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nWe're looking to determine whether \"Colorectal cancer is a severe cancer\" is true, false, or uncertain.\n\nStep 1: Break down the given premises.\n\nFrom premise 4, we know that \"All Cholangiocarcinoma is bile duct cancer.\" This means Cholangiocarcinoma is a type of bile duct cancer.\n\nStep 2: Look for any connections between the given premises and the conclusion.\n\nFrom premise 6, we can deduce that if colorectal cancer has a low survival rate, it cannot be a bile duct cancer. However, this premise doesn't directly tell us whether colorectal cancer is a severe cancer or not.\n\nStep 3: Analyze the given premises to find any clues about the severity of colorectal cancer.\n\nFrom premise 2, we know that all severe cancers are deadly diseases. This tells us that if something is a severe cancer, it is a deadly disease.\n\nStep 4: Connect the premises to determine whether the conclusion is true, false, or uncertain.\n\nWe don't have any direct information about the severity of colorectal cancer. However, if we assume that colorectal cancer is a severe cancer, then from premise 2, it would be a deadly disease. From premise 1, if it's a deadly disease, then its survival rate is low.\n\nHowever, if colorectal cancer has a low survival rate, then from premise 6, it cannot be a bile duct cancer. But we don't have any information that says it can't be a severe cancer.\n\nTherefore, based on the given premises, we can conclude that we don't have enough information to determine whether the conclusion \"Colorectal cancer is a severe cancer\" is true or false. \n\nHowever, we can conclude that if the conclusion is true, then colorectal cancer is a deadly disease and has a low survival rate.\n\nSo the final answer is: \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: If something is a deadly disease, then its survival rate is low.\nPremise 2: All severe cancers are deadly diseases.\nPremise 3: Bile duct cancer is a severe cancer.\nPremise 4: All Cholangiocarcinoma is bile duct cancer.\nPremise 5: No one with mild flu has a low survival rate.\nPremise 6: If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nNow, let's analyze the premises step by step:\n\nFrom Premise 2, we can conclude that if something is a severe cancer, then it is a deadly disease (since all severe cancers are deadly diseases).\nFrom Premise 3, we can conclude that bile duct cancer is a deadly disease (since it is a severe cancer and all severe cancers are deadly diseases).\nFrom Premise 4, we can conclude that Cholangiocarcinoma is a deadly disease (since all Cholangiocarcinoma is bile duct cancer and bile duct cancer is a deadly disease).\nNow, let's consider the conclusion we are trying to determine: \"Colorectal cancer is a severe cancer.\"\n\nIf colorectal cancer is a severe cancer, then it is a deadly disease (by Premise 2).\nIf colorectal cancer is a deadly disease, then its survival rate is low (by Premise 1).\nHowever, Premise 5 states that no one with mild flu has a low survival rate, but it doesn't provide any information about colorectal cancer. We need to consider the relationship between colorectal cancer and bile duct cancer.\n\nPremise 6 states that if colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\nThis premise suggests that there is a contradiction between being a bile duct cancer and having a low survival rate.\n\nNow, let's analyze the relationship between colorectal cancer and bile duct cancer. \nCholangiocarcinoma is a type of bile duct cancer (by Premise 4).\nHowever, there is no direct information about whether colorectal cancer is a type of Cholangiocarcinoma or not.\nBut we can infer that if colorectal cancer is a bile duct cancer, then it would be a type of Cholangiocarcinoma (since all Cholangiocarcinoma is bile duct cancer).\n\nHowever, Premise 6 states that if colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\nThis premise suggests that if we assume that colorectal cancer is a bile duct cancer, then we must also assume that it has a low survival rate (since it is a deadly disease). But Premise 6 states that if this is the case, then colorectal cancer is not a bile duct cancer.\nThis creates a logical contradiction.\n\nSince we have a logical contradiction, we cannot conclude that \"Colorectal cancer is a severe cancer\" is true or false. \nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we will use the given premises to analyze the statement \"Colorectal cancer is a severe cancer.\"\n\nPremise 1: If something is a deadly disease, then its survival rate is low.\n\nPremise 2: All severe cancers are deadly diseases.\n\nPremise 3: Bile duct cancer is a severe cancer.\n\nPremise 4: All Cholangiocarcinoma is bile duct cancer.\n\nPremise 5: No one with mild flu has a low survival rate.\n\nPremise 6: If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n\nWe want to know if \"Colorectal cancer is a severe cancer.\" To do this, let's consider the following steps:\n\n1. **Step 1:** Determine if Colorectal cancer is a severe cancer.\n   We need to establish a relationship between Colorectal cancer and the definition of a severe cancer (which is a deadly disease).\n\n2. **Step 2:** Establish the relationship between Colorectal cancer and the definition of a severe cancer.\n   From Premise 2, we know that all severe cancers are deadly diseases. If Colorectal cancer is a severe cancer, then it must be a deadly disease.\n\n3. **Step 3:** Determine the relationship between Colorectal cancer and the definition of a deadly disease.\n   We need to establish a connection between Colorectal cancer and a condition that implies a low survival rate.\n\n4. **Step 4:** From Premise 1, we know that if something is a deadly disease, then its survival rate is low. If Colorectal cancer is a deadly disease, then its survival rate is low.\n\n5. **Step 5:** Consider the connection between Colorectal cancer and Cholangiocarcinoma.\n   From Premise 4, we know that all Cholangiocarcinoma is bile duct cancer. This implies that Cholangiocarcinoma is a type of bile duct cancer.\n\n6. **Step 6:** Establish the relationship between Colorectal cancer and Bile duct cancer.\n   We are given two premises related to Bile duct cancer and Cholangiocarcinoma. However, there is no direct information linking Colorectal cancer to Bile duct cancer.\n\n7. **Step 7:** Consider Premise 6: If colorectal cancer is a bile duct cancer and the survival rate is low, then colorectal cancer is not a bile duct cancer.\n   This implies that if Colorectal cancer has a low survival rate and it is also a bile duct cancer, then it cannot be a bile duct cancer. This creates a contradiction.\n\n8. **Step 8:** Determine the relationship between Colorectal cancer and the survival rate.\n   If Colorectal cancer has a low survival rate, then it must be a deadly disease (Premise 1). However, if it is a bile duct cancer (Premise 4) and has a low survival rate (Premise 1), then it cannot be a bile duct cancer (Premise 6).\n\n9. **Step 9:** Determine the relationship between Colorectal cancer and the conclusion.\n   Based on the above steps, we can establish a connection between Colorectal cancer and the definition of a severe cancer. However, the relationship is uncertain.\n\n10. **Step 10:** Determine the final conclusion.\n    The given premises do not provide direct information to conclude whether Colorectal cancer is a severe cancer. We can only infer that it may be a severe cancer based on its possible relationship with Bile duct cancer and Cholangiocarcinoma. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma(X) -> bile_duct_cancer(X)",
+          "z3_formula": "Implies(cholangiocarcinoma_X, bile_duct_cancer_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mild_flu(X) -> not_low_survival_rate(X)",
+          "z3_formula": "Implies(mild_flu_X, not_low_survival_rate_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "bile_duct_cancer(X) & low_survival_rate(X) -> not_bile_duct_cancer(X)",
+          "z3_formula": "Implies(And(bile_duct_cancer_X, low_survival_rate_X), not_bile_duct_cancer_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "severe_cancer(colorectal_cancer)",
+          "z3_formula": "severe_colorectal_cancer == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_cancer_bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma == bile_duct_cancer",
+          "z3_formula": "cholangiocarcinoma == bile_duct_cancer == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(cholangiocarcinoma)",
+          "z3_formula": "severe_cancer_cholangiocarcinoma == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer == bile_duct_cancer & low_survival_rate -> colorectal_cancer != bile_duct_cancer",
+          "z3_formula": "Implies(And(colorectal_cancer == bile_duct_cancer, low_survival_rate_colorectal_cancer), Not(colorectal_cancer == bile_duct_cancer))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "severe_cancer(colorectal_cancer)",
+          "z3_formula": "severe_cancer_colorectal_cancer == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "deadly_disease(colorectal_cancer)",
+          "z3_formula": "deadly_disease_colorectal_cancer == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "low_survival_rate(colorectal_cancer)",
+          "z3_formula": "low_survival_rate_colorectal_cancer == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == bile_duct_cancer",
+          "z3_formula": "colorectal_cancer == bile_duct_cancer == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer != bile_duct_cancer",
+          "z3_formula": "Not(colorectal_cancer == bile_duct_cancer)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain",
+          "z3_formula": "Or(And(severe_cancer_colorectal_cancer, deadly_disease_colorectal_cancer), And(Not(colorectal_cancer == bile_duct_cancer), Not(deadly_disease_colorectal_cancer)))",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer(X)",
+          "z3_formula": "bile_duct_cancer_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_cancer_bile_duct_cancer == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma(X) -> bile_duct_cancer(X)",
+          "z3_formula": "Implies(cholangiocarcinoma_X, bile_duct_cancer_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma(X)",
+          "z3_formula": "cholangiocarcinoma_X == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer(X) & bile_duct_cancer(X) & low_survival_rate(X) -> not bile_duct_cancer(X)",
+          "z3_formula": "Implies(And(colorectal_cancer_X, bile_duct_cancer_X, low_survival_rate_X), Not(bile_duct_cancer_X))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "severe_cancer(colorectal_cancer)",
+          "z3_formula": "severe_cancer_colorectal_cancer == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_cancer_bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer(X) -> severe_cancer(X)",
+          "z3_formula": "Implies(bile_duct_cancer_X, severe_cancer_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma(X) -> bile_duct_cancer(X)",
+          "z3_formula": "Implies(cholangiocarcinoma_X, bile_duct_cancer_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "mild_flu(X) -> not low_survival_rate(X)",
+          "z3_formula": "Implies(mild_flu_X, Not(low_survival_rate_X))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer(X) & bile_duct_cancer(X) & low_survival_rate(X) -> not bile_duct_cancer(X)",
+          "z3_formula": "Implies(And(colorectal_cancer_X, bile_duct_cancer_X, low_survival_rate_X), Not(bile_duct_cancer_X))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer(X)",
+          "z3_formula": "colorectal_cancer_X == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_cancer_bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma == bile_duct_cancer",
+          "z3_formula": "cholangiocarcinoma == bile_duct_cancer == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(mild_flu(X) -> low_survival_rate(X))",
+          "z3_formula": "Not(Implies(mild_flu_X, low_survival_rate_X))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "(colorectal_cancer == bile_duct_cancer) & low_survival_rate(X) -> not(colorectal_cancer == bile_duct_cancer)",
+          "z3_formula": "Implies(And(colorectal_cancer == bile_duct_cancer, low_survival_rate_X), Not(colorectal_cancer == bile_duct_cancer))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "severe_cancer(cholangiocarcinoma)",
+          "z3_formula": "severe_cancer_cholangiocarcinoma == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(low_survival_rate(colorectal_cancer))",
+          "z3_formula": "Not(low_survival_rate_colorectal_cancer)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(severe_cancer(colorectal_cancer))",
+          "z3_formula": "Not(severe_cancer_colorectal_cancer)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(Y) -> deadly_disease(Y)",
+          "z3_formula": "Implies(severe_cancer_Y, deadly_disease_Y)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_cancer_bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma == bile_duct_cancer",
+          "z3_formula": "cholangiocarcinoma == bile_duct_cancer",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "colorectal_cancer == cholangiocarcinoma",
+          "z3_formula": "colorectal_cancer == cholangiocarcinoma",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not low_survival_rate(mild_flu)",
+          "z3_formula": "Not(low_survival_rate_mild_flu)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "colorectal_cancer & low_survival_rate -> not bile_duct_cancer",
+          "z3_formula": "Implies(And(colorectal_cancer, low_survival_rate), Not(bile_duct_cancer))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not all colorectal_cancer is bile_duct_cancer",
+          "z3_formula": "Not(all_colorectal_cancer_bile_duct_cancer)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_cancer_bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer(cholangiocarcinoma)",
+          "z3_formula": "bile_duct_cancer_cholangiocarcinoma == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer(X) & low_survival_rate(X) -> not bile_duct_cancer(X)",
+          "z3_formula": "Implies(And(colorectal_cancer_X, low_survival_rate_X), Not(bile_duct_cancer_X))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not severe_cancer(colorectal_cancer)",
+          "z3_formula": "Not(severe_cancer_colorectal_cancer)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_cancer_bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma(X) -> bile_duct_cancer(X)",
+          "z3_formula": "Implies(cholangiocarcinoma_X, bile_duct_cancer_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mild_flu(X) -> not(low_survival_rate(X))",
+          "z3_formula": "Implies(mild_flu_X, Not(low_survival_rate_X))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "(bile_duct_cancer(X) & low_survival_rate(X)) -> not(bile_duct_cancer(X))",
+          "z3_formula": "Implies(And(bile_duct_cancer_X, low_survival_rate_X), Not(bile_duct_cancer_X))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(severe_cancer(colorectal_cancer))",
+          "z3_formula": "uncertain_severe_cancer_colorectal_cancer == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_cancer_bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma(X) -> bile_duct_cancer(X)",
+          "z3_formula": "Implies(cholangiocarcinoma_X, bile_duct_cancer_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma(X) == cholangiocarcinoma",
+          "z3_formula": "cholangiocarcinoma == cholangiocarcinoma",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "bile_duct_cancer(X) -> severe_cancer(X)",
+          "z3_formula": "Implies(bile_duct_cancer_X, severe_cancer_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "colorectal_cancer(X) -> bile_duct_cancer(X) | Not(low_survival_rate(X))",
+          "z3_formula": "Implies(Or(colorectal_cancer_X, Not(low_survival_rate_X)), bile_duct_cancer_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer(X) & bile_duct_cancer(X) & low_survival_rate(X) -> Not(severe_cancer(X))",
+          "z3_formula": "Implies(And(colorectal_cancer_X, bile_duct_cancer_X, low_survival_rate_X), Not(severe_cancer_X))",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not_mild_flu(X) == True",
+          "z3_formula": "not_mild_flu_X == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "severe_cancer(colorectal_cancer)",
+          "z3_formula": "severe_cancer_colorectal_cancer == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_cancer_bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer(X) -> severe_cancer(X)",
+          "z3_formula": "Implies(bile_duct_cancer_X, severe_cancer_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mild_flu(X) -> not(low_survival_rate(X))",
+          "z3_formula": "Implies(mild_flu_X, Not(low_survival_rate_X))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "bile_duct_cancer(X) & low_survival_rate(X) -> not(bile_duct_cancer(X))",
+          "z3_formula": "Implies(And(bile_duct_cancer_X, low_survival_rate_X), Not(bile_duct_cancer_X))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_cancer_bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "deadly_disease(bile_duct_cancer)",
+          "z3_formula": "deadly_disease_bile_duct_cancer == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma(X) -> bile_duct_cancer(X)",
+          "z3_formula": "Implies(cholangiocarcinoma_X, bile_duct_cancer_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer(cholangiocarcinoma)",
+          "z3_formula": "bile_duct_cancer_cholangiocarcinoma == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "deadly_disease(cholangiocarcinoma)",
+          "z3_formula": "deadly_disease_cholangiocarcinoma == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer(X) & deadly_disease(X) -> not bile_duct_cancer(X)",
+          "z3_formula": "Implies(And(colorectal_cancer_X, deadly_disease_X), Not(bile_duct_cancer_X))",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not (mild_flu(X) & low_survival_rate(X))",
+          "z3_formula": "Not(And(mild_flu_X, low_survival_rate_X))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(colorectal_cancer_severe)",
+          "z3_formula": "uncertain_colorectal_cancer_severe == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "severe(cancer_colorectal)",
+          "z3_formula": "severe_cancer_colorectal == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_cancer_colorectal, low_survival_rate_cancer_colorectal)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_cancer_colorectal, deadly_disease_cancer_colorectal)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer(cancer_cholangiocarcinoma)",
+          "z3_formula": "bile_duct_cancer_cancer_cholangiocarcinoma == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "bile_duct_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(bile_duct_cancer_cancer_colorectal, deadly_disease_cancer_colorectal)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_cancer_colorectal, low_survival_rate_cancer_colorectal)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer(cancer_colorectal)",
+          "z3_formula": "bile_duct_cancer_cancer_colorectal == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "bile_duct_cancer(X) & low_survival_rate(X) -> Not(bile_duct_cancer(X))",
+          "z3_formula": "Implies(And(bile_duct_cancer_cancer_colorectal, low_survival_rate_cancer_colorectal), Not(bile_duct_cancer_cancer_colorectal))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_cancer_colorectal, low_survival_rate_cancer_colorectal)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "bile_duct_cancer(X) -> Not(bile_duct_cancer(X))",
+          "z3_formula": "Implies(bile_duct_cancer_cancer_colorectal, Not(bile_duct_cancer_cancer_colorectal))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "severe(cancer_colorectal)",
+          "z3_formula": "severe_cancer_colorectal == Unknown",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 102,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 54
+    },
+    "maxsat_stats": {
+      "satisfied": 49,
+      "excluded": 5,
+      "total_weight": 94,
+      "solve_time_ms": 2.463378943502903
+    },
+    "timing": {
+      "trace_gen_s": 24.396,
+      "extraction_s": 24.089,
+      "dedup_s": 1.217,
+      "maxsat_s": 0.006,
+      "total_s": 49.708
+    }
+  }
+}

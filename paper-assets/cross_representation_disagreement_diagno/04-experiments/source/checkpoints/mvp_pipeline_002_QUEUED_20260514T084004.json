@@ -1,0 +1,24 @@
+{
+  "exp_id": "mvp_pipeline_002",
+  "project": "cross_representation_disagreement_diagno",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:20:37.695Z",
+    "updated_at": "2026-05-14T08:40:04.055Z",
+    "spec": {
+      "model_name": "Qwen3-32B-AWQ",
+      "server": "autodl-rtx6000pro",
+      "data_path": "FOLIO validation set",
+      "data_count": 204,
+      "seed": 0,
+      "parent": "mvp_pipeline_001",
+      "changes": "FOL prompt few-shot examples + Z3 template + syntax fix retry layer"
+    },
+    "hypothesis": "Z3 prompt few-shot + syntax fix retry + repair hint fix → crash rate from 78% to <30%, enabling meaningful C1-C5 evaluation"
+  },
+  "timestamp": "2026-05-14T08:40:04.091806+00:00",
+  "trigger": "update_registry"
+}

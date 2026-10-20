@@ -1,0 +1,864 @@
+{
+  "pid": "folio_44",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(X) -> among_most_active_players_in_major_tennis(X)",
+          "z3_formula": "Implies(ranked_highly_by_wta_X, among_most_active_players_in_major_tennis_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_X, ranked_highly_by_wta_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) -> lost_to_iga_swiatek(X)",
+          "z3_formula": "Implies(female_tennis_player_at_roland_garros_2022_X, lost_to_iga_swiatek_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) | male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Or(female_tennis_player_at_roland_garros_2022_X, male_tennis_player_at_roland_garros_2022_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(X) -> lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(male_tennis_player_at_roland_garros_2022_X, lost_to_rafael_nadal_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "(ranked_highly_by_wta(X) | lost_to_rafael_nadal(X)) -> not(male_tennis_player_at_roland_garros_2022(X))",
+          "z3_formula": "Implies(Or(ranked_highly_by_wta_X, lost_to_rafael_nadal_X), Not(male_tennis_player_at_roland_garros_2022_X))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not((female_tennis_player_at_roland_garros_2022(X) | male_tennis_player_at_roland_garros_2022(X)) -> (lost_to_iga_swiatek(X) | among_most_active_players_in_major_tennis(X)))",
+          "z3_formula": "Not(Implies(Or(female_tennis_player_at_roland_garros_2022_X, male_tennis_player_at_roland_garros_2022_X), Or(lost_to_iga_swiatek_X, among_most_active_players_in_major_tennis_X)))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(coco_gauff)",
+          "z3_formula": "ranked_highly_by_wta_coco_gauff == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(female_tennis_players)",
+          "z3_formula": "lost_to_iga_swiatek_female_tennis_players == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(female_tennis_players) -> ranked_highly_by_wta(female_tennis_players)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_female_tennis_players, ranked_highly_by_wta_female_tennis_players)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_players \u2228 male_tennis_players",
+          "z3_formula": "female_tennis_players == True \u2228 male_tennis_players == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_players -> lost_to_rafael_nadal",
+          "z3_formula": "Implies(male_tennis_players, lost_to_rafael_nadal)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(coco_gauff) \u2228 lost_to_rafael_nadal -> \u00acmale_tennis_players",
+          "z3_formula": "Implies(Or(ranked_highly_by_wta_coco_gauff, lost_to_rafael_nadal), Not(male_tennis_players))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "\u00acmale_tennis_players",
+          "z3_formula": "Not(male_tennis_players) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "ranked_highly_by_wta(coco_gauff)",
+          "z3_formula": "ranked_highly_by_wta_coco_gauff == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "ranked_highly_by_wta(coco_gauff) -> active_player",
+          "z3_formula": "Implies(ranked_highly_by_wta_coco_gauff, active_player)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "active_player",
+          "z3_formula": "active_player == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "\u00acactive_player",
+          "z3_formula": "Not(active_player) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "\u00ac(lost_to_iga_swiatek(coco_gauff) \u2228 active_player)",
+          "z3_formula": "Not(Or(lost_to_iga_swiatek_coco_gauff, active_player)) == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(coco_gauff)",
+          "z3_formula": "ranked_highly_by_wta_coco_gauff == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(female_tennis_player_at_roland_garros_2022)",
+          "z3_formula": "lost_to_iga_swiatek_female_tennis_player_at_roland_garros_2022 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022_or_male_tennis_player_at_roland_garros_2022",
+          "z3_formula": "female_tennis_player_at_roland_garros_2022_or_male_tennis_player_at_roland_garros_2022 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_rafael_nadal(male_tennis_player_at_roland_garros_2022)",
+          "z3_formula": "lost_to_rafael_nadal_male_tennis_player_at_roland_garros_2022 == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) -> most_active_player_in_major_tennis(X)",
+          "z3_formula": "Implies(ranked_highly_by_wta_coco_gauff, most_active_player_in_major_tennis_coco_gauff)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "lost_to_iga_swiatek(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_female_tennis_player_at_roland_garros_2022, ranked_highly_by_wta_female_tennis_player_at_roland_garros_2022)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "lost_to_rafael_nadal(X) -> not male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(lost_to_rafael_nadal_coco_gauff, not male_tennis_player_at_roland_garros_2022_coco_gauff)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "female_tennis_player_at_roland_garros_2022_or_male_tennis_player_at_roland_garros_2022 -> (female_tennis_player_at_roland_garros_2022 -> lost_to_iga_swiatek(female_tennis_player_at_roland_garros_2022))",
+          "z3_formula": "Implies(female_tennis_player_at_roland_garros_2022_or_male_tennis_player_at_roland_garros_2022, Implies(female_tennis_player_at_roland_garros_2022, lost_to_iga_swiatek_female_tennis_player_at_roland_garros_2022))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not (lost_to_iga_swiatek(coco_gauff) or most_active_player_in_major_tennis(coco_gauff))",
+          "z3_formula": "Not(Or(lost_to_iga_swiatek_coco_gauff, most_active_player_in_major_tennis_coco_gauff))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(coco_gauff)",
+          "z3_formula": "ranked_highly_by_wta_coco_gauff == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) -> among_most_active_players(X)",
+          "z3_formula": "Implies(ranked_highly_by_wta_coco_gauff, among_most_active_players_coco_gauff)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(female_tennis_players_at_roland_garros_2022)",
+          "z3_formula": "lost_to_iga_swiatek_female_tennis_players_at_roland_garros_2022 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_players_at_roland_garros_2022_or_male_tennis_players_at_roland_garros_2022",
+          "z3_formula": "female_tennis_players_at_roland_garros_2022_or_male_tennis_players_at_roland_garros_2022 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_rafael_nadal(male_tennis_players_at_roland_garros_2022)",
+          "z3_formula": "lost_to_rafael_nadal_male_tennis_players_at_roland_garros_2022 == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) | lost_to_rafael_nadal(X) -> not_male_player(X)",
+          "z3_formula": "Implies(Or(ranked_highly_by_wta_coco_gauff, lost_to_rafael_nadal_coco_gauff), Not(male_coco_gauff))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "among_most_active_players_coco_gauff",
+          "z3_formula": "among_most_active_players_coco_gauff == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not_male_player(coco_gauff)",
+          "z3_formula": "Not(male_coco_gauff) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "lost_to_iga_swiatek(coco_gauff)",
+          "z3_formula": "lost_to_iga_swiatek_coco_gauff == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "ranked_highly_by_wta(coco_gauff)",
+          "z3_formula": "ranked_highly_by_wta_coco_gauff == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "among_most_active_players_coco_gauff & not_lost_to_iga_swiatek_coco_gauff",
+          "z3_formula": "And(among_most_active_players_coco_gauff, Not(lost_to_iga_swiatek_coco_gauff))",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_WTA(X) -> among_most_active_players(X)",
+          "z3_formula": "Implies(ranked_highly_by_WTA, among_most_active_players)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X)",
+          "z3_formula": "lost_to_iga_swiatek == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "lost_to_iga_swiatek(X) -> ranked_highly_by_WTA(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek, ranked_highly_by_WTA)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(female_tennis_players_at_roland_garros_2022)",
+          "z3_formula": "lost_to_iga_swiatek_female_tennis_players_at_roland_garros_2022 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_players_at_roland_garros_2022_or_male_tennis_players_at_roland_garros_2022",
+          "z3_formula": "female_tennis_players_at_roland_garros_2022_or_male_tennis_players_at_roland_garros_2022 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_rafael_nadal(male_tennis_players_at_roland_garros_2022)",
+          "z3_formula": "lost_to_rafael_nadal_male_tennis_players_at_roland_garros_2022 == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_WTA(X) | lost_to_rafael_nadal(X) -> not_male_tennis_players_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(Or(ranked_highly_by_WTA, lost_to_rafael_nadal), not_male_tennis_players_at_roland_garros_2022)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not_lost_to_iga_swiatek_or_among_most_active_players(coco_gauff)",
+          "z3_formula": "Not(Or(lost_to_iga_swiatek_coco_gauff, among_most_active_players_coco_gauff)) == False",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(coco_gauff)",
+          "z3_formula": "ranked_highly_by_wta_coco_gauff == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_X, ranked_highly_by_wta_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X)",
+          "z3_formula": "lost_to_iga_swiatek_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) -> lost_to_iga_swiatek(X)",
+          "z3_formula": "Implies(female_tennis_player_at_roland_garros_2022_X, lost_to_iga_swiatek_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) | male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Or(female_tennis_player_at_roland_garros_2022_X, male_tennis_player_at_roland_garros_2022_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "male_tennis_player_at_roland_garros_2022_X == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_rafael_nadal(X)",
+          "z3_formula": "lost_to_rafael_nadal_X == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) | lost_to_rafael_nadal(X) -> not male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(Or(ranked_highly_by_wta_X, lost_to_rafael_nadal_X), Not(male_tennis_player_at_roland_garros_2022_X))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not ranked_highly_by_wta(coco_gauff)",
+          "z3_formula": "Not(ranked_highly_by_wta_coco_gauff)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(X) -> most_active_player_in_major_tennis(X)",
+          "z3_formula": "Implies(ranked_highly_by_wta_X, most_active_player_in_major_tennis_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not most_active_player_in_major_tennis(coco_gauff)",
+          "z3_formula": "Not(most_active_player_in_major_tennis_coco_gauff)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not (lost_to_iga_swiatek(coco_gauff) | most_active_player_in_major_tennis(coco_gauff))",
+          "z3_formula": "Not(Or(lost_to_iga_swiatek_coco_gauff, most_active_player_in_major_tennis_coco_gauff))",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "highly_ranked_by_wta(X) -> active_player_in_major_tennis(X)",
+          "z3_formula": "Implies(highly_ranked_by_wta_X, active_player_in_major_tennis_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X) -> highly_ranked_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_X, highly_ranked_by_wta_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) -> lost_to_iga_swiatek(X)",
+          "z3_formula": "Implies(female_tennis_player_at_roland_garros_2022_X, lost_to_iga_swiatek_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) | male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Or(female_tennis_player_at_roland_garros_2022_X, male_tennis_player_at_roland_garros_2022_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(X) -> lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(male_tennis_player_at_roland_garros_2022_X, lost_to_rafael_nadal_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "highly_ranked_by_wta(X) | lost_to_rafael_nadal(X) -> not_male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(Or(highly_ranked_by_wta_X, lost_to_rafael_nadal_X), not_male_tennis_player_at_roland_garros_2022_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not_female_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "Not(female_tennis_player_at_roland_garros_2022_coco_gauff)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "lost_to_iga_swiatek(coco_gauff)",
+          "z3_formula": "lost_to_iga_swiatek_coco_gauff == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "highly_ranked_by_wta(coco_gauff)",
+          "z3_formula": "highly_ranked_by_wta_coco_gauff == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "active_player_in_major_tennis(coco_gauff)",
+          "z3_formula": "active_player_in_major_tennis_coco_gauff == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not_active_player_in_major_tennis(coco_gauff)",
+          "z3_formula": "Not(active_player_in_major_tennis_coco_gauff)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not_lost_to_iga_swiatek_or_active_player_in_major_tennis(coco_gauff)",
+          "z3_formula": "Or(Not(lost_to_iga_swiatek_coco_gauff), Not(active_player_in_major_tennis_coco_gauff))",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "highly_ranked_by_wta(coco_gauff)",
+          "z3_formula": "highly_ranked_by_wta_coco_gauff == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(coco_gauff)",
+          "z3_formula": "lost_to_iga_swiatek_coco_gauff == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "female_tennis_player_at_roland_garros_2022_coco_gauff == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "male_tennis_player_at_roland_garros_2022_coco_gauff == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "highly_ranked_by_wta(X) -> most_active_major_tennis(X)",
+          "z3_formula": "Implies(highly_ranked_by_wta_coco_gauff, most_active_major_tennis_coco_gauff)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "lost_to_iga_swiatek(X) -> highly_ranked_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_coco_gauff, highly_ranked_by_wta_coco_gauff)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "male_tennis_player_at_roland_garros_2022(X) -> lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(male_tennis_player_at_roland_garros_2022_coco_gauff, lost_to_rafael_nadal_coco_gauff)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "highly_ranked_by_wta(X) | lost_to_rafael_nadal(X) -> not male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(Or(highly_ranked_by_wta_coco_gauff, lost_to_rafael_nadal_coco_gauff), Not(male_tennis_player_at_roland_garros_2022_coco_gauff))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not most_active_major_tennis(coco_gauff)",
+          "z3_formula": "Not(most_active_major_tennis_coco_gauff) == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not (lost_to_iga_swiatek(coco_gauff) | most_active_major_tennis(coco_gauff))",
+          "z3_formula": "Not(Or(lost_to_iga_swiatek_coco_gauff, most_active_major_tennis_coco_gauff)) == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(coco_gauff)",
+          "z3_formula": "ranked_highly_by_wta_coco_gauff == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_X, ranked_highly_by_wta_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X)",
+          "z3_formula": "lost_to_iga_swiatek_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player(X) | male_tennis_player(X)",
+          "z3_formula": "Or(female_tennis_player_X, male_tennis_player_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player(X) -> lost_to_iga_swiatek(X)",
+          "z3_formula": "Implies(female_tennis_player_X, lost_to_iga_swiatek_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player(X) -> lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(male_tennis_player_X, lost_to_rafael_nadal_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_rafael_nadal(X) -> ranked_highly_by_wta(X) | lost_to_rafael_nadal(X)",
+          "z3_formula": "Or(Implies(lost_to_rafael_nadal_X, ranked_highly_by_wta_X), lost_to_rafael_nadal_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not (lost_to_iga_swiatek(coco_gauff) | ranked_highly_by_wta(coco_gauff))",
+          "z3_formula": "Not(Or(lost_to_iga_swiatek_coco_gauff, ranked_highly_by_wta_coco_gauff))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(X) -> among_most_active_players(X)",
+          "z3_formula": "Implies(ranked_highly_by_wta_X, among_most_active_players_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_X, ranked_highly_by_wta_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) -> lost_to_iga_swiatek(X)",
+          "z3_formula": "Implies(female_tennis_player_at_roland_garros_2022_X, lost_to_iga_swiatek_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) | male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Or(female_tennis_player_at_roland_garros_2022_X, male_tennis_player_at_roland_garros_2022_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(X) -> lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(male_tennis_player_at_roland_garros_2022_X, lost_to_rafael_nadal_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) | lost_to_rafael_nadal(X) -> not male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(Or(ranked_highly_by_wta_X, lost_to_rafael_nadal_X), Not(male_tennis_player_at_roland_garros_2022_X))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "ranked_highly_by_wta(coco_gauff)",
+          "z3_formula": "ranked_highly_by_wta_coco_gauff == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not male_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "Not(male_tennis_player_at_roland_garros_2022_coco_gauff) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "female_tennis_player_at_roland_garros_2022(coco_gauff)",
+          "z3_formula": "female_tennis_player_at_roland_garros_2022_coco_gauff == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "lost_to_iga_swiatek(coco_gauff)",
+          "z3_formula": "lost_to_iga_swiatek_coco_gauff == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "ranked_highly_by_wta(coco_gauff) -> among_most_active_players(coco_gauff)",
+          "z3_formula": "Implies(ranked_highly_by_wta_coco_gauff, among_most_active_players_coco_gauff)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "among_most_active_players(coco_gauff)",
+          "z3_formula": "among_most_active_players_coco_gauff == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "highly_ranked_by_wta(coco_gauff)",
+          "z3_formula": "highly_ranked_by_wta_coco_gauff == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X) -> highly_ranked_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_X, highly_ranked_by_wta_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(female_tennis_player_at_roland_garros_2022)",
+          "z3_formula": "lost_to_iga_swiatek_female_tennis_player_at_roland_garros_2022 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022 | male_tennis_player_at_roland_garros_2022",
+          "z3_formula": "Or(female_tennis_player_at_roland_garros_2022, male_tennis_player_at_roland_garros_2022)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_rafael_nadal(X) -> male_tennis_player_at_roland_garros_2022",
+          "z3_formula": "Implies(lost_to_rafael_nadal_X, male_tennis_player_at_roland_garros_2022)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "highly_ranked_by_wta(X) -> among_most_active_players_in_major_tennis(X)",
+          "z3_formula": "Implies(highly_ranked_by_wta_X, among_most_active_players_in_major_tennis_X)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "among_most_active_players_in_major_tennis(coco_gauff)",
+          "z3_formula": "among_most_active_players_in_major_tennis_coco_gauff == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "highly_ranked_by_wta(coco_gauff) | lost_to_rafael_nadal(coco_gauff)",
+          "z3_formula": "Or(highly_ranked_by_wta_coco_gauff, lost_to_rafael_nadal_coco_gauff)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "highly_ranked_by_wta(X) | lost_to_rafael_nadal(X) -> not(male_tennis_player_at_roland_garros_2022)",
+          "z3_formula": "Implies(Or(highly_ranked_by_wta_X, lost_to_rafael_nadal_X), Not(male_tennis_player_at_roland_garros_2022))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(male_tennis_player_at_roland_garros_2022)",
+          "z3_formula": "Not(male_tennis_player_at_roland_garros_2022)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022 -> lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(male_tennis_player_at_roland_garros_2022, lost_to_rafael_nadal_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022",
+          "z3_formula": "male_tennis_player_at_roland_garros_2022 == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "lost_to_rafael_nadal(coco_gauff)",
+          "z3_formula": "lost_to_rafael_nadal_coco_gauff == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(among_most_active_players_in_major_tennis(coco_gauff) | lost_to_iga_swiatek(coco_gauff))",
+          "z3_formula": "Not(Or(among_most_active_players_in_major_tennis_coco_gauff, lost_to_iga_swiatek_coco_gauff))",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(coco)",
+          "z3_formula": "ranked_highly_by_wta_coco == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_iga_swiatek(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_coco, ranked_highly_by_wta_coco)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) -> lost_to_iga_swiatek(X)",
+          "z3_formula": "Implies(female_tennis_player_at_roland_garros_2022_coco, lost_to_iga_swiatek_coco)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(X) -> lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(male_tennis_player_at_roland_garros_2022_coco, lost_to_rafael_nadal_coco)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(X) -> not female_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(male_tennis_player_at_roland_garros_2022_coco, Not(female_tennis_player_at_roland_garros_2022_coco))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) -> not male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(female_tennis_player_at_roland_garros_2022_coco, Not(male_tennis_player_at_roland_garros_2022_coco))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "female_tennis_player_at_roland_garros_2022(X) -> not male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(female_tennis_player_at_roland_garros_2022_coco, Not(male_tennis_player_at_roland_garros_2022_coco))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(X) -> not female_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(male_tennis_player_at_roland_garros_2022_coco, Not(female_tennis_player_at_roland_garros_2022_coco))",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "ranked_highly_by_wta(X) -> not male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(ranked_highly_by_wta_coco, Not(male_tennis_player_at_roland_garros_2022_coco))",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_rafael_nadal(X) -> not male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(lost_to_rafael_nadal_coco, Not(male_tennis_player_at_roland_garros_2022_coco))",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "male_tennis_player_at_roland_garros_2022(X) -> lost_to_rafael_nadal(X)",
+          "z3_formula": "Implies(male_tennis_player_at_roland_garros_2022_coco, lost_to_rafael_nadal_coco)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "lost_to_rafael_nadal(X) -> not male_tennis_player_at_roland_garros_2022(X)",
+          "z3_formula": "Implies(lost_to_rafael_nadal_coco, Not(male_tennis_player_at_roland_garros_2022_coco))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "ranked_highly_by_wta(X) -> one_of_the_most_active_players_in_major_tennis(X)",
+          "z3_formula": "Implies(ranked_highly_by_wta_coco, one_of_the_most_active_players_in_major_tennis_coco)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "lost_to_iga_swiatek(X) -> ranked_highly_by_wta(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_coco, ranked_highly_by_wta_coco)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "lost_to_iga_swiatek(X) -> one_of_the_most_active_players_in_major_tennis(X)",
+          "z3_formula": "Implies(lost_to_iga_swiatek_coco, one_of_the_most_active_players_in_major_tennis_coco)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not (lost_to_iga_swiatek(coco) or one_of_the_most_active_players_in_major_tennis(coco))",
+          "z3_formula": "Not(Or(lost_to_iga_swiatek_coco, one_of_the_most_active_players_in_major_tennis_coco))",
+          "source_step": 16
+        }
+      ]
+    }
+  ]
+}

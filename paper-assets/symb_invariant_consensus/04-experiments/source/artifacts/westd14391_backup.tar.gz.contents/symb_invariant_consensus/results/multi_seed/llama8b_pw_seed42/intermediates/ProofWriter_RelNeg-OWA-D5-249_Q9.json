@@ -1,0 +1,1161 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-249_Q9",
+    "problem": "The cat chases the rabbit. The cat chases the tiger. The cat sees the mouse. The cat does not see the rabbit. The mouse chases the cat. The mouse does not like the cat. The rabbit likes the tiger. The tiger is nice. The tiger is young. The tiger likes the cat. All big things are blue. If the cat sees the tiger then the cat chases the tiger. If something likes the rabbit then the rabbit does not like the mouse. All blue things are young. If something is blue then it is young. If something chases the cat then it likes the mouse. If something is young then it likes the tiger. If something likes the mouse then the mouse is big. If something sees the mouse and the mouse is not blue then the mouse likes the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse is young.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nSees($x, $y, bool) ::: Does x see y?\nLikes($x, $y, bool) ::: Does x like y?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nChases(Cat, Rabbit, True) ::: The cat chases the rabbit.\nChases(Cat, Tiger, True) ::: The cat chases the tiger.\nSees(Cat, Mouse, True) ::: The cat sees the mouse.\nSees(Cat, Rabbit, False) ::: The cat does not see the rabbit.\nChases(Mouse, Cat, True) ::: The mouse chases the cat.\nLikes(Mouse, Cat, False) ::: The mouse does not like the cat.\nLikes(Rabbit, Tiger, True) ::: The rabbit likes the tiger.\nNice(Tiger, True) ::: The tiger is nice.\nYoung(Tiger, True) ::: The tiger is young.\nLikes(Tiger, Cat, True) ::: The tiger likes the cat.\n\nRules:\nBig($x, True) >>> Blue($x, True) ::: All big things are blue.\nSees(Cat, Tiger, True) >>> Chases(Cat, Tiger, True) ::: If the cat sees the tiger then the cat chases the tiger.\nLikes($x, Rabbit, True) >>> Likes(Rabbit, Mouse, False) ::: If something likes the rabbit then the rabbit does not like the mouse.\nBlue($x, True) >>> Young($x, True) ::: All blue things are young.\nBlue($x, True) >>> Young($x, True) ::: If something is blue then it is young.\nChases($x, Cat, True) >>> Likes($x, Mouse, True) ::: If something chases the cat then it likes the mouse.\nYoung($x, True) >>> Likes($x, Tiger, True) ::: If something is young then it likes the tiger.\nLikes($x, Mouse, True) >>> Big(Mouse, True) ::: If something likes the mouse then the mouse is big.\nSees($x, Mouse, True) && Blue(Mouse, False) >>> Likes(Mouse, Cat, True) ::: If something sees the mouse and the mouse is not blue then the mouse likes the cat.\n\nQuery:\nYoung(Mouse, True) ::: The mouse is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 76.5,
+      "Unknown": 140.5
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "True": 4
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply it to determine whether the statement \"The mouse is young\" is true, false, or unknown.\n\nFrom the given information:\n1. The cat chases the rabbit. (This statement does not provide any relevant information for our problem.)\n2. The cat chases the tiger. (This statement does not provide any relevant information for our problem.)\n3. The cat sees the mouse. (This statement does not provide any relevant information for our problem.)\n4. The cat does not see the rabbit. (This statement does not provide any relevant information for our problem.)\n5. The mouse chases the cat. (This statement does not provide any relevant information for our problem.)\n6. The mouse does not like the cat. (This statement does not provide any relevant information for our problem.)\n7. The rabbit likes the tiger. (This statement does not provide any relevant information for our problem.)\n8. The tiger is nice. (This statement does not provide any relevant information for our problem.)\n9. The tiger is young. (This statement does not provide any relevant information for our problem.)\n10. The tiger likes the cat. (This statement does not provide any relevant information for our problem.)\n11. All big things are blue. (This statement does not provide any relevant information for our problem.)\n12. If the cat sees the tiger then the cat chases the tiger. (This statement does not provide any relevant information for our problem.)\n13. If something likes the rabbit then the rabbit does not like the mouse. (This statement does not provide any relevant information for our problem.)\n14. All blue things are young. (This statement is not relevant to the problem, but it is related to the concept of age.)\n15. If something is blue then it is young. (This statement does not provide any relevant information for our problem.)\n16. If something chases the cat then it likes the mouse. (This statement does not provide any relevant information for our problem.)\n17. If something is young then it likes the tiger. (This statement is not relevant to the problem, but it is related to the concept of age and the tiger.)\n18. If something likes the mouse then the mouse is big. (This statement does not provide any relevant information for our problem.)\n19. If something sees the mouse and the mouse is not blue then the mouse likes the cat. (This statement does not provide any relevant information for our problem.)\n\nHowever, the following information is relevant to our problem:\n- The mouse chases the cat (Statement 5).\n- If something chases the cat then it likes the mouse (Statement 16).\n- The mouse likes the cat is not possible based on statement 6 (The mouse does not like the cat), but since the mouse chases the cat, then the mouse likes the mouse.\n- If something likes the mouse then the mouse is big (Statement 18).\n- The mouse is not big because statement 18 is based on the mouse liking the mouse, but statement 11 (All big things are blue) implies that big things are blue.\n- The mouse is not blue because statement 14 (All blue things are young) and statement 15 (If something is blue then it is young) imply that all blue things are young.\n- If the mouse is not blue, then the mouse is not young based on statement 15 (If something is blue then it is young).\n\nHowever, there is another statement that implies the mouse could be young:\n- The cat sees the mouse (Statement 3).\n- The mouse is not blue because statement 14 (All blue things are young) and statement 15 (If something is blue then it is young) imply that all blue things are young.\n- If the mouse is not blue, then the mouse is not young based on statement 15 (If something is blue then it is young), but the statement that the mouse is not young does not consider the fact that the cat sees the mouse and the mouse is not blue.\n- If something sees the mouse and the mouse is not blue then the mouse likes the cat (Statement 19).\n- The mouse does not like the cat (Statement 6), but based on statement 19, the mouse could be young if it likes the cat.\n\nHowever, this is a contradiction because the mouse does not like the cat, but if the mouse likes the cat then it could be young.\n\nTo resolve the contradiction, let's analyze the given information:\n- The mouse does not like the cat (Statement 6).\n- If something sees the mouse and the mouse is not blue then the mouse likes the cat (Statement 19).\n- The cat sees the mouse (Statement 3).\n- The mouse is not blue because statement 14 (All blue things are young) and statement 15 (If something is blue then it is young) imply that all blue things are young.\n\nSince the cat sees the mouse and the mouse is not blue, the mouse likes the cat based on statement 19.\nHowever, the mouse does not like the cat based on statement 6.\nThis is a contradiction, and based on the given information, we cannot determine whether the mouse is young or not.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information, \"All big things are blue.\" \n   We don't have enough information to conclude that the mouse is big, so we cannot directly conclude that the mouse is blue.\n\n2. From the information, \"If something is blue then it is young.\"\n   Since we cannot conclude that the mouse is blue, we also cannot conclude that the mouse is young.\n\n3. From the information, \"The mouse chases the cat.\" \n   However, this does not provide any direct information about the mouse's age.\n\n4. From the information, \"If something chases the cat then it likes the mouse.\"\n   Since the mouse chases the cat, it implies that the mouse likes the mouse, but this does not provide any information about the mouse's age.\n\n5. From the information, \"If something sees the mouse and the mouse is not blue then the mouse likes the cat.\"\n   We don't have enough information to conclude that the mouse sees something, or that the mouse is not blue.\n\n6. From the information, \"The mouse does not like the cat.\"\n   However, this does not provide any information about the mouse's age.\n\n7. From the information, \"If something is young then it likes the tiger.\"\n   This does not provide any direct information about the mouse's age.\n\nSince we cannot directly conclude that the mouse is young or not, the statement \"The mouse is young\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that \"All big things are blue.\" and \"If something is blue then it is young.\" However, we don't know if the mouse is big or blue.\n\n2. We are also given that \"If something sees the mouse and the mouse is not blue then the mouse likes the cat.\" We don't know if the cat sees the mouse or not.\n\n3. We are given that \"The cat sees the mouse.\" However, this does not necessarily mean the mouse is not blue.\n\n4. We are given that \"If the cat sees the tiger then the cat chases the tiger.\" and \"The cat sees the tiger.\" This means the cat chases the tiger.\n\n5. We are given that \"If something chases the cat then it likes the mouse.\" However, this information does not directly relate to the mouse's age.\n\n6. We are given that \"If something is young then it likes the tiger.\" However, this information does not directly relate to the mouse's age.\n\n7. We are given that \"The tiger is young.\" and \"The tiger likes the cat.\" However, this information does not directly relate to the mouse's age.\n\n8. We are given that \"The mouse chases the cat.\" and \"If something chases the cat then it likes the mouse.\" Therefore, the mouse likes the mouse.\n\n9. We are given that \"The mouse does not like the cat.\" This information does not directly relate to the mouse's age.\n\n10. We are given that \"The rabbit likes the tiger.\" and \"The rabbit does not like the mouse.\" This information does not directly relate to the mouse's age.\n\n11. We are given that \"The tiger likes the cat.\" This information does not directly relate to the mouse's age.\n\n12. We are given that \"The cat does not see the rabbit.\" This information does not directly relate to the mouse's age.\n\n13. We are given that \"The cat chases the tiger.\" and \"The tiger is young.\" However, this information does not directly relate to the mouse's age.\n\n14. We are given that \"The tiger is nice.\" and \"The tiger is young.\" However, this information does not directly relate to the mouse's age.\n\n15. We are given that \"If something likes the mouse then the mouse is big.\" However, this information does not directly relate to the mouse's age.\n\n16. We are given that \"The mouse chases the cat.\" and \"The mouse does not like the cat.\" However, this information does not directly relate to the mouse's age.\n\n17. We are given that \"The cat sees the mouse.\" and \"The mouse does not like the cat.\" However, this information does not directly relate to the mouse's age.\n\n18. We are given that \"If the mouse is not blue then it likes the cat.\" However, we don't know if the mouse is not blue.\n\n19. We are given that \"All big things are blue.\" However, we don't know if the mouse is big.\n\n20. We are given that \"If something is blue then it is young.\" However, we don't know if the mouse is blue.\n\nBased on the given information, we cannot determine the age of the mouse.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine their implications.\n\n1. The cat chases the rabbit. (Statement 1)\n2. The cat chases the tiger. (Statement 2)\n3. The cat sees the mouse. (Statement 3)\n4. The cat does not see the rabbit. (Statement 4)\n5. The mouse chases the cat. (Statement 5)\n6. The mouse does not like the cat. (Statement 6)\n7. The rabbit likes the tiger. (Statement 7)\n8. The tiger is nice. (Statement 8)\n9. The tiger is young. (Statement 9)\n10. The tiger likes the cat. (Statement 10)\n11. All big things are blue. (Statement 11)\n12. If the cat sees the tiger then the cat chases the tiger. (Statement 12)\n13. If something likes the rabbit then the rabbit does not like the mouse. (Statement 13)\n14. All blue things are young. (Statement 14)\n15. If something is blue then it is young. (Statement 15)\n16. If something chases the cat then it likes the mouse. (Statement 16)\n17. If something is young then it likes the tiger. (Statement 17)\n18. If something likes the mouse then the mouse is big. (Statement 18)\n19. If something sees the mouse and the mouse is not blue then the mouse likes the cat. (Statement 19)\n\nNow, we need to determine whether the statement \"The mouse is young\" is true, false, or unknown.\n\nLet's start by finding any information related to the mouse's age.\n\n- Statement 5: The mouse chases the cat.\n- Statement 16: If something chases the cat then it likes the mouse.\nFrom these statements, we can conclude that the mouse is liked by the cat's chaser.\n\n- Statement 3: The cat sees the mouse.\n- Statement 9: The tiger is young.\n- Statement 19: If something sees the mouse and the mouse is not blue then the mouse likes the cat.\nSince we don't know the color of the mouse, we can't directly apply Statement 19. However, we can analyze the information given about the tiger, which is young (Statement 9).\n\n- Statement 17: If something is young then it likes the tiger.\nSince the tiger is young, this statement implies that the tiger likes itself. This is a given, as it is stated in Statement 10 that the tiger likes the cat.\n\n- Statement 7: The rabbit likes the tiger.\n- Statement 13: If something likes the rabbit then the rabbit does not like the mouse.\nFrom these statements, we can conclude that the rabbit does not like the mouse. However, this does not provide any information about the mouse's age.\n\n- Statement 18: If something likes the mouse then the mouse is big.\nThis statement implies that the mouse's likers are big. However, it does not provide any information about the mouse's age.\n\nFrom the given statements, we can't directly determine whether the mouse is young or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is young\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. All big things are blue. \n   - This statement does not provide any direct information about the mouse, but it helps us understand the relationship between \"big\" and \"blue\".\n\n2. If something likes the rabbit then the rabbit does not like the mouse. \n   - This statement does not provide any direct information about the mouse.\n\n3. The rabbit likes the tiger. \n   - This statement does not provide any direct information about the mouse.\n\n4. The tiger is nice. \n   - This statement does not provide any direct information about the mouse.\n\n5. The tiger is young. \n   - This statement does not provide any direct information about the mouse.\n\n6. The tiger likes the cat. \n   - This statement does not provide any direct information about the mouse.\n\n7. If the cat sees the tiger then the cat chases the tiger. \n   - This statement does not provide any direct information about the mouse.\n\n8. If something likes the rabbit then the rabbit does not like the mouse. \n   - This statement does not provide any direct information about the mouse.\n\n9. The mouse chases the cat. \n   - This statement does not provide any direct information about the mouse's age.\n\n10. The mouse does not like the cat. \n    - This statement does not provide any direct information about the mouse's age.\n\n11. If something is blue then it is young. \n    - Since we don't know if the mouse is blue, we cannot conclude its age from this statement.\n\n12. If something chases the cat then it likes the mouse. \n    - Since the mouse chases the cat, the mouse likes the mouse (itself).\n\n13. If something likes the mouse then the mouse is big. \n    - Since the mouse likes itself, we can conclude that the mouse is big.\n\n14. If something is big then it is blue. \n    - This statement is not directly applicable, but from statement 1, we know that all big things are blue.\n\n15. If something sees the mouse and the mouse is not blue then the mouse likes the cat. \n    - Since we don't know if the mouse is blue or not, and we don't have any information about the mouse seeing something else, we cannot conclude anything about the mouse's preference for the cat.\n\nNow, let's analyze the information we have about the mouse:\n\n- The mouse is big (from statement 13).\n- All big things are blue (from statement 1).\n- All blue things are young (from statement 11).\n- Therefore, the mouse is blue.\n- Since the mouse is blue, it must be young (from statement 11).\n\nTherefore, the statement \"The mouse is young\" is **TRUE**.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is young\" is true, false, or unknown, we need to analyze the given information and use the rules provided to make conclusions.\n\n1. All big things are blue. \n2. If something likes the rabbit then the rabbit does not like the mouse.\n3. The rabbit likes the tiger.\n   - From (3), the rabbit does not like the mouse (using rule 2).\n\n4. The tiger is nice.\n5. The tiger is young.\n6. The tiger likes the cat.\n   - We know the tiger is young (rule 5), but we don't have enough information to conclude anything about the mouse.\n\n7. If something chases the cat then it likes the mouse.\n8. The mouse chases the cat.\n   - From (8) and (7), the mouse likes the mouse (not relevant to our conclusion), but it does not provide information about the mouse's age.\n\n9. If something is young then it likes the tiger.\n   - We know the tiger is young (rule 5), but this rule doesn't provide any information about the mouse's age.\n\n10. If something sees the mouse and the mouse is not blue then the mouse likes the cat.\n    - There is no information that the cat sees the mouse, so we can't use this rule to conclude anything about the mouse.\n\n11. The mouse does not like the cat.\n    - This rule does not provide any information about the mouse's age.\n\n12. If something likes the mouse then the mouse is big.\n    - We don't have enough information to conclude whether the mouse likes the mouse or not.\n\n13. The cat sees the mouse.\n    - We also know the cat does not see the rabbit (rule 4).\n    - If the cat sees the tiger, then the cat chases the tiger (rule 1).\n    - But this is not relevant to our conclusion about the mouse.\n\n14. The cat chases the tiger.\n    - This is not relevant to our conclusion about the mouse.\n\nGiven the provided rules, we can't determine whether the mouse is young or not. The only rule that might seem relevant is rule 1, which says all big things are blue. However, we don't have enough information about the mouse being big or blue to make any conclusion about its age.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is young\" is true, false, or unknown, we need to analyze the given information and infer the mouse's age.\n\n1. We know that \"All big things are blue.\" However, we don't know if the mouse is big or blue.\n\n2. If something likes the mouse, then the mouse is big. \nWe don't have any information about anything liking the mouse, so we cannot conclude that the mouse is big.\n\n3. We know that \"The cat sees the mouse\" and \"The mouse chases the cat.\" We also know that \"If something chases the cat then it likes the mouse.\" This implies that the mouse likes the cat, not the other way around.\n\n4. Since the mouse likes the cat, we can conclude that \"The mouse is big\" using the rule \"If something likes the mouse then the mouse is big.\"\n\n5. Now that we know the mouse is big, we can conclude that \"The mouse is blue\" using the rule \"All big things are blue.\"\n\n6. We also know that \"All blue things are young.\" Since the mouse is blue, we can conclude that \"The mouse is young.\"\n\nTherefore, the statement \"The mouse is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger is young. (Given information)\n2. All big things are blue. (Given information)\n3. If something is blue then it is young. (Given information)\nFrom steps 1 and 2, we cannot directly determine the age of the mouse. However, from step 3, we can infer that if something is blue, then it is young. \n\n4. If something likes the mouse then the mouse is big. (Given information)\n5. The cat likes the mouse. (From step 4, we can infer that the mouse is big because the cat likes the mouse)\n6. All big things are blue. (Given information)\n7. If something is blue then it is young. (Given information)\nFrom steps 5, 6, and 7, we can infer that the mouse is young because it is big and all big things are blue, which implies that it is young.\n\nHowever, we also need to analyze the statement \"If something sees the mouse and the mouse is not blue then the mouse likes the cat.\" We cannot directly determine whether the mouse sees the cat, or whether the cat is blue or not. But we can infer that if the mouse is not blue, then the mouse likes the cat.\n\n8. The cat sees the mouse. (Given information)\n9. The mouse is not blue. (From steps 5 and 6, we can infer that the mouse is big and blue. However, we can also infer that the mouse is not blue from the previous conclusion that the mouse is young and the statement \"If something is blue then it is young.\")\n10. If something sees the mouse and the mouse is not blue then the mouse likes the cat. (Given information)\nFrom steps 8 and 9, we can infer that the mouse likes the cat because it sees the mouse and the mouse is not blue.\n\nNow, let's combine all the information. We know that the mouse is young (from step 7) and the mouse likes the cat (from step 10). We also know that the mouse chases the cat (from the given information).\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the mouse is young, we need to analyze the given information and use logical deductions.\n\nFrom the information \"All big things are blue\" and \"If something is blue then it is young\", we can conclude that all big things are young.\n\nHowever, there is no direct information about the mouse's size. We need to look for other clues that might help us determine the mouse's age.\n\nThe information \"If something likes the mouse then the mouse is big\" implies that the mouse is big if it is liked by something. \n\nHowever, there is no information about what likes the mouse, so we cannot conclude that the mouse is big.\n\nThe information \"If something sees the mouse and the mouse is not blue then the mouse likes the cat\" does not provide any information about the mouse's age.\n\nThe information \"If something is young then it likes the tiger\" implies that young things like the tiger, but this does not provide any information about the mouse's age.\n\nThe information \"If something chases the cat then it likes the mouse\" implies that the mouse is liked by things that chase the cat.\n\nHowever, the mouse chases the cat, so the mouse is liked by the mouse itself, but this does not provide any information about the mouse's age.\n\nThe information \"The mouse chases the cat\" and \"The mouse does not like the cat\" do not provide any information about the mouse's age.\n\nHowever, the statement \"If something chases the cat then it likes the mouse\" implies that the mouse likes the mouse itself because the mouse chases the cat.\n\nThe information \"If something likes the rabbit then the rabbit does not like the mouse\" implies that the rabbit does not like the mouse. However, there is no information about what the rabbit likes, so we cannot conclude that the rabbit likes the cat.\n\nThe information \"The rabbit likes the tiger\" implies that the rabbit likes something that is nice, young, and blue.\n\nHowever, the tiger is nice, young, and blue. This does not provide any information about the mouse's age.\n\nThe information \"The tiger is nice, young, and blue\" implies that the tiger is young and blue. However, this does not provide any information about the mouse's age.\n\nFrom the information \"The cat chases the tiger\" and \"If the cat sees the tiger then the cat chases the tiger\", we can conclude that the cat sees the tiger.\n\nThe information \"The cat sees the tiger\" and \"If the cat sees the tiger then the cat chases the tiger\" implies that the cat chases the tiger. However, this does not provide any information about the mouse's age.\n\nThe information \"The cat does not see the rabbit\" does not provide any information about the mouse's age.\n\nHowever, the statement \"If something is blue then it is young\" implies that blue things are young. \n\nWe know that the tiger is blue, so the tiger is young.\n\nWe also know that the cat sees the tiger, which means that the cat is not blue. \n\nHowever, we do not know if the mouse is blue or not.\n\nThe information \"If something sees the mouse and the mouse is not blue then the mouse likes the cat\" does not provide any information about the mouse's age.\n\nHowever, the statement \"All blue things are young\" implies that blue things are young.\n\nWe do not know if the mouse is blue or not, so we cannot conclude that the mouse is young.\n\nHowever, there is one more clue. \n\nThe information \"If something is young then it likes the tiger\" implies that young things like the tiger.\n\nWe know that the tiger is young and likes the cat.\n\nThe information \"The mouse does not like the cat\" does not provide any information about the mouse's age.\n\nHowever, the statement \"If something is young then it likes the tiger\" implies that young things like the tiger.\n\nWe do not know if the mouse is young or not, but we know that the tiger is young.\n\nIf the mouse is not young, then the mouse is not blue.\n\nHowever, the information \"If something sees the mouse and the mouse is not blue then the mouse likes the cat\" implies that the mouse likes the cat.\n\nThe information \"The mouse does not like the cat\" does not provide any information about the mouse's age.\n\nHowever, the statement \"If something is young then it likes the tiger\" implies that young things like the tiger.\n\nWe know that the tiger is young.\n\nIf the mouse is not young, then the mouse does not like the tiger.\n\nHowever, the information \"The mouse chases the cat\" and \"If something chases the cat then it likes the mouse\" implies that the mouse likes the mouse itself.\n\nWe do not know if the mouse is young or not, but we know that the mouse likes the mouse itself.\n\nHowever, the statement \"If something is young then it likes the tiger\" implies that young things like the tiger.\n\nWe do not know if the mouse is young or not, but we know that the mouse does not like the tiger.\n\nThe information \"The cat sees the tiger\" and \"If the cat sees the tiger then the cat chases the tiger\" implies that the cat chases the tiger.\n\nHowever, this does not provide any information about the mouse's age.\n\nThe information \"The cat does not see the rabbit\" does not provide any information about the mouse's age.\n\nHowever, the statement \"All blue things are young\" implies that blue things are young.\n\nWe know that the tiger is blue, so the tiger is young.\n\nWe do not know if the mouse is blue or not.\n\nThe information \"If something is blue then it is young\" implies that blue things are young.\n\nWe do not know if the mouse is blue or not.\n\nThe information \"If something sees the mouse and the mouse is not blue then the mouse likes the cat\" does not provide any information about the mouse's age.\n\nHowever, the statement \"If something is young then it likes the tiger\" implies that young things like the tiger.\n\nWe know that the tiger is young and likes the cat.\n\nThe information \"The mouse does not like the cat\" does not provide any information about the mouse's age.\n\nHowever, the statement \"If something is young then it likes the tiger\" implies that young things like the tiger.\n\nWe do not know if the mouse is young or not, but we know that the tiger is young.\n\nIf the mouse is not young, then the mouse is not blue.\n\nHowever, the information \"If something sees the mouse and the mouse is not blue then the mouse likes the cat\" implies that the mouse likes the cat.\n\nThe information \"The mouse does not like the cat\" does not provide any information about the mouse's age.\n\nHowever, the statement \"If something is young then it likes the tiger\" implies that young things like the tiger.\n\nWe know that the tiger is young.\n\nIf the mouse is not young, then the mouse does not like the tiger.\n\nHowever, the information \"The mouse chases the cat\" and \"If something chases the cat then it likes the mouse\" implies that the mouse likes the mouse itself.\n\nWe do not know if the mouse is young or not, but we know that the mouse likes the mouse itself.\n\nHowever, the statement \"If something is young then it likes the tiger\" implies that young things like the tiger.\n\nWe do not know if the mouse is young or not, but we know that the mouse does not like the tiger.\n\nHowever, let's analyze the information again.\n\nThe information \"If something is young then it likes the tiger\" implies that young things like the tiger.\n\nWe know that the tiger is young and likes the cat.\n\nThe information \"The mouse does not like the cat\" does not provide any information about the mouse's age.\n\nHowever, the statement \"If something is young then it likes the tiger\" implies that young things like the tiger.\n\nWe do not know if the mouse is young or not, but we know that the tiger is young.\n\nIf the mouse is not young, then the mouse is not blue.\n\nHowever, the information \"If something sees the mouse and the mouse is not blue then the mouse likes the cat\" implies that the mouse likes the cat.\n\nThe information \"The mouse does not like the cat\" does not provide any information about the mouse's age.\n\nHowever, the statement \"If something is young then it likes the tiger\" implies that young things like the tiger.\n\nWe know that the tiger is young.\n\nIf the mouse is not young, then the mouse does not like the tiger.\n\nHowever, the information \"The mouse chases the cat\" and \"If something chases the cat then it likes the mouse\" implies that the mouse likes the mouse itself.\n\nWe do not know if the mouse is young or not, but we know that the mouse likes the mouse itself.\n\nHowever, the statement \"If something is young then it likes the tiger\" implies that young things like the tiger.\n\nWe do not know if the mouse is young or not, but we know that the mouse does not like the tiger.\n\nHowever, let's analyze the information again.\n\nThe information \"If something is young then it likes the tiger\" implies that young things like the tiger.\n\nWe know that the tiger is young.\n\nHowever, the information \"The mouse sees the cat\" is not given. \n\nHowever, the statement \"If something sees the mouse and the mouse is not blue then the mouse likes the cat\" implies that the mouse likes the cat if the mouse is not blue.\n\nWe do not know if the mouse is blue or not.\n\nHowever, the statement \"All big things are blue\" implies that all big things are blue.\n\nWe know that the mouse likes the cat.\n\nThe information \"If something likes the mouse then the mouse is big\" implies that the mouse is big if it is liked by something.\n\nHowever, we do not know if the mouse is liked by something.\n\nThe information \"The mouse chases the cat\" implies that the mouse is liked by the cat.\n\nHowever",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"All big things are blue\" implies that blue things are also big. \n2. The statement \"If something is blue then it is young\" implies that blue things are also young.\n3. From steps 1 and 2, we can conclude that big things are also young.\n4. The statement \"If something likes the mouse then the mouse is big\" implies that the mouse is big if something likes it.\n5. The statement \"The mouse chases the cat\" implies that the mouse likes the cat.\n6. From step 4 and step 5, we can conclude that the mouse is big.\n7. Since the mouse is big (from step 6), we can conclude from step 3 that the mouse is young.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the mouse is young, we need to analyze the given statements and their implications. \n\n1. All big things are blue.\n2. If something likes the rabbit then the rabbit does not like the mouse.\n3. The rabbit likes the tiger.\n   From (2) and (3): The rabbit does not like the mouse.\n4. The tiger is nice.\n5. The tiger is young.\n   From (1) and (5): The tiger is blue because it is young and all blue things are young. However, since it is also nice, it should be big. This creates a contradiction because all big things are blue, but the tiger cannot be both big and young.\n\nHowever, to avoid this contradiction, let's continue analyzing the statements without this conclusion.\n\n6. The tiger likes the cat.\n7. If the cat sees the tiger then the cat chases the tiger.\n   From (6): The cat sees the tiger (since the cat likes the tiger).\n   From (7): The cat chases the tiger (because the cat sees the tiger).\n8. The mouse chases the cat.\n9. The mouse does not like the cat.\n10. If something chases the cat then it likes the mouse.\n    From (8): The mouse likes the mouse (because the mouse chases the cat).\n11. If something sees the mouse and the mouse is not blue then the mouse likes the cat.\n    Since we don't know if the mouse is blue, we cannot conclude anything from this statement.\n\nFrom (9): The mouse does not like the cat.\n\nWe can't conclude that the mouse is young or not from the statements (8) or (10) because we don't know if the mouse is big or not.\n\nHowever, we know that if something is young then it likes the tiger. But we also know that the mouse does not like the cat (from (9)), and the mouse chases the cat (from (8)).\n\nTo conclude if the mouse is young or not, we should check if it likes the tiger.\n\nSince we don't have any information about the mouse liking the tiger, we can't conclude that the mouse is young or not.\n\nSo, our final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the mouse is young, we need to analyze the given information step by step.\n\n1. The statement \"All big things are blue\" implies that if something is big, then it is blue. However, we don't have any information that directly states whether the mouse is big or blue.\n\n2. The statement \"If something likes the rabbit then the rabbit does not like the mouse\" can be used to infer that if the tiger likes the rabbit (as stated), then the rabbit does not like the mouse. However, we still don't know anything about the mouse's age.\n\n3. The statement \"If the cat sees the tiger then the cat chases the tiger\" is a conditional statement that we can use to infer the relationship between the cat and the tiger. However, this does not provide any information about the mouse's age.\n\n4. The statement \"If something is blue then it is young\" implies that if something is blue, then it is young. However, we still don't know whether the mouse is blue or not.\n\n5. The statement \"All blue things are young\" implies that if something is blue, then it is young. However, we still don't know whether the mouse is blue or not.\n\n6. The statement \"If something is young then it likes the tiger\" implies that if something is young, then it likes the tiger. However, this does not provide any information about the mouse's age.\n\n7. The statement \"If something chases the cat then it likes the mouse\" implies that if something chases the cat, then it likes the mouse. However, this does not provide any information about the mouse's age.\n\n8. The statement \"If something likes the mouse then the mouse is big\" implies that if something likes the mouse, then the mouse is big. However, we still don't know whether the mouse is big or not.\n\n9. The statement \"If something sees the mouse and the mouse is not blue then the mouse likes the cat\" implies that if the cat sees the mouse and the mouse is not blue, then the mouse likes the cat. However, we still don't know whether the mouse is blue or not.\n\n10. Now, we can use the information \"The cat sees the mouse\" to infer that the mouse might like the cat, as stated in the 9th step.\n\n11. The information \"The mouse does not like the cat\" implies that the mouse does not like the cat, which is the opposite of the inference in the 10th step. This is a contradiction, and it means that the 9th step cannot be applied here.\n\n12. However, we can use the information \"The mouse does not like the cat\" to infer that the mouse does not see the cat as stated in the 9th step, because if the mouse sees the cat, it would like the cat.\n\n13. Now, we can use the information \"The mouse does not like the cat\" to infer that the mouse does not see the cat, as stated in the 12th step.\n\n14. The information \"The mouse does not see the cat\" implies that we cannot apply the 9th step here, and the 9th step is not applicable.\n\n15. However, we can use the information \"The cat does not see the rabbit\" and the fact that the cat sees the mouse to infer that the mouse is not the rabbit.\n\n16. The information \"The cat does not see the rabbit\" and the fact that the cat sees the mouse implies that the mouse is not the rabbit. However, this does not provide any information about the mouse's age.\n\n17. We can use the information \"The cat does not see the rabbit\" to infer that the cat and the rabbit do not have a direct relationship.\n\n18. The information \"The cat does not see the rabbit\" and the fact that the cat sees the mouse implies that the mouse is not the rabbit. However, this does not provide any information about the mouse's age.\n\n19. We can use the information \"The mouse chases the cat\" to infer that the mouse likes the cat, as stated in the 7th step.\n\n20. However, we already know that the mouse does not like the cat, which is the opposite of the inference in the 19th step. This is a contradiction, and it means that the 7th step cannot be applied here.\n\n21. We can use the information \"The mouse chases the cat\" to infer that the cat is young, as stated in the 6th step.\n\n22. However, we cannot directly apply this to the mouse.\n\n23. We can use the information \"The tiger likes the cat\" to infer that the cat is nice, as stated in the 4th step.\n\n24. However, we cannot directly apply this to the mouse.\n\n25. We can use the information \"The tiger is young\" to infer that the tiger is blue, as stated in the 5th step.\n\n26. However, we cannot directly apply this to the mouse.\n\n27. We can use the information \"The tiger likes the cat\" to infer that the tiger is nice, as stated in the 3rd step.\n\n28. However, we cannot directly apply this to the mouse.\n\n29. We can use the information \"The tiger is young\" to infer that the tiger is blue, as stated in the 2nd step.\n\n30. However, we cannot directly apply this to the mouse.\n\n31. We can use the information \"The cat chases the rabbit\" to infer that the cat and the rabbit do not have a direct relationship.\n\n32. However, we already know that the cat sees the mouse, and the mouse is not the rabbit.\n\n33. We can use the information \"The cat chases the rabbit\" to infer that the rabbit is not young, as stated in the 6th step.\n\n34. However, we cannot directly apply this to the mouse.\n\n35. We can use the information \"The rabbit likes the tiger\" to infer that the rabbit is not the mouse, because if it were the mouse, then it would not like the tiger.\n\n36. However, we already know that the mouse is not the rabbit.\n\n37. We can use the information \"The mouse does not like the cat\" to infer that the mouse does not chase the cat, as stated in the 7th step.\n\n38. However, we already know that the mouse chases the cat.\n\n39. The information \"The mouse does not like the cat\" and the fact that the mouse chases the cat implies that we cannot apply the 7th step here, and the 7th step is not applicable.\n\n40. We can use the information \"The mouse does not see the cat\" to infer that the mouse does not like the cat, as stated in the 9th step.\n\n41. However, we already know that the mouse does not like the cat.\n\n42. We can use the information \"The mouse chases the cat\" to infer that the mouse is young, as stated in the 6th step.\n\n43. However, we cannot directly apply this to the mouse.\n\n44. We can use the information \"The mouse does not like the cat\" to infer that the mouse is not the cat.\n\n45. However, we already know that the mouse is not the rabbit.\n\n46. The information \"The mouse does not like the cat\" and the fact that the mouse is not the rabbit implies that the mouse is not the cat or the rabbit.\n\n47. However, this does not provide any information about the mouse's age.\n\n48. We can use the information \"The mouse chases the cat\" to infer that the cat is young, as stated in the 6th step.\n\n49. However, we cannot directly apply this to the mouse.\n\n50. We can use the information \"The mouse does not like the cat\" to infer that the mouse is not young, as stated in the 6th step.\n\n51. However, this is a contradiction with the information \"The mouse chases the cat.\"\n\n52. We can use the information \"The mouse chases the cat\" to infer that the mouse is young, as stated in the 6th step.\n\n53. However, we cannot directly apply this to the mouse.\n\n54. We can use the information \"The mouse does not like the cat\" to infer that the mouse is not the cat.\n\n55. However, we already know that the mouse is not the rabbit.\n\n56. The information \"The mouse does not like the cat\" and the fact that the mouse is not the rabbit implies that the mouse is not the cat or the rabbit.\n\n57. However, this does not provide any information about the mouse's age.\n\n58. We can use the information \"The mouse chases the cat\" to infer that the cat is young, as stated in the 6th step.\n\n59. However, we cannot directly apply this to the mouse.\n\n60. We can use the information \"The mouse does not like the cat\" to infer that the mouse is not young, as stated in the 6th step.\n\n61. However, this is a contradiction with the information \"The mouse chases the cat.\"\n\n62. We can use the information \"The mouse does not like the cat\" to infer that the mouse is not the cat.\n\n63. However, we already know that the mouse is not the rabbit.\n\n64. The information \"The mouse does not like the cat\" and the fact that the mouse is not the rabbit implies that the mouse is not the cat or the rabbit.\n\n65. However, this does not provide any information about the mouse's age.\n\n66. We can use the information \"The mouse chases the cat\" to infer that the cat is young, as stated in the 6th step.\n\n67. However, we cannot directly apply this to the mouse.\n\n68. We can use the information \"The mouse does not like the cat\" to infer that the mouse is not young",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> likes(X, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, likes_mouse_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, mouse)",
+          "z3_formula": "likes_mouse_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> big(X)",
+          "z3_formula": "Implies(likes_mouse_mouse, big_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_mouse, blue_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_mouse, young_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(mouse)",
+          "z3_formula": "Not(blue_mouse) == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & not blue(mouse) -> likes(X, cat)",
+          "z3_formula": "Implies(And(sees_cat_mouse, Not(blue_mouse)), likes_cat_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_cat_mouse == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, cat)",
+          "z3_formula": "Not(likes_cat_mouse) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not young(mouse)",
+          "z3_formula": "Not(young_mouse) == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_mouse, blue_mouse)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_mouse, young_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> likes(X, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, likes_mouse_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & Not(blue(mouse)) -> likes(X, cat)",
+          "z3_formula": "Implies(And(sees_X_mouse, Not(blue_mouse)), likes_X_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "Not(likes(mouse, cat))",
+          "z3_formula": "Not(likes_mouse_cat) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(young_mouse, likes_mouse_tiger)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_X, young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, mouse)",
+          "z3_formula": "sees_cat_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & Not(blue(mouse)) -> likes(X, cat)",
+          "z3_formula": "Implies(And(sees_cat_mouse, Not(blue_mouse)), likes_cat_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, tiger)",
+          "z3_formula": "sees_cat_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> chases(X, tiger)",
+          "z3_formula": "Implies(sees_cat_tiger, chases_cat_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> likes(X, mouse)",
+          "z3_formula": "Implies(chases_X_cat, likes_X_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "Not(likes(mouse, cat))",
+          "z3_formula": "Not(likes_mouse_cat) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "Not(likes(rabbit, mouse))",
+          "z3_formula": "Not(likes_rabbit_mouse) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, tiger)",
+          "z3_formula": "likes_cat_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "Not(sees(cat, rabbit))",
+          "z3_formula": "Not(sees_cat_rabbit) == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> big(X)",
+          "z3_formula": "Implies(likes_X_mouse, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "Not(likes(mouse, cat))",
+          "z3_formula": "Not(likes_mouse_cat) == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, mouse)",
+          "z3_formula": "sees_cat_mouse == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "Not(likes(mouse, cat))",
+          "z3_formula": "Not(likes_mouse_cat) == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "Not(blue(mouse)) -> likes(mouse, cat)",
+          "z3_formula": "Implies(Not(blue_mouse), likes_mouse_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "Not(big(mouse))",
+          "z3_formula": "Not(big_mouse) == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_X, young_X)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "Not(blue(mouse))",
+          "z3_formula": "Not(blue_mouse) == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cat, rabbit)",
+          "z3_formula": "chases_cat_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, mouse)",
+          "z3_formula": "sees_cat_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(cat, rabbit)",
+          "z3_formula": "not sees_cat_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, cat)",
+          "z3_formula": "not likes_mouse_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> chases(X, tiger)",
+          "z3_formula": "Implies(sees_X_tiger, chases_X_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> not likes(X, mouse)",
+          "z3_formula": "Implies(likes_X_rabbit, not likes_X_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_X, young_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_X, young_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> likes(X, mouse)",
+          "z3_formula": "Implies(chases_X_cat, likes_X_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(young_X, likes_X_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> big(X)",
+          "z3_formula": "Implies(likes_X_mouse, big_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & not blue(mouse) -> likes(X, cat)",
+          "z3_formula": "Implies(And(sees_X_mouse, not blue_mouse), likes_X_cat)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_mouse, blue_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_mouse, young_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> not likes(rabbit, X)",
+          "z3_formula": "Implies(likes_rabbit_X, not likes_rabbit_X)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, mouse)",
+          "z3_formula": "not likes_rabbit_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(young_X, likes_X_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> likes(X, mouse)",
+          "z3_formula": "Implies(chases_X_cat, likes_X_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & not blue(mouse) -> likes(X, cat)",
+          "z3_formula": "Implies(And(sees_X_mouse, not blue_mouse), likes_X_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, cat)",
+          "z3_formula": "not likes_mouse_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> big(X)",
+          "z3_formula": "Implies(likes_X_mouse, big_X)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, mouse)",
+          "z3_formula": "sees_cat_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(cat, rabbit)",
+          "z3_formula": "not sees_cat_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> chases(X, tiger)",
+          "z3_formula": "Implies(sees_X_tiger, chases_X_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(X)",
+          "z3_formula": "big_X == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X)",
+          "z3_formula": "blue_X == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(Y, mouse)",
+          "z3_formula": "likes_Y_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> big(mouse)",
+          "z3_formula": "Implies(likes_Y_mouse, big_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, mouse)",
+          "z3_formula": "sees_cat_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> likes(X, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, likes_mouse_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_mouse, young_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_X, young_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, mouse) -> big(mouse)",
+          "z3_formula": "Implies(likes_cat_mouse, big_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, mouse)",
+          "z3_formula": "likes_cat_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_mouse, blue_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, mouse) & Not(blue(mouse)) -> likes(mouse, cat)",
+          "z3_formula": "Implies(And(sees_cat_mouse, Not(blue_mouse)), likes_mouse_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, mouse)",
+          "z3_formula": "sees_cat_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(blue(mouse))",
+          "z3_formula": "Not(blue_mouse) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == Unknown",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_mouse, blue_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_mouse, young_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> big(mouse)",
+          "z3_formula": "Implies(likes_cat_mouse, big_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & Not(blue(mouse)) -> likes(X, cat)",
+          "z3_formula": "Implies(And(sees_cat_mouse, Not(blue_mouse)), likes_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(young_mouse, likes_mouse_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == False",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, mouse)",
+          "z3_formula": "likes_mouse_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> likes(X, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, likes_mouse_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> Not(likes(X, mouse))",
+          "z3_formula": "Implies(likes_rabbit_mouse, Not(likes_rabbit_cat))",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, tiger)",
+          "z3_formula": "sees_cat_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "Not(sees(cat, rabbit))",
+          "z3_formula": "Not(sees_cat_rabbit) == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "Not(blue(mouse))",
+          "z3_formula": "Not(blue_mouse) == Unknown",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "Not(likes(mouse, cat))",
+          "z3_formula": "Not(likes_mouse_cat) == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "Not(likes(mouse, tiger))",
+          "z3_formula": "Not(likes_mouse_tiger) == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, mouse)",
+          "z3_formula": "likes_mouse_mouse == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_X, young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_X, young_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(Y, mouse) -> big(mouse)",
+          "z3_formula": "Implies(likes_Y_mouse, big_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> not likes(rabbit, mouse)",
+          "z3_formula": "Implies(likes_rabbit_mouse, not likes_rabbit_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, mouse)",
+          "z3_formula": "not likes_rabbit_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_tiger, blue_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "nice(tiger) & young(tiger) -> contradiction",
+          "z3_formula": "And(nice_tiger, young_tiger) == False",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> sees(cat, tiger)",
+          "z3_formula": "Implies(likes_tiger_cat, sees_cat_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, tiger)",
+          "z3_formula": "sees_cat_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> chases(cat, tiger)",
+          "z3_formula": "Implies(likes_tiger_cat, chases_cat_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, tiger)",
+          "z3_formula": "chases_cat_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, cat)",
+          "z3_formula": "not likes_mouse_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> likes(X, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, likes_mouse_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, mouse)",
+          "z3_formula": "likes_mouse_mouse == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & not blue(mouse) -> likes(X, cat)",
+          "z3_formula": "Implies(And(sees_X_mouse, not blue_mouse), likes_X_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(mouse, cat)",
+          "z3_formula": "not likes_mouse_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(mouse)",
+          "z3_formula": "not blue_mouse == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == False",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(young_X, likes_X_tiger)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(mouse, tiger)",
+          "z3_formula": "not likes_mouse_tiger == Unknown",
+          "source_step": 22
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 172,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 56
+    },
+    "maxsat_stats": {
+      "satisfied": 49,
+      "excluded": 7,
+      "total_weight": 156,
+      "solve_time_ms": 2.190336585044861
+    },
+    "timing": {
+      "trace_gen_s": 24.882,
+      "extraction_s": 44.523,
+      "dedup_s": 2.023,
+      "maxsat_s": 0.005,
+      "total_s": 71.434
+    }
+  }
+}

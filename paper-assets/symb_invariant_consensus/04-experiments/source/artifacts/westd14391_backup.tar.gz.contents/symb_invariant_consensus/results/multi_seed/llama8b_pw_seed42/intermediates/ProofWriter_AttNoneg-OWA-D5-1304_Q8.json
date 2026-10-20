@@ -1,0 +1,1122 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1304_Q8",
+    "problem": "Anne is quiet. Anne is rough. Erin is nice. Erin is rough. Erin is round. Fiona is big. Fiona is furry. Fiona is nice. Fiona is quiet. Fiona is red. Fiona is rough. Fiona is round. Harry is red. Harry is rough. All nice, big people are quiet. Quiet people are round. Rough, big people are furry. Big people are rough. If someone is furry then they are nice. If someone is rough then they are big. If Harry is round then Harry is big.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not nice.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nQuiet($x, bool) ::: Is x quiet?\nRough($x, bool) ::: Is x rough?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nRed($x, bool) ::: Is x red?\n\nFacts:\nQuiet(Anne, True) ::: Anne is quiet.\nRough(Anne, True) ::: Anne is rough.\nNice(Erin, True) ::: Erin is nice.\nRough(Erin, True) ::: Erin is rough.\nRound(Erin, True) ::: Erin is round.\nBig(Fiona, True) ::: Fiona is big.\nFurry(Fiona, True) ::: Fiona is furry.\nNice(Fiona, True) ::: Fiona is nice.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRed(Fiona, True) ::: Fiona is red.\nRough(Fiona, True) ::: Fiona is rough.\nRound(Fiona, True) ::: Fiona is round.\nRed(Harry, True) ::: Harry is red.\nRough(Harry, True) ::: Harry is rough.\n\nRules:\nNice($x, True) && Big($x, True) >>> Quiet($x, True) ::: All nice, big people are quiet.\nQuiet($x, True) >>> Round($x, True) ::: Quiet people are round.\nRough($x, True) && Big($x, True) >>> Furry($x, True) ::: Rough, big people are furry.\nBig($x, True) >>> Rough($x, True) ::: Big people are rough.\nFurry($x, True) >>> Nice($x, True) ::: If someone is furry then they are nice.\nRough($x, True) >>> Big($x, True) ::: If someone is rough then they are big.\nRound(Harry, True) >>> Big(Harry, True) ::: If Harry is round then Harry is big.\n\nQuery:\nNice(Harry, False) ::: Harry is not nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 146.0,
+      "True": 11.5,
+      "Unknown": 116.0
+    },
+    "answer_counts": {
+      "True": 1,
+      "False": 8,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Harry is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given statements:\n\n1. If someone is furry then they are nice. (This is a rule)\n2. Fiona is furry. (A fact)\n3. Fiona is nice. (Following rule 1 from fact 2)\n\nFrom the given statements:\n\n1. If someone is furry then they are nice. (This is a rule)\n2. Harry is not furry. (We don't have information that Harry is furry, but we also don't have information that he is furry. So we can't say that he is nice or not nice based on this rule alone)\n3. Big people are rough. (This is a rule)\n4. Harry is red. (A fact)\n5. Harry is rough. (Following rule 3 from fact 4)\n\nFrom the given statements:\n\n1. Quiet people are round. (This is a rule)\n2. All nice, big people are quiet. (This is a rule)\n3. Big people are rough. (This is a rule)\n4. Erin is nice. (A fact)\n5. Erin is big. (Following rule 3 from fact 4)\n6. Erin is rough. (Following rule 3 from fact 5)\n7. Erin is round. (Following rule 2 from facts 4 and 5)\n\nFrom the given statements:\n\n1. If Harry is round then Harry is big. (This is a rule)\n2. Harry is round. (We don't have information that Harry is round, but we also don't have information that he is not round. So we can't say that he is big or not big based on this rule alone)\n3. If Harry is round then Harry is big. (This is a rule)\n4. Harry is round. (We don't have information that Harry is round, but we also don't have information that he is not round. However, we know that Erin is round, and we know that Harry is not Erin. So we can't say that Harry is big or not big based on this rule alone)\n5. If Harry is red then he is not round. (This is a rule)\n6. Harry is red. (A fact)\n7. Harry is not round. (Following rule 5 from fact 6)\n\nFrom the given statements:\n\n1. If Harry is not round then he is not big. (This is a rule)\n2. Harry is not round. (Following rule 7 from fact 6)\n3. Harry is not big. (Following rule 1 from fact 2)\n\nFrom the given statements:\n\n1. Quiet people are round. (This is a rule)\n2. All nice, big people are quiet. (This is a rule)\n3. Big people are rough. (This is a rule)\n4. Harry is not big. (Following rule 3 from fact 2)\n5. Harry is not round. (Following rule 7 from fact 6)\n6. Harry is not quiet. (Following rule 1 from facts 5)\n7. Harry is rough. (Following rule 3 from fact 4)\n\nNow we have information that Harry is not quiet. However, we still don't know if Harry is nice or not. We know that Fiona is nice and she is quiet, but we don't know if being quiet implies being nice.\n\nWe also know that Harry is not big, but we don't know if being big implies being nice. We know that Erin is nice and she is big, but we don't know if being big implies being nice.\n\nHowever, we know that Fiona is nice, and she is furry. We also know that if someone is furry then they are nice. Therefore, we can conclude that Harry is not nice if he is not furry.\n\nBut we also know that Harry is not furry. So, we can conclude that Harry is not nice.\n\nSo, the statement \"Harry is not nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given facts:\n   - Harry is red. (H1)\n   - Harry is rough. (H2)\n   - All nice, big people are quiet. (N1)\n   - Quiet people are round. (Q1)\n   - Rough, big people are furry. (R1)\n   - Big people are rough. (B1)\n   - If someone is furry then they are nice. (F1)\n   - If someone is rough then they are big. (R2)\n   - If Harry is round then Harry is big. (H3)\n\n2. Analyzing the given facts:\n   - From (H2) and (R2), we can conclude that Harry is big.\n\n3. Now, let's consider the statement \"Harry is not nice.\"\n   - We need to determine whether Harry is nice or not.\n   - If Harry is nice, then we cannot conclude anything about Harry's properties.\n   - If Harry is not nice, then we can check if it contradicts any given facts.\n\n4. Let's assume Harry is not nice.\n   - If Harry is not nice, then according to (F1), Harry is not furry.\n\n5. Analyzing the \"furry\" property:\n   - From (R1), we know that rough, big people are furry.\n   - We already concluded that Harry is big in step 2.\n   - Therefore, Harry should be furry if he is big.\n   - This contradicts the assumption that Harry is not nice.\n\n6. Conclusion:\n   - Since the assumption that Harry is not nice leads to a contradiction with the given facts, we can conclude that the statement \"Harry is not nice\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - All nice, big people are quiet. \n   - Quiet people are round. \n   - Rough, big people are furry. \n   - Big people are rough. \n   - If someone is furry then they are nice. \n   - If someone is rough then they are big. \n   - If Harry is round then Harry is big.\n\n2. We need to find the relationship between Harry and the properties (nice, big, round, rough, furry).\n\n   - From the given statements, we know that:\n     - Harry is red. (Given)\n     - Harry is rough. (Given)\n     - If someone is rough then they are big. (From statement 7) \n       So, Harry is big. (From statement 6)\n\n   - From statement 6, we also know that big people are rough, so Harry is indeed big and rough.\n\n   - Now, since Harry is big and rough, from statement 3, we know that Harry is furry.\n\n   - From statement 5, if someone is furry then they are nice. Therefore, Harry is nice.\n\n   - Now we have found that Harry is nice, big, round, rough, and furry.\n\n3. Since we have found that Harry is nice, the statement \"Harry is not nice\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not nice\" is true, false, or unknown, we need to analyze the given information and apply the rules of inference. \n\nWe'll start by identifying the known information about Harry:\n\n1. Harry is red.\n2. Harry is rough.\n\nFrom the given rules, we know that:\n\n1. If someone is rough then they are big.\n2. If someone is furry then they are nice.\n3. If someone is round then they are big.\n4. All nice, big people are quiet.\n5. Quiet people are round.\n6. Rough, big people are furry.\n7. Big people are rough.\n8. If Harry is round then Harry is big.\n\nNow, let's analyze each piece of information about Harry:\n\n- From (1) and (2), we can conclude that Harry is big, since (1) says that if someone is rough then they are big, and (2) says Harry is rough.\n- We cannot determine if Harry is round or not, but we know that if Harry is round then Harry is big, which we already know. However, we cannot say that Harry is round.\n- We cannot determine if Harry is nice or not. From the information given, we know that if someone is furry then they are nice, but we do not know if Harry is furry or not. We also know that all nice, big people are quiet, but we cannot say if Harry is nice or not.\n\nHowever, let's see if we can conclude that Harry is nice or not. We know that if Harry is furry, then he is nice, and if Harry is furry, then he must be big and rough, which we already know. We also know that if Harry is rough then he is big, which we already know. So, if Harry is furry, then he is nice. However, we do not know if Harry is furry or not.\n\nNow, let's see if we can conclude that Harry is not nice. We know that if Harry is furry, then he is nice. However, we cannot determine if Harry is furry or not. So, we cannot say that Harry is not nice. Therefore, the statement \"Harry is not nice\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and apply the given rules step by step.\n\n1. All nice, big people are quiet.\n   This rule implies that if someone is nice and big, then they are quiet.\n\n2. Quiet people are round.\n   This rule implies that if someone is quiet, then they are round.\n\n3. Rough, big people are furry.\n   This rule implies that if someone is rough and big, then they are furry.\n\n4. Big people are rough.\n   This rule implies that if someone is big, then they are rough.\n\n5. If someone is furry then they are nice.\n   This rule implies that if someone is furry, then they are nice.\n\n6. If someone is rough then they are big.\n   This rule implies that if someone is rough, then they are big.\n\n7. If Harry is round then Harry is big.\n   This rule implies that Harry is big because Harry is round.\n\nNow, let's analyze the given information about Harry:\n- Harry is red.\n- Harry is rough.\n- Harry is rough, so Harry is big (Rule 6).\n- Since Harry is big, Harry is rough (Rule 4), but we already know this.\n\nNow, let's consider the statement \"Harry is not nice.\" To determine whether this statement is true, false, or unknown, we need to apply the given rules and the information about Harry.\n\n- Harry is rough, so Harry is big (Rule 6).\n- Harry is big, so Harry is rough (Rule 4).\n- Harry is big, and big people are rough (Rule 3), so Harry is furry.\n- Harry is furry, so Harry is nice (Rule 5).\n\nHowever, we have a problem here. The conclusion that Harry is nice contradicts the statement \"Harry is not nice.\" But we must follow the rules and the given information. Since we have determined that Harry is nice using the given rules and information, the statement \"Harry is not nice\" must be false.\n\nSo, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. We will use a process of elimination to determine whether Harry is nice or not.\n\n1. All nice, big people are quiet. \n   This implies that if someone is nice and big, then they are quiet.\n\n2. Quiet people are round.\n   This implies that if someone is quiet, then they are round.\n\n3. Rough, big people are furry.\n   This implies that if someone is rough and big, then they are furry.\n\n4. Big people are rough.\n   This implies that if someone is big, then they are rough.\n\n5. If someone is furry then they are nice.\n   This implies that if someone is furry, then they are nice.\n\n6. If someone is rough then they are big.\n   This implies that if someone is rough, then they are big.\n\n7. If Harry is round then Harry is big.\n   This implies that since Harry is round, he is big.\n\nNow, let's apply these implications to the given statements about Harry:\n\n- Harry is red. (Statement)\n- Harry is rough. (Statement)\n- Harry is round. (Statement)\n- Harry is big. (Implication from statement 7, since Harry is round)\n\nSince Harry is rough and big, then he is furry. (Implication from statement 3)\nSince Harry is furry, then he is nice. (Implication from statement 5)\n\nHowever, statement 1 implies that all nice, big people are quiet. But we already know that Harry is not quiet (statement 2 implies that quiet people are round, but Harry is not round), so Harry cannot be nice (since nice, big people are quiet). This leads to a contradiction.\n\nSince we reached a contradiction, we cannot conclude that Harry is not nice. However, we also cannot conclude that Harry is nice. The statement is unknown because we cannot determine whether Harry is nice or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given Information:\n   - Harry is red.\n   - Harry is rough.\n   - All nice, big people are quiet.\n   - Quiet people are round.\n   - Rough, big people are furry.\n   - Big people are rough.\n   - If someone is furry then they are nice.\n   - If someone is rough then they are big.\n   - If Harry is round then Harry is big.\n\n2. From the given information, we know that Harry is rough. \n   - Since someone is rough, then they are big (rule 8).\n\n3. From the given information, we know that Harry is big.\n   - Since Harry is big, then Harry is rough (rule 6).\n   - Since Harry is rough, then Harry is big (rule 6). This creates a loop and doesn't give us any new information.\n\n4. From the given information, we know that Harry is red.\n   - Since there is no rule that connects red with any other characteristic, we cannot determine whether Harry is nice or not based on this information.\n\n5. To determine whether Harry is nice, we need to use the rules that relate nice with other characteristics.\n   - We know that someone is furry then they are nice (rule 7).\n   - We know that rough, big people are furry (rule 5).\n   - We know that Harry is big (from step 2) and Harry is rough (from step 2).\n   - Therefore, Harry is furry (rule 5).\n   - Since Harry is furry, then Harry is nice (rule 7).\n\n6. Conclusion: \n   - Based on the given rules, we have determined that Harry is nice.\n   - Therefore, the statement \"Harry is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not nice\" is true, false, or unknown, we need to analyze the given information and the implications.\n\n1. All nice, big people are quiet. \n   - This statement implies that if someone is nice and big, they are quiet.\n\n2. Quiet people are round.\n   - This statement implies that if someone is quiet, they are round.\n\n3. Rough, big people are furry.\n   - This statement implies that if someone is big and rough, they are furry.\n\n4. Big people are rough.\n   - This statement implies that if someone is big, they are rough.\n\n5. If someone is furry then they are nice.\n   - This statement implies that if someone is furry, they are nice.\n\n6. If someone is rough then they are big.\n   - This statement implies that if someone is rough, they are big.\n\n7. If Harry is round then Harry is big.\n   - This statement implies that if Harry is round, then Harry is big.\n\nWe can start by analyzing the information we have about Harry:\n\n- Harry is red.\n- Harry is rough.\n- Harry is round.\n\nFrom the information, we know:\n- If Harry is rough, then Harry is big (Statement 6).\n- If Harry is round, then Harry is big (Statement 7).\n- Both statements point to the fact that Harry is big.\n\nSince Harry is big, we can conclude that:\n- Harry is rough (Statement 6).\n- Rough, big people are furry (Statement 3).\n- If someone is furry then they are nice (Statement 5).\n- Therefore, Harry is nice.\n\nNow, considering the statement \"Harry is not nice\":\n- We have found that Harry is nice, based on the given information.\n- Therefore, the statement \"Harry is not nice\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - All nice, big people are quiet.\n   - Quiet people are round.\n   - Rough, big people are furry.\n   - Big people are rough.\n   - If someone is furry then they are nice.\n   - If someone is rough then they are big.\n   - If Harry is round then Harry is big.\n\n2. Let's start with the statement \"Harry is not nice.\"\n   - To determine whether this statement is true, false, or unknown, we need to gather information about Harry from the given data.\n\n3. From the given information, we know:\n   - Harry is red.\n   - Harry is rough.\n   - Harry is red.\n   - Harry is rough.\n   - If Harry is round then Harry is big.\n\n4. Since Harry is rough, according to the rule \"If someone is rough then they are big,\" we can infer that Harry is big.\n   - Now we have: Harry is big.\n\n5. As Harry is big, we can use the rule \"If Harry is round then Harry is big.\" However, we don't know if Harry is round or not.\n   - We can't determine if Harry is round or not, so we'll continue with the information we have.\n\n6. We also know that Harry is rough and big. From the given information, we have the rule \"Rough, big people are furry.\"\n   - Therefore, we can infer that Harry is furry.\n\n7. Since Harry is furry, we can use the rule \"If someone is furry then they are nice.\"\n   - Therefore, we can infer that Harry is nice.\n\nBased on the analysis, we can conclude that Harry is nice. The statement \"Harry is not nice\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven statements:\n1. Anne is quiet. \n2. Anne is rough. \n3. Erin is nice. \n4. Erin is rough. \n5. Erin is round. \n6. Fiona is big. \n7. Fiona is furry. \n8. Fiona is nice. \n9. Fiona is quiet. \n10. Fiona is red. \n11. Fiona is rough. \n12. Fiona is round. \n13. Harry is red. \n14. Harry is rough. \n15. All nice, big people are quiet. \n16. Quiet people are round. \n17. Rough, big people are furry. \n18. Big people are rough. \n19. If someone is furry then they are nice. \n20. If someone is rough then they are big. \n21. If Harry is round then Harry is big.\n\nNow, let's analyze the given information and use logical deductions to determine whether the statement \"Harry is not nice\" is true, false, or unknown.\n\nFirst, we need to deduce whether Harry is big or not. \nFrom statement 18: Big people are rough. \nFrom statement 14: Harry is rough. \nUsing the deduction from statement 18 and 14, we can say that Harry is big. \n\nNow, we need to deduce whether Harry is round or not. \nFrom statement 16: Quiet people are round. \nFrom statement 15: All nice, big people are quiet. \nFrom statement 18 and 14, we can say that Harry is big and rough. \nSince Harry is big and rough, we can say that Harry is furry from statement 17. \nFrom statement 19: If someone is furry then they are nice. \nUsing the deduction from statement 19, we can say that Harry is nice.\n\nNow, we can analyze the statement \"Harry is not nice\". \nSince we have deduced that Harry is nice, we can conclude that the statement \"Harry is not nice\" is false.\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is not nice' is true, false, or unknown, we need to analyze the given information.\n\n1. All nice, big people are quiet. \n   - This does not directly relate to Harry, but it gives a condition for someone to be quiet.\n\n2. Quiet people are round.\n   - This statement provides a condition for someone to be round.\n\n3. Rough, big people are furry.\n   - This statement provides a condition for someone to be furry.\n\n4. Big people are rough.\n   - This statement gives a condition for someone to be rough.\n\n5. If someone is furry then they are nice.\n   - This statement provides a condition for someone to be nice.\n\n6. If someone is rough then they are big.\n   - This statement provides a condition for someone to be big.\n\n7. If Harry is round then Harry is big.\n   - This statement provides a condition for Harry's size.\n\nGiven information about Harry:\n- Harry is red.\n- Harry is rough.\n- Harry is round.\n\nFrom statements 6 and 7, we know that since Harry is round, he is big. \n\nFrom statement 4, we know that big people are rough. This is consistent with our knowledge about Harry.\n\nHowever, from statement 5, we know that if someone is furry, then they are nice. But from the given information about Harry, we do not know whether Harry is furry or not.\n\nTo determine whether Harry is nice or not, we need to know whether Harry is furry or not. We do not have enough information to make a conclusion. Therefore, the statement 'Harry is not nice' is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not nice\" is true, false, or unknown, we need to use the given information and apply logical reasoning.\n\nStep 1: From the given information, we know that:\n- Harry is red.\n- Harry is rough.\n- If someone is rough, then they are big.\n- If someone is rough, then they are big (this information is repeated).\n\nStep 2: Since Harry is rough, we can apply the rule \"If someone is rough, then they are big.\" This means Harry is big.\n\nStep 3: We also know that:\n- All nice, big people are quiet.\n- Quiet people are round.\n- Big people are rough.\n- If Harry is round, then Harry is big (this rule is given).\n\nStep 4: However, from the given information, we also have:\n- Harry is rough.\n- If someone is furry, then they are nice.\n- Rough, big people are furry.\n\nStep 5: Since Harry is rough and big, we can apply the rule \"Rough, big people are furry.\" This means Harry is furry.\n\nStep 6: Now, we can apply the rule \"If someone is furry, then they are nice.\" This means Harry is nice.\n\nConclusion: Given that we have determined Harry is nice, the statement \"Harry is not nice\" must be false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_harry, nice_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry_harry == False",
+          "z3_formula": "furry_harry == False",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_harry, nice_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(harry)",
+          "z3_formula": "Not(nice_harry)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_harry, big_harry), quiet_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_harry, big_harry), furry_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_harry, rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_harry, nice_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_harry, big_harry)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_harry, big_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_harry, rough_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_harry, rough_harry), furry_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_harry, nice_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_harry, big_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(harry)",
+          "z3_formula": "Not(nice_harry) == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_harry, nice_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_harry, big_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_harry, big_harry), quiet_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_harry, big_harry), furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_harry, rough_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_harry, big_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(harry)",
+          "z3_formula": "Not(nice_harry) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_X, big_X), quiet_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_X, big_X), furry_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_X, rough_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_X, nice_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(harry)",
+          "z3_formula": "Not(nice_harry) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_harry, big_harry), quiet_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_harry, big_harry), furry_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_harry, rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_harry, nice_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_harry, big_harry), quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_harry, big_harry), furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_harry, rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_harry, nice_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_harry, big_harry), quiet_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_harry, big_harry), furry_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_harry, rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_harry, nice_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_harry, big_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(harry)",
+          "z3_formula": "Not(nice_harry) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(big, rough)",
+          "z3_formula": "nice_big_rough == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(big, rough) -> quiet(big, rough)",
+          "z3_formula": "Implies(nice_big_rough, quiet_big_rough)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_X, round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_X, rough_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_X, big_X), furry_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_X, nice_X)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_X, big_X), quiet_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_X, round_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_X, big_X), furry_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_X, rough_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_X, nice_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(big(X), X)",
+          "z3_formula": "Implies(And(kind_anne, big_anne), nice_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(big(X), X)",
+          "z3_formula": "Implies(And(kind_anne, big_anne), quiet_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(quiet(X), X)",
+          "z3_formula": "Implies(quiet_anne, round_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(rough(X), X)",
+          "z3_formula": "Implies(rough_anne, furry_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(rough(X))",
+          "z3_formula": "Implies(rough_anne, big_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_anne, big_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_anne, big_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry) -> big(harry)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry) -> big(harry)",
+          "z3_formula": "Implies(round_harry, big_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry) -> rough(harry)",
+          "z3_formula": "Implies(big_harry, rough_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry) == True",
+          "z3_formula": "big_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry) == True",
+          "z3_formula": "rough_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry) == True",
+          "z3_formula": "round_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry) -> nice(harry)",
+          "z3_formula": "Implies(furry_harry, nice_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "Or(nice_harry, Not(furry_harry))",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_harry, big_harry), quiet_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_harry, rough_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_harry, big_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_harry, big_harry), furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_harry, nice_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 165,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 47
+    },
+    "maxsat_stats": {
+      "satisfied": 45,
+      "excluded": 2,
+      "total_weight": 158,
+      "solve_time_ms": 1.1594807729125023
+    },
+    "timing": {
+      "trace_gen_s": 10.378,
+      "extraction_s": 23.883,
+      "dedup_s": 1.413,
+      "maxsat_s": 0.004,
+      "total_s": 35.679
+    }
+  }
+}

@@ -1,0 +1,1 @@
+Remote path: /root/symb_invariant_consensus/scripts/run_exp007_72b_awq.sh on westd-25068

@@ -1,0 +1,776 @@
+{
+  "problem": {
+    "id": "folio_54",
+    "problem": "Given the following premises:\nAll Romance languages are Indo-European languages. The Romance languages are a language family. All languages within a language family are related to each other. French and Spanish are both Romance languages. German is related to Spanish. Basque is not related to any other language.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nFrench is an Indo-European language.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (RomanceLanguage(x) \u2192 IndoEuropeanLanguage(x))",
+      "\u2200x (RomanceLanguage(x) \u2192 MemberOf(x, romancefamily))",
+      "\u2200x \u2200y \u2200z ((MemberOf(x, z) \u2227 MemberOf(y, z)) \u2192 (Related(x, y) \u2227 Related(y, x)))",
+      "RomanceLanguage(french) \u2227 RomanceLanguage(spanish)",
+      "Related(german, spanish)",
+      "\u2200x (\u00acRelated(basque, x))"
+    ],
+    "conclusion_fol": "IndoEuropeanLanguage(french)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 107.0
+    },
+    "answer_counts": {
+      "True": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion \"French is an Indo-European language\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: All Romance languages are Indo-European languages.\nPremise 2: The Romance languages are a language family.\nPremise 3: All languages within a language family are related to each other.\nPremise 4: French and Spanish are both Romance languages.\nPremise 5: German is related to Spanish.\nPremise 6: Basque is not related to any other language.\n\nFrom Premise 1, we know that all Romance languages are Indo-European languages.\nFrom Premise 2, we know that Romance languages form a language family.\nFrom Premise 3, we know that all languages within this family are related to each other.\nFrom Premise 4, we know that French is a Romance language.\n\nSince French is a Romance language and all Romance languages are Indo-European languages, we can infer that French is an Indo-European language.\n\nTherefore, the conclusion \"French is an Indo-European language\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"French is an Indo-European language\" is true, false, or uncertain, we need to analyze the given premises and their implications.\n\nPremise 1: All Romance languages are Indo-European languages.\n\nThis premise directly links Romance languages to the Indo-European language family. \n\nPremise 2: The Romance languages are a language family.\n\nThis premise tells us that Romance languages form a distinct group, which is essential for understanding the relationships between languages.\n\nPremise 3: All languages within a language family are related to each other.\n\nThis premise explains the inherent relationship between languages within the same family. It implies that if a language belongs to a family, it will be related to all other languages within that family.\n\nPremise 4: French and Spanish are both Romance languages.\n\nThis premise identifies French and Spanish as part of the Romance language family. Given that they are related to each other, as per Premise 3, we can infer that French and Spanish are related to each other.\n\nPremise 5: German is related to Spanish.\n\nThis premise introduces a relationship between German and Spanish, even though they belong to different language families (Indo-European for German, and Romance for Spanish). This premise tells us about the specific relationship between German and Spanish.\n\nPremise 6: Basque is not related to any other language.\n\nThis premise is irrelevant to the conclusion \"French is an Indo-European language.\" It provides information about Basque but does not influence the conclusion about French.\n\nNow, let's connect the premises to the conclusion. We know that French is a Romance language (Premise 4) and that all Romance languages are Indo-European languages (Premise 1). This connection directly supports the conclusion that French is an Indo-European language.\n\nGiven the premises and their implications, the conclusion \"French is an Indo-European language\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: All Romance languages are Indo-European languages.\nThis premise establishes a relationship between the Romance language family and the Indo-European language family. It implies that any language that belongs to the Romance language family is also an Indo-European language.\n\nPremise 2: The Romance languages are a language family.\nThis premise is a supporting statement for Premise 1. It provides additional information about the Romance language family.\n\nPremise 3: All languages within a language family are related to each other.\nThis premise provides a general rule about language families. It implies that any language within a family is related to other languages within the same family.\n\nPremise 4: French and Spanish are both Romance languages.\nThis premise establishes that French and Spanish are part of the Romance language family. Based on Premise 3, this means that French and Spanish are related to each other.\n\nPremise 5: German is related to Spanish.\nThis premise introduces a relationship between German and Spanish. Although German is not explicitly stated to be a Romance language, it is related to Spanish, which is a Romance language.\n\nPremise 6: Basque is not related to any other language.\nThis premise provides information about the Basque language. It implies that Basque does not belong to the same language family as other languages mentioned in the premises.\n\nNow, let's examine the conclusion: \"French is an Indo-European language.\"\n\nTo evaluate this conclusion, we need to determine whether French is a Romance language. If French is a Romance language, then we can use Premise 1 to conclude that it is an Indo-European language.\n\nFrom Premise 4, we know that French is a Romance language. Therefore, based on Premise 1, we can conclude that French is indeed an Indo-European language.\n\nThe conclusion is true because it is supported by the premises. French is a Romance language (Premise 4), and all Romance languages are Indo-European languages (Premise 1).\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and determine whether the given conclusion can be deduced from the premises.\n\nPremise 1: All Romance languages are Indo-European languages.\nPremise 2: The Romance languages are a language family.\nPremise 3: All languages within a language family are related to each other.\nPremise 4: French and Spanish are both Romance languages.\nPremise 5: German is related to Spanish.\nPremise 6: Basque is not related to any other language.\n\nWe need to determine whether the conclusion \"French is an Indo-European language\" can be deduced from these premises.\n\nStep 1: From Premise 1, we know that all Romance languages are Indo-European languages.\n\nStep 2: From Premise 4, we know that French is a Romance language.\n\nStep 3: Since French is a Romance language, we can conclude from Premise 1 that French is an Indo-European language.\n\nTherefore, the conclusion \"French is an Indo-European language\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and use logical reasoning.\n\n1. All Romance languages are Indo-European languages.\n   This premise establishes a relationship between the Romance language family and the Indo-European language family.\n\n2. The Romance languages are a language family.\n   This premise confirms that Romance languages are a group of related languages.\n\n3. All languages within a language family are related to each other.\n   This premise provides a general rule for language families.\n\n4. French and Spanish are both Romance languages.\n   This premise connects two specific languages to the Romance language family.\n\n5. German is related to Spanish.\n   This premise establishes a relationship between German and Spanish, but it does not directly relate German to the Romance language family.\n\n6. Basque is not related to any other language.\n   This premise provides information about Basque but does not affect the relationship between the Romance language family and the Indo-European language family.\n\nNow, let's use the premises to evaluate the conclusion:\n\nConclusion: French is an Indo-European language.\n\nWe know that French is a Romance language (premise 4) and that all Romance languages are Indo-European languages (premise 1). Since French is a Romance language and all Romance languages are Indo-European, we can conclude that French is indeed an Indo-European language.\n\nTherefore, the conclusion is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we will analyze the given premises step by step:\n\n1. All Romance languages are Indo-European languages.\n   - This premise tells us that the language family of Romance languages is a subset of the Indo-European language family. However, it does not directly state that all Indo-European languages are Romance languages.\n\n2. The Romance languages are a language family.\n   - This premise is a statement of fact and does not provide any additional information.\n\n3. All languages within a language family are related to each other.\n   - This premise tells us that languages within the same family share a common ancestry, but it does not provide any information about the relationships between languages from different families.\n\n4. French and Spanish are both Romance languages.\n   - This premise tells us that French and Spanish are related to each other, as they belong to the same language family.\n\n5. German is related to Spanish.\n   - This premise suggests that Spanish is not an isolated language, but rather it is part of a larger language family that includes German. However, it does not tell us the specific relationships between German and other languages.\n\n6. Basque is not related to any other language.\n   - This premise tells us that Basque is an isolate language and does not belong to any known language family.\n\nNow, let's examine the conclusion:\nFrench is an Indo-European language.\n\nBased on the premises, we can infer the following:\n\n- All Romance languages are Indo-European languages (Premise 1).\n- French is a Romance language (not explicitly stated, but implied by the fact that French and Spanish are both Romance languages, Premise 4).\n- Therefore, French is an Indo-European language.\n\nWe can conclude that the statement \"French is an Indo-European language\" is true. The premises provide sufficient evidence to support this conclusion.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion \"French is an Indo-European language\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: All Romance languages are Indo-European languages.\nPremise 2: The Romance languages are a language family.\nPremise 3: All languages within a language family are related to each other.\nPremise 4: French and Spanish are both Romance languages.\nPremise 5: German is related to Spanish.\nPremise 6: Basque is not related to any other language.\n\nFrom Premise 1, we know that all Romance languages are Indo-European languages.\nFrom Premise 2, we know that the Romance languages are a language family.\nFrom Premise 3, we can infer that all Romance languages are related to each other.\n\nSince French (from Premise 4) and Spanish (from Premise 4) are both Romance languages, and all Romance languages are related to each other (from Premise 3), we can conclude that French and Spanish are related languages.\n\nNow, let's consider Premise 5: German is related to Spanish. Since French and Spanish are related languages (as concluded earlier), and German is also related to Spanish (from Premise 5), we can infer that French, Spanish, and German are related languages.\n\nHowever, the conclusion we are interested in is \"French is an Indo-European language.\" From Premise 1, we know that all Romance languages are Indo-European languages. Since French is a Romance language (from Premise 4), we can conclude that French is an Indo-European language.\n\nTherefore, the conclusion \"French is an Indo-European language\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the conclusion, we need to analyze the given premises and use logical reasoning.\n\nPremise 1: All Romance languages are Indo-European languages.\nPremise 2: The Romance languages are a language family.\nPremise 3: All languages within a language family are related to each other.\nPremise 4: French and Spanish are both Romance languages.\nPremise 5: German is related to Spanish.\nPremise 6: Basque is not related to any other language.\n\nFrom Premise 1, we know that Romance languages are Indo-European languages. Since French is a Romance language (Premise 4), we can conclude that French is an Indo-European language.\n\nHowever, we need to verify this conclusion using all the given premises.\n\nFrom Premise 2, we know that Romance languages are a language family. From Premise 3, we can conclude that all languages within this family are related to each other. Since French and Spanish are both Romance languages (Premise 4), we can conclude that French and Spanish are related to each other.\n\nFrom Premise 5, we know that German is related to Spanish. Since French and Spanish are related to each other (as concluded above), we can conclude that French, Spanish, and German are related to each other.\n\nHowever, this does not affect our initial conclusion that French is an Indo-European language. The conclusion that French is an Indo-European language is supported by Premise 1.\n\nThere is no information in the premises that contradicts our initial conclusion or makes it uncertain. Therefore, the conclusion that French is an Indo-European language is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we'll use logical reasoning and the given premises.\n\nPremise 1: All Romance languages are Indo-European languages.\nPremise 2: The Romance languages are a language family.\nPremise 3: All languages within a language family are related to each other.\nPremise 4: French and Spanish are both Romance languages.\nPremise 5: German is related to Spanish.\nPremise 6: Basque is not related to any other language.\n\nWe need to determine whether the conclusion \"French is an Indo-European language\" is true, false, or uncertain.\n\nStep 1: From Premise 2, we know that the Romance languages are a language family.\nStep 2: Since French is a Romance language (Premise 4), and it belongs to the Romance language family, we can conclude that French is related to Spanish (Premise 3).\n\nStep 3: Now, let's examine the relationship between Spanish and German. From Premise 5, we know that German is related to Spanish. This means that since French is related to Spanish, French is also related to German.\n\nStep 4: Since French is related to German, and French is a Romance language (Premise 4), we need to determine whether German is a Romance language or not. However, we are not given any information that directly states German is a Romance language. But we can still conclude that French is an Indo-European language.\n\nFrom Premise 1, we know that all Romance languages are Indo-European languages. Since French is a Romance language (Premise 4), we can conclude that French is an Indo-European language.\n\nTherefore, the conclusion \"French is an Indo-European language\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we'll analyze the given premises step by step.\n\nPremise 1: All Romance languages are Indo-European languages.\nThis premise establishes a relationship between Romance languages and the Indo-European language family.\n\nPremise 2: The Romance languages are a language family.\nThis premise confirms that Romance languages form a family, which means they are related to each other.\n\nPremise 3: All languages within a language family are related to each other.\nThis premise provides a general rule that applies to all language families.\n\nPremise 4: French and Spanish are both Romance languages.\nThis premise provides specific examples of Romance languages and confirms their relationship.\n\nPremise 5: German is related to Spanish.\nThis premise establishes a relationship between German and Spanish, suggesting that German might be part of the same language family as Spanish.\n\nPremise 6: Basque is not related to any other language.\nThis premise is irrelevant to the conclusion about French being an Indo-European language.\n\nNow, let's analyze the conclusion:\nFrench is an Indo-European language.\n\nSince French is a Romance language (from Premise 4), and all Romance languages are Indo-European languages (from Premise 1), we can conclude that French is indeed an Indo-European language. The relationships between French and other languages (e.g., Spanish, German) are not directly relevant to this conclusion.\n\nTherefore, the conclusion \"French is an Indo-European language\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion \"French is an Indo-European language\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: All Romance languages are Indo-European languages.\nThis premise directly states that Romance languages belong to the Indo-European language family.\n\nPremise 2: The Romance languages are a language family.\nThis premise supports the idea that Romance languages are related to each other.\n\nPremise 3: All languages within a language family are related to each other.\nThis premise reinforces the idea of language families and their relationships.\n\nPremise 4: French and Spanish are both Romance languages.\nThis premise directly links French and Spanish to the Romance language family.\n\nPremise 5: German is related to Spanish.\nAlthough this premise doesn't directly relate German to the Romance language family, it implies that German is related to Spanish through some other language family or connection. However, we don't know the nature of this relationship yet.\n\nPremise 6: Basque is not related to any other language.\nThis premise provides us with information about the Basque language but doesn't affect our conclusion about French.\n\nFrom the given premises, we can deduce the following:\n\n1. Romance languages are Indo-European (Premise 1).\n2. French and Spanish are Romance languages (Premise 4).\n3. Since French and Spanish are Romance languages, they must be Indo-European languages (from premise 1).\n\nWe can conclude that French is indeed an Indo-European language based on the given premises.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we'll analyze the premises step by step:\n\n1. Premise: All Romance languages are Indo-European languages.\n   This premise directly implies that Romance languages are a subset of Indo-European languages.\n\n2. Premise: The Romance languages are a language family.\n   This premise tells us that Romance languages have a common ancestry and are related to each other.\n\n3. Premise: All languages within a language family are related to each other.\n   This premise provides a general rule for language families, which we'll apply to the Romance language family.\n\n4. Premise: French and Spanish are both Romance languages.\n   This premise establishes that French and Spanish are related to each other due to being part of the same language family.\n\n5. Premise: German is related to Spanish.\n   This premise suggests that German and Spanish have a common ancestry, which we can infer is through the Indo-European language family.\n\n6. Premise: Basque is not related to any other language.\n   This premise gives us information about the Basque language but doesn't directly affect the relationship between French and the other languages mentioned.\n\nNow, let's examine the conclusion: \"French is an Indo-European language.\"\n\nWe can infer the following:\n\n- From premise 1, we know that all Romance languages are Indo-European languages.\n- From premise 2 and 3, we understand that Romance languages are a language family, and all languages within this family are related to each other.\n- Since French is a Romance language (as inferred from premise 4), it is related to Spanish and other Romance languages.\n\nGiven that German is related to Spanish (premise 5), and all languages within a language family are related to each other (premise 3), we can conclude that German is also an Indo-European language. \n\nSince French is a Romance language and all Romance languages are Indo-European languages, we can confidently conclude that French is an Indo-European language.\n\nTherefore, the conclusion is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "all(romance_language, indo_european_language)",
+          "z3_formula": "all_romance_language_indo_european_language == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "romance_language_family",
+          "z3_formula": "romance_language_family == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_language_family_related",
+          "z3_formula": "all_language_family_related == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "french_romance_language",
+          "z3_formula": "french_romance_language == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "spanish_romance_language",
+          "z3_formula": "spanish_romance_language == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "german_related_spanish",
+          "z3_formula": "german_related_spanish == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "basque_not_related",
+          "z3_formula": "basque_not_related == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "romance_language -> indo_european_language",
+          "z3_formula": "Implies(romance_language, indo_european_language)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "language_family -> all_language_related",
+          "z3_formula": "Implies(language_family, all_language_related)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "french_indo_european_language",
+          "z3_formula": "french_indo_european_language == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(Romance, Indo-European)",
+          "z3_formula": "all_romance_indo_european == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "is_language_family(Romance)",
+          "z3_formula": "is_language_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "all(X, Y) -> related(X, Y)",
+          "z3_formula": "Implies(all_language_family, related_language_family)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "and(Romance, Romance)",
+          "z3_formula": "and_romance_romance == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "related(Romance, Romance)",
+          "z3_formula": "related_romance_romance == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "related(X, Y) -> related(X, Z)",
+          "z3_formula": "Implies(related_language_family, related_language_family_2)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "related(German, Spanish)",
+          "z3_formula": "related_german_spanish == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(related(Basque, X))",
+          "z3_formula": "not_related_basque_x == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "related(Romance, Romance)",
+          "z3_formula": "related_romance_romance == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "related(Romance, Indo-European)",
+          "z3_formula": "related_romance_indo_european == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "related(French, Indo-European)",
+          "z3_formula": "related_french_indo_european == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "indo_european(romance)",
+          "z3_formula": "indo_european_romance == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(romance)",
+          "z3_formula": "language_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related_languages(X)",
+          "z3_formula": "Implies(language_family_romance, related_languages_romance)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "romance(french)",
+          "z3_formula": "romance_french == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "romance(spanish)",
+          "z3_formula": "romance_spanish == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related_languages(X)",
+          "z3_formula": "Implies(language_family_romance, related_languages_romance)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "related(french, spanish)",
+          "z3_formula": "related_french_spanish == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "related(spanish, german)",
+          "z3_formula": "related_spanish_german == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not_related(basque, X)",
+          "z3_formula": "Not(related_basque_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "indo_european(french)",
+          "z3_formula": "indo_european_french == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "indo_european(Romance)",
+          "z3_formula": "indo_european_romance == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(Romance)",
+          "z3_formula": "language_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related(X, Y)",
+          "z3_formula": "Implies(language_family_romance, related_romance_Y)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "romance(French)",
+          "z3_formula": "romance_french == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "related(Spanish, German)",
+          "z3_formula": "related_spanish_german == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not_related(Basque, _)",
+          "z3_formula": "not_related_basque == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "indo_european(French)",
+          "z3_formula": "indo_european_french == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "indoeuropean(Romance)",
+          "z3_formula": "indoeuropean_romance == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "romance(language)",
+          "z3_formula": "romance_language == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related_languages(X)",
+          "z3_formula": "Implies(language_family, related_languages)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "romance(French)",
+          "z3_formula": "romance_french == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "spanish(Romance)",
+          "z3_formula": "spanish_romance == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "german(spanish)",
+          "z3_formula": "german_spanish == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "basque(language)",
+          "z3_formula": "basque_language == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "indoeuropean(French)",
+          "z3_formula": "indoeuropean_french == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "indoeuropean(romance)",
+          "z3_formula": "indoeuropean_romance == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(romance)",
+          "z3_formula": "language_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related_languages(X)",
+          "z3_formula": "Implies(language_family_romance, related_languages_romance)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "related_languages(romance)",
+          "z3_formula": "related_languages_romance == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "romance(french)",
+          "z3_formula": "romance_french == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "romance(spanish)",
+          "z3_formula": "romance_spanish == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "related_languages(X) -> related(X, Y)",
+          "z3_formula": "Implies(related_languages_romance, related_french_spanish)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "related(french, spanish)",
+          "z3_formula": "related_french_spanish == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not_related(basque, X)",
+          "z3_formula": "not_related_basque_X == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "indoeuropean(french)",
+          "z3_formula": "indoeuropean_french == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(Romance, Indo-European)",
+          "z3_formula": "all_romance_indo_european == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "is_language_family(Romance)",
+          "z3_formula": "is_language_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "is_language_family(X) -> all(X, related)",
+          "z3_formula": "Implies(is_language_family_romance, all_romance_related)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "and(Romance, Romance)",
+          "z3_formula": "and_romance_romance == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "related(X, Y) -> related(Y, X)",
+          "z3_formula": "Implies(related_french_spanish, related_spanish_french)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "related(French, Spanish)",
+          "z3_formula": "related_french_spanish == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "related(German, Spanish)",
+          "z3_formula": "related_german_spanish == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "related(French, German)",
+          "z3_formula": "related_french_german == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "in(Romance, French)",
+          "z3_formula": "in_romance_french == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Indo-European(French)",
+          "z3_formula": "indoeuropean_french == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "indo_european(romance)",
+          "z3_formula": "indo_european_romance == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(romance)",
+          "z3_formula": "language_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related(X, Y)",
+          "z3_formula": "Implies(language_family_romance, related_romance_Y)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "romance(french)",
+          "z3_formula": "romance_french == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "romance(spanish)",
+          "z3_formula": "romance_spanish == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "related(X, Y) & related(Y, Z) -> related(X, Z)",
+          "z3_formula": "Implies(And(related_romance_spanish, related_spanish_german), related_french_german)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not_related(basque)",
+          "z3_formula": "not_related_basque == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "indo_european(french)",
+          "z3_formula": "indo_european_french == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "indoeuropean(romance)",
+          "z3_formula": "indoeuropean_romance == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(romance)",
+          "z3_formula": "language_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related(X, Y)",
+          "z3_formula": "Implies(language_family_romance, related_romance_any)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "romance(french)",
+          "z3_formula": "romance_french == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "related(X, Y) & related(Y, Z) -> related(X, Z)",
+          "z3_formula": "Implies(And(related_french_spanish, related_spanish_german), related_french_german)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "related(spanish, german)",
+          "z3_formula": "related_spanish_german == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "related(X, Y) -> related(X, Z)",
+          "z3_formula": "Implies(related_french_spanish, related_french_german)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "romance(french)",
+          "z3_formula": "romance_french == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "romance(X) -> indoeuropean(X)",
+          "z3_formula": "Implies(romance_french, indoeuropean_french)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "indoeuropean(french)",
+          "z3_formula": "indoeuropean_french == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "indo_european(romance)",
+          "z3_formula": "indo_european_romance == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(romance)",
+          "z3_formula": "language_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related(X, X)",
+          "z3_formula": "Implies(language_family_romance, related_romance_romance)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "romance(french)",
+          "z3_formula": "romance_french == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "romance(spanish)",
+          "z3_formula": "romance_spanish == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "related(X, Y) -> related(Y, X)",
+          "z3_formula": "Implies(related_spanish_german, related_german_spanish)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "related(spanish, german)",
+          "z3_formula": "related_spanish_german == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "unrelated(basque, X)",
+          "z3_formula": "unrelated_basque_X == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "indo_european(french)",
+          "z3_formula": "indo_european_french == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(Romance, Indo-European)",
+          "z3_formula": "all_romance_indo_european == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "is_language_family(Romance)",
+          "z3_formula": "is_language_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all(language_family, related(language_family))",
+          "z3_formula": "all_language_family_related_language_family == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "and(French, Spanish, Romance)",
+          "z3_formula": "and_french_spanish_romance == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "related(German, Spanish)",
+          "z3_formula": "related_german_spanish == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(related(Basque, _))",
+          "z3_formula": "not_related_basque == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "indoeuropean(romance)",
+          "z3_formula": "indoeuropean_romance == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "indoeuropean(X) -> indoeuropean(Y)",
+          "z3_formula": "Implies(indoeuropean_romance, indoeuropean_indoeuropean)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(romance)",
+          "z3_formula": "language_family_romance == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related(X, Y)",
+          "z3_formula": "Implies(language_family_romance, related_romance_romance)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "related(X, Y) -> related(Y, Z)",
+          "z3_formula": "Implies(related_romance_romance, related_romance_Y)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "romance(french)",
+          "z3_formula": "romance_french == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "related(german, spanish)",
+          "z3_formula": "related_german_spanish == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "indoeuropean(french)",
+          "z3_formula": "indoeuropean_french == True",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 107,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 57
+    },
+    "maxsat_stats": {
+      "satisfied": 57,
+      "excluded": 0,
+      "total_weight": 107,
+      "solve_time_ms": 1.1382801458239555
+    },
+    "timing": {
+      "trace_gen_s": 5.118,
+      "extraction_s": 16.807,
+      "dedup_s": 1.592,
+      "maxsat_s": 0.004,
+      "total_s": 23.521
+    }
+  }
+}

@@ -1,0 +1,26 @@
+paper_key: "multi_path_plan2025"
+title: "Enhancing Long Chain-of-Thought Reasoning through Multi-Path Plan Aggregation"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: ["CoT", "SC-CoT", "ToT", "plan-then-solve"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "GSM8K", size: "1319"}
+    - {name: "MATH", size: "500"}
+    - {name: "ARC-Challenge", size: "2590"}
+  ablation_dimensions: ["num_paths", "aggregation_strategy", "plan_granularity"]
+  training_recipe: {info: "N/A"}
+  method_family: "multi-path reasoning aggregation"
+
+positioning:
+  core_claim: "Aggregating multiple reasoning plans before execution improves long chain-of-thought reasoning"
+  key_results: "N/A"
+  limitations: ["N/A"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

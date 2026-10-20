@@ -1,0 +1,1443 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-785_Q10",
+    "problem": "Anne is rough. Anne is young. Bob is nice. Bob is red. Bob is young. Charlie is cold. Charlie is quiet. Charlie is red. Charlie is rough. Charlie is smart. Fiona is cold. Fiona is quiet. Cold people are young. Rough, young people are nice. Cold, red people are smart. Red people are smart. If someone is smart and quiet then they are cold. All rough, nice people are red. All red, quiet people are cold. All smart people are quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is not quiet.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nYoung($x, bool) ::: Is x young?\nNice($x, bool) ::: Is x nice?\nRed($x, bool) ::: Is x red?\nCold($x, bool) ::: Is x cold?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nRough(Anne, True) ::: Anne is rough.\nYoung(Anne, True) ::: Anne is young.\nNice(Bob, True) ::: Bob is nice.\nRed(Bob, True) ::: Bob is red.\nYoung(Bob, True) ::: Bob is young.\nCold(Charlie, True) ::: Charlie is cold.\nQuiet(Charlie, True) ::: Charlie is quiet.\nRed(Charlie, True) ::: Charlie is red.\nRough(Charlie, True) ::: Charlie is rough.\nSmart(Charlie, True) ::: Charlie is smart.\nCold(Fiona, True) ::: Fiona is cold.\nQuiet(Fiona, True) ::: Fiona is quiet.\n\nRules:\nCold($x, True) >>> Young($x, True) ::: Cold people are young.\nRough($x, True) && Young($x, True) >>> Nice($x, True) ::: Rough, young people are nice.\nCold($x, True) && Red($x, True) >>> Smart($x, True) ::: Cold, red people are smart.\nRed($x, True) >>> Smart($x, True) ::: Red people are smart.\nSmart($x, True) && Quiet($x, True) >>> Cold($x, True) ::: If someone is smart and quiet then they are cold.\nRough($x, True) && Nice($x, True) >>> Red($x, True) ::: All rough, nice people are red.\nRed($x, True) && Quiet($x, True) >>> Cold($x, True) ::: All red, quiet people are cold.\nSmart($x, True) >>> Quiet($x, True) ::: All smart people are quiet.\n\nQuery:\nQuiet(Anne, False) ::: Anne is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 169.0,
+      "Unknown": 201.0
+    },
+    "answer_counts": {
+      "False": 3,
+      "Unknown": 7
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Anne is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know:\n   - Anne is young.\n   - Anne is rough.\n   - All rough, young people are nice. (So, Anne is nice.)\n   - All red, quiet people are cold. (This will be used later.)\n   - All smart people are quiet. (This will be used later.)\n\n2. Since Anne is nice and rough, she must be red. (From \"All rough, young people are nice.\")\n\n3. Since Anne is red, and all red people are smart (from the information \"Red people are smart\"), Anne must be smart.\n\n4. Since Anne is smart, she must be quiet. (From \"All smart people are quiet.\")\n\n5. Now, we are given the statement \"Anne is not quiet.\" However, we have already concluded that Anne must be quiet from step 4. \n\nTherefore, the statement \"Anne is not quiet\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not quiet\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nGiven statements:\n1. Anne is rough.\n2. Anne is young.\n3. Bob is nice.\n4. Bob is red.\n5. Bob is young.\n6. Charlie is cold.\n7. Charlie is quiet.\n8. Charlie is red.\n9. Charlie is rough.\n10. Charlie is smart.\n11. Fiona is cold.\n12. Fiona is quiet.\n13. Cold people are young.\n14. Rough, young people are nice.\n15. Cold, red people are smart.\n16. Red people are smart.\n17. If someone is smart and quiet then they are cold.\n18. All rough, nice people are red.\n19. All red, quiet people are cold.\n20. All smart people are quiet.\n\nImplications:\n- From statements 13 and 2, we can conclude that Anne is young and therefore cold (13 implies that cold people are young).\n- From statement 2, we know Anne is young. However, we cannot directly determine whether Anne is quiet or not.\n\nNow, let's analyze the possibilities:\n- If Anne is quiet, then from statement 17, we can conclude that Anne is smart, but this contradicts the fact that Anne is rough (because smart people are quiet and rough people are not necessarily smart).\n- Since we cannot determine whether Anne is quiet or not from the given information, we cannot conclude whether the statement \"Anne is not quiet\" is true or false.\n\nHowever, we can make a conclusion:\n- From statement 11, we know that Fiona is cold, which implies that Fiona is young (from statement 13).\n- From statement 2, we know that Anne is young, which implies that Anne is cold (from statement 13).\n- Since both Anne and Fiona are cold, and from statement 12, we know that Fiona is quiet, we can conclude that Anne is also quiet (because if someone is smart and quiet, then they are cold, and both Anne and Fiona are cold).\n\nTherefore, the statement \"Anne is not quiet\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given statements, we have:\n   - Anne is young. \n   - Bob is nice. \n   - Bob is red. \n   - Bob is young. \n   - Charlie is cold. \n   - Charlie is quiet. \n   - Charlie is red. \n   - Charlie is rough. \n   - Charlie is smart. \n   - Fiona is cold. \n   - Fiona is quiet. \n   - Cold people are young. \n   - Rough, young people are nice. \n   - Cold, red people are smart. \n   - Red people are smart. \n   - If someone is smart and quiet then they are cold. \n   - All rough, nice people are red. \n   - All red, quiet people are cold. \n   - All smart people are quiet.\n\n2. We are asked to find whether Anne is not quiet. To find this, we need to first determine whether Anne is quiet or not.\n\n   From the given statements, we have:\n   - Anne is young.\n\n3. We know that \"Cold people are young.\" Since Anne is young, we can't conclude that Anne is cold. However, we can't conclude that Anne is not cold either.\n\n4. We also know that \"Rough, young people are nice.\" Since Anne is young, we can't conclude that Anne is nice. However, we can't conclude that Anne is not nice either.\n\n5. We also know that \"All red, quiet people are cold.\" We don't have any information about Anne's color or quietness yet.\n\n6. We also know that \"All smart people are quiet.\" We don't have any information about Anne's intelligence yet.\n\n7. Since we can't conclude that Anne is quiet, not quiet, cold, not cold, nice, not nice, red, not red, or smart from the given statements, the statement \"Anne is not quiet\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the truth value of the statement 'Anne is not quiet,' we need to establish a relationship between Anne and the given characteristics (quiet, cold, young, nice, red, rough, and smart).\n\nGiven statements:\n1. Anne is young.\n2. Bob is nice.\n3. Bob is red.\n4. Bob is young.\n5. Charlie is cold.\n6. Charlie is quiet.\n7. Charlie is red.\n8. Charlie is rough.\n9. Charlie is smart.\n10. Fiona is cold.\n11. Fiona is quiet.\n12. Cold people are young.\n13. Rough, young people are nice.\n14. Cold, red people are smart.\n15. Red people are smart.\n16. If someone is smart and quiet then they are cold.\n17. All rough, nice people are red.\n18. All red, quiet people are cold.\n19. All smart people are quiet.\n\nFrom the given statements, we can derive the following relationships:\n- Young people are cold (from 12).\n- Young people are nice (from 13 and 1).\n- Red people are smart (from 15).\n- Smart people are quiet (from 19).\n\nWe can now analyze Anne's relationships:\n1. Anne is young (from 1).\n2. Young people are cold (from 12), so Anne is cold.\n3. Young people are nice (from 13 and 1), so Anne is nice.\n4. Anne is not mentioned as red, but it's not explicitly stated that she is not red either. However, since we don't have any direct relationship between Anne and being red, we cannot conclude her redness.\n\nNow, let's consider the statement 'Anne is not quiet.' Since we cannot determine Anne's redness, we cannot use statements 17, 18, or 15 to draw conclusions about Anne being quiet. However, we can use the fact that smart people are quiet (from 19). We need to find out if Anne is smart or not.\n\nTo determine Anne's smartness, we'll look for a relationship between Anne and the given characteristics. We know that:\n- Cold people are young (from 12), and we've established that Anne is young (from 1), so Anne is cold.\n- Cold, red people are smart (from 14), but we cannot determine Anne's redness.\n- Red people are smart (from 15), but we cannot determine Anne's redness.\n\nHowever, we can use the statement 'If someone is smart and quiet then they are cold' (from 16). Since we don't have any information about Anne being smart, we cannot use this statement to determine Anne's coldness.\n\nWe can, however, use the statement 'All red, quiet people are cold' (from 18). To apply this statement, we need to determine if Anne is quiet or red.\n\nWe know that Anne is not mentioned as quiet (from 6, 11, and the statement 'Anne is not quiet'). However, we cannot determine Anne's quietness.\n\nSince we cannot determine Anne's redness or quietness, we cannot use statements 17 and 18 to draw conclusions about Anne's coldness or smartness.\n\nHowever, we can use the statement 'All smart people are quiet' (from 19) to find out if Anne is smart. We cannot directly determine Anne's smartness, but we can use the fact that Anne is not quiet to establish a relationship.\n\nFrom the statement 'If someone is smart and quiet then they are cold' (from 16), we can infer that someone who is not quiet cannot be smart (since they wouldn't satisfy the condition of being both smart and quiet). Therefore, if Anne is not quiet, then Anne is not smart.\n\nNow, let's re-analyze the relationships:\n- Anne is young (from 1).\n- Young people are cold (from 12), so Anne is cold.\n- Young people are nice (from 13 and 1), so Anne is nice.\n- Anne is not quiet, so Anne is not smart.\n\nHowever, we cannot determine Anne's redness. Therefore, we cannot use the statement 'All red, quiet people are cold' (from 18) to draw conclusions about Anne's coldness.\n\nWe cannot determine Anne's redness, but we can use the fact that Anne is not quiet to establish a relationship. We know that Anne is not quiet, so Anne is not smart (from the previous inference).\n\nSince we cannot determine Anne's redness, we cannot use the statement 'All red people are smart' (from 15) to draw conclusions about Anne's smartness.\n\nHowever, we can use the fact that all rough, nice people are red (from 17). Since we know that Anne is nice (from the previous inference), we can use this statement to draw conclusions.\n\nFrom the given statements, we can derive the following relationships:\n- Young people are nice (from 13 and 1).\n- Young people are cold (from 12).\n- Young people are rough (from 13).\n\nWe know that Anne is young (from 1), so Anne is nice (from the previous inference), and Anne is cold (from the previous inference).\n\nFrom the statement 'Rough, young people are nice' (from 13), we can infer that all young people are either nice or rough. Since we know that Anne is young (from 1), Anne is either nice (from the previous inference) or rough.\n\nHowever, we cannot determine Anne's redness. We know that Charlie is rough (from 8), and Charlie is red (from 7). However, we cannot determine Anne's redness.\n\nSince we cannot determine Anne's redness, we cannot use the statement 'All red people are smart' (from 15) to draw conclusions about Anne's smartness.\n\nHowever, we can use the fact that all rough, nice people are red (from 17). Since we know that Anne is nice (from the previous inference), we can use this statement to draw conclusions.\n\nWe can infer that Anne is red (from the statement 'All rough, nice people are red' and the fact that Anne is nice and rough).\n\nNow, let's re-analyze the relationships:\n- Anne is young (from 1).\n- Young people are cold (from 12), so Anne is cold.\n- Young people are nice (from 13 and 1), so Anne is nice.\n- Anne is red (from the previous inference).\n\nWe know that cold, red people are smart (from 14), and red people are smart (from 15). Therefore, Anne is smart.\n\nHowever, we previously inferred that Anne is not smart (from the fact that Anne is not quiet). This is a contradiction, and we cannot determine Anne's smartness.\n\nSince we cannot determine Anne's smartness, we cannot use the statement 'All smart people are quiet' (from 19) to draw conclusions about Anne's quietness.\n\nHowever, we can use the fact that Anne is not quiet to establish a relationship. We know that Anne is not quiet, so Anne is not smart (from the previous inference).\n\nSince we cannot determine Anne's redness, we cannot use the statement 'All red people are smart' (from 15) to draw conclusions about Anne's smartness.\n\nHowever, we can use the fact that all rough, nice people are red (from 17). Since we know that Anne is nice (from the previous inference), we can use this statement to draw conclusions.\n\nWe can infer that Anne is red (from the statement 'All rough, nice people are red' and the fact that Anne is nice).\n\nNow, let's re-analyze the relationships:\n- Anne is young (from 1).\n- Young people are cold (from 12), so Anne is cold.\n- Young people are nice (from 13 and 1), so Anne is nice.\n- Anne is red (from the previous inference).\n\nWe know that cold, red people are smart (from 14), and red people are smart (from 15). Therefore, Anne is smart.\n\nHowever, we previously inferred that Anne is not smart (from the fact that Anne is not quiet). This is a contradiction, and we cannot determine Anne's smartness.\n\nSince we cannot determine Anne's smartness, we cannot use the statement 'All smart people are quiet' (from 19) to draw conclusions about Anne's quietness.\n\nHowever, we can use the fact that all smart people are quiet (from 19). Since we know that Anne is smart (from the previous inference), we can use this statement to draw conclusions.\n\nWe can infer that Anne is quiet.\n\nHowever, this contradicts the fact that Anne is not quiet. Therefore, we cannot use this statement to draw conclusions.\n\nSince we cannot determine Anne's smartness or quietness, we cannot determine if the statement 'Anne is not quiet' is true or false.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given several statements about different people:\n   - Anne is rough.\n   - Anne is young.\n   - Bob is nice.\n   - Bob is red.\n   - Bob is young.\n   - Charlie is cold.\n   - Charlie is quiet.\n   - Charlie is red.\n   - Charlie is rough.\n   - Charlie is smart.\n   - Fiona is cold.\n   - Fiona is quiet.\n   We will ignore the statements about Bob and Fiona for now, as they do not provide any useful information about Anne.\n\n2. We are given several logical statements about the properties of people:\n   - Cold people are young.\n   - Rough, young people are nice.\n   - Cold, red people are smart.\n   - Red people are smart.\n   - If someone is smart and quiet, then they are cold.\n   - All rough, nice people are red.\n   - All red, quiet people are cold.\n   - All smart people are quiet.\n\n3. We need to find out if Anne is quiet or not. To do this, we can try to derive information about Anne's properties using the given logical statements.\n\n   From statement 1, we know that Anne is rough and young.\n   From statement 2, we know that rough, young people are nice.\n   Therefore, we can conclude that Anne is nice.\n\n   From statement 7, we know that all rough, nice people are red.\n   Therefore, we can conclude that Anne is red.\n\n   From statement 6, we know that cold, red people are smart.\n   However, we cannot conclude that Anne is smart, because we do not know if she is cold.\n\n   From statement 8, we know that all smart people are quiet.\n   However, we cannot conclude that Anne is quiet, because we do not know if she is smart.\n\n   From statement 9, we know that all red, quiet people are cold.\n   However, we cannot conclude that Anne is cold, because we do not know if she is quiet.\n\n   From statement 10, we know that all smart people are quiet.\n   However, we cannot conclude that Anne is quiet, because we do not know if she is smart.\n\n   Now, let's try to derive information about Anne's quietness using the statement \"Cold people are young.\" (Statement 5)\n   We know that Anne is young, but we do not know if she is cold.\n\n   Now, let's try to derive information about Anne's quietness using the statement \"If someone is smart and quiet, then they are cold.\" (Statement 7)\n   We know that all smart people are quiet, but we do not know if Anne is smart.\n\n   However, from statement 4, we know that Red people are smart.\n   And from statement 7, we know that all red, quiet people are cold.\n   And from statement 7, we know that all rough, nice people are red.\n   And from statement 1, we know that Anne is rough and young, so Anne is nice, and therefore Anne is red.\n   And from statement 1, we know that Anne is young.\n   From statement 5, we know that cold people are young.\n   And from statement 6, we know that cold, red people are smart.\n   We can conclude that Anne is cold and red.\n\n   Now, let's try to derive information about Anne's quietness using the statement \"If someone is smart and quiet, then they are cold.\" (Statement 7)\n   We know that Anne is cold and red, and we also know that all red, quiet people are cold.\n   However, we cannot conclude that Anne is quiet, because we do not know if she is red.\n\n   However, from statement 7, we know that all red, quiet people are cold.\n   And from statement 6, we know that cold, red people are smart.\n   We know that Anne is cold and red.\n   Therefore, we can conclude that Anne is smart.\n\n   Now, let's try to derive information about Anne's quietness using the statement \"If someone is smart and quiet, then they are cold.\" (Statement 7)\n   We know that Anne is smart and we also know that all smart people are quiet.\n   Therefore, we can conclude that Anne is quiet.\n\nHowever, we have found a contradiction: we previously concluded that Anne is not quiet, but we have now concluded that Anne is quiet. This means that we cannot determine whether the statement \"Anne is not quiet\" is true or false.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not quiet\" is true, false, or unknown, we need to analyze the given information and use logical reasoning to derive the necessary conclusions.\n\nGiven information:\n1. Anne is rough.\n2. Anne is young.\n3. Bob is nice.\n4. Bob is red.\n5. Bob is young.\n6. Charlie is cold.\n7. Charlie is quiet.\n8. Charlie is red.\n9. Charlie is rough.\n10. Charlie is smart.\n11. Fiona is cold.\n12. Fiona is quiet.\n13. Cold people are young.\n14. Rough, young people are nice.\n15. Cold, red people are smart.\n16. Red people are smart.\n17. If someone is smart and quiet then they are cold.\n18. All rough, nice people are red.\n19. All red, quiet people are cold.\n20. All smart people are quiet.\n\nStep 1: Analyze statement 12, which says Charlie is quiet. Now, let's look at statement 17: \"If someone is smart and quiet then they are cold.\" This tells us that quiet people can be cold or smart (or both). \n\nStep 2: Analyze statement 10, which says Charlie is smart. Since Charlie is smart, then according to statement 17, Charlie is quiet (because if someone is smart and quiet then they are cold).\n\nHowever, statement 17 does not tell us whether someone is cold or not if they are quiet but not smart. Hence, it does not provide sufficient information to conclude that Charlie is cold. Therefore, we can't determine whether Charlie is cold or not.\n\nStep 3: Analyze statement 19, which says all red, quiet people are cold. This tells us that red people can be quiet and cold. Since Charlie is red and quiet, Charlie must be cold.\n\nStep 4: Now let's analyze statement 18, which says all rough, nice people are red. Since Anne is rough and young (statement 2), and according to statement 14, rough, young people are nice, then Anne is nice.\n\nStep 5: Since Anne is nice, according to statement 18, Anne must be red.\n\nStep 6: From step 3, we know that Charlie is red and quiet. Since all red, quiet people are cold (statement 19), then all red people must be cold. Therefore, since Anne is red (step 5), Anne must be cold.\n\nStep 7: Since Anne is cold (step 6), we can use statement 13, which says cold people are young. Therefore, Anne must be young.\n\nStep 8: From step 6, we know that Anne is red, quiet, and cold. Now let's look at statement 17: \"If someone is smart and quiet then they are cold.\" This tells us that quiet people can be cold or smart (or both). Since Anne is quiet (because all red, quiet people are cold, statement 19), then Anne can be smart or cold. \n\nHowever, since we already concluded that Anne is cold (step 6), then we don't need to consider the smart option.\n\nStep 9: Now let's analyze statement 7, which says Charlie is quiet. However, statement 17 does not tell us whether someone is cold or not if they are quiet but not smart. Hence, it does not provide sufficient information to conclude that Anne is not quiet. However, we know that Anne is red (step 5), red, quiet people are cold (statement 19), and since we already concluded that Anne is cold (step 6), and we also know that cold people are young (statement 13). \n\nGiven that we can't conclude whether someone is quiet or not if they are young but not cold (because statement 17 does not provide sufficient information), we can't determine whether Anne is quiet or not. Therefore, we can't determine whether the statement \"Anne is not quiet\" is true or false. \n\nSince we can't determine whether the statement \"Anne is not quiet\" is true or false, we conclude that the statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not quiet\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nGiven statements:\n\n1. Anne is rough.\n2. Anne is young.\n3. Bob is nice.\n4. Bob is red.\n5. Bob is young.\n6. Charlie is cold.\n7. Charlie is quiet.\n8. Charlie is red.\n9. Charlie is rough.\n10. Charlie is smart.\n11. Fiona is cold.\n12. Fiona is quiet.\n13. Cold people are young.\n14. Rough, young people are nice.\n15. Cold, red people are smart.\n16. Red people are smart.\n17. If someone is smart and quiet then they are cold.\n18. All rough, nice people are red.\n19. All red, quiet people are cold.\n20. All smart people are quiet.\n\nWe will start by using the given statements to derive new statements.\n\nFrom statement 13: If someone is cold, then they are young.\nFrom statement 12: Charlie is quiet.\nFrom statement 6: Charlie is cold.\nTherefore, Charlie is young (by statement 13).\n\nFrom statement 14: If someone is rough and young, then they are nice.\nFrom statement 1: Anne is rough.\nFrom statement 2: Anne is young.\nTherefore, Anne is nice (by statement 14).\n\nFrom statement 19: If someone is red and quiet, then they are cold.\nFrom statement 8: Charlie is red.\nFrom statement 12: Charlie is quiet.\nTherefore, Charlie is cold (by statement 19).\n\nFrom statement 20: If someone is smart, then they are quiet.\nFrom statement 10: Charlie is smart.\nTherefore, Charlie is quiet (by statement 20). However, we already know Charlie is quiet from statement 7.\n\nFrom statement 18: If someone is rough and nice, then they are red.\nFrom statement 1: Anne is rough.\nFrom statement 3: Bob is nice.\nFrom statement 14: Anne is nice (derived earlier).\nTherefore, Anne is red (by statement 18).\n\nFrom statement 16: If someone is red, then they are smart.\nFrom statement 4: Bob is red.\nTherefore, Bob is smart (by statement 16).\n\nHowever, we also know from statement 4 that Bob is red, and from statement 5 that Bob is young. By statement 15, Bob is smart. \n\nFrom statement 15: If someone is cold and red, then they are smart.\nFrom statement 11: Fiona is cold.\nFrom statement 9: Charlie is red.\nFrom statement 6: Charlie is cold.\nFrom statement 12: Charlie is quiet.\nFrom statement 17: If someone is smart and quiet, then they are cold.\nFrom statement 10: Charlie is smart.\nTherefore, Fiona is smart (by statement 17 and the fact that Charlie is smart).\n\nNow we can determine the statement \"Anne is not quiet\" is false because we know Anne is quiet is not true but we do not have any information to confirm Anne is quiet.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the truth value of the statement \"Anne is not quiet,\" we need to find the characteristics of Anne from the given information. \n\nFrom the given information:\n- Anne is rough.\n- Anne is young.\n\nHowever, there are no direct statements about Anne being quiet or not. But we can make an inference from other given information. \n\nRough, young people are nice. (Given statement)\nHowever, we don't know if Anne is nice. But we do know from the given information that:\n- Cold people are young.\n- Anne is young.\n\nThis information is useful, but we still don't have enough information to determine if Anne is cold or not. \n\nHowever, we do know from the given information that:\n- Cold, red people are smart.\n- Red people are smart.\n- All smart people are quiet.\n\nBut we still don't know if Anne is red or not. We also don't know if Anne is quiet or not.\n\nFrom the given information, we can make the following inferences about Anne:\n- Anne is rough.\n- Anne is young.\n\nBut the truth value of the statement \"Anne is not quiet\" is still unknown because we don't have enough information to determine if Anne is quiet or not.\n\nTherefore, the final answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we'll break down the given statements and apply the rules to determine whether Anne is quiet or not.\n\nGiven statements:\n\n1. Anne is rough.\n2. Anne is young.\n3. Bob is nice.\n4. Bob is red.\n5. Bob is young.\n6. Charlie is cold.\n7. Charlie is quiet.\n8. Charlie is red.\n9. Charlie is rough.\n10. Charlie is smart.\n11. Fiona is cold.\n12. Fiona is quiet.\n13. Cold people are young.\n14. Rough, young people are nice.\n15. Cold, red people are smart.\n16. Red people are smart.\n17. If someone is smart and quiet then they are cold.\n18. All rough, nice people are red.\n19. All red, quiet people are cold.\n20. All smart people are quiet.\n\nWe are asked to determine whether the statement \"Anne is not quiet\" is true, false, or unknown.\n\nFrom statement 1, we know that Anne is rough. \n\nFrom statement 14, we know that rough, young people are nice. Since Anne is young (statement 2) and rough (statement 1), we can conclude that Anne is nice.\n\nFrom statement 18, we know that all rough, nice people are red. Since Anne is nice (from above) and rough (statement 1), we can conclude that Anne is red.\n\nFrom statement 11, we know that Fiona is cold, and from statement 12, we know that Fiona is quiet. \n\nFrom statement 19, we know that all red, quiet people are cold. However, we don't have a direct conclusion about Anne's quietness yet. \n\nFrom statement 17, we know that if someone is smart and quiet then they are cold. However, we don't know if Anne is smart or quiet.\n\nFrom statement 20, we know that all smart people are quiet. However, we don't know if Anne is smart.\n\nWe need to find a connection between Anne's quietness and the given statements. Since we don't have a direct conclusion about Anne's quietness yet, we'll try to connect it using the given statements.\n\nFrom statement 6 and statement 13, we can conclude that Charlie is young (since Charlie is cold).\n\nFrom statement 3, we know that Bob is nice, and from statement 4, we know that Bob is red.\n\nFrom statement 9, we know that Charlie is rough. \n\nFrom statement 14, we know that rough, young people are nice. Since Charlie is young (from above) and rough (statement 9), we can conclude that Charlie is nice.\n\nFrom statement 18, we know that all rough, nice people are red. Since Charlie is nice (from above) and rough (statement 9), we can conclude that Charlie is red.\n\nFrom statement 8, we know that Charlie is red, and from statement 16, we know that red people are smart.\n\nFrom statement 10, we know that Charlie is smart. \n\nFrom statement 20, we know that all smart people are quiet. Since Charlie is smart (from above), we can conclude that Charlie is quiet.\n\nNow that we know Charlie is quiet, we can use statement 19 to conclude that all red, quiet people are cold. Since Charlie is red (from above) and quiet (from above), we can conclude that Charlie is cold.\n\nFrom statement 17, we know that if someone is smart and quiet then they are cold. Since Charlie is smart (from above) and quiet (from above), we can conclude that Charlie is cold.\n\nWe have found a connection between Charlie's quietness and the given statements.\n\nNow we'll analyze the given statements again to see if we can find any connection between Anne's quietness and the given statements.\n\nFrom statement 6, we know that Charlie is cold, and from statement 7, we know that Charlie is quiet.\n\nFrom statement 19, we know that all red, quiet people are cold. However, we don't have a direct conclusion about Anne's quietness yet.\n\nFrom statement 17, we know that if someone is smart and quiet then they are cold. However, we don't know if Anne is smart or quiet.\n\nFrom statement 20, we know that all smart people are quiet. However, we don't know if Anne is smart.\n\nWe still can't conclude Anne's quietness directly. However, we can use the given statements to find an indirect conclusion.\n\nFrom statement 5, we know that Bob is young, and from statement 3, we know that Bob is nice.\n\nFrom statement 18, we know that all rough, nice people are red. However, we don't know if Bob is rough.\n\nFrom statement 4, we know that Bob is red, and from statement 16, we know that red people are smart.\n\nFrom statement 16, we know that red people are smart, and from statement 20, we know that all smart people are quiet. However, we don't know if Bob is quiet.\n\nFrom statement 17, we know that if someone is smart and quiet then they are cold. However, we don't know if Bob is cold.\n\nWe still can't conclude Anne's quietness directly. However, we can use the given statements to find an indirect conclusion.\n\nFrom statement 5, we know that Bob is young, and from statement 4, we know that Bob is red.\n\nFrom statement 15, we know that cold, red people are smart. However, we don't know if Bob is cold.\n\nFrom statement 6, we know that Charlie is cold, and from statement 8, we know that Charlie is red.\n\nFrom statement 11, we know that Fiona is cold, and from statement 12, we know that Fiona is quiet.\n\nFrom statement 19, we know that all red, quiet people are cold. Since Charlie is red (from above) and quiet (from above), we can conclude that Charlie is cold.\n\nFrom statement 17, we know that if someone is smart and quiet then they are cold. Since Charlie is smart (from above) and quiet (from above), we can conclude that Charlie is cold.\n\nWe have found a connection between Charlie's quietness and the given statements.\n\nNow we'll analyze the given statements again to see if we can find any connection between Anne's quietness and the given statements.\n\nFrom statement 5, we know that Bob is young, and from statement 4, we know that Bob is red.\n\nFrom statement 15, we know that cold, red people are smart. However, we don't know if Bob is cold.\n\nFrom statement 6, we know that Charlie is cold, and from statement 8, we know that Charlie is red.\n\nFrom statement 19, we know that all red, quiet people are cold. However, we don't have a direct conclusion about Anne's quietness yet.\n\nWe still can't conclude Anne's quietness directly. However, we can use the given statements to find an indirect conclusion.\n\nFrom statement 5, we know that Bob is young, and from statement 4, we know that Bob is red.\n\nFrom statement 15, we know that cold, red people are smart. However, we don't know if Bob is cold.\n\nFrom statement 16, we know that red people are smart, and from statement 20, we know that all smart people are quiet. However, we don't know if Bob is quiet.\n\nFrom statement 17, we know that if someone is smart and quiet then they are cold. However, we don't know if Bob is cold.\n\nWe still can't conclude Anne's quietness directly. However, we can use the given statements to find an indirect conclusion.\n\nFrom statement 5, we know that Bob is young, and from statement 4, we know that Bob is red.\n\nFrom statement 16, we know that red people are smart, and from statement 20, we know that all smart people are quiet. However, we don't know if Bob is quiet.\n\nFrom statement 17, we know that if someone is smart and quiet then they are cold. However, we don't know if Bob is cold.\n\nWe still can't conclude Anne's quietness directly. However, we can use the given statements to find an indirect conclusion.\n\nFrom statement 4, we know that Bob is red, and from statement 16, we know that red people are smart.\n\nFrom statement 20, we know that all smart people are quiet. However, we don't know if Bob is quiet.\n\nFrom statement 17, we know that if someone is smart and quiet then they are cold. However, we don't know if Bob is cold.\n\nWe still can't conclude Anne's quietness directly. However, we can use the given statements to find an indirect conclusion.\n\nFrom statement 4, we know that Bob is red.\n\nFrom statement 16, we know that red people are smart.\n\nFrom statement 20, we know that all smart people are quiet. However, we don't know if Bob is quiet.\n\nFrom statement 17, we know that if someone is smart and quiet then they are cold. However, we don't know if Bob is cold.\n\nWe still can't conclude Anne's quietness directly. However, we can use the given statements to find an indirect conclusion.\n\nFrom statement 4, we know that Bob is red.\n\nFrom statement 16, we know that red people are smart.\n\nFrom statement 20, we know that all smart people are quiet.\n\nHowever, we don't know if Bob is quiet.\n\nWe still can't conclude Anne's quietness directly. However, we can use the given statements to find an indirect conclusion.\n\nFrom statement 4, we know that Bob is red.\n\nFrom statement 16, we know that red people are smart.\n\nFrom statement 20, we know that all smart people are quiet.\n\nHowever, we don't know if Bob is quiet.\n\nSince we can't",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not quiet\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. We are given the following information:\n   - Anne is rough.\n   - Anne is young.\n   - Bob is nice.\n   - Bob is red.\n   - Bob is young.\n   - Charlie is cold.\n   - Charlie is quiet.\n   - Charlie is red.\n   - Charlie is rough.\n   - Charlie is smart.\n   - Fiona is cold.\n   - Fiona is quiet.\n   - Cold people are young.\n   - Rough, young people are nice.\n   - Cold, red people are smart.\n   - Red people are smart.\n   - If someone is smart and quiet then they are cold.\n   - All rough, nice people are red.\n   - All red, quiet people are cold.\n   - All smart people are quiet.\n\n2. From the given information, we know:\n   - Anne is rough (Step 1)\n   - Anne is young (Step 1)\n   - We are trying to determine whether Anne is quiet or not.\n\n3. We know that:\n   - Rough, young people are nice (Step 1)\n   - Since Anne is rough and young, she must be nice.\n\n4. Now we know:\n   - All rough, nice people are red (Step 1)\n   - Since Anne is rough and nice, she must be red.\n\n5. Now we know:\n   - Red people are smart (Step 1)\n   - All red, quiet people are cold (Step 1)\n   - All smart people are quiet (Step 1)\n   - If someone is smart and quiet then they are cold (Step 1)\n\n6. Since Anne is red, she must be smart. But since smart people are quiet (Step 1), Anne must be quiet.\n\n7. Therefore, the statement \"Anne is not quiet\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the truth of the statement \"Anne is not quiet,\" we need to analyze the given information and apply it to the properties of Anne.\n\nFrom the information given, we know the following:\n\n1. Anne is rough.\n2. Anne is young.\n3. Rough, young people are nice. \nSince Anne is rough and young, we can conclude that Anne is nice (nice is a property that applies to Anne based on being rough and young).\n\n4. Bob is nice. Bob is red. \nWe don't have any information that directly relates Bob to Anne, but this information will be useful later.\n\n5. Charlie is cold. Charlie is quiet. \nWe don't have any information that directly relates Charlie to Anne, but this information will be useful later.\n\n6. Charlie is red. Charlie is rough. Charlie is smart. \nAgain, this information doesn't directly relate to Anne.\n\n7. Fiona is cold. Fiona is quiet. \nLike Charlie, this information doesn't directly relate to Anne.\n\n8. Cold people are young. \nThis statement is relevant to Anne because it implies that if someone is cold, they are also young.\n\n9. All red, quiet people are cold. \nThis statement is relevant to Anne because it implies that if someone is red and quiet, they are also cold.\n\n10. All smart people are quiet. \nThis statement is relevant to Anne because it implies that if someone is smart, they are also quiet.\n\n11. All rough, nice people are red. \nThis statement is relevant to Anne because it implies that if someone is rough and nice, they are also red.\n\nFrom the given information, we know that Anne is rough and nice. Using statement 11, we can conclude that Anne is also red.\n\nNow, let's consider the statement \"Anne is not quiet.\" If Anne is not quiet, then we should be able to find a property that contradicts being quiet. However, we can't directly determine if Anne is quiet or not.\n\nWe know that Anne is red, which is a property of Charlie and Fiona. However, we don't have any information that directly relates the quietness of Anne to her being red.\n\nWe also know that all smart people are quiet (statement 10). However, we don't have any information that directly relates the intelligence of Anne to her quietness or lack thereof.\n\nSince we can't directly determine if Anne is quiet or not, we can't conclude that the statement \"Anne is not quiet\" is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not quiet\" is true, false, or unknown, we need to use the given information to deduce properties of Anne.\n\nGiven information:\n\n1. Anne is rough.\n2. Anne is young.\n3. Bob is nice.\n4. Bob is red.\n5. Bob is young.\n6. Charlie is cold.\n7. Charlie is quiet.\n8. Charlie is red.\n9. Charlie is rough.\n10. Charlie is smart.\n11. Fiona is cold.\n12. Fiona is quiet.\n13. Cold people are young.\n14. Rough, young people are nice.\n15. Cold, red people are smart.\n16. Red people are smart.\n17. If someone is smart and quiet then they are cold.\n18. All rough, nice people are red.\n19. All red, quiet people are cold.\n20. All smart people are quiet.\n\nStep 1: Determine if Anne is young and rough.\nFrom statements 1 and 2, we know that Anne is young and rough.\n\nStep 2: Determine if rough, young people are nice.\nFrom statement 14, we know that rough, young people are nice. Since Anne is young and rough, we can infer that Anne is nice.\n\nStep 3: Determine if Anne is red.\nFrom statement 18, we know that all rough, nice people are red. Since we inferred that Anne is nice and rough, we can infer that Anne is red.\n\nStep 4: Determine if Anne is cold.\nFrom statements 13 and 15, we know that cold people are young and cold, red people are smart. We already know that Anne is young and red. However, we cannot infer that Anne is cold from the given information.\n\nStep 5: Determine if Anne is quiet or not.\nSince we cannot determine if Anne is cold and we cannot directly link Anne being red and nice to being quiet or not, we need to look at other information. However, the statements about Anne are incomplete, and we cannot find a direct or indirect link between Anne being red, nice, and quiet or not. We also cannot find a direct or indirect link between Anne being young, rough, and quiet or not. \n\nSince we cannot find a direct or indirect link between Anne's properties and quietness, we cannot determine if Anne is quiet or not.\n\nTherefore, the statement \"Anne is not quiet\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_anne, young_anne), nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_anne, young_anne), red_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_anne, smart_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_anne, quiet_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_X, young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_X, young_X), nice_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, red_X), smart_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(smart_X, quiet_X), cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), red_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_X, quiet_X), cold_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_X, quiet_X)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_X, young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_X, young_X), nice_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, red_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(smart_X, quiet_X), cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_X, quiet_X), cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_X, quiet_X)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_anne, nice_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_anne, young_anne), nice_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_anne, red_anne), smart_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_anne, smart_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(smart_anne, quiet_anne), cold_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_anne, quiet_anne), cold_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_anne, quiet_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_anne, nice_anne), red_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(anne)",
+          "z3_formula": "Not(smart_anne) == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(anne)",
+          "z3_formula": "Not(smart_anne) == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_X, young_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_X, young_X), nice_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, red_X), smart_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(smart_X, quiet_X), cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_X, quiet_X), cold_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_X, quiet_X)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_X, young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_X, young_X), nice_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, red_X), smart_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(smart_X, quiet_X), cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), red_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_X, quiet_X), cold_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_X, quiet_X)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_charlie, young_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_anne, young_anne), nice_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_charlie, quiet_charlie), cold_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), cold_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_anne, nice_anne), red_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_bob, smart_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_charlie, red_charlie), smart_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_anne, young_anne), nice_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_anne, young_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_anne, red_anne), smart_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_anne, smart_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_anne, quiet_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == Unknown",
+          "source_step": 9
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_X, young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_X, young_X), nice_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, red_X), smart_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(smart_X, quiet_X), cold_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), red_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_X, quiet_X), cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_X, quiet_X)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_anne, young_anne), nice_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_X, young_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_X, red_X), cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_X, quiet_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), red_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X)",
+          "z3_formula": "Implies(And(young_X, cold_X), young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_X, young_X), nice_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, red_X), smart_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(smart_X, quiet_X), cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), red_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_X, quiet_X), cold_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_X, quiet_X)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne) & rough(anne)",
+          "z3_formula": "And(young_anne, rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == Unknown",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == Unknown",
+          "source_step": 20
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 219,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 51
+    },
+    "maxsat_stats": {
+      "satisfied": 49,
+      "excluded": 2,
+      "total_weight": 212,
+      "solve_time_ms": 1.3314643874764442
+    },
+    "timing": {
+      "trace_gen_s": 24.765,
+      "extraction_s": 42.031,
+      "dedup_s": 2.254,
+      "maxsat_s": 0.004,
+      "total_s": 69.054
+    }
+  }
+}

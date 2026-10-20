@@ -1,0 +1,27 @@
+paper_key: "rc2025"
+title: "Representation Consistency for Accurate and Coherent LLM Answer Aggregation"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: ["majority_voting", "USC", "weighted_voting"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "coherence", direction: "higher_better"}
+  datasets:
+    - {name: "GSM8K", size: "1319"}
+    - {name: "TriviaQA", size: "open-domain"}
+    - {name: "MMLU", size: "multi-task"}
+  ablation_dimensions: ["representation_type", "aggregation_method", "sample_count"]
+  training_recipe: {info: "N/A — aggregation method"}
+  method_family: "representation-based answer aggregation"
+
+positioning:
+  core_claim: "Aggregating answers based on representation consistency (semantic similarity) outperforms surface-form majority voting for open-ended generation"
+  key_results: "N/A"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

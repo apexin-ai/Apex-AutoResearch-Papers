@@ -1,0 +1,1126 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1236_Q20",
+    "problem": "Anne is blue. Anne is smart. Bob is green. Bob is round. Erin is rough. Harry is cold. Harry is kind. All kind things are round. If something is rough then it is round. All cold things are round. Round things are cold. All kind things are green. If something is smart then it is rough. If something is cold and not blue then it is rough. If Bob is smart then Bob is not green. All smart, cold things are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is smart.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nSmart($x, bool) ::: Is x smart?\nGreen($x, bool) ::: Is x green?\nRound($x, bool) ::: Is x round?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nBlue(Anne, True) ::: Anne is blue.\nSmart(Anne, True) ::: Anne is smart.\nGreen(Bob, True) ::: Bob is green.\nRound(Bob, True) ::: Bob is round.\nRough(Erin, True) ::: Erin is rough.\nCold(Harry, True) ::: Harry is cold.\nKind(Harry, True) ::: Harry is kind.\n\nRules:\nKind($x, True) >>> Round($x, True) ::: All kind things are round.\nRough($x, True) >>> Round($x, True) ::: If something is rough then it is round.\nCold($x, True) >>> Round($x, True) ::: All cold things are round.\nRound($x, True) >>> Cold($x, True) ::: Round things are cold.\nKind($x, True) >>> Green($x, True) ::: All kind things are green.\nSmart($x, True) >>> Rough($x, True) ::: If something is smart then it is rough.\nCold($x, True) && Blue($x, False) >>> Rough($x, True) ::: If something is cold and not blue then it is rough.\nSmart(Bob, True) >>> Green(Bob, False) ::: If Bob is smart then Bob is not green.\nSmart($x, True) && Cold($x, True) >>> Kind($x, True) ::: All smart, cold things are kind.\n\nQuery:\nSmart(Erin, True) ::: Erin is smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 78.5,
+      "True": 67.0,
+      "Unknown": 141.5
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "False": 2,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Erin is rough.\n   - All kind things are round.\n   - All cold things are round.\n   - Round things are cold.\n   - All kind things are green.\n   - If something is smart then it is rough.\n   - If something is cold and not blue then it is rough.\n   - If Bob is smart then Bob is not green.\n   - All smart, cold things are kind.\n\n2. From the statement \"Erin is rough,\" we know that Erin has at least one of the properties: cold, kind, or smart.\n\n3. We need to determine if Erin can be smart. If Erin is smart, then she must be rough (from the statement \"If something is smart then it is rough\").\n\n4. Since Erin is rough, she must be either cold or kind (from the statement \"All rough things are either cold or kind\").\n\n5. If Erin is cold, then she is round (from the statement \"All cold things are round\").\n\n6. However, if Erin is round, then she must be green (from the statement \"All kind things are green\" and \"Round things are cold\" and \"All cold things are round\").\n\n7. But we also know that if Erin is green, then she must be kind (from the statement \"All kind things are green\").\n\n8. Now, let's analyze the statement \"All smart, cold things are kind.\" This statement is crucial in determining Erin's properties.\n\n9. If Erin is cold and smart, then she must be kind (from the statement \"All smart, cold things are kind\").\n\n10. However, if Erin is kind, then she must be green (from the statement \"All kind things are green\").\n\n11. Now, let's analyze the statement \"If Bob is smart then Bob is not green.\"\n\n12. Since Bob is green, we can conclude that Bob is not smart (from the statement \"If Bob is smart then Bob is not green\").\n\n13. But we also know that all smart things are rough (from the statement \"If something is smart then it is rough\"). \n\n14. Since Bob is not smart, we cannot conclude that he is rough or not.\n\n15. However, we cannot directly apply this statement to Erin because it is specific to Bob.\n\n16. Now, let's analyze the statement \"If something is cold and not blue then it is rough.\"\n\n17. If Erin is cold and not blue, then she is rough (from the statement \"If something is cold and not blue then it is rough\").\n\n18. Since Erin is rough, we cannot conclude that she is smart or not.\n\n19. However, we know that Erin is rough and either cold or kind (from step 4).\n\n20. If Erin is cold, then she is round (from the statement \"All cold things are round\").\n\n21. However, if Erin is round, then she must be green (from the statement \"All kind things are green\" and \"Round things are cold\" and \"All cold things are round\").\n\n22. Since Erin is not blue, we can conclude that she is either cold or kind (from the statement \"If something is cold and not blue then it is rough\").\n\n23. If Erin is cold, then she is round (from the statement \"All cold things are round\").\n\n24. However, if Erin is round, then she must be green (from the statement \"All kind things are green\" and \"Round things are cold\" and \"All cold things are round\").\n\n25. But we also know that if Erin is green, then she must be kind (from the statement \"All kind things are green\").\n\n26. Now, let's analyze the statement \"All kind things are round.\"\n\n27. If Erin is kind, then she must be round (from the statement \"All kind things are round\").\n\n28. However, if Erin is round, then she must be green (from the statement \"All cold things are round\" and \"Round things are cold\" and \"All kind things are green\").\n\n29. Since Erin is not blue, we can conclude that she is either cold or kind (from the statement \"If something is cold and not blue then it is rough\").\n\n30. If Erin is kind, then she must be round (from the statement \"All kind things are round\").\n\n31. However, if Erin is round, then she must be green (from the statement \"All cold things are round\" and \"Round things are cold\" and \"All kind things are green\").\n\n32. Since Erin is green, we can conclude that she is kind (from the statement \"All kind things are green\").\n\n33. Now, let's analyze the statement \"All smart, cold things are kind.\"\n\n34. If Erin is cold and smart, then she must be kind (from the statement \"All smart, cold things are kind\").\n\n35. However, since Erin is kind (from step 32), we cannot conclude that she is smart or not.\n\n36. From steps 32 and 35, we know that Erin is kind but cannot conclude that she is smart or not.\n\n37. Since Erin is kind, we cannot conclude that she is smart or not.\n\n38. However, we know that Erin is rough (from the statement \"Erin is rough\").\n\n39. From the statement \"If something is smart then it is rough,\" we cannot conclude that Erin is smart or not.\n\n40. However, we know that Erin is not blue (from the statement \"If something is cold and not blue then it is rough\").\n\n41. Since Erin is not blue and is rough, we cannot conclude that she is smart or not.\n\n42. However, we know that Erin is either cold or kind (from step 4).\n\n43. If Erin is cold, then she is round (from the statement \"All cold things are round\").\n\n44. However, if Erin is round, then she must be green (from the statement \"All kind things are green\" and \"Round things are cold\" and \"All cold things are round\").\n\n45. Since Erin is green, we can conclude that she is kind (from the statement \"All kind things are green\").\n\n46. Now, let's analyze the statement \"All smart, cold things are kind.\"\n\n47. If Erin is cold and smart, then she must be kind (from the statement \"All smart, cold things are kind\").\n\n48. However, since Erin is kind (from step 45), we cannot conclude that she is smart or not.\n\n49. From steps 45 and 48, we know that Erin is kind but cannot conclude that she is smart or not.\n\n50. Since Erin is kind, we cannot conclude that she is smart or not.\n\n51. However, we know that Erin is rough (from the statement \"Erin is rough\").\n\n52. From the statement \"If something is smart then it is rough,\" we cannot conclude that Erin is smart or not.\n\n53. However, we know that Erin is not blue (from the statement \"If something is cold and not blue then it is rough\").\n\n54. Since Erin is not blue and is rough, we cannot conclude that she is smart or not.\n\n55. Since we cannot conclude whether Erin is smart or not, we cannot determine whether the statement \"Erin is smart\" is true or false.\n\nTherefore, the statement \"Erin is smart\" is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Erin is smart, we need to analyze the given statements and use the process of elimination to find the relationship between Erin and the property of being smart.\n\n1. All kind things are round. (This statement is not directly related to Erin, but it's useful for future reference.)\n2. All cold things are round. (This statement is not directly related to Erin, but it's useful for future reference.)\n3. All round things are cold. (This statement is not directly related to Erin, but it's useful for future reference.)\n4. All kind things are green. (This statement is not directly related to Erin, but it's useful for future reference.)\n5. If something is rough then it is round. (This statement is not directly related to Erin, but it's useful for future reference.)\n6. All smart, cold things are kind. (This statement is not directly related to Erin, but it's useful for future reference.)\n7. If something is smart then it is rough. (This statement is relevant to Erin's potential smartness.)\n8. If something is cold and not blue then it is rough. (This statement is not directly related to Erin, but it's useful for future reference.)\n9. If Bob is smart then Bob is not green. (This statement is not directly related to Erin, but it's useful for future reference.)\n10. Erin is rough. (This statement is not directly related to Erin's smartness, but it's useful for future reference.)\n\nNow, let's focus on Erin's properties and its potential relation to being smart:\n\n- We don't have any direct information that Erin is smart or not smart.\n- We know Erin is rough (statement 10).\n- Since Erin is rough, we can use statement 5 to infer that Erin is round (although we don't know if Erin is round or not, this is a possible conclusion).\n- If Erin is round, then Erin is cold (statement 3).\n- If Erin is cold and not blue, then Erin is rough (statement 8). However, we already know Erin is rough, so this statement does not provide any new information.\n- Since Erin is cold and we don't know if Erin is blue or not, we can't conclude anything about Erin being rough or not from this statement.\n\nGiven that we have a lot of statements that are not directly related to Erin's smartness, we need to focus on statements that have a direct relation to Erin's potential smartness.\n\n- The only statement that has a direct relation to Erin's smartness is statement 7: If something is smart then it is rough.\n- We know Erin is rough (statement 10), but we don't know if Erin is smart or not.\n- Since we don't have any direct information that Erin is smart or not smart, we cannot conclude whether Erin is smart or not.\n\nHowever, we can use the given information to create a scenario that makes Erin smart:\n\n- If Erin is cold and round (because Erin is rough), and Erin is not blue (which is not stated, but it's a possibility), then Erin would be rough (statement 8).\n- If Erin is smart, then Erin is rough (statement 7).\n- We already know Erin is rough (statement 10).\n- If Erin is smart, then we can use statement 7 to confirm that Erin is indeed smart.\n\nHowever, we can also create a scenario that makes Erin not smart:\n\n- If Erin is blue, then Erin is not rough (because statement 8 would not apply).\n- If Erin is blue, then Erin is not cold (because statement 8 would not apply).\n- If Erin is blue, then Erin is not round (because statement 3 would not apply).\n- If Erin is blue, then Erin is not rough (because statement 5 would not apply).\n- If Erin is blue, then Erin is not smart (because statement 7 would not apply).\n\nSince we can create both a scenario that makes Erin smart and a scenario that makes Erin not smart, we cannot determine whether Erin is smart or not.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deductions and rules to determine whether Erin is smart or not.\n\nGiven statements:\n1. Anne is blue.\n2. Anne is smart.\n3. Bob is green.\n4. Bob is round.\n5. Erin is rough.\n6. Harry is cold.\n7. Harry is kind.\n8. All kind things are round.\n9. If something is rough then it is round.\n10. All cold things are round.\n11. Round things are cold.\n12. All kind things are green.\n13. If something is smart then it is rough.\n14. If something is cold and not blue then it is rough.\n15. If Bob is smart then Bob is not green.\n16. All smart, cold things are kind.\n\nWe need to determine whether Erin is smart. To do this, let's examine the given information:\n\nFrom statement 13, we know that if something is smart, then it is rough. However, we also need to consider other possibilities for Erin being smart.\n\nFrom statement 5, we know Erin is rough. This means Erin could be smart (statement 13) or cold and not blue (statement 14), or some other condition could apply.\n\nLet's consider Erin being smart first. If Erin is smart, then from statement 13, Erin is rough. This matches the information we have from statement 5.\n\nNow, let's consider Erin being cold and not blue. If Erin is cold and not blue, then from statement 14, Erin is rough. This again matches the information we have from statement 5.\n\nHowever, statement 15 does not apply to Erin. It's about Bob, and we have no information that Erin is Bob.\n\nTo further investigate Erin's possible conditions, we need to look at statement 16: all smart, cold things are kind. If Erin is smart and cold, then Erin is kind. However, we know Harry is kind (statement 7) and Harry is cold (statement 6). We can conclude that Harry is round because all kind things are round (statement 8).\n\nSince Erin is rough (statement 5), and if Erin is round (from statement 9), then Erin is cold (from statement 10) and round (from statement 11).\n\nNow, let's check the condition of Erin being cold. If Erin is cold, then Erin is round (statement 11). We've already concluded that Erin is round (from statement 9).\n\nSo, Erin is round and cold. But if Erin is smart, then Erin is rough (statement 13). We've already concluded that Erin is rough (from statement 5).\n\nHowever, from statement 5 and statement 9, we know Erin is rough, but we also know that if Erin is cold and not blue then it is rough (statement 14). If Erin is cold and not blue, then Erin is rough. But we also know that Erin is round (from statement 9), and if Erin is round, then Erin is cold (from statement 11). \n\nHowever, if Erin is cold and not blue, then Erin is rough (statement 14). But if Erin is smart, then Erin is rough (statement 13). Now, from statement 16, we know that all smart, cold things are kind. Since Erin is kind, then Erin is green (from statement 12).\n\nFrom statement 12, we know all kind things are green, but we also know that if Bob is smart then Bob is not green (statement 15). So, Bob is not kind.\n\nNow, let's analyze statement 16. All smart, cold things are kind. We know that Harry is kind (statement 7) and cold (statement 6), but we also know that Erin is kind (from statement 12), and we know that Erin is round (from statement 9), and if Erin is round, then Erin is cold (from statement 11). \n\nHowever, from statement 5, we know Erin is rough. But if Erin is round, then Erin is cold (from statement 11), and we know that round things are cold (statement 11).\n\nIf Erin is smart, then Erin is rough (statement 13). From statement 5, we know Erin is rough. But we also know that if Erin is cold and not blue then it is rough (statement 14). If Erin is cold and not blue, then Erin is rough. \n\nHowever, from statement 5 and statement 9, we know Erin is rough, but we also know that if Erin is cold and not blue then it is rough (statement 14). If Erin is cold and not blue, then Erin is rough. But we also know that Erin is round (from statement 9), and if Erin is round, then Erin is cold (from statement 11). \n\nHowever, since Erin is round (from statement 9) and if Erin is round, then Erin is cold (from statement 11), we can say that Erin is cold. \n\nNow, if Erin is smart, then Erin is rough (statement 13). From statement 5, we know Erin is rough. However, we also know that if Erin is cold and not blue then it is rough (statement 14). If Erin is cold and not blue, then Erin is rough. \n\nHowever, from statement 5 and statement 9, we know Erin is rough, but we also know that if Erin is cold and not blue then it is rough (statement 14). If Erin is cold and not blue, then Erin is rough. \n\nHowever, we also know that Erin is round (from statement 9), and if Erin is round, then Erin is cold (from statement 11). Since Erin is round (from statement 9), and Erin is cold (from statement 11), we can conclude that Erin is cold.\n\nNow, if Erin is cold, then Erin is round (from statement 11), and if Erin is round, then Erin is cold (from statement 11). We also know that Erin is rough (from statement 5), and if Erin is rough, then Erin is round (from statement 9).\n\nHowever, we also know that if Erin is cold and not blue then it is rough (statement 14). If Erin is cold and not blue, then Erin is rough. But since Erin is round (from statement 9), and if Erin is round, then Erin is cold (from statement 11), we can say that Erin is cold.\n\nNow, let's check the condition of Erin being blue. If Erin is blue, then Erin is not cold (from statement 14). But we've already concluded that Erin is cold. So, Erin is not blue.\n\nNow, let's check the condition of Erin being green. If Erin is green, then Erin is not kind (from statement 12). But we've already concluded that Erin is kind.\n\nHowever, from statement 5, we know Erin is rough. And if Erin is rough, then Erin is round (from statement 9). Since Erin is round (from statement 9), and if Erin is round, then Erin is cold (from statement 11), we can say that Erin is cold.\n\nNow, let's check the condition of Erin being kind. If Erin is kind, then Erin is green (from statement 12). But we've already concluded that Erin is green.\n\nNow, let's check the condition of Erin being smart. If Erin is smart, then Erin is rough (from statement 13).\n\nHowever, we also know that Erin is cold (from statement 11), and if Erin is cold, then Erin is round (from statement 11). Since Erin is round (from statement 9), and Erin is cold (from statement 11), we can conclude that Erin is cold.\n\nNow, if Erin is cold, then Erin is round (from statement 11), and if Erin is round, then Erin is cold (from statement 11). We also know that Erin is rough (from statement 5), and if Erin is rough, then Erin is round (from statement 9).\n\nHowever, we also know that if Erin is cold and not blue then it is rough (statement 14). If Erin is cold and not blue, then Erin is rough. But since Erin is round (from statement 9), and if Erin is round, then Erin is cold (from statement 11), we can say that Erin is cold.\n\nNow, let's check the condition of Erin being cold. If Erin is cold, then Erin is round (from statement 11).\n\nHowever, we also know that Erin is rough (from statement 5), and if Erin is rough, then Erin is round (from statement 9). Since Erin is round (from statement 9), and Erin is cold (from statement 11), we can conclude that Erin is cold.\n\nNow, if Erin is cold, then Erin is round (from statement 11). Since Erin is round (from statement 9), and Erin is cold (from statement 11), we can conclude that Erin is cold.\n\nNow, let's check the condition of Erin being round. If Erin is round, then Erin is cold (from statement 11).\n\nHowever, we also know that Erin is rough (from statement 5), and if Erin is rough, then Erin is round (from statement 9). Since Erin is round (from statement 9), and Erin is cold (from statement 11), we can conclude that Erin is cold.\n\nNow, let's check the condition of Erin being smart. If Erin is smart, then Erin is rough (from statement 13).\n\nHowever, we also know that Erin is round (from statement 9), and if Erin is round, then Erin is cold (from statement 11). Since Erin is round (from statement 9), and Erin is cold (from statement 11), we can conclude that Erin is cold.\n\nNow, if Erin is cold, then Erin is",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Erin is smart, we need to analyze the given information step by step.\n\n1. Erin is rough. (Given statement)\n\nFrom the given statements, we have the following inferences:\n\n- If something is rough, then it is round. (Statement)\n- All round things are cold. (Statement)\n- Erin is rough. (Given statement)\n- Therefore, Erin is round. (Inference 1)\n\nFrom Inference 1 and the statement, \"All round things are cold\", we can conclude that Erin is cold.\n\n- Erin is cold. (Inference 2)\n- Erin is not blue. (Implicitly, since there is no statement saying Erin is blue)\n- Therefore, Erin is rough. (Statement)\n- Since Erin is round and round things are cold, Erin is indeed cold. (Inference 3, though this was already known)\n\nFrom the statement, \"All kind things are round\", we can infer that Erin is not kind because Erin is not round (Erin is rough).\n\n- Erin is not kind. (Inference 4)\n\nWe also know that all kind things are green, but Erin is not kind, so Erin is not green.\n\n- Erin is not green. (Inference 5)\n\nFrom the statement, \"All cold things are round\", we already know Erin is cold, and Erin is round, so Erin is indeed cold.\n\n- Erin is cold. (Inference 2, already known)\n- Erin is not blue. (Implicitly, since there is no statement saying Erin is blue)\n- Therefore, Erin is rough. (Statement)\n- Since Erin is round and round things are cold, Erin is indeed cold. (Inference 3, though this was already known)\n\nWe also know that if something is smart, then it is rough. So, we need to find out if Erin is smart.\n\n- Erin is rough. (Given statement)\n- If Erin is rough, then Erin is smart. (Statement)\n\nHowever, the statement \"If Bob is smart then Bob is not green\" is given. Since this statement is about Bob and not Erin, it doesn't directly apply to Erin. \n\n- However, the given statement \"All smart, cold things are kind\" is given. Since we know Erin is cold and rough, and from the statement, \"All smart, cold things are kind\", we can infer that Erin is indeed kind.\n\nHowever, we already concluded that Erin is not kind (Inference 4).\n\n- Erin is not kind. (Inference 4)\n- All kind things are round. (Statement)\n- Therefore, Erin is not kind. (Inference 4, though this is a repeat)\n\nHowever, we also concluded that Erin is round (Inference 1). \n\n- Erin is round. (Inference 1)\n- All round things are cold. (Statement)\n- Therefore, Erin is cold. (Inference 2, though this was already known)\n\nSince we have a contradiction between Erin being kind and Erin not being kind, we can conclude that Erin is not smart.\n\n- Erin is not smart. (Inference 6)\n\nTherefore, the statement \"Erin is smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply logical deductions.\n\nGiven statements:\n1. Anne is blue.\n2. Anne is smart.\n3. Bob is green.\n4. Bob is round.\n5. Erin is rough.\n6. Harry is cold.\n7. Harry is kind.\n8. All kind things are round. (From statement 7)\n9. If something is rough then it is round. (From statement 5)\n10. All cold things are round. (From statement 6)\n11. Round things are cold. (From statement 4 and 10)\n12. All kind things are green. (From statement 7)\n13. If something is smart then it is rough. (From statement 2)\n14. If something is cold and not blue then it is rough. (From statement 1 and 6)\n15. If Bob is smart then Bob is not green. (From statement 3)\n16. All smart, cold things are kind. (From statement 2, 6, and 7)\n\nNow, let's analyze the statement \"Erin is smart.\"\n\nTo determine whether Erin is smart, we need to use statement 13: \"If something is smart then it is rough.\" \n\nStatement 13 implies that if Erin is smart, then Erin is rough. From statement 5, we know that Erin is rough. Therefore, we cannot conclude that Erin is not smart based on this information alone.\n\nHowever, let's continue to analyze the situation. If Erin is smart, then from statement 13, Erin is rough. From statement 9, if Erin is rough, then Erin is round. \n\nBut, we also know that Erin is rough from statement 5, and from statement 9, if Erin is rough, then Erin is round. So, Erin is round.\n\nNow, we have two different conclusions: Erin is round (from statement 5 and 9) and Erin is round (from statement 13 and 9). This is a contradiction.\n\nHowever, the contradiction arises from our initial assumption that Erin is smart. Therefore, we cannot conclude that Erin is smart based on the given statements.\n\nThus, the statement \"Erin is smart\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is rough. (Given)\n2. If something is rough, then it is round. (Given)\n   Therefore, Erin is round. (Inference)\n\n3. All cold things are round. (Given)\n   All round things are cold. (Given)\n   Therefore, Erin is cold. (Inference)\n\n4. Erin is cold and not blue. (Inference from steps 1 and 3)\n   If something is cold and not blue, then it is rough. (Given)\n   Therefore, Erin is rough (which we already knew) and we also know Erin is cold. (Inference)\n\n5. All smart, cold things are kind. (Given)\n   Therefore, if Erin is smart, then Erin is kind. (Inference)\n\n6. Harry is kind. (Given)\n   All kind things are round. (Given)\n   Therefore, Harry is round. (Inference)\n\n7. If Bob is smart then Bob is not green. (Given)\n   Bob is green. (Given)\n   Therefore, Bob is not smart. (Inference)\n\n8. All kind things are green. (Given)\n   Therefore, kind things cannot be round (from step 6). (Inference)\n   However, we also know from step 5 that if Erin is smart, then Erin is kind, and we also know that Erin is round (from step 2). This creates a contradiction.\n\n   However, the statement \"All kind things are green\" and the statement \"All kind things are round\" cannot both be true at the same time. We are given both statements and we can't say one is false, however, we can say that one of them is false, but since we can't say which one is false, we can't say for certain that Erin is smart or not. Thus, the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given information is:\n   - Anne is blue.\n   - Anne is smart.\n   - Bob is green.\n   - Bob is round.\n   - Erin is rough.\n   - Harry is cold.\n   - Harry is kind.\n   - All kind things are round.\n   - If something is rough then it is round.\n   - All cold things are round.\n   - Round things are cold.\n   - All kind things are green.\n   - If something is smart then it is rough.\n   - If something is cold and not blue then it is rough.\n   - If Bob is smart then Bob is not green.\n   - All smart, cold things are kind.\n\n2. Let's start with the statement \"Erin is smart.\"\n   - We know that if something is smart then it is rough (given information).\n   - Since Erin is rough (given information), this supports the statement \"Erin is smart.\"\n\n3. However, we need to ensure there are no contradictions. Let's check the statements related to smart, cold, and rough:\n   - We have \"All smart, cold things are kind\" and \"All kind things are green\" which means if something is smart, cold, and kind, it is green.\n   - We also have \"If something is smart then it is rough\" and \"All cold things are round\" and \"Round things are cold\" which means if something is smart and cold, it is round.\n   - Since Erin is rough and also a potential candidate for being smart, let's check if Erin can be round:\n   - Erin is rough, and if something is rough then it is round (given information), so Erin is round.\n   - Now, we have Erin being round, and we know that \"Round things are cold\" and \"All cold things are round\" which means Erin is cold.\n\n4. Now, we have Erin being smart (or potentially smart), cold, and rough. Let's check if Erin can be kind:\n   - We know that Erin is cold and round (deduced from the information), and \"All cold things are round\" and \"Round things are cold\" which means Erin is indeed cold.\n   - We also know that \"All kind things are round\" and Erin is round, so Erin can be kind.\n   - However, we also have the statement \"All kind things are green\" and we need to check if Erin can be green.\n   - Erin is potentially kind, but we cannot conclude that Erin is green because we have a condition \"If Bob is smart then Bob is not green\" which is not applicable to Erin.\n\n5. However, let's check another condition: \"If something is cold and not blue then it is rough.\" Since Erin is cold and we do not have any information about Erin's color, we cannot conclude that Erin is rough. \n\n6. Based on our analysis, we have a contradiction: Erin is potentially smart and cold, and \"If something is cold and not blue then it is rough\" which means Erin cannot be rough if it is cold and we do not know its color.\n\n7. Since Erin cannot be rough if it is cold and we do not know its color, we cannot conclude that Erin is smart.\n\n8. The final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we'll break it down step by step using the given information.\n\n1. Erin is rough. (Given)\n\n2. If something is rough then it is round. (Given)\nSo, Erin is round. (From 1 and 2)\n\n3. All cold things are round. (Given)\nSo, Erin is cold or Erin is not cold. (From 3)\n\nHowever, we also know that Erin is round (from 2). So, we can conclude that Erin is cold (since it's round).\n\n4. Erin is cold and not blue. (From 3 and the fact that Erin is not blue, which we can infer from the given statement \"Anne is blue\" and assuming Anne and Erin are different)\n\n5. If something is cold and not blue then it is rough. (Given)\nSo, Erin is rough (we already knew this from 1).\n\n6. If something is smart then it is rough. (Given)\nSo, Erin is smart or Erin is not smart. (From 6)\n\nHowever, we also know that Erin is rough (from 5). So, we can conclude that Erin is smart (since it's rough).\n\nTherefore, the statement \"Erin is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is rough. \n\n   - This statement is given in the problem.\n\n2. If something is rough then it is round. \n\n   - This rule is given in the problem. Since Erin is rough, Erin is round.\n\n3. All cold things are round. \n\n   - This rule is given in the problem. We don't know if Erin is cold, so we cannot conclude if Erin is round based on this rule alone.\n\n4. Erin is round. \n\n   - From rule 2, we concluded that Erin is round.\n\n5. Round things are cold. \n\n   - This rule is given in the problem. Since Erin is round, Erin is cold.\n\n6. If something is cold and not blue then it is rough. \n\n   - This rule is given in the problem. We know Erin is cold, but we don't know if Erin is blue or not.\n\n7. Erin is rough. \n\n   - From rule 1, we already knew Erin was rough.\n\n8. If something is smart then it is rough. \n\n   - This rule is given in the problem. If Erin is smart, then Erin is rough (which we already know).\n\n9. Erin is rough. \n\n   - From rule 8, if Erin is smart, then Erin is rough (which we already know).\n\n10. If Erin is smart then it is rough.\n\n   - This statement is true because it is equivalent to the statement in rule 8.\n\nNow we need to determine if Erin is smart. \n\n- All smart, cold things are kind. \n\n   - This rule is given in the problem. Since Erin is cold and smart (if we assume it is true), then Erin is kind.\n\n- Harry is kind. \n\n   - This statement is given in the problem.\n\n- All kind things are round. \n\n   - This rule is given in the problem. Since Harry is kind, Harry is round.\n\n- Bob is round. \n\n   - This statement is given in the problem.\n\n- All round things are cold. \n\n   - This rule is given in the problem. Since Bob is round, Bob is cold.\n\n- Harry is cold. \n\n   - From rule 3, we concluded that Harry is cold.\n\n- If something is cold and not blue then it is rough. \n\n   - This rule is given in the problem. Since Harry is cold and not blue, Harry is rough.\n\n- Erin is rough. \n\n   - From rule 1, we already knew Erin was rough.\n\n- All rough things are smart. \n\n   - This rule is not given in the problem, but we can derive it from the rules: \n     - If something is rough then it is round. \n     - All round things are cold. \n     - If something is cold and not blue then it is rough. \n     - If something is smart then it is rough. \n     - From rules 1, 2, 3, 4, 5, and 6, we can conclude that \n       - If something is cold and not blue then it is rough, and \n       - If something is smart then it is rough. \n       - From rule 5 and 6, we can conclude that \n       - All round things are cold, and \n       - If something is cold and not blue then it is rough. \n       - From rule 5 and 7, we can conclude that \n       - All round things are cold, and \n       - Erin is rough. \n       - From rule 5, we can conclude that \n       - All round things are cold, and \n       - Erin is cold. \n       - From rule 4 and 5, we can conclude that \n       - If something is round then it is cold, and \n       - Erin is round. \n       - From rule 2, we can conclude that \n       - If something is rough then it is round, and \n       - Erin is rough. \n       - From rule 2 and 5, we can conclude that \n       - If something is rough then it is round, and \n       - If something is round then it is cold. \n       - From rule 8 and 5, we can conclude that \n       - If something is smart then it is rough, and \n       - If something is cold and not blue then it is rough. \n       - From rule 5, we can conclude that \n       - If something is round then it is cold. \n       - From rule 5 and 6, we can conclude that \n       - If something is cold and not blue then it is rough, and \n       - If something is smart then it is rough. \n       - From rule 5 and 8, we can conclude that \n       - All round things are cold, and \n       - If something is smart then it is rough. \n       - From rule 4 and 5, we can conclude that \n       - If something is round then it is cold, and \n       - If something is smart then it is rough. \n       - From rule 2 and 8, we can conclude that \n       - If something is rough then it is round, and \n       - If something is smart then it is rough. \n       - From rule 5 and 8, we can conclude that \n       - All round things are cold, and \n       - If something is smart then it is rough. \n       - From rule 2 and 5, we can conclude that \n       - If something is rough then it is round, and \n       - If something is round then it is cold. \n       - From rule 8, we can conclude that \n       - If something is smart then it is rough. \n       - From rule 1, we can conclude that \n       - Erin is rough. \n       - From rule 8, we can conclude that \n       - If something is smart then it is rough. \n       - From rule 5 and 6, we can conclude that \n       - If something is cold and not blue then it is rough, and \n       - If something is smart then it is rough. \n       - From rule 5, we can conclude that \n       - If something is round then it is cold. \n       - From rule 2, we can conclude that \n       - If something is rough then it is round. \n       - From rule 8, we can conclude that \n       - If something is smart then it is rough. \n       - From rule 1, we can conclude that \n       - Erin is rough. \n       - From rule 5 and 8, we can conclude that \n       - All round things are cold, and \n       - If something is smart then it is rough. \n       - From rule 2 and 5, we can conclude that \n       - If something is rough then it is round, and \n       - If something is round then it is cold. \n       - From rule 8, we can conclude that \n       - If something is smart then it is rough. \n       - From rule 1, we can conclude that \n       - Erin is rough. \n       - From rule 5 and 6, we can conclude that \n       - If something is cold and not blue then it is rough, and \n       - If something is smart then it is rough. \n       - From rule 8, we can conclude that \n       - If something is smart then it is rough. \n       - From rule 2, we can conclude that \n       - If something is rough then it is round. \n       - From rule 5, we can conclude that \n       - If something is round then it is cold. \n       - From rule 5 and 8, we can conclude that \n       - All round things are cold, and \n       - If something is smart then it is rough. \n       - From rule 4 and 5, we can conclude that \n       - If something is round then it is cold, and \n       - If something is smart then it is rough. \n       - From rule 2 and 8, we can conclude that \n       - If something is rough then it is round, and \n       - If something is smart then it is rough. \n       - From rule 5 and 8, we can conclude that \n       - All round things are cold, and \n       - If something is smart then it is rough. \n       - From rule 2 and 5, we can conclude that \n       - If something is rough then it is round, and \n       - If something is round then it is cold. \n       - From rule 8, we can conclude that \n       - If something is smart then it is rough. \n       - From rule 1, we can conclude that \n       - Erin is rough. \n       - From rule 8, we can conclude that \n       - If something is smart then it is rough. \n       - From rule 5 and 6, we can conclude that \n       - If something is cold and not blue then it is rough, and \n       - If something is smart then it is rough. \n       - From rule 8, we can conclude that \n       - If something is smart then it is rough. \n       - From rule 2, we can conclude that \n       - If something is rough then it is round. \n       - From rule 5, we can conclude that \n       - If something is round then it is cold. \n       - From rule 5 and 8, we can conclude that \n       - All round things are cold, and \n       - If something is smart then it is rough. \n       - From rule 4 and 5, we can conclude that \n",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Erin is smart, we need to analyze the given statements and the properties of Erin. \n\n1. Erin is rough.\n2. If something is rough then it is round.\nFrom (2), we can conclude that Erin is round.\n\n3. All cold things are round.\n4. Round things are cold.\nFrom (3) and (4), we can conclude that Erin is cold.\n\n5. All kind things are round.\n6. Round things are cold.\nFrom (5) and (6), we can conclude that Erin is kind.\n\n7. If something is smart then it is rough.\n8. Erin is rough.\nFrom (7) and (8), we cannot conclude that Erin is smart directly, but we know Erin is rough. However, we need to check if there's any other condition that might make Erin smart.\n\n9. If something is cold and not blue then it is rough.\nWe don't know Erin's color, so we cannot conclude that Erin is rough from this statement.\n\n10. If Bob is smart then Bob is not green.\nThis statement doesn't relate to Erin, so we can ignore it.\n\n11. All smart, cold things are kind.\nFrom (5) and (11), we cannot conclude that Erin is smart, but we can conclude that Erin is kind because Erin is cold and round.\n\nNow, let's analyze Erin's properties: Erin is rough, Erin is round, Erin is cold, Erin is kind. We cannot conclude that Erin is smart from the given statements. There's no direct statement that links Erin being smart to any of her properties.\n\nHowever, we can check if Erin's properties contradict the statements that might make Erin smart. If Erin is not smart, then Erin must not be rough (from statement 7). But we already know that Erin is rough (from statement 1). This creates a contradiction.\n\nTo resolve this contradiction, we need to re-examine the statements. If Erin is not smart, then Erin is not rough (from statement 7). But we already know that Erin is rough (from statement 1). This creates a contradiction, meaning that our assumption that Erin is not smart must be incorrect.\n\nHowever, we can't conclude that Erin is smart directly. We can only conclude that the assumption that Erin is not smart leads to a contradiction.\n\nTherefore, we cannot determine whether Erin is smart or not from the given statements. The statement \"Erin is smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and rules to determine the truth value of the statement \"Erin is smart.\"\n\n1. Given statements:\n   - Anne is blue.\n   - Anne is smart.\n   - Bob is green.\n   - Bob is round.\n   - Erin is rough.\n   - Harry is cold.\n   - Harry is kind.\n   - All kind things are round.\n   - If something is rough then it is round.\n   - All cold things are round.\n   - Round things are cold.\n   - All kind things are green.\n   - If something is smart then it is rough.\n   - If something is cold and not blue then it is rough.\n   - If Bob is smart then Bob is not green.\n   - All smart, cold things are kind.\n\n2. Determine the truth value of the statement \"Erin is smart.\"\n\nFrom the given statements, we know that Erin is rough. We also have the rule: \"If something is smart then it is rough.\" However, we cannot directly determine if Erin is smart from this rule.\n\nWe need to examine other rules to see if they provide more information.\n\nFrom the rule \"If something is smart then it is rough\" we cannot determine if Erin is smart, but we can see if we can find any contradictions that would make the statement \"Erin is smart\" false.\n\nIf Erin were smart, then she would be rough, which is true. However, we also have the rule \"All cold things are round\" and \"Round things are cold\" which implies that if Erin were cold then she would be round.\n\nHowever, from the rule \"If something is cold and not blue then it is rough\" and given that Anne is blue, this rule does not provide any new information about Erin.\n\nWe also have the rule \"If Bob is smart then Bob is not green.\" This does not provide any information about Erin.\n\nFrom the rule \"All kind things are green\" and \"All kind things are round\" we can see that if Erin were kind then she would be both green and round. However, we do not know if Erin is kind.\n\nFrom the rule \"All kind things are round\" and \"If Bob is smart then Bob is not green\" we can infer that Bob is not kind, because if Bob were kind then he would be green, which contradicts the fact that if Bob is smart then Bob is not green.\n\nWe also have the rule \"All kind things are green\" and \"All kind things are round\" and \"Harry is kind\" which implies that Harry is both green and round. We also have the rule \"All kind things are green\" and \"Harry is green\" which implies that Harry is kind.\n\nWe also have the rule \"All kind things are round\" and \"Harry is round\" which implies that Harry is kind.\n\nFrom the rule \"All kind things are green\" and \"All kind things are round\" and \"Harry is green\" and \"Harry is round\" we can conclude that Harry is kind.\n\nWe also have the rule \"All kind things are green\" and \"Harry is kind\" which implies that Harry is green.\n\nFrom the rule \"All kind things are green\" and \"All kind things are round\" and \"Harry is green\" and \"Harry is round\" we can conclude that Harry is kind.\n\nWe also have the rule \"All kind things are green\" and \"Harry is kind\" which implies that Harry is green.\n\nFrom the rule \"All kind things are round\" and \"Harry is round\" which implies that Harry is kind.\n\nFrom the rule \"If something is smart then it is rough\" and \"All kind things are green\" and \"All kind things are round\" and \"Harry is kind\" and \"Harry is green\" and \"Harry is round\" we can see that if Harry were smart then he would be rough, which is not true because Harry is round.\n\nHowever, we also have the rule \"All kind things are green\" and \"All kind things are round\" and \"Harry is kind\" and \"Harry is green\" and \"Harry is round\" which implies that Harry is not smart, because if Harry were smart then he would be rough, which is not true because Harry is round.\n\nHowever, we also have the rule \"All smart, cold things are kind\" and \"Harry is kind\" and \"Harry is cold\" which implies that Harry is smart, but we have already seen that Harry is not smart.\n\nHowever, from the rule \"All kind things are round\" and \"All kind things are green\" and \"Harry is kind\" and \"Harry is green\" and \"Harry is round\" we can see that Harry is round.\n\nFrom the rule \"If something is cold and not blue then it is rough\" and \"Harry is cold\" and \"Anne is blue\" we can see that Harry is not rough, but we already know that Harry is round, and we have the rule \"If something is rough then it is round\" which implies that Harry is not rough, because if Harry were rough then he would be round, but we already know that Harry is round.\n\nHowever, we also have the rule \"If something is smart then it is rough\" and \"All kind things are green\" and \"All kind things are round\" and \"Harry is kind\" and \"Harry is green\" and \"Harry is round\" which implies that Harry is not smart, because if Harry were smart then he would be rough, which is not true because Harry is round.\n\nHowever, we also have the rule \"All smart, cold things are kind\" and \"Harry is kind\" and \"Harry is cold\" which implies that Harry is smart, but we have already seen that Harry is not smart.\n\nHowever, we also have the rule \"All kind things are round\" and \"All kind things are green\" and \"Harry is kind\" and \"Harry is green\" and \"Harry is round\" which implies that Harry is not smart, because if Harry were smart then he would be rough, which is not true because Harry is round.\n\nHowever, we also have the rule \"If something is smart then it is rough\" and \"All kind things are green\" and \"All kind things are round\" and \"Harry is kind\" and \"Harry is green\" and \"Harry is round\" which implies that Harry is not smart, because if Harry were smart then he would be rough, which is not true because Harry is round.\n\nHowever, from the rule \"If something is cold and not blue then it is rough\" and \"Harry is cold\" and \"Anne is blue\" we can see that Harry is not rough, but we already know that Harry is round, and we have the rule \"If something is rough then it is round\" which implies that Harry is not rough, because if Harry were rough then he would be round, but we already know that Harry is round.\n\nFrom the rule \"All kind things are round\" and \"All kind things are green\" and \"Harry is kind\" and \"Harry is green\" and \"Harry is round\" we can see that Harry is kind.\n\nFrom the rule \"All kind things are green\" and \"Harry is kind\" which implies that Harry is green.\n\nFrom the rule \"All kind things are green\" and \"All kind things are round\" and \"Harry is green\" and \"Harry is round\" we can conclude that Harry is kind.\n\nFrom the rule \"All kind things are round\" and \"Harry is kind\" and \"Harry is round\" we can conclude that Harry is kind.\n\nHowever, we also have the rule \"All kind things are green\" and \"Harry is kind\" which implies that Harry is green.\n\nFrom the rule \"All kind things are green\" and \"All kind things are round\" and \"Harry is green\" and \"Harry is round\" we can conclude that Harry is kind.\n\nHowever, from the rule \"If something is cold and not blue then it is rough\" and \"Harry is cold\" and \"Anne is blue\" we can see that Harry is not rough, but we already know that Harry is round, and we have the rule \"If something is rough then it is round\" which implies that Harry is not rough, because if Harry were rough then he would be round, but we already know that Harry is round.\n\nHowever, we also have the rule \"If Bob is smart then Bob is not green\" which does not provide any information about Erin.\n\nFrom the rule \"All kind things are round\" and \"All kind things are green\" and \"Harry is kind\" and \"Harry is green\" and \"Harry is round\" we can see that Harry is kind.\n\nFrom the rule \"All kind things are green\" and \"Harry is kind\" which implies that Harry is green.\n\nHowever, we also have the rule \"All kind things are round\" and \"Harry is kind\" and \"Harry is round\" which implies that Harry is kind.\n\nHowever, we also have the rule \"If something is cold and not blue then it is rough\" and \"Harry is cold\" and \"Anne is blue\" we can see that Harry is not rough, but we already know that Harry is round, and we have the rule \"If something is rough then it is round\" which implies that Harry is not rough, because if Harry were rough then he would be round, but we already know that Harry is round.\n\nHowever, we also have the rule \"All kind things are round\" and \"All kind things are green\" and \"Harry is kind\" and \"Harry is green\" and \"Harry is round\" which implies that Harry is kind.\n\nFrom the rule \"All kind things are green\" and \"Harry is kind\" which implies that Harry is green.\n\nHowever, we also have the rule \"All kind things are round\" and \"Harry is kind\" and \"Harry is round\" which implies that Harry is kind.\n\nHowever, we also have the rule \"All kind things are green\" and \"Harry is kind\" which implies that Harry",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Erin is smart, we need to analyze the given statements and their implications.\n\n1. All kind things are round.\n2. All kind things are green.\n3. If something is kind, then it is round.\n4. If something is kind, then it is green.\n\nFrom statement 3, we know that if Erin is kind, then Erin is round.\n\n5. Erin is rough.\n6. If something is rough then it is round.\n7. All cold things are round.\n8. Round things are cold.\n9. Harry is cold.\n10. Harry is kind.\n11. If something is kind, then it is round. (from statement 1)\n12. If Bob is smart, then Bob is not green. (we don't have information about Bob being smart)\n13. If Bob is green, then Bob is round. (from statement 4)\n14. Bob is green.\n15. Bob is round.\n16. Harry is round (from statement 11 and 10)\n17. Harry is cold (from statement 9)\n18. All kind things are round (from statement 1)\n19. All cold things are round (from statement 7)\n20. Erin is rough (from statement 5)\n21. If something is cold and not blue, then it is rough. (we don't have information about Erin being blue)\n22. If something is smart then it is rough. (from statement 20 and 21)\n23. If something is kind and not green, then it is not rough. (from statement 2 and 4)\n24. Harry is kind (from statement 10)\n25. Harry is round (from statement 11 and 10)\n26. Harry is not blue (we can assume this since we don't have information about Harry being blue)\n27. Harry is rough (from statement 21 and 26)\n28. If something is kind, then it is green. (from statement 4)\n29. Harry is green (from statement 28 and 24)\n30. All kind things are green. (from statement 2)\n31. All cold things are round. (from statement 7)\n32. Harry is kind (from statement 10)\n33. Erin is round (from statement 6 and 5)\n34. Erin is not cold (we can assume this since we don't have information about Erin being cold)\n35. Erin is not rough (we can assume this since we don't have information about Erin being rough)\n\nFrom the above analysis, we can conclude that:\n\n- Erin is not green (since all kind things are green and Erin is not kind)\n- Erin is not round (since all kind things are round and Erin is not kind)\n- Erin is rough (from statement 5)\n\nFrom statements 22 and 30, we can conclude that Erin is not smart.\n\nTherefore, the statement \"Erin is smart\" is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_erin, round_erin)",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_erin, round_erin)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_erin, cold_erin)",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_erin, round_erin)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_erin, green_erin)",
+          "source_step": 31
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_erin, green_erin)",
+          "source_step": 32
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_erin, round_erin)",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_erin, round_erin)",
+          "source_step": 30
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_erin, Not(blue_erin)), rough_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_erin, rough_erin)",
+          "source_step": 39
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_erin, Not(blue_erin)), rough_erin)",
+          "source_step": 41
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_erin, cold_erin), kind_erin)",
+          "source_step": 33
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 32
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 45
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 49
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 50
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 51
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 54
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_erin, cold_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_erin, round_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_erin, Not(blue_erin)), rough_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_erin, rough_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_erin, smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(smart(erin))",
+          "z3_formula": "Not(smart_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(smart(erin))",
+          "z3_formula": "Not(smart_erin)",
+          "source_step": 13
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_erin, cold_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_erin, cold_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_erin, round_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_erin, green_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_erin, rough_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_erin, smart_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(erin)",
+          "z3_formula": "Not(smart_erin) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_harry, round_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_bob, cold_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_harry, green_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_anne, rough_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, Not(blue_harry)), rough_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> Not(green(X))",
+          "z3_formula": "Implies(smart_anne, Not(green_anne))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_anne, cold_anne), kind_anne)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_X, round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_X, cold_X)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin) & not(blue(erin))",
+          "z3_formula": "And(cold_erin, Not(blue_erin))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_erin, Not(blue_erin)), rough_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_X, cold_X), kind_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin) -> kind(erin)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_X, round_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob) -> not(green(bob))",
+          "z3_formula": "Implies(smart_bob, Not(green_bob))",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(smart(bob))",
+          "z3_formula": "Not(smart_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_X, green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(kind(X) & round(X))",
+          "z3_formula": "Not(And(kind_X, round_X))",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not(smart(erin) & kind(erin) & round(erin))",
+          "z3_formula": "Not(And(smart_erin, kind_erin, round_erin))",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_harry, round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_harry, green_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_erin, rough_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_erin, Not(blue_erin)), rough_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> Not(green(X))",
+          "z3_formula": "Implies(smart_bob, Not(green_bob))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_erin, cold_erin), kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == Unknown",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_erin, round_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin) | ~cold(erin)",
+          "z3_formula": "Or(round_erin, Not(cold_erin))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin) -> cold(erin)",
+          "z3_formula": "Implies(round_erin, cold_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin) & ~blue(erin)",
+          "z3_formula": "And(cold_erin, Not(blue_erin))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & ~blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_erin, Not(blue_erin)), rough_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_erin, rough_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin) | ~smart(erin)",
+          "z3_formula": "Or(rough_erin, Not(smart_erin))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin) -> smart(erin)",
+          "z3_formula": "Implies(rough_erin, smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_erin, cold_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_erin, Not(blue_erin)), rough_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_erin, rough_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_erin, rough_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_erin, rough_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_harry, round_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_bob, cold_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_bob, Not(blue_bob)), rough_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_erin, smart_erin)",
+          "source_step": 18
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_harry, round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_harry, green_harry), green_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & round(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, round_harry), round_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_harry, green_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_erin, rough_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, Not(blue_anne)), rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> Not(green(X))",
+          "z3_formula": "Implies(smart_bob, Not(green_bob))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), kind_harry)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_X, kind_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_X, kind_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_X, rough_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_X, round_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_X, cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_X, cold_X)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) & Not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_X, Not(blue_X)), rough_X)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) & Not(green(X)) -> Not(rough(X))",
+          "z3_formula": "Implies(And(kind_X, Not(green_X)), Not(rough_X))",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "Not(smart(erin))",
+          "z3_formula": "Not(smart_erin)",
+          "source_step": 36
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(erin))",
+          "z3_formula": "Not(round_erin)",
+          "source_step": 37
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(erin))",
+          "z3_formula": "Not(rough_erin)",
+          "source_step": 35
+        },
+        {
+          "type": "derived",
+          "expression": "Not(green(erin))",
+          "z3_formula": "Not(green_erin)",
+          "source_step": 38
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 166,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 61
+    },
+    "maxsat_stats": {
+      "satisfied": 55,
+      "excluded": 6,
+      "total_weight": 156,
+      "solve_time_ms": 2.4093221873044968
+    },
+    "timing": {
+      "trace_gen_s": 25.075,
+      "extraction_s": 47.078,
+      "dedup_s": 1.892,
+      "maxsat_s": 0.006,
+      "total_s": 74.051
+    }
+  }
+}

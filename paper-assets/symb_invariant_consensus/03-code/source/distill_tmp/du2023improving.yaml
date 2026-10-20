@@ -1,0 +1,27 @@
+paper_key: "du2023improving"
+title: "Improving Factuality and Reasoning in Language Models through Multiagent Debate"
+venue: "ICML 2024"
+full_text_available: false
+
+research:
+  baselines: ["single-agent CoT", "self-consistency", "self-verification"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "factual validity", direction: "higher_better"}
+  datasets:
+    - {name: "GSM8K", size: "N/A"}
+    - {name: "math reasoning benchmarks", size: "N/A"}
+    - {name: "biographical QA", size: "N/A"}
+  ablation_dimensions: ["number of agents", "number of debate rounds"]
+  training_recipe: {info: "black-box prompting, no training"}
+  method_family: "multi-agent debate"
+
+positioning:
+  core_claim: "Multiple LLM instances debating over multiple rounds significantly enhances mathematical/strategic reasoning and factual validity compared to single-agent approaches"
+  key_results: "Significant improvements in mathematical and strategic reasoning; reduced hallucinations and fallacious answers"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

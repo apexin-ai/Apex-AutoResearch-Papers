@@ -1,0 +1,827 @@
+{
+  "pid": "folio_125",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(monkey)",
+          "z3_formula": "mammal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(monkey)",
+          "z3_formula": "animal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) & mammal(X) -> animal(X)",
+          "z3_formula": "Implies(And(animal_X, mammal_X), animal_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> (monkey(X) | bird(X))",
+          "z3_formula": "Implies(animal_X, Or(monkey_X, bird_X))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_X, fly_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> breathe(X)",
+          "z3_formula": "Implies(animal_X, breathe_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "fly(X) -> has_wings(X)",
+          "z3_formula": "Implies(fly_X, has_wings_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "Not(fly(X) | bird(X)) -> Not(fly(X) | breathe(X))",
+          "z3_formula": "Implies(Not(Or(fly_X, bird_X)), Not(Or(fly_X, breathe_X)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "breathe(rock)",
+          "z3_formula": "breathe_rock == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(bird(rock) | fly(rock))",
+          "z3_formula": "Not(Or(bird_rock, fly_rock))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(monkey(rock))",
+          "z3_formula": "Not(monkey_rock)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(monkey)",
+          "z3_formula": "mammal_monkey == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkey(monkey)",
+          "z3_formula": "monkey_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_monkey, animal_monkey)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> Or(monkey(X), bird(X))",
+          "z3_formula": "Implies(animal_monkey, Or(monkey_monkey, bird_monkey))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "bird(bird)",
+          "z3_formula": "bird_bird == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_monkey, fly_monkey)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "animal(animal)",
+          "z3_formula": "animal_animal == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) -> wings(X)",
+          "z3_formula": "Implies(fly_monkey, wings_monkey)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "Not(Or(fly(X), bird(X))) -> Not(breath(X))",
+          "z3_formula": "Implies(Not(Or(fly_monkey, bird_monkey)), Not(breath_monkey))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(monkey(rock))",
+          "z3_formula": "Not(monkey_rock) == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "animal(monkey)",
+          "z3_formula": "animal_monkey == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(monkey)",
+          "z3_formula": "mammal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> (monkey(X) | bird(X))",
+          "z3_formula": "Implies(animal_X, Or(monkey_X, bird_X))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fly(bird)",
+          "z3_formula": "fly_bird == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "breathe(animal)",
+          "z3_formula": "breathe_animal == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) -> wings(X)",
+          "z3_formula": "Implies(fly_X, wings_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "Not(fly(X) & bird(X)) -> Not(fly(X) | breathe(X))",
+          "z3_formula": "Implies(Not(And(fly_X, bird_X)), Not(Or(fly_X, breathe_X)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(monkey(rock))",
+          "z3_formula": "Not(monkey_rock) == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_rock, animal_rock)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkey(X) -> mammal(X)",
+          "z3_formula": "Implies(monkey_rock, mammal_rock)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> (monkey(X) | bird(X))",
+          "z3_formula": "Implies(animal_rock, Or(monkey_rock, bird_rock))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_rock, fly_rock)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> breathe(X)",
+          "z3_formula": "Implies(animal_rock, breathe_rock)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "fly(X) -> has_wings(X)",
+          "z3_formula": "Implies(fly_rock, has_wings_rock)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "Not(fly(X) | bird(X)) -> Not(fly(X) | breathe(X))",
+          "z3_formula": "Implies(Not(Or(fly_rock, bird_rock)), Not(Or(fly_rock, breathe_rock)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(monkey(rock)) | Not(monkey(rock))",
+          "z3_formula": "Or(Not(monkey_rock), Not(monkey_rock))",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(monkey)",
+          "z3_formula": "mammal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "animal(monkey) -> animal(X)",
+          "z3_formula": "Implies(animal_monkey, animal_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> (monkey(X) | bird(X))",
+          "z3_formula": "Implies(animal_X, Or(monkey_X, bird_X))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_X, fly_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) -> wings(X)",
+          "z3_formula": "Implies(fly_X, wings_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) == bird(X)",
+          "z3_formula": "fly_X == bird_X",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "monkey(X) -> mammal(X)",
+          "z3_formula": "Implies(monkey_X, mammal_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_X, animal_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> breathe(X)",
+          "z3_formula": "Implies(animal_X, breathe_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "monkey(X) & ~bird(X) -> (~fly(X) & ~breathe(X))",
+          "z3_formula": "Implies(And(monkey_X, Not(bird_X)), And(Not(fly_X), Not(breathe_X)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "monkey(rock)",
+          "z3_formula": "monkey_rock == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "animal(rock)",
+          "z3_formula": "animal_rock == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "breathe(rock)",
+          "z3_formula": "breathe_rock == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "fly(rock)",
+          "z3_formula": "fly_rock == False",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "wings(rock)",
+          "z3_formula": "wings_rock == False",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "bird(rock)",
+          "z3_formula": "bird_rock == False",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal, animal)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(monkey)",
+          "z3_formula": "mammal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "monkey(X) -> mammal(X)",
+          "z3_formula": "Implies(monkey, mammal)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(monkey) | animal(bird)",
+          "z3_formula": "Or(animal_monkey, animal_bird)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(bird)",
+          "z3_formula": "animal_bird == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird, fly)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> breathe(X)",
+          "z3_formula": "Implies(animal, breathe)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) -> wing(X)",
+          "z3_formula": "Implies(fly, wing)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "Not(fly(X) | bird(X)) -> Not(breathe(X))",
+          "z3_formula": "Implies(Not(Or(fly, bird)), Not(breathe))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(animal(rock))",
+          "z3_formula": "Not(animal_rock)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(monkey(rock))",
+          "z3_formula": "Not(monkey_rock)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "animal(monkey)",
+          "z3_formula": "animal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(monkey)",
+          "z3_formula": "mammal_monkey == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> animal_monkey",
+          "z3_formula": "Implies(animal_X, animal_monkey)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_X, animal_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> (monkey(X) | bird(X))",
+          "z3_formula": "Implies(animal_X, Or(monkey_X, bird_X))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "bird(fly)",
+          "z3_formula": "bird_fly == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_X, fly_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> breathe(X)",
+          "z3_formula": "Implies(animal_X, breathe_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) | bird(X) -> breathe(X)",
+          "z3_formula": "Implies(Or(fly_X, bird_X), breathe_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "Not(fly(X)) & Not(bird(X)) -> Not(breathe(X))",
+          "z3_formula": "Implies(And(Not(fly_X), Not(bird_X)), Not(breathe_X))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(animal(rock))",
+          "z3_formula": "Not(animal_rock) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(monkey(rock))",
+          "z3_formula": "Not(monkey_rock) == True",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_X, animal_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkey(X) -> mammal(X)",
+          "z3_formula": "Implies(monkey_X, mammal_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> (monkey(X) | bird(X))",
+          "z3_formula": "Implies(animal_X, Or(monkey_X, bird_X))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_X, fly_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X)",
+          "z3_formula": "animal_X == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) -> has_wings(X)",
+          "z3_formula": "Implies(fly_X, has_wings_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "(~fly(X) & ~bird(X)) -> (~fly(X) & ~breathe(X))",
+          "z3_formula": "Implies(And(Not(fly_X), Not(bird_X)), And(Not(fly_X), Not(breathe_X)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "monkey(X)",
+          "z3_formula": "monkey_X == False",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(rock)",
+          "z3_formula": "mammal_rock == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_rock, animal_rock)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(rock)",
+          "z3_formula": "animal_rock == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "monkey(X) -> mammal(X)",
+          "z3_formula": "Implies(monkey_rock, mammal_rock)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_rock, animal_rock)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> Or(monkey(X), bird(X))",
+          "z3_formula": "Implies(animal_rock, Or(monkey_rock, bird_rock))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_rock, fly_rock)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "fly(X) -> wings(X)",
+          "z3_formula": "Implies(fly_rock, wings_rock)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "Not(Or(fly(X), bird(X))) -> Not(fly(X)) & Not(breathe(X))",
+          "z3_formula": "Implies(Not(Or(fly_rock, bird_rock)), And(Not(fly_rock), Not(breathe_rock)))",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "breathe(X)",
+          "z3_formula": "breathe_rock == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(bird(rock))",
+          "z3_formula": "Not(bird_rock) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "Or(monkey(rock), Not(monkey(rock)))",
+          "z3_formula": "Or(monkey_rock, Not(monkey_rock)) == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_X, animal_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkey(X) -> mammal(X)",
+          "z3_formula": "Implies(monkey_X, mammal_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) == (monkey(X) | bird(X))",
+          "z3_formula": "animal_X == Or(monkey_X, bird_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_X, fly_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> breathe(X)",
+          "z3_formula": "Implies(animal_X, breathe_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "fly(X) -> wing(X)",
+          "z3_formula": "Implies(fly_X, wing_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) | bird(X) -> fly(X) & breathe(X)",
+          "z3_formula": "Implies(Or(fly_X, bird_X), And(fly_X, breathe_X))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not monkey(Rock)",
+          "z3_formula": "Not(monkey_Rock)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(monkey)",
+          "z3_formula": "mammal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "animal(monkey)",
+          "z3_formula": "animal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "fly(bird)",
+          "z3_formula": "fly_bird == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "breathe(animal)",
+          "z3_formula": "breathe_animal == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) -> wing(X)",
+          "z3_formula": "Implies(fly_bird, wing_bird)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) | bird(X) -> breathe(X)",
+          "z3_formula": "Or(fly_bird, bird_bird) |-> breathe_bird",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) | bird(X) -> fly(X)",
+          "z3_formula": "Or(fly_bird, bird_bird) |-> fly_bird",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) | bird(X) -> wing(X)",
+          "z3_formula": "Or(fly_bird, bird_bird) |-> wing_bird",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) | bird(X) -> breathe(X)",
+          "z3_formula": "Or(fly_bird, bird_bird) |-> breathe_bird",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) | bird(X) -> not fly(X)",
+          "z3_formula": "Not(Or(fly_bird, bird_bird)) |-> Not(fly_bird)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "breathe(rock)",
+          "z3_formula": "breathe_rock == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "fly(rock) | bird(rock)",
+          "z3_formula": "Or(fly_rock, bird_rock)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not fly(rock) & not bird(rock)",
+          "z3_formula": "Not(fly_rock) & Not(bird_rock)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not fly(rock) & not bird(rock) |-> not breathe(rock)",
+          "z3_formula": "Not(fly_rock) & Not(bird_rock) |-> Not(breathe_rock)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not breathe(rock)",
+          "z3_formula": "Not(breathe_rock)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not fly(rock) & not bird(rock) & breathe(rock)",
+          "z3_formula": "Not(fly_rock) & Not(bird_rock) & breathe_rock",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "fly(rock) | bird(rock) | monkey(rock)",
+          "z3_formula": "Or(fly_rock, bird_rock, monkey_rock)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not monkey(rock)",
+          "z3_formula": "Not(monkey_rock)",
+          "source_step": 15
+        }
+      ]
+    }
+  ]
+}

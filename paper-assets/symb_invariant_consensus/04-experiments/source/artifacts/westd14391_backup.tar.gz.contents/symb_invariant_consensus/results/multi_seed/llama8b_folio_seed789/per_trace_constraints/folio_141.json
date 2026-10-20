@@ -1,0 +1,610 @@
+{
+  "pid": "folio_141",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "funny(ben)",
+          "z3_formula": "funny_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "popular(ben)",
+          "z3_formula": "popular_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "loved_by_children(ben)",
+          "z3_formula": "loved_by_children_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "from_the_simpsons(ben)",
+          "z3_formula": "from_the_simpsons_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> not(popular(X))",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_the_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_the_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_the_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_the_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(ben)",
+          "z3_formula": "yellow_ben == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(popular(X))",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) | funny(X)",
+          "z3_formula": "Or(from_simpsons_ben, funny_ben)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(ugly(ben))",
+          "z3_formula": "Not(ugly_ben)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(ben)",
+          "z3_formula": "yellow_ben",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "funny(ben)",
+          "z3_formula": "funny_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(popular(X))",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "from_the_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_the_simpsons_ben, loved_by_children_ben)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_the_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_the_simpsons_ben)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "from_the_simpsons(X) -> funny(X)",
+          "z3_formula": "Implies(from_the_simpsons_ben, funny_ben)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(ben) | ugly(ben)",
+          "z3_formula": "Or(yellow_ben, ugly_ben)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> ~popular(X)",
+          "z3_formula": "Implies(ugly_ben, ~popular_ben)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) v funny(X)",
+          "z3_formula": "Or(from_simpsons_ben, funny_ben)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "ugly(X) v yellow(X)",
+          "z3_formula": "Or(ugly_ben, yellow_ben)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> ~popular(X)",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) | funny(X)",
+          "z3_formula": "Or(from_simpsons_ben, funny_ben)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "ugly(X) | yellow(X)",
+          "z3_formula": "Or(ugly_ben, yellow_ben)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(popular(X))",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) | funny(X)",
+          "z3_formula": "Or(from_simpsons_ben, funny_ben)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "from_simpsons(ben) -> yellow(ben)",
+          "z3_formula": "Implies(from_simpsons_ben, yellow_ben)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "from_simpsons(ben) -> loved_by_children(ben)",
+          "z3_formula": "Implies(from_simpsons_ben, loved_by_children_ben)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "loved_by_children(ben) -> funny(ben)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "from_simpsons(ben) & funny(ben)",
+          "z3_formula": "And(from_simpsons_ben, funny_ben)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "funny(ben) -> popular(ben)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "from_simpsons(ben) -> Not(ugly(ben))",
+          "z3_formula": "Implies(from_simpsons_ben, Not(ugly_ben))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "ugly(ben) -> Not(popular(ben))",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "ugly(ben)",
+          "z3_formula": "ugly_ben == False",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "funny(ben)",
+          "z3_formula": "funny_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(popular(X))",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_the_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_the_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_the_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_the_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "from_the_simpsons(ben) | funny(ben)",
+          "z3_formula": "Or(from_the_simpsons_ben, funny_ben)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "ugly(ben) | yellow(ben)",
+          "z3_formula": "Or(ugly_ben, yellow_ben)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "funny(ben)",
+          "z3_formula": "funny_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(popular(X))",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) | funny(X)",
+          "z3_formula": "Or(from_simpsons_ben, funny_ben)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "ugly(ben) | yellow(ben)",
+          "z3_formula": "Or(ugly_ben, yellow_ben) == Unknown",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "funny(ben)",
+          "z3_formula": "funny_ben == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_ben, popular_ben)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ugly(X) -> Not(popular(X))",
+          "z3_formula": "Implies(ugly_ben, Not(popular_ben))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_ben, funny_ben)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_simpsons_ben, loved_by_children_ben)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "yellow(X) -> from_simpsons(X)",
+          "z3_formula": "Implies(yellow_ben, from_simpsons_ben)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "from_simpsons(X) | funny(X)",
+          "z3_formula": "Or(from_simpsons_ben, funny_ben)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(X) | ugly(X)",
+          "z3_formula": "Or(yellow_ben, ugly_ben)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "funny(X) -> popular(X)",
+          "z3_formula": "Implies(funny_X, popular_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "ugly(X) -> not popular(X)",
+          "z3_formula": "Implies(ugly_X, Not(popular_X))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loved_by_children(X) -> funny(X)",
+          "z3_formula": "Implies(loved_by_children_X, funny_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_simpsons(X) -> loved_by_children(X)",
+          "z3_formula": "Implies(from_simpsons_X, loved_by_children_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "yellow(X) -> from_simpsons(X)",
+          "z3_formula": "Implies(yellow_X, from_simpsons_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "from_simpsons(X) | funny(X)",
+          "z3_formula": "Or(from_simpsons_X, funny_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(X) -> from_simpsons(X)",
+          "z3_formula": "Implies(yellow_X, from_simpsons_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(X) -> funny(X)",
+          "z3_formula": "Implies(yellow_X, funny_X)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(X) & ugly(X)",
+          "z3_formula": "And(yellow_X, ugly_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(X) -> not ugly(X)",
+          "z3_formula": "Implies(yellow_X, Not(ugly_X))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "yellow(X) | ugly(X)",
+          "z3_formula": "Or(yellow_X, ugly_X)",
+          "source_step": 11
+        }
+      ]
+    }
+  ]
+}

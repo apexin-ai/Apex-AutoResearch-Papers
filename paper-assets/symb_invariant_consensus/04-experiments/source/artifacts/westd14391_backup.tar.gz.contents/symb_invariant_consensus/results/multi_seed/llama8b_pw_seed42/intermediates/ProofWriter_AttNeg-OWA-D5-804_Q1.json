@@ -1,0 +1,1066 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-804_Q1",
+    "problem": "Anne is kind. Charlie is not big. Charlie is not green. Charlie is white. Erin is big. Erin is green. Erin is white. Fiona is green. Fiona is kind. Fiona is quiet. Fiona is red. Fiona is white. If Erin is big and Erin is red then Erin is kind. All rough things are green. If something is kind then it is green. Quiet, green things are big. If something is rough and green then it is red. If something is green then it is rough. If Erin is red then Erin is green. All red, rough things are quiet. If something is quiet and not red then it is not white.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is white.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nKind(Anne, True) ::: Anne is kind.\nBig(Charlie, False) ::: Charlie is not big.\nGreen(Charlie, False) ::: Charlie is not green.\nWhite(Charlie, True) ::: Charlie is white.\nBig(Erin, True) ::: Erin is big.\nGreen(Erin, True) ::: Erin is green.\nWhite(Erin, True) ::: Erin is white.\nGreen(Fiona, True) ::: Fiona is green.\nKind(Fiona, True) ::: Fiona is kind.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRed(Fiona, True) ::: Fiona is red.\nWhite(Fiona, True) ::: Fiona is white.\n\nRules:\nBig(Erin, True) && Red(Erin, True) >>> Kind(Erin, True) ::: If Erin is big and Erin is red then Erin is kind.\nRough($x, True) >>> Green($x, True) ::: All rough things are green.\nKind($x, True) >>> Green($x, True) ::: If something is kind then it is green.\nQuiet($x, True) && Green($x, True) >>> Big($x, True) ::: Quiet, green things are big.\nRough($x, True) && Green($x, True) >>> Red($x, True) ::: If something is rough and green then it is red.\nGreen($x, True) >>> Rough($x, True) ::: If something is green then it is rough.\nRed(Erin, True) >>> Green(Erin, True) ::: If Erin is red then Erin is green.\nRed($x, True) && Rough($x, True) >>> Quiet($x, True) ::: All red, rough things are quiet.\nQuiet($x, True) && Red($x, False) >>> White($x, False) ::: If something is quiet and not red then it is not white.\n\nQuery:\nWhite(Charlie, True) ::: Charlie is white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 130.5,
+      "Unknown": 111.0
+    },
+    "answer_counts": {
+      "True": 9,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Charlie is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information, we know:\n   - Charlie is not big.\n   - Charlie is not green.\n   - Charlie is white.\n\n   This statement directly gives us the answer to the problem. Since Charlie is white, the statement is true.\n\nHowever, let's verify this by eliminating other possibilities. We know that Erin is big and red, and from the information given, we can deduce the following:\n\n- Erin is big and red, so Erin is rough (since all red, rough things are quiet, and Erin is not quiet).\n- Erin is rough, so Erin is green (since if something is rough and green then it is red, and Erin is red).\n- Erin is green, so Erin is kind (since if something is green then it is rough, and Erin is rough).\n- Erin is green, so Erin is not quiet (since quiet, green things are big, and Erin is not big).\n- Erin is red, so Erin is not white (since if something is quiet and not red then it is not white, and Erin is not quiet).\n\nNow, let's analyze the information about Charlie again:\n- Charlie is not big.\n- Charlie is not green.\n- Charlie is white.\n\nWe can't directly connect Charlie to the other characteristics, but we can see that Charlie is white, and since Erin is big and red, and we know Erin is not white, we can't directly apply the information about Erin to Charlie.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Charlie is white, we need to analyze the given statements and use logical deductions.\n\n1. Charlie is not big. \n2. Charlie is not green.\n3. Charlie is white.\n\nFrom statement 1, we know Charlie is not big. However, this statement alone does not provide any information about Charlie's color. \n\nFrom statement 2, we know Charlie is not green.\n\nFrom statement 3, we know Charlie is white.\n\nSo, based on the given statements, we have a direct statement that Charlie is white, and there are no other statements that contradict this fact.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is white\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Charlie is not big. (Given)\n2. Charlie is not green. (Given)\n3. Charlie is white. (Statement to be evaluated)\n\nFirst, let's examine the given information about Erin:\n\n4. Erin is big. (Given)\n5. Erin is green. (Given)\n6. Erin is white. (Given)\n7. Erin is red. (Contradiction - If Erin is red, then it cannot be green, white, and big simultaneously)\n\nSince there is a contradiction in the given information about Erin, we cannot rely on the conclusions drawn from Erin's characteristics. Therefore, we will ignore the information about Erin.\n\nNow, let's analyze the given information about the other individuals:\n\n8. Fiona is green. (Given)\n9. Fiona is kind. (Given)\n10. Fiona is quiet. (Given)\n11. Fiona is red. (Given)\n12. Fiona is white. (Given)\n\nFrom the given information about Fiona, we can deduce:\n\n13. Fiona is not big (since it is quiet and not red, and not white - Rule 11)\n14. Quiet, green things are big (Rule 3), but Fiona is not big, so Fiona is not green (Contradiction - However, this doesn't hold up since Fiona can be green and quiet and still not be big. We can't make this deduction. Therefore, we have to look at this differently)\n15. Quiet, green things are big (Rule 3), Fiona is quiet and green (Rules 8 and 10), but Fiona is not big (Rule 13), so we can't conclude anything about Fiona being big or not.\n16. Fiona is not quiet (if we use Rule 11 - all red rough things are quiet - since Fiona is red and not quiet. This would be a contradiction since Fiona is quiet. Fiona can be red and not quiet. We can't make this deduction since there is a contradiction.)\n\nNow, let's look at the given information about rough things:\n\n17. All rough things are green. (Given)\n18. If something is green, then it is rough. (Given)\n19. If something is rough and green, then it is red. (Given)\n20. If something is rough, then it is red. (Rule 19 and Rule 18)\n\nFrom Rule 18, we can deduce:\n\n21. Fiona is rough (since it is green, Rule 18)\n22. Fiona is red (since it is rough and green, Rule 19)\n\nNow, let's look at the given information about kind things:\n\n23. If something is kind, then it is green. (Given)\n24. Fiona is kind (Given)\n25. Fiona is green (since it is kind, Rule 23)\n\nNow, let's look at the given information about Charlie:\n\n26. Charlie is not big (Given)\n27. Charlie is not green (Given)\n28. Charlie is white (Statement to be evaluated)\n\nSince Charlie is not green (Rule 27) and all green things are rough (Rule 17), Charlie is not rough. From Rule 20, we know that all rough things are red, so Charlie is not red.\n\nNow, let's look at the given information about red things:\n\n29. If something is quiet and not red, then it is not white. (Given)\n30. If Erin is red, then Erin is green (Given), but Erin is not green (Contradiction - Since Erin is red and green is not a possibility given the information, this statement isn't true for Erin. It is true for all red things though)\n\nFrom Rule 30, we know that all red things are green.\n\nFrom Rule 29, we know that all quiet, not red things are not white. Since Charlie is not red (deduced earlier) and Charlie is quiet (since Charlie is white, if we make the assumption that quiet, green things are big), then Charlie is not white (Contradiction - This statement is actually false. We can conclude that Charlie is not quiet. Charlie is white).\n\nFrom Rule 29, we know that all quiet, not red things are not white. Since Charlie is not red and Charlie is quiet, then Charlie is not white. We already know Charlie is white. This statement is false.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is not big. (Given)\n2. Charlie is not green. (Given)\n3. Charlie is white. (Given in the problem as a fact to determine)\n\nHowever, we need to verify this statement by analyzing the other given information.\n\n4. Erin is big. (Given)\n5. Erin is green. (Given)\n6. Erin is white. (Given)\n7. If Erin is big and Erin is red then Erin is kind. (Given)\n8. All rough things are green. (Given)\n9. If something is kind then it is green. (Given)\n10. Quiet, green things are big. (Given)\n11. If something is rough and green then it is red. (Given)\n12. If something is green then it is rough. (Given)\n13. If Erin is red then Erin is green. (Given)\n14. All red, rough things are quiet. (Given)\n15. If something is quiet and not red then it is not white. (Given)\n\nNow, let's analyze the statements that can help us determine whether Charlie is white or not.\n\nWe can start by analyzing the statement \"If something is green then it is rough.\" (Statement 12)\n\nFrom Statement 12, we can infer that if something is green, it is rough.\n\nAlso, from Statement 14, we can infer that if something is red and rough, it is quiet.\n\nNow, let's analyze the statement \"If something is rough and green then it is red.\" (Statement 11)\n\nFrom Statement 11, we can infer that if something is rough and green, it is red.\n\nNow, let's analyze the statement \"All rough things are green.\" (Statement 8)\n\nFrom Statement 8, we can infer that if something is rough, it is green.\n\nNow, let's analyze the statement \"If something is green then it is rough.\" (Statement 12) and the statement \"If something is green then it is kind.\" (Statement 9)\n\nFrom Statement 12 and Statement 9, we can infer that if something is green, it is both rough and kind.\n\nNow, let's analyze the statement \"Quiet, green things are big.\" (Statement 10)\n\nFrom Statement 10, we can infer that if something is green and quiet, it is big.\n\nNow, let's analyze the statement \"If something is quiet and not red then it is not white.\" (Statement 15)\n\nFrom Statement 15, we can infer that if something is quiet and not red, it is not white.\n\nNow, let's analyze the statement \"Erin is big and Erin is red.\" (Not given, but we can infer from Statement 4 and the fact that we are trying to determine whether Charlie is white)\n\nFrom Statement 4, we can infer that Erin is big.\n\nHowever, Statement 7 states that if Erin is big and Erin is red, then Erin is kind.\n\nAlso, Statement 6 states that Erin is white.\n\nHowever, Statement 13 states that if Erin is red then Erin is green.\n\nFrom Statement 6, Statement 13, and the fact that Erin is red, we can infer that Erin is green.\n\nNow, let's analyze the statement \"If Erin is red then Erin is green.\" (Statement 13)\n\nFrom Statement 13, we can infer that Erin is green.\n\nAlso, from Statement 5, we can infer that Erin is green.\n\nHowever, from Statement 8, Statement 11, and Statement 12, we can infer that if something is green, it is both rough and red.\n\nNow, let's analyze the statement \"Erin is red.\" (Not given, but we can infer from Statement 13)\n\nFrom Statement 13, we can infer that Erin is green.\n\nHowever, from Statement 5, we can infer that Erin is green.\n\nAlso, from Statement 4, we can infer that Erin is big.\n\nNow, let's analyze the statement \"If something is big and green then it is quiet.\" (Not given, but we can infer from Statement 10)\n\nFrom Statement 10, we can infer that if something is green, it is quiet.\n\nHowever, from Statement 8, Statement 11, and Statement 12, we can infer that if something is green, it is both rough and red.\n\nNow, let's analyze the statement \"If something is quiet and not red then it is not white.\" (Statement 15)\n\nFrom Statement 15, we can infer that if something is quiet and not red, it is not white.\n\nNow, let's analyze the statement \"Fiona is green.\" (Given)\n\nFrom Statement 5, we can infer that Erin is green.\n\nAlso, from Statement 8, Statement 11, and Statement 12, we can infer that if something is green, it is both rough and red.\n\nNow, let's analyze the statement \"Fiona is kind.\" (Given)\n\nFrom Statement 9, we can infer that if something is kind, it is green.\n\nNow, let's analyze the statement \"Fiona is red.\" (Not given, but we can infer from Statement 1)\n\nFrom Statement 1, we can infer that Charlie is not big.\n\nHowever, Statement 4 states that Erin is big.\n\nAlso, from Statement 6, we can infer that Erin is white.\n\nHowever, Statement 1 states that Charlie is not green.\n\nNow, let's analyze the statement \"Fiona is white.\" (Given)\n\nFrom Statement 6, we can infer that Erin is white.\n\nHowever, Statement 15 states that if something is quiet and not red, it is not white.\n\nNow, let's analyze the statement \"Fiona is quiet.\" (Given)\n\nFrom Statement 10, we can infer that if something is green, it is quiet.\n\nNow, let's analyze the statement \"Fiona is red.\" (Not given, but we can infer from Statement 1)\n\nFrom Statement 1, we can infer that Charlie is not big.\n\nHowever, Statement 4 states that Erin is big.\n\nAlso, from Statement 6, we can infer that Erin is white.\n\nHowever, Statement 1 states that Charlie is not green.\n\nNow, let's analyze the statement \"Fiona is red and quiet.\" (Not given, but we can infer from Statement 1)\n\nFrom Statement 15, we can infer that if something is quiet and not red, it is not white.\n\nHowever, Statement 15 states that if something is quiet and not red, it is not white.\n\nNow, let's analyze the statement \"Charlie is white.\" (Given in the problem as a fact to determine)\n\nFrom Statement 6, we can infer that Erin is white.\n\nHowever, Statement 1 states that Charlie is not green.\n\nFrom Statement 1, we can infer that Charlie is not big.\n\nHowever, Statement 1 states that Charlie is white.\n\nTherefore, we cannot determine whether Charlie is white or not based on the given information.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is white' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is not big. (This statement doesn't tell us anything about his color, so we can't use it to determine if Charlie is white or not.)\n2. Charlie is not green. (This statement tells us that Charlie is not green, but it doesn't tell us if he is white or not. So we still can't determine if Charlie is white or not.)\n3. Charlie is white. (This statement directly tells us that Charlie is white. We can stop analyzing the other statements because this one already gives us the answer.)\n\nSince statement 3 directly states that Charlie is white, we can conclude that the statement 'Charlie is white' is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is white\" is true, false, or unknown, we need to analyze the given information and apply the logical rules provided.\n\nGiven information:\n\n1. Charlie is not big.\n2. Charlie is not green.\n3. Charlie is white.\n4. Erin is big.\n5. Erin is green.\n6. Erin is white.\n7. Fiona is green.\n8. Fiona is kind.\n9. Fiona is quiet.\n10. Fiona is red.\n11. Fiona is white.\n12. If Erin is big and Erin is red then Erin is kind. (This rule is not applicable directly, as Erin is not red. However, we can infer that if Erin were red, it would be kind.)\n13. All rough things are green.\n14. If something is kind then it is green.\n15. Quiet, green things are big.\n16. If something is rough and green then it is red.\n17. If something is green then it is rough.\n18. If Erin is red then Erin is green.\n19. All red, rough things are quiet.\n20. If something is quiet and not red then it is not white.\n\nNow, we will analyze the information to determine whether the statement \"Charlie is white\" is true, false, or unknown.\n\nWe are given that Charlie is white (statement 3), but we need to check if this is consistent with the other information.\n\nFrom statement 3, Charlie is white. However, we can analyze other information:\n\n- Statement 1: Charlie is not big.\n- Statement 2: Charlie is not green.\n\nFrom statements 13 and 17, we know that all green things are rough, and all rough things are green. Since Charlie is not green, Charlie cannot be rough.\n\nFrom statement 9, Fiona is quiet. From statement 19, all red, rough things are quiet. Since Fiona is not red, Fiona cannot be rough. However, this does not directly affect Charlie.\n\nFrom statement 16, if something is rough and green then it is red. Since Charlie is not green, Charlie cannot be red.\n\nFrom statement 20, if something is quiet and not red, then it is not white. Since Fiona is quiet and not red (Fiona is red from statement 10, but also green from statement 7), Fiona is not white. However, this does not directly affect Charlie.\n\nNow, let's consider the fact that Charlie is white. From statement 11, Fiona is white. From statement 4, Erin is big. From statement 5, Erin is green. From statement 18, if Erin is red then Erin is green. Since Erin is green, Erin is rough (from statement 17). From statement 19, all red, rough things are quiet. Since Erin is not red, Erin is not quiet. However, this does not directly affect Charlie.\n\nTo determine whether Charlie is white, we need to check the information about Fiona, as it is the only other white person mentioned. Fiona is white (statement 11), quiet (statement 9), and green (statement 7). From statement 14, if something is kind then it is green. Fiona is kind (statement 8). From statement 14, since Fiona is kind, it is green.\n\nNow, let's check the information about Erin, as it is the only other green person mentioned. Erin is green (statement 5), big (statement 4), and white (statement 6). From statement 17, if something is green then it is rough. Erin is rough. From statement 18, if Erin is red then Erin is green. Since Erin is not red, this does not affect the information about Erin being green.\n\nNow, let's consider the fact that Charlie is white. From statement 11, Fiona is white. From statement 9, Fiona is quiet. From statement 19, all red, rough things are quiet. Since Fiona is not red, Fiona is not quiet. However, this does not directly affect Charlie.\n\nWe can conclude that Charlie is indeed white, as stated in statement 3. However, we need to check if this statement is consistent with the other information.\n\nFrom statement 3, Charlie is white. From statement 1, Charlie is not big. From statement 2, Charlie is not green.\n\nFrom statement 14, if something is kind then it is green. However, we have no information about Charlie being kind or not.\n\nFrom statement 17, if something is green then it is rough. However, we have no information about Charlie being green or rough.\n\nFrom statement 19, all red, rough things are quiet. However, we have no information about Charlie being red or rough.\n\nFrom statement 20, if something is quiet and not red then it is not white. However, we have no information about Charlie being quiet or red.\n\nHowever, from statement 15, quiet, green things are big. We do not know if Charlie is quiet or green, but we do know that Charlie is not big (statement 1).\n\nWe can conclude that the statement \"Charlie is white\" is indeed true, as it is directly stated in statement 3.\n\nFinal Answer: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is white' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is not big. (Given)\n2. Charlie is not green. (Given)\n3. Charlie is white. (We need to determine this)\n\nFrom the given statements, we can see that Charlie's color is not green (statement 2), and it's not big (statement 1). However, there's no direct information about Charlie's color being white.\n\nNow, let's examine the other statements to see if we can find any connections that might help us determine Charlie's color.\n\n1. Erin is big. (Given)\n2. Erin is green. (Given)\n3. Erin is white. (Given)\n\nFrom these statements, we know that Erin is big and white. However, there's no information about Charlie being related to Erin.\n\nNow, let's look at some of the other given statements that might help us determine Charlie's color.\n\n1. If something is rough and green then it is red. (Given)\n2. If something is green then it is rough. (Given)\n3. If something is quiet and not red then it is not white. (Given)\n\nFrom these statements, we can deduce that if something is green, it's also rough (statement 2). But we don't know if Charlie is rough or not.\n\nNow, let's examine the statement 'If something is kind then it is green.' (Given)\n\nWe know that Fiona is kind (Given), and Fiona is green (Given). So, this statement is true.\n\nNow, let's look at the statement 'All rough things are green.' (Given)\n\nThis statement is related to the previous one. If all rough things are green, and if something is green, it's also rough (statement 2), then this statement is true.\n\nNow, let's look at the statement 'If Erin is red then Erin is green.' (Given)\n\nThis statement is related to the information we have about Erin. We know that Erin is red (Implicit from the information given, we can derive this from statements 1 and 4, and statement 6), so Erin is green.\n\nNow, let's look at the statement 'If something is quiet and not red then it is not white.' (Given)\n\nWe know that Erin is red, so this statement doesn't apply to Erin. However, we can use this statement to determine Fiona's color. Fiona is quiet (Given), and Fiona is not red (Given). So, according to this statement, Fiona is not white.\n\nNow, let's look at the statement 'All red, rough things are quiet.' (Given)\n\nWe know that Erin is red (Implicit from the information given), and Erin is not quiet (Implicit from the information given). However, we can use this statement to determine Fiona's color. Fiona is red (Implicit from the information given), and Fiona is rough (Implicit from the information given). So, according to this statement, Fiona is quiet.\n\nNow, let's look at the statement 'If Erin is red then Erin is kind.' (Given)\n\nWe know that Erin is red (Implicit from the information given), and Erin is not kind (Implicit from the information given). However, this statement only applies to Erin.\n\nNow, let's look at the statement 'Quiet, green things are big.' (Given)\n\nWe know that Fiona is quiet (Given), and Fiona is green (Implicit from the information given). So, according to this statement, Fiona is big.\n\nNow, let's look at the statement 'If something is rough and green then it is red.' (Given)\n\nWe know that Erin is green (Given), and Erin is rough (Implicit from the information given). So, according to this statement, Erin is red.\n\nNow, let's look at the statement 'All rough things are green.' (Given)\n\nWe know that Erin is rough (Implicit from the information given), and Erin is green (Given). So, this statement is true.\n\nNow, let's summarize what we've learned about Charlie and the other people.\n\n- Charlie is not big (Statement 1)\n- Charlie is not green (Statement 2)\n- Charlie's color is unknown\n\n- Erin is big (Statement 1)\n- Erin is green (Statement 2)\n- Erin is white (Statement 3)\n- Erin is red (Implicit from the information given)\n- Erin is quiet (Implicit from the information given)\n\n- Fiona is green (Implicit from the information given)\n- Fiona is kind (Statement 5)\n- Fiona is quiet (Statement 7)\n- Fiona is red (Implicit from the information given)\n- Fiona is white (Implicit from the information given)\n\nNow, let's look at the statements again and try to find any connections that might help us determine Charlie's color.\n\nWe know that Charlie is not big (Statement 1), and Charlie is not green (Statement 2). We also know that all rough things are green (Statement 9), and if something is green, it's also rough (Statement 4). However, we don't know if Charlie is rough or not.\n\nNow, let's look at the statement 'Quiet, green things are big.' (Given)\n\nWe know that Fiona is quiet (Statement 7), and Fiona is green (Implicit from the information given). So, according to this statement, Fiona is big.\n\nNow, let's look at the statement 'If something is kind then it is green.' (Given)\n\nWe know that Fiona is kind (Statement 5), and Fiona is green (Implicit from the information given). So, this statement is true.\n\nNow, let's look at the statement 'All rough things are green.' (Given)\n\nWe know that Erin is rough (Implicit from the information given), and Erin is green (Statement 2). So, this statement is true.\n\nNow, let's summarize what we've learned about Charlie and the other people.\n\n- Charlie is not big (Statement 1)\n- Charlie is not green (Statement 2)\n- Charlie's color is unknown\n\n- Erin is big (Statement 1)\n- Erin is green (Statement 2)\n- Erin is white (Statement 3)\n- Erin is red (Implicit from the information given)\n- Erin is quiet (Implicit from the information given)\n\n- Fiona is green (Implicit from the information given)\n- Fiona is kind (Statement 5)\n- Fiona is quiet (Statement 7)\n- Fiona is red (Implicit from the information given)\n- Fiona is white (Implicit from the information given)\n\nNow, let's look at the statements again and try to find any connections that might help us determine Charlie's color.\n\nWe know that Charlie is not big (Statement 1), and Charlie is not green (Statement 2). We also know that all rough things are green (Statement 9), and if something is green, it's also rough (Statement 4). However, we don't know if Charlie is rough or not.\n\nNow, let's look at the statement 'If something is quiet and not red then it is not white.' (Given)\n\nWe know that Fiona is quiet (Statement 7), and Fiona is not red (Implicit from the information given). So, according to this statement, Fiona is not white.\n\nNow, let's look at the statement 'All red, rough things are quiet.' (Given)\n\nWe know that Erin is red (Implicit from the information given), and Erin is not quiet (Implicit from the information given). However, we can use this statement to determine Fiona's color. Fiona is red (Implicit from the information given), and Fiona is rough (Implicit from the information given). So, according to this statement, Fiona is quiet.\n\nNow, let's look at the statement 'Quiet, green things are big.' (Given)\n\nWe know that Fiona is quiet (Statement 7), and Fiona is green (Implicit from the information given). So, according to this statement, Fiona is big.\n\nNow, let's look at the statement 'If something is rough and green then it is red.' (Given)\n\nWe know that Erin is green (Statement 2), and Erin is rough (Implicit from the information given). So, according to this statement, Erin is red.\n\nNow, let's look at the statement 'All rough things are green.' (Given)\n\nWe know that Erin is rough (Implicit from the information given), and Erin is green (Statement 2). So, this statement is true.\n\nNow, let's summarize what we've learned about Charlie and the other people.\n\n- Charlie is not big (Statement 1)\n- Charlie is not green (Statement 2)\n- Charlie's color is unknown\n\n- Erin is big (Statement 1)\n- Erin is green (Statement 2)\n- Erin is white (Statement 3)\n- Erin is red (Implicit from the information given)\n- Erin is quiet (Implicit from the information given)\n\n- Fiona is green (Implicit from the information given)\n- Fiona is kind (Statement 5)\n- Fiona is quiet (Statement 7)\n- Fiona is red (Implicit from the information given)\n- Fiona is white (Implicit from the information given)\n\nNow, let's look at the statements again and try to find any connections that might help us determine Charlie's color.\n\nWe know that Charlie is not big (Statement 1), and Charlie is not green (Statement 2). We also know that all rough things are green (Statement 9), and if something is green, it's also rough (Statement 4). However, we don't know if Charlie is rough or not.\n\nNow, let's look at the statement 'If something is kind then it is green.' (Given)\n\nWe know that Fiona is kind (Statement 5), and Fiona is green (Implicit from the information given). So, this statement is true.\n\nNow, let's look at the statement 'All rough things are green.' (Given)\n\nWe know that Erin is",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is not big. \n2. Charlie is not green. \n3. Charlie is white.\n\nFrom statements 1 and 2, we can conclude that Charlie is either white or small, but not green. Statement 3 directly confirms that Charlie is indeed white.\n\nHowever, we can also analyze the statement through the given inference rules:\n\n- All red, rough things are quiet. \n- If something is quiet and not red then it is not white. \n\nWe can use the above rules to create a conclusion about Charlie.\n\nSince Charlie is white (statement 3), we can start from the last part of the first rule. If Charlie is white and quiet (from statement 6), then Charlie is red (since all red, rough things are quiet). \n\nHowever, this contradicts the fact that Charlie is white. To resolve this contradiction, we need to go back to the information given.\n\nIf Charlie is red (as per the previous conclusion), then Charlie is green (since if Erin is red then Erin is green and all rough things are green). But this contradicts statement 2, which says Charlie is not green.\n\nTherefore, we can conclude that the statement \"Charlie is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n\n1. Charlie is not big.\n2. Charlie is not green.\n3. Charlie is white.\n4. Erin is big.\n5. Erin is green.\n6. Erin is white.\n7. Fiona is green.\n8. Fiona is kind.\n9. Fiona is quiet.\n10. Fiona is red.\n11. Fiona is white.\n12. If Erin is big and Erin is red then Erin is kind.\n13. All rough things are green.\n14. If something is kind then it is green.\n15. Quiet, green things are big.\n16. If something is rough and green then it is red.\n17. If something is green then it is rough.\n18. If Erin is red then Erin is green.\n19. All red, rough things are quiet.\n20. If something is quiet and not red then it is not white.\n\nFrom the given information (statement 3), we already know that Charlie is white. However, we need to determine if this statement is consistent with the other given information.\n\nFrom statement 16, \"If something is rough and green then it is red.\" We can infer that something that is green is also rough. \n\nFrom statement 13, \"All rough things are green.\" This statement is consistent with statement 16.\n\nFrom statement 17, \"If something is green then it is rough.\" We can infer that something that is green is also rough.\n\nHowever, from statement 4 and 5, we know that Erin is both big and green. From statement 17, we can infer that Erin is also rough.\n\nFrom statement 18, \"If Erin is red then Erin is green.\" We can infer that if Erin is red, then it is green. However, statement 19 says that \"All red, rough things are quiet.\" This implies that Erin is quiet.\n\nFrom statement 20, \"If something is quiet and not red then it is not white.\" We can infer that if Erin is quiet and not red, then it is not white. However, statement 6 says that Erin is white.\n\nHowever, from statement 4, we know that Erin is big. From statement 15, \"Quiet, green things are big.\" We can infer that Erin is quiet and green.\n\nFrom statement 14, \"If something is kind then it is green.\" We can infer that Fiona is green because statement 8 says that Fiona is kind.\n\nFrom statement 13, \"All rough things are green.\" We can infer that Fiona is rough because statement 7 says that Fiona is green.\n\nFrom statement 16, \"If something is rough and green then it is red.\" We can infer that Fiona is red because statement 7 says that Fiona is green and rough.\n\nFrom statement 10, we know that Fiona is red. From statement 19, \"All red, rough things are quiet.\" We can infer that Fiona is quiet.\n\nHowever, from statement 11, we know that Fiona is white. From statement 20, \"If something is quiet and not red then it is not white.\" We can infer that Fiona is not white because statement 20 says that if something is quiet and not red, then it is not white. However, statement 19 says that all red, rough things are quiet, and statement 16 says that all rough things are green, which means that Fiona is red and green and rough. Therefore, statement 20 does not apply to Fiona in this case.\n\nNow, we need to examine the statement \"Charlie is white.\" We can see that statement 3 directly states that Charlie is white.\n\nWe cannot deduce anything from the other statements that contradicts the statement \"Charlie is white.\" Therefore, the statement \"Charlie is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Charlie is not big.\n2. We are given that Charlie is white.\n\nFrom the information given, we have a direct statement that Charlie is white. This means we don't need to use any other statements to deduce Charlie's color.\n\nTherefore, based on the given information, we can conclude that the statement \"Charlie is white\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is not big.\n   - No conclusion can be drawn from this statement alone.\n\n2. Charlie is not green.\n   - No conclusion can be drawn from this statement alone.\n\n3. Charlie is white.\n   - This statement is given directly, so we can consider it as a fact for now.\n\nHowever, let's continue analyzing the information to see if we can derive any additional conclusions.\n\n4. Erin is big.\n   - No conclusion can be drawn from this statement alone.\n\n5. Erin is green.\n   - No conclusion can be drawn from this statement alone.\n\n6. Erin is white.\n   - No conclusion can be drawn from this statement alone.\n\n7. Fiona is green.\n   - No conclusion can be drawn from this statement alone.\n\n8. Fiona is kind.\n   - No conclusion can be drawn from this statement alone.\n\n9. Fiona is quiet.\n   - No conclusion can be drawn from this statement alone.\n\n10. Fiona is red.\n    - No conclusion can be drawn from this statement alone.\n\n11. Fiona is white.\n    - No conclusion can be drawn from this statement alone.\n\n12. If Erin is big and Erin is red then Erin is kind.\n    - No conclusion can be drawn from this statement alone.\n\n13. All rough things are green.\n    - No conclusion can be drawn from this statement alone.\n\n14. If something is kind then it is green.\n    - This statement implies that all kind things are green.\n\n15. Quiet, green things are big.\n    - No conclusion can be drawn from this statement alone.\n\n16. If something is rough and green then it is red.\n    - No conclusion can be drawn from this statement alone.\n\n17. If something is green then it is rough.\n    - This statement implies that all green things are rough.\n\n18. If Erin is red then Erin is green.\n    - This statement implies that Erin is green.\n\n19. All red, rough things are quiet.\n    - No conclusion can be drawn from this statement alone.\n\n20. If something is quiet and not red then it is not white.\n    - This statement implies that all quiet things that are not red are not white.\n\nNow, let's analyze the information about Erin and Fiona to see if we can derive any conclusions about Charlie.\n\nWe know that Erin is green (18), and all green things are rough (17). Therefore, Erin is rough.\n\nWe also know that Erin is red (18), and all red, rough things are quiet (19). Therefore, Erin is quiet.\n\nSince Erin is quiet and not red (from the fact that Charlie is white), it does not satisfy the condition in statement 20, which means that the statement \"If something is quiet and not red then it is not white\" does not apply to Erin.\n\nNow, let's analyze the information about Fiona to see if we can derive any conclusions about Charlie.\n\nWe know that Fiona is green (7), and all green things are rough (13). Therefore, Fiona is rough.\n\nWe also know that Fiona is red (10), and all red, rough things are quiet (19). Therefore, Fiona is quiet.\n\nWe also know that Fiona is kind (8), and all kind things are green (14). Therefore, Fiona is green.\n\nSince we already know that Fiona is green (7), this statement does not provide any additional information.\n\nNow, let's analyze the information about Charlie to see if we can derive any conclusions.\n\nWe know that Charlie is not big (1) and not green (2).\n\nWe also know that all rough things are green (13), but we do not know if Charlie is rough.\n\nWe also know that if something is kind then it is green (14), but we do not know if Charlie is kind.\n\nHowever, we can conclude that Charlie is white (3), as stated directly.\n\nTherefore, the statement \"Charlie is white\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning and the given statements to determine the truth value of the statement \"Charlie is white.\"\n\nGiven Statements:\n1. Charlie is not big.\n2. Charlie is not green.\n3. Charlie is white.\n4. Erin is big.\n5. Erin is green.\n6. Erin is white.\n7. Fiona is green.\n8. Fiona is kind.\n9. Fiona is quiet.\n10. Fiona is red.\n11. Fiona is white.\n12. If Erin is big and Erin is red, then Erin is kind.\n13. All rough things are green.\n14. If something is kind, then it is green.\n15. Quiet, green things are big.\n16. If something is rough and green, then it is red.\n17. If something is green, then it is rough.\n18. If Erin is red, then Erin is green.\n19. All red, rough things are quiet.\n20. If something is quiet and not red, then it is not white.\n\nTo determine the truth value of statement 3, \"Charlie is white,\" we need to analyze the given statements.\n\nFrom statement 1, we know that Charlie is not big.\nFrom statement 2, we know that Charlie is not green.\n\nNow, let's examine statement 3, \"Charlie is white.\" To determine its truth value, we need to consider the implications of the given statements.\n\nFrom statement 4, we know that Erin is big.\nFrom statement 5, we know that Erin is green.\nFrom statement 6, we know that Erin is white.\n\nFrom statement 18, we know that if Erin is red, then Erin is green. This implies that Erin is not red, because if Erin were red, it would also be green, which contradicts the fact that Erin is already known to be green.\n\nNow, let's examine the relationship between Erin and red. From statement 19, we know that all red, rough things are quiet. Since Erin is not red, it cannot be a red, rough thing, and therefore, it is not quiet.\n\nFrom statement 20, we know that if something is quiet and not red, then it is not white. Since Erin is not quiet, it is not white.\n\nNow, let's examine the relationship between Erin and white. From statement 6, we know that Erin is white. This statement contradicts the fact that Erin is not white, which we deduced earlier.\n\nHowever, we can resolve this contradiction by re-examining the given statements. From statement 14, we know that if something is kind, then it is green. From statement 8, we know that Fiona is kind. Therefore, Fiona is green.\n\nFrom statement 17, we know that if something is green, then it is rough. Therefore, Fiona is rough.\n\nFrom statement 16, we know that if something is rough and green, then it is red. Therefore, Fiona is red.\n\nFrom statement 10, we know that Fiona is red. This statement contradicts the fact that Erin is red, which we deduced earlier.\n\nHowever, we can resolve this contradiction by re-examining the given statements. From statement 15, we know that quiet, green things are big. Since Fiona is quiet, green, and big, it must be true.\n\nFrom statement 19, we know that all red, rough things are quiet. Since Fiona is red, rough, and quiet, it must be true.\n\nFrom statement 20, we know that if something is quiet and not red, then it is not white. Since Fiona is quiet and red, it is white.\n\nNow, let's examine the relationship between Fiona and white. From statement 11, we know that Fiona is white. This statement is consistent with the fact that Fiona is red, rough, quiet, and green.\n\nNow, let's examine the relationship between Charlie and white. From statement 3, we know that Charlie is white. However, we cannot determine the truth value of this statement based on the given statements.\n\nFrom statement 13, we know that all rough things are green. However, we do not know whether Charlie is rough or not.\n\nFrom statement 14, we know that if something is kind, then it is green. However, we do not know whether Charlie is kind or not.\n\nFrom statement 17, we know that if something is green, then it is rough. However, we do not know whether Charlie is green or not.\n\nFrom statement 20, we know that if something is quiet and not red, then it is not white. However, we do not know whether Charlie is quiet or not.\n\nTherefore, we cannot determine the truth value of the statement \"Charlie is white\" based on the given statements.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "not big(charlie)",
+          "z3_formula": "Not(big_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_erin, rough_erin), quiet_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_erin, green_erin), red_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X)",
+          "z3_formula": "Implies(green_erin, rough_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_erin, green_erin), big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not red(X) -> not white(X)",
+          "z3_formula": "Implies(And(quiet_erin, Not(red_erin)), Not(white_erin))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not white(erin)",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin) & red(erin) -> rough(erin)",
+          "z3_formula": "Implies(And(big_erin, red_erin), rough_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin) -> green(erin)",
+          "z3_formula": "Implies(rough_erin, green_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin) -> kind(erin)",
+          "z3_formula": "Implies(green_erin, kind_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin) -> not quiet(erin)",
+          "z3_formula": "Implies(green_erin, Not(quiet_erin))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin) -> not white(erin)",
+          "z3_formula": "Implies(red_erin, Not(white_erin))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(charlie)",
+          "z3_formula": "not big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(charlie)",
+          "z3_formula": "not big_charlie == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X)",
+          "z3_formula": "Implies(green_X, rough_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(green_X, rough_X), red_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_X, red_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_X, green_X)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not red(X) -> not white(X)",
+          "z3_formula": "Implies(And(quiet_X, not red_X), not white_X)",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 28
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(charlie)",
+          "z3_formula": "not big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_erin, red_erin), kind_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_X, green_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X)",
+          "z3_formula": "Implies(green_X, rough_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_X, green_X), red_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X) & red(X)",
+          "z3_formula": "Implies(green_X, And(rough_X, red_X))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_X, kind_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(green_X, quiet_X), big_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not red(X) -> not white(X)",
+          "z3_formula": "Implies(And(quiet_X, not red_X), not white_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not white(charlie)",
+          "z3_formula": "not white_charlie == True",
+          "source_step": 31
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(charlie)",
+          "z3_formula": "not big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not big(charlie)",
+          "z3_formula": "Not(big_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X)",
+          "z3_formula": "Implies(green_X, rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X)",
+          "z3_formula": "Implies(green_X, rough_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_X, red_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_X, red_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_X, rough_X), quiet_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not red(X) -> not white(X)",
+          "z3_formula": "Implies(And(quiet_X, Not(red_X)), Not(white_X))",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_X, green_X), big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(charlie)",
+          "z3_formula": "Not(rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not red(charlie)",
+          "z3_formula": "Not(red_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(erin)",
+          "z3_formula": "Not(quiet_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not white(fiona)",
+          "z3_formula": "Not(white_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin) -> green(erin)",
+          "z3_formula": "Implies(kind_erin, green_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(charlie)",
+          "z3_formula": "not big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_charlie, green_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X)",
+          "z3_formula": "Implies(green_charlie, rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_charlie, green_charlie), red_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not red(X) -> not white(X)",
+          "z3_formula": "Implies(And(quiet_charlie, not red_charlie), not white_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_charlie, green_charlie), big_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_charlie, green_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_charlie, green_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X)",
+          "z3_formula": "Implies(green_charlie, rough_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(color(charlie))",
+          "z3_formula": "unknown(color_charlie)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(charlie)",
+          "z3_formula": "not big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_charlie, rough_charlie), quiet_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not red(X) -> not white(X)",
+          "z3_formula": "Implies(And(quiet_charlie, not red_charlie), not white_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_charlie, green_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(charlie)",
+          "z3_formula": "not big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_erin, red_erin), kind_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_X, green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_fiona, green_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_gary, green_gary), big_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_X, green_X), red_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X)",
+          "z3_formula": "Implies(green_X, rough_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_erin, green_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_X, rough_X), quiet_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not red(X) -> not white(X)",
+          "z3_formula": "Implies(And(quiet_X, not red_X), not white_X)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(charlie)",
+          "z3_formula": "Not(big_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(charlie)",
+          "z3_formula": "Not(big_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X)",
+          "z3_formula": "Implies(green_erin, rough_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X)",
+          "z3_formula": "Implies(green_fiona, rough_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_erin, green_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_erin, rough_erin), quiet_erin)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(red(X)) -> Not(white(X))",
+          "z3_formula": "Implies(And(quiet_erin, Not(red_erin)), Not(white_erin))",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_fiona, green_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X)",
+          "z3_formula": "Implies(green_fiona, rough_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), quiet_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(charlie)",
+          "z3_formula": "Not(big_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_erin, red_erin), kind_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_X, green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_fiona, green_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_fiona, green_fiona), big_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), red_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X)",
+          "z3_formula": "Implies(green_fiona, rough_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_erin, green_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_fiona, rough_fiona), quiet_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(red(X)) -> Not(white(X))",
+          "z3_formula": "Implies(And(quiet_X, Not(red_X)), Not(white_X))",
+          "source_step": 20
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 156,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 59
+    },
+    "maxsat_stats": {
+      "satisfied": 54,
+      "excluded": 5,
+      "total_weight": 145,
+      "solve_time_ms": 2.194860018789768
+    },
+    "timing": {
+      "trace_gen_s": 24.556,
+      "extraction_s": 25.821,
+      "dedup_s": 2.0,
+      "maxsat_s": 0.005,
+      "total_s": 52.384
+    }
+  }
+}

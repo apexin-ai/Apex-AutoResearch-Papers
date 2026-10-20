@@ -1,0 +1,482 @@
+{
+  "problem": {
+    "id": "folio_88",
+    "problem": "Given the following premises:\n[BG] Books contain tons of knowledge. [BG] When a person reads a book, that person gains knowledge.  [BG] If a person gains knowledge, they become smarter. Harry read the book \u201cWalden\u201d by Henry Thoreau.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nWalden contains knowledge.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Book(x) \u2192 Knowledge(x))",
+      "\u2200x \u2200y (ReadBook(x, y) \u2192 GainKnowledge(x))",
+      "\u2200x (GainKnowledge(x) \u2192 Smarter(x))",
+      "ReadBook(harry, walden) \u2227 Book(walden)"
+    ],
+    "conclusion_fol": "Knowledge(walden)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 57.0,
+      "Unknown": 9.0
+    },
+    "answer_counts": {
+      "True": 11,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: [BG] Books contain tons of knowledge.\nThis premise states that books in general contain knowledge. \n\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nThis premise states that reading a book leads to gaining knowledge.\n\nPremise 3: [BG] If a person gains knowledge, they become smarter.\nThis premise states that gaining knowledge results in becoming smarter.\n\nWe are given that Harry read the book \u201cWalden\u201d by Henry Thoreau. \n\nNow, we can apply the premises to the conclusion:\n\nConclusion: Walden contains knowledge.\n\nFrom Premise 1, we know that books in general contain knowledge. Since Walden is a book, it follows that Walden contains knowledge.\n\nTherefore, the conclusion is logically valid based on the given premises. The answer is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"Walden contains knowledge\" is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: [BG] Books contain tons of knowledge.\nThis premise states that books in general contain knowledge.\n\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nThis premise states that reading a book leads to gaining knowledge.\n\nPremise 3: [BG] If a person gains knowledge, they become smarter.\nThis premise states that gaining knowledge is associated with becoming smarter.\n\nNow, let's examine the conclusion \"Walden contains knowledge.\"\n\nWe can see that the conclusion is directly related to the first premise, which states that books in general contain knowledge. Since \"Walden\" is a book, it falls under the category of books mentioned in the first premise.\n\nGiven that the premises do not provide any specific information that would contradict the idea that \"Walden\" contains knowledge, we can logically infer that the conclusion is true.\n\nTherefore, the conclusion \"Walden contains knowledge\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: [BG] Books contain tons of knowledge.\nThis premise states that books in general contain knowledge. However, it doesn't specifically mention \"Walden\" by Henry Thoreau.\n\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nThis premise explains the relationship between reading a book and gaining knowledge. It implies that reading a book will lead to gaining knowledge, but it doesn't state that a specific book contains knowledge.\n\nPremise 3: [BG] If a person gains knowledge, they become smarter.\nThis premise is a consequence of gaining knowledge, but it's not directly related to the conclusion we're trying to evaluate.\n\nNow, let's analyze the conclusion: \"Walden contains knowledge.\"\n\nWe can use the first premise to support this conclusion. Since books in general contain tons of knowledge (Premise 1), and \"Walden\" is a book, it is reasonable to conclude that \"Walden\" contains knowledge.\n\nIn this case, we don't need to use the second or third premises to evaluate the conclusion. The first premise is sufficient to support the conclusion.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: [BG] Books contain tons of knowledge. \nThis premise tells us that books in general contain knowledge.\n\nPremise 2: [BG] When a person reads a book, that person gains knowledge. \nThis premise tells us that when a person reads a book, they gain knowledge from it.\n\nPremise 3: [BG] If a person gains knowledge, they become smarter. \nThis premise tells us that gaining knowledge leads to becoming smarter, but it does not directly tell us about the content of the book.\n\nConclusion: Walden contains knowledge.\n\nTo determine whether the conclusion is true or false, we need to see if it is logically supported by the premises.\n\nWe know from Premise 1 that books in general contain knowledge. \nWe also know that the book \"Walden\" is a book, so it falls under the category of books.\nTherefore, according to Premise 1, Walden, being a book, contains tons of knowledge.\n\nThere is no information in the premises that contradicts this conclusion or makes it uncertain. \nSo, based on the given premises, the conclusion \"Walden contains knowledge\" is logically true.\n\nTherefore, the conclusion is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we can analyze the premises step by step.\n\nPremise 1: [BG] Books contain tons of knowledge.\nThis premise states that books in general contain knowledge. It doesn't specify a particular book.\n\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nThis premise is a general rule that applies to any book. Reading a book will result in gaining knowledge.\n\nPremise 3: [BG] If a person gains knowledge, they become smarter.\nThis premise is a general rule that applies to anyone who gains knowledge. Becoming smarter is a consequence of gaining knowledge.\n\nConclusion: Walden contains knowledge.\n\nWe can use a logical argument to determine the validity of the conclusion:\n\n1. All books contain knowledge (Premise 1)\n2. Walden is a book (Implicit premise, not explicitly stated but can be inferred from the context)\n3. Therefore, Walden contains knowledge (Modus Ponens, a rule of inference)\n\nBased on the premises, we can conclude that Walden, being a book, contains knowledge. Therefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: [BG] Books contain tons of knowledge.\nThis premise establishes a general fact about books.\n\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nThis premise provides a specific relationship between reading a book and gaining knowledge.\n\nPremise 3: [BG] If a person gains knowledge, they become smarter.\nThis premise establishes a consequence of gaining knowledge.\n\nNow, let's examine the conclusion: \"Walden contains knowledge.\"\n\nWe can see that the conclusion is related to Premise 1, which states that books contain tons of knowledge. \n\nSince we are given that Harry read the book \"Walden,\" we can use the premises to make an inference. However, the premises do not explicitly mention the book \"Walden.\" They only provide general information about books and the relationship between reading and gaining knowledge.\n\nHowever, we can use the logical rule of universal instantiation, which states that if a statement is true for all cases, it is true for a specific case. \n\nIn this case, Premise 1 is a general statement about books, and we can apply it to a specific book, \"Walden.\"\n\nTherefore, based on the premises, we can conclude that Walden contains knowledge.\n\nThe conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the validity of the conclusion, let's analyze the premises and the conclusion step by step.\n\n1. Premise: [BG] Books contain tons of knowledge.\n   This premise tells us that books in general contain knowledge.\n\n2. Premise: [BG] When a person reads a book, that person gains knowledge.\n   This premise tells us that reading a book leads to gaining knowledge.\n\n3. Premise: [BG] If a person gains knowledge, they become smarter.\n   This premise tells us that gaining knowledge is related to becoming smarter.\n\n4. Given statement: Harry read the book \u201cWalden\u201d by Henry Thoreau.\n   This statement provides specific information about Harry and the book he read.\n\nNow, let's analyze the conclusion:\n\nConclusion: Walden contains knowledge.\n\nUsing the premises, we can establish a logical connection between the conclusion and the premises as follows:\n\n- Premise 1 states that books in general contain tons of knowledge.\n- Given statement provides specific information that Harry read the book \u201cWalden.\u201d\n- Since Harry read the book \u201cWalden\u201d (a book), and premise 1 states that books contain knowledge, we can infer that the book \u201cWalden\u201d contains knowledge.\n\nTherefore, the conclusion is true based on the given premises and information.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion \"Walden contains knowledge\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: [BG] Books contain tons of knowledge. \nThis premise states that books in general contain knowledge. \n\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nThis premise states that reading a book results in gaining knowledge. \n\nPremise 3: [BG] If a person gains knowledge, they become smarter.\nThis premise states that gaining knowledge is associated with becoming smarter.\n\nNow, let's apply these premises to the given situation:\n\nThe conclusion we need to evaluate is: Walden contains knowledge.\n\nFrom Premise 1, we know that books in general contain tons of knowledge. Since \"Walden\" is a book, it falls under the general category of books.\n\nTherefore, we can logically conclude that \"Walden\" contains knowledge, based on the general property of books as stated in Premise 1.\n\nThe conclusion is true, as it follows logically from the given premises.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the premises and apply logical reasoning.\n\nPremise 1: [BG] Books contain tons of knowledge.\n\nThis premise tells us that books, in general, contain knowledge.\n\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\n\nThis premise tells us that reading a book leads to gaining knowledge.\n\nPremise 3: [BG] If a person gains knowledge, they become smarter.\n\nThis premise tells us that gaining knowledge is associated with becoming smarter.\n\nNow, let's analyze the conclusion: \"Walden contains knowledge.\"\n\nFrom Premise 1, we know that books, in general, contain knowledge. Since \"Walden\" is a book, it falls under this category.\n\nHowever, Premise 1 does not specifically state that \"Walden\" contains knowledge. It only states that books, in general, contain knowledge. \n\nTherefore, based on the information given, we cannot conclude with certainty that \"Walden\" contains knowledge. We can only say that books in general contain knowledge, and since \"Walden\" is a book, it is likely to contain knowledge, but this conclusion is uncertain.\n\nThe conclusion is uncertain because we are making an assumption about \"Walden\" based on the general statement in Premise 1. We don't have specific information about the content of \"Walden.\"\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we will analyze the given premises and apply logical reasoning.\n\nPremises:\n1. [BG] Books contain tons of knowledge.\n2. [BG] When a person reads a book, that person gains knowledge.\n3. [BG] If a person gains knowledge, they become smarter.\n4. Harry read the book \u201cWalden\u201d by Henry Thoreau.\n\nWe need to evaluate the conclusion: \"Walden contains knowledge.\"\n\nFrom premise 1, we know that all books contain tons of knowledge. This implies that the book \"Walden\" also contains knowledge.\n\nTherefore, based on the given premises, the conclusion \"Walden contains knowledge\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply them to the conclusion.\n\nPremise 1: [BG] Books contain tons of knowledge.\nThis premise tells us that books, in general, contain knowledge.\n\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nThis premise tells us that reading a book leads to gaining knowledge.\n\nPremise 3: [BG] If a person gains knowledge, they become smarter.\nThis premise tells us that gaining knowledge is directly related to becoming smarter.\n\nConclusion: Walden contains knowledge.\nWe need to evaluate whether this conclusion can be logically derived from the given premises.\n\nFrom Premise 1, we know that books contain tons of knowledge. Since \"Walden\" is a book, it can be considered as a subset of the general category of books.\n\nTherefore, based on Premise 1, we can infer that Walden contains knowledge.\n\nWe do not need to use Premise 2 and Premise 3 to evaluate the conclusion, as the conclusion is directly supported by Premise 1.\n\nThe conclusion is logically derived from the given premises, so the answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the premises step by step.\n\nPremise 1: [BG] Books contain tons of knowledge.\nThis premise states that books in general contain knowledge. It does not specifically mention the book \"Walden\" but rather makes a general statement about books.\n\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nThis premise establishes a relationship between reading a book and gaining knowledge. It does not specify the content of the book, only the action of reading it.\n\nPremise 3: [BG] If a person gains knowledge, they become smarter.\nThis premise connects the concept of gaining knowledge to becoming smarter. Again, it does not specifically mention the book \"Walden.\"\n\nThe conclusion we are asked to evaluate is: Walden contains knowledge.\n\nFrom the premises, we can infer the following:\n\n1. Books in general contain knowledge (Premise 1).\n2. Reading a book (in general) leads to gaining knowledge (Premise 2).\n3. The book \"Walden\" is a specific book that Harry read (given statement).\n\nNow, let's connect the dots:\n\nSince the book \"Walden\" is a book (which, according to Premise 1, contains knowledge) and Harry read it (which, according to Premise 2, leads to gaining knowledge), we can conclude that Walden contains knowledge.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "read_harry_walden",
+          "z3_formula": "read_harry_walden == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, Y) -> gains_knowledge(X)",
+          "z3_formula": "Implies(read_harry_walden, gains_harry_knowledge)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge(X) -> becomes_smarter(X)",
+          "z3_formula": "Implies(gains_harry_knowledge, becomes_smarter_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "contains_knowledge(book)",
+          "z3_formula": "contains_knowledge_book == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, book) -> gains_knowledge(X)",
+          "z3_formula": "Implies(reads_walden_book, gains_knowledge)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge -> smarter",
+          "z3_formula": "Implies(gains_knowledge, smarter)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reads(walden, book)",
+          "z3_formula": "reads_walden_book == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "contains_knowledge(walden)",
+          "z3_formula": "contains_knowledge_walden == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "walden_is_book",
+          "z3_formula": "walden_is_book == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "book(X) -> contains_knowledge(X)",
+          "z3_formula": "Implies(book_walden, contains_knowledge_walden)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "contains_knowledge(walden)",
+          "z3_formula": "contains_knowledge_walden == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "contains_knowledge(book)",
+          "z3_formula": "contains_knowledge_book == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "reads(person, book)",
+          "z3_formula": "reads_person_book == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, Y) -> gains_knowledge(X)",
+          "z3_formula": "Implies(reads_person_book, gains_knowledge_person)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(gains_knowledge_person, smarter_person)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "book(walden)",
+          "z3_formula": "book_walden == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "contains_knowledge(walden)",
+          "z3_formula": "contains_knowledge_walden == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "knowledge(books)",
+          "z3_formula": "knowledge_books == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, Y) -> knowledge(Y)",
+          "z3_formula": "Implies(reads_walden_books, knowledge_books)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(knowledge_books, smarter_books)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "book(walden)",
+          "z3_formula": "book_walden == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "knowledge(walden)",
+          "z3_formula": "knowledge_walden == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "knowledge(book)",
+          "z3_formula": "knowledge_book == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, Y) -> knowledge(Y)",
+          "z3_formula": "Implies(reads_harry_walden, knowledge_walden)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(knowledge_walden, smarter_walden)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reads(harry, walden)",
+          "z3_formula": "reads_harry_walden == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "knowledge(walden)",
+          "z3_formula": "knowledge_walden == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, book) -> gains_knowledge(X)",
+          "z3_formula": "Implies(reads_harry_walden, gains_knowledge)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge -> becomes_smarter",
+          "z3_formula": "Implies(gains_knowledge, becomes_smarter)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reads(harry, walden)",
+          "z3_formula": "reads_harry_walden == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "knowledge(books)",
+          "z3_formula": "knowledge_books == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, Y) -> knowledge(Y)",
+          "z3_formula": "Implies(reads_walden, knowledge_walden)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(knowledge_walden, smarter_walden)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "book(walden)",
+          "z3_formula": "book_walden == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "reads(person, walden)",
+          "z3_formula": "reads_person_walden == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "knowledge(walden)",
+          "z3_formula": "knowledge_walden == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "knowledge(books)",
+          "z3_formula": "knowledge_books == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X) -> knowledge(X)",
+          "z3_formula": "Implies(reads_walden, knowledge_walden)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(knowledge_walden, smarter_walden)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reads(walden)",
+          "z3_formula": "reads_walden == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "contains_knowledge(books)",
+          "z3_formula": "contains_knowledge_books == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, book) -> gains_knowledge(X)",
+          "z3_formula": "Implies(reads_harry_walden, gains_knowledge_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(gains_knowledge_harry, smarter_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reads(harry, walden)",
+          "z3_formula": "reads_harry_walden == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "contains_knowledge(walden)",
+          "z3_formula": "contains_knowledge_walden == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "knowledge(walden)",
+          "z3_formula": "knowledge_walden == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "book(X) -> knowledge(X)",
+          "z3_formula": "Implies(book_walden, knowledge_walden)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "knowledge(walden)",
+          "z3_formula": "knowledge_walden == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads_book(X) -> gains_knowledge(X)",
+          "z3_formula": "Implies(reads_book_harry_walden, gains_knowledge_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(gains_knowledge_harry, smarter_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reads_book(harry, walden)",
+          "z3_formula": "reads_book_harry_walden == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "books_contain_knowledge(walden)",
+          "z3_formula": "books_contain_knowledge_walden == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 58,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 35
+    },
+    "maxsat_stats": {
+      "satisfied": 35,
+      "excluded": 0,
+      "total_weight": 58,
+      "solve_time_ms": 0.8748499676585197
+    },
+    "timing": {
+      "trace_gen_s": 3.782,
+      "extraction_s": 10.138,
+      "dedup_s": 0.59,
+      "maxsat_s": 0.003,
+      "total_s": 14.514
+    }
+  }
+}

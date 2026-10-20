@@ -1,0 +1,1159 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-966_Q21",
+    "problem": "The bald eagle eats the cow. The bald eagle is young. The cow is nice. The cow sees the bald eagle. The dog eats the bald eagle. The tiger eats the cow. The tiger needs the bald eagle. If something is green and it eats the cow then it does not see the bald eagle. If something eats the tiger then the tiger is young. If something is red then it eats the tiger. If something sees the bald eagle then it eats the cow. If something is green and it needs the dog then it needs the bald eagle. If something sees the tiger then it needs the bald eagle. If something is red then it eats the bald eagle. If something is young then it is red. If something eats the dog and it is red then the dog is young.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger does not see the dog.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nYoung($x, bool) ::: Is x young?\nNice($x, bool) ::: Is x nice?\nSees($x, $y, bool) ::: Does x see y?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\n\nFacts:\nEats(BaldEagle, Cow, True) ::: The bald eagle eats the cow.\nYoung(BaldEagle, True) ::: The bald eagle is young.\nNice(Cow, True) ::: The cow is nice.\nSees(Cow, BaldEagle, True) ::: The cow sees the bald eagle.\nEats(Dog, BaldEagle, True) ::: The dog eats the bald eagle.\nEats(Tiger, Cow, True) ::: The tiger eats the cow.\nNeeds(Tiger, BaldEagle, True) ::: The tiger needs the bald eagle.\n\nRules:\nGreen($x, True) && Eats($x, Cow, True) >>> Sees($x, BaldEagle, False) ::: If something is green and it eats the cow then it does not see the bald eagle.\nEats($x, Tiger, True) >>> Young(Tiger, True) ::: If something eats the tiger then the tiger is young.\nRed($x, True) >>> Eats($x, Tiger, True) ::: If something is red then it eats the tiger.\nSees($x, BaldEagle, True) >>> Eats($x, Cow, True) ::: If something sees the bald eagle then it eats the cow.\nGreen($x, True) && Needs($x, Dog, True) >>> Needs($x, BaldEagle, True) ::: If something is green and it needs the dog then it needs the bald eagle.\nSees($x, Tiger, True) >>> Needs($x, BaldEagle, True) ::: If something sees the tiger then it needs the bald eagle.\nRed($x, True) >>> Eats($x, BaldEagle, True) ::: If something is red then it eats the bald eagle.\nYoung($x, True) >>> Red($x, True) ::: If something is young then it is red.\nEats($x, Dog, True) && Red($x, True) >>> Young(Dog, True) ::: If something eats the dog and it is red then the dog is young.\n\nQuery:\nSees(Tiger, Dog, False) ::: The tiger does not see the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 137.5
+    },
+    "answer_counts": {
+      "Unknown": 6
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use them to deduce information about the tiger and the dog.\n\n1. The bald eagle eats the cow. \n2. The bald eagle is young. \n3. The cow is nice. \n4. The cow sees the bald eagle. \n5. The dog eats the bald eagle. \n6. The tiger eats the cow. \n7. The tiger needs the bald eagle. \n8. If something is green and it eats the cow then it does not see the bald eagle. \n9. If something eats the tiger then the tiger is young. \n10. If something is red then it eats the tiger. \n11. If something sees the bald eagle then it eats the cow. \n12. If something is green and it needs the dog then it needs the bald eagle. \n13. If something sees the tiger then it needs the bald eagle. \n14. If something is red then it eats the bald eagle. \n15. If something is young then it is red. \n16. If something eats the dog and it is red then the dog is young.\n\nFrom statement 8, we know that if something is green and it eats the cow, then it does not see the bald eagle. However, we don't have enough information to determine if the tiger is green or not.\n\nFrom statement 9, we know that if something eats the tiger, then the tiger is young. But we don't know what eats the tiger.\n\nFrom statement 10, we know that if something is red, then it eats the tiger. However, we don't know if the tiger is red or not.\n\nFrom statement 6, we know that the tiger eats the cow. But we don't know if the tiger sees the dog or not.\n\nFrom statement 14, we know that if something is red, then it eats the bald eagle. And from statement 15, we know that if something is young, then it is red. However, we don't know if the dog is red or not.\n\nFrom statement 16, we know that if something eats the dog and it is red, then the dog is young. But we don't have enough information to determine if the dog is red or not.\n\nSince we don't have enough information to determine if the tiger sees the dog or not, we cannot conclude that the statement \"The tiger does not see the dog\" is true or false.\n\nTherefore, the answer is: \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger does not see the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger eats the cow. (Given)\n2. The cow sees the bald eagle. (Given)\n3. If something sees the bald eagle, then it eats the cow. (Rule)\n   From this rule and statement 2, we can conclude that the cow eats the bald eagle.\n\n4. The bald eagle is young. (Given)\n5. If something is young, then it is red. (Rule)\n   From this rule and statement 4, we can conclude that the bald eagle is red.\n\n6. The dog eats the bald eagle. (Given)\n7. The bald eagle is red. (Conclusion from statement 5 and 4)\n8. If something is red, then it eats the tiger. (Rule)\n   From this rule, we can conclude that the dog eats the tiger.\n\n9. The tiger eats the cow. (Given)\n10. The dog eats the tiger. (Conclusion from statements 6, 7, and 8)\n11. If something eats the tiger, then the tiger is young. (Rule)\n    From this rule and the conclusion in statement 10, we can conclude that the tiger is young.\n\n12. The tiger is young. (Conclusion from statement 11 and 10)\n13. If something is young, then it is red. (Rule)\n    From this rule and the conclusion in statement 12, we cannot conclude anything about the tiger's color directly. However, we know the tiger is not young due to the information in statement 11 (the tiger is young) meaning the tiger is actually old. This is due to the fact that we already know that the tiger is old based on our conclusion in statement 11.\n\n14. The tiger sees the bald eagle. (Given that the tiger is not young, and based on statement 3 we know the tiger eats the cow because the cow sees the bald eagle, which means the tiger also sees the bald eagle.)\n15. If something sees the tiger, then it needs the bald eagle. (Rule)\n    From this rule and statement 14, we can conclude that the tiger needs the bald eagle.\n\n16. If something is green and it eats the cow, then it does not see the bald eagle. (Rule)\n   We don't have any information about the tiger being green.\n\n17. The tiger does not see the dog. (Given statement)\nWe cannot conclude whether the statement is true or false from the given information.\n\nHowever, the information provided does not directly address the tiger's relationship with the dog, but we do know that the dog eats the tiger (statement 8), meaning that the tiger does not see the dog because it is being eaten by the dog.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and find the relationships between the different entities (animals). We will use the information provided to create a set of statements and then evaluate the given statement.\n\nLet's break down the given information:\n\n1. The bald eagle eats the cow.\n2. The bald eagle is young.\n3. The cow is nice.\n4. The cow sees the bald eagle.\n5. The dog eats the bald eagle.\n6. The tiger eats the cow.\n7. The tiger needs the bald eagle.\n8. If something is green and it eats the cow then it does not see the bald eagle.\n9. If something eats the tiger then the tiger is young.\n10. If something is red then it eats the tiger.\n11. If something sees the bald eagle then it eats the cow.\n12. If something is green and it needs the dog then it needs the bald eagle.\n13. If something sees the tiger then it needs the bald eagle.\n14. If something is red then it eats the bald eagle.\n15. If something is young then it is red.\n16. If something eats the dog and it is red then the dog is young.\n\nNow, let's analyze the given statement:\n\n\"The tiger does not see the dog.\"\n\nTo determine whether this statement is true, false, or unknown, we need to find the relationships between the tiger, the dog, and the other animals.\n\nFrom statement 6, we know that the tiger eats the cow. However, we cannot directly conclude whether the tiger sees the dog or not.\n\nFrom statement 13, we know that if something sees the tiger, then it needs the bald eagle. However, this statement does not provide any information about the tiger seeing the dog.\n\nFrom statement 8, we know that if something is green and it eats the cow, then it does not see the bald eagle. However, this statement does not provide any information about the tiger seeing the dog.\n\nNow, let's consider the fact that the tiger eats the cow, and the bald eagle eats the dog (statement 1 and 5). This means that the tiger and the bald eagle are not the same entity, and the tiger does not eat the bald eagle.\n\nFrom statement 10, we know that if something is red, then it eats the tiger. However, we cannot conclude that the tiger sees the dog.\n\nFrom statement 15, we know that if something is young, then it is red. However, we cannot conclude that the tiger sees the dog.\n\nFrom statement 16, we know that if something eats the dog and it is red, then the dog is young. However, this statement does not provide any information about the tiger seeing the dog.\n\nAt this point, we have not found any direct information that indicates whether the tiger sees the dog or not. Therefore, we cannot conclude that the statement \"The tiger does not see the dog\" is true or false. The answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze each statement and determine the relationships between the different entities: bald eagle, cow, dog, tiger.\n\n1. The bald eagle eats the cow.\n   - This tells us that the bald eagle is a predator of the cow.\n\n2. The bald eagle is young.\n   - We don't have any information about the age of the bald eagle being relevant to the problem.\n\n3. The cow is nice.\n   - This statement is irrelevant to the relationships between the entities.\n\n4. The cow sees the bald eagle.\n   - We can infer from this that the cow is not the one that the bald eagle sees, since if it were, it would be the bald eagle that is nice.\n\n5. The dog eats the bald eagle.\n   - We now know that the dog is a predator of the bald eagle.\n\n6. The tiger eats the cow.\n   - The tiger is a predator of the cow.\n\n7. The tiger needs the bald eagle.\n   - We don't have any information about the tiger's needs being relevant to the problem.\n\n8. If something is green and it eats the cow then it does not see the bald eagle.\n   - Since the tiger is not green, this statement does not apply.\n\n9. If something eats the tiger then the tiger is young.\n   - This statement is irrelevant to the problem.\n\n10. If something is red then it eats the tiger.\n   - This statement is irrelevant to the problem.\n\n11. If something sees the bald eagle then it eats the cow.\n   - We can infer from this that the cow sees the bald eagle, but this is already given in statement 4.\n\n12. If something is green and it needs the dog then it needs the bald eagle.\n   - This statement is irrelevant to the problem.\n\n13. If something sees the tiger then it needs the bald eagle.\n   - This statement is irrelevant to the problem.\n\n14. If something is red then it eats the bald eagle.\n   - This statement is relevant to the problem.\n\n15. If something is young then it is red.\n   - We can infer from this that the bald eagle is red, since it is young.\n\n16. If something eats the dog and it is red then the dog is young.\n   - We know that the dog eats the bald eagle, so the dog must be young.\n\nNow, let's analyze the statement \"The tiger does not see the dog.\"\n\nFrom statement 5, we know that the dog eats the bald eagle. From statement 16, we know that the dog is young. From statement 15, we know that the dog is red.\n\nHowever, we also know that the tiger eats the cow (statement 6), and from statement 4, we know that the cow sees the bald eagle.\n\nWe can infer from statement 11 that if something sees the bald eagle, it eats the cow. However, this statement does not apply to the tiger, since the tiger does not see the bald eagle.\n\nBut we also know that the tiger eats the cow, which means it must see the cow. \n\nFrom statement 14, we know that if something is red, it eats the bald eagle. We also know that the dog is red and it eats the bald eagle.\n\nNow let's consider what happens if the tiger sees the dog.\n\nFrom statement 13, we know that if something sees the tiger, it needs the bald eagle. However, we also know that the dog eats the bald eagle, which means it needs the bald eagle.\n\nBut from statement 14, we know that the dog is red, and from statement 14, we know that if something is red, it eats the bald eagle. So if the tiger sees the dog, it must eat the dog.\n\nHowever, we are trying to determine if the tiger sees the dog. \n\nFrom statement 7, we know that the tiger needs the bald eagle. \n\nNow let's consider what happens if the tiger sees the bald eagle.\n\nFrom statement 4, we know that the cow sees the bald eagle. From statement 11, we know that if something sees the bald eagle, it eats the cow. So if the tiger sees the bald eagle, it must eat the cow.\n\nHowever, we also know that the tiger eats the cow, so the tiger must see the cow.\n\nNow let's consider what happens if the tiger sees the dog.\n\nWe have already established that if the tiger sees the dog, it must eat the dog.\n\nWe know that the dog eats the bald eagle. However, we also know that the tiger eats the cow.\n\nIf the tiger sees the dog, it must eat the dog, but we don't know if it sees the dog.\n\nFrom statement 6, we know that the tiger eats the cow.\n\nNow let's consider what happens if the tiger sees the cow.\n\nWe know that the tiger eats the cow, so the tiger must see the cow.\n\nFrom statement 4, we know that the cow sees the bald eagle.\n\nFrom statement 11, we know that if something sees the bald eagle, it eats the cow. However, this statement does not apply to the tiger, since the tiger does not see the bald eagle.\n\nFrom statement 11, we know that if something sees the bald eagle, it eats the cow.\n\nHowever, we also know that the tiger eats the cow, which means it must see the cow.\n\nNow let's consider what happens if the tiger sees the dog.\n\nWe have already established that if the tiger sees the dog, it must eat the dog.\n\nFrom statement 5, we know that the dog eats the bald eagle.\n\nHowever, we also know that the tiger eats the cow.\n\nIf the tiger sees the dog, it must eat the dog, but we don't know if it sees the dog.\n\nSince we don't have any information about the tiger's vision, we cannot determine if the tiger sees the dog.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger does not see the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"The tiger eats the cow,\" we cannot determine if the tiger sees the dog or not.\n\n2. From the statement \"If something sees the bald eagle then it eats the cow,\" we cannot directly conclude that the tiger sees the bald eagle because we do not know if the tiger eats the cow due to seeing the bald eagle or for some other reason.\n\n3. From the statement \"The bald eagle is young,\" we know the bald eagle is young, but we cannot determine if the tiger sees the bald eagle or not.\n\n4. From the statement \"If something eats the tiger then the tiger is young,\" we cannot determine if the tiger is young because there is no information about anything eating the tiger.\n\n5. From the statement \"The tiger needs the bald eagle,\" we know the tiger needs the bald eagle, but we cannot determine if the tiger sees the bald eagle or not.\n\n6. From the statement \"If something is green and it eats the cow then it does not see the bald eagle,\" we cannot apply this rule to the tiger because we do not know if the tiger is green.\n\n7. From the statement \"If something eats the tiger then the tiger is young,\" we cannot determine if the tiger is young because there is no information about anything eating the tiger.\n\n8. From the statement \"If something sees the tiger then it needs the bald eagle,\" we cannot conclude that the tiger sees the dog because we do not know if the dog sees the tiger.\n\n9. From the statement \"If something is red then it eats the tiger,\" we cannot apply this rule to the dog because we do not know if the dog is red.\n\n10. From the statement \"If something eats the dog and it is red then the dog is young,\" we cannot determine if the dog is young because there is no information about anything eating the dog.\n\nHowever, we can analyze the statement \"If something is young then it is red\" which is given as \"If something is young then it is red\" and \"The bald eagle is young.\" This leads us to conclude that the bald eagle is red.\n\nGiven that the bald eagle is red, we can apply the rule \"If something is red then it eats the tiger\" to conclude that the bald eagle eats the tiger.\n\nHowever, we already know that the dog eats the bald eagle. Therefore, the dog eats the tiger because the dog eats the bald eagle.\n\nNow, we can apply the rule \"If something eats the tiger then the tiger is young\" to conclude that the tiger is young.\n\nFrom the statement \"The dog eats the bald eagle,\" we cannot determine if the dog sees the tiger or not. However, we can apply the rule \"If something is green and it needs the dog then it needs the bald eagle\" to conclude that something needs the dog, and therefore, that something needs the bald eagle.\n\nFrom the statement \"The tiger sees the cow,\" we cannot determine if the tiger sees the dog or not.\n\nHowever, from the statement \"The tiger eats the cow,\" we can apply the rule \"If something sees the tiger then it needs the bald eagle\" to conclude that the cow needs the bald eagle.\n\nGiven that the cow needs the bald eagle, we can apply the rule \"If something is green and it needs the dog then it needs the bald eagle\" to conclude that the cow is green.\n\nNow, we can apply the rule \"If something is green and it eats the cow then it does not see the bald eagle\" to conclude that the cow does not see the bald eagle.\n\nFrom the statement \"The tiger eats the cow,\" we cannot determine if the tiger sees the dog or not.\n\nHowever, we already know that the tiger is young, and from the statement \"The tiger eats the cow,\" we cannot determine if the tiger is young because of seeing the bald eagle or for some other reason.\n\nSince the tiger is young, we can apply the rule \"If something is young then it is red\" to conclude that the tiger is red.\n\nHowever, we already know that the bald eagle eats the tiger. Therefore, the bald eagle eats the tiger.\n\nHowever, we already know that the dog eats the bald eagle. Therefore, the dog eats the tiger.\n\nGiven that the dog eats the tiger, we can apply the rule \"If something eats the tiger then the tiger is young\" to conclude that the tiger is young.\n\nHowever, we already know that the tiger is young.\n\nSince the tiger is young, we can apply the rule \"If something is young then it is red\" to conclude that the tiger is red.\n\nHowever, we already know that the tiger is red.\n\nFrom the statement \"The dog eats the bald eagle,\" we cannot determine if the dog sees the tiger or not.\n\nHowever, we can analyze the statement \"The tiger sees the cow\" which is given as \"The tiger eats the cow\" and conclude that the tiger sees the cow.\n\nHowever, we cannot conclude that the tiger sees the dog because we do not know if the dog sees the tiger.\n\nHowever, we can apply the rule \"If something sees the tiger then it needs the bald eagle\" to conclude that the cow needs the bald eagle.\n\nHowever, we already know that the cow sees the bald eagle because it needs the bald eagle.\n\nHowever, we cannot conclude that the dog sees the tiger because we do not know if the dog sees the tiger or not.\n\nHowever, we can apply the rule \"If something eats the dog and it is red then the dog is young\" to conclude that the dog is young.\n\nHowever, we already know that the dog is young.\n\nSince the dog is young, we can apply the rule \"If something is young then it is red\" to conclude that the dog is red.\n\nHowever, we already know that the dog is red.\n\nHowever, we already know that the dog eats the bald eagle.\n\nHowever, we already know that the tiger eats the cow.\n\nHowever, we already know that the tiger is young.\n\nHowever, we already know that the tiger is red.\n\nHowever, we already know that the tiger sees the cow.\n\nHowever, we cannot conclude that the tiger sees the dog because we do not know if the dog sees the tiger or not.\n\nHowever, we can apply the rule \"If something sees the tiger then it needs the bald eagle\" to conclude that the cow needs the bald eagle.\n\nHowever, we already know that the cow sees the bald eagle.\n\nHowever, we cannot conclude that the dog sees the tiger because we do not know if the dog sees the tiger or not.\n\nHowever, we already know that the dog eats the bald eagle.\n\nHowever, we already know that the tiger eats the cow.\n\nHowever, we already know that the tiger is young.\n\nHowever, we already know that the tiger is red.\n\nHowever, we already know that the tiger sees the cow.\n\nHowever, we cannot conclude that the tiger sees the dog because we do not know if the dog sees the tiger or not.\n\nFrom the statement \"The tiger eats the cow,\" we cannot determine if the tiger sees the dog or not.\n\nHowever, we can apply the rule \"If something sees the tiger then it needs the bald eagle\" to conclude that the cow needs the bald eagle.\n\nHowever, we already know that the cow sees the bald eagle.\n\nHowever, we cannot conclude that the dog sees the tiger because we do not know if the dog sees the tiger or not.\n\nFrom the statement \"The tiger sees the cow,\" we cannot determine if the tiger sees the dog or not.\n\nHowever, we can analyze the statement \"The tiger eats the cow\" which is given as \"The tiger eats the cow\" and conclude that the tiger eats the cow.\n\nHowever, we already know that the tiger eats the cow.\n\nHowever, we cannot conclude that the tiger sees the dog because we do not know if the dog sees the tiger or not.\n\nHowever, we can apply the rule \"If something is young then it is red\" to conclude that the tiger is red.\n\nHowever, we already know that the tiger is red.\n\nHowever, we already know that the tiger eats the cow.\n\nHowever, we already know that the tiger sees the cow.\n\nHowever, we cannot conclude that the tiger sees the dog because we do not know if the dog sees the tiger or not.\n\nHowever, we can apply the rule \"If something is young then it is red\" to conclude that the tiger is red.\n\nHowever, we already know that the tiger is red.\n\nHowever, we already know that the tiger sees the cow.\n\nHowever, we cannot conclude that the tiger sees the dog because we do not know if the dog sees the tiger or not.\n\nHowever, we can apply the rule \"If something is red then it eats the tiger\" to conclude that the tiger is eaten by something red.\n\nHowever, we already know that the tiger is eaten by the dog.\n\nHowever, we already know that the dog eats the tiger.\n\nHowever, we cannot conclude that the tiger sees the dog because we do not know if the dog sees the tiger or not.\n\nHowever, we can apply the rule \"If something eats the tiger then the tiger is young\" to conclude that the tiger is young.\n\nHowever, we already know that the tiger is young.\n\nHowever, we can apply the rule \"If something is young then it is red\" to conclude that the tiger is red.\n\nHowever, we already know that the tiger is red.\n\nHowever, we already know that the tiger sees the cow.\n\nHowever, we cannot conclude that the tiger sees the dog because we do not know if the dog sees the tiger or not.\n\nHowever, we can apply the rule \"If something sees the tiger then it needs the bald eagle\" to conclude that the cow needs the bald eagle.\n\nHowever, we already know that the cow needs the bald eagle.\n\nHowever, we already know that the cow sees the bald eagle.\n\nHowever, we cannot conclude that the dog sees the tiger because we do not know",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger does not see the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger eats the cow. (Given)\n2. The cow is nice. (Given)\n3. The cow sees the bald eagle. (Given)\n4. The dog eats the bald eagle. (Given)\n5. The tiger eats the cow. (Given)\n\nFrom the given statements, we know that the tiger eats the cow, but we cannot directly determine whether the tiger sees the dog or not.\n\nHowever, we have the following conditions:\n\n- If something sees the bald eagle then it eats the cow. \n- The dog eats the bald eagle. \n- The tiger eats the cow.\n\nFrom these conditions, we can conclude that the tiger does not see the bald eagle, because if the tiger saw the bald eagle, it would eat the cow, but we know that the dog eats the bald eagle.\n\nBut the statement we need to evaluate is about the tiger seeing the dog. There is no direct information about the tiger seeing the dog. However, we can use the following condition to make an assumption about the tiger's relationship with the dog.\n\n- If something is young then it is red.\n- If something eats the dog and it is red then the dog is young.\n\nWe don't know if the tiger is young, but we do know that the dog eats the bald eagle. However, there is no information about the color of the tiger or the dog.\n\nBut we can use another condition to make an assumption about the tiger's relationship with the dog.\n\n- If something sees the tiger then it needs the bald eagle.\n- The tiger eats the cow.\n\nHowever, this condition doesn't give us any information about the dog. \n\nNow let's analyze the conditions one by one to see if we can derive any information about the tiger seeing the dog.\n\n- If something is green and it eats the cow then it does not see the bald eagle.\n- If something is green and it needs the dog then it needs the bald eagle.\n- We don't know the color of the tiger or the dog.\n- If something sees the tiger then it needs the bald eagle.\n- If something is red then it eats the tiger.\n- If something is red then it eats the bald eagle.\n- If something is young then it is red.\n- If something eats the dog and it is red then the dog is young.\n\nWe know the following:\n\n- The dog eats the bald eagle.\n- The tiger eats the cow.\n\nWe can use the condition:\n\n- If something eats the tiger then the tiger is young.\n\nThis condition implies that the tiger cannot be young because if it were, then something would eat it. \n\nHowever, this condition is not necessary to determine the relationship between the tiger and the dog.\n\nThe condition:\n\n- If something eats the dog and it is red then the dog is young.\n\nDoes not apply here because we do not know if the tiger is red.\n\nHowever, the condition:\n\n- If something sees the tiger then it needs the bald eagle.\n\nDoes not help us determine the relationship between the tiger and the dog.\n\nThe condition:\n\n- If something is green and it needs the dog then it needs the bald eagle.\n\nDoes not apply here because we do not know the color of the tiger.\n\nHowever, the condition:\n\n- If something is green and it eats the cow then it does not see the bald eagle.\n\nDoes not apply here because we do not know the color of the tiger.\n\nThe condition:\n\n- If something is red then it eats the tiger.\n\nDoes not apply here because we do not know the color of the tiger.\n\nThe condition:\n\n- If something is red then it eats the bald eagle.\n\nDoes not apply here because we do not know the color of the tiger.\n\nThe condition:\n\n- If something eats the tiger then the tiger is young.\n\nDoes not apply here because we know that the tiger eats the cow.\n\nThe condition:\n\n- The tiger needs the bald eagle.\n\nDoes not apply here because we do not know why the tiger needs the bald eagle.\n\nThe condition:\n\n- If something sees the bald eagle then it eats the cow.\n\nDoes not apply here because we do not know if the tiger sees the bald eagle.\n\nThe condition:\n\n- The tiger eats the cow.\n\nDoes not apply here because we do not know if the tiger sees the dog.\n\nHowever, the condition:\n\n- The dog eats the bald eagle.\n\nDoes not apply here because we do not know if the tiger sees the dog.\n\nWe know that the tiger eats the cow and the dog eats the bald eagle.\n\nWe can use the condition:\n\n- If something is green and it eats the cow then it does not see the bald eagle.\n\nTo make an assumption about the relationship between the tiger and the dog. \n\nHowever, this condition does not apply here because we do not know the color of the tiger.\n\nWe can use the condition:\n\n- If something is red then it eats the tiger.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know the color of the tiger.\n\nThe condition:\n\n- The tiger eats the cow.\n\nDoes not apply here because we do not know if the tiger sees the dog.\n\nWe can use the condition:\n\n- The dog eats the bald eagle.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know if the tiger sees the dog.\n\nWe can use the condition:\n\n- If something is young then it is red.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know if the tiger is young.\n\nWe can use the condition:\n\n- If something eats the dog and it is red then the dog is young.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know if the tiger is red.\n\nThe condition:\n\n- If something sees the tiger then it needs the bald eagle.\n\nDoes not apply here because we do not know why the tiger needs the bald eagle.\n\nThe condition:\n\n- If something is green and it needs the dog then it needs the bald eagle.\n\nDoes not apply here because we do not know the color of the tiger.\n\nWe can use the condition:\n\n- The dog eats the bald eagle.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know if the tiger sees the dog.\n\nHowever, we can use the condition:\n\n- If something is green and it eats the cow then it does not see the bald eagle.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know the color of the tiger.\n\nWe can use the condition:\n\n- The tiger eats the cow.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know if the tiger sees the dog.\n\nWe can use the condition:\n\n- If something sees the bald eagle then it eats the cow.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know if the tiger sees the bald eagle.\n\nWe can use the condition:\n\n- If something is red then it eats the tiger.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know the color of the tiger.\n\nWe can use the condition:\n\n- If something is red then it eats the bald eagle.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know the color of the tiger.\n\nHowever, we can use the condition:\n\n- If something eats the tiger then the tiger is young.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we know that the tiger eats the cow.\n\nWe can use the condition:\n\n- If something is green and it eats the cow then it does not see the bald eagle.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know the color of the tiger.\n\nWe can use the condition:\n\n- If something is green and it needs the dog then it needs the bald eagle.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know the color of the tiger.\n\nWe can use the condition:\n\n- If something sees the tiger then it needs the bald eagle.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know why the tiger needs the bald eagle.\n\nWe can use the condition:\n\n- The tiger needs the bald eagle.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know why the tiger needs the bald eagle.\n\nWe can use the condition:\n\n- If something sees the bald eagle then it eats the cow.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know if the tiger sees the bald eagle.\n\nWe can use the condition:\n\n- If something is red then it eats the tiger.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know the color of the tiger.\n\nWe can use the condition:\n\n- If something is red then it eats the bald eagle.\n\nTo make an assumption about the relationship between the tiger and the dog.\n\nHowever, this condition does not apply here because we do not know the color of the tiger.\n\nHowever, we can use the condition:\n\n- The dog eats the bald eagle.\n\nTo make an assumption about the",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger does not see the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger eats the cow. (Given)\n2. The cow is nice. (Given)\n3. The cow sees the bald eagle. (Given)\n4. The dog eats the bald eagle. (Given)\n5. The tiger eats the cow. (Given)\n6. If something is green and it eats the cow then it does not see the bald eagle. (Given)\n   Since the tiger eats the cow, but there is no information about the tiger being green, we cannot conclude anything about the tiger seeing or not seeing the bald eagle.\n7. If something eats the tiger then the tiger is young. (Given)\n   There is no information that anything eats the tiger, so we cannot determine whether the tiger is young or not.\n8. If something is red then it eats the tiger. (Given)\n   There is no information about anything being red, so we cannot conclude anything about the tiger being eaten.\n9. If something sees the bald eagle then it eats the cow. (Given)\n   Since the cow sees the bald eagle, the cow eats the cow. This is a contradiction, as an animal cannot eat itself.\n   However, this information does not affect our analysis of the tiger and the dog.\n10. If something is green and it needs the dog then it needs the bald eagle. (Given)\n    There is no information about anything being green, so we cannot conclude anything about the tiger needing the dog or the bald eagle.\n11. If something sees the tiger then it needs the bald eagle. (Given)\n    There is no information about anything seeing the tiger, so we cannot determine whether anything needs the bald eagle.\n12. If something is red then it eats the bald eagle. (Given)\n    There is no information about anything being red, so we cannot conclude anything about the bald eagle being eaten.\n13. If something is young then it is red. (Given)\n    Since there is no information about the tiger being young, we cannot conclude anything about the tiger being red.\n14. If something eats the dog and it is red then the dog is young. (Given)\n    There is no information about anything eating the dog and being red, so we cannot determine whether the dog is young.\n\nNow, let's analyze the statement \"The tiger does not see the dog.\"\n\nThere is no information that directly states whether the tiger sees or does not see the dog. However, we can conclude that the tiger sees the cow (from statement 3), and the dog eats the bald eagle (from statement 4).\n\nFrom statement 9, if something sees the bald eagle then it eats the cow. However, the tiger does not eat the cow; the tiger eats the cow from statement 1. \n\nThis does not provide information about the tiger seeing or not seeing the dog. However, since there is no information that directly contradicts the statement \"The tiger does not see the dog,\" we cannot conclude that the statement is false.\n\nTherefore, the statement \"The tiger does not see the dog\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the tiger sees the dog or not, we need to analyze the given statements and their implications.\n\n1. The bald eagle eats the cow.\n2. The bald eagle is young.\n3. The cow is nice.\n4. The cow sees the bald eagle.\n5. The dog eats the bald eagle.\n6. The tiger eats the cow.\n7. The tiger needs the bald eagle.\n\nFrom statement 4, we know that the cow sees the bald eagle. However, this does not directly tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 5 and statement 7 to form the following implication:\nIf the dog eats the bald eagle, then the tiger needs the bald eagle.\nThis can be rewritten as:\nIf the tiger does not need the bald eagle, then the dog does not eat the bald eagle.\n\nNow, we can use statement 6 to form the following implication:\nIf the tiger eats the cow, then the tiger does not see the bald eagle.\n\nFrom statement 6 and statement 2, we can form the following implication:\nIf the tiger is not young, then the tiger does not eat the cow.\n\nNow, we can use statement 7 and statement 2 to form the following implication:\nIf the tiger needs the bald eagle, then the tiger is not young.\n\nThis creates a contradiction with the implication formed in the previous step. However, we cannot conclude that the tiger is young. We can only conclude that the tiger is not young if it needs the bald eagle.\n\nHowever, we can use statement 7 and statement 1 to form the following implication:\nIf the tiger eats the cow, then the tiger needs the bald eagle.\n\nFrom statement 1 and statement 7, we can form the following implication:\nIf the bald eagle eats the cow, then the tiger needs the bald eagle.\n\nNow, we can use statement 5 and statement 4 to form the following implication:\nIf the dog eats the bald eagle and the cow sees the bald eagle, then the tiger does not need the bald eagle.\n\nHowever, we can use statement 1 to form the following implication:\nIf the bald eagle eats the cow, then the cow does not see the bald eagle.\n\nFrom statement 4, we know that the cow sees the bald eagle. Therefore, the bald eagle does not eat the cow.\n\nNow, we can use statement 7 and statement 6 to form the following implication:\nIf the tiger needs the bald eagle, then the tiger does not eat the cow.\n\nWe can use statement 7 and statement 2 to form the following implication:\nIf the tiger is young, then the tiger needs the bald eagle.\n\nFrom statement 5, we know that the dog eats the bald eagle. However, this does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 7 and statement 5 to form the following implication:\nIf the tiger needs the bald eagle, then the dog eats the bald eagle.\n\nThis can be rewritten as:\nIf the dog does not eat the bald eagle, then the tiger does not need the bald eagle.\n\nHowever, we can use statement 8 to form the following implication:\nIf something is green and it eats the cow, then it does not see the bald eagle.\n\nThis statement does not directly tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 9 to form the following implication:\nIf something eats the tiger, then the tiger is young.\n\nThis statement does not directly tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 10 to form the following implication:\nIf something is red, then it eats the tiger.\n\nThis statement does not directly tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 11 to form the following implication:\nIf something sees the bald eagle, then it eats the cow.\n\nThis statement does not directly tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 12 to form the following implication:\nIf something is green and it needs the dog, then it needs the bald eagle.\n\nThis statement does not directly tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 13 to form the following implication:\nIf something sees the tiger, then it needs the bald eagle.\n\nThis statement does not directly tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 14 to form the following implication:\nIf something is red, then it eats the bald eagle.\n\nThis statement does not directly tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 15 to form the following implication:\nIf something is young, then it is red.\n\nThis statement does not directly tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 16 to form the following implication:\nIf something eats the dog and it is red, then the dog is young.\n\nThis statement does not directly tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 5 and statement 2 to form the following implication:\nIf the dog eats the bald eagle and the dog is red, then the dog is young.\n\nFrom statement 5, we know that the dog eats the bald eagle. However, this does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 5 and statement 4 to form the following implication:\nIf the dog eats the bald eagle and the cow sees the bald eagle, then the tiger does not see the bald eagle.\n\nHowever, we can use statement 1 to form the following implication:\nIf the bald eagle eats the cow, then the cow does not see the bald eagle.\n\nFrom statement 4, we know that the cow sees the bald eagle. Therefore, the bald eagle does not eat the cow.\n\nFrom statement 4, we know that the cow sees the bald eagle. However, this does not directly tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 6 to form the following implication:\nIf the tiger eats the cow, then the tiger does not see the bald eagle.\n\nThis implication does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 7 to form the following implication:\nIf the tiger needs the bald eagle, then the tiger eats the cow.\n\nThis implication does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 7 and statement 6 to form the following implication:\nIf the tiger needs the bald eagle, then the tiger does not see the bald eagle.\n\nThis implication does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 7 and statement 2 to form the following implication:\nIf the tiger is young, then the tiger needs the bald eagle.\n\nThis implication does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 7 and statement 5 to form the following implication:\nIf the tiger needs the bald eagle, then the dog eats the bald eagle.\n\nThis implication does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 8 and statement 6 to form the following implication:\nIf something is green and it eats the cow, then it does not see the bald eagle.\n\nThis implication does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 9 and statement 5 to form the following implication:\nIf something eats the tiger, then the tiger is young.\n\nThis implication does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 10 and statement 5 to form the following implication:\nIf something is red, then it eats the tiger.\n\nThis implication does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 11 and statement 5 to form the following implication:\nIf something sees the bald eagle, then it eats the cow.\n\nThis implication does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 12 and statement 5 to form the following implication:\nIf something is green and it needs the dog, then it needs the bald eagle.\n\nThis implication does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 13 and statement 5 to form the following implication:\nIf something sees the tiger, then it needs the bald eagle.\n\nThis implication does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 14 and statement 5 to form the following implication:\nIf something is red, then it eats the bald eagle.\n\nThis implication does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 15 and statement 5 to form the following implication:\nIf something is young, then it is red.\n\nThis implication does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 16 and statement 5 to form the following implication:\nIf something eats the dog and it is red, then the dog is young.\n\nThis implication does not tell us about the relationship between the tiger and the dog.\n\nHowever, we can use statement 5 and statement 4 to form the following implication:\nIf the dog eats the bald eagle and the cow sees the bald eagle, then the tiger does not see the bald eagle.\n\nHowever, we can use statement 1 to form the following implication:\nIf the bald eagle eats the cow, then the cow does not see the bald eagle.\n\nFrom statement 4, we know that the cow sees the bald eagle. Therefore, the bald eagle does not eat the cow.\n\nHowever, we can use statement 5 and statement 4 to form the following implication:\nIf the dog eats the bald eagle and the cow sees the bald eagle, then the tiger does",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger does not see the dog\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the given information, we have the following statements:\n\n1. The tiger eats the cow.\n2. If something eats the tiger then the tiger is young.\n3. If something sees the tiger then it needs the bald eagle.\n4. The dog eats the bald eagle.\n\nLet's try to deduce the relationship between the tiger and the dog based on the given information.\n\nStatement 1: The tiger eats the cow.\nThis statement does not provide any information about the tiger seeing the dog.\n\nStatement 2: If something eats the tiger then the tiger is young.\nThis statement implies that the tiger is not young, as it is the one eating the cow (not being eaten by something else).\n\nStatement 3: If something sees the tiger then it needs the bald eagle.\nThis statement does not provide any information about the tiger seeing the dog.\n\nStatement 4: The dog eats the bald eagle.\nThis statement does not provide any information about the tiger seeing the dog.\n\nHowever, we can use the given information to make some inferences. From statement 2, we know that the tiger is not young. From statement 5 (which is not listed but is \"If something is young then it is red\" ) we know that the tiger is not red (since it is not young).\n\nNow, let's consider the statement \"The tiger sees the dog\". If the tiger sees the dog, then it would need the bald eagle (from statement 3). However, this would create a problem, as the dog eats the bald eagle (statement 4), and we don't have any information that would allow us to conclude that the tiger needs the bald eagle.\n\nBased on this analysis, we cannot conclude that the tiger sees the dog or does not see the dog. The relationship between the tiger and the dog is unknown.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step and use logical deductions.\n\n1. The bald eagle eats the cow. (Given)\n   - The bald eagle is young. (Given)\n   - The cow is nice. (Given)\n   - The cow sees the bald eagle. (Given)\n   - The dog eats the bald eagle. (Given)\n   - The tiger eats the cow. (Given)\n   - The tiger needs the bald eagle. (Given)\n\n2. If something is green and it eats the cow then it does not see the bald eagle. (Rule 1)\n   - Since the cow eats the bald eagle (Rule 1 is not applicable here), we cannot conclude anything from this rule.\n\n3. If something eats the tiger then the tiger is young. (Rule 2)\n   - There is no information that says something eats the tiger. So, we cannot conclude anything from this rule.\n\n4. If something is red then it eats the tiger. (Rule 3)\n   - There is no information that says something is red.\n\n5. If something sees the bald eagle then it eats the cow. (Rule 4)\n   - The cow sees the bald eagle (Given), so the cow eats the bald eagle (Rule 4). However, this is already given.\n\n6. If something is green and it needs the dog then it needs the bald eagle. (Rule 5)\n   - There is no information that says something is green and needs the dog.\n\n7. If something sees the tiger then it needs the bald eagle. (Rule 6)\n   - The cow sees the tiger (Given), so the cow needs the bald eagle (Rule 6). However, this is already given.\n\n8. If something is red then it eats the bald eagle. (Rule 7)\n   - There is no information that says something is red.\n\n9. If something is young then it is red. (Rule 8)\n   - The bald eagle is young (Given), so the bald eagle is red (Rule 8).\n\n10. If something eats the dog and it is red then the dog is young. (Rule 9)\n    - The dog eats the bald eagle (Given), and the bald eagle is red (Rule 8 and Rule 9), so the dog is young (Rule 9).\n\nNow, we analyze the statement: The tiger does not see the dog.\n\nFrom the given information, we know that the tiger eats the cow. We do not have any information about the tiger seeing the dog. However, we can use Rule 7 to infer that if something sees the tiger, it needs the bald eagle. \n\nThere is no information that says something sees the tiger and also sees the dog. However, there is no rule that says something that sees the tiger cannot see the dog. Therefore, we cannot conclude that the tiger does not see the dog.\n\nHowever, we can use Rule 2 to infer that if something eats the tiger, the tiger is young. Since the dog eats the bald eagle and the bald eagle is red (Rule 8 and Rule 9), the dog is young (Rule 9). But there is no rule that says the dog cannot see the tiger. \n\nHowever, there is a rule that says the tiger eats the cow and the tiger needs the bald eagle. However, there is no rule that says the tiger does not see the dog. So we can conclude that it is unknown.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and find the relevant statements that can help us determine whether the tiger sees the dog.\n\n1. The tiger eats the cow. (Statement 1)\n2. The cow is nice. (Statement 2)\n3. The cow sees the bald eagle. (Statement 3)\n4. The dog eats the bald eagle. (Statement 4)\n5. The tiger eats the cow. (Statement 1)\n6. The tiger needs the bald eagle. (Statement 5)\n7. If something is green and it eats the cow then it does not see the bald eagle. (Statement 6)\n8. If something eats the tiger then the tiger is young. (Statement 7)\n9. If something is red then it eats the tiger. (Statement 8)\n10. If something sees the bald eagle then it eats the cow. (Statement 9)\n11. If something is green and it needs the dog then it needs the bald eagle. (Statement 10)\n12. If something sees the tiger then it needs the bald eagle. (Statement 11)\n13. If something is red then it eats the bald eagle. (Statement 12)\n14. If something is young then it is red. (Statement 13)\n15. If something eats the dog and it is red then the dog is young. (Statement 14)\n\nFrom statement 10, we can conclude that since the cow sees the bald eagle, it eats the cow.\n\nHowever, from statement 3, we know that the cow sees the bald eagle, not the dog. This doesn't give us any information about whether the tiger sees the dog.\n\nFrom statement 7, we can conclude that since the tiger eats the cow and it's not green, it sees the bald eagle.\n\nHowever, we still don't have any information about whether the tiger sees the dog.\n\nFrom statement 4, we know that the dog eats the bald eagle, and from statement 13, we know that since the dog is red, it is young.\n\nNow, from statement 14, we can conclude that since the dog is young and it eats the bald eagle, the bald eagle is not young.\n\nHowever, we still don't have any information about whether the tiger sees the dog.\n\nNow, from statement 8, we can conclude that since the tiger eats the dog, it is red.\n\nFrom statement 13, we can conclude that since the tiger is red, it is young.\n\nNow, from statement 7, we can conclude that since the tiger eats the dog and it is young, the tiger is young.\n\nWe still don't know whether the tiger sees the dog or not.\n\nSince we don't have any information that directly tells us whether the tiger sees the dog, we can't conclude anything for sure.\n\nTherefore, the statement \"The tiger does not see the dog\" is unknown.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger does not see the dog\" is true, false, or unknown, we need to break down the given information and apply it step by step.\n\n1. The tiger eats the cow. (This is given information)\n\n2. The cow is nice. (This is given information)\n   We don't need this for now, but it could be useful later.\n\n3. The cow sees the bald eagle. (This is given information)\n\n4. The dog eats the bald eagle. (This is given information)\n\n5. The tiger eats the cow. (From step 1)\n\n6. The tiger needs the bald eagle. (This is given information)\n\nNow, let's apply the given rules:\n\n- If something is green and it eats the cow then it does not see the bald eagle. (No green information given, so we can ignore this for now.)\n\n- If something eats the tiger then the tiger is young. (No information about something eating the tiger, so we can ignore this for now.)\n\n- If something is red then it eats the tiger. (No red information given, so we can ignore this for now.)\n\n- If something sees the bald eagle then it eats the cow. (The cow sees the bald eagle, so the cow eats the cow. However, this does not help us with the tiger and the dog.)\n\n- If something is green and it needs the dog then it needs the bald eagle. (No green information given, so we can ignore this for now.)\n\n- If something sees the tiger then it needs the bald eagle. (We don't know if the tiger sees the dog, so we cannot conclude this yet.)\n\n- If something is red then it eats the bald eagle. (No red information given, so we can ignore this for now.)\n\n- If something is young then it is red. (No young information given, so we can ignore this for now.)\n\n- If something eats the dog and it is red then the dog is young. (No red information about something eating the dog, so we can ignore this for now.)\n\nNow, let's find a connection between the tiger and the dog using the given information. We know the tiger eats the cow, and the cow sees the bald eagle. We also know the dog eats the bald eagle.\n\nIf the tiger sees the dog, then it needs the bald eagle (rule 6). But if it sees the dog, it might need the bald eagle, but it doesn't necessarily mean it needs the bald eagle. However, we cannot conclude that the tiger does not see the dog based on this.\n\nHowever, we have no information that the tiger sees the dog, or the tiger does not see the dog. Therefore, we cannot conclude the statement \"The tiger does not see the dog\" as true or false. \n\nThe answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, cow)",
+          "z3_formula": "eats_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, cow) -> Not(sees(X, bald_eagle))",
+          "z3_formula": "Implies(And(green_X, eats_X_cow), Not(sees_X_bald_eagle))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> young(tiger)",
+          "z3_formula": "Implies(eats_X_tiger, young_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, tiger)",
+          "z3_formula": "Implies(red_X, eats_X_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(eats_X_cow, sees_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(green_X, needs_X_dog), needs_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_tiger, needs_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(red_X, eats_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_X, red_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & red(X) -> young(dog)",
+          "z3_formula": "Implies(And(eats_X_dog, red_X), young_dog)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, eagle)",
+          "z3_formula": "sees_cow_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_cow_eagle, eats_cow_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cow, eagle)",
+          "z3_formula": "eats_cow_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(eagle)",
+          "z3_formula": "young_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_eagle, red_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(eagle)",
+          "z3_formula": "red_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, eagle)",
+          "z3_formula": "eats_dog_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(eagle)",
+          "z3_formula": "red_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, tiger)",
+          "z3_formula": "Implies(red_eagle, eats_dog_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, tiger)",
+          "z3_formula": "eats_dog_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, tiger)",
+          "z3_formula": "eats_dog_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> young(X)",
+          "z3_formula": "Implies(eats_dog_tiger, young_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_tiger, red_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not young(tiger)",
+          "z3_formula": "Not(young_tiger) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "old(tiger)",
+          "z3_formula": "old_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(tiger, dog)",
+          "z3_formula": "Not(sees_tiger_dog) == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, eagle)",
+          "z3_formula": "sees_tiger_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> needs(X, eagle)",
+          "z3_formula": "Implies(sees_tiger_eagle, needs_tiger_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, eagle)",
+          "z3_formula": "needs_tiger_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, cow) -> not sees(X, eagle)",
+          "z3_formula": "Implies(And(green_tiger, eats_tiger_cow), Not(sees_tiger_eagle))",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(tiger, dog)",
+          "z3_formula": "Not(sees_tiger_dog) == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, cow) -> Not(sees(X, bald_eagle))",
+          "z3_formula": "Implies(And(green_X, eats_X_cow), Not(sees_X_bald_eagle))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> young(X)",
+          "z3_formula": "Implies(eats_X_tiger, young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, tiger)",
+          "z3_formula": "Implies(red_X, eats_X_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_X_bald_eagle, eats_X_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(green_X, needs_X_dog), needs_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_tiger, needs_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(red_X, eats_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_X, red_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(eats_X_dog, red_X), young_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, cow)",
+          "z3_formula": "eats_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, cow) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(green_X, eats_X_cow), Not(sees_X_bald_eagle))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> young(X)",
+          "z3_formula": "Implies(eats_X_tiger, young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, tiger)",
+          "z3_formula": "Implies(red_X, eats_X_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_X_bald_eagle, eats_X_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(green_X, needs_X_dog), needs_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_tiger, needs_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(red_X, eats_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_X, red_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(eats_X_dog, red_X), young_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(tiger, dog)",
+          "z3_formula": "Not(sees_tiger_dog) == True",
+          "source_step": 17
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_X_bald_eagle, eats_X_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(eats_X_bald_eagle, needs_X_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_X, red_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(eats_X_dog, red_X), young_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, cow) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(green_X, eats_X_cow), Not(sees_X_bald_eagle))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(green_X, needs_X_dog), needs_X_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_tiger, needs_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, tiger)",
+          "z3_formula": "Implies(red_X, eats_X_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(red_X, eats_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> young(X)",
+          "z3_formula": "Implies(eats_X_tiger, young_X)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, eagle)",
+          "z3_formula": "sees_cow_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, eagle)",
+          "z3_formula": "eats_dog_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, cow) -> Not(sees(X, eagle))",
+          "z3_formula": "Implies(And(green_tiger_cow, eats_tiger_cow), Not(sees_tiger_eagle))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> young(X)",
+          "z3_formula": "Implies(eats_X_tiger, young_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, tiger)",
+          "z3_formula": "Implies(red_X, eats_X_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_X_eagle, eats_X_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> needs(X, eagle)",
+          "z3_formula": "Implies(And(green_X_dog, needs_X_dog), needs_X_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> needs(X, eagle)",
+          "z3_formula": "Implies(sees_X_tiger, needs_X_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, eagle)",
+          "z3_formula": "Implies(red_X, eats_X_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_X, red_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(eats_X_dog, red_X), young_X)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, cow)",
+          "z3_formula": "eats_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "Not(needs(tiger, bald_eagle)) -> Not(eats(dog, bald_eagle))",
+          "z3_formula": "Implies(Not(needs_tiger_bald_eagle), Not(eats_dog_bald_eagle))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(tiger, cow) -> Not(sees(tiger, bald_eagle))",
+          "z3_formula": "Implies(eats_tiger_cow, Not(sees_tiger_bald_eagle))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "Not(young(tiger)) -> Not(eats(tiger, cow))",
+          "z3_formula": "Implies(Not(young_tiger), Not(eats_tiger_cow))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(tiger) -> needs(tiger, bald_eagle)",
+          "z3_formula": "Implies(young_tiger, needs_tiger_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(tiger, bald_eagle) -> eats(tiger, cow)",
+          "z3_formula": "Implies(needs_tiger_bald_eagle, eats_tiger_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(tiger, bald_eagle) -> Not(sees(tiger, bald_eagle))",
+          "z3_formula": "Implies(needs_tiger_bald_eagle, Not(sees_tiger_bald_eagle))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(tiger) -> needs(tiger, bald_eagle)",
+          "z3_formula": "Implies(young_tiger, needs_tiger_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(tiger, bald_eagle) -> eats(dog, bald_eagle)",
+          "z3_formula": "Implies(needs_tiger_bald_eagle, eats_dog_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, cow) -> Not(sees(X, bald_eagle))",
+          "z3_formula": "Implies(And(green_X, eats_X_cow), Not(sees_X_bald_eagle))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> young(X)",
+          "z3_formula": "Implies(eats_X_tiger, young_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, tiger)",
+          "z3_formula": "Implies(red_X, eats_X_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_X_bald_eagle, eats_X_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(green_X, needs_X_dog), needs_X_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_tiger, needs_X_bald_eagle)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(red_X, eats_X_bald_eagle)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_X, red_X)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(eats_X_dog, red_X), young_X)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "eats(dog, bald_eagle) & sees(cow, bald_eagle) -> Not(sees(tiger, bald_eagle))",
+          "z3_formula": "Implies(And(eats_dog_bald_eagle, sees_cow_bald_eagle), Not(sees_tiger_bald_eagle))",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "eats(bald_eagle, cow) -> Not(sees(cow, bald_eagle))",
+          "z3_formula": "Implies(eats_bald_eagle_cow, Not(sees_cow_bald_eagle))",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "Not(sees(tiger, bald_eagle))",
+          "z3_formula": "Not(sees_tiger_bald_eagle)",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> young(X)",
+          "z3_formula": "Implies(eats_cow_tiger, young_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not young(tiger)",
+          "z3_formula": "Not(young_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_tiger, red_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not red(tiger)",
+          "z3_formula": "Not(red_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> needs(X, eagle)",
+          "z3_formula": "Implies(sees_tiger_dog, needs_tiger_dog, eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, eagle)",
+          "z3_formula": "eats_dog_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(tiger, dog)",
+          "z3_formula": "Not(sees_tiger_dog)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, cow)",
+          "z3_formula": "eats_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, eagle)",
+          "z3_formula": "sees_cow_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, eagle)",
+          "z3_formula": "eats_dog_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, eagle)",
+          "z3_formula": "needs_tiger_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, cow) -> Not(sees(X, eagle))",
+          "z3_formula": "Implies(And(green_X, eats_X_cow), Not(sees_X_eagle))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(Y, tiger) -> young(tiger)",
+          "z3_formula": "Implies(eats_tiger_Y, young_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, tiger)",
+          "z3_formula": "Implies(red_X, eats_X_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_X_eagle, eats_X_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> needs(X, eagle)",
+          "z3_formula": "Implies(And(green_X, needs_X_dog), needs_X_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> needs(X, eagle)",
+          "z3_formula": "Implies(sees_X_tiger, needs_X_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, eagle)",
+          "z3_formula": "Implies(red_X, eats_X_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_X, red_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & red(X) -> young(dog)",
+          "z3_formula": "Implies(And(eats_X_dog, red_X), young_dog)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(tiger, cow)",
+          "z3_formula": "eats_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, eagle)",
+          "z3_formula": "sees_cow_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, eagle)",
+          "z3_formula": "eats_dog_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, eagle)",
+          "z3_formula": "needs_tiger_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, cow) -> not sees(X, eagle)",
+          "z3_formula": "Implies(And(green_X, eats_X_cow), Not(sees_X_eagle))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, tiger) -> young(X)",
+          "z3_formula": "Implies(eats_X_tiger, young_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, tiger)",
+          "z3_formula": "Implies(red_X, eats_X_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_X_eagle, eats_X_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> needs(X, eagle)",
+          "z3_formula": "Implies(And(green_X, needs_X_dog), needs_X_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> needs(X, eagle)",
+          "z3_formula": "Implies(sees_X_tiger, needs_X_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> eats(X, eagle)",
+          "z3_formula": "Implies(red_X, eats_X_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_X, red_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(eats_X_dog, red_X), young_X)",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 172,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 62
+    },
+    "maxsat_stats": {
+      "satisfied": 59,
+      "excluded": 3,
+      "total_weight": 168,
+      "solve_time_ms": 1.9435398280620575
+    },
+    "timing": {
+      "trace_gen_s": 25.005,
+      "extraction_s": 36.62,
+      "dedup_s": 2.195,
+      "maxsat_s": 0.005,
+      "total_s": 63.826
+    }
+  }
+}

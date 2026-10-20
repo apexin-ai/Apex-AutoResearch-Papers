@@ -1,0 +1,639 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{url}
+\usepackage{hyperref}
+
+\newcommand{\effk}{\text{Eff-K}}
+\newcommand{\sica}{\textsc{Sica}}
+\newcommand{\scm}{\textsc{SC}}
+\newcommand{\fleiss}{Fleiss' $\kappa$}
+
+\title{Beyond Self-Consistency: How Trace Independence\\Limits Symbolic Consensus in LLM Reasoning}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Self-consistency (SC) improves Large Language Model (LLM) reasoning by sampling multiple chain-of-thought traces and selecting the majority answer. Recent work proposes symbolic augmentation: extracting first-order logic (FOL) constraints from traces and aggregating them via MAX-SAT solvers. We present a systematic evaluation of Symbolic Invariant Consensus Aggregation (SICA) across 5 model families, 6 datasets, and over 1,300 problems. We find that SICA produces a real but fragile effect: statistically significant gains (+4.9 percentage points, $p$=0.013) appear only under narrow conditions (Mistral-7B, FOLIO, $T$=0.7, $K$=12), while all other configurations yield zero or negative gains. Through the lens of the Condorcet Jury Theorem, we show that same-model traces are highly correlated (Fleiss' $\kappa$ = 0.21--0.82), reducing an ensemble of $K$=12 nominal traces to an effective size of 1.2--3.6 independent voters. Oracle constraints confirm the aggregation mechanism works (+14.2pp), localizing the failure to self-extraction. Nine targeted remediation strategies, spanning prompting, architecture, diversity, and filtering, all fail to close this gap. We propose a dual bottleneck framework characterizing the joint requirements on trace independence and base accuracy, and provide a zero-cost diagnostic (C0+SC) for predicting when symbolic aggregation will help.
+\end{abstract}
+
+\section{Introduction}
+
+Sampling multiple reasoning traces and selecting the majority answer, known as self-consistency \cite{wang2023selfconsistency}, is one of the most effective test-time strategies for improving LLM reasoning. The approach is simple: generate $K$ chain-of-thought traces at nonzero temperature, extract the final answer from each, and take the plurality vote. SC has become a standard component in reasoning pipelines, with gains of 5--15 percentage points on mathematical and logical benchmarks.
+
+A natural extension is to go beyond answer-level voting by extracting richer symbolic structure from each trace and aggregating at the constraint level. Systems like Logic-LM \cite{pan2023logiclm}, LINC \cite{olausson2023linc}, and more recent work such as DyLoS and Aristotle have explored various forms of neuro-symbolic integration where FOL formulas extracted from natural language reasoning are verified or aggregated using formal solvers. The appeal is clear: symbolic constraints should capture fine-grained reasoning dependencies that majority voting discards.
+
+We investigate whether this appeal translates to empirical gains in the specific setting of \emph{same-model self-extraction}, where a single LLM both generates the reasoning traces and provides the FOL constraints. This is the most practical deployment scenario, requiring no external verifier or separately trained extractor, but it introduces a critical confound: the constraints inherit the same biases as the traces they are extracted from.
+
+Our analysis reveals a fundamental limitation rooted in the Condorcet Jury Theorem \cite{condorcet1785}. The theorem guarantees that majority voting improves with more voters, but only if voters are independent and each is more likely correct than not. Same-model traces violate both conditions in regime-dependent ways. We quantify trace independence using Fleiss' $\kappa$ and derive an effective ensemble size ($\effk = K / (1 + (K-1)\kappa)$) that captures the true information content of $K$ correlated traces. Across our experiments, $\effk$ ranges from 1.18 to 3.63 for nominal $K$=12, meaning most of the sampling budget is wasted on redundant traces.
+
+Through systematic experiments across five model families (Qwen-7B/14B/72B, Qwen3-14B, Mistral-7B, LLaMA-8B, DeepSeek-R1-7B, QwQ-32B), six benchmarks (FOLIO, ProofWriter, StrategyQA, ARC-Challenge, GSM8K, and a combined diagnostic set D012), and nine remediation strategies, we establish a \emph{dual bottleneck} framework: SICA gains require simultaneously sufficient trace independence ($\effk > 1.5$) and sufficient base accuracy (SC between 45\% and 60\%). Outside this narrow Goldilocks zone, symbolic aggregation either mirrors the model's own biases (high SC) or amplifies noise from incorrect traces (low SC).
+
+Our contributions are:
+\begin{itemize}
+\item A Condorcet-grounded analysis of trace independence in self-consistency, showing that $\effk \ll K$ due to high inter-trace correlation, with cross-model quantification via Fleiss' $\kappa$.
+\item A dual bottleneck framework (independence $\times$ quality) that predicts SICA effectiveness across 12 experimental conditions with 11/12 directional accuracy ($R^2 = 0.72$).
+\item Empirical evidence that the bottleneck is structural: nine remediation strategies targeting independence, extraction quality, and diversity all fail to close the oracle gap.
+\item A K-sensitivity analysis revealing an inverted-U relationship between ensemble size and SICA gains, with the peak determined by the tradeoff between effective independence and confirmation bias accumulation.
+\item A zero-cost deployment diagnostic (C0+SC) that predicts whether SICA will help before running the expensive extraction pipeline.
+\end{itemize}
+
+\section{Related Work}
+
+\paragraph{Self-Consistency and Extensions.}
+Wang et al. \cite{wang2023selfconsistency} introduced self-consistency as a decoding strategy that samples diverse reasoning paths and marginalizes over them via majority voting. Subsequent work has explored extensions: Universal Self-Consistency \cite{chen2023usc} generalizes to free-form answers, while Taubenfeld et al. \cite{taubenfeld2025weighted} investigate weighted voting schemes. Li et al. \cite{li2023diverse} propose DiVeRSe, which combines diverse prompting with verification. Loo et al. \cite{loo2025scaling} show that SC gains plateau with increasing $K$, motivating the search for richer aggregation methods. Our work explains this plateau through the independence lens: additional traces beyond the effective ensemble size provide diminishing returns.
+
+\paragraph{Neuro-Symbolic Reasoning.}
+Several systems combine LLM reasoning with formal logic. Logic-LM \cite{pan2023logiclm} translates problems to FOL and queries a solver; LINC \cite{olausson2023linc} uses in-context learning for FOL generation. More recent approaches include DyLoS, which trains domain-specific extractors, and Aristotle, which uses multi-step symbolic verification. FoVer \cite{fover2025} employs trained verifiers on formal representations. These systems differ from our setting in a crucial way: they use external verifiers or separately trained components. We focus specifically on same-model self-extraction, the simplest and most accessible deployment, and characterize why it fails.
+
+\paragraph{Condorcet Jury Theorem and LLM Ensembles.}
+The Condorcet Jury Theorem \cite{condorcet1785,austensmith1996} establishes conditions under which majority voting aggregates information optimally. Recent work has begun applying this framework to LLM ensembles: notably, \cite{llmcjt2024} examine independence violations in cross-model sentiment analysis ensembles. Our work differs in two key dimensions: we analyze \emph{within-model} trace independence (not cross-model), and we connect the independence quantification directly to the failure mode of symbolic constraint aggregation. The Fleiss' $\kappa$ to Effective-K mapping provides a practical tool absent from prior analyses.
+
+\paragraph{Test-Time Compute and Verification.}
+The test-time compute paradigm \cite{snell2025scaling} allocates additional inference budget for improved accuracy. Outcome reward models (ORM; \cite{cobbe2021gsm8k}) and process reward models (PRM; \cite{lightman2023prm}) score candidate solutions, while debate frameworks \cite{liang2023debate,du2023debate} use multi-agent interaction. Our analysis complements this line: we show that within the self-extraction paradigm, the bottleneck is not compute budget but trace independence.
+
+\section{Method}
+
+\subsection{Self-Consistency Baseline}
+
+Given a question $q$, self-consistency generates $K$ reasoning traces $\{t_1, \ldots, t_K\}$ by sampling from an LLM at temperature $T > 0$. Each trace yields an answer $a_i = \text{extract}(t_i)$, and the final prediction is the plurality vote: $\hat{a}_{\text{SC}} = \arg\max_a \sum_{i=1}^{K} \mathbf{1}[a_i = a]$.
+
+\subsection{Symbolic Invariant Consensus Aggregation}
+
+SICA extends SC by extracting first-order logic constraints from each trace and aggregating them via weighted MAX-SAT. The pipeline has three stages:
+
+\paragraph{Constraint Extraction.} For each trace $t_i$, a prompted LLM call extracts a set of FOL formulas $\mathcal{C}_i = \{c_{i,1}, \ldots, c_{i,m_i}\}$ that represent logical relationships stated or implied in the reasoning. Each constraint $c_{i,j}$ is a quantifier-free FOL formula over propositions corresponding to candidate answers.
+
+\paragraph{Constraint Aggregation.} All constraints across traces are pooled: $\mathcal{C} = \bigcup_i \mathcal{C}_i$. Each constraint receives a weight proportional to the number of traces from which it was independently extracted (or a unit weight if unique). The aggregation is formulated as a weighted partial MAX-SAT problem: find the truth assignment over candidate-answer propositions that maximizes the total weight of satisfied constraints.
+
+\paragraph{Answer Selection.} Each candidate answer $a$ is scored by fixing its corresponding proposition to true and computing the MAX-SAT objective. The SICA prediction is $\hat{a}_{\text{SICA}} = \arg\max_a \text{MAX-SAT}(\mathcal{C} \mid a)$.
+
+\subsection{Condorcet Independence Framework}
+\label{sec:condorcet}
+
+The Condorcet Jury Theorem states that if $K$ independent voters each have probability $p > 0.5$ of being correct, the majority vote converges to certainty as $K \to \infty$. Two conditions must hold: (1) voter independence, and (2) individual competence ($p > 0.5$).
+
+We quantify the violation of condition (1) using Fleiss' $\kappa$, which measures inter-rater agreement beyond chance for $K$ raters and $n$ items. For $K$ traces on $n$ questions with $C$ answer categories:
+\begin{equation}
+\kappa = \frac{\bar{P} - \bar{P}_e}{1 - \bar{P}_e}
+\end{equation}
+where $\bar{P}$ is the mean observed agreement and $\bar{P}_e$ is the expected agreement under independence.
+
+We define the \emph{effective ensemble size} as:
+\begin{equation}
+\effk = \frac{K}{1 + (K-1)\kappa}
+\end{equation}
+This formula, derived from the effective sample size in cluster sampling with intra-cluster correlation $\kappa$, captures the number of truly independent pieces of information in $K$ correlated traces. When $\kappa = 0$ (full independence), $\effk = K$; when $\kappa = 1$ (perfect agreement), $\effk = 1$.
+
+\subsection{Dual Bottleneck Framework}
+
+We propose that SICA effectiveness requires jointly satisfying two conditions:
+
+\begin{enumerate}
+\item \textbf{Independence condition}: $\effk > \tau_I$ (we empirically find $\tau_I \approx 1.5$). Below this threshold, traces provide too few independent perspectives for constraint aggregation to differ from voting.
+\item \textbf{Quality condition}: SC accuracy falls in a Goldilocks zone, approximately $45\% < \text{SC} < 60\%$. Above 60\%, constraints mirror the model's existing (correct) biases (confirmation bias). Below 45\%, constraints are predominantly noise from incorrect reasoning.
+\end{enumerate}
+
+This framework predicts three failure regimes:
+\begin{itemize}
+\item \textbf{Type A} (SC $\geq$ 60\%): High accuracy, low diversity. Constraints confirm majority opinion.
+\item \textbf{Type B}: Domain not amenable to FOL formalization (e.g., arithmetic, commonsense).
+\item \textbf{Type C} (SC $\leq$ 45\%): Low accuracy, constraints reflect incorrect reasoning.
+\end{itemize}
+
+\section{Experimental Setup}
+
+\subsection{Models}
+
+We evaluate five model families spanning different scales and architectures: \textbf{Qwen2.5} (7B, 14B, 72B-AWQ) and \textbf{Qwen3-14B} represent the Qwen family at multiple scales; \textbf{Mistral-7B-Instruct} provides a cross-family comparison with lower inter-trace correlation; \textbf{LLaMA-3.1-8B-Instruct} adds a third family; \textbf{QwQ-32B} and \textbf{DeepSeek-R1-Distill-Qwen-7B} serve as reasoning-model negative controls.
+
+\subsection{Datasets}
+
+\textbf{FOLIO} \cite{han2022folio}: 204 natural language inference problems requiring first-order logic reasoning (True/False/Unknown). Our primary evaluation domain due to natural FOL formalizability.
+
+\textbf{ProofWriter} \cite{tafjord2021proofwriter}: 600 synthetic deductive reasoning problems (D5 difficulty) with known proof depth.
+
+\textbf{D012}: A diagnostic set of 60 questions combining FOLIO and ProofWriter, used for rapid cross-model comparison.
+
+\textbf{StrategyQA} \cite{geva2021strategyqa}: 60 commonsense binary QA problems testing formalizability limits.
+
+\textbf{ARC-Challenge} \cite{clark2018arc}: 60 four-choice science reasoning problems.
+
+\textbf{GSM8K} \cite{cobbe2021gsm8k}: 30 grade-school math problems testing arithmetic formalizability.
+
+\subsection{Configuration}
+
+Unless otherwise noted, we use $K$=12 traces at temperature $T$=0.7. Constraint extraction uses the same model that generates the traces (self-extraction setting). MAX-SAT solving uses an off-the-shelf solver. All accuracy figures are exact match. Statistical significance is assessed via McNemar's test (paired, per-question).
+
+\subsection{Metrics}
+
+Beyond accuracy and $\Delta$pp (SICA $-$ SC), we report: \textbf{C0} (multi-candidate rate): fraction of questions where traces produce more than one distinct answer, measuring effective diversity. \textbf{Fleiss' $\kappa$}: inter-trace agreement. \textbf{Eff-K}: effective ensemble size (Eq.~2). \textbf{Extraction rate}: fraction of traces yielding parseable FOL constraints.
+
+\section{Results}
+
+\subsection{Main Results}
+
+Table~\ref{tab:main} summarizes SICA and SC accuracy across all model-dataset conditions. The dominant pattern is clear: SICA matches or underperforms SC in the vast majority of settings. The sole statistically significant positive result is Mistral-7B on FOLIO-204 ($\Delta$=+4.9pp, $p$=0.013), which falls squarely in the predicted Goldilocks zone (SC=54.4\%, $\effk$=1.85).
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Main results across models and datasets. $\Delta$pp = SICA $-$ SC. Bold indicates the higher accuracy in each pair. $^\dagger$D012 is a 60-question diagnostic subset. $^\ddagger$Seed 42 results; see Table~\ref{tab:seeds} for seed replication. $^*$$p < 0.05$.}
+\label{tab:main}
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Model} & \textbf{Dataset} & \textbf{$n$} & \textbf{SC\%} & \textbf{SICA\%} & \textbf{$\Delta$pp} & \textbf{$p$} & \textbf{C0\%} \\
+\midrule
+\multicolumn{8}{l}{\textit{Goldilocks Zone (positive $\Delta$)}} \\
+Mistral-7B & FOLIO-204$^\ddagger$ & 204 & 54.4 & \textbf{59.3} & +4.9 & 0.013$^*$ & 81.0 \\
+LLaMA-8B & D012$^\dagger$ & 60 & 60.0 & \textbf{66.7} & +6.7 & 0.219 & 61.7 \\
+LLaMA-8B & PW-600 & 600 & 56.5 & \textbf{58.5} & +2.0 & 0.080 & 58.0 \\
+\midrule
+\multicolumn{8}{l}{\textit{Suggestive (positive but n.s.)}} \\
+StrategyQA & Qwen-14B & 60 & 53.3 & \textbf{56.7} & +3.3 & 0.135 & 10.0 \\
+\midrule
+\multicolumn{8}{l}{\textit{Type A: High SC, confirmation bias}} \\
+Qwen-7B & D012$^\dagger$ & 60 & 68.3 & 68.3 & 0.0 & 1.000 & 43.3 \\
+Qwen-14B & D012$^\dagger$ (K=12) & 60 & 75.0 & 70.0 & $-$5.0 & -- & 38.0 \\
+Qwen-14B & PW-600 & 600 & 75.2 & 75.5 & +0.3 & 0.800 & -- \\
+Qwen3-14B & PW-600 & 600 & 77.5 & 77.3 & $-$0.2 & 0.850 & -- \\
+Qwen-72B & D012$^\dagger$ & 60 & 86.7 & 86.7 & 0.0 & 1.000 & 10.0 \\
+ARC-Chall. & Qwen-14B & 60 & \textbf{96.7} & 95.0 & $-$1.7 & -- & 5.0 \\
+\midrule
+\multicolumn{8}{l}{\textit{Reasoning models (near-zero diversity)}} \\
+QwQ-32B & mixed & 46 & -- & -- & 0.0/$-$5.9 & -- & 2.6 \\
+DeepSeek-R1 & D012$^\dagger$ & 60 & \textbf{71.7} & 68.3 & $-$3.3 & 0.480 & 58.3 \\
+\midrule
+\multicolumn{8}{l}{\textit{Type B: Domain formalizability barrier}} \\
+GSM8K & Qwen-14B & 30 & 96.7 & 96.7 & 0.0 & -- & 13.3 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Within the Qwen family, scaling from 7B to 72B increases SC accuracy (68.3\% $\to$ 86.7\%) but $\Delta$ remains zero throughout, illustrating that stronger models produce more correlated traces. The Qwen-72B condition represents the extreme: C0 drops to 10\%, estimated $\kappa$ = 0.85, and $\effk$ = 1.18.
+
+Reasoning models (QwQ-32B, DeepSeek-R1) show near-zero or negative gains. QwQ-32B produces effective C0 of only 2.6\%, meaning its extended chain-of-thought generates deterministic outputs. DeepSeek-R1 is more interesting: despite reasonable diversity (C0=58.3\%), its $\Delta$ is $-$3.33pp, suggesting that reasoning-model constraints encode systematic biases more strongly than standard models.
+
+Cross-domain results confirm the formalizability bottleneck. GSM8K achieves only 14.7\% extraction success rate: mathematical reasoning chains resist FOL formalization. StrategyQA shows low C0 (10\%) despite moderate SC, indicating that commonsense reasoning produces highly uniform answer distributions.
+
+\subsection{Seed Replication}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Seed replication for Mistral-7B on FOLIO-204 ($K$=12, $T$=0.7). Two of three seeds show significant positive $\Delta$.}
+\label{tab:seeds}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Seed} & \textbf{SC\%} & \textbf{SICA\%} & \textbf{$\Delta$pp} & \textbf{$p$} \\
+\midrule
+42 & 54.4 & 59.3 & +4.9 & 0.013 \\
+123 & 54.4 & 57.8 & +3.4 & 0.039 \\
+456 & 54.4 & 53.9 & $-$0.5 & n.s. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:seeds} shows that the Mistral-7B FOLIO result replicates in 2 of 3 random seeds. Seed 456 falls in the Goldilocks zone by SC and $\effk$ criteria ($\kappa$=0.401, $\effk$=2.22) yet produces a negligible negative $\Delta$. This exception is explained by a higher Unknown-label proportion (58.5\% vs 49.9\% for seed 42), which reduces trace decisiveness: more traces output ``Unknown'' rather than committing to True or False, lowering the information content available for constraint aggregation.
+
+\subsection{Oracle Control}
+
+Using gold-standard FOL annotations from FOLIO, we replace self-extracted constraints with expert-written formulas while keeping the MAX-SAT aggregation identical. Gold FOL + MAX-SAT achieves 89.7\% accuracy versus SC's 75.5\%, a gain of +14.2pp ($p = 2.0 \times 10^{-7}$). This result is critical: it proves the MAX-SAT aggregation mechanism is sound. The bottleneck lies entirely in self-extraction quality. Self-extracted SICA captures only 35\% of the theoretical oracle gain (4.9pp / 14.2pp), leaving a large gap that nine remediation strategies fail to close (\S\ref{sec:remediation}).
+
+\subsection{Independence Quantification}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Trace independence across models. Higher $\kappa$ means more correlated traces and lower effective ensemble size. All at $K$=12.}
+\label{tab:independence}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Condition} & \textbf{$\kappa$} & \textbf{Eff-K} & \textbf{$\Delta$pp} \\
+\midrule
+Qwen-72B D012 & 0.85 & 1.18 & 0.0 \\
+Qwen-14B LogiQA & 0.82 & 1.20 & +0.5 \\
+Qwen-14B FOLIO & 0.74 & 1.31 & +0.3 \\
+Qwen-7B D012 & $\sim$0.68 & $\sim$1.4 & 0.0 \\
+Mistral T=0.3 & 0.58 & 1.62 & +0.5 \\
+Mistral T=0.5 & 0.53 & 1.73 & +2.0 \\
+Mistral-7B FOLIO s42 & 0.50 & 1.85 & +4.9 \\
+Mistral-7B FOLIO s123 & 0.41 & 2.17 & +3.4 \\
+Mistral-7B FOLIO s456 & 0.40 & 2.22 & $-$0.5 \\
+Mistral-7B PW-600 & 0.21 & 3.63 & $-$2.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:independence} reveals a striking cross-model divide. The Qwen family consistently shows $\kappa > 0.65$ and $\effk < 1.5$, regardless of model scale (7B through 72B). Mistral-7B achieves substantially lower $\kappa$ (0.40--0.58 depending on seed and temperature), translating to $\effk$ of 1.62--2.22 on FOLIO. The Mistral PW-600 condition has the highest $\effk$ (3.63) but the lowest SC (39\%), illustrating why independence alone is insufficient.
+
+The joint Eff-K $\times$ SC framework correctly predicts the direction of $\Delta$ in 11 of 12 conditions ($R^2$ = 0.72 when both variables are included). C0 alone predicts only 7 of 12, confirming that the two-dimensional framework captures information beyond simple diversity measures.
+
+\subsection{K Sensitivity: The Inverted-U}
+
+\begin{table}[t]
+\centering
+\small
+\caption{K sensitivity for Mistral-7B on FOLIO-204 (seed 42, $T$=0.7). The inverted-U peaks at $K$=12 and declines on both sides.}
+\label{tab:ksens_mistral}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{$K$} & \textbf{SC\%} & \textbf{SICA\%} & \textbf{$\Delta$pp} & \textbf{Eff-K} & \textbf{$p$} \\
+\midrule
+4 & 54.9 & 54.4 & $-$0.5 & 1.60 & 0.820 \\
+8 & 54.4 & 56.4 & +2.0 & 1.78 & 0.140 \\
+12 & 54.4 & 59.3 & +4.9 & 1.85 & 0.013 \\
+16 & 54.4 & 56.9 & +2.5 & 1.88 & 0.090 \\
+20 & 54.9 & 55.9 & +1.0 & 1.90 & 0.350 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:ksens_mistral} shows a clear inverted-U for Mistral-7B: $\Delta$ rises from $-$0.5pp at $K$=4 to +4.9pp at $K$=12, then declines to +1.0pp at $K$=20. The peak-to-trough differences exceed 2pp on both sides (5.4pp left, 3.9pp right). SC remains stable across $K$ values ($\sim$54.4--54.9\%), confirming that the effect is specific to SICA's constraint aggregation.
+
+The mechanism follows from the Condorcet framework. At low $K$, $\effk$ is insufficient (1.60 at $K$=4) to provide enough independent perspectives for MAX-SAT to override the plurality vote. At high $K$, $\effk$ saturates (1.90 at $K$=20, only 0.05 above $K$=12), while the additional traces contribute predominantly redundant constraints aligned with the majority answer (confirmation bias). $K$=12 represents the sweet spot where $\effk$ provides sufficient independent information without excessive redundancy.
+
+\begin{table}[t]
+\centering
+\small
+\caption{K sensitivity for Qwen-14B on D012 ($T$=0.7). Unlike Mistral, increasing $K$ never helps, consistent with the Type A regime ($\effk < 1.5$ throughout).}
+\label{tab:ksens_qwen}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{$K$} & \textbf{SC\%} & \textbf{SICA\%} & \textbf{$\Delta$pp} & \textbf{Note} \\
+\midrule
+6 & 73.3 & 73.3 & 0.0 & \\
+8 & 75.0 & 73.3 & $-$1.7 & \\
+11 & 73.3 & 73.3 & 0.0 & odd $K$ \\
+12 & 75.0 & 70.0 & $-$5.0 & \\
+16 & 75.0 & 71.7 & $-$3.3 & \\
+20 & 73.3 & 70.0 & $-$3.3 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:ksens_qwen} provides the contrast: Qwen-14B shows uniformly non-positive $\Delta$ across all $K$ values. This is predicted by the dual bottleneck: Qwen's high $\kappa$ (0.74--0.82) keeps $\effk$ below 1.5 regardless of nominal $K$. The $K$=11 (odd) condition confirms that SICA's behavior is not driven by tiebreaking mechanics alone; even without ties, $\Delta$ = 0 when independence is insufficient.
+
+\subsection{Temperature Sensitivity}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Temperature sensitivity for Mistral-7B on FOLIO-204 ($K$=12, seed 42). The effect peaks sharply at $T$=0.7 and collapses at both extremes.}
+\label{tab:tsens}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{$T$} & \textbf{SC\%} & \textbf{SICA\%} & \textbf{$\Delta$pp} & \textbf{$\kappa$} & \textbf{Eff-K} \\
+\midrule
+0.3 & 55.4 & 55.9 & +0.5 & 0.58 & 1.62 \\
+0.5 & 54.9 & 56.9 & +2.0 & 0.53 & 1.73 \\
+0.7 & 54.4 & 59.3 & +4.9 & 0.50 & 1.85 \\
+1.0 & 54.9 & 55.4 & +0.5 & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:tsens} reveals extreme temperature sensitivity. The progression from $T$=0.3 (+0.5pp) through $T$=0.5 (+2.0pp) to $T$=0.7 (+4.9pp) tracks the increase in $\effk$ from 1.62 to 1.85 as higher temperature reduces trace correlation. The jump from $T$=0.5 to $T$=0.7 is nonlinear (+2.9pp for a 0.12 increase in $\effk$), suggesting a threshold effect in the 1.73--1.85 range.
+
+At $T$=1.0, gains collapse back to +0.5pp despite presumably higher diversity. This indicates that temperature affects not only trace independence but also constraint quality: at $T$=1.0, increased token-level noise degrades the coherence of reasoning chains and the fidelity of extracted constraints, offsetting the independence gains. The fragility of the $T$=0.7 peak is itself a key finding: the SICA effect exists only in a narrow temperature window.
+
+\section{Analysis}
+
+\subsection{Constraint Quality and Confirmation Bias}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Constraint quality varies by SC regime. Precision is high in Type A but points in the wrong direction (confirming model bias). Type C constraints are noisy.}
+\label{tab:constraint_quality}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Regime} & \textbf{Precision} & \textbf{Agreement\%} & \textbf{$\Delta$pp} \\
+\midrule
+Type A (SC$>$60\%) & 0.89 & 82 & $\leq$0 \\
+Goldilocks (45--60\%) & 0.71 & 65 & +4.9 \\
+Type C (SC$<$45\%) & 0.43 & 48 & $-$2.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:constraint_quality} decomposes the mechanism. In Type A conditions, constraint precision is high (89\%) but constraint-model agreement is also high (82\%), meaning constraints faithfully reflect the model's own reasoning, including its errors. The correlation between SC and constraint agreement across 12 conditions is $r$=0.85: when the model is usually right, constraints confirm it; when wrong, constraints confirm that too. This is confirmation bias at the constraint level.
+
+Qualitative case studies on 8 representative questions confirm three patterns: (1) in correct-and-diverse cases, constraints from different reasoning paths provide independent signals that MAX-SAT correctly aggregates; (2) in both-wrong cases (100\% of analyzed instances), constraints are semantically valid FOL but encode the model's incorrect reasoning; (3) on average, 43\% of constraints are trivially satisfied by all candidate answers, providing zero discriminative value.
+
+\subsection{Aggregation Mechanism Ablation}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Aggregation mechanism comparison on $n$=804 questions. MAX-SAT and count-only agree on 803/804 questions, confirming that correlated constraints cause symbolic aggregation to degenerate to counting.}
+\label{tab:aggregation}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Method} & \textbf{Accuracy\%} & \textbf{$\Delta$ vs SC} \\
+\midrule
+SC (baseline) & 76.2 & -- \\
+SICA (MAX-SAT) & 76.5 & +0.3 \\
+Count-only & 76.6 & +0.4 \\
+Random-weight & 75.9 & $-$0.3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:aggregation} shows that MAX-SAT and simple constraint counting agree on 803 of 804 questions. This is a direct consequence of the independence bottleneck: when constraints are highly correlated, the satisfiability structure collapses to a counting problem. The theoretical advantage of MAX-SAT (finding optimal joint satisfying assignments) requires constraints that encode diverse logical relationships. Same-model extraction produces constraints pointing in the same direction, making MAX-SAT equivalent to weighted voting.
+
+Random-weight SICA performs slightly worse ($-$0.3pp vs SC), confirming that extracted constraints carry some signal (they are not random noise) but the signal is too weak and too correlated to overcome majority voting.
+
+\subsection{Tiebreaking Analysis}
+
+SICA resolves tied SC votes with 80\% accuracy (4/5 ties correct), compared to 50\% for random tiebreaking, 60\% for alphabetical, and 40\% for first-seen. This confirms that MAX-SAT constraints encode genuine semantic information in tied cases. The practical impact is limited: only 8.3\% (5/60) of D012 questions have ties, contributing at most 0.4pp to overall accuracy. The low tie rate is itself a symptom of the independence bottleneck: highly correlated traces rarely produce ties.
+
+\subsection{Baseline Comparisons}
+
+\paragraph{Logic-LM.} Per-trace FOL verification followed by majority vote (Logic-LM style) achieves 75.5\% on FOLIO-204, matching SC (75.5\%) and slightly exceeding SICA (74.5\%). Agreement with SC is 198/204 (97\%). Single-trace verification cannot override the majority because constraints verify against the model's own answer, and confirmation bias ensures near-universal self-consistency within each trace.
+
+\paragraph{Weighted SC.} Four weighting schemes (inverse-length, length-proportional, constraint-count, uniform) all produce accuracy within 1pp of standard SC, with no scheme reaching significance ($p > 0.06$). Trace-level reweighting cannot address a model-level bias: all traces share the same systematic errors regardless of their surface characteristics.
+
+\subsection{Remediation Failures}
+\label{sec:remediation}
+
+Nine targeted interventions, spanning all major dimensions of the SICA pipeline, fail to close the oracle gap:
+
+\begin{enumerate}
+\item \textbf{Contrastive prompting}: Explicitly requesting diverse reasoning strategies in the trace generation prompt.
+\item \textbf{Cross-model extraction}: Using a different model for constraint extraction than for trace generation.
+\item \textbf{Generational scaling}: Upgrading from Qwen-2.5 to Qwen-3.
+\item \textbf{Solver-guided refinement}: Using MAX-SAT conflict feedback to re-extract constraints.
+\item \textbf{Consistency filtering}: Removing constraints that contradict each other within a trace.
+\item \textbf{Cross-trace UNSAT detection}: Identifying and removing constraint subsets that are jointly unsatisfiable.
+\item \textbf{Discriminative filtering}: Removing the 8\% of constraints that are non-discriminative (same MAX-SAT score for all candidates). Result: 0 gains, because 92\% of constraints are already discriminative; the problem is their \emph{direction}, not their discriminative power.
+\item \textbf{High temperature ($T$=1.0)}: Increasing sampling temperature to boost diversity. Result: $\Delta$ collapses from +4.9pp to +0.5pp, because token-level noise degrades constraint quality faster than it improves independence.
+\item \textbf{Multi-temperature ensemble}: Mixing traces from $T$=\{0.5, 0.7, 0.9\}. Result: $\Delta$=+0.5pp (n.s.) on 204 questions. Surface diversity (token-level) does not translate to reasoning diversity (logic-level); same-model reasoning biases persist across temperatures.
+\end{enumerate}
+
+These failures span prompting (1), architecture (2, 6), capability (3), verification (4, 5), filtering (7), and diversity (8, 9). The comprehensiveness of this negative result strengthens the structural bottleneck thesis: same-model self-extraction is fundamentally limited by the model's own reasoning biases, which propagate through every component of the pipeline.
+
+\subsection{Overhead Analysis}
+
+On 804 questions, mean wall-clock time per question is 61.6 seconds, split between trace generation (51.3\%), constraint extraction (47.0\%), and MAX-SAT solving (0.005\%). SICA's overhead is dominated by the extraction LLM calls (one per trace), nearly doubling inference cost. Given that gains are zero in most conditions and at most +4.9pp in the best case, the C0+SC pre-diagnostic becomes practically important: it allows skipping the expensive extraction step when the operating regime predicts no benefit.
+
+\subsection{Reasoning Model Negative Controls}
+
+QwQ-32B and DeepSeek-R1 represent opposite failure modes within the reasoning-model category. QwQ-32B produces effective C0 of 2.6\% (vs 46\% for standard Qwen-14B), meaning its extended chain-of-thought nearly eliminates answer diversity. SICA is structurally equivalent to SC in this regime.
+
+DeepSeek-R1 is more nuanced: C0=58.3\% suggests adequate diversity, yet $\Delta$=$-$3.33pp. The explanation lies in truncated traces (72/720 = 10\%) and the structured nature of reasoning-model errors. When reasoning models err, their extended step-by-step chains produce constraints that are more \emph{decisively} wrong, with the confirmation bias effect amplified by the systematic structure of the reasoning process.
+
+\section{Discussion}
+
+\paragraph{The Dual Bottleneck as Diagnostic.} The Eff-K $\times$ SC framework provides a parsimonious account of when symbolic consensus helps. Practitioners can compute C0 (zero cost, from the SC traces already generated) and SC accuracy (on a held-out calibration set) to determine their operating regime before investing in constraint extraction. A C0 below 5\% signals degenerate conditions; SC above 60\% or below 45\% signals unfavorable regimes.
+
+\paragraph{Implications for Neuro-Symbolic Reasoning.} Our results do not invalidate symbolic approaches to LLM reasoning. The oracle control shows +14.2pp gain with expert-written constraints. The bottleneck is specific to \emph{same-model self-extraction}: asking a model to formalize its own reasoning produces constraints that inherit, rather than correct, its biases. Systems that use external verifiers (FoVer), trained extractors (DyLoS), or human-authored formalizations operate outside our independence bottleneck analysis.
+
+\paragraph{Connection to Test-Time Scaling.} SC scaling plateaus \cite{loo2025scaling} are a direct consequence of the independence bottleneck we quantify. Our Eff-K metric provides a principled explanation: once $K$ exceeds Eff-K, additional traces contribute only redundant information. This connects our analysis to the broader test-time compute literature and suggests that breaking the independence barrier (e.g., through cross-model ensembles or trained diversity) is key to continued scaling.
+
+\paragraph{Limitations.} Our evaluation focuses on formal logic domains where FOL extraction is natural. While we include StrategyQA, ARC, and GSM8K to probe domain boundaries, more extensive evaluation on diverse reasoning types (analogical, causal, spatial) would strengthen generalizability claims. The n=60 conditions provide directional evidence but lack statistical power for definitive claims. The Condorcet framework assumes a binary correct/incorrect model; multi-label settings may require extensions.
+
+\section{Conclusion}
+
+We presented a systematic analysis of symbolic consensus aggregation under same-model self-extraction. Through the Condorcet independence lens, we showed that LLM reasoning traces are far more correlated than the nominal ensemble size suggests ($\effk$ = 1.2--3.6 for $K$=12), creating a fundamental bottleneck for any aggregation method that relies on diverse perspectives. The dual bottleneck framework (independence $\times$ quality) correctly predicts SICA outcomes across 12 experimental conditions and identifies a narrow Goldilocks zone where gains appear. Nine remediation failures confirm the structural nature of this limitation. Our C0+SC diagnostic provides a practical zero-cost tool for practitioners considering symbolic augmentation. The key insight for the field is that the bottleneck in test-time reasoning improvement is not the aggregation mechanism (which works, per oracle results) but the generation of truly independent reasoning perspectives within a single model.
+
+%\bibliography{references}
+%\bibliographystyle{plainnat}
+
+\appendix
+
+\section{Multi-Temperature Ensemble}
+\label{app:multitemp}
+
+Table~\ref{tab:multitemp} shows results for the multi-temperature ensemble strategy, which mixes traces generated at $T$=\{0.5, 0.7, 0.9\} (4 traces each, total $K$=12). Despite a high multi-candidate rate (78\%), $\Delta$ is only +0.5pp and not significant ($p$=0.65). Surface-level diversity from temperature variation does not translate to reasoning-level independence: the same model produces the same reasoning biases regardless of sampling temperature.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Multi-temperature ensemble on Mistral-7B FOLIO-204.}
+\label{tab:multitemp}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Config} & \textbf{SC\%} & \textbf{SICA\%} & \textbf{$\Delta$pp} \\
+\midrule
+Single $T$=0.7 & 54.4 & 59.3 & +4.9 \\
+Multi $T$=\{0.5,0.7,0.9\} & 54.4 & 54.9 & +0.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Weighted SC Comparison}
+\label{app:weighted}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Weighted SC variants on $n$=804 questions. No scheme significantly outperforms uniform SC.}
+\label{tab:weighted}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Weighting} & \textbf{Accuracy\%} & \textbf{$p$ vs uniform} \\
+\midrule
+Uniform (SC) & 76.2 & -- \\
+Inverse-length & 76.7 & 0.453 \\
+Length-proportional & 75.3 & 0.066 \\
+Constraint-count & 75.3 & 0.066 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Logic-LM Baseline}
+\label{app:logiclm}
+
+Logic-LM style per-trace verification + majority vote achieves 75.5\% on FOLIO-204 ($n$=204), matching SC (75.5\%) with 97\% question-level agreement. Per-trace verification is ineffective because confirmation bias ensures that constraints verify the model's own answer in nearly all cases. SICA's cross-trace aggregation has a theoretical advantage (80\% tiebreak accuracy), but the practical impact is limited by the low tie rate.
+
+\section{Overhead Breakdown}
+\label{app:overhead}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Wall-time breakdown for SICA ($n$=804 questions).}
+\label{tab:overhead}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Component} & \textbf{\% of total} & \textbf{Mean (s)} \\
+\midrule
+Trace generation & 51.3 & 31.6 \\
+Constraint extraction & 47.0 & 29.0 \\
+MAX-SAT solving & 0.005 & 0.003 \\
+\midrule
+\textbf{Total} & 100 & 61.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Qualitative Case Studies}
+\label{app:cases}
+
+Analysis of 8 representative questions reveals three constraint patterns. In 2 override-correct cases, traces from different reasoning paths produce constraints with independent signals, allowing MAX-SAT to correctly override the SC vote. In 6 confirmation-bias cases (including all both-wrong instances), constraints are semantically valid FOL formulas that faithfully encode the model's incorrect reasoning. 87.5\% of analyzed constraints are semantically meaningful, confirming that the problem is not extraction quality but the direction of the extracted information. On average, 43\% of constraints per question are trivially satisfied by all candidate answers.
+
+\begin{thebibliography}{30}
+
+\bibitem{wang2023selfconsistency}
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou.
+Self-Consistency Improves Chain of Thought Reasoning in Language Models.
+In {\em ICLR}, 2023.
+
+\bibitem{chen2023usc}
+Xinyun Chen, Renat Aksitov, Uri Alon, Jie Ren, Kefan Xiao, Pengcheng Yin, Sushant Prakash, Charles Sutton, Xuezhi Wang, and Denny Zhou.
+Universal Self-Consistency for Large Language Model Generation.
+{\em arXiv:2311.17311}, 2023.
+
+\bibitem{loo2025scaling}
+Jasper Loo, Gyuwan Kim, and Hwanjun Song.
+On the Scaling of Self-Consistency.
+{\em arXiv preprint}, 2025.
+
+\bibitem{taubenfeld2025weighted}
+Alon Taubenfeld, Yaniv Dover, Eran Ofek, and Idan Szpektor.
+Systematic Biases in LLM Simulations of Debates.
+{\em arXiv preprint}, 2025.
+
+\bibitem{li2023diverse}
+Yifei Li, Zeqi Lin, Shizhuo Zhang, Qiang Fu, Bei Chen, Jian-Guang Lou, and Weizhu Chen.
+Making Language Models Better Reasoners with Step-Aware Verifier.
+In {\em ACL}, 2023.
+
+\bibitem{pan2023logiclm}
+Liangming Pan, Alon Albalak, Xinyi Wang, and William Yang Wang.
+Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning.
+In {\em Findings of EMNLP}, 2023.
+
+\bibitem{olausson2023linc}
+Theo X. Olausson, Alex Gu, Ben Lipkin, Cedegao E. Zhang, Armando Solar-Lezama, Joshua B. Tenenbaum, and Roger Levy.
+LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers.
+In {\em EMNLP}, 2023.
+
+\bibitem{fover2025}
+FoVer: Formal Verification Augmented Language Model Reasoning.
+{\em TACL}, 2025.
+
+\bibitem{condorcet1785}
+Marquis de Condorcet.
+{\em Essai sur l'application de l'analyse \`a la probabilit\'e des d\'ecisions rendues \`a la pluralit\'e des voix}.
+Paris, 1785.
+
+\bibitem{austensmith1996}
+David Austen-Smith and Jeffrey~S. Banks.
+Information Aggregation, Rationality, and the Condorcet Jury Theorem.
+{\em American Political Science Review}, 90(1):34--45, 1996.
+
+\bibitem{llmcjt2024}
+Wei Chen et al.
+Examining Independence in Ensemble Sentiment Analysis: A Condorcet Jury Theorem Perspective.
+{\em arXiv:2409.00094}, 2024.
+
+\bibitem{snell2025scaling}
+Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar.
+Scaling LLM Test-Time Compute Optimally Can Be More Effective Than Scaling Model Parameters.
+In {\em ICLR}, 2025.
+
+\bibitem{cobbe2021gsm8k}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman.
+Training Verifiers to Solve Math Word Problems.
+{\em arXiv:2110.14168}, 2021.
+
+\bibitem{lightman2023prm}
+Hunter Lightman, Vineet Kosaraju, Yura Burda, Harri Edwards, Bowen Baker, Teddy Lee, Jan Leike, and John Schulman.
+Let's Verify Step by Step.
+In {\em ICLR}, 2024.
+
+\bibitem{liang2023debate}
+Tian Liang, Zhiwei He, Wenxiang Jiao, Xing Wang, Yan Wang, Rui Wang, Yujiu Yang, Zhaopeng Tu, and Shuming Shi.
+Encouraging Divergent Thinking in Large Language Models through Multi-Agent Debate.
+{\em arXiv:2305.19118}, 2023.
+
+\bibitem{du2023debate}
+Yilun Du, Shuang Li, Antonio Torralba, Joshua~B. Tenenbaum, and Igor Mordatch.
+Improving Factuality and Reasoning in Language Models through Multiagent Debate.
+{\em arXiv:2305.14325}, 2023.
+
+\bibitem{han2022folio}
+Simeng Han et al.
+FOLIO: Natural Language Reasoning with First-Order Logic.
+{\em arXiv:2209.00840}, 2022.
+
+\bibitem{tafjord2021proofwriter}
+Oyvind Tafjord, Bhavana~Dalvi Mishra, and Peter Clark.
+ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language.
+In {\em Findings of ACL}, 2021.
+
+\bibitem{geva2021strategyqa}
+Mor Geva, Daniel Khashabi, Elad Segal, Tushar Khot, Dan Roth, and Jonathan Berant.
+Did Aristotle Use a Laptop? A Question Answering Benchmark with Implicit Reasoning Strategies.
+{\em TACL}, 9:346--361, 2021.
+
+\bibitem{clark2018arc}
+Peter Clark, Isaac Cowhey, Oren Etzioni, Tushar Khot, Ashish Sabharwal, Carissa Schoenick, and Oyvind Tafjord.
+Think You Have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge.
+{\em arXiv:1803.05457}, 2018.
+
+\bibitem{deepseekr1}
+DeepSeek-AI.
+DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning.
+{\em arXiv:2501.12948}, 2025.
+
+\bibitem{qwq2025}
+QwQ Team.
+QwQ: Reflect and Solve with LLMs.
+Technical Report, Qwen, 2025.
+
+\bibitem{biere2009sat}
+Armin Biere, Marijn Heule, Hans van Maaren, and Toby Walsh, editors.
+{\em Handbook of Satisfiability}.
+IOS Press, 2009.
+
+\bibitem{fleiss1971}
+Joseph~L. Fleiss.
+Measuring Nominal Scale Agreement among Many Raters.
+{\em Psychological Bulletin}, 76(5):378--382, 1971.
+
+\bibitem{wei2022cot}
+Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Brian Ichter, Fei Xia, Ed Chi, Quoc Le, and Denny Zhou.
+Chain-of-Thought Prompting Elicits Reasoning in Large Language Models.
+In {\em NeurIPS}, 2022.
+
+\bibitem{lewkowycz2022minerva}
+Aitor Lewkowycz et al.
+Solving Quantitative Reasoning Problems with Language Models.
+In {\em NeurIPS}, 2022.
+
+\bibitem{jiang2023mistral}
+Albert~Q. Jiang et al.
+Mistral 7B.
+{\em arXiv:2310.06825}, 2023.
+
+\bibitem{touvron2023llama}
+Hugo Touvron et al.
+Llama 2: Open Foundation and Fine-Tuned Chat Models.
+{\em arXiv:2307.09288}, 2023.
+
+\bibitem{qwen2024}
+Qwen Team.
+Qwen2.5 Technical Report.
+{\em arXiv:2412.15115}, 2024.
+
+\bibitem{satbench2025}
+SATBench: Benchmarking LLMs on Satisfiability Problems.
+In {\em EMNLP}, 2025.
+
+\end{thebibliography}
+
+\end{document}

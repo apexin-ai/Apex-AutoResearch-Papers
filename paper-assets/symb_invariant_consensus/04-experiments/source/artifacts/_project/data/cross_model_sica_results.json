@@ -1,0 +1,46 @@
+{
+  "experiment": "Cross-Model SC + SICA on FOLIO-204",
+  "date": "2026-05-20",
+  "setup": {
+    "models": ["Mistral-7B", "LLaMA-3.1-8B", "Qwen2.5-7B"],
+    "traces_per_model": 4,
+    "total_k": 12,
+    "dataset": "FOLIO-204",
+    "n_problems": 204
+  },
+  "results": {
+    "cross_model_sc": {
+      "accuracy": 0.7451,
+      "correct": 152,
+      "total": 204
+    },
+    "cross_model_sica": {
+      "accuracy": 0.7402,
+      "correct": 151,
+      "total": 204,
+      "skipped": 0,
+      "solve_time_sec": 121.0
+    },
+    "delta_sica_minus_sc": -0.0049,
+    "mcnemar_test": {
+      "p_value": 1.0,
+      "n01_sc_wrong_sica_right": 7,
+      "n10_sc_right_sica_wrong": 6,
+      "interpretation": "No significant difference (p=1.0)"
+    }
+  },
+  "baselines": {
+    "mistral_only_k12": {
+      "sc_accuracy": 0.5441,
+      "sica_accuracy": 0.5931,
+      "delta": 0.0490
+    },
+    "qwen_only_k12": {
+      "sc_accuracy": 0.7598,
+      "sica_accuracy": 0.7647,
+      "delta": 0.0049
+    }
+  },
+  "comparison_table": "Condition                   SC Acc  SICA Acc  Δ(SICA-SC)  McNemar p\n--------------------------------------------------------------------------------\nMistral-7B-only K=12        0.5441    0.5931     +0.0490        ---\nQwen2.5-7B-only K=12        0.7598    0.7647     +0.0049        ---\nCross-model K=12            0.7451    0.7402     -0.0049     1.0000",
+  "server_results_path": "/root/symb_invariant_consensus/results/cross_model_experiment/cross_model_results.json"
+}

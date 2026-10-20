@@ -1,0 +1,1264 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-317_Q2",
+    "problem": "The cow chases the squirrel. The cow is young. The cow sees the squirrel. The dog is round. The dog likes the rabbit. The dog likes the squirrel. The dog sees the rabbit. The rabbit chases the cow. The rabbit does not chase the dog. The squirrel chases the rabbit. The squirrel is young. The squirrel likes the cow. If someone chases the cow then the cow is big. If someone likes the rabbit and they do not see the squirrel then they are big. If someone is big then they like the rabbit. If someone is young then they do not see the dog. If someone is blue then they chase the cow. If someone likes the rabbit then they like the cow. If someone likes the cow then they see the cow. If someone sees the cow and they chase the squirrel then they see the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow does not chase the squirrel.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nYoung($x, bool) ::: Is x young?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nLikes($x, $y, bool) ::: Does x like y?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nChases(Cow, Squirrel, True) ::: The cow chases the squirrel.\nYoung(Cow, True) ::: The cow is young.\nSees(Cow, Squirrel, True) ::: The cow sees the squirrel.\nRound(Dog, True) ::: The dog is round.\nLikes(Dog, Rabbit, True) ::: The dog likes the rabbit.\nLikes(Dog, Squirrel, True) ::: The dog likes the squirrel.\nSees(Dog, Rabbit, True) ::: The dog sees the rabbit.\nChases(Rabbit, Cow, True) ::: The rabbit chases the cow.\nChases(Rabbit, Dog, False) ::: The rabbit does not chase the dog.\nChases(Squirrel, Rabbit, True) ::: The squirrel chases the rabbit.\nYoung(Squirrel, True) ::: The squirrel is young.\nLikes(Squirrel, Cow, True) ::: The squirrel likes the cow.\n\nRules:\nChases($x, Cow, True) >>> Big($x, True) ::: If someone chases the cow then the cow is big.\nLikes($x, Rabbit, True) && Sees($x, Squirrel, False) >>> Big($x, True) ::: If someone likes the rabbit and they do not see the squirrel then they are big.\nBig($x, True) >>> Likes($x, Rabbit, True) ::: If someone is big then they like the rabbit.\nYoung($x, True) >>> Sees($x, Dog, False) ::: If someone is young then they do not see the dog.\nBlue($x, True) >>> Chases($x, Cow, True) ::: If someone is blue then they chase the cow.\nLikes($x, Rabbit, True) >>> Likes($x, Cow, True) ::: If someone likes the rabbit then they like the cow.\nLikes($x, Cow, True) >>> Sees($x, Cow, True) ::: If someone likes the cow then they see the cow.\nSees($x, Cow, True) && Chases($x, Squirrel, True) >>> Sees($x, Rabbit, True) ::: If someone sees the cow and they chase the squirrel then they see the rabbit.\n\nQuery:\nChases(Cow, Squirrel, False) ::: The cow does not chase the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 128.0,
+      "Unknown": 161.5
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. Let's break down the statements into a more organized format:\n\n1. The cow chases the squirrel. \n2. The cow is young.\n3. The cow sees the squirrel.\n4. The dog is round.\n5. The dog likes the rabbit.\n6. The dog likes the squirrel.\n7. The dog sees the rabbit.\n8. The rabbit chases the cow.\n9. The rabbit does not chase the dog.\n10. The squirrel chases the rabbit.\n11. The squirrel is young.\n12. The squirrel likes the cow.\n13. If someone chases the cow then the cow is big.\n14. If someone likes the rabbit and they do not see the squirrel then they are big.\n15. If someone is big then they like the rabbit.\n16. If someone is young then they do not see the dog.\n17. If someone is blue then they chase the cow.\n18. If someone likes the rabbit then they like the cow.\n19. If someone likes the cow then they see the cow.\n20. If someone sees the cow and they chase the squirrel then they see the rabbit.\n\nNow, let's examine the statement \"The cow does not chase the squirrel.\"\n\nGiven statement 1: The cow chases the squirrel.\nThis statement directly contradicts the statement we're trying to evaluate, so we need to consider if there's any information that could override or modify statement 1.\n\nGiven statement 2: The cow is young.\nThis statement doesn't provide any direct information about the cow chasing the squirrel.\n\nGiven statement 3: The cow sees the squirrel.\nThis statement doesn't provide any direct information about the cow chasing the squirrel.\n\nHowever, statement 13 implies that if someone chases the cow, then the cow is big. This gives us a potential contradiction to statement 2, where the cow is young.\n\nWe also have statement 20: If someone sees the cow and they chase the squirrel then they see the rabbit.\nHowever, this statement is conditional, and we don't know if there's someone who sees the cow and chases the squirrel.\n\nGiven the complexity of the problem, we'll have to continue analyzing the statements.\n\nFrom statement 2, we know the cow is young. From statement 13, if someone chases the cow, then the cow is big. This implies that the cow is big or young, but we cannot conclude which one.\n\nStatement 18 says that if someone likes the rabbit, then they like the cow. Statement 5 says the dog likes the rabbit, so from statement 18, the dog likes the cow.\n\nStatement 19 says that if someone likes the cow, then they see the cow. Statement 12 says the squirrel likes the cow. Therefore, the squirrel sees the cow.\n\nStatement 20 says that if someone sees the cow and they chase the squirrel, then they see the rabbit. The squirrel sees the cow (from statement 12), and the squirrel chases the rabbit (from statement 10). This implies that the squirrel sees the rabbit.\n\nStatement 16 says that if someone is young, then they do not see the dog. The squirrel is young (from statement 11) and does not see the dog.\n\nHowever, statement 6 says the dog likes the squirrel, and statement 7 says the dog sees the rabbit. This doesn't directly affect our statement but shows that the dog sees the rabbit.\n\nStatement 9 says the rabbit does not chase the dog. Statement 8 says the rabbit chases the cow. This implies that the rabbit does not chase the dog, which is consistent with statement 9.\n\nHowever, we still need to determine if the cow chases the squirrel.\n\nGiven that the squirrel is young (from statement 11) and the cow is young (from statement 2), we cannot conclude if the cow chases the squirrel based on their ages.\n\nHowever, we can try to use statement 13, which says that if someone chases the cow, then the cow is big. Statement 1 says the cow chases the squirrel, which implies that if the cow chases the squirrel, then the cow is big.\n\nStatement 12 says the squirrel likes the cow. Statement 18 says that if someone likes the rabbit, then they like the cow. Statement 5 says the dog likes the rabbit, so from statement 18, the dog likes the cow.\n\nHowever, statement 14 says that if someone likes the rabbit and they do not see the squirrel, then they are big. Statement 5 says the dog likes the rabbit, but statement 7 says the dog sees the rabbit. This implies that the dog is not big.\n\nHowever, statement 15 says that if someone is big, then they like the rabbit. We cannot conclude if the cow is big or not based on this information alone.\n\nHowever, statement 17 says that if someone is blue, then they chase the cow. We are given no information about anyone being blue.\n\nHowever, statement 20 says that if someone sees the cow and they chase the squirrel, then they see the rabbit. The squirrel sees the cow (from statement 12), and the squirrel chases the rabbit (from statement 10). This implies that the squirrel sees the rabbit.\n\nWe know that the squirrel is young (from statement 11), the squirrel does not see the dog (from statement 16), and the squirrel likes the cow (from statement 12). However, we cannot determine if the cow chases the squirrel based on this information.\n\nFrom statement 10, the squirrel chases the rabbit. Statement 8 says the rabbit chases the cow. This implies a chain of events where the squirrel chases the rabbit, and the rabbit chases the cow.\n\nHowever, statement 1 says the cow chases the squirrel. We cannot conclude if the cow chases the squirrel based on the given information.\n\nGiven the complexity of the problem, we cannot conclude if the cow chases the squirrel based on the given information.\n\nHowever, we can try to use statement 1: The cow chases the squirrel.\n\nThis statement directly contradicts the statement we're trying to evaluate, so we need to consider if there's any information that could override or modify statement 1.\n\nHowever, we cannot determine if statement 1 is true or false based on the given information.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not chase the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cow sees the squirrel.\nThis statement alone does not provide any information about whether the cow chases the squirrel or not.\n\n2. The squirrel chases the rabbit.\nThis statement also does not provide any information about the cow's action towards the squirrel.\n\n3. The squirrel likes the cow.\nThis statement alone does not provide any information about whether the cow chases the squirrel or not.\n\n4. The cow is young.\nThis statement alone does not provide any information about whether the cow chases the squirrel or not.\n\nHowever, we can use the following rules to find more information:\n\n1. If someone chases the cow then the cow is big.\nThis rule does not provide any information about whether the cow chases the squirrel or not.\n\n2. If someone likes the rabbit and they do not see the squirrel then they are big.\nThis rule does not provide any information about whether the cow chases the squirrel or not.\n\n3. If someone is big then they like the rabbit.\nThis rule does not provide any information about whether the cow chases the squirrel or not.\n\n4. If someone is young then they do not see the dog.\nThis rule does not provide any information about whether the cow chases the squirrel or not.\n\n5. If someone is blue then they chase the cow.\nThis rule does not provide any information about whether the cow chases the squirrel or not.\n\n6. If someone likes the rabbit then they like the cow.\nThis rule does not provide any information about whether the cow chases the squirrel or not.\n\n7. If someone likes the cow then they see the cow.\nThis rule does not provide any information about whether the cow chases the squirrel or not.\n\n8. If someone sees the cow and they chase the squirrel then they see the rabbit.\nThis rule does not provide any information about whether the cow chases the squirrel or not.\n\nHowever, we can combine some of the given statements with the rules to find more information:\n\n- The squirrel chases the rabbit. (Given)\n- The squirrel likes the cow. (Given)\n- If someone likes the rabbit then they like the cow. (Rule 6)\n- The squirrel likes the rabbit. (Using Rule 6)\n- If someone likes the rabbit and they do not see the squirrel then they are big. (Rule 2)\n- The squirrel sees the rabbit. (Using Rule 8 and the fact that the squirrel chases the rabbit)\n- The dog likes the rabbit. (Given)\n- The dog does not see the squirrel. (Since the dog is round and round things are not mentioned as being able to see)\n- The dog is big. (Using Rule 2 and the fact that the dog likes the rabbit and does not see the squirrel)\n- The dog likes the squirrel. (Given)\n- The cow is young. (Given)\n- If someone is young then they do not see the dog. (Rule 4)\n- The cow does not see the dog. (Using Rule 4)\n- The cow sees the squirrel. (Given)\n- If someone likes the cow then they see the cow. (Rule 7)\n- The squirrel likes the cow. (Given)\n- The squirrel sees the cow. (Using Rule 7)\n\nHowever, we are still unable to determine whether the cow chases the squirrel or not.\n\nThe only statement that could be related to the cow chasing the squirrel is the following statement from Rule 1:\n- If someone chases the cow then the cow is big.\n\nHowever, we do not have any information about the cow chasing the squirrel. We only have information about the squirrel chasing the rabbit.\n\nWe can use the following statements to find a conclusion:\n\n- The rabbit chases the cow. (Given)\n- The rabbit is not mentioned as being blue. (Given)\n- If someone is blue then they chase the cow. (Rule 5)\n- The rabbit does not chase the squirrel. (Given)\n- The squirrel is young. (Given)\n- If someone is young then they do not see the dog. (Rule 4)\n- The rabbit does not see the dog. (Using Rule 4)\n- The rabbit sees the cow. (Using Rule 8 and the fact that the rabbit chases the cow)\n- The squirrel sees the cow. (Given)\n- The squirrel likes the cow. (Given)\n- The rabbit likes the cow. (Using Rule 6)\n- The rabbit sees the cow. (Using Rule 8 and the fact that the rabbit chases the cow)\n- The cow is young. (Given)\n- If someone is young then they do not see the dog. (Rule 4)\n- The cow does not see the dog. (Using Rule 4)\n- The cow sees the squirrel. (Given)\n- The squirrel likes the rabbit. (Using Rule 6)\n- The squirrel sees the rabbit. (Using Rule 8 and the fact that the squirrel chases the rabbit)\n- The cow is not big. (Since the rabbit chases the cow and the rabbit is not blue)\n- The squirrel is not big. (Since the squirrel is young and the squirrel does not see the dog)\n- The rabbit is not big. (Since the rabbit is young and the rabbit does not see the dog)\n- The cow does not chase the rabbit. (Since the rabbit is not big and the cow is young)\n- The squirrel does not chase the rabbit. (Since the squirrel is young and the squirrel does not see the dog)\n- The rabbit does not chase the squirrel. (Given)\n- The squirrel does not chase the cow. (Since the squirrel is young and the squirrel does not see the dog)\n- The cow does not chase the squirrel. (Since the cow is young and the cow does not see the dog)\n\nHowever, this conclusion is not supported by the information given in the problem. The conclusion is not supported because the statement \"The cow does not see the dog\" is not given in the problem. The statement \"The dog does not see the squirrel\" is given in the problem, but it is not related to the cow.\n\nThe conclusion is also not supported because it is not a logical conclusion from the information given in the problem. The conclusion is not supported because the statement \"The cow does not chase the squirrel\" is the statement we are trying to determine, and we are using the information given in the problem to try to determine whether it is true, false, or unknown.\n\nHowever, we can use the following statements to find a conclusion:\n\n- The rabbit chases the cow. (Given)\n- If someone sees the cow and they chase the squirrel then they see the rabbit. (Rule 8)\n- The rabbit sees the cow. (Using Rule 8 and the fact that the rabbit chases the cow)\n- The squirrel sees the cow. (Given)\n- The squirrel likes the rabbit. (Using Rule 6)\n- The squirrel sees the rabbit. (Using Rule 8 and the fact that the squirrel chases the rabbit)\n- The squirrel does not chase the cow. (Since the squirrel is young and the squirrel does not see the dog)\n- The cow does not chase the squirrel. (Since the squirrel does not chase the cow)\n\nThe conclusion is still not supported by the information given in the problem. The conclusion is not supported because the statement \"The squirrel does not chase the cow\" is not a logical conclusion from the information given in the problem.\n\nHowever, we can use the following statements to find a conclusion:\n\n- The rabbit chases the cow. (Given)\n- If someone sees the cow and they chase the squirrel then they see the rabbit. (Rule 8)\n- The rabbit sees the cow. (Using Rule 8 and the fact that the rabbit chases the cow)\n- The squirrel sees the cow. (Given)\n- The squirrel does not chase the rabbit. (Given)\n- The squirrel does not chase the cow. (Since the squirrel is young and the squirrel does not see the dog)\n\nThe conclusion is still not supported by the information given in the problem. The conclusion is not supported because the statement \"The squirrel does not chase the cow\" is not a logical conclusion from the information given in the problem.\n\nHowever, we can use the following statements to find a conclusion:\n\n- The rabbit chases the cow. (Given)\n- The squirrel chases the rabbit. (Given)\n- If someone sees the cow and they chase the squirrel then they see the rabbit. (Rule 8)\n- The rabbit sees the cow. (Using Rule 8 and the fact that the rabbit chases the cow)\n- The squirrel sees the cow. (Given)\n- The squirrel does not chase the cow. (Since the squirrel is young and the squirrel does not see the dog)\n\nThe conclusion is still not supported by the information given in the problem. The conclusion is not supported because the statement \"The squirrel does not chase the cow\" is not a logical conclusion from the information given in the problem.\n\nHowever, we can use the following statements to find a conclusion:\n\n- The rabbit chases the cow. (Given)\n- The squirrel chases the rabbit. (Given)\n- The squirrel sees the cow. (Given)\n- The squirrel does not chase the squirrel. (Since the squirrel is young and the squirrel does not see the dog)\n- The squirrel does not chase the cow. (Since the squirrel is young and the squirrel does not see the dog)\n\nThe conclusion is still not supported by the information given in the problem. The conclusion is not supported because the statement \"The squirrel does not chase the cow\" is not a logical conclusion from the information given in the problem.\n\nHowever, we can use the following statements to find a conclusion:\n\n- The rabbit chases the cow. (Given)\n- The squirrel chases the rabbit. (Given)\n- The squirrel sees the cow",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not chase the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cow sees the squirrel. (From the given statements)\n   - This statement implies that the cow is aware of the squirrel's presence but does not necessarily mean the cow is chasing the squirrel.\n\n2. The squirrel chases the rabbit. (From the given statements)\n   - This implies that the squirrel is actively pursuing the rabbit, but it does not directly relate to the cow's actions.\n\n3. If someone chases the cow then the cow is big. (From the given statements)\n   - This statement implies a condition where the cow being big is dependent on the actions of another individual.\n\n4. The cow is young. (From the given statements)\n   - This is a characteristic of the cow but does not provide information about the cow's actions.\n\n5. The squirrel likes the cow. (From the given statements)\n   - This is a characteristic of the squirrel but does not provide information about the squirrel's actions or the cow's actions.\n\n6. If someone likes the rabbit and they do not see the squirrel then they are big. (From the given statements)\n   - This statement implies a condition where an individual's size is dependent on their relationship with the rabbit and their awareness of the squirrel.\n\n7. The dog likes the rabbit and the squirrel, but it is not mentioned whether the dog sees the squirrel or not. (From the given statements)\n   - The dog's relationship with the rabbit and the squirrel does not provide information about the cow's actions.\n\n8. The rabbit chases the cow. (From the given statements)\n   - This implies that the rabbit is actively pursuing the cow, but it does not provide information about the squirrel's actions or the cow's actions towards the squirrel.\n\nBased on the given information, we cannot directly determine whether the cow chases the squirrel or not. However, we know that if the cow is big, then it is likely to be chasing the squirrel based on the given statements. But the given statements do not explicitly state the cow's size or its actions towards the squirrel. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not chase the squirrel\" is true, false, or unknown, we need to analyze the given information.\n\n1. The cow sees the squirrel. \nThis indicates that the cow is aware of the squirrel, but it does not tell us whether the cow is chasing the squirrel.\n\n2. The cow is young.\nThis information is irrelevant to whether the cow is chasing the squirrel or not.\n\n3. The squirrel chases the rabbit.\nThis is also irrelevant to whether the cow is chasing the squirrel or not.\n\n4. The squirrel likes the cow.\nThis is also irrelevant to whether the cow is chasing the squirrel or not.\n\n5. If someone chases the cow then the cow is big.\nThis is a conditional statement that does not directly apply to our problem.\n\n6. If someone likes the rabbit and they do not see the squirrel then they are big.\nThis is also a conditional statement that does not directly apply to our problem.\n\n7. If someone is big then they like the rabbit.\nThis is also a conditional statement that does not directly apply to our problem.\n\n8. If someone is young then they do not see the dog.\nThis is also a conditional statement that does not directly apply to our problem.\n\n9. If someone is blue then they chase the cow.\nThis is also a conditional statement that does not directly apply to our problem.\n\n10. If someone likes the rabbit then they like the cow.\nThis is a conditional statement that can be applied to our problem.\n\n11. If someone likes the cow then they see the cow.\nThis is also a conditional statement that can be applied to our problem.\n\n12. If someone sees the cow and they chase the squirrel then they see the rabbit.\nThis is also a conditional statement that can be applied to our problem.\n\nNow, let's try to apply these rules to the statement \"The cow does not chase the squirrel\".\n\nFrom rule 1, we know that the cow sees the squirrel.\n\nIf the cow sees the squirrel and does not chase it, then we do not have any information that contradicts this statement.\n\nHowever, we cannot conclude that the cow does not chase the squirrel because there is no rule that directly states that the cow does not chase the squirrel.\n\nTherefore, based on the given information, we cannot determine whether the statement \"The cow does not chase the squirrel\" is true or false.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not chase the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"If someone chases the cow then the cow is big\" implies that the cow is big if someone chases it. However, it doesn't tell us about the cow's age or the relationship between the cow and the squirrel.\n\n2. The statement \"The squirrel chases the rabbit\" tells us about the relationship between the squirrel and the rabbit, but it doesn't tell us about the relationship between the cow and the squirrel.\n\n3. The statement \"The squirrel likes the cow\" implies that the squirrel has a positive relationship with the cow, but it doesn't tell us about the direction of the chase.\n\n4. The statement \"The cow is young\" tells us about the cow's age, but it doesn't tell us about the cow's relationship with the squirrel.\n\n5. There is no direct statement that says the cow chases the squirrel. However, we can infer information from other statements.\n\n6. The statement \"If someone likes the cow then they see the cow\" implies that the squirrel sees the cow because it likes the cow. The statement \"The squirrel likes the cow\" tells us that the squirrel likes the cow, so it must see the cow.\n\n7. The statement \"If someone sees the cow and they chase the squirrel then they see the rabbit\" is relevant to the relationship between the cow and the squirrel, but it doesn't tell us about the direction of the chase.\n\n8. The statement \"The squirrel is young\" tells us about the squirrel's age, but it doesn't tell us about the direction of the chase.\n\n9. The statement \"The dog sees the rabbit\" and \"The dog likes the squirrel\" tells us about the dog's relationship with the rabbit and the squirrel, but it doesn't tell us about the cow's relationship with the squirrel.\n\n10. The statement \"The cow sees the squirrel\" is not directly stated, but we can infer it from other statements. If the squirrel likes the cow and sees the cow, then the cow must also see the squirrel.\n\nBased on the given information, we can infer that the squirrel likes the cow, sees the cow, and chases the rabbit. However, we cannot determine the direction of the chase between the cow and the squirrel. Therefore, the statement \"The cow does not chase the squirrel\" is unknown because we cannot determine the direction of the chase between the cow and the squirrel.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not chase the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that the squirrel chases the rabbit. This statement does not provide any information about the cow and the squirrel's relationship, so we move on.\n\n2. We know that the squirrel likes the cow. However, this statement does not tell us whether the cow likes the squirrel, so we cannot conclude anything from this information.\n\n3. We are given that if someone chases the cow then the cow is big. However, this statement does not tell us about the cow's size based on whether the cow chases the squirrel, so we move on.\n\n4. We know that the squirrel is young. However, this statement does not tell us about the squirrel's relationship with the cow, so we cannot conclude anything from this information.\n\n5. We are given that if someone is young then they do not see the dog. However, this statement does not tell us about the cow's relationship with the squirrel, so we move on.\n\n6. We know that the cow sees the squirrel. This statement does not tell us about the cow's relationship with the squirrel, but it does imply that the cow is not a young animal (since it is mentioned that the cow sees the dog and the dog is round, and if the cow was young it would not see the dog). \n\n7. We are given that if someone likes the rabbit and they do not see the squirrel then they are big. However, this statement does not tell us about the cow's relationship with the squirrel, so we move on.\n\n8. We know that the dog likes the rabbit. However, this statement does not tell us about the cow's relationship with the squirrel, so we move on.\n\n9. We know that the dog sees the rabbit. However, this statement does not tell us about the cow's relationship with the squirrel, so we move on.\n\n10. We are given that the rabbit chases the cow. However, this statement does not tell us about the cow's relationship with the squirrel, so we move on.\n\n11. We are given that the rabbit does not chase the dog. However, this statement does not tell us about the cow's relationship with the squirrel, so we move on.\n\n12. We know that the squirrel chases the rabbit. However, this statement does not tell us about the cow's relationship with the squirrel, so we move on.\n\n13. We know that the squirrel is young. However, this statement does not tell us about the cow's relationship with the squirrel, so we move on.\n\n14. We are given that if someone is blue then they chase the cow. However, this statement does not tell us about the cow's relationship with the squirrel, so we move on.\n\n15. We know that if someone likes the rabbit then they like the cow. However, this statement does not tell us about the cow's relationship with the squirrel, so we move on.\n\n16. We know that if someone likes the cow then they see the cow. However, this statement does not tell us about the cow's relationship with the squirrel, so we move on.\n\n17. We are given that if someone sees the cow and they chase the squirrel then they see the rabbit. However, this statement does not tell us about the cow's relationship with the squirrel, so we move on.\n\n18. We know that the dog likes the squirrel. However, this statement does not tell us about the cow's relationship with the squirrel, so we move on.\n\n19. We are given that the dog is round. However, this statement does not tell us about the cow's relationship with the squirrel, so we move on.\n\n20. We know that the cow is young. However, this statement does not tell us about the cow's relationship with the squirrel, so we move on.\n\n21. We are given that the cow sees the squirrel. However, we already know this information.\n\nWe need to analyze the last piece of information which is not used yet. \n\nWe are given that if someone likes the cow then they see the cow. However, the cow likes the squirrel, so this statement is true for the squirrel.\n\nNow we have the information that the squirrel likes the cow and the squirrel sees the cow. We can now use the last piece of information which is that if someone sees the cow and they chase the squirrel then they see the rabbit.\n\nHowever, this statement does not tell us about the squirrel chasing the cow. \n\nThe statement \"The cow does not chase the squirrel\" is unknown because we do not have enough information to determine whether the cow chases the squirrel or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not chase the squirrel\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. From the given statement, we know that \"If someone chases the cow then the cow is big.\"\n2. We also know that \"The cow is young.\" This implies that the cow is not big.\n3. Since the cow is young and not big, it does not chase the cow, because if it did, it would be big according to statement 1.\n4. From the given statements, we can see that the dog likes the rabbit and sees the rabbit, but it does not chase the rabbit.\n5. The statement \"If someone likes the rabbit and they do not see the squirrel then they are big\" can be applied to the dog. Since the dog does not see the squirrel (because it is round and we have no information about its ability to see squirrels), it must be big.\n6. Since the dog is big, we know that it likes the rabbit according to statement 3.\n7. From statement 4, we know that \"If someone is big then they like the rabbit.\" This implies that the dog likes the rabbit.\n8. Since the dog likes the rabbit, we can apply the statement \"If someone likes the rabbit then they like the cow.\" This implies that the dog likes the cow.\n9. Since the dog likes the cow, we can apply the statement \"If someone likes the cow then they see the cow.\" This implies that the dog sees the cow.\n10. We know that the squirrel chases the rabbit. Since the dog sees the cow and chases the squirrel, we can apply the statement \"If someone sees the cow and they chase the squirrel then they see the rabbit.\" This implies that the dog sees the rabbit.\n\nHowever, there is no direct information that the cow sees the squirrel or chases the squirrel. The only information we have about the cow is that it is young and sees the squirrel.\n\nGiven the information, we cannot conclude that the cow does not chase the squirrel. We can only say that the cow is young, and there is no information that contradicts the possibility of the cow chasing the squirrel. \n\nTherefore, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nFrom the given information, we know:\n\n1. The cow sees the squirrel.\n2. The squirrel chases the rabbit.\n3. The rabbit chases the cow.\n4. If someone chases the cow then the cow is big.\n5. The cow is young.\n6. If someone likes the rabbit and they do not see the squirrel then they are big.\n7. If someone is big then they like the rabbit.\n8. If someone is young then they do not see the dog.\n9. If someone likes the rabbit then they like the cow.\n10. If someone likes the cow then they see the cow.\n11. If someone sees the cow and they chase the squirrel then they see the rabbit.\n\nWe need to find a connection between the cow and the squirrel. \n\nFrom statement 1, we know the cow sees the squirrel, but we don't know if the cow chases the squirrel. \n\nWe can look at statement 5: the cow is young. \n\nStatement 8 says that if someone is young then they do not see the dog. \n\nThere is no information about the dog seeing the cow or the squirrel, so we cannot use this information to make a conclusion about the cow and the squirrel.\n\nHowever, there is a connection between the cow and the squirrel through the rabbit. \n\nFrom statement 2, the squirrel chases the rabbit. \n\nFrom statement 3, the rabbit chases the cow.\n\nNow, let's use statement 11: If someone sees the cow and they chase the squirrel then they see the rabbit.\n\nThis statement does not directly tell us whether the cow chases the squirrel or not, but it gives us a clue. \n\nIf the cow sees the squirrel, then the cow might be the one who chases the squirrel. \n\nHowever, statement 5 says that the cow is young. \n\nIf the cow is young, then the cow does not see the dog (statement 8).\n\nThere is no information that the dog sees the cow or the squirrel. \n\nNow, let's look at the information about the squirrel. \n\nFrom statement 2, the squirrel chases the rabbit. \n\nFrom statement 6, if someone likes the rabbit and they do not see the squirrel then they are big. \n\nFrom statement 7, if someone is big then they like the rabbit. \n\nHowever, there is no information about the squirrel seeing the dog. \n\nThe only information we have about the squirrel is that it is young (statement 10). \n\nSince the squirrel is young, it does not see the dog (statement 8).\n\nWe also know that the squirrel likes the cow (statement 9).\n\nHowever, this does not help us determine whether the cow chases the squirrel or not.\n\nNow, let's look at the information about the cow and the squirrel. \n\nFrom statement 1, the cow sees the squirrel. \n\nFrom statement 5, the cow is young. \n\nFrom statement 11, if someone sees the cow and they chase the squirrel then they see the rabbit.\n\nHowever, we do not have enough information to make a conclusion about the cow chasing the squirrel.\n\nLet's look at statement 4: If someone chases the cow then the cow is big.\n\nThis statement tells us that if the cow is big, then it is being chased by someone. \n\nHowever, this does not tell us whether the cow chases the squirrel or not.\n\nSince we cannot make a conclusion about the cow chasing the squirrel, we have to say that the statement is unknown.\n\nHowever, let's try to prove the statement that the cow does not chase the squirrel.\n\nIf the cow does not chase the squirrel, then we can use statement 11: If someone sees the cow and they chase the squirrel then they see the rabbit.\n\nThis statement does not directly tell us whether the cow chases the squirrel or not, but it gives us a clue. \n\nIf the cow sees the squirrel, then the cow might be the one who chases the squirrel. \n\nHowever, statement 5 says that the cow is young. \n\nIf the cow is young, then the cow does not see the dog (statement 8).\n\nThere is no information that the dog sees the cow or the squirrel. \n\nNow, let's look at the information about the squirrel. \n\nFrom statement 2, the squirrel chases the rabbit. \n\nFrom statement 6, if someone likes the rabbit and they do not see the squirrel then they are big. \n\nFrom statement 7, if someone is big then they like the rabbit. \n\nHowever, there is no information about the squirrel seeing the dog. \n\nThe only information we have about the squirrel is that it is young (statement 10). \n\nSince the squirrel is young, it does not see the dog (statement 8).\n\nWe also know that the squirrel likes the cow (statement 9).\n\nHowever, this does not help us determine whether the cow chases the squirrel or not.\n\nNow, let's look at the information about the cow and the squirrel. \n\nFrom statement 1, the cow sees the squirrel. \n\nFrom statement 5, the cow is young. \n\nHowever, we cannot make a conclusion about the cow chasing the squirrel.\n\nHowever, if we assume that the cow does not chase the squirrel, then the statement \"If someone sees the cow and they chase the squirrel then they see the rabbit\" would not apply.\n\nSince the cow does not chase the squirrel, it does not mean that the cow sees the squirrel. \n\nHowever, statement 10 says that if someone likes the cow then they see the cow.\n\nThis means that if the cow sees the squirrel, then the squirrel likes the cow (statement 9).\n\nSince the squirrel is young (statement 10), it does not see the dog (statement 8).\n\nThe only information we have about the dog is that it is round (statement 3) and it likes the rabbit (statement 4).\n\nHowever, statement 4 also says that if someone likes the rabbit and they do not see the squirrel then they are big.\n\nHowever, since the dog likes the rabbit and it does not see the squirrel, it is big (statement 4).\n\nHowever, statement 7 says that if someone is big then they like the rabbit.\n\nThis means that the dog likes the rabbit.\n\nHowever, statement 9 says that if someone likes the cow then they see the cow.\n\nThis means that the dog does not like the cow.\n\nHowever, statement 9 also says that if someone likes the cow then they see the cow.\n\nThis means that the dog does not see the cow.\n\nHowever, statement 5 says that the cow is young.\n\nThis means that the dog does not see the cow.\n\nHowever, statement 4 also says that if someone likes the rabbit and they do not see the squirrel then they are big.\n\nThis means that the dog is big.\n\nHowever, statement 7 says that if someone is big then they like the rabbit.\n\nThis means that the dog likes the rabbit.\n\nHowever, statement 4 also says that if someone chases the cow then the cow is big.\n\nThis means that the dog does not chase the cow.\n\nHowever, since the dog is big and it likes the rabbit, it sees the rabbit (statement 7).\n\nHowever, statement 3 says that the rabbit chases the cow.\n\nThis means that the dog sees the rabbit.\n\nHowever, statement 8 says that if someone is young then they do not see the dog.\n\nThis means that the cow does not see the dog.\n\nHowever, since the cow is young, it does not see the dog.\n\nHowever, statement 1 says that the cow sees the squirrel.\n\nThis means that the cow does not chase the squirrel.\n\nHowever, this conclusion is not correct. \n\nWe have to say that the statement is unknown.\n\nHowever, the statement \"The cow does not chase the squirrel\" is actually true.\n\nTo prove it, we can use a proof by contradiction.\n\nAssume that the statement is false, i.e., the cow chases the squirrel.\n\nFrom statement 4, if someone chases the cow then the cow is big.\n\nHowever, since the cow chases the squirrel, it means that the cow is not being chased by anyone.\n\nThis is a contradiction, since the cow is young (statement 5).\n\nTherefore, our assumption that the cow chases the squirrel is false.\n\nTherefore, the statement \"The cow does not chase the squirrel\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not chase the squirrel\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The cow is young.\n2. The cow sees the squirrel.\n3. The squirrel chases the rabbit.\n4. The squirrel is young.\n5. The squirrel likes the cow.\n6. If someone chases the cow then the cow is big.\n7. If someone likes the rabbit and they do not see the squirrel then they are big.\n8. If someone is big then they like the rabbit.\n9. If someone is young then they do not see the dog.\n10. If someone is blue then they chase the cow.\n11. If someone likes the rabbit then they like the cow.\n12. If someone likes the cow then they see the cow.\n13. If someone sees the cow and they chase the squirrel then they see the rabbit.\n\nFrom the given information, we can conclude that:\n\n- The squirrel chases the rabbit, and the squirrel is young. This means the squirrel is chasing the rabbit because it likes the cow, not because it's young. \n\n- The cow sees the squirrel, and the cow is young. This means the cow sees the squirrel because it likes the squirrel, not because it's young.\n\n- We cannot directly conclude whether the cow chases the squirrel or not from the given information. However, we can use the information that if someone chases the cow then the cow is big.\n\nLet's assume the statement \"The cow does not chase the squirrel\" is true. \n\nIf the cow does not chase the squirrel, then the cow is not chasing the squirrel because it's young, not because it's big. However, we cannot conclude that the cow is big or small from this information.\n\nNow, let's analyze the situation: the squirrel is chasing the rabbit, and the cow sees the squirrel. If the cow likes the squirrel, it must see the squirrel. However, we cannot directly conclude whether the cow likes the squirrel or not from the given information.\n\nSince we cannot determine whether the cow likes the squirrel or not, we cannot directly conclude whether the cow chases the squirrel or not from the information that if someone chases the cow then the cow is big.\n\nHowever, we can use the information that the squirrel is young and the squirrel likes the cow. This means the squirrel is chasing the rabbit because it likes the cow. But we don't know whether the squirrel is chasing the rabbit because it likes the cow or because it's young.\n\nThe statement \"The cow does not chase the squirrel\" cannot be determined to be true or false using the given information. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not chase the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cow sees the squirrel: This statement is given directly in the problem.\n\n2. The squirrel chases the rabbit: This statement is given directly in the problem.\n\n3. If someone likes the cow then they see the cow: We can infer from this statement that the squirrel likes the cow because the squirrel is the only one that sees the cow and is young. The squirrel likes the cow (from the statement: The squirrel likes the cow).\n\n4. If someone likes the cow then they see the cow: The squirrel likes the cow (from step 3), so the squirrel sees the cow (from this statement).\n\n5. If someone sees the cow and they chase the squirrel then they see the rabbit: We can infer from this statement that the squirrel sees the rabbit because the squirrel sees the cow (from step 4) and the squirrel chases the rabbit (from the statement: The squirrel chases the rabbit).\n\n6. The squirrel is young: This statement is given directly in the problem.\n\n7. The squirrel does not see the dog: We can infer from this statement that the squirrel is not big because if the squirrel is young then they do not see the dog (from the statement: If someone is young then they do not see the dog).\n\n8. The squirrel is not big: We can infer from step 7.\n\n9. The squirrel likes the cow: This statement is given directly in the problem.\n\n10. If someone likes the rabbit and they do not see the squirrel then they are big: The dog likes the rabbit (from the statement: The dog likes the rabbit) and the dog sees the rabbit (from the statement: The dog sees the rabbit). However, the dog does not see the squirrel (from step 7), so the dog is big (from this statement).\n\n11. The dog is big: We can infer from step 10.\n\n12. If someone is big then they like the rabbit: The dog is big (from step 11), so the dog likes the rabbit (from this statement).\n\n13. If someone chases the cow then the cow is big: The rabbit chases the cow (from the statement: The rabbit chases the cow), but we do not know whether the rabbit is big or not. However, we can infer that the cow is not big because if the cow is big then it likes the rabbit (from the statement: If someone is big then they like the rabbit). But we already know that the cow likes the squirrel (from the statement: The cow sees the squirrel), not the rabbit.\n\n14. The cow is not big: We can infer from step 13.\n\n15. If someone likes the rabbit then they like the cow: The dog likes the rabbit (from the statement: The dog likes the rabbit), but the dog likes the squirrel (from the statement: The dog likes the squirrel). The rabbit likes the cow (from the statement: The rabbit chases the cow), but the rabbit does not like the squirrel (from the statement: The rabbit does not chase the squirrel).\n\n16. The cow does not chase the squirrel: We can infer from the fact that the cow is young (from the statement: The cow is young), the squirrel is young (from the statement: The squirrel is young), and the squirrel likes the cow (from the statement: The squirrel likes the cow).",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not chase the squirrel\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The squirrel chases the rabbit. (Given)\n2. The squirrel is young. (Given)\n3. The cow sees the squirrel. (Given)\n4. The squirrel likes the cow. (Given)\n5. If someone chases the cow then the cow is big. (Given)\n6. The squirrel is young. (Given), which means the squirrel does not chase the cow according to rule 5.\n7. The squirrel does not chase the cow. (From rule 6)\n8. The squirrel chases the rabbit. (Given), and the squirrel is young. (Given), so the squirrel does not chase the cow. (From rule 7)\n9. If someone likes the rabbit and they do not see the squirrel then they are big. (Given)\n10. The dog likes the rabbit. (Given)\n11. The dog sees the rabbit. (Given)\n12. The dog does not see the squirrel because the dog is round, but there is no information about the dog being round in the given statements, however, there is information stating that if someone is young, they do not see the dog, therefore, the dog cannot be young, so the dog is big.\n13. The dog is big. (From rule 12)\n14. The dog likes the rabbit. (Given)\n15. If someone is big then they like the rabbit. (Given)\n16. The dog likes the rabbit. (From rule 14 and rule 15)\n17. If someone likes the rabbit then they like the cow. (Given)\n18. The dog likes the rabbit. (From rule 16)\n19. The dog likes the cow. (From rule 17)\n20. The cow is young. (Given)\n21. The dog is big. (From rule 13)\n22. The dog likes the cow. (From rule 19)\n23. The cow does not see the dog because the cow is young, (From rule 1) so the cow does not see the dog.\n24. The cow does not see the dog. (From rule 23)\n25. The cow does not chase the squirrel, (From rule 7)\n26. The cow likes the squirrel. (Given), but the cow does not see the squirrel, (From rule 23) so the cow does not chase the squirrel.\n27. The cow does not chase the squirrel. (From rule 25 and rule 26)\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not chase the squirrel\" is true, false, or unknown, we need to analyze the given information and use it to derive a conclusion.\n\nFrom the given information:\n\n1. The squirrel chases the rabbit.\n2. The squirrel is young.\n3. The squirrel likes the cow.\n4. The squirrel does not have any other properties that would indicate it chases the cow.\n\nFrom the information about the cow:\n \n1. If someone chases the cow then the cow is big.\n \nFrom the information about the rabbit:\n \n1. The rabbit chases the cow.\n\nFrom the information about the dog:\n \n1. The dog is round.\n2. The dog likes the rabbit.\n3. The dog likes the squirrel.\n4. The dog sees the rabbit.\n\nFrom the information about the rabbit and the squirrel:\n \n1. The squirrel chases the rabbit.\n2. The squirrel is young.\n\nFrom the information about the cow and the rabbit:\n \n1. The rabbit chases the cow.\n\nFrom the information about the squirrel and the cow:\n \n1. The squirrel likes the cow.\n2. The squirrel is young.\n\nNow, we analyze the given statement: \"The cow does not chase the squirrel.\"\n\nIf the cow chases the squirrel, then it would be big (since someone chases the cow, then the cow is big). However, the given information states that the squirrel is young. Since the squirrel is young, the cow is also young. \n\nThe statement is false because the cow is young, not big.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_cow_squirrel, big_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & Not(sees(X, squirrel)) -> big(X)",
+          "z3_formula": "Implies(And(likes_dog_rabbit, Not(sees_dog_squirrel)), big_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(big_dog, likes_dog_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> Not(sees(X, dog))",
+          "z3_formula": "Implies(young_squirrel, Not(sees_squirrel_dog))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> likes(X, cow)",
+          "z3_formula": "Implies(likes_dog_rabbit, likes_dog_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(X, cow)",
+          "z3_formula": "Implies(likes_squirrel_cow, sees_squirrel_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & chases(X, squirrel) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_squirrel_cow, chases_squirrel_rabbit), sees_squirrel_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "big(cow) | young(cow)",
+          "z3_formula": "Or(big_cow, young_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, cow)",
+          "z3_formula": "sees_squirrel_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "Not(sees(squirrel, dog))",
+          "z3_formula": "Not(sees_squirrel_dog)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, rabbit)",
+          "z3_formula": "chases_squirrel_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> big(X)",
+          "z3_formula": "Implies(chases_X_Y, big_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & not sees(Y, squirrel) -> big(Y)",
+          "z3_formula": "Implies(And(likes_X_rabbit, Not(sees_Y_squirrel)), big_Y)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(big_X, likes_X_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> not sees(X, dog)",
+          "z3_formula": "Implies(young_X, Not(sees_X_dog))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & chases(Z, Y) -> sees(Z, X)",
+          "z3_formula": "Implies(And(sees_X_Y, chases_Z_Y), sees_Z_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, cow)",
+          "z3_formula": "Implies(blue_X, chases_X_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> likes(X, cow)",
+          "z3_formula": "Implies(likes_X_rabbit, likes_X_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(rabbit, cow)",
+          "z3_formula": "Not(likes_rabbit_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(rabbit, dog)",
+          "z3_formula": "Not(sees_rabbit_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not big(rabbit)",
+          "z3_formula": "Not(big_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not big(squirrel)",
+          "z3_formula": "Not(big_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not big(cow)",
+          "z3_formula": "Not(big_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(cow, rabbit)",
+          "z3_formula": "Not(chases_cow_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(squirrel, rabbit)",
+          "z3_formula": "Not(chases_squirrel_rabbit)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(squirrel, cow)",
+          "z3_formula": "Not(chases_squirrel_cow)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(cow, squirrel)",
+          "z3_formula": "Not(chases_cow_squirrel)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, rabbit)",
+          "z3_formula": "chases_squirrel_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_X_cow, big_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & not(sees(X, squirrel)) -> big(X)",
+          "z3_formula": "Implies(And(likes_X_rabbit, Not(sees_X_squirrel)), big_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, rabbit) & likes(dog, squirrel)",
+          "z3_formula": "And(likes_dog_rabbit, likes_dog_squirrel) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, rabbit)",
+          "z3_formula": "chases_squirrel_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_X_cow, big_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & Not(sees(X, squirrel)) -> big(X)",
+          "z3_formula": "Implies(And(likes_X_rabbit, Not(sees_X_squirrel)), big_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(big_X, likes_X_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> Not(sees(X, dog))",
+          "z3_formula": "Implies(young_X, Not(sees_X_dog))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, cow)",
+          "z3_formula": "Implies(blue_X, chases_X_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> likes(X, cow)",
+          "z3_formula": "Implies(likes_X_rabbit, likes_X_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(X, cow)",
+          "z3_formula": "Implies(likes_X_cow, sees_X_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & chases(X, squirrel) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_cow, chases_X_squirrel), sees_X_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(chases(cow, squirrel))",
+          "z3_formula": "Not(chases_cow_squirrel)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(cow)",
+          "z3_formula": "Implies(chases_someone_cow, big_cow)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, rabbit)",
+          "z3_formula": "chases_squirrel_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(X, cow)",
+          "z3_formula": "Implies(likes_squirrel_cow, sees_squirrel_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & chases(X, squirrel) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_someone_cow, chases_someone_squirrel), sees_someone_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, cow)",
+          "z3_formula": "sees_squirrel_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, rabbit)",
+          "z3_formula": "chases_squirrel_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_cow_X, big_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> Not(sees(X, dog))",
+          "z3_formula": "Implies(young_X, Not(sees_X_dog))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & Not(sees(X, squirrel)) -> big(X)",
+          "z3_formula": "Implies(And(likes_X_rabbit, Not(sees_X_squirrel)), big_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "Not(chases(dog, rabbit))",
+          "z3_formula": "Not(chases_dog_rabbit) == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, rabbit)",
+          "z3_formula": "chases_squirrel_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, cow)",
+          "z3_formula": "Implies(blue_X, chases_X_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> likes(X, cow)",
+          "z3_formula": "Implies(likes_X_rabbit, likes_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(X, cow)",
+          "z3_formula": "Implies(likes_X_cow, sees_X_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & chases(X, squirrel) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_cow, chases_X_squirrel), sees_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(X, cow)",
+          "z3_formula": "Implies(likes_X_cow, sees_X_cow)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, cow)",
+          "z3_formula": "sees_squirrel_cow == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & chases(X, squirrel) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_cow, chases_X_squirrel), sees_X_rabbit)",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, rabbit)",
+          "z3_formula": "chases_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_cow_cow, big_cow)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> Not(big(X))",
+          "z3_formula": "Implies(young_cow, Not(big_cow))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(big_cow, likes_cow_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> likes(X, cow)",
+          "z3_formula": "Implies(likes_cow_rabbit, likes_cow_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(X, cow)",
+          "z3_formula": "Implies(likes_cow_cow, sees_cow_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & chases(X, squirrel) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_cow_cow, chases_cow_squirrel), sees_cow_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "Not(chases(cow, squirrel))",
+          "z3_formula": "Not(chases_cow_squirrel) == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, rabbit)",
+          "z3_formula": "chases_squirrel_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_X_cow, big_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & ~sees(X, squirrel) -> big(X)",
+          "z3_formula": "Implies(And(likes_X_rabbit, Not(sees_X_squirrel)), big_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(big_X, likes_X_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> ~sees(X, dog)",
+          "z3_formula": "Implies(young_X, Not(sees_X_dog))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(X, cow)",
+          "z3_formula": "Implies(likes_X_cow, sees_X_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & chases(X, squirrel) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_cow, chases_X_squirrel), sees_X_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases(cow, squirrel))",
+          "z3_formula": "Not(chases_cow_squirrel)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, rabbit)",
+          "z3_formula": "chases_squirrel_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_X_cow, big_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & not(sees(X, squirrel)) -> big(X)",
+          "z3_formula": "Implies(And(likes_X_rabbit, Not(sees_X_squirrel)), big_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(big_X, likes_X_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> not(sees(X, dog))",
+          "z3_formula": "Implies(young_X, Not(sees_X_dog))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> chases(X, cow)",
+          "z3_formula": "Implies(blue_X, chases_X_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> likes(X, cow)",
+          "z3_formula": "Implies(likes_X_rabbit, likes_X_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(X, cow)",
+          "z3_formula": "Implies(likes_X_cow, sees_X_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & chases(X, squirrel) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_cow, chases_X_squirrel), sees_X_rabbit)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, rabbit)",
+          "z3_formula": "chases_squirrel_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> sees(X, cow)",
+          "z3_formula": "Implies(likes_squirrel_cow, sees_squirrel_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, cow)",
+          "z3_formula": "sees_squirrel_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & chases(X, squirrel) -> sees(X, rabbit)",
+          "z3_formula": "Implies(And(sees_squirrel_cow, chases_squirrel_rabbit), sees_squirrel_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> not sees(X, dog)",
+          "z3_formula": "Implies(young_squirrel, Not(sees_squirrel_dog))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(squirrel, dog)",
+          "z3_formula": "Not(sees_squirrel_dog) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not big(squirrel)",
+          "z3_formula": "Not(big_squirrel) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & not sees(X, squirrel) -> big(X)",
+          "z3_formula": "Implies(And(likes_dog_rabbit, Not(sees_dog_squirrel)), big_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(big_dog, likes_dog_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_rabbit_cow, big_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not big(cow)",
+          "z3_formula": "Not(big_cow) == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> likes(X, cow)",
+          "z3_formula": "Implies(likes_dog_rabbit, likes_dog_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(squirrel, cow)",
+          "z3_formula": "Not(chases_squirrel_cow) == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & young(Y) & likes(Y, X) -> not chases(X, Y)",
+          "z3_formula": "Implies(And(young_cow, young_squirrel, likes_squirrel_cow), Not(chases_cow_squirrel))",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, rabbit)",
+          "z3_formula": "chases_squirrel_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_X_cow, big_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(squirrel, cow)",
+          "z3_formula": "Not(chases_squirrel_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(squirrel, cow)",
+          "z3_formula": "Not(chases_squirrel_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & not sees(X, squirrel) -> big(X)",
+          "z3_formula": "Implies(And(likes_X_rabbit, Not(sees_X_squirrel)), big_X)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(dog, squirrel)",
+          "z3_formula": "Not(sees_dog_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(big_X, likes_X_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> likes(X, cow)",
+          "z3_formula": "Implies(likes_X_rabbit, likes_X_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, cow)",
+          "z3_formula": "likes_dog_cow == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(cow, dog)",
+          "z3_formula": "Not(sees_cow_dog)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(cow, squirrel)",
+          "z3_formula": "Not(chases_cow_squirrel)",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, squirrel)",
+          "z3_formula": "likes_cow_squirrel == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(cow, squirrel)",
+          "z3_formula": "Not(chases_cow_squirrel)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(cow, squirrel)",
+          "z3_formula": "Not(chases_cow_squirrel)",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, rabbit)",
+          "z3_formula": "chases_squirrel_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(squirrel, cow))",
+          "z3_formula": "not(chases_squirrel_cow) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(cow)",
+          "z3_formula": "Implies(chases_cow_squirrel, big_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(squirrel) -> young(cow)",
+          "z3_formula": "Implies(young_squirrel, young_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 189,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 64
+    },
+    "maxsat_stats": {
+      "satisfied": 61,
+      "excluded": 3,
+      "total_weight": 186,
+      "solve_time_ms": 1.6216505318880081
+    },
+    "timing": {
+      "trace_gen_s": 24.758,
+      "extraction_s": 34.987,
+      "dedup_s": 2.579,
+      "maxsat_s": 0.005,
+      "total_s": 62.33
+    }
+  }
+}

@@ -1,0 +1,432 @@
+{
+  "pid": "folio_132",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "\u2203x (M(x) \u2227 T(x))",
+          "z3_formula": "Exists(x, And(M_x, T_x))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "\u2200x (P(x) \u2192 \u00acT(x))",
+          "z3_formula": "Forall(x, Implies(P_x, Not(T_x)))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "\u2200x (P(x) \u2192 M(x))",
+          "z3_formula": "Forall(x, Implies(P_x, M_x))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "\u2200x (H(x) \u2192 T(x))",
+          "z3_formula": "Forall(x, Implies(H_x, T_x))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "\u2200x (P(x) \u2192 (M(x) \u2227 \u00acT(x)))",
+          "z3_formula": "Forall(x, Implies(P_x, And(M_x, Not(T_x))))",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "some_mammals_have_teeth",
+          "z3_formula": "some_mammals_have_teeth == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "humans_have_teeth",
+          "z3_formula": "humans_have_teeth == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> some_mammals_have_teeth",
+          "z3_formula": "Implies(mammal_platypus, some_mammals_have_teeth)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> no_teeth(X)",
+          "z3_formula": "Implies(mammal_platypus, no_teeth_platypus)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "mammal(platypus) & no_teeth(platypus)",
+          "z3_formula": "And(mammal_platypus, no_teeth_platypus) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "teeth(mammal)",
+          "z3_formula": "teeth_mammal == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(platypus) == False",
+          "z3_formula": "teeth_platypus == False",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(human) == True",
+          "z3_formula": "teeth_human == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) & ~teeth(X) -> mammal_with_no_teeth(X)",
+          "z3_formula": "Implies(And(mammal_platypus, Not(teeth_platypus)), mammal_with_no_teeth_platypus)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "mammal_with_no_teeth(platypus)",
+          "z3_formula": "mammal_with_no_teeth_platypus == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "teeth(mammals)",
+          "z3_formula": "teeth_mammals == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(teeth(platypus))",
+          "z3_formula": "Not(teeth_platypus) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(humans)",
+          "z3_formula": "teeth_humans == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(human)",
+          "z3_formula": "mammal_human == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(human)",
+          "z3_formula": "teeth_human == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "Some A are B",
+          "z3_formula": "Exists(X, And(mammal(X), teeth(X)))",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "mammal(platypus) & no_teeth(platypus)",
+          "z3_formula": "And(mammal_platypus, no_teeth_platypus)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "teeth(mammal)",
+          "z3_formula": "teeth_mammal == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(human)",
+          "z3_formula": "teeth_human == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> teeth(X)",
+          "z3_formula": "Implies(mammal_platypus, teeth_platypus)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "mammal(platypus) & no_teeth(platypus)",
+          "z3_formula": "And(mammal_platypus, no_teeth_platypus)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "some_mammals_have_teeth",
+          "z3_formula": "some_mammals_have_teeth == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "platypus_have_no_teeth",
+          "z3_formula": "platypus_have_no_teeth == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "platypus_are_mammals",
+          "z3_formula": "platypus_are_mammals == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "platypus_are_mammals_with_no_teeth",
+          "z3_formula": "And(platypus_are_mammals, platypus_have_no_teeth) == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(humans)",
+          "z3_formula": "teeth_humans == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) & no_teeth(X) -> mammals_with_no_teeth(X)",
+          "z3_formula": "Implies(And(mammal_platypus, no_teeth_platypus), mammals_with_no_teeth_platypus)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "mammals_with_no_teeth(platypus)",
+          "z3_formula": "mammals_with_no_teeth_platypus == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "some_mammals_have_teeth",
+          "z3_formula": "some_mammals_have_teeth == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> some_mammals_have_teeth",
+          "z3_formula": "Implies(mammal_platypus, some_mammals_have_teeth)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "mammal(platypus) & no_teeth(platypus)",
+          "z3_formula": "And(mammal_platypus, no_teeth_platypus) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "teeth(mammals)",
+          "z3_formula": "teeth_mammals == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(humans)",
+          "z3_formula": "teeth_humans == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "teeth(mammal)",
+          "z3_formula": "teeth_mammal == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(human)",
+          "z3_formula": "teeth_human == True",
+          "source_step": 4
+        }
+      ]
+    }
+  ]
+}

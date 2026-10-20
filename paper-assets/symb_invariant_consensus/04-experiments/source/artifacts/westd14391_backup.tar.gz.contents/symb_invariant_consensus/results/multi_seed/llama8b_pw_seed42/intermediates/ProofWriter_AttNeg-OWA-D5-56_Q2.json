@@ -1,0 +1,1048 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-56_Q2",
+    "problem": "Dave is red. Erin is quiet. Fiona is white. Harry is big. Harry is not green. Harry is quiet. Harry is red. Quiet, red people are smart. If someone is quiet then they are smart. If Dave is red then Dave is big. If Dave is smart and Dave is white then Dave is big. If Fiona is white and Fiona is red then Fiona is rough. If someone is white then they are quiet. Rough people are green. All smart people are red.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not red.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRed($x, bool) ::: Is x red?\nQuiet($x, bool) ::: Is x quiet?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nSmart($x, bool) ::: Is x smart?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nRed(Dave, True) ::: Dave is red.\nQuiet(Erin, True) ::: Erin is quiet.\nWhite(Fiona, True) ::: Fiona is white.\nBig(Harry, True) ::: Harry is big.\nGreen(Harry, False) ::: Harry is not green.\nQuiet(Harry, True) ::: Harry is quiet.\nRed(Harry, True) ::: Harry is red.\n\nRules:\nQuiet($x, True) && Red($x, True) >>> Smart($x, True) ::: Quiet, red people are smart.\nQuiet($x, True) >>> Smart($x, True) ::: If someone is quiet then they are smart.\nRed(Dave, True) >>> Big(Dave, True) ::: If Dave is red then Dave is big.\nSmart(Dave, True) && White(Dave, True) >>> Big(Dave, True) ::: If Dave is smart and Dave is white then Dave is big.\nWhite(Fiona, True) && Red(Fiona, True) >>> Rough(Fiona, True) ::: If Fiona is white and Fiona is red then Fiona is rough.\nWhite($x, True) >>> Quiet($x, True) ::: If someone is white then they are quiet.\nRough($x, True) >>> Green($x, True) ::: Rough people are green.\nSmart($x, True) >>> Red($x, True) ::: All smart people are red.\n\nQuery:\nRed(Harry, False) ::: Harry is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 125.5,
+      "Unknown": 88.0
+    },
+    "answer_counts": {
+      "Unknown": 1,
+      "False": 11
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement 'Harry is not red' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is big.\n2. Harry is not green.\n3. Harry is quiet.\n\nFrom the given statements, we know that:\n- Quiet, red people are smart.\n- If someone is quiet then they are smart.\n- All smart people are red.\n\nSince Harry is quiet (statement 3), and if someone is quiet then they are smart (from the given statements), we can conclude that Harry is smart.\n\n4. Harry is red.\n\nNow, we know that Harry is smart and Harry is red. From the given statements, we know that all smart people are red, so this information is consistent. However, we cannot conclude anything about Harry's color from this information alone.\n\nHowever, from the given statements, we know that:\n- Quiet, red people are smart.\n- If Dave is red then Dave is big.\n- If Dave is smart and Dave is white then Dave is big.\n\nFrom the given statement 'If Dave is red then Dave is big', and 'If Dave is smart and Dave is white then Dave is big', we can conclude that Dave is not white, because if he were, the statement 'If Dave is smart and Dave is white then Dave is big' would contradict the statement 'If Dave is red then Dave is big'.\n\nNow, we know that Dave is red and Dave is not white. However, from the given statement 'If Dave is red then Dave is big', we cannot conclude that Harry is not red, because the statement only talks about Dave, not Harry.\n\nHowever, we can use the given statement 'If Fiona is white and Fiona is red then Fiona is rough'. Since Fiona is white and red, we can conclude that Fiona is rough. However, we also know that 'Rough people are green', so Fiona is green. \n\nBut, Fiona is also white. Since we know that 'If someone is white then they are quiet', we can conclude that Fiona is quiet. \n\nWe also know that 'If someone is quiet then they are smart', so Fiona is smart. \n\nFrom the given statements, we know that 'All smart people are red', so Fiona is red.\n\nNow, we know that Fiona is white and Fiona is red. Since we already know that 'If Fiona is white and Fiona is red then Fiona is rough', and Fiona is indeed rough, this statement is consistent.\n\nHowever, we also know that 'Quiet, red people are smart'. We have already concluded that Fiona is red and Fiona is quiet, so Fiona is indeed smart.\n\nFrom the given statements, we know that 'All smart people are red'. Since Fiona is smart, we can conclude that Fiona is red.\n\nWe have already concluded that Fiona is red, and Fiona is also white. Since we know that 'If someone is white then they are quiet', and Fiona is indeed quiet, this statement is consistent.\n\nSince we know that Fiona is white, red, and quiet, we can conclude that Fiona is indeed red.\n\nHowever, we also know that 'If Dave is red then Dave is big'. We have already concluded that Dave is red, so Dave is big.\n\nWe have already concluded that Harry is big, and Harry is not green. However, we cannot conclude that Harry is not red.\n\nWe know that Dave is red, and we know that 'If Dave is red then Dave is big'. However, we also know that 'If Dave is smart and Dave is white then Dave is big'. Since Dave is red, we cannot conclude that Dave is white.\n\nWe have already concluded that Fiona is white, red, and quiet. Since we know that 'Quiet, red people are smart', we can conclude that Fiona is indeed smart.\n\nFrom the given statements, we know that 'All smart people are red'. Since Fiona is smart, we can conclude that Fiona is red.\n\nWe know that Fiona is white, red, and quiet. Since we know that 'Quiet, red people are smart', we can conclude that Fiona is indeed smart.\n\nFrom the given statements, we know that 'All smart people are red'. Since Fiona is smart, we can conclude that Fiona is red.\n\nWe have already concluded that Harry is big, and Harry is not green. However, we cannot conclude that Harry is not red.\n\nHowever, we also know that 'If Fiona is white and Fiona is red then Fiona is rough'. Since Fiona is white and red, we can conclude that Fiona is rough.\n\nWe know that Fiona is white, red, and rough. Since we know that 'Rough people are green', we can conclude that Fiona is green.\n\nHowever, Fiona is also white. Since we know that 'If someone is white then they are quiet', we can conclude that Fiona is quiet.\n\nWe also know that 'If someone is quiet then they are smart', so Fiona is smart.\n\nFrom the given statements, we know that 'All smart people are red'. Since Fiona is smart, we can conclude that Fiona is red.\n\nHowever, we also know that Fiona is white. Since we know that 'If someone is white then they are quiet', we can conclude that Fiona is quiet.\n\nWe also know that 'If someone is quiet then they are smart', so Fiona is smart.\n\nFrom the given statements, we know that 'All smart people are red'. Since Fiona is smart, we can conclude that Fiona is red.\n\nNow, let's go back to the statement 'Harry is not red'. We have already concluded that Harry is big, and Harry is not green. However, we cannot conclude that Harry is not red.\n\nHowever, we also know that 'If Dave is red then Dave is big'. We have already concluded that Dave is red, so Dave is big.\n\nWe know that Dave is red, and we know that 'If Dave is red then Dave is big'. However, we also know that 'If Dave is smart and Dave is white then Dave is big'. Since Dave is red, we cannot conclude that Dave is white.\n\nHowever, we also know that 'If Fiona is white and Fiona is red then Fiona is rough'. Since Fiona is white and red, we can conclude that Fiona is rough.\n\nWe know that Fiona is white, red, and rough. Since we know that 'Rough people are green', we can conclude that Fiona is green.\n\nHowever, Fiona is also white. Since we know that 'If someone is white then they are quiet', we can conclude that Fiona is quiet.\n\nWe also know that 'If someone is quiet then they are smart', so Fiona is smart.\n\nFrom the given statements, we know that 'All smart people are red'. Since Fiona is smart, we can conclude that Fiona is red.\n\nWe have already concluded that Harry is big, and Harry is not green. However, we cannot conclude that Harry is not red.\n\nSince we cannot conclude that Harry is not red, we cannot say for certain whether the statement 'Harry is not red' is true or false. Therefore, the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the truth value of the statement \"Harry is not red,\" we need to analyze the given information step by step.\n\n1. Harry is big. (Given)\n2. Harry is not green. (Given)\n3. Harry is quiet. (Given)\n4. Harry is red. (Given)\n\nFrom the given statements, we know that Harry is indeed red. Now, let's examine the implications of this information.\n\nGiven:\n- Quiet, red people are smart. (If someone is quiet and red, then they are smart)\n- If someone is quiet then they are smart. (If someone is quiet, then they are smart, regardless of their color)\n- All smart people are red. (If someone is smart, then they are red)\n\nFrom the above statements, we can conclude that Harry is smart because he is quiet (Statement 3) and red (Statement 4).\n\nNow, let's examine the statement \"Harry is not red.\"\n\nIf Harry is smart (which we know from the above conclusion), and all smart people are red, then Harry must be red. This directly contradicts the statement \"Harry is not red.\"\n\nTherefore, the statement \"Harry is not red\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is big.\n2. Harry is not green.\n3. Harry is quiet.\n\nFrom statement 1, we know Harry is big, but this doesn't tell us much about his color.\n\nFrom statement 2, we know Harry is not green. However, this doesn't directly tell us whether he's red or not.\n\nFrom statement 3, we know Harry is quiet. Being quiet doesn't necessarily tell us about his color.\n\nNow, let's look at the given logical rules:\n\n1. Quiet, red people are smart.\n2. If someone is quiet then they are smart.\n3. If Dave is red then Dave is big.\n4. If Dave is smart and Dave is white then Dave is big.\n5. If Fiona is white and Fiona is red then Fiona is rough.\n6. If someone is white then they are quiet.\n7. Rough people are green.\n8. All smart people are red.\n\nWe can start by combining statements 2 and 3: since Harry is quiet, and being quiet means he's smart (from statement 2), we can conclude that Harry is smart (from statement 3).\n\nNow, let's combine this with statement 8: since Harry is smart, and all smart people are red, we can conclude that Harry is red.\n\nHowever, this seems to contradict statement 2, which says Harry is not green. But that's not the case; Harry being red doesn't imply that he's not green. The rule only says that Harry is not green, not that all non-green people are red.\n\nNow, we can conclude that the statement \"Harry is not red\" is false, since we've found evidence that Harry is indeed red.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is big.\n2. Harry is not green.\n3. Harry is quiet.\n4. Harry is red.\n\nFrom statement 1, we know Harry is big. But we cannot determine his color or quietness from this statement alone.\n\nFrom statement 2, we know Harry is not green. This does not provide any information about his color, but it tells us one color he is not.\n\nFrom statement 3, we know Harry is quiet. This statement alone does not tell us anything about his color or size.\n\nFrom statement 4, we know Harry is red. This statement directly contradicts the statement we are trying to evaluate, which is \"Harry is not red.\"\n\nNow, let's examine the logical rules given:\n\n- Quiet, red people are smart.\n- If someone is quiet then they are smart.\n- If Dave is red then Dave is big.\n- If Dave is smart and Dave is white then Dave is big.\n- If Fiona is white and Fiona is red then Fiona is rough.\n- If someone is white then they are quiet.\n- Rough people are green.\n- All smart people are red.\n\nWe can ignore most of these rules because they are not relevant to the statement \"Harry is not red.\" However, we can use some of the rules to analyze the given information about Harry.\n\nWe know Harry is quiet (statement 3), which means he is smart (rule 1 or rule 2). We also know Harry is red (statement 4). Since Harry is smart, we can conclude that he is indeed red (rule 8).\n\nTherefore, the statement \"Harry is not red\" is false because we have conclusive evidence that Harry is red.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is quiet. (From the given information)\n2. Harry is quiet. (From the given information)\n3. Harry is red. (From the given information)\n4. Quiet, red people are smart. (From the given information)\n5. If someone is quiet then they are smart. (From the given information)\n6. Harry is big. (From the given information)\n7. Harry is not green. (From the given information)\n\nNow, let's focus on Harry being red:\n\n8. All smart people are red. (From the given information)\n9. Since Harry is quiet (from statement 1) and quiet people are smart (from statement 5), then Harry must be smart.\n10. Since all smart people are red (from statement 8), Harry must be red.\n\nNow, let's check the statement \"Harry is not red\":\n\n11. Harry is red (from statement 10), which directly contradicts the statement \"Harry is not red.\"\n\nTherefore, since we have a direct contradiction, the statement \"Harry is not red\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is big.\n2. Harry is not green.\n3. Harry is quiet.\n4. Harry is red.\n\nFrom statement 3, we know that Harry is quiet. We also have the following information:\n- Quiet people are smart.\n- Quiet, red people are smart.\n- All smart people are red.\n\nSince Harry is quiet, we can conclude that Harry is smart (from \"Quiet people are smart\"). Then, since Harry is smart and we know that all smart people are red, we can conclude that Harry is indeed red.\n\nNow, we need to evaluate the statement \"Harry is not red.\" Since we have already concluded that Harry is red, this statement is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is big. (Given)\n2. Harry is not green. (Given)\n3. Harry is quiet. (Given)\n4. Harry is red. (Given)\n\nFrom point 1, we know Harry is big, but we don't have any information about his color yet.\n\nFrom point 2, we know Harry is not green, but this doesn't give us any information about his other colors.\n\nFrom point 3, we know Harry is quiet, which might suggest he is smart (since Quiet, red people are smart and If someone is quiet then they are smart), but we need to be careful about making assumptions.\n\nFrom point 4, we know Harry is red, which might suggest he is smart (since Quiet, red people are smart), but again, we need to be careful about making assumptions.\n\nNow, let's look at some other statements that might help us determine whether Harry is red:\n\n- All smart people are red. (This doesn't directly tell us Harry's color, but it suggests that if Harry is smart, he must be red.)\n\n- If Dave is red then Dave is big. (This doesn't directly tell us Harry's color, but it suggests that if Dave is red, then Dave is big. However, this doesn't apply to Harry since we know Harry is big from point 1.)\n\n- If Dave is smart and Dave is white then Dave is big. (This doesn't directly tell us Harry's color, and it's not relevant to Harry since we don't know if Dave is smart or white.)\n\n- If Fiona is white and Fiona is red then Fiona is rough. (This doesn't directly tell us Harry's color, but it suggests that if Fiona is both white and red, then she is rough. However, we don't know if Fiona is red or not.)\n\n- If someone is white then they are quiet. (This doesn't directly tell us Harry's color, but it suggests that if Harry is white, then he is quiet. However, we already know Harry is quiet from point 3.)\n\n- Rough people are green. (This doesn't directly tell us Harry's color, but it suggests that if Harry is rough, then he is green. However, we don't know if Harry is rough or not.)\n\nNow, let's look at the statement we want to evaluate: \"Harry is not red.\"\n\nWe know from point 4 that Harry is red. Therefore, the statement \"Harry is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the truth of the statement \"Harry is not red,\" we need to analyze the given information and the relationships between the variables. \n\n1. Harry is big. \n2. Harry is not green.\n3. Harry is quiet.\n4. Harry is red.\n\nFrom statement 2, we know Harry is not green, but we still don't have enough information to determine if Harry is red or not.\n\nHowever, looking at statement 4, it directly states that Harry is red. This information contradicts statement 1 and 3, which are also true. \n\nNow let's analyze the other given information to see if it affects the truth of Harry being red or not.\n\n1. Quiet, red people are smart.\n2. If someone is quiet then they are smart.\n3. Harry is quiet and Harry is red, so Harry is smart.\n\n4. If Dave is red then Dave is big.\n5. Harry is red, but we can't conclude Harry is big from this statement.\n\n6. If Dave is smart and Dave is white then Dave is big.\n7. We know Harry is smart, but we don't know if he is white or not.\n\n8. If Fiona is white and Fiona is red then Fiona is rough.\n9. This statement does not affect the truth of Harry being red or not.\n\n10. If someone is white then they are quiet.\n11. We don't know if Harry is white or not.\n\n12. Rough people are green.\n13. We don't know if Harry is rough or not.\n\n14. All smart people are red.\n15. We already know Harry is red and smart, so this statement doesn't affect the truth.\n\nFrom the given information, the most relevant statement is statement 4, which directly states that Harry is red.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is quiet. (From the problem statement)\n2. Quiet, red people are smart. (From the problem statement)\n3. All smart people are red. (From the problem statement)\n4. Harry is quiet. (From the problem statement)\n5. If someone is quiet then they are smart. (From the problem statement)\n   - From steps 1 and 4, we can conclude that Harry is smart.\n6. Harry is smart. (From step 5)\n7. All smart people are red. (From the problem statement)\n   - From step 6, we can conclude that Harry is red.\n\nNow, let's consider the statement \"Harry is not red.\" Given the conclusion in step 7, we have a contradiction with the statement \"Harry is not red.\" Therefore, the statement \"Harry is not red\" is false.\n\nHowever, we should also check for any conditions that might make the truth value of \"Harry is not red\" unknown.\n\n8. Harry is big. (From the problem statement)\n9. Harry is not green. (From the problem statement)\n10. If Dave is red then Dave is big. (From the problem statement)\n    - Since Harry is red (from step 7), we cannot conclude that Harry is big from this rule.\n11. If someone is white then they are quiet. (From the problem statement)\n12. If Dave is smart and Dave is white then Dave is big. (From the problem statement)\n    - We don't have enough information to conclude that Harry is white, so we cannot use this rule.\n13. If Fiona is white and Fiona is red then Fiona is rough. (From the problem statement)\n    - We don't have enough information to conclude that Harry is white or red, so we cannot use this rule.\n14. Rough people are green. (From the problem statement)\n    - If we could conclude that Harry is rough, then we could also conclude that Harry is green. But we have already concluded that Harry is not green (from step 9).\n\nAfter analyzing the given information, we have concluded that the statement \"Harry is not red\" is false. There is no condition that makes the truth value of \"Harry is not red\" unknown. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions to determine the truth value of the statement \"Harry is not red.\"\n\n1. Harry is big.\n2. Harry is not green.\n3. Harry is quiet.\n4. Harry is red.\n\nFrom statement 4, we already know that Harry is red. Now, let's examine the given statements to see if we can find any contradictions or additional information.\n\n1. Quiet, red people are smart.\n   We can't use this statement because it doesn't provide any new information about Harry.\n\n2. If someone is quiet then they are smart.\n   We can't use this statement because it doesn't provide any new information about Harry.\n\n3. If Dave is red then Dave is big.\n   This statement doesn't provide any new information about Harry, so we can't use it.\n\n4. If Dave is smart and Dave is white then Dave is big.\n   This statement doesn't provide any new information about Harry, so we can't use it.\n\n5. If Fiona is white and Fiona is red then Fiona is rough.\n   This statement doesn't provide any new information about Harry, so we can't use it.\n\n6. If someone is white then they are quiet.\n   This statement doesn't provide any new information about Harry, so we can't use it.\n\n7. Rough people are green.\n   We can't use this statement because it doesn't provide any new information about Harry.\n\n8. All smart people are red.\n   We can't use this statement because we don't know if Harry is smart or not.\n\nSince statement 4 directly states that Harry is red, we can conclude that the statement \"Harry is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is not red' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is big.\n2. Harry is not green.\n3. Harry is quiet.\n4. Harry is red.\n\nFrom statement 1, we know Harry is big. However, this alone does not provide information about his color.\n\nFrom statement 2, we know Harry is not green. This statement alone does not provide information about whether Harry is red or not.\n\nFrom statement 3, we know Harry is quiet. We are given two conditions related to being quiet:\n- If someone is quiet then they are smart (statement 5).\n- Quiet, red people are smart (statement 4). However, this statement cannot be used to determine if Harry is red or not since we do not know what color quiet people are yet.\n\nFrom statement 4, we know Harry is red. \n\nCombining the information from statement 3 (Harry is quiet) and statement 5 (If someone is quiet then they are smart), we cannot conclude anything about Harry's color from this information alone.\n\nNow, combining statement 5 (If someone is quiet then they are smart) with statement 6 (Quiet, red people are smart), we can conclude that being quiet and red makes someone smart. However, this does not provide information about Harry's color.\n\nNext, combining statement 3 (Harry is quiet) with statement 7 (If someone is white then they are quiet), we cannot conclude anything about Harry's color from this information alone.\n\nNow, combining statement 3 (Harry is quiet) with statement 8 (Quiet people are smart) and statement 5 (If someone is quiet then they are smart), we know that Harry is smart. However, this does not provide information about Harry's color.\n\nNow, combining statement 9 (All smart people are red) with the fact that Harry is smart, we can conclude that Harry is red.\n\nHowever, since we already know from statement 4 that Harry is red, this does not add any new information.\n\nNow, let's analyze the statement 'Harry is not red'. From the given information, we know that Harry is red (statement 4). Therefore, the statement 'Harry is not red' must be false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Harry is big.\n2. We are also given that Harry is not green.\n3. Harry is quiet.\n4. Harry is red.\n\nFrom statement 4, we know that Harry is indeed red.\n\nNow, let's examine the other statements that might affect the conclusion:\n\n- If someone is quiet, then they are smart. (This does not directly relate to Harry's color.)\n- If Dave is red, then Dave is big. (This does not directly relate to Harry's color.)\n- If Dave is smart and Dave is white, then Dave is big. (This does not directly relate to Harry's color.)\n- If Fiona is white and Fiona is red, then Fiona is rough. (This does not directly relate to Harry's color.)\n- If someone is white, then they are quiet. (This does not directly relate to Harry's color.)\n- Rough people are green. (This does not directly relate to Harry's color.)\n- All smart people are red. (Since Harry is quiet, which implies he is smart, and smart people are red, this does not directly contradict the fact that Harry is red.)\n\nBased on the given information, we can conclude that:\n\nHarry is red.\n\nTherefore, the statement \"Harry is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(harry)",
+          "z3_formula": "not green_harry",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_harry, smart_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_harry, smart_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_harry, red_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_harry, big_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, red_harry), smart_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_dave, big_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_dave, white_dave), big_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not white(dave)",
+          "z3_formula": "not white_dave",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is white",
+          "z3_formula": "white_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is red",
+          "z3_formula": "red_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is rough",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is green",
+          "z3_formula": "green_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is quiet",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is smart",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is red",
+          "z3_formula": "red_fiona == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is white",
+          "z3_formula": "white_fiona == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is quiet",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is smart",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is red",
+          "z3_formula": "red_fiona == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "not red(harry)",
+          "z3_formula": "not red_harry",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(harry)",
+          "z3_formula": "not green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, red_harry), smart_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_harry, smart_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_harry, red_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not red(harry)",
+          "z3_formula": "not red_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "False",
+          "z3_formula": "Not(red_harry == True)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(harry)",
+          "z3_formula": "not green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_harry, smart_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_harry, red_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(Dave) -> big(Dave)",
+          "z3_formula": "Implies(red_Dave, big_Dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(Dave) & white(Dave) -> big(Dave)",
+          "z3_formula": "Implies(And(smart_Dave, white_Dave), big_Dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(Fiona) & red(Fiona) -> rough(Fiona)",
+          "z3_formula": "Implies(And(white_Fiona, red_Fiona), rough_Fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_harry, quiet_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_harry, red_harry)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(harry)",
+          "z3_formula": "not green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, red_harry), smart_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_harry, smart_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(Dave) -> big(Dave)",
+          "z3_formula": "Implies(red_Dave, big_Dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_Dave, white_Dave), big_Dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(Fiona) & red(Fiona) -> rough(Fiona)",
+          "z3_formula": "Implies(And(white_Fiona, red_Fiona), rough_Fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_X, green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_harry, red_harry)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_harry, smart_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, red_harry), smart_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not green(harry)",
+          "z3_formula": "not green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_harry, red_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not red(harry)",
+          "z3_formula": "not red_harry == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(harry)",
+          "z3_formula": "not green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_harry, smart_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, red_harry), smart_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_harry, red_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not red(harry)",
+          "z3_formula": "Not(red_harry) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(harry)",
+          "z3_formula": "Not(green_harry) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_harry, smart_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, red_harry), smart_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_harry, red_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> Not(red(X))",
+          "z3_formula": "Implies(red_harry, Not(red_harry))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not red(harry)",
+          "z3_formula": "Not(red_harry) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(harry)",
+          "z3_formula": "not green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_harry, smart_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, red_harry), smart_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(Dave) -> big(Dave)",
+          "z3_formula": "Implies(red_dave, big_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_harry, big_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_dave, white_dave), big_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_harry, quiet_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "all smart(X) -> red(X)",
+          "z3_formula": "Implies(all smart_harry, red_harry)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, red_harry), smart_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all(smart(X), red(X))",
+          "z3_formula": "Implies(smart_harry, red_harry) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_harry, smart_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not green(harry)",
+          "z3_formula": "Not(green_harry) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(Dave) -> big(Dave)",
+          "z3_formula": "Implies(red_Dave, big_Dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_harry, quiet_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(Dave) & red(Dave) -> big(Dave)",
+          "z3_formula": "Implies(And(white_Dave, red_Dave), big_Dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(Fiona) & red(Fiona) -> rough(Fiona)",
+          "z3_formula": "Implies(And(white_Fiona, red_Fiona), rough_Fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(harry)",
+          "z3_formula": "not green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, red_harry), smart_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_harry, smart_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(Dave) -> big(Dave)",
+          "z3_formula": "Implies(red_Dave, big_Dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_Dave, white_Dave), big_Dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_fiona, red_fiona), rough_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_harry, quiet_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_harry, red_harry)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(harry)",
+          "z3_formula": "Not(green_harry) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) ->",
+          "z3_formula": "",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not green(X) ->",
+          "z3_formula": "",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_harry, smart_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, red_harry), smart_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_harry, quiet_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_harry, smart_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_harry, red_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not red(harry)",
+          "z3_formula": "Not(red_harry) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(harry)",
+          "z3_formula": "Not(green_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_harry, smart_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_dave, big_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_dave, white_dave), big_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_fiona, red_fiona), rough_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_X, green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_harry, red_harry)",
+          "source_step": 11
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 153,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 31
+    },
+    "maxsat_stats": {
+      "satisfied": 30,
+      "excluded": 1,
+      "total_weight": 142,
+      "solve_time_ms": 1.033307984471321
+    },
+    "timing": {
+      "trace_gen_s": 17.371,
+      "extraction_s": 24.743,
+      "dedup_s": 1.028,
+      "maxsat_s": 0.003,
+      "total_s": 43.145
+    }
+  }
+}

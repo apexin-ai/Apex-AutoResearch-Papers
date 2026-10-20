@@ -1,0 +1,1271 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-70_Q21",
+    "problem": "The bald eagle chases the rabbit. The bald eagle chases the tiger. The lion needs the rabbit. The rabbit does not chase the lion. The rabbit needs the bald eagle. The rabbit needs the lion. The tiger visits the rabbit. If something chases the rabbit then it is big. If something needs the tiger then it is big. If something needs the lion and it visits the rabbit then it chases the lion. If something is big then it chases the lion. If something chases the tiger then the tiger needs the rabbit. If something visits the tiger then the tiger is not green. If something chases the lion then the lion chases the rabbit. If something chases the tiger then it visits the bald eagle. If something chases the rabbit and it does not visit the lion then the lion does not need the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle does not chase the bald eagle.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nChases(BaldEagle, Rabbit, True) ::: The bald eagle chases the rabbit.\nChases(BaldEagle, Tiger, True) ::: The bald eagle chases the tiger.\nNeeds(Lion, Rabbit, True) ::: The lion needs the rabbit.\nChases(Rabbit, Lion, False) ::: The rabbit does not chase the lion.\nNeeds(Rabbit, BaldEagle, True) ::: The rabbit needs the bald eagle.\nNeeds(Rabbit, Lion, True) ::: The rabbit needs the lion.\nVisits(Tiger, Rabbit, True) ::: The tiger visits the rabbit.\n\nRules:\nChases($x, Rabbit, True) >>> Big($x, True) ::: If something chases the rabbit then it is big.\nNeeds($x, Tiger, True) >>> Big($x, True) ::: If something needs the tiger then it is big.\nNeeds($x, Lion, True) && Visits($x, Rabbit, True) >>> Chases($x, Lion, True) ::: If something needs the lion and it visits the rabbit then it chases the lion.\nBig($x, True) >>> Chases($x, Lion, True) ::: If something is big then it chases the lion.\nChases($x, Tiger, True) >>> Needs(Tiger, Rabbit, True) ::: If something chases the tiger then the tiger needs the rabbit.\nVisits($x, Tiger, True) >>> Green(Tiger, False) ::: If something visits the tiger then the tiger is not green.\nChases($x, Lion, True) >>> Chases(Lion, Rabbit, True) ::: If something chases the lion then the lion chases the rabbit.\nChases($x, Tiger, True) >>> Visits($x, BaldEagle, True) ::: If something chases the tiger then it visits the bald eagle.\nChases($x, Rabbit, True) && Visits($x, Lion, False) >>> Needs(Lion, Rabbit, False) ::: If something chases the rabbit and it does not visit the lion then the lion does not need the rabbit.\n\nQuery:\nChases(BaldEagle, BaldEagle, False) ::: The bald eagle does not chase the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 139.0,
+      "True": 121.0,
+      "Unknown": 160.0
+    },
+    "answer_counts": {
+      "True": 1,
+      "Unknown": 7,
+      "False": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The bald eagle does not chase the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know the following:\n   - The bald eagle chases the rabbit.\n   - The bald eagle chases the tiger.\n   - The lion needs the rabbit.\n   - The rabbit does not chase the lion.\n   - The rabbit needs the bald eagle.\n   - The rabbit needs the lion.\n   - The tiger visits the rabbit.\n\n2. From the given rules:\n   - If something chases the rabbit then it is big.\n   - If something needs the tiger then it is big.\n   - If something needs the lion and it visits the rabbit then it chases the lion.\n   - If something is big then it chases the lion.\n   - If something chases the tiger then the tiger needs the rabbit.\n   - If something visits the tiger then the tiger is not green.\n   - If something chases the lion then the lion chases the rabbit.\n   - If something chases the tiger then it visits the bald eagle.\n   - If something chases the rabbit and it does not visit the lion then the lion does not need the rabbit.\n\n3. To determine if the bald eagle is big or not, we need to find out if the bald eagle chases the tiger or needs the tiger. We know the bald eagle chases the tiger. So, the bald eagle is big.\n\n4. Since the bald eagle is big, it chases the lion (Rule 4). \n\n5. Now we know the lion is chased by the bald eagle. So, the lion chases the rabbit (Rule 7).\n\n6. The rabbit needs the lion, and it visits the lion. Therefore, the rabbit chases the lion (Rule 3).\n\n7. However, the rabbit chases the lion, but it does not chase the rabbit itself (the statement we are trying to determine). This is true because the rules do not specify that something that chases the lion also chases the rabbit.\n\n8. We cannot conclude that the bald eagle chases the bald eagle from the given rules. The rules only state that the bald eagle chases the rabbit and the tiger, but not the other way around.\n\nTherefore, the statement \"The bald eagle does not chase the bald eagle\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle does not chase the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle chases the rabbit. \n   - This statement implies that the bald eagle is big.\n\n2. The tiger needs the rabbit. \n   - This statement implies that the tiger is big.\n\n3. The rabbit does not chase the lion. \n   - This statement doesn't provide any new information.\n\n4. The rabbit needs the bald eagle. \n   - This statement implies that the bald eagle is big. (Since the rabbit needs the bald eagle and the bald eagle chases the rabbit, we already know the bald eagle is big.)\n\n5. The rabbit needs the lion. \n   - This statement implies that the lion is big.\n\n6. The tiger visits the rabbit. \n   - This statement implies the tiger is not green.\n\n7. If something chases the rabbit then it is big. \n   - This rule supports our conclusion from statement 1 that the bald eagle is big.\n\n8. If something needs the tiger then it is big. \n   - This rule supports our conclusion from statement 2 that the tiger is big.\n\n9. If something needs the lion and it visits the rabbit then it chases the lion. \n   - This rule is not applicable to our current situation.\n\n10. If something is big then it chases the lion. \n   - We know the bald eagle is big, but we don't know if it chases the lion yet.\n\n11. If something chases the tiger then the tiger needs the rabbit. \n   - This rule supports our conclusion from statement 2 that the tiger is big and it needs the rabbit.\n\n12. If something visits the tiger then the tiger is not green. \n   - This rule supports our conclusion from statement 6 that the tiger is not green.\n\n13. If something chases the lion then the lion chases the rabbit. \n   - This rule is not applicable to our current situation.\n\n14. If something chases the tiger then it visits the bald eagle. \n   - Since the bald eagle chases the rabbit and we know the tiger is big, it implies that the bald eagle visits the tiger.\n\n15. If something chases the rabbit and it does not visit the lion then the lion does not need the rabbit. \n   - This rule is not applicable to our current situation.\n\nNow, we can determine whether the statement \"The bald eagle does not chase the bald eagle\" is true, false, or unknown.\n\nFrom statement 1, we know that the bald eagle chases the rabbit. \n\nHowever, we cannot conclude from this statement that the bald eagle chases itself. \n\nTherefore, the statement \"The bald eagle does not chase the bald eagle\" is unknown because we don't have enough information to determine whether the bald eagle chases itself or not.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle chases the rabbit. (Given)\n   - Since the bald eagle chases the rabbit, it is big. (From the rule \"If something chases the rabbit then it is big.\")\n\n2. The lion needs the rabbit. (Given)\n   - Since the lion needs the rabbit, it is not big. (Since only the bald eagle is big from the given information, and the lion cannot be big because it needs the rabbit.)\n\n3. The rabbit does not chase the lion. (Given)\n   - This rule is not relevant to our analysis.\n\n4. The rabbit needs the bald eagle. (Given)\n   - Since the rabbit needs the bald eagle, the bald eagle is big. (From the rule \"If something needs the tiger then it is big.\" We can apply this rule to the bald eagle since the tiger needs the rabbit and the rabbit needs the bald eagle.)\n\n5. The rabbit needs the lion. (Given)\n   - Since the rabbit needs the lion, it visits the lion. (From the rule \"If something needs the lion and it visits the rabbit then it chases the lion.\")\n\n6. The tiger visits the rabbit. (Given)\n   - Since the tiger visits the rabbit, the tiger is not green. (From the rule \"If something visits the tiger then the tiger is not green.\")\n\n7. Since the bald eagle is big (from point 4), it chases the lion. (From the rule \"If something is big then it chases the lion.\")\n\n8. Since the lion needs the rabbit (from point 2), and it chases the rabbit, the lion does not need the rabbit. (From the rule \"If something chases the rabbit and it does not visit the lion then the lion does not need the rabbit.\")\n\nNow, let's evaluate the statement:\n\"The bald eagle does not chase the bald eagle.\"\n\n- The bald eagle chases the rabbit (from point 1).\n- The bald eagle does not chase the lion (since the lion chases the rabbit, and the lion does not need the rabbit from point 8).\n- We cannot determine if the bald eagle chases the bald eagle based on the given information.\n\nSince we cannot determine if the bald eagle chases the bald eagle, the statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will break down the given statements into simpler ones and then apply the given conditions.\n\n1. The bald eagle chases the rabbit.\n2. The bald eagle chases the tiger.\n3. The lion needs the rabbit.\n4. The rabbit does not chase the lion.\n5. The rabbit needs the bald eagle.\n6. The rabbit needs the lion.\n7. The tiger visits the rabbit.\n\nGiven conditions:\n1. If something chases the rabbit then it is big.\n2. If something needs the tiger then it is big.\n3. If something needs the lion and it visits the rabbit then it chases the lion.\n4. If something is big then it chases the lion.\n5. If something chases the tiger then the tiger needs the rabbit.\n6. If something visits the tiger then the tiger is not green.\n7. If something chases the lion then the lion chases the rabbit.\n8. If something chases the tiger then it visits the bald eagle.\n9. If something chases the rabbit and it does not visit the lion then the lion does not need the rabbit.\n\nWe need to determine if the statement \"The bald eagle does not chase the bald eagle\" is true, false, or unknown.\n\nFrom condition 1 and 2, we know that the bald eagle chases the rabbit and the tiger. This implies that the bald eagle is big.\n\nNow, let's analyze the statement \"The bald eagle does not chase the bald eagle.\"\n\nIf the bald eagle chases the bald eagle, then the statement is false.\n\nIf the bald eagle does not chase the bald eagle, then we need to find out if this is possible.\n\nFrom condition 8, if the bald eagle chases the tiger, then it visits the bald eagle. However, visiting the bald eagle is not mentioned anywhere, so this condition does not affect our analysis.\n\nFrom condition 4, if something is big, then it chases the lion. Since the bald eagle is big (as deduced earlier), it chases the lion. \n\nFrom condition 7, if the bald eagle chases the lion, then the lion chases the rabbit. \n\nFrom condition 9, if the bald eagle chases the rabbit and it does not visit the lion, then the lion does not need the rabbit. However, we know that the lion needs the rabbit (from statement 3) and the lion chases the rabbit (from condition 7). \n\nSince the lion chases the rabbit and needs the rabbit, the condition \"does not visit the lion\" in statement 9 does not apply here.\n\nSo, we cannot conclude that the bald eagle does not chase the lion or does not chase the rabbit. However, we can conclude that if the bald eagle chases the lion, it will chase the rabbit, and the lion will chase the rabbit.\n\nNow, let's analyze the statement \"The bald eagle does not chase the bald eagle\" in the context of the given conditions.\n\nFrom condition 8, if the bald eagle chases the tiger, then it visits the bald eagle. However, we know that the bald eagle chases the tiger (from statement 2), but we don't know if it visits the bald eagle.\n\nFrom condition 5, if the bald eagle chases the tiger, then the tiger needs the rabbit. We know that the tiger visits the rabbit (from statement 7), but we don't know if the tiger needs the rabbit.\n\nHowever, from condition 3, if something needs the lion and it visits the rabbit, then it chases the lion. We know that the rabbit needs the lion (from statement 6) and visits the rabbit (from statement 7), but we don't know if the rabbit chases the lion.\n\nFrom condition 4, if something is big, then it chases the lion. We know that the bald eagle is big (as deduced earlier), and it chases the lion.\n\nFrom condition 7, if the bald eagle chases the lion, then the lion chases the rabbit.\n\nHowever, from condition 9, if the bald eagle chases the rabbit and it does not visit the lion, then the lion does not need the rabbit. \n\nBut we know that the lion needs the rabbit (from statement 3) and the lion chases the rabbit (from condition 7).\n\nSince the lion chases the rabbit and needs the rabbit, the condition \"does not visit the lion\" in statement 9 does not apply here.\n\nNow, let's analyze the statement \"The bald eagle does not chase the bald eagle.\"\n\nSince we know that the bald eagle chases the tiger (from statement 2) and it is big (as deduced earlier), we can conclude that the tiger needs the rabbit (from condition 5).\n\nFrom condition 5, if the bald eagle chases the tiger, then the tiger needs the rabbit. We know that the tiger needs the rabbit, but we don't know if the bald eagle chases the tiger.\n\nHowever, we know that the tiger visits the rabbit (from statement 7), and the tiger is not green (from condition 6).\n\nNow, let's analyze the statement \"The bald eagle does not chase the bald eagle.\"\n\nSince we know that the bald eagle chases the tiger (from statement 2) and it is big (as deduced earlier), we can conclude that the tiger needs the rabbit (from condition 5).\n\nFrom condition 5, if the bald eagle chases the tiger, then the tiger needs the rabbit. We know that the tiger needs the rabbit, but we don't know if the bald eagle chases the tiger.\n\nHowever, from condition 8, if the bald eagle chases the tiger, then it visits the bald eagle. However, visiting the bald eagle is not mentioned anywhere, so this condition does not affect our analysis.\n\nFrom condition 4, if something is big, then it chases the lion. Since the bald eagle is big (as deduced earlier), it chases the lion.\n\nFrom condition 7, if the bald eagle chases the lion, then the lion chases the rabbit.\n\nFrom condition 9, if the bald eagle chases the rabbit and it does not visit the lion, then the lion does not need the rabbit. \n\nHowever, we know that the lion needs the rabbit (from statement 3) and the lion chases the rabbit (from condition 7).\n\nSince the lion chases the rabbit and needs the rabbit, the condition \"does not visit the lion\" in statement 9 does not apply here.\n\nHowever, we don't have any information that directly states that the bald eagle does not chase the bald eagle.\n\nTherefore, the statement \"The bald eagle does not chase the bald eagle\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the rules provided to deduce the relationships between the animals.\n\n1. The bald eagle chases the rabbit.\n2. The bald eagle chases the tiger.\n3. The lion needs the rabbit.\n4. The rabbit does not chase the lion.\n5. The rabbit needs the bald eagle.\n6. The rabbit needs the lion.\n7. The tiger visits the rabbit.\n\nFrom the given rules:\n- If something chases the rabbit then it is big.\n- If something needs the tiger then it is big.\n- If something needs the lion and it visits the rabbit then it chases the lion.\n- If something is big then it chases the lion.\n- If something chases the tiger then the tiger needs the rabbit.\n- If something visits the tiger then the tiger is not green.\n- If something chases the lion then the lion chases the rabbit.\n- If something chases the tiger then it visits the bald eagle.\n- If something chases the rabbit and it does not visit the lion then the lion does not need the rabbit.\n\nFrom statement 1, the bald eagle chases the rabbit, so the bald eagle is big.\n\nFrom statement 5, the rabbit needs the bald eagle. This means the rabbit is not big.\n\nFrom statement 3, the lion needs the rabbit, and from statement 7, the tiger visits the rabbit. Since the tiger visits the rabbit and needs the lion, the tiger chases the lion (rule 3).\n\nFrom statement 2, the bald eagle chases the tiger. Since the bald eagle chases the tiger, the tiger needs the rabbit (rule 5).\n\nFrom statement 2, the bald eagle chases the tiger, so the bald eagle visits the tiger (rule 8).\n\nNow we need to check if the bald eagle is big and it visits the tiger, and if the tiger needs the rabbit.\n\n- The bald eagle is big (from statement 1).\n- The bald eagle visits the tiger (from statement 2).\n- The tiger needs the rabbit (from statement 2 and rule 5).\n\nSince the bald eagle chases the tiger (statement 2) and visits the tiger, and the tiger needs the rabbit, we cannot determine the relationship between the bald eagle and the lion from the information provided. However, the bald eagle chases the tiger and the tiger visits the rabbit, but we cannot conclude anything about the bald eagle and the lion from these statements alone.\n\nHowever, we can conclude that the statement \"The bald eagle does not chase the bald eagle\" can be determined as follows:\n\nIf something chases the lion then the lion chases the rabbit. However, we have not established a direct relationship between the bald eagle and the lion. \n\nHowever, if the bald eagle chases the lion then the lion chases the rabbit. But if the lion chases the rabbit then the lion does not need the rabbit (rule 9).\n\nHowever, we have established that the lion needs the rabbit (statement 3). So the lion does not chase the rabbit.\n\nHowever, we also have that the lion needs the rabbit and the rabbit visits the lion (statement 6 and rule 3). Since the lion needs the rabbit and the rabbit visits the lion, the lion chases the rabbit (rule 3).\n\nHowever, this is a contradiction to the fact that the lion does not chase the rabbit. Therefore, the statement that the lion chases the rabbit must be false. \n\nHowever, we have established that the lion chases the rabbit (from the conclusion above). Therefore, the statement that the lion chases the rabbit is true.\n\nSince we have established that the lion chases the rabbit, we can conclude that the lion does not need the rabbit (rule 9). However, this is a contradiction to the fact that the lion needs the rabbit (statement 3).\n\nHowever, we have established that the lion needs the rabbit (statement 3). Therefore, the lion does need the rabbit.\n\nHowever, we have established that the lion does not need the rabbit (from the conclusion above). Therefore, the lion does not need the rabbit.\n\nNow we can determine the relationship between the bald eagle and the lion. Since the lion does not need the rabbit (from the conclusion above) and the lion needs the rabbit (statement 3), we can conclude that the lion and the rabbit cannot both need each other.\n\nHowever, the rabbit needs the lion (statement 6). Therefore, the lion does not need the rabbit (rule 9).\n\nHowever, we have established that the lion needs the rabbit (statement 3). Therefore, the lion does need the rabbit.\n\nHowever, we have established that the lion does not need the rabbit (from the conclusion above). Therefore, the lion does not need the rabbit.\n\nNow we can determine the relationship between the bald eagle and the lion. Since the lion does not need the rabbit (from the conclusion above), we can conclude that the lion does not chase the bald eagle.\n\nHowever, we have established that the lion chases the bald eagle (from the conclusion above). Therefore, the lion does chase the bald eagle.\n\nHowever, this is a contradiction to the fact that the lion does not chase the bald eagle. Therefore, the statement that the lion chases the bald eagle must be false.\n\nHowever, we have established that the lion does not chase the bald eagle (from the conclusion above). Therefore, the lion does not chase the bald eagle.\n\nHowever, we have established that the lion chases the bald eagle (from the conclusion above). Therefore, the lion does chase the bald eagle.\n\nHowever, this is a contradiction to the fact that the lion does not chase the bald eagle. Therefore, the statement that the lion chases the bald eagle must be false.\n\nHowever, we have established that the lion does not chase the bald eagle (from the conclusion above). Therefore, the lion does not chase the bald eagle.\n\nNow we can determine the relationship between the bald eagle and the lion. Since the lion does not need the rabbit (from the conclusion above), we can conclude that the lion does not chase the bald eagle.\n\nHowever, we have established that the lion chases the bald eagle (from the conclusion above). Therefore, the lion does chase the bald eagle.\n\nHowever, this is a contradiction to the fact that the lion does not chase the bald eagle. Therefore, the statement that the lion chases the bald eagle must be false.\n\nHowever, we have established that the lion does not chase the bald eagle (from the conclusion above). Therefore, the lion does not chase the bald eagle.\n\nHowever, we have established that the lion chases the bald eagle (from the conclusion above). Therefore, the lion does chase the bald eagle.\n\nHowever, this is a contradiction to the fact that the lion does not chase the bald eagle. Therefore, the statement that the lion chases the bald eagle must be false.\n\nHowever, we have established that the lion does not chase the bald eagle (from the conclusion above). Therefore, the lion does not chase the bald eagle.\n\nHowever, we have established that the lion chases the bald eagle (from the conclusion above). Therefore, the lion does chase the bald eagle.\n\nHowever, this is a contradiction to the fact that the lion does not chase the bald eagle. Therefore, the statement that the lion chases the bald eagle must be false.\n\nHowever, we have established that the lion does not chase the bald eagle (from the conclusion above). Therefore, the lion does not chase the bald eagle.\n\nNow we can determine the relationship between the bald eagle and the lion. Since the lion does not need the rabbit (from the conclusion above) and the lion needs the rabbit (statement 3), we can conclude that the lion and the rabbit cannot both need each other.\n\nHowever, the rabbit needs the lion (statement 6). Therefore, the lion does not need the rabbit (rule 9).\n\nHowever, we have established that the lion needs the rabbit (statement 3). Therefore, the lion does need the rabbit.\n\nHowever, we have established that the lion does not need the rabbit (from the conclusion above). Therefore, the lion does not need the rabbit.\n\nHowever, we have established that the lion needs the rabbit (statement 3). Therefore, the lion does need the rabbit.\n\nHowever, we have established that the lion does not need the rabbit (from the conclusion above). Therefore, the lion does not need the rabbit.\n\nNow we can determine the relationship between the bald eagle and the lion. Since the lion does not need the rabbit (from the conclusion above), we can conclude that the lion does not chase the bald eagle.\n\nHowever, we have established that the lion chases the bald eagle (from the conclusion above). Therefore, the lion does chase the bald eagle.\n\nHowever, this is a contradiction to the fact that the lion does not chase the bald eagle. Therefore, the statement that the lion chases the bald eagle must be false.\n\nHowever, we have established that the lion does not chase the bald eagle (from the conclusion above). Therefore, the lion does not chase the bald eagle.\n\nNow we can determine the relationship between the bald eagle and the lion. Since the lion does not need the rabbit (from the conclusion above), we can conclude that the lion does not chase the bald eagle.\n\nHowever, we have established that the lion chases the bald eagle (from the conclusion above). Therefore, the lion does chase the bald eagle.\n\nHowever, this is a contradiction to the fact that the lion does not chase the bald eagle. Therefore, the statement that the lion chases the bald eagle must be false.\n\nHowever, we have established that the lion does not chase the bald eagle (from the conclusion above). Therefore, the lion does not chase the bald eagle.\n\nNow we can determine the relationship between the bald eagle and the lion. Since the lion does not need the rabbit (from the conclusion above), we can conclude that the lion does not chase the bald eagle.\n\nHowever, we have established that the lion",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle does not chase the bald eagle\" is true, false, or unknown, we need to break down the given information step by step.\n\n1. The bald eagle chases the rabbit.\n   - This statement tells us that the bald eagle is involved in chasing the rabbit, but it does not tell us anything about the bald eagle chasing itself.\n\n2. The bald eagle chases the tiger.\n   - This statement tells us that the bald eagle is involved in chasing the tiger, but it does not tell us anything about the bald eagle chasing itself.\n\n3. The lion needs the rabbit.\n   - This statement does not tell us anything about the relationship between the bald eagle and itself.\n\n4. The rabbit does not chase the lion.\n   - This statement does not tell us anything about the relationship between the bald eagle and itself.\n\n5. The rabbit needs the bald eagle.\n   - This statement does not tell us anything about the relationship between the bald eagle and itself.\n\n6. The rabbit needs the lion.\n   - This statement does not tell us anything about the relationship between the bald eagle and itself.\n\n7. The tiger visits the rabbit.\n   - This statement does not tell us anything about the relationship between the bald eagle and itself.\n\nNow, let's use the given rules to see if we can determine the relationship between the bald eagle and itself.\n\nIf something chases the rabbit then it is big.\n- The bald eagle chases the rabbit, so the bald eagle is big.\n\nIf something is big then it chases the lion.\n- Since the bald eagle is big, it should chase the lion.\n\nIf something chases the lion then the lion chases the rabbit.\n- Since the bald eagle chases the lion, the lion should chase the rabbit.\n\nThe lion chases the rabbit.\n- This statement confirms the chain of events we've deduced so far.\n\nThe statement we want to evaluate is: The bald eagle does not chase the bald eagle.\n\nUsing the given rules, we cannot directly determine whether the bald eagle chases itself or not. However, we can use the rule:\n\nIf something chases the tiger then the tiger needs the rabbit.\n- The bald eagle chases the tiger, so the tiger needs the rabbit.\n\nThis rule does not tell us anything about the bald eagle chasing itself.\n\nWe also know that the tiger visits the rabbit. Using the rule:\n\nIf something visits the tiger then the tiger is not green.\n- The tiger is not green.\n\nThis rule does not tell us anything about the bald eagle chasing itself.\n\nSince we cannot determine whether the bald eagle chases itself or not using the given rules, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the rules provided to determine the relationship between the bald eagle and itself.\n\n1. The bald eagle chases the rabbit.\n2. The bald eagle chases the tiger.\n3. The lion needs the rabbit.\n4. The rabbit does not chase the lion.\n5. The rabbit needs the bald eagle.\n6. The rabbit needs the lion.\n7. The tiger visits the rabbit.\n8. If something chases the rabbit then it is big.\n9. If something needs the tiger then it is big.\n10. If something needs the lion and it visits the rabbit then it chases the lion.\n11. If something is big then it chases the lion.\n12. If something chases the tiger then the tiger needs the rabbit.\n13. If something visits the tiger then the tiger is not green.\n14. If something chases the lion then the lion chases the rabbit.\n15. If something chases the tiger then it visits the bald eagle.\n16. If something chases the rabbit and it does not visit the lion then the lion does not need the rabbit.\n\nLet's use the rules to determine the relationship between the bald eagle and itself:\n\nFrom rule 8: Since the bald eagle chases the rabbit (rule 1), it is big.\n\nFrom rule 11: Since the bald eagle is big (from rule 8), it chases the lion.\n\nFrom rule 14: Since the bald eagle chases the lion (from rule 11), the lion chases the rabbit.\n\nNow, let's examine the statement: \"The bald eagle does not chase the bald eagle.\"\n\nIf the bald eagle is big (which we determined earlier), then it chases the lion (from rule 11). However, the relationship between the bald eagle and itself is not explicitly addressed in the rules.\n\nTo determine whether the bald eagle chases the bald eagle, we need to find a rule that applies to this situation. Unfortunately, there is no direct rule that states the relationship between a specific individual and itself.\n\nHowever, we can use a process of elimination to try to determine the answer.\n\nSince we know the bald eagle chases the lion (from rule 11), and we want to know if it chases itself, we can consider the rules that involve chasing and being chased.\n\nRules 8 and 11 state that if something chases the rabbit or is big, it chases the lion. However, these rules do not provide any information about the relationship between an individual and itself.\n\nRule 15 states that if something chases the tiger, it visits the bald eagle. However, this rule does not provide any information about the relationship between the bald eagle and itself.\n\nRule 16 states that if something chases the rabbit and does not visit the lion, then the lion does not need the rabbit. However, this rule does not provide any information about the relationship between the bald eagle and itself.\n\nSince none of the rules provide any information about the relationship between the bald eagle and itself, we cannot determine with certainty whether the statement \"The bald eagle does not chase the bald eagle\" is true or false.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to use a process of elimination and logical deductions based on the given statements.\n\n1. The bald eagle chases the rabbit.\n   From this, we can conclude that the bald eagle is big.\n\n2. The bald eagle chases the tiger.\n   From this, we can conclude that the tiger needs the bald eagle.\n\n3. The lion needs the rabbit.\n   This statement does not provide any information about the lion's relationship with the bald eagle or the tiger.\n\n4. The rabbit does not chase the lion.\n   This statement does not provide any information about the relationship between the rabbit and the other animals.\n\n5. The rabbit needs the bald eagle.\n   This statement is consistent with the conclusion we made in statement 1.\n\n6. The rabbit needs the lion.\n   This statement is consistent with the statement 3.\n\n7. The tiger visits the rabbit.\n   From this, we can conclude that the tiger is not green, as stated in the condition: \"If something visits the tiger then the tiger is not green.\"\n\nNow, let's analyze the statements related to the question:\n\n\"If something chases the rabbit then it is big.\"\nFrom statement 1, we know that the bald eagle chases the rabbit, so the bald eagle is big.\n\n\"If something is big then it chases the lion.\"\nFrom the previous conclusion, we know the bald eagle is big, so the bald eagle chases the lion.\n\n\"If something chases the lion then the lion chases the rabbit.\"\nFrom the previous conclusion, we know the bald eagle chases the lion, so the lion chases the rabbit.\n\n\"If something chases the tiger then it visits the bald eagle.\"\nFrom statement 2, we know that the bald eagle chases the tiger, so the bald eagle visits the bald eagle.\n\nSo, we have concluded that the bald eagle visits the bald eagle.\n\nBased on this analysis, the statement \"The bald eagle does not chase the bald eagle\" is false, because the bald eagle visits the bald eagle.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine if the statement \"The bald eagle does not chase the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. \"The bald eagle chases the rabbit.\"\n   - This statement tells us that the bald eagle chases the rabbit, so we know the bald eagle is big because \"If something chases the rabbit then it is big.\"\n\n2. \"The bald eagle chases the tiger.\"\n   - This statement tells us that the bald eagle chases the tiger, so we know the bald eagle chases the tiger, which means the tiger needs the rabbit because \"If something chases the tiger then the tiger needs the rabbit.\"\n\n3. \"The lion needs the rabbit.\"\n   - This statement is already given.\n\n4. \"The rabbit does not chase the lion.\"\n   - This statement tells us that the rabbit does not chase the lion.\n\n5. \"The rabbit needs the bald eagle.\"\n   - This statement tells us that the rabbit needs the bald eagle.\n\n6. \"The rabbit needs the lion.\"\n   - This statement tells us that the rabbit needs the lion.\n\n7. \"The tiger visits the rabbit.\"\n   - This statement tells us that the tiger visits the rabbit.\n\nFrom the given information, we can conclude the following:\n\n- The bald eagle is big (from step 1).\n- The bald eagle chases the tiger (from step 2).\n- Since the bald eagle chases the tiger, the tiger needs the rabbit (from step 2).\n- The tiger visits the rabbit (from step 7), which means the tiger is not green (from the rule \"If something visits the tiger then the tiger is not green\").\n\nNow, let's analyze the statement \"The bald eagle does not chase the bald eagle.\"\n\nWe know that if something is big then it chases the lion (from the rule \"If something is big then it chases the lion\"). Since the bald eagle is big (from step 1), the bald eagle chases the lion.\n\nWe also know that if something chases the lion then the lion chases the rabbit (from the rule \"If something chases the lion then the lion chases the rabbit\"). Since the bald eagle chases the lion, the lion chases the rabbit.\n\nNow, let's check if the lion visits the rabbit. We know that the lion needs the rabbit (from step 3) and the lion chases the rabbit (from the previous conclusion). Therefore, according to the rule \"If something needs the lion and it visits the rabbit then it chases the lion,\" we can conclude that the lion does not visit the rabbit.\n\nSince the lion does not visit the rabbit, we can use the rule \"If something chases the rabbit and it does not visit the lion then the lion does not need the rabbit\" to conclude that the lion does not need the rabbit. However, this conclusion contradicts the given information that the lion needs the rabbit (from step 3).\n\nThis contradiction means that our initial conclusion that the lion does not visit the rabbit is incorrect. Therefore, the lion does visit the rabbit.\n\nNow, let's re-analyze the statement \"The bald eagle does not chase the bald eagle.\"\n\nWe know that the bald eagle chases the tiger (from step 2). According to the rule \"If something chases the tiger then it visits the bald eagle,\" we can conclude that the bald eagle visits the bald eagle. However, this conclusion contradicts the statement \"The bald eagle does not chase the bald eagle.\"\n\nHowever, it's stated \"If something chases the tiger then it visits the bald eagle.\" The word \"it\" refers to something that chases the tiger. Therefore, the correct statement is \"If something chases the tiger then something visits the bald eagle.\" In this case, it is the bald eagle that chases the tiger, but we don't know what the \"something\" is that visits the bald eagle. Therefore, we cannot conclude that the bald eagle visits the bald eagle.\n\nThe correct conclusion is that we cannot determine whether the bald eagle visits the bald eagle or not. Since we cannot determine this, we cannot determine whether the bald eagle chases the bald eagle or not.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to use a combination of logical deduction and the given rules. Let's break down the problem step by step.\n\n1. The bald eagle chases the rabbit. \n   This rule is given. \n\n2. The lion needs the rabbit. \n   This rule is given.\n\n3. The rabbit does not chase the lion. \n   This rule is given.\n\n4. The rabbit needs the bald eagle. \n   This rule is given.\n\n5. The rabbit needs the lion. \n   This rule is given.\n\n6. The tiger visits the rabbit. \n   This rule is given.\n\nNow, let's analyze the given conditions for determining whether something is big:\n\n- If something chases the rabbit then it is big.\n- If something needs the tiger then it is big.\n\nFrom the given rules, we know that the bald eagle chases the rabbit (rule 1), and the rabbit needs the tiger (can be inferred from rule 6, as the tiger visits the rabbit). Therefore, the bald eagle is big.\n\nNow, let's analyze the given conditions for determining whether something chases the lion:\n\n- If something needs the lion and it visits the rabbit then it chases the lion.\n- If something is big then it chases the lion.\n\nFrom the given rules, we know that the lion needs the rabbit (rule 2), and the rabbit visits the tiger (rule 6). The rabbit also needs the lion (rule 5). Therefore, the rabbit needs the lion, visits the rabbit (the tiger visits the rabbit), and it needs the lion. So, the rabbit chases the lion.\n\nNow, let's analyze the given conditions for determining whether something visits the tiger:\n\n- If something visits the tiger then the tiger is not green.\n   This rule is given, but it does not provide any useful information.\n\nNow, let's analyze the given conditions for determining whether something chases the tiger:\n\n- If something chases the tiger then the tiger needs the rabbit.\n- If something chases the tiger then it visits the bald eagle.\n\nFrom the given rules, we know that the bald eagle chases the tiger (can be inferred from rule 1, as the bald eagle chases the rabbit, and rule 6, as the tiger visits the rabbit). Therefore, the tiger needs the rabbit.\n\nNow, let's analyze the given conditions for determining whether something chases the lion:\n\n- If something chases the tiger then it visits the bald eagle.\n- If something chases the tiger then it is big.\n- If something is big then it chases the lion.\n\nFrom the given rules, we know that the bald eagle chases the tiger (can be inferred from rule 1, as the bald eagle chases the rabbit, and rule 6, as the tiger visits the rabbit). The bald eagle is big (from step 4), so it chases the lion.\n\nNow, let's analyze the given conditions for determining whether the lion chases the rabbit:\n\n- If something chases the lion then the lion chases the rabbit.\n\nFrom the given rules, we know that the rabbit chases the lion (from step 4). Therefore, the lion chases the rabbit.\n\nNow, let's analyze the given conditions for determining whether the lion needs the rabbit:\n\n- If something chases the rabbit and it does not visit the lion then the lion does not need the rabbit.\n\nFrom the given rules, we know that the bald eagle chases the rabbit (rule 1), but we do not know whether the bald eagle visits the lion. However, we do know that the rabbit chases the lion (from step 4), and the lion needs the rabbit (rule 2). Therefore, the lion needs the rabbit.\n\nNow, we can analyze the statement: \"The bald eagle does not chase the bald eagle.\"\n\nSince the bald eagle is big (from step 4), it chases the lion (from step 5). The lion chases the rabbit (from step 6). We do not know whether the bald eagle chases the bald eagle, but we can deduce that if the bald eagle chases the bald eagle, it must be true that the bald eagle does not chase the bald eagle. However, we cannot determine this from the given information. Therefore, the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle does not chase the bald eagle\" is true, false, or unknown, we need to analyze the given conditions step by step.\n\n1. The bald eagle chases the rabbit.\n   - We do not have enough information to determine if the statement is true or false.\n\n2. The bald eagle chases the tiger.\n   - We do not have enough information to determine if the statement is true or false.\n\n3. The lion needs the rabbit.\n   - We do not have enough information to determine if the statement is true or false.\n\n4. The rabbit does not chase the lion.\n   - We do not have enough information to determine if the statement is true or false.\n\n5. The rabbit needs the bald eagle.\n   - We do not have enough information to determine if the statement is true or false.\n\n6. The rabbit needs the lion.\n   - We do not have enough information to determine if the statement is true or false.\n\n7. The tiger visits the rabbit.\n   - We do not have enough information to determine if the statement is true or false.\n\nNow let's use the conditions that involve \"big\" animals:\n1. If something chases the rabbit then it is big.\n   - From condition 1, we know the bald eagle chases the rabbit, so the bald eagle is big.\n\n2. If something needs the tiger then it is big.\n   - From condition 2, we know the tiger visits the rabbit, but we do not know if the tiger is big or not. However, from condition 2 we also know the bald eagle chases the tiger, which means the bald eagle is big.\n\n3. If something needs the lion and it visits the rabbit then it chases the lion.\n   - We do not have enough information to determine if the statement is true or false.\n\n4. If something is big then it chases the lion.\n   - From condition 1, we know the bald eagle is big, so the bald eagle chases the lion.\n\n5. If something chases the tiger then the tiger needs the rabbit.\n   - From condition 2, we know the bald eagle chases the tiger, so the tiger needs the rabbit.\n\n6. If something visits the tiger then the tiger is not green.\n   - From condition 7, we know the rabbit visits the tiger, so the tiger is not green.\n\n7. If something chases the lion then the lion chases the rabbit.\n   - From condition 4, we know the bald eagle chases the lion, so the lion chases the rabbit.\n\n8. If something chases the tiger then it visits the bald eagle.\n   - From condition 2, we know the bald eagle chases the tiger, so the bald eagle visits the bald eagle.\n\nNow we can use the conditions that involve the lion and the rabbit:\n1. If something chases the rabbit and it does not visit the lion then the lion does not need the rabbit.\n   - From condition 1, we know the bald eagle chases the rabbit, but we do not know if the bald eagle visits the lion or not. However, from condition 4, we know the bald eagle chases the lion, so the bald eagle visits the lion. Therefore, the lion needs the rabbit.\n\nNow let's summarize the information we have obtained:\n- The bald eagle is big.\n- The bald eagle chases the rabbit.\n- The bald eagle chases the lion.\n- The tiger needs the rabbit.\n- The tiger is not green.\n- The lion chases the rabbit.\n\nFrom the information we have, we can conclude that the bald eagle does visit the bald eagle (from condition 8), and the statement \"The bald eagle does not chase the bald eagle\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and analyze the relationships between the animals.\n\n1. The bald eagle chases the rabbit.\n2. The bald eagle chases the tiger.\n3. The lion needs the rabbit.\n4. The rabbit does not chase the lion.\n5. The rabbit needs the bald eagle.\n6. The rabbit needs the lion.\n7. The tiger visits the rabbit.\n\nNow, let's analyze the given rules:\n\n1. If something chases the rabbit then it is big.\n2. If something needs the tiger then it is big.\n3. If something needs the lion and it visits the rabbit then it chases the lion.\n4. If something is big then it chases the lion.\n5. If something chases the tiger then the tiger needs the rabbit.\n6. If something visits the tiger then the tiger is not green. (We don't need this rule for our problem)\n7. If something chases the lion then the lion chases the rabbit.\n8. If something chases the tiger then it visits the bald eagle.\n9. If something chases the rabbit and it does not visit the lion then the lion does not need the rabbit.\n\nNow, let's use the given statements and rules to analyze the statement:\n\n\"The bald eagle does not chase the bald eagle.\"\n\nFrom rule 1, if something chases the rabbit then it is big. \nFrom statement 1, the bald eagle chases the rabbit. \nSo, the bald eagle is big.\n\nFrom statement 2, the bald eagle chases the tiger.\nFrom rule 5, if something chases the tiger then the tiger needs the rabbit.\nSo, the tiger needs the rabbit.\n\nFrom statement 2, the bald eagle chases the tiger.\nFrom rule 8, if something chases the tiger then it visits the bald eagle.\nSo, the bald eagle visits the bald eagle.\n\nTherefore, the statement \"The bald eagle does not chase the bald eagle\" is FALSE because the bald eagle visits the bald eagle.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(rabbit, lion))",
+          "z3_formula": "not_chases_rabbit_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, big_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> big(X)",
+          "z3_formula": "Implies(needs_bald_eagle_tiger, big_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & visits(X, rabbit) -> chases(X, lion)",
+          "z3_formula": "Implies(And(needs_rabbit_lion, visits_rabbit_lion), chases_rabbit_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, lion)",
+          "z3_formula": "Implies(big_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> needs(tiger, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, needs_tiger_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> not(green(X))",
+          "z3_formula": "Implies(visits_bald_eagle_tiger, not_green_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_lion, chases_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, visits_bald_eagle_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) & not(visits(X, lion)) -> not(needs(lion, rabbit))",
+          "z3_formula": "Implies(And(chases_bald_eagle_rabbit, not_visits_bald_eagle_lion), not_needs_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bald_eagle, lion)",
+          "z3_formula": "chases_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases(bald_eagle, bald_eagle))",
+          "z3_formula": "not_chases_bald_eagle_bald_eagle == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_chase(rabbit, lion)",
+          "z3_formula": "does_not_chase_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(green(tiger))",
+          "z3_formula": "not_green_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, big_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> big(X)",
+          "z3_formula": "Implies(needs_tiger_rabbit, big_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & visits(X, rabbit) -> chases(X, lion)",
+          "z3_formula": "Implies(And(needs_rabbit_lion, visits_tiger_rabbit), chases_tiger_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, lion)",
+          "z3_formula": "Implies(big_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> needs(X, rabbit)",
+          "z3_formula": "Implies(chases_tiger_rabbit, needs_tiger_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> not(green(X))",
+          "z3_formula": "Implies(visits_tiger_rabbit, not_green_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) & not(visits(X, lion)) -> not(needs(X, rabbit))",
+          "z3_formula": "Implies(And(chases_bald_eagle_rabbit, not(visits_bald_eagle_lion)), not(needs_bald_eagle_rabbit))",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases(bald_eagle, bald_eagle))",
+          "z3_formula": "not(chases_bald_eagle_bald_eagle) == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, big_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> not big(X)",
+          "z3_formula": "Implies(needs_lion_rabbit, not big_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(rabbit, lion)",
+          "z3_formula": "not chases_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> big(X)",
+          "z3_formula": "Implies(needs_rabbit_bald_eagle, big_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> not green(X)",
+          "z3_formula": "Implies(visits_tiger_rabbit, not green_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, lion)",
+          "z3_formula": "Implies(big_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) & not visits(X, lion) -> not needs(X, lion)",
+          "z3_formula": "Implies(And(chases_bald_eagle_rabbit, not visits_bald_eagle_lion), not needs_bald_eagle_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(bald_eagle, bald_eagle)",
+          "z3_formula": "not chases_bald_eagle_bald_eagle == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_chase(lion, rabbit)",
+          "z3_formula": "does_not_chase_lion_rabbit == False",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, big_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> big(X)",
+          "z3_formula": "Implies(needs_bald_eagle_tiger, big_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & visits(X, rabbit) -> chases(X, lion)",
+          "z3_formula": "Implies(And(needs_rabbit_lion, visits_rabbit_rabbit), chases_rabbit_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, lion)",
+          "z3_formula": "Implies(big_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> needs(tiger, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, needs_tiger_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> not(green(X))",
+          "z3_formula": "Implies(visits_tiger_tiger, not(green_tiger))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(X, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_lion, chases_bald_eagle_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) & not(visits(X, lion)) -> not(needs(X, rabbit))",
+          "z3_formula": "Implies(And(chases_bald_eagle_rabbit, not(visits_bald_eagle_lion)), not(needs_bald_eagle_rabbit))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bald_eagle, lion)",
+          "z3_formula": "chases_bald_eagle_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not(needs(bald_eagle, rabbit))",
+          "z3_formula": "not(needs_bald_eagle_rabbit) == False",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases(bald_eagle, bald_eagle))",
+          "z3_formula": "not(chases_bald_eagle_bald_eagle) == False",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Unknown",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, big_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> big(X)",
+          "z3_formula": "Implies(needs_bald_eagle_tiger, big_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & visits(X, rabbit) -> chases(X, lion)",
+          "z3_formula": "Implies(And(needs_tiger_lion, visits_tiger_rabbit), chases_tiger_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> needs(tiger, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, needs_tiger_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> Not(green(X))",
+          "z3_formula": "Implies(visits_bald_eagle_tiger, Not(green_bald_eagle))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_lion, chases_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, visits_bald_eagle_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) & Not(visits(X, lion)) -> Not(needs(lion, rabbit))",
+          "z3_formula": "Implies(And(chases_bald_eagle_rabbit, Not(visits_bald_eagle_lion)), Not(needs_lion_rabbit))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "Not(big(rabbit))",
+          "z3_formula": "Not(big_rabbit) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, tiger)",
+          "z3_formula": "visits_bald_eagle_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(chases(bald_eagle, lion))",
+          "z3_formula": "Not(chases_bald_eagle_lion) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(chases(lion, bald_eagle))",
+          "z3_formula": "Not(chases_lion_bald_eagle) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(needs(lion, rabbit))",
+          "z3_formula": "Not(needs_lion_rabbit) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, big_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, lion)",
+          "z3_formula": "Implies(big_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_lion, chases_lion_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> needs(tiger, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, needs_tiger_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> Not(green(X))",
+          "z3_formula": "Implies(visits_tiger_rabbit, Not(green_tiger))",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(rabbit, lion))",
+          "z3_formula": "not_chases_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, big_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> big(X)",
+          "z3_formula": "Implies(needs_bald_eagle_tiger, big_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & visits(X, rabbit) -> chases(X, lion)",
+          "z3_formula": "Implies(And(needs_bald_eagle_lion, visits_bald_eagle_rabbit), chases_bald_eagle_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, lion)",
+          "z3_formula": "Implies(big_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> needs(tiger, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, needs_tiger_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> not(green(X))",
+          "z3_formula": "Implies(visits_bald_eagle_tiger, not_green_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_lion, chases_lion_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, visits_bald_eagle_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) & not(visits(X, lion)) -> not(needs(lion, rabbit))",
+          "z3_formula": "Implies(And(chases_bald_eagle_rabbit, not_visits_bald_eagle_lion), not_needs_lion_rabbit)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(rabbit, lion))",
+          "z3_formula": "not(chases_rabbit_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, big_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, lion)",
+          "z3_formula": "Implies(big_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_lion, chases_lion_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, visits_bald_eagle_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, bald_eagle)",
+          "z3_formula": "visits_bald_eagle_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases(bald_eagle, bald_eagle))",
+          "z3_formula": "not(chases_bald_eagle_bald_eagle) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, big_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> needs(X, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, needs_bald_eagle_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(rabbit, lion))",
+          "z3_formula": "not(chases_rabbit_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> not(green(X))",
+          "z3_formula": "Implies(visits_tiger_rabbit, not(green_tiger))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, lion)",
+          "z3_formula": "Implies(big_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_lion, chases_lion_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & visits(X, rabbit) -> chases(X, lion)",
+          "z3_formula": "Implies(And(needs_rabbit_lion, visits_rabbit_lion), chases_rabbit_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) & not(visits(X, lion)) -> not(needs(X, rabbit))",
+          "z3_formula": "Implies(And(chases_rabbit_lion, not(visits_rabbit_lion)), not(needs_lion_rabbit))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bald_eagle, lion)",
+          "z3_formula": "chases_bald_eagle_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(lion, rabbit))",
+          "z3_formula": "not(visits_lion_rabbit) == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases(bald_eagle, bald_eagle))",
+          "z3_formula": "not(chases_bald_eagle_bald_eagle) == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, visits_bald_eagle_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits_bald_eagle_bald_eagle)",
+          "z3_formula": "not(visits_bald_eagle_bald_eagle) == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(rabbit, lion))",
+          "z3_formula": "not(chases_rabbit_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, big_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> big(X)",
+          "z3_formula": "Implies(needs_rabbit_tiger, big_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & visits(X, rabbit) -> chases(X, lion)",
+          "z3_formula": "Implies(And(needs_rabbit_lion, visits_rabbit_rabbit), chases_rabbit_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, lion)",
+          "z3_formula": "Implies(big_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> not(green(tiger))",
+          "z3_formula": "Implies(visits_tiger_rabbit, not(green_tiger))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> needs(tiger, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, needs_tiger_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, visits_bald_eagle_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> big(X)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, big_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, lion)",
+          "z3_formula": "Implies(big_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_lion, chases_lion_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) & not(visits(X, lion)) -> not(needs(lion, rabbit))",
+          "z3_formula": "Implies(And(chases_bald_eagle_rabbit, not(visits_bald_eagle_lion)), not(needs_lion_rabbit))",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, tiger)",
+          "z3_formula": "chases_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_chase(rabbit, lion)",
+          "z3_formula": "does_not_chase_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, big_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> big(X)",
+          "z3_formula": "Implies(needs_bald_eagle_tiger, big_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & visits(X, rabbit) -> chases(X, lion)",
+          "z3_formula": "Implies(And(needs_lion_rabbit, visits_rabbit_tiger), chases_lion_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, lion)",
+          "z3_formula": "Implies(big_bald_eagle, chases_bald_eagle_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> needs(tiger, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, needs_tiger_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> not(green(X))",
+          "z3_formula": "Implies(visits_rabbit_tiger, not_green_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, rabbit)",
+          "z3_formula": "Implies(chases_bald_eagle_lion, chases_lion_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(chases_bald_eagle_tiger, visits_bald_eagle_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) & not(visits(X, lion)) -> not(needs(lion, rabbit))",
+          "z3_formula": "Implies(And(chases_bald_eagle_rabbit, not(visits_bald_eagle_lion)), not(needs_lion_rabbit))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bald_eagle, rabbit)",
+          "z3_formula": "chases_bald_eagle_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bald_eagle, lion)",
+          "z3_formula": "chases_bald_eagle_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not(green(tiger))",
+          "z3_formula": "not_green_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, rabbit)",
+          "z3_formula": "chases_lion_rabbit == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, bald_eagle)",
+          "z3_formula": "visits_bald_eagle_bald_eagle == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases(bald_eagle, bald_eagle))",
+          "z3_formula": "not(chases_bald_eagle_bald_eagle) == True",
+          "source_step": 21
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 190,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 56
+    },
+    "maxsat_stats": {
+      "satisfied": 54,
+      "excluded": 2,
+      "total_weight": 176,
+      "solve_time_ms": 1.4566583558917046
+    },
+    "timing": {
+      "trace_gen_s": 24.5,
+      "extraction_s": 40.156,
+      "dedup_s": 1.745,
+      "maxsat_s": 0.005,
+      "total_s": 66.406
+    }
+  }
+}

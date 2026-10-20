@@ -1,0 +1,1042 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-347_Q14",
+    "problem": "Anne is big. Anne is kind. Charlie is big. Erin is big. Erin is blue. Erin is not kind. Erin is not young. Harry is big. Harry is nice. Harry is white. Harry is young. All kind, big things are blue. If something is young and kind then it is nice. Blue, cold things are nice. White things are cold. White, big things are cold. If Erin is blue and Erin is white then Erin is nice. All cold, nice things are young. All kind, blue things are white.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is young.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nKind(Anne, True) ::: Anne is kind.\nBig(Charlie, True) ::: Charlie is big.\nBig(Erin, True) ::: Erin is big.\nBlue(Erin, True) ::: Erin is blue.\nKind(Erin, False) ::: Erin is not kind.\nYoung(Erin, False) ::: Erin is not young.\nBig(Harry, True) ::: Harry is big.\nNice(Harry, True) ::: Harry is nice.\nWhite(Harry, True) ::: Harry is white.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nKind($x, True) && Big($x, True) >>> Blue($x, True) ::: All kind, big things are blue.\nYoung($x, True) && Kind($x, True) >>> Nice($x, True) ::: If something is young and kind then it is nice.\nBlue($x, True) && Cold($x, True) >>> Nice($x, True) ::: Blue, cold things are nice.\nWhite($x, True) >>> Cold($x, True) ::: White things are cold.\nBig($x, True) && White($x, True) >>> Cold($x, True) ::: White, big things are cold.\nBlue(Erin, True) && White(Erin, True) >>> Nice(Erin, True) ::: If Erin is blue and Erin is white then Erin is nice.\nCold($x, True) && Nice($x, True) >>> Young($x, True) ::: All cold, nice things are young.\nKind($x, True) && Blue($x, True) >>> White($x, True) ::: All kind, blue things are white.\n\nQuery:\nYoung(Charlie, True) ::: Charlie is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 0.0,
+      "True": 69.0,
+      "Unknown": 142.5
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "True": 2,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Charlie is young, we need to analyze the given statements and find the necessary information.\n\n1. Charlie is big.\n2. All kind, big things are blue.\n\nFrom statement 2, we can conclude that Charlie is blue because it's big and kind (statements 1 and \"Anne is kind\").\n\n3. Erin is blue.\n4. Erin is white.\n\nFrom statement 3, we know Erin is blue. From statement 4, we know Erin is white.\n\n5. All kind, blue things are white.\n\nThis statement tells us that kind, blue things are white, which means Charlie is white because it's blue and kind.\n\n6. White things are cold.\n7. All cold, nice things are young.\n\nFrom statement 6, we know white things are cold. Since Charlie is white, Charlie is cold (statement 7).\n\n8. Harry is young.\n9. Harry is nice.\n10. Harry is white.\n11. Harry is kind.\n12. All kind, big things are blue.\n13. All kind, blue things are white.\n\nWe already know from statement 1 that Charlie is big, and we also know that all kind, big things are blue (statement 12). We also know that all kind, blue things are white (statement 13). \n\n14. Erin is not young.\n15. Erin is not kind.\n16. Erin is not blue (because Erin is white, statements 3 and 4).\n\nHowever, the statement \"All kind, blue things are white\" tells us that kind, blue things are white, which means Charlie is white because it's blue and kind (from statement 2 and 5).\n\n17. Harry is young.\n18. All kind, blue things are white.\n19. White, big things are cold.\n20. White, nice things are young.\n\nSince Charlie is white (from statements 2 and 13) and Charlie is big (from statement 1), Charlie is cold (from statement 19).\n\n21. All cold, nice things are young.\n\nThis statement tells us that cold, nice things are young. However, we cannot determine if Charlie is nice or not.\n\n22. Harry is young and kind.\n23. Harry is nice.\n\nFrom statement 22, we know that if something is young and kind, it's nice. We also know that Harry is young and kind, and Harry is nice (from statement 23).\n\nHowever, Charlie is big, and we cannot determine if Charlie is young or not.\n\nSo, based on the given statements, we cannot determine whether Charlie is young or not. \n\nTherefore, the final answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is young\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nGiven statements:\n1. Anne is big. Anne is kind.\n2. Charlie is big.\n3. Erin is big. Erin is blue. Erin is not kind. Erin is not young.\n4. Harry is big. Harry is nice. Harry is white. Harry is young.\n5. All kind, big things are blue.\n6. If something is young and kind then it is nice.\n7. Blue, cold things are nice.\n8. White things are cold.\n9. White, big things are cold.\n10. If Erin is blue and Erin is white then Erin is nice.\n11. All cold, nice things are young.\n12. All kind, blue things are white.\n\nNow, let's analyze the given statements to determine whether Charlie is young or not.\n\nFrom statement 2, we know that Charlie is big.\n\nNow, let's see if we can find any information that connects Charlie being big to being young.\n\nStatement 5 says that all kind, big things are blue. Since Charlie is big, we can infer that if Charlie is kind, then Charlie must be blue.\n\nHowever, statement 3 says that Erin is big, blue, and not kind. This does not necessarily imply that being big and blue is not kind; it only means that Erin is not kind.\n\nNow, let's see if we can find any information that connects Charlie being big to being young.\n\nFrom statement 12, we know that all kind, blue things are white. If Charlie is blue and kind, then Charlie must be white.\n\nNow, let's see if we can find any information that connects Charlie being white to being young.\n\nStatement 8 says that white things are cold. Statement 9 says that white, big things are cold. Since Charlie is white and big, we can infer that Charlie is cold.\n\nNow, let's see if we can find any information that connects Charlie being cold to being young.\n\nFrom statement 11, we know that all cold, nice things are young. However, we do not know whether Charlie is nice or not.\n\nLet's see if we can find any information that connects Charlie being big to being nice.\n\nFrom statement 4, we know that Harry is big, nice, and young. However, this does not necessarily imply that being big means being nice; it only means that Harry is nice.\n\nNow, let's see if we can find any information that connects Charlie being big to being kind.\n\nStatement 1 says that Anne is big and kind. Statement 2 says that Charlie is big. However, we do not know whether Charlie is kind or not.\n\nStatement 6 says that if something is young and kind, then it is nice. However, we do not know whether Charlie is young or kind.\n\nTherefore, based on the given information, we cannot determine whether Charlie is young or not. The statement \"Charlie is young\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is young' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - All kind, big things are blue.\n   - If something is young and kind then it is nice.\n   - Blue, cold things are nice.\n   - White things are cold.\n   - White, big things are cold.\n   - If Erin is blue and Erin is white then Erin is nice.\n   - All cold, nice things are young.\n   - All kind, blue things are white.\n\n2. Analyzing the given information about Charlie:\n   - Charlie is big. (From the given information)\n   - We cannot directly determine if Charlie is kind or young from the given information.\n\n3. We know that all kind, big things are blue. However, this does not directly tell us about Charlie's age or any other characteristics that would determine if he is young.\n\n4. We also know that all kind, blue things are white. This information might seem relevant, but since we don't have enough information about Charlie's color or kindness, we cannot use this fact to determine if Charlie is young.\n\n5. We cannot determine Charlie's age (young or not) directly from the given information. Therefore, the statement 'Charlie is young' is unknown based on the provided information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will use a method called \"truth tables\" to analyze the given statements and their relationships.\n\nFirst, let's break down the given statements:\n\n1. All kind, big things are blue.\n2. If something is young and kind then it is nice.\n3. Blue, cold things are nice.\n4. White things are cold.\n5. White, big things are cold.\n6. If Erin is blue and Erin is white then Erin is nice.\n7. All cold, nice things are young.\n8. All kind, blue things are white.\n\nNow, let's analyze the statement \"Charlie is young\" (C is young).\n\nTo do this, we need to find a path from the given statements to \"Charlie is young.\" \n\nWe know Charlie is big (statement 5, although not directly stated, Erin is big, and Charlie is also mentioned with the same adjective). \n\nWe can use statement 1 to find a relationship between big things and blue things: All kind, big things are blue.\n\nSince Charlie is big, if Charlie is kind, then Charlie is blue. We can use statement 8 to conclude that all kind, blue things are white.\n\nSo far, we have:\n\n- Charlie is big\n- Charlie is kind -> Charlie is blue\n- Charlie is blue -> Charlie is white\n\nNow, we can use statement 4, which states that white things are cold.\n\nSince Charlie is white, Charlie is cold.\n\nNow, we can use statement 3, which states that blue, cold things are nice.\n\nSince Charlie is blue and cold, Charlie is nice.\n\nWe know Charlie is kind, nice, and white. Now, let's use statement 2, which states that if something is young and kind then it is nice.\n\nSince Charlie is kind and nice, we can't conclude that Charlie is young or not young because statement 2 only gives a condition for being nice, not being young.\n\nTherefore, the statement \"Charlie is young\" is unknown based on the given information. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement says \"Charlie is big.\" This means we can apply the information \"All kind, big things are blue.\"\n\n   From this, we know Charlie is blue.\n\n2. We also know \"All kind, big things are blue.\" This implies that Charlie is kind.\n\n3. Now, we have two statements about Charlie: \"Charlie is blue\" and \"Charlie is kind.\" We need to use this information with other given statements.\n\n4. The statement \"All kind, blue things are white\" tells us that Charlie is white.\n\n5. We know Charlie is white and big, and from \"White, big things are cold,\" we can conclude that Charlie is cold.\n\n6. We also know \"Blue, cold things are nice.\" Therefore, Charlie is nice.\n\n7. We have \"If something is young and kind then it is nice,\" but this does not give us any direct information about Charlie. However, we know Charlie is kind and nice. \n\n8. Now we know that Charlie is kind, nice, blue, white, and big. We need to use the statement \"All cold, nice things are young\" to determine whether Charlie is young.\n\n9. We already concluded that Charlie is cold and nice. Therefore, from \"All cold, nice things are young,\" we can conclude that Charlie is young.\n\nTherefore, the statement \"Charlie is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is young\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Charlie is big. \n   This statement tells us that Charlie is big, but it does not give any information about his age.\n\n2. All kind, big things are blue.\n   Since Charlie is big, we can conclude that Charlie is blue if he is also kind. However, we do not have any information about Charlie's kind or unkind nature.\n\n3. All kind, blue things are white.\n   If Charlie is kind and blue, then he would be white. However, we still do not have any information about Charlie's age.\n\n4. Erin is blue. \n   Erin is blue, but we cannot conclude anything about Charlie's age from this statement.\n\n5. Erin is not kind. \n   Since Erin is not kind, we cannot conclude that Charlie is kind.\n\n6. Erin is not young. \n   We do not have any information about Erin's age that would help us conclude anything about Charlie's age.\n\n7. Harry is big. \n   Harry is big, but we do not have any information about his age or kind nature.\n\n8. Harry is nice. \n   Since Harry is big and nice, we can conclude that he is kind. But we do not have any information about Harry's age.\n\n9. Harry is white. \n   We know that white things are cold and all cold, nice things are young. However, we do not have any information about Charlie's age.\n\n10. Erin is white.\n    Erin is white, but we cannot conclude anything about Charlie's age from this statement.\n\n11. Erin is not young. \n    We do not have any information about Erin's age that would help us conclude anything about Charlie's age.\n\n12. If Erin is blue and Erin is white then Erin is nice. \n    We know that Erin is blue and white. Since we know that blue, cold things are nice and white things are cold, we can conclude that Erin is nice.\n\n13. All kind, blue things are white.\n    Since we know that Erin is blue, nice, and white, we can conclude that Erin is kind. However, we still do not have any information about Charlie's age.\n\n14. All cold, nice things are young.\n    Since we know that Erin is nice and white (and thus cold), we can conclude that Erin is young. However, this statement only applies to Erin and does not provide any information about Charlie.\n\n15. If something is young and kind then it is nice.\n    This statement does not provide any information about Charlie's age.\n\n16. All kind, big things are blue.\n    We do not have any information about Charlie's age from this statement.\n\n17. Anne is kind. \n    We do not have any information about Anne's age or size.\n\n18. Charlie is big. \n    We already know this from the first statement.\n\n19. Erin is big. \n    Erin is big, but we do not have any information about her age or kind nature.\n\n20. Harry is big. \n    We already know this from the seventh statement.\n\nSince we cannot conclude whether Charlie is young or not from the given statements, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them to determine whether Charlie is young or not.\n\n1. All kind, big things are blue.\n   - This statement does not provide any information about Charlie's age, so we cannot use it to determine whether Charlie is young or not.\n\n2. Charlie is big.\n   - This statement implies that Charlie might be blue according to the first statement. However, it does not provide any information about Charlie's age.\n\n3. Erin is blue.\n   - This statement does not provide any information about Charlie's age or color.\n\n4. Erin is not kind.\n   - This statement does not provide any information about Charlie's age or kind nature.\n\n5. Erin is not young.\n   - This statement does not provide any information about Charlie's age.\n\n6. Harry is big.\n   - This statement implies that Harry might be blue according to the first statement. However, it does not provide any information about Harry's age, which does not help us determine Charlie's age.\n\n7. Harry is nice.\n   - This statement does not provide any information about Charlie's age or kind nature.\n\n8. Harry is white.\n   - This statement implies that Harry is cold according to the statement \"White things are cold.\"\n\n9. Harry is young.\n   - This statement does not provide any information about Charlie's age.\n\n10. All kind, big things are blue.\n    - This statement does not provide any information about Charlie's age.\n\n11. If something is young and kind then it is nice.\n    - This statement does not provide any information about Charlie's age or kind nature.\n\n12. Blue, cold things are nice.\n    - This statement does not provide any information about Charlie's age or color.\n\n13. White things are cold.\n    - This statement does not provide any information about Charlie's age.\n\n14. White, big things are cold.\n    - This statement does not provide any information about Charlie's age.\n\n15. If Erin is blue and Erin is white then Erin is nice.\n    - This statement does not provide any information about Charlie's age.\n\n16. All cold, nice things are young.\n    - This statement does not provide any information about Charlie's age.\n\n17. All kind, blue things are white.\n    - This statement does not provide any information about Charlie's age or kind nature.\n\nFrom the given statements, we know that Charlie is big (statement 2). However, we cannot determine whether Charlie is young or not using the given statements. There is no direct or indirect information about Charlie's age in the given statements.\n\nTherefore, the answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is young\" is true, false, or unknown, we need to analyze the given statements and use logical reasoning.\n\nGiven statements:\n\n1. Anne is big. Anne is kind.\n2. Charlie is big.\n3. Erin is big. Erin is blue. Erin is not kind. Erin is not young.\n4. Harry is big. Harry is nice. Harry is white. Harry is young.\n5. All kind, big things are blue.\n6. If something is young and kind then it is nice.\n7. Blue, cold things are nice.\n8. White things are cold.\n9. White, big things are cold.\n10. If Erin is blue and Erin is white then Erin is nice.\n11. All cold, nice things are young.\n12. All kind, blue things are white.\n\nNow, let's analyze the statement \"Charlie is young\". To determine this, we need to find out if Charlie is young or not.\n\nFrom statement 2, we know that Charlie is big.\n\nNow, let's use statement 5: \"All kind, big things are blue.\" This statement tells us that if something is big and kind, it is blue.\n\nHowever, we don't know if Charlie is kind or not. But we can use statement 12: \"All kind, blue things are white.\" This statement tells us that if something is kind and blue, it is white.\n\nNow, let's combine the information: If Charlie is kind and big, then Charlie is blue (statement 5), and if Charlie is blue, then Charlie is white (statement 12).\n\nHowever, from statement 4, we know that Harry is white, big, and young.\n\nFrom statement 7, we know that white things are cold.\n\nFrom statement 11, we know that all cold, nice things are young.\n\nFrom statement 6, we know that if something is young and kind, then it is nice.\n\nFrom statement 4, we know that Harry is nice.\n\nNow, let's use statement 8: \"White things are cold.\" This statement tells us that white things are cold.\n\nFrom statement 9, we know that white, big things are cold.\n\nNow, let's use statement 10: \"If Erin is blue and Erin is white then Erin is nice.\" This statement tells us that if something is blue and white, then it is nice.\n\nFrom statement 11, we know that all cold, nice things are young.\n\nHowever, from statement 11, we know that all cold, nice things are young, and from statement 6, we know that if something is young and kind then it is nice.\n\nNow, let's use statement 11: \"All cold, nice things are young.\" This statement tells us that if something is cold, nice, then it is young.\n\nFrom statement 7, we know that blue, cold things are nice.\n\nHowever, we can't conclude that Charlie is young.\n\nSo, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is big. (Given)\n2. All kind, big things are blue. (Given)\n   Since Charlie is big, we don't have any information about Charlie being kind or not yet. However, we can say that if Charlie is kind, then Charlie must be blue.\n\n3. We don't have any information about Charlie being kind or not. If Charlie is kind, then Charlie is blue. If Charlie is blue, then Charlie is white (All kind, blue things are white). However, we can't conclude anything about Charlie being young based on this information yet.\n\n4. Erin is big. (Given)\n5. Erin is blue. (Given)\n   From point 2, we know that all kind, big things are blue. However, we also know that Erin is not kind (Given). Therefore, we cannot conclude that Charlie is kind just because Erin is big and blue.\n\n6. We still don't have any information about Charlie being kind or not. Let's analyze the other information about Charlie being big and the given statements about Erin.\n\n7. Erin is white. (Given)\n   From point 5, we know that Erin is blue. Since Erin is both blue and white, we can conclude that Erin is nice (If Erin is blue and Erin is white then Erin is nice).\n\n8. Erin is not nice. (Given)\n   This is a contradiction to our previous conclusion that Erin is nice. We can ignore this statement as it seems to be contradictory to the given information.\n\n9. We still don't have any information about Charlie being kind or not. Let's analyze the given statements about Harry.\n\n10. Harry is big. (Given)\n11. Harry is nice. (Given)\n12. Harry is white. (Given)\n   From point 11, we know that Harry is nice. We also know that Harry is big and white. Therefore, we can conclude that Harry is young (All cold, nice things are young).\n\n13. We still don't have any information about Charlie being kind or not. Let's analyze the given statements about cold things.\n\n14. All cold, nice things are young. (Given)\n15. All kind, blue things are white. (Given)\n   Since we don't have any information about Charlie being kind or not, we can't conclude anything about Charlie being young yet.\n\nHowever, we can analyze the statement \"All kind, blue things are white\" in combination with the statement \"All cold, nice things are young\".\n\n16. From point 15, we know that all kind, blue things are white. Since white things are cold (Given), we can conclude that all kind, blue things are cold.\n\n17. From point 14, we know that all cold, nice things are young. Since all kind, blue things are cold (From point 16), we can conclude that all kind, blue things are young.\n\n18. Since Charlie is big, we know that if Charlie is kind, then Charlie must be blue (From point 2). If Charlie is blue, then Charlie is white (From point 15). If Charlie is white, then Charlie is cold (Since white things are cold, Given). If Charlie is cold, then Charlie is young (From point 14).\n\nHowever, the conclusion that Charlie is kind is based on the assumption that Charlie is blue. This assumption is based on the statement \"All kind, big things are blue\". But we also know that Erin is big and blue, and Erin is not kind. Therefore, we cannot conclude that Charlie is kind just because Charlie is big.\n\nTherefore, we cannot conclude that Charlie is young based on the given information. The statement \"Charlie is young\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is young\" is true, false, or unknown, we need to use the given information and logical deductions.\n\nFrom the given information:\n\n1. Charlie is big.\n2. All kind, big things are blue. \n3. Charlie is not explicitly mentioned as kind or not kind, but from the statement \"All kind, big things are blue,\" we can infer that Charlie might be kind.\n4. There is no information about Charlie being young or not young.\n\nNow, let's analyze the given information step by step:\n\n1. If Charlie is kind and big, then he must be blue (from statement 2).\n2. There is no information about blue things being young or not young, but we know that white things are cold (statement 7), and white, big things are cold (statement 8). \n3. We also know that blue, cold things are nice (statement 5), but we cannot conclude anything about Charlie being young or not young from this information.\n4. However, from statement 9, \"All cold, nice things are young,\" we can conclude that if Charlie is cold and nice, then he must be young.\n\nNow, we need to determine if Charlie is cold. Since Charlie is big and blue, we can't directly conclude that he is cold. However, we know that white things are cold (statement 7), and white, big things are cold (statement 8).\n\nUnfortunately, we don't have information about Charlie's color being white. However, we can infer that Charlie is not white because if he were, then we could conclude that he is cold and big, and therefore, cold, nice, and young (from statements 7, 8, and 9). \n\nBut we are given information that Erin is blue and white, and we know from statement 6 that Erin is not white. So we can conclude that Erin is blue, but not white. This means that not all blue things are white.\n\nFrom statement 10, we know that all kind, blue things are white. So, if Charlie is kind and blue, then he must be white. \n\nNow, since we know that white, big things are cold (statement 8), we can conclude that Charlie is cold.\n\nFrom statement 9, \"All cold, nice things are young,\" we can conclude that Charlie is young.\n\nTherefore, the statement \"Charlie is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is young\" is true, false, or unknown, we need to analyze the given information and apply the rules provided.\n\nGiven statements:\n1. All kind, big things are blue.\n2. If something is young and kind then it is nice.\n3. Blue, cold things are nice.\n4. White things are cold.\n5. White, big things are cold.\n6. If Erin is blue and Erin is white then Erin is nice.\n7. All cold, nice things are young.\n8. All kind, blue things are white.\n\nFrom statement 1, we know that if something is big and kind, then it is blue. We are given that Charlie is big and kind, so we can infer that Charlie is blue (rule 1).\n\nFrom statement 8, we know that if something is kind and blue, then it is white. Since Charlie is blue, we can infer that Charlie is white (rule 8).\n\nNow, we know that Charlie is white and big. From rule 5, we can infer that white, big things are cold.\n\nWe have two possibilities: \n1. Charlie is young or\n2. Charlie is not young.\n\nIf Charlie is young, then from rule 7, we can infer that Charlie is nice (since all cold, nice things are young). However, this would create a contradiction with rule 2, which states that all kind, big things are blue. If Charlie is nice, then Charlie should be blue (rule 2), but we already know that Charlie is white (rule 8), which is a contradiction.\n\nTherefore, the statement \"Charlie is young\" leads to a contradiction, so we conclude that it is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is young' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is big. \nWe know that 'All kind, big things are blue.' However, we do not have any information about Charlie being kind or not.\n\n2. Erin is blue. \nErin is also big and white. We know that 'All kind, big things are blue.' This means Erin is kind, as she is big and blue.\n\n3. Erin is not kind. \nThis statement contradicts the previous statement about Erin being kind. However, based on our previous conclusion that Erin is kind, we can infer that this statement might be false. But we also know that Erin is blue and white, and we have a statement that 'All kind, blue things are white.' This information might help us in the future.\n\n4. Erin is not young. \nWe know that Erin is white, big, and blue. Since Erin is blue and white, she is kind (based on 'All kind, big things are blue'). \n\n5. Harry is big. \nWe also know that Harry is nice, young, and white. \n\n6. Harry is nice. \nSince Harry is kind (based on 'All kind, big things are blue') and young, this statement is true.\n\n7. Harry is white. \nWe already know this.\n\n8. Harry is young. \nThis statement is true.\n\n9. Harry is white. \nWe already know this.\n\n10. All cold, nice things are young. \nSince Harry is nice and white, he must be cold.\n\n11. All white things are cold. \nThis statement is true.\n\n12. White, big things are cold. \nThis statement is also true.\n\n13. If Erin is blue and Erin is white then Erin is nice. \nSince Erin is blue and white, this statement is true, which means Erin is nice.\n\n14. All kind, blue things are white. \nThis statement is true.\n\nFrom all the information we have gathered, we can conclude that Erin is nice, but we still do not know if Charlie is young or not.\n\nHowever, we know that Charlie is big, and there is no information about Charlie being young. We also know that 'All kind, big things are blue.' But we do not have any information about Charlie being kind or not.\n\nBut there is a statement that says 'If something is young and kind then it is nice.' However, we do not know if Charlie is young or kind.\n\nTherefore, the statement 'Charlie is young' is unknown because we do not have enough information to determine if Charlie is young or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_anne, big_charlie), blue_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_anne, blue_charlie), white_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_charlie, cold_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_harry, big_charlie), blue_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_harry, blue_charlie), white_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_charlie, big_charlie), cold_charlie)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(white_harry, nice_harry), young_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), young_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin) == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(erin)",
+          "z3_formula": "Not(blue_erin) == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_anne, blue_charlie), white_charlie)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == Unknown",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), blue_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_charlie, white_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_charlie, big_charlie), cold_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), young_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_charlie, nice_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_charlie, kind_charlie), nice_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, white_charlie), nice_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_charlie, kind_charlie), nice_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), nice_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_charlie, cold_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_charlie, big_charlie), cold_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, white_charlie), nice_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), young_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_charlie, blue_charlie), white_charlie)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_charlie, white_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_charlie, cold_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), nice_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_charlie, kind_charlie), nice_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie) == Unknown",
+          "z3_formula": "Not(Implies(And(kind_charlie, nice_charlie), young_charlie))",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_charlie, blue_charlie), white_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_charlie, big_charlie), cold_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), nice_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_charlie, kind_charlie), nice_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), young_charlie)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_charlie, blue_charlie), white_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_harry, nice_harry), kind_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_harry, cold_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_harry, nice_harry), young_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_erin, cold_erin), nice_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> blue(X)",
+          "z3_formula": "Implies(kind_erin, blue_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_erin, white_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_erin, nice_erin), young_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_charlie, kind_charlie), nice_charlie)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), blue_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), blue_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_charlie, cold_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_charlie, blue_charlie), white_charlie)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_charlie, kind_charlie), nice_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), young_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), nice_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_charlie, big_charlie), cold_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == Unknown",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), blue_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_charlie, white_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_charlie, cold_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_charlie, big_charlie), cold_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), nice_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), young_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_charlie, kind_charlie), nice_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), nice_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_erin, big_erin), blue_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_erin, white_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_erin, cold_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_erin, big_erin), cold_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), nice_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_erin, nice_erin), young_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_erin, kind_erin), nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_erin, cold_erin), nice_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == Unknown",
+          "source_step": 13
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_charlie, white_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_charlie, big_charlie), cold_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), young_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_erin, big_erin), blue_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) -> cold(X)",
+          "z3_formula": "Implies(white_harry, cold_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(white_harry, big_harry), cold_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), nice_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_erin, blue_erin), white_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == Unknown",
+          "source_step": 15
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 152,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 54
+    },
+    "maxsat_stats": {
+      "satisfied": 50,
+      "excluded": 4,
+      "total_weight": 147,
+      "solve_time_ms": 2.2337455302476883
+    },
+    "timing": {
+      "trace_gen_s": 9.481,
+      "extraction_s": 38.161,
+      "dedup_s": 1.96,
+      "maxsat_s": 0.005,
+      "total_s": 49.607
+    }
+  }
+}

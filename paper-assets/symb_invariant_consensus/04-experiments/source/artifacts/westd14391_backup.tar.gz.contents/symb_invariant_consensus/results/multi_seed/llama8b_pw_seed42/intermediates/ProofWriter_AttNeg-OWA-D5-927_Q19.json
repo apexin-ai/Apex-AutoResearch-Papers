@@ -1,0 +1,934 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-927_Q19",
+    "problem": "Anne is cold. Anne is not furry. Anne is red. Anne is round. Bob is red. Fiona is not round. Gary is furry. If someone is red then they are round. Red people are round. Furry, blue people are round. If someone is cold and not blue then they are not red. If someone is round and red then they are quiet. If someone is cold then they are smart. If someone is blue and smart then they are not cold. If someone is quiet and round then they are cold. Round, smart people are not furry.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not red.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nFurry(Anne, False) ::: Anne is not furry.\nRed(Anne, True) ::: Anne is red.\nRound(Anne, True) ::: Anne is round.\nRed(Bob, True) ::: Bob is red.\nRound(Fiona, False) ::: Fiona is not round.\nFurry(Gary, True) ::: Gary is furry.\n\nRules:\nRed($x, True) >>> Round($x, True) ::: If someone is red then they are round.\nFurry($x, True) && Blue($x, True) >>> Round($x, True) ::: Furry, blue people are round.\nCold($x, True) && Blue($x, False) >>> Red($x, False) ::: If someone is cold and not blue then they are not red.\nRound($x, True) && Red($x, True) >>> Quiet($x, True) ::: If someone is round and red then they are quiet.\nCold($x, True) >>> Smart($x, True) ::: If someone is cold then they are smart.\nBlue($x, True) && Smart($x, True) >>> Cold($x, False) ::: If someone is blue and smart then they are not cold.\nQuiet($x, True) && Round($x, True) >>> Cold($x, True) ::: If someone is quiet and round then they are cold.\nRound($x, True) && Smart($x, True) >>> Furry($x, False) ::: Round, smart people are not furry.\n\nQuery:\nRed(Fiona, False) ::: Fiona is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 125.0,
+      "Unknown": 107.0
+    },
+    "answer_counts": {
+      "True": 8,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Fiona is not red, we need to analyze the given information step by step.\n\n1. We know that Fiona is not round (given statement).\n2. We also know that if someone is red then they are round (rule 3).\n   From this, we can infer that if someone is not round, then they are not red (logical inverse).\n3. Using the information from step 1 and step 2, we can infer that Fiona is not red (Fiona is not round, so she is not red).\n\nSo, the statement \"Fiona is not red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we have the following facts:\n   - Anne is cold.\n   - Anne is not furry.\n   - Anne is red.\n   - Anne is round.\n   - Bob is red.\n   - Fiona is not round.\n   - Gary is furry.\n   - If someone is red then they are round.\n   - Red people are round.\n   - Furry, blue people are round.\n   - If someone is cold and not blue then they are not red.\n   - If someone is round and red then they are quiet.\n   - If someone is cold then they are smart.\n   - If someone is blue and smart then they are not cold.\n   - If someone is quiet and round then they are cold.\n   - Round, smart people are not furry.\n\n2. We need to find any relationship between Fiona and the given information. Fiona is not round. This is a crucial piece of information.\n\n3. From the given information, we have:\n   - If someone is cold and not blue then they are not red. (This doesn't directly apply to Fiona, but it might be useful later.)\n   - If someone is red then they are round. (This statement and its equivalent statement \"Red people are round\" both tell us that being red implies being round. However, we also know that Fiona is not round.)\n   - Since Fiona is not round, she cannot be red, because if she were red, she would be round (by the implication of the above statements).\n   \n4. So, Fiona is not red. Therefore, the statement \"Fiona is not red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not red\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the given information:\n\n1. Fiona is not round.\n2. If someone is red then they are round.\n3. Red people are round.\n\nSince Fiona is not round (1), and red people are round (3), it implies that Fiona is not red (2).\n\nHowever, there's another piece of information we need to consider:\n- If someone is cold and not blue then they are not red.\n- If someone is cold then they are smart.\n- If someone is blue and smart then they are not cold.\n- If someone is quiet and round then they are cold.\n- Round, smart people are not furry.\n\nBut we don't have any information about Fiona's color (blue or not blue), whether she is cold or not, or her intelligence. We can't directly apply these conditions to Fiona.\n\nTherefore, we can only confidently conclude that Fiona is not red based on the information that she is not round (1) and the implication from (2) and (3). We cannot determine whether Fiona is red or not based on the other given information.\n\nSo the statement \"Fiona is not red\" is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Fiona is not round. \n   Given: Fiona is not round.\n\n2. We also know that if someone is red then they are round. \n   Given: If someone is red then they are round.\n\nHowever, we cannot conclude that Fiona is red or not yet. We need more information.\n\n3. We are also given that Bob is red. \n   Given: Bob is red.\n\nFrom this, we can conclude that Bob is round. \n   Given: If someone is red then they are round.\n\nBut still, we cannot determine whether Fiona is red or not.\n\n4. We are also given that Fiona is not round. \n   Given: Fiona is not round.\n\nHowever, we cannot conclude that Fiona is red or not yet. We need more information.\n\n5. We are also given that if someone is red then they are round. \n   Given: If someone is red then they are round.\n\nWe already know that Fiona is not round, so we can conclude that Fiona is not red.\n\nTherefore, the statement \"Fiona is not red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not red\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Anne is cold.\n2. Anne is not furry.\n3. Anne is red.\n4. Anne is round.\n5. Bob is red.\n6. Fiona is not round.\n7. Gary is furry.\n8. If someone is red then they are round. (Let's call this rule R1)\n9. Red people are round. (This is the same as R1, so we can ignore it)\n10. Furry, blue people are round. (Let's call this rule R2)\n11. If someone is cold and not blue then they are not red. (Let's call this rule R3)\n12. If someone is round and red then they are quiet. (Let's call this rule R4)\n13. If someone is cold then they are smart. (Let's call this rule R5)\n14. If someone is blue and smart then they are not cold. (Let's call this rule R6)\n15. If someone is quiet and round then they are cold. (Let's call this rule R7)\n16. Round, smart people are not furry. (Let's call this rule R8)\n\nNow, let's analyze the statement \"Fiona is not red\". To determine whether this is true or false, we need to find out if Fiona is red or not.\n\nFrom statement 6, we know that Fiona is not round. From rule R1, if someone is red, then they are round. So, we can conclude that Fiona is not red.\n\nSince we have concluded that Fiona is not red, we can say that the statement \"Fiona is not red\" is true.\n\nTherefore, the answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not red\" is true, false, or unknown, we need to analyze the given information.\n\n1. We know that Fiona is not round (given statement).\n2. From the information \"If someone is red then they are round,\" we can deduce that if Fiona is red, then she must be round, which contradicts the given statement that Fiona is not round. Therefore, Fiona cannot be red.\n3. We do not have any direct information about Fiona being red or not being red. However, from the given statements, we can deduce that Fiona is not red.\n\nThe final answer is \\boxed{True}.",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether Fiona is not red, we need to analyze the given information step by step.\n\n1. We are given the following information about Fiona: Fiona is not round.\n\n2. We know that if someone is red then they are round. But we do not know whether Fiona is red or not. So, we cannot conclude anything about Fiona's roundness from this statement.\n\n3. We are also given the following information about Fiona: Fiona is not round.\n\n4. We know that if someone is red then they are round. But we do not know whether Fiona is red or not. So, we cannot conclude anything about Fiona's redness from this statement.\n\n5. We are given the information that Fiona is not round. But we are not given any information about Fiona's redness. Therefore, we cannot determine whether Fiona is red or not.\n\n6. Since we do not have enough information to determine whether Fiona is red or not, we cannot conclude whether the statement \"Fiona is not red\" is true or false.\n\nTherefore, the statement \"Fiona is not red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not red\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nFrom the given statements:\n\n1. If someone is red then they are round.\n2. Red people are round.\nFrom these two statements, we can conclude that being red and being round are equivalent properties. Therefore, we can replace the phrase \"red\" with \"round\" in statement 2.\n\nFrom the given statements:\n\n3. Bob is red.\n4. Fiona is not round.\nSince we can replace \"red\" with \"round\" in statement 3, we get:\n5. Bob is round.\nNow, we can conclude that since Bob is round and he is red (from statement 3), he must be quiet (from the statement \"If someone is round and red then they are quiet\").\n\nFrom the given statements:\n\n6. Gary is furry.\n7. If someone is cold and not blue then they are not red.\n8. If someone is cold then they are smart.\n9. If someone is blue and smart then they are not cold.\n10. If someone is quiet and round then they are cold.\n11. Round, smart people are not furry.\n\nWe can start by analyzing statement 8: If someone is cold then they are smart. Since we don't have any information about Fiona being cold or not, we cannot determine whether she is smart or not.\n\nFrom statement 10, we know that if someone is quiet and round then they are cold. Since Bob is quiet and round (from statement 5), he must be cold. Then from statement 8, we can conclude that Bob is smart.\n\nNow, we have the following information:\n- Bob is round.\n- Bob is smart.\n- Bob is not furry (from statement 11).\n\nFrom statement 11, we can conclude that since Bob is round and smart, he must not be furry.\n\nNow, let's go back to statement 6: Gary is furry. Since Gary is furry and Bob is not furry, we can conclude that Gary and Bob are not the same person.\n\nFrom statement 7: If someone is cold and not blue then they are not red. Since we don't have any information about Fiona being cold or not, we cannot determine whether she is red or not.\n\nHowever, we know that Fiona is not round (from statement 4). Since being red and being round are equivalent properties (from statement 1 and statement 2), we can conclude that Fiona is not red.\n\nTherefore, the statement \"Fiona is not red\" is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not red\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Anne is red. \n2. Anne is round. \n3. Bob is red. \n4. Fiona is not round. \n5. Gary is furry. \n6. If someone is red then they are round. \n7. Red people are round. \n8. Furry, blue people are round. \n9. If someone is cold and not blue then they are not red. \n10. If someone is round and red then they are quiet. \n11. If someone is cold then they are smart. \n12. If someone is blue and smart then they are not cold. \n13. If someone is quiet and round then they are cold. \n14. Round, smart people are not furry.\n\nFrom the given statements, we can start by finding information about Fiona.\n\nWe know Fiona is not round (Statement 4). However, we can't directly infer whether she is red or not from this statement alone.\n\nLet's examine the statements related to being red.\n\nStatement 6 says \"If someone is red then they are round.\" Since we already know Fiona is not round, we can't use this statement to conclude whether she is red or not.\n\nStatement 7 says \"Red people are round.\" This statement is redundant and doesn't provide new information.\n\nNow, let's examine the statements related to being not red.\n\nStatement 9 says \"If someone is cold and not blue then they are not red.\" We need to find out if Fiona is cold and not blue to apply this statement.\n\nWe know that if someone is cold then they are smart (Statement 11). However, we can't determine Fiona's coldness or smartness yet.\n\nStatement 12 says \"If someone is blue and smart then they are not cold.\" We don't have any information about Fiona being blue, so we can't use this statement.\n\nNow, let's examine the statements related to Fiona's attributes.\n\nWe know Fiona is not round (Statement 4). We don't have any other specific information about Fiona.\n\nTo conclude whether the statement \"Fiona is not red\" is true or false, we need to determine Fiona's redness. We can't find any direct information about Fiona's redness.\n\nHowever, we can use the process of elimination to conclude that the statement \"Fiona is not red\" is unknown.\n\nThe only information we have about Fiona is that she is not round. We can't find any other information about her being red or not red.\n\nTherefore, based on the given information and logical deductions, we can conclude that the statement \"Fiona is not red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and the rules to determine the truth value of the statement \"Fiona is not red.\"\n\nFirst, let's organize the given statements and rules into a table for easier reference:\n\n| Statement  | Rule 1 | Rule 2 | Rule 3 | Rule 4 | Rule 5 | Rule 6 | Rule 7 | Rule 8 | Rule 9 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| Anne is cold |  |  |  |  |  |  |  |  |  |\n| Anne is not furry |  |  |  |  |  |  |  |  |  |\n| Anne is red |  |  |  |  |  |  |  |  |  |\n| Anne is round |  |  |  |  |  |  |  |  |  |\n| Bob is red |  |  |  |  |  |  |  |  |  |\n| Fiona is not round |  |  |  |  |  |  |  |  |  |\n| Gary is furry |  |  |  |  |  |  |  |  |  |\n| If someone is red then they are round |  |  |  |  |  |  |  |  | |\n| Red people are round |  |  |  |  |  |  |  |  | |\n| Furry, blue people are round |  |  |  |  |  |  |  |  | |\n| If someone is cold and not blue then they are not red |  |  |  |  |  |  |  |  | |\n| If someone is round and red then they are quiet |  |  |  |  |  |  |  |  | |\n| If someone is cold then they are smart |  |  |  |  |  |  |  |  | |\n| If someone is blue and smart then they are not cold |  |  |  |  |  |  |  |  | |\n| If someone is quiet and round then they are cold |  |  |  |  |  |  |  |  | |\n| Round, smart people are not furry |  |  |  |  |  |  |  |  | |\n\nNow, let's analyze the rules one by one to determine the truth value of the statement \"Fiona is not red.\"\n\n- Rule 1: Anne is cold.\n- Rule 2: Anne is not furry.\n- Rule 3: Anne is red.\n- Rule 4: Anne is round.\n- Rule 5: Bob is red.\n- Rule 6: Fiona is not round.\n- Rule 7: Gary is furry.\n- Rule 8: If someone is red then they are round.\n- Rule 9: Red people are round.\n- Rule 10: Furry, blue people are round.\n- Rule 11: If someone is cold and not blue then they are not red.\n- Rule 12: If someone is round and red then they are quiet.\n- Rule 13: If someone is cold then they are smart.\n- Rule 14: If someone is blue and smart then they are not cold.\n- Rule 15: If someone is quiet and round then they are cold.\n- Rule 16: Round, smart people are not furry.\n\nWe are asked to determine the truth value of the statement \"Fiona is not red.\"\n\nWe can start by using Rule 8 and Rule 9, which state that if someone is red, then they are round, and red people are round. We can combine these rules to get:\n\nIf someone is red then they are round.\n\nNow, let's examine the information we have about Fiona. From Rule 6, we know that Fiona is not round.\n\nSince Fiona is not round and red people are round, we can conclude that Fiona is not red.\n\nTherefore, the statement \"Fiona is not red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine if the statement \"Fiona is not red\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. We are given the following statements:\n   - Anne is cold.\n   - Anne is not furry.\n   - Anne is red.\n   - Anne is round.\n   - Bob is red.\n   - Fiona is not round.\n   - Gary is furry.\n   - If someone is red then they are round.\n   - Red people are round.\n   - Furry, blue people are round.\n   - If someone is cold and not blue then they are not red.\n   - If someone is round and red then they are quiet.\n   - If someone is cold then they are smart.\n   - If someone is blue and smart then they are not cold.\n   - If someone is quiet and round then they are cold.\n   - Round, smart people are not furry.\n\n2. We can start by analyzing the statement \"Fiona is not red.\"\n\n3. To determine if this statement is true or false, we need to find out if Fiona is red or not.\n\n4. Since we are given that Fiona is not round, we can look for any information that might relate to Fiona being red.\n\n5. The statement \"If someone is red then they are round\" tells us that red people are round. However, this does not directly tell us if Fiona is red.\n\n6. But we also have the statement \"If someone is cold and not blue then they are not red.\" Since Fiona's color is not mentioned, we can't directly apply this statement.\n\n7. However, we know that if someone is round and red, then they are quiet. This does not give us any information about Fiona, but it is something to keep in mind.\n\n8. Now let's analyze the statement \"If someone is round and red then they are quiet.\" We know that Anne is round and red, so Anne is quiet.\n\n9. Since we are trying to determine if Fiona is red or not, let's look for any information that might relate to Fiona's redness.\n\n10. The statement \"If someone is quiet and round then they are cold.\" Since we know that if someone is round and red then they are quiet, we can say that if someone is round and red then they are also cold.\n\n11. However, we also have the statement \"If someone is cold then they are smart.\" So, if someone is round and red, then they are also smart.\n\n12. Now let's look at the statement \"Round, smart people are not furry.\"\n\n13. Since we know that if someone is round and red then they are smart, and if someone is round and red then they are also quiet, we can conclude that Fiona is not red, because there is no information that suggests Fiona is red, and we have not found any contradiction to this statement.\n\nTherefore, the statement \"Fiona is not red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the rules to determine the truth value of the statement \"Fiona is not red.\"\n\n1. Given statements:\n   - Anne is cold.\n   - Anne is not furry.\n   - Anne is red.\n   - Anne is round.\n   - Bob is red.\n   - Fiona is not round.\n   - Gary is furry.\n   - If someone is red then they are round.\n   - Red people are round.\n   - Furry, blue people are round.\n   - If someone is cold and not blue then they are not red.\n   - If someone is round and red then they are quiet.\n   - If someone is cold then they are smart.\n   - If someone is blue and smart then they are not cold.\n   - If someone is quiet and round then they are cold.\n   - Round, smart people are not furry.\n\n2. Determine the truth value of the statement \"Fiona is not red.\"\n\nSince we don't have any direct information about Fiona being red or not, we need to use the given rules to deduce the information.\n\nFrom the statement \"Fiona is not round,\" we can conclude that Fiona is not red because if someone is red then they are round (rule 8) and red people are round (rule 9).\n\nHowever, there is a contradiction here. Fiona is not round, but rule 8 and rule 9 state that someone who is red is round. This means Fiona can't be red because if she were, she would be round, which contradicts the statement that she is not round.\n\nSince we have found a contradiction, we can conclude that the statement \"Fiona is not red\" is unknown because it's not possible for Fiona to be red given the information we have.\n\nSo, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona) == False",
+          "z3_formula": "not round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_fiona, round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not red(fiona)",
+          "z3_formula": "not red_fiona == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(furry(anne))",
+          "z3_formula": "Not(furry_anne) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_X, round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_X, round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_X, blue_X), round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> Not(red(X))",
+          "z3_formula": "Implies(And(cold_X, Not(blue_X)), Not(red_X))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_X, red_X), quiet_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_X, smart_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> Not(cold(X))",
+          "z3_formula": "Implies(And(blue_X, smart_X), Not(cold_X))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_X, round_X), cold_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> Not(furry(X))",
+          "z3_formula": "Implies(And(round_X, smart_X), Not(furry_X))",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_fiona, round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_X, round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(blue(X)) -> not(red(X))",
+          "z3_formula": "Implies(And(cold_X, Not(blue_X)), Not(red_X))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_X, smart_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> not(cold(X))",
+          "z3_formula": "Implies(And(blue_X, smart_X), Not(cold_X))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_X, round_X), cold_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> not(furry(X))",
+          "z3_formula": "Implies(And(round_X, smart_X), Not(furry_X))",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona) == False",
+          "z3_formula": "round_fiona == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_bob, round_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona) == False",
+          "z3_formula": "round_fiona == False",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_fiona, round_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona) == False",
+          "z3_formula": "red_fiona == False",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(furry(anne))",
+          "z3_formula": "Not(furry_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_anne, round_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_anne, red_anne), quiet_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_gary, blue_gary), round_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> Not(red(X))",
+          "z3_formula": "Implies(And(cold_anne, Not(blue_anne)), Not(red_anne))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_anne, red_anne), quiet_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_anne, smart_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> Not(cold(X))",
+          "z3_formula": "Implies(And(blue_anne, smart_anne), Not(cold_anne))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_anne, round_anne), cold_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> Not(furry(X))",
+          "z3_formula": "Implies(And(round_anne, smart_anne), Not(furry_anne))",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "Not(red(fiona))",
+          "z3_formula": "Not(red_fiona)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona) == False",
+          "z3_formula": "round_fiona == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_fiona, round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not red(fiona)",
+          "z3_formula": "Not(red_fiona)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona) == False",
+          "z3_formula": "round_fiona == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_fiona, round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona) == False",
+          "z3_formula": "round_fiona == False",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_fiona, round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona) == False",
+          "z3_formula": "round_fiona == False",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona) == Unknown",
+          "z3_formula": "red_fiona == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not red(fiona)",
+          "z3_formula": "Not(red_fiona) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> red(X)",
+          "z3_formula": "Implies(round_bob, red_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_bob, round_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_bob, red_bob), quiet_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> not furry(X)",
+          "z3_formula": "Implies(And(round_bob, smart_bob), not_furry_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not round(fiona)",
+          "z3_formula": "not_round_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> red(X)",
+          "z3_formula": "Implies(round_fiona, red_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_fiona, round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not furry(X)",
+          "z3_formula": "Implies(red_fiona, not_furry_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not furry(X) & furry(X) -> X != Y",
+          "z3_formula": "Implies(And(not_furry_bob, furry_gary), bob != gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not blue(X) -> not red(X)",
+          "z3_formula": "Implies(And(cold_fiona, not_blue_fiona), not_red_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_bob, smart_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> not cold(X)",
+          "z3_formula": "Implies(And(blue_bob, smart_bob), not_cold_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_bob, round_bob), cold_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> not furry(X)",
+          "z3_formula": "Implies(And(round_bob, smart_bob), not_furry_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not red(fiona)",
+          "z3_formula": "not_red_fiona == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not round(fiona)",
+          "z3_formula": "not round_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_anne, round_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_bob, round_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_fiona, round_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not blue(X) -> not red(X)",
+          "z3_formula": "Implies(And(cold_fiona, not blue_fiona), not red_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_fiona, smart_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> not cold(X)",
+          "z3_formula": "Implies(And(blue_fiona, smart_fiona), not cold_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_fiona, round_fiona), cold_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> not furry(X)",
+          "z3_formula": "Implies(And(round_fiona, smart_fiona), not furry_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not red(fiona)",
+          "z3_formula": "not red_fiona == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == False",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_fiona, round_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> red(X)",
+          "z3_formula": "Implies(round_fiona, red_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_fiona, round_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not red(fiona)",
+          "z3_formula": "Not(red_fiona) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(furry(anne))",
+          "z3_formula": "Not(furry_anne) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_X, blue_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(blue(X)) -> not(red(X))",
+          "z3_formula": "Implies(And(cold_X, Not(blue_X)), Not(red_X))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_X, red_X), quiet_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_X, round_X), cold_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_X, smart_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> not(cold(X))",
+          "z3_formula": "Implies(And(blue_X, smart_X), Not(cold_X))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_X, round_X), cold_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_X, smart_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> not(furry(X))",
+          "z3_formula": "Implies(And(round_X, smart_X), Not(furry_X))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(red(fiona))",
+          "z3_formula": "Not(red_fiona) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not furry(anne)",
+          "z3_formula": "Not(furry_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not round(fiona)",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_anne, round_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_bob, round_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_gary, blue_gary), round_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> Not(red(X))",
+          "z3_formula": "Implies(And(cold_anne, Not(blue_anne)), Not(red_anne))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_anne, red_anne), quiet_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_anne, smart_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> Not(cold(X))",
+          "z3_formula": "Implies(And(blue_anne, smart_anne), Not(cold_anne))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_anne, round_anne), cold_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> Not(furry(X))",
+          "z3_formula": "Implies(And(round_anne, smart_anne), Not(furry_anne))",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 134,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 44
+    },
+    "maxsat_stats": {
+      "satisfied": 43,
+      "excluded": 1,
+      "total_weight": 129,
+      "solve_time_ms": 1.6905367374420166
+    },
+    "timing": {
+      "trace_gen_s": 10.381,
+      "extraction_s": 23.588,
+      "dedup_s": 1.169,
+      "maxsat_s": 0.004,
+      "total_s": 35.142
+    }
+  }
+}

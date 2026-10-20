@@ -1,0 +1,1355 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1229_Q6",
+    "problem": "Anne is cold. Anne is white. Bob is nice. Bob is white. Dave is blue. Gary is blue. Gary is smart. All blue people are smart. If someone is smart then they are cold. If someone is white then they are quiet. If someone is nice and quiet then they are blue. All white, furry people are blue. If Gary is furry then Gary is cold. If Bob is not white then Bob is smart. All cold, blue people are not furry.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not blue.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nWhite($x, bool) ::: Is x white?\nNice($x, bool) ::: Is x nice?\nBlue($x, bool) ::: Is x blue?\nSmart($x, bool) ::: Is x smart?\nQuiet($x, bool) ::: Is x quiet?\nFurry($x, bool) ::: Is x furry?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nWhite(Anne, True) ::: Anne is white.\nNice(Bob, True) ::: Bob is nice.\nWhite(Bob, True) ::: Bob is white.\nBlue(Dave, True) ::: Dave is blue.\nBlue(Gary, True) ::: Gary is blue.\nSmart(Gary, True) ::: Gary is smart.\n\nRules:\nBlue($x, True) >>> Smart($x, True) ::: All blue people are smart.\nSmart($x, True) >>> Cold($x, True) ::: If someone is smart then they are cold.\nWhite($x, True) >>> Quiet($x, True) ::: If someone is white then they are quiet.\nNice($x, True) && Quiet($x, True) >>> Blue($x, True) ::: If someone is nice and quiet then they are blue.\nWhite($x, True) && Furry($x, True) >>> Blue($x, True) ::: All white, furry people are blue.\nFurry(Gary, True) >>> Cold(Gary, True) ::: If Gary is furry then Gary is cold.\nWhite(Bob, False) >>> Smart(Bob, True) ::: If Bob is not white then Bob is smart.\nCold($x, True) && Blue($x, True) >>> Furry($x, False) ::: All cold, blue people are not furry.\n\nQuery:\nBlue(Bob, False) ::: Bob is not blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 173.0,
+      "True": 119.0,
+      "Unknown": 169.5
+    },
+    "answer_counts": {
+      "False": 4,
+      "Unknown": 4,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is white. (Given)\n2. All white people are quiet. (From the statement \"If someone is white then they are quiet.\")\n   Therefore, Bob is quiet.\n\n3. Bob is nice. (Given)\n4. If someone is nice and quiet then they are blue. (From the statement \"If someone is nice and quiet then they are blue.\")\n   From step 2, Bob is quiet. So, Bob is nice and quiet.\n\n5. Based on step 4, since Bob is nice and quiet, he is blue.\n\nNow we have a conclusion that Bob is blue. However, we need to check if this conclusion contradicts any other information.\n\n6. Bob is not white. (From the statement \"If Bob is not white then Bob is smart.\")\n   This implies that Bob is smart.\n\n7. All blue people are smart. (From the statement \"All blue people are smart.\")\n   Since we concluded that Bob is blue (step 5), it is consistent with the information that all blue people are smart.\n\n8. Gary is blue. (Given)\n9. Gary is smart. (From the statement \"All blue people are smart.\")\n10. If someone is smart then they are cold. (From the statement \"If someone is smart then they are cold.\")\n    Therefore, Gary is cold.\n\n11. Gary is furry. (From the statement \"If Gary is furry then Gary is cold.\")\n    However, this contradicts the statement \"All cold, blue people are not furry.\" since Gary is cold and blue.\n\nHowever, since Bob is blue (step 5), we can analyze the statement \"All cold, blue people are not furry.\" and Gary's status as blue.\n\n12. All blue people are smart. (From the statement \"All blue people are smart.\")\n13. If someone is smart then they are cold. (From the statement \"If someone is smart then they are cold.\")\n    Therefore, all blue people are cold.\n\n14. All cold, blue people are not furry. (From the statement \"All cold, blue people are not furry.\")\n    This statement implies that if a blue person is cold, they are not furry.\n\nSince Gary is blue and cold (step 8 and step 9 with step 10), it contradicts the statement \"All cold, blue people are not furry.\" \n\nHowever, this contradiction does not affect our initial conclusion that Bob is blue (step 5). Therefore, we can conclude that the statement \"Bob is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that:\n   - Bob is white (from the statement \"Bob is white\")\n   - All white, furry people are blue (but this is irrelevant as we don't know if Bob is furry)\n   - All white people are quiet (from the statement \"If someone is white then they are quiet\")\n   - All blue people are smart (from the statement \"All blue people are smart\")\n   - If someone is smart then they are cold (from the statement \"If someone is smart then they are cold\")\n   - If someone is nice and quiet then they are blue (this statement doesn't affect Bob's color)\n   - If Bob is not white then Bob is smart (from the statement \"If Bob is not white then Bob is smart\")\n   - Bob is nice (from the statement \"Bob is nice\")\n\n2. From the statement \"All white people are quiet\" and \"Bob is white\", we can conclude that Bob is quiet.\n\n3. From the statement \"Bob is nice\" and \"Bob is quiet\", we can conclude that Bob is blue using the rule \"If someone is nice and quiet then they are blue\".\n\n4. However, we are also given that Bob is white. If Bob is white, then he is blue as per our conclusion in step 3. This creates a contradiction.\n\n5. To resolve this contradiction, we need to consider the given statement \"If Bob is not white then Bob is smart\". If Bob is white, then this statement is not applicable to him. However, if Bob is not white, then he is smart.\n\n6. If Bob is smart, then he is cold (from the statement \"If someone is smart then they are cold\").\n\n7. Now, let's analyze the given information again:\n   - Dave is blue (from the statement \"Dave is blue\")\n   - Gary is blue (from the statement \"Gary is blue\")\n   - Gary is smart (from the statement \"Gary is smart\")\n   - If someone is smart then they are cold (from the statement \"If someone is smart then they are cold\")\n   - All blue people are smart (from the statement \"All blue people are smart\")\n   - If Gary is furry then Gary is cold (from the statement \"If Gary is furry then Gary is cold\")\n   - All cold, blue people are not furry (from the statement \"All cold, blue people are not furry\")\n   - Dave is blue and Gary is blue (from the statements \"Dave is blue\" and \"Gary is blue\")\n   - Gary is cold (from the statement \"Gary is smart\" and \"If someone is smart then they are cold\")\n\n8. Since Gary is blue, smart, and cold, we can conclude that Gary is not furry (from the statement \"All cold, blue people are not furry\").\n\n9. However, if Gary is not furry, then he is not cold (from the statement \"If Gary is furry then Gary is cold\"). This creates another contradiction.\n\n10. To resolve this contradiction, we need to consider the given statement \"All cold, blue people are not furry\". If Gary is cold, blue, and furry, then this statement is not applicable to him. However, if Gary is not cold, then he is not blue (from the statement \"If someone is smart then they are cold\").\n\n11. Since we have multiple contradictions and unknowns, we need to re-examine the statements. From the statement \"Bob is not white then Bob is smart\", we can conclude that Bob is either white or smart. If Bob is white, then he is blue (from the statement \"If someone is nice and quiet then they are blue\"). However, if Bob is smart, then he is cold (from the statement \"If someone is smart then they are cold\").\n\n12. Now, let's consider the statement \"Bob is not blue\". If Bob is blue, then he is smart (from the statement \"All blue people are smart\") and cold (from the statement \"If someone is smart then they are cold\"). However, we already know that if someone is white, then they are quiet (from the statement \"If someone is white then they are quiet\"). Since Bob is white, then he is quiet. This creates a contradiction.\n\n13. To resolve this contradiction, we need to consider the given statement \"All white, furry people are blue\". If Bob is white and furry, then he is blue. However, we already know that Bob is white. If Bob is white, then he is quiet. This creates another contradiction.\n\n14. To resolve this contradiction, we need to consider the given statement \"If Bob is not white then Bob is smart\". If Bob is not white, then he is smart (from this statement). If Bob is smart, then he is cold (from the statement \"If someone is smart then they are cold\").\n\n15. Now, let's consider the statement \"Bob is not blue\". If Bob is blue, then he is smart (from the statement \"All blue people are smart\") and cold (from the statement \"If someone is smart then they are cold\"). However, if Bob is smart, then he is cold (from this statement). This creates a contradiction.\n\n16. To resolve this contradiction, we need to consider the given statement \"If Bob is not white then Bob is smart\". If Bob is not white, then he is smart (from this statement). If Bob is smart, then he is cold (from the statement \"If someone is smart then they are cold\").\n\n17. Since we have multiple contradictions and unknowns, we cannot determine whether the statement \"Bob is not blue\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use the rules given to determine whether Bob is blue or not. \n\n1. Bob is white (rule 2)\n2. If someone is white, then they are quiet (rule 7)\n   So, Bob is quiet.\n\n3. Bob is nice (rule 1)\n4. If someone is nice and quiet, then they are blue (rule 9)\n   However, we need to determine if this conclusion is valid. We know Bob is nice (rule 3) and quiet (rule 8), but we don't know if the conclusion \"Bob is blue\" is true or false.\n\n5. If Bob is not white, then Bob is smart (rule 10)\n   From rule 1, we know Bob is white. So, this rule does not affect our conclusion.\n\n6. All blue people are smart (rule 4)\n   If Bob is blue, then he must be smart. But we don't know if Bob is blue or not.\n\n7. If someone is smart, then they are cold (rule 6)\n   If Bob is smart, then he is cold.\n\n8. Gary is blue (rule 5)\n9. Gary is smart (rule 6)\n10. Gary is cold (rule 7)\n11. If Gary is furry, then Gary is cold (rule 12)\n    This rule is not applicable to Bob.\n\n12. All cold, blue people are not furry (rule 13)\n    This rule is not applicable to Bob.\n\n13. If someone is white, then they are quiet (rule 7)\n    We know Bob is white, so Bob is quiet.\n\n14. All white, furry people are blue (rule 11)\n    This rule is not applicable to Bob.\n\nNow, we need to determine whether Bob is blue or not. We can use the rule \"If someone is white, then they are quiet\" (rule 7) and \"If someone is nice and quiet, then they are blue\" (rule 9) to conclude that Bob is blue.\n\nHowever, we can also use the rule \"If someone is smart, then they are cold\" (rule 6) and \"If Gary is furry, then Gary is cold\" (rule 11) to conclude that Bob is not blue.\n\nWe have two different conclusions for the same statement. Therefore, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. We know that Bob is white. (Given statement)\n2. We know that all white people are quiet. (From the given information: If someone is white then they are quiet)\n3. We know that if someone is nice and quiet, then they are blue. (From the given information: If someone is nice and quiet then they are blue)\n4. We also know that Bob is nice. (Given statement)\n5. Since Bob is quiet (from step 2) and Bob is nice (from step 4), we can conclude that Bob is blue. (From step 3)\n\nHowever, we also have another piece of information that can affect this conclusion:\n6. We know that if Bob is not white, then Bob is smart. (From the given information: If Bob is not white then Bob is smart)\n7. We also know that all blue people are smart. (From the given information: All blue people are smart)\n8. If Gary is furry then Gary is cold. (From the given information: If Gary is furry then Gary is cold)\n9. We know that Gary is blue. (From the given information: Gary is blue)\n10. We also know that all cold, blue people are not furry. (From the given information: All cold, blue people are not furry)\n11. Since Gary is blue (from step 9), we can conclude that Gary is not furry. (From step 10)\n12. Now, we can conclude that Gary is not cold. (From step 11 and the given information: If Gary is furry then Gary is cold)\n13. We know that if someone is smart, then they are cold. (From the given information: If someone is smart then they are cold)\n14. We also know that all blue people are smart. (From the given information: All blue people are smart)\n15. Since Gary is blue (from step 9), we can conclude that Gary is smart. (From step 14)\n16. Now, we can conclude that Gary is cold. (From step 15 and step 13)\n17. This conclusion contradicts our previous conclusion in step 11. Therefore, we must revisit our previous conclusion that Gary is not furry.\n18. Since we cannot conclude that Gary is not furry, we cannot conclude that Gary is cold. Therefore, we must revisit our previous conclusion in step 15 that Gary is smart.\n19. Since we cannot conclude that Gary is smart, we cannot conclude that Bob is white (from step 6). This means we cannot conclude that Bob is not smart.\n20. Since we cannot conclude that Bob is not smart, we cannot conclude that Bob is not blue (from the given information: All blue people are smart and step 5).\n\nTherefore, the statement \"Bob is not blue\" is unknown because we cannot determine whether Bob is blue or not based on the given information.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n\n1. Bob is white. (From \"Bob is white\")\n2. All white people are quiet. (From \"If someone is white then they are quiet\")\n3. If someone is nice and quiet then they are blue. (From \"If someone is nice and quiet then they are blue\")\n4. Bob is nice. (From \"Bob is nice\")\n5. If Bob is not white then Bob is smart. (From \"If Bob is not white then Bob is smart\")\n6. All blue people are smart. (From \"All blue people are smart\")\n7. If someone is smart then they are cold. (From \"If someone is smart then they are cold\")\n8. All white, furry people are blue. (From \"All white, furry people are blue\")\n9. If Gary is furry then Gary is cold. (From \"If Gary is furry then Gary is cold\")\n10. All cold, blue people are not furry. (From \"All cold, blue people are not furry\")\n\nAnalysis:\n\nFrom statement 1, we know Bob is white.\nFrom statement 2, we can conclude that Bob is quiet.\nFrom statement 4, we know Bob is nice.\nFrom statement 3, we can conclude that Bob is blue (since Bob is nice and quiet).\nThis contradicts statement 1, which says Bob is white. However, we can continue analyzing the statements.\n\nFrom statement 5, we can conclude that Bob is not smart (since Bob is white).\nFrom statement 6, we can conclude that Bob is not blue (since blue people are smart, but Bob is not smart).\nFrom statement 7, we can conclude that Bob is not cold.\n\nNow, let's analyze the statement \"Bob is not blue\" based on the given information.\n\nWe already concluded that Bob is blue from statement 3. However, we also concluded that Bob is not blue from statement 6.\n\nTo resolve this contradiction, let's re-examine the statements.\n\nFrom statement 1, we know Bob is white.\nFrom statement 8, we can conclude that Bob is not blue (since white, furry people are blue, but we don't have any information that Bob is furry).\n\nFinal Answer:\n\nSince we have two contradictory conclusions, we need to re-evaluate the statements. However, upon re-examining the statements, we find that we have a contradiction between statement 1 (Bob is white) and statement 3 (Bob is blue). We cannot conclude that Bob is blue from statement 3 since Bob is white. Therefore, we cannot conclude that Bob is blue.\n\nThe statement \"All white people are blue\" is not applicable to Bob since we don't have any information that Bob is not white. However, from statement 5, we can conclude that Bob is not smart.\n\nFrom statement 7, we can conclude that Bob is not cold.\n\nFrom statement 6, we can conclude that Bob is not blue (since blue people are smart, but Bob is not smart).\n\nFinal Answer:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to use the given information step by step.\n\n1. The given statements are:\n   - Anne is cold. Anne is white.\n   - Bob is nice. Bob is white.\n   - Dave is blue. Gary is blue. Gary is smart.\n   - All blue people are smart.\n   - If someone is smart then they are cold.\n   - If someone is white then they are quiet.\n   - If someone is nice and quiet then they are blue.\n   - All white, furry people are blue.\n   - If Gary is furry then Gary is cold.\n   - If Bob is not white then Bob is smart.\n   - All cold, blue people are not furry.\n\n2. From the statement \"If someone is nice and quiet then they are blue\" and the fact that Bob is nice and white, we can conclude that Bob is quiet (because if he is white then he is quiet). So, Bob is nice and quiet.\n\n3. Since Bob is nice and quiet, we can conclude that Bob is blue (from the statement \"If someone is nice and quiet then they are blue\").\n\n4. However, we also have the statement \"If Bob is not white then Bob is smart.\" We cannot conclude that Bob is not white from this statement alone. This is because we also know that Bob is white from another statement.\n\n5. From the statement \"If Bob is not white then Bob is smart,\" we can infer that Bob being white does not necessarily mean he is not smart. But we already know that Bob is blue from step 3. And since all blue people are smart, we can conclude that Bob is indeed smart.\n\n6. Now, we know that Bob is blue and smart. From the statement \"If someone is smart then they are cold,\" we can conclude that Bob is cold.\n\n7. Since Bob is blue and cold, we can conclude that Bob is not furry (from the statement \"All cold, blue people are not furry\").\n\nHowever, this conclusion does not affect the original statement we are trying to evaluate, \"Bob is not blue.\"\n\n8. We have already concluded that Bob is blue in step 3. This conclusion cannot be changed by the subsequent steps.\n\nTherefore, the final answer to the statement \"Bob is not blue\" is: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the rules of inference to determine whether the statement \"Bob is not blue\" is true, false, or unknown.\n\nGiven statements:\n\n1. Anne is cold.\n2. Anne is white.\n3. Bob is nice.\n4. Bob is white.\n5. Dave is blue.\n6. Gary is blue.\n7. Gary is smart.\n8. If someone is smart then they are cold.\n9. If someone is white then they are quiet.\n10. If someone is nice and quiet then they are blue.\n11. All white, furry people are blue.\n12. If Gary is furry then Gary is cold.\n13. If Bob is not white then Bob is smart.\n14. All cold, blue people are not furry.\n\nStatement to evaluate: Bob is not blue.\n\nLet's analyze the given statements and use the rules of inference:\n\nFrom statement 4, we know that Bob is white.\n\nUsing statement 9, if someone is white, then they are quiet. So, Bob is quiet.\n\nUsing statements 3 and 9, if someone is nice and quiet, then they are blue. However, we already know that Bob is white, and being white makes him quiet. Therefore, we can conclude that Bob is blue.\n\nNow, let's check the given statement: Bob is not blue.\n\nBased on our previous conclusion, we found that Bob is blue. Therefore, the statement \"Bob is not blue\" is false.\n\nHowever, we need to consider another possible conclusion based on the given statements. From statement 13, if Bob is not white, then Bob is smart. Since we already know that Bob is white, we can conclude that Bob is not not white. Therefore, we cannot conclude that Bob is smart.\n\nHowever, since we concluded that Bob is blue, and using statement 7 and 8, we can conclude that Gary is cold since Gary is smart. Using statement 14, we can conclude that Gary is not furry. Using statements 5, 6, 7, and 11, we can conclude that all blue people are not white. But, Bob is blue and white. This is a contradiction.\n\nSince we have a contradiction, we cannot conclude that the statement \"Bob is not blue\" is true or false. Therefore, the statement is unknown.\n\nHowever, this is not the case. The given statements do lead to a contradiction, but the contradiction is based on the assumption that Bob is blue, which is not the case. We concluded that Bob is blue, but this conclusion is based on the assumption that Bob is quiet and nice, which is not the case. We also concluded that Bob is blue and white, which is a contradiction. \n\nHowever, the contradiction is not between \"Bob is blue\" and \"Bob is white.\" The contradiction is between \"Bob is blue\" and the other statements.\n\nLet's re-examine our conclusions. We concluded that Bob is blue, but we also concluded that Bob is white. The contradiction is not between \"Bob is blue\" and \"Bob is white.\" The contradiction is between \"Bob is blue\" and the other statements.\n\nWe concluded that Bob is blue, and we concluded that all blue people are not white. But, Bob is blue and white. This is a contradiction.\n\nHowever, we can conclude that the statement \"Bob is not blue\" is false.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is white. (Given information)\n\n2. If someone is white then they are quiet. (Given information)\n   So, Bob is quiet.\n\n3. If someone is nice and quiet then they are blue. (Given information)\n   But we don't know if Bob is nice. We can't conclude that Bob is blue yet.\n\n4. If Bob is not white then Bob is smart. (Given information)\n   Since we know Bob is white, we can conclude that Bob is not smart.\n\n5. We still don't know if Bob is blue, so we can't determine if the statement \"Bob is not blue\" is true or false yet.\n\nHowever, we can use the given information \"All cold, blue people are not furry\" and \"If Gary is furry then Gary is cold\" to create a contradiction when combined with \"Gary is blue\" and \"All blue people are smart\" and \"If someone is smart then they are cold\".\n\n6. Gary is blue. (Given information)\n   All blue people are smart. (Given information)\n   So, Gary is smart.\n   If someone is smart then they are cold. (Given information)\n   So, Gary is cold.\n\n7. If Gary is furry then Gary is cold. (Given information)\n   Since Gary is cold, we can conclude that Gary is furry.\n\n8. All cold, blue people are not furry. (Given information)\n   But we know Gary is cold, blue, and furry, which is a contradiction.\n\nThis means that our initial assumption that Gary is blue is incorrect. However, we cannot conclude that the statement \"Bob is not blue\" is true or false yet because we still don't have enough information.\n\nGiven the information that \"All white, furry people are blue\" and \"Bob is white\", we can't conclude that Bob is blue or not.\n\nTherefore, we cannot determine whether the statement \"Bob is not blue\" is true, false, or unknown from the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Bob is white (given).\n2. If someone is white then they are quiet (given).\n   - Therefore, Bob is quiet.\n\n3. We also know that Bob is nice (given).\n4. From step 2, we know that Bob is quiet.\n5. If someone is nice and quiet then they are blue (given).\n   - Therefore, Bob is blue.\n\nHowever, the statement \"Bob is not blue\" contradicts the conclusion we reached in step 5. Therefore, based on the given information, the statement \"Bob is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is not blue' is true, false, or unknown, we need to analyze the given information.\n\n1. Bob is white. (Given)\n2. All white, furry people are blue. (Given)\n3. All blue people are smart. (Given)\n4. If someone is white then they are quiet. (Given)\n5. If someone is nice and quiet then they are blue. (Given)\n6. Bob is nice. (Given)\n7. If Bob is not white then Bob is smart. (Given)\n8. Gary is blue. (Given)\n9. Gary is smart. (Given)\n10. If someone is smart then they are cold. (Given)\n11. If Gary is furry then Gary is cold. (Given)\n12. All cold, blue people are not furry. (Given)\n13. Dave is blue. (Given)\n14. Gary is blue. (Given)\n\nFrom (1), we know Bob is white.\nFrom (2), we know all white, furry people are blue.\nFrom (4), we know if someone is white then they are quiet.\nFrom (5), we know if someone is nice and quiet then they are blue.\nFrom (6), we know Bob is nice.\nFrom (4) and (6), we know Bob is quiet.\nFrom (5) and (7), we know Bob is not blue because if he was blue, then he must be smart and white, which is a contradiction.\n\nThe statement 'Bob is not blue' is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is white. (Given)\n2. All white, furry people are blue. (Given)\n3. If Bob is not white then Bob is smart. (Given)\n4. If someone is white then they are quiet. (Given)\n5. If someone is nice and quiet then they are blue. (Given)\n6. Bob is nice. (Implication from 5: If someone is nice and quiet then they are blue, and we know Bob is nice)\n7. Bob is quiet. (Implication from 4: If someone is white then they are quiet, and we know Bob is white)\n8. Bob is blue. (Implication from 5: If someone is nice and quiet then they are blue, and we know Bob is nice and quiet)\n9. All blue people are smart. (Given)\n10. Bob is white. (Given)\n11. Bob is smart. (Implication from 9: All blue people are smart, and we know Bob is blue, but also from 3: If Bob is not white then Bob is smart)\n12. Gary is blue. (Given)\n13. Gary is smart. (Implication from 9: All blue people are smart, and we know Gary is blue)\n14. If someone is smart then they are cold. (Given)\n15. Gary is cold. (Implication from 14: If someone is smart then they are cold, and we know Gary is smart)\n16. Dave is blue. (Given)\n17. Dave is smart. (Implication from 9: All blue people are smart, and we know Dave is blue)\n18. Gary is not cold. (Implication from 17: If someone is smart then they are cold, and we know Gary is smart, but also from 16: Dave is smart, and we know Dave is blue and not Gary, but Dave is not mentioned to be cold, however, Dave is not cold is not mentioned to be true, but since Dave is smart and Gary is smart, and from 14, Gary must be cold. This shows that Dave must not be cold)\n19. Gary is furry. (Implication from 18: If Gary is cold, then Gary is furry. This would be true, but this is not a rule, however, it is given that if Gary is furry then Gary is cold, and we know Gary is cold from 15)\n20. All cold, blue people are not furry. (Given)\n21. Gary is not blue. (Implication from 20: All cold, blue people are not furry, and we know Gary is cold and blue, but we know Gary is furry from 19)\n22. Gary is not smart. (Implication from 21: If Gary is blue then Gary is smart, and we know Gary is not blue)\n23. Bob is blue. (From step 8)\n24. Bob is smart. (From step 11)\n25. Bob is not cold. (Implication from 14: If someone is smart then they are cold, and we know Bob is smart, but we know that Bob is white, and white people are quiet, and we know that Gary is smart and cold, and we know that Gary is blue, and we know that Bob is white, and we know that all blue people are smart, and we know that Bob is smart, but from 14, we know that Bob is not cold, because we know that Gary is smart, and we know that Gary is cold, and we know that all blue people are smart, and we know that Bob is blue)\n\nNow we have:\n- Bob is blue (From step 8 and 23)\n- Bob is smart (From step 11 and 24)\n- Bob is white (From step 1)\n- Bob is not cold (From step 25)\n- Gary is blue (From step 12)\n- Gary is not blue (From step 21)\n- Gary is not smart (From step 22)\n\nThis shows that the statement \"Bob is not blue\" is false.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is not blue' is true, false, or unknown, we need to analyze the given information step by step.\n\n1.  Given information:\n    - Anne is cold. Anne is white.\n    - Bob is nice. Bob is white.\n    - Dave is blue. Gary is blue. Gary is smart.\n    - All blue people are smart.\n    - If someone is smart then they are cold.\n    - If someone is white then they are quiet.\n    - If someone is nice and quiet then they are blue.\n    - All white, furry people are blue.\n    - If Gary is furry then Gary is cold.\n    - If Bob is not white then Bob is smart.\n    - All cold, blue people are not furry.\n\n2.  Analyze the given statements to determine if Bob is blue or not.\n\nFrom the statement 'Bob is white' and 'If someone is white then they are quiet,' we can conclude that Bob is quiet.\n\nFrom the statement 'Bob is nice' and 'If someone is nice and quiet then they are blue,' we can conclude that Bob is blue.\n\nHowever, we also have a statement that 'If Bob is not white then Bob is smart.' Since Bob is indeed white, this statement does not apply to Bob. We cannot conclude that Bob is smart from this statement.\n\nThe statement 'All blue people are smart' and 'Gary is blue and smart' implies that all blue people are indeed smart. However, we cannot conclude that Bob is not blue based on this information.\n\nNow, let's analyze the statement 'Bob is blue' in the context of other given statements.\n\nFrom the statement 'Bob is blue' and 'All blue people are smart,' we can conclude that Bob is smart.\n\nFrom the statement 'Bob is smart' and 'If someone is smart then they are cold,' we can conclude that Bob is cold.\n\nFrom the statement 'Bob is white' and 'All white, furry people are blue,' we cannot conclude that Bob is furry or not furry because the statement does not apply to Bob since he is white.\n\nHowever, we do have a statement that 'If Gary is furry then Gary is cold.' We cannot conclude anything about Bob's fur or coldness based on this information.\n\nNow, let's analyze the statement 'Bob is cold' in the context of other given statements.\n\nFrom the statement 'Bob is blue' and 'Bob is cold,' we can conclude that Bob is not furry because 'All cold, blue people are not furry.'\n\nHowever, we cannot conclude that Bob is not blue or that Bob is not blue based on this information.\n\nTherefore, we can conclude that Bob is indeed blue based on the given statements.\n\nSince we have concluded that Bob is blue, we can answer the question that 'Bob is not blue' is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not white(X) -> smart(X)",
+          "z3_formula": "Implies(Not(white_bob), smart_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_bob, smart_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_gary, smart_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_gary, cold_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> not furry(X)",
+          "z3_formula": "Implies(And(cold_gary, blue_gary), Not(furry_gary))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(gary)",
+          "z3_formula": "Not(furry_gary) == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_gary, smart_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_gary, cold_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_gary, cold_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> not furry(X)",
+          "z3_formula": "Implies(And(cold_gary, blue_gary), Not(furry_gary))",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(gary)",
+          "z3_formula": "Not(furry_gary) == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not white(bob)",
+          "z3_formula": "Not(white_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "not white(X) -> smart(X)",
+          "z3_formula": "Implies(Not(white_bob), smart_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_bob, cold_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_bob, smart_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_bob, cold_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_gary, cold_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_gary, smart_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> not furry(X)",
+          "z3_formula": "Implies(And(cold_gary, blue_gary), Not(furry_gary))",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary) & blue(dave)",
+          "z3_formula": "And(blue_gary, blue_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> not furry(X)",
+          "z3_formula": "Implies(And(cold_gary, blue_gary), Not(furry_gary))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "not furry(X) -> not cold(X)",
+          "z3_formula": "Implies(Not(furry_gary), Not(cold_gary))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> not furry(X)",
+          "z3_formula": "Implies(blue_gary, Not(furry_gary))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "not cold(X) -> not blue(X)",
+          "z3_formula": "Implies(Not(cold_gary), Not(blue_gary))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_bob, furry_bob), blue_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "not white(X) -> smart(X)",
+          "z3_formula": "Implies(Not(white_bob), smart_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_bob, cold_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "not blue(X) -> not smart(X)",
+          "z3_formula": "Implies(Not(blue_bob), Not(smart_bob))",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "Not(white(X)) -> smart(X)",
+          "z3_formula": "Implies(Not(white_bob), smart_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_bob, cold_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> Not(furry(X))",
+          "z3_formula": "Implies(And(cold_gary, blue_gary), Not(furry_gary))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(furry(gary))",
+          "z3_formula": "Not(furry_gary) == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_bob, furry_bob), blue_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not white(X) -> smart(X)",
+          "z3_formula": "Implies(Not(white_bob), smart_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_bob, smart_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(gary)",
+          "z3_formula": "Not(furry_gary) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(gary)",
+          "z3_formula": "Not(cold_gary) == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_bob, cold_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_bob, smart_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(gary)",
+          "z3_formula": "Not(furry_gary) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(gary)",
+          "z3_formula": "Not(cold_gary) == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(gary)",
+          "z3_formula": "Not(smart_gary) == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not white(bob)",
+          "z3_formula": "Not(white_bob) == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bob)",
+          "z3_formula": "Not(blue_bob) == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "Not(white(X)) -> smart(X)",
+          "z3_formula": "Implies(Not(white_bob), smart_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all_blue_people_are_smart",
+          "z3_formula": "all_blue_people_are_smart == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_bob, cold_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "all_white_furry_people_are_blue",
+          "z3_formula": "all_white_furry_people_are_blue == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "all_cold_blue_people_are_not_furry",
+          "z3_formula": "all_cold_blue_people_are_not_furry == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_dave, smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_gary, cold_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_bob, furry_bob), blue_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(gary) -> cold(gary)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> not furry(X)",
+          "z3_formula": "Implies(And(cold_bob, blue_bob), not_furry_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(bob)",
+          "z3_formula": "not_furry_bob == True",
+          "source_step": 6
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == Unknown",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not white(bob)",
+          "z3_formula": "Not(white_bob) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not white(X) -> smart(X)",
+          "z3_formula": "Implies(Not(white_bob), smart_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(bob)",
+          "z3_formula": "Not(smart_bob) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_gary, smart_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_gary, cold_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary) & blue(gary) -> not furry(gary)",
+          "z3_formula": "Implies(And(cold_gary, blue_gary), Not(furry_gary))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(gary)",
+          "z3_formula": "Not(furry_gary) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> not furry(X)",
+          "z3_formula": "Implies(And(cold_gary, blue_gary), Not(furry_gary))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(gary)",
+          "z3_formula": "Not(furry_gary) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_bob, furry_bob), blue_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_bob, white_bob), blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_bob, smart_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "Not(white(X)) -> smart(X)",
+          "z3_formula": "Implies(Not(white_bob), smart_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_bob, cold_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) & blue(X) -> Not(furry(X))",
+          "z3_formula": "Implies(And(cold_gary, blue_gary), Not(furry_gary))",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_bob, smart_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_gary, cold_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_gary, furry_gary)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> Not(furry(X))",
+          "z3_formula": "Implies(And(cold_gary, blue_gary), Not(furry_gary))",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(bob)",
+          "z3_formula": "Not(cold_bob)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(gary)",
+          "z3_formula": "Not(blue_gary)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(gary)",
+          "z3_formula": "Not(smart_gary)",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_dave, smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_gary, cold_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_bob, furry_bob), blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(gary) -> cold(gary)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> Not(furry(X))",
+          "z3_formula": "Implies(And(cold_bob, blue_bob), Not(furry_bob))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(furry(bob))",
+          "z3_formula": "Not(furry_bob) == True",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 204,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 46
+    },
+    "maxsat_stats": {
+      "satisfied": 37,
+      "excluded": 9,
+      "total_weight": 189,
+      "solve_time_ms": 1.538730226457119
+    },
+    "timing": {
+      "trace_gen_s": 14.251,
+      "extraction_s": 39.268,
+      "dedup_s": 1.591,
+      "maxsat_s": 0.004,
+      "total_s": 55.114
+    }
+  }
+}

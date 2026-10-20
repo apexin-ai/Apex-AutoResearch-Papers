@@ -1,0 +1,622 @@
+{
+  "problem": {
+    "id": "folio_105",
+    "problem": "Given the following premises:\nIt costs US $205 to take the GRE test. ETS provides financial aid to those GRE applicants who prove economic hardship. Economic hardship refers to difficulty caused by having too little money or too few resources. Tom lives in a single-parent family. His dad has been out of work for more than a year.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nTom can apply for financial aid from ETS to take the GRE test.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "Cost205(gre)",
+      "\u2200x (Cost205(x) \u2192 CostBelow300(x))",
+      "\u2200x (Hardship(x) \u2192 FinancialAid(x))",
+      "\u2200x (SingleParent(x) \u2228 FewResources(x) \u2192 Hardship(x))",
+      "SingleParent(tom)",
+      "FewResources(tom)"
+    ],
+    "conclusion_fol": "FinancialAid(tom)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 61.0,
+      "Unknown": 32.0
+    },
+    "answer_counts": {
+      "Unknown": 4,
+      "True": 8
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Tom can apply for financial aid from ETS to take the GRE test, we need to analyze the premises provided.\n\nPremise 1: It costs US $205 to take the GRE test.\nThis premise gives us the cost of the GRE test but does not provide any information about financial aid.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship.\nThis premise explains the condition for receiving financial aid from ETS.\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\nThis premise clarifies what is meant by economic hardship.\n\nPremise 4: Tom lives in a single-parent family.\nThis premise provides some context about Tom's family situation but does not directly relate to economic hardship.\n\nPremise 5: His dad has been out of work for more than a year.\nThis premise suggests that Tom's family may be experiencing economic hardship due to his dad's unemployment.\n\nBased on the premises, we can infer that Tom's family may be experiencing economic hardship due to his dad's unemployment. However, we do not have direct evidence that Tom himself is experiencing economic hardship.\n\nTherefore, the conclusion \"Tom can apply for financial aid from ETS to take the GRE test\" is uncertain. We do not have sufficient information to determine whether Tom qualifies for financial aid.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Tom can apply for financial aid from ETS to take the GRE test, let's break down the information given step by step:\n\n1. The cost of taking the GRE test is US $205.\n2. ETS provides financial aid to those GRE applicants who prove economic hardship.\n3. Economic hardship refers to difficulty caused by having too little money or too few resources.\n4. Tom lives in a single-parent family.\n5. His dad has been out of work for more than a year.\n\nFrom point 4 and 5, we can infer that Tom's family is likely experiencing economic hardship due to his dad being unemployed for over a year. This suggests that they may have too little money or too few resources.\n\nBased on point 3, economic hardship refers to the lack of money or resources. Given the information in point 4 and 5, it's reasonable to conclude that Tom's family is experiencing economic hardship.\n\nNow, let's consider point 2, which states that ETS provides financial aid to those who prove economic hardship. Since Tom's family is likely experiencing economic hardship, it's reasonable to conclude that he can apply for financial aid from ETS to take the GRE test.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion.\n\nPremise 1: It costs US $205 to take the GRE test.\nThis premise provides information about the cost of taking the GRE test but does not provide any information about ETS's financial aid policy or Tom's eligibility.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship.\nThis premise provides information about the criteria for ETS's financial aid. It states that applicants must prove economic hardship to be eligible.\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\nThis premise provides a definition of economic hardship but does not provide any information about Tom's situation.\n\nPremise 4: Tom lives in a single-parent family. His dad has been out of work for more than a year.\nThis premise provides information about Tom's family situation. It implies that Tom's family may be experiencing economic hardship due to his dad's unemployment.\n\nBased on the premises, we can analyze the conclusion:\n\nConclusion: Tom can apply for financial aid from ETS to take the GRE test.\nSince Premise 2 states that ETS provides financial aid to those who prove economic hardship, and Premise 4 implies that Tom's family may be experiencing economic hardship due to his dad's unemployment, we can infer that Tom may be eligible for ETS's financial aid. However, the conclusion is not explicitly stated in the premises.\n\nThe conclusion is uncertain because we don't have direct information that Tom has applied for financial aid or that his family's economic situation meets the criteria for ETS's financial aid. However, based on the given premises, it is more likely that the conclusion is true.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: It costs US $205 to take the GRE test. \nThis premise provides us with a piece of information about the cost of taking the GRE test but does not directly relate to Tom's situation.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship. \nThis premise tells us about the condition for receiving financial aid from ETS. \n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources. \nThis premise clarifies what is meant by economic hardship.\n\nPremise 4: Tom lives in a single-parent family. His dad has been out of work for more than a year.\nThis premise provides us with information about Tom's situation. Since his dad has been out of work for more than a year, it is likely that Tom's family is experiencing financial difficulties.\n\nNow, let's analyze the conclusion: Tom can apply for financial aid from ETS to take the GRE test.\n\nBased on the premises, we can see that Tom's situation (living in a single-parent family with a dad who has been out of work for more than a year) is likely to indicate economic hardship. Therefore, he may qualify for financial aid from ETS.\n\nHowever, there is no direct information in the premises about Tom's current financial situation or whether he has already applied for financial aid. We can only infer that he might be eligible for financial aid based on his family's situation.\n\nTherefore, the conclusion is uncertain because we cannot be certain whether Tom has already applied for financial aid or whether he meets the specific requirements for receiving financial aid from ETS.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: It costs US $205 to take the GRE test.\nThis premise provides the context for the situation but does not directly relate to the conclusion.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship.\nThis premise sets the condition for financial aid, which is economic hardship.\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\nThis premise clarifies the definition of economic hardship.\n\nPremise 4: Tom lives in a single-parent family.\nThis premise provides some context about Tom's situation but does not directly relate to the conclusion.\n\nPremise 5: His dad has been out of work for more than a year.\nThis premise implies that Tom's family is experiencing financial difficulties due to the lack of income.\n\nNow, let's analyze the conclusion: Tom can apply for financial aid from ETS to take the GRE test.\n\nFrom Premise 2, we know that ETS provides financial aid to those who prove economic hardship. \nFrom Premise 5, we can infer that Tom's family is experiencing economic hardship due to his dad being out of work for more than a year.\nTherefore, it is likely that Tom can apply for financial aid from ETS to take the GRE test, as he meets the condition of economic hardship.\n\nHowever, there is no explicit information about Tom's financial situation or income, so we cannot be 100% certain. But based on the information provided, the conclusion is more likely to be true.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: It costs US $205 to take the GRE test.\n\nThis premise provides information about the cost of the GRE test, but it does not directly relate to the conclusion.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship.\n\nThis premise states the condition for receiving financial aid from ETS.\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\n\nThis premise provides a definition of economic hardship.\n\nPremise 4: Tom lives in a single-parent family.\n\nThis premise provides some information about Tom's family situation, but it does not directly relate to economic hardship.\n\nPremise 5: His dad has been out of work for more than a year.\n\nThis premise implies that Tom's family may be experiencing financial difficulties due to his dad's unemployment.\n\nNow, let's analyze the conclusion:\n\nConclusion: Tom can apply for financial aid from ETS to take the GRE test.\n\nBased on the premises, we can see that:\n\n1. ETS provides financial aid to those who prove economic hardship (Premise 2).\n2. Economic hardship refers to difficulty caused by having too little money or too few resources (Premise 3).\n3. Tom's dad has been out of work for more than a year, which may imply financial difficulties (Premise 5).\n\nHowever, there is no direct evidence that Tom's family is experiencing economic hardship. While the family situation may be challenging, it is not explicitly stated that they have too little money or too few resources.\n\nTherefore, the conclusion is uncertain, as we cannot conclusively determine whether Tom's family meets the criteria for economic hardship.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether Tom can apply for financial aid from ETS, we need to analyze the given premises and see if they provide enough information to support the conclusion.\n\nPremise 1: It costs US $205 to take the GRE test.\nThis premise tells us the cost of taking the GRE test but doesn't provide any information about financial aid.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship.\nThis premise tells us that financial aid is available for those who can prove economic hardship.\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\nThis premise defines what economic hardship is, which will help us understand if Tom's situation meets the criteria.\n\nPremise 4: Tom lives in a single-parent family. His dad has been out of work for more than a year.\nThis premise provides information about Tom's family situation. The fact that his dad has been out of work for more than a year suggests that the family may be experiencing economic hardship due to the lack of income.\n\nBased on the premises, we can conclude that Tom's family situation may be experiencing economic hardship, which meets the criteria for financial aid from ETS. Therefore, the conclusion is:\n\nTom can apply for financial aid from ETS to take the GRE test.\n\nSince we have enough information to support the conclusion, it is not uncertain. The conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they provide sufficient information to support the conclusion.\n\nPremise 1: It costs US $205 to take the GRE test. (This premise provides information about the cost of the test but doesn't relate directly to financial aid.)\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship. (This premise explains the condition for receiving financial aid.)\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources. (This premise provides a definition of economic hardship but doesn't directly relate to Tom's situation.)\n\nPremise 4: Tom lives in a single-parent family. His dad has been out of work for more than a year. (This premise provides information about Tom's family situation, which might be related to economic hardship.)\n\nBased on the premises, we can infer that Tom's family might be experiencing economic hardship due to his dad being out of work for more than a year. This situation could be considered a case of \"too few resources\" (Premise 3).\n\nSince Tom's situation might be a case of economic hardship, and ETS provides financial aid to those who prove economic hardship (Premise 2), we can conclude that Tom might be eligible for financial aid from ETS to take the GRE test.\n\nConclusion: True\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: It costs US $205 to take the GRE test. (This is a fact about the cost of the test.)\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship. (This is a policy of ETS regarding financial aid.)\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources. (This is a definition of economic hardship.)\n\nPremise 4: Tom lives in a single-parent family. (This is a fact about Tom's family situation.)\n\nPremise 5: His dad has been out of work for more than a year. (This is a fact about Tom's family situation.)\n\nFrom these premises, we can infer that Tom's family may be experiencing economic hardship due to his dad being out of work for more than a year, which could result in a lack of resources. This aligns with the definition of economic hardship provided in Premise 3.\n\nGiven that Tom's family may be experiencing economic hardship (based on the inferences from Premise 4 and Premise 5), we can conclude that Tom may be eligible for financial aid from ETS to take the GRE test, as stated in Premise 2.\n\nTherefore, the conclusion is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the premises and see if they support the conclusion.\n\nPremise 1: It costs US $205 to take the GRE test.\n\nThis premise provides context but does not directly relate to the conclusion. It's more of a fact.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship.\n\nThis premise provides the condition under which financial aid is given. We need to see if the subsequent premises support this condition.\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\n\nThis premise clarifies the definition of economic hardship. To apply for financial aid, Tom must prove that he has economic hardship.\n\nPremise 4: Tom lives in a single-parent family. His dad has been out of work for more than a year.\n\nFrom this premise, we can infer that Tom's family may face financial difficulties due to his dad being out of work. This could potentially indicate economic hardship.\n\nHowever, we cannot conclude with certainty that Tom has economic hardship. The premise only mentions that his dad has been out of work for more than a year, but it does not specify the family's financial situation. They might have other resources or savings that could mitigate the economic hardship.\n\nTherefore, based on the premises provided, the conclusion is uncertain because we cannot conclusively determine if Tom has economic hardship.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: It costs US $205 to take the GRE test.\nThis premise provides information about the cost of taking the test but doesn't directly relate to the conclusion.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship.\nThis premise explains the condition under which financial aid is provided.\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\nThis premise clarifies what economic hardship means.\n\nPremise 4: Tom lives in a single-parent family. His dad has been out of work for more than a year.\n\nFrom Premise 4, we can infer that Tom's family might be experiencing financial difficulties due to his dad being out of work for more than a year. This situation could lead to a lack of financial resources.\n\nNow, let's consider the conclusion: \"Tom can apply for financial aid from ETS to take the GRE test.\"\n\nSince we have a premise (Premise 2) stating that ETS provides financial aid to those who prove economic hardship and we have a premise (Premise 4) suggesting that Tom's family might be experiencing economic hardship, we can conclude that Tom might be eligible for financial aid from ETS.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and the conclusion.\n\nPremises:\n\n1. It costs US $205 to take the GRE test.\n2. ETS provides financial aid to those GRE applicants who prove economic hardship.\n3. Economic hardship refers to difficulty caused by having too little money or too few resources.\n4. Tom lives in a single-parent family.\n5. His dad has been out of work for more than a year.\n\nConclusion:\nTom can apply for financial aid from ETS to take the GRE test.\n\nStep 1: Determine if Tom has economic hardship.\n\nFrom premise 3, we know that economic hardship is caused by having too little money or too few resources. \n\nFrom premise 4, we know that Tom lives in a single-parent family. This might imply that his family might not have enough money or resources, but it's not a direct indicator of economic hardship.\n\nFrom premise 5, we know that Tom's dad has been out of work for more than a year. This implies that his family might not have enough money, as his dad is the primary income earner.\n\nTherefore, it is reasonable to assume that Tom's family might have economic hardship due to his dad being out of work for more than a year.\n\nStep 2: Determine if Tom is eligible for financial aid.\n\nFrom premise 2, we know that ETS provides financial aid to those GRE applicants who prove economic hardship.\n\nSince we determined in Step 1 that Tom's family might have economic hardship, it is reasonable to conclude that Tom is eligible for financial aid.\n\nConclusion:\nBased on the premises, we can conclude that Tom can apply for financial aid from ETS to take the GRE test.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cost(gre_test, 205)",
+          "z3_formula": "cost_gre_test_205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "financial_aid(X) -> economic_hardship(X)",
+          "z3_formula": "Implies(financial_aid_ets, economic_hardship_ets)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship(economic_hardship)",
+          "z3_formula": "economic_hardship_economic_hardship == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "single_parent_family(tom)",
+          "z3_formula": "single_parent_family_tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "unemployed_dad(tom)",
+          "z3_formula": "unemployed_dad_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "may_experience_economic_hardship(tom)",
+          "z3_formula": "may_experience_economic_hardship_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cannot_determine_financial_aid(tom)",
+          "z3_formula": "cannot_determine_financial_aid_tom == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cost(gre_test) == 205",
+          "z3_formula": "cost_gre_test == 205",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "financial_aid(ets, gre_test)",
+          "z3_formula": "financial_aid_ets_gre_test == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship == difficulty_by_lack_of_money_or_resources",
+          "z3_formula": "economic_hardship == difficulty_by_lack_of_money_or_resources",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_in_single_parent_family",
+          "z3_formula": "tom_lives_in_single_parent_family == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dads_unemployed_for_over_a_year",
+          "z3_formula": "dads_unemployed_for_over_a_year == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "tom_family_experiencing_economic_hardship",
+          "z3_formula": "tom_family_experiencing_economic_hardship == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship -> financial_aid",
+          "z3_formula": "Implies(economic_hardship, financial_aid_ets_gre_test)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "tom_can_apply_for_financial_aid",
+          "z3_formula": "tom_can_apply_for_financial_aid == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "costs(US, 205, GRE)",
+          "z3_formula": "costs_US_205_GRE == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "financial_aid_policy(ETS, economic_hardship)",
+          "z3_formula": "financial_aid_policy_ETS_economic_hardship == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship_definition(difficulty, too_little_money, too_few_resources)",
+          "z3_formula": "economic_hardship_definition_difficulty_too_little_money_too_few_resources == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "single_parent_family(Tom)",
+          "z3_formula": "single_parent_family_Tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dad_unemployed(Tom)",
+          "z3_formula": "dad_unemployed_Tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "financial_aid_policy(X, economic_hardship) -> financial_aid_eligible(X, economic_hardship)",
+          "z3_formula": "Implies(financial_aid_policy_ETS_economic_hardship, financial_aid_eligible_ETS_economic_hardship)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "financial_aid_eligible(ETS, economic_hardship)",
+          "z3_formula": "financial_aid_eligible_ETS_economic_hardship == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cost_gre_test == 205",
+          "z3_formula": "cost_gre_test == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "ets_provides_financial_aid(economic_hardship)",
+          "z3_formula": "ets_provides_financial_aid_economic_hardship == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship == (too_little_money_or_resources)",
+          "z3_formula": "economic_hardship == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_single_parent_family",
+          "z3_formula": "tom_lives_single_parent_family == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_dad_out_of_work_more_than_year",
+          "z3_formula": "tom_dad_out_of_work_more_than_year == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "tom_may_qualify_financial_aid",
+          "z3_formula": "tom_may_qualify_financial_aid == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "costs_us_205(gre_test)",
+          "z3_formula": "costs_us_205_gre_test == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "provides_financial_aid(ets, economic_hardship)",
+          "z3_formula": "provides_financial_aid_ets_economic_hardship == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship == difficulty_caused_by_little_money_or_few_resources",
+          "z3_formula": "economic_hardship == difficulty_caused_by_little_money_or_few_resources == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "lives_in_single_parent_family(tom)",
+          "z3_formula": "lives_in_single_parent_family_tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dad_out_of_work_for_more_than_year(tom)",
+          "z3_formula": "dad_out_of_work_for_more_than_year_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship -> provides_financial_aid(ets, X)",
+          "z3_formula": "Implies(economic_hardship, provides_financial_aid_ets_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "can_apply_for_financial_aid(tom, gre_test)",
+          "z3_formula": "can_apply_for_financial_aid_tom_gre_test == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cost_GRE_test == 205",
+          "z3_formula": "cost_GRE_test == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "financial_aid_condition == economic_hardship",
+          "z3_formula": "financial_aid_condition == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship == difficulty_money_resources",
+          "z3_formula": "economic_hardship == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_single_parent_family == True",
+          "z3_formula": "tom_lives_single_parent_family == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dad_unemployed_over_year == True",
+          "z3_formula": "dad_unemployed_over_year == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship -> financial_aid_condition",
+          "z3_formula": "Implies(difficulty_money_resources, financial_aid_condition)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "tom_can_apply_financial_aid",
+          "z3_formula": "tom_can_apply_financial_aid == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cost(gre, 205)",
+          "z3_formula": "cost_gre_205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "financial_aid(X) <- economic_hardship(X)",
+          "z3_formula": "Implies(economic_hardship_ets, financial_aid_ets)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship(defines, too_little_money_or_resources)",
+          "z3_formula": "economic_hardship_defines_too_little_money_or_resources == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "single_parent_family(tom)",
+          "z3_formula": "single_parent_family_tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dad_out_of_work(tom, over_a_year)",
+          "z3_formula": "dad_out_of_work_tom_over_a_year == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "economic_hardship(tom)",
+          "z3_formula": "economic_hardship_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "financial_aid(ets)",
+          "z3_formula": "financial_aid_ets == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "costs(205, gre)",
+          "z3_formula": "costs_205_gre == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "financial_aid(ets, applicant)",
+          "z3_formula": "financial_aid_ets_applicant == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship(X) -> financial_aid(ets, X)",
+          "z3_formula": "Implies(economic_hardship_applicant, financial_aid_ets_applicant)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship(economic_hardship)",
+          "z3_formula": "economic_hardship_economic_hardship == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship(X) -> economic_hardship(X)",
+          "z3_formula": "Implies(economic_hardship_applicant, economic_hardship_economic_hardship)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "single_parent_family(tom)",
+          "z3_formula": "single_parent_family_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "dad_out_of_work(tom)",
+          "z3_formula": "dad_out_of_work_tom == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "financial_aid(ets, tom)",
+          "z3_formula": "financial_aid_ets_tom == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cost_gre == 205",
+          "z3_formula": "cost_gre == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "financial_aid_policy == True",
+          "z3_formula": "financial_aid_policy == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship_definition == True",
+          "z3_formula": "economic_hardship_definition == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_single_parent_family == True",
+          "z3_formula": "tom_lives_single_parent_family == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "dad_out_of_work == True",
+          "z3_formula": "dad_out_of_work == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship -> financial_aid_eligible",
+          "z3_formula": "Implies(economic_hardship, financial_aid_eligible)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "financial_aid_eligible == True",
+          "z3_formula": "financial_aid_eligible == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "costs(US $205, GRE test)",
+          "z3_formula": "costs_gre_test == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "financial_aid(ETS, GRE applicants)",
+          "z3_formula": "financial_aid_ets_gre_applicants == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship(difficulty caused by having too little money or too few resources)",
+          "z3_formula": "economic_hardship == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship -> financial_aid(ETS, GRE applicants)",
+          "z3_formula": "Implies(economic_hardship, financial_aid_ets_gre_applicants)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "lives_in_single_parent_family(Tom)",
+          "z3_formula": "lives_in_single_parent_family_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "dad_out_of_work(Tom's dad) for more than a year",
+          "z3_formula": "dad_out_of_work_tom_dad == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cost_gre_test == 205",
+          "z3_formula": "cost_gre_test == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "financial_aid_condition == economic_hardship",
+          "z3_formula": "financial_aid_condition == economic_hardship",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship == difficulty_due_to_lack_of_money_or_resources",
+          "z3_formula": "economic_hardship == difficulty_due_to_lack_of_money_or_resources",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_in_single_parent_family",
+          "z3_formula": "tom_lives_in_single_parent_family == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_dad_has_been_out_of_work_for_more_than_a_year",
+          "z3_formula": "tom_dad_has_been_out_of_work_for_more_than_a_year == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship -> financial_aid_eligible",
+          "z3_formula": "Implies(economic_hardship, financial_aid_eligible)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "tom_is_financially_aid_eligible",
+          "z3_formula": "financial_aid_eligible == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "economic_hardship(tom)",
+          "z3_formula": "economic_hardship_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship(X) -> eligible_for_aid(X)",
+          "z3_formula": "Implies(economic_hardship_tom, eligible_for_aid_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "eligible_for_aid(tom)",
+          "z3_formula": "eligible_for_aid_tom == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "tom_can_apply_for_financial_aid",
+          "z3_formula": "tom_can_apply_for_financial_aid == True",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 81,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 67
+    },
+    "maxsat_stats": {
+      "satisfied": 67,
+      "excluded": 0,
+      "total_weight": 81,
+      "solve_time_ms": 1.095459796488285
+    },
+    "timing": {
+      "trace_gen_s": 4.511,
+      "extraction_s": 15.149,
+      "dedup_s": 1.484,
+      "maxsat_s": 0.005,
+      "total_s": 21.15
+    }
+  }
+}

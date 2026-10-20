@@ -1,0 +1,762 @@
+{
+  "pid": "ProofWriter_AttNoneg-OWA-D5-1057_Q2",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_fiona, rough_fiona), furry_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, furry_fiona), quiet_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_fiona, kind_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_fiona, quiet_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> white(charlie)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_fiona, quiet_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fiona is white",
+          "z3_formula": "white_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> furry(X)",
+          "z3_formula": "Implies(rough_fiona, furry_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_fiona, white_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(fiona)",
+          "z3_formula": "Not(kind_fiona)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "fiona is blue",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "fiona is furry",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "fiona is quiet",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_fiona, quiet_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> white(charlie)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_charlie, kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_fiona, rough_fiona), furry_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, furry_fiona), quiet_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_fiona, quiet_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> white(charlie)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(fiona)",
+          "z3_formula": "Not(kind_fiona)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_fiona, rough_fiona), furry_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, furry_fiona), quiet_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_fiona, quiet_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_fiona, kind_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), rough_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_fiona, rough_fiona), furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_fiona, blue_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_fiona, quiet_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_fiona, rough_fiona), furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_fiona, kind_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_fiona, furry_fiona), quiet_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_fiona, white_fiona), kind_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_fiona, quiet_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(fiona)",
+          "z3_formula": "Not(kind_fiona) == False",
+          "source_step": 11
+        }
+      ]
+    }
+  ]
+}

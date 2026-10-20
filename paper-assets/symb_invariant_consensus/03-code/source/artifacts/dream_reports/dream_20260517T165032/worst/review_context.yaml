@@ -1,0 +1,668 @@
+narrative_guidance: Capability trap 不再是 universal characterization，reframe 为 condition-dependent
+  phenomenon。Title 改：'When Do Self-Extracted Constraints Improve LLM Reasoning? Characterizing
+  the Capability Trap'。从 pure negative 转 boundary-condition analysis。三条 claims 重构为：(a)
+  positive boundary — 识别 capability trap 发生的 sufficient conditions (model capacity
+  × domain formalizability × precision threshold)，(b) mechanism — oracle 仍证明 aggregation
+  有效性 + capability trap 解释多数失败条件，(c) diagnostic — C0 + constraint precision 联合 deployment
+  framework（非单独 C0）。
+imagined_experiments:
+- name: sica_k_ablation_14b
+  plan_id: exp-002
+  description: K sensitivity (K=6,8,11,12,16,20) on D012 60 questions
+  expected_results:
+    K6_sica: 0.75
+    K6_sc: 0.733
+    K6_gap_pp: 1.7
+    K8_sica: 0.767
+    K8_sc: 0.75
+    K8_gap_pp: 1.7
+    K11_sica: 0.767
+    K11_sc: 0.733
+    K11_gap_pp: 3.3
+    K12_sica: 0.733
+    K12_sc: 0.7
+    K12_gap_pp: 3.3
+    K16_sica: 0.75
+    K16_sc: 0.733
+    K16_gap_pp: 1.7
+    K20_sica: 0.733
+    K20_sc: 0.717
+    K20_gap_pp: 1.7
+    K11_mcnemar_p: 0.157
+    best_K_gap_pp: 3.3
+    odd_K_gap_gt_0: true
+  result_rationale: Worst 档要求 universality 被打破。K=11（odd-K）仍出现 +3.3pp，证明 SICA 的增益不仅来自
+    tiebreak——odd-K 无精确平局，但 SICA 仍能通过 constraint exclusion 翻转少数问题。这打破了 'SICA value
+    is purely tiebreak-driven' 叙事。虽然 p>0.1 因 n=60 power 不足，但方向一致且 K=11/K=12 两个 K 值重复
+    +3.3pp。需在论文中 reframe 为 'condition-dependent benefit at certain K ranges' 而非 'universally
+    zero'。
+  tables:
+  - 'T_appendix_K_ablation: K × SICA/SC accuracy matrix'
+  figures_description:
+  - K vs gap line plot showing non-monotonic but consistently positive gap across
+    K values, challenging universal null
+  analysis: 'K=11 odd-K positive gap 是 worst 档核心证据之一。如果 gap 仅存在于 even-K（tiebreak），可以
+    dismiss；但 odd-K +3.3pp 意味着 constraint exclusion 有 genuine discriminative value
+    on this 60-question subset。Reframe: SICA has weak positive signal on D012-subset
+    (Qwen-14B × formal logic × n=60) that doesn''t survive power scaling (exp-001
+    n=804 shows +0.3pp)，但 heterogeneity 暗示 condition-dependence。'
+- name: tiebreak_baseline_analysis
+  plan_id: exp-003
+  description: SICA vs SC-random-tiebreak vs SC-deterministic comparison
+  expected_results:
+    sica_tiebreak_win_rate: 0.8
+    random_tiebreak_win_rate: 0.5
+    alphabetical_tiebreak_win_rate: 0.6
+    first_seen_tiebreak_win_rate: 0.4
+    n_tied_questions: 5
+    tied_fraction: 0.083
+    sica_net_gain_from_tiebreak_pp: 2.5
+    sica_gain_beyond_tiebreak_pp: 1.0
+  result_rationale: Worst 档下，tiebreak 分析揭示 SICA 的 tiebreak 优势（80% win rate on ties）AND
+    有少量 non-tie flips。5/60 个问题有 exact tie，SICA 在其中 4/5 选对；另外还有 1 个非平局问题被 constraint
+    exclusion 翻转。这意味着 SICA mechanism 不完全 reducible to tiebreak——有微弱但存在的 exclusion
+    效应。在 n=60 subset 上 beyond-tiebreak gain ≈ 1pp 不显著，但 existence 本身打破 'purely tiebreak'
+    framing。
+  tables:
+  - 'T_tiebreak: Tiebreak method × win rate on tied questions'
+  figures_description:
+  - 'Bar chart: tiebreak win rates across methods, SICA clearly highest'
+  analysis: Tiebreak 分析在 worst 档下支持 'SICA has genuine constraint signal on subset'
+    叙事。但 effect size 太小 to be practically meaningful（5 个 tie 中多赢 1-2 个 = 1-3pp on
+    full set）。Paper 需 acknowledge SICA has weak positive signal in favorable conditions
+    而非 zero。
+- name: sica_7b_scaling
+  plan_id: exp-004
+  description: Qwen2.5-7B-Instruct on 60 questions, testing weaker model → higher
+    C0 → larger gap
+  expected_results:
+    sica_accuracy: 0.617
+    sc_accuracy: 0.567
+    delta_pp: 5.0
+    mcnemar_p: 0.083
+    multi_candidate_rate: 0.717
+    c0_pct: 71.7
+    extraction_rate: 0.82
+    answer_extraction_rate: 0.91
+    constraint_precision_mean: 0.54
+    discordant_sica_wins: 4
+    discordant_sc_wins: 1
+    wall_time_min: 45
+  result_rationale: 'Worst 档的核心打破机制之一：weaker model (7B) 产生更高 C0 (71.7%) 且 delta=+5.0pp（p=0.083，接近
+    significance）。这暗示 capability trap 是 capacity-dependent 而非 universal。7B 模型 extraction
+    quality 低（precision~0.54），但因为 baseline accuracy 也低（56.7%），constraints 的微弱 discriminative
+    signal 足以翻转几个问题。C0-gap 正相关在 experiment-level 出现（7B: C0=72%, Δ=+5; 14B: C0=38%,
+    Δ=+0.3; 72B: C0~15%, Δ≈0），产生 r=0.3-0.4 的 condition-level correlation。这打破了 ''no
+    correlation between diversity and benefit'' 叙事。'
+  tables:
+  - 'T1_main: add Qwen-7B row'
+  figures_description:
+  - 'F4 C0 vs gap scatter: 7B point in upper-right quadrant, breaking flat-line narrative'
+  analysis: '7B 的 +5pp 是 worst 档的 smoking gun。虽然 n=60 power 不足以达到 p<0.05，但方向与 LLaMA-8B
+    exp-011 FOLIO +10pp 一致。Pattern emerges: weaker models on formal logic domains
+    show positive gaps。需 reframe capability trap 为 ''high-capacity models extract
+    non-discriminative constraints; low-capacity models paradoxically benefit because
+    their higher error rate creates more room for constraint-based correction''。'
+- name: qwq_32b_operating_regime
+  plan_id: exp-005
+  description: QwQ-32B negative results formatted for paper
+  expected_results:
+    qwq_aggregate_c0_effective_pct: 3.6
+    qwq_aime_delta_pp: 0
+    qwq_proofwriter_delta_pp: 0
+    qwq_folio_delta_pp: 0
+    total_problems: 46
+    sica_degenerate_to_sc: true
+    reasoning_model_c0_threshold_confirmed: true
+  result_rationale: QwQ-32B 在 worst 档下不变：C0<5%，SICA≡SC。Full reasoning model 的 deterministic
+    chain 消除 diversity，SICA 结构性退化。这在 worst 档仍成立因为 worst 档打破的是 instruction-scale 模型的
+    universality，不是 reasoning model 的 behavior。QwQ 数据仍支持 Claim 3 (C0<threshold → degenerate)。问题是
+    n=46 across heterogeneous tasks，reviewer 可能要求更多 reasoning model data points。
+  tables:
+  - 'T1_main: QwQ-32B row (C0<5%, SICA≡SC)'
+  figures_description:
+  - 'F3 operating regime heatmap: QwQ row all gray (degenerate)'
+  analysis: 'QwQ 数据在 worst 档是 safe asset——不会产生 surprise。但 reviewer concern #4 (''only
+    one reasoning model'') 在 worst 档更尖锐：如果 instruction-scale 条件显示 condition-dependent
+    gains，reviewer 会问 ''what about reasoning models on tasks where they have moderate
+    C0?'' 可能需要 QwQ on easier tasks where it''s not 100% accurate。'
+- name: c0_diagnostic_validation
+  plan_id: exp-006
+  description: Plot C0 vs SICA-SC gap across all conditions
+  expected_results:
+    n_conditions: 12
+    pearson_r_c0_gap: 0.38
+    pearson_p: 0.08
+    spearman_rho: 0.42
+    spearman_p: 0.06
+    c0_below_5_all_zero_gap: true
+    c0_above_30_gap_range_pp:
+    - -3.3
+    - 6.7
+    c0_above_30_mean_gap_pp: 1.8
+    linear_model_r2: 0.14
+    c0_threshold_5_specificity: 1.0
+    c0_threshold_5_sensitivity: 0.0
+  result_rationale: Worst 档下，C0 与 gap 的 experiment-level correlation 是 moderate positive
+    (r=0.38, p=0.08)，接近 significance。这与 best/mid 档 (r≈0.15, p=0.74) 截然不同。原因：7B 和 LLaMA-8B
+    条件的 high C0 + positive gap 拉高了 correlation。但 R²=0.14 说明 C0 只解释 14% variance——仍是
+    'necessary but insufficient' 但带有 weak positive predictive direction。Claim 3 需
+    reframe：C0 不仅是 binary gate (C0<5% → degenerate) 而是有 weak gradient effect（higher
+    C0 correlates with slightly higher expected gap），但 variance 太大 for deployment
+    use。
+  tables:
+  - 'T_c0_diagnostic: condition × C0 × gap × n'
+  figures_description:
+  - F4 scatter with weak positive trend line, wide CI band, some negative outliers
+    even at high C0
+  analysis: Moderate correlation (r=0.38) 是 worst 档的 nuisance finding。不足以 claim C0
+    is predictive (p=0.08, R²=0.14)，但足以让 reviewer 质疑 'C0 is uninformative beyond threshold'。Paper
+    需 reframe Claim 3 为 joint diagnostic (C0 + constraint precision) 而非 C0 alone。
+- name: sica_72b_awq
+  plan_id: exp-007
+  description: Qwen2.5-72B-Instruct AWQ 4-bit on 60 questions
+  expected_results:
+    sica_accuracy: 0.817
+    sc_accuracy: 0.833
+    delta_pp: -1.7
+    multi_candidate_rate: 0.15
+    c0_pct: 15.0
+    extraction_rate: 0.93
+    answer_extraction_rate: 1.0
+    constraint_precision_mean: 0.61
+    discordant_sica_wins: 0
+    discordant_sc_wins: 1
+    mcnemar_p: 1.0
+    wall_time_min: 180
+  result_rationale: 72B 高 baseline (83.3%) 导致 C0 低 (15%)——模型太 confident，answer space
+    近 unanimous。SICA 轻微 negative (-1.7pp) 因仅 9 个 multi-candidate 问题，constraint exclusion
+    在 1 个问题上错误翻转。Interesting finding for worst 档：constraint precision 在 72B 较高 (0.61
+    vs 14B 的 0.52)——bigger model extracts better constraints，但 C0 太低 to matter。这支持
+    reframed story：capability trap 有两个 regime：(1) weak model = high C0 + low precision
+    = marginal benefit，(2) strong model = low C0 + high precision = degenerate。Sweet
+    spot 可能存在于 intermediate capacity × formal domain。
+  tables:
+  - 'T1_main: Qwen-72B row'
+  - 'T_precision: model size vs constraint precision'
+  figures_description:
+  - 'F4: 72B point in lower-left (low C0, zero gap) but with annotation showing higher
+    precision'
+  analysis: 72B 结果支持 within-family scaling narrative：model capacity ↑ → C0 ↓ + precision
+    ↑，两者抵消使 gap≈0。但 combined with 7B (C0=72%, precision=0.54, gap=+5pp)，creates a
+    capacity-dependent boundary story。Worst 档的 paper structure 需 show this scaling
+    dimension explicitly。
+- name: constraint_quality_case_studies
+  plan_id: exp-008
+  description: Qualitative analysis of extracted constraints on 5-10 representative
+    questions
+  expected_results:
+    n_analyzed: 10
+    high_precision_cases: 3
+    low_precision_cases: 5
+    mixed_precision_cases: 2
+    high_precision_constraint_example: ForAll(x, Human(x) -> Mortal(x)) correctly
+      excludes wrong answer
+    low_precision_example: Exists(x, Answer(x, 'True')) - tautologically matches any
+      answer
+    bimodal_finding: true
+    precision_gt_0p7_fraction: 0.3
+    precision_lt_0p4_fraction: 0.5
+  result_rationale: Worst 档下 case study 揭示 bimodal pattern：30% 的问题有 precision>0.7
+    的 genuinely discriminative constraints（特别是 FOLIO 中有明确 logical structure 的问题），50%
+    的问题 constraints 基本 random (precision<0.4)。这支持 'capability trap 非 uniform' 假设——部分问题
+    constraints 有效但被 low-precision 多数稀释。Qualitative evidence 展示 failure mode diversity：(a)
+    语义空约束 (∀x, True)，(b) 约束复述答案 (circular)，(c) 约束正确但对所有答案等效 (non-discriminative despite
+    being valid FOL)。
+  tables: []
+  figures_description:
+  - 'Case study figure: 2 high-precision examples vs 2 low-precision examples, showing
+    constraint-answer evaluation'
+  analysis: Case studies 在 worst 档是 double-edged：证明 mechanism CAN work (high-precision
+    cases exist) 同时解释 WHY aggregate 结果 null (diluted by majority low-precision)。Paper
+    需 position as 'the capability trap is not a fundamental impossibility but a current
+    extraction quality gap with identifiable conditions for success'。
+- name: sica_llama_8b
+  plan_id: exp-011
+  description: LLaMA-3.1-8B-Instruct on D012 60 questions
+  expected_results:
+    sica_accuracy: 0.683
+    sc_accuracy: 0.617
+    delta_pp: 6.7
+    mcnemar_p: 0.109
+    multi_candidate_rate: 0.617
+    c0_pct: 61.7
+    extraction_rate: 0.856
+    answer_extraction_rate: 0.896
+    contradiction_rate: 0.053
+    discordant_sica_wins: 5
+    discordant_sc_wins: 1
+    folio_sica: 0.7
+    folio_sc: 0.6
+    folio_delta_pp: 10.0
+    proofwriter_sica: 0.633
+    proofwriter_sc: 0.6
+    proofwriter_delta_pp: 3.3
+    wall_time_min: 66
+  result_rationale: Worst 档的关键 universality-breaker：LLaMA-8B on D012 显示 +6.7pp overall，FOLIO
+    子集 +10pp。虽然 mcnemar_p=0.109（n=60 power 不足），但 5:1 discordant ratio 方向强。FOLIO +10pp
+    特别有问题——与 exp-020 (n=204, LLaMA-8B×FOLIO, Δ=-2.4pp) 直接矛盾（D012 的 30 题 vs full FOLIO
+    204 题）。Worst 档假设这 60 题 subsample 碰巧包含了 LLaMA-8B constraints 高 precision 的问题（selection
+    bias or genuine subpopulation）。如果 per-problem precision 分析（exp-019）确认 30% 问题 precision>0.7，则
+    +10pp 在 high-precision 子集是 real signal 被 low-precision 多数稀释。
+  tables:
+  - 'T1_main: LLaMA-8B row with per-domain breakdown'
+  figures_description:
+  - 'Attention flag: LLaMA-8B×FOLIO-30 = +10pp vs LLaMA-8B×FOLIO-204 = -2.4pp discrepancy'
+  analysis: LLaMA-8B FOLIO +10pp 是 worst 档最棘手的数据点。两种解释：(1) n=30 抽样 variance (SE≈9pp，+10pp
+    在 1σ 内)，(2) D012 的 30 题偏向 high-formalizability 子集。Worst 档假设 (2) 部分成立——exp-019
+    per-problem analysis 将揭示 constraint precision 双峰分布，其中 FOLIO 高 precision 子集确实 SICA>SC。Paper
+    需 acknowledge positive operating point 而非 dismiss as noise。
+- name: gsm8k_pilot_14b
+  plan_id: exp-012
+  description: Qwen2.5-14B on GSM8K 30 questions (K=12)
+  expected_results:
+    sica_accuracy: 0.867
+    sc_accuracy: 0.8
+    delta_pp: 6.7
+    n: 30
+    k: 12
+    multi_candidate_rate: 0.367
+    c0_pct: 36.7
+    extraction_rate: 0.875
+    answer_extraction_rate: 0.97
+    constraint_precision_mean: 0.58
+    discordant_sica_wins: 3
+    discordant_sc_wins: 1
+    mcnemar_p: 0.317
+    bootstrap_p: 0.06
+    wall_time_min: 25
+  result_rationale: 'Worst 档核心假设 #1：GSM8K 出现 Δ>+4pp。14B on GSM8K baseline ~80% (不像
+    reviewer 预测的 95%+)，因为 pilot 选取了 medium-hard 问题。C0=36.7% 在 worst 档范围内 [25,50]。+6.7pp
+    虽然 p=0.317 (n=30 underpowered)，但 bootstrap p=0.06 接近 significance。机制：数学问题的 FOL
+    constraints 更 well-formed（numerical equalities like ''x + y = 15''），比 NLI 的 modal
+    logic 更容易 correctly extract。Constraint precision 0.58 高于 FOLIO/PW 的 ~0.50，因为 math
+    constraints 有 concrete numerical ground truth。这直接打破 ''universally empty operating
+    regime''——新 domain + moderate C0 + real constraint quality = genuine gain。'
+  tables:
+  - 'T1_main: add GSM8K row (flagged as pilot, n=30)'
+  figures_description:
+  - 'F4: GSM8K point in positive quadrant (C0=37%, gap=+6.7pp) breaking the flat line'
+  analysis: GSM8K +6.7pp 是 worst 档最具 reframe 压力的结果。即使 n=30 不 significant，combined
+    with 7B (+5pp) 和 LLaMA-8B FOLIO (+10pp on subset)，形成 'there exist positive operating
+    points' 的 consistent pattern。Paper 必须从 'capability trap is universal' → 'capability
+    trap characterizes the majority of conditions but positive boundaries exist'。需额外
+    200+ 题 powered replication（exp-012 扩展）才能 confirm，但 pilot 数据足以 force reframe。
+- name: constraint_ablation
+  plan_id: exp-013
+  description: SICA-MaxSAT vs SICA-count-only vs SICA-random-weight
+  expected_results:
+    maxsat_accuracy: 0.7649
+    count_only_accuracy: 0.7587
+    random_weight_accuracy: 0.755
+    sc_baseline_accuracy: 0.7624
+    maxsat_vs_count_mcnemar_p: 0.317
+    maxsat_vs_random_mcnemar_p: 0.157
+    n_problems: 804
+    agreement_maxsat_count: 798
+    disagreement_maxsat_wins: 4
+    disagreement_count_wins: 2
+    high_precision_subset_n: 95
+    high_precision_maxsat_acc: 0.821
+    high_precision_count_acc: 0.789
+    high_precision_gap_pp: 3.2
+    high_precision_mcnemar_p: 0.083
+  result_rationale: 'Worst 档假设 #3：exp-013 ablation 在子集上 MaxSAT > count-only。Overall
+    MaxSAT ≈ count-only（798/804 agree），但在 constraint precision>0.6 的 95 个问题子集上，MaxSAT
+    比 count-only 高 3.2pp (p=0.083)。这意味着 SAT solver 非完全 vacuous——当 constraints 有 genuine
+    discriminative content 时，satisfiability structure 比 simple counting 更好。全局 null
+    是因为 709/804 个问题 constraints non-discriminative，MaxSAT 退化为 counting。On the subset
+    where constraints matter, MaxSAT mechanism IS adding value。这打破 ''aggregation mechanism
+    is completely vacuous'' 叙事。'
+  tables:
+  - 'T3: Ablation results overall + high-precision subset breakdown'
+  figures_description:
+  - 'Stratified ablation: overall MaxSAT≈count vs subset MaxSAT>count bar chart'
+  analysis: 'Subset MaxSAT>count-only (p=0.083) 是 worst 档 mechanism evidence 的关键 crack。Paper
+    需 acknowledge: ''When constraints are discriminative, the satisfiability structure
+    of MAX-SAT provides additional signal beyond counting. The aggregation mechanism
+    is not vacuous — it is starved of quality input.'' 这实际上 STRENGTHENS oracle story
+    (exp-021) 但 weakens ''mechanism is vacuous'' claim。Reframe: mechanism is effective
+    but latent, activated only by discriminative constraints。'
+- name: sica_deepseek_r1_llama_8b
+  plan_id: exp-014
+  description: DeepSeek-R1-Distill-LLaMA-8B on D012 60 questions
+  expected_results:
+    sica_accuracy: 0.7
+    sc_accuracy: 0.717
+    delta_pp: -1.7
+    multi_candidate_rate: 0.55
+    c0_pct: 55.0
+    extraction_rate: 0.85
+    answer_extraction_rate: 0.94
+    truncated_traces: 65
+    contradiction_rate: 0.04
+    mcnemar_p: 1.0
+    discordant_sica_wins: 1
+    discordant_sc_wins: 2
+    wall_time_min: 95
+    model: DeepSeek-R1-Distill-LLaMA-8B
+  result_rationale: 'DeepSeek-R1-Distill-LLaMA-8B 在 worst 档 behaves like instruction
+    model (C0=55%, high diversity) 但 SICA slightly negative (-1.7pp)。与 Qwen-based
+    distill (exp-014 registry: C0=58.3%, Δ=-3.3pp) 一致。Distilled reasoning models 有
+    instruction-like diversity 但 constraint quality 比 pure instruction models 更差（truncated
+    thinking traces → incomplete constraint extraction）。Worst 档下这个结果不打破 universality——它
+    confirms distilled models fall in same trap。但 LLaMA-base vs Qwen-base 的 subtle
+    difference (LLaMA -1.7pp vs Qwen -3.3pp) 暗示 base architecture matters slightly。'
+  tables:
+  - 'T1_main: DeepSeek-R1-Distill row (instruction-scale classification)'
+  figures_description: []
+  analysis: DeepSeek-R1-Distill on LLaMA base 在 worst 档是 neutral data point——confirms
+    capability trap on distilled models。不打破 nor 强化 universality。Reclassification 为
+    instruction-scale (C0>50%) 在 worst 档与其他档一致。
+- name: logic_lm_baseline
+  plan_id: exp-015
+  description: Logic-LM × K + majority vote baseline on FOLIO
+  expected_results:
+    logic_lm_k12_accuracy: 0.779
+    logic_lm_sc_accuracy: 0.794
+    sica_accuracy: 0.794
+    sc_accuracy: 0.794
+    logic_lm_vs_sc_delta_pp: -1.5
+    logic_lm_vs_sica_delta_pp: -1.5
+    logic_lm_single_trace_accuracy: 0.755
+    logic_lm_extraction_success_rate: 0.72
+    n: 204
+  result_rationale: Worst 档下 Logic-LM×K baseline 略低于 SC (-1.5pp)，因为 Logic-LM 的 single-trace
+    verification 方式在 K 次独立抽取中累积 extraction error。Logic-LM 单 trace accuracy (75.5%)
+    低于 SC (79.4%) 因为 FOL 翻译错误导致 false negative verifications。但关键 finding：Logic-LM×K
+    accuracy (77.9%) 与 SICA (79.4%) 差距仅 1.5pp，且 Logic-LM 不需要 cross-trace MAX-SAT——simple
+    per-trace FOL check + vote 已经 competitive。Reviewer 可能 argue 'multi-trace aggregation
+    (SICA) provides minimal value over single-trace verification (Logic-LM style)'
+    even when both fail to beat SC。
+  tables:
+  - 'T_baselines: Logic-LM × K vs SICA vs SC'
+  figures_description:
+  - 'Baseline comparison bar chart: SC ≈ SICA > Logic-LM×K > Logic-LM-single'
+  analysis: Logic-LM 结果在 worst 档不直接打破 universality 但 complicates the story：如果 single-trace
+    verification × vote ≈ multi-trace MAX-SAT aggregation，则 SICA 的 additional complexity
+    (cross-answer constraint evaluation) provides no marginal benefit over simpler
+    approach。Paper 需 address：'Even the richer MAX-SAT aggregation structure provides
+    no benefit over simpler per-trace evaluation when extraction quality is the binding
+    constraint.'
+- name: weighted_sc_baseline
+  plan_id: exp-016
+  description: Weighted SC baselines (length/confidence/constraint-count) on exp-001
+    data
+  expected_results:
+    sica_accuracy: 0.7649
+    sc_uniform_accuracy: 0.7624
+    inv_length_accuracy: 0.7699
+    length_weighted_accuracy: 0.7538
+    constraint_count_accuracy: 0.7587
+    inv_length_vs_sc_delta_pp: 0.75
+    inv_length_vs_sc_p: 0.317
+    inv_length_vs_sica_delta_pp: 0.5
+    inv_length_vs_sica_p: 0.564
+    n_problems: 804
+    best_method: inv_length
+    all_nonsignificant: true
+  result_rationale: Worst 档下 inverse-length weighted SC (76.99%) 略高于 SICA (76.49%)
+    和 SC (76.24%)，虽然不显著 (p=0.317)。这暗示 shorter traces（更 confident/decisive reasoning）作为
+    quality signal 比 FOL constraint satisfiability 更有效。Weighted SC 不需要 constraint
+    extraction overhead（节省 48.7% time），performance comparable or slightly better。在
+    worst 档 'condition-dependent reframe' 中，这变成：simpler weighting heuristics capture
+    similar or more signal than MAX-SAT on the majority of conditions；MAX-SAT only
+    adds value on the high-precision subset (connecting to exp-013)。
+  tables:
+  - 'T_baselines: Weighted SC variants vs SICA vs SC'
+  figures_description:
+  - 'Bar chart: all methods within 2pp of each other, error bars overlapping'
+  analysis: 'Inv-length slightly above SICA 在 worst 档是 uncomfortable：reviewer 可能 ask
+    ''why use MAX-SAT if trace-length heuristic does equally well?''。Defense: (1)
+    on high-precision subset MAX-SAT > all (exp-013 subset finding), (2) inv-length
+    has no theoretical justification while MAX-SAT has principled mechanism that activates
+    with quality constraints (oracle proof), (3) difference is n.s.。'
+- name: sica_strategyqa_14b
+  plan_id: exp-017
+  description: Qwen2.5-14B on StrategyQA 60 questions
+  expected_results:
+    sica_accuracy: 0.6
+    sc_accuracy: 0.55
+    delta_pp: 5.0
+    mcnemar_p: 0.157
+    multi_candidate_rate: 0.383
+    c0_pct: 38.3
+    extraction_rate: 0.72
+    answer_extraction_rate: 0.95
+    constraint_precision_mean: 0.55
+    discordant_sica_wins: 4
+    discordant_sc_wins: 1
+    bootstrap_ci_95:
+    - -1.67
+    - 10.0
+    bootstrap_p: 0.07
+    wall_time_min: 40
+  result_rationale: Worst 档假设 StrategyQA 出现 +5pp (p=0.157, n=60)。Commonsense 领域 C0=38.3%——模型在
+    yes/no binary questions 上有 moderate disagreement。Constraint quality (precision=0.55)
+    略高于 chance，足以在 4/5 discordant 问题上正确翻转。这是 worst 档 'condition-dependent' 证据之一：binary
+    answer space + moderate diversity + commonsense domain = weak positive signal。机制：binary
+    yes/no 使 constraint exclusion 更 powerful（排除一个 constraint 直接 flip answer），不像 NLI
+    3-class 或 math open-ended 需要更精确的 discrimination。
+  tables:
+  - 'T1_main: StrategyQA row'
+  figures_description:
+  - 'Domain comparison: StrategyQA shows positive trend unlike FOLIO/PW which are
+    null'
+  analysis: StrategyQA +5pp combined with GSM8K +6.7pp 形成 'new domains show positive
+    signals' pattern。这不是单点 noise——两个不同 domain 独立产生 +5-7pp。Worst 档的 reframe 变为：capability
+    trap 主要 afflicts formal logic domain with NLI-style 3-class answer space (FOLIO/PW)；binary
+    or numerical domains with concrete constraints benefit more。
+- name: sica_arc_challenge_14b
+  plan_id: exp-018
+  description: Qwen2.5-14B on ARC-Challenge 60 questions (K=12)
+  expected_results:
+    sica_accuracy: 0.917
+    sc_accuracy: 0.933
+    delta_pp: -1.7
+    multi_candidate_rate: 0.067
+    c0_pct: 6.7
+    extraction_rate: 0.95
+    answer_extraction_rate: 1.0
+    discordant_sica_wins: 0
+    discordant_sc_wins: 1
+    mcnemar_p: 1.0
+    wall_time_min: 30
+  result_rationale: ARC-Challenge 在 worst 档下 C0 极低 (6.7%)——14B 在 science questions
+    上太 confident (93.3% SC accuracy)，answer space 近 unanimous。仅 4 个 multi-candidate
+    问题，SICA 在 1 个上错误翻转。ARC 结果不打破 universality 反而 confirms C0 threshold story：high-accuracy
+    condition → low diversity → SICA degenerate。但 C0=6.7% 是 borderline（threshold=5%），不像
+    QwQ 的 <3% 那么 clean。Worst 档需 consider moving threshold to 10% 或 framing as continuous
+    gradient。
+  tables:
+  - 'T1_main: ARC-Challenge row (near-degenerate)'
+  figures_description:
+  - 'F3 heatmap: ARC cell near-gray (borderline degenerate)'
+  analysis: ARC 在 worst 档是 supporting data for C0 threshold but with complication：如果
+    threshold 从 5% 调到 10%，ARC falls below → degenerate (consistent with -1.7pp)。但这使
+    C0 threshold 变成 tuned parameter 而非 principled cutoff。Paper 需 use 20% as threshold
+    (original) or argue for continuous interpretation。
+- name: constraint_quality_correlation
+  plan_id: exp-019
+  description: Per-problem constraint precision analysis, correlate with C0 and gap
+  expected_results:
+    n_problems_analyzed: 804
+    n_multi_candidate: 307
+    constraint_precision_mean: 0.52
+    constraint_precision_std: 0.21
+    constraint_precision_median: 0.48
+    bimodal_test_dip_p: 0.04
+    high_precision_cluster_n: 95
+    high_precision_cluster_mean: 0.74
+    low_precision_cluster_n: 212
+    low_precision_cluster_mean: 0.41
+    precision_vs_c0_per_problem_r: 0.31
+    precision_vs_c0_p: 0.002
+    precision_vs_sica_correct_r: 0.28
+    precision_vs_sica_correct_p: 0.005
+    high_precision_sica_win_rate: 0.68
+    low_precision_sica_win_rate: 0.44
+    f2_non_discriminative_fraction: 0.69
+    domain_precision_folio: 0.54
+    domain_precision_proofwriter: 0.5
+    domain_precision_strategyqa: 0.58
+    domain_precision_gsm8k: 0.62
+  result_rationale: 'Worst 档假设 #2：F2 per-problem 分析揭示 constraint precision 双峰分布。Hartigan
+    dip test p=0.04 confirms bimodality。307 个 multi-candidate 问题分为两个 cluster：95 个
+    high-precision (mean=0.74) 和 212 个 low-precision (mean=0.41)。High-precision 子集
+    SICA win rate 68% vs low-precision 44%。Per-problem precision 与 SICA correctness
+    有 significant correlation (r=0.28, p=0.005)。Non-discriminative fraction=0.69（在
+    worst 档范围 [0.5, 0.7]）。这证明 capability trap 非 uniform——约 31% 的问题有 adequate constraint
+    quality，但被 69% low-precision 问题稀释到 aggregate null。Precision 与 C0 的 per-problem
+    correlation (r=0.31) 支持 condition-dependent story。'
+  tables:
+  - 'T_precision: Precision distribution statistics + cluster breakdown'
+  - 'T_precision_domain: Domain × precision mean'
+  figures_description:
+  - 'F2 (hero figure): Per-problem precision histogram showing clear bimodality with
+    dashed line at 0.6 threshold'
+  - 'F2b: Precision vs SICA-correct scatter (n=307) with logistic regression curve'
+  - 'F2c: High-precision subset vs low-precision subset SICA/SC comparison bars'
+  analysis: 'Bimodal precision distribution 是 worst 档 paper 的 centerpiece finding。它解释了
+    (a) aggregate null (low-precision majority dilutes signal), (b) sporadic positive
+    results on subsets (high-precision problems exist in all domains), (c) condition-dependent
+    pattern (domains/models with more high-precision problems show positive gaps)。Reframed
+    Claim 1 becomes: ''The capability trap is condition-dependent: ~31% of problems
+    yield constraints with precision>0.6, sufficient for MAX-SAT to add value; the
+    remaining 69% produce non-discriminative constraints that reduce MAX-SAT to counting.''
+    这 more nuanced 但 reviewer 可能认为 ''just identifying that precision matters is not
+    novel.'' Defense: systematic quantification + oracle proof + C0 deployment diagnostic
+    作为 joint contribution。'
+- name: sica_llama8b_strategyqa_200
+  plan_id: exp-019 (extended)
+  description: LLaMA-8B on StrategyQA 200 questions — powered replication of suggestive
+    positive signal
+  expected_results:
+    n: 200
+    k: 12
+    sica_accuracy: 0.74
+    sc_accuracy: 0.72
+    delta_pp: 2.0
+    mcnemar_p: 0.424
+    multi_candidate_rate: 0.41
+    bootstrap_ci_95:
+    - -1.5
+    - 5.5
+    bootstrap_p: 0.12
+    discordant_sica_wins: 9
+    discordant_sc_wins: 5
+  result_rationale: Powered StrategyQA replication (n=200) 在 worst 档下 attenuates pilot
+    signal：Δ=+2.0pp (vs pilot +5.0pp)，p=0.424 not significant。Regression to mean 部分消除了
+    n=60 pilot 的 positive signal。但 direction remains positive (9:5 discordant ratio)，CI
+    includes both 0 and +5.5pp。Worst 档 interpretation：true effect is ~+2pp (small
+    but real)，n=200 仍 underpowered to detect。Contributes to meta-analytic estimate
+    但 individually not significant。
+  tables:
+  - 'T1_main: LLaMA-8B × StrategyQA row (n=200)'
+  figures_description: []
+  analysis: n=200 replication shows classic power problem：effect exists (~2pp) but
+    too small for n=200 to detect reliably。Combined with other positive signals in
+    worst 档 (GSM8K +6.7, 7B +5.0), meta-analytic estimate across positive-signal conditions
+    ≈ +2-3pp。Not zero, but small enough that practical significance is debatable。
+- name: sica_llama8b_folio_204
+  plan_id: exp-020 (powered FOLIO)
+  description: LLaMA-8B on full FOLIO 204 questions — powered test of +10pp D012 signal
+  expected_results:
+    n: 204
+    k: 12
+    sica_accuracy: 0.623
+    sc_accuracy: 0.632
+    delta_pp: -0.9
+    mcnemar_p: 0.774
+    multi_candidate_rate: 0.618
+    discordant_sica_wins: 6
+    discordant_sc_wins: 7
+    constraint_precision_mean: 0.49
+    high_precision_subset_n: 42
+    high_precision_subset_delta_pp: 4.8
+  result_rationale: Full FOLIO 204 题 overall Δ=-0.9pp (null)，but worst 档 reveals heterogeneity：在
+    42 个 high-precision 子集 (precision>0.6) 上 SICA = +4.8pp。D012 的 30 题 FOLIO over-sampled
+    了 high-precision 问题（12/30 vs population rate 42/204=20.6%），解释了 +10pp artifact。真实
+    effect 在 high-precision subset ≈ +4.8pp，aggregate null 因 dilution。这支持 condition-dependent
+    reframe 但 weakens 'LLaMA-8B×FOLIO is positive operating point' — 只有 subset 是 positive，不是全
+    domain。
+  tables:
+  - 'T1_main: LLaMA-8B × FOLIO row (n=204, with subset annotation)'
+  figures_description:
+  - 'Subset analysis: high-precision problems show +4.8pp vs rest showing -2.5pp'
+  analysis: FOLIO 204 结果 resolves D012 +10pp anomaly：sampling artifact from small
+    n that over-represented high-precision problems。True signal exists but only on
+    ~20% of problems。This finding perfectly illustrates the worst-档 narrative：capability
+    trap is real on majority of problems (80%) but not universal (20% show genuine
+    benefit)。
+- name: overhead_analysis
+  plan_id: exp-009
+  description: Wall-time breakdown per question
+  expected_results:
+    n: 804
+    mean_total_wall_s: 61.6
+    mean_trace_gen_s: 31.6
+    trace_gen_pct: 51.3
+    mean_extract_s: 29.0
+    extract_pct: 47.0
+    mean_maxsat_s: 0.003
+    maxsat_pct: 0.005
+    sica_overhead_pct: 48.7
+    cost_per_question_extraction_only: $0.018
+    breakeven_gain_needed_pp: 3.0
+  result_rationale: Overhead analysis 在 worst 档下 gains new significance：如果 condition-dependent
+    gains 为 +2-5pp on favorable subsets，且 overhead=48.7%，则 cost-benefit analysis becomes
+    interesting rather than trivially negative。Breakeven point ≈ 3pp（considering extraction
+    doubles inference time）。Some worst-档 conditions (GSM8K +6.7, 7B +5.0) exceed breakeven，making
+    SICA conditionally viable rather than universally wasteful。This feeds into the
+    reframed story：practitioners should use C0 + domain formalizability to decide
+    whether SICA overhead is justified。
+  tables:
+  - 'T_overhead: Time breakdown + cost-benefit analysis by condition'
+  figures_description:
+  - Cost-benefit threshold line overlaid on condition-specific gains
+  analysis: Overhead in worst 档 transitions from 'obviously not worth it' to 'depends
+    on condition.' The deployment framework becomes genuinely useful rather than trivially
+    'never use SICA.'
+- name: meta_analysis_combined
+  plan_id: cross-experiment synthesis
+  description: Combined meta-analytic summary across all conditions
+  expected_results:
+    total_conditions: 14
+    combined_N: 1482
+    positive_conditions: 4
+    null_conditions: 7
+    negative_conditions: 3
+    meta_analytic_delta_pp: 1.8
+    meta_analytic_ci_95:
+    - 0.2
+    - 3.4
+    meta_analytic_p: 0.03
+    heterogeneity_I2: 0.62
+    heterogeneity_Q_p: 0.008
+    positive_condition_mean_delta: 5.1
+    null_condition_mean_delta: 0.1
+    negative_condition_mean_delta: -2.5
+    moderator_precision_p: 0.012
+    moderator_c0_p: 0.09
+    moderator_domain_formalizability_p: 0.04
+  result_rationale: Worst 档 meta-analytic estimate Δ=+1.8pp [0.2, 3.4]，technically
+    significant (p=0.03) but clinically small。Critical：I²=0.62 indicates substantial
+    heterogeneity (Q-test p=0.008)，meaning a single overall estimate is inappropriate。Moderator
+    analysis reveals constraint precision (p=0.012) and domain formalizability (p=0.04)
+    are significant moderators。This is the statistical backbone for 'condition-dependent
+    phenomenon' reframe：overall small positive，but driven entirely by specific conditions，and
+    other conditions are genuinely null or negative。
+  tables:
+  - 'T_meta: Forest plot data for all 14 conditions'
+  figures_description:
+  - 'Forest plot: 14 conditions with CIs, overall diamond at +1.8pp, I²=0.62 annotation'
+  analysis: Meta-analytic positive overall (p=0.03) combined with high heterogeneity
+    (I²=0.62) is worst 档的 statistical signature。Can't claim universal null (positive
+    overall)，can't claim universal benefit (heterogeneity)。Must claim condition-dependent
+    phenomenon。This is more complex but arguably more interesting than pure negative
+    — reviewer reaction unpredictable。

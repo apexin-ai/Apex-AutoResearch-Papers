@@ -1,0 +1,68 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency and Variants.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Symbolic Reasoning with LLMs.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ensemble Uncertainty.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}SICA Pipeline}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step 1: Constraint Extraction.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step 2: Weighted Partial MAX-SAT.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step 3: Answer Selection.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Multi-Candidate Rate ($C_0$)}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Benchmarks}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results across model configurations ($K=12$, $T=0.7$). $C_0$: multi-candidate rate. $\Delta $: SICA$-$SC gap in percentage points. Instruction models (top) show $C_0 > 20\%$ with positive trends; reasoning models (bottom) show $C_0 < 5\%$ with zero gap.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{4}{Main results across model configurations ($K=12$, $T=0.7$). $C_0$: multi-candidate rate. $\Delta $: SICA$-$SC gap in percentage points. Instruction models (top) show $C_0 > 20\%$ with positive trends; reasoning models (bottom) show $C_0 < 5\%$ with zero gap}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Models}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Configuration}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results: Operating Regime Characterization}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Key observations.}{4}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Tiebreak analysis on the expanded 804-question evaluation (Qwen2.5-14B). SICA is compared against alternative tiebreaking strategies applied only to tie cases.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:tiebreak}{{2}{5}{Tiebreak analysis on the expanded 804-question evaluation (Qwen2.5-14B). SICA is compared against alternative tiebreaking strategies applied only to tie cases}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Within-family scaling (Qwen).}{5}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-family validation.}{5}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Tiebreak Analysis}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Expanded Evaluation (804 Questions)}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces $C_0$ diagnostic performance across 14 (model, dataset, $K$) configurations.}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:diagnostic}{{3}{6}{$C_0$ diagnostic performance across 14 (model, dataset, $K$) configurations}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Sensitivity to number of sampled traces $K$ (Qwen2.5-14B, 60 questions).}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:k_sensitivity}{{4}{6}{Sensitivity to number of sampled traces $K$ (Qwen2.5-14B, 60 questions)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}$C_0$ as Binary Deployment Diagnostic}{6}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}$K$ Sensitivity Analysis}{6}{subsection.5.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Computational overhead breakdown (Qwen2.5-14B, per question average).}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:overhead}{{5}{7}{Computational overhead breakdown (Qwen2.5-14B, per question average)}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Ablation of the constraint aggregation mechanism (804 questions, Qwen2.5-14B).}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:ablation}{{6}{7}{Ablation of the constraint aggregation mechanism (804 questions, Qwen2.5-14B)}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Overhead Analysis}{7}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Constraint Ablation}{7}{subsection.5.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Constraint Quality Analysis}{7}{subsection.5.8}\protected@file@percent }
+\bibstyle{plain}
+\bibcite{wang2023selfconsistency}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Cross-Domain Validation: GSM8K}{8}{subsection.5.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When does symbolic consensus help?}{8}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Instruction vs.\ reasoning models.}{8}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\bibcite{chen2023universal}{2}
+\bibcite{pan2023logiclm}{3}
+\bibcite{lyu2023faithful}{4}
+\bibcite{lakshminarayanan2017simple}{5}
+\bibcite{han2022folio}{6}
+\bibcite{tafjord2021proofwriter}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Full $C_0$ Diagnostic Data Points}{9}{appendix.A}\protected@file@percent }
+\newlabel{app:c0_data}{{A}{9}{Full $C_0$ Diagnostic Data Points}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces All data points for $C_0$ vs.\ SICA--SC gap analysis.}}{9}{table.7}\protected@file@percent }
+\newlabel{tab:c0_full}{{7}{9}{All data points for $C_0$ vs.\ SICA--SC gap analysis}{table.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}GSM8K Pilot Results}{9}{appendix.B}\protected@file@percent }
+\newlabel{app:gsm8k}{{B}{9}{GSM8K Pilot Results}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces GSM8K pilot evaluation (Qwen2.5-14B, $K=12$, $T=0.7$, 30 questions).}}{10}{table.8}\protected@file@percent }
+\newlabel{tab:gsm8k}{{8}{10}{GSM8K pilot evaluation (Qwen2.5-14B, $K=12$, $T=0.7$, 30 questions)}{table.8}{}}
+\gdef \@abspage@last{10}

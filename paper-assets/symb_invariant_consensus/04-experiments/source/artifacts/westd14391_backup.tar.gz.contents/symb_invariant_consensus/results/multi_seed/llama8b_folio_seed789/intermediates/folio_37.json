@@ -1,0 +1,751 @@
+{
+  "problem": {
+    "id": "folio_37",
+    "problem": "Given the following premises:\nSymphony No. 9 is a music piece. Composers write music pieces. Beethoven wrote Symphony No. 9. Vienna Music Society premiered Symphony No. 9. Vienna Music Society is an orchestra. Beethoven leads the Vienna Music Society. Orchestras are led by conductors.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSome orchestras premiered music pieces.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "MusicPiece(symphony9)",
+      "\u2200x \u2200y ((MusicPiece(x) \u2227 Writtenby(x, y)) \u2192 Composer(y))",
+      "Writtenby(symphony9, beethoven)",
+      "Premiered(viennamusicsociety, symphony9)",
+      "Orchestra(viennamusicsociety)",
+      "Lead(beethoven, viennamusicsociety)",
+      "\u2200x \u2200y ((Orchestra(x) \u2227 Lead(y, x)) \u2192 Conductor(y))"
+    ],
+    "conclusion_fol": "\u2203x \u2203y (Orchestra(x) \u2227 MusicPiece(y) \u2227 Premiered(x, y))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 90.0,
+      "Uncertain, but leaning towards True": 59.0,
+      "Unknown": 61.0
+    },
+    "answer_counts": {
+      "True": 8,
+      "Unknown": 2,
+      "Uncertain, but leaning towards True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion \"Some orchestras premiered music pieces\" is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. **Symphony No. 9 is a music piece.**\n   - This premise tells us that Symphony No. 9 is a specific music piece, but it does not provide any information about orchestras or their actions.\n\n2. **Composers write music pieces.**\n   - This premise gives us information about composers but does not relate directly to orchestras or their actions.\n\n3. **Beethoven wrote Symphony No. 9.**\n   - This premise provides a specific example of a composer writing a music piece, but it still does not provide any information about orchestras.\n\n4. **Vienna Music Society premiered Symphony No. 9.**\n   - This premise tells us that the Vienna Music Society, which is an orchestra, premiered a music piece (Symphony No. 9).\n\n5. **Vienna Music Society is an orchestra.**\n   - This premise reiterates the information from premise 4 that the Vienna Music Society is an orchestra.\n\n6. **Beethoven leads the Vienna Music Society.**\n   - This premise tells us about Beethoven's role within the Vienna Music Society, but it does not directly relate to the conclusion.\n\n7. **Orchestras are led by conductors.**\n   - This premise gives us information about the structure of orchestras, but it does not provide any information about their actions.\n\nNow, let's analyze the conclusion: \"Some orchestras premiered music pieces.\"\n\nWe know from premise 4 that the Vienna Music Society (an orchestra) premiered Symphony No. 9. This satisfies the conclusion, as it provides an example of an orchestra premiering a music piece.\n\nTherefore, based on the given premises, the conclusion \"Some orchestras premiered music pieces\" is **true**.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and their logical connections.\n\n1. Symphony No. 9 is a music piece. \n   This is a premise stating a fact about Symphony No. 9.\n\n2. Composers write music pieces. \n   This is a premise stating a general fact about composers.\n\n3. Beethoven wrote Symphony No. 9. \n   This is a premise connecting Beethoven to the music piece Symphony No. 9.\n\n4. Vienna Music Society premiered Symphony No. 9. \n   This is a premise stating a fact about the premiere of Symphony No. 9.\n\n5. Vienna Music Society is an orchestra. \n   This is a premise stating a fact about the Vienna Music Society.\n\n6. Beethoven leads the Vienna Music Society. \n   This is a premise stating a fact about Beethoven's leadership.\n\n7. Orchestras are led by conductors. \n   This is a premise stating a general fact about orchestras.\n\nNow, let's analyze the conclusion: Some orchestras premiered music pieces.\n\nFrom premises 1, 4, and 5, we can conclude that the Vienna Music Society (which is an orchestra) premiered a music piece (Symphony No. 9).\n\nHowever, this conclusion is uncertain because it only applies to the Vienna Music Society, which is a specific orchestra. To determine whether the conclusion \"Some orchestras premiered music pieces\" is true, we need to know if there are other orchestras that have also premiered music pieces.\n\nSince we don't have any information about other orchestras, we can't make a general conclusion about all orchestras. Therefore, the conclusion \"Some orchestras premiered music pieces\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Symphony No. 9 is a music piece. \nPremise 2: Composers write music pieces. \nPremise 3: Beethoven wrote Symphony No. 9.\nPremise 4: Vienna Music Society premiered Symphony No. 9.\nPremise 5: Vienna Music Society is an orchestra.\nPremise 6: Beethoven leads the Vienna Music Society.\nPremise 7: Orchestras are led by conductors.\n\nConclusion: Some orchestras premiered music pieces.\n\nLet's break down the information step by step:\n\n1. From Premise 4, we know that the Vienna Music Society premiered Symphony No. 9.\n2. From Premise 3, we know that Beethoven wrote Symphony No. 9.\n3. From Premise 6, we know that Beethoven leads the Vienna Music Society.\n4. We can infer that the Vienna Music Society, as an orchestra (Premise 5), is led by Beethoven (Premise 6).\n5. Since orchestras are led by conductors (Premise 7), Beethoven must be a conductor.\n\nNow, let's analyze the conclusion: Some orchestras premiered music pieces.\n\n1. We have established that the Vienna Music Society, an orchestra, premiered Symphony No. 9 (Premise 4).\n2. This implies that at least one orchestra (the Vienna Music Society) has premiered a music piece (Symphony No. 9).\n3. Therefore, the conclusion \"Some orchestras premiered music pieces\" is indeed true, as we have found at least one example of an orchestra that premiered a music piece.\n\nSo, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the truth value of the conclusion \"Some orchestras premiered music pieces,\" we need to analyze the given premises.\n\n1. Symphony No. 9 is a music piece. \n2. Composers write music pieces. \n3. Beethoven wrote Symphony No. 9. \n4. Vienna Music Society premiered Symphony No. 9. \n5. Vienna Music Society is an orchestra. \n6. Beethoven leads the Vienna Music Society. \n7. Orchestras are led by conductors.\n\nFrom the premises, we know the following:\n\n- Vienna Music Society is an orchestra (premise 5). \n- Vienna Music Society premiered Symphony No. 9 (premise 4). \n- Symphony No. 9 is a music piece (premise 1).\n\nGiven that Vienna Music Society is an orchestra and it premiered a music piece, we can infer that some orchestras premiered music pieces. \n\nThis conclusion is logically sound because it directly follows from the premises. \n\nTherefore, the conclusion \"Some orchestras premiered music pieces\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the premises and see if they logically lead to the conclusion.\n\nPremise 1: Symphony No. 9 is a music piece.\nPremise 2: Composers write music pieces.\nPremise 3: Beethoven wrote Symphony No. 9.\nPremise 4: Vienna Music Society premiered Symphony No. 9.\nPremise 5: Vienna Music Society is an orchestra.\nPremise 6: Beethoven leads the Vienna Music Society.\nPremise 7: Orchestras are led by conductors.\n\nConclusion: Some orchestras premiered music pieces.\n\nLet's analyze the premises:\n\nFrom Premise 1 and Premise 2, we can conclude that composers can premiere music pieces because they write them. \n\nFrom Premise 3, we know Beethoven is a composer.\n\nFrom Premise 4, we know that Vienna Music Society premiered Symphony No. 9.\n\nFrom Premise 5 and Premise 6, we know that Beethoven is the leader (conductor) of the Vienna Music Society, which is an orchestra.\n\nNow, let's connect the information:\n\nBeethoven (a composer) premiered Symphony No. 9, which is a music piece. This means that at least one orchestra (the Vienna Music Society) premiered a music piece.\n\nSince we have found a specific instance where an orchestra (the Vienna Music Society) premiered a music piece (Symphony No. 9), we can conclude that some orchestras did premiere music pieces.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the truth value of the conclusion \"Some orchestras premiered music pieces,\" we need to analyze the given premises.\n\n1. Symphony No. 9 is a music piece. (Premise 1)\n   This premise tells us that Symphony No. 9 is a type of music piece, but it does not provide information about orchestras.\n\n2. Composers write music pieces. (Premise 2)\n   This premise tells us the relationship between composers and music pieces but does not provide information about orchestras or their role in premiering music pieces.\n\n3. Beethoven wrote Symphony No. 9. (Premise 3)\n   This premise tells us that Beethoven composed Symphony No. 9, but it does not provide information about orchestras or their role in premiering music pieces.\n\n4. Vienna Music Society premiered Symphony No. 9. (Premise 4)\n   This premise tells us that the Vienna Music Society premiered Symphony No. 9. Since the Vienna Music Society is an orchestra (Premise 5), this premise implies that some orchestras (the Vienna Music Society) premiered music pieces (Symphony No. 9).\n\n5. Vienna Music Society is an orchestra. (Premise 5)\n   This premise tells us that the Vienna Music Society is a type of orchestra, but it does not provide information about orchestras and their role in premiering music pieces.\n\n6. Beethoven leads the Vienna Music Society. (Premise 6)\n   This premise tells us about Beethoven's role in the Vienna Music Society, but it does not provide information about orchestras and their role in premiering music pieces.\n\n7. Orchestras are led by conductors. (Premise 7)\n   This premise tells us about the relationship between orchestras and conductors but does not provide information about orchestras and their role in premiering music pieces.\n\nFrom Premise 4, we know that the Vienna Music Society (an orchestra) premiered Symphony No. 9 (a music piece). Therefore, the conclusion \"Some orchestras premiered music pieces\" is supported by the given premises.\n\nThe conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we'll use the premises to deduce the conclusion. This is an example of a logical argument using the principles of syllogism.\n\nPremises:\n\n1. Symphony No. 9 is a music piece.\n2. Composers write music pieces.\n3. Beethoven wrote Symphony No. 9.\n4. Vienna Music Society premiered Symphony No. 9.\n5. Vienna Music Society is an orchestra.\n6. Beethoven leads the Vienna Music Society.\n7. Orchestras are led by conductors.\n\nConclusion: Some orchestras premiered music pieces.\n\nStep 1: Determine if there's a direct connection between orchestras and music pieces.\n\nFrom premise 1, we know that Symphony No. 9 is a music piece. \nFrom premise 5, we know that Vienna Music Society is an orchestra.\n\nStep 2: Determine if there's a connection between the orchestra (Vienna Music Society) and the music piece (Symphony No. 9).\n\nFrom premise 4, we know that Vienna Music Society premiered Symphony No. 9.\nFrom premise 5, we know that Vienna Music Society is an orchestra.\n\nStep 3: Determine if the relationship between the orchestra (Vienna Music Society) and the music piece (Symphony No. 9) can be generalized to all orchestras.\n\nFrom premise 6, we know that Beethoven leads the Vienna Music Society. \nFrom premise 7, we know that Orchestras are led by conductors.\n\nHowever, there is no information that links the fact that Vienna Music Society is an orchestra that premiered a music piece to all other orchestras. \n\nConclusion: The given premises do not provide enough information to support the conclusion that some orchestras premiered music pieces.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some orchestras premiered music pieces\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. Symphony No. 9 is a music piece. \n   This premise establishes that Symphony No. 9 is a music piece, but it does not provide any information about orchestras.\n\n2. Composers write music pieces.\n   This premise tells us that composers create music pieces, but it does not relate directly to orchestras or their activities.\n\n3. Beethoven wrote Symphony No. 9.\n   This premise links the composer Beethoven to the music piece Symphony No. 9, but it still does not involve orchestras directly.\n\n4. Vienna Music Society premiered Symphony No. 9.\n   This premise establishes a connection between the orchestra Vienna Music Society and the music piece Symphony No. 9, indicating that they were involved in its premiere.\n\n5. Vienna Music Society is an orchestra.\n   This premise confirms that Vienna Music Society is indeed an orchestra.\n\n6. Beethoven leads the Vienna Music Society.\n   This premise tells us that Beethoven is the leader of the Vienna Music Society, but this information is not necessary for our conclusion.\n\n7. Orchestras are led by conductors.\n   This premise provides additional information about orchestras, but it does not affect our conclusion about the premiere of music pieces.\n\nNow, let's analyze the conclusion: \"Some orchestras premiered music pieces.\"\n\nFrom premise 4, we know that the Vienna Music Society premiered Symphony No. 9, and from premise 5, we know that the Vienna Music Society is an orchestra. This directly supports the conclusion that some orchestras (in this case, the Vienna Music Society) premiered music pieces.\n\nTherefore, the conclusion \"Some orchestras premiered music pieces\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and see if they support the conclusion.\n\nPremise 1: Symphony No. 9 is a music piece.\nPremise 2: Composers write music pieces.\nPremise 3: Beethoven wrote Symphony No. 9.\nPremise 4: Vienna Music Society premiered Symphony No. 9.\nPremise 5: Vienna Music Society is an orchestra.\nPremise 6: Beethoven leads the Vienna Music Society.\nPremise 7: Orchestras are led by conductors.\n\nFrom Premise 2 and Premise 3, we can infer that Beethoven is a composer who wrote Symphony No. 9 (a music piece).\n\nFrom Premise 4 and Premise 5, we know that the Vienna Music Society (an orchestra) premiered Symphony No. 9.\n\nFrom Premise 6, we know that Beethoven leads the Vienna Music Society (an orchestra), which means he is the conductor of this orchestra.\n\nNow, looking at the conclusion: \"Some orchestras premiered music pieces.\"\n\nWe have two pieces of evidence supporting this conclusion:\n\n1. The Vienna Music Society (an orchestra) premiered Symphony No. 9 (a music piece).\n2. We know that some orchestras (like the Vienna Music Society) have conductors (like Beethoven), and conductors lead orchestras. This information, combined with the fact that orchestras can premiere music pieces, supports the conclusion.\n\nHowever, we don't have information about all orchestras, only the Vienna Music Society. But we can make a generalization based on the given premises. If some orchestras can premiere music pieces (as the Vienna Music Society did), and orchestras are led by conductors, then it's possible that some orchestras premiered music pieces.\n\nTherefore, the conclusion is uncertain, but leaning towards true, because it's possible that some orchestras can premiere music pieces.\n\n\\boxed{Uncertain, but leaning towards True}",
+        "answer": "Uncertain, but leaning towards True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the truth value of the conclusion \"Some orchestras premiered music pieces,\" let's analyze the given premises step by step:\n\n1. Symphony No. 9 is a music piece. (Premise 1)\n   - This premise tells us that Symphony No. 9 is a music piece, but it doesn't directly relate to orchestras.\n\n2. Composers write music pieces. (Premise 2)\n   - This premise connects composers to music pieces, but we don't have any information about orchestras yet.\n\n3. Beethoven wrote Symphony No. 9. (Premise 3)\n   - This premise connects Beethoven, a composer, to Symphony No. 9.\n\n4. Vienna Music Society premiered Symphony No. 9. (Premise 4)\n   - This premise tells us that the Vienna Music Society premiered Symphony No. 9, which is a music piece. However, we still don't know if the Vienna Music Society is an orchestra.\n\n5. Vienna Music Society is an orchestra. (Premise 5)\n   - This premise tells us that the Vienna Music Society is indeed an orchestra.\n\n6. Beethoven leads the Vienna Music Society. (Premise 6)\n   - This premise connects Beethoven, a conductor, to the Vienna Music Society.\n\n7. Orchestras are led by conductors. (Premise 7)\n   - This premise tells us that orchestras are led by conductors, and since Beethoven leads the Vienna Music Society, we can conclude that Beethoven is a conductor.\n\nNow, let's look at the conclusion: \"Some orchestras premiered music pieces.\"\n\nWe know that the Vienna Music Society:\n- Is an orchestra (Premise 5)\n- Is led by a conductor (Premise 6 and 7)\n- Premiered Symphony No. 9 (Premise 4)\n- Symphony No. 9 is a music piece (Premise 1)\n\nSince the Vienna Music Society is an orchestra and premiered a music piece, we can conclude that at least one orchestra (the Vienna Music Society) premiered a music piece.\n\nTherefore, the conclusion \"Some orchestras premiered music pieces\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some orchestras premiered music pieces\" is true, false, or uncertain, we need to analyze the given premises.\n\n1. Symphony No. 9 is a music piece. \n   - This premise is true, but it does not directly relate to the conclusion.\n\n2. Composers write music pieces.\n   - This premise is true, but it does not directly relate to the conclusion.\n\n3. Beethoven wrote Symphony No. 9.\n   - This premise is true, but it does not directly relate to the conclusion.\n\n4. Vienna Music Society premiered Symphony No. 9.\n   - This premise is true, and it directly relates to the conclusion. However, it is specific to the Vienna Music Society, not all orchestras.\n\n5. Vienna Music Society is an orchestra.\n   - This premise is true, but it is also specific to the Vienna Music Society, not all orchestras.\n\n6. Beethoven leads the Vienna Music Society.\n   - This premise is true, but it does not directly relate to the conclusion.\n\n7. Orchestras are led by conductors.\n   - This premise is true, but it does not directly relate to the conclusion.\n\nTo determine whether the conclusion is true, we need to find a connection between the given premises and the conclusion. We know that the Vienna Music Society, which is an orchestra, premiered a music piece. However, this does not necessarily mean that all orchestras premiered music pieces. We only have information about the Vienna Music Society, not all orchestras.\n\nTherefore, based on the given premises, we cannot conclude that all orchestras premiered music pieces. The conclusion is uncertain because we do not have enough information to make a general statement about all orchestras.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and determine if they lead to the conclusion that \"Some orchestras premiered music pieces.\"\n\n1. Symphony No. 9 is a music piece. \n   - This premise establishes that Symphony No. 9 is a music piece.\n\n2. Composers write music pieces. \n   - This premise establishes a relationship between composers and music pieces, but it doesn't directly relate to the conclusion.\n\n3. Beethoven wrote Symphony No. 9. \n   - This premise establishes that Beethoven was the composer of Symphony No. 9.\n\n4. Vienna Music Society premiered Symphony No. 9. \n   - This premise establishes that the Vienna Music Society was involved in the premiere of Symphony No. 9.\n\n5. Vienna Music Society is an orchestra. \n   - This premise establishes that the Vienna Music Society is a type of orchestra.\n\n6. Beethoven leads the Vienna Music Society. \n   - This premise establishes a relationship between Beethoven and the Vienna Music Society, but it doesn't directly relate to the conclusion.\n\n7. Orchestras are led by conductors. \n   - This premise establishes a general relationship between orchestras and conductors.\n\nNow, we can analyze the given conclusion: \"Some orchestras premiered music pieces.\"\n\nFrom premise 4, we know that the Vienna Music Society (which is an orchestra, premise 5) premiered Symphony No. 9 (premise 1). Since orchestras are led by conductors (premise 7) and Beethoven leads the Vienna Music Society (premise 6), it can be inferred that Beethoven is a conductor.\n\nTherefore, we have established that at least one orchestra (the Vienna Music Society) premiered a music piece (Symphony No. 9). This supports the conclusion that \"Some orchestras premiered music pieces.\"\n\nConclusion: True.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "wrote(beethoven, symphony_no_9)",
+          "z3_formula": "wrote_beethoven_symphony_no_9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "leads(beethoven, vienna_music_society)",
+          "z3_formula": "leads_beethoven_vienna_music_society == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> led_by(X, conductor)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_vienna_music_society_conductor)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "premiered(some_orchestras, some_music_pieces)",
+          "z3_formula": "premiered_some_orchestras_some_music_pieces == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_beethoven)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "wrote(beethoven, symphony_no_9)",
+          "z3_formula": "wrote_beethoven_symphony_no_9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "leads(beethoven, vienna_music_society)",
+          "z3_formula": "leads_beethoven_vienna_music_society == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_conductor_vienna_music_society)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_X, music_piece_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "beethoven_wrote_symphony_no_9",
+          "z3_formula": "beethoven_wrote_symphony_no_9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vienna_music_society_premiered_symphony_no_9",
+          "z3_formula": "vienna_music_society_premiered_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "vienna_music_society_is_orchestra",
+          "z3_formula": "vienna_music_society_is_orchestra == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "beethoven_leads_vienna_music_society",
+          "z3_formula": "beethoven_leads_vienna_music_society == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_X, led_by_conductor_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "some_orchestras_premiered_music_pieces",
+          "z3_formula": "Or(orchestra_X, music_piece_Y)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "composer(beethoven)",
+          "z3_formula": "composer_beethoven == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "wrote(beethoven, symphony_no_9)",
+          "z3_formula": "wrote_beethoven_symphony_no_9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "leads(beethoven, vienna_music_society)",
+          "z3_formula": "leads_beethoven_vienna_music_society == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "led_by_conductor(orchestra)",
+          "z3_formula": "led_by_conductor_orchestra == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_conductor_vienna_music_society)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "some(orchestra, premiered_music_piece)",
+          "z3_formula": "some_orchestra_premiered_music_piece == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "composer(beethoven)",
+          "z3_formula": "composer_beethoven == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "leader(beethoven, vienna_music_society)",
+          "z3_formula": "leader_beethoven_vienna_music_society == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "composer(X) -> writes_music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, writes_music_piece_beethoven)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "writes_music_piece(X) -> premieres_music_piece(X)",
+          "z3_formula": "Implies(writes_music_piece_beethoven, premieres_music_piece_beethoven)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_conductor_vienna_music_society)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "premiered_music_piece(some(orchestra))",
+          "z3_formula": "premiered_music_piece_some_orchestra == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "composer(beethoven)",
+          "z3_formula": "composer_beethoven == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "premiered(orchestra, music_piece)",
+          "z3_formula": "premiered_orchestra_music_piece == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_X, music_piece_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "beethoven_wrote_symphony_no_9",
+          "z3_formula": "beethoven_wrote_symphony_no_9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vienna_music_society_premiered_symphony_no_9",
+          "z3_formula": "vienna_music_society_premiered_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "vienna_music_society_is_orchestra",
+          "z3_formula": "vienna_music_society_is_orchestra == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "beethoven_leads_vienna_music_society",
+          "z3_formula": "beethoven_leads_vienna_music_society == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_X, led_by_conductor_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "some(orchestra(X) & music_piece(Y))",
+          "z3_formula": "Or(And(orchestra_X, music_piece_Y), And(orchestra_X, music_piece_Y))",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_conductor_vienna_music_society)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "composer(beethoven) & music_piece(symphony_no_9)",
+          "z3_formula": "And(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "leads(beethoven, vienna_music_society)",
+          "z3_formula": "leads_beethoven_vienna_music_society == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_conductor_vienna_music_society)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "composer(beethoven) & music_piece(symphony_no_9)",
+          "z3_formula": "And(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "orchestra(vienna_music_society) & premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "And(orchestra_vienna_music_society, premiered_vienna_music_society_symphony_no_9)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "orchestra(vienna_music_society) & leads(beethoven, vienna_music_society) & led_by_conductor(vienna_music_society)",
+          "z3_formula": "And(And(orchestra_vienna_music_society, leads_beethoven_vienna_music_society), led_by_conductor_vienna_music_society)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) & premiered(X, Y) -> can_premiere(X, Y)",
+          "z3_formula": "Implies(And(orchestra_vienna_music_society, premiered_vienna_music_society_symphony_no_9), can_premiere_vienna_music_society_symphony_no_9)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> has_conductor(X)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, has_conductor_vienna_music_society)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) & has_conductor(X) -> can_premiere(X, Y)",
+          "z3_formula": "Implies(And(orchestra_vienna_music_society, has_conductor_vienna_music_society), can_premiere_vienna_music_society_symphony_no_9)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "some(orchestra(X) & premiered(X, Y))",
+          "z3_formula": "Or(premiered_vienna_music_society_symphony_no_9, Or(premiered_vienna_music_society_symphony_no_9, Unknown))",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "composer(X) -> music_piece(Y)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "composer(beethoven)",
+          "z3_formula": "composer_beethoven == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "conductor(beethoven)",
+          "z3_formula": "conductor_beethoven == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> conductor(Y)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, conductor_beethoven)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "some(orchestra(X), premiered(X, music_piece(Y)))",
+          "z3_formula": "Or(premiered_vienna_music_society_symphony_no_9, Exists(orchestra_X, And(orchestra_X, premiered_X_music_piece_Y)))",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> led_by(X, conductor)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_vienna_music_society_conductor)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "led_by(beethoven, vienna_music_society)",
+          "z3_formula": "led_by_beethoven_vienna_music_society == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "led_by(beethoven, vienna_music_society)",
+          "z3_formula": "led_by_beethoven_vienna_music_society == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "premiered(orchestra, music_piece)",
+          "z3_formula": "premiered_orchestra_music_piece == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "composer(beethoven)",
+          "z3_formula": "composer_beethoven == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_conductor_vienna_music_society)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "led_by(beethoven, vienna_music_society)",
+          "z3_formula": "led_by_beethoven_vienna_music_society == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "led_by(X, Y) -> conductor(X)",
+          "z3_formula": "Implies(led_by_beethoven_vienna_music_society, conductor_beethoven)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "conductor(beethoven)",
+          "z3_formula": "conductor_beethoven == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "some(orchestra, premiered)",
+          "z3_formula": "some_orchestra_premiered == True",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 102,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 39
+    },
+    "maxsat_stats": {
+      "satisfied": 39,
+      "excluded": 0,
+      "total_weight": 101,
+      "solve_time_ms": 1.0411916300654411
+    },
+    "timing": {
+      "trace_gen_s": 5.413,
+      "extraction_s": 21.854,
+      "dedup_s": 0.745,
+      "maxsat_s": 0.003,
+      "total_s": 28.016
+    }
+  }
+}

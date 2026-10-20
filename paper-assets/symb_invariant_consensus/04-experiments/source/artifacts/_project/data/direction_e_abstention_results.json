@@ -1,0 +1,88 @@
+{
+  "description": "Direction E: Selective Abstention results",
+  "experiments": {
+    "exp033 (Mistral-7B, seed=42)": {
+      "label": "exp033 (Mistral-7B, seed=42)",
+      "n_questions": 204,
+      "sc_accuracy_full": 0.5441176470588235,
+      "sica_accuracy_full": 0.5931372549019608,
+      "auroc_entropy_predicts_error": 0.6888017049307372,
+      "entropy_stats": {
+        "mean": 0.628,
+        "min": 0.0,
+        "max": 1.557,
+        "median": 0.684
+      },
+      "majority_fraction_stats": {
+        "mean": 0.788,
+        "min": 0.417,
+        "max": 1.0,
+        "median": 0.818
+      },
+      "coverage_table": [
+        {"coverage": "100%", "n_answered": 204, "random_sc_acc": "54.4%", "entropy_sc_acc": "54.4%", "majfrac_sc_acc": "54.4%", "entropy_sica_acc": "59.3%", "delta_entropy_pp": "+0.0pp", "delta_majfrac_pp": "+0.0pp"},
+        {"coverage": "90%", "n_answered": 184, "random_sc_acc": "54.4%", "entropy_sc_acc": "56.0%", "majfrac_sc_acc": "55.4%", "entropy_sica_acc": "61.4%", "delta_entropy_pp": "+1.5pp", "delta_majfrac_pp": "+1.0pp"},
+        {"coverage": "80%", "n_answered": 163, "random_sc_acc": "54.5%", "entropy_sc_acc": "58.3%", "majfrac_sc_acc": "59.5%", "entropy_sica_acc": "63.2%", "delta_entropy_pp": "+3.8pp", "delta_majfrac_pp": "+5.1pp"},
+        {"coverage": "70%", "n_answered": 143, "random_sc_acc": "54.4%", "entropy_sc_acc": "63.6%", "majfrac_sc_acc": "62.9%", "entropy_sica_acc": "63.6%", "delta_entropy_pp": "+9.2pp", "delta_majfrac_pp": "+8.5pp"},
+        {"coverage": "60%", "n_answered": 122, "random_sc_acc": "54.5%", "entropy_sc_acc": "66.4%", "majfrac_sc_acc": "66.4%", "entropy_sica_acc": "66.4%", "delta_entropy_pp": "+11.9pp", "delta_majfrac_pp": "+11.9pp"},
+        {"coverage": "50%", "n_answered": 102, "random_sc_acc": "54.3%", "entropy_sc_acc": "70.6%", "majfrac_sc_acc": "69.6%", "entropy_sica_acc": "70.6%", "delta_entropy_pp": "+16.3pp", "delta_majfrac_pp": "+15.3pp"}
+      ],
+      "coverage_data": {
+        "1.0": {"entropy_sc_acc": 0.5441, "entropy_sica_acc": 0.5931, "majfrac_sc_acc": 0.5441, "random_sc_acc_mean": 0.5441, "n_answered": 204},
+        "0.9": {"entropy_sc_acc": 0.5598, "entropy_sica_acc": 0.6141, "majfrac_sc_acc": 0.5543, "random_sc_acc_mean": 0.5443, "n_answered": 184},
+        "0.8": {"entropy_sc_acc": 0.5828, "entropy_sica_acc": 0.6319, "majfrac_sc_acc": 0.5951, "random_sc_acc_mean": 0.5446, "n_answered": 163},
+        "0.7": {"entropy_sc_acc": 0.6364, "entropy_sica_acc": 0.6364, "majfrac_sc_acc": 0.6294, "random_sc_acc_mean": 0.5443, "n_answered": 143},
+        "0.6": {"entropy_sc_acc": 0.6639, "entropy_sica_acc": 0.6639, "majfrac_sc_acc": 0.6639, "random_sc_acc_mean": 0.5449, "n_answered": 122},
+        "0.5": {"entropy_sc_acc": 0.7059, "entropy_sica_acc": 0.7059, "majfrac_sc_acc": 0.6961, "random_sc_acc_mean": 0.5434, "n_answered": 102}
+      }
+    },
+    "exp067 (Mistral-7B, seed=789)": {
+      "label": "exp067 (Mistral-7B, seed=789)",
+      "n_questions": 204,
+      "sc_accuracy_full": 0.5441176470588235,
+      "sica_accuracy_full": 0.5392156862745098,
+      "auroc_entropy_predicts_error": 0.6577060931899642,
+      "entropy_stats": {
+        "mean": 0.641,
+        "min": 0.0,
+        "max": 1.571,
+        "median": 0.722
+      },
+      "majority_fraction_stats": {
+        "mean": 0.781,
+        "min": 0.375,
+        "max": 1.0,
+        "median": 0.800
+      },
+      "coverage_table": [
+        {"coverage": "100%", "n_answered": 204, "random_sc_acc": "54.4%", "entropy_sc_acc": "54.4%", "majfrac_sc_acc": "54.4%", "entropy_sica_acc": "53.9%", "delta_entropy_pp": "+0.0pp", "delta_majfrac_pp": "+0.0pp"},
+        {"coverage": "90%", "n_answered": 184, "random_sc_acc": "54.5%", "entropy_sc_acc": "57.6%", "majfrac_sc_acc": "57.6%", "entropy_sica_acc": "57.1%", "delta_entropy_pp": "+3.1pp", "delta_majfrac_pp": "+3.1pp"},
+        {"coverage": "80%", "n_answered": 163, "random_sc_acc": "54.5%", "entropy_sc_acc": "59.5%", "majfrac_sc_acc": "59.5%", "entropy_sica_acc": "58.9%", "delta_entropy_pp": "+5.1pp", "delta_majfrac_pp": "+5.1pp"},
+        {"coverage": "70%", "n_answered": 143, "random_sc_acc": "54.4%", "entropy_sc_acc": "60.8%", "majfrac_sc_acc": "60.8%", "entropy_sica_acc": "61.5%", "delta_entropy_pp": "+6.5pp", "delta_majfrac_pp": "+6.5pp"},
+        {"coverage": "60%", "n_answered": 122, "random_sc_acc": "54.5%", "entropy_sc_acc": "62.3%", "majfrac_sc_acc": "63.1%", "entropy_sica_acc": "62.3%", "delta_entropy_pp": "+7.8pp", "delta_majfrac_pp": "+8.6pp"},
+        {"coverage": "50%", "n_answered": 102, "random_sc_acc": "54.4%", "entropy_sc_acc": "64.7%", "majfrac_sc_acc": "64.7%", "entropy_sica_acc": "64.7%", "delta_entropy_pp": "+10.3pp", "delta_majfrac_pp": "+10.3pp"}
+      ],
+      "coverage_data": {
+        "1.0": {"entropy_sc_acc": 0.5441, "entropy_sica_acc": 0.5392, "majfrac_sc_acc": 0.5441, "random_sc_acc_mean": 0.5441, "n_answered": 204},
+        "0.9": {"entropy_sc_acc": 0.5761, "entropy_sica_acc": 0.5707, "majfrac_sc_acc": 0.5761, "random_sc_acc_mean": 0.5448, "n_answered": 184},
+        "0.8": {"entropy_sc_acc": 0.5951, "entropy_sica_acc": 0.5890, "majfrac_sc_acc": 0.5951, "random_sc_acc_mean": 0.5445, "n_answered": 163},
+        "0.7": {"entropy_sc_acc": 0.6084, "entropy_sica_acc": 0.6154, "majfrac_sc_acc": 0.6084, "random_sc_acc_mean": 0.5438, "n_answered": 143},
+        "0.6": {"entropy_sc_acc": 0.6230, "entropy_sica_acc": 0.6230, "majfrac_sc_acc": 0.6311, "random_sc_acc_mean": 0.5454, "n_answered": 122},
+        "0.5": {"entropy_sc_acc": 0.6471, "entropy_sica_acc": 0.6471, "majfrac_sc_acc": 0.6471, "random_sc_acc_mean": 0.5439, "n_answered": 102}
+      }
+    }
+  },
+  "aggregate": {
+    "n_seeds": 2,
+    "auroc_mean": 0.6733,
+    "auroc_values": [0.6888, 0.6577],
+    "coverage_data": {
+      "1.0": {"entropy_sc_mean": 0.5441, "entropy_sc_std": 0.0, "random_sc_mean": 0.5441, "delta_pp": 0.0},
+      "0.9": {"entropy_sc_mean": 0.5679, "entropy_sc_std": 0.0082, "random_sc_mean": 0.5445, "delta_pp": 0.0234},
+      "0.8": {"entropy_sc_mean": 0.5890, "entropy_sc_std": 0.0061, "random_sc_mean": 0.5445, "delta_pp": 0.0444},
+      "0.7": {"entropy_sc_mean": 0.6224, "entropy_sc_std": 0.0140, "random_sc_mean": 0.5441, "delta_pp": 0.0783},
+      "0.6": {"entropy_sc_mean": 0.6434, "entropy_sc_std": 0.0205, "random_sc_mean": 0.5451, "delta_pp": 0.0983},
+      "0.5": {"entropy_sc_mean": 0.6765, "entropy_sc_std": 0.0294, "random_sc_mean": 0.5436, "delta_pp": 0.1329}
+    }
+  }
+}

@@ -1,0 +1,692 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1119_Q6",
+    "problem": "Anne is blue. Anne is cold. Anne is kind. Anne is quiet. Bob is blue. Bob is kind. Bob is nice. Bob is not quiet. Dave is not furry. Dave is green. Dave is quiet. Fiona is cold. All cold people are blue. Green, nice people are kind. All blue people are kind. Kind, cold people are nice. If someone is nice then they are green. Cold, green people are quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not kind.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nNice($x, bool) ::: Is x nice?\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nBlue(Anne, True) ::: Anne is blue.\nCold(Anne, True) ::: Anne is cold.\nKind(Anne, True) ::: Anne is kind.\nQuiet(Anne, True) ::: Anne is quiet.\nBlue(Bob, True) ::: Bob is blue.\nKind(Bob, True) ::: Bob is kind.\nNice(Bob, True) ::: Bob is nice.\nQuiet(Bob, False) ::: Bob is not quiet.\nFurry(Dave, False) ::: Dave is not furry.\nGreen(Dave, True) ::: Dave is green.\nQuiet(Dave, True) ::: Dave is quiet.\nCold(Fiona, True) ::: Fiona is cold.\n\nRules:\nCold($x, True) >>> Blue($x, True) ::: All cold people are blue.\nGreen($x, True) && Nice($x, True) >>> Kind($x, True) ::: Green, nice people are kind.\nBlue($x, True) >>> Kind($x, True) ::: All blue people are kind.\nKind($x, True) && Cold($x, True) >>> Nice($x, True) ::: Kind, cold people are nice.\nNice($x, True) >>> Green($x, True) ::: If someone is nice then they are green.\nCold($x, True) && Green($x, True) >>> Quiet($x, True) ::: Cold, green people are quiet.\n\nQuery:\nKind(Fiona, False) ::: Fiona is not kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 85.0
+    },
+    "answer_counts": {
+      "False": 12
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply logical deductions.\n\nGiven statements:\n\n1. Anne is blue.\n2. Anne is cold.\n3. Anne is kind.\n4. Anne is quiet.\n5. Bob is blue.\n6. Bob is kind.\n7. Bob is nice.\n8. Bob is not quiet.\n9. Dave is not furry.\n10. Dave is green.\n11. Dave is quiet.\n12. Fiona is cold.\n13. All cold people are blue.\n14. Green, nice people are kind.\n15. All blue people are kind.\n16. Kind, cold people are nice.\n17. If someone is nice then they are green.\n18. Cold, green people are quiet.\n\nNow, we need to determine whether Fiona is not kind. To do this, we can use the given statements and try to prove that Fiona is kind or not kind.\n\nWe know that:\n- Fiona is cold (Statement 12)\n- All cold people are blue (Statement 13)\n\nFrom these two statements, we can conclude that Fiona is blue.\n\nWe also know that:\n- Fiona is blue (from previous conclusion)\n- All blue people are kind (Statement 15)\n\nFrom these two statements, we can conclude that Fiona is kind.\n\nTherefore, based on the given statements, we can determine that the statement \"Fiona is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their relationships. \n\n1. All cold people are blue. \n2. Fiona is cold.\nFrom statement 2, we can conclude that Fiona is blue because of statement 1.\n\n3. All blue people are kind.\n4. Anne is blue.\n5. Bob is blue.\nFrom statements 3, 4, and 5, we can conclude that both Anne and Bob are kind.\n\n6. Kind, cold people are nice.\n7. Anne is kind and cold.\n8. Bob is kind.\nFrom statement 7, we can conclude that Anne is nice because of statement 6. However, we cannot conclude that Bob is nice from the given information.\n\n9. If someone is nice then they are green.\n10. Anne is nice.\nFrom statement 9, we can conclude that Anne is green because of statement 10.\n\n11. Cold, green people are quiet.\n12. Fiona is cold and green.\nFrom statement 12, we can conclude that Fiona is quiet because of statement 11.\n\nNow, we need to determine whether the statement \"Fiona is not kind\" is true, false, or unknown. \n\nFrom statement 2, we know that Fiona is cold. From statement 3, we know that all cold people are blue. Therefore, Fiona is blue.\n\nFrom statement 3, we know that all blue people are kind. Therefore, Fiona is kind.\n\nSo, the statement \"Fiona is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not kind' is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Given information:\n   - Anne is blue. \n   - Anne is cold. \n   - Anne is kind. \n   - Anne is quiet. \n   - Bob is blue. \n   - Bob is kind. \n   - Bob is nice. \n   - Bob is not quiet. \n   - Dave is not furry. \n   - Dave is green. \n   - Dave is quiet. \n   - Fiona is cold. \n   - All cold people are blue. \n   - Green, nice people are kind. \n   - All blue people are kind. \n   - Kind, cold people are nice. \n   - If someone is nice then they are green. \n   - Cold, green people are quiet.\n\n2. We need to determine whether Fiona is kind or not.\n\nFrom the given information, we know that Fiona is cold. \n\nSince 'All cold people are blue' and Fiona is cold, we can conclude that Fiona is blue.\n\nFrom the given information, 'All blue people are kind', so we can conclude that Fiona is kind.\n\nTherefore, the statement 'Fiona is not kind' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n\n1. Anne is blue.\n2. Anne is cold.\n3. Anne is kind.\n4. Anne is quiet.\n5. Bob is blue.\n6. Bob is kind.\n7. Bob is nice.\n8. Bob is not quiet.\n9. Dave is not furry.\n10. Dave is green.\n11. Dave is quiet.\n12. Fiona is cold.\n13. All cold people are blue.\n14. Green, nice people are kind.\n15. All blue people are kind.\n16. Kind, cold people are nice.\n17. If someone is nice then they are green.\n18. Cold, green people are quiet.\n\nWe need to determine whether Fiona is kind or not.\n\nFrom statement 13, we know that since Fiona is cold, she must be blue.\nFrom statement 15, we know that since Fiona is blue, she must be kind.\n\nHowever, statement 16 says that kind, cold people are nice. This creates a conflict with the initial information that Fiona is cold and we have determined she must be kind.\n\nBut we can resolve this conflict using the initial information that if someone is nice then they are green (statement 17). Since Fiona is kind and cold, and all kind, cold people are nice (statement 16), then Fiona must be nice. And since Fiona is nice, she must be green (statement 17).\n\nNow that we know Fiona is green, cold, and nice, we can use statement 18 to determine that since Fiona is cold and green, she must be quiet.\n\nFrom the information we've deduced so far, we know that Fiona is blue, kind, green, cold, and quiet. This information does not tell us whether Fiona is kind or not, but we do know that Fiona is green, nice, and quiet.\n\nSince we know that Fiona is green and nice, we can use statement 17 to determine that Fiona must be kind.\n\nSo, our final answer is that Fiona is kind.\n\nBut we were asked to determine whether the statement \"Fiona is not kind\" is true, false, or unknown.\n\nSince we have determined that Fiona is kind, the statement \"Fiona is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given information and the logical deductions we can make from it.\n\n1. We know that Fiona is cold.\n2. From the given information, we can conclude that all cold people are blue. Therefore, Fiona is blue.\n3. Since Fiona is blue, and from the given information, we can conclude that all blue people are kind, we can deduce that Fiona is kind.\n\nHowever, the statement to be evaluated is \"Fiona is not kind.\" Given that we have already concluded that Fiona is kind, we can determine the truth value of the statement.\n\nSince Fiona is kind, the statement \"Fiona is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not kind' is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n1. Fiona is cold.\n2. All cold people are blue.\n   - From (1) and (2), we can conclude that Fiona is blue.\n\n3. Bob is blue.\n   - However, we do not know if Bob and Fiona are the same person, so this information does not directly help us determine if Fiona is kind.\n\n4. All blue people are kind.\n   - Since Fiona is blue (from step 2), we can conclude that Fiona is kind.\n\nNow, considering the original statement 'Fiona is not kind', we can evaluate it:\n\nGiven that we found Fiona to be kind (from step 4), the statement 'Fiona is not kind' is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given information.\n\n1. We know that Fiona is cold.\n2. From the statement \"All cold people are blue,\" we can conclude that Fiona is blue.\n3. From the statement \"All blue people are kind,\" we can conclude that Fiona is kind.\n\nSince we have concluded that Fiona is kind, the statement \"Fiona is not kind\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. We are given the following statements:\n   - Anne is blue.\n   - Anne is cold.\n   - Anne is kind.\n   - Anne is quiet.\n   - Bob is blue.\n   - Bob is kind.\n   - Bob is nice.\n   - Bob is not quiet.\n   - Dave is not furry.\n   - Dave is green.\n   - Dave is quiet.\n   - Fiona is cold.\n\n2. We also have the following rules:\n   - All cold people are blue.\n   - Green, nice people are kind.\n   - All blue people are kind.\n   - Kind, cold people are nice.\n   - If someone is nice then they are green.\n   - Cold, green people are quiet.\n\nFrom the given statements and rules, we know that:\n- Fiona is cold (given statement).\n- All cold people are blue (rule).\n   So, Fiona is blue.\n\nWe also know that:\n- Fiona is blue (deduced).\n- All blue people are kind (rule).\n   So, Fiona is kind.\n\nNow, we need to analyze the statement \"Fiona is not kind\".\n\nSince we have deduced that Fiona is kind, the statement \"Fiona is not kind\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the information given:\n1. Fiona is cold.\n2. All cold people are blue.\n3. Blue people are kind (All blue people are kind).\n4. Kind people are not necessarily green, but green, nice people are kind. \n   - Since Fiona is not nice (unknown), we can't conclude that she is kind based on this rule.\n5. To determine if Fiona is kind or not, we need to look for a direct connection to the \"kind\" property.\n   - Since Fiona is cold (rule 1) and all cold people are blue (rule 2), and all blue people are kind (rule 3), Fiona is kind.\n\nHowever, to conclude whether Fiona is kind or not, we must also look at the fact that all cold people are blue (rule 2). \n   - Since Fiona is blue, we know that she is kind (rule 3), and that she is cold (rule 1).\n   - We can conclude that Fiona is kind.\n\nNow we know that Fiona is kind. \n   - To determine if Fiona is nice, we need to look at the rule \"If someone is nice then they are green.\" \n   - Since Fiona is not green, we can't conclude that she is nice.\n\nHowever, to conclude whether the statement \"Fiona is not kind\" is true, we need to look at the rule \"Kind, cold people are nice.\"\n   - Since Fiona is kind and cold, we can conclude that she is nice. However, the rule \"If someone is nice then they are green\" does not directly tell us that Fiona is green.\n   - However, the rule \"Green, nice people are kind\" tells us that green, nice people are kind, which means that Fiona could be green and nice. However, this rule does not tell us if Fiona is green or not.\n\nHowever, we can conclude that Fiona is not nice, green because we know that she is blue. \n   - If she were nice, green, then she would be kind, green. However, we know that she is not green. \n   - Therefore, the statement \"Fiona is not nice, green\" is true.\n\nHowever, we can't conclude that Fiona is not kind because we know that she is kind. \n   - Therefore, the statement \"Fiona is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will use the given information and logical deductions to determine the statement's truth value. We will break down the information into smaller, manageable parts and use the given rules to deduce the statement's truth value.\n\n1. Given information:\n   - Anne is blue.\n   - Anne is cold.\n   - Anne is kind.\n   - Anne is quiet.\n   - Bob is blue.\n   - Bob is kind.\n   - Bob is nice.\n   - Bob is not quiet.\n   - Dave is not furry.\n   - Dave is green.\n   - Dave is quiet.\n   - Fiona is cold.\n   - All cold people are blue.\n   - Green, nice people are kind.\n   - All blue people are kind.\n   - Kind, cold people are nice.\n   - If someone is nice then they are green.\n   - Cold, green people are quiet.\n\n2. To determine whether the statement \"Fiona is not kind\" is true or false, we need to analyze the given information and deduce the properties of Fiona.\n\nFrom the given information, we know that:\n- Fiona is cold.\n\nWe can deduce that Fiona is blue because of the rule: All cold people are blue.\n\nSince Fiona is blue, we can conclude that Fiona is kind because of the rule: All blue people are kind.\n\nNow, we have a contradiction with the statement \"Fiona is not kind\" because we have already concluded that Fiona is kind.\n\nTherefore, the statement \"Fiona is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information, we know:\n   - Fiona is cold.\n   - All cold people are blue.\n   - Since Fiona is cold, we can infer that Fiona is blue.\n\n2. Now we have:\n   - Fiona is blue.\n   - All blue people are kind.\n   - Since Fiona is blue, we can infer that Fiona is kind.\n\nGiven the information, we have determined that Fiona is kind. Therefore, the statement \"Fiona is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and rules to determine the truth value of the statement \"Fiona is not kind.\"\n\n1. We are given the following statements:\n   - Anne is blue.\n   - Anne is cold.\n   - Anne is kind.\n   - Anne is quiet.\n   - Bob is blue.\n   - Bob is kind.\n   - Bob is nice.\n   - Bob is not quiet.\n   - Dave is not furry.\n   - Dave is green.\n   - Dave is quiet.\n   - Fiona is cold.\n   - All cold people are blue.\n   - Green, nice people are kind.\n   - All blue people are kind.\n   - Kind, cold people are nice.\n   - If someone is nice then they are green.\n   - Cold, green people are quiet.\n\n2. From the given statements, we can infer the following:\n   - Since Fiona is cold, and all cold people are blue, Fiona is blue. (Rule 12)\n   - Since Fiona is blue, and all blue people are kind, Fiona is kind. (Rule 13)\n   - However, the statement we need to evaluate is \"Fiona is not kind.\"\n   - Since we have determined that Fiona is kind based on the given rules, we can directly conclude that the statement \"Fiona is not kind\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_fiona, blue_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_fiona, kind_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_fiona, blue_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(bob)",
+          "z3_formula": "Not(quiet_bob) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not furry(dave)",
+          "z3_formula": "Not(furry_dave) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_fiona, blue_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_fiona, kind_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & nice(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_bob, nice_bob), kind_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_bob, kind_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_anne, cold_anne), nice_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> green(X)",
+          "z3_formula": "Implies(nice_bob, green_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_dave, green_dave), quiet_dave)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_fiona, blue_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_fiona, kind_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_fiona, cold_fiona), nice_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> green(X)",
+          "z3_formula": "Implies(nice_fiona, green_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_fiona, green_fiona), quiet_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona) == False",
+          "z3_formula": "Not(kind_fiona) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_fiona, kind_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_fiona, kind_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(fiona)",
+          "z3_formula": "Not(kind_fiona) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_fiona, cold_fiona), nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_fiona, green_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & nice(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_fiona, nice_fiona), kind_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(fiona)",
+          "z3_formula": "Not(nice_fiona) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(fiona) & not green(fiona)",
+          "z3_formula": "And(Not(nice_fiona), Not(green_fiona)) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(fiona)",
+          "z3_formula": "Not(kind_fiona) == False",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_fiona, kind_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(fiona)",
+          "z3_formula": "Not(kind_fiona) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(fiona)",
+          "z3_formula": "Not(kind_fiona) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(fiona) == False",
+          "z3_formula": "Not(Not(kind_fiona)) == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 94,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 32
+    },
+    "maxsat_stats": {
+      "satisfied": 29,
+      "excluded": 3,
+      "total_weight": 88,
+      "solve_time_ms": 0.9520426392555237
+    },
+    "timing": {
+      "trace_gen_s": 6.294,
+      "extraction_s": 13.678,
+      "dedup_s": 0.502,
+      "maxsat_s": 0.003,
+      "total_s": 20.478
+    }
+  }
+}

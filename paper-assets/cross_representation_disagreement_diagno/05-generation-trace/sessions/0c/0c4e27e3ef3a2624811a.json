@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c4e27e3ef3a2624811a",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "analysis exp 001 folio deep",
+  "task_key": "worker_analysis_exp_001_folio_deep_20260515T060551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_001_folio_deep_20260515T060551_result.json",
+    "occurrence": 1,
+    "bytes": 1345,
+    "sha256": "8a8b468423bf8168d39531734d15b756107580d47a557d8e1afe60b2075c3955"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。关键发现：\n\n### Overall Metrics (All-mode, n=204)\n| 指标 | 值 | 95% CI |\n|------|-----|--------|\n| C1 disagree_rate | 42.2% | [35.3%, 49.0%] |\n| C2 diagnostic_rate | 88.4% | [81.3%, 94.7%] |\n| C4 targeted-blind Δ | +4.7% | [-8.8%, +18.1%] |\n| C5 localization_acc | 88.4% | [81.3%, 94.7%] |\n\n### 关键发现\n\n1. **错误类型分布**：logic_error 占 25.5%（52 例）为主导，negation_error 10.8%（22 例），exec_crash 和 unknown 各 5.4%\n\n2. **GT 子集差异大**：\n   - GT=False 的 C1 最高（47.6%），说明否定结论最容易引发分歧\n   - GT=Unknown 的 C1 也很高（49.3%），且 C4 delta 最大（+14.7%），说明 Unknown 样本上 targeted repair 优势最明显\n   - GT=True 的 C4 delta 为 **-13.6%**（targeted 反而不如 blind），这是反常的\n\n3. **分歧不对称性**：FOL correct & Code wrong = 56 vs Code correct & FOL wrong = 10，比例 **5.6:1**。FOL 整体准确率 78.9% 远高于 Code 的 59.8%，证实 Code 端是主要错误来源\n\n4. **Fisher exact test**：C4 差异在统计上 **不显著**（All-mode p=0.626, Excl-Unknown p=1.0），targeted vs blind 的优势需要更大样本量才能确认\n\n5. **C2 和 C5 相等**（88.4%）：说明诊断率和定位准确率一致——凡是能诊断的，定位都是对的"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-001-folio-deep.md"
+}

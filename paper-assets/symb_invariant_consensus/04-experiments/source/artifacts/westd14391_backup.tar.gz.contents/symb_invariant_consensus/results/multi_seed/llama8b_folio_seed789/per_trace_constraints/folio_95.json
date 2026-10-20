@@ -1,0 +1,804 @@
+{
+  "pid": "folio_95",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "pets(allowed_in_some_managed_buildings)",
+          "z3_formula": "pets_allowed_in_some_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_to_rent_apartment_in_managed_building",
+          "z3_formula": "deposit_required_to_rent_apartment_in_managed_building == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_to_one_months_rent_or_more",
+          "z3_formula": "security_deposit_can_be_equal_to_one_months_rent_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent_apartment_in_managed_building_if_and_only_if_allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500",
+          "z3_formula": "Implies(And(allowed_to_move_in_with_fluffy, security_deposit_no_more_than_1500), tom_will_rent_apartment_in_managed_building)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_either_2000_or_more",
+          "z3_formula": "security_deposit_at_olive_garden_is_either_2000_or_more == False",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_in_managed_buildings",
+          "z3_formula": "pets_allowed_in_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_in_managed_building",
+          "z3_formula": "deposit_required_in_managed_building == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_to_one_months_rent_or_more",
+          "z3_formula": "security_deposit_can_be_equal_to_one_months_rent_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent_if_allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500",
+          "z3_formula": "Implies(And(allowed_to_move_in_with_fluffy, security_deposit_no_more_than_1500), tom_will_rent)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "2000_is_more_than_1500",
+          "z3_formula": "2000_is_more_than_1500 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_no_more_than_1500",
+          "z3_formula": "security_deposit_at_olive_garden_is_no_more_than_1500 == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_either_2000_or_more",
+          "z3_formula": "security_deposit_at_olive_garden_is_either_2000_or_more == False",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "managed_building(olive_garden)",
+          "z3_formula": "managed_building_olive_garden == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent(olive_garden, 2000)",
+          "z3_formula": "monthly_rent_olive_garden_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "managed_building(X) -> pets_allowed(X)",
+          "z3_formula": "Implies(managed_building_olive_garden, pets_allowed_olive_garden)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required(olive_garden)",
+          "z3_formula": "deposit_required_olive_garden == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "deposit_required(X) -> deposit_amount(X, >= 1 * monthly_rent(X))",
+          "z3_formula": "Implies(deposit_required_olive_garden, And(deposit_amount_olive_garden, >= 1 * monthly_rent_olive_garden_2000))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent(olive_garden, 2000)",
+          "z3_formula": "monthly_rent_olive_garden_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "deposit_amount(X, >= 1 * monthly_rent(X)) | deposit_amount(X, > 1 * monthly_rent(X))",
+          "z3_formula": "Or(deposit_amount_olive_garden, >= 1 * monthly_rent_olive_garden_2000, deposit_amount_olive_garden, > 1 * monthly_rent_olive_garden_2000)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_will_rent(olive_garden, if pets_allowed(olive_garden) & deposit_amount(olive_garden, <= 1500))",
+          "z3_formula": "tom_will_rent_olive_garden_if_And(pets_allowed_olive_garden, deposit_amount_olive_garden, <= 1500) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent(X, if A) -> deposit_amount(X, <= 1500)",
+          "z3_formula": "Implies(tom_will_rent_olive_garden_if_And(pets_allowed_olive_garden, deposit_amount_olive_garden, <= 1500), deposit_amount_olive_garden, <= 1500)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "deposit_amount(olive_garden, >= 2000)",
+          "z3_formula": "deposit_amount_olive_garden, >= 2000 == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "pets(allowed_in_some_managed_buildings)",
+          "z3_formula": "pets_allowed_in_some_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_to_rent_apartment_in_managed_building",
+          "z3_formula": "deposit_required_to_rent_apartment_in_managed_building == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_to_one_months_rent_or_more",
+          "z3_formula": "security_deposit_can_be_equal_to_one_months_rent_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "tom_will_rent_apartment_in_managed_building_if_allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500",
+          "z3_formula": "tom_will_rent_apartment_in_managed_building_if_allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500 == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "2000_is_more_than_1500",
+          "z3_formula": "2000_is_more_than_1500 == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "managed_building -> pets_allowed",
+          "z3_formula": "Implies(olive_garden_is_managed_building, pets_allowed_in_olive_garden)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "deposit_required_to_rent_apartment_in_managed_building -> security_deposit_can_be_equal_to_one_months_rent_or_more",
+          "z3_formula": "Implies(deposit_required_to_rent_apartment_in_managed_building, security_deposit_can_be_equal_to_one_months_rent_or_more)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "security_deposit_can_be_equal_to_one_months_rent_or_more -> security_deposit_at_olive_garden_is_2000_or_more",
+          "z3_formula": "Implies(security_deposit_can_be_equal_to_one_months_rent_or_more, security_deposit_at_olive_garden_is_2000_or_more)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent_apartment_in_managed_building_if_allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500 -> security_deposit_at_olive_garden_is_2000_or_more",
+          "z3_formula": "Implies(tom_will_rent_apartment_in_managed_building_if_allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500, security_deposit_at_olive_garden_is_2000_or_more)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_2000_or_more",
+          "z3_formula": "security_deposit_at_olive_garden_is_2000_or_more == Unknown",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_in_some_managed_buildings",
+          "z3_formula": "pets_allowed_in_some_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_to_rent_in_managed_building",
+          "z3_formula": "deposit_required_to_rent_in_managed_building == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_to_one_months_rent_or_more",
+          "z3_formula": "security_deposit_can_be_equal_to_one_months_rent_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500 -> tom_will_rent_in_managed_building",
+          "z3_formula": "Implies(And(allowed_to_move_in_with_fluffy, security_deposit_no_more_than_1500), tom_will_rent_in_managed_building)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "2000_is_more_than_1500",
+          "z3_formula": "2000_is_more_than_1500 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_either_2000_or_more",
+          "z3_formula": "security_deposit_at_olive_garden_is_either_2000_or_more == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_in_managed_buildings",
+          "z3_formula": "pets_allowed_in_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_to_rent_apartment",
+          "z3_formula": "deposit_required_to_rent_apartment == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_at_least_one_months_rent",
+          "z3_formula": "security_deposit_can_be_at_least_one_months_rent == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent_if_allowed_to_move_in_with_fluffy_and_security_deposit_is_no_more_than_1500",
+          "z3_formula": "Implies(And(tom_is_allowed_to_move_in_with_fluffy, security_deposit_is_no_more_than_1500), tom_will_rent)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "2000_is_more_than_1500",
+          "z3_formula": "2000_is_more_than_1500 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_must_be_at_least_1500",
+          "z3_formula": "security_deposit_at_olive_garden_must_be_at_least_1500 == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_uncertain",
+          "z3_formula": "security_deposit_at_olive_garden_is_uncertain == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_managed_buildings",
+          "z3_formula": "pets_allowed_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_managed_building",
+          "z3_formula": "deposit_required_managed_building == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_or_more",
+          "z3_formula": "security_deposit_can_be_equal_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden",
+          "z3_formula": "monthly_rent_at_olive_garden == 2000",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "allowed_to_move_in_with_fluffy_and_security_deposit_not_more_than_1500 -> tom_will_rent",
+          "z3_formula": "Implies(And(allowed_to_move_in_with_fluffy, security_deposit_not_more_than_1500), tom_will_rent)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_either_2000_or_more",
+          "z3_formula": "security_deposit_at_olive_garden == 2000 | security_deposit_at_olive_garden == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Uncertain, but leaning towards True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "managed_building(olive_garden)",
+          "z3_formula": "managed_building_olive_garden == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent(olive_garden, 2000)",
+          "z3_formula": "monthly_rent_olive_garden_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "managed_building(X) & monthly_rent(X, Y) -> security_deposit(X, Y) | security_deposit(X, Y+1)",
+          "z3_formula": "Implies(And(managed_building_olive_garden, monthly_rent_olive_garden_2000), Or(security_deposit_olive_garden_2000, security_deposit_olive_garden_2001))",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_limit(1500)",
+          "z3_formula": "security_deposit_limit_1500 == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "security_deposit_limit(X) -> security_deposit(Y, X)",
+          "z3_formula": "Implies(security_deposit_limit_1500, security_deposit_olive_garden_1500)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit(olive_garden, 2000) | security_deposit(olive_garden, 2001)",
+          "z3_formula": "Or(security_deposit_olive_garden_2000, security_deposit_olive_garden_2001)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_in_managed_buildings",
+          "z3_formula": "pets_allowed_in_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_in_managed_building",
+          "z3_formula": "deposit_required_in_managed_building == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_to_one_months_rent_or_more",
+          "z3_formula": "security_deposit_can_be_equal_to_one_months_rent_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent_if_allowed_to_move_in_with_pet_and_security_deposit_is_no_more_than_1500",
+          "z3_formula": "Implies(And(allowed_to_move_in_with_pet, security_deposit_is_no_more_than_1500), tom_will_rent)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "2000_is_more_than_1500",
+          "z3_formula": "2000_is_more_than_1500 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_either_2000_or_more",
+          "z3_formula": "Or(security_deposit_at_olive_garden == 2000, security_deposit_at_olive_garden > 2000)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_in_managed_buildings",
+          "z3_formula": "pets_allowed_in_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_to_rent",
+          "z3_formula": "deposit_required_to_rent == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_to_one_month_rent_or_more",
+          "z3_formula": "security_deposit_can_be_equal_to_one_month_rent_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_tom_cat",
+          "z3_formula": "fluffy_is_tom_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent_if_allowed_to_move_in_with_fluffy_and_security_deposit_is_no_more_than_1500",
+          "z3_formula": "Implies(And(pets_allowed_in_managed_buildings, And(And(fluffy_is_tom_cat, cats_are_pets), And(deposit_required_to_rent, And(security_deposit_can_be_equal_to_one_month_rent_or_more, Not(And(security_deposit_can_be_equal_to_one_month_rent_or_more, GreaterThan(security_deposit, 1500))))))), tom_will_rent)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_either_2000_or_more",
+          "z3_formula": "Or(security_deposit_at_olive_garden == 2000, security_deposit_at_olive_garden == True)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_in_managed_buildings",
+          "z3_formula": "pets_allowed_in_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_to_rent_apartment",
+          "z3_formula": "deposit_required_to_rent_apartment == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_range",
+          "z3_formula": "security_deposit_range == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden",
+          "z3_formula": "monthly_rent_at_olive_garden == 2000",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "tom_will_rent_if_allowed_with_fluffy_and_deposit_not_more_than_1500",
+          "z3_formula": "tom_will_rent_if_allowed_with_fluffy_and_deposit_not_more_than_1500 == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "2000_is_more_than_1500",
+          "z3_formula": "2000_is_more_than_1500 == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent_if_deposit_not_more_than_1500",
+          "z3_formula": "Implies(And(olive_garden_is_managed_building, Not(tom_will_rent_if_allowed_with_fluffy_and_deposit_not_more_than_1500)), Not(tom_will_rent_if_allowed_with_fluffy_and_deposit_not_more_than_1500))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "tom_will_not_rent_at_olive_garden",
+          "z3_formula": "tom_will_not_rent_at_olive_garden == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_uncertain",
+          "z3_formula": "security_deposit_at_olive_garden_is_uncertain == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_in_some_managed_buildings",
+          "z3_formula": "pets_allowed_in_some_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_to_rent_in_managed_building",
+          "z3_formula": "deposit_required_to_rent_in_managed_building == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_to_one_months_rent_or_more",
+          "z3_formula": "security_deposit_can_be_equal_to_one_months_rent_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500 -> tom_will_rent_in_managed_building",
+          "z3_formula": "Implies(And(allowed_to_move_in_with_fluffy, security_deposit_no_more_than_1500), tom_will_rent_in_managed_building)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "2000_is_more_than_1500",
+          "z3_formula": "2000_is_more_than_1500 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_2000_or_more",
+          "z3_formula": "security_deposit_at_olive_garden_is_2000_or_more == True",
+          "source_step": 10
+        }
+      ]
+    }
+  ]
+}

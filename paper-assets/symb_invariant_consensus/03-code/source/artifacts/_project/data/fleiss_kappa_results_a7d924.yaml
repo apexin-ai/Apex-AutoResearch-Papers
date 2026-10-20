@@ -1,0 +1,196 @@
+computed_at: "2026-05-19T03:04:18.652567Z"
+formula: "Eff-K = K / (1 + (K-1) * kappa)"
+normalization: "Answers normalized to standard categories (True/False/Unknown for FOLIO/PW, A/B/C/D for LogiQA). Empty/unparseable answers mapped to Unknown."
+source_server: "westd-16639"
+
+results:
+  exp-026:
+    model: "Qwen2.5-14B"
+    dataset: "FOLIO-204"
+    fleiss_kappa: 0.7442
+    eff_k: 1.306
+    K: 12
+    n: 204
+    unanimous_rate: 0.5833
+    P_bar: 0.8364
+    P_e: 0.3604
+    categories: ['False', 'True', 'Unknown']
+    category_totals:
+      False: 889
+      True: 1057
+      Unknown: 502
+    source_dir: "exp036_qwen25_14b_folio204"
+    note: "Directory exp036_qwen25_14b_folio204 on westd-16639; registry entry exp-041-14b-folio204-16639. Kappa 0.7442 matches reference 0.739."
+
+  exp-041:
+    model: "Qwen2.5-14B"
+    dataset: "FOLIO-204"
+    fleiss_kappa: 0.7442
+    eff_k: 1.306
+    K: 12
+    n: 204
+    unanimous_rate: 0.5833
+    P_bar: 0.8364
+    P_e: 0.3604
+    categories: ['False', 'True', 'Unknown']
+    category_totals:
+      False: 889
+      True: 1057
+      Unknown: 502
+    source_dir: "exp036_qwen25_14b_folio204"
+    note: "Same data as exp-026 mapping (exp036_qwen25_14b_folio204 on westd-16639). If exp-041 is a separate run, its data was not found."
+
+  exp-052:
+    model: "Mistral-7B"
+    dataset: "FOLIO-204"
+    fleiss_kappa: 0.4122
+    eff_k: 2.168
+    K: 12
+    n: 204
+    unanimous_rate: 0.1422
+    P_bar: 0.6642
+    P_e: 0.4287
+    categories: ['False', 'True', 'Unknown']
+    category_totals:
+      False: 490
+      True: 525
+      Unknown: 1433
+    source_dir: "exp052_mistral_folio204_seed123"
+    note: "Seed=123 replication."
+
+  exp-053:
+    model: "Mistral-7B"
+    dataset: "FOLIO-204"
+    fleiss_kappa: 0.4013
+    eff_k: 2.216
+    K: 12
+    n: 204
+    unanimous_rate: 0.1422
+    P_bar: 0.6534
+    P_e: 0.4211
+    categories: ['False', 'True', 'Unknown']
+    category_totals:
+      False: 506
+      True: 534
+      Unknown: 1408
+    source_dir: "exp053_mistral_folio204_seed456"
+    note: "Seed=456 replication."
+
+  exp-038:
+    model: "Qwen2.5-14B"
+    dataset: "LogiQA-200"
+    fleiss_kappa: 0.821
+    eff_k: 1.196
+    K: 12
+    n: 200
+    unanimous_rate: 0.63
+    P_bar: 0.8664
+    P_e: 0.2539
+    categories: ['A', 'B', 'C', 'D']
+    category_totals:
+      A: 482
+      B: 620
+      C: 607
+      D: 691
+    source_dir: "exp038_qwen25_14b_logiqa200"
+
+unavailable:
+  exp-033:
+    model: "Mistral-7B"
+    dataset: "FOLIO-204"
+    K: 12
+    n: 204
+    status: "DATA_UNAVAILABLE"
+    reason: "westd-25068 SSH not accessible (key auth failed). Reference: kappa~0.501, eff_k~1.82"
+
+  exp-020:
+    model: "LLaMA-8B"
+    dataset: "FOLIO-204"
+    K: 12
+    n: 204
+    status: "DATA_UNAVAILABLE"
+    reason: "Data not found on westd-16639; likely on decommissioned server (westd-32608)."
+
+  exp-035:
+    model: "Qwen2.5-7B"
+    dataset: "FOLIO-204"
+    K: 12
+    n: 204
+    status: "DATA_UNAVAILABLE"
+    reason: "Data not found on westd-16639 or locally."
+
+  exp-027:
+    model: "Qwen3-14B"
+    dataset: "FOLIO-204"
+    K: 12
+    n: 204
+    status: "DATA_UNAVAILABLE"
+    reason: "Data not found on westd-16639 or locally."
+
+  exp-046:
+    model: "Mistral-7B"
+    dataset: "PW-D5-600"
+    K: 12
+    n: 600
+    status: "DATA_UNAVAILABLE"
+    reason: "westd-25068 SSH not accessible (key auth failed). Registry confirms server=westd-25068."
+
+# Bonus: additional experiments computed from westd-16639 data
+bonus_experiments:
+  exp032_qwen25_14b_pw600:
+    model: "Qwen2.5-14B"
+    dataset: "PW-D5-600"
+    fleiss_kappa: 0.6209
+    eff_k: 1.533
+    K: 12
+    n: 508
+    unanimous_rate: 0.372
+
+  exp033_qwen3_14b_pw600_nonthinking:
+    model: "Qwen3-14B-NonThinking"
+    dataset: "PW-D5-600"
+    fleiss_kappa: 0.7661
+    eff_k: 1.273
+    K: 12
+    n: 322
+    unanimous_rate: 0.5652
+
+  exp049b_mistral_logiqa200:
+    model: "Mistral-7B"
+    dataset: "LogiQA-200"
+    fleiss_kappa: 0.5034
+    eff_k: 1.836
+    K: 12
+    n: 200
+    unanimous_rate: 0.205
+
+  exp050b_mistral_icl_oracle:
+    model: "Mistral-7B-ICL-Oracle"
+    dataset: "FOLIO-199"
+    fleiss_kappa: 0.3946
+    eff_k: 2.247
+    K: 12
+    n: 199
+    unanimous_rate: 0.1508
+
+  exp055_multitemp_mistral_folio:
+    model: "Mistral-7B-MultiTemp"
+    dataset: "FOLIO-204-partial"
+    fleiss_kappa: 0.4151
+    eff_k: 2.156
+    K: 12
+    n: 93
+    unanimous_rate: 0.1935
+
+validation:
+  exp-026_reference:
+    expected_kappa: 0.739
+    computed_kappa: 0.7442
+    delta: 0.0052
+    expected_eff_k: 1.31
+    computed_eff_k: 1.306
+    status: "MATCH (within 0.01)"
+  exp-033_reference:
+    expected_kappa: 0.501
+    expected_eff_k: 1.82
+    status: "NOT_COMPUTED (data on inaccessible server westd-25068)"

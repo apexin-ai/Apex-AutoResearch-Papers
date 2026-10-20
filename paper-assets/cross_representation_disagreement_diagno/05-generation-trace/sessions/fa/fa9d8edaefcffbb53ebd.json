@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa9d8edaefcffbb53ebd",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "history",
+  "title": "director / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_3.md",
+    "occurrence": 1,
+    "bytes": 2227,
+    "sha256": "5a27072959a59391879c3b873a982414775ff1aec9337e07e242a88240ec03eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-14T21:18:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 autodl-rtx6000pro:cuda:0（单卡项目，gpu_ids=[0]）\n- 代码路径 /root/autodl-tmp/crdd，模型/数据不能放根分区\n- MVP 阶段不能启动完整研究规划、不能调 dream_simulate、不能写 paper_framing.md\n- Pipeline 进程用 nohup 后台跑，不要在 SSH session 前台阻塞\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-rtx6000pro (connect.westd.seetacloud.com) + westd-32608\n- 工作目录：/root/autodl-tmp/crdd\n- Python：conda base 环境 /root/miniconda3/bin/python\n- HF_HOME：/root/autodl-tmp/.hf_cache\n- 活跃进程：PID 47964（v4 pipeline，应已完成 204/204 样本）\n- 无 wandb 配置，无 tmux session\n\n### 3. 📊 当前状态\n- v4 pipeline (mvp_pipeline_004) 跑 204 样本，3小时前在 127/204（62.3%），按速率应已完成\n- 我刚派 Agent 去确认 pipeline 完成 + 跑 evaluate_mvp.py + repair_only.py（消息已入队，Agent 刚重置待启动）\n- Registry: mvp_pipeline_004 ANALYZING(success), mvp_baseline_001 DONE(success), 其余 negative/killed\n- 126 样本子集已 5/5 PASS（C1 35.9%, C2 88.1%, C3/C4/C5 均过阈值），等 204 全量确认\n\n### 4. 📋 待办\n- Agent 汇报 204 样本 evaluate_mvp.py 结果 → 5/5 PASS 则 complete_mvp() 进 research 阶段\n- 204 样本某指标 FAIL → 分析失败样本分布，决定是调 pipeline 还是放宽阈值\n- complete_mvp 后 → 立即启动 post-mvp-kickoff skill（paper_framing.md → experiment_plan.yaml → dream_simulate → ROADMAP）\n- repair_only.py 结果 → 记录修复成功率作为论文 claim 支撑数据\n\n### 5. 🎯 战略上下文\n- 核心假设：不同表征空间（token/logit/attention）的 disagreement 可以诊断模型错误类型\n- MVP 验证的是 pipeline 可行性：能否自动检测 disagreement 并生成有意义的诊断\n- 126 样本已 5/5 PASS 是强正信号，204 全量大概率通过\n- 易错：evaluate_mvp.py 是权威评估脚本，不要自己手算指标替代它\n- 决策链：D001-D008 见 decisions.yaml，关键转折是 v3→v4 引入 truncation detection + thinking-off retry 解决了截断问题\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3.md"
+}

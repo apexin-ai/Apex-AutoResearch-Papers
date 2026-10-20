@@ -1,0 +1,1571 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-165_Q11",
+    "problem": "Anne is furry. Anne is nice. Anne is rough. Anne is white. Erin is furry. Erin is rough. Erin is white. Fiona is big. Fiona is nice. Fiona is round. Harry is nice. Harry is rough. All furry things are white. If Harry is red then Harry is round. All round, red things are furry. If Harry is rough then Harry is round. Nice, red things are big. Round, red things are white. All nice, white things are red. If something is round then it is furry.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is big.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\nRound($x, bool) ::: Is x round?\nRed($x, bool) ::: Is x red?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nNice(Anne, True) ::: Anne is nice.\nRough(Anne, True) ::: Anne is rough.\nWhite(Anne, True) ::: Anne is white.\nFurry(Erin, True) ::: Erin is furry.\nRough(Erin, True) ::: Erin is rough.\nWhite(Erin, True) ::: Erin is white.\nBig(Fiona, True) ::: Fiona is big.\nNice(Fiona, True) ::: Fiona is nice.\nRound(Fiona, True) ::: Fiona is round.\nNice(Harry, True) ::: Harry is nice.\nRough(Harry, True) ::: Harry is rough.\n\nRules:\nFurry($x, True) >>> White($x, True) ::: All furry things are white.\nRed(Harry, True) >>> Round(Harry, True) ::: If Harry is red then Harry is round.\nRound($x, True) && Red($x, True) >>> Furry($x, True) ::: All round, red things are furry.\nRough(Harry, True) >>> Round(Harry, True) ::: If Harry is rough then Harry is round.\nNice($x, True) && Red($x, True) >>> Big($x, True) ::: Nice, red things are big.\nRound($x, True) && Red($x, True) >>> White($x, True) ::: Round, red things are white.\nNice($x, True) && White($x, True) >>> Red($x, True) ::: All nice, white things are red.\nRound($x, True) >>> Furry($x, True) ::: If something is round then it is furry.\n\nQuery:\nBig(Harry, True) ::: Harry is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 0.0,
+      "True": 238.0,
+      "Unknown": 139.0
+    },
+    "answer_counts": {
+      "True": 9,
+      "False": 1,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will use the given information and apply logical reasoning.\n\n1. All furry things are white. \n2. Erin is furry. \n   Therefore, Erin is white (from 1). \n\n3. Anne is furry. \n   Therefore, Anne is white (from 1). \n\n4. All round, red things are furry. \n   This does not give us any information about Harry yet.\n\n5. Harry is rough. \n   From (4), we can't conclude anything about Harry's color, but from (5) and (6), we can conclude that Harry is round.\n\n6. If Harry is rough then Harry is round. \n   This is already given in (5).\n\n7. All furry things are white. \n   We don't know yet whether Harry is furry.\n\n8. If something is round then it is furry. \n   Since Harry is round (from (5) and (6)), Harry is furry.\n\n9. All furry things are white. \n   Since Harry is furry (from (8)), Harry is white.\n\n10. All round, red things are furry. \n    This does not give us any information about Harry's size yet.\n\n11. Round, red things are white. \n    We don't know yet whether Harry is red.\n\n12. If Harry is red then Harry is round. \n    This is already given in (4).\n\n13. All nice, white things are red. \n    We don't know yet whether Harry is nice.\n\n14. Harry is nice. \n    We don't know yet whether Harry is big.\n\n15. Harry is rough. \n    We already know that Harry is round (from (5) and (6)).\n\n16. All furry things are white. \n    We already know that Harry is white (from (9)).\n\n17. Erin is furry. \n    We already know that Erin is white (from (2)).\n\n18. All round, red things are furry. \n    We already know that Harry is furry (from (8)).\n\n19. Nice, red things are big. \n    We already know that Harry is nice (from (14)) and we don't know whether Harry is red.\n\n20. All nice, white things are red. \n    We already know that Harry is nice (from (14)) and we know that Harry is white (from (16)).\n\nFrom (20), we can conclude that Harry is red.\n\nFrom (19) and (20), we can conclude that Harry is big.\n\nTherefore, the statement \"Harry is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Harry is big, we need to analyze the given information and apply logical reasoning.\n\n1. All furry things are white.\n2. Erin is furry. Erin is rough. Erin is white.\n   - Since Erin is furry and white, we can conclude that Erin is white (from statement 1) and furry (from statement 2).\n   - This doesn't directly help us with Harry, but it gives us a general understanding of the relationship between fur and color.\n\n3. Fiona is big. Fiona is nice. Fiona is round.\n   - Since Fiona is nice and round, and we know that round things are furry (from statement 9), we can conclude that Fiona is furry.\n   - We also know that Fiona is round and big, but we cannot directly conclude Harry's size from this information.\n\n4. Harry is nice. Harry is rough. \n   - Since Harry is rough, we can conclude that Harry is round (from statement 7).\n   - Since Harry is round, we can conclude that Harry is furry (from statement 9).\n\n5. All round, red things are furry.\n   - This statement doesn't help us directly, but it gives us a hint about the relationship between color, roundness, and fur.\n\n6. If Harry is red then Harry is round.\n   - We already know that Harry is round (from statement 4), so this doesn't provide any new information.\n\n7. All nice, white things are red.\n   - Since Harry is nice and white (because he is furry and white), we can conclude that Harry is red.\n\n8. Round, red things are white.\n   - This statement contradicts statement 7, as it says that round, red things are white, but statement 7 says that all nice, white things are red, implying that white and red are not necessarily the same in this context. However, we can use the given information to conclude that Harry is white, because we know that Harry is furry and white.\n\nFrom the given statements, we can conclude that Harry is furry, round, white, and red. Now, we need to determine whether Harry is big or not.\n\n9. If something is round then it is furry.\n   - We already know that Harry is round and furry.\n\n10. Nice, red things are big.\n   - Since Harry is nice, red, and furry (which implies white), we can use the given statements to conclude that Harry is big.\n\nTherefore, the statement \"Harry is big\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and logical deductions.\n\nGiven statements:\n1. Anne is furry. \n2. Anne is nice. \n3. Anne is rough. \n4. Anne is white. \n5. Erin is furry. \n6. Erin is rough. \n7. Erin is white. \n8. Fiona is big. \n9. Fiona is nice. \n10. Fiona is round. \n11. Harry is nice. \n12. Harry is rough. \n13. All furry things are white. \n14. If Harry is red then Harry is round. \n15. All round, red things are furry. \n16. If Harry is rough then Harry is round. \n17. Nice, red things are big. \n18. Round, red things are white. \n19. All nice, white things are red. \n20. If something is round then it is furry.\n\nFirst, let's use the statements to deduce some new information.\n\nFrom statement 13, we know that since Erin is furry, Erin is white. (This is already given in statement 7, but we can use it to confirm.)\n\nFrom statement 20, we know that since Fiona is round, Fiona is furry. But we already know that Fiona is furry from statement 10 (Fiona is round) and statement 5 (Erin is furry, so all furry things are white).\n\nFrom statement 14, we know that if Harry is red, then Harry is round. But we cannot determine if Harry is red or not yet.\n\nFrom statement 16, we know that if Harry is rough, then Harry is round. We know that Harry is rough from statement 12.\n\nTherefore, since Harry is rough, Harry is round. (From statement 16)\n\nNow, let's use the round information to deduce some more information.\n\nFrom statement 20, we know that since Harry is round, Harry is furry. \n\nFrom statement 13, we know that since Harry is furry, Harry is white.\n\nNow, let's use the round and furry information to deduce some more information.\n\nFrom statement 18, we know that round, red things are white. But we know that Harry is white from the previous step.\n\nHowever, from statement 14, we know that if Harry is red, then Harry is round. We already know that Harry is round from statement 16.\n\nBut we cannot determine if Harry is red or not yet.\n\nFrom statement 15, we know that all round, red things are furry. But we already know that Harry is furry from the previous step.\n\nNow, let's use the nice and red information to deduce some more information.\n\nFrom statement 19, we know that all nice, white things are red. We know that Harry is nice from statement 11 and Harry is white from the previous step.\n\nTherefore, since Harry is nice and white, Harry is red. (From statement 19)\n\nNow, let's use the red information to deduce some more information.\n\nFrom statement 17, we know that nice, red things are big. We know that Harry is nice from statement 11 and Harry is red from the previous step.\n\nTherefore, since Harry is nice and red, Harry is big. (From statement 17)\n\nSo, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is big\" is true, false, or unknown, we need to analyze the given information step by step using logical reasoning and the rules of inference.\n\n1. Given statements:\n   - Anne is furry. \n   - Anne is nice.\n   - Anne is rough.\n   - Anne is white.\n   - Erin is furry.\n   - Erin is rough.\n   - Erin is white.\n   - Fiona is big.\n   - Fiona is nice.\n   - Fiona is round.\n   - Harry is nice.\n   - Harry is rough.\n   - All furry things are white.\n   - If Harry is red then Harry is round.\n   - All round, red things are furry.\n   - If Harry is rough then Harry is round.\n   - Nice, red things are big.\n   - Round, red things are white.\n   - All nice, white things are red.\n   - If something is round then it is furry.\n\n2. From the statement \"If Harry is red then Harry is round,\" we can infer that if Harry is red, then he is also furry (by the transitive property of implication with the statement \"All round, red things are furry\").\n\n3. From the statement \"If Harry is rough then Harry is round,\" we can infer that Harry is round.\n\n4. Since Harry is round (from step 3), we can infer that Harry is furry (by the statement \"If something is round then it is furry\").\n\n5. Now that we know Harry is furry, we can conclude that Harry is white (by the statement \"All furry things are white\").\n\n6. Since Harry is white and nice, we can use the statement \"All nice, white things are red\" to infer that Harry is red.\n\n7. We already know that Harry is round from step 3, and since Harry is red, we can use the statement \"Round, red things are white\" to infer that Harry is white again (this is already known from step 5). However, this statement doesn't affect the conclusion that Harry is red.\n\n8. Now that we know Harry is red and round, we can use the statement \"Nice, red things are big\" to infer that Harry is big.\n\nTherefore, based on the given information and logical reasoning, the statement \"Harry is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is big\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the given information:\n\n1. All furry things are white.\n2. Erin is furry. Erin is rough. Erin is white. (This doesn't provide any information about Harry.)\n3. Fiona is big. Fiona is nice. Fiona is round. (This doesn't provide any information about Harry.)\n4. Harry is nice. Harry is rough. (This doesn't provide any information about whether Harry is big or not.)\n5. All round, red things are furry. (This doesn't provide any information about Harry.)\n6. If Harry is red then Harry is round. (This doesn't provide any information about whether Harry is big or not.)\n7. Nice, red things are big. (This is a crucial statement.)\n8. Round, red things are white. (This is another crucial statement.)\n9. All nice, white things are red. (This is another crucial statement.)\n10. If something is round then it is furry. (This doesn't provide any information about whether Harry is big or not.)\n\nFrom statements 7, 8, and 9, we can deduce the following:\n\n- If Harry is nice and white, then Harry is red.\n- If Harry is round and red, then Harry is big.\n\nNow, we need to find out if Harry is round.\n\nFrom statement 10, we can conclude that Harry is furry, but that doesn't provide any information about whether Harry is round or not.\n\nHowever, from statements 4 and 6, we can deduce that if Harry is red, then Harry is round. But we don't know if Harry is red.\n\nNow, let's analyze the statement \"If Harry is rough then Harry is round.\" (This is not explicitly given, but we can infer it from the original problem.)\n\n- If Harry is rough, then Harry is round.\n- If Harry is round, then Harry is furry.\n- If Harry is furry, then Harry is white.\n\nFrom the information given in the original problem, we can conclude that Harry is not white because Harry is rough. If Harry were white, then Harry would be furry (from statement 1), and if Harry were furry, then Harry would be rough (from statement 10). But this would create a contradiction.\n\nTherefore, we can conclude that Harry is not white. But we still don't know if Harry is round or not.\n\nHowever, from statements 7, 8, and 9, we can deduce that if Harry is nice and white, then Harry is red. But we already concluded that Harry is not white.\n\nNow, let's analyze the statement \"If Harry is nice then Harry is round.\" (This is not explicitly given, but we can infer it from the original problem.)\n\n- If Harry is nice, then Harry is round.\n- If Harry is round, then Harry is furry.\n- If Harry is furry, then Harry is white.\n\nBut we already concluded that Harry is not white.\n\nTherefore, we can conclude that Harry is not round.\n\nNow, we need to find out if Harry is big.\n\nFrom statement 4, we know that Harry is nice.\n\nFrom statement 7, we can conclude that if Harry is nice and red, then Harry is big.\n\nBut we don't know if Harry is red or not.\n\nHowever, we concluded that Harry is not white, and if Harry is white, then Harry would be red (from statements 8 and 9).\n\nTherefore, we can conclude that Harry is not red.\n\nNow, let's analyze the statement \"If Harry is big then Harry is round.\" (This is not explicitly given, but we can infer it from the original problem.)\n\n- If Harry is big, then Harry is round.\n- If Harry is round, then Harry is furry.\n- If Harry is furry, then Harry is white.\n\nBut we already concluded that Harry is not white.\n\nTherefore, we can conclude that Harry is not big.\n\nThe final answer is: $\\boxed{\\text{False}}$",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we'll break down the given information into premises and the unknown statement into a conclusion.\n\nPremises:\n1. All furry things are white.\n2. Erin is furry. Erin is rough. Erin is white. \n3. Fiona is big. Fiona is nice. Fiona is round.\n4. Harry is nice. Harry is rough. \n5. All round, red things are furry.\n6. If Harry is red then Harry is round.\n7. If Harry is rough then Harry is round.\n8. Nice, red things are big.\n9. Round, red things are white.\n10. All nice, white things are red.\n11. If something is round then it is furry.\n\nUnknown Statement:\nHarry is big.\n\nNow, let's try to conclude whether Harry is big or not.\n\nFrom premise 7, we know that if Harry is rough then Harry is round.\nFrom premise 4, we know that Harry is rough.\nSo, we can conclude that Harry is round (from premise 7).\n\nFrom premise 6, we know that if Harry is red then Harry is round.\nSince we've already concluded that Harry is round, we cannot determine if Harry is red or not from this premise.\n\nHowever, from premise 11, we know that if something is round then it is furry.\nSince we've already concluded that Harry is round, we can conclude that Harry is furry.\n\nFrom premise 1, we know that all furry things are white.\nSince we've concluded that Harry is furry, we can conclude that Harry is white.\n\nFrom premise 10, we know that all nice, white things are red.\nSince we know that Harry is nice (from premise 4) and white (from the previous conclusion), we can conclude that Harry is red.\n\nFrom premise 8, we know that nice, red things are big.\nSince we know that Harry is nice (from premise 4) and red (from the previous conclusion), we can conclude that Harry is big.\n\nTherefore, the statement \"Harry is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve the problem, we will use logical reasoning based on the given statements. We will break it down into smaller steps:\n\n1. All furry things are white. (Statement 1)\n   - From this, we can conclude that if something is furry, then it is white.\n\n2. Anne is furry. Anne is white. (Statement 2)\n   - This supports statement 1, as Anne is both furry and white.\n\n3. Erin is furry. Erin is white. (Statement 3)\n   - This also supports statement 1, as Erin is both furry and white.\n\n4. All round, red things are furry. (Statement 4)\n   - This means if something is round and red, it is furry.\n\n5. If Harry is red then Harry is round. (Statement 5)\n   - This does not directly relate to the problem, but it is a useful piece of information.\n\n6. All round, things are furry. (Statement 6)\n   - If something is round, it is furry.\n\n7. If Harry is rough then Harry is round. (Statement 7)\n   - This is another useful piece of information.\n\n8. Harry is nice. Harry is rough. (Statement 8)\n   - This supports statement 7, as Harry is rough and therefore round.\n\n9. Nice, red things are big. (Statement 9)\n   - This is a useful piece of information.\n\n10. Round, red things are white. (Statement 10)\n   - This means if something is round and red, it is white.\n\n11. All nice, white things are red. (Statement 11)\n   - This means if something is nice and white, it is red.\n\nNow, let's analyze the statement \"Harry is big\" to determine whether it is true, false, or unknown.\n\nFrom statement 8, we know that Harry is rough, and therefore round (statement 7). \nFrom statement 6, we know that if something is round, it is furry.\nFrom statement 4, we know that if something is round and red, it is furry.\n\nSince Harry is round, it is furry (statement 6). But we cannot determine if Harry is red or not. \nIf Harry is red, then it would be white (statement 10), and since it is white, it would be red (statement 11), which creates a paradox.\nHowever, if Harry is not red, we cannot determine its color.\n\nFrom statement 9, we know that nice, red things are big, but we do not know if Harry is red.\nFrom statement 8, we know that Harry is nice and rough, but we cannot determine if it is big.\n\nSince we cannot determine Harry's color or size based on the given information, the statement \"Harry is big\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Harry is big, we need to analyze the given statements and their implications.\n\n1. All furry things are white. \n   We know that Anne is furry and white, and Erin is furry and white. This statement implies that anything that is furry is white.\n\n2. Erin is furry. Erin is rough. Erin is white.\n   Since Erin is furry and white, and based on the first statement, we can conclude that Erin is indeed white because it's furry.\n\n3. Harry is nice. Harry is rough. \n   Based on the statement \"If something is round then it is furry,\" we cannot conclude that Harry is furry yet because we do not have information about Harry being round.\n\n4. All round, red things are furry.\n   We do not have enough information to determine whether Harry is round, red, or furry yet.\n\n5. If Harry is rough then Harry is round.\n   This statement implies that if Harry is rough, then he must be round. However, we do not know whether Harry is rough or not yet.\n\n6. Harry is nice. Harry is rough.\n   Since Harry is nice and rough, we can apply the statement \"If Harry is rough then Harry is round.\" Therefore, Harry is round.\n\n7. Round things are furry.\n   Since Harry is round, and based on the statement \"If something is round then it is furry,\" we can conclude that Harry is furry.\n\n8. Round, red things are white.\n   We do not have enough information to determine whether Harry is red or not yet.\n\n9. All round, red things are furry.\n   Since Harry is round, we can apply the statement \"Round, red things are white\" and conclude that Harry is white because it's round, but we cannot conclude whether it is red or not yet.\n\n10. If something is round then it is furry.\n    We already concluded that Harry is furry because it's round.\n\n11. All furry things are white.\n    We already concluded that Harry is furry and white.\n\n12. All nice, white things are red.\n    Since Harry is nice and white, we can apply this statement and conclude that Harry is indeed red.\n\n13. Nice, red things are big.\n    Since Harry is nice, red, we can apply this statement and conclude that Harry is big.\n\nTherefore, based on the given statements and their implications, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is big' is true, false, or unknown, we need to analyze the given information and apply the rules of logic.\n\n1. Harry is nice. (Given)\n2. All nice, white things are red. (Given)\n3. Round, red things are white. (Given)\n4. All round, red things are furry. (Given)\n5. All furry things are white. (Given)\n6. If Harry is rough then Harry is round. (Given)\n7. All round things are furry. (From 4 and 5)\n8. Harry is rough. (Given)\n9. Harry is round. (From 6 and 8)\n10. Harry is white. (From 7 and 9)\n11. Harry is red. (From 2 and 10)\n12. All round, red things are white. (Given)\n13. All round, red things are white. (From 11 and 12, this rule does not tell us anything new)\n14. Since all nice, white things are red (rule 2), and Harry is white (rule 10) and Harry is nice (rule 1), we can conclude that Harry is red (rule 11).\n15. Since round, red things are white (rule 3), we can conclude that Harry is white (rule 10).\n16. All round things are furry (rule 7), we can conclude that Harry is furry (rule 9).\n17. Since all furry things are white (rule 5), we can conclude that Harry is white (rule 10).\n18. Nice, red things are big (Given)\n19. Since Harry is red (rule 11), and Harry is nice (rule 1), we can conclude that Harry is big (rule 18).\n\nFrom the above steps, we can conclude that the statement 'Harry is big' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions to determine the truth value of the statement \"Harry is big.\"\n\nGiven statements:\n\n1. Anne is furry. \n2. Anne is nice. \n3. Anne is rough. \n4. Anne is white. \n5. Erin is furry. \n6. Erin is rough. \n7. Erin is white. \n8. Fiona is big. \n9. Fiona is nice. \n10. Fiona is round. \n11. Harry is nice. \n12. Harry is rough. \n13. All furry things are white. \n14. If Harry is red then Harry is round. \n15. All round, red things are furry. \n16. If Harry is rough then Harry is round. \n17. Nice, red things are big. \n18. Round, red things are white. \n19. All nice, white things are red. \n20. If something is round then it is furry.\n\nWe are asked to determine the truth value of the statement \"Harry is big.\"\n\nFirst, let's look at the statements related to Harry:\n\n11. Harry is nice.\n12. Harry is rough.\n\nFrom statement 16, if Harry is rough, then Harry is round.\nSo, Harry is round.\n\nNow, we have a few possibilities for Harry's color: red, white, or unknown.\n\nIf Harry is red, then from statement 15, Harry is furry.\nHowever, from statement 13, all furry things are white. This contradicts our assumption that Harry is red, so Harry cannot be red.\n\nIf Harry is white, then from statement 13, Harry is furry.\nHowever, from statement 19, all nice, white things are red. This again contradicts our assumption that Harry is white, so Harry cannot be white.\n\nSince Harry is round (from statement 16), from statement 20, Harry is furry. \nHowever, we already concluded that Harry cannot be red and cannot be white, so we cannot determine Harry's color.\n\nNow, let's consider the statement \"Harry is big.\"\n\nWe know that Fiona is big (statement 8) and Fiona is nice (statement 9). However, we cannot determine whether Harry is nice based on this information alone.\n\nWe also know that if something is round, then it is furry (statement 20), and we already concluded that Harry is round and furry.\n\nWe cannot directly determine whether Harry is big based on the given information. However, we can use the information that all round, red things are furry (statement 15) and that all nice, red things are big (statement 17) to make an indirect conclusion.\n\nFrom statement 14, if Harry is red, then Harry is round. We already concluded that Harry is round, but we cannot determine whether Harry is red.\n\nIf Harry is red, then from statement 15, Harry is furry. However, from statement 13, all furry things are white. This contradicts our assumption that Harry is red, so Harry cannot be red.\n\nHowever, we have another statement that might help us: \"Round, red things are white\" (statement 18). This statement is true if and only if there is no round, red thing. If there is a round, red thing, then this statement is false.\n\nNow, we need to consider the possibility that there is a round, red thing. If there is a round, red thing, then from statement 15, it is furry, and from statement 13, it is white. This contradicts our assumption that the thing is red, so there cannot be a round, red thing.\n\nWe have shown that the statement \"Round, red things are white\" is true.\n\nWe also know that if Harry is red, then Harry is round (statement 14). We already concluded that Harry is round.\n\nSince there is no round, red thing, we cannot directly determine whether Harry is red or not.\n\nHowever, we can use the information that all nice, white things are red (statement 19) to make an indirect conclusion. From statement 11, Harry is nice. From statement 20, Harry is round and furry. However, we already concluded that Harry cannot be red and cannot be white.\n\nThe statement \"Round, red things are white\" is true, which means there is no round, red thing. This means that if Harry is round, then Harry is not red.\n\nFrom statement 16, if Harry is rough, then Harry is round. We already concluded that Harry is round.\n\nFrom statement 20, if Harry is round, then Harry is furry. However, we already concluded that Harry is furry.\n\nSince there is no round, red thing, we cannot directly determine whether Harry is red or not.\n\nHowever, we can use the information that all nice, white things are red (statement 19) to make an indirect conclusion. From statement 11, Harry is nice. From statement 20, Harry is round and furry. However, we already concluded that Harry cannot be red and cannot be white.\n\nWe have shown that the statement \"Round, red things are white\" is true, which means there is no round, red thing. This means that if Harry is round, then Harry is not red.\n\nHowever, we have another statement that might help us: \"If Harry is red then Harry is round\" (statement 14). This statement is true if and only if there is a round, red thing. If there is no round, red thing, then this statement is false.\n\nNow, we need to consider the possibility that there is a round, red thing. We have already shown that this possibility is not true.\n\nWe have shown that the statement \"If Harry is red then Harry is round\" is false.\n\nFrom statement 16, if Harry is rough, then Harry is round. We already concluded that Harry is round.\n\nFrom statement 20, if Harry is round, then Harry is furry. However, we already concluded that Harry is furry.\n\nHowever, we can use the information that all nice, red things are big (statement 17) to make an indirect conclusion. From statement 11, Harry is nice. If Harry is red, then Harry is round (statement 14). However, we already concluded that Harry cannot be red.\n\nHowever, we have another statement that might help us: \"If Harry is rough then Harry is round\" (statement 16). This statement is true. From statement 16, if Harry is rough, then Harry is round. We already concluded that Harry is round.\n\nNow, we have a few possibilities for Harry's color: red, white, or unknown.\n\nIf Harry is red, then from statement 14, Harry is round. However, we already concluded that Harry is round.\n\nIf Harry is red, then from statement 15, Harry is furry. However, we already concluded that Harry is furry.\n\nHowever, we have already shown that there is no round, red thing. This means that if Harry is round, then Harry is not red.\n\nHowever, we have another statement that might help us: \"All round, red things are furry\" (statement 15). This statement is true if and only if there is a round, red thing. If there is no round, red thing, then this statement is false.\n\nNow, we need to consider the possibility that there is a round, red thing. We have already shown that this possibility is not true.\n\nWe have shown that the statement \"All round, red things are furry\" is false.\n\nFrom statement 16, if Harry is rough, then Harry is round. We already concluded that Harry is round.\n\nFrom statement 20, if Harry is round, then Harry is furry. However, we already concluded that Harry is furry.\n\nHowever, we have another statement that might help us: \"If Harry is red then Harry is round\" (statement 14). This statement is false.\n\nNow, let's look at the statement \"Harry is big.\"\n\nWe know that Fiona is big (statement 8) and Fiona is nice (statement 9). However, we cannot determine whether Harry is nice based on this information alone.\n\nHowever, we can use the information that all round, red things are furry (statement 15) and that all nice, red things are big (statement 17) to make an indirect conclusion.\n\nHowever, we have already concluded that there is no round, red thing. This means that if Harry is round, then Harry is not red.\n\nNow, let's look at the statement \"Harry is big.\"\n\nWe know that Harry is round (from statement 16), and we have shown that there is no round, red thing. This means that if Harry is round, then Harry is not red.\n\nWe also know that Harry is nice (statement 11), and we cannot determine whether Harry is red or not based on the given information.\n\nNow, let's consider the statement \"If Harry is red then Harry is round\" (statement 14). This statement is false.\n\nHowever, we can use the information that all round things are furry (statement 20) and that Harry is round (from statement 16) to make an indirect conclusion.\n\nFrom statement 20, if Harry is round, then Harry is furry. However, we already concluded that Harry is furry.\n\nHowever, we have another statement that might help us: \"All round, red things are furry\" (statement 15). This statement is false.\n\nNow, let's consider the statement \"Harry is big.\"\n\nWe know that Harry is round (from statement 16), and we have shown that there is no round, red thing. This means that if Harry is round, then Harry is not red.\n\nWe also know that Harry is nice (statement 11), and we cannot determine whether Harry is red or not based on the given information.\n\nHowever, we have another statement that might help us: \"All nice, white things are red\" (statement 19). This statement is true if and only if there is",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules of inference to determine the truth value of the statement \"Harry is big.\"\n\nGiven statements:\n1. Anne is furry. Anne is nice. Anne is rough. Anne is white.\n2. Erin is furry. Erin is rough. Erin is white.\n3. Fiona is big. Fiona is nice. Fiona is round.\n4. Harry is nice. Harry is rough.\n5. All furry things are white.\n6. If Harry is red then Harry is round.\n7. All round, red things are furry.\n8. If Harry is rough then Harry is round.\n9. Nice, red things are big.\n10. Round, red things are white.\n11. All nice, white things are red.\n12. If something is round then it is furry.\n\nNow, let's apply the rules of inference to determine the truth value of the statement \"Harry is big.\"\n\nFrom statement 4, we know that Harry is nice and rough.\n\nFrom statement 8, if Harry is rough, then Harry is round.\n\nSo, we can conclude that Harry is round (from statement 4 and 8).\n\nFrom statement 12, if something is round, then it is furry.\n\nSo, we can conclude that Harry is furry (from statement 12 and the fact that Harry is round).\n\nFrom statement 5, all furry things are white.\n\nSo, we can conclude that Harry is white (from statement 5 and the fact that Harry is furry).\n\nFrom statement 11, all nice, white things are red.\n\nSo, we can conclude that Harry is red (from statement 11, the fact that Harry is nice, and the fact that Harry is white).\n\nNow, we can use the information that Harry is red to determine if Harry is big or not.\n\nFrom statement 9, nice, red things are big.\n\nHowever, statement 9 only applies if Harry is nice and red, which we have already established. However, statement 3 says that Fiona is big, not Harry.\n\nFrom statement 3, we know that Fiona is big, nice, and round. However, we also know that Harry is round. \n\nHowever, we can't conclude that Harry is big from statement 9 since Harry is nice and red, but we also know that Fiona is big, nice, and round. \n\nHowever, statement 9 does not mention round things, just nice, red things.\n\nHowever, since we know that Harry is round, we can't conclude that Harry is big from statement 9. \n\nBut we can conclude that round things are furry (from statement 12). \n\nAnd we also know that round, red things are white (from statement 10).\n\nHowever, we can't conclude that Harry is big from the fact that round, red things are white because Harry is white.\n\nHowever, we also know that all round, red things are furry (from statement 7). \n\nAnd we know that Harry is furry (from the fact that Harry is round).\n\nHowever, we can't conclude that Harry is big from the fact that Harry is furry because all furry things are white (from statement 5).\n\nHowever, we know that Harry is round. \n\nWe also know that all round things are furry (from statement 12).\n\nAnd we also know that all round, red things are furry (from statement 7).\n\nAnd we know that Harry is red.\n\nAnd we also know that Harry is round.\n\nSo, we can conclude that Harry is furry (from statement 7, the fact that Harry is round, and the fact that Harry is red).\n\nHowever, we know that round, red things are white (from statement 10).\n\nHowever, we also know that Harry is red and round.\n\nSo, we can conclude that Harry is white (from statement 10).\n\nHowever, we know that all nice, white things are red (from statement 11).\n\nHowever, we also know that Harry is nice and white.\n\nSo, we can conclude that Harry is red (from statement 11).\n\nNow, since we know that Harry is red, we can look at statement 9 again.\n\nStatement 9 says that nice, red things are big.\n\nWe know that Harry is nice and red.\n\nSo, we can conclude that Harry is big (from statement 9).\n\nTherefore, the statement \"Harry is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is big\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. We are given the following statements:\n   - Harry is nice.\n   - Harry is rough.\n   - All round, red things are furry.\n   - If Harry is rough then Harry is round.\n   - Nice, red things are big.\n   - Round, red things are white.\n   - All nice, white things are red.\n   - If something is round then it is furry.\n\n2. From the given statements, we can infer the following:\n   - Since Harry is rough and if Harry is rough then Harry is round, we can conclude that Harry is round.\n   - We know that if Harry is round, then Harry is furry. So, Harry is furry.\n   - Now we have two conflicting pieces of information: Harry is round (and thus furry) and all round, red things are furry. This tells us that Harry is red, because if Harry wasn't red, then round, red things would be furry and Harry wouldn't be round.\n\n3. Now, we have the following information:\n   - Harry is round (and thus furry).\n   - Harry is red.\n   - All round, red things are furry.\n\n4. Given that Harry is round and red, we can conclude that Harry is white, because round, red things are white.\n\n5. We know that Harry is white, and we are given the statement \"All nice, white things are red.\" This tells us that Harry is red, which we already concluded.\n\n6. Given that Harry is red and round, and knowing that nice, red things are big, we can conclude that Harry is big.\n\nTherefore, based on the given information and our logical deductions, the statement \"Harry is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_harry, white_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round_red(harry)",
+          "z3_formula": "round_red_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_harry, round_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round_red(harry)",
+          "z3_formula": "round_red_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_harry, round_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_harry, white_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round_red(X) -> furry(X)",
+          "z3_formula": "Implies(round_red_harry, furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, white_harry), red_harry)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, red_harry), big_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_fiona, furry_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), white_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, red_harry), big_harry)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_fiona, furry_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_harry, round_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_harry, round_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, white_harry), red_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), furry_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_harry, white_harry)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_harry, round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_harry, round_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_harry, white_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(white_harry, nice_harry), red_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), white_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, red_harry), big_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 8
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_X, white_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_X, furry_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_X, round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_X, round_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_X, red_X), big_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_X, red_X), white_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_X, white_X), red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_harry, round_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_harry, round_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, white_harry), red_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), white_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, red_harry), big_harry)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), white_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_harry, white_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, white_harry), red_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, red_harry), big_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, white_harry), red_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), white_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_harry, white_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_harry, round_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), white_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), white_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, red_harry), big_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_X, white_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_X, round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_X, red_X), furry_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_X, red_X), big_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_X, red_X), white_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_X, white_X), red_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_X, furry_X)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == Unknown",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_harry, round_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), furry_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, red_harry), big_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), white_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, white_harry), red_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_harry, round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, red_harry), big_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), white_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, white_harry), red_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 240,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 40
+    },
+    "maxsat_stats": {
+      "satisfied": 40,
+      "excluded": 0,
+      "total_weight": 240,
+      "solve_time_ms": 1.2103421613574028
+    },
+    "timing": {
+      "trace_gen_s": 24.284,
+      "extraction_s": 42.723,
+      "dedup_s": 2.091,
+      "maxsat_s": 0.003,
+      "total_s": 69.101
+    }
+  }
+}

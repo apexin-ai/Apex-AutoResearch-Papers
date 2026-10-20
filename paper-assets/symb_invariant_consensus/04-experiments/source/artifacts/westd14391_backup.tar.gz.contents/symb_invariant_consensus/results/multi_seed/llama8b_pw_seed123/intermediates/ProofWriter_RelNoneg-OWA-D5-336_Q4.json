@@ -1,0 +1,1174 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-336_Q4",
+    "problem": "The bald eagle eats the bear. The bald eagle eats the cat. The bald eagle eats the rabbit. The bald eagle is young. The bald eagle likes the bear. The bald eagle sees the cat. The bald eagle sees the rabbit. The bear eats the bald eagle. The cat eats the bald eagle. The cat likes the rabbit. The rabbit is round. The rabbit sees the bald eagle. If someone eats the bald eagle and they see the rabbit then they are round. If someone eats the bald eagle and they eat the rabbit then the rabbit likes the cat. If someone is young and they eat the rabbit then the rabbit sees the cat. If someone eats the rabbit and the rabbit is cold then they are blue. If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit. If the bald eagle sees the bear and the bald eagle likes the bear then the bald eagle is red. If someone eats the rabbit and they are blue then they eat the bald eagle. If someone likes the cat then the cat is round. If the rabbit likes the cat and the cat is round then the rabbit is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit does not see the cat.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nYoung($x, bool) ::: Is x young?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\n\nFacts:\nEats(BaldEagle, Bear, True) ::: The bald eagle eats the bear.\nEats(BaldEagle, Cat, True) ::: The bald eagle eats the cat.\nEats(BaldEagle, Rabbit, True) ::: The bald eagle eats the rabbit.\nYoung(BaldEagle, True) ::: The bald eagle is young.\nLikes(BaldEagle, Bear, True) ::: The bald eagle likes the bear.\nSees(BaldEagle, Cat, True) ::: The bald eagle sees the cat.\nSees(BaldEagle, Rabbit, True) ::: The bald eagle sees the rabbit.\nEats(Bear, BaldEagle, True) ::: The bear eats the bald eagle.\nEats(Cat, BaldEagle, True) ::: The cat eats the bald eagle.\nLikes(Cat, Rabbit, True) ::: The cat likes the rabbit.\nRound(Rabbit, True) ::: The rabbit is round.\nSees(Rabbit, BaldEagle, True) ::: The rabbit sees the bald eagle.\n\nRules:\nEats($x, BaldEagle, True) && Sees($x, Rabbit, True) >>> Round($x, True) ::: If someone eats the bald eagle and they see the rabbit then they are round.\nEats($x, BaldEagle, True) && Eats($x, Rabbit, True) >>> Likes(Rabbit, Cat, True) ::: If someone eats the bald eagle and they eat the rabbit then the rabbit likes the cat.\nYoung($x, True) && Eats($x, Rabbit, True) >>> Sees(Rabbit, Cat, True) ::: If someone is young and they eat the rabbit then the rabbit sees the cat.\nEats($x, Rabbit, True) && Cold(Rabbit, True) >>> Blue($x, True) ::: If someone eats the rabbit and the rabbit is cold then they are blue.\nSees(Rabbit, Cat, True) && Round(Rabbit, True) >>> Eats(Cat, Rabbit, True) ::: If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit.\nSees(BaldEagle, Bear, True) && Likes(BaldEagle, Bear, True) >>> Red(BaldEagle, True) ::: If the bald eagle sees the bear and the bald eagle likes the bear then the bald eagle is red.\nEats($x, Rabbit, True) && Blue($x, True) >>> Eats($x, BaldEagle, True) ::: If someone eats the rabbit and they are blue then they eat the bald eagle.\nLikes($x, Cat, True) >>> Round(Cat, True) ::: If someone likes the cat then the cat is round.\nLikes(Rabbit, Cat, True) && Round(Cat, True) >>> Blue(Rabbit, True) ::: If the rabbit likes the cat and the cat is round then the rabbit is blue.\n\nQuery:\nSees(Rabbit, Cat, False) ::: The rabbit does not see the cat."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 93.5,
+      "Unknown": 146.5
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the cat\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\nWe know the following information:\n\n1. The rabbit sees the bald eagle.\n2. The bald eagle sees the cat.\n3. If the rabbit sees the cat and the rabbit is round, then the cat eats the rabbit.\n4. If the rabbit is round, then we cannot directly determine if the rabbit sees the cat or not. However, we can look for other conditions that might be relevant.\n\nWe also know that the rabbit is round (statement 7), which means we have to consider other conditions involving the rabbit being round.\n\n5. If the rabbit sees the cat and the rabbit is round, then the cat eats the rabbit. This is not directly relevant to our question, but it shows that we should look for conditions involving the rabbit being round and seeing the cat.\n6. If the rabbit likes the cat and the cat is round, then the rabbit is blue. This is also not directly relevant to our question, but it shows that we should look for conditions involving the rabbit liking the cat and the cat being round.\n7. If the rabbit is round, we have to consider other conditions that might be relevant.\n\nGiven that the rabbit is round, we should look for conditions involving the rabbit being round and other animals seeing the cat.\n\n8. If the bald eagle sees the bear and the bald eagle likes the bear, then the bald eagle is red. This is not directly relevant to our question.\n9. If someone eats the rabbit and they are blue, then they eat the bald eagle. This is not directly relevant to our question.\n10. If the rabbit likes the cat and the cat is round, then the rabbit is blue. This is also not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf the rabbit is round, then we need to look for conditions that might involve the rabbit seeing the cat.\n\nGiven that the rabbit is round (statement 7), we should look for conditions involving the rabbit being round and seeing the cat.\n\nWe have the following condition:\n\nIf the rabbit sees the cat and the rabbit is round, then the cat eats the rabbit. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf the cat likes the rabbit, then we can look at the conditions involving the cat liking the rabbit.\n\nWe know that the cat likes the rabbit (statement 10).\n\nIf the rabbit likes the cat and the cat is round, then the rabbit is blue. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf someone eats the rabbit and they see the rabbit, then they are round. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf someone eats the rabbit and they eat the rabbit, then the rabbit likes the cat. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf someone is young and they eat the rabbit, then the rabbit sees the cat. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf someone eats the rabbit and the rabbit is cold, then they are blue. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf the rabbit sees the cat and the rabbit is round, then the cat eats the rabbit. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf the rabbit is round, we have to consider other conditions that might be relevant.\n\nWe have the following condition:\n\nIf the rabbit sees the cat and the rabbit is round, then the cat eats the rabbit. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf someone sees the rabbit and they eat the rabbit, then we cannot determine if they see the cat or not.\n\nWe also know that the cat sees the bald eagle (statement 6), and the bald eagle sees the rabbit (statement 7).\n\nGiven the conditions, we cannot determine if the rabbit sees the cat or not. However, we can use the conditions to look for other conditions that might be relevant.\n\nWe have the following condition:\n\nIf someone eats the rabbit and they are blue, then they eat the bald eagle. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf the rabbit is round, we have to consider other conditions that might be relevant.\n\nWe have the following condition:\n\nIf someone eats the rabbit and the rabbit is round, then we cannot determine if they see the cat or not.\n\nHowever, we can look at the following condition:\n\nIf someone eats the rabbit and they eat the rabbit, then the rabbit likes the cat. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf someone is young and they eat the rabbit, then the rabbit sees the cat. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf someone eats the rabbit and the rabbit is cold, then they are blue. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf the rabbit sees the cat and the rabbit is round, then the cat eats the rabbit. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf the rabbit is round, we have to consider other conditions that might be relevant.\n\nWe have the following condition:\n\nIf someone sees the rabbit and they eat the rabbit, then we cannot determine if they see the cat or not.\n\nHowever, we can look at the following condition:\n\nIf someone eats the rabbit and they are blue, then they eat the bald eagle. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf the rabbit likes the cat, then we can look at the conditions involving the rabbit liking the cat.\n\nWe know that the cat likes the rabbit (statement 10).\n\nIf the rabbit likes the cat and the cat is round, then the rabbit is blue. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf someone eats the rabbit and they are blue, then they eat the bald eagle. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf the rabbit sees the cat and the rabbit is round, then the cat eats the rabbit. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf the rabbit is round, we have to consider other conditions that might be relevant.\n\nWe have the following condition:\n\nIf the rabbit sees the cat and the rabbit is round, then the cat eats the rabbit. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf someone eats the rabbit and they see the rabbit, then they are round. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf someone eats the rabbit and they eat the rabbit, then the rabbit likes the cat. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf someone is young and they eat the rabbit, then the rabbit sees the cat. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf someone eats the rabbit and the rabbit is cold, then they are blue. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf the rabbit sees the cat and the rabbit is round, then the cat eats the rabbit. This is not directly relevant to our question.\n\nHowever, we can look at the following condition:\n\nIf someone eats the rabbit and they see the rabbit, then they are round.\n\nGiven that the rabbit is round and the cat sees the bald eagle (statement 6), and the bald eagle sees the rabbit (statement 7), we cannot determine if the rabbit sees the cat or not.\n\nHowever, we can use the conditions to look for other conditions that might be relevant.\n\nWe have the following condition:\n\nIf someone sees the rabbit and they eat the rabbit, then we cannot determine if they see the cat or not.\n\nWe also know that the cat likes the rabbit (statement 10).\n\nHowever, we cannot determine if the rabbit sees the cat or not.\n\nGiven the conditions, we cannot determine if the rabbit sees the cat or not. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the cat\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\nFrom the given information:\n- The rabbit sees the bald eagle.\n- The rabbit is round.\n- The rabbit likes the cat.\n\nHowever, we have the following rules:\n- If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit. (This implies that the rabbit sees the cat.)\n- If the rabbit likes the cat and the cat is round then the rabbit is blue. (This does not give any information about the rabbit seeing the cat.)\n\nWe need to find a rule that relates to \"The rabbit does not see the cat.\" Unfortunately, there is no rule that directly states \"The rabbit does not see the cat.\" However, we can use the following rules to find the answer:\n\n- If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit. (This implies that the rabbit sees the cat.)\n- The rabbit is round. (This information is already given.)\n\nHowever, we cannot conclude that the rabbit sees the cat. We can conclude that the statement \"The cat eats the rabbit\" is true, but we cannot conclude that the rabbit sees the cat. Therefore, we cannot say the rabbit does not see the cat, but we also cannot say the rabbit sees the cat. The correct answer is unknown.\n\nHowever, we can say that the rabbit is not a cat that eats the rabbit, and the rabbit is not blue. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and the conditions that lead to the conclusion.\n\nFrom the problem, we have several conditions that affect the relationships between the bald eagle, the bear, the cat, and the rabbit.\n\n1. The bald eagle eats the bear, the cat, and the rabbit.\n2. The bald eagle is young.\n3. The bald eagle likes the bear.\n4. The bald eagle sees the cat and the rabbit.\n5. The bear eats the bald eagle.\n6. The cat eats the bald eagle.\n7. The cat likes the rabbit.\n8. The rabbit is round.\n9. The rabbit sees the bald eagle.\n\nNow, let's examine the conditions related to the rabbit:\n\n1. If someone eats the bald eagle and they see the rabbit then they are round. (This does not affect the conclusion directly.)\n2. If someone eats the bald eagle and they eat the rabbit then the rabbit likes the cat. (This does not affect the conclusion directly.)\n3. If someone is young and they eat the rabbit then the rabbit sees the cat. (This does not affect the conclusion directly.)\n4. If someone eats the rabbit and the rabbit is cold then they are blue. (There is no information that the rabbit is cold, so this does not affect the conclusion directly.)\n5. If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit. (This is a condition that might lead to the cat eating the rabbit, but it does not directly affect the statement that the rabbit does not see the cat.)\n6. If the bald eagle sees the bear and the bald eagle likes the bear then the bald eagle is red. (This does not affect the conclusion directly.)\n7. If someone eats the rabbit and they are blue then they eat the bald eagle. (There is no information that anyone eats the rabbit and is blue, so this does not affect the conclusion directly.)\n8. If someone likes the cat then the cat is round. (There is no information that anyone likes the cat, so this does not affect the conclusion directly.)\n9. If the rabbit likes the cat and the cat is round then the rabbit is blue. (There is no information that the rabbit likes the cat, so this does not affect the conclusion directly.)\n\nHowever, we can use the following condition to determine whether the rabbit sees the cat:\n\nIf the bald eagle sees the cat and the rabbit is round then the cat eats the rabbit.\n\nSince the bald eagle sees the cat (statement 4), and the rabbit is round (statement 8), we can conclude that the cat eats the rabbit. \n\nHowever, this does not directly determine whether the rabbit sees the cat. We need to look at the statement \"The rabbit sees the bald eagle\" (statement 9), and the fact that the bald eagle sees the cat (statement 4). This does not directly imply that the rabbit sees the cat.\n\nHowever, we can look at the condition \"If someone eats the bald eagle and they eat the rabbit then the rabbit likes the cat\" (statement 2). The cat eats the bald eagle (statement 6), and the cat eats the rabbit (which we concluded above), so we can conclude that the rabbit likes the cat.\n\nNow, we can look at the condition \"If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit\" (statement 5). Since the rabbit is round (statement 8) and the rabbit likes the cat (which we concluded above), we cannot directly conclude that the cat eats the rabbit, because we do not know if the rabbit sees the cat. However, we can conclude that the rabbit likes the cat.\n\nHowever, we are looking for the statement \"The rabbit does not see the cat.\" To determine whether this is true, false, or unknown, we must look at all the information we have. \n\nFrom the statement \"The rabbit sees the bald eagle\" (statement 9), we know that the rabbit sees the bald eagle. From the statement \"The bald eagle sees the cat\" (statement 4), we know that the bald eagle sees the cat. However, this does not directly imply that the rabbit sees the cat.\n\nHowever, we can look at the condition \"If someone eats the bald eagle and they eat the rabbit then the rabbit likes the cat\" (statement 2). The cat eats the bald eagle (statement 6), and the cat eats the rabbit (which we concluded above), so we can conclude that the rabbit likes the cat. \n\nHowever, the rabbit sees the bald eagle (statement 9), and the bald eagle sees the cat (statement 4), and the rabbit likes the cat (which we concluded above). However, we cannot directly conclude that the rabbit sees the cat. \n\nFrom the statement \"The rabbit sees the bald eagle\" (statement 9), we know that the rabbit sees the bald eagle. We also know that the bald eagle sees the cat (statement 4). However, we cannot conclude that the rabbit sees the cat from this information alone.\n\nHowever, the condition \"If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit\" (statement 5) is relevant. Since the rabbit is round (statement 8) and the rabbit likes the cat (which we concluded above), we cannot directly conclude that the cat eats the rabbit, because we do not know if the rabbit sees the cat. \n\nHowever, we can look at the fact that the bald eagle is young (statement 2) and the bald eagle eats the rabbit (statement 1), so we can conclude that the rabbit sees the cat from the condition \"If someone is young and they eat the rabbit then the rabbit sees the cat\" (statement 3). \n\nTherefore, we can conclude that the rabbit sees the cat is true.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will use the given information and apply it step by step.\n\nFrom the given statements, we know the following:\n\n1. The bald eagle eats the bear.\n2. The bald eagle eats the cat.\n3. The bald eagle eats the rabbit.\n4. The bald eagle is young.\n5. The bald eagle likes the bear.\n6. The bald eagle sees the cat.\n7. The bald eagle sees the rabbit.\n8. The bear eats the bald eagle.\n9. The cat eats the bald eagle.\n10. The cat likes the rabbit.\n11. The rabbit is round.\n12. The rabbit sees the bald eagle.\n\nWe need to determine whether the statement \"The rabbit does not see the cat\" is true, false, or unknown.\n\nWe can start by applying the given rules:\n\nRule 1: If someone eats the bald eagle and they see the rabbit then they are round.\n- The bear eats the bald eagle, so the bear sees the rabbit (by statement 7). This implies that the bear is round. However, this does not directly relate to our statement.\n\nRule 2: If someone eats the bald eagle and they eat the rabbit then the rabbit likes the cat.\n- The cat eats the bald eagle, so the cat eats the rabbit (by statement 3 and 9). This implies that the rabbit likes the cat. However, this does not directly relate to our statement.\n\nRule 3: If someone is young and they eat the rabbit then the rabbit sees the cat.\n- The bald eagle is young (by statement 4) and eats the rabbit (by statement 3). However, this implies that the rabbit sees the cat (by statement 7), which is true. But this does not directly relate to our statement.\n\nRule 4: If someone eats the rabbit and the rabbit is cold then they are blue.\n- There is no information about the rabbit being cold.\n\nRule 5: If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit.\n- The rabbit sees the bald eagle (by statement 12), but we cannot directly infer that the rabbit sees the cat. However, this does not directly relate to our statement.\n\nRule 6: If the bald eagle sees the bear and the bald eagle likes the bear then the bald eagle is red.\n- The bald eagle sees the bear (by statement 1) and likes the bear (by statement 5), but we cannot directly infer that the bald eagle is red.\n\nRule 7: If someone eats the rabbit and they are blue then they eat the bald eagle.\n- There is no information about someone eating the rabbit and being blue.\n\nRule 8: If someone likes the cat then the cat is round.\n- The cat likes the rabbit (by statement 10), but we cannot directly infer that the cat is round.\n\nRule 9: If the rabbit likes the cat and the cat is round then the rabbit is blue.\n- The rabbit likes the cat (by rule 2), but we cannot directly infer that the rabbit is blue.\n\nFrom the given statements, we know that the rabbit sees the bald eagle (by statement 12). We also know that the bald eagle sees the cat (by statement 6), but we cannot directly infer that the rabbit sees the cat.\n\nHowever, we can use the given rules to find a connection. From rule 5, we know that if the rabbit sees the cat and the rabbit is round, then the cat eats the rabbit. But we also know that the rabbit is round (by statement 11).\n\nLet's assume that the rabbit sees the cat. Then, by rule 5, the cat eats the rabbit. But we also know that the cat eats the bald eagle (by statement 9). This implies that the cat sees the rabbit (by statement 12), which contradicts our assumption.\n\nTherefore, the rabbit does not see the cat.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the cat\" is true, false, or unknown, let's analyze the given information step by step.\n\n1. We know that the rabbit sees the bald eagle. (From the statement: The rabbit sees the bald eagle.)\n\n2. We also know that the cat eats the bald eagle. (From the statement: The cat eats the bald eagle.)\n\n3. Now, let's examine the conditions given to determine the relationship between the rabbit and the cat:\n   a. If someone eats the bald eagle and they see the rabbit then they are round. (This condition is not relevant here.)\n   b. If someone eats the bald eagle and they eat the rabbit then the rabbit likes the cat. (This condition is not relevant here.)\n   c. If someone is young and they eat the rabbit then the rabbit sees the cat. (The bald eagle is young, but there's no information that it eats the rabbit.)\n   d. If someone eats the rabbit and the rabbit is cold then they are blue. (There's no information about the rabbit being cold.)\n   e. If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit. (This is the most relevant condition. To check if it's true, we need to see if the rabbit is round and sees the cat.)\n   \n4. We know that the rabbit is round. (From the statement: The rabbit is round.)\n\n5. We know that the rabbit sees the bald eagle, but we need to check if it sees the cat. Since condition e says \"if the rabbit sees the cat,\" it implies that if the rabbit sees the cat, it would be round, and the cat would eat the rabbit. However, this doesn't directly tell us if the rabbit sees the cat. We need to examine other conditions.\n\n6. Let's examine other conditions related to the rabbit and the cat:\n   a. The rabbit likes the cat. (This condition is not relevant to determining if the rabbit sees the cat.)\n   b. If the rabbit likes the cat and the cat is round then the rabbit is blue. (This condition is not relevant to determining if the rabbit sees the cat.)\n\n7. Since we can't directly determine if the rabbit sees the cat from the given conditions, we have to conclude that the statement \"The rabbit does not see the cat\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit sees the bald eagle. \n   - This statement gives us information that the rabbit can see another animal, but it doesn't tell us if the rabbit sees the cat directly.\n\n2. The rabbit is round. \n   - This statement is a characteristic of the rabbit but doesn't provide any information about the rabbit's vision.\n\n3. If someone sees the bald eagle and they see the rabbit then they are round. \n   - This statement tells us that if someone sees the bald eagle and also sees the rabbit, then that person is round. However, it does not tell us about the rabbit's ability to see the cat.\n\n4. If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit. \n   - This statement provides a condition under which the cat eats the rabbit, but it is not the opposite of what we want to find out.\n\n5. If the rabbit likes the cat and the cat is round then the rabbit is blue. \n   - This statement gives a condition under which the rabbit is blue, but it does not tell us about the rabbit's vision.\n\n6. The cat likes the rabbit. \n   - This statement gives us a relationship between the cat and the rabbit, but it does not tell us about the rabbit's ability to see the cat.\n\n7. The bald eagle sees the rabbit. \n   - This statement tells us that the bald eagle sees the rabbit, but it does not tell us about the rabbit's vision.\n\n8. The cat eats the bald eagle. \n   - This statement gives us a relationship between the cat and the bald eagle, but it does not tell us about the rabbit's ability to see the cat.\n\n9. The bald eagle likes the bear. \n   - This statement gives us a relationship between the bald eagle and the bear, but it does not tell us about the rabbit's vision.\n\n10. If someone eats the rabbit and they are blue then they eat the bald eagle. \n   - This statement gives a condition under which someone who eats the rabbit and is blue also eats the bald eagle, but it does not tell us about the rabbit's vision.\n\n11. If the rabbit is round and the rabbit sees the cat, then the cat eats the rabbit. \n   - This statement tells us that if the rabbit sees the cat and is round, then the cat eats the rabbit. However, this does not tell us if the rabbit sees the cat directly.\n\nSince we cannot find a direct statement that says the rabbit does not see the cat, we cannot conclude whether the statement is true or false. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the cat\" is true, false, or unknown, we need to analyze the given information and the conditions.\n\nGiven information:\n1. The rabbit sees the bald eagle.\n2. The cat eats the bald eagle.\n3. The rabbit is round.\n4. The rabbit likes the cat.\n5. The rabbit is round.\n\nConditions:\n1. If someone eats the bald eagle and they see the rabbit then they are round. (Not applicable here, as the condition is not satisfied)\n2. If someone eats the bald eagle and they eat the rabbit then the rabbit likes the cat. (Not applicable here, as the condition is not satisfied)\n3. If someone is young and they eat the rabbit then the rabbit sees the cat. (Not applicable here, as the condition is not satisfied)\n4. If someone eats the rabbit and the rabbit is cold then they are blue. (No information about the rabbit being cold)\n5. If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit. (This is a potential solution, but we need to check the rest of the conditions)\n\nNow, let's analyze condition 5: \"If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit.\"\nGiven that the rabbit sees the bald eagle (not the cat directly), and the rabbit is round, we can't conclude that the cat eats the rabbit directly. However, this does not directly answer our question.\n\nAnother condition is: \"If the rabbit likes the cat and the cat is round then the rabbit is blue.\"\nGiven that the rabbit likes the cat, and we have two possibilities: either the cat is round or not. \n\nIf the cat is round, then according to the condition: \"If someone likes the cat then the cat is round,\" we can't conclude anything about the cat's roundness. \nBut if the cat is not round, then according to the condition: \"If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit,\" we have a potential solution.\n\nHowever, we also have the condition: \"The cat eats the bald eagle.\"\nGiven this condition and the condition \"If someone eats the rabbit and they are blue then they eat the bald eagle,\" we can't conclude that the rabbit eats the bald eagle. \n\nAnother condition is: \"If someone eats the rabbit and they are blue then they eat the bald eagle.\"\nWe can't conclude that the rabbit eats the bald eagle. \n\nNow, let's consider the condition: \"If the rabbit is round then the cat eats the rabbit.\"\nGiven that the rabbit is round, and the cat likes the rabbit, and the condition \"If someone likes the cat then the cat is round,\" we can't conclude that the cat is round. \n\nHowever, we also have the condition: \"If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit.\"\nGiven that the rabbit sees the bald eagle (not the cat directly), and the rabbit is round, we can't conclude that the cat eats the rabbit directly.\n\nHowever, we have the condition: \"If the rabbit is blue then the cat eats the rabbit.\"\nGiven that the rabbit is round, and the condition \"If the rabbit likes the cat and the cat is round then the rabbit is blue,\" we can't conclude that the rabbit is blue.\n\nWe also have the condition: \"The rabbit is round.\"\nGiven this condition, and the condition \"If someone eats the bald eagle and they see the rabbit then they are round,\" we can't conclude that the rabbit is round because of this condition.\n\nHowever, we have the condition: \"The rabbit sees the bald eagle.\"\nGiven this condition, we can't conclude that the rabbit sees the cat.\n\nNow, let's consider the condition: \"The cat eats the bald eagle.\"\nGiven this condition, and the condition \"If someone eats the rabbit and they eat the bald eagle then the rabbit likes the cat,\" we can't conclude that the rabbit likes the cat.\n\nHowever, we have the condition: \"The rabbit likes the cat.\"\nGiven this condition, we can't conclude that the rabbit sees the cat or not.\n\nNow, we have two possibilities:\n1. The rabbit sees the cat.\n2. The rabbit does not see the cat.\n\nWe can't conclude whether the rabbit sees the cat or not based on the given conditions.\n\nHowever, we do know that the statement \"The rabbit sees the bald eagle\" is true.\n\nWe also have the condition: \"If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit.\"\nGiven that the rabbit is round, we can't conclude that the cat eats the rabbit directly.\n\nHowever, we do have the condition: \"If the rabbit is blue then the cat eats the rabbit.\"\nGiven that the rabbit is round, and the condition \"If the rabbit likes the cat and the cat is round then the rabbit is blue,\" we can't conclude that the rabbit is blue.\n\nHowever, we do have the condition: \"The rabbit is round.\"\nGiven this condition, we can't conclude that the rabbit sees the cat.\n\nHowever, we do have the condition: \"The rabbit sees the bald eagle.\"\nGiven this condition, we can't conclude that the rabbit sees the cat.\n\nHowever, we do have the condition: \"The cat eats the bald eagle.\"\nGiven this condition, we can't conclude that the rabbit sees the cat.\n\nHowever, we do have the condition: \"The rabbit likes the cat.\"\nGiven this condition, we can't conclude that the rabbit sees the cat.\n\nHowever, we do have the condition: \"If the rabbit is blue then the cat eats the rabbit.\"\nGiven that the rabbit is round, and the condition \"If the rabbit likes the cat and the cat is round then the rabbit is blue,\" we can't conclude that the rabbit is blue.\n\nHowever, we do have the condition: \"If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit.\"\nGiven that the rabbit sees the bald eagle (not the cat directly), and the rabbit is round, we can't conclude that the cat eats the rabbit directly.\n\nHowever, we do have the condition: \"If someone eats the rabbit and they eat the bald eagle then the rabbit likes the cat.\"\nGiven that the cat eats the bald eagle, we can't conclude that the rabbit likes the cat.\n\nHowever, we do have the condition: \"If someone eats the bald eagle and they see the rabbit then they are round.\"\nGiven that the cat eats the bald eagle, we can't conclude that the cat is round.\n\nHowever, we do have the condition: \"The rabbit likes the cat.\"\nGiven this condition, we can't conclude that the rabbit sees the cat.\n\nHowever, we do have the condition: \"The rabbit sees the bald eagle.\"\nGiven this condition, we can't conclude that the rabbit sees the cat.\n\nHowever, we do have the condition: \"The cat eats the bald eagle.\"\nGiven this condition, we can't conclude that the rabbit sees the cat.\n\nHowever, we do have the condition: \"If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit.\"\nGiven that the rabbit sees the bald eagle (not the cat directly), and the rabbit is round, we can't conclude that the cat eats the rabbit directly.\n\nHowever, we do have the condition: \"If the rabbit likes the cat and the cat is round then the rabbit is blue.\"\nGiven that the rabbit is round, and the rabbit likes the cat, we can't conclude that the rabbit is blue.\n\nHowever, we do have the condition: \"If someone eats the rabbit and they are blue then they eat the bald eagle.\"\nGiven that the rabbit is round, we can't conclude that the rabbit eats the bald eagle.\n\nHowever, we do have the condition: \"The rabbit sees the bald eagle.\"\nGiven this condition, we can't conclude that the rabbit sees the cat.\n\nHowever, we do have the condition: \"The cat eats the bald eagle.\"\nGiven this condition, we can't conclude that the rabbit sees the cat.\n\nHowever, we do have the condition: \"If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit.\"\nGiven that the rabbit sees the bald eagle (not the cat directly), and the rabbit is round, we can't conclude that the cat eats the rabbit directly.\n\nHowever, we do have the condition: \"If the rabbit is blue then the cat eats the rabbit.\"\nGiven that the rabbit is round, and the condition \"If the rabbit likes the cat and the cat is round then the rabbit is blue,\" we can't conclude that the rabbit is blue.\n\nHowever, we do have the condition: \"If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit.\"\nGiven that the rabbit sees the bald eagle (not the cat directly), and the rabbit is round, we can't conclude that the cat eats the rabbit directly.\n\nHowever, we do have the condition: \"If someone eats the rabbit and they eat the bald eagle then the rabbit likes the cat.\"\nGiven that the cat eats the bald eagle, we can't conclude that the rabbit likes the cat.\n\nHowever, we do have the condition: \"If someone eats the bald eagle and they see the rabbit then they are round.\"\nGiven that the cat eats the bald eagle, we can't conclude that the cat is round.\n\nHowever, we do have the condition: \"The rabbit likes the cat.\"\nGiven this condition, we can't conclude that the rabbit sees the cat.\n\nHowever, we do have the condition: \"The rabbit sees the bald eagle.\"\nGiven this condition, we can't conclude that the rabbit sees the cat.\n\nHowever, we do have the condition: \"The cat eats the bald eagle.\"\nGiven this condition, we can't conclude that the rabbit sees the cat.\n\nHowever, we do have the condition: \"If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit.\"\nGiven that the rabbit sees the",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the cat\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nFrom the problem, we have the following statements:\n\n1. The bald eagle eats the bear.\n2. The bald eagle eats the cat.\n3. The bald eagle eats the rabbit.\n4. The bald eagle is young.\n5. The bald eagle likes the bear.\n6. The bald eagle sees the cat.\n7. The bald eagle sees the rabbit.\n8. The bear eats the bald eagle.\n9. The cat eats the bald eagle.\n10. The cat likes the rabbit.\n11. The rabbit is round.\n12. The rabbit sees the bald eagle.\n13. If someone eats the bald eagle and they see the rabbit then they are round.\n14. If someone eats the bald eagle and they eat the rabbit then the rabbit likes the cat.\n15. If someone is young and they eat the rabbit then the rabbit sees the cat.\n16. If someone eats the rabbit and the rabbit is cold then they are blue.\n17. If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit.\n18. If the bald eagle sees the bear and the bald eagle likes the bear then the bald eagle is red.\n19. If someone eats the rabbit and they are blue then they eat the bald eagle.\n20. If someone likes the cat then the cat is round.\n21. If the rabbit likes the cat and the cat is round then the rabbit is blue.\n\nNow, let's analyze the statement \"The rabbit does not see the cat.\" We have two statements that relate to the rabbit seeing the cat:\n\n- Statement 12: The rabbit sees the bald eagle.\n- Statement 17: If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit.\n\nHowever, we do not have a direct statement that the rabbit does not see the cat. To determine whether the statement is true or false, we need to find a path from the given statements to the statement \"The rabbit does not see the cat.\"\n\nFrom statement 12, we know the rabbit sees the bald eagle. However, this does not directly imply that the rabbit sees the cat.\n\nFrom statement 17, we know that if the rabbit sees the cat and the rabbit is round, then the cat eats the rabbit. However, this statement does not provide any information about the rabbit not seeing the cat.\n\nWe also have statement 15: If someone is young and they eat the rabbit then the rabbit sees the cat. However, the bald eagle is young (statement 4), and it eats the rabbit (statement 3). This implies that the rabbit sees the cat (from statement 15), but it does not provide any information about the rabbit not seeing the cat.\n\nSince we cannot find a path from the given statements to the statement \"The rabbit does not see the cat,\" we cannot determine whether the statement is true or false. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the cat\" is true, false, or unknown, we need to analyze the given information and the conditions that affect the relationship between the rabbit and the cat.\n\nFrom the given information, we have the following statements:\n\n1. The rabbit is round.\n2. The rabbit sees the bald eagle.\n3. The cat eats the bald eagle.\n4. The rabbit likes the cat.\n5. The cat likes the rabbit.\n6. The rabbit is round.\n\nNow, let's examine the conditions that affect the relationship between the rabbit and the cat:\n\n1. If someone sees the rabbit then they are round (this does not apply to the cat since it eats the bald eagle, not sees the rabbit).\n2. If someone eats the rabbit and they are blue then they eat the bald eagle (this condition is not relevant to our analysis).\n3. If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit (this is a relevant condition).\n\nSince the rabbit is round (Statement 1), we can apply the third condition. However, this condition requires that the rabbit sees the cat. If the rabbit sees the cat, then the cat eats the rabbit. But this contradicts the given information that the bald eagle sees the cat (Statement 7).\n\nHowever, this does not mean the rabbit does not see the cat; it just means that the condition \"If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit\" cannot be applied.\n\nNow let's check the condition \"If the rabbit likes the cat and the cat is round then the rabbit is blue.\" We don't know if the cat is round or not, but we do know the rabbit likes the cat (Statement 4). However, there is another condition that affects this: \"If someone likes the cat then the cat is round.\" So we can conclude that the cat is round.\n\nSince the cat is round and the rabbit likes the cat, we can apply the condition \"If the rabbit likes the cat and the cat is round then the rabbit is blue.\" This implies that the rabbit is blue.\n\nNow, if the rabbit is blue, then we can apply the condition \"If someone eats the rabbit and they are blue then they eat the bald eagle.\" However, we don't know who eats the rabbit, but we do know the rabbit is blue.\n\nThe rabbit seeing the cat is still unknown.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to carefully analyze the given statements and their implications. We will use a process of elimination and logical deduction to determine whether the statement \"The rabbit does not see the cat\" is true, false, or unknown.\n\n1. The rabbit sees the bald eagle. (Given statement)\n2. The bald eagle sees the cat. (Given statement)\n3. If the rabbit sees the cat, then the rabbit sees the cat. (Tautology, not useful for deduction)\n4. The cat eats the bald eagle. (Given statement)\n5. The cat likes the rabbit. (Given statement)\n6. If someone eats the bald eagle and they see the rabbit, then they are round. (Given statement)\n   We don't have any information that connects this statement to our problem.\n7. If someone eats the bald eagle and they eat the rabbit, then the rabbit likes the cat. (Given statement)\n   We don't have any information that connects this statement to our problem.\n8. If someone is young and they eat the rabbit, then the rabbit sees the cat. (Given statement)\n   The bald eagle is young, but it does not eat the rabbit. (From statement 4, the cat eats the bald eagle, not the other way around.)\n   So, this statement is not useful for deduction.\n9. If someone eats the rabbit and the rabbit is cold, then they are blue. (Given statement)\n   We don't have any information about the rabbit's temperature.\n10. If the rabbit sees the cat and the rabbit is round, then the cat eats the rabbit. (Given statement)\n    We don't have any information that connects this statement to our problem.\n11. If the bald eagle sees the bear and the bald eagle likes the bear, then the bald eagle is red. (Given statement)\n    We don't have any information that connects this statement to our problem.\n12. If someone eats the rabbit and they are blue, then they eat the bald eagle. (Given statement)\n    We don't have any information that connects this statement to our problem.\n13. If someone likes the cat, then the cat is round. (Given statement)\n    The rabbit likes the cat. (From statement 5)\n    So, the cat is round. (From statement 13)\n14. If the rabbit likes the cat and the cat is round, then the rabbit is blue. (Given statement)\n    The rabbit likes the cat. (From statement 5)\n    The cat is round. (From statement 13)\n    So, the rabbit is blue. (From statement 14)\n\nNow, let's examine the statement \"The rabbit does not see the cat.\"\n\nFrom statement 1, we know that the rabbit sees the bald eagle.\nFrom statement 2, we know that the bald eagle sees the cat.\nFrom statement 10, we know that if the rabbit sees the cat and the rabbit is round, then the cat eats the rabbit.\nWe don't have any information that connects the rabbit seeing the cat to the rabbit being round or not being round.\n\nHowever, from statement 5, we know that the rabbit likes the cat.\nFrom statement 13, we know that if someone likes the cat, then the cat is round.\nSo, the cat is round.\nFrom statement 14, we know that if the rabbit likes the cat and the cat is round, then the rabbit is blue.\nSo, the rabbit is blue.\n\nNow, we need to check if the rabbit seeing the cat implies that the rabbit is round. If the rabbit is round, then the cat eats the rabbit (from statement 10). This is a contradiction because the cat already eats the bald eagle (from statement 4), and the bald eagle is seen by the rabbit (from statement 1).\n\nHowever, we don't have any information that the rabbit seeing the cat implies that the rabbit is round. The rabbit could be round or not round.\n\nTherefore, the statement \"The rabbit does not see the cat\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will go through the statements and their implications step by step:\n\n1. The bald eagle eats the bear. \n   - No implications for the rabbit seeing the cat.\n\n2. The bald eagle eats the cat. \n   - No implications for the rabbit seeing the cat.\n\n3. The bald eagle eats the rabbit. \n   - No implications for the rabbit seeing the cat.\n\n4. The bald eagle is young. \n   - No implications for the rabbit seeing the cat.\n\n5. The bald eagle likes the bear. \n   - No implications for the rabbit seeing the cat.\n\n6. The bald eagle sees the cat. \n   - No implications for the rabbit seeing the cat.\n\n7. The bald eagle sees the rabbit. \n   - No implications for the rabbit seeing the cat.\n\n8. The bear eats the bald eagle. \n   - No implications for the rabbit seeing the cat.\n\n9. The cat eats the bald eagle. \n   - No implications for the rabbit seeing the cat.\n\n10. The cat likes the rabbit. \n    - No implications for the rabbit seeing the cat.\n\n11. The rabbit is round. \n    - We can't determine if the rabbit sees the cat.\n\n12. The rabbit sees the bald eagle. \n    - No implications for the rabbit seeing the cat.\n\n13. If someone eats the bald eagle and they see the rabbit then they are round. \n    - We can't determine if the rabbit sees the cat because we don't know if the rabbit eats the bald eagle.\n\n14. If someone eats the bald eagle and they eat the rabbit then the rabbit likes the cat. \n    - We can't determine if the rabbit sees the cat because we don't know if someone eats the bald eagle and the rabbit.\n\n15. If someone is young and they eat the rabbit then the rabbit sees the cat. \n    - We can't determine if the rabbit sees the cat because we don't know if someone is young and they eat the rabbit.\n\n16. If someone eats the rabbit and the rabbit is cold then they are blue. \n    - We can't determine if the rabbit sees the cat.\n\n17. If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit. \n    - We can't determine if the rabbit sees the cat.\n\n18. If the bald eagle sees the bear and the bald eagle likes the bear then the bald eagle is red. \n    - No implications for the rabbit seeing the cat.\n\n19. If someone eats the rabbit and they are blue then they eat the bald eagle. \n    - We can't determine if the rabbit sees the cat.\n\n20. If someone likes the cat then the cat is round. \n    - No implications for the rabbit seeing the cat.\n\n21. If the rabbit likes the cat and the cat is round then the rabbit is blue. \n    - We can't determine if the rabbit sees the cat.\n\nFrom the given statements and their implications, we can't determine if the rabbit sees the cat. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we'll need to analyze each statement and rule given, and then determine if the rabbit sees the cat.\n\nGiven statements:\n1. The bald eagle eats the bear.\n2. The bald eagle eats the cat.\n3. The bald eagle eats the rabbit.\n4. The bald eagle is young.\n5. The bald eagle likes the bear.\n6. The bald eagle sees the cat.\n7. The bald eagle sees the rabbit.\n8. The bear eats the bald eagle.\n9. The cat eats the bald eagle.\n10. The cat likes the rabbit.\n11. The rabbit is round.\n12. The rabbit sees the bald eagle.\n13. If someone eats the bald eagle and they see the rabbit then they are round.\n14. If someone eats the bald eagle and they eat the rabbit then the rabbit likes the cat.\n15. If someone is young and they eat the rabbit then the rabbit sees the cat.\n16. If someone eats the rabbit and the rabbit is cold then they are blue.\n17. If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit.\n18. If the bald eagle sees the bear and the bald eagle likes the bear then the bald eagle is red.\n19. If someone eats the rabbit and they are blue then they eat the bald eagle.\n20. If someone likes the cat then the cat is round.\n21. If the rabbit likes the cat and the cat is round then the rabbit is blue.\n\nNow let's analyze the given statement: \n\"The rabbit does not see the cat.\"\n\nPossible statements that might be relevant to this statement:\n- Statement 6: The bald eagle sees the cat.\n- Statement 12: The rabbit sees the bald eagle.\n- Statement 17: If the rabbit sees the cat and the rabbit is round then the cat eats the rabbit.\n\nWe can see that there is a direct contradiction with the statement 17, which implies that if the rabbit sees the cat and is round, then the cat eats the rabbit. This implies that the cat is the one doing the seeing in this scenario, not the rabbit.\n\nHowever, we need to check the conditions under which the statement 17 is applicable. It requires that the rabbit is round and sees the cat. Statement 11 says that the rabbit is round.\n\nBut we have to analyze further. We see that statement 17 is applicable, which means that the cat eats the rabbit if the rabbit is round and sees the cat. This implies that the cat does the seeing, not the rabbit.\n\nStatement 12 implies that the rabbit sees the bald eagle. However, there is no direct implication from this statement that the rabbit does not see the cat.\n\nConsidering statement 14, which implies that if someone eats the bald eagle and they eat the rabbit, then the rabbit likes the cat. This statement is not directly applicable to our problem.\n\nStatement 15 implies that if someone is young and they eat the rabbit, then the rabbit sees the cat. However, the bald eagle is young (statement 4), and it eats the rabbit (statement 3), but there is no direct implication from this that the rabbit sees the cat.\n\nStatement 13 implies that if someone eats the bald eagle and they see the rabbit, then they are round. However, this does not directly relate to the rabbit seeing the cat.\n\nStatement 19 implies that if someone eats the rabbit and they are blue, then they eat the bald eagle. This is not directly applicable to our problem.\n\nStatement 20 implies that if someone likes the cat then the cat is round. However, this does not directly relate to the rabbit seeing the cat.\n\nStatement 21 implies that if the rabbit likes the cat and the cat is round, then the rabbit is blue. However, this does not directly relate to the rabbit seeing the cat.\n\nThe relevant statement here is statement 17, which says that if the rabbit sees the cat and the rabbit is round, then the cat eats the rabbit. However, we know that the rabbit is round (statement 11).\n\nNow, let's try to analyze the situation. We know that the bald eagle sees the cat (statement 6), and the bald eagle eats the rabbit (statement 3). However, there is no direct implication from this that the rabbit sees the cat.\n\nHowever, if we follow the chain of events, we can see that the bald eagle eats the rabbit. If we apply statement 19, which implies that if someone eats the rabbit and they are blue then they eat the bald eagle, we cannot directly determine that the rabbit sees the cat from this.\n\nHowever, statement 13 implies that if someone eats the bald eagle and they see the rabbit, then they are round. This is not directly applicable to our problem.\n\nThe relevant statement is statement 17, which says that if the rabbit sees the cat and the rabbit is round, then the cat eats the rabbit. However, we know that the rabbit is round (statement 11).\n\nSince we know that the rabbit is round, we can conclude that the cat eats the rabbit if the rabbit sees the cat. This implies that the cat does the seeing, not the rabbit.\n\nHowever, we cannot directly determine from the given statements whether the rabbit sees the cat or not.\n\nThe final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & round(X) -> eats(cat, X)",
+          "z3_formula": "Implies(And(sees_rabbit_cat, round_rabbit), eats_cat_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> likes(cat, X)",
+          "z3_formula": "Implies(likes_rabbit_cat, likes_cat_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & round(X) -> eats(cat, X)",
+          "z3_formula": "Implies(And(sees_rabbit_cat, round_rabbit), eats_cat_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & eats(X, rabbit) -> Unknown(sees(X, cat))",
+          "z3_formula": "Implies(And(sees_X_rabbit, eats_X_rabbit), Unknown(sees_X_cat))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown(sees(X, cat))",
+          "z3_formula": "Unknown(sees_X_cat)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, cat)",
+          "z3_formula": "likes_rabbit_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & round(X) -> eats(cat, X)",
+          "z3_formula": "Implies(And(sees_rabbit_cat, round_rabbit), eats_cat_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) & round(cat) -> blue(X)",
+          "z3_formula": "Implies(And(likes_rabbit_cat, round_cat), blue_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, rabbit)",
+          "z3_formula": "eats_cat_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(rabbit, cat)",
+          "z3_formula": "Not(sees_rabbit_cat) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(rabbit)",
+          "z3_formula": "Not(blue_rabbit) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, cat)",
+          "z3_formula": "eats_bald_eagle_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, rabbit)",
+          "z3_formula": "eats_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, bear)",
+          "z3_formula": "likes_bald_eagle_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, rabbit) -> round(rabbit)",
+          "z3_formula": "Implies(And(eats_bald_eagle_rabbit, sees_bald_eagle_rabbit), round_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & eats(X, rabbit) -> likes(rabbit, cat)",
+          "z3_formula": "Implies(And(eats_bald_eagle_rabbit, eats_bald_eagle_rabbit), likes_rabbit_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, rabbit) -> sees(rabbit, cat)",
+          "z3_formula": "Implies(And(young_bald_eagle, eats_bald_eagle_rabbit), sees_rabbit_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_bald_eagle_rabbit, cold_X), blue_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & round(rabbit) -> eats(cat, rabbit)",
+          "z3_formula": "Implies(And(sees_bald_eagle_cat, round_rabbit), eats_cat_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & blue(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(eats_bald_eagle_rabbit, blue_X), eats_X_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> round(cat)",
+          "z3_formula": "Implies(likes_X_cat, round_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(rabbit, cat) & round(cat) -> blue(rabbit)",
+          "z3_formula": "Implies(And(likes_rabbit_cat, round_cat), blue_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, cat)",
+          "z3_formula": "likes_rabbit_cat == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, rabbit)",
+          "z3_formula": "eats_cat_rabbit == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, cat)",
+          "z3_formula": "eats_bald_eagle_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, rabbit)",
+          "z3_formula": "eats_bald_eagle_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, bear)",
+          "z3_formula": "likes_bald_eagle_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bald_eagle)",
+          "z3_formula": "eats_cat_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(And(eats_bear_bald_eagle, sees_bald_eagle_rabbit), round_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & eats(X, rabbit) -> likes(rabbit, cat)",
+          "z3_formula": "Implies(And(eats_cat_bald_eagle, eats_cat_rabbit), likes_rabbit_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, rabbit) -> sees(rabbit, cat)",
+          "z3_formula": "Implies(And(young_bald_eagle, eats_bald_eagle_rabbit), sees_rabbit_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_rabbit_rabbit, cold_rabbit), blue_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & round(X) -> eats(cat, X)",
+          "z3_formula": "Implies(And(sees_rabbit_cat, round_rabbit), eats_cat_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(bald_eagle, bear) & likes(bald_eagle, bear) -> red(bald_eagle)",
+          "z3_formula": "Implies(And(sees_bald_eagle_bear, likes_bald_eagle_bear), red_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & blue(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(eats_rabbit_rabbit, blue_rabbit), eats_rabbit_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> round(X)",
+          "z3_formula": "Implies(likes_cat_rabbit, round_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(likes_rabbit_cat, round_rabbit), blue_rabbit)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not(sees(rabbit, cat))",
+          "z3_formula": "Not(sees_rabbit_cat)",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bald_eagle)",
+          "z3_formula": "eats_cat_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(And(eats_cat_bald_eagle, sees_rabbit_bald_eagle), round_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & cold(rabbit) -> blue(X)",
+          "z3_formula": "Implies(And(eats_rabbit_rabbit, cold_rabbit), blue_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(rabbit, cat) & round(rabbit) -> eats(cat, rabbit)",
+          "z3_formula": "Implies(And(sees_rabbit_cat, round_rabbit), eats_cat_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Not(Implies(sees_rabbit_cat, Not(eats_cat_rabbit)))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & sees(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, sees_rabbit_rabbit), round_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(rabbit, cat) & round(rabbit) -> eats(cat, rabbit)",
+          "z3_formula": "Implies(And(sees_rabbit_cat, round_rabbit), eats_cat_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(rabbit, cat) & round(cat) -> blue(rabbit)",
+          "z3_formula": "Implies(And(likes_rabbit_cat, round_cat), blue_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bald_eagle)",
+          "z3_formula": "eats_cat_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, bear)",
+          "z3_formula": "likes_bald_eagle_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & blue(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(eats_X_rabbit, blue_X), eats_X_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(rabbit) & sees(rabbit, cat) -> eats(cat, rabbit)",
+          "z3_formula": "Implies(And(round_rabbit, sees_rabbit_cat), eats_cat_rabbit)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bald_eagle)",
+          "z3_formula": "eats_cat_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, cat)",
+          "z3_formula": "likes_rabbit_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(And(eats_cat_bald_eagle, sees_rabbit_bald_eagle), round_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & eats(X, bald_eagle) -> likes(rabbit, cat)",
+          "z3_formula": "Implies(And(eats_X_rabbit, eats_X_bald_eagle), likes_rabbit_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, rabbit) -> sees(rabbit, cat)",
+          "z3_formula": "Implies(And(young_X, eats_X_rabbit), sees_rabbit_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_X_rabbit, cold_X), blue_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & round(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_cat, round_X), eats_X_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(likes_X_cat, round_X), blue_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(blue_X, eats_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, cat)",
+          "z3_formula": "eats_bald_eagle_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, rabbit)",
+          "z3_formula": "eats_bald_eagle_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, bear)",
+          "z3_formula": "likes_bald_eagle_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bald_eagle)",
+          "z3_formula": "eats_cat_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(And(eats_bald_eagle_rabbit, sees_rabbit_bald_eagle), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & eats(X, rabbit) -> likes(rabbit, cat)",
+          "z3_formula": "Implies(And(eats_bald_eagle_rabbit, eats_X_rabbit), likes_rabbit_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, rabbit) -> sees(rabbit, cat)",
+          "z3_formula": "Implies(And(young_X, eats_X_rabbit), sees_rabbit_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_X_rabbit, cold_X), blue_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & round(X) -> eats(cat, X)",
+          "z3_formula": "Implies(And(sees_X_cat, round_X), eats_cat_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(bald_eagle, bear) & likes(bald_eagle, bear) -> red(bald_eagle)",
+          "z3_formula": "Implies(And(sees_bald_eagle_bear, likes_bald_eagle_bear), red_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & blue(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(eats_X_rabbit, blue_X), eats_X_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> round(cat)",
+          "z3_formula": "Implies(likes_X_cat, round_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(rabbit, cat) & round(cat) -> blue(rabbit)",
+          "z3_formula": "Implies(And(likes_rabbit_cat, round_cat), blue_rabbit)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, eagle)",
+          "z3_formula": "sees_rabbit_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, eagle)",
+          "z3_formula": "eats_cat_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, cat)",
+          "z3_formula": "likes_rabbit_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(sees_X_rabbit, round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & blue(X) -> eats(X, eagle)",
+          "z3_formula": "Implies(And(eats_X_rabbit, blue_X), eats_X_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(rabbit, cat) & round(rabbit) -> eats(cat, rabbit)",
+          "z3_formula": "Implies(And(sees_rabbit_cat, round_rabbit), eats_cat_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> round(cat)",
+          "z3_formula": "Implies(likes_X_cat, round_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(rabbit, cat) & round(cat) -> blue(rabbit)",
+          "z3_formula": "Implies(And(likes_rabbit_cat, round_cat), blue_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, eagle)",
+          "z3_formula": "sees_rabbit_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(eagle, cat)",
+          "z3_formula": "sees_eagle_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, eagle)",
+          "z3_formula": "eats_cat_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, cat)",
+          "z3_formula": "likes_rabbit_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, eagle) & sees(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(And(eats_X_eagle, sees_X_rabbit), round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & blue(X) -> eats(X, eagle)",
+          "z3_formula": "Implies(And(eats_X_rabbit, blue_X), eats_X_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> round(cat)",
+          "z3_formula": "Implies(likes_X_cat, round_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) & round(cat) -> blue(X)",
+          "z3_formula": "Implies(And(likes_X_cat, round_cat), blue_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "round(rabbit) -> eats(cat, rabbit)",
+          "z3_formula": "Implies(round_rabbit, eats_cat_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, eagle) & sees(rabbit, eagle) -> Not(round(rabbit))",
+          "z3_formula": "Implies(And(eats_cat_eagle, sees_rabbit_eagle), Not(round_rabbit))",
+          "source_step": "derived"
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, cat)",
+          "z3_formula": "eats_bald_eagle_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, rabbit)",
+          "z3_formula": "eats_bald_eagle_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, bear)",
+          "z3_formula": "likes_bald_eagle_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bald_eagle)",
+          "z3_formula": "eats_cat_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(And(eats_X_bald_eagle, sees_X_rabbit), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & eats(X, rabbit) -> likes(X, cat)",
+          "z3_formula": "Implies(And(eats_X_bald_eagle, eats_X_rabbit), likes_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, rabbit) -> sees(X, cat)",
+          "z3_formula": "Implies(And(young_X, eats_X_rabbit), sees_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_X_rabbit, cold_X), blue_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & round(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(sees_X_cat, round_X), eats_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(bald_eagle, bear) & likes(bald_eagle, bear) -> red(bald_eagle)",
+          "z3_formula": "Implies(And(sees_bald_eagle_bear, likes_bald_eagle_bear), red_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & blue(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(eats_X_rabbit, blue_X), eats_X_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> round(cat)",
+          "z3_formula": "Implies(likes_X_cat, round_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(rabbit, cat) & round(cat) -> blue(rabbit)",
+          "z3_formula": "Implies(And(likes_rabbit_cat, round_cat), blue_rabbit)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, cat)",
+          "z3_formula": "eats_bald_eagle_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, rabbit)",
+          "z3_formula": "eats_bald_eagle_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, bear)",
+          "z3_formula": "likes_bald_eagle_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bald_eagle)",
+          "z3_formula": "eats_cat_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(And(eats_X_bald_eagle, sees_X_rabbit), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & eats(X, rabbit) -> likes(rabbit, cat)",
+          "z3_formula": "Implies(And(eats_X_bald_eagle, eats_X_rabbit), likes_rabbit_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & eats(X, rabbit) -> sees(rabbit, cat)",
+          "z3_formula": "Implies(And(young_X, eats_X_rabbit), sees_rabbit_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & round(X) -> round_X",
+          "z3_formula": "Implies(And(eats_X_rabbit, round_X), round_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_X_rabbit, cold_X), blue_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & round(X) -> eats(cat, X)",
+          "z3_formula": "Implies(And(sees_X_cat, round_X), eats_cat_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> round(cat)",
+          "z3_formula": "Implies(likes_X_cat, round_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(rabbit, cat) & round(cat) -> blue(rabbit)",
+          "z3_formula": "Implies(And(likes_rabbit_cat, round_cat), blue_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(rabbit, cat)",
+          "z3_formula": "Not(sees_rabbit_cat)",
+          "source_step": 21
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 174,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 63
+    },
+    "maxsat_stats": {
+      "satisfied": 60,
+      "excluded": 3,
+      "total_weight": 166,
+      "solve_time_ms": 2.269517630338669
+    },
+    "timing": {
+      "trace_gen_s": 24.855,
+      "extraction_s": 36.498,
+      "dedup_s": 2.122,
+      "maxsat_s": 0.006,
+      "total_s": 63.481
+    }
+  }
+}

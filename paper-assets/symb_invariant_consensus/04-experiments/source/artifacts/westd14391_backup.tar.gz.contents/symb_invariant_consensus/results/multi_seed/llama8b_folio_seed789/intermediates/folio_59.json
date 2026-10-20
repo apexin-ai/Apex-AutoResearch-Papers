@@ -1,0 +1,787 @@
+{
+  "problem": {
+    "id": "folio_59",
+    "problem": "Given the following premises:\nBillings is a city in Montana. Montana includes the cities of Butte, Helena, and Missoula. White Sulphur Springs and Butte are cities in the same state. The city of Pierre is not in Montana. Any city in Butte is not in Pierre.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nPierre and Bismarck are in the same state.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "CityIn(billings, montana)",
+      "CityIn(butte, montana) \u2227 CityIn(helena, montana) \u2227 CityIn(missoula, montana)",
+      "\u2203x (CityIn(whitesulphursprings, x) \u2227 CityIn(butte, x))",
+      "\u00acCityIn(pierre, montana)",
+      "\u2200x (CityIn(butte, x) \u2192 \u00acCityIn(pierre, x))"
+    ],
+    "conclusion_fol": "\u2203x (CityIn(pierre, x) \u2227 CityIn(bismarck, x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 96.0
+    },
+    "answer_counts": {
+      "Unknown": 10
+    },
+    "traces": [
+      {
+        "trace": "To determine the truth of the conclusion, we need to break down the given premises and analyze their implications.\n\nPremise 1: Billings is a city in Montana.\n\nThis premise does not directly affect the conclusion but provides information about Montana.\n\nPremise 2: Montana includes the cities of Butte, Helena, and Missoula.\n\nThis premise also does not directly affect the conclusion but provides more information about Montana.\n\nPremise 3: White Sulphur Springs and Butte are cities in the same state.\n\nThis premise implies that White Sulphur Springs and Butte are in the same state, but it does not specify which state. However, we know from previous premises that Butte is in Montana.\n\nPremise 4: The city of Pierre is not in Montana.\n\nThis premise directly affects the conclusion. It tells us that Pierre is not in Montana, which is the state where Bismarck is not mentioned, and so cannot be in the same state as Bismarck.\n\nPremise 5: Any city in Butte is not in Pierre.\n\nThis premise directly affects the conclusion. Since Butte is in Montana, any city in Butte is not in Pierre. This implies that Butte and Pierre are not in the same state.\n\nNow, let's analyze the conclusion: \"Pierre and Bismarck are in the same state.\"\n\nSince we know from premise 4 that Pierre is not in Montana, and from premise 5 that Butte and Pierre are not in the same state, we can conclude that Pierre is not in the same state as Butte.\n\nFrom premise 3, we know that White Sulphur Springs and Butte are in the same state. Since Butte is in Montana, White Sulphur Springs is also in Montana. \n\nThere is no information given about Bismarck being in Montana or any other state. The information given about Pierre does not relate to Bismarck, and the information about White Sulphur Springs and Butte does not relate to Bismarck either.\n\nTherefore, based on the given premises, we cannot determine whether Pierre and Bismarck are in the same state. \n\nThe answer is: \\boxed{uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and their implications.\n\nPremise 1: Billings is a city in Montana.\n- This premise establishes that Montana is a state where Billings is located.\n\nPremise 2: Montana includes the cities of Butte, Helena, and Missoula.\n- This premise establishes that Montana is a state where the mentioned cities are located.\n\nPremise 3: White Sulphur Springs and Butte are cities in the same state.\n- This premise establishes that Butte is located in the same state as White Sulphur Springs, but we do not know which state.\n\nPremise 4: The city of Pierre is not in Montana.\n- This premise establishes that Pierre is not located in Montana.\n\nPremise 5: Any city in Butte is not in Pierre.\n- This premise establishes that Butte and Pierre are not in the same state.\n\nFrom the premises, we can deduce the following:\n\n- Butte is in the same state as White Sulphur Springs (Premise 3).\n- Butte is not in the same state as Pierre (Premise 5).\n- Montana includes Butte (Premise 2).\n- Pierre is not in Montana (Premise 4).\n\nHowever, we do not have any information about the state where Pierre or Bismarck is located. The conclusion \"Pierre and Bismarck are in the same state\" cannot be determined as true or false based on the given premises.\n\nTherefore, the conclusion is uncertain. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and use the process of elimination.\n\nPremises:\n\n1. Billings is a city in Montana.\n2. Montana includes the cities of Butte, Helena, and Missoula.\n3. White Sulphur Springs and Butte are cities in the same state.\n4. The city of Pierre is not in Montana.\n5. Any city in Butte is not in Pierre.\n\nFrom premise 1, we know Billings is in Montana.\n\nFrom premise 2, we know Montana includes Butte, Helena, and Missoula.\n\nFrom premise 3, we know Butte and White Sulphur Springs are in the same state.\n\nFrom premise 4, we know Pierre is not in Montana.\n\nFrom premise 5, we know any city in Butte (like Butte itself) is not in Pierre.\n\nNow, we are given the conclusion that Pierre and Bismarck are in the same state. To determine this, we need to find a connection between Pierre and Bismarck.\n\nFrom premise 4, we know Pierre is not in Montana. \n\nHowever, there is no information provided about Bismarck being in the same state as Pierre. In fact, we know that Pierre is not in Montana, but we don't know anything about Bismarck's location.\n\nSince there is no direct information about Bismarck's location, we cannot conclude whether Pierre and Bismarck are in the same state.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\n1. Billings is a city in Montana.\n   - This premise tells us that Billings is in Montana, but it doesn't provide any information about Pierre or other cities.\n\n2. Montana includes the cities of Butte, Helena, and Missoula.\n   - This premise tells us that Butte is in Montana, but we already knew that from the first premise. It also doesn't provide any information about Pierre.\n\n3. White Sulphur Springs and Butte are cities in the same state.\n   - This premise tells us that Butte is in the same state as White Sulphur Springs. We don't know which state White Sulphur Springs is in, but it gives us a clue that Butte is not the only city in that state.\n\n4. The city of Pierre is not in Montana.\n   - This premise tells us that Pierre is not in Montana, which is a crucial piece of information.\n\n5. Any city in Butte is not in Pierre.\n   - This premise tells us that if a city is in Butte, then it is not in Pierre. However, this premise is incomplete because Butte is a city in Montana, and this premise is trying to establish a relationship between cities in Butte and Pierre.\n\nNow, let's analyze the conclusion:\n\"Pierre and Bismarck are in the same state.\"\n\nWe don't have any direct information about Bismarck or its state. However, we can deduce some information by combining the premises.\n\nFrom premise 4, we know that Pierre is not in Montana. From premise 5, we know that any city in Butte is not in Pierre. Since Butte is in Montana (premise 1), we can conclude that any city in Butte is not in Pierre and also not in the same state as Pierre.\n\nNow, let's consider White Sulphur Springs (premise 3). We know that Butte is in the same state as White Sulphur Springs. If we assume that White Sulphur Springs is in a different state, then Butte would be in a different state as well. However, premise 3 states that White Sulphur Springs and Butte are in the same state, so we can conclude that White Sulphur Springs is in Montana.\n\nSince White Sulphur Springs is in Montana and Butte is also in Montana, and any city in Butte is not in Pierre (premise 5), we can conclude that Bismarck is not in Montana.\n\nWe don't have any information about Bismarck's state, but we can make an educated guess. Since we know that Pierre is not in Montana (premise 4), and Bismarck is not in Montana (from our deduction), we can conclude that Bismarck and Pierre are in different states.\n\nTherefore, the conclusion \"Pierre and Bismarck are in the same state\" is FALSE.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step:\n\n1. Billings is a city in Montana.\n   - This premise tells us that Montana has a city called Billings, but it doesn't provide any information about Pierre or Bismarck.\n\n2. Montana includes the cities of Butte, Helena, and Missoula.\n   - This premise also relates to Montana but doesn't provide any information about Pierre or Bismarck.\n\n3. White Sulphur Springs and Butte are cities in the same state.\n   - This premise tells us that White Sulphur Springs and Butte are in the same state, but we don't know the name of the state yet.\n\n4. The city of Pierre is not in Montana.\n   - This premise tells us that Pierre is not in Montana, but it doesn't provide any information about Bismarck.\n\n5. Any city in Butte is not in Pierre.\n   - This premise is a bit confusing. It seems to imply that Butte is a location or a region, and it's saying that any city within that region is not in Pierre. However, since we know from premise 3 that Butte is a city in the same state as White Sulphur Springs, we can infer that Butte is not a region but a city. So, this premise is likely meant to say that the city of Butte is not in Pierre.\n\nNow, let's try to relate these premises to the conclusion: Pierre and Bismarck are in the same state.\n\nSince we know from premise 4 that Pierre is not in Montana, and premise 1 also tells us that Billings is in Montana, we can infer that Pierre and Billings are not in the same state. However, we still don't know the state where Pierre is located.\n\nPremise 3 tells us that White Sulphur Springs and Butte are in the same state. Since we know from premise 5 that Butte is not in Pierre, we can infer that White Sulphur Springs is not in Pierre either.\n\nNow, we need to find out the state where Pierre is located. Since we know that White Sulphur Springs and Butte are in the same state, and we also know from premise 2 that Butte is in Montana, we can infer that White Sulphur Springs is also in Montana.\n\nHowever, premise 4 tells us that Pierre is not in Montana. So, Pierre must be in a different state.\n\nNow, let's think about Bismarck. We don't have any information about Bismarck directly related to Pierre. However, we do know that White Sulphur Springs and Butte are in the same state, and since Butte is in Montana, we can infer that White Sulphur Springs is also in Montana.\n\nPremise 4 tells us that Pierre is not in Montana, and premise 4 also tells us that the city of Pierre is not in Montana. Therefore, Pierre is not in the same state as Bismarck.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and see if we can derive any information about Pierre and Bismarck being in the same state.\n\nPremise 1: Billings is a city in Montana.\nThis premise does not provide any information about Pierre or Bismarck, so we cannot draw any conclusions from it yet.\n\nPremise 2: Montana includes the cities of Butte, Helena, and Missoula.\nThis premise also does not provide any information about Pierre or Bismarck.\n\nPremise 3: White Sulphur Springs and Butte are cities in the same state.\nThis premise does not provide any information about Pierre or Bismarck.\n\nPremise 4: The city of Pierre is not in Montana.\nThis premise provides some information about Pierre. It tells us that Pierre is not in Montana.\n\nPremise 5: Any city in Butte is not in Pierre.\nThis premise seems to be incorrect or incomplete. It should probably say \"Any city in Butte is not in Pierre, and any city in Pierre is not in Butte.\" However, we will continue with the given premise.\n\nFrom Premise 4, we know that Pierre is not in Montana. From Premise 5, we can conclude that any city in Butte is not in Pierre. This premise does not provide any information about Bismarck.\n\nHowever, we still do not have any information about Pierre and Bismarck being in the same state. We do not know the state of Bismarck.\n\nTherefore, we cannot determine whether Pierre and Bismarck are in the same state. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and find any connections between the cities mentioned.\n\nPremise 1: Billings is a city in Montana.\n\nThis premise establishes that Montana is a state and Billings is a city within that state.\n\nPremise 2: Montana includes the cities of Butte, Helena, and Missoula.\n\nThis premise provides additional information about cities within Montana. Since Montana already established in Premise 1, we can conclude that Butte, Helena, and Missoula are also cities in Montana.\n\nPremise 3: White Sulphur Springs and Butte are cities in the same state.\n\nThis premise provides information about the state that White Sulphur Springs and Butte are in. Since Butte is already established to be in Montana (from Premise 2), we can conclude that White Sulphur Springs is also in Montana.\n\nPremise 4: The city of Pierre is not in Montana.\n\nThis premise provides information about the state that Pierre is not in. Since we have established that Montana is a state (from Premise 1), we can conclude that Pierre is not in Montana.\n\nPremise 5: Any city in Butte is not in Pierre.\n\nThis premise is a bit confusing, but we can interpret it as \"any city in Montana (specifically Butte) is not in Pierre.\" This premise does not provide new information about the state of Pierre, but it confirms that Butte (and by extension, Montana) is not in Pierre.\n\nNow, let's analyze the conclusion: Pierre and Bismarck are in the same state.\n\nWe need to determine if this conclusion can be derived from the given premises. However, the premises do not provide any information about Bismarck or the state that Pierre is in. The only information we have about Pierre is that it is not in Montana (from Premise 4).\n\nSince there is no information about Bismarck or the state that Pierre is in, we cannot derive the conclusion that Pierre and Bismarck are in the same state from the given premises. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and find any connections between the cities and states mentioned.\n\nPremise 1: Billings is a city in Montana.\nThis premise tells us that Billings is in Montana, but it doesn't provide any information about Pierre or Bismarck.\n\nPremise 2: Montana includes the cities of Butte, Helena, and Missoula.\nThis premise gives us a list of cities in Montana, but it still doesn't provide any information about Pierre or Bismarck.\n\nPremise 3: White Sulphur Springs and Butte are cities in the same state.\nThis premise tells us that White Sulphur Springs and Butte are in the same state, but it doesn't specify which state.\n\nPremise 4: The city of Pierre is not in Montana.\nThis premise directly tells us that Pierre is not in Montana.\n\nPremise 5: Any city in Butte is not in Pierre.\nThis premise seems to be incorrectly phrased, but we can interpret it as meaning that any city in Montana (which includes Butte) is not in Pierre.\n\nNow, let's look at the conclusion: Pierre and Bismarck are in the same state.\n\nTo determine whether this conclusion is true, false, or uncertain, we need to find any connections between Pierre and Bismarck. Unfortunately, none of the premises provide any information about the state of Bismarck or a connection between Pierre and Bismarck.\n\nHowever, we can use the process of elimination to determine the uncertainty of the conclusion. From Premise 4, we know that Pierre is not in Montana. Since Montana is mentioned in several premises, and we know that Bismarck is not mentioned as being in Montana, it is possible that Bismarck is in a different state than Montana.\n\nHowever, we cannot determine the state of Bismarck directly from the given premises. Therefore, we cannot determine whether Pierre and Bismarck are in the same state.\n\nConclusion: The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and their implications.\n\nPremise 1: Billings is a city in Montana.\nPremise 2: Montana includes the cities of Butte, Helena, and Missoula.\nPremise 3: White Sulphur Springs and Butte are cities in the same state.\nPremise 4: The city of Pierre is not in Montana.\nPremise 5: Any city in Butte is not in Pierre.\n\nFrom Premise 1 and Premise 2, we can infer that Butte is a city in Montana.\n\nPremise 3 states that White Sulphur Springs and Butte are cities in the same state. Since Butte is in Montana (from Premise 2), this implies that White Sulphur Springs is also in Montana.\n\nHowever, there is no information provided about the state where Pierre and Bismarck are located. We only know that Pierre is not in Montana (Premise 4) and that any city in Butte is not in Pierre (Premise 5). \n\nTo determine the relationship between Pierre and Bismarck, we need more information about their locations. Since none of the premises provide information about Bismarck or the state where Pierre and Bismarck are located, the conclusion \"Pierre and Bismarck are in the same state\" is uncertain.\n\nTherefore, the final answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they provide any information about Pierre and Bismarck being in the same state.\n\nPremise 1: Billings is a city in Montana.\n- This premise does not provide any information about Pierre and Bismarck.\n\nPremise 2: Montana includes the cities of Butte, Helena, and Missoula.\n- This premise does not provide any information about Pierre and Bismarck.\n\nPremise 3: White Sulphur Springs and Butte are cities in the same state.\n- This premise does not provide any information about Pierre and Bismarck.\n\nPremise 4: The city of Pierre is not in Montana.\n- This premise provides some information about Pierre. It tells us that Pierre is not in Montana.\n\nPremise 5: Any city in Butte is not in Pierre.\n- This premise is likely incorrect or ambiguous. The statement \"Any city in Butte is not in Pierre\" does not make sense. Butte is a city, not a region or a state. Therefore, we will ignore this premise.\n\nTo determine the conclusion, we need to know the state where Pierre and Bismarck are located. Since we don't have any information about Bismarck, we can't directly conclude that Pierre and Bismarck are in the same state.\n\nHowever, we can infer that Pierre is not in Montana (Premise 4). But we don't have any information about the state where Pierre is located. Therefore, we can't conclude anything about the state where Bismarck is located.\n\nThe conclusion \"Pierre and Bismarck are in the same state\" is uncertain because we don't have enough information to determine the state where Pierre and Bismarck are located.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they provide any information about Pierre and Bismarck.\n\nPremise 1: Billings is a city in Montana.\nPremise 2: Montana includes the cities of Butte, Helena, and Missoula.\nPremise 3: White Sulphur Springs and Butte are cities in the same state.\nPremise 4: The city of Pierre is not in Montana.\nPremise 5: Any city in Butte is not in Pierre.\n\nWe are given no information about the state where Pierre is located. However, we also have no information about the location of Bismarck.\n\nBut, we can analyze the premises to see if they provide any information that might help us. From Premise 2, we can see that Butte is in Montana. From Premise 4, we can see that Pierre is not in Montana.\n\nWe have no information about the state where Bismarck is located, and we have no information about the state where Pierre is located (other than it's not Montana).\n\nSince we have no information about the state where Pierre is located or Bismarck is located, we cannot determine whether Pierre and Bismarck are in the same state.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and find any relevant information related to the conclusion.\n\nPremise 1: Billings is a city in Montana.\nThis premise does not provide any information about Pierre, so we can't use it to determine the state of Pierre.\n\nPremise 2: Montana includes the cities of Butte, Helena, and Missoula.\nThis premise tells us that Butte is in Montana, but it still doesn't provide any information about Pierre.\n\nPremise 3: White Sulphur Springs and Butte are cities in the same state.\nSince we already know that Butte is in Montana (from Premise 2), this premise implies that White Sulphur Springs is also in Montana. However, this premise doesn't provide any information about Pierre.\n\nPremise 4: The city of Pierre is not in Montana.\nThis premise directly tells us that Pierre is not in Montana.\n\nPremise 5: Any city in Butte is not in Pierre.\nThis premise is somewhat ambiguous, but it seems to be saying that Butte is not in Pierre. However, it's not clear if Pierre is a state or a city. Assuming it's a city, this premise doesn't provide any information about the state of Pierre.\n\nGiven the premises, we can conclude that Pierre is not in Montana (Premise 4). However, we have no information about the state of Pierre. The premises don't mention any other states or cities that might be related to Pierre.\n\nSince we don't have any information about the state of Pierre, we can't determine whether Pierre and Bismarck are in the same state. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "city(billings, montana)",
+          "z3_formula": "city_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities(montana, [butte, helena, missoula])",
+          "z3_formula": "cities_montana_butte_helena_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, Y) & city(Z, Y) -> X == Z",
+          "z3_formula": "Implies(And(city_white_sulphur_springs_Y, city_butte_Y), white_sulphur_springs == butte)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not city(pierre, montana)",
+          "z3_formula": "not city_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, butte) -> not city(X, pierre)",
+          "z3_formula": "Implies(city_X_butte, not city_X_pierre)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not city(pierre, butte)",
+          "z3_formula": "not city_pierre_butte == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "city(white_sulphur_springs, montana)",
+          "z3_formula": "city_white_sulphur_springs_montana == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "city(bismarck, ?)",
+          "z3_formula": "city_bismarck_? == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "city(billings, montana)",
+          "z3_formula": "city_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities(montana, [butte, helena, missoula])",
+          "z3_formula": "cities_montana_butte_helena_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cities(montana, [butte, helena, missoula])",
+          "z3_formula": "cities_montana_butte_helena_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cities(same_state(white_sulphur_springs, butte))",
+          "z3_formula": "cities_same_state_white_sulphur_springs_butte == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not city(pierre, montana)",
+          "z3_formula": "not_city_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, Y) & city(Z, Y) -> same_state(X, Z)",
+          "z3_formula": "Implies(And(city_butte_montana, city_white_sulphur_springs_montana), same_state_butte_white_sulphur_springs)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, Y) & not city(Z, Y) -> not same_state(X, Z)",
+          "z3_formula": "Implies(And(city_butte_montana, not_city_pierre_montana), not_same_state_butte_pierre)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, Y) & city(Z, Y) -> same_state(X, Z)",
+          "z3_formula": "Implies(And(city_butte_montana, city_butte_white_sulphur_springs), same_state_butte_white_sulphur_springs)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, Y) & not city(Z, Y) -> not same_state(X, Z)",
+          "z3_formula": "Implies(And(city_butte_montana, not_city_pierre_montana), not_same_state_butte_pierre)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, Y) -> cities(Y, [X])",
+          "z3_formula": "Implies(city_butte_montana, cities_montana_butte)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "not city(X, Y) -> not cities(Y, [X])",
+          "z3_formula": "Implies(not_city_pierre_montana, not_cities_montana_pierre)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, Y) & city(Z, Y) -> same_state(X, Z)",
+          "z3_formula": "Implies(And(city_butte_montana, city_pierre_montana), same_state_butte_pierre)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, Y) & city(Z, Y) -> same_state(X, Z)",
+          "z3_formula": "Implies(And(city_bismarck_montana, city_pierre_montana), same_state_bismarck_pierre)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "same_state(white_sulphur_springs, butte)",
+          "z3_formula": "same_state_white_sulphur_springs_butte == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not same_state(butte, pierre)",
+          "z3_formula": "not_same_state_butte_pierre == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "same_state(butte, white_sulphur_springs)",
+          "z3_formula": "same_state_butte_white_sulphur_springs == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "city(butte, montana)",
+          "z3_formula": "city_butte_montana == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not city(pierre, montana)",
+          "z3_formula": "not_city_pierre_montana == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "same_state(butte, white_sulphur_springs)",
+          "z3_formula": "same_state_butte_white_sulphur_springs == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "same_state(butte, pierre)",
+          "z3_formula": "same_state_butte_pierre == Unknown",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "same_state(bismarck, pierre)",
+          "z3_formula": "same_state_bismarck_pierre == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "city(billings, montana)",
+          "z3_formula": "city_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities(montana, [butte, helena, missoula])",
+          "z3_formula": "cities_montana_butte_helena_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cities(same_state(butte, white_sulphur_springs))",
+          "z3_formula": "cities_same_state_butte_white_sulphur_springs == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(city(pierre, montana))",
+          "z3_formula": "not_city_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, butte) -> not(city(X, pierre))",
+          "z3_formula": "Implies(city_butte_X, not_city_X_pierre)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(city(pierre, butte))",
+          "z3_formula": "not_city_pierre_butte == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(city(pierre, butte))",
+          "z3_formula": "not_city_pierre_butte == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(city(bismarck, butte))",
+          "z3_formula": "not_city_bismarck_butte == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(city(pierre, butte)) & not(city(bismarck, butte))",
+          "z3_formula": "And(not_city_pierre_butte, not_city_bismarck_butte) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "city_in_state(billings, montana)",
+          "z3_formula": "city_in_state_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in_montana = [butte, helena, missoula]",
+          "z3_formula": "cities_in_montana == [butte, helena, missoula]",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "city_in_state(butte, montana)",
+          "z3_formula": "city_in_state_butte_montana == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "city_in_state(white_sulphur_springs, same_state_as(butte))",
+          "z3_formula": "city_in_state_white_sulphur_springs_same_state_as_butte == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not city_in_state(pierre, montana)",
+          "z3_formula": "not city_in_state_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city_in_state(X, butte) -> not city_in_state(X, pierre)",
+          "z3_formula": "Implies(city_in_state_X_butte, not city_in_state_X_pierre)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not city_in_state(butte, same_state_as(pierre))",
+          "z3_formula": "not city_in_state_butte_same_state_as_pierre == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "city_in_state(white_sulphur_springs, montana)",
+          "z3_formula": "city_in_state_white_sulphur_springs_montana == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not city_in_state(butte, same_state_as(pierre)) & city_in_state(white_sulphur_springs, montana) -> not city_in_state(bismarck, montana)",
+          "z3_formula": "Implies(And(not city_in_state_butte_same_state_as_pierre, city_in_state_white_sulphur_springs_montana), not city_in_state_bismarck_montana)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not city_in_state(pierre, montana) & not city_in_state(bismarck, montana) -> not city_in_state(pierre, same_state_as(bismarck))",
+          "z3_formula": "Implies(And(not city_in_state_pierre_montana, not city_in_state_bismarck_montana), not city_in_state_pierre_same_state_as_bismarck)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "city(billings, montana)",
+          "z3_formula": "city_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in(montana, [butte, helena, missoula])",
+          "z3_formula": "cities_in_montana_butte_helena_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in(same_state(white_sulphur_springs, butte), [white_sulphur_springs, butte])",
+          "z3_formula": "cities_in_same_state_white_sulphur_springs_butte_white_sulphur_springs_butte == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(city(pierre, montana))",
+          "z3_formula": "not_city_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, butte) -> not(city(X, pierre))",
+          "z3_formula": "Implies(city_butte, not_city_butte_pierre)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(same_state(pierre, bismarck))",
+          "z3_formula": "not_same_state_pierre_bismarck == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "city_of_billings_in_montana",
+          "z3_formula": "city_of_billings_in_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in_montana_include_butte_helena_missoula",
+          "z3_formula": "cities_in_montana_include_butte_helena_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white_sulphur_springs_and_butte_are_in_same_state",
+          "z3_formula": "white_sulphur_springs_and_butte_are_in_same_state == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "pierre_is_not_in_montana",
+          "z3_formula": "pierre_is_not_in_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city_in_butte_not_in_pierre",
+          "z3_formula": "Implies(city_in_butte, Not(city_in_pierre))",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "city_in_state(billings, montana)",
+          "z3_formula": "city_in_state_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "city_in_state(X, montana) -> state(montana)",
+          "z3_formula": "Implies(city_in_state_billings_montana, state_montana)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in_state(montana, [butte, helena, missoula])",
+          "z3_formula": "cities_in_state_montana_butte_helena_missoula == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "city_in_state(butte, montana)",
+          "z3_formula": "city_in_state_butte_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "city_in_state(white_sulphur_springs, same_state(butte))",
+          "z3_formula": "city_in_state_white_sulphur_springs_same_state_butte == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "city_in_state(white_sulphur_springs, montana)",
+          "z3_formula": "city_in_state_white_sulphur_springs_montana == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not city_in_state(pierre, montana)",
+          "z3_formula": "not_city_in_state_pierre_montana == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "city_in_state(X, butte) -> not city_in_state(X, pierre)",
+          "z3_formula": "Implies(city_in_state_X_butte, not_city_in_state_X_pierre)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not city_in_state(butte, pierre)",
+          "z3_formula": "not_city_in_state_butte_pierre == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "city(billings, montana)",
+          "z3_formula": "city_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in_montana = [butte, helena, missoula]",
+          "z3_formula": "cities_in_montana == [butte, helena, missoula]",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in_same_state(white_sulphur_springs, butte)",
+          "z3_formula": "cities_in_same_state_white_sulphur_springs_butte == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not city(pierre, montana)",
+          "z3_formula": "not city_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, montana) -> not city(X, pierre)",
+          "z3_formula": "Implies(city_billings_montana, not city_billings_pierre)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "same_state(pierre, bismarck)",
+          "z3_formula": "same_state_pierre_bismarck == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "city(billings, montana)",
+          "z3_formula": "city_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities(montana, butte, helena, missoula)",
+          "z3_formula": "cities_montana_butte_helena_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cities(same_state, butte, white_sulphur_springs)",
+          "z3_formula": "cities_same_state_butte_white_sulphur_springs == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not_city(pierre, montana)",
+          "z3_formula": "not_city_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, montana) & cities(montana, Y, Z, W) -> city(Y, montana)",
+          "z3_formula": "Implies(And(city_billings_montana, cities_montana_butte_helena_missoula), city_butte_montana)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cities(same_state, X, Y) -> city(X, state) & city(Y, state)",
+          "z3_formula": "Implies(cities_same_state_butte_white_sulphur_springs, And(city_butte_montana, city_white_sulphur_springs_montana))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "city(butte, montana)",
+          "z3_formula": "city_butte_montana == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "city(white_sulphur_springs, montana)",
+          "z3_formula": "city_white_sulphur_springs_montana == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not_city(pierre, butte)",
+          "z3_formula": "not_city_pierre_butte == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, butte) -> not_city(X, pierre)",
+          "z3_formula": "Implies(city_butte, not_city_pierre)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not_city(pierre, butte)",
+          "z3_formula": "not_city_pierre_butte == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(pierre, bismarck, same_state)",
+          "z3_formula": "unknown_pierre_bismarck_same_state == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "city_of_billings_in_montana",
+          "z3_formula": "city_of_billings_in_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in_montana_include_butte_helena_missoula",
+          "z3_formula": "cities_in_montana_include_butte_helena_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white_sulphur_springs_and_butte_are_in_same_state",
+          "z3_formula": "white_sulphur_springs_and_butte_are_in_same_state == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "pierre_not_in_montana",
+          "z3_formula": "pierre_not_in_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city_in_butte_not_in_pierre",
+          "z3_formula": "Implies(city_in_butte, Not(city_in_pierre))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "pierre_and_bismarck_in_same_state",
+          "z3_formula": "Not(pierre_and_bismarck_in_same_state)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "city(billings, montana)",
+          "z3_formula": "city_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities(montana, butte, helena, missoula)",
+          "z3_formula": "cities_montana_butte_helena_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cities(same_state, butte, white_sulphur_springs)",
+          "z3_formula": "cities_same_state_butte_white_sulphur_springs == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(city(pierre, montana))",
+          "z3_formula": "not_city_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, butte) -> not(city(X, pierre))",
+          "z3_formula": "Implies(city_butte, not_city_pierre)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(pierre, bismarck)",
+          "z3_formula": "uncertain_pierre_bismarck == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "city(pierre, montana)",
+          "z3_formula": "city_pierre_montana == False",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "city(butte, montana)",
+          "z3_formula": "city_butte_montana == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, Y) & city(Z, Y) -> city(X, Z)",
+          "z3_formula": "Implies(And(city_butte_montana, city_white_sulphur_springs_montana), city_white_sulphur_springs_butte)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "city(white_sulphur_springs, montana)",
+          "z3_formula": "city_white_sulphur_springs_montana == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, Y) -> not city(X, Z)",
+          "z3_formula": "Implies(city_bismarck_pierre, Not(city_bismarck_pierre))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "city(pierre, montana)",
+          "z3_formula": "city_pierre_montana == False",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, Y) -> not city(X, Y)",
+          "z3_formula": "Implies(city_pierre_bismarck, Not(city_pierre_bismarck))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, Y) & city(Z, Y) -> city(X, Z)",
+          "z3_formula": "Implies(And(city_bismarck_pierre, city_bismarck_montana), city_bismarck_montana)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "city(bismarck, montana)",
+          "z3_formula": "city_bismarck_montana == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, Y) -> not city(X, Z)",
+          "z3_formula": "Implies(city_bismarck_pierre, Not(city_bismarck_pierre))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "city(pierre, bismarck)",
+          "z3_formula": "city_bismarck_pierre == Unknown",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 109,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 59
+    },
+    "maxsat_stats": {
+      "satisfied": 59,
+      "excluded": 0,
+      "total_weight": 101,
+      "solve_time_ms": 2.4979794397950172
+    },
+    "timing": {
+      "trace_gen_s": 7.582,
+      "extraction_s": 25.12,
+      "dedup_s": 1.371,
+      "maxsat_s": 0.008,
+      "total_s": 34.08
+    }
+  }
+}

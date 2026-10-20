@@ -1,0 +1,1042 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-127_Q2",
+    "problem": "The bear is blue. The bear is green. The bear is red. The bear sees the rabbit. The cow is blue. The cow needs the tiger. The cow visits the rabbit. The rabbit is cold. The rabbit is nice. The rabbit needs the cow. The rabbit sees the cow. The rabbit sees the tiger. The tiger needs the bear. The tiger needs the rabbit. The tiger visits the bear. The tiger visits the cow. If something is green then it visits the tiger. If something sees the bear and it is cold then the bear is green. If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red. If something is green then it needs the cow. If something visits the tiger then the tiger is red. If something needs the tiger and the tiger sees the cow then the cow needs the bear. If something sees the bear and it needs the bear then it sees the cow. If something visits the rabbit then the rabbit needs the tiger. If something needs the bear and the bear visits the tiger then it sees the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear is not blue.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nSees($x, $y, bool) ::: Does x see y?\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nBlue(Bear, True) ::: The bear is blue.\nGreen(Bear, True) ::: The bear is green.\nRed(Bear, True) ::: The bear is red.\nSees(Bear, Rabbit, True) ::: The bear sees the rabbit.\nBlue(Cow, True) ::: The cow is blue.\nNeeds(Cow, Tiger, True) ::: The cow needs the tiger.\nVisits(Cow, Rabbit, True) ::: The cow visits the rabbit.\nCold(Rabbit, True) ::: The rabbit is cold.\nNice(Rabbit, True) ::: The rabbit is nice.\nNeeds(Rabbit, Cow, True) ::: The rabbit needs the cow.\nSees(Rabbit, Cow, True) ::: The rabbit sees the cow.\nSees(Rabbit, Tiger, True) ::: The rabbit sees the tiger.\nNeeds(Tiger, Bear, True) ::: The tiger needs the bear.\nNeeds(Tiger, Rabbit, True) ::: The tiger needs the rabbit.\nVisits(Tiger, Bear, True) ::: The tiger visits the bear.\nVisits(Tiger, Cow, True) ::: The tiger visits the cow.\n\nRules:\nGreen($x, True) >>> Visits($x, Tiger, True) ::: If something is green then it visits the tiger.\nSees($x, Bear, True) && Cold($x, True) >>> Green(Bear, True) ::: If something sees the bear and it is cold then the bear is green.\nNeeds(Cow, Rabbit, True) && Needs(Rabbit, Cow, True) >>> Red(Rabbit, True) ::: If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red.\nGreen($x, True) >>> Needs($x, Cow, True) ::: If something is green then it needs the cow.\nVisits($x, Tiger, True) >>> Red(Tiger, True) ::: If something visits the tiger then the tiger is red.\nNeeds($x, Tiger, True) && Sees(Tiger, Cow, True) >>> Needs(Cow, Bear, True) ::: If something needs the tiger and the tiger sees the cow then the cow needs the bear.\nSees($x, Bear, True) && Needs($x, Bear, True) >>> Sees($x, Cow, True) ::: If something sees the bear and it needs the bear then it sees the cow.\nVisits($x, Rabbit, True) >>> Needs(Rabbit, Tiger, True) ::: If something visits the rabbit then the rabbit needs the tiger.\nNeeds($x, Bear, True) && Visits(Bear, Tiger, True) >>> Sees($x, Bear, True) ::: If something needs the bear and the bear visits the tiger then it sees the bear.\n\nQuery:\nBlue(Bear, False) ::: The bear is not blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 89.0,
+      "Unknown": 124.5
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "False": 4
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to determine the color of the bear based on the given statements and rules.\n\nLet's analyze the statements:\n\n1. The bear is blue.\n2. The bear is green.\n3. The bear is red.\n\nWe know the bear is blue from statement 1. If the bear is green, then it would not be blue. However, the statement 'The bear is green' is a separate statement and does not contradict 'The bear is blue.' The bear can be both blue and green.\n\nNow, we need to consider the rules to determine if the bear is not blue:\n\n1. If something is green then it visits the tiger. (This does not apply to the bear's color.)\n2. If something sees the bear and it is cold then the bear is green. (We do not have any information about the bear's temperature, so we cannot apply this rule.)\n3. If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red. (This rule does not apply to the bear's color.)\n4. If something is green then it needs the cow. (This does not apply to the bear's color.)\n5. If something visits the tiger then the tiger is red. (This does not apply to the bear's color.)\n6. If something needs the tiger and the tiger sees the cow then the cow needs the bear. (This rule does not apply to the bear's color.)\n7. If something sees the bear and it needs the bear then it sees the cow. (This rule does not apply to the bear's color.)\n8. If something visits the rabbit then the rabbit needs the tiger. (This rule does not apply to the bear's color.)\n9. If something needs the bear and the bear visits the tiger then it sees the bear. (This rule does not apply to the bear's color.)\n\nHowever, we have another rule that says:\n\n- If the cow sees the bear and it is cold then the bear is green.\n\nWe do not have any information about the bear's temperature, but we have information about the bear's color from statement 1: The bear is blue.\n\nBased on this information, we cannot directly determine if the bear is green or not based on the given rules. However, we can infer that if the bear is green, then it would contradict statement 1. \n\nWe can also infer that the bear is not red, because statement 1 says The bear is blue, and we have no information that suggests the bear is red.\n\nHowever, we cannot determine the bear's color based on the given statements and rules, so we cannot directly determine if the statement \"The bear is not blue\" is true or false. \n\nTherefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is not blue\" is true, false, or unknown, we need to analyze the given information and the conditions.\n\n1. The bear is blue. (Initial condition)\n\nWe need to check if this condition is changed by any of the given rules.\n\n2. If something is green then it visits the tiger. (No relation to the bear's color)\n3. If something sees the bear and it is cold then the bear is green. (No relation to the bear's color)\n4. If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red. (No relation to the bear's color)\n5. If something is green then it needs the cow. (No relation to the bear's color)\n6. If something visits the tiger then the tiger is red. (No relation to the bear's color)\n7. If something needs the tiger and the tiger sees the cow then the cow needs the bear. (No relation to the bear's color)\n8. If something sees the bear and it needs the bear then it sees the cow. (No relation to the bear's color)\n9. If something visits the rabbit then the rabbit needs the tiger. (No relation to the bear's color)\n10. If something needs the bear and the bear visits the tiger then it sees the bear. (This rule does not change the bear's color)\n\nHowever, we have another condition which directly affects the bear's color:\n\n- The bear is cold. (Implicitly mentioned in the condition \"If something sees the bear and it is cold then the bear is green.\")\n\nFrom this condition, we can conclude that the bear is green.\n\nNow, we need to compare this result with the initial condition: \"The bear is blue.\"\n\nSince the bear is green, we can conclude that the statement \"The bear is not blue\" is TRUE.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and the conditions one by one.\n\n1. The bear is blue. \n2. The bear is green.\n3. The bear is red.\n\nWe have three different colors for the bear. We can't determine the color of the bear yet.\n\n4. The bear sees the rabbit.\n5. The cow is blue.\n6. The cow needs the tiger.\n7. The cow visits the rabbit.\n\n- The cow's color is blue, but we don't know if it's the only color. The cow's relationship with the tiger and the rabbit doesn't affect its color.\n\n8. The rabbit is cold.\n9. The rabbit is nice.\n10. The rabbit needs the cow.\n11. The rabbit sees the cow.\n12. The rabbit sees the tiger.\n\n- The rabbit's color is unknown. It's cold, but we don't know if that's the only characteristic.\n\n13. The tiger needs the bear.\n14. The tiger needs the rabbit.\n15. The tiger visits the bear.\n16. The tiger visits the cow.\n\n- The tiger's color is unknown. It needs the bear and the rabbit, and it visits the bear and the cow.\n\nNow we have to apply the conditions:\n\n- Condition 1: If something is green then it visits the tiger.\n- Condition 2: If something sees the bear and it is cold then the bear is green.\n- Condition 3: If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red.\n- Condition 4: If something is green then it needs the cow.\n- Condition 5: If something visits the tiger then the tiger is red.\n- Condition 6: If something needs the tiger and the tiger sees the cow then the cow needs the bear.\n- Condition 7: If something sees the bear and it needs the bear then it sees the cow.\n- Condition 8: If something visits the rabbit then the rabbit needs the tiger.\n- Condition 9: If something needs the bear and the bear visits the tiger then it sees the bear.\n\nLet's apply these conditions:\n\n- From condition 1, we can say the bear visits the tiger, so the bear is green (but we already know that the bear is blue and green).\n- From condition 2, we can say the bear is green because the rabbit is cold and the bear sees the rabbit.\n- The bear is blue, green, and red, so we can't conclude that the bear is not blue.\n\nTherefore, the statement \"The bear is not blue\" is false because the bear is blue, green, and red.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given statements:\n\n1. The bear is blue. (Direct information)\n2. If something sees the bear and it is cold then the bear is green. (Rule 5)\n3. If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red. (Rule 6)\n4. If something is green then it needs the cow. (Rule 7)\n5. If something visits the tiger then the tiger is red. (Rule 8)\n6. If something needs the tiger and the tiger sees the cow then the cow needs the bear. (Rule 9)\n7. If something sees the bear and it needs the bear then it sees the cow. (Rule 10)\n8. If something visits the rabbit then the rabbit needs the tiger. (Rule 11)\n9. If something needs the bear and the bear visits the tiger then it sees the bear. (Rule 12)\n\nWe can't find any information that contradicts the statement \"The bear is blue.\" Therefore, we can conclude that the statement \"The bear is not blue\" is false because the direct information states the bear is blue.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine if the statement 'The bear is not blue' is true, false, or unknown, we need to analyze the given information.\n\n1. The bear is blue. \n   This statement directly tells us that the bear is blue.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n2. The bear is green. \n   This statement directly tells us that the bear is green.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n3. The bear is red. \n   This statement directly tells us that the bear is red.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n4. The bear sees the rabbit. \n   This statement does not provide any information about the color of the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n5. The cow is blue. \n   This statement does not provide any information about the color of the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n6. The cow needs the tiger. \n   This statement does not provide any information about the color of the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n7. The cow visits the rabbit. \n   This statement does not provide any information about the color of the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n8. The rabbit is cold. \n   This statement does not provide any information about the color of the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n9. The rabbit is nice. \n   This statement does not provide any information about the color of the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n10. The rabbit needs the cow. \n    This statement does not provide any information about the color of the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n11. The rabbit sees the cow. \n    This statement does not provide any information about the color of the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n12. The rabbit sees the tiger. \n    This statement does not provide any information about the color of the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n13. The tiger needs the bear. \n    This statement does not provide any information about the color of the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n14. The tiger needs the rabbit. \n    This statement does not provide any information about the color of the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n15. The tiger visits the bear. \n    This statement does not provide any information about the color of the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n16. The tiger visits the cow. \n    This statement does not provide any information about the color of the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n17. If something is green then it visits the tiger. \n    This statement does not provide any information about the color of the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n18. If something sees the bear and it is cold then the bear is green. \n    This statement does not apply because we do not know if the rabbit is cold, and even if it is, we do not know if it sees the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n19. If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red. \n    We know that the rabbit needs the cow, but we do not know if the cow needs the rabbit.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n20. If something is green then it needs the cow. \n    This statement does not apply because we do not know if the bear, rabbit, or tiger is green.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n21. If something visits the tiger then the tiger is red. \n    We know that the tiger is visited by the bear and the cow, but we do not know if the bear or the cow is red.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n22. If something needs the tiger and the tiger sees the cow then the cow needs the bear. \n    We do not know if the tiger sees the cow.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n23. If something sees the bear and it needs the bear then it sees the cow. \n    We know that the tiger sees the bear and needs the bear.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n24. If something visits the rabbit then the rabbit needs the tiger. \n    We know that the cow visits the rabbit.\n\nNow, let's analyze the other statements to see if they provide any additional information about the color of the bear.\n\n25. If something needs the bear and the bear visits the tiger then it sees the bear. \n    We know that the tiger needs the bear and the bear visits the tiger.\n\nWe can now combine the statements to determine the color of the bear.\n\n- The bear is blue.\n- The bear is green.\n- The bear is red.\n\nThis means the bear is blue, green, and red. \n\nHowever, the question is 'The bear is not blue.' We know that the bear is blue, but we also know that the bear is green and red. Therefore, the bear is not exclusively blue.\n\nSo, the statement 'The bear is not blue' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is not blue\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\nRule 1: If something is green then it visits the tiger.\nRule 2: If something sees the bear and it is cold then the bear is green.\nRule 3: If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red.\nRule 4: If something is green then it needs the cow.\nRule 5: If something visits the tiger then the tiger is red.\nRule 6: If something needs the tiger and the tiger sees the cow then the cow needs the bear.\nRule 7: If something sees the bear and it needs the bear then it sees the cow.\nRule 8: If something visits the rabbit then the rabbit needs the tiger.\nRule 9: If something needs the bear and the bear visits the tiger then it sees the bear.\n\nGiven information:\n- The bear is blue.\n- The bear is green.\n- The bear is red.\n- The cow is blue.\n- The cow needs the tiger.\n- The cow visits the rabbit.\n- The rabbit is cold.\n- The rabbit is nice.\n- The rabbit needs the cow.\n- The rabbit sees the cow.\n- The rabbit sees the tiger.\n- The tiger needs the bear.\n- The tiger needs the rabbit.\n- The tiger visits the bear.\n- The tiger visits the cow.\n\nWe can analyze the given information to determine the colors of the bear. From Rule 2, if the bear is green, it implies that the bear sees the bear and it is cold. However, the bear is not cold, so the bear is not green.\n\nFrom Rule 3, if the cow needs the rabbit and the rabbit needs the cow then the rabbit is red. This is not directly related to the bear's color.\n\nFrom Rule 4, if something is green then it needs the cow. However, we don't have enough information to determine if the bear is green.\n\nFrom Rule 5, if something visits the tiger then the tiger is red. The tiger visits the bear, but we don't know if the bear is red.\n\nFrom Rule 6, if something needs the tiger and the tiger sees the cow then the cow needs the bear. However, we don't have enough information to determine if the cow needs the bear.\n\nFrom Rule 7, if something sees the bear and it needs the bear then it sees the cow. This is not directly related to the bear's color.\n\nFrom Rule 8, if something visits the rabbit then the rabbit needs the tiger. The cow visits the rabbit, and the rabbit needs the tiger.\n\nFrom Rule 9, if something needs the bear and the bear visits the tiger then it sees the bear. This is not directly related to the bear's color.\n\nWe are given that the bear is blue, green, and red. However, we cannot conclude that the bear is not blue because there is no rule that directly states that the bear is not blue. The bear can be blue, green, and red at the same time.\n\nTherefore, we cannot determine if the statement \"The bear is not blue\" is true or false based on the given information. The answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is not blue\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nRule 1: If something is green then it visits the tiger.\nRule 2: If something sees the bear and it is cold then the bear is green.\nWe don't have information about the bear being cold, so we cannot conclude that the bear is green based on this rule.\n\nRule 3: If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red.\nWe don't have information about the cow needing the rabbit or vice versa.\n\nRule 4: If something is green then it needs the cow.\nWe don't have information about anything being green.\n\nRule 5: If something visits the tiger then the tiger is red.\nWe know that the tiger visits the bear and the tiger visits the cow. However, we cannot conclude that the tiger is red based on this rule alone.\n\nRule 6: If something needs the tiger and the tiger sees the cow then the cow needs the bear.\nWe know that the tiger sees the cow, but we don't know if something needs the tiger.\n\nRule 7: If something sees the bear and it needs the bear then it sees the cow.\nWe don't have information about anything seeing the bear and needing the bear.\n\nRule 8: If something visits the rabbit then the rabbit needs the tiger.\nWe know that the cow visits the rabbit.\n\nRule 9: If something needs the bear and the bear visits the tiger then it sees the bear.\nWe know that the tiger needs the bear and the bear visits the tiger.\n\nNow, let's analyze the given statements:\n- The bear is blue.\n- The bear is green.\n- The bear is red.\n\nSince the bear is both blue and green, it cannot be red (because it would be two colors at the same time). However, this doesn't affect our analysis of whether the bear is blue or not.\n\nFrom the given statements, we know that the bear is blue and the bear is green. We cannot conclude that the bear is not blue because we have two conflicting statements.\n\nTherefore, the statement \"The bear is not blue\" is unknown because we have conflicting information.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to carefully analyze each given statement and the conditions provided. \n\nLet's break down the information:\n\n1. The bear is blue. (Initial condition)\n2. The bear sees the rabbit. (New information, no condition provided)\n3. The cow is blue. (New information, no condition provided)\n4. The cow needs the tiger. (New information, no condition provided)\n5. The cow visits the rabbit. (New information, no condition provided)\n6. The rabbit is cold. (New information, no condition provided)\n7. The rabbit is nice. (New information, no condition provided)\n8. The rabbit needs the cow. (New information, no condition provided)\n9. The rabbit sees the cow. (New information, no condition provided)\n10. The rabbit sees the tiger. (New information, no condition provided)\n11. The tiger needs the bear. (New information, no condition provided)\n12. The tiger needs the rabbit. (New information, no condition provided)\n13. The tiger visits the bear. (New information, no condition provided)\n14. The tiger visits the cow. (New information, no condition provided)\n\nWe need to evaluate the conditions:\n\n1. If something is green then it visits the tiger.\n2. If something sees the bear and it is cold then the bear is green.\n3. If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red.\n4. If something is green then it needs the cow.\n5. If something visits the tiger then the tiger is red.\n6. If something needs the tiger and the tiger sees the cow then the cow needs the bear.\n7. If something sees the bear and it needs the bear then it sees the cow.\n8. If something visits the rabbit then the rabbit needs the tiger.\n9. If something needs the bear and the bear visits the tiger then it sees the bear.\n\nFrom the given statements, we can deduce the following:\n\n- The bear sees the rabbit (statement 2).\n- The rabbit is cold (statement 6).\n\nUsing condition 2, we know that if something sees the bear and it is cold then the bear is green. However, since the bear is blue (initial condition), this condition does not apply to the bear itself. But since the rabbit is cold and sees the bear, this implies that the bear is indeed green (because the condition is satisfied for the rabbit, not the bear directly).\n\nTherefore, based on condition 1, if something is green then it visits the tiger, and since we have determined that the bear is green, the bear visits the tiger (condition 13).\n\nWe have not found any direct information that would contradict the initial condition that the bear is blue. Therefore, based on the information provided, we cannot determine whether the bear is not blue (the statement we need to evaluate).\n\nSo, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is not blue\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\nFrom the given statements:\n1. The bear is blue. (initial statement)\n2. If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red.\n3. If something visits the tiger then the tiger is red.\n4. If something is green then it visits the tiger.\n5. If something sees the bear and it is cold then the bear is green.\n6. If something needs the tiger and the tiger sees the cow then the cow needs the bear.\n7. If something visits the rabbit then the rabbit needs the tiger.\n8. If something needs the bear and the bear visits the tiger then it sees the bear.\n9. The cow is blue.\n10. The rabbit sees the cow.\n11. The cow needs the tiger.\n12. The cow visits the rabbit.\n13. The rabbit is cold.\n14. The rabbit is nice.\n15. The rabbit needs the cow.\n16. The rabbit sees the tiger.\n17. The tiger needs the bear.\n18. The tiger needs the rabbit.\n19. The tiger visits the bear.\n20. The tiger visits the cow.\n\nFrom statement 1, we know \"The bear is blue.\" This statement cannot be false, as it directly contradicts it.\n\nHowever, we need to check the possibility of \"The bear is blue\" being unknown. If the bear is not blue, it means the bear is either green or red.\n\nIf the bear is green, then it must be cold (rule 5). However, we know that the rabbit is cold (statement 13), and there's no information that the bear is cold. Therefore, if the bear is green, it would contradict the information about the rabbit being cold.\n\nIf the bear is red, then it must see the cow (rule 8). However, the bear visits the tiger (statement 19), and there's no information that the bear sees the cow.\n\nFrom the given information and the rules, there's no clear path that would make \"The bear is blue\" unknown.\n\nGiven the information, we can determine that \"The bear is not blue\" is false, because we have a direct statement that \"The bear is blue.\"\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. Let's break down the problem into smaller parts.\n\n1. The bear is blue.\n2. The bear is green.\n3. The bear is red.\n\nWe have three color statements for the bear. This means that we cannot determine the exact color of the bear using only these statements.\n\n4. The bear sees the rabbit.\n\nThis statement alone does not give us any information about the color of the bear.\n\n5. The cow is blue.\n6. The cow needs the tiger.\n7. The cow visits the rabbit.\n\nThese statements do not give us any information about the color of the bear.\n\n8. The rabbit is cold.\n9. The rabbit is nice.\n10. The rabbit needs the cow.\n11. The rabbit sees the cow.\n12. The rabbit sees the tiger.\n\nThese statements also do not give us any information about the color of the bear.\n\n13. The tiger needs the bear.\n14. The tiger needs the rabbit.\n15. The tiger visits the bear.\n16. The tiger visits the cow.\n\nThese statements also do not give us any information about the color of the bear.\n\nNow, let's analyze the color implications:\n\n- If something is green then it visits the tiger.\n- If something sees the bear and it is cold then the bear is green.\n- If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red.\n- If something is green then it needs the cow.\n- If something visits the tiger then the tiger is red.\n- If something needs the tiger and the tiger sees the cow then the cow needs the bear.\n- If something sees the bear and it needs the bear then it sees the cow.\n- If something visits the rabbit then the rabbit needs the tiger.\n- If something needs the bear and the bear visits the tiger then it sees the bear.\n\nFrom the above implications, we can conclude the following:\n\n- Statement 2 (The bear is green) implies that the bear visits the tiger (Statement 15).\n- Statement 15 (The tiger visits the bear) implies that the bear sees the tiger.\n\nHowever, Statement 1 (The bear is blue) and Statement 3 (The bear is red) do not have any implications that contradict Statement 2 (The bear is green).\n\nSince we cannot determine the exact color of the bear using only the given statements, we cannot conclude that the bear is not blue.\n\nTherefore, the statement \"The bear is not blue\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is not blue\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given information, we have the following statements:\n\n1. The bear is blue.\n2. If something sees the bear and it is cold then the bear is green.\n   - We don't have any information about the bear being cold or the bear being green, so this statement doesn't affect the initial information.\n\n3. If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red.\n   - We don't have any information about the cow needing the rabbit or vice versa, so this statement doesn't affect the initial information.\n\n4. If something is green then it needs the cow.\n   - This statement is not relevant to the initial information about the bear.\n\n5. If something visits the tiger then the tiger is red.\n   - We don't have any information about the tiger being red, so this statement doesn't affect the initial information.\n\n6. If something needs the tiger and the tiger sees the cow then the cow needs the bear.\n   - We don't have any information about the tiger seeing the cow, so this statement doesn't affect the initial information.\n\n7. If something sees the bear and it needs the bear then it sees the cow.\n   - This statement is not relevant to the initial information about the bear.\n\n8. If something visits the rabbit then the rabbit needs the tiger.\n   - We don't have any information about the rabbit needing the tiger, so this statement doesn't affect the initial information.\n\n9. The bear sees the rabbit.\n   - This statement is not relevant to the initial information about the bear.\n\n10. The cow is blue.\n    - This statement is not relevant to the initial information about the bear.\n\n11. The cow needs the tiger.\n    - This statement is not relevant to the initial information about the bear.\n\n12. The cow visits the rabbit.\n    - This statement is not relevant to the initial information about the bear.\n\n13. The rabbit is cold.\n    - This statement is not relevant to the initial information about the bear.\n\n14. The rabbit is nice.\n    - This statement is not relevant to the initial information about the bear.\n\n15. The rabbit needs the cow.\n    - This statement is not relevant to the initial information about the bear.\n\n16. The rabbit sees the cow.\n    - This statement is not relevant to the initial information about the bear.\n\n17. The rabbit sees the tiger.\n    - This statement is not relevant to the initial information about the bear.\n\n18. The tiger needs the bear.\n    - This statement is not relevant to the initial information about the bear.\n\n19. The tiger needs the rabbit.\n    - This statement is not relevant to the initial information about the bear.\n\n20. The tiger visits the bear.\n    - This statement is not relevant to the initial information about the bear.\n\n21. The tiger visits the cow.\n    - This statement is not relevant to the initial information about the bear.\n\nFrom the given information, we can conclude that:\n\n- The bear is blue.\n- We don't have any other information about the bear that would change its color.\n\nTherefore, the statement \"The bear is not blue\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions to find out the color of the bear.\n\nGiven statements:\n\n1. The bear is blue.\n2. The bear is green.\n3. The bear is red.\n4. The bear sees the rabbit.\n5. The cow is blue.\n6. The cow needs the tiger.\n7. The cow visits the rabbit.\n8. The rabbit is cold.\n9. The rabbit is nice.\n10. The rabbit needs the cow.\n11. The rabbit sees the cow.\n12. The rabbit sees the tiger.\n13. The tiger needs the bear.\n14. The tiger needs the rabbit.\n15. The tiger visits the bear.\n16. The tiger visits the cow.\n17. If something is green then it visits the tiger.\n18. If something sees the bear and it is cold then the bear is green.\n19. If the cow needs the rabbit and the rabbit needs the cow then the rabbit is red.\n20. If something is green then it needs the cow.\n21. If something visits the tiger then the tiger is red.\n22. If something needs the tiger and the tiger sees the cow then the cow needs the bear.\n23. If something sees the bear and it needs the bear then it sees the cow.\n24. If something visits the rabbit then the rabbit needs the tiger.\n25. If something needs the bear and the bear visits the tiger then it sees the bear.\n\nWe need to determine if the statement \"The bear is not blue\" is true, false, or unknown.\n\nFrom statement 1, we know that the bear is blue.\n\nFrom statement 18, we cannot deduce any information about the color of the bear.\n\nFrom statement 4, we know that the bear sees the rabbit.\n\nFrom statement 8, we know that the rabbit is cold.\n\nUsing statement 18, we can conclude that if the rabbit sees the bear and it is cold, then the bear is green. However, we cannot determine the color of the bear from this statement alone.\n\nSince we have two statements (1 and 2) that say the bear is blue and green, respectively, we cannot conclude the color of the bear using only these two statements.\n\nHowever, statement 4 and statement 8 give us a condition to determine the color of the bear. From statement 4, we know the bear sees the rabbit, and from statement 8, we know the rabbit is cold. Therefore, using statement 18, we can conclude that the bear is green.\n\nSince we have concluded that the bear is green, we can use statement 17 to find out the color of the bear. Statement 17 says that if something is green, then it visits the tiger. However, this statement does not tell us the color of the bear.\n\nNow, we have concluded that the bear is green, and we need to determine if this conclusion affects the original statement \"The bear is not blue.\" Since we have concluded that the bear is green, we can use this information to find out if the bear is blue.\n\nHowever, the conclusion that the bear is green does not necessarily affect the original statement. The original statement says \"The bear is not blue,\" but we have concluded that the bear is green, not that the bear is not blue.\n\nTherefore, based on our analysis, we cannot determine if the statement \"The bear is not blue\" is true or false. We can only conclude that the bear is green, but this conclusion does not affect the original statement.\n\nHence, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_bear, Not(blue_bear))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(Y, X) -> green(X)",
+          "z3_formula": "Implies(And(cold_bear, sees_cow_bear), green_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bear)",
+          "z3_formula": "Not(blue_bear)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & cold(X) -> green(bear)",
+          "z3_formula": "Implies(And(sees_X_bear, cold_bear), green_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_bear, visits_bear_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(Y) & sees(X, Y) -> green(X)",
+          "z3_formula": "Implies(And(cold_rabbit, sees_bear_rabbit), green_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & needs(Y, X) -> red(Y)",
+          "z3_formula": "Implies(And(needs_rabbit_cow, needs_cow_rabbit), red_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> red(X)",
+          "z3_formula": "Implies(visits_bear_tiger, red_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & sees(Y, cow) -> needs(X, bear)",
+          "z3_formula": "Implies(And(needs_cow_tiger, sees_tiger_cow), needs_cow_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & needs(X, bear) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_rabbit_bear, needs_rabbit_bear), sees_rabbit_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(visits_tiger_rabbit, needs_tiger_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & visits(bear, tiger) -> sees(X, bear)",
+          "z3_formula": "Implies(And(needs_tiger_bear, visits_bear_tiger), sees_tiger_bear)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & cold(X) -> green(bear)",
+          "z3_formula": "Implies(And(sees_X_bear, cold_X), green_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & needs(rabbit, X) -> red(rabbit)",
+          "z3_formula": "Implies(And(needs_X_rabbit, needs_rabbit_X), red_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_X, needs_X_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> red(tiger)",
+          "z3_formula": "Implies(visits_X_tiger, red_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & red(tiger) & sees(tiger, cow) -> needs(X, bear)",
+          "z3_formula": "Implies(And(needs_X_tiger, red_tiger, sees_tiger_cow), needs_X_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & needs(X, bear) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_X_bear, needs_X_bear), sees_X_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(visits_X_rabbit, needs_X_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & visits(bear, tiger) -> sees(X, bear)",
+          "z3_formula": "Implies(And(needs_X_bear, visits_bear_tiger), sees_X_bear)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bear)",
+          "z3_formula": "Not(blue_bear)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X) & sees_bear(X)",
+          "z3_formula": "Implies(green_bear, And(cold_bear, sees_bear_bear))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> Not(cold(X))",
+          "z3_formula": "Implies(cold_bear, Not(cold_bear))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & needs(Y, X) -> red(Y)",
+          "z3_formula": "Implies(And(needs_rabbit_cow, needs_cow_rabbit), red_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> red(Y)",
+          "z3_formula": "Implies(visits_tiger_bear, red_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & sees(Y, cow) -> needs(X, bear)",
+          "z3_formula": "Implies(And(needs_tiger_bear, sees_tiger_cow), needs_bear_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & needs(X, bear) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_rabbit_bear, needs_rabbit_bear), sees_rabbit_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(visits_cow_rabbit, needs_cow_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & visits(bear, tiger) -> sees(X, bear)",
+          "z3_formula": "Implies(And(needs_bear_tiger, visits_bear_tiger), sees_bear_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not blue(bear)",
+          "z3_formula": "Not(blue_bear)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_bear, visits_bear_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & cold(X) -> green(bear)",
+          "z3_formula": "Implies(And(sees_X_bear, cold_X), green_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> red(tiger)",
+          "z3_formula": "Implies(visits_bear_tiger, red_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(tiger, cow) -> needs(X, bear)",
+          "z3_formula": "Implies(And(needs_X_tiger, sees_tiger_cow), needs_X_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & needs(X, bear) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_X_bear, needs_X_bear), sees_X_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(visits_X_rabbit, needs_X_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & visits(bear, tiger) -> sees(X, bear)",
+          "z3_formula": "Implies(And(needs_X_bear, visits_bear_tiger), sees_X_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bear)",
+          "z3_formula": "Not(blue_bear)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, tiger)",
+          "z3_formula": "needs_cow_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, rabbit)",
+          "z3_formula": "visits_cow_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(rabbit)",
+          "z3_formula": "nice_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, tiger)",
+          "z3_formula": "sees_rabbit_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cow)",
+          "z3_formula": "visits_tiger_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_bear, visits_bear_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & cold(X) -> green(bear)",
+          "z3_formula": "Implies(And(sees_rabbit_bear, cold_rabbit), green_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & needs(rabbit, X) -> red(rabbit)",
+          "z3_formula": "Implies(And(needs_cow_rabbit, needs_rabbit_cow), red_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> red(tiger)",
+          "z3_formula": "Implies(visits_bear_tiger, red_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & visits(tiger, cow) -> needs(X, bear)",
+          "z3_formula": "Implies(And(needs_rabbit_tiger, visits_tiger_cow), needs_rabbit_bear)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & needs(X, bear) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_rabbit_bear, needs_rabbit_bear), sees_rabbit_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(visits_bear_rabbit, needs_bear_tiger)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & visits(tiger, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(And(needs_rabbit_bear, visits_tiger_bear), sees_rabbit_bear)",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_bear, cold_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, cow)",
+          "z3_formula": "Implies(red_bear, sees_bear_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, tiger)",
+          "z3_formula": "needs_cow_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, rabbit)",
+          "z3_formula": "visits_cow_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(rabbit)",
+          "z3_formula": "nice_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, tiger)",
+          "z3_formula": "sees_rabbit_tiger == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cow)",
+          "z3_formula": "visits_tiger_cow == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "color(bear, blue)",
+          "z3_formula": "color_bear_blue == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "color(bear, green)",
+          "z3_formula": "color_bear_green == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "color(bear, red)",
+          "z3_formula": "color_bear_red == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(color_bear_green, visits_bear_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & cold(X) -> green(bear)",
+          "z3_formula": "Implies(And(sees_tiger_bear, cold_tiger), color_bear_green)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & needs(rabbit, X) -> red(rabbit)",
+          "z3_formula": "Implies(And(needs_cow_rabbit, needs_rabbit_cow), red_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(color_bear_green, needs_bear_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> red(tiger)",
+          "z3_formula": "Implies(visits_bear_tiger, red_tiger)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(tiger, cow) -> needs(X, bear)",
+          "z3_formula": "Implies(And(needs_bear_tiger, sees_tiger_cow), needs_bear_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & needs(bear, X) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_tiger_bear, needs_bear_tiger), sees_tiger_cow)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(visits_tiger_rabbit, needs_tiger_rabbit)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & visits(bear, tiger) -> sees(X, bear)",
+          "z3_formula": "Implies(And(needs_tiger_bear, visits_bear_tiger), sees_tiger_bear)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bear)",
+          "z3_formula": "Not(color_bear_blue)",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & cold(Y) -> green(bear)",
+          "z3_formula": "Implies(And(sees_bear_X, cold_Y), green_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & needs(rabbit, X) -> red(rabbit)",
+          "z3_formula": "Implies(And(needs_X_rabbit, needs_rabbit_X), red_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_X, needs_X_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> red(tiger)",
+          "z3_formula": "Implies(visits_X_tiger, red_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(tiger, cow) -> needs(cow, bear)",
+          "z3_formula": "Implies(And(needs_X_tiger, sees_tiger_cow), needs_cow_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & needs(X, bear) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_X_bear, needs_X_bear), sees_X_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(rabbit, tiger)",
+          "z3_formula": "Implies(visits_X_rabbit, needs_rabbit_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, tiger)",
+          "z3_formula": "needs_cow_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, rabbit)",
+          "z3_formula": "visits_cow_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(rabbit)",
+          "z3_formula": "nice_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, tiger)",
+          "z3_formula": "sees_rabbit_tiger == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cow)",
+          "z3_formula": "visits_tiger_cow == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bear)",
+          "z3_formula": "Not(blue_bear) == False",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, cow)",
+          "z3_formula": "visits_tiger_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> visits(X, tiger)",
+          "z3_formula": "Implies(green_bear, visits_bear_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & cold(X) -> green(bear)",
+          "z3_formula": "Implies(And(sees_rabbit_bear, cold_rabbit), green_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & needs(rabbit, X) -> red(rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_cow, needs_cow_rabbit), red_rabbit)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, cow)",
+          "z3_formula": "Implies(green_bear, needs_bear_cow)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, tiger) -> red(tiger)",
+          "z3_formula": "Implies(visits_bear_tiger, red_tiger)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & visits(tiger, cow) -> needs(cow, bear)",
+          "z3_formula": "Implies(And(needs_bear_tiger, visits_tiger_cow), needs_cow_bear)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & needs(bear, X) -> sees(X, cow)",
+          "z3_formula": "Implies(And(sees_rabbit_bear, needs_bear_rabbit), sees_rabbit_cow)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> needs(rabbit, tiger)",
+          "z3_formula": "Implies(visits_cow_rabbit, needs_rabbit_tiger)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & visits(tiger, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(And(needs_rabbit_bear, visits_tiger_bear), sees_rabbit_bear)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 26
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 152,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 67
+    },
+    "maxsat_stats": {
+      "satisfied": 63,
+      "excluded": 4,
+      "total_weight": 145,
+      "solve_time_ms": 1.7468221485614777
+    },
+    "timing": {
+      "trace_gen_s": 16.436,
+      "extraction_s": 30.21,
+      "dedup_s": 2.395,
+      "maxsat_s": 0.005,
+      "total_s": 49.047
+    }
+  }
+}

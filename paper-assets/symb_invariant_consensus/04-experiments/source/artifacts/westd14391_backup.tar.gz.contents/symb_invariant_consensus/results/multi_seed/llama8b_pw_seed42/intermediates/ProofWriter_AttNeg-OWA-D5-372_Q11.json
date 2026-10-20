@@ -1,0 +1,1000 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-372_Q11",
+    "problem": "Charlie is young. Erin is blue. Erin is green. Fiona is big. Fiona is green. Gary is blue. Gary is green. All red things are furry. All furry things are red. Young things are red. If something is smart and not red then it is not green. All furry things are green. If something is red and green then it is blue. If something is young and big then it is smart. If something is blue and green then it is smart. Blue, red things are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is smart.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\nFurry($x, bool) ::: Is x furry?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nYoung(Charlie, True) ::: Charlie is young.\nBlue(Erin, True) ::: Erin is blue.\nGreen(Erin, True) ::: Erin is green.\nBig(Fiona, True) ::: Fiona is big.\nGreen(Fiona, True) ::: Fiona is green.\nBlue(Gary, True) ::: Gary is blue.\nGreen(Gary, True) ::: Gary is green.\n\nRules:\nRed($x, True) >>> Furry($x, True) ::: All red things are furry.\nFurry($x, True) >>> Red($x, True) ::: All furry things are red.\nYoung($x, True) >>> Red($x, True) ::: Young things are red.\nSmart($x, True) && !Red($x, True) >>> !Green($x, True) ::: If something is smart and not red then it is not green.\nFurry($x, True) >>> Green($x, True) ::: All furry things are green.\nRed($x, True) && Green($x, True) >>> Blue($x, True) ::: If something is red and green then it is blue.\nYoung($x, True) && Big($x, True) >>> Smart($x, True) ::: If something is young and big then it is smart.\nBlue($x, True) && Green($x, True) >>> Smart($x, True) ::: If something is blue and green then it is smart.\nBlue($x, True) && Red($x, True) >>> Smart($x, True) ::: Blue, red things are smart.\n\nQuery:\nSmart(Charlie, True) ::: Charlie is smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 143.0,
+      "Unknown": 84.0
+    },
+    "answer_counts": {
+      "True": 11,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Charlie is smart, we need to analyze the given statements and apply them to Charlie's characteristics. \n\n1. Charlie is young.\n2. Young things are red.\nFrom statement 2, since Charlie is young, he must be red.\n\n3. All red things are furry.\nFrom statement 3, since Charlie is red, he must be furry.\n\n4. All furry things are green.\nFrom statement 4, since Charlie is furry, he must be green.\n\n5. Charlie is green.\nFrom statement 4, we already determined that Charlie is green.\n\n6. If something is red and green then it is blue.\nSince Charlie is both red and green, we can apply this rule. This means Charlie must be blue.\n\n7. Gary is blue and green.\nHowever, since we determined Charlie is blue, we cannot conclude anything about Charlie from Gary's characteristics.\n\n8. Blue, red things are smart.\nSince Charlie is blue and red, we can apply this rule. This means Charlie must be smart.\n\nSo, based on the given statements, Charlie is smart.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is young. \n   Since all young things are red, we can conclude that Charlie is red.\n\n2. All red things are furry. \n   Therefore, Charlie is furry.\n\n3. All furry things are red. \n   We already concluded that Charlie is red, and this information supports it.\n\n4. If something is red and green then it is blue. \n   Since Charlie is red, to be able to say if Charlie is blue or not, we need to know if Charlie is green.\n\n5. Erin is green. \n   There is no information that relates Erin's greenness to Charlie's greenness directly.\n\n6. Fiona is big. \n   There is no information that directly relates Fiona's bigness to Charlie's smartness.\n\n7. Gary is blue. \n   There is no information that directly relates Gary's blue color to Charlie's greenness.\n\n8. Blue, red things are smart. \n   Since Charlie is red and Gary is blue, we can say that a blue and red thing is smart. However, we don't know if Charlie is blue.\n\n9. If something is blue and green then it is smart. \n   We don't know if Charlie is green or blue.\n\n10. If something is young and big then it is smart. \n    Charlie is young, and Fiona is big. However, there is no direct information that relates Charlie's young age to Fiona's bigness.\n\nGiven the above steps, we have:\n- Charlie is red.\n- Charlie is furry.\n- Charlie's greenness is unknown.\n\nSince Charlie's greenness is unknown, we can't determine if Charlie is blue or not, and hence, we can't determine if Charlie is smart based on the given statements.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve the problem, we need to break down the given information and determine the properties of each character. \n\n1. All red things are furry.\n2. All furry things are red.\n3. Young things are red.\n4. If something is smart and not red then it is not green.\n5. All furry things are green.\n6. If something is red and green then it is blue.\n7. If something is young and big then it is smart.\n8. If something is blue and green then it is smart.\n9. Blue, red things are smart.\n\nFrom the given statements, we can deduce the following properties:\n\n- Charlie: Young (from statement 3)\n- Erin: Blue (from statement 2), Green (from statement 4)\n- Fiona: Big (from statement 4), Green (from statement 6)\n- Gary: Blue (from statement 5), Green (from statement 6)\n\nSince Charlie is young, he is red (from statement 3).\n\nNow, let's analyze Charlie's properties:\n- Charlie is red (from statement 3)\n- Red things are furry (from statement 1)\n- Furry things are red (from statement 2)\n- If something is red and green then it is blue (from statement 6)\n  - However, we don't know if Charlie is green.\n\nFrom statement 5, we know that all furry things are green. Since Charlie is red and furry, he must be green (from statement 5).\n\nNow, let's apply the given statements to Charlie:\n- Charlie is red and green (from statement 6)\n- If something is red and green then it is blue (from statement 6)\n  - So, Charlie is blue.\n\nWe can now check if Charlie is smart:\n- Charlie is blue and green (from statement 8)\n- If something is blue and green then it is smart (from statement 8)\n  - So, Charlie is smart.\n\nTherefore, the statement \"Charlie is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All red things are furry. \n   All furry things are red.\n   Young things are red.\n   From the above information, we can conclude that Charlie is red because Charlie is young and young things are red.\n\n2. Charlie is red. \n   If something is red and green then it is blue.\n   We don't know Charlie's color yet, so we'll keep this in mind for now.\n\n3. Charlie is young. \n   If something is young and big then it is smart.\n   We don't know Charlie's size yet, so we'll keep this in mind for now.\n\n4. Charlie is not green. \n   All furry things are green.\n   We know Charlie is red, and red things are furry. So, Charlie must be green because furry things are green.\n\n5. Charlie is green and red. \n   If something is red and green then it is blue.\n   From the above information, we can conclude that Charlie is blue because Charlie is both red and green.\n\n6. Charlie is blue. \n   Blue, red things are smart.\n   Since Charlie is blue and we already concluded that Charlie is red, we can determine that Charlie is smart.\n\nTherefore, the statement \"Charlie is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether Charlie is smart, we need to analyze the given statements and apply logical reasoning.\n\n1. Charlie is young.\n2. Young things are red.\nFrom statement 1 and 2, we can conclude that Charlie is red.\n\n3. All red things are furry.\nFrom statement 3, since Charlie is red, we can conclude that Charlie is furry.\n\n4. All furry things are green.\nHowever, this statement seems to contradict statement 3. But let's proceed with the analysis.\n\n5. Since Charlie is furry, we can conclude that Charlie is green.\n\nNow we have a problem - Charlie is both red and green. \n\n6. If something is red and green then it is blue.\nFrom statement 6, since Charlie is both red and green, we can conclude that Charlie is blue.\n\n7. Gary is blue.\nGary is also green.\nThis information about Gary doesn't help us determine whether Charlie is smart, but it's an interesting side note.\n\n8. Blue, red things are smart.\nHowever, since Charlie is blue and also green, we can conclude that Charlie is indeed a blue and green thing.\n\n9. If something is blue and green then it is smart.\nFrom statement 9, since Charlie is blue and green, we can conclude that Charlie is smart.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Charlie is smart, we need to analyze the given statements and use the rules to deduce the information about Charlie.\n\n1. Young things are red. \n2. All red things are furry.\n3. All furry things are red.\n4. All furry things are green. (This statement seems to contradict statement 2, but we will consider it as it is given)\n5. If something is red and green then it is blue.\n6. Charlie is young. \n7. All red things are furry.\n8. All furry things are red.\n\nFrom statements 1 and 6, we can conclude that Charlie is red.\nFrom statement 7 and 8, we can conclude that Charlie is furry.\n\nNow, let's analyze the statement that \"All furry things are green.\" Although this statement contradicts the previous statements about red and furry things, we will consider it as it is given. Therefore, we can conclude that Charlie is green.\n\nNow, we have two statements about Charlie: \n- Charlie is red.\n- Charlie is green.\n\nFrom statement 5, if something is red and green then it is blue. Therefore, we can conclude that Charlie is blue.\n\nNow, let's analyze the statement that \"Blue, red things are smart.\" However, since Charlie is blue and green (which means he is also red), we can conclude that Charlie is indeed smart.\n\nTherefore, the statement \"Charlie is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is smart\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nGiven Information:\n1. Charlie is young.\n2. Young things are red.\n3. All red things are furry.\n4. All furry things are red.\n5. If something is smart and not red then it is not green.\n6. All furry things are green.\n7. If something is red and green then it is blue.\n8. If something is young and big then it is smart.\n9. If something is blue and green then it is smart.\n10. Blue, red things are smart.\n\nNow, let's analyze the given statements:\n1. Charlie is young. (From statement 1)\n2. Young things are red. (From statement 2)\n3. Since Charlie is young, he is red. (From statement 2)\n\nNow, let's find out if Charlie is furry:\n1. All red things are furry. (From statement 3)\n2. Since Charlie is red, he is furry. (From statement 3)\n\nNow, let's find out if Charlie is green:\n1. All furry things are green. (From statement 6)\n2. Since Charlie is furry, he is green. (From statement 6)\n\nSo, Charlie is both red and green.\n\nNow, let's find out if Charlie is blue:\n1. If something is red and green then it is blue. (From statement 7)\n2. Since Charlie is both red and green, he is blue. (From statement 7)\n\nNow, we can conclude that Charlie is blue and green.\n\nWe can use this information to determine if Charlie is smart:\n1. If something is blue and green then it is smart. (From statement 9)\n2. Since Charlie is blue and green, he is smart. (From statement 9)\n\nTherefore, the statement \"Charlie is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve the given problem, we need to break down the given statements into logical premises and deduce the conclusion step by step.\n\n1. Given statements:\n   - Charlie is young.\n   - Erin is blue.\n   - Erin is green.\n   - Fiona is big.\n   - Fiona is green.\n   - Gary is blue.\n   - Gary is green.\n   - All red things are furry.\n   - All furry things are red.\n   - Young things are red.\n   - If something is smart and not red then it is not green.\n   - All furry things are green.\n   - If something is red and green then it is blue.\n   - If something is young and big then it is smart.\n   - If something is blue and green then it is smart.\n   - Blue, red things are smart.\n\n2. From the given statements, we can deduce the following:\n   - From \"All furry things are red\" and \"All furry things are green,\" we can conclude that all red things are green and all green things are red.\n   - From \"Young things are red\" and \"Charlie is young,\" we can conclude that Charlie is red.\n   - Since Charlie is red and green, we can conclude that Charlie is blue (from the statement \"If something is red and green then it is blue\").\n   - From the statement \"Charlie is blue\" and \"Gary is blue,\" we can conclude that Charlie is not Gary.\n\n3. Now, we need to determine whether Charlie is smart or not. We have two possible conclusions:\n   - If Charlie is young and big, then Charlie is smart (from the statement \"If something is young and big then it is smart\").\n   - If Charlie is blue and green, then Charlie is smart (from the statement \"If something is blue and green then it is smart\").\n\n4. We already know that Charlie is blue (from step 2). We also know that Charlie is green (from \"All red things are green\" and \"Charlie is red\"). Therefore, we can conclude that Charlie is both blue and green.\n\n5. From step 4, we can conclude that Charlie is smart (from the statement \"If something is blue and green then it is smart\").\n\nSo, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve the given problem, we need to use the given information and apply it to determine whether Charlie is smart.\n\n1. All red things are furry.\n2. All furry things are red.\n3. Young things are red.\n4. If something is smart and not red then it is not green.\n5. All furry things are green.\n6. If something is red and green then it is blue.\n7. If something is young and big then it is smart.\n8. If something is blue and green then it is smart.\n9. Blue, red things are smart.\n\nFrom statements 1 and 2, we can conclude that all young things are furry and red because of statement 3.\n\nFrom statement 3, Charlie is young, and since Charlie is young, we can conclude that Charlie is red.\n\nNow, let's look at statement 9. Since Charlie is red, and Charlie is not blue, we can conclude that Charlie is smart.\n\nTherefore, the statement \"Charlie is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Charlie is smart, we need to analyze the given information step by step.\n\n1. We are given that: Charlie is young. (Statement 1)\n2. We are given that: Young things are red. (Statement 2)\nFrom Statement 1 and Statement 2, we can conclude that Charlie is red.\n\n3. We are given that: All red things are furry. (Statement 3)\nSince Charlie is red, we can conclude that Charlie is furry.\n\n4. We are given that: All furry things are green. (Statement 4)\nSince Charlie is furry, we can conclude that Charlie is green.\n\n5. We are given that: If something is smart and not red then it is not green. (Statement 5)\nFrom Statement 4, we know that Charlie is green. We need to determine if Charlie is smart.\n\n6. We are given that: If something is red and green then it is blue. (Statement 6)\nSince Charlie is both red and green, we can conclude that Charlie is blue.\n\n7. We are given that: Blue, red things are smart. (Statement 7)\nSince Charlie is blue and we already concluded that Charlie is red, we can conclude that Charlie is smart.\n\nBased on the given information and our analysis, we can determine that Charlie is indeed smart.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is smart\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\nGiven information:\n\n1. All red things are furry.\n2. All furry things are red.\n3. Young things are red.\n4. If something is smart and not red, then it is not green.\n5. All furry things are green.\n6. If something is red and green, then it is blue.\n7. If something is young and big, then it is smart.\n8. If something is blue and green, then it is smart.\n9. Blue, red things are smart.\n\nLet's analyze the given information:\n\nFrom statement 3, we know that Charlie is young because the problem mentions \"Charlie is young.\" Since young things are red (statement 3), we can conclude that Charlie is red.\n\nNow, we have two possibilities:\n\n- Charlie is red and not green (since he is young), or\n- Charlie is red and green (since he is also red).\n\nIf Charlie is red and not green, then we can't determine whether he is smart or not, as there is no information about non-green, red things being smart or not. However, let's check the other possibility.\n\nIf Charlie is red and green, then according to statement 6, he is blue.\n\nNow, we need to check if the information about Charlie being blue is consistent with the given statements.\n\nSince Charlie is blue and green, according to statement 8, he is smart.\n\nHowever, we also know that Charlie is red (from the fact that he is young). Since Charlie is blue and red, we can use statement 9, which states that blue, red things are smart.\n\nBoth possibilities lead to the conclusion that Charlie is smart.\n\nTherefore, the statement \"Charlie is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we'll need to use logical reasoning and follow the given statements step by step.\n\nGiven statements:\n1. Charlie is young.\n2. Erin is blue.\n3. Erin is green.\n4. Fiona is big.\n5. Fiona is green.\n6. Gary is blue.\n7. Gary is green.\n8. All red things are furry.\n9. All furry things are red.\n10. Young things are red.\n11. If something is smart and not red then it is not green.\n12. All furry things are green.\n13. If something is red and green then it is blue.\n14. If something is young and big then it is smart.\n15. If something is blue and green then it is smart.\n16. Blue, red things are smart.\n\nWe need to determine whether Charlie is smart. To do this, we'll need to analyze the given statements and see if we can derive any information about Charlie's smartness.\n\nFrom statement 1, we know that Charlie is young. \n\nFrom statement 10, we know that young things are red.\n\nSince Charlie is young, we can conclude that Charlie is red. \n\nNow, let's look at statement 8 and statement 9: \nAll red things are furry (statement 8)\nAll furry things are red (statement 9)\n\nCombining these statements, we can conclude that all red things are furry and all furry things are red. Since Charlie is red, Charlie must be furry.\n\nFrom statement 12, we know that all furry things are green.\n\nSince Charlie is furry, we can conclude that Charlie is green.\n\nNow we have two contradictory properties for Charlie: Charlie is red and Charlie is green. \n\nFrom statement 13, we know that if something is red and green then it is blue. Therefore, since Charlie is both red and green, Charlie must be blue.\n\nNow we have another property for Charlie: Charlie is blue.\n\nFrom statement 2, we know that Erin is blue.\n\nNow we have two blue things: Charlie and Erin.\n\nFrom statement 16, we know that blue, red things are smart.\n\nSince Charlie is blue and we know Charlie is red, we can conclude that Charlie is a blue, red thing.\n\nFrom statement 16, we can conclude that Charlie is smart.\n\nTherefore, the statement \"Charlie is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_charlie, red_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_charlie, furry_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_charlie, green_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_charlie, green_charlie), blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_charlie, red_charlie), smart_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_charlie, red_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_charlie, furry_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_charlie, red_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_charlie, green_charlie), blue_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(Y) -> blue(X)",
+          "z3_formula": "Implies(And(red_charlie, green_erin), blue_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(Y) -> smart(X)",
+          "z3_formula": "Implies(And(young_charlie, big_fiona), smart_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), smart_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_charlie, red_charlie), smart_charlie)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_charlie, furry_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_charlie, red_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_charlie, green_charlie), blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_charlie, green_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), smart_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_charlie, red_charlie), smart_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_charlie, red_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_charlie, green_charlie), blue_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_charlie, red_charlie), smart_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_charlie, red_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_charlie, furry_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_charlie, green_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_charlie, green_charlie), blue_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), smart_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_charlie, red_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_charlie, furry_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_charlie, red_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_charlie, green_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_charlie, green_charlie), blue_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_charlie, red_charlie), smart_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_charlie, red_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_charlie, furry_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_charlie, green_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_charlie, green_charlie), blue_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), smart_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_X, furry_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_X, red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_X, red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(red(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(smart_X, Not(red_X)), Not(green_X))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_X, green_X), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_X, big_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, green_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, red_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(charlie == gary)",
+          "z3_formula": "Not(charlie_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie) & green(charlie)",
+          "z3_formula": "And(blue_charlie, green_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X) & red(X)",
+          "z3_formula": "Implies(young_charlie, And(furry_charlie, red_charlie))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_charlie, red_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(red(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(smart_charlie, Not(red_charlie)), Not(green_charlie))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_charlie, green_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_charlie, green_charlie), blue_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_charlie, big_charlie), smart_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), smart_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) | red(X) -> smart(X)",
+          "z3_formula": "Implies(Or(blue_charlie, red_charlie), smart_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_charlie, red_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_charlie, furry_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_charlie, green_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(red(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(smart_charlie, Not(red_charlie)), Not(green_charlie))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_charlie, green_charlie), blue_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_charlie, red_charlie), smart_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_charlie, red_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(red(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(smart_charlie, Not(red_charlie)), Not(green_charlie))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_charlie, green_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_charlie, green_charlie), blue_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_charlie, green_charlie), smart_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_charlie, red_charlie), smart_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_charlie, red_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_charlie, furry_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_charlie, red_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_charlie, green_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_charlie, green_charlie), blue_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_charlie, red_charlie), smart_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 145,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 36
+    },
+    "maxsat_stats": {
+      "satisfied": 36,
+      "excluded": 0,
+      "total_weight": 145,
+      "solve_time_ms": 1.2697475031018257
+    },
+    "timing": {
+      "trace_gen_s": 5.897,
+      "extraction_s": 23.776,
+      "dedup_s": 0.875,
+      "maxsat_s": 0.003,
+      "total_s": 30.552
+    }
+  }
+}

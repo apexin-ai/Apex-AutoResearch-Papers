@@ -1,0 +1,606 @@
+{
+  "pid": "folio_129",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> not travels_to_paris(X)",
+          "z3_formula": "Implies(has_child_john, Not(travels_to_paris_john))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> not wedding(X)",
+          "z3_formula": "Implies(has_child_john, Not(wedding_john))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "wedding(X) & well_attended(X) -> (wedding_in_july(X) | travels_to_paris(X))",
+          "z3_formula": "Implies(And(wedding_john, well_attended_john), Or(wedding_in_july_john, travels_to_paris_john))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "wedding_in_july(john)",
+          "z3_formula": "wedding_in_july_john == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "wedding_in_july(X) -> travels_to_paris(X)",
+          "z3_formula": "Implies(wedding_in_july_john, travels_to_paris_john)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not wedding(john)",
+          "z3_formula": "Not(wedding_john)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "wedding(X) & well_attended(X) -> (wedding_in_july(X) | travels_to_paris(X))",
+          "z3_formula": "Implies(And(wedding_john, well_attended_john), Or(wedding_in_july_john, travels_to_paris_john))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(wedding(john) & well_attended(john))",
+          "z3_formula": "Or(wedding_john, well_attended_john)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> not(wedding(X)) & not(travel_to_paris(X))",
+          "z3_formula": "Implies(has_child_john, And(Not(wedding_john), Not(travel_to_paris_john)))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "wedding(X) & well_attended(X) -> wedding_in_july(X) | travel_to_paris(X)",
+          "z3_formula": "Implies(And(wedding_john, well_attended_john), Or(wedding_in_july_john, travel_to_paris_john))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "wedding_in_july(X) -> travel_to_paris(X)",
+          "z3_formula": "Implies(wedding_in_july_john, travel_to_paris_john)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(well_attended(wedding(john)))",
+          "z3_formula": "Not(well_attended_wedding_john) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "All(Wedding \u2192 Child)",
+          "z3_formula": "All_Wedding_Child == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "All(Paris \u2192 Wedding)",
+          "z3_formula": "All_Paris_Wedding == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "All(July \u2192 Paris)",
+          "z3_formula": "All_July_Paris == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "Some(July \u2227 Well-attended)",
+          "z3_formula": "Some_July_Well_attended == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "Child \u2192 \u00acParis \u2227 \u00acWedding",
+          "z3_formula": "Implies(Child, And(Not_Paris, Not_Wedding))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "Well-attended \u2192 (July \u2228 (\u00acJuly \u2227 Paris))",
+          "z3_formula": "Implies(Well_attended, Or(July, And(Not_July, Paris)))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "\u00ac(Wedding \u2227 Well-attended)",
+          "z3_formula": "Not_And(Wedding, Well_attended) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> not(wedding(X))",
+          "z3_formula": "Implies(has_child_john, not(wedding_john))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "wedding_in_july(X) -> wedding_in_paris(X)",
+          "z3_formula": "Implies(wedding_in_july_X, wedding_in_paris_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "wedding_in_july(X)",
+          "z3_formula": "wedding_in_july_X == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "wedding_in_paris(X) -> wedding(X)",
+          "z3_formula": "Implies(wedding_in_paris_X, wedding_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "wedding(X) -> has_child(X)",
+          "z3_formula": "Implies(wedding_X, has_child_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "wedding(X) & well_attended(X) -> wedding_in_july(X) | wedding_in_paris(X)",
+          "z3_formula": "Implies(And(wedding_X, well_attended_X), Or(wedding_in_july_X, wedding_in_paris_X))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "well_attended(wedding)",
+          "z3_formula": "well_attended_wedding == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(well_attended(wedding))",
+          "z3_formula": "Not(well_attended_wedding) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> has_wedding(X)",
+          "z3_formula": "Implies(has_child_john, has_wedding_john)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_wedding(john) -> not(travel_to_paris(john)) & not(has_wedding(john))",
+          "z3_formula": "Implies(has_wedding_john, And(Not(travel_to_paris_john), Not(has_wedding_john)))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding_in_july(X) -> travel_to_paris(X)",
+          "z3_formula": "Implies(has_wedding_in_july_john, travel_to_paris_john)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding_in_july(X) -> has_wedding(X)",
+          "z3_formula": "Implies(has_wedding_in_july_john, has_wedding_john)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "has_well_attended_wedding(X) -> has_wedding_in_july(X) | travel_to_paris(X)",
+          "z3_formula": "Implies(has_well_attended_wedding_john, Or(has_wedding_in_july_john, travel_to_paris_john))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(has_well_attended_wedding(john) & has_wedding_in_july(john))",
+          "z3_formula": "Not(And(has_well_attended_wedding_john, has_wedding_in_july_john))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> not(wedding(X) & honeymoon(X) & travel_to_paris(X))",
+          "z3_formula": "Implies(has_child_john, Not(And(wedding_john, honeymoon_john, travel_to_paris_john)))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "wedding(john)",
+          "z3_formula": "wedding_john == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "wedding(X) & well_attended(X) -> (wedding(X) & in_july(X)) | (wedding(X) & honeymoon(X) & travel_to_paris(X))",
+          "z3_formula": "Implies(And(wedding_john, well_attended_john), Or(And(wedding_john, in_july_john), And(wedding_john, honeymoon_john, travel_to_paris_john)))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "well_attended(wedding(john))",
+          "z3_formula": "well_attended_wedding_john == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "in_july(X) -> well_attended(X)",
+          "z3_formula": "Implies(in_july_john, well_attended_john)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "in_july(wedding(john))",
+          "z3_formula": "in_july_wedding_john == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "well_attended(wedding(john))",
+          "z3_formula": "well_attended_wedding_john == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "well_attended(X) -> True",
+          "z3_formula": "Implies(well_attended_wedding_john, True)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not well_attended(wedding(john))",
+          "z3_formula": "Not(well_attended_wedding_john) == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> not(travel_to_paris(X)) & not(has_wedding(X))",
+          "z3_formula": "Implies(has_child_john, And(Not(travel_to_paris_john), Not(has_wedding_john)))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding(X) -> has_wedding_in_july(X) | travel_to_paris(X)",
+          "z3_formula": "Implies(has_wedding_john, Or(has_wedding_in_july_john, travel_to_paris_john))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding_in_july(X) -> travel_to_paris(X)",
+          "z3_formula": "Implies(has_wedding_in_july_john, travel_to_paris_john)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding_in_july(X) -> has_wedding(X)",
+          "z3_formula": "Implies(has_wedding_in_july_john, has_wedding_john)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding(X) & well_attended(X) -> has_wedding_in_july(X) | travel_to_paris(X)",
+          "z3_formula": "Implies(And(has_wedding_john, well_attended_john), Or(has_wedding_in_july_john, travel_to_paris_john))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "well_attended(john)",
+          "z3_formula": "well_attended_john == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(well_attended(john))",
+          "z3_formula": "Not(well_attended_john)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == False",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> not has_wedding(X) & not travels_to_paris(X)",
+          "z3_formula": "Implies(has_child_john, And(not has_wedding_john, not travels_to_paris_john))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding(X) & well_attended(X) -> has_wedding_in_july(X) | travels_to_paris(X)",
+          "z3_formula": "Implies(And(has_wedding_john, well_attended_john), Or(has_wedding_in_july_john, travels_to_paris_john))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "well_attended(john)",
+          "z3_formula": "well_attended_john == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "well_attended(john)",
+          "z3_formula": "well_attended_john == False",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "well_attended(john)",
+          "z3_formula": "well_attended_john == Unknown",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(john) -> not(has_wedding(john))",
+          "z3_formula": "Implies(has_child_john, not(has_wedding_john))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "has_wedding(john)",
+          "z3_formula": "has_wedding_john == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding(john) & well_attended_wedding(john) -> (has_wedding_in_july(john) | travels_to_paris(john))",
+          "z3_formula": "Implies(And(has_wedding_john, well_attended_wedding_john), Or(has_wedding_in_july_john, travels_to_paris_john))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(has_wedding(john) & well_attended_wedding(john))",
+          "z3_formula": "Not(And(has_wedding_john, well_attended_wedding_john))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> not(wedding(X))",
+          "z3_formula": "Implies(has_child_john, not(wedding_john))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "well_attended_wedding(john)",
+          "z3_formula": "well_attended_wedding_john == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "well_attended_wedding(X) -> (wedding_in_july(X) | travels_to_paris(X))",
+          "z3_formula": "Implies(well_attended_wedding_john, Or(wedding_in_july_john, travels_to_paris_john))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(well_attended_wedding(john))",
+          "z3_formula": "Not(well_attended_wedding_john) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> not wedding(X)",
+          "z3_formula": "Implies(has_child_john, not wedding_john)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "travels_to_paris(X) -> wedding(X)",
+          "z3_formula": "Implies(travels_to_paris_john, wedding_john)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "wedding_in_july(X) -> travels_to_paris(X)",
+          "z3_formula": "Implies(wedding_in_july_john, travels_to_paris_john)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "well_attended(X)",
+          "z3_formula": "well_attended_john == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "well_attended(X) -> (wedding_in_july(X) | travels_to_paris(X))",
+          "z3_formula": "Implies(well_attended_john, Or(wedding_in_july_john, travels_to_paris_john))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "wedding_attended(john)",
+          "z3_formula": "wedding_attended_john == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "child(X) -> not wedding(X)",
+          "z3_formula": "Implies(child_john, not wedding_john)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "wedding_attended(X) -> (wedding_in_july(X) | wedding_to_paris(X))",
+          "z3_formula": "Implies(wedding_attended_john, Or(wedding_in_july_john, wedding_to_paris_john))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "wedding_in_july(X) -> wedding_to_paris(X)",
+          "z3_formula": "Implies(wedding_in_july_john, wedding_to_paris_john)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "wedding_to_paris(X) -> wedding(X)",
+          "z3_formula": "Implies(wedding_to_paris_john, wedding_john)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "wedding(X) -> child(X)",
+          "z3_formula": "Implies(wedding_john, child_john)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "not wedding_attended(john)",
+          "z3_formula": "Not(wedding_attended_john) == True",
+          "source_step": 8
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,518 @@
+{
+  "problem": {
+    "id": "folio_106",
+    "problem": "Given the following premises:\nIt costs US $205 to take the GRE test. ETS provides financial aid to those GRE applicants who prove economic hardship. Economic hardship refers to difficulty caused by having too little money or too few resources. Tom lives in a single-parent family. His dad has been out of work for more than a year.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIt cost below US $300 to take the GRE test.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "Cost205(gre)",
+      "\u2200x (Cost205(x) \u2192 CostBelow300(x))",
+      "\u2200x (Hardship(x) \u2192 FinancialAid(x))",
+      "\u2200x (SingleParent(x) \u2228 FewResources(x) \u2192 Hardship(x))",
+      "SingleParent(tom)",
+      "FewResources(tom)"
+    ],
+    "conclusion_fol": "CostBelow300(gre)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 39.0,
+      "Unknown": 26.5
+    },
+    "answer_counts": {
+      "Unknown": 4,
+      "True": 8
+    },
+    "traces": [
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and see if they lead to the conclusion.\n\nPremise 1: It costs US $205 to take the GRE test.\n\nThis premise gives us the actual cost of taking the GRE test.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship.\n\nThis premise tells us that financial aid is available for applicants who experience economic hardship.\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\n\nThis premise defines what economic hardship means.\n\nPremise 4: Tom lives in a single-parent family. His dad has been out of work for more than a year.\n\nThis premise provides us with information about Tom's situation, which may indicate economic hardship.\n\nNow, let's analyze the conclusion:\n\nConclusion: It cost below US $300 to take the GRE test.\n\nWe can break this conclusion down into two parts: \n\n1. The cost of taking the GRE test is below US $300.\n2. The cost of taking the GRE test is US $205.\n\nFrom Premise 1, we know that the actual cost of taking the GRE test is US $205, which is indeed below US $300.\n\nHowever, the conclusion also implies that the cost is US $205 because of financial aid. Since Tom's situation may indicate economic hardship, he might be eligible for financial aid (Premise 2 and 4). But we don't have any information that confirms or denies Tom's eligibility for financial aid.\n\nTherefore, while we can confirm that the cost is below US $300, we can't determine for sure whether Tom will receive financial aid or not.\n\nThe truth of the conclusion is uncertain because we don't have enough information about Tom's eligibility for financial aid.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they lead to the conclusion.\n\nPremise 1: It costs US $205 to take the GRE test.\nThis premise provides a specific cost of taking the GRE test.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship.\nThis premise provides a condition for receiving financial aid, but it does not directly relate to the cost of taking the GRE test.\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\nThis premise provides a definition of economic hardship, but it does not directly relate to the cost of taking the GRE test.\n\nPremise 4: Tom lives in a single-parent family. His dad has been out of work for more than a year.\nThis premise provides information about Tom's situation, but it does not directly relate to the cost of taking the GRE test.\n\nConclusion: It cost below US $300 to take the GRE test.\n\nFrom Premise 1, we know that it costs US $205 to take the GRE test. This is below US $300, so the conclusion is true.\n\nTherefore, the conclusion is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: It costs US $205 to take the GRE test.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship. \n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\n\nPremise 4: Tom lives in a single-parent family. His dad has been out of work for more than a year.\n\nFrom Premise 3, we can conclude that Tom's family situation may indicate economic hardship.\n\nHowever, we cannot directly conclude that Tom qualifies for financial aid based on the given information. We do not know if Tom has applied for financial aid or if he has any other factors that might affect his eligibility.\n\nNow, looking at the conclusion: It cost below US $300 to take the GRE test.\n\nThe cost of taking the GRE test is given in Premise 1 as US $205. This information directly supports the conclusion.\n\nHowever, the premises do not provide any information about whether the financial aid from ETS would cover the entire cost or if it would reduce the cost below US $300.\n\nGiven the information, we can say that the cost of taking the GRE test is indeed below US $300 (US $205). However, the premises do not provide enough information to determine whether the financial aid would cover the entire cost or if it would be a separate factor.\n\nTherefore, the conclusion is uncertain, as there is not enough information to determine if the financial aid would be applied or if it would change the cost. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: It costs US $205 to take the GRE test.\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship.\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\nPremise 4: Tom lives in a single-parent family.\nPremise 5: His dad has been out of work for more than a year.\n\nFrom Premise 3, we can conclude that Tom's situation (living in a single-parent family and his dad being out of work for more than a year) is likely to cause economic hardship.\n\nFrom Premise 2, we can conclude that ETS may provide financial aid to Tom, but there's no guarantee.\n\nNow, let's look at the conclusion: \"It cost below US $300 to take the GRE test.\" This conclusion is related to the cost of taking the GRE test.\n\nFrom Premise 1, we know that it costs US $205 to take the GRE test. This information directly supports the conclusion that the cost is below US $300 (since $205 is less than $300).\n\nHowever, the premises don't provide any information about whether Tom receives financial aid or not. If he receives financial aid, the cost might be lower than $205. But the premises don't provide enough information to determine whether Tom receives financial aid.\n\nTherefore, the conclusion \"It cost below US $300 to take the GRE test\" is uncertain because we don't know if Tom receives financial aid or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the validity of the given conclusion, we need to analyze the premises and see if they lead to the conclusion. \n\nPremise 1: It costs US $205 to take the GRE test. \nThis premise gives us a specific cost for taking the GRE test.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship. \nThis premise tells us that ETS has a policy of providing financial aid under certain conditions.\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources. \nThis premise defines what economic hardship is, which is related to financial struggles.\n\nPremise 4: Tom lives in a single-parent family. \nThis premise provides some background information about Tom's family situation.\n\nPremise 5: His dad has been out of work for more than a year. \nThis premise adds more information about Tom's family situation, indicating that they may be experiencing economic hardship.\n\nNow, let's analyze the conclusion:\nIt cost below US $300 to take the GRE test.\n\nBased on the premises, we know that:\n\n- The cost of taking the GRE test is US $205 (Premise 1).\n- ETS provides financial aid to those who prove economic hardship (Premise 2).\n- Tom's family situation may indicate economic hardship (Premises 4 and 5).\n\nHowever, the conclusion is not directly related to any of the premises. The conclusion talks about the cost being below US $300, but the premises only mention the cost being US $205, which is below US $300. \n\nSince the premises do not provide any information that would lead to a cost above US $300, the conclusion that it costs below US $300 to take the GRE test is actually supported by the premises.\n\nTherefore, the conclusion is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and see if they provide any information about the cost of taking the GRE test.\n\nPremise 1: It costs US $205 to take the GRE test.\n\nThis premise directly states the cost of taking the GRE test, which is $205.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship.\n\nThis premise provides information about the conditions under which financial aid is provided, but it does not mention anything about the cost of the test.\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\n\nThis premise defines economic hardship, which is a condition that might be relevant to Tom's situation. However, it does not provide any information about the cost of the test.\n\nPremise 4: Tom lives in a single-parent family. His dad has been out of work for more than a year.\n\nThis premise provides some background information about Tom's family situation, but it does not provide any information about the cost of the test.\n\nThe conclusion is: It cost below US $300 to take the GRE test.\n\nWe can evaluate the conclusion by comparing it with the information provided in the premises. Since we know from Premise 1 that it costs $205 to take the GRE test, and this is less than $300, the conclusion is actually true.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and see if they provide any information that can help us evaluate the conclusion.\n\nPremise 1: It costs US $205 to take the GRE test.\n\nThis premise directly addresses the cost of taking the GRE test and provides a specific amount.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship.\n\nThis premise explains the circumstances under which financial aid can be obtained. However, it does not provide any information about the cost of taking the GRE test.\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\n\nThis premise defines economic hardship, but it does not provide any information about the cost of taking the GRE test.\n\nPremise 4: Tom lives in a single-parent family. His dad has been out of work for more than a year.\n\nThis premise describes Tom's situation, but it does not provide any information about the cost of taking the GRE test.\n\nConclusion: It costs below US $300 to take the GRE test.\n\nTo evaluate this conclusion, we need to see if the premises provide any information that can help us determine if the cost of taking the GRE test is below US $300. \n\nFrom Premise 1, we know that it costs US $205 to take the GRE test. This directly addresses the conclusion. Since US $205 is indeed below US $300, we can conclude that the statement in the conclusion is true.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: It costs US $205 to take the GRE test.\n\nThis premise provides us with the actual cost of taking the GRE test, which is US $205.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship.\n\nThis premise tells us about a condition under which financial aid can be provided. However, it does not directly relate to the cost of taking the GRE test.\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\n\nThis premise defines what economic hardship is, but it does not provide any information about the cost of taking the GRE test.\n\nPremise 4: Tom lives in a single-parent family. His dad has been out of work for more than a year.\n\nThis premise provides information about Tom's personal situation, which might relate to economic hardship. However, it does not directly affect the cost of taking the GRE test.\n\nNow, let's examine the conclusion: \"It cost below US $300 to take the GRE test.\"\n\nSince we already know from Premise 1 that the actual cost of taking the GRE test is US $205, which is indeed below US $300, we can determine that the conclusion is true.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: It costs US $205 to take the GRE test.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship. \nHowever, this premise does not give us any information about the cost of taking the GRE test.\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\n\nPremise 4: Tom lives in a single-parent family. His dad has been out of work for more than a year.\n\nNow, let's examine the conclusion: It cost below US $300 to take the GRE test.\n\nThe conclusion is not necessarily related to the premises. The premises discuss economic hardship and the cost of taking the GRE test, but the conclusion does not follow logically from these premises.\n\nHowever, we can determine the cost of taking the GRE test from premise 1, which states that it costs US $205 to take the GRE test.\n\nSince the conclusion states that it cost below US $300 to take the GRE test, and we know from premise 1 that it actually costs US $205, which is indeed below US $300, we can determine that the conclusion is true.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: It costs US $205 to take the GRE test.\n\nThis premise gives us a fixed cost for taking the GRE test, which is US $205.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship. Economic hardship refers to difficulty caused by having too little money or too few resources.\n\nThis premise tells us that financial aid is available for applicants who can prove economic hardship.\n\nPremise 3: Tom lives in a single-parent family. His dad has been out of work for more than a year.\n\nThis premise provides information about Tom's situation, suggesting that his family may be experiencing economic hardship due to his father's unemployment.\n\nNow, let's examine the conclusion:\n\nConclusion: It cost below US $300 to take the GRE test.\n\nWe can break down this conclusion into two parts: \n\n1. The cost of taking the GRE test is below US $300.\n2. This cost is a result of financial aid from ETS.\n\nFrom Premise 1, we know that the cost of taking the GRE test is US $205, which is below US $300. This part of the conclusion is true.\n\nHowever, the second part of the conclusion states that this cost is a result of financial aid from ETS. While Premise 2 suggests that financial aid is available for applicants who prove economic hardship, we cannot assume that Tom will receive financial aid simply because his father is unemployed. \n\nTom's father being out of work for over a year (Premise 3) may indicate economic hardship, but it is not enough to confirm that Tom will receive financial aid. There may be other factors or requirements for receiving financial aid that are not mentioned.\n\nTherefore, the conclusion is uncertain, as we cannot conclusively determine whether Tom will receive financial aid and, if so, whether it will reduce the cost of taking the GRE test below US $300.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: It costs US $205 to take the GRE test.\nThis premise provides a specific amount that is required to take the GRE test.\n\nPremise 2: ETS provides financial aid to those GRE applicants who prove economic hardship.\nThis premise provides a condition under which financial aid is provided, but it doesn't directly affect the cost of the test.\n\nPremise 3: Economic hardship refers to difficulty caused by having too little money or too few resources.\nThis premise clarifies the meaning of economic hardship.\n\nPremise 4: Tom lives in a single-parent family. His dad has been out of work for more than a year.\nThis premise describes Tom's situation, which might be related to economic hardship.\n\nHowever, the conclusion is: It cost below US $300 to take the GRE test.\nWe can directly compare the given cost (US $205) to the threshold mentioned in the conclusion (US $300). Since US $205 is indeed below US $300, the conclusion is true.\n\nTherefore, the final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the premises step by step:\n\n1. The cost of taking the GRE test is given as US $205.\n2. ETS provides financial aid to those who prove economic hardship.\n3. Economic hardship is defined as difficulty caused by having too little money or too few resources.\n4. Tom lives in a single-parent family.\n5. Tom's dad has been out of work for more than a year.\n\nFrom the information provided, we can infer that Tom's family may face economic hardship due to the lack of a second income source (Tom's dad being out of work for more than a year).\n\nHowever, the premises do not provide any information about the cost of taking the GRE test being below US $300. The cost is actually given as US $205, which is less than US $300.\n\nTherefore, the conclusion that \"It cost below US $300 to take the GRE test\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cost_gre_test == 205",
+          "z3_formula": "cost_gre_test == 205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "financial_aid_available",
+          "z3_formula": "financial_aid_available == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship_means_difficulty",
+          "z3_formula": "economic_hardship_means_difficulty == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_single_parent_family",
+          "z3_formula": "tom_lives_single_parent_family == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_dad_out_of_work",
+          "z3_formula": "tom_dad_out_of_work == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship_means_difficulty -> financial_aid_available",
+          "z3_formula": "Implies(economic_hardship_means_difficulty, financial_aid_available)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "financial_aid_available -> cost_gre_test <= 300",
+          "z3_formula": "Implies(financial_aid_available, cost_gre_test <= 300)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cost_gre_test <= 300",
+          "z3_formula": "cost_gre_test <= 300 == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cost_gre_test == 205",
+          "z3_formula": "cost_gre_test == 205 == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "costs(gre, 205)",
+          "z3_formula": "costs_gre_205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship -> financial_aid",
+          "z3_formula": "Implies(economic_hardship, financial_aid)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship",
+          "z3_formula": "economic_hardship == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "financial_aid",
+          "z3_formula": "financial_aid == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_single_parent_family",
+          "z3_formula": "tom_lives_single_parent_family == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "dads_out_of_work",
+          "z3_formula": "dads_out_of_work == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "costs(gre, 300)",
+          "z3_formula": "costs_gre_300 == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cost(205)",
+          "z3_formula": "cost_205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship(tom)",
+          "z3_formula": "economic_hardship_tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship(X) -> eligible_for_aid(X)",
+          "z3_formula": "Implies(economic_hardship_tom, eligible_for_aid_tom)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cost_below_300",
+          "z3_formula": "cost_205 == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cost(gre_test, 205)",
+          "z3_formula": "cost_gre_test_205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship(X) -> financial_aid(X)",
+          "z3_formula": "Implies(economic_hardship_tom, financial_aid_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship(economic_hardship)",
+          "z3_formula": "economic_hardship_economic_hardship == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "single_parent_family(X) & dad_out_of_work(X) -> economic_hardship(X)",
+          "z3_formula": "Implies(And(single_parent_family_tom, dad_out_of_work_tom), economic_hardship_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "single_parent_family(tom)",
+          "z3_formula": "single_parent_family_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "dad_out_of_work(tom)",
+          "z3_formula": "dad_out_of_work_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "economic_hardship_tom",
+          "z3_formula": "economic_hardship_tom == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "financial_aid_tom",
+          "z3_formula": "financial_aid_tom == Unknown",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cost(gre_test, 300)",
+          "z3_formula": "cost_gre_test_300 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cost(gre_test, 300) == False",
+          "z3_formula": "Not(cost_gre_test_300) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cost(gre_test, 205) & financial_aid_tom -> cost(gre_test, 300) == False",
+          "z3_formula": "Implies(And(cost_gre_test_205, financial_aid_tom), Not(cost_gre_test_300))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cost(gre_test, 300)",
+          "z3_formula": "cost_gre_test_300 == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cost_gre_test == 205",
+          "z3_formula": "cost_gre_test == 205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship(X) -> financial_aid(X)",
+          "z3_formula": "Implies(economic_hardship_tom, financial_aid_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship == difficulty_caused_by_little_money_or_few_resources",
+          "z3_formula": "economic_hardship == difficulty_caused_by_little_money_or_few_resources == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_in_single_parent_family",
+          "z3_formula": "tom_lives_in_single_parent_family == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_dad_has_been_out_of_work_for_more_than_a_year",
+          "z3_formula": "tom_dad_has_been_out_of_work_for_more_than_a_year == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cost_gre_test < 300",
+          "z3_formula": "cost_gre_test < 300 == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cost(gre_test, 205)",
+          "z3_formula": "cost_gre_test_205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "financial_aid(economic_hardship) -> cost(gre_test, x) <= 300",
+          "z3_formula": "Implies(financial_aid_economic_hardship, And(cost_gre_test_x <= 300))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cost(gre_test, x) <= 300",
+          "z3_formula": "And(cost_gre_test_205 <= 300)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "costs(US $205, GRE test)",
+          "z3_formula": "costs_205_GRE_test == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship -> financial_aid",
+          "z3_formula": "Implies(economic_hardship, financial_aid)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship == difficulty_caused_by_little_money_or_few_resources",
+          "z3_formula": "economic_hardship == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_in_single_parent_family",
+          "z3_formula": "tom_lives_in_single_parent_family == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_dad_has_been_out_of_work_for_more_than_a_year",
+          "z3_formula": "tom_dad_has_been_out_of_work_for_more_than_a_year == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "costs_below_US $300(GRE test)",
+          "z3_formula": "costs_below_US_300_GRE_test == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cost_gre_test == 205",
+          "z3_formula": "cost_gre_test == 205",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship(X) -> financial_aid(X)",
+          "z3_formula": "Implies(economic_hardship, financial_aid)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship == difficulty_caused_by_little_money_or_few_resources",
+          "z3_formula": "economic_hardship == difficulty_caused_by_little_money_or_few_resources",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_in_single_parent_family",
+          "z3_formula": "tom_lives_in_single_parent_family == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_dad_has_been_out_of_work_for_more_than_a_year",
+          "z3_formula": "tom_dad_has_been_out_of_work_for_more_than_a_year == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cost_gre_test < 300",
+          "z3_formula": "cost_gre_test < 300",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cost(gre, 205)",
+          "z3_formula": "cost_gre_205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship(tom)",
+          "z3_formula": "economic_hardship_tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship(X) -> financial_aid(X)",
+          "z3_formula": "Implies(economic_hardship_tom, financial_aid_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "financial_aid(tom)",
+          "z3_formula": "financial_aid_tom == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cost(gre, 205) < 300",
+          "z3_formula": "cost_gre_205 < 300 == True",
+          "source_step": 5
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "cost(gre_test, 205)",
+          "z3_formula": "cost_gre_test_205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "financial_aid(ets, economic_hardship)",
+          "z3_formula": "financial_aid_ets_economic_hardship == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship == too_little_money_or_resources",
+          "z3_formula": "economic_hardship_too_little_money_or_resources == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_single_parent_family",
+          "z3_formula": "tom_lives_single_parent_family == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_dad_out_of_work_more_than_year",
+          "z3_formula": "tom_dad_out_of_work_more_than_year == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cost(gre_test, below_300)",
+          "z3_formula": "cost_gre_test_below_300 == True",
+          "source_step": 6
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 64,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 39
+    },
+    "maxsat_stats": {
+      "satisfied": 38,
+      "excluded": 1,
+      "total_weight": 54,
+      "solve_time_ms": 1.009596511721611
+    },
+    "timing": {
+      "trace_gen_s": 5.023,
+      "extraction_s": 34.524,
+      "dedup_s": 0.62,
+      "maxsat_s": 0.003,
+      "total_s": 40.17
+    }
+  }
+}

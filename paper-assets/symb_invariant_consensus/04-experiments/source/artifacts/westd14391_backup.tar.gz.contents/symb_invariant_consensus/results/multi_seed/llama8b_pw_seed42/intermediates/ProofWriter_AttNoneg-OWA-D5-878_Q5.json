@@ -1,0 +1,868 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-878_Q5",
+    "problem": "Anne is smart. Bob is big. Bob is blue. Bob is rough. Bob is smart. Charlie is smart. Dave is quiet. Blue, round people are rough. If someone is smart and quiet then they are young. Smart people are quiet. If someone is round then they are blue. If Dave is big then Dave is quiet. If someone is blue then they are young. All rough, young people are round. Smart people are rough. Blue, round people are big.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is young.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nSmart($x, bool) ::: Is x smart?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nRough($x, bool) ::: Is x rough?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nSmart(Anne, True) ::: Anne is smart.\nBig(Bob, True) ::: Bob is big.\nBlue(Bob, True) ::: Bob is blue.\nRough(Bob, True) ::: Bob is rough.\nSmart(Bob, True) ::: Bob is smart.\nSmart(Charlie, True) ::: Charlie is smart.\nQuiet(Dave, True) ::: Dave is quiet.\n\nRules:\nBlue($x, True) && Round($x, True) >>> Rough($x, True) ::: Blue, round people are rough.\nSmart($x, True) && Quiet($x, True) >>> Young($x, True) ::: If someone is smart and quiet then they are young.\nSmart($x, True) >>> Quiet($x, True) ::: Smart people are quiet.\nRound($x, True) >>> Blue($x, True) ::: If someone is round then they are blue.\nBig(Dave, True) >>> Quiet(Dave, True) ::: If Dave is big then Dave is quiet.\nBlue($x, True) >>> Young($x, True) ::: If someone is blue then they are young.\nRough($x, True) && Young($x, True) >>> Round($x, True) ::: All rough, young people are round.\nSmart($x, True) >>> Rough($x, True) ::: Smart people are rough.\nBlue($x, True) && Round($x, True) >>> Big($x, True) ::: Blue, round people are big.\n\nQuery:\nYoung(Charlie, True) ::: Charlie is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 120.0,
+      "Unknown": 71.0
+    },
+    "answer_counts": {
+      "Unknown": 1,
+      "True": 9
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will use a method called truth table or resolution, which is a way of eliminating contradictions from a set of premises.\n\nFirst, we will convert all the given statements into predicates:\n\n1. Anne is smart: A(s)\n2. Bob is big: B(b)\n3. Bob is blue: B(b)\n4. Bob is rough: B(r)\n5. Bob is smart: B(s)\n6. Charlie is smart: C(s)\n7. Dave is quiet: D(q)\n8. Blue, round people are rough: B(b) \u2227 R(r) \u2192 P(r)\n9. If someone is smart and quiet then they are young: S(s) \u2227 Q(q) \u2192 Y(y)\n10. Smart people are quiet: S(s) \u2192 Q(q)\n11. If someone is round then they are blue: R(r) \u2192 B(b)\n12. If Dave is big then Dave is quiet: B(b) \u2192 D(q)\n13. If someone is blue then they are young: B(b) \u2192 Y(y)\n14. All rough, young people are round: R(r) \u2227 Y(y) \u2192 R(r)\n15. Smart people are rough: S(s) \u2192 R(r)\n16. Blue, round people are big: B(b) \u2227 R(r) \u2192 B(b)\n\nNow, we will use these predicates to determine whether Charlie is young or not. We will start by finding the implications of Charlie being smart.\n\nFrom premise 6, we know that Charlie is smart, C(s).\n\nUsing premise 10, we can infer that Charlie is quiet, Q(q), because S(s) \u2192 Q(q).\n\nNow, using premise 9, we can infer that Charlie is young, Y(y), because S(s) \u2227 Q(q) \u2192 Y(y).\n\nSince we have found that Charlie is young, we can conclude that the statement \"Charlie is young\" is true.\n\nHowever, to make sure that this conclusion is correct, we will analyze the premises again. We will look for any premises that could contradict this conclusion.\n\nFrom premise 11, we know that if someone is round then they are blue, R(r) \u2192 B(b).\n\nWe can also infer that Charlie is round, R(r), because Charlie is young and all rough, young people are round (premise 14). Also, Charlie is smart and smart people are rough (premise 15), so Charlie is rough.\n\nNow, using premise 11, we can infer that Charlie is blue, B(b), because R(r) \u2192 B(b).\n\nUsing premise 13, we can infer that Charlie is big, B(b), because B(b) \u2192 Y(y).\n\nNow, we have a contradiction, B(b) and B(b) \u2192 B(b), because Bob is also big and blue. This means that our initial conclusion, Charlie is young, could be false.\n\nHowever, we cannot conclude that Charlie is not young. We can only conclude that we don't know whether Charlie is young or not.\n\nSo, the answer to the statement \"Charlie is young\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is young' is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1.  We are given several statements about various individuals and their characteristics:\n    - Anne is smart.\n    - Bob is big.\n    - Bob is blue.\n    - Bob is rough.\n    - Bob is smart.\n    - Charlie is smart.\n    - Dave is quiet.\n    - Blue, round people are rough.\n    - If someone is smart and quiet then they are young.\n    - Smart people are quiet.\n    - If someone is round then they are blue.\n    - If Dave is big then Dave is quiet.\n    - If someone is blue then they are young.\n    - All rough, young people are round.\n    - Smart people are rough.\n    - Blue, round people are big.\n\n2.  Let's start by using the information about Charlie. We are given that 'Charlie is smart.' We can use this information to infer other characteristics of Charlie.\n\n    - From the statement 'Charlie is smart,' we can conclude that Charlie is quiet because 'Smart people are quiet.'\n    - From the statement 'Charlie is quiet,' we can conclude that Charlie is young because 'If someone is smart and quiet then they are young.'\n\n3.  However, we need to check if there are any other statements that can contradict this conclusion. Looking at the given information, there are a few more statements that might be relevant to Charlie:\n    - If someone is round then they are blue. However, we don't know if Charlie is round or not.\n    - All rough, young people are round. We don't know if Charlie is rough or not.\n\n4.  Since we don't have enough information to conclude that Charlie is round or rough, we cannot confirm if Charlie is blue or big. However, we do know that Charlie is young because Charlie is smart and quiet.\n\n5.  Based on the given information and logical reasoning, the statement 'Charlie is young' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use a series of logical deductions based on the given statements.\n\n1. Charlie is smart.  (Given statement)\n2. If someone is smart then they are quiet.  (Given statement)\n   So, Charlie is quiet.  (From statement 1 and 2)\n\n3. If someone is smart and quiet then they are young.  (Given statement)\n   Since Charlie is both smart and quiet (from statements 1 and 2), Charlie is young.  (From statement 3)\n\nTherefore, the statement \"Charlie is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is young\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. The given statements:\n   - Anne is smart.\n   - Bob is big.\n   - Bob is blue.\n   - Bob is rough.\n   - Bob is smart.\n   - Charlie is smart.\n   - Dave is quiet.\n   - Blue, round people are rough.\n   - If someone is smart and quiet then they are young.\n   - Smart people are quiet.\n   - If someone is round then they are blue.\n   - If Dave is big then Dave is quiet.\n   - If someone is blue then they are young.\n   - All rough, young people are round.\n   - Smart people are rough.\n   - Blue, round people are big.\n\n2. We need to determine whether Charlie is young.\n   From the given information, we know that Charlie is smart.\n   Since \"Charlie is smart\" is given as a fact, we can use the statement \"Smart people are rough\" to conclude that Charlie is rough.\n\n3. Now, we have two facts about Charlie:\n   - Charlie is smart (given as a fact).\n   - Charlie is rough (concluded from the previous step).\n\n4. From the statement \"All rough, young people are round\" and \"Charlie is rough\" we can conclude that Charlie is round.\n\n5. Since Charlie is round, we can use the statement \"If someone is round then they are blue\" to conclude that Charlie is blue.\n\n6. Now, we have two facts about Charlie:\n   - Charlie is blue (concluded from the previous step).\n   - Charlie is round (concluded from step 4).\n\n7. From the statement \"Blue, round people are big\" we can conclude that Charlie is big.\n\n8. Now, we have two facts about Charlie:\n   - Charlie is big (concluded from the previous step).\n   - Charlie is blue (concluded from step 5).\n\n9. From the statement \"If someone is blue then they are young\" we can conclude that Charlie is young.\n\nTherefore, the statement \"Charlie is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve the problem, we will break down the given statements into a set of rules and then apply them to the statement \"Charlie is young.\"\n\nGiven statements:\n\n1. Anne is smart.\n2. Bob is big.\n3. Bob is blue.\n4. Bob is rough.\n5. Bob is smart.\n6. Charlie is smart.\n7. Dave is quiet.\n8. Blue, round people are rough.\n9. If someone is smart and quiet then they are young.\n10. Smart people are quiet.\n11. If someone is round then they are blue.\n12. If Dave is big then Dave is quiet.\n13. If someone is blue then they are young.\n14. All rough, young people are round.\n15. Smart people are rough.\n16. Blue, round people are big.\n\nNow, let's analyze the statement \"Charlie is young.\"\n\nTo determine if the statement is true, false, or unknown, we need to find a rule that directly relates to Charlie's characteristics.\n\nRule 6: Charlie is smart.\n\nWe can use this information to find a connection to the rules that relate to age.\n\nFrom Rule 6: Charlie is smart.\nFrom Rule 10: Smart people are quiet.\nSo, Charlie is quiet.\n\nNow, we have two characteristics for Charlie: smart and quiet. Let's see if we can find a rule that relates these characteristics to age.\n\nFrom Rule 9: If someone is smart and quiet then they are young.\nWe can apply this rule to Charlie.\n\nSince Charlie is smart and quiet, we can conclude that Charlie is young.\n\nTherefore, the statement \"Charlie is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is young\" is true, false, or unknown, we need to analyze the given information and apply the rules of inference. \n\nGiven information:\n1. Anne is smart.\n2. Bob is big.\n3. Bob is blue.\n4. Bob is rough.\n5. Bob is smart.\n6. Charlie is smart.\n7. Dave is quiet.\n8. Blue, round people are rough.\n9. If someone is smart and quiet then they are young.\n10. Smart people are quiet.\n11. If someone is round then they are blue.\n12. If Dave is big then Dave is quiet.\n13. If someone is blue then they are young.\n14. All rough, young people are round.\n15. Smart people are rough.\n16. Blue, round people are big.\n\nNow, let's analyze the statement \"Charlie is young\" using the given information.\n\nWe know that Charlie is smart (rule 6). Now, we need to find a connection between being smart and being young.\n\nFrom rule 9, we know that if someone is smart and quiet then they are young. However, we don't know if Charlie is quiet or not.\n\nFrom rule 10, we know that smart people are quiet. This implies that Charlie might be quiet. But we cannot conclude that Charlie is quiet because we have not directly been given that information. \n\nHowever, we can conclude that Charlie is smart (rule 6) and smart people are quiet (rule 10), but we cannot conclude that Charlie is quiet because we do not have enough information to infer that from the given rules.\n\nNow, let's consider another possibility. We know that Charlie is smart (rule 6) and smart people are rough (rule 15). \n\nFrom rule 8, we know that blue, round people are rough. This implies that Charlie might be round and blue.\n\nFrom rule 11, we know that if someone is round then they are blue. This implies that Charlie might be blue.\n\nFrom rule 13, we know that if someone is blue then they are young. This implies that Charlie might be young.\n\nHowever, we still cannot conclude that Charlie is young because we have not directly been given that information.\n\nNow, let's analyze the statement using another possible connection between being smart and being young.\n\nWe know that Charlie is smart (rule 6). Now, we need to find a connection between being smart and being young.\n\nFrom rule 15, we know that smart people are rough. \n\nFrom rule 14, we know that all rough, young people are round. This implies that Charlie might be young.\n\nHowever, we still cannot conclude that Charlie is young because we have not directly been given that information.\n\nTo conclude, we do not have enough information to determine whether Charlie is young or not.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is young\" is true, false, or unknown, we need to analyze the given information.\n\n1. Charlie is smart. \n   We know this from the statement: Charlie is smart.\n\n2. Smart people are quiet. \n   We know this from the statement: Smart people are quiet.\n\n   So, Charlie is quiet.\n\n3. If someone is smart and quiet then they are young. \n   We know this from the statement: If someone is smart and quiet then they are young.\n\n   Since Charlie is both smart and quiet, we can conclude that Charlie is young.\n\nTherefore, the statement \"Charlie is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Charlie is young, we need to break down the given statements and find any relevant information about Charlie.\n\n1. Bob is big. Bob is blue. Bob is rough. Bob is smart. Bob is big. \n   - This statement doesn't give us any direct information about Charlie. We are only learning about Bob's characteristics.\n\n2. Charlie is smart.\n   - This statement directly tells us that Charlie is smart.\n\n3. If someone is smart and quiet then they are young.\n   - We know that Charlie is smart, but we don't know if Charlie is quiet.\n\n4. Smart people are quiet.\n   - This statement tells us that if someone is smart, then they are quiet. But we already know that Charlie is smart.\n\n5. If Dave is big then Dave is quiet.\n   - This statement doesn't give us any information about Charlie.\n\n6. If someone is round then they are blue.\n   - We don't have enough information about Charlie being round or not.\n\n7. If someone is blue then they are young.\n   - We don't have enough information about Charlie being blue or not.\n\n8. Blue, round people are rough.\n   - This statement doesn't give us any information about Charlie.\n\n9. If someone is round then they are blue.\n   - We already know this from statement 6.\n\n10. All rough, young people are round.\n   - We don't know if Charlie is rough or young.\n\n11. Smart people are rough.\n   - We know that Charlie is smart, so this statement could apply to Charlie.\n\n12. Blue, round people are big.\n   - We don't have enough information about Charlie being blue, round, or big.\n\nFrom statements 3, 4, and 11, we can conclude that Charlie is quiet and rough. We don't have any information about Charlie's age.\n\nStatement 7 tells us that if someone is blue, then they are young. However, we don't know if Charlie is blue or not. \n\nWe can conclude that Charlie's age is unknown.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is young' is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Charlie is smart. (Given information)\n2. All smart people are quiet. (Given information)\n3. If someone is smart and quiet then they are young. (Given information)\n4. Since Charlie is smart, and from (2) all smart people are quiet, then Charlie is quiet.\n5. From (3), since Charlie is smart and quiet, then Charlie is young.\n\nBased on the given information and logical deductions, the statement 'Charlie is young' can be determined as true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is young\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the information given:\n\n1. Charlie is smart. (Directly stated)\n2. Smart people are quiet. (From the given statements)\n3. Smart people are quiet. (Directly stated, but this statement is the same as the one above)\n4. If someone is smart and quiet then they are young. (From the given statements)\n\nSince Charlie is smart (1) and smart people are quiet (2), we can conclude that Charlie is quiet.\n\nAdditionally, since Charlie is smart (1) and quiet (from the conclusion above), we can conclude that Charlie is young (4).\n\nTherefore, based on the given information, the statement \"Charlie is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether Charlie is young, we need to analyze the given statements and apply the rules to the information provided about Charlie.\n\nGiven statements:\n1. Anne is smart.\n2. Bob is big.\n3. Bob is blue.\n4. Bob is rough.\n5. Bob is smart.\n6. Charlie is smart.\n7. Dave is quiet.\n8. Blue, round people are rough.\n9. If someone is smart and quiet then they are young.\n10. Smart people are quiet.\n11. If someone is round then they are blue.\n12. If Dave is big then Dave is quiet.\n13. If someone is blue then they are young.\n14. All rough, young people are round.\n15. Smart people are rough.\n16. Blue, round people are big.\n\nNow, we analyze the information about Charlie. \n\nFrom statement 6, we know that Charlie is smart.\n\nFrom statement 10, we know that smart people are quiet. Since Charlie is smart, we can conclude that Charlie is quiet.\n\nNow, we need to determine if Charlie is young. \n\nFrom statement 9, we know that if someone is smart and quiet then they are young. Since Charlie is both smart and quiet, we can conclude that Charlie is young.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Charlie is young, we need to analyze the given information and infer the possible characteristics of Charlie.\n\nFrom the given statements:\n\n1. Charlie is smart.\n2. Smart people are quiet.\n3. If someone is quiet then they are young (from the statement about Dave being smart and quiet and being young).\n\nWe can infer that Charlie is quiet because Charlie is smart and smart people are quiet. Then, since Charlie is quiet, we can conclude that Charlie is young.\n\nSo, the statement \"Charlie is young\" can be determined as:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), young_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_charlie, blue_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_charlie, young_charlie), round_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_charlie, rough_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_charlie, young_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & big(X) -> big(X)",
+          "z3_formula": "Implies(And(big_charlie, big_charlie), big_charlie)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_charlie, blue_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_charlie, young_charlie), round_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_charlie, rough_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_charlie, round_charlie), big_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave) -> quiet(dave)",
+          "z3_formula": "Implies(big_dave, quiet_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_charlie, young_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_charlie, young_charlie), round_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_charlie, rough_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_charlie, round_charlie), big_charlie)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_charlie, rough_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_charlie, round_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_charlie, blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_charlie, young_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), rough_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_X, quiet_X), young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_X, quiet_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_dave, quiet_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_X, young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_X, young_X), round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_X, rough_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_X, round_X), big_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), rough_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), young_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_charlie, blue_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_charlie, young_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_charlie, young_charlie), round_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_charlie, rough_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), big_bob)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_dave, quiet_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_charlie, blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_charlie, young_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_charlie, round_charlie), rough_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_charlie, blue_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_charlie, young_charlie), round_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_charlie, rough_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_charlie, young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), young_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), rough_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_charlie, quiet_charlie), young_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_charlie, blue_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_dave, quiet_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_charlie, young_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_charlie, young_charlie), round_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_charlie, rough_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_charlie, round_charlie), big_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_charlie, young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 4
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 123,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 35
+    },
+    "maxsat_stats": {
+      "satisfied": 35,
+      "excluded": 0,
+      "total_weight": 123,
+      "solve_time_ms": 1.0340604931116104
+    },
+    "timing": {
+      "trace_gen_s": 7.564,
+      "extraction_s": 21.703,
+      "dedup_s": 0.881,
+      "maxsat_s": 0.003,
+      "total_s": 30.151
+    }
+  }
+}

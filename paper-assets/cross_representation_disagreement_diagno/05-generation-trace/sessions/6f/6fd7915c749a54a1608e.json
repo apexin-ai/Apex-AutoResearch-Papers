@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fd7915c749a54a1608e",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "data math l5 prep",
+  "task_key": "worker_data_math_l5_prep_20260515T060623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_math_l5_prep_20260515T060623_result.json",
+    "occurrence": 1,
+    "bytes": 3231,
+    "sha256": "8aa20b0d0a75498a63c3790126e8456627fac3d68a36f37a7f6896a11293a56e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有输出均已确认。以下是完整总结。\n\n---\n\n## 完成情况\n\n### 1. 数据集下载 ✓\n- 路径：`/root/autodl-tmp/crdd/data/math_l5/math_level5.jsonl`\n- **1324 道 Level 5 题目**（MATH test set 共 5000 题，Level 5 占 26.5%）\n- 7 个 subject 全部覆盖\n\n| Subject | Count |\n|---------|-------|\n| algebra | 307 |\n| intermediate_algebra | 280 |\n| prealgebra | 193 |\n| number_theory | 154 |\n| precalculus | 135 |\n| geometry | 132 |\n| counting_and_probability | 123 |\n\n### 2. 数据格式\n- 字段：`problem`（LaTeX 题目）、`solution`（LaTeX 逐步解答，含 `\\boxed{answer}`）、`level`、`subject`\n- 答案提取率：**100%**（所有 solution 都有 `\\boxed{}`）\n- 答案类型多样：整数、分数（`\\frac{1}{8}`）、复数（`i`）、区间（`[0,\\infty)`）、矩阵等\n\n### 3. 适配代码 ✓\n- 文件：`/root/autodl-tmp/crdd/src/math_adapter.py`\n- 包含：数据加载、答案提取/标准化/比较、prompt 模板、verdict 映射\n\n### 4. 双表征推荐方案\n\n**推荐：CoT（自然语言推理链）+ SymPy Code（符号计算代码）**\n\n| 维度 | 表征 A: CoT | 表征 B: SymPy Code |\n|------|------------|-------------------|\n| 对应 FOLIO | FOL（形式推理） | Python Code（可执行验证） |\n| 本质 | 推理逻辑 | 符号计算 |\n| 输出 | `\\boxed{answer}` | `print(answer)` |\n| 失败模式 | 算术错误、逻辑跳步、幻觉 | 建模错误、crash、超时 |\n| crash 率 | 0%（纯文本） | ~10-30%（可执行代码） |\n| LLM 生成难度 | 低 | 中 |\n\n**为什么这个组合最优：**\n\n1. **互补性强**：CoT 擅长逻辑推理但易犯算术错误；SymPy 精确计算但可能建模错误。两者失败模式正交，分歧信号有诊断价值\n2. **与 FOLIO 方法论一致**：FOL→CoT（形式化推理路径），Python Code→SymPy Code（可执行验证），pipeline 结构可复用\n3. **crash 作为诊断信号**：SymPy crash（类似 Z3 crash）提供额外错误定位信息，与 FOLIO 的 `SINGLE_ERROR` 类型直接对应\n4. **文献支持**：SymCode (EACL 2026) 证明 SymPy 在 MATH 上有效；CSV (ICLR 2024) 证明 code self-verification 与 CoT 互补\n\n**排除的方案及理由：**\n- **Lean4 形式化证明**：LLM 生成质量差，crash 率 >50%，大规模实验不可行\n- **纯数值 Python (PAL)**：与 CoT 都是\"计算\"，失败模式重叠，分歧信号弱\n- **Wolfram Alpha**：需要外部 API，不可本地执行，不可控\n\n### 5. Prompt 模板草案\n\n**CoT prompt** 要求：逐步推理 → `\\boxed{answer}`，不输出代码\n\n**SymPy prompt** 要求：`import sympy as sp`，符号定义，方程建模，求解，验证（回代检查），`print(answer)`。关键约束：禁止 `float()`，用 `sp.Rational` 保持精确分数\n\nSources:\n- [PAL: Program-aided Language Models (ICML 2023)](https://arxiv.org/abs/2211.10435)\n- [SymCode: Neurosymbolic Math Reasoning via SymPy (EACL 2026)](https://arxiv.org/abs/2510.25975)\n- [Code-based Self-Verification for Math (ICLR 2024)](https://arxiv.org/abs/2308.07921)\n- [Design of Chain-of-Thought in Math Problem Solving](https://arxiv.org/abs/2309.11054)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-math-l5-prep.md"
+}

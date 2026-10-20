@@ -1,0 +1,1121 @@
+{
+  "pid": "ProofWriter_AttNoneg-OWA-D5-672_Q3",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_anne, round_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), white_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_anne, young_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_anne, white_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_anne, smart_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), kind_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_anne, kind_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_erin, round_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(young_erin, cold_erin), white_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_erin, young_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_erin, smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_erin, cold_erin), kind_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_erin, cold_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_erin, young_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_erin, round_erin)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_erin, round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_anne, round_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), white_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_anne, young_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_anne, white_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_anne, smart_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), kind_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_anne, kind_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_anne, rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin) -> smart(erin)",
+          "z3_formula": "Implies(round_erin, smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin) -> kind(erin)",
+          "z3_formula": "Implies(round_erin, kind_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin) -> rough(erin)",
+          "z3_formula": "Implies(young_erin, rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin) -> young(erin)",
+          "z3_formula": "Implies(white_erin, young_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin) & cold(erin) -> white(erin)",
+          "z3_formula": "Implies(And(young_erin, cold_erin), white_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin) & cold(erin) -> kind(erin)",
+          "z3_formula": "Implies(And(young_erin, cold_erin), kind_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_anne, round_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_erin, cold_erin), kind_erin)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_erin, smart_erin)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_gary, kind_gary)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_erin, young_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_gary, white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_erin, young_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_gary, white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(round(X))",
+          "z3_formula": "Implies(round_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_erin, kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_erin, cold_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_anne, round_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), white_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_anne, young_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_anne, white_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_anne, smart_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), kind_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_anne, kind_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_anne, rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_anne, round_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_anne, kind_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_erin, kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_X, kind_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_gary, round_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(young_erin, cold_erin), white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_erin, young_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_erin, smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_erin, rough_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        }
+      ]
+    }
+  ]
+}

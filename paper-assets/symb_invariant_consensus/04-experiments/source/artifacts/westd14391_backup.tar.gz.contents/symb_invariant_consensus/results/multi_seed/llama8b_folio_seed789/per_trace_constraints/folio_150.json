@@ -1,0 +1,510 @@
+{
+  "pid": "folio_150",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press, english)",
+          "z3_formula": "publishing_house_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_new_vessel_press_in_english",
+          "z3_formula": "all_books_new_vessel_press_in_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "book(neapolitan_chronicles, new_vessel_press)",
+          "z3_formula": "book_neapolitan_chronicles_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "book(palace_of_flies, new_vessel_press)",
+          "z3_formula": "book_palace_of_flies_new_vessel_press == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "publishing_house(X, english) & translated_from_foreign_language(Y) -> translated_into_english(Y)",
+          "z3_formula": "Implies(And(publishing_house_new_vessel_press_english, translated_from_foreign_language_neapolitan_chronicles), translated_into_english_neapolitan_chronicles)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "translated_into_english(X) -> in_english(X)",
+          "z3_formula": "Implies(translated_into_english_neapolitan_chronicles, in_english_neapolitan_chronicles)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "in_english(neapolitan_chronicles)",
+          "z3_formula": "in_english_neapolitan_chronicles == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishes_in_english(new_vessel_press)",
+          "z3_formula": "publishes_in_english_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "book_of(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "book_of_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "english_book(neapolitan_chronicles)",
+          "z3_formula": "english_book_neapolitan_chronicles == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "specializes_in_translating_foreign_literature(new_vessel_press, english)",
+          "z3_formula": "specializes_in_translating_foreign_literature_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "english_book(neapolitan_chronicles)",
+          "z3_formula": "english_book_neapolitan_chronicles == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "is_publishing_house(new_vessel_press)",
+          "z3_formula": "is_publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "specializes_in_translating_foreign_literature(new_vessel_press)",
+          "z3_formula": "specializes_in_translating_foreign_literature_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "published_by(X, Y) & all_books_in_english(X) -> book_in_english(Y)",
+          "z3_formula": "Implies(And(published_by_new_vessel_press_neapolitan_chronicles, all_books_in_english_new_vessel_press), book_in_english_neapolitan_chronicles)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "book_in_english(neapolitan_chronicles)",
+          "z3_formula": "book_in_english_neapolitan_chronicles == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "specializes_in_translation(new_vessel_press)",
+          "z3_formula": "specializes_in_translation_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "specializes_in_translation(X) -> all_books_in_english(X)",
+          "z3_formula": "Implies(specializes_in_translation_new_vessel_press, all_books_in_english_new_vessel_press)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "english_book(neapolitan_chronicles)",
+          "z3_formula": "english_book_neapolitan_chronicles == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishes_in_english(new_vessel_press)",
+          "z3_formula": "publishes_in_english_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "publishes_in_english(X) -> all_books_in_english(X)",
+          "z3_formula": "Implies(publishes_in_english_new_vessel_press, all_books_in_english_new_vessel_press)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press, english)",
+          "z3_formula": "publishing_house_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books(new_vessel_press, english)",
+          "z3_formula": "all_books_new_vessel_press_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "book(neapolitan_chronicles, new_vessel_press)",
+          "z3_formula": "book_neapolitan_chronicles_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated(neapolitan_chronicles, italian)",
+          "z3_formula": "translated_neapolitan_chronicles_italian == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "publishing_house(X, english) & all_books(X, english) -> all_books(X, translation(X, Y, english))",
+          "z3_formula": "Implies(And(publishing_house_new_vessel_press_english, all_books_new_vessel_press_english), all_books_new_vessel_press_translation_new_vessel_press_english_english)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likely(english(neapolitan_chronicles))",
+          "z3_formula": "english_neapolitan_chronicles == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "specializes_in_translating_foreign_literature(new_vessel_press)",
+          "z3_formula": "specializes_in_translating_foreign_literature_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_published_books_in_english(new_vessel_press)",
+          "z3_formula": "all_published_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "specializes_in_translating_foreign_literature(X) -> all_published_books_in_english(X)",
+          "z3_formula": "Implies(specializes_in_translating_foreign_literature_new_vessel_press, all_published_books_in_english_new_vessel_press)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "english_book(neapolitan_chronicles)",
+          "z3_formula": "english_book_neapolitan_chronicles == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishes_in_english(new_vessel_press)",
+          "z3_formula": "publishes_in_english_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_published_books_in_english(new_vessel_press)",
+          "z3_formula": "all_published_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "publishes_in_english(X) -> all_published_books_in_english(X)",
+          "z3_formula": "Implies(publishes_in_english_new_vessel_press, all_published_books_in_english_new_vessel_press)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "published_by(X, Y) & all_published_books_in_english(X) -> in_english(Y)",
+          "z3_formula": "Implies(And(published_by_new_vessel_press_neapolitan_chronicles, all_published_books_in_english_new_vessel_press), in_english_neapolitan_chronicles)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "translated_from_foreign_language(Y) -> not in_english(Y)",
+          "z3_formula": "Implies(translated_from_italian_neapolitan_chronicles, Not(in_english_neapolitan_chronicles))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "in_english(neapolitan_chronicles)",
+          "z3_formula": "in_english_neapolitan_chronicles == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "specializes_in_translating_foreign_literature_into_english(new_vessel_press)",
+          "z3_formula": "specializes_in_translating_foreign_literature_into_english_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_published_by_new_vessel_press_are_in_english",
+          "z3_formula": "all_books_published_by_new_vessel_press_are_in_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "neapolitan_chronicles_is_a_book_published_by_new_vessel_press",
+          "z3_formula": "neapolitan_chronicles_is_a_book_published_by_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "neapolitan_chronicles_was_translated_from_italian",
+          "z3_formula": "neapolitan_chronicles_was_translated_from_italian == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "neapolitan_chronicles_is_an_english_book",
+          "z3_formula": "all_books_published_by_new_vessel_press_are_in_english == True & neapolitan_chronicles_is_a_book_published_by_new_vessel_press == True & Not(neapolitan_chronicles_was_translated_from_italian) == False",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "specializes_in_translating_foreign_literature(new_vessel_press)",
+          "z3_formula": "specializes_in_translating_foreign_literature_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "english_book(neapolitan_chronicles)",
+          "z3_formula": "english_book_neapolitan_chronicles == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press)",
+          "z3_formula": "publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "book(neapolitan_chronicles)",
+          "z3_formula": "book_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "english_book(neapolitan_chronicles)",
+          "z3_formula": "english_book_neapolitan_chronicles == True",
+          "source_step": 5
+        }
+      ]
+    }
+  ]
+}

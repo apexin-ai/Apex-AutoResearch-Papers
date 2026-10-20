@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "experiment": "T_ext ablation (constraint extraction temperature)",
+    "model": "Mistral-7B-Instruct-v0.3",
+    "dataset": "FOLIO-204",
+    "base_traces": "exp033 (T_sampling=0.7, K=12, seed=42)",
+    "t_ext_values": [0.1, 0.3, 0.5, 0.7, 1.0],
+    "timestamp": "2026-05-21T06:38:58Z",
+    "sc_baseline": 55.88
+  },
+  "results": [
+    {"t_ext": 0.1, "sc_acc": 55.88, "sica_acc": 57.35, "delta_pp": 1.47, "mcnemar_p": 0.5811, "n_constraints_mean": 69.3},
+    {"t_ext": 0.3, "sc_acc": 54.41, "sica_acc": 59.31, "delta_pp": 4.90, "mcnemar_p": 0.0129, "n_constraints_mean": 68.8},
+    {"t_ext": 0.5, "sc_acc": 55.88, "sica_acc": 56.37, "delta_pp": 0.49, "mcnemar_p": 1.0000, "n_constraints_mean": 68.2},
+    {"t_ext": 0.7, "sc_acc": 55.88, "sica_acc": 53.43, "delta_pp": -2.45, "mcnemar_p": 0.3018, "n_constraints_mean": 67.3},
+    {"t_ext": 1.0, "sc_acc": 55.88, "sica_acc": 55.39, "delta_pp": -0.49, "mcnemar_p": 1.0000, "n_constraints_mean": 65.2}
+  ],
+  "summary": {
+    "best_t_ext": 0.3,
+    "best_sica_acc": 59.31,
+    "best_delta_pp": 4.90,
+    "best_p": 0.0129,
+    "significant_at_005": true
+  }
+}

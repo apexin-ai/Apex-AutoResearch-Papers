@@ -1,0 +1,43 @@
+{
+  "exp_id": "mvp_pipeline_001",
+  "project": "cross_representation_disagreement_diagno",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:16:01.044Z",
+    "updated_at": "2026-05-14T08:14:26.843Z",
+    "hypothesis": "Cross-representation disagreement (Qwen3-32B-AWQ, FOL+Python dual formalization) provides diagnostic signal: disagree≥10%, one-side-correct≥40%, targeted repair > blind+5pp, localization≥60%",
+    "spec": {
+      "command": "python pipeline.py --max-examples 50 --output /root/autodl-tmp/crdd/results/results.json",
+      "server": "autodl-rtx6000pro",
+      "data_path": "FOLIO validation set",
+      "data_count": 50,
+      "model_name": "Qwen3-32B-AWQ",
+      "seed": 0
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "disagree_rate": 0.04,
+      "diagnostic_rate": 1,
+      "error_types": 4,
+      "targeted_repair": 0.1875,
+      "blind_repair": 0.4688,
+      "delta_pp": -28.12,
+      "localization": 0.4186,
+      "fol_accuracy": 0.14,
+      "code_accuracy": 0.52,
+      "C1": false,
+      "C2": true,
+      "C3": true,
+      "C4": false,
+      "C5": false
+    },
+    "checkpoint_path": "/root/autodl-tmp/crdd/results/results.json",
+    "log_path": "/root/autodl-tmp/crdd/results/pipeline.log",
+    "completed_at": "2026-05-14T08:14:26.843Z"
+  },
+  "timestamp": "2026-05-14T08:14:26.852316+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,402 @@
+{
+  "pid": "folio_45",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(cats)",
+          "z3_formula": "mammal_cats == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_mammal(some_pets)",
+          "z3_formula": "not_mammal_some_pets == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cat(X) -> mammal(X)",
+          "z3_formula": "Implies(cat, mammal)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "pet(X) -> mammal(X) | not_mammal(X)",
+          "z3_formula": "Implies(pet, Or(mammal, not_mammal))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not cat(pets)",
+          "z3_formula": "Not(cat_pets) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(cat)",
+          "z3_formula": "mammal_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(cat)",
+          "z3_formula": "pet_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not mammal(pet)",
+          "z3_formula": "Not(And(pet, mammal_pet)) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> mammal(pet)",
+          "z3_formula": "Implies(mammal_cat, mammal_pet)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not pet(cat)",
+          "z3_formula": "Not(pet_cat) == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(cat)",
+          "z3_formula": "mammal_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & ~mammal(X)",
+          "z3_formula": "Or(pet_X, Not(mammal_X))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cat(X) -> mammal(X)",
+          "z3_formula": "Implies(cat_X, mammal_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "No pet is a cat",
+          "z3_formula": "Not(And(pet_X, cat_X))",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(cat)",
+          "z3_formula": "mammal_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_mammal(some_pet)",
+          "z3_formula": "not_mammal_some_pet == True",
+          "source_step": 2
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(cats)",
+          "z3_formula": "mammal_cats == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & ~mammal(X)",
+          "z3_formula": "And(pet_X, Not(mammal_X)) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> pet(X)",
+          "z3_formula": "Implies(mammal_cats, pet_cats)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "pet(X) & mammal(X)",
+          "z3_formula": "And(pet_X, mammal_X) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "pet(X) & ~mammal(X)",
+          "z3_formula": "And(pet_X, Not(mammal_X)) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "pet(X) & mammal(X) | pet(X) & ~mammal(X)",
+          "z3_formula": "Or(And(pet_X, mammal_X), And(pet_X, Not(mammal_X))) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "~(pet(X) & ~mammal(X))",
+          "z3_formula": "Not(And(pet_X, Not(mammal_X))) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "pet(X) & ~mammal(X) -> pet(X) & mammal(X)",
+          "z3_formula": "Implies(And(pet_X, Not(mammal_X)), And(pet_X, mammal_X))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "pet(X) & ~mammal(X) -> False",
+          "z3_formula": "Implies(And(pet_X, Not(mammal_X)), False)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "No pets are cats",
+          "z3_formula": "Not(Or(pet_X, cats_X)) == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(cats)",
+          "z3_formula": "mammal_cats == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & ~mammal(X)",
+          "z3_formula": "Or(pet_X, Not(mammal_X)) == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cat(X) -> mammal(X)",
+          "z3_formula": "Implies(cat_X, mammal_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "pet(X) & cat(X)",
+          "z3_formula": "And(pet_X, cat_X) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "No pets are cats",
+          "z3_formula": "Not(And(pet_X, cat_X)) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(cat)",
+          "z3_formula": "mammal_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cat(X) -> mammal(X)",
+          "z3_formula": "Implies(cat, mammal)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_mammal(pet)",
+          "z3_formula": "not_mammal_pet == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "pet(X) -> mammal(X)",
+          "z3_formula": "Implies(pet, mammal)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not cat(pet)",
+          "z3_formula": "not_cat_pet == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(cats)",
+          "z3_formula": "mammal_cats == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not mammal(pets)",
+          "z3_formula": "not_mammal_pets == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> mammal(cats)",
+          "z3_formula": "Implies(mammal_cats, mammal_cats)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not mammal(X) -> not mammal(pets)",
+          "z3_formula": "Implies(not_mammal_pets, not_mammal_pets)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not pet(cats)",
+          "z3_formula": "not_pet_cats == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(cats)",
+          "z3_formula": "mammal_cats == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & ~mammal(X)",
+          "z3_formula": "Or(pet_X, Not(mammal_X))",
+          "source_step": 2
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(cat)",
+          "z3_formula": "mammal_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cat(X) -> mammal(X)",
+          "z3_formula": "Implies(cat, mammal)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(mammal(pet))",
+          "z3_formula": "not(mammal_pet) == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(pet(cat))",
+          "z3_formula": "not(pet_cat) == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(cats)",
+          "z3_formula": "mammal_cats == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_mammal(some_pets)",
+          "z3_formula": "not_mammal_some_pets == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cat(X) -> mammal(X)",
+          "z3_formula": "Implies(cat_X, mammal_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not_cat(some_pets)",
+          "z3_formula": "not_cat_some_pets == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not_cat(all_pets)",
+          "z3_formula": "not_cat_all_pets == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mammal(cats)",
+          "z3_formula": "mammal_cats == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_mammal(some_pets)",
+          "z3_formula": "not_mammal_some_pets == True",
+          "source_step": 2
+        }
+      ]
+    }
+  ]
+}

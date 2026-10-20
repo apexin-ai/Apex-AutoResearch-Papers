@@ -1,0 +1,1386 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-562_Q17",
+    "problem": "Charlie is round. Charlie is not young. Dave is rough. Dave is not young. Erin is cold. Erin is young. Harry is furry. Round people are white. If someone is young then they are white. All round, rough people are big. All young, big people are not cold. Round, big people are not cold. Furry people are round. White, round people are furry. If Dave is furry and Dave is round then Dave is rough. If someone is furry then they are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not white.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\n\nFacts:\nRound(Charlie, True) ::: Charlie is round.\nYoung(Charlie, False) ::: Charlie is not young.\nRough(Dave, True) ::: Dave is rough.\nYoung(Dave, False) ::: Dave is not young.\nCold(Erin, True) ::: Erin is cold.\nYoung(Erin, True) ::: Erin is young.\nFurry(Harry, True) ::: Harry is furry.\n\nRules:\nRound($x, True) >>> White($x, True) ::: Round people are white.\nYoung($x, True) >>> White($x, True) ::: If someone is young then they are white.\nRound($x, True) && Rough($x, True) >>> Big($x, True) ::: All round, rough people are big.\nYoung($x, True) && Big($x, True) >>> Cold($x, False) ::: All young, big people are not cold.\nRound($x, True) && Big($x, True) >>> Cold($x, False) ::: Round, big people are not cold.\nFurry($x, True) >>> Round($x, True) ::: Furry people are round.\nWhite($x, True) && Round($x, True) >>> Furry($x, True) ::: White, round people are furry.\nFurry(Dave, True) && Round(Dave, True) >>> Rough(Dave, True) ::: If Dave is furry and Dave is round then Dave is rough.\nFurry($x, True) >>> Rough($x, True) ::: If someone is furry then they are rough.\n\nQuery:\nWhite(Dave, False) ::: Dave is not white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 171.5,
+      "True": 61.0,
+      "Unknown": 174.5
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "False": 5,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is rough. (Given)\n2. Dave is not young. (Given)\n3. If someone is young then they are white. (Rule)\n   Since Dave is not young, we cannot conclude that Dave is white using this rule.\n\n4. All round, rough people are big. (Rule)\n   Let's assume Dave is round. Then Dave is big according to this rule.\n\n5. Furry people are round. (Rule)\n   Since Harry is furry, he is round. We cannot conclude that all furry people are round, but we know at least one furry person (Harry) is round. \n\n6. If Dave is furry and Dave is round then Dave is rough. (Rule)\n   From step 5, we know that furry people are round. If we assume Dave is furry, then we can conclude Dave is round. Now, using the given fact that Dave is rough, we can conclude that Dave is indeed rough if he is furry.\n\n7. If someone is furry then they are rough. (Rule)\n   Using the assumption from step 6 that Dave is furry, we can conclude that Dave is rough.\n\nNow, let's continue from step 4:\n- Dave is big. (Conclusion from step 4)\n- All young, big people are not cold. (Rule)\n  Since Dave is not young, we cannot conclude that Dave is not cold using this rule.\n\n- Round, big people are not cold. (Rule)\n  Since Dave is big, we cannot conclude that Dave is not cold using this rule.\n\n- Round people are white. (Rule)\n  Let's assume Dave is round. Then Dave is white according to this rule.\n\nNow, let's analyze the relationship between being furry, round, and white:\n\n- Furry people are round. (Rule)\n- White, round people are furry. (Rule)\n  If someone is white and round, then they are furry. \n\nCombining the two rules:\n- If someone is white and round, then they are furry. \n- Furry people are round. \n- If someone is furry, then they are rough. \n\nCombining these rules implies that if someone is white and round, then they are furry, which means they are round, and therefore, they are rough.\n\nHowever, this does not directly tell us whether Dave is white or not. \n\nNow, let's analyze the relationship between being round and rough:\n\n- All round, rough people are big. (Rule)\n- If Dave is furry and Dave is round then Dave is rough. (Rule)\n  From step 5, we know that furry people are round. If we assume Dave is furry, then we can conclude Dave is round. Now, using the given fact that Dave is rough, we can conclude that Dave is indeed rough if he is furry.\n\nThis information still doesn't directly tell us whether Dave is white or not.\n\nLet's summarize the information we have:\n\n- Dave is rough. (Given)\n- If Dave is furry and Dave is round then Dave is rough. (Rule)\n  From step 5, we know that furry people are round. If we assume Dave is furry, then we can conclude Dave is round. Now, using the given fact that Dave is rough, we can conclude that Dave is indeed rough if he is furry.\n\nNow, let's look at the rules that connect being white and round:\n\n- Round people are white. (Rule)\n  If Dave is round, then Dave is white.\n\nHowever, we still don't know whether Dave is round or not.\n\nFrom the rule \"If someone is furry then they are rough\" and \"If Dave is furry and Dave is round then Dave is rough\", we know that being furry implies being rough and also implies being round. But we don't know whether Dave is furry or not.\n\nSince we don't know whether Dave is furry or not, we cannot conclude whether Dave is round or not. \n\nHowever, if we assume Dave is furry, we can conclude that Dave is round and rough.\n\nNow, let's consider the statement \"Dave is not white\" we are trying to determine.\n\nIf Dave is round, then Dave is white. (From the rule \"Round people are white.\")\n\nHowever, we still don't know whether Dave is round or not.\n\nIf we can show that Dave is not round, then we can conclude that Dave is not white. \n\nHowever, we cannot conclude that Dave is not round, as we have evidence that suggests Dave might be round (Dave is furry, and furry people are round).\n\nTherefore, we cannot conclude that Dave is not white based on the information that Dave is furry. \n\nHowever, if Dave is furry, then Dave is round. \n\nIf Dave is round, then Dave is white. \n\nHowever, we also know that white, round people are furry. \n\nCombining these rules implies that if someone is white and round, then they are furry. \n\nHowever, we also know that all round, rough people are big. \n\nWe cannot conclude that Dave is big. \n\nHowever, we do know that round, big people are not cold. \n\nWe cannot conclude that Dave is not cold. \n\nHowever, we do know that furry people are round. \n\nIf Dave is furry, then Dave is round. \n\nIf Dave is round, then Dave is white. \n\nHowever, we also know that if someone is furry, then they are rough. \n\nSince Dave is rough, we can conclude that Dave is furry if we assume that furry people are round. \n\nHowever, we still don't know whether Dave is furry or not.\n\nHowever, we can conclude that if Dave is furry, then Dave is round and white. \n\nHowever, we still don't know whether Dave is furry or not.\n\nIf Dave is round and white, then Dave is furry. \n\nHowever, we still don't know whether Dave is furry or not.\n\nCombining the two rules:\n- If someone is white and round, then they are furry. \n- If someone is furry, then they are rough.\n\nThis implies that if someone is white and round, then they are furry and rough.\n\nHowever, we cannot conclude that Dave is white or not.\n\nWe can conclude that if Dave is furry, then Dave is round and white.\n\nHowever, we still don't know whether Dave is furry or not.\n\nIf Dave is furry, then Dave is round.\n\nIf Dave is round, then Dave is white.\n\nHowever, we also know that white, round people are furry.\n\nCombining these rules implies that if someone is white and round, then they are furry.\n\nThis doesn't tell us whether Dave is white or not.\n\nHowever, we can conclude that if Dave is furry, then Dave is round and white.\n\nHowever, we still don't know whether Dave is furry or not.\n\nHowever, we can conclude that if Dave is round, then Dave is white.\n\nBut we still don't know whether Dave is round or not.\n\nIf we assume that Dave is furry, then we can conclude that Dave is round and rough.\n\nIf Dave is round and rough, then Dave is big.\n\nIf Dave is big, then we cannot conclude that Dave is not cold.\n\nHowever, we do know that round, big people are not cold.\n\nIf Dave is big, then Dave is not cold.\n\nHowever, we cannot conclude that Dave is big.\n\nHowever, we can conclude that if Dave is furry, then Dave is round and rough.\n\nIf Dave is round, then Dave is white.\n\nHowever, we still don't know whether Dave is furry or not.\n\nHowever, we can conclude that if Dave is furry, then Dave is round and white.\n\nHowever, we still don't know whether Dave is furry or not.\n\nSince we still don't know whether Dave is furry or not, we cannot conclude whether Dave is round or white.\n\nHowever, we can conclude that if Dave is furry, then Dave is round and white.\n\nHowever, we still don't know whether Dave is furry or not.\n\nNow, let's analyze the relationship between being furry and being white:\n\n- Furry people are round. (Rule)\n- White, round people are furry. (Rule)\n  If someone is white and round, then they are furry.\n\nHowever, we still don't know whether Dave is white or not.\n\nWe can conclude that if Dave is furry, then Dave is round and white.\n\nHowever, we still don't know whether Dave is furry or not.\n\nHowever, we can conclude that if Dave is round, then Dave is white.\n\nHowever, we still don't know whether Dave is round or not.\n\nSince we still don't know whether Dave is furry or not, we cannot conclude whether Dave is round or white.\n\nHowever, we can conclude that if Dave is furry, then Dave is round and white.\n\nHowever, we still don't know whether Dave is furry or not.\n\nNow, let's analyze the statement \"Dave is not white\" we are trying to determine.\n\nIf Dave is furry, then Dave is round and white.\n\nHowever, we still don't know whether Dave is furry or not.\n\nHowever, we can conclude that if Dave is round, then Dave is white.\n\nHowever, we still don't know whether Dave is round or not.\n\nHowever, we can conclude that if Dave is furry, then Dave is round and white.\n\nHowever, we still don't know whether Dave is furry or not.\n\nWe can conclude that if Dave is furry, then Dave is round and white.\n\nHowever, we still don't know whether Dave is furry or not.\n\nHowever, we can conclude that if Dave is round, then Dave is white.\n\nHowever, we still don't know whether Dave is round or not.\n\nHowever, we can conclude that if Dave is furry, then Dave is round and white.\n\nHowever, we still don't know whether Dave is furry or not.\n\nSince we still don't know whether Dave is furry or not, we cannot conclude whether",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Dave is rough. (Given)\n2. Dave is not young. (Given)\n3. If someone is young then they are white. (Given)\n   From (2), we can conclude that Dave is not white because if he were young, he would be white. However, we know he is not young.\n4. Furry people are round. (Given)\n5. If Dave is furry and Dave is round then Dave is rough. (Given)\n   From (4), we can conclude that Dave is round because furry people are round.\n6. If Dave is furry and Dave is round then Dave is rough. (Given)\n   Since we already know Dave is rough from (1), and now we know he is round from (5), we can apply (6) to conclude that Dave is indeed rough. However, this conclusion is redundant, as we already knew he was rough.\n7. All round, rough people are big. (Given)\n   Since we know Dave is both round and rough, we can conclude that Dave is big.\n8. Round, big people are not cold. (Given)\n   Since we know Dave is both round and big, we can conclude that Dave is not cold.\n9. Erin is cold. Erin is young. (Given)\n   We are not given any information that relates Erin to Dave, so we cannot conclude anything about Dave from this statement.\n10. Round, white people are furry. (Given)\n    We know Dave is round, but we have not yet determined if he is white or not. We can proceed with the analysis to see if we can conclude that he is not white.\n\nHowever, to determine whether Dave is white, we need to know if he is young or not. From (3), we know that if he were young, he would be white. But we also know that he is not young from (2).\n\nLet's analyze the statement \"If someone is furry then they are rough.\" (Given)\n11. If someone is furry then they are rough. (Given)\n    Since we know Dave is furry from (4), we can apply (11) to conclude that Dave is indeed rough. However, this conclusion is redundant, as we already knew he was rough.\n\nNow, let's look at the statement \"If Dave is furry and Dave is round then Dave is rough.\" (Given)\n12. If Dave is furry and Dave is round then Dave is rough. (Given)\n    We already know Dave is furry from (4) and round from (5). Applying (12), we can conclude that Dave is rough, but this conclusion is redundant.\n\nThe critical information we need to determine if Dave is white is that Round people are white (Given) and If someone is young then they are white (Given).\n\n13. Since we know Dave is not young from (2) and Round people are white (Given), we can conclude that Dave is white because he is round.\n\nHowever, this conclusion contradicts the statement \"If someone is young then they are white.\" (Given) and \"Dave is not young.\" (Given), because if we conclude that Dave is white, then he cannot be white if he is not young.\n\nTherefore, we have a contradiction. The statement \"Dave is white\" contradicts the information \"Dave is not young.\" However, we can resolve this contradiction by considering the given statement \"White, round people are furry.\" (Given) and \"Furry people are round.\" (Given)\n\n14. White, round people are furry. (Given)\n    Since we know Dave is round and we concluded earlier that Dave is white, we can apply (14) to conclude that Dave is furry.\n\nHowever, we already know that Dave is furry from (4).\n\nNow, let's look at the statement \"If someone is furry then they are rough.\" (Given)\n15. If someone is furry then they are rough. (Given)\n    Since we know Dave is furry, we can apply (15) to conclude that Dave is rough. However, this conclusion is redundant, as we already knew he was rough.\n\nConsidering the statement \"Round, white people are furry.\" (Given) and \"If someone is furry then they are rough.\" (Given), we can conclude that Dave is white because he is round.\n\nHowever, this conclusion contradicts the information \"Dave is not young.\" (Given) and \"If someone is young then they are white.\" (Given), because if we conclude that Dave is white, then he cannot be white if he is not young.\n\nWe have two conflicting pieces of information: \"Dave is not young\" and \"If someone is young then they are white.\" (Given) and \"Round people are white\" (Given), \"Furry people are round\" (Given), \"White, round people are furry\" (Given), and \"If someone is furry then they are rough\" (Given).\n\nSince we know that \"Furry people are round\" (Given) and \"If someone is furry then they are rough\" (Given), we can conclude that Dave is round and rough. But we already knew that.\n\nNow, let's consider the statement \"All young, big people are not cold.\" (Given)\n16. All young, big people are not cold. (Given)\n    Since we know Dave is big from (7) and we cannot conclude that Dave is young from the information given, we cannot apply (16) to conclude anything about Dave.\n\nHowever, from (8), we know that Round, big people are not cold. (Given) and we know that Dave is big from (7) and round from (5), we can conclude that Dave is not cold.\n\nNow, let's look at the statement \"Round people are white.\" (Given)\n17. Round people are white. (Given)\n    Since we know Dave is round from (5), we can apply (17) to conclude that Dave is white.\n\nHowever, this conclusion contradicts the information \"Dave is not young.\" (Given) and \"If someone is young then they are white.\" (Given), because if we conclude that Dave is white, then he cannot be white if he is not young.\n\nWe have two conflicting pieces of information: \"Dave is not young\" and \"If someone is young then they are white.\" (Given) and \"Round people are white\" (Given), \"Furry people are round\" (Given), \"White, round people are furry\" (Given), and \"If someone is furry then they are rough\" (Given).\n\nNow, let's consider the statement \"If Dave is furry and Dave is round then Dave is rough.\" (Given)\n18. If Dave is furry and Dave is round then Dave is rough. (Given)\n    We already know Dave is furry from (4) and round from (5). Applying (18), we can conclude that Dave is rough, but this conclusion is redundant.\n\nThe critical information we need to determine if Dave is white is that Round people are white (Given) and If someone is young then they are white (Given).\n\nSince we know that Round people are white (Given) and \"Furry people are round\" (Given) and \"White, round people are furry\" (Given), we can conclude that Dave is white because he is round.\n\nHowever, this conclusion contradicts the information \"Dave is not young.\" (Given) and \"If someone is young then they are white.\" (Given), because if we conclude that Dave is white, then he cannot be white if he is not young.\n\nWe have two conflicting pieces of information: \"Dave is not young\" and \"If someone is young then they are white.\" (Given) and \"Round people are white\" (Given), \"Furry people are round\" (Given), \"White, round people are furry\" (Given), and \"If someone is furry then they is rough\" (Given).\n\nHowever, we also know from (3) that \"If someone is young then they are white.\" (Given) and we know from (2) that \"Dave is not young.\" (Given).\n\nBut we also know from (8) that \"Round, big people are not cold.\" (Given) and we know from (7) that \"All round, rough people are big.\" (Given) and we know from (1) that \"Dave is rough.\" (Given) and from (5) that \"Dave is round.\" (Given).\n\nSo we can conclude from (8) that Dave is not cold because Dave is big and round.\n\nHowever, we cannot conclude that Dave is white because we know that \"Dave is not young.\" (Given) and \"If someone is young then they are white.\" (Given).\n\nTherefore, we cannot conclude whether \"Dave is white\" is true or false.\n\nHence, the answer to the statement \"Dave is not white\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. Dave is rough. (Given)\n2. Dave is not young. (Given)\n3. Round people are white. (Rule)\n4. If someone is young then they are white. (Rule)\n5. All round, rough people are big. (Rule)\n6. All young, big people are not cold. (Rule)\n7. Round, big people are not cold. (Rule)\n8. Furry people are round. (Rule)\n9. White, round people are furry. (Rule)\n10. If Dave is furry and Dave is round then Dave is rough. (Rule)\n11. If someone is furry then they are rough. (Rule)\n\nNow, let's analyze the statement \"Dave is not white\" using the given information and the rules.\n\nFrom rule 4, if someone is young then they are white. However, Dave is not young (rule 2), so we cannot conclude that Dave is white based on this rule.\n\nFrom rule 3, round people are white. To determine whether Dave is white, we need to know whether he is round. If Dave is round, then he is white (rule 3). However, if Dave is furry (rule 11), then he is rough (rule 1). Now, let's consider the possibilities:\n\n- If Dave is round and furry, then he is white (rule 3) and rough (rule 1).\n- If Dave is not round and furry, then he is rough (rule 11), but we cannot conclude whether he is white or not.\n\nNow, let's consider the rule that all round, rough people are big (rule 5). Since Dave is rough (rule 1) and possibly round, he is possibly big. However, if Dave is big and young, then he is not cold (rule 6). But Dave is not young (rule 2), so this does not apply. On the other hand, if Dave is big and round, then he is not cold (rule 7).\n\nFrom rule 8, furry people are round. So, if Dave is furry, then he is round. Now, let's consider the rule that white, round people are furry (rule 9). If Dave is white and round, then he is furry (rule 9).\n\nCombining the information, we can conclude that:\n\n- If Dave is white, then he is furry (rule 9).\n- If Dave is furry, then he is rough (rule 11).\n- If Dave is rough, then he is furry (rule 10).\n\nFrom the above information, we can conclude that Dave is furry, rough, and possibly white. However, we cannot conclude that Dave is not white, as there is a possibility that he is white.\n\nTherefore, the statement \"Dave is not white\" is unknown, as we cannot conclude whether it is true or false.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply logical deductions.\n\nGiven statements:\n1. Charlie is round. \n2. Charlie is not young. \n3. Dave is rough. \n4. Dave is not young. \n5. Erin is cold. \n6. Erin is young. \n7. Harry is furry. \n8. Round people are white. \n9. If someone is young then they are white. \n10. All round, rough people are big. \n11. All young, big people are not cold. \n12. Round, big people are not cold. \n13. Furry people are round. \n14. White, round people are furry. \n15. If Dave is furry and Dave is round then Dave is rough. \n16. If someone is furry then they are rough.\n\nNow, let's analyze the given statement: \"Dave is not white.\"\n\nTo determine whether this statement is true, false, or unknown, we need to deduce information about Dave.\n\nFrom statements 3 and 4, we know that Dave is rough and not young.\n\nFrom statement 13, we know that furry people are round. \nFrom statement 7, we know that Harry is furry. \nWe can conclude that Harry is round (by statement 13).\n\nSince Harry is round and round people are white (statement 8), Harry is white.\n\nNow, we have a contradiction: if Harry is white, then from statement 14, white, round people are furry. \nSince Harry is round and white, Harry is furry (by statement 14).\n\nFrom statement 16, if someone is furry then they are rough. \nSo, since Harry is furry, Harry is rough (by statement 16).\n\nHowever, from statement 10, all round, rough people are big. \nSince Harry is round and rough, Harry is big (by statement 10).\n\nNow, let's consider the given statement: \"Dave is not white.\" \n\nFrom statement 4, we know that Dave is not young.\n\nFrom statement 9, if someone is young then they are white. \nHowever, Dave is not young, so we cannot conclude that Dave is white. \nBut, from statement 9, we cannot conclude that Dave is not white either.\n\nFrom statement 15, if Dave is furry and Dave is round then Dave is rough. \nSince we know that Dave is rough (from statement 3), and furry people are round (from statement 13), we can conclude that Dave is round (by statement 15).\n\nFrom statement 13, furry people are round. \nSo, since Dave is furry, Dave is round (by statement 13).\n\nNow, since Dave is round and not young, and round, big people are not cold (from statement 12), we cannot conclude that Dave is not cold.\n\nHowever, we can conclude that Dave is big, since Dave is round and rough (from statement 10).\n\nFrom statement 11, all young, big people are not cold. \nHowever, Dave is not young, so we cannot apply this statement to Dave.\n\nBut, we can conclude that Dave is not cold, since round, big people are not cold (from statement 12).\n\nNow, let's consider the statement: \"Dave is not white.\"\n\nFrom statement 8, round people are white. \nSince Dave is round, Dave is white (by statement 8).\n\nHowever, this conclusion is in conflict with the initial given statement \"Dave is not white.\"\n\nSo, we need to re-evaluate our deductions.\n\nWe have already concluded that Dave is round, and from statement 8, round people are white. \nThis means that Dave is white.\n\nHowever, we have also concluded that Dave is furry, and from statement 16, furry people are rough. \nThis means that Dave is rough.\n\nFrom statement 10, all round, rough people are big. \nSo, since Dave is round and rough, Dave is big (by statement 10).\n\nNow, let's consider the statement: \"Dave is not white.\"\n\nWe have already concluded that Dave is white, which contradicts the given statement.\n\nHowever, we need to consider the statement \"Dave is not white\" as true if we cannot prove that Dave is white.\n\nSince we have concluded that Dave is white, we cannot consider the statement \"Dave is not white\" as true.\n\nTherefore, the statement \"Dave is not white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is rough. (Given)\n2. Dave is not young. (Given)\n3. All round, rough people are big. (Given)\n4. All young, big people are not cold. (Given)\n5. Round, big people are not cold. (Given)\n6. Furry people are round. (Given)\n7. If someone is furry then they are rough. (Given)\n8. If Dave is furry and Dave is round then Dave is rough. (Given)\n\nFrom steps 6 and 7, we can conclude that Dave is furry and Dave is rough. \n\nFrom steps 3 and 6, we can conclude that Dave is big.\n\nFrom step 6, we know Dave is round.\n\nFrom step 1, we know Dave is rough, which we already knew, but from step 3, we can conclude that Dave is big, and from step 6, we can conclude that Dave is round.\n\nNow, let's analyze the information about colors. We have the following statements:\n\n9. Round people are white. (Given)\n10. If someone is young then they are white. (Given)\n11. Erin is cold. Erin is young. (Given)\n12. Harry is furry. (Given)\n13. White, round people are furry. (Given)\n\nFrom step 11, we know Erin is young. From step 10, we can conclude that Erin is white.\n\nFrom step 12, we know Harry is furry. From step 13, we can conclude that Harry is white and round.\n\nNow, we can conclude that round people are white (step 9) and if someone is round, then they are white. However, we know that Dave is round (step 6). Therefore, we can conclude that Dave is white.\n\nFrom the conclusion that Dave is white, we can determine that the statement \"Dave is not white\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements step by step and deduce the information about Dave.\n\n1. Dave is rough.\n2. Dave is not young.\n\nFrom statement 5, we know: All round, rough people are big.\nWe don't know if Dave is round, but we know he is rough, so Dave might be big.\n\n3. Erin is cold.\n4. Erin is young.\n\nFrom statement 6, we know: All young people are white.\nSo, Erin is white.\n\n5. Harry is furry.\n6. Round, big people are not cold.\n\nWe don't know if Harry is round or big, but we know he is furry.\n\n7. Furry people are round.\n8. White, round people are furry.\n\nFrom statement 7, we know Harry is round because he is furry.\n\n9. If Dave is furry and Dave is round then Dave is rough.\n10. If someone is furry then they are rough.\n\nFrom statement 7, we know Dave is round because he is furry. And from statement 10, we know Dave is rough because he is furry.\n\n11. Round people are white.\n\nWe don't know if Dave is white or not, but we know he is round.\n\nNow, we have the following information about Dave:\n- Dave is rough.\n- Dave is not young.\n- Dave is round.\n- Dave might be big.\n\nFrom statement 5, we know all round, rough people are big.\nBut we don't know if all big people are rough.\n\nFrom statement 6, we know all young people are white, but Dave is not young.\n\nFrom statement 11, we know round people are white, but we don't know if Dave is white or not.\n\nFrom statement 7, we know furry people are round, and from statement 9, we know Dave is rough because he is furry.\n\nFrom statement 8, we know white, round people are furry, but we don't know if Dave is white or not.\n\nNow, we are given the statement: Dave is not white.\n\nWe know Dave is round and furry, but we don't know if he is white or not.\n\nFrom statement 8, we know white, round people are furry, but this statement doesn't guarantee that all furry people are white.\n\nHowever, from statement 7, we know furry people are round, and from statement 11, we know round people are white. Therefore, we can conclude that furry people are white.\n\nSince Dave is furry, we can conclude that Dave is white.\n\nSo, the statement \"Dave is not white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and the rules of logic to determine the truth value of the statement \"Dave is not white.\"\n\nStep 1: Analyze the given statements.\n\n1. Charlie is round. (This statement is irrelevant to our problem.)\n2. Charlie is not young. (This statement is irrelevant to our problem.)\n3. Dave is rough. (This statement is given.)\n4. Dave is not young. (This statement is given.)\n5. Erin is cold. (This statement is irrelevant to our problem.)\n6. Erin is young. (This statement is irrelevant to our problem.)\n7. Harry is furry. (This statement is irrelevant to our problem.)\n8. Round people are white. (This statement is given.)\n9. If someone is young then they are white. (This statement is given.)\n10. All round, rough people are big. (This statement is given.)\n11. All young, big people are not cold. (This statement is given.)\n12. Round, big people are not cold. (This statement is given.)\n13. Furry people are round. (This statement is given.)\n14. White, round people are furry. (This statement is given.)\n15. If Dave is furry and Dave is round then Dave is rough. (This statement is given.)\n16. If someone is furry then they are rough. (This statement is given.)\n\nStep 2: Determine the possible properties of Dave.\n\nFrom statement 3, we know that Dave is rough.\n\nFrom statement 4, we know that Dave is not young.\n\nFrom statement 15, we know that if Dave is furry and Dave is round, then Dave is rough. But since we already know that Dave is rough, this statement does not provide any new information.\n\nFrom statement 16, we know that if someone is furry, then they are rough. However, this statement does not provide any information about Dave's furiness.\n\nStep 3: Determine whether Dave is furry or not.\n\nIf Dave is furry, then he is rough (statement 16). But we already know that Dave is rough (statement 3). However, this does not provide any information about Dave's furiness.\n\nIf Dave is not furry, then we cannot determine his properties.\n\nStep 4: Determine whether Dave is round or not.\n\nIf Dave is furry, then he is round (statement 13). But we already know that furry people are round.\n\nIf Dave is not furry, then we cannot determine his roundness.\n\nStep 5: Determine whether Dave is white or not.\n\nFrom statement 8, we know that round people are white. However, we do not know whether Dave is round.\n\nFrom statement 9, we know that if someone is young, then they are white. However, we do not know whether Dave is young.\n\nStep 6: Determine the final answer.\n\nSince we do not know whether Dave is round, furry, or young, we cannot determine his whiteness. Therefore, the final answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and use the rules of logic to determine the truth of the statement \"Dave is not white.\"\n\n1. Charlie is round. \n2. Charlie is not young.\n3. Dave is rough.\n4. Dave is not young.\n5. Erin is cold.\n6. Erin is young.\n7. Harry is furry.\n8. Round people are white.\n9. If someone is young then they are white.\n10. All round, rough people are big.\n11. All young, big people are not cold.\n12. Round, big people are not cold.\n13. Furry people are round.\n14. White, round people are furry.\n15. If Dave is furry and Dave is round then Dave is rough.\n16. If someone is furry then they are rough.\n\nFrom statements 3 and 4, we know that Dave is rough and not young.\n\nFrom statement 9, we know that if someone is young then they are white. But we also know that Dave is not young (statement 4), so we cannot conclude that Dave is white.\n\nFrom statement 13, we know that furry people are round. And from statement 7, we know that Harry is furry, so Harry is round.\n\nFrom statement 8, we know that round people are white. And since Harry is round (from statement 13), Harry is white.\n\nFrom statement 14, we know that white, round people are furry. Since Harry is white and round (from statement 13), Harry is furry.\n\nFrom statement 15 and 16, if Dave is furry and round, then he is rough. And from statement 13, furry people are round, so Dave is round.\n\nNow we know that Dave is rough (statement 3), round (from statement 13), and not young (statement 4). \n\nFrom statement 10, we know that all round, rough people are big. So Dave is big.\n\nFrom statement 11, we know that all young, big people are not cold. But Dave is not young (statement 4), so this does not apply to Dave.\n\nHowever, from statement 12, we know that round, big people are not cold. Since Dave is round (from statement 13), big (from statement 10), we cannot conclude that Dave is cold or not.\n\nFrom statement 4, we know that Dave is not young.\n\nFrom statement 9, we know that if someone is young then they are white. But we know Dave is not young, so we cannot conclude that Dave is white.\n\nSince we know that Harry is white and round (from statement 8 and 13), and white, round people are furry (statement 14), and if someone is furry then they are rough (statement 16), and if Dave is furry and Dave is round then Dave is rough (statement 15), we can conclude that Dave is not white.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is not white' is true, false, or unknown, we'll analyze the given information step by step.\n\n1. Dave is rough. (Given)\n2. Dave is not young. (Given)\n3. Round people are white. (Given)\n4. If someone is young then they are white. (Given)\n5. All round, rough people are big. (Given)\n6. All young, big people are not cold. (Given)\n7. Round, big people are not cold. (Given)\n8. Furry people are round. (Given)\n9. White, round people are furry. (Given)\n10. If Dave is furry and Dave is round then Dave is rough. (Given)\n11. If someone is furry then they are rough. (Given)\n\nNow, let's try to derive the information about Dave being white or not.\n\nFrom step 8, we know that furry people are round. Given that Dave is rough (step 1), and if someone is furry then they are rough (step 11), we can deduce that Dave is furry.\n\nSince Dave is furry (derived from step 8), we can conclude that Dave is round (from step 8).\n\nFrom step 3, we know that round people are white. Since Dave is round (derived from step 8), we can conclude that Dave is white.\n\nNow, let's compare this result with the statement 'Dave is not white.' Since we concluded that Dave is white, the statement 'Dave is not white' is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will use logical deductions based on the given premises.\n\n1. Charlie is round. Charlie is not young. \n   - We don't have enough information to deduce anything about Charlie from this statement alone.\n\n2. Dave is rough. Dave is not young.\n   - Like Charlie, we don't have enough information to deduce anything about Dave from this statement alone.\n\n3. Erin is cold. Erin is young.\n   - We know Erin is young, but we don't know if she is white or not.\n\n4. Harry is furry.\n   - We don't have enough information to deduce anything about Harry from this statement alone.\n\n5. Round people are white.\n   - This is a general rule.\n\n6. If someone is young then they are white.\n   - This is another general rule.\n\n7. All round, rough people are big.\n   - This is a general rule.\n\n8. All young, big people are not cold.\n   - This is a general rule.\n\n9. Round, big people are not cold.\n   - This is a general rule.\n\n10. Furry people are round.\n    - This is a general rule.\n\n11. White, round people are furry.\n    - This is a general rule.\n\n12. If Dave is furry and Dave is round then Dave is rough.\n    - This is a specific rule based on the general rules.\n\n13. If someone is furry then they are rough.\n    - This is a general rule.\n\nNow, let's try to deduce the statement \"Dave is not white\" from the given premises.\n\nFrom (2), we know Dave is not young.\n\nFrom (6), if someone is young then they are white. \nSo, if Dave is not young, then it does not necessarily mean he is not white.\n\nHowever, from (12) and (13), we know that if Dave is furry and Dave is round, then Dave is rough. \n\nFrom (4), Harry is furry. \nFrom (10), furry people are round. \nSo, Harry is round.\n\nFrom (7), all round, rough people are big. \nSo, Dave is big.\n\nFrom (10), furry people are round. \nSo, Dave is round.\n\nFrom (5), round people are white. \nSo, Dave is white.\n\nNow, we have a contradiction. If Dave is round, then Dave is white. But we also know Dave is not young from (2), which means Dave is not white from (6). \n\nHowever, we have a contradiction, and we cannot conclude that Dave is not white based on the given premises.\n\nTherefore, the statement \"Dave is not white\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is rough. \n2. Dave is not young.\n\nFrom the given information, we can establish the following relationships:\n\n- Round people are white.\n- If someone is young, then they are white.\n- All round, rough people are big.\n- All young, big people are not cold.\n- Round, big people are not cold.\n- Furry people are round.\n- White, round people are furry.\n- If Dave is furry and Dave is round, then Dave is rough.\n- If someone is furry, then they are rough.\n\nWe can start by determining whether Dave is round or not. To do this, let's consider two cases:\n\nCase 1: Dave is not round. If Dave is not round, then he cannot be rough (since all round, rough people are big). But we know Dave is rough. Therefore, this case is impossible, and Dave must be round.\n\nCase 2: Dave is round. If Dave is round, then we can use the information \"Furry people are round\" to conclude that Dave is furry.\n\nSince Dave is furry, we can use the information \"If someone is furry, then they are rough\" to conclude that Dave is indeed rough. This is consistent with the given statement.\n\nNow, let's determine whether Dave is white or not. We know Dave is round and furry, so he must be white (since white, round people are furry).\n\nHowever, the statement \"Dave is not white\" contradicts this conclusion. Therefore, we can conclude that the statement \"Dave is not white\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n- Charlie is round. (This information is not relevant to the problem, so we can ignore it.)\n- Charlie is not young. (This information is not relevant to the problem, so we can ignore it.)\n- Dave is rough. (This information is relevant, so we'll keep it in mind.)\n- Dave is not young. (This information is relevant, so we'll keep it in mind.)\n- Erin is cold. (This information is not relevant to the problem, so we can ignore it.)\n- Erin is young. (This information is not relevant to the problem, so we can ignore it.)\n- Harry is furry. (This information is not relevant to the problem, so we can ignore it.)\n- Round people are white. (This is a general rule.)\n- If someone is young then they are white. (This is a general rule.)\n- All round, rough people are big. (This is a general rule.)\n- All young, big people are not cold. (This is a general rule.)\n- Round, big people are not cold. (This is a general rule.)\n- Furry people are round. (This is a general rule.)\n- White, round people are furry. (This is a general rule.)\n- If Dave is furry and Dave is round then Dave is rough. (This is a specific rule related to Dave.)\n- If someone is furry then they are rough. (This is a general rule.)\n\n2. Analyze the given information about Dave:\n- Dave is rough.\n- Dave is not young.\n\n3. Determine whether Dave is furry:\n- Since Dave is not young, we can use the rule \"If someone is young then they are white\" to conclude that Dave is not white (we'll come back to this conclusion later).\n- Since Dave is rough, we can use the rule \"If someone is furry then they are rough\" to conclude that Dave is furry.\n- Since Dave is furry, we can use the rule \"Furry people are round\" to conclude that Dave is round.\n- Since Dave is round and furry, we can use the rule \"If Dave is furry and Dave is round then Dave is rough\" to conclude that Dave is indeed rough (this rule is not necessary, but it confirms our previous conclusion).\n- Since Dave is round, we can use the rule \"Round people are white\" to conclude that Dave is white.\n\n4. Re-examine the conclusion that Dave is not white:\n- We previously concluded that Dave is not white because he is not young.\n- However, we also concluded that Dave is white because he is round.\n\n5. Determine the truth value of the statement \"Dave is not white\":\n- The statement \"Dave is not young\" is true.\n- The statement \"Dave is round\" is true.\n- The statement \"Dave is white\" is true.\n- Since we have two conflicting conclusions, we cannot determine whether the statement \"Dave is not white\" is true or false.\n\nTherefore, the answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dave)",
+          "z3_formula": "Not(young_dave) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_dave, white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_dave, big_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_dave, round_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_dave, rough_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(round_dave, rough_dave), big_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_dave, white_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_dave, round_dave), furry_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(round_dave, big_dave), Not(cold_dave))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave) -> round(dave) & white(dave)",
+          "z3_formula": "Implies(furry_dave, And(round_dave, white_dave))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave) -> white(dave)",
+          "z3_formula": "Implies(round_dave, white_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave) -> round(dave) & white(dave)",
+          "z3_formula": "Implies(furry_dave, And(round_dave, white_dave))",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave) -> round(dave) & white(dave)",
+          "z3_formula": "Implies(furry_dave, And(round_dave, white_dave))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave) -> round(dave) & white(dave)",
+          "z3_formula": "Implies(furry_dave, And(round_dave, white_dave))",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave) -> round(dave) & white(dave)",
+          "z3_formula": "Implies(furry_dave, And(round_dave, white_dave))",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave) -> round(dave) & white(dave)",
+          "z3_formula": "Implies(furry_dave, And(round_dave, white_dave))",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave) -> round(dave) & white(dave)",
+          "z3_formula": "Implies(furry_dave, And(round_dave, white_dave))",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave) -> round(dave) & white(dave)",
+          "z3_formula": "Implies(furry_dave, And(round_dave, white_dave))",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dave)",
+          "z3_formula": "Not(young_dave) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_dave, white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_dave, rough_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_dave, round_dave), rough_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_dave, rough_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_dave, white_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(round_dave, big_dave), not_cold_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X) & rough(X)",
+          "z3_formula": "Implies(big_dave, And(round_dave, rough_dave))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(round_dave, big_dave), not_cold_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(young_dave, big_dave), not_cold_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_dave, white_dave), furry_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_dave, rough_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_dave, white_dave), furry_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_dave, white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_dave, white_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(round_dave, big_dave), not_cold_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X) & rough(X)",
+          "z3_formula": "Implies(big_dave, And(round_dave, rough_dave))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_dave, white_dave), furry_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_dave, white_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_dave, furry_dave), rough_dave)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(dave)",
+          "z3_formula": "not_cold_dave == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dave)",
+          "z3_formula": "Not(young_dave) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_dave, white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_dave, white_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(round_dave, rough_dave), big_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(young_dave, big_dave), Not(cold_dave))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(round_dave, big_dave), Not(cold_dave))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_dave, round_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_dave, round_dave), furry_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_dave, rough_dave), rough_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_dave, rough_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_dave, furry_dave), rough_dave)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(charlie)",
+          "z3_formula": "Not(young_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dave)",
+          "z3_formula": "Not(young_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_charlie, white_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), big_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(young_dave, big_dave), Not(cold_dave))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(round_dave, big_dave), Not(cold_dave))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_harry, round_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_harry, round_harry), furry_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_dave, round_dave), rough_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_dave, rough_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(dave)",
+          "z3_formula": "Not(cold_dave)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "False",
+          "z3_formula": "Not(Not(white_dave))",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dave)",
+          "z3_formula": "not_young_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(round_dave, rough_dave), big_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(young_dave, big_dave), not_cold_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(round_dave, big_dave), not_cold_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_dave, round_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_dave, rough_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_dave, round_dave), rough_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_dave, white_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_dave, white_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_harry, round_harry), furry_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dave)",
+          "z3_formula": "Not(young_dave) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(round_dave, rough_dave), big_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_dave, rough_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_dave, round_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_dave, white_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_dave, round_dave), furry_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_dave, white_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dave)",
+          "z3_formula": "not_young_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_dave, white_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_dave, white_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(round_dave, rough_dave, big_dave), not_cold_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_dave, rough_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_dave, round_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_dave, furry_dave), rough_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_dave, furry_dave), furry_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(young_dave, big_dave), not_cold_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(round_dave, big_dave), not_cold_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not white(dave)",
+          "z3_formula": "not white_dave == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(charlie)",
+          "z3_formula": "not_young_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dave)",
+          "z3_formula": "not_young_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_charlie, white_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), big_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(young_charlie, big_charlie), not_cold_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(round_charlie, big_charlie), not_cold_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_harry, round_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_harry, round_harry), furry_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_charlie, round_charlie), rough_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not white(dave)",
+          "z3_formula": "not_white_dave == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dave)",
+          "z3_formula": "not_young_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_dave, white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_dave, white_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(round_dave, rough_dave), big_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(young_dave, big_dave), not_cold_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(round_dave, big_dave), not_cold_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_dave, round_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_dave, round_dave), furry_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_dave, round_dave), rough_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_dave, rough_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(charlie)",
+          "z3_formula": "not young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dave)",
+          "z3_formula": "not young_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_charlie, white_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(round_charlie, rough_charlie), big_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(young_dave, big_dave), not cold_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(round_dave, big_dave), not cold_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_harry, round_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_dave, furry_dave), furry_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_dave, rough_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not white(dave)",
+          "z3_formula": "not white_dave == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dave)",
+          "z3_formula": "Not(young_dave) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_dave, white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_dave, white_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(round_dave, rough_dave), big_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(young_dave, big_dave), Not(cold_dave))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> not cold(X)",
+          "z3_formula": "Implies(And(round_dave, big_dave), Not(cold_dave))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_dave, round_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_dave, round_dave), furry_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_dave, round_dave), rough_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_dave, rough_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dave)",
+          "z3_formula": "Not(young_dave) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_dave, white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_dave, white_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_dave, rough_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> round(X)",
+          "z3_formula": "Implies(furry_dave, round_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_dave, furry_dave), rough_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_dave, furry_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_dave, round_dave), furry_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 209,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 49
+    },
+    "maxsat_stats": {
+      "satisfied": 48,
+      "excluded": 1,
+      "total_weight": 202,
+      "solve_time_ms": 1.2612491846084595
+    },
+    "timing": {
+      "trace_gen_s": 24.773,
+      "extraction_s": 33.067,
+      "dedup_s": 1.957,
+      "maxsat_s": 0.004,
+      "total_s": 59.801
+    }
+  }
+}

@@ -1,0 +1,138 @@
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Experimental Setup}
+\label{sec:exp-setup}
+
+We evaluate SICA against Self-Consistency (SC) across five instruction-tuned models and four reasoning benchmarks.
+
+\paragraph{Models.} We test Qwen2.5-14B-Instruct~\cite{yang2024qwen25}, Mistral-7B-Instruct-v0.3~\cite{jiang2023mistral}, LLaMA-3.1-8B-Instruct~\cite{dubey2024llama3}, DeepSeek-R1-Distill-Qwen-7B~\cite{guo2025deepseekr1}, and QwQ-32B~\cite{qwen2024qwq}. This selection spans 7B to 32B parameters and includes both standard instruction-tuned models and reasoning-specialized models (DeepSeek-R1, QwQ).
+
+\paragraph{Datasets.} FOLIO~\cite{han2022folio} provides formal logic problems with gold first-order logic (FOL) annotations ($n=204$), which enable the oracle control experiment (\S\ref{sec:oracle}). ProofWriter~\cite{tafjord2021proofwriter} tests multi-step deductive reasoning ($n=600$). StrategyQA~\cite{geva2021strategyqa} evaluates commonsense reasoning ($n=200$ for LLaMA-3.1-8B; $n=60$ for other models). ARC-Challenge~\cite{clark2018arc} covers science questions ($n=60$).
+
+\paragraph{Parameters.} Unless otherwise noted, we sample $K=12$ reasoning traces per question at temperature $T=0.7$. Z3~\cite{demoura2008z3} solves each MAX-SAT instance with a 10-second timeout. Temperature ablation experiments vary $T \in \{0.3, 0.5, 0.7, 1.0\}$.
+
+\paragraph{Metrics.} We report accuracy (\%), the multi-candidate rate $C_0$ (\S\ref{sec:c0}), and the accuracy gap $\Delta = \text{SICA} - \text{SC}$ in percentage points (pp). Statistical significance is assessed with the McNemar test for paired binary outcomes at $\alpha = 0.05$. For adequately powered conditions ($n \geq 200$), we also compute 95\% bootstrap confidence intervals with 1{,}000 resamples.
+
+
+\subsection{Main Results: SICA Provides No Significant Gain}
+\label{sec:main-results}
+
+Does symbolic constraint aggregation improve answer accuracy over majority voting? Table~\ref{tab:main_results} reports results across all model-domain conditions. The answer is no.
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Accuracy of Self-Consistency (SC) and SICA across models and domains. $\Delta$ denotes the SICA$-$SC gap in percentage points, computed from unrounded values. No condition reaches statistical significance ($\alpha = 0.05$). $\dagger$: $n=60$, insufficient power for confirmatory conclusions.}
+\label{tab:main_results}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Model & Domain & $n$ & SC (\%) & SICA (\%) & $\Delta$ (pp) & McNemar $p$ \\
+\midrule
+Qwen2.5-14B & FOLIO & 204 & 79.41 & 79.41 & 0.00 & --- \\
+Qwen2.5-14B & ProofWriter & 600 & 75.17 & 75.50 & $+$0.33 & n.s. \\
+Qwen2.5-14B & StrategyQA$^\dagger$ & 60 & 53.33 & 56.67 & $+$3.33 & 0.13 \\
+Qwen2.5-14B & ARC-Chall.$^\dagger$ & 60 & 96.67 & 95.00 & $-$1.67 & --- \\
+Mistral-7B & FOLIO+PW$^\dagger$ & 60 & 48.33 & 48.33 & 0.00 & 1.000 \\
+LLaMA-3.1-8B & StrategyQA & 200 & 72.00 & 74.00 & $+$2.00 & 0.424 \\
+LLaMA-3.1-8B & FOLIO & 204 & 63.24 & 60.78 & $-$2.45 & 0.267 \\
+DeepSeek-R1-7B & FOLIO+PW$^\dagger$ & 60 & 71.67 & 68.33 & $-$3.33 & 0.480 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Across the four adequately powered conditions ($n \geq 200$, combined $N = 1{,}208$), the SICA--SC gap ranges from $-2.45$ to $+2.00$~pp. None reaches significance: the two nonzero gaps yield $p = 0.267$ and $p = 0.424$, and the remaining two conditions produce identical predictions. The largest positive gap ($+2.00$~pp, LLaMA-3.1-8B on StrategyQA) falls within chance variation ($p = 0.424$). The largest negative gap ($-2.45$~pp, LLaMA-3.1-8B on FOLIO) is similarly nonsignificant ($p = 0.267$), but its direction shows that SICA can harm accuracy when self-extracted constraints introduce noise.
+
+The four smaller conditions ($n=60$, marked $\dagger$) are consistent with this null pattern. Qwen2.5-14B on StrategyQA shows $\Delta = +3.33$~pp ($p = 0.13$), suggestive of a positive trend but underpowered to confirm it. DeepSeek-R1-7B on FOLIO+ProofWriter shows $\Delta = -3.33$~pp ($p = 0.480$). Two conditions produce identical outputs ($\Delta = 0$).
+
+Across eight conditions, five models, and more than 1,300 evaluation instances, SICA does not improve upon majority voting. The next three subsections investigate why.
+
+
+\subsection{Oracle Control: The Aggregation Mechanism Is Effective}
+\label{sec:oracle}
+
+Is the null result caused by a flawed aggregation mechanism, or by low-quality extracted constraints? To separate these explanations, we construct an oracle variant of SICA that replaces self-extracted FOL constraints with gold FOL annotations from the FOLIO dataset ($n = 204$). The oracle uses Z3 to evaluate ground-truth formulas against each candidate answer; all other pipeline components remain identical.
+
+Oracle-SICA achieves 88.24\% accuracy, compared to 79.41\% for both SC and standard SICA (Table~\ref{tab:main_results}). The improvement of $+8.82$~pp is highly significant (McNemar $p = 6.15 \times 10^{-5}$). Z3 satisfiability checks on gold FOL annotations agree with ground-truth labels for 193 of 204 problems (94.6\% agreement), so the solver operates correctly on well-formed constraints. This result establishes two conclusions. First, the weighted partial MAX-SAT aggregation mechanism is sound: given correct constraints, it recovers answers that majority voting misses. Second, the bottleneck lies entirely in constraint extraction quality. When the LLM extracts its own FOL constraints from reasoning traces, the resulting formulas do not carry enough discriminative signal to outperform vote counting. The oracle control is the strongest evidence that the capability trap is a constraint quality problem, not an aggregation design problem.
+
+
+\subsection{Capability Trap Diagnostics}
+\label{sec:diagnostics}
+
+Why does SICA fail to improve over SC? We examine three diagnostic dimensions: the multi-candidate rate $C_0$, constraint extraction quality, and the effect of sampling temperature on answer diversity.
+
+\paragraph{Multi-candidate rate.} Table~\ref{tab:capability_trap} reports $C_0$, extraction rate, and contradiction rate for each condition. Two distinct failure regimes emerge. For QwQ-32B, a reasoning-specialized model, $C_0$ is only 2.6\% across tested conditions. With over 97\% of questions answered unanimously across $K=12$ traces, SICA reduces to SC by construction and cannot provide any benefit regardless of constraint quality. For instruction-tuned models (Qwen2.5-14B, Mistral-7B, LLaMA-3.1-8B, DeepSeek-R1-7B), $C_0$ ranges from 5.0\% (ARC-Challenge) to 61.8\% (FOLIO with LLaMA-3.1-8B). Higher $C_0$ creates more questions where SICA could in principle differ from SC, yet $\Delta$ remains nonsignificant across all conditions. High $C_0$ is necessary but not sufficient: disagreement among traces exists, but the extracted constraints cannot resolve it correctly. Figure~\ref{fig:operating_regime} maps $C_0$ against the SICA--SC gap for all conditions, and the gap stays centered around zero regardless of $C_0$.
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Capability trap diagnostics. $C_0$: fraction of questions with multiple distinct candidate answers across $K=12$ traces. Extraction rate: fraction of traces yielding at least one parseable FOL constraint. Contradiction rate: fraction of extracted constraint sets with internal contradictions. $\Delta$: SICA$-$SC gap (pp), repeated from Table~\ref{tab:main_results} for reference. $\dagger$: $n=60$. $^*$Combined rate from a single run covering both FOLIO and ProofWriter.}
+\label{tab:capability_trap}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Model & Domain & $C_0$ (\%) & Extr.\ Rate & Contr.\ Rate & $\Delta$ (pp) \\
+\midrule
+Qwen2.5-14B & FOLIO & 38.2$^*$ & 0.89 & 0.022 & 0.00 \\
+Qwen2.5-14B & ProofWriter & 38.2$^*$ & 0.89 & 0.022 & $+$0.33 \\
+Qwen2.5-14B & StrategyQA$^\dagger$ & 10.0 & 0.70 & --- & $+$3.33 \\
+Qwen2.5-14B & ARC-Chall.$^\dagger$ & 5.0 & 1.00 & --- & $-$1.67 \\
+Mistral-7B & FOLIO+PW$^\dagger$ & 50.0 & 0.88 & 0.056 & 0.00 \\
+LLaMA-3.1-8B & StrategyQA & 41.0 & --- & --- & $+$2.00 \\
+LLaMA-3.1-8B & FOLIO & 61.8 & 0.94 & 0.062 & $-$2.45 \\
+DeepSeek-R1-7B & FOLIO+PW$^\dagger$ & 58.3 & 0.84 & 0.037 & $-$3.33 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\paragraph{Extraction quality.} Extraction rates are generally high (0.70 to 1.00), and contradiction rates remain below 7\% across all measured conditions. These metrics indicate that the extraction pipeline is mechanically functional: the LLM produces well-formed, internally consistent constraints at high rates. The problem is not extraction failure but extraction vacuity. The constraints are syntactically valid but semantically redundant with the answer they were derived from, as analyzed in \S\ref{sec:maxsat} and confirmed by the ablation in \S\ref{sec:ablation}. Even with LLaMA-3.1-8B on FOLIO, where $C_0 = 61.8\%$ and extraction rate reaches 0.94, $\Delta$ is $-2.45$~pp. The highest extraction quality among all conditions corresponds to SICA performing \emph{worse} than SC.
+
+\paragraph{Temperature ablation.} If SICA's failure stems from insufficient answer diversity at $T = 0.7$, increasing temperature should raise $C_0$ and create more opportunities for constraint-based discrimination. We test $T \in \{0.3, 0.5, 0.7, 1.0\}$ with Qwen2.5-14B on a 60-question subset. $C_0$ ranges from 30.0\% ($T=0.3$) to 53.3\% ($T=0.7$) across temperatures. However, $\Delta$ is exactly 0.0~pp at $T \in \{0.3, 0.5, 1.0\}$ and $+3.3$~pp at $T = 0.7$ ($n = 60$, not significant). Higher diversity does not translate into better constraint discrimination. Figure~\ref{fig:capability_scatter} plots the per-problem relationship between vote entropy and constraint exclusion rate for a representative condition.
+
+\begin{figure}[t]
+\centering
+% \includegraphics[width=\columnwidth]{figures/capability_scatter.pdf}
+\caption{Per-problem scatter of vote entropy (x-axis) versus constraint exclusion rate (y-axis) for Qwen2.5-14B on FOLIO. Problems with high vote entropy (ambiguous majority vote) do not benefit from constraint filtering; the constraints fail to resolve disagreement among traces.}
+\label{fig:capability_scatter}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+% \includegraphics[width=\columnwidth]{figures/operating_regime.pdf}
+\caption{Multi-candidate rate $C_0$ (x-axis) versus SICA$-$SC accuracy gap (y-axis) across all model-domain conditions. Each point represents one condition from Table~\ref{tab:main_results}. The gap remains centered around zero regardless of $C_0$: answer diversity alone does not enable constraint-based improvement.}
+\label{fig:operating_regime}
+\end{figure}
+
+The diagnostic picture is consistent across all three dimensions: SICA fails not because of insufficient diversity or mechanical extraction errors, but because the extracted constraints carry no discriminative signal beyond the votes they were derived from.
+
+
+\subsection{Constraint Ablation: MAX-SAT Degenerates to Counting}
+\label{sec:ablation}
+
+The diagnostics above suggest that self-extracted constraints are semantically coupled to their source answers and therefore non-discriminative. If so, the MAX-SAT formulation should produce the same predictions as simpler baselines that ignore constraint satisfiability. We test this prediction with three ablation variants on Qwen2.5-14B across combined FOLIO and ProofWriter data ($n = 804$):
+
+\begin{itemize}
+\item \textbf{SICA (MAX-SAT):} The full pipeline as described in \S\ref{sec:method}.
+\item \textbf{Count-only:} Select the answer supported by the most constraints, ignoring satisfiability.
+\item \textbf{Random-weight:} Randomize constraint weights before MAX-SAT solving.
+\end{itemize}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Constraint ablation (Qwen2.5-14B, $n = 804$, FOLIO + ProofWriter). SC serves as the majority-vote baseline. Agreement indicates the number of predictions identical to SC out of 804. All constraint-based variants produce nearly identical outputs.}
+\label{tab:ablation}
+\begin{tabular}{@{}lrc@{}}
+\toprule
+Aggregation & Acc.\ (\%) & Agreement w/ SC \\
+\midrule
+SC (majority vote) & 76.24 & --- \\
+SICA (MAX-SAT) & 76.49 & 802\,/\,804 \\
+Count-only & 76.62 & 802\,/\,804 \\
+Random-weight & 76.37 & 802\,/\,804 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:ablation} reports the results. All three constraint-based variants agree with SC on 802 of 804 predictions (99.8\%). The count-only baseline, which ranks answers solely by the number of supporting constraints without any satisfiability check, achieves accuracy within 0.25~pp of the full MAX-SAT formulation. The random-weight variant, which destroys the learned constraint weights, performs similarly. These near-identical outcomes confirm the degeneration predicted in Equation~\ref{eq:degenerate}: because self-extracted constraints are tightly coupled to their source answers, the MAX-SAT solver effectively reduces to a weighted vote count. The satisfiability structure adds no discriminative power beyond what simple counting already provides.
+
+This ablation directly supports the capability trap thesis. Symbolic verification \emph{can} improve answer selection, as the oracle control demonstrates with $+8.82$~pp over SC. But the improvement requires constraints that encode independent problem structure. Self-extracted constraints instead encode the reasoning steps that produced each candidate answer, and so they are redundant with the votes they accompany.

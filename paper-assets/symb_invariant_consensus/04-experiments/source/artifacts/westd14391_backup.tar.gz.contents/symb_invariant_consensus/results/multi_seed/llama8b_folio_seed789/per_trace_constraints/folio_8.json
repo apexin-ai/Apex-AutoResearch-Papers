@@ -1,0 +1,1158 @@
+{
+  "pid": "folio_8",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox, monkeypox_virus)",
+          "z3_formula": "caused_by_monkeypox_monkeypox_virus == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "can_occur_in(monkeypox_virus, humans)",
+          "z3_formula": "can_occur_in_monkeypox_virus_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "feeling_tired(glu)",
+          "z3_formula": "feeling_tired_glu == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "infectious(X) -> disease(X)",
+          "z3_formula": "Implies(infectious_monkeypox, disease_monkeypox)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "disease(X) & animal(X) -> affects_animals(X)",
+          "z3_formula": "Implies(And(disease_monkeypox, animal_monkeypox), affects_animals_monkeypox)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "affects_animals(monkeypox)",
+          "z3_formula": "affects_animals_monkeypox == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, coughing)",
+          "z3_formula": "symptom_monkeypox_coughing == False",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox_virus, monkeypox)",
+          "z3_formula": "caused_by_monkeypox_virus_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox_virus, animals)",
+          "z3_formula": "occurs_in_monkeypox_virus_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "includes(humans, animals)",
+          "z3_formula": "includes_humans_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(glucose, feeling_tired)",
+          "z3_formula": "symptom_glucose_feeling_tired == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(glucose, feeling_tired)",
+          "z3_formula": "symptom_glucose_feeling_tired == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox_virus, monkeypox)",
+          "z3_formula": "caused_by_monkeypox_virus_monkeypox == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox_virus, humans)",
+          "z3_formula": "occurs_in_monkeypox_virus_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "feeling_tired(X) -> tired(X)",
+          "z3_formula": "Implies(feeling_tired_humans, tired_humans)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "tired(humans)",
+          "z3_formula": "tired_humans == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "feeling_tired(humans)",
+          "z3_formula": "feeling_tired_humans == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "glu",
+          "z3_formula": "glu == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "tired(X) -> feeling_tired(X)",
+          "z3_formula": "Implies(tired_humans, feeling_tired_humans)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "coughing(monkeypox)",
+          "z3_formula": "coughing_monkeypox == Unknown",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_occurs_in_humans",
+          "z3_formula": "monkeypox_virus_occurs_in_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "human_is_mammal",
+          "z3_formula": "human_is_mammal == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal_is_animal",
+          "z3_formula": "mammal_is_animal == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms_of_monkeypox_include_fever",
+          "z3_formula": "symptoms_of_monkeypox_include_fever == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms_of_monkeypox_include_headache",
+          "z3_formula": "symptoms_of_monkeypox_include_headache == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms_of_monkeypox_include_muscle_pains",
+          "z3_formula": "symptoms_of_monkeypox_include_muscle_pains == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms_of_monkeypox_include_feeling_tired",
+          "z3_formula": "symptoms_of_monkeypox_include_feeling_tired == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "people_feel_tired_when_getting_glu_level",
+          "z3_formula": "people_feel_tired_when_getting_glu_level == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_virus_occurs_in_humans -> human_is_mammal",
+          "z3_formula": "Implies(monkeypox_virus_occurs_in_humans, human_is_mammal)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "human_is_mammal -> mammal_is_animal",
+          "z3_formula": "Implies(human_is_mammal, mammal_is_animal)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "monkeypox_is_an_infectious_disease_caused_by_monkeypox_virus",
+          "z3_formula": "monkeypox_is_an_infectious_disease_caused_by_monkeypox_virus == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "monkeypox_virus_can_occur_in_humans",
+          "z3_formula": "monkeypox_virus_can_occur_in_humans == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "humans_are_mammals",
+          "z3_formula": "humans_are_mammals == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "mammals_are_animals",
+          "z3_formula": "mammals_are_animals == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "symptoms_of_monkeypox_include_fever",
+          "z3_formula": "symptoms_of_monkeypox_include_fever == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "symptoms_of_monkeypox_include_headache",
+          "z3_formula": "symptoms_of_monkeypox_include_headache == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "symptoms_of_monkeypox_include_muscle_pains",
+          "z3_formula": "symptoms_of_monkeypox_include_muscle_pains == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "symptoms_of_monkeypox_include_feeling_tired",
+          "z3_formula": "symptoms_of_monkeypox_include_feeling_tired == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "people_feel_tired_when_getting_glu_level",
+          "z3_formula": "people_feel_tired_when_getting_glu_level == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "coughing_is_not_a_symptom_of_monkeypox",
+          "z3_formula": "Not(coughing_is_a_symptom_of_monkeypox)",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Uncertain/False (because there is no evidence)",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "virus(monkeypox)",
+          "z3_formula": "virus_monkeypox == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(human)",
+          "z3_formula": "mammal_human == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired])",
+          "z3_formula": "symptoms_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "glucose(glu)",
+          "z3_formula": "glucose_glu == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_human, animal_human)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired])",
+          "z3_formula": "symptoms_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "glucose(glu)",
+          "z3_formula": "glucose_glu == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired])",
+          "z3_formula": "symptoms_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "feeling_tired(X) -> tired(X)",
+          "z3_formula": "Implies(feeling_tired_glu, tired_glu)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired])",
+          "z3_formula": "symptoms_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "glucose(glu)",
+          "z3_formula": "glucose_glu == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired])",
+          "z3_formula": "symptoms_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired]) -> symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired, coughing])",
+          "z3_formula": "Implies(symptoms_monkeypox_feeling_tired, symptoms_monkeypox_coughing)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired, coughing])",
+          "z3_formula": "symptoms_monkeypox_coughing == False",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "virus(monkeypox)",
+          "z3_formula": "virus_monkeypox == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(human)",
+          "z3_formula": "mammal_human == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "flu_causes_feeling_tired",
+          "z3_formula": "flu_causes_feeling_tired == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "infectious(X) -> animal(X)",
+          "z3_formula": "Implies(infectious_monkeypox, animal_monkeypox)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "virus(X) -> animal(X)",
+          "z3_formula": "Implies(virus_monkeypox, animal_monkeypox)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_human, animal_human)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> mammal(X)",
+          "z3_formula": "Implies(animal_mammal, mammal_mammal)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "symptom(X, Y) -> symptom(X, Z)",
+          "z3_formula": "Implies(symptom_monkeypox_fever, symptom_monkeypox_headache)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "flu(X) -> feeling_tired(X)",
+          "z3_formula": "Implies(flu, feeling_tired)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, coughing)",
+          "z3_formula": "symptom_monkeypox_coughing == False",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus == True",
+          "z3_formula": "monkeypox_virus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_occurs_in_humans",
+          "z3_formula": "monkeypox_virus_occurs_in_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "human_is_mammal",
+          "z3_formula": "human_is_mammal == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mammal_is_animal",
+          "z3_formula": "mammal_is_animal == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_symptoms == True",
+          "z3_formula": "monkeypox_symptoms == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "flu_symptoms_include_coughing",
+          "z3_formula": "flu_symptoms_include_coughing == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_symptoms(X) -> monkeypox_includes_fever(X)",
+          "z3_formula": "Implies(monkeypox_symptoms, monkeypox_includes_fever)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_symptoms(X) -> monkeypox_includes_headache(X)",
+          "z3_formula": "Implies(monkeypox_symptoms, monkeypox_includes_headache)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_symptoms(X) -> monkeypox_includes_muscle_pains(X)",
+          "z3_formula": "Implies(monkeypox_symptoms, monkeypox_includes_muscle_pains)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_symptoms(X) -> monkeypox_includes_feeling_tired(X)",
+          "z3_formula": "Implies(monkeypox_symptoms, monkeypox_includes_feeling_tired)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "flu(X) -> feeling_tired(X)",
+          "z3_formula": "Implies(flu, feeling_tired)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox, monkeypox_virus)",
+          "z3_formula": "caused_by_monkeypox_monkeypox_virus == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox_virus, humans)",
+          "z3_formula": "occurs_in_monkeypox_virus_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(flu, feeling_tired)",
+          "z3_formula": "symptom_flu_feeling_tired == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "disease(X) -> affects(X, humans)",
+          "z3_formula": "Implies(disease_monkeypox, affects_monkeypox_humans)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "disease(X) -> affects(X, animals)",
+          "z3_formula": "Implies(disease_monkeypox, affects_monkeypox_animals)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "disease(X) -> has_symptoms(X, Y)",
+          "z3_formula": "Implies(disease_monkeypox, has_symptoms_monkeypox_Y)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "symptom(X, Y) -> has_symptom(X, Y)",
+          "z3_formula": "Implies(symptom_monkeypox_feeling_tired, has_symptom_monkeypox_feeling_tired)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "symptom(X, Y) -> has_symptom(X, Y)",
+          "z3_formula": "Implies(symptom_flu_feeling_tired, has_symptom_flu_feeling_tired)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "has_symptom(monkeypox, coughing)",
+          "z3_formula": "has_symptom_monkeypox_coughing == False",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "virus(monkeypox)",
+          "z3_formula": "virus_monkeypox == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(human)",
+          "z3_formula": "mammal_human == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, tired)",
+          "z3_formula": "symptom_monkeypox_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_human, animal_human)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, coughing)",
+          "z3_formula": "symptom_monkeypox_coughing == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox_virus, monkeypox)",
+          "z3_formula": "caused_by_monkeypox_virus_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox_virus, humans)",
+          "z3_formula": "occurs_in_monkeypox_virus_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "tired_when(getting_flu)",
+          "z3_formula": "tired_when_getting_flu == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> mammal(X)",
+          "z3_formula": "Implies(animal_mammals, mammal_humans)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "tired_when(getting_flu)",
+          "z3_formula": "tired_when_getting_flu == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "coughing(monkeypox)",
+          "z3_formula": "coughing_monkeypox == Unknown",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "virus(monkeypox)",
+          "z3_formula": "virus_monkeypox == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(human)",
+          "z3_formula": "animal_human == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(human)",
+          "z3_formula": "mammal_human == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_human, animal_human)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "symptom(monkeypox, X) -> symptom(monkeypox, coughing)",
+          "z3_formula": "Implies(symptom_monkeypox_X, symptom_monkeypox_coughing)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not symptom(monkeypox, coughing)",
+          "z3_formula": "Not(symptom_monkeypox_coughing) == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus == True",
+          "z3_formula": "monkeypox_virus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(human)",
+          "z3_formula": "animal_human == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(human)",
+          "z3_formula": "mammal_human == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, glu_rush)",
+          "z3_formula": "symptom_monkeypox_glu_rush == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "feeling_tired(glu_rush)",
+          "z3_formula": "feeling_tired_glu_rush == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "symptom(monkeypox, X) -> symptom(monkeypox, coughing)",
+          "z3_formula": "Implies(symptom_monkeypox_X, symptom_monkeypox_coughing)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, coughing)",
+          "z3_formula": "symptom_monkeypox_coughing == Unknown",
+          "source_step": 13
+        }
+      ]
+    }
+  ]
+}

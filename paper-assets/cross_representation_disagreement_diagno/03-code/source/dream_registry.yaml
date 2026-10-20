@@ -1,0 +1,56 @@
+dreams:
+  dream_20260515T060408:
+    dream_id: dream_20260515T060408
+    project: cross_representation_disagreement_diagno
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'C4 repair improvement is the main weakness (0.2pp margin). Key questions:
+      (1) Is the dual-track framing (systematic analysis + lightweight repair) strong
+      enough for EMNLP Main? (2) Does the boundary characterization (Claim 3) compensate
+      for weak repair results? (3) Is 3 benchmarks (FOLIO + ProofWriter + MATH) sufficient
+      or do we need more? (4) The 9:1 FOL:Code asymmetry — strength or weakness for
+      the story?'
+    what_if: []
+    pid: 165730
+    chat_id: oc_044a8fbb246e514b130c2207a1bea2aa
+    card_message_id: om_x100b6f5f3b5fe080c3b0545eddcc797
+    started_at: '2026-05-15T06:04:08+00:00'
+    updated_at: '2026-05-15T06:56:17+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 4dc3f3c4c80f62ea39a3668a5f3f2ad9811d81c6499fa30d45ec77dcfdf1130c
+  dream_20260515T071730:
+    dream_id: dream_20260515T071730
+    project: cross_representation_disagreement_diagno
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Dream #1 identified 5 structural issues (all 3/6). Key changes since:
+      (1) Added exp-012 self-consistency baseline (P0) — k=5 majority voting vs single-pass
+      CRD, isolates cross-representation value; (2) Added exp-013 error taxonomy cross-model
+      validation; (3) Softened novelty claim from "first systematic study" to "first
+      to extend from filtering to diagnosis"; (4) Added R8-R11 reviewer concerns covering
+      self-consistency, taxonomy validation, FOL vs CoT commensurability, related
+      work expansion. (5) exp-007 selection-vs-repair promoted to P0. Please evaluate
+      whether these additions address the structural gaps and push best-case toward
+      weak accept.'
+    what_if: []
+    pid: 177687
+    chat_id: oc_044a8fbb246e514b130c2207a1bea2aa
+    card_message_id: om_x100b6f58c6139568c2486a97a6ac142
+    started_at: '2026-05-15T07:17:30+00:00'
+    updated_at: '2026-05-15T08:07:27+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 55737d856a693a1223751b867ec484d422d171a7ffbf26dafa2a7da8251bb73b

@@ -1,0 +1,1043 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-491_Q15",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, bear))",
+          "z3_formula": "not(chases_lion_bear) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(lion))",
+          "z3_formula": "not(red_lion) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, squirrel))",
+          "z3_formula": "not(chases_lion_squirrel) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_lion_bear, sees_lion_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_lion_bear, sees_bear_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(X, bear)",
+          "z3_formula": "Implies(And(visits_lion_dog, young_dog), sees_lion_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_squirrel, sees_squirrel_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_squirrel_dog, visits_squirrel_bear)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": []
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not red(lion)",
+          "z3_formula": "not red_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_lion_bear, sees_lion_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_lion_bear, sees_bear_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(X) -> sees(X, bear)",
+          "z3_formula": "Implies(And(visits_dog_bear, young_dog), sees_dog_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_squirrel, sees_squirrel_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_squirrel_dog, visits_squirrel_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not green(squirrel)",
+          "z3_formula": "not green_squirrel == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, bear)",
+          "z3_formula": "visits_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not red(lion)",
+          "z3_formula": "not red_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not young(dog)",
+          "z3_formula": "not young_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "not young(bear)",
+          "z3_formula": "not young_bear == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "not green(squirrel)",
+          "z3_formula": "not green_squirrel == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 24
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not red(lion)",
+          "z3_formula": "not red_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not chase(lion, bear)",
+          "z3_formula": "not chase_lion_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not chase(lion, squirrel)",
+          "z3_formula": "not chase_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "see(lion, dog)",
+          "z3_formula": "see_lion_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, bear) -> see(X, bear)",
+          "z3_formula": "Implies(visit_lion_bear, see_lion_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "see(X, bear) -> see(bear, dog)",
+          "z3_formula": "Implies(see_lion_bear, see_bear_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, dog) & young(X) -> see(X, bear)",
+          "z3_formula": "Implies(And(visit_dog_squirrel, young_squirrel), see_squirrel_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> see(X, dog)",
+          "z3_formula": "Implies(green_squirrel, see_squirrel_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "see(X, dog) -> visit(X, bear)",
+          "z3_formula": "Implies(see_squirrel_dog, visit_squirrel_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(visit(lion, bear))",
+          "z3_formula": "unknown(visit_lion_bear)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(lion, bear)",
+          "z3_formula": "chases_lion_bear == False",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, squirrel)",
+          "z3_formula": "chases_lion_squirrel == False",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(chases_lion_bear, sees_lion_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, Y)",
+          "z3_formula": "Implies(sees_lion_bear, sees_bear_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) & young(Y) -> sees(Y, bear)",
+          "z3_formula": "Implies(And(chases_dog_lion, young_dog), sees_dog_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_squirrel, sees_squirrel_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_squirrel_dog, visits_squirrel_bear)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == False",
+          "source_step": 22
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not_chases(lion, bear)",
+          "z3_formula": "not_chases_lion_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_chases(lion, squirrel)",
+          "z3_formula": "not_chases_lion_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_red(lion)",
+          "z3_formula": "not_red_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_X_bear, sees_X_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_X_bear, sees_bear_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(dog, bear)",
+          "z3_formula": "Implies(And(visits_X_dog, young_dog), sees_dog_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_squirrel, sees_squirrel_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_X_dog, visits_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, bear)",
+          "z3_formula": "visits_squirrel_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(lion, bear))",
+          "z3_formula": "Not(visits_lion_bear)",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(bear)",
+          "z3_formula": "not_young_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, lion)",
+          "z3_formula": "chases_dog_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, squirrel)",
+          "z3_formula": "chases_dog_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, squirrel)",
+          "z3_formula": "visits_dog_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(lion, bear)",
+          "z3_formula": "not_chases_lion_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(lion, squirrel)",
+          "z3_formula": "not_chases_lion_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not red(lion)",
+          "z3_formula": "not_red_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_X_bear, sees_X_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_X_bear, sees_bear_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(X, bear)",
+          "z3_formula": "Implies(And(visits_X_dog, young_dog), sees_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_X_dog, visits_X_bear)",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, bear))",
+          "z3_formula": "Not(chases_lion_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(visits_X_Y, sees_X_Y)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> sees(Y, dog)",
+          "z3_formula": "Implies(sees_X_Y, sees_Y_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(dog, Y)",
+          "z3_formula": "Implies(And(visits_X_dog, young_dog), sees_dog_Y)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_X_dog, visits_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, bear)",
+          "z3_formula": "visits_squirrel_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(lion, bear))",
+          "z3_formula": "Not(visits_lion_bear) == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(bear)",
+          "z3_formula": "not_young_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, lion)",
+          "z3_formula": "chases_dog_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, squirrel)",
+          "z3_formula": "chases_dog_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, squirrel)",
+          "z3_formula": "visits_dog_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(lion, bear)",
+          "z3_formula": "not_chases_lion_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(lion, squirrel)",
+          "z3_formula": "not_chases_lion_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not red(lion)",
+          "z3_formula": "not_red_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_X_bear, sees_X_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_X_bear, sees_bear_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(X, bear)",
+          "z3_formula": "Implies(And(visits_X_dog, young_dog), sees_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_X_dog, visits_X_bear)",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, bear))",
+          "z3_formula": "Not(chases_lion_bear) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, squirrel))",
+          "z3_formula": "Not(chases_lion_squirrel) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(lion))",
+          "z3_formula": "Not(red_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_X_bear, sees_X_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_X_bear, sees_bear_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(X, bear)",
+          "z3_formula": "Implies(And(visits_X_dog, young_dog), sees_X_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_X_dog, visits_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, bear)",
+          "z3_formula": "chases_dog_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(young(bear))",
+          "z3_formula": "Not(young_bear) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, lion)",
+          "z3_formula": "chases_dog_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(squirrel, bear))",
+          "z3_formula": "Not(visits_squirrel_bear) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == Unknown",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, bear))",
+          "z3_formula": "Not(chases_lion_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(lion))",
+          "z3_formula": "Not(red_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, squirrel))",
+          "z3_formula": "Not(chases_lion_squirrel) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(lion, squirrel))",
+          "z3_formula": "Not(visits_lion_squirrel) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, dog)",
+          "z3_formula": "chases_squirrel_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, dog)",
+          "z3_formula": "sees_squirrel_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_lion_bear, sees_lion_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_lion_bear, sees_bear_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(X, bear)",
+          "z3_formula": "Implies(And(visits_lion_dog, young_dog), sees_lion_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_squirrel, sees_squirrel_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_lion_dog, visits_lion_bear)",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(lion, bear)",
+          "z3_formula": "chases_lion_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(bear, lion))",
+          "z3_formula": "Not(chases_bear_lion) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(lion))",
+          "z3_formula": "Not(red_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, squirrel))",
+          "z3_formula": "Not(chases_lion_squirrel) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(visits_bear_X, sees_bear_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> sees(bear, dog)",
+          "z3_formula": "Implies(sees_bear_X, sees_bear_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & young(dog) -> sees(X, bear)",
+          "z3_formula": "Implies(And(visits_dog_X, young_dog), sees_X_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_X, sees_X_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> visits(X, bear)",
+          "z3_formula": "Implies(sees_X_dog, visits_X_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 10
+        }
+      ]
+    }
+  ]
+}

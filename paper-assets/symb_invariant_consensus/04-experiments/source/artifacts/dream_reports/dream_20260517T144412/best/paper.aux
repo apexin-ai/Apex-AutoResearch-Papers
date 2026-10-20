@@ -1,0 +1,81 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{wang2023selfconsistency}
+\citation{chen2023universal}
+\citation{taubenfeld2024}
+\citation{pan2023logiclm}
+\citation{olausson2023linc}
+\citation{cobbe2021gsm8k}
+\citation{lightman2023lets}
+\citation{rogers2020primer}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency and voting methods.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Symbolic reasoning augmentation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Outcome and process reward models.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Negative results in NLP.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: SICA Pipeline}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Overview}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results: SICA vs. SC accuracy across models and domains. $C_0$: candidate disagreement rate. $\Delta $: SICA $-$ SC in percentage points. No result is statistically significant ($p > 0.10$ for all).}}{3}{table.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main}{{1}{3}{Main results: SICA vs. SC accuracy across models and domains. $C_0$: candidate disagreement rate. $\Delta $: SICA $-$ SC in percentage points. No result is statistically significant ($p > 0.10$ for all)}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Key Metrics}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:main-results}{{4.2}{3}{Main Results}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Constraint precision statistics ($n{=}307$ multi-candidate problems). Precision $\approx 0.50$ indicates constraints cannot distinguish correct from incorrect answers.}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:constraint-quality}{{2}{4}{Constraint precision statistics ($n{=}307$ multi-candidate problems). Precision $\approx 0.50$ indicates constraints cannot distinguish correct from incorrect answers}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Within-Qwen scaling.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Mechanism Analysis: Why the Trap Exists}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:mechanism}{{4.3}{4}{Mechanism Analysis: Why the Trap Exists}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Constraint Precision is Random-Level}{4}{subsubsection.4.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{F2: Per-problem scatter (hero figure).}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}MAX-SAT Adds No Value Over Counting}{4}{subsubsection.4.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Constraint ablation ($n{=}804$). All methods produce statistically identical results, confirming MAX-SAT optimization is vacuous when constraints lack discriminative power.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:ablation}{{3}{5}{Constraint ablation ($n{=}804$). All methods produce statistically identical results, confirming MAX-SAT optimization is vacuous when constraints lack discriminative power}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Tiebreak accuracy on the 10 tied problems (of 60 total, $K{=}12$, Qwen-14B). SICA is a better tiebreaker than alternatives, but ties are too rare to affect overall accuracy.}}{5}{table.caption.13}\protected@file@percent }
+\newlabel{tab:tiebreak}{{4}{5}{Tiebreak accuracy on the 10 tied problems (of 60 total, $K{=}12$, Qwen-14B). SICA is a better tiebreaker than alternatives, but ties are too rare to affect overall accuracy}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Tiebreak Analysis}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:tiebreak}{{4.4}{5}{Tiebreak Analysis}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}K Sensitivity}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:k-ablation}{{4.5}{5}{K Sensitivity}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Temperature Ablation: Causal Evidence}{5}{section.5}\protected@file@percent }
+\newlabel{sec:temperature}{{5}{5}{Temperature Ablation: Causal Evidence}{section.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces $K$ ablation (Qwen-14B, $n{=}60$). SICA $\leq $ SC at all $K$. At odd $K{=}11$, ties vanish and $\Delta = 0$ exactly.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:k-ablation}{{5}{6}{$K$ ablation (Qwen-14B, $n{=}60$). SICA $\leq $ SC at all $K$. At odd $K{=}11$, ties vanish and $\Delta = 0$ exactly}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Temperature ablation (Qwen-14B, FOLIO+ProofWriter, $n{=}60$, $K{=}12$). Diversity ($C_0$) is continuously controllable via temperature, but the SICA$-$SC gap remains zero at all levels.}}{6}{table.caption.15}\protected@file@percent }
+\newlabel{tab:temperature}{{6}{6}{Temperature ablation (Qwen-14B, FOLIO+ProofWriter, $n{=}60$, $K{=}12$). Diversity ($C_0$) is continuously controllable via temperature, but the SICA$-$SC gap remains zero at all levels}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis and Discussion}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}$C_0$ as Diagnostic Predictor}{6}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:c0-diagnostic}{{6.1}{6}{$C_0$ as Diagnostic Predictor}{subsection.6.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{F4: $C_0$ vs. Gap scatter.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Comparison with Existing Methods}{6}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Logic-LM $\times $ K baseline.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Weighted SC baselines.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Overhead Analysis}{7}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Qualitative Analysis: Why Constraints Fail}{7}{subsection.6.4}\protected@file@percent }
+\newlabel{sec:case-studies}{{6.4}{7}{Qualitative Analysis: Why Constraints Fail}{subsection.6.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{7}{section.7}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{chen2023universal}{{1}{2023}{{Chen et al.}}{{}}}
+\bibcite{cobbe2021gsm8k}{{2}{2021}{{Cobbe et al.}}{{}}}
+\bibcite{lightman2023lets}{{3}{2023}{{Lightman et al.}}{{}}}
+\bibcite{olausson2023linc}{{4}{2023}{{Olausson et al.}}{{}}}
+\bibcite{pan2023logiclm}{{5}{2023}{{Pan et al.}}{{}}}
+\bibcite{rogers2020primer}{{6}{2020}{{Rogers et al.}}{{}}}
+\bibcite{taubenfeld2024}{{7}{2024}{{Taubenfeld et al.}}{{}}}
+\bibcite{wang2023selfconsistency}{{8}{2023}{{Wang et al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Extended Results}{8}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}QwQ-32B Operating Regime}{8}{subsection.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Qwen Within-Family Scaling}{8}{subsection.A.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Within-Qwen scaling on FOLIO+ProofWriter ($n{=}60$ each, $K{=}12$).}}{9}{table.caption.20}\protected@file@percent }
+\newlabel{tab:qwen-scaling}{{7}{9}{Within-Qwen scaling on FOLIO+ProofWriter ($n{=}60$ each, $K{=}12$)}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}GSM8K Cross-Domain Pilot}{9}{subsection.A.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Overhead Percentiles}{9}{subsection.A.4}\protected@file@percent }
+\gdef \@abspage@last{9}

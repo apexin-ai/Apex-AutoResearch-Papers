@@ -1,0 +1,571 @@
+{
+  "problem": {
+    "id": "folio_68",
+    "problem": "Given the following premises:\nYale University is a private Ivy League research university. Yale University moved to New Haven in 1716. Yale university's endowment was valued at $42.3 billion. Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools. A list of residential colleges at Yale: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nPierson College is a residential college at Yale.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "PrivateIvyLeagueResearchUniversity(yale)",
+      "MovedTo(yale, newhaven) \u2227 MovedIn(yale, y1716)",
+      "ValuedAt(yalesendowment, y42.3billion)",
+      "\u2203x (OrganizedInto(yale, x) \u2227 ConstituentCollegesandSchools(x) \u2227 ((ResidentialCollege(x) \u2295 GraduateSchool(x)) \u2295 ProfessionalSchool(x)))",
+      "ResidentialCollege(benjaminfranklincollege) \u2227 AtYale(benjaminfranklincollege) \u2227 ResidentialCollege(berkeleycollege) \u2227 AtYale(berkeleycollege) \u2227 ResidentialCollege(branfordcollege) \u2227 AtYale(branfordcollege) \u2227 ResidentialCollege(davenportcollege) \u2227 AtYale(davenportcollege) \u2227 ResidentialCollege(ezrastilescollege) \u2227 AtYale(ezrastilescollege) \u2227 ResidentialCollege(gracehoppercollege) \u2227 AtYale(gracehoppercollege) \u2227 ResidentialCollege(jonathanedwardscollege) \u2227 AtYale(jonathanedwardscollege) \u2227 ResidentialCollege(morsecollege) \u2227 AtYale(morsecollege) \u2227 ResidentialCollege(paulimurraycollege) \u2227 AtYale(paulimurraycollege) \u2227 ResidentialCollege(piersoncollege) \u2227 AtYale(piersoncollege) \u2227 ResidentialCollege(saybrookcollege) \u2227 AtYale(saybrookcollege) \u2227 ResidentialCollege(sillimancollege) \u2227 AtYale(sillimancollege) \u2227 ResidentialCollege(timothydwightcollege) \u2227 AtYale(timothydwightcollege) \u2227 ResidentialCollege(trumbullcollege) \u2227 AtYale(trumbullcollege)"
+    ],
+    "conclusion_fol": "ResidentialCollege(piersoncollege) \u2227 AtYale(piersoncollege)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 62.0
+    },
+    "answer_counts": {
+      "True": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremises:\n\n1. Yale University is a private Ivy League research university.\n2. Yale University moved to New Haven in 1716.\n3. Yale university's endowment was valued at $42.3 billion.\n4. Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools.\n5. A list of residential colleges at Yale: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\n\nConclusion: Pierson College is a residential college at Yale.\n\nFrom premise 5, we have an explicit list of residential colleges at Yale, which includes Pierson College. \n\nTherefore, based on the information provided, the conclusion that Pierson College is a residential college at Yale is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the given premises.\n\nPremise 1: Yale University is a private Ivy League research university.\nThis premise does not directly relate to the conclusion, so it is not relevant.\n\nPremise 2: Yale University moved to New Haven in 1716.\nThis premise also does not directly relate to the conclusion, so it is not relevant.\n\nPremise 3: Yale university's endowment was valued at $42.3 billion.\nThis premise does not directly relate to the conclusion, so it is not relevant.\n\nPremise 4: Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools.\nThis premise provides some context about Yale's organization but does not directly relate to the conclusion.\n\nPremise 5: A list of residential colleges at Yale: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\nThis premise directly lists Pierson College as a residential college at Yale.\n\nGiven the information provided, there is no reason to believe that the conclusion is false. The list of residential colleges directly includes Pierson College, which supports the conclusion.\n\nTherefore, the conclusion that Pierson College is a residential college at Yale is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the information provided and the conclusion step by step.\n\nStep 1: Analyze the premises\n- Yale University is a private Ivy League research university. (This information is irrelevant to the conclusion.)\n- Yale University moved to New Haven in 1716. (This information is irrelevant to the conclusion.)\n- Yale university's endowment was valued at $42.3 billion. (This information is irrelevant to the conclusion.)\n- Yale University has been organized into 27 constituent colleges and schools. (This information is partially relevant, but we need to know what types of colleges and schools there are.)\n- A list of residential colleges at Yale is given: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\n\nStep 2: Evaluate the conclusion\nThe conclusion is: Pierson College is a residential college at Yale.\n\nStep 3: Determine the conclusion's validity\nThe conclusion can be evaluated by comparing it to the information provided in the premises. We have a list of residential colleges at Yale, and Pierson College is included in that list.\n\nConclusion: Since Pierson College is listed as one of the residential colleges at Yale, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they support or contradict the conclusion.\n\nPremise 1: Yale University is a private Ivy League research university.\n- This premise does not provide any information about the colleges within Yale University.\n\nPremise 2: Yale University moved to New Haven in 1716.\n- This premise does not provide any information about the colleges within Yale University.\n\nPremise 3: Yale university's endowment was valued at $42.3 billion.\n- This premise does not provide any information about the colleges within Yale University.\n\nPremise 4: Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools.\n- This premise provides information about the organization of Yale University, but it does not specify the type of colleges that are residential or professional.\n\nPremise 5: A list of residential colleges at Yale: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\n- This premise directly provides information about the residential colleges at Yale University and includes Pierson College in the list.\n\nConclusion: Pierson College is a residential college at Yale.\n- Based on the given premises, especially Premise 5, we can conclude that Pierson College is indeed a residential college at Yale University.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises provided and see if they support the conclusion.\n\nPremise 1: Yale University is a private Ivy League research university.\nThis premise does not provide any information about the colleges within Yale University, so it is not relevant to the conclusion.\n\nPremise 2: Yale University moved to New Haven in 1716.\nThis premise also does not provide any information about the colleges within Yale University, so it is not relevant to the conclusion.\n\nPremise 3: Yale university's endowment was valued at $42.3 billion.\nThis premise is also not relevant to the conclusion, as it provides information about the university's financial status, not its colleges.\n\nPremise 4: Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools.\nThis premise provides some relevant information, as it mentions residential colleges, which is the type of college we are interested in.\n\nPremise 5: A list of residential colleges at Yale: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\nThis premise directly states the names of the residential colleges at Yale, and Pierson College is explicitly included in the list.\n\nBased on the analysis of the premises, we can conclude that the statement \"Pierson College is a residential college at Yale\" is supported by the information provided.\n\nTherefore, the conclusion is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Yale University is a private Ivy League research university.\nPremise 2: Yale University moved to New Haven in 1716.\nPremise 3: Yale university's endowment was valued at $42.3 billion.\nPremise 4: Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools.\nPremise 5: A list of residential colleges at Yale: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\n\nThe conclusion to be evaluated is: Pierson College is a residential college at Yale.\n\nTo determine the truth of this conclusion, we need to see if Pierson College is included in the list of residential colleges provided in Premise 5. \n\nLooking at Premise 5, the list of residential colleges includes Pierson College, which means that the information provided in the premise directly supports the conclusion. \n\nTherefore, the conclusion \"Pierson College is a residential college at Yale\" is considered true based on the given premises. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises and the conclusion step by step:\n\n1. Yale University is a private Ivy League research university. \n   - This premise provides general information about Yale University but does not provide any information about the colleges or schools within the university.\n\n2. Yale university's endowment was valued at $42.3 billion. \n   - This premise provides information about Yale University's endowment but is unrelated to the question of whether Pierson College is a residential college.\n\n3. Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools. \n   - This premise mentions that Yale University has been organized into 27 constituent colleges and schools, including residential colleges, but does not provide information about the individual colleges.\n\n4. A list of residential colleges at Yale: \n   - This premise is followed by a list of residential colleges at Yale, including:\n     - Benjamin Franklin College\n     - Berkeley College\n     - Branford College\n     - Davenport College\n     - Ezra Stiles College\n     - Grace Hopper College\n     - Jonathan Edwards College\n     - Morse College\n     - Pauli Murray College\n     - Pierson College\n     - Saybrook College\n     - Silliman College\n     - Timothy Dwight College\n     - Trumbull College\n\nGiven this list, we can directly observe that Pierson College is included in the list of residential colleges at Yale.\n\nBased on the information provided, the conclusion that Pierson College is a residential college at Yale is true.\n\nFinal answer: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Yale University is a private Ivy League research university.\nThis premise does not provide information about Pierson College, so it does not directly help us determine whether Pierson College is a residential college.\n\nPremise 2: Yale University moved to New Haven in 1716.\nThis premise also does not provide information about Pierson College, so it does not directly help us determine whether Pierson College is a residential college.\n\nPremise 3: Yale university's endowment was valued at $42.3 billion.\nThis premise does not provide information about Pierson College, so it does not directly help us determine whether Pierson College is a residential college.\n\nPremise 4: Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools.\nThis premise provides information about the types of colleges and schools at Yale, but it does not directly mention Pierson College.\n\nPremise 5: A list of residential colleges at Yale: \n- Benjamin Franklin College\n- Berkeley College\n- Branford College\n- Davenport College\n- Ezra Stiles College\n- Grace Hopper College\n- Jonathan Edwards College\n- Morse College\n- Pauli Murray College\n- Pierson College\n- Saybrook College\n- Silliman College\n- Timothy Dwight College\n- Trumbull College.\n\nThis premise directly mentions Pierson College as one of the residential colleges.\n\nSince Premise 5 directly states that Pierson College is a residential college, we can conclude that:\n\nThe conclusion: Pierson College is a residential college at Yale is TRUE.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. We are given that Yale University is a private Ivy League research university. This premise provides general information about Yale University but does not directly relate to the conclusion about Pierson College.\n\n2. Yale University moved to New Haven in 1716. This premise provides historical information about Yale University's location but does not directly relate to the conclusion about Pierson College.\n\n3. Yale university's endowment was valued at $42.3 billion. This premise provides information about Yale University's financial status but does not directly relate to the conclusion about Pierson College.\n\n4. Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools. This premise provides a general idea about the structure of Yale University but does not directly relate to the conclusion about Pierson College.\n\n5. A list of residential colleges at Yale is provided: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\n\nNow, let's examine the conclusion: \"Pierson College is a residential college at Yale.\"\n\nBased on premise 5, we can see that Pierson College is explicitly included in the list of residential colleges at Yale. Therefore, we can conclude that the statement is true.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the given premises and the conclusion.\n\nPremise 1: Yale University is a private Ivy League research university.\nThis premise does not provide any information about Pierson College or the residential colleges at Yale. It's a general statement about Yale University.\n\nPremise 2: Yale University moved to New Haven in 1716.\nThis premise also does not provide any information about Pierson College or the residential colleges at Yale. It's a statement about the university's location.\n\nPremise 3: Yale university's endowment was valued at $42.3 billion.\nThis premise does not provide any information about Pierson College or the residential colleges at Yale. It's a statement about the university's finances.\n\nPremise 4: Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools.\nThis premise mentions the residential colleges, but it does not provide a list of the colleges.\n\nPremise 5: A list of residential colleges at Yale: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\nThis premise explicitly mentions Pierson College as one of the residential colleges at Yale.\n\nBased on the given premises, the conclusion that Pierson College is a residential college at Yale is supported by Premise 5.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion.\n\nPremise 1: Yale University is a private Ivy League research university.\nThis premise does not provide any information about the colleges or schools within Yale University.\n\nPremise 2: Yale University moved to New Haven in 1716.\nThis premise also does not provide any information about the colleges or schools within Yale University.\n\nPremise 3: Yale university's endowment was valued at $42.3 billion.\nThis premise does not provide any information about the colleges or schools within Yale University.\n\nPremise 4: Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools.\nThis premise provides some information about the organization of Yale University but does not specifically mention Pierson College.\n\nPremise 5: A list of residential colleges at Yale: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\nThis premise specifically lists the residential colleges at Yale, and it includes Pierson College.\n\nConclusion: Pierson College is a residential college at Yale.\n\nBased on the analysis, we can conclude that the conclusion is true because Premise 5 explicitly lists Pierson College as a residential college at Yale.\n\nTherefore, the answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion.\n\nPremises:\n\n1. Yale University is a private Ivy League research university.\n2. Yale University moved to New Haven in 1716.\n3. Yale university's endowment was valued at $42.3 billion.\n4. Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools.\n5. A list of residential colleges at Yale: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\n\nConclusion: \nPierson College is a residential college at Yale.\n\nFrom premise 5, we can see that Pierson College is explicitly included in the list of residential colleges at Yale. Therefore, based on the given information, we can conclude that the statement is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven_in_1716(yale_university)",
+          "z3_formula": "moved_to_new_haven_in_1716_yale_university == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_was_valued_at_42_point_3_billion(yale_university)",
+          "z3_formula": "endowment_was_valued_at_42_point_3_billion_yale_university == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale_university)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale_university == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges_include(benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college)",
+          "z3_formula": "residential_colleges_include_benjamin_franklin_college_berkeley_college_branford_college_davenport_college_ezra_stiles_college_grace_hopper_college_jonathan_edwards_college_morse_college_pauli_murray_college_pierson_college_saybrook_college_silliman_college_timothy_dwight_college_trumbull_college == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson_college)",
+          "z3_formula": "residential_college_pierson_college == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_value(yale_university, 42.3e9)",
+          "z3_formula": "endowment_value_yale_university_42.3e9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges(yale_university, 27)",
+          "z3_formula": "constituent_colleges_yale_university_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale_university, [benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college])",
+          "z3_formula": "residential_colleges_yale_university_benjamin_franklin_college_berkeley_college_branford_college_davenport_college_ezra_stiles_college_grace_hopper_college_jonathan_edwards_college_morse_college_pauli_murray_college_pierson_college_saybrook_college_silliman_college_timothy_dwight_college_trumbull_college == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson_college, yale_university)",
+          "z3_formula": "residential_college_pierson_college_yale_university == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_valued_at_42_point_3_billion(yale_university)",
+          "z3_formula": "endowment_valued_at_42_point_3_billion_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale_university)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale_university, [benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college])",
+          "z3_formula": "residential_colleges_yale_university_[benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college] == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college_at_yale(pierson_college)",
+          "z3_formula": "residential_college_at_yale_pierson_college == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "valued_endowment(yale_university, 42.3)",
+          "z3_formula": "valued_endowment_yale_university_42.3 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale_university)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale_university == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "list_of_residential_colleges(yale_university, [benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college])",
+          "z3_formula": "list_of_residential_colleges_yale_university_[benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college] == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson_college, yale_university)",
+          "z3_formula": "residential_college_pierson_college_yale_university == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "valued_endowment(yale_university, 42.3e9)",
+          "z3_formula": "valued_endowment_yale_university_42.3e9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges(yale_university, 27)",
+          "z3_formula": "constituent_colleges_yale_university_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale_university)",
+          "z3_formula": "residential_colleges_yale_university == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "list_of_residential_colleges(yale_university, [benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college])",
+          "z3_formula": "list_of_residential_colleges_yale_university_[benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college] == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson_college, yale_university)",
+          "z3_formula": "residential_college_pierson_college_yale_university == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven_in_1716(yale_university)",
+          "z3_formula": "moved_to_new_haven_in_1716_yale_university == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "valued_at_42_point_3_billion(yale_university)",
+          "z3_formula": "valued_at_42_point_3_billion_yale_university == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale_university)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale_university == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges_including_benjamin_franklin_college_berkeley_college_branford_college_davenport_college_ezra_stiles_college_grace_hopper_college_jonathan_edwards_college_morse_college_pauli_murray_college_pierson_college_saybrook_college_silliman_college_timothy_dwight_college_trumbull_college(yale_university)",
+          "z3_formula": "residential_colleges_including_benjamin_franklin_college_berkeley_college_branford_college_davenport_college_ezra_stiles_college_grace_hopper_college_jonathan_edwards_college_morse_college_pauli_murray_college_pierson_college_saybrook_college_silliman_college_timothy_dwight_college_trumbull_college_yale_university == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college_at_yale(pierson_college)",
+          "z3_formula": "residential_college_at_yale_pierson_college == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_value(yale_university, 42.3_billion)",
+          "z3_formula": "endowment_value_yale_university_42.3_billion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges_and_schools(yale_university, 27)",
+          "z3_formula": "constituent_colleges_and_schools_yale_university_27 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "residential_college(pierson_college)",
+          "z3_formula": "residential_college_pierson_college == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson_college)",
+          "z3_formula": "residential_college_pierson_college == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "valued_endowment(yale_university, 42.3e9)",
+          "z3_formula": "valued_endowment_yale_university_42.3e9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges_and_schools(yale_university, 27)",
+          "z3_formula": "constituent_colleges_and_schools_yale_university_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale_university, ['benjamin_franklin_college', 'berkeley_college', 'branford_college', 'davenport_college', 'ezra_stiles_college', 'grace_hopper_college', 'jonathan_edwards_college', 'morse_college', 'pauli_murray_college', 'pierson_college', 'saybrook_college', 'silliman_college', 'timothy_dwight_college', 'trumbull_college'])",
+          "z3_formula": "residential_colleges_yale_university_benjamin_franklin_college_berkeley_college_branford_college_davenport_college_ezra_stiles_college_grace_hopper_college_jonathan_edwards_college_morse_college_pauli_murray_college_pierson_college_saybrook_college_silliman_college_timothy_dwight_college_trumbull_college == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson_college)",
+          "z3_formula": "residential_college_pierson_college == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven_in_1716(yale_university)",
+          "z3_formula": "moved_to_new_haven_in_1716_yale_university == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_was_valued_at_42_point_3_billion(yale_university)",
+          "z3_formula": "endowment_was_valued_at_42_point_3_billion_yale_university == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale_university)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale_university == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges_at_yale_include(pierson_college)",
+          "z3_formula": "residential_colleges_at_yale_include_pierson_college == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_research_university(yale)",
+          "z3_formula": "private_ivy_research_university_yale == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "valued_endowment(yale, 42.3e9)",
+          "z3_formula": "valued_endowment_yale_42.3e9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges(yale, 27)",
+          "z3_formula": "constituent_colleges_yale_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale)",
+          "z3_formula": "residential_colleges_yale == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "list_of_residential_colleges(yale, [benjamin_franklin, berkeley, branford, davenport, ezra_stiles, grace_hopper, jonathan_edwards, morse, pauli_murray, pierson, saybrook, silliman, timothy_dwight, trumbull])",
+          "z3_formula": "list_of_residential_colleges_yale_benjamin_franklin_berkeley_branford_davenport_ezra_stiles_grace_hopper_jonathan_edwards_morse_pauli_murray_pierson_saybrook_silliman_timothy_dwight_trumbull == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson)",
+          "z3_formula": "residential_college_pierson == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven_in_1716(yale_university)",
+          "z3_formula": "moved_to_new_haven_in_1716_yale_university == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "valued_at_42_point_3_billion(yale_university)",
+          "z3_formula": "valued_at_42_point_3_billion_yale_university == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale_university)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale_university == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "listed_residential_colleges(yale_university, [benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college])",
+          "z3_formula": "listed_residential_colleges_yale_university_benjamin_franklin_college_berkeley_college_branford_college_davenport_college_ezra_stiles_college_grace_hopper_college_jonathan_edwards_college_morse_college_pauli_murray_college_pierson_college_saybrook_college_silliman_college_timothy_dwight_college_trumbull_college == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson_college, yale_university)",
+          "z3_formula": "residential_college_pierson_college_yale_university == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_value(yale_university, 42.3e9)",
+          "z3_formula": "endowment_value_yale_university_42.3e9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges_and_schools(yale_university, 27)",
+          "z3_formula": "constituent_colleges_and_schools_yale_university_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale_university, 27)",
+          "z3_formula": "residential_colleges_yale_university_27 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "list_of_residential_colleges(yale_university, [benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college])",
+          "z3_formula": "list_of_residential_colleges_yale_university_[benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college] == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(yale_university, pierson_college)",
+          "z3_formula": "residential_college_yale_university_pierson_college == True",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 73,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 26
+    },
+    "maxsat_stats": {
+      "satisfied": 26,
+      "excluded": 0,
+      "total_weight": 62,
+      "solve_time_ms": 0.7793055847287178
+    },
+    "timing": {
+      "trace_gen_s": 4.331,
+      "extraction_s": 25.789,
+      "dedup_s": 0.335,
+      "maxsat_s": 0.002,
+      "total_s": 30.458
+    }
+  }
+}

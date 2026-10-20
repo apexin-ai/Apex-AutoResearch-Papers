@@ -1,0 +1,25 @@
+paper_key: "wang2024mathshepherd"
+title: "Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations"
+venue: "ACL 2024"
+full_text_available: false
+
+research:
+  baselines: ["majority voting", "ORM (outcome reward model)", "PRM (process reward model)"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "GSM8K", size: "1319"}
+    - {name: "MATH", size: "500"}
+  ablation_dimensions: ["verification_granularity", "reward_model_size", "num_samples"]
+  training_recipe: {info: "automated step-level annotation via completion-based verification"}
+  method_family: "process reward model / step-level verification"
+
+positioning:
+  core_claim: "Automated step-level verification annotations (without human labels) enable process reward models that outperform outcome-only verification"
+  key_results: "GSM8K: 84.1% → 93.4% with Math-Shepherd PRM verification"
+  limitations: ["N/A"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

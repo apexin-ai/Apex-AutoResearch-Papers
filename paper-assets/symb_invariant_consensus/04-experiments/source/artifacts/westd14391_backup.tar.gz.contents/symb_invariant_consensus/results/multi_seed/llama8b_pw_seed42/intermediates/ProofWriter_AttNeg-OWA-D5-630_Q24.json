@@ -1,0 +1,1175 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-630_Q24",
+    "problem": "Anne is green. Anne is quiet. Dave is round. Erin is nice. Fiona is not nice. Fiona is quiet. Fiona is rough. If something is rough and green then it is round. All smart things are round. If something is round and blue then it is rough. All blue things are rough. Quiet things are green. Round things are green. All nice things are blue. All rough, nice things are blue. Rough, nice things are quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is nice.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\nBlue($x, bool) ::: Is x blue?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nQuiet(Anne, True) ::: Anne is quiet.\nRound(Dave, True) ::: Dave is round.\nNice(Erin, True) ::: Erin is nice.\nNice(Fiona, False) ::: Fiona is not nice.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRough(Fiona, True) ::: Fiona is rough.\n\nRules:\nRough($x, True) && Green($x, True) >>> Round($x, True) ::: If something is rough and green then it is round.\nSmart($x, True) >>> Round($x, True) ::: All smart things are round.\nRound($x, True) && Blue($x, True) >>> Rough($x, True) ::: If something is round and blue then it is rough.\nBlue($x, True) >>> Rough($x, True) ::: All blue things are rough.\nQuiet($x, True) >>> Green($x, True) ::: Quiet things are green.\nRound($x, True) >>> Green($x, True) ::: Round things are green.\nNice($x, True) >>> Blue($x, True) ::: All nice things are blue.\nRough($x, True) && Nice($x, True) >>> Blue($x, True) ::: All rough, nice things are blue.\nRough($x, True) && Nice($x, True) >>> Quiet($x, True) ::: Rough, nice things are quiet.\n\nQuery:\nNice(Anne, True) ::: Anne is nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 67.0,
+      "True": 109.0,
+      "Unknown": 170.5
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "False": 1,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will use a series of logical deductions based on the given information.\n\nGiven statements:\n\n1. Anne is green. \n2. Anne is quiet.\n3. Dave is round.\n4. Erin is nice.\n5. Fiona is not nice.\n6. Fiona is quiet.\n7. Fiona is rough.\n8. If something is rough and green then it is round.\n9. All smart things are round.\n10. If something is round and blue then it is rough.\n11. All blue things are rough.\n12. Quiet things are green.\n13. Round things are green.\n14. All nice things are blue.\n15. All rough, nice things are blue.\n16. Rough, nice things are quiet.\n\nTo determine whether the statement \"Anne is nice\" is true, false, or unknown, we need to find a connection between Anne and the property of being nice.\n\nFrom statement 14, we know that all nice things are blue.\n\nWe don't have direct information about Anne's color, but we can use statement 12 to make a connection. Quiet things are green, and we know Anne is quiet (statement 2). Therefore, Anne is green (statement 12).\n\nHowever, we also know from statement 13 that round things are green, and from statement 8 that if something is rough and green then it is round. But we also know from statement 16 that rough, nice things are quiet. This is a contradiction, as Fiona is both quiet and rough, yet nice is not true for her.\n\nFrom statement 15, all rough, nice things are blue, and statement 7 states Fiona is rough. But statement 15 also states that all rough, nice things are blue, which means Fiona should be blue, which contradicts statement 6 that Fiona is quiet.\n\nHowever, if we look at statement 16 again, it states that \"Rough, nice things are quiet.\" which contradicts statement 15, so we can infer from the above that all rough, nice things are blue.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Anne is green. \n2. Anne is quiet. \n3. Quiet things are green. \nFrom this, we can't directly conclude anything about Anne being nice, but we can use this information to derive some conclusions later.\n\n4. All nice things are blue. \nThis information tells us that if something is nice, it must be blue.\n\n5. All blue things are rough. \nThis information tells us that if something is blue, it must be rough.\n\n6. Anne is green. \nFrom this, we know that Anne is quiet (point 2).\n\n7. Round things are green. \nThis information is not directly applicable to Anne, but we will use it later to derive some conclusions.\n\n8. If something is rough and green then it is round. \nThis information is not directly applicable to Anne, but we will use it later to derive some conclusions.\n\n9. Fiona is not nice. Fiona is quiet. Fiona is rough. Fiona is green. \nFrom this information, we can't directly conclude anything about Anne being nice.\n\n10. All rough, nice things are blue. \nThis information is a contradiction to point 5, which states that all blue things are rough. However, we need to consider point 4 as well, which states that all nice things are blue.\n\nHowever, we can use this information to conclude that if something is rough and nice, it must be blue.\n\n11. Rough, nice things are quiet. \nThis information is a contradiction to point 2, which states that Anne is quiet.\n\n12. All smart things are round. \nThis information is not directly applicable to Anne, but we will use it later to derive some conclusions.\n\n13. Dave is round. \nThis information is not directly applicable to Anne, but we will use it later to derive some conclusions.\n\nFrom the given information, we can't directly conclude whether Anne is nice or not. However, we can use the information to derive some conclusions.\n\nLet's assume that Anne is nice.\n\nThen, from point 4, we know that Anne must be blue.\n\nHowever, from point 5, we know that if something is blue, it must be rough.\n\nBut from point 11, we know that rough, nice things are quiet.\n\nFrom point 2, we know that Anne is quiet.\n\nThis creates a contradiction, so our assumption that Anne is nice must be false.\n\nHowever, we can't conclude for sure that Anne is not nice because there might be other possibilities.\n\nTherefore, the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Anne is green. (Given information)\n2. Quiet things are green. (Rule 1)\n   Since Anne is green, we can infer that Anne is quiet. (From rule 1)\n3. Anne is quiet. (Given information and rule 1)\n   This is consistent with our previous inference.\n4. All nice things are blue. (Rule 2)\n5. Quiet things are green. (Rule 1)\n   Round things are green. (Rule 3)\n   If we combine rules 1 and 3, we get: \n   Quiet and round things are green.\n6. Since we already know that Anne is quiet, we can infer that Anne is also round. (From rule 5)\n7. All round things are green. (Rule 3)\n   Since Anne is round, we can infer that Anne is green. (From rule 3 and our previous inference)\n   This is consistent with our previous inference.\n8. All smart things are round. (Rule 4)\n   But we cannot determine if Anne is smart or not, so we cannot conclude anything about Anne being round based on this rule.\n9. All blue things are rough. (Rule 6)\n   All rough things are blue. (Rule 7)\n   If we combine rules 6 and 7, we get: \n   All blue things are rough, and all rough things are blue.\n10. All nice things are blue. (Rule 2)\n11. All rough, nice things are blue. (Rule 8)\n12. Anne is quiet and round, and we cannot determine if Anne is nice or not. \n   We can't conclude that Anne is nice because being quiet and round doesn't necessarily mean Anne is nice, and the rules don't provide any direct information about Anne's niceness.\n\nTherefore, the statement \"Anne is nice\" is unknown because we cannot determine if Anne is nice or not based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is nice\" is true, false, or unknown, we need to use the given information and logical deductions.\n\n1. We know that Anne is green.\n2. We know that Anne is quiet.\n\nFrom the given information, we have the following logical deductions:\n\n- Quiet things are green. (This directly matches our information about Anne.)\n- Round things are green. (But we don't know if Anne is round or not.)\n\nWe also have information about colors and their properties:\n\n- All blue things are rough.\n- All rough, nice things are blue.\n- All nice things are blue.\n\nHowever, we don't have any direct information about Anne being blue or rough. Since we don't know if Anne is round or not, we can't conclude her color or any other properties.\n\nTo determine if Anne is nice, we need to know if she is round or blue. However, we only have information about her being green and quiet, which doesn't provide a clear conclusion.\n\nBased on the given information, we can conclude that:\n\n- Anne is quiet (which is green).\n- We don't know if she is nice or not.\n\nTherefore, the statement \"Anne is nice\" is unknown based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Anne is green.\n   - Anne is quiet.\n   - Dave is round.\n   - Erin is nice.\n   - Fiona is not nice.\n   - Fiona is quiet.\n   - Fiona is rough.\n   - If something is rough and green then it is round.\n   - All smart things are round.\n   - If something is round and blue then it is rough.\n   - All blue things are rough.\n   - Quiet things are green.\n   - Round things are green.\n   - All nice things are blue.\n   - All rough, nice things are blue.\n   - Rough, nice things are quiet.\n\n2. From the statement \"All nice things are blue,\" we can infer that if something is nice, then it is blue.\n\n3. Now, let's examine the statement \"Anne is nice.\" We are trying to determine whether this statement is true, false, or unknown.\n\n4. If Anne is nice, then from the statement \"All nice things are blue,\" we can conclude that Anne is blue.\n\n5. However, we are given two conflicting statements:\n   - If something is round and blue then it is rough.\n   - All blue things are rough.\n\n   These statements imply that all blue things are rough.\n\n6. Since we have concluded that Anne is blue (from the statement \"Anne is nice\"), we can use the fact that all blue things are rough to conclude that Anne is rough.\n\n7. Now we have two contradictory statements:\n   - Anne is quiet.\n   - Rough, nice things are quiet.\n\n   However, the original statement about \"Rough, nice things\" does not specify that they are only nice. It simply states that they are quiet.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. We are given that \"Quiet things are green.\"\n   - From this, we can deduce that Anne is green, as given in the problem statement.\n\n2. We are given that \"Round things are green.\"\n   - Since Anne is green, it could also be round, as per this rule.\n\n3. We are given that \"All nice things are blue.\"\n   - This implies that if Anne is nice, then she must be blue.\n\n4. However, we also know that \"All blue things are rough.\"\n   - If Anne is blue, then she must be rough.\n\n5. We are given that \"Rough, nice things are blue.\"\n   - This rule doesn't directly affect our conclusion, but it's worth noting.\n\n6. We are given that \"Rough, nice things are quiet.\"\n   - This rule is also not directly applicable to our conclusion, but it's worth noting.\n\n7. Now, let's consider the statement \"If something is rough and green then it is round.\"\n   - Since Anne is green and rough, this rule implies that she is round.\n\n8. We are given that \"Anne is round.\"\n   - Combining this with the rule that \"Quiet things are green,\" we can deduce that Anne is quiet.\n\n9. We are given that \"Fiona is quiet.\"\n   - Since we have deduced that Anne is quiet, we can't directly conclude anything about Anne based on this statement.\n\n10. We are given that \"Anne is green.\"\n    - This is already established in step 1.\n\nConsidering all these deductions, we have concluded that:\n\n- Anne is green\n- Anne is round\n- Anne is quiet\n\nHowever, we still need to determine whether Anne is nice or not.\n\nWe are given that \"All nice things are blue.\"\n- If Anne is nice, then she must be blue.\n\nBut we also know that \"Anne is green.\"\n- This contradicts the conclusion that Anne is blue.\n\nTherefore, based on the given information, we can conclude that the statement \"Anne is nice\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is nice\" is true, false, or unknown, we need to use the given information and apply logical reasoning.\n\nGiven information:\n\n1. Anne is green.\n2. Anne is quiet.\n3. Dave is round.\n4. Erin is nice.\n5. Fiona is not nice.\n6. Fiona is quiet.\n7. Fiona is rough.\n8. If something is rough and green then it is round.\n9. All smart things are round.\n10. If something is round and blue then it is rough.\n11. All blue things are rough.\n12. Quiet things are green.\n13. Round things are green.\n14. All nice things are blue.\n15. All rough, nice things are blue.\n16. Rough, nice things are quiet.\n\nNow, let's analyze the given information to determine whether Anne is nice or not.\n\nFrom statement 1, we know Anne is green. We also know that quiet things are green (statement 12) and round things are green (statement 13). This means Anne could be quiet or round.\n\nFrom statement 2, we know Anne is quiet. Since quiet things are green (statement 12), this confirms that Anne is indeed green.\n\nWe are trying to find out whether Anne is nice or not. To do this, we need to find out if Anne is blue or not, since all nice things are blue (statement 14).\n\nNow, let's look at the relationships between different properties:\n\n- Round things are green (statement 13).\n- If something is rough and green then it is round (statement 8).\n- If something is round and blue then it is rough (statement 10).\n- All blue things are rough (statement 11).\n- Rough, nice things are blue (statement 15).\n\nFrom statement 2, we know Anne is quiet. From statement 12, quiet things are green. From statement 13, round things are green. We cannot conclude that Anne is round from the information provided.\n\nFrom statement 1, we know Anne is green. We cannot conclude that Anne is nice from the information provided.\n\nFrom statement 16, we know rough, nice things are quiet. But we cannot conclude that Anne is nice.\n\nNow, let's look at the statement \"All rough, nice things are blue\" (statement 15). This statement does not directly relate to Anne. We need to find out if Anne is rough or not to determine if she is nice or not.\n\nFrom statement 7, we know Fiona is rough. We cannot conclude that Anne is rough.\n\nWe cannot conclude that Anne is nice using the given information.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Given statements:\n   - Anne is green. \n   - Anne is quiet.\n   - Dave is round.\n   - Erin is nice.\n   - Fiona is not nice.\n   - Fiona is quiet.\n   - Fiona is rough.\n   - If something is rough and green then it is round.\n   - All smart things are round.\n   - If something is round and blue then it is rough.\n   - All blue things are rough.\n   - Quiet things are green.\n   - Round things are green.\n   - All nice things are blue.\n   - All rough, nice things are blue.\n   - Rough, nice things are quiet.\n\n2. Analyzing the given information:\n   - From the statements \"Quiet things are green\" and \"Anne is quiet\", we can conclude that Anne is green.\n   - From the statement \"Round things are green\" and the fact that Anne is green, we cannot conclude that Anne is round because it does not directly follow from the given information. However, we will continue to analyze other statements for any implications.\n\n3. To determine whether Anne is nice, let's analyze the possible relationships between nice things, blue things, and other characteristics.\n   - All nice things are blue. (Statement)\n   - All blue things are rough. (Statement)\n   - If something is round and blue then it is rough. (Statement)\n   - All rough, nice things are blue. (Statement)\n   - Rough, nice things are quiet. (Statement)\n\n4. Combining the information, we can see that:\n   - If Anne is nice, then Anne must be blue because all nice things are blue.\n   - However, being blue means being rough (all blue things are rough).\n   - Since Anne is quiet and rough, it means Anne is nice (rough, nice things are quiet).\n\n5. Conclusion:\n   - Based on the given information and logical deductions, we can conclude that the statement \"Anne is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is nice' is true, false, or unknown, we need to use the given information and logical deductions.\n\nStep 1: Analyze the given information about Anne.\n- Anne is green.\n- Anne is quiet.\n\nStep 2: Since quiet things are green, we can conclude that being quiet and green are related. However, this does not directly tell us about Anne being nice.\n\nStep 3: Analyze the given information about round things.\n- All smart things are round. (But we don't know if Anne is smart.)\n- If something is round and blue, then it is rough. (But we don't know if Anne is blue.)\n- All round things are green. (Since Anne is green and we concluded that quiet things are green in Step 2, we can infer that Anne might be quiet and round, but this is still uncertain.)\n\nStep 4: Analyze the given information about nice things.\n- All nice things are blue.\n- Rough, nice things are blue. (But this does not tell us about nice things in general.)\n- All blue things are rough. (This might seem contradictory to the statement 'All nice things are blue', but it means that if something is both blue and rough, then it is nice.)\n\nStep 5: Since we don't have enough information to conclude that Anne is nice, we cannot determine the truth value of the statement.\n\nHowever, we can use the information that if something is round and blue, then it is rough and nice. We also know that all blue things are rough.\n\nStep 6: Combining the information from Step 3 and Step 5, if Anne is blue, then we can conclude that Anne is round, rough, and nice. However, being blue is not a property we have explicitly assigned to Anne.\n\nStep 7: Looking back at the original information about Anne, we see that being green is a property we have assigned to Anne.\n\nStep 8: Since we have the rule that if something is round and blue then it is rough, and all blue things are rough, we can conclude that if Anne were blue, then she would be rough.\n\nStep 9: However, if Anne were round and blue, then she would be both rough and round. But we also know that all round things are green. This would imply that Anne is both rough and green, and that round things are green.\n\nStep 10: Since we know that if something is rough and green then it is round, this would not be a contradiction. However, we are trying to conclude whether Anne is nice.\n\nStep 11: We can use the information that quiet things are green and that all round things are green to infer that Anne might be round. However, we cannot conclude whether Anne is nice.\n\nStep 12: Looking back at the information about Anne being green and quiet, we can use the information that quiet things are green to conclude that Anne is indeed quiet.\n\nStep 13: However, we still don't have enough information to conclude whether Anne is nice or not.\n\nStep 14: We can use the information that all blue things are rough and that all round things are green to infer that Anne might be round.\n\nStep 15: Since we know that quiet things are green, we can conclude that Anne is indeed green.\n\nStep 16: We can use the information that if something is round and blue, then it is rough, and all blue things are rough to infer that Anne might be round and blue.\n\nStep 17: However, this would imply that Anne is both round and rough, which would mean that Anne is round.\n\nStep 18: Since we know that all round things are green, we can conclude that Anne is indeed round.\n\nStep 19: However, we still cannot conclude whether Anne is nice or not.\n\nStep 20: Since we know that all round things are green, and that quiet things are green, we can conclude that Anne is indeed quiet and round.\n\nStep 21: However, we still cannot conclude whether Anne is nice or not.\n\nStep 22: Since we know that Anne is green, we can use the information that if something is rough and green then it is round to conclude that Anne is indeed round.\n\nStep 23: Since we know that all round things are green, we can conclude that Anne is indeed green.\n\nStep 24: However, we still cannot conclude whether Anne is nice or not.\n\nStep 25: Since we know that quiet things are green, and that all round things are green, we can conclude that Anne is indeed quiet and round.\n\nStep 26: Since we know that all round things are green, we can conclude that Anne is indeed round.\n\nStep 27: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 28: However, we still cannot conclude whether Anne is nice or not.\n\nStep 29: Since we know that all round things are green, we can conclude that Anne is indeed round.\n\nStep 30: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 31: Since we know that all round things are green, we can conclude that Anne is indeed green.\n\nStep 32: However, we still cannot conclude whether Anne is nice or not.\n\nStep 33: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 34: Since we know that all round things are green, we can conclude that Anne is indeed round.\n\nStep 35: Since we know that all round things are green, we can conclude that Anne is indeed green.\n\nStep 36: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 37: Since we know that all round things are green, we can conclude that Anne is indeed round.\n\nStep 38: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 39: Since we know that all round things are green, we can conclude that Anne is indeed green.\n\nStep 40: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 41: However, we still cannot conclude whether Anne is nice or not.\n\nStep 42: Since we know that all round things are green, we can conclude that Anne is indeed round.\n\nStep 43: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 44: Since we know that all round things are green, we can conclude that Anne is indeed green.\n\nStep 45: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 46: Since we know that all round things are green, we can conclude that Anne is indeed green.\n\nStep 47: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 48: Since we know that all round things are green, we can conclude that Anne is indeed round.\n\nStep 49: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 50: However, we still cannot conclude whether Anne is nice or not.\n\nStep 51: Since we know that all round things are green, we can conclude that Anne is indeed round.\n\nStep 52: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 53: Since we know that all round things are green, we can conclude that Anne is indeed green.\n\nStep 54: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 55: Since we know that all round things are green, we can conclude that Anne is indeed green.\n\nStep 56: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 57: Since we know that all round things are green, we can conclude that Anne is indeed round.\n\nStep 58: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 59: Since we know that all round things are green, we can conclude that Anne is indeed green.\n\nStep 60: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 61: Since we know that all round things are green, we can conclude that Anne is indeed round.\n\nStep 62: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 63: However, we still cannot conclude whether Anne is nice or not.\n\nHowever, let's try a different approach.\n\nWe know that all blue things are rough and all rough things are blue. We also know that all round things are green.\n\nStep 64: Since we know that all round things are green, we can conclude that Anne is indeed green.\n\nStep 65: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 66: Since we know that all round things are green, we can conclude that Anne is indeed round.\n\nStep 67: However, we still cannot conclude whether Anne is nice or not.\n\nHowever, let's try another approach.\n\nStep 68: We know that all blue things are rough and all round things are green.\n\nStep 69: We can use the information that if something is round and blue, then it is rough, and all blue things are rough to infer that Anne might be round and blue.\n\nStep 70: However, this would imply that Anne is both round and rough, which would mean that Anne is round.\n\nStep 71: Since we know that all round things are green, we can conclude that Anne is indeed green.\n\nStep 72: Since we know that quiet things are green, we can conclude that Anne is indeed quiet.\n\nStep 73: Since we know that all round things are green, we can conclude that Anne is indeed round.\n\nStep 74:",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is nice' is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Anne is green. (Given)\n2. Anne is quiet. (Given)\n3. If something is rough and green, then it is round. (Given)\n4. Fiona is not nice. (Given)\n5. Fiona is quiet. (Given)\n6. Fiona is rough. (Given)\n7. Quiet things are green. (Given)\n8. Round things are green. (Given)\n9. All nice things are blue. (Given)\n10. All rough, nice things are blue. (Given)\n11. Rough, nice things are quiet. (Given)\n12. If something is round and blue, then it is rough. (Given)\n13. All blue things are rough. (Given)\n\nFrom statements 7 and 8, we know that both quiet and round things are green. Since Anne is quiet (statement 2), we can conclude that Anne is green (statement 1).\n\nHowever, we do not have enough information to determine whether Anne is nice. Let's analyze the possibilities:\n\n- If Anne is round, then she is green (statement 8). But if she is round and green, then she is rough (statement 3). Now, there are two possibilities:\n  - If Anne is nice, then she is blue (statement 9). But since she is round and blue, she would be rough (statement 12), which contradicts statement 10 that all rough, nice things are blue.\n  - If Anne is not nice, then we cannot determine whether she is round or not. We cannot conclude that she is round or not because there is no direct information linking Anne to being round.\n  \n- If Anne is not round, then she is not green (statement 8). But since Anne is quiet (statement 2), she is green (statement 7). This is a contradiction, so we can ignore this case.\n\nSince we cannot determine whether Anne is round or not, we cannot conclude whether she is nice or not. Therefore, the statement 'Anne is nice' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is nice\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning step by step.\n\n1. We are given the following statements:\n   - Anne is green. (A)\n   - Anne is quiet. (A)\n   - Dave is round. (D)\n   - Erin is nice. (E)\n   - Fiona is not nice. (F)\n   - Fiona is quiet. (F)\n   - Fiona is rough. (F)\n   - If something is rough and green then it is round. (Rough & Green -> Round)\n   - All smart things are round. (Smart -> Round)\n   - If something is round and blue then it is rough. (Round & Blue -> Rough)\n   - All blue things are rough. (Blue -> Rough)\n   - Quiet things are green. (Quiet -> Green)\n   - Round things are green. (Round -> Green)\n   - All nice things are blue. (Nice -> Blue)\n   - All rough, nice things are blue. (Rough & Nice -> Blue)\n   - Rough, nice things are quiet. (Rough & Nice -> Quiet)\n\n2. We need to find out if Anne is nice. To do this, we can start by finding out if Anne is round, because if she is round, then she is green and possibly nice.\n\n   - From statement (A), Anne is green.\n   - From statement (A), Anne is quiet.\n   - From (Quiet -> Green), we know that quiet things are green, so this doesn't add any new information.\n   - We don't know if Anne is round yet.\n\n3. Now let's find out if Anne is round. If she is round, then she is green and possibly nice.\n\n   - We already know that Anne is green from statement (A).\n   - From (Round -> Green), we know that round things are green, so this doesn't add any new information.\n   - If Anne is round, then she is also blue, and possibly rough.\n\n4. Let's find out if Anne is blue. If she is blue, then she is rough and possibly nice.\n\n   - We don't know if Anne is blue yet.\n   - From (Blue -> Rough), we know that blue things are rough, but we need to know if Anne is blue to conclude this.\n\n5. Now let's analyze the possible combinations of colors for Anne. We know she is green from statement (A). We can conclude that she is also round from (Round & Green -> Round), and therefore green from (Round -> Green). We can also conclude that she is blue from (Round & Blue -> Blue), but we don't know if she is blue yet.\n\n6. Let's analyze the possible combinations of colors and roundness for Anne. We know she is green and round from the previous steps. We can conclude that she is also quiet from (Quiet -> Green), and possibly nice.\n\n7. We can now determine if Anne is nice. If she is blue, then she is rough and possibly nice. If she is rough and nice, then she is quiet. But we know that Anne is quiet from statement (A).\n\n8. Now let's find out if Anne is blue.\n\n   - We don't know if Anne is blue yet.\n   - From (Round & Blue -> Rough), we know that round and blue things are rough, but we need to know if Anne is blue to conclude this.\n   - From (Blue -> Rough), we know that blue things are rough, but we need to know if Anne is blue to conclude this.\n   - From (Rough & Nice -> Blue), we know that rough and nice things are blue, but we need to know if Anne is rough and nice to conclude this.\n   - From (Rough, Nice -> Quiet), we know that rough and nice things are quiet, but we need to know if Anne is rough and nice to conclude this.\n\n9. We know that Anne is quiet from statement (A), and we can conclude that she is also round from (Quiet -> Green) and (Round -> Green). But we can't conclude that she is rough and nice from this information.\n\n10. Since we can't conclude that Anne is rough and nice from the previous steps, we can't conclude that she is blue or nice.\n\n11. Therefore, the statement \"Anne is nice\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Anne is green. (Given)\n2. Anne is quiet. (Given)\n3. Quiet things are green. (Rule 7)\n   - This rule is not relevant to our current goal, so we will save it for later.\n4. If something is rough and green then it is round. (Rule 8)\n   - This rule is not relevant to our current goal, so we will save it for later.\n5. Dave is round. (Given)\n   - This information is irrelevant to our goal, so we will save it for later.\n6. Erin is nice. (Given)\n   - This information is irrelevant to our goal, so we will save it for later.\n7. Fiona is not nice. (Given)\n   - This information is irrelevant to our goal, so we will save it for later.\n8. Fiona is quiet. (Given)\n   - This information is irrelevant to our goal, so we will save it for later.\n9. Fiona is rough. (Given)\n   - This information is irrelevant to our goal, so we will save it for later.\n10. If something is round and blue then it is rough. (Rule 6)\n    - This rule is not relevant to our current goal, so we will save it for later.\n11. All blue things are rough. (Rule 5)\n    - This rule is not relevant to our current goal, so we will save it for later.\n12. Round things are green. (Rule 9)\n    - This rule is not relevant to our current goal, so we will save it for later.\n13. All nice things are blue. (Rule 3)\n14. All rough, nice things are blue. (Rule 4)\n   - This rule is not relevant to our current goal, so we will save it for later.\n15. Rough, nice things are quiet. (Rule 2)\n\nNow, we can use the given information to determine whether Anne is nice.\n\nFrom Rule 13, we know that all nice things are blue.\n\nHowever, there is no information about Anne being blue.\n\nWe can now use the given information to find a contradiction or a conclusion.\n\nFrom Rule 7, we know that quiet things are green.\n\nWe already know that Anne is green (Rule 1) and quiet (Rule 2).\n\nTherefore, Anne is a quiet thing, which means she is green.\n\nFrom Rule 12, we know that round things are green.\n\nHowever, there is no information about Anne being round.\n\nWe can now use the given information to find a contradiction or a conclusion.\n\nFrom Rule 3, we know that all nice things are blue.\n\nFrom Rule 7, we know that quiet things are green.\n\nHowever, there is no information about Anne being blue.\n\nSince we have a chain of rules and information that says nice things are blue, and we have a separate chain of rules and information that says quiet things are green, we can conclude that Anne might be quiet and green, but we cannot determine whether she is nice or not.\n\nTherefore, the statement \"Anne is nice\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_X, blue_X), rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_X, rough_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_X, green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_X, blue_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), blue_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), quiet_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_anne, green_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_anne, blue_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_anne, rough_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_anne, green_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_fiona, green_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "Not(nice_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_anne, blue_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_anne, rough_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_anne, nice_anne), quiet_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_dave, round_dave)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_anne, green_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_anne, green_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_anne, green_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_anne, green_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_anne, round_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_anne, green_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_anne, round_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_anne, blue_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_anne, rough_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> blue(X)",
+          "z3_formula": "Implies(rough_anne, blue_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> blue(X)",
+          "z3_formula": "Implies(And(blue_anne, rough_anne), blue_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_anne, blue_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_anne, nice_anne), blue_anne)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne) & round(anne)",
+          "z3_formula": "And(quiet_anne, round_anne)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == Unknown",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_anne, green_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_anne, green_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_anne, rough_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_anne, nice_anne), blue_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_anne, blue_anne)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_X, green_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_X, blue_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_X, rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_X, rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_X, blue_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), blue_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), quiet_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne) & rough(anne)",
+          "z3_formula": "And(quiet_anne, rough_anne)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_anne, green_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_anne, green_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_anne, blue_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_anne, rough_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_anne, green_anne), round_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_X, green_X), round_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_X, blue_X), rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_X, rough_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_X, green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_X, nice_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), blue_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), quiet_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_X, blue_X), rough_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_X, rough_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_X, green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_X, blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X)",
+          "z3_formula": "And(blue_X, rough_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), blue_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), quiet_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 8
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_anne, green_anne), round_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_anne, green_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_anne, green_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_anne, blue_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_anne, nice_anne), blue_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_anne, nice_anne), quiet_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_anne, blue_anne), rough_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_anne, rough_anne)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_X, blue_X), rough_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_X, rough_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_X, green_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_X, blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), quiet_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_anne, green_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_anne, green_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_anne, blue_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne) & quiet(anne)",
+          "z3_formula": "And(green_anne, quiet_anne) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(nice(anne))",
+          "z3_formula": "Not(Implies(And(quiet_anne, green_anne), nice_anne))",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 174,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 42
+    },
+    "maxsat_stats": {
+      "satisfied": 41,
+      "excluded": 1,
+      "total_weight": 173,
+      "solve_time_ms": 1.381807029247284
+    },
+    "timing": {
+      "trace_gen_s": 24.186,
+      "extraction_s": 39.017,
+      "dedup_s": 1.459,
+      "maxsat_s": 0.004,
+      "total_s": 64.665
+    }
+  }
+}

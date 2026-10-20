@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03bd0f2169b3fba7fa78",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "code mvp v2 urgent fix",
+  "task_key": "worker_code_mvp_v2_urgent_fix_20260514T090708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_v2_urgent_fix_20260514T090708_result.json",
+    "occurrence": 1,
+    "bytes": 2439,
+    "sha256": "bf56ee2ff3ec134a24731892bcff613cce060dad34093a0cb8279088cc29552c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the final report.\n\n---\n\n## Pipeline v2 Test (10 samples) — Final Report\n\n### 1. vLLM Restart\n- Restarted with `--quantization awq_marlin` (MarlinLinearKernel confirmed)\n- Throughput: ~63-65 tokens/s, prefix cache hit rate ~29%\n\n### 2. Code Verification\nAll v2 code modifications verified on server without needing sync:\n- `formalize.py`: few-shot examples, BoolSort types, `syntax_fix_z3` function ✓\n- `executor.py`: `execute_with_syntax_fix` function ✓\n- `pipeline.py`: correct imports of `syntax_fix_z3` and `execute_with_syntax_fix` ✓\n- `repair.py`: updated exec_crash hint ✓\n- `analyze.py`: `effective_disagree` metric ✓\n\n### 3. FOL Crash Count/Rate\n- **FOL crashes: 1/10 = 10.0%** (only sample [4])\n- Code crashes: 4/10 = 40.0% (samples [0,1,2,5] — Python side, thinking tokens leaked into code)\n\n### 4. Avg Time Per Sample\n- No per-sample timing data recorded in the JSON (field not present)\n- Total pipeline wall time: ~35 min for 10 samples ≈ **~3.5 min/sample**\n\n### 5. Token Stats\n| Metric | Value |\n|--------|-------|\n| Total input tokens | 63,780 |\n| Total output tokens | 122,508 |\n| Avg input/sample | 6,378 |\n| Avg output/sample | 12,251 |\n| Total API calls | 41 |\n\n### 6. Syntax Fix Retry Effect\n- **Syntax fixes applied: 6/10 samples** (fol_code_fixed was generated)\n- **Resolved: 5 of those 6** (FOL no longer Error after fix)\n- Without syntax fix, FOL crash rate would have been ~60% → reduced to **10%**\n\n### 7. Effective Disagree Rate\n- **Disagree rate: 0.0%** (0/10)\n- **Effective disagree (both executed): 0.0%** (0/5 where both ran)\n- Agreement distribution: 5 agree_correct + 5 single_error\n- FOL accuracy: 90%, Code accuracy: 60%, Oracle: 100%\n\n### MVP Criteria\n| Criterion | Result |\n|-----------|--------|\n| C1: disagree ≥ 10% | FAIL (0%) |\n| C2: diagnostic ≥ 40% | FAIL (0/0) |\n| C3: error types ≥ 2 | PASS (exec_crash + negation_error) |\n| C4: targeted advantage ≥ 5pp | PASS (+40pp: 80% vs 40%) |\n| C5: localization ≥ 60% | PASS (100%) |\n\n**MVP: NOT PASSED** — C1/C2 fail because there's no real disagreement: when both representations execute, they always agree. The main bottleneck is Python code quality (40% crash rate from thinking tokens leaking into generated code). Targeted repair shows strong advantage (+40pp over blind), and localization is perfect on exec-error cases."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-v2-urgent-fix.md"
+}

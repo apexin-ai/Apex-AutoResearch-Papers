@@ -1,0 +1,1337 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-200_Q12",
+    "problem": "Anne is quiet. Charlie is cold. Charlie is not quiet. Charlie is young. Erin is nice. Erin is quiet. Erin is smart. Fiona is not quiet. Fiona is round. Fiona is young. All smart, cold people are round. If someone is cold then they are young. If someone is young and quiet then they are blue. If someone is round and not quiet then they are blue. Nice, blue people are cold. If someone is quiet then they are cold. If someone is quiet then they are cold. All blue people are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is not round.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nQuiet($x, bool) ::: Is x quiet?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nQuiet(Anne, True) ::: Anne is quiet.\nCold(Charlie, True) ::: Charlie is cold.\nQuiet(Charlie, False) ::: Charlie is not quiet.\nYoung(Charlie, True) ::: Charlie is young.\nNice(Erin, True) ::: Erin is nice.\nQuiet(Erin, True) ::: Erin is quiet.\nSmart(Erin, True) ::: Erin is smart.\nQuiet(Fiona, False) ::: Fiona is not quiet.\nRound(Fiona, True) ::: Fiona is round.\nYoung(Fiona, True) ::: Fiona is young.\n\nRules:\nSmart($x, True) && Cold($x, True) >>> Round($x, True) ::: All smart, cold people are round.\nCold($x, True) >>> Young($x, True) ::: If someone is cold then they are young.\nYoung($x, True) && Quiet($x, True) >>> Blue($x, True) ::: If someone is young and quiet then they are blue.\nRound($x, True) && Quiet($x, False) >>> Blue($x, True) ::: If someone is round and not quiet then they are blue.\nNice($x, True) && Blue($x, True) >>> Cold($x, True) ::: Nice, blue people are cold.\nQuiet($x, True) >>> Cold($x, True) ::: If someone is quiet then they are cold.\nBlue($x, True) >>> Smart($x, True) ::: All blue people are smart.\n\nQuery:\nRound(Anne, False) ::: Anne is not round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 123.0,
+      "True": 98.0,
+      "Unknown": 169.0
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "True": 1,
+      "False": 4
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given information and use it to determine the characteristics of Anne.\n\n1. Given information:\n   - Anne is quiet.\n   - Charlie is cold.\n   - Charlie is not quiet.\n   - Charlie is young.\n   - Erin is nice.\n   - Erin is quiet.\n   - Erin is smart.\n   - Fiona is not quiet.\n   - Fiona is round.\n   - Fiona is young.\n   - All smart, cold people are round.\n   - If someone is cold then they are young.\n   - If someone is young and quiet then they are blue.\n   - If someone is round and not quiet then they are blue.\n   - Nice, blue people are cold.\n   - If someone is quiet then they are cold.\n   - If someone is quiet then they are cold. (This statement seems redundant, but it's included in the problem.)\n   - All blue people are smart.\n\n2. Analyze the given information to find any useful relationships between the characteristics.\n\n   - From the statement \"If someone is cold then they are young,\" we know that Charlie is young because he is cold.\n   - From the statement \"If someone is young and quiet then they are blue,\" we cannot directly determine whether Charlie is blue because we don't know if he is quiet. However, we do know that Charlie is not quiet.\n   - From the statement \"If someone is round and not quiet then they are blue,\" we know that Fiona is blue because she is round and not quiet.\n   - From the statement \"All blue people are smart,\" we know that Fiona is smart because she is blue.\n   - From the statement \"If someone is quiet then they are cold,\" we know that Erin is cold because she is quiet.\n   - From the statement \"If someone is quiet then they are cold,\" this is a redundant statement, but it confirms that quiet people are cold.\n   - From the statement \"All smart, cold people are round,\" we know that Erin is round because she is smart and cold.\n\n3. Now, let's try to find any relationships between the characteristics of Anne and the given information.\n\n   - We know that Anne is quiet.\n\n4. Based on the information that \"If someone is quiet then they are cold,\" we can conclude that Anne is cold.\n   - Based on the information that \"If someone is cold then they are young,\" we can conclude that Anne is young.\n   - Based on the information that \"If someone is young and quiet then they are blue,\" we cannot conclude whether Anne is blue because we don't know if she is quiet. However, we do know that she is young and quiet, so she is blue.\n   - Based on the information that \"All blue people are smart,\" we can conclude that Anne is smart.\n\n5. Now we have the characteristics of Anne: Anne is quiet, cold, young, blue, and smart.\n\n6. To determine whether the statement \"Anne is not round\" is true, false, or unknown, we need to find any information that contradicts or supports this statement.\n\n   - We know that Erin is smart and cold, and from the statement \"All smart, cold people are round,\" we can conclude that Erin is round.\n   - We know that Fiona is round and blue.\n   - However, we cannot conclude that Anne is round because the only information we have about Anne's shape is that she is not blue and round (based on the information that \"If someone is round and not quiet then they are blue\").\n\n7. Based on this analysis, we cannot determine whether Anne is round or not. Therefore, the statement \"Anne is not round\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not round\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Given statements:\n   - Anne is quiet.\n   - Charlie is cold.\n   - Charlie is not quiet.\n   - Charlie is young.\n   - Erin is nice.\n   - Erin is quiet.\n   - Erin is smart.\n   - Fiona is not quiet.\n   - Fiona is round.\n   - Fiona is young.\n   - All smart, cold people are round.\n   - If someone is cold then they are young.\n   - If someone is young and quiet then they are blue.\n   - If someone is round and not quiet then they are blue.\n   - Nice, blue people are cold.\n   - If someone is quiet then they are cold.\n   - If someone is quiet then they are cold. (Duplicate statement, we can ignore it.)\n   - All blue people are smart.\n\n2. Deduction:\n   - Since Anne is quiet (given), and if someone is quiet then they are cold (given), Anne is cold.\n   - Since Anne is cold and if someone is cold then they are young (given), Anne is young.\n   - We cannot conclude whether Anne is round or not based on the given information.\n\n3. Conclusion:\n   We cannot determine whether Anne is round or not based on the given information. Therefore, the statement \"Anne is not round\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not round\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. Anne is quiet. \n2. Charlie is cold. Charlie is not quiet. Charlie is young. \n3. Erin is nice. Erin is quiet. Erin is smart. \n4. Fiona is not quiet. Fiona is round. Fiona is young. \n5. All smart, cold people are round. \n6. If someone is cold then they are young. \n7. If someone is young and quiet then they are blue. \n8. If someone is round and not quiet then they are blue. \n9. Nice, blue people are cold. \n10. If someone is quiet then they are cold. \n11. All blue people are smart.\n\nFrom the given information, we don't have any direct statement about Anne being round or not being round. We only know that Anne is quiet.\n\nWe can't conclude that Anne is round because there is no direct rule linking Anne to round. \n\nHowever, we can try to find any indirect connection. \n\nFrom statement 6, we know that if someone is cold, then they are young. But we don't know if Anne is cold. \n\nFrom statement 10, we know that if someone is quiet, then they are cold. We already know that Anne is quiet. Therefore, Anne is cold.\n\nFrom statement 6, we know that if someone is cold, then they are young. Since Anne is cold, Anne is young.\n\nNow we have a potential connection using statement 7: if someone is young and quiet, then they are blue. Since Anne is young and quiet, Anne is blue.\n\nNow we have another potential connection using statement 8: if someone is round and not quiet, then they are blue. We don't know if Anne is round, but we do know that Anne is blue. Therefore, Anne is not round, because if she were round, she wouldn't be blue.\n\nSo, based on the given information and rules, we can conclude that Anne is not round.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information into individual statements and then apply the rules given at the end. \n\n1. Anne is quiet.\n2. Charlie is cold.\n3. Charlie is not quiet.\n4. Charlie is young.\n5. Erin is nice.\n6. Erin is quiet.\n7. Erin is smart.\n8. Fiona is not quiet.\n9. Fiona is round.\n10. Fiona is young.\n11. All smart, cold people are round.\n12. If someone is cold then they are young.\n13. If someone is young and quiet then they are blue.\n14. If someone is round and not quiet then they are blue.\n15. Nice, blue people are cold.\n16. If someone is quiet then they are cold.\n17. All blue people are smart.\n\nWe need to determine whether the statement 'Anne is not round' is true, false, or unknown.\n\nFrom statement 1, we know Anne is quiet. \n\nFrom statement 16, if someone is quiet then they are cold. So, Anne is cold.\n\nFrom statement 12, if someone is cold then they are young. So, Anne is young.\n\nNow, we have three properties for Anne: quiet, cold, and young.\n\nLet's check the properties given in the rules:\n- From statement 13, if someone is young and quiet then they are blue. Since Anne is both young and quiet, Anne is blue.\n- From statement 14, if someone is round and not quiet then they are blue. We need to determine whether Anne is round or not.\n\nWe need to check whether Anne can be round or not.\n\nFrom statement 17, all blue people are smart. Since Anne is blue, Anne is smart.\n\nFrom statement 11, all smart, cold people are round. Since Anne is smart and cold, Anne is round.\n\nSo, Anne is round.\n\nNow we have the answer to our original question: 'Anne is not round' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply it to the statement \"Anne is not round.\"\n\n1. Given information:\n   - Anne is quiet.\n   - Charlie is cold.\n   - Charlie is not quiet.\n   - Charlie is young.\n   - Erin is nice.\n   - Erin is quiet.\n   - Erin is smart.\n   - Fiona is not quiet.\n   - Fiona is round.\n   - Fiona is young.\n   - All smart, cold people are round.\n   - If someone is cold then they are young.\n   - If someone is young and quiet then they are blue.\n   - If someone is round and not quiet then they are blue.\n   - Nice, blue people are cold.\n   - If someone is quiet then they are cold.\n   - All blue people are smart.\n\n2. We need to determine whether the statement \"Anne is not round\" is true, false, or unknown.\n\nTo do this, we'll start by finding out if Anne is round or not. If we can establish that Anne is round, then the statement will be false. If we can establish that Anne is not round, then the statement will be true. If we cannot determine whether Anne is round or not, then the statement will be unknown.\n\n3. Given information implies that:\n   - Erin is quiet and Erin is smart, and Erin is not round (since Fiona is round and all smart, cold people are round, but Erin is not cold).\n   - Charlie is young and Charlie is not quiet, but we cannot conclude that Charlie is round or not.\n   - Since Charlie is not quiet and Charlie is young, Charlie is blue (from the rule \"If someone is young and quiet then they are blue\").\n   - Since Charlie is blue, Charlie is smart (from the rule \"All blue people are smart\").\n   - Since Charlie is smart and Charlie is cold, Charlie is round (from the rule \"All smart, cold people are round\").\n   - So Charlie is round.\n\n4. Now we need to find out if Anne is round or not.\n   - Since Anne is quiet, Anne is cold (from the rule \"If someone is quiet then they are cold\").\n   - Since Anne is cold, Anne is young (from the rule \"If someone is cold then they are young\").\n   - Since Anne is young and Anne is quiet, Anne is blue (from the rule \"If someone is young and quiet then they are blue\").\n   - Since Anne is blue, Anne is smart (from the rule \"All blue people are smart\").\n   - Since Anne is smart and Anne is cold, Anne is round (from the rule \"All smart, cold people are round\").\n\nHowever, we have a contradiction here. We know that Charlie is round (as established in step 3), and now we have established that Anne is round, but Anne and Charlie cannot be round at the same time because Fiona is round and the only rule that connects round with quiet is \"If someone is round and not quiet then they are blue\". So Anne must be not quiet, because if she is quiet, then she is blue and then she is not round.\n\nSince we established that Anne is not quiet, then Anne is not cold (from the rule \"If someone is quiet then they are cold\").\n\nSince Anne is not cold, we cannot conclude that Anne is round or not (from the rule \"If someone is cold then they are young\"). \n\nTherefore, the statement \"Anne is not round\" is unknown.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Anne is quiet. \n2. Charlie is cold. \n3. Charlie is not quiet. \n4. Charlie is young. \n5. Erin is nice. \n6. Erin is quiet. \n7. Erin is smart. \n8. Fiona is not quiet. \n9. Fiona is round. \n10. Fiona is young. \n11. All smart, cold people are round. \n12. If someone is cold then they are young. \n13. If someone is young and quiet then they are blue. \n14. If someone is round and not quiet then they are blue. \n15. Nice, blue people are cold. \n16. If someone is quiet then they are cold. \n17. If someone is quiet then they are cold. \n18. All blue people are smart.\n\nFrom statement 11, we know that all smart, cold people are round. However, we do not have enough information about Anne being smart or cold.\n\nFrom statement 12, we know that if someone is cold then they are young. However, we do not have enough information about Anne being cold.\n\nFrom statement 13, we know that if someone is young and quiet then they are blue. However, we do not have enough information about Anne being young or quiet.\n\nFrom statement 14, we know that if someone is round and not quiet then they are blue. However, we do not have enough information about Anne being round or not quiet.\n\nWe can start by analyzing Anne's properties:\n\n- Anne is quiet (1).\n- From statement 16, we know that if someone is quiet then they are cold. Therefore, Anne is cold.\n\n- From statement 12, we know that if someone is cold then they are young. Therefore, Anne is young.\n\n- From statement 13, we know that if someone is young and quiet then they are blue. Therefore, Anne is blue.\n\n- From statement 18, we know that all blue people are smart. Therefore, Anne is smart.\n\nNow that we know Anne is smart, we can analyze the statement \"All smart, cold people are round\" (11). Since Anne is smart and cold, we can deduce that Anne is round.\n\nSince Anne is round, we can apply statement 14: If someone is round and not quiet then they are blue. Since we already know Anne is blue, we can conclude that statement 14 is true for Anne, but it does not provide any new information.\n\nNow that we know Anne is round, we can conclude that the statement \"Anne is not round\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether Anne is not round, we need to analyze the given information and see if we can infer any information about Anne.\n\n1. All smart, cold people are round. \nThis statement does not give us any information about Anne, so we cannot conclude anything about her being round or not.\n\n2. If someone is cold then they are young. \nThis statement also does not give us any information about Anne, so we cannot conclude anything about her age.\n\n3. If someone is young and quiet then they are blue. \nThis statement does not give us any information about Anne, so we cannot conclude anything about her being blue or not.\n\n4. If someone is round and not quiet then they are blue. \nThis statement also does not give us any information about Anne, so we cannot conclude anything about her being blue or not.\n\n5. Nice, blue people are cold. \nThis statement does not give us any information about Anne, so we cannot conclude anything about her being cold or not.\n\n6. If someone is quiet then they are cold. \nSince we know that Anne is quiet (given in the problem), we can conclude that Anne is cold.\n\n7. All blue people are smart. \nWe do not have enough information about Anne being blue or not, so we cannot conclude anything about her being smart.\n\n8. Erin is nice, Erin is quiet, Erin is smart. \nThis statement does not give us any information about Anne, so we cannot conclude anything about her being nice, quiet, or smart.\n\n9. Charlie is cold, Charlie is not quiet, Charlie is young. \nThis statement does not give us any information about Anne, so we cannot conclude anything about her age or being quiet or cold.\n\n10. Fiona is not quiet, Fiona is round, Fiona is young. \nThis statement does not give us any information about Anne, so we cannot conclude anything about her being round or not.\n\nGiven that Anne is quiet, we can conclude that Anne is cold from statement 6. However, we do not have enough information to determine whether Anne is round or not.\n\nSince we cannot conclude whether Anne is round or not, the statement \"Anne is not round\" is unknown.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Anne is quiet. (Given)\n\n2. From the statement \"If someone is quiet then they are cold,\" we can conclude that Anne is cold. (Given)\n\n3. From the statement \"If someone is cold then they are young,\" we can conclude that Anne is young. (Given)\n\n4. We don't have any information about Anne being round or not. Fiona is round, but that doesn't tell us anything about Anne.\n\n5. Since we don't have any information about Anne being round or not, we can't determine whether the statement \"Anne is not round\" is true or false. Therefore, it's unknown.\n\nSo the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Anne is quiet. (Given)\n\n2. If someone is quiet then they are cold. (Given)\n   So, Anne is cold.\n\n3. If someone is cold then they are young. (Given)\n   So, Anne is young.\n\n4. Now we have two possibilities: \n   a) Anne is round\n   b) Anne is not round\n\n5. If Anne is round (possibility a), then according to the given statement \"All blue people are smart\" and \"All smart, cold people are round\", we can conclude that Anne is blue and smart. However, we cannot determine whether Anne is round or not from this information.\n\n6. However, if we consider the possibility b) Anne is not round, then according to the statement \"If someone is round and not quiet then they are blue\", we cannot conclude that Anne is blue since Anne is not round. But we have the statement \"If someone is quiet then they are cold\" and \"If someone is cold then they are young\" so Anne is cold and young.\n\n7. Now we have another possibility: \n   a) Anne is blue\n   b) Anne is not blue\n\n8. If Anne is blue (possibility a), then we have the statement \"Nice, blue people are cold\". Since Anne is blue and cold, we can conclude that Anne is nice. However, we cannot determine whether Anne is blue or not from this information.\n\n9. However, if we consider the possibility b) Anne is not blue, then we have the statement \"All blue people are smart\". Since Anne is not blue, Anne cannot be smart. But we have the statement \"If someone is young and quiet then they are blue\" so Anne cannot be blue since Anne is not blue.\n\n10. Now, if we go back to the possibility b) Anne is not round, we have the statement \"If someone is quiet then they are cold\" so Anne is cold and young. We have the statement \"All blue people are smart\" so Anne is not blue since Anne is not smart.\n\n11. Now, we have the statement \"If someone is quiet then they are cold\" so Anne is cold and young. We have the statement \"All smart, cold people are round\" so Anne is round. However, this contradicts our statement \"Anne is not round\" which we are trying to determine.\n\nSince we reached a contradiction, we can conclude that the statement \"Anne is not round\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1.  Given information:\n    *   Anne is quiet.\n    *   Charlie is cold.\n    *   Charlie is not quiet.\n    *   Charlie is young.\n    *   Erin is nice.\n    *   Erin is quiet.\n    *   Erin is smart.\n    *   Fiona is not quiet.\n    *   Fiona is round.\n    *   Fiona is young.\n    *   All smart, cold people are round.\n    *   If someone is cold then they are young.\n    *   If someone is young and quiet then they are blue.\n    *   If someone is round and not quiet then they are blue.\n    *   Nice, blue people are cold.\n    *   If someone is quiet then they are cold.\n    *   All blue people are smart.\n\n2.  From the given information, we know that:\n    *   Since Erin is quiet, then Erin is cold. (From the statement \"If someone is quiet then they are cold.\")\n    *   Since Erin is cold, then Erin is young. (From the statement \"If someone is cold then they are young.\")\n    *   Since Erin is young and quiet, then Erin is blue. (From the statement \"If someone is young and quiet then they are blue.\")\n    *   Since Erin is blue, then Erin is smart. (From the statement \"All blue people are smart.\")\n    *   Since Erin is round, then Erin is not blue. (From the statement \"If someone is round and not quiet then they are blue.\")\n    *   Since Erin is blue, then Erin is not round. (We already know that Erin is round, so this statement contradicts itself.)\n    *   We can't derive any information about Anne from the statements above.\n\n3.  Now, we need to find out if there's any information that relates to Anne's roundness.\n    *   Since there's no information that relates to Anne's roundness, we can't determine whether Anne is round or not.\n    *   Therefore, the statement \"Anne is not round\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not round\" is true, false, or unknown, we need to analyze the given information and apply it to Anne's characteristics.\n\n1. We are given that Anne is quiet. \n   From the given information, we know that if someone is quiet, then they are cold (1st instance).\n   So, Anne is cold.\n\n2. We are given that Charlie is cold. Charlie is not quiet. This information is not related to Anne, so we can ignore it.\n\n3. We are given that Charlie is young. This information is not related to Anne, so we can ignore it.\n\n4. We are given that Erin is nice. Erin is quiet. Erin is smart. This information is not related to Anne, so we can ignore it.\n\n5. We are given that Fiona is not quiet. Fiona is round. Fiona is young. This information is not related to Anne, so we can ignore it.\n\n6. All smart, cold people are round. \n   We know that Anne is cold (from step 1). We also know that all cold people are young (from the given information). So, Anne is young.\n   Since Anne is cold and young, Anne is smart (because all cold people are young, and all young people are either smart or not quiet, but since she is smart then it must be that she is smart, not quiet).\n   Now, we know that Anne is smart, cold, and young. Therefore, Anne is round (because all smart, cold people are round).\n\n7. We are given that if someone is young and quiet then they are blue. However, since Anne is not quiet (she is smart), we can ignore this information.\n\n8. We are given that if someone is round and not quiet then they are blue. However, since Anne is not blue (she is smart), we can ignore this information.\n\n9. We are given that nice, blue people are cold. However, since Anne is not blue (she is smart), we can ignore this information.\n\n10. We are given that if someone is quiet then they are cold. However, since Anne is not quiet (she is smart), we can ignore this information.\n\n11. We are given that all blue people are smart. However, since Anne is not blue (she is smart), we can ignore this information.\n\nFrom the analysis above, we can conclude that Anne is round.\n\nTherefore, the statement \"Anne is not round\" is FALSE.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is not round' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Anne is quiet (given information).\n2. From the given information, 'If someone is quiet then they are cold.'\n   So, Anne is cold.\n3. From the given information, 'If someone is cold then they are young.'\n   So, Anne is young.\n4. Now, let's consider the possibilities for Anne's roundness.\n   - If Anne is round, then she is not quiet because 'All round and not quiet people are blue.'\n     However, we already know Anne is quiet (from step 1).\n     So, this case is impossible.\n   - If Anne is not round, then she is not blue because 'If someone is round and not quiet then they are blue.'\n     Since we know Anne is quiet (from step 1) and blue people are not necessarily round in this case,\n     we can't conclude anything about Anne's roundness.\n5. From the given information, 'All blue people are smart.'\n   However, we don't know if Anne is blue or not, so we can't conclude whether Anne is smart or not.\n6. From the given information, 'Nice, blue people are cold.'\n   However, we don't know if Anne is blue or not, so we can't conclude whether Anne is nice or not.\n\nBased on the given information, we cannot determine whether Anne is round or not, so the statement 'Anne is not round' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(charlie)",
+          "z3_formula": "Not(quiet_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie) == cold(charlie)",
+          "z3_formula": "young_charlie == cold_charlie",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne) == quiet(anne) -> blue(anne)",
+          "z3_formula": "Implies(And(young_anne, quiet_anne), blue_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona) == not quiet(fiona) -> blue(fiona)",
+          "z3_formula": "Implies(And(round_fiona, Not(quiet_fiona)), blue_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona) -> smart(fiona)",
+          "z3_formula": "Implies(blue_fiona, smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin) -> cold(erin)",
+          "z3_formula": "Implies(quiet_erin, cold_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin) & cold(erin) -> round(erin)",
+          "z3_formula": "Implies(And(smart_erin, cold_erin), round_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin) == True",
+          "z3_formula": "round_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_anne, cold_anne), round_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_anne, young_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_anne, quiet_anne), blue_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & not quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_anne, Not(quiet_anne)), blue_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> cold(X)",
+          "z3_formula": "Implies(And(nice_anne, blue_anne), cold_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_anne, smart_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not round(anne)",
+          "z3_formula": "Not(round_anne) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_anne, young_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_anne, quiet_anne), blue_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & Not(quiet(X)) -> blue(X)",
+          "z3_formula": "Implies(And(round_anne, Not(quiet_anne)), blue_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> cold(X)",
+          "z3_formula": "Implies(And(nice_erin, blue_anne), cold_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_anne, blue_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "Not(quiet(fiona))",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_erin, cold_anne), round_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_anne, young_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_fiona, blue_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_erin, quiet_erin), blue_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & Not(quiet(X)) -> blue(X)",
+          "z3_formula": "Implies(And(round_fiona, Not(quiet_fiona)), blue_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> cold(X)",
+          "z3_formula": "Implies(And(nice_erin, blue_erin), cold_erin)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_erin, cold_erin)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_fiona, blue_fiona)",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_erin, smart_erin)",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(charlie)",
+          "z3_formula": "Not(quiet_charlie) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_X, cold_X), round_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_X, young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_X, cold_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_X, quiet_X), blue_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & not quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, Not(quiet_X)), blue_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> cold(X)",
+          "z3_formula": "Implies(And(nice_X, blue_X), cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_X, cold_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_X, smart_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not round(anne)",
+          "z3_formula": "Not(round_anne) == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_anne, young_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_anne, quiet_anne), blue_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & Not(quiet(X)) -> blue(X)",
+          "z3_formula": "Implies(And(round_anne, Not(quiet_anne)), blue_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_anne, smart_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_anne, cold_anne), round_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(charlie)",
+          "z3_formula": "Not(quiet_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not round(erin)",
+          "z3_formula": "Not(round_erin) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_X, cold_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_X, young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_X, quiet_X), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & not quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, Not(quiet_X)), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> cold(X)",
+          "z3_formula": "Implies(And(nice_X, blue_X), cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_X, cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_X, smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(anne)",
+          "z3_formula": "Not(cold_anne) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(round(anne))",
+          "z3_formula": "round_anne == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_anne, young_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_anne, quiet_anne), blue_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & Not(quiet(X)) -> blue(X)",
+          "z3_formula": "Implies(And(round_anne, Not(quiet_anne)), blue_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_anne, smart_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_anne, cold_anne), round_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & not quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_fiona, Not(quiet_fiona)), blue_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_anne, young_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_anne, young_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_anne, blue_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_anne, smart_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_anne, cold_anne), round_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_anne, young_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_anne, quiet_anne), blue_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_anne, nice_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_anne, smart_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_anne, quiet_anne), blue_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_anne, cold_anne), round_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(charlie)",
+          "z3_formula": "Not(quiet_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_cold_X, cold_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_X, young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_X, quiet_X), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & not quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, Not(quiet_X)), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> cold(X)",
+          "z3_formula": "Implies(And(nice_X, blue_X), cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_X, cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_X, smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(erin)",
+          "z3_formula": "Not(blue_erin) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not round(erin)",
+          "z3_formula": "Not(round_erin) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not round(erin)",
+          "z3_formula": "Not(round_erin) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not round(erin)",
+          "z3_formula": "Not(round_erin) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(round(anne))",
+          "z3_formula": "Unknown(round_anne)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> round(X)",
+          "z3_formula": "Implies(And(cold_anne, young_anne), round_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_anne, quiet_anne), blue_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == False",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & not quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_anne, Not(quiet_anne)), blue_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == False",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == False",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == False",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == False",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 11
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 201,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 61
+    },
+    "maxsat_stats": {
+      "satisfied": 53,
+      "excluded": 8,
+      "total_weight": 185,
+      "solve_time_ms": 3.0841967090964317
+    },
+    "timing": {
+      "trace_gen_s": 9.451,
+      "extraction_s": 46.213,
+      "dedup_s": 2.785,
+      "maxsat_s": 0.006,
+      "total_s": 58.455
+    }
+  }
+}

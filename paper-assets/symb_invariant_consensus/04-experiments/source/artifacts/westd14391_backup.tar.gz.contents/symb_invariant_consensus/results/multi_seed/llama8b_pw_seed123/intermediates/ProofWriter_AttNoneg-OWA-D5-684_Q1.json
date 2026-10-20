@@ -1,0 +1,1150 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-684_Q1",
+    "problem": "Anne is smart. Charlie is big. Charlie is nice. Gary is green. Harry is furry. Harry is nice. Harry is red. All furry people are kind. If Charlie is big then Charlie is green. If someone is kind then they are big. Kind, green people are big. Smart people are furry. If someone is green then they are kind. All big, nice people are kind. All smart, nice people are red. Big, kind people are nice.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is nice.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nSmart($x, bool) ::: Is x smart?\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nGreen($x, bool) ::: Is x green?\nFurry($x, bool) ::: Is x furry?\nRed($x, bool) ::: Is x red?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nSmart(Anne, True) ::: Anne is smart.\nBig(Charlie, True) ::: Charlie is big.\nNice(Charlie, True) ::: Charlie is nice.\nGreen(Gary, True) ::: Gary is green.\nFurry(Harry, True) ::: Harry is furry.\nNice(Harry, True) ::: Harry is nice.\nRed(Harry, True) ::: Harry is red.\n\nRules:\nFurry($x, True) >>> Kind($x, True) ::: All furry people are kind.\nBig(Charlie, True) >>> Green(Charlie, True) ::: If Charlie is big then Charlie is green.\nKind($x, True) >>> Big($x, True) ::: If someone is kind then they are big.\nGreen($x, True) && Kind($x, True) >>> Big($x, True) ::: Kind, green people are big.\nSmart($x, True) >>> Furry($x, True) ::: Smart people are furry.\nGreen($x, True) >>> Kind($x, True) ::: If someone is green then they are kind.\nBig($x, True) && Nice($x, True) >>> Kind($x, True) ::: All big, nice people are kind.\nSmart($x, True) && Nice($x, True) >>> Red($x, True) ::: All smart, nice people are red.\nBig($x, True) && Kind($x, True) >>> Nice($x, True) ::: Big, kind people are nice.\n\nQuery:\nNice(Charlie, True) ::: Charlie is nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 166.0,
+      "Unknown": 115.0
+    },
+    "answer_counts": {
+      "True": 11,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information using logical deductions.\n\n1. Charlie is big. (Given)\n\n2. If Charlie is big, then Charlie is green. (Given)\n   Therefore, Charlie is green. (From 1 and 2)\n\n3. All furry people are kind. (Given)\n   We also know that smart people are furry. (Given)\n   Therefore, smart people are kind. (From 3)\n\n4. If someone is kind, then they are big. (Given)\n   We already know that Charlie is big. (From 1)\n\n5. Charlie is green. (From 2)\n   We also know that if someone is green, then they are kind. (Given)\n   Therefore, Charlie is kind. (From 5)\n\n6. All big, nice people are kind. (Given)\n   We already know that Charlie is big. (From 1)\n   We also know that Charlie is kind. (From 5)\n   Therefore, Charlie is nice. (From 6)\n\nSince we have logically deduced that Charlie is nice, we can conclude that the statement \"Charlie is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven statements:\n1. Charlie is big.\n2. Charlie is nice.\n3. Gary is green.\n4. Harry is furry.\n5. Harry is nice.\n6. Harry is red.\n7. All furry people are kind.\n8. If Charlie is big then Charlie is green.\n9. If someone is kind then they are big.\n10. Kind, green people are big.\n11. Smart people are furry.\n12. If someone is green then they are kind.\n13. All big, nice people are kind.\n14. All smart, nice people are red.\n15. Big, kind people are nice.\n\nWe can simplify the given statements using the rules of logical implication and contrapositive. \n\nFrom statement 8: If Charlie is big then Charlie is green. This can be written as B \u2192 G (If B then G).\n\nFrom statement 9: If someone is kind then they are big. This can be written as K \u2192 B (If K then B).\n\nFrom statement 12: If someone is green then they are kind. This can be written as G \u2192 K (If G then K).\n\nWe can simplify statement 10 using the above rules: Kind, green people are big. This can be written as K \u2227 G \u2192 B (If K and G then B).\n\nUsing the rule of contrapositive, we can rewrite the above statement as: \u00acB \u2192 \u00ac(K \u2227 G) (If not B then not (K and G)).\n\nFrom statement 13: All big, nice people are kind. This can be written as B \u2227 N \u2192 K (If B and N then K).\n\nFrom statement 14: All smart, nice people are red. This can be written as S \u2227 N \u2192 R (If S and N then R).\n\nFrom statement 15: Big, kind people are nice. This can be written as B \u2227 K \u2192 N (If B and K then N).\n\nNow, let's analyze the statement \"Charlie is nice\". This can be written as C is N.\n\nGiven statement 2: Charlie is nice. This can be written as C is N.\n\nNow, we can see that statement 2 and our target statement are the same. However, we can also analyze this statement using the rules we simplified earlier.\n\nFrom statement 1: Charlie is big. This can be written as C is B.\n\nUsing the rule of modus ponens with statements 1 and 8, we can conclude that C is G (Charlie is green).\n\nUsing the rule of modus ponens with statements 9 and 13, we can conclude that C is K (Charlie is kind).\n\nNow, we have two possible conclusions: \n1. C is B (Charlie is big)\n2. C is K (Charlie is kind)\n\nHowever, statement 1 and 2 are not mutually exclusive. In fact, we can conclude that C is B and C is K from the above statements.\n\nNow, we can use statement 10 to analyze our conclusions: K \u2227 G \u2192 B.\n\nWe already know that C is K and C is G. Therefore, we can conclude that C is B.\n\nNow, using the rule of modus ponens with statements 1 and 13, we can conclude that C is K.\n\nFinally, using the rule of modus ponens with statements 1 and 15, we can conclude that C is N.\n\nTherefore, the statement \"Charlie is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is big.\n2. Charlie is nice.\n\nFrom the given information, we have the following statements:\n\n- If Charlie is big, then Charlie is green. (Statement 1)\n- If someone is kind, then they are big. (Statement 2)\n- All furry people are kind. (Statement 3)\n- Smart people are furry. (Statement 4)\n- If someone is green, then they are kind. (Statement 5)\n- All big, nice people are kind. (Statement 6)\n- All smart, nice people are red. (Statement 7)\n- Big, kind people are nice. (Statement 8)\n\nWe can use these statements to derive more information:\n\n- From Statement 1, we know that if Charlie is big, then Charlie is green.\n- From Statement 2, we can conclude that Charlie is kind, because he is big.\n\nNow we need to check if Charlie is nice. We have Statement 6, which says that all big, nice people are kind. Since we know that Charlie is big and kind, we can conclude that Charlie is indeed nice.\n\nTherefore, the statement \"Charlie is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and deduce the information step by step.\n\nGiven statements:\n1. Anne is smart.\n2. Charlie is big.\n3. Charlie is nice.\n4. Gary is green.\n5. Harry is furry.\n6. Harry is nice.\n7. Harry is red.\n8. All furry people are kind.\n9. If Charlie is big then Charlie is green.\n10. If someone is kind then they are big.\n11. Kind, green people are big.\n12. Smart people are furry.\n13. If someone is green then they are kind.\n14. All big, nice people are kind.\n15. All smart, nice people are red.\n16. Big, kind people are nice.\n\nFrom statement 9: If Charlie is big then Charlie is green.\nFrom statement 2: Charlie is big.\nTherefore, by modus ponens (a rule of inference), Charlie is green (from 9 and 2).\n\nFrom statement 13: If someone is green then they are kind.\nFrom the previous conclusion: Charlie is green.\nTherefore, by modus ponens (a rule of inference), Charlie is kind.\n\nFrom statement 10: If someone is kind then they are big.\nFrom the previous conclusion: Charlie is kind.\nTherefore, by modus ponens (a rule of inference), Charlie is big (we already knew this, but it's good to confirm).\n\nFrom statement 14: All big, nice people are kind.\nFrom statement 2: Charlie is big.\nFrom statement 3: Charlie is nice.\nTherefore, by universal instantiation (a rule of inference), Charlie is kind (which we already found).\n\nFrom statement 16: Big, kind people are nice.\nFrom statement 2: Charlie is big.\nFrom the previous conclusion: Charlie is kind.\nTherefore, by universal instantiation (a rule of inference), Charlie is nice.\n\nThe final answer is: $\\boxed{True}$",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information and apply it to the statement.\n\n1. Given statements:\n   - Charlie is big.\n   - Charlie is nice.\n   - Gary is green.\n   - Harry is furry.\n   - Harry is nice.\n   - Harry is red.\n   - All furry people are kind.\n   - If Charlie is big, then Charlie is green.\n   - If someone is kind, then they are big.\n   - Kind, green people are big.\n   - Smart people are furry.\n   - If someone is green, then they are kind.\n   - All big, nice people are kind.\n   - All smart, nice people are red.\n   - Big, kind people are nice.\n\n2. We are given that \"Charlie is big.\" So, let's look at the implications of this:\n   - From \"Charlie is big,\" we can infer \"Charlie is green\" using the statement \"If Charlie is big, then Charlie is green.\"\n   - Since \"Charlie is green,\" we can infer \"Charlie is kind\" using the statement \"If someone is green, then they are kind.\"\n\n3. Now that we have \"Charlie is kind,\" we can use this to further infer:\n   - Since \"Charlie is kind,\" we can infer \"Charlie is big\" using the statement \"If someone is kind, then they are big.\"\n   - We already know \"Charlie is big,\" so this statement is redundant.\n\n4. Given \"Charlie is kind\" and \"Charlie is big,\" we can use the statement \"Big, kind people are nice\" to infer that \"Charlie is nice.\"\n\nTherefore, based on the given information, the statement \"Charlie is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Charlie is big. (Given)\n2. All big, nice people are kind. (Given)\n3. If someone is kind then they are big. (Given)\nFrom (3), we can infer that being kind and big are equivalent. \n4. Charlie is big. (From 1)\n5. Charlie is kind. (From 2 and 4, since big, nice people are kind)\n6. Charlie is big. (From 1)\n7. If Charlie is big then Charlie is green. (Given)\n8. Charlie is green. (From 6 and 7)\n9. If someone is green then they are kind. (Given)\n10. Charlie is kind. (From 9 and 8)\nNow we have two statements (5 and 10) that both say Charlie is kind, so from this we can conclude Charlie is indeed kind.\n\n11. Charlie is kind. (From 5)\n12. Charlie is big. (From 6)\n13. Kind, green people are big. (Given)\n14. Charlie is green. (From 8)\n15. Charlie is big. (From 12)\n16. All kind, green people are big. (From 13)\n17. Charlie is big. (From 12)\n18. Charlie is kind. (From 11)\n19. Charlie is green. (From 14)\n20. Charlie is kind. (From 18)\n21. Charlie is big. (From 17)\n22. Charlie is green. (From 14)\n23. Charlie is kind. (From 20)\n24. Charlie is kind. (From 5)\n25. Charlie is kind. (From 10)\n26. Charlie is kind. (From 20)\n27. Charlie is kind. (From 23)\n28. All big, nice people are kind. (From 2)\n29. Charlie is nice. (If someone is big and kind, then they are nice)\n30. Charlie is nice. (If Charlie is big and kind, then Charlie is nice)\n\nNow we have determined that Charlie is indeed kind. However, to determine if Charlie is nice, we also need to use the statement from 29 and 30. To conclude that Charlie is indeed nice, we need to prove that Charlie is big. \n\n31. Charlie is big. (From 1)\n32. Charlie is nice. (If Charlie is big, then Charlie is nice)\n\nFrom 31, we can conclude that Charlie is indeed big. Therefore, from 32, we can conclude that Charlie is indeed nice.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information and create a truth table or use logical reasoning to determine the relationship between the given statements.\n\nGiven statements:\n\n1. Anne is smart.\n2. Charlie is big.\n3. Charlie is nice.\n4. Gary is green.\n5. Harry is furry.\n6. Harry is nice.\n7. Harry is red.\n8. All furry people are kind.\n9. If Charlie is big then Charlie is green.\n10. If someone is kind then they are big.\n11. Kind, green people are big.\n12. Smart people are furry.\n13. If someone is green then they are kind.\n14. All big, nice people are kind.\n15. All smart, nice people are red.\n16. Big, kind people are nice.\n\nWe are trying to determine the truth of statement 3: Charlie is nice.\n\nUsing the given statements, we can deduce the following:\n\n- From statement 2 and 9, we know Charlie is green.\n- From statement 4 and 13, we know Gary is kind.\n- From statement 10, we know that kind people are big.\n- From statement 10, we know that kind people are big, and from statement 12, we know that smart people are furry, but since there is no statement that links kind and smart people, we cannot conclude that they are one and the same.\n- From statement 8, we know that all furry people are kind.\n- From statement 5, we know Harry is furry, and from statement 8, we know Harry is kind.\n- From statement 6, we know Harry is nice.\n- From statement 14, we know that smart people are furry, and from statement 1, we know Anne is smart, so Anne is furry.\n- From statement 8, we know that all furry people are kind, and from statement 1, we know Anne is smart, so Anne is kind.\n- From statement 7, we know Harry is red.\n- From statement 15, we know that all smart, nice people are red, and from statement 1 and statement 6, we know that Anne is nice, so Anne is red.\n- From statement 16, we know that big, kind people are nice.\n- From statement 10, we know that kind people are big, and from statement 2, we know Charlie is big, so Charlie is kind.\n- From statement 14, we know that smart people are furry, and from statement 1, we know Anne is smart, so Anne is furry.\n\nNow, we need to determine the truth of statement 3: Charlie is nice.\n\nFrom statement 2 and 9, we know Charlie is green. From statement 16, we know that big, kind people are nice. Since we know Charlie is big and Charlie is kind, we can conclude that Charlie is nice.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will use logical deductions based on the given statements. We will analyze the given statements one by one and use them to deduce the truth value of the statement \"Charlie is nice.\"\n\n1. Charlie is big.\n2. Charlie is nice.\n3. Gary is green.\n4. Harry is furry.\n5. Harry is nice.\n6. Harry is red.\n7. All furry people are kind.\n8. If Charlie is big then Charlie is green.\n9. If someone is kind then they are big.\n10. Kind, green people are big.\n11. Smart people are furry.\n12. If someone is green then they are kind.\n13. All big, nice people are kind.\n14. All smart, nice people are red.\n15. Big, kind people are nice.\n\nWe want to determine whether the statement \"Charlie is nice\" is true or false. Let's analyze the given statements:\n\n- From statement 2, we know that Charlie is nice.\n- From statement 1, we know that Charlie is big.\n- From statement 13, we know that all big, nice people are kind. Since Charlie is big and nice, Charlie must be kind.\n\nHowever, we also have some other statements that might contradict this:\n\n- From statement 9, we know that if someone is kind, they are big. But this is not enough to determine Charlie's niceness.\n\nLet's look at the statement \"Gary is green\" from statement 3. This might help us understand the relationship between green and kind.\n\n- From statement 8, we know that if Charlie is big, then Charlie is green. However, this does not mean that Charlie is green.\n\nLet's try to eliminate some possibilities using the statement \"Gary is green\" from statement 3.\n\n- From statement 12, we know that if someone is green, then they are kind. But Gary is green, and we don't know if Gary is kind.\n\nLet's analyze the statement \"Harry is furry\" from statement 4.\n\n- From statement 7, we know that all furry people are kind. Since Harry is furry, Harry must be kind.\n\nHowever, we also have some other statements that might contradict this:\n\n- From statement 11, we know that smart people are furry. But this does not mean that Harry is smart.\n\nLet's try to eliminate some possibilities using the statement \"Harry is furry\" from statement 4.\n\n- From statement 11, we know that smart people are furry. Since Harry is furry, Harry must be smart.\n\nNow, let's analyze the statement \"Harry is nice\" from statement 5.\n\n- From statement 14, we know that all smart, nice people are red. Since Harry is smart and nice, Harry must be red.\n\nNow, let's analyze the statement \"Harry is red\" from statement 6.\n\n- From statement 14, we know that all smart, nice people are red. Since Harry is red, Harry must be smart and nice.\n\nNow, let's analyze the statement \"Harry is nice\" from statement 5.\n\n- We already know that Harry is nice.\n\nHowever, we still don't know if Charlie is nice. Let's try to eliminate some possibilities using the statement \"Harry is nice\" from statement 5.\n\n- From statement 5, we know that Harry is nice.\n- From statement 13, we know that all big, nice people are kind. Since Harry is nice, Harry must be kind.\n\nHowever, we also have some other statements that might contradict this:\n\n- From statement 9, we know that if someone is kind, they are big. But this is not enough to determine Harry's niceness.\n\nLet's try to eliminate some possibilities using the statement \"Harry is nice\" from statement 5.\n\n- From statement 5, we know that Harry is nice.\n- From statement 11, we know that smart people are furry. Since Harry is furry, Harry must be smart.\n\nNow, let's analyze the statement \"Harry is red\" from statement 6.\n\n- From statement 14, we know that all smart, nice people are red. Since Harry is smart and nice, Harry must be red.\n\nHowever, we still don't know if Charlie is nice. Let's try to eliminate some possibilities using the statement \"Harry is red\" from statement 6.\n\n- From statement 14, we know that all smart, nice people are red. Since Harry is red, Harry must be smart and nice.\n\nNow, let's analyze the statement \"Charlie is nice\" from statement 2.\n\n- From statement 13, we know that all big, nice people are kind. Since Charlie is big and nice, Charlie must be kind.\n\nHowever, we also have some other statements that might contradict this:\n\n- From statement 9, we know that if someone is kind, they are big. But this is not enough to determine Charlie's niceness.\n\nLet's try to eliminate some possibilities using the statement \"Charlie is nice\" from statement 2.\n\n- From statement 2, we know that Charlie is nice.\n- From statement 9, we know that if someone is kind, they are big. Since Charlie is kind, Charlie must be big.\n\nHowever, we still don't know if Charlie is nice. Let's try to eliminate some possibilities using the statement \"Charlie is nice\" from statement 2.\n\n- From statement 2, we know that Charlie is nice.\n- From statement 13, we know that all big, nice people are kind. Since Charlie is big and nice, Charlie must be kind.\n\nHowever, we still don't know if Charlie is nice. Let's try to eliminate some possibilities using the statement \"Charlie is nice\" from statement 2.\n\n- From statement 2, we know that Charlie is nice.\n- From statement 8, we know that if Charlie is big, then Charlie is green. However, this does not mean that Charlie is green.\n\nSince we cannot determine whether Charlie is nice or not using the given statements, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information step by step and use logical deductions.\n\n1. Given statements:\n   - Charlie is big.\n   - Charlie is nice.\n   - If Charlie is big then Charlie is green.\n   - If someone is kind then they are big.\n   - Kind, green people are big.\n   - Smart people are furry.\n   - If someone is green then they are kind.\n   - All big, nice people are kind.\n   - All smart, nice people are red.\n   - Big, kind people are nice.\n\n2. We can start by analyzing the statement \"Charlie is big\" and its relation to other statements.\n\n3. Since Charlie is big, we can use the statement \"If Charlie is big then Charlie is green\" to deduce that Charlie is green.\n\n4. Now, since Charlie is green, we can use the statement \"If someone is green then they are kind\" to deduce that Charlie is kind.\n\n5. We already know that Charlie is kind, and using the statement \"Kind, green people are big\" is redundant because we already know Charlie is big.\n\n6. However, since Charlie is kind, we can use the statement \"If someone is kind then they are big\" to confirm that Charlie is big, but this is already known.\n\n7. Now, since Charlie is kind and big, we can use the statement \"Big, kind people are nice\" to deduce that Charlie is nice.\n\n8. Therefore, based on the given information and logical deductions, the statement \"Charlie is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Charlie is big (Statement: Charlie is big).\n2. From the information \"If Charlie is big then Charlie is green\", we can conclude that Charlie is green (Statement: Charlie is green).\n3. We also know that \"If someone is green then they are kind\" (Statement: If someone is green then they are kind). \n   Since Charlie is green, we can conclude that Charlie is kind.\n\n4. From the statement \"All big, nice people are kind\", we cannot conclude anything about Charlie being nice or not, because we do not have any information that Charlie is nice. The statement only tells us that big, nice people are kind, but it does not tell us that kind people are nice.\n\nHowever, we know that \"All furry people are kind\" (Statement: All furry people are kind), and from the statement \"Smart people are furry\" (Statement: Smart people are furry) we can conclude that smart people are kind.\n\n5. But, we also know that \"Harry is furry\" (Statement: Harry is furry), \"Harry is kind\" (Statement: All furry people are kind), \"Harry is red\" (Statement: Harry is red), \"All smart, nice people are red\" (Statement: All smart, nice people are red), \"Harry is nice\" (Statement: Harry is nice). This information is only used to show that the statement \"Smart people are furry\" is true and does not impact our decision.\n\nHowever, we also know that \"Anne is smart\" (Statement: Anne is smart) and \"All smart, nice people are red\" (Statement: All smart, nice people are red). We do not have any information that Anne is nice or not.\n\n6. Since \"All big, nice people are kind\" (Statement: All big, nice people are kind) and we know that Charlie is big and kind, we can try to conclude that Charlie is nice.\n\nHowever, we know that \"Charlie is nice\" is the statement we are trying to evaluate. We are trying to conclude whether Charlie is nice, but we know that Charlie is kind.\n\n7. From the statement \"If someone is kind then they are big\" (Statement: If someone is kind then they are big), we know that Charlie is big.\n\n8. From the statement \"All big, nice people are kind\" (Statement: All big, nice people are kind), we know that big, nice people are kind. But we do not know that all kind people are nice.\n\nHowever, we know that Charlie is big and kind.\n\n9. From the statement \"All big, nice people are kind\" (Statement: All big, nice people are kind), we cannot conclude that Charlie is nice.\n\nHowever, we know that \"All kind people are big\" (Statement: If someone is kind then they are big), and we also know that \"All big, kind people are nice\" (Statement: Big, kind people are nice).\n\n10. From the statement \"All big, kind people are nice\" (Statement: Big, kind people are nice), we can conclude that Charlie is nice.\n\nTherefore, the statement \"Charlie is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is big. (This is given)\n\n2. If Charlie is big then Charlie is green. \n   So, we can conclude that Charlie is green. (This is a logical consequence of the given statement)\n\n3. If someone is green then they are kind. \n   So, we can conclude that Charlie is kind. (This is a logical consequence of the given statement)\n\n4. All big, nice people are kind. \n   We already know Charlie is big and kind. However, this statement does not give us any information about Charlie's niceness directly.\n\n5. All big, nice people are kind. (This is the same statement as in step 4)\n   Since we already know Charlie is big and kind, we can conclude that Charlie must be nice.\n\nSo, based on the given information, we can conclude that the statement \"Charlie is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is big. (Given)\n2. If Charlie is big, then Charlie is green. (Given)\n   - From (1) and (2), we can conclude that Charlie is green.\n3. Gary is green. (Given)\n   - From (3), we can conclude that Gary is green, but this does not provide any direct information about Charlie.\n4. If someone is green, then they are kind. (Given)\n   - From (2) and (4), we can conclude that Charlie is kind.\n5. Charlie is nice. (Statement to be evaluated)\n\nHowever, we can also analyze the information from a different perspective:\n\n1. If someone is kind, then they are big. (Given)\n2. All big, nice people are kind. (Given)\n   - From (1) and (2), we can conclude that all big, nice people are kind.\n3. Charlie is big. (Given)\n   - From (3) and (2), we can conclude that Charlie is kind.\n4. All kind, green people are big. (Given)\n   - From (2) and (4), we can conclude that all kind, green people are big.\n\nNow, we can evaluate the statement \"Charlie is nice\" using the information we have gathered.\n\nFrom (2) and (4), we can conclude that Charlie is kind, and from (2) and (3), we can conclude that Charlie is big. Now, we need to evaluate if Charlie is nice.\n\nSince we have already concluded that Charlie is kind, and all big, nice people are kind, we can conclude that Charlie is nice.\n\nTherefore, the statement \"Charlie is nice\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_charlie, green_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_X, kind_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(smart_X)",
+          "z3_formula": "kind_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_X, big_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_charlie, nice_charlie), kind_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_charlie, green_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(kind_charlie, green_charlie), big_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "\u00acbig(X) -> \u00ac(kind(X) & green(X))",
+          "z3_formula": "Implies(Not(big_charlie), Not(And(kind_charlie, green_charlie)))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_charlie, nice_charlie), kind_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_charlie, nice_charlie), red_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_charlie, kind_charlie), nice_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_charlie, green_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_charlie, kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_charlie, furry_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_charlie, nice_charlie), kind_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_charlie, nice_charlie), red_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_charlie, kind_charlie), nice_charlie)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_charlie, green_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_harry, big_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> big(X)",
+          "z3_formula": "Implies(And(green_harry, kind_harry), big_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_anne, furry_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_charlie, nice_charlie), kind_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_charlie, kind_charlie), nice_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_anne, nice_anne), red_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(charlie) -> green(charlie)",
+          "z3_formula": "Implies(big_charlie, green_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> big(X)",
+          "z3_formula": "Implies(And(green_charlie, kind_charlie), big_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_charlie, nice_charlie), kind_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_X, nice_X), red_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_charlie, kind_charlie), nice_charlie)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_charlie, kind_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_charlie, kind_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(kind_charlie, green_charlie), big_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_charlie, kind_charlie), nice_charlie)",
+          "source_step": 29
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_charlie, kind_charlie), nice_charlie)",
+          "source_step": 30
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 31
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_charlie, nice_charlie)",
+          "source_step": 32
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_gary, big_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_anne, big_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_anne, furry_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(kind_charlie, green_charlie), big_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_anne, furry_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_gary, big_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_gary, kind_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_charlie, kind_charlie), nice_charlie)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_charlie, green_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_charlie, nice_charlie), kind_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_harry, furry_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_harry, nice_harry), red_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(charlie) -> green(charlie)",
+          "z3_formula": "Implies(big_charlie, green_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(kind_charlie, green_charlie), big_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_charlie, furry_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_charlie, nice_charlie), kind_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_charlie, nice_charlie), red_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_charlie, kind_charlie), nice_charlie)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_charlie, green_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_charlie, nice_charlie), kind_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_charlie, kind_charlie), nice_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_charlie, green_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_charlie, kind_charlie), nice_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_charlie, green_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), nice_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 170,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 38
+    },
+    "maxsat_stats": {
+      "satisfied": 38,
+      "excluded": 0,
+      "total_weight": 170,
+      "solve_time_ms": 1.0749809443950653
+    },
+    "timing": {
+      "trace_gen_s": 14.792,
+      "extraction_s": 24.631,
+      "dedup_s": 1.27,
+      "maxsat_s": 0.003,
+      "total_s": 40.696
+    }
+  }
+}

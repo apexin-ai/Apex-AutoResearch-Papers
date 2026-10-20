@@ -1,0 +1,617 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-410_Q8",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(b)",
+          "z3_formula": "green_b == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(b, l)",
+          "z3_formula": "needs_b_l == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(b, c)",
+          "z3_formula": "sees_b_c == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(b, l)",
+          "z3_formula": "sees_b_l == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(c, b)",
+          "z3_formula": "sees_c_b == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(co, b)",
+          "z3_formula": "sees_co_b == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(l, b)",
+          "z3_formula": "needs_l_b == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, co) -> needs(X, b)",
+          "z3_formula": "Implies(sees_co_b, needs_co_b)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, b) & sees(X, l) -> sees(X, co)",
+          "z3_formula": "Implies(And(needs_b_l, sees_b_l), sees_co_b)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": []
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visits(X, cat)",
+          "z3_formula": "Implies(And(sees_bald_eagle_cat, green_cat), visits_bald_eagle_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(cat, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(And(needs_cow_cat, needs_cat_bald_eagle), blue_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_cow, needs_cow_lion), sees_cow_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_cow_bald_eagle, needs_cow_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_cow_bald_eagle, sees_cow_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> blue(X)",
+          "z3_formula": "Implies(needs_cow_cat, blue_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & nice(X) -> visits(lion, cat)",
+          "z3_formula": "Implies(And(visits_bald_eagle_lion, nice_bald_eagle), visits_lion_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & sees(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_cow_bald_eagle, sees_cow_lion), sees_cow_bald_eagle)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_cow_bald_eagle, needs_cow_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visits(X, cat)",
+          "z3_formula": "Implies(And(sees_cat_cat, green_cat), visits_cat_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(cat, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(And(needs_cat_bald_eagle, needs_bald_eagle_bald_eagle), blue_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, needs_X_lion), sees_X_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_cow_cow, needs_cow_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_X_bald_eagle, sees_X_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(needs_X_cat, blue_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & nice(X) -> visits(lion, cat)",
+          "z3_formula": "Implies(And(visits_X_lion, nice_X), visits_lion_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & sees(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, sees_X_lion), sees_X_cow)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_cow_bald_eagle, needs_cow_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_cow_bald_eagle, needs_cow_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> not(Does not need(X, bald_eagle))",
+          "z3_formula": "Implies(needs_cow_bald_eagle, Not(Not(needs_cow_bald_eagle)))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(Does not need(cow, bald_eagle))",
+          "z3_formula": "Not(Not(needs_cow_bald_eagle)) == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_cow_bald_eagle, needs_cow_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_cow_bald_eagle, needs_cow_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visits(X, cat)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), visits_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(cat, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(And(needs_X_cat, needs_cat_bald_eagle), blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, needs_X_lion), sees_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(cow, bald_eagle)",
+          "z3_formula": "Implies(sees_cow_bald_eagle, needs_cow_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_X_bald_eagle, sees_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(needs_X_cat, blue_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & nice(X) -> visits(lion, cat)",
+          "z3_formula": "Implies(And(visits_X_lion, nice_X), visits_lion_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & sees(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, sees_X_lion), sees_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(cow, bald_eagle)",
+          "z3_formula": "Not(needs_cow_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_cow_bald_eagle, needs_cow_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, bald_eagle)",
+          "z3_formula": "needs_cow_bald_eagle == True",
+          "source_step": 2
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & green(cat) -> visits(X, cat)",
+          "z3_formula": "Implies(And(sees_X_cat, green_cat), visits_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & needs(cat, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(And(needs_X_cat, needs_cat_bald_eagle), blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(And(blue_X, needs_X_lion), sees_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_cow, needs_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_X_bald_eagle, sees_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(needs_X_cat, blue_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & nice(X) -> lion_visits_cat",
+          "z3_formula": "Implies(And(visits_X_lion, nice_X), lion_visits_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & sees(X, lion) -> sees(X, cow)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, sees_X_lion), sees_X_cow)",
+          "source_step": 15
+        }
+      ]
+    }
+  ]
+}

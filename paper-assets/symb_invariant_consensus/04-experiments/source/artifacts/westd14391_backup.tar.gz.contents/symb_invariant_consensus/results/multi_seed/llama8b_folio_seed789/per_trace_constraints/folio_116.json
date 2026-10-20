@@ -1,0 +1,834 @@
+{
+  "pid": "folio_116",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "man(michael)",
+          "z3_formula": "man_michael == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "taller(michael, y)",
+          "z3_formula": "taller_michael_y == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_y, taller_y_z), taller_michael_z)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "man(peter)",
+          "z3_formula": "man_peter == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "man(X) & taller(X, Y) -> can_block(Y, X)",
+          "z3_formula": "Implies(And(man_michael, taller_michael_y), can_block_y_michael)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "man(windy)",
+          "z3_formula": "man_windy == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cannot_block_michael(windy)",
+          "z3_formula": "cannot_block_michael_windy == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "can_block(X, Y) -> can_block(X, Y) & not(jump(Y))",
+          "z3_formula": "Implies(can_block_y_michael, And(can_block_y_michael, not(jump_y_michael)))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "great_shooter(jump(Y))",
+          "z3_formula": "great_shooter_jump_y == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == Unknown",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "taller(michael, everyone)",
+          "z3_formula": "taller_michael_everyone == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_everyone, taller_X_Y), taller_X_Z)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_peter_michael, taller_michael_everyone), taller_peter_everyone)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_michael_everyone, can_block_michael_everyone)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, windy)",
+          "z3_formula": "can_block_michael_windy == False",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "can_block(X, Y) -> not(jumping(Y))",
+          "z3_formula": "Implies(can_block_michael_windy, not(jumping_windy))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "jumping(windy)",
+          "z3_formula": "jumping_windy == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "jumping(X) -> great_shooter(X)",
+          "z3_formula": "Implies(jumping_windy, great_shooter_windy)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "taller(michael, everyone_else)",
+          "z3_formula": "taller_michael_everyone_else == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "taller(x, y) & taller(y, z) -> taller(x, z)",
+          "z3_formula": "Implies(And(taller_x_y, taller_y_z), taller_x_z)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, shooter) -> not(jumps(shooter) | shooter == windy)",
+          "z3_formula": "Implies(can_block_michael_shooter, Or(Not(jumps_shooter), shooter == windy))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(can_block(michael, windy))",
+          "z3_formula": "Not(can_block_michael_windy) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not(jumps(shooter) | shooter == windy) -> great_shooter(shooter)",
+          "z3_formula": "Implies(Or(Not(jumps_shooter), shooter == windy), great_shooter_shooter)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == Unknown",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "man(michael)",
+          "z3_formula": "man_michael == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "taller(michael, x)",
+          "z3_formula": "taller_michael_x == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & man(Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(And(taller_michael_x, man_x), can_block_michael_x)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "man(peter)",
+          "z3_formula": "man_peter == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_peter_michael, taller_michael_x), taller_peter_x)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "can_block(X, Y) -> can_block(X, Z)",
+          "z3_formula": "Implies(can_block_michael_x, can_block_michael_z)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, x)",
+          "z3_formula": "can_block_michael_x == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not can_block(michael, windy)",
+          "z3_formula": "Not(can_block_michael_windy) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "can_jump(Y) -> great_shooter(Y)",
+          "z3_formula": "Implies(can_jump_windy, great_shooter_windy)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(great_shooter(windy))",
+          "z3_formula": "Or(Not(can_jump_windy), Not(Not(can_jump_windy))) == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_man_man, can_block_man_man)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "taller(michael, Y)",
+          "z3_formula": "taller_michael_Y == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_Y, taller_Y_Z), taller_michael_Z)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_peter_michael, can_block_peter_michael)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not can_block(michael, windy)",
+          "z3_formula": "Not(can_block_michael_windy) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "can_jump(X) -> great_shooter(X)",
+          "z3_formula": "Implies(can_jump_windy, great_shooter_windy)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "can_jump(windy)",
+          "z3_formula": "can_jump_windy == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "taller(michael, x)",
+          "z3_formula": "taller_michael_x == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_x, taller_x_y), taller_michael_z)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_michael_x, can_block_michael_x)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cannot_block(michael, windy)",
+          "z3_formula": "cannot_block_michael_windy == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cannot_block(X, Y) -> (taller(Y, X) | can_jump(Y))",
+          "z3_formula": "Implies(cannot_block_michael_windy, Or(taller_windy_michael, can_jump_windy))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "taller(michael, x)",
+          "z3_formula": "taller_michael_x == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_peter_michael, taller_michael_x), taller_peter_x)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "can_jump(X) -> great_shooter(X)",
+          "z3_formula": "Implies(can_jump_windy, great_shooter_windy)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == Unknown",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_man_man, can_block_man_man)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "taller(michael, everyone)",
+          "z3_formula": "taller_michael_everyone == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_everyone, taller_everyone_michael), taller_michael_everyone)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, everyone) unless jump",
+          "z3_formula": "can_block_michael_everyone == True unless jump",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, windy)",
+          "z3_formula": "can_block_michael_windy == False",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "can_block(X, Y) -> jump(Y)",
+          "z3_formula": "Implies(can_block_michael_windy, jump_windy)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "jump(windy)",
+          "z3_formula": "jump_windy == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "jump(X) -> great_shooter(X)",
+          "z3_formula": "Implies(jump_windy, great_shooter_windy)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "taller(michael, x)",
+          "z3_formula": "taller_michael_x == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_x, taller_x_y), taller_michael_y)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_peter_michael, can_block_peter_michael)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, x)",
+          "z3_formula": "can_block_michael_x == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not can_block(michael, windy)",
+          "z3_formula": "Not(can_block_michael_windy) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not can_block(X, Y) -> not shorter(Y, X)",
+          "z3_formula": "Implies(Not(can_block_michael_windy), Not(shorter_windy_michael))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> not shorter(Y, X)",
+          "z3_formula": "Implies(taller_michael_x, Not(shorter_x_michael))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not shorter(Y, X) -> (Y == X) | taller(Y, X)",
+          "z3_formula": "Implies(Not(shorter_windy_michael), Or(windy_michael == True, taller_windy_michael))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "can_jump(X) -> great_shooter(X)",
+          "z3_formula": "Implies(can_jump_windy, great_shooter_windy)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == Unknown",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "taller(michael, x)",
+          "z3_formula": "taller_michael_x == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> taller(X, Z) | taller(Y, Z)",
+          "z3_formula": "Implies(And(taller_michael_x, taller_x_y), Or(taller_michael_x, taller_y_z))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> taller(X, Z) | taller(Y, Z)",
+          "z3_formula": "Implies(And(taller_peter_michael, taller_x_y), Or(taller_peter_michael, taller_y_z))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "taller(peter, x)",
+          "z3_formula": "taller_peter_x == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, x) | jump(x)",
+          "z3_formula": "Or(can_block_michael_x, jump_x)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not can_block(michael, windy)",
+          "z3_formula": "Not(can_block_michael_windy)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "can_block(X, Y) -> not jump(Y)",
+          "z3_formula": "Implies(can_block_michael_x, Not(jump_x))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "jump(windy)",
+          "z3_formula": "jump_windy == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "great_shooter(x) | jump(x)",
+          "z3_formula": "Or(great_shooter_x, jump_x)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "taller(michael, everyone_else)",
+          "z3_formula": "taller_michael_everyone_else == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_everyone_else, taller_everyone_else_windy), taller_michael_windy)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_peter_michael, can_block_peter_michael)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cannot_block_michael_windy == True",
+          "z3_formula": "cannot_block_michael_windy == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "can_block(X, Y) -> depends_on_height(X, Y)",
+          "z3_formula": "Implies(can_block_peter_michael, depends_on_height_peter_michael)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not depends_on_height_windy",
+          "z3_formula": "Not(depends_on_height_windy)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "depends_on_height(X, Y) -> cannot_block(X, Y)",
+          "z3_formula": "Implies(depends_on_height_peter_michael, cannot_block_peter_michael)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not cannot_block_windy",
+          "z3_formula": "Not(cannot_block_windy)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "great_shooter(X) <- can_jump(X) | cannot_block(X)",
+          "z3_formula": "Implies(Or(can_jump_windy, cannot_block_windy), great_shooter_windy)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "man(michael)",
+          "z3_formula": "man_michael == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "taller(michael, x)",
+          "z3_formula": "taller_michael_x == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_michael_x, can_block_michael_x)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "man(windy)",
+          "z3_formula": "man_windy == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(windy, x)",
+          "z3_formula": "can_block_windy_x == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_peter, taller_peter_x), taller_michael_x)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "taller(michael, peter)",
+          "z3_formula": "taller_michael_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, windy)",
+          "z3_formula": "can_block_michael_windy == False",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "can_block(X, Y) -> not(jump(Y))",
+          "z3_formula": "Implies(can_block_michael_x, Not(jump_x))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "jump(windy)",
+          "z3_formula": "jump_windy == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "great_shooter(X) -> shooter(X)",
+          "z3_formula": "Implies(great_shooter_windy, shooter_windy)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "shooter(windy)",
+          "z3_formula": "shooter_windy == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == Unknown",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "taller(michael, everyone_else_in_class)",
+          "z3_formula": "taller_michael_everyone_else_in_class == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_everyone_else_in_class, taller_everyone_else_in_class_someone_else), taller_michael_someone_else)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> taller(X, everyone_else_in_class)",
+          "z3_formula": "Implies(taller_peter_michael, taller_peter_everyone_else_in_class)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, shooting) & not(jump(shooter))",
+          "z3_formula": "And(can_block_michael_shooting, not(jump_shooter)) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(can_block(michael, windy))",
+          "z3_formula": "not(can_block_michael_windy) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "great_shooter(X) -> jump(X)",
+          "z3_formula": "Implies(great_shooter_windy, jump_windy)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "jump(X) -> can_block(Y, shooting(X))",
+          "z3_formula": "Implies(jump_windy, can_block_michael_shooting_windy)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(great_shooter(windy))",
+          "z3_formula": "not(great_shooter_windy) == True",
+          "source_step": 10
+        }
+      ]
+    }
+  ]
+}

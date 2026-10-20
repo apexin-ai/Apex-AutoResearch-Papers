@@ -1,0 +1,750 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-508_Q2",
+    "problem": "The bald eagle is big. The bald eagle is cold. The bald eagle is young. The cat is not kind. The cow is red. The cow likes the bald eagle. The squirrel visits the bald eagle. If something likes the cow then the cow likes the squirrel. All big things are cold. If the squirrel is red then the squirrel is young. If something likes the squirrel then the squirrel is red. If something is young then it likes the cow. If the squirrel likes the cat and the cow does not chase the squirrel then the cat likes the cow. If something visits the squirrel and the squirrel is big then it does not like the squirrel. If something is big then it visits the cow. If something visits the squirrel and it is not red then the squirrel does not visit the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow is not red.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nKind($x, bool) ::: Is x kind?\nRed($x, bool) ::: Is x red?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nChases($x, $y, bool) ::: Does x chase y?\n\nFacts:\nBig(BaldEagle, True) ::: The bald eagle is big.\nCold(BaldEagle, True) ::: The bald eagle is cold.\nYoung(BaldEagle, True) ::: The bald eagle is young.\nKind(Cat, False) ::: The cat is not kind.\nRed(Cow, True) ::: The cow is red.\nLikes(Cow, BaldEagle, True) ::: The cow likes the bald eagle.\nVisits(Squirrel, BaldEagle, True) ::: The squirrel visits the bald eagle.\n\nRules:\nLikes($x, Cow, True) >>> Likes(Cow, Squirrel, True) ::: If something likes the cow then the cow likes the squirrel.\nBig($x, True) >>> Cold($x, True) ::: All big things are cold.\nRed(Squirrel, True) >>> Young(Squirrel, True) ::: If the squirrel is red then the squirrel is young.\nLikes($x, Squirrel, True) >>> Red(Squirrel, True) ::: If something likes the squirrel then the squirrel is red.\nYoung($x, True) >>> Likes($x, Cow, True) ::: If something is young then it likes the cow.\nLikes(Squirrel, Cat, True) && Chases(Cow, Squirrel, False) >>> Likes(Cat, Cow, True) ::: If the squirrel likes the cat and the cow does not chase the squirrel then the cat likes the cow.\nVisits($x, Squirrel, True) && Big(Squirrel, True) >>> Likes($x, Squirrel, False) ::: If something visits the squirrel and the squirrel is big then it does not like the squirrel.\nBig($x, True) >>> Visits($x, Cow, True) ::: If something is big then it visits the cow.\nVisits($x, Squirrel, True) && Red($x, False) >>> Visits(Squirrel, BaldEagle, False) ::: If something visits the squirrel and it is not red then the squirrel does not visit the bald eagle.\n\nQuery:\nRed(Cow, False) ::: The cow is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 87.5,
+      "True": 13.0,
+      "Unknown": 61.0
+    },
+    "answer_counts": {
+      "Unknown": 2,
+      "False": 9,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will analyze the given statements and use the information provided to determine the truth value of the statement \"The cow is not red.\"\n\n1. The given statements:\n   - The bald eagle is big.\n   - The bald eagle is cold.\n   - The bald eagle is young.\n   - The cat is not kind.\n   - The cow is red. (Initial statement to be contradicted)\n   - The cow likes the bald eagle.\n   - The squirrel visits the bald eagle.\n   - If something likes the cow then the cow likes the squirrel.\n   - All big things are cold.\n   - If the squirrel is red then the squirrel is young.\n   - If something likes the squirrel then the squirrel is red.\n   - If something is young then it likes the cow.\n   - If the squirrel likes the cat and the cow does not chase the squirrel then the cat likes the cow.\n   - If something visits the squirrel and the squirrel is big then it does not like the squirrel.\n   - If something is big then it visits the cow.\n   - If something visits the squirrel and it is not red then the squirrel does not visit the bald eagle.\n\n2. Analyzing the given statements:\n   - Statement 5: The cow is red. This is the statement we want to contradict.\n\n3. To determine the truth value of the statement \"The cow is not red,\" we need to find any information that contradicts statement 5.\n   - We can see that the given statements provide many relationships between the objects (bald eagle, cat, cow, squirrel) but do not directly contradict statement 5.\n\n4. However, we can deduce some information using the given statements:\n   - From statement 1, the bald eagle is big and from statement 6, all big things are cold. Therefore, the bald eagle is cold.\n   - From statement 4, the cat is not kind, and from statement 7, the cow likes the bald eagle. This does not provide any information about the cow being red or not.\n   - From statement 8, if something likes the squirrel then the squirrel is red. This statement can be used to find information about the squirrel's color, but it does not directly contradict statement 5.\n\n5. Now, let's analyze the relationships between the objects:\n   - The squirrel visits the bald eagle (statement 7), and from statement 9, if the squirrel is big then it does not like the squirrel. However, we do not know if the squirrel is big or not.\n   - If the squirrel is red, then the squirrel is young (statement 10). This does not provide any information about the cow being red or not.\n   - If something is young, then it likes the cow (statement 11). We know the bald eagle is young (statement 3), but this does not provide any information about the cow being red or not.\n\n6. Now, let's analyze the relationships between the squirrel and other objects:\n   - If the squirrel likes the cat and the cow does not chase the squirrel (statement 12), then the cat likes the cow. This statement does not provide any information about the cow being red or not.\n   - If something visits the squirrel and it is not red (statement 14), then the squirrel does not visit the bald eagle. This statement does not provide any information about the cow being red or not.\n\n7. Conclusion:\n   - We have analyzed the given statements and their relationships with each other. However, we have not found any information that contradicts statement 5: \"The cow is red.\"\n   - Therefore, based on the given statements, we cannot determine the truth value of the statement \"The cow is not red.\" It is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given information states: \n   - \"The cow is red.\" \n   This directly contradicts our statement of interest, suggesting that the statement \"The cow is not red\" is likely false.\n\n2. However, we must verify that this information is not derived from any assumptions or conclusions drawn from other given statements. We can check this by analyzing the given statements again.\n\n3. The given statements include:\n   - \"The cow is red.\"\n   - \"If something likes the cow then the cow likes the squirrel.\"\n   - \"If something is young then it likes the cow.\"\n   - \"If something is big then it visits the cow.\"\n   - \"If something visits the squirrel and it is not red then the squirrel does not visit the bald eagle.\"\n   - \"If the squirrel is red then the squirrel is young.\"\n   - \"If something likes the squirrel then the squirrel is red.\"\n   - \"The squirrel visits the bald eagle.\"\n   - \"The cat is not kind.\"\n   - \"The squirrel likes the cat.\"\n   - \"The cow likes the bald eagle.\"\n   - \"The bald eagle is big.\"\n   - \"The bald eagle is cold.\"\n   - \"The squirrel visits the bald eagle.\"\n   - \"If the squirrel likes the cat and the cow does not chase the squirrel then the cat likes the cow.\"\n   - \"If something visits the squirrel and the squirrel is big then it does not like the squirrel.\"\n   - \"If something is young then it likes the cow.\"\n   - \"If something is big then it is cold.\"\n\n4. We can eliminate statements that are not relevant to our problem. \n   We can eliminate any statement that does not contain the word \"red\" or does not contain the word \"cow\".\n\n5. We are left with the following relevant statements:\n   - \"The cow is red.\"\n   - \"If something is young then it likes the cow.\"\n   - \"If the squirrel is red then the squirrel is young.\"\n   - \"If something likes the squirrel then the squirrel is red.\"\n\n6. We can also eliminate any statement that does not directly relate to our problem or that is not relevant to the given information.\n\n7. We are left with the following relevant statements:\n   - \"The cow is red.\"\n   - \"If the squirrel is red then the squirrel is young.\"\n   - \"If something likes the squirrel then the squirrel is red.\"\n\n8. We can conclude that the statement \"The cow is not red\" is false because it directly contradicts the given information \"The cow is red.\"\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements to the statement \"The cow is not red.\" We'll analyze each statement and its implications:\n\n1. The cat is not kind. - This statement doesn't relate directly to the color of the cow, so we can ignore it for now.\n\n2. The cow is red. - This statement directly contradicts the statement we're trying to determine (The cow is not red). Since we're given this statement, we can conclude that the cow is indeed red.\n\nHowever, we're asked to consider the possibility that this statement might be false, and then determine the truth value of the statement \"The cow is not red.\"\n\nAssuming statement 2 is false, then the cow is not red.\n\nNow, let's examine the implications of this assumption:\n\n3. The squirrel visits the bald eagle. - This statement doesn't relate directly to the color of the cow, so we can ignore it for now.\n\n4. If something likes the cow then the cow likes the squirrel. - This statement doesn't relate directly to the color of the cow, so we can ignore it for now.\n\n5. All big things are cold. - This statement doesn't relate directly to the color of the cow, so we can ignore it for now.\n\n6. If the squirrel is red then the squirrel is young. - This statement doesn't relate directly to the color of the cow, so we can ignore it for now.\n\n7. If something likes the squirrel then the squirrel is red. - This statement doesn't relate directly to the color of the cow, so we can ignore it for now.\n\n8. If something is young then it likes the cow. - This statement doesn't relate directly to the color of the cow, so we can ignore it for now.\n\n9. If the squirrel likes the cat and the cow does not chase the squirrel then the cat likes the cow. - This statement doesn't relate directly to the color of the cow, so we can ignore it for now.\n\n10. If something visits the squirrel and the squirrel is big then it does not like the squirrel. - This statement doesn't relate directly to the color of the cow, so we can ignore it for now.\n\n11. If something is big then it visits the cow. - This statement doesn't relate directly to the color of the cow, so we can ignore it for now.\n\n12. If something visits the squirrel and it is not red then the squirrel does not visit the bald eagle. - This statement doesn't relate directly to the color of the cow, so we can ignore it for now.\n\nSince we've already determined that the cow is red, there's no need to consider further implications.\n\nNow, considering the original assumption that statement 2 is false, we can conclude that the statement \"The cow is not red\" is true.\n\nTherefore, the answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cow is red. \n   This statement is given in the problem.\n\nBased on this information, we can directly conclude that the statement \"The cow is not red\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. \"The cow is red.\" \nThis statement is directly given in the problem. Therefore, we can conclude that the cow is indeed red.\n\nHowever, the statement in question asks if the cow is not red, which is the opposite of the information we have.\n\n2. Since we have established that the cow is red, we can deduce that the statement \"The cow is not red\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nGiven statements:\n1. The cow is red. \n2. If something likes the cow then the cow likes the squirrel. \n3. If the squirrel is red then the squirrel is young. \n4. If something likes the squirrel then the squirrel is red. \n5. If something is young then it likes the cow. \n6. If the squirrel likes the cat and the cow does not chase the squirrel then the cat likes the cow. \n7. If something visits the squirrel and the squirrel is big then it does not like the squirrel. \n8. If something is big then it visits the cow. \n9. If something visits the squirrel and it is not red then the squirrel does not visit the bald eagle.\n\nSince statement 1 says \"The cow is red\", we can directly conclude that the statement \"The cow is not red\" is false because it directly contradicts statement 1. \n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. The given statement: \"The cow is red.\"\n   Since this statement directly contradicts the statement we are trying to evaluate, we will consider it as a premise.\n\n2. All big things are cold (Premise)\n   There is no information about the size of the cow, so we cannot determine if the cow is cold.\n\n3. If the squirrel is red then the squirrel is young (Premise)\n   This premise does not provide any information about the cow.\n\n4. If something likes the squirrel then the squirrel is red (Premise)\n   Since we do not have any information about something liking the squirrel, we cannot determine if the squirrel is red.\n\n5. If something is young then it likes the cow (Premise)\n   This premise does not provide any information about the cow.\n\n6. If the squirrel likes the cat and the cow does not chase the squirrel then the cat likes the cow (Premise)\n   We do not have any information about the squirrel liking the cat, the cow chasing the squirrel, or the cat's relationship with the cow.\n\n7. If something visits the squirrel and the squirrel is big then it does not like the squirrel (Premise)\n   Since we do not know the size of the squirrel, we cannot determine if something visits the squirrel and if it does not like the squirrel.\n\n8. If something is big then it visits the cow (Premise)\n   This premise does not provide any information about the size of the cow.\n\n9. If something visits the squirrel and it is not red then the squirrel does not visit the bald eagle (Premise)\n   Since we do not know if something visits the squirrel or the color of the squirrel, we cannot determine if the squirrel visits the bald eagle.\n\nFrom the given premises, we have a statement that directly contradicts the statement we are trying to evaluate: \"The cow is red.\" Since we have a direct statement about the color of the cow, we can conclude that the statement \"The cow is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cow is red. \n   - This statement is given directly in the problem. So, we have our initial information.\n\n2. Analyzing the relationship between the cow and the squirrel: \n   - If something likes the cow then the cow likes the squirrel.\n   - Since we don't have any information about the squirrel liking the cow, we cannot conclude that the cow likes the squirrel. However, we can use this information later.\n\n3. Analyzing the properties of the squirrel:\n   - If the squirrel is red then the squirrel is young.\n   - We don't know the color of the squirrel yet, so we cannot conclude anything about its age.\n\n4. Analyzing the properties of the bald eagle:\n   - The bald eagle is big.\n   - The bald eagle is cold.\n   - The bald eagle is young.\n   - The cat is not kind.\n   - The cow is red.\n   - The cow likes the bald eagle.\n   - The squirrel visits the bald eagle.\n   - All big things are cold. Since the bald eagle is big, it is cold, which is consistent with the information given.\n\n5. Analyzing the relationships between the squirrel and other animals:\n   - If something likes the squirrel then the squirrel is red.\n   - Since we don't have any information about anyone liking the squirrel yet, we cannot conclude that the squirrel is red.\n   - If something is young then it likes the cow.\n   - We don't have any information about the age of the squirrel yet, so we cannot conclude that the squirrel likes the cow.\n\n6. Analyzing the relationships between the squirrel and other animals (continued):\n   - If the squirrel likes the cat and the cow does not chase the squirrel then the cat likes the cow.\n   - We don't have any information about the squirrel liking the cat yet, so we cannot conclude anything about the cat liking the cow.\n\n7. Analyzing the relationships between the squirrel and other animals (continued):\n   - If something visits the squirrel and the squirrel is big then it does not like the squirrel.\n   - We know the squirrel visits the bald eagle and the bald eagle is big. However, we cannot conclude that the bald eagle does not like the squirrel from this information.\n   - If something is big then it visits the cow.\n   - Since the bald eagle is big, it must visit the cow.\n   - If something visits the squirrel and it is not red then the squirrel does not visit the bald eagle.\n   - Since the squirrel visits the bald eagle, we know the squirrel must be red (from the previous information), which is consistent with the information given.\n\nFrom the given information, we know:\n- The cow is red.\n- The bald eagle is big and visits the cow.\n\nSince we know the cow is red, let's analyze the relationships between the squirrel and the cow again:\n- If something likes the cow then the cow likes the squirrel.\n- Since we know the cow is red, we can conclude that the squirrel likes the cow (from the given information \"If something is young then it likes the cow.\" and the fact that the squirrel must be young because it visits the bald eagle, which is big, and thus cold, which implies the squirrel is also young).\n- We have now concluded that the squirrel likes the cow.\n\nHowever, we still cannot conclude that the squirrel is red, only that it likes the cow. \n\nNow, since the squirrel likes the cat and the cow does not chase the squirrel, we can conclude that the cat likes the cow.\n\nFrom the information given, we cannot conclude anything about the color of the squirrel. However, we can now conclude that the squirrel is young because it likes the cow and the squirrel must be young because it visits the bald eagle.\n\nSince the squirrel is young and the statement \"If the squirrel is red then the squirrel is young\" is given, we cannot conclude that the squirrel is red from the fact that it is young. However, we can use the fact that the squirrel visits the bald eagle to conclude that the squirrel is red.\n\nNow we have concluded that the squirrel is red.\n\nHowever, the original statement to determine is whether \"The cow is not red.\" is true, false, or unknown.\n\nWe have concluded that the cow is indeed red.\n\nTherefore, the statement \"The cow is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given statements are:\n   - The bald eagle is big. (1)\n   - The bald eagle is cold. (2)\n   - The bald eagle is young. (3)\n   - The cat is not kind. (4)\n   - The cow is red. (5)\n   - The cow likes the bald eagle. (6)\n   - The squirrel visits the bald eagle. (7)\n   - If something likes the cow then the cow likes the squirrel. (8)\n   - All big things are cold. (9)\n   - If the squirrel is red then the squirrel is young. (10)\n   - If something likes the squirrel then the squirrel is red. (11)\n   - If something is young then it likes the cow. (12)\n   - If the squirrel likes the cat and the cow does not chase the squirrel then the cat likes the cow. (13)\n   - If something visits the squirrel and the squirrel is big then it does not like the squirrel. (14)\n   - If something is big then it visits the cow. (15)\n   - If something visits the squirrel and it is not red then the squirrel does not visit the bald eagle. (16)\n\n2. We will start by assuming the statement \"The cow is not red\" is true. Then we need to find any contradiction with the given statements.\n\n3. From statement (5), we know that \"The cow is red.\" This contradicts our assumption.\n\n4. Since we found a contradiction, our assumption is incorrect. Therefore, the statement \"The cow is not red\" must be false.\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cow is red. (Given in the problem statement)\n   This directly contradicts the statement we want to evaluate. However, we can still analyze the rest of the information to see if we can derive any conclusion about the statement \"The cow is not red.\"\n\n2. If something likes the cow then the cow likes the squirrel. \n   We don't have enough information to determine if the cow likes the squirrel or not, so we cannot make any conclusions based on this rule.\n\n3. The bald eagle is big. \n   This tells us that the bald eagle is big, but we don't know if the cow is big or not.\n\n4. All big things are cold. \n   We know the bald eagle is big, so it is cold. However, this does not provide any information about the cow.\n\n5. If the squirrel is red then the squirrel is young. \n   We don't have any information about the squirrel's color, so we cannot determine its age.\n\n6. If something likes the squirrel then the squirrel is red. \n   We don't have enough information to determine if the squirrel is red or not.\n\n7. If something is young then it likes the cow. \n   We don't have enough information to determine if the squirrel or the bald eagle is young or not.\n\n8. If the squirrel likes the cat and the cow does not chase the squirrel then the cat likes the cow. \n   We don't have enough information to determine if the squirrel likes the cat or if the cow chases the squirrel.\n\n9. If something visits the squirrel and the squirrel is big then it does not like the squirrel. \n   We don't have enough information to determine if the squirrel is big or not.\n\n10. If something is big then it visits the cow. \n    We know the bald eagle is big, but we don't know if it visits the cow or not.\n\n11. If something visits the squirrel and it is not red then the squirrel does not visit the bald eagle. \n    We don't have enough information to determine if the squirrel visits the bald eagle or not.\n\nSince we cannot derive a conclusion about the statement \"The cow is not red\" using the given information, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The cow is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given information is:\n   - The cow is red.\n   This directly contradicts the statement we are trying to determine.\n\n2. The statement we are trying to determine is \"The cow is not red\".\n   Given that \"The cow is red\" is directly stated, this means that our initial assessment is that this statement is false.\n\nHowever, we will continue the analysis to ensure our conclusion is correct.\n\n3. Let's analyze the possible statements that could lead to the conclusion about \"The cow is not red\".\n   - From the given information, we have \"The cow is red\". This is a direct statement.\n   - There is no other information that contradicts or supports the idea that \"The cow is not red\".\n   - The given information is a collection of conditional statements that relate to the properties and behaviors of the bald eagle, cat, cow, and squirrel. These do not directly affect the color of the cow.\n\nBased on the analysis, we conclude that the statement \"The cow is not red\" is false because we have a direct statement that \"The cow is red\".\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions. \n\n1. The bald eagle is big. \n2. The bald eagle is cold. \n3. The bald eagle is young. \n4. The cat is not kind. \n5. The cow is red. \n6. The cow likes the bald eagle. \n7. The squirrel visits the bald eagle. \n8. If something likes the cow then the cow likes the squirrel. \n9. All big things are cold. \n10. If the squirrel is red then the squirrel is young. \n11. If something likes the squirrel then the squirrel is red. \n12. If something is young then it likes the cow. \n13. If the squirrel likes the cat and the cow does not chase the squirrel then the cat likes the cow. \n14. If something visits the squirrel and the squirrel is big then it does not like the squirrel. \n15. If something is big then it visits the cow. \n16. If something visits the squirrel and it is not red then the squirrel does not visit the bald eagle.\n\nNow, let's analyze the given statement: \"The cow is not red.\"\n\nWe are given statement 5 as \"The cow is red.\" This is a direct contradiction to the given statement \"The cow is not red.\" \n\nTherefore, based on the given statement 5, we can conclude that \"The cow is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_bald_eagle, cold_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == False",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, bald_eagle)",
+          "z3_formula": "likes_cow_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> likes(X, squirrel)",
+          "z3_formula": "Implies(likes_X_cow, likes_X_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_X, visits_X_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_bald_eagle, visits_bald_eagle_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & big(squirrel) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(And(visits_X_squirrel, big_squirrel), not likes_X_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_squirrel, young_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, cow)",
+          "z3_formula": "Implies(young_X, likes_X_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(squirrel, cat) & not chases(cow, squirrel) -> likes(cat, cow)",
+          "z3_formula": "Implies(And(likes_squirrel_cat, not chases_cow_squirrel), likes_cat_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & not red(squirrel) -> not visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_squirrel, not red_squirrel), not visits_X_bald_eagle)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, cow)",
+          "z3_formula": "Implies(young_squirrel, likes_squirrel_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(squirrel) -> young(squirrel)",
+          "z3_formula": "Implies(red_squirrel, young_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(likes_squirrel_cat, red_squirrel)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "not red(cow)",
+          "z3_formula": "Not(red_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not red(cow) == False",
+          "z3_formula": "Not(red_cow) == False",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> cow_likes_squirrel",
+          "z3_formula": "Implies(likes_cow_cow, cow_likes_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(squirrel) -> young(squirrel)",
+          "z3_formula": "Implies(red_squirrel, young_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(likes_squirrel_squirrel, red_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, cow)",
+          "z3_formula": "Implies(young_squirrel, likes_squirrel_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "squirrel_likes_cat & !chase_cow_squirrel -> cat_likes_cow",
+          "z3_formula": "Implies(And(squirrel_likes_cat, Not(chase_cow_squirrel)), cat_likes_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits_squirrel & big(squirrel) -> !likes_squirrel",
+          "z3_formula": "Implies(And(visits_squirrel, big_squirrel), Not(likes_squirrel))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits_cow",
+          "z3_formula": "Implies(big_squirrel, visits_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits_squirrel & !red(squirrel) -> !visits_squirrel_bald_eagle",
+          "z3_formula": "Implies(And(visits_squirrel, Not(red_squirrel)), Not(visits_squirrel_bald_eagle))",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_cow, cold_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(squirrel) -> young(squirrel)",
+          "z3_formula": "Implies(red_squirrel, young_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(likes_something_squirrel, red_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, cow)",
+          "z3_formula": "Implies(young_something, likes_something_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(squirrel, cat) & ~chases(cow, squirrel) -> likes(cat, cow)",
+          "z3_formula": "Implies(And(likes_squirrel_cat, ~chases_cow_squirrel), likes_cat_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & big(squirrel) -> ~likes(X, squirrel)",
+          "z3_formula": "Implies(And(visits_something_squirrel, big_squirrel), ~likes_something_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_something, visits_something_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & ~red(squirrel) -> ~visits(squirrel, bald_eagle)",
+          "z3_formula": "Implies(And(visits_something_squirrel, ~red_squirrel), ~visits_squirrel_bald_eagle)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> cow_likes(X)",
+          "z3_formula": "Implies(likes_cow_squirrel, cow_likes_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> cow_likes(X)",
+          "z3_formula": "Implies(likes_cow_cat, cow_likes_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & big(X) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, big_bald_eagle), not likes_bald_eagle_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_bald_eagle, visits_bald_eagle_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & not red(squirrel) -> not visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_squirrel_bald_eagle, not red_squirrel), not visits_bald_eagle_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, cow)",
+          "z3_formula": "Implies(young_squirrel, likes_squirrel_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(likes_squirrel_cat, red_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(squirrel) -> young(squirrel)",
+          "z3_formula": "Implies(red_squirrel, young_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not red(cow)",
+          "z3_formula": "not red_cow == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(cat))",
+          "z3_formula": "not(kind_cat) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, bald_eagle)",
+          "z3_formula": "likes_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> likes(X, squirrel)",
+          "z3_formula": "Implies(likes_X_cow, likes_X_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "all(big(X), cold(X))",
+          "z3_formula": "Implies(big_X, cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_squirrel, young_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> red(X)",
+          "z3_formula": "Implies(likes_X_squirrel, red_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, cow)",
+          "z3_formula": "Implies(young_X, likes_X_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) & not(chases(cow, squirrel)) -> likes(cat, cow)",
+          "z3_formula": "Implies(And(likes_X_cat, not(chases_cow_squirrel)), likes_cat_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & big(squirrel) -> not(likes(X, squirrel))",
+          "z3_formula": "Implies(And(visits_X_squirrel, big_squirrel), not(likes_X_squirrel))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_X, visits_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & not(red(X)) -> not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(And(visits_X_squirrel, not(red_X)), not(visits_X_bald_eagle))",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> cow_likes_squirrel",
+          "z3_formula": "Implies(likes_cow_cow, cow_likes_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_bald_eagle, cold_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(squirrel) -> young(squirrel)",
+          "z3_formula": "Implies(red_squirrel, young_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(likes_squirrel_squirrel, red_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, cow)",
+          "z3_formula": "Implies(young_squirrel, likes_squirrel_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not(chases_cow_squirrel) -> likes_cat_cow",
+          "z3_formula": "Implies(And(likes_squirrel_squirrel, not(chases_cow_squirrel)), likes_cat_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & big(squirrel) -> not(likes(X, squirrel))",
+          "z3_formula": "Implies(And(visits_squirrel_squirrel, big_squirrel), not(likes_squirrel_squirrel))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_bald_eagle, visits_bald_eagle_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & not(red(squirrel)) -> not(visits_squirrel_bald_eagle)",
+          "z3_formula": "Implies(And(visits_squirrel_squirrel, not(red_squirrel)), not(visits_squirrel_bald_eagle))",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(cat))",
+          "z3_formula": "not_kind_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, bald_eagle)",
+          "z3_formula": "likes_cow_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> likes(X, squirrel)",
+          "z3_formula": "Implies(likes_X_cow, likes_X_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_X, cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_X, young_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> red(X)",
+          "z3_formula": "Implies(likes_X_squirrel, red_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> likes(X, cow)",
+          "z3_formula": "Implies(young_X, likes_X_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not(chases(squirrel, cow)) -> likes(cat, cow)",
+          "z3_formula": "Implies(And(likes_X_squirrel, not_chases_squirrel_cow), likes_cat_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & big(squirrel) -> not(likes(X, squirrel))",
+          "z3_formula": "Implies(And(visits_X_squirrel, big_squirrel), not_likes_X_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_X, visits_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & not(red(X)) -> not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(And(visits_X_squirrel, not_red_X), not_visits_X_bald_eagle)",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 103,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 43
+    },
+    "maxsat_stats": {
+      "satisfied": 42,
+      "excluded": 1,
+      "total_weight": 91,
+      "solve_time_ms": 1.2222826480865479
+    },
+    "timing": {
+      "trace_gen_s": 11.055,
+      "extraction_s": 22.968,
+      "dedup_s": 0.858,
+      "maxsat_s": 0.004,
+      "total_s": 34.885
+    }
+  }
+}

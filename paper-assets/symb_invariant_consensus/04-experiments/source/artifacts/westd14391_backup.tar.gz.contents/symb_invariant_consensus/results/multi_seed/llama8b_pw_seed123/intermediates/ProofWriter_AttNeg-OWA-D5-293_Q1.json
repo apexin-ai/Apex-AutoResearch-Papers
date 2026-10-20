@@ -1,0 +1,776 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-293_Q1",
+    "problem": "Bob is blue. Bob is round. Bob is not smart. Charlie is not smart. Dave is round. Harry is big. Harry is smart. Round, blue things are not red. If something is furry and round then it is cold. Smart things are furry. Cold, round things are smart. All cold things are blue. Furry, big things are round.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is round.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\nNotSmart($x, bool) ::: Is x not smart?\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\nFurry($x, bool) ::: Is x furry?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nBlue(Bob, True) ::: Bob is blue.\nRound(Bob, True) ::: Bob is round.\nNotSmart(Bob, True) ::: Bob is not smart.\nNotSmart(Charlie, True) ::: Charlie is not smart.\nRound(Dave, True) ::: Dave is round.\nBig(Harry, True) ::: Harry is big.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nRound($x, True) && Blue($x, True) >>> Red($x, False) ::: Round, blue things are not red.\nFurry($x, True) && Round($x, True) >>> Cold($x, True) ::: If something is furry and round then it is cold.\nSmart($x, True) >>> Furry($x, True) ::: Smart things are furry.\nCold($x, True) && Round($x, True) >>> Smart($x, True) ::: Cold, round things are smart.\nCold($x, True) >>> Blue($x, True) ::: All cold things are blue.\nFurry($x, True) && Big($x, True) >>> Round($x, True) ::: Furry, big things are round.\n\nQuery:\nRound(Dave, True) ::: Dave is round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 101.0
+    },
+    "answer_counts": {
+      "True": 9
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Dave is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is round.\nThis statement is given, so we will consider it as the statement to be evaluated.\n\n2. Bob is blue. \nThis information is not directly related to Dave, so we can ignore it for now.\n\n3. Bob is round.\nThis information is not directly related to Dave, so we can ignore it for now.\n\n4. Bob is not smart.\nThis information is not directly related to Dave, so we can ignore it for now.\n\n5. Charlie is not smart.\nThis information is not directly related to Dave, so we can ignore it for now.\n\n6. Dave is round.\nThis statement is the same as the one we are evaluating. Since it's given, we will consider it as the statement to be evaluated.\n\n7. Harry is big.\nThis information is not directly related to Dave, so we can ignore it for now.\n\n8. Harry is smart.\nThis information is not directly related to Dave, so we can ignore it for now.\n\n9. Round, blue things are not red.\nThis information does not provide any information about Dave, so we can ignore it for now.\n\n10. If something is furry and round then it is cold.\nThis information is not directly related to Dave, so we can ignore it for now.\n\n11. Smart things are furry.\nThis information is not directly related to Dave, so we can ignore it for now.\n\n12. Cold, round things are smart.\nThis information is not directly related to Dave, so we can ignore it for now.\n\n13. All cold things are blue.\nThis information is not directly related to Dave, so we can ignore it for now.\n\n14. Furry, big things are round.\nThis information is not directly related to Dave, so we can ignore it for now.\n\nHowever, statement 10 \"If something is furry and round then it is cold\" can be used to make an implication. \n\nIf Dave is furry and round (which is given as statement 1) then Dave is cold.\n\nNow, statement 13 \"All cold things are blue\" can be used to make another implication.\n\nIf Dave is cold, then Dave is blue.\n\nWe can now make the conclusion that Dave is round and Dave is blue.\n\nTherefore, the statement \"Dave is round\" is true.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements to the statement \"Dave is round.\"\n\nGiven statements:\n1. Bob is blue. \n2. Bob is round. \n3. Bob is not smart. \n4. Charlie is not smart. \n5. Dave is round. \n6. Harry is big. \n7. Harry is smart. \n8. Round, blue things are not red. \n9. If something is furry and round then it is cold. \n10. Smart things are furry. \n11. Cold, round things are smart. \n12. All cold things are blue. \n13. Furry, big things are round.\n\nWe are asked to determine whether \"Dave is round\" is true, false, or unknown. \n\nSince \"Dave is round\" is already stated as a fact in statement 5, we don't need to do anything else. The statement is already given as true.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them to the statement \"Dave is round.\"\n\nGiven statements:\n1. Bob is blue.\n2. Bob is round.\n3. Bob is not smart.\n4. Charlie is not smart.\n5. Dave is round.\n6. Harry is big.\n7. Harry is smart.\n8. Round, blue things are not red.\n9. If something is furry and round then it is cold.\n10. Smart things are furry.\n11. Cold, round things are smart.\n12. All cold things are blue.\n13. Furry, big things are round.\n\nWe need to determine the truth value of statement 5, \"Dave is round.\"\n\nFrom statement 5, we know that Dave is indeed round. Now, let's see if we can derive any additional information from the other statements.\n\nStatement 9: If something is furry and round then it is cold. However, this is a conditional statement and does not directly apply to Dave.\n\nStatement 10: Smart things are furry. This does not apply to Dave since we don't know if Dave is smart or not.\n\nStatement 11: Cold, round things are smart. We don't know if Dave is cold or smart, so we cannot directly apply this statement.\n\nStatement 12: All cold things are blue. We still don't know if Dave is cold or not, so we cannot apply this statement.\n\nStatement 13: Furry, big things are round. We don't know if Dave is furry or big, so we cannot directly apply this statement.\n\nNow, let's look at the statements that directly apply to Dave:\n- Statement 2: Bob is round.\n- Statement 5: Dave is round.\n\nSince we already know that Dave is round from statement 5, we don't need to rely on other statements to determine this. However, it is worth noting that statement 2 is a separate piece of information that confirms the truth of statement 5.\n\nTherefore, the truth value of the statement \"Dave is round\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is round\" is true, false, or unknown, we'll use the given information to deduce the characteristics of Dave.\n\n1. Dave is round. (Given statement)\n2. We already have this information, so we can skip it.\n\nHowever, we can use other information to verify or contradict this statement.\n\n- From \"Round, blue things are not red,\" we can't determine Dave's color, so we can't use this information.\n- From \"If something is furry and round then it is cold,\" and \"All cold things are blue,\" we can't determine Dave's temperature or color directly, but we can infer that if Dave is furry and round, then he is cold and blue. However, we don't know if Dave is furry yet.\n- From \"Smart things are furry,\" we can't determine Dave's level of intelligence, but we can infer that if Dave is furry, then he is smart.\n- From \"Cold, round things are smart,\" we can't determine Dave's level of intelligence, but we can infer that if Dave is cold and round, then he is smart.\n- From \"Furry, big things are round,\" we can't determine Dave's size or furiness directly, but we can infer that if Dave is furry and big, then he is round.\n\nNow, let's summarize what we know and what we can infer:\n\n- Dave is round (given statement).\n- If Dave is furry, then he is smart, and cold and round, then he is smart.\n- We can't determine Dave's size, furiness, temperature, or color directly.\n\nHowever, we can use the information that Dave is not explicitly described as furry or big, but we can infer that if Dave is furry and big, then he is round. Since we don't have enough information about Dave being big or furry, we can't conclude that he is round based on this information.\n\nSo, the statement \"Dave is round\" is true by the given statement, but we can't verify it using the other information. \n\nHowever, since we have other information that Dave is round, we can conclude that the statement is true.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deduction. We will analyze each statement one by one and see how it relates to the given statement \"Dave is round.\"\n\n1. Dave is round. \n   - This is the statement we are trying to prove.\n\n2. Bob is blue. \n   - This statement does not relate to Dave directly.\n\n3. Bob is round. \n   - This statement does not relate to Dave directly.\n\n4. Bob is not smart. \n   - This statement does not relate to Dave directly.\n\n5. Charlie is not smart. \n   - This statement does not relate to Dave directly.\n\n6. Dave is round. \n   - This statement is the same as the one we are trying to prove, but it is a separate statement. \n\n7. Harry is big. \n   - This statement does not relate to Dave directly.\n\n8. Harry is smart. \n   - This statement does not relate to Dave directly.\n\n9. Round, blue things are not red. \n   - This statement does not relate to Dave directly.\n\n10. If something is furry and round then it is cold. \n    - This statement does not relate to Dave directly.\n\n11. Smart things are furry. \n    - This statement does not relate to Dave directly.\n\n12. Cold, round things are smart. \n    - This statement does not relate to Dave directly.\n\n13. All cold things are blue. \n    - This statement does not relate to Dave directly.\n\n14. Furry, big things are round. \n    - This statement does not relate to Dave directly.\n\nNow, let's analyze the information in reverse. We know that Dave is round (statement 6). There is no other information that contradicts this statement. \n\nThe final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is round.\n   - This statement is the one we are trying to determine. We'll come back to it later.\n\n2. Bob is blue. Bob is round. Bob is not smart.\n   - We know Bob is round, but this doesn't give us any information about Dave.\n\n3. Charlie is not smart.\n   - This doesn't give us any information about Dave.\n\n4. Dave is round.\n   - This statement is the one we are trying to determine. It seems to be a repetition of the original statement, but it's not necessarily true or false yet.\n\n5. Harry is big. Harry is smart.\n   - We know Harry is smart, but this doesn't give us any information about Dave.\n\n6. Round, blue things are not red.\n   - We know Bob is round and blue, but this doesn't give us any information about Dave.\n\n7. If something is furry and round then it is cold.\n   - This statement introduces a new condition, but we don't know if Dave is furry or not.\n\n8. Smart things are furry.\n   - We know Harry is smart and furry, but this doesn't give us any information about Dave.\n\n9. Cold, round things are smart.\n   - We know from statement 7 that cold things are round, and from statement 8 that smart things are furry. However, we don't know if Dave is cold or not.\n\n10. All cold things are blue.\n   - We know from statement 9 that cold things are round and from statement 1 that round things are not necessarily blue. This statement doesn't give us any information about Dave.\n\n11. Furry, big things are round.\n   - We know Harry is big and furry, and from statement 11 that he's round. However, we don't know if Dave is big or furry.\n\nNow, let's analyze the original statement again: \"Dave is round.\"\n\nBased on the given information, we have two conflicting statements:\n- Statement 4: Dave is round.\n- Statement 1: Bob is round.\n\nSince we don't have any information that directly connects Dave to being round, and we can't derive the roundness of Dave from the given statements, we can't determine whether the statement \"Dave is round\" is true or false. However, given that \"Dave is round\" is the statement we are trying to determine, and we can't derive it from the given information, we have to say that the answer is \"true\" since \"Dave is round\" is the statement being evaluated and that is what we are being asked to determine.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply the rules of logical deduction.\n\n1. Dave is round.\nWe are asked to determine whether this statement is true, false, or unknown.\n\nLet's start by examining the given statements:\n\n- Bob is blue.\n- Bob is round.\n- Bob is not smart.\n- Charlie is not smart.\n- Dave is round.\n- Harry is big.\n- Harry is smart.\n- Round, blue things are not red.\n- If something is furry and round then it is cold.\n- Smart things are furry.\n- Cold, round things are smart.\n- All cold things are blue.\n- Furry, big things are round.\n\nNow, let's analyze the given statements to find any connections or inferences that can be made:\n\nFrom statement 5, we know Dave is round.\n\nNow, let's examine statement 9: If something is furry and round then it is cold. We don't have any information that Dave is furry, so we can't conclude that Dave is cold from this statement.\n\nHowever, we can look at statement 3: Smart things are furry. Since Dave is round and we don't know if he is smart or not, we can't conclude anything about Dave being furry from this statement.\n\nNow, let's examine statement 7: Cold, round things are smart. Since we don't know if Dave is cold or not, we can't conclude that Dave is smart from this statement.\n\nHowever, we can look at statement 10: All cold things are blue. Since we don't know if Dave is cold or not, we can't conclude that Dave is blue from this statement.\n\nNow, let's examine statement 8: Furry, big things are round. We don't have any information that Dave is furry or big, so we can't conclude anything about Dave being round from this statement.\n\nHowever, we already know from statement 5 that Dave is round.\n\nNow, let's examine statement 6: Harry is big. We don't have any information that Dave is big, so we can't conclude anything about Dave being round from this statement.\n\nHowever, we already know from statement 5 that Dave is round.\n\nIn conclusion, we can only rely on statement 5 to conclude that Dave is indeed round.\n\nTherefore, the statement \"Dave is round\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Dave is round. This is a direct statement, so we can consider it as a fact.\n\n2. We are also given the following information:\n   - Dave is round (already considered as a fact)\n   - Round, blue things are not red. (This does not provide any information about Dave being blue or red, so we can ignore this statement for now.)\n   - If something is furry and round then it is cold. (This statement does not provide any information about Dave being furry or cold, so we can ignore this statement for now.)\n   - Smart things are furry. (This statement does not provide any information about Dave being smart or furry, so we can ignore this statement for now.)\n   - Cold, round things are smart. (This statement does not provide any information about Dave being cold or smart, so we can ignore this statement for now.)\n   - All cold things are blue. (This statement does not provide any information about Dave being cold or blue, so we can ignore this statement for now.)\n   - Furry, big things are round. (This statement does not provide any information about Dave being furry or big, so we can ignore this statement for now.)\n\nHowever, we can use the following statements to determine the truth of the statement \"Dave is round\":\n   - Dave is round (already considered as a fact)\n   - Round, blue things are not red. (This statement does not provide any information about Dave being blue or red, so we can ignore this statement for now.)\n\nHowever, since the statement \"Dave is round\" is already considered as a fact, we can conclude that the statement \"Dave is round\" is true.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is round' is true, false, or unknown, we need to analyze the given information and apply it to the properties of Dave.\n\n1. Dave is round: \n   - We have a direct statement saying 'Dave is round'. Therefore, this statement is true.\n\nHowever, we need to make sure it's not contradictory with any other information. Let's look at it in the context of other statements.\n\n2. Round, blue things are not red: \n   - This statement does not directly apply to Dave since we do not have any information about Dave's color.\n\n3. If something is furry and round then it is cold: \n   - We do not have any information about Dave being furry or cold.\n\n4. Smart things are furry: \n   - We do not have any information about Dave being smart or furry.\n\n5. Cold, round things are smart: \n   - We do not have any information about Dave being cold or round in this context.\n\n6. All cold things are blue: \n   - We do not have any information about Dave being cold or blue.\n\n7. Furry, big things are round: \n   - We do not have any information about Dave being furry or big.\n\nBased on the given statements, we only know that Dave is round, and there is no contradictory information. Therefore, the statement 'Dave is round' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is round\" is true, false, or unknown, we need to analyze the given information and apply it to Dave.\n\nGiven information:\n\n1. Bob is blue. Bob is round. Bob is not smart.\n2. Charlie is not smart.\n3. Dave is round.\n4. Harry is big. Harry is smart.\n5. Round, blue things are not red.\n6. If something is furry and round then it is cold.\n7. Smart things are furry.\n8. Cold, round things are smart.\n9. All cold things are blue.\n10. Furry, big things are round.\n\nFirst, we notice that statement (3) says Dave is round. However, we need to make sure that this statement aligns with the other information given. \n\nFrom statement (3), we know Dave is round. We can confirm this information using other statements. \n\nFrom statement (6), if something is furry and round, then it is cold. However, there's no information about Dave being furry. So, we cannot confirm that Dave is cold based on this statement.\n\nFrom statement (7), smart things are furry. However, there's no information about Dave being smart, so we cannot confirm that Dave is furry based on this statement.\n\nFrom statement (8), cold, round things are smart. Again, there's no information about Dave being cold, so we cannot confirm that Dave is smart based on this statement.\n\nFrom statement (9), all cold things are blue. However, there's no information about Dave being cold, so we cannot confirm that Dave is blue based on this statement.\n\nFrom statement (10), furry, big things are round. There's no information about Dave being furry or big, so we cannot confirm that Dave is round based on this statement.\n\nHowever, we need to look at the statement (3) again and realize that it directly states Dave is round. Given that there's no contradictory information about Dave being round, we can conclude that the statement is true.\n\nFinal answer: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine if the statement \"Dave is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is round.\n   - This is the statement we are trying to evaluate. We'll come back to it later.\n\n2. Bob is blue. Bob is round. Bob is not smart.\n   - We have information about Bob, but it's not directly related to Dave.\n\n3. Charlie is not smart.\n   - Like Bob, we have information about Charlie, but it's not directly related to Dave.\n\n4. Dave is round.\n   - This is the statement we are trying to evaluate. However, the information given about Dave being round is a separate statement. We need to determine if it's true or false based on the other statements.\n\n5. Harry is big. Harry is smart.\n   - We have information about Harry, but it's not directly related to Dave.\n\n6. Round, blue things are not red.\n   - This statement gives us information about the properties of round, blue things but doesn't directly relate to Dave.\n\n7. If something is furry and round then it is cold.\n   - This is a conditional statement. It gives us information about the properties of furry, round things but doesn't directly relate to Dave.\n\n8. Smart things are furry.\n   - This statement gives us information about the properties of smart things but doesn't directly relate to Dave.\n\n9. Cold, round things are smart.\n   - This statement gives us information about the properties of cold, round things but doesn't directly relate to Dave.\n\n10. All cold things are blue.\n    - This statement gives us information about the properties of cold things but doesn't directly relate to Dave.\n\n11. Furry, big things are round.\n    - This statement gives us information about the properties of furry, big things but doesn't directly relate to Dave.\n\nNow, let's re-examine the original information about Dave: \"Dave is round.\" We can conclude that this statement is indeed true because it's directly stated in the problem.\n\nHowever, we also have another statement about Dave being round, which is given later in the problem. To avoid duplication of information, we ignore the repeated statement about Dave being round.\n\nTherefore, the statement \"Dave is round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is round' is true, false, or unknown, we need to use the given information and apply logical reasoning step by step.\n\n1. Dave is round. (Given statement)\n\nWe need to see if we can prove this statement true or false using the given information.\n\n2. Round, blue things are not red. (Given information)\n   Since this statement doesn't mention Dave, we can't conclude anything from it.\n\n3. If something is furry and round then it is cold. (Given information)\n   Since we don't know if Dave is furry or not, we can't conclude that Dave is cold.\n\n4. Smart things are furry. (Given information)\n   This statement doesn't mention Dave, so we can't conclude anything from it.\n\n5. Cold, round things are smart. (Given information)\n   We already know that Dave is round (from step 1), but we don't know if he is cold or smart.\n\n6. All cold things are blue. (Given information)\n   This statement doesn't give us any information about Dave.\n\n7. Furry, big things are round. (Given information)\n   We don't know if Dave is furry or big, so we can't conclude that he is round.\n\nHowever, we can combine the following information to find a solution.\n\n- Dave is round. (Given statement)\n- Dave is not mentioned in the statement 'Round, blue things are not red.' (Step 2)\n- We cannot conclude that Dave is not round from any given statements.\n\nTherefore, the statement 'Dave is round' is **True**.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_dave, round_dave), cold_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_dave, blue_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(smart(bob))",
+          "z3_formula": "not(smart_bob) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(smart(charlie))",
+          "z3_formula": "not(smart_charlie) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> not(red(X))",
+          "z3_formula": "Implies(And(round_bob, blue_bob), not(red_bob))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_X, round_X), cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, round_X), smart_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_X, big_X), round_X)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_dave, round_dave), cold_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_dave, furry_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_dave, round_dave), smart_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_dave, blue_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_dave, big_harry), round_dave)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not red(X)",
+          "z3_formula": "Implies(round_dave, not red_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_dave, round_dave), cold_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_dave, blue_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_dave, smart_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_dave, round_dave), smart_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_dave, big_dave), round_dave)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> Not(red(X))",
+          "z3_formula": "Implies(And(round_dave, blue_dave), Not(red_dave))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_dave, round_dave), cold_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_dave, furry_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_dave, round_dave), smart_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_dave, blue_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_dave, big_dave), round_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(smart(charlie))",
+          "z3_formula": "not(smart_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> not(red(X))",
+          "z3_formula": "Implies(And(round_bob, blue_bob), not(red_bob))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_X, round_X), cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, round_X), smart_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_X, big_X), round_X)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_dave, round_dave), cold_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_dave, furry_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_dave, round_dave), smart_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_dave, blue_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> Not(red(X))",
+          "z3_formula": "Implies(And(round_dave, blue_dave), Not(red_dave))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_dave, big_dave), round_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "Not(smart(bob))",
+          "z3_formula": "Not(smart_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "Not(smart(charlie))",
+          "z3_formula": "Not(smart_charlie)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> Not(red(X))",
+          "z3_formula": "Implies(And(round_dave, blue_dave), Not(red_dave))",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> Not(red(X))",
+          "z3_formula": "Implies(And(round_dave, blue_dave), Not(red_dave))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_dave, round_dave), cold_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_dave, furry_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_dave, round_dave), smart_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_dave, blue_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_dave, big_dave), round_dave)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not smart(bob)",
+          "z3_formula": "not smart_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not smart(charlie)",
+          "z3_formula": "not smart_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> not red(X)",
+          "z3_formula": "Implies(And(round_bob, blue_bob), not red_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_X, round_X), cold_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, round_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_X, big_X), round_X)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(smart(bob))",
+          "z3_formula": "Not(smart_bob) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(smart(charlie))",
+          "z3_formula": "Not(smart_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> not(red(X))",
+          "z3_formula": "Implies(And(round_bob, blue_bob), Not(red_bob))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_round, round_dave), cold_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_harry, furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_dave, round_dave), smart_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_bob, blue_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, big_harry), round_harry)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> Not(red(X))",
+          "z3_formula": "Implies(And(round_dave, blue_dave), Not(red_dave))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_dave, round_dave), cold_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_dave, furry_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_dave, round_dave), smart_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_dave, blue_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_dave, big_dave), round_dave)",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 108,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 28
+    },
+    "maxsat_stats": {
+      "satisfied": 28,
+      "excluded": 0,
+      "total_weight": 104,
+      "solve_time_ms": 0.9130900725722313
+    },
+    "timing": {
+      "trace_gen_s": 6.844,
+      "extraction_s": 19.73,
+      "dedup_s": 0.704,
+      "maxsat_s": 0.003,
+      "total_s": 27.28
+    }
+  }
+}

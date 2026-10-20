@@ -1,0 +1,911 @@
+{
+  "pid": "folio_175",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(taylor)",
+          "z3_formula": "good_relationship_with_parents_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visit_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "visit_gym_at_least_once_a_day_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_regularly_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "fulfills_nutritional_daily_intakes(X) -> visit_gym_at_least_once_a_day(X)",
+          "z3_formula": "Implies(fulfills_nutritional_daily_intakes_taylor, visit_gym_at_least_once_a_day_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "(health_conscious_childhood_home(X) & good_relationship_with_parents(X)) | (not health_conscious_childhood_home(X) & not good_relationship_with_parents(X))",
+          "z3_formula": "Or(And(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor), And(Not(health_conscious_childhood_home_taylor), Not(good_relationship_with_parents_taylor)))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not (health_conscious_childhood_home(taylor) & visit_gym_at_least_once_a_day(taylor))",
+          "z3_formula": "Not(And(health_conscious_childhood_home_taylor, visit_gym_at_least_once_a_day_taylor))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(taylor)",
+          "z3_formula": "good_relationship_with_parents_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats_salads_regularly(X) -> very_conscious_about_health_and_eating_habits(X)",
+          "z3_formula": "Implies(eats_salads_regularly_taylor, very_conscious_about_health_and_eating_habits_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_regularly_taylor)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "fulfills_nutritional_daily_intakes(X) -> health_conscious_childhood_home(X)",
+          "z3_formula": "Implies(fulfills_nutritional_daily_intakes_taylor, health_conscious_childhood_home_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> not eats_salads_regularly(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, Not(eats_salads_regularly_taylor))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits_gym_at_least_once_a_day(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(visits_gym_at_least_once_a_day_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> good_relationship_with_parents(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, good_relationship_with_parents_taylor)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> good_relationship_with_parents(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, good_relationship_with_parents_taylor)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not health_conscious_childhood_home(taylor) & not good_relationship_with_parents(taylor)",
+          "z3_formula": "Not(And(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "Not(visits_gym_at_least_once_a_day_taylor)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "None",
+          "z3_formula": "None",
+          "source_step": 0
+        },
+        {
+          "type": "rule",
+          "expression": "E -> I",
+          "z3_formula": "Implies(E, I)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "H -> E",
+          "z3_formula": "Implies(H, E)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "H -> I",
+          "z3_formula": "Implies(H, I)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "N -> I",
+          "z3_formula": "Implies(N, I)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "N -> ~E",
+          "z3_formula": "Implies(N, Not(E))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "G -> I",
+          "z3_formula": "Implies(G, I)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "H v N",
+          "z3_formula": "Or(H, N)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "~H & ~N",
+          "z3_formula": "And(Not(H), Not(N))",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> eats_salads(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, eats_salads_taylor)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "fulfills_nutritional_daily_intakes(X) -> good_relationship_with_parents(X)",
+          "z3_formula": "Implies(fulfills_nutritional_daily_intakes_taylor, good_relationship_with_parents_taylor)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "fulfills_nutritional_daily_intakes(X) -> visits_gym_at_least_once_a_day(X)",
+          "z3_formula": "Implies(fulfills_nutritional_daily_intakes_taylor, visits_gym_at_least_once_a_day_taylor)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) | ~good_relationship_with_parents(X) | ~health_conscious_childhood_home(X) & ~good_relationship_with_parents(X)",
+          "z3_formula": "Or(health_conscious_childhood_home_taylor, Not(good_relationship_with_parents_taylor), And(Not(health_conscious_childhood_home_taylor), Not(good_relationship_with_parents_taylor)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "health_conscious_childhood_home(taylor) & good_relationship_with_parents(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor & good_relationship_with_parents_taylor",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "health_conscious_childhood_home(taylor) -> eats_salads(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor -> eats_salads_taylor",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "good_relationship_with_parents(taylor) -> eats_salads(taylor)",
+          "z3_formula": "good_relationship_with_parents_taylor -> eats_salads_taylor",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "good_relationship_with_parents(taylor) -> fulfills_nutritional_daily_intakes(taylor)",
+          "z3_formula": "good_relationship_with_parents_taylor -> fulfills_nutritional_daily_intakes_taylor",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "fulfills_nutritional_daily_intakes(taylor) -> good_relationship_with_parents(taylor)",
+          "z3_formula": "fulfills_nutritional_daily_intakes_taylor -> good_relationship_with_parents_taylor",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "fulfills_nutritional_daily_intakes(taylor) -> visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "fulfills_nutritional_daily_intakes_taylor -> visits_gym_at_least_once_a_day_taylor",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "health_conscious_childhood_home(taylor) & good_relationship_with_parents(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor & good_relationship_with_parents_taylor",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "health_conscious_childhood_home(taylor) -> eats_salads(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor -> eats_salads_taylor",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "good_relationship_with_parents(taylor) -> eats_salads(taylor)",
+          "z3_formula": "good_relationship_with_parents_taylor -> eats_salads_taylor",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "good_relationship_with_parents(taylor) -> fulfills_nutritional_daily_intakes(taylor)",
+          "z3_formula": "good_relationship_with_parents_taylor -> fulfills_nutritional_daily_intakes_taylor",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "fulfills_nutritional_daily_intakes(taylor) -> good_relationship_with_parents(taylor)",
+          "z3_formula": "fulfills_nutritional_daily_intakes_taylor -> good_relationship_with_parents_taylor",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "fulfills_nutritional_daily_intakes(taylor) -> visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "fulfills_nutritional_daily_intakes_taylor -> visits_gym_at_least_once_a_day_taylor",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "health_conscious_childhood_home(taylor) | ~good_relationship_with_parents(taylor) | ~health_conscious_childhood_home(taylor) & ~good_relationship_with_parents(taylor)",
+          "z3_formula": "Or(health_conscious_childhood_home_taylor, Not(good_relationship_with_parents_taylor), And(Not(health_conscious_childhood_home_taylor), Not(good_relationship_with_parents_taylor)))",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "health_conscious_childhood_home(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "H(taylor)",
+          "z3_formula": "H_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "S(taylor)",
+          "z3_formula": "S_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "G(taylor)",
+          "z3_formula": "G_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "N(taylor)",
+          "z3_formula": "N_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "E(taylor)",
+          "z3_formula": "E_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "H(X) -> E(X)",
+          "z3_formula": "Implies(H_taylor, E_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "S(X) -> E(X)",
+          "z3_formula": "Implies(S_taylor, E_taylor)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "S(X) -> N(X)",
+          "z3_formula": "Implies(S_taylor, N_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "G(X) -> N(X)",
+          "z3_formula": "Implies(G_taylor, N_taylor)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "N(X) -> H(X)",
+          "z3_formula": "Implies(N_taylor, H_taylor)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "H(X) & S(X)",
+          "z3_formula": "And(H_taylor, S_taylor)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "\u00acH(taylor) & \u00acG(taylor)",
+          "z3_formula": "And(Not(H_taylor), Not(G_taylor))",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(taylor)",
+          "z3_formula": "good_relationship_with_parents_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_regularly_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_regularly_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_regularly_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, eats_salads_regularly_taylor)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, eats_salads_regularly_taylor)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, eats_salads_regularly_taylor)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> not(eats_salads_regularly(X))",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, Not(eats_salads_regularly_taylor))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits_gym_at_least_once_a_day(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(visits_gym_at_least_once_a_day_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> visits_gym_at_least_once_a_day(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, visits_gym_at_least_once_a_day_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not(visits_gym_at_least_once_a_day(X)) | (health_conscious_childhood_home(X) & good_relationship_with_parents(X))",
+          "z3_formula": "Or(Not(visits_gym_at_least_once_a_day_taylor), And(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(health_conscious_childhood_home(taylor) & good_relationship_with_parents(taylor))",
+          "z3_formula": "Not(And(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(health_conscious_childhood_home(taylor)) | not(good_relationship_with_parents(taylor))",
+          "z3_formula": "Or(Not(health_conscious_childhood_home_taylor), Not(good_relationship_with_parents_taylor))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits_gym_at_least_once_a_day(taylor))",
+          "z3_formula": "Not(visits_gym_at_least_once_a_day_taylor)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(taylor)",
+          "z3_formula": "good_relationship_with_parents_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats_salads_regularly(X) -> very_conscious_about_health_and_eating_habits(X)",
+          "z3_formula": "Implies(eats_salads_regularly_taylor, very_conscious_about_health_and_eating_habits_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_regularly_taylor)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "fulfills_nutritional_daily_intakes(X) -> health_conscious_childhood_home(X)",
+          "z3_formula": "Implies(fulfills_nutritional_daily_intakes_taylor, health_conscious_childhood_home_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> not eats_salads_regularly(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, Not(eats_salads_regularly_taylor))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits_gym_at_least_once_a_day(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(visits_gym_at_least_once_a_day_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "health_conscious_childhood_home(taylor) & good_relationship_with_parents(taylor)",
+          "z3_formula": "And(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not (health_conscious_childhood_home(taylor) & good_relationship_with_parents(taylor))",
+          "z3_formula": "Not(And(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not health_conscious_childhood_home(taylor) | not good_relationship_with_parents(taylor)",
+          "z3_formula": "Or(Not(health_conscious_childhood_home_taylor), Not(good_relationship_with_parents_taylor))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not health_conscious_childhood_home(taylor)",
+          "z3_formula": "Not(health_conscious_childhood_home_taylor)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not good_relationship_with_parents(taylor)",
+          "z3_formula": "Not(good_relationship_with_parents_taylor)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not fulfills_nutritional_daily_intakes(taylor)",
+          "z3_formula": "Not(fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "Not(visits_gym_at_least_once_a_day_taylor)",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "P -> Q",
+          "z3_formula": "Implies(P, Q)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "R -> P",
+          "z3_formula": "Implies(R, P)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "S -> R",
+          "z3_formula": "Implies(S, R)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "T -> S",
+          "z3_formula": "Implies(T, S)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "T -> not P",
+          "z3_formula": "Implies(T, Not(P))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "G -> S",
+          "z3_formula": "Implies(G, S)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "exists (R and T) or not (R or T)",
+          "z3_formula": "Or(And(R, T), Not(Or(R, T)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not (R or T)",
+          "z3_formula": "Not(Or(R, T))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not R and not T",
+          "z3_formula": "And(Not(R), Not(T))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not R and not G",
+          "z3_formula": "And(Not(R), Not(G))",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(taylor)",
+          "z3_formula": "good_relationship_with_parents_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "fulfills_nutritional_daily_intakes(taylor)",
+          "z3_formula": "fulfills_nutritional_daily_intakes_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats_salads_regularly(taylor)",
+          "z3_formula": "eats_salads_regularly_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "visits_gym_at_least_once_a_day_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats_salads_regularly(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(eats_salads_regularly_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_regularly_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> ~eats_salads_regularly(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, Not(eats_salads_regularly_taylor))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits_gym_at_least_once_a_day(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(visits_gym_at_least_once_a_day_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "~health_conscious_childhood_home(taylor) \u2227 ~visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "And(Not(health_conscious_childhood_home_taylor), Not(visits_gym_at_least_once_a_day_taylor))",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(X, taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X, Y) -> eats_salads(Y)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X, Y) -> good_relationship_with_parents(Y)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "fulfills_nutritional_daily_intakes(X) -> health_conscious_childhood_home(X, Y)",
+          "z3_formula": "Implies(fulfills_nutritional_daily_intakes_taylor, health_conscious_childhood_home_taylor)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> not(eats_salads(X))",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, not(eats_salads_taylor))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats_salads(X) -> not(good_relationship_with_parents(X))",
+          "z3_formula": "Implies(eats_salads_taylor, not(good_relationship_with_parents_taylor))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "fulfills_nutritional_daily_intakes(X) -> good_relationship_with_parents(X)",
+          "z3_formula": "Implies(fulfills_nutritional_daily_intakes_taylor, good_relationship_with_parents_taylor)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> not(eats_salads(X))",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, not(eats_salads_taylor))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "not(eats_salads(X)) -> not(health_conscious_childhood_home(X, Y))",
+          "z3_formula": "Implies(not(eats_salads_taylor), not(health_conscious_childhood_home_taylor))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "not(health_conscious_childhood_home(X, Y)) -> not(fulfills_nutritional_daily_intakes(X))",
+          "z3_formula": "Implies(not(health_conscious_childhood_home_taylor), not(fulfills_nutritional_daily_intakes_taylor))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "not(fulfills_nutritional_daily_intakes(X)) -> not(visits_gym_at_least_once_a_day(X))",
+          "z3_formula": "Implies(not(fulfills_nutritional_daily_intakes_taylor), not(visits_gym_at_least_once_a_day_taylor))",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(X, taylor) | not(good_relationship_with_parents(X, taylor)) & not(health_conscious_childhood_home(X, taylor))",
+          "z3_formula": "good_relationship_with_parents_taylor | (not(good_relationship_with_parents_taylor) & not(health_conscious_childhood_home_taylor))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits_gym_at_least_once_a_day(taylor))",
+          "z3_formula": "not(visits_gym_at_least_once_a_day_taylor)",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor == False",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_parents(taylor)",
+          "z3_formula": "good_relationship_parents_taylor == False",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_parents(X) -> eats_salads(X)",
+          "z3_formula": "Implies(good_relationship_parents_taylor, eats_salads_taylor)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_parents(X) -> fulfills_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_parents_taylor, fulfills_daily_intakes_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_parents(X) -> not eats_salads(X)",
+          "z3_formula": "Implies(good_relationship_parents_taylor, Not(eats_salads_taylor))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits_gym(X) -> fulfills_daily_intakes(X)",
+          "z3_formula": "Implies(visits_gym_taylor, fulfills_daily_intakes_taylor)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) | not good_relationship_parents(X) | not visits_gym(X)",
+          "z3_formula": "Or(health_conscious_childhood_home_taylor, Not(good_relationship_parents_taylor), Not(visits_gym_taylor))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not visits_gym(taylor)",
+          "z3_formula": "Not(visits_gym_taylor)",
+          "source_step": 9
+        }
+      ]
+    }
+  ]
+}

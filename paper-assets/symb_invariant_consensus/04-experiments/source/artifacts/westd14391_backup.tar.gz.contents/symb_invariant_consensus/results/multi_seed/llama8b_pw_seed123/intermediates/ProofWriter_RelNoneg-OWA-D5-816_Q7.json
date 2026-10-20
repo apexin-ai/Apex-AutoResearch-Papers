@@ -1,0 +1,1589 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-816_Q7",
+    "problem": "The cat is rough. The cat sees the rabbit. The mouse eats the cat. The mouse eats the squirrel. The mouse is kind. The mouse visits the cat. The mouse visits the rabbit. The rabbit eats the cat. The rabbit eats the mouse. The rabbit sees the cat. The squirrel is round. The squirrel sees the rabbit. If something sees the squirrel then it is kind. If something visits the mouse then the mouse sees the squirrel. If something eats the cat then the cat visits the squirrel. If something is blue then it sees the squirrel. If something is kind then it visits the rabbit. If something is rough then it sees the cat. If something is rough and it sees the cat then the cat is blue. If something visits the rabbit and it sees the squirrel then the squirrel is rough. If something eats the mouse then it is rough.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat sees the squirrel.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nKind($x, bool) ::: Is x kind?\nVisits($x, $y, bool) ::: Does x visit y?\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nRough(Cat, True) ::: The cat is rough.\nSees(Cat, Rabbit, True) ::: The cat sees the rabbit.\nEats(Mouse, Cat, True) ::: The mouse eats the cat.\nEats(Mouse, Squirrel, True) ::: The mouse eats the squirrel.\nKind(Mouse, True) ::: The mouse is kind.\nVisits(Mouse, Cat, True) ::: The mouse visits the cat.\nVisits(Mouse, Rabbit, True) ::: The mouse visits the rabbit.\nEats(Rabbit, Cat, True) ::: The rabbit eats the cat.\nEats(Rabbit, Mouse, True) ::: The rabbit eats the mouse.\nSees(Rabbit, Cat, True) ::: The rabbit sees the cat.\nRound(Squirrel, True) ::: The squirrel is round.\nSees(Squirrel, Rabbit, True) ::: The squirrel sees the rabbit.\n\nRules:\nSees($x, Squirrel, True) >>> Kind($x, True) ::: If something sees the squirrel then it is kind.\nVisits($x, Mouse, True) >>> Sees(Mouse, Squirrel, True) ::: If something visits the mouse then the mouse sees the squirrel.\nEats($x, Cat, True) >>> Visits(Cat, Squirrel, True) ::: If something eats the cat then the cat visits the squirrel.\nBlue($x, True) >>> Sees($x, Squirrel, True) ::: If something is blue then it sees the squirrel.\nKind($x, True) >>> Visits($x, Rabbit, True) ::: If something is kind then it visits the rabbit.\nRough($x, True) >>> Sees($x, Cat, True) ::: If something is rough then it sees the cat.\nRough($x, True) && Sees($x, Cat, True) >>> Blue(Cat, True) ::: If something is rough and it sees the cat then the cat is blue.\nVisits($x, Rabbit, True) && Sees($x, Squirrel, True) >>> Rough(Squirrel, True) ::: If something visits the rabbit and it sees the squirrel then the squirrel is rough.\nEats($x, Mouse, True) >>> Rough($x, True) ::: If something eats the mouse then it is rough.\n\nQuery:\nSees(Cat, Squirrel, True) ::: The cat sees the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 153.0,
+      "True": 193.0,
+      "Unknown": 199.5
+    },
+    "answer_counts": {
+      "False": 1,
+      "True": 4,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The cat sees the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat is rough. \n   This tells us that the cat sees the cat (from the rule \"If something is rough then it sees the cat\"), but we don't know anything about the squirrel yet.\n\n2. The cat sees the rabbit. \n   This tells us that the cat sees the rabbit, but we still don't know anything about the squirrel.\n\n3. The mouse eats the cat. \n   This tells us that the mouse sees the squirrel (from the rule \"If something visits the mouse then the mouse sees the squirrel\") and the cat visits the squirrel (from the rule \"If something eats the cat then the cat visits the squirrel\").\n\n4. The mouse eats the squirrel. \n   This tells us that the mouse is rough (from the rule \"If something eats the mouse then it is rough\").\n\n5. The mouse is kind. \n   This tells us that the mouse visits the rabbit (from the rule \"If something is kind then it visits the rabbit\").\n\n6. The mouse visits the cat. \n   This tells us that the mouse sees the squirrel (from the rule \"If something visits the mouse then the mouse sees the squirrel\").\n\n7. The mouse visits the rabbit. \n   This is already known from the statement that the mouse visits the rabbit.\n\n8. The rabbit eats the cat. \n   This tells us that the rabbit is rough (from the rule \"If something eats the mouse then it is rough\").\n\n9. The rabbit eats the mouse. \n   This tells us that the rabbit is rough (from the rule \"If something eats the mouse then it is rough\").\n\n10. The rabbit sees the cat. \n    This tells us that the cat is blue (from the rule \"If something is rough and it sees the cat then the cat is blue\").\n\n11. The squirrel is round. \n    This doesn't give us any information about the cat seeing the squirrel.\n\n12. The squirrel sees the rabbit. \n    This tells us that the squirrel is kind (from the rule \"If something sees the squirrel then it is kind\").\n\nNow, we need to analyze the statement \"The cat sees the squirrel.\" We can conclude that the cat is blue (from statement 10), but this doesn't necessarily mean the cat sees the squirrel. We can conclude that the squirrel is round and kind, but we still don't know anything about the cat seeing the squirrel.\n\nHowever, we can conclude that if the cat sees the squirrel, then the cat would be kind (from the rule \"If something sees the squirrel then it is kind\"). But the cat is rough (from statement 1), not kind. This means that the cat cannot see the squirrel.\n\nTherefore, the statement \"The cat sees the squirrel\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The cat sees the squirrel\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given information, we know the following:\n\n1. The cat is rough.\n2. The cat sees the rabbit.\n3. The mouse eats the cat.\n4. The mouse eats the squirrel.\n5. The mouse is kind.\n6. The mouse visits the cat.\n7. The mouse visits the rabbit.\n8. The rabbit eats the cat.\n9. The rabbit eats the mouse.\n10. The rabbit sees the cat.\n11. The squirrel is round.\n12. The squirrel sees the rabbit.\n\nWe also have the following rules:\n\n1. If something sees the squirrel then it is kind.\n2. If something visits the mouse then the mouse sees the squirrel.\n3. If something eats the cat then the cat visits the squirrel.\n4. If something is blue then it sees the squirrel.\n5. If something is kind then it visits the rabbit.\n6. If something is rough then it sees the cat.\n7. If something is rough and it sees the cat then the cat is blue.\n8. If something visits the rabbit and it sees the squirrel then the squirrel is rough.\n9. If something eats the mouse then it is rough.\n\nNow, let's analyze the given statement: \"The cat sees the squirrel.\"\n\nFrom rule 6, we know that if something is rough then it sees the cat. Since the cat is rough (from statement 1), we can conclude that the cat sees the cat. However, this does not directly tell us whether the cat sees the squirrel.\n\nFrom rule 7, we know that if something is rough and it sees the cat then the cat is blue. Since the cat is rough and sees the cat (from the previous conclusion), we can conclude that the cat is blue.\n\nNow, let's analyze the statement \"The cat is blue.\" We can conclude this from the previous analysis.\n\nHowever, we still do not know if the cat sees the squirrel. But we can analyze further using the rules provided.\n\nSince the cat is blue, from rule 4, we know that the cat sees the squirrel. Therefore, we can conclude that the cat sees the squirrel.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The cat sees the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat is rough. \n   From the given information, \"If something is rough then it sees the cat.\" This implies that the cat sees itself, but it does not directly relate to the cat seeing the squirrel.\n\n2. The cat sees the rabbit. \n   This information does not directly relate to the cat seeing the squirrel.\n\n3. The mouse eats the cat. \n   From the given information, \"If something eats the cat then the cat visits the squirrel.\" This implies that the cat visits the squirrel.\n\n4. The mouse eats the squirrel. \n   This information does not directly relate to the cat seeing the squirrel.\n\n5. The mouse is kind. \n   From the given information, \"If something is kind then it visits the rabbit.\" This implies that the mouse visits the rabbit, but it does not directly relate to the cat seeing the squirrel.\n\n6. The mouse visits the cat. \n   From the given information, \"If something visits the mouse then the mouse sees the squirrel.\" This implies that the mouse sees the squirrel, but it does not directly relate to the cat seeing the squirrel.\n\n7. The mouse visits the rabbit. \n   This information does not directly relate to the cat seeing the squirrel.\n\n8. The rabbit eats the cat. \n   From the given information, \"If something eats the mouse then it is rough.\" This implies that the rabbit is rough because it eats the mouse, but we do not know if the rabbit is rough or not.\n\n9. The rabbit eats the mouse. \n   From the given information, \"If something eats the mouse then it is rough.\" This implies that the rabbit is rough.\n\n10. The rabbit sees the cat. \n    From the given information, \"If something is rough and it sees the cat then the cat is blue.\" This implies that the cat is blue.\n\n11. The squirrel is round. \n    This information does not directly relate to the cat seeing the squirrel.\n\n12. The squirrel sees the rabbit. \n    This information does not directly relate to the cat seeing the squirrel.\n\n13. If something sees the squirrel then it is kind. \n    We do not have enough information to determine if the cat sees the squirrel.\n\n14. If something visits the mouse then the mouse sees the squirrel. \n    We do not have enough information to determine if the cat sees the squirrel.\n\n15. If something eats the cat then the cat visits the squirrel. \n    We already know that the mouse eats the cat and the cat visits the squirrel.\n\n16. If something is blue then it sees the squirrel. \n    We know that the cat is blue, but we do not know if this implies that the cat sees the squirrel.\n\n17. If something is kind then it visits the rabbit. \n    We know that the mouse is kind and visits the rabbit, but we do not know if this implies that the cat sees the squirrel.\n\n18. If something is rough then it sees the cat. \n    We know that the rabbit is rough and sees the cat, but we do not know if this implies that the cat sees the squirrel.\n\n19. If something is rough and it sees the cat then the cat is blue. \n    We know that the rabbit is rough and sees the cat, and the cat is blue.\n\n20. If something visits the rabbit and it sees the squirrel then the squirrel is rough. \n    We do not have enough information to determine if the cat sees the squirrel.\n\nBased on the given information, we do not have enough evidence to determine whether the cat sees the squirrel. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The cat sees the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given statements are:\n   - The cat is rough.\n   - The cat sees the rabbit.\n   - The mouse eats the cat.\n   - The mouse eats the squirrel.\n   - The mouse is kind.\n   - The mouse visits the cat.\n   - The mouse visits the rabbit.\n   - The rabbit eats the cat.\n   - The rabbit eats the mouse.\n   - The rabbit sees the cat.\n   - The rabbit sees the mouse.\n   - The squirrel is round.\n   - The squirrel sees the rabbit.\n   - If something sees the squirrel then it is kind.\n   - If something visits the mouse then the mouse sees the squirrel.\n   - If something eats the cat then the cat visits the squirrel.\n   - If something is blue then it sees the squirrel.\n   - If something is kind then it visits the rabbit.\n   - If something is rough then it sees the cat.\n   - If something is rough and it sees the cat then the cat is blue.\n   - If something visits the rabbit and it sees the squirrel then the squirrel is rough.\n   - If something eats the mouse then it is rough.\n\n2. We know that the cat is rough, so from the rule \"If something is rough then it sees the cat,\" we can conclude that the cat sees the cat. However, this does not directly tell us about the squirrel.\n\n3. Since the cat sees the rabbit, and from the rule \"If something sees the rabbit and it visits the rabbit then the squirrel is rough,\" we cannot determine anything about the squirrel yet.\n\n4. The statement \"The mouse eats the squirrel\" tells us that the mouse eats the squirrel, but it does not tell us about the cat seeing the squirrel.\n\n5. We can use the rule \"If something eats the mouse then it is rough\" to conclude that the rabbit is rough because it eats the mouse.\n\n6. Since the rabbit is rough, we can use the rule \"If something is rough then it sees the cat\" to conclude that the rabbit sees the cat.\n\n7. However, we still do not know if the cat sees the squirrel.\n\n8. We can use the rule \"If something is rough and it sees the cat then the cat is blue\" to conclude that the cat is blue because it is rough and it sees the cat.\n\n9. However, this still does not tell us if the cat sees the squirrel.\n\n10. We can use the rule \"If something eats the cat then the cat visits the squirrel\" to conclude that the mouse visits the squirrel because it eats the cat.\n\n11. However, this still does not tell us if the cat sees the squirrel.\n\n12. We can use the rule \"If something sees the squirrel then it is kind\" to conclude that the squirrel is kind because it sees the rabbit.\n\n13. However, this still does not tell us if the cat sees the squirrel.\n\n14. We can use the rule \"If something visits the mouse then the mouse sees the squirrel\" to conclude that the mouse sees the squirrel because it visits the mouse.\n\n15. However, this still does not tell us if the cat sees the squirrel.\n\n16. We can use the rule \"If something is blue then it sees the squirrel\" to conclude that the cat sees the squirrel because it is blue.\n\nSince we have used the given rules to conclude that the cat sees the squirrel, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The cat sees the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat is rough. (Statement 1)\n   This implies that the cat sees the cat. (From the rule: If something is rough then it sees the cat)\n\n2. The cat sees the rabbit. (Statement 2)\n   This implies that the rabbit sees the cat. (From the rule: If something sees something else then the seen is seen by the seer)\n\n3. The mouse eats the cat. (Statement 3)\n   This implies that the mouse is rough. (From the rule: If something eats the mouse then it is rough)\n\n4. The mouse eats the squirrel. (Statement 4)\n   This implies that the mouse is rough. (From the rule: If something eats the mouse then it is rough)\n\n5. The mouse is kind. (Statement 5)\n   This implies that the mouse visits the rabbit. (From the rule: If something is kind then it visits the rabbit)\n\n6. The mouse visits the cat. (Statement 6)\n   Since the mouse visits the cat and the mouse is kind, we can't conclude anything directly from this statement.\n\n7. The mouse visits the rabbit. (Statement 7)\n   This is consistent with the information in statement 5.\n\n8. The rabbit eats the cat. (Statement 8)\n   This implies that the cat is blue. (From the rule: If something is rough and it sees the cat then the cat is blue)\n\n9. The rabbit eats the mouse. (Statement 9)\n   This implies that the rabbit is rough. (From the rule: If something eats the mouse then it is rough)\n\n10. The rabbit sees the cat. (Statement 10)\n    This is consistent with the information in statements 2 and 8.\n\n11. The squirrel is round. (Statement 11)\n    This statement is irrelevant to the given problem.\n\n12. The squirrel sees the rabbit. (Statement 12)\n    This implies that the squirrel is kind. (From the rule: If something sees the squirrel then it is kind)\n\n13. If something sees the squirrel then it is kind. (Rule 1)\n    This rule is already used in statement 12.\n\n14. If something visits the mouse then the mouse sees the squirrel. (Rule 2)\n    This rule is not applicable to the given problem.\n\n15. If something eats the cat then the cat visits the squirrel. (Rule 3)\n    This rule is not applicable to the given problem.\n\n16. If something is blue then it sees the squirrel. (Rule 4)\n    This rule is not applicable to the given problem.\n\n17. If something is kind then it visits the rabbit. (Rule 5)\n    This rule is already used in statement 5.\n\n18. If something is rough then it sees the cat. (Rule 6)\n    This rule is already used in statement 1.\n\n19. If something is rough and it sees the cat then the cat is blue. (Rule 7)\n    This rule is already used in statement 8.\n\n20. If something visits the rabbit and it sees the squirrel then the squirrel is rough. (Rule 8)\n    This rule is not applicable to the given problem.\n\nNow, let's analyze the information we have:\n\n- The cat is rough (Statement 1).\n- The cat sees the rabbit (Statement 2).\n- The rabbit eats the cat (Statement 8).\n- The rabbit is rough (Statement 9).\n- The rabbit sees the cat (Statement 10).\n- The cat is blue (Statement 8, from Rule 7).\n- The squirrel sees the rabbit (Statement 12).\n- The squirrel is kind (Statement 12, from Rule 1).\n\nSince the cat is blue, and the rule states that if something sees the squirrel, then it is kind, we cannot conclude whether the cat sees the squirrel or not, because it is blue and the information about what blue things see is not given.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the cat sees the squirrel, we need to analyze the given information and apply the given rules. \n\nFrom the given information:\n1. The cat is rough.\n2. The cat sees the rabbit.\n3. The mouse eats the cat.\n4. The mouse eats the squirrel.\n5. The mouse is kind.\n6. The mouse visits the cat.\n7. The mouse visits the rabbit.\n8. The rabbit eats the cat.\n9. The rabbit eats the mouse.\n10. The rabbit sees the cat.\n11. The squirrel is round.\n12. The squirrel sees the rabbit.\n\nFrom the given rules:\n1. If something sees the squirrel then it is kind.\n2. If something visits the mouse then the mouse sees the squirrel.\n3. If something eats the cat then the cat visits the squirrel.\n4. If something is blue then it sees the squirrel.\n5. If something is kind then it visits the rabbit.\n6. If something is rough then it sees the cat.\n7. If something is rough and it sees the cat then the cat is blue.\n8. If something visits the rabbit and it sees the squirrel then the squirrel is rough.\n9. If something eats the mouse then it is rough.\n\nNow, let's apply the rules to the given information.\n\nFrom rule 3, we know that the mouse eats the cat, so the cat visits the squirrel.\n\nFrom rule 7, we know that the cat is rough and it sees the cat, so the cat is blue.\n\nFrom rule 4, we know that something is blue, so it sees the squirrel.\n\nNow we have two possibilities: \n- The cat is blue and it sees the squirrel.\n- The mouse visits the rabbit and it sees the squirrel.\n\nHowever, the statement that the mouse visits the rabbit is already given in the information. \n\nWe need to check if the mouse sees the squirrel.\nFrom the information, we have: \n- The mouse eats the squirrel.\n- The mouse is kind.\n\nFrom rule 1, we know that if something sees the squirrel then it is kind, so we can't determine if the mouse sees the squirrel.\n\nFrom rule 8, we know that if something visits the rabbit and it sees the squirrel then the squirrel is rough.\nHowever, the squirrel is round, not rough.\n\nFrom rule 5, we know that if something is kind then it visits the rabbit.\nSince the mouse is kind, we know that the mouse visits the rabbit.\n\nFrom rule 2, we know that if something visits the mouse then the mouse sees the squirrel.\nSince the mouse visits the rabbit, the mouse sees the squirrel.\n\nHowever, we still can't determine if the cat sees the squirrel.\n\nNow, we need to check if the rabbit sees the squirrel.\nFrom the information, we have:\n- The rabbit eats the cat.\n- The rabbit eats the mouse.\n\nFrom rule 9, we know that if something eats the mouse then it is rough.\nSince the rabbit eats the mouse, the rabbit is rough.\n\nFrom rule 6, we know that if something is rough then it sees the cat.\nSince the rabbit is rough, the rabbit sees the cat.\n\nFrom rule 10, we know that the rabbit sees the cat.\n\nFrom rule 1, we know that if something sees the squirrel then it is kind.\nHowever, we know that the rabbit sees the squirrel.\n\nHowever, the statement \"If something sees the squirrel then it is kind\" does not apply here because the rabbit sees the squirrel.\n\nFrom rule 8, we know that if something visits the rabbit and it sees the squirrel then the squirrel is rough.\nHowever, the squirrel is round, not rough.\n\nFrom the information, we have:\n- The rabbit sees the cat.\n\nNow we need to check if the rabbit sees the squirrel.\nFrom the information, we have:\n- The squirrel sees the rabbit.\n- The rabbit sees the cat.\n\nFrom the given rules, we have:\n- If something sees the cat then it is rough.\n- If something is rough and it sees the cat then the cat is blue.\n\nWe already know that the cat is blue, so the cat sees the squirrel.\n\nHowever, the rabbit sees the cat, not the squirrel.\n\nNow we need to check if the rabbit sees the squirrel.\nFrom the information, we have:\n- The rabbit sees the cat.\n- The rabbit eats the cat.\n- The rabbit eats the mouse.\n- The rabbit is rough.\n- The rabbit sees the cat.\n- The squirrel sees the rabbit.\n- The cat is blue.\n\nWe already know that the cat sees the squirrel.\nHowever, the rabbit sees the cat, not the squirrel.\n\nNow we need to check if the rabbit sees the squirrel.\nFrom the information, we have:\n- The rabbit sees the cat.\n- The rabbit eats the cat.\n- The rabbit eats the mouse.\n- The rabbit is rough.\n- The rabbit sees the cat.\n- The squirrel sees the rabbit.\n\nFrom rule 9, we know that if something eats the mouse then it is rough.\nSince the rabbit eats the mouse, the rabbit is rough.\n\nFrom rule 6, we know that if something is rough then it sees the cat.\nSince the rabbit is rough, the rabbit sees the cat.\n\nFrom rule 10, we know that the rabbit sees the cat.\n\nFrom rule 1, we know that if something sees the squirrel then it is kind.\nHowever, we know that the rabbit sees the squirrel.\n\nHowever, the statement \"If something sees the squirrel then it is kind\" does not apply here because the rabbit sees the squirrel.\n\nFrom rule 8, we know that if something visits the rabbit and it sees the squirrel then the squirrel is rough.\nHowever, the squirrel is round, not rough.\n\nFrom rule 7, we know that if something is rough and it sees the cat then the cat is blue.\nHowever, the cat is blue.\n\nFrom the information, we have:\n- The squirrel sees the rabbit.\n- The rabbit sees the cat.\n- The rabbit eats the cat.\n\nFrom rule 3, we know that if something eats the cat then the cat visits the squirrel.\nHowever, the cat is blue.\n\nFrom rule 4, we know that if something is blue then it sees the squirrel.\nHowever, the cat is blue.\n\nFrom rule 7, we know that if something is rough and it sees the cat then the cat is blue.\nHowever, the cat is blue.\n\nNow we need to check if the squirrel sees the rabbit.\nFrom the information, we have:\n- The squirrel sees the rabbit.\n- The rabbit sees the cat.\n- The rabbit eats the cat.\n- The rabbit eats the mouse.\n- The rabbit is rough.\n- The squirrel is round.\n\nFrom rule 8, we know that if something visits the rabbit and it sees the squirrel then the squirrel is rough.\nHowever, the squirrel is round, not rough.\n\nNow we need to check if the rabbit eats the squirrel.\nFrom the information, we have:\n- The rabbit eats the cat.\n- The rabbit eats the mouse.\n- The rabbit is rough.\n- The squirrel sees the rabbit.\n\nFrom rule 9, we know that if something eats the mouse then it is rough.\nSince the rabbit eats the mouse, the rabbit is rough.\n\nFrom rule 6, we know that if something is rough then it sees the cat.\nSince the rabbit is rough, the rabbit sees the cat.\n\nFrom rule 10, we know that the rabbit sees the cat.\n\nHowever, the rabbit eats the squirrel is unknown.\n\nHowever, the statement \"The cat sees the squirrel\" is also unknown.\n\nThe final answer is \\boxed{Unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve the problem, let's break it down into smaller parts and use a truth table to determine the properties of each animal. We'll start by assigning variables to each animal:\n\n- Cat (C)\n- Mouse (M)\n- Rabbit (R)\n- Squirrel (Sq)\n\nWe'll use the following properties:\n- Blue (B)\n- Kind (K)\n- Rough (Rg)\n- Visits (V)\n- Sees (S)\n\nFrom the given statements, we can derive the following rules:\n\n1. If something sees the squirrel, then it is kind. (Sq\u2192K)\n2. If something visits the mouse, then the mouse sees the squirrel. (Mv\u2192SqS)\n3. If something eats the cat, then the cat visits the squirrel. (C\u2192Csq)\n4. If something is blue, then it sees the squirrel. (B\u2192SqS)\n5. If something is kind, then it visits the rabbit. (K\u2192Rv)\n6. If something is rough, then it sees the cat. (Rg\u2192Cs)\n7. If something is rough and it sees the cat, then the cat is blue. (Rg\u2227Cs\u2192B)\n8. If something visits the rabbit and it sees the squirrel, then the squirrel is rough. (Rv\u2227SqS\u2192RgSq)\n9. If something eats the mouse, then it is rough. (M\u2192Rg)\n\nNow, let's apply these rules to the given statements:\n\n1. The cat is rough. (C\u2192Rg)\n2. The cat sees the rabbit. (CsR)\n3. The mouse eats the cat. (M\u2192C)\n4. The mouse eats the squirrel. (M\u2192Sq)\n5. The mouse is kind. (M\u2192K)\n6. The mouse visits the cat. (Mv\u2192C)\n7. The mouse visits the rabbit. (Mv\u2192R)\n8. The rabbit eats the cat. (R\u2192C)\n9. The rabbit eats the mouse. (R\u2192M)\n10. The rabbit sees the cat. (RsC)\n11. The squirrel is round. (Sq is not relevant to our problem)\n12. The squirrel sees the rabbit. (SqR)\n\nNow, let's derive the properties of each animal using the rules:\n\nFrom statement 2, we know the cat is rough (C\u2192Rg). \n\nFrom statement 3, we know the mouse eats the cat (M\u2192C), so the mouse is rough (M\u2192Rg).\n\nFrom statement 5, we know the mouse is kind (M\u2192K).\n\nFrom statement 6, we know the mouse visits the cat (Mv\u2192C).\n\nFrom statement 7, we know the mouse visits the rabbit (Mv\u2192R).\n\nFrom statement 9, we know the rabbit eats the mouse (R\u2192M), so the rabbit is rough (R\u2192Rg).\n\nFrom statement 10, we know the rabbit sees the cat (RsC).\n\nNow, let's use the rules to determine if the cat sees the squirrel (CsSq):\n\nFrom rule 6, we know that if something is rough, then it sees the cat (Rg\u2192Cs). Since the cat is rough (C\u2192Rg), the cat sees the cat (CsC).\n\nFrom rule 7, we know that if something is rough and it sees the cat, then the cat is blue (Rg\u2227Cs\u2192B). Since the cat sees the cat (CsC), we can conclude that the cat is blue (C\u2192B).\n\nHowever, this contradicts the fact that the cat is rough (C\u2192Rg) and the cat is rough is not sufficient to determine whether the cat sees the squirrel. Therefore, we cannot determine if the cat sees the squirrel (CsSq).\n\nSo, the final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The cat sees the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that \"The cat is rough.\" This statement alone does not tell us anything about the cat seeing the squirrel.\n\n2. Since the cat is rough, we can use the rule \"If something is rough then it sees the cat.\" This implies that the cat sees itself, but it does not provide any information about the cat seeing the squirrel.\n\n3. However, we are also given the rule \"If something is rough and it sees the cat then the cat is blue.\" Since the cat is already established as rough, this rule does not apply directly to the cat. Instead, it implies that if the cat sees the cat, then the cat is blue. But this does not provide any information about the cat seeing the squirrel.\n\n4. We can also analyze the cat's behavior based on the rule \"If something eats the cat then the cat visits the squirrel.\" Since this rule is given, it implies that the cat has been eaten by something. However, this does not provide any information about the cat seeing the squirrel.\n\n5. The only remaining rule that could potentially provide information about the cat seeing the squirrel is \"If something is blue then it sees the squirrel.\" However, this rule does not apply directly to the cat because we do not have any information that the cat is blue.\n\n6. Since we do not have enough information to determine whether the cat sees the squirrel, we will look for other statements that could potentially provide information about the cat seeing the squirrel.\n\n7. We are given that \"The mouse eats the cat.\" This implies that the cat visits the squirrel based on the rule \"If something eats the cat then the cat visits the squirrel.\" However, this does not provide any information about the cat seeing the squirrel.\n\n8. However, we are also given that \"The mouse visits the rabbit.\" This implies that the mouse sees the squirrel based on the rule \"If something visits the mouse then the mouse sees the squirrel.\" However, this does not provide any information about the cat seeing the squirrel.\n\n9. We are given that \"The mouse is kind.\" This implies that the mouse visits the rabbit based on the rule \"If something is kind then it visits the rabbit.\" However, this does not provide any information about the cat seeing the squirrel.\n\n10. We are given that \"The rabbit eats the cat.\" This implies that the rabbit is rough based on the rule \"If something eats the mouse then it is rough.\" However, this does not provide any information about the cat seeing the squirrel.\n\n11. However, we are also given that \"The rabbit eats the cat.\" This implies that the cat visits the squirrel based on the rule \"If something eats the cat then the cat visits the squirrel.\" However, this does not provide any information about the cat seeing the squirrel.\n\n12. We are given that \"The rabbit sees the cat.\" This statement is true because the cat is rough, and the rule \"If something is rough then it sees the cat\" applies.\n\n13. We are given that \"The rabbit eats the mouse.\" This implies that the rabbit is rough based on the rule \"If something eats the mouse then it is rough.\" However, this does not provide any information about the cat seeing the squirrel.\n\n14. We are given that \"The rabbit eats the mouse.\" This implies that the mouse eats the cat based on the rule \"The mouse eats the cat.\" However, we already know this statement is true.\n\n15. We are given that \"The rabbit eats the mouse.\" This implies that the mouse is kind based on the rule \"The mouse is kind.\" However, we already know this statement is true.\n\n16. We are given that \"The rabbit eats the mouse.\" This implies that the mouse visits the rabbit based on the rule \"The mouse visits the rabbit.\" However, we already know this statement is true.\n\n17. We are given that \"The rabbit eats the mouse.\" This implies that the mouse sees the squirrel based on the rule \"If something visits the mouse then the mouse sees the squirrel.\" However, this does not provide any information about the cat seeing the squirrel.\n\n18. We are given that \"The rabbit eats the mouse.\" This implies that the mouse eats the cat based on the rule \"The mouse eats the cat.\" However, we already know this statement is true.\n\n19. We are given that \"The rabbit eats the mouse.\" This implies that the cat is rough based on the rule \"The cat is rough.\" However, we already know this statement is true.\n\n20. We are given that \"The rabbit eats the mouse.\" This implies that the mouse eats the cat based on the rule \"The mouse eats the cat.\" However, we already know this statement is true.\n\n21. We are given that \"The rabbit eats the mouse.\" This implies that the rabbit is rough based on the rule \"If something eats the mouse then it is rough.\" This rule is given, and it implies that the rabbit is rough.\n\n22. We are given that \"The rabbit eats the mouse.\" This implies that the mouse eats the squirrel based on the rule \"The mouse eats the squirrel.\" However, we do not have any information about the mouse eating the squirrel.\n\n23. We are given that \"The rabbit eats the mouse.\" This implies that the mouse visits the rabbit based on the rule \"The mouse visits the rabbit.\" However, we already know this statement is true.\n\n24. We are given that \"The rabbit eats the mouse.\" This implies that the mouse is kind based on the rule \"The mouse is kind.\" However, we already know this statement is true.\n\n25. We are given that \"The rabbit eats the mouse.\" This implies that the mouse eats the cat based on the rule \"The mouse eats the cat.\" However, we already know this statement is true.\n\n26. We are given that \"The rabbit eats the mouse.\" This implies that the rabbit visits the squirrel based on the rule \"If something visits the rabbit and it sees the squirrel then the squirrel is rough.\" However, this does not provide any information about the cat seeing the squirrel.\n\n27. We are given that \"The rabbit sees the cat.\" This statement is true because the cat is rough, and the rule \"If something is rough then it sees the cat\" applies.\n\n28. We are given that \"The rabbit sees the cat.\" This implies that the cat is blue based on the rule \"If something is rough and it sees the cat then the cat is blue.\" However, this does not provide any information about the cat seeing the squirrel.\n\n29. We are given that \"The rabbit sees the cat.\" This implies that the cat visits the squirrel based on the rule \"If something eats the cat then the cat visits the squirrel.\" However, we already know that the mouse eats the cat, which implies that the cat visits the squirrel.\n\n30. We are given that \"The rabbit sees the cat.\" This implies that the cat sees the cat based on the rule \"If something is rough then it sees the cat.\" However, we already know that the cat sees the cat.\n\n31. We are given that \"The rabbit sees the squirrel.\" This statement is true because the rabbit is rough, and the rule \"If something visits the rabbit and it sees the squirrel then the squirrel is rough\" applies. However, this does not provide any information about the cat seeing the squirrel.\n\n32. We are given that \"The rabbit sees the squirrel.\" This implies that the squirrel is rough based on the rule \"If something visits the rabbit and it sees the squirrel then the squirrel is rough.\" However, this does not provide any information about the cat seeing the squirrel.\n\n33. We are given that \"The rabbit sees the squirrel.\" This implies that the squirrel is round based on the rule \"The squirrel is round.\" However, this does not provide any information about the cat seeing the squirrel.\n\n34. We are given that \"The rabbit sees the squirrel.\" This implies that the rabbit is rough based on the rule \"If something eats the mouse then it is rough.\" However, we already know that the rabbit is rough.\n\n35. We are given that \"The rabbit sees the squirrel.\" This implies that the squirrel sees the rabbit based on the rule \"If something sees the squirrel then it is kind.\" However, this does not provide any information about the cat seeing the squirrel.\n\n36. We are given that \"The rabbit sees the squirrel.\" This implies that the squirrel is round based on the rule \"The squirrel is round.\" However, this does not provide any information about the cat seeing the squirrel.\n\n37. We are given that \"The rabbit sees the squirrel.\" This implies that the squirrel sees the rabbit based on the rule \"If something sees the squirrel then it is kind.\" However, this does not provide any information about the cat seeing the squirrel.\n\n38. We are given that \"The rabbit sees the squirrel.\" This implies that the rabbit is rough based on the rule \"If something eats the mouse then it is rough.\" However, we already know that the rabbit is rough.\n\n39. We are given that \"The rabbit sees the squirrel.\" This implies that the squirrel is round based on the rule \"The squirrel is round.\" However, this does not provide any information about the cat seeing the squirrel.\n\n40. We are given that \"The rabbit sees the squirrel.\" This implies that the squirrel sees the rabbit based on the rule \"If something sees the squirrel then it is kind.\" However, this does not provide any information about the cat seeing the squirrel.\n\n41. We are given that \"The rabbit sees the squirrel.\" This implies that the rabbit is rough based on the rule \"If something eats the mouse then it is rough.\" However, we already know that the rabbit is rough.\n\n42. We are given that \"The rabbit sees the squirrel.\" This implies that the squirrel is round based on the rule \"The squirrel is round.\" However, this does not provide any information about the cat seeing the squirrel",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the cat sees the squirrel, we need to analyze the given information step by step.\n\n1. The cat is rough. \n   From this, we can conclude that the cat sees the cat (because if something is rough then it sees the cat).\n\n2. The cat sees the cat.\n   This is already given in the first point, but we can use it to find more information.\n\n3. The cat sees the cat.\n   Since the cat sees the cat, we can use the rule \"If something sees the cat then the cat visits the squirrel.\"\n   Therefore, the cat visits the squirrel.\n\n4. The cat visits the squirrel.\n   We can use this information to determine whether the cat sees the squirrel.\n\n5. We need to check if the cat is kind or if the cat sees the squirrel from another rule.\n   We already know that the cat is rough.\n\n6. The cat is rough.\n   From this, we can conclude that the cat sees the cat (because if something is rough then it sees the cat).\n   Since the cat sees the cat, we can use the rule \"If something sees the cat and it is rough then the cat is blue.\"\n   Therefore, the cat is blue.\n\n7. The cat is blue.\n   From this, we can conclude that the cat sees the squirrel (because if something is blue then it sees the squirrel).\n\nHowever, we cannot conclude that the cat sees the squirrel directly from the given rules. \nWe can only conclude that the cat is blue and the cat sees the squirrel indirectly.\nSince we have a direct conclusion that the cat sees the squirrel from the rules we have used, we must conclude that the statement \"The cat sees the squirrel\" is True.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the cat sees the squirrel, we need to analyze the given statements and their implications.\n\n1. The cat is rough. \n   - This statement does not directly tell us if the cat sees the squirrel.\n\n2. The cat sees the rabbit.\n   - This statement does not directly tell us if the cat sees the squirrel.\n\n3. The mouse eats the cat.\n   - This statement does not directly tell us if the cat sees the squirrel.\n\n4. The mouse eats the squirrel.\n   - This statement does not directly tell us if the cat sees the squirrel.\n\n5. The mouse is kind.\n   - This statement does not directly tell us if the cat sees the squirrel.\n\n6. The mouse visits the cat.\n   - This statement does not directly tell us if the cat sees the squirrel.\n\n7. The mouse visits the rabbit.\n   - This statement does not directly tell us if the cat sees the squirrel.\n\n8. The rabbit eats the cat.\n   - This statement does not directly tell us if the cat sees the squirrel.\n\n9. The rabbit eats the mouse.\n   - This statement does not directly tell us if the cat sees the squirrel.\n\n10. The rabbit sees the cat.\n    - This statement does not directly tell us if the cat sees the squirrel.\n\n11. The squirrel is round.\n    - This statement does not directly tell us if the cat sees the squirrel.\n\n12. The squirrel sees the rabbit.\n    - This statement does not directly tell us if the cat sees the squirrel.\n\nFrom the given statements, there are two relevant implications that could affect the cat seeing the squirrel:\n\n- If something is rough and it sees the cat, then the cat is blue. However, we are not given any information about the cat seeing another entity that is rough.\n- If something visits the rabbit and it sees the squirrel, then the squirrel is rough. However, we are not given any information about the cat visiting the rabbit.\n\nHowever, we do have a relevant implication from the following statements:\n- The cat is rough.\n- If something is rough then it sees the cat. \nSo, the cat sees the cat.\n\nHowever, we also have the following implication from the statement \"The cat is rough\" and the implication \"If something is rough and it sees the cat then the cat is blue.\"\n- The cat is rough.\n- If something is rough then it sees the cat. \n- If something is rough and it sees the cat then the cat is blue. \nSo, the cat is blue.\n\nFrom the above implications, we can conclude that the cat sees the cat and the cat is blue.\n\nNow, we need to find out if something is blue and it sees the squirrel.\n- The cat is blue.\n- If something is blue then it sees the squirrel.\n\nFrom the above implication, we can conclude that the cat sees the squirrel.\n\nTherefore, the statement \"The cat sees the squirrel\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The cat sees the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat is rough. (Given)\n2. If something is rough then it sees the cat. (Rule 8)\n   This implies that the cat sees itself. However, we don't have any information about the cat seeing other animals based on this rule alone.\n\n3. If something is rough and it sees the cat then the cat is blue. (Rule 10)\n   Since the cat is rough (from step 1), this rule might be relevant. However, we need more information about the cat seeing the cat.\n\n4. The mouse eats the cat. (Given)\n   This implies that the mouse is rough. (Rule 12)\n5. The mouse is kind. (Given)\n   Since the mouse is both rough and kind, we need to follow these rules further.\n\n6. If something is kind then it visits the rabbit. (Rule 11)\n   The mouse is kind (from step 5), so the mouse visits the rabbit.\n\n7. The mouse visits the rabbit. (From step 6)\n   Now we know that the mouse visits the rabbit. The next rule might be relevant.\n\n8. If something visits the rabbit and it sees the squirrel then the squirrel is rough. (Rule 9)\n   Since the mouse visits the rabbit and sees the squirrel (we don't know this yet), we need to follow this rule further.\n\n9. The mouse eats the squirrel. (Given)\n   This implies that the mouse is rough (we already knew this from step 4), and the squirrel is rough (from step 8).\n\n10. The squirrel is round. (Given)\n    This information doesn't help us determine if the cat sees the squirrel.\n\n11. The squirrel sees the rabbit. (Given)\n    This information also doesn't help us determine if the cat sees the squirrel.\n\n12. If something sees the squirrel then it is kind. (Rule 1)\n    Since the squirrel sees the rabbit (from step 11), the rabbit is kind.\n\n13. The mouse is kind. (From step 5)\n    We already knew this.\n\n14. The rabbit eats the cat. (Given)\n    This implies that the rabbit is rough (from Rule 12).\n\n15. The rabbit sees the cat. (Given)\n    We are given this information directly.\n\n16. The cat is rough. (From step 1)\n    We already knew this.\n\n17. If something is rough and it sees the cat then the cat is blue. (Rule 10)\n    Since the cat is rough (from step 16) and it sees the cat (itself), the cat is blue (from this rule).\n\nNow we have all the necessary information to determine if the cat sees the squirrel.\n\nThe statement \"The cat sees the squirrel\" is false because there is no information that links the cat to seeing the squirrel. We only know that the cat sees itself when it's rough (from Rule 8 and Rule 10), and there is no information about the cat seeing other animals.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'The cat sees the squirrel' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat is rough. \nFrom this statement, we cannot conclude that the cat sees the squirrel.\n\n2. The cat sees the rabbit.\nThis statement does not provide any information about the cat's relationship with the squirrel.\n\n3. The mouse eats the cat. \nThe mouse eats the cat. \nThe mouse eats the squirrel. \nThe mouse is kind. \nThe mouse visits the cat. \nThe mouse visits the rabbit. \nThe rabbit eats the cat. \nThe rabbit eats the mouse. \nThe rabbit sees the cat. \nThe rabbit sees the squirrel. \nThe squirrel is round. \nThe squirrel sees the rabbit.\n\n4. If something sees the squirrel then it is kind.\nSince the squirrel sees the rabbit, we can conclude that the rabbit is kind. However, this does not provide any information about the cat's relationship with the squirrel.\n\n5. If something visits the mouse then the mouse sees the squirrel.\nSince the cat visits the mouse, the mouse sees the squirrel. But this does not provide any information about the cat's relationship with the squirrel.\n\n6. If something eats the cat then the cat visits the squirrel.\nSince the mouse eats the cat, we can conclude that the cat visits the squirrel.\n\n7. If something is blue then it sees the squirrel.\nWe do not have any information about the color of the cat.\n\n8. If something is kind then it visits the rabbit.\nSince the rabbit is kind, we already know that the rabbit visits the squirrel.\n\n9. If something is rough then it sees the cat.\nSince the cat is rough, the cat sees the cat. But this does not provide any information about the cat's relationship with the squirrel.\n\n10. If something is rough and it sees the cat then the cat is blue.\nSince the cat is rough and it sees the cat, the cat is blue. However, this does not provide any information about the cat's relationship with the squirrel.\n\n11. If something visits the rabbit and it sees the squirrel then the squirrel is rough.\nSince the rabbit sees the squirrel, we can conclude that the squirrel is not rough.\n\n12. If something eats the mouse then it is rough.\nSince the rabbit eats the mouse, the rabbit is rough.\n\nHowever, we also know that the cat is rough (from statement 1), but we do not know whether the cat sees the squirrel directly. We only know that the cat visits the squirrel (from statement 6). \n\nSince the cat is rough and it sees the cat (from statement 9), the cat is blue (from statement 10). But being blue does not provide any information about the cat's relationship with the squirrel.\n\nTherefore, based on the given information, we cannot conclude whether the cat sees the squirrel or not. The answer is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_cat, sees_cat_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> sees(X, squirrel)",
+          "z3_formula": "Implies(eats_mouse_cat, sees_mouse_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> visits(X, Y)",
+          "z3_formula": "Implies(eats_mouse_cat, visits_cat_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, rabbit)",
+          "z3_formula": "Implies(kind_mouse, visits_mouse_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, rabbit)",
+          "z3_formula": "visits_mouse_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> rough(X)",
+          "z3_formula": "Implies(eats_rabbit_cat, rough_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> rough(X)",
+          "z3_formula": "Implies(eats_rabbit_mouse, rough_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & sees(X, cat) -> blue(X)",
+          "z3_formula": "Implies(And(rough_rabbit, sees_rabbit_cat), blue_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> kind(X)",
+          "z3_formula": "Implies(sees_squirrel_rabbit, kind_rabbit)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> kind(X)",
+          "z3_formula": "Implies(sees_cat_squirrel, kind_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(kind_cat, sees_cat_squirrel)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "kind(cat) == False",
+          "z3_formula": "Not(kind_cat) == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "cat sees squirrel == False",
+          "z3_formula": "Not(sees_cat_squirrel) == True",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, rabbit)",
+          "z3_formula": "visits_mouse_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> kind(X)",
+          "z3_formula": "Implies(sees_X_squirrel, kind_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> sees(mouse, squirrel)",
+          "z3_formula": "Implies(visits_X_mouse, sees_mouse_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> visits(cat, squirrel)",
+          "z3_formula": "Implies(eats_X_cat, visits_cat_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(blue_X, sees_X_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, rabbit)",
+          "z3_formula": "Implies(kind_X, visits_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_X, sees_X_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & sees(X, cat) -> blue(X)",
+          "z3_formula": "Implies(And(rough_X, sees_X_cat), blue_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, squirrel) -> rough(squirrel)",
+          "z3_formula": "Implies(And(visits_X_rabbit, sees_X_squirrel), rough_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(eats_X_mouse, rough_X)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, cat)",
+          "z3_formula": "sees_cat_cat == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_cat, sees_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(eats_mouse_cat, visits_cat_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, rabbit)",
+          "z3_formula": "Implies(kind_mouse, visits_mouse_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> sees(X, squirrel)",
+          "z3_formula": "Implies(visits_mouse_cat, sees_mouse_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, rabbit)",
+          "z3_formula": "visits_mouse_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(eats_rabbit_mouse, rough_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & sees(X, cat) -> blue(X)",
+          "z3_formula": "Implies(And(rough_rabbit, sees_rabbit_cat), blue_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> kind(X)",
+          "z3_formula": "Implies(sees_cat_squirrel, kind_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, squirrel)",
+          "z3_formula": "Implies(visits_cat_rabbit, sees_cat_squirrel)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_cat, sees_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & sees(X, cat) -> blue(X)",
+          "z3_formula": "Implies(And(rough_cat, sees_cat), blue_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(And(visits_cat_rabbit, sees_cat_squirrel), rough_cat)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, rabbit)",
+          "z3_formula": "visits_mouse_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, mouse)",
+          "z3_formula": "sees_rabbit_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> kind(X)",
+          "z3_formula": "Implies(sees_squirrel_rabbit, kind_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> sees(mouse, squirrel)",
+          "z3_formula": "Implies(visits_mouse_rabbit, sees_mouse_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> visits(cat, squirrel)",
+          "z3_formula": "Implies(eats_rabbit_cat, visits_cat_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(blue_cat, sees_cat_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, rabbit)",
+          "z3_formula": "Implies(kind_mouse, visits_mouse_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_cat, sees_cat_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & sees(X, cat) -> blue(X)",
+          "z3_formula": "Implies(And(rough_cat, sees_cat_cat), blue_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(And(visits_mouse_rabbit, sees_mouse_squirrel), rough_mouse)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(eats_rabbit_mouse, rough_rabbit)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, cat)",
+          "z3_formula": "sees_cat_cat == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_cat, sees_cat_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> sees(Y, X)",
+          "z3_formula": "Implies(sees_cat_rabbit, sees_rabbit_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> rough(X)",
+          "z3_formula": "Implies(eats_mouse_cat, rough_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> rough(X)",
+          "z3_formula": "Implies(eats_mouse_squirrel, rough_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, rabbit)",
+          "z3_formula": "Implies(kind_mouse, visits_mouse_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, rabbit)",
+          "z3_formula": "visits_mouse_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & sees(X, cat) -> blue(X)",
+          "z3_formula": "Implies(And(rough_rabbit, sees_rabbit_cat), blue_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> rough(X)",
+          "z3_formula": "Implies(eats_rabbit_mouse, rough_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> kind(X)",
+          "z3_formula": "Implies(sees_squirrel_rabbit, kind_squirrel)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, rabbit)",
+          "z3_formula": "visits_mouse_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> kind(X)",
+          "z3_formula": "Implies(sees_X_squirrel, kind_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> sees(mouse, squirrel)",
+          "z3_formula": "Implies(visits_X_mouse, sees_mouse_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> visits(cat, squirrel)",
+          "z3_formula": "Implies(eats_X_cat, visits_cat_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(blue_X, sees_X_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, rabbit)",
+          "z3_formula": "Implies(kind_X, visits_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_X, sees_X_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & sees(X, cat) -> blue(X)",
+          "z3_formula": "Implies(And(rough_X, sees_X_cat), blue_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(And(visits_X_rabbit, sees_X_squirrel), rough_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(eats_X_mouse, rough_X)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, squirrel)",
+          "z3_formula": "visits_cat_squirrel == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == False",
+          "source_step": 29
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_cat, sees_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & sees(X, cat) -> blue(X)",
+          "z3_formula": "Implies(And(rough_cat, sees_cat), blue_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(eats_cat, visits_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> sees(X, squirrel)",
+          "z3_formula": "Implies(visits_mouse, sees_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, rabbit)",
+          "z3_formula": "visits_mouse_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, rabbit)",
+          "z3_formula": "Implies(kind_mouse, visits_mouse_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(eats_mouse, rough_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(eats_cat, visits_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(And(visits_rabbit, sees_squirrel), rough_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & sees(X, cat) -> blue(X)",
+          "z3_formula": "Implies(And(rough_rabbit, sees_rabbit_cat), blue_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(eats_cat, visits_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, squirrel)",
+          "z3_formula": "visits_cat_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(And(visits_rabbit, sees_squirrel), rough_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(And(visits_rabbit, sees_squirrel), rough_squirrel)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> kind(X)",
+          "z3_formula": "Implies(sees_squirrel, kind_rabbit)",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> kind(X)",
+          "z3_formula": "Implies(sees_squirrel, kind_rabbit)",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> kind(X)",
+          "z3_formula": "Implies(sees_squirrel, kind_rabbit)",
+          "source_step": 28
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 29
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 30
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_cat, sees_cat_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, cat)",
+          "z3_formula": "sees_cat_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(sees_cat_cat, visits_cat_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, squirrel)",
+          "z3_formula": "visits_cat_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_cat, sees_cat_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, cat)",
+          "z3_formula": "sees_cat_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & rough(X) -> blue(X)",
+          "z3_formula": "Implies(And(sees_cat_cat, rough_cat), blue_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(blue_cat, sees_cat_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_cat, sees_cat_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, cat)",
+          "z3_formula": "sees_cat_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & sees(X, cat) -> blue(X)",
+          "z3_formula": "Implies(And(rough_cat, sees_cat_cat), blue_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(blue_cat, sees_cat_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_cat, sees_cat_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & sees(X, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(rough_cat, sees_cat_cat), blue_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, rabbit)",
+          "z3_formula": "Implies(kind_mouse, visits_mouse_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, rabbit)",
+          "z3_formula": "visits_mouse_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, rabbit)",
+          "z3_formula": "visits_mouse_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, squirrel) -> rough(squirrel)",
+          "z3_formula": "Implies(And(visits_mouse_rabbit, sees_squirrel_rabbit), rough_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> kind(X)",
+          "z3_formula": "Implies(sees_squirrel_rabbit, kind_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cat)",
+          "z3_formula": "eats_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, cat)",
+          "z3_formula": "visits_mouse_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, rabbit)",
+          "z3_formula": "visits_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, cat)",
+          "z3_formula": "eats_rabbit_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cat)",
+          "z3_formula": "sees_rabbit_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(squirrel)",
+          "z3_formula": "round_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> kind(X)",
+          "z3_formula": "Implies(sees_rabbit_squirrel, kind_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> sees(mouse, squirrel)",
+          "z3_formula": "Implies(visits_cat_mouse, sees_mouse_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> visits(cat, squirrel)",
+          "z3_formula": "Implies(eats_mouse_cat, visits_cat_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, squirrel)",
+          "z3_formula": "Implies(blue_cat, sees_cat_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> visits(X, rabbit)",
+          "z3_formula": "Implies(kind_rabbit, visits_rabbit_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, cat)",
+          "z3_formula": "Implies(rough_cat, sees_cat_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & sees(X, cat) -> blue(X)",
+          "z3_formula": "Implies(And(rough_cat, sees_cat_cat), blue_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, squirrel) -> rough(squirrel)",
+          "z3_formula": "Implies(And(visits_rabbit_squirrel, sees_squirrel_rabbit), rough_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(eats_rabbit_mouse, rough_rabbit)",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 243,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 73
+    },
+    "maxsat_stats": {
+      "satisfied": 70,
+      "excluded": 3,
+      "total_weight": 240,
+      "solve_time_ms": 1.955786719918251
+    },
+    "timing": {
+      "trace_gen_s": 24.673,
+      "extraction_s": 48.423,
+      "dedup_s": 3.278,
+      "maxsat_s": 0.006,
+      "total_s": 76.38
+    }
+  }
+}

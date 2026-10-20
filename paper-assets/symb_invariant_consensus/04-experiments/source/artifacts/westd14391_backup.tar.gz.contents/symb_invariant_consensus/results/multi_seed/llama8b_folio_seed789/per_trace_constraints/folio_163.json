@@ -1,0 +1,383 @@
+{
+  "pid": "folio_163",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "land(hawk)",
+          "z3_formula": "land_hawk == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "hawk(X)",
+          "z3_formula": "hawk_X == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "land(X)",
+          "z3_formula": "land_X == False",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "Forall(X, hawk(X) -> land(X))",
+          "z3_formula": "Implies(hawk_X, land_X)",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "land(hawk)",
+          "z3_formula": "land_hawk == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "bird(hawk)",
+          "z3_formula": "bird_hawk == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "bird(hawk)",
+          "z3_formula": "bird_hawk == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bird(X) -> land(X)",
+          "z3_formula": "Implies(bird_hawk, land_hawk)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "land(bird)",
+          "z3_formula": "land_bird == False",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "land(hawk)",
+          "z3_formula": "land_hawk == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "bird(hawk)",
+          "z3_formula": "bird_hawk == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bird(X) -> land(X)",
+          "z3_formula": "Implies(bird_hawk, land_hawk)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not all land",
+          "z3_formula": "Not(Implies(ForAll(bird, land), True))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain all land",
+          "z3_formula": "Or(Not(Implies(ForAll(bird, land), True)), Not(Implies(False, Implies(ForAll(bird, land), True)))",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "hawkbird(1)",
+          "z3_formula": "hawkbird_1 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "land(X) == False",
+          "z3_formula": "land_hawk == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "bird(1)",
+          "z3_formula": "bird_1 == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bird(X) -> hawkbird(X)",
+          "z3_formula": "Implies(bird_1, hawkbird_1)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "land(X) == False",
+          "z3_formula": "land_hawk == False",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "land(X)",
+          "z3_formula": "land_bird == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "land(X) == False",
+          "z3_formula": "land_bird == False",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "hawk(X) -> land(X)",
+          "z3_formula": "Not(Implies(hawk_X, land_X))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "bird(X) & hawk(X)",
+          "z3_formula": "Implies(And(bird_X, hawk_X), True)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "land(X)",
+          "z3_formula": "Or(land_X, Not(land_X))",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "hawk(X) -> land(X)",
+          "z3_formula": "Not(hawk_X) | land_X",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "bird(X) & hawk(X)",
+          "z3_formula": "bird_X & hawk_X",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "bird(X) & Not(hawk(X)) -> land(X)",
+          "z3_formula": "Implies(And(bird_X, Not(hawk_X)), land_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "bird(X) -> land(X)",
+          "z3_formula": "Implies(bird_X, land_X)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "All bird(X) land(X)",
+          "z3_formula": "ForAll([X], Implies(bird_X, land_X))",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_birds_land",
+          "z3_formula": "all_birds_land == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some_birds_are_hawks",
+          "z3_formula": "some_birds_are_hawks == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "hawk(X) -> not_land(X)",
+          "z3_formula": "Implies(hawk_X, not_land_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not all_birds_land",
+          "z3_formula": "Not(all_birds_land)",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "land(hawk)",
+          "z3_formula": "land_hawk == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "hawk(X)",
+          "z3_formula": "hawk_X == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "hawk(X) -> Not(land(X))",
+          "z3_formula": "Implies(hawk_X, Not(land_X))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "Not(land(X))",
+          "z3_formula": "Not(land_X)",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "land(hawk)",
+          "z3_formula": "land_hawk == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "bird(hawk)",
+          "z3_formula": "bird_hawk == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bird(X) & land(X) -> land(X)",
+          "z3_formula": "Implies(And(bird_hawk, land_X), land_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "land_X",
+          "z3_formula": "land_X == False",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "bird(X)",
+          "z3_formula": "bird_X == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "land(X)",
+          "z3_formula": "land_X == False",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "all_birds_land",
+          "z3_formula": "Not(Or(bird_X, Not(land_X))) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "land(hawk) == False",
+          "z3_formula": "land_hawk == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "hawk(bird) == True",
+          "z3_formula": "hawk_bird == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "land(bird) == Unknown",
+          "z3_formula": "land_bird == Unknown",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "land(hawk)",
+          "z3_formula": "land_hawk == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "hawk(X) & bird(X)",
+          "z3_formula": "hawk_X_and_bird_X == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bird(X) -> land(X)",
+          "z3_formula": "Implies(bird_X, land_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "land(X)",
+          "z3_formula": "Not(land_X)",
+          "source_step": 4
+        }
+      ]
+    }
+  ]
+}

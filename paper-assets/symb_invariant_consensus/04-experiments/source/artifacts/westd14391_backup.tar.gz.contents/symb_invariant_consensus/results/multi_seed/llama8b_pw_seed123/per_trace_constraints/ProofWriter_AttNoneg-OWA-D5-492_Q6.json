@@ -1,0 +1,850 @@
+{
+  "pid": "ProofWriter_AttNoneg-OWA-D5-492_Q6",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_charlie, rough_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_charlie, rough_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(green_charlie, kind_fiona), round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_anne, blue_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_anne, green_charlie), kind_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> white(X)",
+          "z3_formula": "Implies(rough_charlie, white_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(charlie)",
+          "z3_formula": "Not(rough_charlie) == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_charlie, rough_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> kind(X)",
+          "z3_formula": "Implies(white_X, kind_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(green_X, kind_X), round_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_anne, big_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_X, big_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_X, blue_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_X, green_X), kind_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_X, rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_anne, rough_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> kind(X)",
+          "z3_formula": "Implies(white_anne, kind_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(green_charlie, kind_charlie), round_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_anne, big_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_anne, blue_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_anne, big_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> white(X)",
+          "z3_formula": "Implies(rough_charlie, white_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_charlie, rough_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_charlie, rough_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> white(X)",
+          "z3_formula": "Implies(rough_charlie, white_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie) & green(charlie) -> kind(charlie)",
+          "z3_formula": "And(green_charlie, green_charlie) == True -> kind_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie) -> round(charlie)",
+          "z3_formula": "kind_charlie == True -> round_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie) -> blue(charlie)",
+          "z3_formula": "green_charlie == True -> blue_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie) & green(charlie) -> kind(charlie)",
+          "z3_formula": "And(big_charlie, green_charlie) == True -> kind_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(charlie))",
+          "z3_formula": "Not(rough_charlie)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "rough(blue)",
+          "z3_formula": "rough_blue == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_charlie, rough_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(charlie))",
+          "z3_formula": "Not(rough_charlie) == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_charlie, rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_charlie, green_charlie), kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> white(X)",
+          "z3_formula": "Implies(rough_charlie, white_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_charlie, big_charlie), kind_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie) & big(charlie)",
+          "z3_formula": "And(blue_charlie, big_charlie) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie) & big(charlie)",
+          "z3_formula": "And(blue_charlie, big_charlie) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(green_charlie, kind_charlie), round_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == False",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == False",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_charlie, big_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "anne == rough",
+          "z3_formula": "kind_anne == False",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_charlie, rough_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == Unknown",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> white(X)",
+          "z3_formula": "Implies(rough_charlie, white_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == Unknown",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> white(X)",
+          "z3_formula": "Implies(rough_charlie, white_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(charlie))",
+          "z3_formula": "Not(rough_charlie)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_charlie, rough_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(green_charlie, kind_charlie), round_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> white(X)",
+          "z3_formula": "Implies(rough_charlie, white_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(anne) -> big(anne)",
+          "z3_formula": "Implies(rough_anne, big_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_anne, green_anne), kind_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == Unknown",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == Unknown",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == Unknown",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_charlie, rough_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> white(X)",
+          "z3_formula": "Implies(rough_charlie, white_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(green_charlie, kind_charlie), round_charlie)",
+          "source_step": 8
+        }
+      ]
+    }
+  ]
+}

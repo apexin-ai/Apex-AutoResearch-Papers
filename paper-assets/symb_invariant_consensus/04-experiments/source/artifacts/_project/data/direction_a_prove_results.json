@@ -1,0 +1,24 @@
+{
+  "experiment": "Direction A: PROVE (code-based verification)",
+  "model": "Qwen2.5-7B-Instruct",
+  "dataset": "FOLIO-204",
+  "k_traces": 12,
+  "temperature": 0.7,
+  "results": {
+    "code_gen_success_rate": 0.152,
+    "code_gen_success_count": 31,
+    "verification_conclusive_rate": 0.078,
+    "verification_conclusive_count": 16,
+    "accuracy_conclusive_only": 0.500,
+    "accuracy_prove_with_fallback": 0.716,
+    "accuracy_sc_baseline_this_run": 0.735,
+    "prove_correct_count": 146,
+    "sc_correct_count": 150,
+    "sica_baseline_ref_exp035": 0.7647,
+    "sc_baseline_ref_exp035": 0.7696,
+    "total_wall_time_s": 1707
+  },
+  "conclusion": "PROVE underperforms SC baseline (71.6% vs 73.5%). Root cause: extremely low code gen success rate (15.2%) — Qwen2.5-7B cannot reliably generate executable verification code. Of the 16 conclusive verifications, only 50% are correct, meaning code-based proofs are unreliable even when they execute. Direction A is not viable with 7B models.",
+  "server": "westd-25068",
+  "timestamp": "2026-05-20T16:28:00+08:00"
+}

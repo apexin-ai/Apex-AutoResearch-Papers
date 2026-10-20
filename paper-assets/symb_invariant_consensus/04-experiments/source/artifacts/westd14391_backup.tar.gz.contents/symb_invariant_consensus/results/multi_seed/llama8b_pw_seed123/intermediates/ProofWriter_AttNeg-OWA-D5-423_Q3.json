@@ -1,0 +1,1060 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-423_Q3",
+    "problem": "Anne is cold. Anne is furry. Anne is not quiet. Charlie is kind. Fiona is not quiet. Fiona is young. Harry is cold. Kind things are furry. Nice things are big. Furry things are nice. If something is young and furry then it is quiet. If Anne is quiet then Anne is cold. Kind, big things are young. If something is kind and not furry then it is not young.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is nice.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nQuiet($x, bool) ::: Is x quiet?\nKind($x, bool) ::: Is x kind?\nYoung($x, bool) ::: Is x young?\nNice($x, bool) ::: Is x nice?\nBig($x, bool) ::: Is x big?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nFurry(Anne, True) ::: Anne is furry.\nQuiet(Anne, False) ::: Anne is not quiet.\nKind(Charlie, True) ::: Charlie is kind.\nQuiet(Fiona, False) ::: Fiona is not quiet.\nYoung(Fiona, True) ::: Fiona is young.\nCold(Harry, True) ::: Harry is cold.\n\nRules:\nKind($x, True) >>> Furry($x, True) ::: Kind things are furry.\nNice($x, True) >>> Big($x, True) ::: Nice things are big.\nFurry($x, True) >>> Nice($x, True) ::: Furry things are nice.\nYoung($x, True) && Furry($x, True) >>> Quiet($x, True) ::: If something is young and furry then it is quiet.\nQuiet(Anne, True) >>> Cold(Anne, True) ::: If Anne is quiet then Anne is cold.\nKind($x, True) && Big($x, True) >>> Young($x, True) ::: Kind, big things are young.\nKind($x, True) && Furry($x, False) >>> Young($x, False) ::: If something is kind and not furry then it is not young.\n\nQuery:\nNice(Anne, True) ::: Anne is nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 148.0,
+      "Unknown": 137.0
+    },
+    "answer_counts": {
+      "True": 10,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement 'Anne is nice' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that 'Furry things are nice' from the given statements.\n\n2. We are also given that 'Anne is furry'. \n\n3. Using the information from step 1 and step 2, we can conclude that 'Anne is nice'.\n\nHowever, we need to verify our conclusion by checking if there is any information that contradicts it.\n\n1. We are given that 'Kind things are furry'.\n\n2. We are also given that 'Charlie is kind'.\n\n3. From the given information, we can't conclude that Charlie is furry or not.\n\n4. However, from the given information, we are unable to find any information that contradicts the conclusion that 'Anne is nice'.\n\nTherefore, the statement 'Anne is nice' is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is nice\" is true, false, or unknown, we need to analyze the given information and apply the rules of inference.\n\n1. Given information:\n   - Anne is cold.\n   - Anne is furry.\n   - Anne is not quiet.\n   - Charlie is kind.\n   - Fiona is not quiet.\n   - Fiona is young.\n   - Harry is cold.\n   - Kind things are furry.\n   - Nice things are big.\n   - Furry things are nice.\n   - If something is young and furry then it is quiet.\n   - If Anne is quiet then Anne is cold.\n   - Kind, big things are young.\n   - If something is kind and not furry then it is not young.\n\n2. Analyze the information to find the relationship between Anne and the characteristics:\n   - From the given rules, we know that furry things are nice.\n   - Since Anne is furry, it means Anne is nice.\n\n3. Conclusion:\n   - Based on the rules of inference, we can conclude that Anne is nice.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is nice' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Kind things are furry. (Given)\n2. If something is kind and not furry then it is not young. (Given)\n3. Kind, big things are young. (Given)\n   - This implies that kind things can be young if they are big. However, we also know that kind things are furry (from step 1).\n   - Therefore, kind things can be young, but it's not a requirement for them to be young.\n\n4. Anne is kind. (Implicit from 'Charlie is kind')\n   - Since Charlie is kind, Anne must also be kind, given the information about Charlie.\n\n5. Anne is not quiet. (Given)\n   - This is a direct statement about Anne.\n\n6. Anne is furry. (Given)\n   - This is a direct statement about Anne.\n\n7. Furry things are nice. (Given)\n   - Since Anne is furry (from step 6), we can conclude that Anne is nice.\n\nHowever, we also have the statement: \nIf something is young and furry then it is quiet. (Given)\n- This statement creates a contradiction with our previous conclusion about Anne being nice (from step 7). If Anne is furry and nice, then Anne must be young because nice things are big, and big things are young.\n\n8. If Anne is young and furry, then Anne is quiet. (From the given statement)\n   - This is a contradiction to our statement in step 5 that Anne is not quiet.\n\nGiven the information, we have a contradiction in our statements about Anne's age and quietness. However, we know Anne is nice from step 7.\n\nSince we have a contradiction, we cannot conclude that the statement 'Anne is nice' is true or false. Therefore, the answer is 'unknown'.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Given information:\n   - Anne is cold.\n   - Anne is furry.\n   - Anne is not quiet.\n   - Charlie is kind.\n   - Fiona is not quiet.\n   - Fiona is young.\n   - Harry is cold.\n   - Kind things are furry.\n   - Nice things are big.\n   - Furry things are nice.\n   - If something is young and furry then it is quiet.\n   - If Anne is quiet then Anne is cold.\n   - Kind, big things are young.\n   - If something is kind and not furry then it is not young.\n\n2. Let's start with the given statements about Anne:\n   - Anne is cold.\n   - Anne is furry.\n   - Anne is not quiet.\n\n3. From the given information, we know that furry things are nice (Furry things are nice).\n   Since Anne is furry, we can conclude that Anne is nice.\n\nTherefore, the statement \"Anne is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is cold.\n   - Anne is furry.\n   - Anne is not quiet.\n   - Charlie is kind.\n   - Fiona is not quiet.\n   - Fiona is young.\n   - Harry is cold.\n   - Kind things are furry.\n   - Nice things are big.\n   - Furry things are nice.\n   - If something is young and furry then it is quiet.\n   - If Anne is quiet then Anne is cold.\n   - Kind, big things are young.\n   - If something is kind and not furry then it is not young.\n\n2. Analyzing the information:\n   - Since Anne is furry, and furry things are nice, we can conclude that Anne is nice.\n   - However, we also know that nice things are big. But we don't have any information about Anne's size.\n\n3. Conclusion:\n   - Based on the given information, we can conclude that Anne is nice because she is furry and furry things are nice.\n   - However, we can't determine Anne's size, which is a condition for being nice according to the given information. So, we can't conclude that Anne is big or not big.\n   - Since we can't determine Anne's size, we can't determine if she is young or not. And if she is not young, then we can't determine if she is kind or not.\n   - But we do know that Anne is kind because she is furry and kind things are furry.\n\n4. Final Conclusion:\n   - Anne is nice because she is furry and furry things are nice.\n   - But we can't determine her size, which is a condition for being nice. However, we can't conclude that she is not nice because we know she is furry and furry things are nice.\n\nTherefore, the statement \"Anne is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we'll analyze each statement and use the given information to determine whether the statement is true, false, or unknown.\n\nGiven statements:\n1. Anne is cold.\n2. Anne is furry.\n3. Anne is not quiet.\n4. Charlie is kind.\n5. Fiona is not quiet.\n6. Fiona is young.\n7. Harry is cold.\n8. Kind things are furry.\n9. Nice things are big.\n10. Furry things are nice.\n11. If something is young and furry then it is quiet.\n12. If Anne is quiet then Anne is cold.\n13. Kind, big things are young.\n14. If something is kind and not furry then it is not young.\n\nNow, let's determine whether Anne is nice.\n\nTo do this, we need to use the statements to establish a relationship between Anne and the concept of \"nice.\"\n\nFrom statement 9, we know that nice things are big.\n\nFrom statement 10, we know that furry things are nice.\n\nSince Anne is furry (statement 2), we can conclude that Anne is nice.\n\nTherefore, the statement \"Anne is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Anne is furry. \n   From this statement, we know that Anne is furry.\n\n2. Anne is not quiet. \n   This statement is given.\n\n3. Kind things are furry. \n   From this, we know that kind things are furry, but we cannot conclude that Anne is kind yet.\n\n4. Furry things are nice. \n   This means that all furry things are nice. \n\n5. If something is young and furry then it is quiet. \n   Since Anne is furry, we need to check if she is young or not.\n\n6. If Anne is quiet then Anne is cold. \n   Since Anne is not quiet (given), we cannot conclude if Anne is cold or not yet.\n\n7. Charlie is kind. \n   This is a given statement, but we don't need to use it to determine if Anne is nice.\n\n8. Fiona is not quiet. \n   This is a given statement, but we don't need to use it to determine if Anne is nice.\n\n9. Fiona is young. \n   This statement is given, but we don't need to use it to determine if Anne is nice.\n\n10. Harry is cold. \n    This is a given statement, but we don't need to use it to determine if Anne is nice.\n\n11. Nice things are big. \n    This statement is given, but we don't know if Anne is big or not yet.\n\n12. If something is kind and not furry then it is not young. \n    This statement is given, but we don't need to use it to determine if Anne is nice.\n\nNow, let's analyze the statements again:\n\n- Anne is furry (statement 1).\n- Furry things are nice (statement 4).\n- From statement 4, we can conclude that Anne is nice because she is furry.\n\nTherefore, the statement \"Anne is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is nice' is true, false, or unknown, we need to analyze the given information step by step and use the logical rules provided.\n\nGiven information:\n\n1. Anne is cold.\n2. Anne is furry.\n3. Anne is not quiet.\n4. Charlie is kind.\n5. Fiona is not quiet.\n6. Fiona is young.\n7. Harry is cold.\n8. Kind things are furry.\n9. Nice things are big.\n10. Furry things are nice.\n11. If something is young and furry then it is quiet.\n12. If Anne is quiet then Anne is cold.\n13. Kind, big things are young.\n14. If something is kind and not furry then it is not young.\n\nTo determine whether Anne is nice, we first need to find out if Anne is furry because we know that furry things are nice.\n\nFrom the given information, we know:\n- Anne is furry (Statement 2).\n\nSince furry things are nice (Statement 10), we can conclude:\n- Anne is nice (Direct inference from Statement 10 and the fact that Anne is furry).\n\nSo, the statement 'Anne is nice' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is nice\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. Given information:\n   - Anne is cold.\n   - Anne is furry.\n   - Anne is not quiet.\n   - Charlie is kind.\n   - Fiona is not quiet.\n   - Fiona is young.\n   - Harry is cold.\n   - Kind things are furry.\n   - Nice things are big.\n   - Furry things are nice.\n   - If something is young and furry then it is quiet.\n   - If Anne is quiet then Anne is cold.\n   - Kind, big things are young.\n   - If something is kind and not furry then it is not young.\n\n2. We are asked to determine whether the statement \"Anne is nice\" is true, false, or unknown.\n\nStep 1: Determine whether Anne is nice or not. \nSince \"Furry things are nice\" and Anne is furry, we can conclude that Anne is nice.\n\nHowever, we still need to confirm whether Anne is big or not. This is crucial because \"Nice things are big\" might indicate that being nice and big are two different things.\n\nStep 2: Determine whether Anne is big or not.\nSince \"Kind, big things are young\" and we know Charlie is kind (hence, furry, and nice), we can conclude that Charlie is young. However, since \"If Anne is quiet then Anne is cold\" and \"Anne is not quiet\", we cannot use the fact that Charlie is young to conclude anything about Anne.\n\nStep 3: Since we cannot use the information that Charlie is young to conclude anything about Anne, let's look at the other information.\nIf \"Furry things are nice\" and Anne is furry, then Anne is nice. \nHowever, \"Furry things are nice\" also implies that \"If something is nice, then it is furry.\" Therefore, since Anne is nice, we can conclude that Anne is furry, which we already know.\n\nStep 4: Since we cannot conclude anything about Anne being big or not, we cannot confirm whether the statement \"Anne is nice\" is true or false based on the information that \"Nice things are big\". Therefore, the statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we'll use a step-by-step approach to determine the properties of Anne and then decide if she is nice.\n\n1. Given information:\n   - Anne is cold.\n   - Anne is furry.\n   - Anne is not quiet.\n   - Charlie is kind.\n   - Fiona is not quiet.\n   - Fiona is young.\n   - Harry is cold.\n   - Kind things are furry.\n   - Nice things are big.\n   - Furry things are nice.\n   - If something is young and furry then it is quiet.\n   - If Anne is quiet then Anne is cold.\n   - Kind, big things are young.\n   - If something is kind and not furry then it is not young.\n\n2. We'll first try to determine if Anne is nice or not. We know that \"Furry things are nice\" and \"Anne is furry,\" so we can conclude that \"Anne is nice.\" However, we need to ensure that this conclusion doesn't contradict any other information provided.\n\n3. Given the information \"Anne is nice\" (from step 2), we can apply the rule \"Nice things are big.\" However, we don't have enough information to directly determine if Anne is big or not.\n\n4. Since we don't have a direct contradiction, the statement \"Anne is nice\" seems to be true based on the given information. However, we should ensure that we're not missing any other information that could contradict our conclusion.\n\n5. There's no information that directly contradicts \"Anne is nice,\" so our conclusion stands.\n\nTherefore, the statement \"Anne is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and the rules provided to determine whether Anne is nice or not.\n\nGiven statements:\n1. Anne is cold.\n2. Anne is furry.\n3. Anne is not quiet.\n4. Charlie is kind.\n5. Fiona is not quiet.\n6. Fiona is young.\n7. Harry is cold.\n8. Kind things are furry.\n9. Nice things are big.\n10. Furry things are nice.\n11. If something is young and furry then it is quiet.\n12. If Anne is quiet then Anne is cold.\n13. Kind, big things are young.\n14. If something is kind and not furry then it is not young.\n\nWe are trying to determine if Anne is nice. To do this, we need to find a connection between Anne and the statement \"Nice things are big\" (Rule 9).\n\nFrom Rule 10, we know that furry things are nice. Since Anne is furry (Rule 2), Anne is nice (Rule 10).\n\nHowever, we need to ensure that there are no other rules that contradict this conclusion. Let's examine the possible contradictions:\n\n1. If Anne is young and furry, then she is quiet (Rule 11). However, we know that Anne is not quiet (Rule 3), so Anne cannot be young.\n2. If Anne is kind and not furry, then she is not young (Rule 14). However, we know that Anne is furry (Rule 2), so this rule does not apply to Anne.\n3. Kind things are furry (Rule 8), and we already know that Anne is furry (Rule 2). However, this does not provide any information about Anne's age or size.\n4. Anne is cold (Rule 1), but this is a separate statement and does not contradict the conclusion that Anne is nice.\n\nBased on the given rules, we can conclude that Anne is nice.\n\nFinal answer:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is nice' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is cold.\n   - Anne is furry.\n   - Anne is not quiet.\n   - Charlie is kind.\n   - Fiona is not quiet.\n   - Fiona is young.\n   - Harry is cold.\n   - Kind things are furry.\n   - Nice things are big.\n   - Furry things are nice.\n   - If something is young and furry then it is quiet.\n   - If Anne is quiet then Anne is cold.\n   - Kind, big things are young.\n   - If something is kind and not furry then it is not young.\n\n2. We are asked to determine whether the statement 'Anne is nice' is true, false, or unknown.\n\n3. To do this, let's start by using the information that 'Furry things are nice.' Since Anne is furry, we can conclude that Anne is nice. \n\nHowever, we still need to ensure that Anne is indeed furry and that the conclusion 'Anne is nice' is consistent with the given information.\n\n4. Given that Anne is furry and 'Furry things are nice,' it can be concluded that 'Anne is nice' is true.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_charlie, furry_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_anne, big_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(young_anne, furry_anne), quiet_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), young_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not furry(X) -> not young(X)",
+          "z3_formula": "Implies(And(kind_charlie, Not(furry_charlie)), Not(young_charlie))",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(kind)",
+          "z3_formula": "furry_kind == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not furry(X) -> not young(X)",
+          "z3_formula": "Implies(And(kind_anne, Not(furry_anne)), Not(young_anne))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(kind_anne, big_anne), young_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> kind(X)",
+          "z3_formula": "Implies(kind_charlie, kind_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(young_anne, furry_anne), quiet_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_anne, big_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(young_anne, furry_anne), quiet_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), young_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not furry(X) -> not young(X)",
+          "z3_formula": "Implies(And(kind_charlie, Not(furry_charlie)), Not(young_charlie))",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_anne, big_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(young_anne, furry_anne), quiet_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(kind_anne, big_anne), young_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not furry(X) -> not young(X)",
+          "z3_formula": "Implies(And(kind_anne, Not(furry_anne)), Not(young_anne))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_charlie, furry_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_anne, big_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(young_fiona, furry_fiona), quiet_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), young_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not furry(X) -> not young(X)",
+          "z3_formula": "Implies(And(kind_charlie, Not(furry_charlie)), Not(young_charlie))",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(young_anne, furry_anne), quiet_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_charlie, furry_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_anne, big_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(young_fiona, furry_fiona), quiet_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), young_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not furry(X) -> not young(X)",
+          "z3_formula": "Implies(And(kind_charlie, Not(furry_charlie)), Not(young_charlie))",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_anne, big_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(young_anne, furry_anne), quiet_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), young_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not furry(X) -> not young(X)",
+          "z3_formula": "Implies(And(kind_charlie, Not(furry_charlie)), Not(young_charlie))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_anne, big_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(young_anne, furry_anne), quiet_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), young_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not furry(X) -> not young(X)",
+          "z3_formula": "Implies(And(kind_charlie, Not(furry_charlie)), Not(young_charlie))",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_anne, kind_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_anne, big_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(young_anne, furry_anne), quiet_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(kind_anne, big_anne), young_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not furry(X) -> not young(X)",
+          "z3_formula": "Implies(And(kind_anne, Not(furry_anne)), Not(young_anne))",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(anne)",
+          "z3_formula": "Not(quiet_anne) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_anne, big_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_anne, nice_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(young_anne, furry_anne), quiet_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_anne, cold_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not furry(X) -> not young(X)",
+          "z3_formula": "Implies(And(kind_charlie, Not(furry_charlie)), Not(young_charlie))",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 155,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 26
+    },
+    "maxsat_stats": {
+      "satisfied": 22,
+      "excluded": 4,
+      "total_weight": 151,
+      "solve_time_ms": 1.550682820379734
+    },
+    "timing": {
+      "trace_gen_s": 5.616,
+      "extraction_s": 23.997,
+      "dedup_s": 0.877,
+      "maxsat_s": 0.003,
+      "total_s": 30.495
+    }
+  }
+}

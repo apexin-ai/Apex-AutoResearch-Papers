@@ -1,0 +1,516 @@
+{
+  "pid": "folio_68",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven_in_1716(yale_university)",
+          "z3_formula": "moved_to_new_haven_in_1716_yale_university == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_was_valued_at_42_point_3_billion(yale_university)",
+          "z3_formula": "endowment_was_valued_at_42_point_3_billion_yale_university == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale_university)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale_university == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges_include(benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college)",
+          "z3_formula": "residential_colleges_include_benjamin_franklin_college_berkeley_college_branford_college_davenport_college_ezra_stiles_college_grace_hopper_college_jonathan_edwards_college_morse_college_pauli_murray_college_pierson_college_saybrook_college_silliman_college_timothy_dwight_college_trumbull_college == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson_college)",
+          "z3_formula": "residential_college_pierson_college == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_value(yale_university, 42.3e9)",
+          "z3_formula": "endowment_value_yale_university_42.3e9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges(yale_university, 27)",
+          "z3_formula": "constituent_colleges_yale_university_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale_university, [benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college])",
+          "z3_formula": "residential_colleges_yale_university_benjamin_franklin_college_berkeley_college_branford_college_davenport_college_ezra_stiles_college_grace_hopper_college_jonathan_edwards_college_morse_college_pauli_murray_college_pierson_college_saybrook_college_silliman_college_timothy_dwight_college_trumbull_college == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson_college, yale_university)",
+          "z3_formula": "residential_college_pierson_college_yale_university == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_valued_at_42_point_3_billion(yale_university)",
+          "z3_formula": "endowment_valued_at_42_point_3_billion_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale_university)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale_university, [benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college])",
+          "z3_formula": "residential_colleges_yale_university_[benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college] == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college_at_yale(pierson_college)",
+          "z3_formula": "residential_college_at_yale_pierson_college == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "valued_endowment(yale_university, 42.3)",
+          "z3_formula": "valued_endowment_yale_university_42.3 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale_university)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale_university == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "list_of_residential_colleges(yale_university, [benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college])",
+          "z3_formula": "list_of_residential_colleges_yale_university_[benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college] == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson_college, yale_university)",
+          "z3_formula": "residential_college_pierson_college_yale_university == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "valued_endowment(yale_university, 42.3e9)",
+          "z3_formula": "valued_endowment_yale_university_42.3e9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges(yale_university, 27)",
+          "z3_formula": "constituent_colleges_yale_university_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale_university)",
+          "z3_formula": "residential_colleges_yale_university == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "list_of_residential_colleges(yale_university, [benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college])",
+          "z3_formula": "list_of_residential_colleges_yale_university_[benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college] == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson_college, yale_university)",
+          "z3_formula": "residential_college_pierson_college_yale_university == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven_in_1716(yale_university)",
+          "z3_formula": "moved_to_new_haven_in_1716_yale_university == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "valued_at_42_point_3_billion(yale_university)",
+          "z3_formula": "valued_at_42_point_3_billion_yale_university == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale_university)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale_university == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges_including_benjamin_franklin_college_berkeley_college_branford_college_davenport_college_ezra_stiles_college_grace_hopper_college_jonathan_edwards_college_morse_college_pauli_murray_college_pierson_college_saybrook_college_silliman_college_timothy_dwight_college_trumbull_college(yale_university)",
+          "z3_formula": "residential_colleges_including_benjamin_franklin_college_berkeley_college_branford_college_davenport_college_ezra_stiles_college_grace_hopper_college_jonathan_edwards_college_morse_college_pauli_murray_college_pierson_college_saybrook_college_silliman_college_timothy_dwight_college_trumbull_college_yale_university == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college_at_yale(pierson_college)",
+          "z3_formula": "residential_college_at_yale_pierson_college == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_value(yale_university, 42.3_billion)",
+          "z3_formula": "endowment_value_yale_university_42.3_billion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges_and_schools(yale_university, 27)",
+          "z3_formula": "constituent_colleges_and_schools_yale_university_27 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "residential_college(pierson_college)",
+          "z3_formula": "residential_college_pierson_college == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson_college)",
+          "z3_formula": "residential_college_pierson_college == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "valued_endowment(yale_university, 42.3e9)",
+          "z3_formula": "valued_endowment_yale_university_42.3e9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges_and_schools(yale_university, 27)",
+          "z3_formula": "constituent_colleges_and_schools_yale_university_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale_university, ['benjamin_franklin_college', 'berkeley_college', 'branford_college', 'davenport_college', 'ezra_stiles_college', 'grace_hopper_college', 'jonathan_edwards_college', 'morse_college', 'pauli_murray_college', 'pierson_college', 'saybrook_college', 'silliman_college', 'timothy_dwight_college', 'trumbull_college'])",
+          "z3_formula": "residential_colleges_yale_university_benjamin_franklin_college_berkeley_college_branford_college_davenport_college_ezra_stiles_college_grace_hopper_college_jonathan_edwards_college_morse_college_pauli_murray_college_pierson_college_saybrook_college_silliman_college_timothy_dwight_college_trumbull_college == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson_college)",
+          "z3_formula": "residential_college_pierson_college == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven_in_1716(yale_university)",
+          "z3_formula": "moved_to_new_haven_in_1716_yale_university == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_was_valued_at_42_point_3_billion(yale_university)",
+          "z3_formula": "endowment_was_valued_at_42_point_3_billion_yale_university == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale_university)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale_university == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges_at_yale_include(pierson_college)",
+          "z3_formula": "residential_colleges_at_yale_include_pierson_college == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_research_university(yale)",
+          "z3_formula": "private_ivy_research_university_yale == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "valued_endowment(yale, 42.3e9)",
+          "z3_formula": "valued_endowment_yale_42.3e9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges(yale, 27)",
+          "z3_formula": "constituent_colleges_yale_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale)",
+          "z3_formula": "residential_colleges_yale == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "list_of_residential_colleges(yale, [benjamin_franklin, berkeley, branford, davenport, ezra_stiles, grace_hopper, jonathan_edwards, morse, pauli_murray, pierson, saybrook, silliman, timothy_dwight, trumbull])",
+          "z3_formula": "list_of_residential_colleges_yale_benjamin_franklin_berkeley_branford_davenport_ezra_stiles_grace_hopper_jonathan_edwards_morse_pauli_murray_pierson_saybrook_silliman_timothy_dwight_trumbull == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson)",
+          "z3_formula": "residential_college_pierson == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven_in_1716(yale_university)",
+          "z3_formula": "moved_to_new_haven_in_1716_yale_university == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "valued_at_42_point_3_billion(yale_university)",
+          "z3_formula": "valued_at_42_point_3_billion_yale_university == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "organized_into_27_constituent_colleges_and_schools(yale_university)",
+          "z3_formula": "organized_into_27_constituent_colleges_and_schools_yale_university == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "listed_residential_colleges(yale_university, [benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college])",
+          "z3_formula": "listed_residential_colleges_yale_university_benjamin_franklin_college_berkeley_college_branford_college_davenport_college_ezra_stiles_college_grace_hopper_college_jonathan_edwards_college_morse_college_pauli_murray_college_pierson_college_saybrook_college_silliman_college_timothy_dwight_college_trumbull_college == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(pierson_college, yale_university)",
+          "z3_formula": "residential_college_pierson_college_yale_university == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_value(yale_university, 42.3e9)",
+          "z3_formula": "endowment_value_yale_university_42.3e9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges_and_schools(yale_university, 27)",
+          "z3_formula": "constituent_colleges_and_schools_yale_university_27 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges(yale_university, 27)",
+          "z3_formula": "residential_colleges_yale_university_27 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "list_of_residential_colleges(yale_university, [benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college])",
+          "z3_formula": "list_of_residential_colleges_yale_university_[benjamin_franklin_college, berkeley_college, branford_college, davenport_college, ezra_stiles_college, grace_hopper_college, jonathan_edwards_college, morse_college, pauli_murray_college, pierson_college, saybrook_college, silliman_college, timothy_dwight_college, trumbull_college] == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "residential_college(yale_university, pierson_college)",
+          "z3_formula": "residential_college_yale_university_pierson_college == True",
+          "source_step": 7
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdd5fa37c53f320e1e1d",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "history",
+  "title": "director / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_2.md",
+    "occurrence": 1,
+    "bytes": 2682,
+    "sha256": "17e18378c6da861f0962660cf4ce5f39b177a6be0509d115c8ca700a536876a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-14T17:41:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 autodl-rtx6000pro 的 cuda:0（唯一分配的卡）\n- 服务器上 vLLM 和 pipeline 共用 cuda:0，不要同时启动第二个 vLLM 实例\n- Pipeline 使用 Qwen3-32B（本地 vLLM serving），不要换成 API 调用或其他模型\n- AutoDL 实例重启后 SSH 端口会变，连接失败先让用户查控制台\n\n### 2. 🖥️ 基础设施快照\n- 服务器：autodl-rtx6000pro (connect.westd.seetacloud.com) + westd-32608，工作目录 /root/autodl-tmp/crdd\n- Python：AutoDL aml-train 镜像，conda base 环境（/root/miniconda3/bin/python）\n- 模型：Qwen3-32B 通过本地 vLLM 服务（cuda:0）\n- 数据集：FOLIO validation set，204 样本\n- 活跃进程：v4 pipeline PID 42651，已完成 124/204 样本，预计 ~06:15 UTC 完成\n- W&B：未配置\n- HF_HOME：/root/autodl-tmp/.hf_cache\n\n### 3. 📊 当前状态\nmvp_pipeline_004 ANALYZING (success)——v4 全量 pipeline 正在跑，124/204 完成。中期快照 4/5 PASS（C5 localization 45.8% < 60% 是唯一 FAIL）。Reviewer 确认 PID 42651 存活正常。\n\nRegistry 状态：mvp_pipeline_004 标记为 ANALYZING 但实际仍在跑（registry 未正确更新为 RUNNING，不影响执行）。其余 5 个实验全部 DONE。\n\n等待：v4 pipeline 完成回调 → 需要运行 evaluate_mvp.py 做最终评估。\n\n### 4. 📋 待办\n- v4 pipeline 完成（PID 42651 结束）→ Agent 运行 evaluate_mvp.py 生成全量 204 样本的 C1-C5 评估\n- 全量 5/5 PASS → complete_mvp() 进入 research 阶段 → 启动 post-mvp-kickoff skill\n- C5 仍 FAIL（全量 <60%）→ 分析 C5 失败样本，判断：(a) 算法改进空间 → v5b pipeline；(b) 阈值过严 → 考虑调整到 50% 或 45%\n- 全量 C1/C2 也 FAIL（不太可能）→ 启动 ProofWriter pivot 备案\n\n### 5. 🎯 战略上下文\n- 核心假设：FOL vs Code 双表征分歧可诊断 LLM 推理错误。v4 中期 4/5 PASS 说明假设基本成立\n- FOL-Code 不对称性 9:1（FOL 几乎总是对的，Code 几乎总是错的）——post-MVP framing 不能 claim bidirectional，需要诚实处理为\"Code 错误的诊断工具\"\n- AGREE_WRONG 7.7% 是分歧方法的结构性盲区，论文需要坦承\n- 决策链：D001 立项 → D002 Reviewer 反馈修订 MVP 标准 → D004 回退到 Qwen3-32B → D005 v1 失败根因是工程非假设 → D006 v2 部分修复 → D007 撤回 v5 closed-world 改为 v5b\n- 易错：不要因为 C5 一个指标 FAIL 就判定 MVP 失败——先分析失败样本再决策。用户已收到完整状态汇报（刚回复过一次），不需要重复发\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2.md"
+}

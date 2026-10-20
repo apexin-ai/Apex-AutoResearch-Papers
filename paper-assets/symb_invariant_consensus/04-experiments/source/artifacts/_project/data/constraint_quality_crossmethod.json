@@ -1,0 +1,116 @@
+{
+  "description": "Cross-method constraint quality metrics for SICA vs ICG vs Contrastive vs Debate on FOLIO-204 (Mistral-7B)",
+  "dataset": "folio",
+  "n_questions": 204,
+  "experiments": {
+    "SICA": "exp033_mistral_7b_folio204",
+    "ICG": "exp074_icg_mistral_folio",
+    "Contrastive": "exp075b_contrastive_mistral_folio",
+    "Debate": "exp076_debate_mistral_folio"
+  },
+  "metrics": {
+    "SICA": {
+      "trace_yield_rate": 97.1,
+      "z3_compile_rate": 96.5,
+      "effective_parse_rate": 93.7,
+      "unique_per_q": 39.3,
+      "total_raw_constraints": 14042,
+      "total_unique_constraints": 8021,
+      "redundancy_pct": 42.9,
+      "discriminative_pct": null,
+      "trivially_sat_pct": null,
+      "discriminative_proxy_multi_answer_q_pct": 81.4,
+      "maxsat_satisfied": 7740,
+      "maxsat_excluded": 281,
+      "notes": {
+        "parse_rate": "97.1% of 2448 traces (12/question) yielded extractable constraints. 96.5% of unique constraints compiled in Z3.",
+        "redundancy": "42.9% of raw constraints are duplicates across traces — direct evidence of co-sourcing. Multi-trace sampling produces overlapping constraint sets.",
+        "discriminative": "No per-candidate Z3 evaluation stored. Proxy: 81.4% of questions had MaxSAT scores supporting >1 candidate answer (constraint set differentiates answers at question level).",
+        "trivially_sat": "Not computable. SICA evaluates all constraints as a unified MaxSAT problem, not per-candidate."
+      }
+    },
+    "ICG": {
+      "trace_yield_rate": 74.6,
+      "z3_compile_rate": 99.4,
+      "effective_parse_rate": 74.2,
+      "unique_per_q": 24.9,
+      "total_raw_constraints": 7503,
+      "total_unique_constraints": 5076,
+      "redundancy_pct": 32.3,
+      "discriminative_pct": null,
+      "trivially_sat_pct": null,
+      "discriminative_proxy_multi_answer_q_pct": 77.0,
+      "maxsat_satisfied": 5044,
+      "maxsat_excluded": 32,
+      "notes": {
+        "parse_rate": "74.6% of traces produced non-empty constraint sets. But those that compiled had 99.4% Z3 success — highest among all methods.",
+        "redundancy": "32.3% redundancy, lower than SICA's 42.9%. ICG's independent generation produces more diverse constraints per trace.",
+        "discriminative": "Proxy: 77.0% questions with multi-answer scores (vs SICA 81.4%).",
+        "unique_per_q": "24.9 unique constraints/question vs SICA's 39.3 — fewer but cleaner constraints."
+      }
+    },
+    "Contrastive": {
+      "trace_yield_rate": 74.0,
+      "z3_compile_rate": 94.4,
+      "effective_parse_rate": 69.8,
+      "unique_per_q": 9.2,
+      "total_raw_constraints": 1887,
+      "total_unique_constraints": 1887,
+      "redundancy_pct": 0.0,
+      "discriminative_pct": 51.0,
+      "trivially_sat_pct": 62.7,
+      "pro_constraints": {
+        "raw": 1013,
+        "compiled": 937,
+        "compile_rate": 92.5
+      },
+      "con_constraints": {
+        "raw": 874,
+        "compiled": 845,
+        "compile_rate": 96.7
+      },
+      "notes": {
+        "parse_rate": "74.0% of questions yielded any constraints. Z3 compile rate 94.4% (pro: 92.5%, con: 96.7%).",
+        "unique_per_q": "9.2 constraints/question — much lower than SICA/ICG because constraints are targeted (pro/con for specific candidates).",
+        "discriminative": "51.0% of questions had constraints that produced different contrastive scores across candidates. Lower than SICA/ICG proxies.",
+        "trivially_sat": "62.7% of questions had ALL pro constraints satisfied across ALL candidates — these pro constraints don't help distinguish answers.",
+        "redundancy": "0% redundancy by design: constraints are per-candidate, no cross-candidate dedup applied."
+      }
+    },
+    "Debate": {
+      "trace_yield_rate": 81.3,
+      "z3_compile_rate": null,
+      "effective_parse_rate": 81.3,
+      "unique_per_q": 13.0,
+      "total_reasoning_units": 3264,
+      "valid_reasoning_units": 2653,
+      "valid_debate_rate": 63.1,
+      "trace_answer_rate": 87.3,
+      "discriminative_pct": null,
+      "trivially_sat_pct": null,
+      "notes": {
+        "mechanism": "Debate uses proposer/critic/defense debates + independent traces. No symbolic Z3 constraints.",
+        "parse_rate": "81.3% = (valid_debates + traces_with_answer) / total. Valid debates: 63.1%, trace answers: 87.3%.",
+        "unique_per_q": "13.0 valid reasoning units/question (valid debates + answered traces). NOT Z3 constraints.",
+        "discriminative": "Not applicable — debate mechanism does not produce per-candidate Z3 evaluations."
+      }
+    }
+  },
+  "summary_table": {
+    "header": ["Method", "parse_rate", "z3_compile%", "unique/q", "redundancy%", "discrim%", "triv_sat%"],
+    "rows": [
+      ["SICA",        "97.1%", "96.5%", 39.3, "42.9%", "81.4%*", "N/A"],
+      ["ICG",         "74.6%", "99.4%", 24.9, "32.3%", "77.0%*", "N/A"],
+      ["Contrastive", "74.0%", "94.4%",  9.2,  "0.0%", "51.0%", "62.7%"],
+      ["Debate",      "81.3%",   "N/A", 13.0,  "N/A",    "N/A",   "N/A"]
+    ],
+    "footnote": "* = proxy metric: % questions where MaxSAT scores support >1 candidate answer. Debate unique/q counts reasoning units, not Z3 constraints."
+  },
+  "key_findings": [
+    "SICA produces the most constraints (39.3 unique/q) with highest trace yield (97.1%), but 42.9% redundancy confirms co-sourcing across traces.",
+    "ICG has fewer constraints (24.9/q) with lower trace yield (74.6%), but highest Z3 compile rate (99.4%) and lower redundancy (32.3%) — cleaner, more diverse constraints.",
+    "Contrastive generates fewest constraints (9.2/q) and only 51% of questions have discriminative power. 62.7% trivially satisfied — pro constraints often don't help distinguish candidates.",
+    "Debate produces no symbolic constraints. 63.1% of debates are 'valid' (proposer and critic disagree). Combined with traces, 81.3% of reasoning units produce usable answers.",
+    "discriminative_ratio and trivially_satisfied_ratio are only directly computable for Contrastive (which stores per-candidate Z3 eval results). SICA/ICG use unified MaxSAT without per-candidate breakdown."
+  ]
+}

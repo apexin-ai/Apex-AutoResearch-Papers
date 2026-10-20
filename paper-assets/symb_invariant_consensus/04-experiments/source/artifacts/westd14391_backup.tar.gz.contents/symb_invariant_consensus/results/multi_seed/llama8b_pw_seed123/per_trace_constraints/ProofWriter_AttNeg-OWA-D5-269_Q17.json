@@ -1,0 +1,825 @@
+{
+  "pid": "ProofWriter_AttNeg-OWA-D5-269_Q17",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(rough, blue) -> red",
+          "z3_formula": "Implies(And(rough_charlie, blue_charlie), red_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all(nice, cold) -> cold",
+          "z3_formula": "Implies(nice_charlie, cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all(big, cold) -> rough",
+          "z3_formula": "Implies(And(big_charlie, cold_charlie), rough_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red & blue -> rough",
+          "z3_formula": "Implies(And(red_charlie, blue_charlie), rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "all(blue, cold) -> nice",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), nice_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all(red) -> blue",
+          "z3_formula": "Implies(red_charlie, blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round & cold -> blue",
+          "z3_formula": "Implies(And(round_charlie, cold_charlie), blue_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "all(blue) -> big",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> (blue(X) | red(X))",
+          "z3_formula": "Implies(round_charlie, Or(blue_charlie, red_charlie))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) | red(X) -> rough(X)",
+          "z3_formula": "Implies(Or(blue_charlie, red_charlie), rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), nice_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_charlie, blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_charlie, rough_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_charlie, cold_charlie), blue_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not red(charlie)",
+          "z3_formula": "Not(red_charlie) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(charlie)",
+          "z3_formula": "Not(rough_charlie) == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(charlie))",
+          "z3_formula": "Not(cold_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(charlie))",
+          "z3_formula": "Not(rough_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_charlie, red_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_charlie, red_charlie), rough_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_charlie, cold_charlie), blue_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), nice_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_fiona, cold_fiona), rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_gary, cold_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_charlie, blue_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(red(charlie))",
+          "z3_formula": "Unknown(red_charlie)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_charlie, cold_charlie), blue_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_charlie, blue_charlie), red_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), nice_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_charlie, blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_charlie, cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_charlie, cold_charlie), rough_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie) | rough(charlie)",
+          "z3_formula": "Or(nice_charlie, rough_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not red(charlie)",
+          "z3_formula": "Not(red_charlie)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_X, blue_X), red_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_X, cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_X, cold_X), rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_X, blue_X), rough_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), nice_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_X, blue_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, cold_X), blue_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_X, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not red(charlie)",
+          "z3_formula": "Not(red_charlie) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": []
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), blue_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_X, big_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(blue_X, big_X), blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_X, big_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_X, blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_X, red_X), rough_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_X, red_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_X, big_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_X, big_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_X, blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_X, blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_X, red_X), rough_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_X, red_X)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "not red(charlie)",
+          "z3_formula": "Not(red_charlie) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == False",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == False",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_charlie, rough_charlie), red_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_charlie, cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_charlie, cold_charlie), rough_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_charlie, blue_charlie), rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), nice_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_charlie, blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_charlie, cold_charlie), blue_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_charlie, cold_charlie), blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_charlie, cold_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_charlie, cold_charlie), rough_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_charlie, blue_charlie), red_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_charlie, blue_charlie), rough_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 11,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_charlie, blue_charlie), red_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_charlie, blue_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == Unknown",
+          "source_step": 14
+        }
+      ]
+    }
+  ]
+}

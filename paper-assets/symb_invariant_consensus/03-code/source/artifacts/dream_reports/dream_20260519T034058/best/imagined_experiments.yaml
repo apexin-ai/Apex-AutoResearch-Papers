@@ -1,0 +1,711 @@
+tier: best
+narrative_guidance: 'Dual Bottleneck framing 完全保留，五条 claims 无需降级。 Hero figure: Eff-K
+  × SC scatter 将所有已完成条件清晰划分为四象限——Goldilocks zone (Eff-K>1.5, 45%<SC<60%) 与 positive
+  delta 完美重合。 K sensitivity inverted-U (Mistral K=12 peak, 两侧 ≥2pp drop) 作为独立 ablation
+  contribution，证明 nominal K≠Eff-K 的 practical consequence。 T sensitivity peaked curve
+  (T=0.7 only window) 强化"效应真实但脆弱"叙事——脆弱性本身 IS the finding，非 limitation。 9 种修复失败 +
+  oracle gap 构成完整"结构性限制"论证，multi-temp failure 补上最后一环。 Seed-internal κ-delta 非单调性由
+  Unknown 比例 / trace decisiveness 完全解释，不再是 framing 弱点。 投稿 EMNLP Main，Findings 安全网。预期
+  reviewer avg 3.0-3.5。
+
+  '
+imagined_experiments:
+- name: sica_k_ablation_14b
+  plan_id: exp-002
+  description: K sensitivity (K=6,8,11,12,16,20) on D012 60 questions, Qwen2.5-14B.
+    含 odd-K=11 测试 tie mechanism。
+  expected_results:
+    K6_sica: 0.733
+    K6_sc: 0.733
+    K6_gap_pp: 0
+    K8_sica: 0.733
+    K8_sc: 0.75
+    K8_gap_pp: -1.7
+    K11_sica: 0.733
+    K11_sc: 0.733
+    K11_gap_pp: 0
+    K12_sica: 0.7
+    K12_sc: 0.75
+    K12_gap_pp: -5.0
+    K16_sica: 0.717
+    K16_sc: 0.75
+    K16_gap_pp: -3.3
+    K20_sica: 0.7
+    K20_sc: 0.733
+    K20_gap_pp: -3.3
+    all_K_sica_leq_sc: true
+  result_rationale: 'Qwen-14B 在 D012 上 SC≈73-75% (Type A regime)，Fleiss'' κ≈0.74-0.82
+    → Eff-K≈1.2-1.3，远低于 1.5 阈值。 无论 K 如何变化，traces 高度相关导致 Eff-K 始终不足。增加 K 反而引入更多 confirmation
+    bias 约束， 稀释已有的少量 discriminative 信息。K=11 odd-K 验证 SICA 在无 tie 时仍为 0 gap → tie 不是唯一机制
+    但在 Type A 条件下连 tie 机制也被 confirmation bias 抵消。 这组结果完美支持 Dual Bottleneck: 当 Eff-K
+    不足时，K 的增加无法弥补。
+
+    '
+  tables:
+  - T5-K-Sensitivity (Qwen panel)
+  figures_description:
+  - 'F3 左侧 panel: Qwen K vs Δ 平线 / 下降趋势，与 Mistral inverted-U 对比'
+  analysis: 'Type A regime 的 K ablation negative control。与 exp-051 (Mistral) 形成鲜明对比:
+    同样增加 K，Mistral 出现 inverted-U 而 Qwen 持续为负/零 → 区别在于 base independence (κ)，不在 K 本身。
+    K=11 (odd) gap=0 确认 SICA value 不仅限于 tiebreaking。
+
+    '
+- name: tiebreak_baseline_analysis
+  plan_id: exp-003
+  description: SICA vs SC-random-tiebreak vs SC-deterministic。CPU-only reanalysis。
+  expected_results:
+    sica_tiebreak_accuracy_pct: 80
+    random_tiebreak_pct: 50
+    alphabetical_tiebreak_pct: 60
+    first_seen_tiebreak_pct: 40
+    n_ties: 5
+  result_rationale: '在 tied cases 中 SICA 4/5 正确，random 期望 50%。说明 MAX-SAT 约束在 tie 情况下提供真实信号。
+    但 tied cases 总量少(5/60=8.3%)，所以 tiebreak 机制对 overall accuracy 贡献有限(≤0.4pp)。 这支持
+    best tier narrative: SICA 有 mechanism value 但实际 impact 受限于 independence bottleneck——
+    traces 太相关导致 ties 本身就少。
+
+    '
+  tables:
+  - T1 footnote (tiebreak analysis)
+  figures_description: []
+  analysis: 'SICA tie resolution 有 80% precision，证明约束包含真实语义信息。 但 tie 频率太低限制了 practical
+    impact。这恰好是 independence bottleneck 的另一面证据。
+
+    '
+- name: sica_7b_scaling
+  plan_id: exp-004
+  description: Qwen2.5-7B-Instruct on D012 60 questions (K=12, T=0.7)。Within-Qwen
+    scaling 维度。
+  expected_results:
+    n: 60
+    sica_accuracy: 0.6833
+    sc_accuracy: 0.6833
+    delta_pp: 0
+    multi_candidate_rate: 0.433
+    extraction_rate: 0.9417
+    mcnemar_p: 1.0
+    folio_sica: 0.7667
+    folio_sc: 0.7333
+    pw_sica: 0.6
+    pw_sc: 0.6333
+  result_rationale: 'Qwen-7B SC 降到 68.3% (vs 14B 的 75%)，C0 升到 43.3% (vs 14B 的 38%)。
+    C0 上升但 delta 仍为 0 → 说明 C0 (diversity) 是必要非充分条件。 Qwen family 的 κ 值仍然很高(估计 κ≈0.65-0.7)，Eff-K≈1.4，刚好低于
+    1.5 阈值。 SC=68% 也在 Goldilocks 上界(60%)之上。双重不满足 → delta=0。 这强化了 Dual Bottleneck framing:
+    即使降低模型大小增加多样性，同家族 trace 相关性仍太高。
+
+    '
+  tables:
+  - T1-Main-Results (Qwen-7B row)
+  - T3-Independence (κ estimation)
+  figures_description:
+  - 'F2 scatter: Qwen-7B 点落在 Eff-K<1.5 区域，与 Qwen-14B 相邻'
+  analysis: 'Within-Qwen scaling: 7B→14B SC 增加但 delta 不变(均为 0)。 排除 "Qwen-14B too strong"
+    假设——即使 weaker Qwen 也无法从 SICA 获益，问题在 family-level 的高 κ。
+
+    '
+- name: qwq_32b_operating_regime
+  plan_id: exp-005
+  description: QwQ-32B negative results。Data from MVP phase。
+  expected_results:
+    qwq_aggregate_c0_effective_pct: 2.6
+    qwen14b_c0_pct: 46.0
+    diversity_ratio_effective: 17.7
+    aime_delta_pp: 0
+    proofwriter_delta_pp: -5.9
+    total_problems: 46
+  result_rationale: 'QwQ-32B 是 reasoning model，其 extended chain-of-thought 产生极度确定性的输出。
+    C0_effective=2.6% 意味着几乎所有问题都有 unanimous answer → SICA≡SC structurally。 这是 Claim
+    2 (regime-dependent) 的极端案例: reasoning model 的 trace 独立性接近零， Eff-K≈1.0，完全退化为 SC。PW
+    delta=-5.9pp 说明少数 non-unanimous cases 中约束反而有害。
+
+    '
+  tables:
+  - T1-Main-Results (QwQ-32B row)
+  - T3-Independence (QwQ entry)
+  figures_description:
+  - 'F2 scatter: QwQ-32B 极端左上角 (Eff-K≈1.0, high SC)'
+  analysis: 'Reasoning model negative control。C0_effective=2.6% vs non-reasoning Qwen-14B
+    46% → reasoning 能力消除了 trace diversity。SICA 对 reasoning model 完全无用，印证 independence
+    bottleneck。
+
+    '
+- name: c0_diagnostic_validation
+  plan_id: exp-006
+  description: Plot C0 / Eff-K × SC vs SICA-SC gap across all models。CPU-only meta-analysis。
+  expected_results:
+    n_conditions: 12
+    effk_sc_joint_correct_directions: 11
+    goldilocks_positive_only: true
+    c0_alone_prediction_accuracy: 7_of_12
+    effk_sc_r_squared: 0.72
+    goldilocks_zone_eff_k_lower: 1.5
+    goldilocks_zone_sc_lower: 0.45
+    goldilocks_zone_sc_upper: 0.6
+    only_exception: 'exp-053 (Mistral s456: Goldilocks zone 但 delta=-0.49pp，由 Unknown
+      比例/trace decisiveness 解释)'
+  result_rationale: '汇总所有已完成条件后，Eff-K × SC 联合预测方向正确率 ≥10/12: - Type A (Qwen-14B/7B/3,
+    ARC, GSM8K): Eff-K<1.5 → 0 delta ✓ - QwQ/DeepSeek-R1: Eff-K≈1.0 → 0/negative ✓
+    - Mistral FOLIO s42/s123: Goldilocks → positive ✓ - Mistral PW-600: SC=39%<45%
+    → negative ✓ - LLaMA D012: SC≈60%(边界)，Eff-K≈2.5 → positive ✓ - LLaMA FOLIO-204:
+    SC=63%>60% → negative ✓ exp-053 (Mistral s456) 是唯一 Goldilocks zone 内 delta 非正例外，但
+    Unknown 比例(58.5% vs exp-033 的 49.9%) 和 trace decisiveness 差异完全解释了这一偏差。 C0 单独预测不如
+    Eff-K × SC 联合(7/12 vs 11/12)，因为 C0 不区分 independence 和 quality。
+
+    '
+  tables:
+  - T3-Independence (meta-analysis row)
+  figures_description:
+  - 'F2 (Hero Figure): Eff-K × SC scatter, 四象限划分。x轴=Eff-K, y轴=SC, 点大小=|delta|, 颜色=delta
+    方向。 Goldilocks zone (右中区域) 内所有实心点(positive delta)，zone 外所有空心点(zero/negative)。
+    exp-053 标注为 explained outlier。'
+  analysis: 'Hero figure 的数据基础。证明 Eff-K × SC 是 parsimonious 且 predictive 的跨条件框架。 C0
+    alone 不够 → 需要 independence 和 quality 两个维度。这是 Dual Bottleneck 的核心 empirical evidence。
+
+    '
+- name: sica_72b_awq
+  plan_id: exp-007
+  description: Qwen2.5-72B-Instruct AWQ 4-bit on D012 60 questions。Within-Qwen extreme
+    scaling。
+  expected_results:
+    n: 60
+    sica_accuracy: 0.8667
+    sc_accuracy: 0.8667
+    delta_pp: 0.0
+    multi_candidate_rate: 0.1
+    extraction_rate: 0.95
+    mcnemar_p: 1.0
+    estimated_kappa: 0.85
+    estimated_eff_k: 1.18
+  result_rationale: '72B 模型 SC 预期达 ~87% (远高于 14B 的 75%)，C0 降到 ~10% (Type A extreme)。
+    κ≈0.85 → Eff-K≈1.18，是所有条件中最低的 Eff-K。 几乎所有问题 unanimous → SICA≡SC。这是 Type A 的极端验证:
+    模型能力越强 → traces 越一致 → 独立性越低 → SICA 越无用。 Scaling 方向与 SICA utility 方向相反——这是 Dual
+    Bottleneck 的 scaling implication。
+
+    '
+  tables:
+  - T1-Main-Results (Qwen-72B row)
+  - T3-Independence
+  figures_description:
+  - 'F2 scatter: 72B 在 extreme top-left (lowest Eff-K, highest SC)'
+  analysis: 'Extreme Type A。与 Qwen-7B(delta=0, SC=68%) 和 14B(delta=0, SC=75%) 形成 within-family
+    scaling curve: 随模型增大，SC↑, Eff-K↓, delta 始终为 0。SICA 对 Qwen family 全面无效。
+
+    '
+- name: constraint_quality_case_studies
+  plan_id: exp-008
+  description: 5-10 representative questions 的约束质量定性分析。
+  expected_results:
+    cases_analyzed: 8
+    semantically_meaningful_pct: 87.5
+    both_wrong_confirmation_bias_pct: 100
+    override_correct_cases: 2
+    trivially_satisfied_avg_pct: 43
+    illustrative_patterns:
+    - 'correct_diverse: 约束来自不同推理路径，MAX-SAT 正确 override SC'
+    - 'confirmation_bias: 全部 12 traces 错误，约束一致指向错误答案'
+    - 'partial_correct: 8/12 traces 正确，约束方向一致但 discriminative power 低'
+  result_rationale: "Case studies 预期展示三种模式: (1) Override success: 在 Goldilocks zone\
+    \ 问题上，traces 有足够多样性，部分 trace 的约束提供了\n    SC vote 无法捕捉的 discriminative 信息，MAX-SAT\
+    \ 正确翻转。\n(2) Confirmation bias: both_wrong 问题上，约束语义上有效(syntactically correct FOL)但推理方向\n\
+    \    与模型错误一致——约束\"正确反映了错误推理\"。这解释了为什么 ~92% constraints 是 discriminative\n    但\
+    \ SICA 仍无法突破: discrimination 方向与模型 bias 对齐。\n(3) Trivially satisfied: ~43% 约束被所有候选答案满足，提供零\
+    \ discriminative value。\n"
+  tables:
+  - 'Appendix: Qualitative case studies'
+  figures_description:
+  - F4 stacked bar 中的 illustrative examples
+  analysis: '定性证据支持 confirmation bias 机制。约束质量本身不差(语义有效率 ~88%)， 但"正确提取了错误推理"是比"提取质量差"更根本的问题。
+
+    '
+- name: overhead_analysis
+  plan_id: exp-009
+  description: 'Wall-time breakdown: generation, extraction, MaxSAT solving。'
+  expected_results:
+    n: 804
+    mean_total_wall_s: 61.6
+    trace_gen_pct: 51.3
+    extract_pct: 47.0
+    maxsat_pct: 0.005
+    sica_overhead_pct: 48.7
+  result_rationale: 'Extraction 占总时间 47%，几乎与 trace generation 持平(51%)。MAX-SAT solving
+    本身极快(0.005%)。 SICA 的主要 overhead 在 LLM extraction call (每 trace 一次 extraction prompt)，不在
+    solver。 这回答 reviewer concern "is the overhead worth it": ~2x wall-time for 0-5pp
+    gain， 在 best tier 下 Goldilocks zone 可获 4.9pp 但大多数条件 0 gain。 Practical recommendation:
+    C0+SC 诊断可在 overhead 前判断是否值得运行 SICA。
+
+    '
+  tables:
+  - 'Appendix: Overhead analysis'
+  figures_description: []
+  analysis: 'Overhead 主要来自 extraction (LLM calls)，非 solver。C0+SC 前置诊断可避免无效 overhead。
+
+    '
+- name: sica_llama_8b
+  plan_id: exp-011
+  description: LLaMA-3.1-8B-Instruct on D012 60 questions。Cross-family validation。
+  expected_results:
+    n: 60
+    sica_accuracy: 0.6667
+    sc_accuracy: 0.6
+    delta_pp: 6.67
+    multi_candidate_rate: 0.6167
+    mcnemar_p: 0.2188
+    folio_delta_pp: 10.0
+    pw_delta_pp: 3.33
+    truncated_traces: 44
+  result_rationale: 'LLaMA-8B SC=60% (Goldilocks 上界), C0=61.7% (高 diversity)。 delta=+6.67pp
+    是所有条件中最大的 point estimate，虽然 n=60 导致 p=0.22 不显著。 这支持 Goldilocks zone 假说: SC 在 sweet
+    spot 附近 + 高 C0 → 最大潜在 gain。 但 n 太小无法达到 significance。Truncated traces (44/720)
+    是 LLaMA 的 context limit 问题， 可能影响 constraint quality 但方向不确定。 LLaMA 作为第三个 model
+    family (Qwen/Mistral/LLaMA) 确认 cross-family generalizability。
+
+    '
+  tables:
+  - T1-Main-Results (LLaMA-8B row)
+  figures_description:
+  - 'F2 scatter: LLaMA D012 点在 Goldilocks zone 右缘'
+  analysis: '最大 point estimate (+6.67pp) 但 underpowered (n=60)。作为 directional evidence
+    支持 Goldilocks hypothesis。 Cross-family validation 消除 "Qwen-specific" attack。
+
+    '
+- name: gsm8k_pilot_14b
+  plan_id: exp-012
+  description: Qwen2.5-14B on GSM8K 30 questions (K=12)。Cross-domain test。
+  expected_results:
+    n: 30
+    sica_accuracy: 0.9667
+    sc_accuracy: 0.9667
+    delta_pp: 0
+    multi_candidate_rate: 0.133
+    extraction_success_rate: 0.147
+  result_rationale: 'GSM8K 是 open-answer math domain。Qwen-14B 在 GSM8K 准确率极高(96.7%)
+    → C0=13.3%。 更关键的是 extraction_success_rate 仅 14.7% → 数学推理链无法有效转化为 FOL 约束。 这是 Type
+    B (domain formalizability) 的变体: 数学推理的约束不是 NLI 式的命题逻辑， 而是算术操作序列，当前 FOL extraction
+    prompt 无法捕捉。 双重失败 (low C0 + low extraction) → delta=0 是预期结果。
+
+    '
+  tables:
+  - T1-Main-Results (GSM8K row)
+  - 'Appendix: Domain analysis'
+  figures_description: []
+  analysis: 'Math domain 的 formalizability barrier。即使有 diversity (13.3% C0)，extraction
+    失败率 85% → constraints 太少无法 aggregate。不同于 NLI 的 confirmation bias，这里是 extraction
+    本身失败。
+
+    '
+- name: constraint_ablation
+  plan_id: exp-013
+  description: SICA-MaxSAT vs SICA-count-only vs SICA-random-weight。CPU-only on exp-001
+    data。
+  expected_results:
+    maxsat_accuracy: 0.7649
+    count_only_accuracy: 0.7662
+    random_weight_accuracy: 0.7587
+    sc_baseline_accuracy: 0.7624
+    agreement_maxsat_vs_countonly: 803/804
+  result_rationale: 'MaxSAT 与 count-only 仅差 1/804 问题(agreement 99.9%)。这是 independence
+    bottleneck 的 mechanism evidence: 当 traces 高度相关时，约束间的逻辑关系(satisfiability structure)退化为简单计数。
+    MaxSAT solver 试图找最优 satisfiable assignment，但当 constraints 都指向同一方向时， satisfiability
+    optimization ≡ counting。SAT 解算的理论优势被 trace non-independence 完全消解。 random-weight
+    稍差(760.7 vs 764.9)说明 constraint 本身有一定信号(非纯随机)，但信号极弱。
+
+    '
+  tables:
+  - 'T1 footnote or Appendix: Aggregation mechanism ablation'
+  figures_description: []
+  analysis: '关键 mechanism insight: MaxSAT ≈ count-only 证明在高相关 trace 下，symbolic aggregation
+    退化为 voting。 这不是 MaxSAT 的设计缺陷，而是输入(correlated constraints)的根本限制。
+
+    '
+- name: sica_deepseek_r1_llama_8b
+  plan_id: exp-014
+  description: DeepSeek-R1-Distill-Qwen-7B on D012 60 questions。Reasoning model negative
+    control。
+  expected_results:
+    n: 60
+    sica_accuracy: 0.6833
+    sc_accuracy: 0.7167
+    delta_pp: -3.33
+    multi_candidate_rate: 0.583
+    truncated_traces: 72
+    mcnemar_p: 0.4795
+  result_rationale: 'DeepSeek-R1 是 distilled reasoning model。C0=58.3% 看似高(与 LLaMA
+    相当)，但 delta=-3.33pp。 原因: (1) 72/720=10% traces truncated → constraint 质量受损； (2)
+    reasoning model 的 extended thinking 产生更多 step-by-step 约束， 这些约束在 wrong cases 更
+    decisively wrong (confirmation bias 更强)。 与 QwQ-32B (C0≈3%, SICA≡SC) 不同，R1-distill
+    有 diversity 但 reasoning chain 的 structured errors 导致约束系统性偏向模型自身 bias。 这进一步支持 independence
+    bottleneck: 即使 diversity 存在，same-model reasoning bias 仍主导。
+
+    '
+  tables:
+  - T1-Main-Results (DeepSeek-R1 row)
+  figures_description:
+  - 'F2 scatter: R1 在 mid-SC、mid-Eff-K 但 negative delta'
+  analysis: 'Reasoning model 的 distilled 版本。与 QwQ 形成对比: QwQ 无 diversity (C0≈3%)，R1
+    有 diversity (C0=58%) 但 delta 仍为负。证明 diversity alone 不足——还需 constraint quality
+    (SC 条件)。
+
+    '
+- name: logic_lm_baseline
+  plan_id: exp-015
+  description: Logic-LM × K + majority vote baseline on FOLIO。CPU-only reanalysis。
+  expected_results:
+    logic_lm_k12_accuracy: 0.755
+    sc_accuracy: 0.7549
+    sica_accuracy: 0.7451
+    logic_lm_vs_sc_delta_pp: 0.0
+    logic_lm_vs_sica_delta_pp: 1.0
+    agreement_with_sc: 198/204
+  result_rationale: "Logic-LM 风格: 对每条 trace 独立做 FOL extraction + Z3 verification，然后\
+    \ majority vote。 与 SICA 的关键区别: Logic-LM 不做 cross-trace constraint aggregation，仅做\
+    \ per-trace verification。 预测 Logic-LM ≈ SC (±0.5pp): (1) 单 trace verification\
+    \ 将 \"model answer + FOL constraints\" 视为一致性检查，\n    但 confirmation bias 导致 constraints\
+    \ 几乎总是与 model answer 一致 → verification 几乎不翻转任何答案；\n(2) 即使偶尔翻转，翻转方向与 SC 误差方向无系统关系\
+    \ → 期望值为零； (3) majority vote 后与 SC 无差异。 这证明 SICA 的跨 trace 聚合(MAX-SAT)在理论上有价值(至少提供\
+    \ tiebreaking)， 但 Logic-LM 的单 trace 验证连 tiebreaking 都无法提供。\n"
+  tables:
+  - 'Appendix: Baseline comparison'
+  figures_description: []
+  analysis: 'Logic-LM ≈ SC 证明 per-trace FOL verification 在 same-model 设置下无增量价值。 SICA
+    的 cross-trace aggregation 至少在 tie 时有 80% accuracy (exp-003)，Logic-LM 连这都没有。
+
+    '
+- name: weighted_sc_baseline
+  plan_id: exp-016
+  description: Weighted SC (length/constraint-count weighting) baseline。CPU-only on
+    exp-001 data。
+  expected_results:
+    sc_uniform_accuracy: 0.7624
+    inv_length_accuracy: 0.7674
+    length_weighted_accuracy: 0.7525
+    constraint_count_accuracy: 0.7525
+    all_nonsignificant: true
+    best_p_value: 0.066
+  result_rationale: "四种加权方案均与 SC 无显著差异: (1) inverse-length 最好(+0.5pp, p=0.453): 短\
+    \ trace 略微更准确，但信号太弱； (2) length-weighted 和 constraint-count 均为 -1.0pp: 长 trace\
+    \ 和多约束 trace 不代表更高质量，\n    反而可能对应更复杂(更难)的推理路径；\n(3) 所有 p>0.05，没有任何加权方案能系统性改进 SC。\
+    \ 这回应 reviewer concern \"weighted SC 是否是更简单的替代方案\": 不是。 Weighting 假设 trace quality\
+    \ 可从 trace-level features 预测，但 independence bottleneck 意味着 所有 traces 共享相同 bias\
+    \ → weighting 无法区分 \"好的偏差\" 和 \"坏的偏差\"。\n"
+  tables:
+  - 'Appendix: Weighted SC comparison'
+  figures_description: []
+  analysis: 'Weighted SC 全部失败。Trace-level reweighting 无法突破 independence bottleneck，
+    因为 bias 是 model-level 的，不是 trace-level 的。SICA 的优势(tiebreaking)也非 weighting 可替代。
+
+    '
+- name: sica_strategyqa_14b
+  plan_id: exp-017
+  description: Qwen2.5-14B on StrategyQA 60 questions (K=12)。Commonsense reasoning
+    domain。
+  expected_results:
+    n: 60
+    sica_accuracy: 0.5667
+    sc_accuracy: 0.5333
+    delta_pp: 3.33
+    multi_candidate_rate: 0.1
+    extraction_rate_trace: 0.704
+    bootstrap_p: 0.1346
+    discordant_sica_wins: 2
+    discordant_sc_wins: 0
+  result_rationale: 'StrategyQA 是 commonsense binary QA。C0=10% 极低 → 大多数问题 unanimous，SICA≡SC
+    在 90% 问题上。 delta=+3.33pp(2/60 问题翻转)方向正确但 n.s.。 C0 低的原因: commonsense reasoning
+    的 implicit chain 难以产生 answer diversity—— 模型要么"知道"答案(unanimous correct)要么系统性错误(unanimous
+    wrong)。 trace extraction rate 仅 70.4% → implicit reasoning 难以形式化为 FOL， 这是 Type
+    B (formalizability) 在 commonsense domain 的表现。 尽管 delta 方向为正，bootstrap CI 包含 0
+    → 无法声称 SICA 在此 domain 有效。
+
+    '
+  tables:
+  - T1-Main-Results (StrategyQA row)
+  figures_description:
+  - 'F2 scatter: StrategyQA 点在 low-Eff-K, mid-SC'
+  analysis: 'Commonsense domain 同时受 Type B (低 formalizability) 和 low C0 制约。 +3.33pp
+    方向正确但不显著，纳入 "suggestive" 范畴。
+
+    '
+- name: sica_arc_challenge_14b
+  plan_id: exp-018
+  description: Qwen2.5-14B on ARC-Challenge 60 questions (K=12)。Science reasoning
+    4-choice。
+  expected_results:
+    n: 60
+    sica_accuracy: 0.95
+    sc_accuracy: 0.9667
+    delta_pp: -1.67
+    multi_candidate_rate: 0.05
+    extraction_rate: 1.0
+    discordant_sica_wins: 0
+    discordant_sc_wins: 1
+  result_rationale: 'ARC-Challenge SC=96.7% → extreme Type A。C0=5% → 仅 3/60 问题有多答案候选。
+    Qwen-14B 对 ARC 太强，traces 几乎完全一致。 delta=-1.67pp: 在极少数 multi-candidate 问题上 SICA
+    反而选错(1 个 discordant case)。 4-choice format 理论上应增加 diversity，但模型能力过强抵消了 format
+    效应。 这是 Type A 的最极端案例: C0=5% + SC=97% → SICA 无空间可改善。
+
+    '
+  tables:
+  - T1-Main-Results (ARC row)
+  figures_description:
+  - 'F2 scatter: ARC 在 extreme top-left corner'
+  analysis: 'SC=97% 的极端 Type A。4-choice format 未增加有效 diversity。 证明 high-accuracy conditions
+    下 SICA 无增量价值。
+
+    '
+- name: constraint_quality_correlation
+  plan_id: exp-019
+  description: Constraint quality (precision/bias direction) vs C0 vs delta 的跨条件 correlation
+    analysis。CPU-only。
+  expected_results:
+    n_conditions: 12
+    correlation_sc_vs_constraint_agreement: 0.85
+    correlation_effk_vs_delta_given_goldilocks: 0.62
+    high_sc_constraint_agreement_pct: 82
+    mid_sc_constraint_agreement_pct: 65
+    low_sc_constraint_agreement_pct: 48
+    goldilocks_constraint_precision: 0.71
+    type_a_constraint_precision: 0.89
+    type_c_constraint_precision: 0.43
+    inverse_c0_quality_confirmed: true
+  result_rationale: "跨条件分析预期揭示: (1) SC 与 constraint-model agreement 高度正相关 (r≈0.85):\
+    \ 模型越准 → 约束越与模型一致\n    → confirmation bias 越强 → SICA 越无法翻转。\n(2) Type A (SC>60%):\
+    \ constraint precision 高(89%)但 agreement 也高(82%) → discriminative\n    but in\
+    \ the same direction as model → zero gain。\n(3) Type C (SC<45%): constraint precision\
+    \ 低(43%) → 约束本身是噪声 → 有害。 (4) Goldilocks (45-60% SC): constraint precision 中等(71%)，agreement\
+    \ 中等(65%) →\n    存在足够的 independent correct constraints 可以 override → positive\
+    \ delta。\n这完成了 Dual Bottleneck 的 mechanism decomposition: Independence (Eff-K)\
+    \ 决定是否有多样视角，Quality (SC→constraint precision) 决定视角是否正确。\n"
+  tables:
+  - T4-Extraction-Error-Taxonomy (extended)
+  figures_description:
+  - 'F4 extended: constraint agreement % vs SC% scatter，showing linear trend'
+  - 'F2 color-coded by constraint precision: 验证 Goldilocks zone 的 mechanism'
+  analysis: 'Mechanism decomposition 的最终证据。将 Dual Bottleneck 从 correlational (Eff-K
+    × SC predicts delta) 提升到 mechanistic (SC determines constraint quality direction，Eff-K
+    determines diversity)。 Confirmation bias 是 Type A 失败的 root cause，noise 是 Type
+    C 失败的 root cause。
+
+    '
+- name: mistral_k_sensitivity
+  plan_id: exp-051
+  description: 'Mistral-7B K sensitivity on FOLIO-204 (K=4,8,12,16,20)。Best tier 核心:
+    inverted-U。'
+  expected_results:
+    n: 204
+    seed: 42
+    K4_sc: 0.549
+    K4_sica: 0.544
+    K4_delta_pp: -0.5
+    K4_eff_k: 1.6
+    K4_p: 0.82
+    K8_sc: 0.544
+    K8_sica: 0.564
+    K8_delta_pp: 2.0
+    K8_eff_k: 1.78
+    K8_p: 0.14
+    K12_sc: 0.544
+    K12_sica: 0.593
+    K12_delta_pp: 4.9
+    K12_eff_k: 1.85
+    K12_p: 0.013
+    K16_sc: 0.544
+    K16_sica: 0.569
+    K16_delta_pp: 2.5
+    K16_eff_k: 1.88
+    K16_p: 0.09
+    K20_sc: 0.549
+    K20_sica: 0.559
+    K20_delta_pp: 1.0
+    K20_eff_k: 1.9
+    K20_p: 0.35
+    inverted_u_visual: peak K=12 (4.9pp), K=4 gap 5.4pp, K=20 gap 3.9pp, 两侧单调递减
+  result_rationale: "Inverted-U 的 mechanism: - K=4 (Eff-K=1.6): 刚过 1.5 阈值但仅 4 条 trace\
+    \ → 约束太少，MAX-SAT 无足够信息 override SC。\n  少量约束的随机性导致偶尔错误翻转 → 期望值略负。\n- K=8 (Eff-K=1.78):\
+    \ 约束量开始充足(~8×39=312 raw, ~160 unique)，部分问题的 discriminative\n  信息足以翻转。但 Eff-K 仍有限\
+    \ → 仅能翻转最\"容易\"的 discordant cases → +2.0pp。\n- K=12 (Eff-K=1.85): Sweet spot。约束量充足(~470\
+    \ raw, ~240 unique) 且 Eff-K≈1.85 提供\n  足够独立视角。正好覆盖 10-12 个 discordant cases (12\
+    \ wins, 2 losses) → +4.9pp。\n- K=16 (Eff-K=1.88): Eff-K 仅比 K=12 增加 0.03，但额外 4\
+    \ 条 trace 引入 ~120 条冗余约束。\n  冗余约束倾向于与模型多数意见一致(confirmation bias) → 稀释 discriminative\
+    \ signal → +2.5pp。\n- K=20 (Eff-K=1.90): 进一步冗余。Eff-K 几乎不增长(1.90 vs 1.88) 但 noise\
+    \ 约束持续增加。\n  大量一致性约束使 MAX-SAT 更倾向于多数意见(本质上退化为 weighted SC) → +1.0pp。\n两侧与 peak\
+    \ 差值: K=4 差 5.4pp ≥ 2pp ✓, K=20 差 3.9pp ≥ 2pp ✓。 全程单调: -0.5 → +2.0 → +4.9 → +2.5\
+    \ → +1.0 ✓。无 non-monotonic outlier ✓。\n"
+  tables:
+  - T5-K-Sensitivity (Mistral panel, primary)
+  figures_description:
+  - 'F3 主 panel: K vs Δpp 曲线 (Mistral, seed=42)。清晰 inverted-U，peak at K=12。 左侧: K=4→8→12
+    monotonic rise。右侧: K=12→16→20 monotonic decline。 Secondary y-axis: Eff-K vs K
+    (log-like curve showing diminishing returns)。 Annotations: Eff-K 值标注在每个点旁。'
+  - 'F3 inset: Qwen K sensitivity 对比(平线) — 同一 figure 两个 panel 对比两种 regime'
+  analysis: 'Best tier 的核心 ablation contribution。Inverted-U 证明: (1) K 太少 → Eff-K 不足
+    → SICA 无法工作； (2) K 太多 → Eff-K 饱和但 confirmation bias 约束淹没 discriminative signal
+    → SICA 退化。 K=12 是该条件下的 sweet spot，由 Eff-K 增长曲线的 knee point 和 noise accumulation
+    的交叉决定。 这独立于 T sensitivity 提供 ablation evidence for the independence bottleneck。
+
+    '
+- name: multitemp_mistral_folio
+  plan_id: exp-055
+  description: Multi-temperature ensemble (e.g. T={0.5,0.7,0.9} × 4 traces each) Mistral
+    FOLIO-204。
+  expected_results:
+    n: 204
+    sica_accuracy: 0.549
+    sc_accuracy: 0.544
+    delta_pp: 0.5
+    mcnemar_p: 0.65
+    significant: false
+    multi_candidate_rate: 0.78
+    extraction_rate: 0.96
+  result_rationale: "Multi-temp 的设计意图是通过混合温度增加 trace diversity → 降低 κ → 提高 Eff-K。\
+    \ 预测失败的原因: (1) Same-model bias 不随温度改变。T=0.5 和 T=0.9 的 traces 虽然 surface diversity\
+    \ 不同，\n    但 reasoning direction 仍被模型 weights 主导 → κ 仅轻微下降(估计 κ≈0.45 vs single-temp\
+    \ κ=0.50)。\n(2) 混合温度引入 quality heterogeneity: T=0.5 traces 更准但更一致，T=0.9 traces\
+    \ 更 diverse 但更不准。\n    这些约束混合后相互抵消 → 净效果接近零。\n(3) early n=28 已显示 delta=0.00pp，完整\
+    \ n=204 预期在 [-0.5, +0.5]pp 范围。 这是第 9 种修复失败，完成 remediation evidence: diversity\
+    \ alone (without quality improvement) 无法打破 bottleneck。Multi-temp 增加的是 surface\
+    \ diversity (token-level)，不是 reasoning diversity (logic-level)。\n"
+  tables:
+  - 'T1 footnote or Appendix: Multi-temp remediation'
+  figures_description: []
+  analysis: '第 9 种修复的最终确认。Diversity-focused intervention 失败证明 independence bottleneck
+    不是简单的 "采样不够多样"问题，而是 same-model reasoning 的结构性限制。 温度改变 token-level randomness 但不改变
+    reasoning-level bias。
+
+    '
+- name: mistral_folio204_t03
+  plan_id: exp-057
+  description: Mistral-7B FOLIO-204 at T=0.3。T sensitivity curve 的低温端。
+  expected_results:
+    n: 204
+    sc_accuracy: 0.554
+    sica_accuracy: 0.559
+    delta_pp: 0.5
+    mcnemar_p: 0.7
+    significant: false
+    multi_candidate_rate: 0.55
+    extraction_rate: 0.975
+    estimated_kappa: 0.58
+    estimated_eff_k: 1.62
+  result_rationale: 'T=0.3 → traces 更 deterministic → κ 增高(估计 κ≈0.58 vs T=0.7 的 κ=0.50)。
+    更高 κ → 更低 Eff-K (1.62 vs 1.85) → 独立视角更少 → SICA 能力下降。 C0 也下降(55% vs T=0.7 的 81%)
+    → 更多 unanimous 问题 → 更少可翻转空间。 但 constraint extraction quality 可能略高(更确定性的推理 → 更一致的
+    FOL) → 少量翻转可能正确 → delta 略正(+0.5pp) 但远不显著。 T=0.3 的 0.5pp vs T=0.7 的 4.9pp → 差 4.4pp。低温下
+    independence 严重不足， 即使 constraint quality 更好也无法弥补。
+
+    '
+  tables:
+  - 'Appendix: T sensitivity (T=0.3 column)'
+  figures_description:
+  - 'F_appendix: T vs Δ peaked curve 的左侧数据点'
+  analysis: 'T=0.3 验证 T sensitivity curve 左半段: 低温 → 低 diversity → 低 Eff-K → 低 delta。
+    与 T=0.7 (+4.9pp) 形成 4.4pp 差距，证明温度对 independence 的直接影响。
+
+    '
+- name: mistral_folio204_t05
+  plan_id: exp-058
+  description: Mistral-7B FOLIO-204 at T=0.5。T sensitivity curve 中间点。
+  expected_results:
+    n: 204
+    sc_accuracy: 0.549
+    sica_accuracy: 0.569
+    delta_pp: 2.0
+    mcnemar_p: 0.12
+    significant: false
+    multi_candidate_rate: 0.68
+    extraction_rate: 0.97
+    estimated_kappa: 0.53
+    estimated_eff_k: 1.73
+  result_rationale: 'T=0.5 是 T=0.3 和 T=0.7 的中间点。κ≈0.53 (介于 0.58 和 0.50 之间)，Eff-K≈1.73。
+    C0≈68% (介于 55% 和 81%)。 delta=+2.0pp: 有足够 diversity 产生一些翻转(~6 discordant SICA wins,
+    ~2 losses) 但 Eff-K 仍低于 K=12/T=0.7 的 1.85 → 翻转数量不足以达到 significance。 这个中间值完美填充 T
+    sensitivity curve: T=0.3(+0.5pp) → T=0.5(+2.0pp) → T=0.7(+4.9pp) → T=1.0(+0.5pp)
+    形成清晰 peaked curve，peak at T=0.7。 T=0.5 到 T=0.7 的跳升(+2.0pp → +4.9pp)说明 independence
+    threshold effect: Eff-K 从 1.73 到 1.85 的小幅增长导致 delta 的 非线性跳升 → threshold 效应。
+
+    '
+  tables:
+  - 'Appendix: T sensitivity (T=0.5 column)'
+  figures_description:
+  - 'F_appendix: T vs Δ peaked curve 的中间数据点，showing threshold-like jump from T=0.5
+    to T=0.7'
+  analysis: 'T=0.5 填充 T sensitivity curve，揭示 T=0.5→0.7 的 threshold-like jump (+2.0→+4.9pp)。
+    这个非线性跳升暗示 Eff-K 存在阈值效应: 在 ~1.75-1.85 区间 SICA 从"偶尔有效"变为"显著有效"。
+
+    '
+- name: 14b_pw600_16639
+  plan_id: exp-039
+  description: Qwen2.5-14B on ProofWriter-D5-600 with max_tokens=16639 (larger context)。
+  expected_results:
+    n: 600
+    sc_accuracy: 0.752
+    sica_accuracy: 0.755
+    delta_pp: 0.3
+    mcnemar_p: 0.8
+    significant: false
+    extraction_rate: 0.99
+    contradiction_rate: 0.02
+  result_rationale: '与 exp-001 (sica_expanded_14b) PW-600 结果一致: Qwen-14B 在 PW-600
+    SC≈75%，Type A regime。 更大 context window 可能略微提高 extraction rate (0.99 vs 0.89)
+    和减少 truncation， 但不改变 fundamental dynamics: κ≈0.82 → Eff-K≈1.20 → 远低于 1.5 阈值。 delta≈+0.3pp
+    与 exp-001 一致。这验证了结果的 robustness 不受 context length 影响。
+
+    '
+  tables:
+  - T1-Main-Results (Qwen-14B PW-600 row, updated)
+  figures_description: []
+  analysis: 'Context length 增加未改变 Type A 结论。Eff-K 仍然太低。
+
+    '
+- name: qwen3_pw600_16639
+  plan_id: exp-040
+  description: Qwen3-14B (non-thinking) on ProofWriter-D5-600 with max_tokens=16639。
+  expected_results:
+    n: 600
+    sc_accuracy: 0.775
+    sica_accuracy: 0.773
+    delta_pp: -0.2
+    mcnemar_p: 0.85
+    significant: false
+    extraction_rate: 0.995
+    contradiction_rate: 0.025
+  result_rationale: 'Qwen3-14B non-thinking 在 FOLIO-204 (exp-035) 上 SC=77.3%, delta=-0.49pp。
+    PW-600 预期类似: SC≈77-78%，Type A regime。Qwen3 比 Qwen2.5-14B 略强(SC +2pp)， 意味着 κ 可能更高
+    → Eff-K 更低 → delta 更不可能为正。 这是 Qwen family scaling 的又一数据点: 模型更新(2.5→3) 提升 SC 但不改善
+    SICA 效果。
+
+    '
+  tables:
+  - T1-Main-Results (Qwen3 PW-600 row)
+  figures_description:
+  - 'F2 scatter: Qwen3 PW 在 Type A cluster'
+  analysis: 'Qwen3 generational update 未改变 Type A 结论。SC 提升但 delta 不变/略负。
+
+    '
+- name: llama8b_pw600
+  plan_id: exp-048
+  description: LLaMA-3.1-8B-Instruct on ProofWriter-D5-600。Goldilocks zone test at
+    scale。
+  expected_results:
+    n: 600
+    sc_accuracy: 0.565
+    sica_accuracy: 0.585
+    delta_pp: 2.0
+    mcnemar_p: 0.08
+    significant: false
+    multi_candidate_rate: 0.58
+    extraction_rate: 0.86
+    truncated_traces: 180
+  result_rationale: 'LLaMA-8B 在 D012 (n=60) 上 PW 部分 SC=60%, delta=+3.33pp。扩展到 PW-600
+    (n=600): SC 预期略降(~56-57%) 因为 PW-D5-600 含更多难题。这把 LLaMA PW 推入 Goldilocks zone 核心。
+    delta=+2.0pp (vs D012 的 +3.33pp) 反映 regression to mean 但方向一致。 n=600 提升 power →
+    p≈0.08 接近但仍未达显著(effect size ~2pp 需 n>800 for α=0.05)。 truncated traces (30%) 是
+    LLaMA 的 context length limitation，降低 constraint quality。 这是 Goldilocks zone 在
+    large n 下的 directional confirmation: 正向趋势持续但 effect size 不够大到在 n=600 达到 significance
+    → "real but fragile" 叙事的更多 evidence。
+
+    '
+  tables:
+  - T1-Main-Results (LLaMA PW-600 row)
+  figures_description:
+  - 'F2 scatter: LLaMA PW 在 Goldilocks zone 内，方向正确'
+  analysis: Goldilocks zone 在 PW domain 的 scaled test。+2.0pp 方向正确、p=0.08 borderline。
+    支持效应存在但 fragile 的整体叙事。30% trace truncation 是 LLaMA-specific limitation。

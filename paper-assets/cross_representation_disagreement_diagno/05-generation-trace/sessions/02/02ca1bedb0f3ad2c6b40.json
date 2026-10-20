@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02ca1bedb0f3ad2c6b40",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "code resume pipeline 004",
+  "task_key": "worker_code_resume_pipeline_004_20260514T155439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_resume_pipeline_004_20260514T155439_result.json",
+    "occurrence": 1,
+    "bytes": 263,
+    "sha256": "07e0cf20d8a58e0ebc3fdb2a0ad58b448471b24921dd2c6aa1313f3f54b0d35c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 已恢复运行：\n\n- **PID**: 42651\n- **tmux session**: `mvp_pipeline_004`\n- 已加载 204 样本，恢复跳过 109 已完成样本\n- 从 sample 110 (`folio_validation_109`) 开始继续处理\n- 日志：`/tmp/mvp_pipeline_004.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-resume-pipeline-004.md"
+}

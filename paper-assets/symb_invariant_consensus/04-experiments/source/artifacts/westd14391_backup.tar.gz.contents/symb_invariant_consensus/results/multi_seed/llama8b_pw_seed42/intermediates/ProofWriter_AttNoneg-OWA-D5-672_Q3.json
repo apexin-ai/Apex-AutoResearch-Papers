@@ -1,0 +1,1210 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-672_Q3",
+    "problem": "Anne is cold. Anne is kind. Anne is round. Anne is smart. Anne is young. Erin is cold. Erin is round. Erin is smart. Gary is cold. Gary is kind. Gary is rough. Gary is round. Gary is smart. Gary is white. Gary is young. Harry is cold. If someone is kind then they are round. Young, cold people are white. All white people are young. All cold people are white. All round people are smart. If someone is young and cold then they are kind. All round people are kind. All young people are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is kind.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nKind(Anne, True) ::: Anne is kind.\nRound(Anne, True) ::: Anne is round.\nSmart(Anne, True) ::: Anne is smart.\nYoung(Anne, True) ::: Anne is young.\nCold(Erin, True) ::: Erin is cold.\nRound(Erin, True) ::: Erin is round.\nSmart(Erin, True) ::: Erin is smart.\nCold(Gary, True) ::: Gary is cold.\nKind(Gary, True) ::: Gary is kind.\nRough(Gary, True) ::: Gary is rough.\nRound(Gary, True) ::: Gary is round.\nSmart(Gary, True) ::: Gary is smart.\nWhite(Gary, True) ::: Gary is white.\nYoung(Gary, True) ::: Gary is young.\nCold(Harry, True) ::: Harry is cold.\n\nRules:\nKind($x, True) >>> Round($x, True) ::: If someone is kind then they are round.\nYoung($x, True) && Cold($x, True) >>> White($x, True) ::: Young, cold people are white.\nWhite($x, True) >>> Young($x, True) ::: All white people are young.\nCold($x, True) >>> White($x, True) ::: All cold people are white.\nRound($x, True) >>> Smart($x, True) ::: All round people are smart.\nYoung($x, True) && Cold($x, True) >>> Kind($x, True) ::: If someone is young and cold then they are kind.\nRound($x, True) >>> Kind($x, True) ::: All round people are kind.\nYoung($x, True) >>> Rough($x, True) ::: All young people are rough.\n\nQuery:\nKind(Erin, True) ::: Erin is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 178.0,
+      "Unknown": 165.0
+    },
+    "answer_counts": {
+      "True": 9,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given information and the statements.\n\nFrom the statements:\n1. If someone is kind then they are round.\n2. Erin is round.\n\nWe can use statement 1 to infer that Erin is kind because she is round. However, we need to make sure this inference is consistent with the given information.\n\nLet's analyze the statements related to Erin:\n\n- Erin is round.\n- Erin is smart.\n- Erin is cold.\n\nFrom the statements:\n1. All round people are smart. (This is consistent with Erin's characteristics)\n2. If someone is young and cold then they are kind. (We don't know Erin's age, so we can't directly apply this statement)\n3. All young people are rough. (We don't know Erin's age, so we can't directly apply this statement)\n4. Young, cold people are white. (We don't know Erin's age, so we can't directly apply this statement)\n5. All cold people are white. (We don't know Erin's age, so we can't directly apply this statement)\n6. All white people are young. (We don't know Erin's age, so we can't directly apply this statement)\n\nFrom the statements:\n1. If someone is kind then they are round.\n2. Erin is round.\n\nWe can conclude that Erin is kind.\n\nTherefore, the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is kind\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nGiven information:\n\n1. Anne is cold. Anne is kind. Anne is round. Anne is smart. Anne is young.\n2. Erin is cold. Erin is round. Erin is smart.\n3. Gary is cold. Gary is kind. Gary is rough. Gary is round. Gary is smart. Gary is white. Gary is young.\n4. Harry is cold.\n5. If someone is kind then they are round. (Rule 1)\n6. Young, cold people are white. (Rule 2)\n7. All white people are young. (Rule 3)\n8. All cold people are white. (Rule 4)\n9. All round people are smart. (Rule 5)\n10. If someone is young and cold then they are kind. (Rule 6)\n11. All round people are kind. (Rule 7)\n12. All young people are rough. (Rule 8)\n\nTo determine if Erin is kind, we need to check if Erin satisfies the conditions for being kind. From Rule 6, we know that if someone is young and cold then they are kind. \n\nLet's analyze Erin's properties:\n- Erin is cold (given).\n- Erin is round (given).\n\nHowever, we cannot directly determine if Erin is young because there is no explicit statement about Erin being young. We can only conclude that if Erin is young, then she is kind.\n\nNow, let's examine the relationship between being young and cold. From Rule 2, we know that young, cold people are white. This implies that if someone is young and cold, they must be white. \n\nHowever, from Rule 3, all white people are young, which creates a paradox. This means that we cannot assume that Erin is white or young based on the given information.\n\nSince we cannot determine if Erin is young, we cannot directly apply Rule 6 to conclude that Erin is kind. Therefore, the statement \"Erin is kind\" is unknown based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is cold. \n   - Anne is kind. \n   - Anne is round. \n   - Anne is smart. \n   - Anne is young. \n   - Erin is cold. \n   - Erin is round. \n   - Erin is smart. \n   - Gary is cold. \n   - Gary is kind. \n   - Gary is rough. \n   - Gary is round. \n   - Gary is smart. \n   - Gary is white. \n   - Gary is young. \n   - Harry is cold. \n   - If someone is kind then they are round. \n   - Young, cold people are white. \n   - All white people are young. \n   - All cold people are white. \n   - All round people are smart. \n   - If someone is young and cold then they are kind. \n   - All round people are kind. \n   - All young people are rough.\n\n2. Given rules:\n   - Rule 1: If someone is kind then they are round. (Implies that round people are kind)\n   - Rule 2: Young, cold people are white. \n   - Rule 3: All white people are young. \n   - Rule 4: All cold people are white. \n   - Rule 5: All round people are smart. \n   - Rule 6: If someone is young and cold then they are kind. (Implies that young and cold people are kind)\n   - Rule 7: All round people are kind. \n   - Rule 8: All young people are rough.\n\n3. Determine whether Erin is kind:\n   - From the given information, Erin is cold and Erin is round. We cannot directly conclude that Erin is kind from the given information.\n   - However, we have Rule 2: Young, cold people are white. Since we cannot conclude Erin's age, we cannot use this rule.\n   - From Rule 4: All cold people are white, we cannot conclude Erin's age or that Erin is white.\n   - From Rule 1: If someone is kind then they are round. This rule does not help us conclude that Erin is kind.\n   - From Rule 6: If someone is young and cold then they are kind. We cannot conclude Erin's age from the given information.\n   - From Rule 7: All round people are kind. Since Erin is round, this rule implies that Erin is kind.\n\nHowever, Rule 7 contradicts Rule 1. Rule 7 implies that round people are kind, while Rule 1 implies that kind people are round. This contradiction makes the information insufficient to determine whether Erin is kind.\n\nGiven the information, the statement \"Erin is kind\" is unknown.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is kind\" is true, false, or unknown, we need to use the given information and the rules provided.\n\nGiven information:\n\n1. Anne is cold. \n2. Anne is kind. \n3. Anne is round. \n4. Anne is smart. \n5. Anne is young. \n6. Erin is cold. \n7. Erin is round. \n8. Erin is smart. \n9. Gary is cold. \n10. Gary is kind. \n11. Gary is rough. \n12. Gary is round. \n13. Gary is smart. \n14. Gary is white. \n15. Gary is young. \n16. Harry is cold.\n\nRules:\n\n1. If someone is kind then they are round.\n2. Young, cold people are white.\n3. All white people are young.\n4. All cold people are white.\n5. All round people are smart.\n6. If someone is young and cold then they are kind.\n7. All round people are kind.\n8. All young people are rough.\n\nWe need to analyze the given information and the rules to determine whether Erin is kind.\n\nFrom the given information, we know that Erin is round (rule 1) and Erin is smart (rule 5). \n\nHowever, to determine whether Erin is kind, we need to find a direct connection between Erin and the rule that states if someone is kind then they are round (rule 1) or the rule that states all round people are kind (rule 7).\n\nLet's analyze the rules that involve round people.\n\nFrom rule 5, we know that all round people are smart. From the given information, we know that Erin is smart, so Erin is round. \n\nFrom rule 7, we know that all round people are kind. However, there is another rule (rule 6) that states if someone is young and cold then they are kind. Since Erin is cold (given information), we cannot directly apply rule 6.\n\nHowever, we can try to find a connection between Erin and rule 6.\n\nFrom rule 4, we know that all cold people are white. From rule 3, we know that all white people are young. So, if Erin is cold, then Erin is white and young.\n\nNow, we can apply rule 6, which states if someone is young and cold then they are kind.\n\nSince Erin is young and cold, we can conclude that Erin is kind.\n\nTherefore, the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given statements and the information about Erin.\n\nGiven statements:\n\n1. At the end of the statements, we see a set of conditionals that are related to the characteristics of the people. \n   - If someone is kind then they are round.\n   - Young, cold people are white.\n   - All white people are young.\n   - All cold people are white.\n   - All round people are smart.\n   - If someone is young and cold then they are kind.\n   - All round people are kind.\n   - All young people are rough.\n\n2. From the statements about Anne, Erin, Gary, and Harry, we can see that:\n   - Anne is kind, round, smart, and young.\n   - Erin is cold and round.\n   - Gary is cold, kind, rough, round, smart, white, and young.\n   - Harry is cold.\n\nNow, let's apply the given conditionals to determine whether Erin is kind:\n\n- From the statement \"If someone is kind then they are round\", we know that if Erin is kind, then she is round. But we already know that Erin is round.\n- From the statement \"If someone is young and cold then they are kind\", we know that if Erin is young and cold, then she is kind. Let's check if Erin is young and cold:\n  - Erin is cold (given statement).\n  - Erin is round (given statement), but we don't have any information that links being round to being young.\n- From the statement \"All round people are smart\", we know that since Erin is round, she is smart.\n- From the statement \"All cold people are white\", we know that since Erin is cold, she is white.\n- From the statement \"All white people are young\", we know that since Erin is white, she is young.\n- Now, let's combine the information: Erin is young and cold, and if someone is young and cold, then they are kind.\n\nSince we have enough information to conclude that Erin is young and cold, and all young and cold people are kind, we can determine that Erin is kind.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is kind\" is true, false, or unknown, we need to analyze the given information and the facts provided about Erin.\n\nGiven Facts about Erin:\n- Erin is cold.\n- Erin is round.\n\nFrom the given premises:\n- If someone is kind then they are round. (1)\n- All round people are kind. (2)\n- All round people are smart. (3)\n\nHowever, we must also consider the additional information that contradicts our premises:\n- All round people are smart. (3)\n- All round people are kind. (2)\n\nFrom (3), we know that Erin is smart since she is round. From (2), we know that round people are kind. But we also have another premise that states, \"If someone is kind then they are round.\" This implies that being kind is a characteristic of being round.\n\nHowever, there's another premise stating that \"All round people are kind.\" But then there's also another premise stating, \"All young people are rough.\" This premise is crucial as it tells us something about Erin that we don't know yet. \n\nWe know that Erin is round and cold. We also know that all cold people are white (from the premises) and all white people are young (from the premises). So, Erin is white and young.\n\nGiven Erin is young, and we know from the premises that all young people are rough (All young people are rough), it implies that Erin is rough.\n\nNow we have all the facts about Erin: Erin is cold, round, smart, white, young, and rough.\n\nConsidering our premises, Erin's characteristics do not directly imply that Erin is kind. The premises about round people being kind and kind people being round are contradictory, but since Erin is also young, we know she's rough, which does not help us conclude if she is kind or not.\n\nHowever, looking at the premises, \"All round people are kind\" (2) and \"If someone is kind then they are round\" (1) they seem to imply that being round and kind are the same thing. So if Erin is round, then she is kind. However, the premises \"All round people are kind\" (2) and \"If someone is kind then they are round\" (1) are contradictory.\n\nHowever, let's take a closer look at this statement, \"All round people are kind.\" Since Erin is round, this would imply that Erin is kind. But then we also have the statement \"If someone is kind then they are round.\" If Erin is kind, then she must be round. But Erin is already round. This creates a loop, where it is unknown if Erin is kind because both statements are contradictory, yet both apply to Erin.\n\nHowever, in the statement \"All round people are kind\" (2), there is no condition that says if someone is young, they are not kind. In fact, the statement, \"If someone is young and cold then they are kind\" contradicts this statement because it does not state that all young and cold people are kind, but rather that young and cold people are kind. So, in this case, Erin being young and cold would imply that Erin is kind. However, this contradicts the premise that \"All round people are kind\" because Erin is round.\n\nHowever, considering all the premises, Erin is cold, round, white, young, and rough. Given that all young people are rough, all cold people are white, and all white people are young, Erin is indeed young. Also, Erin is cold, which would imply that Erin is white. So, Erin is white, young, round, and cold.\n\nNow, given that all cold people are white, all white people are young, and all young people are rough, and given that Erin is young and round, we can conclude that Erin is indeed kind because Erin is round and we know from the premises that \"All round people are kind\" (2).\n\nSo the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know the following about Erin:\n   - Erin is cold.\n   - Erin is round.\n\n2. From the given information:\n   - All round people are smart. (So, Erin is smart.)\n   - All round people are kind. (So, Erin is kind.)\n\nHowever, we need to check if this conclusion is correct or if there's any other information that could contradict it. Let's analyze other information related to Erin.\n\n3. We don't have any information about Erin being young, but we do have information about young people:\n   - All young people are rough. (This doesn't provide any information about Erin specifically, but it's worth noting.)\n\n4. We know the following about people who are young and cold:\n   - If someone is young and cold then they are kind. (However, Erin is not mentioned as a young and cold person in this context.)\n\n5. We know the following about people who are cold:\n   - All cold people are white. (This implies that Erin is white, as Erin is cold.)\n\n6. We know the following about people who are white:\n   - All white people are young. (This implies that Erin is young, as Erin is white.)\n\nNow, let's combine the information:\n- Erin is young (from step 6).\n- Erin is cold (from step 1).\n- If someone is young and cold then they are kind (from step 4).\n- Therefore, Erin is kind.\n\nSo, the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is kind' is true, false, or unknown, we need to analyze the given information and the given rules.\n\nGiven information:\n1. Anne is cold.\n2. Anne is kind.\n3. Anne is round.\n4. Anne is smart.\n5. Anne is young.\n6. Erin is cold.\n7. Erin is round.\n8. Erin is smart.\n9. Gary is cold.\n10. Gary is kind.\n11. Gary is rough.\n12. Gary is round.\n13. Gary is smart.\n14. Gary is white.\n15. Gary is young.\n16. Harry is cold.\n17. If someone is kind then they are round.\n18. Young, cold people are white.\n19. All white people are young.\n20. All cold people are white.\n21. All round people are smart.\n22. If someone is young and cold then they are kind.\n23. All round people are kind.\n24. All young people are rough.\n\nThe statement we need to evaluate is 'Erin is kind.'\n\nFrom rules 17 and 23, we have two possible ways to determine if Erin is kind:\n\n- If someone is kind then they are round (rule 17).\n- All round people are kind (rule 23).\n\nFrom the given information, we know Erin is round (rule 8).\n\nNow, using the two possible ways to determine if Erin is kind:\n\n- Rule 17: If someone is kind then they are round. Since Erin is round, it doesn't directly tell us if Erin is kind, but we can use rule 8 to tell us that Erin is round, then Erin is smart, and all round people are smart, all round people are kind (rule 23), so Erin is kind.\n\n- Rule 23: All round people are kind. Since Erin is round (rule 8), we can directly conclude that Erin is kind.\n\nUsing the above two possible ways to determine if Erin is kind, we can conclude that Erin is kind.\n\nTherefore, the statement 'Erin is kind' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given information and the statement to be determined. We will break it down into steps.\n\nStep 1:  Analyze the given statements.\n\n1. Anne is cold.\n2. Anne is kind.\n3. Anne is round.\n4. Anne is smart.\n5. Anne is young.\n6. Erin is cold.\n7. Erin is round.\n8. Erin is smart.\n9. Gary is cold.\n10. Gary is kind.\n11. Gary is rough.\n12. Gary is round.\n13. Gary is smart.\n14. Gary is white.\n15. Gary is young.\n16. Harry is cold.\n17. If someone is kind then they are round.\n18. Young, cold people are white.\n19. All white people are young.\n20. All cold people are white.\n21. All round people are smart.\n22. If someone is young and cold then they are kind.\n23. All round people are kind.\n24. All young people are rough.\n\nStep 2:  Determine the relationship between Erin and the given characteristics.\n\nFrom statement 6, Erin is cold.\nFrom statement 7, Erin is round.\n\nStep 3:  Determine if Erin is kind based on the given information.\n\nSince Erin is round (from statement 7), we can use statement 21 (All round people are smart) to conclude that Erin is smart.\nFrom statement 22, since Erin is young and cold, we can conclude that Erin is kind.\n\nHowever, we also have statement 17 (If someone is kind then they are round) which states that if someone is kind, then they must be round. Since Erin is round (from statement 7), and we concluded that Erin is kind (from step 3), this statement is consistent with the given information.\n\nBut we also have statement 23 (All round people are kind) which states that all round people are kind. Since Erin is round (from statement 7), this statement also implies that Erin is kind.\n\nSince both statements (17 and 23) imply that Erin is kind, and both are consistent with the given information, we can conclude that the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given information and the statements provided.\n\nFrom the given statements:\n\n1. Erin is round.\n2. All round people are smart.\n3. All round people are kind.\n\nFrom statement 3, we can infer that if someone is round, then they are kind. Since Erin is round (statement 1), we can conclude that Erin is kind.\n\nTherefore, the statement \"Erin is kind\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is kind' is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven statements:\n\n1. Anne is cold.\n2. Anne is kind.\n3. Anne is round.\n4. Anne is smart.\n5. Anne is young.\n6. Erin is cold.\n7. Erin is round.\n8. Erin is smart.\n9. Gary is cold.\n10. Gary is kind.\n11. Gary is rough.\n12. Gary is round.\n13. Gary is smart.\n14. Gary is white.\n15. Gary is young.\n16. Harry is cold.\n\nAlso given are the following logical statements:\n\n17. If someone is kind then they are round.\n18. Young, cold people are white.\n19. All white people are young.\n20. All cold people are white.\n21. All round people are smart.\n22. If someone is young and cold then they are kind.\n23. All round people are kind.\n24. All young people are rough.\n\nTo determine whether Erin is kind, we need to analyze her properties.\n\nFrom statements 6 and 7, we know Erin is cold and round. \n\nUsing statement 21, since Erin is round, she must be smart.\n\nHowever, we need to determine if she is kind or not. We can start by analyzing the logical statements related to kind people.\n\nFrom statement 17, if someone is kind, then they are round. This does not directly help us with Erin.\n\nFrom statement 22, if someone is young and cold, then they are kind. However, we don't know if Erin is young or not.\n\nFrom statement 23, all round people are kind. Since Erin is round, we can conclude that Erin is kind.\n\nTherefore, based on the given information and logical deductions, the statement 'Erin is kind' is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given statements and their implications.\n\n1. Erin is round. (Given)\n2. All round people are smart. (Given)\n3. Erin is smart. (Implication from 1 and 2)\n4. Erin is round. (Given)\n5. All round people are kind. (Given)\n6. Erin is kind. (Implication from 4 and 5)\n\nHowever, we also have the following statements:\n\n7. Young, cold people are white. (Given)\n8. All white people are young. (Given)\n9. All cold people are white. (Given)\n\nFrom 7 and 8, we can conclude that young people are white.\n\n10. Erin is young. (Implication from 7, 8, and 9)\n11. Erin is white. (Implication from 10)\n12. Erin is young. (Given)\n13. All young people are rough. (Given)\n14. Erin is rough. (Implication from 12 and 13)\n\nNow we have two conflicting implications for Erin:\n\n- Erin is kind. (From step 6)\n- Erin is rough. (From step 14)\n\nSince we have two conflicting implications, we cannot determine whether Erin is kind or not. Therefore, the statement \"Erin is kind\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_erin, round_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_anne, round_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), white_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_anne, young_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_anne, white_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_anne, smart_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), kind_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_anne, kind_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_anne, rough_anne)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_anne, round_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), white_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_anne, young_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_anne, white_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_anne, smart_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), kind_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_anne, kind_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_anne, rough_anne)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_anne, round_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), kind_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(young_erin, cold_erin), white_erin)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_erin, young_erin)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_erin, smart_erin)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_erin, kind_erin)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_erin, round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_erin, smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_erin, kind_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_erin, cold_erin), kind_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_erin, young_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_erin, round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_erin, smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_erin, young_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_erin, rough_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_erin, rough_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_erin, cold_erin), kind_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_erin, young_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_anne, round_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_gary, kind_gary)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_erin, smart_erin)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_erin, kind_erin)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_anne, round_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), white_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_anne, young_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_anne, white_anne)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_anne, smart_anne)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), kind_anne)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_anne, kind_anne)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_anne, rough_anne)",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_anne, round_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), white_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_anne, young_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_anne, white_anne)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_anne, smart_anne)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), kind_anne)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_anne, kind_anne)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_anne, rough_anne)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_erin, kind_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_erin, rough_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 14
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 180,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 37
+    },
+    "maxsat_stats": {
+      "satisfied": 37,
+      "excluded": 0,
+      "total_weight": 180,
+      "solve_time_ms": 0.9793881326913834
+    },
+    "timing": {
+      "trace_gen_s": 9.899,
+      "extraction_s": 27.221,
+      "dedup_s": 1.515,
+      "maxsat_s": 0.003,
+      "total_s": 38.638
+    }
+  }
+}

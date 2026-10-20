@@ -1,0 +1,35 @@
+{
+  "experiment": "wild1_max_unsat",
+  "dataset": "folio_204",
+  "model": "mistral_7b",
+  "source_exp": "exp033",
+  "summary": {
+    "sc":                 {"accuracy": 0.5441, "correct": 111, "total": 204},
+    "maxsat":             {"accuracy": 0.5588, "correct": 114, "total": 204},
+    "min_unsat_raw":      {"accuracy": 0.4951, "correct": 101, "total": 204},
+    "min_unsat_weighted": {"accuracy": 0.4902, "correct": 100, "total": 204},
+    "maxsat_discrim":     {"accuracy": 0.5588, "correct": 114, "total": 204}
+  },
+  "trivially_satisfied_stats": {
+    "total_trivial": 371,
+    "total_satisfied": 7767,
+    "trivial_pct": 4.78
+  },
+  "diagnostics": {
+    "note": "MAX-SAT re-run from constraint_cache yields 55.9% vs original 59.3% due to z3 dedup order sensitivity (15/204 differ). All method comparisons are on same re-deduped constraint set.",
+    "original_sica_accuracy": 0.5931,
+    "original_sica_correct": 121,
+    "problems_zero_excluded": 80,
+    "problems_lte2_excluded": 166,
+    "excluded_mean": 1.27,
+    "excluded_median": 1,
+    "min_unsat_raw_ties": 65,
+    "min_unsat_failure_reason": "Most problems have 0-2 excluded constraints (mean=1.3). With so few exclusions, MIN-UNSAT has near-zero discriminative signal. In 65/204 cases all candidates tie at 0, falling back to SC."
+  },
+  "flip_analysis": {
+    "min_unsat_raw_vs_maxsat":      {"gained": 25, "lost": 40, "neutral": 19, "net": -15},
+    "min_unsat_weighted_vs_maxsat": {"gained": 25, "lost": 41, "neutral": 19, "net": -16},
+    "maxsat_discrim_vs_maxsat":     {"gained": 0,  "lost": 0,  "neutral": 0,  "net": 0}
+  },
+  "conclusion": "MIN-UNSAT hypothesis REJECTED. MIN-UNSAT scoring degrades accuracy by ~6-7pp vs MAX-SAT because the MAX-SAT solver only excludes 1.3 constraints per problem on average (80/204 have zero). With so little exclusion signal, MIN-UNSAT either ties all candidates (falling back to SC) or makes worse selections. Removing trivially satisfied constraints (only 4.8%, not 43%) has zero impact."
+}

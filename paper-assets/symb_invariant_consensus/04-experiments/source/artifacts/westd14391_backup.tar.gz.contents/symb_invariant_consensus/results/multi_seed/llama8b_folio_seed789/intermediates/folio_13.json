@@ -1,0 +1,672 @@
+{
+  "problem": {
+    "id": "folio_13",
+    "problem": "Given the following premises:\nA Japanese game company created the game the Legend of Zelda. All games in the Top 10 list are made by Japanese game companies. [BG] If a game sells more than one million copies, then it will be selected into the Top 10 list. The Legend of Zelda sold more than one million copies.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nFIFA 22 is made by a Japanese video game company.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (Japanese(x) \u2227 VideoGameCompany(x) \u2227 Game(thelegendofzelda) \u2227 Created(x, thelegendofzelda))",
+      "\u2200x \u2200y (Game(x) \u2227 InTop10(x) \u2227 Created(x, y) \u2192 Japanese(y))",
+      "\u2200x (Game(x) \u2227 SellsMoreThan(x, onemillioncopies) \u2192 Top10(x))",
+      "SellsMoreThan(thelegendofzelda, onemillioncopies)"
+    ],
+    "conclusion_fol": "\u2200x (Created(fifa22, x) \u2192 Japanese(x) \u2227 VideoGameCompany(x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 84.5
+    },
+    "answer_counts": {
+      "Unknown": 11
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will use a logical approach, specifically the method of Deductive Reasoning. \n\nGiven Premises:\n1. A Japanese game company created the game the Legend of Zelda.\n2. All games in the Top 10 list are made by Japanese game companies.\n3. If a game sells more than one million copies, then it will be selected into the Top 10 list.\n4. The Legend of Zelda sold more than one million copies.\n\nConclusion to be Determined:\nFIFA 22 is made by a Japanese video game company.\n\nStep 1: Determine if we have enough information to conclude that FIFA 22 is made by a Japanese game company.\nFrom Premise 1, we know the Legend of Zelda is made by a Japanese game company. \nHowever, we do not have any information about FIFA 22 being in the Top 10 list or selling more than one million copies.\n\nStep 2: Determine if the conclusion can be inferred from the given premises.\nWe can use Premise 3 to infer that since The Legend of Zelda sold more than one million copies (Premise 4), it will be selected into the Top 10 list.\nFrom Premise 2, we know all games in the Top 10 list are made by Japanese game companies. \nTherefore, we can infer that The Legend of Zelda is made by a Japanese game company (which we already know from Premise 1).\n\nHowever, this information does not provide any insight into FIFA 22. \n\nStep 3: Check for any additional premises or information that might be required to determine the conclusion.\nThere are no additional premises provided.\n\nConclusion:\nSince we do not have any information that links FIFA 22 to the Top 10 list or its sales, we cannot conclude whether FIFA 22 is made by a Japanese video game company.\n\nFinal Answer:\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we can use a logical approach with the given premises and the conclusion.\n\nPremises:\n\n1. A Japanese game company created the game the Legend of Zelda.\n2. All games in the Top 10 list are made by Japanese game companies.\n3. If a game sells more than one million copies, then it will be selected into the Top 10 list.\n4. The Legend of Zelda sold more than one million copies.\n\nConclusion:\nFIFA 22 is made by a Japanese video game company.\n\nStep 1: Analyze the premises\nFrom premise 1, we know that the Legend of Zelda is made by a Japanese game company.\n\nStep 2: Analyze premise 4\nWe also know that the Legend of Zelda sold more than one million copies.\n\nStep 3: Apply premise 3\nSince the Legend of Zelda sold more than one million copies, it will be selected into the Top 10 list (premise 3).\n\nStep 4: Apply premise 2\nAll games in the Top 10 list are made by Japanese game companies (premise 2). Therefore, the Legend of Zelda, being in the Top 10 list, must be made by a Japanese game company.\n\nStep 5: Analyze the conclusion\nThe conclusion states that FIFA 22 is made by a Japanese video game company. \n\nHowever, there is no information about FIFA 22 in the given premises. We only know about the Legend of Zelda.\n\nStep 6: Determine the conclusion's truth value\nSince there is no information about FIFA 22 in the given premises, we cannot determine whether FIFA 22 is made by a Japanese game company or not.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and apply the premises given.\n\nPremise 1: A Japanese game company created the game the Legend of Zelda.\nPremise 2: All games in the Top 10 list are made by Japanese game companies.\nPremise 3: [BG] If a game sells more than one million copies, then it will be selected into the Top 10 list.\nPremise 4: The Legend of Zelda sold more than one million copies.\n\nWe are trying to determine whether the conclusion \"FIFA 22 is made by a Japanese video game company\" is true, false, or uncertain.\n\nFrom Premise 1, we know that a Japanese game company created the Legend of Zelda.\n\nFrom Premise 2, we know that all games in the Top 10 list are made by Japanese game companies.\n\nFrom Premise 3 and Premise 4, we can conclude that the Legend of Zelda is in the Top 10 list because it sold more than one million copies.\n\nHowever, we cannot find any information about FIFA 22 being in the Top 10 list or its sales figures. Therefore, we cannot determine its status as a Japanese game company using the given premises.\n\nTherefore, the conclusion \"FIFA 22 is made by a Japanese video game company\" is uncertain based on the given information.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will use the method of logical reasoning, specifically the rules of inference.\n\nThe premises given are:\n\n1. A Japanese game company created the game the Legend of Zelda.\n2. All games in the Top 10 list are made by Japanese game companies.\n3. If a game sells more than one million copies, then it will be selected into the Top 10 list.\n4. The Legend of Zelda sold more than one million copies.\n\nWe are asked to determine the truth value of the conclusion:\n\nFIFA 22 is made by a Japanese video game company.\n\nTo do this, we need to analyze the premises and see if they logically lead to the conclusion.\n\nFrom premise 4, we know that The Legend of Zelda sold more than one million copies. \n\nUsing premise 3, we can infer that The Legend of Zelda will be selected into the Top 10 list, because it sold more than one million copies.\n\nUsing premise 2, we can infer that all games in the Top 10 list are made by Japanese game companies.\n\nFrom premise 1, we know that A Japanese game company created the game the Legend of Zelda. \n\nNow, let's see if we can connect these premises to the conclusion.\n\nWe know that The Legend of Zelda is in the Top 10 list because it sold more than one million copies, and all games in the Top 10 list are made by Japanese game companies.\n\nHowever, this does not provide any information about FIFA 22. We do not know if FIFA 22 sold more than one million copies, or if it is in the Top 10 list.\n\nTherefore, we cannot logically conclude that FIFA 22 is made by a Japanese video game company based on the given premises.\n\nThe conclusion is uncertain, because we do not have enough information to determine its truth value.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion \"FIFA 22 is made by a Japanese video game company\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: A Japanese game company created the game the Legend of Zelda.\nPremise 2: All games in the Top 10 list are made by Japanese game companies.\nPremise 3: If a game sells more than one million copies, then it will be selected into the Top 10 list.\nPremise 4: The Legend of Zelda sold more than one million copies.\n\nFrom Premise 1 and Premise 4, we can conclude that the Legend of Zelda is made by a Japanese game company.\n\nFrom Premise 3 and Premise 4, we can conclude that the Legend of Zelda is in the Top 10 list.\n\nFrom Premise 2, we can conclude that all games in the Top 10 list are made by Japanese game companies.\n\nSince the Legend of Zelda is in the Top 10 list (Premise 4 and Premise 3), and all games in the Top 10 list are made by Japanese game companies (Premise 2), we can conclude that the Legend of Zelda is made by a Japanese game company (Premise 1).\n\nHowever, there is no information provided about FIFA 22 being in the Top 10 list, selling more than one million copies, or being made by a Japanese game company. Therefore, we cannot conclude anything about FIFA 22 based on the given premises.\n\nThe conclusion \"FIFA 22 is made by a Japanese video game company\" is uncertain because we have no information to support or deny this statement.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion \"FIFA 22 is made by a Japanese video game company\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: A Japanese game company created the game the Legend of Zelda.\nPremise 2: All games in the Top 10 list are made by Japanese game companies.\nPremise 3: If a game sells more than one million copies, then it will be selected into the Top 10 list.\nPremise 4: The Legend of Zelda sold more than one million copies.\n\nWe can use these premises to deduce the following:\n\n- From Premise 1, we know that the Legend of Zelda is made by a Japanese game company.\n- From Premise 2, we know that if a game is in the Top 10 list, it is made by a Japanese game company.\n- From Premise 3 and Premise 4, we can conclude that the Legend of Zelda is in the Top 10 list, since it sold more than one million copies.\n\nHowever, we cannot directly infer any information about FIFA 22 from the given premises. We do not know if FIFA 22 is in the Top 10 list, or if it has sold more than one million copies.\n\nTherefore, based on the given premises, we cannot determine whether the conclusion \"FIFA 22 is made by a Japanese video game company\" is true or false. The conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to apply logical reasoning using the given premises.\n\nPremise 1: A Japanese game company created the game the Legend of Zelda.\n\nPremise 2: All games in the Top 10 list are made by Japanese game companies.\n\nPremise 3: If a game sells more than one million copies, then it will be selected into the Top 10 list.\n\nPremise 4: The Legend of Zelda sold more than one million copies.\n\nConclusion: FIFA 22 is made by a Japanese video game company.\n\nWe need to determine whether this conclusion is true, false, or uncertain.\n\nStep 1: From Premise 4, we know that The Legend of Zelda sold more than one million copies.\n\nStep 2: From Premise 3, we can infer that since The Legend of Zelda sold more than one million copies, it will be selected into the Top 10 list.\n\nStep 3: From Premise 2, we know that all games in the Top 10 list are made by Japanese game companies.\n\nStep 4: From Premise 1, we know that a Japanese game company created the game The Legend of Zelda.\n\nStep 5: Therefore, we can conclude that the game The Legend of Zelda is made by a Japanese game company.\n\nHowever, there is no information given about FIFA 22 in the premises. The premises only discuss The Legend of Zelda.\n\nStep 6: Since there is no information about FIFA 22, we cannot determine whether FIFA 22 is made by a Japanese video game company.\n\nConclusion: The conclusion is uncertain because we lack information about FIFA 22.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises and apply the rules of logical reasoning.\n\nPremise 1: A Japanese game company created the game the Legend of Zelda.\nPremise 2: All games in the Top 10 list are made by Japanese game companies.\nPremise 3: If a game sells more than one million copies, then it will be selected into the Top 10 list.\nPremise 4: The Legend of Zelda sold more than one million copies.\n\nFrom Premise 1 and Premise 2, we can infer that the Legend of Zelda is a game in the Top 10 list because it was created by a Japanese game company.\n\nFrom Premise 3 and Premise 4, we can infer that the Legend of Zelda is indeed in the Top 10 list because it sold more than one million copies.\n\nNow, let's examine the conclusion: FIFA 22 is made by a Japanese video game company.\n\nWe have no direct information about FIFA 22 or its developer. However, we can analyze the given premises to see if they provide any clues about FIFA 22.\n\nFrom Premise 2, we know that all games in the Top 10 list are made by Japanese game companies. However, we have no information about FIFA 22 being in the Top 10 list.\n\nFrom Premise 1, we know that a Japanese game company created the Legend of Zelda, but we have no information about FIFA 22.\n\nWe can conclude that there is no direct logical connection between the given premises and the conclusion. We cannot determine with certainty whether FIFA 22 is made by a Japanese video game company or not.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: A Japanese game company created the game the Legend of Zelda.\n\nPremise 2: All games in the Top 10 list are made by Japanese game companies.\n\nPremise 3: [BG] If a game sells more than one million copies, then it will be selected into the Top 10 list.\n\nPremise 4: The Legend of Zelda sold more than one million copies.\n\nWe are asked to determine the truth value of the conclusion:\n\nConclusion: FIFA 22 is made by a Japanese video game company.\n\nTo evaluate this conclusion, we need to see if it is supported by the premises.\n\nFrom Premise 4, we know that The Legend of Zelda sold more than one million copies. Using Premise 3, we can infer that The Legend of Zelda is in the Top 10 list.\n\nFrom Premise 2, we know that all games in the Top 10 list are made by Japanese game companies. Therefore, we can infer that The Legend of Zelda is made by a Japanese game company.\n\nHowever, we are asked about FIFA 22, not The Legend of Zelda. There is no information about FIFA 22 in the premises. \n\nTherefore, we cannot determine the truth value of the conclusion \"FIFA 22 is made by a Japanese video game company.\" \n\nThe conclusion is uncertain because it is not supported by the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: A Japanese game company created the game the Legend of Zelda.\nPremise 2: All games in the Top 10 list are made by Japanese game companies.\nPremise 3: If a game sells more than one million copies, then it will be selected into the Top 10 list.\nPremise 4: The Legend of Zelda sold more than one million copies.\n\nWe are given the conclusion: \nFIFA 22 is made by a Japanese video game company.\n\nTo evaluate this conclusion, we need to see if we can derive it from the premises.\n\nStep 1: From Premise 1, we know that the Legend of Zelda was created by a Japanese game company.\n\nStep 2: From Premise 4, we know that the Legend of Zelda sold more than one million copies.\n\nStep 3: Using Premise 3, we can infer that since the Legend of Zelda sold more than one million copies, it must be in the Top 10 list.\n\nStep 4: Using Premise 2, we know that all games in the Top 10 list are made by Japanese game companies. \n\nStep 5: Therefore, since the Legend of Zelda is in the Top 10 list and all games in the Top 10 list are made by Japanese game companies, we can conclude that the Legend of Zelda is made by a Japanese game company.\n\nStep 6: However, we are not given any information about FIFA 22 being in the Top 10 list or selling more than one million copies.\n\nStep 7: We cannot directly infer that FIFA 22 is made by a Japanese game company from the premises.\n\nConclusion: The conclusion is uncertain because we do not have enough information to determine whether FIFA 22 is made by a Japanese game company.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion \"FIFA 22 is made by a Japanese video game company\" is true, false, or uncertain based on the given premises, we can use a logical analysis.\n\nPremises:\n\n1. The Japanese game company created the game the Legend of Zelda.\n2. All games in the Top 10 list are made by Japanese game companies.\n3. If a game sells more than one million copies, then it will be selected into the Top 10 list.\n4. The Legend of Zelda sold more than one million copies.\n\nWe are not given any information about FIFA 22 directly. However, we can try to establish a relationship between FIFA 22 and the premises.\n\nFrom premises 3 and 4, we can conclude that the Legend of Zelda is in the Top 10 list because it sold more than one million copies.\n\nNow, let's examine the conclusion \"FIFA 22 is made by a Japanese video game company.\" To determine whether this conclusion is true, false, or uncertain, we need more information about FIFA 22.\n\nHowever, the premises do not provide any information about FIFA 22, and we cannot infer that FIFA 22 is made by a Japanese video game company solely based on the given information.\n\nTherefore, the conclusion \"FIFA 22 is made by a Japanese video game company\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and their relationships to the conclusion.\n\nPremise 1: A Japanese game company created the game the Legend of Zelda.\nPremise 2: All games in the Top 10 list are made by Japanese game companies.\nPremise 3: If a game sells more than one million copies, then it will be selected into the Top 10 list.\nPremise 4: The Legend of Zelda sold more than one million copies.\n\nFrom Premise 4, we know that The Legend of Zelda sold more than one million copies, so it will be selected into the Top 10 list according to Premise 3.\n\nSince The Legend of Zelda is in the Top 10 list, we can use Premise 2 to conclude that it was made by a Japanese game company.\n\nNow, we need to determine whether this information is relevant to the conclusion that FIFA 22 is made by a Japanese video game company.\n\nThere is no information provided in the premises about FIFA 22, its sales, or its maker. The only connection we made was between The Legend of Zelda and Japanese game companies.\n\nSince there is no information about FIFA 22, we cannot conclude that it is made by a Japanese game company based on the given premises. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "japanese_game_company(legend_of_zelda)",
+          "z3_formula": "japanese_game_company_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "top_10_list(japanese_game_company)",
+          "z3_formula": "top_10_list_japanese_game_company == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million(X) -> top_10_list(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_legend_of_zelda, top_10_list_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million(legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "top_10_list(X) -> japanese_game_company(X)",
+          "z3_formula": "Implies(top_10_list_legend_of_zelda, japanese_game_company_legend_of_zelda)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "japanese_game_company(legend_of_zelda)",
+          "z3_formula": "japanese_game_company_legend_of_zelda == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "fifa_22_not_in_top_10_list",
+          "z3_formula": "fifa_22_not_in_top_10_list == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(fifa_22_japanese_game_company)",
+          "z3_formula": "fifa_22_japanese_game_company == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "japanese_game_company(legend_of_zelda)",
+          "z3_formula": "japanese_game_company_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "top_10_list(legend_of_zelda)",
+          "z3_formula": "top_10_list_legend_of_zelda == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million(X) -> top_10_list(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_legend_of_zelda, top_10_list_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million(legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "top_10_list(X) -> japanese_game_company(X)",
+          "z3_formula": "Implies(top_10_list_legend_of_zelda, japanese_game_company_legend_of_zelda)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "japanese_game_company(legend_of_zelda)",
+          "z3_formula": "japanese_game_company_legend_of_zelda == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "japanese_game_company_created_legend_of_zelda",
+          "z3_formula": "japanese_game_company_created_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_games_in_top_10_are_made_by_japanese_game_companies",
+          "z3_formula": "all_games_in_top_10_are_made_by_japanese_game_companies == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "game_sells_more_than_one_million_copies -> game_is_in_top_10_list",
+          "z3_formula": "Implies(game_sells_more_than_one_million_copies, game_is_in_top_10_list)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "legend_of_zelda_sold_more_than_one_million_copies",
+          "z3_formula": "legend_of_zelda_sold_more_than_one_million_copies == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "legend_of_zelda_is_in_top_10_list",
+          "z3_formula": "game_is_in_top_10_list == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "fifa_22_is_made_by_japanese_game_company",
+          "z3_formula": "fifa_22_is_made_by_japanese_game_company == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "japanese_game_company_created_legend_of_zelda",
+          "z3_formula": "japanese_game_company_created_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_top_10_games_made_by_japanese_companies",
+          "z3_formula": "all_top_10_games_made_by_japanese_companies == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million_copies -> selected_into_top_10_list",
+          "z3_formula": "Implies(sells_more_than_one_million_copies, selected_into_top_10_list)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "legend_of_zelda_sold_more_than_one_million_copies",
+          "z3_formula": "legend_of_zelda_sold_more_than_one_million_copies == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "legend_of_zelda_selected_into_top_10_list",
+          "z3_formula": "selected_into_top_10_list == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "all_games_in_top_10_list_made_by_japanese_companies",
+          "z3_formula": "all_games_in_top_10_list_made_by_japanese_companies == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "japanese_game_company_created_legend_of_zelda",
+          "z3_formula": "japanese_game_company_created_legend_of_zelda == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "fifa_22_made_by_japanese_video_game_company",
+          "z3_formula": "fifa_22_made_by_japanese_video_game_company == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "made_by_japanese_company(the_legend_of_zelda)",
+          "z3_formula": "made_by_japanese_company_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "top_10_list(the_legend_of_zelda)",
+          "z3_formula": "top_10_list_the_legend_of_zelda == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "top_10_list(X) -> made_by_japanese_company(X)",
+          "z3_formula": "Implies(top_10_list_the_legend_of_zelda, made_by_japanese_company_the_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sold_more_than_one_million_copies(the_legend_of_zelda)",
+          "z3_formula": "sold_more_than_one_million_copies_the_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sold_more_than_one_million_copies(X) -> top_10_list(X)",
+          "z3_formula": "Implies(sold_more_than_one_million_copies_the_legend_of_zelda, top_10_list_the_legend_of_zelda)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all_top_10_list_made_by_japanese_company",
+          "z3_formula": "all_top_10_list_made_by_japanese_company == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "made_by_japanese_company(the_legend_of_zelda)",
+          "z3_formula": "made_by_japanese_company_the_legend_of_zelda == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "top_10_list(the_legend_of_zelda)",
+          "z3_formula": "top_10_list_the_legend_of_zelda == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "made_by_japanese_company(the_legend_of_zelda)",
+          "z3_formula": "made_by_japanese_company_the_legend_of_zelda == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "made_by_japanese_company(fifa_22)",
+          "z3_formula": "made_by_japanese_company_fifa_22 == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "made_by_japanese_company(the_legend_of_zelda)",
+          "z3_formula": "made_by_japanese_company_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "top_10_game(X) -> made_by_japanese_company(X)",
+          "z3_formula": "Implies(top_10_game_X, made_by_japanese_company_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million(X) -> top_10_game(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_X, top_10_game_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million(the_legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_the_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "top_10_game(the_legend_of_zelda)",
+          "z3_formula": "top_10_game_the_legend_of_zelda == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "japanese_game_company_created_legend_of_zelda",
+          "z3_formula": "japanese_game_company_created_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_top_10_games_made_by_japanese_companies",
+          "z3_formula": "all_top_10_games_made_by_japanese_companies == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million -> selected_into_top_10",
+          "z3_formula": "Implies(sells_more_than_one_million, selected_into_top_10)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "legend_of_zelda_sold_more_than_one_million",
+          "z3_formula": "legend_of_zelda_sold_more_than_one_million == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "legend_of_zelda_selected_into_top_10",
+          "z3_formula": "selected_into_top_10 == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "legend_of_zelda_made_by_japanese_game_company",
+          "z3_formula": "legend_of_zelda_made_by_japanese_game_company == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "japanese_game_company_made_legend_of_zelda",
+          "z3_formula": "japanese_game_company_made_legend_of_zelda == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "fifa_22_made_by_japanese_game_company",
+          "z3_formula": "fifa_22_made_by_japanese_game_company == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_company_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "top_10_list(games)",
+          "z3_formula": "top_10_list_games == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "top_10_list(games) -> created_by_japanese_company(X)",
+          "z3_formula": "Implies(top_10_list_games, created_by_japanese_company_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sold_more_than_one_million(the_legend_of_zelda)",
+          "z3_formula": "sold_more_than_one_million_the_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sold_more_than_one_million(X) -> top_10_list(games)",
+          "z3_formula": "Implies(sold_more_than_one_million_the_legend_of_zelda, top_10_list_games)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "top_10_list(games)",
+          "z3_formula": "top_10_list_games == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_company(fifa_22)",
+          "z3_formula": "created_by_japanese_company_fifa_22 == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(And(Implies(top_10_list_games, created_by_japanese_company_X), created_by_japanese_company_fifa_22))",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_game_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_game_company_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "in_top_10_list(the_legend_of_zelda)",
+          "z3_formula": "in_top_10_list_the_legend_of_zelda == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million_copies(X) -> in_top_10_list(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_copies_the_legend_of_zelda, in_top_10_list_the_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million_copies(the_legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_copies_the_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "in_top_10_list(X) -> created_by_japanese_game_company(X)",
+          "z3_formula": "Implies(in_top_10_list_the_legend_of_zelda, created_by_japanese_game_company_the_legend_of_zelda)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "created_by_japanese_game_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_game_company_the_legend_of_zelda == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_game_company(fifa_22)",
+          "z3_formula": "created_by_japanese_game_company_fifa_22 == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "created_by_japanese_game_company(fifa_22)",
+          "z3_formula": "created_by_japanese_game_company_fifa_22 == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "japanese_game_company(created_legend_of_zelda)",
+          "z3_formula": "japanese_game_company_created_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "top_10_list(japanese_game_company)",
+          "z3_formula": "top_10_list_japanese_game_company == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million(X) -> top_10_list(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_legend_of_zelda, top_10_list_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million(legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "top_10_list(legend_of_zelda)",
+          "z3_formula": "top_10_list_legend_of_zelda == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "top_10_list(japanese_game_company) -> japanese_game_company(X)",
+          "z3_formula": "Implies(top_10_list_japanese_game_company, japanese_game_company_legend_of_zelda)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "japanese_game_company(legend_of_zelda)",
+          "z3_formula": "japanese_game_company_legend_of_zelda == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "japanese_game_company(fifa_22)",
+          "z3_formula": "japanese_game_company_fifa_22 == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "japanese_company(created_legend_of_zelda)",
+          "z3_formula": "japanese_company_created_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_top_10_games_made_by_japanese_company",
+          "z3_formula": "all_top_10_games_made_by_japanese_company == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million_copies(X) -> in_top_10_list(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_copies_legend_of_zelda, in_top_10_list_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million_copies(created_legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_copies_created_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "in_top_10_list(created_legend_of_zelda)",
+          "z3_formula": "in_top_10_list_created_legend_of_zelda == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "in_top_10_list(X) -> made_by_japanese_company(X)",
+          "z3_formula": "Implies(in_top_10_list_created_legend_of_zelda, made_by_japanese_company_created_legend_of_zelda)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "made_by_japanese_company(created_legend_of_zelda)",
+          "z3_formula": "made_by_japanese_company_created_legend_of_zelda == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "made_by_japanese_company(fifa_22)",
+          "z3_formula": "made_by_japanese_company_fifa_22 == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_game_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_game_company_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "top_10_list(the_legend_of_zelda)",
+          "z3_formula": "top_10_list_the_legend_of_zelda == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "top_10_list(X) -> created_by_japanese_game_company(X)",
+          "z3_formula": "Implies(top_10_list_the_legend_of_zelda, created_by_japanese_game_company_the_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sold_more_than_one_million_copies(the_legend_of_zelda)",
+          "z3_formula": "sold_more_than_one_million_copies_the_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sold_more_than_one_million_copies(X) -> top_10_list(X)",
+          "z3_formula": "Implies(sold_more_than_one_million_copies_the_legend_of_zelda, top_10_list_the_legend_of_zelda)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "created_by_japanese_game_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_game_company_the_legend_of_zelda == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "created_by_japanese_game_company(fifa_22)",
+          "z3_formula": "created_by_japanese_game_company_fifa_22 == Unknown",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 90,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 60
+    },
+    "maxsat_stats": {
+      "satisfied": 59,
+      "excluded": 1,
+      "total_weight": 89,
+      "solve_time_ms": 1.5920521691441536
+    },
+    "timing": {
+      "trace_gen_s": 5.045,
+      "extraction_s": 18.267,
+      "dedup_s": 1.435,
+      "maxsat_s": 0.005,
+      "total_s": 24.751
+    }
+  }
+}

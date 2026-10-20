@@ -1,0 +1,966 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-739_Q1",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_dog, young_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, dog)",
+          "z3_formula": "sees_bald_eagle_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bald_eagle)",
+          "z3_formula": "likes_squirrel_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, bald_eagle) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(cold_dog, likes_dog_bald_eagle), eats_dog_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & sees(X, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_rabbit_dog, sees_rabbit_squirrel), likes_rabbit_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(bald_eagle, dog) & cold(bald_eagle) -> likes(bald_eagle, dog)",
+          "z3_formula": "Implies(And(sees_bald_eagle_dog, cold_bald_eagle), likes_bald_eagle_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_dog, young_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & likes(X, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_rabbit_dog, likes_rabbit_squirrel), likes_rabbit_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(bald_eagle) & likes(bald_eagle, squirrel) -> eats(squirrel, rabbit)",
+          "z3_formula": "Implies(And(red_bald_eagle, likes_bald_eagle_squirrel), eats_squirrel_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(dog, bald_eagle) & sees(bald_eagle, dog) -> cold(bald_eagle)",
+          "z3_formula": "Implies(And(likes_dog_bald_eagle, sees_bald_eagle_dog), cold_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, young_rabbit)",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_dog, young_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> Implies(eats(Y, X), likes(Y, X))",
+          "z3_formula": "Implies(likes_rabbit_dog, Implies(eats_dog_rabbit, likes_dog_rabbit))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> Implies(likes(Y, X), cold(X))",
+          "z3_formula": "Implies(likes_dog_rabbit, cold_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> Implies(sees(X, Y) & cold(X), likes(X, Y))",
+          "z3_formula": "Implies(Implies(sees_eagle_dog & cold_eagle, likes_eagle_dog), sees_eagle_dog & cold_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> Implies(likes(Y, X) & sees(X, Y), cold(X))",
+          "z3_formula": "Implies(Implies(likes_dog_eagle & sees_eagle_dog, cold_eagle), likes_dog_eagle & sees_eagle_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "false",
+          "z3_formula": "Not(eats_rabbit_squirrel == True)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "false",
+          "z3_formula": "Not(likes_dog_squirrel == True)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, eagle)",
+          "z3_formula": "likes_squirrel_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "false",
+          "z3_formula": "Not(likes_squirrel_eagle == True)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "false",
+          "z3_formula": "Not(cold_dog == True)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "false",
+          "z3_formula": "Not(sees_dog_rabbit == True)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "false",
+          "z3_formula": "Not(sees_rabbit_squirrel == True)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_rabbit, young_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & likes(dog, Y) -> likes(X, eagle)",
+          "z3_formula": "Implies(And(likes_rabbit_dog, likes_dog_squirrel), likes_rabbit_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & likes(X, Y) -> eats(Y, rabbit)",
+          "z3_formula": "Implies(And(red_eagle, likes_eagle_squirrel), eats_squirrel_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(eagle, dog)",
+          "z3_formula": "sees_eagle_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cold(eagle)",
+          "z3_formula": "cold_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, eagle) -> eats(rabbit, X)",
+          "z3_formula": "Implies(And(cold_eagle, likes_eagle_eagle), eats_rabbit_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_eagle, young_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, eagle)",
+          "z3_formula": "likes_dog_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, eagle)",
+          "z3_formula": "likes_squirrel_eagle == Unknown",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_rabbit, young_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> Not(eats(X, Y))",
+          "z3_formula": "Implies(likes_rabbit_dog, Not(eats_rabbit_dog))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, eagle)",
+          "z3_formula": "likes_squirrel_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(eagle, dog)",
+          "z3_formula": "sees_eagle_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) & sees(X, Z) & likes(Z, W) -> likes(X, W)",
+          "z3_formula": "Implies(And(likes_dog_squirrel, sees_dog_squirrel, likes_squirrel_eagle), likes_dog_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & likes(X, Y) -> eats(Y, X)",
+          "z3_formula": "Implies(And(red_eagle, likes_eagle_squirrel), eats_squirrel_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) & sees(X, Y) -> cold(X)",
+          "z3_formula": "Implies(And(likes_dog_eagle, sees_dog_eagle), cold_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> young(Y)",
+          "z3_formula": "Implies(sees_dog_eagle, young_eagle)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_dog, young_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & likes(X, squirrel) -> likes(X, eagle)",
+          "z3_formula": "Implies(And(likes_rabbit_dog, likes_rabbit_squirrel), likes_rabbit_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) & sees(X, dog) -> cold(X)",
+          "z3_formula": "Implies(And(likes_rabbit_eagle, sees_rabbit_dog), cold_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_eagle, young_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) -> sees(X, eagle)",
+          "z3_formula": "Implies(likes_rabbit_eagle, sees_rabbit_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) & sees(X, eagle) -> cold(X)",
+          "z3_formula": "Implies(And(likes_rabbit_eagle, sees_rabbit_eagle), cold_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) & sees(X, dog) -> cold(X)",
+          "z3_formula": "Implies(And(likes_rabbit_eagle, sees_rabbit_dog), cold_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) & red(X) & likes(X, squirrel) -> eats(squirrel, rabbit)",
+          "z3_formula": "Implies(And(likes_rabbit_eagle, red_eagle, likes_rabbit_squirrel), eats_squirrel_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & likes(X, squirrel) -> likes(X, eagle)",
+          "z3_formula": "Implies(And(likes_rabbit_dog, likes_rabbit_squirrel), likes_rabbit_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) & sees(X, dog) -> cold(X)",
+          "z3_formula": "Implies(And(likes_rabbit_eagle, sees_rabbit_dog), cold_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & sees(X, eagle) -> cold(X)",
+          "z3_formula": "Implies(And(likes_rabbit_dog, sees_rabbit_eagle), cold_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(likes(rabbit, dog))",
+          "z3_formula": "Not(Or(likes_rabbit_dog, Not(likes_rabbit_dog)))",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> young(Z)",
+          "z3_formula": "Implies(likes_rabbit_X, young_Z)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, eagle)",
+          "z3_formula": "likes_dog_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(eagle, dog)",
+          "z3_formula": "sees_eagle_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(eagle)",
+          "z3_formula": "cold_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, eagle)",
+          "z3_formula": "likes_squirrel_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(eagle, dog)",
+          "z3_formula": "sees_eagle_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, eagle)",
+          "z3_formula": "likes_dog_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, eagle)",
+          "z3_formula": "likes_dog_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(eagle)",
+          "z3_formula": "young_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "red(eagle)",
+          "z3_formula": "red_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, eagle)",
+          "z3_formula": "likes_squirrel_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_dog, young_rabbit_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & sees(X, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_rabbit_dog, sees_rabbit_squirrel), likes_rabbit_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) & cold(X) -> likes(X, dog)",
+          "z3_formula": "Implies(And(sees_bald_eagle_dog, cold_bald_eagle), likes_bald_eagle_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_dog, young_rabbit_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & likes(X, squirrel) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(likes_rabbit_dog, likes_rabbit_squirrel), likes_rabbit_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & likes(X, squirrel) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(red_bald_eagle, likes_bald_eagle_squirrel), eats_bald_eagle_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & likes(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(And(likes_rabbit_dog, likes_rabbit_bald_eagle), cold_rabbit_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, young_rabbit_bald_eagle)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_rabbit, young_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> likes(X, squirrel)",
+          "z3_formula": "Implies(likes_rabbit_dog, likes_rabbit_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & likes(X, bald_eagle) -> likes(X, Y)",
+          "z3_formula": "Implies(And(sees_dog_rabbit, likes_bald_eagle_dog), likes_dog_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) & sees(X, dog) -> cold(X)",
+          "z3_formula": "Implies(And(likes_bald_eagle_dog, sees_dog_bald_eagle), cold_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(sees_dog_bald_eagle, young_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, eagle)",
+          "z3_formula": "likes_squirrel_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, eagle) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(cold_eagle, likes_eagle_eagle), eats_eagle_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & sees(X, squirrel) -> likes(X, eagle)",
+          "z3_formula": "Implies(And(likes_dog_dog, sees_dog_squirrel), likes_dog_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(eagle, dog) & cold(eagle) -> likes(eagle, dog)",
+          "z3_formula": "Implies(And(sees_eagle_dog, cold_eagle), likes_eagle_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_rabbit, young_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & likes(X, squirrel) -> likes(X, eagle)",
+          "z3_formula": "Implies(And(likes_dog_dog, likes_dog_squirrel), likes_dog_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(eagle) & likes(eagle, squirrel) -> eats(squirrel, rabbit)",
+          "z3_formula": "Implies(And(red_eagle, likes_eagle_squirrel), eats_squirrel_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(dog, eagle) & sees(eagle, dog) -> cold(eagle)",
+          "z3_formula": "Implies(And(likes_dog_eagle, sees_eagle_dog), cold_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) -> young(X)",
+          "z3_formula": "Implies(sees_eagle_eagle, young_eagle)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_dog, young_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, dog)",
+          "z3_formula": "eats_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> young(X)",
+          "z3_formula": "Implies(likes_rabbit_X, young_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> likes(X, squirrel)",
+          "z3_formula": "Implies(eats_rabbit_squirrel, likes_rabbit_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> likes(X, Y)",
+          "z3_formula": "Implies(sees_rabbit_squirrel, likes_rabbit_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, rabbit)",
+          "z3_formula": "sees_dog_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) & sees(X, squirrel) -> likes(X, eagle)",
+          "z3_formula": "Implies(And(likes_dog_X, sees_dog_squirrel), likes_dog_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, squirrel)",
+          "z3_formula": "likes_dog_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 9
+        }
+      ]
+    }
+  ]
+}

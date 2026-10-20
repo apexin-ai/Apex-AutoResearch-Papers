@@ -1,0 +1,846 @@
+{
+  "problem": {
+    "id": "folio_32",
+    "problem": "Given the following premises:\nA person is either a Grand Slam champion or an Oscar-nominated actor. All people who are Grand Slam champions are professional tennis players. All Oscar-nominated actors are celebrities. All professional tennis players are athletes. If a person is a celebrity then they are well paid. If a person is an athlete then they are famous. All well-paid people live in tax havens. If Djokovic is famous and is an athlete, then Djokovic lives in well paid.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nDjokovic does not live in a tax haven.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (GrandSlamChampion(x) \u2295 OscarNominatedActor(x))",
+      "\u2200x (GrandSlamChampion(x) \u2192 ProfessionalTennisPlayer(x))",
+      "\u2200x (OscarNominatedActor(x) \u2192 Celebrity(x))",
+      "\u2200x (ProfessionalTennisPlayer(x) \u2192 Athlete(x))",
+      "\u2200x (Celebrity(x) \u2192 WellPaid(x))",
+      "\u2200x (Athlete(x) \u2192 Famous(x))",
+      "\u2200x (WellPaid(x) \u2192 LivesInTaxHaven(x))",
+      "Famous(djokovic) \u2227 Athlete(djokovic) \u2192 LivesInTaxHaven(djokovic)"
+    ],
+    "conclusion_fol": "\u00acLivesInTaxHaven(djokovic)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 82.5,
+      "Unknown": 69.0
+    },
+    "answer_counts": {
+      "False": 7,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we'll break down the information given into smaller steps and analyze the relationships between the different categories.\n\n1. Premise: A person is either a Grand Slam champion or an Oscar-nominated actor.\n   - This implies that a person can be one of the following categories: Grand Slam champion, Oscar-nominated actor, or neither.\n\n2. Premise: All people who are Grand Slam champions are professional tennis players.\n   - This implies that Grand Slam champions are a subset of professional tennis players.\n\n3. Premise: All Oscar-nominated actors are celebrities.\n   - This implies that Oscar-nominated actors are a subset of celebrities.\n\n4. Premise: All professional tennis players are athletes.\n   - This implies that professional tennis players are a subset of athletes.\n\n5. Premise: If a person is a celebrity then they are well paid.\n   - This implies a relationship between being a celebrity and being well paid.\n\n6. Premise: If a person is an athlete then they are famous.\n   - This implies a relationship between being an athlete and being famous.\n\n7. Premise: All well-paid people live in tax havens.\n   - This implies a relationship between being well paid and living in tax havens.\n\n8. Premise: If Djokovic is famous and is an athlete, then Djokovic lives in well paid.\n   - This premise directly relates to Djokovic's situation and implies that being famous and an athlete is a sufficient condition for living in a well-paid area.\n\nNow, let's analyze the given conclusion:\nDjokovic does not live in a tax haven.\n\nFrom the premises, we can infer the following:\n\n- Djokovic is a professional tennis player (since he's a Grand Slam champion).\n- Professional tennis players are athletes (from premise 4).\n- Athletes are famous (from premise 6).\n- Famous people are athletes (from premise 6).\n- If Djokovic is famous and an athlete, then he lives in a well-paid area (from premise 8).\n\nHowever, we have a crucial piece of information from premise 7: All well-paid people live in tax havens. This implies that living in a well-paid area is a necessary condition for living in a tax haven.\n\nCombining the information from premise 8 and premise 7, we can conclude that if Djokovic lives in a well-paid area, then he lives in a tax haven.\n\nSince we've established that being famous and an athlete is a sufficient condition for living in a well-paid area (from premise 8), and Djokovic is famous and an athlete, we can conclude that Djokovic lives in a well-paid area.\n\nTherefore, from premise 7, we can conclude that Djokovic lives in a tax haven.\n\nThe conclusion \"Djokovic does not live in a tax haven\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "Let's break down the given premises and analyze them step by step.\n\n1. A person is either a Grand Slam champion or an Oscar-nominated actor.\n   - This premise establishes two possible categories for a person.\n\n2. All people who are Grand Slam champions are professional tennis players.\n   - This premise tells us that being a Grand Slam champion implies being a professional tennis player.\n\n3. All Oscar-nominated actors are celebrities.\n   - This premise tells us that being an Oscar-nominated actor implies being a celebrity.\n\n4. All professional tennis players are athletes.\n   - This premise tells us that being a professional tennis player implies being an athlete.\n\n5. If a person is a celebrity then they are well paid.\n   - This premise establishes a relationship between being a celebrity and being well paid.\n\n6. If a person is an athlete then they are famous.\n   - This premise establishes a relationship between being an athlete and being famous.\n\n7. All well-paid people live in tax havens.\n   - This premise establishes a relationship between being well paid and living in a tax haven.\n\n8. If Djokovic is famous and is an athlete, then Djokovic lives in well paid.\n   - This premise creates a conditional relationship between being famous, being an athlete, and living in a tax haven, specifically for Djokovic.\n\nNow, let's analyze the premises to determine the truth of the conclusion \"Djokovic does not live in a tax haven.\"\n\nFrom premise 8, we can see that there are two conditions for Djokovic: being famous and being an athlete. From premise 4, we know that being a professional tennis player (which Djokovic is) implies being an athlete. From premise 2, we know that being a Grand Slam champion (which Djokovic is) implies being a professional tennis player.\n\nSince Djokovic is a Grand Slam champion, we can conclude that he is a professional tennis player and, therefore, an athlete. From premise 6, we know that being an athlete implies being famous.\n\nNow, we have determined that Djokovic is famous and an athlete. From premise 8, we know that if Djokovic is famous and an athlete, then he lives in a tax haven. However, this does not directly imply that he lives in a tax haven; it only implies that if he lives in a tax haven, then he is famous and an athlete.\n\nHowever, from premise 7, we know that all well-paid people live in tax havens. If Djokovic is famous and an athlete, and from premise 5, we know that being a celebrity (which we can infer from being a Grand Slam champion) implies being well paid. This implies that Djokovic lives in a tax haven.\n\nTherefore, the conclusion \"Djokovic does not live in a tax haven\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use a method called \"natural deduction\" in propositional logic.\n\nGiven premises:\n1. A person is either a Grand Slam champion or an Oscar-nominated actor.\n2. All people who are Grand Slam champions are professional tennis players.\n3. All Oscar-nominated actors are celebrities.\n4. All professional tennis players are athletes.\n5. If a person is a celebrity then they are well paid.\n6. If a person is an athlete then they are famous.\n7. Djokovic is famous and is an athlete.\n\nWe need to determine if the conclusion:\n\"Djokovic does not live in a tax haven\" is true, false, or uncertain.\n\nFrom premise 7, we know Djokovic is famous and an athlete.\n\nFrom premise 6, we know that if a person is an athlete then they are famous. However, premise 7 already states that Djokovic is famous, so this premise does not add any new information.\n\nFrom premise 4, we know that all professional tennis players are athletes. This premise is also already covered by premise 7.\n\nNow let's look at the conclusion we need to evaluate: \"Djokovic does not live in a tax haven\".\n\nWe know from premise 5 that if a person is a celebrity then they are well paid. However, we do not have enough information to determine if Djokovic is a celebrity.\n\nFrom premise 3, we know that all Oscar-nominated actors are celebrities. We also know from premise 1 that a person is either a Grand Slam champion or an Oscar-nominated actor. However, we do not have enough information to determine if Djokovic is a Grand Slam champion.\n\nNow let's examine the conclusion again. We know that if a person is well paid, then they live in a tax haven (from premise 5). However, we do not know if Djokovic is well paid.\n\nHowever, we do have one more premise that gives us information about Djokovic: \"If Djokovic is famous and is an athlete, then Djokovic lives in well paid\" (from premise 8, which is not explicitly stated in the problem but it is implicitly there).\n\nSince we know Djokovic is famous and an athlete (premise 7), we can conclude that Djokovic lives in well paid.\n\nBut we still need to determine if Djokovic is well paid.\n\nFrom premise 8 (the one that is not explicitly stated), we can conclude that Djokovic lives in well paid. From premise 5, we know that if a person is well paid, then they live in a tax haven. So, we can conclude that Djokovic lives in a tax haven.\n\nTherefore, the conclusion \"Djokovic does not live in a tax haven\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "Let's break down the given premises step by step and analyze the conclusion:\n\n1. A person is either a Grand Slam champion or an Oscar-nominated actor.\n   This is a disjunction, meaning the person belongs to one of the two categories.\n\n2. All people who are Grand Slam champions are professional tennis players.\n   This establishes a relationship between being a Grand Slam champion and being a professional tennis player.\n\n3. All Oscar-nominated actors are celebrities.\n   This establishes a relationship between being an Oscar-nominated actor and being a celebrity.\n\n4. All professional tennis players are athletes.\n   This establishes a relationship between being a professional tennis player and being an athlete.\n\n5. If a person is a celebrity then they are well paid.\n   This is a conditional statement that links being a celebrity with being well paid.\n\n6. If a person is an athlete then they are famous.\n   This is a conditional statement that links being an athlete with being famous.\n\n7. If Djokovic is famous and is an athlete, then Djokovic lives in well paid.\n   This is a conditional statement specific to Djokovic, assuming he is both famous and an athlete.\n\nNow, let's try to determine whether Djokovic does not live in a tax haven.\n\nFrom premise 4, we know all professional tennis players are athletes. If Djokovic is a professional tennis player, then he must be an athlete.\n\nFrom premise 6, if Djokovic is an athlete, then he is famous.\n\nFrom premise 7, if Djokovic is famous and an athlete, then he lives in a well-paid area. However, since we are trying to determine if Djokovic does not live in a tax haven, and from premise 5, all well-paid people live in tax havens, this creates a contradiction.\n\nTherefore, the only way for the conclusion to be true is if the premise that all well-paid people live in tax havens is false. However, this cannot be the case since it is a given in the premises.\n\nAnother way to look at this is to analyze the direct relationship between Djokovic and living in a tax haven.\n\nFrom premise 2, we know all Grand Slam champions are professional tennis players. From premise 4, we know all professional tennis players are athletes. From premise 6, if Djokovic is an athlete, then he is famous.\n\nHowever, we cannot directly link Djokovic to being a Grand Slam champion or an Oscar-nominated actor, which are the two possible categories he belongs to. But we know that he must be one of them.\n\nGiven the lack of direct information about Djokovic being a Grand Slam champion or an Oscar-nominated actor, we cannot definitively determine whether he lives in a tax haven or not based on the premises provided.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. A person is either a Grand Slam champion or an Oscar-nominated actor.\n2. All people who are Grand Slam champions are professional tennis players.\n3. All Oscar-nominated actors are celebrities.\n4. All professional tennis players are athletes.\n5. All Oscar-nominated actors are celebrities.\n6. If a person is a celebrity then they are well paid.\n7. If a person is an athlete then they are famous.\n8. If Djokovic is famous and is an athlete, then Djokovic lives in well paid.\n\nNow, let's analyze the premises related to Djokovic:\n\n- From premise 4, all professional tennis players are athletes. \n- Since Djokovic is a professional tennis player, he is an athlete (premise 4).\n- From premise 7, if a person is an athlete, then they are famous. \n- So, Djokovic is famous.\n\nHowever, there is a crucial statement given about Djokovic: \n\"If Djokovic is famous and is an athlete, then Djokovic lives in well paid.\" \n\nThis is an if-then statement. Djokovic being famous and an athlete satisfies the condition of the \"if\" part of the statement. \n\n- Therefore, if the condition (Djokovic is famous and an athlete) is met, the conclusion \"Djokovic lives in well paid\" is also met.\n\nTo find out if Djokovic lives in a tax haven, we need to determine if he is well-paid. Since Djokovic is an athlete, he is famous (premise 7). The statement \"If Djokovic is famous and is an athlete, then Djokovic lives in well paid\" is satisfied. This implies that Djokovic lives in a well-paid condition. Since all well-paid people live in tax havens (premise 6), Djokovic lives in a tax haven.\n\nConclusion: The statement \"Djokovic does not live in a tax haven\" is false.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we'll analyze the given premises and apply the rules of deductive reasoning.\n\nPremise 1: A person is either a Grand Slam champion or an Oscar-nominated actor.\nPremise 2: All people who are Grand Slam champions are professional tennis players.\nPremise 3: All Oscar-nominated actors are celebrities.\nPremise 4: All professional tennis players are athletes.\nPremise 5: If a person is a celebrity then they are well paid.\nPremise 6: If a person is an athlete then they are famous.\nPremise 7: If Djokovic is famous and is an athlete, then Djokovic lives in well paid.\n\nFrom Premise 1, we can infer that a person is either a Grand Slam champion (GS) or an Oscar-nominated actor (ONA).\n\n1. A person is either GS or ONA\n\nFrom Premise 2, we can infer that a person is a professional tennis player (PTP) if they are a Grand Slam champion.\n\n2. If a person is GS, then they are PTP\n\nFrom Premise 4, we can infer that a person is an athlete (ATH) if they are a professional tennis player.\n\n3. If a person is PTP, then they are ATH\n\nFrom Premise 6, we can infer that a person is famous (FAM) if they are an athlete.\n\n4. If a person is ATH, then they are FAM\n\nNow, we'll analyze the given conclusion: Djokovic does not live in a tax haven.\n\nTo determine whether this conclusion is true or false, we need to examine the premises related to Djokovic.\n\nFrom Premise 7, we know that if Djokovic is famous and an athlete, then he lives in a well-paid area.\n\nHowever, we're given the conclusion: Djokovic does not live in a tax haven.\n\nTo determine whether this conclusion is true or false, we need to examine the premises related to living in a tax haven.\n\nFrom Premise 5, we know that if a person is a celebrity, then they are well-paid.\n\nFrom Premise 6, we know that if a person is an athlete, then they are famous.\n\nFrom Premise 3, we know that all Oscar-nominated actors are celebrities.\n\nNow, we need to examine the premises related to Djokovic.\n\nPremise 7 states that if Djokovic is famous and an athlete, then he lives in a well-paid area. However, this does not imply that he lives in a tax haven.\n\nWe can conclude that Djokovic is an athlete because he is a professional tennis player (Premise 2 and Premise 4).\n\nAlso, we can conclude that Djokovic is famous (Premise 6).\n\nHowever, we cannot conclude whether Djokovic is a celebrity or not. Therefore, we cannot conclude whether he is well-paid or not.\n\nSince we cannot conclude that Djokovic is well-paid, we cannot conclude whether he lives in a tax haven or not.\n\nTherefore, the conclusion: Djokovic does not live in a tax haven is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nFrom the premises, we know the following:\n\n1. A person is either a Grand Slam champion or an Oscar-nominated actor.\n2. All people who are Grand Slam champions are professional tennis players.\n3. All Oscar-nominated actors are celebrities.\n4. All professional tennis players are athletes.\n5. All Oscar-nominated actors are celebrities.\n6. If a person is a celebrity then they are well paid.\n7. If a person is an athlete then they are famous.\n8. All well-paid people live in tax havens.\n9. If Djokovic is famous and is an athlete, then Djokovic lives in well paid.\n\nNow, let's break down the premises related to Djokovic:\n\n- Djokovic is a Grand Slam champion (premise 2).\n- Djokovic is a professional tennis player (premise 2).\n- Djokovic is an athlete (premise 4).\n- Djokovic is famous (premise 7).\n- Djokovic is an athlete and famous (premise 9).\n\nFrom premise 9, we can conclude that Djokovic lives in a well-paid location because he is famous and an athlete.\n\nHowever, premise 8 states that all well-paid people live in tax havens. Therefore, since Djokovic lives in a well-paid location, he must also live in a tax haven.\n\nNow, let's analyze the conclusion: \"Djokovic does not live in a tax haven.\"\n\nGiven our previous conclusion that Djokovic lives in a tax haven, we can confidently say that this conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to use the method of logical reasoning, specifically modus tollens and modus ponens.\n\nFirst, let's break down the given premises:\n\n1. A person is either a Grand Slam champion or an Oscar-nominated actor.\n2. All people who are Grand Slam champions are professional tennis players.\n3. All Oscar-nominated actors are celebrities.\n4. All professional tennis players are athletes.\n5. All Oscar-nominated actors are celebrities.\n6. If a person is a celebrity then they are well paid.\n7. If a person is an athlete then they are famous.\n8. If Djokovic is famous and is an athlete, then Djokovic lives in well paid.\n\nWe can also infer some additional information from the premises:\n\n9. Djokovic is a professional tennis player (from 2 and the fact that Djokovic is a Grand Slam champion).\n10. Djokovic is an athlete (from 4 and 9).\n11. Djokovic is famous (from 7 and 10).\n12. Djokovic is well paid (from 8 and 11).\n\nNow, let's examine the conclusion: \"Djokovic does not live in a tax haven.\"\n\nFrom premise 6, we know that if a person is a celebrity, they are well paid. However, we also know that all well-paid people live in tax havens (this can be inferred from the fact that the conclusion is \"does not live in a tax haven\", implying that living in a tax haven is a necessary condition for being well-paid).\n\nHowever, we also have premise 8 which states that if Djokovic is famous and an athlete, then Djokovic lives in well paid. But since we have established that Djokovic is well paid from being a celebrity, premise 8 cannot be used here.\n\nTherefore, we can conclude that Djokovic is well paid because he is a celebrity.\n\nHowever, we can also conclude that Djokovic does live in a tax haven because all well-paid people live in tax havens.\n\nSo, the conclusion \"Djokovic does not live in a tax haven\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the truth of the conclusion \"Djokovic does not live in a tax haven,\" we need to analyze the given premises and apply logical reasoning.\n\n1. A person is either a Grand Slam champion or an Oscar-nominated actor.\n   This premise doesn't provide any direct information about Djokovic, so we'll keep it in mind but move on.\n\n2. All people who are Grand Slam champions are professional tennis players.\n   This premise is also irrelevant to Djokovic, so we'll keep moving.\n\n3. All Oscar-nominated actors are celebrities.\n   This premise is irrelevant to Djokovic, so we'll keep moving.\n\n4. All professional tennis players are athletes.\n   This premise might be relevant to Djokovic, but we don't know if he's a professional tennis player or not.\n\n5. If a person is a celebrity then they are well paid.\n   This premise is also irrelevant to Djokovic, so we'll keep moving.\n\n6. If a person is an athlete then they are famous.\n   This premise is also irrelevant to Djokovic, so we'll keep moving.\n\n7. All well-paid people live in tax havens.\n   This premise suggests a connection between being well-paid and living in a tax haven. We'll keep this in mind.\n\n8. If Djokovic is famous and is an athlete, then Djokovic lives in well paid.\n   This premise provides a specific condition under which Djokovic lives in a tax haven. However, it doesn't provide any information about Djokovic's fame or athletic status.\n\nNow, let's analyze the premises to determine the truth of the conclusion \"Djokovic does not live in a tax haven.\"\n\nFrom premise 4, we know that all professional tennis players are athletes. However, we don't know if Djokovic is a professional tennis player or not.\n\nFrom premise 8, we know that if Djokovic is famous and an athlete, then he lives in a tax haven. However, this doesn't provide any information about Djokovic's tax haven status if he's not famous or an athlete.\n\nWe can deduce the following:\n\n* If Djokovic is a professional tennis player (and thus an athlete), then he is famous (from premise 6).\n* If Djokovic is famous and an athlete, then he lives in a tax haven (from premise 8).\n\nHowever, we don't know if Djokovic is a professional tennis player or not. If he is not a professional tennis player, then we can't determine his tax haven status using the given premises.\n\nTherefore, based on the given premises, we cannot determine the truth of the conclusion \"Djokovic does not live in a tax haven.\" The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\n1. Djokovic is a Grand Slam champion.\n   - This is not explicitly mentioned, but we know that Djokovic is a professional tennis player. \n\n2. All people who are Grand Slam champions are professional tennis players.\n   - This is true, as it is a given fact.\n\n3. All professional tennis players are athletes.\n   - This is true, as it is a given fact.\n\n4. All Oscar-nominated actors are celebrities.\n   - This is true, as it is a given fact.\n\n5. All celebrities are well-paid people.\n   - This is true, as it is a given fact.\n\n6. All well-paid people live in tax havens.\n   - This is true, as it is a given fact.\n\n7. Djokovic is a famous person.\n   - This is a given fact, and we know that all athletes are famous.\n\n8. If Djokovic is a famous and an athlete, then Djokovic lives in a well-paid location.\n   - This is true, as it is a given fact.\n\nFrom the given premises, we can deduce the following:\n\n- Djokovic is a professional tennis player (from premise 1 and premise 2).\n- Djokovic is an athlete (from premise 3).\n- Djokovic is a famous person (from premise 7).\n- Djokovic lives in a well-paid location (from premise 8).\n\nHowever, we cannot directly conclude that Djokovic lives in a tax haven. The premise that all well-paid people live in tax havens (premise 6) implies that Djokovic lives in a tax haven, but this contradicts the conclusion we are trying to prove.\n\nGiven the premises, we can conclude that Djokovic lives in a well-paid location (premise 8), which implies that he lives in a tax haven (premise 6). However, the conclusion we are trying to prove is that Djokovic does not live in a tax haven.\n\nTherefore, the conclusion is false, as it contradicts the logical implications of the given premises.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "Let's break down the given premises step by step and apply the information to the conclusion.\n\nPremise 1: A person is either a Grand Slam champion or an Oscar-nominated actor.\nPremise 2: All people who are Grand Slam champions are professional tennis players.\nPremise 3: All Oscar-nominated actors are celebrities.\nPremise 4: All professional tennis players are athletes.\nPremise 5: If a person is a celebrity then they are well paid.\nPremise 6: If a person is an athlete then they are famous.\nPremise 7: All well-paid people live in tax havens.\nPremise 8: If Djokovic is famous and is an athlete, then Djokovic lives in well paid.\n\nFrom Premise 1, we know that a person is either a Grand Slam champion or an Oscar-nominated actor. \n\nFrom Premise 2, we know that if a person is a Grand Slam champion, then they are a professional tennis player. \n\nFrom Premise 4, we know that if a person is a professional tennis player, then they are an athlete. \n\nTherefore, if a person is a Grand Slam champion, then they are an athlete.\n\nFrom Premise 6, we know that if a person is an athlete, then they are famous. \n\nTherefore, if a person is a Grand Slam champion, then they are famous.\n\nFrom Premise 3, we know that if a person is an Oscar-nominated actor, then they are a celebrity.\n\nFrom Premise 5, we know that if a person is a celebrity, then they are well paid.\n\nTherefore, if a person is an Oscar-nominated actor, then they are well paid.\n\nFrom Premise 7, we know that all well-paid people live in tax havens.\n\nNow, let's analyze the information about Djokovic. \n\nFrom Premise 8, we know that if Djokovic is famous and an athlete, then Djokovic lives in well paid.\n\nWe have already established that if a person is a Grand Slam champion, then they are an athlete and famous.\n\nTherefore, if Djokovic is a Grand Slam champion, then Djokovic is an athlete and famous.\n\nSince we know that if Djokovic is famous and an athlete, then Djokovic lives in well paid (Premise 8), we can conclude that if Djokovic is a Grand Slam champion, then Djokovic lives in well paid.\n\nFrom Premise 7, we know that all well-paid people live in tax havens.\n\nTherefore, if Djokovic is a Grand Slam champion, then Djokovic lives in a tax haven.\n\nHowever, the conclusion to be determined is \"Djokovic does not live in a tax haven.\"\n\nSince we have a contradictory information that Djokovic lives in a tax haven if Djokovic is a Grand Slam champion, and there are other possibilities that might be true about Djokovic (e.g. Djokovic is an Oscar-nominated actor), we cannot conclude that Djokovic does not live in a tax haven.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the conclusion, we need to analyze the given premises and see if we can derive a conclusion about Djokovic's living situation.\n\n1. A person is either a Grand Slam champion or an Oscar-nominated actor.\n2. All people who are Grand Slam champions are professional tennis players.\n3. All Oscar-nominated actors are celebrities.\n4. All professional tennis players are athletes.\n5. If a person is a celebrity then they are well paid.\n6. If a person is an athlete then they are famous.\n7. All well-paid people live in tax havens.\n8. If Djokovic is famous and is an athlete, then Djokovic lives in well paid.\n\nWe can start by identifying Djokovic's possible categories based on the premises:\n\n- Djokovic could be a Grand Slam champion (and thus a professional tennis player and athlete) because he is known for his achievements in tennis.\n- Djokovic could be an Oscar-nominated actor, but there is no information provided about him being involved in acting.\n\nNow, let's analyze each premise to see if it applies to Djokovic:\n\n1. Djokovic is a Grand Slam champion (premise 2), so he is a professional tennis player (premise 2).\n2. Since he is a professional tennis player (premise 4), Djokovic is an athlete.\n3. Being an athlete (premise 6), Djokovic is famous.\n\nNow, let's see if we can derive a conclusion about Djokovic's living situation based on the premises:\n\n- Premise 8 states that if Djokovic is famous and is an athlete, then he lives in well paid (note: 'well paid' is not exactly the same as living in a tax haven, but we will come back to this later).\n- We already established that Djokovic is famous (premise 6) and an athlete (premise 4).\n- Therefore, premise 8 applies, and we can conclude that Djokovic lives in well paid.\n\nHowever, there is a problem with the conclusion. Premise 8 says that if Djokovic is famous and is an athlete, then he lives in well paid. We don't know if Djokovic is living in a tax haven or not, but we know he is well paid. Premise 7 states that all well-paid people live in tax havens. Therefore, we can conclude that Djokovic lives in a tax haven because he is well paid.\n\nThe original question asked us to determine if the conclusion \"Djokovic does not live in a tax haven\" is true, false, or uncertain. Based on our analysis, we can conclude that the conclusion is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(djokovic) | oscar_nominated_actor(djokovic)",
+          "z3_formula": "grand_slam_champion_djokovic == True | oscar_nominated_actor_djokovic == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, celebrity_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> well_paid(X)",
+          "z3_formula": "Implies(And(famous_djokovic, athlete_djokovic), well_paid_djokovic)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "well_paid(djokovic)",
+          "z3_formula": "well_paid_djokovic == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not lives_in_tax_haven(djokovic)",
+          "z3_formula": "not lives_in_tax_haven_djokovic == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "lives_in_tax_haven(djokovic)",
+          "z3_formula": "lives_in_tax_haven_djokovic == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(djokovic)",
+          "z3_formula": "grand_slam_champion_djokovic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "oscar_nominated_actor(djokovic)",
+          "z3_formula": "oscar_nominated_actor_djokovic == False",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, celebrity_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "well_paid(X) -> tax_haven(X)",
+          "z3_formula": "Implies(well_paid_djokovic, tax_haven_djokovic)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "tax_haven(djokovic)",
+          "z3_formula": "tax_haven_djokovic == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(X) | oscar_nominated_actor(X)",
+          "z3_formula": "grand_slam_champion_djokovic == True or oscar_nominated_actor_djokovic == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, celebrity_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "famous_djokovic == True & athlete_djokovic == True",
+          "z3_formula": "And(famous_djokovic, athlete_djokovic) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "well_paid_djokovic == True",
+          "z3_formula": "well_paid_djokovic == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "well_paid(X) -> tax_haven(X)",
+          "z3_formula": "Implies(well_paid_djokovic, tax_haven_djokovic)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "tax_haven_djokovic == True",
+          "z3_formula": "tax_haven_djokovic == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(X) | oscar_nominated_actor(X)",
+          "z3_formula": "Or(grand_slam_champion_djokovic, oscar_nominated_actor_djokovic)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, celebrity_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> lives_in_well_paid(X)",
+          "z3_formula": "Implies(And(famous_djokovic, athlete_djokovic), lives_in_well_paid_djokovic)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not lives_in_tax_haven(djokovic)",
+          "z3_formula": "Not(lives_in_tax_haven_djokovic)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(X) | oscar_nominated_actor(X)",
+          "z3_formula": "grand_slam_champion_djokovic == True or oscar_nominated_actor_djokovic == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, celebrity_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> well_paid(X)",
+          "z3_formula": "Implies(And(famous_djokovic, athlete_djokovic), well_paid_djokovic)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "famous_djokovic == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "well_paid(X)",
+          "z3_formula": "well_paid_djokovic == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "tax_haven(X) -> well_paid(X)",
+          "z3_formula": "Implies(tax_haven_djokovic, well_paid_djokovic)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "well_paid(X)",
+          "z3_formula": "well_paid_djokovic == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "tax_haven(X)",
+          "z3_formula": "tax_haven_djokovic == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(X) | oscar_nominated_actor(X)",
+          "z3_formula": "grand_slam_champion_X | oscar_nominated_actor_X",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_X, professional_tennis_player_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_X, celebrity_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_X, athlete_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_X, famous_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> well_paid(X)",
+          "z3_formula": "Implies(And(famous_X, athlete_X), well_paid_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> lives_in_well_paid(X)",
+          "z3_formula": "Implies(And(famous_X, athlete_X), lives_in_well_paid_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "athlete(djokovic)",
+          "z3_formula": "athlete_djokovic",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "famous(djokovic)",
+          "z3_formula": "famous_djokovic",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(djokovic)",
+          "z3_formula": "grand_slam_champion_djokovic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "professional_tennis_player(djokovic)",
+          "z3_formula": "professional_tennis_player_djokovic == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "athlete(djokovic)",
+          "z3_formula": "athlete_djokovic == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "famous(djokovic)",
+          "z3_formula": "famous_djokovic == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) & famous(X) -> well_paid(X)",
+          "z3_formula": "Implies(And(athlete_djokovic, famous_djokovic), well_paid_djokovic)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "well_paid(X) -> tax_haven(X)",
+          "z3_formula": "Implies(well_paid_djokovic, tax_haven_djokovic)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "tax_haven(djokovic)",
+          "z3_formula": "tax_haven_djokovic == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not tax_haven(djokovic)",
+          "z3_formula": "Not(tax_haven_djokovic) == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(X) | oscar_nominated_actor(X)",
+          "z3_formula": "grand_slam_champion_djokovic == True or oscar_nominated_actor_djokovic == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, celebrity_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, celebrity_djokovic)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> well_paid(X)",
+          "z3_formula": "Implies(And(famous_djokovic, athlete_djokovic), well_paid_djokovic)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "well_paid(djokovic)",
+          "z3_formula": "well_paid_djokovic == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "well_paid(djokovic) -> tax_haven(djokovic)",
+          "z3_formula": "Implies(well_paid_djokovic, tax_haven_djokovic)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not tax_haven(djokovic)",
+          "z3_formula": "Not(tax_haven_djokovic) == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion_or_oscar_nominated_actor(X)",
+          "z3_formula": "grand_slam_champion_or_oscar_nominated_actor == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion, professional_tennis_player)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "Implies(oscar_nominated_actor, celebrity)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player, athlete)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity, well_paid)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete, famous)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "well_paid(X) -> lives_in_tax_haven(X)",
+          "z3_formula": "Implies(well_paid, lives_in_tax_haven)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> lives_in_tax_haven(X)",
+          "z3_formula": "Implies(And(famous, athlete), lives_in_tax_haven)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(djokovic)",
+          "z3_formula": "grand_slam_champion_djokovic == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "professional_tennis_player(djokovic)",
+          "z3_formula": "professional_tennis_player_djokovic == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "athlete(djokovic)",
+          "z3_formula": "athlete_djokovic == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "celebrity(djokovic)",
+          "z3_formula": "celebrity_djokovic == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "well_paid_location(djokovic)",
+          "z3_formula": "well_paid_location_djokovic == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> well_paid_location(X)",
+          "z3_formula": "Implies(And(famous_djokovic, athlete_djokovic), well_paid_location_djokovic)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "well_paid_location(X) -> tax_haven(X)",
+          "z3_formula": "Implies(well_paid_location_djokovic, tax_haven_djokovic)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(X) | oscar_nominated_actor(X)",
+          "z3_formula": "grand_slam_champion_djokovic | oscar_nominated_actor_djokovic",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "grand_slam_champion(X) -> athlete(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, athlete_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "grand_slam_champion(X) -> famous(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, famous_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "oscar_nominated_actor(X) -> celebrity(X)",
+          "z3_formula": "oscar_nominated_actor_djokovic -> celebrity_djokovic",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "celebrity(X) -> well_paid(X)",
+          "z3_formula": "Implies(celebrity_djokovic, well_paid_djokovic)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "oscar_nominated_actor(X) -> well_paid(X)",
+          "z3_formula": "Implies(oscar_nominated_actor_djokovic, well_paid_djokovic)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "well_paid(X) -> lives_in_tax_haven(X)",
+          "z3_formula": "well_paid_djokovic -> lives_in_tax_haven_djokovic",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> well_paid(X)",
+          "z3_formula": "Implies(And(famous_djokovic, athlete_djokovic), well_paid_djokovic)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "grand_slam_champion(X) -> well_paid(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, well_paid_djokovic)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "grand_slam_champion(X) -> lives_in_tax_haven(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, lives_in_tax_haven_djokovic)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not lives_in_tax_haven(X)",
+          "z3_formula": "Not(lives_in_tax_haven_djokovic)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "grand_slam_champion(djokovic)",
+          "z3_formula": "grand_slam_champion_djokovic == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "grand_slam_champion(X) -> professional_tennis_player(X)",
+          "z3_formula": "Implies(grand_slam_champion_djokovic, professional_tennis_player_djokovic)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "professional_tennis_player(X) -> athlete(X)",
+          "z3_formula": "Implies(professional_tennis_player_djokovic, athlete_djokovic)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "athlete(X) -> famous(X)",
+          "z3_formula": "Implies(athlete_djokovic, famous_djokovic)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "famous(X) & athlete(X) -> well_paid(X)",
+          "z3_formula": "Implies(And(famous_djokovic, athlete_djokovic), well_paid_djokovic)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "well_paid(X) -> tax_haven(X)",
+          "z3_formula": "Implies(well_paid_djokovic, tax_haven_djokovic)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "tax_haven(djokovic)",
+          "z3_formula": "tax_haven_djokovic == True",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 118,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 46
+    },
+    "maxsat_stats": {
+      "satisfied": 43,
+      "excluded": 3,
+      "total_weight": 106,
+      "solve_time_ms": 1.330067403614521
+    },
+    "timing": {
+      "trace_gen_s": 8.053,
+      "extraction_s": 25.276,
+      "dedup_s": 0.924,
+      "maxsat_s": 0.004,
+      "total_s": 34.257
+    }
+  }
+}

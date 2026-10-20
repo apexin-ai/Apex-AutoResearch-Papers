@@ -1,0 +1,92 @@
+{
+  "experiment": "exp-009",
+  "source": "exp-001 (sica_expanded_14b)",
+  "n_problems": 804,
+  "total_wall_time_s": 49558.9,
+  "sum_per_problem_s": 49522.248,
+  "stages": {
+    "trace_generation": {
+      "description": "vLLM inference, K=12 parallel traces",
+      "mean_s": 31.62,
+      "median_s": 31.22,
+      "p5_s": 18.1,
+      "p95_s": 46.72,
+      "std_s": 8.86,
+      "total_s": 25419.7,
+      "fraction_of_total": 0.5133
+    },
+    "constraint_extraction": {
+      "description": "LLM call per trace to extract constraints",
+      "mean_s": 28.97,
+      "median_s": 29.28,
+      "p5_s": 7.94,
+      "p95_s": 46.92,
+      "std_s": 12.51,
+      "total_s": 23295.0,
+      "fraction_of_total": 0.4704
+    },
+    "deduplication": {
+      "description": "Constraint deduplication (embedding similarity)",
+      "mean_s": 1.0,
+      "median_s": 0.83,
+      "p5_s": 0.12,
+      "p95_s": 2.34,
+      "std_s": 0.72,
+      "total_s": 805.2,
+      "fraction_of_total": 0.0163
+    },
+    "maxsat_solving": {
+      "description": "Z3 MaxSAT solver for consensus",
+      "mean_s": 0.0026,
+      "median_s": 0.003,
+      "p5_s": 0.002,
+      "p95_s": 0.004,
+      "std_s": 0.0008,
+      "total_s": 2.12,
+      "fraction_of_total": 4.3e-05
+    }
+  },
+  "overhead_analysis": {
+    "sc_baseline_time_s": 25419.7,
+    "sc_baseline_time_min": 423.7,
+    "sica_extra_overhead_s": 24102.3,
+    "sica_extra_overhead_min": 401.7,
+    "overhead_ratio_pct": 94.8,
+    "overhead_per_problem_mean_s": 29.98,
+    "overhead_per_problem_median_s": 30.27,
+    "overhead_per_problem_p95_s": 47.73
+  },
+  "per_dataset": {
+    "proofwriter": {
+      "n": 600,
+      "mean_total_s": 65.6,
+      "mean_trace_gen_s": 32.0,
+      "mean_overhead_s": 33.6,
+      "overhead_fraction": 0.5128
+    },
+    "folio": {
+      "n": 204,
+      "mean_total_s": 49.8,
+      "mean_trace_gen_s": 30.6,
+      "mean_overhead_s": 19.2,
+      "overhead_fraction": 0.3856
+    }
+  },
+  "total_time_distribution": {
+    "0-20s": 4,
+    "20-40s": 125,
+    "40-60s": 231,
+    "60-80s": 268,
+    "80-100s": 172,
+    "100-150s": 4
+  },
+  "overhead_distribution": {
+    "0-5s": 21,
+    "5-10s": 35,
+    "10-15s": 56,
+    "15-20s": 96,
+    "20-30s": 188,
+    "30-50s": 406,
+    "50-100s": 2
+  }
+}

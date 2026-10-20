@@ -1,0 +1,765 @@
+{
+  "problem": {
+    "id": "folio_102",
+    "problem": "Given the following premises:\nIf people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings. If people have siblings who are the same age, then they are twins or triplets. If people complain often about annoying siblings, then they have siblings who are the same age. If people do not live at home regularly, then they do not develop strong bonds with their family members. If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly. Luke is either both a twin or triplet and develops strong bonds with his family members, or he neither is a twin or triplet nor develops strong bonds with his family members.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nLuke spends a lot of time hanging out and playing with his siblings.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (TwinTriplet(x) \u2192 Playing(x))",
+      "\u2200x (SameAge(x) \u2192 TwinTriplet(x))",
+      "\u2200x (Complain(x) \u2192 SameAge(x))",
+      "\u2200x (NotHome(x) \u2192 \u00acStrongBonds(x))",
+      "\u2200x (Playing(x) \u2192 NotHome(x))",
+      "(TwinTriplet(luke) \u2227 StrongBonds(luke)) \u2295 (\u00acTwinTriplet(luke) \u2227 \u00acStrongBonds(luke))"
+    ],
+    "conclusion_fol": "Playing(luke)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 34.0,
+      "Unknown": 65.5
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use the given premises and the information about Luke to determine whether the conclusion is true, false, or uncertain.\n\nPremise 1: If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings.\nPremise 2: If people have siblings who are the same age, then they are twins or triplets.\nPremise 3: If people complain often about annoying siblings, then they have siblings who are the same age.\nPremise 4: If people do not live at home regularly, then they do not develop strong bonds with their family members.\nPremise 5: If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly.\n\nGiven information about Luke: Luke is either both a twin or triplet and develops strong bonds with his family members, or he neither is a twin or triplet nor develops strong bonds with his family members.\n\nWe need to determine whether the conclusion \"Luke spends a lot of time hanging out and playing with his siblings\" is true, false, or uncertain.\n\nLet's break down the possible scenarios for Luke based on the given information:\n\nScenario 1: Luke is a twin or triplet and develops strong bonds with his family members.\n\nPremise 1: If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings. (This premise directly supports the conclusion.)\nPremise 4: If people do not live at home regularly, then they do not develop strong bonds with their family members. (This premise does not directly support or contradict the conclusion.)\n\nSince Luke develops strong bonds with his family members, we can conclude that he does not live at home regularly (from Premise 4). \n\nPremise 5: If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly. (This premise directly supports the conclusion.)\n\nSo, in Scenario 1, the conclusion is true.\n\nScenario 2: Luke is not a twin or triplet and does not develop strong bonds with his family members.\n\nPremise 1: If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings. (This premise does not directly support or contradict the conclusion.)\nPremise 4: If people do not live at home regularly, then they do not develop strong bonds with their family members. (This premise directly supports the conclusion.)\n\nSince Luke does not develop strong bonds with his family members, we can conclude that he does not live at home regularly (from Premise 4). \n\nPremise 5: If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly. (This premise directly supports the conclusion.)\n\nSo, in Scenario 2, the conclusion is also true.\n\nHowever, there is one more consideration. We need to check if the given information about Luke is consistent with the other premises.\n\nIf Luke is a twin or triplet and develops strong bonds with his family members, then he does not live at home regularly (from Premise 4). \n\nPremise 5: If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly. (This premise implies that people who spend a lot of time hanging out with and playing with their siblings often do not live at home regularly.)\n\nHowever, Premise 1: If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings. \n\nThis means that if Luke is a twin or triplet, then he spends a lot of time hanging out with and playing with his siblings. \n\nBut, if Luke develops strong bonds with his family members, then he lives at home regularly (from the given information about Luke). \n\nThis contradicts Premise 4: If people do not live at home regularly, then they do not develop strong bonds with their family members.\n\nTherefore, the given information about Luke is uncertain or false, because it contradicts Premise 4.\n\nThe conclusion \"Luke spends a lot of time hanging out and playing with his siblings\" is uncertain because it depends on the uncertain or false given information about Luke.\n\nBut we know from the two scenarios above that if the information about Luke is true, then the conclusion is true.\n\nSo, the conclusion \"Luke spends a lot of time hanging out and playing with his siblings\" is uncertain, but it has two possible true values. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and the conclusion.\n\nPremise 1: If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings.\nPremise 2: If people have siblings who are the same age, then they are twins or triplets.\nPremise 3: If people complain often about annoying siblings, then they have siblings who are the same age.\nPremise 4: If people do not live at home regularly, then they do not develop strong bonds with their family members.\nPremise 5: If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly.\nConclusion: Luke spends a lot of time hanging out and playing with his siblings.\n\nLet's analyze the possible scenarios for Luke based on the given premises:\n\nScenario 1: Luke is a twin or triplet.\nFrom Premise 1, if Luke is a twin or triplet, then he spends a lot of time hanging out with and playing with his siblings. This matches the conclusion.\n\nScenario 2: Luke is not a twin or triplet.\nFrom Luke's characteristics, we know he either develops strong bonds with his family members or does not. If Luke develops strong bonds, then he must live at home regularly (from Premise 4). From Premise 2, if Luke has siblings who are the same age, then he is a twin or triplet. However, this contradicts our assumption that Luke is not a twin or triplet. Therefore, if Luke does not develop strong bonds with his family members, he likely does not live at home regularly (from Premise 4).\n\nFrom Premise 5, if people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly. Since Luke likely does not live at home regularly, we cannot conclude that he spends a lot of time hanging out with and playing with his siblings.\n\nNow, let's analyze the given condition that states Luke is either both a twin or triplet and develops strong bonds with his family members, or he neither is a twin or triplet nor develops strong bonds with his family members. Since we are considering the scenario where Luke does not develop strong bonds with his family members, we can conclude that Luke is not a twin or triplet.\n\nFrom the analysis, we have two scenarios:\n\nScenario 1: Luke is a twin or triplet, then he spends a lot of time hanging out with and playing with his siblings (from Premise 1).\nScenario 2: Luke is not a twin or triplet, then we cannot conclude that he spends a lot of time hanging out with and playing with his siblings.\n\nSince the conclusion is uncertain in the second scenario, the overall conclusion is also uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we'll use a logical approach based on the given premises and the conclusion we need to evaluate.\n\nPremise 1: If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings.\nPremise 2: If people have siblings who are the same age, then they are twins or triplets.\nPremise 3: If people complain often about annoying siblings, then they have siblings who are the same age.\nPremise 4: If people do not live at home regularly, then they do not develop strong bonds with their family members.\nPremise 5: If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly.\n\nConclusion to evaluate: Luke spends a lot of time hanging out and playing with his siblings.\n\nFirst, let's break down the given statement about Luke:\n\nLuke is either both a twin or triplet and develops strong bonds with his family members, or he neither is a twin or triplet nor develops strong bonds with his family members.\n\nWe need to evaluate the conclusion based on the premises and the statement about Luke.\n\nFrom the statement about Luke, we have two possible scenarios:\n\nScenario 1: Luke is a twin or triplet and develops strong bonds with his family members.\nScenario 2: Luke is neither a twin or triplet nor develops strong bonds with his family members.\n\nWe'll analyze each scenario separately.\n\nScenario 1: If Luke is a twin or triplet, then he must spend a lot of time hanging out with and playing with his siblings (based on Premise 1). However, this scenario also states that Luke develops strong bonds with his family members. Given that people who do not live at home regularly do not develop strong bonds with their family members (Premise 4), Luke must live at home regularly in this scenario. But, Premise 5 states that if people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly. This creates a contradiction, so we cannot conclude that Luke spends a lot of time hanging out with and playing with his siblings in this scenario.\n\nScenario 2: If Luke is neither a twin or triplet nor develops strong bonds with his family members, then we cannot directly conclude anything about Luke's behavior towards his siblings based on the premises. However, this scenario does not provide any information that contradicts the conclusion that Luke spends a lot of time hanging out with and playing with his siblings. Therefore, we cannot conclude that the conclusion is false in this scenario.\n\nSince we have a contradiction in Scenario 1, we cannot conclude that the conclusion is true. In Scenario 2, we cannot conclude that the conclusion is false. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will use the given premises and logical deductions. We'll analyze the premises step by step:\n\nPremise 1: If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings.\n\nPremise 2: If people have siblings who are the same age, then they are twins or triplets.\n\nPremise 3: If people complain often about annoying siblings, then they have siblings who are the same age.\n\nPremise 4: If people do not live at home regularly, then they do not develop strong bonds with their family members.\n\nPremise 5: If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly.\n\nGiven conclusion: Luke spends a lot of time hanging out and playing with his siblings.\n\nFrom Premise 1, we can deduce that if Luke is a twin or triplet, he spends a lot of time hanging out with and playing with his siblings.\n\nFrom Premise 2, if Luke has siblings who are the same age, then he is a twin or triplet.\n\nFrom the given statement about Luke, we can create two possibilities:\n1. Luke is both a twin or triplet and develops strong bonds with his family members.\n2. Luke neither is a twin or triplet nor develops strong bonds with his family members.\n\nWe will analyze each possibility separately:\n\nCase 1: Luke is both a twin or triplet and develops strong bonds with his family members.\nFrom Premise 2, if Luke has siblings who are the same age, then he is a twin or triplet. Since he is a twin or triplet, we can apply Premise 1, which states that if people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings.\n\nThis matches the given conclusion, so in this case, the conclusion is true.\n\nCase 2: Luke neither is a twin or triplet nor develops strong bonds with his family members.\nFrom Premise 4, if people do not live at home regularly, then they do not develop strong bonds with their family members. This is not applicable to Luke because he develops strong bonds with his family members.\n\nWe cannot conclude that Luke spends a lot of time hanging out with and playing with his siblings in this case.\n\nHowever, we can also use Premise 5, which states that if people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly. Since Luke develops strong bonds with his family members, we can apply the contrapositive of Premise 4, which states that if people develop strong bonds with their family members, then they often live at home regularly.\n\nThis implies that Luke does not spend a lot of time hanging out with and playing with his siblings, because if he did, he would not live at home regularly, contradicting the fact that he develops strong bonds with his family members.\n\nTherefore, in this case, the conclusion is false.\n\nSince the conclusion is true in Case 1 and false in Case 2, we can conclude that the given conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises and the information about Luke.\n\nPremise 1: If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings. \nPremise 2: If people have siblings who are the same age, then they are twins or triplets.\nPremise 3: If people complain often about annoying siblings, then they have siblings who are the same age.\nPremise 4: If people do not live at home regularly, then they do not develop strong bonds with their family members.\nPremise 5: If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly.\nPremise 6: Luke is either both a twin or triplet and develops strong bonds with his family members, or he neither is a twin or triplet nor develops strong bonds with his family members.\n\nConclusion: Luke spends a lot of time hanging out and playing with his siblings.\n\nFrom Premise 6, we know that Luke is either both a twin or triplet and develops strong bonds with his family members, or he neither is a twin or triplet nor develops strong bonds with his family members.\n\nIf Luke is a twin or triplet and develops strong bonds with his family members, then Premise 1 implies that he spends a lot of time hanging out with and playing with his siblings. However, this contradicts Premise 5, which states that people who spend a lot of time hanging out with and playing with their siblings often did not live at home regularly. Since Luke develops strong bonds with his family members, we can infer that he lives at home regularly (Premise 4). Therefore, this scenario is uncertain.\n\nIf Luke neither is a twin or triplet nor develops strong bonds with his family members, then Premise 5 implies that he spends a lot of time hanging out with and playing with his siblings, because people who spend a lot of time hanging out with and playing with their siblings often did not live at home regularly. This contradicts the assumption that he does not develop strong bonds with his family members, which implies that he lives at home regularly (Premise 4). However, this is not a contradiction, because Premise 5 does not imply that he never lived at home regularly. It only implies that he often did not live at home regularly. Therefore, this scenario is uncertain.\n\nSince both scenarios are uncertain, the conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and the conclusion step by step.\n\nGiven premises:\n1. If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings. (Twin or triplet -> Spend a lot of time with siblings)\n2. If people have siblings who are the same age, then they are twins or triplets. (Same age siblings -> Twin or triplet)\n3. If people complain often about annoying siblings, then they have siblings who are the same age. (Complain about siblings -> Same age siblings)\n4. If people do not live at home regularly, then they do not develop strong bonds with their family members. (Not living at home -> No strong bonds)\n5. If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly. (Spend a lot of time with siblings -> Often did not live at home)\n\nConclusion: Luke spends a lot of time hanging out and playing with his siblings.\n\nGiven statement about Luke: Luke is either both a twin or triplet and develops strong bonds with his family members, or he neither is a twin or triplet nor develops strong bonds with his family members.\n\nLet's analyze the possible scenarios for Luke:\n\n- If Luke is a twin or triplet (Twin or triplet), then he develops strong bonds with his family members (Strong bonds).\n- If Luke is not a twin or triplet (Not a twin or triplet), then he neither develops strong bonds with his family members (No strong bonds).\n\nNow, we need to check the conclusion: Luke spends a lot of time hanging out and playing with his siblings.\n\nIf Luke is a twin or triplet (Twin or triplet), then he spends a lot of time with his siblings (Spend a lot of time with siblings) based on premise 1. However, this contradicts premise 5, which states that if people spend a lot of time with their siblings, then they often did not live at home regularly. This implies that Luke did not develop strong bonds with his family members (No strong bonds), which contradicts the given statement about Luke.\n\nIf Luke is not a twin or triplet (Not a twin or triplet), then he does not spend a lot of time with his siblings (Not spend a lot of time with siblings) based on premise 1.\n\nHowever, there is another scenario: If Luke neither is a twin or triplet nor develops strong bonds with his family members (Not a twin or triplet and No strong bonds), then he often did not live at home regularly (Not living at home) based on premise 4. If he often did not live at home regularly, then he spends a lot of time with his siblings (Spend a lot of time with siblings) based on premise 5.\n\nTherefore, based on the given premises and the statement about Luke, we can conclude that the following conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the conclusion, we need to break down the given premises and apply them to Luke's situation.\n\nPremise 1: If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings.\n\nPremise 2: If people have siblings who are the same age, then they are twins or triplets.\n\nPremise 3: If people complain often about annoying siblings, then they have siblings who are the same age.\n\nPremise 4: If people do not live at home regularly, then they do not develop strong bonds with their family members.\n\nPremise 5: If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly.\n\nGiven statement: Luke is either both a twin or triplet and develops strong bonds with his family members, or he neither is a twin or triplet nor develops strong bonds with his family members.\n\nFrom the given statement, we know that Luke is either a twin or triplet and develops strong bonds, or he is neither a twin or triplet nor develops strong bonds.\n\nCase 1: Luke is a twin or triplet and develops strong bonds.\n\nIf Luke is a twin or triplet, then he spends a lot of time hanging out with and playing with his siblings (Premise 1). This matches the given conclusion.\n\nCase 2: Luke is neither a twin or triplet nor develops strong bonds.\n\nIf Luke is neither a twin or triplet, then we cannot determine if he spends a lot of time with his siblings, as the premises do not provide a direct connection between not being a twin or triplet and spending time with siblings.\n\nHowever, if Luke does not develop strong bonds, it is uncertain whether he spends a lot of time hanging out with and playing with his siblings or not, as the premises do not provide a direct connection between not developing strong bonds and spending time with siblings.\n\nBut premise 5 tells us that people who spend a lot of time hanging out with and playing with their siblings often did not live at home regularly, so we need to determine whether living at home regularly affects the conclusion.\n\nIf Luke does not live at home regularly, then he does not develop strong bonds with his family members (Premise 4). This contradicts Case 1, as Luke develops strong bonds.\n\nHowever, if Luke lives at home regularly, then it is uncertain whether he spends a lot of time hanging out with and playing with his siblings or not, as the premises do not provide a direct connection between living at home regularly and spending time with siblings.\n\nTherefore, the conclusion that Luke spends a lot of time hanging out and playing with his siblings is uncertain, as it depends on whether Luke is a twin or triplet, develops strong bonds, or lives at home regularly. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will use the premises and the conclusion to determine its truth value.\n\nPremise 1: If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings.\nPremise 2: If people have siblings who are the same age, then they are twins or triplets.\nPremise 3: If people complain often about annoying siblings, then they have siblings who are the same age.\nPremise 4: If people do not live at home regularly, then they do not develop strong bonds with their family members.\nPremise 5: If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly.\nConclusion: Luke spends a lot of time hanging out and playing with his siblings.\n\nWe are given that Luke is either both a twin or triplet and develops strong bonds with his family members, or he neither is a twin or triplet nor develops strong bonds with his family members.\n\nTo analyze this problem, we can use a truth table or create a logical argument.\n\nFrom premise 1, we know that being a twin or triplet implies spending time with siblings.\n\nFrom premise 2, we know that having siblings who are the same age implies being a twin or triplet.\n\nFrom premise 3, we know that complaining about siblings implies having siblings who are the same age.\n\nWe are not given that Luke complains about his siblings, so we cannot conclude that he has siblings who are the same age from premise 3.\n\nWe are given that Luke is either a twin or triplet and develops strong bonds with his family members, or he is neither a twin or triplet nor develops strong bonds with his family members.\n\nLet's assume that Luke is a twin or triplet and develops strong bonds with his family members. From premise 1, we know that being a twin or triplet implies spending time with siblings. Therefore, Luke spends a lot of time hanging out and playing with his siblings.\n\nHowever, this assumption contradicts premise 5, which states that spending time with siblings implies not living at home regularly. If Luke develops strong bonds with his family members, then he must live at home regularly (from premise 4). This contradicts premise 5.\n\nNow, let's assume that Luke is neither a twin or triplet nor develops strong bonds with his family members. In this case, we cannot conclude that Luke spends a lot of time hanging out and playing with his siblings.\n\nFrom premise 5, we know that spending time with siblings implies not living at home regularly. However, premise 4 states that not living at home regularly implies not developing strong bonds with family members. This creates a logical loop, and we cannot conclude that Luke spends a lot of time hanging out and playing with his siblings.\n\nTherefore, the conclusion that Luke spends a lot of time hanging out and playing with his siblings is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and analyze the given premises. \n\nPremise 1: If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings. \nPremise 2: If people have siblings who are the same age, then they are twins or triplets. \nPremise 3: If people complain often about annoying siblings, then they have siblings who are the same age. \nPremise 4: If people do not live at home regularly, then they do not develop strong bonds with their family members. \nPremise 5: If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly.\n\nWe are given that Luke is either both a twin or triplet and develops strong bonds with his family members, or he neither is a twin or triplet nor develops strong bonds with his family members.\n\nNow, we need to determine whether Luke spends a lot of time hanging out and playing with his siblings.\n\nFrom Premise 1, if people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings.\n\nFrom Premise 2, if people have siblings who are the same age, then they are twins or triplets.\n\nFrom Premise 3, if people complain often about annoying siblings, then they have siblings who are the same age.\n\nHowever, none of the premises directly state that Luke is a twin or triplet, complains about his siblings, or lives at home regularly.\n\nWe are given two possible conditions for Luke: either he is a twin or triplet and develops strong bonds with his family members, or he is neither a twin or triplet nor develops strong bonds with his family members.\n\nFrom the given conditions, it is not possible to directly determine whether Luke spends a lot of time hanging out and playing with his siblings. However, we can analyze the given conditions:\n\nIf Luke is a twin or triplet, then he develops strong bonds with his family members (given condition 1). If he develops strong bonds with his family members, then he lives at home regularly (Premise 4). If he lives at home regularly, then he does not spend a lot of time hanging out with and playing with his siblings (Premise 5).\n\nOn the other hand, if Luke is neither a twin or triplet nor develops strong bonds with his family members, then it is uncertain whether he spends a lot of time hanging out and playing with his siblings, as there is no direct information about this condition.\n\nTherefore, the conclusion that Luke spends a lot of time hanging out and playing with his siblings is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply them to the conclusion.\n\nPremise 1: If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings.\nPremise 2: If people have siblings who are the same age, then they are twins or triplets.\nPremise 3: If people complain often about annoying siblings, then they have siblings who are the same age.\nPremise 4: If people do not live at home regularly, then they do not develop strong bonds with their family members.\nPremise 5: If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly.\n\nWe are given the following additional information about Luke:\n\n- Luke is either a twin or triplet and develops strong bonds with his family members, or he is neither a twin nor triplet nor develops strong bonds with his family members.\n\nNow, let's break down the conclusion:\n\nConclusion: Luke spends a lot of time hanging out and playing with his siblings.\n\nFrom Premise 1, we know that if people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings. However, this premise alone does not provide sufficient information about Luke.\n\nFrom the additional information about Luke, we know that he is either a twin or triplet and develops strong bonds with his family members, or he is neither a twin nor triplet nor develops strong bonds with his family members.\n\nLet's consider both possibilities:\n\nCase 1: Luke is a twin or triplet and develops strong bonds with his family members.\nFrom Premise 1, if Luke is a twin or triplet, then he spends a lot of time hanging out with and playing with his siblings. This matches the conclusion.\n\nCase 2: Luke is neither a twin nor triplet nor develops strong bonds with his family members.\nFrom Premise 4, if Luke does not develop strong bonds with his family members, then he often did not live at home regularly. However, from Premise 5, if Luke spends a lot of time hanging out with and playing with his siblings, then he often did not live at home regularly. This creates a contradiction, as Luke cannot both live at home regularly and not live at home regularly.\n\nSince Case 2 creates a contradiction, we can conclude that Case 1 is the correct possibility. Therefore, Luke is a twin or triplet, and he spends a lot of time hanging out with and playing with his siblings.\n\nThe conclusion is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the information about Luke.\n\nPremise 1: If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings.\nPremise 2: If people have siblings who are the same age, then they are twins or triplets.\nPremise 3: If people complain often about annoying siblings, then they have siblings who are the same age.\nPremise 4: If people do not live at home regularly, then they do not develop strong bonds with their family members.\nPremise 5: If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly.\n\nWe are given the following information about Luke:\n- Luke is either a twin or triplet and develops strong bonds with his family members, or he is neither a twin or triplet nor develops strong bonds with his family members.\n\nNow, let's analyze the conclusion:\nLuke spends a lot of time hanging out and playing with his siblings.\n\nFrom the information about Luke, we know that he either is a twin or triplet and develops strong bonds with his family members, or he is neither a twin or triplet nor develops strong bonds with his family members.\n\nIf Luke is a twin or triplet and develops strong bonds with his family members, then:\n\nFrom premise 1, we know that if people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings. So, in this case, the conclusion is true.\n\nIf Luke is not a twin or triplet and does not develop strong bonds with his family members, then:\n\nFrom premise 5, we know that if people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly. However, from premise 4, we know that if people do not live at home regularly, then they do not develop strong bonds with their family members. This creates a contradiction because it implies that Luke does not develop strong bonds with his family members, which is true, but it also implies that he often did not live at home regularly, which means he spends a lot of time hanging out with and playing with his siblings. However, the conclusion to be determined is that Luke spends a lot of time hanging out and playing with his siblings, not that he often did not live at home regularly.\n\nHowever, we do not have any direct evidence that Luke does not live at home regularly or that he lives at home regularly. \n\nTherefore, we cannot conclude with certainty that Luke spends a lot of time hanging out and playing with his siblings, and the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will use a truth table or logical deductions based on the given premises.\n\nPremises:\n\n1. If people are twins or triplets, then they spend a lot of time hanging out with and playing with their siblings. (T \u2234 H)\n2. If people have siblings who are the same age, then they are twins or triplets. (S \u2234 T)\n3. If people complain often about annoying siblings, then they have siblings who are the same age. (C \u2234 S)\n4. If people do not live at home regularly, then they do not develop strong bonds with their family members. (NH \u2234 N)\n5. If people spend a lot of time hanging out with and playing with their siblings, then they often did not live at home regularly. (H \u2234 NH)\n\nConclusion: Luke spends a lot of time hanging out and playing with his siblings (H).\n\nFrom premise 2, we can deduce that if people have siblings who are the same age (S), then they are twins or triplets (T).\n\nFrom premise 3, we can deduce that if people complain often about annoying siblings (C), then they have siblings who are the same age (S).\n\nFrom premise 4, we can deduce that if people do not live at home regularly (NH), then they do not develop strong bonds with their family members (N).\n\nFrom premise 5, we can deduce that if people spend a lot of time hanging out with and playing with their siblings (H), then they often did not live at home regularly (NH).\n\nNow let's analyze the conclusion. If Luke spends a lot of time hanging out and playing with his siblings (H), then from premise 5, we can deduce that he often did not live at home regularly (NH).\n\nGiven the statement: Luke is either both a twin or triplet and develops strong bonds with his family members, or he neither is a twin or triplet nor develops strong bonds with his family members. \n\nWe can use a truth table or directly analyze this statement. \n\nCase 1: Luke is a twin or triplet (T) and develops strong bonds with his family members (D). \nThen, he must live at home regularly, as the condition in premise 4 does not apply. \nHowever, premise 5 states that if people spend a lot of time hanging out with and playing with their siblings (H), then they often did not live at home regularly (NH). This leads to a contradiction.\n\nCase 2: Luke neither is a twin or triplet (N) nor develops strong bonds with his family members (N). \nThis case is consistent with the conclusion that he spends a lot of time hanging out and playing with his siblings (H).\n\nBased on this analysis, we can conclude that the conclusion \"Luke spends a lot of time hanging out and playing with his siblings\" is uncertain only if Luke is a twin or triplet and develops strong bonds with his family members. Otherwise, it is true.\n\nHowever, since the only uncertain case is when Luke is a twin or triplet and develops strong bonds with his family members, and this is not our case, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke)",
+          "z3_formula": "twin_or_triplet_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_with_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sibling_same_age(luke)",
+          "z3_formula": "sibling_same_age_luke == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sibling_same_age(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(sibling_same_age_luke, twin_or_triplet_luke)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "complain_about_siblings(luke)",
+          "z3_formula": "complain_about_siblings_luke == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "complain_about_siblings(X) -> sibling_same_age(X)",
+          "z3_formula": "Implies(complain_about_siblings_luke, sibling_same_age_luke)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not_live_at_home_regularly(luke)",
+          "z3_formula": "not_live_at_home_regularly_luke == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not_live_at_home_regularly(X) -> not_strong_bonds_with_family(X)",
+          "z3_formula": "Implies(not_live_at_home_regularly_luke, not_strong_bonds_with_family_luke)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not_strong_bonds_with_family(X) -> not_live_at_home_regularly(X)",
+          "z3_formula": "Implies(not_strong_bonds_with_family_luke, not_live_at_home_regularly_luke)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> not_live_at_home_regularly(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, not_live_at_home_regularly_luke)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "spends_time_with_siblings(luke)",
+          "z3_formula": "spends_time_with_siblings_luke == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke)",
+          "z3_formula": "twin_or_triplet_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "develops_strong_bonds_with_family(luke)",
+          "z3_formula": "develops_strong_bonds_with_family_luke == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) & develops_strong_bonds_with_family(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(And(twin_or_triplet_luke, develops_strong_bonds_with_family_luke), spends_time_with_siblings_luke)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "develops_strong_bonds_with_family(X) -> lives_at_home(X)",
+          "z3_formula": "Implies(develops_strong_bonds_with_family_luke, lives_at_home_luke)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> not lives_at_home(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, Not(lives_at_home_luke))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not spends_time_with_siblings(luke)",
+          "z3_formula": "Not(spends_time_with_siblings_luke) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not twin_or_triplet(luke)",
+          "z3_formula": "Not(twin_or_triplet_luke) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not develops_strong_bonds_with_family(luke)",
+          "z3_formula": "Not(develops_strong_bonds_with_family_luke) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_with_siblings_luke)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "not twin_or_triplet(X) & not develops_strong_bonds_with_family(X) -> not spends_time_with_siblings(X)",
+          "z3_formula": "Implies(And(Not(twin_or_triplet_luke), Not(develops_strong_bonds_with_family_luke)), Not(spends_time_with_siblings_luke))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "spends_time_with_siblings(luke)",
+          "z3_formula": "spends_time_with_siblings_luke == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke)",
+          "z3_formula": "twin_or_triplet_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_with_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "siblings_same_age(luke)",
+          "z3_formula": "siblings_same_age_luke == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "siblings_same_age(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(siblings_same_age_luke, twin_or_triplet_luke)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "spends_time_with_siblings(luke)",
+          "z3_formula": "spends_time_with_siblings_luke == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "develops_strong_bonds(luke)",
+          "z3_formula": "develops_strong_bonds_luke == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_with_siblings_luke)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not lives_at_home_regularly(X) -> not develops_strong_bonds(X)",
+          "z3_formula": "Implies(Not(lives_at_home_regularly_luke), Not(develops_strong_bonds_luke))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> not lives_at_home_regularly(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, Not(lives_at_home_regularly_luke))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "develops_strong_bonds(X) -> lives_at_home_regularly(X)",
+          "z3_formula": "Implies(develops_strong_bonds_luke, lives_at_home_regularly_luke)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "spends_time_with_siblings(luke)",
+          "z3_formula": "spends_time_with_siblings_luke == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke)",
+          "z3_formula": "twin_or_triplet_luke == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "develops_strong_bonds(luke)",
+          "z3_formula": "develops_strong_bonds_luke == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) & develops_strong_bonds(X) -> spends_time_hanging_out(X)",
+          "z3_formula": "Implies(And(twin_or_triplet_luke, develops_strong_bonds_luke), spends_time_hanging_out_luke)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_hanging_out(X) -> often_did_not_live_at_home(X)",
+          "z3_formula": "Implies(spends_time_hanging_out_luke, often_did_not_live_at_home_luke)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "develops_strong_bonds(X) -> lives_at_home(X)",
+          "z3_formula": "Implies(develops_strong_bonds_luke, lives_at_home_luke)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_hanging_out(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_hanging_out_luke)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "often_did_not_live_at_home(X) -> not lives_at_home(X)",
+          "z3_formula": "Implies(often_did_not_live_at_home_luke, Not(lives_at_home_luke))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "not lives_at_home(X) -> not develops_strong_bonds(X)",
+          "z3_formula": "Implies(Not(lives_at_home_luke), Not(develops_strong_bonds_luke))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "spends_time_hanging_out(luke)",
+          "z3_formula": "spends_time_hanging_out_luke == Unknown",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not twin_or_triplet(luke)",
+          "z3_formula": "Not(twin_or_triplet_luke) == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not develops_strong_bonds(luke)",
+          "z3_formula": "Not(develops_strong_bonds_luke) == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "not twin_or_triplet(X) & not develops_strong_bonds(X) -> spends_time_hanging_out(X)",
+          "z3_formula": "Implies(And(Not(twin_or_triplet_luke), Not(develops_strong_bonds_luke)), spends_time_hanging_out_luke)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_hanging_out(X) -> not lives_at_home(X)",
+          "z3_formula": "Implies(spends_time_hanging_out_luke, Not(lives_at_home_luke))",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "spends_time_hanging_out(luke)",
+          "z3_formula": "spends_time_hanging_out_luke == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke)",
+          "z3_formula": "twin_or_triplet_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "strong_bonds(luke)",
+          "z3_formula": "strong_bonds_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "(twin_or_triplet(X) | ~twin_or_triplet(X)) -> (strong_bonds(X) | ~strong_bonds(X))",
+          "z3_formula": "Implies(Or(twin_or_triplet_luke, Not(twin_or_triplet_luke)), Or(strong_bonds_luke, Not(strong_bonds_luke)))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spend_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spend_time_with_siblings_luke)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "spend_time_with_siblings(X) -> often_did_not_live_at_home(X)",
+          "z3_formula": "Implies(spend_time_with_siblings_luke, often_did_not_live_at_home_luke)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not living_at_home(X) -> no_strong_bonds(X)",
+          "z3_formula": "Implies(Not(often_did_not_live_at_home_luke), Not(no_strong_bonds_luke))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not living_at_home(X) -> spend_time_with_siblings(X)",
+          "z3_formula": "Implies(Not(often_did_not_live_at_home_luke), spend_time_with_siblings_luke)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "spend_time_with_siblings(luke)",
+          "z3_formula": "spend_time_with_siblings_luke == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke) | ~twin_or_triplet(luke) & ~strong_bonds(luke)",
+          "z3_formula": "twin_or_triplet_luke == True | And(Not(twin_or_triplet_luke), And(Not(strong_bonds_luke), True))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_with_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "same_age_siblings(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(same_age_siblings_luke, twin_or_triplet_luke)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "annoying_siblings(X) -> same_age_siblings(X)",
+          "z3_formula": "Implies(annoying_siblings_luke, same_age_siblings_luke)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not_lives_at_home(X) -> not_strong_bonds(X)",
+          "z3_formula": "Implies(not_lives_at_home_luke, not_strong_bonds_luke)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> not_lives_at_home(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, not_lives_at_home_luke)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke)",
+          "z3_formula": "twin_or_triplet_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "strong_bonds(luke)",
+          "z3_formula": "strong_bonds_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) | ~strong_bonds(X)",
+          "z3_formula": "Or(twin_or_triplet_luke, Not(strong_bonds_luke))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_with_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "same_age_siblings(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(same_age_siblings_luke, twin_or_triplet_luke)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "complain_about_siblings(X) -> same_age_siblings(X)",
+          "z3_formula": "Implies(complain_about_siblings_luke, same_age_siblings_luke)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not lives_at_home(X) -> not strong_bonds(X)",
+          "z3_formula": "Implies(Not(lives_at_home_luke), Not(strong_bonds_luke))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> not lives_at_home(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, Not(lives_at_home_luke))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "spends_time_with_siblings(luke)",
+          "z3_formula": "spends_time_with_siblings_luke == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke) | ~twin_or_triplet(luke) & ~strong_bonds(luke)",
+          "z3_formula": "twin_or_triplet_luke == True | And(Not(twin_or_triplet_luke), Not(strong_bonds_luke))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_with_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "has_same_age_siblings(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(has_same_age_siblings_luke, twin_or_triplet_luke)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "complain_about_siblings(X) -> has_same_age_siblings(X)",
+          "z3_formula": "Implies(complain_about_siblings_luke, has_same_age_siblings_luke)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not_live_at_home(X) -> not_strong_bonds(X)",
+          "z3_formula": "Implies(not_live_at_home_luke, not_strong_bonds_luke)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> not_live_at_home(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, not_live_at_home_luke)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(spends_time_with_siblings(luke))",
+          "z3_formula": "uncertain_spends_time_with_siblings_luke == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke) | not(twin_or_triplet(luke) & not(strong_bonds(luke)))",
+          "z3_formula": "twin_or_triplet_luke == True | (Not(And(twin_or_triplet_luke, Not(strong_bonds_luke))) == True)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_with_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not(strong_bonds(X)) -> not(lives_at_home(X))",
+          "z3_formula": "Implies(Not(strong_bonds_luke), Not(lives_at_home_luke))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> not(lives_at_home(X))",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, Not(lives_at_home_luke))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "spends_time_with_siblings(luke)",
+          "z3_formula": "spends_time_with_siblings_luke == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke) | ~twin_or_triplet(luke) & ~strong_bonds(luke)",
+          "z3_formula": "twin_or_triplet_luke | And(Not(twin_or_triplet_luke), Not(strong_bonds_luke))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_hanging_out(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_hanging_out_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_hanging_out(X) -> ~lives_at_home_regularly(X)",
+          "z3_formula": "Implies(spends_time_hanging_out_luke, Not(lives_at_home_regularly_luke))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> strong_bonds(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, strong_bonds_luke)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "strong_bonds(X) -> ~spends_time_hanging_out(X)",
+          "z3_formula": "Implies(strong_bonds_luke, Not(spends_time_hanging_out_luke))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> strong_bonds(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, strong_bonds_luke)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "complain_about_annoying_siblings(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(complain_about_annoying_siblings_luke, twin_or_triplet_luke)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> same_age_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, same_age_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "same_age_siblings(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(same_age_siblings_luke, twin_or_triplet_luke)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not_lives_at_home_regularly(X) -> not_strong_bonds(X)",
+          "z3_formula": "Implies(Not(lives_at_home_regularly_luke), Not(strong_bonds_luke))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "spends_time_hanging_out(luke)",
+          "z3_formula": "spends_time_hanging_out_luke == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke)",
+          "z3_formula": "twin_or_triplet_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_with_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "complain_about_annoying_siblings(luke)",
+          "z3_formula": "complain_about_annoying_siblings_luke == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "complain_about_annoying_siblings(X) -> same_age_siblings(X)",
+          "z3_formula": "Implies(complain_about_annoying_siblings_luke, same_age_siblings_luke)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "same_age_siblings(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(same_age_siblings_luke, twin_or_triplet_luke)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not live_at_home_regularly(X) -> not develop_strong_bonds_with_family(X)",
+          "z3_formula": "Implies(Not(live_at_home_regularly_luke), Not(develop_strong_bonds_with_family_luke))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> not live_at_home_regularly(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, Not(live_at_home_regularly_luke))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "spends_time_with_siblings(luke)",
+          "z3_formula": "spends_time_with_siblings_luke == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not live_at_home_regularly(luke)",
+          "z3_formula": "Not(live_at_home_regularly_luke) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not develop_strong_bonds_with_family(luke)",
+          "z3_formula": "Not(develop_strong_bonds_with_family_luke) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "twin_or_triplet(luke) & develop_strong_bonds_with_family(luke)",
+          "z3_formula": "And(twin_or_triplet_luke, develop_strong_bonds_with_family_luke) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not twin_or_triplet(luke) & not develop_strong_bonds_with_family(luke)",
+          "z3_formula": "And(Not(twin_or_triplet_luke), Not(develop_strong_bonds_with_family_luke)) == True",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 105,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 68
+    },
+    "maxsat_stats": {
+      "satisfied": 59,
+      "excluded": 9,
+      "total_weight": 91,
+      "solve_time_ms": 2.4125268682837486
+    },
+    "timing": {
+      "trace_gen_s": 11.432,
+      "extraction_s": 30.015,
+      "dedup_s": 1.76,
+      "maxsat_s": 0.006,
+      "total_s": 43.214
+    }
+  }
+}

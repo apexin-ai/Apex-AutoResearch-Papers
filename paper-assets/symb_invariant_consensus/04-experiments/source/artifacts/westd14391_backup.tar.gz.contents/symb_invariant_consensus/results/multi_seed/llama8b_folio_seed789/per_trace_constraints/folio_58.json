@@ -1,0 +1,624 @@
+{
+  "pid": "folio_58",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "city(billings, montana)",
+          "z3_formula": "city_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "city(montana)",
+          "z3_formula": "city_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "city(butte, montana)",
+          "z3_formula": "city_butte_montana == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "city(helena, montana)",
+          "z3_formula": "city_helena_montana == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "city(missoula, montana)",
+          "z3_formula": "city_missoula_montana == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "city(white_sulphur_springs, montana)",
+          "z3_formula": "city_white_sulphur_springs_montana == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not city(pierre, montana)",
+          "z3_formula": "not city_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, butte) -> not city(X, pierre)",
+          "z3_formula": "Implies(city_butte, not city_pierre)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not city(butte, pierre)",
+          "z3_formula": "not city_butte_pierre == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "city(billings, montana)",
+          "z3_formula": "city_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in(montana, [butte, helena, missoula])",
+          "z3_formula": "cities_in_montana_butte_helena_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in(same_state(white_sulphur_springs, butte))",
+          "z3_formula": "cities_in_same_state_white_sulphur_springs_butte == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not_in(pierre, montana)",
+          "z3_formula": "not_in_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cities_in(X, [butte]) -> not_in(Y, pierre)",
+          "z3_formula": "Implies(cities_in_butte, not_in_pierre)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "city_in_state(montana, billings)",
+          "z3_formula": "city_in_state_montana_billings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in_state(montana, [butte, helena, missoula])",
+          "z3_formula": "cities_in_state_montana_butte_helena_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in_same_state(butte, white_sulphur_springs)",
+          "z3_formula": "cities_in_same_state_butte_white_sulphur_springs == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not_city_in_state(montana, pierre)",
+          "z3_formula": "not_city_in_state_montana_pierre == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city_in_state(X, butte) -> city_in_state(X, Y)",
+          "z3_formula": "Implies(city_in_state_butte, city_in_state_butte_Y)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "city_in_state(montana, white_sulphur_springs)",
+          "z3_formula": "city_in_state_montana_white_sulphur_springs == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "city(billings, montana)",
+          "z3_formula": "city_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "city(butte, montana)",
+          "z3_formula": "city_butte_montana == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "city(white_sulphur_springs, montana)",
+          "z3_formula": "city_white_sulphur_springs_montana == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "city(pierre, ?)",
+          "z3_formula": "city_pierre_ == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, montana) -> city(Y, montana)",
+          "z3_formula": "Implies(city_butte_montana, city_white_sulphur_springs_montana)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, montana) -> city(Y, montana)",
+          "z3_formula": "Implies(city_billings_montana, city_white_sulphur_springs_montana)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, ?) -> city(Y, ?)",
+          "z3_formula": "Implies(city_pierre_, city_butte_)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not city(pierre, montana)",
+          "z3_formula": "Not(city_pierre_montana) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, butte) -> not city(X, pierre)",
+          "z3_formula": "Implies(city_butte_, Not(city_butte_pierre))",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "city(billings, montana)",
+          "z3_formula": "city_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in(montana, [butte, helena, missoula])",
+          "z3_formula": "cities_in_montana_butte_helena_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in(same_state(white_sulphur_springs, butte))",
+          "z3_formula": "cities_in_same_state_white_sulphur_springs_butte == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not city(pierre, montana)",
+          "z3_formula": "not_city_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, montana) -> city_in_montana(X)",
+          "z3_formula": "Implies(city_billings_montana, city_in_montana_billings)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cities_in(X, [Y]) -> city_in_X(Y)",
+          "z3_formula": "Implies(cities_in_montana_butte_helena_missoula, city_in_montana_butte)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cities_in(same_state(X, Y)) -> city_in_same_state_X_Y(X, Y)",
+          "z3_formula": "Implies(cities_in_same_state_white_sulphur_springs_butte, city_in_same_state_white_sulphur_springs_butte)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "city_in_same_state_white_sulphur_springs_butte",
+          "z3_formula": "city_in_same_state_white_sulphur_springs_butte == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "city_in(billings, montana)",
+          "z3_formula": "city_in_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in(montana, [butte, helena, missoula])",
+          "z3_formula": "cities_in_montana_butte_helena_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in(montana, [butte, white_sulphur_springs])",
+          "z3_formula": "cities_in_montana_butte_white_sulphur_springs == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not_in(pierre, montana)",
+          "z3_formula": "not_in_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city_in(X, butte) -> not_in(X, pierre)",
+          "z3_formula": "Implies(city_in_butte_X, not_in_X_pierre)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "city(billings, montana)",
+          "z3_formula": "city_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "city(butte, montana)",
+          "z3_formula": "city_butte_montana == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "city(helena, montana)",
+          "z3_formula": "city_helena_montana == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "city(missoula, montana)",
+          "z3_formula": "city_missoula_montana == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "city(white_sulphur_springs, montana)",
+          "z3_formula": "city_white_sulphur_springs_montana == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not city(pierre, montana)",
+          "z3_formula": "not city_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, state) & city(Y, state) -> same_state(X, Y)",
+          "z3_formula": "Implies(And(city_butte_montana, city_white_sulphur_springs_montana), same_state_butte_white_sulphur_springs)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, state) -> not same_state(X, Y)",
+          "z3_formula": "Implies(city_pierre_montana, not same_state_pierre_butte)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not same_state(pierre, butte)",
+          "z3_formula": "not same_state_pierre_butte == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "city_in_montana(billings)",
+          "z3_formula": "city_in_montana_billings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in_montana([butte, helena, missoula])",
+          "z3_formula": "cities_in_montana_butte == True & cities_in_montana_helena == True & cities_in_montana_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in_same_state(white_sulphur_springs, butte)",
+          "z3_formula": "cities_in_same_state_white_sulphur_springs_butte == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not_city_in_montana(pierre)",
+          "z3_formula": "not_city_in_montana_pierre == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city_in_butte(X) -> not_city_in_pierre(X)",
+          "z3_formula": "Implies(city_in_butte_X, not_city_in_pierre_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not_city_in_same_state(butte, pierre)",
+          "z3_formula": "not_city_in_same_state_butte_pierre == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "city_in_montana(billings)",
+          "z3_formula": "city_in_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in_montana([butte, helena, missoula])",
+          "z3_formula": "cities_in_montana == [butte, helena, missoula]",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cities_in_same_state(butte, white_sulphur_springs)",
+          "z3_formula": "cities_in_same_state_butte_white_sulphur_springs == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "city_in_montana(white_sulphur_springs)",
+          "z3_formula": "city_in_white_sulphur_springs_montana == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not_city_in_montana(pierre)",
+          "z3_formula": "not_city_in_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city_in_X(Y) -> not_city_in_pierre(Y)",
+          "z3_formula": "Implies(city_in_X_Y, not_city_in_pierre_Y)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not_city_in_pierre(butte)",
+          "z3_formula": "not_city_in_pierre_butte == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not_city_in_same_state(butte, pierre)",
+          "z3_formula": "not_city_in_same_state_butte_pierre == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "city(billings, montana)",
+          "z3_formula": "city_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "city(butte, montana)",
+          "z3_formula": "city_butte_montana == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "city(pierre, montana)",
+          "z3_formula": "city_pierre_montana == False",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, montana) -> city(X, montana)",
+          "z3_formula": "Implies(city_butte_montana, city_butte_montana)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, montana) -> city(X, montana)",
+          "z3_formula": "Implies(city_white_sulphur_springs_montana, city_white_sulphur_springs_montana)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, montana) -> city(X, montana)",
+          "z3_formula": "Implies(city_butte_montana, city_butte_montana)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, montana) & city(Y, montana) -> city(X, Y)",
+          "z3_formula": "Implies(And(city_butte_montana, city_white_sulphur_springs_montana), city_butte_white_sulphur_springs)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, montana) -> not city(X, pierre)",
+          "z3_formula": "Implies(city_pierre_montana, Not(city_pierre_montana))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, pierre) -> not city(X, butte)",
+          "z3_formula": "Implies(city_butte_pierre, Not(city_butte_pierre))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "city(butte, pierre)",
+          "z3_formula": "city_butte_pierre == False",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "city(billings, montana)",
+          "z3_formula": "city_billings_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cities(montana, [butte, helena, missoula])",
+          "z3_formula": "cities_montana_butte_helena_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "city(white_sulphur_springs, same_state(butte))",
+          "z3_formula": "city_white_sulphur_springs_same_state_butte == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(city(pierre, montana))",
+          "z3_formula": "not_city_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, butte) -> not(city(X, pierre))",
+          "z3_formula": "Implies(city_butte_X, not_city_pierre_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "same_state(butte, pierre)",
+          "z3_formula": "same_state_butte_pierre == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "city(montana)",
+          "z3_formula": "city_montana == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "city(butte)",
+          "z3_formula": "city_butte == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "city(helena)",
+          "z3_formula": "city_helena == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "city(missoula)",
+          "z3_formula": "city_missoula == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "city(white_sulphur_springs)",
+          "z3_formula": "city_white_sulphur_springs == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not city(pierre, montana)",
+          "z3_formula": "not city_pierre_montana == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "city(X, montana) -> city(X, Y)",
+          "z3_formula": "Implies(city_butte, city_butte_white_sulphur_springs)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "city(white_sulphur_springs, montana)",
+          "z3_formula": "city_white_sulphur_springs_montana == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not city(butte, pierre)",
+          "z3_formula": "not city_butte_pierre == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not city(butte, pierre, same)",
+          "z3_formula": "not city_butte_pierre_same == True",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1290 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-908_Q13",
+    "problem": "Anne is quiet. Anne is red. Bob is kind. Bob is nice. Bob is quiet. Bob is not red. Bob is round. Charlie is big. Charlie is kind. Fiona is quiet. All round things are nice. All kind, red things are rough. If something is big then it is quiet. If something is rough then it is round. If Charlie is nice and Charlie is big then Charlie is not kind. If something is red then it is kind. If something is round and nice then it is not big.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nQuiet($x, bool) ::: Is x quiet?\nRed($x, bool) ::: Is x red?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nBig($x, bool) ::: Is x big?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nQuiet(Anne, True) ::: Anne is quiet.\nRed(Anne, True) ::: Anne is red.\nKind(Bob, True) ::: Bob is kind.\nNice(Bob, True) ::: Bob is nice.\nQuiet(Bob, True) ::: Bob is quiet.\nRed(Bob, False) ::: Bob is not red.\nRound(Bob, True) ::: Bob is round.\nBig(Charlie, True) ::: Charlie is big.\nKind(Charlie, True) ::: Charlie is kind.\nQuiet(Fiona, True) ::: Fiona is quiet.\n\nRules:\nRound($x, True) >>> Nice($x, True) ::: All round things are nice.\nKind($x, True) && Red($x, True) >>> Rough($x, True) ::: All kind, red things are rough.\nBig($x, True) >>> Quiet($x, True) ::: If something is big then it is quiet.\nRough($x, True) >>> Round($x, True) ::: If something is rough then it is round.\nNice(Charlie, True) && Big(Charlie, True) >>> Kind(Charlie, False) ::: If Charlie is nice and Charlie is big then Charlie is not kind.\nRed($x, True) >>> Kind($x, True) ::: If something is red then it is kind.\nRound($x, True) && Nice($x, True) >>> Big($x, False) ::: If something is round and nice then it is not big.\n\nQuery:\nRough(Fiona, False) ::: Fiona is not rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 49.0,
+      "True": 137.0,
+      "Unknown": 156.5
+    },
+    "answer_counts": {
+      "False": 1,
+      "Unknown": 7,
+      "True": 4
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules to determine whether the statement \"Fiona is not rough\" is true, false, or unknown.\n\n1. All round things are nice. \n   We don't know if Fiona is round or not, so we cannot conclude anything about Fiona yet.\n\n2. All kind, red things are rough.\n   We don't know if Fiona is kind or red, so we cannot conclude anything about Fiona yet.\n\n3. If something is big then it is quiet.\n   We don't know if Fiona is big or not, so we cannot conclude anything about Fiona yet.\n\n4. If something is rough then it is round.\n   This statement is useful, but we don't know if Fiona is rough or not, so we cannot conclude anything about Fiona yet.\n\n5. If something is red then it is kind.\n   We don't know if Fiona is red or not, so we cannot conclude anything about Fiona yet.\n\n6. If Charlie is nice and Charlie is big then Charlie is not kind.\n   This statement is not relevant to Fiona, so we can ignore it.\n\n7. If Charlie is kind. \n   This statement is not relevant to Fiona, so we can ignore it.\n\n8. If something is round and nice then it is not big.\n   This statement is not relevant to Fiona, so we can ignore it.\n\n9. Bob is round. \n   This statement is not relevant to Fiona, so we can ignore it.\n\n10. All round things are nice. \n    This statement is not relevant to Fiona, so we can ignore it.\n\n11. Fiona is quiet. \n    This statement is not relevant to Fiona being rough or not, but it might be useful later.\n\n12. Bob is not red. \n    This statement is not relevant to Fiona, so we can ignore it.\n\n13. Bob is round. \n    This statement is not relevant to Fiona, so we can ignore it.\n\n14. Fiona is round. \n    We can conclude that Fiona is round because it is given that round things are nice (1), and it is also given that all round things are nice (1). This is an unknown statement. However, it also tells us Fiona is round, so if a round thing is rough (statement 2), then Fiona is rough. \n\nSince Fiona is round, and from statement 4, if something is rough then it is round, then Fiona must be rough. \n\nSo, the statement \"Fiona is not rough\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not rough' is true, false, or unknown, we need to analyze the given information and apply the rules.\n\n1. All round things are nice. \n2. All kind, red things are rough.\n3. If something is big then it is quiet.\n4. If something is rough then it is round.\n5. If Charlie is nice and Charlie is big then Charlie is not kind.\n6. If something is red then it is kind.\n7. If something is round and nice then it is not big.\n\nFrom the given information:\n- Fiona is quiet. (Given statement)\n- All round things are nice. (Rule 1)\n- If something is big then it is quiet. (Rule 3)\n- If something is rough then it is round. (Rule 4)\n\nWe need to find the relationship between Fiona and the given rules. Since Fiona is quiet and the only rule related to being quiet is Rule 3, we can infer that Fiona might be big. However, we cannot conclude this for sure without considering other rules.\n\nSince Fiona is quiet, we can apply Rule 3, which states that if something is big, then it is quiet. However, we also have Rule 7, which states that if something is round and nice, then it is not big. But since Fiona is quiet (which might imply big) and Rule 3, we need to check if Fiona can be round.\n\nIf Fiona is round, then it would be nice (Rule 1). However, if Fiona is round and nice, it would imply that Fiona is not big (Rule 7). But we already inferred that Fiona might be big (Rule 3).\n\nTo resolve this, let's consider Rule 4, which states that if something is rough, then it is round. However, Rule 2 states that all kind, red things are rough. Since Fiona is quiet and might be big, we cannot directly conclude that Fiona is red or kind.\n\nHowever, we can conclude that Fiona is not red because if Fiona were red, it would be kind (Rule 6), but we cannot directly conclude that Fiona is kind.\n\nTo determine if Fiona is rough, we need to consider Rule 4 and Rule 2. However, we cannot conclude that Fiona is rough because we cannot conclude that Fiona is red or kind.\n\nSince we cannot conclude that Fiona is rough, we cannot conclude that Fiona is round (Rule 4). However, we cannot conclude that Fiona is not round either because we cannot conclude that Fiona is rough.\n\nNow, let's analyze the relationship between Fiona and the rules:\n- Fiona is quiet.\n- Fiona might be big (Rule 3).\n- We cannot conclude that Fiona is red or kind.\n- We cannot conclude that Fiona is round or rough.\n\nTo determine whether the statement 'Fiona is not rough' is true, false, or unknown, we need to find the relationship between Fiona and the rules that might be related to being rough.\n\nThe rules related to being rough are:\n- If something is rough then it is round. (Rule 4)\n- All kind, red things are rough. (Rule 2)\n\nHowever, we cannot conclude that Fiona is rough because we cannot conclude that Fiona is red or kind. But we cannot conclude that Fiona is not rough either because we cannot conclude that Fiona is round.\n\nTherefore, the statement 'Fiona is not rough' is unknown because we cannot conclude that Fiona is rough or not rough.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not rough\" is true, false, or unknown, we need to use the given information and the rules provided. \n\n1. All round things are nice. \n   Since Fiona is quiet, and all quiet things are not necessarily round, we cannot directly conclude Fiona's roundness. \n\n2. Fiona is quiet. \n   This information does not provide any immediate conclusions about Fiona's color, roundness, or any other property.\n\n3. If something is rough then it is round. \n   We cannot conclude whether Fiona is rough or not. However, if Fiona is rough, then we know she is round.\n\n4. All kind, red things are rough. \n   Since we do not have information about Fiona being kind or red, we cannot directly conclude her roughness.\n\n5. If something is red then it is kind. \n   We cannot conclude whether Fiona is red or not.\n\n6. Fiona is not mentioned in any of the statements about colors, roundness, or roughness directly.\n\nConsidering the given information, we have not found any direct or indirect conclusion that would allow us to determine whether Fiona is rough or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not rough\" is true, false, or unknown, we need to analyze the given information.\n\n1. We are given that all round things are nice.\n2. We are given that all kind, red things are rough.\n3. We are given that Fiona is quiet.\n4. We are given that if something is big then it is quiet. \n5. We are given that if something is rough then it is round.\n6. We are given that Charlie is big, Charlie is kind, and Charlie is nice. \n7. We are given that Charlie is not kind (from the information that if Charlie is nice and Charlie is big then Charlie is not kind).\n\nFrom point 7, we can conclude that the information given about Charlie being kind is actually false. This means that Charlie is not kind.\n\nNow, let's analyze the given information about Fiona:\n\n- We don't have any information that Fiona is big or small.\n- We don't have any information that Fiona is round or not round.\n- We don't have any information that Fiona is red or not red.\n\nNow, let's see if we can deduce any information about Fiona being rough:\n\n- We are given that all kind, red things are rough. Since we don't have any information that Fiona is kind or red, we cannot conclude that Fiona is rough based on this rule.\n- We are given that all round things are nice. Since we don't have any information that Fiona is round, we cannot conclude that Fiona is nice based on this rule.\n\nHowever, we can use the fact that if something is rough then it is round. But we cannot conclude that Fiona is rough or round because we don't have enough information.\n\nNow, let's consider the statement \"Fiona is not rough\". \n\nIf Fiona is not rough, then Fiona is not round (from the rule that if something is rough then it is round).\n\nNow, since we know that all round things are nice, we can conclude that Fiona is nice if Fiona is not round.\n\nHowever, we are given that if something is round and nice then it is not big. But we don't have any information that Fiona is round or not round, so we cannot conclude that Fiona is big or not big.\n\nNow, let's consider the statement \"Fiona is not rough\" again. \n\nWe know that if Fiona is not round, then Fiona is nice. But we don't have any information that Fiona is big or not big.\n\nWe are given that if something is big then it is quiet. But we don't have any information that Fiona is big or not big.\n\nWe are given that Fiona is quiet. However, we cannot conclude that Fiona is big or not big based on this information.\n\nSince we don't have any information that Fiona is big or not big, we cannot conclude whether the statement \"Fiona is not rough\" is true or false.\n\nTherefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and the rules provided. We'll start by analyzing the statements and rules one by one.\n\n1. Anne is quiet.\n2. Anne is red.\n3. Bob is kind.\n4. Bob is nice.\n5. Bob is quiet.\n6. Bob is not red.\n7. Bob is round.\n8. Charlie is big.\n9. Charlie is kind.\n10. Fiona is quiet.\n11. All round things are nice.\n12. All kind, red things are rough.\n13. If something is big then it is quiet.\n14. If something is rough then it is round.\n15. If Charlie is nice and Charlie is big then Charlie is not kind.\n16. If something is red then it is kind.\n17. If something is round and nice then it is not big.\n\nNow, let's analyze the statement \"Fiona is not rough.\"\n\nTo determine whether Fiona is rough or not, we need to find a rule or statement that directly relates to Fiona or the properties of rough things.\n\nFrom statement 10, we know that Fiona is quiet. However, being quiet doesn't provide any information about being rough.\n\nFrom statement 14, we know that if something is rough, then it is round. This rule is not directly applicable to Fiona, but it might help us later.\n\nFrom statement 12, we know that all kind, red things are rough. However, we don't know if Fiona is kind or red.\n\nFrom statement 16, we know that if something is red, then it is kind. This rule might be helpful if we can determine Fiona's color.\n\nFrom statement 10 and 13, we know that Fiona is quiet and big (because big things are quiet). This information might be useful later.\n\nNow, let's try to find a connection between Fiona and the properties of rough things.\n\nFrom statements 10 and 13, we know that Fiona is quiet and big. From statement 13, we can conclude that being big implies being quiet. However, being big does not necessarily imply being rough.\n\nHowever, we can use the fact that Fiona is quiet and big to create a connection with the rules that involve being big. From statement 15, we know that if Charlie is nice and Charlie is big, then Charlie is not kind. However, this statement does not directly apply to Fiona.\n\nFrom statement 17, we know that if something is round and nice, then it is not big. However, we don't know if Fiona is round or nice.\n\nLet's go back to the fact that Fiona is quiet and big. From statement 14, we know that if something is rough, then it is round. However, we don't know if Fiona is rough or round.\n\nFrom statement 14, we can conclude that if something is round, then it is rough. However, we don't know if Fiona is round.\n\nAt this point, we have a lot of information, but we still can't determine whether Fiona is rough or not.\n\nHowever, we can try to use the information we have to create a contradiction or a logical conclusion.\n\nFrom statement 10, we know that Fiona is quiet. From statement 12, we know that all kind, red things are rough. However, we don't know if Fiona is kind or red.\n\nFrom statement 16, we know that if something is red, then it is kind. However, this statement does not directly apply to Fiona.\n\nLet's assume that Fiona is red. Then, from statement 16, we know that Fiona is kind. However, from statement 12, we know that all kind, red things are rough. Therefore, if Fiona is red, then Fiona is rough.\n\nHowever, this assumption leads to a contradiction. From statement 14, we know that if something is rough, then it is round. However, from statement 11, we know that all round things are nice. Therefore, if Fiona is rough, then Fiona is round and nice. However, from statement 17, we know that if something is round and nice, then it is not big. However, we know that Fiona is big from statement 10 and 13.\n\nThis is a contradiction, and we can conclude that our assumption that Fiona is red is false.\n\nSince our assumption that Fiona is red is false, we can conclude that Fiona is not red.\n\nFrom statement 11, we know that all round things are nice. However, we don't know if Fiona is round.\n\nFrom statement 17, we know that if something is round and nice, then it is not big. However, we don't know if Fiona is round or nice.\n\nHowever, we can try to use the information we have to create a conclusion.\n\nFrom statement 14, we know that if something is rough, then it is round. However, we don't know if Fiona is rough.\n\nFrom statement 11, we know that all round things are nice. However, we don't know if Fiona is round or nice.\n\nLet's assume that Fiona is round. Then, from statement 11, we know that Fiona is nice. However, from statement 17, we know that if something is round and nice, then it is not big. However, we know that Fiona is big from statement 10 and 13.\n\nThis is a contradiction, and we can conclude that our assumption that Fiona is round is false.\n\nSince our assumption that Fiona is round is false, we can conclude that Fiona is not round.\n\nFrom statement 14, we know that if something is rough, then it is round. However, we know that Fiona is not round.\n\nFrom statement 14, we can conclude that Fiona is not rough.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not rough\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. We are given that: \n   - Fiona is quiet\n   - All round things are nice\n   - All kind, red things are rough\n   - If something is rough then it is round\n   - If something is big then it is quiet\n   - If something is red then it is kind\n   - If something is round and nice then it is not big\n\n2. We can start by analyzing the properties of Fiona:\n   - Fiona is quiet. This means Fiona is big (since if something is big then it is quiet).\n\n3. Since Fiona is big, we can conclude that Fiona is quiet (this is a tautology from the given information).\n\n4. We know that Fiona is quiet, and we need to determine if Fiona is rough. To do this, we need to consider the properties of rough things:\n   - All rough things are round (since if something is rough then it is round).\n   - We also know that Fiona is quiet (big), but we do not have any direct information about Fiona's roundness.\n\n5. However, we can use the given information to derive some properties about Fiona's roundness:\n   - If Fiona is round, then Fiona is nice (since all round things are nice).\n   - If Fiona is round and nice, then Fiona is not big (since if something is round and nice then it is not big).\n\n6. This creates a contradiction: we initially concluded that Fiona is big (quiet), but now we have a possibility that Fiona is not big (round and nice).\n\n7. We cannot conclude whether Fiona is round or not, so we cannot determine whether Fiona is nice or not. As a result, we cannot determine whether Fiona is rough or not.\n\n8. Since we cannot determine whether Fiona is rough or not, the statement \"Fiona is not rough\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve the problem, we need to determine the properties of Fiona. \n\nWe are given the following information:\n\n1. If something is big then it is quiet.\n2. If something is rough then it is round.\n3. If Charlie is nice and Charlie is big then Charlie is not kind.\n4. If something is red then it is kind.\n5. If something is round and nice then it is not big.\n6. All round things are nice.\n7. All kind, red things are rough.\n\nWe also know the following about the characters:\n- Anne is quiet.\n- Anne is red.\n- Bob is kind.\n- Bob is nice.\n- Bob is quiet.\n- Bob is not red.\n- Bob is round.\n- Charlie is big.\n- Charlie is kind.\n- Fiona is quiet.\n\nWe need to determine whether Fiona is rough. To do this, we need to determine whether Fiona is round or not. \n\nSince we know that all round things are nice (6), and Fiona is quiet, we can use the fact that all kind, red things are rough (7). However, we know that Fiona is not red because we can infer from Anne's properties. Anne is red (1) and also quiet (2). We do not have any other information about Anne being red or not, however we can see that if Anne is red then Fiona would be rough by (7) because Fiona is quiet. However since Anne is not mentioned in any other statements other than that she is quiet and red, we can use the fact that Fiona is quiet and that all big things are quiet. Since we do not have information that says Fiona is big, we can only infer that Fiona is quiet, but since we do not have any information about Fiona being big or not big, we can not determine whether Fiona is round or not.\n\nHowever, we can infer that Fiona is not rough because we know that if Fiona were round, it would be nice (6) and not big (5), and then Fiona would be round and nice, which means it would not be big (5), which contradicts the fact that if Charlie is nice and Charlie is big then Charlie is not kind (3). But Charlie is big and kind (2). Since we can not determine that Fiona is not round or that Fiona is round, we can not determine that Fiona is not rough. But we can determine that Fiona is not rough if we assume that Fiona is big. If Fiona is big, then Fiona is quiet (1), but since we do not have any information that says Fiona is not round, we can not determine whether Fiona is round or not.\n\nHowever, we can infer that Fiona is not rough if we assume that Fiona is big and we use the fact that all kind, red things are rough (7). Since we know that Fiona is quiet (2), we can use the fact that all big things are quiet (1). However, we can not determine whether Fiona is red or not because we do not have any information about Fiona being red or not. However, we can infer that Fiona is not red if we use the fact that all kind, red things are rough (7). Since we do not have any information that says Fiona is rough, we can infer that Fiona is not rough. \n\nBut if Fiona is not red, then Fiona is not kind (4). But since we do not have any information that says Fiona is not round or that Fiona is round, we can not determine whether Fiona is round or not. However, we can infer that Fiona is not round if we assume that Fiona is not big. If Fiona is not big, then Fiona is not quiet (1), but since we do not have any information that says Fiona is not quiet, we can not determine whether Fiona is quiet or not.\n\nHowever, we can infer that Fiona is not rough because we know that all kind, red things are rough (7). Since we know that Fiona is quiet (2), we can use the fact that all big things are quiet (1). However, we can not determine whether Fiona is red or not because we do not have any information about Fiona being red or not. However, we can infer that Fiona is not red if we use the fact that all kind, red things are rough (7). Since we do not have any information that says Fiona is rough, we can infer that Fiona is not rough.\n\nTherefore, the statement \"Fiona is not rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not rough\" is true, false, or unknown, we need to use the given information step by step.\n\n1. We know that \"If something is rough then it is round.\" \n   Let's call the statement we're examining \"Fiona is not rough.\" \n   If Fiona is not rough, then it does not follow the rule that if something is rough, then it is round. \n   Therefore, we can conclude that Fiona is not round.\n\n2. We know that \"All round things are nice.\" \n   Since Fiona is not round (from step 1), Fiona is not nice.\n\n3. We know that \"Fiona is quiet.\" \n   We cannot conclude anything about Fiona from this statement, but we will use it later.\n\n4. We know that \"If something is big then it is quiet.\" \n   We also know that \"Charlie is big\" and \"Charlie is kind.\" \n   However, the rule \"If Charlie is nice and Charlie is big then Charlie is not kind\" is given. \n   But since we do not know if Charlie is nice, we cannot conclude that Charlie is not kind from this rule. \n   We know that \"Charlie is kind,\" but we cannot conclude that Charlie is not nice because we do not have information that says Charlie is not nice. \n   However, we do know that \"If something is kind, then it is not big.\" \n   Since Charlie is kind, Charlie is not big.\n\n5. We know that \"Charlie is big\" (from the given information). \n   Since we concluded in step 4 that Charlie is not big, we have a contradiction. \n   This means that the information given is inconsistent, and we cannot conclude anything about Fiona from this information.\n\n6. We know that \"Fiona is quiet\" and \"If something is big then it is quiet.\" \n   Since we do not know if Fiona is big or not, we cannot conclude that Fiona is quiet from this rule.\n\n7. We know that \"If something is rough then it is round.\" \n   We also know that \"All kind, red things are rough.\" \n   However, we do not know if Fiona is kind or red. \n   We will use this rule later.\n\n8. We know that \"If something is red then it is kind.\" \n   We also know that \"Anne is red.\" \n   However, we do not know if Anne is kind or not. \n   We will use this rule later.\n\n9. We know that \"Fiona is quiet\" and \"Bob is quiet.\" \n   However, we do not know if Fiona is Bob or not. \n   We will use this rule later.\n\n10. We know that \"Fiona is quiet\" and \"All quiet things are nice.\" \n    However, we do not know if Fiona is nice or not. \n    We will use this rule later.\n\nFrom steps 1-10, we have not been able to conclude anything about Fiona being rough or not. \nTherefore, we cannot determine whether the statement \"Fiona is not rough\" is true or false. \nThe answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to break it down step by step and use the given information.\n\n1. All round things are nice. \nWe know this, but we don't have any information about Fiona yet.\n\n2. All kind, red things are rough.\nWe know this, but we don't have any information about Fiona yet.\n\n3. If something is big then it is quiet.\nWe don't have any information about Fiona being big, so we can't use this rule yet.\n\n4. If something is rough then it is round.\nWe don't have any information about Fiona being rough, so we can't use this rule yet.\n\n5. If something is red then it is kind.\nWe know this, but we don't have any information about Fiona yet.\n\n6. If something is round and nice then it is not big.\nWe don't have any information about Fiona being round and nice, so we can't use this rule yet.\n\n7. Charlie is big. Charlie is kind.\nFrom this, we can't determine if Charlie is nice or not. However, we can use the following rule to create a contradiction: If Charlie is nice and Charlie is big then Charlie is not kind. This creates a contradiction, so we can conclude that Charlie is not nice.\n\n8. Fiona is quiet. \nWe don't have any information about Fiona being big or not, so we can't use this rule yet.\n\n9. Anne is quiet. \nWe don't have any information about Anne being big or not, so we can't use this rule yet.\n\n10. Bob is kind. Bob is nice.\nFrom this, we can conclude that Bob is not quiet, because if Bob is kind, then he is not big (rule 3), and if he is not big then he is not quiet (rule 3).\n\n11. Bob is quiet.\nThis contradicts our previous conclusion, so we can conclude that Bob is not kind.\n\n12. Bob is round.\nWe don't have any information about Bob being big or not, so we can't use this rule yet.\n\n13. Bob is not red.\nWe don't have any information about Bob being red or not, so we can't use this rule yet.\n\n14. Charlie is big. \nWe know this, but we don't have any information about Charlie being round or not, so we can't use this rule yet.\n\n15. Charlie is kind.\nWe know this, but we don't have any information about Charlie being round or not, so we can't use this rule yet.\n\n16. Fiona is red. \nFrom rule 5, we can conclude that Fiona is kind.\n\n17. All kind, red things are rough.\nFrom rule 16, we can conclude that Fiona is rough.\n\nNow, we have the following information:\n- Fiona is rough.\n- If something is rough then it is round (rule 4).\n\nFrom this, we can conclude that Fiona is round.\n\nNow, we have the following information:\n- Fiona is round.\n- All round things are nice (rule 1).\n\nFrom this, we can conclude that Fiona is nice.\n\nNow, we have the following information:\n- Fiona is nice.\n- If something is round and nice then it is not big (rule 6).\n\nFrom this, we can conclude that Fiona is not big.\n\nNow, we have the following information:\n- Fiona is not big.\n- If something is big then it is quiet (rule 3).\n\nWe don't have any information about Fiona being quiet or not, so we can't use this rule yet.\n\nHowever, we already know that Fiona is quiet (rule 8).\n\nWe have now concluded that Fiona is quiet, round, nice, and not big.\n\nNow, we can conclude that Fiona is not rough (because if Fiona is not big, then she is not round, because all round things are nice and all nice things are not big, so Fiona is not round, and if Fiona is not round, then she is not rough, because all rough things are round).\n\nTherefore, the statement \"Fiona is not rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine if the statement \"Fiona is not rough\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the given statements, we can derive the following facts:\n\n1. All round things are nice. \n2. All kind, red things are rough. \n3. If something is round and nice then it is not big.\n4. If Charlie is nice and Charlie is big then Charlie is not kind.\n5. If something is red then it is kind.\n6. If something is big then it is quiet.\n7. If something is rough then it is round.\n\nWe know the following about Charlie:\n\n- Charlie is big (from statement 3)\n- Charlie is kind (from statement 3)\n- Charlie is nice (from statement 3)\n\nFrom statement 4, we can conclude that since Charlie is big and nice, Charlie is not kind. However, this is a contradiction to the given fact that Charlie is kind. This means we can't use this fact as it is contradictory.\n\nWe know the following about Anne:\n\n- Anne is quiet.\n- Anne is red.\n\nFrom statement 2, we can conclude that all kind, red things are rough. However, from statement 5, we can conclude that if something is red then it is kind. This means Anne is both red and kind. Therefore, Anne is rough (from statement 2).\n\nWe know the following about Fiona:\n\n- Fiona is quiet.\n\nSince Fiona is quiet, we can conclude that Fiona is big (from statement 6).\n\nWe know the following about Bob:\n\n- Bob is kind.\n- Bob is nice.\n- Bob is quiet.\n- Bob is not red.\n- Bob is round.\n\nSince Bob is round and nice, we can conclude that Bob is not big (from statement 3).\n\nNow, let's analyze the statement \"Fiona is not rough.\"\n\nSince Fiona is big (from the analysis above), we can conclude that Fiona is quiet (from statement 6). However, being quiet does not give us any information about whether Fiona is rough or not.\n\nFrom statement 2, we know that all kind, red things are rough. However, we do not know whether Fiona is kind or red.\n\nFrom statement 5, we know that if something is red then it is kind. However, we do not know whether Fiona is red.\n\nFrom statement 7, we know that if something is rough then it is round. However, we do not know whether Fiona is rough.\n\nSince we do not have enough information to determine whether Fiona is rough or not, we cannot conclude whether the statement \"Fiona is not rough\" is true or false.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and the rules to determine whether Fiona is not rough.\n\n1. Given statements:\n   - Anne is quiet.\n   - Anne is red.\n   - Bob is kind.\n   - Bob is nice.\n   - Bob is quiet.\n   - Bob is not red.\n   - Bob is round.\n   - Charlie is big.\n   - Charlie is kind.\n   - Fiona is quiet.\n   - All round things are nice.\n   - All kind, red things are rough.\n   - If something is big then it is quiet.\n   - If something is rough then it is round.\n   - If Charlie is nice and Charlie is big then Charlie is not kind.\n   - If something is red then it is kind.\n   - If something is round and nice then it is not big.\n\n2. Determine whether Fiona is rough or not.\n   - We know Fiona is quiet.\n   - We don't have any information about Fiona's color (red or not red), so we can't use the rule that all kind, red things are rough.\n\n3. Since we don't have enough information about Fiona's color, we cannot directly apply the rules to determine whether Fiona is rough or not.\n   - However, we can start by trying to determine whether Fiona is round or not. If Fiona is round, then she is nice (because all round things are nice).\n   - If Fiona is round and nice, then she is not big (because all round and nice things are not big).\n   - If Fiona is not big, then she is not quiet (because if something is big then it is quiet). But we know Fiona is quiet, so this is a contradiction. Therefore, Fiona is not round.\n\n4. Since Fiona is not round, she cannot be rough (because all round things are rough).\n   - Therefore, Fiona is not rough.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Fiona is not rough, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Anne is quiet. (A)\n   - Anne is red. (B)\n   - Bob is kind. (C)\n   - Bob is nice. (D)\n   - Bob is quiet. (E)\n   - Bob is not red. (F)\n   - Bob is round. (G)\n   - Charlie is big. (H)\n   - Charlie is kind. (I)\n   - Fiona is quiet. (J)\n   - All round things are nice. (K)\n   - All kind, red things are rough. (L)\n   - If something is big then it is quiet. (M)\n   - If something is rough then it is round. (N)\n   - If Charlie is nice and Charlie is big then Charlie is not kind. (O)\n   - If something is red then it is kind. (P)\n   - If something is round and nice then it is not big. (Q)\n\n2. We are given the following statements that are relevant to our problem:\n   - Fiona is quiet. (J)\n   - If something is rough then it is round. (N)\n   - If something is round and nice then it is not big. (Q)\n\n3. Now, we will analyze Fiona:\n   - We know Fiona is quiet (J), but this does not provide any information about Fiona being rough or round.\n   - Since Fiona is quiet, we can use the statement 'If something is big then it is quiet' (M) to conclude that Fiona is not big. However, we do not have any information about Fiona being big or not big directly.\n   - We do not have any information about Fiona being round or not round directly.\n   - We do not have any information about Fiona being nice or not nice directly.\n\n4. To conclude whether Fiona is not rough, we need to analyze the possibilities for Fiona being rough or not rough.\n\n   If Fiona is rough, then Fiona is round (N). However, we do not know if Fiona is round or not round.\n\n   If Fiona is not rough, then Fiona is not round (by negation of N). This implies that we cannot conclude that Fiona is round or not round.\n\n5. Since we do not have any information about Fiona being round or not round, we cannot conclude whether Fiona is rough or not rough.\n\nTherefore, the statement 'Fiona is not rough' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_fiona, red_fiona), rough_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_fiona, kind_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_fiona, red_fiona), rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_fiona, kind_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> Not(big(X))",
+          "z3_formula": "Implies(And(round_fiona, nice_fiona), Not(big_fiona))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_fiona, red_fiona), rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_fiona, kind_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_fiona, red_fiona), rough_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie) == True",
+          "z3_formula": "big_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie) == True",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie) == True",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(kind(charlie))",
+          "z3_formula": "Not(kind_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "Not(big(fiona))",
+          "z3_formula": "Not(big_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona)) -> nice(fiona)",
+          "z3_formula": "Implies(Not(round_fiona), nice_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "Not(big(fiona))",
+          "z3_formula": "Not(big_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Not(big(fiona))",
+          "z3_formula": "Not(big_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not big(X)",
+          "z3_formula": "Implies(And(round_fiona, nice_fiona), Not(big_fiona))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_fiona, red_fiona), rough_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_fiona, kind_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(fiona)",
+          "z3_formula": "Not(rough_fiona) == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_fiona, red_fiona), rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> Not(big(X))",
+          "z3_formula": "Implies(And(round_fiona, nice_fiona), Not(big_fiona))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_fiona, kind_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> Not(big(X))",
+          "z3_formula": "Implies(And(round_fiona, nice_fiona), Not(big_fiona))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bob)",
+          "z3_formula": "Not(red_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_X, quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> not kind(X)",
+          "z3_formula": "Implies(And(kind_X, big_X), Not(kind_X))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_X, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not big(X)",
+          "z3_formula": "Implies(And(round_X, nice_X), Not(big_X))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X)",
+          "z3_formula": "round_X == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_X, red_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(fiona)",
+          "z3_formula": "Not(rough_fiona) == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> not kind(X)",
+          "z3_formula": "Implies(And(nice_charlie, big_charlie), not kind_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not big(X)",
+          "z3_formula": "Implies(kind_charlie, not big_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not big(charlie)",
+          "z3_formula": "not big_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "contradiction",
+          "z3_formula": "And(big_charlie, not big_charlie) == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(And(rough_fiona, round_fiona), And(And(quiet_fiona, big_fiona), quiet_fiona))) == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_fiona, red_fiona), rough_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(And(rough_fiona, round_fiona), And(And(quiet_fiona, big_fiona), quiet_fiona))) == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_anne, kind_anne)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(And(rough_fiona, round_fiona), And(And(quiet_fiona, big_fiona), quiet_fiona))) == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(And(rough_fiona, round_fiona), And(And(quiet_fiona, big_fiona), quiet_fiona))) == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> nice(X)",
+          "z3_formula": "Implies(quiet_fiona, nice_fiona)",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(And(rough_fiona, round_fiona), And(And(quiet_fiona, big_fiona), quiet_fiona))) == True",
+          "source_step": 28
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round_fiona",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice_fiona",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not big(X)",
+          "z3_formula": "Implies(And(round_fiona, nice_fiona), not big_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not big_fiona",
+          "z3_formula": "not big_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet_fiona",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not big(X) -> not quiet(X)",
+          "z3_formula": "Implies(not big_fiona, not quiet_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet_fiona",
+          "z3_formula": "not quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not rough(X) -> not round(X)",
+          "z3_formula": "Implies(not rough_fiona, not round_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not rough_fiona",
+          "z3_formula": "not rough_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_fiona, rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough_fiona",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not rough_fiona == True",
+          "z3_formula": "not rough_fiona == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_anne, red_anne), rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) & nice(X) -> not big(X)",
+          "z3_formula": "Implies(And(round_bob, nice_bob), not big_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) & big(X) -> not kind(X)",
+          "z3_formula": "Implies(And(nice_charlie, big_charlie), not kind_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_charlie, kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == False",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(fiona)",
+          "z3_formula": "not rough_fiona == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bob)",
+          "z3_formula": "Not(red_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_X, nice_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_X, red_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_X, quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> Not(big(X))",
+          "z3_formula": "Implies(And(kind_X, nice_X), Not(big_X))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_X, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> Not(big(X))",
+          "z3_formula": "Implies(And(round_X, nice_X), Not(big_X))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(fiona)",
+          "z3_formula": "Not(rough_fiona) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(bob))",
+          "z3_formula": "not(red_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_X, nice_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_X, red_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_X, quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> not(big(X))",
+          "z3_formula": "Implies(And(nice_X, round_X), not(big_X))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(charlie) & big(charlie) -> not(kind(charlie))",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), not(kind_charlie))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_X, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not(big(X))",
+          "z3_formula": "Implies(And(round_X, nice_X), not(big_X))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(fiona))",
+          "z3_formula": "not(rough_fiona) == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(big(fiona))",
+          "z3_formula": "not(big_fiona) == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(fiona))",
+          "z3_formula": "not(round_fiona) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(fiona))",
+          "z3_formula": "not(rough_fiona) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(fiona))",
+          "z3_formula": "not(rough_fiona) == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 193,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 46
+    },
+    "maxsat_stats": {
+      "satisfied": 42,
+      "excluded": 4,
+      "total_weight": 169,
+      "solve_time_ms": 1.4560660347342491
+    },
+    "timing": {
+      "trace_gen_s": 14.057,
+      "extraction_s": 31.981,
+      "dedup_s": 1.717,
+      "maxsat_s": 0.004,
+      "total_s": 47.76
+    }
+  }
+}

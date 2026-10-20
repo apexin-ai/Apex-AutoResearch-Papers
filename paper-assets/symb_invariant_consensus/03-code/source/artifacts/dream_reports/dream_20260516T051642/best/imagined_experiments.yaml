@@ -1,0 +1,685 @@
+tier: best
+narrative_guidance: '原始framing完全成立。三条claim均有统计支撑：(1) SICA在200+问题上显著优于SC， tiebreaking机制通过K消融得到因果验证；(2)
+  operating regime通过14B/7B/QwQ三点 清晰划分，C0阈值20%有实证支撑；(3) C0作为zero-cost predictor在3个模型上
+  展现强相关。论文以"When Does Symbolic Consensus Help?"为主线， tiebreaking是mechanism section，operating
+  regime是main contribution， C0是practical takeaway。EMNLP主会完全够格。
+
+  '
+imagined_experiments:
+- name: sica_expanded_14b
+  plan_id: exp-001
+  description: '在Qwen2.5-14B-Instruct上将评估集从60题扩展到204题（FOLIO 102题 + ProofWriter D5
+    102题）， K=12, T=0.7。与D012的60题数据合并做统计检验。
+
+    '
+  expected_results:
+    n_total: 204
+    n_folio: 102
+    n_proofwriter: 102
+    K: 12
+    sica_accuracy_combined: 0.745
+    sc_accuracy_combined: 0.706
+    sica_sc_gap_pp_combined: 3.9
+    folio_sica: 0.794
+    folio_sc: 0.725
+    folio_gap_pp: 6.9
+    proofwriter_sica: 0.696
+    proofwriter_sc: 0.686
+    proofwriter_gap_pp: 1.0
+    c0_combined: 0.51
+    c0_folio: 0.54
+    c0_proofwriter: 0.48
+    bootstrap_p_combined: 0.023
+    bootstrap_p_folio: 0.018
+    bootstrap_p_proofwriter: 0.34
+    tiebreak_questions: 17
+    tiebreak_sica_wins: 13
+    tiebreak_sica_win_rate: 0.765
+    c1_extraction_rate: 0.98
+    c2_contradiction_problems: 112
+    maxsat_exclusion_rate: 0.031
+    wall_time_min: 210
+  result_rationale: '60题D012中FOLIO的+6.7pp来自4/30题的tiebreak翻转。在102题上，tiebreak事件按比例 出现约8-9次（C0≈54%意味着约55题有多候选，其中K=12时约15%形成精确tie），
+    SICA在其中约76%的case胜出（MAX-SAT权重正确选择了约束更一致的答案）。 6.9pp的gap略高于60题的6.7pp，因为更大样本包含了更多FOLIO中语义复杂的多步推理题，
+    这些题上14B的trace多样性更高（更多tie机会）。ProofWriter从0pp上升到1.0pp： D012的30题PW结果为0pp并非PW上SICA无效，而是30题中碰巧没有tiebreak翻转成功。
+    扩展到102题后，约4-5个PW tiebreak中有2-3个SICA胜出，产生了小但正的gap。 PW的gap小于FOLIO因为PW的推理链结构更模板化（depth-5推理步骤较固定），
+    导致即使有多候选，约束质量的区分度不如FOLIO的自然语言推理场景。 合并204题的bootstrap p=0.023达到p<0.05，因为FOLIO的强信号主导了combined结果。
+    PW单独的p=0.34未达显著——这是预期的，论文中呈现为"正向趋势但需更大样本确认"， 重点放在combined和FOLIO的显著性上。
+
+    '
+  tables:
+  - name: 'Table 1: SICA vs SC Accuracy (Expanded, N=204)'
+    columns:
+    - Dataset
+    - N
+    - SC Acc
+    - SICA Acc
+    - Gap (pp)
+    - p-value
+    - C0
+    rows:
+    - - FOLIO
+      - 102
+      - 0.725
+      - 0.794
+      - '+6.9'
+      - 0.018
+      - 0.54
+    - - ProofWriter-D5
+      - 102
+      - 0.686
+      - 0.696
+      - '+1.0'
+      - 0.34
+      - 0.48
+    - - Combined
+      - 204
+      - 0.706
+      - 0.745
+      - '+3.9'
+      - 0.023
+      - 0.51
+  - name: 'Table 2: Tiebreak Analysis'
+    columns:
+    - Metric
+    - Value
+    rows:
+    - - Total questions with ties (K=12)
+      - 17
+    - - SICA wins on ties
+      - 13
+    - - SC wins on ties
+      - 4
+    - - SICA tiebreak win rate
+      - 76.5%
+    - - SICA gain from non-tie questions
+      - 0.0pp
+  figures_description:
+  - 'Figure 1: Per-question SICA-SC accuracy difference heatmap (204题), 按C0排序。清晰可见C0>0.5区域集中了所有正向gain，C0=0区域SICA≡SC。'
+  - 'Figure 2: Bootstrap distribution of SICA-SC gap (10000 resamples), combined和FOLIO两个panel。FOLIO的95%
+    CI完全在0以上 [+1.8, +12.1]，combined的CI为 [+0.5, +7.3]。'
+  analysis: '这是论文的基础实验。204题的p=0.023确立了统计显著性，彻底解决了60题p=0.317的脆弱性问题。 关键发现：SICA的gain
+    100%来自tiebreak问题——在非tie问题上SICA与SC答案完全一致。 这不是弱点而是机制清晰性的证据：SICA是principled tiebreaker，不是magic
+    ensemble。 ProofWriter的+1.0pp虽小但为正，消除了"单域有效"的攻击面。论文中可以说 "SICA在两个逻辑推理benchmark上均展现正向gain，在FOLIO上达到统计显著"。
+
+    '
+- name: sica_k_ablation_14b
+  plan_id: exp-002
+  description: '在D012的60题上测试K=6,8,12,16,20五个值（加上已有K=12作为baseline）， 分析tiebreak频率与SICA
+    gain的关系。重点：偶数K vs 奇数K（如果加入K=9,11对比）。
+
+    '
+  expected_results:
+    k_values_tested:
+    - 6
+    - 8
+    - 12
+    - 16
+    - 20
+    results_by_k:
+      k6:
+        sica_acc: 0.717
+        sc_acc: 0.683
+        gap_pp: 3.4
+        tie_count: 6
+        tie_sica_wins: 5
+        c0: 0.5
+      k8:
+        sica_acc: 0.733
+        sc_acc: 0.7
+        gap_pp: 3.3
+        tie_count: 5
+        tie_sica_wins: 4
+        c0: 0.52
+      k12:
+        sica_acc: 0.733
+        sc_acc: 0.7
+        gap_pp: 3.3
+        tie_count: 4
+        tie_sica_wins: 3
+        c0: 0.53
+      k16:
+        sica_acc: 0.75
+        sc_acc: 0.7
+        gap_pp: 5.0
+        tie_count: 7
+        tie_sica_wins: 6
+        c0: 0.55
+      k20:
+        sica_acc: 0.75
+        sc_acc: 0.717
+        gap_pp: 3.3
+        tie_count: 5
+        tie_sica_wins: 4
+        c0: 0.55
+    correlation_tiecount_vs_gap_r: 0.82
+    correlation_k_vs_c0_r: 0.88
+    odd_k_test_k9:
+      gap_pp: 0.0
+      tie_count: 0
+      note: 奇数K下majority vote无精确tie，SICA≡SC
+    wall_time_hours: 4.5
+  result_rationale: 'tiebreak频率机制的因果检验。偶数K产生精确tie的概率取决于K和候选分布： K=6时，2候选各3票的概率较高（C(6,3)×0.5^6≈31%对于50/50
+    split），产生约6个tie； K=8时概率略降（C(8,4)×0.5^8≈27%），但更多trace采样使C0略升，tie仍有5个； K=16时，虽然单题精确tie概率降低（C(16,8)×0.5^16≈20%），但更多trace带来
+    更多多候选问题（C0升至0.55），且tie时SICA有更多约束可用（16条trace的MAX-SAT 比6条更robust），win rate从K=6的83%升至K=16的86%。K=20时SC自身精度也上升
+    （更多vote趋向正确答案），gap回落。关键机制证据：K=9（奇数）时tie=0，gap=0， 因为majority vote在奇数K下总有唯一赢家，SICA无介入空间。这是最干净的因果证据——
+    同样的数据、同样的模型，仅K的奇偶性就决定了SICA是否有gain。 r=0.82的tiecount-gap相关说明SICA gain几乎完全由tiebreak频率驱动。
+
+    '
+  tables:
+  - name: 'Table 3: K Ablation Results (N=60, 14B-Instruct)'
+    columns:
+    - K
+    - SC Acc
+    - SICA Acc
+    - Gap (pp)
+    - Ties
+    - SICA Tie Wins
+    - C0
+    rows:
+    - - 6
+      - 0.683
+      - 0.717
+      - '+3.4'
+      - 6
+      - 5
+      - 0.5
+    - - 8
+      - 0.7
+      - 0.733
+      - '+3.3'
+      - 5
+      - 4
+      - 0.52
+    - - 9 (odd)
+      - 0.7
+      - 0.7
+      - '0.0'
+      - 0
+      - N/A
+      - 0.52
+    - - 12
+      - 0.7
+      - 0.733
+      - '+3.3'
+      - 4
+      - 3
+      - 0.53
+    - - 16
+      - 0.7
+      - 0.75
+      - '+5.0'
+      - 7
+      - 6
+      - 0.55
+    - - 20
+      - 0.717
+      - 0.75
+      - '+3.3'
+      - 5
+      - 4
+      - 0.55
+  figures_description:
+  - 'Figure 3a: 柱状图——tiebreak count vs K值。偶数K均有ties，K=9处ties=0（红色标注）。视觉上立即传达奇偶效应。'
+  - 'Figure 3b: 散点图——tiebreak frequency vs SICA-SC gap (pp)，标注r=0.82。每个点是一个K值。奇数K点在原点。线性趋势线清晰。'
+  - 'Figure 3c: SICA tiebreak win rate vs K。随K增大win rate微升（更多约束→更robust的MAX-SAT决策），但主要效应是tie
+    frequency而非win rate。'
+  analysis: 'K消融提供了SICA机制的因果证据链：(1) SICA gain完全来自tiebreak（非tie问题gap=0）； (2) tiebreak频率由K的奇偶性和多候选率共同决定；(3)
+    SICA在tie上的win rate>75% 说明MAX-SAT权重确实在做有意义的约束聚合而非随机选择。 论文中这构成Mechanism Section的核心：从"SICA
+    works"到"we know WHY it works"。 reviewer如果问"isn''t this just a better coin flip"，K=9的零gain数据是决定性反驳——
+    如果SICA有tie以外的gain通道，奇数K应该也有非零gap。
+
+    '
+- name: tiebreak_baseline_analysis
+  plan_id: exp-003
+  description: '在所有可用数据上比较三种tiebreak策略：SICA (MAX-SAT weighted)、SC-random（随机打破tie）、
+    SC-deterministic（按字母序/固定规则打破tie）。CPU-only重分析。
+
+    '
+  expected_results:
+    n_total_60q: 60
+    n_tie_questions_60q: 4
+    sica_acc_on_ties: 0.75
+    sc_random_acc_on_ties: 0.375
+    sc_deterministic_acc_on_ties: 0.25
+    sica_overall: 0.733
+    sc_random_overall: 0.717
+    sc_deterministic_overall: 0.7
+    sica_vs_random_gap_pp: 1.6
+    sica_vs_deterministic_gap_pp: 3.3
+    n_total_204q: 204
+    n_tie_questions_204q: 17
+    sica_acc_on_ties_204q: 0.765
+    sc_random_acc_on_ties_204q: 0.412
+    sc_random_acc_on_ties_204q_std: 0.08
+    sc_deterministic_acc_on_ties_204q: 0.294
+    sica_vs_random_gap_pp_204q: 2.9
+    sica_vs_deterministic_gap_pp_204q: 3.9
+    random_baseline_bootstrap_p: 0.041
+    monte_carlo_runs_for_random: 1000
+  result_rationale: 'SC-deterministic在60题数据上是现有baseline（alphabetical tiebreak），已知tie上只有1/4正确。
+    SC-random的期望准确率等于tie选项中正确答案的比例：4个tie问题中，如果每题是2候选 50/50 split，random的期望准确率=0.5×(正确答案在候选中的概率)。但实际上部分tie
+    的候选答案不是均匀分布（有些tie是3路tie），使得random的期望值约37.5%。 SICA在tie上75%（3/4）显著高于random的37.5%，说明MAX-SAT权重不只是比random好，
+    而是捕捉了约束结构中的真实信号。在204题上，17个tie中SICA赢13个（76.5%）， random的蒙特卡洛模拟（1000次）显示均值41.2%±8%，SICA显著优于random（p=0.041）。
+    gap从+1.6pp（vs random）到+3.9pp（vs deterministic），说明SICA gain的约55% 来自"比random好"（MAX-SAT的真实贡献），45%来自"random比deterministic好"
+    （deterministic的选择恰好偏向错误答案）。论文需要报告vs random的gap作为 SICA overhead的实际回报。
+
+    '
+  tables:
+  - name: 'Table 4: Tiebreak Strategy Comparison (60q / 204q)'
+    columns:
+    - Strategy
+    - Tie Acc (60q)
+    - Overall (60q)
+    - Tie Acc (204q)
+    - Overall (204q)
+    rows:
+    - - SC-deterministic
+      - 25.0%
+      - 70.0%
+      - 29.4%
+      - 70.6%
+    - - SC-random (E[·])
+      - 37.5%
+      - 71.7%
+      - 41.2±8%
+      - 72.0%
+    - - SICA (MAX-SAT)
+      - 75.0%
+      - 73.3%
+      - 76.5%
+      - 74.5%
+  figures_description:
+  - 'Figure 4: 三种tiebreak策略在tie问题上的准确率对比（bar chart with error bars for random）。SICA
+    bar显著高于random的CI上界。'
+  analysis: '直接回应"random tiebreak closes the gap"的reviewer concern。数据显示： (1) SICA
+    vs random仍有显著gap（+2.9pp on 204q, p=0.041），说明MAX-SAT权重 确实提取了有用信号；(2) 即使承认部分gain来自"确定性tiebreak恰好差"，
+    SICA vs random的+2.9pp仍然是实质性改进；(3) 这进一步支持mechanism story—— 约束权重区分了推理质量高的trace和低的trace。
+
+    '
+- name: sica_7b_scaling
+  plan_id: exp-004
+  description: '在Qwen2.5-7B-Instruct上运行SICA，使用exp-001相同的问题集（或至少60题subset）， K=12, T=0.7。验证：弱模型→更高C0→更大SICA
+    gain。
+
+    '
+  expected_results:
+    model: Qwen2.5-7B-Instruct
+    n_total: 60
+    K: 12
+    sica_accuracy: 0.617
+    sc_accuracy: 0.55
+    sica_sc_gap_pp: 6.7
+    c0_multi_candidate_rate: 0.68
+    c1_extraction_rate: 0.93
+    c2_contradiction_problems: 38
+    folio_sica: 0.633
+    folio_sc: 0.567
+    folio_gap_pp: 6.6
+    proofwriter_sica: 0.6
+    proofwriter_sc: 0.533
+    proofwriter_gap_pp: 6.7
+    tiebreak_questions: 8
+    tiebreak_sica_wins: 6
+    bootstrap_p: 0.068
+    maxsat_exclusion_rate: 0.052
+    wall_time_min: 35
+  result_rationale: '7B模型比14B弱→两个效应叠加产生更大SICA gain： (1) 更高的C0（0.68 vs 14B的0.53）：7B的推理能力较弱，对同一问题产生更多样的答案
+    （K=12条trace中约8条产生多候选），这意味着更多tiebreak机会。 (2) SC baseline更低（55% vs 14B的70%）：弱模型的majority
+    vote更容易出错， 给SICA更大的改进空间。 (3) tiebreak win rate保持在75%（6/8）：MAX-SAT的约束聚合能力不依赖模型强度，
+    因为它是在约束层面做推理而非在答案层面。即使7B的约束质量略低 （c1_extraction_rate=0.93 vs 14B的1.0），MAX-SAT仍能从noise中提取signal。
+    6.7pp的gap大于14B的3.3pp，验证了C0-as-predictor的因果方向： C0更高→更多tie→更多SICA介入→更大gain。注意基线准确率从14B的70%降到55%，
+    这是预期的——7B在逻辑推理上天然更弱。但SICA把7B的62%拉到接近14B SC的70%， 这是一个有实际意义的结果（"SICA让便宜模型接近贵模型的SC性能"）。
+    bootstrap p=0.068在60题上略高于0.05，但在204题扩展后预计可达显著。
+
+    '
+  tables:
+  - name: 'Table 5: Model Scaling — SICA Effectiveness vs Model Size'
+    columns:
+    - Model
+    - Params
+    - SC Acc
+    - SICA Acc
+    - Gap (pp)
+    - C0
+    - Type
+    rows:
+    - - Qwen2.5-7B-Instruct
+      - 7B
+      - 0.55
+      - 0.617
+      - '+6.7'
+      - 0.68
+      - Instruction
+    - - Qwen2.5-14B-Instruct
+      - 14B
+      - 0.7
+      - 0.733
+      - '+3.3'
+      - 0.53
+      - Instruction
+    - - QwQ-32B
+      - 32B
+      - 0.733
+      - 0.733
+      - '0.0'
+      - 0.036
+      - Reasoning
+  figures_description:
+  - 'Figure 5a: 散点图——C0 vs SICA-SC gap，三个模型点+线性拟合。7B在右上（高C0, 高gap），QwQ在左下（低C0, 零gap），14B居中。r≈0.99的近完美线性关系。'
+  - 'Figure 5b: Operating regime图——x轴C0, y轴SICA gain。阴影区域标注''SICA effective zone''
+    (C0>20%) 和 ''degeneration zone'' (C0<5%)。三个模型点清晰落入各自区域。'
+  analysis: '7B实验是operating regime claim的关键验证。三点数据（7B/14B/QwQ）在C0-gap空间 形成近完美线性关系，建立了C0作为predictor的实证基础。更重要的是，7B的高gap
+    证明了SICA对"部署中最常见的模型"（中小规模instruction models）最有价值—— 这是实际意义的论证。论文可以说："SICA''s benefit
+    scales inversely with model capability, making it most valuable for the cost-effective
+    models practitioners actually deploy."
+
+    '
+- name: qwq_32b_operating_regime
+  plan_id: exp-005
+  description: 'QwQ-32B负面结果格式化。数据已存在（来自MVP阶段的AIME/MATH/ProofWriter/FOLIO运行）。
+
+    '
+  expected_results:
+    status: DONE — 数据已完成，无需新实验
+    c0_qwq_aime: 0.0
+    c0_qwq_math: 0.0
+    c0_qwq_folio: 0.036
+    c0_qwq_proofwriter: 0.0
+    sica_sc_gap_all_tasks: 0.0
+    key_finding: 'QwQ-32B在所有任务上C0<5%，SICA≡SC。reasoning model的chain-of-thought 过程消除了trace间的答案多样性，使得K条trace几乎总是产生相同答案。
+
+      '
+  result_rationale: '已完成实验。QwQ-32B作为reasoning model，其extended thinking过程（数千token的
+    推理链）在采样时起到了"内部self-consistency"的作用——模型在生成最终答案前 已经内部验证了多次，导致不同trace收敛到相同答案。C0≈0意味着没有tiebreak机会，
+    SICA退化为SC。这不是SICA的失败，而是operating regime边界的经验证据。
+
+    '
+  tables: []
+  figures_description:
+  - （合并到Figure 5b的operating regime图中，QwQ点标注为'Reasoning Model — Degeneration Zone'）
+  analysis: '不需要新实验。重新格式化现有数据，在论文中作为Section 4.2 "When Symbolic Consensus Degenerates"的核心证据。叙事关键：这是insight而非failure。
+
+    '
+- name: c0_diagnostic_validation
+  plan_id: exp-006
+  description: '汇总exp-001/002/004/005所有模型和K值的数据，绘制C0 vs SICA-SC gap的系统性分析。 验证C0作为zero-cost
+    predictor的claim。CPU-only。
+
+    '
+  expected_results:
+    data_points: 18
+    data_sources:
+    - '7B: K=12, 1 point'
+    - '14B: K=6,8,9,12,16,20, 6 points'
+    - 'QwQ: 4 tasks, 4 points'
+    - '14B expanded (204q): K=12, 1 point'
+    - '各K值下per-dataset拆分: ~6 additional points'
+    pearson_r_c0_vs_gap: 0.91
+    spearman_rho_c0_vs_gap: 0.88
+    c0_threshold_20pct_accuracy: 1.0
+    c0_threshold_20pct_meaning: 'C0>20%的所有配置均有正向SICA gain；C0<20%的所有配置gap≤0.5pp
+
+      '
+    linear_fit_slope: 0.11
+    linear_fit_intercept: -1.8
+    linear_fit_r2: 0.83
+    practical_rule: C0>20% → deploy SICA; C0<5% → skip (overhead not justified)
+  result_rationale: 'C0与SICA gap的高相关（r=0.91）来自一个简单的因果链：C0↑ → 更多多候选问题 → 更多potential
+    ties → 更多SICA介入机会 → 更大gain。这是near-tautological的关系， 但其实用价值在于：C0可以通过单次SC投票在零额外成本下计算（不需要运行约束提取
+    和MAX-SAT），因此它是一个真正的zero-cost predictor。18个数据点覆盖了3个模型、 6个K值、2个数据集，提供了足够的多样性来排除过拟合。
+    20%阈值的选择是empirical：在C0=20%处，期望的tie问题数量约为n×0.2×P(tie|multi-candidate)， 在K=12时约为n×0.2×0.15≈3%的问题有tie。如果这3%的tiebreak
+    win rate是75%， 总gain约为0.03×0.75×(1/n)，对于n=60这约1.5pp——勉强可检测。 低于20%则tie太少，gain不可测。
+
+    '
+  tables:
+  - name: 'Table 6: C0 as Predictor — All Configurations'
+    columns:
+    - Model
+    - K
+    - Dataset
+    - C0
+    - SICA-SC Gap (pp)
+    - Predicted Gap (pp)
+    rows:
+    - - 7B
+      - 12
+      - Combined
+      - 0.68
+      - 6.7
+      - 5.7
+    - - 14B
+      - 6
+      - Combined
+      - 0.5
+      - 3.4
+      - 3.7
+    - - 14B
+      - 12
+      - Combined
+      - 0.53
+      - 3.3
+      - 4.0
+    - - 14B
+      - 16
+      - Combined
+      - 0.55
+      - 5.0
+      - 4.3
+    - - 14B
+      - 12
+      - Expanded-204
+      - 0.51
+      - 3.9
+      - 3.8
+    - - QwQ
+      - 12
+      - FOLIO
+      - 0.036
+      - 0.0
+      - -1.4
+    - - QwQ
+      - 12
+      - AIME
+      - 0.0
+      - 0.0
+      - -1.8
+  figures_description:
+  - 'Figure 6a: C0 vs SICA-SC gap 散点图（所有18个配置），线性回归拟合线，95% CI shading。三个模型用不同marker区分。清晰的正相关趋势，QwQ
+    cluster在原点附近，7B在右上。'
+  - 'Figure 6b: C0阈值决策图——x轴C0，y轴binary {deploy SICA, skip SICA}。在C0=20%处画竖线，左侧全部是''skip''，右侧全部是''deploy''。完美分类准确率。'
+  - 'Figure 6c: 实际gap vs 线性预测gap的parity plot（y=x线）。R²=0.83标注。大多数点接近对角线。'
+  analysis: 'C0验证是论文的practical takeaway——让从业者在不运行完整SICA pipeline的情况下 判断是否值得部署。r=0.91和阈值20%的完美分类给出了一个clean且actionable的规则。
+    论文的Algorithm 2框可以是一个两步决策流程：(1) 运行SC，计算C0； (2) if C0>20%: run SICA; else: use SC
+    result directly。 这将SICA从"总是运行的overhead"变成"按需部署的工具"，直接回应overhead concern。
+
+    '
+- name: sica_72b_awq
+  plan_id: exp-007
+  description: 'Qwen2.5-72B-Instruct AWQ 4-bit量化，60题，K=12。高基线非推理模型的scaling点。 P2优先级，camera-ready时间允许则加入。
+
+    '
+  expected_results:
+    model: Qwen2.5-72B-Instruct-AWQ-4bit
+    n_total: 60
+    K: 12
+    sica_accuracy: 0.8
+    sc_accuracy: 0.783
+    sica_sc_gap_pp: 1.7
+    c0_multi_candidate_rate: 0.32
+    c1_extraction_rate: 0.99
+    folio_sica: 0.833
+    folio_sc: 0.8
+    folio_gap_pp: 3.3
+    proofwriter_sica: 0.767
+    proofwriter_sc: 0.767
+    proofwriter_gap_pp: 0.0
+    tiebreak_questions: 2
+    tiebreak_sica_wins: 2
+    bootstrap_p: 0.28
+    wall_time_min: 120
+  result_rationale: '72B instruction model的基线准确率高（SC≈78%），介于14B（70%）和QwQ（73%但reasoning
+    model） 之间。高基线意味着更少的错误答案→更少的答案多样性→更低的C0（0.32 vs 14B的0.53）。 C0=0.32仍>20%阈值，所以SICA有gain，但gain小于14B（1.7pp
+    vs 3.3pp）， 完美符合C0-gap线性关系的预测。PW上可能回到0pp（2个tie不够看到PW gain）。 这个数据点填充了Figure 5a中7B和14B之间（以及14B和QwQ之间）的空白，
+    使C0-gap关系更convincing。但60题的p=0.28不显著，所以这是supporting evidence 而非standalone claim——这就是为什么它是P2。
+
+    '
+  tables:
+  - name: 'Table 7 (camera-ready): Extended Scaling Analysis'
+    columns:
+    - Model
+    - Params
+    - Quantization
+    - SC
+    - SICA
+    - Gap
+    - C0
+    rows:
+    - - 7B-Instruct
+      - 7B
+      - FP16
+      - 0.55
+      - 0.617
+      - '+6.7'
+      - 0.68
+    - - 14B-Instruct
+      - 14B
+      - FP16
+      - 0.7
+      - 0.733
+      - '+3.3'
+      - 0.53
+    - - 72B-Instruct
+      - 72B
+      - AWQ-4bit
+      - 0.783
+      - 0.8
+      - '+1.7'
+      - 0.32
+    - - QwQ-32B
+      - 32B
+      - FP16
+      - 0.733
+      - 0.733
+      - '0.0'
+      - 0.036
+  figures_description:
+  - （72B点加入Figure 5a的C0 vs gap散点图，落在14B和QwQ之间，进一步确认线性趋势）
+  analysis: '72B数据补完了scaling story：从7B（最大gain）到14B（中等gain）到72B（小gain） 到QwQ（零gain），SICA
+    effectiveness随模型能力单调递减。但关键是这条曲线的 驱动因素不是模型大小本身，而是C0——72B虽然大但不是reasoning model，所以仍有
+    正向gain。这区分了"模型能力"和"推理范式"的效应，支持Claim 2（operating regime 由模型类型决定，非大小）。
+
+    '
+- name: constraint_quality_case_studies
+  plan_id: exp-008
+  description: '对5-10个代表性问题做定性分析：约束是否语义有意义？被排除的约束是否对应推理错误？
+
+    '
+  expected_results:
+    n_case_studies: 8
+    cases_selected:
+    - type: SICA wins tie (FOLIO)
+      count: 3
+    - type: SICA loses tie (FOLIO)
+      count: 1
+    - type: No tie, SICA=SC (FOLIO)
+      count: 2
+    - type: ProofWriter high-contradiction
+      count: 2
+    qualitative_findings:
+      constraint_semantic_validity: 6/8 cases show constraints that faithfully represent
+        key logical relationships in the problem
+      excluded_constraint_analysis: In 4/5 cases with exclusions, excluded constraints
+        correspond to identifiable reasoning errors (wrong negation, scope confusion,
+        missed premise)
+      failure_case_pattern: SICA失败的1个tie case中，错误答案的trace恰好产生了更多internally-consistent但factually-wrong的约束（自洽但错误的推理链）
+      constraint_redundancy: 约40%的约束是语义重复（同一逻辑关系的不同FOL表达），MAX-SAT的去重+权重机制处理了这种冗余
+  result_rationale: '定性分析的预期基于SICA pipeline的设计：LLM生成的FOL约束是reasoning trace的 形式化表示，因此高质量的trace应产生语义有效的约束。约束提取率c1=1.0（14B数据）
+    说明LLM在FOLIO类型的自然语言推理上能可靠地生成FOL。被排除的约束（exclusion rate≈3%） 理论上对应MAX-SAT判定为与多数约束矛盾的项——在推理任务中，这些通常是
+    错误推理步骤的形式化。定性验证这一点为SICA的"约束提取→MAX-SAT聚合"pipeline 提供了interpretability论证，回应"MAX-SAT是不是在做有意义的事情"的隐含质疑。
+
+    '
+  tables: []
+  figures_description:
+  - 'Figure 7: 两个case study的详细展示（一个SICA胜，一个SICA败）。展示原题→12条trace的答案分布→提取的约束（5-6条关键约束高亮）→MAX-SAT满足/排除结果→最终选择。类似于流程图+约束表的混合可视化。'
+  analysis: '定性分析补充了定量结果的mechanistic story。论文中放2-3个代表性case study （可在appendix放完整8个），直观展示SICA在tie上胜出的原因（正确答案的trace
+    产生了更多可满足的约束），以及SICA偶尔失败的原因（错误推理也可以是internally consistent的）。后者是honest的局限性讨论。
+
+    '
+- name: overhead_analysis
+  plan_id: exp-009
+  description: 'Wall-time分解：每个问题的生成时间、约束提取时间、MAX-SAT求解时间。 回应"overhead是否值得"的concern。
+
+    '
+  expected_results:
+    n_problems_analyzed: 60
+    avg_breakdown_per_problem_s:
+      trace_generation: 42.0
+      constraint_extraction: 12.5
+      maxsat_solving: 0.3
+      total_sica: 54.8
+      total_sc: 42.0
+    overhead_ratio: 1.3
+    overhead_breakdown_pct:
+      generation: 76.6
+      extraction: 22.8
+      solving: 0.6
+    extraction_is_parallelizable: true
+    extraction_parallel_overhead_s: 3.2
+    parallel_overhead_ratio: 1.08
+    maxsat_median_time_ms: 12
+    maxsat_max_time_ms: 340
+    maxsat_scales_with: n_constraints (linear in practice, theoretical worst-case
+      NP)
+  result_rationale: 'SICA相比SC的额外开销来自两步：约束提取（需要额外LLM调用将每条trace转换为FOL） 和MAX-SAT求解。从D012数据看，60题×12
+    traces = 720次约束提取调用，总时间约750s， 平均12.5s/问题。但这些调用是独立的，可以完全并行化——如果用12个并行worker， per-problem
+    overhead降到约3s。MAX-SAT求解（Z3 partial MAX-SAT）在约束数量<100时 通常在毫秒级完成。因此sequential overhead是30%（54.8s
+    vs 42.0s）， 但parallel overhead只有8%（45.2s vs 42.0s）。相比SC的30%（sequential）或8%（parallel）
+    额外成本，SICA在FOLIO上带来+6.9pp的准确率提升——这是高性价比的。 论文可以argue："SICA adds <10% wall-time overhead
+    when extraction is parallelized, while providing statistically significant accuracy
+    gains."
+
+    '
+  tables:
+  - name: 'Table 8: Computational Overhead Analysis'
+    columns:
+    - Component
+    - Time/Problem (s)
+    - '% of Total'
+    - Parallelizable
+    rows:
+    - - Trace Generation (K=12)
+      - 42.0
+      - 76.6%
+      - Yes (standard)
+    - - Constraint Extraction
+      - 12.5
+      - 22.8%
+      - Yes (per-trace)
+    - - MAX-SAT Solving
+      - 0.3
+      - 0.6%
+      - N/A (fast)
+    - - Total SICA
+      - 54.8
+      - 100%
+      - '-'
+    - - Total SC (baseline)
+      - 42.0
+      - '-'
+      - '-'
+    - - Sequential Overhead
+      - +12.8s (+30%)
+      - '-'
+      - '-'
+    - - Parallel Overhead
+      - +3.2s (+8%)
+      - '-'
+      - '-'
+  figures_description:
+  - 'Figure 8: Stacked bar chart——SC vs SICA的per-problem时间分解。SC只有generation bar，SICA有generation
+    + extraction + solving三段。Solving段几乎不可见（<1%）。标注parallel overhead线。'
+  analysis: Overhead分析直接回应reviewer concern。关键message： (1) MAX-SAT本身几乎零成本（<1%）——overhead完全来自约束提取的LLM调用；
+    (2) 约束提取可并行化，实际部署中overhead<10%； (3) 对比+6.9pp的FOLIO gain，8%的额外时间是高性价比的。 论文中可以framing为："The
+    symbolic reasoning component (MAX-SAT) adds negligible overhead; the cost is in
+    constraint extraction, which is embarrassingly parallel."

@@ -1,0 +1,1192 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-882_Q12",
+    "problem": "Bob is nice. Dave is big. Erin is furry. Erin is nice. Erin is rough. Harry is cold. Harry is white. All rough people are furry. If someone is rough and cold then they are white. If someone is nice then they are big. Furry, nice people are big. All big people are red. All nice, big people are rough. All furry, big people are cold. All cold, white people are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not white.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\n\nFacts:\nNice(Bob, True) ::: Bob is nice.\nBig(Dave, True) ::: Dave is big.\nFurry(Erin, True) ::: Erin is furry.\nNice(Erin, True) ::: Erin is nice.\nRough(Erin, True) ::: Erin is rough.\nCold(Harry, True) ::: Harry is cold.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nRough($x, True) >>> Furry($x, True) ::: All rough people are furry.\nRough($x, True) && Cold($x, True) >>> White($x, True) ::: If someone is rough and cold then they are white.\nNice($x, True) >>> Big($x, True) ::: If someone is nice then they are big.\nFurry($x, True) && Nice($x, True) >>> Big($x, True) ::: Furry, nice people are big.\nBig($x, True) >>> Red($x, True) ::: All big people are red.\nNice($x, True) && Big($x, True) >>> Rough($x, True) ::: All nice, big people are rough.\nFurry($x, True) && Big($x, True) >>> Cold($x, True) ::: All furry, big people are cold.\nCold($x, True) && White($x, True) >>> Rough($x, True) ::: All cold, white people are rough.\n\nQuery:\nWhite(Bob, False) ::: Bob is not white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 131.0,
+      "True": 0.0,
+      "Unknown": 140.0
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "False": 2,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Bob is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All rough people are furry. (Rule 1)\n2. If someone is rough and cold then they are white. (Rule 2)\n3. If someone is nice then they are big. (Rule 3)\n4. Furry, nice people are big. (Rule 4)\n5. All big people are red. (Rule 5)\n6. All nice, big people are rough. (Rule 6)\n7. All furry, big people are cold. (Rule 7)\n8. All cold, white people are rough. (Rule 8)\n\nWe can start by analyzing the information given about Erin, who is furry and nice.\n\n- Since Erin is furry (Rule 1) and nice (Rule 3), Erin is big (Rule 4).\n- Since Erin is big (Rule 4) and nice (Rule 3), Erin is rough (Rule 6).\n- Since Erin is big (Rule 4) and furry (Rule 1), Erin is cold (Rule 7).\n\nNow we have the following information about Erin:\n- Erin is furry.\n- Erin is nice.\n- Erin is rough.\n- Erin is cold.\n\nSince Erin is cold and white is not mentioned for Erin, we cannot determine if Erin is white or not.\n\nMoving on to Bob, who is nice.\n\n- Since Bob is nice (Rule 3), Bob is big (Rule 3).\n- Since Bob is big (Rule 3) and nice (Rule 3), Bob is rough (Rule 6).\n- Since Bob is big (Rule 3) and nice (Rule 3), Bob is not cold, as Erin is both big and nice but Erin is cold, and we cannot conclude that Bob is cold based on the given information.\n- Since Bob is big (Rule 3) and nice (Rule 3), Bob is not furry, as Erin is both big and nice but Erin is furry, and we cannot conclude that Bob is furry based on the given information.\n\nWe still cannot determine if Bob is white or not.\n\nHowever, we can deduce that Bob is not white if he is cold and we know that if someone is rough and cold then they are white (Rule 2) and Bob is not cold (we cannot conclude Bob is cold based on the given information), but if we assume Bob is cold then Bob would be white, but we cannot assume that Bob is cold.\n\nSince we cannot conclude Bob is cold or not, we cannot conclude if Bob is white or not.\n\nHowever, we can conclude that Bob is not white if we assume that Bob is rough and cold, as then he would be white (Rule 2), but we cannot assume that Bob is rough and cold.\n\nBased on the given information, we cannot determine if Bob is white or not, but we can conclude that if Bob is white then Bob must be rough and cold, and if Bob is rough and cold then he must be white.\n\nThe statement \"Bob is not white\" is unknown because we cannot determine if Bob is white or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we'll use the given statements and the rules of inference to determine whether the statement \"Bob is not white\" is true, false, or unknown.\n\nGiven statements:\n\n1. Bob is nice.\n2. Dave is big.\n3. Erin is furry.\n4. Erin is nice.\n5. Erin is rough.\n6. Harry is cold.\n7. Harry is white.\n8. If someone is rough and cold then they are white.\n9. If someone is nice then they are big.\n10. Furry, nice people are big.\n11. All big people are red.\n12. All nice, big people are rough.\n13. All furry, big people are cold.\n14. All cold, white people are rough.\n\nRules of inference:\n\n1. Modus Ponens (MP): If A then B, and A, then B.\n2. Modus Tollens (MT): If A then B, and not B, then not A.\n3. Syllogism: All A are B, and all B are C, then all A are C.\n\nStep 1: Analyze the given statements.\n\nFrom statement 9, we can infer that since Bob is nice, he is big (MP).\n\nFrom statement 10, we can infer that since Erin is furry and nice, she is big (MP).\n\nFrom statement 13, we can infer that since Erin is furry and big, she is cold (MP).\n\nFrom statement 14, we can infer that since Erin is cold and white is not mentioned, but Erin is not white is not mentioned either, we cannot infer anything about Erin being white, however, since Erin is not white, we can deduce that Erin is not cold and white.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not white\" is true, false, or unknown, we need to analyze the given information and deduce the properties of Bob.\n\nGiven information:\n1. Bob is nice.\n2. Dave is big.\n3. Erin is furry.\n4. Erin is nice.\n5. Erin is rough.\n6. Harry is cold.\n7. Harry is white.\n8. All rough people are furry.\n9. If someone is rough and cold then they are white.\n10. If someone is nice then they are big.\n11. Furry, nice people are big.\n12. All big people are red.\n13. All nice, big people are rough.\n14. All furry, big people are cold.\n15. All cold, white people are rough.\n\nFrom statement 10, we know that since Bob is nice, he must be big.\n\nFrom statement 11, we know that since Erin is furry and nice, Erin must be big. However, we already know that Erin is big from statement 10 because Erin is nice. This statement provides additional information but is not necessary to deduce properties about Bob.\n\nFrom statement 13, we know that since Bob is nice and big, he must be rough.\n\nFrom statement 14, we know that since Erin is furry and big, Erin must be cold. However, we already know that Erin is rough from statement 5, which implies that Erin must be cold from statement 9. This statement provides additional information but is not necessary to deduce properties about Bob.\n\nFrom statement 15, we know that since Harry is cold and white, he must be rough. However, we already know that Harry is rough from statement 7, which implies that Harry must be white. This statement provides additional information but is not necessary to deduce properties about Bob.\n\nNow, we have deduced the following properties about Bob:\n- Bob is nice (from statement 1).\n- Bob is big (from statement 10).\n- Bob is rough (from statement 13).\n\nHowever, we do not have enough information to determine whether Bob is white or not. \n\nTherefore, the final answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements one by one to determine the truth value of the statement \"Bob is not white.\"\n\nGiven statements:\n1. Bob is nice.\n2. Dave is big.\n3. Erin is furry.\n4. Erin is nice.\n5. Erin is rough.\n6. Harry is cold.\n7. Harry is white.\n8. All rough people are furry.\n9. If someone is rough and cold then they are white.\n10. If someone is nice then they are big.\n11. Furry, nice people are big.\n12. All big people are red.\n13. All nice, big people are rough.\n14. All furry, big people are cold.\n15. All cold, white people are rough.\n\nLet's start by analyzing the given statements and their possible implications:\n\nFrom statement 1: Bob is nice.\nFrom statement 10: If someone is nice then they are big. Therefore, Bob is big.\n\nFrom statement 11: Furry, nice people are big. Since we already know Bob is big and nice, it doesn't give us any new information.\n\nFrom statement 13: All nice, big people are rough. Since Bob is nice and big, he must be rough.\n\nNow, we have three properties of Bob: Bob is nice, big, and rough.\n\nFrom statement 14: All furry, big people are cold. Since Bob is big and we don't know if he's furry or not, we can't conclude his coldness yet.\n\nFrom statement 8: All rough people are furry. Since Bob is rough, he must be furry.\n\nNow, we have four properties of Bob: Bob is nice, big, rough, and furry.\n\nFrom statement 14: All furry, big people are cold. Since Bob is big and furry, he must be cold.\n\nFrom statement 7: Harry is white, but we don't know if Bob is white or not yet.\n\nFrom statement 9: If someone is rough and cold then they are white. Since Bob is rough and cold, he must be white.\n\nNow, let's analyze the statement \"Bob is not white.\"\n\nSince we have concluded that Bob is white, the statement \"Bob is not white\" must be false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will use the method of deduction from the given premises and the conclusion we want to draw.\n\nGiven premises:\n\n1. All rough people are furry.\n2. If someone is rough and cold then they are white.\n3. If someone is nice then they are big.\n4. Furry, nice people are big.\n5. All big people are red.\n6. All nice, big people are rough.\n7. All furry, big people are cold.\n8. All cold, white people are rough.\n\nConclusion we want to draw: Bob is not white.\n\nTo determine if the conclusion is true, false, or unknown, we need to analyze the premises and see if they provide any information about Bob.\n\nFrom premise 1, we know that all rough people are furry. \n\nFrom premise 3, we know that if someone is nice then they are big. \n\nFrom premise 4, we know that furry, nice people are big. \n\nCombining these premises, we can say that nice people are big and furry.\n\nFrom premise 5, we know that all big people are red.\n\nNow, let's analyze the premises related to Bob:\n\nFrom premise 2, we know that if someone is rough and cold then they are white.\n\nFrom premise 7, we know that all furry, big people are cold.\n\nFrom premise 8, we know that all cold, white people are rough.\n\nHowever, we don't have any information about Bob being rough, cold, or white.\n\nNow, let's analyze the premises related to Bob being nice:\n\nFrom premise 3, we know that if someone is nice then they are big.\n\nFrom premise 4, we know that furry, nice people are big.\n\nWe know that Erin is nice and furry, so Erin is big.\n\nHowever, we don't have any information about Bob being nice.\n\nSince we don't have any information about Bob being nice, we can't conclude that Bob is big or not.\n\nSince we don't have any information about Bob being rough, cold, or white, we can't conclude that Bob is white or not.\n\nHowever, we can conclude that if someone is nice and furry, they are big, and if someone is nice, they are big.\n\nWe can also conclude that all furry, big people are cold, but we don't have any information about Bob being furry or big.\n\nHowever, we do have information about Harry: Harry is cold and white.\n\nNow, let's analyze the premises related to Bob being not white:\n\nTo determine if Bob is not white, we need to find a contradiction with the premises that would lead to Bob being white.\n\nHowever, we can't find a direct contradiction with the premises that would lead to Bob being white.\n\nBut, we can conclude that if someone is nice and furry, they are big, and if someone is nice, they are big.\n\nWe also know that all furry, big people are cold, but we don't have any information about Bob being furry or big.\n\nHowever, we can conclude that all cold, white people are rough.\n\nIf we assume that Bob is not white, we can't find any information in the premises that would lead to a contradiction.\n\nHowever, we can't conclude that Bob is not white.\n\nWe can't conclude that Bob is not white because we don't have enough information about Bob.\n\nSo, the conclusion \"Bob is not white\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not white\" is true, false, or unknown, we need to analyze the given information and apply the rules of logic.\n\nFrom the given information:\n\n1. All big people are red. (Rule 1)\n2. All nice, big people are rough. (Rule 6)\n3. If someone is nice then they are big. (Rule 3)\n4. Erin is nice. (Statement)\n5. Erin is big. (From Rule 3 and Statement 4)\n6. Erin is rough. (From Rule 6 and Statement 5)\n7. All rough people are furry. (Rule 2)\n8. Erin is furry. (From Rule 7 and Statement 6)\n9. Erin is cold. (From Rule 10, All furry, big people are cold, but we don't know if Erin is big or not, but we do know that Erin is nice and big, thus Erin must be rough, thus Erin is cold)\n10. Harry is cold. (Statement)\n11. Harry is white. (Statement)\n12. If someone is rough and cold then they are white. (Rule 4)\n13. All cold, white people are rough. (Rule 10)\n\nFrom Statement 4 and Rule 3, we can conclude that Erin is big. \n\nFrom Rule 1, we know that all big people are red. However, we cannot conclude this about Bob because we do not have enough information about Bob's size.\n\nFrom Rule 3, we can conclude that if someone is nice, then they are big. However, we cannot conclude that Bob is nice or big.\n\nFrom Rule 4, we know that if someone is rough and cold, then they are white. We cannot conclude that Bob is rough and cold.\n\nFrom Rule 10, we know that all cold, white people are rough. We cannot conclude that Bob is cold, white, or rough.\n\nFrom Statement 11, we know that Harry is white. We cannot conclude that Bob is white or not white.\n\nSince we cannot conclude whether Bob is white or not white, the statement \"Bob is not white\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not white\" is true, false, or unknown, we need to analyze the given information and apply the rules of inference.\n\n1. Bob is nice. (Given)\n2. If someone is nice, then they are big. (Rule 5)\n   - Therefore, Bob is big. (Inference)\n\n3. All big people are red. (Rule 6)\n   - Therefore, Bob is red. (Inference)\n\n4. Erin is furry. (Given)\n5. Erin is nice. (Given)\n6. Erin is rough. (Given)\n7. All rough people are furry. (Rule 1)\n   - Therefore, Erin is rough because she is furry. (Redundant)\n\n8. If someone is rough and cold then they are white. (Rule 3)\n   - There is no information that Erin is cold. (No inference)\n\n9. If someone is nice then they are big. (Rule 5)\n   - We already know that Erin is nice and big. (Inference from steps 2 and 5)\n\n10. All nice, big people are rough. (Rule 7)\n    - Therefore, Erin is rough because she is nice and big. (Redundant)\n\n11. All furry, big people are cold. (Rule 8)\n    - Therefore, Erin is cold because she is furry and big. (Inference)\n\n12. Erin is furry. (Given)\n13. Erin is big. (Inference from step 2)\n14. Erin is cold. (Inference from step 11)\n\n15. All rough people are furry. (Rule 1)\n    - Therefore, Erin is rough because she is furry. (Redundant)\n\n16. If someone is rough and cold then they are white. (Rule 3)\n    - Therefore, Erin is white because she is rough and cold. (Inference)\n\nFrom the given information, we can conclude that Erin is white.\n\nNow, to determine whether the statement \"Bob is not white\" is true, false, or unknown, we need to compare the properties of Bob and Erin.\n\n- Bob is nice. (Given)\n- Erin is white. (Inference from steps 1, 2, 16)\n\nThere is no information that Bob is white or not white. Since the properties of Bob do not directly match or contradict with the properties of Erin, the statement \"Bob is not white\" is unknown.\n\nHowever, if we consider the information that Harry is cold and white, we can infer that if someone is cold and white, they are rough (Rule 2). But there is no information that links Harry to Bob.\n\nTherefore, the statement \"Bob is not white\" is unknown based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not white\" is true, false, or unknown, we need to analyze the given information and the properties of each person.\n\n1. Given information:\n   - Bob is nice.\n   - Dave is big.\n   - Erin is furry.\n   - Erin is nice.\n   - Erin is rough.\n   - Harry is cold.\n   - Harry is white.\n   - All rough people are furry. (1)\n   - If someone is rough and cold then they are white. (2)\n   - If someone is nice then they are big. (3)\n   - Furry, nice people are big. (4)\n   - All big people are red. (5)\n   - All nice, big people are rough. (6)\n   - All furry, big people are cold. (7)\n   - All cold, white people are rough. (8)\n\n2. Deductions:\n   - From (4), we know that furry, nice people are big. Since Erin is furry and nice, Erin is big.\n   - From (3), we know that if someone is nice, then they are big. Since Bob is nice, Bob is big.\n   - From (5), we know that all big people are red. Since Erin and Bob are big, Erin and Bob are red.\n   - From (7), we know that all furry, big people are cold. Since Erin is furry and big, Erin is cold.\n   - From (6), we know that all nice, big people are rough. Since Bob is nice and big, Bob is rough.\n\n3. Conclusion:\n   - Since Bob is rough and cold, and from (2) we know that if someone is rough and cold, they are white.\n   - Therefore, Bob is white.\n\nThe statement \"Bob is not white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions to determine the truth value of the statement \"Bob is not white.\"\n\nGiven statements:\n\n1. Bob is nice.\n2. Dave is big.\n3. Erin is furry.\n4. Erin is nice.\n5. Erin is rough.\n6. Harry is cold.\n7. Harry is white.\n8. If someone is rough and cold then they are white.\n9. If someone is nice then they are big.\n10. Furry, nice people are big.\n11. All big people are red.\n12. All nice, big people are rough.\n13. All furry, big people are cold.\n14. All cold, white people are rough.\n\nFrom statement 9, we can deduce that Bob is big (since Bob is nice).\n\nFrom statement 10, we can deduce that Erin is big (since Erin is furry and nice).\n\nFrom statement 12, we can deduce that Bob is rough (since Bob is nice and big).\n\nFrom statement 13, we can deduce that Erin is cold (since Erin is furry and big).\n\nFrom statement 14, we can deduce that Harry is rough (since Harry is cold and white).\n\nNow, let's analyze the statement \"Bob is not white.\"\n\nFrom statement 7, we know that Harry is white.\n\nFrom statement 8, we can deduce that Harry is not just white, but also rough (since Harry is cold and white).\n\nHowever, we can't directly deduce that Bob is not white. We only know that Bob is nice (statement 1) and rough (deduced from statement 12).\n\nWe need to find a connection between Bob's properties and his color. Unfortunately, we don't have enough information to determine Bob's color directly.\n\nHowever, we can analyze the given statements again and see if there's a hidden connection.\n\nFrom statement 13, we know that Erin is cold (since Erin is furry and big).\n\nFrom statement 14, we can deduce that Erin is rough (since Erin is cold and white is not mentioned for Erin, but Erin is cold and furry, and all furry people are not white, so Erin must be cold and rough as per statement 13 and 14).\n\nFrom statement 12, we know that all nice, big people are rough.\n\nFrom statement 9, we know that all nice people are big.\n\nFrom statement 4, we know that Erin is nice.\n\nFrom statement 3, we know that Erin is furry.\n\nCombining these statements, we can deduce that Erin is big (since Erin is nice and furry).\n\nHowever, we already knew that Erin is big (statement 10).\n\nNow, let's go back to statement 9: If someone is nice then they are big.\n\nFrom this statement, we can deduce that all nice people are big.\n\nFrom statement 12, we can deduce that all nice, big people are rough.\n\nNow, let's analyze the statement \"Bob is not white.\"\n\nSince we don't have enough information to determine Bob's color directly, we need to look for a connection between Bob's properties and his color.\n\nFrom statement 11, we know that all big people are red.\n\nFrom statement 9, we can deduce that all nice people are big.\n\nFrom statement 1, we know that Bob is nice.\n\nFrom statement 9, we can deduce that Bob is big.\n\nHowever, we can't directly deduce Bob's color from these statements.\n\nFrom statement 12, we know that all nice, big people are rough.\n\nFrom statement 1, we know that Bob is nice.\n\nFrom statement 9, we can deduce that Bob is big.\n\nFrom statement 12, we can deduce that Bob is rough.\n\nNow, let's look for a connection between Bob's properties and his color.\n\nFrom statement 11, we know that all big people are red.\n\nFrom statement 9, we can deduce that all nice people are big.\n\nFrom statement 1, we know that Bob is nice.\n\nFrom statement 9, we can deduce that Bob is big.\n\nHowever, we can't directly deduce Bob's color from these statements.\n\nWe need to look for a connection between Bob's properties and his color.\n\nFrom statement 13, we know that all furry, big people are cold.\n\nFrom statement 3, we know that Erin is furry.\n\nFrom statement 10, we can deduce that Erin is big.\n\nFrom statement 13, we can deduce that Erin is cold.\n\nHowever, we can't directly deduce Bob's color from these statements.\n\nWe need to look for a connection between Bob's properties and his color.\n\nFrom statement 14, we know that all cold, white people are rough.\n\nFrom statement 6, we know that Harry is cold.\n\nFrom statement 7, we know that Harry is white.\n\nFrom statement 14, we can deduce that Harry is rough.\n\nHowever, we can't directly deduce Bob's color from these statements.\n\nWe need to look for a connection between Bob's properties and his color.\n\nFrom statement 8, we know that if someone is rough and cold then they are white.\n\nFrom statement 12, we can deduce that Bob is rough.\n\nFrom statement 13, we can deduce that Erin is cold.\n\nHowever, we can't directly deduce Bob's color from these statements.\n\nWe need to look for a connection between Bob's properties and his color.\n\nFrom statement 8, we know that if someone is rough and cold then they are white.\n\nHowever, this statement doesn't help us determine Bob's color.\n\nWe need to look for a connection between Bob's properties and his color.\n\nFrom statement 11, we know that all big people are red.\n\nFrom statement 9, we can deduce that all nice people are big.\n\nFrom statement 1, we know that Bob is nice.\n\nFrom statement 9, we can deduce that Bob is big.\n\nHowever, we can't directly deduce Bob's color from these statements.\n\nWe need to look for a connection between Bob's properties and his color.\n\nFrom statement 13, we know that all furry, big people are cold.\n\nFrom statement 3, we know that Erin is furry.\n\nFrom statement 10, we can deduce that Erin is big.\n\nFrom statement 13, we can deduce that Erin is cold.\n\nHowever, we can't directly deduce Bob's color from these statements.\n\nWe need to look for a connection between Bob's properties and his color.\n\nFrom statement 14, we know that all cold, white people are rough.\n\nFrom statement 6, we know that Harry is cold.\n\nFrom statement 7, we know that Harry is white.\n\nFrom statement 14, we can deduce that Harry is rough.\n\nHowever, we can't directly deduce Bob's color from these statements.\n\nWe need to look for a connection between Bob's properties and his color.\n\nNow, let's re-analyze the statements.\n\nFrom statement 13, we can deduce that Erin is cold (since Erin is furry and big).\n\nFrom statement 14, we can deduce that Erin is rough (since Erin is cold).\n\nHowever, we can't directly deduce Bob's color from these statements.\n\nWe need to look for a connection between Bob's properties and his color.\n\nFrom statement 11, we know that all big people are red.\n\nFrom statement 9, we can deduce that all nice people are big.\n\nFrom statement 1, we know that Bob is nice.\n\nFrom statement 9, we can deduce that Bob is big.\n\nHowever, we can't directly deduce Bob's color from these statements.\n\nWe need to look for a connection between Bob's properties and his color.\n\nNow, let's re-analyze the statements.\n\nFrom statement 1, we know that Bob is nice.\n\nFrom statement 12, we can deduce that Bob is rough.\n\nFrom statement 9, we can deduce that all nice people are big.\n\nFrom statement 12, we can deduce that all nice, big people are rough.\n\nHowever, we can't directly deduce Bob's color from these statements.\n\nWe need to look for a connection between Bob's properties and his color.\n\nFrom statement 13, we know that all furry, big people are cold.\n\nFrom statement 3, we know that Erin is furry.\n\nFrom statement 10, we can deduce that Erin is big.\n\nHowever, we can't directly deduce Bob's color from these statements.\n\nWe need to look for a connection between Bob's properties and his color.\n\nFrom statement 11, we know that all big people are red.\n\nFrom statement 9, we can deduce that all nice people are big.\n\nFrom statement 1, we know that Bob is nice.\n\nFrom statement 9, we can deduce that Bob is big.\n\nHowever, we can't directly deduce Bob's color from these statements.\n\nWe need to look for a connection between Bob's properties and his color.\n\nNow, let's re-analyze the statements.\n\nFrom statement 12, we can deduce that Bob is rough (since Bob is nice and big).\n\nFrom statement 8, we can deduce that Bob is not white (since Bob is rough and cold).\n\nHowever, we can't directly deduce Bob's color from these statements.\n\nWe need to look for a connection between Bob's properties and his color.\n\nFrom statement 11, we know that all big people are red.\n\nFrom statement 9, we can deduce that all nice people are big.\n\nFrom statement 1, we know that Bob is nice.\n\nFrom statement 9, we can deduce that Bob is big.\n\nHowever, we can't directly deduce Bob's color from these statements.\n\nWe need to look for a connection between Bob's properties and his color.\n\nFrom statement 12, we can deduce that Bob is rough (since Bob is nice and big).\n\nFrom statement 8, we can deduce that",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not white\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. All cold, white people are rough.\n2. If someone is rough and cold then they are white.\nFrom statement 2, we can conclude that if someone is rough and cold, then they are white. This means that being white is not exclusive to just cold people.\n\n3. Harry is cold. Harry is white.\nFrom this, we can conclude that Harry is white. However, we cannot conclude that Bob is white.\n\n4. All rough people are furry.\n5. Erin is rough. Erin is furry.\nFrom statement 5, we can conclude that Erin is furry.\n\n6. Erin is nice. Erin is furry. Erin is nice.\nFrom statement 6, we can conclude that Erin is nice and furry.\n\n7. If someone is nice then they are big.\n8. Erin is nice. Erin is big.\nFrom statement 8, we can conclude that Erin is big.\n\n9. All furry, nice people are big.\n10. Erin is furry. Erin is nice. Erin is big.\nFrom statement 10, we can conclude that this statement is true, but it is not useful in determining Bob's color.\n\n11. All big people are red.\n12. Erin is big. Erin is red.\nFrom statement 12, we can conclude that Erin is red. However, we cannot conclude that Bob is red.\n\n13. All nice, big people are rough.\n14. Erin is nice. Erin is big. Erin is rough.\nFrom statement 14, we can conclude that Erin is rough.\n\n15. All furry, big people are cold.\n16. Erin is furry. Erin is big. Erin is cold.\nFrom statement 16, we can conclude that Erin is cold.\n\n17. Dave is big. \nFrom this, we can conclude that Dave is big. However, we cannot conclude that Bob is big.\n\n18. Bob is nice.\nFrom this, we can conclude that Bob is nice.\n\n19. If someone is nice then they are big.\n20. Bob is nice. Bob is big.\nFrom statement 20, we can conclude that Bob is big.\n\n21. All big people are red.\n22. Bob is big. Bob is red.\nFrom statement 22, we can conclude that Bob is red.\n\nNow, we have a problem: we've concluded that Bob is red, but we also know that all cold, white people are rough and that all rough people are furry. To determine whether Bob is not white, we need to determine whether Bob is cold or white.\n\nWe've concluded that Bob is big, and all big people are red. We've also concluded that all nice, big people are rough, but we don't know whether Bob is rough.\n\nWe can conclude that Bob is not cold because if Bob were cold, then Bob would be white. However, if Bob were white, then Bob would be rough, and we know that all furry, big people are cold. Since Bob is big and furry, we can conclude that Bob is not white.\n\nTherefore, the statement \"Bob is not white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not white\" is true, false, or unknown, we need to analyze the given information and the provided syllogisms.\n\n1. Bob is nice. (Statement 1)\n2. Dave is big. (Statement 2)\n3. Erin is furry. (Statement 3)\n4. Erin is nice. (Statement 4)\n5. Erin is rough. (Statement 5)\n6. Harry is cold. (Statement 6)\n7. Harry is white. (Statement 7)\n\nNow, we have the following syllogisms:\n\n1. If someone is rough and cold then they are white. (Syllogism 1)\n2. If someone is nice then they are big. (Syllogism 2)\n3. Furry, nice people are big. (Syllogism 3)\n4. All big people are red. (Syllogism 4)\n5. All nice, big people are rough. (Syllogism 5)\n6. All furry, big people are cold. (Syllogism 6)\n7. All cold, white people are rough. (Syllogism 7)\n\nFrom statement 3 (Erin is furry) and statement 4 (Erin is nice), we can apply syllogism 3 (Furry, nice people are big) to conclude that Erin is big.\n\nHowever, since Erin is also rough (statement 5), we can apply syllogism 5 (All nice, big people are rough) to conclude that Erin is nice and big.\n\nNow, we have two conclusions for Erin: Erin is big (from syllogism 3) and Erin is nice and big (from syllogism 5). Since syllogism 5 concludes that nice, big people are rough, we can conclude that Erin is rough, which is already given in statement 5.\n\nFrom statement 5 (Erin is rough) and statement 6 (Harry is cold), we can apply syllogism 7 (All cold, white people are rough) to conclude that Harry is not rough, but white.\n\nSince we know that Harry is white (statement 7) and not rough, we can apply syllogism 1 (If someone is rough and cold then they are white) to conclude that Harry's whiteness cannot be attributed to being rough and cold.\n\nHowever, we cannot conclude anything about Bob from the given information. Therefore, the statement \"Bob is not white\" is unknown, as we do not have enough information to determine whether Bob is white or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not white\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. We are given that:\n   - All rough people are furry.\n   - If someone is rough and cold then they are white.\n   - If someone is nice then they are big.\n   - Furry, nice people are big.\n   - All big people are red.\n   - All nice, big people are rough.\n   - All furry, big people are cold.\n   - All cold, white people are rough.\n\n2. We need to determine the color of Bob. To do that, we need to find the relationships between Bob's characteristics and the given information.\n\n3. We are given that Bob is nice. From the information, we know that if someone is nice, then they are big. So, Bob is big.\n\n4. Since Bob is big and nice, we know that he is rough (from the information that all nice, big people are rough).\n\n5. Now, we know that Bob is rough and big. From the information, we know that all rough people are furry, so Bob is furry.\n\n6. Since Bob is furry and big, we know that he is cold (from the information that all furry, big people are cold).\n\n7. Finally, we know that Bob is cold and white is unknown because there is no rule that states that all cold people are white. We can only conclude that Bob is not white because all cold, white people are rough and Bob is not rough by the rule that states \"All rough people are furry\" but it does not state that all furry people are rough.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_erin, big_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_erin, big_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_erin, nice_erin), rough_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_erin, furry_erin), cold_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), rough_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_bob, big_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_bob, nice_bob), rough_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> not cold(X)",
+          "z3_formula": "Implies(And(big_bob, nice_bob), Not(cold_bob))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> not furry(X)",
+          "z3_formula": "Implies(And(big_bob, nice_bob), Not(furry_bob))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_bob, cold_bob), white_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not white(bob)",
+          "z3_formula": "Not(white_bob) == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_erin, cold_erin), white_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_bob, big_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_erin, nice_erin), big_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_erin, big_erin), cold_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, white_harry), rough_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_dave, red_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_erin, big_erin), rough_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_erin, big_erin), cold_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, white_harry), rough_harry)",
+          "source_step": 16
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_bob, big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> furry(X)",
+          "z3_formula": "Implies(rough_bob, furry_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_bob, big_bob), cold_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_bob, cold_bob), white_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(X) -> furry(X)",
+          "z3_formula": "Implies(rough_X, furry_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_X, cold_X), white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_X, big_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_X, nice_X), big_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_X, red_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_X, big_X), rough_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_X, big_X), cold_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_X, white_X), rough_X)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not white(bob)",
+          "z3_formula": "Not(white_bob)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_X, red_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_X, big_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_X, big_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> furry(X)",
+          "z3_formula": "Implies(rough_erin, furry_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_X, cold_X), white_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_X, white_X), rough_X)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_bob, big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_bob, red_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> furry(X)",
+          "z3_formula": "Implies(rough_erin, furry_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_erin, cold_erin), white_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_erin, big_erin), cold_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> furry(X)",
+          "z3_formula": "Implies(rough_erin, furry_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_erin, cold_erin), white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(bob)",
+          "z3_formula": "unknown_bob == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> furry(X)",
+          "z3_formula": "Implies(rough_erin, furry_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_harry, cold_harry), white_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_bob, big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_erin, nice_erin), big_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_dave, red_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_bob, big_bob), rough_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_erin, big_erin), cold_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, white_harry), rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_bob, big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_bob, big_bob), rough_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_bob, cold_bob), white_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_erin, big_erin), cold_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_erin, cold_erin), white_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_harry, cold_harry), white_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_erin, big_erin), cold_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> white(X)",
+          "z3_formula": "Implies(rough_erin, white_erin)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_erin, big_erin), cold_erin)",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> white(X)",
+          "z3_formula": "Implies(rough_erin, white_erin)",
+          "source_step": 29
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 30
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_bob, cold_bob), white_bob)",
+          "source_step": 31
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 32
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 33
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == False",
+          "source_step": 34
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_erin, cold_harry), white_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_erin, big_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_erin, nice_erin), big_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_dave, red_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_erin, big_erin), rough_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_erin, big_erin), cold_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, white_harry), rough_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin) & big(erin)",
+          "z3_formula": "And(nice_erin, big_erin) == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(harry))",
+          "z3_formula": "Not(rough_harry) == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not(white(bob))",
+          "z3_formula": "Not(white_bob) == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(X) -> furry(X)",
+          "z3_formula": "Implies(rough_bob, furry_bob)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_bob, cold_bob), white_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_bob, big_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_bob, nice_bob), big_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_bob, red_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_bob, big_bob), rough_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_bob, big_bob), cold_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_bob, white_bob), rough_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not white(bob)",
+          "z3_formula": "Not(white_bob) == True",
+          "source_step": 14
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 177,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 53
+    },
+    "maxsat_stats": {
+      "satisfied": 49,
+      "excluded": 4,
+      "total_weight": 169,
+      "solve_time_ms": 1.8732193857431412
+    },
+    "timing": {
+      "trace_gen_s": 24.207,
+      "extraction_s": 40.602,
+      "dedup_s": 2.051,
+      "maxsat_s": 0.005,
+      "total_s": 66.864
+    }
+  }
+}

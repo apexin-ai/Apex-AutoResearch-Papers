@@ -1,0 +1,566 @@
+{
+  "problem": {
+    "id": "folio_64",
+    "problem": "Given the following premises:\nAll cows are bovines. Some pets are cows. If something is a bovine, then it is domesticated. No domesticated animals are alligators. Ted is an aligator.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nTed is a pet and a cow.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Cow(x) \u2192 Bovine(x))",
+      "\u2203x (Pet(x) \u2227 Cow(x))",
+      "\u2200x (Bovine(x) \u2192 Domesticated(x))",
+      "\u2200x (Domesticated(x) \u2192 \u00acAligator(x))",
+      "Aligator(ted)"
+    ],
+    "conclusion_fol": "Pet(ted) \u2227 Cow(ted)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 48.5,
+      "Unknown": 66.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "False": 5
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. All cows are bovines.\n   - This premise establishes a relationship between cows and bovines, stating that all cows belong to the category of bovines.\n\n2. Some pets are cows.\n   - This premise introduces the idea that there is an overlap between pets and cows, but it doesn't mean all pets are cows or all cows are pets.\n\n3. If something is a bovine, then it is domesticated.\n   - This premise establishes a relationship between bovines and domestication, stating that all bovines are domesticated.\n\n4. No domesticated animals are alligators.\n   - This premise establishes a relationship between domestication and alligators, stating that no domesticated animals can be alligators.\n\n5. Ted is an alligator.\n   - This premise provides information about Ted, stating that he is an alligator.\n\nNow, let's examine the conclusion \"Ted is a pet and a cow.\"\n\nFrom premise 5, we know that Ted is an alligator. However, premise 4 states that no domesticated animals are alligators. Given premise 3, if Ted were a bovine, then he would be domesticated. But since he is an alligator, he cannot be domesticated.\n\nNow, let's look at premise 2, which states that some pets are cows. This premise does not guarantee that all pets are cows or that all cows are pets. To determine the relationship between Ted and cows, we need to examine whether Ted is a pet.\n\nSince we don't have any direct information about Ted being a pet, we have to use the given premises to make an indirect inference. However, we can't conclude that Ted is a pet based on the given premises.\n\nThe conclusion is uncertain because we can't determine whether Ted is a pet or not, and even if we could, we can't conclude that he is a cow.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: All cows are bovines.\nThis premise establishes a relationship between cows and bovines, stating that all cows are indeed bovines.\n\nPremise 2: Some pets are cows.\nThis premise introduces a relationship between pets and cows, stating that some pets are cows.\n\nPremise 3: If something is a bovine, then it is domesticated.\nThis premise provides a conditional relationship between bovines and domestication, stating that if something is a bovine, then it must be domesticated.\n\nPremise 4: No domesticated animals are alligators.\nThis premise provides a direct relationship between domestication and alligators, stating that no domesticated animals are alligators.\n\nPremise 5: Ted is an alligator.\nThis premise introduces Ted, stating that he is an alligator.\n\nWe need to determine whether the conclusion \"Ted is a pet and a cow\" is true, false, or uncertain based on these premises.\n\nLet's analyze the premises and apply logical reasoning:\n\n1. Ted is an alligator (Premise 5).\n2. Alligators are not domesticated (Premise 4, indirect inference).\n3. If something is a bovine, then it is domesticated (Premise 3).\n4. All cows are bovines (Premise 1).\n5. Some pets are cows (Premise 2).\n\nWe can conclude the following:\n\n- Ted is an alligator (Premise 5).\n- Alligators are not domesticated (Premise 4, indirect inference).\n- Since Ted is an alligator, he cannot be domesticated (Premise 3 and indirect inference).\n- If Ted were a cow, he would be a domesticated animal (Premise 3 and Premise 1).\n- However, this contradicts Premise 4, which states that no domesticated animals are alligators.\n- Therefore, Ted cannot be a cow.\n\nBased on the analysis, we can conclude that the conclusion \"Ted is a pet and a cow\" is uncertain. The premises do not provide sufficient information to determine whether Ted is a pet or not. However, we can conclude with certainty that Ted is not a cow.\n\nFinal Answer:\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion \"Ted is a pet and a cow\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. All cows are bovines. \nThis premise establishes a relationship between cows and bovines. It implies that anything that is a cow is also a bovine.\n\n2. Some pets are cows.\nThis premise introduces the idea that pets can be cows, but it does not say that all pets are cows.\n\n3. If something is a bovine, then it is domesticated.\nThis premise establishes a relationship between bovines and domestication. It implies that anything that is a bovine is domesticated.\n\n4. No domesticated animals are alligators.\nThis premise establishes a relationship between domestication and alligators. It implies that alligators are not domesticated.\n\n5. Ted is an alligator.\nThis premise introduces the fact that Ted is an alligator, which we now know is not domesticated.\n\nNow, let's analyze the conclusion step by step:\n\n- Ted is a pet: This is uncertain. We know that some pets are cows (Premise 2), but we don't have any information about Ted being a pet or not.\n\n- Ted is a cow: This is uncertain. We know that some pets are cows (Premise 2), but we don't have any information about Ted being a cow or not.\n\nSince the premises do not provide any information about Ted being a pet or a cow, we cannot conclude that Ted is a pet and a cow with certainty. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: All cows are bovines.\nPremise 2: Some pets are cows.\nPremise 3: If something is a bovine, then it is domesticated.\nPremise 4: No domesticated animals are alligators.\nPremise 5: Ted is an alligator.\n\nNow, let's break down the conclusion: \"Ted is a pet and a cow.\"\n\nTo determine whether this conclusion is true, we need to consider the premises.\n\nFrom Premise 5, we know that Ted is an alligator. \n\nFrom Premise 4, we know that no domesticated animals are alligators. This implies that alligators are not domesticated animals.\n\nFrom Premise 3, we know that if something is a bovine, then it is domesticated. Therefore, all bovines must be domesticated.\n\nNow, let's consider the conclusion \"Ted is a pet and a cow.\" \n\nIf Ted were a cow, then he would be a bovine (Premise 1), which means he would be domesticated (Premise 3). However, we know that alligators are not domesticated (Premise 4). Therefore, Ted cannot be a cow.\n\nSince Ted is an alligator (Premise 5), and alligators are not domesticated (Premise 4), it is also uncertain whether Ted is a pet. We can only be certain that some pets are cows (Premise 2), but we cannot conclude that all pets are cows, and Ted is an alligator.\n\nTherefore, the conclusion \"Ted is a pet and a cow\" is uncertain because we cannot determine whether Ted is a pet or a cow based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will break it down step by step using the premises provided.\n\nPremise 1: All cows are bovines.\nPremise 2: Some pets are cows.\nPremise 3: If something is a bovine, then it is domesticated.\nPremise 4: No domesticated animals are alligators.\nPremise 5: Ted is an alligator.\n\nStep 1: Analyze Premise 1 and Premise 2\nSince some pets are cows (Premise 2), it means there could be pets that are cows. However, we cannot conclude that all pets are cows or that all cows are pets.\n\nStep 2: Analyze Premise 3\nPremise 3 states that if something is a bovine, then it is domesticated. This means all bovines are domesticated, but it does not imply that all domesticated animals are bovines.\n\nStep 3: Analyze Premise 4\nPremise 4 states that no domesticated animals are alligators. This means alligators are not domesticated.\n\nStep 4: Analyze Premise 5\nPremise 5 states that Ted is an alligator. Since alligators are not domesticated (Premise 4), Ted cannot be domesticated.\n\nStep 5: Evaluate the Conclusion\nThe conclusion is \"Ted is a pet and a cow.\" To determine if this conclusion is true, we need to check if Ted can be both a pet and a cow.\n\nFrom Premise 2, we know some pets are cows, but it does not mean Ted is a pet or a cow. From Premise 1, we know all cows are bovines. Since Ted is an alligator (Premise 5), Ted is not a bovine, and therefore not a cow.\n\nAlso, from Step 4, we know Ted cannot be domesticated. Since all cows are domesticated (Premise 3), Ted cannot be a cow.\n\nHowever, we cannot conclude that Ted is not a pet. The only information we have about Ted is that he is an alligator (Premise 5), but we do not have any information about his status as a pet.\n\nTherefore, we cannot conclude that Ted is a pet and a cow with certainty. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to evaluate the conclusion step by step using the given premises.\n\nPremise 1: All cows are bovines.\nPremise 2: Some pets are cows.\nPremise 3: If something is a bovine, then it is domesticated.\nPremise 4: No domesticated animals are alligators.\nPremise 5: Ted is an alligator.\n\nStep 1: Evaluate the premises to find any relevant information about Ted.\nFrom Premise 5, we know that Ted is an alligator.\n\nStep 2: Use Premise 4 to determine if Ted can be domesticated.\nSince alligators are not domesticated animals (Premise 4), Ted cannot be domesticated.\n\nStep 3: Use Premise 3 to determine if Ted can be a bovine.\nPremise 3 states that if something is a bovine, then it is domesticated. Since Ted is not domesticated (from Step 2), Ted cannot be a bovine.\n\nStep 4: Use Premise 1 to determine if Ted can be a cow.\nPremise 1 states that all cows are bovines. Since Ted cannot be a bovine (from Step 3), Ted cannot be a cow.\n\nStep 5: Evaluate the conclusion.\nThe conclusion is: Ted is a pet and a cow.\nFrom Step 4, we know that Ted cannot be a cow. Therefore, the conclusion is false.\n\nFinal Answer: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. All cows are bovines. \n   This premise establishes a relationship between cows and bovines, but it does not provide any information about the other premises.\n\n2. Some pets are cows. \n   This premise creates a relationship between pets and cows, but it does not specify whether all pets are cows or if there are other pets that are not cows.\n\n3. If something is a bovine, then it is domesticated. \n   This premise creates a relationship between bovines and domestication, but it does not provide any information about whether all domesticated animals are bovines.\n\n4. No domesticated animals are alligators. \n   This premise creates a relationship between domesticated animals and alligators, but it does not provide any information about whether Ted is a domesticated animal.\n\n5. Ted is an alligator. \n   This premise provides information about Ted's species.\n\nNow, let's analyze the conclusion: \"Ted is a pet and a cow.\"\n\nTo determine whether the conclusion is true or false, we need to analyze the relationships between the premises.\n\nFrom premise 5, we know that Ted is an alligator. \n\nFrom premise 4, we know that no domesticated animals are alligators. \n\nFrom premise 3, we know that if something is a bovine, then it is domesticated.\n\nFrom premise 1, we know that all cows are bovines. \n\nFrom premise 2, we know that some pets are cows.\n\nIf Ted were a cow, then it would be domesticated (from premise 3). However, since Ted is an alligator (from premise 5), it cannot be domesticated (from premise 4).\n\nThe conclusion is trying to state that Ted is both a pet and a cow. However, we have established that Ted is an alligator (from premise 5) and cannot be domesticated (from premise 4). Since some pets are cows (from premise 2), it is possible that Ted is a pet, but it cannot be a cow.\n\nTherefore, the conclusion \"Ted is a pet and a cow\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion \"Ted is a pet and a cow\" is true, false, or uncertain, we need to analyze the given premises and their implications.\n\nPremise 1: All cows are bovines.\nThis premise establishes a relationship between cows and bovines, but it does not provide any information about Ted.\n\nPremise 2: Some pets are cows.\nThis premise introduces the possibility that pets can be cows, but it does not provide any information about Ted.\n\nPremise 3: If something is a bovine, then it is domesticated.\nThis premise provides a relationship between bovines and domestication, but it does not provide any information about Ted.\n\nPremise 4: No domesticated animals are alligators.\nThis premise provides a relationship between domesticated animals and alligators, but it does not provide any information about Ted.\n\nPremise 5: Ted is an alligator.\nThis premise provides information about Ted, stating that he is an alligator.\n\nTo evaluate the conclusion \"Ted is a pet and a cow,\" we need to consider the implications of the premises.\n\nFrom Premise 2, we know that some pets are cows. However, this premise does not provide any information about Ted being a pet.\n\nFrom Premise 5, we know that Ted is an alligator. Since alligators are not domesticated (Premise 4), it is unlikely that Ted is a domesticated animal.\n\nFrom Premise 3, we know that if something is a bovine, then it is domesticated. However, since Ted is an alligator and alligators are not domesticated, it is unlikely that Ted is a bovine.\n\nConsidering the premises, we can conclude that:\n\n* Ted is an alligator (Premise 5).\n* Alligators are not domesticated (Premise 4).\n* If something is a bovine, then it is domesticated (Premise 3), but Ted is not a bovine.\n\nBased on the analysis, we can conclude that the conclusion \"Ted is a pet and a cow\" is false, because:\n\n* Ted is an alligator (Premise 5).\n* Alligators are not domesticated (Premise 4).\n* The premises do not provide any information that supports Ted being a pet or a cow.\n\nTherefore, the conclusion \"Ted is a pet and a cow\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremises:\n\n1. All cows are bovines.\n2. Some pets are cows.\n3. If something is a bovine, then it is domesticated.\n4. No domesticated animals are alligators.\n5. Ted is an alligator.\n\nLet's break down the information:\n\nFrom Premise 1, we know that cows are a type of bovine. \n\nFrom Premise 2, we know that some pets are cows, but it doesn't mean all pets are cows. It only means that there is at least one pet that is a cow.\n\nFrom Premise 3, we know that if something is a bovine, then it is domesticated.\n\nFrom Premise 4, we know that no domesticated animals are alligators. This implies that alligators are not domesticated.\n\nFrom Premise 5, we know that Ted is an alligator.\n\nNow, let's analyze the conclusion: \"Ted is a pet and a cow.\"\n\nWe know that Ted is an alligator (Premise 5). We also know that alligators are not domesticated (Premise 4). \n\nIf Ted were a cow, then it would be a domesticated animal (Premise 3). However, we already know that Ted is an alligator, which means it cannot be domesticated. Therefore, Ted cannot be a cow.\n\nWe also know that some pets are cows (Premise 2). However, we cannot conclude that Ted is a pet because we don't have any information that links Ted to being a pet. The only thing we know about Ted is that it is an alligator.\n\nTherefore, based on the given premises, we cannot determine whether Ted is a pet or not. However, we can conclude that Ted is not a cow.\n\nConclusion: The conclusion \"Ted is a pet and a cow\" is uncertain because we cannot determine whether Ted is a pet or not, but we can conclude that Ted is not a cow.\n\nHowever, looking at the question differently - we can also say that it is impossible for Ted to be a cow based on the premises. This would imply that the question is effectively false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the conclusion, let's analyze the given premises step by step.\n\n1. All cows are bovines.\n   This premise establishes a relationship between cows and bovines. It implies that every individual that is a cow is also a bovine.\n\n2. Some pets are cows.\n   This premise introduces the possibility of pets being cows. It does not imply that all pets are cows, but rather that some pets can be cows.\n\n3. If something is a bovine, then it is domesticated.\n   This premise establishes a relationship between bovines and domestication. It implies that any individual that is a bovine must be domesticated.\n\n4. No domesticated animals are alligators.\n   This premise provides information about alligators and domestication. It implies that alligators cannot be domesticated.\n\n5. Ted is an alligator.\n   This premise introduces information about Ted's species. It implies that Ted is an alligator, which is a non-domesticated animal (from premise 4).\n\nNow, let's evaluate the conclusion: \"Ted is a pet and a cow.\"\n\nFrom premise 2, we know that some pets are cows. However, this does not imply that all pets are cows, so we cannot conclude that Ted is a pet based on him being a cow. \n\nFrom premise 3, if Ted is a bovine (as per premise 1), then he must be domesticated. However, premise 4 states that no domesticated animals are alligators. Since Ted is an alligator (premise 5), he cannot be domesticated, which means he cannot be a bovine (as per premise 3). \n\nTherefore, we can conclude that Ted cannot be a cow because he is an alligator and cannot be domesticated. The conclusion \"Ted is a pet and a cow\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: All cows are bovines.\nThis premise tells us that the set of cows is a subset of the set of bovines.\n\nPremise 2: Some pets are cows.\nThis premise tells us that there is at least one pet that is a cow. However, it does not say that all pets are cows or that all cows are pets.\n\nPremise 3: If something is a bovine, then it is domesticated.\nThis premise tells us that being a bovine is sufficient for being domesticated.\n\nPremise 4: No domesticated animals are alligators.\nThis premise tells us that alligators are not domesticated animals.\n\nPremise 5: Ted is an alligator.\nThis premise tells us that Ted is an alligator, which means he is not a domesticated animal according to Premise 4.\n\nConclusion: Ted is a pet and a cow.\nTo determine whether this conclusion is true, false, or uncertain, we need to analyze the premises.\n\nFrom Premise 5, we know that Ted is an alligator. Alligators are not domesticated animals (Premise 4), and domesticated animals are bovines (Premise 3). Therefore, Ted is not a bovine.\n\nFrom Premise 2, we know that some pets are cows. However, we cannot conclude that Ted is a cow because we do not know whether he is a pet. Ted can be a pet and an alligator, but we do not have enough information to conclude that he is a cow.\n\nTherefore, the conclusion \"Ted is a pet and a cow\" is uncertain because we do not have enough information to determine whether Ted is a cow.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion \"Ted is a pet and a cow\" is true, false, or uncertain, let's break down the given premises and apply logical reasoning.\n\nPremises:\n\n1. All cows are bovines. \n2. Some pets are cows. \n3. If something is a bovine, then it is domesticated.\n4. No domesticated animals are alligators. \n5. Ted is an alligator.\n\nStep 1: \nFrom premise 1, we know that all cows are bovines. However, this premise does not directly relate to the conclusion about Ted. We need to find connections between the premises to reach the conclusion.\n\nStep 2:\nFrom premise 2, we know that some pets are cows. However, this premise does not provide enough information about Ted being a pet or a cow. We need to find connections between the premises to reach the conclusion.\n\nStep 3:\nFrom premise 3, we know that if something is a bovine, then it is domesticated. This premise provides a connection between bovines and domestication.\n\nStep 4:\nFrom premise 4, we know that no domesticated animals are alligators. Since Ted is an alligator (premise 5), it means Ted cannot be domesticated.\n\nStep 5: \nSince Ted is an alligator (premise 5) and alligators are not domesticated (from step 4), we can conclude that Ted cannot be a bovine (from premise 3).\n\nStep 6: \nNow, let's examine the conclusion \"Ted is a pet and a cow.\" If Ted is a cow, then Ted must be a bovine (from premise 1). However, we concluded in step 5 that Ted cannot be a bovine. Therefore, Ted cannot be a cow.\n\nStep 7: \nSince Ted cannot be a cow (from step 6), and some pets are cows (from premise 2), it does not necessarily mean that Ted cannot be a pet. However, we cannot conclude that Ted is a pet and a cow because Ted is not a cow.\n\nConclusion:\nBased on the given premises and logical reasoning, we cannot determine whether Ted is a pet. However, we can definitely conclude that Ted is not a cow. Therefore, the conclusion \"Ted is a pet and a cow\" is uncertain because we cannot determine whether Ted is a pet, but we can definitely conclude that Ted is not a cow.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & cow(X)",
+          "z3_formula": "And(pet_X, cow_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_X, domesticated_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "Not(domesticated_alligator)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_cows_are_bovines",
+          "z3_formula": "all_cows_are_bovines == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some_pets_are_cows",
+          "z3_formula": "some_pets_are_cows == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_ted, domesticated_ted)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_domesticated_animals_are_alligators",
+          "z3_formula": "no_domesticated_animals_are_alligators == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "ted_is_an_alligator",
+          "z3_formula": "ted_is_an_alligator == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "ted_is_not_a_cow",
+          "z3_formula": "Not(ted_is_a_cow)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_cows_are_bovines",
+          "z3_formula": "all_cows_are_bovines == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cow(X) -> bovine(X)",
+          "z3_formula": "Implies(cow_ted, bovine_ted)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some_pets_are_cows",
+          "z3_formula": "some_pets_are_cows == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_ted, domesticated_ted)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_domesticated_animals_are_alligators",
+          "z3_formula": "no_domesticated_animals_are_alligators == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "ted_is_an_alligator",
+          "z3_formula": "ted_is_an_alligator == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "pet(ted) & cow(ted)",
+          "z3_formula": "And(pet_ted, cow_ted) == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & cow(X) -> bovine(X)",
+          "z3_formula": "Implies(And(pet_ted, cow_ted), bovine_ted)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_ted, domesticated_ted)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "Not(domesticated_alligator) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not cow(ted)",
+          "z3_formula": "Not(cow_ted) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(pet(ted) & cow(ted))",
+          "z3_formula": "Or(Not(pet_ted), Not(cow_ted)) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & cow(X)",
+          "z3_formula": "And(pet_X, cow_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "Not(domesticated_alligator)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not domesticated(ted)",
+          "z3_formula": "Not(domesticated_ted)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not cow(ted)",
+          "z3_formula": "Not(cow_ted)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(cow)",
+          "z3_formula": "pet_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "Not(domesticated_alligator) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not domesticated(ted)",
+          "z3_formula": "Not(domesticated_ted) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not bovine(ted)",
+          "z3_formula": "Not(bovine_ted) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not cow(ted)",
+          "z3_formula": "Not(cow_ted) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not pet(ted) and cow(ted)",
+          "z3_formula": "And(Not(pet_ted), cow_ted) == False",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & cow(X)",
+          "z3_formula": "And(pet_X, cow_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(X) & alligator(X)",
+          "z3_formula": "Not(And(domesticated_X, alligator_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not pet(ted) & cow(ted)",
+          "z3_formula": "Not(And(pet_ted, cow_ted))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & cow(X)",
+          "z3_formula": "And(pet_ted, cow_ted)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "Not(domesticated_alligator)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not pet(ted) & not cow(ted)",
+          "z3_formula": "Not(And(pet_ted, cow_ted))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & cow(X)",
+          "z3_formula": "And(pet_X, cow_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "Not(domesticated_alligator)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not cow(ted)",
+          "z3_formula": "Not(cow_ted)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & cow(X)",
+          "z3_formula": "And(pet_X, cow_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "Not(domesticated_alligator)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not cow(ted)",
+          "z3_formula": "Not(cow_ted)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(cows, bovines)",
+          "z3_formula": "all_cows_bovines == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(pets, cows)",
+          "z3_formula": "some_pets_cows == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_ted, domesticated_ted)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligators)",
+          "z3_formula": "not_domesticated_alligators == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not bovine(ted)",
+          "z3_formula": "not_bovine_ted == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(pet_and_cow(ted))",
+          "z3_formula": "uncertain_pet_and_cow_ted",
+          "source_step": 7
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 72,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 27
+    },
+    "maxsat_stats": {
+      "satisfied": 26,
+      "excluded": 1,
+      "total_weight": 70,
+      "solve_time_ms": 1.0968400165438652
+    },
+    "timing": {
+      "trace_gen_s": 6.11,
+      "extraction_s": 13.71,
+      "dedup_s": 0.441,
+      "maxsat_s": 0.003,
+      "total_s": 20.265
+    }
+  }
+}

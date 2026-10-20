@@ -1,0 +1,1219 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-616_Q11",
+    "problem": "The bald eagle is big. The bald eagle likes the cow. The bald eagle sees the rabbit. The cow is big. The cow sees the bald eagle. The dog is big. The dog is young. The dog likes the bald eagle. The rabbit sees the bald eagle. The rabbit visits the bald eagle. If the bald eagle sees the rabbit then the rabbit is big. If something likes the bald eagle then it is blue. If something likes the rabbit and the rabbit visits the cow then the cow is young. If something visits the rabbit then it is round. If something is round and it sees the cow then the cow sees the rabbit. If something is big then it visits the cow. If something sees the rabbit then the rabbit visits the bald eagle. If something is blue then it likes the rabbit. If something likes the cow and the cow is young then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle likes the rabbit.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBig(BaldEagle, True) ::: The bald eagle is big.\nLikes(BaldEagle, Cow, True) ::: The bald eagle likes the cow.\nSees(BaldEagle, Rabbit, True) ::: The bald eagle sees the rabbit.\nBig(Cow, True) ::: The cow is big.\nSees(Cow, BaldEagle, True) ::: The cow sees the bald eagle.\nBig(Dog, True) ::: The dog is big.\nYoung(Dog, True) ::: The dog is young.\nLikes(Dog, BaldEagle, True) ::: The dog likes the bald eagle.\nSees(Rabbit, BaldEagle, True) ::: The rabbit sees the bald eagle.\nVisits(Rabbit, BaldEagle, True) ::: The rabbit visits the bald eagle.\n\nRules:\nSees(BaldEagle, Rabbit, True) >>> Big(Rabbit, True) ::: If the bald eagle sees the rabbit then the rabbit is big.\nLikes($x, BaldEagle, True) >>> Blue($x, True) ::: If something likes the bald eagle then it is blue.\nLikes($x, Rabbit, True) && Visits(Rabbit, Cow, True) >>> Young(Cow, True) ::: If something likes the rabbit and the rabbit visits the cow then the cow is young.\nVisits($x, Rabbit, True) >>> Round($x, True) ::: If something visits the rabbit then it is round.\nRound($x, True) && Sees($x, Cow, True) >>> Sees(Cow, Rabbit, True) ::: If something is round and it sees the cow then the cow sees the rabbit.\nBig($x, True) >>> Visits($x, Cow, True) ::: If something is big then it visits the cow.\nSees($x, Rabbit, True) >>> Visits(Rabbit, BaldEagle, True) ::: If something sees the rabbit then the rabbit visits the bald eagle.\nBlue($x, True) >>> Likes($x, Rabbit, True) ::: If something is blue then it likes the rabbit.\nLikes($x, Cow, True) && Young(Cow, True) >>> Blue($x, True) ::: If something likes the cow and the cow is young then it is blue.\n\nQuery:\nLikes(BaldEagle, Rabbit, True) ::: The bald eagle likes the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 163.0,
+      "Unknown": 150.0
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "True": 5
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The bald eagle likes the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle likes the cow. (Given)\n\n2. If something likes the cow then it is blue. (Rule 5)\n\n   So, the bald eagle is blue.\n\n3. If something is blue then it likes the rabbit. (Rule 8)\n\n   So, the bald eagle likes the rabbit.\n\nHowever, let's analyze another path to confirm our conclusion.\n\n1. The rabbit sees the bald eagle. (Given)\n\n2. If the bald eagle sees the rabbit then the rabbit is big. (Rule 9)\n\n   So, the rabbit is big.\n\n3. The cow is big. (Given)\n\n4. If something is big then it visits the cow. (Rule 10)\n\n   So, the cow visits the cow. (This statement is true but not relevant to our conclusion)\n\n5. The rabbit visits the bald eagle. (Given)\n\n6. If something visits the rabbit then it is round. (Rule 7)\n\n   So, the bald eagle is round. \n\n7. If something is round and it sees the cow then the cow sees the rabbit. (Rule 6)\n\n   So, the cow sees the rabbit.\n\n8. The cow sees the bald eagle. (Given)\n\n9. If something is big then it visits the cow. (Rule 10)\n\n   We already concluded that the cow is big, so the cow visits the cow, but let's consider the other big animals.\n\n10. The dog is big. (Given)\n\n11. If something is big then it visits the cow. (Rule 10)\n\n    So, the dog visits the cow.\n\n12. The dog is young. (Given)\n\n13. If something likes the rabbit and the rabbit visits the cow then the cow is young. (Rule 4)\n\n   Since the rabbit visits the cow, we need to check if the dog likes the rabbit.\n\n14. The dog likes the bald eagle. (Given)\n\n15. If something is blue then it likes the rabbit. (Rule 8)\n\n   We already concluded that the bald eagle is blue, so the bald eagle likes the rabbit. \n\n16. If something likes the rabbit and the rabbit visits the cow then the cow is young. (Rule 4)\n\n   Since the rabbit visits the cow, we need to check if the dog likes the rabbit.\n\n17. The dog likes the bald eagle. (Given)\n\n18. The dog is young. (Given)\n\nSo, we have found a conflict. The dog is young, but the cow is not young. \n\nThis means that the information provided is inconsistent, and we cannot determine whether the statement \"The bald eagle likes the rabbit\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle likes the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle is big. (Statement 1)\n   - From Statement 5, if something is big, then it visits the cow. \n   - So, the bald eagle visits the cow.\n\n2. The cow sees the bald eagle. (Statement 4)\n   - Since the bald eagle visits the cow and the cow sees the bald eagle, this information is consistent.\n\n3. The dog is big. (Statement 6)\n   - From Statement 1, the bald eagle is big.\n   - From Statement 5, if something is big, then it visits the cow. \n   - So, the dog visits the cow.\n\n4. The dog is young. (Statement 7)\n   - This statement is given directly.\n\n5. The dog likes the bald eagle. (Statement 8)\n   - From Statement 9, if something likes the bald eagle then it is blue.\n   - So, the dog is blue.\n\n6. The rabbit sees the bald eagle. (Statement 3)\n   - This statement is given directly.\n\n7. If the bald eagle sees the rabbit then the rabbit is big. (Statement 10)\n   - The bald eagle does not see the rabbit; the rabbit sees the bald eagle. \n   - This condition is not met, so we cannot conclude that the rabbit is big based on this information.\n\n8. The rabbit visits the bald eagle. (Statement 9)\n   - This statement is given directly.\n\n9. If something likes the rabbit and the rabbit visits the cow then the cow is young. (Statement 11)\n   - We do not have enough information to determine if anything likes the rabbit.\n\n10. If something visits the rabbit then it is round. (Statement 12)\n    - The bald eagle and the rabbit both visit each other, but we cannot conclude that either of them is round based on this information.\n\n11. If something is round and it sees the cow then the cow sees the rabbit. (Statement 13)\n    - We do not have enough information to determine if anything is round.\n\n12. If something is big then it visits the cow. (Statement 5)\n    - This statement is already discussed in Point 1.\n\n13. If something sees the rabbit then the rabbit visits the bald eagle. (Statement 14)\n    - The rabbit sees the bald eagle and the rabbit visits the bald eagle. \n    - This condition is met, but we cannot conclude that the rabbit visits the bald eagle based on this information.\n\n14. If something is blue then it likes the rabbit. (Statement 15)\n    - The dog is blue. \n    - From Statement 8, the dog likes the bald eagle.\n\n15. If something likes the cow and the cow is young then it is blue. (Statement 16)\n    - We do not have enough information to determine if anything likes the cow.\n\nBased on the analysis, we cannot conclude that the bald eagle likes the rabbit. The information about the bald eagle liking the rabbit is not directly given or implied in the statements. \n\nHowever, the dog likes the bald eagle, and the statement \"If something likes the bald eagle then it is blue\" implies that the dog is blue.\n\nTherefore, the statement \"The bald eagle likes the rabbit\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle likes the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle sees the rabbit. (Given)\n2. If the bald eagle sees the rabbit, then the rabbit is big. (Given)\n3. The rabbit is big. (From 1 and 2)\n4. If something likes the cow, then it is blue. (Given)\n5. If the cow is young, then the cow is big. (From previous information, the cow is big, but this is not necessary to determine whether the bald eagle likes the rabbit)\n6. The cow is big. (Given)\n7. The cow sees the bald eagle. (Given)\n8. If something is big, then it visits the cow. (Given)\n9. The cow sees the rabbit. (From 6 and 8, because the cow is big and visits the cow, which is not possible. But if the cow sees the rabbit, then the cow is not necessarily big. However, this is not necessary to determine whether the bald eagle likes the rabbit)\n10. The rabbit visits the bald eagle. (Given)\n11. If something visits the rabbit, then it is round. (Given)\n12. The bald eagle is round. (From 10 and 11)\n13. If something is round and it sees the cow, then the cow sees the rabbit. (Given)\n14. The cow sees the rabbit. (From 12 and 13)\n15. If something is blue, then it likes the rabbit. (Given)\n16. If something likes the rabbit and the rabbit visits the cow, then the cow is young. (Given)\n17. The cow is young. (From previous information, the cow is big, but we cannot determine if it's young or not from the information given)\n18. If something likes the cow and the cow is young, then it is blue. (Given)\n19. The bald eagle likes the cow. (From 7 and 18, because the bald eagle sees the cow and the cow is young)\n20. The bald eagle is blue. (From 19 and 18)\n21. If something is blue, then it likes the rabbit. (Given)\n22. The bald eagle likes the rabbit. (From 20 and 21)\n\nTherefore, the statement \"The bald eagle likes the rabbit\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle likes the rabbit\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The bald eagle sees the rabbit. (Given)\n2. If the bald eagle sees the rabbit then the rabbit is big. (Given)\n3. The rabbit is big. (Logical deduction from step 1 and 2)\n4. The cow is big. (Given)\n5. The cow sees the bald eagle. (Given)\n6. The dog is big. (Given)\n7. The dog is young. (Given)\n8. The dog likes the bald eagle. (Given)\n9. The rabbit sees the bald eagle. (Given)\n10. The rabbit visits the bald eagle. (Given)\n11. If something likes the bald eagle then it is blue. (Given)\n12. The dog likes the bald eagle. (Given)\n13. The dog is blue. (Logical deduction from step 11 and 12)\n14. If something likes the rabbit and the rabbit visits the cow then the cow is young. (Given)\n15. The rabbit likes the cow (Assumption for logical deduction)\n16. The rabbit visits the cow (Assumption for logical deduction)\n17. The cow is young. (Logical deduction from step 14, 15, and 16)\n18. If something visits the rabbit then it is round. (Given)\n19. The rabbit visits the bald eagle. (Given)\n20. The bald eagle is round. (Logical deduction from step 18 and 19)\n21. If something is round and it sees the cow then the cow sees the rabbit. (Given)\n22. The bald eagle is round. (Logical deduction from step 19)\n23. The bald eagle sees the cow. (Logical deduction from step 21 and 22)\n24. The cow sees the bald eagle. (Given)\n25. The bald eagle sees the cow. (Logical deduction from step 23 and 24, but we already know this from step 5, so we can ignore this)\n26. If something is big then it visits the cow. (Given)\n27. The rabbit is big. (Logical deduction from step 3)\n28. The rabbit visits the cow. (Logical deduction from step 26 and 27)\n29. If something sees the rabbit then the rabbit visits the bald eagle. (Given)\n30. The bald eagle sees the rabbit. (Given)\n31. The rabbit visits the bald eagle. (Logical deduction from step 29 and 30)\n32. If something is blue then it likes the rabbit. (Given)\n33. The dog is blue. (Logical deduction from step 13)\n34. The dog likes the rabbit. (Logical deduction from step 32 and 33)\n35. If something likes the cow and the cow is young then it is blue. (Given)\n36. The rabbit likes the cow. (Assumption for logical deduction, but we already determined in step 14 that this is not true because the cow is young)\n37. The rabbit does not like the cow. (Logical deduction from step 36)\n38. The statement \"The bald eagle likes the rabbit\" is unknown because we cannot determine if the bald eagle likes the rabbit or not based on the given information.\n\nHowever, from the given information we have a contradiction.\nThe dog is blue. (Step 13)\nThe dog is young. (Step 7)\nThe cow is young. (Step 17)\nThe rabbit visits the cow. (Step 28)\nThe rabbit likes the cow. (Step 15)\nThe cow is young. (Step 17)\nThe cow is big. (Step 4)\nThe dog likes the rabbit. (Step 34)\nThe dog is young. (Step 7)\nThe dog likes the bald eagle. (Step 8)\nThe statement \"The bald eagle likes the rabbit\" is true, and the statement \"The dog likes the rabbit\" is true, but the dog is young, and the bald eagle is not young, but the cow is young, and the rabbit likes the cow, the cow is big, the dog is young, the dog is big and the dog likes the rabbit, and the dog likes the bald eagle, and the rabbit sees the bald eagle, and the bald eagle likes the rabbit.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we'll analyze the given statements and their implications step by step.\n\n1. The bald eagle is big. \n   - This statement alone doesn't provide any information about the bald eagle's relationship with the rabbit.\n\n2. The bald eagle likes the cow. \n   - This statement alone doesn't provide any information about the bald eagle's relationship with the rabbit.\n\n3. The bald eagle sees the rabbit. \n   - This statement implies that the rabbit is big, as per the statement: \"If the bald eagle sees the rabbit then the rabbit is big.\"\n\n4. The cow is big. \n   - This statement alone doesn't provide any information about the rabbit's relationship with the bald eagle.\n\n5. The cow sees the bald eagle. \n   - This statement alone doesn't provide any information about the rabbit's relationship with the bald eagle.\n\n6. The dog is big. \n   - This statement alone doesn't provide any information about the bald eagle's relationship with the rabbit.\n\n7. The dog is young. \n   - This statement alone doesn't provide any information about the bald eagle's relationship with the rabbit.\n\n8. The dog likes the bald eagle. \n   - This statement implies that the dog is blue, as per the statement: \"If something likes the bald eagle then it is blue.\"\n\n9. The rabbit sees the bald eagle. \n   - This statement alone doesn't provide any information about the rabbit's relationship with the bald eagle.\n\n10. The rabbit visits the bald eagle. \n   - This statement implies that the rabbit is round, as per the statement: \"If something visits the rabbit then it is round.\" However, since the rabbit is visiting the bald eagle, we can't conclude anything about the rabbit.\n\n11. If something likes the rabbit and the rabbit visits the cow then the cow is young. \n   - This statement alone doesn't provide any information about the rabbit's relationship with the bald eagle.\n\n12. If something visits the rabbit then it is round. \n   - This statement alone doesn't provide any information about the rabbit's relationship with the bald eagle.\n\n13. If something is round and it sees the cow then the cow sees the rabbit. \n   - This statement alone doesn't provide any information about the rabbit's relationship with the bald eagle.\n\n14. If something is big then it visits the cow. \n   - This statement alone doesn't provide any information about the rabbit's relationship with the bald eagle.\n\n15. If something sees the rabbit then the rabbit visits the bald eagle. \n   - This statement implies that the bald eagle sees the rabbit, which we already know from statement 3. However, it doesn't provide any information about the bald eagle's relationship with the rabbit.\n\n16. If something is blue then it likes the rabbit. \n   - This statement alone doesn't provide any information about the bald eagle's relationship with the rabbit.\n\n17. If something likes the cow and the cow is young then it is blue. \n   - This statement alone doesn't provide any information about the bald eagle's relationship with the rabbit.\n\nNow, let's analyze the given statement: \"The bald eagle likes the rabbit.\"\n\nFrom statement 3, we know that the bald eagle sees the rabbit. However, this doesn't imply that the bald eagle likes the rabbit. \n\nFrom statement 8, we know that the dog likes the bald eagle, which implies that the dog is blue. However, this doesn't provide any information about the bald eagle's relationship with the rabbit.\n\nFrom statement 16, we know that if something is blue then it likes the rabbit. However, the bald eagle is not blue (it likes the cow), and there's no direct information about the bald eagle's relationship with the rabbit.\n\nSince we can't conclude anything about the bald eagle's relationship with the rabbit based on the given statements, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle likes the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle sees the rabbit.\nFrom this, we can conclude that the rabbit is big, because if the bald eagle sees the rabbit, then the rabbit is big. (Given: If the bald eagle sees the rabbit then the rabbit is big.)\n\n2. The rabbit is big.\nFrom this, we cannot conclude anything about the bald eagle liking the rabbit yet.\n\n3. The bald eagle likes the cow.\nThis statement does not provide any information about the bald eagle liking the rabbit.\n\n4. The dog is big.\nThis statement does not provide any information about the bald eagle liking the rabbit.\n\n5. The dog is young.\nThis statement does not provide any information about the bald eagle liking the rabbit.\n\n6. The dog likes the bald eagle.\nFrom this, we can conclude that the dog is blue, because if something likes the bald eagle, then it is blue. (Given: If something likes the bald eagle then it is blue.)\n\n7. The rabbit sees the bald eagle.\nThis statement is already given as part of the initial information.\n\n8. The rabbit visits the bald eagle.\nFrom this, we can conclude that the rabbit is round, because if something visits the rabbit, then it is round. (Given: If something visits the rabbit then it is round.)\n\n9. The rabbit is round.\nThis statement does not provide any information about the bald eagle liking the rabbit.\n\n10. The cow is big.\nThis statement does not provide any information about the bald eagle liking the rabbit.\n\n11. The cow sees the bald eagle.\nFrom this, we cannot conclude anything about the bald eagle liking the rabbit yet.\n\n12. The dog is big.\nThis statement does not provide any information about the bald eagle liking the rabbit.\n\n13. If something is big then it visits the cow.\nFrom this, we can conclude that the bald eagle visits the cow, because the bald eagle is big. However, this does not provide any information about the bald eagle liking the rabbit.\n\n14. If something sees the rabbit then the rabbit visits the bald eagle.\nFrom this, we can conclude that the rabbit visits the bald eagle, which we already know from the initial information.\n\n15. If something is blue then it likes the rabbit.\nFrom this, we can conclude that the dog likes the rabbit, because the dog is blue. However, this does not provide any information about the bald eagle liking the rabbit.\n\n16. If something likes the cow and the cow is young then it is blue.\nFrom this, we can conclude that the rabbit is blue, because the rabbit likes the cow and we do not have any information that the cow is young. However, we already concluded that the dog is blue from statement 6.\n\n17. If something is blue then it likes the rabbit.\nFrom this, we can conclude that the dog likes the rabbit, but we already concluded this from statement 15.\n\nNow, we need to find a way to conclude whether the bald eagle likes the rabbit or not. We can use the fact that if something is blue, then it likes the rabbit. However, we do not have any information that the bald eagle is blue.\n\nBut, we can use the fact that if something likes the cow and the cow is young then it is blue. However, we do not have any information that the cow is young.\n\nHowever, we can use the fact that if something is round and it sees the cow then the cow sees the rabbit. Since the rabbit is round, we can conclude that the cow sees the rabbit, which we already know from the initial information.\n\nNow, we can use the fact that if something sees the rabbit then the rabbit visits the bald eagle. Since the cow sees the rabbit, we can conclude that the rabbit visits the bald eagle, which we already know from the initial information.\n\nHowever, we can use the fact that if something likes the rabbit and the rabbit visits the cow then the cow is young. Since the rabbit visits the cow and the cow is big, we can conclude that the rabbit likes the cow.\n\nNow, we can use the fact that if something likes the cow and the cow is young then it is blue. Since the rabbit likes the cow and we can conclude that the cow is young, we can conclude that the rabbit is blue.\n\nNow, we can use the fact that if something is blue then it likes the rabbit. Since the rabbit is blue, we can conclude that the rabbit likes the rabbit.\n\nHowever, this does not provide any information about the bald eagle liking the rabbit. We can use the fact that if something likes the rabbit then it is blue. However, we do not have any information that the bald eagle likes the rabbit.\n\nHowever, we can use the fact that if something is blue then it likes the rabbit. However, we do not have any information that the bald eagle is blue.\n\nHowever, we can use the fact that if something is big then it visits the cow. Since the bald eagle is big, we can conclude that the bald eagle visits the cow.\n\nHowever, we can use the fact that if something is round and it sees the cow then the cow sees the rabbit. Since the rabbit is round and we do not have any information that the bald eagle sees the cow, we can conclude that the bald eagle does not see the cow.\n\nHowever, we can use the fact that if something is big then it visits the cow. Since the bald eagle is big, we can conclude that the bald eagle visits the cow.\n\nNow, we can use the fact that if something sees the rabbit then the rabbit visits the bald eagle. Since the bald eagle sees the rabbit, we can conclude that the rabbit visits the bald eagle.\n\nHowever, we can use the fact that if something likes the rabbit and the rabbit visits the cow then the cow is young. Since the rabbit visits the cow and the cow is big, we can conclude that the rabbit likes the cow.\n\nNow, we can use the fact that if something likes the cow and the cow is young then it is blue. Since the rabbit likes the cow and we can conclude that the cow is young, we can conclude that the rabbit is blue.\n\nNow, we can use the fact that if something is blue then it likes the rabbit. Since the rabbit is blue, we can conclude that the rabbit likes the rabbit.\n\nHowever, this does not provide any information about the bald eagle liking the rabbit. We can use the fact that if something sees the rabbit then the rabbit visits the bald eagle. Since the bald eagle sees the rabbit, we can conclude that the rabbit visits the bald eagle.\n\nHowever, we can use the fact that if something is round and it sees the cow then the cow sees the rabbit. Since the rabbit is round and we do not have any information that the bald eagle sees the cow, we can conclude that the bald eagle does not see the cow.\n\nHowever, we can use the fact that if something is big then it visits the cow. Since the bald eagle is big, we can conclude that the bald eagle visits the cow.\n\nNow, we can use the fact that if something sees the rabbit then the rabbit visits the bald eagle. Since the bald eagle sees the rabbit, we can conclude that the rabbit visits the bald eagle.\n\nHowever, we can use the fact that if something is blue then it likes the rabbit. However, we do not have any information that the bald eagle is blue.\n\nHowever, we can use the fact that if something is big then it visits the cow. Since the bald eagle is big, we can conclude that the bald eagle visits the cow.\n\nNow, we can use the fact that if something sees the rabbit then the rabbit visits the bald eagle. Since the bald eagle sees the rabbit, we can conclude that the rabbit visits the bald eagle.\n\nHowever, we can use the fact that if something is round and it sees the cow then the cow sees the rabbit. Since the rabbit is round and we do not have any information that the bald eagle sees the cow, we can conclude that the bald eagle does not see the cow.\n\nHowever, we can use the fact that if something is big then it visits the cow. Since the bald eagle is big, we can conclude that the bald eagle visits the cow.\n\nNow, we can use the fact that if something sees the rabbit then the rabbit visits the bald eagle. Since the bald eagle sees the rabbit, we can conclude that the rabbit visits the bald eagle.\n\nHowever, we can use the fact that if something is blue then it likes the rabbit. However, we do not have any information that the bald eagle is blue.\n\nHowever, we can use the fact that if something is big then it visits the cow. Since the bald eagle is big, we can conclude that the bald eagle visits the cow.\n\nNow, we can use the fact that if something sees the rabbit then the rabbit visits the bald eagle. Since the bald eagle sees the rabbit, we can conclude that the rabbit visits the bald eagle.\n\nHowever, we can use the fact that if something is round and it sees the cow then the cow sees the rabbit. Since the rabbit is round and we do not have any information that the bald eagle sees the cow, we can conclude that the bald eagle does not see the cow.\n\nHowever, we can use the fact that if something is big then it visits the cow. Since the bald eagle is big, we can conclude that the bald eagle visits the cow.\n\nNow, we can use the fact that if something sees the rabbit then the rabbit visits the bald eagle. Since the bald eagle sees the rabbit, we can conclude that the rabbit visits the bald eagle.\n\nHowever, we can use the fact that if something is blue then it likes the rabbit. However, we do not have any information that the bald eagle is blue.\n\nHowever, we can use the fact that if something likes the cow and the cow is young then it is blue. However, we do not have any information that the cow is young.\n\n",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle likes the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement to evaluate: \"The bald eagle likes the rabbit.\"\n2. From the given information, we have the following rules:\n   - If something likes the bald eagle, then it is blue.\n   - If something likes the rabbit and the rabbit visits the cow, then the cow is young.\n   - If something is blue, then it likes the rabbit.\n   - If something is big, then it visits the cow.\n   - If something is big, then the rabbit is big.\n   - If something is blue, then it likes the rabbit.\n   - If something likes the cow and the cow is young, then it is blue.\n   - If something visits the rabbit, then it is round.\n   - If something is round and it sees the cow, then the cow sees the rabbit.\n   - If something sees the rabbit, then the rabbit visits the bald eagle.\n\n3. Analyze the given statements:\n   - The bald eagle is big (from \"The bald eagle sees the rabbit\").\n   - The bald eagle likes the cow (from the statement).\n   - The cow is big (from \"The cow is big\").\n   - The cow sees the bald eagle (from \"The cow sees the bald eagle\").\n\n4. Based on the rules:\n   - Since the bald eagle is big, it must visit the cow.\n   - Since the bald eagle likes the cow, we cannot conclude anything directly about the bald eagle from this statement, but we can use it to infer other information later.\n\n5. Since the bald eagle sees the rabbit, it follows that the rabbit visits the bald eagle (rule 10).\n   - However, this does not directly relate to the statement \"The bald eagle likes the rabbit.\"\n\n6. We need to find a connection between the bald eagle and the rabbit that involves the rules related to liking.\n   - Since the bald eagle is big, the rabbit is also big (rule 5).\n   - The cow is big, and it sees the bald eagle.\n   - The bald eagle likes the cow, and the cow is big.\n   - Since the bald eagle likes the cow and the cow is big, it follows that the bald eagle is blue (rule 1).\n   - Since the bald eagle is blue, it likes the rabbit (rule 3).\n\n7. Conclusion:\n   - From the given information and the rules, we can conclude that the statement \"The bald eagle likes the rabbit\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle likes the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle sees the rabbit. \nThis statement doesn't provide any information about the bald eagle's feelings towards the rabbit.\n\n2. If the bald eagle sees the rabbit then the rabbit is big. \nSince the rabbit is indeed big, this statement is true. However, this doesn't tell us anything about the bald eagle's feelings towards the rabbit.\n\n3. The cow is big.\nThis statement provides no information about the bald eagle.\n\n4. The cow sees the bald eagle. \nThis statement also doesn't provide any information about the bald eagle's feelings towards the rabbit.\n\n5. The dog is big. \nThe dog's size is irrelevant to the bald eagle's feelings towards the rabbit.\n\n6. The dog is young. \nThe dog's age is also irrelevant to the bald eagle's feelings towards the rabbit.\n\n7. The dog likes the bald eagle. \nSince the dog likes the bald eagle and it is given that if something likes the bald eagle then it is blue, the dog is blue. However, this doesn't tell us anything about the bald eagle's feelings towards the rabbit.\n\n8. The rabbit sees the bald eagle. \nThis statement doesn't provide any information about the bald eagle's feelings towards the rabbit.\n\n9. The rabbit visits the bald eagle. \nThis statement doesn't provide any information about the bald eagle's feelings towards the rabbit.\n\n10. If something likes the rabbit and the rabbit visits the cow then the cow is young. \nThis statement provides no information about the bald eagle.\n\n11. If something visits the rabbit then it is round. \nThis statement also doesn't provide any information about the bald eagle.\n\n12. If something is round and it sees the cow then the cow sees the rabbit. \nThis statement doesn't provide any information about the bald eagle.\n\n13. If something is big then it visits the cow. \nSince the bald eagle is big, it visits the cow. However, this doesn't tell us anything about the bald eagle's feelings towards the rabbit.\n\n14. If something sees the rabbit then the rabbit visits the bald eagle. \nSince the bald eagle sees the rabbit, the rabbit visits the bald eagle. However, this doesn't tell us anything about the bald eagle's feelings towards the rabbit.\n\n15. If something is blue then it likes the rabbit. \nSince the dog is blue, it likes the rabbit. However, this doesn't tell us anything about the bald eagle's feelings towards the rabbit.\n\n16. If something likes the cow and the cow is young then it is blue. \nSince the cow is big, not young, this statement is irrelevant.\n\nNow, let's analyze the statements related to the bald eagle's feelings towards the rabbit. We know that:\n\n- The bald eagle sees the rabbit.\n- The rabbit is big.\n- The bald eagle is big, so it visits the cow.\n- The bald eagle sees the cow.\n\nHowever, there is no direct information about the bald eagle's feelings towards the rabbit. We can't conclude whether the bald eagle likes the rabbit based on the given statements. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle likes the rabbit\" is true, false, or unknown, we need to analyze the given information and apply it to the statement.\n\nStep 1: From the given information, we know that \"If something likes the bald eagle then it is blue.\" However, this does not directly tell us about the bald eagle itself. We need to look for information that relates the bald eagle to the conditions mentioned.\n\nStep 2: From the given information, we know that \"The dog is big.\" and \"If something is big then it visits the cow.\" Therefore, the dog visits the cow.\n\nStep 3: From the given information, we know that \"The dog is young.\" and \"The dog likes the bald eagle.\" Since \"If something is blue then it likes the rabbit\" and \"If something likes the bald eagle then it is blue\" are both true, we can conclude that the dog is blue, which implies it likes the rabbit.\n\nStep 4: Since \"If something likes the rabbit and the rabbit visits the cow then the cow is young,\" and \"The rabbit visits the cow,\" we can conclude that the cow is young.\n\nStep 5: From the given information, we know that \"The cow is big\" and \"The cow sees the bald eagle.\" However, this does not directly tell us about the bald eagle itself.\n\nStep 6: From the given information, we know that \"The bald eagle sees the rabbit.\" Since \"If something sees the rabbit then the rabbit visits the bald eagle,\" we can conclude that the rabbit visits the bald eagle.\n\nStep 7: From the given information, we know that \"The rabbit sees the bald eagle.\" Since \"If something sees the rabbit then the rabbit visits the bald eagle\" and \"The rabbit visits the bald eagle,\" we can conclude that the rabbit sees the bald eagle.\n\nStep 8: Since \"If the bald eagle sees the rabbit then the rabbit is big\" and \"The bald eagle sees the rabbit,\" we can conclude that the rabbit is big.\n\nStep 9: Now, we can analyze the statement \"The bald eagle likes the rabbit.\" Since \"If something is blue then it likes the rabbit,\" we need to determine if the bald eagle is blue.\n\nStep 10: From the given information, we know that \"The dog likes the bald eagle.\" Since \"If something likes the bald eagle then it is blue\" and \"The dog is blue,\" we can conclude that the bald eagle is blue.\n\nStep 11: Since \"If something is blue then it likes the rabbit\" and \"The bald eagle is blue,\" we can conclude that the statement \"The bald eagle likes the rabbit\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the properties of each entity (bald eagle, cow, rabbit, dog). We'll represent the properties as follows:\n\n- Big: B\n- Young: Y\n- Blue: Bl\n- Visits: V\n- Sees: S\n- Likes: L\n\nLet's break down each statement:\n\n1. The bald eagle is big. => B\n2. The bald eagle likes the cow. => L\n3. The bald eagle sees the rabbit. => S\n4. The cow is big. => B\n5. The cow sees the bald eagle. => S\n6. The dog is big. => B\n7. The dog is young. => Y\n8. The dog likes the bald eagle. => Bl\n9. The rabbit sees the bald eagle. => S\n10. The rabbit visits the bald eagle. => V\n11. If the bald eagle sees the rabbit then the rabbit is big. => If S then B (Rabbit)\n12. If something likes the bald eagle then it is blue. => If L then Bl (Something)\n13. If something likes the rabbit and the rabbit visits the cow then the cow is young. => If L and V then Y (Cow)\n14. If something visits the rabbit then it is round. => If V then R (Something)\n15. If something is round and it sees the cow then the cow sees the rabbit. => If R and S then S (Cow)\n16. If something is big then it visits the cow. => If B then V (Something)\n17. If something sees the rabbit then the rabbit visits the bald eagle. => If S then V (Rabbit)\n18. If something is blue then it likes the rabbit. => If Bl then L (Something)\n19. If something likes the cow and the cow is young then it is blue. => If L and Y then Bl (Something)\n\nWe can now derive the properties of each entity:\n\n- Bald eagle:\n  - B (from 1)\n  - S (from 3 and 9)\n  - V (from 10 and 16)\n  - L (from 2 and 12)\n  - Bl (from 2 and 12)\n- Cow:\n  - B (from 4)\n  - S (from 5)\n  - Y (from 8, 13, and 7)\n- Dog:\n  - B (from 6)\n  - Y (from 7)\n  - Bl (from 8 and 12)\n- Rabbit:\n  - B (from 11 and 9)\n  - S (from 3, 9, and 15)\n  - V (from 10, 17, and 16)\n\nNow we can determine whether the statement \"The bald eagle likes the rabbit\" is true, false, or unknown:\n\n- The bald eagle likes the rabbit: L\n- The bald eagle is blue: Bl\n- If something likes the rabbit then it is blue: If L then Bl (Something)\n- The rabbit is blue: L (from 18 and 11)\n\nSince the bald eagle is blue and likes the rabbit, and if someone likes the rabbit then they are blue, we can conclude that the statement is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions that determine the characteristics of the entities. \n\nLet's break down the given statements:\n\n1. The bald eagle is big.\n2. The bald eagle likes the cow.\n3. The bald eagle sees the rabbit.\n4. The cow is big.\n5. The cow sees the bald eagle.\n6. The dog is big.\n7. The dog is young.\n8. The dog likes the bald eagle.\n9. The rabbit sees the bald eagle.\n10. The rabbit visits the bald eagle.\n11. If the bald eagle sees the rabbit then the rabbit is big.\n12. If something likes the bald eagle then it is blue.\n13. If something likes the rabbit and the rabbit visits the cow then the cow is young.\n14. If something visits the rabbit then it is round.\n15. If something is round and it sees the cow then the cow sees the rabbit.\n16. If something is big then it visits the cow.\n17. If something sees the rabbit then the rabbit visits the bald eagle.\n18. If something is blue then it likes the rabbit.\n19. If something likes the cow and the cow is young then it is blue.\n\nNow, let's analyze the statement: \"The bald eagle likes the rabbit.\"\n\nTo determine this, we can use the conditions given in the statements:\n\nFrom statement 12: If something likes the bald eagle then it is blue.\n\nThis means that if the bald eagle likes something, that something must be blue.\n\nNow, let's see if the rabbit can be blue based on the given conditions:\n\nFrom statement 18: If something is blue then it likes the rabbit.\n\nThis means that if something is blue, it must like the rabbit.\n\nHowever, there is no direct information that the bald eagle is blue. But, we can use the transitive property to see if the bald eagle likes the rabbit:\n\nFrom statement 2: The bald eagle likes the cow.\n\nFrom statement 6: The dog is big.\n\nFrom statement 16: If something is big then it visits the cow.\n\nSo, the dog is big and visits the cow.\n\nFrom statement 8: The dog likes the bald eagle.\n\nFrom statement 12: If something likes the bald eagle then it is blue.\n\nSo, the dog is blue.\n\nFrom statement 18: If something is blue then it likes the rabbit.\n\nSo, the dog likes the rabbit.\n\nFrom statement 13: If something likes the rabbit and the rabbit visits the cow then the cow is young.\n\nHowever, from statement 4: The cow is big.\n\nSo, the condition \"the rabbit visits the cow\" is not met, and we cannot conclude that the cow is young.\n\nTherefore, we do not have enough information to determine whether the bald eagle likes the rabbit.\n\nThe answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle likes the rabbit\" is true, false, or unknown, we need to break down the given information step by step.\n\n1. The bald eagle sees the rabbit.\n   This statement does not give us any information about the relationship between the bald eagle and the rabbit, so we move on.\n\n2. If the bald eagle sees the rabbit, then the rabbit is big.\n   We know the bald eagle sees the rabbit, so this statement is true. The rabbit is big.\n\n3. The dog is big.\n   This statement is irrelevant to the relationship between the bald eagle and the rabbit, so we move on.\n\n4. The dog likes the bald eagle.\n   This statement tells us that the dog is blue, but it does not tell us anything about the bald eagle, so we move on.\n\n5. The rabbit sees the bald eagle.\n   This statement tells us that the rabbit is round, but it does not tell us anything about the relationship between the bald eagle and the rabbit, so we move on.\n\n6. The rabbit visits the bald eagle.\n   This statement tells us that the rabbit is round, which we already know from statement 5, but it also tells us that the bald eagle is big, which we already know from statement 1 and 2.\n\n7. The cow is big.\n   This statement is irrelevant to the relationship between the bald eagle and the rabbit, so we move on.\n\n8. The cow sees the bald eagle.\n   This statement tells us that the cow is young, which is a contradiction, as the cow is also big from statement 7.\n\n9. The dog is young.\n   This statement is irrelevant to the relationship between the bald eagle and the rabbit, so we move on.\n\n10. The dog likes the bald eagle.\n    This statement tells us that the dog is blue, but it does not tell us anything about the bald eagle, so we move on.\n\n11. The rabbit sees the bald eagle.\n    This statement tells us that the rabbit is round, but it does not tell us anything about the relationship between the bald eagle and the rabbit, so we move on.\n\n12. If something likes the rabbit and the rabbit visits the cow, then the cow is young.\n    We do not have any information that the rabbit visits the cow, so we cannot determine if this statement is true or false.\n\n13. If something visits the rabbit, then it is round.\n    This statement is irrelevant to the relationship between the bald eagle and the rabbit, so we move on.\n\n14. If something is round and it sees the cow, then the cow sees the rabbit.\n    We know the rabbit is round from statement 5, but we do not know if the rabbit sees the cow, so we cannot determine if this statement is true or false.\n\n15. If something is big, then it visits the cow.\n    We know the bald eagle is big from statement 6, but we do not know if it visits the cow, so we cannot determine if this statement is true or false.\n\n16. If something sees the rabbit, then the rabbit visits the bald eagle.\n    We know the bald eagle sees the rabbit from statement 1, so the rabbit visits the bald eagle.\n\n17. If something is blue, then it likes the rabbit.\n    We do not have any information that the bald eagle is blue, so we cannot determine if this statement is true or false.\n\n18. If something likes the cow and the cow is young, then it is blue.\n    We do not have any information that the cow is young, as statement 8 was a contradiction, so we cannot determine if this statement is true or false.\n\nNow that we have analyzed all the statements, we still do not know if the bald eagle likes the rabbit. However, we know that if something likes the rabbit, then it is blue. We also know that the dog is blue because it likes the bald eagle. But we do not have any information that the bald eagle likes the rabbit.\n\nTherefore, the statement \"The bald eagle likes the rabbit\" is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_bald_eagle_cow, blue_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, big_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_cow, visits_cow_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(visits_rabbit_bald_eagle, round_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, cow) -> sees(cow, rabbit)",
+          "z3_formula": "Implies(And(round_bald_eagle, sees_bald_eagle_cow), sees_cow_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_bald_eagle, visits_bald_eagle_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_dog, visits_dog_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, cow) -> young(X)",
+          "z3_formula": "Implies(And(likes_dog_rabbit, visits_dog_cow), young_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, cow) -> young(X)",
+          "z3_formula": "Implies(And(likes_dog_rabbit, visits_dog_cow), young_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_bald_eagle, visits_bald_eagle_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_dog, visits_dog_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_bald_eagle, blue_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, cow) -> young(cow)",
+          "z3_formula": "Implies(And(likes_X_rabbit, visits_X_cow), young_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(visits_X_rabbit, round_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, cow) -> sees(cow, rabbit)",
+          "z3_formula": "Implies(And(round_X, sees_X_cow), sees_cow_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_bald_eagle, visits_bald_eagle_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> visits(rabbit, bald_eagle)",
+          "z3_formula": "Implies(sees_X_rabbit, visits_rabbit_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_dog, likes_dog_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & young(cow) -> blue(X)",
+          "z3_formula": "Implies(And(likes_X_cow, young_cow), blue_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> big(Y)",
+          "z3_formula": "Implies(sees_bald_eagle_rabbit, big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, cow)",
+          "z3_formula": "likes_cow_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> blue(X)",
+          "z3_formula": "Implies(likes_cow_cow, blue_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_cow, visits_cow_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cow, cow)",
+          "z3_formula": "visits_cow_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> round(Y)",
+          "z3_formula": "Implies(visits_rabbit_bald_eagle, round_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, cow) -> sees(cow, Y)",
+          "z3_formula": "Implies(And(round_bald_eagle, sees_cow_bald_eagle), sees_cow_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_bald_eagle, likes_bald_eagle_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(rabbit, cow) -> young(Y)",
+          "z3_formula": "Implies(And(likes_bald_eagle_rabbit, visits_rabbit_cow), young_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & young(Y) -> blue(X)",
+          "z3_formula": "Implies(And(likes_cow_cow, young_cow), blue_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cow)",
+          "z3_formula": "sees_bald_eagle_cow == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> big(rabbit)",
+          "z3_formula": "Implies(sees_bald_eagle_rabbit, big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_bald_eagle, blue_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, cow) -> young(cow)",
+          "z3_formula": "Implies(And(likes_rabbit_cow, visits_rabbit_cow), young_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(visits_bald_eagle_rabbit, round_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, cow) -> sees(cow, rabbit)",
+          "z3_formula": "Implies(And(round_bald_eagle, sees_bald_eagle_cow), sees_cow_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cow)",
+          "z3_formula": "sees_bald_eagle_cow == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, cow)",
+          "z3_formula": "sees_bald_eagle_cow == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_rabbit, visits_rabbit_cow)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, cow)",
+          "z3_formula": "visits_rabbit_cow == True",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> visits(rabbit, bald_eagle)",
+          "z3_formula": "Implies(sees_bald_eagle_rabbit, visits_rabbit_bald_eagle)",
+          "source_step": 28
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 30
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_dog, likes_dog_rabbit)",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 32
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 33
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & young(cow) -> blue(X)",
+          "z3_formula": "Implies(And(likes_rabbit_cow, young_cow), blue_rabbit)",
+          "source_step": 34
+        },
+        {
+          "type": "derived",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 36
+        },
+        {
+          "type": "derived",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == False",
+          "source_step": 37
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, cow)",
+          "z3_formula": "likes_rabbit_cow == False",
+          "source_step": 38
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 39
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 40
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, cow) -> young(X)",
+          "z3_formula": "Implies(And(likes_X_rabbit, visits_X_cow), young_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(visits_X_rabbit, round_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, cow) -> sees_cow(X, rabbit)",
+          "z3_formula": "Implies(And(round_X, sees_X_cow), sees_cow_X_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_X, visits_X_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> visits_rabbit(X, bald_eagle)",
+          "z3_formula": "Implies(sees_X_rabbit, visits_rabbit_X_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_X, likes_X_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(likes_X_cow, young_X), blue_X)",
+          "source_step": 17
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(likes_bald_eagle_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, cow) -> young(cow)",
+          "z3_formula": "Implies(And(likes_rabbit_X, visits_X_cow), young_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_X, likes_X_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_X, visits_X_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> big(rabbit)",
+          "z3_formula": "Implies(big_X, big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_X, likes_X_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(likes_cow_X, young_X), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(visits_X_rabbit, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, cow) -> sees(cow, rabbit)",
+          "z3_formula": "Implies(And(round_X, sees_X_cow), sees_cow_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> visits(rabbit, bald_eagle)",
+          "z3_formula": "Implies(sees_X_rabbit, visits_rabbit_bald_eagle)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_bald_eagle, visits_bald_eagle_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> visits(rabbit, X)",
+          "z3_formula": "Implies(sees_bald_eagle_rabbit, visits_rabbit_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> sees(cow, rabbit)",
+          "z3_formula": "Implies(sees_bald_eagle_cow, sees_cow_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(likes_dog_bald_eagle, blue_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_dog, likes_dog_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, cow)",
+          "z3_formula": "visits_bald_eagle_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == True",
+          "source_step": 15
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "If S then B (Rabbit)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, big_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "If L then Bl (Something)",
+          "z3_formula": "Implies(likes_bald_eagle_cow, likes_bald_eagle_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "If L and V then Y (Cow)",
+          "z3_formula": "Implies(And(likes_dog_bald_eagle, visits_rabbit_bald_eagle), young_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "If V then R (Something)",
+          "z3_formula": "Implies(visits_rabbit_bald_eagle, round_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "If R and S then S (Cow)",
+          "z3_formula": "Implies(And(round_rabbit, sees_cow_bald_eagle), sees_cow_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "If B then V (Something)",
+          "z3_formula": "Implies(big_bald_eagle, visits_bald_eagle_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "If S then V (Rabbit)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, visits_bald_eagle_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "If Bl then L (Something)",
+          "z3_formula": "Implies(likes_dog_bald_eagle, likes_rabbit_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "If L and Y then Bl (Something)",
+          "z3_formula": "Implies(And(likes_dog_bald_eagle, young_cow), likes_rabbit_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cow)",
+          "z3_formula": "likes_bald_eagle_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, rabbit)",
+          "z3_formula": "sees_bald_eagle_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, bald_eagle)",
+          "z3_formula": "sees_cow_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, bald_eagle)",
+          "z3_formula": "likes_dog_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(sees_bald_eagle_rabbit, big_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> blue(X)",
+          "z3_formula": "Implies(likes_bald_eagle_cow, blue_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & visits(X, cow) -> young(X)",
+          "z3_formula": "Implies(And(likes_rabbit_cow, visits_rabbit_cow), young_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> round(X)",
+          "z3_formula": "Implies(visits_bald_eagle_rabbit, round_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, cow) -> sees_cow(X)",
+          "z3_formula": "Implies(And(round_bald_eagle, sees_bald_eagle_cow), sees_cow_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, cow)",
+          "z3_formula": "Implies(big_dog, visits_dog_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> visits_rabbit(X)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, visits_rabbit_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, rabbit)",
+          "z3_formula": "Implies(blue_dog, likes_dog_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(likes_cow_dog, young_dog), blue_dog)",
+          "source_step": 19
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 182,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 74
+    },
+    "maxsat_stats": {
+      "satisfied": 74,
+      "excluded": 0,
+      "total_weight": 182,
+      "solve_time_ms": 1.4280332252383232
+    },
+    "timing": {
+      "trace_gen_s": 24.307,
+      "extraction_s": 51.482,
+      "dedup_s": 2.74,
+      "maxsat_s": 0.005,
+      "total_s": 78.534
+    }
+  }
+}

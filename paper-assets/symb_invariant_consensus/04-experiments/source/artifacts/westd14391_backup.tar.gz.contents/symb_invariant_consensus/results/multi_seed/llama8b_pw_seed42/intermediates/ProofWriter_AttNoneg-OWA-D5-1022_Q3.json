@@ -1,0 +1,754 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1022_Q3",
+    "problem": "Dave is green. Dave is kind. Erin is cold. Erin is furry. Fiona is big. Fiona is furry. Gary is big. All kind people are cold. Green, smart people are rough. If Fiona is cold and Fiona is kind then Fiona is green. If someone is furry then they are smart. All furry, green people are smart. If someone is green and cold then they are big. If someone is furry and rough then they are big. All furry people are smart. Big, cold people are furry.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is smart.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nBig($x, bool) ::: Is x big?\nSmart($x, bool) ::: Is x smart?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nGreen(Dave, True) ::: Dave is green.\nKind(Dave, True) ::: Dave is kind.\nCold(Erin, True) ::: Erin is cold.\nFurry(Erin, True) ::: Erin is furry.\nBig(Fiona, True) ::: Fiona is big.\nFurry(Fiona, True) ::: Fiona is furry.\nBig(Gary, True) ::: Gary is big.\n\nRules:\nKind($x, True) >>> Cold($x, True) ::: All kind people are cold.\nGreen($x, True) && Smart($x, True) >>> Rough($x, True) ::: Green, smart people are rough.\nCold(Fiona, True) && Kind(Fiona, True) >>> Green(Fiona, True) ::: If Fiona is cold and Fiona is kind then Fiona is green.\nFurry($x, True) >>> Smart($x, True) ::: If someone is furry then they are smart.\nFurry($x, True) && Green($x, True) >>> Smart($x, True) ::: All furry, green people are smart.\nGreen($x, True) && Cold($x, True) >>> Big($x, True) ::: If someone is green and cold then they are big.\nFurry($x, True) && Rough($x, True) >>> Big($x, True) ::: If someone is furry and rough then they are big.\nFurry($x, True) >>> Smart($x, True) ::: All furry people are smart.\nBig($x, True) && Cold($x, True) >>> Furry($x, True) ::: Big, cold people are furry.\n\nQuery:\nSmart(Erin, True) ::: Erin is smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 101.0,
+      "Unknown": 63.0
+    },
+    "answer_counts": {
+      "Unknown": 1,
+      "True": 11
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and find the information related to Erin being smart.\n\n1. All kind people are cold. \n2. Green, smart people are rough. \n3. If Fiona is cold and Fiona is kind then Fiona is green. \n4. If someone is furry then they are smart. \n5. All furry, green people are smart. \n6. If someone is green and cold then they are big. \n7. If someone is furry and rough then they are big. \n8. All furry people are smart. \n9. Big, cold people are furry.\n\nFrom statement 4, we know that if someone is furry, then they are smart.\n\nStatement 4 is also related to statement 8, which says all furry people are smart. \n\nHowever, we need to find out if Erin is furry. We can find this information by looking at statements related to Erin.\n\nStatement 5 says all furry, green people are smart. This statement is related to statement 6, which says if someone is green and cold then they are big.\n\nStatement 9 says big, cold people are furry. This statement is related to statement 1, which says all kind people are cold. Since Erin is kind (statement 1), Erin is cold (statement 1). \n\nNow, let's analyze the information about Erin being big. We can find this information by looking at statements related to Erin.\n\nStatement 6 says if someone is green and cold then they are big. However, we don't know if Erin is green.\n\nStatement 9 says big, cold people are furry. We already know Erin is cold (statement 1), and we can use this statement to find out if Erin is furry.\n\nNow, let's analyze the information about Erin being furry. We can find this information by looking at statements related to Erin.\n\nStatement 1 says Erin is cold.\nStatement 4 says if someone is furry then they are smart.\nStatement 7 says if someone is furry and rough then they are big. \nStatement 9 says big, cold people are furry.\n\nWe don't have any information about Erin being furry, rough, or big. But we have information about Erin being furry and cold (statement 1 and statement 9). \n\nNow, we have two possibilities: \n- Erin is furry (from statement 9) and smart (from statement 4).\n- Erin is furry and cold (from statement 9) but we don't have enough information about Erin being furry and cold.\n\nSince we have two possibilities, we can't determine if the statement \"Erin is smart\" is true or false. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and deduce whether Erin is smart or not.\n\n1. Erin is cold.\n2. Erin is furry.\n\nWe know that:\n- All furry, green people are smart. (Statement 7)\n- All furry people are smart. (Statement 8)\n- If someone is furry then they are smart. (Statement 5)\n\nFrom Statement 5, we know that Erin is smart because she is furry.\n\nHowever, we also have a statement that says \"Green, smart people are rough.\" (Statement 3) This creates a contradiction because Erin is furry (and thus smart from Statement 5), but we can't determine whether she is green or not.\n\nTo determine whether Erin is green or not, we need to analyze the statements related to green and cold people.\n\n- If Fiona is cold and Fiona is kind then Fiona is green. (Statement 4)\n- All kind people are cold. (Statement 2)\n- If someone is green and cold then they are big. (Statement 6)\n\nSince Fiona is kind (Statement 2) and cold (Statement 4), Fiona is green (Statement 4). \n\nNow we have two statements that relate to Fiona's characteristics: \n- Fiona is big and furry (Statement 1)\n- All furry, green people are smart. (Statement 7)\n\nFiona is furry, green, and big. We can conclude that Fiona is smart from Statement 7.\n\nNow, let's analyze the statement that relates to big, cold people:\n- Big, cold people are furry. (Statement 9)\n- If someone is furry and rough then they are big. (Statement 6)\n- All kind people are cold. (Statement 2)\n- If someone is green and cold then they are big. (Statement 6)\n\nFrom Statement 6, we know that if someone is furry and rough, they are big. But we also know that all kind people are cold (Statement 2). Therefore, if someone is green and cold, they are big (Statement 6).\n\nNow we have two statements that relate to green and cold people:\n- If someone is green and cold then they are big. (Statement 6)\n- If someone is green and cold then they are big. (Statement 6) is the same statement, but this statement is repeated in the original problem.\n\nWe have two statements that relate to green and cold people. Since they are the same, we can't conclude anything new from these two statements.\n\nHowever, from Statement 6, we know that if someone is green and cold, they are big. But we also know that Fiona is big and furry (Statement 1). Therefore, Fiona is not green, because if Fiona were green, she would be big, but we know that Fiona is furry, and all furry people are smart.\n\nFrom Statement 9, we know that big, cold people are furry. So Fiona must be furry and cold, but she can't be green. \n\nFiona is furry and cold. We know that all furry people are smart (Statement 8). Therefore, Fiona is smart.\n\nBut we also know that Erin is furry and cold. Therefore, Erin is also smart.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and break down the given statements.\n\nGiven statements:\n\n1. Dave is green.\n2. Dave is kind.\n3. Erin is cold.\n4. Erin is furry.\n5. Fiona is big.\n6. Fiona is furry.\n7. Gary is big.\n8. All kind people are cold.\n9. Green, smart people are rough.\n10. If Fiona is cold and Fiona is kind then Fiona is green.\n11. If someone is furry then they are smart.\n12. All furry, green people are smart.\n13. If someone is green and cold then they are big.\n14. If someone is furry and rough then they are big.\n15. All furry people are smart.\n16. Big, cold people are furry.\n\nWe need to determine if the statement \"Erin is smart\" is true, false, or unknown.\n\nFrom statement 4, we know that Erin is furry. \n\nFrom statement 11, we know that if someone is furry then they are smart. However, we also need to check if there are any conditions that might affect this conclusion.\n\nFrom statement 15, we know that all furry people are smart, which is a stronger statement than statement 11. However, statement 15 does not specify any exceptions, so we can conclude that Erin is smart.\n\nSo, the final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Erin is smart, we need to analyze the given statements and apply logical deductions.\n\n1. Erin is cold. (Given)\n2. Erin is furry. (Given)\n\nFrom statement 8: All furry people are smart. \nWe can infer that Erin is smart.\n\nTherefore, the statement \"Erin is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements and deduce the information step by step.\n\nGiven statements:\n1. Dave is green.\n2. Dave is kind.\n3. Erin is cold.\n4. Erin is furry.\n5. Fiona is big.\n6. Fiona is furry.\n7. Gary is big.\n8. All kind people are cold.\n9. Green, smart people are rough.\n10. If Fiona is cold and Fiona is kind then Fiona is green.\n11. If someone is furry then they are smart.\n12. All furry, green people are smart.\n13. If someone is green and cold then they are big.\n14. If someone is furry and rough then they are big.\n15. All furry people are smart.\n16. Big, cold people are furry.\n\nNow, we will analyze the given statements to determine if the statement \"Erin is smart\" is true, false, or unknown.\n\nFrom statement 3: Erin is cold.\nFrom statement 4: Erin is furry.\n\nNow, let's see if we can deduce more information from these statements. \n\nFrom statement 16: Big, cold people are furry.\nSince Erin is cold, but we don't know if Erin is big, we cannot conclude that Erin is furry using this statement. However, we do know Erin is furry from statement 4.\n\nFrom statement 11: If someone is furry then they are smart.\nSince Erin is furry, we can conclude that Erin is smart.\n\nTherefore, the statement \"Erin is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is furry.\n   From the information given, we know that \"If someone is furry then they are smart.\" Therefore, we can conclude that Erin is smart.\n\nSince we have concluded that Erin is smart, we do not need to analyze any further information to determine whether the statement \"Erin is smart\" is true, false, or unknown.\n\nTherefore, the answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is smart' is true, false, or unknown, we need to analyze the given premises and their implications. \n\n1. Erin is cold. (Premise)\n2. Erin is furry. (Premise)\n3. All furry people are smart. (Implication from premise 2 and the fact that all furry people are smart)\n4. All furry, green people are smart. (Premise)\n5. If someone is green and cold then they are big. (Premise)\n6. If someone is furry and rough then they are big. (Premise)\n7. If Fiona is cold and Fiona is kind then Fiona is green. (Premise)\n8. If Fiona is cold and Fiona is kind then Fiona is green. However, Fiona is big and furry, not green. This premise does not apply to Erin.\n9. Dave is green. Dave is kind. (Premise)\n10. All kind people are cold. (Premise)\n11. Green, smart people are rough. (Premise)\n\nFrom premise 3, we know Erin is smart because she is furry.\n\nTherefore, the statement 'Erin is smart' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to analyze the given information and the given rules. \n\n1. Erin is cold. \n2. Erin is furry.\nFrom the rules, we have:\n- All kind people are cold. (rule 3)\n- If someone is furry then they are smart. (rule 8)\n\nHowever, we need to be cautious as there is no direct information about Erin being kind. We can't conclude that Erin is smart based on rule 3 because we don't know if Erin is kind. \n\nFrom rule 8, we can conclude that Erin is smart because Erin is furry.\n\nHowever, there are some rules that could affect our conclusion:\n- All green, smart people are rough. (rule 4)\n- All furry, green people are smart. (rule 9)\n- Green, smart people are rough. (rule 4)\n- If someone is furry then they are smart. (rule 8)\nWe know Erin is furry and smart, but we need to check if Erin is green. \n\nThe only information we have about Erin's color is:\n- Erin is furry. \n- Erin is cold. \n\nWe can't directly conclude that Erin is green from the given information. But we can use the given rules to check if Erin is green.\n- If someone is green and cold then they are big. (rule 7)\nHowever, we don't have any information about Erin being big, and this rule does not help us to conclude if Erin is green or not. \n\nBut we have another rule that could be useful:\n- If Fiona is cold and Fiona is kind then Fiona is green. (rule 5)\nThis rule does not tell us anything about Erin, but we can see that it's a specific case, and we need to check other rules for a more general case.\n\nWe have another rule:\n- All kind people are cold. (rule 3)\nThis rule does not help us to conclude if Erin is green or not.\n\nHowever, we can see that rule 5 is a specific case of rule 3. But there is another rule that could be useful:\n- If someone is furry then they are smart. (rule 8)\nWe know Erin is furry and smart.\n\nBut there is another rule that could be useful:\n- If someone is furry and rough then they are big. (rule 6)\n\nHowever, we don't have any information about Erin being rough.\n\nBut we have another rule that could be useful:\n- All furry, green people are smart. (rule 9)\nWe know Erin is furry and smart.\n\nFrom the rules, we have:\n- All furry, green people are smart. (rule 9)\n- If someone is green and cold then they are big. (rule 7)\nHowever, we don't have any information about Erin being big, and this rule does not help us to conclude if Erin is green or not.\n\nHowever, we can see that rule 9 is a more general case than rule 7.\n\nFrom rule 9, we can conclude that Erin is green because Erin is furry and smart.\n\nNow we know Erin is furry, smart, and green. \n\nSo, our final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we will use a process of elimination and substitution based on the given information.\n\n1. We know that Erin is furry (given information).\n2. From the given information, we have the following statements:\n   - If someone is furry then they are smart.\n   - All furry people are smart.\n   - If someone is furry and rough then they are big.\n   - All furry, green people are smart.\n   - Big, cold people are furry.\n\n3. Since Erin is furry (from step 1), and from the given information, we know that all furry people are smart, we can conclude that Erin is smart.\n\nHowever, let's also consider other possibilities to ensure that our conclusion is not contradicted by other information.\n\n- We don't know if Erin is green or not. We need to determine if it affects our conclusion.\n- If Erin is green, then from the given information, we have:\n  - All green, smart people are rough.\n  - If someone is green and cold then they are big.\n  - But from the previous conclusion, we know that Erin is smart and furry, and from the given information, we know that all furry people are smart. Therefore, Erin is smart and green is not a necessary condition for Erin to be smart.\n\nTherefore, regardless of whether Erin is green or not, our conclusion that Erin is smart is not contradicted by any information.\n\nSo, our final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to analyze the given premises and apply logical deductions.\n\nPremises:\n1. Dave is green. \n2. Dave is kind. \n3. Erin is cold. \n4. Erin is furry. \n5. Fiona is big. \n6. Fiona is furry. \n7. Gary is big. \n8. All kind people are cold.\n9. Green, smart people are rough.\n10. If Fiona is cold and Fiona is kind then Fiona is green. \n11. If someone is furry then they are smart.\n12. All furry, green people are smart.\n13. If someone is green and cold then they are big.\n14. If someone is furry and rough then they are big.\n15. All furry people are smart.\n16. Big, cold people are furry.\n\nNow, let's analyze the statement \"Erin is smart\" based on the given premises.\n\nFrom premise 4, we know that Erin is furry.\nFrom premise 11, we know that if someone is furry then they are smart.\nHowever, we also have premise 15, which states that all furry people are smart. This premise seems to be a subset of premise 11. But both premises 11 and 15 are true, thus making them both correct.\n\nSince we know Erin is furry from premise 4, and we know all furry people are smart from premise 15, we can conclude that Erin is smart.\n\nHowever, we can make an even stronger conclusion. From premise 4, we know that Erin is furry. From premise 16, we know that big, cold people are furry. We cannot conclude that Erin is big or cold from the premises. But we can say that if Erin is big and cold, then Erin is furry. This is the contrapositive of premise 16, which is logically equivalent to the premise itself.\n\nTherefore, we cannot conclude that Erin is smart from the premises alone. The statement \"Erin is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether Erin is smart, we need to analyze the given statements and apply the rules of inference.\n\n1. Erin is cold. (Statement 3)\n2. Erin is furry. (Statement 4)\n\nFrom statement 2, we can infer that Erin is smart. (All furry people are smart, Statement 10)\n\nHowever, we also have other information about Erin being cold and furry. Let's see if we can find any other conclusions.\n\n1. Erin is cold. (Statement 3)\n2. Erin is furry. (Statement 4)\n3. Erin is smart. (Inferred from statement 2)\n\nNow, let's analyze the relationship between Erin's characteristics and the characteristics of other people.\n\n1. All kind people are cold. (Statement 2)\n2. Erin is cold. (Statement 3)\n3. If Erin is kind, then Erin is cold. (Inference from statement 1 and statement 3)\n\nWe still don't know if Erin is kind, but we can continue analyzing the given statements.\n\n1. If someone is furry, then they are smart. (Statement 9)\n2. Erin is furry. (Statement 4)\n3. Erin is smart. (Inferred from statement 1 and statement 2)\n\nNow, let's analyze the relationship between Erin's characteristics and the characteristics of Fiona.\n\n1. Fiona is cold. (Inference from statement 5 and statement 6)\n2. Fiona is kind. (Inference from statement 6 and statement 1)\n3. Fiona is furry. (Statement 5)\n4. Fiona is big. (Statement 4)\n\nSince we don't have any direct information about Erin's size, we'll continue analyzing the given statements.\n\n1. All furry, green people are smart. (Statement 8)\n2. All kind people are cold. (Statement 2)\n3. If Fiona is cold and Fiona is kind, then Fiona is green. (Statement 7)\n4. Fiona is big. (Statement 4)\n5. Fiona is furry. (Statement 5)\n6. Fiona is cold. (Inference from statement 5 and statement 6)\n7. Fiona is kind. (Inference from statement 6 and statement 1)\n8. Fiona is green. (Inference from statement 3, statement 6, and statement 7)\n\nNow, let's analyze the relationship between Erin's characteristics and the characteristics of Gary.\n\n1. Gary is big. (Statement 6)\n2. Gary is big. (Statement 7)\n\nWe still don't know if Erin is big or not, but we can continue analyzing the given statements.\n\n1. Green, smart people are rough. (Statement 6)\n2. Erin is furry. (Statement 4)\n3. Erin is smart. (Inferred from statement 1 and statement 2)\n\nNow, let's analyze the relationship between Erin's characteristics and the characteristics of Dave.\n\n1. Dave is green. (Statement 1)\n2. Dave is kind. (Statement 2)\n\nWe still don't know if Erin is kind or not, but we can continue analyzing the given statements.\n\n1. If someone is green and cold, then they are big. (Statement 5)\n2. Erin is cold. (Statement 3)\n3. Erin is green. (Inference from statement 5, statement 3, and statement 8)\n\nHowever, we already know that Erin is furry, not green. Therefore, this inference is incorrect.\n\nLet's analyze the relationship between Erin's characteristics and the characteristics of other people using the given statements.\n\n1. All furry people are smart. (Statement 10)\n2. Erin is furry. (Statement 4)\n3. Erin is smart. (Inferred from statement 1 and statement 2)\n\nTherefore, based on the given statements and the rules of inference, we can conclude that Erin is smart.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to analyze the given information and apply the rules of logic.\n\nFrom the given statements:\n\n1. Erin is cold.\n2. Erin is furry.\n\nWe can use the rule \"All furry, green people are smart\" to infer that Erin is green, but we cannot directly conclude that Erin is smart from this rule. However, we can use the rule \"If someone is furry then they are smart\" to conclude that Erin is smart.\n\nNow, let's examine the possibility that Erin is not smart. If Erin is not smart, then she cannot be green (rule \"All furry, green people are smart\"). However, we already know that Erin is furry, and from the rule \"If someone is furry then they are smart,\" we can conclude that Erin must be smart.\n\nTherefore, the statement \"Erin is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_erin, smart_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_erin, green_erin), smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(green_erin, cold_erin), big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_erin, cold_erin), furry_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_erin, rough_erin), big_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(green_erin, cold_erin), big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_fiona, cold_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_fiona, cold_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_erin, rough_erin), big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_erin, rough_erin), big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_dave, cold_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_dave, smart_dave), rough_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(cold_fiona, kind_fiona), green_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_erin, green_erin), smart_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(green_erin, cold_erin), big_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_erin, rough_erin), big_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_fiona, smart_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_fiona, cold_fiona), furry_fiona)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_dave, cold_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_dave, smart_dave), rough_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(cold_fiona, kind_fiona), green_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_erin, green_erin), smart_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(green_erin, cold_erin), big_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_erin, rough_erin), big_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_gary, smart_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_gary, cold_gary), furry_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin) & green(erin) -> smart(erin)",
+          "z3_formula": "Implies(And(furry_erin, green_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(green_erin, cold_erin), big_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_erin, rough_erin), big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(cold_fiona, kind_fiona), green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_dave, cold_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_dave, smart_dave), rough_dave)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> cold(X)",
+          "z3_formula": "Implies(kind_erin, cold_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(green_erin, cold_erin), big_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(Fiona) & kind(Fiona) -> green(Fiona)",
+          "z3_formula": "Implies(And(cold_fiona, kind_fiona), green_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_erin, rough_erin), big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_erin, green_erin), smart_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_erin, rough_erin), big_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_erin, green_erin), smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_erin, cold_erin), furry_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_erin, green_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 104,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 27
+    },
+    "maxsat_stats": {
+      "satisfied": 27,
+      "excluded": 0,
+      "total_weight": 104,
+      "solve_time_ms": 0.9641945362091064
+    },
+    "timing": {
+      "trace_gen_s": 9.692,
+      "extraction_s": 16.864,
+      "dedup_s": 0.657,
+      "maxsat_s": 0.003,
+      "total_s": 27.216
+    }
+  }
+}

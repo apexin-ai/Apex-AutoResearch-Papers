@@ -1,0 +1,562 @@
+narrative_guidance: 'Original framing holds — SICA is a principled, effective method
+  with formally characterizable operating regime. All 3 claims stand at full strength.
+  Hero figure (C0 vs gap scatter) shows clean threshold with gradient. Paper tells
+  a complete story: method + when it works + why + how to know in advance.'
+imagined_experiments:
+- name: sica_expanded_14b
+  plan_id: exp-001
+  description: 'Full-scale evaluation: PW D5 600 + FOLIO 204 = 804 questions, K=12,
+    T=0.7'
+  expected_results:
+    sica_accuracy_combined: 0.763
+    sc_accuracy_combined: 0.728
+    combined_gap_pp: 3.5
+    folio_sica_accuracy: 0.814
+    folio_sc_accuracy: 0.76
+    folio_gap_pp: 5.4
+    proofwriter_sica_accuracy: 0.745
+    proofwriter_sc_accuracy: 0.722
+    proofwriter_gap_pp: 2.3
+    c0_combined: 0.43
+    c0_folio: 0.48
+    c0_proofwriter: 0.41
+    bootstrap_p_combined: 0.018
+    bootstrap_p_folio: 0.032
+    bootstrap_p_proofwriter: 0.087
+    total_constraints_raw: 78500
+    total_constraints_unique: 22100
+    maxsat_exclusion_rate: 0.031
+    tiebreak_problems: 68
+    tiebreak_sica_win_rate: 0.78
+    wall_time_hours: 12.5
+  result_rationale: D012 pilot showed +6.7pp on FOLIO (30q) and 0pp on PW (30q). At
+    scale, FOLIO gain regresses toward mean but stays strong (+5.4pp) because FOLIO's
+    formal logic structure aligns perfectly with FOL constraint extraction — the method's
+    sweet spot. ProofWriter emerges positive (+2.3pp) because 600 questions reveal
+    a long tail of genuinely ambiguous depth-5 problems where trace diversity creates
+    actionable ties; the pilot's 0pp was a small-sample floor effect (30q × 67% unanimous
+    = only 10 contested problems). Combined significance achieves p=0.018 because
+    804 questions with 43% multi-candidate rate yields ~345 problems where SICA can
+    differentiate, providing sufficient statistical power. The C0 sustains near pilot
+    levels (pilot was 53%) because 14B-Instruct remains uncertain on logic reasoning
+    at T=0.7 — these are genuinely difficult for a 14B instruction model.
+  tables:
+  - 'T1: Main Results (14B row, FOLIO + PW columns)'
+  - 'T2: Tiebreak Analysis (68 tie problems, win/loss/draw)'
+  figures_description:
+  - 'F2 data points: (C0=0.48, gap=5.4) for FOLIO-14B, (C0=0.41, gap=2.3) for PW-14B'
+  analysis: 'Core P0 result validates all three claims. FOLIO''s stronger gain than
+    PW reflects domain alignment: FOLIO premises are already near-FOL, so constraint
+    extraction is high-fidelity. PW depth-5 has longer chains where extraction noise
+    accumulates, diluting signal. The 78 tiebreak problems with 78% SICA win rate
+    directly supports Claim 1. Bootstrap p=0.018 clears significance threshold.'
+- name: sica_k_ablation_14b
+  plan_id: exp-002
+  description: K sensitivity (K=6,8,12,16,20) on D012's 60 questions
+  expected_results:
+    k6_sica_accuracy: 0.717
+    k6_sc_accuracy: 0.7
+    k6_gap_pp: 1.7
+    k6_c0: 0.38
+    k6_tiebreak_freq: 0.12
+    k8_sica_accuracy: 0.733
+    k8_sc_accuracy: 0.7
+    k8_gap_pp: 3.3
+    k8_c0: 0.45
+    k8_tiebreak_freq: 0.22
+    k12_sica_accuracy: 0.75
+    k12_sc_accuracy: 0.7
+    k12_gap_pp: 5.0
+    k12_c0: 0.53
+    k12_tiebreak_freq: 0.3
+    k16_sica_accuracy: 0.75
+    k16_sc_accuracy: 0.717
+    k16_gap_pp: 3.3
+    k16_c0: 0.55
+    k16_tiebreak_freq: 0.25
+    k20_sica_accuracy: 0.75
+    k20_sc_accuracy: 0.733
+    k20_gap_pp: 1.7
+    k20_c0: 0.57
+    k20_tiebreak_freq: 0.18
+    optimal_k: 12
+    wall_time_hours: 4.2
+  result_rationale: 'K=12 is optimal because it balances two opposing forces: (1)
+    more samples increase C0 (more chances to surface minority answers), but (2) more
+    samples also strengthen majority signal, reducing tie frequency. At K=6, too few
+    samples → low C0 (38%) and few ties for SICA to resolve. At K=12, C0 peaks in
+    utility — enough diversity to surface genuine alternatives without majority domination.
+    At K=16/20, majority voting becomes so strong that ties become rare again (SC
+    itself converges), and SICA''s tiebreaking advantage shrinks even though C0 is
+    nominally higher. The gap curve is thus non-monotonic: rises to K=12, plateaus,
+    then narrows. This makes physical sense — SICA helps most when voting is close,
+    not when it''s unanimous or when majority dominates by large margin.'
+  tables:
+  - 'T3: K Sensitivity (5 rows × metrics)'
+  figures_description:
+  - 'F4: K vs accuracy curve (SICA and SC lines), with tiebreak frequency overlay'
+  - 'F2 additional data points: 5 points at different K values showing C0-gap relationship
+    within single model'
+  analysis: 'K=12 sweet spot confirms paper''s default choice is principled, not cherry-picked.
+    The non-monotonic gap pattern reveals SICA''s mechanism: it specifically resolves
+    close calls. At high K, SC self-resolves most ties through volume. This insight
+    strengthens the ''principled tiebreaking'' narrative — SICA is most valuable precisely
+    where SC is least certain.'
+- name: tiebreak_baseline_analysis
+  plan_id: exp-003
+  description: Compare SICA vs SC-random-tiebreak vs SC-deterministic on all available
+    data
+  expected_results:
+    sica_tiebreak_accuracy: 0.78
+    sc_random_tiebreak_accuracy: 0.5
+    sc_alphabetical_accuracy: 0.55
+    sc_first_seen_accuracy: 0.45
+    sc_longest_chain_accuracy: 0.52
+    n_tiebreak_problems: 68
+    sica_vs_random_p_value: 0.003
+    sica_unique_wins: 21
+    sica_unique_losses: 6
+    random_equivalent_problems: 41
+  result_rationale: On 68 tied problems from exp-001 expanded data, SICA achieves
+    78% because MaxSAT constraint weighting genuinely captures reasoning quality signal
+    — traces with more satisfiable constraints tend to contain fewer logical errors.
+    Random tiebreak hits 50% by definition (chance on binary/ternary outcomes). Alphabetical
+    gets 55% due to mild label-answer correlation in FOLIO (True slightly more common).
+    First-seen gets 45% (slight anti-correlation with generation order). The 28pp
+    gap over random (78% vs 50%) on 68 problems is significant at p=0.003 (binomial
+    test), providing direct evidence that SICA's tiebreaking mechanism captures real
+    signal rather than getting lucky. This is the cleanest possible defense against
+    the 'random baseline closes the gap' attack.
+  tables:
+  - 'T2: Tiebreak Comparison (5 strategies × win rate)'
+  figures_description:
+  - 'Bar chart: tiebreak accuracy by method, with significance brackets'
+  analysis: 'The 28pp gap between SICA and random tiebreaking is the single most defensible
+    number in the paper. It isolates SICA''s contribution from any sampling or dataset
+    artifact. 68 tie problems give sufficient power for a binomial test. This directly
+    refutes Reviewer Concern #7.'
+- name: sica_7b_scaling
+  plan_id: exp-004
+  description: Qwen2.5-7B-Instruct on same 60 questions, testing weaker model → higher
+    C0 → larger gain
+  expected_results:
+    sica_accuracy: 0.633
+    sc_accuracy: 0.583
+    gap_pp: 5.0
+    c0: 0.65
+    folio_sica: 0.7
+    folio_sc: 0.633
+    folio_gap_pp: 6.7
+    proofwriter_sica: 0.6
+    proofwriter_sc: 0.567
+    proofwriter_gap_pp: 3.3
+    bootstrap_p: 0.14
+    constraints_per_problem: 72
+    extraction_rate: 0.95
+    exclusion_rate: 0.045
+    wall_time_hours: 1.8
+  result_rationale: '7B model is weaker → lower base accuracy (58% vs 70% for 14B)
+    but critically higher C0 (65% vs 53%). The weaker model genuinely doesn''t know
+    the answer to many problems, producing diverse candidate answers across 12 traces.
+    This higher C0 gives SICA more contested problems to work with, yielding a larger
+    absolute gap (+5.0pp vs +3.3pp for 14B). The mechanism is clear: 7B generates
+    more traces with different answers → more ties → more opportunities for MaxSAT
+    to pick the better-supported answer. Extraction rate stays high (95%) because
+    Qwen-7B still follows instruction format well. Bootstrap p=0.14 on 60 questions
+    isn''t significant alone, but combined with 14B data and the clear C0-gap gradient,
+    it validates the predictive relationship.'
+  tables:
+  - 'T1: Main Results (7B row)'
+  figures_description:
+  - 'F2: (C0=0.65, gap=5.0) point — highest C0 in Qwen family, validates gradient'
+  - 'F3: Operating Regime Heatmap (7B column shows darker ''SICA helps'' region)'
+  analysis: '7B confirms the C0 gradient hypothesis within Qwen family: 7B (C0=0.65,
+    gap=5.0) > 14B (C0=0.53, gap=3.3) > 72B (predicted C0~0.25, gap~1.0). This three-point
+    gradient is the hero evidence for Claim 3. The lower absolute accuracy is expected
+    and not a weakness — the paper''s point is that SICA helps uncertain models, not
+    that it makes weak models strong.'
+- name: qwq_32b_operating_regime
+  plan_id: exp-005
+  description: QwQ-32B negative results formatted for Operating Regime Analysis
+  expected_results:
+    c0_combined: 0.036
+    c0_aime: 0.0
+    c0_folio: 0.0
+    c0_proofwriter: 0.1875
+    sica_sc_gap_pp: 0.0
+    n_aime: 22
+    n_folio: 10
+    n_proofwriter: 16
+    n_combined: 48
+    reasoning_model_unanimous_rate: 0.964
+    conclusion: SICA≡SC when C0<5%
+  result_rationale: 'QwQ-32B is a reasoning model with extended chain-of-thought that
+    self-corrects during generation. Even at T=0.7, the reasoning chain converges
+    to the same answer across all 12 samples because the model''s internal verification
+    loop dominates stochastic sampling. C0=3.6% means only ~2 out of 48 problems ever
+    produce a second candidate answer. With no ties to break, SICA degenerates to
+    SC structurally — MaxSAT confirms the unanimous winner. This is the perfect negative
+    control: the method correctly does nothing when there''s nothing to resolve. The
+    contrast with instruction models (C0=43-65%) demonstrates that C0 reflects reasoning
+    architecture, not task difficulty — same tasks, radically different C0.'
+  tables:
+  - 'T1: Main Results (QwQ-32B row, gap=0.0)'
+  figures_description:
+  - 'F2: (C0=0.036, gap=0.0) point — anchors the left side of the scatter plot'
+  - 'F3: Operating Regime Heatmap (QwQ column is uniformly ''SICA=SC'' zone)'
+  analysis: 'QwQ data transforms from ''failed experiment'' into strongest evidence
+    for Claim 2. The C0=3.6% vs instruction model C0=43-65% gap on identical tasks
+    proves that trace diversity reflects model architecture/confidence, not task properties.
+    This is the key insight: ''symbolic consensus helps when there IS disagreement
+    to resolve.'' Paper frames this as positive contribution, not limitation.'
+- name: c0_diagnostic_validation
+  plan_id: exp-006
+  description: Plot C0 vs SICA-SC gap across all models and K values
+  expected_results:
+    n_data_points: 14
+    pearson_r: 0.89
+    spearman_rho: 0.91
+    c0_threshold_20pct_sensitivity: 1.0
+    c0_threshold_20pct_specificity: 1.0
+    linear_fit_slope: 0.09
+    linear_fit_intercept: -0.015
+    auc_binary_classifier: 0.96
+    models_included:
+    - Qwen-7B
+    - Qwen-14B
+    - Qwen-72B
+    - QwQ-32B
+    - Mistral-7B
+    - LLaMA-8B
+    - DeepSeek-R1-8B
+    k_values_included:
+    - 6
+    - 8
+    - 12
+    - 16
+    - 20
+  result_rationale: 'With 14 data points spanning C0 from 0.036 (QwQ) to 0.65 (Qwen-7B),
+    the scatter plot shows a clean positive relationship (r=0.89) because the mechanism
+    is causal: higher C0 → more ties → more SICA tiebreaking opportunities → larger
+    gap. The threshold at C0=20% has perfect sensitivity/specificity because below
+    20%, there simply aren''t enough multi-candidate problems for SICA to accumulate
+    a measurable gap (even at 78% tiebreak accuracy, <20% ties on 60 questions = <12
+    contested problems = <3 expected flips = noise). The relationship isn''t perfectly
+    linear (it''s bounded above by tiebreak accuracy × tie frequency) but is monotonically
+    positive across the observed range. AUC=0.96 for binary classification (''will
+    SICA help?'') validates C0 as a zero-cost deployment diagnostic.'
+  tables: []
+  figures_description:
+  - 'F2 (Hero Figure): C0 vs gap scatter, 14 points, with threshold line at C0=20%,
+    linear fit, and confidence band. Points colored by model family (Qwen=blue, Mistral=orange,
+    LLaMA=green, QwQ/DeepSeek=red). Clear separation between reasoning models (bottom-left
+    cluster) and instruction models (upper-right spread).'
+  analysis: 'This is the paper''s hero figure. The clean correlation (r=0.89) across
+    3 families, 2 architectures, and 5 K values demonstrates that C0 is a universal
+    predictor of SICA utility. The figure alone tells the paper''s story: check C0
+    before deploying SICA. Practitioners can compute C0 from existing SC samples at
+    zero additional cost.'
+- name: sica_72b_awq
+  plan_id: exp-007
+  description: Qwen2.5-72B-Instruct AWQ 4-bit on 60 questions
+  expected_results:
+    sica_accuracy: 0.833
+    sc_accuracy: 0.817
+    gap_pp: 1.7
+    c0: 0.25
+    folio_sica: 0.867
+    folio_sc: 0.867
+    folio_gap_pp: 0.0
+    proofwriter_sica: 0.833
+    proofwriter_sc: 0.8
+    proofwriter_gap_pp: 3.3
+    bootstrap_p: 0.38
+    constraints_per_problem: 95
+    extraction_rate: 0.98
+    wall_time_hours: 3.8
+  result_rationale: '72B is a strong instruction model with high base accuracy (82%)
+    but still non-reasoning, so it retains some trace diversity (C0=25%) — enough
+    to stay above the 20% threshold but much lower than 14B (53%) or 7B (65%). The
+    gap is small (+1.7pp) because few problems are contested, but it''s positive because
+    those contested problems still benefit from MaxSAT resolution. FOLIO gap hits
+    0pp because 72B gets nearly all FOLIO problems right with SC alone (87% accuracy
+    → few ties). ProofWriter retains a gap because depth-5 reasoning chains remain
+    challenging even for 72B. This completes the within-Qwen gradient: 7B (C0=0.65,
+    +5.0pp) > 14B (C0=0.53, +3.3pp) > 72B (C0=0.25, +1.7pp), showing C0 and gap both
+    decrease monotonically with scale.'
+  tables:
+  - 'T1: Main Results (72B row)'
+  figures_description:
+  - 'F2: (C0=0.25, gap=1.7) point — completes 3-point Qwen gradient'
+  - 'Inset: Qwen scaling curve (3 points connected by line)'
+  analysis: 72B provides the critical third point for the within-family scaling gradient.
+    The monotonic C0 decrease with scale (65% → 53% → 25%) directly maps to gap decrease
+    (5.0 → 3.3 → 1.7), providing causal evidence that model capability (reflected
+    as lower C0) reduces SICA's opportunity. At C0=25% the model is at the boundary
+    — still above threshold but barely. This supports Claim 3's 'continuous predictor'
+    framing over 'binary indicator'.
+- name: constraint_quality_case_studies
+  plan_id: exp-008
+  description: Qualitative analysis of extracted constraints on 5-10 representative
+    questions
+  expected_results:
+    problems_analyzed: 8
+    semantically_meaningful_rate: 0.85
+    excluded_constraints_are_errors_rate: 0.75
+    constraint_types:
+    - implication
+    - universal_quantification
+    - negation
+    - conjunction
+    - disjunction
+    sica_correct_sc_wrong_cases: 3
+    interpretable_reason_rate: 1.0
+    folio_constraint_quality: high - premises map directly to FOL
+    proofwriter_constraint_quality: medium - longer chains introduce noise
+  result_rationale: 'FOLIO premises are designed as near-FOL natural language, so
+    constraint extraction produces semantically faithful FOL formulas 85%+ of the
+    time. When MaxSAT excludes constraints, they predominantly (75%) correspond to
+    traces with genuine reasoning errors — the model made a logical misstep, producing
+    an inconsistent constraint set. The 3 cases where SICA corrects SC are interpretable:
+    in each, the correct-answer traces produce mutually consistent constraints while
+    incorrect-answer traces contain contradictions that MaxSAT identifies and downweights.
+    This qualitative evidence makes the quantitative gains mechanistically interpretable
+    for reviewers.'
+  tables: []
+  figures_description:
+  - 'Case study box (Appendix): 2-3 example problems showing extracted constraints,
+    MaxSAT solution, and how SICA flips SC''s wrong answer'
+  analysis: Case studies provide the interpretability layer reviewers demand. They
+    show SICA isn't a black box — the constraint extraction and MaxSAT resolution
+    have semantically meaningful behavior. The 75% error-exclusion rate means MaxSAT
+    genuinely identifies bad reasoning, not just random noise filtering.
+- name: overhead_analysis
+  plan_id: exp-009
+  description: 'Wall-time breakdown per question: generation, constraint extraction,
+    MaxSAT solving'
+  expected_results:
+    avg_total_time_per_problem_s: 85
+    generation_time_s: 72
+    generation_fraction: 0.847
+    constraint_extraction_time_s: 11
+    extraction_fraction: 0.129
+    maxsat_solving_time_s: 2
+    maxsat_fraction: 0.024
+    overhead_vs_sc_pct: 15.3
+    marginal_cost_per_pp_gain: 4.4s per +1pp
+    gpu_cost_fraction: 0.98
+    cpu_only_fraction: 0.02
+  result_rationale: Generation dominates (85%) because K=12 traces with Qwen-14B at
+    ~512 tokens each requires 12 forward passes through a 14B model. Constraint extraction
+    adds 13% — it's an additional LLM call per trace but with a shorter prompt/response
+    (extract FOL from single trace). MaxSAT solving is negligible (2%) because Z3
+    solves weighted partial MaxSAT on ~20-100 constraints in milliseconds. Total overhead
+    vs vanilla SC (which also needs K=12 generations) is only 15% — the extraction
+    call is the only addition. This means SICA's cost is dominated by the same generation
+    cost SC already pays. The 15% overhead for +3.5pp gain is a favorable trade-off
+    reviewers can evaluate quantitatively.
+  tables:
+  - 'T4: Overhead Breakdown (generation/extraction/solving × time/fraction)'
+  figures_description:
+  - 'Stacked bar chart: time breakdown per component, showing generation dominates'
+  analysis: The 15% overhead number is the key reviewer-facing metric. Since SC already
+    requires K generations, SICA only adds constraint extraction (one additional short
+    LLM call per trace). MaxSAT is free (CPU, milliseconds). This pre-empts the 'impractical
+    overhead' objection — the marginal cost is one extraction call per trace, amortized
+    over K=12 samples that were already being generated.
+- name: sica_mistral_7b
+  plan_id: exp-010
+  description: Mistral-7B-Instruct-v0.3 on D012 60 questions, cross-family validation
+  expected_results:
+    sica_accuracy: 0.617
+    sc_accuracy: 0.583
+    gap_pp: 3.3
+    c0: 0.55
+    folio_sica: 0.667
+    folio_sc: 0.633
+    folio_gap_pp: 3.3
+    proofwriter_sica: 0.6
+    proofwriter_sc: 0.567
+    proofwriter_gap_pp: 3.3
+    bootstrap_p: 0.19
+    constraints_per_problem: 58
+    extraction_rate: 0.92
+    exclusion_rate: 0.038
+    wall_time_hours: 1.3
+  result_rationale: 'Mistral-7B is a comparable-scale instruction model to Qwen-7B
+    but from a completely different training pipeline (Mistral AI vs Alibaba). It
+    shows C0=55% because at 7B scale, instruction models are genuinely uncertain on
+    formal logic tasks regardless of training family. The gap (+3.3pp) is positive
+    and within the best-tier range [1.5, 5.0] because the same mechanism applies:
+    diverse traces → ties → MaxSAT resolution. Extraction rate is slightly lower (92%
+    vs 95% for Qwen) because Mistral''s instruction following is marginally less consistent,
+    but still high enough for the pipeline to function. Bootstrap p=0.19 on 60 questions
+    isn''t significant alone, but the point is cross-family replication of the C0-gap
+    pattern, not individual significance. The key finding: C0=55% (>25% threshold)
+    confirms this isn''t a Qwen-specific artifact.'
+  tables:
+  - 'T1: Main Results (Mistral-7B row)'
+  figures_description:
+  - 'F2: (C0=0.55, gap=3.3) point in orange — aligns with Qwen trend line'
+  - 'F3: Mistral column in heatmap'
+  analysis: 'Mistral replication eliminates the single most dangerous reviewer attack:
+    ''Qwen-specific artifact.'' C0=55% and positive gap demonstrate that the mechanism
+    is architecture-independent — any instruction model with sufficient uncertainty
+    shows the same pattern. Combined with LLaMA (exp-011), this gives 3-family coverage
+    meeting EMNLP minimum bar.'
+- name: sica_llama_8b
+  plan_id: exp-011
+  description: LLaMA-3.1-8B-Instruct on D012 60 questions, third family
+  expected_results:
+    sica_accuracy: 0.6
+    sc_accuracy: 0.567
+    gap_pp: 3.3
+    c0: 0.52
+    folio_sica: 0.633
+    folio_sc: 0.6
+    folio_gap_pp: 3.3
+    proofwriter_sica: 0.567
+    proofwriter_sc: 0.533
+    proofwriter_gap_pp: 3.3
+    bootstrap_p: 0.21
+    constraints_per_problem: 55
+    extraction_rate: 0.9
+    exclusion_rate: 0.042
+    wall_time_hours: 1.4
+  result_rationale: LLaMA-3.1-8B is Meta's instruction-tuned model at similar scale
+    to Mistral-7B. It shows C0=52% — slightly lower than Mistral (55%) because LLaMA-3.1's
+    instruction tuning is somewhat more consistent, but still well above the 20% threshold.
+    The +3.3pp gap confirms the pattern holds across a third completely independent
+    model family. Base accuracy is slightly lower than Mistral (57% vs 58%) reflecting
+    minor capability differences at this scale. Extraction rate is 90% — LLaMA's chat
+    template is slightly different and occasionally produces traces that don't parse
+    cleanly, but the pipeline is robust enough to handle this. The 3-family convergence
+    (Qwen C0=53%, Mistral C0=55%, LLaMA C0=52% — all ~50-55% at 7-14B scale) strongly
+    suggests C0 is a property of task-model capability interaction, not training data
+    or architecture specifics.
+  tables:
+  - 'T1: Main Results (LLaMA-8B row)'
+  figures_description:
+  - 'F2: (C0=0.52, gap=3.3) point in green — clusters with Mistral, confirms family-independence'
+  analysis: 'LLaMA provides the third family for EMNLP''s implicit ''3 model families''
+    requirement. The clustering of all three 7-8B instruction models at C0≈50-55%
+    with gap≈3-5pp is powerful evidence that the phenomenon is universal to instruction-tuned
+    models at this capability level. Combined cross-family result: mean gap = +3.3pp,
+    all C0 > 25%, all gaps positive.'
+- name: gsm8k_pilot_14b
+  plan_id: exp-012
+  description: Qwen2.5-14B on GSM8K 30-question pilot (K=12), cross-domain test
+  expected_results:
+    sica_accuracy: 0.9
+    sc_accuracy: 0.9
+    gap_pp: 0.0
+    c0: 0.1
+    constraints_per_problem: 42
+    extraction_rate: 0.88
+    exclusion_rate: 0.02
+    multi_candidate_problems: 3
+    wall_time_hours: 0.8
+  result_rationale: 'Qwen2.5-14B achieves ~90% on GSM8K because it''s an easy benchmark
+    for this model class. With 90% accuracy and K=12, most problems have 11-12 traces
+    agreeing on the correct answer → C0=10% (only 3/30 problems have any diversity).
+    This low C0 is NOT because the constraint extraction fails — extraction rate is
+    still 88% — but because the model simply knows the answers. SICA=SC because there
+    are no ties to break. This is the ideal ''negative control for a different reason'':
+    on logic tasks, 14B shows high C0 because the tasks challenge it; on arithmetic,
+    the same model shows low C0 because it''s too capable. This proves C0 reflects
+    task-relative difficulty, strengthening Claim 3''s ''practical diagnostic'' framing
+    — if you see low C0, don''t bother with SICA regardless of domain.'
+  tables:
+  - 'Appendix table: GSM8K pilot results'
+  figures_description:
+  - 'F2: (C0=0.10, gap=0.0) point — same model as (C0=0.48, gap=5.4), different task.
+    Arrow annotation: ''same model, task-dependent C0'''
+  - 'F3: GSM8K column shows 14B in ''SICA=SC'' zone (contrasts with logic column)'
+  analysis: 'GSM8K confirms C0 is task-relative, not model-fixed. The same 14B model
+    shows C0=48% on FOLIO but C0=10% on GSM8K — proving C0 reflects model-task interaction,
+    not just model weakness. This is a key insight for practitioners: compute C0 on
+    YOUR task before deciding to deploy SICA. For paper, this adds the cross-domain
+    dimension without requiring SICA to ''work'' on easy tasks.'
+- name: constraint_ablation
+  plan_id: exp-013
+  description: SICA-MaxSAT vs SICA-count-only vs SICA-random-weight, CPU-only
+  expected_results:
+    maxsat_accuracy: 0.763
+    count_only_accuracy: 0.737
+    random_weight_accuracy: 0.728
+    maxsat_vs_count_only_gap_pp: 2.6
+    maxsat_vs_random_weight_gap_pp: 3.5
+    count_only_vs_sc_gap_pp: 0.9
+    maxsat_tiebreak_accuracy: 0.78
+    count_only_tiebreak_accuracy: 0.62
+    random_weight_tiebreak_accuracy: 0.51
+    n_problems_where_methods_differ: 22
+    maxsat_wins_over_count: 14
+    count_wins_over_maxsat: 5
+    ties_between_methods: 3
+  result_rationale: 'MaxSAT beats count-only by 2.6pp because satisfiability checking
+    adds genuine signal beyond constraint counting. Count-only asks ''which answer
+    has more supporting constraints?'' — this captures quantity but not quality. MaxSAT
+    asks ''which answer has the most internally consistent constraint set?'' — this
+    captures whether the reasoning chains are logically coherent, not just numerous.
+    On the 22 problems where they differ, MaxSAT wins 14 vs count-only''s 5 because
+    constraint consistency correlates with reasoning correctness: a correct reasoning
+    chain produces constraints that form a satisfiable set, while an incorrect chain
+    often produces contradictions. Random-weight performs near SC-random (51% tiebreak
+    accuracy) confirming that the weighting scheme matters. The 2.6pp gap (within
+    [2.0, 5.0] best-tier range) directly refutes the ''over-engineering'' objection
+    — MaxSAT''s satisfiability reasoning is genuinely load-bearing.'
+  tables:
+  - 'Appendix Table: Constraint Ablation (3 methods × accuracy + tiebreak performance)'
+  figures_description:
+  - 'Bar chart: Accuracy by method (MaxSAT > count-only > random-weight > SC-baseline)'
+  analysis: This is the make-or-break experiment for Claim 1's 'principled tiebreaking
+    through satisfiability' framing. The 2.6pp MaxSAT advantage over count-only proves
+    that the SAT-solving machinery adds value — it's not just counting constraints,
+    it's verifying their mutual consistency. If this were ≤1pp, we'd need to reframe
+    as 'principled weighting.' At 2.6pp, the current framing ('satisfiability-based
+    reasoning aggregation') is fully supported.
+- name: sica_deepseek_r1_llama_8b
+  plan_id: exp-014
+  description: DeepSeek-R1-Distill-LLaMA-8B on D012 60 questions, second reasoning
+    model
+  expected_results:
+    sica_accuracy: 0.717
+    sc_accuracy: 0.717
+    gap_pp: 0.0
+    c0: 0.05
+    folio_sica: 0.767
+    folio_sc: 0.767
+    folio_gap_pp: 0.0
+    proofwriter_sica: 0.7
+    proofwriter_sc: 0.7
+    proofwriter_gap_pp: 0.0
+    constraints_per_problem: 85
+    extraction_rate: 0.93
+    multi_candidate_problems: 3
+    reasoning_trace_avg_tokens: 1800
+    wall_time_hours: 1.8
+  result_rationale: 'DeepSeek-R1-Distill-LLaMA-8B is a reasoning-distilled model —
+    it has internalized the extended chain-of-thought pattern from R1 into an 8B LLaMA
+    architecture. Despite being much smaller than QwQ-32B, it still shows C0=5% because
+    the reasoning distillation teaches the model to self-verify, producing convergent
+    outputs regardless of sampling temperature. Only 3/60 problems show any diversity.
+    SICA=SC identically because with no ties, MaxSAT simply confirms the unanimous
+    vote. This is crucial: it demonstrates that low C0 is a property of REASONING
+    TRAINING (distillation/RL for chain-of-thought), not model size (QwQ is 32B, DeepSeek-R1-distill
+    is 8B) or model family (QwQ is Qwen-based, this is LLaMA-based). The contrast
+    with LLaMA-3.1-8B-Instruct (same base architecture, C0=52%) is dramatic: same
+    LLaMA-8B base, but instruction-tuned vs reasoning-distilled produces C0=52% vs
+    C0=5%.'
+  tables:
+  - 'T1: Main Results (DeepSeek-R1-8B row, gap=0.0)'
+  figures_description:
+  - 'F2: (C0=0.05, gap=0.0) point — clusters with QwQ at bottom-left'
+  - 'Annotation arrow between LLaMA-8B-Instruct (C0=52%) and DeepSeek-R1-LLaMA-8B
+    (C0=5%): ''same base, different training → different C0'''
+  analysis: 'DeepSeek-R1 provides the second reasoning model negative control with
+    a different base architecture. The LLaMA-8B-Instruct vs DeepSeek-R1-LLaMA-8B comparison
+    is the paper''s most elegant evidence: same base model, but instruction tuning
+    → C0=52% while reasoning distillation → C0=5%. This proves C0 reflects training
+    regime (reasoning vs instruction), not architecture or scale. It also eliminates
+    the ''QwQ is still Qwen family'' attack, since this uses LLaMA base.'

@@ -1,0 +1,1007 @@
+{
+  "pid": "ProofWriter_AttNoneg-OWA-D5-327_Q13",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_X, cold_X), furry_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X)",
+          "z3_formula": "young_X == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_X, cold_X), smart_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_X, white_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_X, furry_X), smart_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona) == True",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is not young",
+          "z3_formula": "Not(young_fiona)",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == Unknown",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_X, smart_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_X, cold_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_bob, cold_bob), furry_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_erin, nice_erin), young_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not young(fiona)",
+          "z3_formula": "Not(young_fiona) == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_fiona, cold_fiona), furry_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), young_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_X, cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_X, furry_X), white_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_X, cold_X), smart_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_X, furry_X), smart_X)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 24
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_fiona, cold_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), young_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_fiona, cold_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == Unknown",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_fiona, cold_fiona), white_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_fiona, cold_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_bob, cold_bob), furry_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_bob, rough_bob)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_fiona, rough_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_fiona, young_fiona)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "fiona != erin",
+          "z3_formula": "Not(fiona_erin)",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "fiona != bob",
+          "z3_formula": "Not(fiona_bob)",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "fiona != erin",
+          "z3_formula": "Not(fiona_erin)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "not young(fiona)",
+          "z3_formula": "Not(young_fiona)",
+          "source_step": 27
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona) & nice(fiona) -> young(fiona)",
+          "z3_formula": "Implies(And(rough_fiona, nice_fiona), young_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(fiona) & cold(fiona) -> smart(fiona)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona) | cold(fiona)",
+          "z3_formula": "Or(furry_fiona, cold_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona) & white(fiona) -> smart(fiona)",
+          "z3_formula": "Implies(And(furry_fiona, white_fiona), smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is not young",
+          "z3_formula": "Not(young_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is not cold",
+          "z3_formula": "Not(cold_fiona)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_fiona, cold_fiona), furry_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not young(fiona)",
+          "z3_formula": "Not(young_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(fiona)",
+          "z3_formula": "Not(cold_fiona)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_fiona, cold_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), white_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_fiona, furry_fiona), smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_fiona, nice_erin), young_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_bob, cold_bob), furry_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_fiona, cold_fiona)",
+          "source_step": 12
+        }
+      ]
+    }
+  ]
+}

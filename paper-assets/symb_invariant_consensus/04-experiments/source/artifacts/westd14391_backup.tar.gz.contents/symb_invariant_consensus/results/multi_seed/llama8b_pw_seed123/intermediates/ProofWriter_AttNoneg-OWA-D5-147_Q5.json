@@ -1,0 +1,825 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-147_Q5",
+    "problem": "Charlie is nice. Charlie is rough. Charlie is smart. Charlie is young. Fiona is cold. Fiona is kind. Fiona is rough. Gary is cold. Gary is young. Harry is nice. If something is young then it is smart. If something is cold and round then it is kind. If Gary is kind and Gary is cold then Gary is rough. If Harry is round then Harry is smart. If Fiona is round and Fiona is kind then Fiona is young. If Charlie is cold then Charlie is round. All smart, young things are nice. If something is nice and smart then it is round.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is nice.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\nRound($x, bool) ::: Is x round?\n\nFacts:\nNice(Charlie, True) ::: Charlie is nice.\nRough(Charlie, True) ::: Charlie is rough.\nSmart(Charlie, True) ::: Charlie is smart.\nYoung(Charlie, True) ::: Charlie is young.\nCold(Fiona, True) ::: Fiona is cold.\nKind(Fiona, True) ::: Fiona is kind.\nRough(Fiona, True) ::: Fiona is rough.\nCold(Gary, True) ::: Gary is cold.\nYoung(Gary, True) ::: Gary is young.\nNice(Harry, True) ::: Harry is nice.\n\nRules:\nYoung($x, True) >>> Smart($x, True) ::: If something is young then it is smart.\nCold($x, True) && Round($x, True) >>> Kind($x, True) ::: If something is cold and round then it is kind.\nKind(Gary, True) && Cold(Gary, True) >>> Rough(Gary, True) ::: If Gary is kind and Gary is cold then Gary is rough.\nRound(Harry, True) >>> Smart(Harry, True) ::: If Harry is round then Harry is smart.\nRound(Fiona, True) && Kind(Fiona, True) >>> Young(Fiona, True) ::: If Fiona is round and Fiona is kind then Fiona is young.\nCold(Charlie, True) >>> Round(Charlie, True) ::: If Charlie is cold then Charlie is round.\nSmart($x, True) && Young($x, True) >>> Nice($x, True) ::: All smart, young things are nice.\nNice($x, True) && Smart($x, True) >>> Round($x, True) ::: If something is nice and smart then it is round.\n\nQuery:\nNice(Gary, True) ::: Gary is nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 103.0,
+      "Unknown": 72.0
+    },
+    "answer_counts": {
+      "True": 8,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use logical deductions based on the given statements.\n\n1. Given statements:\n   - Charlie is nice.\n   - Charlie is rough.\n   - Charlie is smart.\n   - Charlie is young.\n   - Fiona is cold.\n   - Fiona is kind.\n   - Fiona is rough.\n   - Gary is cold.\n   - Gary is young.\n   - Harry is nice.\n   - If something is young then it is smart.\n   - If something is cold and round then it is kind.\n   - If Gary is kind and Gary is cold then Gary is rough.\n   - If Harry is round then Harry is smart.\n   - If Fiona is round and Fiona is kind then Fiona is young.\n   - If Charlie is cold then Charlie is round.\n   - All smart, young things are nice.\n   - If something is nice and smart then it is round.\n\n2. We need to determine whether the statement \"Gary is nice\" is true, false, or unknown.\n\nFrom the given statements, we know:\n- Gary is cold.\n- Gary is young.\n- If something is young then it is smart (Gary is smart).\n- All smart, young things are nice.\n\nSince Gary is smart and young, we can conclude that Gary is nice, based on the statement \"All smart, young things are nice.\"\n\nTherefore, the statement \"Gary is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given information:\n\n1. Gary is young.\n2. Gary is cold.\n\nWe know that if something is young, then it is smart. So, we can infer that Gary is smart.\n\nFrom the given information:\n\n1. Gary is cold and round then it is kind. (But we don't know if Gary is round yet)\n2. Gary is kind and Gary is cold then Gary is rough. \n\nWe need to find out if Gary is round or not. If Gary is round, then it is kind. But we also know that if Gary is kind and cold, then it is rough.\n\nNow, let's analyze the other given information:\n\n1. Charlie is young. Charlie is smart. Charlie is rough. Charlie is cold. Charlie is round. (We can ignore this information for now)\n2. Fiona is cold. Fiona is kind. Fiona is rough. \n3. Harry is nice. Harry is young.\n\nFrom the given information:\n\n1. If something is young then it is smart. (We already used this)\n2. If Harry is round then Harry is smart. (We don't have any information about Harry being round, so we can't use this yet)\n\nWe need to find a connection between Gary and the other people. Since we know that Gary is young and smart, we can use the information that all smart, young things are nice.\n\nSo, we can infer that Gary is nice.\n\nTherefore, the statement \"Gary is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is nice\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\n1. We are given that Gary is cold (from the given information) and Gary is young (from the given information). \n   We know from the information given that \"If something is young then it is smart.\"\n   Therefore, Gary is smart.\n\n2. We are given that Gary is cold and Gary is smart. \n   We know from the information given that \"If something is cold and Gary is kind then Gary is rough.\" However, we are not given that Gary is round. \n   However, we are given \"If Gary is kind and Gary is cold then Gary is rough.\" But we know Gary is smart, and we know \"If something is nice and smart then it is round\" and \"All smart, young things are nice.\" Thus, we have no information on Gary's roundness. \n   Since we do not have enough information to determine Gary's roundness, we cannot determine if Gary is kind or not.\n   However, since we know \"If something is cold and round then it is kind\" we have no information on Gary's roundness, however we have information on if Gary is round, it would be kind. \n\n3. Since we have not determined if Gary is round, we cannot determine if Gary is kind or not, and we cannot determine if Gary is nice or not.\n\nTherefore, the statement \"Gary is nice\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Gary is cold and Gary is young.\n\n2. Since Gary is young, and if something is young then it is smart, then Gary is smart.\n\n3. We also know that Gary is cold.\n\n4. From the given information, if something is cold and round then it is kind. However, we do not have enough information to confirm whether Gary is round or not.\n\n5. We also know that if Gary is kind and Gary is cold, then Gary is rough. However, since we do not know whether Gary is round or not, we cannot confirm whether Gary is kind or not.\n\n6. Let's consider the possibilities:\n    a. If Gary is round, then from the information in step 1 and step 2, Gary is both smart and young. This implies that Gary is nice (All smart, young things are nice).\n    b. If Gary is not round, then we do not have enough information to determine whether Gary is nice or not.\n\nSince we cannot confirm whether Gary is round or not, we cannot confirm whether Gary is nice or not. Therefore, the statement \"Gary is nice\" is unknown. \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Gary is cold.\n   - Gary is young.\n   - If something is cold and round then it is kind.\n   - If Gary is kind and Gary is cold then Gary is rough.\n   - All smart, young things are nice.\n   - If something is young then it is smart.\n   - If something is nice and smart then it is round.\n   - If Charlie is cold then Charlie is round. (This information is not relevant to Gary, so we can ignore it for now.)\n\n2. Since Gary is young, we can conclude that Gary is smart (from the statement \"If something is young then it is smart.\").\n\n3. We have two statements that relate Gary's properties: \"If something is cold and round then it is kind\" and \"If Gary is kind and Gary is cold then Gary is rough.\" However, we do not have enough information to determine whether Gary is round or not. \n\n4. From the previous step, we know that Gary is smart and young, which means that Gary is nice (from the statement \"All smart, young things are nice.\").\n\nHowever, we still do not have enough information to determine whether Gary is round or not.\n\n5. Since we do not have enough information to determine whether Gary is round, we cannot determine whether the statement \"Gary is nice\" is true or false. \n\nBut we can infer that the given statement \"Gary is nice\" might be true because Gary is smart and young, which are conditions that lead to being nice.\n\nBut, the statement \"Gary is nice\" is still unknown because we cannot confirm whether Gary is round or not.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Gary is cold.\n   - Gary is young.\n\n2. From the statement \"If something is young then it is smart,\" we can conclude that Gary is smart because Gary is young.\n\n3. Now we have the following information about Gary:\n   - Gary is cold.\n   - Gary is smart.\n\n4. We are given the statement \"If something is cold and round then it is kind.\" However, we don't have any information that Gary is round. Therefore, we can't directly conclude that Gary is kind from this statement.\n\n5. We are given the statement \"If Gary is kind and Gary is cold then Gary is rough.\" However, we don't have any information that Gary is kind. Therefore, we can't directly conclude that Gary is rough from this statement.\n\n6. From the statement \"If something is cold then it is round,\" we can conclude that Charlie is round because Charlie is cold. However, we can't apply this rule directly to Gary because it's not a rule for Gary.\n\n7. We are given the statement \"All smart, young things are nice.\" Since we know that Gary is smart and young, we can conclude that Gary is nice.\n\nTherefore, the statement \"Gary is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is nice\" is true, false, or unknown, we need to use the given premises to establish a logical conclusion.\n\nGiven Premises:\n1. If something is young then it is smart. \n2. Gary is young.\n3. If something is cold and round then it is kind.\n4. If Gary is kind and Gary is cold then Gary is rough.\n5. If Gary is kind and Gary is cold then Gary is rough. (We already know this from premise 3, so this is redundant)\n6. Gary is cold.\n7. Gary is young. (We already know this from premise 2, so this is redundant)\n8. If Harry is round then Harry is smart. (This premise does not directly affect the conclusion about Gary, so we can ignore it for now)\n9. If Fiona is round and Fiona is kind then Fiona is young. (This premise does not directly affect the conclusion about Gary, so we can ignore it for now)\n10. If Charlie is cold then Charlie is round. (This premise does not directly affect the conclusion about Gary, so we can ignore it for now)\n11. All smart, young things are nice.\n12. If something is nice and smart then it is round.\n\nFrom the given premises, we know the following:\n- Gary is young (Premise 2)\n- Gary is cold (Premise 6)\n\nWe need to determine if Gary is nice. To do this, we must first determine if Gary is smart.\n\nWe know that Gary is young (Premise 2), and from premise 1, if something is young then it is smart. Therefore, we can conclude that Gary is smart.\n\nNow that we know Gary is smart and young, we can use premise 11 to conclude that Gary is nice.\n\nTherefore, based on the given premises, the statement \"Gary is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Gary is cold. (Given)\n2. Gary is young. (Given)\n3. If something is young then it is smart. (Rule)\n   Therefore, Gary is smart. (Inference)\n\n4. Gary is cold and Gary is smart. (From steps 1 and 3)\n5. Since Gary is cold, and if something is cold and round then it is kind (Rule), we cannot conclude that Gary is round yet.\n6. However, we already know that Gary is cold and smart. Now, we will check the rules that include both cold and smart conditions.\n7. From the given rules, there's no rule that states a cold and smart thing is either kind or round. However, we can infer that Gary is kind because we already know that Gary is cold and that something is cold and round then it is kind (Rule), but we can't conclude that Gary is round yet.\n8. But now, we will consider the rule \"If Gary is kind and Gary is cold then Gary is rough\" (Rule). Since Gary is cold and we already determined that Gary is kind (step 7), then Gary is rough. (Inference)\n\nNow, we have the following information about Gary:\n- Gary is cold.\n- Gary is young.\n- Gary is smart.\n- Gary is rough.\n- Gary is kind.\n\n9. The only remaining rules that might help us determine whether Gary is nice are:\n   a. All smart, young things are nice (Rule)\n   b. If something is nice and smart then it is round (Rule)\n\n10. From step 3, we know that Gary is young, and from step 3, we know that Gary is smart. \n    Therefore, Gary is a smart, young thing, so according to rule (a), Gary is nice.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that:\n   - Gary is cold.\n   - Gary is young.\n\n2. From the information, we know that \"If something is young then it is smart.\" Since Gary is young, we can conclude that Gary is smart.\n\n3. Now, we need to check if Gary is nice. We know that \"All smart, young things are nice.\" Since Gary is both smart and young, we can conclude that Gary is nice.\n\nTherefore, based on the given information, the statement \"Gary is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Gary is nice' is true, false, or unknown, we need to analyze the given information.\n\nFrom the given statements:\n1. Gary is cold.\n2. Gary is young.\n3. If something is young then it is smart. (This implies Gary is smart.)\n4. All smart, young things are nice. (This implies Gary is nice.)\n\nCombining these points, we can see that Gary is indeed nice.\n\nTherefore, the answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Gary is young. (Given)\n\n2. If something is young then it is smart. (Given)\n   Therefore, Gary is smart.\n\n3. Gary is cold. (Given)\n\n4. If Gary is kind and Gary is cold then Gary is rough. (Given)\n   But we don't know if Gary is kind. So, we cannot conclude if Gary is rough or not.\n\n5. Since we don't know if Gary is rough or not, we cannot directly apply the rule that if something is rough and young, then it is nice. However, we can use the information that if something is young and smart, then it is nice.\n\n6. From step 2, we know Gary is smart. From step 1, we know Gary is young. Therefore, by applying the rule from step 5, Gary is nice.\n\nTherefore, the statement \"Gary is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information to determine if the statement \"Gary is nice\" is true, false, or unknown.\n\n1. Given information:\n   - Charlie is nice.\n   - Charlie is rough.\n   - Charlie is smart.\n   - Charlie is young.\n   - Fiona is cold.\n   - Fiona is kind.\n   - Fiona is rough.\n   - Gary is cold.\n   - Gary is young.\n   - Harry is nice.\n   - If something is young then it is smart.\n   - If something is cold and round then it is kind.\n   - If Gary is kind and Gary is cold then Gary is rough.\n   - If Harry is round then Harry is smart.\n   - If Fiona is round and Fiona is kind then Fiona is young.\n   - If Charlie is cold then Charlie is round.\n   - All smart, young things are nice.\n   - If something is nice and smart then it is round.\n\n2. Analyze the statement \"Gary is nice\" using the given information.\n   - We know that Gary is young (given information).\n   - Since Gary is young, he is smart (rule 1).\n   - We also know that Gary is cold (given information).\n\n3. Now we need to use the given information to find out if Gary is nice or not.\n   - We know that Gary is cold, and he might be round (rule 10), but we are not sure about that yet.\n   - If Gary is round, then he is kind (rule 2), and since he is cold and round, he is kind (rule 2).\n   - Now we have two conditions that might make Gary rough: \n     - Gary is kind and cold (rule 4).\n     - If Gary is round, then he is kind and cold (rule 2), which makes him rough (rule 4).\n   - But, we also have a condition that makes Gary rough if Gary is kind and cold (rule 4).\n   - So, either way, Gary is rough (rule 4 or rule 2 and 4).\n\n4. Since Gary is smart and young, he is nice (rule 8).\n\n5. However, we have another condition that says if something is nice and smart, then it is round (rule 9).\n   - But, we already know that Gary is rough (from step 3), and we cannot conclude that Gary is round because Gary being round and rough does not make it a nice and smart thing (Gary being round is an assumption to check if Gary is round and not the direct conclusion of Gary being nice and smart).\n\n6. Based on the information given and the analysis, we can conclude that Gary is nice (from step 4), but the information does not provide enough evidence to prove that Gary is round or not.\n\n7. However, since we concluded that Gary is nice in step 4, and it cannot be proven that Gary is not nice because it does not conflict with the given information, then we can safely say that Gary is nice.\n\nTherefore, the final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_charlie, smart_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> kind(X)",
+          "z3_formula": "Implies(And(cold_fiona, round_fiona), kind_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_gary, cold_gary), rough_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_harry, smart_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(round_fiona, kind_fiona), young_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_charlie, round_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_gary, young_gary), nice_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(nice_harry, smart_harry), round_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_gary, nice_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_gary, cold_gary), kind_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_gary, cold_gary), rough_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_gary, smart_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_gary, kind_gary), rough_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_gary, kind_gary), rough_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_gary, round_gary), rough_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(nice_gary, smart_gary), round_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_gary, smart_gary), nice_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> kind(X)",
+          "z3_formula": "Implies(And(cold_gary, round_gary), kind_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == Unknown",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == Unknown",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_gary, smart_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X) | round(X)",
+          "z3_formula": "Or(cold_gary == True, round_gary == True)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_gary, cold_gary), rough_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & round(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_gary, round_gary), nice_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary) | round(gary)",
+          "z3_formula": "Or(cold_gary == True, round_gary == True)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary) | nice(gary)",
+          "z3_formula": "Or(And(kind_gary, cold_gary), And(kind_gary, round_gary))",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_gary, cold_gary), kind_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_gary, cold_gary), rough_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_gary, young_gary), nice_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_charlie, round_charlie)",
+          "source_step": 6
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_gary, smart_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_gary, smart_gary), nice_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary) & smart(gary)",
+          "z3_formula": "And(cold_gary, smart_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> kind(X)",
+          "z3_formula": "Implies(And(cold_gary, round_gary), kind_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary) & kind(gary)",
+          "z3_formula": "And(cold_gary, kind_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_gary, kind_gary), rough_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_gary, smart_gary), nice_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_gary, smart_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_gary, young_gary), nice_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_gary, young_gary), nice_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_gary, smart_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_gary, cold_gary), rough_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_gary, smart_gary), nice_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_charlie, smart_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> kind(X)",
+          "z3_formula": "Implies(And(cold_fiona, round_fiona), kind_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_gary, cold_gary), rough_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_harry, smart_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(round_fiona, kind_fiona), young_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_charlie, round_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_gary, young_gary), nice_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(nice_gary, smart_gary), round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 116,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 36
+    },
+    "maxsat_stats": {
+      "satisfied": 36,
+      "excluded": 0,
+      "total_weight": 116,
+      "solve_time_ms": 1.0099485516548157
+    },
+    "timing": {
+      "trace_gen_s": 7.569,
+      "extraction_s": 24.133,
+      "dedup_s": 1.053,
+      "maxsat_s": 0.003,
+      "total_s": 32.758
+    }
+  }
+}

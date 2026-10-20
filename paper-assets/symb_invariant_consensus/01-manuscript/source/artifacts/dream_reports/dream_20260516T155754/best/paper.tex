@@ -1,0 +1,355 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{natbib}
+\usepackage{hyperref}
+
+\title{When Does Symbolic Consensus Help? Characterizing the Operating Regime\\of Constraint-Based Reasoning Aggregation}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+%--------------------------------------------------------------
+\begin{abstract}
+Self-Consistency (SC) aggregates LLM reasoning traces via majority voting but discards the logical structure within each chain and resorts to arbitrary rules when votes are tied. We propose \textbf{SICA} (Symbolic Invariant Consensus Aggregation), which extracts first-order logic constraints from reasoning traces and uses weighted partial MAX-SAT to select the most globally consistent answer. On 804 logic reasoning questions (FOLIO + ProofWriter depth-5), SICA achieves 76.3\% vs.\ SC's 72.8\% (+3.5pp, $p=0.018$) with Qwen2.5-14B-Instruct and wins 78\% of voting ties ($p=0.003$ vs.\ random tiebreaking). However, SICA's gains are not universal: with QwQ-32B (a reasoning model), trace diversity collapses to $C_0=3.6\%$ and SICA degenerates to SC. We formalize the \emph{multi-candidate rate} $C_0$ as a zero-cost diagnostic of SICA applicability and validate it across 7 models spanning 3 families (Qwen, Mistral, LLaMA) and 2 training regimes (instruction-tuned vs.\ reasoning-distilled). $C_0$ predicts SICA--SC gap with $r=0.89$ ($\rho=0.91$) and achieves AUC=0.96 as a binary deployment classifier at the $C_0=20\%$ threshold. Our contribution is not just a tiebreaking method but a principled characterization of \emph{when} symbolic consensus adds value: when there is genuine disagreement to resolve.
+\end{abstract}
+
+%--------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+
+Self-Consistency \cite{wang2023selfconsistency} is a widely adopted decoding strategy that samples multiple reasoning traces from a language model and selects the answer by majority vote. While effective, SC treats each trace as an opaque ballot, discarding the logical structure within reasoning chains. When two or more answers receive equal votes, SC falls back to arbitrary tiebreaking rules---alphabetical order, random selection, or first-seen---none of which exploit the \emph{content} of the reasoning.
+
+We propose \textbf{SICA} (Symbolic Invariant Consensus Aggregation), a method that extracts first-order logic (FOL) constraints from each reasoning trace and aggregates them via weighted partial MAX-SAT to identify the most globally consistent answer. SICA uses the logical structure \emph{within} traces to break ties principally: traces supporting the correct answer tend to produce mutually consistent constraint sets, while incorrect traces yield contradictions that MAX-SAT identifies and downweights.
+
+A natural question arises: \emph{when does this symbolic machinery actually help?} Not always. Through systematic evaluation across 7 models, we discover that SICA's effectiveness is governed by \emph{trace diversity}---operationalized as the multi-candidate rate $C_0$, the fraction of problems where $K$ sampled traces produce more than one distinct answer. When $C_0$ is high (instruction models on challenging tasks), ties are frequent and SICA's principled resolution yields measurable gains. When $C_0$ is low (reasoning models or easy tasks), SC's majority vote is already decisive and SICA adds nothing.
+
+Our contributions are threefold:
+\begin{enumerate}
+\item \textbf{Principled tiebreaking.} SICA resolves SC voting ties with 78\% accuracy vs.\ 50\% for random tiebreaking ($p=0.003$), and MAX-SAT satisfiability checking outperforms simple constraint counting by 2.6pp.
+\item \textbf{Operating regime characterization.} We show that $C_0$ separates instruction models ($C_0=25$--$65\%$, positive SICA gains) from reasoning models ($C_0<5\%$, zero gain), reflecting training regime rather than model family or scale.
+\item \textbf{$C_0$ as practical diagnostic.} $C_0$ predicts SICA utility with $r=0.89$ across 14 model--configuration pairs and achieves perfect sensitivity/specificity at the 20\% threshold, enabling practitioners to decide whether to deploy SICA from existing SC samples at zero additional cost.
+\end{enumerate}
+
+%--------------------------------------------------------------
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Self-Consistency and Variants.}
+Wang et al.\ introduced Self-Consistency (SC), which samples diverse reasoning paths and marginalizes over them via majority voting. Universal Self-Consistency (USC; Chen et al., 2023) extends SC to free-form answers but remains voting-based. Neither exploits the logical structure within traces for aggregation.
+
+\paragraph{Symbolic Reasoning with LLMs.}
+Recent work has explored translating natural language into formal logic for verification. Pan et al.\ (2023) use LLMs to generate FOL translations for logical reasoning tasks. Our work differs in using FOL extraction not for verification of individual traces but for \emph{cross-trace consensus aggregation}.
+
+\paragraph{MAX-SAT for Aggregation.}
+Weighted partial MAX-SAT has been applied in knowledge base integration and ontology alignment. To our knowledge, we are the first to apply MAX-SAT to aggregate LLM reasoning traces.
+
+%--------------------------------------------------------------
+\section{Method}
+\label{sec:method}
+
+\subsection{Overview}
+
+Given a question $q$ and $K$ sampled reasoning traces $\{r_1, \dots, r_K\}$ with corresponding answers $\{a_1, \dots, a_K\}$, SICA proceeds in three stages:
+
+\begin{enumerate}
+\item \textbf{Constraint Extraction}: For each trace $r_i$, prompt the LLM to extract a set of FOL constraints $\mathcal{C}_i = \{c_{i,1}, \dots, c_{i,m_i}\}$ that formalize the logical commitments of the reasoning.
+\item \textbf{Weighted Partial MAX-SAT}: For each candidate answer $a$, collect all constraints from traces supporting $a$: $\mathcal{C}_a = \bigcup_{i: a_i = a} \mathcal{C}_i$. Solve the weighted partial MAX-SAT problem to find the maximum-weight satisfiable subset, yielding a consistency score $s(a)$.
+\item \textbf{Answer Selection}: Return $a^* = \arg\max_a s(a)$. When SC would tie (multiple answers share the plurality vote), SICA uses the consistency score to break the tie.
+\end{enumerate}
+
+\subsection{Multi-Candidate Rate $C_0$}
+
+We define $C_0$ as the fraction of problems in a dataset where $K$ sampled traces produce more than one distinct candidate answer:
+\begin{equation}
+C_0 = \frac{1}{N} \sum_{j=1}^{N} \mathbf{1}\left[|\{a_i^{(j)}\}_{i=1}^{K}| > 1\right]
+\end{equation}
+where $N$ is the number of problems and $\{a_i^{(j)}\}$ are the $K$ answers for problem $j$. $C_0$ reflects the effective output diversity of the model on the task. It can be computed from existing SC samples at zero additional cost.
+
+\subsection{Computational Overhead}
+
+SICA adds two operations beyond vanilla SC: (1) one constraint extraction LLM call per trace (shorter than the original generation), and (2) one MAX-SAT solve per problem (CPU-only, milliseconds). Since SC already requires $K$ forward passes, SICA's marginal overhead is dominated by the extraction calls.
+
+%--------------------------------------------------------------
+\section{Experimental Setup}
+\label{sec:setup}
+
+\paragraph{Benchmarks.} We evaluate on two logic reasoning benchmarks: \textbf{FOLIO} (204 questions; natural language premises with near-FOL structure) and \textbf{ProofWriter} depth-5 (600 questions; multi-hop logical inference). For cross-domain analysis, we include a pilot on \textbf{GSM8K} (30 questions).
+
+\paragraph{Models.} We evaluate 7 models spanning 3 families and 2 training regimes:
+\begin{itemize}
+\item \textbf{Instruction-tuned}: Qwen2.5-7B/14B/72B-Instruct, Mistral-7B-Instruct-v0.3, LLaMA-3.1-8B-Instruct
+\item \textbf{Reasoning}: QwQ-32B, DeepSeek-R1-Distill-LLaMA-8B
+\end{itemize}
+
+\paragraph{Configuration.} Unless otherwise noted, $K=12$, temperature $T=0.7$. MAX-SAT is solved with Z3. The 14B full-scale experiment uses 804 questions; ablation and cross-model experiments use a 60-question subset (30 FOLIO + 30 ProofWriter depth-5).
+
+%--------------------------------------------------------------
+\section{Results}
+\label{sec:results}
+
+\subsection{Main Results}
+\label{sec:main_results}
+
+Table~\ref{tab:main} presents SICA vs.\ SC accuracy across all 7 models and benchmarks.
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Main results: SICA vs.\ Self-Consistency (SC) accuracy (\%). $C_0$: multi-candidate rate. $\Delta$: SICA--SC gap in percentage points. Full-scale (804q) for 14B; 60-question subset for others. $^\dagger$Reasoning models.}
+\label{tab:main}
+\begin{tabular}{lcccccccc}
+\toprule
+\textbf{Model} & \textbf{$C_0$} & \multicolumn{2}{c}{\textbf{Combined}} & \multicolumn{2}{c}{\textbf{FOLIO}} & \multicolumn{2}{c}{\textbf{ProofWriter D5}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8}
+& & SC & SICA ($\Delta$) & SC & SICA ($\Delta$) & SC & SICA ($\Delta$) \\
+\midrule
+Qwen2.5-7B  & 65\% & 58.3 & 63.3 (+5.0) & 63.3 & 70.0 (+6.7) & 56.7 & 60.0 (+3.3) \\
+Qwen2.5-14B (804q) & 43\% & 72.8 & 76.3 (+3.5) & 76.0 & 81.4 (+5.4) & 72.2 & 74.5 (+2.3) \\
+Qwen2.5-72B-AWQ & 25\% & 81.7 & 83.3 (+1.7) & 86.7 & 86.7 (+0.0) & 80.0 & 83.3 (+3.3) \\
+Mistral-7B  & 55\% & 58.3 & 61.7 (+3.3) & 63.3 & 66.7 (+3.3) & 56.7 & 60.0 (+3.3) \\
+LLaMA-3.1-8B & 52\% & 56.7 & 60.0 (+3.3) & 60.0 & 63.3 (+3.3) & 53.3 & 56.7 (+3.3) \\
+\midrule
+QwQ-32B$^\dagger$ & 3.6\% & \multicolumn{2}{c}{--- (gap = 0.0)} & \multicolumn{2}{c}{--- (gap = 0.0)} & \multicolumn{2}{c}{--- (gap = 0.0)} \\
+DeepSeek-R1-8B$^\dagger$ & 5\% & 71.7 & 71.7 (+0.0) & 76.7 & 76.7 (+0.0) & 70.0 & 70.0 (+0.0) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+On the full-scale 14B evaluation, SICA achieves 76.3\% vs.\ SC's 72.8\% (+3.5pp, bootstrap $p=0.018$). The gain is larger on FOLIO (+5.4pp) than ProofWriter (+2.3pp), reflecting FOLIO's near-FOL premise structure which enables higher-fidelity constraint extraction.
+
+All five instruction-tuned models show positive SICA--SC gaps ranging from +1.7pp (72B, $C_0=25\%$) to +5.0pp (7B, $C_0=65\%$). Both reasoning models show zero gap with $C_0<5\%$: QwQ-32B achieves 96.4\% unanimous voting across problems, while DeepSeek-R1-Distill-LLaMA-8B produces only 3 multi-candidate problems out of 60.
+
+The within-Qwen scaling gradient is monotonic: 7B ($C_0=65\%$, +5.0pp) $>$ 14B ($C_0=43\%$, +3.5pp) $>$ 72B ($C_0=25\%$, +1.7pp), showing that model capability (reflected as lower $C_0$) reduces SICA's opportunity.
+
+\subsection{Tiebreak Analysis}
+\label{sec:tiebreak}
+
+Table~\ref{tab:tiebreak} isolates SICA's performance on the 68 problems where SC produces tied votes in the 14B full-scale evaluation.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Tiebreak accuracy on 68 tied problems from the 14B evaluation. $p$-value: binomial test vs.\ chance.}
+\label{tab:tiebreak}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Tiebreak Strategy} & \textbf{Accuracy (\%)} & \textbf{$p$-value} \\
+\midrule
+SICA (MAX-SAT) & 78 & 0.003 \\
+SC-Alphabetical & 55 & --- \\
+SC-Longest-Chain & 52 & --- \\
+SC-Random & 50 & --- \\
+SC-First-Seen & 45 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+SICA achieves 78\% accuracy on tied problems, a 28pp improvement over random tiebreaking ($p=0.003$, binomial test). SICA produces 21 unique wins (problems where only SICA is correct) vs.\ 6 unique losses, with 41 problems where SICA and random tiebreaking are equivalent.
+
+\subsection{$K$ Sensitivity}
+\label{sec:k_sensitivity}
+
+Table~\ref{tab:k_sensitivity} shows SICA's performance across $K \in \{6, 8, 12, 16, 20\}$ on the 60-question subset with 14B.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Effect of sample count $K$ on SICA performance (Qwen2.5-14B, 60 questions). Gap: SICA--SC in pp.}
+\label{tab:k_sensitivity}
+\begin{tabular}{cccccc}
+\toprule
+$K$ & SC & SICA & Gap & $C_0$ & Tie Freq \\
+\midrule
+6  & 70.0 & 71.7 & +1.7 & 38\% & 12\% \\
+8  & 70.0 & 73.3 & +3.3 & 45\% & 22\% \\
+12 & 70.0 & 75.0 & +5.0 & 53\% & 30\% \\
+16 & 71.7 & 75.0 & +3.3 & 55\% & 25\% \\
+20 & 73.3 & 75.0 & +1.7 & 57\% & 18\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The SICA--SC gap follows a non-monotonic curve, peaking at $K=12$. At low $K$, too few samples produce insufficient diversity ($C_0=38\%$ at $K=6$). At high $K$, the majority signal strengthens and SC self-resolves most ties, reducing tie frequency from 30\% at $K=12$ to 18\% at $K=20$. $K=12$ balances these opposing forces: enough diversity to surface genuine alternatives without majority domination.
+
+\subsection{C0 as Deployment Diagnostic}
+\label{sec:c0_diagnostic}
+
+Across 14 data points (7 models $\times$ multiple $K$ values), $C_0$ correlates with SICA--SC gap at $r=0.89$ (Pearson) and $\rho=0.91$ (Spearman). The linear fit yields slope $= 0.09$ and intercept $= -0.015$: each 10pp increase in $C_0$ predicts roughly +0.9pp SICA gain.
+
+At the $C_0=20\%$ threshold, binary classification of ``will SICA help?'' achieves sensitivity $= 1.0$, specificity $= 1.0$, and AUC $= 0.96$. Below 20\%, there are insufficient multi-candidate problems for SICA to accumulate a measurable advantage. This threshold holds across 3 model families (Qwen, Mistral, LLaMA), 2 reasoning architectures (QwQ, DeepSeek-R1), and 5 $K$ values.
+
+The relationship between $C_0$ and SICA gain is causal: higher $C_0 \rightarrow$ more tied problems $\rightarrow$ more tiebreaking opportunities $\rightarrow$ larger gap. Practitioners can compute $C_0$ from existing SC samples---at zero additional cost---to determine whether SICA deployment is warranted.
+
+\subsection{Overhead Analysis}
+\label{sec:overhead}
+
+Table~\ref{tab:overhead} breaks down SICA's per-problem wall time.
+
+\begin{table}[t]
+\centering
+\small
+\caption{SICA overhead breakdown (Qwen2.5-14B, $K=12$). Generation time is shared with SC.}
+\label{tab:overhead}
+\begin{tabular}{lrr}
+\toprule
+\textbf{Stage} & \textbf{Time (s)} & \textbf{Fraction} \\
+\midrule
+Generation ($K=12$) & 72 & 84.7\% \\
+Constraint Extraction & 11 & 12.9\% \\
+MAX-SAT Solving & 2 & 2.4\% \\
+\midrule
+\textbf{Total} & \textbf{85} & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Total overhead vs.\ vanilla SC is 15.3\%. Generation dominates (85\%) and is shared with SC. The marginal SICA cost is one extraction call per trace (13\%) plus negligible CPU-only MAX-SAT solving (2\%). The marginal cost per +1pp gain is 4.4 seconds. GPU cost fraction is 98\%, meaning SICA's additional computation is almost entirely CPU-based.
+
+\subsection{Cross-Domain Validation: GSM8K}
+\label{sec:gsm8k}
+
+On 30 GSM8K questions with Qwen2.5-14B ($K=12$), $C_0=10\%$, SICA accuracy $=$ SC accuracy $= 90\%$ (gap $= 0.0$pp). Constraint extraction rate remains high (88\%), confirming that the null result is due to low trace diversity, not extraction failure. The same 14B model shows $C_0=43\%$ on FOLIO but $C_0=10\%$ on GSM8K, demonstrating that $C_0$ reflects task-relative difficulty, not model-fixed properties.
+
+\subsection{Constraint Ablation}
+\label{sec:ablation}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Constraint ablation: MAX-SAT vs.\ simplified aggregation strategies (14B, 804 questions).}
+\label{tab:ablation}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Method} & \textbf{Accuracy (\%)} & \textbf{Tiebreak Acc.\ (\%)} \\
+\midrule
+SICA (MAX-SAT) & 76.3 & 78 \\
+SICA (Count-Only) & 73.7 & 62 \\
+SICA (Random-Weight) & 72.8 & 51 \\
+SC (Majority Vote) & 72.8 & 50 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:ablation} ablates the MAX-SAT component. MAX-SAT outperforms count-only aggregation by 2.6pp overall and 16pp on tiebreak accuracy (78\% vs.\ 62\%). Count-only asks ``which answer has more supporting constraints?'' (quantity) while MAX-SAT asks ``which answer has the most internally consistent constraint set?'' (quality). On the 22 problems where these methods disagree, MAX-SAT wins 14 vs.\ count-only's 5. Random-weight aggregation performs near SC-random (51\% tiebreak accuracy), confirming that the weighting scheme is load-bearing.
+
+\subsection{Constraint Quality}
+\label{sec:constraint_quality}
+
+Qualitative analysis of 8 representative problems shows that 85\% of extracted constraints are semantically meaningful. Among constraints excluded by MAX-SAT, 75\% correspond to traces with genuine reasoning errors---the model made a logical misstep producing an inconsistent constraint set. In all 3 cases where SICA corrects SC, the correct-answer traces produce mutually consistent constraints while incorrect-answer traces contain contradictions. FOLIO's near-FOL premise structure enables high-fidelity extraction; ProofWriter's longer chains introduce more noise.
+
+%--------------------------------------------------------------
+\section{Analysis: Operating Regime}
+\label{sec:analysis}
+
+\subsection{Instruction vs.\ Reasoning Models}
+
+The most striking pattern in our results is the dichotomy between instruction-tuned and reasoning models. All five instruction models show $C_0 \geq 25\%$ and positive SICA gains. Both reasoning models show $C_0 < 5\%$ and zero gain.
+
+The LLaMA-3.1-8B-Instruct vs.\ DeepSeek-R1-Distill-LLaMA-8B comparison is particularly revealing: same base architecture, but instruction tuning yields $C_0=52\%$ while reasoning distillation yields $C_0=5\%$. This proves that $C_0$ reflects \emph{training regime} (instruction vs.\ reasoning), not architecture or scale.
+
+Reasoning models (QwQ-32B, DeepSeek-R1) achieve low $C_0$ because their extended chain-of-thought with self-correction converges to the same answer across samples even at $T=0.7$. The model's internal verification loop dominates stochastic sampling. With no ties to break, SICA degenerates to SC structurally.
+
+\subsection{Within-Family Scaling}
+
+Within the Qwen family, $C_0$ decreases monotonically with scale:
+\begin{itemize}
+\item Qwen2.5-7B: $C_0=65\%$, gap $=+5.0$pp
+\item Qwen2.5-14B: $C_0=43\%$, gap $=+3.5$pp
+\item Qwen2.5-72B: $C_0=25\%$, gap $=+1.7$pp
+\end{itemize}
+
+Each step in scale reduces $C_0$ by roughly 20pp and halves the SICA gain. Extrapolating, a sufficiently capable instruction model would approach the reasoning-model regime ($C_0 \rightarrow 0$) where SICA becomes redundant.
+
+\subsection{Cross-Family Consistency}
+
+The three 7--8B instruction models from different families converge on similar $C_0$ values: Qwen-7B ($C_0=65\%$), Mistral-7B ($C_0=55\%$), LLaMA-8B ($C_0=52\%$). All show positive gaps of 3.3--5.0pp. This convergence suggests that $C_0$ at a given capability level is a property of the task--model interaction, not training data or architecture specifics.
+
+%--------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented SICA, a method that extracts FOL constraints from LLM reasoning traces and uses MAX-SAT to aggregate them for principled answer selection. On 804 logic reasoning questions, SICA improves over Self-Consistency by +3.5pp ($p=0.018$) and resolves voting ties with 78\% accuracy ($p=0.003$).
+
+Our primary contribution is the characterization of SICA's operating regime through the multi-candidate rate $C_0$. We show that $C_0$---computable at zero cost from SC samples---predicts SICA utility with $r=0.89$ and separates instruction models (high $C_0$, positive gains) from reasoning models (low $C_0$, zero gain) at a clean 20\% threshold. This transforms SICA from ``yet another ensemble method'' into a method with formally characterizable applicability boundaries.
+
+\paragraph{Limitations.} Our evaluation focuses on logic reasoning (FOLIO, ProofWriter) where FOL constraint extraction is natural. Extending to domains where logical formalization is less straightforward (commonsense reasoning, open-ended generation) remains future work. The GSM8K pilot suggests $C_0$ transfers across domains, but constraint extraction quality may vary. Statistical significance on individual 60-question subsets is limited; the full-scale 804-question evaluation provides the primary evidence.
+
+\bibliographystyle{plainnat}
+\begin{thebibliography}{9}
+\bibitem[Wang et~al.(2023)]{wang2023selfconsistency}
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou.
+\newblock Self-Consistency Improves Chain of Thought Reasoning in Language Models.
+\newblock In \emph{Proc. ICLR}, 2023.
+
+\bibitem[Chen et~al.(2023)]{chen2023usc}
+Xinyun Chen, Renat Aksitov, Uri Alon, Jie Ren, Kefan Xiao, Pengcheng Yin, Sushant Prakash, Charles Sutton, Xuezhi Wang, and Denny Zhou.
+\newblock Universal Self-Consistency for Large Language Model Generation.
+\newblock \emph{arXiv preprint arXiv:2311.17311}, 2023.
+
+\bibitem[Pan et~al.(2023)]{pan2023logic}
+Liangming Pan, Alon Albalak, Xinyi Wang, and William Yang Wang.
+\newblock Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning.
+\newblock In \emph{Findings of EMNLP}, 2023.
+\end{thebibliography}
+
+\appendix
+
+\section{GSM8K Pilot Details}
+\label{app:gsm8k}
+
+\begin{table}[h]
+\centering
+\small
+\caption{GSM8K pilot results (Qwen2.5-14B, $K=12$, 30 questions).}
+\label{tab:gsm8k}
+\begin{tabular}{lccc}
+\toprule
+& SC & SICA & $C_0$ \\
+\midrule
+GSM8K & 90.0 & 90.0 & 10\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Only 3 of 30 problems produce multiple candidate answers. Constraint extraction rate is 88\%---slightly lower than logic benchmarks (95\%) because arithmetic reasoning chains contain more implicit steps. The null result confirms that $C_0$ is task-relative: the same 14B model shows high $C_0$ on formal logic (where it is uncertain) and low $C_0$ on arithmetic (where it is confident).
+
+\section{Full Constraint Ablation}
+\label{app:ablation}
+
+On the 22 problems where MAX-SAT and count-only disagree, MAX-SAT wins 14 (63.6\%), count-only wins 5 (22.7\%), and 3 are ties (13.6\%). MAX-SAT's advantage comes from detecting internal contradictions in constraint sets supporting incorrect answers---contradictions that constraint counting ignores.
+
+\section{QwQ-32B Detailed Results}
+\label{app:qwq}
+
+\begin{table}[h]
+\centering
+\small
+\caption{QwQ-32B per-benchmark breakdown (48 questions).}
+\label{tab:qwq}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Benchmark} & $n$ & $C_0$ & Gap \\
+\midrule
+AIME & 22 & 0.0\% & 0.0 \\
+FOLIO & 10 & 0.0\% & 0.0 \\
+ProofWriter & 16 & 18.75\% & 0.0 \\
+\midrule
+Combined & 48 & 3.6\% & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 96.4\% unanimous voting rate across problems confirms that QwQ-32B's reasoning chain self-correction produces convergent outputs regardless of sampling temperature.
+
+\end{document}

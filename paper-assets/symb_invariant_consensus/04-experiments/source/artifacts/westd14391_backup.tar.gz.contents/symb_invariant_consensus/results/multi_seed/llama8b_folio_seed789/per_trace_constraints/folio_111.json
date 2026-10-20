@@ -1,0 +1,324 @@
+{
+  "pid": "folio_111",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(fir_tree, evergreen)",
+          "z3_formula": "all_fir_tree_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir_tree)",
+          "z3_formula": "some_object_of_worship_fir_tree == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, object_of_worship)",
+          "z3_formula": "some_evergreen_object_of_worship == False",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir)",
+          "z3_formula": "some_object_of_worship_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, not(object_of_worship))",
+          "z3_formula": "some_evergreen_not_object_of_worship == Unknown",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "evergreen(fir_tree)",
+          "z3_formula": "evergreen_fir_tree == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "object_of_worship(fir_tree)",
+          "z3_formula": "object_of_worship_fir_tree == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "evergreen(X) -> evergreen(fir_tree)",
+          "z3_formula": "Implies(evergreen_X, evergreen_fir_tree)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "object_of_worship(X) -> object_of_worship(fir_tree)",
+          "z3_formula": "Implies(object_of_worship_X, object_of_worship_fir_tree)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not object_of_worship(evergreen)",
+          "z3_formula": "Not(Or(object_of_worship_X, evergreen_X)) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir)",
+          "z3_formula": "some_object_of_worship_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, not object_of_worship)",
+          "z3_formula": "some_evergreen_not_object_of_worship == Unknown",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(worship_object, fir)",
+          "z3_formula": "some_worship_object_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, not(worship_object))",
+          "z3_formula": "some_evergreen_not_worship_object == Unknown",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir)",
+          "z3_formula": "some_object_of_worship_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, object_of_worship)",
+          "z3_formula": "some_evergreen_object_of_worship == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "evergreen(fir_tree)",
+          "z3_formula": "evergreen_fir_tree == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "object_of_worship(fir_tree)",
+          "z3_formula": "object_of_worship_fir_tree == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "evergreen(X) -> evergreen(fir_tree)",
+          "z3_formula": "Implies(evergreen_X, evergreen_fir_tree)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "object_of_worship(X) -> object_of_worship(fir_tree)",
+          "z3_formula": "Implies(object_of_worship_X, object_of_worship_fir_tree)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not object_of_worship(X)",
+          "z3_formula": "Not(object_of_worship_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "evergreen(X) & not object_of_worship(X)",
+          "z3_formula": "And(evergreen_X, Not(object_of_worship_X))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir)",
+          "z3_formula": "some_object_of_worship_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, not object_of_worship)",
+          "z3_formula": "some_evergreen_not_object_of_worship == Unknown",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir)",
+          "z3_formula": "some_object_of_worship_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, not(object_of_worship))",
+          "z3_formula": "Not(Implies(all_fir_evergreen, Implies(some_object_of_worship_fir, all_object_of_worship_evergreen))) == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir)",
+          "z3_formula": "some_object_of_worship_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, not(object_of_worship))",
+          "z3_formula": "some_evergreen_not_object_of_worship == False",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "F \u2286 E",
+          "z3_formula": "F_subset_E == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "\u2203x (O \u2229 F)",
+          "z3_formula": "exists_x_O_intersect_F == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "\u00ac\u2203x (E \u2229 \u00acO)",
+          "z3_formula": "Not(Exists(x, And(E_intersect_not_O))) == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir)",
+          "z3_formula": "some_object_of_worship_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, not object_of_worship)",
+          "z3_formula": "some_evergreen_not_object_of_worship == True",
+          "source_step": 3
+        }
+      ]
+    }
+  ]
+}

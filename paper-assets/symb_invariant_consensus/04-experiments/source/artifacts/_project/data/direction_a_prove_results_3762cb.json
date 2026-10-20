@@ -1,0 +1,32 @@
+{
+  "summary": {
+    "n_problems": 204,
+    "model": "Qwen2.5-7B-Instruct",
+    "k_traces": 12,
+    "temperature": 0.7,
+    "code_gen_success_rate": 0.152,
+    "code_gen_success_count": 31,
+    "verification_conclusive_rate": 0.078,
+    "verification_conclusive_count": 16,
+    "accuracy_conclusive_only": 0.500,
+    "accuracy_prove_with_fallback": 0.716,
+    "accuracy_sc_baseline": 0.735,
+    "prove_correct_count": 146,
+    "sc_correct_count": 150,
+    "sica_baseline_ref": 0.7647,
+    "sc_baseline_ref": 0.7696,
+    "total_wall_time_s": 1707.0
+  },
+  "note": "Full per-problem results (with verify_code) at server: /root/symb_invariant_consensus/results/direction_a_prove/results.json",
+  "server": "westd-25068",
+  "experiment_date": "2026-05-20",
+  "pipeline": "Direction A: PROVE code-as-verifier on FOLIO-204",
+  "description": "LLM generates Python verify(answer) functions; execution replaces FOL MAX-SAT. If exactly 1 candidate passes -> adopt; else fallback to SC majority vote.",
+  "key_findings": {
+    "code_gen_success": "31/204 (15.2%) - Qwen2.5-7B struggles to generate valid verify() functions for most FOLIO problems",
+    "conclusive_verification": "16/204 (7.8%) - only half of successfully generated code produces exactly 1 passing candidate",
+    "conclusive_accuracy": "8/16 (50%) - when conclusive, PROVE is no better than random among 3 candidates",
+    "prove_hurts": "PROVE+fallback (71.6%) < SC baseline (73.5%) - conclusive-but-wrong cases override correct SC votes, net negative",
+    "sc_this_run_vs_ref": "SC this run (73.5%) vs SC exp035 ref (77.0%) - slight variance across runs"
+  }
+}

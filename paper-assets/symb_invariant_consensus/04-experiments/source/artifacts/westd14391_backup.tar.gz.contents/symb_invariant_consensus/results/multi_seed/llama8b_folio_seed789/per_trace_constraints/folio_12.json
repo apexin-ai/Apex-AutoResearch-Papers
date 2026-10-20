@@ -1,0 +1,504 @@
+{
+  "pid": "folio_12",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_game_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_game_company_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sold_more_than_one_million_copies(the_legend_of_zelda)",
+          "z3_formula": "sold_more_than_one_million_copies_the_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sold_more_than_one_million_copies(X) -> selected_into_top_10_list(X)",
+          "z3_formula": "Implies(sold_more_than_one_million_copies_the_legend_of_zelda, selected_into_top_10_list_the_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "created_by_japanese_game_company(X) -> selected_into_top_10_list(X)",
+          "z3_formula": "Implies(created_by_japanese_game_company_the_legend_of_zelda, selected_into_top_10_list_the_legend_of_zelda)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "(sold_more_than_one_million_copies(X) & created_by_japanese_game_company(X)) -> selected_into_top_10_list(X)",
+          "z3_formula": "Implies(And(sold_more_than_one_million_copies_the_legend_of_zelda, created_by_japanese_game_company_the_legend_of_zelda), selected_into_top_10_list_the_legend_of_zelda)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "selected_into_top_10_list(the_legend_of_zelda)",
+          "z3_formula": "selected_into_top_10_list_the_legend_of_zelda == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_game_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_game_company_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_games_in_top_10_are_made_by_japanese_game_companies",
+          "z3_formula": "all_games_in_top_10_are_made_by_japanese_game_companies == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "if_game_sells_more_than_one_million_copies_then_it_will_be_in_top_10_list",
+          "z3_formula": "if_game_sells_more_than_one_million_copies_then_it_will_be_in_top_10_list == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "the_legend_of_zelda_sold_more_than_one_million_copies",
+          "z3_formula": "the_legend_of_zelda_sold_more_than_one_million_copies == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "the_legend_of_zelda_is_in_top_10_list",
+          "z3_formula": "the_legend_of_zelda_is_in_top_10_list == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_game_company(legend_of_zelda)",
+          "z3_formula": "created_by_japanese_game_company_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_games_in_top_10_are_japanese(1)",
+          "z3_formula": "all_games_in_top_10_are_japanese_1 == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million_copies(X) -> in_top_10_list(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_copies_legend_of_zelda, in_top_10_list_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million_copies(legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_copies_legend_of_zelda == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "game_company_japanese",
+          "z3_formula": "game_company_japanese == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "game_the_legend_of_zelda",
+          "z3_formula": "game_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "game_company_japanese -> game_in_top_10_list",
+          "z3_formula": "Implies(game_company_japanese, game_in_top_10_list)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "game_sold_more_than_one_million_copies_the_legend_of_zelda",
+          "z3_formula": "game_sold_more_than_one_million_copies_the_legend_of_zelda == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "game_sold_more_than_one_million_copies -> game_in_top_10_list",
+          "z3_formula": "Implies(game_sold_more_than_one_million_copies_the_legend_of_zelda, game_in_top_10_list)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "game_in_top_10_list_the_legend_of_zelda",
+          "z3_formula": "game_in_top_10_list == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "game_in_top_10_list -> game_company_japanese",
+          "z3_formula": "Implies(game_in_top_10_list, game_company_japanese)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "game_company_japanese_the_legend_of_zelda",
+          "z3_formula": "game_company_japanese == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "game_in_top_10_list_the_legend_of_zelda",
+          "z3_formula": "game_in_top_10_list == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_game_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_game_company_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "top_10_list_game(the_legend_of_zelda)",
+          "z3_formula": "top_10_list_game_the_legend_of_zelda == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million_copies(X) -> top_10_list_game(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_copies_the_legend_of_zelda, top_10_list_game_the_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million_copies(the_legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_copies_the_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "all_top_10_list_games_are_made_by_japanese_game_companies",
+          "z3_formula": "Implies(top_10_list_game_the_legend_of_zelda, made_by_japanese_game_company_the_legend_of_zelda)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "top_10_list_game(the_legend_of_zelda)",
+          "z3_formula": "top_10_list_game_the_legend_of_zelda == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_game_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_game_company_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million_copies(the_legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_copies_the_legend_of_zelda == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million_copies(X) -> top_10_list(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_copies_the_legend_of_zelda, top_10_list_the_legend_of_zelda)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "top_10_list(the_legend_of_zelda)",
+          "z3_formula": "top_10_list_the_legend_of_zelda == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "japanese_game_company(legend_of_zelda)",
+          "z3_formula": "japanese_game_company_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "top_10_list_selection_condition(more_than_one_million_copies)",
+          "z3_formula": "top_10_list_selection_condition_more_than_one_million_copies == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "top_10_list_selection_condition(X) -> top_10_list(X)",
+          "z3_formula": "Implies(top_10_list_selection_condition_more_than_one_million_copies, top_10_list_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "more_than_one_million_copies(legend_of_zelda)",
+          "z3_formula": "more_than_one_million_copies_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "top_10_list(legend_of_zelda)",
+          "z3_formula": "top_10_list_legend_of_zelda == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "japanese_game_company(X) -> japanese_game_company(X)",
+          "z3_formula": "Implies(japanese_game_company_legend_of_zelda, japanese_game_company_legend_of_zelda)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "all_top_10_games_made_by_japanese_companies",
+          "z3_formula": "all_top_10_games_made_by_japanese_companies == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "top_10_list(legend_of_zelda) -> japanese_game_company(legend_of_zelda)",
+          "z3_formula": "Implies(top_10_list_legend_of_zelda, japanese_game_company_legend_of_zelda)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "japanese_game_company(legend_of_zelda)",
+          "z3_formula": "japanese_game_company_legend_of_zelda == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_game_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_game_company_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "top_10_list_made_by_japanese_game_companies",
+          "z3_formula": "top_10_list_made_by_japanese_game_companies == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sells_more_than_one_million_copies(X) -> top_10_list(X)",
+          "z3_formula": "Implies(sells_more_than_one_million_copies_the_legend_of_zelda, top_10_list_the_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sells_more_than_one_million_copies(the_legend_of_zelda)",
+          "z3_formula": "sells_more_than_one_million_copies_the_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "top_10_list(the_legend_of_zelda)",
+          "z3_formula": "top_10_list_the_legend_of_zelda == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "japanese_game_company_created_legend_of_zelda",
+          "z3_formula": "japanese_game_company_created_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "legend_of_zelda_sold_more_than_one_million_copies",
+          "z3_formula": "legend_of_zelda_sold_more_than_one_million_copies == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "japanese_game_company_created_game -> game_in_top_10_list",
+          "z3_formula": "Implies(japanese_game_company_created_game, game_in_top_10_list)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "game_sold_more_than_one_million_copies -> game_in_top_10_list",
+          "z3_formula": "Implies(game_sold_more_than_one_million_copies, game_in_top_10_list)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "legend_of_zelda_in_top_10_list",
+          "z3_formula": "legend_of_zelda_in_top_10_list == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_game_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_game_company_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sold_more_than_one_million_copies(the_legend_of_zelda)",
+          "z3_formula": "sold_more_than_one_million_copies_the_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "created_by_japanese_game_company(X) -> in_top_10_list(X)",
+          "z3_formula": "Implies(created_by_japanese_game_company_the_legend_of_zelda, in_top_10_list_the_legend_of_zelda)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sold_more_than_one_million_copies(X) -> in_top_10_list(X)",
+          "z3_formula": "Implies(sold_more_than_one_million_copies_the_legend_of_zelda, in_top_10_list_the_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "in_top_10_list(the_legend_of_zelda)",
+          "z3_formula": "in_top_10_list_the_legend_of_zelda == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_company(the_legend_of_zelda)",
+          "z3_formula": "created_by_japanese_company_the_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sold_more_than_one_million(the_legend_of_zelda)",
+          "z3_formula": "sold_more_than_one_million_the_legend_of_zelda == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sold_more_than_one_million(X) -> selected_into_top_10(X)",
+          "z3_formula": "Implies(sold_more_than_one_million_the_legend_of_zelda, selected_into_top_10_the_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "selected_into_top_10(X) -> made_by_japanese_company(X)",
+          "z3_formula": "Implies(selected_into_top_10_the_legend_of_zelda, made_by_japanese_company_the_legend_of_zelda)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "selected_into_top_10(the_legend_of_zelda)",
+          "z3_formula": "selected_into_top_10_the_legend_of_zelda == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "made_by_japanese_company(the_legend_of_zelda)",
+          "z3_formula": "made_by_japanese_company_the_legend_of_zelda == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "created_by_japanese_company(legend_of_zelda)",
+          "z3_formula": "created_by_japanese_company_legend_of_zelda == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "created_by_japanese_company(X) -> in_top_10(X)",
+          "z3_formula": "Implies(created_by_japanese_company_legend_of_zelda, in_top_10_legend_of_zelda)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "in_top_10(X) -> created_by_japanese_company(X)",
+          "z3_formula": "Implies(in_top_10_legend_of_zelda, created_by_japanese_company_legend_of_zelda)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_games_in_top_10_made_by_japanese_companies",
+          "z3_formula": "all_games_in_top_10_made_by_japanese_companies == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "legend_of_zelda_sold_more_than_one_million_copies",
+          "z3_formula": "legend_of_zelda_sold_more_than_one_million_copies == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sold_more_than_one_million_copies(X) -> in_top_10(X)",
+          "z3_formula": "Implies(legend_of_zelda_sold_more_than_one_million_copies, in_top_10_legend_of_zelda)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "in_top_10(legend_of_zelda)",
+          "z3_formula": "in_top_10_legend_of_zelda == True",
+          "source_step": 7
+        }
+      ]
+    }
+  ]
+}

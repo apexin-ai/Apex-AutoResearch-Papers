@@ -1,0 +1,32 @@
+{
+  "experiment": "Direction D: CEGIS (counterexample-guided refinement)",
+  "status": "still_running",
+  "model": "Qwen2.5-7B-Instruct",
+  "dataset": "FOLIO subset",
+  "server": "westd-16639",
+  "partial_results_at": "126/204 files (process still running)",
+  "results": {
+    "n_problems_processed": 125,
+    "sc_accuracy": 0.504,
+    "sc_correct": 63,
+    "r1_accuracy": 0.528,
+    "r1_correct": 66,
+    "r1_delta_pp": 2.4,
+    "r2_accuracy": 0.528,
+    "r3_accuracy": 0.528,
+    "r1_flips_from_sc": 10,
+    "sc_wrong_r1_correct": 6,
+    "sc_correct_r1_wrong": 3,
+    "net_flips": 3,
+    "total_r1_constraints": 8642,
+    "total_r1_unsat_traces": 82,
+    "avg_r1_constraints_per_problem": 69.1
+  },
+  "observations": [
+    "R1 improves over SC by +2.4pp (52.8% vs 50.4%)",
+    "R2 and R3 identical to R1 — refinement saturates after round 1",
+    "10 answer flips: 6 correct (SC→right), 3 incorrect (SC→wrong), net +3",
+    "82 UNSAT traces across 125 problems — counterexamples found in ~65% of problems"
+  ],
+  "timestamp": "2026-05-20T16:38:00+08:00"
+}

@@ -1,0 +1,1164 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-866_Q19",
+    "problem": "Anne is furry. Anne is rough. Anne is round. Anne is smart. Anne is white. Dave is furry. Erin is big. Erin is white. Gary is quiet. Gary is round. Gary is smart. Gary is white. Rough, furry things are smart. If something is rough and round then it is smart. If Dave is smart then Dave is white. If something is furry then it is rough. Round, rough things are smart. White, furry things are round. All white, big things are round. All rough, big things are smart. If something is round then it is big.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not quiet.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nRough(Anne, True) ::: Anne is rough.\nRound(Anne, True) ::: Anne is round.\nSmart(Anne, True) ::: Anne is smart.\nWhite(Anne, True) ::: Anne is white.\nFurry(Dave, True) ::: Dave is furry.\nBig(Erin, True) ::: Erin is big.\nWhite(Erin, True) ::: Erin is white.\nQuiet(Gary, True) ::: Gary is quiet.\nRound(Gary, True) ::: Gary is round.\nSmart(Gary, True) ::: Gary is smart.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nRough($x, True) && Furry($x, True) >>> Smart($x, True) ::: Rough, furry things are smart.\nRough($x, True) && Round($x, True) >>> Smart($x, True) ::: If something is rough and round then it is smart.\nSmart(Dave, True) >>> White(Dave, True) ::: If Dave is smart then Dave is white.\nFurry($x, True) >>> Rough($x, True) ::: If something is furry then it is rough.\nRound($x, True) && Rough($x, True) >>> Smart($x, True) ::: Round, rough things are smart.\nWhite($x, True) && Furry($x, True) >>> Round($x, True) ::: White, furry things are round.\nWhite($x, True) && Big($x, True) >>> Round($x, True) ::: All white, big things are round.\nRough($x, True) && Big($x, True) >>> Smart($x, True) ::: All rough, big things are smart.\nRound($x, True) >>> Big($x, True) ::: If something is round then it is big.\n\nQuery:\nQuiet(Erin, False) ::: Erin is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 173.0
+    },
+    "answer_counts": {
+      "Unknown": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine the truth value of the statement \"Erin is not quiet,\" we need to analyze the given information and apply the logical rules step by step.\n\n1. Given information:\n   - Anne is furry. Anne is rough. Anne is round. Anne is smart. Anne is white.\n   - Dave is furry. Erin is big. Erin is white.\n   - Gary is quiet. Gary is round. Gary is smart. Gary is white.\n   - Rough, furry things are smart.\n   - If something is rough and round then it is smart.\n   - If Dave is smart then Dave is white.\n   - If something is furry then it is rough.\n   - Round, rough things are smart.\n   - White, furry things are round.\n   - All white, big things are round.\n   - All rough, big things are smart.\n   - If something is round then it is big.\n\n2. Let's start by applying the given rules to Gary:\n   - Gary is round and smart.\n   - Gary is white and round.\n   - Gary is round and quiet.\n\n3. Now, let's analyze Erin:\n   - Erin is white.\n   - Erin is big.\n   - If something is white and big then it is round (All white, big things are round).\n   - Erin is round.\n\n4. Since Erin is round, we can apply the rule \"If something is round then it is big.\"\n   - Erin is big.\n\n5. Now, let's analyze the statement \"Erin is not quiet.\"\n   - We know Erin is big, round, and white.\n   - We do not have any information that directly relates Erin's characteristics to being quiet or not quiet.\n\nHowever, we do know Gary is quiet and Gary is round. Since Erin is also round, we can infer that Erin is big. There is no information about Erin being quiet or not quiet, but we know that if something is round then it is big. There is no information to contradict the possibility of Erin being quiet, but we cannot confirm it as true or false based on the given rules.\n\nTherefore, the truth value of the statement \"Erin is not quiet\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not quiet\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\n1. Erin is big. \n2. All white, big things are round. \n   Since we don't have information about Erin being white, we cannot conclude that Erin is round. Therefore, we cannot conclude that Erin is big based on this information alone. We will have to look at other information.\n\n3. Erin is white. \n   Now that we know Erin is white, we can conclude that Erin is round from rule 2.\n\n4. All round things are big. \n   Since we know Erin is round, we can conclude that Erin is big from rule 4.\n\n5. Gary is quiet. \n   We don't have any information that directly relates Erin's quietness to Gary's quietness, so we cannot use this information to determine whether Erin is quiet.\n\n6. If something is round, then it is big. \n   We already concluded that Erin is round in step 3, and we concluded that Erin is big in step 4. Therefore, this rule does not provide any new information.\n\n7. If something is rough, then it is smart. \n   We don't have any information about Erin being rough, so we cannot use this rule to determine whether Erin is smart.\n\n8. If something is furry, then it is rough. \n   We don't have any information about Erin being furry, so we cannot use this rule to determine whether Erin is rough.\n\n9. Dave is furry. \n   This information is not relevant to determining whether Erin is quiet.\n\n10. If something is furry, then it is rough. \n    We already concluded that Erin is not furry, so we cannot use this rule to determine whether Erin is rough.\n\n11. All white, furry things are round. \n    Since we know Erin is not furry, we cannot use this information to determine whether Erin is round.\n\n12. Gary is round. \n    We don't have any information that directly relates Erin's roundness to Gary's roundness, so we cannot use this information to determine whether Erin is round.\n\n13. If something is furry, then it is rough. \n    We already concluded that Erin is not furry, so we cannot use this rule to determine whether Erin is rough.\n\n14. Round, rough things are smart. \n    We already concluded that Erin is not rough, so we cannot use this information to determine whether Erin is smart.\n\n15. If something is white, then it is round. \n    We already concluded that Erin is white, and we concluded that Erin is round in step 3. Therefore, this rule does not provide any new information.\n\n16. Gary is smart. \n    We don't have any information that directly relates Erin's quietness to Gary's smartness, so we cannot use this information to determine whether Erin is quiet.\n\n17. If something is white and furry, then it is round. \n    Since we know Erin is not furry, we cannot use this information to determine whether Erin is round.\n\n18. Gary is round. \n    We already concluded that Erin is round, so we cannot use this information to determine whether Erin is round.\n\n19. All white things are round. \n    We already concluded that Erin is white, and we concluded that Erin is round in step 3. Therefore, this rule does not provide any new information.\n\n20. If something is round, then it is big. \n    We already concluded that Erin is round, and we concluded that Erin is big in step 4. Therefore, this rule does not provide any new information.\n\nSince we have analyzed all the given information, we still cannot determine whether Erin is quiet. Therefore, the statement \"Erin is not quiet\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Dave is furry.\n   - Erin is big.\n   - Erin is white.\n   - Gary is quiet.\n   - Gary is round.\n   - Gary is smart.\n   - Gary is white.\n   - Gary is white.\n   - Rough, furry things are smart.\n   - If something is rough and round then it is smart.\n   - If Dave is smart then Dave is white.\n   - If something is furry then it is rough.\n   - Round, rough things are smart.\n   - White, furry things are round.\n   - All white, big things are round.\n   - All rough, big things are smart.\n   - If something is round then it is big.\n\n2. From the statement \"If something is furry then it is rough,\" we can conclude that Dave is rough since Dave is furry.\n\n3. From the statement \"If something is furry then it is rough,\" we can also conclude that Erin is rough since Erin is furry (although it's not directly mentioned, we can infer this from the given information). However, we don't know for sure if Erin is furry or not since it's not explicitly stated.\n\n4. Since Erin is big, we can conclude that Erin is round using the statement \"If something is round then it is big.\"\n\n5. Since Erin is round and rough, we can conclude that Erin is smart using the statement \"Round, rough things are smart.\"\n\n6. Since Erin is white and big, we can conclude that Erin is round using the statement \"All white, big things are round.\"\n\n7. However, this conclusion contradicts the earlier conclusion that Erin is round because Erin is big. Therefore, we can only conclude that Erin is round because Erin is big, not because Erin is white and big.\n\n8. Since we concluded that Erin is round because Erin is big, we can conclude that Erin is big because Erin is round using the statement \"If something is round then it is big.\"\n\n9. The statement \"Erin is not quiet\" cannot be concluded directly from the given information. We only know that Gary is quiet, but there is no information about Erin's quietness.\n\nTherefore, the statement \"Erin is not quiet\" is **unknown**.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the truth value of the statement \"Erin is not quiet,\" we need to evaluate the given information and the logical statements.\n\nGiven information:\n- Anne is furry.\n- Anne is rough.\n- Anne is round.\n- Anne is smart.\n- Anne is white.\n- Dave is furry.\n- Erin is big.\n- Erin is white.\n- Gary is quiet.\n- Gary is round.\n- Gary is smart.\n- Gary is white.\n- Rough, furry things are smart.\n- If something is rough and round then it is smart.\n- If Dave is smart then Dave is white.\n- If something is furry then it is rough.\n- Round, rough things are smart.\n- White, furry things are round.\n- All white, big things are round.\n- All rough, big things are smart.\n- If something is round then it is big.\n\nNow, let's analyze the logical statements:\n\n1. Rough, furry things are smart. (This implies that furry things are rough and smart.)\n2. If something is rough and round then it is smart. (This is a subset of statement 1, implying that round, rough things are smart.)\n3. If Dave is smart then Dave is white. (This implies that Dave is white because he is smart.)\n4. If something is furry then it is rough. (This implies that furry things are rough.)\n5. Round, rough things are smart. (This implies that round, rough things are smart, a subset of statement 1.)\n6. White, furry things are round. (This implies that white, furry things are round.)\n7. All white, big things are round. (This implies that all big, white things are round.)\n8. All rough, big things are smart. (This implies that all big, rough things are smart.)\n9. If something is round then it is big. (This implies that round things are big.)\n\nNow, we need to apply these logical statements to Erin:\n\n- Erin is big (given information).\n- Erin is white (given information).\n- Erin is round (from statement 9, since Erin is big).\n- Erin is not furry (from statement 4, since Erin is not rough, and furry things are rough).\n- Erin is not rough (from statement 4, since Erin is not furry).\n- Since Erin is not rough and Erin is round, Erin is not smart (from statement 2, since round, rough things are smart, and Erin is not rough).\n- Since Erin is not smart and Erin is white, we cannot determine whether Erin is white or not (from statement 3, since Dave is smart and white, but Erin is not smart).\n- Since Erin is not smart and Erin is not furry, we cannot determine whether Erin is furry or not (from statement 1, since furry things are rough and smart, but Erin is not smart and not furry).\n- Since Erin is not smart and Erin is not rough, we cannot determine whether Erin is rough or not (from statement 2, since round, rough things are smart, but Erin is not smart and not rough).\n\nHowever, we know that Erin is big, and since Erin is round (from statement 9), we can conclude that Erin is big and round.\n\nNow, let's analyze the statement \"Erin is not quiet.\" Since we do not have any information about Erin being quiet or not, we cannot directly conclude whether Erin is quiet or not. However, we can conclude that Erin is not Gary (since Erin is big and Gary is quiet, and Gary is not big). \n\nWe cannot determine whether Erin is quiet or not, so we have to conclude that the statement \"Erin is not quiet\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not quiet\" is true, false, or unknown, we need to analyze the given information.\n\n1. Erin is big. (Direct statement)\n2. Erin is white. (Direct statement)\n3. All white, big things are round. (Rule 1)\n   From (2) and (3), we can conclude that Erin is round.\n\n4. If something is round, then it is big. (Rule 6)\n   This rule is not necessarily true because we already know Erin is big, and being round does not contradict this. However, we can see this is not needed as Erin is indeed big.\n\n5. Erin is round. (Conclusion from step 3)\n6. Gary is quiet. (Direct statement)\n7. Gary is round. (Direct statement)\n8. Gary is smart. (Direct statement)\n9. Gary is white. (Direct statement)\n10. All round, rough things are smart. (Rule 3)\n   From (7) and (10), we can conclude that Gary is rough. However, we cannot use this information to conclude anything about Erin.\n\n11. If something is furry, then it is rough. (Rule 2)\n   We do not have any information about Erin being furry. Therefore, we cannot conclude whether Erin is rough or not.\n\n12. If something is white and furry, then it is round. (Rule 5)\n   From (2) and (11), we can conclude that Erin is furry. However, we cannot use this information to conclude whether Erin is round or not because we already know Erin is round.\n\n13. If Dave is smart, then Dave is white. (Rule 4)\n   We do not have any information about Dave being smart. Therefore, we cannot conclude anything about Dave.\n\nSince we cannot conclude whether Erin is quiet or not, the statement \"Erin is not quiet\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we'll break down the given statements and apply them to the statement \"Erin is not quiet.\"\n\n1. Given statements:\n   - Anne is furry.\n   - Anne is rough.\n   - Anne is round.\n   - Anne is smart.\n   - Anne is white.\n   - Dave is furry.\n   - Erin is big.\n   - Erin is white.\n   - Gary is quiet.\n   - Gary is round.\n   - Gary is smart.\n   - Gary is white.\n   - Rough, furry things are smart.\n   - If something is rough and round then it is smart.\n   - If Dave is smart then Dave is white.\n   - If something is furry then it is rough.\n   - Round, rough things are smart.\n   - White, furry things are round.\n   - All white, big things are round.\n   - All rough, big things are smart.\n   - If something is round then it is big.\n\n2. We need to determine if Erin is not quiet.\n   To do this, we'll examine the given statements related to Erin and quietness.\n\n   - Erin is big.\n   - Erin is white.\n   - If something is big then it is round (since all white, big things are round and all big things are round).\n   - Erin is round.\n   - Since Erin is round and furry (by the transitive property, Erin is furry because all white things are furry and Erin is white), Erin is rough (since if something is furry then it is rough).\n   - Since Erin is round and rough, Erin is smart (as round, rough things are smart).\n   - Since Erin is smart, Erin is white (by the transitive property, if Dave is smart then Dave is white).\n\n3. Now that we know Erin is white, we can apply the statement \"All white, big things are round\" to see if it's related to quietness.\n   We already know Erin is white and big, so Erin is round. However, this doesn't directly relate to quietness.\n\n4. To determine if Erin is not quiet, we need to see if there's any statement that contradicts \"Erin is quiet\" or supports \"Erin is not quiet.\"\n   Since we don't have any statements directly related to Erin's quietness, we need to look for a statement that relates quietness to other properties.\n\n   - Gary is quiet.\n   - Gary is round.\n   - Gary is smart.\n   - Gary is white.\n   - Since Gary is white and round, Gary is big (by the transitive property, all white, big things are round and all big things are round).\n   - Since Gary is big and round, Gary is rough (by the transitive property, round, rough things are smart and all big things are rough).\n   - Since Gary is round and rough, Gary is smart (since round, rough things are smart).\n   - However, we don't have any statement that says \"If something is smart then it is not quiet\" or \"If something is not quiet then it is not round.\"\n\n5. We can use the statement \"Gary is quiet\" to see if we can infer any information about Erin's quietness.\n   However, we don't have any direct statements that relate Gary's quietness to Erin's quietness.\n\n6. Since we can't directly infer Erin's quietness from the given statements, the statement \"Erin is not quiet\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the truth of the statement \"Erin is not quiet,\" we need to analyze the given information and apply logical deductions.\n\n1. Dave is furry. (Given)\n2. If something is furry then it is rough. (Given)\n   Therefore, Dave is rough. (By Modus Ponens)\n3. If Dave is smart then Dave is white. (Given)\n   Therefore, Dave is white. (But we don't know if Dave is smart)\n4. Erin is white. (Given)\n5. Erin is big. (Given)\n6. All white, big things are round. (Given)\n   Therefore, Erin is round. (By Modus Ponens)\n7. All rough, big things are smart. (Given)\n   We know Erin is big, but we don't know if Erin is rough.\n8. If something is furry then it is rough. (Given)\n   We know Dave is furry, but we don't know if Erin is furry.\n9. If something is round then it is big. (Given)\n   We already know Erin is big.\n\nFrom the above steps, we can conclude that Erin is round and big, but we don't know if Erin is rough. We also know that Erin is white.\n\nSince we don't have enough information to determine if Erin is quiet or not, we can't conclude the truth of the statement \"Erin is not quiet.\"\n\nTherefore, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is not quiet' is true, false, or unknown, we need to analyze the given information and deduce the properties of Erin.\n\n1. Erin is big. \n2. Erin is white.\n\nFrom the given information:\n- All white, big things are round. (Statement 8)\n- If something is round then it is big. (Statement 9)\n- Round, rough things are smart. (Statement 6)\n- All rough, big things are smart. (Statement 7)\n\nHowever, we have no direct information about Erin being quiet. The only information we have about Gary is that he is quiet. Therefore, we cannot conclude anything about Erin's quietness.\n\nSince we don't have enough information to determine whether Erin is quiet or not, the statement 'Erin is not quiet' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is not quiet' is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Dave is furry.\n   - From this, we can infer that Dave is rough because 'Rough, furry things are smart.'\n   - However, we cannot directly conclude the quietness of Dave from this information.\n\n2. Erin is big.\n   - We know that 'If something is round then it is big.'\n   - We also know that 'All rough, big things are smart,' but we cannot conclude Erin's quietness from this information.\n\n3. Erin is white.\n   - From this, we can infer that Erin is round because 'All white, big things are round.'\n   - We know that 'Round, rough things are smart,' but we still cannot conclude Erin's quietness from this information.\n\n4. Gary is quiet.\n   - We know that 'Gary is round' and 'Gary is smart,' but we cannot conclude the quietness of Erin from this information.\n\nNow, considering all the given information and the inferences we have made, we still cannot determine whether Erin is quiet or not. Therefore, the statement 'Erin is not quiet' is unknown, as we do not have enough information to make a definitive conclusion about Erin's quietness.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not quiet\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. Given information:\n   - Anne is furry, rough, round, smart, and white.\n   - Dave is furry.\n   - Erin is big and white.\n   - Gary is quiet, round, smart, and white.\n   - Rough, furry things are smart.\n   - If something is rough and round, then it is smart.\n   - If Dave is smart, then Dave is white.\n   - If something is furry, then it is rough.\n   - Round, rough things are smart.\n   - White, furry things are round.\n   - All white, big things are round.\n   - All rough, big things are smart.\n   - If something is round, then it is big.\n\n2. Analyze the rules to find any information about Erin being quiet or not:\n   - We have no direct information about Erin being quiet.\n   - However, we can deduce that Gary is quiet.\n   - The rules do not provide any information about Erin's quietness in relation to Gary's quietness.\n\nSince there is no direct or indirect information about Erin being quiet, we cannot determine whether the statement \"Erin is not quiet\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not quiet\" is true, false, or unknown, we need to analyze the given information and apply it to Erin.\n\nFrom the given statements:\n\n1. Erin is big.\n2. Erin is white.\n\nWe don't have any information about Erin being quiet or not quiet directly. However, we can try to deduce something about Erin's quietness using the given rules.\n\nFrom the given rules:\n\n1. If something is white, furry, then it is round.\n   - We don't know if Erin is furry, so we can't apply this rule directly.\n\n2. If something is round, then it is big.\n   - We already know Erin is big, so this rule doesn't provide any new information.\n\n3. All white, big things are round.\n   - Since Erin is white and big, we can conclude that Erin is round.\n\n4. If something is round and rough, then it is smart.\n   - We don't have any information about Erin being rough or not rough.\n\n5. Gary is quiet. Gary is round. Gary is smart. Gary is white. Gary is round.\n   - We can infer from this that round things can be quiet or not quiet, as Gary is both round and quiet.\n\nSince we don't have any information about Erin being rough or not rough, we can't apply rule 4 directly. However, we also don't have any information that contradicts Erin being quiet. Therefore, based on the given information and rules, we can conclude that the statement \"Erin is not quiet\" is unknown, as we don't have enough information to determine whether Erin is quiet or not quiet.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is not quiet' is true, false, or unknown, we need to analyze the given information and the relationships between the properties.\n\n1. Given information:\n   - Anne is furry, rough, round, smart, and white.\n   - Dave is furry.\n   - Erin is big and white.\n   - Gary is quiet, round, smart, and white.\n   - Rough, furry things are smart.\n   - If something is rough and round then it is smart.\n   - If Dave is smart then Dave is white.\n   - If something is furry then it is rough.\n   - Round, rough things are smart.\n   - White, furry things are round.\n   - All white, big things are round.\n   - All rough, big things are smart.\n   - If something is round then it is big.\n\n2. From the given information, we can conclude the following:\n   - Since Erin is white and big, Erin must be round (All white, big things are round).\n   - Since Erin is round, Erin must be big (If something is round then it is big).\n   - Since Erin is round and furry, Erin must be rough (If something is furry then it is rough).\n   - Since Erin is round and rough, Erin must be smart (Round, rough things are smart).\n\n3. Now, let's analyze the statement 'Erin is not quiet.'\n   - We know that Gary is quiet, round, smart, and white.\n   - We also know that round and smart things can be quiet (Gary is an example).\n   - However, we do not have any information that directly states Erin is quiet or not quiet.\n\nTherefore, based on the given information, we cannot determine whether Erin is quiet or not quiet. The statement 'Erin is not quiet' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_X, furry_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_X, round_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(eats_X, red_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_X, rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_X, rough_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(white_X, furry_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(white_X, big_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_X, big_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_erin, round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(erin)",
+          "z3_formula": "Not(quiet_erin) == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_dave, rough_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_erin, rough_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_dave, white_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_gary, big_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, rough_erin), smart_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(white_erin, big_erin), round_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_erin, big_erin), smart_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(erin)",
+          "z3_formula": "Not(quiet_erin) == True",
+          "source_step": 22
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(white_erin, big_erin), round_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_gary, rough_gary), smart_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(white_erin, furry_erin), round_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(Dave) -> white(Dave)",
+          "z3_formula": "Implies(smart_Dave, white_Dave)",
+          "source_step": 13
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_dave, rough_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave) -> white(dave)",
+          "z3_formula": "Implies(smart_dave, white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(white_erin, big_erin), round_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_erin, big_erin), smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave) -> rough(dave)",
+          "z3_formula": "Implies(furry_dave, rough_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin) -> big(erin)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(white_erin, big_erin), round_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, rough_erin), smart_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_erin, big_erin), smart_erin)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_dave, furry_dave), smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_erin, big_erin), smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(white_erin, big_erin), round_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, rough_erin), smart_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_X, furry_X), smart_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_X, round_X), smart_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_X, rough_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_X, rough_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(white_X, furry_X), round_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(white_X, big_X), round_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_X, big_X), smart_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(white_erin, furry_erin), round_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, rough_erin), smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) -> quiet(X) | not quiet(X)",
+          "z3_formula": "Implies(round_gary, Or(quiet_gary, Not(quiet_gary)))",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_X, rough_X), smart_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_X, rough_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_X, rough_X), smart_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_X, rough_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_X, rough_X), smart_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(white_X, furry_X), round_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(white_X, big_X), round_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_X, big_X), smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == Unknown",
+          "source_step": 17
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 173,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 46
+    },
+    "maxsat_stats": {
+      "satisfied": 46,
+      "excluded": 0,
+      "total_weight": 173,
+      "solve_time_ms": 1.1942917481064796
+    },
+    "timing": {
+      "trace_gen_s": 9.586,
+      "extraction_s": 40.838,
+      "dedup_s": 1.741,
+      "maxsat_s": 0.004,
+      "total_s": 52.169
+    }
+  }
+}

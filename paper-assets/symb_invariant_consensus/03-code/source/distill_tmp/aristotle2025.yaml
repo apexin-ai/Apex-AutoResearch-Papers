@@ -1,0 +1,85 @@
+paper_key: "aristotle2025"
+title: "Aristotle: Mastering Logical Reasoning with A Logic-Complete Decompose-Search-Resolve Framework"
+venue: "ACL 2025"
+full_text_available: true
+
+research:
+  baselines: ["CoT", "ToT", "CR", "SymbCoT", "Logic-LM", "LINC"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "one_step_inference_accuracy", direction: "higher_better"}
+    - {name: "visited_nodes", direction: "lower_better"}
+  datasets:
+    - {name: "PrOntoQA", size: "500"}
+    - {name: "ProofWriter", size: "600"}
+    - {name: "FOLIO", size: "204"}
+    - {name: "LogiQA", size: "651"}
+  ablation_dimensions: ["CNF_decomposition", "search_strategy", "resolution_principle", "Prolog_translation"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "symbolic logic pipeline (Prolog + CNF + resolution)"
+
+positioning:
+  core_claim: "A logic-complete framework integrating Prolog translation, CNF decomposition, and resolution principle into LLM reasoning achieves 99.7% one-step accuracy while reducing search by 52.6%"
+  key_results: "+4.5% avg over SymbCoT (GPT-4), +5.4% (GPT-4o), +12.1% (Llama-3.1-405B); 99.7% one-step accuracy vs ToT's 74.0%"
+  limitations:
+    - "Requires all premises explicitly stated — fails on implicit knowledge (LogiQA: 31.2% vs CoT's 65.6%)"
+    - "Computationally expensive multi-step search"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Figure 1 teaser showing accuracy gap — quantifies the problem before explaining the solution"
+  tension: "Existing neurosymbolic methods suffer from incomplete logical operations, leading to error accumulation in multi-step proofs"
+  key_insight: "Sec 3.2 — replacing LLM self-evaluation with deterministic resolution principle eliminates the weakest link in the reasoning chain"
+  argument_chain: "multi-step errors → incomplete symbolic integration → full Prolog pipeline → deterministic search → validated accuracy + efficiency"
+  contribution_framing: "3 contributions: framework, logic-completeness proof, empirical validation"
+  intro_structure: "6 paragraphs: (1) LLM reasoning importance, (2) existing method failures with Figure 1, (3) root cause analysis, (4) Aristotle overview, (5) contributions, (6) paper structure"
+  notable_technique: "Teaser result figure in intro paragraph 2 — immediately quantifies the gap before any method description"
+
+figures:
+  figure_count: 8
+  figure1:
+    type: "teaser_result"
+    description: "Bar chart comparing accuracy of existing methods showing performance gap"
+    narrative_role: "Quantifies the problem in the intro before solution is described"
+    design_elements: ["grouped bars", "accuracy numbers", "method labels"]
+    visual_style: "Clean bar chart with clear performance gap visualization"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "scatter"
+      what_compared: "Accuracy vs efficiency tradeoff across methods"
+      how_gain_highlighted: "Aristotle in upper-left (high accuracy, low nodes)"
+      design_note: "Dual-axis: accuracy vs search efficiency"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "Accuracy across reasoning depths"
+      how_gain_highlighted: "Aristotle maintains accuracy at higher depths"
+      design_note: "Shows robustness to depth"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["CNF", "resolution", "search_strategy"]
+      design_note: "Red gradient coloring for ablation variants"
+  figure_narrative_role: "Fig1(teaser gap) → Fig2(method) → Fig3(ablation) → Fig4(efficiency) → Fig5(depth) → Fig6-7(case studies) → Fig8(error analysis)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets × accuracy"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best + underline_second"
+    statistical_reporting: "single run"
+    num_baselines: 6
+    design_note: "Categorizes methods into LLM-only, symbolic-augmented, and Aristotle"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["CNF", "resolution", "Prolog_translation", "search"]
+      variation_style: "checkmark_grid"
+      design_note: "Systematic component removal showing each module's contribution"
+  supplementary_tables:
+    in_appendix: true
+    content: "Extended results, additional models, case studies"
+    reason: "Main paper focuses on core 4 datasets"

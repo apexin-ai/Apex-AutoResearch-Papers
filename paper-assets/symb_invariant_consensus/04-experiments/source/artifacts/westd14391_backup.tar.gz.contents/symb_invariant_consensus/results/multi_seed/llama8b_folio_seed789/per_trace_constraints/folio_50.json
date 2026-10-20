@@ -1,0 +1,612 @@
+{
+  "pid": "folio_50",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "digital_media(X) == False",
+          "z3_formula": "Not(digital_media_X) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "printed_text(X) == True",
+          "z3_formula": "printed_text_X == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "streaming_service(X) == True",
+          "z3_formula": "streaming_service_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_X, printed_text_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> hardcover_book(X)",
+          "z3_formula": "Implies(streaming_service_X, hardcover_book_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "digital_media(1984)",
+          "z3_formula": "digital_media_1984 == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "analog(1984)",
+          "z3_formula": "analog_1984 == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not streaming_service(1984)",
+          "z3_formula": "Not(streaming_service_1984) == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "digital_media != analog_media",
+          "z3_formula": "digital_media != analog_media == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog_media(printed_text)",
+          "z3_formula": "analog_media_printed_text == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital_media(streaming_service)",
+          "z3_formula": "digital_media_streaming_service == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "printed_text(hardcover_book) -> analog_media(printed_text)",
+          "z3_formula": "Implies(hardcover_book, analog_media_printed_text)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service -> hardcover_book",
+          "z3_formula": "Implies(streaming_service, hardcover_book)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "analog_media(printed_text)",
+          "z3_formula": "analog_media_printed_text == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "analog_media == digital_media",
+          "z3_formula": "Not(analog_media_printed_text == digital_media_streaming_service)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(streaming_service)",
+          "z3_formula": "Not(streaming_service == True)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "digital_media_are_not_analog",
+          "z3_formula": "digital_media_are_not_analog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "every_printed_text_is_analog",
+          "z3_formula": "every_printed_text_is_analog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_streaming_services_are_digital",
+          "z3_formula": "all_streaming_services_are_digital == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book -> printed_text",
+          "z3_formula": "Implies(hardcover_book, printed_text)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service -> hardcover_book",
+          "z3_formula": "Implies(streaming_service, hardcover_book)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "1984_is_analog",
+          "z3_formula": "1984_is_analog == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "1984_is_not_digital",
+          "z3_formula": "1984_is_not_digital == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "1984_is_streaming_service",
+          "z3_formula": "1984_is_streaming_service == Unknown",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "digital_media_analog_exclusive",
+          "z3_formula": "Not(And(digital_1984, analog_1984)) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog_printed_text",
+          "z3_formula": "analog_printed_text == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_streaming_services_digital",
+          "z3_formula": "all_streaming_services_digital == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book -> printed_text",
+          "z3_formula": "Implies(hardcover_book_1984, analog_printed_text)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service -> hardcover_book",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "digital_1984",
+          "z3_formula": "digital_1984 == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "analog_1984",
+          "z3_formula": "analog_1984 == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "contradiction",
+          "z3_formula": "Or(And(digital_1984, Not(analog_1984)), And(analog_1984, Not(digital_1984))) == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "digital_media(X) == False",
+          "z3_formula": "Not(digital_media_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "printed_text(X) == analog(X)",
+          "z3_formula": "printed_text_X == analog_X",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "streaming_service(X) == digital(X)",
+          "z3_formula": "streaming_service_X == digital_X",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_X, printed_text_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> hardcover_book(X)",
+          "z3_formula": "Implies(streaming_service_X, hardcover_book_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "digital_media(1984)",
+          "z3_formula": "digital_media_1984",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "no_analog_digital_media",
+          "z3_formula": "no_analog_digital_media == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_printed_text_analog",
+          "z3_formula": "all_printed_text_analog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_streaming_services_digital",
+          "z3_formula": "all_streaming_services_digital == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "analog(X) -> hardcover_book(X)",
+          "z3_formula": "Implies(all_printed_text_analog, hardcover_book_1984)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "printed_text(X) -> analog(X)",
+          "z3_formula": "Implies(printed_text_1984, analog_1984)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> digital(X)",
+          "z3_formula": "Implies(streaming_service_1984, digital_1984)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "digital(X) -> ~analog(X)",
+          "z3_formula": "Implies(digital_1984, Not(analog_1984))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> hardcover_book(X)",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(1984)",
+          "z3_formula": "Or(Not(streaming_service_1984), Not(Not(streaming_service_1984)))",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "analog(X) -> ~digital(X)",
+          "z3_formula": "Implies(analog_media, Not(digital_media))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog(X) -> ~printed_text(X)",
+          "z3_formula": "Implies(analog_media, Not(printed_text))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital(X) -> ~analog(X)",
+          "z3_formula": "Implies(digital_media, Not(analog_media))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "printed_text(X) -> analog(X)",
+          "z3_formula": "Implies(printed_text, analog_media)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> digital(X)",
+          "z3_formula": "Implies(streaming_service_1984, digital_media)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> hardcover_book(X)",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "digital(X) | ~analog(X)",
+          "z3_formula": "Or(digital_media, Not(analog_media))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "analog(X) -> ~hardcover_book(X)",
+          "z3_formula": "Implies(analog_media, Not(hardcover_book_1984))",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not_analog(digital_media)",
+          "z3_formula": "Not(analog_digital_media) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog(printed_text)",
+          "z3_formula": "analog_printed_text == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital(streaming_service)",
+          "z3_formula": "digital_streaming_service == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> hardcover_book(X)",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not streaming_service(1984)",
+          "z3_formula": "Not(streaming_service_1984) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "digital_media(X) == False",
+          "z3_formula": "Not(digital_media_X) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "printed_text(Y) == analog(Y)",
+          "z3_formula": "printed_text_Y == analog_Y",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "streaming_service(Z) == digital(Z)",
+          "z3_formula": "streaming_service_Z == digital_Z",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_X, printed_text_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> digital(X)",
+          "z3_formula": "Implies(streaming_service_X, digital_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not streaming_service(1984)",
+          "z3_formula": "Not(streaming_service_1984) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "analog(X) == False",
+          "z3_formula": "analog_media == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog(X) == True",
+          "z3_formula": "analog_printed_text == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital(X) == True",
+          "z3_formula": "digital_streaming_services == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> digital(X)",
+          "z3_formula": "Implies(streaming_service_1984, digital_1984)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "printed_text(X) -> analog(X)",
+          "z3_formula": "Implies(printed_text_1984, analog_1984)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "analog(1984)",
+          "z3_formula": "analog_1984 == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "digital(1984)",
+          "z3_formula": "digital_1984 == False",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "digital_media_analog",
+          "z3_formula": "Not(digital_media_analog) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "printed_text_analog",
+          "z3_formula": "printed_text_analog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_streaming_services_digital",
+          "z3_formula": "all_streaming_services_digital == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book_printed_text",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service_hardcover_book",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not analog(digital_media)",
+          "z3_formula": "Not(analog_digital_media)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog(printed_text)",
+          "z3_formula": "analog_printed_text == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital(streaming_services)",
+          "z3_formula": "digital_streaming_services == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> hardcover_book(X)",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not digital(1984)",
+          "z3_formula": "Not(digital_1984)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not streaming_service(1984)",
+          "z3_formula": "Not(streaming_service_1984)",
+          "source_step": 7
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+TOST Equivalence Test — Table 1 (15 conditions)
+Margin: ±2pp, α=0.05
+
+Equivalent (4/15):
+- Qwen2.5-14B FOLIO s123 (p=0.038)
+- Qwen2.5-7B FOLIO r1 (p=0.038)
+- Gemma-2-7B FOLIO (p=0.001)
+- Qwen2.5-14B PW-600 (p=0.042)
+
+Genuinely different (5/15):
+- Mistral-7B FOLIO s42: Δ=+4.9pp
+- Mistral-7B PW-600: Δ=-2.8pp
+- Qwen2.5-7B PW-600: Δ=-4.0pp
+- Mistral-7B LogiQA-200: Δ=-3.0pp
+- Qwen2.5-7B LogiQA def: Δ=+2.5pp
+
+Underpowered (6/15):
+- Mistral-7B FOLIO s789, Qwen2.5-14B FOLIO def, Qwen2.5-7B FOLIO r2, Qwen3-14B FOLIO, Qwen2.5-7B LogiQA s123, Qwen2.5-7B LogiQA s456
+
+Full JSON on server: /root/symb_invariant_consensus/results/tost_equivalence_table1.json

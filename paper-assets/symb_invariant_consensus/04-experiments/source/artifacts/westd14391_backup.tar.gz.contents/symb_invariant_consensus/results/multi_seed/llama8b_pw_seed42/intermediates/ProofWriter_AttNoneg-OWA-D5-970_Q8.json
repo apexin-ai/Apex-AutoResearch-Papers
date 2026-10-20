@@ -1,0 +1,1146 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-970_Q8",
+    "problem": "Anne is blue. Anne is young. Dave is cold. Dave is furry. Erin is kind. Erin is red. Fiona is blue. Fiona is kind. Fiona is red. Fiona is young. If Dave is furry and Dave is cold then Dave is young. All nice, cold people are red. Red, young people are blue. If Anne is furry then Anne is young. If someone is young then they are kind. All kind, cold people are nice. If Anne is blue then Anne is young.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not nice.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nKind($x, bool) ::: Is x kind?\nRed($x, bool) ::: Is x red?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nBlue(Anne, True) ::: Anne is blue.\nYoung(Anne, True) ::: Anne is young.\nCold(Dave, True) ::: Dave is cold.\nFurry(Dave, True) ::: Dave is furry.\nKind(Erin, True) ::: Erin is kind.\nRed(Erin, True) ::: Erin is red.\nBlue(Fiona, True) ::: Fiona is blue.\nKind(Fiona, True) ::: Fiona is kind.\nRed(Fiona, True) ::: Fiona is red.\nYoung(Fiona, True) ::: Fiona is young.\n\nRules:\nFurry(Dave, True) && Cold(Dave, True) >>> Young(Dave, True) ::: If Dave is furry and Dave is cold then Dave is young.\nNice($x, True) && Cold($x, True) >>> Red($x, True) ::: All nice, cold people are red.\nRed($x, True) && Young($x, True) >>> Blue($x, True) ::: Red, young people are blue.\nFurry(Anne, True) >>> Young(Anne, True) ::: If Anne is furry then Anne is young.\nYoung($x, True) >>> Kind($x, True) ::: If someone is young then they are kind.\nKind($x, True) && Cold($x, True) >>> Nice($x, True) ::: All kind, cold people are nice.\nBlue(Anne, True) >>> Young(Anne, True) ::: If Anne is blue then Anne is young.\n\nQuery:\nNice(Dave, False) ::: Dave is not nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 158.5,
+      "True": 103.0,
+      "Unknown": 111.0
+    },
+    "answer_counts": {
+      "False": 10,
+      "True": 1,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the truth values of the variables involved. \n\n1. Anne is blue. \n2. Anne is young. \n3. Dave is cold. \n4. Dave is furry. \n5. Erin is kind. \n6. Erin is red. \n7. Fiona is blue. \n8. Fiona is kind. \n9. Fiona is red. \n10. Fiona is young. \n11. If Dave is furry and Dave is cold then Dave is young. \n12. All nice, cold people are red. \n13. Red, young people are blue. \n14. If Anne is furry then Anne is young. \n15. If someone is young then they are kind. \n16. All kind, cold people are nice. \n17. If Anne is blue then Anne is young.\n\nFirst, we will analyze the statements to find any direct conclusions.\n\n- From statement 11, we know that since Dave is furry and Dave is cold, Dave must be young.\n\n- From statement 12, we know that all nice, cold people are red. However, we do not know if Dave is nice or not.\n\n- From statement 13, we know that red, young people are blue. However, we do not know if Dave is red or not.\n\n- From statement 15, we know that since someone is young, they are kind. Since Dave is young (from statement 11), Dave must be kind.\n\n- From statement 16, we know that all kind, cold people are nice. Since Dave is kind (from statement 15) and Dave is cold (from statement 3), Dave must be nice.\n\n- Now that we know Dave is nice, we can conclude from statement 12 that Dave must be red.\n\n- From statement 13, we know that red, young people are blue. Since Dave is red (from the previous conclusion) and Dave is young (from statement 11), Dave must be blue.\n\n- From statement 14, we know that if Anne is furry then Anne is young. However, we do not know if Anne is furry or not.\n\n- From statement 17, we know that if Anne is blue then Anne is young. However, we already know that Anne is blue (from statement 1) and Anne is young (from statement 2), so this statement does not provide any new information.\n\n- From statement 15, we know that since someone is young, they are kind. Since Anne is young (from statement 2), Anne must be kind.\n\n- From statement 16, we know that all kind, cold people are nice. However, we do not know if Anne is cold or not.\n\n- From statement 14, we know that if Anne is furry then Anne is young. However, we do not know if Anne is furry or not. \n\nNow, we can conclude that the truth value of the statement \"Dave is not nice\" is false, since we already concluded that Dave is nice.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven Information:\n\n1. Anne is blue.\n2. Anne is young.\n3. Dave is cold.\n4. Dave is furry.\n5. Erin is kind.\n6. Erin is red.\n7. Fiona is blue.\n8. Fiona is kind.\n9. Fiona is red.\n10. Fiona is young.\n11. If Dave is furry and Dave is cold then Dave is young.\n12. All nice, cold people are red.\n13. Red, young people are blue.\n14. If Anne is furry then Anne is young.\n15. If someone is young then they are kind.\n16. All kind, cold people are nice.\n17. If Anne is blue then Anne is young.\n\nFirst, let's analyze the information related to Dave:\n\nFrom (11), we know that if Dave is furry and Dave is cold, then Dave is young. However, we do not know if Dave is furry and cold. We only know that Dave is cold (3) and furry (4).\n\nNext, let's analyze the information related to nice and kind people:\n\nFrom (12), all nice, cold people are red. This means that if someone is a nice, cold person, they must be red.\n\nFrom (16), all kind, cold people are nice. This means that if someone is a kind, cold person, they must be nice.\n\nFrom (15), if someone is young, then they are kind. We do not know if Dave is young, but we do not have any information that contradicts this statement either.\n\nNow, let's analyze the information related to color:\n\nFrom (6), Erin is red, and from (5), Erin is kind. Since Erin is kind, we can conclude that Erin is nice from (16).\n\nFrom (13), red, young people are blue. This means that if someone is red and young, they must be blue.\n\nFrom (9), Fiona is red, and from (10), Fiona is young. Therefore, Fiona must be blue from (13).\n\nNow, let's analyze the information related to Anne:\n\nFrom (14), if Anne is furry, then Anne is young. However, we do not know if Anne is furry.\n\nFrom (1), Anne is blue. From (17), if Anne is blue, then Anne is young. Therefore, we can conclude that Anne is young.\n\nSince Anne is young from (2) and (17), and from (15), if someone is young, then they are kind, we can conclude that Anne is kind.\n\nSince Anne is kind, we can conclude that Anne is nice from (16).\n\nFrom (1), we know that Anne is blue.\n\nNow, let's go back to Dave. We do not know if Dave is young, but we do not have any information that contradicts this statement either.\n\nHowever, we can conclude that if Dave is nice, then he must be red from (12), because all nice, cold people are red.\n\nSince we do not have any information that contradicts the statement that Dave is young, let's assume Dave is young.\n\nIf Dave is young, then he is kind from (15), and since he is kind and cold, he must be nice from (16).\n\nIf Dave is nice, then he must be red from (12).\n\nHowever, we also know that if Dave is young, then he must be blue from (13), which contradicts the statement that Dave is red.\n\nTherefore, we cannot conclude that Dave is nice, and the statement \"Dave is not nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and the given statements. \n\n1. Let's start by analyzing the statements:\n   - Anne is blue.\n   - Anne is young.\n   - Dave is cold.\n   - Dave is furry.\n   - Erin is kind.\n   - Erin is red.\n   - Fiona is blue.\n   - Fiona is kind.\n   - Fiona is red.\n   - Fiona is young.\n   - If Dave is furry and Dave is cold then Dave is young.\n   - All nice, cold people are red.\n   - Red, young people are blue.\n   - If Anne is furry then Anne is young.\n   - If someone is young then they are kind.\n   - All kind, cold people are nice.\n   - If Anne is blue then Anne is young.\n\n2. Now, we need to determine whether the statement \"Dave is not nice\" is true, false, or unknown.\n\nFrom the given statements, we can derive the following conclusions:\n- Dave is cold and furry, so Dave is young (from the given statement).\n- Since Dave is young, Dave is kind (from the given statement).\n- Dave is cold and kind, so Dave is nice (from the given statement).\n- However, from the statement \"If Dave is furry and Dave is cold then Dave is young,\" we can also infer that Dave is not young if he is not cold and furry. This does not directly tell us about Dave being nice or not but we can use this information later.\n- Now let's analyze the statement \"If Dave is furry and Dave is cold then Dave is young\" again. We can rephrase this statement as: \"If Dave is young then Dave is not furry or not cold.\" This is because the original statement is stating a necessary condition for being young (i.e., being furry and cold) but not a sufficient condition.\n- Since Dave is young, then Dave is not furry or not cold (from the rephrased statement).\n- But we know that Dave is furry and cold, which is a contradiction. This means that our assumption that Dave is young is incorrect.\n- Since our assumption that Dave is young is incorrect, we cannot conclude that Dave is nice or not. Therefore, the statement \"Dave is not nice\" is unknown.\n\nHowever, we can also prove that the statement \"Dave is not nice\" is false.\n\n- Dave is cold and kind, so Dave is nice (from the given statement).\n- This statement is a direct conclusion from the given statements and does not depend on any assumptions.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is not nice' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is cold.\n2. Dave is furry.\nFrom the premises:\n- If Dave is furry and Dave is cold, then Dave is young. (Premise)\nSince we have both conditions (Dave is furry and Dave is cold), we can infer that Dave is young.\n\n3. Dave is young.\nFrom the premises:\n- If someone is young, then they are kind. (Premise)\nTherefore, Dave is kind.\n\n4. Dave is kind.\n5. Dave is cold.\nFrom the premises:\n- All kind, cold people are nice. (Premise)\nTherefore, Dave is nice.\n\nNow, we have determined that Dave is nice, but the statement we need to evaluate is 'Dave is not nice.' Since our conclusion is the opposite of the statement, we can conclude that the statement 'Dave is not nice' is false.\n\nHowever, to be thorough, let's also analyze the other information related to the colors and Anne to ensure it doesn't affect our conclusion.\n\n6. Anne is blue.\n7. Anne is young.\nFrom the premises:\n- If Anne is blue, then Anne is young. (Premise)\nThis is already given, so it doesn't add any new information.\n\n8. Fiona is blue.\n9. Fiona is kind.\n10. Fiona is red.\n11. Fiona is young.\nFrom the premises:\n- Red, young people are blue. (Premise)\nThis statement is already false because Fiona is both red and blue, which contradicts the premise.\n\nHowever, this doesn't affect our conclusion about Dave being nice.\n\nTherefore, the statement 'Dave is not nice' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we'll use logical reasoning and break it down step by step.\n\n1. We have several statements:\n   - Anne is blue.\n   - Anne is young.\n   - Dave is cold.\n   - Dave is furry.\n   - Erin is kind.\n   - Erin is red.\n   - Fiona is blue.\n   - Fiona is kind.\n   - Fiona is red.\n   - Fiona is young.\n   - If Dave is furry and Dave is cold then Dave is young.\n   - All nice, cold people are red.\n   - Red, young people are blue.\n   - If Anne is furry then Anne is young.\n   - If someone is young then they are kind.\n   - All kind, cold people are nice.\n   - If Anne is blue then Anne is young.\n\n2. Let's analyze the given information and the statements to determine whether Dave is nice or not.\n\n   - We know Dave is cold and furry, which means Dave is young (by the statement: If Dave is furry and Dave is cold then Dave is young).\n   - Since Dave is young, we know Dave is kind (by the statement: If someone is young then they are kind).\n   - Also, since Dave is cold and kind, we know Dave is nice (by the statement: All kind, cold people are nice).\n\n3. Now, let's analyze the given statement: \"Dave is not nice.\"\n\n   - We've already established that Dave is nice.\n   - Therefore, the statement \"Dave is not nice\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and apply them to the statement we're trying to evaluate.\n\n1. Anne is blue.\n2. Anne is young.\n3. Dave is cold.\n4. Dave is furry.\n5. Erin is kind.\n6. Erin is red.\n7. Fiona is blue.\n8. Fiona is kind.\n9. Fiona is red.\n10. Fiona is young.\n11. If Dave is furry and Dave is cold then Dave is young.\n12. All nice, cold people are red.\n13. Red, young people are blue.\n14. If Anne is furry then Anne is young.\n15. If someone is young then they are kind.\n16. All kind, cold people are nice.\n17. If Anne is blue then Anne is young.\n\nFrom statement 3 and 4, we can conclude that Dave is young using statement 11: \n(3 & 4) -> 11 -> Dave is young\n\nFrom statement 15, we can conclude that since Dave is young, he is kind:\n(12) -> Dave is young -> 15 -> Dave is kind\n\nWe don't have enough information to directly evaluate if Dave is nice or not from the given statements. However, we can use statements 12 and 16 to find a relationship between being nice, cold, and kind.\n(12) -> All nice, cold people are red.\n(16) -> All kind, cold people are nice.\n\nHowever, we don't have enough information to conclude if Dave is red or not. We can only conclude that if Dave is cold and kind, then he is nice, but we don't know if he is cold and kind or not.\n\nWe can conclude that Anne is young using statements 1 and 14:\n(1) -> 14 -> Anne is young\n\nWe can conclude that Anne is kind using statement 15:\n(1) -> Anne is young -> 15 -> Anne is kind\n\nWe can conclude that Anne is blue using statement 1.\n\nWe can conclude that Erin is red using statement 6.\n\nWe can conclude that Fiona is blue, kind, and red using statements 7, 8, and 9.\n\nWe can conclude that Fiona is young using statement 10.\n\nWe can conclude that all of the following are true: Dave is young, Dave is kind, Anne is young, Anne is kind, Erin is red, Fiona is blue, Fiona is kind, and Fiona is red.\n\nHowever, we still don't know if Dave is nice or not. We can only conclude that if Dave is cold and kind, then he is nice, but we don't know if he is cold and kind or not.\n\nSince we cannot determine if Dave is nice or not, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and deductions based on the given information.\n\n1. Dave is cold. \n2. Dave is furry.\n3. If Dave is furry and Dave is cold then Dave is young. \nFrom (2) and (3), we can conclude that Dave is young.\n\n4. Dave is young.\n5. If someone is young then they are kind. \nFrom (4) and (5), we can conclude that Dave is kind.\n\n6. All kind, cold people are nice.\nSince we know Dave is cold, kind, and young, we can conclude that Dave is nice.\n\nNow, let's examine the statement \"Dave is not nice.\" Since we have concluded that Dave is nice, the statement \"Dave is not nice\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is cold. \n2. Dave is furry.\n\nFrom the given information, we can conclude that:\n- If Dave is furry and Dave is cold then Dave is young. (Given statement)\n- Since Dave is both cold and furry, we can conclude that Dave is young.\n\n3. Since Dave is young, we can conclude that:\n- If someone is young then they are kind. (Given statement)\n- Therefore, Dave is kind.\n\n4. Since Dave is cold and kind, we can conclude that:\n- All kind, cold people are nice. (Given statement)\n- Therefore, Dave is nice.\n\nNow, let's analyze the statement \"Dave is not nice\" based on our conclusions:\n- We have concluded that Dave is nice.\n- Therefore, the statement \"Dave is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is not nice' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is cold. \n2. Dave is furry.\n\nFrom the given information:\n   - If Dave is furry and Dave is cold then Dave is young. \n   Therefore, we can conclude that Dave is young.\n\n3. Dave is young.\n\nFrom the given information:\n   - If someone is young then they are kind. \n   Therefore, we can conclude that Dave is kind.\n\n4. Dave is cold. \n   - Dave is kind.\n   From the given information:\n      - All kind, cold people are nice. \n   Therefore, we can conclude that Dave is nice.\n\nHowever, the statement we need to evaluate is 'Dave is not nice'. Based on our previous conclusion that Dave is nice, this statement is false.\n\nSo, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is not nice' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is cold. (Given)\n2. Dave is furry. (Given)\n3. If Dave is furry and Dave is cold then Dave is young. (Given)\n   From steps 1 and 2, we can conclude that Dave is young.\n\n4. Dave is young. (Concluded from step 3)\n5. If someone is young then they are kind. (Given)\n   From step 4, we can conclude that Dave is kind.\n\n6. Dave is kind. (Concluded from step 5)\n7. All kind, cold people are nice. (Given)\n   From steps 1, 6, we can conclude that Dave is nice.\n\nSince we concluded that Dave is nice, the statement 'Dave is not nice' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deductions based on the given statements.\n\n1. Dave is cold. \n2. Dave is furry. \nFrom 1 and 2, we can conclude that Dave is young (Given statement: If Dave is furry and Dave is cold then Dave is young).\n\nNow, let's analyze the given statements about colors and their relationship with the other characteristics:\n- All kind, cold people are nice.\n- Red, young people are blue.\n- All nice, cold people are red.\n\nFrom statement 2, we know that Dave is young. Now, we need to determine whether Dave is red or blue. If we consider the last statement (Red, young people are blue), it seems to be a contradiction. However, let's analyze it further.\n\nStatement: All nice, cold people are red. This means that if someone is both nice and cold, they are red. However, we cannot conclude that all cold people are red. There might be a cold person who is not nice.\n\nFrom the given information, we cannot directly determine whether Dave is nice or not. But we can infer that if Dave is red, then he is also blue (Red, young people are blue). Since we have already concluded that Dave is young, if he is red, then he is also blue.\n\nNow, we need to determine whether Dave is nice or not. Let's analyze the relationship between being young and being kind.\n- If someone is young, then they are kind (Given statement).\n\nFrom statement 2, we know that Dave is young. Therefore, we can conclude that Dave is kind.\n\nNow, let's analyze the statement: All kind, cold people are nice.\n- Dave is kind.\n- Dave is cold.\n\nFrom these two facts, we can conclude that Dave is nice.\n\nNow, let's analyze the statement: Dave is not nice.\n\nSince we have concluded that Dave is nice, we can say that the statement \"Dave is not nice\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Dave is cold. Dave is furry.\nFrom this, we can conclude that Dave is young, as stated in the given information: \"If Dave is furry and Dave is cold then Dave is young.\"\n\n2. Dave is young.\nSince we have already concluded that Dave is young, we can use the given information: \"If someone is young then they are kind.\" Therefore, Dave is kind.\n\n3. All kind, cold people are nice.\nSince Dave is kind and cold, we can conclude that Dave is nice.\n\nHowever, the statement we are evaluating is \"Dave is not nice.\" Given our conclusion that Dave is nice, we can determine that this statement is false.\n\nTherefore, the statement \"Dave is not nice\" is \\boxed{false}.",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_dave, cold_dave), young_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_dave, cold_dave), red_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_dave, young_dave), blue_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_anne, young_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_anne, young_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_anne, kind_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_dave, cold_dave), nice_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(dave)",
+          "z3_formula": "Not(nice_dave)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_dave, cold_dave), young_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_dave, cold_dave), red_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_dave, young_dave), blue_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_anne, young_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_X, kind_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_X, cold_X), nice_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_anne, young_anne)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_dave, cold_dave), young_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_dave, cold_dave), red_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_dave, young_dave), blue_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_anne, young_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_X, kind_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_X, cold_X), nice_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_anne, young_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not young(dave)",
+          "z3_formula": "Not(young_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(dave)",
+          "z3_formula": "Not(nice_dave)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_dave, cold_dave), young_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_dave, kind_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_dave, cold_dave), nice_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(dave) & cold(dave) -> young(dave)",
+          "z3_formula": "Implies(And(furry_dave, cold_dave), young_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_dave, cold_dave), red_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_dave, young_dave), blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(anne) -> young(anne)",
+          "z3_formula": "Implies(furry_anne, young_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_dave, kind_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_dave, cold_dave), nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(anne) -> young(anne)",
+          "z3_formula": "Implies(blue_anne, young_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(dave)",
+          "z3_formula": "Not(nice_dave)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_dave, cold_dave), young_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_dave, cold_dave), red_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_dave, young_dave), blue_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_anne, young_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_anne, kind_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_dave, cold_dave), nice_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_anne, young_anne)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_dave, cold_dave), young_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_dave, kind_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_dave, cold_dave), nice_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X)",
+          "z3_formula": "Not(nice_dave)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_dave, cold_dave), young_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_dave, kind_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_dave, cold_dave), nice_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_dave, cold_dave), young_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_dave, kind_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_dave, cold_dave), nice_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_dave, cold_dave), young_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_dave, kind_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_dave, cold_dave), nice_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_dave, cold_dave), young_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_dave, nice_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_dave, kind_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_dave, cold_dave), nice_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(dave)",
+          "z3_formula": "Not(nice_dave)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_dave, cold_dave), young_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_dave, kind_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_dave, cold_dave), nice_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(dave)",
+          "z3_formula": "Not(nice_dave) == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 169,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 28
+    },
+    "maxsat_stats": {
+      "satisfied": 26,
+      "excluded": 2,
+      "total_weight": 162,
+      "solve_time_ms": 0.9546186774969101
+    },
+    "timing": {
+      "trace_gen_s": 9.007,
+      "extraction_s": 23.787,
+      "dedup_s": 1.195,
+      "maxsat_s": 0.003,
+      "total_s": 33.992
+    }
+  }
+}

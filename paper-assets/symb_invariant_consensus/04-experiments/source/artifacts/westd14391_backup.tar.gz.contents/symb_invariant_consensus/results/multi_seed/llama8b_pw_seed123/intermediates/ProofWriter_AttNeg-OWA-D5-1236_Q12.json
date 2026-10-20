@@ -1,0 +1,1299 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1236_Q12",
+    "problem": "Anne is blue. Anne is smart. Bob is green. Bob is round. Erin is rough. Harry is cold. Harry is kind. All kind things are round. If something is rough then it is round. All cold things are round. Round things are cold. All kind things are green. If something is smart then it is rough. If something is cold and not blue then it is rough. If Bob is smart then Bob is not green. All smart, cold things are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is not green.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nSmart($x, bool) ::: Is x smart?\nGreen($x, bool) ::: Is x green?\nRound($x, bool) ::: Is x round?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nBlue(Anne, True) ::: Anne is blue.\nSmart(Anne, True) ::: Anne is smart.\nGreen(Bob, True) ::: Bob is green.\nRound(Bob, True) ::: Bob is round.\nRough(Erin, True) ::: Erin is rough.\nCold(Harry, True) ::: Harry is cold.\nKind(Harry, True) ::: Harry is kind.\n\nRules:\nKind($x, True) >>> Round($x, True) ::: All kind things are round.\nRough($x, True) >>> Round($x, True) ::: If something is rough then it is round.\nCold($x, True) >>> Round($x, True) ::: All cold things are round.\nRound($x, True) >>> Cold($x, True) ::: Round things are cold.\nKind($x, True) >>> Green($x, True) ::: All kind things are green.\nSmart($x, True) >>> Rough($x, True) ::: If something is smart then it is rough.\nCold($x, True) && Blue($x, False) >>> Rough($x, True) ::: If something is cold and not blue then it is rough.\nSmart(Bob, True) >>> Green(Bob, False) ::: If Bob is smart then Bob is not green.\nSmart($x, True) && Cold($x, True) >>> Kind($x, True) ::: All smart, cold things are kind.\n\nQuery:\nGreen(Anne, False) ::: Anne is not green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 63.0,
+      "Unknown": 166.5
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Anne is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Anne is blue. (We know Anne's color, it's blue.)\n\n2. Anne is smart. (We know Anne's personality, she's smart.)\n\nFrom the given statements, we don't have any direct information about Anne being green or not being green. However, we can deduce information about other characteristics.\n\n3. If something is smart then it is rough. (Since Anne is smart, Anne must be rough.)\n\n4. Erin is rough. (We don't know if Erin's roughness is related to Anne's, but we can continue analyzing the statements.)\n\n5. If something is rough then it is round. (Since Erin is rough, Erin must be round.)\n\n6. All cold things are round. (This doesn't directly relate to Anne, but we can continue analyzing the statements.)\n\n7. Harry is cold. (We know Harry's temperature, it's cold.)\n\n8. Harry is kind. (We know Harry's personality, he's kind.)\n\n9. All kind things are round. (Since Harry is kind, Harry must be round.)\n\n10. All kind things are green. (Since Harry is kind and green, all kind things must be green.)\n\n11. If something is smart then it is rough. (Since Anne is smart, Anne must be rough.)\n\n12. If something is cold and not blue then it is rough. (Since we know Harry is cold and not blue, Harry must be rough.)\n\n13. All cold things are round. (Since Harry is cold, Harry must be round.)\n\n14. Round things are cold. (This statement is true but doesn't directly relate to Anne.)\n\n15. If Bob is smart then Bob is not green. (We don't know Bob's intelligence, but we can continue analyzing the statements.)\n\n16. Bob is green. (We know Bob's color, it's green.)\n\n17. Bob is round. (We know Bob's shape, it's round.)\n\n18. All kind things are green. (Since Bob is kind and green, all kind things must be green.)\n\n19. All smart, cold things are kind. (Since we don't have any information about Anne being cold, we can't conclude anything about Anne's kind-ness yet.)\n\nNow, let's analyze the given statement \"Anne is not green\" based on the information we've deduced.\n\nSince we don't have any direct information about Anne being green or not being green, we can conclude that the statement \"Anne is not green\" is unknown.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine if the statement \"Anne is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information about Anne:\n   - Anne is blue.\n   - Anne is smart.\n\n2. We are given the following information about Bob:\n   - Bob is green.\n   - Bob is round.\n\n3. We are given the following information about Erin:\n   - Erin is rough.\n\n4. We are given the following information about Harry:\n   - Harry is cold.\n   - Harry is kind.\n\n5. We are given the following rules:\n   - All kind things are round. (Rule 1)\n   - If something is rough then it is round. (Rule 2)\n   - All cold things are round. (Rule 3)\n   - Round things are cold. (Rule 4)\n   - All kind things are green. (Rule 5)\n   - If something is smart then it is rough. (Rule 6)\n   - If something is cold and not blue then it is rough. (Rule 7)\n   - If Bob is smart then Bob is not green. (Rule 8)\n   - All smart, cold things are kind. (Rule 9)\n\n6. We can start by using Rule 1 and Rule 3 to conclude that since Harry is kind and cold, Harry must be round.\n\n7. Using Rule 6 and Rule 3, we can conclude that since Harry is smart and cold, Harry must be rough (because it's also cold).\n\n8. Now, we can use Rule 5 and Rule 9 to conclude that since Harry is smart and cold, Harry must be green (because all kind things are green).\n\n9. We are given that Bob is smart. Using Rule 8, we can conclude that Bob is not green.\n\n10. We already know that Bob is green. This creates a contradiction. However, since the statement about Bob is a rule and not a fact about Bob, we can disregard this statement.\n\n11. To determine if the statement \"Anne is not green\" is true, false, or unknown, we need to analyze if there's any information that can be derived about Anne being green or not.\n\n12. Since there's no direct information or rule that states Anne is green, we cannot conclude that Anne is not green.\n\n13. Therefore, the statement \"Anne is not green\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Anne is blue. (Given)\n2. Anne is smart. (Given)\n3. If something is smart then it is rough. (Given)\n   Therefore, Anne is rough. (From rule 2 and 3)\n\n4. Erin is rough. (Given)\n5. If something is rough then it is round. (Given)\n   Therefore, Erin is round. (From rule 4 and 5)\n\n6. Since Anne is rough and round, and Erin is also round, we can't conclude anything about the relationship between Anne and Erin's roundness, but we do know that both are round.\n\n7. Harry is cold. (Given)\n8. Harry is kind. (Given)\n9. All kind things are round. (Given)\n   Therefore, Harry is round. (From rule 7, 8, and 9)\n\n10. Since Harry is cold and round, and all cold things are round (rule 6), we can't conclude anything new about Harry's roundness.\n\n11. All cold things are round. (Given)\n   This rule is consistent with our previous conclusion about Harry being round.\n\n12. Round things are cold. (Given)\n   This rule is consistent with our previous conclusion about Harry being cold.\n\n13. All kind things are green. (Given)\n   Therefore, Harry is green. (From rule 8 and 13)\n\n14. Since Harry is kind and green, we can conclude that kind things are green, which is consistent with our previous conclusion.\n\n15. If Bob is smart then Bob is not green. (Given)\n   This rule does not provide any information about Anne.\n\n16. Anne is blue. (Given)\n   We can't conclude anything about Anne's color from this rule alone.\n\n17. We are trying to determine whether the statement \"Anne is not green\" is true or false. Since we know that Harry is green (rule 13) and we have no information about Anne's green color, we can't conclude that Anne is not green.\n\nTherefore, the statement \"Anne is not green\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is not green' is true, false, or unknown, we need to analyze the given information.\n\n1. Anne is blue. \n2. Anne is smart. \n3. Bob is green. \n4. Bob is round. \n5. Erin is rough. \n6. Harry is cold. \n7. Harry is kind. \n8. All kind things are round. \n9. If something is rough then it is round. \n10. All cold things are round. \n11. Round things are cold. \n12. All kind things are green. \n13. If something is smart then it is rough. \n14. If something is cold and not blue then it is rough. \n15. If Bob is smart then Bob is not green. \n16. All smart, cold things are kind.\n\nFrom statements 1 and 2, we know Anne is blue and smart.\n\nFrom statement 12, we know that all kind things are green. \n\nFrom statement 7, we know Harry is kind. Therefore, from statement 12, Harry is green.\n\nFrom statement 16, we know that all smart, cold things are kind. Since Anne is smart and cold (because she is blue and round, from statements 11 and 1), Anne is kind. \n\nFrom statement 12, we know that all kind things are green. Therefore, since Anne is kind, Anne is green.\n\nThe statement 'Anne is not green' is false because Anne is indeed green.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply it to the statement \"Anne is not green.\"\n\n1. Given information:\n   - Anne is blue.\n   - Anne is smart.\n   - Bob is green.\n   - Bob is round.\n   - Erin is rough.\n   - Harry is cold.\n   - Harry is kind.\n   - All kind things are round.\n   - If something is rough then it is round.\n   - All cold things are round.\n   - Round things are cold.\n   - All kind things are green.\n   - If something is smart then it is rough.\n   - If something is cold and not blue then it is rough.\n   - If Bob is smart then Bob is not green.\n   - All smart, cold things are kind.\n\n2. To determine whether Anne is not green, we need to establish the relationship between Anne and green.\n\n3. We know that Anne is smart (from given information).\n   - Since Anne is smart, we can infer that Anne is rough (from the statement \"If something is smart then it is rough\").\n\n4. We know that Erin is rough (from given information).\n   - From the statement \"If something is rough then it is round,\" we can infer that Erin is round.\n   - However, we cannot directly apply this information to Anne.\n\n5. We know that Harry is cold (from given information).\n   - From the statement \"All cold things are round,\" we can infer that Harry is round.\n   - From the statement \"Round things are cold,\" we can infer that Harry is cold (this is already known).\n   - However, we cannot directly apply this information to Anne.\n\n6. We know that Harry is kind (from given information).\n   - From the statement \"All kind things are round,\" we can infer that Harry is round (this is already known).\n   - From the statement \"All kind things are green,\" we can infer that Harry is green.\n\n7. We cannot directly apply the information about Harry to Anne. However, we can analyze the given information to find a connection between Anne and green.\n\n8. We know that Bob is green (from given information).\n   - However, we also know that \"If Bob is smart then Bob is not green\" (from given information). \n   - Since we do not have any information about Bob being smart, we cannot directly apply this statement to Bob.\n\n9. Since we do not have enough information to determine whether Anne is green or not, we cannot conclude that the statement \"Anne is not green\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will analyze each statement step by step.\n\n1. Anne is blue.\n2. Anne is smart.\n3. Bob is green.\n4. Bob is round.\n5. Erin is rough.\n6. Harry is cold.\n7. Harry is kind.\n8. All kind things are round. (From statement 7)\n9. Bob is round. (From statement 4)\n10. Since Bob is kind (From statement 7), and all kind things are round (From statement 8), we can conclude that being kind and round are equivalent.\n11. All cold things are round. (From statement 6)\n12. Harry is cold. (From statement 6)\n13. Since Harry is round (From statement 11), we can conclude that being cold and round are equivalent.\n14. All kind things are green. (From statement 7)\n15. Harry is kind. (From statement 7)\n16. Since Harry is green (From statement 14), we can conclude that being kind and green are equivalent.\n17. Since we have established that being kind and round are equivalent (From statement 10), and being kind and green are equivalent (From statement 16), we can conclude that being round and green are equivalent.\n18. Since Bob is round (From statement 9), and being round and green are equivalent (From statement 17), we can conclude that Bob is green.\n19. If something is rough then it is round. (From statement 5)\n20. Erin is rough. (From statement 5)\n21. Since Erin is round (From statement 19), we can conclude that being rough and round are equivalent.\n22. Since we have established that being cold and round are equivalent (From statement 13), and being rough and round are equivalent (From statement 21), we can conclude that being cold and rough are equivalent.\n23. All cold things are round. (From statement 6)\n24. If something is cold and not blue then it is rough. (From statement 6)\n25. Since we have established that being cold and rough are equivalent (From statement 22), and all cold things are round (From statement 23), we can conclude that all non-blue things are round.\n26. Since we have established that being kind and green are equivalent (From statement 16), and all kind things are green (From statement 14), we can conclude that all kind things are green.\n27. All smart, cold things are kind. (From statement 6)\n28. Since we have established that being cold and rough are equivalent (From statement 22), we can conclude that all smart things are kind.\n29. Since we have established that being kind and green are equivalent (From statement 16), we can conclude that all smart things are green.\n30. Since we have established that being kind and round are equivalent (From statement 10), we can conclude that all smart things are round.\n31. Since we have established that being round and green are equivalent (From statement 17), we can conclude that all smart things are green.\n32. If something is smart then it is rough. (From statement 2)\n33. Since we have established that all smart things are green (From statement 29), and all smart things are rough (From statement 32), we can conclude that all green things are rough.\n34. If Bob is smart then Bob is not green. (From statement 4)\n35. Since we have established that Bob is green (From statement 18), and if Bob is smart then Bob is not green (From statement 34), we can conclude that Bob is not smart.\n36. Since we have established that being kind and round are equivalent (From statement 10), and being kind and green are equivalent (From statement 16), we can conclude that being round and green are equivalent.\n37. Since Bob is round (From statement 9), and being round and green are equivalent (From statement 36), we can conclude that Bob is green, which is a contradiction to our conclusion in statement 35 that Bob is not green.\n\nHowever, since statement 35 is a contradiction to statement 18, we must reevaluate our conclusion in statement 18.\n\n18. Since Bob is round (From statement 9), and being round and green are equivalent (From statement 17), we can conclude that Bob is green.\n\nHowever, this conclusion is based on the assumption that being kind and round are equivalent, which is stated in statement 8. However, this assumption is not necessarily true.\n\nTherefore, we cannot conclude that Anne is not green.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Anne is blue. \n2. Anne is smart.\n\nFrom the given information, we can deduce the following:\n\n- Since Anne is smart, then Anne is rough. (If something is smart then it is rough)\n- Since Anne is rough, then Anne is round. (If something is rough then it is round)\n- We cannot determine if Anne is green or not from this information alone.\n\nHowever, we can make the following inferences:\n\n- All round things are cold. \n- Since Anne is round, Anne is cold.\n\nNow, let's examine the possible scenarios for Anne being green:\n\n- If Anne is green, then Anne is round. (Bob is green, and Bob is round)\n- However, we know Anne is cold, and all cold things are round. This does not necessarily mean Anne is green.\n\n- Since all kind things are green, and all kind things are round, it is possible that Anne is green if Anne is kind.\n\nWe know that Anne is smart, which makes Anne rough and round. However, we don't know if Anne is kind or not. If Anne is kind, then Anne is green.\n\nHowever, there's another piece of information that might help us: If Bob is smart, then Bob is not green. We don't know if Bob is smart or not, but let's assume that if Bob is smart, then he is not green. This does not directly affect Anne, but it gives us some context.\n\nLet's analyze the relationship between kind and smart things. We know that all kind things are round and all kind things are green. We also know that all smart, cold things are kind. Since Anne is smart and cold, Anne must be kind.\n\nNow we know that Anne is kind, and all kind things are green. Therefore, we can conclude that Anne is green.\n\nHowever, there's one more piece of information that might change this conclusion: If something is cold and not blue, then it is rough. We know that Anne is cold, and Anne is not blue. This means Anne is rough.\n\nHowever, we already knew that Anne was rough because Anne is smart. But this piece of information doesn't change the fact that Anne is kind, and all kind things are green.\n\nIn conclusion, we know that Anne is blue, smart, cold, and rough. From this information, we can deduce that Anne is kind, and all kind things are green. Therefore, the statement \"Anne is not green\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Anne is blue. This statement does not provide any information about Anne's color being green or not, so we cannot conclude anything about Anne's green color yet.\n\n2. We also know that Anne is smart. From the given information, if something is smart then it is rough. Therefore, we can conclude that Anne is rough.\n\n3. Since Anne is rough, we can conclude that Anne is round (because all rough things are round).\n\n4. However, we are given that all round things are cold. So, we can conclude that Anne is cold.\n\n5. Now, we are given that all kind things are round, and all round things are cold. But we are not given any information about Anne being kind. We do not know if Anne is kind or not.\n\n6. However, we are given that all kind things are green. We are also given that Bob is kind, and since Bob is kind, Bob is green. But we are also given that if Bob is smart then Bob is not green. Since we do not know if Bob is smart or not, we cannot conclude that Bob is green or not.\n\n7. Since Anne is cold and not blue, we can conclude that Anne is rough.\n\n8. We are given that all cold things are round. Since Anne is cold, we can conclude that Anne is round.\n\n9. We are given that all round things are cold, and all cold things are round. This is a circular argument, so we cannot conclude anything from this information.\n\n10. Since Anne is round and round things are cold, we can conclude that Anne is cold.\n\n11. We are given that all kind things are green. However, we do not know if Anne is kind or not.\n\n12. We are given that all smart, cold things are kind. Since Anne is smart and cold, we can conclude that Anne is kind.\n\n13. Since Anne is kind, we can conclude that Anne is green (because all kind things are green).\n\nHowever, we also know that if Bob is smart then Bob is not green. We do not know if Bob is smart or not, but we do know that Anne is smart. Therefore, we cannot conclude that Anne is green or not.\n\nGiven that we cannot conclude whether Anne is green or not, we have to conclude that the statement \"Anne is not green\" is unknown.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is not green' is true, false, or unknown, we need to analyze the given information.\n\n1. Anne is blue. \n2. Anne is smart. \n3. Bob is green. \n4. Bob is round. \n5. Erin is rough. \n6. Harry is cold. \n7. Harry is kind. \n8. All kind things are round. (From 7 and 8, we can conclude that Harry is round.)\n9. If something is rough then it is round. (From 5, we can conclude that Erin is round.)\n10. All cold things are round. (From 6, we can conclude that Harry is round, which is already given in 8, but 6 also means that all cold things are round.)\n11. Round things are cold. (This is a repetition of 10, but it's good to confirm.)\n12. All kind things are green. (From 7, we can conclude that Harry is green.)\n13. If something is smart then it is rough. (From 2, we can conclude that Anne is rough.)\n14. If something is cold and not blue then it is rough. (We don't have any information about Anne being not blue, but we know Anne is blue. So, we don't need to use this statement for now.)\n15. If Bob is smart then Bob is not green. (We know Bob is green from 3. We don't have any information about Bob being smart.)\n16. All smart, cold things are kind. (We don't have any information about Anne being cold.)\n\nNow, let's try to find the relationship between Anne and green. \n\nFrom 13, we know that Anne is smart, so Anne is rough. \nFrom 9, we know that if something is rough, then it is round.\nFrom 8, we know that all round things are cold.\nFrom 10, we know that all cold things are round (which is the same as 8).\nFrom 11, we know that round things are cold (which is the same as 8 and 10).\nFrom 12, we know that all kind things are green. \nHowever, we don't know if Anne is kind.\n\nFrom 16, we know that all smart, cold things are kind. \nWe know that Anne is smart (2) and Anne is cold (8 and 10 and 11). \nSo, from 16, we can conclude that Anne is kind.\n\nFrom 12, we know that all kind things are green. \nSo, we can conclude that Anne is green.\n\nNow, we have a contradiction: \nAnne is blue (1), but Anne is green (Anne is kind from 16 and 12, and we know all kind things are green from 12). \n\nWe cannot conclude the statement 'Anne is not green' to be true or false because we have a contradiction in the information. The statement 'Anne is not green' is unknown because we cannot determine whether it's true or false due to the contradiction.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not green\" is true, false, or unknown, we need to analyze the given information.\n\n1. We are given the following information about Anne:\n   - Anne is blue. \n   - Anne is smart.\n\n2. We are given the following information about Bob:\n   - Bob is green.\n   - Bob is round.\n\n3. We are given the following information about Erin:\n   - Erin is rough.\n\n4. We are given the following information about Harry:\n   - Harry is cold.\n   - Harry is kind.\n\n5. We are given the following rules:\n   - All kind things are round.\n   - If something is rough then it is round.\n   - All cold things are round.\n   - Round things are cold.\n   - All kind things are green.\n   - If something is smart then it is rough.\n   - If something is cold and not blue then it is rough.\n   - If Bob is smart then Bob is not green.\n   - All smart, cold things are kind.\n\nNow, let's analyze the statement \"Anne is not green.\"\n\nFrom the given information, we know:\n- Anne is smart (rule 6).\n- Anne is not mentioned as rough, cold, or kind.\n\nSince Anne is smart (rule 6), we can infer that Anne is rough (rule 6).\n\nNow, we have two possible cases:\n- Case 1: Anne is cold.\n- Case 2: Anne is not cold.\n\nIf Anne is cold, then we can infer that Anne is round (rule 3).\nSince Anne is round, we can infer that Anne is green (rule 5).\n\nHowever, if Anne is not cold, then we can infer that Anne is not rough (rule 7). But we already know that Anne is smart and therefore rough (rule 6). This creates a contradiction, and we cannot conclude whether Anne is green or not.\n\nTherefore, since we cannot determine whether Anne is green or not, the statement \"Anne is not green\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Anne is blue.\n   This statement gives us information about Anne's color but doesn't directly relate to the color green.\n\n2. Anne is smart.\n   This statement tells us that Anne has a certain characteristic but doesn't directly relate to her color.\n\n3. If something is smart then it is rough.\n   This statement tells us that because Anne is smart, she must be rough.\n\n4. Erin is rough.\n   This statement gives us information about Erin's texture but doesn't directly relate to Anne's color or characteristics.\n\n5. If something is rough then it is round.\n   This statement tells us that because Anne is rough, she must be round.\n\n6. All cold things are round.\n   This statement tells us that because Anne is round, she must be cold.\n\n7. Harry is cold.\n   This statement gives us information about Harry's temperature but doesn't directly relate to Anne's color or characteristics.\n\n8. Harry is kind.\n   This statement tells us that Harry has a certain characteristic but doesn't directly relate to Anne's color.\n\n9. All kind things are round.\n   This statement is a repeat of statement 6, which already tells us that Anne is round.\n\n10. All kind things are green.\n    This statement tells us that because Anne is round (and therefore kind), she must be green.\n\n11. If Bob is smart then Bob is not green.\n    This statement is irrelevant to Anne's color.\n\n12. If something is cold and not blue then it is rough.\n    This statement is irrelevant to Anne's color.\n\n13. If Bob is smart then Bob is not green.\n    This statement is irrelevant to Anne's color.\n\n14. All smart, cold things are kind.\n    This statement is irrelevant to Anne's color.\n\nNow that we have analyzed all the statements, we can conclude that:\n\n- Anne is blue (statement 1)\n- Anne is smart (statement 2)\n- Anne is rough (because she is smart, statement 3)\n- Anne is round (because she is rough, statement 5)\n- Anne is cold (because she is round, statement 6)\n- Anne is kind (because she is round, statement 9)\n- Anne is green (because she is kind, statement 10)\n\nTherefore, the statement \"Anne is not green\" is false.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Anne is blue.\n   - Anne is smart.\n   - Bob is green.\n   - Bob is round.\n   - Erin is rough.\n   - Harry is cold.\n   - Harry is kind.\n   - All kind things are round.\n   - If something is rough then it is round.\n   - All cold things are round.\n   - Round things are cold.\n   - All kind things are green.\n   - If something is smart then it is rough.\n   - If something is cold and not blue then it is rough.\n   - If Bob is smart then Bob is not green.\n   - All smart, cold things are kind.\n\n2. First, let's find out what we can infer from the given information about Anne.\n   - We know Anne is blue (1).\n   - We also know that all cold things are round (9), and round things are cold (10). However, we cannot conclude that Anne is cold from the given information.\n   - We cannot directly infer Anne's color or any other property from the given information.\n\n3. Now, let's analyze the properties of other objects.\n   - We know Bob is green (3) and round (4).\n   - We know Erin is rough (5), and if something is rough, it is round (2).\n   - We know Harry is cold (6) and kind (7).\n   - From (7) and (8), we can conclude that Harry is round.\n   - From (7) and (11), we can conclude that Harry is green.\n   - Since Bob is smart (from (3) and (4)), Bob is not green (13).\n   - We know that if something is smart, it is rough (12), and all smart, cold things are kind (14).\n\n4. Now, let's analyze the statement \"Anne is not green.\"\n   - We cannot directly conclude Anne's color from the given information.\n   - We cannot conclude that Anne is not green because there is no information that directly connects Anne to the color green.\n\nSince we cannot conclude anything about Anne's color from the given information, the statement \"Anne is not green\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_anne, rough_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_erin, round_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_harry, round_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_harry, green_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_anne, rough_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, Not(blue_harry)), rough_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_anne, cold_anne), kind_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_bob, green_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_bob, cold_bob), kind_bob)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_harry, round_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_harry, green_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_anne, rough_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, Not(blue_harry)), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(bob) -> Not(green(bob))",
+          "z3_formula": "Implies(smart_bob, Not(green_bob))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_anne, cold_harry), kind_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(green(bob))",
+          "z3_formula": "Not(green_bob) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_anne, rough_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_harry, round_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_harry, green_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> Not(green(X))",
+          "z3_formula": "Implies(smart_bob, Not(green_bob))",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "Not(green(anne))",
+          "z3_formula": "Not(green_anne) == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_harry, round_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_harry, green_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_anne, rough_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_anne, Not(blue_anne)), rough_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_anne, cold_anne), kind_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> Not(green(X))",
+          "z3_formula": "Implies(smart_bob, Not(green_bob))",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_harry, round_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_harry, green_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_anne, rough_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, Not(blue_harry)), rough_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_anne, cold_anne), kind_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "Not(smart(bob)) -> Not(green(bob))",
+          "z3_formula": "Implies(Not(smart_bob), Not(green_bob))",
+          "source_step": 16
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_anne, rough_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_anne, round_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_anne, cold_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_anne, round_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_anne, green_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_anne, round_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_anne, cold_anne), kind_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_anne, cold_anne), kind_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_anne, Not(blue_anne)), rough_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_anne, rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_anne, round_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_anne, cold_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_anne, round_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_anne, cold_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_anne, green_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_anne, cold_anne), kind_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_harry, round_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_harry, green_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_anne, rough_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_anne, Not(blue_anne)), rough_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> Not(green(X))",
+          "z3_formula": "Implies(smart_bob, Not(green_bob))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_anne, cold_anne), kind_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_harry, round_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_bob, cold_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_harry, green_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_anne, rough_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, Not(blue_harry)), rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_anne, cold_anne), kind_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(bob) -> Not(green(bob))",
+          "z3_formula": "Implies(smart_bob, Not(green_bob))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_anne, rough_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_anne, round_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_anne, cold_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_anne, kind_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_anne, green_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> round(X)",
+          "z3_formula": "Implies(kind_harry, round_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_harry, green_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_anne, rough_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(blue(X)) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, Not(blue_harry)), rough_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_anne, cold_harry), kind_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(green(bob))",
+          "z3_formula": "Not(green_bob) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 14
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 195,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 43
+    },
+    "maxsat_stats": {
+      "satisfied": 39,
+      "excluded": 4,
+      "total_weight": 190,
+      "solve_time_ms": 1.9544772803783417
+    },
+    "timing": {
+      "trace_gen_s": 11.353,
+      "extraction_s": 35.898,
+      "dedup_s": 1.698,
+      "maxsat_s": 0.004,
+      "total_s": 48.953
+    }
+  }
+}

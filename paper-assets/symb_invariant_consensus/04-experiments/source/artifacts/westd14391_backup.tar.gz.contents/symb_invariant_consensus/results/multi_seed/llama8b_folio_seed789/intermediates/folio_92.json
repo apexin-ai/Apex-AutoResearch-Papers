@@ -1,0 +1,564 @@
+{
+  "problem": {
+    "id": "folio_92",
+    "problem": "Given the following premises:\nNatural language processing tasks can be categorized as either language generation task or language understanding task. If the output of a natural language processing task is a text sequence, then it is a language generation task. Machine translation is a natural language processing task. The output of machine translation is a text sequence.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nMachine translation is a language understanding task.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (NLP(x) \u2192 NLG(x) \u2295 NLU(x))",
+      "\u2200x (NLP(x) \u2227 OutputSequence(x) \u2192 NLG(x))",
+      "NLP(machineTranslation)",
+      "OutputSequence(machineTranslation)"
+    ],
+    "conclusion_fol": "NLU(machineTranslation)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 61.5
+    },
+    "answer_counts": {
+      "False": 10
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Natural language processing tasks can be categorized as either language generation task or language understanding task.\n\nPremise 2: If the output of a natural language processing task is a text sequence, then it is a language generation task.\n\nPremise 3: Machine translation is a natural language processing task.\n\nPremise 4: The output of machine translation is a text sequence.\n\nFrom Premise 1, we know that natural language processing tasks can be categorized into two categories: language generation and language understanding. \n\nFrom Premise 2, we know that if the output of a natural language processing task is a text sequence, then it is a language generation task. This gives us a condition for determining whether a task is a language generation task.\n\nFrom Premise 3, we know that machine translation is a natural language processing task.\n\nFrom Premise 4, we know that the output of machine translation is a text sequence.\n\nNow, let's analyze the conclusion: Machine translation is a language understanding task.\n\nTo determine whether this conclusion is true or false, we need to see if it contradicts the given premises or if it is supported by them.\n\nFrom Premise 2, we know that if the output of a natural language processing task is a text sequence, then it is a language generation task. Since machine translation is a natural language processing task (Premise 3) and the output of machine translation is a text sequence (Premise 4), it means that machine translation is a language generation task, not a language understanding task.\n\nTherefore, the conclusion \"Machine translation is a language understanding task\" is false because it contradicts the given premises.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Natural language processing tasks can be categorized as either language generation task or language understanding task.\n\nPremise 2: If the output of a natural language processing task is a text sequence, then it is a language generation task.\n\nPremise 3: Machine translation is a natural language processing task.\n\nPremise 4: The output of machine translation is a text sequence.\n\nFrom Premise 2, we can infer that if a natural language processing task has a text sequence as its output, it is a language generation task. \n\nFrom Premise 4, we know that the output of machine translation is a text sequence.\n\nCombining the information from Premise 3 and Premise 4, we can conclude that machine translation is a natural language processing task with a text sequence as its output. Therefore, according to Premise 2, machine translation is a language generation task.\n\nSince we have concluded that machine translation is a language generation task, and Premise 1 states that natural language processing tasks can be categorized as either language generation task or language understanding task, we can deduce that machine translation cannot be a language understanding task.\n\nTherefore, the conclusion \"Machine translation is a language understanding task\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Natural language processing tasks can be categorized as either language generation task or language understanding task.\n\nPremise 2: If the output of a natural language processing task is a text sequence, then it is a language generation task.\n\nPremise 3: Machine translation is a natural language processing task.\n\nPremise 4: The output of machine translation is a text sequence.\n\nFrom Premise 3, we know that machine translation is a natural language processing task.\n\nFrom Premise 4, we know that the output of machine translation is a text sequence.\n\nWe can use the information in Premise 2 to determine the type of machine translation. Since the output of machine translation is a text sequence, it falls under the category of language generation task (Premise 2).\n\nHowever, the conclusion states that machine translation is a language understanding task, which contradicts the information we derived from Premise 2.\n\nBased on the analysis, we can conclude that the conclusion is false. The machine translation is a language generation task, not a language understanding task.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: Natural language processing tasks can be categorized as either language generation task or language understanding task.\n\nThis premise sets the foundation for categorizing natural language processing tasks into two categories: language generation and language understanding.\n\nPremise 2: If the output of a natural language processing task is a text sequence, then it is a language generation task.\n\nThis premise provides a condition for determining the type of natural language processing task based on its output. If the output is a text sequence, then it is a language generation task.\n\nPremise 3: Machine translation is a natural language processing task.\n\nThis premise establishes that machine translation falls under the category of natural language processing tasks.\n\nPremise 4: The output of machine translation is a text sequence.\n\nThis premise provides the output condition for machine translation. Since machine translation produces a text sequence, we can use this information to determine its task type.\n\nNow, let's apply the information from the premises to the conclusion:\n\nConclusion: Machine translation is a language understanding task.\n\nUsing Premise 1, we know that natural language processing tasks can be categorized as either language generation or language understanding tasks.\n\nFrom Premise 2, if the output of a natural language processing task is a text sequence, then it is a language generation task.\n\nPremise 3 tells us that machine translation is a natural language processing task.\n\nPremise 4 states that the output of machine translation is a text sequence.\n\nCombining Premise 2 and Premise 4, since the output of machine translation is a text sequence, it must be a language generation task (according to Premise 2).\n\nHowever, the conclusion states that machine translation is a language understanding task. This contradicts the information we obtained from the premises.\n\nTherefore, based on the given premises, we can conclude that the statement \"Machine translation is a language understanding task\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\nPremise 1: Natural language processing tasks can be categorized as either language generation task or language understanding task.\n\nThis premise provides us with two categories: language generation task and language understanding task. It doesn't give us any information about machine translation, but it sets up the framework for understanding the tasks.\n\nPremise 2: If the output of a natural language processing task is a text sequence, then it is a language generation task.\n\nThis premise provides a condition for determining whether a task is a language generation task. If the output of a task is a text sequence, then it falls under the category of language generation task.\n\nPremise 3: Machine translation is a natural language processing task.\n\nThis premise tells us that machine translation is a type of natural language processing task. However, it doesn't tell us whether it's a language generation task or a language understanding task.\n\nPremise 4: The output of machine translation is a text sequence.\n\nThis premise tells us that the output of machine translation is a text sequence. Based on Premise 2, if the output of a task is a text sequence, then it is a language generation task.\n\nFrom the premises, we can conclude that machine translation is a natural language processing task (Premise 3) with an output of a text sequence (Premise 4). Since the output of a task is a text sequence, according to Premise 2, it must be a language generation task.\n\nConclusion: Machine translation is a language generation task, not a language understanding task.\n\nTherefore, the conclusion \"Machine translation is a language understanding task\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. Natural language processing tasks can be categorized as either language generation task or language understanding task.\n\nThis premise provides us with the main categories for natural language processing tasks. It does not give us any information about a specific task, but it sets the foundation for our analysis.\n\n2. If the output of a natural language processing task is a text sequence, then it is a language generation task.\n\nThis premise provides us with a criterion for determining whether a task is a language generation task. If the output of a task is a text sequence, then it is a language generation task.\n\n3. Machine translation is a natural language processing task.\n\nThis premise tells us that machine translation is a type of natural language processing task, but it does not give us any information about whether it is a language generation task or a language understanding task.\n\n4. The output of machine translation is a text sequence.\n\nThis premise is crucial for our analysis. Since the output of machine translation is a text sequence, according to premise 2, machine translation is a language generation task.\n\nNow, let's evaluate the conclusion:\n\nMachine translation is a language understanding task.\n\nBased on our analysis, we know that machine translation is a language generation task (premise 4 and premise 2). Therefore, the conclusion that machine translation is a language understanding task is false.\n\nFinal answer: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and apply logical reasoning.\n\nPremise 1: Natural language processing tasks can be categorized as either language generation task or language understanding task.\n\nPremise 2: If the output of a natural language processing task is a text sequence, then it is a language generation task.\n\nPremise 3: Machine translation is a natural language processing task.\n\nPremise 4: The output of machine translation is a text sequence.\n\nWe need to determine if machine translation is a language understanding task. To do this, we can use a process of elimination and contradiction.\n\nFrom Premise 1, we know that natural language processing tasks can be categorized as either language generation or language understanding. We can create a Venn diagram or a list to organize the possibilities:\n\n- Language Generation: Output is a text sequence\n- Language Understanding: Output is not a text sequence (or we don't know)\n\nNow, let's analyze Premise 3 and Premise 4: Machine translation is a natural language processing task, and its output is a text sequence. This information can be used to fill in the possibilities:\n\n- Language Generation: Output is a text sequence (Machine translation fits this category)\n- Language Understanding: Output is not a text sequence (no information)\n\nWe have not seen any evidence that machine translation is a language understanding task. In fact, the information we have suggests the opposite. Since the output of machine translation is a text sequence, it must be a language generation task (Premise 2).\n\nConclusion: Machine translation is a language generation task, not a language understanding task. \n\nTherefore, the conclusion \"Machine translation is a language understanding task\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step.\n\n1. **Premise 1:** Natural language processing tasks can be categorized as either language generation task or language understanding task.\n\nThis premise gives us two categories for natural language processing tasks: language generation task and language understanding task. However, it doesn't provide any information about how to distinguish between the two.\n\n2. **Premise 2:** If the output of a natural language processing task is a text sequence, then it is a language generation task.\n\nThis premise provides a condition to determine whether a natural language processing task is a language generation task. According to this premise, if the output is a text sequence, then it is a language generation task.\n\n3. **Premise 3:** Machine translation is a natural language processing task.\n\nThis premise tells us that machine translation is a natural language processing task, but it doesn't tell us what type of task it is.\n\n4. **Premise 4:** The output of machine translation is a text sequence.\n\nThis premise tells us the output of machine translation, which is a text sequence. Based on Premise 2, if the output is a text sequence, then it is a language generation task.\n\nNow, let's analyze the conclusion:\n\n**Conclusion:** Machine translation is a language understanding task.\n\nWe know from Premise 2 that if the output of a natural language processing task is a text sequence, then it is a language generation task. And from Premise 4, the output of machine translation is a text sequence. Therefore, according to Premise 2, machine translation is a language generation task, not a language understanding task.\n\nBased on the given premises, we can conclude that the conclusion is **False**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Natural language processing tasks can be categorized as either language generation task or language understanding task.\n\nPremise 2: If the output of a natural language processing task is a text sequence, then it is a language generation task.\n\nPremise 3: Machine translation is a natural language processing task.\n\nPremise 4: The output of machine translation is a text sequence.\n\nWe need to use these premises to evaluate the conclusion: \"Machine translation is a language understanding task.\"\n\nFrom Premise 2, we know that if the output of a natural language processing task is a text sequence, then it is a language generation task. However, we cannot directly conclude that it is a language understanding task.\n\nPremise 3 and Premise 4 indicate that machine translation is a natural language processing task with a text sequence as its output. Using Premise 2, we can conclude that machine translation is a language generation task, not a language understanding task.\n\nThere is no direct evidence to support the conclusion that machine translation is a language understanding task. Therefore, the conclusion is uncertain because it contradicts the information provided by Premise 2.\n\nHowever, since the premises indicate that the output of machine translation is a text sequence, we can also infer that machine translation involves understanding the input text to generate the output text sequence. This inference is based on the general understanding of machine translation as a task that involves understanding the input language to produce a translated text sequence.\n\nHowever, the premises do not explicitly state that machine translation involves language understanding. The conclusion is uncertain because it relies on an inference that is not directly supported by the premises.\n\nTherefore, considering the direct information provided by the premises, the conclusion \"Machine translation is a language understanding task\" is uncertain.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will use the principles of logical reasoning. We will analyze the given premises and determine whether they support the conclusion.\n\nPremise 1: Natural language processing tasks can be categorized as either language generation task or language understanding task.\n\nThis premise tells us that natural language processing tasks can be categorized in two ways: language generation or language understanding.\n\nPremise 2: If the output of a natural language processing task is a text sequence, then it is a language generation task.\n\nThis premise provides a condition for determining whether a task is a language generation task. If the output is a text sequence, then it is a language generation task.\n\nPremise 3: Machine translation is a natural language processing task.\n\nThis premise tells us that machine translation is a type of natural language processing task.\n\nPremise 4: The output of machine translation is a text sequence.\n\nThis premise tells us that the output of machine translation is a text sequence.\n\nNow, let's analyze the conclusion:\n\nConclusion: Machine translation is a language understanding task.\n\nTo determine whether this conclusion is true, false, or uncertain, we need to see if the premises support it.\n\nFrom Premise 2, we know that if the output of a natural language processing task is a text sequence, then it is a language generation task. However, Premise 4 tells us that the output of machine translation is a text sequence. Therefore, according to Premise 2, machine translation is a language generation task.\n\nSince machine translation is a language generation task (Premise 3 and Premise 4), it cannot be a language understanding task. The two categories are mutually exclusive.\n\nTherefore, the conclusion \"Machine translation is a language understanding task\" is false.\n\nThe final answer is: $\\boxed{\\text{False}}$",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Natural language processing tasks can be categorized as either language generation task or language understanding task.\n\nPremise 2: If the output of a natural language processing task is a text sequence, then it is a language generation task.\n\nPremise 3: Machine translation is a natural language processing task.\n\nPremise 4: The output of machine translation is a text sequence.\n\nNow, let's analyze the conclusion:\nMachine translation is a language understanding task.\n\nTo determine the validity of the conclusion, we need to see if the premises support or contradict the conclusion.\n\nFrom Premise 3, we know machine translation is a natural language processing task.\n\nFrom Premise 1, we know natural language processing tasks can be categorized as either language generation or language understanding tasks.\n\nHowever, Premise 2 gives us a condition to determine which category a task falls into. If the output of a natural language processing task is a text sequence, then it is a language generation task. \n\nSince machine translation is a natural language processing task (Premise 3) and its output is a text sequence (Premise 4), we can conclude that machine translation is a language generation task, not a language understanding task.\n\nTherefore, the conclusion \"Machine translation is a language understanding task\" is FALSE.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the premises and apply logical reasoning.\n\nPremise 1: Natural language processing tasks can be categorized as either language generation task or language understanding task.\n\nPremise 2: If the output of a natural language processing task is a text sequence, then it is a language generation task.\n\nPremise 3: Machine translation is a natural language processing task.\n\nPremise 4: The output of machine translation is a text sequence.\n\nFrom Premise 2, we can infer that if the output of a natural language processing task is a text sequence, then it is a language generation task. \n\nFrom Premise 3 and Premise 4, we know that machine translation is a natural language processing task and its output is a text sequence.\n\nNow, using the Modus Ponens rule (If A, then B; A, therefore B), we can conclude that machine translation is a language generation task.\n\nHowever, the conclusion we are asked to evaluate is that machine translation is a language understanding task. \n\nSince machine translation is a language generation task (as concluded above), we can use the Modus Tollens rule (If A, then B; not B, therefore not A) to evaluate the conclusion. If machine translation is a language generation task, then it cannot be a language understanding task.\n\nTherefore, the conclusion \"Machine translation is a language understanding task\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(machine_translation)",
+          "z3_formula": "language_processing_machine_translation == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output(machine_translation, text_sequence)",
+          "z3_formula": "output_machine_translation_text_sequence == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "language_processing_task(X) -> (language_generation_task(X) | language_understanding_task(X))",
+          "z3_formula": "Implies(language_processing_machine_translation, Or(language_generation_machine_translation, language_understanding_machine_translation))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "output(X, text_sequence) -> language_generation_task(X)",
+          "z3_formula": "Implies(output_machine_translation_text_sequence, language_generation_machine_translation)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not language_understanding_machine_translation",
+          "z3_formula": "Not(language_understanding_machine_translation) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(machine_translation)",
+          "z3_formula": "machine_translation_language_processing_task == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output(machine_translation, text_sequence)",
+          "z3_formula": "machine_translation_output_text_sequence == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "output(X, text_sequence) -> language_generation_task(X)",
+          "z3_formula": "Implies(machine_translation_output_text_sequence, machine_translation_language_generation_task)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "language_generation_task(machine_translation)",
+          "z3_formula": "machine_translation_language_generation_task == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not language_understanding_task(machine_translation)",
+          "z3_formula": "Not(machine_translation_language_understanding_task) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(machine_translation)",
+          "z3_formula": "language_processing_machine_translation == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output_machine_translation == text_sequence",
+          "z3_formula": "output_machine_translation == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "output_task == text_sequence -> language_generation_task",
+          "z3_formula": "Implies(output_machine_translation, language_generation_machine_translation)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "language_generation_machine_translation",
+          "z3_formula": "language_generation_machine_translation == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "conclusion == language_understanding_task",
+          "z3_formula": "conclusion == False",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(machine_translation)",
+          "z3_formula": "language_processing_machine_translation == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output(machine_translation, text_sequence)",
+          "z3_formula": "output_machine_translation_text_sequence == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "output(X, text_sequence) -> language_generation(X)",
+          "z3_formula": "Implies(output_machine_translation_text_sequence, language_generation_machine_translation)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "language_generation(machine_translation)",
+          "z3_formula": "language_generation_machine_translation == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not language_understanding(machine_translation)",
+          "z3_formula": "Not(language_understanding_machine_translation) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "language_generation_task or language_understanding_task",
+          "z3_formula": "language_generation_task or language_understanding_task == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "text_sequence -> language_generation_task",
+          "z3_formula": "Implies(text_sequence, language_generation_task)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "machine_translation",
+          "z3_formula": "machine_translation == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "text_sequence",
+          "z3_formula": "text_sequence == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(natural_language_processing)",
+          "z3_formula": "language_processing_natural_language_processing == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "language_processing_task(X) -> (language_generation_task(X) | language_understanding_task(X))",
+          "z3_formula": "Implies(language_processing_natural_language_processing, Or(language_generation_natural_language_processing, language_understanding_natural_language_processing))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "machine_translation(natural_language_processing)",
+          "z3_formula": "machine_translation_natural_language_processing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output(machine_translation) == text_sequence",
+          "z3_formula": "output_machine_translation == text_sequence",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "output(X) == text_sequence -> language_generation_task(X)",
+          "z3_formula": "Implies(output_machine_translation, language_generation_machine_translation)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "language_generation_task(machine_translation)",
+          "z3_formula": "language_generation_machine_translation == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation is a language understanding task",
+          "z3_formula": "machine_translation_natural_language_processing == False",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(machine_translation)",
+          "z3_formula": "language_processing_machine_translation == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output(machine_translation, text_sequence)",
+          "z3_formula": "output_machine_translation_text_sequence == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "output(NLP_task, text_sequence) -> language_generation(NLP_task)",
+          "z3_formula": "Implies(output_machine_translation_text_sequence, language_generation_machine_translation)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "language_processing_task(machine_translation) | language_generation_task(machine_translation) | language_understanding_task(machine_translation)",
+          "z3_formula": "Or(language_processing_machine_translation, language_generation_machine_translation, language_understanding_machine_translation)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "not language_understanding_task(machine_translation)",
+          "z3_formula": "Not(language_understanding_machine_translation)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(natural_language_processing)",
+          "z3_formula": "language_processing_natural_language_processing == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "language_processing_task(language_generation_task) | language_processing_task(language_understanding_task)",
+          "z3_formula": "Or(language_processing_language_generation_task, language_processing_language_understanding_task) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "output(X) == text_sequence(X) -> language_processing_task(X) == language_generation_task",
+          "z3_formula": "Implies(output_natural_language_processing == text_sequence_natural_language_processing, language_processing_natural_language_processing == language_generation_task)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "machine_translation(natural_language_processing)",
+          "z3_formula": "machine_translation_natural_language_processing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output(machine_translation) == text_sequence",
+          "z3_formula": "output_machine_translation == text_sequence_machine_translation",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "language_processing_task(machine_translation) == language_generation_task",
+          "z3_formula": "language_processing_machine_translation == language_generation_task",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation(natural_language_processing) == language_generation_task",
+          "z3_formula": "machine_translation_natural_language_processing == language_generation_task",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation(natural_language_processing) == language_understanding_task",
+          "z3_formula": "machine_translation_natural_language_processing == language_understanding_task",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "language_generation_task_or_understanding_task",
+          "z3_formula": "language_generation_task_or_understanding_task == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "text_sequence_output -> language_generation_task",
+          "z3_formula": "Implies(text_sequence_output, language_generation_task)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "machine_translation_is_nlp_task",
+          "z3_formula": "machine_translation_is_nlp_task == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "machine_translation_output_is_text_sequence",
+          "z3_formula": "machine_translation_output_is_text_sequence == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation_is_language_generation_task",
+          "z3_formula": "machine_translation_is_language_generation_task == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation_is_language_understanding_task",
+          "z3_formula": "machine_translation_is_language_understanding_task == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "language_processing_task_type(nlp)",
+          "z3_formula": "language_processing_task_type_nlp == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "language_processing_task_type(X) == language_generation(X) | language_understanding(X)",
+          "z3_formula": "Or(language_processing_task_type_nlp, language_generation_nlp, language_understanding_nlp)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "language_generation(X) -> text_sequence(X)",
+          "z3_formula": "Implies(language_generation_nlp, text_sequence_nlp)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "machine_translation(nlp)",
+          "z3_formula": "machine_translation_nlp == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "text_sequence(machine_translation)",
+          "z3_formula": "text_sequence_machine_translation == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation(nlp) & text_sequence(machine_translation) -> language_generation(machine_translation)",
+          "z3_formula": "Implies(And(machine_translation_nlp, text_sequence_machine_translation), language_generation_machine_translation)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation(nlp) -> language_generation(machine_translation)",
+          "z3_formula": "Implies(machine_translation_nlp, language_generation_machine_translation)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation(nlp) & language_generation(machine_translation) -> not(language_understanding(machine_translation))",
+          "z3_formula": "Implies(And(machine_translation_nlp, language_generation_machine_translation), Not(language_understanding_machine_translation))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation(nlp) -> not(language_understanding(machine_translation))",
+          "z3_formula": "Implies(machine_translation_nlp, Not(language_understanding_machine_translation))",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(machine_translation)",
+          "z3_formula": "language_processing_machine_translation == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output_machine_translation == text_sequence",
+          "z3_formula": "output_machine_translation == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "language_processing_task(natural_language_processing)",
+          "z3_formula": "language_processing_natural_language_processing == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "output(X) == text_sequence -> language_generation(X)",
+          "z3_formula": "Implies(output_machine_translation, language_generation_machine_translation)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "language_generation(machine_translation)",
+          "z3_formula": "language_generation_machine_translation == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "language_generation(X) -> not language_understanding(X)",
+          "z3_formula": "Implies(language_generation_machine_translation, Not(language_understanding_machine_translation))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not language_understanding(machine_translation)",
+          "z3_formula": "Not(language_understanding_machine_translation) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "language_generation_task_or_understanding_task(natural_language_processing_task)",
+          "z3_formula": "language_generation_task_or_understanding_task_natural_language_processing_task == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "text_sequence_output(natural_language_processing_task) -> language_generation_task(natural_language_processing_task)",
+          "z3_formula": "Implies(text_sequence_output_natural_language_processing_task, language_generation_task_natural_language_processing_task)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "machine_translation(natural_language_processing_task)",
+          "z3_formula": "machine_translation_natural_language_processing_task == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "text_sequence_output(machine_translation)",
+          "z3_formula": "text_sequence_output_machine_translation == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "language_generation_task(machine_translation)",
+          "z3_formula": "language_generation_task_machine_translation == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "language_generation_task(X) -> not(language_understanding_task(X))",
+          "z3_formula": "Implies(language_generation_task_machine_translation, not(language_understanding_task_machine_translation))",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 72,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 50
+    },
+    "maxsat_stats": {
+      "satisfied": 49,
+      "excluded": 1,
+      "total_weight": 69,
+      "solve_time_ms": 1.4485595747828484
+    },
+    "timing": {
+      "trace_gen_s": 4.9,
+      "extraction_s": 13.252,
+      "dedup_s": 0.875,
+      "maxsat_s": 0.004,
+      "total_s": 19.032
+    }
+  }
+}

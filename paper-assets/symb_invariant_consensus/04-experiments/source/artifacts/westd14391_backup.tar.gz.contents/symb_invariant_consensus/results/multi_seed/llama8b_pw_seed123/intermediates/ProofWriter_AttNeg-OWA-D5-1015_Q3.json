@@ -1,0 +1,1356 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1015_Q3",
+    "problem": "Anne is furry. Anne is nice. Dave is furry. Dave is not nice. Erin is smart. Harry is furry. Harry is nice. All round people are quiet. All round people are green. All quiet, furry people are green. Furry people are green. Big, quiet people are not smart. Smart people are nice. All green people are big. If Anne is big and Anne is green then Anne is round. If someone is quiet and smart then they are round.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is green.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\nRound($x, bool) ::: Is x round?\nQuiet($x, bool) ::: Is x quiet?\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nNice(Anne, True) ::: Anne is nice.\nFurry(Dave, True) ::: Dave is furry.\nNice(Dave, False) ::: Dave is not nice.\nSmart(Erin, True) ::: Erin is smart.\nFurry(Harry, True) ::: Harry is furry.\nNice(Harry, True) ::: Harry is nice.\n\nRules:\nRound($x, True) >>> Quiet($x, True) ::: All round people are quiet.\nRound($x, True) >>> Green($x, True) ::: All round people are green.\nQuiet($x, True) && Furry($x, True) >>> Green($x, True) ::: All quiet, furry people are green.\nFurry($x, True) >>> Green($x, True) ::: Furry people are green.\nBig($x, True) && Quiet($x, True) >>> Smart($x, False) ::: Big, quiet people are not smart.\nSmart($x, True) >>> Nice($x, True) ::: Smart people are nice.\nGreen($x, True) >>> Big($x, True) ::: All green people are big.\nBig(Anne, True) && Green(Anne, True) >>> Round(Anne, True) ::: If Anne is big and Anne is green then Anne is round.\nQuiet($x, True) && Smart($x, True) >>> Round($x, True) ::: If someone is quiet and smart then they are round.\n\nQuery:\nGreen(Dave, True) ::: Dave is green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 106.0,
+      "True": 183.0,
+      "Unknown": 53.0
+    },
+    "answer_counts": {
+      "True": 8,
+      "Unknown": 1,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to apply the given statements to determine whether \"Dave is green\" is true, false, or unknown. \n\n1. We are given that Dave is furry.\n2. We also know that all furry people are green (statement 8) and furry people are green (statement 7).\n   From these two statements, we can infer that Dave is green because he is furry.\n\nHowever, to confirm, let's check other possibilities:\n- Dave is not nice (statement 3), but statement 6 says smart people are nice. So Dave is not smart.\n- Statement 5 says big, quiet people are not smart. Since we don't have any information about Dave being quiet, we cannot confirm this statement.\n- Statement 1 says all round people are quiet. We still don't have enough information to confirm this.\n\nFrom the given information, we can confirm that Dave is furry and furry people are green. This makes \"Dave is green\" true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is furry. (Given)\n2. Furry people are green. (Given)\n   However, this statement is overridden by a more specific statement: \n   All round people are green. and All quiet, furry people are green. which means that not all furry people are green.\n3. However, we know that \"All round people are green.\" which is more specific than \"Furry people are green.\"\n4. Dave is furry. (Given)\n5. We don't know whether Dave is round or not. But we know that Big, quiet people are not smart and Smart people are nice. \n6. Dave is not nice. (Given)\n7. We don't know whether Dave is smart or not, but we know that Smart people are nice. \n8. We don't know whether Dave is quiet or not, but we know that All quiet, furry people are green. and All round people are green.\n9. We don't know whether Dave is round or not. But if Dave is big and Dave is green then Dave is round. \n   However, we know that Big, quiet people are not smart and Smart people are nice. \n10. Since Dave is not nice, Dave is not smart. \n11. If Dave is smart, then Dave is nice. (Contrapositive of Smart people are nice)\n12. Since we already know that Dave is not nice, then Dave is not smart.\n13. Since Dave is not smart, we can't determine whether Dave is quiet or not. However, if Dave is quiet and Dave is furry, then Dave is green.\n14. However, All round people are green. and All quiet, furry people are green. which means that not all furry people are green.\n15. We know that if Dave is big and Dave is green then Dave is round. \n   However, Big, quiet people are not smart and Smart people are nice.\n16. Since we already know that Dave is not nice, Dave is not smart.\n17. Since Dave is not smart, we can't determine whether Dave is quiet or not. However, if Dave is quiet and Dave is furry, then Dave is green.\n18. Since we don't know whether Dave is round or not, and All round people are green, we can't determine whether Dave is green or not.\n\nTherefore, the statement \"Dave is green\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules of logic. \n\n1. Anne is furry. \n2. Anne is nice. \n3. Dave is furry. \n4. Dave is not nice. \n5. Erin is smart. \n6. Harry is furry. \n7. Harry is nice. \n8. All round people are quiet. \n9. All round people are green. \n10. All quiet, furry people are green. \n11. Furry people are green. \n12. Big, quiet people are not smart. \n13. Smart people are nice. \n14. All green people are big. \n15. If Anne is big and Anne is green then Anne is round. \n16. If someone is quiet and smart then they are round.\n\nFrom statement 5, we know Erin is smart. Using statement 13, we can conclude that Erin is nice.\n\nNow, let's look at statement 11: Furry people are green. Since Dave is furry (statement 3), we can conclude that Dave is green.\n\nTherefore, the statement \"Dave is green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is furry. \n   - Anne is nice.\n   - Dave is furry.\n   - Dave is not nice.\n   - Erin is smart.\n   - Harry is furry.\n   - Harry is nice.\n   - All round people are quiet.\n   - All round people are green.\n   - All quiet, furry people are green.\n   - Furry people are green.\n   - Big, quiet people are not smart.\n   - Smart people are nice.\n   - All green people are big.\n   - If Anne is big and Anne is green then Anne is round.\n   - If someone is quiet and smart then they are round.\n\n2. We want to determine whether \"Dave is green\" is true, false, or unknown.\n\nFrom the information given, we know that \"Furry people are green.\" This implies that all furry people are green. Since \"Dave is furry,\" it follows that \"Dave is green.\"\n\nThe given information does not contradict this conclusion, and there is no additional information that would make this statement \"unknown.\" Therefore, based on the given information, the statement \"Dave is green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\n1. We are given the following facts:\n   - Anne is furry.\n   - Anne is nice.\n   - Dave is furry.\n   - Dave is not nice.\n   - Erin is smart.\n   - Harry is furry.\n   - Harry is nice.\n   - All round people are quiet.\n   - All round people are green.\n   - All quiet, furry people are green.\n   - Furry people are green.\n   - Big, quiet people are not smart.\n   - Smart people are nice.\n   - All green people are big.\n   - If Anne is big and Anne is green then Anne is round.\n   - If someone is quiet and smart then they are round.\n\n2. We can start by analyzing the relationship between being furry and being green:\n   - Furry people are green. (This means that all furry people are green, including Dave since he is furry.)\n\n3. Now, we need to determine if Dave is green:\n   - Since we know Dave is furry, we can conclude that Dave is green based on the fact that all furry people are green.\n\nHowever, we still need to consider other possible conditions that might affect our conclusion. Let's look at the given conditions related to being green:\n   - All round people are green.\n   - All green people are big.\n\nWe can use these conditions to deduce more information about Dave. But first, we need to establish whether Dave is round or not.\n\nFrom the fact \"If Anne is big and Anne is green then Anne is round\" and the fact that \"All green people are big,\" we can infer that Anne is round.\n\nHowever, we have no information about Dave's roundness. So, we cannot directly apply this condition to conclude that Dave is round.\n\nBut we do have another condition related to roundness: \"If someone is quiet and smart then they are round.\"\n\nWe do not know if Dave is smart, but we do know that Dave is not nice. From the fact \"Smart people are nice,\" we can deduce that Dave is not smart.\n\nHowever, there is another condition we can use: \"Big, quiet people are not smart.\"\n\nSince we know that \"All green people are big\" and we previously concluded that Dave is green, we can conclude that Dave is big.\n\nNow we have two conditions that Dave satisfies: \"Dave is big\" and \"Dave is quiet.\" We can use these conditions to deduce more information.\n\nFrom the condition \"Big, quiet people are not smart,\" we can conclude that Dave is not smart.\n\nBut we have another condition that says \"If someone is quiet and smart then they are round.\" We can use this condition to deduce more information about Dave.\n\nSince Dave is not smart, we can conclude that this condition does not apply to Dave.\n\nNow, let's look at the condition that says \"If Anne is big and Anne is green then Anne is round.\"\n\nWe know that Anne is green, but we do not know if Anne is big. However, we do have another condition that says \"All green people are big.\"\n\nWe can use this condition to deduce more information about Anne. Since Anne is green, we can conclude that Anne is big.\n\nNow we have two conditions that Anne satisfies: \"Anne is big\" and \"Anne is green.\" We can use these conditions to deduce more information.\n\nFrom the condition \"If Anne is big and Anne is green then Anne is round,\" we can conclude that Anne is round.\n\nNow, let's look at the condition that says \"All round people are green.\"\n\nWe can use this condition to deduce more information about Anne. Since Anne is round, we can conclude that Anne is green.\n\nHowever, we previously concluded that Anne is green. This is consistent with the information we have.\n\nNow, let's look at the condition that says \"All round people are quiet.\"\n\nWe can use this condition to deduce more information about Anne. Since Anne is round, we can conclude that Anne is quiet.\n\nHowever, we do not know if Dave is round. We can use the condition that says \"If someone is quiet and smart then they are round\" to deduce more information about Dave.\n\nSince we know that Dave is not smart, we can conclude that this condition does not apply to Dave.\n\nNow, let's look at the condition that says \"All green people are big.\"\n\nWe can use this condition to deduce more information about Dave. Since Dave is green, we can conclude that Dave is big.\n\nNow we have two conditions that Dave satisfies: \"Dave is big\" and \"Dave is quiet.\"\n\nHowever, we do not know if Dave is round. We can use the condition that says \"Big, quiet people are not smart\" to deduce more information about Dave.\n\nSince we know that Dave is big and Dave is quiet, we can conclude that Dave is not smart.\n\nHowever, we previously concluded that Dave is not smart. This is consistent with the information we have.\n\nNow, let's look at the condition that says \"All round people are green.\"\n\nWe can use this condition to deduce more information about Dave. Since we do not know if Dave is round, we cannot conclude that Dave is green based on this condition alone.\n\nHowever, we can use the condition that says \"All green people are big\" to deduce more information about Dave. Since Dave is green, we can conclude that Dave is big.\n\nNow we have two conditions that Dave satisfies: \"Dave is big\" and \"Dave is quiet.\"\n\nHowever, we do not know if Dave is round. We can use the condition that says \"All quiet, furry people are green\" to deduce more information about Dave.\n\nSince we know that Dave is furry and Dave is quiet, we can conclude that Dave is green.\n\nNow, we have concluded that Dave is green.\n\nSo, the statement \"Dave is green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Dave is furry. (Given)\n2. Furry people are green. (Given)\n   From (2), we can conclude that Dave is green. \n\nHowever, there's more information that could affect this conclusion. Let's analyze further.\n\n3. Dave is not nice. (Given)\n4. All round people are quiet. (Given)\n5. All round people are green. (Given)\n6. All quiet, furry people are green. (Given)\n7. Furry people are green. (Given)\n8. Big, quiet people are not smart. (Given)\n9. Smart people are nice. (Given)\n10. All green people are big. (Given)\n11. If Anne is big and Anne is green then Anne is round. (Given)\n12. If someone is quiet and smart then they are round. (Given)\n\nFrom (11) and (10), if someone is green, they must be big, which implies that they are not smart (from (8)) and therefore not nice (from (9)). However, since Dave is not nice (from (3)), we cannot conclude anything new about Dave's greenness from (11) and (10).\n\nFrom (12), if someone is quiet and smart, they are round. However, we don't know if Dave is smart or quiet. \n\nFrom (6) and (7), all quiet, furry people are green. Since Dave is furry (from (1)) and we don't know if Dave is quiet, we cannot conclude that Dave is green from (6) and (7) alone.\n\nFrom (2), we can conclude that Dave is green. However, we need to consider the information in (3), (4), (5), (6), (7), (8), (9), (10), (11), and (12) to ensure that this conclusion is consistent.\n\nConsidering all the given information, we have a direct conclusion from (2) that Dave is green, and no information contradicts this conclusion.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether Dave is green, we need to analyze the given statements and use logical deductions.\n\n1. All round people are quiet. \n2. All round people are green.\n3. All quiet, furry people are green.\n4. Furry people are green.\n5. Big, quiet people are not smart.\n6. Smart people are nice.\n7. All green people are big.\n8. If Anne is big and Anne is green then Anne is round.\n9. If someone is quiet and smart then they are round.\n\nFrom statement 8, we know that if someone is both big and green, then they are round. Since all round people are quiet (statement 1) and all round people are green (statement 2), we can conclude that all big, green people are round.\n\nStatement 7 says that all green people are big, and statement 2 says that all round people are green. Therefore, all round people are also green.\n\nNow, let's analyze Dave. We know that Dave is furry (statement 3), and all furry people are green (statement 4).\n\nSince Dave is furry, and all furry people are green, we can conclude that Dave is green.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nGiven information:\n\n1. Anne is furry.\n2. Anne is nice.\n3. Dave is furry.\n4. Dave is not nice.\n5. Erin is smart.\n6. Harry is furry.\n7. Harry is nice.\n8. All round people are quiet.\n9. All round people are green.\n10. All quiet, furry people are green.\n11. Furry people are green.\n12. Big, quiet people are not smart.\n13. Smart people are nice.\n14. All green people are big.\n15. If Anne is big and Anne is green then Anne is round.\n16. If someone is quiet and smart then they are round.\n\nStatement to determine: Dave is green.\n\nStep 1: Analyze the given information about Dave.\nFrom statement 3, we know that Dave is furry.\n\nStep 2: Use the given information to determine the color of furry people.\nFrom statement 10, we know that all quiet, furry people are green. However, we do not know if Dave is quiet or not. We only know that he is furry.\n\nStep 3: Use the given information to determine the color of all furry people.\nFrom statement 11, we know that all furry people are green. However, we already have a more specific condition that includes quiet, furry people. We should keep in mind that this condition may be more specific than the general condition for all furry people.\n\nStep 4: Analyze the given information about Dave and his relationship with the other statements.\nSince we do not know if Dave is quiet or not, we cannot directly apply the conditions for quiet, furry people. However, we can still analyze his relationship with other statements.\n\nStep 5: Determine the relationship between Dave's characteristics and the statement \"Dave is green.\"\nWe know that Dave is furry (statement 3), which means he falls under the category of furry people. From statement 11, we know that all furry people are green. However, we also know that Dave is not nice (statement 4), and from statement 13, we know that smart people are nice. Since Dave is not nice, we cannot conclude that he is smart.\n\nHowever, we still cannot determine if Dave is green or not. To do that, we need to find a more specific condition that relates to Dave's characteristics. We already know that Dave is furry, which means he falls under the category of furry people.\n\nStep 6: Analyze the given information about green people.\nFrom statement 14, we know that all green people are big.\n\nStep 7: Analyze the given information about round people.\nFrom statement 15, we know that if Anne is big and Anne is green then Anne is round. However, this statement does not directly apply to Dave.\n\nStep 8: Determine the relationship between Dave's characteristics and the statement \"Dave is green.\"\nSince we know that Dave is furry (statement 3) and all furry people are green (statement 11), we can conclude that Dave is green.\n\nHowever, we need to be cautious because we have other statements that might contradict this conclusion. We know that Dave is not nice (statement 4), and from statement 13, we know that smart people are nice. Since Dave is not nice, we cannot conclude that he is smart.\n\nBut we still need to consider another statement: all green people are big (statement 14). Since we concluded that Dave is green, we can now apply this condition.\n\nStep 9: Analyze the given information about big, quiet people.\nFrom statement 12, we know that big, quiet people are not smart.\n\nStep 10: Determine the relationship between Dave's characteristics and the statement \"Dave is green.\"\nSince we concluded that Dave is green (step 8) and all green people are big (statement 14), we can now analyze the relationship between Dave's characteristics and the condition for big, quiet people.\n\nHowever, we still do not know if Dave is quiet or not. We only know that he is furry and not nice. We cannot apply the condition for big, quiet people because we do not know if Dave is quiet.\n\nBut we still need to consider another statement: if someone is quiet and smart then they are round (statement 16). However, we already concluded that Dave is not smart (step 8).\n\nStep 11: Determine the relationship between Dave's characteristics and the statement \"Dave is green.\"\nSince we concluded that Dave is green (step 8) and all green people are big (statement 14), we can now determine that Dave is big. However, we still do not know if Dave is quiet or not.\n\nTo conclude whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information one more time.\n\nStep 12: Analyze the given information about Dave and the statement \"Dave is green.\"\nSince we concluded that Dave is green (step 8) and all green people are big (statement 14), we can now analyze the relationship between Dave's characteristics and the statement \"Dave is round.\"\n\nHowever, we still do not know if Dave is quiet or not. We only know that he is furry and not nice. We cannot apply the condition for big, quiet people because we do not know if Dave is quiet.\n\nBut we still need to consider another statement: if Anne is big and Anne is green then Anne is round (statement 15). However, this statement does not directly apply to Dave.\n\nStep 13: Analyze the given information about round people.\nFrom statement 8, we know that all round people are quiet. We also know that if someone is quiet and smart then they are round (statement 16).\n\nStep 14: Determine the relationship between Dave's characteristics and the statement \"Dave is green.\"\nSince we concluded that Dave is green (step 8) and all green people are big (statement 14), we can now analyze the relationship between Dave's characteristics and the condition for round people.\n\nHowever, we still do not know if Dave is quiet or not. We only know that he is furry and not nice.\n\nStep 15: Determine the relationship between Dave's characteristics and the statement \"Dave is green.\"\nSince we concluded that Dave is green (step 8) and all green people are big (statement 14), we can now determine that Dave is big. However, we still do not know if Dave is quiet or not.\n\nStep 16: Analyze the given information about big, quiet people.\nFrom statement 12, we know that big, quiet people are not smart.\n\nStep 17: Determine the relationship between Dave's characteristics and the statement \"Dave is green.\"\nSince we concluded that Dave is green (step 8) and all green people are big (statement 14), we can now analyze the relationship between Dave's characteristics and the condition for big, quiet people.\n\nHowever, we still do not know if Dave is quiet or not. We only know that he is furry and not nice.\n\nStep 18: Analyze the given information about smart people.\nFrom statement 13, we know that smart people are nice.\n\nStep 19: Determine the relationship between Dave's characteristics and the statement \"Dave is green.\"\nSince we concluded that Dave is green (step 8) and all green people are big (statement 14), we can now analyze the relationship between Dave's characteristics and the condition for smart people.\n\nHowever, we know that Dave is not nice (statement 4), and from statement 13, we know that smart people are nice. Since Dave is not nice, we cannot conclude that he is smart.\n\nStep 20: Determine the relationship between Dave's characteristics and the statement \"Dave is green.\"\nSince we concluded that Dave is green (step 8) and all green people are big (statement 14), we can now determine that Dave is big. However, we still do not know if Dave is quiet or not.\n\nTo conclude whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information one more time.\n\nStep 21: Analyze the given information about round people.\nFrom statement 8, we know that all round people are quiet. We also know that if someone is quiet and smart then they are round (statement 16).\n\nHowever, we already concluded that Dave is not smart (step 19). We cannot apply the condition for round people because Dave is not smart.\n\nStep 22: Determine the relationship between Dave's characteristics and the statement \"Dave is green.\"\nSince we concluded that Dave is green (step 8) and all green people are big (statement 14), we can now analyze the relationship between Dave's characteristics and the statement \"Dave is round.\"\n\nHowever, we still do not know if Dave is quiet or not. We only know that he is furry and not nice. We cannot apply the condition for big, quiet people because we do not know if Dave is quiet.\n\nStep 23: Analyze the given information about green people.\nFrom statement 9, we know that all round people are green.\n\nHowever, we still do not know if Dave is round or not. We only know that he is furry and not nice.\n\nStep 24: Determine the relationship between Dave's characteristics and the statement \"Dave is green.\"\nSince we concluded that Dave is green (step 8) and all green people are big (statement 14), we can now analyze the relationship between Dave's characteristics and the statement \"Dave is big.\"\n\nHowever, we already determined that Dave is big (step 20).\n\nStep 25: Analyze the given information about round people.\nFrom statement 8, we know that all round people are quiet. We also know that if someone is quiet and smart then they are round (statement 16).\n\nHowever, we already concluded that Dave is not smart (step 19). We cannot",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is furry. (Given)\n2. All furry people are green. (Given)\n   However, there's also another statement that says All round people are green. (Given)\n   We need to consider both statements and the fact that furry people are green (From statement 2 and 5) implies round people are green (From statement 6), but round people are green and furry people are green are not mutually exclusive.\n\n3. Dave is not nice. (Given)\n4. Smart people are nice. (Given)\n   This implies that Dave is not smart, because if he were smart, then he would be nice, but he's not nice.\n\n5. All quiet, furry people are green. (Given)\n   We don't have any information that directly states Dave is quiet, but we can infer some information from other statements.\n\n6. Big, quiet people are not smart. (Given)\n   This statement is interesting, as it implies that being quiet and big are characteristics of someone who is not smart. However, we already know that Dave is not smart, so this statement might be useful later.\n\n7. All round people are green. (Given)\n   We also have another statement that says If Anne is big and Anne is green then Anne is round. (Given)\n   We don't have any information about Anne's size or the fact that she's furry, but we can analyze the given information to see if we can find a connection.\n\n8. If someone is quiet and smart then they are round. (Given)\n   We already know that Dave is not smart, so this statement doesn't apply to him.\n\n9. All green people are big. (Given)\n   If we assume that Dave is green (which we're trying to determine), then this statement implies that Dave is big.\n\nNow, we have a contradiction: we have information that suggests Dave is round (if he's green), and we have information that suggests Dave is not round (if he's quiet and big).\n\nHowever, we have a key piece of information: Dave is furry (From statement 1) and we have the fact that furry people are green (From statement 2) and round people are green (From statement 6) and since all furry people are green, we can say that Dave is round (From statement 6).\n\nBut we have information that says If Anne is big and Anne is green then Anne is round. (Given) and we have information that says All round people are green. (Given)\n\nGiven the fact that Dave is furry (From statement 1) we can say that Dave is green (From statement 2) and we have information that says All green people are big. (Given)\n\nTherefore, Dave is big.\n\nWe know that big, quiet people are not smart. (From statement 6) but we don't have information that Dave is quiet, however, we have a statement that says If someone is quiet and smart then they are round. (From statement 8) but we know that Dave is not smart.\n\nHowever, we know that Dave is furry (From statement 1) and all furry people are green (From statement 2) and all round people are green (From statement 6) and all round people are green and all green people are big (From statement 9) so Dave is round.\n\nWe know that all round people are green (From statement 6) so Dave is green.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and apply them step by step. \n\n1. Given statements:\n   - Anne is furry.\n   - Anne is nice.\n   - Dave is furry.\n   - Dave is not nice.\n   - Erin is smart.\n   - Harry is furry.\n   - Harry is nice.\n   - All round people are quiet.\n   - All round people are green.\n   - All quiet, furry people are green.\n   - Furry people are green.\n   - Big, quiet people are not smart.\n   - Smart people are nice.\n   - All green people are big.\n   - If Anne is big and Anne is green then Anne is round.\n   - If someone is quiet and smart then they are round.\n\n2. Analyzing the given statements, we have:\n   - Furry people are green (Furry people are green).\n   - All quiet, furry people are green (All quiet, furry people are green).\n   - Since we have two statements saying the same thing, we can conclude that All quiet people are green (from the combination of Furry people are green and All quiet, furry people are green).\n\n3. Now, let's check if Dave is green:\n   - Dave is furry (Dave is furry).\n   - All quiet people are green (From step 2).\n   - Dave is not nice (Dave is not nice).\n   - Smart people are nice (Smart people are nice).\n   - Therefore, Dave is not smart (since Dave is not nice).\n   - Big, quiet people are not smart (Big, quiet people are not smart).\n   - If someone is quiet and smart then they are round (If someone is quiet and smart then they are round).\n   - However, we cannot conclude that Dave is round since we don't have information about Dave being quiet or big.\n\n4. We can conclude that Dave is not green because:\n   - All green people are big (All green people are big).\n   - If Anne is big and Anne is green then Anne is round (If Anne is big and Anne is green then Anne is round).\n   - Since we know that Anne is big and green, we can conclude that Anne is round.\n   - All round people are quiet (All round people are quiet).\n   - Therefore, Anne is quiet.\n   - All quiet people are green (From step 2).\n   - Therefore, all green people are quiet (from step 2 and the information that Anne is quiet and green).\n   - If Anne is big and Anne is green then Anne is round (If Anne is big and Anne is green then Anne is round).\n   - We can now conclude that all green people are big, quiet, and round (by combining all green people are big, All quiet people are green, and If Anne is big and Anne is green then Anne is round).\n   - Since Dave is not green, the statement \"Dave is green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information and apply the rules of logic.\n\n1. Given statements:\n   - Anne is furry.\n   - Anne is nice.\n   - Dave is furry.\n   - Dave is not nice.\n   - Erin is smart.\n   - Harry is furry.\n   - Harry is nice.\n   - All round people are quiet.\n   - All round people are green.\n   - All quiet, furry people are green.\n   - Furry people are green.\n   - Big, quiet people are not smart.\n   - Smart people are nice.\n   - All green people are big.\n   - If Anne is big and Anne is green then Anne is round.\n   - If someone is quiet and smart then they are round.\n\n2. We need to find out if Dave is green. To do this, we need to find a logical connection between Dave and the property \"green.\"\n\nFrom the given statements, we can infer the following:\n\n- Since all quiet, furry people are green, and Dave is furry, we can conclude that Dave is green. This is because we can apply the rule \"All quiet, furry people are green\" to Dave.\n\nHowever, there is a more detailed analysis required for clarity:\n\n- Since Furry people are green and Dave is furry, then Dave is green. This makes the statement \"Dave is green\" true.\n\n3. Therefore, the statement \"Dave is green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is furry. (Premise)\n2. Furry people are green. (Premise)\nFrom these two premises, we can conclude that:\n3. Dave is green. (Conclusion)\n\nHowever, we also need to consider the other premises to ensure that our conclusion is consistent.\n\n4. All round people are quiet. (Premise)\n5. All round people are green. (Premise)\n6. All quiet, furry people are green. (Premise)\n7. Furry people are green. (Premise)\nFrom these premises, we can conclude that furry people are either round or not quiet. But we already know that Dave is furry, so we can conclude that:\n8. Dave is either round or not quiet.\n\nWe also know that:\n9. Dave is not nice. (Premise)\n10. Smart people are nice. (Premise)\nFrom these two premises, we can conclude that:\n11. Dave is not smart. (Conclusion)\n\nNow, let's consider the premise:\n12. All green people are big. (Premise)\nWe know that Dave is green (from step 3), so we can conclude that:\n13. Dave is big. (Conclusion)\n\nNow, let's combine the premises:\n14. All round people are quiet. (Premise)\n15. All round people are green. (Premise)\n16. Dave is big. (Premise)\n17. Dave is green. (Premise)\nFrom these premises, we can conclude that:\n18. Dave is either round or not quiet. (Conclusion from step 8)\n19. If Dave is round, then he is quiet and green. (From premises 14 and 15)\n20. If Dave is not quiet, then he is not round. (From premise 14)\nFrom these two conclusions, we can conclude that:\n21. If Dave is round, then he is quiet and green. (From premise 19)\n22. If Dave is not quiet, then he is not round. (From premise 20)\n23. Dave is either round or not quiet. (Premise 8)\nFrom these two premises, we can conclude that:\n24. Dave is round or not quiet.\n\nWe also know that:\n25. Big, quiet people are not smart. (Premise)\n26. Dave is big. (Premise)\n27. Dave is quiet. (From premise 14 and conclusion 24)\nFrom these premises, we can conclude that:\n28. Dave is not smart. (Conclusion from premise 25)\n\nNow, let's consider the premise:\n29. Smart people are nice. (Premise)\nWe know that Dave is not smart (from step 11), so we can conclude that:\n30. Dave is not nice. (Conclusion from premise 29)\n\nNow, let's consider the premise:\n31. All quiet, furry people are green. (Premise)\nWe know that Dave is quiet and furry (from premises 1 and 14), so we can conclude that:\n32. Dave is green. (Conclusion from premise 31)\n\nHowever, we already concluded that Dave is green in step 3. Therefore, we can conclude that:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_dave, green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_dave, green_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not nice(X) -> not smart(X)",
+          "z3_formula": "Implies(Not(nice_dave), Not(smart_dave))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> not smart(X)",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), Not(smart_dave))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_dave, quiet_dave)",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(furry)",
+          "z3_formula": "green_furry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_dave, furry_dave), green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(round)",
+          "z3_formula": "green_round == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> Not(smart(X))",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), Not(smart_dave))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_dave, nice_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(dave)",
+          "z3_formula": "Not(nice_dave) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_dave, nice_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(dave)",
+          "z3_formula": "Not(nice_dave) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "Not(nice(X)) -> Not(smart(X))",
+          "z3_formula": "Implies(Not(nice_dave), Not(smart_dave))",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not smart(dave)",
+          "z3_formula": "Not(smart_dave) == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_dave, furry_dave), green_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not all furry(X) -> green(X)",
+          "z3_formula": "Not(ForAll(X, Implies(furry(X), green(X)))) == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(big_dave, green_dave), round_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not big, quiet people are smart",
+          "z3_formula": "Not(Implies(And(big_dave, quiet_dave), smart_dave)) == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_dave, nice_dave)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(dave)",
+          "z3_formula": "Not(nice_dave) == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "Not(nice(X)) -> Not(smart(X))",
+          "z3_formula": "Implies(Not(nice_dave), Not(smart_dave))",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "not smart(dave)",
+          "z3_formula": "Not(smart_dave) == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_dave, furry_dave), green_dave)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "ForAll(X, round(X) -> green(X))",
+          "z3_formula": "ForAll(X, Implies(round(X), green(X))) == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(dave)",
+          "z3_formula": "not nice_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_X, quiet_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_X, furry_X), green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> not smart(X)",
+          "z3_formula": "Implies(And(big_X, quiet_X), not smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_X, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(big_X, green_X), round_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), round_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(dave)",
+          "z3_formula": "not nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_X, quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_X, furry_X), green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) & quiet(X) -> not smart(X)",
+          "z3_formula": "Implies(And(big_X, quiet_X), not smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(big_X, green_X), round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(dave)",
+          "z3_formula": "not nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_X, quiet_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_X, big_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_X, furry_X), green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> not smart(X)",
+          "z3_formula": "Implies(And(big_X, quiet_X), not smart_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_X, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(big_X, green_X), round_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), round_X)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_dave, green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(dave)",
+          "z3_formula": "not nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_X, quiet_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_X, furry_X), green_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) & quiet(X) -> not smart(X)",
+          "z3_formula": "Implies(And(big_X, quiet_X), not smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_X, big_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(big_X, green_X), round_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), round_X)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_fiona, quiet_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_fiona, green_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_dave, furry_dave), green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_dave, green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) & quiet(X) -> Not(smart(X))",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), Not(smart_dave))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_dave, nice_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_fiona, big_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(big_anne, green_anne), round_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_anne, smart_anne), round_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_fiona, quiet_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_fiona, green_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(big_fiona, green_fiona), round_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "green(X)",
+          "z3_formula": "green_dave == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(dave)",
+          "z3_formula": "not nice_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_X, quiet_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_X, furry_X), green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> not smart(X)",
+          "z3_formula": "Implies(And(big_X, quiet_X), not smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_X, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(big_X, green_X), round_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), round_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_dave, green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(green_dave, round_dave), big_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not smart(X)",
+          "z3_formula": "Implies(big_dave, Not(smart_dave))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_dave, smart_dave), round_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(dave)",
+          "z3_formula": "Not(nice_dave) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_dave, nice_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(dave)",
+          "z3_formula": "Not(smart_dave) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_dave, green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_dave, big_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(dave)",
+          "z3_formula": "not nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_X, quiet_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_X, furry_X), green_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> not smart(X)",
+          "z3_formula": "Implies(And(big_X, quiet_X), not smart_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_X, big_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(big_X, green_X), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not green(dave)",
+          "z3_formula": "not green_dave == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(dave)",
+          "z3_formula": "not nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_X, quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_X, furry_X), green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) & quiet(X) -> not smart(X)",
+          "z3_formula": "Implies(And(big_X, quiet_X), not smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(big_X, green_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_dave, green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_dave, quiet_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) & quiet(X) -> green(X)",
+          "z3_formula": "Implies(And(round_dave, quiet_dave), green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_dave, green_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) | not quiet(X)",
+          "z3_formula": "Or(round_dave, Not(quiet_dave))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) -> quiet(X) & green(X)",
+          "z3_formula": "Implies(round_dave, And(quiet_dave, green_dave))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(X) -> not round(X)",
+          "z3_formula": "Implies(Not(quiet_dave), Not(round_dave))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) | not quiet(X)",
+          "z3_formula": "Or(round_dave, Not(quiet_dave))",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) & quiet(X) -> not smart(X)",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), Not(smart_dave))",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "big(X)",
+          "z3_formula": "big_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(X)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(X)",
+          "z3_formula": "Not(smart_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_dave, nice_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(X)",
+          "z3_formula": "Not(nice_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_dave, big_dave)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "big(X)",
+          "z3_formula": "big_dave == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_dave, quiet_dave)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "big(X)",
+          "z3_formula": "big_dave == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "green(X)",
+          "z3_formula": "green_dave == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) | not quiet(X)",
+          "z3_formula": "Or(round_dave, Not(quiet_dave))",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) -> quiet(X) & green(X)",
+          "z3_formula": "Implies(round_dave, And(quiet_dave, green_dave))",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(X) -> not round(X)",
+          "z3_formula": "Implies(Not(quiet_dave), Not(round_dave))",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) | not quiet(X)",
+          "z3_formula": "Or(round_dave, Not(quiet_dave))",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) & quiet(X) -> not smart(X)",
+          "z3_formula": "Implies(And(big_dave, quiet_dave), Not(smart_dave))",
+          "source_step": 28
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_dave, nice_dave)",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(X)",
+          "z3_formula": "Not(nice_dave)",
+          "source_step": 30
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_dave, furry_dave), green_dave)",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "green(X)",
+          "z3_formula": "green_dave == True",
+          "source_step": 32
+        },
+        {
+          "type": "derived",
+          "expression": "green(X)",
+          "z3_formula": "green_dave == True",
+          "source_step": 33
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 204,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 44
+    },
+    "maxsat_stats": {
+      "satisfied": 44,
+      "excluded": 0,
+      "total_weight": 195,
+      "solve_time_ms": 1.4175651594996452
+    },
+    "timing": {
+      "trace_gen_s": 24.395,
+      "extraction_s": 39.553,
+      "dedup_s": 2.062,
+      "maxsat_s": 0.004,
+      "total_s": 66.014
+    }
+  }
+}

@@ -1,0 +1,708 @@
+{
+  "pid": "folio_139",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "supervised_learning_machine_learning",
+          "z3_formula": "supervised_learning_machine_learning == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning_machine_learning",
+          "z3_formula": "unsupervised_learning_machine_learning == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_machine_learning",
+          "z3_formula": "reinforcement_learning_machine_learning == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning_no_labelled_data",
+          "z3_formula": "unsupervised_learning_no_labelled_data == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_not_used",
+          "z3_formula": "reinforcement_learning_not_used == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model_machine_learning",
+          "z3_formula": "text_summarization_model_machine_learning == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "machine_learning_algorithm_requires_labelled_data",
+          "z3_formula": "machine_learning_algorithm_requires_labelled_data == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning_no_labelled_data -> unsupervised_learning_machine_learning",
+          "z3_formula": "Implies(unsupervised_learning_no_labelled_data, unsupervised_learning_machine_learning)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "machine_learning_algorithm_requires_labelled_data -> not unsupervised_learning_machine_learning",
+          "z3_formula": "Implies(machine_learning_algorithm_requires_labelled_data, Not(unsupervised_learning_machine_learning))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not unsupervised_learning_machine_learning",
+          "z3_formula": "Not(unsupervised_learning_machine_learning) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "supervised_learning",
+          "z3_formula": "supervised_learning == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning",
+          "z3_formula": "unsupervised_learning == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning",
+          "z3_formula": "reinforcement_learning == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "state_of_the_art_text_summarization_model",
+          "z3_formula": "state_of_the_art_text_summarization_model == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_not_used",
+          "z3_formula": "reinforcement_learning_not_used == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "labelled_data_required",
+          "z3_formula": "labelled_data_required == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning -> no_labelled_data",
+          "z3_formula": "Implies(unsupervised_learning, no_labelled_data)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "labelled_data_required -> not_unsupervised_learning",
+          "z3_formula": "Implies(labelled_data_required, not_unsupervised_learning)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "machine_learning -> supervised_learning | unsupervised_learning | reinforcement_learning",
+          "z3_formula": "Implies(machine_learning, Or(supervised_learning, unsupervised_learning, reinforcement_learning))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not_unsupervised_learning",
+          "z3_formula": "not_unsupervised_learning == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "supervised_learning",
+          "z3_formula": "supervised_learning == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not_unsupervised_learning",
+          "z3_formula": "not_unsupervised_learning == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "supervised_learning",
+          "z3_formula": "supervised_learning == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning",
+          "z3_formula": "unsupervised_learning == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning",
+          "z3_formula": "reinforcement_learning == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning != labelled_data",
+          "z3_formula": "Not(unsupervised_learning == labelled_data)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model == supervised_learning | text_summarization_model == unsupervised_learning | text_summarization_model == reinforcement_learning",
+          "z3_formula": "text_summarization_model == Or(supervised_learning, unsupervised_learning, reinforcement_learning)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model != reinforcement_learning",
+          "z3_formula": "Not(text_summarization_model == reinforcement_learning)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model == labelled_data",
+          "z3_formula": "text_summarization_model == labelled_data",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "unsupervised_learning == text_summarization_model",
+          "z3_formula": "unsupervised_learning == text_summarization_model",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False (but uncertain)",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "supervised_learning(X) | unsupervised_learning(X) | reinforcement_learning(X)",
+          "z3_formula": "supervised_learning_X | unsupervised_learning_X | reinforcement_learning_X",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning(X) -> not labelled_data(X)",
+          "z3_formula": "Implies(unsupervised_learning_X, not labelled_data_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "machine_learning_algorithm(X) -> (supervised_learning(X) | unsupervised_learning(X) | reinforcement_learning(X))",
+          "z3_formula": "Implies(machine_learning_algorithm_X, supervised_learning_X | unsupervised_learning_X | reinforcement_learning_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "state_of_the_art_text_summarization_model(X) -> machine_learning_algorithm(X)",
+          "z3_formula": "Implies(state_of_the_art_text_summarization_model_X, machine_learning_algorithm_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning(X) -> not state_of_the_art_text_summarization_model(X)",
+          "z3_formula": "Implies(reinforcement_learning_X, not state_of_the_art_text_summarization_model_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "state_of_the_art_text_summarization_model(X) -> labelled_data(X)",
+          "z3_formula": "Implies(state_of_the_art_text_summarization_model_X, labelled_data_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unsupervised_learning(X) -> labelled_data(X)",
+          "z3_formula": "Implies(unsupervised_learning_X, labelled_data_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not unsupervised_learning(X)",
+          "z3_formula": "Not(unsupervised_learning_X)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning(X) -> not labelled_data(X)",
+          "z3_formula": "Implies(unsupervised_learning, not labelled_data)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "labelled_data_required",
+          "z3_formula": "labelled_data_required == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not reinforcement_learning",
+          "z3_formula": "not reinforcement_learning == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "supervised_learning(X) -> labelled_data(X)",
+          "z3_formula": "Implies(supervised_learning, labelled_data)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not unsupervised_learning",
+          "z3_formula": "not unsupervised_learning == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "supervised_learning(X) -> labelled_data(X)",
+          "z3_formula": "Implies(supervised_learning, labelled_data)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning(X) -> not labelled_data(X)",
+          "z3_formula": "Implies(unsupervised_learning, Not(labelled_data))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning(X) -> not labelled_data(X)",
+          "z3_formula": "Implies(reinforcement_learning, Not(labelled_data))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model(X) -> machine_learning(X)",
+          "z3_formula": "Implies(text_summarization_model, machine_learning)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model(X) -> not reinforcement_learning(X)",
+          "z3_formula": "Implies(text_summarization_model, Not(reinforcement_learning))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "machine_learning(X) -> labelled_data(X)",
+          "z3_formula": "Implies(machine_learning, labelled_data)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not unsupervised_learning(text_summarization_model)",
+          "z3_formula": "Not(unsupervised_learning_text_summarization_model)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "supervised_learning_machine_learning",
+          "z3_formula": "supervised_learning_machine_learning == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning_machine_learning",
+          "z3_formula": "unsupervised_learning_machine_learning == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_machine_learning",
+          "z3_formula": "reinforcement_learning_machine_learning == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning_no_labelled_data",
+          "z3_formula": "unsupervised_learning_no_labelled_data == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model_machine_learning",
+          "z3_formula": "text_summarization_model_machine_learning == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_not_text_summarization",
+          "z3_formula": "reinforcement_learning_not_text_summarization == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model_labelled_data",
+          "z3_formula": "text_summarization_model_labelled_data == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "supervised_learning_machine_learning | unsupervised_learning_machine_learning | reinforcement_learning_machine_learning",
+          "z3_formula": "Or(supervised_learning_machine_learning, unsupervised_learning_machine_learning, reinforcement_learning_machine_learning)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning_machine_learning -> unsupervised_learning_no_labelled_data",
+          "z3_formula": "Implies(unsupervised_learning_machine_learning, unsupervised_learning_no_labelled_data)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "text_summarization_model_machine_learning & ~reinforcement_learning_text_summarization -> ~unsupervised_learning_text_summarization",
+          "z3_formula": "Implies(And(text_summarization_model_machine_learning, Not(reinforcement_learning_not_text_summarization)), Not(unsupervised_learning_text_summarization))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unsupervised_learning_text_summarization",
+          "z3_formula": "unsupervised_learning_text_summarization == False",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "supervised_learning(X) | unsupervised_learning(X) | reinforcement_learning(X)",
+          "z3_formula": "supervised_learning_X == True Or unsupervised_learning_X == True Or reinforcement_learning_X == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning(X) -> not labelled_data(X)",
+          "z3_formula": "Implies(unsupervised_learning_X, Not(labelled_data_X))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "labelled_data(X)",
+          "z3_formula": "labelled_data_X == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "state_of_the_art_text_summarization_model(X)",
+          "z3_formula": "state_of_the_art_text_summarization_model_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not reinforcement_learning(X)",
+          "z3_formula": "Not(reinforcement_learning_X) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "labelled_data(X) -> supervised_learning(X) | unsupervised_learning(X)",
+          "z3_formula": "Implies(labelled_data_X, Or(supervised_learning_X, unsupervised_learning_X))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not unsupervised_learning(X)",
+          "z3_formula": "Not(unsupervised_learning_X) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "supervised_learning_machine",
+          "z3_formula": "supervised_learning_machine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning_doesnt_require_labelled_data",
+          "z3_formula": "unsupervised_learning_doesnt_require_labelled_data == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "state_of_the_art_text_summarization_model_is_trained_with_machine_learning",
+          "z3_formula": "state_of_the_art_text_summarization_model_is_trained_with_machine_learning == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_is_not_used_to_train_state_of_the_art_text_summarization_model",
+          "z3_formula": "reinforcement_learning_is_not_used_to_train_state_of_the_art_text_summarization_model == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "machine_learning_algorithm_for_training_text_summarization_model_requires_labelled_data",
+          "z3_formula": "machine_learning_algorithm_for_training_text_summarization_model_requires_labelled_data == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning(X) -> unsupervised_learning_doesnt_require_labelled_data(X)",
+          "z3_formula": "Implies(unsupervised_learning_machine, unsupervised_learning_doesnt_require_labelled_data_machine)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning(X) -> unsupervised_learning(X)",
+          "z3_formula": "Implies(unsupervised_learning_machine, unsupervised_learning_machine)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "machine_learning_algorithm_for_training_text_summarization_model_requires_labelled_data -> unsupervised_learning_machine -> unsupervised_learning_doesnt_require_labelled_data_machine",
+          "z3_formula": "Implies(And(machine_learning_algorithm_for_training_text_summarization_model_requires_labelled_data, unsupervised_learning_machine), unsupervised_learning_doesnt_require_labelled_data_machine)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "unsupervised_learning_is_used_to_train_state_of_the_art_text_summarization_model",
+          "z3_formula": "unsupervised_learning_is_used_to_train_state_of_the_art_text_summarization_model == False",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "supervised_learning_machine",
+          "z3_formula": "supervised_learning_machine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning_doesnt_require_labelled_data",
+          "z3_formula": "unsupervised_learning_doesnt_require_labelled_data == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "state_of_the_art_model_is_trained_with_machine_learning",
+          "z3_formula": "state_of_the_art_model_is_trained_with_machine_learning == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_is_not_used_to_train_state_of_the_art_model",
+          "z3_formula": "reinforcement_learning_is_not_used_to_train_state_of_the_art_model == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "machine_learning_algorithm_for_text_summarization_requires_labelled_data",
+          "z3_formula": "machine_learning_algorithm_for_text_summarization_requires_labelled_data == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning(X) -> unsupervised_learning_doesnt_require_labelled_data(X)",
+          "z3_formula": "Implies(unsupervised_learning, unsupervised_learning_doesnt_require_labelled_data)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning(X) -> unsupervised_learning(X)",
+          "z3_formula": "Implies(unsupervised_learning, unsupervised_learning)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning(X) & machine_learning_algorithm_for_text_summarization_requires_labelled_data(X) -> False",
+          "z3_formula": "Implies(And(unsupervised_learning, machine_learning_algorithm_for_text_summarization_requires_labelled_data), False)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "unsupervised_learning_is_used_to_train_state_of_the_art_model",
+          "z3_formula": "Not(Implies(unsupervised_learning, machine_learning_algorithm_for_text_summarization_requires_labelled_data))",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "machine_learning_algorithm_type == supervised_learning | unsupervised_learning | reinforcement_learning",
+          "z3_formula": "machine_learning_algorithm_type == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning == True",
+          "z3_formula": "unsupervised_learning == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning -> no_labelled_data_required",
+          "z3_formula": "Implies(unsupervised_learning, no_labelled_data_required)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "state_of_the_art_text_summarization_model_trained_with_machine_learning == True",
+          "z3_formula": "state_of_the_art_text_summarization_model_trained_with_machine_learning == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "machine_learning -> labelled_data_required",
+          "z3_formula": "Implies(machine_learning, labelled_data_required)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_not_used == True",
+          "z3_formula": "reinforcement_learning_not_used == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "machine_learning_algorithm_type == reinforcement_learning -> reinforcement_learning_used",
+          "z3_formula": "Implies(machine_learning_algorithm_type == reinforcement_learning, reinforcement_learning_used)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "labelled_data_required == True",
+          "z3_formula": "labelled_data_required == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "unsupervised_learning_used == False",
+          "z3_formula": "unsupervised_learning_used == False",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "supervised_learning_machine",
+          "z3_formula": "supervised_learning_machine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning_machine",
+          "z3_formula": "unsupervised_learning_machine == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_machine",
+          "z3_formula": "reinforcement_learning_machine == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model_machine_learning",
+          "z3_formula": "text_summarization_model_machine_learning == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_machine_text_summarization_model",
+          "z3_formula": "reinforcement_learning_machine_text_summarization_model == False",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model_requires_labelled_data",
+          "z3_formula": "text_summarization_model_requires_labelled_data == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning_machine -> not(text_summarization_model_requires_labelled_data)",
+          "z3_formula": "Implies(unsupervised_learning_machine, Not(text_summarization_model_requires_labelled_data))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(text_summarization_model_requires_labelled_data)",
+          "z3_formula": "Not(text_summarization_model_requires_labelled_data) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(unsupervised_learning_machine)",
+          "z3_formula": "Not(unsupervised_learning_machine) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "unsupervised_learning_machine_text_summarization_model",
+          "z3_formula": "unsupervised_learning_machine_text_summarization_model == False",
+          "source_step": 10
+        }
+      ]
+    }
+  ]
+}

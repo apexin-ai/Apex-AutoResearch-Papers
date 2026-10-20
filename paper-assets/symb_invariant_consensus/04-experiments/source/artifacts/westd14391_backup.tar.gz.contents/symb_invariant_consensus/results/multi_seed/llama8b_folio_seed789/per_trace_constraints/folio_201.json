@@ -1,0 +1,780 @@
+{
+  "pid": "folio_201",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "football_player(X) -> loaned_out(X, Y) | football_club(Y)",
+          "z3_formula": "Implies(football_player_ailton, Or(loaned_out_ailton_braga, football_club_braga))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "loaned_out(ailton, football_club)",
+          "z3_formula": "loaned_out_ailton_football_club == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fliminense)",
+          "z3_formula": "football_club_fliminense == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not loaned_out(ailton, football_club)",
+          "z3_formula": "Not(Or(loaned_out_ailton_braga, loaned_out_ailton_nautico, loaned_out_ailton_fliminense))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "born_in(1995, ailton)",
+          "z3_formula": "born_in_1995_aiilton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "commonly_known_as(ailton, ailton_silva)",
+          "z3_formula": "commonly_known_as_ailton_ailton_silva == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "footballer(ailton_silva)",
+          "z3_formula": "footballer_ailton_silva == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton_silva, nautico)",
+          "z3_formula": "plays_for_ailton_silva_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "loaned_out(X, Y) & football_club(Y) -> football_club(Y)",
+          "z3_formula": "Implies(And(loaned_out_ailton_braga, football_club_braga), football_club_braga)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "plays_for(X, Y) & football_club(Y) -> football_club(Y)",
+          "z3_formula": "Implies(And(plays_for_ailton_silva_nautico, football_club_nautico), football_club_nautico)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "football_club(X) & football_club(Y) -> football_club(X) | football_club(Y)",
+          "z3_formula": "Implies(And(football_club_braga, football_club_nautico), Or(football_club_braga, football_club_nautico))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "football_club(X)",
+          "z3_formula": "football_club_X == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "loaned_out(ailton, football_club)",
+          "z3_formula": "loaned_out_ailton_football_club == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not loaned_out(ailton, not football_club)",
+          "z3_formula": "Not(Not(loaned_out_ailton_football_club)) == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "born_in(ailton, 1995)",
+          "z3_formula": "born_in_ailton_1995 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "commonly_known_as(ailton, ailton)",
+          "z3_formula": "commonly_known_as_ailton_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "brazilian_footballer(ailton)",
+          "z3_formula": "brazilian_footballer_ailton == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not loaned_out_to_football_club(ailton)",
+          "z3_formula": "Not(loaned_out_ailton_braga)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "name(ailton, ailton_silva)",
+          "z3_formula": "name_ailton_ailton_silva == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "born(ailton, 1995)",
+          "z3_formula": "born_ailton_1995 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "brazilian_footballer(ailton)",
+          "z3_formula": "brazilian_footballer_ailton == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "football_player(X) & loaned_out(X, Y) -> loaned_out(X, Y)",
+          "z3_formula": "Implies(And(football_player_ailton, loaned_out_ailton_braga), loaned_out_ailton_braga)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "brazilian_footballer(X) & plays_for(X, Y) -> loaned_out(X, Y)",
+          "z3_formula": "Implies(And(brazilian_footballer_ailton, plays_for_ailton_nautico), loaned_out_ailton_nautico)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not loaned_out(ailton, Y)",
+          "z3_formula": "Not(Or(loaned_out_ailton_braga, loaned_out_ailton_nautico))",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(flinminense)",
+          "z3_formula": "football_club_flinminense == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not loaned_out(ailton, football_club)",
+          "z3_formula": "Not(Or(loaned_out_ailton_braga, loaned_out_ailton_flinminense, loaned_out_ailton_nautico))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "born_in_1995(ailton_silva)",
+          "z3_formula": "born_in_1995_ailton_silva == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "commonly_known_as(ailton_silva, ailton)",
+          "z3_formula": "commonly_known_as_ailton_silva_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(ailton_silva)",
+          "z3_formula": "football_player_ailton_silva == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out_to(ailton_silva, braga)",
+          "z3_formula": "loaned_out_to_ailton_silva_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "footballer(ailton_silva)",
+          "z3_formula": "footballer_ailton_silva == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton_silva, nautico)",
+          "z3_formula": "plays_for_ailton_silva_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "born_in(1995, ailton)",
+          "z3_formula": "born_in_1995_aiilton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "known_as(aiilton, ailton_silva)",
+          "z3_formula": "known_as_aiilton_aiilton_silva == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(aiilton)",
+          "z3_formula": "football_player_aiilton == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(aiilton, braga)",
+          "z3_formula": "loaned_out_aiilton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "footballer(aiilton)",
+          "z3_formula": "footballer_aiilton == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(aiilton, nautico)",
+          "z3_formula": "plays_for_aiilton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not loaned_out_to_football_club(aiilton)",
+          "z3_formula": "Not(loaned_out_aiilton_braga)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "born_in(ailton, 1995)",
+          "z3_formula": "born_in_ailton_1995 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "commonly_known_as(ailton, ailton_silva)",
+          "z3_formula": "commonly_known_as_ailton_ailton_silva == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "footballer(ailton_silva)",
+          "z3_formula": "footballer_ailton_silva == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton_silva, nautico)",
+          "z3_formula": "plays_for_ailton_silva_nautico == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(flinminense)",
+          "z3_formula": "football_club_flinminense == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "football_club(braga) & football_club(nautico)",
+          "z3_formula": "And(football_club_braga, football_club_nautico) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "football_club(braga) | football_club(nautico)",
+          "z3_formula": "Or(football_club_braga, football_club_nautico) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "loaned_out(ailton, football_club)",
+          "z3_formula": "loaned_out_ailton_football_club == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "loaned_out(ailton, football_club) == False",
+          "z3_formula": "Not(loaned_out_ailton_football_club) == True",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "name(ailton, ailton)",
+          "z3_formula": "name_ailton_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "born(ailton, 1995)",
+          "z3_formula": "born_ailton_1995 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "loaned_out(ailton, football_club)",
+          "z3_formula": "loaned_out_ailton_football_club == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "born_in_1995(ailton)",
+          "z3_formula": "born_in_1995_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "commonly_known_as(ailton, ailton)",
+          "z3_formula": "commonly_known_as_ailton_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "brazillian_footballer(ailton)",
+          "z3_formula": "brazillian_footballer_ailton == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "born(ailton, 1995)",
+          "z3_formula": "born_ailton_1995 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "known_as(ailton, ailton)",
+          "z3_formula": "known_as_ailton_ailton == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "football_player(ailton)",
+          "z3_formula": "football_player_ailton == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loaned_out(ailton, braga)",
+          "z3_formula": "loaned_out_ailton_braga == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "brazilian_footballer(ailton)",
+          "z3_formula": "brazilian_footballer_ailton == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plays_for(ailton, nautico)",
+          "z3_formula": "plays_for_ailton_nautico == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(nautico)",
+          "z3_formula": "football_club_nautico == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(braga)",
+          "z3_formula": "football_club_braga == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "football_club(fluminense)",
+          "z3_formula": "football_club_fluminense == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "loaned_out(ailton, _)",
+          "z3_formula": "loaned_out_ailton__ == True",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

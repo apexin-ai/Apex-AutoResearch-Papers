@@ -1,0 +1,510 @@
+{
+  "pid": "folio_92",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(machine_translation)",
+          "z3_formula": "language_processing_machine_translation == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output(machine_translation, text_sequence)",
+          "z3_formula": "output_machine_translation_text_sequence == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "language_processing_task(X) -> (language_generation_task(X) | language_understanding_task(X))",
+          "z3_formula": "Implies(language_processing_machine_translation, Or(language_generation_machine_translation, language_understanding_machine_translation))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "output(X, text_sequence) -> language_generation_task(X)",
+          "z3_formula": "Implies(output_machine_translation_text_sequence, language_generation_machine_translation)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not language_understanding_machine_translation",
+          "z3_formula": "Not(language_understanding_machine_translation) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(machine_translation)",
+          "z3_formula": "machine_translation_language_processing_task == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output(machine_translation, text_sequence)",
+          "z3_formula": "machine_translation_output_text_sequence == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "output(X, text_sequence) -> language_generation_task(X)",
+          "z3_formula": "Implies(machine_translation_output_text_sequence, machine_translation_language_generation_task)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "language_generation_task(machine_translation)",
+          "z3_formula": "machine_translation_language_generation_task == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not language_understanding_task(machine_translation)",
+          "z3_formula": "Not(machine_translation_language_understanding_task) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(machine_translation)",
+          "z3_formula": "language_processing_machine_translation == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output_machine_translation == text_sequence",
+          "z3_formula": "output_machine_translation == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "output_task == text_sequence -> language_generation_task",
+          "z3_formula": "Implies(output_machine_translation, language_generation_machine_translation)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "language_generation_machine_translation",
+          "z3_formula": "language_generation_machine_translation == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "conclusion == language_understanding_task",
+          "z3_formula": "conclusion == False",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(machine_translation)",
+          "z3_formula": "language_processing_machine_translation == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output(machine_translation, text_sequence)",
+          "z3_formula": "output_machine_translation_text_sequence == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "output(X, text_sequence) -> language_generation(X)",
+          "z3_formula": "Implies(output_machine_translation_text_sequence, language_generation_machine_translation)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "language_generation(machine_translation)",
+          "z3_formula": "language_generation_machine_translation == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not language_understanding(machine_translation)",
+          "z3_formula": "Not(language_understanding_machine_translation) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "language_generation_task or language_understanding_task",
+          "z3_formula": "language_generation_task or language_understanding_task == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "text_sequence -> language_generation_task",
+          "z3_formula": "Implies(text_sequence, language_generation_task)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "machine_translation",
+          "z3_formula": "machine_translation == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "text_sequence",
+          "z3_formula": "text_sequence == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(natural_language_processing)",
+          "z3_formula": "language_processing_natural_language_processing == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "language_processing_task(X) -> (language_generation_task(X) | language_understanding_task(X))",
+          "z3_formula": "Implies(language_processing_natural_language_processing, Or(language_generation_natural_language_processing, language_understanding_natural_language_processing))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "machine_translation(natural_language_processing)",
+          "z3_formula": "machine_translation_natural_language_processing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output(machine_translation) == text_sequence",
+          "z3_formula": "output_machine_translation == text_sequence",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "output(X) == text_sequence -> language_generation_task(X)",
+          "z3_formula": "Implies(output_machine_translation, language_generation_machine_translation)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "language_generation_task(machine_translation)",
+          "z3_formula": "language_generation_machine_translation == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation is a language understanding task",
+          "z3_formula": "machine_translation_natural_language_processing == False",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(machine_translation)",
+          "z3_formula": "language_processing_machine_translation == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output(machine_translation, text_sequence)",
+          "z3_formula": "output_machine_translation_text_sequence == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "output(NLP_task, text_sequence) -> language_generation(NLP_task)",
+          "z3_formula": "Implies(output_machine_translation_text_sequence, language_generation_machine_translation)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "language_processing_task(machine_translation) | language_generation_task(machine_translation) | language_understanding_task(machine_translation)",
+          "z3_formula": "Or(language_processing_machine_translation, language_generation_machine_translation, language_understanding_machine_translation)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "not language_understanding_task(machine_translation)",
+          "z3_formula": "Not(language_understanding_machine_translation)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(natural_language_processing)",
+          "z3_formula": "language_processing_natural_language_processing == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "language_processing_task(language_generation_task) | language_processing_task(language_understanding_task)",
+          "z3_formula": "Or(language_processing_language_generation_task, language_processing_language_understanding_task) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "output(X) == text_sequence(X) -> language_processing_task(X) == language_generation_task",
+          "z3_formula": "Implies(output_natural_language_processing == text_sequence_natural_language_processing, language_processing_natural_language_processing == language_generation_task)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "machine_translation(natural_language_processing)",
+          "z3_formula": "machine_translation_natural_language_processing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output(machine_translation) == text_sequence",
+          "z3_formula": "output_machine_translation == text_sequence_machine_translation",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "language_processing_task(machine_translation) == language_generation_task",
+          "z3_formula": "language_processing_machine_translation == language_generation_task",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation(natural_language_processing) == language_generation_task",
+          "z3_formula": "machine_translation_natural_language_processing == language_generation_task",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation(natural_language_processing) == language_understanding_task",
+          "z3_formula": "machine_translation_natural_language_processing == language_understanding_task",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "language_generation_task_or_understanding_task",
+          "z3_formula": "language_generation_task_or_understanding_task == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "text_sequence_output -> language_generation_task",
+          "z3_formula": "Implies(text_sequence_output, language_generation_task)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "machine_translation_is_nlp_task",
+          "z3_formula": "machine_translation_is_nlp_task == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "machine_translation_output_is_text_sequence",
+          "z3_formula": "machine_translation_output_is_text_sequence == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation_is_language_generation_task",
+          "z3_formula": "machine_translation_is_language_generation_task == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation_is_language_understanding_task",
+          "z3_formula": "machine_translation_is_language_understanding_task == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "language_processing_task_type(nlp)",
+          "z3_formula": "language_processing_task_type_nlp == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "language_processing_task_type(X) == language_generation(X) | language_understanding(X)",
+          "z3_formula": "Or(language_processing_task_type_nlp, language_generation_nlp, language_understanding_nlp)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "language_generation(X) -> text_sequence(X)",
+          "z3_formula": "Implies(language_generation_nlp, text_sequence_nlp)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "machine_translation(nlp)",
+          "z3_formula": "machine_translation_nlp == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "text_sequence(machine_translation)",
+          "z3_formula": "text_sequence_machine_translation == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation(nlp) & text_sequence(machine_translation) -> language_generation(machine_translation)",
+          "z3_formula": "Implies(And(machine_translation_nlp, text_sequence_machine_translation), language_generation_machine_translation)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation(nlp) -> language_generation(machine_translation)",
+          "z3_formula": "Implies(machine_translation_nlp, language_generation_machine_translation)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation(nlp) & language_generation(machine_translation) -> not(language_understanding(machine_translation))",
+          "z3_formula": "Implies(And(machine_translation_nlp, language_generation_machine_translation), Not(language_understanding_machine_translation))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "machine_translation(nlp) -> not(language_understanding(machine_translation))",
+          "z3_formula": "Implies(machine_translation_nlp, Not(language_understanding_machine_translation))",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "language_processing_task(machine_translation)",
+          "z3_formula": "language_processing_machine_translation == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "output_machine_translation == text_sequence",
+          "z3_formula": "output_machine_translation == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "language_processing_task(natural_language_processing)",
+          "z3_formula": "language_processing_natural_language_processing == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "output(X) == text_sequence -> language_generation(X)",
+          "z3_formula": "Implies(output_machine_translation, language_generation_machine_translation)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "language_generation(machine_translation)",
+          "z3_formula": "language_generation_machine_translation == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "language_generation(X) -> not language_understanding(X)",
+          "z3_formula": "Implies(language_generation_machine_translation, Not(language_understanding_machine_translation))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not language_understanding(machine_translation)",
+          "z3_formula": "Not(language_understanding_machine_translation) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "language_generation_task_or_understanding_task(natural_language_processing_task)",
+          "z3_formula": "language_generation_task_or_understanding_task_natural_language_processing_task == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "text_sequence_output(natural_language_processing_task) -> language_generation_task(natural_language_processing_task)",
+          "z3_formula": "Implies(text_sequence_output_natural_language_processing_task, language_generation_task_natural_language_processing_task)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "machine_translation(natural_language_processing_task)",
+          "z3_formula": "machine_translation_natural_language_processing_task == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "text_sequence_output(machine_translation)",
+          "z3_formula": "text_sequence_output_machine_translation == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "language_generation_task(machine_translation)",
+          "z3_formula": "language_generation_task_machine_translation == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "language_generation_task(X) -> not(language_understanding_task(X))",
+          "z3_formula": "Implies(language_generation_task_machine_translation, not(language_understanding_task_machine_translation))",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

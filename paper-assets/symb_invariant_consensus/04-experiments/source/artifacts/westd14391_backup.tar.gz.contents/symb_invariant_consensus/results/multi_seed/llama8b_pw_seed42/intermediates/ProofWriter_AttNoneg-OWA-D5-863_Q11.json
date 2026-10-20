@@ -1,0 +1,1116 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-863_Q11",
+    "problem": "Anne is furry. Anne is kind. Anne is nice. Anne is young. Bob is big. Bob is furry. Charlie is nice. Charlie is young. Dave is cold. Dave is kind. Dave is young. All cold, big people are furry. All big people are rough. All kind, big people are rough. If someone is nice and rough then they are kind. If Charlie is kind then Charlie is big. If someone is rough and kind then they are cold. Nice people are big. All rough, furry people are cold. Cold, nice people are big.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is furry.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nKind(Anne, True) ::: Anne is kind.\nNice(Anne, True) ::: Anne is nice.\nYoung(Anne, True) ::: Anne is young.\nBig(Bob, True) ::: Bob is big.\nFurry(Bob, True) ::: Bob is furry.\nNice(Charlie, True) ::: Charlie is nice.\nYoung(Charlie, True) ::: Charlie is young.\nCold(Dave, True) ::: Dave is cold.\nKind(Dave, True) ::: Dave is kind.\nYoung(Dave, True) ::: Dave is young.\n\nRules:\nCold($x, True) && Big($x, True) >>> Furry($x, True) ::: All cold, big people are furry.\nBig($x, True) >>> Rough($x, True) ::: All big people are rough.\nKind($x, True) && Big($x, True) >>> Rough($x, True) ::: All kind, big people are rough.\nNice($x, True) && Rough($x, True) >>> Kind($x, True) ::: If someone is nice and rough then they are kind.\nKind(Charlie, True) >>> Big(Charlie, True) ::: If Charlie is kind then Charlie is big.\nRough($x, True) && Kind($x, True) >>> Cold($x, True) ::: If someone is rough and kind then they are cold.\nNice($x, True) >>> Big($x, True) ::: Nice people are big.\nRough($x, True) && Furry($x, True) >>> Cold($x, True) ::: All rough, furry people are cold.\nCold($x, True) && Nice($x, True) >>> Big($x, True) ::: Cold, nice people are big.\n\nQuery:\nFurry(Charlie, True) ::: Charlie is furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 89.5,
+      "True": 155.0,
+      "Unknown": 105.0
+    },
+    "answer_counts": {
+      "False": 1,
+      "True": 5,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information and use logical reasoning to deduce the characteristics of Charlie.\n\nFrom the given statements:\n\n1. Charlie is nice.\n2. Charlie is young.\n\nWe can conclude that Charlie is young and nice, but we don't have any information about Charlie's size or temperature yet.\n\nFrom the given statements:\n\n1. All kind, big people are rough.\n2. All cold, big people are furry.\n\nWe can't conclude that Charlie is big or cold, but we can conclude that if Charlie is big, then Charlie is rough. However, we can't determine Charlie's size yet.\n\nFrom the given statements:\n\n1. If someone is nice and rough then they are kind.\n2. If Charlie is kind then Charlie is big.\n3. Nice people are big.\n\nFrom the statements (1) and (2), we can't conclude that Charlie is big. However, from the statement (3), we know that nice people are big. Since Charlie is nice, we can conclude that Charlie is big.\n\nNow, from the given statements:\n\n1. All big people are rough.\n2. Charlie is big.\n\nWe can conclude that Charlie is rough.\n\nFrom the given statements:\n\n1. If someone is rough and kind then they are cold.\n2. Charlie is rough.\n\nWe can't conclude that Charlie is cold yet.\n\nFrom the given statements:\n\n1. All cold, big people are furry.\n2. Charlie is big.\n\nWe can't conclude that Charlie is furry yet.\n\nFrom the given statements:\n\n1. All rough, furry people are cold.\n2. Charlie is rough.\n\nWe can't conclude that Charlie is furry yet.\n\nHowever, we can conclude that if Charlie is furry, then Charlie is cold. But we can't determine Charlie's temperature yet.\n\nFrom the given statements:\n\n1. Charlie is nice.\n2. Charlie is young.\n\nWe can conclude that Charlie is young, nice, and big, but we still can't determine Charlie's temperature or furyness.\n\nFrom the statement \"Charlie is young\" and \"All young people are not necessarily furry\" is not given, however, since Charlie is young and big we can infer from given statements that \"Charlie is young, nice, big, and not necessarily cold or furry\".\n\nHowever, we can conclude that \"Charlie is young, nice, big, and not necessarily cold or furry\" does not imply that \"Charlie is furry\". Thus we can conclude that \"Charlie is furry\" is unknown.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nGiven information:\n\n1. All cold, big people are furry.\n2. All big people are rough.\n3. All kind, big people are rough.\n4. If someone is nice and rough then they are kind.\n5. If Charlie is kind then Charlie is big.\n6. If someone is rough and kind then they are cold.\n7. Nice people are big.\n8. All rough, furry people are cold.\n9. Cold, nice people are big.\n\nStatement to evaluate: Charlie is furry.\n\nLet's start by breaking down the information about Charlie:\n\n- Charlie is nice. (Given)\n- Charlie is young. (Given)\n\nSince Charlie is nice, we can infer from statement 7 that Charlie is big.\n\nNow, let's analyze the possible combinations of attributes for Charlie:\n\n1. Big and nice (Charlie is young, but we don't have information about age directly affecting other attributes)\n2. Rough and young (We don't have information about rough and young people)\n3. Cold and young (We don't have information about cold and young people)\n4. Furry and young (We don't have information about furry and young people)\n\nFrom statement 5, we know that if Charlie is kind, then Charlie is big. However, we also know that Charlie is nice (statement 1), which means Charlie is big (statement 7). This information does not directly tell us about Charlie's furiness.\n\nNow, let's analyze the possible combinations of attributes for Charlie considering the new information about big people:\n\n1. Big and nice (Charlie is young)\n2. Rough and big (We don't have information about rough and big people)\n3. Cold and big (We don't have information about cold and big people)\n4. Furry and big (We don't have information about furry and big people)\n\nFrom statement 2, we know that all big people are rough. This means that Charlie must be rough if Charlie is big.\n\nNow, let's analyze the possible combinations of attributes for Charlie considering the new information about big people and rough people:\n\n1. Big and nice (Charlie is young and rough)\n2. Rough and big (Charlie is young and nice)\n3. Cold and big (We don't have information about cold and big people)\n4. Furry and big (We don't have information about furry and big people)\n\nFrom statement 4, we know that if someone is nice and rough, then they are kind. However, we already know that Charlie is nice (statement 1). This means Charlie is kind.\n\nFrom statement 6, we know that if someone is rough and kind, then they are cold. However, we already know that Charlie is kind (nice and rough) and Charlie is big (from statements 5 and 2). This means Charlie is cold.\n\nNow, let's analyze the possible combinations of attributes for Charlie considering the new information about cold and big people:\n\n1. Big and nice (Charlie is young, cold)\n2. Cold and big (Charlie is young and nice)\n\nFrom statement 8, we know that all rough, furry people are cold. However, we already know that Charlie is big (from statements 5 and 2), Charlie is cold (from statement 6), and Charlie is nice (from statement 1). This means Charlie is not necessarily rough.\n\nFrom statement 9, we know that cold, nice people are big. However, we already know that Charlie is big (from statements 5 and 2), Charlie is nice (from statement 1), and Charlie is cold (from statement 6). This means Charlie is indeed big, but we still need to determine if Charlie is furry.\n\nWe have reached a point where we can conclude that Charlie is big, nice, young, and cold. However, we still can't conclude if Charlie is furry.\n\nFrom statement 1, we know that all cold, big people are furry. However, we already know that Charlie is big (from statements 5 and 2), Charlie is cold (from statement 6), and Charlie is nice (from statement 1). This means Charlie is indeed furry.\n\nHowever, we made a mistake in our conclusion, we should have done it like this:\n\nFrom statement 1, we know that all cold, big people are furry. However, we already know that Charlie is big (from statements 5 and 2), Charlie is cold (from statement 6), and Charlie is nice (from statement 1). This means Charlie is indeed big and cold, so Charlie is furry.\n\nCharlie is furry.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nFrom the given information:\n1. Charlie is nice.\n2. Charlie is young.\n\nFrom the rules:\n1. All cold, big people are furry.\n2. All big people are rough.\n3. All kind, big people are rough.\n4. If someone is nice and rough then they are kind.\n5. If Charlie is kind then Charlie is big.\n6. If someone is rough and kind then they are cold.\n7. Nice people are big.\n8. All rough, furry people are cold.\n9. Cold, nice people are big.\n\nNow, let's analyze the statement \"Charlie is furry.\"\n\nFrom rule 5, we know that if Charlie is kind, then Charlie is big. However, from rule 7, we know that nice people are big, but it doesn't necessarily mean Charlie is kind. We need to consider all possible scenarios.\n\nScenario 1: Charlie is kind. \nFrom rule 5, Charlie is big. \nFrom rule 6, since Charlie is rough and kind, Charlie is cold. \nFrom rule 8, since Charlie is rough and furry, Charlie is cold, which we already determined, but also we have a new fact, Charlie is furry. However, this is a part of the rule that makes Charlie cold, not a statement that we need to prove. \nThis scenario doesn't directly prove or disprove that Charlie is furry, but we can continue to the next step.\n\nScenario 2: Charlie is not kind. \nFrom rule 7, since Charlie is nice, Charlie is big. \nFrom rule 2, Charlie is young. \nNow, let's see if we can connect Charlie being big and young to Charlie being furry.\n\nFrom rule 8, all rough, furry people are cold. However, we don't know if Charlie is rough or not, but from rule 2, Charlie is young. Let's try to connect the rules to find a conclusion.\n\nFrom rule 3, all kind, big people are rough. However, we already know that Charlie is nice, not kind. So, we can't conclude that Charlie is rough from this rule. But, we can conclude that Charlie is big from rule 7.\n\nFrom rule 1, all cold, big people are furry. We still need to determine if Charlie is cold or not.\n\nFrom rule 4, if someone is nice and rough then they are kind. However, we already know that Charlie is nice, but not rough. So, this rule doesn't apply to Charlie.\n\nFrom rule 6, if someone is rough and kind then they are cold. However, we know that Charlie is nice, not kind. So, this rule doesn't apply to Charlie.\n\nFrom rule 9, cold, nice people are big. We already know that Charlie is big and nice, but we still need to determine if Charlie is cold or not.\n\nWe still can't determine if Charlie is furry or not based on the given rules and information. The statement \"Charlie is furry\" is unknown.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - All cold, big people are furry.\n   - All big people are rough.\n   - All kind, big people are rough.\n   - If someone is nice and rough then they are kind.\n   - If Charlie is kind then Charlie is big.\n   - If someone is rough and kind then they are cold.\n   - Nice people are big.\n   - All rough, furry people are cold.\n   - Cold, nice people are big.\n\n2. From the given statements, we know that Charlie is nice (given statement) and Charlie is young (given statement). We also know that nice people are big (statement 7).\n\n   So, we can conclude that Charlie is big (since nice people are big).\n\n3. From the given statements, we know that Charlie is big (conclusion in step 2) and Charlie is young (given statement). However, we do not have any direct information about Charlie being rough, cold, or furry.\n\n4. Now, let's examine the possibilities:\n   - If Charlie is rough, then Charlie is kind (statement 4), which implies that Charlie is big (statement 3). But, all rough, furry people are cold (statement 8), which would mean that Charlie is cold and furry. However, this would create a contradiction because we know Charlie is nice and nice people are big (statement 7), but all cold, big people are furry (statement 1) and cold, nice people are big (statement 9), which implies that Charlie is cold and nice, but cold, nice people are big (statement 9), and we cannot determine whether Charlie is furry from the given statements.\n\n   - If Charlie is cold, then Charlie is nice (statement 9) and Charlie is big (since cold, nice people are big). If Charlie is cold and nice, then Charlie is kind (since nice people are kind) and Charlie is big. But, if Charlie is rough and kind (since Charlie is kind and big), then Charlie is cold (statement 6). This means that Charlie is cold, nice, and big.\n\n   - If Charlie is not cold, then Charlie is not furry (since all rough, furry people are cold and Charlie cannot be rough and cold at the same time).\n\n5. We know that Charlie is nice and big (conclusion in step 2). Since Charlie is big, Charlie is rough (since all big people are rough, statement 2) and Charlie is kind (since Charlie is nice and rough, statement 4). \n\n   Now, since Charlie is rough and kind, then Charlie is cold (statement 6). However, this would mean that Charlie is cold, nice, and big.\n\n6. Now, let's examine the possibilities again:\n   - If Charlie is rough, then Charlie is cold (since Charlie is rough and kind, statement 6). However, all cold, big people are furry (statement 1), but we know Charlie is nice and nice people are big, which implies that Charlie is cold and nice, but cold, nice people are big (statement 9), which would mean that Charlie is cold, nice, and big.\n\n   - If Charlie is cold, then Charlie is nice (statement 9) and Charlie is big (since cold, nice people are big). If Charlie is cold and nice, then Charlie is kind (since nice people are kind) and Charlie is big. But, if Charlie is rough and kind (since Charlie is kind and big), then Charlie is cold (statement 6). This means that Charlie is cold, nice, and big.\n\n   - If Charlie is not cold, then Charlie is not furry (since all rough, furry people are cold and Charlie cannot be rough and cold at the same time).\n\n7. We can conclude that Charlie is cold, nice, and big. However, this does not provide any information about whether Charlie is furry or not. \n\n   From statement 8 (all rough, furry people are cold) and statement 6 (if someone is rough and kind then they are cold), we can conclude that Charlie is not furry.\n\n   Since Charlie is not furry, we can conclude that the statement \"Charlie is furry\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\n1. Given information:\n   - All cold, big people are furry.\n   - All big people are rough.\n   - All kind, big people are rough.\n   - If someone is nice and rough then they are kind.\n   - If Charlie is kind then Charlie is big.\n   - If someone is rough and kind then they are cold.\n   - Nice people are big.\n   - All rough, furry people are cold.\n   - Cold, nice people are big.\n\n2. We need to find out if Charlie is furry.\n   - We know Charlie is nice and young.\n   - Since Charlie is nice, we can infer that Charlie is big (from the given information that nice people are big).\n\n3. Now we have the following information about Charlie:\n   - Charlie is big.\n   - Charlie is nice.\n   - Charlie is young.\n\n4. Since Charlie is big, we can use the given information that all big people are rough to conclude that Charlie is rough.\n   - Charlie is rough.\n\n5. We also know Charlie is nice and rough. \n   - From the given information, if someone is nice and rough, then they are kind. \n   - So Charlie is kind.\n\n6. Now we have the following information about Charlie:\n   - Charlie is big.\n   - Charlie is rough.\n   - Charlie is kind.\n   - Charlie is nice.\n   - Charlie is young.\n\n7. Since Charlie is kind and big, we can infer that Charlie is cold (from the given information that all kind, big people are rough, and all rough, furry people are cold).\n\n8. Now we have the following information about Charlie:\n   - Charlie is big.\n   - Charlie is rough.\n   - Charlie is kind.\n   - Charlie is nice.\n   - Charlie is young.\n   - Charlie is cold.\n\n9. Since Charlie is cold and big, we can infer that Charlie is furry (from the given information that all cold, big people are furry).\n\n10. Therefore, the statement \"Charlie is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Charlie is furry, we need to analyze the given statements and their relationships. \n\n1. We know Charlie is nice (Charlie is nice) and Charlie is young (Charlie is young).\n\n2. From the given statements, we can infer the following:\n   - All nice people are big (Nice people are big).\n   - All big people are rough (All big people are rough).\n   - All rough, furry people are cold (All rough, furry people are cold).\n   - All cold, nice people are big (All cold, nice people are big).\n   - If someone is nice and rough then they are kind (If someone is nice and rough then they are kind).\n   - If Charlie is kind then Charlie is big (If Charlie is kind then Charlie is big).\n\n3. From the given statements, Charlie being nice makes Charlie big (Nice people are big). Now we have:\n   - Charlie is big.\n\n4. As Charlie is big, Charlie must be rough (All big people are rough).\n\n5. Now, we need to find a relationship between Charlie being rough and Charlie being furry. However, we have two statements that contradict each other:\n   - All rough, furry people are cold (All rough, furry people are cold).\n   - If someone is rough and kind then they are cold (If someone is rough and kind then they are cold).\n\n6. Since we don't know if Charlie is kind, we can't directly apply the statement \"If someone is rough and kind then they are cold.\" But we do know that Charlie being rough and being nice doesn't necessarily make Charlie cold, as the statement \"If someone is nice and rough then they are kind\" implies that Charlie can be both nice and rough, but it doesn't make Charlie cold.\n\n7. However, we also know that all cold, nice people are big (All cold, nice people are big). This statement does not directly apply to Charlie, as we don't know if Charlie is cold.\n\n8. Since we know Charlie is big and rough, we cannot determine if Charlie is furry or not, because we don't have enough information to apply the statement \"All rough, furry people are cold\" directly to Charlie. Therefore, we cannot conclude that Charlie is furry.\n\nThe final answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is young. (Given)\n2. Charlie is nice. (Given)\n3. All cold, big people are furry. (Given)\n4. All kind, big people are rough. (Given)\n5. All rough, furry people are cold. (Given)\n6. Nice people are big. (Given)\n7. If Charlie is kind then Charlie is big. (Given)\n8. If someone is nice and rough then they are kind. (Given)\n9. If someone is rough and kind then they are cold. (Given)\n\nFrom statement 6, we can deduce that Charlie is big because Charlie is nice. (Using modus ponens)\n\nFrom statement 7, we can deduce that Charlie is kind because Charlie is big. (Using modus ponens)\n\nNow, we have two possibilities for Charlie: Charlie is nice and big, or Charlie is kind and big.\n\nIf Charlie is kind and big, then from statement 9, we can deduce that Charlie is cold because Charlie is rough and kind. But this contradicts statement 5, which states that all rough, furry people are cold. We cannot conclude that Charlie is furry from this information.\n\nIf Charlie is nice and big, then from statement 8, we cannot deduce that Charlie is kind because Charlie is nice and rough. However, we can deduce that Charlie is not kind from statement 4, which states that all kind, big people are rough. Since Charlie is nice and big, but not kind, we cannot conclude that Charlie is furry.\n\nHowever, we have one more piece of information: All cold, big people are furry. (Statement 3)\n\nFrom the first possibility, we deduced that Charlie is cold and big. Therefore, we can conclude that Charlie is furry from statement 3.\n\nTherefore, the statement \"Charlie is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\nGiven information:\n\n1. All cold, big people are furry.\n2. All big people are rough.\n3. All kind, big people are rough.\n4. If someone is nice and rough then they are kind.\n5. If Charlie is kind then Charlie is big.\n6. If someone is rough and kind then they are cold.\n7. Nice people are big.\n8. All rough, furry people are cold.\n9. Cold, nice people are big.\n\nFrom statement 5, we know that if Charlie is kind, then Charlie is big.\n\nWe also know that from statement 3, all kind, big people are rough.\n\nNow, we have two possibilities for Charlie:\n- Charlie is kind and big.\n- Charlie is not kind and not big.\n\nLet's consider the first possibility: Charlie is kind and big.\nFrom statement 3, we know that all kind, big people are rough. \nThis means that if Charlie is kind and big, then Charlie is rough.\n\nNow, we know that from statement 8, all rough, furry people are cold. \nThis means that if Charlie is rough, then Charlie is cold.\n\nNow, let's consider the second possibility: Charlie is not kind and not big.\nWe know that Charlie is young (given information), and from statement 7, nice people are big. \nThis means that if Charlie is nice, then Charlie is big. But this contradicts the assumption that Charlie is not big.\n\nSo, we can conclude that Charlie is either kind and big, or Charlie is nice and big. \n\nNow, let's consider the statement \"Charlie is furry\".\nIf Charlie is kind and big, then from statement 8, all rough, furry people are cold. \nBut we know that Charlie is rough (from the first possibility), and from statement 6, if someone is rough and kind, then they are cold. \nHowever, this contradicts the fact that Charlie is young (given information), because cold, nice people are big (from statement 9).\n\nTherefore, the statement \"Charlie is furry\" is unknown because we have a contradiction in the first possibility.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Charlie is furry, we need to use the given statements and logical deductions.\n\n1. Charlie is young. (Given)\n2. Charlie is nice. (Given)\n3. All cold, big people are furry. (Given)\n4. All big people are rough. (Given)\n5. If someone is nice and rough then they are kind. (Given)\n6. If Charlie is kind then Charlie is big. (Given)\n7. If someone is rough and kind then they are cold. (Given)\n8. Nice people are big. (Given)\n9. All rough, furry people are cold. (Given)\n10. Cold, nice people are big. (Given)\n\nFrom statement 6, we can deduce that since Charlie is nice (statement 2), Charlie must be big (statement 8).\n\nFrom statement 4, we know that all big people are rough.\n\nHowever, from statement 8, we also know that nice people are big. Since Charlie is nice (statement 2), this means Charlie is big. \n\nSo, from statement 4, we can conclude that Charlie is rough.\n\nFrom statement 9, we know that all rough, furry people are cold. However, we cannot conclude that Charlie is furry yet.\n\nFrom statement 7, we know that if someone is rough and kind then they are cold. However, we don't know if Charlie is kind. \n\nFrom statement 5, we know that if someone is nice and rough then they are kind. Since Charlie is nice (statement 2) and Charlie is rough (from above), we can conclude that Charlie is kind.\n\nFrom statement 7, we now know that Charlie is rough and kind. Therefore, Charlie must be cold.\n\nHowever, we cannot conclude that Charlie is furry yet. \n\nFrom statement 10, we know that cold, nice people are big. Since Charlie is cold (from above), nice (statement 2), we can conclude that Charlie is big (statement 8).\n\nFrom statement 3, we know that all cold, big people are furry. Since Charlie is cold (from above) and big (from above), we can conclude that Charlie is furry.\n\nTherefore, the statement \"Charlie is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Charlie is furry, we need to analyze the given information step by step.\n\n1. We know that Charlie is young and nice. \n\n2. We can conclude that Charlie is big because all nice people are big.\n\n3. However, we have a condition that says if Charlie is kind then Charlie is big. But we don't know whether Charlie is kind or not yet.\n\n4. We know that if someone is nice and rough then they are kind. However, we can't conclude that Charlie is rough yet.\n\n5. Since Charlie is young and nice, and we know all cold, big people are furry and all rough, furry people are cold, but we do not know if Charlie is cold or rough.\n\n6. Given that Charlie is young and nice, we can't say that Charlie is cold, because we don't have enough information to support this conclusion.\n\n7. However, we know that Charlie is young, nice, and big. But we do not know if Charlie is furry or not.\n\n8. From the statement \"All kind, big people are rough,\" we can conclude that if Charlie is kind and big, then Charlie is rough.\n\n9. Since we already concluded that Charlie is big, we can infer that Charlie is rough if Charlie is kind.\n\n10. But we know that if someone is nice and rough then they are kind. However, this does not mean that Charlie is kind.\n\n11. Now let's look at the statement \"If Charlie is kind then Charlie is big.\" Since we already concluded that Charlie is big, this statement is true, but it does not tell us anything about Charlie's kind nature.\n\n12. Now, we know that if Charlie is kind and big, then Charlie is rough. And if Charlie is nice and rough then Charlie is kind. But we cannot conclude that Charlie is kind because we do not know if Charlie is rough or not.\n\n13. We know that Charlie is young, nice, and big. We also know that if someone is nice and rough then they are kind, but we cannot conclude that Charlie is kind.\n\n14. However, we have a condition that says if Charlie is kind then Charlie is big. But we know Charlie is big, so this statement is true but it does not tell us anything about Charlie's kind nature.\n\n15. Now let's analyze the given statement \"If someone is rough and kind then they are cold.\" This statement does not apply to Charlie because we do not know if Charlie is rough or not.\n\n16. Now let's look at the statement \"Nice people are big.\" We know that Charlie is nice and big, so this statement is true.\n\n17. Now let's analyze the statement \"All rough, furry people are cold.\" We do not have enough information to conclude that Charlie is furry or rough.\n\n18. Now let's look at the statement \"All cold, nice people are big.\" Since we know Charlie is nice and big, this statement is true.\n\n19. Now, we know that Charlie is young, nice, and big. We also know that all cold, big people are furry, and all rough, furry people are cold. \n\n20. We cannot conclude that Charlie is furry, because we do not know if Charlie is cold or rough.\n\nTherefore, the statement \"Charlie is furry\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given several statements about different people:\n   - Anne is furry, kind, nice, and young.\n   - Bob is big and furry.\n   - Charlie is nice and young.\n   - Dave is cold, kind, and young.\n\n2. We also have several conditional statements:\n   - All cold, big people are furry.\n   - All big people are rough.\n   - All kind, big people are rough.\n   - If someone is nice and rough then they are kind.\n   - If Charlie is kind then Charlie is big.\n   - If someone is rough and kind then they are cold.\n   - Nice people are big.\n   - All rough, furry people are cold.\n   - Cold, nice people are big.\n\n3. Let's analyze the statement \"Charlie is furry.\" To determine whether this statement is true, false, or unknown, we need to see if we can derive any information about Charlie's furiness from the given information.\n\nFrom the given statements, we can see that Charlie is nice and young. We also know that nice people are big (statement 7) and Charlie is young (statement 3).\n\nHowever, being big does not necessarily mean Charlie is furry. We need more information to determine if Charlie is furry.\n\nNow, let's consider the conditional statements. We can use the following chain of reasoning:\n- If Charlie is kind, then Charlie is big (statement 5).\n- However, we do not know if Charlie is kind or not.\n- If Charlie is kind and big, then Charlie is rough (statement 3).\n- If Charlie is rough and kind, then Charlie is cold (statement 6).\n- If Charlie is cold and nice, then Charlie is big (statement 9).\n\nHowever, this chain of reasoning does not tell us anything about Charlie's furiness.\n\nNow, let's consider the statement \"If someone is rough and kind, then they are cold\" (statement 6). We can use this statement to derive more information about Charlie. If Charlie is rough and kind, then Charlie is cold (statement 6). But we do not know if Charlie is rough or not.\n\nHowever, we know that Charlie is nice (statement 3), and nice people are big (statement 7). We also know that all big people are rough (statement 2). Therefore, Charlie is big and rough.\n\nSince Charlie is rough and kind, then Charlie is cold (statement 6).\n\nNow, we know that Charlie is big, rough, kind, and cold. We also know that all cold, big people are furry (statement 1).\n\nTherefore, since Charlie is cold and big, Charlie is furry.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is furry\" is true, false, or unknown, we need to analyze the given statements and the provided information. \n\nGiven statements:\n1. Anne is furry. \n2. Anne is kind. \n3. Anne is nice. \n4. Anne is young. \n5. Bob is big. \n6. Bob is furry. \n7. Charlie is nice. \n8. Charlie is young. \n9. Dave is cold. \n10. Dave is kind. \n11. Dave is young. \n12. All cold, big people are furry. \n13. All big people are rough. \n14. All kind, big people are rough. \n15. If someone is nice and rough then they are kind. \n16. If Charlie is kind then Charlie is big. \n17. If someone is rough and kind then they are cold. \n18. Nice people are big. \n19. All rough, furry people are cold. \n20. Cold, nice people are big.\n\nNow, we need to use the given statements to determine whether Charlie is furry.\n\nFrom statement 12: All cold, big people are furry.\nFrom statement 17: If someone is rough and kind then they are cold.\nFrom statement 14: All kind, big people are rough.\nWe can infer that Charlie is kind (from statement 7), and if Charlie is kind, then Charlie is big (from statement 16).\nSince Charlie is big, and Charlie is kind, then Charlie is rough (from statement 14).\nFrom statement 17: If someone is rough and kind then they are cold.\nSo, Charlie is cold.\n\nNow, from statement 12: All cold, big people are furry.\nSince Charlie is cold and big, then Charlie is furry.\n\nTherefore, the statement \"Charlie is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), rough_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_charlie, big_charlie), furry_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, kind_charlie), cold_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_charlie, big_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_charlie, rough_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_charlie, rough_charlie), cold_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_charlie, rough_charlie), kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_charlie, nice_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, kind_charlie), cold_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), big_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, furry_charlie), cold_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), big_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_charlie, big_charlie), furry_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_charlie, rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), rough_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_charlie, rough_charlie), kind_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, kind_charlie), cold_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, furry_charlie), cold_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), big_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, furry_charlie), cold_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_charlie, big_charlie), furry_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_charlie, rough_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_charlie, rough_charlie), cold_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_charlie, rough_charlie), kind_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, furry_charlie), cold_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), big_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, kind_charlie), cold_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie) & big(charlie) -> rough(charlie)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), rough_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie) & kind(charlie) -> cold(charlie)",
+          "z3_formula": "Implies(And(rough_charlie, kind_charlie), cold_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie) & nice(charlie) -> big(charlie)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), big_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(cold(charlie)) -> not(furry(charlie))",
+          "z3_formula": "Not(cold_charlie) == Not(furry_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(furry(charlie))",
+          "z3_formula": "Not(furry_charlie) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_charlie, big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_charlie, rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_charlie, rough_charlie), kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), rough_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, kind_charlie), cold_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_charlie, big_charlie), furry_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_charlie, big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_charlie, rough_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, furry_charlie), cold_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), big_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_charlie, rough_charlie), kind_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(furry(charlie))",
+          "z3_formula": "Not(Implies(And(rough_charlie, furry_charlie), cold_charlie)) | Not(Not(Implies(And(rough_charlie, furry_charlie), cold_charlie)))",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold_big_furry",
+          "z3_formula": "cold_big_furry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind_big_rough",
+          "z3_formula": "kind_big_rough == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough_furry_cold",
+          "z3_formula": "rough_furry_cold == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice_big",
+          "z3_formula": "nice_big == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_charlie, rough_charlie), kind_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, kind_charlie), cold_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), rough_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_charlie, cold_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, kind_charlie), cold_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_charlie, big_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, furry_charlie), cold_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), big_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_charlie, big_charlie), furry_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_charlie, rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_charlie, rough_charlie), kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, kind_charlie), cold_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_charlie, big_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, furry_charlie), cold_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), big_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_charlie, big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), rough_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_charlie, rough_charlie), kind_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> big(X)",
+          "z3_formula": "Implies(And(rough_charlie, kind_charlie), big_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, kind_charlie), cold_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_charlie, furry_charlie), cold_charlie)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_charlie, big_charlie), furry_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), big_charlie)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_X, big_X), furry_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_X, rough_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_X, rough_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_X, big_X), rough_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_X, kind_X), cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_X, big_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_X, furry_X), cold_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_X, nice_X), big_X)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_big, big_charlie), furry_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_kind, kind_charlie), cold_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_big, big_charlie), rough_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_rough, rough_charlie), kind_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_kind, kind_charlie), cold_charlie)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_charlie, big_charlie)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_big, big_charlie), nice_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(rough_furry, furry_charlie), cold_charlie)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_nice, nice_charlie), big_charlie)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 23
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 164,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 51
+    },
+    "maxsat_stats": {
+      "satisfied": 50,
+      "excluded": 1,
+      "total_weight": 163,
+      "solve_time_ms": 1.444225199520588
+    },
+    "timing": {
+      "trace_gen_s": 11.663,
+      "extraction_s": 29.257,
+      "dedup_s": 1.518,
+      "maxsat_s": 0.004,
+      "total_s": 42.442
+    }
+  }
+}

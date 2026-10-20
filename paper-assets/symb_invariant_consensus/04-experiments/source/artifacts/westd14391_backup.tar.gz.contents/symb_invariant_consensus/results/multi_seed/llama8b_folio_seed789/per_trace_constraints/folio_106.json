@@ -1,0 +1,460 @@
+{
+  "pid": "folio_106",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cost_gre_test == 205",
+          "z3_formula": "cost_gre_test == 205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "financial_aid_available",
+          "z3_formula": "financial_aid_available == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship_means_difficulty",
+          "z3_formula": "economic_hardship_means_difficulty == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_single_parent_family",
+          "z3_formula": "tom_lives_single_parent_family == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_dad_out_of_work",
+          "z3_formula": "tom_dad_out_of_work == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship_means_difficulty -> financial_aid_available",
+          "z3_formula": "Implies(economic_hardship_means_difficulty, financial_aid_available)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "financial_aid_available -> cost_gre_test <= 300",
+          "z3_formula": "Implies(financial_aid_available, cost_gre_test <= 300)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cost_gre_test <= 300",
+          "z3_formula": "cost_gre_test <= 300 == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cost_gre_test == 205",
+          "z3_formula": "cost_gre_test == 205 == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "costs(gre, 205)",
+          "z3_formula": "costs_gre_205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship -> financial_aid",
+          "z3_formula": "Implies(economic_hardship, financial_aid)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship",
+          "z3_formula": "economic_hardship == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "financial_aid",
+          "z3_formula": "financial_aid == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_single_parent_family",
+          "z3_formula": "tom_lives_single_parent_family == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "dads_out_of_work",
+          "z3_formula": "dads_out_of_work == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "costs(gre, 300)",
+          "z3_formula": "costs_gre_300 == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cost(205)",
+          "z3_formula": "cost_205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship(tom)",
+          "z3_formula": "economic_hardship_tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship(X) -> eligible_for_aid(X)",
+          "z3_formula": "Implies(economic_hardship_tom, eligible_for_aid_tom)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cost_below_300",
+          "z3_formula": "cost_205 == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cost(gre_test, 205)",
+          "z3_formula": "cost_gre_test_205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship(X) -> financial_aid(X)",
+          "z3_formula": "Implies(economic_hardship_tom, financial_aid_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship(economic_hardship)",
+          "z3_formula": "economic_hardship_economic_hardship == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "single_parent_family(X) & dad_out_of_work(X) -> economic_hardship(X)",
+          "z3_formula": "Implies(And(single_parent_family_tom, dad_out_of_work_tom), economic_hardship_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "single_parent_family(tom)",
+          "z3_formula": "single_parent_family_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "dad_out_of_work(tom)",
+          "z3_formula": "dad_out_of_work_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "economic_hardship_tom",
+          "z3_formula": "economic_hardship_tom == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "financial_aid_tom",
+          "z3_formula": "financial_aid_tom == Unknown",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cost(gre_test, 300)",
+          "z3_formula": "cost_gre_test_300 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cost(gre_test, 300) == False",
+          "z3_formula": "Not(cost_gre_test_300) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cost(gre_test, 205) & financial_aid_tom -> cost(gre_test, 300) == False",
+          "z3_formula": "Implies(And(cost_gre_test_205, financial_aid_tom), Not(cost_gre_test_300))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cost(gre_test, 300)",
+          "z3_formula": "cost_gre_test_300 == Unknown",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cost_gre_test == 205",
+          "z3_formula": "cost_gre_test == 205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship(X) -> financial_aid(X)",
+          "z3_formula": "Implies(economic_hardship_tom, financial_aid_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship == difficulty_caused_by_little_money_or_few_resources",
+          "z3_formula": "economic_hardship == difficulty_caused_by_little_money_or_few_resources == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_in_single_parent_family",
+          "z3_formula": "tom_lives_in_single_parent_family == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_dad_has_been_out_of_work_for_more_than_a_year",
+          "z3_formula": "tom_dad_has_been_out_of_work_for_more_than_a_year == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cost_gre_test < 300",
+          "z3_formula": "cost_gre_test < 300 == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cost(gre_test, 205)",
+          "z3_formula": "cost_gre_test_205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "financial_aid(economic_hardship) -> cost(gre_test, x) <= 300",
+          "z3_formula": "Implies(financial_aid_economic_hardship, And(cost_gre_test_x <= 300))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cost(gre_test, x) <= 300",
+          "z3_formula": "And(cost_gre_test_205 <= 300)",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "costs(US $205, GRE test)",
+          "z3_formula": "costs_205_GRE_test == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship -> financial_aid",
+          "z3_formula": "Implies(economic_hardship, financial_aid)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship == difficulty_caused_by_little_money_or_few_resources",
+          "z3_formula": "economic_hardship == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_in_single_parent_family",
+          "z3_formula": "tom_lives_in_single_parent_family == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_dad_has_been_out_of_work_for_more_than_a_year",
+          "z3_formula": "tom_dad_has_been_out_of_work_for_more_than_a_year == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "costs_below_US $300(GRE test)",
+          "z3_formula": "costs_below_US_300_GRE_test == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cost_gre_test == 205",
+          "z3_formula": "cost_gre_test == 205",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship(X) -> financial_aid(X)",
+          "z3_formula": "Implies(economic_hardship, financial_aid)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship == difficulty_caused_by_little_money_or_few_resources",
+          "z3_formula": "economic_hardship == difficulty_caused_by_little_money_or_few_resources",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_in_single_parent_family",
+          "z3_formula": "tom_lives_in_single_parent_family == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_dad_has_been_out_of_work_for_more_than_a_year",
+          "z3_formula": "tom_dad_has_been_out_of_work_for_more_than_a_year == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cost_gre_test < 300",
+          "z3_formula": "cost_gre_test < 300",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cost(gre, 205)",
+          "z3_formula": "cost_gre_205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship(tom)",
+          "z3_formula": "economic_hardship_tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "economic_hardship(X) -> financial_aid(X)",
+          "z3_formula": "Implies(economic_hardship_tom, financial_aid_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "financial_aid(tom)",
+          "z3_formula": "financial_aid_tom == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cost(gre, 205) < 300",
+          "z3_formula": "cost_gre_205 < 300 == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cost(gre_test, 205)",
+          "z3_formula": "cost_gre_test_205 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "financial_aid(ets, economic_hardship)",
+          "z3_formula": "financial_aid_ets_economic_hardship == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "economic_hardship == too_little_money_or_resources",
+          "z3_formula": "economic_hardship_too_little_money_or_resources == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tom_lives_single_parent_family",
+          "z3_formula": "tom_lives_single_parent_family == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_dad_out_of_work_more_than_year",
+          "z3_formula": "tom_dad_out_of_work_more_than_year == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cost(gre_test, below_300)",
+          "z3_formula": "cost_gre_test_below_300 == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": []
+    }
+  ]
+}

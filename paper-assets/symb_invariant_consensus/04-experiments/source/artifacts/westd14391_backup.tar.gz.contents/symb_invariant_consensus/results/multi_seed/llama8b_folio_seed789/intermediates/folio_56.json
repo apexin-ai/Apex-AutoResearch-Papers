@@ -1,0 +1,462 @@
+{
+  "problem": {
+    "id": "folio_56",
+    "problem": "Given the following premises:\nRobert Lewandowski is a striker. [BG] Strikers are soccer players. Robert Lewandowski left Bayern Munchen. [BG] If a player left a team they no longer play for that team.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nRobert Lewandowski plays for Bayern Munchen.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "IsStriker(robertLewandowski)",
+      "\u2200x (IsStriker(x) \u2192 IsSoccerPlayer(x))",
+      "LeftTeam(robertLewandowski, bayernMunchen)",
+      "\u2200x \u2200y (LeftTeam(x, y) \u2192 \u00acPlaysForTeam(x, y))"
+    ],
+    "conclusion_fol": "PlaysForTeam(robertLewandowski, bayernMunchen)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 47.5
+    },
+    "answer_counts": {
+      "False": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and apply logical reasoning.\n\nPremise 1: Robert Lewandowski is a striker. [BG]\nPremise 2: Strikers are soccer players. [BG]\nThis information tells us that Robert Lewandowski is a soccer player, but it doesn't provide any information about his current team.\n\nPremise 3: Robert Lewandowski left Bayern Munchen. [BG]\nPremise 4: If a player left a team, they no longer play for that team. [BG]\nFrom these premises, we can conclude that Robert Lewandowski no longer plays for Bayern Munchen, because he left the team.\n\nNow, we need to evaluate the conclusion: Robert Lewandowski plays for Bayern Munchen.\n\nSince the premises state that Robert Lewandowski left Bayern Munchen, it directly contradicts the conclusion that he plays for Bayern Munchen. Therefore, we can conclude that the conclusion is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Robert Lewandowski is a striker. \nPremise 2: Strikers are soccer players.\n\nThis premise does not provide any information about Robert Lewandowski's current team or whether he plays for Bayern Munchen. It only tells us about his position in soccer. So, we can ignore this premise for now.\n\nPremise 3: Robert Lewandowski left Bayern Munchen. \nPremise 4: If a player left a team, they no longer play for that team.\n\nFrom Premise 4, we can conclude that leaving a team implies that the player is no longer a part of that team. Therefore, if Robert Lewandowski left Bayern Munchen, he no longer plays for that team.\n\nConclusion: Robert Lewandowski plays for Bayern Munchen.\n\nBased on the premises, we can conclude that the conclusion is FALSE. This is because Premise 3 states that Robert Lewandowski left Bayern Munchen, and Premise 4 implies that leaving a team means you no longer play for that team. Therefore, Robert Lewandowski does not play for Bayern Munchen.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Robert Lewandowski is a striker. [BG]\nThis premise tells us about Robert Lewandowski's position in soccer, but it doesn't provide any information about his current team.\n\nPremise 2: Strikers are soccer players. [BG]\nThis premise is a general statement that doesn't provide any specific information about Robert Lewandowski or his current team.\n\nPremise 3: Robert Lewandowski left Bayern Munchen. [BG]\nThis premise tells us that Robert Lewandowski has left Bayern Munchen, which implies that he no longer plays for the team.\n\nConclusion: Robert Lewandowski plays for Bayern Munchen.\n\nGiven the third premise, we know that Robert Lewandowski has left Bayern Munchen. Therefore, we can conclude that he no longer plays for the team. This directly contradicts the conclusion.\n\nBased on the given premises, the conclusion \"Robert Lewandowski plays for Bayern Munchen\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion \"Robert Lewandowski plays for Bayern Munchen\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Robert Lewandowski is a striker. [BG]\nPremise 2: Strikers are soccer players. [BG]\nPremise 3: Robert Lewandowski left Bayern Munchen. [BG]\nPremise 4: If a player left a team they no longer play for that team. [BG]\n\nFrom Premise 1 and Premise 2, we can conclude that Robert Lewandowski is a soccer player. However, this information does not provide any insight into whether he plays for Bayern Munchen or not.\n\nPremise 3 states that Robert Lewandowski left Bayern Munchen, but this does not necessarily mean he is no longer associated with the team. He could still be a part of the team in some capacity or have a different role.\n\nPremise 4, however, provides a crucial piece of information. It states that if a player left a team, they no longer play for that team. Combining this with Premise 3, we can conclude that since Robert Lewandowski left Bayern Munchen, he no longer plays for the team.\n\nBased on this logical analysis, the conclusion \"Robert Lewandowski plays for Bayern Munchen\" is FALSE.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Robert Lewandowski is a striker. \nPremise 2: Strikers are soccer players. \nPremise 3: Robert Lewandowski left Bayern Munchen. \nPremise 4: If a player left a team, they no longer play for that team.\n\nFrom Premise 1 and Premise 2, we can conclude that Robert Lewandowski is a soccer player. However, this information is not relevant to determining whether he plays for Bayern Munchen or not.\n\nFrom Premise 3, we know that Robert Lewandowski left Bayern Munchen. \n\nFrom Premise 4, we can conclude that since Robert Lewandowski left Bayern Munchen, he no longer plays for that team.\n\nTherefore, based on the given premises, the conclusion that Robert Lewandowski plays for Bayern Munchen is **false**, as we have established that he left the team and no longer plays for it.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion \"Robert Lewandowski plays for Bayern Munchen\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremises:\n\n1. Robert Lewandowski is a striker. [BG]\n2. Strikers are soccer players. [BG] (This premise is not directly relevant to the conclusion, so we can ignore it for now.)\n3. Robert Lewandowski left Bayern Munchen. [BG]\n4. If a player left a team, they no longer play for that team. [BG] (This is an implication, which we can represent as: If P, then Q. In this case, P is \"a player left a team\" and Q is \"they no longer play for that team.\")\n\nNow, let's analyze the conclusion: \"Robert Lewandowski plays for Bayern Munchen.\"\n\nFrom premise 3, we know that Robert Lewandowski left Bayern Munchen. Using premise 4, we can conclude that he no longer plays for Bayern Munchen.\n\nTherefore, the conclusion \"Robert Lewandowski plays for Bayern Munchen\" is false, because we have a direct contradiction: he left the team, and therefore, he does not play for the team anymore.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Robert Lewandowski is a striker. \nPremise 2: Strikers are soccer players. \nPremise 3: Robert Lewandowski left Bayern Munchen. \nPremise 4: If a player left a team they no longer play for that team.\n\nFrom Premise 2, we can infer that Robert Lewandowski is a soccer player. However, this information is not directly relevant to the conclusion.\n\nPremise 3 states that Robert Lewandowski left Bayern Munchen. Premise 4 provides a conditional statement: if a player left a team, they no longer play for that team. \n\nUsing the conditional statement in Premise 4, we can conclude that since Robert Lewandowski left Bayern Munchen, he no longer plays for Bayern Munchen.\n\nTherefore, the conclusion \"Robert Lewandowski plays for Bayern Munchen\" is false, as it contradicts the conclusion we drew from Premise 3 and Premise 4.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Robert Lewandowski is a striker. \nPremise 2: Strikers are soccer players. \nPremise 3: Robert Lewandowski left Bayern Munchen. \nPremise 4: If a player left a team, they no longer play for that team.\n\nFrom Premise 1 and Premise 2, we can conclude that Robert Lewandowski is a soccer player, but this information is not directly relevant to the conclusion.\n\nPremise 3 tells us that Robert Lewandowski left Bayern Munchen, which means he is no longer a part of the team.\n\nPremise 4 provides a rule: if a player left a team, they no longer play for that team.\n\nUsing this rule, we can conclude that since Robert Lewandowski left Bayern Munchen, he no longer plays for the team.\n\nTherefore, the conclusion \"Robert Lewandowski plays for Bayern Munchen\" is false, as the premises suggest that he has left the team and no longer plays for it.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Robert Lewandowski is a striker. \nPremise 2: Strikers are soccer players. \nPremise 3: Robert Lewandowski left Bayern Munchen.\nPremise 4: If a player left a team, they no longer play for that team.\n\nFrom Premise 1 and Premise 2, we can conclude that Robert Lewandowski is a soccer player. However, this information does not provide any insight into his current team.\n\nPremise 3 states that Robert Lewandowski left Bayern Munchen, and Premise 4 provides a rule that if a player left a team, they no longer play for that team. \n\nUsing Premise 3 and Premise 4, we can conclude that Robert Lewandowski does not play for Bayern Munchen anymore.\n\nTherefore, the conclusion \"Robert Lewandowski plays for Bayern Munchen\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and determine if they support the conclusion. \n\nPremise 1: Robert Lewandowski is a striker. [BG]\nPremise 2: Strikers are soccer players. [BG]\nPremise 3: Robert Lewandowski left Bayern Munchen. [BG]\nPremise 4: If a player left a team, they no longer play for that team. [BG]\n\nFrom Premise 1 and Premise 2, we can conclude that Robert Lewandowski is a soccer player. However, this information does not directly relate to our conclusion.\n\nPremise 3 and Premise 4 give us crucial information. If Robert Lewandowski left Bayern Munchen, then according to Premise 4, he no longer plays for Bayern Munchen.\n\nTherefore, based on the given premises, we can conclude that Robert Lewandowski does not play for Bayern Munchen.\n\nThe conclusion \"Robert Lewandowski plays for Bayern Munchen\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and apply the rules of logic.\n\nPremise 1: Robert Lewandowski is a striker. \nThis premise tells us that Robert Lewandowski has a specific position in soccer, but it doesn't provide any information about his current team.\n\nPremise 2: Strikers are soccer players.\nThis premise is redundant and doesn't add any new information to the problem.\n\nPremise 3: Robert Lewandowski left Bayern Munchen.\nThis premise provides crucial information about Robert Lewandowski's past team. However, it doesn't directly tell us about his current team.\n\nPremise 4: If a player left a team, they no longer play for that team.\nThis premise provides a rule about the relationship between leaving a team and playing for that team. It can be represented as:\n    If P left Q, then P does not play for Q.\n\nNow, let's apply the premises to the conclusion:\n\nConclusion: Robert Lewandowski plays for Bayern Munchen.\n\nTo determine the truth value of this conclusion, we need to examine the premises. Premise 3 states that Robert Lewandowski left Bayern Munchen. According to Premise 4, if he left Bayern Munchen, then he no longer plays for Bayern Munchen.\n\nTherefore, based on the given premises, we can conclude that:\n\nRobert Lewandowski does not play for Bayern Munchen.\n\nSo, the conclusion \"Robert Lewandowski plays for Bayern Munchen\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Robert Lewandowski is a striker. \nPremise 2: Strikers are soccer players.\n\nThese two premises do not provide any information about Robert Lewandowski's current team or his current employment status.\n\nPremise 3: Robert Lewandowski left Bayern Munchen.\nPremise 4: If a player left a team, they no longer play for that team.\n\nFrom Premise 4, we can infer that leaving a team implies the player is no longer a member of that team. \n\nNow, we can analyze the conclusion: Robert Lewandowski plays for Bayern Munchen.\n\nBased on the given premises, particularly Premise 3 and Premise 4, we know that Robert Lewandowski left Bayern Munchen. Therefore, according to Premise 4, he no longer plays for Bayern Munchen.\n\nSo, the conclusion \"Robert Lewandowski plays for Bayern Munchen\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "soccer_player(striker)",
+          "z3_formula": "soccer_player_striker == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not plays(X, Y)",
+          "z3_formula": "Implies(left_robert_lewandowski_bayern_munchen, Not(plays_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not plays(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "Not(plays_robert_lewandowski_bayern_munchen) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "plays(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "plays_robert_lewandowski_bayern_munchen == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "soccer_player(striker)",
+          "z3_formula": "soccer_player_striker == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not plays(X, Y)",
+          "z3_formula": "Implies(left_robert_lewandowski_bayern_munchen, Not(plays_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "soccer_player(striker)",
+          "z3_formula": "soccer_player_striker == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left_bayern_munchen(robert_lewandowski)",
+          "z3_formula": "left_bayern_munchen_robert_lewandowski == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "soccer_player(X) -> soccer_player(Y)",
+          "z3_formula": "Implies(soccer_player_striker, soccer_player_robert_lewandowski)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "plays_for_bayern_munchen(robert_lewandowski)",
+          "z3_formula": "plays_for_bayern_munchen_robert_lewandowski == False",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not(plays(X, Y))",
+          "z3_formula": "Implies(left_robert_lewandowski_bayern_munchen, not(plays_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(plays(robert_lewandowski, bayern_munchen))",
+          "z3_formula": "not(plays_robert_lewandowski_bayern_munchen) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "soccer_player(striker)",
+          "z3_formula": "soccer_player_striker == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left_bayern_munchen(robert_lewandowski)",
+          "z3_formula": "left_bayern_munchen_robert_lewandowski == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left_team(X) -> not plays_for_team(X, Y)",
+          "z3_formula": "Implies(left_bayern_munchen_robert_lewandowski, Not(plays_for_team_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not plays(X, Y)",
+          "z3_formula": "Implies(left_robert_lewandowski_bayern_munchen, not plays_robert_lewandowski_bayern_munchen)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not plays(X, Y)",
+          "z3_formula": "Implies(left_robert_lewandowski_bayern_munchen, not plays_robert_lewandowski_bayern_munchen)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not(plays(X, Y))",
+          "z3_formula": "Implies(And(left_robert_lewandowski_bayern_munchen, plays_robert_lewandowski_bayern_munchen), False)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(plays(robert_lewandowski, bayern_munchen))",
+          "z3_formula": "Not(plays_robert_lewandowski_bayern_munchen)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "soccer_player(striker)",
+          "z3_formula": "soccer_player_striker == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left_bayern_munchen(robert_lewandowski)",
+          "z3_formula": "left_bayern_munchen_robert_lewandowski == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left_team(X) -> not plays_for(X, team)",
+          "z3_formula": "Implies(left_bayern_munchen_robert_lewandowski, not plays_for_robert_lewandowski_bayern_munchen)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not plays_for(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "not plays_for_robert_lewandowski_bayern_munchen == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not plays(X, Y)",
+          "z3_formula": "Implies(left_robert_lewandowski_bayern_munchen, not plays_robert_lewandowski_bayern_munchen)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not plays(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "not plays_robert_lewandowski_bayern_munchen == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "soccer_player(robert_lewandowski)",
+          "z3_formula": "soccer_player_robert_lewandowski == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(P, Q) -> not plays(P, Q)",
+          "z3_formula": "Implies(left_robert_lewandowski_bayern_munchen, not plays_robert_lewandowski_bayern_munchen)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not plays(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "not plays_robert_lewandowski_bayern_munchen == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "soccer_player(striker)",
+          "z3_formula": "soccer_player_striker == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left_bayern_munchen(robert_lewandowski)",
+          "z3_formula": "left_bayern_munchen_robert_lewandowski == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left_team(X) -> not plays_for_team(X, Y)",
+          "z3_formula": "Implies(left_bayern_munchen_robert_lewandowski, Not(plays_for_team_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not plays_for_team(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "Not(plays_for_team_robert_lewandowski_bayern_munchen) == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 55,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 14
+    },
+    "maxsat_stats": {
+      "satisfied": 13,
+      "excluded": 1,
+      "total_weight": 48,
+      "solve_time_ms": 0.7448401302099228
+    },
+    "timing": {
+      "trace_gen_s": 3.89,
+      "extraction_s": 12.376,
+      "dedup_s": 0.201,
+      "maxsat_s": 0.002,
+      "total_s": 16.468
+    }
+  }
+}

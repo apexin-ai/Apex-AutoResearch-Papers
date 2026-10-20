@@ -1,0 +1,1260 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-973_Q9",
+    "problem": "Charlie is young. Fiona is blue. Gary is blue. Gary is white. Harry is blue. Harry is round. Harry is smart. If Charlie is round and Charlie is quiet then Charlie is not young. If something is quiet then it is smart. All blue things are young. Big, blue things are quiet. Young, white things are round. If Fiona is big and Fiona is not white then Fiona is blue. If Charlie is big and Charlie is young then Charlie is not smart. Round things are big.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is quiet.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nWhite($x, bool) ::: Is x white?\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\nQuiet($x, bool) ::: Is x quiet?\nBig($x, bool) ::: Is x big?\n\nFacts:\nYoung(Charlie, True) ::: Charlie is young.\nBlue(Fiona, True) ::: Fiona is blue.\nBlue(Gary, True) ::: Gary is blue.\nWhite(Gary, True) ::: Gary is white.\nBlue(Harry, True) ::: Harry is blue.\nRound(Harry, True) ::: Harry is round.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nRound(Charlie, True) && Quiet(Charlie, True) >>> Young(Charlie, False) ::: If Charlie is round and Charlie is quiet then Charlie is not young.\nQuiet($x, True) >>> Smart($x, True) ::: If something is quiet then it is smart.\nBlue($x, True) >>> Young($x, True) ::: All blue things are young.\nBig($x, True) && Blue($x, True) >>> Quiet($x, True) ::: Big, blue things are quiet.\nYoung($x, True) && White($x, True) >>> Round($x, True) ::: Young, white things are round.\nBig(Fiona, True) && White(Fiona, False) >>> Blue(Fiona, True) ::: If Fiona is big and Fiona is not white then Fiona is blue.\nBig(Charlie, True) && Young(Charlie, True) >>> Smart(Charlie, False) ::: If Charlie is big and Charlie is young then Charlie is not smart.\nRound($x, True) >>> Big($x, True) ::: Round things are big.\n\nQuery:\nQuiet(Gary, True) ::: Gary is quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 105.0,
+      "True": 145.0,
+      "Unknown": 156.5
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "True": 5,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Gary is quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Gary is blue.\n2. We also know that all blue things are young.\n   From this, we can conclude that Gary is young.\n\n3. We are given that Gary is white.\n4. We also know that young, white things are round.\n   From this, we can conclude that Gary is round.\n\n5. We know that round things are big.\n   From this, we can conclude that Gary is big.\n\n6. We are given that Charlie is quiet and Charlie is round.\n   From this, we cannot directly conclude that Gary is quiet, as we have no information that links Charlie's characteristics to Gary's.\n\n7. However, we know that something is quiet then it is smart.\n   This does not directly apply to Gary, as we do not know if Gary is quiet.\n\n8. We are given that if Charlie is big and Charlie is young then Charlie is not smart.\n   This statement does not provide any information about Gary.\n\n9. We are given that Gary is blue and Gary is white.\n   However, there is no statement that links being blue, white, and quiet.\n\n10. We are given that Harry is blue, Harry is round, and Harry is smart.\n    This statement does not provide any information about Gary.\n\n11. We are given that if Fiona is big and Fiona is not white then Fiona is blue.\n    This statement does not provide any information about Gary.\n\n12. We are given that if something is quiet then it is smart.\n    This statement does not provide any information about Gary.\n\nBased on the given information, we cannot determine whether Gary is quiet or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is blue. (Statement 2)\n2. All blue things are young. (Statement 10)\n   Therefore, Gary is young.\n\n3. Gary is white. (Statement 4)\n4. Young, white things are round. (Statement 13)\n   Therefore, Gary is round.\n\n5. Something is quiet then it is smart. (Statement 8)\n   However, this statement is not directly related to Gary. It is related to the general property of quiet things being smart. It does not provide any information about Gary being quiet or smart.\n\n6. We do not have any information about Gary being quiet or not.\n\nBased on the given statements, we cannot conclude that Gary is quiet. However, we cannot conclude that he is not quiet either, as there is no information to contradict this possibility. Therefore, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information given, we know that Gary is blue and Gary is white.\n2. We can't directly determine if Gary is quiet from the given information, so let's continue analyzing other statements that might help.\n\n3. Since all blue things are young, Gary being blue means he is young.\n4. However, we still can't determine if Gary is quiet. Let's analyze more information.\n\n5. Young, white things are round. Since Gary is white and young, he must be round.\n6. Round things are big. Since Gary is round, he must be big.\n7. Big, blue things are quiet. However, we also know that Gary is white. We need more information to determine if Gary is quiet.\n\n8. We know that something is quiet if it is smart. However, this information does not help us directly determine if Gary is quiet.\n9. Charlie is round and Charlie is quiet, then Charlie is not young. However, this information does not help us directly determine if Gary is quiet.\n\n10. The only information that might help us determine if Gary is quiet is that big, blue things are quiet. But we know that Gary is white, not blue.\n\nSince we cannot determine if Gary is quiet using the given information, the statement \"Gary is quiet\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'Gary is quiet' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is blue. (Given)\n2. Gary is white. (Given)\nFrom statements 1 and 2, we can conclude that Gary is both blue and white. \n\n3. All blue things are young. (Given)\nSo, Gary is young. \n\n4. Young, white things are round. (Given)\nSince Gary is young and white, Gary is round.\n\n5. Round things are big. (Given)\nAs Gary is round, Gary is big.\n\n6. If something is quiet then it is smart. (Given)\nThis statement is a conditional statement, meaning if something is quiet, it must be smart. However, it does not directly relate to Gary's quietness.\n\n7. Charlie is round and Charlie is quiet then Charlie is not young. (Given)\nThis statement does not directly relate to Gary, but it helps us understand the relationship between being round, quiet, and young.\n\n8. If Charlie is big and Charlie is young then Charlie is not smart. (Given)\nThis statement does not directly relate to Gary, but it helps us understand the relationship between being big, young, and smart.\n\n9. Harry is blue. Harry is round. Harry is smart. (Given)\nThese statements do not directly relate to Gary.\n\n10. If Fiona is big and Fiona is not white then Fiona is blue. (Given)\nThis statement does not directly relate to Gary.\n\nConsidering all the given information, we have established that Gary is big, young, round, and blue. However, there is no direct information about Gary's quietness. \n\nSince 'something is quiet then it is smart' (statement 6) is a conditional statement, we cannot directly conclude that Gary is quiet. The only thing we can be certain about is that if Gary is quiet, he would be smart.\n\nTherefore, the statement 'Gary is quiet' is unknown, as we have insufficient information to determine whether it is true or false. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is blue. (Given)\n2. All blue things are young. (Given)\n   - From this, we can conclude that Gary is young.\n\n3. Gary is white. (Given)\n4. Young, white things are round. (Given)\n   - From this, we can conclude that Gary is round.\n\n5. Harry is blue. (Given)\n6. Harry is round. (Given)\n7. Harry is smart. (Given)\n8. If something is quiet then it is smart. (Given)\n   - This implies that if Harry is quiet, then Harry is smart, which is already given. However, we cannot conclude that Harry is quiet.\n\n9. If Charlie is round and Charlie is quiet then Charlie is not young. (Given)\n   - This implies that if Charlie is quiet, then Charlie is not young. However, we do not know if Charlie is round or quiet.\n\n10. Round things are big. (Given)\n    - Since Gary is round, we can conclude that Gary is big.\n\n11. Big, blue things are quiet. (Given)\n    - Since Gary is big and blue, we can conclude that Gary is quiet.\n\nBased on the above steps, we can determine that the statement \"Gary is quiet\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Gary is blue and Gary is white.\n   - Since all blue things are young, Gary is young.\n   - However, Gary is also white, and young, white things are round. So, Gary is round.\n\n2. We are also given that Harry is blue, Harry is round, and Harry is smart.\n   - Since Harry is blue, Harry is young.\n   - Since Harry is round, Harry is big (because round things are big).\n   - However, this information about Harry is not relevant to determining whether Gary is quiet.\n\n3. The statement \"If Charlie is quiet then Charlie is not young\" is given.\n   - However, we are not given any information about Charlie being quiet. This statement is not relevant to determining whether Gary is quiet.\n\n4. The statement \"If something is quiet then it is smart\" is given.\n   - However, we are not given any information about Gary being quiet. This statement is not relevant to determining whether Gary is quiet.\n\n5. We are given that something is quiet then it is smart, but we don't know if Gary is quiet. However, since Gary is blue and young, and young, white things are round, and Gary is white, we can say that Gary is round. However, we still can't say that Gary is quiet because we can't connect the fact that Gary is round to being quiet.\n\n6. We are also given that Big, blue things are quiet. Since Gary is blue, Gary is young, and we can't conclude that Gary is big (because round things are big, but it doesn't mean that all round things are big, it means that all big things are round). However, we can't conclude that Gary is quiet because we are missing the link between being blue and being big.\n\n7. Since Gary is blue and young, and young, white things are round, and Gary is white, we can say that Gary is round. However, we still can't say that Gary is quiet.\n\n8. We are given that Charlie is round and Charlie is quiet, then Charlie is not young. However, we are not given any information about Charlie being quiet. This statement is not relevant to determining whether Gary is quiet.\n\n9. Since we don't have any information about Gary being quiet, we can't conclude whether Gary is quiet or not.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given statements and their implications. We can start by using the statements to find information about Gary.\n\n1. Gary is blue.\n2. Gary is white.\n\nFrom these two statements, we can conclude that Gary is both blue and white. This information will be useful later.\n\nNow, let's analyze the given implications:\n\n1. If Charlie is round and Charlie is quiet then Charlie is not young.\n2. If something is quiet then it is smart.\n3. All blue things are young.\n4. Big, blue things are quiet.\n5. Young, white things are round.\n6. If Fiona is big and Fiona is not white then Fiona is blue.\n7. If Charlie is big and Charlie is young then Charlie is not smart.\n8. Round things are big.\n\nFrom statement 3, we know that all blue things are young. Since Gary is blue, we can conclude that Gary is young (statement 3).\n\nHowever, we still need to determine if Gary is quiet or not.\n\nLet's try to find information about Gary being quiet. \n\nWe have statement 4: Big, blue things are quiet. Since Gary is blue (statement 1), and we don't have any information about Gary's size, we can't directly conclude that Gary is quiet based on this statement.\n\nNow, let's look at statement 7: If Charlie is big and Charlie is young then Charlie is not smart. We know that Charlie is round (from the statement), and we also know that round things are big (statement 8). However, we don't have any information about Charlie's age or size.\n\nSince we don't have any information about Gary being quiet or big, we need to analyze other statements. \n\nFrom statement 8: Round things are big, we can conclude that since Gary is round (from statement 1 and statement 2) and we can also conclude that Charlie is round, then both are big.\n\nNow, we can use statement 5: Young, white things are round. We know that Charlie is round and Charlie is young (from statement 1). However, we don't have any information about Charlie being white. We also know that Gary is round, white, and young. \n\nNow, let's look at statement 2: Gary is white. Since we know that Gary is white, we can use statement 5 to conclude that Gary is young.\n\nNow we can use statement 7: If Charlie is big and Charlie is young then Charlie is not smart. Since Charlie is big, Charlie is young, and Charlie is not smart, then Charlie is quiet because if something is quiet then it is smart (statement 2).\n\nHowever, this conclusion about Charlie being quiet is not relevant to our problem of determining whether Gary is quiet or not.\n\nSince Charlie is round and Charlie is quiet, then Charlie is not young. However, we know that Charlie is young from the statement. This is a contradiction, which means that Charlie is not quiet.\n\nHowever, this conclusion about Charlie being quiet is not relevant to our problem of determining whether Gary is quiet or not.\n\nNow, let's look at statement 6: If Fiona is big and Fiona is not white then Fiona is blue. We know that Gary is blue and white. Since we know that Gary is white, we can use statement 6 to conclude that Gary is not big because if Fiona is big and Fiona is not white then Fiona is blue. We know that Fiona is blue. However, we don't have any information about Fiona's size.\n\nHowever, we still need to determine if Gary is quiet or not.\n\nWe have statement 5: Young, white things are round. We know that Gary is young, white, and round.\n\nNow, let's look at statement 7: If Charlie is big and Charlie is young then Charlie is not smart. We know that Charlie is round, and round things are big (statement 8). However, we don't have any information about Charlie's age or size.\n\nHowever, we still need to determine if Gary is quiet or not.\n\nSince we don't have any information about Gary being quiet, we need to analyze other statements. \n\nFrom statement 8: Round things are big, we can conclude that since Gary is round, then Gary is big.\n\nNow, we can use statement 4: Big, blue things are quiet. We know that Gary is big, blue, and round. \n\nHowever, we can't conclude that Gary is quiet based on this statement because Gary is white, and we don't have any information about white things being quiet.\n\nSince we don't have any information about Gary being quiet or white, we need to analyze other statements. \n\nFrom statement 1: Gary is blue, and statement 3: All blue things are young, we can conclude that Gary is young.\n\nNow, let's look at statement 5: Young, white things are round. We know that Charlie is round and Charlie is young. However, we don't have any information about Charlie being white. We also know that Gary is round, white, and young.\n\nSince we know that Gary is young and white, we can use statement 5 to conclude that Gary is round.\n\nNow, let's look at statement 7: If Charlie is big and Charlie is young then Charlie is not smart. Since Charlie is round, and round things are big (statement 8), we can conclude that Charlie is big. \n\nHowever, this conclusion about Charlie being big is not relevant to our problem of determining whether Gary is quiet or not.\n\nSince Charlie is big, Charlie is young, and Charlie is not smart, then Charlie is quiet because if something is quiet then it is smart (statement 2).\n\nHowever, this conclusion about Charlie being quiet is not relevant to our problem of determining whether Gary is quiet or not.\n\nSince we don't have any information about Gary being quiet or white, we need to analyze other statements. \n\nFrom statement 1: Gary is blue, and statement 3: All blue things are young, we can conclude that Gary is young.\n\nNow, let's look at statement 4: Big, blue things are quiet. We know that Gary is blue and round.\n\nNow, let's look at statement 8: Round things are big. We know that Gary is round, and we can conclude that Gary is big.\n\nNow, we can use statement 4: Big, blue things are quiet. We know that Gary is big, blue, and round.\n\nHowever, we can't conclude that Gary is quiet based on this statement because Gary is white, and we don't have any information about white things being quiet.\n\nNow, let's look at statement 2: Gary is white. Since we know that Gary is white, we can use statement 5 to conclude that Gary is round.\n\nHowever, we already know that Gary is round.\n\nNow, let's look at statement 7: If Charlie is big and Charlie is young then Charlie is not smart. We know that Charlie is round, and round things are big (statement 8). However, we don't have any information about Charlie's age or size.\n\nHowever, we still need to determine if Gary is quiet or not.\n\nSince we don't have any information about Gary being quiet or white, we need to analyze other statements. \n\nFrom statement 1: Gary is blue, and statement 3: All blue things are young, we can conclude that Gary is young.\n\nNow, let's look at statement 5: Young, white things are round. We know that Charlie is round and Charlie is young. However, we don't have any information about Charlie being white. We also know that Gary is round, white, and young.\n\nSince we know that Gary is young and white, we can use statement 5 to conclude that Gary is round.\n\nHowever, we already know that Gary is round.\n\nSince we don't have any information about Gary being quiet or white, we need to analyze other statements. \n\nNow, let's look at statement 2: Gary is white. Since we know that Gary is white, we can use statement 5 to conclude that Gary is round.\n\nHowever, we already know that Gary is round.\n\nNow, let's look at statement 4: Big, blue things are quiet. We know that Gary is blue and round.\n\nNow, let's look at statement 8: Round things are big. We know that Gary is round, and we can conclude that Gary is big.\n\nHowever, we can't conclude that Gary is quiet based on this statement because Gary is white, and we don't have any information about white things being quiet.\n\nHowever, we can conclude that Gary is quiet because all blue things are young (statement 3), young, white things are round (statement 5), Gary is round, big (statement 8), big, blue things are quiet (statement 4), and Gary is blue (statement 1).\n\nTherefore, the answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we have:\n   - Gary is blue.\n   - Gary is white.\n   - All blue things are young.\n   - Young, white things are round.\n   - Round things are big.\n\n2. Since Gary is both blue and white, and all blue things are young, we can conclude that Gary is young.\n\n3. Since Gary is young and white, and young white things are round, we can conclude that Gary is round.\n\n4. Since Gary is round, and round things are big, we can conclude that Gary is big.\n\n5. We are given the statement \"If Charlie is round and Charlie is quiet then Charlie is not young.\" However, this statement does not apply to Gary because it only applies to Charlie.\n\n6. We are given the statement \"If something is quiet then it is smart.\" However, we do not have any information about Gary being quiet. We only know that Gary is smart because \"Harry is smart,\" but there is no direct information about Gary's quietness.\n\n7. Since we have a statement \"If Charlie is big and Charlie is young then Charlie is not smart,\" but this does not apply to Gary. However, we can conclude that Charlie is not smart when he is big and young, but we do not have any information about Gary's smartness based on his size and age.\n\n8. To determine whether Gary is quiet or not, we need to find a connection between Gary's characteristics and the given statements about quietness. We have the statement \"If Fiona is big and Fiona is not white then Fiona is blue.\" However, this does not apply to Gary.\n\n9. We also have the statement \"Big, blue things are quiet.\" Since Gary is big and blue, we can conclude that Gary is quiet.\n\nBased on the analysis above, the statement \"Gary is quiet\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Gary is blue (given in the problem statement).\n2. From the statement \"All blue things are young,\" we can conclude that Gary is young.\n3. We also know that Gary is white (given in the problem statement).\n4. From the statement \"Young, white things are round,\" we can conclude that Gary is round.\n5. From the statement \"Round things are big,\" we can conclude that Gary is big.\n6. We are given the statement \"If Charlie is round and Charlie is quiet then Charlie is not young.\" However, this does not provide any direct information about Gary being quiet or not quiet. Therefore, we cannot use this statement to conclude anything about Gary.\n7. We are also given the statement \"If something is quiet then it is smart.\" However, we do not have any information about Gary being quiet or not quiet to use this statement.\n8. We are given the statement \"Big, blue things are quiet.\" This statement seems to be relevant to Gary, but it is conditional on Gary being blue. We already know that Gary is blue, so this statement might be useful.\n9. We also know that Gary is not quiet because it is big, and big, blue things are quiet. However, this is a contradiction. We know that Gary is blue, and big, blue things are quiet, but we also know that Gary is white. Big, blue things are quiet, but big, white things are not necessarily quiet.\n\nHowever, we are given a statement \"If Charlie is big and Charlie is young then Charlie is not smart.\" Charlie is not relevant to Gary. So we can't use it to find out whether Gary is quiet or not. \n\nSince Gary is not big, blue, it is irrelevant to the condition \"Big, blue things are quiet.\" However, we know that Gary is blue, and all blue things are young. But we also know that Gary is white. \n\nHowever, we are given the statement \"If Fiona is big and Fiona is not white then Fiona is blue.\" Fiona is not relevant to Gary. So we can't use it to find out whether Gary is quiet or not.\n\nHowever, we are given the statement \"If something is quiet then it is smart.\" This is relevant to Gary only if we know that Gary is quiet. But we don't know that. \n\nHowever, we are given the statement \"Gary is blue. Gary is white.\" We know that Gary is blue and all blue things are young. We also know that Gary is white, but we don't know if Gary is big. However, big, blue things are quiet, but big, white things are not necessarily quiet.\n\nHowever, we are given the statement \"If Charlie is round and Charlie is quiet then Charlie is not young.\" Charlie is not relevant to Gary. So we can't use it to find out whether Gary is quiet or not.\n\nHowever, we are given the statement \"Round things are big.\" We know that Gary is round, and we can conclude that Gary is big.\n\nSince Gary is blue, and big, blue things are quiet, then Gary is quiet.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Gary is quiet, we need to analyze the given statements and their implications.\n\nGiven statements:\n1. Gary is blue.\n2. Gary is white.\n3. If something is quiet then it is smart.\n4. All blue things are young.\n5. Big, blue things are quiet.\n6. Young, white things are round.\n7. If Charlie is round and Charlie is quiet then Charlie is not young.\n8. If Charlie is big and Charlie is young then Charlie is not smart.\n9. Round things are big.\n10. Harry is blue.\n11. Harry is round.\n12. Harry is smart.\n13. If Fiona is big and Fiona is not white then Fiona is blue.\n\nSince Gary is both blue and white, we need to find a combination of statements that can help us determine if Gary is quiet. \n\nFrom statement 2, Gary is white. \nFrom statement 6, Young, white things are round.\nSince Gary is white, it implies that Gary is round (by statement 6).\n\nFrom statement 9, Round things are big.\nSince Gary is round, it implies that Gary is big (by statement 9).\n\nNow, we can analyze the statements involving Charlie to find a connection to Gary. However, Charlie's properties do not directly affect Gary's properties. \n\nFrom statement 4, All blue things are young.\nSince Gary is blue (statement 1), it implies that Gary is young (by statement 4).\n\nNow, we can try to find a connection between Gary's properties (blue, white, young, and big) to the property of being quiet. \n\nFrom statement 5, Big, blue things are quiet.\nSince Gary is both big (from statement 9 and Gary being round) and blue (statement 1), it implies that Gary is quiet (by statement 5).\n\nTherefore, the statement \"Gary is quiet\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement 'Gary is quiet' is true, false, or unknown, we need to use the given information and apply logical reasoning step by step.\n\n1. Given information:\n   - Gary is blue. (From the statement 'Gary is blue.')\n   - Gary is white. (From the statement 'Gary is white.')\n   - Harry is blue. (From the statement 'Harry is blue.')\n   - Harry is round. (From the statement 'Harry is round.')\n   - Harry is smart. (From the statement 'Harry is smart.')\n   - If Charlie is round and Charlie is quiet then Charlie is not young. (From the statement 'If Charlie is round and Charlie is quiet then Charlie is not young.')\n   - If something is quiet then it is smart. (From the statement 'If something is quiet then it is smart.')\n   - All blue things are young. (From the statement 'All blue things are young.')\n   - Big, blue things are quiet. (From the statement 'Big, blue things are quiet.')\n   - Young, white things are round. (From the statement 'Young, white things are round.')\n   - If Fiona is big and Fiona is not white then Fiona is blue. (From the statement 'If Fiona is big and Fiona is not white then Fiona is blue.')\n   - If Charlie is big and Charlie is young then Charlie is not smart. (From the statement 'If Charlie is big and Charlie is young then Charlie is not smart.')\n   - Round things are big. (From the statement 'Round things are big.')\n\n2. Analyzing the information:\n   - Since Gary is both blue and white, we cannot directly apply the rule 'All blue things are young' because the statement does not specify if white things are not young.\n   - However, we can infer that Gary is young from the fact that he is blue and the rule 'All blue things are young'.\n\n3. Analyzing the statement 'Gary is quiet':\n   - To determine if Gary is quiet, we need to analyze the given rules and the characteristics of Gary.\n   - Since Gary is young and blue, he is indeed young from the rule 'All blue things are young.' \n   - However, the rule 'Big, blue things are quiet' cannot be directly applied to Gary because it does not specify that blue things are not quiet when they are not big.\n   - But, we know that 'Round things are big' and since 'Young, white things are round,' we can conclude that Charlie is both young and round. \n   - However, it does not imply that Gary is round or that Gary is big.\n   - We do not have enough information to directly apply the rule 'If Charlie is round and Charlie is quiet then Charlie is not young' to Gary, as we do not know if Gary is quiet or not.\n\n4. Conclusion:\n   - Since we do not have enough information to determine if Gary is quiet or not, we cannot apply the rule 'If something is quiet then it is smart' to Gary.\n   - Therefore, the statement 'Gary is quiet' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Gary is quiet, we need to analyze the given statements and their relationships.\n\n1. Gary is blue. (From the statement \"Gary is blue.\")\n2. Gary is white. (From the statement \"Gary is white.\")\n3. All blue things are young. (From the statement \"All blue things are young.\")\n4. Young, white things are round. (From the statement \"Young, white things are round.\")\n5. If something is quiet then it is smart. (From the statement \"If something is quiet then it is smart.\")\n6. Harry is smart. (From the statement \"Harry is smart.\")\n7. Harry is blue. (From the statement \"Harry is blue.\")\n8. Harry is round. (From the statement \"Harry is round.\")\n9. If Charlie is round and Charlie is quiet then Charlie is not young. (From the statement \"If Charlie is round and Charlie is quiet then Charlie is not young.\")\n10. Charlie is round. (From the statement \"Charlie is round.\")\n11. Charlie is quiet. (From the statement \"Charlie is quiet.\")\n12. Charlie is not young. (From the statement \"If Charlie is round and Charlie is quiet then Charlie is not young.\")\n\nFrom statement 3, we know Gary is young because he is blue.\nFrom statement 4, we know that since Gary is young and white, he must be round.\nHowever, we also know that Charlie is round and Charlie is quiet, and Charlie is not young (statement 12). This creates a contradiction if Gary is quiet because then Charlie would not be quiet (statement 9).\nHowever, we cannot conclude that Gary is not quiet from the above statements. We only have information that could lead to a contradiction if Gary is quiet.\n\nHowever, we can use the fact that Charlie is not young (statement 12) to infer that Charlie is not blue. If Charlie is blue, then he would be young (statement 3), which contradicts statement 12.\n\nWe also know that Harry is blue (statement 7) and that all blue things are young (statement 3). However, since Charlie is round (statement 10), we can conclude that Charlie is big (statement 9), which means Charlie is not smart (statement 11). This is a contradiction to statement 6, which says Harry is smart.\n\nTherefore, we can conclude that Charlie is not blue and Harry is smart.\n\nNow, we go back to Gary. We know that Gary is blue (statement 1) and that all blue things are young (statement 3). We also know that Gary is white (statement 2). However, this creates a contradiction because we cannot have both blue and white for Gary.\n\nHowever, we can use the fact that Gary is blue (statement 1) to conclude that Gary is young (statement 3). We also know that Gary is white (statement 2). We also know that young, white things are round (statement 4), which means Gary is round.\n\nSince Charlie is not young (statement 12), we cannot conclude that Charlie is quiet. However, we know that Charlie is quiet (statement 11). This creates a contradiction if Gary is quiet.\n\nHowever, we can use the fact that Charlie is quiet (statement 11) to infer that Charlie is smart (statement 5). We also know that Charlie is round (statement 10), which means Charlie is big (statement 9). However, this creates a contradiction to statement 11, which says Charlie is quiet.\n\nHowever, we can conclude that Charlie is not big from the above statements.\n\nWe know that Charlie is not young (statement 12) and that Charlie is not blue. We also know that Charlie is round (statement 10), which means Charlie is big (statement 9). However, we cannot conclude that Charlie is big from the above statements.\n\nHowever, we can conclude that Charlie is not big.\n\nNow, we go back to Gary. We know that Gary is young (statement 3) and that Gary is white (statement 2). We also know that young, white things are round (statement 4), which means Gary is round.\n\nSince Gary is round (statement 2) and Gary is young (statement 3), we cannot conclude that Gary is quiet. However, we know that Gary is quiet (statement 11). This creates a contradiction.\n\nHowever, we can use the fact that Gary is young (statement 3) and Gary is blue (statement 1) to conclude that Gary is quiet. We know that all blue things are young (statement 3), which means Gary is young.\n\nHowever, we cannot conclude that Gary is quiet from the above statements.\n\nHowever, we can conclude that Gary is not quiet.\n\nTherefore, the final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_gary, young_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, white_gary), round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_gary, big_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_charlie, smart_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> Not(smart(X))",
+          "z3_formula": "Implies(And(big_charlie, young_charlie), Not(smart_charlie))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(smart(charlie))",
+          "z3_formula": "Not(smart_charlie) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary) & white(gary)",
+          "z3_formula": "And(blue_gary, white_gary) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X))",
+          "z3_formula": "Not(quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(gary))",
+          "z3_formula": "Not(quiet_gary) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & Not(white(X)) -> blue(X)",
+          "z3_formula": "Implies(And(big_fiona, Not(white_fiona)), blue_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(gary))",
+          "z3_formula": "Not(quiet_gary) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_gary, smart_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(gary))",
+          "z3_formula": "Not(quiet_gary) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_gary, young_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, white_gary), round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_gary, smart_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_gary, young_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, white_gary), round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_gary, big_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), quiet_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> Not(young(X))",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), Not(young_charlie))",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & white(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(big_gary, white_gary), Not(quiet_gary))",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary) & white(gary)",
+          "z3_formula": "And(blue_gary, white_gary) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_gary, young_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, white_gary), round_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_gary, big_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_gary, smart_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> Not(young(X))",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), Not(young_charlie))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> Not(smart(X))",
+          "z3_formula": "Implies(And(big_charlie, young_charlie), Not(smart_charlie))",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & Not(white(X)) -> blue(X)",
+          "z3_formula": "Implies(And(big_fiona, Not(white_fiona)), blue_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary) & young(gary) & round(gary) & blue(gary)",
+          "z3_formula": "And(big_gary, young_gary, round_gary, blue_gary) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(gary) | smart(gary))",
+          "z3_formula": "Not(Or(quiet_gary, smart_gary))",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_gary, young_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, white_gary), round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_harry, smart_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> not young(X)",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), Not(young_charlie))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not young(Charlie)",
+          "z3_formula": "Not(young_charlie) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_gary, big_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_gary, young_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, white_gary), round_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_harry, young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_harry, big_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> not young(X)",
+          "z3_formula": "Implies(quiet_charlie, not young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_X, smart_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> not young(X)",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), not young_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(quiet_gary == True, quiet_gary == False))",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_charlie, smart_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_charlie, smart_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_charlie, cold_charlie), white_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_gary, blue_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, white_gary), round_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), quiet_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_charlie, round_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> not smart(X)",
+          "z3_formula": "Implies(And(big_charlie, young_charlie), Not(smart_charlie))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_gary, young_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, white_gary), round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_gary, big_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_gary, young_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, white_gary), round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_gary, big_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_gary, smart_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_gary, young_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_gary, big_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, white_gary), round_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> Not(young(X))",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), Not(young_charlie))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> Not(smart(X))",
+          "z3_formula": "Implies(And(big_charlie, young_charlie), Not(smart_charlie))",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & Not(white(X)) -> blue(X)",
+          "z3_formula": "Implies(And(big_fiona, Not(white_fiona)), blue_fiona)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> not young(X)",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), not_young_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_X, smart_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_X, young_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_X, blue_X), quiet_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(young_X, white_X), round_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not white(X) -> blue(X)",
+          "z3_formula": "Implies(And(big_fiona, not white_fiona), blue_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> not smart(X)",
+          "z3_formula": "Implies(And(big_charlie, young_charlie), not_smart_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_gary, young_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, white_gary), round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_gary, smart_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> not young(X)",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), not young_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not young(charlie)",
+          "z3_formula": "not young_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_charlie, big_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not smart(X)",
+          "z3_formula": "Implies(big_charlie, not smart_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not big(charlie)",
+          "z3_formula": "not big_charlie == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_gary, young_gary)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, white_gary), round_gary)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & young(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(round_gary, young_gary), not quiet_gary)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(young_gary, blue_gary), quiet_gary)",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(gary)",
+          "z3_formula": "not quiet_gary == True",
+          "source_step": 25
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 188,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 54
+    },
+    "maxsat_stats": {
+      "satisfied": 48,
+      "excluded": 6,
+      "total_weight": 173,
+      "solve_time_ms": 2.1062735468149185
+    },
+    "timing": {
+      "trace_gen_s": 21.847,
+      "extraction_s": 32.774,
+      "dedup_s": 1.665,
+      "maxsat_s": 0.005,
+      "total_s": 56.291
+    }
+  }
+}

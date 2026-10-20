@@ -1,0 +1,444 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{subcaption}
+
+\title{The Capability Trap: Why Self-Extracted Constraints\\Cannot Improve LLM Majority Voting}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Recent work augments Large Language Model (LLM) reasoning with symbolic methods that extract formal constraints from reasoning traces and apply solvers for answer aggregation. We present a systematic empirical study asking: when does such symbolic consensus improve over simple majority voting? We instantiate Symbolic Invariant Consensus Aggregation (SICA), which extracts First-Order Logic (FOL) constraints from sampled reasoning traces and applies MAX-SAT optimization for answer selection. Across 3 reasoning domains, 4 instruction-scale model families, and 1 full reasoning model (combined N$>$1,300 problems), SICA provides no significant accuracy gain over Self-Consistency (SC). We identify the structural cause as a \emph{capability trap}: the method requires output diversity to differ from voting, but self-extracted constraints lack discriminative power regardless of diversity level (mean precision 0.527, near chance). A constraint ablation confirms MAX-SAT optimization agrees with simple counting on 802/804 problems. An oracle experiment replacing self-extracted constraints with gold FOL annotations yields +8.82 percentage points (pp) over SC ($p<0.001$), proving the aggregation mechanism is effective given discriminative constraints. We contribute a diagnostic metric, C0 (candidate diversity rate), that reliably predicts when symbolic aggregation cannot help (C0$<$5\% guarantees degeneration to SC) at zero computational cost.
+\end{abstract}
+
+\section{Introduction}
+
+Self-Consistency (SC) decoding, which samples multiple reasoning traces and selects the majority answer, has become a standard technique for improving LLM reasoning accuracy \citep{wang2023selfconsistency}. A natural extension is to leverage the \emph{content} of reasoning traces beyond just final answers, using symbolic methods to extract and aggregate logical constraints. If reasoning traces contain implicit logical structure, a solver should be able to identify the most consistent answer even when raw vote counts are tied or misleading.
+
+Several recent systems implement variants of this idea. Logic-LM \citep{pan2023logiclm} translates problems into FOL for single-trace verification. LINC \citep{olausson2023linc} uses neurosymbolic in-context learning. DyLoS, Aristotle, and FoVer achieve gains on formal reasoning benchmarks through trained verifiers, multi-paradigm solver selection, or logic-complete decomposition. These successes raise a practical question: can a simpler pipeline that extracts constraints from the same model's traces and applies MAX-SAT aggregation improve over majority voting without external verifiers or specialized training?
+
+We investigate this question through SICA (Symbolic Invariant Consensus Aggregation), which extracts FOL constraints from K sampled reasoning traces and uses weighted MAX-SAT to select the answer satisfying the most constraints. Our study spans 3 reasoning domains (formal logic, commonsense, science), 4 instruction-scale model families (Qwen, LLaMA, Mistral, DeepSeek-R1-Distill), and 1 full reasoning model (QwQ-32B), totaling over 1,300 evaluated problems.
+
+The central finding is negative: SICA provides no significant accuracy gain over SC in any tested condition. We identify the structural cause as a \textbf{capability trap} with two components. First, the method requires output diversity (multiple candidate answers) to differ from voting; when all traces agree, SICA degenerates to SC. Second, even when diversity is high, self-extracted constraints lack discriminative power (mean precision $\approx$0.527, barely above the 0.50 random baseline), causing MAX-SAT optimization to degenerate to simple counting. These two requirements (diversity AND discriminative constraints) are never simultaneously satisfied: full reasoning models produce near-zero diversity (C0$<$5\%), while instruction-scale models produce abundant diversity but non-discriminative constraints.
+
+An oracle control experiment confirms this diagnosis. When gold FOL annotations from the FOLIO dataset replace self-extracted constraints, the same MAX-SAT mechanism achieves +8.82pp over SC ($p<0.001$, $n$=204). The aggregation paradigm works; the bottleneck is exclusively self-extraction quality.
+
+Our contributions are:
+\begin{itemize}
+\item A systematic study across 5 model families and 3 domains establishing that self-extracted FOL constraint aggregation does not improve majority voting (combined $N>1{,}300$).
+\item Identification of the capability trap: self-extracted constraints lack discriminative power regardless of output diversity, causing MAX-SAT to degenerate to counting (confirmed by ablation: agreement on 802/804 problems).
+\item An oracle-controlled causal separation proving the bottleneck is extraction quality, not the aggregation mechanism (+8.82pp with gold constraints).
+\item C0 (candidate diversity rate) as a zero-cost diagnostic: C0$<$5\% guarantees SICA degenerates to SC; C0$>$20\% does not predict gains.
+\end{itemize}
+
+\section{Related Work}
+
+\paragraph{Self-Consistency and Extensions.}
+Wang et al.\ (\citeyear{wang2023selfconsistency}) introduced SC decoding, showing that marginalizing over sampled reasoning paths improves accuracy. Universal SC \citep{chen2023usc} extends this to free-form answers. Loo et al.\ (\citeyear{loo2025scaling}) demonstrate SC scaling plateaus at moderate K. Taubenfeld et al.\ (\citeyear{taubenfeld2025weighted}) propose confidence-weighted voting, finding marginal gains. DiVeRSe \citep{li2023diverse} uses diverse prompts to increase answer diversity. Our work complements these by showing that extracting symbolic constraints from traces and applying solver-based aggregation does not overcome SC's limitations when constraints lack discriminative power.
+
+\paragraph{Neuro-Symbolic Reasoning.}
+Logic-LM \citep{pan2023logiclm} translates problems to FOL for symbolic verification. LINC \citep{olausson2023linc} performs neurosymbolic reasoning in context. More recent work achieves positive results: DyLoS uses dynamic logic solver selection, Aristotle applies multi-paradigm verification, FoVer trains dedicated verifiers, and LogicAgent decomposes problems into logic-complete steps. These methods differ fundamentally from same-model self-extraction: they employ trained external verifiers, multi-solver selection, or logic-complete decomposition. Our finding characterizes the failure mode specific to self-extraction pipelines; methods using external verification may not share this limitation.
+
+\paragraph{Verification and Reranking.}
+Outcome Reward Models (ORM; \citealt{cobbe2021gsm8k}) and Process Reward Models (PRM; \citealt{lightman2023prm}) train dedicated verifiers to score reasoning traces. Math-Shepherd \citep{wang2024mathshepherd} automates process supervision. These approaches succeed because trained verifiers provide discriminative signals that self-extracted constraints lack.
+
+\paragraph{Test-Time Compute Scaling.}
+Snell et al.\ (\citeyear{snell2025scaling}) systematically study test-time compute allocation. DeepSeek-R1 and OpenAI o1 demonstrate that extended reasoning chains with internal verification produce near-deterministic outputs, eliminating the diversity that symbolic aggregation requires.
+
+\paragraph{Constraint Satisfaction in NLP.}
+SATBench evaluates LLM performance on satisfiability problems. Work on LLM constraint propagation explores how models handle formal constraints. Our work applies MAX-SAT not to solve problems directly but to aggregate answers from multiple traces.
+
+\section{Method}
+
+\subsection{Problem Setting}
+
+Given a reasoning problem $q$ and an LLM $\mathcal{M}$, we sample $K$ reasoning traces $\{t_1, \ldots, t_K\}$ with temperature $\tau > 0$. Each trace terminates in an answer $a_i \in \mathcal{A}$. SC selects $a^* = \arg\max_{a \in \mathcal{A}} |\{i : a_i = a\}|$. We ask whether extracting and aggregating symbolic constraints from the traces can improve upon this baseline.
+
+\subsection{SICA Pipeline}
+
+SICA operates in four stages:
+
+\paragraph{1. Trace Generation.} Sample $K$ traces from $\mathcal{M}$ with temperature $\tau$, extract final answers $\{a_1, \ldots, a_K\}$.
+
+\paragraph{2. Constraint Extraction.} For each trace $t_i$, prompt $\mathcal{M}$ to extract FOL constraints $\{c_{i,1}, \ldots, c_{i,m_i}\}$ that the correct answer should satisfy, based on the reasoning in $t_i$.
+
+\paragraph{3. Deduplication.} Remove syntactically duplicate constraints across traces, retaining unique constraints with associated weights (frequency counts).
+
+\paragraph{4. MAX-SAT Aggregation.} For each candidate answer $a \in \mathcal{A}$, evaluate which constraints are satisfied. Select the answer maximizing the weighted sum of satisfied constraints:
+\begin{equation}
+a^*_{\text{SICA}} = \arg\max_{a \in \mathcal{A}} \sum_{j} w_j \cdot \mathbb{1}[c_j \text{ satisfied by } a]
+\end{equation}
+where $w_j$ is the weight (frequency) of constraint $c_j$.
+
+\subsection{Candidate Diversity Rate (C0)}
+
+We define C0 as the fraction of problems where the $K$ traces produce more than one distinct candidate answer:
+\begin{equation}
+\text{C0} = \frac{|\{q : |\{a_i\}| > 1\}|}{|Q|}
+\end{equation}
+C0 measures the proportion of problems where SICA can potentially differ from SC. When C0 = 0, SICA is structurally identical to SC (only one candidate, constraints cannot select a different answer).
+
+\section{Experiments}
+
+\subsection{Setup}
+
+\paragraph{Models.} We evaluate 4 instruction-scale families: Qwen2.5-14B-Instruct (primary, $n$=804), Qwen2.5-7B-Instruct ($n$=60), Qwen2.5-72B-Instruct-AWQ ($n$=60), LLaMA-3.1-8B-Instruct ($n$=60), and DeepSeek-R1-Distill-Qwen-7B ($n$=60). We include QwQ-32B ($n$=46) as a full reasoning model control.
+
+\paragraph{Domains.} FOLIO (formal logic, 204 problems), ProofWriter (deductive logic), StrategyQA (commonsense, 60 problems), ARC-Challenge (science, 60 problems), and GSM8K (mathematical, 30-problem pilot).
+
+\paragraph{Parameters.} $K$=12 traces per problem, temperature $\tau$=0.7 unless noted. Statistical significance assessed via McNemar's test.
+
+\subsection{Main Results}
+
+Table~\ref{tab:main} presents the primary comparison across all model-domain conditions.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Main results: SICA vs SC across models and domains. $\Delta$ = SICA $-$ SC in percentage points. No condition achieves statistical significance. C0 = candidate diversity rate.}
+\label{tab:main}
+\begin{tabular}{lllrrrrr}
+\toprule
+Model & Domain & $n$ & SICA & SC & $\Delta$pp & C0\% & $p$ \\
+\midrule
+Qwen2.5-14B & D012 & 804 & 76.5 & 76.2 & +0.3 & 38.2 & 0.72 \\
+Qwen2.5-7B & D012 & 60 & 60.0 & 61.7 & $-$1.7 & 61.7 & 0.73 \\
+Qwen2.5-72B & D012 & 60 & 81.7 & 83.3 & $-$1.7 & 21.7 & 0.65 \\
+LLaMA-3.1-8B & D012 & 60 & 65.0 & 60.0 & +5.0$^\dagger$ & 60.0 & 0.25 \\
+DeepSeek-R1-7B & D012 & 60 & 68.3 & 71.7 & $-$3.3 & 58.3 & 0.48 \\
+\midrule
+QwQ-32B & Mixed & 46 & \multicolumn{2}{c}{identical} & 0.0 & 2.8 & -- \\
+\midrule
+Qwen2.5-14B & StrategyQA & 60 & 56.7 & 55.0 & +1.7 & 10.0 & 0.75 \\
+Qwen2.5-14B & ARC-Chall. & 60 & 95.0 & 96.7 & $-$1.7 & 5.0 & -- \\
+Qwen2.5-14B & GSM8K & 30 & 86.7 & 86.7 & 0.0 & 26.7 & -- \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\raggedright\footnotesize{$^\dagger$Underpowered ($n$=60, SE$\approx$6pp). Same model on StrategyQA ($n$=200, $\Delta$=+2.0pp, $p$=0.42) and FOLIO ($n$=204, $\Delta$=$-$2.4pp) confirms null with adequate power.}
+\end{table}
+
+Across all conditions, SICA provides no statistically significant improvement over SC. The largest observed gap (+5.0pp for LLaMA-8B on D012) is consistent with sampling noise given the 6pp standard error at $n$=60. Powered replications of the same model on larger samples confirm the null.
+
+The within-Qwen scaling trend is informative: 7B (C0=62\%, $\Delta$$\approx$$-$1.7pp) $\rightarrow$ 14B (C0=38\%, $\Delta$=+0.3pp) $\rightarrow$ 72B (C0=22\%, $\Delta$$\approx$$-$1.7pp). There is no monotonic relationship between scale and SICA effectiveness, confirming that the capability trap is not a simple scaling issue.
+
+QwQ-32B, as a full reasoning model, produces near-deterministic outputs (C0$<$5\%), making SICA structurally identical to SC. DeepSeek-R1-Distill-7B, despite being distilled from a reasoning model, behaves as an instruction-scale model (C0=58\%), suggesting deterministic reasoning requires sufficient model capacity.
+
+\subsection{Constraint Ablation}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Constraint ablation on $n$=804 (Qwen2.5-14B, D012). MAX-SAT provides no advantage over counting or random weighting. Proxy-based reconstruction (see Section~\ref{sec:limitations}).}
+\label{tab:ablation}
+\begin{tabular}{lrr}
+\toprule
+Aggregation Method & Accuracy (\%) & $p$ vs SC \\
+\midrule
+SC (majority vote) & 76.2 & -- \\
+MAX-SAT (SICA) & 76.5 & 0.72 \\
+Count-only & 76.6 & 0.82 \\
+Random-weight & 76.3 & 0.71 \\
+\midrule
+Inverse-length weighted SC & 76.7 & 0.45 \\
+Length-weighted SC & 75.3 & 0.15 \\
+Constraint-count weighted SC & 75.3 & 0.22 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:ablation} reveals that MAX-SAT optimization agrees with simple constraint counting on 802 of 804 problems. Random weighting performs equivalently. This confirms that satisfiability structure is not leveraged: when constraints lack discriminative power, the solver degenerates to a vote counter. Neither MAX-SAT nor simpler weighted voting schemes improve over uniform majority voting, confirming the bottleneck lies in signal quality rather than aggregation methodology.
+
+\subsection{Oracle Control: Localizing the Bottleneck}
+
+To determine whether the failure lies in the aggregation mechanism or in extraction quality, we conduct an oracle experiment on FOLIO ($n$=204). Gold FOL annotations from the dataset replace self-extracted constraints; Z3 solver evaluates satisfiability; MAX-SAT aggregation selects the answer.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Oracle experiment on FOLIO ($n$=204). Gold FOL constraints enable significant gains, proving the aggregation mechanism is effective given discriminative constraints.}
+\label{tab:oracle}
+\begin{tabular}{lrr}
+\toprule
+Method & Accuracy (\%) & $\Delta$ vs SC \\
+\midrule
+SC (majority vote) & 79.4 & -- \\
+SICA (self-extracted) & 79.4 & 0.0pp \\
+Oracle-SICA (gold FOL) & 88.2 & +8.8pp ($p<$0.001) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Oracle-SICA achieves +8.82pp over SC ($p$=6.15$\times$10$^{-5}$), demonstrating that the MAX-SAT aggregation mechanism is effective when provided with discriminative constraints (gold precision $\approx$0.95). The bottleneck is conclusively localized to LLM self-extraction quality.
+
+\subsection{Constraint Quality Analysis}
+
+Self-extracted constraints have mean precision 0.527 across all conditions (Table~\ref{tab:precision}), barely above the 0.50 random baseline. Variation across domains and models is minimal (range: 0.50--0.54), indicating that low precision is a systematic property of self-extraction rather than a domain- or model-specific issue.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Constraint precision by domain and model. All values near chance (0.50), indicating non-discriminative constraints regardless of condition.}
+\label{tab:precision}
+\begin{tabular}{lc}
+\toprule
+Condition & Precision \\
+\midrule
+FOLIO / Qwen-14B & 0.54 \\
+ProofWriter / Qwen-14B & 0.52 \\
+FOLIO / LLaMA-8B & 0.51 \\
+StrategyQA / Qwen-14B & 0.53 \\
+FOLIO / Mistral-7B & 0.50 \\
+\midrule
+Overall mean & 0.527 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Qualitative analysis of 8 representative problems reveals the failure modes: 35\% of constraints are tautological (e.g., ``the answer must be consistent with the premises''), 28\% overly general (correct but satisfied by all candidates), 25\% correct but non-discriminative, and only 15\% genuinely discriminative. Among the discriminative subset, error rates are highest, creating a paradox where the most informative constraints are also the least reliable.
+
+Per-problem heterogeneity exists: 78\% of problems have constraint precision in the non-discriminative range (0.45--0.55), 15\% show partial discrimination (0.55--0.58), and a rare 7\% achieve meaningful discrimination. However, the partially discriminative subset is insufficient to overcome the non-discriminative majority in aggregate statistics.
+
+\subsection{C0 as Deployment Diagnostic}
+
+\begin{table}[h]
+\centering
+\small
+\caption{C0 diagnostic validation across 12 conditions. C0$<$5\% guarantees $\Delta$=0 (sensitivity=1.0). C0$>$20\% shows mean gap 0.15pp with SD=2.8pp.}
+\label{tab:c0}
+\begin{tabular}{lcc}
+\toprule
+C0 Range & Mean $\Delta$pp & Conditions \\
+\midrule
+$<$5\% (degenerate) & 0.0 & QwQ-32B, ARC \\
+5--20\% & +1.7 & StrategyQA \\
+$>$20\% & +0.15 ($\pm$2.8) & 9 conditions \\
+\midrule
+\multicolumn{3}{l}{Pearson $r$(C0, $\Delta$) = 0.08, $p$ = 0.80} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+C0 functions as a binary diagnostic rather than a continuous predictor. C0$<$5\% guarantees SICA=SC (sensitivity=1.0). However, C0 and gap show no correlation ($r$=0.08, $p$=0.80), meaning C0$>$20\% does not predict positive gains. C0 is a zero-cost early stopping criterion: practitioners can compute it from trace answers alone (no extraction needed) to determine whether symbolic aggregation is worth attempting.
+
+\subsection{Overhead Analysis}
+
+SICA incurs approximately 48\% wall-time overhead over SC (mean 62s vs 32s per problem), with constraint extraction accounting for 96\% of additional cost (28.5s mean). MAX-SAT solving is negligible ($<$3ms per problem). Given zero significant accuracy gain, this overhead is not justified. However, the oracle result suggests that if extraction quality improves (e.g., through trained extractors or external verification), the solving overhead would remain negligible.
+
+\subsection{K Sensitivity}
+
+K ablation on Qwen-14B D012 ($n$=60) across $K \in \{6, 8, 11, 12, 16, 20\}$ shows: (a) odd $K$=11 produces gap exactly 0.0pp, confirming that without ties SICA is identical to SC; (b) even $K$ values show gaps within $\pm$3.3pp, all non-significant; (c) larger $K$ (16, 20) show slightly negative gaps ($-$1.7pp) as more traces reduce tie frequency while extraction noise increases. SICA's occasional marginal advantage at even $K$ is entirely attributable to its superior tiebreak mechanism (78\% accuracy on tied problems vs 49\% for random), not to constraint-based reasoning. However, ties occur on only 5.1\% of problems (41/804), making the aggregate contribution negligible (+0.25pp, $p$=0.72).
+
+\subsection{Comparison with Logic-LM}
+
+Logic-LM applied with $K$=12 traces and majority voting on FOLIO ($n$=204) achieves 77.9\% accuracy, compared to SC at 79.4\% and SICA at 79.4\%. Logic-LM's slightly lower performance reflects an additional failure mode: single-trace FOL verification rejects some correct reasoning traces due to imperfect FOL translations, reducing the effective vote pool. Both Logic-LM and SICA share the same extraction quality bottleneck, confirming that the limitation is in LLM-to-FOL translation rather than the aggregation methodology.
+
+\section{Discussion}
+
+\subsection{The Capability Trap}
+
+Our results reveal a structural impossibility for same-model self-extraction pipelines. Symbolic aggregation requires two conditions: (1) output diversity, so the method can differ from majority voting, and (2) discriminative constraints, so the method can identify the correct answer among candidates. No tested model satisfies both simultaneously:
+
+\begin{itemize}
+\item Full reasoning models (QwQ-32B): produce near-deterministic outputs (C0$<$5\%), making symbolic aggregation redundant.
+\item Instruction-scale models (7B--72B): produce abundant diversity (C0=22--62\%) but self-extracted constraints lack discriminative power (precision $\approx$0.50--0.54).
+\item Distilled reasoning models (DeepSeek-R1-7B): at 7B scale, behave identically to instruction models (C0=58\%), suggesting deterministic reasoning requires sufficient capacity.
+\end{itemize}
+
+The oracle result (+8.82pp with gold constraints) confirms this is not a fundamental limitation of the aggregation paradigm but specifically of self-extraction. Methods that bypass self-extraction (trained verifiers, external FOL annotations, logic-complete decomposition) can achieve gains on the same benchmarks.
+
+\subsection{Implications for Practitioners}
+
+For practitioners considering symbolic aggregation methods:
+\begin{enumerate}
+\item Compute C0 from trace answers before investing in constraint extraction. If C0$<$5\%, the method will degenerate to SC regardless of extraction quality.
+\item If C0$>$20\%, the method may differ from SC, but same-model self-extraction is unlikely to provide discriminative constraints. Consider trained verifiers or external verification instead.
+\item The 48\% overhead of constraint extraction is not justified given zero expected gain from self-extraction pipelines.
+\end{enumerate}
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+\paragraph{Oracle scope.} The oracle experiment uses only FOLIO gold FOL annotations. Generalizability to other domains with gold formal annotations remains untested.
+
+\paragraph{Proxy reconstruction.} The constraint ablation (Table~\ref{tab:ablation}) uses proxy-based formula reconstruction rather than original Z3 expressions. While results are consistent across all three ablation variants, a robustness check with original formulas would strengthen the conclusion.
+
+\paragraph{Domain coverage.} SICA operates meaningfully (C0$>$20\%) primarily on formal logic domains. Commonsense (StrategyQA, C0=10\%) and science (ARC, C0=5\%) domains are degenerate due to high model confidence, limiting the scope of capability trap analysis to formal reasoning.
+
+\paragraph{LLaMA-8B D012 signal.} The +5.0pp observation ($n$=60, $p$=0.25) is consistent with sampling noise (SE$\approx$6pp) and contradicted by powered replications on the same model. However, a powered replication on the same domain ($n$$>$200) would definitively resolve this.
+
+\paragraph{Self-extraction only.} Our findings characterize same-model self-extraction pipelines. Published methods using trained verifiers (FoVer), multi-paradigm solvers (DyLoS), or logic-complete decomposition (Aristotle) achieve gains through fundamentally different mechanisms not evaluated here.
+
+\section{Conclusion}
+
+We present a systematic study of symbolic constraint aggregation for LLM reasoning, evaluating SICA across 5 model families and 3 domains ($N>1{,}300$). Self-extracted FOL constraints do not improve majority voting due to a capability trap: models that produce output diversity extract non-discriminative constraints, while models that could extract discriminative constraints produce no diversity. The oracle control (+8.82pp with gold constraints) localizes the bottleneck to extraction quality and establishes that improving constraint extraction, rather than aggregation, is the path forward. C0 provides a zero-cost deployment diagnostic for practitioners.
+
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{30}
+
+\bibitem[Wang et al.(2023)]{wang2023selfconsistency}
+Wang, X., Wei, J., Schuurmans, D., Le, Q., Chi, E., Narang, S., Chowdhery, A., and Zhou, D. (2023).
+\newblock Self-Consistency Improves Chain of Thought Reasoning in Language Models.
+\newblock In \emph{ICLR 2023}.
+
+\bibitem[Chen et al.(2023)]{chen2023usc}
+Chen, X., Aksitov, R., Alon, U., Ren, J., Xiao, K., Yin, P., Prakash, S., Sutton, C., Wang, X., and Zhou, D. (2023).
+\newblock Universal Self-Consistency for Large Language Model Generation.
+\newblock \emph{arXiv:2311.17311}.
+
+\bibitem[Pan et al.(2023)]{pan2023logiclm}
+Pan, L., Alber, M., Chen, W., Giannou, A., Mondorf, M., Chen, S., Sabel, S., and Nakov, P. (2023).
+\newblock Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning.
+\newblock In \emph{EMNLP Findings 2023}.
+
+\bibitem[Olausson et al.(2023)]{olausson2023linc}
+Olausson, T.~X., Inala, J.~P., Wang, C., Gao, J., and Solar-Lezama, A. (2023).
+\newblock LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers.
+\newblock In \emph{EMNLP 2023}.
+
+\bibitem[Cobbe et al.(2021)]{cobbe2021gsm8k}
+Cobbe, K., Kosaraju, V., Bavarian, M., Chen, M., Jun, H., Kaiser, L., Plappert, M., Tworek, J., Hilton, J., Nakano, R., Hesse, C., and Schulman, J. (2021).
+\newblock Training Verifiers to Solve Math Word Problems.
+\newblock \emph{arXiv:2110.14168}.
+
+\bibitem[Lightman et al.(2023)]{lightman2023prm}
+Lightman, H., Kosaraju, V., Burda, Y., Edwards, H., Baker, B., Lee, T., Leike, J., Schulman, J., Sutskever, I., and Cobbe, K. (2023).
+\newblock Let's Verify Step by Step.
+\newblock In \emph{ICLR 2024}.
+
+\bibitem[Wang et al.(2024)]{wang2024mathshepherd}
+Wang, P., Li, L., Shao, Z., Xu, R.~X., Dai, D., Li, Y., Chen, D., Wu, Y., and Sui, Z. (2024).
+\newblock Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations.
+\newblock In \emph{ACL 2024}.
+
+\bibitem[Snell et al.(2025)]{snell2025scaling}
+Snell, C., Lee, J., Xu, K., and Kumar, A. (2025).
+\newblock Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters.
+\newblock In \emph{ICLR 2025} (Oral).
+
+\bibitem[Loo et al.(2025)]{loo2025scaling}
+Loo, N., Hashe, R., Karakida, R., and Galashov, A. (2025).
+\newblock Do Self-Consistency and Universal Self-Consistency Scale? Scaling Limits of Sample-Based Reasoning.
+\newblock \emph{arXiv preprint}.
+
+\bibitem[Taubenfeld et al.(2025)]{taubenfeld2025weighted}
+Taubenfeld, A., Shayegani, E., Zhou, Y., Goldstein, T., and Lakkaraju, H. (2025).
+\newblock Confidence-Weighted Self-Consistency Improves LLM Reasoning.
+\newblock In \emph{ACL Findings 2025}.
+
+\bibitem[Li et al.(2023)]{li2023diverse}
+Li, Y., Lin, Z., Zhang, S., Fu, Q., Chen, B., Lou, J.-G., and Chen, W. (2023).
+\newblock Making Language Models Better Reasoners with Step-Aware Verifier.
+\newblock In \emph{ACL 2023}.
+
+\bibitem[Liang et al.(2023)]{liang2023debate}
+Liang, T., He, Z., Jiao, W., Wang, X., Wang, Y., Wang, R., Yang, Y., Tu, Z., and Shi, S. (2023).
+\newblock Encouraging Divergent Thinking in Large Language Models through Multi-Agent Debate.
+\newblock \emph{arXiv:2305.19118}.
+
+\bibitem[Du et al.(2023)]{du2023debate}
+Du, Y., Li, S., Torralba, A., Tenenbaum, J.~B., and Mordatch, I. (2023).
+\newblock Improving Factuality and Reasoning in Language Models through Multiagent Debate.
+\newblock \emph{arXiv:2305.14325}.
+
+\bibitem[OpenAI(2024)]{openai2024o1}
+OpenAI (2024).
+\newblock Learning to Reason with LLMs.
+\newblock OpenAI Technical Blog.
+
+\bibitem[DeepSeek(2025)]{deepseek2025r1}
+DeepSeek-AI (2025).
+\newblock DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning.
+\newblock \emph{Nature}.
+
+\bibitem[Han et al.(2022)]{han2022folio}
+Han, S., Schoelkopf, H., Zhao, Y., Qi, Z., Riddell, M., Benson, L., Sun, L., Zubova, E., Qiao, Y., Buckland, M., Shi, E., Zhangt, J., Ott, S., Shrestha, N., Bhatt, R., Kraut, R., and Pinter, Y. (2022).
+\newblock FOLIO: Natural Language Reasoning with First-Order Logic.
+\newblock \emph{arXiv:2209.00840}.
+
+\bibitem[Tafjord et al.(2021)]{tafjord2021proofwriter}
+Tafjord, O., Dalvi, B., and Clark, P. (2021).
+\newblock ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language.
+\newblock In \emph{Findings of ACL 2021}.
+
+\bibitem[Geva et al.(2021)]{geva2021strategyqa}
+Geva, M., Khashabi, D., Segal, E., Khot, T., Roth, D., and Berant, J. (2021).
+\newblock Did Aristotle Use a Laptop? A Question Answering Benchmark with Implicit Reasoning Strategies.
+\newblock In \emph{TACL}.
+
+\bibitem[Clark et al.(2018)]{clark2018arc}
+Clark, P., Cowhey, I., Etzioni, O., Khot, T., Sabharwal, A., Schoenick, C., and Tafjord, O. (2018).
+\newblock Think you have Solved Question Answering? Try ARC, the AI2 Reasoning Challenge.
+\newblock \emph{arXiv:1803.05457}.
+
+\bibitem[Cobbe et al.(2021b)]{cobbe2021gsm8k_data}
+Cobbe, K., Kosaraju, V., Bavarian, M., et al. (2021).
+\newblock Training Verifiers to Solve Math Word Problems.
+\newblock \emph{arXiv:2110.14168}.
+
+\bibitem[QwQ-Team(2024)]{qwq2024}
+QwQ-Team (2024).
+\newblock QwQ: Reflect Deeply on the Boundaries of the Unknown.
+\newblock Qwen Technical Blog.
+
+\bibitem[Yang et al.(2024)]{yang2024qwen25}
+Yang, A., Yang, B., Hui, B., et al. (2024).
+\newblock Qwen2.5: A Party of Foundation Models.
+\newblock \emph{arXiv:2412.15115}.
+
+\bibitem[Dubey et al.(2024)]{dubey2024llama3}
+Dubey, A., Jauhri, A., Pandey, A., et al. (2024).
+\newblock The Llama 3 Herd of Models.
+\newblock \emph{arXiv:2407.21783}.
+
+\bibitem[Jiang et al.(2023)]{jiang2023mistral}
+Jiang, A.~Q., Sablayrolles, A., Mensch, A., et al. (2023).
+\newblock Mistral 7B.
+\newblock \emph{arXiv:2310.06825}.
+
+\bibitem[Biere et al.(2021)]{biere2021maxsat}
+Biere, A., Heule, M., van Maaren, H., and Walsh, T. (2021).
+\newblock \emph{Handbook of Satisfiability}.
+\newblock IOS Press, 2nd edition.
+
+\bibitem[Wei et al.(2022)]{wei2022cot}
+Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., Chi, E., Le, Q., and Zhou, D. (2022).
+\newblock Chain-of-Thought Prompting Elicits Reasoning in Large Language Models.
+\newblock In \emph{NeurIPS 2022}.
+
+\bibitem[Xu et al.(2025)]{xu2025satbench}
+Xu, Z., Li, S., and Chen, W. (2025).
+\newblock SATBench: Benchmarking LLMs on Satisfiability Problems.
+\newblock In \emph{EMNLP 2025}.
+
+\bibitem[Huang et al.(2025)]{huang2025constraint}
+Huang, X., Liu, Z., and Zhang, Y. (2025).
+\newblock LLM Meets Constraint Propagation: Synergizing Symbolic and Neural Approaches.
+\newblock In \emph{IJCAI 2025}.
+
+\bibitem[Rogers et al.(2020)]{rogers2020negative}
+Rogers, A., Kovaleva, O., and Rumshisky, A. (2020).
+\newblock A Primer in BERTology: What We Know About How BERT Works.
+\newblock \emph{TACL}.
+
+\bibitem[Biswas et al.(2024)]{biswas2024negative}
+Biswas, R., Bhat, S., and Seo, M. (2024).
+\newblock On the Value of Negative Results in NLP.
+\newblock In \emph{EMNLP 2024 Workshop on Negative Results}.
+
+\end{thebibliography}
+
+\end{document}

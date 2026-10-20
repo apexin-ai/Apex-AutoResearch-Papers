@@ -1,0 +1,62 @@
+\relax 
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency and Voting Methods.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Symbolic Reasoning with LLMs.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ensemble and Aggregation Methods.}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Constraint Extraction}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Weighted Partial MAX-SAT Aggregation}{2}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Multi-Candidate Rate ($C_0$)}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Configuration.}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{3}{}\protected@file@percent }
+\newlabel{sec:results}{{5}{3}{}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results: SICA vs.\ SC}{3}{}\protected@file@percent }
+\newlabel{sec:main_results}{{5.1}{3}{}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Tiebreak Analysis}{3}{}\protected@file@percent }
+\newlabel{sec:tiebreak}{{5.2}{3}{}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results: SICA vs.\ SC accuracy (\%) on 804 questions with Qwen2.5-14B-Instruct ($K\!=\!12$, $T\!=\!0.7$). Gap in percentage points. $p$-values from bootstrap resampling.}}{4}{}\protected@file@percent }
+\newlabel{tab:main}{{1}{4}{}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Tiebreak analysis under $K = 12$. ``SICA wins'' means SICA selects the correct answer on a tied question where SC's arbitrary tiebreak would not.}}{4}{}\protected@file@percent }
+\newlabel{tab:tiebreak}{{2}{4}{}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Tiebreak Strategy Comparison}{4}{}\protected@file@percent }
+\newlabel{sec:tiebreak_baselines}{{5.3}{4}{}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}$K$ Ablation}{4}{}\protected@file@percent }
+\newlabel{sec:k_ablation}{{5.4}{4}{}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Model Scaling and Operating Regime}{4}{}\protected@file@percent }
+\newlabel{sec:scaling}{{5.5}{4}{}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}$C_0$ as a Predictor of SICA Effectiveness}{4}{}\protected@file@percent }
+\newlabel{sec:c0}{{5.6}{4}{}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Comparison of tiebreak strategies on 804 questions (Qwen2.5-14B-Instruct, $K=12$). SICA outperforms all heuristic tiebreakers.}}{5}{}\protected@file@percent }
+\newlabel{tab:tiebreak_baseline}{{3}{5}{}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces $K$ ablation on 60 pilot questions (Qwen2.5-14B-Instruct). Accuracy in \%, gap in pp. Tie\% is the fraction of questions with tied votes.}}{5}{}\protected@file@percent }
+\newlabel{tab:k_ablation}{{4}{5}{}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Qualitative Analysis: Constraint Quality}{5}{}\protected@file@percent }
+\newlabel{sec:qualitative}{{5.7}{5}{}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{SICA win (FOLIO).}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SICA failure (ProofWriter).}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Overhead Analysis}{5}{}\protected@file@percent }
+\newlabel{sec:overhead}{{5.8}{5}{}{subsection.5.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Model scaling results on 60 pilot questions ($K\!=\!12$). Accuracy in \%. QwQ-32B produces identical SC and SICA outputs due to near-zero trace diversity.}}{6}{}\protected@file@percent }
+\newlabel{tab:scaling}{{5}{6}{}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Linear regression of SICA--SC gap on $C_0$ across 8 data points (4 models $\times $ varying $K$).}}{6}{}\protected@file@percent }
+\newlabel{tab:c0_regression}{{6}{6}{}{table.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{6}{}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{6}{}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Operating Regime as a Design Principle.}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why Not Just Use a Reasoning Model?}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{6}{}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{6}{}{section.7}{}}
+\bibstyle{plainnat}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Wall-time breakdown per question (Qwen2.5-14B-Instruct, $K\!=\!12$, averaged over 804 questions).}}{7}{}\protected@file@percent }
+\newlabel{tab:overhead}{{7}{7}{}{table.7}{}}
+\gdef \@abspage@last{7}

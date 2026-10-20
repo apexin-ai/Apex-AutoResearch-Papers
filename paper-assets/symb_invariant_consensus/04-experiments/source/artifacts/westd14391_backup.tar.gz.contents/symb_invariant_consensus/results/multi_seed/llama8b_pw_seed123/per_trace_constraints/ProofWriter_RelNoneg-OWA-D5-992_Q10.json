@@ -1,0 +1,1134 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-992_Q10",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(blue_dog, sees_lion_dog), big_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> nice(X)",
+          "z3_formula": "Implies(eats_lion_dog, nice_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, dog)",
+          "z3_formula": "Implies(big_lion, eats_lion_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_lion, nice_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> big(X)",
+          "z3_formula": "Implies(eats_dog_lion, big_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> nice(X)",
+          "z3_formula": "Implies(eats_dog_lion, nice_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_lion, nice_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == False",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_lion, sees_lion_bear), sees_lion_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(blue_dog, sees_dog_dog), big_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_cat_bear, nice_cat), blue_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_cat, nice_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(eats_dog_bear, sees_dog_dog), big_dog)",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, dog)",
+          "z3_formula": "Implies(big_lion, eats_lion_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_dog, sees_lion_bear), sees_lion_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> nice(X)",
+          "z3_formula": "Implies(eats_lion_dog, nice_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(blue_lion, sees_lion_dog), big_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_lion, nice_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_lion, nice_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) ->",
+          "z3_formula": "Implies(likes_lion_cat, ",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) ->",
+          "z3_formula": "Implies(eats_cat_bear, ",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_cat, nice_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) ->",
+          "z3_formula": "Implies(sees_cat_bear, ",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) ->",
+          "z3_formula": "Implies(sees_bear_dog, ",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) ->",
+          "z3_formula": "Implies(likes_bear_cat, ",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_cat_bear, nice_cat), blue_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> blue(X)",
+          "z3_formula": "Implies(blue_cat, blue_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) ->",
+          "z3_formula": "Implies(sees_dog_cat, ",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_dog, sees_dog_bear), sees_dog_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, dog)",
+          "z3_formula": "sees_dog_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(blue_dog, sees_dog_dog), big_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, dog)",
+          "z3_formula": "Implies(big_lion, eats_lion_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_lion, nice_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_dog, sees_dog_bear), sees_dog_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(blue_lion, sees_lion_dog), big_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> nice(X)",
+          "z3_formula": "Implies(eats_dog_lion, nice_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_dog, sees_dog_bear), sees_dog_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(blue_dog, sees_dog_dog), big_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_dog, sees_dog_bear), sees_dog_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(eats_dog_bear, sees_dog_dog), big_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_dog_bear, nice_dog), blue_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_lion, nice_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, dog)",
+          "z3_formula": "Implies(big_cat, eats_cat_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_dog, sees_dog_bear), sees_dog_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(blue_dog, sees_dog_dog), big_dog)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_dog, sees_bear_dog), sees_dog_dog)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(blue_dog, sees_dog_dog), big_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees_dog_dog == True",
+          "z3_formula": "sees_dog_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_bear_dog, nice_dog), blue_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(eats_bear_dog, sees_dog_dog), big_dog)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_dog, sees_dog_bear), sees_dog_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(blue_dog, sees_dog_dog), big_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(eats_lion_bear, sees_lion_dog), big_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, bear)",
+          "z3_formula": "eats_lion_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> cold(X)",
+          "z3_formula": "Implies(eats_lion_cat, cold_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_lion, nice_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, dog)",
+          "z3_formula": "eats_lion_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_lion, sees_lion_bear), sees_lion_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> nice(X)",
+          "z3_formula": "Implies(eats_lion_dog, nice_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_lion_bear, nice_lion), blue_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> big(X)",
+          "z3_formula": "Implies(eats_cat_bear, big_cat)",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, dog)",
+          "z3_formula": "eats_lion_dog == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion) | not big(lion)",
+          "z3_formula": "Or(big_lion, Not(big_lion))",
+          "source_step": 29
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(blue_lion, sees_lion_dog), big_lion)",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion) | not big(lion)",
+          "z3_formula": "Or(big_lion, Not(big_lion))",
+          "source_step": 31
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 32
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 33
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(eats_cat_bear, sees_lion_dog), big_cat)",
+          "source_step": 34
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 35
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 36
+        },
+        {
+          "type": "derived",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 37
+        },
+        {
+          "type": "derived",
+          "expression": "not big(lion)",
+          "z3_formula": "Not(big_lion)",
+          "source_step": 38
+        },
+        {
+          "type": "derived",
+          "expression": "not big(lion)",
+          "z3_formula": "Not(big_lion)",
+          "source_step": 39
+        }
+      ]
+    }
+  ]
+}

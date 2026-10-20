@@ -1,0 +1,695 @@
+{
+  "problem": {
+    "id": "folio_77",
+    "problem": "Given the following premises:\nIf people work in student jobs on campus, then they need to earn money to help pay for their college tuition. If people order takeout frequently in college, then they work in student jobs on campus. People either order takeout frequently in college or enjoy the dining hall meals and recipes. If people enjoy the dining hall meals and recipes, then they are not picky eaters. If people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls. If Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nMary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (StudentJobs(x) \u2192 Tuition(x))",
+      "\u2200x (Takeout(x) \u2192 StudentJobs(x))",
+      "\u2200x (Takeout(x) \u2228 DiningHall(x))",
+      "\u2200x (DiningHall(x) \u2192 NotPicky(x))",
+      "\u2200x (DiningHall(x) \u2192 Eating(x))",
+      "StudentJobs(mary) \u2227 Tuition(mary) \u2192 \u00ac(NotPicky(mary) \u2228 Tuition(mary))"
+    ],
+    "conclusion_fol": "NotPicky(mary) \u2227 Eating(mary)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 50.0,
+      "True (but depends on which scenario is true)": 21.0,
+      "Unknown": 23.0
+    },
+    "answer_counts": {
+      "True": 5,
+      "Unknown": 3,
+      "True (but depends on which scenario is true)": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they support the conclusion.\n\nPremise 1: If people work in student jobs on campus, then they need to earn money to help pay for their college tuition.\nPremise 2: If people order takeout frequently in college, then they work in student jobs on campus.\nPremise 3: People either order takeout frequently in college or enjoy the dining hall meals and recipes.\nPremise 4: If people enjoy the dining hall meals and recipes, then they are not picky eaters.\nPremise 5: If people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls.\nPremise 6: If Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nTo support the conclusion that Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls, we need to find a path from the premises to the conclusion.\n\nLet's start with the conclusion. We know that Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls. This is the conclusion we want to prove.\n\nFrom premise 5, we know that if people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls. This supports the second part of the conclusion.\n\nFrom premise 4, we know that if people enjoy the dining hall meals and recipes, then they are not picky eaters. This supports the first part of the conclusion.\n\nNow, we need to find a reason why Mary enjoys the dining hall meals and recipes. From premise 3, we know that people either order takeout frequently in college or enjoy the dining hall meals and recipes. This gives us two possibilities.\n\nHowever, we cannot conclude that Mary enjoys the dining hall meals and recipes just because she is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls. We need to find a connection between these two possibilities.\n\nFrom premise 6, we know that if Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition. This premise is crucial in supporting the conclusion.\n\nNow, let's analyze premise 1 and premise 2. From premise 1, we know that if people work in student jobs on campus, then they need to earn money to help pay for their college tuition. From premise 2, we know that if people order takeout frequently in college, then they work in student jobs on campus. Combining these two premises, we can conclude that if people order takeout frequently in college, then they need to earn money to help pay for their college tuition.\n\nNow, let's connect the premises to the conclusion. We know that people either order takeout frequently in college or enjoy the dining hall meals and recipes (premise 3). If they order takeout frequently in college, then they work in student jobs on campus (premise 2), which means they need to earn money to help pay for their college tuition (premise 1). This contradicts premise 6, which states that if Mary needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nTherefore, Mary cannot order takeout frequently in college. This means that Mary must enjoy the dining hall meals and recipes (premise 3). From premise 4, we know that if people enjoy the dining hall meals and recipes, then they are not picky eaters. From premise 5, we know that if people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls.\n\nTherefore, the conclusion that Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls is supported by the premises.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: If people work in student jobs on campus, then they need to earn money to help pay for their college tuition.\n\nPremise 2: If people order takeout frequently in college, then they work in student jobs on campus.\n\nPremise 3: People either order takeout frequently in college or enjoy the dining hall meals and recipes.\n\nPremise 4: If people enjoy the dining hall meals and recipes, then they are not picky eaters.\n\nPremise 5: If people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls.\n\nPremise 6: If Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nNow, let's analyze the conclusion: Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nTo determine if this conclusion is true or false, we need to see if we can logically deduce it from the premises.\n\nFrom Premise 3, we know that people either order takeout frequently in college or enjoy the dining hall meals and recipes. However, we cannot directly conclude that Mary enjoys the dining hall meals and recipes from this premise.\n\nFrom Premise 4, we know that if people enjoy the dining hall meals and recipes, then they are not picky eaters. However, we still cannot conclude that Mary is not a picky eater from this premise.\n\nHowever, from Premise 5, we know that if people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls. \n\nBut, we have Premise 6 which states that if Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nFrom Premise 1 and Premise 2, we can conclude that if Mary orders takeout frequently in college, then she works in student jobs on campus and needs to earn money to help pay for her college tuition.\n\nFrom Premise 3, we know that people either order takeout frequently in college or enjoy the dining hall meals and recipes. Therefore, if Mary does not order takeout frequently in college, then she enjoys the dining hall meals and recipes.\n\nIf Mary enjoys the dining hall meals and recipes, then she is not a picky eater (Premise 4) and she spends a lot of her time eating and catching up with friends in the campus dining halls (Premise 5).\n\nHowever, from Premise 6, we can also conclude that if Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition. \n\nBut, we cannot directly conclude that Mary works in student jobs on campus and needs to earn money to help pay for her college tuition from the premises. We can only conclude that if Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then she is neither picky nor needs to earn money to help pay for her college tuition.\n\nTherefore, we cannot directly conclude that Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls from the premises.\n\nHowever, if Mary enjoys the dining hall meals and recipes, then she is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nBut we have no information that Mary does not order takeout frequently in college. If Mary does not order takeout frequently in college, then she enjoys the dining hall meals and recipes.\n\nHowever, from Premise 1 and Premise 2, we can conclude that if Mary orders takeout frequently in college, then she works in student jobs on campus and needs to earn money to help pay for her college tuition.\n\nBut we have Premise 6 which states that if Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nIf Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition. \n\nIf Mary does not work in student jobs on campus, then Mary does not need to earn money to help pay for her college tuition.\n\nIf Mary does not need to earn money to help pay for her college tuition, then Mary is either a picky eater or enjoys the dining hall meals and recipes.\n\nIf Mary enjoys the dining hall meals and recipes, then she is not a picky eater.\n\nTherefore, Mary is not a picky eater. \n\nIf Mary enjoys the dining hall meals and recipes, then she spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nTherefore, we can conclude that Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and see if they lead to the conclusion.\n\nPremises:\n1. If people work in student jobs on campus, then they need to earn money to help pay for their college tuition.\n2. If people order takeout frequently in college, then they work in student jobs on campus.\n3. People either order takeout frequently in college or enjoy the dining hall meals and recipes.\n4. If people enjoy the dining hall meals and recipes, then they are not picky eaters.\n5. If people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls.\n6. If Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nConclusion: Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nLet's break down the premises and see how they relate to the conclusion:\n\nFrom premise 3, we know that people either order takeout frequently or enjoy dining hall meals. If Mary enjoys dining hall meals, then premise 4 implies that she is not a picky eater. Premise 5 also states that if she enjoys dining hall meals, then she spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nHowever, premise 6 tells us that if Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then she is neither picky nor needs to earn money to help pay for her college tuition. \n\nTo determine the truth of the conclusion, we need to consider the two possible scenarios for Mary:\n\nScenario 1: Mary enjoys dining hall meals.\nIn this case, premise 4 implies that she is not a picky eater, and premise 5 implies that she spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nScenario 2: Mary orders takeout frequently in college.\nIn this case, premise 2 implies that she works in student jobs on campus, and premise 1 implies that she needs to earn money to help pay for her college tuition. However, premise 6 tells us that if she works in student jobs and needs to earn money, then she is neither picky nor needs to earn money to help pay for her college tuition. But premise 6 does not tell us that she does not order takeout frequently in college; it only tells us that if she works in student jobs and needs to earn money, then she is neither picky nor needs to earn money. Therefore, we cannot conclude that Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nSince we have two possible scenarios, and only one of them leads to the conclusion, we cannot determine the truth of the conclusion for certain. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion step by step.\n\nPremise 1: If people work in student jobs on campus, then they need to earn money to help pay for their college tuition.\n\nPremise 2: If people order takeout frequently in college, then they work in student jobs on campus.\n\nPremise 3: People either order takeout frequently in college or enjoy the dining hall meals and recipes.\n\nPremise 4: If people enjoy the dining hall meals and recipes, then they are not picky eaters.\n\nPremise 5: If people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls.\n\nPremise 6: If Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nConclusion: Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nLet's break it down step by step:\n\n1. From Premise 3, we know that Mary either orders takeout frequently in college or enjoys the dining hall meals and recipes.\n\n2. If Mary orders takeout frequently in college, then she works in student jobs on campus (Premise 2). This would mean that she needs to earn money to help pay for her college tuition (Premise 1). But this contradicts Premise 6, which states that Mary is neither picky nor needs to earn money to help pay for her college tuition. Therefore, this path leads to a contradiction, so Mary cannot order takeout frequently in college.\n\n3. Since Mary cannot order takeout frequently in college, she must enjoy the dining hall meals and recipes (Premise 3).\n\n4. If Mary enjoys the dining hall meals and recipes, then she is not a picky eater (Premise 4).\n\n5. If Mary enjoys the dining hall meals and recipes, then she spends a lot of her time eating and catching up with friends in the campus dining halls (Premise 5).\n\nTherefore, based on the given premises and the analysis, the conclusion is true. Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: If people work in student jobs on campus, then they need to earn money to help pay for their college tuition.\nPremise 2: If people order takeout frequently in college, then they work in student jobs on campus.\nPremise 3: People either order takeout frequently in college or enjoy the dining hall meals and recipes.\nPremise 4: If people enjoy the dining hall meals and recipes, then they are not picky eaters.\nPremise 5: If people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls.\nPremise 6: If Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nFrom Premise 3, we have two possible scenarios:\n- Scenario 1: People order takeout frequently in college.\n- Scenario 2: People enjoy the dining hall meals and recipes.\n\nNow, let's analyze these scenarios further.\n\nScenario 1: People order takeout frequently in college.\nFrom Premise 2, we can conclude that people who order takeout frequently in college work in student jobs on campus.\nFrom Premise 1, we can conclude that people who work in student jobs on campus need to earn money to help pay for their college tuition.\nHowever, there is no direct conclusion about whether Mary is a picky eater or not.\n\nScenario 2: People enjoy the dining hall meals and recipes.\nFrom Premise 4, we can conclude that people who enjoy the dining hall meals and recipes are not picky eaters.\nFrom Premise 5, we can conclude that people who enjoy the dining hall meals and recipes spend a lot of their time eating and catching up with friends in the campus dining halls.\n\nNow, let's consider Mary's situation. We are not given any direct information about Mary's eating habits or job status. However, we can use the information from Premise 6 to infer something about Mary.\n\nPremise 6 states that if Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\nHowever, we don't know if Mary works in student jobs on campus or needs to earn money to help pay for her college tuition. We only know that Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nBased on the given premises, we can conclude that the following statements are true:\n- If people enjoy the dining hall meals and recipes, then they are not picky eaters.\n- If people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls.\n\nSince Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls, we can conclude that the following statement is true:\nMary enjoys the dining hall meals and recipes.\n\nTherefore, the conclusion \"Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and break them down step by step.\n\n1. If people work in student jobs on campus, then they need to earn money to help pay for their college tuition.\n2. If people order takeout frequently in college, then they work in student jobs on campus.\n3. People either order takeout frequently in college or enjoy the dining hall meals and recipes.\n4. If people enjoy the dining hall meals and recipes, then they are not picky eaters.\n5. If people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls.\n6. If Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nNow, let's analyze the conclusion: \"Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\"\n\nWe can break down the conclusion into two parts: \n- Mary is not a picky eater.\n- Mary spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nFrom premise 3, we know that people either order takeout frequently in college or enjoy the dining hall meals and recipes. This gives us two possible scenarios for Mary.\n\nScenario 1: Mary orders takeout frequently in college.\nFrom premise 2, we know that if people order takeout frequently in college, then they work in student jobs on campus. So, if Mary orders takeout frequently, she works in student jobs on campus.\nFrom premise 1, we know that if people work in student jobs on campus, then they need to earn money to help pay for their college tuition. So, if Mary orders takeout frequently, she needs to earn money to help pay for her college tuition.\nFrom premise 6, we know that if Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition. This means that if Mary orders takeout frequently, she is not a picky eater.\n\nHowever, we do not have any information about whether Mary spends a lot of her time eating and catching up with friends in the campus dining halls. This part of the conclusion remains uncertain.\n\nScenario 2: Mary enjoys the dining hall meals and recipes.\nFrom premise 4, we know that if people enjoy the dining hall meals and recipes, then they are not picky eaters. So, if Mary enjoys the dining hall meals and recipes, she is not a picky eater.\n\nFrom premise 5, we know that if people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls. So, if Mary enjoys the dining hall meals and recipes, she spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nThis scenario satisfies both parts of the conclusion, making it true.\n\nIn conclusion, the truth of the given conclusion \"Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls\" is uncertain in Scenario 1 and true in Scenario 2. Therefore, the final answer is:\n\n\\boxed{True (but depends on which scenario is true)}",
+        "answer": "True (but depends on which scenario is true)",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and apply them to the conclusion. \n\nPremise 1: If people work in student jobs on campus, then they need to earn money to help pay for their college tuition.\nPremise 2: If people order takeout frequently in college, then they work in student jobs on campus.\nPremise 3: People either order takeout frequently in college or enjoy the dining hall meals and recipes.\nPremise 4: If people enjoy the dining hall meals and recipes, then they are not picky eaters.\nPremise 5: If people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls.\nPremise 6: If Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nNow, we can analyze the conclusion: Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nFrom Premise 3, we know that Mary either orders takeout frequently in college or enjoys the dining hall meals and recipes. We can use this to create two possible scenarios for Mary.\n\nScenario 1: Mary orders takeout frequently in college.\nIf Mary orders takeout frequently in college, then according to Premise 2, she must work in student jobs on campus. However, we do not know if she needs to earn money to help pay for her college tuition. We cannot directly conclude that she is not a picky eater or that she spends a lot of her time eating and catching up with friends in the campus dining halls. Therefore, this scenario does not guarantee the truth of the conclusion.\n\nScenario 2: Mary enjoys the dining hall meals and recipes.\nIf Mary enjoys the dining hall meals and recipes, then according to Premise 4, she is not a picky eater. Additionally, according to Premise 5, she spends a lot of her time eating and catching up with friends in the campus dining halls. This scenario guarantees the truth of the conclusion.\n\nHowever, we need to consider Premise 6, which provides a condition for Mary to be neither picky nor needs to earn money to help pay for her college tuition. But we do not know if Mary works in student jobs on campus and needs to earn money to help pay for her college tuition. We can create another possible scenario.\n\nScenario 3: Mary works in student jobs on campus and needs to earn money to help pay for her college tuition.\nIf Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then according to Premise 6, she is neither picky nor needs to earn money to help pay for her college tuition. However, this scenario does not guarantee that she enjoys the dining hall meals and recipes or that she spends a lot of her time eating and catching up with friends in the campus dining halls. Therefore, this scenario does not guarantee the truth of the conclusion.\n\nHowever, Premise 4 and Premise 5 together with Scenario 2 provide the information that Mary enjoys the dining hall meals and recipes and spends a lot of her time eating and catching up with friends in the campus dining halls. Now if she is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls, she must work in student jobs on campus and needs to earn money to help pay for her college tuition, but that is not the only possible scenario as she could also be a picky eater if she does not work in student jobs on campus and does not need to earn money to help pay for her college tuition.\n\nHowever, Premise 2 and Premise 3 together with the information from Premise 6 provide the information that Mary either orders takeout frequently in college and works in student jobs on campus and needs to earn money to help pay for her college tuition, or she enjoys the dining hall meals and recipes. Now if she enjoys the dining hall meals and recipes, then she is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nThus, the final answer is that the conclusion is true if Mary enjoys the dining hall meals and recipes, and the conclusion is uncertain if Mary orders takeout frequently in college.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and use logical reasoning.\n\nPremises:\n\n1. If people work in student jobs on campus, then they need to earn money to help pay for their college tuition.\n2. If people order takeout frequently in college, then they work in student jobs on campus.\n3. People either order takeout frequently in college or enjoy the dining hall meals and recipes.\n4. If people enjoy the dining hall meals and recipes, then they are not picky eaters.\n5. If people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls.\n6. If Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nConclusion: Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nLet's break down the conclusion step by step:\n\n- If Mary is not a picky eater, then she enjoys the dining hall meals and recipes (by premise 4).\n- If Mary enjoys the dining hall meals and recipes, then she spends a lot of her time eating and catching up with friends in the campus dining halls (by premise 5).\n\nTo analyze the premises further, let's find the connection between working in student jobs and being a picky eater.\n\n- If Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition (by premise 6).\n- We know that if Mary works in student jobs on campus, then she needs to earn money to help pay for her college tuition (by premise 1).\n- Therefore, if Mary is neither picky nor needs to earn money to help pay for her college tuition, then she works in student jobs on campus and needs to earn money to help pay for her college tuition.\n\nNow, let's use premise 2, which states that if people order takeout frequently in college, then they work in student jobs on campus. This means that if Mary orders takeout frequently in college, then she works in student jobs on campus. \n\nBy premise 3, people either order takeout frequently in college or enjoy the dining hall meals and recipes. If Mary orders takeout frequently in college, then she works in student jobs on campus. This contradicts the idea that she enjoys the dining hall meals and recipes, which we found earlier.\n\nTherefore, Mary either enjoys the dining hall meals and recipes or orders takeout frequently in college. If she enjoys the dining hall meals and recipes, then she is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nHowever, if Mary orders takeout frequently in college, then she works in student jobs on campus and needs to earn money to help pay for her college tuition (by premise 2 and premise 1). This contradicts the idea that she is not a picky eater, as premise 6 states that if Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nGiven this contradiction, we cannot conclude that Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nTherefore, the conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion. Let's break down the premises step by step:\n\nPremise 1: If people work in student jobs on campus, then they need to earn money to help pay for their college tuition.\n\nPremise 2: If people order takeout frequently in college, then they work in student jobs on campus.\n\nPremise 3: People either order takeout frequently in college or enjoy the dining hall meals and recipes.\n\nPremise 4: If people enjoy the dining hall meals and recipes, then they are not picky eaters.\n\nPremise 5: If people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls.\n\nPremise 6: If Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nNow, let's analyze the conclusion:\n\nConclusion: Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nTo determine whether the conclusion is true, false, or uncertain, we need to see if we can logically deduce it from the premises.\n\nFrom Premise 3, we know that Mary either orders takeout frequently in college or enjoys the dining hall meals and recipes.\n\nLet's consider the first option:\n\nIf Mary orders takeout frequently in college, then from Premise 2, she works in student jobs on campus, and from Premise 1, she needs to earn money to help pay for her college tuition.\n\nHowever, we are not given any information that links ordering takeout frequently in college to being a picky eater or spending time in the campus dining halls.\n\nNow, let's consider the second option:\n\nIf Mary enjoys the dining hall meals and recipes, then from Premise 4, she is not a picky eater, and from Premise 5, she spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nThis option is consistent with the conclusion.\n\nHowever, we need to consider Premise 6, which states that if Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then she is neither picky nor needs to earn money to help pay for her college tuition.\n\nWe are not given any information that links enjoying the dining hall meals and recipes to working in student jobs on campus and needing to earn money to help pay for college tuition.\n\nTherefore, we cannot logically deduce the conclusion from the premises. There are two possible scenarios:\n\nScenario 1: Mary enjoys the dining hall meals and recipes, which makes her not a picky eater and spend a lot of her time eating and catching up with friends in the campus dining halls.\n\nScenario 2: Mary orders takeout frequently in college, which makes her work in student jobs on campus, but we are not given any information about her eating habits.\n\nSince we cannot logically deduce the conclusion from the premises, we must conclude that the answer is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we will analyze the given premises step by step.\n\n1. Premise 1: If people work in student jobs on campus, then they need to earn money to help pay for their college tuition.\n2. Premise 2: If people order takeout frequently in college, then they work in student jobs on campus.\n3. Premise 3: People either order takeout frequently in college or enjoy the dining hall meals and recipes.\n4. Premise 4: If people enjoy the dining hall meals and recipes, then they are not picky eaters.\n5. Premise 5: If people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls.\n6. Premise 6: If Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nWe are given the conclusion: Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nTo evaluate this conclusion, we can use a truth table or a diagram. However, in this case, we can use a logical analysis to evaluate the premises.\n\nFrom Premise 3, we know that people either order takeout frequently in college or enjoy the dining hall meals and recipes. This means that Mary either orders takeout frequently in college or enjoys the dining hall meals and recipes.\n\nIf Mary orders takeout frequently in college, then from Premise 2, she works in student jobs on campus. And if she works in student jobs on campus, then from Premise 1, she needs to earn money to help pay for her college tuition. However, this contradicts Premise 6, which states that if Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition. This creates a contradiction, so the conclusion cannot be true if Mary orders takeout frequently in college.\n\nOn the other hand, if Mary enjoys the dining hall meals and recipes, then from Premise 5, she spends a lot of her time eating and catching up with friends in the campus dining halls. And from Premise 4, she is not a picky eater.\n\nNow, we need to consider whether Mary works in student jobs on campus and needs to earn money to help pay for her college tuition. If she does not work in student jobs on campus or does not need to earn money to help pay for her college tuition, then we cannot conclude anything about her being a picky eater or spending time in the campus dining halls. However, if she works in student jobs on campus and needs to earn money to help pay for her college tuition, then from Premise 6, she is neither picky nor needs to earn money to help pay for her college tuition. This creates a contradiction, so we cannot conclude that Mary is a picky eater and does not spend a lot of her time eating and catching up with friends in the campus dining halls.\n\nTherefore, based on the given premises, we can conclude that Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: If people work in student jobs on campus, then they need to earn money to help pay for their college tuition.\nPremise 2: If people order takeout frequently in college, then they work in student jobs on campus.\nPremise 3: People either order takeout frequently in college or enjoy the dining hall meals and recipes.\nPremise 4: If people enjoy the dining hall meals and recipes, then they are not picky eaters.\nPremise 5: If people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls.\nPremise 6: If Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nFrom Premise 2 and Premise 3, we can infer:\n- If people order takeout frequently in college, then they work in student jobs on campus.\n- If people enjoy the dining hall meals and recipes, then they don't work in student jobs on campus (since they don't order takeout frequently).\n\nNow, let's consider the conclusion: Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nFor Mary to be a non-picky eater, she must enjoy the dining hall meals and recipes (Premise 4).\nFor Mary to spend a lot of her time eating and catching up with friends in the campus dining halls, she must also enjoy the dining hall meals and recipes (Premise 5).\n\nHowever, if Mary enjoys the dining hall meals and recipes, then she doesn't work in student jobs on campus (from the inference above).\nBut Premise 6 states that if Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition.\n\nThis creates a paradox: \n- If Mary enjoys the dining hall meals and recipes, then she doesn't work in student jobs on campus (from the inference).\n- But Premise 6 implies that Mary can't be a non-picky eater unless she works in student jobs on campus and needs to earn money to help pay for her college tuition (a contradictory condition).\n\nTherefore, we cannot determine whether Mary is a picky eater or not, and whether she spends a lot of her time eating and catching up with friends in the campus dining halls, since these conditions are contradictory.\n\nThe conclusion is uncertain. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we'll break it down into steps using the given premises:\n\n1. If people work in student jobs on campus, then they need to earn money to help pay for their college tuition. \n   - Premise 1: W \u2192 N (Where W is working in student jobs on campus and N is needing to earn money to help pay for college tuition)\n\n2. If people order takeout frequently in college, then they work in student jobs on campus. \n   - Premise 2: OT \u2192 W (Where OT is ordering takeout frequently)\n\n3. People either order takeout frequently in college or enjoy the dining hall meals and recipes. \n   - Premise 3: OT \u2228 DH (Where DH is enjoying the dining hall meals and recipes)\n\n4. If people enjoy the dining hall meals and recipes, then they are not picky eaters. \n   - Premise 4: DH \u2192 NP (Where NP is not picky)\n\n5. If people enjoy the dining hall meals and recipes, then they spend a lot of their time eating and catching up with friends in the campus dining halls. \n   - Premise 5: DH \u2192 TE (Where TE is spending a lot of time eating)\n\n6. If Mary works in student jobs on campus and needs to earn money to help pay for her college tuition, then Mary is neither picky nor needs to earn money to help pay for her college tuition. \n   - Premise 6: W \u2227 N \u2192 NP \u2227 \u00acN\n\nNow, let's analyze the conclusion: Mary is not a picky eater and spends a lot of her time eating and catching up with friends in the campus dining halls.\n\nFrom Premise 3, we know that people either order takeout frequently (OT) or enjoy dining hall meals (DH). \n\nIf Mary orders takeout frequently (OT), then from Premise 2, she must work in student jobs on campus (W). Then, from Premise 1, she needs to earn money to help pay for college tuition (N). But this contradicts the conclusion that she is not picky and does not need to earn money.\n\nHowever, if Mary enjoys the dining hall meals (DH), then from Premise 4, she is not a picky eater (NP). Also, from Premise 5, she spends a lot of her time eating (TE), which supports the conclusion.\n\nNow, considering Premise 6, if Mary works in student jobs on campus (W) and needs to earn money (N), then she is not picky (NP) and does not need money (\u00acN). \n\nHowever, if Mary enjoys the dining hall meals (DH), then she is not picky (NP) and spends a lot of time eating (TE), which supports the conclusion. But there is no direct information to confirm that she works in student jobs on campus (W) and needs to earn money (N). Therefore, the conclusion is uncertain because there are two possible scenarios, and we cannot confirm which one is true.\n\nBut then let's consider if Mary is picky. If Mary is picky, then she cannot enjoy the dining hall meals (DH), because if she enjoys the dining hall meals (DH), then she is not picky (NP). So if Mary is picky, then from Premise 3, she must order takeout frequently (OT).\n\nIf Mary orders takeout frequently (OT), then from Premise 2, she works in student jobs on campus (W). Then, from Premise 1, she needs to earn money to help pay for college tuition (N). But this contradicts the conclusion that she is not picky.\n\nTherefore, Mary cannot be picky.\n\nAnd if Mary is not picky (NP), then from Premise 4, she must enjoy the dining hall meals (DH). Then, from Premise 5, she spends a lot of her time eating (TE), which supports the conclusion.\n\nTherefore, the conclusion is true.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "work_in_student_jobs_on_campus(mary)",
+          "z3_formula": "work_in_student_jobs_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "work_in_student_jobs_on_campus(X) -> needs_to_earn_money_to_help_pay_for_college_tuition(X)",
+          "z3_formula": "Implies(work_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout_frequently_in_college(X) -> work_in_student_jobs_on_campus(X)",
+          "z3_formula": "Implies(order_takeout_frequently_in_college_mary, work_in_student_jobs_on_campus_mary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout_frequently_in_college(X) -> needs_to_earn_money_to_help_pay_for_college_tuition(X)",
+          "z3_formula": "Implies(order_takeout_frequently_in_college_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout_frequently_in_college(X) | enjoys_dining_hall_meals_and_recipes(X)",
+          "z3_formula": "Or(order_takeout_frequently_in_college_mary, enjoys_dining_hall_meals_and_recipes_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> not_picky_eater(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, not_picky_eater_mary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "work_in_student_jobs_on_campus(X) & needs_to_earn_money_to_help_pay_for_college_tuition(X) -> not_picky_eater(X) & not_needs_to_earn_money_to_help_pay_for_college_tuition(X)",
+          "z3_formula": "Implies(And(work_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary), And(not_picky_eater_mary, not_needs_to_earn_money_to_help_pay_for_college_tuition_mary))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not_picky_eater(mary) & spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(mary)",
+          "z3_formula": "And(not_picky_eater_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "works_in_student_jobs_on_campus(mary)",
+          "z3_formula": "works_in_student_jobs_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs_to_earn_money_to_help_pay_for_college_tuition(mary)",
+          "z3_formula": "needs_to_earn_money_to_help_pay_for_college_tuition_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(mary) & needs_to_earn_money_to_help_pay_for_college_tuition(mary) -> not(picky_eater(mary)) & not(needs_to_earn_money_to_help_pay_for_college_tuition(mary))",
+          "z3_formula": "Implies(And(work_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary), And(Not(picky_eater_mary), Not(needs_to_earn_money_to_help_pay_for_college_tuition_mary)))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(mary) & needs_to_earn_money_to_help_pay_for_college_tuition(mary) -> not(picky_eater(mary)) & not(needs_to_earn_money_to_help_pay_for_college_tuition(mary))",
+          "z3_formula": "Implies(And(work_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary), And(Not(picky_eater_mary), Not(needs_to_earn_money_to_help_pay_for_college_tuition_mary)))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not(works_in_student_jobs_on_campus(mary)) -> not(needs_to_earn_money_to_help_pay_for_college_tuition(mary))",
+          "z3_formula": "Implies(Not(work_in_student_jobs_on_campus_mary), Not(needs_to_earn_money_to_help_pay_for_college_tuition_mary))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not(needs_to_earn_money_to_help_pay_for_college_tuition(mary)) -> picky_eater(mary) | enjoys_dining_hall_meals_and_recipes(mary)",
+          "z3_formula": "Implies(Not(needs_to_earn_money_to_help_pay_for_college_tuition_mary), Or(picky_eater_mary, enjoys_dining_hall_meals_and_recipes_mary))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(mary) -> not(picky_eater(mary))",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, Not(picky_eater_mary))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(mary) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(mary)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(picky_eater(mary)) & spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(mary)",
+          "z3_formula": "And(Not(picky_eater_mary), spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary) == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "or(order_takeout_mary, enjoy_dininghall_mary)",
+          "z3_formula": "order_takeout_mary == True Or enjoy_dininghall_mary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout(X) -> works_on_campus(X)",
+          "z3_formula": "Implies(order_takeout_mary, works_on_campus_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "works_on_campus(X) -> needs_money(X)",
+          "z3_formula": "Implies(works_on_campus_mary, needs_money_mary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "enjoy_dininghall(X) -> not(picky(X))",
+          "z3_formula": "Implies(enjoy_dininghall_mary, not(picky_mary))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "enjoy_dininghall(X) -> eats_in_dininghall(X)",
+          "z3_formula": "Implies(enjoy_dininghall_mary, eats_in_dininghall_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "works_on_campus(X) & needs_money(X) -> not(picky(X)) & not(needs_money(X))",
+          "z3_formula": "Implies(And(works_on_campus_mary, needs_money_mary), And(not(picky_mary), not(needs_money_mary)))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(picky_mary) & eats_in_dininghall_mary",
+          "z3_formula": "And(not(picky_mary), eats_in_dininghall_mary) == True Or not And(not(picky_mary), eats_in_dininghall_mary)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "works_in_student_jobs_on_campus(mary)",
+          "z3_formula": "works_in_student_jobs_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) -> needs_to_earn_money_to_help_pay_for_college_tuition(X)",
+          "z3_formula": "Implies(works_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs_to_earn_money_to_help_pay_for_college_tuition(X) -> not(picky_eater(X)) & not(needs_to_earn_money_to_help_pay_for_college_tuition(X))",
+          "z3_formula": "Implies(needs_to_earn_money_to_help_pay_for_college_tuition_mary, And(Not(picky_eater_mary), Not(needs_to_earn_money_to_help_pay_for_college_tuition_mary)))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "orders_takeout_frequently_in_college(mary) | enjoys_dining_hall_meals_and_recipes(mary)",
+          "z3_formula": "Or(orders_takeout_frequently_in_college_mary, enjoys_dining_hall_meals_and_recipes_mary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) -> works_in_student_jobs_on_campus(X)",
+          "z3_formula": "Implies(orders_takeout_frequently_in_college_mary, works_in_student_jobs_on_campus_mary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) -> needs_to_earn_money_to_help_pay_for_college_tuition(X)",
+          "z3_formula": "Implies(orders_takeout_frequently_in_college_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> not(picky_eater(X))",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, Not(picky_eater_mary))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "works_in_student_jobs_on_campus(Mary)",
+          "z3_formula": "works_in_student_jobs_on_campus_Mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(Mary) & needs_to_earn_money_to_help_pay_for_college_tuition(Mary) -> not(picky_eater(Mary)) & not(needs_to_earn_money_to_help_pay_for_college_tuition(Mary))",
+          "z3_formula": "Implies(And(work_in_student_jobs_on_campus_Mary, needs_to_earn_money_to_help_pay_for_college_tuition_Mary), And(not(picky_eater_Mary), not(needs_to_earn_money_to_help_pay_for_college_tuition_Mary)))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(picky_eater(Mary))",
+          "z3_formula": "not(picky_eater_Mary) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "spends_a_lot_of_time_eating_and_catching_up_with_friends_in_the_campus_dining_halls(Mary)",
+          "z3_formula": "spends_a_lot_of_time_eating_and_catching_up_with_friends_in_the_campus_dining_halls_Mary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_the_dining_hall_meals_and_recipes(X) -> not(picky_eater(X))",
+          "z3_formula": "Implies(enjoys_the_dining_hall_meals_and_recipes_Mary, not(picky_eater_Mary))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_the_dining_hall_meals_and_recipes(X) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_the_campus_dining_halls(X)",
+          "z3_formula": "Implies(enjoys_the_dining_hall_meals_and_recipes_Mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_the_campus_dining_halls_Mary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "enjoys_the_dining_hall_meals_and_recipes(Mary)",
+          "z3_formula": "enjoys_the_dining_hall_meals_and_recipes_Mary == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(picky_eater(Mary)) & spends_a_lot_of_time_eating_and_catching_up_with_friends_in_the_campus_dining_halls(Mary)",
+          "z3_formula": "And(not(picky_eater_Mary), spends_a_lot_of_time_eating_and_catching_up_with_friends_in_the_campus_dining_halls_Mary) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "works_in_student_jobs_on_campus(mary)",
+          "z3_formula": "works_in_student_jobs_on_campus_mary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs_to_earn_money_to_help_pay_for_college_tuition(mary)",
+          "z3_formula": "needs_to_earn_money_to_help_pay_for_college_tuition_mary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) -> needs_to_earn_money_to_help_pay_for_college_tuition(X)",
+          "z3_formula": "Implies(work_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) -> works_in_student_jobs_on_campus(X)",
+          "z3_formula": "Implies(orders_takeout_frequently_in_college_mary, works_in_student_jobs_on_campus_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) | enjoys_dining_hall_meals_and_recipes(X)",
+          "z3_formula": "Or(orders_takeout_frequently_in_college_mary, enjoys_dining_hall_meals_and_recipes_mary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> not(picky_eater(X))",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, not(picky_eater_mary))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) & needs_to_earn_money_to_help_pay_for_college_tuition(X) -> not(picky_eater(X)) & not(needs_to_earn_money_to_help_pay_for_college_tuition(X))",
+          "z3_formula": "Implies(And(work_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary), And(not(picky_eater_mary), not(needs_to_earn_money_to_help_pay_for_college_tuition_mary)))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(picky_eater(mary))",
+          "z3_formula": "not(picky_eater_mary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(mary)",
+          "z3_formula": "spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "orders_takeout_frequently_in_college(mary)",
+          "z3_formula": "orders_takeout_frequently_in_college_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "enjoys_dining_hall_meals_and_recipes(mary)",
+          "z3_formula": "enjoys_dining_hall_meals_and_recipes_mary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) -> works_in_student_jobs_on_campus(X)",
+          "z3_formula": "Implies(orders_takeout_frequently_in_college_mary, works_in_student_jobs_on_campus_mary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> not(picky_eater(X))",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, not(picky_eater_mary))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) & needs_to_earn_money_to_help_pay_for_college_tuition(X) -> not(picky_eater(X)) & not(needs_to_earn_money_to_help_pay_for_college_tuition(X))",
+          "z3_formula": "Implies(And(works_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary), And(not(picky_eater_mary), not(needs_to_earn_money_to_help_pay_for_college_tuition_mary)))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(picky_eater(mary)) & spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(mary)",
+          "z3_formula": "And(not(picky_eater_mary), spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary) == True",
+          "source_step": 7
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "student_job_on_campus(X) -> needs_money_to_pay_tuition(X)",
+          "z3_formula": "Implies(student_job_on_campus_X, needs_money_to_pay_tuition_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "orders_takeout_frequently_in_college(X) -> student_job_on_campus(X)",
+          "z3_formula": "Implies(orders_takeout_frequently_in_college_X, student_job_on_campus_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "orders_takeout_frequently_in_college(X) | enjoys_dining_hall_meals_and_recipes(X)",
+          "z3_formula": "Or(orders_takeout_frequently_in_college_X, enjoys_dining_hall_meals_and_recipes_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> not_picky_eater(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_X, not_picky_eater_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> spends_time_eating_and_catching_up_with_friends_in_dining_halls(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_X, spends_time_eating_and_catching_up_with_friends_in_dining_halls_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "student_job_on_campus(X) & needs_money_to_pay_tuition(X) -> not_picky_eater(X) & not_needs_money_to_pay_tuition(X)",
+          "z3_formula": "Implies(And(student_job_on_campus_X, needs_money_to_pay_tuition_X), And(not_picky_eater_X, not_needs_money_to_pay_tuition_X))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "student_job_on_campus(mary)",
+          "z3_formula": "student_job_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "student_job_on_campus(X) -> needs_money_to_pay_tuition(X)",
+          "z3_formula": "Implies(student_job_on_campus_mary, needs_money_to_pay_tuition_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "order_takeout_frequently_in_college(mary)",
+          "z3_formula": "order_takeout_frequently_in_college_mary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout_frequently_in_college(X) -> student_job_on_campus(X)",
+          "z3_formula": "Implies(order_takeout_frequently_in_college_mary, student_job_on_campus_mary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "student_job_on_campus(X) -> needs_money_to_pay_tuition(X)",
+          "z3_formula": "Implies(student_job_on_campus_mary, needs_money_to_pay_tuition_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs_money_to_pay_tuition(mary)",
+          "z3_formula": "needs_money_to_pay_tuition_mary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout_frequently_in_college(X) -> student_job_on_campus(X)",
+          "z3_formula": "Implies(order_takeout_frequently_in_college_mary, student_job_on_campus_mary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "student_job_on_campus(X) & needs_money_to_pay_tuition(X) -> not(picky_eater(X)) & not(needs_money_to_pay_tuition(X))",
+          "z3_formula": "Implies(And(student_job_on_campus_mary, needs_money_to_pay_tuition_mary), And(Not(picky_eater_mary), Not(needs_money_to_pay_tuition_mary)))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "enjoy_dining_hall_meals_and_recipes(X) -> white(X)",
+          "z3_formula": "Implies(enjoy_dining_hall_meals_and_recipes_mary, white_mary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "enjoy_dining_hall_meals_and_recipes(X) -> not(picky_eater(X))",
+          "z3_formula": "Implies(enjoy_dining_hall_meals_and_recipes_mary, Not(picky_eater_mary))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "enjoy_dining_hall_meals_and_recipes(X) -> spends_time_eating_and_catching_up_with_friends_in_campus_dining_halls(X)",
+          "z3_formula": "Implies(enjoy_dining_hall_meals_and_recipes_mary, spends_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(picky_eater(mary))",
+          "z3_formula": "Not(picky_eater_mary) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "spends_time_eating_and_catching_up_with_friends_in_campus_dining_halls(mary)",
+          "z3_formula": "spends_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "works_in_student_jobs_on_campus(mary)",
+          "z3_formula": "works_in_student_jobs_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs_to_earn_money_to_help_pay_for_college_tuition(mary)",
+          "z3_formula": "needs_to_earn_money_to_help_pay_for_college_tuition_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) & needs_to_earn_money_to_help_pay_for_college_tuition(X) -> not(picky_eater(X)) & not(needs_to_earn_money_to_help_pay_for_college_tuition(X))",
+          "z3_formula": "Implies(And(work_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary), And(not(picky_eater_mary), not(needs_to_earn_money_to_help_pay_for_college_tuition_mary)))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) -> not(enjoys_dining_hall_meals_and_recipes(X))",
+          "z3_formula": "Implies(work_in_student_jobs_on_campus_mary, not(enjoys_dining_hall_meals_and_recipes_mary))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> not(picky_eater(X))",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, not(picky_eater_mary))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(picky_eater(mary)) & spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(mary)",
+          "z3_formula": "And(not(picky_eater_mary), spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary) == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "working_in_student_jobs_on_campus(mary)",
+          "z3_formula": "working_in_student_jobs_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs_to_earn_money_to_help_pay_for_college_tuition(mary)",
+          "z3_formula": "needs_to_earn_money_to_help_pay_for_college_tuition_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "working_in_student_jobs_on_campus(X) & needs_to_earn_money_to_help_pay_for_college_tuition(X) -> not_picky(X) & not(needs_to_earn_money_to_help_pay_for_college_tuition(X))",
+          "z3_formula": "Implies(And(working_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary), And(not_picky_mary, Not(needs_to_earn_money_to_help_pay_for_college_tuition_mary)))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "working_in_student_jobs_on_campus(X) -> needs_to_earn_money_to_help_pay_for_college_tuition(X)",
+          "z3_formula": "Implies(working_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "ordering_takeout_frequently(X) -> working_in_student_jobs_on_campus(X)",
+          "z3_formula": "Implies(ordering_takeout_frequently_mary, working_in_student_jobs_on_campus_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "ordering_takeout_frequently(X) | enjoying_dining_hall_meals(X)",
+          "z3_formula": "Or(ordering_takeout_frequently_mary, enjoying_dining_hall_meals_mary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "enjoying_dining_hall_meals(X) -> not_picky(X)",
+          "z3_formula": "Implies(enjoying_dining_hall_meals_mary, not_picky_mary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "enjoying_dining_hall_meals(X) -> spends_a_lot_of_time_eating(X)",
+          "z3_formula": "Implies(enjoying_dining_hall_meals_mary, spends_a_lot_of_time_eating_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not_picky(mary) & spends_a_lot_of_time_eating(mary)",
+          "z3_formula": "And(not_picky_mary, spends_a_lot_of_time_eating_mary) == True",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 93,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 56
+    },
+    "maxsat_stats": {
+      "satisfied": 52,
+      "excluded": 4,
+      "total_weight": 70,
+      "solve_time_ms": 1.7657410353422165
+    },
+    "timing": {
+      "trace_gen_s": 13.608,
+      "extraction_s": 36.96,
+      "dedup_s": 1.135,
+      "maxsat_s": 0.005,
+      "total_s": 51.708
+    }
+  }
+}

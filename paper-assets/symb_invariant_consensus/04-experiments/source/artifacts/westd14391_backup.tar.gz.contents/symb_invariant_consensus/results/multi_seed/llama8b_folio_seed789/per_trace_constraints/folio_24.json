@@ -1,0 +1,576 @@
+{
+  "pid": "folio_24",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, people's republic of china)",
+          "z3_formula": "capital_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most populous national capital city(beijing)",
+          "z3_formula": "most_populous_national_capital_city_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located(beijing, northern china)",
+          "z3_formula": "located_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted(beijing, 2008 summer olympics)",
+          "z3_formula": "hosted_beijing_2008_summer_olympics == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted(beijing, 2008 summer paralympics)",
+          "z3_formula": "hosted_beijing_2008_summer_paralympics == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "hosted(beijing, 2008 summer olympics) & hosted(beijing, 2008 summer paralympics) -> hosted(beijing, 2008 winter olympics) & hosted(beijing, 2008 winter paralympics)",
+          "z3_formula": "Implies(And(hosted_beijing_2008_summer_olympics, hosted_beijing_2008_summer_paralympics), And(hosted_beijing_2008_winter_olympics, hosted_beijing_2008_winter_paralympics))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "91 universities(beijing)",
+          "z3_formula": "91_universities_beijing == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "hosted(beijing, 2008 winter olympics)",
+          "z3_formula": "hosted_beijing_2008_winter_olympics == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "capital_of(Beijing, People's Republic of China)",
+          "z3_formula": "capital_of_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(Beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(Beijing, Northern China)",
+          "z3_formula": "located_in_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_olympics(Beijing)",
+          "z3_formula": "hosted_2008_summer_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(Beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, people_s_republic_of_china)",
+          "z3_formula": "capital_beijing_people_s_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital_city(beijing)",
+          "z3_formula": "most_populous_national_capital_city_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_olympics(beijing)",
+          "z3_formula": "hosted_2008_summer_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_paralympics(beijing)",
+          "z3_formula": "hosted_2008_summer_paralympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_both_2008_summer_and_winter_olympics(beijing)",
+          "z3_formula": "hosted_both_2008_summer_and_winter_olympics_beijing == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, china)",
+          "z3_formula": "capital_beijing_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous(beijing)",
+          "z3_formula": "most_populous_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_north(beijing)",
+          "z3_formula": "located_north_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_2008(beijing)",
+          "z3_formula": "hosted_summer_2008_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both(beijing)",
+          "z3_formula": "hosted_both_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "capital(X, china) -> None",
+          "z3_formula": "Implies(capital_beijing_china, None)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "most_populous(X) -> None",
+          "z3_formula": "Implies(most_populous_beijing, None)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "located_north(X) -> None",
+          "z3_formula": "Implies(located_north_beijing, None)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "hosted_summer_2008(X) -> None",
+          "z3_formula": "Implies(hosted_summer_2008_beijing, None)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "hosted_both(X) -> hosted_winter(X)",
+          "z3_formula": "Implies(hosted_both_beijing, hosted_winter_beijing)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_winter(beijing)",
+          "z3_formula": "hosted_winter_beijing == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "hosted_beijing_summer_2008",
+          "z3_formula": "hosted_beijing_summer_2008 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_beijing_summer_paralympics_2008",
+          "z3_formula": "hosted_beijing_summer_paralympics_2008 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_beijing_both_summer_and_winter_olympics",
+          "z3_formula": "hosted_beijing_both_summer_and_winter_olympics == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_beijing_both_summer_and_winter_paralympics",
+          "z3_formula": "hosted_beijing_both_summer_and_winter_paralympics == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_beijing_winter_olympics",
+          "z3_formula": "hosted_beijing_winter_olympics == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, people_s_republic_of_china)",
+          "z3_formula": "capital_beijing_people_s_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_olympics(beijing)",
+          "z3_formula": "hosted_2008_summer_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_winter_olympics(beijing)",
+          "z3_formula": "hosted_winter_olympics_beijing == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "hosted_summer_olympics(beijing)",
+          "z3_formula": "hosted_summer_olympics_beijing == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_paralympics(beijing)",
+          "z3_formula": "hosted_summer_paralympics_beijing == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_olympics(beijing)",
+          "z3_formula": "hosted_winter_olympics_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_paralympics(beijing)",
+          "z3_formula": "hosted_winter_paralympics_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_winter_olympics(beijing)",
+          "z3_formula": "hosted_winter_olympics_beijing == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "capital(Beijing, People's Republic of China)",
+          "z3_formula": "capital_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(Beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_northern_china(Beijing)",
+          "z3_formula": "located_in_northern_china_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_summer_olympics_beijing_2008 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_winter_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_winter_olympics_beijing_2008 == False",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "hosted_summer_olympics(X, Y) & hosted_winter_olympics(X, Y) -> hosted_both_summer_and_winter_olympics(X, Y)",
+          "z3_formula": "Implies(And(hosted_summer_olympics_beijing_2008, hosted_winter_olympics_beijing_2008), hosted_both_summer_and_winter_olympics_beijing_2008)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing_2008 == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_both_summer_and_winter_olympics(Beijing, 2008)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing_2008 == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, china)",
+          "z3_formula": "capital_beijing_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous(beijing)",
+          "z3_formula": "most_populous_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located(beijing, northern_china)",
+          "z3_formula": "located_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_olympics(beijing)",
+          "z3_formula": "hosted_2008_summer_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "capital(X, china) -> no_information_about_hosting_olympics(X)",
+          "z3_formula": "Implies(capital_beijing_china, no_information_about_hosting_olympics_beijing)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "most_populous(X) -> no_information_about_hosting_olympics(X)",
+          "z3_formula": "Implies(most_populous_beijing, no_information_about_hosting_olympics_beijing)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "located(X, northern_china) -> no_information_about_hosting_olympics(X)",
+          "z3_formula": "Implies(located_beijing_northern_china, no_information_about_hosting_olympics_beijing)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "hosted_2008_summer_olympics(X) -> no_information_about_hosting_winter_olympics(X)",
+          "z3_formula": "Implies(hosted_2008_summer_olympics_beijing, no_information_about_hosting_winter_olympics_beijing)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "hosted_both_summer_and_winter_olympics(X) -> hosted_both_summer_and_winter_olympics(X)",
+          "z3_formula": "Implies(hosted_both_summer_and_winter_olympics_beijing, hosted_both_summer_and_winter_olympics_beijing)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_both_summer_and_winter_olympics(beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "capital(Beijing, People's Republic of China)",
+          "z3_formula": "capital_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous(Beijing, world)",
+          "z3_formula": "most_populous_beijing_world == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located(Beijing, Northern China)",
+          "z3_formula": "located_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_olympics(Beijing)",
+          "z3_formula": "hosted_2008_summer_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(Beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "capital(beijing, china)",
+          "z3_formula": "capital_beijing_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous(beijing)",
+          "z3_formula": "most_populous_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_north(beijing)",
+          "z3_formula": "located_north_beijing == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_summer_2008(beijing)",
+          "z3_formula": "hosted_summer_2008_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_winter(beijing)",
+          "z3_formula": "hosted_both_summer_winter_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_winter(beijing)",
+          "z3_formula": "hosted_winter_beijing == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "capital_of(Beijing, People's Republic of China)",
+          "z3_formula": "capital_of_beijing_peoples_republic_of_china == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "most_populous_national_capital(Beijing)",
+          "z3_formula": "most_populous_national_capital_beijing == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(Beijing, Northern China)",
+          "z3_formula": "located_in_beijing_northern_china == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_2008_summer_olympics(Beijing)",
+          "z3_formula": "hosted_2008_summer_olympics_beijing == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "hosted_both_summer_and_winter_olympics(Beijing)",
+          "z3_formula": "hosted_both_summer_and_winter_olympics_beijing == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "hosted_winter_olympics(Beijing)",
+          "z3_formula": "hosted_winter_olympics_beijing == True",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

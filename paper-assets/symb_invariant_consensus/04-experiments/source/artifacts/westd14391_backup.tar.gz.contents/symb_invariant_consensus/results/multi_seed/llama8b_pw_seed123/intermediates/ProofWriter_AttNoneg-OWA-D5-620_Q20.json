@@ -1,0 +1,1574 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-620_Q20",
+    "problem": "Anne is red. Bob is big. Bob is green. Bob is red. Charlie is furry. Dave is big. Dave is blue. If something is big then it is smart. If something is blue then it is green. All furry things are big. Smart things are blue. If something is green then it is furry. Green things are smart. All green things are quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is red.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRed($x, bool) ::: Is x red?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nFurry($x, bool) ::: Is x furry?\nBlue($x, bool) ::: Is x blue?\nSmart($x, bool) ::: Is x smart?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nRed(Anne, True) ::: Anne is red.\nBig(Bob, True) ::: Bob is big.\nGreen(Bob, True) ::: Bob is green.\nRed(Bob, True) ::: Bob is red.\nFurry(Charlie, True) ::: Charlie is furry.\nBig(Dave, True) ::: Dave is big.\nBlue(Dave, True) ::: Dave is blue.\n\nRules:\nBig($x, True) >>> Smart($x, True) ::: If something is big then it is smart.\nBlue($x, True) >>> Green($x, True) ::: If something is blue then it is green.\nFurry($x, True) >>> Big($x, True) ::: All furry things are big.\nSmart($x, True) >>> Blue($x, True) ::: Smart things are blue.\nGreen($x, True) >>> Furry($x, True) ::: If something is green then it is furry.\nGreen($x, True) >>> Smart($x, True) ::: Green things are smart.\nGreen($x, True) >>> Quiet($x, True) ::: All green things are quiet.\n\nQuery:\nRed(Charlie, True) ::: Charlie is red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 199.5
+    },
+    "answer_counts": {
+      "Unknown": 6
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Charlie is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is furry. (From the problem statement)\n2. All furry things are big. (From the problem statement)\n   Therefore, Charlie is big.\n\n3. Dave is big. (From the problem statement)\n   Therefore, since Charlie and Dave are both big, Charlie is not necessarily smart, as being big does not necessarily mean being smart.\n\n4. All green things are smart. (From the problem statement)\n   We do not know Charlie's color yet, so we cannot conclude anything about Charlie being smart.\n\n5. If something is green then it is furry. (From the problem statement)\n   We do not know Charlie's color yet, so we cannot conclude anything about Charlie being furry.\n\n6. All furry things are big. (From the problem statement)\n   We already concluded that Charlie is big.\n\n7. Charlie is furry. (From the problem statement)\n   From step 5, we know that if something is green, then it is furry. However, this does not directly imply that Charlie is green.\n\n8. Bob is green. (From the problem statement)\n   However, this does not provide any direct information about Charlie.\n\n9. If something is blue then it is green. (From the problem statement)\n   We do not know Charlie's color yet, so we cannot conclude anything about Charlie being green.\n\n10. Smart things are blue. (From the problem statement)\n    We do not know Charlie's color yet, so we cannot conclude anything about Charlie being blue.\n\n11. Green things are smart. (From the problem statement)\n    We do not know Charlie's color yet, so we cannot conclude anything about Charlie being smart.\n\n12. Dave is blue. (From the problem statement)\n    Therefore, since Dave is blue, it is green (by step 9), and thus it is smart (by step 11).\n\n13. Bob is big. (From the problem statement)\n    However, this does not provide any direct information about Charlie.\n\n14. Bob is red. (From the problem statement)\n    However, this does not provide any direct information about Charlie.\n\n15. Bob is green. (From the problem statement)\n    However, this does not provide any direct information about Charlie.\n\n16. If something is green then it is furry. (From the problem statement)\n    However, we do not know Charlie's color yet.\n\n17. Charlie is furry. (From the problem statement)\n    From step 5, we know that if something is green, then it is furry. However, this does not directly imply that Charlie is green.\n\n18. All green things are quiet. (From the problem statement)\n    We do not know Charlie's color yet, so we cannot conclude anything about Charlie being quiet.\n\nNow, let's consider the statement \"Charlie is red.\"\n\n- Anne is red. (From the problem statement)\n- Bob is red. (From the problem statement)\n- However, we do not have any information about Charlie being red.\n\nSince we cannot determine the truth value of the statement \"Charlie is red\" based on the given information, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is red\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. Charlie is furry. (Given information)\n2. All furry things are big. (Rule 3)\n3. Dave is big. (Given information)\n4. Dave is blue. (Given information)\n5. If something is big then it is smart. (Rule 1)\n6. If something is blue then it is green. (Rule 2)\n7. Smart things are blue. (Rule 1 is referring to this rule but rule 1 is actually referring to the first part of this rule.)\n8. If something is green then it is furry. (Rule 4)\n9. Green things are smart. (Rule 5)\n10. All green things are quiet. (Rule 6)\n\nNow, we can analyze the relationship between the given information and the rules:\n\n- Charlie is furry (1), and all furry things are big (2), so Charlie is big.\n- Big things are smart (5), so Charlie is smart.\n- Smart things are blue (7), so Charlie is blue.\n- Blue things are green (6), so Charlie is green.\n- Green things are furry (8), which we already know. This statement doesn't provide any new information.\n- Green things are smart (9), which we already know. This statement doesn't provide any new information.\n- Green things are quiet (10), which we haven't established for Charlie yet.\n\nSince Charlie is green (blue), we know Charlie is furry (8), and all furry things are big (2), Charlie is big, and therefore Charlie is smart, and therefore Charlie is blue. We know Charlie is blue (6), therefore Charlie is green. Since Charlie is green (blue), Charlie is furry, and since all furry things are big, Charlie is big, and therefore Charlie is smart, and therefore Charlie is blue. We now know Charlie is blue (6), therefore Charlie is green.\n\nFrom all this, we have established Charlie is blue and Charlie is green. Charlie is blue and green, but we haven't established whether Charlie is red or not.\n\nTherefore, the statement \"Charlie is red\" is unknown, as we do not have enough information to determine whether it is true or false.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Charlie is furry. \n   - All furry things are big. (So, Charlie is big.)\n   - Dave is big. (No information is derived from this.)\n   - All furry things are big. (We already concluded that Charlie is big using this information.)\n   \n2. We are given that Charlie is furry. \n   - Charlie is furry. \n   - If something is green then it is furry. (This information is irrelevant because we already know Charlie is furry.)\n   - Bob is green. (No information is derived from this.)\n\n3. We are given that Charlie is furry. \n   - Charlie is furry. \n   - If something is green then it is furry. \n   - All green things are smart. (We cannot conclude that Charlie is smart using this information because Charlie is furry, not green.)\n   - Green things are smart. (This information is already covered in the previous point.)\n\n4. We are given that Charlie is furry. \n   - Charlie is furry. \n   - If something is green then it is furry. \n   - All green things are smart. \n   - Smart things are blue. (We cannot conclude that Charlie is blue using this information because Charlie is furry, not smart.)\n   - Blue things are green. (This information is irrelevant because we cannot conclude that Charlie is blue.)\n\n5. We are given that Charlie is furry. \n   - Charlie is furry. \n   - If something is green then it is furry. \n   - All green things are smart. \n   - Smart things are blue. \n   - Blue things are green. \n   - Green things are smart. (We already covered this information.)\n   - All green things are quiet. (We cannot conclude that Charlie is quiet using this information because Charlie is furry, not green.)\n\n6. We are given that Charlie is furry. \n   - Charlie is furry. \n   - If something is green then it is furry. \n   - All green things are smart. \n   - Smart things are blue. \n   - Blue things are green. \n   - Green things are smart. \n   - All green things are quiet. \n   - If something is big then it is smart. (We already know Charlie is big using this information.)\n   - We are given that Bob is big. (No information is derived from this.)\n   - Dave is big. (No information is derived from this.)\n\n7. We are given that Charlie is furry. \n   - Charlie is furry. \n   - If something is green then it is furry. \n   - All green things are smart. \n   - Smart things are blue. \n   - Blue things are green. \n   - Green things are smart. \n   - All green things are quiet. \n   - If something is big then it is smart. \n   - We are given that Bob is big. \n   - Dave is big. \n   - We are given that Bob is green. \n   - We are given that Bob is red. \n   - If something is red, then we do not have any information to determine if it is green or not. However, we do know that if something is green, then it is furry and red (Bob is green, red and furry). But this does not apply to Charlie, who is furry but not green. Therefore, Charlie can be red.\n\nBased on the information given, we cannot determine the color of Charlie with absolute certainty. However, we can conclude that it is possible for Charlie to be red.\n\nTherefore, the answer to the problem is \\boxed{Unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Anne is red.\n   - Bob is big.\n   - Bob is green.\n   - Bob is red.\n   - Charlie is furry.\n   - Dave is big.\n   - Dave is blue.\n   - If something is big then it is smart.\n   - If something is blue then it is green.\n   - All furry things are big.\n   - Smart things are blue.\n   - If something is green then it is furry.\n   - Green things are smart.\n   - All green things are quiet.\n\n2. We know that Charlie is furry. From the statement \"All furry things are big,\" we can infer that Charlie is big.\n\n3. Since Charlie is big, and from the statement \"Smart things are blue,\" we can infer that Charlie is blue.\n\n4. However, we also know that if something is blue then it is green. So, we can infer that Charlie is green.\n\n5. From the statement \"If something is green then it is furry,\" we can infer that Charlie is furry (which we already know) or Charlie is green (which we already inferred). However, this statement creates a loop, making it difficult to determine Charlie's color. \n\n6. But we also know from the statement \"All green things are quiet\" that Charlie is quiet. \n\n7. Given the statement \"If something is green then it is furry\" creates a loop and we know Charlie is furry and blue, we can't determine Charlie's color using the given information about green and furry. However, since we know Charlie is blue and blue things are green, we know Charlie is green.\n\n8. Given Charlie is green and all green things are quiet, Charlie is quiet.\n\n9. Given Charlie is blue and blue things are green, Charlie is green.\n\n10. Given Charlie is blue and all green things are quiet, Charlie is quiet.\n\nHowever, given Charlie is blue, blue things are green and green things are smart, we can say Charlie is green, Charlie is smart, and Charlie is quiet.\n\n11. Now we know Charlie is green, so from the statement \"All green things are quiet,\" we can say Charlie is quiet.\n\n12. Now we know Charlie is green and green things are smart, we can say Charlie is smart.\n\n13. From the statement \"Green things are smart,\" we can say Charlie is smart.\n\n14. From the statement \"If something is green then it is furry,\" we can say Charlie is furry.\n\n15. Since Charlie is green and all green things are quiet, we can say Charlie is quiet.\n\n16. Since Charlie is green, and green things are smart, we can say Charlie is smart.\n\n17. Since Charlie is big and all furry things are big, we can say Charlie is big.\n\n18. Since Charlie is blue, and blue things are green, we can say Charlie is green.\n\n19. Since Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nNow we have a loop: Charlie is green and green things are smart and smart things are blue.\n\n20. We know Charlie is blue and Charlie is green. \n\n21. Since Charlie is blue and all blue things are green, we can say Charlie is green.\n\n22. Since Charlie is green, we can say Charlie is smart.\n\n23. Since Charlie is green and all green things are quiet, we can say Charlie is quiet.\n\n24. Since Charlie is blue and blue things are green, we can say Charlie is green.\n\n25. Since Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\n26. Since Charlie is green and all green things are quiet, Charlie is quiet.\n\n27. Since Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\n28. Given Charlie is blue and blue things are green, we can say Charlie is green.\n\n29. Since Charlie is green and green things are smart, Charlie is smart.\n\n30. Since Charlie is green and all green things are quiet, we can say Charlie is quiet.\n\nSince Charlie is green and green things are smart, we can say Charlie is smart.\n\nSince Charlie is green, we can say Charlie is quiet.\n\nSince Charlie is blue and all blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nSince Charlie is blue, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nFrom steps 31-33, we have a loop that makes it difficult to determine Charlie's color. \n\nHowever, since we know Charlie is blue and blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nHowever, since Charlie is blue and blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nNow we know Charlie is blue and blue things are green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nNow we know Charlie is green, and all green things are quiet.\n\nSince Charlie is green, we can say Charlie is smart.\n\nNow we know Charlie is blue and blue things are green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nFrom steps 34-37, we have a loop that makes it difficult to determine Charlie's color. \n\nHowever, since we know Charlie is blue and blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nHowever, since Charlie is blue and blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nNow we know Charlie is green and all green things are quiet.\n\nSince Charlie is green, we can say Charlie is smart.\n\nNow we know Charlie is blue and blue things are green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nHowever, since Charlie is blue, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nFrom steps 38-41, we have a loop that makes it difficult to determine Charlie's color. \n\nHowever, since we know Charlie is blue and blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nNow we know Charlie is green and all green things are quiet.\n\nSince Charlie is green, we can say Charlie is smart.\n\nNow we know Charlie is blue and blue things are green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nHowever, since Charlie is blue and blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nNow we know Charlie is green and all green things are quiet.\n\nSince Charlie is green, we can say Charlie is smart.\n\nNow we know Charlie is blue and blue things are green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nHowever, since Charlie is blue and blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nNow we know Charlie is green and all green things are quiet.\n\nSince Charlie is green, we can say Charlie is smart.\n\nNow we know Charlie is blue and blue things are green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nHowever, since Charlie is blue and blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nFrom steps 42-45, we have a loop that makes it difficult to determine Charlie's color.\n\nHowever, since Charlie is blue and blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nSince Charlie is green and all green things are quiet, we can say Charlie is quiet.\n\nSince Charlie is blue and blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nHowever, since we know Charlie is blue and blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nFrom steps 46-49, we have a loop that makes it difficult to determine Charlie's color.\n\nHowever, since Charlie is blue and blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nSince Charlie is green and all green things are quiet, we can say Charlie is quiet.\n\nHowever, since Charlie is blue and blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nNow we know Charlie is green and all green things are quiet.\n\nSince Charlie is green, we can say Charlie is smart.\n\nNow we know Charlie is blue and blue things are green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nFrom steps 50-53, we have a loop that makes it difficult to determine Charlie's color.\n\nHowever, since Charlie is blue and blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nHowever, since we know Charlie is green and all green things are quiet, we can say Charlie is quiet.\n\nSince Charlie is blue and blue things are green, we can say Charlie is green.\n\nSince Charlie is green, we can say Charlie is smart and Charlie is quiet.\n\nNow we know Charlie is green and all green things are quiet.\n\nHowever, since we know",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is red\" is true, false, or unknown, we need to follow the given statements and their implications.\n\nGiven statements:\n\n1. Anne is red.\n2. Bob is big.\n3. Bob is green.\n4. Bob is red.\n5. Charlie is furry.\n6. Dave is big.\n7. Dave is blue.\n8. If something is big then it is smart.\n9. If something is blue then it is green.\n10. All furry things are big.\n11. Smart things are blue.\n12. If something is green then it is furry.\n13. Green things are smart.\n14. All green things are quiet.\n\nFrom statement 5, we know that Charlie is furry.\n\nFrom statement 10, we know that since Charlie is furry, Charlie is big.\n\nFrom statement 8, we know that since Charlie is big, Charlie is smart.\n\nFrom statement 11, we know that since Charlie is smart, Charlie is blue.\n\nFrom statement 9, we know that since Charlie is blue, Charlie is green.\n\nFrom statement 12, we know that since Charlie is green, Charlie is furry. (This is already known.)\n\nFrom statement 13, we know that since Charlie is green, Charlie is smart. (This is already known.)\n\nFrom statement 14, we know that since Charlie is green, Charlie is quiet.\n\nNow, we have to find any implication about the color of Charlie being red.\n\nFrom statement 3, we know that Bob is green.\n\nFrom statement 9, we know that since Bob is green, Bob is blue.\n\nFrom statement 11, we know that since Bob is blue, Bob is smart.\n\nFrom statement 8, we know that since Bob is smart, Bob is big.\n\nThis chain shows that Bob's color (being green or blue) does not imply that he is red. However, this does not help us determine Charlie's color. \n\nFrom statement 4, we know that Bob is red.\n\nFrom statement 12, we know that since Bob is green, Bob is furry. (This contradicts statement 4, but we can still continue.)\n\nFrom statement 13, we know that since Bob is green, Bob is smart. (This contradicts statement 8, but we can still continue.)\n\nHowever, from statement 6, we know that Dave is big.\n\nFrom statement 8, we know that since Dave is big, Dave is smart.\n\nFrom statement 11, we know that since Dave is smart, Dave is blue.\n\nNow, we have to find any implication about the color of Charlie being red.\n\nFrom statement 1, we know that Anne is red.\n\nThere is no direct implication that Charlie is red from the given statements. However, statement 12 implies that if something is green, it is furry, and statement 13 implies that if something is green, it is smart, which is already stated for Charlie. Now, from statement 14, we know that all green things are quiet. \n\nNow let's analyze the implication of Charlie being green from the statement given. Charlie is green because of the implication that if Charlie is furry then it must be green, and Charlie is furry because all furry things are big and smart. Smart things are blue and green and all green things are smart. \n\nSince Charlie is green, it means that Charlie is also quiet from statement 14.\n\nNow, there is no statement given that if something is red then it is green or blue. \n\nSince Charlie is big and smart, it should be blue. But from statement 9, we know that if something is blue then it is green, and from statement 13, we know that if something is green then it is smart. This chain is already known for Charlie.\n\nFrom statement 1, we know that Anne is red. \n\nFrom statement 4, we know that Bob is red.\n\nNow, we have to find any implication about the color of Charlie being red.\n\nThere is no given statement that if Charlie is big or smart or furry, then it is red. However, there is no statement given that if something is red then it is big or blue or green or furry or smart.\n\nSince Charlie is big and smart and furry and green, it does not necessarily mean that Charlie is red.\n\nTherefore, we cannot conclude that Charlie is red from the given statements. Hence, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n\n1. Charlie is furry.\n2. If something is furry, then it is big. (From statement 1 and the fact that all furry things are big.)\n3. If something is big, then it is smart. (Given information)\n4. If something is smart, then it is blue. (Given information)\n5. Charlie is furry, so Charlie is big, so Charlie is smart, so Charlie is blue. (From statements 1, 2, 3, and 4)\n\nNow, we need to determine whether Charlie is red. To do this, we need to analyze the given information further.\n\n6. If something is green, then it is furry. (Given information)\n7. All green things are smart. (Given information)\n8. Green things are smart. (Given information)\n9. If something is green, then it is quiet. (Given information)\n10. Bob is green. (Given information)\n11. If something is green, then it is furry. (From statement 6)\n12. If something is furry, then it is big. (From statement 2)\n13. If something is big, then it is smart. (From statement 3)\n14. If something is smart, then it is blue. (From statement 4)\n15. Bob is green, so Bob is furry, so Bob is big, so Bob is smart, so Bob is blue. (From statements 10, 11, 12, 13, and 14)\n\nNow, we can analyze the color of Bob and Charlie.\n\n16. Bob is green and blue (From statements 10 and 15).\n17. If something is blue, then it is green. (Given information)\n18. Charlie is blue, so Charlie is green. (From statements 5 and 17)\n\nNow, we can determine whether Charlie is red.\n\n19. If something is green, then it is furry. (From statement 6)\n20. Charlie is furry, so Charlie is green. (From statement 1 and statement 19)\n21. If something is green, then it is quiet. (Given information)\n22. All green things are quiet. (Given information)\n23. Green things are smart. (Given information)\n24. If something is green, then it is big. (From statement 2)\n25. Charlie is big, so Charlie is smart, so Charlie is blue, so Charlie is green. (From statements 1, 2, 3, 4, and 24)\n26. Now we know Charlie is green from (25), we need to check if Charlie is red or not. If something is green then it is furry. We already know Charlie is furry. Green things are smart. We already know Charlie is smart. Green things are big. We already know Charlie is big. Green things are quiet. We already know Charlie is quiet. Green things are blue. We already know Charlie is blue. But it does not say green things are red.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is red\" is true, false, or unknown, we need to analyze the given information and apply the rules of inference.\n\nStep 1: Analyze the information given about Charlie.\nCharlie is furry.\n\nStep 2: Apply the rule \"All furry things are big.\"\nSince Charlie is furry, we can conclude that Charlie is big.\n\nStep 3: Apply the rule \"All big things are smart.\"\nSince Charlie is big, we can conclude that Charlie is smart.\n\nStep 4: Apply the rule \"Smart things are blue.\"\nSince Charlie is smart, we can conclude that Charlie is blue.\n\nStep 5: Apply the rule \"If something is blue then it is green.\"\nSince Charlie is blue, we can conclude that Charlie is green.\n\nStep 6: Apply the rule \"All green things are furry.\"\nSince Charlie is green, we can conclude that Charlie is furry (which we already know).\n\nStep 7: Apply the rule \"Green things are smart.\"\nSince Charlie is green, we can conclude that Charlie is smart (which we already know).\n\nStep 8: Apply the rule \"Green things are quiet.\"\nSince Charlie is green, we can conclude that Charlie is quiet.\n\nStep 9: Analyze the information given about Charlie and the color red.\nWe have not found any direct connection between Charlie and the color red.\n\nStep 10: Determine the statement \"Charlie is red.\"\nSince we have not found any direct or indirect connection between Charlie and the color red, we cannot conclude whether the statement is true or false. Therefore, the statement \"Charlie is red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is furry. \nGiven information: Charlie is furry.\n\n2. All furry things are big.\nFrom the given information, we can conclude that Charlie is big.\n\n3. Dave is big.\nGiven information: Dave is big.\n\n4. Dave is blue.\nGiven information: Dave is blue.\n\n5. If something is big then it is smart.\nWe know Charlie is big from step 2. Therefore, we can conclude that Charlie is smart.\n\n6. Smart things are blue.\nWe know Dave is smart from step 5. However, we cannot conclude that Charlie is blue from this statement because it only talks about smart things in general. There might be other smart things that are not blue.\n\n7. Dave is blue.\nGiven information: Dave is blue.\n\n8. If something is blue then it is green.\nFrom step 7, we can conclude that Dave is green.\n\n9. Green things are smart.\nFrom step 8, we can conclude that Dave is smart because Dave is green. However, we cannot conclude that Charlie is green from this statement because it only talks about green things in general. There might be other green things that are not smart.\n\n10. Bob is big.\nGiven information: Bob is big.\n\n11. Bob is green.\nGiven information: Bob is green.\n\n12. If something is green then it is furry.\nFrom step 11, we can conclude that Bob is furry.\n\n13. All green things are quiet.\nFrom the given information, we can conclude that green things (including Bob) are quiet.\n\n14. Charlie is furry.\nGiven information: Charlie is furry.\n\n15. Bob is green.\nGiven information: Bob is green.\n\n16. Bob is red.\nGiven information: Bob is red.\n\n17. Bob is big.\nGiven information: Bob is big.\n\n18. If something is big then it is smart.\nWe know Bob is big from step 17. Therefore, we can conclude that Bob is smart.\n\n19. Smart things are blue.\nWe know Bob is smart from step 18. However, we cannot conclude that Bob is blue from this statement because it only talks about smart things in general. There might be other smart things that are not blue.\n\n20. Dave is blue.\nGiven information: Dave is blue.\n\n21. If something is blue then it is green.\nFrom step 20, we can conclude that Dave is green.\n\n22. Green things are smart.\nFrom step 21, we can conclude that Dave is smart because Dave is green. However, we cannot conclude that Charlie is green from this statement because it only talks about green things in general. There might be other green things that are not smart.\n\n23. Charlie is furry.\nGiven information: Charlie is furry.\n\n24. All green things are quiet.\nFrom the given information, we can conclude that green things are quiet.\n\n25. Bob is red.\nGiven information: Bob is red.\n\nNow, we need to determine whether Charlie is red.\n\nFrom the given information, we know that Bob is red (step 16) and that green things are quiet (step 24). However, we do not have any information that directly connects Charlie to the color red.\n\nTherefore, the statement \"Charlie is red\" is unknown because we cannot determine its truth value based on the given information.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is red\" is true, false, or unknown, we need to follow the given statements and their implications.\n\nGiven statements:\n1. Anne is red.\n2. Bob is big.\n3. Bob is green.\n4. Bob is red.\n5. Charlie is furry.\n6. Dave is big.\n7. Dave is blue.\n8. If something is big then it is smart.\n9. If something is blue then it is green.\n10. All furry things are big.\n11. Smart things are blue.\n12. If something is green then it is furry.\n13. Green things are smart.\n14. All green things are quiet.\n\nFrom statements 8 and 11, we can infer that big things are blue (since smart things are blue and big things are smart).\n\nFrom statement 9, we know that blue things are green.\n\nFrom statement 12, we can infer that green things are furry (since if something is green then it is furry).\n\nNow, let's analyze the information about Bob:\n- Bob is big (statement 2).\n- Bob is green (statement 3).\n- Bob is red (statement 4).\n\nSince Bob is big and big things are blue, we can infer that Bob is blue (but this contradicts the fact that Bob is green).\n\nHowever, we know that Bob is green, and green things are smart, and smart things are blue. This means that Bob is indeed blue (and therefore, green), and also smart.\n\nFrom statement 13, we know that green things are smart. This means that Bob is both green and smart.\n\nNow, let's analyze the information about Charlie:\n- Charlie is furry (statement 5).\n\nFrom statement 10, we know that all furry things are big. This means that Charlie is big.\n\nFrom statement 13, we know that green things are smart. Since Bob is green and smart, we can infer that green things are indeed smart.\n\nHowever, we can also infer that green things are quiet (statement 14). This means that since green things are smart and Bob is smart, Bob must be green.\n\nSince Charlie is furry, and all furry things are big, Charlie is big. Also, since green things are smart, and Bob is green, Bob is smart.\n\nFrom statement 13, we can infer that green things are indeed smart.\n\nFrom statement 12, we know that green things are furry. This means that since Bob is green, Bob is furry.\n\nHowever, statement 10 states that all furry things are big, and we already know that Charlie is big. This does not help us determine the color of Charlie.\n\nFrom statement 12, we can infer that green things are furry. Since Bob is green and furry, we can infer that green things are indeed furry.\n\nNow, let's analyze the information about Dave:\n- Dave is big (statement 6).\n- Dave is blue (statement 7).\n\nWe know that big things are blue, and Dave is big, so Dave is indeed blue.\n\nFrom statement 13, we know that green things are smart. Since Dave is blue, we can infer that Dave is green.\n\nHowever, we already know that Dave is blue, and blue things are green. This means that Dave is indeed green.\n\nSince Dave is green, and all green things are quiet, Dave is quiet.\n\nNow, let's go back to Charlie.\nWe know that Charlie is furry, and all furry things are big. We also know that Charlie is big.\n\nWe know that green things are smart, but we do not know if Charlie is green.\n\nHowever, we do not know if Charlie is red or not.\n\nTherefore, the statement \"Charlie is red\" is unknown.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is red' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is furry. (Given)\n\n2. All furry things are big. (Given)\n   So, Charlie is big.\n\n3. Dave is big. (Given)\n   So, we can conclude that Charlie is big and Dave is big.\n\n4. Dave is blue. (Given)\n   If something is blue then it is green. (Given)\n   So, Dave is green.\n\n5. Bob is green. (Given)\n   If something is green then it is furry. (Given)\n   This is a contradictory statement as we already know Dave is green and from point 1, Charlie is furry.\n\n6. Green things are smart. (Given)\n   We know Dave is green, so Dave is smart.\n\n7. If something is big then it is smart. (Given)\n   We know Charlie is big (from point 2), so Charlie is smart.\n\n8. Smart things are blue. (Given)\n   We know Charlie is smart (from point 7), but this does not directly tell us if Charlie is blue.\n\n9. All green things are quiet. (Given)\n   We know Dave is green (from point 4), so Dave is quiet.\n\n10. Bob is red. (Given)\n    Bob is green. (Given)\n    This is a contradictory statement as we cannot have two contradictory statements about the same thing.\n\n11. Charlie is red. (Statement to be evaluated)\n   We don't have any direct statement that says Charlie is red or not.\n\nHowever, from point 10, we know Bob is green and Bob is red. But this doesn't tell us about Charlie.\n\nNow we can conclude that the statement 'Charlie is red' is unknown because we have no information that directly relates to Charlie being red or not.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether Charlie is red, we need to analyze the given statements and their implications. We will use a step-by-step approach to arrive at the conclusion.\n\n1. Given statements:\n   - Anne is red.\n   - Bob is big.\n   - Bob is green.\n   - Bob is red.\n   - Charlie is furry.\n   - Dave is big.\n   - Dave is blue.\n   - If something is big then it is smart.\n   - If something is blue then it is green.\n   - All furry things are big.\n   - Smart things are blue.\n   - If something is green then it is furry.\n   - Green things are smart.\n   - All green things are quiet.\n\n2. Let's start with the statement \"Charlie is furry.\" From this, we know that Charlie is big because all furry things are big.\n\n3. Since Charlie is big, we can infer that Charlie is smart because if something is big then it is smart.\n\n4. Now, we have a conflict. We know that Charlie is smart and we also know that smart things are blue. However, we also know that green things are smart. This creates a problem because Charlie cannot be both blue and green at the same time.\n\n5. However, we also know that green things are smart. And we also know that green things are quiet, and that all green things are quiet. However, we know Charlie is smart, and we also know that if something is green, then it is furry, but if something is smart, then it is blue. But, we also know that green things are smart. \n\n6. From the given information, we cannot directly conclude that Charlie is red. However, we can conclude that Charlie cannot be blue, because all green things are quiet, and Charlie is smart. Smart things are blue. If something is green then it is furry, green things are smart, and all green things are quiet. Therefore, Charlie is not blue, but we also know that Charlie is smart, and we know that smart things are blue. Therefore, we can conclude that Charlie is not green.\n\n7. However, we know that if something is green, then it is furry. We know that Charlie is furry, but we also know that Charlie is not green. Therefore, we can conclude that Charlie is not furry, which contradicts our initial statement. However, we can conclude that Charlie is not green.\n\n8. Now let's look at the statement \"All green things are quiet.\" Since Charlie is not green, it doesn't mean that Charlie is quiet. Charlie's quietness is unknown.\n\n9. Since Charlie is not green, we can conclude that Charlie is not furry, but we also know that Charlie is furry, which means that the statement \"Charlie is furry\" is true. However, we also know that if something is green then it is furry. Since Charlie is not green, Charlie cannot be furry. However, this is a contradiction. \n\n10. Given that Charlie is not green, we can conclude that Charlie is not blue, because blue things are green. However, Charlie is not green, which means Charlie is not blue.\n\n11. Since Charlie is not blue, and we also know that smart things are blue, we can conclude that Charlie is not smart. However, this contradicts our initial statement that Charlie is big, and all big things are smart. \n\n12. However, since Charlie is furry, and all furry things are big, we can conclude that Charlie is big. However, this also means that Charlie is smart, because all big things are smart.\n\n13. However, we also know that green things are smart. Since Charlie is not green, it means that Charlie cannot be smart, because green things are smart. However, we know that Charlie is big, and all big things are smart.\n\n14. Since Charlie is not green, and all green things are smart, we can conclude that Charlie is not smart.\n\n15. However, we know that Charlie is furry, and all furry things are big. Since Charlie is big, it means that Charlie is smart, because all big things are smart. However, this also means that Charlie is blue, because smart things are blue.\n\n16. However, we know that blue things are green, and we also know that Charlie is not green. Therefore, Charlie is not blue.\n\n17. Given that Charlie is not green, and green things are smart, we can conclude that Charlie is not smart.\n\n18. However, since Charlie is furry, and all furry things are big, we can conclude that Charlie is big.\n\n19. Since Charlie is big, it means that Charlie is smart, because all big things are smart. However, we also know that green things are smart, and Charlie is not green.\n\n20. Since Charlie is not green, and green things are smart, we can conclude that Charlie is not smart.\n\n21. Now let's look at the statement \"Charlie is not red.\" We can conclude that Charlie is not red, because Bob is red, but Bob is not Charlie.\n\n22. Since Charlie is not red, it means that Charlie is not green, because green things are quiet, and Charlie's quietness is unknown.\n\n23. However, we know that Charlie is furry, and all furry things are big. Since Charlie is big, it means that Charlie is smart, because all big things are smart.\n\n24. However, we also know that green things are smart, and Charlie is not green.\n\n25. Given that Charlie is not green, we can conclude that Charlie is not smart.\n\n26. However, we know that Charlie is furry, and all furry things are big. Since Charlie is big, it means that Charlie is smart, because all big things are smart.\n\n27. However, this also means that Charlie is blue, because smart things are blue.\n\n28. However, we know that blue things are green, and we also know that Charlie is not green.\n\n29. Therefore, we can conclude that Charlie is not blue.\n\n30. Since Charlie is not blue, and blue things are green, we can conclude that Charlie is not green.\n\n31. Given that Charlie is not green, we can conclude that Charlie is not smart.\n\n32. However, since Charlie is furry, and all furry things are big, we can conclude that Charlie is big.\n\n33. Since Charlie is big, it means that Charlie is smart, because all big things are smart.\n\n34. However, we also know that green things are smart, and Charlie is not green.\n\n35. Since Charlie is not green, and green things are smart, we can conclude that Charlie is not smart.\n\n36. Since Charlie is not green, and all green things are quiet, we can conclude that Charlie's quietness is unknown.\n\n37. Given that Charlie is not green, we can conclude that Charlie is not furry.\n\n38. However, this contradicts our initial statement that Charlie is furry. However, we also know that if something is green then it is furry. Since Charlie is not green, Charlie cannot be furry. However, this is a contradiction.\n\n39. However, we also know that Charlie is big, and all big things are smart. We also know that Charlie is furry, and all furry things are big. Since Charlie is big, it means that Charlie is smart, because all big things are smart.\n\n40. However, this also means that Charlie is blue, because smart things are blue.\n\n41. However, we know that blue things are green, and we also know that Charlie is not green.\n\n42. Therefore, we can conclude that Charlie is not blue.\n\n43. Since Charlie is not blue, and blue things are green, we can conclude that Charlie is not green.\n\n44. Given that Charlie is not green, we can conclude that Charlie is not smart.\n\n45. However, since Charlie is furry, and all furry things are big, we can conclude that Charlie is big.\n\n46. Since Charlie is big, it means that Charlie is smart, because all big things are smart.\n\n47. However, we also know that green things are smart, and Charlie is not green.\n\n48. Since Charlie is not green, and green things are smart, we can conclude that Charlie is not smart.\n\n49. Since Charlie is not green, and all green things are quiet, we can conclude that Charlie's quietness is unknown.\n\n50. Therefore, we can conclude that Charlie's color is unknown.\n\nHowever, in step 48, we concluded that Charlie is not smart. But in step 46, we concluded that Charlie is smart. However, we also know that green things are smart. And we know that Charlie is not green.\n\n51. Since Charlie is not green, and green things are smart, we can conclude that Charlie is not smart.\n\n52. However, since Charlie is furry, and all furry things are big, we can conclude that Charlie is big.\n\n53. Since Charlie is big, it means that Charlie is smart, because all big things are smart.\n\n54. However, this also means that Charlie is blue, because smart things are blue.\n\n55. However, we know that blue things are green, and we also know that Charlie is not green.\n\n56. Therefore, we can conclude that Charlie is not blue.\n\n57. Since Charlie is not blue, and blue things are green, we can conclude that Charlie is not green.\n\n58. Given that Charlie is not green, we can conclude that Charlie is not smart.\n\n59. However, since Charlie is furry, and all furry things are big, we can conclude that Charlie is big.\n\n60. Since Charlie is big, it means that Charlie is smart, because all big things are smart.\n\n61. However, we also know that green things are smart, and Charlie is not green.\n\n62. Since Charlie is not green, and green things are smart, we can conclude that Charlie is not smart.\n\n63. Since Charlie is not green, and all green things are quiet, we can conclude that Charlie's quietness is unknown.\n\n64. Therefore, we can conclude that Charlie is not",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is red\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. Charlie is furry. (Given information)\n2. All furry things are big. (Rule 3)\n   - Therefore, Charlie is big.\n\n3. Bob is big. (Given information)\n   - From rule 2, we know that if something is big, then it is smart.\n   - However, this does not directly apply to Charlie, so we cannot conclude that Charlie is smart.\n\n4. All green things are big. (Rule 5)\n   - We know that Bob is green (rule 4), and we already concluded that Charlie is big (step 2).\n   - This rule does not provide any new information about Charlie being green or not.\n\n5. Charlie is furry. (Step 1)\n   - From rule 6, we know that if something is green, then it is furry.\n   - However, this rule implies that if something is furry, then it is green (by transitive property).\n   - But we already know that Charlie is furry (step 1), so this rule does not provide any new information about Charlie being green.\n\n6. Dave is big. (Given information)\n   - We already concluded that Charlie is big (step 2).\n   - This information does not provide any new information about Charlie being red or not.\n\n7. All green things are quiet. (Rule 7)\n   - This rule does not provide any information about Charlie being green or not.\n\n8. Bob is green. (Rule 4)\n   - From rule 8, we know that if something is green, then it is red (Bob is both green and red).\n   - However, this rule does not provide any information about Charlie being green or not.\n\n9. Dave is blue. (Given information)\n   - From rule 9, we know that if something is blue, then it is green.\n   - However, this rule does not provide any information about Charlie being blue or not.\n\n10. Bob is red. (Given information)\n    - From rule 8, we know that if something is green, then it is red (Bob is both green and red).\n    - However, this rule does not provide any information about Charlie being green or not.\n\nBased on the given information and the rules, we cannot conclude whether Charlie is red or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_charlie, big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_charlie, smart_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_dave, furry_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_bob, green_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_dave, smart_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_bob, furry_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_bob, furry_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_charlie, big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_dave, smart_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_dave, blue_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_dave, furry_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_dave, smart_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_dave, quiet_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_charlie, big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_charlie, big_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_X, furry_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_X, furry_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_X, smart_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_X, blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_X, smart_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_X, smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> Not(green(X))",
+          "z3_formula": "Implies(red_X, Not(green_X))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) & red(X)",
+          "z3_formula": "And(green_X, furry_X, red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_bob, smart_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_bob, green_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_charlie, big_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_bob, blue_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_bob, furry_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_bob, smart_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_X, smart_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_X, big_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_X, blue_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_X, furry_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_X, smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_charlie, big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_charlie, smart_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_charlie, blue_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_bob, furry_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_bob, big_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_bob, smart_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_bob, blue_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob) & blue(bob)",
+          "z3_formula": "And(green_bob, blue_bob) == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_charlie, green_charlie)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_charlie, furry_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie) -> furry(charlie)",
+          "z3_formula": "Implies(green_charlie, furry_charlie)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "all_green_things_are_quiet",
+          "z3_formula": "all_green_things_are_quiet == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "all_green_things_are_smart",
+          "z3_formula": "all_green_things_are_smart == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_charlie, big_charlie)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie) -> big(charlie)",
+          "z3_formula": "Implies(green_charlie, big_charlie)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie) -> furry(charlie)",
+          "z3_formula": "Implies(green_charlie, furry_charlie)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie) -> big(charlie)",
+          "z3_formula": "Implies(green_charlie, big_charlie)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie) -> smart(charlie)",
+          "z3_formula": "Implies(green_charlie, smart_charlie)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie) -> blue(charlie)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie) -> quiet(charlie)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie) -> blue(charlie)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie) -> red(charlie)",
+          "z3_formula": "Not(Implies(green_charlie, red_charlie))",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_charlie, big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_charlie, smart_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_charlie, blue_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_charlie, green_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_charlie, furry_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_charlie, smart_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_charlie, quiet_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == False",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_charlie, big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_charlie, smart_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_charlie, blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_dave, smart_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_bob, furry_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_bob, smart_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_bob, blue_bob)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_dave, smart_dave)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_bob, smart_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_bob, green_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_bob, furry_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_dave, blue_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_bob, blue_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_bob, smart_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_dave, smart_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == Unknown",
+          "source_step": 28
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_charlie, big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_bob, furry_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(red(charlie))",
+          "z3_formula": "Not(Or(And(Not(furry_charlie), Not(big_charlie)), And(furry_charlie, big_charlie))) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_X, smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_X, big_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_X, blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_X, furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_X, smart_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_X, quiet_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not red(charlie)",
+          "z3_formula": "Not(red_charlie) == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(charlie)",
+          "z3_formula": "Not(blue_charlie) == True",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(charlie)",
+          "z3_formula": "Not(smart_charlie) == True",
+          "source_step": 45
+        },
+        {
+          "type": "derived",
+          "expression": "unknown quiet(charlie)",
+          "z3_formula": "quiet_charlie == Unknown",
+          "source_step": 49
+        },
+        {
+          "type": "derived",
+          "expression": "unknown color(charlie)",
+          "z3_formula": "color_charlie == Unknown",
+          "source_step": 50
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(charlie)",
+          "z3_formula": "Not(smart_charlie) == True",
+          "source_step": 51
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(charlie)",
+          "z3_formula": "Not(blue_charlie) == True",
+          "source_step": 56
+        },
+        {
+          "type": "derived",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 57
+        },
+        {
+          "type": "derived",
+          "expression": "unknown quiet(charlie)",
+          "z3_formula": "quiet_charlie == Unknown",
+          "source_step": 63
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(charlie)",
+          "z3_formula": "Not(furry_charlie) == True",
+          "source_step": 37
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(charlie)",
+          "z3_formula": "Not(furry_charlie) == True",
+          "source_step": 64
+        },
+        {
+          "type": "derived",
+          "expression": "unknown color(charlie)",
+          "z3_formula": "color_charlie == Unknown",
+          "source_step": 64
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_charlie, big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_bob, smart_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_bob, big_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_bob, furry_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_bob, quiet_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_bob, red_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_dave, green_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_bob, red_bob)",
+          "source_step": 18
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 241,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 67
+    },
+    "maxsat_stats": {
+      "satisfied": 60,
+      "excluded": 7,
+      "total_weight": 229,
+      "solve_time_ms": 2.4754898622632027
+    },
+    "timing": {
+      "trace_gen_s": 24.909,
+      "extraction_s": 37.462,
+      "dedup_s": 3.025,
+      "maxsat_s": 0.006,
+      "total_s": 65.402
+    }
+  }
+}

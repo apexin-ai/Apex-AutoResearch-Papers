@@ -1,0 +1,1292 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1421_Q11",
+    "problem": "Anne is cold. Anne is rough. Bob is cold. Bob is kind. Dave is big. Dave is red. Dave is smart. Harry is big. Harry is kind. Harry is smart. Big people are young. Red people are smart. If Anne is young and Anne is rough then Anne is smart. Young, cold people are red. Rough people are big. All kind people are rough. If Anne is kind and Anne is cold then Anne is smart. All young people are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is smart.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nRough(Anne, True) ::: Anne is rough.\nCold(Bob, True) ::: Bob is cold.\nKind(Bob, True) ::: Bob is kind.\nBig(Dave, True) ::: Dave is big.\nRed(Dave, True) ::: Dave is red.\nSmart(Dave, True) ::: Dave is smart.\nBig(Harry, True) ::: Harry is big.\nKind(Harry, True) ::: Harry is kind.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nBig($x, True) >>> Young($x, True) ::: Big people are young.\nRed($x, True) >>> Smart($x, True) ::: Red people are smart.\nYoung(Anne, True) && Rough(Anne, True) >>> Smart(Anne, True) ::: If Anne is young and Anne is rough then Anne is smart.\nYoung($x, True) && Cold($x, True) >>> Red($x, True) ::: Young, cold people are red.\nRough($x, True) >>> Big($x, True) ::: Rough people are big.\nKind($x, True) >>> Rough($x, True) ::: All kind people are rough.\nCold(Anne, True) && Kind(Anne, True) >>> Smart(Anne, True) ::: If Anne is kind and Anne is cold then Anne is smart.\nYoung($x, True) >>> Kind($x, True) ::: All young people are kind.\n\nQuery:\nSmart(Bob, True) ::: Bob is smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 187.0,
+      "Unknown": 174.0
+    },
+    "answer_counts": {
+      "True": 7,
+      "Unknown": 5
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we'll use a series of logical deductions based on the given information.\n\n1. All kind people are rough. (Rule 1)\n   We know that Bob is kind (given fact), so Bob is rough.\n\n2. All young people are kind. (Rule 7)\n   We also know that young people are either big or red (Rule 3), but we don't have information about Bob's age yet.\n\n3. Bob is cold. (Given fact)\n   We don't have direct information about Bob's age, but since Bob is cold, and young, cold people are red (Rule 4), we can deduce that Bob might be red.\n\n4. Red people are smart. (Rule 2)\n   If Bob is indeed red (from step 3), then Bob is smart.\n\nHowever, we need to consider another possibility for Bob's age and characteristics.\n\n5. Big people are young. (Rule 3)\n   We know that Dave is big and smart (given fact), but we also know that all kind people are rough (Rule 1), and Harry is big and kind (given fact). This means Harry is rough (Rule 1).\n\n6. Rough people are big. (Rule 5)\n   Since Harry is rough, he is indeed big.\n\n7. Harry is big and kind. (Given fact)\n   We already know that Harry is big, and since he's also kind, Harry must be young.\n\n8. All young people are kind. (Rule 7)\n   We know that Harry is young, and since all young people are kind, Bob must also be young.\n\n9. Young, cold people are red. (Rule 4)\n   Since Bob is young and cold, we can conclude that Bob is indeed red.\n\n10. Red people are smart. (Rule 2)\n    Since Bob is red, Bob is smart.\n\nHowever, we initially considered the possibility that Bob might not be young. Since we've deduced that Bob is indeed young, we don't need to consider the \"not young\" possibility.\n\nConsidering both possibilities, we can conclude that:\n\nBob is smart.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is smart' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is kind. (Given information)\n2. All kind people are rough. (Given information)\n   - From (1) and (2), we can conclude that Bob is rough.\n\n3. Young people are kind. (Given information)\n4. All young people are kind. (Given information)\n   - Since (3) and (4) are similar, we can ignore (3) for now.\n\n5. Young, cold people are red. (Given information)\n   - We don't have any information about Bob's age or if he is cold, but we will come back to this later.\n\n6. Rough people are big. (Given information)\n   - From (2) and (6), we can conclude that Bob is big.\n\n7. Red people are smart. (Given information)\n   - We don't have any information about Bob's color, so we can't conclude his intelligence yet.\n\n8. Big people are young. (Given information)\n   - From (6) and (8), we can conclude that Bob is young.\n\n9. Anne is young and Anne is rough then Anne is smart. (Given information)\n   - We can't conclude anything about Anne's intelligence yet, but this statement will be useful later.\n\n10. If Anne is kind and Anne is cold then Anne is smart. (Given information)\n    - We can't conclude anything about Anne's intelligence yet, but this statement will be useful later.\n\n11. Dave is big. (Given information)\n    - From (6), we can conclude that Dave is rough.\n\n12. All young people are kind. (Given information)\n    - From (8) and (12), we can conclude that Bob is kind.\n\n13. Harry is big. (Given information)\n    - From (6), we can conclude that Harry is rough.\n\n14. Dave is smart. (Given information)\n    - We don't know why Dave is smart, but we know that he is.\n\n15. Harry is kind. (Given information)\n    - From (2), we can conclude that Harry is rough.\n\n16. Harry is smart. (Given information)\n    - We don't know why Harry is smart, but we know that he is.\n\n17. If Anne is kind and Anne is cold then Anne is smart. (Given information)\n    - Since Anne is kind (from (2)), we can conclude that Anne is rough (from (2)) and Anne is big (from (6)).\n    - We can't conclude Anne's intelligence from this statement.\n\n18. Anne is cold. (Given information)\n    - From (9), we can conclude that Anne is smart.\n\n19. Anne is rough. (Given information)\n    - We already concluded this from (2) and (12).\n\n20. Anne is young. (Given information)\n    - We already concluded this from (8) and (12).\n\nNow, let's analyze the given statements again.\n\n- Bob is big. (From (6))\n- Bob is rough. (From (2) and (1))\n- Bob is young. (From (8) and (6))\n- Bob is kind. (From (1))\n\nSince Bob is young and kind, we can conclude that Bob is smart from statement (9).\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is cold. (Given)\n2. Bob is kind. (Given)\n3. All kind people are rough. (Given)\n   Since Bob is kind, it implies that Bob is rough. (From 2 and 3)\n\n4. Rough people are big. (Given)\n   Since Bob is rough, it implies that Bob is big. (From 3)\n\n5. All young people are kind. (Given)\n   We don't know if Bob is young, so we cannot conclude that Bob is kind solely based on this statement.\n\n6. Big people are young. (Given)\n   Since Bob is big, it implies that Bob is young. (From 4)\n\n7. Now, we can use the information from 5.\n   Since Bob is young, it implies that Bob is kind. (From 5)\n\n8. Anne is young and Anne is rough. (Given)\n   From 8, we can conclude that Anne is smart. (Given)\n\n9. Young, cold people are red. (Given)\n   Since Bob is young and cold (From 1), it implies that Bob is red. (From 9)\n\n10. Red people are smart. (Given)\n    Since Bob is red (From 9), it implies that Bob is smart. (From 10)\n\nSo, the statement \"Bob is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information:\n   - Anne is cold.\n   - Anne is rough.\n   - Bob is cold.\n   - Bob is kind.\n   - Dave is big.\n   - Dave is red.\n   - Dave is smart.\n   - Harry is big.\n   - Harry is kind.\n   - Harry is smart.\n   - Big people are young.\n   - Red people are smart.\n   - If Anne is young and Anne is rough then Anne is smart.\n   - Young, cold people are red.\n   - Rough people are big.\n   - All kind people are rough.\n   - If Anne is kind and Anne is cold then Anne is smart.\n   - All young people are kind.\n\n2. From the information \"Bob is cold\" and \"Bob is kind,\" we cannot directly infer whether Bob is smart or not. However, we can use the information \"All kind people are rough\" and \"All young people are kind\" to determine some properties of Bob. Since Bob is kind, we can conclude that Bob is rough.\n\n3. Now, we have \"Bob is rough.\" We can use the information \"Rough people are big\" to conclude that Bob is big.\n\n4. From the information \"Bob is big\" and \"Big people are young,\" we can conclude that Bob is young.\n\n5. Now, we have \"Bob is young\" and \"Bob is kind.\" Since \"All young people are kind,\" we can confirm that Bob is indeed young.\n\n6. Given \"Bob is young\" and \"Bob is kind,\" we can use the information \"Young, cold people are red\" and \"Bob is cold\" to conclude that Bob is red.\n\n7. Now, we have \"Bob is red.\" We can use the information \"Red people are smart\" to conclude that Bob is smart.\n\nTherefore, the statement \"Bob is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will use a set of logical statements to determine the truth value of the statement \"Bob is smart.\"\n\nLet's break down the given information:\n\n1. At the end, put your final answer in \\boxed{}.\n2. We have the following statements:\n   - Anne is cold.\n   - Anne is rough.\n   - Bob is cold.\n   - Bob is kind.\n   - Dave is big.\n   - Dave is red.\n   - Dave is smart.\n   - Harry is big.\n   - Harry is kind.\n   - Harry is smart.\n   - Big people are young.\n   - Red people are smart.\n   - If Anne is young and Anne is rough then Anne is smart.\n   - Young, cold people are red.\n   - Rough people are big.\n   - All kind people are rough.\n   - If Anne is kind and Anne is cold then Anne is smart.\n   - All young people are kind.\n\nNow, let's analyze the statements one by one.\n\n- From the statement \"Big people are young\" and \"Harry is big,\" we can conclude that Harry is young.\n- From the statement \"Harry is young\" and \"All young people are kind,\" we can conclude that Harry is kind.\n- From the statement \"Harry is kind\" and \"All kind people are rough,\" we can conclude that Harry is rough.\n- From the statement \"Harry is rough\" and \"Rough people are big,\" we can conclude that Harry is big.\n- From the statement \"Harry is big\" and \"Harry is kind,\" we can conclude that Harry is young, big, and kind.\n\n- From the statement \"Dave is big\" and \"Dave is red,\" we can conclude that Dave is red and big.\n- From the statement \"Dave is red\" and \"Red people are smart,\" we can conclude that Dave is smart.\n\n- From the statement \"Anne is young\" is not directly given, but we know that \"All young people are kind\" and \"All kind people are rough.\" So, if Anne is young, she must be kind and rough.\n- Since \"Anne is rough\" and \"Rough people are big,\" we can conclude that Anne is big.\n- Since \"Anne is cold\" and \"Young, cold people are red,\" we can conclude that Anne is red.\n\n- From the statement \"Anne is red\" and \"Anne is big,\" we can conclude that Anne is red and big, but we already know that.\n- From the statement \"Anne is big\" and \"Anne is kind,\" we can conclude that Anne is big, but we already know that.\n- From the statement \"Anne is red\" and \"Red people are smart,\" we can conclude that Anne is smart.\n\nHowever, the statement \"Anne is kind\" is not directly given. But we can conclude that Anne is kind using the chain of implications:\n- \"All young people are kind\"\n- \"Anne is young\" is not directly given, but we know that \"Young, cold people are red\" and \"Anne is red\" and \"Anne is cold.\"\n- \"Anne is red\" and \"Anne is cold,\" then Anne is red and cold. Since \"Young, cold people are red\" and \"Anne is cold,\" then Anne is young.\n\nSo, if Anne is young, then she is kind.\n\nNow, we know that Anne is kind and Anne is cold. Then we can conclude that Anne is smart using the statement \"If Anne is kind and Anne is cold then Anne is smart.\"\n\nNow, let's analyze the statements related to Bob:\n\n- Bob is cold.\n- Bob is kind.\n- Since \"All kind people are rough,\" we can conclude that Bob is rough.\n- Since \"Young, cold people are red\" and \"Bob is cold\" and \"All young people are kind,\" we can conclude that Bob is young.\n- Since \"Bob is young\" and \"All young people are kind,\" we can conclude that Bob is kind.\n- Since \"Bob is kind\" and \"All kind people are rough,\" we can conclude that Bob is rough.\n- Since \"Rough people are big,\" we can conclude that Bob is big.\n\nNow, we know that Bob is young, big, and kind. But we cannot conclude that Bob is smart.\n\nSo, we can conclude that Bob is not necessarily smart.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. From the given information, we have the following statements:\n   - Anne is cold.\n   - Anne is rough.\n   - Bob is cold.\n   - Bob is kind.\n   - Dave is big.\n   - Dave is red.\n   - Dave is smart.\n   - Harry is big.\n   - Harry is kind.\n   - Harry is smart.\n   - Big people are young.\n   - Red people are smart.\n   - If Anne is young and Anne is rough, then Anne is smart.\n   - Young, cold people are red.\n   - Rough people are big.\n   - All kind people are rough.\n   - If Anne is kind and Anne is cold, then Anne is smart.\n   - All young people are kind.\n\n2. Let's start by analyzing the information related to Bob:\n   - Bob is cold.\n   - Bob is kind.\n\n3. Since Bob is kind, we can apply the rule \"All kind people are rough\" to conclude that Bob is rough.\n\n4. Now, we have two conflicting pieces of information about Bob:\n   - Bob is cold.\n   - Bob is rough.\n\n5. From the rule \"Rough people are big,\" we can conclude that Bob is big.\n\n6. From the rule \"Big people are young,\" we can conclude that Bob is young.\n\n7. Since Bob is young, we can apply the rule \"All young people are kind\" to conclude that Bob is indeed kind, which we already knew.\n\n8. Since Bob is young and cold, we can apply the rule \"Young, cold people are red\" to conclude that Bob is red.\n\n9. Since Bob is red, we can apply the rule \"Red people are smart\" to conclude that Bob is smart.\n\nTherefore, the statement \"Bob is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nGiven information:\n\n1. Anne is cold. \n2. Anne is rough. \n3. Bob is cold. \n4. Bob is kind. \n5. Dave is big. \n6. Dave is red. \n7. Dave is smart. \n8. Harry is big. \n9. Harry is kind. \n10. Harry is smart. \n11. Big people are young. \n12. Red people are smart. \n13. If Anne is young and Anne is rough then Anne is smart. \n14. Young, cold people are red. \n15. Rough people are big. \n16. All kind people are rough. \n17. If Anne is kind and Anne is cold then Anne is smart. \n18. All young people are kind.\n\nNow, let's analyze the statement \"Bob is smart.\"\n\nFrom the given information, we know:\n\n- Bob is cold (statement 3).\n- Bob is kind (statement 4).\n\nWe can infer the following:\n\n- All young people are kind (statement 18).\n- If Anne is kind and Anne is cold then Anne is smart (statement 17). \n  However, we cannot directly apply this to Bob, because we do not know if Bob is young.\n- Young, cold people are red (statement 14).\n  However, we cannot directly apply this to Bob, because we do not know if Bob is young.\n\nFrom the given information, we also know:\n\n- If Anne is young and Anne is rough then Anne is smart (statement 13).\n  However, we cannot directly apply this to Bob, because we do not know if Bob is young or rough.\n\nTo determine whether Bob is smart, we need to find a direct connection between Bob's properties and the properties that are linked to being smart.\n\nFrom statement 16, we know that all kind people are rough. Since Bob is kind (statement 4), we can infer that Bob is rough.\n\nNow, we can use statement 15, which states that rough people are big. Since Bob is rough, we can infer that Bob is big.\n\nFrom statement 11, we know that big people are young. Since Bob is big, we can infer that Bob is young.\n\nNow, we can use statement 18, which states that all young people are kind. Since Bob is young, we can infer that Bob is kind (which we already knew).\n\nHowever, being young and kind does not directly imply that Bob is smart. \n\nWe can use statement 18 again: all young people are kind. Since Bob is young, we can infer that Bob is kind. However, statement 17 says that if Anne is kind and Anne is cold then Anne is smart. We cannot directly apply this to Bob because we do not know if Bob is cold.\n\nSince we cannot find a direct connection between Bob's properties and the properties that are linked to being smart, we cannot conclude whether Bob is smart.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Bob is kind. (Direct information)\n\n2. All kind people are rough. (Direct information)\n   Since Bob is kind, Bob is rough. (Inference)\n\n3. Anne is rough. (Direct information)\n   Young, cold people are red. (Direct information)\n   Rough people are big. (Direct information)\n   We cannot directly relate Anne being rough to being red, big, or young.\n\n4. Big people are young. (Direct information)\n   Harry is big. (Direct information)\n   Harry is kind. (Direct information)\n   Harry is smart. (Direct information)\n\n5. Red people are smart. (Direct information)\n\n6. Dave is big. (Direct information)\n   Dave is red. (Direct information)\n   Dave is smart. (Direct information)\n\n7. Anne is cold. (Direct information)\n   Anne is rough. (Direct information)\n   We cannot directly relate Anne being cold and rough to being smart.\n\n8. All kind people are rough. (Direct information)\n   All young people are kind. (Direct information)\n   Since Anne is young and young people are kind, Anne is kind. (Inference)\n\n9. If Anne is kind and Anne is cold then Anne is smart. (Conditional statement)\n   We know Anne is kind and Anne is cold, so we can apply this condition to Anne.\n\n10. Since Anne is kind and Anne is cold, Anne is smart. (Inference)\n\nNow, let's analyze the information related to Bob:\n\n- We know Bob is kind. (Direct information)\n- However, we cannot directly link Bob's characteristics to being smart.\n\nConsidering the given information, we cannot deduce that Bob is smart based on the given facts. Therefore, the statement \"Bob is smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. From the statement \"Young, cold people are red,\" we can conclude that Anne is red because she is young and cold.\n\n2. From the statement \"All young people are kind,\" we can conclude that Anne is kind because she is young.\n\n3. We have two conditions that make Anne smart:\n   - Condition 1: If Anne is young and Anne is rough, then Anne is smart. \n   - Condition 2: If Anne is kind and Anne is cold, then Anne is smart.\n\n4. We already know Anne is young and cold from previous conclusions. However, we don't know whether Anne is rough or not. \n\n5. From the statement \"Rough people are big\" and \"All kind people are rough,\" we can conclude that Anne is big because she is kind.\n\n6. Now we can analyze the conditions for Anne being smart:\n   - Condition 1: If Anne is young and Anne is rough, then Anne is smart. We don't know whether Anne is rough or not, so we can't conclude Anne is smart from this condition.\n   - Condition 2: If Anne is kind and Anne is cold, then Anne is smart. We already know Anne is kind and cold, so Anne is smart from this condition.\n\n7. However, the statement \"Big people are young\" implies that being big and young are contradictory. We already concluded that Anne is big, and she is also young, so we can't use this statement directly. But, if we assume that \"Big people are young\" is correct, it would imply that Anne is not big, which contradicts our previous conclusion. However, we will ignore this statement for now because we don't have enough information to make a conclusion about it being correct or not. \n\n8. To determine whether Bob is smart, we need to analyze the information given about Bob:\n   - Bob is cold.\n   - Bob is kind.\n\n9. We can conclude that Bob is red because he is cold and young (since all young people are kind, and kind people are young, Bob must be young). However, we can't directly conclude that Bob is red from the statement \"Young, cold people are red.\" We need to conclude that Bob is young first.\n\n10. Since we can't directly conclude that Bob is young, we can't conclude that Bob is red from the statement \"Young, cold people are red.\" \n\n11. We can conclude that Bob is rough because he is kind, and all kind people are rough.\n\n12. Now we can analyze the conditions for Anne being smart again:\n   - Condition 1: If Anne is young and Anne is rough, then Anne is smart. We don't know whether Anne is rough or not, so we can't conclude Anne is smart from this condition.\n   - Condition 2: If Anne is kind and Anne is cold, then Anne is smart. We already know Anne is kind and cold, so Anne is smart from this condition.\n\n13. From the statement \"Bob is kind and Bob is cold,\" we can conclude that Bob is smart using Condition 2, which states that if Anne is kind and Anne is cold, then Anne is smart. This condition also applies to Bob because he is kind and cold.\n\nTherefore, we can conclude that the statement \"Bob is smart\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given information and apply it to the properties of Bob.\n\n1. Bob is cold. (Direct information)\n2. Bob is kind. (Direct information)\n\nFrom the information given, we know:\n- Young, cold people are red. (But we don't know if Bob is young)\n- All kind people are rough. (But we don't know if Bob is rough)\n- All young people are kind. (But we don't know if Bob is young)\n\nHowever, we can use the following statements to deduce more information:\n- Red people are smart. (We don't know if Bob is red)\n- If Anne is kind and Anne is cold then Anne is smart. (This is a specific statement about Anne, not Bob)\n- If Anne is young and Anne is rough then Anne is smart. (This is also a specific statement about Anne, not Bob)\n\nTo determine if Bob is smart, let's see if we can find any other useful information:\n- Big people are young. (This statement can be used to find a connection)\n- Dave is big. (Dave is not necessarily Bob)\n- Dave is red. (Dave is red, but we don't know if Bob is red)\n- Dave is smart. (Dave is smart, but we don't know if Bob is smart)\n\nHowever, we can use the fact that \"Rough people are big\" to make a connection between Anne and Bob, but we don't have enough information to directly apply this to Bob.\n\nSince we don't have enough information to directly determine if Bob is smart, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve the problem, we need to use the given information to derive a conclusion about Bob being smart.\n\n1. We know the following facts:\n   - Anne is cold.\n   - Anne is rough.\n   - Bob is cold.\n   - Bob is kind.\n   - Dave is big.\n   - Dave is red.\n   - Dave is smart.\n   - Harry is big.\n   - Harry is kind.\n   - Harry is smart.\n   - Big people are young.\n   - Red people are smart.\n   - If Anne is young and Anne is rough then Anne is smart.\n   - Young, cold people are red.\n   - Rough people are big.\n   - All kind people are rough.\n   - If Anne is kind and Anne is cold then Anne is smart.\n   - All young people are kind.\n\n2. We are asked to determine whether the statement \"Bob is smart\" is true, false, or unknown.\n\n3. First, let's use the information to derive some intermediate conclusions.\n   - From \"All kind people are rough\" and \"Bob is kind\", we can conclude that Bob is rough.\n   - From \"Young, cold people are red\" and \"Bob is cold\", we cannot conclude anything about Bob's color because we don't know if Bob is young.\n   - From \"All young people are kind\" and \"All kind people are rough\", we can conclude that all young people are rough.\n   - From \"Anne is cold\" and \"Anne is rough\", we cannot conclude that Anne is young because we don't know if Anne is young.\n\n4. Now, let's focus on Bob being smart.\n   - We don't have any direct information about Bob being smart.\n   - We can try to derive a conclusion by combining the information.\n   - From \"Bob is cold\" and \"Bob is rough\", we cannot conclude anything about Bob's age or color.\n   - From \"If Anne is kind and Anne is cold then Anne is smart\" and \"Bob is kind and Bob is cold\", we cannot conclude that Bob is smart because we don't know if Bob is kind and cold at the same time.\n   - From \"All kind people are rough\" and \"Bob is kind\", we know that Bob is rough.\n   - However, we still cannot conclude that Bob is smart.\n\n5. Unfortunately, we cannot derive a conclusion about Bob being smart using the given information. Therefore, the statement \"Bob is smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"All kind people are rough,\" we can conclude that Bob is rough since Bob is kind.\n\n2. From the statement \"Rough people are big,\" we can conclude that Bob is big.\n\n3. From the statement \"All kind people are rough,\" we can conclude that Harry is rough since Harry is kind.\n\n4. From the statement \"Rough people are big,\" we can conclude that Harry is big.\n\n5. From the statement \"Big people are young,\" we can conclude that both Bob and Harry are young.\n\n6. From the statement \"All young people are kind,\" we can conclude that both Bob and Harry are kind.\n\n7. From the statement \"Young, cold people are red,\" we can conclude that Bob is red since Bob is young and cold.\n\n8. From the statement \"Red people are smart,\" we can conclude that Bob is smart since Bob is red.\n\nTherefore, the statement \"Bob is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_bob, rough_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_bob, kind_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_bob, cold_bob), red_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_bob, smart_bob)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_bob, rough_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_bob, kind_bob), smart_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_bob, rough_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_bob, big_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_bob, kind_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_bob, young_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_bob, cold_bob), red_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_bob, smart_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_X, young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_X, rough_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_X, cold_X), red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_X, cold_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_X, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_harry, rough_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), red_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_dave, big_dave), smart_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_anne, kind_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_anne, cold_anne), smart_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), red_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_bob, big_bob)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_bob, kind_bob)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_bob, rough_bob)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_bob, cold_bob), red_bob)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 32
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 33
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 34
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 35
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 36
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 37
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 38
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_X, kind_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_X, rough_X), smart_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_X, cold_X), red_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_X, young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_X, cold_X), smart_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_X, young_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_X, rough_X), smart_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_X, cold_X), red_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_X, kind_X)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == Unknown",
+          "source_step": 22
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_anne, kind_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_anne, rough_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_anne, cold_anne), red_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_anne, rough_anne), smart_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_anne, cold_anne), smart_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_anne, young_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_bob, kind_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_bob, young_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_bob, rough_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_bob, cold_bob), red_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_bob, cold_bob), smart_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_bob, cold_bob), red_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_bob, rough_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_bob, kind_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_bob, smart_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_anne, cold_anne), smart_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_anne, rough_anne), smart_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_dave, young_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_anne, big_anne)",
+          "source_step": 13
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_bob, rough_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_bob, big_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_harry, rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_bob, young_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_bob, kind_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_harry, kind_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(young_bob, cold_bob), red_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_bob, smart_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 194,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 54
+    },
+    "maxsat_stats": {
+      "satisfied": 54,
+      "excluded": 0,
+      "total_weight": 194,
+      "solve_time_ms": 1.3100570067763329
+    },
+    "timing": {
+      "trace_gen_s": 10.689,
+      "extraction_s": 47.321,
+      "dedup_s": 2.03,
+      "maxsat_s": 0.004,
+      "total_s": 60.045
+    }
+  }
+}

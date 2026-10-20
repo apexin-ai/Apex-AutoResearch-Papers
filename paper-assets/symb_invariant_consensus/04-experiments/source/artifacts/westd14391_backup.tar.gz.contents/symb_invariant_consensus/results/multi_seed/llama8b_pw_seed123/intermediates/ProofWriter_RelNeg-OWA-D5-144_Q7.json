@@ -1,0 +1,1656 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-144_Q7",
+    "problem": "The bald eagle is big. The bald eagle is not green. The bald eagle likes the bear. The bald eagle likes the squirrel. The bear chases the lion. The bear is green. The bear visits the bald eagle. The bear visits the squirrel. The lion is not green. The lion likes the bear. The lion visits the squirrel. The squirrel chases the bald eagle. The squirrel is cold. The squirrel visits the bald eagle. If someone is cold then they are not young. All big people are not green. If the lion is big and the lion is green then the lion chases the bald eagle. If someone chases the bald eagle then they like the bear. If someone is round and they visit the bald eagle then the bald eagle likes the squirrel. If someone visits the lion then they like the bald eagle. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle. If someone visits the lion then they are cold. If someone likes the bear then they chase the bear.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear chases the bald eagle.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nLikes($x, $y, bool) ::: Does x like y?\nChases($x, $y, bool) ::: Does x chase y?\nVisits($x, $y, bool) ::: Does x visit y?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBig(BaldEagle, True) ::: The bald eagle is big.\nGreen(BaldEagle, False) ::: The bald eagle is not green.\nLikes(BaldEagle, Bear, True) ::: The bald eagle likes the bear.\nLikes(BaldEagle, Squirrel, True) ::: The bald eagle likes the squirrel.\nChases(Bear, Lion, True) ::: The bear chases the lion.\nGreen(Bear, True) ::: The bear is green.\nVisits(Bear, BaldEagle, True) ::: The bear visits the bald eagle.\nVisits(Bear, Squirrel, True) ::: The bear visits the squirrel.\nGreen(Lion, False) ::: The lion is not green.\nLikes(Lion, Bear, True) ::: The lion likes the bear.\nVisits(Lion, Squirrel, True) ::: The lion visits the squirrel.\nChases(Squirrel, BaldEagle, True) ::: The squirrel chases the bald eagle.\nCold(Squirrel, True) ::: The squirrel is cold.\nVisits(Squirrel, BaldEagle, True) ::: The squirrel visits the bald eagle.\n\nRules:\nCold($x, True) >>> Young($x, False) ::: If someone is cold then they are not young.\nBig($x, True) >>> Green($x, False) ::: All big people are not green.\nBig(Lion, True) && Green(Lion, True) >>> Chases(Lion, BaldEagle, True) ::: If the lion is big and the lion is green then the lion chases the bald eagle.\nChases($x, BaldEagle, True) >>> Likes($x, Bear, True) ::: If someone chases the bald eagle then they like the bear.\nRound($x, True) && Visits($x, BaldEagle, True) >>> Likes(BaldEagle, Squirrel, True) ::: If someone is round and they visit the bald eagle then the bald eagle likes the squirrel.\nVisits($x, Lion, True) >>> Likes($x, BaldEagle, True) ::: If someone visits the lion then they like the bald eagle.\nVisits(Lion, Squirrel, True) && Chases(Squirrel, Bear, True) >>> Chases(Bear, BaldEagle, True) ::: If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\nVisits($x, Lion, True) >>> Cold($x, True) ::: If someone visits the lion then they are cold.\nLikes($x, Bear, True) >>> Chases($x, Bear, True) ::: If someone likes the bear then they chase the bear.\n\nQuery:\nChases(Bear, BaldEagle, True) ::: The bear chases the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 110.0,
+      "True": 132.0,
+      "Unknown": 203.0
+    },
+    "answer_counts": {
+      "True": 3,
+      "Unknown": 5,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The bear chases the bald eagle\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the given information:\n1. The bear chases the lion. (Given)\n2. The bear is green. (Given)\n3. The bear visits the bald eagle. (Given)\n4. The bear visits the squirrel. (Given)\n\nHowever, we also have the following conditions:\n1. If the lion is big and the lion is green then the lion chases the bald eagle. (This doesn't apply to the bear, so we can ignore this for now.)\n2. If someone chases the bald eagle then they like the bear. (This doesn't tell us about the bear's behavior.)\n3. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle. (We will analyze this condition later.)\n\nLet's consider the conditions that involve the bear and the bald eagle:\n1. The bear visits the bald eagle. (This does not necessarily imply that the bear likes the bald eagle.)\n2. If someone visits the lion then they like the bald eagle. (This doesn't apply to the bear, so we can ignore this for now.)\n\nNow, let's analyze the condition that might imply the bear chases the bald eagle:\n1. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle. (We need to check if this condition applies.)\n\nFrom the given information:\n1. The lion visits the squirrel. (Given)\n2. The squirrel chases the bear. (Given)\n\nSince both conditions are met, we can conclude that the bear chases the bald eagle.\n\nTherefore, the statement \"The bear chases the bald eagle\" is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The bear chases the bald eagle\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven statements:\n\n1. The bald eagle is big.\n2. The bald eagle is not green.\n3. The bald eagle likes the bear.\n4. The bald eagle likes the squirrel.\n5. The bear chases the lion.\n6. The bear is green.\n7. The bear visits the bald eagle.\n8. The bear visits the squirrel.\n9. The lion is not green.\n10. The lion likes the bear.\n11. The lion visits the squirrel.\n12. The squirrel chases the bald eagle.\n13. The squirrel is cold.\n14. The squirrel visits the bald eagle.\n15. If someone is cold then they are not young.\n16. All big people are not green.\n17. If the lion is big and the lion is green then the lion chases the bald eagle.\n18. If someone chases the bald eagle then they like the bear.\n19. If someone is round and they visit the bald eagle then the bald eagle likes the squirrel.\n20. If someone visits the lion then they like the bald eagle.\n21. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\n22. If someone visits the lion then they are cold.\n23. If someone likes the bear then they chase the bear.\n\nFrom statement 6, we know that the bear is green. From statement 16, we know that all big people are not green. This implies that the bear is not big.\n\nFrom statement 1, we know that the bald eagle is big. We also know from statement 18 that if someone chases the bald eagle, then they like the bear. However, we do not have any information that directly indicates the bear chases the bald eagle.\n\nFrom statement 21, we know that if the lion visits the squirrel and the squirrel chases the bear, then the bear chases the bald eagle. However, we do not have any information that directly indicates the squirrel chases the bear. Statement 12 states that the squirrel chases the bald eagle, but this does not provide any information about the squirrel chasing the bear.\n\nStatement 23 states that if someone likes the bear then they chase the bear. However, we do not have any information that directly indicates someone likes the bear and chases the bear.\n\nStatement 7 states that the bear visits the bald eagle, and statement 3 states that the bald eagle likes the bear. However, these statements do not provide any information about the bear chasing the bald eagle.\n\nTherefore, based on the given information and logical deductions, we cannot determine whether the statement \"The bear chases the bald eagle\" is true or false. Hence, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The bear chases the bald eagle\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given information:\n\n1. The bear chases the lion. ( Premise )\n2. The lion is not green. ( Premise )\n3. The bear is green. ( Premise )\n4. The lion likes the bear. ( Premise )\n5. The bear visits the bald eagle. ( Premise )\n6. The bear visits the squirrel. ( Premise )\n7. The lion visits the squirrel. ( Premise )\n8. The squirrel chases the bald eagle. ( Premise )\n9. The squirrel is cold. ( Premise )\n10. If someone is cold then they are not young. (Rule)\n11. If the lion is big and the lion is green then the lion chases the bald eagle. (Rule)\n12. If someone chases the bald eagle then they like the bear. (Rule)\n13. If someone is round and they visit the bald eagle then the bald eagle likes the squirrel. (Rule)\n14. If someone visits the lion then they like the bald eagle. (Rule)\n15. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle. (Rule)\n16. If someone visits the lion then they are cold. (Rule)\n17. If someone likes the bear then they chase the bear. (Rule)\n\nWe can analyze the given information step by step:\n\n1. The bear is green. (Premise)\n2. The lion is not green. (Premise)\n3. The lion likes the bear. (Premise)\n4. The bear visits the bald eagle. (Premise)\n5. The bear visits the squirrel. (Premise)\n\nNow, let's examine the given rules:\n\n1. If the lion is big and the lion is green then the lion chases the bald eagle. (Rule)\n\nHowever, we don't know if the lion is big. So, this rule does not help us.\n\n2. If someone chases the bald eagle then they like the bear. (Rule)\n\nWe know that the squirrel chases the bald eagle. So, the squirrel likes the bear. ( Premise 12 )\n\n3. If someone likes the bear then they chase the bear. (Rule)\n\nThe lion likes the bear. So, the lion chases the bear. ( Premise 4 )\n\n4. The bear chases the lion. (Premise)\n\nThis creates a cycle: the lion chases the bear, and the bear chases the lion.\n\nNow, let's examine the given rules:\n\n1. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle. (Rule)\n\nWe know that the lion visits the squirrel ( Premise 7 ) and the squirrel chases the bear ( Premise 8 ). However, we don't know if the bear chases the bald eagle.\n\n2. If someone visits the lion then they like the bald eagle. (Rule)\n\nThe squirrel visits the lion. So, the squirrel likes the bald eagle. ( Premise 14 )\n\n3. The bear visits the lion. (Premise)\n\nHowever, we don't know if the bear likes the bald eagle.\n\nNow, let's examine the given rules:\n\n1. If someone is round and they visit the bald eagle then the bald eagle likes the squirrel. (Rule)\n\nWe don't know if the bear is round. So, this rule does not help us.\n\n2. If the lion is big and the lion is green then the lion chases the bald eagle. (Rule)\n\nHowever, we don't know if the lion is big. So, this rule does not help us.\n\nNow, let's examine the given rules:\n\n1. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle. (Rule)\n\nWe know that the lion visits the squirrel ( Premise 7 ) and the squirrel chases the bear ( Premise 8 ). However, we don't know if the bear chases the bald eagle.\n\n2. If someone visits the lion then they are cold. (Rule)\n\nThe squirrel visits the lion. So, the squirrel is cold. ( Premise 16 )\n\n3. The squirrel is cold. (Premise)\n\nThis matches the given rule.\n\nNow, let's examine the given rules:\n\n1. If someone chases the bald eagle then they like the bear. (Rule)\n\nWe know that the squirrel chases the bald eagle. So, the squirrel likes the bear. ( Premise 12 )\n\n2. If someone likes the bear then they chase the bear. (Rule)\n\nThe squirrel likes the bear. So, the squirrel chases the bear. ( Premise 17 )\n\nHowever, we know that the bear chases the lion. So, the squirrel chases the lion.\n\nNow, let's examine the given rules:\n\n1. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle. (Rule)\n\nWe know that the lion visits the squirrel ( Premise 7 ) and the squirrel chases the bear. However, we don't know if the bear chases the bald eagle.\n\nHowever, we know that the bear is green ( Premise 3 ), and the lion is not green ( Premise 2 ). \n\nThis creates a contradiction with the rule: If the lion is big and the lion is green then the lion chases the bald eagle. (Rule)\n\nSince we have a contradiction, we cannot determine if the bear chases the bald eagle.\n\nTherefore, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The bear chases the bald eagle\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nFrom the given information:\n\n1. The bear chases the lion. (Given)\n2. The bear is green. (Given)\n3. The lion is not green. (Given)\n4. If the lion is big and the lion is green then the lion chases the bald eagle. (This rule can be applied to the bear as well if it's big and green)\n5. The bear visits the bald eagle. (Given)\n6. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle. (Given)\n7. The lion visits the squirrel. (Given)\n8. The squirrel chases the bald eagle. (Given)\n\nFrom (1), we know that the bear chases the lion.\nFrom (2), we know the bear is green.\nFrom (3), we know the lion is not green.\nFrom (5), we know the bear visits the bald eagle.\nFrom (7) and (8), we can conclude that the lion visits the squirrel and the squirrel chases the bear.\n\nApplying rule (6), since the lion visits the squirrel and the squirrel chases the bear, the bear chases the bald eagle.\n\nHowever, we also need to check the conditions of rule (4). We can't directly conclude that the bear is big from the given information. We can only conclude that the bald eagle is big.\n\nSince we don't know if the bear is big or not, we cannot directly apply rule (4) to conclude that the bear chases the bald eagle.\n\nFrom the given rules, we cannot directly conclude that the bear chases the bald eagle. We can only conclude this if the bear is big and green.\n\nTo determine if the bear is big, let's look at the given information:\n\n9. If someone is cold then they are not young. (Given)\n10. The squirrel is cold. (Given)\n11. If all big people are not green. (Given)\n12. The bear is green. (Given)\n\nFrom (10), we know the squirrel is cold.\nFrom (9), we know that if someone is cold, they are not young.\nWe cannot conclude that the squirrel is big or not.\n\nFrom (11), we know that all big people are not green.\nHowever, we don't know if the bear is big or not.\n\nFrom (12), we know the bear is green.\n\nWe still cannot conclude that the bear is big or not.\n\nTo determine the statement, we need to know if the bear is big or not.\n\nLet's look at the statement: \"The bear visits the bald eagle\" (Given)\nWe can apply rule (5): If someone visits the lion then they are cold.\nHowever, we cannot directly apply rule (5) here because the statement says the bear visits the bald eagle, not the lion.\n\nHowever, from rule (5), if someone visits the lion, then they are cold. But in our case, the bear visits the bald eagle. We cannot directly apply this rule.\n\nHowever, we can apply a different rule: If the lion is big and the lion is green then the lion chases the bald eagle. (Given)\nWe can replace lion with bear in this rule: If the bear is big and the bear is green then the bear chases the bald eagle.\n\nWe know the bear is green (Given).\nHowever, we still cannot conclude that the bear is big or not.\n\nNow let's look at the rule: If someone likes the bear then they chase the bear. (Given)\nHowever, we cannot find a statement that says someone likes the bear.\n\nNow let's look at the rule: If someone is round and they visit the bald eagle then the bald eagle likes the squirrel. (Given)\nHowever, we cannot find a statement that says someone is round.\n\nNow let's look at the rule: If someone visits the lion then they like the bald eagle. (Given)\nHowever, we cannot find a statement that says someone visits the lion.\n\nHowever, we can find a statement that says the bear visits the bald eagle (Given).\n\nIf someone visits the lion then they like the bald eagle. However, we cannot directly apply this rule because the statement says the bear visits the bald eagle, not the lion.\n\nHowever, we can apply a different rule: If someone likes the bear then they chase the bear. (Given)\nHowever, we cannot find a statement that says someone likes the bear.\n\nHowever, let's look at the statement: The bear is green. (Given)\nFrom rule (11), we know that all big people are not green.\nThis implies that the bear is not big.\n\nHowever, we cannot directly conclude that the bear is big or not from the given information.\n\nHowever, we can conclude that the statement \"The bear chases the bald eagle\" is false because the bear is not big, and rule (4) cannot be applied.\n\nSo the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The bear chases the bald eagle\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The bear is green. (Statement 5)\n2. All big people are not green. (Statement 9)\nThis implies that the bear is not big, as it contradicts the rule that big people are not green.\n\n3. The lion is big and the lion is green then the lion chases the bald eagle. (Statement 10)\nHowever, we don't know the lion's size, so we can't conclude anything from this rule yet.\n\n4. The bear chases the lion. (Implicit from the statement that the lion is not green and the lion likes the bear, but the bear is green and chases the lion)\nThis implies that the bear is chasing the lion.\n\n5. The bear visits the squirrel. (Statement 7)\nThis statement tells us that the bear has a relationship with the squirrel but doesn't directly tell us if the bear chases the bald eagle.\n\n6. The lion visits the squirrel. (Statement 11)\nThis statement tells us that the lion has a relationship with the squirrel but doesn't directly tell us if the bear chases the bald eagle.\n\n7. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle. (Statement 14)\nHowever, we don't know if the squirrel chases the bear.\n\n8. The squirrel chases the bald eagle. (Statement 12)\nThis implies that the squirrel likes the bear (Statement 1), as someone who chases the bald eagle likes the bear (Statement 15).\n\n9. The squirrel is cold. (Statement 13)\nThis implies that the squirrel is not young (Statement 16).\n\n10. If someone visits the lion then they are cold. (Statement 17)\nHowever, we don't know if the squirrel visits the lion.\n\n11. The squirrel visits the bald eagle. (Statement 18)\nThis statement tells us that the squirrel has a relationship with the bald eagle but doesn't directly tell us if the bear chases the bald eagle.\n\n12. The bear visits the bald eagle. (Statement 6)\nThis statement tells us that the bear has a relationship with the bald eagle but doesn't directly tell us if the bear chases the bald eagle.\n\nNow, let's analyze the rules related to the bear and the bald eagle:\n\n- The bear likes the squirrel (Statement 2).\n- The bear is green (Statement 5).\n- The bear visits the bald eagle (Statement 6).\n- The bear visits the squirrel (Statement 7).\n- The bear chases the lion (Implicit from the statement that the lion is not green and the lion likes the bear, but the bear is green and chases the lion).\n- The bear is not big (From statement 1 and 9).\n\nHowever, we still don't have enough information to conclude whether the bear chases the bald eagle or not.\n\nTherefore, based on the given information and logical deductions, the statement \"The bear chases the bald eagle\" is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The bear chases the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear is green. (Given)\n2. All big people are not green. (Given)\n   - Since the bald eagle is big, the bald eagle is not green. (From 1 and 2)\n   - Since the lion is not green and it's not stated to be small, it's likely big, but we cannot be sure.\n   - The bear is green, so it's not big. (From 2)\n\n3. The lion is not green. (Given)\n   - Since the lion is not green and it's not stated to be small, it's likely big, but we cannot be sure.\n\n4. The bear likes the bald eagle. (Given)\n   - From the given statements, we have: If the lion is big and the lion is green then the lion chases the bald eagle.\n   - We know the lion is not green (from 3), so this condition is not met.\n\n5. The bear visits the bald eagle. (Given)\n   - From the given statements, we have: If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\n   - We do not have enough information to determine if the squirrel chases the bear.\n\n6. The lion likes the bear. (Given)\n   - From the given statements, we have: If someone likes the bear then they chase the bear.\n   - However, this condition is not met because we do not have enough information to determine if the lion chases the bear.\n\n7. The lion visits the squirrel. (Given)\n   - From the given statements, we have: If someone visits the lion then they are cold.\n   - This condition is met for the squirrel because it visits the lion, so the squirrel is cold. (From 7)\n   - From the given statements, we have: If someone is cold then they are not young.\n   - Since the squirrel is cold, the squirrel is not young.\n\n8. The squirrel chases the bald eagle. (Given)\n   - From the given statements, we have: If someone chases the bald eagle then they like the bear.\n   - However, this condition is not met because we do not have enough information to determine if the squirrel likes the bear.\n\n9. The squirrel is cold. (Given)\n   - From the given statements, we have: If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\n   - We do not have enough information to determine if the squirrel chases the bear.\n\n10. The squirrel visits the bald eagle. (Given)\n    - From the given statements, we have: If someone visits the lion then they are cold.\n    - This condition is met for the squirrel because it visits the lion, so the squirrel is cold. (From 10)\n    - However, this is not relevant to the statement \"The bear chases the bald eagle.\"\n\n11. The squirrel visits the bald eagle. (Given)\n    - From the given statements, we have: If someone is round and they visit the bald eagle then the bald eagle likes the squirrel.\n    - The squirrel is not round, so this condition is not met.\n\nBased on the given statements and the analysis above, we cannot determine with certainty whether the bear chases the bald eagle. Therefore, the statement is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bear chases the bald eagle\" is true, false, or unknown, we'll use the given information and apply logical reasoning step by step.\n\nFrom the given information:\n1. The bear chases the lion.\n2. The bear is green.\n3. The bear visits the bald eagle.\n4. The bear visits the squirrel.\n5. The lion is not green.\n6. The lion likes the bear.\n7. The lion visits the squirrel.\n8. The squirrel chases the bald eagle.\n9. The squirrel is cold.\n10. The squirrel visits the bald eagle.\n11. If someone is cold then they are not young.\n12. All big people are not green.\n13. If the lion is big and the lion is green then the lion chases the bald eagle.\n14. If someone chases the bald eagle then they like the bear.\n15. If someone is round and they visit the bald eagle then the bald eagle likes the squirrel.\n16. If someone visits the lion then they like the bald eagle.\n17. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\n18. If someone visits the lion then they are cold.\n19. If someone likes the bear then they chase the bear.\n\nFrom statements 6 and 10, we can conclude that the lion likes the bald eagle.\n\nFrom statement 7 and 18, we can conclude that the squirrel is cold.\n\nFrom statement 12, we can conclude that the lion is not green.\n\nFrom statements 5 and 12, we can conclude that the lion is not green.\n\nFrom statements 5 and 12, we can conclude that the lion is not green.\n\nFrom statement 9, we can conclude that the squirrel is cold.\n\nFrom statement 11, we can conclude that the squirrel is not young.\n\nFrom statements 14 and 16, we can conclude that the squirrel likes the bald eagle.\n\nFrom statement 8 and 19, we can conclude that the squirrel likes the bear.\n\nFrom statements 17 and 8, we can conclude that the bear chases the bald eagle.\n\nHowever, this conclusion is based on the conditions that the lion visits the squirrel and the squirrel chases the bear. \n\nFrom statement 7, we can confirm that the lion visits the squirrel.\n\nFrom statement 8, we can confirm that the squirrel chases the bear.\n\nFrom statement 17, we can conclude that the bear chases the bald eagle.\n\nFrom statement 2, we can confirm that the bear is green.\n\nFrom statement 13, we can conclude that the lion does not chase the bald eagle, as the lion is not big or the lion is green.\n\nTherefore, the statement \"The bear chases the bald eagle\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The bear chases the bald eagle\" is true, false, or unknown, we will analyze the given information step by step.\n\n1. The bear chases the lion. \n   - This is given information.\n\n2. The bear is green.\n   - This is given information.\n\n3. The lion is not green.\n   - This is given information.\n\nFrom the given information, we can conclude that the bear does not chase the lion because the lion is not green. The information about the bear being green is not relevant to the statement \"The bear chases the lion.\" However, we will need to look at other information to determine if the bear chases the bald eagle.\n\n4. The bear likes the bear. \n   - This is given information, but it's a redundant statement.\n\n5. The bear visits the bald eagle.\n   - This is given information.\n\n6. The squirrel chases the bald eagle.\n   - This is given information.\n\n7. The squirrel visits the bald eagle.\n   - This is given information.\n\n8. If someone is cold then they are not young.\n   - This is given information.\n\n9. All big people are not green.\n   - This is given information.\n\n10. If the lion is big and the lion is green then the lion chases the bald eagle.\n    - This is given information.\n\n11. If someone chases the bald eagle then they like the bear.\n    - This is given information.\n\n12. If someone is round and they visit the bald eagle then the bald eagle likes the squirrel.\n    - This is given information.\n\n13. If someone visits the lion then they like the bald eagle.\n    - This is given information.\n\n14. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\n    - This is given information.\n\n15. If someone visits the lion then they are cold.\n    - This is given information.\n\n16. If someone likes the bear then they chase the bear.\n    - This is given information.\n\nNow, let's analyze the statement \"The bear chases the bald eagle\" using the given information.\n\nFrom information 11, if someone chases the bald eagle then they like the bear. We know that the squirrel chases the bald eagle (information 6). Therefore, the squirrel likes the bear.\n\nFrom information 16, if someone likes the bear then they chase the bear. Since the squirrel likes the bear, the squirrel should chase the bear. However, information 14 states that if the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle. In this case, the lion visits the squirrel (information 13), and the squirrel chases the bear (information 7), but we cannot conclude that the bear chases the bald eagle.\n\nFrom information 14, we cannot conclude that the bear chases the bald eagle. However, we can conclude that the bear visits the bald eagle (information 7). \n\nSince the bear visits the bald eagle, we can use information 13 to conclude that the bear likes the bald eagle. We cannot use this information to determine if the bear chases the bald eagle.\n\nNow let's look at information 4 and 5. The bear is not big, as the lion is big. The bear is not green, as the lion is not green and the bear is green. The bear is not round, as the lion is not round and the bear is not round.\n\nFrom information 12, if someone is round and they visit the bald eagle then the bald eagle likes the squirrel. Since the bear is not round, the bald eagle does not like the squirrel because of the bear visiting the bald eagle.\n\nFrom information 12, the bald eagle likes the squirrel because the squirrel is round. The squirrel visits the bald eagle (information 7).\n\nFrom information 11, if someone chases the bald eagle then they like the bear. The squirrel chases the bald eagle (information 6). Therefore, the squirrel likes the bear.\n\nHowever, from information 10, if the lion is big and the lion is green then the lion chases the bald eagle. The lion is not big (information 10), so this condition is not met. The lion is not green (information 10), so this condition is not met. We cannot use this information to determine if the bear chases the bald eagle.\n\nFrom information 8, if someone is cold then they are not young. The squirrel is cold (information 8). Therefore, the squirrel is not young.\n\nFrom information 8, we cannot determine if the bear is young or not.\n\nFrom information 15, if someone visits the lion then they are cold. The squirrel visits the lion (information 13). Therefore, the squirrel is cold.\n\nWe already know that the squirrel is cold (information 7).\n\nWe cannot use the information to determine if the bear chases the bald eagle.\n\nHowever, from information 3, the lion is not green. The bear is green (information 2). From information 4, the bear is not big, as the lion is big.\n\nFrom information 1, the bear chases the lion. The bear is green (information 2).\n\nWe know the bear is not big and the bear is green.\n\nFrom information 1, the bear chases the lion. \n\nFrom information 4 and 5, the bear visits the bald eagle.\n\nHowever, from information 11, if someone chases the bald eagle then they like the bear. We know that the squirrel chases the bald eagle (information 6). Therefore, the squirrel likes the bear.\n\nFrom information 16, if someone likes the bear then they chase the bear. Since the squirrel likes the bear, the squirrel should chase the bear.\n\nHowever, from information 14, if the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle. In this case, the lion visits the squirrel (information 13), and the squirrel chases the bear (information 7), but we cannot conclude that the bear chases the bald eagle.\n\nFrom information 14, we cannot conclude that the bear chases the bald eagle. However, we can conclude that the bear visits the bald eagle (information 7). \n\nSince the bear visits the bald eagle, we can use information 13 to conclude that the bear likes the bald eagle. We cannot use this information to determine if the bear chases the bald eagle.\n\nHowever, from information 1, the bear chases the lion.\n\nWe know that the bear is green (information 2), and the lion is not green (information 3).\n\nFrom information 1, the bear chases the lion.\n\nHowever, from information 10, if the lion is big and the lion is green then the lion chases the bald eagle. The lion is not big (information 10), so this condition is not met. The lion is not green (information 10), so this condition is not met. We cannot use this information to determine if the bear chases the bald eagle.\n\nHowever, from information 16, if someone likes the bear then they chase the bear. Since the squirrel likes the bear, the squirrel should chase the bear. However, from information 14, if the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle. In this case, the lion visits the squirrel (information 13), and the squirrel chases the bear (information 7), but we cannot conclude that the bear chases the bald eagle.\n\nFrom information 14, we cannot conclude that the bear chases the bald eagle. However, we can conclude that the bear visits the bald eagle (information 7). \n\nSince the bear visits the bald eagle, we can use information 13 to conclude that the bear likes the bald eagle. We cannot use this information to determine if the bear chases the bald eagle.\n\nFrom information 10, if the lion is big and the lion is green then the lion chases the bald eagle. The lion is not big (information 10), so this condition is not met. The lion is not green (information 10), so this condition is not met. We cannot use this information to determine if the bear chases the bald eagle.\n\nHowever, from information 1, the bear chases the lion.\n\nFrom information 2 and 3, the bear is green and the lion is not green.\n\nFrom information 1, the bear chases the lion.\n\nFrom information 2, the bear is green.\n\nWe know the bear is not big and the bear is green.\n\nFrom information 1, the bear chases the lion.\n\nWe know the bear is not big and the bear is green.\n\nFrom information 1, the bear chases the lion.\n\nFrom information 2, the bear is green.\n\nWe cannot use the information to determine if the bear chases the bald eagle.\n\nHowever, from information 1, the bear chases the lion.\n\nFrom information 2, the bear is green.\n\nWe know the bear is not big and the bear is green.\n\nFrom information 1, the bear chases the lion.\n\nHowever, from information 1, the bear chases the lion.\n\nFrom information 2, the bear is green.\n\nWe know the bear is not big and the bear is green.\n\nFrom information 1, the bear chases the lion.\n\nHowever, from information 1, the bear chases the lion.\n\nWe cannot use the information to determine if the bear chases the bald eagle.\n\nHowever, from information 1, the bear chases the lion.\n\nFrom information 2, the bear is green.\n\nWe know the bear is not big and the bear is green.\n\nFrom information 1, the bear chases the lion.\n\nHowever, from information 1, the bear chases the lion.\n\nWe cannot use the information to determine if the bear chases the bald eagle.\n\nHowever, from information 1,",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The bear chases the bald eagle\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. The bear is green.\n   This statement directly tells us that the bear is green, so the bear is green.\n\n2. The lion is not green.\n   This statement directly tells us that the lion is not green.\n\n3. The bear visits the bald eagle.\n   This statement directly tells us that the bear visits the bald eagle.\n\n4. The bear visits the squirrel.\n   This statement directly tells us that the bear visits the squirrel.\n\n5. If the lion is big and the lion is green then the lion chases the bald eagle.\n   Since the lion is not green, we cannot determine whether the lion is big or not. This statement is not directly applicable.\n\n6. The squirrel chases the bald eagle.\n   This statement directly tells us that the squirrel chases the bald eagle.\n\n7. The squirrel is cold.\n   Since someone is cold then they are not young, we cannot determine the age of the squirrel, but we can say that the squirrel is not young.\n\n8. The squirrel visits the bald eagle.\n   This statement directly tells us that the squirrel visits the bald eagle.\n\n9. If someone is round and they visit the bald eagle then the bald eagle likes the squirrel.\n   Since the squirrel is not mentioned to be round, this statement is not directly applicable.\n\n10. If someone visits the lion then they like the bald eagle.\n    Since the bear visits the lion, this statement implies that the bear likes the bald eagle.\n\n11. If someone likes the bear then they chase the bear.\n    Since the lion likes the bear, this statement implies that the lion chases the bear.\n\n12. The bear chases the lion.\n    This statement is not given, but we can infer from statement 11 that the lion chases the bear.\n\n13. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\n    Since the squirrel chases the bald eagle (statement 6) and the squirrel visits the lion (statement 8), this statement implies that the bear chases the bald eagle.\n\n14. If someone visits the lion then they are cold.\n    Since the bear visits the lion, this statement implies that the bear is cold.\n\n15. The squirrel is cold.\n    This statement is already given.\n\n16. If someone is cold then they are not young.\n    Since the bear is cold (statement 14) and the squirrel is cold (statement 7), this statement implies that the bear and the squirrel are not young.\n\n17. The bear likes the bear.\n    This statement is not given, but we can infer that the bear likes the bear from statement 10.\n\n18. The bear is big.\n    Since all big people are not green (statement 5) and the bear is green (statement 1), this statement is not directly applicable.\n\n19. The bald eagle likes the squirrel.\n    This statement is not given, but we can infer from statement 8 that the bald eagle likes the squirrel.\n\nNow, let's analyze the statements that imply that the bear chases the bald eagle:\n\n- Statement 13 implies that the bear chases the bald eagle.\n\nHowever, statement 11 implies that the lion chases the bear, and statement 3 implies that the bear visits the bald eagle. \n\nBut statement 6 directly tells us that the squirrel chases the bald eagle.\n\nTherefore, the statement \"The bear chases the bald eagle\" is False.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The bear chases the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear chases the lion. (From the statement: \"The bear chases the lion.\")\n2. The lion is not green. (From the statement: \"The lion is not green.\")\n3. The bear is green. (From the statement: \"The bear is green.\")\n4. The bear visits the bald eagle. (From the statement: \"The bear visits the bald eagle.\")\n5. The bear visits the squirrel. (From the statement: \"The bear visits the squirrel.\")\n6. The lion likes the bear. (From the statement: \"The lion likes the bear.\")\n7. The lion visits the squirrel. (From the statement: \"The lion visits the squirrel.\")\n8. The squirrel chases the bald eagle. (From the statement: \"The squirrel chases the bald eagle.\")\n9. The squirrel is cold. (From the statement: \"The squirrel is cold.\")\n10. If someone is cold then they are not young. (From the statement: \"If someone is cold then they are not young.\")\n11. All big people are not green. (From the statement: \"All big people are not green.\")\n12. The bald eagle is big. (From the statement: \"The bald eagle is big.\")\n13. The bear is green. (From the statement: \"The bear is green.\")\n14. If the lion is big and the lion is green then the lion chases the bald eagle. (From the statement: \"If the lion is big and the lion is green then the lion chases the bald eagle.\")\n15. The lion is not big. (From the statement: \"The bald eagle is big.\" and \"If the lion is big and the lion is green then the lion chases the bald eagle.\")\n16. If someone chases the bald eagle then they like the bear. (From the statement: \"If someone chases the bald eagle then they like the bear.\")\n17. The squirrel chases the bald eagle. (From the statement: \"The squirrel chases the bald eagle.\")\n18. The squirrel likes the bear. (From the statement: \"If someone chases the bald eagle then they like the bear.\")\n19. If someone is round and they visit the bald eagle then the bald eagle likes the squirrel. (From the statement: \"If someone is round and they visit the bald eagle then the bald eagle likes the squirrel.\")\n20. The lion visits the bald eagle. (From the statement: \"If someone visits the lion then they are cold.\")\n21. The lion is not round. (From the statement: \"The lion is not green\" and \"All big people are not green.\")\n22. The lion is not young. (From the statement: \"If someone is cold then they are not young.\")\n23. The lion is not cold. (From the statement: \"If someone is cold then they are not young.\")\n24. The lion likes the bald eagle. (From the statement: \"If someone visits the lion then they like the bald eagle.\")\n25. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle. (From the statement: \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\")\n26. The lion visits the squirrel. (From the statement: \"The lion visits the squirrel.\")\n27. The squirrel chases the bear. (From the statement: \"The squirrel chases the bear.\")\n28. The bear chases the bald eagle. (From the statement: \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\")\n\nFrom the above analysis, we can conclude that the statement \"The bear chases the bald eagle\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the bear chases the bald eagle, we need to analyze the given statements and their implications.\n\nFrom the statements, we know:\n1. The bear chases the lion.\n2. The bear is green.\n3. The bear visits the bald eagle and the squirrel.\n4. If someone chases the bald eagle then they like the bear. (This does not directly apply to the bear.)\n5. If the lion is big and the lion is green then the lion chases the bald eagle. (This does not apply to the bear.)\n6. If someone is round and they visit the bald eagle then the bald eagle likes the squirrel. (This does not apply to the bear.)\n7. If someone visits the lion then they like the bald eagle. (This does not apply to the bear.)\n8. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle. (This statement will be analyzed later.)\n9. If someone visits the lion then they are cold. (This does not apply to the bear.)\n10. If someone likes the bear then they chase the bear. (This does not directly apply to the bear.)\n\nHowever, we need to consider the following statements to determine the relationship between the bear and the bald eagle:\n\n- The bear visits the bald eagle.\n- The bear is green.\n- The squirrel chases the bald eagle.\n- The squirrel is cold.\n- The squirrel visits the bald eagle.\n\nLet's analyze the relationship between the squirrel and the bald eagle. We know that the squirrel is cold, and someone who is cold is not young. However, we do not have enough information about the squirrel's age to make a conclusion.\n\nNow, let's analyze the statement \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\" This statement implies that the lion visits the squirrel and the squirrel chases the bear. However, we do not have any information about the lion visiting the squirrel.\n\nConsidering the given statements, we cannot directly conclude whether the bear chases the bald eagle. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical reasoning. We will break down the statements into smaller parts and identify the relevant information.\n\n1. The bald eagle is big.\n2. The bald eagle is not green.\n3. The bald eagle likes the bear.\n4. The bald eagle likes the squirrel.\n5. The bear chases the lion.\n6. The bear is green.\n7. The bear visits the bald eagle.\n8. The bear visits the squirrel.\n9. The lion is not green.\n10. The lion likes the bear.\n11. The lion visits the squirrel.\n12. The squirrel chases the bald eagle.\n13. The squirrel is cold.\n14. The squirrel visits the bald eagle.\n15. If someone is cold then they are not young.\n16. All big people are not green.\n17. If the lion is big and the lion is green then the lion chases the bald eagle.\n18. If someone chases the bald eagle then they like the bear.\n19. If someone is round and they visit the bald eagle then the bald eagle likes the squirrel.\n20. If someone visits the lion then they like the bald eagle.\n21. If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\n22. If someone visits the lion then they are cold.\n23. If someone likes the bear then they chase the bear.\n\nTo determine whether the statement \"The bear chases the bald eagle\" is true, false, or unknown, we need to analyze the statements that provide information about the bear and the bald eagle.\n\nFrom statement 3, we know that the bald eagle likes the bear. From statement 3 and statement 18, we know that the bear is liked by the bald eagle because it chases the bald eagle.\n\nHowever, we need to determine whether the bear chases the bald eagle.\n\nFrom statement 5, we know that the bear chases the lion. We cannot conclude that the bear chases the bald eagle from this statement.\n\nFrom statement 6, we know that the bear is green. We cannot conclude that the bear chases the bald eagle from this statement.\n\nFrom statement 7, we know that the bear visits the bald eagle. We cannot conclude that the bear chases the bald eagle from this statement.\n\nHowever, we can look at statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\" We cannot conclude this from the given information because we do not know if the lion visits the squirrel.\n\nHowever, we can analyze the statement 22, which says that \"If someone visits the lion then they are cold.\" This statement is relevant because the squirrel visits the lion (statement 11). Therefore, the squirrel is cold (statement 13).\n\nNow we have to find the information that connects the squirrel being cold to the bear chasing the bald eagle. We know from statement 13 that the squirrel is cold, and from statement 15 that if someone is cold then they are not young.\n\nHowever, we cannot determine if the bear is young or not from the given information. \n\nWe can analyze the statement 12, which says that the squirrel chases the bald eagle.\n\nFrom statement 12 and statement 23, we know that the squirrel chases the bear because it likes the bear.\n\nHowever, we cannot determine if the bear chases the bald eagle from the squirrel chases the bear.\n\nHowever, we can analyze the statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\"\n\nHowever, we cannot determine if the lion visits the squirrel or not from the given information.\n\nHowever, we can analyze the statement 20, which says that \"If someone visits the lion then they like the bald eagle.\"\n\nHowever, we cannot determine if the bear likes the bald eagle from the given information.\n\nHowever, we can analyze the statement 1, which says that the bald eagle is big.\n\nFrom statement 1 and statement 16, we know that the bald eagle is not green.\n\nHowever, we cannot determine if the bear is big or not from the given information.\n\nHowever, we can analyze the statement 7, which says that the bear visits the bald eagle.\n\nHowever, we cannot determine if the bear chases the bald eagle from the given information.\n\nHowever, we can analyze the statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\"\n\nHowever, we cannot determine if the lion visits the squirrel or not from the given information.\n\nHowever, we can analyze the statement 18, which says that \"If someone chases the bald eagle then they like the bear.\"\n\nHowever, we cannot determine if the bear chases the bald eagle from the given information.\n\nHowever, we can analyze the statement 23, which says that \"If someone likes the bear then they chase the bear.\"\n\nHowever, we cannot determine if the bear likes the bald eagle from the given information.\n\nHowever, we can analyze the statement 12, which says that the squirrel chases the bald eagle.\n\nFrom statement 12 and statement 23, we know that the squirrel likes the bear because it chases the bear.\n\nHowever, we cannot determine if the bear chases the bald eagle from the squirrel likes the bear.\n\nHowever, we can analyze the statement 18, which says that \"If someone chases the bald eagle then they like the bear.\"\n\nHowever, we cannot determine if the bear chases the bald eagle from the given information.\n\nHowever, we can analyze the statement 12, which says that the squirrel chases the bald eagle.\n\nFrom statement 12 and statement 23, we know that the squirrel likes the bear because it chases the bear.\n\nHowever, we cannot determine if the bear chases the bald eagle from the squirrel likes the bear.\n\nHowever, we can analyze the statement 12, which says that the squirrel chases the bald eagle.\n\nFrom statement 12 and statement 21, we know that the squirrel chases the bear because the lion visits the squirrel and the squirrel chases the bear.\n\nHowever, we cannot determine if the bear chases the bald eagle from the squirrel chases the bear.\n\nHowever, we can analyze the statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\"\n\nHowever, we cannot determine if the lion visits the squirrel or not from the given information.\n\nHowever, we can analyze the statement 20, which says that \"If someone visits the lion then they like the bald eagle.\"\n\nHowever, we cannot determine if the bear likes the bald eagle from the given information.\n\nHowever, we can analyze the statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\"\n\nHowever, we cannot determine if the lion visits the squirrel or not from the given information.\n\nHowever, we can analyze the statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\"\n\nHowever, we cannot determine if the lion visits the squirrel or not from the given information.\n\nHowever, we can analyze the statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\"\n\nHowever, we cannot determine if the lion visits the squirrel or not from the given information.\n\nHowever, we can analyze the statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\"\n\nHowever, we cannot determine if the lion visits the squirrel or not from the given information.\n\nHowever, we can analyze the statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\"\n\nHowever, we cannot determine if the lion visits the squirrel or not from the given information.\n\nHowever, we can analyze the statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\"\n\nHowever, we cannot determine if the lion visits the squirrel or not from the given information.\n\nHowever, we can analyze the statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\"\n\nHowever, we cannot determine if the lion visits the squirrel or not from the given information.\n\nHowever, we can analyze the statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\"\n\nHowever, we cannot determine if the lion visits the squirrel or not from the given information.\n\nHowever, we can analyze the statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\"\n\nHowever, we cannot determine if the lion visits the squirrel or not from the given information.\n\nHowever, we can analyze the statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\"\n\nHowever, we cannot determine if the lion visits the squirrel or not from the given information.\n\nHowever, we can analyze the statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\"\n\nHowever, we cannot determine if the lion visits the squirrel or not from the given information.\n\nHowever, we can analyze the statement 21, which says that \"If the lion visits the squirrel and the squirrel chases the bear then the bear chases the bald eagle.\"\n\nHowever, we cannot determine if the lion visits the squirrel or not from the given information.\n\nHowever, we can analyze the statement 21, which",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, eagle)",
+          "z3_formula": "visits_bear_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> chases(X, eagle)",
+          "z3_formula": "Implies(And(big_lion, green_lion), chases_lion_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, eagle) -> likes(X, bear)",
+          "z3_formula": "Implies(chases_X_eagle, likes_X_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & chases(Y, X) -> chases(X, eagle)",
+          "z3_formula": "Implies(And(visits_X_lion, chases_squirrel_bear), chases_bear_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bear, eagle)",
+          "z3_formula": "chases_bear_eagle == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(bald_eagle)",
+          "z3_formula": "not green_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, bear)",
+          "z3_formula": "likes_bald_eagle_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, squirrel)",
+          "z3_formula": "likes_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, bald_eagle)",
+          "z3_formula": "visits_bear_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not green(lion)",
+          "z3_formula": "not green_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> not young(X)",
+          "z3_formula": "Implies(cold_squirrel, not young_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_bald_eagle, not green_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(lion) & green(lion) -> chases(lion, bald_eagle)",
+          "z3_formula": "Implies(And(big_lion, green_lion), chases_lion_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) -> likes(X, bear)",
+          "z3_formula": "Implies(chases_X_bald_eagle, likes_X_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & visits(X, bald_eagle) -> likes(bald_eagle, squirrel)",
+          "z3_formula": "Implies(And(round_X, visits_X_bald_eagle), likes_bald_eagle_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> likes(bald_eagle, X)",
+          "z3_formula": "Implies(visits_X_lion, likes_bald_eagle_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(lion, squirrel) & chases(squirrel, bear) -> chases(bear, bald_eagle)",
+          "z3_formula": "Implies(And(visits_lion_squirrel, chases_squirrel_bear), chases_bear_bald_eagle)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_X_lion, cold_X)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> chases(X, bear)",
+          "z3_formula": "Implies(likes_X_bear, chases_X_bear)",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, bald_eagle)",
+          "z3_formula": "visits_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> not young(X)",
+          "z3_formula": "Implies(cold_squirrel, Not(young_squirrel))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(big_lion, green_lion), chases_lion_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) -> likes(X, bear)",
+          "z3_formula": "Implies(chases_squirrel_bald_eagle, likes_squirrel_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> chases(X, bear)",
+          "z3_formula": "Implies(likes_lion_bear, chases_lion_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_lion_squirrel, cold_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> chases(X, lion)",
+          "z3_formula": "Implies(chases_squirrel_bear, chases_squirrel_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(lion, squirrel) & chases(squirrel, bear) -> chases(bear, bald_eagle)",
+          "z3_formula": "Implies(And(visits_lion_squirrel, chases_squirrel_bear), chases_bear_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(visits_lion_squirrel, likes_squirrel_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & visits(X, bald_eagle) -> likes(bald_eagle, squirrel)",
+          "z3_formula": "Implies(And(round_bear, visits_bear_bald_eagle), likes_bald_eagle_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not green(lion)",
+          "z3_formula": "Not(green_lion) == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, bear)",
+          "z3_formula": "chases_lion_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bear, bald_eagle)",
+          "z3_formula": "chases_bear_bald_eagle == Unknown",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(lion)",
+          "z3_formula": "not green_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(big_bear, green_bear), chases_bear_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, bald_eagle)",
+          "z3_formula": "visits_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_X_lion, cold_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, bald_eagle)",
+          "z3_formula": "visits_bear_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(big_bear, green_bear), chases_bear_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & chases(squirrel, X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_lion, chases_squirrel_X), chases_X_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> not young(X)",
+          "z3_formula": "Implies(cold_squirrel, not young_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_X, not green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_X_lion, cold_X)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, bald_eagle)",
+          "z3_formula": "visits_bear_bald_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(big_bear, green_bear), chases_bear_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_X_lion, cold_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> chases(X, bear)",
+          "z3_formula": "Implies(likes_X_bear, chases_X_bear)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & visits(X, bald_eagle) -> likes(bald_eagle, squirrel)",
+          "z3_formula": "Implies(And(round_X, visits_X_bald_eagle), likes_bald_eagle_squirrel)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(visits_X_lion, likes_X_bald_eagle)",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, bald_eagle)",
+          "z3_formula": "visits_bear_bald_eagle == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_X, not green_X)",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(bear, bald_eagle)",
+          "z3_formula": "not chases_bear_bald_eagle == True",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> Not(green(X))",
+          "z3_formula": "Implies(big_X, Not(green_X))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "Not(big(bear))",
+          "z3_formula": "Not(big_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> green(X)",
+          "z3_formula": "Implies(And(big_X, green_X), green_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> green(X)",
+          "z3_formula": "Implies(And(big_X, green_X), green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> green(X)",
+          "z3_formula": "Implies(And(big_X, green_X), green_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, squirrel)",
+          "z3_formula": "likes_bear_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, bald_eagle)",
+          "z3_formula": "visits_bear_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_X_lion, cold_X)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> Not(cold(X))",
+          "z3_formula": "Implies(young_X, Not(cold_X))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "Not(young(squirrel))",
+          "z3_formula": "Not(young_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_X_lion, cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, bald_eagle)",
+          "z3_formula": "visits_bear_bald_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & chases(squirrel, bear) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_squirrel, chases_squirrel_bear), chases_X_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(squirrel, bald_eagle) -> likes(squirrel, bear)",
+          "z3_formula": "Implies(chases_squirrel_bald_eagle, likes_squirrel_bear)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(squirrel, bald_eagle) -> Not(young(squirrel))",
+          "z3_formula": "Implies(chases_squirrel_bald_eagle, Not(young_squirrel))",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_X_lion, cold_X)",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, bald_eagle)",
+          "z3_formula": "chases_bear_bald_eagle == True",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_X, not green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not big(bear)",
+          "z3_formula": "not big_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bald_eagle)",
+          "z3_formula": "not green_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not green(lion)",
+          "z3_formula": "not green_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(And(big_X, green_X), likes_X_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(lion, bald_eagle)",
+          "z3_formula": "not likes_lion_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, bald_eagle)",
+          "z3_formula": "likes_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(likes_X_bear, likes_X_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_X_lion, cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not young(squirrel)",
+          "z3_formula": "not young_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) -> likes(X, bear)",
+          "z3_formula": "Implies(chases_X_bald_eagle, likes_X_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(squirrel, bear)",
+          "z3_formula": "not likes_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & visits(X, bald_eagle) -> likes(bald_eagle, squirrel)",
+          "z3_formula": "Implies(And(round_X, visits_X_bald_eagle), likes_bald_eagle_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(bald_eagle, squirrel)",
+          "z3_formula": "not likes_bald_eagle_squirrel == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, eagle)",
+          "z3_formula": "visits_bear_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(green(lion))",
+          "z3_formula": "not_green_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, eagle)",
+          "z3_formula": "chases_squirrel_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, eagle)",
+          "z3_formula": "visits_squirrel_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> not(young(X))",
+          "z3_formula": "Implies(cold_squirrel, not_young_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not(green(X))",
+          "z3_formula": "Implies(big_lion, not_green_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> chases(lion, eagle)",
+          "z3_formula": "Implies(And(big_lion, green_lion), chases_lion_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, eagle) -> likes(X, bear)",
+          "z3_formula": "Implies(chases_squirrel_eagle, likes_squirrel_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & visits(X, eagle) -> likes(eagle, squirrel)",
+          "z3_formula": "Implies(And(round_bear, visits_bear_eagle), likes_eagle_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> likes(X, eagle)",
+          "z3_formula": "Implies(visits_squirrel_lion, likes_squirrel_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(lion, squirrel) & chases(squirrel, bear) -> chases(bear, eagle)",
+          "z3_formula": "Implies(And(visits_lion_squirrel, chases_squirrel_bear), chases_bear_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_squirrel_lion, cold_squirrel)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> chases(X, bear)",
+          "z3_formula": "Implies(likes_squirrel_bear, chases_squirrel_bear)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(lion)",
+          "z3_formula": "not green_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, bald_eagle)",
+          "z3_formula": "visits_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) -> likes(X, bear)",
+          "z3_formula": "Implies(chases_squirrel_bald_eagle, likes_squirrel_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> chases(X, bear)",
+          "z3_formula": "Implies(likes_squirrel_bear, chases_squirrel_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_squirrel_lion, cold_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & visits(X, squirrel) & chases(X, bear) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_squirrel_lion, visits_squirrel_squirrel, chases_squirrel_bear), chases_bear_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> chases(X, bear)",
+          "z3_formula": "Implies(likes_squirrel_bear, chases_squirrel_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_lion, not green_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(big_lion, green_lion), chases_lion_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & visits(X, bald_eagle) -> likes(bald_eagle, squirrel)",
+          "z3_formula": "Implies(And(round_bear, visits_bear_bald_eagle), likes_bald_eagle_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_squirrel_lion, cold_squirrel)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(lion)",
+          "z3_formula": "not green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, bald_eagle)",
+          "z3_formula": "visits_bear_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(big_lion, green_lion), chases_lion_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & visits(X, bald_eagle) -> likes(bald_eagle, squirrel)",
+          "z3_formula": "Implies(And(round_X, visits_X_bald_eagle), likes_bald_eagle_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, bald_eagle)",
+          "z3_formula": "likes_bear_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> chases(X, bear)",
+          "z3_formula": "Implies(likes_lion_bear, chases_lion_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, bear)",
+          "z3_formula": "chases_lion_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & chases(squirrel, bear) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_lion, chases_squirrel_bear), chases_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> not young(X)",
+          "z3_formula": "Implies(cold_bear, not young_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not young(bear)",
+          "z3_formula": "not young_bear == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, bear)",
+          "z3_formula": "likes_bear_bear == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_bear_lion, cold_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, squirrel)",
+          "z3_formula": "likes_bald_eagle_squirrel == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(lion)",
+          "z3_formula": "not green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, eagle)",
+          "z3_formula": "visits_bear_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, eagle)",
+          "z3_formula": "chases_squirrel_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> not young(X)",
+          "z3_formula": "Implies(cold_squirrel, not young_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_eagle, not green_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(eagle)",
+          "z3_formula": "big_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> chases(X, eagle)",
+          "z3_formula": "Implies(And(big_lion, green_lion), chases_lion_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not big(lion)",
+          "z3_formula": "not big_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, eagle) -> likes(X, bear)",
+          "z3_formula": "Implies(chases_squirrel_eagle, likes_squirrel_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, eagle)",
+          "z3_formula": "chases_squirrel_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & visits(X, eagle) -> likes(eagle, squirrel)",
+          "z3_formula": "Implies(And(round_lion, visits_lion_eagle), likes_lion_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, eagle)",
+          "z3_formula": "visits_lion_eagle == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "not round(lion)",
+          "z3_formula": "not round_lion == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> not young(X)",
+          "z3_formula": "Implies(cold_lion, not young_lion)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(lion)",
+          "z3_formula": "not cold_lion == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> likes(X, eagle)",
+          "z3_formula": "Implies(visits_lion_squirrel, likes_lion_eagle)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & chases(X, bear) -> chases(X, eagle)",
+          "z3_formula": "Implies(And(visits_lion_squirrel, chases_squirrel_bear), chases_lion_eagle)",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bear)",
+          "z3_formula": "chases_squirrel_bear == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, eagle)",
+          "z3_formula": "chases_bear_eagle == True",
+          "source_step": 28
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, eagle)",
+          "z3_formula": "visits_bear_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, eagle) -> likes(X, bear)",
+          "z3_formula": "Implies(chases_bear_eagle, likes_bear_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> chases(X, eagle)",
+          "z3_formula": "Implies(And(big_lion, green_lion), chases_lion_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & visits(X, eagle) -> likes(eagle, squirrel)",
+          "z3_formula": "Implies(And(round_bear, visits_bear_eagle), likes_eagle_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> likes(eagle, bald_eagle)",
+          "z3_formula": "Implies(visits_bear_lion, likes_eagle_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & visits(X, squirrel) & chases(squirrel, bear) -> chases(X, eagle)",
+          "z3_formula": "Implies(And(visits_bear_lion, visits_bear_squirrel, chases_squirrel_bear), chases_bear_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> not young(X)",
+          "z3_formula": "Implies(cold_squirrel, not young_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, eagle)",
+          "z3_formula": "visits_squirrel_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, eagle)",
+          "z3_formula": "chases_squirrel_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, eagle)",
+          "z3_formula": "visits_squirrel_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "chases(bear, eagle)",
+          "z3_formula": "chases_bear_eagle == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(bald_eagle)",
+          "z3_formula": "not green_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, bear)",
+          "z3_formula": "likes_bald_eagle_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, squirrel)",
+          "z3_formula": "likes_bald_eagle_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, lion)",
+          "z3_formula": "chases_bear_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, bald_eagle)",
+          "z3_formula": "visits_bear_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, squirrel)",
+          "z3_formula": "visits_bear_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not green(lion)",
+          "z3_formula": "not green_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, bald_eagle)",
+          "z3_formula": "chases_squirrel_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> not young(X)",
+          "z3_formula": "Implies(cold_squirrel, not young_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not green(X)",
+          "z3_formula": "Implies(big_bald_eagle, not green_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> chases(X, bald_eagle)",
+          "z3_formula": "Implies(And(big_lion, green_lion), chases_lion_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bald_eagle) -> likes(X, bear)",
+          "z3_formula": "Implies(chases_bald_eagle, likes_bald_eagle_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & visits(X, bald_eagle) -> likes(bald_eagle, squirrel)",
+          "z3_formula": "Implies(And(round_squirrel, visits_squirrel_bald_eagle), likes_bald_eagle_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(visits_lion, likes_lion_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(lion, squirrel) & chases(squirrel, bear) -> chases(bear, bald_eagle)",
+          "z3_formula": "Implies(And(visits_lion_squirrel, chases_squirrel_bear), chases_bear_bald_eagle)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_lion, cold_lion)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> chases(X, bear)",
+          "z3_formula": "Implies(likes_bald_eagle_bear, chases_bald_eagle_bear)",
+          "source_step": 23
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 254,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 83
+    },
+    "maxsat_stats": {
+      "satisfied": 83,
+      "excluded": 0,
+      "total_weight": 240,
+      "solve_time_ms": 1.6466211527585983
+    },
+    "timing": {
+      "trace_gen_s": 24.979,
+      "extraction_s": 46.56,
+      "dedup_s": 3.392,
+      "maxsat_s": 0.006,
+      "total_s": 74.937
+    }
+  }
+}

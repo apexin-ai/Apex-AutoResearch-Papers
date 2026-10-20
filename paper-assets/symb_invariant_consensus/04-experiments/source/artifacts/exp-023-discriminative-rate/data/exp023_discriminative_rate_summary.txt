@@ -1,0 +1,18 @@
+exp-023 Full Dataset Discriminative Rate Analysis
+
+Overall (804 problems, 307 multi-candidate):
+- Source-trace disc (by weight): 38.6% [38.0, 39.1]
+- Z3 semantic disc: 8.2% [7.6, 8.8]
+- Problems with ≥1 discriminative constraint: 284/307 (92.5%)
+
+Per-domain:
+- ProofWriter: 35.8% (235 multi-candidate)
+- FOLIO: 53.1% (72 multi-candidate)
+
+Pilot validation: reproduced 37.0% vs reported 37.2% (delta 0.2pp)
+
+Z3 detail: 642/7844 unique constraints contain answer assertion variables.
+92% of constraints evaluate identically regardless of candidate answer.
+
+Data: /root/symb_invariant_consensus/results/discriminative_rate_analysis.json
+Script: /root/symb_invariant_consensus/scripts/analyze_discriminative_rate.py

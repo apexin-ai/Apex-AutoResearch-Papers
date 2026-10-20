@@ -1,0 +1,6 @@
+Script: /root/symb_invariant_consensus/scripts/constraint_ablation.py (~340 lines)
+Output: results/constraint_ablation.json
+Modes: approximate (from final votes) / precise (from constraint cache)
+Methods compared: maxsat-weighted, count-only, random-weight
+Prerequisite: exp-001 must save intermediate constraint data for precise mode
+Dry-run verified: 87 problems, all methods 71.3% in approx mode (expected when contradiction rate ~2.6%)

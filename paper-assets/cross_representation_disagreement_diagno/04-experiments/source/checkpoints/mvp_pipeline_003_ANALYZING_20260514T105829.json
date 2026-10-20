@@ -1,0 +1,40 @@
+{
+  "exp_id": "mvp_pipeline_003",
+  "project": "cross_representation_disagreement_diagno",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:45:17.358Z",
+    "updated_at": "2026-05-14T10:58:29.495Z",
+    "spec": {
+      "command": "cd /root/autodl-tmp/crdd && nohup python src/pipeline.py --output results/mvp_v4_full.json > pipeline_v4_full.log 2>&1 &",
+      "server": "autodl-rtx6000pro",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "28608",
+      "log_path": "~/runs/cross_representation_disagreement_diagno/mvp_pipeline_003.log",
+      "submitted_at": "2026-05-14T10:53:10.956Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "FOLIO validation set (full)",
+      "data_count": 204,
+      "model_name": "Qwen3-32B-AWQ (awq_marlin)",
+      "seed": 0
+    },
+    "hypothesis": "truncation detection + thinking-off retry fixes FOL empty output (80%→<10%), enabling meaningful full-dataset C1-C5 evaluation on 204 samples",
+    "server": "autodl-rtx6000pro",
+    "gpu": "cuda:0",
+    "pid": "28495",
+    "log_path": "~/runs/cross_representation_disagreement_diagno/mvp_pipeline_003.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/crdd && python src/pipeline.py --output results/mvp_v4_full.json\"",
+      "finished_at": "2026-05-14T10:58:29.429Z"
+    }
+  },
+  "timestamp": "2026-05-14T10:58:29.536121+00:00",
+  "trigger": "update_registry"
+}

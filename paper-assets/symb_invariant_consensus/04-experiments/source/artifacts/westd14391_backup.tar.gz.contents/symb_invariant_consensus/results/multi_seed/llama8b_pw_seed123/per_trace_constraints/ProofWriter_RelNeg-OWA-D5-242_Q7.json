@@ -1,0 +1,1068 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-242_Q7",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bald_eagle))",
+          "z3_formula": "not(kind_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_X, sees_X_bald_eagle), sees_X_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(X)",
+          "z3_formula": "Implies(chases_X_bear, young_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_X_cow, chases_X_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_X_tiger, rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_X_tiger, eats_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(tiger) & kind(tiger) -> chases(tiger, bear)",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), chases_tiger_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_X, sees_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(sees_X_bear, chases_X_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not(young(bear))",
+          "z3_formula": "not(young_bear) == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not(sees(bear, bald_eagle))",
+          "z3_formula": "not(sees_bear_bald_eagle) == True",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(sees_bear_cow, chases_bear_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(sees_tiger_cow, chases_tiger_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_tiger_bear, rough_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(X, bear) -> young(X)",
+          "z3_formula": "Implies(chases_bear_cow, young_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_bear, sees_bald_eagle_bear), sees_bear_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bald_eagle))",
+          "z3_formula": "not(kind_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_X, sees_X_bald_eagle), sees_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(X)",
+          "z3_formula": "Implies(chases_X_bear, young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_X_tiger, rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_X_tiger, eats_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases(X, bear)",
+          "z3_formula": "Implies(And(round_X, kind_X), chases_X_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_X, sees_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_X_cow, chases_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(sees_X_bear, chases_X_cow)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bald_eagle))",
+          "z3_formula": "not(kind_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_X, sees_X_bald_eagle), sees_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(X)",
+          "z3_formula": "Implies(chases_X_bear, young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_X_tiger, rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_X_tiger, eats_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases(X, bear)",
+          "z3_formula": "Implies(And(round_X, kind_X), chases_X_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_X, sees_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_X_cow, chases_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(sees_X_bear, chases_X_cow)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cow)",
+          "z3_formula": "tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_bald_eagle_sees, sees_bald_eagle_bear), sees_bald_eagle_bear == True)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(sees_bear_cow, chases_bear_cow == True)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_bear_cow, chases_bear_bear == True)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(chases_bear_bear, sees_bear_bear == True)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_bald_eagle_sees, sees_bald_eagle_bald_eagle == True)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_P, sees_P_bald_eagle), sees_P_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(bear)",
+          "z3_formula": "Implies(chases_Q_bear, young_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_S_tiger, rough_S)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_S_tiger, eats_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases(X, bear)",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), chases_tiger_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_R, sees_R_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_S_cow, chases_S_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(bear, cow)",
+          "z3_formula": "Implies(sees_T_bear, chases_bear_cow)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bald_eagle))",
+          "z3_formula": "not(kind_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_bald_eagle, sees_bald_eagle), sees_bald_eagle_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(X)",
+          "z3_formula": "Implies(chases_bear_tiger, young_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_bear_tiger, rough_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_bear_tiger, eats_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases(X, bear)",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), chases_tiger_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_bald_eagle, sees_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_bald_eagle_cow, chases_bald_eagle_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(sees_bald_eagle_bear, chases_bald_eagle_cow)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bald_eagle))",
+          "z3_formula": "not(kind_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_bear, sees_bear_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(X)",
+          "z3_formula": "Implies(chases_bear_tiger, young_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_bear_tiger, rough_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(X, bear)",
+          "z3_formula": "Implies(chases_bear_tiger, eats_bear_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases(X, bear)",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), chases_tiger_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_bear, sees_bear_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_cow_bear, chases_bear_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(sees_bear_bald_eagle, chases_bald_eagle_cow)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(bald_eagle)",
+          "z3_formula": "not kind_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_X, sees_X_bald_eagle), sees_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(bear)",
+          "z3_formula": "Implies(chases_X_bear, young_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_X_tiger, rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> tiger_eats_bear",
+          "z3_formula": "Implies(chases_X_tiger, tiger_eats_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(tiger) & kind(tiger) -> tiger_chases_bear",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), tiger_chases_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_X, sees_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_X_cow, chases_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> bear_chases_cow",
+          "z3_formula": "Implies(sees_X_bear, bear_chases_cow)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(bald_eagle)",
+          "z3_formula": "not kind_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_bear, sees_bear_bald_eagle), sees_bear_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(X)",
+          "z3_formula": "Implies(chases_bear_bear, young_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_bear_tiger, rough_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> tiger_eats_bear",
+          "z3_formula": "Implies(chases_bear_tiger, tiger_eats_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(tiger) & kind(tiger) -> tiger_chases_bear",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), tiger_chases_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_bear, sees_bear_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_bear_cow, chases_bear_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> bear_chases_cow",
+          "z3_formula": "Implies(sees_bear_bear, bear_chases_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == Unknown",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bald_eagle)",
+          "z3_formula": "kind_bald_eagle == False",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_X, sees_X_bald_eagle), sees_X_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(bear)",
+          "z3_formula": "Implies(chases_X_bear, young_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_X_tiger, rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_X_tiger, eats_tiger_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases(X, bear)",
+          "z3_formula": "Implies(And(round_X, kind_X), chases_X_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_X, sees_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_X_cow, chases_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(bear, cow)",
+          "z3_formula": "Implies(sees_X_bear, chases_bear_cow)",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bald_eagle))",
+          "z3_formula": "not(kind_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_X, sees_X_bald_eagle), sees_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(bear)",
+          "z3_formula": "Implies(chases_X_bear, young_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_X_tiger, rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_X_tiger, eats_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases(X, bear)",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), chases_tiger_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_X, sees_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_X_cow, chases_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(bear, cow)",
+          "z3_formula": "Implies(sees_X_bear, chases_bear_cow)",
+          "source_step": 15
+        }
+      ]
+    }
+  ]
+}

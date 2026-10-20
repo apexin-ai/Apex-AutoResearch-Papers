@@ -1,0 +1,26 @@
+paper_key: "huang2024selfcorrect"
+title: "Large Language Models Cannot Self-Correct Reasoning Yet"
+venue: "ICLR 2024"
+full_text_available: false
+
+research:
+  baselines: ["standard prompting", "CoT", "self-refine", "multi-agent debate"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "GSM8K", size: "1319"}
+    - {name: "CommonSenseQA", size: "1221"}
+    - {name: "HotpotQA", size: "multi-hop"}
+  ablation_dimensions: ["feedback_type", "oracle_vs_intrinsic", "iteration_count"]
+  training_recipe: {info: "N/A — prompting-based study"}
+  method_family: "self-correction analysis"
+
+positioning:
+  core_claim: "LLMs cannot self-correct reasoning without external feedback; intrinsic self-correction often degrades performance"
+  key_results: "Self-correction without oracle feedback consistently hurts accuracy (GSM8K: -2.4%)"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

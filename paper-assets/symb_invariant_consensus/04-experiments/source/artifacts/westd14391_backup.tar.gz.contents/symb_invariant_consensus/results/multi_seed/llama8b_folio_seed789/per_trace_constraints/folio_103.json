@@ -1,0 +1,917 @@
+{
+  "pid": "folio_103",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke) | ~twin_or_triplet(luke) & ~strong_bonds(luke)",
+          "z3_formula": "twin_or_triplet_luke | (Not(twin_or_triplet_luke) & Not(strong_bonds_luke))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> has_same_age_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, has_same_age_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "has_same_age_siblings(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(has_same_age_siblings_luke, twin_or_triplet_luke)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "strong_bonds(X) -> ~often_does_not_live_at_home(X)",
+          "z3_formula": "Implies(strong_bonds_luke, Not(often_does_not_live_at_home_luke))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "often_does_not_live_at_home(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(often_does_not_live_at_home_luke, spends_time_with_siblings_luke)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> has_same_age_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, has_same_age_siblings_luke)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "complain_about_annoying_siblings(X) -> has_same_age_siblings(X)",
+          "z3_formula": "Implies(complain_about_annoying_siblings_luke, has_same_age_siblings_luke)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "often_does_not_live_at_home(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(often_does_not_live_at_home_luke, spends_time_with_siblings_luke)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "complain_about_annoying_siblings(luke)",
+          "z3_formula": "complain_about_annoying_siblings_luke == Unknown",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke)",
+          "z3_formula": "twin_or_triplet_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "strong_bonds_with_family(luke)",
+          "z3_formula": "strong_bonds_with_family_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) & strong_bonds_with_family(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(And(twin_or_triplet_luke, strong_bonds_with_family_luke), spends_time_with_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not strong_bonds_with_family(X) -> not lives_at_home_regularly(X)",
+          "z3_formula": "Implies(Not(strong_bonds_with_family_luke), Not(lives_at_home_regularly_luke))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> not lives_at_home_regularly(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, Not(lives_at_home_regularly_luke))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not lives_at_home_regularly(luke)",
+          "z3_formula": "Not(lives_at_home_regularly_luke) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_with_siblings_luke)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not lives_at_home_regularly(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(Not(lives_at_home_regularly_luke), spends_time_with_siblings_luke)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not spends_time_with_siblings(luke)",
+          "z3_formula": "Not(spends_time_with_siblings_luke) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> has_same_age_siblings(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, has_same_age_siblings_luke)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "has_same_age_siblings(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(has_same_age_siblings_luke, twin_or_triplet_luke)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not twin_or_triplet(luke)",
+          "z3_formula": "Not(twin_or_triplet_luke) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "has_same_age_siblings(luke)",
+          "z3_formula": "has_same_age_siblings_luke == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "has_same_age_siblings(X) -> complains_about_annoying_siblings(X)",
+          "z3_formula": "Implies(has_same_age_siblings_luke, complains_about_annoying_siblings_luke)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "complains_about_annoying_siblings(luke)",
+          "z3_formula": "complains_about_annoying_siblings_luke == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke) | ~twin_or_triplet(luke) & ~strong_bonds(luke)",
+          "z3_formula": "twin_or_triplet_luke | (Not(twin_or_triplet_luke) & Not(strong_bonds_luke))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time(X) -> lives_home(X)",
+          "z3_formula": "Implies(spends_time_luke, lives_home_luke)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time(X) -> ~lives_home(X)",
+          "z3_formula": "Implies(spends_time_luke, Not(lives_home_luke))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> ~complains(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, Not(complains_luke))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "complains(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(complains_luke, twin_or_triplet_luke)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "strong_bonds(X) -> ~complains(X)",
+          "z3_formula": "Implies(strong_bonds_luke, Not(complains_luke))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> strong_bonds(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, strong_bonds_luke)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "strong_bonds(X) -> lives_home(X)",
+          "z3_formula": "Implies(strong_bonds_luke, lives_home_luke)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "lives_home(X) -> ~spends_time(X)",
+          "z3_formula": "Implies(lives_home_luke, Not(spends_time_luke))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "complains(luke)",
+          "z3_formula": "complains_luke == Unknown",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke)",
+          "z3_formula": "twin_or_triplet_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> hangs_out_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, hangs_out_with_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "hangs_out_with_siblings(X) -> not lives_at_home_regularly(X)",
+          "z3_formula": "Implies(hangs_out_with_siblings_luke, not lives_at_home_regularly_luke)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not lives_at_home_regularly(X) -> not develops_strong_bonds(X)",
+          "z3_formula": "Implies(not lives_at_home_regularly_luke, not develops_strong_bonds_luke)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "develops_strong_bonds(luke)",
+          "z3_formula": "develops_strong_bonds_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "not twin_or_triplet(X) -> not same_age_siblings(X)",
+          "z3_formula": "Implies(not twin_or_triplet_luke, not same_age_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not same_age_siblings(X) -> not complains_about_annoying_siblings(X)",
+          "z3_formula": "Implies(not same_age_siblings_luke, not complains_about_annoying_siblings_luke)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "complains_about_annoying_siblings(luke)",
+          "z3_formula": "complains_about_annoying_siblings_luke == True",
+          "source_step": 1
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke)",
+          "z3_formula": "twin_or_triplet_luke == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "strong_bonds_family(luke)",
+          "z3_formula": "strong_bonds_family_luke == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) & strong_bonds_family(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(And(twin_or_triplet_luke, strong_bonds_family_luke), spends_time_with_siblings_luke)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> not_live_at_home(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, not_live_at_home_luke)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not_live_at_home(luke)",
+          "z3_formula": "not_live_at_home_luke == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> same_age_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, same_age_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "same_age_siblings(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(same_age_siblings_luke, twin_or_triplet_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X)",
+          "z3_formula": "Not(twin_or_triplet_luke)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "complain_about_siblings(X) -> same_age_siblings(X)",
+          "z3_formula": "Implies(complain_about_siblings_luke, same_age_siblings_luke)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "same_age_siblings(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(same_age_siblings_luke, twin_or_triplet_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not(complain_about_siblings(luke))",
+          "z3_formula": "Not(complain_about_siblings_luke)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "complain_luke_annoying == True",
+          "z3_formula": "complain_luke_annoying == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "complain(X) -> annoying_siblings(X)",
+          "z3_formula": "Implies(complain_luke_annoying, annoying_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "annoying_siblings(X) -> same_age_siblings(X)",
+          "z3_formula": "Implies(annoying_siblings_luke, same_age_siblings_luke)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "same_age_siblings(X) -> twin_triplet(X)",
+          "z3_formula": "Implies(same_age_siblings_luke, twin_triplet_luke)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "twin_triplet(X) -> hangout_siblings(X)",
+          "z3_formula": "Implies(twin_triplet_luke, hangout_siblings_luke)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "hangout_siblings(X) -> not_home_regularly(X)",
+          "z3_formula": "Implies(hangout_siblings_luke, not_home_regularly_luke)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not_home_regularly(X) -> not_strong_bonds(X)",
+          "z3_formula": "Implies(not_home_regularly_luke, not_strong_bonds_luke)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "twin_triplet(X) & strong_bonds(X) | not twin_triplet(X) & not strong_bonds(X)",
+          "z3_formula": "Or(And(twin_triplet_luke, strong_bonds_luke), And(Not(twin_triplet_luke), Not(strong_bonds_luke)))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not_strong_bonds(luke)",
+          "z3_formula": "not_strong_bonds_luke == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "complain(X) -> annoying_siblings(X)",
+          "z3_formula": "Implies(complain_luke_annoying, annoying_siblings_luke)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "same_age_siblings(luke)",
+          "z3_formula": "same_age_siblings_luke == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "same_age_siblings(X) -> twin_triplet(X)",
+          "z3_formula": "Implies(same_age_siblings_luke, twin_triplet_luke)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "twin_triplet(luke)",
+          "z3_formula": "twin_triplet_luke == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "hangout_siblings(luke)",
+          "z3_formula": "hangout_siblings_luke == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "hangout_siblings(X) -> not_home_regularly(X)",
+          "z3_formula": "Implies(hangout_siblings_luke, not_home_regularly_luke)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not_home_regularly(luke)",
+          "z3_formula": "not_home_regularly_luke == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "not_home_regularly(X) -> not_strong_bonds(X)",
+          "z3_formula": "Implies(not_home_regularly_luke, not_strong_bonds_luke)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not_strong_bonds(luke)",
+          "z3_formula": "not_strong_bonds_luke == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "complain(X) -> annoying_siblings(X)",
+          "z3_formula": "Implies(complain_luke_annoying, annoying_siblings_luke)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "annoying_siblings(luke)",
+          "z3_formula": "annoying_siblings_luke == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "annoying_siblings(X) -> same_age_siblings(X)",
+          "z3_formula": "Implies(annoying_siblings_luke, same_age_siblings_luke)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "same_age_siblings(luke)",
+          "z3_formula": "same_age_siblings_luke == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "same_age_siblings(X) -> twin_triplet(X)",
+          "z3_formula": "Implies(same_age_siblings_luke, twin_triplet_luke)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "twin_triplet(luke)",
+          "z3_formula": "twin_triplet_luke == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown == True",
+          "source_step": 25
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke)",
+          "z3_formula": "twin_or_triplet_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "develops_strong_bonds(luke)",
+          "z3_formula": "develops_strong_bonds_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) & develops_strong_bonds(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(And(twin_or_triplet_luke, develops_strong_bonds_luke), spends_time_with_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> not develops_strong_bonds(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, Not(develops_strong_bonds_luke))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_with_siblings_luke)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> not develops_strong_bonds(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, Not(develops_strong_bonds_luke))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not develops_strong_bonds(X) -> not lives_at_home(X)",
+          "z3_formula": "Implies(Not(develops_strong_bonds_luke), Not(lives_at_home_luke))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not lives_at_home(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(Not(lives_at_home_luke), spends_time_with_siblings_luke)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> complains_about_annoying_siblings(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, complains_about_annoying_siblings_luke)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "complains_about_annoying_siblings(luke)",
+          "z3_formula": "complains_about_annoying_siblings_luke == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke)",
+          "z3_formula": "twin_or_triplet_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "strong_bonds(luke)",
+          "z3_formula": "strong_bonds_luke == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_with_siblings_luke)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> not strong_bonds(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, not strong_bonds_luke)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not strong_bonds(X) -> not lives_at_home(X)",
+          "z3_formula": "Implies(not strong_bonds_luke, not lives_at_home_luke)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not lives_at_home(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(not lives_at_home_luke, spends_time_with_siblings_luke)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> not strong_bonds(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, not strong_bonds_luke)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not twin_or_triplet(X) -> not same_age_siblings(X)",
+          "z3_formula": "Implies(not twin_or_triplet_luke, not same_age_siblings_luke)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not same_age_siblings(X) -> not complains_about_siblings(X)",
+          "z3_formula": "Implies(not same_age_siblings_luke, not complains_about_siblings_luke)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "complains_about_siblings(luke)",
+          "z3_formula": "complains_about_siblings_luke == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke)",
+          "z3_formula": "twin_or_triplet_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "develops_strong_bonds(luke)",
+          "z3_formula": "develops_strong_bonds_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) | ~develops_strong_bonds(X)",
+          "z3_formula": "Or(twin_or_triplet_luke, Not(develops_strong_bonds_luke))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_with_siblings_luke)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_same_age_siblings(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(has_same_age_siblings_luke, twin_or_triplet_luke)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "complains_about_siblings(X) -> has_same_age_siblings(X)",
+          "z3_formula": "Implies(complains_about_siblings_luke, has_same_age_siblings_luke)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not_lives_at_home(X) -> not_develops_strong_bonds(X)",
+          "z3_formula": "Implies(not_lives_at_home_luke, not_develops_strong_bonds_luke)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> not_lives_at_home(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, not_lives_at_home_luke)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "complains_about_siblings(luke)",
+          "z3_formula": "complains_about_siblings_luke == False",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not_develops_strong_bonds(X) -> not_lives_at_home(X)",
+          "z3_formula": "Implies(not_develops_strong_bonds_luke, not_lives_at_home_luke)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "not_lives_at_home(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(not_lives_at_home_luke, spends_time_with_siblings_luke)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> has_same_age_siblings(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, has_same_age_siblings_luke)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "complains_about_siblings(luke)",
+          "z3_formula": "complains_about_siblings_luke == False",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke)",
+          "z3_formula": "twin_or_triplet_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "strong_bonds(luke)",
+          "z3_formula": "strong_bonds_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_with_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not strong_bonds(X) -> not lives_at_home(X)",
+          "z3_formula": "Implies(Not(strong_bonds_luke), Not(lives_at_home_luke))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> not lives_at_home(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, Not(lives_at_home_luke))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> same_age_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, same_age_siblings_luke)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "same_age_siblings(X) -> complains_about_siblings(X)",
+          "z3_formula": "Implies(same_age_siblings_luke, complains_about_siblings_luke)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not lives_at_home(X) -> not strong_bonds(X)",
+          "z3_formula": "Implies(Not(lives_at_home_luke), Not(strong_bonds_luke))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> not lives_at_home(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, Not(lives_at_home_luke))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "same_age_siblings(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(same_age_siblings_luke, twin_or_triplet_luke)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "complains_about_siblings(luke)",
+          "z3_formula": "complains_about_siblings_luke == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "complains_about_siblings(luke)",
+          "z3_formula": "complains_about_siblings_luke == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "twin_or_triplet(luke)",
+          "z3_formula": "twin_or_triplet_luke == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> spends_time_with_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, spends_time_with_siblings_luke)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "spends_time_with_siblings(X) -> often_did_not_live_at_home(X)",
+          "z3_formula": "Implies(spends_time_with_siblings_luke, often_did_not_live_at_home_luke)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "often_did_not_live_at_home(X) -> not_strong_bonds_with_family(X)",
+          "z3_formula": "Implies(often_did_not_live_at_home_luke, not_strong_bonds_with_family_luke)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "twin_or_triplet(X) -> same_age_siblings(X)",
+          "z3_formula": "Implies(twin_or_triplet_luke, same_age_siblings_luke)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "complain_about_annoying_siblings(X) -> same_age_siblings(X)",
+          "z3_formula": "Implies(complain_about_annoying_siblings_luke, same_age_siblings_luke)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "same_age_siblings(X) -> twin_or_triplet(X)",
+          "z3_formula": "Implies(same_age_siblings_luke, twin_or_triplet_luke)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not_strong_bonds_with_family(X) -> not_twin_or_triplet(X)",
+          "z3_formula": "Implies(not_strong_bonds_with_family_luke, not_twin_or_triplet_luke)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not_twin_or_triplet(X) -> not_spends_time_with_siblings(X)",
+          "z3_formula": "Implies(not_twin_or_triplet_luke, not_spends_time_with_siblings_luke)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "not_spends_time_with_siblings(X) -> often_lived_at_home(X)",
+          "z3_formula": "Implies(not_spends_time_with_siblings_luke, often_lived_at_home_luke)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "often_lived_at_home(X) -> strong_bonds_with_family(X)",
+          "z3_formula": "Implies(often_lived_at_home_luke, strong_bonds_with_family_luke)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not_twin_or_triplet(luke)",
+          "z3_formula": "not_twin_or_triplet_luke == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not_spends_time_with_siblings(luke)",
+          "z3_formula": "not_spends_time_with_siblings_luke == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "often_lived_at_home(luke)",
+          "z3_formula": "often_lived_at_home_luke == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "strong_bonds_with_family(luke)",
+          "z3_formula": "strong_bonds_with_family_luke == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not_complain_about_annoying_siblings(luke)",
+          "z3_formula": "not_complain_about_annoying_siblings_luke == True",
+          "source_step": 16
+        }
+      ]
+    }
+  ]
+}

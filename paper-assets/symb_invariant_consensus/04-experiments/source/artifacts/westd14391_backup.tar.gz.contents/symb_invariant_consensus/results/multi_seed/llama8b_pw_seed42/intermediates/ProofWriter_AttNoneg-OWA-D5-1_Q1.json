@@ -1,0 +1,895 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1_Q1",
+    "problem": "Anne is furry. Charlie is round. Charlie is smart. Charlie is white. Charlie is young. Erin is kind. Erin is nice. Erin is round. Erin is smart. Erin is white. Erin is young. Harry is furry. Harry is nice. Harry is round. Harry is smart. Harry is young. All round people are nice. Nice, furry people are kind. All kind, white people are round. All white, furry people are kind. If someone is round and white then they are kind. Nice people are smart. If Anne is nice and Anne is round then Anne is kind. If someone is furry then they are white.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is nice.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nRound(Charlie, True) ::: Charlie is round.\nSmart(Charlie, True) ::: Charlie is smart.\nWhite(Charlie, True) ::: Charlie is white.\nYoung(Charlie, True) ::: Charlie is young.\nKind(Erin, True) ::: Erin is kind.\nNice(Erin, True) ::: Erin is nice.\nRound(Erin, True) ::: Erin is round.\nSmart(Erin, True) ::: Erin is smart.\nWhite(Erin, True) ::: Erin is white.\nYoung(Erin, True) ::: Erin is young.\nFurry(Harry, True) ::: Harry is furry.\nNice(Harry, True) ::: Harry is nice.\nRound(Harry, True) ::: Harry is round.\nSmart(Harry, True) ::: Harry is smart.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nRound($x, True) >>> Nice($x, True) ::: All round people are nice.\nNice($x, True) && Furry($x, True) >>> Kind($x, True) ::: Nice, furry people are kind.\nKind($x, True) && White($x, True) >>> Round($x, True) ::: All kind, white people are round.\nWhite($x, True) && Furry($x, True) >>> Kind($x, True) ::: All white, furry people are kind.\nRound($x, True) && White($x, True) >>> Kind($x, True) ::: If someone is round and white then they are kind.\nNice($x, True) >>> Smart($x, True) ::: Nice people are smart.\nNice(Anne, True) && Round(Anne, True) >>> Kind(Anne, True) ::: If Anne is nice and Anne is round then Anne is kind.\nFurry($x, True) >>> White($x, True) ::: If someone is furry then they are white.\n\nQuery:\nNice(Erin, True) ::: Erin is nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 128.0
+    },
+    "answer_counts": {
+      "True": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Erin is nice\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nGiven statements:\n1. All round people are nice.\n2. Nice, furry people are kind.\n3. All kind, white people are round.\n4. All white, furry people are kind.\n5. If someone is round and white then they are kind.\n6. Nice people are smart.\n7. If Anne is nice and Anne is round then Anne is kind. (This statement does not affect Erin, so we can ignore it.)\n8. If someone is furry then they are white.\n\nGiven that Erin is round, white, and young, we need to find out if she is nice.\n\nFrom statement 5, we know that if someone is round and white, then they are kind. However, this statement is not applicable here since we are trying to find out if Erin is nice, not kind.\n\nFrom statement 3, we know that all kind, white people are round. But, as mentioned earlier, we are trying to find out if Erin is nice, not kind.\n\nFrom statement 1, we know that all round people are nice. This statement directly applies to Erin, as she is round. Therefore, we can conclude that Erin is nice.\n\nSince all the given statements lead to the conclusion that Erin is nice, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - All round people are nice.\n   - Nice, furry people are kind.\n   - All kind, white people are round.\n   - All white, furry people are kind.\n   - If someone is round and white then they are kind.\n   - Nice people are smart.\n   - If Anne is nice and Anne is round then Anne is kind. (This statement is not directly relevant to Erin, so we can ignore it for now.)\n   - If someone is furry then they are white.\n   \n2. From the given statements, we know:\n   - Erin is round.\n   - Erin is white.\n   - Erin is smart.\n   - Erin is young.\n   - Erin is nice. (We are trying to determine this statement)\n\n3. Let's start with the information we have about Erin:\n   - Erin is round.\n   - Erin is white.\n\n4. We can use the information \"If someone is round and white then they are kind\" to conclude that Erin is kind.\n\n5. Now, we have:\n   - Erin is kind.\n   - Erin is white.\n\n6. Using the information \"All white, furry people are kind,\" we can infer that Erin is furry (because Erin is white and kind).\n\n7. Now, we have:\n   - Erin is furry.\n   - Erin is white.\n\n8. Using the information \"If someone is furry then they are white,\" we can confirm that Erin is indeed white.\n\n9. We have already concluded that Erin is kind, and since we have the information \"Nice, furry people are kind,\" we can infer that Erin is nice.\n\n10. Therefore, the statement \"Erin is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is nice\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nFrom the given information, we have the following statements:\n\n1. Erin is kind.\n2. Erin is nice.\n3. Erin is round.\n4. Erin is smart.\n5. Erin is white.\n6. Erin is young.\n\nHowever, we can also derive some conclusions from the given premises:\n\n1. All round people are nice. (Premise 1)\n   From this, we can conclude that Erin is nice because Erin is round. (Erin is round is a premise, so we can use it to derive Erin is nice)\n\n2. Erin is nice. (Derived from Premise 1 and Erin is round)\n\nSince we have derived that Erin is nice, we don't need to use the information that Erin is kind to determine the truth value of the statement \"Erin is nice.\" However, we can also use the information that Erin is kind to derive other conclusions.\n\nNow, let's analyze the information given about Erin in the context of the premises:\n\n1. All kind, white people are round. (Premise 2)\n   From this, we can conclude that Erin is round because Erin is kind and white. However, we already know that Erin is round from premise 3, so this is not useful in determining the truth value of the statement \"Erin is nice.\"\n\n2. If someone is furry then they are white. (Premise 5)\n   This information is not useful in determining the truth value of the statement \"Erin is nice\" because Erin is white (from premise 5), so we don't need to use this premise to conclude that Erin is white.\n\n3. All round people are nice. (Premise 1)\n   We already concluded that Erin is nice from this premise and the fact that Erin is round.\n\nTherefore, the statement \"Erin is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information:\n   - Erin is white.\n   - Erin is round.\n   - All round people are nice.\n   - All round people are smart.\n   - All round people are nice (This is a repeat, but it confirms that round people are nice.)\n\n2. Since Erin is round, we know Erin is nice from the information above.\n\nTherefore, based on the given information, the statement \"Erin is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is nice\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nGiven information:\n1. Erin is round.\n2. Erin is nice.\n3. Erin is round.\n4. Erin is smart.\n5. Erin is white.\n6. Erin is young.\n7. All round people are nice.\n8. Nice, furry people are kind.\n9. All kind, white people are round.\n10. All white, furry people are kind.\n11. If someone is round and white then they are kind.\n12. Nice people are smart.\n13. If Anne is nice and Anne is round then Anne is kind.\n14. If someone is furry then they are white.\n\nWe need to examine the given statements to see if we can conclude that Erin is nice or not.\n\nFrom statement 1: Erin is round.\nFrom statement 7: All round people are nice.\nTherefore, we can conclude that Erin is nice because she is round.\n\nNow we can use this conclusion to see if we can find any contradictions or unknowns in the statement.\n\nSince we already concluded that Erin is nice, we don't need to use statement 8 or 10 as they are not relevant to our conclusion. \n\nAlso, statement 9 is a tautology because if someone is round and white, then they are kind, and if they are kind, then they are round. But we don't need to use it because we already concluded that Erin is nice.\n\nStatement 12 says that nice people are smart. However, this doesn't affect our conclusion about Erin being nice.\n\nStatement 13 says that if Anne is nice and Anne is round then Anne is kind. However, we are discussing Erin, not Anne.\n\nStatement 14 says that if someone is furry then they are white. This is not relevant to our conclusion about Erin.\n\nTherefore, based on the given information, we can conclude that Erin is nice is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Erin is kind.\n   - Erin is nice.\n   - Erin is round.\n   - Erin is smart.\n   - Erin is white.\n   - Erin is young.\n\n2. Analyze the given rules:\n   - All round people are nice.\n   - Nice, furry people are kind.\n   - All kind, white people are round.\n   - All white, furry people are kind.\n   - If someone is round and white then they are kind.\n   - Nice people are smart.\n   - If Anne is nice and Anne is round then Anne is kind. (This rule doesn't apply to Erin as it's specifically about Anne.)\n   - If someone is furry then they are white.\n\n3. We know Erin is round and white from the given statements, and we need to use the rules to deduce more information.\n\n4. From the rule: \"If someone is round and white then they are kind,\" we can conclude that Erin is kind because she is round and white.\n\n5. However, we are looking for the truth of the statement \"Erin is nice.\" From the rule: \"All round people are nice,\" we can conclude that Erin is nice because she is round.\n\n6. Therefore, based on the given information and the rules, we can determine that the statement \"Erin is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine their implications. We'll break down the statements into categories:\n\n1. Statements about individuals:\n   - Anne is furry.\n   - Charlie is round.\n   - Charlie is smart.\n   - Charlie is white.\n   - Charlie is young.\n   - Erin is kind.\n   - Erin is nice.\n   - Erin is round.\n   - Erin is smart.\n   - Erin is white.\n   - Erin is young.\n   - Harry is furry.\n   - Harry is nice.\n   - Harry is round.\n   - Harry is smart.\n   - Harry is young.\n\n2. Statements about general characteristics:\n   - All round people are nice.\n   - Nice, furry people are kind.\n   - All kind, white people are round.\n   - All white, furry people are kind.\n   - If someone is round and white then they are kind.\n   - Nice people are smart.\n   - If Anne is nice and Anne is round then Anne is kind.\n   - If someone is furry then they are white.\n\nNow, let's analyze the statement \"Erin is nice\" and use the given statements to determine its truth value. We can start by looking at the given information about Erin:\n\n- Erin is kind.\n- Erin is nice.\n- Erin is round.\n- Erin is smart.\n- Erin is white.\n- Erin is young.\n\nThe statement \"Erin is nice\" is already given, so we don't need to derive it from other statements. However, we can analyze its implications using the given statements.\n\nFrom the statement \"All round people are nice,\" we know that since Erin is round, Erin must be nice. This is a direct implication of the given statement.\n\nSo, based on the given statements, we can conclude that the statement \"Erin is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is white. (From the statement \"Erin is white.\")\n2. Erin is round. (From the statement \"Erin is round.\")\n3. Since Erin is round, we can conclude that Erin is nice, because all round people are nice. (From the statement \"All round people are nice.\")\n\nNow that we know Erin is nice, we can check if we can conclude whether Erin is kind or not. To do that, let's analyze the information about Erin.\n\n4. Erin is white and Erin is nice. However, there is no direct conclusion that Erin is kind from these statements.\n5. However, from the statement \"If someone is round and white then they are kind,\" we can conclude that Erin is kind, because Erin is round and white.\n6. Also, from the statement \"All white, furry people are kind,\" we can conclude that Erin is not kind, because Erin is white, but there is no information that Erin is furry.\n\nHowever, we already concluded in step 3 that Erin is nice. And we know that Erin is round and white from the statements 1 and 2. And we know from the statement \"If someone is round and white then they are kind,\" that Erin is kind.\n\nSince Erin is kind, we can analyze the information about Erin again.\n\n7. Erin is nice. (From the conclusion in step 3.)\n8. Erin is kind. (From the conclusion in step 5.)\n9. Erin is round. (From the statement \"Erin is round.\")\n10. Erin is white. (From the statement \"Erin is white.\")\n11. Erin is smart. (From the statement \"Erin is smart.\")\n12. Erin is young. (From the statement \"Erin is young.\")\n\nNow that we have analyzed the information about Erin, we can see that we have concluded that Erin is nice, Erin is kind, Erin is round, Erin is white, Erin is smart, and Erin is young.\n\nTherefore, the final answer is that the statement \"Erin is nice\" is \\boxed{true}.",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Erin is round (from the statement \"Erin is round.\") and Erin is white (from the statement \"Erin is white.\").\n\n2. Since Erin is round and white, we know that Erin is kind (from the statement \"If someone is round and white then they are kind.\").\n\n3. Now, we are given that Erin is round and kind. We need to check if Erin is also nice. We know that Erin is round (from the statement \"Erin is round.\") and Erin is kind (from the statement \"Erin is kind.\").\n\n4. However, we are given that \"All round people are nice.\" This means that if someone is round, then they are nice.\n\n5. Since Erin is round, we can conclude that Erin is indeed nice.\n\nSo, based on the given information, we can determine that the statement \"Erin is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Erin is kind.\n   - Erin is nice.\n   - Erin is round.\n   - Erin is smart.\n   - Erin is white.\n   - Erin is young.\n\n2. Analyzing the statements:\n   - We know that Erin is round and Erin is nice. From the given information, we have the statement: \"All round people are nice.\" Therefore, we can conclude that Erin is indeed nice.\n\nSince we have enough information to conclude that the statement \"Erin is nice\" is true, we do not need to consider other statements. \n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and use the rules of inference to deduce the truth value of the statement \"Erin is nice.\"\n\nGiven statements:\n\n1. Anne is furry.\n2. Charlie is round.\n3. Charlie is smart.\n4. Charlie is white.\n5. Charlie is young.\n6. Erin is kind.\n7. Erin is nice.\n8. Erin is round.\n9. Erin is smart.\n10. Erin is white.\n11. Erin is young.\n12. Harry is furry.\n13. Harry is nice.\n14. Harry is round.\n15. Harry is smart.\n16. Harry is young.\n17. All round people are nice.\n18. Nice, furry people are kind.\n19. All kind, white people are round.\n20. All white, furry people are kind.\n21. If someone is round and white then they are kind.\n22. Nice people are smart.\n23. If Anne is nice and Anne is round then Anne is kind.\n24. If someone is furry then they are white.\n\nNow, we will determine whether the statement \"Erin is nice\" is true, false, or unknown.\n\nFrom statement 24, we can infer that since Erin is furry (statement 10), Erin is white (rule 24).\n\nFrom statement 10, we know Erin is white.\n\nWe can combine the information from statement 19 and the information we derived from statements 10 and 24, that Erin is white and furry. This means Erin is kind (rule 20).\n\nWe can also infer that since Erin is white (statement 10) and furry (statement 24), Erin is kind (rule 20).\n\nFrom statement 17, we know that since Erin is round (statement 8), Erin is nice.\n\nFrom statement 8, we know Erin is round.\n\nFrom the information we derived from statements 10 and 24, that Erin is white and furry, and statement 18, we know Erin is kind.\n\nNow we can combine the information that Erin is kind and round. This means Erin is nice (rule 21).\n\nSince we can derive that Erin is nice from different rules, we can conclude that the statement \"Erin is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is nice\" is true, false, or unknown, we need to analyze the given information and apply the logical deductions.\n\nGiven statements:\n\n1. Erin is kind.\n2. Erin is nice.\n3. Erin is round.\n4. Erin is smart.\n5. Erin is white.\n6. Erin is young.\n\nHowever, these statements are already given as premises, so we can't use them directly to determine if Erin is nice. We need to use the given information in the form of rules.\n\nGiven rules:\n\n1. All round people are nice.\n2. Nice, furry people are kind.\n3. All kind, white people are round.\n4. All white, furry people are kind.\n5. If someone is round and white then they are kind.\n6. Nice people are smart.\n7. If Anne is nice and Anne is round then Anne is kind. (This rule is only applicable to Anne, not Erin)\n8. If someone is furry then they are white.\n\nNow, let's analyze the information given for Erin:\n\n- Erin is round (statement 3).\n- Erin is white (statement 5).\n- Erin is kind (statement 1).\n\nWe can use rule 1: All round people are nice. Since Erin is round, we can conclude that Erin is nice.\n\nTherefore, the statement \"Erin is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_erin, nice_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_erin, white_erin), round_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_erin, white_erin), round_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_erin, furry_erin), kind_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_erin, smart_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), kind_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_erin, white_erin), kind_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_erin, white_erin), round_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, white_erin), furry_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> kind(X)",
+          "z3_formula": "Implies(And(furry_erin, nice_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_erin, nice_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_erin, nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_erin, smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_erin, nice_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_erin, furry_erin), kind_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_erin, white_erin), round_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_erin, furry_erin), kind_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_erin, white_erin), kind_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_erin, smart_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), kind_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_erin, furry_erin), kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_erin, white_erin), round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_erin, furry_erin), kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_erin, white_erin), kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(anne) & nice(anne) -> kind(anne)",
+          "z3_formula": "Implies(And(round_anne, nice_anne), kind_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_erin, nice_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_erin, nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin) & nice(erin)",
+          "z3_formula": "And(white_erin, nice_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_erin, white_erin), kind_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin) & nice(erin) & kind(erin)",
+          "z3_formula": "And(And(white_erin, nice_erin), kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_erin, furry_erin), kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_erin, white_erin), kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_erin, nice_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X)",
+          "z3_formula": "Implies(And(round_erin, nice_erin), nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_erin, nice_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(nice_erin, furry_erin), kind_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_erin, white_erin), round_erin)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_erin, furry_erin), kind_erin)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(round_erin, white_erin), kind_erin)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_erin, smart_erin)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & round(X) -> nice(X)",
+          "z3_formula": "Implies(And(kind_erin, round_erin), nice_erin)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 24
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 128,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 33
+    },
+    "maxsat_stats": {
+      "satisfied": 33,
+      "excluded": 0,
+      "total_weight": 128,
+      "solve_time_ms": 0.9680204093456268
+    },
+    "timing": {
+      "trace_gen_s": 5.525,
+      "extraction_s": 25.391,
+      "dedup_s": 0.718,
+      "maxsat_s": 0.003,
+      "total_s": 31.636
+    }
+  }
+}

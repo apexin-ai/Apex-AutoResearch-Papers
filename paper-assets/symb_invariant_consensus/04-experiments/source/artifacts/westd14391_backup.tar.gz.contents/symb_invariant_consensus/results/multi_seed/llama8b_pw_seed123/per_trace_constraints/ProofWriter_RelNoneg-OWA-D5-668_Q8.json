@@ -1,0 +1,1126 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-668_Q8",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_lion, blue_lion)",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(round(X))",
+          "z3_formula": "Implies(blue_lion, Not(round_lion))",
+          "source_step": 27
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits_bald_eagle(lion) -> nice(lion)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits_bald_eagle(lion))",
+          "z3_formula": "Not(visits_bald_eagle_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_lion, big_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats_bear_cat & eats_cat_dog -> eats_cat_lion",
+          "z3_formula": "Implies(And(eats_bear_cat, eats_cat_dog), eats_cat_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats_dog_cat",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats_cat_dog",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits_cat_dog & eats_dog_lion -> round(lion)",
+          "z3_formula": "Implies(And(visits_cat_dog, eats_dog_lion), round_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits_cat_dog",
+          "z3_formula": "visits_cat_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats_cat_lion)",
+          "z3_formula": "Not(eats_cat_lion) == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "Not(round_lion) == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "Not(round_lion) == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(lion))",
+          "z3_formula": "Not(big_lion) == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not(green(lion))",
+          "z3_formula": "Not(green_lion) == True",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, dog)",
+          "z3_formula": "visits_bald_eagle_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bald_eagle)",
+          "z3_formula": "likes_cat_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, dog)",
+          "z3_formula": "likes_cat_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, dog)",
+          "z3_formula": "visits_cat_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> visits(bald_eagle, X)",
+          "z3_formula": "Implies(And(nice_cat, green_cat), visits_bald_eagle_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_dog, eats_dog_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bald_eagle, lion) -> nice(lion)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bald_eagle, X) -> visits(bald_eagle, dog)",
+          "z3_formula": "Implies(likes_bald_eagle_cat, visits_bald_eagle_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_dog, big_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & eats(cat, dog) -> eats(X, lion)",
+          "z3_formula": "Implies(And(eats_dog_cat, eats_cat_dog), eats_dog_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & eats(X, lion) -> round(lion)",
+          "z3_formula": "Implies(And(visits_X_dog, eats_X_lion), round_lion)",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> nice(lion)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> visits(X, lion)",
+          "z3_formula": "Implies(visits_X_dog, visits_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & eats(cat, dog) -> eats(X, lion)",
+          "z3_formula": "Implies(And(eats_X_cat, eats_cat_dog), eats_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & eats(X, lion) -> round(lion)",
+          "z3_formula": "Implies(And(visits_X_dog, eats_X_lion), round_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_X, eats_X_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 1
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> nice(lion)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> nice(lion)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> nice(lion)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cat)",
+          "z3_formula": "likes_bald_eagle_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> visits(X, dog)",
+          "z3_formula": "Implies(likes_bald_eagle_cat, visits_bald_eagle_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, dog)",
+          "z3_formula": "visits_bald_eagle_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> visits(X, lion)",
+          "z3_formula": "Implies(visits_bald_eagle_dog, visits_bald_eagle_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, lion)",
+          "z3_formula": "visits_bald_eagle_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, dog)",
+          "z3_formula": "visits_cat_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> visits(X, dog)",
+          "z3_formula": "Implies(likes_cat_dog, visits_cat_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, dog)",
+          "z3_formula": "likes_cat_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & eats(cat, X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(eats_dog_cat, eats_cat_dog), eats_dog_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_cat, big_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_cat, eats_cat_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> round(X)",
+          "z3_formula": "Implies(round_cat, round_cat)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> round(X)",
+          "z3_formula": "Implies(round_lion, round_lion)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(nice_cat, green_cat), visits_cat_bald_eagle)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> round(X)",
+          "z3_formula": "Implies(visits_cat_lion, round_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, dog)",
+          "z3_formula": "visits_cat_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> eats(X, lion)",
+          "z3_formula": "Implies(eats_cat_lion, eats_cat_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> round(X)",
+          "z3_formula": "Implies(round_cat, round_cat)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> round(X)",
+          "z3_formula": "Implies(round_lion, round_lion)",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> nice(lion)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_X, eats_X_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & eats(X, lion) -> round(lion)",
+          "z3_formula": "Implies(And(visits_X_dog, eats_X_lion), round_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == Unknown",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, dog)",
+          "z3_formula": "visits_bald_eagle_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bald_eagle)",
+          "z3_formula": "likes_cat_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, dog)",
+          "z3_formula": "likes_cat_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, dog)",
+          "z3_formula": "visits_cat_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> visits(bald_eagle, X)",
+          "z3_formula": "Implies(And(nice_cat, green_cat), visits_bald_eagle_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_dog, eats_dog_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bald_eagle, lion) -> nice(lion)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bald_eagle, cat) -> visits(bald_eagle, dog)",
+          "z3_formula": "Implies(likes_bald_eagle_cat, visits_bald_eagle_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bald_eagle, big_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & eats(cat, dog) -> eats(X, lion)",
+          "z3_formula": "Implies(And(eats_dog_cat, eats_cat_dog), eats_dog_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & eats(X, lion) -> round(lion)",
+          "z3_formula": "Implies(And(visits_cat_dog, eats_cat_lion), round_lion)",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, lion)",
+          "z3_formula": "likes_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, dog)",
+          "z3_formula": "visits_bald_eagle_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bald_eagle)",
+          "z3_formula": "likes_cat_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, dog)",
+          "z3_formula": "likes_cat_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, dog)",
+          "z3_formula": "visits_cat_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(nice_cat, green_cat), visits_cat_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_dog, eats_dog_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> nice(X)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> visits(X, dog)",
+          "z3_formula": "Implies(likes_bald_eagle_cat, visits_bald_eagle_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bald_eagle, big_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & eats(cat, dog) -> eats(X, lion)",
+          "z3_formula": "Implies(And(eats_dog_cat, eats_cat_dog), eats_dog_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & eats(X, lion) -> round(X)",
+          "z3_formula": "Implies(And(visits_cat_dog, eats_cat_lion), round_cat)",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_bald_eagle, big_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(nice_cat, green_cat), visits_cat_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, dog)",
+          "z3_formula": "visits_cat_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, dog)",
+          "z3_formula": "likes_cat_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> likes(bald_eagle, cat)",
+          "z3_formula": "Implies(likes_cat_dog, likes_bald_eagle_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bald_eagle, cat)",
+          "z3_formula": "likes_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, dog)",
+          "z3_formula": "visits_bald_eagle_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) & eats(cat, X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(eats_dog_cat, eats_cat_dog), eats_dog_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, dog)",
+          "z3_formula": "eats_cat_dog == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(big_dog, eats_dog_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> nice(lion)",
+          "z3_formula": "Implies(visits_bald_eagle_lion, nice_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bald_eagle, lion)",
+          "z3_formula": "visits_bald_eagle_lion == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & eats(X, lion) -> round(lion)",
+          "z3_formula": "Implies(And(visits_X_dog, eats_X_lion), round_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == Unknown",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_cat, big_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not eaten by lion (cat)",
+          "z3_formula": "not_eaten_by_lion_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not eaten by lion (dog)",
+          "z3_formula": "not_eaten_by_lion_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == Unknown",
+          "source_step": 12
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1110 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-174_Q9",
+    "problem": "The bald eagle eats the bear. The bald eagle is cold. The bald eagle does not like the bear. The bald eagle likes the tiger. The bald eagle visits the bear. The bear eats the bald eagle. The bear is blue. The bear does not visit the tiger. The mouse likes the tiger. The tiger eats the mouse. The tiger is cold. The tiger likes the bear. If the mouse is kind then the mouse eats the bald eagle. If something eats the bald eagle and the bald eagle likes the tiger then the tiger likes the mouse. If something likes the tiger then it visits the mouse. If the tiger likes the mouse and the mouse does not eat the tiger then the mouse is big. If something visits the bear and it is kind then the bear likes the tiger. Cold, kind things are big. If the tiger eats the bald eagle then the tiger does not eat the mouse. If something visits the mouse then it is kind. If the bald eagle eats the mouse and the mouse does not eat the bear then the bald eagle is big.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear visits the mouse.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nCold($x, bool) ::: Is x cold?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\n\nFacts:\nEats(BaldEagle, Bear, True) ::: The bald eagle eats the bear.\nCold(BaldEagle, True) ::: The bald eagle is cold.\nLikes(BaldEagle, Bear, False) ::: The bald eagle does not like the bear.\nLikes(BaldEagle, Tiger, True) ::: The bald eagle likes the tiger.\nVisits(BaldEagle, Bear, True) ::: The bald eagle visits the bear.\nEats(Bear, BaldEagle, True) ::: The bear eats the bald eagle.\nBlue(Bear, True) ::: The bear is blue.\nVisits(Bear, Tiger, False) ::: The bear does not visit the tiger.\nLikes(Mouse, Tiger, True) ::: The mouse likes the tiger.\nEats(Tiger, Mouse, True) ::: The tiger eats the mouse.\nCold(Tiger, True) ::: The tiger is cold.\nLikes(Tiger, Bear, True) ::: The tiger likes the bear.\n\nRules:\nKind(Mouse, True) >>> Eats(Mouse, BaldEagle, True) ::: If the mouse is kind then the mouse eats the bald eagle.\nEats($x, BaldEagle, True) && Likes(BaldEagle, Tiger, True) >>> Likes(Tiger, Mouse, True) ::: If something eats the bald eagle and the bald eagle likes the tiger then the tiger likes the mouse.\nLikes($x, Tiger, True) >>> Visits($x, Mouse, True) ::: If something likes the tiger then it visits the mouse.\nLikes(Tiger, Mouse, True) && Eats(Mouse, Tiger, False) >>> Big(Mouse, True) ::: If the tiger likes the mouse and the mouse does not eat the tiger then the mouse is big.\nVisits($x, Bear, True) && Kind($x, True) >>> Likes(Bear, Tiger, True) ::: If something visits the bear and it is kind then the bear likes the tiger.\nCold($x, True) && Kind($x, True) >>> Big($x, True) ::: Cold, kind things are big.\nEats(Tiger, BaldEagle, True) >>> Eats(Tiger, Mouse, False) ::: If the tiger eats the bald eagle then the tiger does not eat the mouse.\nVisits($x, Mouse, True) >>> Kind($x, True) ::: If something visits the mouse then it is kind.\nEats(BaldEagle, Mouse, True) && Eats(Mouse, Bear, False) >>> Big(BaldEagle, True) ::: If the bald eagle eats the mouse and the mouse does not eat the bear then the bald eagle is big.\n\nQuery:\nVisits(Bear, Mouse, True) ::: The bear visits the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 56.0,
+      "True": 43.0,
+      "Unknown": 129.5
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "False": 1,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine if the statement \"The bear visits the mouse\" is true, false, or unknown, we'll analyze the given information step by step.\n\n1. The given statement is: \"The bear does not visit the tiger.\"\n   This does not provide any information about the bear visiting the mouse.\n\n2. The given statement is: \"If something visits the mouse then it is kind.\"\n   We don't know if the bear is kind or not, so we cannot conclude the bear visits the mouse based on this statement alone.\n\n3. The given statement is: \"The bear eats the bald eagle.\"\n   This statement does not provide any information about the bear visiting the mouse.\n\n4. The given statement is: \"The bear is blue.\"\n   This statement does not provide any information about the bear visiting the mouse.\n\n5. We still don't have enough information to determine if the bear visits the mouse.\n\nHowever, we can use the following statement to deduce more information: \"The bear visits the bear.\"\nSince the bear is eating itself in the statement \"The bear eats the bald eagle\" then we can conclude that the bear visits the mouse is unknown.\n\n6. The statement \"If something visits the bear and it is kind then the bear likes the tiger\" cannot be used since we don't know if the bear is kind or not.\n\n7. The statement \"Cold, kind things are big\" cannot be used since we don't know if the bear is cold or kind.\n\n8. The statement \"If the tiger eats the bald eagle then the tiger does not eat the mouse\" cannot be used since we don't know if the tiger eats the bald eagle or not.\n\n9. The statement \"If the bald eagle eats the mouse and the mouse does not eat the bear then the bald eagle is big\" cannot be used since we don't know if the bald eagle eats the mouse or not.\n\nBased on the given information, we cannot conclude if the bear visits the mouse.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The bear visits the mouse\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. The bear does not visit the tiger. (Given)\n2. If something likes the tiger then it visits the mouse. (Given)\n3. The bear likes the tiger. (Can be derived from the fact that the bald eagle likes the tiger and the bald eagle does not like the bear, but we cannot conclude this from the given information directly, however, we can infer from the fact that the tiger likes the bear and the bald eagle does not like the bear. This would indicate that the bear and the tiger have some sort of relationship that is not entirely negative, which implies that the bear may like the tiger. However, we cannot conclude this from the given information directly. Therefore we cannot directly derive this information from the given statements.)\n\nHowever, we have the following given statements:\n4. The bear eats the bald eagle. (Given)\n5. The bear is blue. (Given)\n6. The mouse likes the tiger. (Given)\n7. The tiger eats the mouse. (Given)\n8. The tiger is cold. (Given)\n9. The tiger likes the bear. (Given)\n10. If something visits the mouse then it is kind. (Given)\n11. If the tiger eats the bald eagle then the tiger does not eat the mouse. (Given)\n12. If the bald eagle eats the mouse and the mouse does not eat the bear then the bald eagle is big. (Given)\n13. If something eats the bald eagle and the bald eagle likes the tiger then the tiger likes the mouse. (Given)\n14. If something likes the tiger then it visits the mouse. (Given)\n15. If the tiger likes the mouse and the mouse does not eat the tiger then the mouse is big. (Given)\n16. The mouse is kind then the mouse eats the bald eagle. (Given)\n17. The bald eagle eats the bear. (Given)\n18. The bald eagle is cold. (Given)\n19. The bald eagle does not like the bear. (Given)\n20. The bald eagle likes the tiger. (Given)\n21. The bald eagle visits the bear. (Given)\n22. The bear eats the bald eagle. (Given)\n\nFrom statement 11 we can conclude that the tiger does not eat the mouse, however, we cannot directly determine whether the bear visits the mouse from the given statements.\n\nHowever, we can derive the following information:\n- The tiger does not eat the mouse (11).\n- The mouse eats the bald eagle if it is kind (16).\n- The bald eagle likes the tiger (20).\n- The bear eats the bald eagle (22).\n- The bear is blue (5).\n- The tiger likes the bear (9).\n- The mouse likes the tiger (6).\n- The tiger eats the mouse (7).\n\nFrom the information in 22 and 17 we can conclude that the bear eats the bald eagle. We also know that the bear is blue (5) and the bald eagle is cold (18). We cannot directly determine whether the bear visits the mouse from the given statements.\n\nHowever, we can derive the following information:\n- The tiger does not eat the mouse (11).\n- The mouse eats the bald eagle if it is kind (16).\n- The bald eagle likes the tiger (20).\n- The bear eats the bald eagle (22).\n- The bear is blue (5).\n- The tiger likes the bear (9).\n- The mouse likes the tiger (6).\n- The tiger eats the mouse (7).\n- If something visits the mouse then it is kind (10).\n\nFrom statement 10 we can conclude that if the bear visits the mouse then it is kind. However, we cannot determine whether the bear visits the mouse from the given statements.\n\nHowever, we can derive the following information:\n- The tiger does not eat the mouse (11).\n- The mouse eats the bald eagle if it is kind (16).\n- The bald eagle likes the tiger (20).\n- The bear eats the bald eagle (22).\n- The bear is blue (5).\n- The tiger likes the bear (9).\n- The mouse likes the tiger (6).\n- The tiger eats the mouse (7).\n- If something visits the mouse then it is kind (10).\n\nHowever, we cannot determine whether the bear visits the mouse from the given statements.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'The bear visits the mouse' is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the given information:\n\n1. The bear does not visit the tiger. \n2. If something visits the mouse, then it is kind. \n3. If something visits the bear and it is kind, then the bear likes the tiger. \n4. The bear is blue (color, not a condition that affects behavior).\n\nFrom point 1, we know the bear does not visit the tiger, but this does not provide any information about the mouse. \n\nFrom point 2, we know that if something visits the mouse, then it is kind. However, this does not directly tell us whether the bear visits the mouse.\n\nFrom point 3, we know that if something visits the bear and it is kind, then the bear likes the tiger. However, we do not have enough information to confirm whether the bear is kind or not. \n\nFrom point 4, we know that the bear is blue, which does not provide any information about its behavior.\n\nNow, let's analyze the possibilities for the bear's behavior:\n\n- If the bear visits the mouse, then it is kind (from point 2).\n- However, there is no direct information stating that the bear visits the mouse.\n\nGiven the available information, we cannot conclude whether the bear visits the mouse or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The bear visits the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given information includes a list of statements about the relationships and actions of the animals.\n2. We need to identify any statements that directly involve the bear visiting the mouse.\n\nFrom the given information:\n\n- Statement 5: The bald eagle visits the bear. (This does not involve the mouse)\n- Statement 6: The bear eats the bald eagle. (This does not involve the mouse)\n- Statement 7: The bear is blue. (This does not involve the mouse)\n- Statement 8: The bear does not visit the tiger. (This does not involve the mouse)\n\nHowever, we do see statements involving the mouse and other animals:\n\n- Statement 10: The mouse likes the tiger. (This does not involve the bear)\n- Statement 11: The tiger eats the mouse. (This does not involve the bear)\n- Statement 12: The tiger is cold. (This does not involve the bear)\n- Statement 13: The tiger likes the bear. (This does not involve the bear visiting the mouse, but it involves the tiger liking the bear)\n- Statement 14: The mouse is big. (This statement involves the mouse and tiger, but it does not involve the bear)\n\nWe also have a few statements that involve the bear liking or being related to other animals:\n\n- Statement 3: The bald eagle does not like the bear. (This does not involve the mouse)\n- Statement 9: The tiger likes the bear. (This does not involve the mouse visiting the bear)\n- Statement 15: If the tiger eats the bald eagle and the bald eagle likes the tiger then the tiger likes the mouse. (This statement involves the tiger and the mouse, but it does not involve the bear)\n- Statement 16: If the tiger likes the mouse then it visits the mouse. (This statement involves the tiger and the mouse, but it does not involve the bear)\n- Statement 17: If the tiger likes the mouse and the mouse does not eat the tiger then the mouse is big. (This statement involves the tiger and the mouse, but it does not involve the bear)\n- Statement 18: If the tiger eats the bald eagle then the tiger does not eat the mouse. (This statement involves the tiger and the bald eagle, but it does not involve the bear)\n- Statement 19: If something visits the mouse then it is kind. (This statement does not directly involve the bear)\n- Statement 20: If the bald eagle eats the mouse and the mouse does not eat the bear then the bald eagle is big. (This statement does not directly involve the bear visiting the mouse)\n\nHowever, we also see the following statement that involves the bear and the mouse:\n\n- Statement 9: The tiger likes the bear. (This statement is related to statement 16, which involves the tiger visiting the mouse)\n- Statement 16: If the tiger likes the mouse then it visits the mouse. (This statement is a possible implication for the bear visiting the mouse)\n- Statement 8: The bear does not visit the tiger. (This does not directly involve the mouse, but it implies that the bear may visit other animals)\n\nTo determine whether the bear visits the mouse, we can look for a chain of implications that leads to the conclusion. However, we do not have any direct information about the bear visiting the mouse.\n\nHowever, if we look at statement 8: The bear does not visit the tiger. This statement implies that the bear may visit other animals. Statement 16: If the tiger likes the mouse then it visits the mouse. implies that if the tiger likes the mouse, then the tiger visits the mouse. We also know that the tiger likes the bear (Statement 9), but we do not know if the tiger likes the mouse.\n\nHowever, we know that the mouse likes the tiger (Statement 10), and the tiger eats the mouse (Statement 11). This implies that the tiger does not like the mouse (since it eats the mouse), but this does not directly involve the bear visiting the mouse.\n\nHowever, we also have a statement that if something visits the mouse then it is kind (Statement 19). But we do not have any information that the bear is kind.\n\nIn conclusion, we do not have any direct information about the bear visiting the mouse. However, we have a few statements that imply the bear may be involved in visiting other animals.\n\nThe statement is unknown.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The bear visits the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement to be determined: The bear visits the mouse.\n\n2. Given statements:\n   - The bear does not visit the tiger.\n   - If something visits the mouse then it is kind.\n   - If the tiger likes the mouse and the mouse does not eat the tiger then the mouse is big.\n   - If something eats the bald eagle and the bald eagle likes the tiger then the tiger likes the mouse.\n   - If the mouse is kind then the mouse eats the bald eagle.\n   - If something likes the tiger then it visits the mouse.\n   - The bear eats the bald eagle.\n   - The bald eagle likes the tiger.\n   - The bear is blue.\n   - The bear does not visit the tiger.\n   - The mouse likes the tiger.\n   - The tiger eats the mouse.\n   - The tiger is cold.\n   - The tiger likes the bear.\n   - The mouse is kind.\n   - If the tiger eats the bald eagle then the tiger does not eat the mouse.\n   - The mouse does not eat the bear.\n   - The bald eagle visits the bear.\n   - The bald eagle is cold.\n   - The bald eagle does not like the bear.\n   - The bald eagle likes the tiger.\n   - The mouse is kind.\n\n3. Analyze given statements for information related to \"The bear visits the mouse.\"\n   - The bear eats the bald eagle, and the bald eagle likes the tiger.\n   - The bear is blue, but this does not provide information about visiting the mouse.\n   - The bear does not visit the tiger, but this does not provide information about visiting the mouse.\n   - The bear likes the tiger (from the statement \"The tiger likes the bear\"), but this does not directly relate to visiting the mouse.\n\n4. Determine whether the bear visits the mouse based on the given information.\n   - We cannot directly conclude that the bear visits the mouse from the given information.\n\n5. Conclusion: \n   - Since we cannot directly conclude that the bear visits the mouse from the given information, the statement \"The bear visits the mouse\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the bear visits the mouse, we need to analyze the given information step by step.\n\n1. The bald eagle eats the bear. (Given)\n2. The bear is blue. (Given)\n3. The bear does not visit the tiger. (Given)\n4. If something visits the bear and it is kind, then the bear likes the tiger. (Rule)\n   - We cannot determine if the bear likes the tiger directly, so we will keep this information for later use.\n\n5. The mouse likes the tiger. (Given)\n6. The mouse does not eat the bear. (Implicit from the statement that the bear eats the bald eagle, which implies the bear is not eaten by the mouse)\n7. If the mouse is kind, then the mouse eats the bald eagle. (Rule)\n   - Since the mouse does not eat the bald eagle (from the statement that the bald eagle eats the bear), we can conclude that the mouse is not kind.\n8. If something visits the mouse, then it is kind. (Rule)\n   - Since the mouse is not kind, we can conclude that nothing visits the mouse.\n9. The tiger eats the mouse. (Given)\n10. The tiger is cold. (Given)\n11. The tiger likes the bear. (Given)\n12. If something eats the bald eagle and the bald eagle likes the tiger, then the tiger likes the mouse. (Rule)\n    - This rule does not apply directly to the bear, so we cannot conclude anything from it.\n13. If the tiger likes the mouse and the mouse does not eat the tiger, then the mouse is big. (Rule)\n    - Since the mouse is not big (because it does not eat the tiger), we can conclude that the tiger does not like the mouse.\n14. The tiger is cold, but we cannot determine if it is kind.\n15. If cold, kind things are big, then we would conclude that the tiger is big, but we cannot determine if the tiger is kind.\n\nNow, let's analyze the statement \"The bear visits the mouse.\"\n\nFrom step 8, we concluded that nothing visits the mouse. This includes the bear.\n\nTherefore, the statement \"The bear visits the mouse\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bear visits the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear does not visit the tiger. (Given)\n2. The statement we need to evaluate is about the bear visiting the mouse, not the tiger. This statement is not directly related to the information in step 1.\n\nHowever, we do not have any information that directly states whether the bear visits the mouse or not. We only have information about the bear visiting the bald eagle, which is a different situation.\n\n3. The bear eats the bald eagle. (Given)\n4. The bear is blue. (Given)\n5. The statement we need to evaluate is not related to the bear's color or eating habits in this case.\n\n6. There is no information that directly states the bear visits the mouse. However, we can look for indirect information that might help us determine the truth of the statement.\n\n7. If something visits the mouse, then it is kind. (Given)\n8. We know the mouse likes the tiger. (Given)\n9. If something likes the tiger, then it visits the mouse. (Given)\n\nFrom steps 8 and 9, we can conclude that the mouse visits the tiger, not the other way around. However, this does not help us determine whether the bear visits the mouse.\n\n10. If the mouse is kind, then the mouse eats the bald eagle. (Given)\n11. We do not know whether the mouse is kind or not, but we do know the mouse likes the tiger. (Given)\n12. We do not have enough information to determine whether the mouse is kind or not.\n\nSince we do not have enough information to determine whether the bear visits the mouse, the statement \"The bear visits the mouse\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The bear visits the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear is blue. \n   - No information is given about the color of the mouse. \n   - We cannot conclude anything about the relationship between the bear and the mouse based on the color.\n\n2. The bear does not visit the tiger.\n   - This does not provide any information about the bear and the mouse.\n\n3. If something visits the mouse then it is kind.\n   - Since we do not know whether the bear visits the mouse, we cannot conclude anything about the bear's kind nature.\n\n4. If something is kind then the mouse eats the bald eagle.\n   - This statement does not provide any information about the bear's relationship with the mouse.\n\n5. If the bear likes the tiger then the bear is kind.\n   - We do not know whether the bear likes the tiger or not.\n\n6. If something visits the bear and it is kind then the bear likes the tiger.\n   - This does not provide any information about the bear and the mouse.\n\n7. The bear eats the bald eagle.\n   - This statement does not provide any information about the bear's relationship with the mouse.\n\n8. The tiger eats the mouse.\n   - This statement does not provide any information about the bear's relationship with the mouse.\n\nSince none of the given statements provide any direct information about the bear visiting the mouse, we cannot conclude whether the statement is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the bear visits the mouse, we need to analyze the given statements and find any relevant information.\n\nFrom the given statements, we know that the bear is blue, the bear does not visit the tiger, and the mouse likes the tiger. We also have several conditional statements related to the bear, the mouse, and the tiger.\n\nHowever, there is no direct statement that the bear visits the mouse. We need to consider the possibilities by combining the given statements.\n\nSince the bear is blue and cold things are not explicitly mentioned, but the fact that the tiger is cold does not necessarily mean the bear is cold as they are different animals. However, the fact that the bear does not visit the tiger does not directly relate to the mouse.\n\nWe also know that if something visits the mouse, then it is kind. This suggests that the bear might be kind if it visits the mouse, but there is no direct evidence to support this claim.\n\nWe also have a conditional statement that says if the mouse does not eat the bear, then the bear likes the tiger, and if the bear likes the tiger, then the tiger likes the mouse. However, this does not provide information about the bear's actions.\n\nSince there is no direct or indirect information that supports or denies the bear visiting the mouse, we cannot conclude whether the statement is true or false based on the given information.\n\nHowever, we have information from the fact that the bear does not visit the tiger. \n\nTherefore, we cannot conclude that the bear visits the mouse. It's unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the bear visits the mouse, we need to analyze the given statements and their implications. \n\n1. The bald eagle eats the bear. \n   - This statement implies that the bald eagle and the bear have a relationship, but it doesn't tell us about the bear's actions.\n\n2. The bear eats the bald eagle.\n   - This statement directly contradicts the first statement. It implies that the bear is actually the one who eats the bald eagle, not the other way around.\n\n3. The bear is blue.\n   - This statement doesn't give us any information about the bear's actions or relationships.\n\n4. The bear does not visit the tiger.\n   - This statement tells us that the bear does not visit the tiger, but it doesn't tell us whether the bear visits the mouse or not.\n\n5. If something visits the mouse then it is kind.\n   - This statement implies that visiting the mouse makes something kind, but it doesn't tell us whether the bear is kind or not.\n\nGiven the above analysis, we have two contradictory statements about the bear's relationship with the bald eagle. However, we don't have any direct information about the bear's relationship with the mouse.\n\nHowever, we can deduce that the statement 'The bear visits the mouse' is unknown because we have no information about the bear visiting the mouse, but we also have no information that would directly contradict it.\n\nHowever, since we have the statement: If something visits the mouse then it is kind. \nThe only statement that contradicts visiting the mouse is the statement: The bear does not visit the tiger.\n\nTherefore we can use modus tollens to prove that the statement is unknown.\n\n Modus tollens:\n\nLet P be the statement 'The bear visits the mouse'\nLet Q be the statement 'The bear does not visit the tiger'\nLet R be the statement 'It is kind'\n\nGiven:\n- P -> R\n- Q\n\nTherefore:\n- P -> R (given)\n- Q (given)\n- ~R (We are given that the bear is blue. This statement doesn't give us any information about the bear's actions or relationships, however, we are also given that cold, kind things are big. Therefore, since we don't know if the bear is big, the statement is unknown.)\n\nHowever, this is an incorrect conclusion. To properly solve this, we have to follow the proper steps of logic and use the correct statements.\n\nThe statement 'The bear is blue' and the statement 'Cold, kind things are big' are the key to this problem.\n\nThe bear is blue, therefore the bear is cold. \n\nWe are given that cold, kind things are big.\n\nTherefore, the bear is big.\n\nThe only statement that contradicts visiting the mouse is the statement: If something visits the mouse then it is kind.\n\nHowever, we also have the statement: If the bald eagle eats the mouse and the mouse does not eat the bear then the bald eagle is big.\n\nThis statement implies that the bald eagle is big, but we don't know if the mouse eats the bear or not. \n\nHowever, we do know that the bear is big.\n\nTherefore, we have two statements about the bear's size, and they both agree.\n\nWe are also given the statement: If the tiger eats the bald eagle then the tiger does not eat the mouse.\n\nHowever, we are given the statement: The tiger eats the mouse.\n\nTherefore, the tiger cannot eat the bald eagle.\n\nWe are given the statement: The tiger likes the bear.\n\nWe are also given the statement: If something eats the bald eagle and the bald eagle likes the tiger then the tiger likes the mouse.\n\nHowever, we are given the statement: The bear eats the bald eagle.\n\nTherefore, the tiger likes the mouse.\n\nWe are given the statement: If the tiger likes the mouse and the mouse does not eat the tiger then the mouse is big.\n\nHowever, we are given the statement: The tiger eats the mouse.\n\nTherefore, the mouse must eat the tiger, and the mouse is big.\n\nWe are given the statement: If something likes the tiger then it visits the mouse.\n\nTherefore, the bear visits the mouse.\n\nThe final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we'll break down the given statements into a set of rules and facts, and then apply them to determine the truth value of the statement.\n\nRules:\n\n1. If the mouse is kind then the mouse eats the bald eagle.\n2. If something eats the bald eagle and the bald eagle likes the tiger then the tiger likes the mouse.\n3. If something likes the tiger then it visits the mouse.\n4. If the tiger likes the mouse and the mouse does not eat the tiger then the mouse is big.\n5. If something visits the bear and it is kind then the bear likes the tiger.\n6. Cold, kind things are big.\n7. If the tiger eats the bald eagle then the tiger does not eat the mouse.\n8. If something visits the mouse then it is kind.\n9. If the bald eagle eats the mouse and the mouse does not eat the bear then the bald eagle is big.\n\nFacts:\n\n1. The bald eagle eats the bear.\n2. The bald eagle is cold.\n3. The bald eagle does not like the bear.\n4. The bald eagle likes the tiger.\n5. The bald eagle visits the bear.\n6. The bear eats the bald eagle.\n7. The bear is blue.\n8. The bear does not visit the tiger.\n9. The mouse likes the tiger.\n10. The tiger eats the mouse.\n11. The tiger is cold.\n12. The tiger likes the bear.\n13. The mouse is kind.\n\nGiven statement: The bear visits the mouse.\n\nTo determine the truth value of this statement, let's apply the rules and facts:\n\nFrom fact 13, we know that the mouse is kind.\nFrom rule 8, if something visits the mouse then it is kind. Since the mouse is kind, this rule is satisfied for the mouse itself.\nHowever, we need to determine if the bear visits the mouse.\n\nFrom fact 6, we know that the bear eats the bald eagle.\nFrom rule 1, if the mouse is kind then the mouse eats the bald eagle. Since the mouse is kind (fact 13), this rule is satisfied, and the mouse eats the bald eagle.\nFrom fact 10, we know that the tiger eats the mouse.\n\nNow, let's consider the tiger and the mouse:\nFrom fact 11, we know that the tiger is cold.\nFrom fact 12, we know that the tiger likes the bear.\n\nWe need to check if the tiger likes the mouse. From fact 12, we know that the tiger likes the bear, and from rule 2, if something eats the bald eagle and the bald eagle likes the tiger then the tiger likes the mouse. However, the bald eagle eats the bear (fact 1), and the bald eagle likes the tiger (fact 4). Therefore, the tiger likes the mouse (rule 2).\n\nFrom rule 3, if something likes the tiger then it visits the mouse. Since the tiger likes the mouse, this rule is satisfied, and the bear visits the mouse.\n\nHowever, we need to check if this is the only possible interpretation. Let's consider an alternative scenario:\n\nFrom fact 6, we know that the bear eats the bald eagle.\nFrom fact 8, we know that the bear is blue.\n\nWe don't know if the bear is cold or not, but we know that it eats the bald eagle. If the bear is cold, then it satisfies rule 6 (cold, kind things are big), and we can't determine if it visits the mouse. However, if the bear is not cold, then it doesn't satisfy rule 6, and we still can't determine if it visits the mouse.\n\nSince we can't determine the truth value of the statement \"The bear visits the mouse\" based on the given facts and rules, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bear visits the mouse\" is true, false, or unknown, we need to analyze the given information and apply the rules.\n\nGiven information:\n1. The bear eats the bald eagle.\n2. The bear is blue.\n3. The bear does not visit the tiger.\n4. If something visits the bear and it is kind then the bear likes the tiger.\n5. The tiger eats the mouse.\n6. If something eats the bald eagle and the bald eagle likes the tiger then the tiger likes the mouse.\n7. If something likes the tiger then it visits the mouse.\n8. If the tiger likes the mouse and the mouse does not eat the tiger then the mouse is big.\n9. If something visits the mouse then it is kind.\n10. If the bald eagle eats the mouse and the mouse does not eat the bear then the bald eagle is big.\n\nWe need to find the rule that relates to the bear visiting the mouse. However, there is no direct rule that states the bear visits the mouse. We only have information that the bear does not visit the tiger, but we cannot conclude that the bear visits the mouse from this information.\n\nTo determine if the bear visits the mouse, we can try to find a contradictory statement. If the bear visits the mouse, then it must be kind (rule 9). If the bear is kind, then it likes the tiger (rule 4), and since the bear likes the tiger, the tiger likes the mouse (rule 6).\n\nHowever, we already know that the tiger eats the mouse (rule 5), which implies that the tiger does not like the mouse (since the tiger eats the mouse, it cannot like it). This is a contradiction, as we previously concluded that the tiger likes the mouse.\n\nTherefore, we cannot determine that the bear visits the mouse from the given information. Hence, the statement is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "not visits(bear, tiger)",
+          "z3_formula": "not visits_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(visits_bear_mouse, kind_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, bald_eagle)",
+          "z3_formula": "visits_bear_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, bear)",
+          "z3_formula": "visits_bear_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & kind(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(And(visits_bear_bear, kind_bear), likes_bear_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_bear, kind_bear), big_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, bald_eagle)",
+          "z3_formula": "eats_tiger_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & not eats(X, mouse) -> big(X)",
+          "z3_formula": "Implies(And(eats_tiger_bald_eagle, not eats_tiger_mouse), big_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, mouse)",
+          "z3_formula": "eats_bald_eagle_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(mouse, bear)",
+          "z3_formula": "not eats_mouse_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(visits(bear, mouse))",
+          "z3_formula": "unknown(visits_bear_mouse)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not visits(bear, tiger)",
+          "z3_formula": "not visits_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> visits(X, mouse)",
+          "z3_formula": "Implies(likes_tiger_X, visits_X_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, tiger)",
+          "z3_formula": "likes_bear_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, eagle)",
+          "z3_formula": "eats_bear_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(visits_X_mouse, kind_X)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, eagle) -> not eats(tiger, mouse)",
+          "z3_formula": "Implies(eats_tiger_eagle, not eats_tiger_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(eagle, mouse) & not eats(mouse, bear) -> big(eagle)",
+          "z3_formula": "Implies(And(eats_eagle_mouse, not eats_mouse_bear), big_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, eagle) & likes(eagle, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_X_eagle, likes_eagle_tiger), likes_X_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & not eats(mouse, tiger) -> big(mouse)",
+          "z3_formula": "Implies(And(likes_X_mouse, not eats_mouse_tiger), big_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(mouse) -> eats(mouse, eagle)",
+          "z3_formula": "Implies(kind_mouse, eats_mouse_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "eats(eagle, bear)",
+          "z3_formula": "eats_eagle_bear == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "cold(eagle)",
+          "z3_formula": "cold_eagle == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(bear, eagle)",
+          "z3_formula": "not likes_bear_eagle == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "likes(eagle, tiger)",
+          "z3_formula": "likes_eagle_tiger == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "visits(eagle, bear)",
+          "z3_formula": "visits_eagle_bear == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, eagle)",
+          "z3_formula": "eats_bear_eagle == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger) == False",
+          "z3_formula": "Not(visits_bear_tiger) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(visits_bear_mouse, kind_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & kind(X) -> likes_bear_tiger",
+          "z3_formula": "Implies(And(visits_bear_mouse, kind_bear), likes_bear_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "color(bear) == blue",
+          "z3_formula": "color_bear == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> visits(X, Y)",
+          "z3_formula": "Implies(likes_tiger_mouse, visits_tiger_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_visit(bear, tiger)",
+          "z3_formula": "does_not_visit_bear_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> kind(X)",
+          "z3_formula": "Implies(visits_mouse_X, kind_X)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, mouse)",
+          "z3_formula": "visits_bear_mouse == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(bear, mouse)",
+          "z3_formula": "visits_bear_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(visits_bear_mouse, kind_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(tiger, mouse) & ~eats(mouse, tiger) -> big(mouse)",
+          "z3_formula": "Implies(And(likes_tiger_mouse, ~eats_mouse_tiger), big_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, eagle) & likes(eagle, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_bear_eagle, likes_eagle_tiger), likes_bear_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(mouse) -> eats(mouse, eagle)",
+          "z3_formula": "Implies(kind_mouse, eats_mouse_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> visits(X, mouse)",
+          "z3_formula": "Implies(likes_bear_tiger, visits_bear_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, eagle)",
+          "z3_formula": "eats_bear_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(eagle, tiger)",
+          "z3_formula": "likes_eagle_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == False",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(tiger, eagle) -> ~eats(tiger, mouse)",
+          "z3_formula": "Implies(eats_tiger_eagle, ~eats_tiger_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bear)",
+          "z3_formula": "eats_mouse_bear == False",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(eagle, bear)",
+          "z3_formula": "visits_eagle_bear == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "cold(eagle)",
+          "z3_formula": "cold_eagle == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "likes(eagle, bear)",
+          "z3_formula": "likes_eagle_bear == False",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "likes(eagle, tiger)",
+          "z3_formula": "likes_eagle_tiger == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(bear, tiger)",
+          "z3_formula": "Not(visits_bear_tiger) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & kind(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(And(visits_X_bear, kind_X), likes_X_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(mouse, bear)",
+          "z3_formula": "Not(eats_mouse_bear) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(kind_X, eats_X_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(mouse)",
+          "z3_formula": "Not(kind_mouse) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(visits_X_mouse, kind_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not visits(bear, mouse)",
+          "z3_formula": "Not(visits_bear_mouse) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & likes(bald_eagle, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_X_bald_eagle, likes_bald_eagle_tiger), likes_X_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(tiger, mouse)",
+          "z3_formula": "Not(likes_tiger_mouse) == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & not eats(mouse, X) -> big(X)",
+          "z3_formula": "Implies(And(likes_X_mouse, Not(eats_mouse_X)), big_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not big(mouse)",
+          "z3_formula": "Not(big_mouse) == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(tiger)",
+          "z3_formula": "Not(kind_tiger) == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_X, kind_X), big_X)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Unknown",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(bear, tiger)",
+          "z3_formula": "visits_bear_tiger == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, mouse)",
+          "z3_formula": "visits_bear_mouse == Unknown",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, eagle)",
+          "z3_formula": "eats_bear_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(visits_bear_mouse, kind_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> visits(X, mouse)",
+          "z3_formula": "Implies(likes_mouse_tiger, visits_mouse_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, tiger)",
+          "z3_formula": "visits_mouse_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> eats(X, eagle)",
+          "z3_formula": "Implies(kind_mouse, eats_mouse_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(mouse) == Unknown",
+          "z3_formula": "kind_mouse == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(bear, tiger)",
+          "z3_formula": "Not(visits_bear_tiger) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(visits_bear_mouse, kind_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> mouse_eats(bald_eagle)",
+          "z3_formula": "Implies(kind_bear, mouse_eats_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> kind(X)",
+          "z3_formula": "Implies(likes_bear_tiger, kind_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & kind(bear) -> likes(X, tiger)",
+          "z3_formula": "Implies(And(visits_bear_mouse, kind_bear), likes_bear_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(bear, tiger)",
+          "z3_formula": "Not(visits_bear_tiger) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(visits_bear_mouse, kind_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not eats(mouse, bear) -> likes(bear, tiger)",
+          "z3_formula": "Implies(Not(eats_mouse_bear), likes_bear_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(bear, tiger) -> likes(tiger, mouse)",
+          "z3_formula": "Implies(likes_bear_tiger, likes_tiger_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(visits(bear, mouse))",
+          "z3_formula": "Not(visits_bear_mouse == True) & Not(visits_bear_mouse == False)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(bear, tiger)",
+          "z3_formula": "not visits_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(visits_bear_mouse, kind_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & not eats(mouse, X) -> big(X)",
+          "z3_formula": "Implies(And(eats_bald_eagle_mouse, not eats_mouse_bald_eagle), big_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & likes(bald_eagle, Y) -> likes(Y, mouse)",
+          "z3_formula": "Implies(And(eats_bear_bald_eagle, likes_bald_eagle_tiger), likes_tiger_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & not eats(mouse, X) -> big(X)",
+          "z3_formula": "Implies(And(likes_tiger_mouse, not eats_mouse_tiger), big_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> visits(X, mouse)",
+          "z3_formula": "Implies(likes_bear_tiger, visits_bear_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, mouse)",
+          "z3_formula": "visits_bear_mouse == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, bear)",
+          "z3_formula": "eats_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(bald_eagle, bear)",
+          "z3_formula": "not likes_bald_eagle_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, tiger)",
+          "z3_formula": "likes_bald_eagle_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, bear)",
+          "z3_formula": "visits_bald_eagle_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(bear, tiger)",
+          "z3_formula": "not likes_bear_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, tiger)",
+          "z3_formula": "likes_bear_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(kind_mouse, eats_mouse_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & likes(bald_eagle, Y) -> likes(Y, X)",
+          "z3_formula": "Implies(And(eats_bear_bald_eagle, likes_bald_eagle_tiger), likes_tiger_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> visits(X, mouse)",
+          "z3_formula": "Implies(likes_tiger_bear, visits_bear_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(tiger, X) & not eats(X, tiger) -> big(X)",
+          "z3_formula": "Implies(And(likes_tiger_mouse, not eats_mouse_tiger), big_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & kind(X) -> likes(bear, tiger)",
+          "z3_formula": "Implies(And(visits_bald_eagle_bear, kind_bald_eagle), likes_bear_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_bald_eagle, kind_bald_eagle), big_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "eats(tiger, bald_eagle) -> not eats(tiger, mouse)",
+          "z3_formula": "Implies(eats_tiger_bald_eagle, not eats_tiger_mouse)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(visits_bald_eagle_mouse, kind_bald_eagle)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "eats(bald_eagle, mouse) & not eats(mouse, bear) -> big(bald_eagle)",
+          "z3_formula": "Implies(And(eats_bald_eagle_mouse, not eats_mouse_bear), big_bald_eagle)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, mouse)",
+          "z3_formula": "visits_bear_mouse == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, bald_eagle)",
+          "z3_formula": "eats_bear_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bear)",
+          "z3_formula": "blue_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(bear, tiger)",
+          "z3_formula": "Not(visits_bear_tiger) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bear) & kind(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(And(visits_X_bear, kind_X), likes_X_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, mouse)",
+          "z3_formula": "eats_tiger_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & likes(bald_eagle, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(eats_X_bald_eagle, likes_bald_eagle_tiger), likes_X_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> visits(X, mouse)",
+          "z3_formula": "Implies(likes_X_tiger, visits_X_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & not eats(X, tiger) -> big(X)",
+          "z3_formula": "Implies(And(likes_X_mouse, Not(eats_X_tiger)), big_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(visits_X_mouse, kind_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & not eats(X, bear) -> big(X)",
+          "z3_formula": "Implies(And(eats_X_mouse, Not(eats_X_bear)), big_X)",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 163,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 76
+    },
+    "maxsat_stats": {
+      "satisfied": 71,
+      "excluded": 5,
+      "total_weight": 147,
+      "solve_time_ms": 1.805013045668602
+    },
+    "timing": {
+      "trace_gen_s": 11.241,
+      "extraction_s": 34.065,
+      "dedup_s": 2.362,
+      "maxsat_s": 0.006,
+      "total_s": 47.674
+    }
+  }
+}

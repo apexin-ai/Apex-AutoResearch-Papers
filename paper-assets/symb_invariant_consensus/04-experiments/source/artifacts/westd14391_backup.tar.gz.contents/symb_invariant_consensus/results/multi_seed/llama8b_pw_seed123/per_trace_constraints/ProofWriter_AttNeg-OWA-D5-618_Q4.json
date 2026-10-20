@@ -1,0 +1,696 @@
+{
+  "pid": "ProofWriter_AttNeg-OWA-D5-618_Q4",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne) & nice(anne) -> cold(anne)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == False",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne) & nice(anne) -> cold(anne)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne) -> rough(anne)",
+          "z3_formula": "Implies(cold_anne, rough_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne) -> round(anne)",
+          "z3_formula": "Implies(rough_anne, round_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne) & round(anne) -> green(anne)",
+          "z3_formula": "Implies(And(white_anne, round_anne), green_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(nice_anne, round_anne), white_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona) & nice(fiona)",
+          "z3_formula": "And(cold_fiona, nice_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne) & nice(anne) -> cold(anne)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne)",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_anne, rough_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_anne, round_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_anne, white_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_anne, white_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(white_anne, round_anne), green_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> Not(not_nice(X))",
+          "z3_formula": "Implies(nice_anne, Not(not_nice_anne))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not_nice(anne)",
+          "z3_formula": "not_nice_anne == False",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne) == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(white_X, round_X), green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(nice_X, round_X), white_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_X, round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_X, rough_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_X, nice_X), cold_X)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne) & nice(anne) -> cold(anne)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> not nice(X)",
+          "z3_formula": "Implies(nice_anne, Not(nice_anne))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_anne, white_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & round(X) -> green(X)",
+          "z3_formula": "Implies(And(white_anne, round_anne), green_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona) & rough(fiona)",
+          "z3_formula": "cold_fiona == True & rough_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_anne, round_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob) & rough(bob)",
+          "z3_formula": "cold_bob == True & rough_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne) | white(anne) | cold(anne) | rough(anne)",
+          "z3_formula": "Or(round_anne, white_anne, cold_anne, rough_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not round(anne) & not white(anne) & not cold(anne) & not rough(anne)",
+          "z3_formula": "Not(Or(round_anne, white_anne, cold_anne, rough_anne))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not (not nice(anne))",
+          "z3_formula": "Not(Not(nice_anne))",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Not(nice_anne)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), cold_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne) == True",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

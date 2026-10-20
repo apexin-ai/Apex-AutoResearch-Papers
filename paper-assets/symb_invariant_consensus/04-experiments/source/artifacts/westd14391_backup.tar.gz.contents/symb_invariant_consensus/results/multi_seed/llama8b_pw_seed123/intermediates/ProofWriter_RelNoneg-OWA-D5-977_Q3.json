@@ -1,0 +1,1479 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-977_Q3",
+    "problem": "The cat is young. The cat visits the mouse. The cow is cold. The cow likes the lion. The lion is cold. The lion likes the cat. The lion needs the mouse. The lion visits the mouse. The mouse is cold. The mouse is red. The mouse is young. The mouse likes the cat. The mouse needs the cat. The mouse needs the cow. If something needs the cat and the cat is red then it is blue. Blue things are red. If something likes the mouse and the mouse likes the cat then the cat is blue. If something is cold and red then it likes the mouse. If something needs the cow and it is cold then it is young. If something is nice then it visits the lion. If something needs the lion then it likes the cat. If something visits the cat and it likes the lion then the cat is blue. If something is cold and blue then it needs the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse likes the mouse.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nYoung($x, bool) ::: Is x young?\nVisits($x, $y, bool) ::: Does x visit y?\nCold($x, bool) ::: Is x cold?\nLikes($x, $y, bool) ::: Does x like y?\nNeeds($x, $y, bool) ::: Does x need y?\nRed($x, bool) ::: Is x red?\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nYoung(cat, True) ::: The cat is young.\nVisits(cat, mouse, True) ::: The cat visits the mouse.\nCold(cow, True) ::: The cow is cold.\nLikes(cow, lion, True) ::: The cow likes the lion.\nCold(lion, True) ::: The lion is cold.\nLikes(lion, cat, True) ::: The lion likes the cat.\nNeeds(lion, mouse, True) ::: The lion needs the mouse.\nVisits(lion, mouse, True) ::: The lion visits the mouse.\nCold(mouse, True) ::: The mouse is cold.\nRed(mouse, True) ::: The mouse is red.\nYoung(mouse, True) ::: The mouse is young.\nLikes(mouse, cat, True) ::: The mouse likes the cat.\nNeeds(mouse, cat, True) ::: The mouse needs the cat.\nNeeds(mouse, cow, True) ::: The mouse needs the cow.\n\nRules:\nNeeds($x, cat, True) && Red(cat, True) >>> Blue($x, True) ::: If something needs the cat and the cat is red then it is blue.\nBlue($x, True) >>> Red($x, True) ::: Blue things are red.\nLikes($x, mouse, True) && Likes(mouse, cat, True) >>> Blue(cat, True) ::: If something likes the mouse and the mouse likes the cat then the cat is blue.\nCold($x, True) && Red($x, True) >>> Likes($x, mouse, True) ::: If something is cold and red then it likes the mouse.\nNeeds($x, cow, True) && Cold($x, True) >>> Young($x, True) ::: If something needs the cow and it is cold then it is young.\nNice($x, True) >>> Visits($x, lion, True) ::: If something is nice then it visits the lion.\nNeeds($x, lion, True) >>> Likes($x, cat, True) ::: If something needs the lion then it likes the cat.\nVisits($x, cat, True) && Likes($x, lion, True) >>> Blue(cat, True) ::: If something visits the cat and it likes the lion then the cat is blue.\nCold($x, True) && Blue($x, True) >>> Needs($x, lion, True) ::: If something is cold and blue then it needs the lion.\n\nQuery:\nLikes(mouse, mouse, True) ::: The mouse likes the mouse."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 124.0,
+      "Unknown": 214.5
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The mouse likes the mouse\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The mouse is red. (Given)\n2. The mouse is young. (Given)\n3. The mouse is cold. (Given)\n4. The mouse likes the cat. (Given)\n5. If something is cold and red then it likes the mouse. (Rule)\n   Since the mouse is cold and red, it likes the mouse. However, this rule doesn't directly tell us about the mouse liking the mouse but rather that the mouse likes something. We can't conclude this from this rule alone.\n\n6. If something likes the mouse and the mouse likes the cat then the cat is blue. (Rule)\n   We know that the mouse likes the cat. However, this rule only tells us about the cat's color (blue) and not about the mouse's feelings towards itself.\n\n7. If something needs the cat and the cat is red then it is blue. (Rule)\n   This rule doesn't apply to the mouse as the mouse is given as red and we are trying to find the mouse's feelings towards itself.\n\n8. If something needs the lion then it likes the cat. (Rule)\n   This rule doesn't apply to the mouse's feelings towards itself.\n\n9. The lion needs the mouse. (Given)\n   This information is irrelevant to the mouse's feelings towards itself.\n\n10. The lion visits the mouse. (Given)\n    This information is irrelevant to the mouse's feelings towards itself.\n\n11. The mouse needs the lion. (Given)\n    This information is irrelevant to the mouse's feelings towards itself.\n\n12. If something is cold and blue then it needs the lion. (Rule)\n    This rule doesn't apply to the mouse as we don't know the mouse's color and it's not relevant to the statement we are trying to evaluate.\n\n13. The mouse needs the cat. (Given)\n    This information is irrelevant to the mouse's feelings towards itself.\n\n14. The mouse is young. (Given)\n    This information is irrelevant to the mouse's feelings towards itself.\n\n15. The mouse is red. (Given)\n    This information is irrelevant to the mouse's feelings towards itself.\n\n16. The mouse is cold. (Given)\n    This information is relevant to the statement, but as we've already established, we can't conclude the mouse likes the mouse from this.\n\n17. The cat is young. (Given)\n    This information is irrelevant to the mouse's feelings towards itself.\n\n18. The cat visits the mouse. (Given)\n    This information is irrelevant to the mouse's feelings towards itself.\n\n19. The lion is cold. (Given)\n    This information is irrelevant to the mouse's feelings towards itself.\n\n20. The lion likes the cat. (Given)\n    This information is irrelevant to the mouse's feelings towards itself.\n\n21. The cow is cold. (Given)\n    This information is irrelevant to the mouse's feelings towards itself.\n\n22. The cow likes the lion. (Given)\n    This information is irrelevant to the mouse's feelings towards itself.\n\n23. The mouse likes the cat. (Given)\n    This information is relevant to the statement, but as we've already established, we can't conclude the mouse likes the mouse from this.\n\nSince none of the given information or rules directly tell us whether the mouse likes the mouse, we can't conclude this statement as true or false. Therefore, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse likes the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is red. (Given)\n2. The mouse likes the cat. (Given)\n3. If something likes the mouse and the mouse likes the cat then the cat is blue. (Given)\n   - Since the mouse likes the cat, this rule applies, but it doesn't directly tell us anything about the mouse. However, we will use it later.\n\n4. The mouse needs the cat. (Given)\n   - This information is crucial because it implies that the mouse has a relationship with the cat.\n\n5. If something needs the cat and the cat is red then it is blue. (Given)\n   - Since the mouse needs the cat, this rule applies. However, the cat's color is not explicitly stated as red or blue. We need to find out more about the cat.\n\n6. The cat visits the mouse. (Given)\n   - This information doesn't directly help us determine whether the mouse likes the mouse.\n\n7. The cat is young. (Given)\n   - This information is crucial because it implies that the cat has a certain property (being young).\n\n8. The mouse is young. (Given)\n   - This information is crucial because it implies that the mouse has a certain property (being young).\n\n9. The mouse is cold. (Given)\n   - This information is crucial because it implies that the mouse has a certain property (being cold).\n\n10. If something is cold and red then it likes the mouse. (Given)\n    - Since the mouse is cold and red, this rule applies. Therefore, the mouse likes the mouse.\n\nThe given information supports the statement \"The mouse likes the mouse.\" Therefore, the answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and analyze the information provided.\n\nGiven statements:\n1. The cat is young.\n2. The cat visits the mouse.\n3. The cow is cold.\n4. The cow likes the lion.\n5. The lion is cold.\n6. The lion likes the cat.\n7. The lion needs the mouse.\n8. The lion visits the mouse.\n9. The mouse is cold.\n10. The mouse is red.\n11. The mouse is young.\n12. The mouse likes the cat.\n13. The mouse needs the cat.\n14. The mouse needs the cow.\nGiven rules:\n1. If something needs the cat and the cat is red then it is blue. (We don't know the color of the cat yet, so we can't apply this rule yet.)\n2. If something likes the mouse and the mouse likes the cat then the cat is blue. (This rule can be applied later.)\n3. If something is cold and red then it likes the mouse. (This rule can be applied later.)\n4. If something needs the cow and it is cold then it is young. (This rule can be applied later.)\n5. If something is nice then it visits the lion. (This rule can be applied later.)\n6. If something needs the lion then it likes the cat. (This rule can be applied later.)\n7. If something visits the cat and it likes the lion then the cat is blue. (This rule can be applied later.)\n8. If something is cold and blue then it needs the lion. (This rule can be applied later.)\n\nNow, let's analyze the given statements to determine the relationships between the animals.\n\nFrom statement 8, we know the mouse needs the lion. So, from rule 6, the mouse likes the cat.\n\nFrom statement 2, we know the cat visits the mouse. From rule 7, since the cat likes the lion (statement 6), the cat is blue.\n\nNow, let's analyze the rules that involve the color blue.\n\nFrom rule 2, we know that since something likes the mouse and the mouse likes the cat, the cat is blue. We already know this from rule 7, but this rule also tells us that the cat is blue because something likes the mouse.\n\nFrom rule 1, we know that if something needs the cat and the cat is red, then it is blue. We don't know the color of the cat yet, but since we know the cat is blue, we can't apply this rule yet.\n\nFrom rule 8, we know that if something is cold and blue then it needs the lion. We don't know if the mouse is cold and blue yet, but we can't determine its color yet.\n\nNow, let's analyze the rules that involve the color red.\n\nFrom rule 3, we know that if something is cold and red then it likes the mouse. We know the mouse is cold (statement 9), but we don't know if it is red.\n\nFrom rule 1, we know that if something needs the cat and the cat is red then it is blue. We already know the cat is blue, but we can't determine if it is red yet.\n\nNow, let's analyze the given statement.\n\nThe given statement is: The mouse likes the mouse.\n\nFrom rule 2, we know that if something likes the mouse and the mouse likes the cat, then the cat is blue. We know the mouse likes the cat (statement 12), but we can't determine if the mouse likes the mouse from the given statements.\n\nHowever, from rule 6, we know that if something needs the lion then it likes the cat. We know the mouse needs the lion (statement 7), so the mouse likes the cat (statement 12). \n\nWe can't apply rule 2 to determine if the mouse likes the mouse, but we can't determine the truth of the statement from the given information.\n\nTherefore, the statement \"The mouse likes the mouse\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse likes the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"The mouse likes the mouse\" is what we are trying to determine.\n\nLet's break down the given information into individual statements and analyze them:\n\n1. The cat is young.\n2. The cat visits the mouse.\n3. The cow is cold.\n4. The cow likes the lion.\n5. The lion is cold.\n6. The lion likes the cat.\n7. The lion needs the mouse.\n8. The lion visits the mouse.\n9. The mouse is cold.\n10. The mouse is red.\n11. The mouse is young.\n12. The mouse likes the cat.\n13. The mouse needs the cat.\n14. The mouse needs the cow.\n\nNow, let's analyze the given conditions:\n\n1. If something needs the cat and the cat is red then it is blue. (Condition 1)\n2. If something likes the mouse and the mouse likes the cat then the cat is blue. (Condition 2)\n3. If something is cold and red then it likes the mouse. (Condition 3)\n4. If something needs the cow and it is cold then it is young. (Condition 4)\n5. If something is nice then it visits the lion. (Condition 5)\n6. If something needs the lion then it likes the cat. (Condition 6)\n7. If something visits the cat and it likes the lion then the cat is blue. (Condition 7)\n8. If something is cold and blue then it needs the lion. (Condition 8)\n\nNow, let's apply the given conditions to the statements:\n\n- The mouse is red (Statement 10), but we don't know if it likes the mouse or not.\n- The mouse is young (Statement 11), but we don't know if it likes the mouse or not.\n- The mouse is cold (Statement 9), but we don't know if it likes the mouse or not.\n\nWe can see that none of the given conditions directly relate to the statement \"The mouse likes the mouse.\" Therefore, we cannot determine whether the statement is true or false based on the given information.\n\nHowever, we can analyze some related statements:\n\n- The mouse likes the cat (Statement 12).\n- The mouse needs the cat (Statement 13).\n- The cat is young (Statement 1).\n- The cat visits the mouse (Statement 2).\n\nBased on Condition 2, since the mouse likes the cat and the cat likes the lion, we can deduce that the cat is blue.\n\nNow, we can use Condition 7, which states that if something visits the cat and it likes the lion then the cat is blue. However, this does not directly apply to the mouse.\n\nSince we cannot determine whether the mouse likes the mouse based on the given conditions and statements, we conclude that the statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'The mouse likes the mouse' is true, false, or unknown, we need to analyze the given conditions and their implications.\n\n1. The statement 'If something likes the mouse and the mouse likes the cat then the cat is blue.' implies that we cannot directly determine if the mouse likes the mouse from this condition alone, as it mentions 'something' likes the mouse, not 'the mouse' itself.\n\n2. However, we can analyze other conditions to find a connection to the mouse.\n\n3. The statement 'If something is cold and red then it likes the mouse.' does not apply directly to the mouse since we do not know the mouse's color.\n\n4. The statement 'If something needs the cow and it is cold then it is young.' does not apply to the mouse as there is no indication that it needs the cow.\n\n5. The statement 'If something is nice then it visits the lion.' does not provide any information about the mouse.\n\n6. The statement 'If something needs the lion then it likes the cat.' does not apply directly to the mouse as we do not know if it needs the lion.\n\n7. The statement 'If something visits the cat and it likes the lion then the cat is blue.' does not apply to the mouse since it visits the mouse, not the cat.\n\n8. The statement 'If something is cold and blue then it needs the lion.' does not apply to the mouse since it is red, not blue.\n\n9. From the statement 'The mouse is red' and the rule 'If something is red then it is blue', we can conclude that the mouse is blue.\n\n10. The statement 'The mouse likes the cat' implies that 'something likes the mouse' is true for the mouse, as the mouse likes the cat.\n\n11. From the initial condition (The mouse likes the cat) and the implication that 'something likes the mouse' is true for the mouse, we can conclude that the statement 'The mouse likes the mouse' is true.\n\nSo, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse likes the mouse\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given statements are:\n\n- The cat is young.\n- The cat visits the mouse.\n- The cow is cold.\n- The cow likes the lion.\n- The lion is cold.\n- The lion likes the cat.\n- The lion needs the mouse.\n- The lion visits the mouse.\n- The mouse is cold.\n- The mouse is red.\n- The mouse is young.\n- The mouse likes the cat.\n- The mouse needs the cat.\n- The mouse needs the cow.\n\n2. The given rules are:\n\n- If something needs the cat and the cat is red then it is blue. (Rule 1)\n- If something likes the mouse and the mouse likes the cat then the cat is blue. (Rule 2)\n- If something is cold and red then it likes the mouse. (Rule 3)\n- If something needs the cow and it is cold then it is young. (Rule 4)\n- If something is nice then it visits the lion. (Rule 5)\n- If something needs the lion then it likes the cat. (Rule 6)\n- If something visits the cat and it likes the lion then the cat is blue. (Rule 7)\n- If something is cold and blue then it needs the lion. (Rule 8)\n\n3. We need to determine whether the mouse likes the mouse. To do this, we need to find a rule that applies to the mouse and determine the outcome of that rule.\n\n- The statement \"The mouse likes the mouse\" can be rewritten as \"The mouse likes the mouse\" is true.\n- We are looking for a rule that includes the word \"mouse\" and has a true outcome.\n\nUpon analyzing the given rules, we do not find any rule that directly states \"If something likes the mouse then it is true\" or \"If something is the mouse then it likes the mouse.\" However, we do find a rule that states \"If something is cold and red then it likes the mouse\" (Rule 3).\n\n- The mouse is red (Statement 9).\n- The mouse is cold (Statement 10).\n\nHowever, Rule 3 does not directly apply to the mouse. Instead, Rule 3 states that something that is cold and red likes the mouse. It does not state that the mouse likes itself.\n\nSince there is no rule that directly states that the mouse likes the mouse, we cannot determine whether the statement \"The mouse likes the mouse\" is true or false using the given information.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'The mouse likes the mouse' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement: \"The mouse is young. The mouse is red. The mouse is young. The mouse likes the cat.\"\nWe cannot find any information about the mouse liking the mouse. \n\n2. From the statement: \"The cat is young. The cat visits the mouse. The cow is cold. The cow likes the lion. The lion is cold. The lion likes the cat. The lion needs the mouse. The lion visits the mouse. The mouse is cold. The mouse is red. The mouse is young. The mouse likes the cat. The mouse needs the cat. The mouse needs the cow. If something needs the cat and the cat is red then it is blue. Blue things are red.\"\nAgain, we cannot find any information about the mouse liking the mouse.\n\n3. From the statement: \"If something likes the mouse and the mouse likes the cat then the cat is blue.\"\nThis doesn't tell us anything about the mouse liking the mouse, only about the cat being blue.\n\n4. From the statement: \"If something is cold and red then it likes the mouse. The mouse is cold. The mouse is red.\"\nThis tells us that the mouse likes the mouse is false, since the mouse is cold and red, but we don't know that it likes the mouse.\n\n5. From the statement: \"If something needs the cow and it is cold then it is young. The mouse needs the cow and it is cold.\"\nThis tells us that the mouse is young, but we still don't know whether the mouse likes the mouse.\n\n6. From the statement: \"If something is nice then it visits the lion. If something needs the lion then it likes the cat. If something visits the cat and it likes the lion then the cat is blue.\"\nThis information doesn't help us determine whether the mouse likes the mouse.\n\n7. From the statement: \"If something is cold and blue then it needs the lion.\"\nThis tells us that the mouse is cold and blue, since it is cold and red, but we still don't know that it needs the lion.\n\nSince we cannot find any information that the mouse likes the mouse, we cannot determine whether the statement is true or false. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse likes the mouse\" is true, false, or unknown, we need to analyze the given conditions and their implications.\n\n1. If something needs the cat and the cat is red then it is blue. Blue things are red. This condition does not directly relate to the mouse.\n\n2. If something likes the mouse and the mouse likes the cat then the cat is blue. We cannot determine the color of the cat based on the information provided.\n\n3. If something is cold and red then it likes the mouse. The mouse is cold and red, so it likes the mouse, but this does not directly relate to the mouse liking the mouse.\n\n4. If something needs the cow and it is cold then it is young. The mouse needs the cow, but the mouse's age is already stated as young.\n\n5. If something is nice then it visits the lion. We do not know if the mouse is nice.\n\n6. If something needs the lion then it likes the cat. The mouse needs the lion, so the mouse likes the cat.\n\n7. If something visits the cat and it likes the lion then the cat is blue. The mouse visits the cat and the mouse likes the lion, so we can deduce that the cat is blue.\n\n8. If something is cold and blue then it needs the lion. The mouse is cold, blue (since the cat is blue), and young. The mouse is young, so we can apply the condition in rule 4.\n\nBased on the given conditions, the mouse is young because it is cold and needs the cow. Since the mouse is young, we can also apply the condition in rule 8.\n\nThe mouse is cold, blue, and young. We can conclude that the mouse needs the lion.\n\nNow we can analyze the statement: \"The mouse likes the mouse.\" We have found that the mouse likes the cat (rule 6). However, we cannot directly infer that the mouse likes the mouse from the given conditions.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse likes the mouse\" is true, false, or unknown, we need to analyze the given statements and the conditions.\n\nGiven Statements:\n1. The cat is young.\n2. The cat visits the mouse.\n3. The cow is cold.\n4. The cow likes the lion.\n5. The lion is cold.\n6. The lion likes the cat.\n7. The lion needs the mouse.\n8. The lion visits the mouse.\n9. The mouse is cold.\n10. The mouse is red.\n11. The mouse is young.\n12. The mouse likes the cat.\n13. The mouse needs the cat.\n14. The mouse needs the cow.\n\nGiven Conditions:\n1. If something needs the cat and the cat is red then it is blue. Blue things are red.\n2. If something likes the mouse and the mouse likes the cat then the cat is blue.\n3. If something is cold and red then it likes the mouse.\n4. If something needs the cow and it is cold then it is young.\n5. If something is nice then it visits the lion.\n6. If something needs the lion then it likes the cat.\n7. If something visits the cat and it likes the lion then the cat is blue.\n8. If something is cold and blue then it needs the lion.\n\nWe are looking for a condition that involves the mouse liking the mouse. We need to check all the conditions that might relate to this.\n\nCondition 1: \n- This condition is not relevant to our statement.\n\nCondition 2: \n- We know the mouse likes the cat (Statement 12).\n- But we don't know if the mouse likes the mouse. We can't conclude the cat's color from this condition alone.\n\nCondition 3:\n- We know the mouse is cold (Statement 9).\n- We also know the mouse is red (Statement 10).\n- According to Condition 3, if something is cold and red then it likes the mouse.\n- However, this doesn't tell us if the mouse likes the mouse.\n\nCondition 4:\n- This condition is not relevant to our statement.\n\nCondition 5:\n- This condition is not relevant to our statement.\n\nCondition 6:\n- This condition is not relevant to our statement.\n\nCondition 7:\n- We know the mouse visits the cat (Statement 2).\n- We also know the mouse likes the lion (Statement 12 is not enough to conclude that, we need to check other statements).\n- According to Statement 13, the mouse needs the cat.\n- We don't have enough information to conclude the cat's color from Statement 12 alone.\n- However, we can see from Statement 12 that the mouse likes the cat. We can use Condition 2: If something likes the mouse and the mouse likes the cat then the cat is blue.\n- But we don't know if the mouse likes the mouse from this.\n\nCondition 8:\n- This condition is not relevant to our statement.\n\nWe can see that none of the conditions directly tell us if the mouse likes the mouse. However, we can analyze the statements to see if we can find any indirect information.\n\nFrom Statement 12, we know the mouse likes the cat. But we are looking for a condition that involves the mouse liking the mouse.\n\nLet's look at the statements again. We know the mouse is red (Statement 10), the mouse is cold (Statement 9), and the mouse is young (Statement 11). We also know the mouse needs the cat (Statement 13) and the mouse needs the cow (Statement 14).\n\nSince we can't find any direct or indirect information in the given statements and conditions that tells us if the mouse likes the mouse, our answer is:\n\nThe mouse likes the mouse is unknown.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to determine whether the mouse likes the mouse. We can do this by analyzing the given information and applying the rules.\n\n1. The mouse is red. \n2. If something is red then it is blue. \nSince the mouse is red, it is blue. \n\n3. If something likes the mouse and the mouse likes the cat then the cat is blue. \nWe do not have any information about the cat liking the mouse. However, we do know the mouse likes the cat.\n\n4. The mouse likes the cat. \nFrom rule 3, we know that if something likes the mouse and the mouse likes the cat then the cat is blue. However, since we do not have any information about the cat, we cannot directly apply this rule. \n\n5. The lion likes the cat. \nThe lion is cold. \nIf something is cold and red then it likes the mouse. \nSince the lion is cold and we do not know if it is red, we cannot apply this rule.\n\n6. The lion needs the mouse. \nThe lion visits the mouse. \nIf something needs the lion then it likes the cat. \nWe do not have any information about something needing the lion, but we do know the lion needs the mouse.\n\n7. The mouse needs the cat. \nThe mouse needs the cow. \nThe cow is cold. \nIf something needs the cow and it is cold then it is young. \nThe cow is cold and young, but we do not know if the mouse needs the cow because it is cold. However, we do know the mouse needs the cat.\n\n8. The mouse is young. \nSince we know the mouse is blue from rule 2, we can apply rule 1: If something needs the lion then it likes the cat. However, we do not have any information about the mouse needing the lion.\n\n9. The cat is young. \nWe do not have any information about the cat liking the mouse or the mouse liking the cat.\n\n10. The mouse is red. \nThe mouse is blue. \nFrom rule 1, we know that the mouse needs the cat. However, we do not have any information about the cat.\n\nNow let's analyze the rules again and see if we can find any information about the mouse liking the mouse.\n\n1. The mouse is red. \n2. If something is red then it is blue. \nSince the mouse is red, it is blue. \n\n3. If something likes the mouse and the mouse likes the cat then the cat is blue. \nWe know the mouse likes the cat, but we do not have any information about the cat.\n\n4. The mouse likes the cat. \nHowever, we do not have any information about the cat.\n\n5. The lion is cold. \nIf something is cold and red then it likes the mouse. \nWe do not know if the lion is red, but we do know the lion is cold. \n\n6. The lion needs the mouse. \nThe lion visits the mouse. \nIf something needs the lion then it likes the cat. \nWe do not have any information about something needing the lion, but we do know the lion needs the mouse.\n\n7. The mouse needs the cat. \nThe mouse needs the cow. \nThe cow is cold. \nIf something needs the cow and it is cold then it is young. \nThe cow is cold and young, but we do not know if the mouse needs the cow because it is cold. However, we do know the mouse needs the cat.\n\n8. The mouse is young. \nSince we know the mouse is blue from rule 2, we can apply rule 1: If something needs the lion then it likes the cat. However, we do not have any information about the mouse needing the lion.\n\n9. The cat is young. \nWe do not have any information about the cat liking the mouse or the mouse liking the cat.\n\n10. The mouse is red. \nThe mouse is blue. \nFrom rule 1, we know that the mouse needs the cat. However, we do not have any information about the cat.\n\nHowever, let's look at the rules again and see if we can find any information about the mouse liking the mouse.\n\nFrom rule 7, we know that the mouse needs the cat. \n\nFrom rule 2, we know that the mouse is blue. \n\nFrom rule 6, we know the lion needs the mouse.\n\nFrom rule 8, we know the mouse is young.\n\nNow, let's look at rule 1: If something needs the lion then it likes the cat.\n\nSince the lion needs the mouse and the mouse needs the cat, we can infer that the mouse likes the cat.\n\nNow, let's look at rule 3: If something likes the mouse and the mouse likes the cat then the cat is blue.\n\nSince the mouse likes the cat and the mouse likes the mouse, we can infer that the cat is blue.\n\nHowever, we do not have any information about the cat liking the mouse.\n\nNow, let's look at rule 6: If something needs the lion then it likes the cat.\n\nSince the mouse needs the lion, we can infer that the mouse likes the cat.\n\nHowever, we do not have any information about the mouse liking the mouse.\n\nSince we cannot find any information about the mouse liking the mouse, our answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse likes the mouse\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The mouse is red. \n2. The mouse is young. \n3. The mouse is cold. \n4. The mouse likes the cat. \n5. The mouse needs the cat. \n6. The mouse needs the cow. \n\nFrom the given rules, we have:\n- If something likes the mouse and the mouse likes the cat, then the cat is blue. \n  (We don't have information about the cat liking the mouse, so we can't directly apply this rule to the mouse.)\n- If something is cold and red, then it likes the mouse. \n  (The mouse is cold and red, so it likes the mouse, which means the mouse likes the mouse.)\n- If something needs the cow and it is cold, then it is young. \n  (We can't apply this rule to the mouse because we don't know if the mouse needs the cow.)\n- If something visits the cat and it likes the lion, then the cat is blue. \n  (We don't have information about the cat liking the lion, so we can't directly apply this rule to the mouse.)\n- If something is cold and blue, then it needs the lion. \n  (We don't have information about the mouse being blue, so we can't directly apply this rule to the mouse.)\n\nFrom rule 2, we can directly apply the rule to the mouse:\n\n- The mouse is cold and red, so it likes the mouse.\n\nTherefore, the statement \"The mouse likes the mouse\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and the statement to be evaluated. \n\nFrom the given statements, we can infer the following information:\n\n1. If something needs the cat and the cat is red then it is blue. \n2. Blue things are red.\n3. If something likes the mouse and the mouse likes the cat then the cat is blue.\n4. If something is cold and red then it likes the mouse.\n5. If something needs the cow and it is cold then it is young.\n6. If something is nice then it visits the lion.\n7. If something needs the lion then it likes the cat.\n8. If something visits the cat and it likes the lion then the cat is blue.\n9. If something is cold and blue then it needs the lion.\n\nNow, let's analyze the statement \"The mouse likes the mouse.\"\n\nWe can't directly find the information about the mouse liking the mouse from the given statements. However, we can use the information from the given statements to analyze the mouse's characteristics and behavior.\n\nFrom the given statements, we know that:\n- The mouse is red.\n- The mouse is young.\n- The mouse likes the cat.\n- The mouse needs the cat.\n- The mouse is cold.\n\nNow, let's check if the given statements can be used to determine if the mouse likes the mouse. We can start by looking at statement 3: \"If something likes the mouse and the mouse likes the cat then the cat is blue.\" \n\nHowever, we can't directly apply this statement to the mouse. But we can use the information from this statement to infer something about the mouse. Since the mouse likes the cat, and we know that the cat is not mentioned as liking the mouse, we can't directly apply this statement.\n\nNext, let's analyze the other given statements to see if they can be used to determine if the mouse likes the mouse.\n\nFrom statement 4: \"If something is cold and red then it likes the mouse,\" we can see that the mouse is cold and red. However, this statement is not directly related to the mouse liking the mouse. \n\nFrom statement 5: \"If something needs the cow and it is cold then it is young,\" we can see that the mouse is young, but this statement is not directly related to the mouse liking the mouse.\n\nFrom statement 6: \"If something is nice then it visits the lion,\" we can't determine if the mouse is nice, so we can't apply this statement.\n\nFrom statement 7: \"If something needs the lion then it likes the cat,\" we can see that the mouse needs the lion, but this statement is not directly related to the mouse liking the mouse.\n\nFrom statement 8: \"If something visits the cat and it likes the lion then the cat is blue,\" we can't determine if the mouse visits the cat or likes the lion, so we can't apply this statement.\n\nFrom statement 9: \"If something is cold and blue then it needs the lion,\" we can see that the mouse is cold, but we can't determine if the mouse is blue, so we can't apply this statement.\n\nBased on the analysis of the given statements, we can't determine if the mouse likes the mouse. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_mouse_mouse), blue_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, red_cat), blue_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_mouse_lion, likes_mouse_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_mouse, blue_mouse), needs_mouse_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, mouse)",
+          "z3_formula": "visits_cat_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_cat_mouse), blue_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, red_cat), blue_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, mouse)",
+          "z3_formula": "visits_cat_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, mouse)",
+          "z3_formula": "visits_cat_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, red_cat), blue_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_mouse_cat), blue_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, cold_mouse), young_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> visits(X, lion)",
+          "z3_formula": "Implies(nice_mouse, visits_mouse_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_mouse_lion, likes_mouse_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(cat, lion) -> blue(cat)",
+          "z3_formula": "Implies(And(visits_mouse_cat, likes_lion_cat), blue_cat)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_mouse, blue_mouse), needs_mouse_lion)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, mouse)",
+          "z3_formula": "likes_mouse_mouse == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, mouse)",
+          "z3_formula": "visits_cat_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, red_cat), blue_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_mouse_cat), blue_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, cold_mouse), young_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> visits(X, lion)",
+          "z3_formula": "Implies(nice_X, visits_X_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_X_lion, likes_X_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(cat, lion) -> blue(cat)",
+          "z3_formula": "Implies(And(visits_X_cat, likes_cat_lion), blue_cat)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_X, blue_X), needs_X_lion)",
+          "source_step": 22
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, mouse)",
+          "z3_formula": "visits_cat_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, red_cat), blue_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_mouse_cat), blue_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, cold_mouse), young_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> visits(lion, X)",
+          "z3_formula": "Implies(nice_mouse, visits_lion_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_mouse_lion, likes_mouse_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(lion, X) -> blue(cat)",
+          "z3_formula": "Implies(And(visits_mouse_cat, likes_lion_mouse), blue_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(lion, X)",
+          "z3_formula": "Implies(And(cold_mouse, blue_mouse), needs_lion_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, mouse)",
+          "z3_formula": "likes_mouse_mouse == Unknown",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, mouse)",
+          "z3_formula": "visits_cat_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, red_cat), blue_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_mouse, red_mouse)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_cat, red_cat)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, cold_mouse), young_mouse)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> visits(X, lion)",
+          "z3_formula": "Implies(nice_X, visits_X_lion)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_X_lion, likes_X_cat)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(X, lion) -> blue(X)",
+          "z3_formula": "Implies(And(visits_X_cat, likes_X_lion), blue_X)",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_X, blue_X), needs_X_lion)",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, mouse)",
+          "z3_formula": "likes_mouse_mouse == False",
+          "source_step": 29
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, mouse)",
+          "z3_formula": "likes_mouse_mouse == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, red_cat), blue_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_mouse, likes_mouse_cat), blue_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, cold_mouse), young_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> visits(X, lion)",
+          "z3_formula": "Implies(nice_mouse, visits_mouse_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_mouse_lion, likes_mouse_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(X, lion) -> blue(cat)",
+          "z3_formula": "Implies(And(visits_mouse_cat, likes_mouse_lion), blue_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_mouse, blue_mouse), needs_mouse_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, mouse)",
+          "z3_formula": "visits_cat_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, red_cat), blue_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X)",
+          "z3_formula": "blue_X == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_mouse_cat), blue_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(mouse, X)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, cold_mouse), young_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> visits(lion, X)",
+          "z3_formula": "Implies(nice_X, visits_lion_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_X_lion, likes_X_cat)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(X, lion) -> blue(cat)",
+          "z3_formula": "Implies(And(visits_X_cat, likes_X_lion), blue_cat)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(lion, X)",
+          "z3_formula": "Implies(And(cold_X, blue_X), needs_lion_X)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == False",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == False",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, mouse)",
+          "z3_formula": "likes_mouse_mouse == False",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_mouse, blue_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_cat_mouse), blue_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_lion, red_lion), likes_lion_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "likes_lion_mouse == Unknown",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_lion_mouse, likes_mouse_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, cold_cow), young_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_lion_mouse, likes_mouse_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_cat_mouse), blue_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_lion_mouse, likes_mouse_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_cat_mouse), blue_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_mouse_lion, likes_mouse_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_cat_mouse), blue_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, mouse)",
+          "z3_formula": "likes_mouse_mouse == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cow)",
+          "z3_formula": "needs_mouse_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_cat, likes_cat_mouse), blue_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, cold_mouse), young_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(X, lion) -> blue(cat)",
+          "z3_formula": "Implies(And(visits_mouse_cat, likes_mouse_lion), blue_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_mouse, blue_mouse), needs_mouse_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, mouse)",
+          "z3_formula": "likes_mouse_mouse == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, mouse)",
+          "z3_formula": "likes_mouse_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & red(cat) -> blue(X)",
+          "z3_formula": "Implies(And(needs_mouse_cat, red_cat), blue_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & likes(mouse, cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_mouse_mouse, likes_mouse_cat), blue_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cat)",
+          "z3_formula": "likes_mouse_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> red(X)",
+          "z3_formula": "Implies(likes_mouse_mouse, red_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(cold_mouse, red_mouse), likes_mouse_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) & cold(X) -> young(X)",
+          "z3_formula": "Implies(And(needs_mouse_cow, cold_mouse), young_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> visits(X, lion)",
+          "z3_formula": "Implies(nice_mouse, visits_mouse_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> likes(X, cat)",
+          "z3_formula": "Implies(needs_mouse_lion, likes_mouse_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & likes(X, lion) -> blue(cat)",
+          "z3_formula": "Implies(And(visits_mouse_cat, likes_mouse_lion), blue_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> needs(X, lion)",
+          "z3_formula": "Implies(And(cold_mouse, blue_mouse), needs_mouse_lion)",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 225,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 53
+    },
+    "maxsat_stats": {
+      "satisfied": 50,
+      "excluded": 3,
+      "total_weight": 220,
+      "solve_time_ms": 1.3923756778240204
+    },
+    "timing": {
+      "trace_gen_s": 13.259,
+      "extraction_s": 41.59,
+      "dedup_s": 2.019,
+      "maxsat_s": 0.004,
+      "total_s": 56.873
+    }
+  }
+}

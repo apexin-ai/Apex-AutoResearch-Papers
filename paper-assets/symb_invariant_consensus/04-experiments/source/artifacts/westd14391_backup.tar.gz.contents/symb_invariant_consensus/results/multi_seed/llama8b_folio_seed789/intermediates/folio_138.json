@@ -1,0 +1,721 @@
+{
+  "problem": {
+    "id": "folio_138",
+    "problem": "Given the following premises:\nMachine Learning algorithms can be categorized as supervised learning, unsupervised learning, and reinforcement learning. Unsupervised learning doesn't require labelled data. The state-of-the-art text summarization model is trained with machine learning algorithms. Reinforcement learning is not used to train the state-of-the-art text summarization model. The Machine Learning algorithm for training text summarization model requires labelled data.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSupervised learning is used to train the state-of-the-art text summarization model.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "MLAlgorithm(supervisedLearning) \u2228 MLAlgorithm(unsupervisedLearning) \u2228 MLAlgorithm(reinforcementLearning)",
+      "\u00acRequireLabelledData(unsupervisedLearning)",
+      "TrainTextSumModel(supervisedLearning) \u2228 TrainTextSumModel(unsupervisedLearning) \u2228 TrainTextSumModel(reinforcementLearning)",
+      "\u00acTrainTextSumModel(reinforcementLearning)",
+      "\u2200x ((MLAlgorithm(x) \u2227 TrainTextSumModel(x)) \u2192 RequireLabelledData(x))"
+    ],
+    "conclusion_fol": "TrainTextSumModel(supervisedLearning)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 75.5
+    },
+    "answer_counts": {
+      "True": 11
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we will analyze the given premises step by step.\n\n1. Machine Learning algorithms can be categorized as supervised learning, unsupervised learning, and reinforcement learning.\n   - This premise simply states the categories of Machine Learning algorithms and does not provide any information about the state-of-the-art text summarization model.\n\n2. Unsupervised learning doesn't require labelled data.\n   - This premise provides information about unsupervised learning, but it does not directly relate to the state-of-the-art text summarization model.\n\n3. The state-of-the-art text summarization model is trained with machine learning algorithms.\n   - This premise indicates that the state-of-the-art text summarization model uses machine learning algorithms for training, but it does not specify which type of machine learning algorithm.\n\n4. Reinforcement learning is not used to train the state-of-the-art text summarization model.\n   - This premise provides information about the type of machine learning algorithm not used for training the state-of-the-art text summarization model.\n\n5. The Machine Learning algorithm for training text summarization model requires labelled data.\n   - This premise provides information about the type of machine learning algorithm required for training the state-of-the-art text summarization model.\n\nNow, let's analyze the conclusion: \"Supervised learning is used to train the state-of-the-art text summarization model.\"\n\nFrom premise 5, we know that the Machine Learning algorithm for training the text summarization model requires labelled data. \n\nFrom premise 2, we know that unsupervised learning does not require labelled data. \n\nSince we are given that reinforcement learning is not used (premise 4), the only type of machine learning algorithm left that requires labelled data is supervised learning.\n\nTherefore, based on the given premises, the conclusion that supervised learning is used to train the state-of-the-art text summarization model is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. Machine Learning algorithms can be categorized as supervised learning, unsupervised learning, and reinforcement learning.\n   - This premise gives us a general overview of the categories of Machine Learning algorithms, but it doesn't provide any information about the specific model in question (text summarization).\n\n2. Unsupervised learning doesn't require labelled data.\n   - This premise provides information about unsupervised learning, but it's not directly related to the model in question. We don't know if the model in question is supervised or unsupervised yet.\n\n3. The state-of-the-art text summarization model is trained with machine learning algorithms.\n   - This premise tells us that the text summarization model is trained with Machine Learning algorithms, but it doesn't specify which type of algorithm is used.\n\n4. Reinforcement learning is not used to train the state-of-the-art text summarization model.\n   - This premise eliminates the possibility of reinforcement learning being used to train the model.\n\n5. The Machine Learning algorithm for training text summarization model requires labelled data.\n   - This premise tells us that the Machine Learning algorithm used to train the text summarization model requires labelled data.\n\nFrom premises 3 and 5, we can conclude that the Machine Learning algorithm used to train the text summarization model is not reinforcement learning (because it requires labelled data) and is not unsupervised learning (because it requires labelled data). The only category left is supervised learning.\n\nTherefore, the conclusion that supervised learning is used to train the state-of-the-art text summarization model is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step:\n\n1. Machine Learning algorithms can be categorized as supervised learning, unsupervised learning, and reinforcement learning.\n   - This premise simply lists the categories of Machine Learning algorithms but doesn't provide any information about the specific algorithm used for text summarization.\n\n2. Unsupervised learning doesn't require labelled data.\n   - This premise provides a characteristic of unsupervised learning but doesn't mention anything about the text summarization model.\n\n3. The state-of-the-art text summarization model is trained with machine learning algorithms.\n   - This premise tells us that the text summarization model is trained with Machine Learning algorithms, but it doesn't specify the type of algorithm.\n\n4. Reinforcement learning is not used to train the state-of-the-art text summarization model.\n   - This premise eliminates reinforcement learning as a possibility for training the text summarization model.\n\n5. The Machine Learning algorithm for training text summarization model requires labelled data.\n   - This premise tells us that the Machine Learning algorithm used for text summarization requires labelled data, which is a characteristic of supervised learning.\n\nNow, let's analyze the conclusion:\n\nSupervised learning is used to train the state-of-the-art text summarization model.\n\nFrom premise 5, we know that the Machine Learning algorithm used for text summarization requires labelled data, which is a characteristic of supervised learning. Since the text summarization model is trained with Machine Learning algorithms (premise 3), and reinforcement learning is not used (premise 4), the only possibility left is supervised learning.\n\nTherefore, based on the given premises, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given premises step by step.\n\n1. Machine Learning algorithms can be categorized as supervised learning, unsupervised learning, and reinforcement learning.\n   This premise tells us that there are three types of machine learning algorithms.\n\n2. Unsupervised learning doesn't require labelled data.\n   This premise provides information about unsupervised learning but doesn't tell us anything about the other two types of machine learning algorithms.\n\n3. The state-of-the-art text summarization model is trained with machine learning algorithms.\n   This premise tells us that the state-of-the-art text summarization model is trained using machine learning algorithms, but it doesn't specify which type of machine learning algorithm.\n\n4. Reinforcement learning is not used to train the state-of-the-art text summarization model.\n   This premise tells us that reinforcement learning is not used to train the state-of-the-art text summarization model, but it doesn't tell us which other type of machine learning algorithm is used.\n\n5. The Machine Learning algorithm for training text summarization model requires labelled data.\n   This premise tells us that the machine learning algorithm used for training the text summarization model requires labelled data.\n\nFrom premises 2 and 5, we can conclude that the machine learning algorithm used for training the text summarization model is not unsupervised learning because unsupervised learning doesn't require labelled data.\n\nSince reinforcement learning is not used to train the state-of-the-art text summarization model (premise 4), the machine learning algorithm used for training the text summarization model must be supervised learning.\n\nTherefore, the conclusion is true.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's break down the given premises step by step:\n\n1. Machine Learning algorithms can be categorized as supervised learning, unsupervised learning, and reinforcement learning. \n   This premise categorizes machine learning algorithms into three types. However, it doesn't specify which type is used for the state-of-the-art text summarization model.\n\n2. Unsupervised learning doesn't require labelled data.\n   This premise provides a characteristic of unsupervised learning but doesn't provide any information about the state-of-the-art text summarization model.\n\n3. The state-of-the-art text summarization model is trained with machine learning algorithms.\n   This premise links the state-of-the-art text summarization model to machine learning algorithms, but it doesn't specify which type of machine learning algorithm is used.\n\n4. Reinforcement learning is not used to train the state-of-the-art text summarization model.\n   This premise rules out reinforcement learning as a possibility for training the state-of-the-art text summarization model.\n\n5. The Machine Learning algorithm for training text summarization model requires labelled data.\n   This premise provides a characteristic of the machine learning algorithm used for training the text summarization model. It implies that the algorithm requires labelled data, which is a characteristic of supervised learning.\n\nFrom premises 1, 4, and 5, we can infer that the machine learning algorithm used for training the state-of-the-art text summarization model is not reinforcement learning and requires labelled data. Since unsupervised learning doesn't require labelled data (premise 2), and reinforcement learning is ruled out (premise 4), the only remaining option is supervised learning.\n\nTherefore, based on the given premises, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the truth of the conclusion, let's break down the given premises and analyze them step by step:\n\n1. Machine Learning algorithms can be categorized as supervised learning, unsupervised learning, and reinforcement learning.\n   - This premise tells us about the different categories of Machine Learning algorithms but doesn't provide any specific information about the state-of-the-art text summarization model.\n\n2. Unsupervised learning doesn't require labelled data.\n   - This premise provides information about unsupervised learning but doesn't relate directly to the state-of-the-art text summarization model.\n\n3. The state-of-the-art text summarization model is trained with machine learning algorithms.\n   - This premise tells us that the state-of-the-art text summarization model uses machine learning algorithms for training. However, it doesn't specify which category of machine learning algorithms is used.\n\n4. Reinforcement learning is not used to train the state-of-the-art text summarization model.\n   - This premise tells us that reinforcement learning is not used for training the state-of-the-art text summarization model, but it doesn't provide information about the other categories of machine learning algorithms.\n\n5. The Machine Learning algorithm for training text summarization model requires labelled data.\n   - This premise tells us that the machine learning algorithm used for training the text summarization model requires labelled data. This is crucial information because it helps us narrow down the category of machine learning algorithms used.\n\nNow, let's analyze the conclusion: \"Supervised learning is used to train the state-of-the-art text summarization model.\"\n\nFrom premise 3, we know that the state-of-the-art text summarization model is trained with machine learning algorithms. From premise 5, we know that the machine learning algorithm used for training the text summarization model requires labelled data.\n\nUnsupervised learning (premise 2) doesn't require labelled data, so it can be ruled out. Reinforcement learning (premise 4) is not used for training the state-of-the-art text summarization model, so it can also be ruled out.\n\nThis leaves us with supervised learning as the only possibility. Since supervised learning requires labelled data, which is consistent with premise 5, we can conclude that supervised learning is indeed used to train the state-of-the-art text summarization model.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. Machine Learning algorithms can be categorized as supervised learning, unsupervised learning, and reinforcement learning.\n   - This premise simply states the categories of Machine Learning algorithms. It doesn't provide any specific information about the text summarization model.\n\n2. Unsupervised learning doesn't require labelled data.\n   - This premise tells us that unsupervised learning is a type of Machine Learning algorithm that doesn't require labelled data. However, it doesn't provide any information about the text summarization model.\n\n3. The state-of-the-art text summarization model is trained with machine learning algorithms.\n   - This premise tells us that the state-of-the-art text summarization model is trained using Machine Learning algorithms. However, it doesn't specify which type of Machine Learning algorithm is used.\n\n4. Reinforcement learning is not used to train the state-of-the-art text summarization model.\n   - This premise tells us that reinforcement learning is not used to train the text summarization model. However, it doesn't provide any information about the other types of Machine Learning algorithms.\n\n5. The Machine Learning algorithm for training text summarization model requires labelled data.\n   - This premise tells us that the Machine Learning algorithm used to train the text summarization model requires labelled data. This is a crucial piece of information.\n\nNow, let's analyze the conclusion:\n\nSupervised learning is used to train the state-of-the-art text summarization model.\n\nSince the Machine Learning algorithm for training text summarization model requires labelled data (premise 5), we can infer that it is a type of Machine Learning algorithm that requires labelled data. Unsupervised learning doesn't require labelled data (premise 2), so it's unlikely that unsupervised learning is used to train the text summarization model.\n\nReinforcement learning is not used to train the text summarization model (premise 4), so we can rule out reinforcement learning as well.\n\nThe only remaining category is supervised learning, which is a type of Machine Learning algorithm that requires labelled data. Therefore, based on the given premises, we can conclude that:\n\nThe conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: Machine Learning algorithms can be categorized as supervised learning, unsupervised learning, and reinforcement learning.\n\nThis premise gives us the categories of Machine Learning algorithms. It does not provide any information about the specific algorithm used for training the state-of-the-art text summarization model.\n\nPremise 2: Unsupervised learning doesn't require labelled data.\n\nThis premise provides a characteristic of unsupervised learning, which is that it does not require labelled data. However, it does not provide any information about the algorithm used for training the state-of-the-art text summarization model.\n\nPremise 3: The state-of-the-art text summarization model is trained with machine learning algorithms.\n\nThis premise tells us that the state-of-the-art text summarization model is trained using machine learning algorithms, but it does not specify which type of algorithm is used.\n\nPremise 4: Reinforcement learning is not used to train the state-of-the-art text summarization model.\n\nThis premise eliminates one of the categories of machine learning algorithms (reinforcement learning) as a possibility for training the state-of-the-art text summarization model.\n\nPremise 5: The Machine Learning algorithm for training text summarization model requires labelled data.\n\nThis premise provides a characteristic of the algorithm used for training the text summarization model, which is that it requires labelled data.\n\nNow, let's analyze the possible categories of machine learning algorithms that can be used to train the state-of-the-art text summarization model:\n\n- Supervised learning requires labelled data.\n- Unsupervised learning does not require labelled data.\n- Reinforcement learning is not used to train the state-of-the-art text summarization model.\n\nGiven that the algorithm requires labelled data (Premise 5) and reinforcement learning is not used (Premise 4), the only possible category of machine learning algorithm that can be used to train the state-of-the-art text summarization model is supervised learning.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. Machine Learning algorithms can be categorized as supervised learning, unsupervised learning, and reinforcement learning.\n   - This premise gives us a broad categorization of Machine Learning algorithms, but it doesn't give us any specific information about the text summarization model.\n\n2. Unsupervised learning doesn't require labelled data.\n   - This premise provides information about unsupervised learning, but it's not directly relevant to the text summarization model.\n\n3. The state-of-the-art text summarization model is trained with machine learning algorithms.\n   - This premise tells us that the text summarization model is trained with Machine Learning algorithms, but it doesn't specify which type of algorithm.\n\n4. Reinforcement learning is not used to train the state-of-the-art text summarization model.\n   - This premise gives us information about the algorithms used to train the text summarization model, but it's negative information. It's telling us what isn't used, rather than what is used.\n\n5. The Machine Learning algorithm for training text summarization model requires labelled data.\n   - This premise provides crucial information about the requirements of the Machine Learning algorithm used to train the text summarization model.\n\nNow, let's analyze the conclusion:\nSupervised learning is used to train the state-of-the-art text summarization model.\n\nFrom premise 5, we know that the Machine Learning algorithm used to train the text summarization model requires labelled data. From premise 2, we know that unsupervised learning doesn't require labelled data, which means supervised learning (which requires labelled data) must be the correct algorithm.\n\nPremise 3 tells us that the text summarization model is trained with Machine Learning algorithms, but it doesn't specify which type of algorithm. However, with the information from premise 5, we can conclude that supervised learning is the correct algorithm, as it requires labelled data.\n\nPremise 4 tells us that reinforcement learning is not used to train the text summarization model, but this is already implied by premise 3, which specifies that the text summarization model is trained with Machine Learning algorithms (not just any algorithm).\n\nTherefore, the conclusion that Supervised learning is used to train the state-of-the-art text summarization model is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we'll analyze the given premises step by step:\n\n1. Machine Learning algorithms can be categorized as supervised learning, unsupervised learning, and reinforcement learning. \nThis premise provides a general categorization of Machine Learning algorithms but doesn't give any specific information about the text summarization model.\n\n2. Unsupervised learning doesn't require labelled data. \nThis premise provides additional information about unsupervised learning but still doesn't give any specific information about the text summarization model.\n\n3. The state-of-the-art text summarization model is trained with machine learning algorithms. \nThis premise informs us that the text summarization model is trained with machine learning algorithms, but it doesn't specify which type of machine learning algorithm is used.\n\n4. Reinforcement learning is not used to train the state-of-the-art text summarization model. \nThis premise provides specific information about the text summarization model, stating that it's not trained with reinforcement learning.\n\n5. The Machine Learning algorithm for training text summarization model requires labelled data. \nThis premise is crucial in determining the type of machine learning algorithm used for the text summarization model. Since the model requires labelled data, we can infer that it's not unsupervised learning (premise 2), as unsupervised learning doesn't require labelled data.\n\nNow, let's combine the information:\n\n- The model is not trained with reinforcement learning (premise 4).\n- The model requires labelled data (premise 5), ruling out unsupervised learning.\n- The model is trained with machine learning algorithms (premise 3).\n\nGiven these premises, we can conclude that the model is either supervised learning or reinforcement learning, but it's not reinforcement learning (premise 4). Therefore, the model must be supervised learning, as it's the only other option.\n\nSo, the conclusion \"Supervised learning is used to train the state-of-the-art text summarization model\" is **true**.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: Machine Learning algorithms can be categorized as supervised learning, unsupervised learning, and reinforcement learning.\n\nThis premise provides a general categorization of Machine Learning algorithms. However, it doesn't give us any specific information about the state-of-the-art text summarization model.\n\nPremise 2: Unsupervised learning doesn't require labelled data.\n\nThis premise tells us that unsupervised learning doesn't require labelled data, but it doesn't provide any information about supervised learning or the state-of-the-art text summarization model.\n\nPremise 3: The state-of-the-art text summarization model is trained with machine learning algorithms.\n\nThis premise tells us that the state-of-the-art text summarization model is trained with machine learning algorithms, but it doesn't specify which type of algorithm.\n\nPremise 4: Reinforcement learning is not used to train the state-of-the-art text summarization model.\n\nThis premise tells us that reinforcement learning is not used to train the state-of-the-art text summarization model, but it doesn't provide any information about the other types of machine learning algorithms.\n\nPremise 5: The Machine Learning algorithm for training text summarization model requires labelled data.\n\nThis premise tells us that the machine learning algorithm used to train the text summarization model requires labelled data. This is an important clue, as supervised learning typically requires labelled data.\n\nNow, let's analyze the conclusion:\n\nConclusion: Supervised learning is used to train the state-of-the-art text summarization model.\n\nWe can use the premises to support this conclusion:\n\n* Premise 3 tells us that the state-of-the-art text summarization model is trained with machine learning algorithms.\n* Premise 4 tells us that reinforcement learning is not used to train the state-of-the-art text summarization model, which means that supervised or unsupervised learning must be used.\n* Premise 5 tells us that the machine learning algorithm used to train the text summarization model requires labelled data, which is consistent with supervised learning.\n* Premise 2 tells us that unsupervised learning doesn't require labelled data, but since the algorithm requires labelled data (Premise 5), we can infer that unsupervised learning is not used.\n\nTherefore, based on the premises, we can conclude that supervised learning is used to train the state-of-the-art text summarization model.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning based on the given premises.\n\nPremises:\n\n1. Machine Learning algorithms can be categorized as supervised learning, unsupervised learning, and reinforcement learning.\n2. Unsupervised learning doesn't require labelled data.\n3. The state-of-the-art text summarization model is trained with machine learning algorithms.\n4. Reinforcement learning is not used to train the state-of-the-art text summarization model.\n5. The Machine Learning algorithm for training text summarization model requires labelled data.\n\nConclusion: Supervised learning is used to train the state-of-the-art text summarization model.\n\nStep 1: From premise 5, we know that the Machine Learning algorithm for training text summarization model requires labelled data.\n\nStep 2: From premise 2, we know that unsupervised learning doesn't require labelled data. This means that unsupervised learning cannot be the algorithm used to train the state-of-the-art text summarization model.\n\nStep 3: From premise 4, we know that reinforcement learning is not used to train the state-of-the-art text summarization model.\n\nStep 4: From premise 1, we know that machine learning algorithms can be categorized as supervised learning, unsupervised learning, and reinforcement learning. Since we have already eliminated unsupervised learning and reinforcement learning, the only remaining option is supervised learning.\n\nStep 5: From premise 3, we know that the state-of-the-art text summarization model is trained with machine learning algorithms. Since supervised learning is the only remaining option, it must be used to train the state-of-the-art text summarization model.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "supervised_learning(X) -> labelled_data(X)",
+          "z3_formula": "Implies(supervised_learning_X, labelled_data_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning(X) -> not labelled_data(X)",
+          "z3_formula": "Implies(unsupervised_learning_X, Not(labelled_data_X))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not reinforcement_learning(X)",
+          "z3_formula": "Not(reinforcement_learning_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "state_of_the_art_text_summarization_model(X) -> machine_learning_algorithm(X)",
+          "z3_formula": "Implies(state_of_the_art_text_summarization_model_X, machine_learning_algorithm_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "supervised_learning(X)",
+          "z3_formula": "supervised_learning_X == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "supervised_learning(X)",
+          "z3_formula": "supervised_learning_X == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning(X)",
+          "z3_formula": "unsupervised_learning_X == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning(X)",
+          "z3_formula": "reinforcement_learning_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model_trained_with_machine_learning()",
+          "z3_formula": "text_summarization_model_trained_with_machine_learning() == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_not_used_to_train_text_summarization_model()",
+          "z3_formula": "reinforcement_learning_not_used_to_train_text_summarization_model() == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model_requires_labelled_data()",
+          "z3_formula": "text_summarization_model_requires_labelled_data() == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning(X) -> no_labelled_data_required(X)",
+          "z3_formula": "Implies(unsupervised_learning_X, no_labelled_data_required_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "reinforcement_learning(X) -> no_labelled_data_required(X)",
+          "z3_formula": "Implies(reinforcement_learning_X, no_labelled_data_required_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "text_summarization_model_trained_with_machine_learning() & text_summarization_model_requires_labelled_data() -> supervised_learning_used_to_train_text_summarization_model()",
+          "z3_formula": "Implies(And(text_summarization_model_trained_with_machine_learning(), text_summarization_model_requires_labelled_data()), supervised_learning_used_to_train_text_summarization_model())",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "supervised_learning_used_to_train_text_summarization_model()",
+          "z3_formula": "supervised_learning_used_to_train_text_summarization_model() == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "supervised_learning",
+          "z3_formula": "supervised_learning == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning",
+          "z3_formula": "unsupervised_learning == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning",
+          "z3_formula": "reinforcement_learning == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning -> no_labelled_data",
+          "z3_formula": "Implies(unsupervised_learning, no_labelled_data)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "trained_with_machine_learning",
+          "z3_formula": "trained_with_machine_learning == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_reinforcement_learning",
+          "z3_formula": "not_reinforcement_learning == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "machine_learning -> labelled_data",
+          "z3_formula": "Implies(machine_learning, labelled_data)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "machine_learning",
+          "z3_formula": "machine_learning == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "supervised_learning",
+          "z3_formula": "supervised_learning == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "supervised_learning",
+          "z3_formula": "supervised_learning == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning",
+          "z3_formula": "unsupervised_learning == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning",
+          "z3_formula": "reinforcement_learning == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model",
+          "z3_formula": "text_summarization_model == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "labelled_data",
+          "z3_formula": "labelled_data == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning -> no_labelled_data",
+          "z3_formula": "Implies(unsupervised_learning, no_labelled_data)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "text_summarization_model -> machine_learning",
+          "z3_formula": "Implies(text_summarization_model, machine_learning)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "machine_learning -> labelled_data",
+          "z3_formula": "Implies(machine_learning, labelled_data)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "reinforcement_learning -> no_machine_learning",
+          "z3_formula": "Implies(reinforcement_learning, no_machine_learning)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "supervised_learning",
+          "z3_formula": "supervised_learning == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "supervised_learning(algorithm)",
+          "z3_formula": "supervised_learning_algorithm == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning(algorithm)",
+          "z3_formula": "unsupervised_learning_algorithm == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning(algorithm)",
+          "z3_formula": "reinforcement_learning_algorithm == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning(algorithm) -> no_labelled_data(algorithm)",
+          "z3_formula": "Implies(unsupervised_learning_algorithm, no_labelled_data_algorithm)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "trained_with_machine_learning(model)",
+          "z3_formula": "trained_with_machine_learning_model == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not_reinforcement_learning(model)",
+          "z3_formula": "not_reinforcement_learning_model == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "trained_with_machine_learning(model) & not_reinforcement_learning(model) -> labelled_data_required(model)",
+          "z3_formula": "Implies(And(trained_with_machine_learning_model, not_reinforcement_learning_model), labelled_data_required_model)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "labelled_data_required(model)",
+          "z3_formula": "labelled_data_required_model == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "supervised_learning(X)",
+          "z3_formula": "supervised_learning_X == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning(X)",
+          "z3_formula": "unsupervised_learning_X == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning(X)",
+          "z3_formula": "reinforcement_learning_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "requires_labelled_data(X)",
+          "z3_formula": "requires_labelled_data_X == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "machine_learning(X) -> supervised_learning(X)",
+          "z3_formula": "Implies(machine_learning_X, supervised_learning_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "machine_learning(X) -> unsupervised_learning(X)",
+          "z3_formula": "Implies(machine_learning_X, unsupervised_learning_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "machine_learning(X) -> reinforcement_learning(X)",
+          "z3_formula": "Implies(machine_learning_X, reinforcement_learning_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "machine_learning(X) -> requires_labelled_data(X)",
+          "z3_formula": "Implies(machine_learning_X, requires_labelled_data_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "trained_with_machine_learning(X)",
+          "z3_formula": "trained_with_machine_learning_X == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "supervised_learning(X)",
+          "z3_formula": "supervised_learning_X == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "machine_learning_algorithm_category",
+          "z3_formula": "machine_learning_algorithm_category == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning_no_labelled_data",
+          "z3_formula": "unsupervised_learning_no_labelled_data == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model_machine_learning",
+          "z3_formula": "text_summarization_model_machine_learning == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_not_used",
+          "z3_formula": "reinforcement_learning_not_used == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model_requires_labelled_data",
+          "z3_formula": "text_summarization_model_requires_labelled_data == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "supervised_learning_requires_labelled_data",
+          "z3_formula": "supervised_learning_requires_labelled_data == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning_no_labelled_data -> unsupervised_learning_not_used",
+          "z3_formula": "Implies(unsupervised_learning_no_labelled_data, unsupervised_learning_not_used)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "reinforcement_learning_not_used -> reinforcement_learning_not_used",
+          "z3_formula": "Implies(reinforcement_learning_not_used, reinforcement_learning_not_used)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "supervised_learning_used",
+          "z3_formula": "supervised_learning_used == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "ml_algorithm_category",
+          "z3_formula": "ml_algorithm_category == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning_no_labelled_data",
+          "z3_formula": "unsupervised_learning_no_labelled_data == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "state_of_the_art_model_trained_with_ml",
+          "z3_formula": "state_of_the_art_model_trained_with_ml == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_not_used",
+          "z3_formula": "reinforcement_learning_not_used == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "ml_algorithm_requires_labelled_data",
+          "z3_formula": "ml_algorithm_requires_labelled_data == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "supervised_learning == labelled_data",
+          "z3_formula": "supervised_learning == labelled_data",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning != labelled_data",
+          "z3_formula": "Not(unsupervised_learning_no_labelled_data)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "reinforcement_learning != ml_algorithm",
+          "z3_formula": "Not(reinforcement_learning_not_used)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "ml_algorithm_category == supervised_learning",
+          "z3_formula": "And(ml_algorithm_requires_labelled_data, Not(unsupervised_learning_no_labelled_data), Not(reinforcement_learning_not_used)) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "can_be_categorized_as_supervised_unsupervised_reinforcement(ML_algorithm)",
+          "z3_formula": "supervised_learning_ML_algorithm == True | unsupervised_learning_ML_algorithm == True | reinforcement_learning_ML_algorithm == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning_does_not_require_labelled_data",
+          "z3_formula": "unsupervised_learning_does_not_require_labelled_data == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "text_summarization_model_is_trained_with_ML_algorithm",
+          "z3_formula": "text_summarization_model_is_trained_with_ML_algorithm == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_is_not_used_to_train_text_summarization_model",
+          "z3_formula": "reinforcement_learning_is_not_used_to_train_text_summarization_model == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "ML_algorithm_for_text_summarization_requires_labelled_data",
+          "z3_formula": "ML_algorithm_for_text_summarization_requires_labelled_data == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "categorize_machine_learning(algorithm)",
+          "z3_formula": "categorize_machine_learning_algorithm == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning",
+          "z3_formula": "unsupervised_learning == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "machine_learning_text_summarization",
+          "z3_formula": "machine_learning_text_summarization == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_not_used",
+          "z3_formula": "reinforcement_learning_not_used == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "machine_learning_algorithm_requires_labelled_data",
+          "z3_formula": "machine_learning_algorithm_requires_labelled_data == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning -> no_labelled_data",
+          "z3_formula": "Implies(unsupervised_learning, no_labelled_data)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "supervised_learning_used",
+          "z3_formula": "supervised_learning_used == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "supervised_learning_algorithms",
+          "z3_formula": "supervised_learning_algorithms == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning_doesnt_require_labelled_data",
+          "z3_formula": "unsupervised_learning_doesnt_require_labelled_data == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "state_of_the_art_text_summarization_model_is_trained_with_machine_learning_algorithms",
+          "z3_formula": "state_of_the_art_text_summarization_model_is_trained_with_machine_learning_algorithms == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning_is_not_used_to_train_state_of_the_art_text_summarization_model",
+          "z3_formula": "reinforcement_learning_is_not_used_to_train_state_of_the_art_text_summarization_model == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "machine_learning_algorithm_for_training_text_summarization_model_requires_labelled_data",
+          "z3_formula": "machine_learning_algorithm_for_training_text_summarization_model_requires_labelled_data == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "machine_learning_algorithms == supervised_learning_algorithms | unsupervised_learning_algorithms | reinforcement_learning_algorithms",
+          "z3_formula": "Or(supervised_learning_algorithms, unsupervised_learning_algorithms, reinforcement_learning_algorithms)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "unsupervised_learning_algorithms -> unsupervised_learning_doesnt_require_labelled_data",
+          "z3_formula": "Implies(unsupervised_learning_algorithms, unsupervised_learning_doesnt_require_labelled_data)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "supervised_learning_algorithms -> machine_learning_algorithm_for_training_text_summarization_model_requires_labelled_data",
+          "z3_formula": "Implies(supervised_learning_algorithms, machine_learning_algorithm_for_training_text_summarization_model_requires_labelled_data)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "supervised_learning_is_used_to_train_state_of_the_art_text_summarization_model",
+          "z3_formula": "supervised_learning_is_used_to_train_state_of_the_art_text_summarization_model == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "supervised_learning(X) | unsupervised_learning(X) | reinforcement_learning(X)",
+          "z3_formula": "supervised_learning_X | unsupervised_learning_X | reinforcement_learning_X",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "unsupervised_learning(X) -> ~labelled_data(X)",
+          "z3_formula": "Implies(unsupervised_learning_X, Not(labelled_data_X))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "reinforcement_learning(X) -> ~labelled_data(X)",
+          "z3_formula": "Implies(reinforcement_learning_X, Not(labelled_data_X))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "labelled_data(X)",
+          "z3_formula": "labelled_data_X == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "~unsupervised_learning(X) & ~reinforcement_learning(X)",
+          "z3_formula": "Not(unsupervised_learning_X) & Not(reinforcement_learning_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "supervised_learning(X) | unsupervised_learning(X) | reinforcement_learning(X)",
+          "z3_formula": "supervised_learning_X | unsupervised_learning_X | reinforcement_learning_X",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "supervised_learning(X)",
+          "z3_formula": "supervised_learning_X == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 98,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 70
+    },
+    "maxsat_stats": {
+      "satisfied": 65,
+      "excluded": 5,
+      "total_weight": 83,
+      "solve_time_ms": 1.489139162003994
+    },
+    "timing": {
+      "trace_gen_s": 6.13,
+      "extraction_s": 19.346,
+      "dedup_s": 1.537,
+      "maxsat_s": 0.005,
+      "total_s": 27.019
+    }
+  }
+}

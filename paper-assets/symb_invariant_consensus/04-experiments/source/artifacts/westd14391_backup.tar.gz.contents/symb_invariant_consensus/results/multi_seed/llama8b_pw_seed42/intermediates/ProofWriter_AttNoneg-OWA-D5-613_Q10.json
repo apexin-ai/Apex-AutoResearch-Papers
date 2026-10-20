@@ -1,0 +1,1529 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-613_Q10",
+    "problem": "Anne is blue. Anne is nice. Anne is quiet. Anne is rough. Fiona is big. Fiona is blue. Fiona is quiet. Gary is blue. Gary is quiet. Gary is rough. Gary is white. Harry is white. All big people are rough. All blue, nice people are big. If someone is rough then they are green. All nice people are big. Green people are blue. Rough, white people are nice. White people are nice. Green people are nice.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not green.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\nRough($x, bool) ::: Is x rough?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nBlue(Anne, True) ::: Anne is blue.\nNice(Anne, True) ::: Anne is nice.\nQuiet(Anne, True) ::: Anne is quiet.\nRough(Anne, True) ::: Anne is rough.\nBig(Fiona, True) ::: Fiona is big.\nBlue(Fiona, True) ::: Fiona is blue.\nQuiet(Fiona, True) ::: Fiona is quiet.\nBlue(Gary, True) ::: Gary is blue.\nQuiet(Gary, True) ::: Gary is quiet.\nRough(Gary, True) ::: Gary is rough.\nWhite(Gary, True) ::: Gary is white.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nBig($x, True) >>> Rough($x, True) ::: All big people are rough.\nBlue($x, True) && Nice($x, True) >>> Big($x, True) ::: All blue, nice people are big.\nRough($x, True) >>> Green($x, True) ::: If someone is rough then they are green.\nNice($x, True) >>> Big($x, True) ::: All nice people are big.\nGreen($x, True) >>> Blue($x, True) ::: Green people are blue.\nRough($x, True) && White($x, True) >>> Nice($x, True) ::: Rough, white people are nice.\nWhite($x, True) >>> Nice($x, True) ::: White people are nice.\nGreen($x, True) >>> Nice($x, True) ::: Green people are nice.\n\nQuery:\nGreen(Harry, False) ::: Harry is not green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 81.0,
+      "True": 151.0,
+      "Unknown": 195.5
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "True": 2,
+      "False": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Harry is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - All big people are rough.\n   - All blue, nice people are big.\n   - If someone is rough then they are green.\n   - All nice people are big.\n   - Green people are blue.\n   - Rough, white people are nice.\n   - White people are nice.\n   - Green people are nice.\n\n2. Analyzing Harry's characteristics:\n   - Harry is white. (Given statement)\n   - Harry is white, and white people are nice. (Rough, white people are nice and White people are nice)\n   - Since Harry is nice, and all nice people are big, Harry is big.\n\n3. Analyzing Harry's color:\n   - We know that Harry is white. \n   - We also know that if someone is rough then they are green, but Harry is not rough (Harry is big, not rough)\n   - We know that Green people are blue, but this doesn't directly help us determine Harry's color.\n   - We know that Green people are blue, but since Harry is not green, we can't conclude Harry's color using this information.\n   - We don't have any information that directly relates Harry's color to being green or not green.\n\n4. Conclusion:\n   - We can conclude that Harry is big and nice, but we cannot conclude whether he is green or not green.\n   - Therefore, the statement \"Harry is not green\" is unknown because we don't have enough information to determine Harry's color.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not green\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n\n1. All big people are rough.\n2. All blue, nice people are big.\n3. If someone is rough then they are green.\n4. All nice people are big.\n5. Green people are blue.\n6. Rough, white people are nice.\n7. White people are nice.\n8. Green people are nice.\n9. Anne is blue. Anne is nice. Anne is quiet. Anne is rough.\n10. Fiona is big. Fiona is blue. Fiona is quiet.\n11. Gary is blue. Gary is quiet. Gary is rough. Gary is white.\n12. Harry is white.\n\nFrom the given information, we can deduce the following:\n\n- Since Harry is white (Statement 12) and white people are nice (Statement 7), Harry is nice.\n- Since Harry is nice (deduced from Statement 12 and 7), Harry is big (Statement 4).\n- Since Harry is big (deduced from Statement 7), Harry is rough (Statement 1).\n\nNow, considering the statement \"Harry is not green\" and the information we have deduced:\n\n- If Harry is rough (deduced from Statement 7 and 12), then he is green (Statement 3).\n- However, we have also deduced that Harry is nice (Statement 7 and 12), and green people are nice (Statement 8). \n- But then this would imply that green people can be either blue (Statement 5) or white (Statement 11). However, we know Harry is white (Statement 12). Thus, if Harry is green then this would be inconsistent because it would imply that green people can be white.\n\nHowever, from Statement 5 we know green people are blue. Thus, if Harry is green then this would mean he is blue. But, we also know from Statement 9 that Anne is blue and Anne is rough. This implies that blue people can be rough. But then this would imply that all blue people are rough (because we know from Statement 3 that all rough people are green, thus all blue people would be green and hence blue). However, this would then contradict Statement 2 which says that all blue, nice people are big, because we know from Statement 1 that all big people are rough and thus all blue people would be rough.\n\nHowever, the original statement 3 says if someone is rough, then they are green. We also know that all nice people are big (Statement 4) and all big people are rough (Statement 1), thus all nice people are rough. Thus, the statement 3 is actually a tautology and does not tell us anything new. \n\nSince the statement \"Harry is not green\" is false if Harry is green, we now need to consider whether it is possible for Harry to be green. If Harry is green then he is blue (Statement 5) and this would imply that all blue people are rough (because we know from Statement 9 that Anne is blue and Anne is rough). However, this would then contradict Statement 2 which says that all blue, nice people are big, because we know from Statement 1 that all big people are rough and thus all blue people would be rough.\n\nThus, we have a contradiction. We have shown that if Harry is green, then this would imply that all blue people are rough, which contradicts Statement 2. \n\nHowever, we can also show that Harry cannot be blue. If Harry is blue, then he is big (Statement 2) and thus rough (Statement 1). But then this would imply that Harry is green (Statement 3). \n\nHowever, we know from Statement 11 that Gary is blue and Gary is rough. Thus, this implies that blue people can be rough. But then this would imply that all blue people are rough (because we know from Statement 3 that all rough people are green, thus all blue people would be green and hence blue). However, this would then contradict Statement 2 which says that all blue, nice people are big, because we know from Statement 1 that all big people are rough and thus all blue people would be rough.\n\nHowever, the original statement 3 says if someone is rough, then they are green. We also know that all nice people are big (Statement 4) and all big people are rough (Statement 1), thus all nice people are rough. Thus, the statement 3 is actually a tautology and does not tell us anything new. \n\nSince the statement \"Harry is not green\" is false if Harry is green, we now need to consider whether it is possible for Harry to be green. If Harry is green then he is blue (Statement 5) and this would imply that all blue people are rough (because we know from Statement 9 that Anne is blue and Anne is rough). However, this would then contradict Statement 2 which says that all blue, nice people are big, because we know from Statement 1 that all big people are rough and thus all blue people would be rough.\n\nHowever, we can also show that Harry cannot be blue. If Harry is blue, then he is big (Statement 2) and thus rough (Statement 1). But then this would imply that Harry is green (Statement 3). \n\nWe can also show that Harry cannot be green. If Harry is green then he is blue (Statement 5). However, we have shown that if Harry is blue then he is green. Thus, this would be a contradiction.\n\nThe statement \"Harry is not green\" is equivalent to saying \"Harry is green is false.\" We have shown that this is true.\n\nThus, the final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the rules of logic to determine the relationship between the properties of the individuals.\n\nGiven statements:\n\n1. Anne is blue.\n2. Anne is nice.\n3. Anne is quiet.\n4. Anne is rough.\n5. Fiona is big.\n6. Fiona is blue.\n7. Fiona is quiet.\n8. Gary is blue.\n9. Gary is quiet.\n10. Gary is rough.\n11. Gary is white.\n12. Harry is white.\n13. All big people are rough.\n14. All blue, nice people are big.\n15. If someone is rough then they are green.\n16. All nice people are big.\n17. Green people are blue.\n18. Rough, white people are nice.\n19. White people are nice.\n20. Green people are nice.\n\nNow, let's analyze the given statement to be evaluated: \"Harry is not green.\"\n\nFirst, we need to determine if Harry is green. To do this, we need to look at the given statements.\n\nFrom statement 15, we know that \"If someone is rough then they are green.\" However, we also have a contradiction in this statement as we also know from statement 4 that Anne is rough and statement 1 that Anne is blue, not green. \n\nNow let's examine the statements we know about Harry: \n\n12. Harry is white.\n\nWe can use statement 18: \"Rough, white people are nice.\" But we can also use statement 19: \"White people are nice.\" These two statements together do not tell us whether Harry is rough or not, but they do tell us that Harry is nice.\n\nNow let's look at the statement: \"All nice people are big.\" From statement 16, we know this is true.\n\nFrom statement 12, we know Harry is white, and from statement 19, we know white people are nice. Since Harry is nice (because he is white), Harry must be big.\n\nNow let's go back to statement 13: \"All big people are rough.\" We know Harry is big, but we don't know if he is rough or not.\n\nFrom statement 20, we know that green people are nice, and we also know from statement 19 that white people are nice. However, we also have statement 15, which tells us that if someone is rough then they are green. This statement is also contradictory to the information we have from statement 4 (Anne is rough and blue, not green) and statement 20 (green people are nice).\n\nHowever, we can use statement 15 with the information we have from statement 12 (Harry is white) and statement 19 (white people are nice). Since we know Harry is nice and from statement 15 that if someone is rough then they are green, it's also contradictory to the fact that green people are nice. But we can also use statement 18: \"Rough, white people are nice.\" This also contradicts the fact that green people are nice.\n\nNow let's go back to statement 15: \"If someone is rough then they are green.\" We have already seen that this statement is contradictory to some of the other statements. However, we can use this statement with the information we have from statement 4 (Anne is rough and blue, not green) to understand that this statement must be false. If someone is rough, then they are not necessarily green.\n\nSince we have established that statement 15 is false, we can use this information to determine whether Harry is green or not.\n\nWe know that Harry is big (because he is nice), and from statement 13, we know that all big people are rough. However, from statement 15, we know that if someone is rough then they are green. But since statement 15 is false, we cannot conclude that Harry is green just because he is big and rough.\n\nIn conclusion, we cannot determine whether Harry is green or not from the given information. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All big people are rough.\n   We don't know if Harry is big, so we cannot conclude anything about him being rough yet.\n\n2. All blue, nice people are big.\n   We don't know if Harry is blue or nice, so we cannot conclude anything about him being big yet.\n\n3. All nice people are big.\n   This statement is not necessarily true if we consider statement 2. However, it does not provide any information about Harry.\n\n4. If someone is rough then they are green.\n   We know that rough people are green, but we cannot conclude that Harry is green yet because we don't know if he is rough.\n\n5. Gary is blue. Gary is quiet. Gary is rough. Gary is white.\n   We know that Gary is rough and white. From statement 4, we can conclude that Gary is green.\n\n6. Green people are blue.\n   This statement seems to be in conflict with statement 4, which says that rough people are green. We will need to consider all the information to resolve this.\n\n7. Harry is white. Harry is white. \n   We know that Harry is white, but we already knew that from statement 5 and the repetition of the fact does not add any new information.\n\n8. Rough, white people are nice.\n   We know that Gary is rough and white, but we already concluded that he is green.\n\n9. White people are nice.\n   This statement is not necessarily true if we consider statement 8.\n\n10. Green people are nice.\n    We concluded that Gary is green, but we already knew that he is nice because he is rough and white, and from statement 8.\n\n11. All nice people are big.\n    We know that Gary is nice, but we concluded that he is green, which is in conflict with statement 4. We will need to consider all the information to resolve this.\n\n12. Gary is green. Gary is green.\n    We already concluded that Gary is green, and the repetition of the fact does not add any new information.\n\n13. Anne is blue. Anne is nice. Anne is quiet. Anne is rough. \n    We know that Anne is blue, nice, quiet, and rough, but we don't know anything about her color, size, or other characteristics.\n\n14. Fiona is big. Fiona is blue. Fiona is quiet. \n    We know that Fiona is big, blue, and quiet, but we don't know anything about her other characteristics.\n\n15. Gary is blue. Gary is quiet. Gary is rough. Gary is white. \n    We already concluded that Gary is blue, quiet, and rough, but we know that he is white.\n\nFrom the given information, we know that:\n- Gary is green.\n- Green people are blue.\n- All blue people are big.\n- All big people are rough.\n\nHowever, we cannot conclude that Harry is green. The only information we have about Harry is that he is white, and there is no direct information about his color or size. \n\nTherefore, the statement \"Harry is not green\" is unknown.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All nice people are big. (From the given information)\n2. All blue, nice people are big. (From the given information)\n3. Since all blue, nice people are big, it means that if someone is blue and nice, then they are big.\n4. Since all big people are rough, it means that if someone is big, then they are rough.\n5. Harry is white. (From the given information)\n6. White people are nice. (From the given information)\n7. Rough, white people are nice. (From the given information)\n   Since white people are nice, and rough, white people are nice, it means that white people are nice regardless of being rough.\n8. Green people are nice. (From the given information)\n9. Since white people are nice, and green people are nice, it means that Harry can be either green or white.\n10. Gary is blue. Gary is quiet. Gary is rough. Gary is white. (From the given information)\n    Gary is blue and rough, but we don't know if he is green or not.\n11. All blue, nice people are big. (From the given information)\n    Since Gary is blue and nice, then he is big.\n12. All big people are rough. (From the given information)\n    Since Gary is big, then he is rough.\n13. Since Gary is rough, then he is green. (From the given information)\n    We now know that Gary is green.\n14. Since Harry can be either green or white, and Gary is green, we cannot determine whether Harry is green or not.\n15. We cannot determine whether Harry is green or not, so we cannot determine whether he is not green or not.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not green\" is true, false, or unknown, we need to analyze the given information.\n\n1. All big people are rough. \n2. All blue, nice people are big.\n3. If someone is rough then they are green.\n4. All nice people are big.\n5. Green people are blue.\n6. Rough, white people are nice.\n7. White people are nice.\n8. Green people are nice.\n\nFrom statement 7, we can infer that all white people are nice. Since Harry is white (from the information given about Gary and Harry), we can conclude that Harry is nice.\n\nFrom statement 4, we can infer that all nice people are big. Since Harry is nice, we can conclude that Harry is big.\n\nFrom statement 1, we can infer that all big people are rough. Since Harry is big, we can conclude that Harry is rough.\n\nFrom statement 3, we can infer that if someone is rough, then they are green. Since Harry is rough, we can conclude that Harry is green.\n\nTherefore, based on the given information, we can conclude that the statement \"Harry is not green\" is false, because Harry is indeed green.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements to infer the truth value of the statement \"Harry is not green.\" \n\nGiven statements:\n1. Anne is blue.\n2. Anne is nice.\n3. Anne is quiet.\n4. Anne is rough.\n5. Fiona is big.\n6. Fiona is blue.\n7. Fiona is quiet.\n8. Gary is blue.\n9. Gary is quiet.\n10. Gary is rough.\n11. Gary is white.\n12. Harry is white.\n13. All big people are rough.\n14. All blue, nice people are big.\n15. If someone is rough then they are green.\n16. All nice people are big.\n17. Green people are blue.\n18. Rough, white people are nice.\n19. White people are nice.\n20. Green people are nice.\n\nNow, let's simplify the given statements using the rules of inference:\n\nFrom statement 14: All blue, nice people are big.\nFrom statement 2: Anne is nice.\nFrom statement 1: Anne is blue.\nUsing modus ponens, we can conclude: Anne is big.\n\nFrom statement 10: Gary is rough.\nFrom statement 15: If someone is rough then they are green.\nUsing modus ponens, we can conclude: Gary is green.\n\nFrom statement 17: Green people are blue.\nFrom statement 10: Gary is green.\nUsing modus ponens, we can conclude: Gary is blue.\n\nNow, let's analyze the statement \"Harry is not green.\"\n\nFrom statement 12: Harry is white.\nFrom statement 19: White people are nice.\nFrom statement 20: Green people are nice.\nFrom statement 18: Rough, white people are nice.\nFrom statement 11: Gary is white.\nFrom statement 10: Gary is rough.\nUsing modus ponens, we can conclude: Gary is nice.\n\nFrom statement 16: All nice people are big.\nFrom statement 19: White people are nice.\nUsing modus ponens, we can conclude: White people are big.\n\nHowever, we have a contradiction here because we previously concluded that Gary is big and also Gary is green.\n\nWe cannot conclude whether Harry is green or not because we do not have any information about Harry's color being green or not.\n\nTherefore, we can conclude that the statement \"Harry is not green\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and use a method called \"first-order logic\" or \"predicate logic.\" We will assign letters to each statement for easier reference.\n\nLet's assign the following letters to each statement:\nA1: Anne is blue.\nA2: Anne is nice.\nA3: Anne is quiet.\nA4: Anne is rough.\nF1: Fiona is big.\nF2: Fiona is blue.\nF3: Fiona is quiet.\nG1: Gary is blue.\nG2: Gary is quiet.\nG3: Gary is rough.\nG4: Gary is white.\nH1: Harry is white.\nH2: Harry is big.\nH3: Harry is rough.\nH4: Harry is green.\nB1: All big people are rough.\nB2: All blue, nice people are big.\nB3: If someone is rough then they are green.\nB4: All nice people are big.\nB5: Green people are blue.\nB6: Rough, white people are nice.\nB7: White people are nice.\nB8: Green people are nice.\n\nNow, let's analyze the given statements and apply the rules of inference to derive conclusions.\n\nFrom B1, we know that all big people are rough. \nFrom H2 (Harry is big) and B1, we can conclude that Harry is rough (H3).\nFrom B6 and H1 (Harry is white), we can conclude that Harry is nice (H5).\n\nNow, let's analyze the statement H4 (Harry is green).\nFrom B8, we know that green people are nice.\nFrom H5 (Harry is nice), we can conclude that Harry is not green (B8 and H5 are contradictory, so we can conclude the opposite).\n\nTherefore, the statement \"Harry is not green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not green\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. All big people are rough. \n2. All blue, nice people are big. \n3. All nice people are big. \n4. Fiona is big. Fiona is rough. \n5. Fiona is blue. Fiona is quiet. \n6. Gary is blue. Gary is quiet. Gary is rough. Gary is white. \n7. Harry is white. \n8. If someone is rough then they are green. \n9. All nice people are big. \n10. Green people are blue. \n11. Rough, white people are nice. \n12. White people are nice. \n13. Green people are nice. \n14. Anne is blue. Anne is nice. Anne is quiet. Anne is rough. \n15. Fiona is big. Fiona is blue. Fiona is quiet. \n16. Gary is blue. Gary is quiet. Gary is rough. Gary is white. \n17. Gary is blue. Gary is quiet. Gary is rough. Gary is white.\n\nFrom the given statements, we can derive the following conclusions:\n\n- Since all big people are rough (1) and all blue, nice people are big (2), then all blue, nice people are rough (by transitive property).\n- Since Anne is blue (14), nice (14), and rough (14), then Anne is big (by transitive property of 2 and 14).\n- Since all big people are rough (1), then Anne is rough (by transitive property of 1 and the previous statement).\n- Since all nice people are big (3), then Anne is big (by transitive property of 3 and the previous statement).\n- Since Fiona is big (4) and Fiona is rough (4), then Fiona is green (by statement 8).\n- Since Gary is blue (15) and Gary is white (15), then Gary is not green (because if Gary were green, then Gary would be blue, which is the case).\n- Since Gary is white (15) and Gary is rough (15), then Gary is nice (by statement 11).\n- Since Gary is white (15) and Gary is nice (by the previous statement), then Gary is big (by statement 3).\n- Since Gary is big (by the previous statement) and Gary is rough (15), then Gary is green (by statement 8).\n- Since Gary is green (by the previous statement), then Gary is blue (by statement 10).\n- Since Harry is white (7) and all white people are nice (by statement 12), then Harry is nice (by transitive property).\n- Since Harry is white (7) and Harry is nice (by the previous statement), then Harry is big (by statement 3).\n- Since Harry is big (by the previous statement) and Harry is nice (by the previous statement), then Harry is rough (by statement 1).\n- Since Harry is white (7) and Harry is rough (by the previous statement), then Harry is nice (by statement 11).\n- Since Harry is white (7) and Harry is nice (by the previous statement), then Harry is big (by statement 3).\n- Since Harry is big (by the previous statement) and Harry is nice (by the previous statement), then Harry is rough (by statement 1).\n- Since all rough people are green (by statement 8), then Harry is green (by transitive property).\n- Since Harry is green (by the previous statement), then Harry is blue (by statement 10).\n\nBased on the above conclusions, we can see that Harry is green and blue, but we cannot conclude whether Harry is green or not. We can only conclude that Harry is blue and green, so the statement \"Harry is not green\" is false because Harry is green, but we cannot conclude that Harry is not green because Harry is blue, and we don't know if blue people are green or not.\n\nTherefore, the answer is false but also it could be considered unknown.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not green\" is true, false, or unknown, we need to analyze the given information and apply the rules of inference.\n\nFrom the given information:\n\n1. Harry is white. \n2. All rough people are green.\n3. All nice people are big. \n4. All big people are rough.\n5. Green people are blue.\n6. Rough, white people are nice.\n7. White people are nice.\n\nWe can infer the following:\n\n- Since Harry is white (1), and white people are nice (7), Harry is nice.\n- Since Harry is nice (from 7), and all nice people are big (3), Harry is big.\n- Since Harry is big (from 3), and all big people are rough (4), Harry is rough.\n- Since Harry is rough (from 4), and all rough people are green (2), Harry is green.\n\nTherefore, based on the given information, Harry is green. This means the statement \"Harry is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All nice people are big. \n   Since Harry is white and white people are nice (from the given information), we can conclude that Harry is big.\n\n2. Harry is white. \n   From the given information, we know that white people are nice. \n\n3. All big people are rough. \n   Since Harry is big (from step 1), we can conclude that Harry is rough.\n\n4. Green people are blue. \n   We know that if someone is rough then they are green (from the given information), but we don't know if Harry is green yet.\n\n5. If someone is rough then they are green. \n   Since Harry is rough (from step 3), we can conclude that Harry is green.\n\n6. Green people are blue. \n   Since Harry is green (from step 5), we can conclude that Harry is blue.\n\n7. Now, let's examine the statement: Harry is not green.\n   From step 5, we concluded that Harry is green. Therefore, the statement \"Harry is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is not green' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is blue.\n   - Anne is nice.\n   - Anne is quiet.\n   - Anne is rough.\n   - Fiona is big.\n   - Fiona is blue.\n   - Fiona is quiet.\n   - Gary is blue.\n   - Gary is quiet.\n   - Gary is rough.\n   - Gary is white.\n   - Harry is white.\n   - All big people are rough.\n   - All blue, nice people are big.\n   - If someone is rough then they are green.\n   - All nice people are big.\n   - Green people are blue.\n   - Rough, white people are nice.\n   - White people are nice.\n   - Green people are nice.\n\n2. From the given information, we know that:\n   - If someone is rough then they are green. (From this statement, we can infer that being rough is equivalent to being green.)\n   - Harry is white. (Given)\n   - White people are nice. (Given)\n   - All nice people are big. (Given)\n   - Harry is white and nice, so Harry is big. (From the transitive property)\n   - Gary is rough and white. (Given)\n   - Rough, white people are nice. (Given)\n   - Therefore, Gary is nice. (From the transitive property)\n   - Gary is nice, so Gary is big. (From the transitive property)\n   - Since Gary is big and rough, Gary is green. (From the given information that all big people are rough and all rough people are green)\n   - Green people are blue. (Given)\n   - Therefore, Gary is blue. (From the transitive property)\n   - However, we have two people who are blue: Fiona and Gary. \n   - Fiona is blue and nice. (Given)\n   - Blue, nice people are big. (Given)\n   - Therefore, Fiona is big. (From the transitive property)\n   - Since Fiona is big, Fiona is rough. (From the given information that all big people are rough)\n   - This contradicts the given information that Gary is blue and Gary is green. \n   - Therefore, our initial assumption that Gary is green must be incorrect. \n   - Since Gary is not green, it doesn't mean that Gary is not rough. \n   - But, we already know that all rough people are green. \n   - Therefore, Gary cannot be rough. \n   - This contradicts the given information that Gary is rough. \n   - So, we have a contradiction in our analysis. \n   - This means that our initial assumptions were incorrect. \n   - We cannot determine whether Harry is green or not. \n   - Therefore, the statement 'Harry is not green' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_harry, rough_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_harry, nice_harry), big_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_harry, big_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_harry, blue_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_harry, white_harry), nice_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_harry, nice_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_harry, nice_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == Unknown",
+          "source_step": 12
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_X, rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_X, nice_X), big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_X, green_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_X, nice_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_X, blue_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_X, white_X), nice_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_X, nice_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_X, nice_X)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not green(harry)",
+          "z3_formula": "Not(green_harry)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_gary, rough_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_gary, nice_gary), big_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_gary, big_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_gary, green_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_gary, blue_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_gary, big_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not green(harry)",
+          "z3_formula": "Not(green_harry) == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_harry, big_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all blue(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_harry, nice_harry), big_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "all blue(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_harry, nice_harry), big_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_harry, rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all white(X) -> nice(X)",
+          "z3_formula": "Implies(white_harry, nice_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "all rough(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_harry, white_harry), nice_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "all white(X) -> nice(X)",
+          "z3_formula": "Implies(white_harry, nice_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "all green(X) -> nice(X)",
+          "z3_formula": "Implies(green_harry, nice_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry) & white(harry)",
+          "z3_formula": "And(nice_harry, white_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry) | green(harry)",
+          "z3_formula": "Or(nice_harry, green_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "all blue(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_gary, nice_gary), big_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_gary, rough_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary) -> green(gary)",
+          "z3_formula": "Implies(rough_gary, green_gary)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry) | white(harry)",
+          "z3_formula": "Or(green_harry, white_harry)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == Unknown",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not green(harry)",
+          "z3_formula": "Not(green_harry)",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_harry, rough_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_harry, nice_harry), big_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_harry, big_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_harry, blue_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_harry, white_harry), nice_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_harry, nice_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_harry, nice_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_fiona, rough_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_anne, nice_anne), big_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_gary, green_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_anne, nice_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_anne, big_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_gary, blue_gary)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_gary, white_gary), nice_gary)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_gary, nice_gary)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_gary, nice_gary)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not green(harry)",
+          "z3_formula": "Not(green_harry)",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_harry, rough_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_fiona, rough_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_anne, nice_anne), big_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_harry, big_harry)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_harry, blue_harry)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_gary, white_gary), nice_gary)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_harry, nice_harry)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_harry, nice_harry)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "not green(harry)",
+          "z3_formula": "Not(green_harry) == True",
+          "source_step": 28
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_gary, rough_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_gary, nice_gary), big_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_gary, big_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_gary, nice_gary), rough_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_harry, big_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_harry, blue_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_gary, white_gary), nice_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_gary, nice_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_harry, nice_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not green(gary)",
+          "z3_formula": "Not(green_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_harry, rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_harry, big_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_harry, nice_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_harry, nice_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "rough_X -> green_X",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "green_X -> blue_X",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "big_X -> rough_X",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "nice_X -> big_X",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "white_X -> nice_X",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) & nice(X) -> nice(X)",
+          "z3_formula": "And(white_X, nice_X) -> nice_X",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(nice, big)",
+          "z3_formula": "Implies(nice_harry, big_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_harry, nice_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all(big, rough)",
+          "z3_formula": "Implies(big_harry, rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all(rough, green)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "all(green, blue)",
+          "z3_formula": "Implies(green_harry, blue_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(green(harry))",
+          "z3_formula": "Not(green_harry) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_fiona, rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_anne, nice_anne), big_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_gary, green_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_fiona, nice_anne), big_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_gary, blue_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(rough_gary, white_gary), nice_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_harry, nice_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_gary, nice_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is big",
+          "z3_formula": "big_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is rough",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "gary is not green",
+          "z3_formula": "Not(green_gary) == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "gary is not rough",
+          "z3_formula": "Not(rough_gary) == True",
+          "source_step": 21
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 233,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 62
+    },
+    "maxsat_stats": {
+      "satisfied": 59,
+      "excluded": 3,
+      "total_weight": 218,
+      "solve_time_ms": 1.810150220990181
+    },
+    "timing": {
+      "trace_gen_s": 14.258,
+      "extraction_s": 44.316,
+      "dedup_s": 3.032,
+      "maxsat_s": 0.005,
+      "total_s": 61.611
+    }
+  }
+}

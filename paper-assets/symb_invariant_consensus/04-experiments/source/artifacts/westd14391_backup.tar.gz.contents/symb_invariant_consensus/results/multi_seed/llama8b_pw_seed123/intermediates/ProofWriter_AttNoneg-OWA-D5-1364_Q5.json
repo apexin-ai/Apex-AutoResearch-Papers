@@ -1,0 +1,1012 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1364_Q5",
+    "problem": "Charlie is big. Charlie is cold. Charlie is kind. Charlie is quiet. Charlie is red. Charlie is rough. Charlie is smart. Erin is kind. Fiona is quiet. Fiona is rough. Harry is kind. Harry is rough. Kind things are big. All kind, smart things are rough. If something is red and quiet then it is big. All red things are cold. All cold, quiet things are smart. If something is big and smart then it is cold. All quiet things are cold. Kind, big things are red. All cold, smart things are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is smart.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nBig(Charlie, True) ::: Charlie is big.\nCold(Charlie, True) ::: Charlie is cold.\nKind(Charlie, True) ::: Charlie is kind.\nQuiet(Charlie, True) ::: Charlie is quiet.\nRed(Charlie, True) ::: Charlie is red.\nRough(Charlie, True) ::: Charlie is rough.\nSmart(Charlie, True) ::: Charlie is smart.\nKind(Erin, True) ::: Erin is kind.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRough(Fiona, True) ::: Fiona is rough.\nKind(Harry, True) ::: Harry is kind.\nRough(Harry, True) ::: Harry is rough.\n\nRules:\nKind($x, True) >>> Big($x, True) ::: Kind things are big.\nKind($x, True) && Smart($x, True) >>> Rough($x, True) ::: All kind, smart things are rough.\nRed($x, True) && Quiet($x, True) >>> Big($x, True) ::: If something is red and quiet then it is big.\nRed($x, True) >>> Cold($x, True) ::: All red things are cold.\nCold($x, True) && Quiet($x, True) >>> Smart($x, True) ::: All cold, quiet things are smart.\nBig($x, True) && Smart($x, True) >>> Cold($x, True) ::: If something is big and smart then it is cold.\nQuiet($x, True) >>> Cold($x, True) ::: All quiet things are cold.\nKind($x, True) && Big($x, True) >>> Red($x, True) ::: Kind, big things are red.\nCold($x, True) && Smart($x, True) >>> Kind($x, True) ::: All cold, smart things are kind.\n\nQuery:\nSmart(Fiona, True) ::: Fiona is smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 22.5,
+      "True": 136.5
+    },
+    "answer_counts": {
+      "True": 11,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. Given information:\n   - Charlie is big. \n   - Charlie is cold. \n   - Charlie is kind. \n   - Charlie is quiet. \n   - Charlie is red. \n   - Charlie is rough. \n   - Charlie is smart. \n   - Erin is kind. \n   - Fiona is quiet. \n   - Fiona is rough. \n   - Harry is kind. \n   - Harry is rough. \n   - Kind things are big. \n   - All kind, smart things are rough. \n   - If something is red and quiet then it is big. \n   - All red things are cold. \n   - All cold, quiet things are smart. \n   - If something is big and smart then it is cold. \n   - All quiet things are cold. \n   - Kind, big things are red. \n   - All cold, smart things are kind.\n\n2. We are given that Fiona is quiet and rough. However, there's no information linking rough to smart or kind directly. We can't directly determine Fiona's smartness based on this information alone.\n\n3. However, we can use the rule \"All quiet things are cold\" to conclude that Fiona is cold since Fiona is quiet.\n\n4. Since Fiona is cold and quiet, we can use the rule \"All cold, quiet things are smart\" to conclude that Fiona is smart.\n\nBased on the given information and applying the rules step by step, we can determine that the statement \"Fiona is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Fiona is smart, we need to analyze the given information and apply it step by step.\n\n1. We are given that Fiona is quiet.\n2. We also know that all quiet things are cold. (Rule: All cold, quiet things are smart is not given but rather \"All cold, quiet things are smart\" is not given, however, \"All cold, quiet things are smart\" is not needed to be given as \"All quiet things are cold\" is given which indirectly helps us solve the problem as we know all quiet things are cold from this statement, then from \"All cold, smart things are kind\" and \"Kind, big things are red\" we can derive that \"All quiet things are not smart\" and \"All quiet things are not big\" as \"All quiet things are cold\" and \"All red things are cold\" and \"Kind, big things are red\" are given.)\n3. From the information given, we cannot directly conclude whether Fiona is smart or not, but we can conclude that she is not smart because all quiet things are cold and all cold things are not necessarily smart. However, we know that \"All quiet things are cold\" from the given statement and we can derive that all quiet things are not smart by using the given statements.\n\nSo, the final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is smart' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given statements are:\n   - Charlie is big.\n   - Charlie is cold.\n   - Charlie is kind.\n   - Charlie is quiet.\n   - Charlie is red.\n   - Charlie is rough.\n   - Charlie is smart.\n   - Erin is kind.\n   - Fiona is quiet.\n   - Fiona is rough.\n   - Harry is kind.\n   - Harry is rough.\n   - Kind things are big.\n   - All kind, smart things are rough.\n   - If something is red and quiet then it is big.\n   - All red things are cold.\n   - All cold, quiet things are smart.\n   - If something is big and smart then it is cold.\n   - All quiet things are cold.\n   - Kind, big things are red.\n   - All cold, smart things are kind.\n\n2. Now, we need to find the information related to Fiona being smart.\n   We know that Fiona is quiet (given statement) and rough (given statement). \n   We need to find a relationship between these characteristics and 'smart'.\n\n3. Analyzing the given information, we have:\n   - All cold, quiet things are smart.\n   - All quiet things are cold.\n   - If something is big and smart then it is cold.\n   - All quiet things are cold.\n\n   From the information above, we can infer that 'All quiet things are cold' and 'All cold, quiet things are smart'. So, if Fiona is quiet, then she is cold, and if she is cold, then she is smart.\n\n4. Therefore, we can conclude that the statement 'Fiona is smart' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\nFrom the given information, we know:\n1. Fiona is quiet. \n2. Fiona is rough.\n\nWe also know:\n1. All quiet things are cold. (From statement 10)\n2. Fiona is quiet, so Fiona is cold.\n\nFrom the given information, we know:\n1. All cold things are smart. (From statement 11)\n2. Fiona is cold, so Fiona is smart.\n\nTherefore, based on the given information and our step-by-step analysis, we can conclude that the statement \"Fiona is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether Fiona is smart, we need to analyze the given statements and apply logical deductions.\n\n1. Fiona is quiet. (Given)\n2. All quiet things are cold. (Given)\n   From (1) and (2), Fiona is cold.\n\n3. All cold, quiet things are smart. (Given)\n   From (1) and (3), Fiona is smart.\n\nTherefore, based on the given statements and logical deductions, we can conclude that the statement \"Fiona is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is quiet. \n   We know that all quiet things are cold (from the statement \"All cold, quiet things are smart\" is not given, however, \"All quiet things are cold\" is given).\n   Therefore, Fiona is cold.\n\n2. Fiona is quiet and cold. \n   We know that all quiet things are cold (as mentioned earlier) and that all cold things are red is not given, however, all cold, quiet things are not smart (as \"All cold, quiet things are smart\" is not given), however, \"All quiet things are cold\" is given and also \"All cold things are red\" is given.\n   Therefore, Fiona is red.\n\n3. Fiona is quiet and red. \n   We know that if something is red and quiet then it is big (from the given statement).\n   Therefore, Fiona is big.\n\n4. Fiona is rough. \n   We know that Fiona is quiet, big, and red. However, there is no information provided that states that all quiet, big, and red things are rough, but we do know that Fiona is rough.\n\n5. Fiona is kind. \n   We know that Fiona is quiet, big, and red. However, there is no information provided that states that all quiet, big, and red things are kind.\n\n6. Fiona is kind, quiet, and rough. \n   We know that Erin is kind and Fiona is kind, however, there is no information provided that states that all kind things are quiet and rough, but we do know that Fiona is kind, quiet, and rough.\n\n7. Fiona is all kind, smart things are rough. \n   We know that Fiona is quiet, big, and red, however, there is no information provided that states that all quiet, big, and red things are smart.\n\n8. Fiona is all kind, smart things are rough. \n   We know that Fiona is quiet, big, and red. However, we do know that Fiona is kind, quiet, and rough. However, we also know that all kind, smart things are rough. Since Fiona is kind and rough, it means that Fiona must be smart.\n\nTherefore, the statement \"Fiona is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given statements and use the rules of inference.\n\n1. Charlie is big. (B)\n2. Charlie is cold. (C)\n3. Charlie is kind. (K)\n4. Charlie is quiet. (Q)\n5. Charlie is red. (R)\n6. Charlie is rough. (S)\n7. Erin is kind. (EK)\n8. Fiona is quiet. (FQ)\n9. Fiona is rough. (FS)\n10. Harry is kind. (HK)\n11. Harry is rough. (HS)\n12. Kind things are big. (KB)\n13. All kind, smart things are rough. (KSR)\n14. If something is red and quiet then it is big. (QR\u2192B)\n15. All red things are cold. (RC)\n16. All cold, quiet things are smart. (CQ\u2192S)\n17. If something is big and smart then it is cold. (BS\u2192C)\n18. All quiet things are cold. (Q\u2192C)\n19. Kind, big things are red. (KB\u2192R)\n20. All cold, smart things are kind. (CS\u2192K)\n\nNow, let's determine whether the statement \"Fiona is smart\" (FS) is true, false, or unknown.\n\nFrom the given statements, we know:\n- Fiona is quiet (FQ)\n- Fiona is rough (FS)\n\nWe can use rule 14 (QR\u2192B) to infer that if Fiona is red and quiet, then it is big. However, we do not know if Fiona is red. \n\nWe can use rule 18 (Q\u2192C) to infer that if Fiona is quiet, then it is cold. Therefore, Fiona is cold (FC).\n\nHowever, we do not know if Fiona is smart (FS) from the given statements. We can use rule 16 (CQ\u2192S) to infer that if Fiona is cold and quiet, then it is smart. However, we do not know if Fiona is quiet (FQ) from this rule alone. But we do know Fiona is quiet.\n\nSince we do know Fiona is quiet (FQ) and we know from rule 16 (CQ\u2192S) that if Fiona is cold and quiet, then it is smart, and we know from rule 18 (Q\u2192C) that Fiona is cold (FC), then we can infer that Fiona is smart (FS).\n\nTherefore, the statement \"Fiona is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Fiona is smart, we need to analyze the given statements and their implications. \n\n1. Charlie is big. Charlie is cold. Charlie is kind. Charlie is quiet. Charlie is red. Charlie is rough. Charlie is smart. \n   This statement doesn't provide any direct information about Fiona, but it gives us a base for understanding the characteristics of different entities.\n\n2. Erin is kind. \n   This statement doesn't provide any direct information about Fiona.\n\n3. Fiona is quiet. Fiona is rough. \n   These statements give us direct information about Fiona, but we don't know if she's smart yet.\n\n4. Harry is kind. Harry is rough. \n   These statements don't provide any direct information about Fiona.\n\n5. Kind things are big. \n   This statement doesn't directly apply to Fiona, but it gives us a relationship between kind and big.\n\n6. All kind, smart things are rough. \n   This statement doesn't directly apply to Fiona, but it gives us a relationship between kind, smart, and rough.\n\n7. If something is red and quiet then it is big. \n   This statement doesn't directly apply to Fiona, but it gives us a relationship between red, quiet, and big.\n\n8. All red things are cold. \n   This statement doesn't directly apply to Fiona, but it gives us a relationship between red and cold.\n\n9. All cold, quiet things are smart. \n   This statement doesn't directly apply to Fiona, but it gives us a relationship between cold, quiet, and smart.\n\n10. If something is big and smart then it is cold. \n    This statement doesn't directly apply to Fiona, but it gives us a relationship between big, smart, and cold.\n\n11. All quiet things are cold. \n    This statement doesn't directly apply to Fiona, but it gives us a relationship between quiet and cold.\n\n12. Kind, big things are red. \n    This statement doesn't directly apply to Fiona, but it gives us a relationship between kind, big, and red.\n\n13. All cold, smart things are kind. \n    This statement doesn't directly apply to Fiona, but it gives us a relationship between cold, smart, and kind.\n\nNow, let's analyze Fiona's characteristics. Fiona is quiet (3) and rough (3). Since Fiona is quiet, we know she's cold (11). We also know that all red things are cold (8), but we don't know if Fiona is red or not.\n\nWe need to find a path from Fiona's characteristics to her being smart. Since Fiona is quiet, we know she's cold (11). But being cold doesn't directly imply she's smart.\n\nHowever, we can try to find a path using other characteristics. Fiona is quiet and rough (3). But being rough alone doesn't imply she's smart.\n\nNow, let's try another path. Fiona is quiet and rough (3). Since Fiona is quiet, we know she's cold (11). We also know that all cold things are quiet (11), but this is a given since we already know she's quiet.\n\nHowever, we can try to find a path using other characteristics. Fiona is quiet and cold (11). Since Fiona is cold, we know she's smart (9) if she's quiet. But we don't know if she's quiet, so we need to find another path.\n\nWe can use Fiona's rough characteristic. Since Fiona is rough, we can try to find a relationship between rough and smart.\n\nNow, let's analyze all the given statements again. Fiona is rough (3), and Harry is kind and rough (4). But being kind and rough doesn't imply Harry is smart. Harry is just kind, but Fiona is just rough. However, we do know that all kind, smart things are rough (6).\n\nWe can use this relationship to find a path from Fiona's rough characteristic to her being smart. Since Fiona is rough, we can try to find a kind characteristic. However, Fiona is not kind (Fiona is not mentioned as kind in any statement).\n\nBut we do know that Fiona is quiet (3) and rough (3). Since Fiona is quiet, we know she's cold (11). We also know that all cold, quiet things are smart (9), but we already knew that being cold implies she's smart. However, this path doesn't directly use Fiona's rough characteristic.\n\nNow, let's analyze the statement that all kind, smart things are rough (6). Since all kind, smart things are rough, we can try to find a kind characteristic in Fiona. However, Fiona is not kind (Fiona is not mentioned as kind in any statement).\n\nHowever, we do know that Fiona is quiet (3) and rough (3). Since Fiona is quiet, we know she's cold (11). We also know that all cold, smart things are kind (13), but we already knew that being cold and quiet implies she's smart.\n\nWe can try to find a path from Fiona's characteristics to her being smart. Fiona is quiet (3) and rough (3). Since Fiona is quiet, we know she's cold (11). We also know that all cold, quiet things are smart (9).\n\nTherefore, based on the given statements, we can conclude that Fiona is smart.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. We are given the following information about Fiona:\n   - Fiona is quiet. \n   - Fiona is rough.\n\n2. We also know:\n   - All quiet things are cold. \n   - All cold, quiet things are smart.\n\nFrom the above information, we can conclude that since Fiona is quiet and a quiet thing is cold, then Fiona is cold. \n\nNow, we can use this information to conclude that Fiona is smart. This is because, as per the given information:\n   - All cold, quiet things are smart. \n   - Fiona is cold and quiet.\n\nTherefore, since Fiona is cold and quiet, it follows that Fiona is smart.\n\nSo, the statement \"Fiona is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Fiona is smart, we need to analyze the given statements and apply the rules. \n\nFrom the given statements:\n1. Fiona is quiet. \n2. Fiona is rough.\n\nNow, let's analyze the statements that involve quiet, rough, and smart. \n1. All quiet things are cold. (Statement 7)\n2. All cold, quiet things are smart. (Statement 8)\n\nSince Fiona is quiet (Statement 1), we can conclude that Fiona is cold (Statement 7). \nAlso, since Fiona is cold and quiet, we can conclude that Fiona is smart (Statement 8).\n\nTherefore, the statement \"Fiona is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to use the given information and logical deductions.\n\nGiven information:\n\n1. Charlie is big.\n2. Charlie is cold.\n3. Charlie is kind.\n4. Charlie is quiet.\n5. Charlie is red.\n6. Charlie is rough.\n7. Charlie is smart.\n8. Erin is kind.\n9. Fiona is quiet.\n10. Fiona is rough.\n11. Harry is kind.\n12. Harry is rough.\n13. Kind things are big.\n14. All kind, smart things are rough.\n15. If something is red and quiet then it is big.\n16. All red things are cold.\n17. All cold, quiet things are smart.\n18. If something is big and smart then it is cold.\n19. All quiet things are cold.\n20. Kind, big things are red.\n21. All cold, smart things are kind.\n\nWe are asked to determine whether \"Fiona is smart.\"\n\nStep 1: From statement 10, we know that Fiona is quiet.\n\nStep 2: From statement 19, we know that all quiet things are cold. Therefore, Fiona is cold.\n\nStep 3: From statement 17, we know that all cold, quiet things are smart. Therefore, Fiona is smart.\n\nHowever, we must also consider the possibility that Fiona may not be smart based on other given statements.\n\nStep 4: From statement 14, we know that all kind, smart things are rough. If Fiona is smart, then she must be rough.\n\nStep 5: From statement 10, we know that Fiona is rough.\n\nStep 6: From statement 10, we know that Fiona is quiet.\n\nStep 7: From statement 18, we know that if something is big and smart then it is cold. However, we cannot conclude that Fiona is big.\n\nStep 8: From statement 13, we know that kind things are big. However, we cannot conclude that Fiona is kind.\n\nStep 9: From statement 20, we know that kind, big things are red. However, we cannot conclude that Fiona is red.\n\nStep 10: From statement 15, we know that if something is red and quiet then it is big. However, we cannot conclude that Fiona is red.\n\nStep 11: From statement 16, we know that all red things are cold. However, we cannot conclude that Fiona is red.\n\nStep 12: From statement 21, we know that all cold, smart things are kind. However, we cannot conclude that Fiona is kind.\n\nBased on the given information, we cannot conclude that Fiona is not smart, but we also cannot conclude that Fiona is smart based on the absence of information about Fiona being rough or kind. However, we can conclude that Fiona is quiet and cold, and from statement 17, all cold, quiet things are smart. \n\nHowever, since we cannot conclude Fiona is not smart and we can conclude Fiona is smart from the available information, we will determine that the statement \"Fiona is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is quiet. (Given information)\n2. All quiet things are cold. (Rule 10)\n   Therefore, Fiona is cold.\n\n3. Fiona is rough. (Given information)\n   From Rule 5, we know that all kind, smart things are rough. However, we do not have enough information about Fiona being kind or smart to directly apply this rule.\n\n4. Since we cannot directly apply Rule 5, let's analyze other possibilities.\n   If Fiona is big, then from Rule 3, she is red. However, Rule 4 states that all red things are cold, and we already know Fiona is cold. Therefore, if Fiona is big, she would be cold and red, which is true. However, we cannot confirm if Fiona is big or not.\n\n5. Now, let's consider the other possibility: if Fiona is not big, then from Rule 6, she is not red. However, Rule 4 states that all red things are cold, and we already know Fiona is cold. Therefore, if Fiona is not big, she would be cold and not red, which is true.\n\n6. Since we have two possible scenarios that lead to true conclusions, we cannot determine whether Fiona is big or not.\n\n7. Based on Rule 3, Fiona is kind or smart (or both) since she is rough. We also know that Fiona is cold from Rule 2.\n\n8. Now, let's consider the possibilities of Fiona being kind and smart.\n   If Fiona is kind, then from Rule 1, kind things are big. However, we cannot confirm if Fiona is big or not.\n\n9. If Fiona is smart, then from Rule 3, she is kind or smart (or both). Since we are trying to determine if Fiona is smart, let's assume she is smart. Then, from Rule 3, she is kind. From Rule 1, kind things are big.\n\n10. However, from Rule 7, we know that Fiona being big would lead to her being red, and from Rule 4, all red things are cold. But we already know Fiona is cold. Therefore, if Fiona is smart, she would be big, and all big, smart things are cold. This is consistent with our previous conclusion that Fiona is cold.\n\n11. Based on the above analysis, we can conclude that Fiona is smart is unknown because we cannot confirm if Fiona is big or not, which is necessary for determining if Fiona is smart.\n\nHowever, we can now use the other information about Fiona to try to find the answer.\n\nWe have the following information:\nFiona is quiet.\nFiona is rough.\nIf something is red and quiet then it is big.\nAll quiet things are cold.\nAll cold, quiet things are smart.\n\nFrom the above information, we know that Fiona is cold and quiet. Since all quiet things are cold, and all cold, quiet things are smart, we can now determine that Fiona is indeed smart.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_charlie, smart_charlie), rough_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(red_charlie, quiet_charlie), big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_charlie, cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_charlie, quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(cold_charlie, smart_charlie), kind_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_charlie, smart_charlie), cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_charlie, cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), red_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> Not(smart(X))",
+          "z3_formula": "Implies(cold_fiona, Not(smart_fiona))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> Not(smart(X))",
+          "z3_formula": "Implies(quiet_fiona, Not(smart_fiona))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "Not(smart(fiona))",
+          "z3_formula": "Not(smart_fiona) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_charlie, smart_charlie), rough_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(red_charlie, quiet_charlie), big_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_charlie, cold_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_charlie, quiet_charlie)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_charlie, quiet_charlie), smart_charlie)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_charlie, smart_charlie), cold_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_charlie, cold_charlie)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), red_charlie)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(cold_charlie, smart_charlie), kind_charlie)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_fiona, cold_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_fiona, smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_fiona, quiet_fiona), smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_fiona, cold_fiona), red_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(red_fiona, quiet_fiona), big_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_fiona, rough_fiona), smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_X, smart_X), rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(red_X, quiet_X), big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_X, cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, quiet_X), smart_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_X, smart_X), cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_X, cold_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(kind_X, big_X), red_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(cold_X, smart_X), kind_X)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_fiona, cold_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_fiona, smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_harry, smart_harry), rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_harry, smart_harry), rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_fiona, quiet_fiona), smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(cold_fiona, smart_fiona), kind_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_fiona, quiet_fiona), smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_fiona, cold_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_fiona, quiet_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_fiona, quiet_fiona), smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> rough(X)",
+          "z3_formula": "Implies(smart_fiona, rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_fiona, smart_fiona), cold_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == False",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_fiona, big_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == False",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> red(X)",
+          "z3_formula": "Implies(And(kind_fiona, big_fiona), red_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == False",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(red_fiona, quiet_fiona), big_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == False",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_fiona, cold_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(cold_fiona, smart_fiona), kind_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == False",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> (kind(X) | smart(X))",
+          "z3_formula": "Implies(rough_fiona, Or(kind_fiona, smart_fiona))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(red_fiona, quiet_fiona), big_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_fiona, quiet_fiona), smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 11
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 147,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 55
+    },
+    "maxsat_stats": {
+      "satisfied": 49,
+      "excluded": 6,
+      "total_weight": 139,
+      "solve_time_ms": 2.202387899160385
+    },
+    "timing": {
+      "trace_gen_s": 13.054,
+      "extraction_s": 25.492,
+      "dedup_s": 1.781,
+      "maxsat_s": 0.005,
+      "total_s": 40.332
+    }
+  }
+}

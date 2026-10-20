@@ -1,0 +1,66 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Method}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Self-Consistency Baseline}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}SICA Pipeline}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step 1: Constraint Extraction.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step 2: Constraint Weighting.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step 3: MAX-SAT Resolution.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}C0: Multi-Candidate Rate}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Benchmarks}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results across 7 models. $\Delta $pp = SICA $-$ SC accuracy. Bold indicates the only borderline-positive result. All $p$-values from bootstrap resampling (10K iterations).}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{3}{Main results across 7 models. $\Delta $pp = SICA $-$ SC accuracy. Bold indicates the only borderline-positive result. All $p$-values from bootstrap resampling (10K iterations)}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Models}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Instruction Models (Diverse Regime):}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reasoning Models (Converged Regime):}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Configuration}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Main Results: SICA Does Not Significantly Improve Over SC}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Operating Regime Characterization}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces C0 regime classification across 10 model-configuration data points. C0 perfectly identifies the converged regime.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:regime}{{2}{4}{C0 regime classification across 10 model-configuration data points. C0 perfectly identifies the converged regime}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Qwen family scaling: C0 decreases and gap collapses with model size.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:scaling}{{3}{4}{Qwen family scaling: C0 decreases and gap collapses with model size}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Within-Family Scaling}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Family Validation}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Tiebreak Analysis}{4}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-family results on D012 (60 questions, $K$=12).}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:crossfamily}{{4}{5}{Cross-family results on D012 (60 questions, $K$=12)}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Tiebreak resolution methods on 804 questions (45 ties).}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:tiebreak}{{5}{5}{Tiebreak resolution methods on 804 questions (45 ties)}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}K Sensitivity}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Constraint Ablation: Is MAX-SAT Necessary?}{5}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Constraint Quality Analysis}{5}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Cross-Domain Validation}{5}{subsection.4.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Effect of $K$ (number of sampled traces) on D012 60 questions.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:ksens}{{6}{6}{Effect of $K$ (number of sampled traces) on D012 60 questions}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Constraint aggregation ablation on 804 questions.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:ablation}{{7}{6}{Constraint aggregation ablation on 804 questions}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Computational Overhead}{6}{subsection.4.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why Trace Diversity Is Necessary But Not Sufficient}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}C0 as Training Methodology Signal}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces C0 reflects task-relative confidence, not answer-space structure.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:crossdomain}{{8}{7}{C0 reflects task-relative confidence, not answer-space structure}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Wall-time breakdown per question (Qwen2.5-14B, $K$=12).}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:overhead}{{9}{7}{Wall-time breakdown per question (Qwen2.5-14B, $K$=12)}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Implications for Practitioners}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Limitations}{7}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Related Work}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency and Variants.}{7}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Symbolic Reasoning with LLMs.}{7}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ensemble and Consensus Methods.}{7}{section*.8}\protected@file@percent }
+\bibcite{wang2023selfconsistency}{1}
+\bibcite{chen2023usc}{2}
+\bibcite{pan2023logiclm}{3}
+\bibcite{jiang2023llmblender}{4}
+\bibcite{kuhn2023semantic}{5}
+\bibcite{kadavath2022language}{6}
+\@writefile{toc}{\contentsline {paragraph}{Uncertainty Quantification in LLMs.}{8}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\gdef \@abspage@last{8}

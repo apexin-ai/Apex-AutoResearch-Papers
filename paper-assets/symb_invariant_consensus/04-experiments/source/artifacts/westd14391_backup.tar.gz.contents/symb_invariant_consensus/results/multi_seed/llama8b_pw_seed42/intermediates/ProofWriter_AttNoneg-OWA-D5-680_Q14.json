@@ -1,0 +1,1370 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-680_Q14",
+    "problem": "Bob is kind. Charlie is cold. Charlie is kind. Charlie is nice. Charlie is quiet. Charlie is smart. Fiona is quiet. Fiona is smart. Gary is nice. Gary is quiet. Gary is white. If Fiona is cold then Fiona is nice. All nice things are white. If something is white then it is nice. Nice, white things are quiet. White, smart things are rough. Smart, kind things are rough. All cold things are white. If Bob is kind then Bob is white. Quiet, kind things are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nKind(Bob, True) ::: Bob is kind.\nCold(Charlie, True) ::: Charlie is cold.\nKind(Charlie, True) ::: Charlie is kind.\nNice(Charlie, True) ::: Charlie is nice.\nQuiet(Charlie, True) ::: Charlie is quiet.\nSmart(Charlie, True) ::: Charlie is smart.\nQuiet(Fiona, True) ::: Fiona is quiet.\nSmart(Fiona, True) ::: Fiona is smart.\nNice(Gary, True) ::: Gary is nice.\nQuiet(Gary, True) ::: Gary is quiet.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nCold(Fiona, True) >>> Nice(Fiona, True) ::: If Fiona is cold then Fiona is nice.\nNice($x, True) >>> White($x, True) ::: All nice things are white.\nWhite($x, True) >>> Nice($x, True) ::: If something is white then it is nice.\nNice($x, True) && White($x, True) >>> Quiet($x, True) ::: Nice, white things are quiet.\nWhite($x, True) && Smart($x, True) >>> Rough($x, True) ::: White, smart things are rough.\nSmart($x, True) && Kind($x, True) >>> Rough($x, True) ::: Smart, kind things are rough.\nCold($x, True) >>> White($x, True) ::: All cold things are white.\nKind(Bob, True) >>> White(Bob, True) ::: If Bob is kind then Bob is white.\nQuiet($x, True) && Kind($x, True) >>> Smart($x, True) ::: Quiet, kind things are smart.\n\nQuery:\nRough(Fiona, True) ::: Fiona is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 157.0,
+      "Unknown": 179.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine their implications.\n\nGiven Statements:\n1. Charlie is cold.\n2. Charlie is kind.\n3. Charlie is nice.\n4. Charlie is quiet.\n5. Charlie is smart.\n6. Fiona is quiet.\n7. Fiona is smart.\n8. Gary is nice.\n9. Gary is quiet.\n10. Gary is white.\n11. If Fiona is cold then Fiona is nice.\n12. All nice things are white.\n13. If something is white then it is nice.\n14. Nice, white things are quiet.\n15. White, smart things are rough.\n16. Smart, kind things are rough.\n17. All cold things are white.\n18. If Bob is kind then Bob is white.\n19. Quiet, kind things are smart.\n\nStatement to be determined: Fiona is rough.\n\nLet's start by analyzing the information about Fiona:\n- Fiona is quiet (statement 6)\n- Fiona is smart (statement 7)\n\nWe need to find a connection between Fiona's qualities and the property \"rough.\"\n\nStatement 15 says that White, smart things are rough. However, we need to determine if Fiona is white.\n\nStatement 13 says that if something is white then it is nice. However, statement 12 says that all nice things are white. This creates a loop, but it doesn't provide a direct connection between Fiona and the property \"white.\"\n\nLet's analyze the information about Charlie:\n- Charlie is cold (statement 1)\n- Charlie is kind (statement 2)\n- Charlie is nice (statement 3)\n- Charlie is quiet (statement 4)\n- Charlie is smart (statement 5)\n\nSince Charlie is cold, we can infer that Charlie is white (statement 17). Now, we can use this information to determine if Charlie is nice.\n\nStatement 12 says that all nice things are white. However, statement 13 says that if something is white then it is nice. This creates a loop, but it doesn't provide a direct connection between Charlie and the property \"nice.\"\n\nHowever, we can use the information about Charlie's qualities to determine if Fiona is white. Statement 14 says that nice, white things are quiet. Since Charlie is nice and quiet, we can infer that Charlie is white. But this does not directly imply that Fiona is white.\n\nHowever, statement 11 says that if Fiona is cold then Fiona is nice. Since Charlie is cold, it doesn't directly imply that Fiona is cold. But we can use the information about Charlie's qualities to determine if Fiona is nice.\n\nStatement 18 says that if Bob is kind then Bob is white. However, this statement does not provide any information about Fiona. Statement 19 says that quiet, kind things are smart. Since Charlie is quiet and kind, we can infer that Charlie is smart.\n\nHowever, we can use the information about Charlie's qualities to determine if Fiona is nice. Statement 16 says that smart, kind things are rough. Since Charlie is smart and kind, we can infer that Charlie is rough.\n\nNow, let's analyze the information about Gary:\n- Gary is nice (statement 8)\n- Gary is quiet (statement 9)\n- Gary is white (statement 10)\n\nSince Gary is nice and white, we can infer that Gary is quiet (statement 14). This doesn't provide any new information.\n\nNow, let's analyze the information about Bob:\n- There is no direct information about Bob.\n\nIn conclusion, we can determine that Charlie is rough. However, we cannot determine if Fiona is rough.\n\nTherefore, the final answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given facts:\n   - Charlie is cold.\n   - Charlie is kind.\n   - Charlie is nice.\n   - Charlie is quiet.\n   - Charlie is smart.\n   - Fiona is quiet.\n   - Fiona is smart.\n   - Gary is nice.\n   - Gary is quiet.\n   - Gary is white.\n   - If Fiona is cold then Fiona is nice.\n   - All nice things are white.\n   - If something is white then it is nice.\n   - Nice, white things are quiet.\n   - White, smart things are rough.\n   - Smart, kind things are rough.\n   - All cold things are white.\n   - If Bob is kind then Bob is white.\n   - Quiet, kind things are smart.\n\n2. To determine whether Fiona is rough, we first need to find out if she is white or not, since \"White, smart things are rough.\"\n\n3. From the given facts, we know that Fiona is smart. So, let's check if Fiona is white or not.\n\n4. If Fiona is cold, then she is nice. But we do not know if Fiona is cold or not. We can only conclude that if Fiona is cold, then she is nice.\n\n5. We know that Charlie is cold and Charlie is nice. We also know that all cold things are white, so Charlie is white. This implies that all nice things are white. We can use this information to infer that if Fiona is nice, then she is white.\n\n6. We can conclude that if Fiona is cold, then she is white. But we do not know if Fiona is cold or not.\n\n7. Since we cannot conclude that Fiona is white, we cannot conclude that Fiona is rough. However, we can conclude that if Fiona is white, then she is smart, and thus she is rough.\n\n8. From step 6, we can conclude that if Fiona is cold, then she is white. If Fiona is white, then she is smart, and thus she is rough. Since we cannot conclude that Fiona is cold, we cannot conclude that Fiona is rough.\n\n9. However, we can conclude that if Fiona is white, then she is smart, and thus she is rough. But we do not know if Fiona is white or not.\n\n10. To conclude whether Fiona is rough, we need to find out if she is white or not. If Fiona is white, then she is smart and rough. But we do not know if Fiona is white or not.\n\n11. We can conclude that if Fiona is cold, then she is white, and thus she is rough. But we do not know if Fiona is cold or not.\n\n12. We can conclude that if Fiona is cold, then she is white, and thus she is rough. But we do not know if Fiona is cold or not. We can conclude that if Fiona is white, then she is smart, and thus she is rough. But we do not know if Fiona is white or not.\n\n13. We can conclude that if Fiona is cold, then she is white, and thus she is rough. But we do not know if Fiona is cold or not. We can conclude that if Fiona is white, then she is smart, and thus she is rough. But we do not know if Fiona is white or not.\n\n14. We can conclude that if Fiona is cold, then she is white, and thus she is rough. But we do not know if Fiona is cold or not. We can conclude that if Fiona is white, then she is smart, and thus she is rough. But we do not know if Fiona is white or not.\n\n15. We can conclude that if Fiona is cold, then she is white, and thus she is rough. But we do not know if Fiona is cold or not. We can conclude that if Fiona is white, then she is smart, and thus she is rough. But we do not know if Fiona is white or not.\n\n16. Since we cannot conclude that Fiona is cold or white, we cannot conclude that Fiona is rough.\n\nTherefore, the statement \"Fiona is rough\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Charlie is cold.\n   - Charlie is kind.\n   - Charlie is nice.\n   - Charlie is quiet.\n   - Charlie is smart.\n   - Fiona is quiet.\n   - Fiona is smart.\n   - Gary is nice.\n   - Gary is quiet.\n   - Gary is white.\n   - If Fiona is cold then Fiona is nice.\n   - All nice things are white.\n   - If something is white then it is nice.\n   - Nice, white things are quiet.\n   - White, smart things are rough.\n   - Smart, kind things are rough.\n   - All cold things are white.\n   - If Bob is kind then Bob is white.\n   - Quiet, kind things are smart.\n\n2. Analyzing the given information:\n   - From \"Charlie is cold\" and \"All cold things are white,\" we can conclude that Charlie is white.\n   - From \"All nice things are white\" and \"Charlie is nice,\" we can conclude that Charlie is white (which we already found).\n   - From \"Charlie is white\" and \"If something is white then it is nice,\" we can conclude that Charlie is nice (which we already found).\n   - From \"Charlie is nice,\" \"All nice things are white,\" and \"If something is white then it is nice,\" we can conclude that Charlie is white (which we already found).\n   - We have a loop of conclusions from step 2, so we'll stop there.\n\n3. Now we need to find a path to determine if Fiona is rough.\n   - We have two paths: \n     a) Fiona is cold -> Fiona is nice -> Fiona is white.\n     b) Fiona is smart -> Fiona is rough (direct conclusion from the rules).\n   - We can't determine if Fiona is cold from the given information, so we'll use path b).\n\n4. Conclusion:\n   - From \"Fiona is smart,\" we can directly conclude that Fiona is rough.\n\nTherefore, the statement \"Fiona is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Fiona is rough, we need to analyze the given information step by step.\n\n1. Given information:\n   - Charlie is cold.\n   - Charlie is kind.\n   - Charlie is nice.\n   - Charlie is quiet.\n   - Charlie is smart.\n   - Fiona is quiet.\n   - Fiona is smart.\n   - Gary is nice.\n   - Gary is quiet.\n   - Gary is white.\n   - If Fiona is cold then Fiona is nice.\n   - All nice things are white.\n   - If something is white then it is nice.\n   - Nice, white things are quiet.\n   - White, smart things are rough.\n   - Smart, kind things are rough.\n   - All cold things are white.\n   - If Bob is kind then Bob is white.\n   - Quiet, kind things are smart.\n\n2. Analyzing the information to determine whether Fiona is rough:\n   - We don't know if Fiona is cold, so we can't directly conclude if Fiona is nice.\n   - Since Fiona is smart, we need to find a connection between Fiona's properties and 'rough'.\n\n3. Possible connections between Fiona's properties and 'rough':\n   - We know Fiona is smart, so we can explore the connection between Fiona's being smart and 'rough'. There is a rule stating that Smart, kind things are rough. However, we don't know if Fiona is kind, so we need to explore more connections.\n   - We also know Fiona is quiet, but there is no direct rule connecting quiet things with 'rough'. However, we can explore the connection between Fiona's being quiet and other properties that might lead to 'rough'.\n\n4. Further analysis of Fiona's properties:\n   - From the rule, Quiet, kind things are smart. Since Fiona is quiet, we can conclude that Fiona is smart because Fiona is not explicitly stated to be kind. However, this is not directly connected to 'rough'.\n   - Another possible connection is that Fiona is quiet. From the rule, Nice, white things are quiet. However, we don't know if Fiona is nice, and even if she is, this rule doesn't directly connect to 'rough'.\n\n5. Connection to Fiona being white:\n   - We can explore the connection between Fiona's being quiet and being white. From the rule, All nice things are white. However, we don't know if Fiona is nice, and even if she is, this rule doesn't directly connect to 'rough'.\n\n6. Connection to Fiona being cold:\n   - We can explore the connection between Fiona's being smart and being cold. However, we don't know if Fiona is cold, and even if she is, there is no direct rule connecting Fiona's properties to 'rough'.\n\n7. Final Analysis:\n   - The only rule that directly connects smart things to 'rough' is Smart, kind things are rough. However, we don't know if Fiona is kind.\n   - We also have the rule White, smart things are rough. However, we don't know if Fiona is white.\n\n8. Conclusion:\n   - Since we can't determine if Fiona is kind or white from the given information, and there is no other direct connection between Fiona's properties and 'rough', we can't conclude whether Fiona is rough or not.\n\nSo, the final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the given statements:\n- Charlie is kind, Charlie is cold, Charlie is nice, Charlie is quiet, Charlie is smart.\n- Fiona is quiet, Fiona is smart.\n- Gary is nice, Gary is quiet, Gary is white.\n- If Fiona is cold then Fiona is nice.\n- All nice things are white.\n- If something is white then it is nice.\n- Nice, white things are quiet.\n- White, smart things are rough.\n- Smart, kind things are rough.\n- All cold things are white.\n- If Bob is kind then Bob is white.\n- Quiet, kind things are smart.\n\nFirst, we can conclude that Fiona is not cold because if Fiona is cold, then Fiona is nice, but Charlie is already nice, and Fiona is not necessarily nice.\n\nSince Charlie is kind and Charlie is nice, and all nice things are white, we can conclude that Charlie is white.\n\nFrom the statement \"All cold things are white\" and \"Charlie is cold\", we can conclude that Charlie is indeed white.\n\nSince Fiona is quiet and Charlie is white, and all white things are nice, and all nice things are quiet, we can conclude that Fiona is white.\n\nFrom the statement \"Fiona is white\" and \"Fiona is smart\", we can conclude that Fiona is rough because white, smart things are rough.\n\nTherefore, the statement \"Fiona is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is rough' is true, false, or unknown, we need to analyze the given premises and apply logical deductions.\n\n1. Charlie is cold. \n   Since all cold things are white, we can conclude that Charlie is white.\n\n2. Fiona is quiet. \n   Fiona is smart. \n\n   Since all nice things are white, and Charlie is white (from statement 1), we can conclude that Charlie is nice.\n\n   Since Charlie is cold (from statement 1) and Charlie is nice (from the previous conclusion), and all cold things are white, we can conclude that nice things are white.\n\n   Since all nice things are white (from the previous conclusion), and Fiona is quiet (from statement 2), we can conclude that Fiona is nice.\n\n   Since Fiona is quiet (from statement 2), and Fiona is nice (from the previous conclusion), we can conclude that Fiona is white.\n\n3. Since Fiona is white (from the previous conclusion), and Fiona is smart (from statement 2), we can conclude that Fiona is rough.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to use the rules and information given. We will analyze the statements step by step.\n\n1. At the end, put your final answer in \\boxed{}.\n\nFirst, let's identify the given statements and their connections:\n- Charlie is cold.\n- All cold things are white. \n- Charlie is white.\n\nFrom the information given, we can conclude that Charlie is white because Charlie is cold.\n\n2. Charlie is white, and all nice things are white. \n- Charlie is nice.\n\nFrom this, we can conclude that Charlie is nice because Charlie is white.\n\n3. Charlie is nice, and nice things are quiet. \n- Charlie is quiet.\n\nFrom this, we can conclude that Charlie is quiet because Charlie is nice.\n\n4. Charlie is quiet, and Fiona is quiet. \n- Fiona is quiet.\n\nFiona is quiet because Charlie is quiet.\n\n5. Charlie is smart, and Fiona is smart. \n- Fiona is smart.\n\nFiona is smart because Charlie is smart.\n\n6. If Fiona is cold, then Fiona is nice. \n- Charlie is cold, and Charlie is nice. \n- But we can't conclude that Fiona is cold, so this statement is unknown for Fiona.\n\n7. Since we don't know if Fiona is cold, we can't conclude that Fiona is nice.\n\n8. If something is white, then it is nice. \n- Charlie is white, and Charlie is nice. \n- But we can't conclude that Fiona is white, so this statement is unknown for Fiona.\n\n9. Nice, white things are quiet. \n- Charlie is nice and white, and Charlie is quiet. \n- But we can't conclude that Fiona is quiet, so this statement is unknown for Fiona.\n\n10. White, smart things are rough. \n- Charlie is white and smart, and Charlie is rough. \n- But we can't conclude that Fiona is white or smart, so this statement is unknown for Fiona.\n\n11. Smart, kind things are rough. \n- Charlie is smart and kind, and Charlie is rough. \n- But we can't conclude that Fiona is smart or kind, so this statement is unknown for Fiona.\n\n12. If Bob is kind, then Bob is white. \n- This information is not relevant to Fiona.\n\n13. Quiet, kind things are smart. \n- Charlie is quiet and kind, and Charlie is smart. \n- But we can't conclude that Fiona is quiet or kind, so this statement is unknown for Fiona.\n\nBased on the given information, we can conclude that Fiona is quiet, smart, and unknown for cold, nice, white, and rough. \n\nHowever, we can't determine if Fiona is rough because the information about Fiona's white and smart status is unknown.\n\nTherefore, we can't conclude that Fiona is rough.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is quiet. Fiona is smart. (Given)\n\n2. If Fiona is cold then Fiona is nice. (Given)\n   Since we don't have any information about Fiona being cold, we cannot conclude whether Fiona is nice or not.\n\n3. Charlie is cold. Charlie is kind. Charlie is nice. Charlie is quiet. Charlie is smart. (Given)\n   From this, we can conclude that Charlie is both cold and nice, but we still don't have enough information about Fiona.\n\n4. Fiona is quiet. Fiona is smart. (From 1)\n   Since Fiona is quiet and smart, we can analyze the given information to see if it helps us conclude anything about Fiona being rough or not.\n\n5. Nice, white things are quiet. (Given)\n   This does not give us any information about Fiona being rough or not.\n\n6. All cold things are white. (Given)\n   Since Charlie is cold and white, and all cold things are white, we can conclude that Charlie is white.\n\n7. If something is white then it is nice. (Given)\n   From 6, we know Charlie is white, so Charlie is nice.\n\n8. Gary is nice. Gary is quiet. Gary is white. (Given)\n   Since Gary is nice and white, we can conclude that Gary is quiet, but this does not help us conclude anything about Fiona.\n\n9. White, smart things are rough. (Given)\n   Since Charlie is white and smart, we can conclude that Charlie is rough.\n\n10. Smart, kind things are rough. (Given)\n    Since Charlie is smart and kind, we can conclude that Charlie is rough, which we already did in 9.\n\n11. Quiet, kind things are smart. (Given)\n    Since Charlie is quiet and kind, we can conclude that Charlie is smart, which we already know.\n\n12. If Bob is kind then Bob is white. (Given)\n    This does not give us any information about Fiona being rough or not.\n\n13. From 1 and 4, we know Fiona is quiet and smart. Since Charlie is quiet, smart, and rough (from 9), but we do not have any information about Fiona being white or cold, we cannot directly conclude whether Fiona is rough or not.\n\nHowever, let's analyze the given information again from a different perspective:\n\n14. Since Fiona is quiet and smart, and nice, white things are quiet, it is possible that Fiona is nice and white, but we cannot conclude this for sure.\n\n15. If Fiona is white, then it is nice (from 7). But we already know that if Fiona is cold, then Fiona is nice (from 2), and we also know that all cold things are white (from 6). So, if Fiona is cold, then Fiona is white and nice.\n\n16. Since Fiona is quiet and smart (from 1), and if Fiona is white, then it is nice (from 7), we can conclude that Fiona is quiet, nice, and white.\n\n17. From 16, we know Fiona is quiet and white. Since all cold things are white (from 6), it is possible that Fiona is cold, but we cannot conclude this for sure.\n\n18. If Fiona is cold, then Fiona is white and nice (from 15), and Fiona is quiet and white (from 16). Since all cold things are white (from 6), we can conclude that Fiona is white.\n\n19. From 18, we know Fiona is white. Since all cold things are white (from 6), it is possible that Fiona is cold.\n\n20. Since Fiona is quiet, smart, and possibly white (from 16 and 18), we can conclude that Fiona is possibly white and smart.\n\n21. From 20, we know Fiona is possibly white and smart. Since white, smart things are rough (from 9), it is possible that Fiona is rough.\n\nHowever, we still cannot conclude for sure whether Fiona is rough or not.\n\nBut, we have one more piece of information that can help us conclude:\n\n22. If something is white then it is nice. (Given)\n   Since we know Fiona is possibly white (from 20), it is possible that Fiona is nice.\n\n23. Fiona is quiet, smart, and possibly nice (from 1 and 20). Since nice, white things are quiet (from 5), it is possible that Fiona is white.\n\n24. From 23, we know Fiona is possibly white. Since all cold things are white (from 6), it is possible that Fiona is cold.\n\n25. If Fiona is cold, then Fiona is white and nice (from 15), and Fiona is quiet and white (from 16). Since Charlie is cold and nice (from 3), and Charlie is white (from 6), and Charlie is quiet (from 3), and Charlie is rough (from 9), it is possible that Fiona is rough.\n\nHowever, we still cannot conclude for sure whether Fiona is rough or not.\n\nBut, let's analyze the given information again from a different perspective:\n\n26. Fiona is quiet and smart (from 1). Since quiet, kind things are smart (from 11), it is possible that Fiona is kind.\n\n27. If Fiona is kind, then Fiona is white (from 12). But we already know that if Fiona is cold, then Fiona is nice (from 2), and we also know that all cold things are white (from 6). So, if Fiona is cold, then Fiona is white and nice.\n\n28. Since Fiona is quiet, smart, and possibly kind (from 1 and 26), we can conclude that Fiona is possibly kind.\n\n29. From 28, we know Fiona is possibly kind. Since Charlie is kind (from 3), and Charlie is white (from 6), and Charlie is quiet (from 3), and Charlie is rough (from 9), it is possible that Fiona is rough.\n\nHowever, we still cannot conclude for sure whether Fiona is rough or not.\n\nLet's analyze the given information one more time:\n\n30. Since Fiona is quiet and smart (from 1), and nice, white things are quiet (from 5), it is possible that Fiona is white and nice.\n\n31. If Fiona is white, then it is nice (from 7). Since all cold things are white (from 6), and Charlie is cold and nice (from 3), it is possible that Fiona is cold.\n\n32. If Fiona is cold, then Fiona is white and nice (from 15), and Fiona is quiet and white (from 16). Since Charlie is cold and white (from 3), and Charlie is quiet (from 3), and Charlie is rough (from 9), it is possible that Fiona is rough.\n\nHowever, we still cannot conclude for sure whether Fiona is rough or not.\n\nBut, let's analyze the given information again:\n\n33. Fiona is quiet and smart (from 1). Since quiet, kind things are smart (from 11), it is possible that Fiona is kind.\n\n34. If Fiona is kind, then Fiona is white (from 12). Since Charlie is kind (from 3), and Charlie is white (from 6), and Charlie is quiet (from 3), and Charlie is rough (from 9), it is possible that Fiona is rough.\n\nHowever, we still cannot conclude for sure whether Fiona is rough or not.\n\nLet's analyze the given information one more time:\n\n35. Since Fiona is quiet and smart (from 1), and nice, white things are quiet (from 5), it is possible that Fiona is white and nice.\n\n36. If Fiona is white, then it is nice (from 7). Since all cold things are white (from 6), and Charlie is cold and nice (from 3), it is possible that Fiona is cold.\n\n37. If Fiona is cold, then Fiona is white and nice (from 15), and Fiona is quiet and white (from 16). Since Charlie is cold and white (from 3), and Charlie is quiet (from 3), and Charlie is rough (from 9), it is possible that Fiona is rough.\n\nHowever, we still cannot conclude for sure whether Fiona is rough or not.\n\nBut, let's analyze the given information again:\n\n38. Fiona is quiet and smart (from 1). Since quiet, kind things are smart (from 11), it is possible that Fiona is kind.\n\n39. If Fiona is kind, then Fiona is white (from 12). Since Charlie is kind (from 3), and Charlie is white (from 6), and Charlie is quiet (from 3), and Charlie is rough (from 9), it is possible that Fiona is rough.\n\nHowever, we still cannot conclude for sure whether Fiona is rough or not.\n\nAfter analyzing the given information multiple times, we still cannot conclude for sure whether Fiona is rough or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is rough' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Charlie is cold.\n   - Charlie is kind.\n   - Charlie is nice.\n   - Charlie is quiet.\n   - Charlie is smart.\n   - Fiona is quiet.\n   - Fiona is smart.\n   - Gary is nice.\n   - Gary is quiet.\n   - Gary is white.\n   - If Fiona is cold then Fiona is nice.\n   - All nice things are white.\n   - If something is white then it is nice.\n   - Nice, white things are quiet.\n   - White, smart things are rough.\n   - Smart, kind things are rough.\n   - All cold things are white.\n   - If Bob is kind then Bob is white.\n   - Quiet, kind things are smart.\n\n2. Let's start by analyzing the information given about Fiona:\n   - Fiona is quiet.\n   - Fiona is smart.\n\n3. Now, let's try to find a connection between Fiona and the given conditions that relate to being rough.\n   - We know that White, smart things are rough and Smart, kind things are rough.\n\n4. To determine whether Fiona is rough, we need to determine whether she is smart and white or smart and kind.\n\n5. First, let's analyze the possibility that Fiona is smart and white.\n   - We know that Fiona is smart and white would make her rough, but we need to find a connection to being white.\n   - We have the statement 'If Fiona is cold then Fiona is nice', but we also have 'All cold things are white'. \n   - If Fiona is cold, then she is white. Since we already know Fiona is smart, and smart white things are rough, then Fiona would be rough.\n\n6. However, we don't have any information that directly links Fiona to being cold, so we can't conclude that Fiona is white based on the information given about her being cold.\n\n7. Now, let's analyze the possibility that Fiona is smart and kind.\n   - We know that Fiona is smart, but we need to find a connection to being kind.\n   - We have the statement 'Quiet, kind things are smart', but this doesn't directly apply to Fiona because we already know she is smart.\n   - We also have the statement 'Charlie is kind and Charlie is smart', but this doesn't apply to Fiona because Charlie is a different person.\n\n8. Since we can't find a direct connection between Fiona and the conditions that relate to being rough, the statement 'Fiona is rough' is unknown.\n\nHowever, we can determine that Fiona is not white because we know that 'All cold things are white' and 'If Fiona is cold then Fiona is nice', but we also know 'All nice things are white', and since we can't conclude that Fiona is white, we can also conclude that she is not cold.\n\nSince 'All cold things are white', and 'Fiona is not white', we can conclude that Fiona is not cold.\n\nNow we know that Fiona is not cold, and since 'If Fiona is cold then Fiona is nice', we can conclude that Fiona is not nice.\n\nSince 'Gary is nice and Gary is white', and 'All nice things are white', we can conclude that white and nice are not mutually exclusive.\n\nWe also know that 'If something is white then it is nice', but this doesn't apply to Fiona because we already know she is not white.\n\nSince 'Fiona is not white and Fiona is not nice', we can conclude that 'Nice, white things are quiet' doesn't apply to Fiona.\n\nSince 'White, smart things are rough' and 'Fiona is smart', we can conclude that Fiona would be rough if she were white.\n\nHowever, since 'Fiona is not white', we can't conclude that Fiona is rough.\n\nBut we also know that 'Smart, kind things are rough', and we have 'Quiet, kind things are smart', but we also know 'Charlie is kind and Charlie is smart', and Charlie is not Fiona.\n\nSince we can't find a direct connection between Fiona and the conditions that relate to being rough, the statement 'Fiona is rough' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nGiven statements:\n\n1. Charlie is cold.\n2. Charlie is kind.\n3. Charlie is nice.\n4. Charlie is quiet.\n5. Charlie is smart.\n6. Fiona is quiet.\n7. Fiona is smart.\n8. Gary is nice.\n9. Gary is quiet.\n10. Gary is white.\n11. If Fiona is cold then Fiona is nice.\n12. All nice things are white.\n13. If something is white then it is nice.\n14. Nice, white things are quiet.\n15. White, smart things are rough.\n16. Smart, kind things are rough.\n17. All cold things are white.\n18. If Bob is kind then Bob is white.\n19. Quiet, kind things are smart.\n\nWe are asked to determine whether the statement \"Fiona is rough\" is true, false, or unknown.\n\nTo start, let's analyze the information given about Fiona:\n\n- Fiona is quiet (statement 6).\n- Fiona is smart (statement 7).\n\nNow, let's look for any information that might help us determine whether Fiona is rough.\n\nFrom statement 15, we know that white, smart things are rough. However, we also know from statement 12 that all nice things are white. And from statement 13, we know that if something is white then it is nice.\n\nSince Fiona is smart (statement 7), we can't directly conclude that Fiona is white or nice. However, we can analyze the information given about Charlie, who is also smart:\n\n- Charlie is cold (statement 1).\n- Charlie is kind (statement 2).\n- Charlie is nice (statement 3).\n- Charlie is quiet (statement 4).\n- Charlie is smart (statement 5).\n\nFrom statement 1, we know that Charlie is cold, which implies that Charlie is white (statement 17). Now, since Charlie is white (statement 17), we can conclude that Charlie is nice (statement 12). And since Charlie is nice (statement 3), we can conclude that Charlie is quiet (statement 14).\n\nHowever, since Charlie is kind (statement 2), we can't conclude that Charlie is rough (statement 16). On the other hand, since Charlie is smart (statement 5), we can conclude that Charlie is rough (statement 15).\n\nNow, let's go back to Fiona. We know that Fiona is quiet (statement 6) and smart (statement 7). However, we can't directly conclude that Fiona is white or nice. But we can analyze the information given about Gary, who is also quiet and nice:\n\n- Gary is nice (statement 8).\n- Gary is quiet (statement 9).\n- Gary is white (statement 10).\n\nFrom statement 14, we know that nice, white things are quiet. Therefore, we can conclude that Gary is white (statement 10).\n\nHowever, we can't conclude that Fiona is white or rough. We can only conclude that Fiona might be white, but we can't determine whether she is rough or not.\n\nTherefore, the statement \"Fiona is rough\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether Fiona is rough, we need to analyze the given information and use it to derive conclusions about Fiona's properties.\n\nFrom the given information, we have the following:\n\n1. Fiona is quiet. (Fiona is quiet)\n2. Fiona is smart. (Fiona is smart)\n\nWe need to find a way to link Fiona's quietness and smartness to her roughness.\n\nFirst, let's analyze the given rules:\n\n1. All nice things are white. (All (Nice \u2192 White))\n2. If something is white then it is nice. (All (White \u2192 Nice))\n3. Nice, white things are quiet. (All (Nice \u2227 White \u2192 Quiet))\n4. White, smart things are rough. (All (White \u2227 Smart \u2192 Rough))\n5. All cold things are white. (All (Cold \u2192 White))\n6. If Bob is kind then Bob is white. (All (Kind \u2192 White))\n7. Quiet, kind things are smart. (All (Quiet \u2227 Kind \u2192 Smart))\n\nFrom (5), we know that if Fiona is cold, then Fiona is white. But we don't have any information about Fiona being cold.\n\nFrom (2), if Fiona is white, then Fiona is nice. But we don't have any information about Fiona being white.\n\nFrom (1) and (2), we know that if Fiona is nice, then Fiona is white.\n\nFrom (3), if Fiona is nice and white, then Fiona is quiet.\n\nWe know from (1) and (2) that Fiona is quiet and smart.\n\nFrom (7), if Fiona is quiet and kind, then Fiona is smart.\n\nHowever, we don't have any information about Fiona being kind.\n\nWe need to find a way to link Fiona's properties to her roughness.\n\nFrom (4), if Fiona is white and smart, then Fiona is rough.\n\nWe don't have any direct information about Fiona being white. However, we can use the chain of implications:\n\n1. If Fiona is cold, then Fiona is white. (All (Cold \u2192 White))\n2. If Fiona is white, then Fiona is nice. (All (White \u2192 Nice))\n3. If Fiona is nice, then Fiona is white. (All (Nice \u2192 White))\n\nHowever, this chain of implications is self-contradictory because it implies that if Fiona is white, then Fiona is cold, which is not given.\n\nLet's try another approach:\n\nFrom (2), we know that if Fiona is white, then Fiona is nice.\n\nFrom (3), if Fiona is nice and white, then Fiona is quiet.\n\nWe know from (1) and (2) that Fiona is quiet and smart.\n\nFrom (7), if Fiona is quiet and kind, then Fiona is smart.\n\nHowever, we don't have any information about Fiona being kind.\n\nWe need to find a way to link Fiona's properties to her roughness.\n\nFrom (4), if Fiona is white and smart, then Fiona is rough.\n\nWe don't have any direct information about Fiona being white. However, we can use the fact that all nice things are white:\n\nFrom (1) and (2), we know that if Fiona is nice, then Fiona is white.\n\nWe also know that Fiona is quiet and smart.\n\nHowever, we don't have any direct information about Fiona being nice.\n\nWe need to find a way to link Fiona's properties to her roughness.\n\nFrom (4), if Fiona is white and smart, then Fiona is rough.\n\nWe don't have any direct information about Fiona being white. However, we can use the fact that all nice things are white:\n\nFrom (2), if Fiona is white, then Fiona is nice.\n\nWe know from (1) and (2) that if Fiona is nice, then Fiona is white.\n\nWe also know that Fiona is quiet and smart.\n\nFrom (7), if Fiona is quiet and kind, then Fiona is smart.\n\nHowever, we don't have any information about Fiona being kind.\n\nWe need to find a way to link Fiona's properties to her roughness.\n\nFrom (4), if Fiona is white and smart, then Fiona is rough.\n\nWe don't have any direct information about Fiona being white. However, we can use the fact that all nice things are white:\n\nFrom (2), if Fiona is white, then Fiona is nice.\n\nWe know from (1) and (2) that if Fiona is nice, then Fiona is white.\n\nWe also know that Fiona is quiet and smart.\n\nFrom (1) and (2), we know that if Fiona is nice, then Fiona is white.\n\nFrom (4), if Fiona is white and smart, then Fiona is rough.\n\nWe don't have any direct information about Fiona being white. However, we can use the fact that all cold things are white:\n\nFrom (5), if Fiona is cold, then Fiona is white.\n\nWe also know that Fiona is quiet and smart.\n\nHowever, we don't have any information about Fiona being cold.\n\nWe need to find a way to link Fiona's properties to her roughness.\n\nFrom (4), if Fiona is white and smart, then Fiona is rough.\n\nWe don't have any direct information about Fiona being white. However, we can use the fact that all cold things are white:\n\nFrom (5), if Fiona is cold, then Fiona is white.\n\nWe also know that Fiona is quiet and smart.\n\nFrom (1) and (2), we know that if Fiona is nice, then Fiona is white.\n\nHowever, we don't have any information about Fiona being nice.\n\nWe need to find a way to link Fiona's properties to her roughness.\n\nFrom (4), if Fiona is white and smart, then Fiona is rough.\n\nWe don't have any direct information about Fiona being white. However, we can use the fact that all cold things are white:\n\nFrom (5), if Fiona is cold, then Fiona is white.\n\nWe also know that Fiona is quiet and smart.\n\nHowever, we don't have any information about Fiona being cold.\n\nLet's try another approach:\n\nFrom (5), we know that if Fiona is cold, then Fiona is white.\n\nFrom (4), if Fiona is white and smart, then Fiona is rough.\n\nWe don't have any direct information about Fiona being white. However, we can use the fact that all cold things are white:\n\nFrom (5), if Fiona is cold, then Fiona is white.\n\nWe also know that Fiona is quiet and smart.\n\nHowever, we don't have any information about Fiona being cold.\n\nWe need to find a way to link Fiona's properties to her roughness.\n\nFrom (4), if Fiona is white and smart, then Fiona is rough.\n\nWe don't have any direct information about Fiona being white. However, we can use the fact that all cold things are white:\n\nFrom (5), if Fiona is cold, then Fiona is white.\n\nWe also know that Fiona is quiet and smart.\n\nHowever, we don't have any information about Fiona being cold.\n\nLet's try another approach:\n\nFrom (5), we know that if Fiona is cold, then Fiona is white.\n\nFrom (4), if Fiona is white and smart, then Fiona is rough.\n\nWe don't have any direct information about Fiona being white. However, we can use the fact that all cold things are white:\n\nFrom (5), if Fiona is cold, then Fiona is white.\n\nWe also know that Fiona is quiet and smart.\n\nHowever, we don't have any information about Fiona being cold.\n\nWe need to find a way to link Fiona's properties to her roughness.\n\nFrom (4), if Fiona is white and smart, then Fiona is rough.\n\nWe don't have any direct information about Fiona being white. However, we can use the fact that all cold things are white:\n\nFrom (5), if Fiona is cold, then Fiona is white.\n\nWe also know that Fiona is quiet and smart.\n\nHowever, we don't have any information about Fiona being cold.\n\nLet's try another approach:\n\nFrom (5), we know that if Fiona is cold, then Fiona is white.\n\nFrom (2), if Fiona is white, then Fiona is nice.\n\nFrom (3), if Fiona is nice and white, then Fiona is quiet.\n\nWe know from (1) and (2) that Fiona is quiet and smart.\n\nHowever, we don't have any information about Fiona being cold.\n\nWe need to find a way to link Fiona's properties to her roughness.\n\nFrom (4), if Fiona is white and smart, then Fiona is rough.\n\nWe don't have any direct information about Fiona being white. However, we can use the fact that all cold things are white:\n\nFrom (5), if Fiona is cold, then Fiona is white.\n\nWe also know that Fiona is quiet and smart.\n\nHowever, we don't have any information about Fiona being cold.\n\nLet's try another approach:\n\nFrom (5), we know that if Fiona is cold, then Fiona is white.\n\nFrom (2), if Fiona is white, then Fiona is nice.\n\nFrom (3), if Fiona is nice and white, then Fiona is quiet.\n\nWe know from (1) and (2) that Fiona is quiet and smart.\n\nFrom (4), if Fiona is white and smart, then Fiona is rough.\n\nWe don't have any direct information about Fiona being white. However, we can use the fact that all cold things are white:\n\nFrom (5), if Fiona is cold, then Fiona is white.\n\nWe also know that Fiona is quiet and smart.\n\nHowever, we don't have any information about Fiona being cold.\n\nWe need to find a way to link Fiona's properties to her roughness.\n\nFrom (4), if Fiona is white and smart, then Fiona is rough.\n\nWe don't have any direct information about Fiona being white. However, we can use the fact that all cold things are white:\n\nFrom (5), if Fiona is cold, then Fiona is white.\n\nWe also know that Fiona is quiet and smart.\n\nHowever, we don't have any information about Fiona being cold.\n\nLet's try another approach:\n\nFrom (5),",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Charlie is cold.\n   - Charlie is kind.\n   - Charlie is nice.\n   - Charlie is quiet.\n   - Charlie is smart.\n   - Fiona is quiet.\n   - Fiona is smart.\n   - Gary is nice.\n   - Gary is quiet.\n   - Gary is white.\n   - If Fiona is cold then Fiona is nice.\n   - All nice things are white.\n   - If something is white then it is nice.\n   - Nice, white things are quiet.\n   - White, smart things are rough.\n   - Smart, kind things are rough.\n   - All cold things are white.\n   - If Bob is kind then Bob is white.\n   - Quiet, kind things are smart.\n\n2. From the given statements, we can conclude:\n   - Charlie is white (because Charlie is cold and all cold things are white).\n   - Fiona is white (because Charlie is white, and if something is white then it is nice, and if Fiona is quiet then Fiona is white, or Fiona is nice then Fiona is white. Given all nice things are white and Fiona is nice, Fiona must be white).\n   - Fiona is not rough (because Fiona is white and smart, and white, smart things are rough. However, this does not directly tell us if Fiona is rough or not, but we can deduce from the information below).\n   - Quiet, kind things are smart (but we do not know if Fiona is kind).\n   - We do not have enough information to determine if Fiona is kind or not, but we know Fiona is quiet and smart.\n\n3. Given that Fiona is white and smart, we can conclude that Fiona is not rough (because white, smart things are rough, but we have already concluded Fiona is not rough).\n\n4. However, the given information about Fiona being quiet and smart does not necessarily mean that Fiona is kind (because quiet, kind things are smart, but we do not have enough information to determine if Fiona is kind or not).\n\n5. Since Fiona is not cold (because if Fiona is cold then Fiona is nice, and we already know Fiona is nice), and Fiona is white (because Fiona is nice), we can conclude that Fiona is not rough (because Fiona is white and smart, and white, smart things are rough).\n\nHowever, we cannot conclude that Fiona is rough. Since Fiona is not rough from the information we deduced from Fiona being white and smart. However, we can also not conclude that Fiona is not rough from the given information about quiet, kind things being smart. \n\nTherefore, the statement \"Fiona is rough\" is unknown.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_charlie, white_charlie)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_charlie, white_charlie), quiet_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_charlie, nice_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_charlie, white_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_fiona, nice_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_bob, white_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_charlie, kind_charlie), smart_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_charlie, kind_charlie), rough_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_charlie, smart_charlie), rough_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == Unknown",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_fiona, nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_bob, white_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_X, white_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_X, nice_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_X, white_X), quiet_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_X, smart_X), rough_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_X, kind_X), rough_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_X, white_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "all_cold_are_white",
+          "z3_formula": "Implies(cold_X, white_X)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "all_nice_are_white",
+          "z3_formula": "Implies(nice_X, white_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "if_fiona_cold_then_white",
+          "z3_formula": "Implies(cold_fiona, white_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "if_fiona_white_then_rough",
+          "z3_formula": "Implies(white_fiona, rough_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "fiona_is_rough",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_charlie, white_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_charlie, white_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_charlie, white_charlie), quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_gary, smart_gary), rough_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_charlie, kind_charlie), rough_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_charlie, white_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_charlie, white_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_charlie, kind_charlie), smart_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_fiona, nice_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_fiona, white_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_fiona, nice_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_fiona, white_fiona), quiet_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_fiona, smart_fiona), rough_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_fiona, kind_fiona), rough_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_fiona, white_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(bob) -> white(bob)",
+          "z3_formula": "Implies(kind_bob, white_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), smart_fiona)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "All(X, nice(X), white(X))",
+          "z3_formula": "ForAll(nice, Implies(nice, white))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white, nice)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice, white), quiet)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(white, smart), rough)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart, kind), rough)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "All(X, cold(X), white(X))",
+          "z3_formula": "ForAll(cold, Implies(cold, white))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_bob, white_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet, kind), smart)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(fiona)",
+          "z3_formula": "Not(cold_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_charlie, white_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_charlie, white_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, nice_charlie), white_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> nice(X)",
+          "z3_formula": "Implies(quiet_fiona, nice_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_fiona, nice_fiona), white_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_fiona, smart_fiona), rough_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_charlie, white_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_charlie, nice_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_charlie, quiet_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> quiet(Y)",
+          "z3_formula": "Implies(quiet_charlie, quiet_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_fiona, nice_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_fiona, nice_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_fiona, smart_fiona), rough_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_fiona, kind_fiona), rough_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_charlie, kind_charlie), smart_charlie)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_bob, white_bob)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(cold(fiona))",
+          "z3_formula": "Not(cold_fiona == True) & Not(cold_fiona == False)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(nice(fiona))",
+          "z3_formula": "Not(nice_fiona == True) & Not(nice_fiona == False)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(white(fiona))",
+          "z3_formula": "Not(white_fiona == True) & Not(white_fiona == False)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(rough(fiona))",
+          "z3_formula": "Not(rough_fiona == True) & Not(rough_fiona == False)",
+          "source_step": 25
+        }
+      ],
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_charlie, white_charlie)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_charlie, nice_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_gary, nice_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_gary, white_gary), quiet_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_gary, smart_gary), rough_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_charlie, kind_charlie), rough_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == Unknown",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_fiona, white_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_fiona, nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_fiona, white_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(quiet_fiona, white_fiona), nice_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), smart_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_fiona, smart_fiona), rough_fiona)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_charlie, white_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_fiona, nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_fiona, white_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(quiet_fiona, white_fiona), nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_fiona, smart_fiona), rough_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(smart_fiona, kind_fiona), rough_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_fiona, nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_bob, white_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), smart_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(X) & kind(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_fiona, kind_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(kind(fiona))",
+          "z3_formula": "Not(kind_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 207,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 60
+    },
+    "maxsat_stats": {
+      "satisfied": 58,
+      "excluded": 2,
+      "total_weight": 198,
+      "solve_time_ms": 1.5159090980887413
+    },
+    "timing": {
+      "trace_gen_s": 24.794,
+      "extraction_s": 45.804,
+      "dedup_s": 2.474,
+      "maxsat_s": 0.005,
+      "total_s": 73.077
+    }
+  }
+}

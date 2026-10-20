@@ -1,0 +1,803 @@
+{
+  "pid": "folio_1",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "P -> A",
+          "z3_formula": "Implies(P, A)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "P | I",
+          "z3_formula": "Or(P, I)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "C -> ~S",
+          "z3_formula": "Implies(C, Not(S))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "I -> C",
+          "z3_formula": "Implies(I, C)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "B -> S",
+          "z3_formula": "Implies(B, S)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "(A & S) | ~ (A & S)",
+          "z3_formula": "Or(And(A, S), Not(And(A, S)))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "(B | ~B) -> (S | I)",
+          "z3_formula": "Implies(Or(B, Not(B)), Or(S, I))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "perform_in_talent_show(people)",
+          "z3_formula": "perform_in_talent_show_people == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "perform_in_talent_show(people) -> attend_and_engaged(people)",
+          "z3_formula": "Implies(perform_in_talent_show_people, attend_and_engaged_people)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "perform_in_talent_show(people) | inactive_disinterested(people)",
+          "z3_formula": "Or(perform_in_talent_show_people, inactive_disinterested_people)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chaperone_dance(people) -> not_student(people)",
+          "z3_formula": "Implies(chaperone_dance_people, not_student_people)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "inactive_disinterested(people) -> chaperone_dance(people)",
+          "z3_formula": "Implies(inactive_disinterested_people, chaperone_dance_people)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young_child_or_teenager(people) & wish_to_further_academic_career(people) -> student(people)",
+          "z3_formula": "Implies(And(young_child_or_teenager_people, wish_to_further_academic_career_people), student_people)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "attend_and_engaged(people) & student(people) | not(attend_and_engaged(people) & student(people))",
+          "z3_formula": "Or(And(attend_and_engaged_people, student_people), Not(And(attend_and_engaged_people, student_people)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "attend_and_engaged(people) -> student(people)",
+          "z3_formula": "Implies(attend_and_engaged_people, student_people)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "inactive_disinterested(people) -> chaperone_dance(people)",
+          "z3_formula": "Implies(inactive_disinterested_people, chaperone_dance_people)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young_child_or_teenager(people) & wish_to_further_academic_career(people) -> student(people)",
+          "z3_formula": "Implies(And(young_child_or_teenager_people, wish_to_further_academic_career_people), student_people)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young_child_or_teenager(people) & wish_to_further_academic_career(people) | not(young_child_or_teenager(people) & wish_to_further_academic_career(people))",
+          "z3_formula": "Or(And(young_child_or_teenager_people, wish_to_further_academic_career_people), Not(And(young_child_or_teenager_people, wish_to_further_academic_career_people)))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young_child_or_teenager(people) & wish_to_further_academic_career(people) & chaperone_dance(people) | not(young_child_or_teenager(people) & wish_to_further_academic_career(people))",
+          "z3_formula": "Or(And(young_child_or_teenager_people, wish_to_further_academic_career_people, chaperone_dance_people), Not(And(young_child_or_teenager_people, wish_to_further_academic_career_people)))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young_child_or_teenager(people) & wish_to_further_academic_career(people) & chaperone_dance(people) -> student(people) | inactive_disinterested(people)",
+          "z3_formula": "Implies(And(young_child_or_teenager_people, wish_to_further_academic_career_people, chaperone_dance_people), Or(student_people, inactive_disinterested_people))",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "A",
+          "z3_formula": "A == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "A -> B",
+          "z3_formula": "Implies(A, B)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "A | C",
+          "z3_formula": "Or(A, C)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "D -> ~E",
+          "z3_formula": "Implies(D, Not(E))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "C -> D",
+          "z3_formula": "Implies(C, D)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "F -> E",
+          "z3_formula": "Implies(F, E)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "B & E | ~B & ~E",
+          "z3_formula": "Or(And(B, E), And(Not(B), Not(E)))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "G",
+          "z3_formula": "G == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "H",
+          "z3_formula": "H == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "(G & H) | ~G",
+          "z3_formula": "Or(And(G, H), Not(G))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "(E | C)",
+          "z3_formula": "Or(E, C)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "young_child_or_teenager_bonnie",
+          "z3_formula": "young_child_or_teenager_bonnie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chaperones_high_school_dances_bonnie",
+          "z3_formula": "chaperones_high_school_dances_bonnie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young_child_or_teenager(X) & chaperones_high_school_dances(X) -> not_student(X)",
+          "z3_formula": "Implies(And(young_child_or_teenager_bonnie, chaperones_high_school_dances_bonnie), not_student_bonnie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chaperones_high_school_dances(X) -> inactive_and_disinterested(X)",
+          "z3_formula": "Implies(chaperones_high_school_dances_bonnie, inactive_and_disinterested_bonnie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not_student(X) -> inactive_and_disinterested(X)",
+          "z3_formula": "Implies(not_student_bonnie, inactive_and_disinterested_bonnie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young_child_or_teenager(X) -> student(X)",
+          "z3_formula": "Implies(young_child_or_teenager_bonnie, student_bonnie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not young_child_or_teenager(X) -> (student(X) | inactive_and_disinterested(X))",
+          "z3_formula": "Implies(Not(young_child_or_teenager_bonnie), Or(student_bonnie, inactive_and_disinterested_bonnie))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "student_bonnie | inactive_and_disinterested_bonnie",
+          "z3_formula": "Or(student_bonnie, inactive_and_disinterested_bonnie) == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "perform_in_talent_shows(people)",
+          "z3_formula": "perform_in_talent_shows_people == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "perform_in_talent_shows(people) -> attend_and_engaged(people)",
+          "z3_formula": "Implies(perform_in_talent_shows_people, attend_and_engaged_people)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "perform_in_talent_shows(people) | inactive_disinterested(people)",
+          "z3_formula": "Or(perform_in_talent_shows_people, inactive_disinterested_people)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chaperone_dances(people) -> not_student(people)",
+          "z3_formula": "Implies(chaperone_dances_people, not_student_people)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "inactive_disinterested(people) -> chaperone_dances(people)",
+          "z3_formula": "Implies(inactive_disinterested_people, chaperone_dances_people)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young_child_or_teenager(people) & wish_to_further_academic_career(people) -> student(people)",
+          "z3_formula": "Implies(And(young_child_or_teenager_people, wish_to_further_academic_career_people), student_people)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young_child_or_teenager(people) & wish_to_further_academic_career(people) | not_young_child_or_teenager(people)",
+          "z3_formula": "Or(And(young_child_or_teenager_people, wish_to_further_academic_career_people), Not(young_child_or_teenager_people))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "attend_and_engaged(people) -> perform_in_talent_shows(people)",
+          "z3_formula": "Implies(attend_and_engaged_people, perform_in_talent_shows_people)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "attend_and_engaged(people) -> student(people)",
+          "z3_formula": "Implies(attend_and_engaged_people, student_people)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "student(people) | inactive_disinterested(people)",
+          "z3_formula": "Or(student_people, inactive_disinterested_people)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "perform_in_talent_shows(X) -> attends_and_engaged(X)",
+          "z3_formula": "Implies(perform_in_talent_shows_X, attends_and_engaged_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "perform_in_talent_shows(X) | inactive_disinterested(X)",
+          "z3_formula": "Or(perform_in_talent_shows_X, inactive_disinterested_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chaperone_high_school_dances(X) -> not_student(X)",
+          "z3_formula": "Implies(chaperone_high_school_dances_X, not_student_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "inactive_disinterested(X) -> chaperone_high_school_dances(X)",
+          "z3_formula": "Implies(inactive_disinterested_X, chaperone_high_school_dances_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young_child_or_teenager(X) & wishes_to_further_academic_career(X) -> student(X)",
+          "z3_formula": "Implies(And(young_child_or_teenager_X, wishes_to_further_academic_career_X), student_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "Bonnie & young_child_or_teenager(Bonnie) & wishes_to_further_academic_career(Bonnie) -> Bonnie & chaperone_high_school_dances(Bonnie)",
+          "z3_formula": "Implies(And(Bonnie, young_child_or_teenager_Bonnie, wishes_to_further_academic_career_Bonnie), And(Bonnie, chaperone_high_school_dances_Bonnie))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Bonnie & chaperone_high_school_dances(Bonnie) -> not_student(Bonnie)",
+          "z3_formula": "Implies(And(Bonnie, chaperone_high_school_dances_Bonnie), not_student_Bonnie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Bonnie & chaperone_high_school_dances(Bonnie) -> inactive_disinterested(Bonnie)",
+          "z3_formula": "Implies(And(Bonnie, chaperone_high_school_dances_Bonnie), inactive_disinterested_Bonnie)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "Bonnie | not_young_child_or_teenager(Bonnie) | not_wishes_to_further_academic_career(Bonnie)",
+          "z3_formula": "Or(Bonnie, not_young_child_or_teenager_Bonnie, not_wishes_to_further_academic_career_Bonnie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Bonnie & not_young_child_or_teenager(Bonnie) -> not_student(Bonnie) & not_engaged(Bonnie)",
+          "z3_formula": "Implies(And(Bonnie, not_young_child_or_teenager_Bonnie), And(not_student_Bonnie, not_engaged_Bonnie))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "Bonnie & not_young_child_or_teenager(Bonnie) -> inactive_disinterested(Bonnie)",
+          "z3_formula": "Implies(And(Bonnie, not_young_child_or_teenager_Bonnie), inactive_disinterested_Bonnie)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "inactive_disinterested(Bonnie) | inactive_disinterested(Bonnie)",
+          "z3_formula": "Or(inactive_disinterested_Bonnie, inactive_disinterested_Bonnie)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Bonnie -> inactive_disinterested(Bonnie)",
+          "z3_formula": "Implies(Bonnie, inactive_disinterested_Bonnie)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "inactive_disinterested(Bonnie) -> inactive_disinterested(Bonnie)",
+          "z3_formula": "Implies(inactive_disinterested_Bonnie, inactive_disinterested_Bonnie)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "inactive_disinterested(Bonnie) | inactive_disinterested(Bonnie)",
+          "z3_formula": "Or(inactive_disinterested_Bonnie, inactive_disinterested_Bonnie)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Bonnie -> inactive_disinterested(Bonnie)",
+          "z3_formula": "Implies(Bonnie, inactive_disinterested_Bonnie)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "inactive_disinterested(Bonnie) -> inactive_disinterested(Bonnie)",
+          "z3_formula": "Implies(inactive_disinterested_Bonnie, inactive_disinterested_Bonnie)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "inactive_disinterested(Bonnie)",
+          "z3_formula": "inactive_disinterested_Bonnie == True",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "P",
+          "z3_formula": "P == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "P -> E",
+          "z3_formula": "Implies(P, E)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "P V I",
+          "z3_formula": "P_or_I == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "I -> C",
+          "z3_formula": "Implies(I, C)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "C -> ~S",
+          "z3_formula": "Implies(C, Not(S))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "Y -> S",
+          "z3_formula": "Implies(Y, S)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "(E & S) V (~E & ~S)",
+          "z3_formula": "(E_and_S)_or_((Not(E) & Not(S))) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "(Y & C) -> (S V I)",
+          "z3_formula": "Implies(And(Y, C), Or(S, I))",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "perform_in_talent_shows(people)",
+          "z3_formula": "perform_in_talent_shows_people == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "perform_in_talent_shows(people) -> attend_and_engage(people)",
+          "z3_formula": "Implies(perform_in_talent_shows_people, attend_and_engage_people)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "perform_in_talent_shows(people) or inactive_disinterested(people)",
+          "z3_formula": "Or(perform_in_talent_shows_people, inactive_disinterested_people) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(eats_people_squirrel, red_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chaperone_high_school_dances(X) -> not_student(X)",
+          "z3_formula": "Implies(chaperone_high_school_dances_people, not_student_people)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "inactive_disinterested(people) -> chaperone_high_school_dances(people)",
+          "z3_formula": "Implies(inactive_disinterested_people, chaperone_high_school_dances_people)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young_child_or_teenager(people) -> student(people)",
+          "z3_formula": "Implies(young_child_or_teenager_people, student_people)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "Bonnie (B) -> (attend_and_engage(B) & student(B)) or (not attend_and_engage(B) & not student(B))",
+          "z3_formula": "Implies(Bonnie, Or(And(attend_and_engage_Bonnie, student_Bonnie), And(Not(attend_and_engage_Bonnie), Not(student_Bonnie))))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "(C and H) or not C -> (S or D)",
+          "z3_formula": "Implies(Or(C_and_H, Not(C)), Or(S_or_D))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "perform_in_talent_shows(people)",
+          "z3_formula": "perform_in_talent_shows_people == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "perform_in_talent_shows(people) -> attends_and_is_very_engaged(people)",
+          "z3_formula": "Implies(perform_in_talent_shows_people, attends_and_is_very_engaged_people)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not perform_in_talent_shows(people) -> inactive_and_disinterested(people)",
+          "z3_formula": "Implies(Not(perform_in_talent_shows_people), inactive_and_disinterested_people)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chaperones_high_school_dances(people)",
+          "z3_formula": "chaperones_high_school_dances_people == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chaperones_high_school_dances(people) -> inactive_and_disinterested(people)",
+          "z3_formula": "Implies(chaperones_high_school_dances_people, inactive_and_disinterested_people)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young_child_or_teenager_wishes_to_further_academic_career_and_educational_opportunities(people)",
+          "z3_formula": "young_child_or_teenager_wishes_to_further_academic_career_and_educational_opportunities_people == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young_child_or_teenager_wishes_to_further_academic_career_and_educational_opportunities(people) -> attends_school(people)",
+          "z3_formula": "Implies(young_child_or_teenager_wishes_to_further_academic_career_and_educational_opportunities_people, attends_school_people)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "bonnie_young_child_or_teenager_wishes_to_further_academic_career_and_educational_opportunities",
+          "z3_formula": "bonnie_young_child_or_teenager_wishes_to_further_academic_career_and_educational_opportunities == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "bonnie_chaperones_high_school_dances",
+          "z3_formula": "bonnie_chaperones_high_school_dances == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "bonnie_neither_young_child_nor_teenager_wishes_to_further_academic_career_and_educational_opportunities",
+          "z3_formula": "bonnie_neither_young_child_nor_teenager_wishes_to_further_academic_career_and_educational_opportunities == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "bonnie_attends_school_or_inactive_and_disinterested",
+          "z3_formula": "Or(attends_school_bonnie, inactive_and_disinterested_bonnie)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "attends_and_very_engaged(bonnie)",
+          "z3_formula": "attends_and_very_engaged_bonnie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "student_attends_school(bonnie)",
+          "z3_formula": "student_attends_school_bonnie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "performs_in_talent_shows(X) -> attends_and_very_engaged(X)",
+          "z3_formula": "Implies(performs_in_talent_shows_bonnie, attends_and_very_engaged_bonnie)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "performs_in_talent_shows(X) or inactive_and_disinterested(X)",
+          "z3_formula": "Or(performs_in_talent_shows_bonnie, inactive_and_disinterested_bonnie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chaperones_high_school_dances(X) -> not student_attends_school(X)",
+          "z3_formula": "Implies(chaperones_high_school_dances_bonnie, not student_attends_school_bonnie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "inactive_and_disinterested(X) -> chaperones_high_school_dances(X)",
+          "z3_formula": "Implies(inactive_and_disinterested_bonnie, chaperones_high_school_dances_bonnie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young_child_or_teenager_wishes_to_further_academic_career(X) -> student_attends_school(X)",
+          "z3_formula": "Implies(young_child_or_teenager_wishes_to_further_academic_career_bonnie, student_attends_school_bonnie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "(not young_child_or_teenager_wishes_to_further_academic_career(bonnie) or not chaperones_high_school_dances(bonnie)) or (student_attends_school(bonnie) or inactive_and_disinterested(bonnie))",
+          "z3_formula": "(not young_child_or_teenager_wishes_to_further_academic_career_bonnie or not chaperones_high_school_dances_bonnie) or (student_attends_school_bonnie or inactive_and_disinterested_bonnie)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "A",
+          "z3_formula": "A == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "A -> B",
+          "z3_formula": "Implies(A, B)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "A or C",
+          "z3_formula": "Or(A, C) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "D -> not E",
+          "z3_formula": "Implies(D, Not(E))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "C -> D",
+          "z3_formula": "Implies(C, D)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "F -> E",
+          "z3_formula": "Implies(F, E)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "B or not B",
+          "z3_formula": "Or(B, Not(B)) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not B -> C",
+          "z3_formula": "Implies(Not(B), C)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not B -> C",
+          "z3_formula": "Implies(Not(B), C)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not F -> C",
+          "z3_formula": "Implies(Not(F), C)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "C -> D",
+          "z3_formula": "Implies(C, D)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "B -> E",
+          "z3_formula": "Implies(B, E)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not B -> C",
+          "z3_formula": "Implies(Not(B), C)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not F -> E",
+          "z3_formula": "Implies(Not(F), Not(E))",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not F -> C",
+          "z3_formula": "Implies(Not(F), C)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not F -> D",
+          "z3_formula": "Implies(Not(F), D)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "F or not F",
+          "z3_formula": "Or(F, Not(F)) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "E or C",
+          "z3_formula": "Or(E, C) == True",
+          "source_step": 18
+        }
+      ]
+    }
+  ]
+}

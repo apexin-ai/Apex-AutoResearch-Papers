@@ -1,0 +1,699 @@
+{
+  "problem": {
+    "id": "folio_196",
+    "problem": "Given the following premises:\nIf an animal barks, then Jane does not like it. All dogs are animals that bark. If an animal jumps, then Jane likes it. If an animal has legs, then it jumps. If an animal is terricolous, then it has legs.  If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nKiKi is terricolous.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Bark(x) \u2192 \u00acLike(jane, x))",
+      "\u2200x (Dog(x) \u2192 Bark(x))",
+      "\u2200x (Jump(x) \u2192 Like(jane, x))",
+      "\u2200x (HaveLegs(x) \u2192 Jump(x))",
+      "\u2200x (Terricolous(x) \u2192 HaveLegs(x))",
+      "(\u00acJump(kiki) \u2227 \u00acHaveLegs(kiki)) \u2192 (Terricolous(kiki) \u2228 HaveLegs(kiki))"
+    ],
+    "conclusion_fol": "Terricolous(kiki)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 32.0,
+      "Unknown": 63.0
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "True": 4
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and the given premises. Let's break down the premises and analyze the conclusion step by step:\n\nPremise 1: If an animal barks, then Jane does not like it.\nPremise 2: All dogs are animals that bark.\nPremise 3: If an animal jumps, then Jane likes it.\nPremise 4: If an animal has legs, then it jumps.\nPremise 5: If an animal is terricolous, then it has legs.\nPremise 6: If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nConclusion: KiKi is terricolous.\n\nStep 1: Analyze Premise 6\nFrom Premise 6, we know that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs. To determine the conclusion, we need to consider the two possibilities:\n\n* KiKi is terricolous\n* KiKi has legs\n\nHowever, we cannot conclude that KiKi is terricolous or has legs directly from Premise 6. We need to use other premises to eliminate one of the possibilities.\n\nStep 2: Analyze Premise 5\nFrom Premise 5, we know that if an animal is terricolous, then it has legs. If KiKi is terricolous, then it must have legs (by Premise 5). However, we know that KiKi neither jumps nor has legs (from Premise 6). If KiKi has legs, then it would jump (by Premise 4), which contradicts the fact that KiKi neither jumps nor has legs.\n\nStep 3: Eliminate the possibility of KiKi being terricolous\nFrom Step 2, we know that if KiKi is terricolous, then it would have legs, which would lead to a contradiction. Therefore, we can eliminate the possibility of KiKi being terricolous.\n\nStep 4: Analyze the remaining possibility\nSince we eliminated the possibility of KiKi being terricolous, we are left with the possibility that KiKi has legs (from Premise 6). However, we already know that KiKi neither jumps nor has legs (from Premise 6). This is a contradiction, and we cannot conclude that KiKi has legs.\n\nStep 5: Determine the conclusion\nFrom Steps 3 and 4, we know that we cannot conclude that KiKi is terricolous or has legs. Therefore, the conclusion \"KiKi is terricolous\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"KiKi is terricolous\" is true, false, or uncertain, we need to analyze the given premises and the information provided.\n\nPremise 1: If an animal barks, then Jane does not like it.\nPremise 2: All dogs are animals that bark.\nPremise 3: If an animal jumps, then Jane likes it.\nPremise 4: If an animal has legs, then it jumps.\nPremise 5: If an animal is terricolous, then it has legs.\nPremise 6: If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nWe are given that KiKi is terricolous. We need to determine whether this conclusion is true, false, or uncertain based on the premises.\n\nHowever, we cannot directly use the premises to determine whether KiKi is terricolous or not, since the premises do not directly provide information about KiKi. \n\nBut, we can use the premises to find out whether KiKi being terricolous is uncertain or false.\n\nLet's first consider the case where KiKi is terricolous. \n\nIf KiKi is terricolous, then from premise 5, we can conclude that KiKi has legs.\n\nFrom premise 4, we can then conclude that KiKi jumps.\n\nFrom premise 3, we can conclude that Jane likes KiKi.\n\nNow, let's consider the case where KiKi has legs. \n\nIf KiKi has legs, then from premise 4, we can conclude that KiKi jumps.\n\nFrom premise 3, we can then conclude that Jane likes KiKi.\n\nWe can see that if KiKi is terricolous or has legs, then KiKi jumps. However, premise 6 states that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs. \n\nThis premise creates a contradiction because if KiKi has legs, then it jumps, which means it cannot be the case that KiKi neither jumps nor has legs.\n\nSince premise 6 creates a contradiction, we cannot conclude that KiKi is terricolous or has legs. \n\nTherefore, the conclusion \"KiKi is terricolous\" is uncertain, as we cannot determine whether KiKi is terricolous or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use the rules of deductive logic and the given premises.\n\nPremises:\n\n1. If an animal barks, then Jane does not like it.\n2. All dogs are animals that bark.\n3. If an animal jumps, then Jane likes it.\n4. If an animal has legs, then it jumps.\n5. If an animal is terricolous, then it has legs.\n6. If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nConclusion: KiKi is terricolous.\n\nFirst, let's try to derive the conclusion from the premises. We will use the rules of deductive logic:\n\n- Modus ponens (MP): If p \u2192 q and p, then q.\n- Modus tollens (MT): If p \u2192 q and not q, then not p.\n- Hypothetical syllogism (HS): If p \u2192 q and q \u2192 r, then p \u2192 r.\n- Disjunctive syllogism (DS): If p \u2228 q and not p, then q.\n\nStep 1: We want to derive KiKi is terricolous. Let's start with premise 6: If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nFrom premise 6, we can see that if KiKi is terricolous or has legs, then it's either terricolous or has legs. However, we can't derive KiKi is terricolous from this premise directly.\n\nStep 2: We need more information about KiKi. Let's see what we can derive from the premises.\n\nFrom premise 3: If an animal jumps, then Jane likes it.\n\nWe don't have any information about Jane's preferences for KiKi, so we can't derive anything from this premise.\n\nFrom premise 4: If an animal has legs, then it jumps.\n\nWe don't know if KiKi has legs, so we can't derive anything from this premise.\n\nFrom premise 5: If an animal is terricolous, then it has legs.\n\nWe don't know if KiKi is terricolous or not, so we can't derive anything from this premise.\n\nFrom premise 2: All dogs are animals that bark.\n\nWe don't have any information about KiKi being a dog, so we can't derive anything from this premise.\n\nFrom premise 1: If an animal barks, then Jane does not like it.\n\nWe don't have any information about KiKi barking, so we can't derive anything from this premise.\n\nHowever, let's analyze premise 6 again: If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nWe can see that if KiKi has legs, then it jumps (premise 4) and Jane likes it (premise 3).\n\nHowever, we also know that if KiKi barks, then Jane does not like it (premise 1). But we don't have any information about KiKi barking.\n\nIf we assume that KiKi does not bark, then we can't derive anything about KiKi's preference from premise 1.\n\nHowever, if we assume that KiKi barks, then Jane does not like it (premise 1). But we don't have any information about KiKi being a dog.\n\nFrom premise 2, we know that all dogs are animals that bark. But we don't have any information about KiKi being a dog.\n\nTherefore, we can't derive anything about KiKi's preference from the premises.\n\nHowever, let's analyze premise 6 again: If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nIf KiKi is terricolous, then it has legs (premise 5). But we know that if KiKi has legs, then it jumps (premise 4) and Jane likes it (premise 3).\n\nHowever, we don't have any information about Jane's preferences for KiKi.\n\nIf KiKi is terricolous, then it has legs (premise 5). But we also know that if KiKi is terricolous, then it is terricolous (premise 6).\n\nTherefore, we can conclude that KiKi is terricolous.\n\nSo, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion \"KiKi is terricolous\" is true, false, or uncertain, we need to analyze the given premises and their implications.\n\nPremise 1: If an animal barks, then Jane does not like it.\nPremise 2: All dogs are animals that bark.\nPremise 3: If an animal jumps, then Jane likes it.\nPremise 4: If an animal has legs, then it jumps.\nPremise 5: If an animal is terricolous, then it has legs.\nPremise 6: If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nFrom Premise 2 and Premise 3, we can deduce that if an animal is a dog, then Jane likes it, since all dogs are animals that bark (Premise 2) and if an animal barks, then Jane does not like it (Premise 1). But from Premise 3, we can conclude that if an animal is not a dog, then it does not necessarily like it (since it can be terricolous, for example).\n\nHowever, we do not have any information about KiKi being a dog. \n\nWe need to focus on the premises related to KiKi. \n\nFrom Premise 6, we can deduce that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nNow let's analyze the premises related to KiKi's legs and jumping.\n\nFrom Premise 4, we can deduce that if KiKi has legs, then KiKi jumps.\n\nHowever, we do not have any information about KiKi having legs or jumping.\n\nWe need to focus on the conclusion \"KiKi is terricolous\" and the premises related to terricolous animals.\n\nFrom Premise 5, we can deduce that if KiKi is terricolous, then KiKi has legs.\n\nNow let's combine the information from Premise 5 and Premise 6.\n\nFrom Premise 6, we can deduce that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs. \n\nAnd from Premise 5, we can deduce that if KiKi is terricolous, then KiKi has legs.\n\nCombining these two premises, we can deduce that if KiKi neither jumps nor has legs, then KiKi is terricolous.\n\nSince we do not have any information about KiKi jumping or having legs, the conclusion \"KiKi is terricolous\" is uncertain, because it is possible that KiKi neither jumps nor has legs and is therefore terricolous.\n\nHowever, we also need to consider the possibility that KiKi has legs, which would make it jump, and then the conclusion \"KiKi is terricolous\" would be false.\n\nTherefore, the final answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion \"KiKi is terricolous\" is true, false, or uncertain, we need to analyze the given premises and apply them to the conclusion.\n\nPremise 1: If an animal barks, then Jane does not like it.\nPremise 2: All dogs are animals that bark.\nPremise 3: If an animal jumps, then Jane likes it.\nPremise 4: If an animal has legs, then it jumps.\nPremise 5: If an animal is terricolous, then it has legs.\nPremise 6: If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nFrom Premise 2 and Premise 3, we can infer that:\n- If a dog has legs, then it jumps, and Jane likes it.\n\nFrom Premise 5, we can infer that:\n- If an animal is terricolous, then it has legs.\n\nNow, let's analyze the conclusion \"KiKi is terricolous.\" To determine whether this conclusion is true, false, or uncertain, we need to examine the premises and see if we can derive any information about KiKi's status.\n\nFrom Premise 6, we know that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nWe can break down the possibilities for KiKi as follows:\n\n1. KiKi jumps: We don't know anything about KiKi's terricolous status from this information alone.\n2. KiKi has legs: We can infer from Premise 4 that if KiKi has legs, then KiKi jumps. But we already established that if a dog has legs, then it jumps, and Jane likes it (from Premise 2 and Premise 3). So, KiKi must be a dog to satisfy this condition.\n3. KiKi is terricolous: This is the conclusion we want to evaluate.\n\nWe can use the information from Premise 5 to infer that if KiKi is terricolous, then KiKi has legs. But from Premise 6, we also know that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs. Combining these two premises, we can infer that if KiKi is terricolous, then KiKi must not have legs (because KiKi neither jumps nor has legs). This creates a contradiction.\n\nHowever, we need to examine the premises more closely to see if we can derive any information about KiKi's status.\n\nFrom Premise 6, we can rewrite the condition as:\nKiKi is terricolous or has legs (if KiKi neither jumps nor has legs).\n\nWe can also rewrite the condition from Premise 5 as:\nKiKi has legs (if KiKi is terricolous).\n\nSubstituting this condition into Premise 6, we get:\nKiKi is terricolous or KiKi has legs (if KiKi neither jumps nor has legs).\n\nThis gives us a new condition:\nKiKi has legs (if KiKi is terricolous and KiKi neither jumps nor has legs).\n\nWe can now use this condition to examine the premises more closely.\n\nFrom Premise 6, we know that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nWe can also infer from Premise 5 that if KiKi is terricolous, then KiKi has legs.\n\nCombining these two premises, we can infer that if KiKi neither jumps nor has legs, then KiKi is terricolous (because KiKi is terricolous implies KiKi has legs, which is not the case).\n\nHowever, this is the conclusion we want to evaluate, and we need to determine whether it is true, false, or uncertain.\n\nTo do this, let's examine the conditions under which KiKi is terricolous.\n\nWe can infer from Premise 5 that if KiKi is terricolous, then KiKi has legs. But from Premise 6, we also know that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nCombining these two premises, we can infer that if KiKi is terricolous, then KiKi must not have legs (because KiKi neither jumps nor has legs). This creates a contradiction.\n\nHowever, we can also infer from Premise 6 that if KiKi is terricolous, then KiKi is terricolous or has legs (if KiKi neither jumps nor has legs).\n\nThis means that KiKi must have legs if KiKi is terricolous and KiKi neither jumps nor has legs.\n\nWe can now use this condition to examine the premises more closely.\n\nFrom Premise 6, we know that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nWe can also infer from Premise 5 that if KiKi is terricolous, then KiKi has legs.\n\nCombining these two premises, we can infer that if KiKi neither jumps nor has legs, then KiKi is terricolous (because KiKi is terricolous implies KiKi has legs, which is not the case).\n\nHowever, this is the conclusion we want to evaluate, and we need to determine whether it is true, false, or uncertain.\n\nTo do this, let's examine the conditions under which KiKi is terricolous.\n\nWe can infer from Premise 5 that if KiKi is terricolous, then KiKi has legs. But from Premise 6, we also know that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nCombining these two premises, we can infer that if KiKi is terricolous, then KiKi must not have legs (because KiKi neither jumps nor has legs). This creates a contradiction.\n\nHowever, we can also infer from Premise 6 that if KiKi is terricolous, then KiKi is terricolous or has legs (if KiKi neither jumps nor has legs).\n\nThis means that KiKi must have legs if KiKi is terricolous and KiKi neither jumps nor has legs.\n\nSince we can't determine whether KiKi has legs or not, we can't determine whether KiKi is terricolous.\n\nTherefore, the conclusion \"KiKi is terricolous\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use a series of logical deductions based on the given premises.\n\nPremise 1: If an animal barks, then Jane does not like it.\nPremise 2: All dogs are animals that bark.\nPremise 3: If an animal jumps, then Jane likes it.\nPremise 4: If an animal has legs, then it jumps.\nPremise 5: If an animal is terricolous, then it has legs.\nPremise 6: If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nWe are asked to determine whether the conclusion \"KiKi is terricolous\" is true, false, or uncertain.\n\nLet's analyze the information:\n\nFrom Premise 2, we know that dogs are animals that bark. Since the conclusion is about KiKi being terricolous, we need to establish a relationship between KiKi and the given premises.\n\nLet's consider the following steps:\n\n1. Suppose KiKi barks. Then, from Premise 1, Jane does not like KiKi.\n2. Suppose KiKi does not bark. We need to consider the other possibilities.\n\nFrom Premise 4, if an animal has legs, then it jumps. From Premise 5, if an animal is terricolous, then it has legs. So, if KiKi is terricolous, then it has legs, and therefore, it jumps (from Premise 4).\n\nNow, let's consider the conclusion \"KiKi is terricolous.\" If this conclusion is true, then KiKi has legs (from Premise 5), and therefore, KiKi jumps (from Premise 4).\n\nHowever, Premise 6 states that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs. This creates a contradiction because we assumed that KiKi has legs (from Premise 5), but Premise 6 states that KiKi does not have legs.\n\nTherefore, we cannot conclude that KiKi is terricolous with certainty.\n\nHowever, we can use another approach to determine whether the conclusion is true or false.\n\nFrom Premise 6, if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs. Let's assume that KiKi is terricolous. Then, from Premise 5, KiKi has legs, which contradicts our assumption that KiKi does not have legs.\n\nNow, let's consider the case where KiKi is not terricolous. Then, from Premise 6, KiKi must have legs, which contradicts our assumption that KiKi does not have legs.\n\nIn both cases, we have a contradiction, which means that our assumption that KiKi is terricolous is not valid.\n\nTherefore, the conclusion \"KiKi is terricolous\" is uncertain because we cannot determine whether KiKi is terricolous or not with certainty.\n\nHowever, we can use another approach to determine whether the conclusion is true or false.\n\nFrom Premise 3, if an animal jumps, then Jane likes it. From Premise 4, if an animal has legs, then it jumps. So, if KiKi has legs, then KiKi jumps, and therefore, Jane likes KiKi.\n\nHowever, Premise 1 states that if an animal barks, then Jane does not like it. If KiKi barks, then Jane does not like KiKi.\n\nNow, let's consider the conclusion \"KiKi is terricolous.\" If this conclusion is true, then KiKi has legs (from Premise 5), and therefore, KiKi jumps (from Premise 4), and Jane likes KiKi (from Premise 3).\n\nHowever, Premise 1 states that if an animal barks, then Jane does not like it. If KiKi barks, then Jane does not like KiKi.\n\nNow, let's consider the case where KiKi barks. Then, from Premise 1, Jane does not like KiKi, which contradicts our previous conclusion that Jane likes KiKi.\n\nIn this case, we have a contradiction, which means that our assumption that KiKi is terricolous is not valid.\n\nHowever, we cannot conclude that KiKi is not terricolous. We can only conclude that we do not have enough information to determine whether KiKi is terricolous or not.\n\nTherefore, the conclusion \"KiKi is terricolous\" is uncertain because we cannot determine whether KiKi is terricolous or not with certainty.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will use the rules of predicate logic and the given premises.\n\nGiven premises:\n1. If an animal barks, then Jane does not like it. \n2. All dogs are animals that bark.\n3. If an animal jumps, then Jane likes it.\n4. If an animal has legs, then it jumps.\n5. If an animal is terricolous, then it has legs.\n6. If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nWe need to determine if KiKi is terricolous.\n\nLet's break down the premises to find any relevant information about KiKi.\n\nFrom premise 6, we know that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nBut we can't directly determine if KiKi is terricolous or has legs. However, we can use the other premises to find any relevant information about KiKi.\n\nFrom premise 5, we know that if an animal is terricolous, then it has legs.\n\nNow, let's analyze the possibilities of KiKi's properties:\n- If KiKi is terricolous, then KiKi has legs (from premise 5).\n- If KiKi has legs, then KiKi jumps (from premise 4).\n- If KiKi jumps, then Jane likes it (from premise 3).\n\nHowever, we don't have any information about Jane's preferences or KiKi's barking behavior. We only need to focus on KiKi's properties.\n\nNow, let's examine the given conclusion: KiKi is terricolous.\n\nFrom premise 6, we know that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nLet's consider the possibilities:\n- If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs (from premise 6).\n- If KiKi has legs, then KiKi jumps (from premise 4). However, this contradicts the assumption that KiKi neither jumps nor has legs.\n\nTherefore, we can conclude that KiKi must be terricolous.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will use a step-by-step approach with the given premises and the conclusion to be determined.\n\nGiven premises:\n1. If an animal barks, then Jane does not like it.\n2. All dogs are animals that bark.\n3. If an animal jumps, then Jane likes it.\n4. If an animal has legs, then it jumps.\n5. If an animal is terricolous, then it has legs.\n6. If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nConclusion to be determined: KiKi is terricolous.\n\nStep 1: Analyze the premises to understand the relationships between the given conditions.\nFrom premise 2, we know that all dogs are animals that bark.\nFrom premise 3, if an animal jumps, then Jane likes it. \nFrom premise 4, if an animal has legs, then it jumps.\n\nStep 2: Consider the conclusion and the premises that might relate to it.\nSince we are trying to determine whether KiKi is terricolous, we need to analyze the premises that relate to terricolous animals.\nPremise 5 states that if an animal is terricolous, then it has legs.\n\nStep 3: Determine the possible conditions that KiKi can satisfy based on the premises.\nFrom premise 6, if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nSince we are trying to determine whether KiKi is terricolous, let's assume that KiKi neither jumps nor has legs. \nIn this case, premise 6 tells us that KiKi is terricolous or has legs.\n\nStep 4: Analyze the conclusion in the context of the premises.\nIf KiKi is terricolous or has legs, and we know that KiKi neither jumps nor has legs, then we can infer that KiKi is terricolous.\nThis is because the only remaining option, \"has legs,\" is already excluded by the given conditions.\nTherefore, based on the premises, we can conclude that KiKi is terricolous.\n\nFinal answer: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"KiKi is terricolous\" is true, false, or uncertain, we need to analyze the given premises and their implications.\n\nPremise 1: If an animal barks, then Jane does not like it.\nPremise 2: All dogs are animals that bark.\nPremise 3: If an animal jumps, then Jane likes it.\nPremise 4: If an animal has legs, then it jumps.\nPremise 5: If an animal is terricolous, then it has legs.\nPremise 6: If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nWe can start by analyzing the implications of Premise 4 and Premise 5. From Premise 4, we can conclude that if an animal has legs, then it jumps. From Premise 5, we can conclude that if an animal is terricolous, then it has legs. Combining these two conclusions, we can infer that if an animal is terricolous, then it jumps.\n\nNow, let's analyze the conclusion we need to determine. The statement \"KiKi is terricolous\" implies that KiKi is an animal that is terricolous. \n\nFrom Premise 3, we know that if an animal jumps, then Jane likes it. Since we've already inferred that an animal that is terricolous jumps, we can conclude that if KiKi is terricolous, then Jane likes KiKi.\n\nHowever, we cannot directly conclude that KiKi is terricolous from the premises. The conclusion \"KiKi is terricolous\" is uncertain, because Premise 6 states that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs. However, we cannot determine if KiKi has legs or not from the given premises.\n\nBut we can examine the other premises to see if we can draw any conclusions about KiKi having legs. We can start by using Premise 4 and Premise 6 to examine KiKi. From Premise 4, we know that if an animal has legs, then it jumps. From Premise 6, we know that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs. \n\nFrom Premise 6, we have two possibilities: KiKi is terricolous or KiKi has legs. If KiKi has legs, then it would jump, which means KiKi is not terricolous. But we are given that KiKi neither jumps nor has legs. This means we can discard the possibility that KiKi has legs. Therefore, we are left with the conclusion that KiKi is terricolous.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply the rules of logic.\n\nPremise 1: If an animal barks, then Jane does not like it.\nPremise 2: All dogs are animals that bark.\nPremise 3: If an animal jumps, then Jane likes it.\nPremise 4: If an animal has legs, then it jumps.\nPremise 5: If an animal is terricolous, then it has legs.\nPremise 6: If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nNow, let's break down the conclusion: KiKi is terricolous.\n\nFrom Premise 6, we know that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs. This premise implies a disjunction (or) between being terricolous and having legs.\n\nWe need to consider the following cases:\n\nCase 1: KiKi jumps.\nFrom Premise 4, if KiKi jumps, then KiKi has legs. However, this contradicts Premise 6, which states that KiKi neither jumps nor has legs. Therefore, this case is impossible.\n\nCase 2: KiKi has legs.\nFrom Premise 6, if KiKi has legs, then KiKi is terricolous or has legs. This is consistent with Premise 5, which states that if an animal is terricolous, then it has legs. However, we still need to determine whether KiKi is terricolous.\n\nCase 3: KiKi neither jumps nor has legs.\nFrom Premise 6, if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs. Since KiKi has legs in this case, we can conclude that KiKi is terricolous or has legs.\n\nNow, let's analyze the possibilities:\n\n- If KiKi is terricolous, then it satisfies the conclusion.\n- If KiKi has legs, then it does not necessarily mean it is terricolous, but it does satisfy the disjunction in Premise 6.\n\nHowever, we need to consider the given premises and how they relate to each other.\n\nFrom Premise 5, if an animal is terricolous, then it has legs. This implies that being terricolous is sufficient for having legs. \n\nConsidering Case 2, if KiKi has legs, then it is possible that KiKi is terricolous (from Premise 5) or KiKi is not terricolous. However, since we are trying to determine whether KiKi is terricolous, we should focus on the relationship between being terricolous and having legs.\n\nNow, let's apply the rules of logic to the premises. We can use the following argument:\n\n- If KiKi is terricolous, then it has legs (from Premise 5).\n- If KiKi has legs, then it is terricolous or has legs (from Premise 6).\n\nThis argument creates a loop where being terricolous implies having legs, and having legs implies being terricolous or having legs. This loop does not provide any additional information about KiKi being terricolous or not.\n\nHowever, we can use the following argument:\n\n- If KiKi is terricolous, then it has legs (from Premise 5).\n- If KiKi has legs, then KiKi jumps (from Premise 4).\n- If KiKi jumps, then Jane likes it (from Premise 3).\n\nThis argument implies that if KiKi is terricolous, then Jane likes it. However, this argument does not provide any information about KiKi being terricolous.\n\nTo determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply the rules of logic.\n\nFrom Premise 1, if an animal barks, then Jane does not like it. From Premise 2, all dogs are animals that bark. This implies that if KiKi is a dog, then Jane does not like it.\n\nHowever, we are not given any information about KiKi being a dog. Therefore, we cannot conclude that Jane does not like KiKi.\n\nNow, let's analyze the possibilities:\n\n- If KiKi is terricolous, then it has legs (from Premise 5).\n- If KiKi has legs, then it is terricolous or has legs (from Premise 6).\n\nThis argument creates a loop where being terricolous implies having legs, and having legs implies being terricolous or having legs. This loop does not provide any additional information about KiKi being terricolous or not.\n\nHowever, we can use the following argument:\n\n- If KiKi is terricolous, then it has legs (from Premise 5).\n- If KiKi has legs, then KiKi is terricolous or has legs (from Premise 6).\n\nThis argument implies that if KiKi has legs, then KiKi is terricolous or has legs. However, we are not given any information about KiKi having legs.\n\nNow, let's analyze the possibilities:\n\n- If KiKi is terricolous, then it has legs (from Premise 5).\n- If KiKi has legs, then KiKi is terricolous or has legs (from Premise 6).\n\nThis argument creates a loop where being terricolous implies having legs, and having legs implies being terricolous or having legs. This loop does not provide any additional information about KiKi being terricolous or not.\n\nHowever, we can use the following argument:\n\n- If KiKi is terricolous, then it has legs (from Premise 5).\n- If KiKi has legs, then KiKi jumps (from Premise 4).\n- If KiKi jumps, then Jane likes it (from Premise 3).\n\nThis argument implies that if KiKi is terricolous, then Jane likes it. However, we are not given any information about KiKi being terricolous.\n\nNow, let's analyze the possibilities:\n\n- If KiKi is terricolous, then it has legs (from Premise 5).\n- If KiKi has legs, then KiKi is terricolous or has legs (from Premise 6).\n\nThis argument creates a loop where being terricolous implies having legs, and having legs implies being terricolous or having legs. This loop does not provide any additional information about KiKi being terricolous or not.\n\nHowever, we can use the following argument:\n\n- If KiKi is terricolous, then it has legs (from Premise 5).\n- If KiKi has legs, then KiKi is terricolous or has legs (from Premise 6).\n- If KiKi has legs, then KiKi is terricolous (from Premise 5).\n\nThis argument implies that if KiKi has legs, then KiKi is terricolous. However, we are not given any information about KiKi having legs.\n\nNow, let's analyze the possibilities:\n\n- If KiKi has legs, then KiKi is terricolous or has legs (from Premise 6).\n- If KiKi has legs, then KiKi is terricolous (from Premise 5).\n\nThis argument creates a loop where having legs implies being terricolous or having legs, and having legs implies being terricolous. This loop does not provide any additional information about KiKi being terricolous or not.\n\nHowever, we can use the following argument:\n\n- If KiKi has legs, then KiKi is terricolous (from Premise 5).\n- If KiKi is terricolous, then KiKi has legs (from Premise 5).\n\nThis argument creates a loop where being terricolous implies having legs, and having legs implies being terricolous. This loop does not provide any additional information about KiKi being terricolous or not.\n\nNow, let's analyze the possibilities:\n\n- If KiKi is terricolous, then it has legs (from Premise 5).\n- If KiKi has legs, then KiKi is terricolous or has legs (from Premise 6).\n\nThis argument creates a loop where being terricolous implies having legs, and having legs implies being terricolous or having legs. This loop does not provide any additional information about KiKi being terricolous or not.\n\nHowever, we can use the following argument:\n\n- If KiKi is terricolous, then it has legs (from Premise 5).\n- If KiKi has legs, then KiKi is terricolous (from Premise 5).\n\nThis argument implies that if KiKi has legs, then KiKi is terricolous. However, we are not given any information about KiKi having legs.\n\nNow, let's analyze the possibilities:\n\n- If KiKi has legs, then KiKi is terricolous or has legs (from Premise 6).\n- If KiKi has legs, then KiKi is terricolous (from Premise 5).\n\nThis argument creates a loop where having legs implies being terricolous or having legs, and having legs implies being terricolous. This loop does not provide any additional information about KiKi being terricolous or not.\n\nHowever, we can use the following argument:\n\n- If KiKi has legs, then KiKi is terricolous or has legs (from Premise 6).\n- If KiKi is terricolous, then it has legs (from Premise 5).\n- If KiKi has legs, then KiKi is terricolous (from Premise 5).\n\nThis argument implies that if KiKi has legs, then KiKi is terricolous. However, we are not given any information about KiKi having legs.\n\nNow, let's analyze the possibilities:\n\n- If KiKi is terricolous, then it has legs (from Premise 5).\n- If",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply them to the conclusion step by step.\n\n1. Premise: If an animal barks, then Jane does not like it.\n2. Premise: All dogs are animals that bark.\n   We don't have any information about KiKi being a dog, so we can't apply this premise directly.\n\n3. Premise: If an animal jumps, then Jane likes it.\n4. Premise: If an animal has legs, then it jumps.\n   From this premise, we can infer that if an animal has legs, then Jane likes it (by combining premises 3 and 4).\n\n5. Premise: If an animal is terricolous, then it has legs.\n6. Premise: If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n   This premise creates a conditional relationship between KiKi being terricolous and having legs.\n\nNow, let's apply these premises to the conclusion:\n\nConclusion: KiKi is terricolous.\n\nTo determine if this conclusion is true, false, or uncertain, we need to analyze the relationship between KiKi being terricolous and the premises.\n\nFrom premise 6, we know that if KiKi neither jumps nor has legs, then KiKi is terricolous or has legs. However, we don't have any information about KiKi jumping or having legs.\n\nThe premises don't provide a direct relationship between KiKi being terricolous and any of the other premises. We can't conclude that KiKi is terricolous based on the information provided.\n\nTherefore, the conclusion is uncertain, as we lack sufficient information to determine whether KiKi is terricolous or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we'll use logical reasoning and the given premises.\n\nPremises:\n1. If an animal barks, then Jane does not like it.\n2. All dogs are animals that bark.\n3. If an animal jumps, then Jane likes it.\n4. If an animal has legs, then it jumps.\n5. If an animal is terricolous, then it has legs.\n6. If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n\nWe want to determine whether the conclusion \"KiKi is terricolous\" is true, false, or uncertain.\n\nFrom premise 6, we have two possibilities:\n- If KiKi neither jumps nor has legs, then KiKi is terricolous or has legs.\n- We can negate the first part of this premise to get:\n  If KiKi is terricolous or has legs, then KiKi either jumps or has legs.\n\nNow we'll consider the conclusion \"KiKi is terricolous.\" If KiKi is terricolous, then it must have legs according to premise 5.\n\nNow let's analyze the conclusion \"KiKi is terricolous\":\n1. If KiKi is terricolous, then it has legs (premise 5).\n2. If KiKi has legs, then it either jumps (premise 4) or it does not jump (but we'll consider this case later).\n3. If KiKi has legs and jumps, then Jane likes it (premise 3).\n\nHowever, from premise 6, we can see that if KiKi has legs, then it either jumps or KiKi is terricolous.\n\nGiven that we cannot definitively conclude that KiKi has legs or that KiKi jumps from the premises alone, we cannot definitively conclude that Jane likes KiKi.\n\nHowever, we still want to determine whether KiKi is terricolous. Given premise 6, we can also consider the case where KiKi is terricolous and KiKi does not have legs.\n\n1. If KiKi is terricolous, then it is terricolous (by definition).\n2. If KiKi is terricolous, then KiKi does not have legs (premise 6).\n3. If KiKi is terricolous and does not have legs, then KiKi neither jumps nor has legs.\n\nNow, we know that KiKi is terricolous and KiKi neither jumps nor has legs.\n\nSince we cannot definitively conclude that KiKi is terricolous from the premises alone, the conclusion \"KiKi is terricolous\" is uncertain.\n\nHowever, considering the premises alone, we can conclude that \"KiKi is terricolous\" is uncertain.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "rule",
+          "expression": "barks(X) -> not likes_jane(X)",
+          "z3_formula": "Implies(barks_X, not likes_jane_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & barks(X) -> dog(X)",
+          "z3_formula": "Implies(And(animal_X, barks_X), dog_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & jumps(X) -> likes_jane(X)",
+          "z3_formula": "Implies(And(animal_X, jumps_X), likes_jane_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(And(animal_X, has_legs_X), jumps_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(And(animal_X, terricolous_X), has_legs_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not jumps(X) & not has_legs(X) -> terricolous(X) | has_legs(X)",
+          "z3_formula": "Implies(And(Not(jumps_X), Not(has_legs_X)), Or(terricolous_X, has_legs_X))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "terricolous(kiki)",
+          "z3_formula": "terricolous_kiki == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "barks(X) -> not(likes_jane(X))",
+          "z3_formula": "Implies(barks_kiki, not(likes_jane_kiki))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & barks(X) -> animal_dog(X)",
+          "z3_formula": "Implies(And(animal_kiki, barks_kiki), animal_dog_kiki)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> animal(X)",
+          "z3_formula": "Implies(animal_kiki, animal_kiki)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> animal(X)",
+          "z3_formula": "Implies(animal_dog_kiki, animal_dog_kiki)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> animal(X)",
+          "z3_formula": "Implies(animal_kiki, animal_kiki)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "barks(X) -> barks(X)",
+          "z3_formula": "Implies(barks_kiki, barks_kiki)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "animal_dog(X) -> barks(X)",
+          "z3_formula": "Implies(animal_dog_kiki, barks_kiki)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "jumps(X) -> likes_jane(X)",
+          "z3_formula": "Implies(jumps_kiki, likes_jane_kiki)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(has_legs_kiki, jumps_kiki)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_kiki, has_legs_kiki)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "neither(jumps(X), has_legs(X)) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(Or(Not(jumps_kiki), Not(has_legs_kiki)), Or(terricolous_kiki, has_legs_kiki))",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "terricolous(kiki)",
+          "z3_formula": "terricolous_kiki == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_kiki, has_legs_kiki)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(has_legs_kiki, jumps_kiki)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "jumps(X) -> likes(X)",
+          "z3_formula": "Implies(jumps_kiki, likes_kiki)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_kiki, has_legs_kiki)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_legs(X) | terricolous(X)",
+          "z3_formula": "Or(has_legs_kiki, terricolous_kiki)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "terricolous(kiki)",
+          "z3_formula": "terricolous_kiki == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "barks(X) -> not(likes(jane, X))",
+          "z3_formula": "Implies(barks_X, not(likes_jane_X))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & barks(X) -> dog(X)",
+          "z3_formula": "Implies(And(animal_X, barks_X), dog_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & barks(X) -> likes(jane, X)",
+          "z3_formula": "Implies(And(animal_X, barks_X), likes_jane_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & barks(X) -> dog(X)",
+          "z3_formula": "Implies(And(animal_X, barks_X), dog_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & jumps(X) -> likes(jane, X)",
+          "z3_formula": "Implies(And(animal_X, jumps_X), likes_jane_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(And(animal_X, has_legs_X), jumps_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(And(animal_X, terricolous_X), has_legs_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "(not(jumps(X)) & not(has_legs(X))) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(And(Not(jumps_X), Not(has_legs_X)), Or(terricolous_X, has_legs_X))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "barks(X) -> not(likes(jane, X))",
+          "z3_formula": "Implies(barks_X, Not(likes_jane_X))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "dog(X) -> barks(X)",
+          "z3_formula": "Implies(dog_X, barks_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> (dog(X) | barks(X))",
+          "z3_formula": "Implies(animal_X, Or(dog_X, barks_X))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> (jumps(X) | likes(jane, X))",
+          "z3_formula": "Implies(animal_X, Or(jumps_X, likes_jane_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> (legs(X) -> jumps(X))",
+          "z3_formula": "Implies(animal_X, Implies(legs_X, jumps_X))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "terricolous(X) -> legs(X)",
+          "z3_formula": "Implies(terricolous_X, legs_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "(not(jumps(X)) & not(legs(X))) -> (terricolous(X) | legs(X))",
+          "z3_formula": "Implies(And(Not(jumps_X), Not(legs_X)), Or(terricolous_X, legs_X))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "barks(X) -> not(likes(jane, X))",
+          "z3_formula": "Implies(barks_X, Not(likes_jane_X))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "dog(X) -> barks(X)",
+          "z3_formula": "Implies(dog_X, barks_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> (dog(X) | barks(X))",
+          "z3_formula": "Implies(animal_X, Or(dog_X, barks_X))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> (jumps(X) | barks(X))",
+          "z3_formula": "Implies(animal_X, Or(jumps_X, barks_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "jumps(X) -> likes(jane, X)",
+          "z3_formula": "Implies(jumps_X, likes_jane_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_X, has_legs_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(has_legs_X, jumps_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "terricolous(X) | has_legs(X)",
+          "z3_formula": "Or(terricolous_X, has_legs_X)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "terricolous(kiki)",
+          "z3_formula": "terricolous_kiki == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "barks(X) -> not(likes_jane(X))",
+          "z3_formula": "Implies(barks_animal, not(likes_jane_animal))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> barks(X)",
+          "z3_formula": "Implies(animal_dog, barks_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "jumps(X) -> likes_jane(X)",
+          "z3_formula": "Implies(jumps_animal, likes_jane_animal)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(has_legs_animal, jumps_animal)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_animal, has_legs_animal)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not(jumps(X)) & not(has_legs(X)) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(And(not(jumps_animal), not(has_legs_animal)), Or(terricolous_animal, has_legs_animal))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "barks(X) -> not(likes_jane(X))",
+          "z3_formula": "Implies(barks_animal, not(likes_jane_animal))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "animal(dog)",
+          "z3_formula": "animal_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "dog(X) -> barks(X)",
+          "z3_formula": "Implies(dog_animal, barks_animal)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "jumps(X) -> likes_jane(X)",
+          "z3_formula": "Implies(jumps_animal, likes_jane_animal)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(has_legs_animal, jumps_animal)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_animal, has_legs_animal)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not(jumps(X)) & not(has_legs(X)) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(And(not(jumps_animal), not(has_legs_animal)), Or(terricolous_animal, has_legs_animal))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "barks(animal) -> not likes(jane, animal)",
+          "z3_formula": "Implies(barks_animal, not likes_jane_animal)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "dog(X) -> barks(X)",
+          "z3_formula": "Implies(dog_animal, barks_animal)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> jumps(X)",
+          "z3_formula": "Implies(dog_animal, jumps_animal)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> has_legs(X)",
+          "z3_formula": "Implies(animal_animal, has_legs_animal)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_animal, has_legs_animal)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not (jumps(X) | has_legs(X)) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(Not(Or(jumps_animal, has_legs_animal)), Or(terricolous_animal, has_legs_animal))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "terricolous(kiki)",
+          "z3_formula": "terricolous_kiki == True",
+          "source_step": 7
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "barks(X) -> not(likes(jane, X))",
+          "z3_formula": "Implies(barks_X, Not(likes_jane_X))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> barks(X)",
+          "z3_formula": "Implies(animal_X, barks_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(dog)",
+          "z3_formula": "animal_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> likes(jane, X)",
+          "z3_formula": "Implies(animal_X, likes_jane_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) & has_legs(X) -> likes(jane, X)",
+          "z3_formula": "Implies(And(animal_X, has_legs_X), likes_jane_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> has_legs(X)",
+          "z3_formula": "Implies(animal_X, has_legs_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_X, has_legs_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not(jumps(X)) & not(has_legs(X)) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(And(Not(jumps_X), Not(has_legs_X)), Or(terricolous_X, has_legs_X))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "terricolous(kiki)",
+          "z3_formula": "terricolous_kiki == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "barks(animal)",
+          "z3_formula": "barks_animal == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "barks(X) -> not(likes(jane, X))",
+          "z3_formula": "Implies(barks_animal, not(likes_jane_animal))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(dog)",
+          "z3_formula": "animal_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> barks(X)",
+          "z3_formula": "Implies(animal_dog, barks_animal)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(jane, X) -> barks(X)",
+          "z3_formula": "Implies(likes_jane_X, barks_animal)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "jumps(X) -> likes(jane, X)",
+          "z3_formula": "Implies(jumps_X, likes_jane_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "has_legs(X) -> jumps(X)",
+          "z3_formula": "Implies(has_legs_X, jumps_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "terricolous(X) -> has_legs(X)",
+          "z3_formula": "Implies(terricolous_X, has_legs_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not(jumps(X)) & not(has_legs(X)) -> (terricolous(X) | has_legs(X))",
+          "z3_formula": "Implies(And(Not(jumps_X), Not(has_legs_X)), Or(terricolous_X, has_legs_X))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "terricolous(kiki)",
+          "z3_formula": "terricolous_kiki == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "has_legs(kiki)",
+          "z3_formula": "has_legs_kiki == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "jumps(kiki)",
+          "z3_formula": "jumps_kiki == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(jane, kiki)",
+          "z3_formula": "likes_jane_kiki == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "terricolous(kiki) & not(has_legs(kiki))",
+          "z3_formula": "And(terricolous_kiki, Not(has_legs_kiki))",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not(jumps(kiki)) & not(has_legs(kiki))",
+          "z3_formula": "And(Not(jumps_kiki), Not(has_legs_kiki))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "terricolous(kiki) | has_legs(kiki)",
+          "z3_formula": "Or(terricolous_kiki, has_legs_kiki)",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 94,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 48
+    },
+    "maxsat_stats": {
+      "satisfied": 46,
+      "excluded": 2,
+      "total_weight": 83,
+      "solve_time_ms": 1.303069293498993
+    },
+    "timing": {
+      "trace_gen_s": 24.475,
+      "extraction_s": 36.069,
+      "dedup_s": 1.066,
+      "maxsat_s": 0.004,
+      "total_s": 61.614
+    }
+  }
+}

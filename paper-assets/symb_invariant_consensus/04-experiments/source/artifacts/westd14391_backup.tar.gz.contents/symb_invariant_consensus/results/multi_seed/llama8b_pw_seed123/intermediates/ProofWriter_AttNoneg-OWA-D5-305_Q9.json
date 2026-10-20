@@ -1,0 +1,1114 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-305_Q9",
+    "problem": "Bob is big. Bob is blue. Bob is cold. Bob is furry. Bob is green. Bob is round. Dave is round. Erin is red. Fiona is cold. Fiona is green. All green things are blue. If something is round and cold then it is red. Blue, big things are round. If something is furry and blue then it is round. All red, green things are furry. If something is round then it is red. If Bob is furry and Bob is red then Bob is round. Red things are big. All blue things are furry.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is red.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nRound($x, bool) ::: Is x round?\nRed($x, bool) ::: Is x red?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nBlue(Bob, True) ::: Bob is blue.\nCold(Bob, True) ::: Bob is cold.\nFurry(Bob, True) ::: Bob is furry.\nGreen(Bob, True) ::: Bob is green.\nRound(Bob, True) ::: Bob is round.\nRound(Dave, True) ::: Dave is round.\nRed(Erin, True) ::: Erin is red.\nCold(Fiona, True) ::: Fiona is cold.\nGreen(Fiona, True) ::: Fiona is green.\n\nRules:\nGreen($x, True) >>> Blue($x, True) ::: All green things are blue.\nRound($x, True) && Cold($x, True) >>> Red($x, True) ::: If something is round and cold then it is red.\nBlue($x, True) && Big($x, True) >>> Round($x, True) ::: Blue, big things are round.\nFurry($x, True) && Blue($x, True) >>> Round($x, True) ::: If something is furry and blue then it is round.\nRed($x, True) && Green($x, True) >>> Furry($x, True) ::: All red, green things are furry.\nRound($x, True) >>> Red($x, True) ::: If something is round then it is red.\nFurry(Bob, True) && Red(Bob, True) >>> Round(Bob, True) ::: If Bob is furry and Bob is red then Bob is round.\nRed($x, True) >>> Big($x, True) ::: Red things are big.\nBlue($x, True) >>> Furry($x, True) ::: All blue things are furry.\n\nQuery:\nRed(Fiona, True) ::: Fiona is red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 162.0,
+      "Unknown": 159.0
+    },
+    "answer_counts": {
+      "True": 8,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement 'Fiona is red' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Fiona is green.\n2. We know that all green things are blue. \n   So, Fiona is blue.\n\n3. We know that Fiona is cold.\n4. We know that if something is round and cold then it is red. However, we do not know if Fiona is round yet. \n   So, we cannot conclude if Fiona is red or not based on this information.\n\n5. We know that Fiona is green and blue. We also know that blue, big things are round. However, we do not know if Fiona is big yet.\n   So, we cannot conclude if Fiona is round or not based on this information.\n\n6. We know that Fiona is blue and furry. We also know that all blue things are furry. However, we do not have any information that directly links being furry with being round.\n   So, we cannot conclude if Fiona is round or not based on this information.\n\n7. We know that Fiona is green, blue, and cold. We also know that if something is round and cold then it is red. We also know that all blue things are furry, and all green things are blue. \n   Based on this information, we can conclude that Fiona is blue and furry. However, we still do not know if Fiona is round.\n\n8. We know that Fiona is blue and furry. We also know that if something is furry and blue then it is round.\n   So, Fiona is round.\n\n9. We know that Fiona is round and cold. We also know that if something is round and cold then it is red.\n   So, Fiona is red.\n\nBased on the given information and the steps we took, we can conclude that Fiona is red.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Fiona is red, we need to analyze the given statements and their implications.\n\n1. All green things are blue. \n   Since Fiona is green, then Fiona is blue. (From 1)\n\n2. All blue things are furry. \n   Since Fiona is blue, then Fiona is furry. (From 2)\n\n3. If something is furry and blue then it is round. \n   Since Fiona is furry and blue, then Fiona is round. (From 3)\n\n4. If something is round and cold then it is red. \n   Since Fiona is round and we do not have information about Fiona's temperature, we cannot conclude that Fiona is red. (From 4)\n\nHowever, statement 4 does not directly conclude that Fiona is red or not red. It only states a condition for something to be red. We have no information about Fiona's temperature, so this statement does not help us conclude whether Fiona is red or not.\n\nBut we also have another statement that could help us determine if Fiona is red or not: \n\n5. If something is round then it is red. \n   This statement directly contradicts the condition in statement 4: \"If something is round and cold then it is red.\" The statement \"If something is round then it is red\" does not specify that it has to be cold to be red, but the condition in statement 4 does specify that it has to be cold to be red. These two statements cannot both be true at the same time.\n\nHowever, we can still continue analyzing the given statements to see if we can determine if Fiona is red or not.\n\n6. Fiona is green. Fiona is cold. \n   We do not have enough information from these two statements to determine if Fiona is red or not.\n\n7. All red, green things are furry. \n   Since we do not know if Fiona is red, we cannot determine if Fiona is furry or not using this statement.\n\n8. Erin is red. \n   This statement does not provide any information about Fiona being red or not.\n\nNow, we can use the statement that Bob is round to help us determine if Fiona is red or not.\n\n9. If Bob is furry and Bob is red then Bob is round. \n   We do not know if Bob is furry or red. So, we cannot conclude that Bob is round using this statement.\n\n10. Bob is big. Bob is blue. Bob is cold. Bob is furry. Bob is green. Bob is round. \n   From these statements, we can conclude that Bob is round.\n\n11. If something is round then it is red. \n   Since Bob is round, then Bob is red. (From 11)\n\n12. All red things are big. \n   Since Bob is red, then Bob is big. (From 12)\n\nNow, let's go back to the original problem and analyze the statement \"Fiona is cold. Fiona is green.\" Since Fiona is green, then Fiona is blue. (From 1) Since Fiona is blue, then Fiona is furry. (From 2) Since Fiona is furry and blue, then Fiona is round. (From 3) We do not have enough information from these statements to determine if Fiona is red or not.\n\nHowever, we can use the statement that Bob is round to help us determine if Fiona is red or not.\n\n13. If something is round then it is red. \n   This statement is the same as statement 11.\n\n14. If something is round and cold then it is red. \n   Since Fiona is round and we know that Fiona is cold, then Fiona is red. (From 14)\n\nSo, using the information that Fiona is round and cold, we can conclude that Fiona is red.\n\nTherefore, the final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them step by step to determine if the statement 'Fiona is red' is true, false, or unknown.\n\nGiven statements:\n1. Bob is big.\n2. Bob is blue.\n3. Bob is cold.\n4. Bob is furry.\n5. Bob is green.\n6. Bob is round.\n7. Dave is round.\n8. Erin is red.\n9. Fiona is cold.\n10. Fiona is green.\n11. All green things are blue.\n12. If something is round and cold then it is red.\n13. Blue, big things are round.\n14. If something is furry and blue then it is round.\n15. All red, green things are furry.\n16. If something is round then it is red.\n17. If Bob is furry and Bob is red then Bob is round.\n18. Red things are big.\n19. All blue things are furry.\n\nNow, let's analyze the given statements to determine if 'Fiona is red' is true, false, or unknown.\n\nFrom statement 11: All green things are blue.\nSince Fiona is green (statement 10), Fiona must be blue.\n\nFrom statement 19: All blue things are furry.\nSince Fiona is blue (from previous step), Fiona must be furry.\n\nFrom statement 15: All red, green things are furry.\nHowever, since we've established that Fiona is furry and green, but we don't know if Fiona is red yet, let's keep this statement in mind for further analysis.\n\nFrom statement 12: If something is round and cold then it is red.\nSince Fiona is cold (statement 9), for this statement to be true, Fiona must be round.\n\nFrom statement 14: If something is furry and blue then it is round.\nHowever, we already know that Fiona is blue (from statement 11) and furry (from statement 19), so this statement supports that Fiona is round.\n\nFrom statement 16: If something is round then it is red.\nSince we've established that Fiona is round (from previous steps), Fiona must be red.\n\nNow, we can see that Fiona is indeed red. \n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Fiona is red, we need to analyze the given statements and their implications.\n\n1. Bob is big. \n2. Bob is blue. \n3. Bob is cold. \n4. Bob is furry. \n5. Bob is green. \n6. Bob is round. \n7. Dave is round. \n8. Erin is red. \n9. Fiona is cold. \n10. Fiona is green. \n11. All green things are blue. \n12. If something is round and cold then it is red. \n13. Blue, big things are round. \n14. If something is furry and blue then it is round. \n15. All red, green things are furry. \n16. If something is round then it is red. \n17. If Bob is furry and Bob is red then Bob is round. \n18. Red things are big. \n19. All blue things are furry.\n\nFirst, we will use the given statements to derive the properties of Fiona:\n\n- Fiona is cold. (Statement 9)\n- Fiona is green. (Statement 10)\n- All green things are blue. (Statement 11)\n- Therefore, Fiona is blue.\n\nNow, let's see if we can conclude that Fiona is red using the above properties:\n\n- Fiona is round and cold. (We know Fiona is cold and green, and from Statement 12, if something is round and cold then it is red.)\n- However, we have a conflicting statement: All green things are blue (Statement 11), and we know Fiona is green, so Fiona is blue.\n- Since Fiona is blue, we can use Statement 14, which states that if something is furry and blue then it is round. But, we don't know if Fiona is furry.\n- If Fiona is furry and blue, then Fiona is round, and we can use Statement 12 again to conclude that Fiona is red.\n- However, this is not the only possible conclusion. We can also use Statement 16, which states that if something is round then it is red. This conclusion is independent of whether Fiona is furry or blue.\n\nTo determine if Fiona is red, we need to check if she is round. We know that Fiona is cold, so we can use Statement 12 to conclude that Fiona is round and therefore red.\n\nHowever, this conclusion is also dependent on whether Fiona is blue or not. If Fiona is blue, we can use Statement 14 to conclude that Fiona is round. But, we also have Statement 16 which states that if something is round then it is red, and this conclusion is independent of whether Fiona is furry or blue.\n\nGiven the statements, we have two possible conclusions for Fiona being round and red: \n\n- Conclusion 1: Fiona is round because she is cold (Statement 12), and since she is round, she is red (Statement 16).\n- Conclusion 2: Fiona is round because she is blue (Statement 14), and since she is round, she is red (Statement 16).\n\nSince these conclusions are independent of each other, we cannot conclude that Fiona is red based solely on the information given in the problem.\n\nTherefore, the answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements step by step to determine whether Fiona is red.\n\nGiven statements:\n1. Bob is big.\n2. Bob is blue.\n3. Bob is cold.\n4. Bob is furry.\n5. Bob is green.\n6. Bob is round.\n7. Dave is round.\n8. Erin is red.\n9. Fiona is cold.\n10. Fiona is green.\n11. All green things are blue.\n12. If something is round and cold then it is red.\n13. Blue, big things are round.\n14. If something is furry and blue then it is round.\n15. All red, green things are furry.\n16. If something is round then it is red.\n17. If Bob is furry and Bob is red then Bob is round.\n18. Red things are big.\n19. All blue things are furry.\n\nNow, let's apply these statements to determine whether Fiona is red.\n\nFrom statement 10, we know that Fiona is green.\nFrom statement 11, we know that all green things are blue. Therefore, Fiona is blue.\n\nNow, from statement 12, we know that if something is round and cold then it is red. Since Fiona is cold (from statement 9) and we don't have any information about Fiona being round, we can't conclude that Fiona is red using this statement.\n\nHowever, from statement 11, we know that Fiona is blue, and from statement 19, we know that all blue things are furry. So, Fiona is furry.\n\nNow, from statement 17, we know that if Bob is furry and Bob is red then Bob is round. However, this statement doesn't apply to Fiona, so we can't conclude anything from this.\n\nFrom statement 16, we know that if something is round then it is red. However, we don't have any information about Fiona being round, so we can't conclude that Fiona is red using this statement.\n\nFrom statement 15, we know that all red, green things are furry. However, since we don't know if Fiona is red, we can't conclude anything from this.\n\nFrom statement 14, we know that if something is furry and blue then it is round. However, since Fiona is furry (from statement 19) and blue (from statement 11), we can't conclude that Fiona is round.\n\nFrom statement 13, we know that blue, big things are round. However, since we don't have any information about Fiona being big, we can't conclude that Fiona is round.\n\nFrom statement 12, we know that if something is round and cold then it is red. However, we don't have any information about Fiona being round, so we can't conclude that Fiona is red using this statement.\n\nHowever, we have a contradiction in the statements. From statement 16, we know that if something is round then it is red. And from statement 13, we know that blue, big things are round. Since Fiona is blue (from statement 11), we can conclude that Fiona is round.\n\nNow, from statement 9, we know that Fiona is cold. Since we now know that Fiona is round, we can conclude that Fiona is red from statement 12.\n\nTherefore, the statement \"Fiona is red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is red' is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. We know that Fiona is green and cold. \n2. We also know that Fiona is green.\n3. All green things are blue. (This implies that Fiona is blue.)\n4. Blue, big things are round, but we don't have information about Fiona's size, so we cannot determine its roundness based on this statement alone.\n5. Fiona is cold. We don't have information about its roundness based solely on this statement, but we do know that if something is round and cold, it is red.\n6. Since Fiona is blue (from statement 3), and blue things are furry (from statement 9), Fiona is furry.\n7. From statement 8, we know that if something is furry and blue, it is round. \n8. Combining this with statement 7, we can conclude that Fiona is round.\n9. Now that we know Fiona is round and cold, we can use the rule from statement 5 that if something is round and cold, it is red.\n10. Therefore, based on the given statements and their implications, we can conclude that Fiona is red.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is red\" is true, false, or unknown, we need to analyze the given statements and apply the rules of logic.\n\n1. Given statements:\n   - Bob is big.\n   - Bob is blue.\n   - Bob is cold.\n   - Bob is furry.\n   - Bob is green.\n   - Bob is round.\n   - Dave is round.\n   - Erin is red.\n   - Fiona is cold.\n   - Fiona is green.\n   - All green things are blue.\n   - If something is round and cold then it is red.\n   - Blue, big things are round.\n   - If something is furry and blue then it is round.\n   - All red, green things are furry.\n   - If something is round then it is red.\n   - If Bob is furry and Bob is red then Bob is round.\n   - Red things are big.\n   - All blue things are furry.\n\n2. Analyzing the given statements:\n   - Since Fiona is green, and all green things are blue, then Fiona is blue.\n   - From the statement \"If something is furry and blue then it is round,\" we can conclude that since Fiona is blue and we don't know if she is furry, we cannot determine if Fiona is round.\n   - From the statement \"If something is round and cold then it is red,\" we can conclude that since Fiona is cold, we cannot determine if Fiona is red without knowing if she is round.\n\n3. Conclusion:\n   - We cannot determine if Fiona is red or not, because we do not have enough information to conclude that she is round.\n   - Therefore, the statement \"Fiona is red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is red' is true, false, or unknown, we need to analyze the given statements and apply logical reasoning.\n\nGiven statements:\n\n1. Bob is big.\n2. Bob is blue.\n3. Bob is cold.\n4. Bob is furry.\n5. Bob is green.\n6. Bob is round.\n7. Dave is round.\n8. Erin is red.\n9. Fiona is cold.\n10. Fiona is green.\n11. All green things are blue.\n12. If something is round and cold then it is red.\n13. Blue, big things are round.\n14. If something is furry and blue then it is round.\n15. All red, green things are furry.\n16. If something is round then it is red.\n17. If Bob is furry and Bob is red then Bob is round.\n18. Red things are big.\n19. All blue things are furry.\n\nWe need to determine whether 'Fiona is red' is true or false based on these statements.\n\nFrom statement 10, we know that Fiona is green. \nFrom statement 11, we know that all green things are blue, so Fiona is blue.\n\nNow we need to find a relationship between Fiona's characteristics and 'Fiona is red'.\n\nFrom statement 16, we know that if something is round then it is red. \nHowever, statement 12 also says that if something is round and cold then it is red. We don't have enough information about Fiona being round.\n\nFrom statement 9, we know that Fiona is cold. But we still don't have enough information to conclude that Fiona is red.\n\nFrom statement 14, we know that if something is furry and blue then it is round. Since Fiona is blue (from statement 11) and we don't know if Fiona is furry, we can't conclude that Fiona is round.\n\nFrom statement 19, we know that all blue things are furry. Since Fiona is blue, we can conclude that Fiona is furry.\n\nNow we have information about Fiona being furry and blue. From statement 14, we know that if something is furry and blue then it is round. Therefore, Fiona is round.\n\nNow we have Fiona being round and cold. From statement 12, we know that if something is round and cold then it is red. Therefore, Fiona is red.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given statements and apply them to determine if Fiona is red or not.\n\n1. All green things are blue. \n   - This statement implies that anything that is green is also blue.\n\n2. Fiona is green.\n   - From statement 1, we can conclude that Fiona is also blue.\n\n3. All blue things are furry.\n   - This statement implies that anything that is blue is also furry.\n\n4. Fiona is blue.\n   - From statement 3, we can conclude that Fiona is also furry.\n\n5. If something is furry and blue then it is round.\n   - This statement implies that anything that is both furry and blue is round.\n\n6. Fiona is furry and blue.\n   - From statement 5, we can conclude that Fiona is round.\n\n7. If something is round and cold then it is red.\n   - This statement implies that anything that is both round and cold is red.\n\n8. Fiona is cold.\n   - From statement 7, we cannot directly conclude that Fiona is red because we do not know if Fiona is round. We need to continue analyzing the statements.\n\n9. If something is round then it is red.\n   - This statement seems to contradict statement 7. However, we will analyze both statements together.\n\n10. Bob is round.\n    - This statement is not relevant to the problem of determining if Fiona is red.\n\n11. If Bob is furry and Bob is red then Bob is round.\n    - This statement is not relevant to the problem of determining if Fiona is red.\n\n12. All blue things are furry.\n    - We already concluded that Fiona is furry and blue in step 4.\n\n13. Red things are big.\n    - This statement is not relevant to the problem of determining if Fiona is red.\n\n14. All red, green things are furry.\n    - This statement is not relevant to the problem of determining if Fiona is red.\n\n15. Dave is round.\n    - This statement is not relevant to the problem of determining if Fiona is red.\n\n16. Erin is red.\n    - This statement is not relevant to the problem of determining if Fiona is red.\n\n17. Fiona is cold.\n    - We already concluded that Fiona is cold in step 8.\n\n18. Bob is big.\n    - This statement is not relevant to the problem of determining if Fiona is red.\n\n19. Bob is blue.\n    - This statement is not relevant to the problem of determining if Fiona is red.\n\n20. Bob is cold.\n    - This statement is not relevant to the problem of determining if Fiona is red.\n\n21. Bob is furry.\n    - This statement is not relevant to the problem of determining if Fiona is red.\n\n22. Bob is green.\n    - This statement is not relevant to the problem of determining if Fiona is red.\n\n23. Bob is round.\n    - This statement is not relevant to the problem of determining if Fiona is red.\n\nNow, let's re-examine statement 7 and statement 9:\n\n7. If something is round and cold then it is red.\n9. If something is round then it is red.\n\nStatement 9 implies that anything that is round is red, regardless of its temperature. However, statement 7 implies that anything that is round and cold is red. We cannot directly conclude that Fiona is red using these statements because we do not know if statement 9 or statement 7 is more accurate.\n\nHowever, based on our previous analysis, we can conclude that Fiona is round (step 6), and Fiona is cold (step 8). Since we do not have enough information to determine if statement 9 or statement 7 is more accurate, we cannot conclusively determine if Fiona is red.\n\nTherefore, the statement \"Fiona is red\" is unknown. \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is red' is true, false, or unknown, we need to analyze the given information and the logical relationships between the statements.\n\n1. Fiona is cold. Fiona is green. \nFrom this, we know that Fiona is green and cold.\n\n2. All green things are blue. \nSince Fiona is green, we can conclude that Fiona is blue.\n\n3. Blue, big things are round. \nHowever, we don't have enough information to confirm whether Fiona is big or not.\n\n4. If something is round and cold then it is red. \nWe know that Fiona is cold, but we don't know if Fiona is round or not.\n\n5. If something is round then it is red. \nThis statement seems to conflict with the previous statement (4). However, to determine the truth of the statement 'Fiona is red', we need to examine the logical relationships between the statements more closely.\n\n6. All blue things are furry. \nSince Fiona is blue, we can conclude that Fiona is furry.\n\n7. If something is furry and blue then it is round. \nWe already know that Fiona is blue and furry. So, we can conclude that Fiona is round.\n\n8. If something is round then it is red. \nHowever, this statement conflicts with statement (4). To resolve the conflict, we need to examine the logical relationships between the statements more closely.\n\nFrom statement (4), we know that if something is round and cold, then it is red. \nFrom statement (7), we know that Fiona is round.\nFrom statement (1), we know that Fiona is cold.\n\nHowever, we also have the conflicting statement (5), which states that if something is round, then it is red. \n\nTo resolve this conflict, we need to examine the logical relationships between the statements more closely.\n\nStatement (5) is actually a special case of statement (4). Statement (4) says that if something is round and cold, then it is red. Statement (5) says that if something is round, then it is red. But since statement (5) is a special case of statement (4), we can conclude that statement (5) is true only when the condition of statement (4) is met. \n\nIn this case, since Fiona is both round and cold, the condition of statement (4) is met, and therefore, statement (5) is also true.\n\nSo, we can conclude that Fiona is red.\n\nTherefore, the statement 'Fiona is red' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether Fiona is red, we need to analyze the given statements and their implications.\n\n1. Fiona is cold.\n2. Fiona is green.\n3. All green things are blue. (This means Fiona is blue.)\n4. All blue things are furry. (This means Fiona is furry.)\n5. If something is furry and blue then it is round. (This is a new statement that we didn't know before, but it is relevant to Fiona's characteristics.)\n6. All red, green things are furry. (This statement is not relevant to Fiona's characteristics because it is not a \"red, green thing\".)\n7. If something is round and cold then it is red. (This statement is not directly relevant to Fiona's characteristics, but we'll keep it in mind.)\n8. If something is round then it is red. (This statement is not directly relevant to Fiona's characteristics, but we'll keep it in mind.)\n\nFrom statements 5 and 4, we know that Fiona is round because she is both furry and blue.\n\nNow, from statement 7, we have two conditions that make something red: it is round and cold. Since Fiona is round, she might be red if she is also cold. However, from statement 1, we know that Fiona is cold, but we can't conclude that she is red from this statement alone.\n\nFrom statement 8, we know that if something is round, it is red. However, this statement is weaker than statement 7, so we can't use it to conclude that Fiona is red.\n\nCombining the information, we can conclude that Fiona is round (from statement 5 and 4), but we can't conclude that she is red from the given statements.\n\nTherefore, the statement \"Fiona is red\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Fiona is red, we need to analyze the given statements and apply them logically.\n\n1. Fiona is cold. \n2. Fiona is green.\n\nFrom the statement: All green things are blue.\nWe can infer that Fiona is blue.\n\n3. All blue things are furry.\nWe can infer that Fiona is furry.\n\nFrom the statement: If something is furry and blue then it is round.\nWe can infer that Fiona is round.\n\nHowever, there are two conflicting statements regarding Fiona's roundness:\n\n- Fiona is round (from the above inference)\n- If something is round and cold then it is red.\n\nWe need to analyze this further. We know Fiona is round, and we know she is cold. So, according to the statement, if something is round and cold then it is red.\n\nHowever, there is another statement that says: If something is round then it is red.\nThis statement directly contradicts the previous one because it's a more general statement that applies to all round things, including those that are not cold.\n\nBut we also know that: All blue things are furry, and Fiona is blue, so she is furry. Also, we know that All blue things are furry, and Fiona is furry, so she is blue. So we can conclude that: Fiona is furry and blue.\n\nFrom the statement: If something is furry and blue then it is round.\nWe can infer that Fiona is round.\n\nHowever, since we have two conflicting statements about Fiona's roundness, and Fiona is round because she is blue and furry (from the above statement), we can't conclude that Fiona is red based on her roundness and coldness.\n\nConsidering the statement: If something is round then it is red.\nThis statement is more general, and it applies to all round things. Fiona is round, so according to this statement, she is red.\n\nGiven the conflicting statements, we can conclude that Fiona is red.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), red_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_fiona, furry_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, blue_fiona), round_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), red_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_fiona, blue_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_fiona, furry_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, blue_fiona), round_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), red_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_fiona, blue_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_fiona, furry_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_fiona, green_fiona), furry_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), red_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, blue_fiona), round_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> red(X)",
+          "z3_formula": "Implies(round_fiona, red_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_bob, red_bob), round_bob)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_fiona, big_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_bob, furry_bob)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_fiona, blue_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), red_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, blue_fiona), round_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> red(X)",
+          "z3_formula": "Implies(round_fiona, red_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_fiona, blue_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), red_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_fiona, furry_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> red(X)",
+          "z3_formula": "Implies(round_fiona, red_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_fiona, big_bob), round_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_bob, blue_bob), round_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_bob, green_bob), furry_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> red(X)",
+          "z3_formula": "Implies(round_bob, red_bob)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_bob, big_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_bob, furry_bob)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_fiona, blue_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_fiona, big_fiona), round_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), red_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_fiona, furry_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, blue_fiona), round_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_bob, blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), red_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_bob, big_bob), round_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_bob, blue_bob), round_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_bob, blue_bob), round_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_bob, red_bob), furry_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> red(X)",
+          "z3_formula": "Implies(round_bob, red_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_bob, red_bob), round_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_bob, big_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_bob, furry_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == Unknown",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), red_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_fiona, furry_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, blue_fiona), round_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_fiona, blue_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_fiona, furry_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, blue_fiona), round_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), red_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> red(X)",
+          "z3_formula": "Implies(round_fiona, red_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_fiona, blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_fiona, big_fiona), round_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == Unknown",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), red_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> red(X)",
+          "z3_formula": "Implies(round_fiona, red_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_fiona, furry_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, blue_fiona), round_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> red(X)",
+          "z3_formula": "Implies(round_fiona, red_fiona)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_fiona, blue_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_fiona, furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, blue_fiona), round_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), red_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> red(X)",
+          "z3_formula": "Implies(round_fiona, red_fiona)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_fiona, blue_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_fiona, furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_fiona, blue_fiona), round_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> red(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), red_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> red(X)",
+          "z3_formula": "Implies(round_fiona, red_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 11
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 164,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 33
+    },
+    "maxsat_stats": {
+      "satisfied": 33,
+      "excluded": 0,
+      "total_weight": 164,
+      "solve_time_ms": 1.0126521810889244
+    },
+    "timing": {
+      "trace_gen_s": 9.441,
+      "extraction_s": 24.093,
+      "dedup_s": 1.038,
+      "maxsat_s": 0.003,
+      "total_s": 34.576
+    }
+  }
+}

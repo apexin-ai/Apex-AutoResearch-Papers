@@ -1,0 +1,664 @@
+{
+  "problem": {
+    "id": "folio_183",
+    "problem": "Given the following premises:\nNo one nice to animals is mean to animals. Some grumpy people are mean to animals. All animal lovers are nice to animals. If someone owns a pet, then they love animals. Tom is a pet owner.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nTom is not a grumpy person and mean to animals.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Nice(x) \u2192 \u00acMean(x))",
+      "\u2203x (Grumpy(x) \u2227 Mean(x))",
+      "\u2200x (AnimalLover(x) \u2192 Nice(x))",
+      "\u2200x (PetOwner(x) \u2192 AnimalLover(x))",
+      "PetOwner(tom)"
+    ],
+    "conclusion_fol": "\u00ac(Grumpy(tom) \u2227 Mean(tom))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 10.0,
+      "True": 13.5,
+      "Unknown": 56.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "False": 2,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we will analyze the given premises step by step.\n\nPremise 1: No one nice to animals is mean to animals.\nThis premise tells us that being nice to animals and being mean to animals are mutually exclusive. If someone is nice to animals, they cannot be mean to animals.\n\nPremise 2: Some grumpy people are mean to animals.\nThis premise tells us that grumpiness and meanness to animals are not mutually exclusive. It's possible for someone to be grumpy and mean to animals.\n\nPremise 3: All animal lovers are nice to animals.\nThis premise tells us that being an animal lover is the same as being nice to animals.\n\nPremise 4: If someone owns a pet, then they love animals.\nThis premise tells us that owning a pet is a sufficient condition for loving animals.\n\nGiven information: Tom is a pet owner.\n\nNow, let's try to conclude whether Tom is not a grumpy person and mean to animals.\n\nFrom Premise 4, since Tom is a pet owner, he loves animals.\n\nFrom Premise 3, since Tom loves animals, he is nice to animals.\n\nFrom Premise 1, since Tom is nice to animals, he cannot be mean to animals.\n\nNow, we need to determine whether Tom is a grumpy person. We know that some grumpy people are mean to animals (Premise 2), but we also know that Tom is not mean to animals (from the previous step). This does not necessarily mean that Tom is not a grumpy person, as there could be other grumpy people who are not mean to animals.\n\nTherefore, we cannot conclude that Tom is not a grumpy person and mean to animals. The conclusion is uncertain, as it is possible for Tom to be a grumpy person who is not mean to animals.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises step by step.\n\nPremise 1: No one nice to animals is mean to animals.\nThis means that if someone is nice to animals, then they cannot be mean to animals. We can represent this as:\nNice to animals \u2192 \u00acMean to animals\n\nPremise 2: Some grumpy people are mean to animals.\nThis means that being grumpy and mean to animals are not mutually exclusive. We can represent this as:\nGrumpy \u2227 Mean to animals\n\nPremise 3: All animal lovers are nice to animals.\nThis means that if someone loves animals, then they are nice to animals. We can represent this as:\nAnimal lover \u2192 Nice to animals\n\nPremise 4: If someone owns a pet, then they love animals.\nThis means that owning a pet implies loving animals. We can represent this as:\nPet owner \u2192 Animal lover\n\nConclusion: Tom is not a grumpy person and mean to animals.\n\nFrom Premise 4, we know that Tom owns a pet, so he must love animals.\nFrom Premise 3, we know that animal lovers are nice to animals, so Tom is nice to animals.\n\nNow, let's analyze the conclusion. To be mean to animals and not a grumpy person, Tom would have to be nice to animals (to not be grumpy). However, Premise 1 states that being nice to animals means not being mean to animals.\n\nCombining these facts, we can conclude that Tom cannot be mean to animals, as he is nice to animals.\n\nSince Tom is nice to animals (as deduced from Premise 4 and 3), he cannot be mean to animals, which directly contradicts the conclusion that Tom is mean to animals.\n\nHowever, the conclusion also states that Tom is \"not a grumpy person\". From Premise 2, we know that grumpy people can be mean to animals, but this does not mean that all mean people are grumpy. Therefore, we cannot conclude that Tom is not a grumpy person based solely on the information given.\n\nHowever, since we already determined that Tom is nice to animals, and from Premise 1, we can deduce that Tom is not mean to animals.\n\nThe given conclusion is uncertain about Tom being not grumpy but it is certain that he is not mean to animals.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion step by step.\n\nPremise 1: No one nice to animals is mean to animals.\nThis premise tells us that there is an inverse relationship between being nice to animals and being mean to animals.\n\nPremise 2: Some grumpy people are mean to animals.\nThis premise tells us that grumpiness is associated with being mean to animals, but it doesn't tell us that all grumpy people are mean to animals.\n\nPremise 3: All animal lovers are nice to animals.\nThis premise tells us that being an animal lover is equivalent to being nice to animals.\n\nPremise 4: If someone owns a pet, then they love animals.\nThis premise tells us that pet ownership is a sufficient condition for loving animals.\n\nConclusion: Tom is not a grumpy person and mean to animals.\n\nLet's start by using Premise 4: If someone owns a pet, then they love animals. Since Tom is a pet owner (given), we can conclude that Tom loves animals.\n\nNow, let's use Premise 3: All animal lovers are nice to animals. Since Tom loves animals (from the previous step), we can conclude that Tom is nice to animals.\n\nNow, let's use Premise 1: No one nice to animals is mean to animals. Since Tom is nice to animals (from the previous step), we can conclude that Tom is not mean to animals.\n\nThe conclusion states that Tom is not a grumpy person and mean to animals. We have already concluded that Tom is not mean to animals (from the previous step). However, we cannot conclude that Tom is not a grumpy person from the given premises.\n\nThere is no direct information about Tom's personality, and grumpiness is only associated with being mean to animals (Premise 2). Therefore, we cannot rule out the possibility that Tom is a grumpy person.\n\nSince we cannot conclude that Tom is not a grumpy person, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will use the given premises and apply logical reasoning.\n\nPremise 1: No one nice to animals is mean to animals.\nThis premise tells us that being nice to animals and being mean to animals are mutually exclusive.\n\nPremise 2: Some grumpy people are mean to animals.\nThis premise tells us that there is at least one person who is grumpy and mean to animals.\n\nPremise 3: All animal lovers are nice to animals.\nThis premise tells us that being an animal lover and being nice to animals are equivalent.\n\nPremise 4: If someone owns a pet, then they love animals.\nThis premise tells us that owning a pet implies loving animals.\n\nConclusion: Tom is not a grumpy person and mean to animals.\n\nTo evaluate this conclusion, we need to determine whether it can be logically deduced from the given premises.\n\nSince Tom is a pet owner (Premise 4), we can infer that Tom loves animals (Premise 4). Given that loving animals is equivalent to being nice to animals (Premise 3), we can conclude that Tom is nice to animals.\n\nNow, we need to determine whether Tom can be mean to animals. From Premise 1, we know that no one nice to animals is mean to animals. Since we have established that Tom is nice to animals, we can conclude that Tom is not mean to animals.\n\nHowever, the conclusion states that Tom is not a grumpy person and mean to animals. We have already established that Tom is not mean to animals. Therefore, the only remaining possibility is that Tom is not grumpy.\n\nFrom Premise 2, we know that some grumpy people are mean to animals. This does not imply that all grumpy people are mean to animals. It only implies that there is a subset of grumpy people who are mean to animals.\n\nWe cannot conclude that Tom is not grumpy based on the given premises. The premises do not provide any information about Tom's personality or behavior outside of the context of his relationship with animals.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and the conclusion step by step.\n\nPremise 1: No one nice to animals is mean to animals.\n- This means that if someone is nice to animals, they cannot be mean to animals.\n\nPremise 2: Some grumpy people are mean to animals.\n- This does not tell us that all grumpy people are mean to animals, but it tells us that some grumpy people are mean to animals.\n\nPremise 3: All animal lovers are nice to animals.\n- This means that if someone loves animals, they are nice to animals.\n\nPremise 4: If someone owns a pet, then they love animals.\n- This means that owning a pet implies loving animals.\n\nConclusion: Tom is not a grumpy person and mean to animals.\n\nFrom Premise 4, we know that Tom is a pet owner. Therefore, according to Premise 3, Tom is an animal lover, which means he is nice to animals.\n\nFrom Premise 1, we know that if Tom is nice to animals, he cannot be mean to animals. Therefore, we can conclude that Tom is not mean to animals.\n\nNow, we need to determine whether Tom is a grumpy person. Since we know that Tom is a pet owner and an animal lover, there is no direct information that tells us whether Tom is grumpy or not. However, Premise 2 tells us that some grumpy people are mean to animals, but it does not tell us that all grumpy people are mean to animals. Therefore, we cannot conclude that Tom is grumpy just because some grumpy people are mean to animals.\n\nHowever, we can use a process of elimination to make a conclusion. If Tom is mean to animals, then he would be both grumpy and mean to animals. Since we already concluded that Tom is not mean to animals, we can safely say that Tom is not both grumpy and mean to animals.\n\nThe conclusion states that Tom is not a grumpy person and mean to animals. Since we already concluded that Tom is not mean to animals, the only part we need to focus on is whether Tom is grumpy. We know that Tom is not both grumpy and mean to animals. However, it is also possible that Tom is not grumpy and mean to animals, or that Tom is grumpy but not mean to animals.\n\nHowever, we can also conclude that Tom cannot be both grumpy and not grumpy at the same time, since he can only be either grumpy or not grumpy. Therefore, we can make a conclusion based on the fact that Tom is not mean to animals.\n\nBased on our previous conclusions and using a process of elimination, we can conclude that the statement \"Tom is not a grumpy person and mean to animals\" is false, since Tom is not mean to animals.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use logical deduction based on the given premises. \n\nPremise 1: No one nice to animals is mean to animals.\nThis implies that if someone is nice to animals, they cannot be mean to animals.\n\nPremise 2: Some grumpy people are mean to animals.\nThis implies that grumpy people may or may not be mean to animals, but it's possible for them to be mean.\n\nPremise 3: All animal lovers are nice to animals.\nThis implies that if someone loves animals, they are nice to animals.\n\nPremise 4: If someone owns a pet, then they love animals.\nThis implies that pet owners must love animals.\n\nGiven statement: Tom is a pet owner.\nFrom Premise 4, we can conclude that Tom loves animals.\n\nFrom Premise 3, if Tom loves animals, then he is nice to animals.\n\nFrom Premise 1, if Tom is nice to animals, then he cannot be mean to animals.\n\nNow, let's examine the conclusion: Tom is not a grumpy person and mean to animals.\nSince we've established that Tom loves animals (from Premise 4) and being a pet owner, and that he is nice to animals (from Premise 3), we can conclude that Tom is not mean to animals (from Premise 1).\n\nHowever, the conclusion also states that Tom is not a grumpy person. We don't have any direct information about Tom's personality from the given premises. \n\nSince the premises do not provide any information about Tom's personality, we cannot conclude whether Tom is grumpy or not. \n\nHowever, we can still conclude that Tom is not mean to animals. Since the premises do not provide any information that makes the conclusion false, we can say that the conclusion is uncertain, as we cannot rule out the possibility of Tom being grumpy or not.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we will analyze the given premises step by step.\n\nPremise 1: No one nice to animals is mean to animals.\nThis premise tells us that being nice to animals and being mean to animals are mutually exclusive.\n\nPremise 2: Some grumpy people are mean to animals.\nThis premise tells us that being grumpy and being mean to animals are not mutually exclusive.\n\nPremise 3: All animal lovers are nice to animals.\nThis premise tells us that being an animal lover and being nice to animals are equivalent.\n\nPremise 4: If someone owns a pet, then they love animals.\nThis premise tells us that owning a pet implies loving animals.\n\nGiven premise: Tom is a pet owner.\nThis premise tells us that Tom owns a pet.\n\nFrom premise 4, we know that Tom loves animals, since he owns a pet.\n\nFrom premise 3, we know that Tom is nice to animals, since he is an animal lover.\n\nNow, let's analyze the conclusion: Tom is not a grumpy person and mean to animals.\n\nWe know that Tom is nice to animals, and from premise 1, being nice to animals and being mean to animals are mutually exclusive.\n\nIf Tom were mean to animals, then it would contradict premise 1.\n\nHowever, premise 2 tells us that some grumpy people are mean to animals, but it does not tell us that all mean people are grumpy.\n\nThere is no direct information provided about Tom's personality (whether he is grumpy or not).\n\nSince we do not have enough information to conclude that Tom is not mean to animals or that he is mean to animals, the conclusion is uncertain.\n\nTherefore, the final answer is:\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning and the given premises.\n\nPremises:\n1. No one nice to animals is mean to animals. \n2. Some grumpy people are mean to animals.\n3. All animal lovers are nice to animals.\n4. If someone owns a pet, then they love animals.\n5. Tom is a pet owner.\n\nWe need to determine whether the conclusion \"Tom is not a grumpy person and mean to animals\" is true, false, or uncertain.\n\nConclusion: Tom is not a grumpy person and mean to animals.\n\nLet's analyze the premises and the conclusion step by step:\n\n1. Since Tom is a pet owner (Premise 5), he loves animals (Premise 4).\n2. All animal lovers are nice to animals (Premise 3), so Tom is nice to animals.\n3. No one nice to animals is mean to animals (Premise 1), so Tom cannot be mean to animals.\n\nNow, let's consider the conclusion: Tom is not a grumpy person and mean to animals. We have already established that Tom is not mean to animals (from step 3). However, we still need to determine whether Tom is a grumpy person.\n\nWe don't have any direct information about Tom's personality (grumpy or not). However, we know that some grumpy people are mean to animals (Premise 2), but we cannot conclude that all grumpy people are mean to animals.\n\nSince we cannot determine whether Tom is a grumpy person based on the given premises, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: No one nice to animals is mean to animals.\nThis premise tells us that being nice to animals and being mean to animals are mutually exclusive.\n\nPremise 2: Some grumpy people are mean to animals.\nThis premise tells us that being grumpy and being mean to animals are not mutually exclusive.\n\nPremise 3: All animal lovers are nice to animals.\nThis premise tells us that being an animal lover and being nice to animals are equivalent.\n\nPremise 4: If someone owns a pet, then they love animals.\nThis premise tells us that owning a pet implies loving animals.\n\nConclusion: Tom is not a grumpy person and mean to animals.\n\nTo evaluate this conclusion, we need to determine whether Tom is a grumpy person and mean to animals.\n\nFrom Premise 4, since Tom owns a pet, he loves animals. According to Premise 3, being an animal lover is equivalent to being nice to animals. Therefore, Tom is nice to animals.\n\nNow, let's consider the possibility that Tom is grumpy. From Premise 2, some grumpy people are mean to animals. However, from Premise 1, being nice to animals and being mean to animals are mutually exclusive. Since Tom is nice to animals, it is not possible for him to be mean to animals, regardless of whether he is grumpy or not.\n\nTherefore, the conclusion \"Tom is not a grumpy person and mean to animals\" is true because it is not possible for Tom to be both grumpy and mean to animals, given that he is nice to animals.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises and the conclusion step by step:\n\nPremise 1: No one nice to animals is mean to animals.\nThis premise tells us that if someone is nice to animals, they cannot be mean to animals.\n\nPremise 2: Some grumpy people are mean to animals.\nThis premise tells us that being grumpy does not necessarily mean someone is mean to animals, but there is a subset of grumpy people who are mean to animals.\n\nPremise 3: All animal lovers are nice to animals.\nThis premise tells us that if someone loves animals, they must be nice to animals.\n\nPremise 4: If someone owns a pet, then they love animals.\nThis premise tells us that owning a pet implies that the person loves animals.\n\nConclusion: Tom is not a grumpy person and mean to animals.\n\nGiven that Tom is a pet owner (Premise 4), we can conclude that Tom loves animals (from Premise 4 and Premise 3). Since Tom loves animals, he must be nice to animals (from Premise 3).\n\nNow, let's analyze the conclusion. We have concluded that Tom is nice to animals, which directly contradicts the first part of the conclusion, \"Tom is not a grumpy person and mean to animals.\" This is because if Tom is nice to animals, he cannot be mean to animals (from Premise 1).\n\nSince the conclusion is directly contradicted by one of the premises, we can conclude that the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to break down the given premises and use logical reasoning.\n\nPremise 1: No one nice to animals is mean to animals.\nThis premise establishes a relationship between being nice to animals and being mean to animals. It implies that if someone is nice to animals, they cannot be mean to animals.\n\nPremise 2: Some grumpy people are mean to animals.\nThis premise introduces grumpy people and their behavior towards animals. It does not directly relate to Tom or his behavior, but it sets the context for what grumpy people might do.\n\nPremise 3: All animal lovers are nice to animals.\nThis premise highlights the behavior of animal lovers, emphasizing that they are nice to animals. It also implies that if someone is nice to animals, they are likely an animal lover.\n\nPremise 4: If someone owns a pet, then they love animals.\nThis premise creates a connection between pet ownership and animal love. Since Tom is a pet owner (given as a fact), this premise tells us that Tom loves animals.\n\nNow, let's analyze the conclusion: Tom is not a grumpy person and mean to animals.\n\nWe know from Premise 3 that all animal lovers are nice to animals. Since Premise 4 states that if someone owns a pet (like Tom), they love animals, we can conclude that Tom is an animal lover and, therefore, nice to animals (by Premise 3).\n\nWe also know from Premise 1 that no one nice to animals is mean to animals. Since we've established that Tom is nice to animals, this premise tells us that Tom cannot be mean to animals.\n\nThe only remaining part of the conclusion is \"not a grumpy person.\" While Premise 2 states that some grumpy people are mean to animals, it does not imply that all grumpy people are mean to animals. Therefore, we cannot conclude that Tom is not a grumpy person based solely on Premise 2.\n\nHowever, since we know that Tom is nice to animals (by Premise 3 and the fact that he loves animals), and Premise 1 states that no one nice to animals is mean to animals, we can conclude that Tom is not mean to animals. This is a strong indication that Tom is not a grumpy person, as grumpy people might be mean to animals.\n\nTherefore, given the premises and our analysis, the conclusion \"Tom is not a grumpy person and mean to animals\" is uncertain, but leaning towards being false. This is because Tom's behavior as an animal lover and pet owner suggests that he is not mean to animals, making it unlikely for him to be a grumpy person.\n\nHowever, we cannot conclusively rule out the possibility that Tom might be a grumpy person who is nice to animals, as the premises do not provide enough information to make this determination.\n\nSo, our final answer is: \\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to break down the given premises and apply them to the conclusion step by step.\n\n1. No one nice to animals is mean to animals. \n   - This premise implies that if someone is nice to animals, they are not mean to animals. However, it does not provide any information about people who are mean to animals. It only establishes a relationship between being nice and mean.\n\n2. Some grumpy people are mean to animals. \n   - This premise indicates that grumpy people can be mean to animals, but it does not imply that all grumpy people are mean to animals. It also does not provide any information about people who are not grumpy.\n\n3. All animal lovers are nice to animals. \n   - This premise establishes a relationship between being an animal lover and being nice to animals. It does not provide any information about people who are not animal lovers.\n\n4. If someone owns a pet, then they love animals. \n   - This premise indicates that owning a pet is a sufficient condition for loving animals. However, it does not provide any information about people who do not own pets.\n\n5. Tom is a pet owner. \n   - This premise is a fact about Tom. We know that he owns a pet.\n\nNow, let's analyze the conclusion: Tom is not a grumpy person and mean to animals.\n\nTo determine whether this conclusion is true, we need to analyze the premises and the given information about Tom. From premise 5, we know that Tom is a pet owner. From premise 4, we know that if someone owns a pet, they love animals. Therefore, we can conclude that Tom loves animals.\n\nFrom premise 3, we know that all animal lovers are nice to animals. Therefore, we can conclude that Tom is nice to animals.\n\nNow, let's consider the second part of the conclusion: Tom is not a grumpy person. We do not have any direct information about Tom's personality. However, from premise 2, we know that some grumpy people are mean to animals, but it does not imply that all grumpy people are mean to animals.\n\nTo determine whether Tom is a grumpy person, we need to consider the following:\n\n- If Tom is not a grumpy person, it would imply that he is not mean to animals, because there is no information that suggests he is grumpy.\n- However, from premise 2, we know that some grumpy people are mean to animals, but it does not provide any information about Tom's behavior.\n- We know that Tom loves animals (from premise 4 and premise 5), and he is nice to animals (from premise 3 and premise 4).\n- Therefore, we cannot conclude that Tom is mean to animals based on the given information.\n\nIn conclusion, we cannot determine whether Tom is a grumpy person or not. However, we can conclude that Tom is nice to animals, and we cannot conclude that he is mean to animals.\n\nTherefore, the conclusion \"Tom is not a grumpy person and mean to animals\" is uncertain, because we cannot determine whether Tom is a grumpy person or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "nice_to_animals(X) & mean_to_animals(X)",
+          "z3_formula": "And(nice_to_animals_tom, mean_to_animals_tom) == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "grumpy(X) & mean_to_animals(X)",
+          "z3_formula": "And(grumpy_tom, mean_to_animals_tom) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal_lover(X) == nice_to_animals(X)",
+          "z3_formula": "animal_lover_tom == nice_to_animals_tom",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> animal_lover(X)",
+          "z3_formula": "Implies(pet_owner_tom, animal_lover_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "pet_owner(tom)",
+          "z3_formula": "pet_owner_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "animal_lover(tom)",
+          "z3_formula": "animal_lover_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice_to_animals(tom)",
+          "z3_formula": "nice_to_animals_tom == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "mean_to_animals(tom)",
+          "z3_formula": "mean_to_animals_tom == False",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "grumpy_tom",
+          "z3_formula": "grumpy_tom == Or(grumpy_tom, Not(And(grumpy_tom, mean_to_animals_tom)))",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice_to_animals_implies_not_mean_to_animals",
+          "z3_formula": "Implies(nice_to_animals, not_mean_to_animals)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "grumpy_and_mean_to_animals",
+          "z3_formula": "And(grumpy, mean_to_animals)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal_lover_implies_nice_to_animals",
+          "z3_formula": "Implies(animal_lover, nice_to_animals)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "pet_owner_implies_animal_lover",
+          "z3_formula": "Implies(pet_owner, animal_lover)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "tom_is_nice_to_animals",
+          "z3_formula": "nice_to_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "tom_is_not_mean_to_animals",
+          "z3_formula": "not_mean_to_animals == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "tom_is_not_grumpy",
+          "z3_formula": "grumpy == False",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "pet_owner(tom)",
+          "z3_formula": "pet_owner_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> animal_lover(X)",
+          "z3_formula": "Implies(pet_owner_tom, animal_lover_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal_lover(X) -> nice(X)",
+          "z3_formula": "Implies(animal_lover_tom, nice_tom)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> not mean(X)",
+          "z3_formula": "Implies(nice_tom, not mean_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "grumpy(X) -> mean(X)",
+          "z3_formula": "Implies(grumpy_tom, mean_tom)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "pet_owner(tom)",
+          "z3_formula": "pet_owner_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> animal_lover(X)",
+          "z3_formula": "Implies(pet_owner_tom, animal_lover_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal_lover(X) -> nice_to_animals(X)",
+          "z3_formula": "Implies(animal_lover_tom, nice_to_animals_tom)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice_to_animals(tom)",
+          "z3_formula": "nice_to_animals_tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice_to_animals(X) -> not mean_to_animals(X)",
+          "z3_formula": "Implies(nice_to_animals_tom, not mean_to_animals_tom)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not mean_to_animals(tom)",
+          "z3_formula": "not mean_to_animals_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "grumpy(X) & mean_to_animals(X)",
+          "z3_formula": "And(grumpy_X, mean_to_animals_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not grumpy(X) | not mean_to_animals(X)",
+          "z3_formula": "Or(Not(grumpy_tom), Not(mean_to_animals_tom))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not grumpy(tom)",
+          "z3_formula": "grumpy_tom == False",
+          "source_step": 9
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "pet_owner(tom)",
+          "z3_formula": "pet_owner_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> loves_animals(X)",
+          "z3_formula": "Implies(pet_owner_tom, loves_animals_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loves_animals(X) -> nice_to_animals(X)",
+          "z3_formula": "Implies(loves_animals_tom, nice_to_animals_tom)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice_to_animals(X) -> not mean_to_animals(X)",
+          "z3_formula": "Implies(nice_to_animals_tom, not mean_to_animals_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "grumpy(X) -> may_be mean_to_animals(X)",
+          "z3_formula": "Implies(grumpy_tom, may_be mean_to_animals_tom)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not mean_to_animals(tom)",
+          "z3_formula": "not mean_to_animals_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "may_be mean_to_animals(tom)",
+          "z3_formula": "may_be mean_to_animals_tom == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice_to_animals(X) & mean_to_animals(X)",
+          "z3_formula": "And(nice_to_animals_tom, mean_to_animals_tom) == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "grumpy(X) & mean_to_animals(X)",
+          "z3_formula": "And(grumpy_tom, mean_to_animals_tom) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal_lover(X) & nice_to_animals(X)",
+          "z3_formula": "And(animal_lover_tom, nice_to_animals_tom) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> animal_lover(X)",
+          "z3_formula": "Implies(pet_owner_tom, animal_lover_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "pet_owner(tom)",
+          "z3_formula": "pet_owner_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "animal_lover(tom)",
+          "z3_formula": "animal_lover_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice_to_animals(tom)",
+          "z3_formula": "nice_to_animals_tom == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not mean_to_animals(tom)",
+          "z3_formula": "Not(mean_to_animals_tom)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not grumpy(tom) & mean_to_animals(tom)",
+          "z3_formula": "And(Not(grumpy_tom), mean_to_animals_tom)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "pet_owner(tom)",
+          "z3_formula": "pet_owner_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> loves_animals(X)",
+          "z3_formula": "Implies(pet_owner_tom, loves_animals_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loves_animals(X) -> nice_to_animals(X)",
+          "z3_formula": "Implies(loves_animals_tom, nice_to_animals_tom)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice_to_animals(X) -> not mean_to_animals(X)",
+          "z3_formula": "Implies(nice_to_animals_tom, not mean_to_animals_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not mean_to_animals(tom)",
+          "z3_formula": "not mean_to_animals_tom == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "grumpy(X) -> mean_to_animals(X)",
+          "z3_formula": "Implies(grumpy_tom, mean_to_animals_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "some(grumpy(X), mean_to_animals(X))",
+          "z3_formula": "some(grumpy_tom, mean_to_animals_tom) == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not grumpy(tom)",
+          "z3_formula": "grumpy_tom == False",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice_to_animals(X) & mean_to_animals(X)",
+          "z3_formula": "Not(And(nice_to_animals_tom, mean_to_animals_tom)) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "grumpy(X) & mean_to_animals(X)",
+          "z3_formula": "grumpy_tom & mean_to_animals_tom == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal_lover(X) -> nice_to_animals(X)",
+          "z3_formula": "Implies(animal_lover_tom, nice_to_animals_tom)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "pet(X) -> animal_lover(X)",
+          "z3_formula": "Implies(pet_tom, animal_lover_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice_to_animals(tom)",
+          "z3_formula": "nice_to_animals_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "grumpy(X) & mean_to_animals(X) -> nice_to_animals(X)",
+          "z3_formula": "Implies(And(grumpy_tom, mean_to_animals_tom), nice_to_animals_tom)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "grumpy_tom & mean_to_animals_tom == False",
+          "z3_formula": "Not(And(grumpy_tom, mean_to_animals_tom)) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not_grumpy(tom)",
+          "z3_formula": "not_grumpy_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "mean_grumpy_animals",
+          "z3_formula": "mean_grumpy_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice_animals(X) -> not_mean_animals(X)",
+          "z3_formula": "Implies(nice_animals_tom, not_mean_animals_tom)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "grumpy(X) -> mean_grumpy_animals",
+          "z3_formula": "Implies(grumpy_tom, mean_grumpy_animals)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loves_animals(X) -> nice_animals(X)",
+          "z3_formula": "Implies(loves_animals_tom, nice_animals_tom)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "owns_pet(X) -> loves_animals(X)",
+          "z3_formula": "Implies(owns_pet_tom, loves_animals_tom)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice_animals(tom)",
+          "z3_formula": "nice_animals_tom == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not_mean_animals(tom)",
+          "z3_formula": "not_mean_animals_tom == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not_grumpy(tom)",
+          "z3_formula": "not_grumpy_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "mean(tom, animals)",
+          "z3_formula": "mean_tom_animals == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice_to_animals(X) -> not_mean_to_animals(X)",
+          "z3_formula": "Implies(nice_to_animals_tom, not_mean_to_animals_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "grumpy(X) -> mean_to_animals(X)",
+          "z3_formula": "Implies(grumpy_tom, mean_tom_animals)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> loves_animals(X)",
+          "z3_formula": "Implies(pet_owner_tom, loves_animals_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loves_animals(X) -> nice_to_animals(X)",
+          "z3_formula": "Implies(loves_animals_tom, nice_to_animals_tom)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not_mean_to_animals(tom)",
+          "z3_formula": "not_mean_to_animals_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice_to_animals(tom)",
+          "z3_formula": "nice_to_animals_tom == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "grumpy(tom) & mean_to_animals(tom)",
+          "z3_formula": "And(grumpy_tom, mean_tom_animals)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "grumpy(tom) | not_grumpy(tom)",
+          "z3_formula": "Or(grumpy_tom, not_grumpy_tom)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not_grumpy(tom) & mean_to_animals(tom)",
+          "z3_formula": "And(not_grumpy_tom, mean_tom_animals)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not_grumpy(tom) & not_mean_to_animals(tom)",
+          "z3_formula": "And(not_grumpy_tom, not_mean_to_animals_tom)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not_grumpy(tom)",
+          "z3_formula": "not_grumpy_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "pet_owner(tom)",
+          "z3_formula": "pet_owner_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> loves_animals(X)",
+          "z3_formula": "Implies(pet_owner_tom, loves_animals_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loves_animals(X) -> nice_to_animals(X)",
+          "z3_formula": "Implies(loves_animals_tom, nice_to_animals_tom)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "grumpy(X) -> mean_to_animals(X)",
+          "z3_formula": "Implies(grumpy_tom, mean_to_animals_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice_to_animals(tom)",
+          "z3_formula": "nice_to_animals_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not mean_to_animals(tom)",
+          "z3_formula": "Not(mean_to_animals_tom) == True",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 88,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 46
+    },
+    "maxsat_stats": {
+      "satisfied": 41,
+      "excluded": 5,
+      "total_weight": 74,
+      "solve_time_ms": 1.523766666650772
+    },
+    "timing": {
+      "trace_gen_s": 7.94,
+      "extraction_s": 28.194,
+      "dedup_s": 0.916,
+      "maxsat_s": 0.004,
+      "total_s": 37.055
+    }
+  }
+}

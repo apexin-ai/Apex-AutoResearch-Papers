@@ -1,0 +1,686 @@
+{
+  "problem": {
+    "id": "folio_136",
+    "problem": "Given the following premises:\nPlungers suck. Vacuums suck. Vampires suck. Space is a vacuum. A duster is a household appliance that doesn't suck.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSpace is a vampire.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Plunger(x) \u2192 Suck(x))",
+      "\u2200x (Vacuum(x) \u2192 Suck(x))",
+      "\u2200x (Vampire(x) \u2192 Suck(x))",
+      "Vacuum(space)",
+      "HouseHoldApp(duster) \u2227 \u00ac Suck(duster)"
+    ],
+    "conclusion_fol": "Vampire(space)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 39.0,
+      "Unknown": 82.5
+    },
+    "answer_counts": {
+      "Unknown": 10,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion \"Space is a vampire\" is true, false, or uncertain, we need to analyze the given premises and see if they support this conclusion.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nFrom Premise 4, we know that space is a vacuum. \n\nFrom Premise 2, we know that vacuums suck. However, this does not provide any information about what \"suck\" means in the context of space. \n\nFrom Premise 3, we know that vampires suck. However, this premise is unrelated to the definition of \"suck\" in the context of space.\n\nFrom Premise 1 and Premise 2, we can infer that \"suck\" is a property that can be shared by plungers and vacuums. However, this does not provide any information about what \"suck\" means in the context of space.\n\nFrom Premise 5, we know that a duster, which is a household appliance, does not suck. However, this premise is unrelated to the definition of \"suck\" in the context of space.\n\nNow, let's analyze the conclusion \"Space is a vampire.\" To determine if this conclusion is true, false, or uncertain, we need to see if the premises support it.\n\nFrom the given premises, we can conclude that space is a vacuum (Premise 4). However, this does not provide any information about whether space is a vampire.\n\nThe only connection we can make between the premises and the conclusion is that vampires suck (Premise 3). However, this does not imply that space is a vampire, because the definition of \"suck\" in the context of space is still unknown.\n\nSince we cannot determine the definition of \"suck\" in the context of space, and we cannot infer any information about space being a vampire from the premises, the conclusion \"Space is a vampire\" is uncertain.\n\nTherefore, the final answer is:\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"Space is a vampire\" is true, false, or uncertain, we need to analyze the given premises and their connections to the conclusion.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nWe can see that the words \"suck\" have multiple meanings in these premises. In Premises 1 and 2, \"suck\" refers to the action of creating suction, as in the case of plungers and vacuums. In Premise 3, \"suck\" refers to the characteristic of vampires in folklore, where they are said to have supernatural powers, including the ability to bite humans and suck their blood.\n\nPremise 4 tells us that space is a vacuum, which means it has a lack of matter and is a region with a very low pressure. This premise is a scientific fact and has no relation to the characteristic of vampires.\n\nThe conclusion \"Space is a vampire\" seems to be trying to connect the scientific fact of space being a vacuum (Premise 4) with the characteristic of vampires (Premise 3). However, there is no logical connection between the two.\n\nSince the conclusion \"Space is a vampire\" is not supported by any of the premises, and the premises do not provide any information that would lead to this conclusion, we can conclude that the truth value of this statement is uncertain.\n\nHowever, another way to look at this is to determine whether it's possible for Space to be a vampire based on the given premises. Since Premise 4 states that Space is a vacuum, and Premise 3 states that Vampires suck, we can substitute the value of Space from Premise 4 into Premise 3 as follows:\n\nSince Space is a vacuum, and Vampires suck, we can say that a vacuum sucks.\n\nNow, Premise 1 states that Plungers suck, and Premise 2 states that Vacuums suck. Since we have established that a vacuum sucks, we can conclude that Plungers and Vacuums both suck. \n\nAlso, from the definition of a Plunger (which is not explicitly given, but implied in the given premises), we can say that a Plunger is not a vampire (because it sucks, but not in the way that Vampires do).\n\nTherefore, the given premises do not provide any information that would lead to the conclusion that Space is a vampire.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we'll analyze the premises step by step.\n\n1. The premises state: \n- Plungers suck.\n- Vacuums suck.\n- Vampires suck.\n- Space is a vacuum.\n- A duster is a household appliance that doesn't suck.\n\nFrom these premises, we can establish the following:\n\n- Plungers, vacuums, and vampires all have the characteristic of 'sucking.'\n- Space is a vacuum.\n\nHowever, the characteristic of 'sucking' is not defined in the premises. It could be referring to a physical action (e.g., sucking up objects), a figurative expression (e.g., something being unappealing), or something else entirely.\n\nGiven the information provided, we cannot definitively conclude that 'sucking' refers to being a vampire. The premises do not provide any connection between the physical or figurative 'sucking' action and the existence of vampires.\n\nTherefore, based on the information provided, the conclusion 'Space is a vampire' is uncertain, as we do not have enough information to determine whether 'sucking' in this context refers to being a vampire or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion \"Space is a vampire\" is true, false, or uncertain, we need to analyze the given premises and their relationships.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nFrom Premise 4, we know that space is a vacuum. \n\nFrom Premise 2, we know that vacuums suck.\n\nSince space is a vacuum, and vacuums suck, we can conclude that space sucks.\n\nHowever, we cannot conclude that space is a vampire based on the given premises. \n\nThe only information we have about vampires is that they suck (Premise 3), but we have no information about vampires being related to space or vacuums in any way. \n\nTherefore, the conclusion \"Space is a vampire\" is uncertain, as we lack sufficient information to determine its truth value.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion \"Space is a vampire\" is true, false, or uncertain, we need to analyze the given premises and see if we can infer the conclusion logically.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nFrom Premise 1 and Premise 2, we can conclude that \"suck\" has a different meaning in different contexts. In the context of plungers and vacuums, \"suck\" means to draw in air or liquid. In the context of vampires, \"suck\" means to drain the blood of another living being.\n\nNow, let's look at Premise 4, which states that \"Space is a vacuum.\" This statement is true, as space is indeed a vacuum, meaning it is a region in which the pressure is significantly lower than the standard atmospheric pressure on Earth.\n\nHowever, from Premise 3, we know that vampires suck in the sense that they drain the blood of other living beings. There is no logical connection between being a vacuum (as stated in Premise 4) and being a vampire. The two concepts are unrelated, and there is no evidence to suggest that space has any characteristics of a vampire.\n\nTherefore, based on the given premises, the conclusion \"Space is a vampire\" is uncertain because it is not possible to logically infer this conclusion from the given premises. We cannot determine whether the conclusion is true or false based on the information provided.\n\nHowever, considering the lack of logical connection between the premises and the conclusion, I'd say it is more likely to be false because the premises don't provide any evidence to support the idea that space is a vampire.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the truth of the conclusion \"Space is a vampire,\" we need to analyze the premises and their relationships.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nWe can see that the word \"suck\" has different meanings in each premise:\n\n- Plungers and vacuums suck in the sense of removing liquid or air.\n- Vampires suck in the sense of feeding on blood.\n- A duster doesn't suck in the sense of removing liquid or air.\n\nFrom Premise 4, we know that Space is a vacuum. However, this doesn't mean Space is a vampire. The meaning of \"suck\" in Premise 3 is different from the meaning in Premise 4.\n\nTherefore, we cannot conclude that Space is a vampire based on the given premises. The conclusion is uncertain because we lack any direct connection between Space and vampires.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion \"Space is a vampire\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nFrom Premise 4, we know that space is a vacuum. \n\nFrom Premise 3, we know that vampires suck. \n\nNow, let's consider the conclusion \"Space is a vampire.\" We are trying to determine whether this conclusion is true, false, or uncertain.\n\nSince space is a vacuum (Premise 4) and vampires suck (Premise 3), we might initially think that the conclusion could be true. However, we need to carefully analyze the relationship between the concepts.\n\nThe fact that space is a vacuum (Premise 4) does not necessarily mean that space is a vampire. Vampires are a mythological concept, and the word \"suck\" in the context of vampires refers to their ability to drain blood, not to the definition of a vacuum.\n\nFurthermore, the conclusion \"Space is a vampire\" would imply that space has characteristics that are specific to vampires, such as the ability to drain blood or being a supernatural being. However, the given premises do not provide any information about space having such characteristics.\n\nTherefore, based on the given premises, we cannot conclude that space is a vampire. The conclusion is uncertain because it relies on an assumption that is not supported by the given information.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "Let's break down the given premises and analyze them:\n\n1. Plungers suck. \n   - This statement is about the function of plungers, which is to remove blockages by creating suction. It does not imply anything about vampires.\n\n2. Vacuums suck. \n   - Similar to the first statement, this is about the function of vacuums, which is also to create suction. It does not relate to vampires.\n\n3. Vampires suck. \n   - This statement is about the nature of vampires, which is a mythological concept. It implies that vampires have a characteristic or ability to suck something, possibly blood.\n\n4. Space is a vacuum. \n   - This statement is about the physical nature of space, which is indeed a vacuum in the sense that it is a region devoid of matter.\n\n5. A duster is a household appliance that doesn't suck. \n   - This statement is about the function of a duster, which is to clean surfaces using static electricity, not suction. It does not relate to vampires or space.\n\nNow, let's analyze the conclusion:\n\nSpace is a vampire. \n\nBased on the given premises, we cannot logically conclude that space is a vampire. The premises provide information about the physical nature of space (it's a vacuum) and the characteristics of vampires (they suck), but there is no connection made between the two. The premises also do not provide any information about vampires having any relationship with space or vacuums.\n\nTherefore, the conclusion \"Space is a vampire\" is uncertain because it is not supported by the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"Space is a vampire\" is true, false, or uncertain, let's analyze the premises and the conclusion step by step.\n\n1. The premises are:\n   - Plungers suck.\n   - Vacuums suck.\n   - Vampires suck.\n   - Space is a vacuum.\n   - A duster is a household appliance that doesn't suck.\n\n2. The conclusion is:\n   - Space is a vampire.\n\nFirst, let's establish the relationship between \"suck\" in the context of plunger, vacuum, and vampire. Plungers and vacuums \"suck\" in a physical sense (removing liquid or air), while vampires \"suck\" in a metaphorical sense (draining blood). There's no direct connection between the physical sense of \"suck\" and the metaphorical sense of \"suck\" in these contexts.\n\nNow, let's analyze the premises that can be related to the conclusion:\n- Space is a vacuum. (Premise 4)\n- Vampires suck. (Premise 3)\n\nFrom Premise 4, we know that space is a vacuum. However, this information doesn't provide any direct connection to vampires or the concept of \"sucking\" in the metaphorical sense.\n\nHowever, the information that \"vampires suck\" (Premise 3) doesn't provide any direct connection to the concept of space or a vacuum. We can't conclude that space is a vampire based solely on this information.\n\nThe premises don't provide any direct or indirect connection between space/vacuum and vampires, so we cannot make a conclusion based on the given information.\n\nTherefore, the conclusion \"Space is a vampire\" is uncertain, as we cannot determine its truth based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion \"Space is a vampire\" is true, false, or uncertain, we need to analyze the given premises and their relationships.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nFirst, let's establish the relationship between the words \"suck\" in the premises. \n\n- Plungers and vacuums both suck (Premise 1 and 2), but it's a different kind of \"suck\" from vampires (Premise 3), as it's associated with a physical action (plungers for unclogging) or a device (vacuums for cleaning).\n- Vampires suck (Premise 3) in a supernatural or metaphorical sense (drinking blood).\n\nNow, let's analyze the conclusion \"Space is a vampire\" based on the premises.\n\nSince space is a vacuum (Premise 4), we can associate it with vacuums (Premise 2), which also suck. However, the \"suck\" associated with vampires (Premise 3) is different from the physical action or device-related \"suck.\"\n\nWe can establish an analogy between space being a vacuum and vacuums sucking, but it doesn't logically connect to vampires sucking in a supernatural or metaphorical sense.\n\nTherefore, the conclusion \"Space is a vampire\" is uncertain because it relies on an analogy between different concepts of \"suck,\" rather than a direct logical relationship between the premises and the conclusion.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion \"Space is a vampire\" is true, false, or uncertain, let's analyze the given premises step by step.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nFrom Premise 4, we know that \"Space is a vacuum.\" \n\nNow, let's examine the relationship between vacuums and vampires. We can't directly infer a connection between the two based on their shared word \"suck.\" This is an example of a linguistic fallacy, where we confuse similar-sounding words with actual semantic connections.\n\nThe word \"suck\" in \"Vampires suck\" doesn't necessarily imply a physical or causal connection to the word \"suck\" in \"Vacuums suck\" or \"Plungers suck.\" It's possible that \"Vampires suck\" is an idiom meaning that vampires have a negative influence or a characteristic that we associate with \"sucking.\"\n\nGiven the information provided, we can't logically deduce that space being a vacuum means it is a vampire. The conclusion is based on a linguistic fallacy and doesn't follow from the given premises.\n\nTherefore, the conclusion \"Space is a vampire\" is **uncertain**, as it relies on an ambiguous interpretation of the word \"suck\" and doesn't follow from the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we can use a form of logical reasoning called \"deductive reasoning.\" This involves analyzing the given premises and determining whether they support the conclusion.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nConclusion: Space is a vampire.\n\nNow, let's analyze the premises:\n\n1. Plungers, vacuums, and vampires all \"suck\" in the given context. However, this doesn't necessarily imply that \"suck\" is a common characteristic among them.\n2. Premise 4 states that space is a vacuum. This doesn't directly relate to vampires, but it does show that the term \"vacuum\" is used to describe space.\n3. Premise 3 states that vampires suck, but this is a separate concept from the physical meaning of \"suck\" (as seen in vacuums and plungers).\n\nTo determine whether the conclusion is true, false, or uncertain, we need to examine the relationships between the premises and the conclusion.\n\nGiven that vampires suck (Premise 3) and space is a vacuum (Premise 4), we can infer that space does not share a common characteristic with vampires, as \"suck\" is used in different contexts.\n\nHowever, the fact that \"suck\" is used in different contexts doesn't necessarily mean that space cannot be related to vampires. But, we have no direct information linking space to vampires.\n\nTherefore, based on the given premises, we cannot conclusively determine whether the conclusion is true or false. The conclusion is uncertain because we lack sufficient information to establish a direct relationship between space and vampires.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "appliance(duster)",
+          "z3_formula": "appliance_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "suck(plunger) & suck(vacuum) -> suck(plunger, vacuum)",
+          "z3_formula": "Implies(And(suck_plunger, suck_vacuum), suck_plunger_vacuum)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "suck(vacuum) -> suck(space)",
+          "z3_formula": "Implies(suck_vacuum, suck_space)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "suck(vampire) -> vampire(vampire)",
+          "z3_formula": "Implies(suck_vampire, vampire_vampire)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "vampire(space)",
+          "z3_formula": "vampire_space == False",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_suck(duster)",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "vacuum(X) -> suck(X)",
+          "z3_formula": "Implies(vacuum_space, suck_space)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "suck(space)",
+          "z3_formula": "suck_space == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not_vampire(plunger)",
+          "z3_formula": "not_vampire_plunger == True",
+          "source_step": 10
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "is_vacuum(space)",
+          "z3_formula": "is_vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "is_household_appliance(duster)",
+          "z3_formula": "is_household_appliance_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "is_vacuum(X) -> suck(X)",
+          "z3_formula": "Implies(is_vacuum_space, suck_space)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "suck(space)",
+          "z3_formula": "suck_space == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "appliance(duster)",
+          "z3_formula": "appliance_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "suck(plunger) & suck(vacuum) -> suck_has_different_meaning",
+          "z3_formula": "Implies(And(suck_plunger, suck_vacuum), suck_has_different_meaning)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "suck_has_different_meaning",
+          "z3_formula": "suck_has_different_meaning == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "suck_has_different_meaning -> suck(plunger) != suck(vacuum)",
+          "z3_formula": "Implies(suck_has_different_meaning, Not(And(suck_plunger, suck_vacuum)))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "suck(vampire) -> vampire",
+          "z3_formula": "Implies(suck_vampire, vampire_space)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "vampire(space)",
+          "z3_formula": "vampire_space == False",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "plungers_suck",
+          "z3_formula": "plungers_suck == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "vacuums_suck",
+          "z3_formula": "vacuums_suck == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "vampires_suck",
+          "z3_formula": "vampires_suck == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "space_is_vacuum",
+          "z3_formula": "space_is_vacuum == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "duster_does_not_suck",
+          "z3_formula": "duster_does_not_suck == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "suck(X) -> vampire(X)",
+          "z3_formula": "Implies(suck_vampire, vampire_space)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "vampire(space)",
+          "z3_formula": "vampire_space == False",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "plungers_suck",
+          "z3_formula": "plungers_suck == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "vacuums_suck",
+          "z3_formula": "vacuums_suck == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "vampires_suck",
+          "z3_formula": "vampires_suck == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "space_is_vacuum",
+          "z3_formula": "space_is_vacuum == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "duster_is_household_appliance",
+          "z3_formula": "duster_is_household_appliance == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "space_is_vacuum",
+          "z3_formula": "space_is_vacuum == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "vampires_suck",
+          "z3_formula": "vampires_suck == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "space_is_vampire",
+          "z3_formula": "Not(And(Implies(space_is_vacuum, space_is_vampire), Implies(vampires_suck, space_is_vampire))) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "is_vacuum(space)",
+          "z3_formula": "is_vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_suck(duster)",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "is_vampire(space)",
+          "z3_formula": "is_vampire_space == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "appliance(duster)",
+          "z3_formula": "appliance_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "appliance(X) & Not(suck(X)) -> Not(suck(X))",
+          "z3_formula": "Implies(And(appliance_duster, Not(suck_duster)), Not(suck_duster))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "vampire(space)",
+          "z3_formula": "vampire_space == True or False or Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "appliance(duster)",
+          "z3_formula": "appliance_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "suck(plunger) & suck(vacuum) -> suck(plunger, vacuum)",
+          "z3_formula": "Implies(And(suck_plunger, suck_vacuum), suck_plunger_vacuum)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "suck(plunger, vacuum) -> suck(plunger, vacuum)",
+          "z3_formula": "Implies(suck_plunger_vacuum, suck_plunger_vacuum)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "suck(plunger, vacuum) -> suck(plunger, vacuum)",
+          "z3_formula": "Implies(suck_plunger_vacuum, suck_plunger_vacuum)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "suck(plunger, vacuum) -> suck(vampire)",
+          "z3_formula": "Implies(suck_plunger_vacuum, suck_vampire)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "suck(vacuum) -> suck(vacuum)",
+          "z3_formula": "Implies(suck_vacuum, suck_vacuum)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "suck(vacuum) -> suck(vacuum)",
+          "z3_formula": "Implies(suck_vacuum, suck_vacuum)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "vacuum(space) -> suck(vacuum)",
+          "z3_formula": "Implies(vacuum_space, suck_vacuum)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "appliance(duster) & ~suck(duster) -> ~suck(duster)",
+          "z3_formula": "Implies(And(appliance_duster, Not(suck_duster)), Not(suck_duster))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(space, vampire)",
+          "z3_formula": "uncertain_space_vampire == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(suck(duster))",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "suck(X) -> vampire(X)",
+          "z3_formula": "Implies(suck_vampire, vampire_space)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "vampire(space)",
+          "z3_formula": "vampire_space == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "plungers_suck",
+          "z3_formula": "plungers_suck == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "vacuums_suck",
+          "z3_formula": "vacuums_suck == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "vampires_suck",
+          "z3_formula": "vampires_suck == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "space_is_vacuum",
+          "z3_formula": "space_is_vacuum == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "duster_is_household_appliance",
+          "z3_formula": "duster_is_household_appliance == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "duster_is_household_appliance -> duster_does_not_suck",
+          "z3_formula": "Implies(duster_is_household_appliance, duster_does_not_suck)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "space_is_vampire",
+          "z3_formula": "space_is_vampire == False",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 92,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 36
+    },
+    "maxsat_stats": {
+      "satisfied": 34,
+      "excluded": 2,
+      "total_weight": 88,
+      "solve_time_ms": 1.6305120661854744
+    },
+    "timing": {
+      "trace_gen_s": 6.364,
+      "extraction_s": 24.937,
+      "dedup_s": 0.745,
+      "maxsat_s": 0.004,
+      "total_s": 32.05
+    }
+  }
+}

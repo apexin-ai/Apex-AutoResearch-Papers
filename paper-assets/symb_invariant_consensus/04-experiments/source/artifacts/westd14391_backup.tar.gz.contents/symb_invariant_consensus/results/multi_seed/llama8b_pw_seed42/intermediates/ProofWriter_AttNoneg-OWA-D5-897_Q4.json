@@ -1,0 +1,710 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-897_Q4",
+    "problem": "Anne is nice. Bob is big. Bob is blue. Bob is cold. Charlie is big. Charlie is cold. Charlie is nice. Charlie is young. Fiona is furry. Fiona is young. If someone is furry and nice then they are cold. If Bob is blue and Bob is big then Bob is cold. All blue, cold people are big. If someone is nice then they are smart. All smart, big people are nice. All smart people are blue. Blue, smart people are furry. Furry, cold people are smart. Cold people are big.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is not smart.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nYoung($x, bool) ::: Is x young?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nNice(Anne, True) ::: Anne is nice.\nBig(Bob, True) ::: Bob is big.\nBlue(Bob, True) ::: Bob is blue.\nCold(Bob, True) ::: Bob is cold.\nBig(Charlie, True) ::: Charlie is big.\nCold(Charlie, True) ::: Charlie is cold.\nNice(Charlie, True) ::: Charlie is nice.\nYoung(Charlie, True) ::: Charlie is young.\nFurry(Fiona, True) ::: Fiona is furry.\nYoung(Fiona, True) ::: Fiona is young.\n\nRules:\nFurry($x, True) && Nice($x, True) >>> Cold($x, True) ::: If someone is furry and nice then they are cold.\nBlue(Bob, True) && Big(Bob, True) >>> Cold(Bob, True) ::: If Bob is blue and Bob is big then Bob is cold.\nBlue($x, True) && Cold($x, True) >>> Big($x, True) ::: All blue, cold people are big.\nNice($x, True) >>> Smart($x, True) ::: If someone is nice then they are smart.\nSmart($x, True) && Big($x, True) >>> Nice($x, True) ::: All smart, big people are nice.\nSmart($x, True) >>> Blue($x, True) ::: All smart people are blue.\nBlue($x, True) && Smart($x, True) >>> Furry($x, True) ::: Blue, smart people are furry.\nFurry($x, True) && Cold($x, True) >>> Smart($x, True) ::: Furry, cold people are smart.\nCold($x, True) >>> Big($x, True) ::: Cold people are big.\n\nQuery:\nSmart(Charlie, False) ::: Charlie is not smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 83.5,
+      "Unknown": 90.5
+    },
+    "answer_counts": {
+      "Unknown": 4,
+      "False": 5
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Charlie is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following facts about Charlie:\n   - Charlie is big.\n   - Charlie is cold.\n   - Charlie is nice.\n   - Charlie is young.\n\n2. We are given the following rules:\n   - If someone is nice then they are smart. \n   - All smart, big people are nice.\n   - All smart people are blue.\n   - Blue, smart people are furry.\n   - Furry, cold people are smart.\n   - Cold people are big.\n\n3. We need to find out if Charlie is smart or not.\n\nFrom the given facts and rules, we can deduce the following:\n\n- Charlie is big and cold, which satisfies the condition of cold people being big. \n- We don't know if Charlie is blue, but we can conclude that if Charlie is smart, he must be blue according to the rule \"All smart people are blue\".\n- Charlie is nice, which satisfies the condition of nice people being smart.\n- However, the rule \"All smart, big people are nice\" is a contradictory rule to the first rule \"If someone is nice then they are smart\", because it implies that only big people are smart if they are nice.\n\n4. Given the contradictions and the complexity of the rules, we can't directly determine if Charlie is smart or not based on the given information. Therefore, the statement \"Charlie is not smart\" cannot be conclusively determined as true or false. The answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not smart\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning step by step.\n\n1. Charlie is big. (From the given statements)\n2. Charlie is cold. (From the given statements)\n3. If someone is nice, then they are smart. (From the given statements)\n4. Charlie is nice. (From the given statements)\n5. From statement 3 and statement 4, we can conclude that Charlie is smart.\n\nNow, let's analyze the statement \"Charlie is not smart\":\n\nGiven that Charlie is smart (from statement 5), we can conclude that the statement \"Charlie is not smart\" is FALSE.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not smart\" is true, false, or unknown, we need to use the given statements and their implications.\n\nGiven statements:\n1. If someone is furry and nice then they are cold.\n2. If Bob is blue and Bob is big then Bob is cold.\n3. All blue, cold people are big.\n4. If someone is nice then they are smart.\n5. All smart, big people are nice.\n6. All smart people are blue.\n7. Blue, smart people are furry.\n8. Furry, cold people are smart.\n9. Cold people are big.\n\nFirst, let's examine the information about Charlie:\n- Charlie is big (given statement).\n- Charlie is cold (given statement).\n- Charlie is nice (given statement).\n\nFrom statement 4, we can conclude that since Charlie is nice, Charlie is smart.\n\nHowever, we have found that the conclusion that Charlie is smart contradicts our initial statement that \"Charlie is not smart.\" Thus, based on the given information, the statement \"Charlie is not smart\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them to Charlie.\n\n1. Charlie is big.\n2. Charlie is cold.\n3. Charlie is nice.\n4. Charlie is young.\n\nWe are asked to determine if the statement \"Charlie is not smart\" is true, false, or unknown.\n\nFrom statement 3, we know that Charlie is nice. \nFrom statement 5, we know that if someone is nice, then they are smart.\nSo, we can conclude that Charlie is smart.\n\nHowever, we cannot directly conclude that \"Charlie is not smart\" is true because we have already established that Charlie is smart.\n\nNow, let's analyze the statement \"Charlie is not smart\" with the other given statements.\n\nIf Charlie is big (statement 1), and all smart, big people are nice (statement 8), and Charlie is nice (statement 3), then we can conclude that Charlie is smart (statement 5).\nBut we already know that Charlie is smart from statement 5.\nSo, the statement \"Charlie is not smart\" cannot be true.\n\nNow, let's see if it can be false.\nIf Charlie is not smart, then he cannot be big (statement 1), because all smart, big people are nice (statement 8), and Charlie is nice (statement 3).\nHowever, we already know that Charlie is big (statement 1), which contradicts the assumption that Charlie is not smart.\nSo, the statement \"Charlie is not smart\" cannot be false.\n\nSince the statement \"Charlie is not smart\" cannot be true or false, we can conclude that it is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not smart\" is true, false, or unknown, we need to analyze the given information and the logical deductions we can make.\n\nGiven information:\n1. Charlie is big.\n2. Charlie is cold.\n3. Charlie is nice.\n4. Charlie is young.\n\nFrom the given information and logical deductions, we can conclude the following:\n- If someone is nice, then they are smart. (From given information)\n- Charlie is nice, therefore Charlie is smart. (From point 3 and the above rule)\n\nSince we have determined that Charlie is smart from the given information, we can conclude that the statement \"Charlie is not smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not smart\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nGiven statements:\n1. Charlie is big.\n2. Charlie is cold.\n3. Charlie is nice.\n\nInferences:\n- All smart, big people are nice. (Given statement)\n- Charlie is nice. (Given statement)\n- Therefore, Charlie could be smart because all smart, big people are nice. However, this is not a conclusive proof that Charlie is smart, so we cannot directly conclude that Charlie is smart from this statement.\n\n- If someone is nice then they are smart. (Given statement)\n- Charlie is nice. (Given statement)\n- Therefore, Charlie is smart. \n\nCombining both inferences, we can conclude that Charlie is smart.\n\nHowever, we still need to check the other given statements that could be related to Charlie.\n\n- All blue, cold people are big. (Given statement)\n- All smart, big people are nice. (Given statement)\n- Blue, smart people are furry. (Given statement)\n- Furry, cold people are smart. (Given statement)\n- Cold people are big. (Given statement)\n\nSince Charlie is big and cold, we can conclude that Charlie is indeed big.\n\nWe also know that Charlie is cold. However, there is no information directly stating that Charlie is blue or smart. But we already determined that Charlie is smart from the given statements.\n\nTo conclude, the statement \"Charlie is not smart\" is false because we have determined that Charlie is smart.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is big. (From the given information)\n2. All cold people are big. (From the given information)\n3. Since Charlie is big and all cold people are big, Charlie is cold. (By Modus Ponens: Big \u2192 Cold)\n4. If someone is furry and nice, then they are cold. (From the given information)\n   However, we cannot determine whether Charlie is furry or nice from the given information, so we cannot conclude that Charlie is cold using this rule. We will come back to this point later.\n5. Charlie is nice. (From the given information)\n6. If someone is nice, then they are smart. (From the given information)\n7. Since Charlie is nice and all nice people are smart, Charlie is smart. (By Modus Ponens: Nice \u2192 Smart)\n\nHowever, we previously concluded that we cannot determine whether Charlie is cold using rule 4. We can determine Charlie's coldness using rule 2 (All cold people are big), which we previously used, but we can also determine Charlie's coldness using rule 3 (Cold people are big), which we previously used. But we can also use rule 5 (All blue, cold people are big) to conclude Charlie's coldness.\n\n8. Charlie is big. (From the given information)\n9. All blue, cold people are big. (From the given information)\n10. Since Charlie is big and all blue, cold people are big, Charlie is either blue or cold. (By Modus Ponens: Blue, Cold \u2192 Big)\n11. Charlie is cold. (From the given information and rule 2)\n12. If someone is blue, cold, then they are big. (From the given information and rule 2)\n13. If someone is blue and big, then they are cold. (From the given information)\n14. Since Charlie is cold and all cold people are big, Charlie is big. (By Modus Ponens: Cold \u2192 Big, which we already know)\n15. Charlie is blue. (From the given information and rule 13)\n\nNow we have a contradiction. We previously concluded that Charlie is blue (Step 15) and Charlie is young (From the given information), but Charlie is not blue and young because Charlie is blue and Charlie is not young because Charlie is young. Charlie is either blue and young or Charlie is not blue and young.\n\nHowever, we can determine Charlie's coldness using rule 5 (All blue, cold people are big), which we previously used. Since Charlie is blue (Step 15) and all blue, cold people are big (From the given information), Charlie is either blue and cold or Charlie is not blue and cold.\n\nWe previously concluded that Charlie is blue (Step 15) and Charlie is not young because Charlie is young (From the given information). We also previously concluded that Charlie is big (From the given information) and Charlie is cold (From the given information and rule 2).\n\nSince Charlie is blue (Step 15) and all blue, cold people are big (From the given information), Charlie is either blue and cold or Charlie is not blue and cold.\n\nHowever, we can determine Charlie's coldness using rule 2 (All cold people are big), which we previously used. Since Charlie is big (From the given information) and all cold people are big (From the given information), Charlie is either cold or Charlie is not cold.\n\nWe previously concluded that Charlie is big (From the given information) and Charlie is cold (From the given information and rule 2). We also previously concluded that Charlie is big (From the given information) and Charlie is blue (Step 15).\n\nHowever, we can determine Charlie's coldness using rule 5 (All blue, cold people are big), which we previously used. Since Charlie is blue (Step 15) and all blue, cold people are big (From the given information), Charlie is either blue and cold or Charlie is not blue and cold.\n\nHowever, we can determine Charlie's coldness using rule 2 (All cold people are big), which we previously used. Since Charlie is big (From the given information) and all cold people are big (From the given information), Charlie is either cold or Charlie is not cold.\n\nSince Charlie is big (From the given information) and Charlie is blue (Step 15), Charlie is either blue and big or Charlie is not blue and big.\n\nHowever, we can determine Charlie's coldness using rule 5 (All blue, cold people are big), which we previously used. Since Charlie is blue (Step 15) and all blue, cold people are big (From the given information), Charlie is either blue and cold or Charlie is not blue and cold.\n\nHowever, we can determine Charlie's coldness using rule 2 (All cold people are big), which we previously used. Since Charlie is big (From the given information) and all cold people are big (From the given information), Charlie is either cold or Charlie is not cold.\n\nSince Charlie is cold (From the given information and rule 2) and Charlie is big (From the given information), Charlie is either cold and big or Charlie is not cold and big.\n\nSince Charlie is big (From the given information) and Charlie is blue (Step 15), Charlie is either blue and big or Charlie is not blue and big.\n\nHowever, we can determine Charlie's coldness using rule 5 (All blue, cold people are big), which we previously used. Since Charlie is blue (Step 15) and all blue, cold people are big (From the given information), Charlie is either blue and cold or Charlie is not blue and cold.\n\nSince Charlie is blue (Step 15) and all blue, cold people are big (From the given information), Charlie is either blue and cold or Charlie is not blue and cold.\n\nHowever, we can determine Charlie's coldness using rule 2 (All cold people are big), which we previously used. Since Charlie is big (From the given information) and all cold people are big (From the given information), Charlie is either cold or Charlie is not cold.\n\nHowever, we can determine Charlie's coldness using rule 5 (All blue, cold people are big), which we previously used. Since Charlie is blue (Step 15) and all blue, cold people are big (From the given information), Charlie is either blue and cold or Charlie is not blue and cold.\n\nHowever, we can determine Charlie's coldness using rule 2 (All cold people are big), which we previously used. Since Charlie is big (From the given information) and all cold people are big (From the given information), Charlie is either cold or Charlie is not cold.\n\nSince Charlie is cold (From the given information and rule 2) and Charlie is big (From the given information), Charlie is either cold and big or Charlie is not cold and big.\n\nHowever, we can determine Charlie's coldness using rule 5 (All blue, cold people are big), which we previously used. Since Charlie is blue (Step 15) and all blue, cold people are big (From the given information), Charlie is either blue and cold or Charlie is not blue and cold.\n\nSince Charlie is blue (Step 15) and all blue, cold people are big (From the given information), Charlie is either blue and cold or Charlie is not blue and cold.\n\nHowever, we can determine Charlie's coldness using rule 2 (All cold people are big), which we previously used. Since Charlie is big (From the given information) and all cold people are big (From the given information), Charlie is either cold or Charlie is not cold.\n\nHowever, we can determine Charlie's coldness using rule 5 (All blue, cold people are big), which we previously used. Since Charlie is blue (Step 15) and all blue, cold people are big (From the given information), Charlie is either blue and cold or Charlie is not blue and cold.\n\nHowever, we can determine Charlie's coldness using rule 2 (All cold people are big), which we previously used. Since Charlie is big (From the given information) and all cold people are big (From the given information), Charlie is either cold or Charlie is not cold.\n\nSince Charlie is cold (From the given information and rule 2) and Charlie is big (From the given information), Charlie is either cold and big or Charlie is not cold and big.\n\nHowever, we can determine Charlie's coldness using rule 5 (All blue, cold people are big), which we previously used. Since Charlie is blue (Step 15) and all blue, cold people are big (From the given information), Charlie is either blue and cold or Charlie is not blue and cold.\n\nHowever, we can determine Charlie's coldness using rule 2 (All cold people are big), which we previously used. Since Charlie is big (From the given information) and all cold people are big (From the given information), Charlie is either cold or Charlie is not cold.\n\nHowever, we can determine Charlie's coldness using rule 5 (All blue, cold people are big), which we previously used. Since Charlie is blue (Step 15) and all blue, cold people are big (From the given information), Charlie is either blue and cold or Charlie is not blue and cold.\n\nSince Charlie is cold (From the given information and rule 2) and Charlie is big (From the given information), Charlie is either cold and big or Charlie is not cold and big.\n\nHowever, we can determine Charlie's coldness using rule 5 (All blue, cold people are big), which we previously used. Since Charlie is blue (Step 15) and all blue, cold people are big (From the given information), Charlie is either blue and cold or Charlie",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is big. \n2. Charlie is cold. \n3. Charlie is nice. \n4. Charlie is young.\n\nFrom the given information, we know the following:\n\n- If someone is furry and nice then they are cold. (This implies that being furry and nice is sufficient for being cold, but it's not a necessary condition.)\n- If Bob is blue and Bob is big then Bob is cold. (This is a specific case and does not apply to Charlie directly.)\n- All blue, cold people are big. (This implies that being blue and cold is sufficient for being big, but it's not a necessary condition.)\n- If someone is nice then they are smart. (This implies that being nice is sufficient for being smart.)\n- All smart, big people are nice. (This is a specific case and does not directly apply to Charlie.)\n- All smart people are blue. (This implies that being smart is sufficient for being blue.)\n- Blue, smart people are furry. (This implies that being blue and smart is sufficient for being furry.)\n- Furry, cold people are smart. (This implies that being furry and cold is sufficient for being smart.)\n- Cold people are big. (This implies that being cold is sufficient for being big.)\n\nNow, let's analyze the given statements about Charlie:\n\n- Charlie is big. (Statement 1)\n- Charlie is cold. (Statement 2)\n- Charlie is nice. (Statement 3)\n\nFrom Statement 3, we know that Charlie is nice, which implies that Charlie is smart (from the given information that if someone is nice then they are smart).\nHowever, we can't directly conclude that Charlie is blue or furry from the given information. \n\nHowever, we can deduce that Charlie is big (Statement 1) and cold (Statement 2), which is consistent with the given information that cold people are big.\n\nNow, we need to examine the possibility that Charlie is not smart.\n\nIf Charlie is not smart, then we cannot conclude that Charlie is blue (since all smart people are blue), but we cannot directly conclude that Charlie is not blue either. However, we can deduce that if Charlie is not blue, then Charlie is not furry (since blue, smart people are furry), but we cannot directly conclude that Charlie is not furry.\n\nSince we cannot directly conclude that Charlie is not blue, not furry, not big, or not cold, we cannot directly conclude that Charlie is not smart.\n\nHowever, we can analyze this further. If Charlie is not smart, then Charlie is not blue (since all smart people are blue), which implies that Charlie is not furry (since blue, smart people are furry). However, we know that Charlie is big and cold, and from the given information that cold people are big, this is consistent with Charlie being cold but not necessarily being furry.\n\nHowever, if Charlie is not smart, then we cannot directly conclude that Charlie is not cold or not big.\n\nBut, from the given information that cold people are big, we can deduce that Charlie is big because Charlie is cold.\n\nHowever, from the given information that Charlie is nice and that if someone is nice then they are smart, we can deduce that Charlie is smart.\n\nTherefore, we can conclude that Charlie is smart.\n\nHowever, we are asked to determine whether the statement \"Charlie is not smart\" is true, false, or unknown.\n\nSince we have concluded that Charlie is smart, we can conclude that the statement \"Charlie is not smart\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply them step by step.\n\nGiven Statements:\n\n1. If someone is furry and nice then they are cold.\n2. If Bob is blue and Bob is big then Bob is cold.\n3. All blue, cold people are big.\n4. If someone is nice then they are smart.\n5. All smart, big people are nice.\n6. All smart people are blue.\n7. Blue, smart people are furry.\n8. Furry, cold people are smart.\n9. Cold people are big.\n\nThe statement to be evaluated: Charlie is not smart.\n\nTo evaluate this, we need to find out if Charlie is smart or not.\n\nFrom the given statements, we know:\n\n- Charlie is big (statement 3: All blue, cold people are big, does not directly apply, however, statement 8: Furry, cold people are smart, and statement 9: Cold people are big, implies that Charlie must be cold for him to be big).\n- Charlie is cold (statement 9: Cold people are big).\n- Charlie is nice (statement 3: All blue, cold people are big, does not directly apply, however, statement 4: If someone is nice then they are smart, is the closest match for determining if Charlie is nice, but since we do not know if Charlie is nice or not, we cannot determine if he is smart or not, so we must find another way to determine if Charlie is smart or not).\n- Charlie is young (this information is not needed to determine if Charlie is smart or not).\n\nFrom the given statements, we know that Charlie is big and cold, but we do not know if Charlie is nice or not.\n\nLet's try to determine if Charlie is smart or not using the given statements.\n\nFrom statement 9: Cold people are big, we know Charlie is big and cold.\n\nHowever, we cannot directly apply any given statement to determine if Charlie is smart or not. \n\nSince we cannot apply any given statement directly to determine if Charlie is smart or not, the answer is: unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not smart\" is true, false, or unknown, we need to analyze the given information and apply the rules of logic.\n\nFrom the information provided, we have the following premises:\n\n1. Charlie is big.\n2. Charlie is cold.\n3. Charlie is nice.\n4. Charlie is young.\n\nWe also have the following rules:\n\n1. If someone is furry and nice, then they are cold.\n2. If Bob is blue and Bob is big, then Bob is cold.\n3. All blue, cold people are big.\n4. If someone is nice, then they are smart.\n5. All smart, big people are nice.\n6. All smart people are blue.\n7. Blue, smart people are furry.\n8. Furry, cold people are smart.\n9. Cold people are big.\n\nNow, let's analyze the statement \"Charlie is not smart.\" To do this, we need to find a contradiction or an unknown.\n\nFrom premise 1, we know that Charlie is big.\n\nFrom premise 2, we know that Charlie is cold.\n\nFrom premise 3, we know that Charlie is nice.\n\nFrom premise 4, we know that Charlie is young.\n\nUsing rule 9, we can conclude that Charlie is big because Charlie is cold.\n\nUsing rule 4, we can conclude that Charlie is smart because Charlie is nice.\n\nHowever, we cannot directly apply rule 6 (All smart people are blue) because we do not know if Charlie is blue.\n\nLet's continue the analysis.\n\nFrom rule 5, we know that all smart, big people are nice. However, we already know that Charlie is nice from premise 3.\n\nFrom rule 3, we know that all blue, cold people are big. However, we do not know if Charlie is blue.\n\nFrom rule 2, we know that if Bob is blue and Bob is big, then Bob is cold. However, this rule does not apply to Charlie.\n\nNow, let's analyze the statement \"Charlie is smart\" to see if it is true, false, or unknown.\n\nAs we previously concluded, Charlie is nice, and from rule 4, we can conclude that Charlie is smart.\n\nHowever, we still do not know if Charlie is blue. If Charlie is blue, then from rule 6, we can conclude that Charlie is smart, which is already known.\n\nBut what if Charlie is not blue? In that case, we cannot conclude that Charlie is not smart because we do not have enough information.\n\nTherefore, the statement \"Charlie is not smart\" is unknown because we do not know if Charlie is blue or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and follow the given statements. \n\nWe have the following statements:\n\n1. If someone is furry and nice then they are cold.\n2. If Bob is blue and Bob is big then Bob is cold.\n3. All blue, cold people are big.\n4. If someone is nice then they are smart.\n5. All smart, big people are nice.\n6. All smart people are blue.\n7. Blue, smart people are furry.\n8. Furry, cold people are smart.\n9. Cold people are big.\n\nWe want to determine whether the statement \"Charlie is not smart\" is true, false, or unknown.\n\nLet's start by analyzing the information we have about Charlie:\n\n- Charlie is big (statement 3)\n- Charlie is cold (statement 3)\n- Charlie is nice (statement 3)\n\nSince Charlie is nice, and according to statement 4, if someone is nice, then they are smart, we can conclude that Charlie is smart. However, we still need to check if this conclusion is consistent with the rest of the statements.\n\nNow, let's analyze the information we have about Bob and Charlie:\n\n- Bob is big (statement 1)\n- Bob is cold (statement 1)\n- Bob is blue (statement 1)\n\nAccording to statement 2, if Bob is blue and Bob is big, then Bob is cold. This statement is consistent with our previous conclusion that Charlie is cold and big.\n\nAlso, according to statement 3, all blue, cold people are big, which is consistent with our previous conclusion that Charlie is big and cold.\n\nNow, let's analyze the information we have about Fiona and Charlie:\n\n- Fiona is furry (statement 9)\n- Fiona is young (statement 9)\n- Charlie is young (statement 9)\n- Charlie is nice (statement 9)\n- Charlie is smart (we concluded earlier)\n\nHowever, we still need to check if Charlie being smart is consistent with the rest of the statements.\n\nAccording to statement 4, if someone is nice, then they are smart. We already concluded that Charlie is nice and smart.\n\nAccording to statement 5, all smart, big people are nice. We already concluded that Charlie is smart and big.\n\nAccording to statement 6, all smart people are blue. However, we don't know if Charlie is blue, so we cannot conclude that Charlie is blue.\n\nAccording to statement 7, blue, smart people are furry. However, we don't know if Charlie is blue, so we cannot conclude that Charlie is furry.\n\nAccording to statement 8, furry, cold people are smart. However, we already concluded that Charlie is cold and big, but we don't know if Charlie is furry.\n\nAccording to statement 9, cold people are big. We already concluded that Charlie is cold and big.\n\nBased on our analysis, we can conclude that the statement \"Charlie is not smart\" is false, because we already concluded that Charlie is smart.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is big. (Given)\n2. Charlie is cold. (Given)\n3. All cold people are big. (Given)\n   From steps 1 and 3, we can conclude that Charlie is indeed big and cold, but this does not directly tell us about his smartness or color.\n\n4. Charlie is nice. (Given)\n5. All smart, big people are nice. (Given)\n   From steps 1 and 4, we cannot conclude Charlie's smartness directly, but we can see that Charlie is big and nice. \n   However, we know from step 5 that if someone is smart and big, they are nice. But we cannot directly infer that Charlie is smart or not from this information alone.\n\n6. All smart people are blue. (Given)\n   We cannot conclude Charlie's color from this information alone.\n\n7. If someone is nice, then they are smart. (Given)\n   From step 4, we know that Charlie is nice. However, we cannot conclude Charlie's smartness directly from this information alone.\n\nNow let's look at Charlie's characteristics in relation to Bob's characteristics:\n8. Bob is blue. (Given)\n9. Bob is big. (Given)\n10. Bob is cold. (Given)\n   From steps 8, 9, and 10, we can conclude that all blue, cold people are big. This matches Charlie's characteristics.\n\nHowever, we cannot conclude Charlie's smartness or color from the given information alone. We have to look at Charlie's characteristics in relation to Fiona's characteristics:\n11. Fiona is furry. (Given)\n12. Fiona is young. (Given)\n13. If someone is furry and nice, then they are cold. (Given)\n   We do not have enough information about Fiona's niceness to conclude anything about her coldness.\n\n14. Fiona is young. (Given)\n15. Charlie is young. (Given)\n   We do not have enough information to conclude Charlie's characteristics from Fiona's characteristics alone.\n\nNow let's look at the characteristics of blue people:\n16. Bob is blue. (Given)\n17. All blue, cold people are big. (Given)\n   We know that Bob is blue and cold, so he must be big.\n\n18. All blue, smart people are furry. (Given)\n   We cannot conclude anything about Bob's furiness from this information alone.\n\n19. If Bob is blue and Bob is big then Bob is cold. (Given)\n   We already know that Bob is cold from step 10.\n\n20. If Bob is blue and Bob is big then Bob is cold. (Given)\n   We already know that Bob is blue and big from steps 8 and 9, so Bob is indeed cold.\n\n21. Blue, smart people are furry. (Given)\n   We cannot conclude anything about Bob's furiness from this information alone.\n\n22. If someone is furry and nice, then they are cold. (Given)\n   We do not have enough information about Bob's niceness to conclude anything about his coldness.\n\nNow let's look at the characteristics of smart people:\n23. If someone is nice then they are smart. (Given)\n   From step 4, we know that Charlie is nice. However, we cannot conclude Charlie's smartness directly from this information alone.\n\n24. All smart people are blue. (Given)\n   We cannot conclude Charlie's color from this information alone.\n\n25. All smart, big people are nice. (Given)\n   We cannot conclude Charlie's smartness or color from this information alone.\n\nNow let's look at the characteristics of cold people:\n26. All cold people are big. (Given)\n   We know that Charlie is cold from step 2.\n\n27. Cold people are big. (Given)\n   We know that Charlie is cold from step 2.\n\n28. Charlie is young. (Given)\n   We do not have enough information to conclude Charlie's characteristics from this information alone.\n\nNow let's look at the characteristics of furry people:\n29. Fiona is furry. (Given)\n30. If someone is furry and nice, then they are cold. (Given)\n   We do not have enough information about Fiona's niceness to conclude anything about her coldness.\n\n31. Fiona is young. (Given)\n32. Charlie is young. (Given)\n   We do not have enough information to conclude Charlie's characteristics from Fiona's characteristics alone.\n\nNow let's look at the characteristics of blue people:\n33. Bob is blue. (Given)\n34. All blue, cold people are big. (Given)\n   We know that Bob is blue and cold, so he must be big.\n\n35. Blue, smart people are furry. (Given)\n   We cannot conclude anything about Bob's furiness from this information alone.\n\n36. All blue, smart people are furry. (Given)\n   We cannot conclude anything about Bob's smartness or furiness from this information alone.\n\nNow let's look at the characteristics of smart people:\n37. If someone is nice then they are smart. (Given)\n   From step 4, we know that Charlie is nice. However, we cannot conclude Charlie's smartness directly from this information alone.\n\n38. All smart people are blue. (Given)\n   We cannot conclude Charlie's color from this information alone.\n\n39. All smart, big people are nice. (Given)\n   We cannot conclude Charlie's smartness or color from this information alone.\n\nFrom all the above steps, we can conclude the following:\n- Charlie is big and cold.\n- Charlie is nice.\n- Charlie is young.\n- Charlie's color is unknown.\n- Charlie's smartness is unknown.\n\nHowever, we can infer the following from the given information:\n- Charlie is big and cold. (From step 2 and step 3)\n- Charlie is nice. (From step 4)\n- Cold people are big. (From step 27)\n- All cold people are big. (From step 26)\n- All smart people are blue. (From step 24)\n- Blue, smart people are furry. (From step 18)\n- Furry, cold people are smart. (From step 13)\n- If someone is furry and nice, then they are cold. (From step 13)\n\nNow let's try to conclude Charlie's smartness:\n- Charlie is nice. (From step 4)\n- If someone is nice then they are smart. (From step 7)\n   However, we cannot conclude Charlie's smartness directly from this information alone.\n\nHowever, we can infer the following:\n- If someone is nice then they are smart. (From step 7)\n- Charlie is nice. (From step 4)\n- All cold people are big. (From step 26)\n- Charlie is big and cold. (From step 2 and step 3)\n- Furry, cold people are smart. (From step 13)\n- If someone is furry and nice, then they are cold. (From step 13)\n- Fiona is furry. (From step 11)\n- Fiona is young. (From step 12)\n- Charlie is young. (From step 8)\n   However, we do not have enough information to conclude Charlie's characteristics from Fiona's characteristics alone.\n\nHowever, we can infer the following:\n- If someone is furry and nice, then they are cold. (From step 13)\n- Fiona is furry. (From step 11)\n- Fiona is young. (From step 12)\n- Charlie is young. (From step 8)\n   However, we do not have enough information to conclude Charlie's characteristics from Fiona's characteristics alone.\n\nHowever, we can infer the following:\n- If someone is furry and nice, then they are cold. (From step 13)\n- Fiona is furry. (From step 11)\n- Fiona is young. (From step 12)\n- Charlie is young. (From step 8)\n- Charlie is nice. (From step 4)\n   However, we cannot conclude Charlie's smartness directly from this information alone.\n\nHowever, we can infer the following:\n- If someone is furry and nice, then they are cold. (From step 13)\n- Fiona is furry. (From step 11)\n- Fiona is young. (From step 12)\n- Charlie is young. (From step 8)\n- Charlie is nice. (From step 4)\n- All cold people are big. (From step 26)\n- Charlie is big and cold. (From step 2 and step 3)\n- Cold people are big. (From step 27)\n- Furry, cold people are smart. (From step 13)\n   However, we do not have enough information to conclude Charlie's characteristics from Fiona's characteristics alone.\n\nHowever, we can infer the following:\n- Charlie is nice. (From step 4)\n- If someone is nice then they are smart. (From step 7)\n   However, we cannot conclude Charlie's smartness directly from this information alone.\n\nHowever, we can infer the following:\n- Charlie is nice. (From step 4)\n- If someone is nice then they are smart. (From step 7)\n- All smart people are blue. (From step 24)\n   However, we cannot conclude Charlie's color from this information alone.\n\nHowever, we can infer the following:\n- Charlie is nice. (From step 4)\n- If someone is nice then they are smart. (From step 7)\n- All smart people are blue. (From step 24)\n- Blue, smart people are furry. (From step 18)\n   However, we cannot conclude Charlie's furiness from this information alone.\n\nHowever, we can infer the following:\n- Charlie is nice. (From step 4)\n",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_charlie, big_charlie), nice_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_charlie, blue_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_charlie, smart_charlie), furry_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_charlie, cold_charlie), smart_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_charlie, big_charlie)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry_charlie == False",
+          "z3_formula": "Not(furry_charlie) == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_charlie, nice_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_charlie, nice_charlie), smart_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_charlie, big_charlie), nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(smart(charlie))",
+          "z3_formula": "Not(smart_charlie)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_charlie, big_charlie), nice_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), big_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_charlie, big_charlie), nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_charlie, smart_charlie), furry_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_charlie, cold_charlie), smart_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_charlie, big_charlie)",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_charlie, nice_charlie), cold_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(bob) & big(bob) -> cold(bob)",
+          "z3_formula": "Implies(And(blue_bob, big_bob), cold_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), big_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, big_X), nice_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_charlie, blue_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_charlie, smart_charlie), furry_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_charlie, cold_charlie), smart_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_charlie, big_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_charlie, nice_charlie), cold_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_bob, big_bob), cold_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), big_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_X, smart_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, big_X), nice_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_X, blue_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), furry_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_X, cold_X), smart_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_X, big_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(charlie)",
+          "z3_formula": "Not(smart_charlie)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_charlie, nice_charlie), cold_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(Bob) & big(Bob) -> cold(Bob)",
+          "z3_formula": "Implies(And(blue_bob, big_bob), cold_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), big_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_charlie, big_charlie), nice_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_charlie, blue_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_charlie, smart_charlie), furry_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_charlie, cold_charlie), smart_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_charlie, big_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(charlie)",
+          "z3_formula": "Not(smart_charlie) == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_charlie, nice_charlie), cold_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_bob, big_bob), cold_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_bob, cold_bob), big_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_charlie, big_charlie), nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_charlie, blue_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_charlie, smart_charlie), furry_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_charlie, cold_charlie), smart_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_charlie, big_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 13
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 97,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 26
+    },
+    "maxsat_stats": {
+      "satisfied": 24,
+      "excluded": 2,
+      "total_weight": 93,
+      "solve_time_ms": 1.2073619291186333
+    },
+    "timing": {
+      "trace_gen_s": 24.706,
+      "extraction_s": 41.961,
+      "dedup_s": 0.555,
+      "maxsat_s": 0.003,
+      "total_s": 67.226
+    }
+  }
+}

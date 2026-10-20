@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51c74a304b52205adab4",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "code mvp pipeline v2 run",
+  "task_key": "worker_code_mvp_pipeline_v2_run_20260514T084050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_pipeline_v2_run_20260514T084050_result.json",
+    "occurrence": 1,
+    "bytes": 124,
+    "sha256": "803ef9246df3d9782d681bf0a4a4286fdbe54410701f3b427681250e8d98aab4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline v2 正在运行（PID 19152），vLLM 已用 max-model-len=16384 重启。5 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-pipeline-v2-run.md"
+}

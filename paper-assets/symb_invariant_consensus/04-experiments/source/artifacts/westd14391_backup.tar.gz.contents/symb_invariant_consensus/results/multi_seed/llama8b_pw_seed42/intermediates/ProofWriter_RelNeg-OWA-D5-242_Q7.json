@@ -1,0 +1,1150 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-242_Q7",
+    "problem": "The bald eagle chases the cow. The bald eagle is not kind. The bald eagle is round. The bear chases the tiger. The cow is red. The cow is round. The tiger sees the cow. If someone is young and they see the bald eagle then they see the bear. If someone chases the bear then the bear is young. If someone chases the tiger then they are rough. If someone chases the tiger then the tiger eats the bear. If the tiger is round and the tiger is kind then the tiger chases the bear. If someone is young then they see the bald eagle. If someone chases the cow then they chase the bear. If someone sees the bear then the bear chases the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear sees the bald eagle.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nKind($x, bool) ::: Is x kind?\nRound($x, bool) ::: Is x round?\nSees($x, $y, bool) ::: Does x see y?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\nEats($x, $y, bool) ::: Does x eat y?\n\nFacts:\nChases(BaldEagle, Cow, True) ::: The bald eagle chases the cow.\nKind(BaldEagle, False) ::: The bald eagle is not kind.\nRound(BaldEagle, True) ::: The bald eagle is round.\nChases(Bear, Tiger, True) ::: The bear chases the tiger.\nRed(Cow, True) ::: The cow is red.\nRound(Cow, True) ::: The cow is round.\nSees(Tiger, Cow, True) ::: The tiger sees the cow.\n\nRules:\nYoung($x, True) && Sees($x, BaldEagle, True) >>> Sees($x, Bear, True) ::: If someone is young and they see the bald eagle then they see the bear.\nChases($x, Bear, True) >>> Young(Bear, True) ::: If someone chases the bear then the bear is young.\nChases($x, Tiger, True) >>> Rough($x, True) ::: If someone chases the tiger then they are rough.\nChases($x, Tiger, True) >>> Eats(Tiger, Bear, True) ::: If someone chases the tiger then the tiger eats the bear.\nRound(Tiger, True) && Kind(Tiger, True) >>> Chases(Tiger, Bear, True) ::: If the tiger is round and the tiger is kind then the tiger chases the bear.\nYoung($x, True) >>> Sees($x, BaldEagle, True) ::: If someone is young then they see the bald eagle.\nChases($x, Cow, True) >>> Chases($x, Bear, True) ::: If someone chases the cow then they chase the bear.\nSees($x, Bear, True) >>> Chases(Bear, Cow, True) ::: If someone sees the bear then the bear chases the cow.\n\nQuery:\nSees(Bear, BaldEagle, True) ::: The bear sees the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 135.0,
+      "Unknown": 144.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to determine the relationships between the different animals and use the given conditions to find out if the bear sees the bald eagle.\n\nGiven conditions:\n\n1. The bald eagle chases the cow.\n2. The bald eagle is not kind.\n3. The bald eagle is round.\n4. The bear chases the tiger.\n5. The cow is red.\n6. The cow is round.\n7. The tiger sees the cow.\n8. If someone is young and they see the bald eagle then they see the bear.\n9. If someone chases the bear then the bear is young.\n10. If someone chases the tiger then they are rough.\n11. If someone chases the tiger then the tiger eats the bear.\n12. If the tiger is round and the tiger is kind then the tiger chases the bear.\n13. If someone is young then they see the bald eagle.\n14. If someone chases the cow then they chase the bear.\n15. If someone sees the bear then the bear chases the cow.\n\nWe need to analyze these conditions to determine the relationships between the animals.\n\nFrom conditions 1 and 14, we can conclude that the bald eagle chases the cow, and the cow is chased by the bald eagle, which implies that the bear also chases the cow. This is because condition 14 states that if someone chases the cow, they chase the bear. \n\nFrom condition 13, we can conclude that the young person sees the bald eagle, and this implies that the bear is young (condition 9). This is because if someone is young and sees the bald eagle, they see the bear (condition 8).\n\nHowever, condition 9 implies that the bear is young, but condition 4 states that the bear chases the tiger. If the bear is young, it contradicts the fact that the bear chases the tiger.\n\nNow we can analyze the statement \"The bear sees the bald eagle.\" Let's try to establish this statement by creating a chain of conditions.\n\nIf the bear sees the bald eagle, then a young person sees the bear (condition 8). However, a young person sees the bald eagle, which implies that the bear is young (condition 13 and 9). \n\nBut we already concluded that the bear is not young because it chases the tiger (condition 4). This is a contradiction.\n\nTherefore, the statement \"The bear sees the bald eagle\" cannot be established by the given conditions, and it is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The bear sees the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle chases the cow.\n   - This statement gives us information about the bald eagle's action but doesn't directly relate to the bear or the bald eagle's visibility.\n\n2. The bald eagle is not kind.\n   - This statement provides additional information about the bald eagle but doesn't affect the visibility of the bald eagle.\n\n3. The bald eagle is round.\n   - This statement also provides additional information about the bald eagle but doesn't affect the visibility of the bald eagle.\n\n4. The bear chases the tiger.\n   - This statement gives us information about the bear's action but doesn't directly relate to the bear's visibility of the bald eagle.\n\n5. The cow is red.\n   - This statement gives us information about the cow but doesn't affect the visibility of the bald eagle.\n\n6. The cow is round.\n   - This statement gives us information about the cow but doesn't affect the visibility of the bald eagle.\n\n7. The tiger sees the cow.\n   - This statement doesn't relate to the bear or the bald eagle.\n\n8. If someone is young and they see the bald eagle then they see the bear.\n   - This statement provides a condition for someone to see the bear when they see the bald eagle. However, it's not a direct statement about the bear's visibility of the bald eagle.\n\n9. If someone chases the bear then the bear is young.\n   - This statement gives us a condition for the bear's age, but it doesn't directly relate to the bear's visibility of the bald eagle.\n\n10. If someone chases the tiger then they are rough.\n    - This statement gives us a condition for someone's behavior but doesn't relate to the bear or the bald eagle.\n\n11. If someone chases the tiger then the tiger eats the bear.\n    - This statement gives us a consequence of someone chasing the tiger but doesn't relate to the bear's visibility of the bald eagle.\n\n12. If the tiger is round and the tiger is kind then the tiger chases the bear.\n    - This statement gives us a condition for the tiger's action but doesn't directly relate to the bear's visibility of the bald eagle.\n\n13. If someone is young then they see the bald eagle.\n    - This statement provides a condition for someone to see the bald eagle but doesn't directly relate to the bear's visibility of the bald eagle.\n\n14. If someone chases the cow then they chase the bear.\n    - This statement gives us a consequence of someone chasing the cow but doesn't relate to the bear's visibility of the bald eagle.\n\n15. If someone sees the bear then the bear chases the cow.\n    - This statement gives us a consequence of someone seeing the bear but doesn't relate to the bear's visibility of the bald eagle.\n\nHowever, we can deduce that the bear sees the bald eagle from statement 8: \"If someone is young and they see the bald eagle then they see the bear.\" This implies that if someone sees the bear, they must have seen the bald eagle first.\n\nFrom statement 15: \"If someone sees the bear then the bear chases the cow.\" This implies that someone sees the bear, and then the bear chases the cow. \n\nCombining these two statements, we can conclude that if the bear chases the cow, then someone must have seen the bear first, which means they must have seen the bald eagle first. This implies that the bear sees the bald eagle.\n\nTherefore, the statement \"The bear sees the bald eagle\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The bear sees the bald eagle\" is true, false, or unknown, let's break down the given information step by step:\n\n1. The bald eagle chases the cow.\n2. The bald eagle is not kind.\n3. The bald eagle is round.\n4. The bear chases the tiger.\n5. The cow is red.\n6. The cow is round.\n7. The tiger sees the cow.\n8. If someone is young and they see the bald eagle then they see the bear.\n9. If someone chases the bear then the bear is young.\n10. If someone chases the tiger then they are rough.\n11. If someone chases the tiger then the tiger eats the bear.\n12. If the tiger is round and the tiger is kind then the tiger chases the bear.\n13. If someone is young then they see the bald eagle.\n14. If someone chases the cow then they chase the bear.\n15. If someone sees the bear then the bear chases the cow.\n\nNow, let's analyze the statement \"The bear sees the bald eagle.\" To determine this, we need to find a logical path that links the bear to seeing the bald eagle.\n\nFrom the given statements, we can infer the following:\n\n- The tiger sees the cow (Statement 7).\n- The cow is round and red (Statements 5 and 6).\n- The bald eagle is round (Statement 3).\n- However, there's no direct statement that links the bear to seeing the bald eagle.\n\nLet's examine the possibility of the bear seeing the bald eagle through the statements that involve \"young\" or \"chases the bear\":\n\n- If someone is young and they see the bald eagle then they see the bear (Statement 8).\n- If someone chases the bear then the bear is young (Statement 9).\n\nFrom these statements, we can conclude that if the bear is young, then it must see the bald eagle. However, this is based on the assumption that the bear is young, which is not explicitly stated in the given information.\n\nNow, let's examine the possibility of the bear not being young:\n\n- If someone chases the bear then the bear is young (Statement 9). This implies that if the bear is not young, it's not being chased.\n\nHowever, there's no information about who is chasing the bear, and therefore, we cannot conclude whether the bear is young or not.\n\nGiven the information provided, we cannot determine whether the bear sees the bald eagle. The statements do not provide a clear logical path to conclude this. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the bear sees the bald eagle, we need to follow the given statements and use logical deductions.\n\n1. The bald eagle is round. (Statement 3)\n2. The cow is round. (Statement 4)\n3. The cow is red. (Statement 5)\n4. The bear chases the tiger. (Statement 2)\n5. The tiger sees the cow. (Statement 6)\n6. If someone is young and they see the bald eagle then they see the bear. (Statement 8)\n7. If someone chases the bear then the bear is young. (Statement 9)\n8. If someone chases the tiger then they are rough. (Statement 10)\n9. If someone chases the tiger then the tiger eats the bear. (Statement 11)\n10. If the tiger is round and the tiger is kind then the tiger chases the bear. (Statement 12)\n11. If someone is young then they see the bald eagle. (Statement 13)\n12. If someone chases the cow then they chase the bear. (Statement 14)\n13. If someone sees the bear then the bear chases the cow. (Statement 15)\n\nTo determine if the bear sees the bald eagle, let's analyze the statements:\n\nFrom statement 13, if someone is young then they see the bald eagle.\nFrom statement 7, if someone chases the bear then the bear is young. This implies that if the bear is young, then someone must be chasing it.\nFrom statement 9, if someone chases the tiger then the tiger eats the bear. This implies that if the tiger eats the bear, then the bear must be young.\nFrom statement 11, if someone is young then they see the bald eagle. This implies that if the bear is young, then it sees the bald eagle.\n\nHowever, we cannot directly conclude that the bear is young. But from statement 7 and 9, we can conclude that if the bear sees the bald eagle, then the bear is young.\n\nLet's analyze the situation where the bear sees the bald eagle. If the bear sees the bald eagle, then from statement 6, the person who sees the bald eagle must be young. But we don't know if the bear is young or not.\n\nHowever, if the bear chases the cow, then from statement 14, the person who chases the cow must chase the bear. If the bear sees the bald eagle, then from statement 15, the bear chases the cow. But we don't know if the bear chases the cow.\n\nTo conclude, we cannot determine if the bear sees the bald eagle. The statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions to determine the relationship between the bear and the bald eagle.\n\n1. The bald eagle chases the cow.\n2. The bald eagle is not kind.\n3. The bald eagle is round.\n4. The bear chases the tiger.\n5. The cow is red.\n6. The cow is round.\n7. The tiger sees the cow.\n8. If someone is young and they see the bald eagle then they see the bear.\n9. If someone chases the bear then the bear is young.\n10. If someone chases the tiger then they are rough.\n11. If someone chases the tiger then the tiger eats the bear.\n12. If the tiger is round and the tiger is kind then the tiger chases the bear.\n13. If someone is young then they see the bald eagle.\n14. If someone chases the cow then they chase the bear.\n15. If someone sees the bear then the bear chases the cow.\n\nTo determine whether the bear sees the bald eagle, we need to find a chain of logical deductions that leads to this conclusion.\n\nFrom statement 8, if someone is young and they see the bald eagle, then they see the bear. However, this does not directly tell us about the bear seeing the bald eagle.\n\nFrom statement 9, if someone chases the bear, then the bear is young. But this statement does not give us any information about the bear seeing the bald eagle.\n\nLet's analyze the statements that involve seeing:\n\n- Statement 7: The tiger sees the cow.\n- Statement 8: If someone is young and they see the bald eagle then they see the bear.\n- Statement 14: If someone chases the cow then they chase the bear.\n- Statement 15: If someone sees the bear then the bear chases the cow.\n\nWe need to find a connection between the bear and the bald eagle. Let's analyze the statements that involve chasing:\n\n- Statement 1: The bald eagle chases the cow.\n- Statement 4: The bear chases the tiger.\n- Statement 10: If someone chases the tiger then they are rough.\n- Statement 11: If someone chases the tiger then the tiger eats the bear.\n- Statement 12: If the tiger is round and the tiger is kind then the tiger chases the bear.\n- Statement 13: If someone is young then they see the bald eagle.\n- Statement 14: If someone chases the cow then they chase the bear.\n\nFrom statement 14, if someone chases the cow, then they chase the bear. This implies that if the bear chases the cow, then the bear chases the bear.\n\nNow, from statement 15, if someone sees the bear, then the bear chases the cow. This statement suggests a possible cycle of events: someone sees the bear, the bear chases the cow, the cow is chased by the bald eagle, and the bald eagle sees the bear.\n\nHowever, we cannot conclude that the bear sees the bald eagle based on these statements. The bear's actions are related to seeing and chasing the cow and tiger, but we do not have any direct information about the bear seeing the bald eagle.\n\nTherefore, the statement \"The bear sees the bald eagle\" is unknown.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The bear sees the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle is round. (Statement 1)\n2. The cow is red. (Statement 2)\n3. The cow is round. (Statement 3)\n4. The tiger sees the cow. (Statement 4)\n5. If someone is young and they see the bald eagle then they see the bear. (Statement 5)\n6. If someone chases the bear then the bear is young. (Statement 6)\n7. If someone chases the tiger then they are rough. (Statement 7)\n8. If someone chases the tiger then the tiger eats the bear. (Statement 8)\n9. If the tiger is round and the tiger is kind then the tiger chases the bear. (Statement 9)\n10. If someone is young then they see the bald eagle. (Statement 10)\n11. If someone chases the cow then they chase the bear. (Statement 11)\n12. If someone sees the bear then the bear chases the cow. (Statement 12)\n\nFrom Statement 4, we know the tiger sees the cow. We also know from Statement 10 that if someone is young then they see the bald eagle. However, we do not know if the bear is young or not.\n\nFrom Statement 5, we can infer that if someone is young and they see the bald eagle, then they see the bear. However, we need to find out if the bear is young or not.\n\nFrom Statement 6, we know that if someone chases the bear then the bear is young. But we don't know if anyone chases the bear.\n\nFrom Statement 11, we know that if someone chases the cow then they chase the bear. However, we don't know if anyone chases the cow.\n\nFrom Statement 12, we know that if someone sees the bear then the bear chases the cow. However, we don't know if anyone sees the bear.\n\nWe also know from Statement 4 that the tiger sees the cow, and the tiger is not mentioned as chasing the bear. However, we cannot conclude anything about the bear's relationship to the bald eagle from the given information.\n\nHowever, we know that if the tiger is round and kind, then the tiger chases the bear. But we do not know if the tiger is round and kind or not. However, we know the tiger sees the cow.\n\nBut we cannot use the given statements to determine whether the tiger is round and kind or not.\n\nHowever, we know that if the bear sees the bald eagle, then from Statement 5, it would imply that someone is young and they see the bald eagle. But it does not imply that the bear is young. However, Statement 6 implies that if someone chases the bear, then the bear is young. But we cannot conclude that the bear is young or not from the given information.\n\nHowever, we can use the statements to determine that if the bear sees the bald eagle, then it implies that someone is young and they see the bald eagle. But we cannot conclude that the bear is young or not.\n\nHowever, we can conclude that we do not have enough information to determine whether the bear is young or not.\n\nHowever, we can conclude that we do not have enough information to determine whether the bear sees the bald eagle or not.\n\nThe statement \"The bear sees the bald eagle\" is unknown because we cannot conclude it as true or false with the given information.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bear sees the bald eagle\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The bald eagle chases the cow.\n2. The bald eagle is not kind.\n3. The bald eagle is round.\n4. The bear chases the tiger.\n5. The cow is red.\n6. The cow is round.\n7. The tiger sees the cow.\n8. If someone is young and they see the bald eagle then they see the bear.\n9. If someone chases the bear then the bear is young.\n10. If someone chases the tiger then they are rough.\n11. If someone chases the tiger then the tiger eats the bear.\n12. If the tiger is round and the tiger is kind then the tiger chases the bear.\n13. If someone is young then they see the bald eagle.\n14. If someone chases the cow then they chase the bear.\n15. If someone sees the bear then the bear chases the cow.\n\nFrom statement 8, we know that if someone is young and they see the bald eagle then they see the bear. However, it doesn't directly tell us if the bear sees the bald eagle.\n\nFrom statement 9, we know that if someone chases the bear then the bear is young. But we don't know if the bear chases the bald eagle.\n\nFrom statement 14, we know that if someone chases the cow then they chase the bear. However, we don't know if the bear sees the bald eagle.\n\nFrom statement 15, we know that if someone sees the bear then the bear chases the cow. However, we don't know if the bear sees the bald eagle.\n\nWe need to find a chain of statements that can lead us to the conclusion that the bear sees the bald eagle.\n\nHowever, we can deduce the following:\n\n- The bald eagle is round (statement 3).\n- The cow is round (statement 6).\n- The cow sees the bald eagle because the bald eagle chases the cow (this is a possible scenario, but it doesn't directly tell us if the bear sees the bald eagle).\n- However, if someone sees the bald eagle, then they see the bear (statement 8).\n\nBut there is a possibility that the bear is young (statement 9). However, we don't have enough information to conclude if the bear is young or not.\n\nIf we assume that the bear is young (based on statement 9), then we can deduce that the person who sees the bear is also young (because the person who sees the bear is the one who chases the bear). \n\nHowever, if someone is young and they see the bald eagle then they see the bear (statement 8). This means that if the person who sees the bear is young, then they must see the bald eagle.\n\nBut the question is, does the bear see the bald eagle?\n\nBased on the given information, we cannot conclude that the bear sees the bald eagle. The statement is unknown because we don't have enough information to determine if the bear sees the bald eagle or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deductions based on the given statements. \n\n1. The bald eagle chases the cow.\n2. The bald eagle is not kind.\n3. The bald eagle is round.\n4. The bear chases the tiger.\n5. The cow is red.\n6. The cow is round.\n7. The tiger sees the cow.\n8. If someone is young and they see the bald eagle then they see the bear.\n9. If someone chases the bear then the bear is young.\n10. If someone chases the tiger then they are rough.\n11. If someone chases the tiger then the tiger eats the bear.\n12. If the tiger is round and the tiger is kind then the tiger chases the bear.\n13. If someone is young then they see the bald eagle.\n14. If someone chases the cow then they chase the bear.\n15. If someone sees the bear then the bear chases the cow.\n\nTo determine if the bear sees the bald eagle, we need to look for any statement that implies the bear sees the bald eagle. Let's analyze the given statements:\n\nFrom statement 8, if someone is young and they see the bald eagle, then they see the bear. This implies that seeing the bald eagle and seeing the bear are related to being young.\n\nFrom statement 13, if someone is young then they see the bald eagle. This implies that seeing the bald eagle is a result of being young.\n\nFrom statement 9, if someone chases the bear then the bear is young. This implies that the bear is young because someone chases it.\n\nWe don't have any direct statement that implies the bear sees the bald eagle. However, we can deduce that if the bear is young (from statement 9), then it sees the bald eagle (from statement 13).\n\nTherefore, based on the given statements, we can conclude that the bear sees the bald eagle.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The bear sees the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step and use logical deductions.\n\n1. The bald eagle chases the cow.\n2. The bald eagle is not kind.\n3. The bald eagle is round.\n4. The bear chases the tiger.\n5. The cow is red.\n6. The cow is round.\n7. The tiger sees the cow.\n8. If someone is young and they see the bald eagle then they see the bear.\n9. If someone chases the bear then the bear is young.\n10. If someone chases the tiger then they are rough.\n11. If someone chases the tiger then the tiger eats the bear.\n12. If the tiger is round and the tiger is kind then the tiger chases the bear.\n13. If someone is young then they see the bald eagle.\n14. If someone chases the cow then they chase the bear.\n15. If someone sees the bear then the bear chases the cow.\n\nTo determine if the bear sees the bald eagle, let's start by looking at the statement \"If someone sees the bear then the bear chases the cow\" (statement 15). We can say that if someone sees the bear, then the bear chases the cow, but we do not know if the bear sees the bald eagle.\n\nHowever, statement 15 tells us that if someone sees the bear, then the bear chases the cow. This implies that the bear chases the cow when it sees the cow. This also implies that the bear does not see the bald eagle when it sees the cow, because if it sees the bald eagle, then the cow is not the one being chased.\n\nNow, let's look at the statement \"If someone chases the cow then they chase the bear\" (statement 14). This implies that when someone chases the cow, they are the same as the one who chases the bear. This also implies that when someone chases the cow, they do not chase the bald eagle.\n\nFrom statement 13, \"If someone is young then they see the bald eagle.\" This implies that the one who sees the bald eagle is young. However, statement 8 says \"If someone is young and they see the bald eagle then they see the bear.\" So the one who sees the bald eagle sees the bear as well.\n\nNow, let's look at statement 9, \"If someone chases the bear then the bear is young.\" This implies that the bear is young when it is being chased by someone. Since we do not know who chases the bear, we do not know if the bear is young or not.\n\nHowever, statement 14 implies that when someone chases the cow, they chase the bear as well. Statement 8 implies that when someone is young and sees the bald eagle, they see the bear. However, statement 15 implies that when someone sees the bear, the bear chases the cow. \n\nSince the bear chases the cow when it is seen by someone, and when someone sees the bear, they see the bald eagle, we can conclude that the bear sees the bald eagle when it chases the cow.\n\nTherefore, the statement \"The bear sees the bald eagle\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The bear sees the bald eagle\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The bald eagle chases the cow.\n2. The bald eagle is not kind.\n3. The bald eagle is round.\n4. The bear chases the tiger.\n5. The cow is red.\n6. The cow is round.\n7. The tiger sees the cow.\n8. If someone is young and they see the bald eagle then they see the bear.\n9. If someone chases the bear then the bear is young.\n10. If someone chases the tiger then they are rough.\n11. If someone chases the tiger then the tiger eats the bear.\n12. If the tiger is round and the tiger is kind then the tiger chases the bear.\n13. If someone is young then they see the bald eagle.\n14. If someone chases the cow then they chase the bear.\n15. If someone sees the bear then the bear chases the cow.\n\nLet's start by analyzing the statement we want to evaluate: \"The bear sees the bald eagle.\"\n\nTo determine this, we need to find a connection between the bear and the bald eagle. We can start by looking at the given statements and see if we can find any information that links the two.\n\nFrom statement 8, we know that if someone is young and they see the bald eagle, then they see the bear. However, this statement does not tell us whether the bear sees the bald eagle.\n\nFrom statement 9, we know that if someone chases the bear, then the bear is young. This statement does not provide any information about the bear seeing the bald eagle.\n\nFrom statement 13, we know that if someone is young, then they see the bald eagle. This statement does not tell us whether the bear sees the bald eagle.\n\nWe need to find a connection between the bear and the bald eagle. Let's look at the other statements.\n\nFrom statement 14, we know that if someone chases the cow, then they chase the bear. This statement does not provide any information about the bear seeing the bald eagle.\n\nFrom statement 15, we know that if someone sees the bear, then the bear chases the cow. This statement does not tell us whether the bear sees the bald eagle.\n\nWe need to analyze the statements that involve the bear chasing other animals. From statement 4, we know that the bear chases the tiger.\n\nLet's look at the statements that involve the tiger. From statement 7, we know that the tiger sees the cow. This statement does not provide any information about the bear seeing the bald eagle.\n\nFrom statement 11, we know that if someone chases the tiger, then the tiger eats the bear. This statement does not tell us whether the bear sees the bald eagle.\n\nFrom statement 12, we know that if the tiger is round and the tiger is kind, then the tiger chases the bear. This statement does not provide any information about the bear seeing the bald eagle.\n\nFrom statement 10, we know that if someone chases the tiger, then they are rough. This statement does not tell us whether the bear sees the bald eagle.\n\nWe need to find a connection between the bear and the bald eagle. Let's look at the statements that involve the bald eagle.\n\nFrom statement 1, we know that the bald eagle chases the cow. This statement does not provide any information about the bear seeing the bald eagle.\n\nFrom statement 3, we know that the bald eagle is round. This statement does not tell us whether the bear sees the bald eagle.\n\nFrom statement 2, we know that the bald eagle is not kind. This statement does not provide any information about the bear seeing the bald eagle.\n\nWe need to analyze the statements that involve the bear seeing other animals. From statement 15, we know that if someone sees the bear, then the bear chases the cow. This statement does not provide any information about the bear seeing the bald eagle.\n\nWe cannot find any direct connection between the bear and the bald eagle. Therefore, we cannot determine whether the statement \"The bear sees the bald eagle\" is true or false.\n\nThe answer is: $\\boxed{unknown}$",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The bear sees the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle chases the cow. \n   - We don't have enough information to determine the bear's relationship with the bald eagle yet.\n\n2. The bald eagle is not kind.\n   - This statement doesn't give us any relevant information about the bear's relationship with the bald eagle.\n\n3. The bald eagle is round.\n   - This statement doesn't give us any relevant information about the bear's relationship with the bald eagle.\n\n4. The bear chases the tiger.\n   - We still don't have enough information to determine the bear's relationship with the bald eagle.\n\n5. The cow is red.\n   - This statement doesn't give us any relevant information about the bear's relationship with the bald eagle.\n\n6. The cow is round.\n   - This statement doesn't give us any relevant information about the bear's relationship with the bald eagle.\n\n7. The tiger sees the cow.\n   - This statement doesn't give us any relevant information about the bear's relationship with the bald eagle.\n\n8. If someone is young and they see the bald eagle then they see the bear.\n   - We can use this statement later to determine the bear's relationship with the bald eagle.\n\n9. If someone chases the bear then the bear is young.\n   - This statement doesn't directly relate to the bear's relationship with the bald eagle, but it might be useful later.\n\n10. If someone chases the tiger then they are rough.\n    - This statement doesn't give us any relevant information about the bear's relationship with the bald eagle.\n\n11. If someone chases the tiger then the tiger eats the bear.\n    - This statement doesn't give us any relevant information about the bear's relationship with the bald eagle.\n\n12. If the tiger is round and the tiger is kind then the tiger chases the bear.\n    - This statement doesn't give us any relevant information about the bear's relationship with the bald eagle.\n\n13. If someone is young then they see the bald eagle.\n    - We can use this statement later to determine the bear's relationship with the bald eagle.\n\n14. If someone chases the cow then they chase the bear.\n    - We can use this statement later to determine the bear's relationship with the bald eagle.\n\n15. If someone sees the bear then the bear chases the cow.\n    - We can use this statement later to determine the bear's relationship with the bald eagle.\n\nNow, let's analyze the given statements to determine whether the bear sees the bald eagle.\n\nFrom statement 8, we know that if someone is young and they see the bald eagle then they see the bear.\n\nFrom statement 13, we know that if someone is young then they see the bald eagle.\n\nCombining these two statements, we can conclude that if someone is young then they see the bear.\n\nHowever, from statement 9, we know that if someone chases the bear then the bear is young. This statement doesn't tell us directly whether the bear sees the bald eagle, but it tells us that the bear can be young.\n\nFrom statement 14, we know that if someone chases the cow then they chase the bear. This statement doesn't tell us directly whether the bear sees the bald eagle.\n\nFrom statement 15, we know that if someone sees the bear then the bear chases the cow. This statement doesn't tell us directly whether the bear sees the bald eagle.\n\nFrom statement 1, we know that the bald eagle chases the cow. \n\nFrom statement 14, we know that if someone chases the cow then they chase the bear. \n\nCombining these two statements, we can conclude that the bald eagle chases the cow and also chases the bear (since the bald eagle chases the cow, then the bald eagle must be the one who chases the bear).\n\nHowever, we don't have enough information to determine whether the bear sees the bald eagle.\n\nTherefore, the statement \"The bear sees the bald eagle\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bear sees the bald eagle\" is true, false, or unknown, we need to analyze the given statements and their relationships.\n\nLet's break down the information step by step:\n\n1. The bald eagle chases the cow. (Statement 1)\n   We know the bald eagle is chasing the cow, but this doesn't give us any information about the bear yet.\n\n2. The bald eagle is not kind. (Statement 2)\n   This statement is irrelevant to the problem at hand, so we can ignore it.\n\n3. The bald eagle is round. (Statement 3)\n   This statement is also irrelevant, so we can ignore it.\n\n4. The bear chases the tiger. (Statement 4)\n   We know the bear is chasing the tiger, but we still don't know anything about the bald eagle.\n\n5. The cow is red. (Statement 5)\n   This statement is irrelevant, so we can ignore it.\n\n6. The cow is round. (Statement 6)\n   This statement is also irrelevant, so we can ignore it.\n\n7. The tiger sees the cow. (Statement 7)\n   We know the tiger sees the cow, but this doesn't help us determine the relationship between the bear and the bald eagle.\n\n8. If someone is young and they see the bald eagle then they see the bear. (Statement 8)\n   This statement implies that someone who sees the bald eagle is also young and sees the bear. However, we don't know if the bear sees the bald eagle.\n\n9. If someone chases the bear then the bear is young. (Statement 9)\n   This statement implies that if someone chases the bear, the bear is young. However, we don't know if the bear is young or not.\n\n10. If someone chases the tiger then they are rough. (Statement 10)\n    This statement is irrelevant to the problem at hand, so we can ignore it.\n\n11. If someone chases the tiger then the tiger eats the bear. (Statement 11)\n    This statement implies that if someone chases the tiger, the tiger eats the bear. However, we don't know if the tiger eats the bear or not.\n\n12. If the tiger is round and the tiger is kind then the tiger chases the bear. (Statement 12)\n    This statement is irrelevant to the problem at hand, so we can ignore it.\n\n13. If someone is young then they see the bald eagle. (Statement 13)\n    This statement implies that someone who is young sees the bald eagle. However, we don't know if the bear is young or not.\n\n14. If someone chases the cow then they chase the bear. (Statement 14)\n    This statement implies that if someone chases the cow, they also chase the bear. However, we don't know if the bear chases the cow or not.\n\n15. If someone sees the bear then the bear chases the cow. (Statement 15)\n    This statement implies that if someone sees the bear, the bear chases the cow. However, we don't know if someone sees the bear or not.\n\nFrom the given statements, we can derive the following relationships:\n\n- The bear chases the tiger (Statement 4).\n- If someone chases the bear, the bear is young (Statement 9).\n- If someone sees the bald eagle, they see the bear (Statement 8).\n- If someone is young, they see the bald eagle (Statement 13).\n\nNow, let's try to find a connection between the bear and the bald eagle.\n\nFrom Statement 8, we know that if someone sees the bald eagle, they see the bear. However, this doesn't necessarily mean that the bear sees the bald eagle.\n\nFrom Statement 13, we know that if someone is young, they see the bald eagle. However, we don't know if the bear is young or not.\n\nFrom Statement 9, we know that if someone chases the bear, the bear is young. However, we don't know if the bear is being chased or not.\n\nFrom Statement 14, we know that if someone chases the cow, they chase the bear. However, we don't know if the bear chases the cow or not.\n\nFrom Statement 15, we know that if someone sees the bear, the bear chases the cow. However, we don't know if someone sees the bear or not.\n\nWe can't find a direct connection between the bear and the bald eagle using the given statements. Therefore, we can't determine whether the statement \"The bear sees the bald eagle\" is true or false.\n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bald_eagle))",
+          "z3_formula": "not(kind_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_bald_eagle, sees_bald_eagle), sees_bear_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(X)",
+          "z3_formula": "Implies(chases_bear_bear, young_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_bear_tiger, rough_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_bear_tiger, eats_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases(X, bear)",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), chases_tiger_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_bald_eagle, sees_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_bear_cow, chases_bear_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(sees_bear_bear, chases_bear_cow)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bald_eagle))",
+          "z3_formula": "not(kind_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_X, sees_X_bald_eagle), sees_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(X)",
+          "z3_formula": "Implies(chases_X_bear, young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_X_tiger, rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_X_tiger, eats_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases(X, bear)",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), chases_tiger_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_X, sees_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_X_cow, chases_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(sees_X_bear, chases_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bald_eagle))",
+          "z3_formula": "not(kind_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_X, sees_X_bald_eagle), sees_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(bear)",
+          "z3_formula": "Implies(chases_X_bear, young_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_X_tiger, rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_X_tiger, eats_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases(X, bear)",
+          "z3_formula": "Implies(And(round_X, kind_X), chases_X_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_X, sees_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_X_cow, chases_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(sees_X_bear, chases_X_cow)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_person, sees_person_bald_eagle), sees_person_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(X)",
+          "z3_formula": "Implies(chases_person_bear, young_person)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_person_tiger, rough_person)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_person_tiger, eats_tiger_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(tiger) & kind(tiger) -> chases(tiger, bear)",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), chases_tiger_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_person, sees_person_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_person_cow, chases_person_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(sees_person_bear, chases_person_cow)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bald_eagle))",
+          "z3_formula": "not(kind_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_bald_eagle, sees_bald_eagle_bald_eagle), sees_bald_eagle_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(X)",
+          "z3_formula": "Implies(chases_bear_bear, young_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_bear_tiger, rough_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_bear_tiger, eats_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases(X, bear)",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), chases_tiger_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_bald_eagle, sees_bald_eagle_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_bald_eagle_cow, chases_bald_eagle_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(sees_bald_eagle_bear, chases_bald_eagle_cow)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "tiger_sees_cow",
+          "z3_formula": "tiger_sees_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees_bald_eagle(X) -> sees_bear(X)",
+          "z3_formula": "Implies(And(young_sees_bald_eagle, sees_bald_eagle_sees_bear), sees_bear_sees_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases_bear(X) -> young(X)",
+          "z3_formula": "Implies(chases_bear_sees_bald_eagle, young_sees_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases_tiger(X) -> rough(X)",
+          "z3_formula": "Implies(chases_tiger_sees_bald_eagle, rough_sees_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases_tiger(X) -> tiger_eats_bear",
+          "z3_formula": "Implies(chases_tiger_sees_bald_eagle, tiger_eats_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases_bear(X)",
+          "z3_formula": "Implies(And(round_tiger_sees_bald_eagle, kind_tiger_sees_bald_eagle), chases_bear_sees_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees_bald_eagle(X)",
+          "z3_formula": "Implies(young_sees_bald_eagle, sees_bald_eagle_sees_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases_cow(X) -> chases_bear(X)",
+          "z3_formula": "Implies(chases_cow_sees_bald_eagle, chases_bear_sees_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees_bear(X) -> chases_cow(X)",
+          "z3_formula": "Implies(sees_bear_sees_bald_eagle, chases_cow_sees_bald_eagle)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bald_eagle))",
+          "z3_formula": "not(kind_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_bald_eagle, sees_bald_eagle), sees_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(X)",
+          "z3_formula": "Implies(chases_bear_tiger, young_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_bear_tiger, rough_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(X, bear)",
+          "z3_formula": "Implies(chases_bear_tiger, eats_bear_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases(X, bear)",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), chases_tiger_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_bear, sees_bear_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_bear_cow, chases_bear_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(sees_bear, chases_bear_cow)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bald_eagle))",
+          "z3_formula": "not(kind_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_something, sees_something_bald_eagle), sees_something_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(bear)",
+          "z3_formula": "Implies(chases_something_bear, young_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_something_tiger, rough_something)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_something_tiger, eats_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases(X, bear)",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), chases_tiger_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_something, sees_something_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_something_cow, chases_something_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(bear, cow)",
+          "z3_formula": "Implies(sees_something_bear, chases_bear_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bald_eagle))",
+          "z3_formula": "not(kind_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_bald_eagle, sees_bald_eagle_bald_eagle), sees_bald_eagle_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(bear)",
+          "z3_formula": "Implies(chases_bear_bear, young_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_bear_tiger, rough_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_bear_tiger, eats_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases(X, bear)",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), chases_tiger_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_bald_eagle, sees_bald_eagle_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_bear_cow, chases_bear_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(bear, cow)",
+          "z3_formula": "Implies(sees_bald_eagle_bear, chases_bear_cow)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(bald_eagle))",
+          "z3_formula": "not(kind_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_X, sees_X_bald_eagle), sees_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(bear)",
+          "z3_formula": "Implies(chases_X_bear, young_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_X, sees_X_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_X_cow, chases_X_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(bear, cow)",
+          "z3_formula": "Implies(sees_X_bear, chases_bear_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_X_tiger, rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_X_tiger, eats_tiger_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(tiger) & kind(tiger) -> chases(tiger, bear)",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), chases_tiger_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_X_tiger, rough_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(sees(bear, bald_eagle))",
+          "z3_formula": "unknown(sees_bear_bald_eagle) == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_X, sees_X_bald_eagle), sees_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_X, sees_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(X)",
+          "z3_formula": "Implies(chases_X_bear, young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_X_cow, chases_X_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(sees_X_bear, chases_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == Unknown",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cow)",
+          "z3_formula": "chases_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bald_eagle)",
+          "z3_formula": "round_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bear, tiger)",
+          "z3_formula": "chases_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & sees(X, bald_eagle) -> sees(X, bear)",
+          "z3_formula": "Implies(And(young_bear, sees_bear_bald_eagle), sees_bear_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> young(X)",
+          "z3_formula": "Implies(chases_bear_bear, young_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> rough(X)",
+          "z3_formula": "Implies(chases_bear_tiger, rough_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> eats(tiger, bear)",
+          "z3_formula": "Implies(chases_bear_tiger, eats_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & kind(X) -> chases(X, bear)",
+          "z3_formula": "Implies(And(round_tiger, kind_tiger), chases_tiger_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(young_bear, sees_bear_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> chases(X, bear)",
+          "z3_formula": "Implies(chases_bear_cow, chases_bear_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> chases(bear, cow)",
+          "z3_formula": "Implies(sees_bear_bear, chases_bear_cow)",
+          "source_step": 15
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 170,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 61
+    },
+    "maxsat_stats": {
+      "satisfied": 61,
+      "excluded": 0,
+      "total_weight": 169,
+      "solve_time_ms": 1.252543181180954
+    },
+    "timing": {
+      "trace_gen_s": 11.676,
+      "extraction_s": 32.4,
+      "dedup_s": 1.685,
+      "maxsat_s": 0.005,
+      "total_s": 45.765
+    }
+  }
+}

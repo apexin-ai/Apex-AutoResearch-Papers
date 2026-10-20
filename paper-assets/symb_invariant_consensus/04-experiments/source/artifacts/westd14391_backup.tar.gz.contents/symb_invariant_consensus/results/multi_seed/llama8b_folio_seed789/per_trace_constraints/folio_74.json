@@ -1,0 +1,504 @@
+{
+  "pid": "folio_74",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(x, in_istanbul(x), begins_with_34(x))",
+          "z3_formula": "And(in_istanbul_plate == True, begins_with_34_plate == True)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "not in_istanbul(x) -> not begins_with_34(x)",
+          "z3_formula": "Implies(Not(in_istanbul_plate), Not(begins_with_34_plate))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "in_istanbul(joe)",
+          "z3_formula": "in_istanbul_joe == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "begins_with_35(tom)",
+          "z3_formula": "begins_with_35_tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "begins_with_35(x) -> not begins_with_34(x)",
+          "z3_formula": "Implies(begins_with_35_tom, Not(begins_with_34_tom))",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(x: VehicleRegistrationPlate, in_istanbul(x)) -> begins_with_34(x)",
+          "z3_formula": "Implies(in_istanbul(x), begins_with_34(x)) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not begins_with_34(x) -> not in_istanbul(x)",
+          "z3_formula": "Implies(Not(begins_with_34(x)), Not(in_istanbul(x))) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "in_istanbul(joe_plate)",
+          "z3_formula": "in_istanbul_joe_plate == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "begins_with_35(x) -> not begins_with_34(x)",
+          "z3_formula": "Implies(begins_with_35(x), Not(begins_with_34(x)))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "begins_with_35(tom_plate)",
+          "z3_formula": "begins_with_35_tom_plate == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(plate, begins_with(34, plate) -> from_istanbul(plate))",
+          "z3_formula": "And(begins_with_34_plate == True, from_istanbul_plate == True)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all(plate, not begins_with(34, plate) -> not from_istanbul(plate))",
+          "z3_formula": "And(not begins_with_34_plate == True, not from_istanbul_plate == True)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "from_istanbul(joe_plate)",
+          "z3_formula": "from_istanbul_joe_plate == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "begins_with(35, plate) -> not begins_with(34, plate)",
+          "z3_formula": "Implies(begins_with_35_plate == True, not begins_with_34_plate == True)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "begins_with(34, joe_plate)",
+          "z3_formula": "begins_with_34_joe_plate == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "from_istanbul(joe)",
+          "z3_formula": "from_istanbul_joe == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_istanbul_begin_34",
+          "z3_formula": "all_istanbul_begin_34 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_istanbul(X) -> all_istanbul_begin_34(X)",
+          "z3_formula": "Implies(from_istanbul_joe, all_istanbul_begin_34_joe)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "all_istanbul_begin_34(joe)",
+          "z3_formula": "all_istanbul_begin_34_joe == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "joe_begin_34",
+          "z3_formula": "joe_begin_34 == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "begin_34(X) -> begin_35(Y) -> not begin_34(Y)",
+          "z3_formula": "Implies(And(begin_34_joe, begin_35_tom), Not(begin_34_tom))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "tom_begin_35",
+          "z3_formula": "tom_begin_35 == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not begin_34(tom)",
+          "z3_formula": "not_begin_34_tom == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "begin_34(joe)",
+          "z3_formula": "joe_begin_34 == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_plates_in_istanbul_begin_with_34",
+          "z3_formula": "all_plates_in_istanbul_begin_with_34 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "plates_not_beginning_with_34_are_not_from_istanbul",
+          "z3_formula": "plates_not_beginning_with_34_are_not_from_istanbul == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "joes_plate_is_from_istanbul",
+          "z3_formula": "joes_plate_is_from_istanbul == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "beginning_with_35 -> not_beginning_with_34",
+          "z3_formula": "Implies(beginning_with_35, not_beginning_with_34)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "toms_plate_beginning_with_35",
+          "z3_formula": "toms_plate_beginning_with_35 == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "joes_plate_beginning_with_34",
+          "z3_formula": "joes_plate_beginning_with_34 == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_plates_in_istanbul_begin_with_34",
+          "z3_formula": "all_plates_in_istanbul_begin_with_34 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "not from_istanbul(X) -> not starts_with_34(X)",
+          "z3_formula": "Implies(Not(from_istanbul_X), Not(starts_with_34_X))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "joe_plate_from_istanbul",
+          "z3_formula": "joe_plate_from_istanbul == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_istanbul(X) -> starts_with_34(X)",
+          "z3_formula": "Implies(from_istanbul_X, starts_with_34_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_plate_starts_with_35",
+          "z3_formula": "tom_plate_starts_with_35 == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "starts_with_35(X) -> not starts_with_34(X)",
+          "z3_formula": "Implies(starts_with_35_X, Not(starts_with_34_X))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "joe_plate_starts_with_34",
+          "z3_formula": "starts_with_34_joe_plate == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_i_34",
+          "z3_formula": "all_i_34 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_34_not_i",
+          "z3_formula": "not_34_not_i == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "j_i",
+          "z3_formula": "j_i == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "t_35",
+          "z3_formula": "t_35 == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "35_not_34",
+          "z3_formula": "Implies(t_35, not_34)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "j_34",
+          "z3_formula": "j_34 == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(x, in_istanbul(x), begins_with_34(x))",
+          "z3_formula": "And(In(x, istanbul), begins_with_34(x)) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not begins_with_34(x) -> not in_istanbul(x)",
+          "z3_formula": "Implies(Not(begins_with_34(x)), Not(in_istanbul(x)))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "in_istanbul(joe)",
+          "z3_formula": "in_joe_istanbul == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "begins_with_35(tom)",
+          "z3_formula": "begins_with_35_tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "begins_with_35(x) -> not begins_with_34(x)",
+          "z3_formula": "Implies(begins_with_35(x), Not(begins_with_34(x)))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "begins_with_34(joe)",
+          "z3_formula": "begins_with_34_joe == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_istanbul_plates_begin_with_34",
+          "z3_formula": "all_istanbul_plates_begin_with_34 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "not_begin_with_34 -> not_from_istanbul",
+          "z3_formula": "Implies(Not(begin_with_34), not_from_istanbul)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "joe_plate_from_istanbul",
+          "z3_formula": "joe_plate_from_istanbul == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "begin_with_34 -> from_istanbul",
+          "z3_formula": "Implies(begin_with_34, from_istanbul)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_plate_begin_with_35",
+          "z3_formula": "tom_plate_begin_with_35 == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "begin_with_35 -> not_begin_with_34",
+          "z3_formula": "Implies(begin_with_35, Not(begin_with_34))",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "from_istanbul(joe)",
+          "z3_formula": "from_istanbul_joe == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_istanbul(X) -> begins_with_34(X)",
+          "z3_formula": "Implies(from_istanbul_joe, begins_with_34_joe)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "begins_with_34(X)",
+          "z3_formula": "begins_with_34_X == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "Not(begins_with_34(X))",
+          "z3_formula": "Not(begins_with_34_tom)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "begins_with_35(X) -> Not(begins_with_34(X))",
+          "z3_formula": "Implies(begins_with_35_tom, Not(begins_with_34_tom))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "begins_with_34(joe)",
+          "z3_formula": "begins_with_34_joe == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_plates_in_istanbul_begin_with_34",
+          "z3_formula": "all_plates_in_istanbul_begin_with_34 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "plates_not_beginning_with_34_are_not_from_istanbul",
+          "z3_formula": "plates_not_beginning_with_34_are_not_from_istanbul == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "joe_plate_is_from_istanbul",
+          "z3_formula": "joe_plate_is_from_istanbul == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "beginning_with_35 -> not_beginning_with_34",
+          "z3_formula": "Implies(beginning_with_35, not_beginning_with_34)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "joe_plate_begins_with_34",
+          "z3_formula": "joe_plate_begins_with_34 == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(plate, in_istanbul(plate) -> begins_with_34(plate))",
+          "z3_formula": "Implies(in_istanbul_plate, begins_with_34_plate)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_in_istanbul(plate) -> not begins_with_34(plate)",
+          "z3_formula": "Implies(not_in_istanbul_plate, Not(begins_with_34_plate))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "in_istanbul(joe_plate)",
+          "z3_formula": "in_istanbul_joe_plate == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "begins_with_35(plate) -> not begins_with_34(plate)",
+          "z3_formula": "Implies(begins_with_35_plate, Not(begins_with_34_plate))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "begins_with_34(joe_plate)",
+          "z3_formula": "begins_with_34_joe_plate == True",
+          "source_step": 5
+        }
+      ]
+    }
+  ]
+}

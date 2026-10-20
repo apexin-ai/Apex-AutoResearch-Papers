@@ -1,0 +1,827 @@
+{
+  "pid": "folio_171",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer(X) -> severe_cancer(X)",
+          "z3_formula": "Implies(bile_duct_cancer_X, severe_cancer_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma(X) -> bile_duct_cancer(X)",
+          "z3_formula": "Implies(cholangiocarcinoma_X, bile_duct_cancer_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "mild_flu(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(mild_flu_X, low_survival_rate_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "bile_duct_cancer(X) & low_survival_rate(X) -> not bile_duct_cancer(X)",
+          "z3_formula": "Implies(And(bile_duct_cancer_X, low_survival_rate_X), Not(bile_duct_cancer_X))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer(X) -> severe_cancer(X)",
+          "z3_formula": "Implies(bile_duct_cancer_X, severe_cancer_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_cholangiocarcinoma_is_bile_duct_cancer",
+          "z3_formula": "all_cholangiocarcinoma_is_bile_duct_cancer == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "all_severe_cancers_are_deadly_diseases",
+          "z3_formula": "all_severe_cancers_are_deadly_diseases == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer",
+          "z3_formula": "bile_duct_cancer == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "no_mild_flu_has_low_survival_rate",
+          "z3_formula": "no_mild_flu_has_low_survival_rate == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer_is_bile_duct_cancer_or_cholangiocarcinoma -> colorectal_cancer_is_bile_duct_cancer_and_mild_flu",
+          "z3_formula": "Implies(Or(colorectal_cancer_is_bile_duct_cancer, colorectal_cancer_is_cholangiocarcinoma), And(colorectal_cancer_is_bile_duct_cancer, colorectal_cancer_is_mild_flu))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer_is_cholangiocarcinoma -> colorectal_cancer_has_low_survival_rate",
+          "z3_formula": "colorectal_cancer_is_cholangiocarcinoma == True -> colorectal_cancer_has_low_survival_rate == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer_is_cholangiocarcinoma -> colorectal_cancer_is_not_mild_flu",
+          "z3_formula": "colorectal_cancer_is_cholangiocarcinoma == True -> Not(colorectal_cancer_is_mild_flu)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(D)",
+          "z3_formula": "deadly_disease_D == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_D, low_survival_rate_D)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(C)",
+          "z3_formula": "severe_cancer_C == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_C, deadly_disease_C)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer(B)",
+          "z3_formula": "bile_duct_cancer_B == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "bile_duct_cancer(X) -> severe_cancer(X)",
+          "z3_formula": "Implies(bile_duct_cancer_B, severe_cancer_B)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma(CH)",
+          "z3_formula": "cholangiocarcinoma_CH == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cholangiocarcinoma(X) -> bile_duct_cancer(X)",
+          "z3_formula": "Implies(cholangiocarcinoma_CH, bile_duct_cancer_CH)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "mild_flu(M)",
+          "z3_formula": "mild_flu_M == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "mild_flu(X) -> not_low_survival_rate(X)",
+          "z3_formula": "Implies(mild_flu_M, not_low_survival_rate_M)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "(colorectal_cancer(X) & bile_duct_cancer(X) & low_survival_rate(X)) -> not_bile_duct_cancer(X)",
+          "z3_formula": "Implies(And(colorectal_cancer_X, bile_duct_cancer_X, low_survival_rate_X), not_bile_duct_cancer_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "(colorectal_cancer(X) | cholangiocarcinoma(X)) -> (bile_duct_cancer(X) & mild_flu(X))",
+          "z3_formula": "Implies(Or(colorectal_cancer_X, cholangiocarcinoma_X), And(bile_duct_cancer_X, mild_flu_X))",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer == True",
+          "z3_formula": "bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_cancer_bile_duct_cancer == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "deadly_disease(bile_duct_cancer)",
+          "z3_formula": "deadly_disease_bile_duct_cancer == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "low_survival_rate(bile_duct_cancer)",
+          "z3_formula": "low_survival_rate_bile_duct_cancer == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma == True",
+          "z3_formula": "cholangiocarcinoma == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer == cholangiocarcinoma",
+          "z3_formula": "bile_duct_cancer == cholangiocarcinoma",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer == bile_duct_cancer | colorectal_cancer == cholangiocarcinoma -> colorectal_cancer == bile_duct_cancer & mild_flu",
+          "z3_formula": "Implies(Or(colorectal_cancer == bile_duct_cancer, colorectal_cancer == cholangiocarcinoma), And(colorectal_cancer == bile_duct_cancer, mild_flu == True))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer == bile_duct_cancer & low_survival_rate(colorectal_cancer) -> colorectal_cancer != bile_duct_cancer",
+          "z3_formula": "Implies(And(colorectal_cancer == bile_duct_cancer, low_survival_rate_colorectal_cancer), colorectal_cancer != bile_duct_cancer)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == bile_duct_cancer -> low_survival_rate(colorectal_cancer)",
+          "z3_formula": "Implies(colorectal_cancer == bile_duct_cancer, low_survival_rate_colorectal_cancer)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == bile_duct_cancer -> colorectal_cancer != bile_duct_cancer",
+          "z3_formula": "Implies(colorectal_cancer == bile_duct_cancer, colorectal_cancer != bile_duct_cancer)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer == True",
+          "z3_formula": "bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_cholangiocarcinoma == True",
+          "z3_formula": "all_cholangiocarcinoma == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mild_flu(X) -> not_low_survival_rate(X)",
+          "z3_formula": "Implies(mild_flu_X, not_low_survival_rate_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer == bile_duct_cancer or all_cholangiocarcinoma -> colorectal_cancer == bile_duct_cancer",
+          "z3_formula": "Implies(Or(colorectal_cancer == bile_duct_cancer, colorectal_cancer == all_cholangiocarcinoma), colorectal_cancer == bile_duct_cancer)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer == bile_duct_cancer & low_survival_rate -> colorectal_cancer != bile_duct_cancer",
+          "z3_formula": "Implies(And(colorectal_cancer == bile_duct_cancer, low_survival_rate), colorectal_cancer != bile_duct_cancer)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == bile_duct_cancer or all_cholangiocarcinoma -> colorectal_cancer == bile_duct_cancer & bile_duct_cancer",
+          "z3_formula": "Implies(Or(colorectal_cancer == bile_duct_cancer, colorectal_cancer == all_cholangiocarcinoma), And(colorectal_cancer == bile_duct_cancer, bile_duct_cancer))",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(X) == deadly_disease(X)",
+          "z3_formula": "severe_cancer_X == deadly_disease_X",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma == bile_duct_cancer",
+          "z3_formula": "cholangiocarcinoma == bile_duct_cancer",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mild_flu(X) -> not low_survival_rate(X)",
+          "z3_formula": "Implies(mild_flu_X, not low_survival_rate_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer == cholangiocarcinoma -> colorectal_cancer == bile_duct_cancer",
+          "z3_formula": "Implies(colorectal_cancer == cholangiocarcinoma, colorectal_cancer == bile_duct_cancer)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == bile_duct_cancer",
+          "z3_formula": "colorectal_cancer == bile_duct_cancer",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer == bile_duct_cancer -> colorectal_cancer == severe_cancer",
+          "z3_formula": "Implies(colorectal_cancer == bile_duct_cancer, colorectal_cancer == severe_cancer)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == severe_cancer",
+          "z3_formula": "colorectal_cancer == severe_cancer",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "low_survival_rate(colorectal_cancer)",
+          "z3_formula": "low_survival_rate_colorectal_cancer == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer == bile_duct_cancer & low_survival_rate(colorectal_cancer) -> not colorectal_cancer == bile_duct_cancer",
+          "z3_formula": "Implies(And(colorectal_cancer == bile_duct_cancer, low_survival_rate_colorectal_cancer), not colorectal_cancer == bile_duct_cancer)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": []
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer(X) -> severe_cancer(X)",
+          "z3_formula": "Implies(bile_duct_cancer_X, severe_cancer_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma(X) -> bile_duct_cancer(X)",
+          "z3_formula": "Implies(cholangiocarcinoma_X, bile_duct_cancer_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mild_flu(X) -> not(low_survival_rate(X))",
+          "z3_formula": "Implies(mild_flu_X, Not(low_survival_rate_X))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "colorectal_cancer(X) & (cholangiocarcinoma(X) | bile_duct_cancer(X)) -> colorectal_cancer(X) & mild_flu(X)",
+          "z3_formula": "Implies(Or(cholangiocarcinoma_X, bile_duct_cancer_X), And(colorectal_cancer_X, mild_flu_X))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer(X) & (cholangiocarcinoma(X) | bile_duct_cancer(X))",
+          "z3_formula": "Or(cholangiocarcinoma_X, bile_duct_cancer_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer(X) & (cholangiocarcinoma(X) | bile_duct_cancer(X)) -> colorectal_cancer(X) & mild_flu(X)",
+          "z3_formula": "Implies(Or(cholangiocarcinoma_X, bile_duct_cancer_X), And(colorectal_cancer_X, mild_flu_X))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer(X) & mild_flu(X)",
+          "z3_formula": "And(colorectal_cancer_X, mild_flu_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer(X) & bile_duct_cancer(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(And(colorectal_cancer_X, bile_duct_cancer_X), low_survival_rate_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer(X) & mild_flu(X) -> not(low_survival_rate(X))",
+          "z3_formula": "Implies(And(colorectal_cancer_X, mild_flu_X), Not(low_survival_rate_X))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer(X) & bile_duct_cancer(X) & mild_flu(X)",
+          "z3_formula": "Not(Implies(And(colorectal_cancer_X, bile_duct_cancer_X), And(colorectal_cancer_X, mild_flu_X)))",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_cancer_bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "deadly_disease(bile_duct_cancer)",
+          "z3_formula": "deadly_disease_bile_duct_cancer == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "low_survival_rate(bile_duct_cancer)",
+          "z3_formula": "low_survival_rate_bile_duct_cancer == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cholangiocarcinoma(X) -> bile_duct_cancer(X)",
+          "z3_formula": "Implies(cholangiocarcinoma_X, bile_duct_cancer_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma(X) == cholangiocarcinoma",
+          "z3_formula": "cholangiocarcinoma == cholangiocarcinoma",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "bile_duct_cancer(cholangiocarcinoma)",
+          "z3_formula": "bile_duct_cancer_cholangiocarcinoma == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "bile_duct_cancer(X) & low_survival_rate(X) -> not bile_duct_cancer(X)",
+          "z3_formula": "Implies(And(bile_duct_cancer_X, low_survival_rate_X), Not(bile_duct_cancer_X))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer(X) -> mild_flu(X)",
+          "z3_formula": "Implies(colorectal_cancer_X, mild_flu_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not colorectal_cancer(cholangiocarcinoma) or mild_flu(cholangiocarcinoma)",
+          "z3_formula": "Or(Not(colorectal_cancer_cholangiocarcinoma), mild_flu_cholangiocarcinoma)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer(X) & (bile_duct_cancer(X) or cholangiocarcinoma(X)) -> (bile_duct_cancer(X) & mild_flu(X))",
+          "z3_formula": "Implies(And(colorectal_cancer_X, Or(bile_duct_cancer_X, cholangiocarcinoma_X)), And(bile_duct_cancer_X, mild_flu_X))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not (bile_duct_cancer(cholangiocarcinoma) & low_survival_rate(cholangiocarcinoma))",
+          "z3_formula": "Not(And(bile_duct_cancer_cholangiocarcinoma, low_survival_rate_cholangiocarcinoma))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not (colorectal_cancer(cholangiocarcinoma) & (bile_duct_cancer(cholangiocarcinoma) or cholangiocarcinoma(cholangiocarcinoma)))",
+          "z3_formula": "Not(And(colorectal_cancer_cholangiocarcinoma, Or(bile_duct_cancer_cholangiocarcinoma, cholangiocarcinoma_cholangiocarcinoma)))",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not (colorectal_cancer(cholangiocarcinoma) & bile_duct_cancer(cholangiocarcinoma))",
+          "z3_formula": "Not(And(colorectal_cancer_cholangiocarcinoma, bile_duct_cancer_cholangiocarcinoma))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not (colorectal_cancer(cholangiocarcinoma) & mild_flu(cholangiocarcinoma))",
+          "z3_formula": "Not(And(colorectal_cancer_cholangiocarcinoma, mild_flu_cholangiocarcinoma))",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer == True",
+          "z3_formula": "bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_severe_cancer(X) == all_deadly_disease(X)",
+          "z3_formula": "all_severe_cancer_X == all_deadly_disease_X",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "all_cholangiocarcinoma(X) == bile_duct_cancer",
+          "z3_formula": "all_cholangiocarcinoma_X == bile_duct_cancer",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "no_mild_flu(X) == low_survival_rate(X)",
+          "z3_formula": "no_mild_flu_X == low_survival_rate_X",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer == bile_duct_cancer | colorectal_cancer == cholangiocarcinoma -> colorectal_cancer == bile_duct_cancer",
+          "z3_formula": "Implies(Or(colorectal_cancer == bile_duct_cancer, colorectal_cancer == cholangiocarcinoma), colorectal_cancer == bile_duct_cancer)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer == bile_duct_cancer & low_survival_rate(colorectal_cancer) -> colorectal_cancer != bile_duct_cancer",
+          "z3_formula": "Implies(And(colorectal_cancer == bile_duct_cancer, low_survival_rate_colorectal_cancer), colorectal_cancer != bile_duct_cancer)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == bile_duct_cancer -> low_survival_rate(colorectal_cancer)",
+          "z3_formula": "Implies(colorectal_cancer == bile_duct_cancer, low_survival_rate_colorectal_cancer)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == bile_duct_cancer & low_survival_rate(colorectal_cancer)",
+          "z3_formula": "And(colorectal_cancer == bile_duct_cancer, low_survival_rate_colorectal_cancer)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == bile_duct_cancer & low_survival_rate(colorectal_cancer) -> colorectal_cancer != bile_duct_cancer",
+          "z3_formula": "Implies(And(colorectal_cancer == bile_duct_cancer, low_survival_rate_colorectal_cancer), colorectal_cancer != bile_duct_cancer)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == bile_duct_cancer",
+          "z3_formula": "colorectal_cancer == bile_duct_cancer",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == bile_duct_cancer & low_survival_rate(colorectal_cancer)",
+          "z3_formula": "And(colorectal_cancer == bile_duct_cancer, low_survival_rate_colorectal_cancer)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == bile_duct_cancer & low_survival_rate(colorectal_cancer) -> colorectal_cancer != bile_duct_cancer",
+          "z3_formula": "Implies(And(colorectal_cancer == bile_duct_cancer, low_survival_rate_colorectal_cancer), colorectal_cancer != bile_duct_cancer)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == bile_duct_cancer",
+          "z3_formula": "colorectal_cancer == bile_duct_cancer",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == bile_duct_cancer -> colorectal_cancer != mild_flu",
+          "z3_formula": "Implies(colorectal_cancer == bile_duct_cancer, colorectal_cancer != mild_flu)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == cholangiocarcinoma -> colorectal_cancer == bile_duct_cancer",
+          "z3_formula": "Implies(colorectal_cancer == cholangiocarcinoma, colorectal_cancer == bile_duct_cancer)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == cholangiocarcinoma -> colorectal_cancer != mild_flu",
+          "z3_formula": "Implies(colorectal_cancer == cholangiocarcinoma, colorectal_cancer != mild_flu)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == bile_duct_cancer | colorectal_cancer == cholangiocarcinoma -> colorectal_cancer == mild_flu",
+          "z3_formula": "Implies(Or(colorectal_cancer == bile_duct_cancer, colorectal_cancer == cholangiocarcinoma), colorectal_cancer == mild_flu)",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(X) == deadly_disease(X)",
+          "z3_formula": "severe_cancer_X == deadly_disease_X",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer == severe_cancer",
+          "z3_formula": "bile_duct_cancer == severe_cancer",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma == bile_duct_cancer",
+          "z3_formula": "cholangiocarcinoma == bile_duct_cancer",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mild_flu(X) -> not(low_survival_rate(X))",
+          "z3_formula": "Implies(mild_flu_X, Not(low_survival_rate_X))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "colorectal_cancer == bile_duct_cancer | cholangiocarcinoma",
+          "z3_formula": "colorectal_cancer == Or(bile_duct_cancer, cholangiocarcinoma)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer == bile_duct_cancer -> colorectal_cancer == severe_cancer",
+          "z3_formula": "Implies(colorectal_cancer == bile_duct_cancer, colorectal_cancer == severe_cancer)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer == bile_duct_cancer & low_survival_rate(colorectal_cancer) -> colorectal_cancer != bile_duct_cancer",
+          "z3_formula": "Implies(And(colorectal_cancer == bile_duct_cancer, low_survival_rate_colorectal_cancer), Not(colorectal_cancer == bile_duct_cancer))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer == cholangiocarcinoma -> colorectal_cancer == bile_duct_cancer",
+          "z3_formula": "Implies(colorectal_cancer == cholangiocarcinoma, colorectal_cancer == bile_duct_cancer)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "colorectal_cancer == bile_duct_cancer & mild_flu(colorectal_cancer)",
+          "z3_formula": "And(colorectal_cancer == bile_duct_cancer, mild_flu_colorectal_cancer)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "deadly_disease(X) -> low_survival_rate(X)",
+          "z3_formula": "Implies(deadly_disease_X, low_survival_rate_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(X) -> deadly_disease(X)",
+          "z3_formula": "Implies(severe_cancer_X, deadly_disease_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "bile_duct_cancer",
+          "z3_formula": "bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "severe_cancer(bile_duct_cancer)",
+          "z3_formula": "severe_cancer_bile_duct_cancer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cholangiocarcinoma == bile_duct_cancer",
+          "z3_formula": "cholangiocarcinoma == bile_duct_cancer",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mild_flu(X) -> not low_survival_rate(X)",
+          "z3_formula": "Implies(mild_flu_X, Not(low_survival_rate_X))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer == bile_duct_cancer | colorectal_cancer == cholangiocarcinoma -> colorectal_cancer == bile_duct_cancer",
+          "z3_formula": "Implies(Or(colorectal_cancer == bile_duct_cancer, colorectal_cancer == cholangiocarcinoma), colorectal_cancer == bile_duct_cancer)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "colorectal_cancer == bile_duct_cancer & low_survival_rate(colorectal_cancer) -> colorectal_cancer != bile_duct_cancer",
+          "z3_formula": "Implies(And(colorectal_cancer == bile_duct_cancer, low_survival_rate_colorectal_cancer), Not(colorectal_cancer == bile_duct_cancer))",
+          "source_step": 7
+        }
+      ]
+    }
+  ]
+}

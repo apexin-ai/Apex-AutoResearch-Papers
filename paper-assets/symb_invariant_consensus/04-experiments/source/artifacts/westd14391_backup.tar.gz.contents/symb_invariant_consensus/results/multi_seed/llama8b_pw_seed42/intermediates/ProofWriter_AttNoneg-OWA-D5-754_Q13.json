@@ -1,0 +1,990 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-754_Q13",
+    "problem": "Anne is big. Anne is furry. Anne is rough. Anne is round. Anne is young. Charlie is big. Charlie is cold. Dave is furry. Dave is young. Harry is furry. Harry is nice. Harry is young. All round things are cold. Cold, furry things are rough. If something is furry and rough then it is round. If Charlie is round and Charlie is furry then Charlie is nice. All round, nice things are rough. Big, cold things are furry. Furry, round things are cold. Nice, round things are young.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nFurry(Anne, True) ::: Anne is furry.\nRough(Anne, True) ::: Anne is rough.\nRound(Anne, True) ::: Anne is round.\nYoung(Anne, True) ::: Anne is young.\nBig(Charlie, True) ::: Charlie is big.\nCold(Charlie, True) ::: Charlie is cold.\nFurry(Dave, True) ::: Dave is furry.\nYoung(Dave, True) ::: Dave is young.\nFurry(Harry, True) ::: Harry is furry.\nNice(Harry, True) ::: Harry is nice.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nRound($x, True) >>> Cold($x, True) ::: All round things are cold.\nCold($x, True) && Furry($x, True) >>> Rough($x, True) ::: Cold, furry things are rough.\nFurry($x, True) && Rough($x, True) >>> Round($x, True) ::: If something is furry and rough then it is round.\nRound(Charlie, True) && Furry(Charlie, True) >>> Nice(Charlie, True) ::: If Charlie is round and Charlie is furry then Charlie is nice.\nRound($x, True) && Nice($x, True) >>> Rough($x, True) ::: All round, nice things are rough.\nBig($x, True) && Cold($x, True) >>> Furry($x, True) ::: Big, cold things are furry.\nFurry($x, True) && Round($x, True) >>> Cold($x, True) ::: Furry, round things are cold.\nNice($x, True) && Round($x, True) >>> Young($x, True) ::: Nice, round things are young.\n\nQuery:\nRough(Harry, False) ::: Harry is not rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 102.0,
+      "True": 57.0,
+      "Unknown": 115.5
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "False": 4,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information and apply it to the properties of Harry.\n\nGiven information:\n1. Harry is furry.\n2. Harry is young.\n3. Harry is nice.\n\nWe can use the given rules to derive additional information about Harry:\n1. If something is furry and rough, then it is round. (Rule 4)\n2. All round things are cold. (Rule 1)\n3. Furry, round things are cold. (Rule 8)\n4. If Charlie is round and Charlie is furry then Charlie is nice. (Rule 6) \n   Note that this rule is only applicable to Charlie, but we can still learn something about the relationship between round and furry from it. \n5. All round, nice things are rough. (Rule 7)\n\nWe know that Harry is furry (Rule 1) and young (Rule 2). We also know that Harry is nice (Rule 3). However, we do not have enough information to determine whether Harry is rough or not.\n\nSince we don't have enough information to conclude that Harry is rough, we cannot conclude that Harry is not rough either.\n\nTherefore, the answer is: unknown. \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information and apply the rules to Harry.\n\n1. Harry is furry. (Given)\n2. Harry is young. (Given)\n3. Harry is nice. (Given)\n\nFrom the given information, we can derive some rules:\n\n- If something is furry and rough, then it is round. (Rule 1)\n- If something is furry and rough, then it is round. This implies that if something is furry, then it is either round or not rough. (Inference 1)\n- If Charlie is round and Charlie is furry then Charlie is nice. (Rule 5)\n- All round, nice things are rough. (Rule 8)\n- Since Harry is nice, and we know from inference 1 that if Harry is furry then it is either round or not rough, we cannot conclude that Harry is round. However, we can say that if Harry is round, then Harry is rough. But since Harry is nice, and all round, nice things are rough (Rule 8), then Harry is rough.\n\nNow, let's analyze the statement \"Harry is not rough\" based on our conclusions.\n\nFrom our analysis, we found that Harry is rough. This means that the statement \"Harry is not rough\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information and apply the logical rules.\n\nGiven information:\n- Harry is furry.\n- Harry is nice.\n- Harry is young.\n\nLogical rules:\n- If something is furry and rough then it is round. (1)\n- If something is round, then it is furry and rough. (Implication of 1)\n- Harry is furry. (2)\n- Harry is not round, because if Harry is round, then Harry must be furry and rough, which contradicts the given information that Harry is nice. (3)\n- If Harry is not round, then Harry is not furry and rough. (Implication of 3)\n- If something is furry and rough, then it is round. (1)\n- This rule implies that if something is furry, then it is not rough if it is not round. (4)\n- Harry is furry. (2)\n- Since Harry is not round, Harry is not rough. (Implication of 2 and 4)\n\nTherefore, the statement \"Harry is not rough\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Given information:\n   - Harry is furry.\n   - Harry is young.\n\n2. From the given information, we know:\n   - If something is furry and rough, then it is round.\n   - Since Harry is furry, it is not possible to conclude that Harry is round based on this rule alone. However, we have another piece of information that might help us.\n\n3. Given information:\n   - If something is furry and rough, then it is round.\n   - But we also know:\n     - Furry, round things are cold.\n   - And also:\n     - Cold, furry things are rough.\n\n4. Using the given information, we can conclude that:\n   - If Harry is furry and round, then Harry is cold and rough.\n   - However, we have another piece of information that might help us.\n   - Given information:\n     - If Harry is furry and round, then Harry is young.\n   - This piece of information is already given.\n\n5. Now, let's try to apply the given information to Harry:\n   - Harry is furry and young.\n   - We know that young, furry things can be round or not round. We cannot conclude that Harry is round or not based on this information alone.\n\n6. However, we can try to apply the given information to determine whether Harry is rough or not:\n   - If Harry is furry and round, then Harry is cold and rough.\n   - But we also know:\n     - If something is furry, then it is not possible to conclude that it is rough or not based on this information alone.\n   - However, we have another piece of information that might help us.\n   - Given information:\n     - If Harry is furry and young, then Harry is not round.\n\n7. Now, let's try to apply the given information to Harry:\n   - Harry is furry and young.\n   - We know that young, furry things can be rough or not rough. We cannot conclude that Harry is rough or not based on this information alone.\n\n8. However, we can try to apply the given information to determine whether Harry is rough or not:\n   - Given information:\n     - If something is furry and young, then it is not round.\n   - We know that:\n     - If something is furry and rough, then it is round.\n   - And also:\n     - If something is furry and round, then it is cold and rough.\n   - However, we do not have enough information to conclude whether Harry is rough or not.\n\n9. Therefore, we cannot determine whether Harry is rough or not, so the statement \"Harry is not rough\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information step by step:\n\n1. Harry is furry. \n2. Harry is young.\n3. We are given the following relationships:\n   - If something is furry and rough then it is round.\n   - All round, nice things are rough.\n   - All round things are cold.\n   - If Charlie is round and Charlie is furry then Charlie is nice.\n   - Big, cold things are furry.\n   - Furry, round things are cold.\n   - Nice, round things are young.\n\nFrom the given information:\n- Harry is furry, so we can't conclude anything about Harry's roundness yet. \n- We don't have any information about Harry's roundness, so we can't conclude anything about Harry's coldness yet.\n- We don't have any information about Harry's coldness, so we can't conclude anything about Harry's furiness yet (since big, cold things are furry).\n- We don't have any information about Harry's niceness, so we can't conclude anything about Harry's roundness or roughness yet (since all round, nice things are rough and nice, round things are young).\n\nHowever, from the given information:\n- If something is furry and rough then it is round.\n- We know Harry is furry, but we don't know if Harry is rough.\n\nWe need to analyze Harry's other characteristics to determine if Harry is rough. We know Harry is young, and we also know:\n- Nice, round things are young.\n- All round things are cold.\n\nSince Harry is young, it could be either nice or cold (from the last two statements). \n\nHowever, we also know:\n- Harry is furry.\n- Furry, round things are cold.\n- Big, cold things are furry.\n\nBut we don't know if Harry is big or round. \n\nSo, we have two possibilities:\n- Harry is round (and furry).\n- Harry is not round (and furry).\n\nIf Harry is round, then Harry is cold (from all round things are cold). We don't know if Harry is nice or not, but if Harry is nice, then Harry is rough (from all round, nice things are rough).\n\nHowever, if Harry is furry and not round, then we can't conclude anything about Harry's roughness.\n\nSo, we can't conclude that Harry is rough or not rough from the given information.\n\nTherefore, we can't conclude that Harry is not rough, so the statement is unknown.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply them step by step to determine the properties of Harry. \n\n1. Harry is furry. (Given)\n2. Harry is furry. (Given)\n3. Dave is furry. (Given) \n4. Harry is young. (Given)\n5. If something is furry and rough then it is round. (Given)\n6. Since Harry is furry and young, but not rough (yet), we can't apply statement 5 yet. However, we know that Harry is not round as per the first condition of statement 5.\n7. Harry is furry. (Given)\n8. Harry is young. (Given)\n9. Harry is nice. (Given)\n10. All round things are cold. (Given)\n11. Since Harry is not round, we can't apply statement 10.\n12. Furry, round things are cold. (Given)\n13. Since Harry is not round, we can't apply statement 12.\n14. Nice, round things are young. (Given)\n15. Since Harry is not round, we can't apply statement 14.\n16. Cold, furry things are rough. (Given)\n17. Since Harry is furry but not cold, we can't apply statement 16.\n18. Big, cold things are furry. (Given)\n19. Since Harry is not big and not cold, we can't apply statement 18.\n20. If Charlie is round and Charlie is furry then Charlie is nice. (Given)\n21. This statement is about Charlie, not Harry, so we can't apply it.\n22. All round things are cold. (Given)\n23. This statement is about round things in general, not Harry.\n24. Since we can't determine whether Harry is round or not, we can't determine whether Harry is rough or not.\n\nHowever, let's analyze the possibilities of Harry's properties.\n\n- If Harry is round, then he must be cold (statement 10). But if Harry is cold, then he must be rough (statement 16). However, this contradicts the given information that Harry is not rough. Therefore, Harry cannot be round.\n\n- If Harry is not round, then we can't determine whether he is rough or not. However, we can conclude that Harry is not cold (since all round things are cold, and Harry is not round).\n\nGiven that Harry is furry and young, and we know that he is not cold, we can't determine whether he is rough or not. However, we can conclude that Harry is not rough only if he is not round, which we have already established.\n\nTherefore, since we can't determine whether Harry is rough or not, the statement \"Harry is not rough\" is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is furry. (Given)\n2. Harry is young. (Given)\n3. If something is furry and rough then it is round. (Given)\n   However, we cannot conclude that Harry is rough yet, because we don't have any information about Harry being rough. We only have the possibility that if he were rough, he would be round.\n4. We know that round things are cold. (Given) \n   But, we cannot conclude that Harry is cold yet, because we don't have any information about Harry being round.\n\nNow, let's analyze the possibilities for Harry being round:\n\n- If Harry were round, then he would be cold (from step 4).\n- If Harry were round and cold, then he would be furry (from step 2, because it's given that Harry is furry).\n- But, if Harry were round and furry, then he would be rough (from step 3).\n\nHowever, we don't know if Harry is round. If we assume that Harry is round, then we can conclude that he is rough. But, if Harry is not round, then we cannot conclude anything about his roughness.\n\nNow, let's analyze the possibilities for Harry being rough:\n\n- If Harry were rough, then he would be round (from step 3).\n- If Harry were round, then he would be cold (from step 4).\n- If Harry were round and cold, then he would be furry (from step 2).\n- But, we already know that Harry is furry, so this conclusion is true.\n\nWe have a loop here, where if Harry is rough, then he is round, then he is cold, then he is furry, and then we are back to the assumption that Harry is rough. This is a valid conclusion, but it doesn't tell us anything about Harry's roughness, except that it's possible.\n\nHowever, we also have a statement that says \"If Charlie is round and Charlie is furry then Charlie is nice.\" We don't know anything about Charlie, but we can make an analogy with Harry. If Harry were round and furry, then he would be nice (by analogy with Charlie). But, we don't know if Harry is round, so we cannot conclude that Harry is nice.\n\nNow, let's analyze the possibilities for Harry being not rough:\n\n- If Harry were not rough, then he would not be round (from step 3).\n- If Harry were not round, then he would not be cold (from step 4).\n- If Harry were not cold, then he would not be furry (from step 2).\n\nThis conclusion is also possible, but it doesn't tell us anything about Harry's roughness.\n\nHowever, we have another statement that says \"Big, cold things are furry.\" We don't know anything about Harry's size, but if Harry were cold and big, then he would be furry. But, we don't know if Harry is cold, so we cannot conclude that Harry is furry.\n\nNow, let's analyze the possibilities for Harry being not furry:\n\n- If Harry were not furry, then he would not be young (from step 2).\n- If Harry were not young, then he would not be nice (from the analogy with Charlie).\n\nThis conclusion is possible, but it doesn't tell us anything about Harry's roughness.\n\nIn conclusion, we cannot determine whether the statement \"Harry is not rough\" is true, false, or unknown because we have a loop of possible conclusions, and we cannot exclude any of them.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information and apply the given rules. \n\n1. All round things are cold.\n2. Cold, furry things are rough.\n3. If something is furry and rough then it is round.\n4. If Charlie is round and Charlie is furry then Charlie is nice. (This rule is specific to Charlie and does not apply to other individuals.)\n5. All round, nice things are rough.\n6. Big, cold things are furry.\n7. Furry, round things are cold.\n8. Nice, round things are young.\n\nFrom the information provided, we know that:\n- Harry is furry. (Statement 4, Dave is furry)\n- Harry is young. (Statement 5, Dave is young)\n- Harry is nice. (Statement 3, Harry is furry and Harry is nice)\n\nSince Harry is round (by rule 3: If something is furry and rough then it is round), we can conclude that Harry is round.\n\nNow we know that Harry is round, nice, and young. Using rule 5 (All round, nice things are rough), we can conclude that Harry is rough.\n\nGiven this information, we can determine that the statement \"Harry is not rough\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is furry. (Given)\n2. Harry is young. (Given)\n3. All round things are cold. (Given)\n4. Cold, furry things are rough. (Given)\n5. If something is furry and rough then it is round. (Given)\n\nFrom (1), we know Harry is furry. \nFrom (5), if Harry is furry and rough, then Harry is round. \nHowever, if Harry is round, then Harry is cold (from (3)). \nIf Harry is cold and furry, then Harry is rough (from (4)).\n\nThis creates a paradox: \n- If Harry is round, then Harry is cold, then Harry is rough, which means Harry is round (by (5)).\n- But if Harry is round, then Harry is cold, then Harry is rough, which means Harry is furry and rough (by (5)), and thus Harry is round (by (5)).\n\nThis creates an infinite loop and we cannot determine whether Harry is round or not. \nHowever, we can conclude that Harry is not necessarily not rough. \n\nSince we cannot determine Harry's roundness, we also cannot determine whether Harry is cold or not. \nBut we can conclude that if Harry is furry and rough, then Harry is round (from (5)).\n\nNow, let's consider the statement \"Harry is not rough.\" \nWe know Harry is furry (from (1)) and young (from (2)), but we cannot determine whether Harry is rough or not.\n\nHowever, we also know that all round, nice things are rough (from (Given)), and all furry, round things are cold (from (Given)). \nIf Harry is round, then Harry is cold (from (3)).\n\nNow, let's consider the given statement: \"Charlie is round and Charlie is furry then Charlie is nice.\" \nIf Charlie is round and furry, then Charlie is cold (from (3)), and since Charlie is furry and cold, Charlie is rough (from (4)).\n\nNow, since Charlie is rough and round, then Charlie is nice (from the given statement).\n\nNow, since Charlie is furry, round, and nice, then Charlie is young (from the given statement).\n\nThis is a contradiction because Charlie is said to be cold, which implies Charlie is not young (since if something is round and cold, then it is not young).\n\nNow, let's go back to Harry. \nIf Harry is round, then Harry is cold (from (3)).\n\nIf Harry is furry and cold, then Harry is rough (from (4)).\n\nNow, since Harry is rough and round, then Harry is nice (from (Given)).\n\nIf Harry is furry, round, and nice, then Harry is young (from the given statement).\n\nHowever, we already know Harry is young (from (2)), which does not create any contradictions.\n\nNow, let's consider the statement \"Harry is not rough.\" \nWe know Harry is furry (from (1)) and young (from (2)), but we cannot determine whether Harry is rough or not.\n\nHowever, we can conclude that if Harry is not rough, then Harry is not round (since all round things are rough, from (Given)).\n\nIf Harry is not round, then Harry is not cold (since all round things are cold, from (Given)).\n\nIf Harry is not cold, then Harry is not furry (since all furry things are cold, from (Given)).\n\nHowever, we know Harry is furry (from (1)), which is a contradiction.\n\nTherefore, we can conclude that the statement \"Harry is not rough\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given statements and apply them step by step.\n\nGiven statements:\n\n1. Anne is big. Anne is furry. Anne is rough. Anne is round. Anne is young.\n2. Charlie is big. Charlie is cold. \n3. Dave is furry. Dave is young.\n4. Harry is furry. Harry is nice. Harry is young.\n5. All round things are cold.\n6. Cold, furry things are rough.\n7. If something is furry and rough then it is round.\n8. If Charlie is round and Charlie is furry then Charlie is nice.\n9. All round, nice things are rough.\n10. Big, cold things are furry.\n11. Furry, round things are cold.\n12. Nice, round things are young.\n\nWe need to analyze the statement \"Harry is not rough.\" To do this, we will apply the given statements to Harry.\n\nFrom statement 4, we know that Harry is furry. \n\nNow, we need to determine whether Harry is rough or not. \n\nFrom statement 7, we know that if something is furry and rough then it is round. \n\nBut we can't directly conclude that Harry is rough. We need to find another connection.\n\nFrom statement 5, we know that all round things are cold. \n\nHowever, we don't know whether Harry is round or not. \n\nFrom statement 6, we know that cold, furry things are rough. \n\nBut we can't directly conclude that Harry is cold. We need to find another connection.\n\nFrom statement 11, we know that furry, round things are cold. \n\nBut we can't directly conclude that Harry is round. We need to find another connection.\n\nNow, let's analyze the statements that involve Harry being young.\n\nFrom statement 4, we know that Harry is young.\n\nFrom statement 12, we know that nice, round things are young.\n\nFrom statement 8, we know that if Charlie is round and Charlie is furry then Charlie is nice. But this doesn't apply to Harry.\n\nHowever, we can't directly conclude that Harry is round or nice. We need to find another connection.\n\nFrom statement 4, we know that Harry is furry and young.\n\nFrom statement 3, we know that Dave is furry and young.\n\nHowever, we don't know whether Harry is rough or not. We need to find another connection.\n\nNow, let's analyze the statements that involve Harry being nice.\n\nFrom statement 4, we know that Harry is nice.\n\nFrom statement 9, we know that all round, nice things are rough.\n\nBut we can't directly conclude that Harry is round. We need to find another connection.\n\nNow, let's analyze the statements that involve Harry being round.\n\nFrom statement 7, we know that if something is furry and rough then it is round.\n\nHowever, we don't know whether Harry is rough or not. We need to find another connection.\n\nNow, let's analyze the statements that involve Harry being cold.\n\nFrom statement 5, we know that all round things are cold.\n\nHowever, we don't know whether Harry is round or not. We need to find another connection.\n\nNow, let's analyze the statements that involve Harry being big.\n\nFrom statement 2, we know that Charlie is big. But this doesn't apply to Harry.\n\nHowever, we can't directly conclude that Harry is big or not. We need to find another connection.\n\nNow, let's analyze the statements that involve Harry being furry and rough.\n\nFrom statement 6, we know that cold, furry things are rough.\n\nHowever, we don't know whether Harry is cold or not. We need to find another connection.\n\nFrom statement 11, we know that furry, round things are cold.\n\nHowever, we don't know whether Harry is round or not. We need to find another connection.\n\nFrom statement 7, we know that if something is furry and rough then it is round.\n\nHowever, we don't know whether Harry is rough or not. We need to find another connection.\n\nNow, let's analyze the statements that involve Harry being nice and round.\n\nFrom statement 4, we know that Harry is nice.\n\nFrom statement 12, we know that nice, round things are young.\n\nHowever, we don't know whether Harry is round or not. We need to find another connection.\n\nFrom statement 8, we know that if Charlie is round and Charlie is furry then Charlie is nice.\n\nHowever, this doesn't apply to Harry.\n\nHowever, we can't directly conclude that Harry is not rough. We need to find another connection.\n\nFrom statement 9, we know that all round, nice things are rough.\n\nHowever, we don't know whether Harry is round or nice. We need to find another connection.\n\nNow, let's analyze the statements that involve Harry being furry and young.\n\nFrom statement 4, we know that Harry is furry and young.\n\nFrom statement 3, we know that Dave is furry and young.\n\nHowever, we can't directly conclude that Harry is rough or not. We need to find another connection.\n\nHowever, we can't directly conclude that Harry is not rough. We need to find another connection.\n\nSince we can't directly conclude whether Harry is rough or not, the answer is unknown.\n\nHowever, let's analyze one more statement that we haven't analyzed yet.\n\nFrom statement 10, we know that big, cold things are furry.\n\nHowever, this doesn't apply to Harry.\n\nHowever, we can't directly conclude that Harry is not rough. We need to find another connection.\n\nHowever, we can't directly conclude that Harry is rough or not. We need to find another connection.\n\nThe answer is still unknown.\n\nNow, let's analyze the statement that we haven't analyzed yet.\n\nFrom statement 4, we know that Harry is furry and young.\n\nFrom statement 6, we know that cold, furry things are rough.\n\nHowever, we don't know whether Harry is cold or not. We need to find another connection.\n\nFrom statement 11, we know that furry, round things are cold.\n\nHowever, we don't know whether Harry is round or not. We need to find another connection.\n\nHowever, we can't directly conclude that Harry is not rough. We need to find another connection.\n\nHowever, we can't directly conclude that Harry is rough or not. We need to find another connection.\n\nSince we can't directly conclude whether Harry is rough or not, the answer is unknown.\n\nHowever, let's analyze one more statement that we haven't analyzed yet.\n\nFrom statement 5, we know that all round things are cold.\n\nHowever, we don't know whether Harry is round or not. We need to find another connection.\n\nFrom statement 7, we know that if something is furry and rough then it is round.\n\nHowever, we don't know whether Harry is rough or not. We need to find another connection.\n\nHowever, we can't directly conclude that Harry is not rough. We need to find another connection.\n\nHowever, we can't directly conclude that Harry is rough or not. We need to find another connection.\n\nSince we can't directly conclude whether Harry is rough or not, the answer is unknown.\n\nHowever, let's analyze one more statement that we haven't analyzed yet.\n\nFrom statement 12, we know that nice, round things are young.\n\nHowever, we don't know whether Harry is round or nice. We need to find another connection.\n\nHowever, we can't directly conclude that Harry is not rough. We need to find another connection.\n\nHowever, we can't directly conclude that Harry is rough or not. We need to find another connection.\n\nSince we can't directly conclude whether Harry is rough or not, the answer is unknown.\n\nHowever, let's analyze one more statement that we haven't analyzed yet.\n\nFrom statement 9, we know that all round, nice things are rough.\n\nHowever, we don't know whether Harry is round or nice. We need to find another connection.\n\nHowever, we can't directly conclude that Harry is not rough. We need to find another connection.\n\nHowever, we can't directly conclude that Harry is rough or not. We need to find another connection.\n\nSince we can't directly conclude whether Harry is rough or not, the answer is unknown.\n\nHowever, let's analyze one more statement that we haven't analyzed yet.\n\nFrom statement 4, we know that Harry is furry and young.\n\nFrom statement 3, we know that Dave is furry and young.\n\nHowever, we can't directly conclude that Harry is rough or not. We need to find another connection.\n\nHowever, we can't directly conclude that Harry is not rough. We need to find another connection.\n\nHowever, we can't directly conclude that Harry is rough or not. We need to find another connection.\n\nSince we can't directly conclude whether Harry is rough or not, the answer is unknown.\n\nHowever, let's analyze one more statement that we haven't analyzed yet.\n\nFrom statement 8, we know that if Charlie is round and Charlie is furry then Charlie is nice.\n\nHowever, this doesn't apply to Harry.\n\nHowever, we can't directly conclude that Harry is not rough. We need to find another connection.\n\nHowever, we can't directly conclude that Harry is rough or not. We need to find another connection.\n\nSince we can't directly conclude whether Harry is rough or not, the answer is unknown.\n\nHowever, let's analyze one more statement that we haven't analyzed yet.\n\nFrom statement 10, we know that big, cold things are furry.\n\nHowever, this doesn't apply to Harry.\n\nHowever, we can't directly conclude that Harry is not rough. We need to find another connection.\n\nHowever, we can't directly conclude that Harry is rough or not. We need to find another connection.\n\nSince we can't directly conclude whether Harry is rough or not, the answer is unknown.\n\nHowever, let's analyze one more statement that we haven't analyzed yet.\n\nFrom statement 5, we know that all round things are",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information and apply the rules of inference step by step.\n\n1. Harry is furry. (Given)\n2. Harry is young. (Given)\n3. All round things are cold. (Given)\n4. Cold, furry things are rough. (Given)\n5. If something is furry and rough then it is round. (Given)\n\nFrom (1) and (5), we can infer that Harry is round because if Harry is furry and rough, then Harry must be round.\n\nNow we know:\n- Harry is round\n- Harry is furry\n- Harry is young\n\n6. Furry, round things are cold. (Given)\nFrom (1) and (6), we can infer that Harry is cold.\n\nNow we know:\n- Harry is round\n- Harry is furry\n- Harry is young\n- Harry is cold\n\n7. Cold, furry things are rough. (Given)\nSince Harry is furry and cold, we can infer that Harry is rough.\n\nNow we know:\n- Harry is round\n- Harry is furry\n- Harry is young\n- Harry is cold\n- Harry is rough\n\n8. If Charlie is round and Charlie is furry then Charlie is nice. (Given)\nThis statement does not apply to Harry, so we can ignore it for now.\n\n9. All round, nice things are rough. (Given)\nThis statement does not apply to Harry because we don't know if Harry is nice or not.\n\n10. Nice, round things are young. (Given)\nThis statement does not apply to Harry because we don't know if Harry is nice or not.\n\n11. Big, cold things are furry. (Given)\nThis statement does not apply to Harry because we don't know if Harry is big or not.\n\n12. Harry is furry. (Given)\nHarry is already known to be furry.\n\n13. Harry is young. (Given)\nHarry is already known to be young.\n\n14. Harry is nice. (Given)\nWe still don't know if Harry is nice or not.\n\nNow, we need to determine if Harry is rough or not.\n\nWe already know from step 7 that Harry is rough.\n\nTherefore, the statement \"Harry is not rough\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know the following facts about Harry:\n   - Harry is furry.\n   - Harry is nice.\n   - Harry is young.\n\n2. From the given information, we have the following rules:\n   - If something is furry and rough then it is round. (This rule is not directly applicable here, but it will be useful later.)\n   - If Harry is round and Harry is furry then Harry is nice. (This rule is directly applicable here, and it is given that Harry is nice, so it does not provide any new information.)\n   - All round, nice things are rough. (This rule is directly applicable here, but we do not know if Harry is round or not.)\n\n3. We also know the following facts about round things:\n   - All round things are cold.\n   - Furry, round things are cold.\n   - Nice, round things are young.\n\n4. From the given information, we have the following rules:\n   - If something is furry and rough then it is round. (This rule is not directly applicable here, but it will be useful later.)\n   - If Charlie is round and Charlie is furry then Charlie is nice. (This rule is not applicable here, as we are discussing Harry, not Charlie.)\n\n5. We can now try to conclude whether Harry is rough or not.\n\nFrom the given information, we cannot directly conclude whether Harry is rough or not. However, we can use the rule \"If something is furry and rough then it is round\" to help us.\n\nIf Harry is rough, then Harry must be round (by the first rule), and since Harry is furry and round, Harry must be cold (by the second rule). However, we do not know if Harry is cold or not.\n\nOn the other hand, if Harry is not rough, then we cannot conclude anything about Harry's roundness or coldness.\n\nTherefore, we cannot determine whether the statement \"Harry is not rough\" is true or false, but we can conclude that it is not necessarily false. Hence, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, rough_harry), round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_harry, round_harry), cold_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_charlie, furry_charlie), nice_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_harry, nice_harry), rough_harry)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, rough_harry), round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, rough_harry), round_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_charlie, nice_charlie), rough_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_harry, nice_harry), rough_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, rough_harry), round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X) & rough(X)",
+          "z3_formula": "Implies(round_harry, And(furry_harry, rough_harry))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X) & rough(X)",
+          "z3_formula": "Implies(round_harry, And(furry_harry, rough_harry))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not round(harry)",
+          "z3_formula": "Not(round_harry) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not round(X) -> not furry(X) & not rough(X)",
+          "z3_formula": "Implies(Not(round_harry), Not(And(furry_harry, rough_harry)))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> not rough(X) if not round(X)",
+          "z3_formula": "Implies(furry_harry, Not(rough_harry))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(harry)",
+          "z3_formula": "Not(rough_harry) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, rough_harry), round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_harry, round_harry), cold_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, furry_harry), rough_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> not round(X)",
+          "z3_formula": "Implies(And(furry_harry, young_harry), Not(round_harry))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(harry)",
+          "z3_formula": "Not(rough_harry)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, rough_harry), round_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_harry, nice_harry), rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_harry, nice_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_harry, cold_harry), furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_harry, round_harry), cold_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_harry, round_harry), young_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> (cold(X) & rough(X))",
+          "z3_formula": "Implies(round_harry, And(cold_harry, rough_harry))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> Not(rough(X))",
+          "z3_formula": "Implies(round_harry, Not(rough_harry))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_harry, rough_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), cold_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), rough_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(round_harry, nice_harry), young_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, furry_harry), rough_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_harry, cold_harry), furry_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(rough(X))",
+          "z3_formula": "Implies(round_harry, Not(rough_harry))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), cold_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), rough_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(round_harry, nice_harry), young_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, furry_harry), rough_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_harry, cold_harry), furry_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(harry))",
+          "z3_formula": "Not(round_harry)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "Not(cold(harry))",
+          "z3_formula": "Not(cold_harry)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(harry))",
+          "z3_formula": "Not(rough_harry)",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, rough_harry), round_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_harry, cold_harry), furry_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_harry, furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_harry, cold_harry), furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_charlie, furry_charlie), nice_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_harry, young_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_harry, nice_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(harry)",
+          "z3_formula": "Not(rough_harry)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_harry), rough_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, rough_harry), round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), cold_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_harry, nice_harry), rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_harry, cold_harry), furry_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_harry, round_harry), cold_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_harry, round_harry), young_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, furry_harry), rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, rough_harry), round_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_charlie, nice_charlie), rough_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_charlie, furry_charlie), cold_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> not young(X)",
+          "z3_formula": "Implies(And(round_charlie, cold_charlie), Not(young_charlie))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(harry)",
+          "z3_formula": "Not(rough_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not round(harry)",
+          "z3_formula": "Not(round_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(harry)",
+          "z3_formula": "Not(cold_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(harry)",
+          "z3_formula": "Not(furry_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry) & rough(harry) -> round(harry)",
+          "z3_formula": "Implies(And(furry_harry, rough_harry), round_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(harry) -> not round(harry)",
+          "z3_formula": "Implies(Not(rough_harry), Not(round_harry))",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not round(harry) -> not cold(harry)",
+          "z3_formula": "Implies(Not(round_harry), Not(cold_harry))",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(harry) -> not furry(harry)",
+          "z3_formula": "Implies(Not(cold_harry), Not(furry_harry))",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(harry)",
+          "z3_formula": "Not(rough_harry)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, rough_harry), round_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, furry_harry), rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(round_harry, nice_harry), young_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_harry, nice_harry), rough_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(And(Not(rough_harry), Not(Not(rough_harry)))",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_harry, furry_harry), rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, rough_harry), round_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_harry, cold_harry), rough_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, rough_harry), round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), nice_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_harry, nice_harry), rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_harry, cold_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) & round(X) -> cold(X)",
+          "z3_formula": "Implies(And(furry_harry, round_harry), cold_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) & round(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_harry, round_harry), young_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == Unknown",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 143,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 42
+    },
+    "maxsat_stats": {
+      "satisfied": 36,
+      "excluded": 6,
+      "total_weight": 130,
+      "solve_time_ms": 1.4085257425904274
+    },
+    "timing": {
+      "trace_gen_s": 24.152,
+      "extraction_s": 24.259,
+      "dedup_s": 1.068,
+      "maxsat_s": 0.004,
+      "total_s": 49.483
+    }
+  }
+}

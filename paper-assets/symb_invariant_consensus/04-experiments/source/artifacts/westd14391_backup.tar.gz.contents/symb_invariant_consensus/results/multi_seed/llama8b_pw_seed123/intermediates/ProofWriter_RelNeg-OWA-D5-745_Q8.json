@@ -1,0 +1,958 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-745_Q8",
+    "problem": "The dog is green. The dog is not kind. The lion is big. The lion is round. The lion needs the dog. The mouse is big. The mouse likes the dog. The mouse does not need the rabbit. The mouse visits the dog. The rabbit is kind. The rabbit visits the dog. If someone needs the dog then they visit the lion. If someone needs the mouse then they are kind. If someone is round and they like the rabbit then the rabbit visits the mouse. If someone visits the rabbit then the rabbit visits the mouse. If someone likes the dog then the dog visits the rabbit. If the mouse visits the lion and the mouse needs the dog then the dog needs the lion. If the rabbit needs the lion then the lion needs the mouse. If someone visits the mouse then the mouse needs the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse does not need the dog.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\nRound($x, bool) ::: Is x round?\nNeeds($x, $y, bool) ::: Does x need y?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\n\nFacts:\nGreen(Dog, True) ::: The dog is green.\nKind(Dog, False) ::: The dog is not kind.\nBig(Lion, True) ::: The lion is big.\nRound(Lion, True) ::: The lion is round.\nNeeds(Lion, Dog, True) ::: The lion needs the dog.\nBig(Mouse, True) ::: The mouse is big.\nLikes(Mouse, Dog, True) ::: The mouse likes the dog.\nNeeds(Mouse, Rabbit, False) ::: The mouse does not need the rabbit.\nVisits(Mouse, Dog, True) ::: The mouse visits the dog.\nKind(Rabbit, True) ::: The rabbit is kind.\nVisits(Rabbit, Dog, True) ::: The rabbit visits the dog.\n\nRules:\nNeeds($x, Dog, True) >>> Visits($x, Lion, True) ::: If someone needs the dog then they visit the lion.\nNeeds($x, Mouse, True) >>> Kind($x, True) ::: If someone needs the mouse then they are kind.\nRound($x, True) && Likes($x, Rabbit, True) >>> Visits(Rabbit, Mouse, True) ::: If someone is round and they like the rabbit then the rabbit visits the mouse.\nVisits($x, Rabbit, True) >>> Visits(Rabbit, Mouse, True) ::: If someone visits the rabbit then the rabbit visits the mouse.\nLikes($x, Dog, True) >>> Visits(Dog, Rabbit, True) ::: If someone likes the dog then the dog visits the rabbit.\nVisits(Mouse, Lion, True) && Needs(Mouse, Dog, True) >>> Needs(Dog, Lion, True) ::: If the mouse visits the lion and the mouse needs the dog then the dog needs the lion.\nNeeds(Rabbit, Lion, True) >>> Needs(Lion, Mouse, True) ::: If the rabbit needs the lion then the lion needs the mouse.\nVisits($x, Mouse, True) >>> Needs(Mouse, Dog, True) ::: If someone visits the mouse then the mouse needs the dog.\n\nQuery:\nNeeds(Mouse, Dog, False) ::: The mouse does not need the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 128.0,
+      "Unknown": 44.0
+    },
+    "answer_counts": {
+      "False": 9,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The mouse does not need the dog\" is true, false, or unknown, we need to analyze the given conditions step by step:\n\n1. The mouse is big.\n2. The mouse likes the dog.\n3. The mouse does not need the rabbit.\n4. The mouse visits the dog.\n5. If someone needs the mouse then they are kind. (This condition will be used later.)\n\nFrom condition 5, we can't directly determine if the mouse needs someone, but we can infer that if someone needs the mouse, then they are kind.\n\nHowever, since we don't have any information about someone needing the mouse, we cannot use this condition to directly determine if the mouse needs the dog.\n\nNow, let's analyze the other conditions that involve the mouse and the dog:\n\n- The mouse visits the dog (condition 4).\n- If someone visits the mouse then the mouse needs the dog (condition 10).\n\nSince the mouse visits the dog (condition 4), we can use condition 10 to infer that the mouse needs the dog.\n\nHowever, this inference contradicts the initial statement \"The mouse does not need the dog.\"\n\nBased on the information provided, we can conclude that the statement \"The mouse does not need the dog\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not need the dog\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. The mouse likes the dog.\nThis statement does not directly tell us if the mouse needs the dog, but it's an important piece of information.\n\n2. The mouse visits the dog.\nSince the mouse visits the dog, this means the mouse likes the dog (rule 1), but it doesn't necessarily mean the mouse needs the dog.\n\n3. If someone visits the mouse then the mouse needs the dog.\nThis is a crucial rule that directly relates the mouse's need for the dog with the mouse's visitors. Since the mouse visits the dog (rule 2), the mouse needs the dog.\n\nBased on the given rules and information, the mouse does need the dog. Therefore, the statement \"The mouse does not need the dog\" is:\n\n\\boxed{false}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the logical rules provided.\n\n1. The mouse is big.\n2. The mouse likes the dog.\n3. The mouse does not need the rabbit.\n4. The mouse visits the dog.\n5. The rabbit is kind.\n6. The rabbit visits the dog.\n7. If someone needs the dog then they visit the lion.\n8. If someone needs the mouse then they are kind.\n9. If someone is round and they like the rabbit then the rabbit visits the mouse.\n10. If someone visits the rabbit then the rabbit visits the mouse.\n11. If someone likes the dog then the dog visits the rabbit.\n12. If the mouse visits the lion and the mouse needs the dog then the dog needs the lion.\n13. If the rabbit needs the lion then the lion needs the mouse.\n14. If someone visits the mouse then the mouse needs the dog.\n\nNow, let's analyze statement 14: \"If someone visits the mouse then the mouse needs the dog.\" Since the mouse visits the dog (statement 4), we can conclude that the mouse needs the dog.\n\nHowever, we need to determine whether the mouse needs the dog (statement 14) or not. The statement \"The mouse does not need the dog\" is what we are trying to determine.\n\nFrom the given statements, we know that the mouse needs the dog. However, we also know that the dog needs the lion (from statement 12, because the mouse visits the lion and the mouse needs the dog). \n\nWe also know that if someone needs the lion then they need the mouse (statement 13). However, we do not know whether the lion needs the mouse, but we do know that the lion is big and round. \n\nWe are given the statement \"The lion is big. The lion is round.\" We are also given the statement \"If someone is round and they like the rabbit then the rabbit visits the mouse.\" Since the lion is round and we do not know whether the lion likes the rabbit, we cannot conclude that the rabbit visits the mouse.\n\nHowever, we do know that the rabbit is kind (statement 5). We are given the statement \"If someone needs the mouse then they are kind.\" However, we do not know whether the rabbit needs the mouse.\n\nWe are given the statement \"The rabbit visits the dog.\" We are given the statement \"If someone visits the dog then they are kind.\" However, we do know that the dog is not kind (statement 2).\n\nHowever, the statement \"The rabbit visits the mouse\" is true, if someone visits the rabbit (statement 10).\n\nSo, the statement \"The mouse does not need the dog\" is false, because the mouse visits the dog, and the mouse needs the dog.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not need the dog\" is true, false, or unknown, we need to analyze the given statements and the conditions they provide.\n\n1. The mouse is big.\n2. The mouse likes the dog.\n3. The mouse does not need the rabbit.\n4. The mouse visits the dog.\n5. If someone needs the mouse then they are kind. (This statement doesn't directly relate to the mouse needing the dog, but it provides a condition for the mouse's needs.)\n6. If someone visits the mouse then the mouse needs the dog. (This statement directly relates to the mouse needing the dog.)\n\nFrom statement 6, it is clear that if someone visits the mouse, then the mouse needs the dog. We know that the mouse visits the dog (statement 4).\n\nNow, we need to find out if visiting the mouse implies needing the dog in this scenario. We can't directly find this from the conditions given, but we can analyze the other conditions to see if they have any implications on this.\n\nStatement 6 implies that visiting the mouse leads to needing the dog. However, this does not necessarily mean that visiting the dog leads to needing the dog. But we know that the mouse visits the dog. We also know that if someone likes the dog then the dog visits the rabbit (statement 7). However, we cannot determine the mouse's feelings towards the dog as we have no statements about the mouse's feelings towards the rabbit.\n\nHowever, from statement 6, we know that the mouse needs the dog if someone visits the mouse. Since the mouse visits the dog, it implies that the mouse needs the dog.\n\nHowever, statement 6 also implies that visiting the mouse leads to needing the dog. But the mouse visits the dog, not the lion. So, we cannot use the condition of the mouse needing the dog if someone needs the mouse (statement 5). \n\nWe know from the statements given that the mouse visits the dog and the mouse is big. We also know that the lion is big and the mouse likes the dog. However, we cannot use the condition that if someone is round and they like the rabbit then the rabbit visits the mouse (statement 8). \n\nThe final condition we have is that the rabbit visits the mouse if someone visits the mouse then the mouse needs the dog (statement 6). The rabbit is kind (statement 9) and the rabbit visits the dog (statement 10). But we cannot use this condition as we don't have any information about the lion and the rabbit needing each other.\n\nHowever, we can see from statement 4 that the mouse visits the dog and statement 6 that the mouse needs the dog if someone visits the mouse. Since the mouse visits the dog, it implies that the mouse needs the dog.\n\nNow, we have a condition in statement 3 that the mouse does not need the rabbit. However, we cannot use this condition as we don't have any information about the mouse needing the rabbit.\n\nHowever, the mouse is big (statement 1) and the mouse likes the dog (statement 2). However, we cannot use these conditions as they do not imply that the mouse does not need the dog.\n\nHowever, we can see from statement 6 that the mouse needs the dog if someone visits the mouse. Since the mouse visits the dog, it implies that the mouse needs the dog. However, the mouse likes the dog (statement 2). But the statement does not say that the mouse likes the dog and the mouse does not need the dog.\n\nTherefore, we cannot conclude that the mouse does not need the dog.\n\nHowever, we can see from statement 6 that the mouse needs the dog if someone visits the mouse. Since the mouse visits the dog, it implies that the mouse needs the dog.\n\nHowever, we know from statement 6 that the mouse needs the dog if someone visits the mouse. Since the mouse visits the dog, it implies that the mouse needs the dog. However, we have the condition in statement 5 that if someone needs the mouse then they are kind. However, we cannot use this condition as we don't have any information about the mouse needing the lion.\n\nTherefore, the statement \"The mouse does not need the dog\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not need the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is big. (This statement does not provide any information about the mouse's needs.)\n2. The mouse likes the dog. (This statement does not provide any information about the mouse's needs.)\n3. The mouse does not need the rabbit. (This statement does not provide any information about the mouse's needs regarding the dog.)\n4. The mouse visits the dog. (This statement does not provide any information about the mouse's needs.)\n5. If someone needs the mouse then they are kind. (This statement does not provide any information about the mouse's needs.)\n6. If someone visits the rabbit then the rabbit visits the mouse. (This statement does not provide any information about the mouse's needs.)\n7. If someone likes the dog then the dog visits the rabbit. (This statement does not provide any information about the mouse's needs.)\n8. If the mouse visits the lion and the mouse needs the dog then the dog needs the lion. (This statement does not provide any information about the mouse's needs.)\n9. If the rabbit needs the lion then the lion needs the mouse. (This statement does not provide any information about the mouse's needs.)\n10. If someone visits the mouse then the mouse needs the dog. (This statement implies that the mouse needs the dog, regardless of any other conditions.)\n\nBased on statement 10, the mouse needs the dog. Since the mouse needs the dog, the statement \"The mouse does not need the dog\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and the conditions provided. Let's break down the information step by step.\n\n1. The mouse is big.\n2. The mouse likes the dog.\n3. The mouse does not need the rabbit.\n4. The mouse visits the dog.\n\nFrom point 2, we know the mouse likes the dog. This does not give us any information about whether the mouse needs the dog.\n\nHowever, from point 4, we know the mouse visits the dog. Now, let's look at the conditions provided:\n\n- If someone needs the mouse then they are kind.\nSince we don't know if someone needs the mouse, we cannot conclude that the mouse needs the dog based on this condition.\n\n- If someone visits the mouse then the mouse needs the dog.\nFrom point 4, we know the mouse visits the dog, but we need to determine if this implies the mouse needs the dog. Let's examine further.\n\nLooking at the conditions again:\n\n- If someone needs the dog then they visit the lion.\nWe don't have any information about the mouse needing the dog, so this condition does not directly apply.\n\n- If someone is big and they like the dog then the dog visits the rabbit.\nWe know the mouse is big, but this condition does not directly relate to the mouse needing the dog.\n\n- If the mouse visits the lion and the mouse needs the dog then the dog needs the lion.\nThis condition implies that if the mouse needs the dog, it also needs the lion. However, we are trying to determine if the mouse needs the dog.\n\n- If the rabbit needs the lion then the lion needs the mouse.\nThis condition is not directly relevant to determining if the mouse needs the dog.\n\n- If someone likes the dog then the dog visits the rabbit.\nWe know the mouse likes the dog, but this condition does not directly relate to the mouse needing the dog.\n\nConsidering the conditions provided, we don't have enough information to directly determine if the mouse needs the dog based on the given statements.\n\nHowever, we can deduce that if the mouse needs the dog, it must visit the lion. But we are trying to determine if the mouse needs the dog.\n\nSince we cannot find a direct or indirect conclusion to confirm if the mouse needs the dog, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and conditions. \n\n1. The mouse likes the dog.\n2. If someone needs the mouse then they are kind.\n   - Since the mouse likes the dog, and we don't have any information that the mouse is kind, we can't conclude anything about the mouse needing the dog.\n\n3. If someone is round and they like the rabbit then the rabbit visits the mouse.\n   - This statement doesn't have any relation with the mouse needing the dog.\n\n4. If someone visits the rabbit then the rabbit visits the mouse.\n   - This statement also doesn't have any relation with the mouse needing the dog.\n\n5. If the mouse visits the lion and the mouse needs the dog then the dog needs the lion.\n   - We don't have any information that the mouse needs the dog or that the mouse visits the lion.\n\n6. If someone needs the dog then they visit the lion.\n   - This statement is about the relationship between the lion and the person who needs the dog, not about the mouse needing the dog.\n\n7. If the mouse visits the lion and the mouse needs the dog then the dog needs the lion.\n   - As mentioned earlier, we don't have any information that the mouse needs the dog.\n\n8. If someone visits the mouse then the mouse needs the dog.\n   - This statement is about the relationship between the person visiting the mouse and the mouse needing the dog. However, we know that the mouse likes the dog, but we don't have any information that the mouse needs the dog.\n\nHowever, we can use the following condition to derive the mouse needing the dog:\n\nThe dog is green. The dog is not kind. The lion is big. The lion is round. The lion needs the dog. The mouse is big. The mouse likes the dog. The mouse does not need the rabbit. The mouse visits the dog. The rabbit is kind. The rabbit visits the dog. If someone needs the dog then they visit the lion. If someone needs the mouse then they are kind. If someone is round and they like the rabbit then the rabbit visits the mouse. If someone visits the rabbit then the rabbit visits the mouse. If someone likes the dog then the dog visits the rabbit. If the mouse visits the lion and the mouse needs the dog then the dog needs the lion. If the rabbit needs the lion then the lion needs the mouse. If someone visits the mouse then the mouse needs the dog.\n\nStatement: The mouse does not need the dog.\n\nCondition: The mouse visits the dog. The mouse likes the dog. If someone visits the mouse then the mouse needs the dog.\n\nFrom the given conditions, we can conclude that the mouse visits the dog and the mouse likes the dog. Using the last condition, we can conclude that the mouse needs the dog.\n\nTherefore, the statement \"The mouse does not need the dog\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse does not need the dog\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. The mouse likes the dog.\n2. If someone needs the mouse then they are kind.\n3. The mouse visits the dog.\n4. If someone visits the mouse then the mouse needs the dog.\n\nFrom statement 4, we can infer that since the mouse visits the dog, the mouse needs the dog.\n\nHowever, we need to consider other possible implications of the given statements. \n\n1. If someone likes the dog then the dog visits the rabbit. \n   (This does not affect the statement directly, but we can ignore it for now.)\n\n2. If the mouse visits the lion and the mouse needs the dog then the dog needs the lion.\n   (We do not have any information that the mouse visits the lion, so we can ignore this for now.)\n\n3. If the rabbit needs the lion then the lion needs the mouse.\n   (We do not have any information that the rabbit needs the lion, so we can ignore this for now.)\n\n4. If someone is round and they like the rabbit then the rabbit visits the mouse.\n   (We do not have any information that the lion is round, so we can ignore this for now.)\n\n5. If someone visits the rabbit then the rabbit visits the mouse.\n   (We do not have any information that someone visits the rabbit, so we can ignore this for now.)\n\nConsidering the statements that directly affect the mouse and the dog, we have:\n\n1. The mouse likes the dog.\n2. The mouse visits the dog.\n3. If someone visits the mouse then the mouse needs the dog.\n\nFrom these statements, we can conclude that the mouse needs the dog.\n\nTherefore, the statement \"The mouse does not need the dog\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve the problem, let's break it down into the given statements and the conditions that can be derived from them.\n\n1. The dog is green.\n2. The dog is not kind.\n3. The lion is big.\n4. The lion is round.\n5. The lion needs the dog.\n6. The mouse is big.\n7. The mouse likes the dog.\n8. The mouse does not need the rabbit.\n9. The mouse visits the dog.\n10. The rabbit is kind.\n11. The rabbit visits the dog.\n12. If someone needs the dog then they visit the lion.\n13. If someone needs the mouse then they are kind.\n14. If someone is round and they like the rabbit then the rabbit visits the mouse.\n15. If someone visits the rabbit then the rabbit visits the mouse.\n16. If someone likes the dog then the dog visits the rabbit.\n17. If the mouse visits the lion and the mouse needs the dog then the dog needs the lion.\n18. If the rabbit needs the lion then the lion needs the mouse.\n19. If someone visits the mouse then the mouse needs the dog.\n\nNow, let's analyze statement 7: The mouse likes the dog.\nFrom statement 7, we can derive a new condition: If someone likes the dog, then the dog visits the rabbit (statement 16).\n\nNow, we need to check whether the mouse does not need the dog (statement 8). \n\nFrom statement 9, we know the mouse visits the dog. \nFrom condition 19, if someone visits the mouse then the mouse needs the dog.\n\nSo, the mouse needs the dog.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'The mouse does not need the dog' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse is big. (Statement 6)\n2. The mouse likes the dog. (Statement 7)\n3. The mouse does not need the rabbit. (Statement 8)\n4. The mouse visits the dog. (Statement 9)\n\nFrom Statement 4, we know that the mouse visits the dog. We need to check if this implies that the mouse needs the dog.\n\nFrom Statement 25, 'If someone visits the mouse then the mouse needs the dog.' Since the mouse visits the dog, it implies that the mouse needs the dog.\n\nNow, we need to check if there is any other condition that would imply the opposite, i.e., the mouse does not need the dog.\n\nFrom Statement 10, 'If the mouse visits the lion and the mouse needs the dog then the dog needs the lion.' However, this statement doesn't directly imply that the mouse does not need the dog.\n\nFrom Statement 11, 'If the rabbit needs the lion then the lion needs the mouse.' However, this statement doesn't directly imply that the mouse does not need the dog.\n\nFrom Statement 12, 'If someone is round and they like the rabbit then the rabbit visits the mouse.' However, this statement doesn't directly imply that the mouse does not need the dog.\n\nFrom Statement 13, 'If someone visits the rabbit then the rabbit visits the mouse.' However, this statement doesn't directly imply that the mouse does not need the dog.\n\nFrom Statement 14, 'If someone likes the dog then the dog visits the rabbit.' However, this statement doesn't directly imply that the mouse does not need the dog.\n\nFrom Statement 15, 'If someone needs the dog then they visit the lion.' However, this statement doesn't directly imply that the mouse does not need the dog.\n\nFrom Statement 16, 'If someone needs the mouse then they are kind.' However, this statement doesn't directly imply that the mouse does not need the dog.\n\nFrom Statement 17, 'The lion is big.' However, this statement doesn't directly imply that the mouse does not need the dog.\n\nFrom Statement 18, 'The lion is round.' However, this statement doesn't directly imply that the mouse does not need the dog.\n\nFrom Statement 19, 'The lion needs the dog.' However, this statement doesn't directly imply that the mouse does not need the dog.\n\nFrom Statement 20, 'The mouse is big.' However, this statement doesn't directly imply that the mouse does not need the dog.\n\nFrom Statement 21, 'The mouse likes the dog.' However, this statement doesn't directly imply that the mouse does not need the dog.\n\nFrom Statement 22, 'The mouse does not need the rabbit.' However, this statement doesn't directly imply that the mouse does not need the dog.\n\nFrom Statement 23, 'The mouse visits the dog.' However, this statement has already been analyzed and implies that the mouse needs the dog.\n\nFrom Statement 24, 'The rabbit is kind.' However, this statement doesn't directly imply that the mouse does not need the dog.\n\nFrom Statement 25, 'If someone visits the mouse then the mouse needs the dog.' This statement has already been analyzed and implies that the mouse needs the dog.\n\nSince we have analyzed all the statements, we can conclude that the statement 'The mouse does not need the dog' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to follow the given conditions and use them to determine whether the statement \"The mouse does not need the dog\" is true, false, or unknown.\n\nFrom the given conditions:\n\n1. The mouse is big.\n2. The mouse likes the dog.\n3. The mouse visits the dog.\n4. If someone visits the mouse then the mouse needs the dog.\n\nFrom condition 4, we can conclude that the mouse needs the dog because the mouse visits itself.\n\nHowever, the conditions also state that \"If someone needs the mouse then they are kind.\" We do not have any information that directly states the mouse needs someone else, but we do have information about the other animals.\n\nFrom the conditions:\n\n5. The lion is big.\n6. The lion is round.\n7. The lion needs the dog.\n8. The rabbit is kind.\n9. The rabbit visits the dog.\n10. If someone is round and they like the rabbit then the rabbit visits the mouse.\n11. If someone visits the rabbit then the rabbit visits the mouse.\n12. If someone likes the dog then the dog visits the rabbit.\n13. If the mouse visits the lion and the mouse needs the dog then the dog needs the lion.\n14. If the rabbit needs the lion then the lion needs the mouse.\n\nWe can see that the lion needs the dog and the lion is round, so it could be a condition for the rabbit to visit the mouse. But the information given does not tell us that the lion likes the rabbit.\n\nHowever, we can deduce that the lion needs the dog, and it is round, but this is not enough information to conclude that the mouse does not need the dog.\n\nFrom the conditions:\n\n15. The dog is not kind.\n16. The dog is green.\n17. The dog is visited by the mouse and the rabbit.\n\nWe still do not have enough information to determine whether the mouse needs the dog.\n\nHowever, we do have one condition that states \"If the mouse visits the lion and the mouse needs the dog then the dog needs the lion.\" This means that the mouse could visit the lion, and it needs the dog. But the information given does not tell us that the mouse visits the lion.\n\nHowever, there is another condition that states \"If someone visits the mouse then the mouse needs the dog.\" Since the mouse visits the dog, the mouse needs the dog.\n\nNow we can conclude that the statement \"The mouse does not need the dog\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and find out if they provide enough information to determine if the mouse needs the dog.\n\n1. The dog is green.  - This statement does not provide any relevant information about the relationship between the dog and the mouse.\n2. The dog is not kind.  - This statement does not provide any relevant information about the relationship between the dog and the mouse.\n3. The lion is big.  - This statement does not provide any relevant information about the relationship between the dog and the mouse.\n4. The lion is round.  - This statement does not provide any relevant information about the relationship between the dog and the mouse.\n5. The lion needs the dog.  - This statement provides information about the lion's needs, but it does not provide any direct information about the mouse's needs.\n6. The mouse is big.  - This statement does not provide any relevant information about the relationship between the dog and the mouse.\n7. The mouse likes the dog.  - This statement provides information about the mouse's feelings towards the dog, but it does not provide any direct information about the mouse's needs.\n8. The mouse does not need the rabbit.  - This statement does not provide any direct information about the mouse's needs.\n9. The mouse visits the dog.  - This statement provides information about the mouse's actions, but it does not provide any direct information about the mouse's needs.\n10. The rabbit is kind.  - This statement does not provide any direct information about the mouse's needs.\n11. The rabbit visits the dog.  - This statement provides information about the rabbit's actions, but it does not provide any direct information about the mouse's needs.\n12. If someone needs the dog then they visit the lion.  - This statement provides information about the relationship between the dog and the lion, but it does not provide any direct information about the mouse's needs.\n13. If someone needs the mouse then they are kind.  - This statement provides information about the relationship between the mouse and kindness, but it does not provide any direct information about the mouse's needs.\n14. If someone is round and they like the rabbit then the rabbit visits the mouse.  - This statement provides information about the rabbit's actions, but it does not provide any direct information about the mouse's needs.\n15. If someone visits the rabbit then the rabbit visits the mouse.  - This statement provides information about the rabbit's actions, but it does not provide any direct information about the mouse's needs.\n16. If someone likes the dog then the dog visits the rabbit.  - This statement provides information about the dog's actions, but it does not provide any direct information about the mouse's needs.\n17. If the mouse visits the lion and the mouse needs the dog then the dog needs the lion.  - This statement provides information about the relationship between the mouse, lion, and dog, but it does not provide any direct information about the mouse's needs.\n18. If the rabbit needs the lion then the lion needs the mouse.  - This statement provides information about the relationship between the rabbit, lion, and mouse, but it does not provide any direct information about the mouse's needs.\n19. If someone visits the mouse then the mouse needs the dog.  - This statement provides information about the mouse's needs, but it is conditional on someone visiting the mouse.\n\nFrom the given statements, we can see that statement 19 provides information about the mouse's needs, but it is conditional on someone visiting the mouse. Since statement 9 says that the mouse visits the dog, we can use statement 19 to conclude that the mouse needs the dog.\n\nTherefore, the statement \"The mouse does not need the dog\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(mouse, rabbit)",
+          "z3_formula": "Not(needs_mouse_rabbit) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(needs_X_mouse, kind_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> needs(X, dog)",
+          "z3_formula": "Implies(visits_X_mouse, needs_X_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> needs(X, dog)",
+          "z3_formula": "Implies(visits_mouse_dog, needs_mouse_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(mouse, dog)",
+          "z3_formula": "not needs_mouse_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, dog)",
+          "z3_formula": "visits_rabbit_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_dog, visits_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(needs_mouse, kind_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & likes(X, rabbit) -> visits(rabbit, mouse)",
+          "z3_formula": "Implies(And(round_lion, likes_lion_rabbit), visits_rabbit_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits(rabbit, mouse)",
+          "z3_formula": "Implies(visits_rabbit, visits_rabbit_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> visits(dog, rabbit)",
+          "z3_formula": "Implies(likes_dog, visits_dog_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(mouse, lion) & needs(mouse, dog) -> needs(dog, lion)",
+          "z3_formula": "Implies(And(visits_mouse_lion, needs_mouse_dog), needs_dog_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(rabbit, lion) -> needs(lion, mouse)",
+          "z3_formula": "Implies(needs_rabbit_lion, needs_lion_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> needs(X, dog)",
+          "z3_formula": "Implies(visits_mouse, needs_mouse_dog)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(mouse, rabbit)",
+          "z3_formula": "Not(needs_mouse_rabbit) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X) -> kind(X)",
+          "z3_formula": "Implies(needs_mouse, kind_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> needs(X, dog)",
+          "z3_formula": "Implies(visits_dog_mouse, needs_dog)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(mouse, rabbit)",
+          "z3_formula": "Not(needs_mouse_rabbit) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(needs_X_mouse, kind_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits(rabbit, X)",
+          "z3_formula": "Implies(visits_X_rabbit, visits_rabbit_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> visits(dog, rabbit)",
+          "z3_formula": "Implies(likes_X_dog, visits_dog_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(mouse, lion) & needs(mouse, dog) -> needs(dog, lion)",
+          "z3_formula": "Implies(And(visits_mouse_lion, needs_mouse_dog), needs_dog_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(rabbit, lion) -> needs(lion, mouse)",
+          "z3_formula": "Implies(needs_rabbit_lion, needs_lion_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> needs(X, dog)",
+          "z3_formula": "Implies(visits_X_mouse, needs_X_dog)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(need(mouse, rabbit))",
+          "z3_formula": "not(need_mouse_rabbit) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "need(X, Y) -> kind(X)",
+          "z3_formula": "Implies(need_X_Y, kind_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> need(X, Y)",
+          "z3_formula": "Implies(visits_X_Y, need_X_Y)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "need(X, Y) -> visits(X, lion)",
+          "z3_formula": "Implies(need_X_Y, visits_X_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & likes(X, Y) -> visits(Y, rabbit)",
+          "z3_formula": "Implies(And(big_X, likes_X_Y), visits_Y_rabbit)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(X, dog) -> kind(X)",
+          "z3_formula": "Implies(needs_X_dog, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & round(X) -> visits_rabbit_mouse",
+          "z3_formula": "Implies(And(likes_X_rabbit, round_X), visits_rabbit_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits_rabbit_mouse",
+          "z3_formula": "Implies(visits_X_rabbit, visits_rabbit_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(X, dog) -> needs_lion_dog",
+          "z3_formula": "Implies(And(visits_X_lion, needs_X_dog), needs_lion_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> visits_lion_X",
+          "z3_formula": "Implies(needs_X_dog, visits_lion_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & needs(X, dog) -> needs_lion_dog",
+          "z3_formula": "Implies(And(visits_X_lion, needs_X_dog), needs_lion_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> needs_mouse_dog",
+          "z3_formula": "Implies(visits_X_mouse, needs_mouse_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(dog)",
+          "z3_formula": "not kind_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(mouse, rabbit)",
+          "z3_formula": "not needs_mouse_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, dog)",
+          "z3_formula": "visits_rabbit_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> needs_mouse_dog",
+          "z3_formula": "Implies(visits_X_mouse, needs_mouse_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> needs(X, mouse)",
+          "z3_formula": "Implies(visits_mouse_dog, needs_mouse_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(dog)",
+          "z3_formula": "Not(kind_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(mouse, rabbit)",
+          "z3_formula": "Not(needs_mouse_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, dog)",
+          "z3_formula": "visits_rabbit_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_X_dog, visits_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(needs_X_mouse, kind_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & likes(X, rabbit) -> visits(rabbit, mouse)",
+          "z3_formula": "Implies(And(round_X, likes_X_rabbit), visits_rabbit_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits(rabbit, mouse)",
+          "z3_formula": "Implies(visits_X_rabbit, visits_rabbit_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> visits(dog, rabbit)",
+          "z3_formula": "Implies(likes_X_dog, visits_dog_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(mouse, lion) & needs(mouse, dog) -> needs(dog, lion)",
+          "z3_formula": "Implies(And(visits_mouse_lion, needs_mouse_dog), needs_dog_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(rabbit, lion) -> needs(lion, mouse)",
+          "z3_formula": "Implies(needs_rabbit_lion, needs_lion_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> needs(mouse, dog)",
+          "z3_formula": "Implies(visits_X_mouse, needs_mouse_dog)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(mouse, rabbit)",
+          "z3_formula": "Not(needs_mouse_rabbit) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(visits_mouse_dog, needs_mouse_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & needs(X, Y) -> needs(Y, X)",
+          "z3_formula": "Implies(And(visits_mouse_dog, needs_mouse_dog), needs_dog_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & needs(X, Z) -> needs(Z, X)",
+          "z3_formula": "Implies(And(visits_mouse_dog, needs_mouse_rabbit), needs_rabbit_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) & round(X) -> visits(Y, X)",
+          "z3_formula": "Implies(And(likes_mouse_rabbit, round_mouse), visits_rabbit_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> visits(Y, X)",
+          "z3_formula": "Implies(visits_mouse_rabbit, visits_rabbit_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> visits(Y, X)",
+          "z3_formula": "Implies(likes_dog_rabbit, visits_rabbit_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> visits(Y, lion)",
+          "z3_formula": "Implies(needs_mouse_dog, visits_dog_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> kind(X)",
+          "z3_formula": "Implies(needs_mouse_mouse, kind_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(mouse, rabbit)",
+          "z3_formula": "Not(needs_mouse_rabbit) == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(visits_mouse_dog, needs_mouse_dog)",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(mouse)",
+          "z3_formula": "big_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> needs(mouse, X)",
+          "z3_formula": "Implies(visits_mouse_X, needs_mouse_X)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, dog)",
+          "z3_formula": "visits_rabbit_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & likes(X, rabbit) -> visits(rabbit, mouse)",
+          "z3_formula": "Implies(And(round_lion, likes_lion_rabbit), visits_rabbit_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits(rabbit, mouse)",
+          "z3_formula": "Implies(visits_X_rabbit, visits_rabbit_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, dog) -> visits(dog, rabbit)",
+          "z3_formula": "Implies(likes_dog_rabbit, visits_dog_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(mouse, lion) & needs(mouse, dog) -> needs(dog, lion)",
+          "z3_formula": "Implies(And(visits_mouse_lion, needs_mouse_dog), needs_dog_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(rabbit, lion) -> needs(lion, mouse)",
+          "z3_formula": "Implies(needs_rabbit_lion, needs_lion_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(dog))",
+          "z3_formula": "Not(kind_dog) == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog) & visits(rabbit, dog)",
+          "z3_formula": "And(visits_mouse_dog, visits_rabbit_dog) == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(mouse, lion) & needs(mouse, dog) -> needs(dog, lion)",
+          "z3_formula": "Implies(And(visits_mouse_lion, needs_mouse_dog), needs_dog_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(mouse, dog)",
+          "z3_formula": "visits_mouse_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, dog)",
+          "z3_formula": "Implies(visits_mouse_dog, needs_mouse_dog)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 20
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 138,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 51
+    },
+    "maxsat_stats": {
+      "satisfied": 51,
+      "excluded": 0,
+      "total_weight": 138,
+      "solve_time_ms": 1.2057023122906685
+    },
+    "timing": {
+      "trace_gen_s": 10.532,
+      "extraction_s": 24.737,
+      "dedup_s": 1.361,
+      "maxsat_s": 0.004,
+      "total_s": 36.634
+    }
+  }
+}

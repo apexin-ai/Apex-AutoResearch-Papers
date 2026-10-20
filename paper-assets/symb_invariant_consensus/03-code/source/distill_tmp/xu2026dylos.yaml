@@ -1,0 +1,81 @@
+paper_key: "xu2026dylos"
+title: "Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition (DyLoS)"
+venue: "EACL 2026"
+full_text_available: true
+
+research:
+  baselines: ["Zero-shot", "CoT", "Logic-LM", "LINC", "SymbCoT", "Aristotle"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "routing_accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "PrOntoQA", size: "500"}
+    - {name: "ProofWriter", size: "600"}
+    - {name: "FOLIO", size: "204"}
+    - {name: "LogicalDeduction", size: "300"}
+    - {name: "AR-LSAT", size: "230"}
+  ablation_dimensions: ["solver_type", "routing_strategy", "model_scale", "LoRA_finetuning"]
+  training_recipe: {optimizer: "LoRA", lr: "N/A", hardware: "N/A"}
+  method_family: "LLM-symbolic hybrid with dynamic solver routing"
+
+positioning:
+  core_claim: "Dynamic composition of multiple symbolic solvers (Pyke/Prover9/Z3/MiniZinc) via LLM-based routing achieves robust logical reasoning across heterogeneous problem types"
+  key_results: "92.1% mixed reasoning (GPT-4o), +27% over zero-shot; 7B models: 8-26% baseline → 41-59.6% with LoRA"
+  limitations:
+    - "Model scale dependency — small models struggle with formalization"
+    - "Formalization bottleneck: 60-80% of small-model errors from formalization"
+    - "Limited solver coverage: no probabilistic/temporal/mathematical reasoning"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Material vs formal inference dichotomy — LLMs handle material, symbolic solvers handle formal, but no system integrates both dynamically"
+  tension: "Existing hybrid methods are locked to a single solver type, failing on problems requiring different logical paradigms"
+  key_insight: "Revealed in Section 3 — a router that classifies reasoning type enables dynamic solver dispatch with >98% accuracy"
+  argument_chain: "heterogeneous logical tasks → single-solver limitation → classify-then-route → multi-solver composition → validated on mixed benchmarks"
+  contribution_framing: "3 contributions each with quantitative evidence in the intro"
+  intro_structure: "5 paragraphs: (1) material-formal dichotomy hook, (2) existing hybrid limitations, (3) DyLoS overview, (4) contributions with numbers, (5) paper structure"
+  notable_technique: "Every contribution claim includes specific quantitative results; material-formal inference dichotomy used as recurring anchor"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "3-stage pipeline: decompose → route → solve, showing 4 solver types"
+    narrative_role: "Establishes the system architecture immediately after the problem statement"
+    design_elements: ["flow diagram", "solver icons", "color-coded stages"]
+    visual_style: "Left-to-right pipeline with branching at routing stage"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "Accuracy across datasets with different solvers"
+      how_gain_highlighted: "DyLoS bar consistently highest"
+      design_note: "Grouped by dataset, color by method"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      dimensions_varied: ["model_scale", "with/without_LoRA"]
+      design_note: "Shows scaling behavior and LoRA impact"
+  figure_narrative_role: "Fig1(architecture) → Fig2(routing) → Fig3(main results) → Fig4(scaling) → Fig5(error analysis)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets × accuracy"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 6
+    design_note: "Separates LLM-only vs hybrid methods"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["solver_selection", "routing_strategy"]
+      variation_style: "full_numbers"
+      design_note: "Shows each solver's standalone vs combined performance"
+  supplementary_tables:
+    in_appendix: true
+    content: "Prompt templates, additional model results"
+    reason: "Space constraints"

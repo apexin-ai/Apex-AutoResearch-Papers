@@ -1,0 +1,75 @@
+paper_key: "qi2025symbolic_provers"
+title: "Large Language Models Meet Symbolic Provers for Logical Reasoning Evaluation"
+venue: "ICLR 2025"
+full_text_available: true
+
+research:
+  baselines: ["GPT-4o", "Claude-3.5-Sonnet", "Llama3.1-8B/70B", "Gemma2-9B/27B", "Mistral-7B/Large", "Qwen2.5-7B/32B/72B"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "ID_accuracy", direction: "higher_better"}
+    - {name: "OOD_accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "ProverQA", size: "1500 instances, 3 difficulty levels"}
+    - {name: "ProofWriter", size: "for transfer eval"}
+    - {name: "FOLIO", size: "for transfer eval"}
+  ablation_dimensions: ["difficulty_level", "CoT_vs_direct", "finetuning_data_source", "ID_vs_OOD"]
+  training_recipe: {optimizer: "SFT", lr: "N/A", hardware: "N/A"}
+  method_family: "LLM + symbolic prover (Prover9) for benchmark generation"
+
+positioning:
+  core_claim: "Top-down generation combining LLM diversity with Prover9 rigor creates ProverQA benchmark that reveals even SOTA models barely exceed chance on hard FOL problems"
+  key_results: "GPT-4o: 50.0%, Claude-3.5: 56.4% on hard; finetuning Llama3.1-8B on ProverQA: +34.6% ID, +7.5% OOD (vs -2.0% ProofWriter, -11.4% FOLIO)"
+  limitations:
+    - "Benchmark limited to FOL reasoning"
+    - "Top-down generation may not cover all reasoning patterns"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Existing benchmarks lack reliable ground truth labels and controllable difficulty"
+  tension: "Bottom-up benchmark construction introduces label noise and uncontrolled complexity"
+  key_insight: "Section 3 — top-down generation (goal → backward to premises) ensures logical coherence by construction"
+  argument_chain: "benchmark limitations → top-down generation idea → Prover9 guarantees → difficulty control → model evaluation reveals gaps → finetuning transfer validates quality"
+  contribution_framing: "3 contributions: generation framework, benchmark, comprehensive evaluation"
+  intro_structure: "4 paragraphs: (1) importance of logical reasoning, (2) criteria for good benchmarks, (3) ProverGen framework, (4) contributions"
+  notable_technique: "Table 1 checkmark grid as early positioning device — shows no existing benchmark meets all criteria"
+
+figures:
+  figure_count: 2
+  figure1:
+    type: "method_overview"
+    description: "ProverGen pipeline: top-down generation with Prover9"
+    narrative_role: "Establishes the generation framework"
+    design_elements: ["pipeline flow", "Prover9 integration point"]
+    visual_style: "Schematic flow diagram"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      what_compared: "Model accuracy across difficulty levels"
+      how_gain_highlighted: "Performance drop at higher difficulty"
+      design_note: "Grouped by difficulty, showing model capability gap"
+  ablation_figures: []
+  figure_narrative_role: "Fig1(method) → Fig2(results) — minimal figures, table-heavy paper"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "difficulty levels × accuracy"
+    row_organization: "by_category"
+    col_organization: "grouped_by_difficulty"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 10
+    design_note: "Comprehensive model comparison across 3 difficulty levels"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["finetuning_data_source", "ID_vs_OOD"]
+      variation_style: "full_numbers"
+      design_note: "Transfer learning comparison showing ProverQA's superiority"
+  supplementary_tables:
+    in_appendix: true
+    content: "Additional model results, generation statistics"
+    reason: "Main paper focuses on key comparisons"

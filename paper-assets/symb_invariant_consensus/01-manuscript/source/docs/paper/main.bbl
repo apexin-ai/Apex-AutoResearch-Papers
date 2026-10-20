@@ -1,0 +1,541 @@
+\begin{thebibliography}{76}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Amonkar et~al.(2025)Amonkar, Kayan, Lai, Le~Bras, and
+  Zhang}]{amonkar2025realitycheck}
+Rikhil Amonkar, Ceyhun~Efe Kayan, May Lai, Ronan Le~Bras, and Li~Zhang. 2025.
+\newblock Large language models as formalizers on constraint satisfaction
+  problems.
+\newblock \emph{arXiv preprint arXiv:2505.13252}.
+
+\bibitem[{Brown et~al.(2005)Brown, Wyatt, Harris, and Yao}]{brown2005diversity}
+Gavin Brown, Jeremy Wyatt, Rachel Harris, and Xin Yao. 2005.
+\newblock Diversity creation methods: A survey and categorisation.
+\newblock \emph{Information Fusion}, 6(1):5--20.
+
+\bibitem[{Byerly and Khashabi(2026)}]{byerly2025selfconsistency}
+Adam Byerly and Daniel Khashabi. 2026.
+\newblock Self-consistency falls short! the adverse effects of positional bias
+  on long-context problems.
+\newblock \emph{Transactions of the Association for Computational Linguistics},
+  14:292--317.
+\newblock ArXiv:2411.01101.
+
+\bibitem[{Chan et~al.(2026)Chan, Gaizauskas, and Zhao}]{chan2026position}
+Jason Chan, Robert Gaizauskas, and Zhixue Zhao. 2026.
+\newblock Position: Logical soundness is not a reliable criterion for
+  neurosymbolic fact-checking with {LLMs}.
+\newblock \emph{arXiv preprint arXiv:2604.04177}.
+
+\bibitem[{Chen et~al.(2023{\natexlab{a}})Chen, Zhang, Nguyen, Zan, Lin, Lou,
+  and Chen}]{chen2023codet}
+Bei Chen, Fengji Zhang, Anh Nguyen, Daoguang Zan, Zeqi Lin, Jian-Guang Lou, and
+  Weizhu Chen. 2023{\natexlab{a}}.
+\newblock {CodeT}: Code generation with generated tests.
+\newblock In \emph{Proceedings of the 11th International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{Chen et~al.(2025)Chen, Ren, Chen, Yang, Sun, Yoon, and
+  Ar{\i}k}]{chen2025sets}
+Jiefeng Chen, Jie Ren, Xinyun Chen, Chengrun Yang, Ruoxi Sun, Jinsung Yoon, and
+  Sercan~{\"O}. Ar{\i}k. 2025.
+\newblock {SETS}: Leveraging self-verification and self-correction for improved
+  test-time scaling.
+\newblock \emph{arXiv preprint arXiv:2501.19306}.
+
+\bibitem[{Chen et~al.(2023{\natexlab{b}})Chen, Ma, Wang, and
+  Cohen}]{chen2023program}
+Wenhu Chen, Xueguang Ma, Xinyi Wang, and William~W. Cohen. 2023{\natexlab{b}}.
+\newblock Program of thoughts prompting: Disentangling computation from
+  reasoning for numerical reasoning tasks.
+\newblock \emph{Transactions on Machine Learning Research}.
+
+\bibitem[{Chen et~al.(2024)Chen, Aksitov, Alon, Ren, Xiao, Yin, Prakash,
+  Sutton, Wang, and Zhou}]{chen2024usc}
+Xinyun Chen, Renat Aksitov, Uri Alon, Jie Ren, Kefan Xiao, Pengcheng Yin,
+  Sushant Prakash, Charles Sutton, Xuezhi Wang, and Denny Zhou. 2024.
+\newblock Universal self-consistency for large language model generation.
+\newblock In \emph{ICML}.
+
+\bibitem[{Cobbe et~al.(2021)Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser,
+  Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman}]{cobbe2021gsm8k}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz
+  Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano,
+  Christopher Hesse, and John Schulman. 2021.
+\newblock Training verifiers to solve math word problems.
+\newblock \emph{arXiv preprint arXiv:2110.14168}.
+
+\bibitem[{Cover and Thomas(2006)}]{cover2006elements}
+Thomas~M. Cover and Joy~A. Thomas. 2006.
+\newblock \emph{Elements of Information Theory}, 2nd edition.
+\newblock Wiley-Interscience.
+
+\bibitem[{de~Condorcet(1785)}]{condorcet1785}
+Marie Jean Antoine Nicolas de~Caritat de~Condorcet. 1785.
+\newblock \emph{Essai sur l'application de l'analyse \`a la probabilit\'e des
+  d\'ecisions rendues \`a la pluralit\'e des voix}.
+\newblock Imprimerie Royale, Paris.
+
+\bibitem[{de~Moura and Bj{\o}rner(2008)}]{demoura2008z3}
+Leonardo de~Moura and Nikolaj Bj{\o}rner. 2008.
+\newblock {Z3}: An efficient {SMT} solver.
+\newblock In \emph{TACAS}.
+
+\bibitem[{Dhuliawala et~al.(2024)Dhuliawala, Komeili, Xu, Raileanu, Li,
+  Celikyilmaz, and Weston}]{dhuliawala2023chainofverification}
+Shehzaad Dhuliawala, Mojtaba Komeili, Jing Xu, Roberta Raileanu, Xian Li, Asli
+  Celikyilmaz, and Jason Weston. 2024.
+\newblock Chain-of-verification reduces hallucination in large language models.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2024}.
+
+\bibitem[{Dietterich(2000)}]{dietterich2000ensemble}
+Thomas~G. Dietterich. 2000.
+\newblock Ensemble methods in machine learning.
+\newblock In \emph{Multiple Classifier Systems (MCS)}, pages 1--15. Springer.
+
+\bibitem[{Du et~al.(2024)Du, Li, Torralba, Tenenbaum, and
+  Mordatch}]{du2023improving}
+Yilun Du, Shuang Li, Antonio Torralba, Joshua~B. Tenenbaum, and Igor Mordatch.
+  2024.
+\newblock Improving factuality and reasoning in language models through
+  multiagent debate.
+\newblock In \emph{ICML}.
+
+\bibitem[{Feng et~al.(2025)Feng, Weir, Bostrom, Bayless, Cassel, Chaudhary,
+  Kiesl-Reiter, and Rangwala}]{feng2025vericot}
+Yu~Feng, Nathaniel Weir, Kaj Bostrom, Sam Bayless, Darion Cassel, Sapana
+  Chaudhary, Benjamin Kiesl-Reiter, and Huzefa Rangwala. 2025.
+\newblock {VeriCoT}: Neuro-symbolic chain-of-thought validation via logical
+  consistency checks.
+\newblock \emph{arXiv preprint arXiv:2511.04662}.
+
+\bibitem[{Fleiss(1971)}]{fleiss1971kappa}
+Joseph~L. Fleiss. 1971.
+\newblock Measuring nominal scale agreement among many raters.
+\newblock \emph{Psychological Bulletin}, 76(5):378--382.
+
+\bibitem[{Gao et~al.(2023)Gao, Madaan, Zhou, Alon, Liu, Yang, Callan, and
+  Neubig}]{gao2023pal}
+Luyu Gao, Aman Madaan, Shuyan Zhou, Uri Alon, Pengfei Liu, Yiming Yang, Jamie
+  Callan, and Graham Neubig. 2023.
+\newblock {PAL}: Program-aided language models.
+\newblock In \emph{Proceedings of the 40th International Conference on Machine
+  Learning (ICML)}.
+
+\bibitem[{Geva et~al.(2021)Geva, Khashabi, Segal, Khot, Roth, and
+  Berant}]{geva2021strategyqa}
+Mor Geva, Daniel Khashabi, Elad Segal, Tushar Khot, Dan Roth, and Jonathan
+  Berant. 2021.
+\newblock Did {Aristotle} use a laptop? a question answering benchmark with
+  implicit reasoning strategies.
+\newblock \emph{TACL}.
+
+\bibitem[{Gou et~al.(2024)Gou, Shao, Gong, Shen, Yang, Huang, Duan, and
+  Chen}]{gou2024critic}
+Zhibin Gou, Zhihong Shao, Yeyun Gong, Yelong Shen, Yujiu Yang, Minlie Huang,
+  Nan Duan, and Weizhu Chen. 2024.
+\newblock {CRITIC}: Large language models can self-correct with
+  tool-interactive critiquing.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Grattafiori et~al.(2024)Grattafiori, Dubey, Jauhri, Pandey, Kadian
+  et~al.}]{dubey2024llama3}
+Aaron Grattafiori, Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek
+  Kadian, and 1 others. 2024.
+\newblock The {Llama} 3 herd of models.
+\newblock \emph{arXiv preprint arXiv:2407.21783}.
+
+\bibitem[{Guo et~al.(2025)Guo, Yang, Zhang, Song et~al.}]{guo2025deepseekr1}
+Daya Guo, Dejian Yang, Haowei Zhang, Junxiao Song, and 1 others. 2025.
+\newblock {DeepSeek-R1}: Incentivizing reasoning capability in {LLM}s via
+  reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:2501.12948}.
+
+\bibitem[{Han et~al.(2024)Han, Schoelkopf, Zhao, Qi, Riddell, Zhou, Coady,
+  Peng, Qiao, Benson, Sun, Wardle-Solano, Szab{\'o}, Zubova, Burtell, Fan, Liu,
+  Wong, Sailor, Ni, Nan, Kasai, Yu, Zhang, Fabbri, Kryscinski, Yavuz, Liu, Lin,
+  Joty, Zhou, Xiong, Ying, Cohan, and Radev}]{han2022folio}
+Simeng Han, Hailey Schoelkopf, Yilun Zhao, Zhenting Qi, Martin Riddell, Wenfei
+  Zhou, James Coady, David Peng, Yujie Qiao, Luke Benson, Lucy Sun, Alexander
+  Wardle-Solano, Hannah Szab{\'o}, Ekaterina Zubova, Matthew Burtell, Jonathan
+  Fan, Yixin Liu, Brian Wong, Malcolm Sailor, and 16 others. 2024.
+\newblock {FOLIO}: Natural language reasoning with first-order logic.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, pages 22017--22031.
+
+\bibitem[{He et~al.(2021)He, Liu, Gao, and Chen}]{he2021deberta}
+Pengcheng He, Xiaodong Liu, Jianfeng Gao, and Weizhu Chen. 2021.
+\newblock {DeBERTa}: Decoding-enhanced {BERT} with disentangled attention.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Huang et~al.(2024)Huang, Chen, Mishra, Zheng, Yu, Song, and
+  Zhou}]{huang2024selfcorrect}
+Jie Huang, Xinyun Chen, Swaroop Mishra, Huaixiu~Steven Zheng, Adams~Wei Yu,
+  Xinying Song, and Denny Zhou. 2024.
+\newblock Large language models cannot self-correct reasoning yet.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Jhaveri et~al.(2026)Jhaveri, GX-Chen, Sucholutsky, and
+  Choi}]{jhaveri2026failing}
+Ayush~Rajesh Jhaveri, Anthony GX-Chen, Ilia Sucholutsky, and Eunsol Choi. 2026.
+\newblock Failing to falsify: Evaluating and mitigating confirmation bias in
+  language models.
+\newblock \emph{arXiv preprint arXiv:2604.02485}.
+
+\bibitem[{Jiang et~al.(2023)Jiang, Sablayrolles, Mensch, Bamford, Chaplot,
+  de~las Casas, Bressand, Lengyel, Lample, Saulnier, Lavaud, Lachaux, Stock,
+  Scao, Lavril, Wang, Lacroix, and El~Sayed}]{jiang2023mistral}
+Albert~Q. Jiang, Alexandre Sablayrolles, Arthur Mensch, Chris Bamford,
+  Devendra~Singh Chaplot, Diego de~las Casas, Florian Bressand, Gianna Lengyel,
+  Guillaume Lample, Lucile Saulnier, L{\'e}lio~Renard Lavaud, Marie-Anne
+  Lachaux, Pierre Stock, Teven~Le Scao, Thibaut Lavril, Thomas Wang,
+  Timoth{\'e}e Lacroix, and William El~Sayed. 2023.
+\newblock Mistral 7{B}.
+\newblock \emph{arXiv preprint arXiv:2310.06825}.
+
+\bibitem[{Kamoi et~al.(2024)Kamoi, Zhang, Zhang, Han, and
+  Zhang}]{kamoi2024selfcorrect}
+Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han, and Rui Zhang. 2024.
+\newblock When can {LLMs} actually correct their own mistakes? a critical
+  survey of self-correction of {LLMs}.
+\newblock \emph{Transactions of the Association for Computational Linguistics},
+  12:1417--1440.
+
+\bibitem[{Khalifa et~al.(2023)Khalifa, Logeswaran, Lee, Lee, and
+  Wang}]{khalifa2023grace}
+Muhammad Khalifa, Lajanugen Logeswaran, Moontae Lee, Honglak Lee, and Lu~Wang.
+  2023.
+\newblock {GRACE}: Discriminator-guided chain-of-thought reasoning.
+\newblock In \emph{Findings of EMNLP}.
+
+\bibitem[{Kim et~al.(2025)Kim, Garg, Peng, and Garg}]{kim2025correlated}
+Elliot Kim, Avi Garg, Kenny Peng, and Nikhil Garg. 2025.
+\newblock Correlated errors in large language models.
+\newblock In \emph{ICML}.
+
+\bibitem[{Kim et~al.(2026)Kim, Yang, Min, and Jung}]{kim2026reasc}
+Junseok Kim, Nakyeong Yang, Kyungmin Min, and Kyomin Jung. 2026.
+\newblock Reliability-aware adaptive self-consistency for efficient sampling in
+  {LLM} reasoning.
+\newblock \emph{arXiv preprint arXiv:2601.02970}.
+
+\bibitem[{Krogh and Vedelsby(1994)}]{krogh1994neural}
+Anders Krogh and Jesper Vedelsby. 1994.
+\newblock Neural network ensembles, cross validation, and active learning.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~7.
+
+\bibitem[{Kuai et~al.(2026)Kuai, Jiang, Zhu, Wang, Wu, Li, Zhang, Liu, Tu, Fan,
+  and Zhou}]{kuai2026independent}
+Chenchen Kuai, Jiwan Jiang, Zihao Zhu, Hao Wang, Keshu Wu, Zihao Li, Yunlong
+  Zhang, Chenxi Liu, Zhengzhong Tu, Zhiwen Fan, and Yang Zhou. 2026.
+\newblock How independent are large language models? {A} statistical framework
+  for auditing behavioral entanglement and reweighting verifier ensembles.
+\newblock \emph{arXiv preprint arXiv:2604.07650}.
+
+\bibitem[{Kuncheva and Whitaker(2003)}]{kuncheva2003measures}
+Ludmila~I. Kuncheva and Christopher~J. Whitaker. 2003.
+\newblock Measures of diversity in classifier ensembles and their relationship
+  with the ensemble accuracy.
+\newblock \emph{Machine Learning}, 51(2):181--207.
+
+\bibitem[{Ladha(1992)}]{ladha1992correlated}
+Krishna~K. Ladha. 1992.
+\newblock The {C}ondorcet jury theorem, free speech, and correlated votes.
+\newblock \emph{American Journal of Political Science}, 36(3):617--634.
+
+\bibitem[{Lakens(2017)}]{lakens2017equivalence}
+Dani{\"e}l Lakens. 2017.
+\newblock \href {https://doi.org/10.1177/1948550617697177} {Equivalence tests:
+  A practical primer for $t$ tests, correlations, and meta-analyses}.
+\newblock \emph{Social Psychological and Personality Science}, 8(4):355--362.
+
+\bibitem[{Lewis et~al.(2020)Lewis, Liu, Goyal, Ghazvininejad, Mohamed, Levy,
+  Stoyanov, and Zettlemoyer}]{lewis2020bart}
+Mike Lewis, Yinhan Liu, Naman Goyal, Marjan Ghazvininejad, Abdelrahman Mohamed,
+  Omer Levy, Veselin Stoyanov, and Luke Zettlemoyer. 2020.
+\newblock {BART}: Denoising sequence-to-sequence pre-training for natural
+  language generation, translation, and comprehension.
+\newblock In \emph{Proceedings of ACL}, pages 7871--7880.
+
+\bibitem[{Li et~al.(2023)Li, Lin, Zhang, Fu, Chen, Lou, and
+  Chen}]{li2023diverse}
+Yifei Li, Zeqi Lin, Shizhuo Zhang, Qiang Fu, Bei Chen, Jian-Guang Lou, and
+  Weizhu Chen. 2023.
+\newblock Making language models better reasoners with step-aware verifier.
+\newblock In \emph{ACL}.
+
+\bibitem[{Li et~al.(2022)Li, Choi, Chung, Kushman, Schrittwieser
+  et~al.}]{li2022alphacode}
+Yujia Li, David Choi, Junyoung Chung, Nate Kushman, Julian Schrittwieser, and 1
+  others. 2022.
+\newblock Competition-level code generation with {AlphaCode}.
+\newblock \emph{Science}, 378(6624):1092--1097.
+
+\bibitem[{Liang et~al.(2024)Liang, He, Jiao, Wang, Wang, Wang, Yang, Tu, and
+  Shi}]{liang2023encouraging}
+Tian Liang, Zhiwei He, Wenxiang Jiao, Xing Wang, Yan Wang, Rui Wang, Yujiu
+  Yang, Zhaopeng Tu, and Shuming Shi. 2024.
+\newblock Encouraging divergent thinking in large language models through
+  multi-agent debate.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}.
+
+\bibitem[{Lifshitz et~al.(2025)Lifshitz, McIlraith, and Du}]{lifshitz2025mav}
+Shalev Lifshitz, Sheila~A. McIlraith, and Yilun Du. 2025.
+\newblock Multi-agent verification: Scaling test-time compute with multiple
+  verifiers.
+\newblock \emph{arXiv preprint arXiv:2502.20379}.
+
+\bibitem[{Lightman et~al.(2024)Lightman, Kosaraju, Burda, Edwards, Baker, Lee,
+  Leike, Schulman, Sutskever, and Cobbe}]{lightman2024prm}
+Hunter Lightman, Vineet Kosaraju, Yura Burda, Harri Edwards, Bowen Baker, Teddy
+  Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe. 2024.
+\newblock Let's verify step by step.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Liu et~al.(2020)Liu, Cui, Liu, Huang, Wang, and
+  Zhang}]{liu2020logiqa}
+Jian Liu, Leyang Cui, Hanmeng Liu, Dandan Huang, Yile Wang, and Yue Zhang.
+  2020.
+\newblock {LogiQA}: A challenge dataset for machine reading comprehension with
+  logical reasoning.
+\newblock In \emph{IJCAI}, pages 3622--3628.
+
+\bibitem[{Liu et~al.(2019)Liu, Ott, Goyal, Du, Joshi, Chen, Levy, Lewis,
+  Zettlemoyer, and Stoyanov}]{liu2019roberta}
+Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer
+  Levy, Mike Lewis, Luke Zettlemoyer, and Veselin Stoyanov. 2019.
+\newblock {RoBERTa}: A robustly optimized {BERT} pretraining approach.
+\newblock \emph{arXiv preprint arXiv:1907.11692}.
+
+\bibitem[{Loo(2025)}]{loo2025reevaluating}
+Chiyan Loo. 2025.
+\newblock Reevaluating self-consistency scaling in multi-agent systems.
+\newblock \emph{arXiv preprint arXiv:2511.00751}.
+
+\bibitem[{Lyu et~al.(2023)Lyu, Havaldar, Stein, Zhang, Rao, Wong, Apidianaki,
+  and Callison-Burch}]{lyu2023faithful}
+Qing Lyu, Shreya Havaldar, Adam Stein, Li~Zhang, Delip Rao, Eric Wong, Marianna
+  Apidianaki, and Chris Callison-Burch. 2023.
+\newblock Faithful chain-of-thought reasoning.
+\newblock In \emph{Proceedings of the 13th International Joint Conference on
+  Natural Language Processing and the 3rd Conference of the Asia-Pacific
+  Chapter of the Association for Computational Linguistics}.
+
+\bibitem[{Ma et~al.(2025)Ma, Wang, Liu, Liu, Chen, Zhang, Zhou, Du, and
+  Li}]{zeng2025s2r}
+Ruotian Ma, Peisong Wang, Cheng Liu, Xingyan Liu, Jiaqi Chen, Bang Zhang, Xin
+  Zhou, Nan Du, and Jia Li. 2025.
+\newblock {S$^2$R}: Teaching {LLMs} to self-verify and self-correct via
+  reinforcement learning.
+\newblock In \emph{Proceedings of the 63rd Annual Meeting of the Association
+  for Computational Linguistics (ACL)}.
+
+\bibitem[{Madaan et~al.(2023)Madaan, Tandon, Gupta, Hallinan, Gao, Wiegreffe,
+  Alon, Dziri, Prabhumoye, Yang et~al.}]{madaan2023selfrefine}
+Aman Madaan, Niket Tandon, Prakhar Gupta, Skyler Hallinan, Luyu Gao, Sarah
+  Wiegreffe, Uri Alon, Nouha Dziri, Shrimai Prabhumoye, Yiming Yang, and 1
+  others. 2023.
+\newblock Self-refine: Iterative refinement with self-feedback.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[{Miya(2025)}]{miya2025eidoku}
+Shinobu Miya. 2025.
+\newblock Eidoku: A neuro-symbolic verification gate for {LLM} reasoning via
+  structural constraint satisfaction.
+\newblock \emph{arXiv preprint arXiv:2512.20664}.
+
+\bibitem[{Olausson et~al.(2023)Olausson, Gu, Lipkin, Zhang, Solar-Lezama,
+  Tenenbaum, and Levy}]{olausson2023linc}
+Theo~X. Olausson, Alex Gu, Benjamin Lipkin, Cedegao~E. Zhang, Armando
+  Solar-Lezama, Joshua~B. Tenenbaum, and Roger Levy. 2023.
+\newblock {LINC}: A neurosymbolic approach for logical reasoning by combining
+  language models with first-order logic provers.
+\newblock In \emph{EMNLP}.
+
+\bibitem[{Pan et~al.(2023)Pan, Albalak, Wang, and Wang}]{pan2023logiclm}
+Liangming Pan, Alon Albalak, Xinyi Wang, and William~Yang Wang. 2023.
+\newblock Logic-{LM}: Empowering large language models with symbolic solvers
+  for faithful logical reasoning.
+\newblock In \emph{EMNLP Findings}.
+
+\bibitem[{Pei et~al.(2025)Pei, Du, and Jin}]{pei2025fover}
+Yu~Pei, Yongping Du, and Xingnan Jin. 2025.
+\newblock {FoVer}: First-order logic verification for natural language
+  reasoning.
+\newblock \emph{Transactions of the Association for Computational Linguistics},
+  13:1340--1359.
+
+\bibitem[{{Qwen Team}(2024)}]{qwen2024qwq}
+{Qwen Team}. 2024.
+\newblock {QwQ}: Reflect deeply on the boundaries of the unknown.
+\newblock Technical Blog.
+\newblock \url{https://qwenlm.github.io/blog/qwq-32b-preview/}.
+
+\bibitem[{Ryu et~al.(2025)Ryu, Kim, Lee, and Yang}]{ryu2025clover}
+Hyun Ryu, Gyeongman Kim, Hyemin~S. Lee, and Eunho Yang. 2025.
+\newblock Divide and translate: Compositional first-order logic translation and
+  verification for complex logical reasoning.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}.
+
+\bibitem[{She et~al.(2025)She, Bao, Lu, Xu, Li, Zhu, Huang, Cheng, Lu, and
+  Wang}]{dupo2025}
+Shuaijie She, Yu~Bao, Yu~Lu, Lu~Xu, Tao Li, Wenhao Zhu, Shujian Huang, Shanbo
+  Cheng, Lu~Lu, and Yuxuan Wang. 2025.
+\newblock {DuPO}: Enabling reliable {LLM} self-verification via dual preference
+  optimization.
+\newblock \emph{arXiv preprint arXiv:2508.14460}.
+
+\bibitem[{Shinn et~al.(2023)Shinn, Cassano, Berman, Gopinath, Narasimhan, and
+  Yao}]{shinn2023reflexion}
+Noah Shinn, Federico Cassano, Edward Berman, Ashwin Gopinath, Karthik
+  Narasimhan, and Shunyu Yao. 2023.
+\newblock Reflexion: Language agents with verbal reinforcement learning.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Singh et~al.(2026)Singh, Cassel, Weir, Feng, and
+  Bayless}]{singh2026verge}
+Vikash Singh, Darion Cassel, Nathaniel Weir, Nick Feng, and Sam Bayless. 2026.
+\newblock {VERGE}: Formal refinement and guidance engine for verifiable {LLM}
+  reasoning.
+\newblock \emph{arXiv preprint arXiv:2601.20055}.
+
+\bibitem[{Snell et~al.(2025)Snell, Lee, Xu, and Kumar}]{snell2025scaling}
+Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. 2025.
+\newblock Scaling {LLM} test-time compute optimally can be more effective than
+  scaling parameters for reasoning.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Tafjord et~al.(2021)Tafjord, Dalvi, and
+  Clark}]{tafjord2021proofwriter}
+Oyvind Tafjord, Bhavana Dalvi, and Peter Clark. 2021.
+\newblock {ProofWriter}: Generating implications, proofs, and abductive
+  statements over natural language.
+\newblock In \emph{ACL Findings}.
+
+\bibitem[{Taubenfeld et~al.(2025)Taubenfeld, Sheffer, Ofek, Feder, Goldstein,
+  Gekhman, and Yona}]{taubenfeld2025cisc}
+Amir Taubenfeld, Tom Sheffer, Eran Ofek, Amir Feder, Ariel Goldstein, Zorik
+  Gekhman, and Gal Yona. 2025.
+\newblock Confidence improves self-consistency in {LLM}s.
+\newblock In \emph{ACL Findings}.
+
+\bibitem[{Toh et~al.(2024)Toh, Ghosal, and Poria}]{toh2024notallvotes}
+Vernon~Y.H. Toh, Deepanway Ghosal, and Soujanya Poria. 2024.
+\newblock Not all votes count! programs as verifiers improve self-consistency
+  of language models for math reasoning.
+\newblock \emph{arXiv preprint arXiv:2410.12608}.
+
+\bibitem[{Turpin et~al.(2023)Turpin, Michael, Perez, and
+  Bowman}]{turpin2023language}
+Miles Turpin, Julian Michael, Ethan Perez, and Samuel Bowman. 2023.
+\newblock Language models don't always say what they think: Unfaithful
+  explanations in chain-of-thought prompting.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[{Wan et~al.(2024)Wan, Wu, Chen, and Li}]{wan2024rasc}
+Guangya Wan, Yuqi Wu, Jie Chen, and Sheng Li. 2024.
+\newblock Reasoning aware self-consistency: Leveraging reasoning paths for
+  efficient {LLM} sampling.
+\newblock \emph{arXiv preprint arXiv:2408.17017}.
+
+\bibitem[{Wan et~al.(2025)Wan, Jia, and Li}]{wan2025unveiling}
+Yue Wan, Xiaowei Jia, and Xiang~Lorraine Li. 2025.
+\newblock Unveiling confirmation bias in chain-of-thought reasoning.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2025}.
+
+\bibitem[{Wang et~al.(2024)Wang, Li, Shao, Xu, Dai, Li, Chen, Wu, and
+  Sui}]{wang2024mathshepherd}
+Peiyi Wang, Lei Li, Zhihong Shao, Runxin Xu, Damai Dai, Yifei Li, Deli Chen,
+  Yu~Wu, and Zhifang Sui. 2024.
+\newblock Math-shepherd: Verify and reinforce {LLM}s step-by-step without human
+  annotations.
+\newblock In \emph{ACL}.
+
+\bibitem[{Wang et~al.(2023)Wang, Wei, Schuurmans, Le, Chi, Narang, Chowdhery,
+  and Zhou}]{wang2023sc}
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed~Chi, Sharan Narang,
+  Aakanksha Chowdhery, and Denny Zhou. 2023.
+\newblock Self-consistency improves chain of thought reasoning in language
+  models.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Weng et~al.(2023)Weng, Zhu, Xia, Li, He, Liu, Sun, Liu, and
+  Zhao}]{weng2023selfverification}
+Yixuan Weng, Minjun Zhu, Fei Xia, Bin Li, Shizhu He, Shengping Liu, Bin Sun,
+  Kang Liu, and Jun Zhao. 2023.
+\newblock Large language models are better reasoners with self-verification.
+\newblock In \emph{Findings of EMNLP}.
+
+\bibitem[{Williams et~al.(2018)Williams, Nangia, and Bowman}]{williams2018mnli}
+Adina Williams, Nikita Nangia, and Samuel Bowman. 2018.
+\newblock A broad-coverage challenge corpus for sentence understanding through
+  inference.
+\newblock In \emph{Proceedings of NAACL-HLT}, pages 1112--1122.
+
+\bibitem[{Xie et~al.(2023)Xie, Kawaguchi, Zhao, Zhao, Kan, He, and
+  Xie}]{xie2023selfevaluation}
+Yuxi Xie, Kenji Kawaguchi, Yiran Zhao, Xu~Zhao, Min-Yen Kan, Junxian He, and
+  Qizhe Xie. 2023.
+\newblock Self-evaluation guided beam search for reasoning.
+\newblock In \emph{NeurIPS}.
+
+\bibitem[{Xu et~al.(2025)Xu, Fei, Luo, Liu, Pan, Wang, Nakov, Lee, and
+  Hsu}]{xu2025aristotle}
+Jundong Xu, Hao Fei, Meng Luo, Qian Liu, Liangming Pan, William~Yang Wang,
+  Preslav Nakov, Mong-Li Lee, and Wynne Hsu. 2025.
+\newblock Aristotle: Mastering logical reasoning with a logic-complete
+  decompose-search-resolve framework.
+\newblock In \emph{ACL}.
+
+\bibitem[{Xu et~al.(2026)Xu, Beckmann, Valentino, and Freitas}]{xu2026dylos}
+Lei Xu, Pierre Beckmann, Marco Valentino, and Andre Freitas. 2026.
+\newblock Adaptive {LLM}-symbolic reasoning via dynamic logical solver
+  composition ({DyLoS}).
+\newblock In \emph{EACL}.
+
+\bibitem[{Yang et~al.(2024)Yang, Yang, Zhang, Hui, Zheng
+  et~al.}]{yang2024qwen25}
+An~Yang, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo~Zheng, and 1 others.
+  2024.
+\newblock Qwen2.5 technical report.
+\newblock \emph{arXiv preprint arXiv:2412.15115}.
+
+\bibitem[{Yao et~al.(2023)Yao, Yu, Zhao, Shafran, Griffiths, Cao, and
+  Narasimhan}]{yao2023tree}
+Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas~L. Griffiths, Yuan
+  Cao, and Karthik Narasimhan. 2023.
+\newblock Tree of thoughts: Deliberate problem solving with large language
+  models.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~36.
+
+\bibitem[{Ye et~al.(2023)Ye, Chen, Dillig, and Durrett}]{ye2024satlm}
+Xi~Ye, Qiaochu Chen, Isil Dillig, and Greg Durrett. 2023.
+\newblock Satlm: Satisfiability-aided language models using declarative
+  prompting.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~36.
+
+\bibitem[{Zhang et~al.(2025)Zhang, Zhang, Sheng, Li, Chen, Yu, Yang, and
+  Song}]{luo2025logicagent}
+Yunyao Zhang, Xinglang Zhang, Junxi Sheng, Wenbing Li, Yi-Ping~Phoebe Chen,
+  Junqing Yu, Wei Yang, and Zikai Song. 2025.
+\newblock From ambiguity to verdict: A semiotic-grounded multi-perspective
+  agent for {LLM} logical reasoning.
+\newblock \emph{arXiv preprint arXiv:2509.24765}.
+
+\bibitem[{Zhou et~al.(2024)Zhou, Yan, Shlapentokh-Rothman, Wang, and
+  Wang}]{zhou2023lats}
+Andy Zhou, Kai Yan, Michal Shlapentokh-Rothman, Haohan Wang, and Yu-Xiong Wang.
+  2024.
+\newblock Language agent tree search unifies reasoning acting and planning in
+  language models.
+\newblock In \emph{International Conference on Machine Learning (ICML)}.
+
+\end{thebibliography}

@@ -1,0 +1,81 @@
+paper_key: "pan2023logiclm"
+title: "Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning"
+venue: "EMNLP Findings 2023"
+full_text_available: true
+
+research:
+  baselines: ["Standard Prompting", "CoT", "CoT-SC"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "Exe_Rate", direction: "higher_better"}
+  datasets:
+    - {name: "PrOntoQA", size: "500"}
+    - {name: "ProofWriter", size: "600"}
+    - {name: "FOLIO", size: "204"}
+    - {name: "LogicalDeduction", size: "300"}
+    - {name: "AR-LSAT", size: "230"}
+  ablation_dimensions: ["self_refinement", "solver_type", "model_type", "problem_type"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "LLM + symbolic solver (Pyke/Prover9/python-constraint/Z3)"
+
+positioning:
+  core_claim: "Reframing LLM's role from 'solving' to 'representing' — LLM formulates problems symbolically, dedicated solvers execute reasoning, with self-refinement for invalid formulations"
+  key_results: "+39.2% over standard prompting, +18.4% over CoT (GPT-3.5); GPT-4: PrOntoQA 83.2, ProofWriter 79.66, FOLIO 78.92, LogicalDeduction 87.63, AR-LSAT 43.04"
+  limitations:
+    - "Low Exe_Rate on complex problems (FOLIO 79.9%, AR-LSAT 32.6% with GPT-4)"
+    - "Self-refinement fixes grammar but not semantics"
+    - "Formalization bottleneck on naturalistic language"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "LLMs can understand language but fail at rigorous logical reasoning"
+  tension: "Prompting strategies improve reasoning but can't guarantee faithfulness"
+  key_insight: "Section 3 — separating 'understanding' (LLM) from 'reasoning' (solver) plays to each component's strength"
+  argument_chain: "LLM reasoning unfaithful → separate understanding from reasoning → LLM formulates + solver executes → self-refinement handles errors → 5-dataset validation"
+  contribution_framing: "3 contributions: framework, self-refinement mechanism, comprehensive evaluation"
+  intro_structure: "5 paragraphs: (1) LLM reasoning promise/limitations, (2) faithfulness problem, (3) Logic-LM framework, (4) contributions, (5) paper structure"
+  notable_technique: "Reframing the LLM's role from 'solver' to 'translator' — rhetorically powerful simplification"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "method_overview"
+    description: "Logic-LM pipeline: Problem Formulation → Symbolic Reasoning → Result Interpretation, with self-refinement loop"
+    narrative_role: "Establishes the three-stage architecture with refinement"
+    design_elements: ["pipeline flow", "self-refinement loop arrow", "4 solver icons"]
+    visual_style: "Flowchart with feedback loop"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Accuracy across reasoning depths"
+      how_gain_highlighted: "Logic-LM advantage grows with depth (widening gap at depth-5)"
+      design_note: "Depth analysis showing symbolic reasoning's advantage on harder problems"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      dimensions_varied: ["with/without self-refinement", "solver_type"]
+      design_note: "Isolates self-refinement contribution"
+  figure_narrative_role: "Fig1(pipeline) → Fig2(example) → Fig3(depth analysis) → Fig4(ablation)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets × accuracy"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 3
+    design_note: "Clean comparison with Exe_Rate reported alongside accuracy"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["self_refinement", "error_type"]
+      variation_style: "full_numbers"
+      design_note: "Breaks down Exe_Rate improvement by error category"
+  supplementary_tables:
+    in_appendix: true
+    content: "Prompt templates, solver-specific results, error examples"
+    reason: "Detailed error analysis too long for main text"

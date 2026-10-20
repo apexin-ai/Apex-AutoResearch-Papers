@@ -1,0 +1,474 @@
+{
+  "pid": "folio_69",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_july_2013",
+          "z3_formula": "badults_piloted_july_2013 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_badults_secret_dude_society",
+          "z3_formula": "working_title_badults_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_script_editor",
+          "z3_formula": "andrew_collins_script_editor == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "andrew_collins_script_editor_for_badults_secret_dude_society",
+          "z3_formula": "andrew_collins_script_editor_for_badults_secret_dude_society == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "british_sitcom(badults)",
+          "z3_formula": "british_sitcom_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pappys_members(badults)",
+          "z3_formula": "pappys_members_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_july_2013(badults)",
+          "z3_formula": "piloted_july_2013_badults == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_badults",
+          "z3_formula": "working_title_badults == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor_badults",
+          "z3_formula": "script_editor_badults == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "british_sitcom(X) -> pappys_members(X)",
+          "z3_formula": "Implies(british_sitcom_badults, pappys_members_badults)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "piloted_july_2013(X) -> working_title(X)",
+          "z3_formula": "Implies(piloted_july_2013_badults, working_title_badults)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "working_title_badults",
+          "z3_formula": "working_title_badults == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "script_editor_badults",
+          "z3_formula": "script_editor_badults == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "british_sitcom(badults)",
+          "z3_formula": "british_sitcom_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pappys_members(badults)",
+          "z3_formula": "pappys_members_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_in_july_2013(badults)",
+          "z3_formula": "piloted_in_july_2013_badults == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_badults == the_secret_dude_society",
+          "z3_formula": "working_title_badults == the_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor_badults == andrew_collins",
+          "z3_formula": "script_editor_badults == andrew_collins == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "working_title(X) == Y -> script_editor(X) == Z",
+          "z3_formula": "Implies(working_title_badults == the_secret_dude_society, script_editor_badults == andrew_collins)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "script_editor_badults == andrew_collins",
+          "z3_formula": "script_editor_badults == andrew_collins == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "british_sitcom(badults)",
+          "z3_formula": "british_sitcom_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "aired_in_july_2013(badults, bbc_three)",
+          "z3_formula": "aired_in_july_2013_badults_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title(badults, the_secret_dude_society)",
+          "z3_formula": "working_title_badults_the_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor(badults, andrew_collins)",
+          "z3_formula": "script_editor_badults_andrew_collins == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "script_editor(the_secret_dude_society, andrew_collins)",
+          "z3_formula": "script_editor_the_secret_dude_society_andrew_collins == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_july_2013",
+          "z3_formula": "badults_piloted_july_2013 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_secret_dude_society",
+          "z3_formula": "working_title_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_script_editor",
+          "z3_formula": "andrew_collins_script_editor == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "working_title_secret_dude_society -> badults",
+          "z3_formula": "Implies(working_title_secret_dude_society, badults)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "andrew_collins_script_editor_for_secret_dude_society",
+          "z3_formula": "andrew_collins_script_editor_for_secret_dude_society == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "british_sitcom(badults)",
+          "z3_formula": "british_sitcom_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_in_july_2013(badults)",
+          "z3_formula": "piloted_in_july_2013_badults == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_the_secret_dude_society(badults)",
+          "z3_formula": "working_title_the_secret_dude_society_badults == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor_andrew_collins(badults)",
+          "z3_formula": "script_editor_andrew_collins_badults == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "script_editor_andrew_collins(series_with_working_title_the_secret_dude_society)",
+          "z3_formula": "script_editor_andrew_collins_series_with_working_title_the_secret_dude_society == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "script_editor(andrew_collins, badults)",
+          "z3_formula": "script_editor_andrew_collins_badults == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "working_title(badults, the_secret_dude_society)",
+          "z3_formula": "working_title_badults_the_secret_dude_society == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "british_sitcom(badults)",
+          "z3_formula": "british_sitcom_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_in_july_2013(badults)",
+          "z3_formula": "piloted_in_july_2013_badults == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title(badults, the_secret_dude_society)",
+          "z3_formula": "working_title_badults_the_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor(badults, andrew_collins)",
+          "z3_formula": "script_editor_badults_andrew_collins == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "working_title(X, Y) -> script_editor(X, Z)",
+          "z3_formula": "Implies(working_title_badults_the_secret_dude_society, script_editor_badults_andrew_collins)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "script_editor(badults, andrew_collins)",
+          "z3_formula": "script_editor_badults_andrew_collins == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_july_2013",
+          "z3_formula": "badults_piloted_july_2013 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_badults_secret_dude_society",
+          "z3_formula": "working_title_badults_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_script_editor_badults",
+          "z3_formula": "andrew_collins_script_editor_badults == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "british_series(badults)",
+          "z3_formula": "british_series_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "starring_members_of_pappys(badults)",
+          "z3_formula": "starring_members_of_pappys_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_in_july_2013_on_bbc_three(badults)",
+          "z3_formula": "piloted_in_july_2013_on_bbc_three_badults == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_secret_dude_society(badults)",
+          "z3_formula": "working_title_secret_dude_society_badults == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor_andrew_collins(badults)",
+          "z3_formula": "script_editor_andrew_collins_badults == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "working_title_secret_dude_society(X) -> script_editor_andrew_collins(X)",
+          "z3_formula": "Implies(working_title_secret_dude_society_badults, script_editor_andrew_collins_badults)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_july_2013",
+          "z3_formula": "badults_piloted_july_2013 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_badults_secret_dude_society",
+          "z3_formula": "working_title_badults_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_script_editor_badults",
+          "z3_formula": "andrew_collins_script_editor_badults == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "andrew_collins_script_editor_series_secret_dude_society",
+          "z3_formula": "andrew_collins_script_editor_series_secret_dude_society == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "secret_dude_society_was_working_title",
+          "z3_formula": "secret_dude_society_was_working_title == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_was_script_editor",
+          "z3_formula": "andrew_collins_was_script_editor == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "working_title(X) -> script_editor(Y, X)",
+          "z3_formula": "Implies(secret_dude_society_was_working_title, script_editor_andrew_collins_badults)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "script_editor_andrew_collins_secret_dude_society",
+          "z3_formula": "script_editor_andrew_collins_secret_dude_society == True",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

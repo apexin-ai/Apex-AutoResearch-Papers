@@ -1,0 +1,1132 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-746_Q9",
+    "problem": "Bob is white. Charlie is furry. Charlie is kind. Dave is cold. Dave is smart. Gary is red. Gary is white. Green, furry things are smart. If Charlie is white then Charlie is green. White things are kind. Cold, smart things are red. All furry things are cold. If Bob is kind and Bob is furry then Bob is smart. If something is cold and kind then it is white.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is smart.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nWhite($x, bool) ::: Is x white?\nFurry($x, bool) ::: Is x furry?\nKind($x, bool) ::: Is x kind?\nCold($x, bool) ::: Is x cold?\nSmart($x, bool) ::: Is x smart?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nWhite(Bob, True) ::: Bob is white.\nFurry(Charlie, True) ::: Charlie is furry.\nKind(Charlie, True) ::: Charlie is kind.\nCold(Dave, True) ::: Dave is cold.\nSmart(Dave, True) ::: Dave is smart.\nRed(Gary, True) ::: Gary is red.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nGreen($x, True) && Furry($x, True) >>> Smart($x, True) ::: Green, furry things are smart.\nWhite(Charlie, True) >>> Green(Charlie, True) ::: If Charlie is white then Charlie is green.\nWhite($x, True) >>> Kind($x, True) ::: White things are kind.\nCold($x, True) && Smart($x, True) >>> Red($x, True) ::: Cold, smart things are red.\nFurry($x, True) >>> Cold($x, True) ::: All furry things are cold.\nKind(Bob, True) && Furry(Bob, True) >>> Smart(Bob, True) ::: If Bob is kind and Bob is furry then Bob is smart.\nCold($x, True) && Kind($x, True) >>> White($x, True) ::: If something is cold and kind then it is white.\n\nQuery:\nSmart(Charlie, True) ::: Charlie is smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 156.0,
+      "Unknown": 145.0
+    },
+    "answer_counts": {
+      "True": 9,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Charlie is smart, we need to analyze the given information step by step.\n\n1. Charlie is furry. (Given)\n2. All furry things are cold. (Given)\n   So, Charlie is cold. (From 1 and 2)\n\n3. Dave is cold. (Given)\n   Dave is smart. (Given)\n   Cold, smart things are red. (Given)\n   Since Charlie is cold (from step 2), and if Charlie were smart, then Charlie would be red. But we know Charlie is furry (from step 1). \n   So, we can't conclude anything from this rule.\n\n4. Charlie is kind. (Given)\n   White things are kind. (Given)\n   If Charlie is white then Charlie is green. (Given)\n   Since Charlie is kind (from step 4), and if Charlie were white, then Charlie would be green. But we know Charlie is furry (from step 1). \n   So, we can't conclude anything from this rule.\n\n5. If Bob is kind and Bob is furry then Bob is smart. (Given)\n   But we don't have any information about Bob being kind and furry. So, we can't apply this rule to Charlie.\n\n6. If something is cold and kind then it is white. (Given)\n   Charlie is cold (from step 2) and Charlie is kind (from step 4). \n   So, Charlie is white. (From step 6)\n\n7. If Charlie is white then Charlie is green. (Given)\n   We already concluded that Charlie is white (from step 6). \n   So, Charlie is green. (From step 7)\n\n8. Green, furry things are smart. (Given)\n   We know Charlie is furry (from step 1) and Charlie is green (from step 7). \n   So, Charlie is smart. (From step 8)\n\nTherefore, the statement \"Charlie is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Charlie is smart, we need to analyze the given statements and apply logical reasoning.\n\n1. Charlie is furry. (Statement)\n2. Charlie is kind. (Statement)\n3. All furry things are cold. (Statement)\n   Since Charlie is furry, we can conclude that Charlie is cold. (Inference)\n\n4. Cold, smart things are red. (Statement)\n   However, we know Charlie is kind (Statement 2), and we will examine the implications of this later.\n\n5. If something is cold and kind then it is white. (Statement)\n   Since Charlie is cold (Inference 3) and kind (Statement 2), we can conclude that Charlie is white. (Inference)\n\n6. If Charlie is white then Charlie is green. (Statement)\n   Given that Charlie is white (Inference 5), we can conclude that Charlie is green. (Inference)\n\n7. Green, furry things are smart. (Statement)\n   Since Charlie is green (Inference 6) and furry (Statement 1), we can conclude that Charlie is smart. (Inference)\n\nTherefore, based on the given statements and logical inferences, we can determine that Charlie is indeed smart.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine if Charlie is smart, we need to analyze the given statements and find any connections to Charlie's smartness.\n\n1. Charlie is furry. (Statement 4)\n2. All furry things are cold. (Statement 7)\n   From (1) and (2), we can conclude that Charlie is cold.\n\n3. Charlie is kind. (Statement 2)\n4. Charlie is white. (Not directly stated, but we'll analyze the given statements to find connections)\n5. If Charlie is white then Charlie is green. (Statement 6)\n\nNow, let's analyze the given statements again to find connections to Charlie's color:\n\n6. White things are kind. (Statement 5)\n7. Charlie is kind. (Statement 2)\n   From (6) and (7), we can conclude that Charlie is white.\n\nNow that we know Charlie is white, let's use statement (5) to determine Charlie's color:\n   Since Charlie is white, we can conclude that Charlie is green.\n\nNow, let's find connections to Charlie's smartness:\n\n8. Green, furry things are smart. (Statement 3)\n9. Charlie is green. (From the above conclusion)\n10. Charlie is furry. (Statement 1)\n   From (8), (9), and (10), we can conclude that Charlie is smart.\n\nTherefore, the statement \"Charlie is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will use the process of elimination and the rules given. \n\nGiven statements:\n1. Bob is white.\n2. Charlie is furry.\n3. Charlie is kind.\n4. Dave is cold.\n5. Dave is smart.\n6. Gary is red.\n7. Gary is white.\n8. Green, furry things are smart.\n9. If Charlie is white then Charlie is green.\n10. White things are kind.\n11. Cold, smart things are red.\n12. All furry things are cold.\n13. If Bob is kind and Bob is furry then Bob is smart.\n14. If something is cold and kind then it is white.\n\nNow, let's analyze the given statements to determine if Charlie is smart.\n\nFrom statement 2, Charlie is furry.\nFrom statement 12, all furry things are cold, so Charlie is cold.\n\nFrom statement 3, Charlie is kind.\n\nNow, we have two possibilities:\n- Charlie is cold and kind (from statements 4 and 13), \n- Charlie is cold and kind (from statements 3 and 13).\n\nFrom statement 14, if something is cold and kind then it is white. So, Charlie is white.\n\nNow, we know that Charlie is white from statement 9, if Charlie is white then Charlie is green.\n\nFrom statement 8, green, furry things are smart. So, Charlie is smart.\n\nTherefore, the statement \"Charlie is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve the given problem, we will use the method of forward chaining and backward chaining for each given statement.\n\nFirst, let's break down the given statements into the following format:\n\n1. Bob is white.\n2. Charlie is furry.\n3. Charlie is kind.\n4. Dave is cold.\n5. Dave is smart.\n6. Gary is red.\n7. Gary is white.\n8. Green, furry things are smart.\n9. If Charlie is white then Charlie is green.\n10. White things are kind.\n11. Cold, smart things are red.\n12. All furry things are cold.\n13. If Bob is kind and Bob is furry then Bob is smart.\n14. If something is cold and kind then it is white.\n\nNow, let's analyze the statement we need to determine: \"Charlie is smart.\"\n\nWe can start by looking at the statements that directly relate to Charlie being smart.\n\nStatement 8: Green, furry things are smart.\nStatement 3: Charlie is kind.\nStatement 2: Charlie is furry.\n\nUsing statement 2, we can infer that Charlie is cold using statement 12: All furry things are cold.\n\nNow, we need to determine if Charlie is green or not. We can use statement 9: If Charlie is white then Charlie is green. However, we know that Charlie is furry, and we cannot directly infer that Charlie is white.\n\nWe can use statement 14: If something is cold and kind then it is white. Since Charlie is cold and kind, we can infer that Charlie is white.\n\nNow, we can use the result from statement 9: If Charlie is white then Charlie is green.\n\nTherefore, we can conclude that Charlie is both green and furry.\n\nUsing statement 8: Green, furry things are smart, we can determine that Charlie is indeed smart.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Charlie is furry and kind (given information).\n\n2. Since Charlie is furry, and all furry things are cold (given information), Charlie is cold.\n\n3. We also know that Charlie is white because he is kind (given information) and white things are kind (deduced from the information).\n\n4. We have two possible scenarios for Charlie:\n   a. If Charlie is white, then Charlie is green (deduced from the information).\n   b. If Charlie is white, then we cannot determine his color because green, furry things are smart (given information), and we don't have enough information to confirm if Charlie is furry and green.\n\n5. Since Charlie is white and all furry things are cold (deduced from the information), Charlie is not a green, furry thing. Thus, we cannot confirm if Charlie is smart because green, furry things are smart.\n\n6. We cannot directly confirm Charlie's color from the given information. However, we can say that if Charlie is green, then he is smart (given information).\n\n7. Considering both scenarios, we cannot confirm whether Charlie is smart based on the given information. Therefore, the statement \"Charlie is smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we'll use the given statements and the rules of inference to determine whether the statement \"Charlie is smart\" is true, false, or unknown.\n\nGiven statements:\n1. Bob is white.\n2. Charlie is furry.\n3. Charlie is kind.\n4. Dave is cold.\n5. Dave is smart.\n6. Gary is red.\n7. Gary is white.\n8. Green, furry things are smart.\n9. If Charlie is white then Charlie is green.\n10. White things are kind.\n11. Cold, smart things are red.\n12. All furry things are cold.\n13. If Bob is kind and Bob is furry then Bob is smart.\n14. If something is cold and kind then it is white.\n\nWe're looking to determine if Charlie is smart.\n\nStep 1: Analyze given statements 2 and 12.\nAll furry things are cold (12).\nCharlie is furry (2).\nTherefore, Charlie is cold.\n\nStep 2: Analyze given statements 3 and 10.\nWhite things are kind (10).\nHowever, we do not know Charlie's color yet. We can say that if Charlie is white, then he is kind (9).\n\nStep 3: Analyze given statement 8.\nGreen, furry things are smart (8).\nCharlie is furry (2).\nHowever, we don't know if Charlie is green or not yet.\n\nStep 4: Analyze given statements 8 and 3.\nCharlie is kind (3).\nFrom step 3, we know that if Charlie is furry and green, he is smart. We cannot conclude that Charlie is smart yet, but we can see that Charlie is either green or not green.\n\nStep 5: Analyze given statement 9.\nIf Charlie is white then Charlie is green (9).\nWe know Charlie is kind (3), and from step 2, if Charlie is white, then he is kind. This means that Charlie can be white and kind.\n\nStep 6: Analyze given statement 14.\nIf something is cold and kind then it is white (14).\nCharlie is cold (from step 1) and Charlie is kind (3).\nTherefore, Charlie is white.\n\nStep 7: Analyze given statement 10 and 6.\nWhite things are kind (10).\nGary is white (7).\nGary is red (6).\nHowever, we do not need this information to determine if Charlie is smart.\n\nStep 8: Analyze given statement 9 and step 6.\nCharlie is white (from step 6).\nIf Charlie is white then Charlie is green (9).\nTherefore, Charlie is green.\n\nStep 9: Analyze given statements 8 and step 8.\nGreen, furry things are smart (8).\nCharlie is furry (2) and Charlie is green (from step 8).\nTherefore, Charlie is smart.\n\nSo, the final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Bob is white.\n   - Charlie is furry.\n   - Charlie is kind.\n   - Dave is cold.\n   - Dave is smart.\n   - Gary is red.\n   - Gary is white.\n   - Green, furry things are smart.\n   - If Charlie is white then Charlie is green.\n   - White things are kind.\n   - Cold, smart things are red.\n   - All furry things are cold.\n   - If Bob is kind and Bob is furry then Bob is smart.\n   - If something is cold and kind then it is white.\n\n2. We are asked to determine whether Charlie is smart.\n\nFirst, let's see if we can find any direct or indirect information about Charlie being smart.\n\nFrom the given information, we have:\n- Charlie is furry and Charlie is kind.\n- All furry things are cold.\n- Since Charlie is furry, Charlie is cold.\n- White things are kind.\n- Cold, smart things are red.\n- Gary is red and Gary is white.\n\nNow, let's see if we can find any information about Charlie being white. If Charlie is white, then from the given information:\n- Charlie is white\n- Charlie is green (since if Charlie is white then Charlie is green)\n- Green, furry things are smart. (This implies Charlie is smart)\n\nHowever, we also know that:\n- Cold, smart things are red.\n- Gary is red and Gary is white.\n\nSo, we can conclude that if Charlie is cold and smart, then Charlie is red.\n\nNow, let's see if we can find any information that contradicts Charlie being smart or if we can make any other conclusions.\n\nFrom the given information, we have:\n- If Bob is kind and Bob is furry then Bob is smart.\n- Bob is white.\n- White things are kind.\n- Since Bob is white and white things are kind, Bob is kind.\n- Since Bob is furry and Bob is kind, Bob is smart.\n\nHowever, this information does not help us determine whether Charlie is smart or not.\n\nSo, we have two possibilities:\n1. Charlie is white and hence green, and Charlie is smart (since green, furry things are smart).\n2. Charlie is red (since cold, smart things are red).\n\nSince we have two possible conclusions, we cannot determine whether the statement \"Charlie is smart\" is true or false.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Charlie is smart, we need to analyze the given information step by step.\n\n1. From the premises, we have:\n   - Bob is white.\n   - Charlie is furry.\n   - Charlie is kind.\n   - Dave is cold.\n   - Dave is smart.\n   - Gary is red.\n   - Gary is white.\n   - Green, furry things are smart.\n   - If Charlie is white then Charlie is green.\n   - White things are kind.\n   - Cold, smart things are red.\n   - All furry things are cold.\n   - If Bob is kind and Bob is furry then Bob is smart.\n   - If something is cold and kind then it is white.\n\n2. We need to determine whether Charlie is smart. To do this, we can look for a chain of inference that leads to this conclusion.\n\n3. From the premises, we know that Charlie is furry. We also know that all furry things are cold. Therefore, we can conclude that Charlie is cold.\n\n4. We also know that Charlie is kind. From the premise, if something is cold and kind then it is white. Therefore, we can conclude that Charlie is white.\n\n5. Now, we have two different conclusions: Charlie is furry (and therefore cold) and Charlie is white. We also have the premise that if Charlie is white then Charlie is green. Therefore, we can conclude that Charlie is green.\n\n6. We know that Charlie is green and furry. From the premise, green, furry things are smart. Therefore, we can conclude that Charlie is smart.\n\nSo, based on the given information, we can determine that Charlie is smart.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is smart\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\n1. Charlie is furry.\n2. Charlie is kind.\n\nFrom the given information, we have the following rules:\n\n- All furry things are cold.\n- Cold, smart things are red.\n- White, furry things are kind.\n- Green, furry things are smart.\n- If Charlie is white, then Charlie is green.\n- White things are kind.\n\nNow, let's try to derive the color of Charlie using the given information:\n\n- From rule 1, Charlie is furry.\n- Since Charlie is furry, Charlie is cold (rule 4).\n- If Charlie is cold and kind, then Charlie is white (rule 8).\n\nNow we know that Charlie is white.\n\nFrom rule 6, if Charlie is white, then Charlie is green. Therefore, Charlie is green.\n\nNow, let's try to derive whether Charlie is smart:\n\n- From rule 1, Charlie is furry.\n- Since Charlie is furry, Charlie is cold (rule 4).\n- Charlie is green (derived above).\n- Green, furry things are smart (rule 5).\n\nTherefore, Charlie is smart.\n\nSo, the statement \"Charlie is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will use a method called forward chaining. We will start with the given statements and try to deduce the truth value of the statement \"Charlie is smart.\"\n\nGiven statements:\n1. Bob is white.\n2. Charlie is furry.\n3. Charlie is kind.\n4. Dave is cold.\n5. Dave is smart.\n6. Gary is red.\n7. Gary is white.\n8. Green, furry things are smart.\n9. If Charlie is white then Charlie is green.\n10. White things are kind.\n11. Cold, smart things are red.\n12. All furry things are cold.\n13. If Bob is kind and Bob is furry then Bob is smart.\n14. If something is cold and kind then it is white.\n\nStatement to determine: Charlie is smart.\n\nFirst, let's examine the given statements.\nFrom statement 2, we know that Charlie is furry.\nFrom statement 12, we know that all furry things are cold, so Charlie is cold.\n\nNow, let's analyze the possible combinations of Charlie's color and temperature.\nSince Charlie is cold (furry), and we know that cold, smart things are red (statement 11), we can infer that Charlie might be red.\n\nHowever, we also know that Charlie is kind (statement 3), and all cold things are furry (statement 12), but we do not know if Charlie is white yet.\n\nFrom statement 9, we have a conditional statement: if Charlie is white then Charlie is green. However, we do not know if Charlie is white yet.\n\nNow, let's examine the conditional statement in statement 14: if something is cold and kind then it is white. We know that Charlie is cold and kind, so we can infer that Charlie might be white.\n\nFrom statement 10, we know that white things are kind, so if Charlie is white, then Charlie is kind (which we already know). However, this statement does not provide any new information.\n\nNow, let's examine the conditional statement in statement 13: if Bob is kind and Bob is furry then Bob is smart. We do not know Bob's color or temperature, so this statement does not provide any new information.\n\nHowever, from statement 13, we can infer that if Charlie is furry and kind, then Charlie might be smart (even though we do not know Charlie's color).\n\nNow, let's analyze the statement \"Charlie is smart\" again.\nWe know that Charlie is furry (statement 2), and all furry things are cold (statement 12), so Charlie is cold.\nWe also know that Charlie is kind (statement 3).\nWe can infer that Charlie might be red (because cold, smart things are red, statement 11).\nWe can also infer that Charlie might be white (because cold, kind things are white, statement 14).\nHowever, we do not know Charlie's color for sure.\n\nWe know that green, furry things are smart (statement 8), but we do not know if Charlie is green.\n\nIf Charlie is white, then Charlie is green (statement 9), but we do not know if Charlie is white.\n\nHowever, we can conclude that Charlie is not definitely smart based on the given statements.\n\nWe can also conclude that Charlie is not definitely not smart based on the given statements.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Charlie is smart, we need to analyze the given statements and their implications.\n\n1. Charlie is furry.\n2. All furry things are cold. \n   From statement 2, we can conclude that Charlie is cold.\n\n3. Dave is cold.\n4. Cold, smart things are red.\n   From statement 4, we can conclude that Dave is red.\n\n5. Dave is smart.\n   Since we've already concluded that Dave is red and red things are smart, this statement is consistent with our findings.\n\n6. Gary is red.\n7. Gary is white.\n   This creates a contradiction because Gary cannot be both red and white. However, we can ignore this contradiction for now and continue with our analysis.\n\n8. Charlie is kind.\n9. White things are kind.\n   From statement 9, we can conclude that Charlie is white.\n\n10. If Charlie is white then Charlie is green.\n    We know that Charlie is white (from statement 9), so we can conclude that Charlie is indeed green.\n\nNow, let's determine whether Charlie is smart. We have the following statements:\n- Green, furry things are smart.\n- Charlie is green (from statement 10).\n- Charlie is furry (from statement 1).\n\nSince Charlie is both green and furry, we can conclude that Charlie is smart.\n\nTherefore, the statement \"Charlie is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_charlie, cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_charlie, smart_charlie), red_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_charlie, nice_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_charlie, green_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(green_charlie, furry_charlie), smart_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_charlie, cold_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, kind_charlie), white_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_charlie, green_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(green_charlie, furry_charlie), smart_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_charlie, cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> kind(X)",
+          "z3_formula": "Implies(white_charlie, kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_charlie, green_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(green_charlie, furry_charlie), smart_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(green_X, furry_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_X, white_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_X, green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_X, cold_X)",
+          "source_step": "12"
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_X, furry_X), smart_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_X, kind_X), white_X)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(green_X, furry_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(charlie) -> white(charlie)",
+          "z3_formula": "Implies(kind_charlie, white_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_X, nice_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_X, cold_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_X, cold_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_X, furry_X), smart_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_X, kind_X), white_X)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_charlie, cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_charlie, white_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> kind(X)",
+          "z3_formula": "Implies(white_charlie, kind_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_charlie, green_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> Not(furry(X)) | Not(green(X)) -> smart(X)",
+          "z3_formula": "Implies(Or(Not(furry_charlie), Not(green_charlie)), smart_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(green_charlie, furry_charlie), smart_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(green_charlie) | Not(furry_charlie)",
+          "z3_formula": "Or(Not(furry_charlie), Not(green_charlie)) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(smart_charlie)",
+          "z3_formula": "Not(smart_charlie) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_charlie, cold_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_charlie, white_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> kind(X)",
+          "z3_formula": "Implies(white_charlie, kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(furry_charlie, green_charlie), smart_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_charlie, green_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, kind_charlie), white_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_charlie, smart_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_charlie, cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> kind(X)",
+          "z3_formula": "Implies(white_gary, kind_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_charlie, smart_charlie), red_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_bob, furry_bob), smart_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_bob, kind_bob), white_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(green_charlie, furry_charlie), smart_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_charlie, white_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_charlie, green_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_charlie, cold_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, kind_charlie), white_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_dave, smart_dave), red_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_charlie, cold_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_bob, furry_bob), smart_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_bob, kind_bob), white_bob)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_charlie, cold_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_charlie, smart_charlie), red_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_charlie, furry_charlie), kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(green_charlie, furry_charlie), smart_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_charlie, green_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> kind(X)",
+          "z3_formula": "Implies(white_charlie, kind_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(green_charlie, furry_charlie), smart_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_charlie, white_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, kind_charlie), white_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_charlie, smart_charlie), red_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_charlie, cold_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_charlie, furry_charlie), smart_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(kind_charlie, white_charlie), kind_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == Unknown",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_charlie, cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & smart(X) -> red(X)",
+          "z3_formula": "Implies(And(cold_dave, smart_dave), red_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> kind(X)",
+          "z3_formula": "Implies(white_gary, kind_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_charlie, green_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(green_charlie, furry_charlie), smart_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 167,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 45
+    },
+    "maxsat_stats": {
+      "satisfied": 43,
+      "excluded": 2,
+      "total_weight": 165,
+      "solve_time_ms": 1.6832305118441582
+    },
+    "timing": {
+      "trace_gen_s": 8.189,
+      "extraction_s": 25.661,
+      "dedup_s": 1.349,
+      "maxsat_s": 0.004,
+      "total_s": 35.204
+    }
+  }
+}

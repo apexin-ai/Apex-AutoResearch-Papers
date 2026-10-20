@@ -1,0 +1,27 @@
+paper_key: "fover2025"
+title: "FoVer: Efficient PRM Training Data Synthesis via Formal Verification"
+venue: "ACL Findings 2026"
+full_text_available: false
+
+research:
+  baselines: ["PRMs trained on human-annotated data", "PRMs trained on LLM-generated labels"]
+  metrics:
+    - {name: "accuracy on reasoning benchmarks", direction: "higher_better"}
+    - {name: "step-level error detection", direction: "higher_better"}
+  datasets:
+    - {name: "12 reasoning benchmarks (math, logic, NLI, BBH)", size: "N/A"}
+    - {name: "formal logic tasks", size: "N/A"}
+    - {name: "theorem proving tasks", size: "N/A"}
+  ablation_dimensions: ["formal verification tool (Z3 vs Isabelle)", "training data domain"]
+  training_recipe: {info: "fine-tuning PRMs on synthesized step-level labels from Z3/Isabelle formal verification"}
+  method_family: "formal verification for process reward models"
+
+positioning:
+  core_claim: "Formal verification tools (Z3, Isabelle) can automatically synthesize high-quality PRM training data with step-level error labels, improving reasoning across both formal and informal tasks without human annotation"
+  key_results: "Improves PRMs on math, logic, NLI, and BBH benchmarks; generalizes from formal to informal reasoning"
+  limitations: ["N/A"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

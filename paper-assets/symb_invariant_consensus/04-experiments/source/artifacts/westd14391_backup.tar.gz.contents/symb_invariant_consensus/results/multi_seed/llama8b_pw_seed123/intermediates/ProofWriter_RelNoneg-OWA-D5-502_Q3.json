@@ -1,0 +1,1072 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-502_Q3",
+    "problem": "The bear eats the rabbit. The bear sees the squirrel. The mouse eats the squirrel. The mouse is kind. The mouse sees the rabbit. The rabbit needs the squirrel. The squirrel eats the bear. If someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse. If someone needs the rabbit and the rabbit sees the mouse then the mouse sees the rabbit. If someone is rough then they need the rabbit. If someone needs the rabbit then the rabbit sees the squirrel. If someone sees the squirrel then they are rough. If someone is nice and they need the mouse then they are rough. If someone is green then they are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear is rough.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\nNeeds($x, $y, bool) ::: Does x need y?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\nNice($x, bool) ::: Is x nice?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nEats(Bear, Rabbit, True) ::: The bear eats the rabbit.\nSees(Bear, Squirrel, True) ::: The bear sees the squirrel.\nEats(Mouse, Squirrel, True) ::: The mouse eats the squirrel.\nKind(Mouse, True) ::: The mouse is kind.\nSees(Mouse, Rabbit, True) ::: The mouse sees the rabbit.\nNeeds(Rabbit, Squirrel, True) ::: The rabbit needs the squirrel.\nEats(Squirrel, Bear, True) ::: The squirrel eats the bear.\n\nRules:\nSees($x, Squirrel, True) && Sees(Squirrel, Bear, True) >>> Needs(Squirrel, Mouse, True) ::: If someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse.\nNeeds($x, Rabbit, True) && Sees(Rabbit, Mouse, True) >>> Sees(Mouse, Rabbit, True) ::: If someone needs the rabbit and the rabbit sees the mouse then the mouse sees the rabbit.\nRough($x, True) >>> Needs($x, Rabbit, True) ::: If someone is rough then they need the rabbit.\nNeeds($x, Rabbit, True) >>> Sees(Rabbit, Squirrel, True) ::: If someone needs the rabbit then the rabbit sees the squirrel.\nSees($x, Squirrel, True) >>> Rough($x, True) ::: If someone sees the squirrel then they are rough.\nNice($x, True) && Needs($x, Mouse, True) >>> Rough($x, True) ::: If someone is nice and they need the mouse then they are rough.\nGreen($x, True) >>> Kind($x, True) ::: If someone is green then they are kind.\n\nQuery:\nRough(Bear, True) ::: The bear is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 151.0,
+      "Unknown": 119.0
+    },
+    "answer_counts": {
+      "True": 8,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the bear is rough, we need to analyze the given information step by step:\n\n1. The bear eats the rabbit. \nThis statement alone does not provide information about the bear's nature (rough or kind).\n\n2. The bear sees the squirrel. \nThis statement also does not provide information about the bear's nature.\n\n3. The mouse eats the squirrel. \nThis statement does not provide information about the bear's nature.\n\n4. The mouse is kind. \nThis statement does not provide information about the bear's nature.\n\n5. The mouse sees the rabbit. \nThis statement does not provide information about the bear's nature.\n\n6. The rabbit needs the squirrel. \nThis statement does not provide information about the bear's nature.\n\n7. The squirrel eats the bear. \nThis statement does not provide information about the bear's nature.\n\nHowever, we have the following rules:\n\n- If someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse. \n- If someone needs the rabbit and the rabbit sees the mouse then the mouse sees the rabbit. \n- If someone is rough then they need the rabbit. \n- If someone needs the rabbit then the rabbit sees the squirrel. \n- If someone sees the squirrel then they are rough. \n- If someone is nice and they need the mouse then they are rough. \n- If someone is green then they are kind.\n\nWe are given that the bear eats the rabbit (statement 1), which means that someone (the bear) eats the rabbit. According to rule 1, the squirrel sees the bear.\n\nWe are also given that the squirrel sees the bear (from statement 7) and the bear sees the squirrel (from statement 2).\n\nNow, according to rule 5, if someone sees the squirrel and the squirrel sees the bear, then the squirrel needs the mouse. \n\nThe squirrel sees the bear, and the bear sees the squirrel. Therefore, the squirrel needs the mouse.\n\nSince the squirrel needs the mouse, according to rule 6, the rabbit needs the squirrel. \n\nThe rabbit needs the squirrel, and the rabbit sees the mouse. Therefore, according to rule 2, the mouse sees the rabbit.\n\nThe rabbit needs the squirrel, and the rabbit sees the mouse. According to rule 2, the mouse sees the rabbit. The mouse is kind (from statement 4), and the mouse sees the rabbit. Therefore, according to rule 5, the mouse sees the rabbit.\n\nThe rabbit sees the mouse, and the rabbit needs the squirrel. Therefore, according to rule 1, the squirrel sees the bear.\n\nThe squirrel sees the bear, and the squirrel needs the mouse. According to rule 4, if someone sees the squirrel, then they are rough. However, there is no direct information that the bear sees the squirrel. But since the squirrel sees the bear, according to rule 4, the squirrel needs the mouse.\n\nNow, according to rule 4, if someone sees the squirrel then they are rough. The squirrel sees the bear. Therefore, the bear is rough.\n\nHowever, since the squirrel sees the bear, and the bear eats the rabbit, we have the information that the bear eats the rabbit and the squirrel sees the bear.\n\nThe bear eats the rabbit, and the rabbit needs the squirrel. Therefore, according to rule 3, if someone needs the rabbit, then the rabbit sees the squirrel.\n\nHowever, the statement says: \"If someone sees the squirrel then they are rough.\" The squirrel sees the bear, and the bear eats the rabbit. Therefore, according to the statement \"If someone sees the squirrel then they are rough,\" the squirrel is rough.\n\nNow, the statement says: \"If someone is rough then they need the rabbit.\" The squirrel is rough. Therefore, according to the statement \"If someone is rough then they need the rabbit,\" the squirrel needs the rabbit.\n\nThe squirrel needs the rabbit, and the rabbit sees the mouse. Therefore, according to rule 2, the mouse sees the rabbit.\n\nThe mouse sees the rabbit, and the mouse is kind. The statement says: \"If someone is nice and they need the mouse then they are rough.\" The mouse is kind, and the mouse needs the rabbit. Therefore, according to the statement \"If someone is nice and they need the mouse then they are rough,\" the mouse is rough.\n\nHowever, the statement \"If someone is nice and they need the mouse then they are rough\" can be applied to the rabbit. The rabbit sees the mouse, and the rabbit needs the squirrel. Therefore, the rabbit is rough.\n\nHowever, the statement says: \"If someone is green then they are kind.\" We have no information that the rabbit is green.\n\nHowever, the statement \"If someone sees the squirrel then they are rough\" can be applied to the bear. The squirrel sees the bear, and the bear sees the squirrel. Therefore, the bear is rough.\n\nThe final answer is \\boxed{True}.",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'The bear is rough' is true, false, or unknown, we need to analyze the given statements and rules.\n\n1. The bear eats the rabbit. (This statement alone does not tell us anything about the bear's nature.)\n2. The bear sees the squirrel. (This statement alone does not tell us anything about the bear's nature.)\n3. The mouse eats the squirrel. (This statement alone does not tell us anything about the bear's nature.)\n4. The mouse is kind. (This statement alone does not tell us anything about the bear's nature.)\n5. The mouse sees the rabbit. (This statement alone does not tell us anything about the bear's nature.)\n6. The rabbit needs the squirrel. (This statement alone does not tell us anything about the bear's nature.)\n7. The squirrel eats the bear. (This statement alone does not tell us anything about the bear's nature.)\n\nHowever, we can use the rules to analyze the statements.\n\n- Rule 1: If someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse.\n  - The bear sees the squirrel (Statement 2).\n  - The squirrel eats the bear (Statement 7).\n  - Therefore, the squirrel needs the mouse.\n\n- Rule 2: If someone needs the rabbit and the rabbit sees the mouse then the mouse sees the rabbit.\n  - The rabbit needs the squirrel (Statement 6).\n  - The rabbit sees the squirrel (Rule 3: If someone needs the rabbit then the rabbit sees the squirrel).\n  - The mouse sees the rabbit (Rule 2: If someone needs the rabbit and the rabbit sees the mouse then the mouse sees the rabbit).\n\n- Rule 3: If someone is rough then they need the rabbit.\n  - The rabbit sees the squirrel (Statement 6).\n  - Therefore, the rabbit is not rough. However, we still need to determine if the bear is rough.\n\n- Rule 4: If someone needs the rabbit then the rabbit sees the squirrel.\n  - The rabbit needs the squirrel (Statement 6).\n  - Therefore, the rabbit sees the squirrel (Rule 4).\n\n- Rule 5: If someone sees the squirrel then they are rough.\n  - The bear sees the squirrel (Statement 2).\n  - Therefore, the bear is rough.\n\nUsing Rule 5, we can conclude that the bear is rough.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the bear is rough, we need to analyze the given statements and find a connection between the bear and the definition of being rough. According to the problem, \"If someone sees the squirrel then they are rough.\" We know that \"The bear sees the squirrel.\" \n\nHowever, before concluding that the bear is rough, we need to find out if there is any statement that contradicts this or if there's more information needed. \n\nWe also know that \"If someone needs the rabbit then the rabbit sees the squirrel.\" And also \"If someone needs the rabbit and the rabbit sees the mouse then the mouse sees the rabbit.\" The bear does not need the rabbit.\n\nHowever, \"The bear eats the rabbit\" suggests that the bear might be rough, but we cannot conclude that the bear is rough based solely on this information because it does not directly relate to the conditions given.\n\nTo find out if the bear is rough, we need to check if there is any statement that contradicts \"the bear sees the squirrel,\" or if there's a condition that can make the bear not rough despite seeing the squirrel.\n\nWe know that \"If someone is kind, they see the rabbit\" and also \"The mouse is kind.\" But \"The mouse sees the rabbit\" does not tell us that the bear is rough.\n\nHowever, \"The mouse eats the squirrel\" and \"The squirrel eats the bear\" which implies that the squirrel needs the mouse. This implies that the squirrel is rough. \n\nSince the bear sees the squirrel and the squirrel is rough, according to the statement \"If someone sees the squirrel then they are rough,\" the bear is rough.\n\nTherefore, the statement \"The bear is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the bear is rough, we need to analyze the given statements and their implications. \n\n1. The bear eats the rabbit.\n2. The bear sees the squirrel.\n3. The mouse eats the squirrel.\n4. The mouse is kind.\n5. The mouse sees the rabbit.\n6. The rabbit needs the squirrel.\n7. The squirrel eats the bear.\n8. If someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse.\n9. If someone needs the rabbit and the rabbit sees the mouse then the mouse sees the rabbit.\n10. If someone is rough then they need the rabbit.\n11. If someone needs the rabbit then the rabbit sees the squirrel.\n12. If someone sees the squirrel then they are rough.\n13. If someone is nice and they need the mouse then they are rough.\n14. If someone is green then they are kind.\n\nFrom statement 12, if someone sees the squirrel, then they are rough. However, we need to find out if the bear sees the squirrel or not.\n\nFrom statement 1, the bear eats the rabbit, which does not provide any information about the bear's relationship with the squirrel.\n\nFrom statement 2, the bear sees the squirrel. This statement directly implies that the bear sees the squirrel, and therefore, according to statement 12, the bear is rough.\n\nHowever, we also need to consider other possibilities. If the bear is rough, then it needs the rabbit, according to statement 10. But if the bear needs the rabbit, then the rabbit sees the squirrel, according to statement 11.\n\nSince the bear sees the squirrel, it implies that the rabbit sees the squirrel. This means the rabbit needs the squirrel, according to statement 6. \n\nFrom statement 1, the bear eats the rabbit. This could imply that the bear is rough, as the bear needs the rabbit, which aligns with statement 10.\n\nHowever, considering statement 7, the squirrel eats the bear, which means the squirrel sees the bear. According to statement 8, if someone sees the squirrel and the squirrel sees the bear, then the squirrel needs the mouse. \n\nThe squirrel needs the mouse, which means the rabbit sees the mouse, according to statement 9. This implies that the mouse is seen by the rabbit. However, since the mouse is seen by the rabbit, it means the mouse is rough, according to statement 13.\n\nFrom statement 13, if someone is nice and they need the mouse, then they are rough. However, this is not applicable here as the mouse is not being described as nice.\n\nHowever, the mouse is described as kind in statement 4. \n\nConsidering statement 14, if someone is green, then they are kind. But there is no information about the color of the mouse. \n\nHowever, there is another possibility. The mouse is kind, which means it could be green. But there is no information that the mouse is green, which makes it unknown whether the mouse is green or not.\n\nHowever, since the mouse is rough, it is not necessarily green. But the problem statement does not provide any information that directly links being rough and not being green.\n\nConsidering all the information, we have the following:\n\n- The bear sees the squirrel (statement 2).\n- The bear is rough if it sees the squirrel (statement 12).\n- The squirrel needs the mouse (statement 8).\n- The rabbit sees the mouse (statement 9).\n- The mouse is rough (statement 13).\n- The mouse is kind (statement 4).\n\nWe also know that if someone is green then they are kind (statement 14). However, the color of the mouse is unknown.\n\nThe only thing we know is that the bear sees the squirrel and the mouse is kind.\n\nThe statement that the bear is rough can be true, false, or unknown.\n\nHowever, we can conclude that the statement that the bear is rough is unknown because we cannot definitively determine whether the bear is rough or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the properties of the animals involved.\n\n1. The bear eats the rabbit. \n2. The bear sees the squirrel.\n3. The mouse eats the squirrel.\n4. The mouse is kind.\n5. The mouse sees the rabbit.\n6. The rabbit needs the squirrel.\n7. The squirrel eats the bear.\n8. If someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse.\n9. If someone needs the rabbit and the rabbit sees the mouse then the mouse sees the rabbit.\n10. If someone is rough then they need the rabbit.\n11. If someone needs the rabbit then the rabbit sees the squirrel.\n12. If someone sees the squirrel then they are rough.\n13. If someone is nice and they need the mouse then they are rough.\n14. If someone is green then they are kind.\n\nFrom statement 4, we know the mouse is kind.\n\nFrom statement 13, since the mouse is kind and they need the mouse, then they are rough. However, we already know the mouse is kind. Therefore, we cannot conclude that the mouse is rough.\n\nFrom statement 5, we know the mouse sees the rabbit.\n\nFrom statement 9, since someone needs the rabbit and the rabbit sees the mouse, then the mouse sees the rabbit (which we already know). However, this statement is actually a redundant statement. \n\nFrom statement 6, we know the rabbit needs the squirrel.\n\nFrom statement 11, since someone needs the rabbit, then the rabbit sees the squirrel.\n\nFrom statement 12, since the rabbit sees the squirrel, then the rabbit is rough.\n\nSince the rabbit is rough from statement 12, then the rabbit needs the rabbit from statement 10.\n\nFrom statement 3, we know the mouse eats the squirrel. \n\nFrom statement 8, since the squirrel sees the bear and someone sees the squirrel, then the squirrel needs the mouse.\n\nFrom statement 6, we know the rabbit needs the squirrel.\n\nFrom statement 11, since the rabbit needs the squirrel, then the rabbit sees the squirrel (which we already know).\n\nFrom statement 7, we know the squirrel eats the bear.\n\nFrom statement 6, we know the rabbit needs the squirrel.\n\nFrom statement 6, we know the rabbit needs the squirrel.\n\nFrom statement 3, we know the mouse eats the squirrel.\n\nFrom statement 8, since the squirrel sees the bear and someone sees the squirrel, then the squirrel needs the mouse.\n\nFrom statement 6, we know the rabbit needs the squirrel.\n\nFrom statement 7, we know the squirrel eats the bear.\n\nWe can now conclude that the rabbit is rough from statement 12.\n\nNow, we need to determine whether the bear is rough. \n\nFrom statement 12, since the bear sees the squirrel, then the bear is rough.\n\nTherefore, the statement \"The bear is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is rough\" is true, false, or unknown, we need to follow the given rules and analyze the information provided.\n\n1. The bear eats the rabbit. \n2. The bear sees the squirrel. \n3. The mouse eats the squirrel. \n4. The mouse is kind. \n5. The mouse sees the rabbit. \n6. The rabbit needs the squirrel. \n7. The squirrel eats the bear. \n\nFrom the given rules:\n\n- If someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse. \nWe can't directly apply this rule to the given information, as the squirrel does see the bear, but we don't know if someone sees the squirrel. However, we can analyze other rules.\n\n- If someone needs the rabbit and the rabbit sees the mouse then the mouse sees the rabbit. \nThis rule is not directly applicable to the given information.\n\n- If someone is rough then they need the rabbit. \nWe need to find out if the bear is rough or not.\n\n- If someone needs the rabbit then the rabbit sees the squirrel. \nThe bear eats the rabbit, but this rule doesn't tell us anything about the bear's nature.\n\n- If someone sees the squirrel then they are rough. \nThe bear sees the squirrel, so we need to check if this rule applies to the bear.\n\n- If someone is nice and they need the mouse then they are rough. \nThe mouse is kind, but we don't have any information that directly connects the bear's nature with the mouse.\n\n- If someone is green then they are kind. \nThis rule is not directly applicable to the bear.\n\nGiven the information:\n\n- The bear sees the squirrel (rule 2).\n- If someone sees the squirrel then they are rough (rule 8).\n\nBased on rule 8, since the bear sees the squirrel, the bear is rough.\n\nSo, the statement \"The bear is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the bear is rough, we need to analyze the given statements and find out if we can conclude that the bear is rough.\n\n1. The bear eats the rabbit. \n2. The bear sees the squirrel. \n3. The mouse eats the squirrel. \n4. The mouse is kind. \n5. The mouse sees the rabbit. \n6. The rabbit needs the squirrel. \n7. The squirrel eats the bear. \n8. If someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse. \n9. If someone needs the rabbit and the rabbit sees the mouse then the mouse sees the rabbit. \n10. If someone is rough then they need the rabbit. \n11. If someone needs the rabbit then the rabbit sees the squirrel. \n12. If someone sees the squirrel then they are rough. \n13. If someone is nice and they need the mouse then they are rough. \n14. If someone is green then they are kind.\n\nFrom statement 8, we know that the squirrel sees the bear and the squirrel sees the squirrel (since it's the same squirrel), so the squirrel needs the mouse.\n\nFrom statement 1, we know that the bear eats the rabbit. \nFrom statement 7, we know that the squirrel eats the bear. This implies that the bear is eaten by the squirrel. \n\nFrom statement 12, we know that if someone sees the squirrel, then they are rough. Since the bear sees the squirrel (from statement 2), the bear is rough.\n\nSo, the bear is rough.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the bear is rough, we need to analyze the given information and rules.\n\nFrom the statements, we can deduce the following:\n\n1. The squirrel sees the bear. (From \"The bear sees the squirrel.\")\n2. The squirrel sees the bear. (From \"If someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse.\")\n   This is the same as the previous statement, but it also introduces the fact that the squirrel needs the mouse.\n3. The squirrel needs the mouse. (From the previous statement.)\n4. The squirrel needs the mouse. (From \"If someone sees the squirrel then they are rough.\")\n   This creates a contradiction because the squirrel needs the mouse and also sees the squirrel, which makes it rough. However, it cannot be both rough and need the mouse. We can ignore this statement as it's creating a contradiction.\n5. The mouse sees the rabbit. (From \"The mouse sees the rabbit.\")\n6. The mouse is kind. (From \"The mouse is kind.\")\n7. The mouse sees the rabbit. (From \"If someone sees the rabbit and the rabbit sees the mouse then the mouse sees the rabbit.\")\n   This is the same as the previous statement, but it also introduces the fact that the rabbit sees the mouse.\n8. The rabbit sees the mouse. (From the previous statement.)\n9. The rabbit needs the squirrel. (From \"The rabbit needs the squirrel.\")\n10. The rabbit needs the squirrel. (From \"If someone needs the rabbit then the rabbit sees the squirrel.\")\n    This is the same as the previous statement, but it also introduces the fact that the rabbit sees the squirrel.\n11. The rabbit sees the squirrel. (From the previous statement.)\n12. The squirrel eats the bear. (From \"The squirrel eats the bear.\")\n13. The bear is the one eating. This means that the bear is not the one seeing or being seen.\n\nFrom the given rules, if someone is rough, they need the rabbit. However, we do not have enough information to determine whether the bear needs the rabbit or not. We can only analyze the bear's actions and the actions of the other animals.\n\nSince we do not have enough information to determine whether the bear is rough or not, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the bear is rough, we need to analyze the given information and apply the rules.\n\nFrom the statement: \"The bear sees the squirrel.\" \nWe don't have enough information to conclude that the bear is rough. However, we can apply the following rule: \"If someone sees the squirrel then they are rough.\"\n\nLet's find out if the bear satisfies the condition of seeing the squirrel. \nThe bear sees the squirrel, which satisfies the condition.\n\nNow, let's check if the bear is rough according to the rule: \"If someone sees the squirrel then they are rough.\"\nSince the bear sees the squirrel, the bear is rough.\n\nHowever, there is another rule: \"If someone is nice and they need the mouse then they are rough.\" We need to analyze if the bear is nice or not. \nWe don't have enough information about the bear being nice or not, so this rule is not applicable.\n\nNow let's check another rule: \"If someone is green then they are kind.\" We don't have enough information about the bear being green or not, so this rule is not applicable.\n\nAnother rule states: \"If someone needs the rabbit and the rabbit sees the mouse then the mouse sees the rabbit.\" We don't have enough information to conclude that the bear needs the rabbit or not.\n\nAnother rule states: \"The rabbit needs the squirrel.\" We don't have enough information to conclude that the bear needs the squirrel or not.\n\nAnother rule states: \"If someone needs the rabbit then the rabbit sees the squirrel.\" We don't have enough information to conclude that the bear needs the rabbit or not.\n\nAnother rule states: \"If someone is rough then they need the rabbit.\" We concluded that the bear is rough, so we need to check if the bear needs the rabbit.\n\nWe don't have enough information about the bear needing the rabbit or not, so this rule is not applicable.\n\nAnother rule states: \"The mouse is kind.\" We don't have enough information to conclude that the bear is kind or not.\n\nAnother rule states: \"The mouse eats the squirrel.\" We don't have enough information to conclude that the bear eats the squirrel or not.\n\nAnother rule states: \"The bear eats the rabbit.\" We don't have enough information to conclude that the bear is eating the rabbit or not.\n\nConsidering all the rules, we have enough information to conclude that the bear sees the squirrel and therefore the bear is rough.\n\nTherefore, the statement \"The bear is rough\" is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the bear is rough, we need to analyze the given information step by step.\n\n1. The bear sees the squirrel. \nThis statement alone doesn't tell us whether the bear is rough or not.\n\n2. The mouse eats the squirrel. \nThis statement alone doesn't tell us whether the bear is rough or not.\n\n3. The mouse is kind. \nThis statement alone doesn't tell us whether the bear is rough or not.\n\n4. The mouse sees the rabbit. \nThis statement alone doesn't tell us whether the bear is rough or not.\n\n5. The rabbit needs the squirrel. \nThis statement alone doesn't tell us whether the bear is rough or not.\n\n6. The squirrel eats the bear. \nThis statement alone doesn't tell us whether the bear is rough or not.\n\nHowever, we need to analyze the following rules:\n\n1. If someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse. \nWe know the squirrel sees the bear (from statement 6), but we don't know if anyone sees the squirrel.\n\n2. If someone needs the rabbit and the rabbit sees the mouse then the mouse sees the rabbit. \nWe don't have enough information to determine this.\n\n3. If someone is rough then they need the rabbit. \nWe are trying to find if the bear is rough.\n\n4. If someone needs the rabbit then the rabbit sees the squirrel. \nWe know the rabbit needs the squirrel (from statement 5).\n\n5. If someone sees the squirrel then they are rough. \nWe don't have enough information to determine if anyone sees the squirrel.\n\n6. If someone is nice and they need the mouse then they are rough. \nWe know the mouse is kind (from statement 3).\n\n7. If someone is green then they are kind. \nWe don't have enough information to determine if anyone is green.\n\nNow, let's analyze the given statements again to see if we can find any information that helps us determine if the bear is rough.\n\nFrom statement 6, we know the squirrel eats the bear. \n\nFrom rule 5, if someone sees the squirrel then they are rough. \n\nHowever, we don't know if anyone sees the squirrel. \n\nBut we can use rule 4, which says if someone sees the squirrel, then they are rough. We can also use rule 5, which says if someone is rough, then they need the rabbit. If someone needs the rabbit, then the rabbit sees the squirrel. If the rabbit sees the squirrel, then the rabbit is rough.\n\nHowever, we also have to consider the statement \"The rabbit needs the squirrel.\" From rule 4, if the rabbit needs the squirrel, then the rabbit sees the squirrel. From rule 3, if the rabbit sees the squirrel, then the rabbit is rough.\n\nHowever, the statement \"The rabbit is rough\" is not true, because we have the statement \"The rabbit sees the mouse.\" From rule 2, if someone needs the rabbit and the rabbit sees the mouse, then the mouse sees the rabbit. This implies that the rabbit is not rough.\n\nHowever, the rabbit needs the squirrel. From rule 4, if someone needs the rabbit, then the rabbit sees the squirrel. If the rabbit sees the squirrel, then the rabbit is rough. However, we have the statement \"The rabbit sees the mouse.\" From rule 2, if someone needs the rabbit and the rabbit sees the mouse, then the mouse sees the rabbit. This implies that the rabbit is not rough.\n\nHowever, we know the squirrel sees the bear (from statement 6). From rule 1, if someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse. We also know the mouse sees the rabbit (from statement 4).\n\nNow, let's analyze the given statements again to see if we can find any information that helps us determine if the bear is rough.\n\nFrom statement 6, we know the squirrel eats the bear. \n\nHowever, we also have the statement \"The mouse is kind.\" From rule 6, if someone is nice and they need the mouse then they are rough. This implies that the mouse is not rough.\n\nHowever, we also have the statement \"The mouse sees the rabbit.\" From rule 2, if someone needs the rabbit and the rabbit sees the mouse, then the mouse sees the rabbit. This implies that the mouse is not rough.\n\nHowever, we also know the rabbit sees the mouse. From rule 2, if someone needs the rabbit and the rabbit sees the mouse, then the mouse sees the rabbit. This implies that the mouse is not rough.\n\nHowever, the statement \"The mouse is kind\" implies that the mouse is not rough.\n\nHowever, the statement \"The mouse sees the rabbit\" implies that the mouse is not rough.\n\nHowever, we also have the statement \"The mouse sees the rabbit.\" From rule 2, if someone needs the rabbit and the rabbit sees the mouse, then the mouse sees the rabbit. This implies that the mouse is not rough.\n\nHowever, the statement \"The rabbit sees the mouse\" implies that the rabbit is not rough.\n\nHowever, we also have the statement \"The rabbit sees the mouse.\" From rule 2, if someone needs the rabbit and the rabbit sees the mouse, then the mouse sees the rabbit. This implies that the rabbit is not rough.\n\nHowever, we also have the statement \"The rabbit needs the squirrel.\" From rule 4, if someone needs the rabbit, then the rabbit sees the squirrel. If the rabbit sees the squirrel, then the rabbit is rough.\n\nHowever, we know the squirrel sees the bear (from statement 6). From rule 1, if someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse. We also know the mouse sees the rabbit (from statement 4).\n\nHowever, we also have the statement \"The mouse is kind.\" From rule 6, if someone is nice and they need the mouse then they are rough. However, this is not true because the mouse is kind.\n\nHowever, we also have the statement \"The mouse sees the rabbit.\" From rule 2, if someone needs the rabbit and the rabbit sees the mouse, then the mouse sees the rabbit. This implies that the mouse is not rough.\n\nHowever, the statement \"The mouse is kind\" implies that the mouse is not rough.\n\nHowever, the statement \"The mouse sees the rabbit\" implies that the mouse is not rough.\n\nHowever, we also have the statement \"The mouse sees the rabbit.\" From rule 2, if someone needs the rabbit and the rabbit sees the mouse, then the mouse sees the rabbit. This implies that the mouse is not rough.\n\nHowever, the statement \"The rabbit sees the mouse\" implies that the rabbit is not rough.\n\nHowever, we also have the statement \"The rabbit sees the mouse.\" From rule 2, if someone needs the rabbit and the rabbit sees the mouse, then the mouse sees the rabbit. This implies that the rabbit is not rough.\n\nHowever, we also have the statement \"The rabbit needs the squirrel.\" From rule 4, if someone needs the rabbit, then the rabbit sees the squirrel. If the rabbit sees the squirrel, then the rabbit is rough.\n\nHowever, we know the squirrel sees the bear (from statement 6). From rule 1, if someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse. We also know the mouse sees the rabbit (from statement 4).\n\nHowever, we also have the statement \"The mouse is kind.\" From rule 6, if someone is nice and they need the mouse then they are rough. However, this is not true because the mouse is kind.\n\nHowever, we also have the statement \"The mouse sees the rabbit.\" From rule 2, if someone needs the rabbit and the rabbit sees the mouse, then the mouse sees the rabbit. This implies that the mouse is not rough.\n\nHowever, the statement \"The mouse is kind\" implies that the mouse is not rough.\n\nHowever, the statement \"The mouse sees the rabbit\" implies that the mouse is not rough.\n\nHowever, we also have the statement \"The mouse sees the rabbit.\" From rule 2, if someone needs the rabbit and the rabbit sees the mouse, then the mouse sees the rabbit. This implies that the mouse is not rough.\n\nHowever, the statement \"The rabbit sees the mouse\" implies that the rabbit is not rough.\n\nHowever, we also have the statement \"The rabbit sees the mouse.\" From rule 2, if someone needs the rabbit and the rabbit sees the mouse, then the mouse sees the rabbit. This implies that the rabbit is not rough.\n\nHowever, we also have the statement \"The rabbit needs the squirrel.\" From rule 4, if someone needs the rabbit, then the rabbit sees the squirrel. If the rabbit sees the squirrel, then the rabbit is rough.\n\nHowever, we know the squirrel sees the bear (from statement 6). From rule 1, if someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse. We also know the mouse sees the rabbit (from statement 4).\n\nHowever, we also have the statement \"The mouse is kind.\" From rule 6, if someone is nice and they need the mouse then they are rough. However, this is not true because the mouse is kind.\n\nHowever, we also have the statement \"The mouse sees the rabbit.\" From rule 2, if someone needs the rabbit and the rabbit sees the mouse, then the mouse sees the rabbit. This implies that the mouse is not rough.\n\nHowever, the statement \"The mouse is kind\" implies that the mouse is not rough.\n\nHowever, the statement \"The mouse sees the rabbit\" implies that the mouse is not rough.\n\nHowever, we also have the statement \"The mouse sees the rabbit.\" From rule 2, if someone needs the rabbit and the rabbit sees the mouse, then the mouse sees the rabbit. This implies that the mouse is not rough.\n\nHowever, the statement \"The rabbit sees the",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the bear is rough, we need to analyze the given statements and their implications.\n\n1. The bear eats the rabbit. \n   - This statement does not directly imply anything about the bear's nature (rough or kind).\n\n2. The bear sees the squirrel. \n   - This statement also does not directly imply anything about the bear's nature.\n\nFrom the given statements, we have the following rules:\n\n1. If someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse. \n   - This rule does not provide any information about the bear's nature.\n\n2. If someone needs the rabbit and the rabbit sees the mouse then the mouse sees the rabbit. \n   - This rule does not provide any information about the bear's nature.\n\n3. If someone is rough then they need the rabbit. \n   - This rule implies that if someone is rough, they need the rabbit. However, we do not have any information about the bear needing the rabbit.\n\n4. If someone needs the rabbit then the rabbit sees the squirrel. \n   - This rule does not provide any information about the bear's nature.\n\n5. If someone sees the squirrel then they are rough. \n   - This rule implies that if someone sees the squirrel, they are rough. However, it does not imply that the bear is rough.\n\n6. If someone is nice and they need the mouse then they are rough. \n   - This rule does not provide any information about the bear's nature.\n\n7. If someone is green then they are kind. \n   - This rule does not provide any information about the bear's nature.\n\nNow, let's analyze the bear's nature based on the given statements:\n\n- The bear eats the rabbit, but this does not imply anything about the bear's nature.\n- The bear sees the squirrel, but this also does not imply anything about the bear's nature.\n\nHowever, we do not have any information that directly implies the bear is rough or kind. The given statements do not provide enough information to determine the bear's nature. \n\nTherefore, the final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bear is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear eats the rabbit. (No information about the bear's nature)\n2. The bear sees the squirrel. (No information about the bear's nature)\n3. The mouse eats the squirrel. (No information about the bear's nature)\n4. The mouse is kind. (No information about the bear's nature)\n5. The mouse sees the rabbit. (No information about the bear's nature)\n6. The rabbit needs the squirrel. (No information about the bear's nature)\n7. The squirrel eats the bear. (This statement is contradictory to the first statement, which says the bear eats the rabbit. However, it does not provide information about the bear's nature)\n8. If someone sees the squirrel and the squirrel sees the bear then the squirrel needs the mouse. \n   - Since the squirrel sees the bear, we can apply this rule: the squirrel needs the mouse.\n9. If someone needs the rabbit and the rabbit sees the mouse then the mouse sees the rabbit. \n   - From statement 8, we know the squirrel needs the mouse. However, this rule does not apply to the bear directly.\n10. If someone is rough then they need the rabbit. \n   - We do not have any information about the bear being rough yet.\n11. If someone needs the rabbit then the rabbit sees the squirrel. \n   - From statement 8, we know the squirrel needs the mouse. However, this rule does not apply to the bear directly.\n12. If someone sees the squirrel then they are rough. \n   - We do not have any information about the bear seeing the squirrel yet.\n13. If someone is nice and they need the mouse then they are rough. \n   - We do not have any information about the bear's nature.\n14. If someone is green then they are kind. \n   - We do not have any information about the bear being green.\n\nNow, let's look for information that directly relates to the bear. We know the bear eats the rabbit (statement 1) and the bear sees the squirrel (statement 2). \n\nFrom statement 12, if someone sees the squirrel then they are rough. Since the bear sees the squirrel, we can conclude that the bear is rough.\n\nTherefore, the statement \"The bear is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, rabbit)",
+          "z3_formula": "eats_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, Y) -> needs(squirrel, mouse)",
+          "z3_formula": "Implies(And(sees_X_squirrel, sees_squirrel_bear), needs_squirrel_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & sees(rabbit, Y) -> sees(Y, rabbit)",
+          "z3_formula": "Implies(And(needs_X_rabbit, sees_rabbit_Y), sees_Y_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(rough_bear, needs_bear_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> sees(rabbit, squirrel)",
+          "z3_formula": "Implies(needs_X_rabbit, sees_rabbit_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(sees_X_squirrel, rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(And(nice_mouse, needs_mouse_mouse), rough_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_rabbit, kind_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, mouse)",
+          "z3_formula": "sees_rabbit_mouse == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, rabbit)",
+          "z3_formula": "eats_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, squirrel)",
+          "z3_formula": "sees_bear_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & eats(squirrel, Y) -> needs(squirrel, mouse)",
+          "z3_formula": "Implies(And(sees_bear_squirrel, eats_squirrel_bear), needs_squirrel_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & sees(rabbit, Y) -> sees(Y, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_squirrel, sees_rabbit_squirrel), sees_mouse_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> sees(rabbit, squirrel)",
+          "z3_formula": "Implies(needs_rabbit_squirrel, sees_rabbit_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(rough_bear, needs_bear_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> sees(rabbit, squirrel)",
+          "z3_formula": "Implies(needs_bear_rabbit, sees_rabbit_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(sees_bear_squirrel, rough_bear)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bear, squirrel)",
+          "z3_formula": "sees_bear_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(sees_bear_squirrel, rough_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, mouse)",
+          "z3_formula": "eats_squirrel_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(eats_squirrel_mouse, needs_squirrel_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> sees(Y, X)",
+          "z3_formula": "Implies(needs_squirrel_mouse, sees_mouse_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> needs(Y, X)",
+          "z3_formula": "Implies(eats_squirrel_bear, needs_bear_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> rough(X)",
+          "z3_formula": "Implies(needs_bear_squirrel, rough_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> sees(X, rabbit)",
+          "z3_formula": "Implies(kind_mouse, sees_mouse_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & sees(Y, Z) -> sees(X, Z)",
+          "z3_formula": "Implies(And(sees_mouse_rabbit, sees_rabbit_squirrel), sees_mouse_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, rabbit)",
+          "z3_formula": "eats_bear_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> rough(X)",
+          "z3_formula": "Implies(eats_bear_rabbit, rough_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, rabbit)",
+          "z3_formula": "eats_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, squirrel)",
+          "z3_formula": "sees_bear_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, X) -> needs(squirrel, mouse)",
+          "z3_formula": "Implies(And(sees_squirrel_bear, sees_bear_squirrel), needs_squirrel_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> sees(rabbit, squirrel)",
+          "z3_formula": "Implies(needs_rabbit_squirrel, sees_rabbit_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(rough_bear, needs_bear_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> sees(rabbit, squirrel)",
+          "z3_formula": "Implies(needs_bear_rabbit, sees_rabbit_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(sees_bear_squirrel, rough_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(And(nice_bear, needs_bear_mouse), rough_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_mouse, kind_mouse)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, rabbit)",
+          "z3_formula": "eats_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, squirrel)",
+          "z3_formula": "sees_bear_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, Y) -> needs(squirrel, X)",
+          "z3_formula": "Implies(And(sees_squirrel_bear, sees_bear_squirrel), needs_squirrel_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & sees(rabbit, Y) -> sees(Y, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_squirrel, sees_rabbit_mouse), sees_mouse_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(rough_bear, needs_bear_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> sees(rabbit, squirrel)",
+          "z3_formula": "Implies(needs_bear_rabbit, sees_rabbit_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(sees_bear_squirrel, rough_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(And(nice_mouse, needs_mouse_mouse), rough_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_mouse, kind_mouse)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, rabbit)",
+          "z3_formula": "eats_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, squirrel)",
+          "z3_formula": "sees_bear_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, Y) -> needs(squirrel, mouse)",
+          "z3_formula": "Implies(And(sees_X_squirrel, sees_squirrel_bear), needs_squirrel_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & sees(rabbit, Y) -> sees(Y, rabbit)",
+          "z3_formula": "Implies(And(needs_X_rabbit, sees_rabbit_Y), sees_Y_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(rough_bear, needs_bear_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> sees(rabbit, squirrel)",
+          "z3_formula": "Implies(needs_bear_rabbit, sees_rabbit_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(sees_bear_squirrel, rough_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(And(kind_mouse, needs_mouse_mouse), rough_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_bear, kind_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, rabbit)",
+          "z3_formula": "eats_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, squirrel)",
+          "z3_formula": "sees_bear_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, X) -> needs(X, mouse)",
+          "z3_formula": "Implies(And(sees_bear_squirrel, sees_squirrel_bear), needs_bear_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & sees(rabbit, Y) -> sees(Y, rabbit)",
+          "z3_formula": "Implies(And(needs_bear_rabbit, sees_rabbit_mouse), sees_mouse_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(rough_bear, needs_bear_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> sees(rabbit, squirrel)",
+          "z3_formula": "Implies(needs_bear_rabbit, sees_rabbit_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(sees_bear_squirrel, rough_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(And(nice_bear, needs_bear_mouse), rough_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_bear, kind_bear)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, Y) -> needs(X, mouse)",
+          "z3_formula": "Implies(And(sees_squirrel_bear, sees_bear_squirrel), needs_squirrel_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(sees_squirrel_bear, rough_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & sees(rabbit, Y) -> sees(Y, X)",
+          "z3_formula": "Implies(And(sees_rabbit_mouse, sees_mouse_rabbit), sees_mouse_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, mouse)",
+          "z3_formula": "sees_rabbit_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> sees(X, squirrel)",
+          "z3_formula": "Implies(needs_rabbit_squirrel, sees_rabbit_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(rough_bear, needs_bear_rabbit)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bear, squirrel)",
+          "z3_formula": "sees_bear_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(sees_bear_squirrel, rough_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, bear)",
+          "z3_formula": "sees_squirrel_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, Y) -> needs(squirrel, mouse)",
+          "z3_formula": "Implies(And(sees_squirrel_bear, sees_bear_squirrel), needs_squirrel_mouse)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & sees(rabbit, Y) -> sees(Y, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, sees_rabbit_mouse), sees_mouse_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(rough_bear, needs_bear_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> sees(rabbit, squirrel)",
+          "z3_formula": "Implies(needs_bear_rabbit, sees_rabbit_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(sees_squirrel_bear, rough_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(And(nice_mouse, needs_mouse_mouse), rough_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, rabbit)",
+          "z3_formula": "eats_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, squirrel)",
+          "z3_formula": "sees_bear_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & sees(squirrel, Y) -> needs(X, mouse)",
+          "z3_formula": "Implies(And(sees_bear_squirrel, sees_squirrel_bear), needs_bear_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> needs(X, rabbit)",
+          "z3_formula": "Implies(needs_bear_rabbit, needs_bear_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> sees(rabbit, squirrel)",
+          "z3_formula": "Implies(needs_bear_rabbit, sees_rabbit_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(sees_bear_squirrel, rough_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & needs(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(And(nice_bear, needs_bear_mouse), rough_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_bear, kind_bear)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bear, rabbit)",
+          "z3_formula": "eats_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, squirrel)",
+          "z3_formula": "sees_bear_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, squirrel)",
+          "z3_formula": "eats_mouse_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bear)",
+          "z3_formula": "eats_squirrel_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & sees(Y, Z) -> needs(X, Z)",
+          "z3_formula": "Implies(And(sees_squirrel_bear, sees_bear_squirrel), needs_squirrel_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & sees(Y, Z) -> sees(X, Z)",
+          "z3_formula": "Implies(And(needs_squirrel_mouse, sees_mouse_rabbit), sees_squirrel_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> needs(X, rabbit)",
+          "z3_formula": "Implies(rough_bear, needs_bear_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> sees(Y, Z)",
+          "z3_formula": "Implies(And(needs_bear_rabbit, sees_rabbit_squirrel), sees_bear_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> rough(X)",
+          "z3_formula": "Implies(sees_bear_squirrel, rough_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & needs(X, Y) -> rough(X)",
+          "z3_formula": "Implies(And(kind_bear, needs_bear_mouse), rough_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_bear, kind_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 15
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 157,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 51
+    },
+    "maxsat_stats": {
+      "satisfied": 51,
+      "excluded": 0,
+      "total_weight": 157,
+      "solve_time_ms": 1.3293903321027756
+    },
+    "timing": {
+      "trace_gen_s": 24.265,
+      "extraction_s": 29.557,
+      "dedup_s": 1.836,
+      "maxsat_s": 0.004,
+      "total_s": 55.663
+    }
+  }
+}

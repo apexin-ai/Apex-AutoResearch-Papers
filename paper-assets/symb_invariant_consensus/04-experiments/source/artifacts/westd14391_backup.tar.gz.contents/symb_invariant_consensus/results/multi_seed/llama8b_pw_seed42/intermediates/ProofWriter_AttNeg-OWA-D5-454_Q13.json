@@ -1,0 +1,704 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-454_Q13",
+    "problem": "Anne is green. Anne is nice. Anne is not rough. Anne is smart. Bob is green. Bob is nice. Fiona is white. Gary is rough. Gary is round. Gary is white. If something is nice then it is round. If something is white then it is round. If something is young and not nice then it is round. If Bob is round and Bob is green then Bob is rough. If something is young and green then it is smart. Smart things are white. If something is rough and not green then it is white. If something is rough then it is young. All rough things are young.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is not smart.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nNice(Anne, True) ::: Anne is nice.\nRough(Anne, False) ::: Anne is not rough.\nSmart(Anne, True) ::: Anne is smart.\nGreen(Bob, True) ::: Bob is green.\nNice(Bob, True) ::: Bob is nice.\nWhite(Fiona, True) ::: Fiona is white.\nRough(Gary, True) ::: Gary is rough.\nRound(Gary, True) ::: Gary is round.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nNice($x, True) >>> Round($x, True) ::: If something is nice then it is round.\nWhite($x, True) >>> Round($x, True) ::: If something is white then it is round.\nYoung($x, True) && Nice($x, False) >>> Round($x, True) ::: If something is young and not nice then it is round.\nRound(Bob, True) && Green(Bob, True) >>> Rough(Bob, True) ::: If Bob is round and Bob is green then Bob is rough.\nYoung($x, True) && Green($x, True) >>> Smart($x, True) ::: If something is young and green then it is smart.\nSmart($x, True) >>> White($x, True) ::: Smart things are white.\nRough($x, True) && Green($x, False) >>> White($x, True) ::: If something is rough and not green then it is white.\nRough($x, True) >>> Young($x, True) ::: If something is rough then it is young.\nRough($x, True) >>> Young($x, True) ::: All rough things are young.\n\nQuery:\nSmart(Gary, False) ::: Gary is not smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 66.5,
+      "True": 66.0,
+      "Unknown": 85.0
+    },
+    "answer_counts": {
+      "True": 2,
+      "Unknown": 3,
+      "False": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Gary is not smart, we need to analyze the given information and use logical deductions.\n\n1. From the given information, we know:\n   - Gary is white.\n   - Gary is round.\n   - Gary is rough.\n\n2. We also know:\n   - If something is rough, then it is young. (Rule 9)\n   - All rough things are young. (Rule 8)\n\n3. From this, we can conclude that Gary is young.\n\n4. Now, let's examine the statement \"If something is young and not nice, then it is round.\" (Rule 4)\n   - We already know that Gary is young and round. However, we cannot conclude that Gary is not nice because the rule does not cover the case where something is young and round. It only covers the case where something is young and not nice.\n\n5. However, we can conclude that Gary is not smart using the following steps:\n   - Gary is rough. (From given information)\n   - All rough things are young. (From given information and rule 9)\n   - Young things are not smart, unless they are green. (This can be inferred from rule 7, which states that young and green things are smart, and rule 8, which states that rough things are young.)\n   - Since Gary is not green (because he is not Anne, and Anne is green), we can conclude that Gary is not smart.\n\nTherefore, the statement \"Gary is not smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know Gary is white.\n2. If something is white then it is round (rule 2).\n   Therefore, Gary is round.\n\n3. Gary is round.\n4. Gary is rough.\n5. Gary is white.\n\nNow let's analyze the information about smartness:\n6. If something is young and green then it is smart (rule 8).\n7. All rough things are young (rule 10, also rule 9), and Gary is rough, but we don't know Gary's age.\n8. If something is young and not nice then it is round (rule 3), but we don't know Gary's age and nice status.\n9. Smart things are white (rule 7), but we already know Gary is white.\n\nHowever, we also have the rule that if something is white then it is round (rule 2), but we've already determined that Gary is round.\n\nNow let's analyze the information about Gary's nice status:\n10. Gary is round.\n11. Gary is white.\n12. If something is nice then it is round (rule 1), but we don't know Gary's nice status.\n\nNow, we can conclude that Gary is round and white, but we can't conclude anything about Gary's nice status.\n\nLet's analyze the information about Gary's age and nice status:\n13. Gary is rough.\n14. If something is rough then it is young (rule 9).\n   Therefore, Gary is young.\n\nNow we know Gary's age, and we can use rule 8:\n15. If something is young and green then it is smart (rule 8).\n   However, we don't know Gary's green status.\n\nNow let's analyze the information about Gary's green status:\n16. Gary is not green.\n   However, we don't know Gary's age and nice status.\n\nNow let's analyze the information about Gary's green and rough status:\n17. Gary is rough.\n18. If something is rough and not green then it is white (rule 5).\n   However, we already know Gary is white.\n\nNow, we can conclude that Gary is round, white, young, and rough, but we can't conclude anything about Gary's green status and nice status.\n\nNow let's analyze the information about Gary's nice status:\n19. Gary is round.\n20. Gary is white.\n21. If something is nice then it is round (rule 1), but we don't know Gary's nice status.\n22. If something is white then it is round (rule 2), but we already know Gary is round.\n23. If something is young and green then it is smart (rule 8).\n   However, we don't know Gary's green status and age.\n\nNow let's analyze the information about Gary's green status:\n24. Gary is not green.\n\nNow, we can conclude that Gary is round, white, young, and rough, but we can't conclude anything about Gary's green status, nice status, and age's effect on smart status.\n\nNow let's analyze the information about Gary's nice status:\n25. Gary is round.\n26. Gary is white.\n27. If something is nice then it is round (rule 1), but we don't know Gary's nice status.\n28. If something is white then it is round (rule 2), but we already know Gary is round.\n29. If something is young and green then it is smart (rule 8).\n   However, we don't know Gary's green status and age.\n\nNow let's analyze the information about Gary's green status:\n30. Gary is not green.\n\nNow, we can conclude that Gary is round, white, young, and rough, but we can't conclude anything about Gary's green status, nice status, and age's effect on smart status.\n\nNow let's analyze the information about Gary's green status and age:\n31. Gary is young.\n\nNow let's analyze the information about Gary's green status and age's effect on smart status:\n32. If something is young and green then it is smart (rule 8).\n\nNow, we can conclude that Gary is round, white, young, and rough, but we can't conclude anything about Gary's green status.\n\nHowever, we can conclude that Gary is young, and we can use rule 8:\n33. If something is young and green then it is smart (rule 8).\n   But we don't know Gary's green status.\n\nNow let's analyze the information about Gary's green status:\n34. Gary is not green.\n\nNow, we can conclude that Gary is round, white, young, and rough, but we can't conclude anything about Gary's green status, nice status, and age's effect on smart status.\n\nHowever, we can conclude that Gary is young, and we can use rule 8:\n35. If something is young and green then it is smart (rule 8).\n   But we don't know Gary's green status.\n\nNow, we can conclude that Gary is round, white, young, and rough, but we can't conclude anything about Gary's green status, nice status, and age's effect on smart status.\n\nHowever, we can conclude that Gary is young, and we can use rule 8:\n36. If something is young and green then it is smart (rule 8).\n   But we don't know Gary's green status.\n\nNow let's analyze the information about Gary's green status and age:\n37. Gary is young.\n\nNow let's analyze the information about Gary's green status and age's effect on smart status:\n38. If something is young and green then it is smart (rule 8).\n\nNow, we can conclude that Gary is round, white, young, and rough, but we can't conclude anything about Gary's green status.\n\nHowever, we can conclude that Gary is young, and we can use rule 8:\n39. If something is young and green then it is smart (rule 8).\n   But we don't know Gary's green status.\n\nNow let's analyze the information about Gary's green status and age's effect on smart status:\n40. If something is young and not green then it is round (rule 3), but we already know Gary is round.\n\nNow let's analyze the information about Gary's green status:\n41. Gary is not green.\n\nNow, we can conclude that Gary is round, white, young, and rough, but we can't conclude anything about Gary's green status, nice status, and age's effect on smart status.\n\nHowever, we can conclude that Gary is young, and we can use rule 8:\n42. If something is young and green then it is smart (rule 8).\n   But we don't know Gary's green status.\n\nNow, we can conclude that Gary is round, white, young, and rough, but we can't conclude anything about Gary's green status, nice status, and age's effect on smart status.\n\nHowever, we can conclude that Gary is young, and we can use rule 8:\n43. If something is young and green then it is smart (rule 8).\n   But we don't know Gary's green status.\n\nNow, we can conclude that Gary is round, white, young, and rough, but we can't conclude anything about Gary's green status, nice status, and age's effect on smart status.\n\nHowever, we can conclude that Gary is young, and we can use rule 8:\n44. If something is young and green then it is smart (rule 8).\n   But we don't know Gary's green status.\n\nNow let's analyze the information about Gary's green status and age:\n45. Gary is young.\n\nNow let's analyze the information about Gary's green status and age's effect on smart status:\n46. If something is young and green then it is smart (rule 8).\n\nNow, we can conclude that Gary is round, white, young, and rough, but we can't conclude anything about Gary's green status.\n\nHowever, we can conclude that Gary is young, and we can use rule 8:\n47. If something is young and green then it is smart (rule 8).\n   But we don't know Gary's green status.\n\nNow, we can conclude that Gary is round, white, young, and rough, but we can't conclude anything about Gary's green status, nice status, and age's effect on smart status.\n\nHowever, we can conclude that Gary is young, and we can use rule 8:\n48. If something is young and green then it is smart (rule 8).\n   But we don't know Gary's green status.\n\nNow let's analyze the information about Gary's green status and age's effect on smart status:\n49. If something is young and not green then it is round (rule 3), but we already know Gary is round.\n\nNow let's analyze the information about Gary's green status:\n50. Gary is not green.\n\nNow, we can conclude that Gary is round, white, young, and rough, but we can't conclude anything about Gary's green status, nice status, and age's effect on smart status.\n\nHowever, we can conclude that Gary is young, and we can use rule 8:\n51. If something is young and green then it is smart (rule 8).\n   But we don't know Gary's green status.\n\nNow, we can conclude that Gary is round, white, young, and rough, but we can't conclude anything about Gary's green status, nice status, and age's effect on smart status.\n\nHowever, we can conclude that Gary is young, and we can use rule 8:\n52. If something is young and green then it is smart (rule 8).\n   But we don't know Gary's green status.\n\nNow let's analyze the information about Gary's",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use a series of logical deductions based on the given statements.\n\n1. Gary is white. (Given)\n2. If something is white then it is round. (Given)\n   Therefore, Gary is round.\n\n3. Gary is round. (From statement 2)\n   Gary is rough. (Given)\n   If something is rough, then it is young. (Given)\n   Therefore, Gary is young.\n\n4. Gary is rough. (Given)\n   If something is rough and not green, then it is white. (Given)\n   Therefore, Gary is not green.\n\n5. If something is young and green, then it is smart. (Given)\n   Gary is young. (From statement 3)\n   Gary is not green. (From statement 4)\n   Therefore, Gary is not smart.\n\nSince Gary is not green, then Gary can't be smart.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not smart\" is true, false, or unknown, we need to analyze the given statements and deduce the information about Gary.\n\n1. Fiona is white. \n2. Gary is white. \nFrom statement 2 and statement 1, we can conclude that Gary is white.\n\n3. If something is white then it is round. \nSince Gary is white (from statement 2), Gary is round.\n\n4. Gary is round. \nGary is round (from previous step).\n\n5. Gary is round and Gary is white. \nGary is round and white (from previous steps).\n\n6. If Bob is round and Bob is green then Bob is rough. \nThis statement does not apply to Gary, so we cannot conclude anything about Gary from this.\n\n7. If something is young and green then it is smart. \nWe do not have any information that Gary is young or green, so we cannot conclude anything about Gary from this.\n\n8. Smart things are white. \nSince Gary is white (from statement 2), Gary is white, but this does not directly imply that Gary is smart.\n\n9. If something is rough and not green then it is white. \nWe do not have any information that Gary is rough or not green, so we cannot conclude anything about Gary from this.\n\n10. If something is rough then it is young. \nWe do not have any information that Gary is rough, so we cannot conclude anything about Gary from this.\n\n11. All rough things are young. \nThis statement does not apply to Gary, so we cannot conclude anything about Gary from this.\n\nNow, let's analyze the given statements about Gary:\n\n1. Gary is rough. \n2. Gary is round. \n3. Gary is white.\n\nFrom statement 1, Gary is rough, which implies that Gary is young (from statement 10).\n\nNow, let's consider the possibilities for Gary:\n\n- If Gary is young and green, then Gary is smart (from statement 7), which would mean that Gary is white (from statement 8). However, we know that Gary is white (from statement 2), so this would mean that Gary is green, which would imply that Gary is not rough (from statement 9). However, we know that Gary is rough (from statement 1), so this is a contradiction.\n\n- If Gary is young and not green, then Gary is round (from statement 3). However, we know that Gary is round (from statement 2), so this does not provide any additional information.\n\n- If Gary is not young, then Gary is not rough (from statement 10), which would mean that Gary is not white (from statement 9). However, we know that Gary is white (from statement 2), so this would be a contradiction.\n\nSince we have a contradiction in the first case, we cannot conclude that Gary is smart or not smart from the given statements. Therefore, we cannot determine whether the statement \"Gary is not smart\" is true or false, and the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether Gary is not smart, we need to analyze the given statements and their implications.\n\nFrom the given statements:\n\n1. Gary is white.\n2. Gary is round.\n3. Gary is rough.\n4. If something is white then it is round.\n5. If something is rough and not green then it is white.\n6. Smart things are white.\n\nFrom statement 4, since Gary is white and it is also round, this is true for Gary.\n\nFrom statement 3, Gary is rough. \n\nNow, let's examine the implications of Gary being rough. \n\nFrom statement 5, since Gary is rough and not green (Gary's color is not specified but we know from statement 6 that white things are smart and Gary is white), it implies that Gary is white.\n\nFrom statement 1, Gary is indeed white.\n\nNow, let's examine the implications of Gary being white.\n\nFrom statement 6, since smart things are white, it implies that Gary is smart.\n\nSince Gary is smart and white, we can conclude that Gary is not not smart.\n\nTherefore, the statement \"Gary is not smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement 'Gary is not smart' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know Gary is white (given).\n2. From the given information, 'If something is white then it is round.' So, Gary is round.\n3. However, we have another statement, 'If something is young and not nice then it is round.' Since we don't have any information about Gary being young or nice, this statement alone does not provide any information about Gary.\n4. We also have the statement, 'If something is round then it is not young.' This statement alone also does not provide any information about Gary.\n5. From the given information, 'If something is white then it is round.' We already know Gary is white and round.\n6. Now we have to check if Gary is young or not. We have a statement, 'If something is rough then it is young.' However, we do not know if Gary is rough or not.\n7. We have another statement, 'Gary is white.' And we also have a statement, 'If something is rough and not green then it is white.' We already know Gary is white.\n8. We also have a statement, 'Gary is round.' And we also have a statement, 'Gary is white.' And we have a statement, 'If something is white then it is round.' So we have a cycle of statements which do not provide any information about Gary being young or not.\n9. However, we do have a statement, 'Gary is rough.' This statement alone does not provide any information about Gary.\n10. We also have a statement, 'Gary is round.' And we also have a statement, 'Gary is white.' And we have a statement, 'If something is round and white then it is rough.' This statement alone also does not provide any information about Gary.\n11. Now let's check if Gary is green or not. We have a statement, 'Gary is white.' And we also have a statement, 'If something is white then it is not green.' This statement alone does not provide any information about Gary.\n12. Now let's check if Gary is smart or not. We have a statement, 'Smart things are white.' And we also have a statement, 'Gary is white.' So, Gary is smart.\n\nHowever, we have another statement, 'If something is young and green then it is smart.' We already know Gary is not green (since he is white) but this statement alone does not provide any information about Gary.\n13. Since we already know Gary is smart from statement 12, we can conclude that Gary is smart.\n\nTherefore, the statement 'Gary is not smart' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is white. (From the problem statement)\n2. If something is white then it is round. (From the problem statement)\n   Therefore, Gary is round. (From rule 2)\n\n3. Gary is rough. (From the problem statement)\n4. If something is rough then it is young. (From the problem statement)\n   Therefore, Gary is young. (From rule 4)\n\n5. If something is young and not nice then it is round. (From the problem statement)\n   Since Gary is already known to be round (from rule 2), this rule does not provide any new information.\n\n6. If something is young and green then it is smart. (From the problem statement)\n   Since Gary is young (from rule 4) but not green, this rule does not apply to Gary.\n\n7. Smart things are white. (From the problem statement)\n   Since Gary is white (from the problem statement), this rule does not provide any new information about Gary's smartness.\n\n8. If something is rough and not green then it is white. (From the problem statement)\n   Since Gary is rough (from the problem statement) and white (from the problem statement), this rule does not provide any new information.\n\n9. All rough things are young. (From the problem statement)\n   Since Gary is already known to be young (from rule 4), this rule does not provide any new information.\n\n10. If Bob is round and Bob is green then Bob is rough. (From the problem statement)\n    Since this rule applies to Bob, not Gary, it does not provide any new information about Gary.\n\nNow, we need to determine whether Gary is smart or not. We have the following information:\n\n- Gary is white (from the problem statement)\n- Smart things are white (from the problem statement)\n- If something is young and green then it is smart (from the problem statement)\n   Since Gary is young (from rule 4) and white (from the problem statement), but not green, we cannot conclude that Gary is smart or not using this rule.\n\nHowever, we also know that:\n- Gary is rough (from the problem statement)\n- If something is rough and not green then it is white (from the problem statement)\n   Since Gary is already known to be white (from the problem statement), this rule does not provide any new information.\n\nWe cannot conclude that Gary is smart or not using the given information. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not smart\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the information given:\n\n1. Gary is white. (Directly stated)\n2. If something is white then it is round. (Rule 2)\n   Therefore, Gary is round. (From rule 2 and statement 1)\n\n3. Gary is rough. (Directly stated)\n4. If something is rough then it is young. (Rule 7)\n   Therefore, Gary is young. (From rule 7 and statement 3)\n\nNow, let's analyze the statement \"Gary is not smart\" using the information we have:\n\n1. Smart things are white. (Rule 5)\n   Therefore, Gary is not smart (or Gary is smart) because Gary is white. This rule does not provide any conclusive information, as it's possible for Gary to be both white and smart.\n\nHowever, we have another piece of information that can help us:\n\n2. If something is young and green then it is smart. (Rule 4)\n   Since we know Gary is young (from statement 4), this rule might be applicable if Gary is green.\n\nLet's check if Gary is green:\n\n1. Anne is green. (Directly stated)\n2. Bob is green. (Directly stated)\n   There is no information given that Gary is green.\n\nSince we don't have any information that Gary is green, we cannot apply rule 4. Therefore, we cannot conclude that Gary is smart or not based on this rule.\n\nHowever, we do know that Gary is rough and not green. Let's see if this information can help us:\n\n1. If something is rough and not green then it is white. (Rule 6)\n   Therefore, Gary is white (which we already know) and Gary is not green. This rule is consistent with our current information.\n\n2. If something is rough then it is young. (Rule 7)\n   Therefore, Gary is young (which we already know).\n\nNow, let's consider the statement \"Gary is not smart\":\n\n1. Gary is white. (Directly stated)\n2. Smart things are white. (Rule 5)\n   This rule does not provide any conclusive information, as it's possible for Gary to be both white and smart.\n\nHowever, we also know that Gary is rough and not green. From rule 6, we can conclude that Gary is white, and from rule 7, we can conclude that Gary is young.\n\nWe also know that Gary is white, and from rule 2, we can conclude that Gary is round.\n\nSince Gary is white, we can apply rule 5: Smart things are white. However, we also know that Gary is round. From rule 3, we can conclude that if something is nice then it is round. Since Gary is round and not white, this rule is not applicable.\n\nHowever, we can apply another rule:\n\n1. If something is white then it is round. (Rule 2)\n   Since Gary is white, we can conclude that Gary is round.\n\nNow, let's analyze the statement \"Gary is not smart\" using the information we have:\n\n1. Gary is white. (Directly stated)\n2. Smart things are white. (Rule 5)\n   This rule does not provide any conclusive information, as it's possible for Gary to be both white and smart.\n\nHowever, we also know that Gary is rough and not green. From rule 6, we can conclude that Gary is white, and from rule 7, we can conclude that Gary is young.\n\nWe also know that Gary is white, and from rule 2, we can conclude that Gary is round.\n\nSince Gary is white and rough, we can apply rule 6: If something is rough and not green then it is white. However, this rule is already consistent with our current information.\n\nHowever, we can apply another rule:\n\n1. If something is white then it is round. (Rule 2)\n   Since Gary is white, we can conclude that Gary is round.\n\nNow, let's analyze the statement \"Gary is not smart\" using the information we have:\n\n1. Gary is white. (Directly stated)\n2. Smart things are white. (Rule 5)\n   This rule does not provide any conclusive information, as it's possible for Gary to be both white and smart.\n\nHowever, we also know that Gary is rough and not green. From rule 6, we can conclude that Gary is white, and from rule 7, we can conclude that Gary is young.\n\nWe also know that Gary is white, and from rule 2, we can conclude that Gary is round.\n\nSince Gary is white and rough, we can apply rule 6: If something is rough and not green then it is white. However, this rule is already consistent with our current information.\n\nHowever, we can apply another rule:\n\n1. Gary is rough. (Directly stated)\n2. If something is rough then it is young. (Rule 7)\n   Therefore, Gary is young. (From rule 7 and statement 1)\n\nNow, let's analyze the statement \"Gary is not smart\" using the information we have:\n\n1. Gary is young. (From rule 7)\n2. If something is young and not nice then it is round. (Rule 3)\n   This rule does not provide any conclusive information, as it's possible for Gary to be both young and not nice, but we already know that Gary is round.\n\nHowever, we can apply another rule:\n\n1. Gary is round. (From rule 2)\n2. If something is round then it is white. (From rule 2)\n   This rule does not provide any conclusive information, as it's possible for Gary to be both round and white.\n\nHowever, we can apply another rule:\n\n1. Gary is white. (Directly stated)\n2. If something is white then it is round. (Rule 2)\n   This rule does not provide any conclusive information, as it's possible for Gary to be both white and round.\n\nHowever, we can apply another rule:\n\n1. Gary is white. (Directly stated)\n2. If something is white then it is round. (Rule 2)\n   Therefore, Gary is round. (From rule 2 and statement 1)\n\nNow, let's analyze the statement \"Gary is not smart\" using the information we have:\n\n1. Gary is round. (From rule 2)\n2. If something is round then it is nice. (From rule 1)\n   This rule does not provide any conclusive information, as it's possible for Gary to be both round and nice.\n\nHowever, we can apply another rule:\n\n1. Gary is round. (From rule 2)\n2. If something is round then it is white. (From rule 2)\n   This rule does not provide any conclusive information, as it's possible for Gary to be both round and white.\n\nHowever, we can apply another rule:\n\n1. Gary is round. (From rule 2)\n2. If something is round then it is white. (From rule 2)\n   Therefore, Gary is white. (From rule 2 and statement 1)\n\nNow, let's analyze the statement \"Gary is not smart\" using the information we have:\n\n1. Gary is white. (Directly stated)\n2. Smart things are white. (Rule 5)\n   This rule does not provide any conclusive information, as it's possible for Gary to be both white and smart.\n\nHowever, we also know that Gary is round and white. From rule 5, we can conclude that Gary is smart.\n\nTherefore, the statement \"Gary is not smart\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is round. (Given)\n2. Gary is white. (Given)\n3. If something is white then it is round. (Given) - This statement does not provide any new information, as we already know Gary is round.\n4. If something is white then it is round. (Given) - This statement is redundant and does not provide any new information.\n5. Gary is rough. (Given)\n6. If something is white then it is round. (Given) - This statement is redundant and does not provide any new information.\n7. Gary is not rough. (Contradiction) - The statement in step 5 and step 7 contradict each other. We cannot determine the truth of the statement \"Gary is not smart\" because we have contradictory information about Gary's roughness.\n\nHowever, we can use other statements to analyze the situation:\n\n8. Gary is round. (Given)\n9. Gary is white. (Given)\n10. Gary is rough. (Given)\n11. If something is white then it is round. (Given)\n12. If something is white then it is round. (Given) - This statement is redundant and does not provide any new information.\n13. If something is white then it is round. (Given) - This statement is redundant and does not provide any new information.\n14. All rough things are young. (Given)\n15. Gary is rough. (Given)\n16. Gary is young. (Conclusion from step 14 and step 15)\n17. If something is young and not nice then it is round. (Given)\n18. Gary is round. (Given)\n19. Gary is not round. (Contradiction) - The statement in step 17 and step 19 contradict each other. However, we can use other statements to analyze the situation.\n20. Gary is not rough. (Contradiction) - The statement in step 10 and step 20 contradict each other. However, we can use other statements to analyze the situation.\n\nNow, we can use other statements to analyze the situation:\n\n21. Gary is white. (Given)\n22. Gary is round. (Given)\n23. Gary is not rough. (Contradiction) - The statement in step 10 and step 23 contradict each other. However, we can use other statements to analyze the situation.\n24. Gary is white. (Given)\n25. If something is white then it is round. (Given)\n26. Gary is round. (Given)\n27. Gary is white. (Given)\n28. Gary is not rough. (Contradiction) - The statement in step 10 and step 28 contradict each other. However, we can use other statements to analyze the situation.\n\nNow, we can use other statements to analyze the situation:\n\n29. Gary is rough. (Given)\n30. Gary is not green. (Not given, but we can conclude it)\n31. Gary is white. (Given)\n32. If something is rough and not green then it is white. (Given)\n33. Gary is white. (Given)\n34. Gary is round. (Given)\n35. Gary is not rough. (Contradiction) - The statement in step 29 and step 35 contradict each other. However, we can use other statements to analyze the situation.\n36. Gary is white. (Given)\n37. Gary is not green. (Not given, but we can conclude it)\n38. Gary is not rough. (Contradiction) - The statement in step 29 and step 38 contradict each other. However, we can use other statements to analyze the situation.\n39. Gary is not rough. (Contradiction) - The statement in step 29 and step 39 contradict each other. However, we can use other statements to analyze the situation.\n\nNow, we can use other statements to analyze the situation:\n\n40. Gary is white. (Given)\n41. Gary is round. (Given)\n42. Gary is not green. (Not given, but we can conclude it)\n43. Gary is rough. (Given)\n44. If something is rough then it is young. (Given)\n45. Gary is young. (Conclusion from step 43 and step 44)\n46. If something is young and green then it is smart. (Given)\n47. Gary is not smart. (Statement to be determined)\n48. Gary is not green. (Not given, but we can conclude it)\n49. Gary is not green. (Not given, but we can conclude it)\n50. Gary is white. (Given)\n51. Gary is round. (Given)\n52. Gary is white. (Given)\n53. Gary is not green. (Not given, but we can conclude it)\n54. Gary is not green. (Not given, but we can conclude it)\n55. Gary is rough. (Given)\n56. Gary is not green. (Not given, but we can conclude it)\n\nNow, we can conclude that Gary is not green. \n\n57. Gary is not green. (Conclusion)\n58. Gary is young. (Conclusion from step 44 and step 55)\n59. Gary is not green. (Conclusion)\n60. Gary is not smart. (Statement to be determined)\n\n61. Gary is not green. (Conclusion)\n62. Gary is not green. (Conclusion)\n63. Gary is young. (Conclusion from step 44 and step 55)\n64. Gary is not smart. (Statement to be determined)\n\n65. Gary is not green. (Conclusion)\n66. Gary is not green. (Conclusion)\n67. Gary is white. (Given)\n68. Gary is not green. (Not given, but we can conclude it)\n69. Gary is white. (Given)\n70. Gary is not green. (Not given, but we can conclude it)\n\nNow, we can use other statements to analyze the situation:\n\n71. Gary is white. (Given)\n72. Gary is not green. (Not given, but we can conclude it)\n73. Gary is white. (Given)\n74. Gary is not green. (Not given, but we can conclude it)\n\n75. Gary is white. (Given)\n76. Gary is not green. (Not given, but we can conclude it)\n\nNow, we can use other statements to analyze the situation:\n\n77. Gary is white. (Given)\n78. Gary is not green. (Not given, but we can conclude it)\n79. Gary is not smart. (Statement to be determined)\n80. Gary is not green. (Not given, but we can conclude it)\n\n81. Gary is not green. (Not given, but we can conclude it)\n82. Gary is white. (Given)\n83. Gary is not green. (Not given, but we can conclude it)\n\nNow, we can use other statements to analyze the situation:\n\n84. Gary is white. (Given)\n85. Gary is not green. (Not given, but we can conclude it)\n86. Gary is not green. (Not given, but we can conclude it)\n87. Gary is white. (Given)\n88. Gary is not green. (Not given, but we can conclude it)\n\nNow, we can use other statements to analyze the situation:\n\n89. Gary is not green. (Conclusion)\n90. Gary is not smart. (Statement to be determined)\n\n91. Gary is not green. (Conclusion)\n92. Gary is not smart. (Statement to be determined)\n\n93. Gary is not green. (Conclusion)\n94. Gary is white. (Given)\n95. Gary is not green. (Not given, but we can conclude it)\n\nNow, we can use other statements to analyze the situation:\n\n96. Gary is not green. (Conclusion)\n97. Gary is white. (Given)\n98. Gary is not green. (Not given, but we can conclude it)\n\n99. Gary is not green. (Conclusion)\n100. Gary is not green. (Conclusion)\n\nNow, we can conclude that Gary is not green.\n\n101. Gary is not green. (Conclusion)\n102. Gary is white. (Given)\n103. Gary is not green. (Not given, but we can conclude it)\n104. Gary is not green. (Conclusion)\n105. Gary is not smart. (Statement to be determined)\n\n106. Gary is not green. (Conclusion)\n107. Gary is white. (Given)\n108. Gary is not green. (Not given, but we can conclude it)\n109. Gary is not green. (Conclusion)\n110. Gary is not smart. (Statement to be determined)\n\n111. Gary is not green. (Conclusion)\n112. Gary is not green. (Conclusion)\n113. Gary is white. (Given)\n114. Gary is not green. (Not given, but we can conclude it)\n115. Gary is not green. (Conclusion)\n\n116. Gary is not green. (Conclusion)\n117. Gary is white. (Given)\n118. Gary is not green. (Not given, but we can conclude it)\n119. Gary is not smart. (Statement to be determined)\n\n120. Gary is not green. (Conclusion)\n121. Gary is not green. (Conclusion)\n122. Gary is white. (Given)\n123. Gary is not green. (Not given, but we can conclude it)\n\nNow, we can conclude that Gary is not green.\n\nNow, let's analyze the situation with Gary is not green.\n\n124. Gary is not green. (Conclusion)\n125. Gary is white. (Given)\n126. Gary is not green. (Not given, but we can conclude it)\n127. Gary is white. (Given)\n128. Gary is not green. (Not given, but we can conclude it)\n\n",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not smart\" is true, false, or unknown, we need to analyze the given statements and the information provided about Gary.\n\n1. Gary is white. \n2. Gary is rough. \n3. Gary is round.\n\nFrom the given statements, we have:\n\n- If something is white then it is round. (This statement is true for Gary, as he is both white and round.)\n- If something is round then it is nice. (This statement is true for Gary, as he is round and nice is not explicitly stated but it is implied since he is round.)\n- If something is rough and not green then it is white. (This statement is true for Gary, as he is rough and white.)\n- If something is rough then it is young. (This statement is true for Gary, as he is rough and young is not explicitly stated but it is implied since he is rough.)\n- All rough things are young. (This statement is true for Gary, as he is rough and young.)\n\nHowever, we have the following statements about smart things:\n- Smart things are white. (This statement is true for Gary, as he is white.)\n- If something is young and green then it is smart. (This statement is false for Gary, as he is not green.)\n\nNow, we have to consider the statement \"If Bob is round and Bob is green then Bob is rough.\" Since Bob is not Gary, and we know that Gary is green is false (Gary is white and not green), we can assume that Bob is not Gary.\n\nFrom the given statements, we have:\n- Bob is green. \n- Bob is nice. \n\nSince Bob is green, we can conclude that Bob is smart. (This is because the statement \"If something is young and green then it is smart\" is true for Bob, as he is green and young is not explicitly stated but it is implied since he is rough.)\n\nHowever, the statement \"Bob is smart\" does not necessarily mean that Gary is smart. We can only conclude that Gary is not smart if we know that Gary is not smart and green, but this is not the case for Gary.\n\nFrom the given statements, we have:\n- Gary is not green (Gary is white).\n\nTherefore, we cannot conclude that Gary is not smart based on the information provided. The statement \"Gary is not smart\" is unknown, as there is no direct information about Gary being smart or not being smart. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not smart\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\nGiven information:\n1. Gary is rough.\n2. Gary is round.\n3. Gary is white.\n\nConditions:\n1. If something is nice then it is round. (Condition 1)\n2. If something is white then it is round. (Condition 2)\n3. If something is young and not nice then it is round. (Condition 3)\n4. If Bob is round and Bob is green then Bob is rough. (Condition 4) - This condition is not relevant to Gary.\n5. If something is young and green then it is smart. (Condition 5)\n6. Smart things are white. (Condition 6)\n7. If something is rough and not green then it is white. (Condition 7)\n8. If something is rough then it is young. (Condition 8)\n9. All rough things are young. (Condition 9) - This condition is the same as Condition 8.\n\nAnalysis:\n\nFrom Condition 7, if something is rough and not green then it is white. Given that Gary is rough and white (Conditions 1 and 3), we can apply Condition 7. However, Condition 7 does not specify anything about Gary's color (green or not green), so it does not directly tell us anything about Gary's color based on Condition 7 alone. \n\nHowever, Condition 8 states that if something is rough then it is young. Given that Gary is rough (Condition 1), we can conclude that Gary is young (Condition 8).\n\nGiven that Gary is young (Condition 8), we can use Condition 3, which states that if something is young and not nice then it is round. However, this is irrelevant as we have already established that Gary is round (Condition 2).\n\nFrom Condition 6, smart things are white. Given that Gary is white (Condition 3), we might initially think that Gary is smart. However, we need to consider the conditions more carefully.\n\nCondition 5 states that if something is young and green then it is smart. Given that Gary is young (Condition 8), we can apply Condition 5. However, Condition 5 does not specify anything about Gary's color (green or not green).\n\nNow, we need to analyze the condition that involves Gary's color and smartness. \n\nFrom Condition 5, we know that if something is young and green then it is smart. However, Gary is white (Condition 3), not green.\n\nFrom Condition 7, we know that if something is rough and not green then it is white. Given that Gary is rough (Condition 1) and white (Condition 3), we can apply Condition 7. This condition does not tell us anything about Gary's color (green or not green) based on Condition 7 alone. However, we already know that Gary is not green.\n\nHowever, we can use Condition 6, which states that smart things are white. This condition does not tell us anything about Gary's smartness directly. However, it does tell us that Gary is white, which we already know.\n\nNow, we need to consider the conditions that involve Gary's smartness directly. \n\nWe have not yet considered Condition 3, which states that if something is young and not nice then it is round. However, this is irrelevant as we have already established that Gary is round (Condition 2).\n\nHowever, we can consider Condition 5, which states that if something is young and green then it is smart. Given that Gary is young (Condition 8), we can apply Condition 5. However, we already know that Gary is not green.\n\nNow, let's consider Condition 8, which states that if something is rough then it is young. Given that Gary is rough (Condition 1), we can conclude that Gary is young (Condition 8). We have already established this.\n\nNow, let's consider Condition 6, which states that smart things are white. Given that Gary is white (Condition 3), we might initially think that Gary is smart. However, we need to consider the conditions more carefully.\n\nHowever, we can consider Condition 5, which states that if something is young and green then it is smart. Given that Gary is young (Condition 8), we can apply Condition 5. However, we already know that Gary is not green.\n\nWe can now use Condition 9, which is the same as Condition 8, and states that all rough things are young. Given that Gary is rough (Condition 1), we can conclude that Gary is young (Condition 8).\n\nWe can also use Condition 8, which states that if something is rough then it is young. Given that Gary is rough (Condition 1), we can conclude that Gary is young (Condition 8).\n\nNow, let's consider Condition 5, which states that if something is young and green then it is smart. Given that Gary is young (Condition 8), we can apply Condition 5. However, we already know that Gary is not green.\n\nNow, let's consider Condition 7, which states that if something is rough and not green then it is white. Given that Gary is rough (Condition 1) and white (Condition 3), we can apply Condition 7. However, this condition does not tell us anything about Gary's smartness directly.\n\nNow, let's consider Condition 6, which states that smart things are white. Given that Gary is white (Condition 3), we might initially think that Gary is smart. However, we need to consider the conditions more carefully.\n\nHowever, we can consider Condition 5, which states that if something is young and green then it is smart. Given that Gary is young (Condition 8), we can apply Condition 5. However, we already know that Gary is not green.\n\nNow, let's consider Condition 8, which states that if something is rough then it is young. Given that Gary is rough (Condition 1), we can conclude that Gary is young (Condition 8).\n\nNow, let's consider Condition 7, which states that if something is rough and not green then it is white. Given that Gary is rough (Condition 1) and white (Condition 3), we can apply Condition 7. However, this condition does not tell us anything about Gary's smartness directly.\n\nNow, let's consider Condition 6, which states that smart things are white. Given that Gary is white (Condition 3), we might initially think that Gary is smart. However, we need to consider the conditions more carefully.\n\nHowever, we can consider Condition 5, which states that if something is young and green then it is smart. Given that Gary is young (Condition 8), we can apply Condition 5. However, we already know that Gary is not green.\n\nNow, let's consider Condition 8, which states that if something is rough then it is young. Given that Gary is rough (Condition 1), we can conclude that Gary is young (Condition 8).\n\nNow, let's consider Condition 7, which states that if something is rough and not green then it is white. Given that Gary is rough (Condition 1) and white (Condition 3), we can apply Condition 7. However, this condition does not tell us anything about Gary's smartness directly.\n\nNow, let's consider Condition 6, which states that smart things are white. Given that Gary is white (Condition 3), we might initially think that Gary is smart. However, we need to consider the conditions more carefully.\n\nHowever, we can consider Condition 5, which states that if something is young and green then it is smart. Given that Gary is young (Condition 8), we can apply Condition 5. However, we already know that Gary is not green.\n\nHowever, we can use Condition 7, which states that if something is rough and not green then it is white. Given that Gary is rough (Condition 1) and white (Condition 3), we can apply Condition 7. However, this condition does not tell us anything about Gary's smartness directly.\n\nNow, let's consider Condition 6, which states that smart things are white. Given that Gary is white (Condition 3), we might initially think that Gary is smart. However, we need to consider the conditions more carefully.\n\nHowever, we can consider Condition 5, which states that if something is young and green then it is smart. Given that Gary is young (Condition 8), we can apply Condition 5. However, we already know that Gary is not green.\n\nHowever, we can use Condition 8, which states that if something is rough then it is young. Given that Gary is rough (Condition 1), we can conclude that Gary is young (Condition 8).\n\nNow, let's consider Condition 7, which states that if something is rough and not green then it is white. Given that Gary is rough (Condition 1) and white (Condition 3), we can apply Condition 7. However, this condition does not tell us anything about Gary's smartness directly.\n\nNow, let's consider Condition 6, which states that smart things are white. Given that Gary is white (Condition 3), we might initially think that Gary is smart. However, we need to consider the conditions more carefully.\n\nHowever, we can consider Condition 5, which states that if something is young and green then it is smart. Given that Gary is young (Condition 8), we can apply Condition 5. However, we already know that Gary is not green.\n\nHowever, we can use Condition 8, which states that if something is rough then it is young. Given that Gary is rough (Condition 1), we can conclude that Gary is young (Condition 8).\n\nHowever, we can use Condition ",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements to determine the characteristics of Gary.\n\n1. Gary is rough. \n2. Gary is round.\n3. Gary is white.\n\nNow, we need to use the given statements to see if Gary is smart or not.\n\nGiven statement: \n- Smart things are white.\n- Gary is white.\n\nFrom the given statement, we can infer that Gary is smart because it is white.\n\nHowever, given statement:\n- Gary is rough.\n\nGiven statement:\n- All rough things are young.\n- Gary is young.\n\nGiven statement:\n- Young and green things are smart.\n\nGary is not green, but it is young, so it is not smart.\n\nThe given statement \"If something is young and not nice then it is round\" does not apply in this case, because Gary is not young and not nice or it is young and nice, because it is round.\n\nThe given statement \"If something is white then it is round\" does apply in this case, but we already know Gary is round.\n\nTherefore, based on the given statements, Gary is not smart.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> not smart(X) | green(X)",
+          "z3_formula": "Implies(young_gary, Or(Not(smart_gary), green_gary))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(gary)",
+          "z3_formula": "Not(smart_gary) == True",
+          "source_step": 5
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_gary, round_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & Not(green(X)) -> white(X)",
+          "z3_formula": "Implies(And(rough_gary, Not(green_gary)), white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "Not(green(gary))",
+          "z3_formula": "Not(green_gary) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_gary, green_gary), smart_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "Not(green(gary))",
+          "z3_formula": "Not(green_gary) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(smart(gary))",
+          "z3_formula": "Not(smart_gary) == True",
+          "source_step": 5
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_gary, round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & Not(green(X)) -> white(X)",
+          "z3_formula": "Implies(And(rough_gary, Not(green_gary)), white_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_gary, white_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_gary, round_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not(nice(X)) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, Not(nice_gary)), round_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not(young(X))",
+          "z3_formula": "Implies(round_gary, Not(young_gary))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_gary, round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & not(green(X)) -> white(X)",
+          "z3_formula": "Implies(And(rough_gary, Not(green_gary)), white_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_gary, white_gary), rough_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> not(green(X))",
+          "z3_formula": "Implies(white_gary, Not(green_gary))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_gary, white_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_gary, green_gary), smart_gary)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_gary, round_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not(nice(X)) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, Not(nice_gary)), round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_gary, green_gary), smart_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_gary, white_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & not(green(X)) -> white(X)",
+          "z3_formula": "Implies(And(rough_gary, Not(green_gary)), white_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_bob, green_bob), rough_bob)",
+          "source_step": 10
+        }
+      ],
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_gary, round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_gary, nice_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & Not(green(X)) -> white(X)",
+          "z3_formula": "Implies(And(rough_gary, Not(green_gary)), white_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> smart(X)",
+          "z3_formula": "Implies(white_gary, smart_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_bob, green_bob), smart_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "Not(green(gary))",
+          "z3_formula": "Not(green_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "Not(smart(gary))",
+          "z3_formula": "Not(smart_gary)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_gary, round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_gary, round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not nice(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, Not(nice_gary)), round_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_bob, green_bob), rough_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_gary, green_gary), smart_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_gary, white_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & not green(X) -> white(X)",
+          "z3_formula": "Implies(And(rough_gary, Not(green_gary)), white_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> smart(X)",
+          "z3_formula": "Implies(white_gary, smart_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_gary, rough_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_gary, green_gary), smart_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not nice(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, Not(nice_gary)), round_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> round(X)",
+          "z3_formula": "Implies(white_gary, round_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(gary)",
+          "z3_formula": "Not(smart_gary) == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 96,
+      "traces_with_constraints": 8,
+      "unique_after_dedup": 27
+    },
+    "maxsat_stats": {
+      "satisfied": 24,
+      "excluded": 3,
+      "total_weight": 91,
+      "solve_time_ms": 1.4874991029500961
+    },
+    "timing": {
+      "trace_gen_s": 24.88,
+      "extraction_s": 42.753,
+      "dedup_s": 0.503,
+      "maxsat_s": 0.003,
+      "total_s": 68.14
+    }
+  }
+}

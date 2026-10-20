@@ -1,0 +1,27 @@
+paper_key: "dsc2025"
+title: "Make Every Penny Count: Difficulty-Adaptive Self-Consistency for Cost-Efficient Reasoning"
+venue: "NAACL Findings 2025"
+full_text_available: false
+
+research:
+  baselines: ["Adaptive Self-Consistency (ASC)", "Early-stopping Self-Consistency (ESC)", "standard self-consistency"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "inference cost (number of samples)", direction: "lower_better"}
+  datasets:
+    - {name: "arithmetic reasoning benchmarks", size: "N/A"}
+    - {name: "commonsense reasoning benchmarks", size: "N/A"}
+    - {name: "symbolic reasoning benchmarks", size: "N/A"}
+  ablation_dimensions: ["prior vs posterior difficulty estimation", "batch-level vs instance-level allocation"]
+  training_recipe: {info: "prompting-based, no training; difficulty estimation from batch statistics"}
+  method_family: "adaptive self-consistency"
+
+positioning:
+  core_claim: "Leveraging both prior and posterior difficulty information at the batch level enables adaptive inference resource allocation that significantly reduces self-consistency cost while maintaining comparable performance"
+  key_results: "Consistently surpasses ASC and ESC in cost efficiency by a significant margin with comparable accuracy across 6 benchmarks"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

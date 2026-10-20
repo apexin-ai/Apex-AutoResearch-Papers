@@ -1,0 +1,27 @@
+{
+  "exp_id": "mvp_pipeline_003b",
+  "project": "cross_representation_disagreement_diagno",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:06:50.709Z",
+    "updated_at": "2026-05-14T14:28:52.423Z",
+    "hypothesis": "v4 truncation detection + thinking-off retry, 204 samples full run (resumed from 003 killed run, ~1 sample completed)",
+    "server": "autodl-rtx6000pro",
+    "gpu": "cuda:0",
+    "spec": {
+      "command": "cd /root/autodl-tmp/crdd && nohup python src/pipeline.py --output results/mvp_v4_full.json --resume results/mvp_v4_full.json > pipeline_v4_full.log 2>&1 &",
+      "server": "autodl-rtx6000pro",
+      "data_path": "FOLIO validation set (full)",
+      "data_count": 204,
+      "model_name": "Qwen3-32B-AWQ (awq_marlin)",
+      "seed": 0,
+      "pid": "29177"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T14:28:52.468751+00:00",
+  "trigger": "update_registry"
+}

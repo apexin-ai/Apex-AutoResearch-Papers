@@ -1,0 +1,678 @@
+{
+  "pid": "folio_187",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city, american)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y) -> writer(Y)",
+          "z3_formula": "Implies(And(novel, written_by_dani_shapiro), writer_dani_shapiro)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american(writer(dani_shapiro))",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_podcast(dani_shapiro, family_secrets)",
+          "z3_formula": "created_podcast_dani_shapiro_family_secrets == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city_dani_shapiro, american_dani_shapiro)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by_person(X, Y) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel_family_history, written_by_person_family_history_dani_shapiro), novel_writer_dani_shapiro)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by_person(family_history, dani_shapiro)",
+          "z3_formula": "written_by_person_family_history_dani_shapiro == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not novel_podcast == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(born_in_boston_dani_shapiro)",
+          "z3_formula": "born_in_boston_dani_shapiro == Unknown",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city, american)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel, written_by), novel_writer)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history) & written_in_2003(family_history)",
+          "z3_formula": "And(novel_family_history, written_in_2003_family_history) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_podcast(dani_shapiro, family_secrets)",
+          "z3_formula": "created_podcast_dani_shapiro_family_secrets == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "wrote(dani_shapiro, family_history)",
+          "z3_formula": "wrote_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "born_in(X, Y) -> american(X)",
+          "z3_formula": "Implies(born_in_dani_shapiro_boston, american_dani_shapiro)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "born_in(X, Y) -> american(X)",
+          "z3_formula": "Implies(born_in_dani_shapiro_boston, american_dani_shapiro)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "american(dani_shapiro)",
+          "z3_formula": "american_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "american(dani_shapiro)",
+          "z3_formula": "american_dani_shapiro == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not_novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city, american)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel, written_by), novel_writer)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_by(dani_shapiro, family_secrets)",
+          "z3_formula": "created_by_dani_shapiro_family_secrets == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "novel_writer(dani_shapiro)",
+          "z3_formula": "novel_writer_dani_shapiro == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not novel(family_secrets)",
+          "z3_formula": "not_novel_family_secrets == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(born_in_boston(dani_shapiro))",
+          "z3_formula": "unknown_born_in_boston_dani_shapiro == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city_dani, american_dani)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel_family_history, written_by_dani), novel_writer_dani)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani)",
+          "z3_formula": "american_writer_dani == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani, family_history)",
+          "z3_formula": "written_by_dani_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "novel_writer(dani)",
+          "z3_formula": "novel_writer_dani == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(born_in_boston_dani)",
+          "z3_formula": "born_in_boston_dani == Unknown",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not_novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "american_city(X) -> american(X)",
+          "z3_formula": "Implies(american_city_X, american_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y, X) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel_X, written_by_Y_X), novel_writer_Y)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(born_in_boston(dani_shapiro))",
+          "z3_formula": "born_in_boston_dani_shapiro == Unknown",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not_novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city_dani, american_dani)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by_person(X, Y) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel_family_history, written_by_person_family_history_dani), novel_writer_dani)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani)",
+          "z3_formula": "american_writer_dani == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by_dani(family_history)",
+          "z3_formula": "written_by_dani_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_podcast(dani, family_secrets)",
+          "z3_formula": "created_podcast_dani_family_secrets == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city, american)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y) -> writer(Y)",
+          "z3_formula": "Implies(And(novel, written_by_dani_shapiro), writer_dani_shapiro)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history) & year(2003)",
+          "z3_formula": "novel_family_history_year_2003 == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_podcast(dani_shapiro, family_secrets)",
+          "z3_formula": "created_podcast_dani_shapiro_family_secrets == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "american(dani_shapiro)",
+          "z3_formula": "american_dani_shapiro == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "born_in_boston(dani_shapiro)",
+          "z3_formula": "born_in_boston_dani_shapiro == Unknown",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not novel(podcast)",
+          "z3_formula": "not novel_podcast == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city, american)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel, written_by), novel_writer)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_podcast(dani_shapiro, family_secrets)",
+          "z3_formula": "created_podcast_dani_shapiro_family_secrets == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "podcast != novel",
+          "z3_formula": "podcast != novel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "born_in_american_city(X) -> american(X)",
+          "z3_formula": "Implies(born_in_american_city, american)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "novel(X) & written_by(Y) -> novel_writer(Y)",
+          "z3_formula": "Implies(And(novel, written_by), novel_writer)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "created_podcast(dani_shapiro, family_secrets)",
+          "z3_formula": "created_podcast_dani_shapiro_family_secrets == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "american_writer(dani_shapiro)",
+          "z3_formula": "american_writer_dani_shapiro == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "novel(family_history)",
+          "z3_formula": "novel_family_history == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "written_by(dani_shapiro, family_history)",
+          "z3_formula": "written_by_dani_shapiro_family_history == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "american_city(boston)",
+          "z3_formula": "american_city_boston == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "american(X) -> american_city(Y) -> born_in(X, Y)",
+          "z3_formula": "Implies(And(american_writer_dani_shapiro, american_city_boston), born_in_dani_shapiro_boston)",
+          "source_step": 9
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1185 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-959_Q14",
+    "problem": "Bob is rough. Fiona is cold. Fiona is rough. Gary is big. Gary is quiet. Harry is big. Harry is rough. If someone is white and smart then they are furry. All rough people are big. All furry people are white. If someone is quiet and cold then they are white. All furry people are white. If Harry is big then Harry is cold. Big, smart people are quiet. If someone is big then they are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is furry.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nBig($x, bool) ::: Is x big?\nQuiet($x, bool) ::: Is x quiet?\nWhite($x, bool) ::: Is x white?\nSmart($x, bool) ::: Is x smart?\nFurry($x, bool) ::: Is x furry?\n\nFacts:\nRough(Bob, True) ::: Bob is rough.\nCold(Fiona, True) ::: Fiona is cold.\nRough(Fiona, True) ::: Fiona is rough.\nBig(Gary, True) ::: Gary is big.\nQuiet(Gary, True) ::: Gary is quiet.\nBig(Harry, True) ::: Harry is big.\nRough(Harry, True) ::: Harry is rough.\n\nRules:\nWhite($x, True) && Smart($x, True) >>> Furry($x, True) ::: If someone is white and smart then they are furry.\nRough($x, True) >>> Big($x, True) ::: All rough people are big.\nFurry($x, True) >>> White($x, True) ::: All furry people are white.\nQuiet($x, True) && Cold($x, True) >>> White($x, True) ::: If someone is quiet and cold then they are white.\nFurry($x, True) >>> White($x, True) ::: All furry people are white.\nBig(Harry, True) >>> Cold(Harry, True) ::: If Harry is big then Harry is cold.\nBig($x, True) && Smart($x, True) >>> Quiet($x, True) ::: Big, smart people are quiet.\nBig($x, True) >>> Smart($x, True) ::: If someone is big then they are smart.\n\nQuery:\nFurry(Gary, True) ::: Gary is furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 101.0,
+      "Unknown": 168.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Gary is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information:\n   - Gary is big.\n   - Harry is big.\n   - Harry is rough.\n   - All rough people are big.\n\n   Since Harry is big and Harry is rough, and all rough people are big, it can be inferred that Gary being big does not necessarily mean he is rough. However, it cannot be concluded that Gary is not big.\n\n2. From the given information:\n   - If someone is big then they are smart.\n   - Gary is big.\n\n   Since Gary is big, it can be concluded that Gary is smart.\n\n3. From the given information:\n   - Gary is quiet.\n   - Big, smart people are quiet.\n\n   Since Gary is big and smart, it can be concluded that Gary is quiet.\n\n4. From the given information:\n   - All furry people are white.\n   - If someone is white and smart then they are furry.\n   - Since Gary is smart and quiet, it cannot be concluded that Gary is white.\n\n   However, we cannot directly conclude whether Gary is furry or not.\n\n5. From the given information:\n   - If someone is quiet and cold then they are white.\n   - Gary is quiet.\n   - It is not given that Gary is cold.\n\n   Since Gary is quiet but it is not given that he is cold, it cannot be concluded that Gary is white.\n\n6. From the given information:\n   - All furry people are white.\n   - If someone is white and smart then they are furry.\n\n   Since Gary is smart but it cannot be concluded that he is white, it cannot be concluded that Gary is furry.\n\n7. Since we have not enough information to conclude whether Gary is furry or not, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller steps using the given statements.\n\n1. All furry people are white. \n   All rough people are big. \n   All furry people are white. \n   If someone is white and smart then they are furry. \n\nFrom the first and third statements, we can conclude that all furry people are white.\n\nFrom the fourth statement, we can infer that if someone is white and smart, then they are furry. However, we cannot conclude that all white people are furry, only that some white people can be furry.\n\n2. Gary is big. Gary is quiet. \n   Harry is big. Harry is rough. \n\nWe know that Gary is big and quiet. We also know that Harry is big and rough.\n\n3. If someone is big then they are smart. \n   Big, smart people are quiet. \n\nFrom the fifth statement, we can conclude that Gary is smart because he is big.\n\nFrom the sixth statement, we can conclude that Gary is quiet because he is big and smart.\n\n4. If Harry is big then Harry is cold. \n\nFrom the seventh statement, we can conclude that Harry is cold because he is big.\n\n5. All rough people are big. \n   Harry is rough. \n\nFrom the eighth statement, we can conclude that Harry is big because he is rough.\n\n6. If someone is quiet and cold then they are white. \n\nHowever, we cannot conclude that Gary is white based on the information provided. We only know that Gary is big, smart, and quiet.\n\n7. Fiona is cold. Fiona is rough. \n\nFrom the ninth statement, we can conclude that Fiona is big because she is rough.\n\n8. Gary is big. \n\nWe already know this from the second statement.\n\n9. All furry people are white. \n\nWe know this from the first statement.\n\nNow, we need to determine whether Gary is furry. To do this, we need to check if any of the statements can be used to conclude that Gary is furry.\n\nFrom the first statement, we know that all furry people are white. However, we don't know if Gary is white.\n\nFrom the fourth statement, we know that if someone is white and smart, then they are furry. However, we don't know if Gary is white.\n\nFrom the statements provided, we cannot conclude that Gary is furry. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Gary is furry' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given:\n- Gary is big.\n- Gary is quiet.\n- If someone is big, then they are smart. (From the given information, we can deduce this as 'All big people are smart.')\n- If someone is big, then they are smart. (This can also be deduced from 'Big, smart people are quiet' by assuming that quiet people are not necessarily smart, but that smart people are big.)\n- Big, smart people are quiet. (This can be rewritten as 'If someone is big and smart, then they are quiet.')\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- If someone is big and smart, then they are quiet. (From the previous step)\n- Gary is big and smart. (From the previous steps)\n\nFrom the given information:\n- All big people are smart. (From step 2)\n- Gary is big. (Given)\n- If someone is big, then they are smart. (From step 2)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n\nCombining the information from steps 4 and 5:\n- Gary is quiet. (Given)\n- Gary is big and smart. (From step 4)\n- If someone is big and smart, then they are quiet. (From step 3)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (From step 4)\n\nSince we know Gary is quiet and big and smart, we can analyze the following information:\n- Big, smart people are quiet. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big and smart. (From step 4)\n\nNow we need to analyze if Gary is furry or not:\n- If someone is white and smart, then they are furry. (Given)\n- All furry people are white. (Given)\n- If someone is quiet and cold, then they are white. (Given)\n- All furry people are white. (Given)\n- If Harry is big, then Harry is cold. (Given)\n- Harry is big. (Given)\n- Harry is big. (Given)\n- Harry is cold. (Given)\n- Gary is big. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n\nNow let's analyze the information about Harry and Gary:\n- Harry is big. (Given)\n- Harry is cold. (Given)\n- If someone is big, then they are smart. (From step 2)\n- If Harry is big, then Harry is cold. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- If someone is big, then they are smart. (From step 2)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- All big people are smart. (From step 2)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n\nFrom the given information, we can deduce:\n- If someone is big, then they are smart. (From step 2)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Big, smart people are quiet. (Given)\n- If someone is quiet and cold, then they are white. (Given)\n- All furry people are white. (Given)\n- If someone is white and smart, then they are furry. (Given)\n- All furry people are white. (Given)\n- All rough people are big. (Given)\n- Harry is rough. (Given)\n- Harry is big. (Given)\n- Gary is big. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is big. (Given)\n- All rough people are big. (From step 7)\n- All furry people are white. (Given)\n- If someone is white and smart, then they are furry. (Given)\n- All furry people are white. (Given)\n- If someone is quiet and cold, then they are white. (Given)\n- All furry people are white. (Given)\n- All furry people are white. (Given)\n- All furry people are white. (Given)\n- Gary is big. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is big and smart. (From step 4)\n- Gary is big and smart. (From step 4)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- All furry people are white. (Given)\n- If someone is white and smart, then they are furry. (Given)\n- All furry people are white. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- All furry people are white. (Given)\n- If someone is white and smart, then they are furry. (Given)\n- If Harry is big, then Harry is cold. (Given)\n- Harry is big. (Given)\n- Harry is big. (Given)\n- Harry is cold. (Given)\n- Gary is big. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n- Gary is big and smart. (From step 4)\n- Gary is quiet. (Given)\n- Gary is big. (Given)\n-",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Fiona is cold.\n   - Fiona is rough.\n   - Gary is big.\n   - Gary is quiet.\n   - Harry is big.\n   - Harry is rough.\n   - If someone is white and smart then they are furry.\n   - All rough people are big.\n   - All furry people are white.\n   - If someone is quiet and cold then they are white.\n   - All furry people are white.\n   - If Harry is big then Harry is cold.\n   - Big, smart people are quiet.\n   - If someone is big then they are smart.\n\n2. Analyzing the information:\n   - From \"All rough people are big\" and \"Harry is rough,\" we can conclude that Harry is big.\n   - Since \"If Harry is big then Harry is cold,\" we can conclude that Harry is cold.\n   - Since \"If someone is quiet and cold then they are white,\" we can conclude that Harry is white.\n   - Since \"All furry people are white\" and \"All furry people are white\" (another instance of this rule), we can conclude that Harry is furry.\n   - However, this conclusion is based on the fact that Harry is white and we know that Harry is big. Since \"If someone is big then they are smart,\" we can conclude that Harry is smart.\n   - Since \"Big, smart people are quiet,\" we can conclude that Harry is quiet.\n   - From \"Gary is big\" and \"If someone is big then they are smart,\" we can conclude that Gary is smart.\n   - From \"Gary is quiet\" and \"Big, smart people are quiet,\" we already know that Gary is quiet.\n   - From \"Gary is big\" and \"All rough people are big,\" we can conclude that Gary is rough.\n   - From \"Gary is big\" and \"If someone is big then they are smart,\" we can conclude that Gary is smart.\n   - From \"Gary is quiet\" and \"If someone is quiet and cold then they are white,\" we cannot conclude that Gary is white or cold. This rule does not directly apply to Gary.\n   - From \"Gary is rough\" and \"All rough people are big,\" we know that Gary is big. However, we cannot conclude that Gary is furry from the given information.\n\n3. Conclusion:\nSince we cannot conclude that Gary is furry based on the given information, the statement \"Gary is furry\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and apply them to the statement we need to evaluate: \"Gary is furry.\"\n\n1. We know the following statements:\n   - Fiona is cold.\n   - Fiona is rough.\n   - Gary is big.\n   - Gary is quiet.\n   - Harry is big.\n   - Harry is rough.\n   - If someone is white and smart then they are furry.\n   - All rough people are big.\n   - All furry people are white.\n   - If someone is quiet and cold then they are white.\n   - All furry people are white.\n   - If Harry is big then Harry is cold.\n   - Big, smart people are quiet.\n   - If someone is big then they are smart.\n\n2. Let's break down the given statements and create a set of rules:\n   - Rule 1: If someone is white and smart then they are furry.\n   - Rule 2: All rough people are big.\n   - Rule 3: All furry people are white.\n   - Rule 4: If someone is quiet and cold then they are white.\n   - Rule 5: If Harry is big then Harry is cold.\n\n3. From the information given, we can derive the following:\n   - Gary is big (given).\n   - Gary is quiet (given).\n   - Harry is big (given).\n   - Harry is rough (given).\n\n4. Applying Rule 2 to Harry's information, we can conclude that Harry is rough, and since Harry is big, it implies that Harry is rough (Rule 2). However, we need to find a connection to determine if Gary is furry.\n\n5. Since Gary is big, we can apply Rule 5: If Harry is big then Harry is cold. But we need to know if Gary is cold to apply Rule 4.\n\n6. To determine if Gary is cold, we need to find a connection between Gary and cold. However, we do not have any information that directly links Gary to cold.\n\n7. We can conclude that since Gary is big, he is smart (Rule 8).\n\n8. Since Gary is big and smart, we can apply Rule 7: Big, smart people are quiet.\n\n9. We now know Gary is quiet, but we still do not know if he is cold.\n\n10. Since Gary is quiet and cold is unknown, we cannot apply Rule 4: If someone is quiet and cold then they are white.\n\n11. Since we cannot apply Rule 4, we cannot conclude if Gary is white or not.\n\n12. Since Gary is big and smart, we can apply Rule 6: If someone is big then they are smart. This was given, but it was not used to find if Gary is furry.\n\n13. Since Gary is smart and big, we know Gary is quiet (Rule 7).\n\n14. We still cannot find a connection between Gary and being furry.\n\n15. To determine if Gary is furry, we need to find a connection to Rule 1: If someone is white and smart then they are furry. However, we still do not know if Gary is white.\n\n16. Since we cannot apply Rule 1, we cannot conclude if Gary is furry.\n\n17. However, we can apply Rule 3: All furry people are white. But we do not know if Gary is furry.\n\n18. Since we do not know if Gary is furry, we cannot conclude if Gary is white.\n\n19. Since Gary is big and smart, we know Gary is quiet (Rule 7). We also know that Gary is big.\n\n20. From Rule 6: If someone is big then they are smart. We can conclude that Gary is smart because he is big.\n\n21. Since Gary is big and smart, we can apply Rule 7: Big, smart people are quiet. This was given, but it was not used to find if Gary is furry.\n\n22. From Rule 8: If someone is big then they are smart. We can conclude that Gary is smart because he is big.\n\n23. Since Gary is smart, we can apply Rule 1: If someone is white and smart then they are furry. However, we do not know if Gary is white.\n\n24. Since Gary is big, we can apply Rule 2: All rough people are big. But we do not know if Gary is rough.\n\n25. Since Gary is big and smart, we can apply Rule 7: Big, smart people are quiet. This was given, but it was not used to find if Gary is furry.\n\n26. Since Gary is big, we can apply Rule 6: If someone is big then they are smart. This was given, but it was not used to find if Gary is furry.\n\n27. We can now look at the given statement: Gary is furry.\n\n28. Since we cannot find a connection between Gary and being furry, we cannot conclude if Gary is furry.\n\n29. However, we can apply Rule 1: If someone is white and smart then they are furry. But we do not know if Gary is white.\n\n30. Since we cannot apply Rule 1, we cannot conclude if Gary is furry.\n\nGiven the information, we still do not have enough to conclude if Gary is furry. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Gary is furry, we need to analyze the given information step by step.\n\n1. Gary is big. (Given)\n2. Big people are smart. (Given)\n   Therefore, Gary is smart. (From 2)\n\n3. Gary is quiet. (Given)\n4. Big, smart people are quiet. (Given)\n   This statement is a bit confusing because it's already stated in 2 that big people are smart, so we can simplify it to: Big people are quiet. (From 3 and 4)\n   However, we know from the given information that big, smart people are quiet. Therefore, we can conclude that Gary is quiet and smart, but it doesn't necessarily mean that big people are quiet. We will come back to this later.\n\n5. Gary is not furry. Let's analyze this.\n   If someone is white and smart, then they are furry. (Given)\n   All furry people are white. (Given)\n   We don't have enough information to determine if Gary is white or not. However, from step 1, we know that Gary is big, and from step 2, we know that Gary is smart. \n\n6. Let's analyze this with the information given about Harry. Harry is big. (Given)\n   Harry is cold. (Given)\n   If Harry is big, then Harry is cold. (From 6)\n   This implies that being big and cold are the same for Harry. However, this does not apply to Gary. We know Gary is big, but we cannot conclude that Gary is cold.\n\n7. Big people are cold. (From 6 and 7)\n   This is a simplification, but we know that big people are smart (From 2), and if someone is big, then they are smart (From 2).\n\n8. If someone is quiet and cold, then they are white. (Given)\n   Gary is quiet. (Given)\n   However, we cannot conclude that Gary is cold. We know that Harry is big and cold, but we cannot apply this to Gary.\n\n9. All rough people are big. (Given)\n   However, we cannot determine if Gary is rough or not.\n\n10. Fiona is cold. (Given)\n    Fiona is rough. (Given)\n    However, we cannot conclude that Gary is rough or cold.\n\n11. If someone is white and smart then they are furry. (Given)\n    All furry people are white. (Given)\n    Gary is big. (Given)\n    Gary is smart. (From 2)\n    However, we cannot conclude that Gary is white or furry.\n\n12. From step 5, we know that Gary is not furry.\n\nThe final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Gary is big.\n   - Harry is big.\n   - Harry is rough.\n   - All rough people are big.\n   - All furry people are white.\n   - If someone is white and smart then they are furry.\n   - All furry people are white. (Note: This statement is redundant as it repeats the previous one.)\n   - If someone is quiet and cold then they are white.\n   - Big, smart people are quiet.\n   - If someone is big then they are smart.\n   - Gary is quiet.\n   - Gary is big.\n   - Harry is big. \n   - Harry is cold.\n\n2. From the given information, we can deduce the following:\n   - Since all rough people are big and Harry is big, it doesn't necessarily mean Harry is rough. However, we know Harry is big and also rough, so this doesn't help us with Gary.\n   - We also know that if someone is big, then they are smart, and if someone is big, then they are quiet. Therefore, a big person is both smart and quiet.\n   - Given that Gary is quiet and Gary is big, we can conclude that Gary is both smart and quiet.\n   - Since Gary is big, we can conclude that Gary is smart (from the statement \"if someone is big then they are smart\").\n   - Now, we need to determine if Gary is white or not. We can use the statement \"If someone is quiet and cold then they are white.\" However, we don't have any direct information about Gary being cold.\n   - We do have information about Harry being big and cold, but this does not directly apply to Gary.\n   - We also know that if someone is white and smart, then they are furry. However, we cannot determine if Gary is white or not. If Gary is white, then Gary would be furry. But if Gary is not white, then we cannot determine if Gary is furry or not.\n\n3. Based on the given information, we cannot determine if Gary is white or not. We also cannot determine if Gary is furry or not based on the given information. Therefore, we cannot conclude whether the statement \"Gary is furry\" is true or false.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is furry\" is true, false, or unknown, we need to analyze the given information and apply the rules of logic.\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. If someone is big, then they are smart. (Rule 1)\n   Therefore, Gary is smart. (From 1 and 3)\n\n4. If someone is quiet and cold, then they are white. (Rule 2)\n   We don't know if Gary is cold or not.\n\n5. If someone is big and smart, then they are quiet. (Rule 3)\n   We already know Gary is big and smart, so Gary is quiet (From 1, 3, and 5). This matches the given information, so we don't get any new information from this rule.\n\n6. If Harry is big, then Harry is cold. (Rule 4)\n   We don't know if Harry is Gary or not.\n\n7. Harry is big. (Given)\n8. Harry is rough. (Given)\n9. All rough people are big. (Rule 5)\n   This rule doesn't apply to Gary, as it applies to Harry. We already know Gary is big (From 1), so this rule doesn't add any new information.\n\n10. All furry people are white. (Rule 6)\n    This rule doesn't apply to Gary yet, as we don't know if Gary is furry or not.\n\n11. If someone is white and smart, then they are furry. (Rule 7)\n    We already know Gary is smart (From 1 and 3), but we don't know if Gary is white or not.\n\n12. Fiona is cold. (Given)\n13. Fiona is rough. (Given)\n14. All rough people are big. (Rule 5)\n    We already know Fiona is rough (From 13), so Fiona is big (From 14).\n\n15. All furry people are white. (Rule 6)\n    We don't know if Fiona is furry or not.\n\n16. If someone is quiet and cold, then they are white. (Rule 2)\n    Fiona is quiet (We don't know this), but Fiona is cold (From 12). If Fiona is quiet, then Fiona is white (From 12 and 16). We don't know if Fiona is quiet or not.\n\nNow, let's analyze the given information again:\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. Gary is smart. (From 1 and 3)\n4. If someone is white and smart, then they are furry. (Rule 7)\n   We already know Gary is smart (From 1 and 3), but we don't know if Gary is white or not.\n\nWe know that if Fiona is quiet and cold, then Fiona is white (From 12 and 16). However, we don't know if Fiona is quiet or not. If Fiona is quiet, then Fiona is white (From 16). If Fiona is white, then Fiona is furry (From 15 and 6), but we don't know if Fiona is furry or not. We also know that all furry people are white (From 6), but this rule doesn't apply to Gary yet.\n\nNow, let's analyze the information again:\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. Gary is smart. (From 1 and 3)\n4. If someone is big, then they are smart. (Rule 1)\n   We already know this, as Gary is big and smart (From 1 and 3).\n\nNow, let's analyze the information again:\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. Gary is smart. (From 1 and 3)\n4. All furry people are white. (Rule 6)\n   We don't know if Gary is furry or not.\n\nWe know that if someone is quiet and cold, then they are white (From 12 and 16). However, we don't know if Gary is cold or not. If Gary is cold, then Gary is white (From 16), but we don't know if Gary is white or not.\n\nNow, let's analyze the information again:\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. Gary is smart. (From 1 and 3)\n4. If someone is quiet and cold, then they are white. (Rule 2)\n   We don't know if Gary is cold or not.\n\nNow, let's analyze the information again:\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. Gary is smart. (From 1 and 3)\n4. If Harry is big, then Harry is cold. (Rule 4)\n   We don't know if Harry is Gary or not.\n\nNow, let's analyze the information again:\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. Gary is smart. (From 1 and 3)\n4. Harry is big. (Given)\n5. Harry is rough. (Given)\n6. All rough people are big. (Rule 5)\n   We already know Harry is big (From 4) and rough (From 5), so this rule doesn't add any new information.\n\nNow, let's analyze the information again:\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. Gary is smart. (From 1 and 3)\n4. Harry is big. (Given)\n5. Harry is rough. (Given)\n6. If someone is white and smart, then they are furry. (Rule 7)\n   We already know Gary is smart (From 1 and 3), but we don't know if Gary is white or not.\n\nNow, let's analyze the information again:\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. Gary is smart. (From 1 and 3)\n4. Harry is big. (Given)\n5. Harry is rough. (Given)\n6. If someone is quiet and cold, then they are white. (Rule 2)\n   We don't know if Harry is cold or not.\n\nNow, let's analyze the information again:\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. Gary is smart. (From 1 and 3)\n4. Harry is big. (Given)\n5. Harry is rough. (Given)\n6. Harry is cold. (From 4 and 4)\n7. All furry people are white. (Rule 6)\n   We don't know if Gary is furry or not.\n\nNow, let's analyze the information again:\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. Gary is smart. (From 1 and 3)\n4. Harry is big. (Given)\n5. Harry is rough. (Given)\n6. Harry is cold. (From 4 and 4)\n7. If someone is big, then they are smart. (Rule 1)\n   We already know this, as Gary is big and smart (From 1 and 3).\n\nNow, let's analyze the information again:\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. Gary is smart. (From 1 and 3)\n4. Harry is big. (Given)\n5. Harry is rough. (Given)\n6. Harry is cold. (From 4 and 4)\n7. If someone is quiet and cold, then they are white. (Rule 2)\n   We don't know if Harry is quiet or not.\n\nNow, let's analyze the information again:\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. Gary is smart. (From 1 and 3)\n4. Harry is big. (Given)\n5. Harry is rough. (Given)\n6. Harry is cold. (From 4 and 4)\n7. If someone is quiet and cold, then they are white. (Rule 2)\n   We don't know if Harry is quiet or not.\n\nNow, let's analyze the information again:\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. Gary is smart. (From 1 and 3)\n4. Harry is big. (Given)\n5. Harry is rough. (Given)\n6. Harry is cold. (From 4 and 4)\n7. If Harry is quiet, then Harry is white. (From 6 and 7)\n   We don't know if Harry is quiet or not.\n\nNow, let's analyze the information again:\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. Gary is smart. (From 1 and 3)\n4. Harry is big. (Given)\n5. Harry is rough. (Given)\n6. Harry is cold. (From 4 and 4)\n7. If Harry is quiet, then Harry is white. (From 6 and 7)\n   We don't know if Harry is quiet or not.\n\nNow, let's analyze the information again:\n\n1. Gary is big. (Given)\n2. Gary is quiet. (Given)\n3. Gary is smart. (From 1 and 3)\n4. Harry is big. (Given)\n5. Harry is rough. (Given)\n6. Harry is cold. (From 4 and 4)\n7. If Harry is quiet, then Harry is white. (From 6 and 7",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Gary is furry, we need to analyze the given information step by step.\n\n1. Given information:\n   - Bob is rough.\n   - Fiona is cold.\n   - Fiona is rough.\n   - Gary is big.\n   - Gary is quiet.\n   - Harry is big.\n   - Harry is rough.\n   - If someone is white and smart then they are furry.\n   - All rough people are big.\n   - All furry people are white.\n   - If someone is quiet and cold then they are white.\n   - All furry people are white.\n   - If Harry is big then Harry is cold.\n   - Big, smart people are quiet.\n   - If someone is big then they are smart.\n\n2. Analyze the information:\n   - From \"If someone is quiet and cold then they are white\" and \"Fiona is cold\" we can conclude that Fiona is white.\n   - From \"All furry people are white\" we can conclude that all furry people are white, but we cannot conclude that white people are furry.\n   - From \"Gary is big\" and \"If someone is big then they are smart\" we can conclude that Gary is smart.\n   - From \"Gary is big\" and \"Gary is quiet\" we can conclude that Gary is quiet and smart.\n   - From \"If someone is quiet and cold then they are white\" we cannot conclude that Gary is white because we don't know if he is cold.\n   - From \"Gary is quiet and smart\" and \"Big, smart people are quiet\" we can conclude that Gary is big (this is already given) but we cannot conclude that Gary is white.\n\n3. Determine whether Gary is furry:\n   - From \"If someone is white and smart then they are furry\" we can conclude that if Gary is white and smart then Gary is furry.\n   - From the analysis above, we cannot conclude that Gary is white, but we can conclude that Gary is smart.\n   - We cannot conclude that Gary is furry because we cannot conclude that Gary is white.\n\nTherefore, the answer is unknown. \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Gary is furry, we need to follow the given statements and deduce the information about Gary.\n\n1. Gary is big. (Direct statement)\n2. All big people are smart. (Statement 5)\n   Therefore, Gary is smart. (From statement 1 and statement 5)\n\n3. Gary is quiet. (Direct statement)\n4. Big, smart people are quiet. (Statement 6)\n   Therefore, the statement 'Gary is quiet' is redundant because it can be deduced from statement 1 and statement 6.\n\n5. All furry people are white. (Statement 3)\n6. If someone is white and smart then they are furry. (Statement 2)\n   Let's assume a variable 'x' for 'someone' who is white and smart.\n   Therefore, x is furry (Statement 2) and x is white (Statement 3).\n   We already know Gary is smart from step 2, and it is given that Gary is big (Statement 1), but we cannot directly conclude that Gary is white.\n\n7. If someone is quiet and cold then they are white. (Statement 4)\n   Let's assume a variable 'y' for 'someone' who is quiet and cold.\n   Therefore, y is white (Statement 4).\n\n8. All rough people are big. (Statement 1)\n   Therefore, Gary is not rough because it's given that Fiona is rough, not Gary (Direct statement).\n\n9. If Harry is big then Harry is cold. (Statement 7)\n   Let's assume a variable 'z' for Harry.\n   Therefore, z is cold (Statement 7). But we do not know if Gary is cold.\n\n10. From the given statements, we can conclude that:\n    a. Gary is big.\n    b. Gary is smart.\n    c. We cannot conclude if Gary is white or furry.\n\nBased on the given statements, we cannot determine if Gary is furry or not because we do not have enough information about Gary being white.\n\nTherefore, the statement 'Gary is furry' is unknown.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and analyze the given statements. We will break it down step by step:\n\nGiven statements:\n\n1. Fiona is cold.\n2. Fiona is rough.\n3. Gary is big.\n4. Gary is quiet.\n5. Harry is big.\n6. Harry is rough.\n7. If someone is white and smart then they are furry.\n8. All rough people are big.\n9. All furry people are white.\n10. If someone is quiet and cold then they are white.\n11. All furry people are white.\n12. If Harry is big then Harry is cold.\n13. Big, smart people are quiet.\n14. If someone is big then they are smart.\n\nNow, let's try to find the conclusion that Gary is furry. \n\nWe need to determine if Gary is furry using the given statements. To do this, we can try to find a path from Gary to 'furry'.\n\n1. We know Gary is big (statement 3).\n2. We know if someone is big then they are smart (statement 14).\n3. We know if someone is big and smart then they are quiet (statement 13).\n4. We know Gary is quiet (statement 4).\n5. From statement 12, we know that if Harry is big then Harry is cold. However, this does not directly relate to Gary, but it does tell us that big people can be cold.\n6. We know that if someone is quiet and cold then they are white (statement 10).\n7. We know that if someone is white and smart then they are furry (statement 7).\n\nNow, let's try to conclude whether Gary is furry. Since Gary is quiet and we know that big people can be cold (from statement 12), we can't directly say that Gary is white or cold. However, we can say that Gary is big and smart.\n\nSince Gary is big and smart, we can use statement 7 which says that if someone is white and smart then they are furry. But, we don't know if Gary is white. \n\nHowever, we can't directly say that Gary is not furry either because we don't have enough information to rule out the possibility that Gary is white.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Gary is furry, we need to analyze the given statements and apply them step by step.\n\n1. Gary is big. (Given statement)\n2. If someone is big, then they are smart. (Given statement)\n   So, Gary is smart. (From 1 and 2)\n\n3. Gary is quiet. (Given statement)\n4. Big, smart people are quiet. (Given statement)\n   Since Gary is big and smart, we can conclude that Gary is quiet. (From 1, 2, and 3)\n\n5. All furry people are white. (Given statement)\n   Since we don't have any information about Gary being furry, we cannot conclude his color.\n\n6. If someone is quiet and cold, then they are white. (Given statement)\n   However, we don't have any information about Gary being cold.\n\n7. All rough people are big. (Given statement)\n   Since we know Gary is big, but we don't know if he is rough, we cannot conclude anything.\n\n8. Fiona is cold. (Given statement)\n   Fiona is rough. (Given statement)\n   Since all rough people are big (from 7), Fiona is big. (From 7)\n   However, we don't have any direct information about Gary being cold or rough.\n\n9. Harry is big. (Given statement)\n   Harry is rough. (Given statement)\n   If Harry is big, then Harry is cold. (Given statement)\n   So, Harry is cold. (From 9 and 10)\n\n10. If someone is big then they are smart. (Given statement)\n    So, Harry is smart. (From 9)\n\n11. Big, smart people are quiet. (Given statement)\n    Since Harry is big and smart, we can conclude that Harry is quiet. (From 9, 10, and 11)\n\n12. All furry people are white. (Given statement)\n    However, we don't have any information about Harry being furry.\n\n13. If someone is white and smart then they are furry. (Given statement)\n    Since Harry is white and smart, we can conclude that Harry is furry. (From 10 and 12, but also 12 and 13)\n\nNow, let's go back to Gary. We don't have any information about Gary being cold, rough, or furry. However, we do know that if someone is quiet and cold, then they are white. We also know that all furry people are white, and if someone is white and smart then they are furry.\n\nSince we don't have any information about Gary being cold, we cannot conclude his color based on statement 6. However, we know that Gary is big, smart, and quiet (from 1, 2, 3, and 4). \n\nSince Gary is big and smart, we can conclude that he is quiet (from 4). Now, let's see if Gary is furry. We know that all furry people are white (from 5), but we don't have any information about Gary being white.\n\nHowever, we also know that if someone is white and smart then they are furry (from 13). We know that Gary is smart (from 2), but we don't know if he is white.\n\nStatement 6 says that if someone is quiet and cold, then they are white. However, we don't have any information about Gary being cold.\n\nStatement 5 says that all furry people are white. We don't have any information about Gary being furry.\n\nHowever, we can try to deduce if Gary is furry by looking at statement 13. Statement 13 says that if someone is white and smart then they are furry. We know that Gary is smart (from 2), but we don't know if he is white.\n\nWe also know that if someone is quiet and cold, then they are white (from 6). However, we don't have any information about Gary being cold.\n\nLet's try to find any other information that can help us determine if Gary is furry. We know that Harry is big, smart, quiet, and furry (from 9, 10, 11, and 13). We also know that Harry is cold (from 10).\n\nSince all furry people are white (from 5), we can conclude that Harry is white (from 13).\n\nNow, let's look at statement 1. It says that Gary is big. If someone is big, then they are smart (from 2). So, Gary is smart (from 1 and 2). We already know that Gary is quiet (from 3 and 4).\n\nHowever, we don't have any information about Gary being white, cold, or furry.\n\nSince we know that all furry people are white (from 5), but we don't have any information about Gary being white, we cannot conclude that Gary is furry based on this statement.\n\nHowever, statement 13 says that if someone is white and smart then they are furry. We don't have any information about Gary being white, but we know that Gary is smart (from 2).\n\nSince we don't have any information about Gary being cold, we cannot conclude his color based on statement 6.\n\nWe also know that Harry is white and furry (from 9, 10, 11, and 13). Harry is also big, smart, quiet, and cold (from 9, 10, 11, and 12).\n\nHowever, we don't have any information about Gary being furry. We know that all furry people are white (from 5), but we don't have any information about Gary being white.\n\nLet's try to find any other information that can help us determine if Gary is furry. We know that Gary is big, smart, and quiet (from 1, 2, 3, and 4). \n\nSince all furry people are white (from 5), but we don't have any information about Gary being white, we cannot conclude that Gary is furry based on this statement.\n\nHowever, statement 13 says that if someone is white and smart then they are furry. We know that Gary is smart (from 2), but we don't have any information about Gary being white.\n\nWe also know that Harry is white and furry (from 9, 10, 11, and 13). However, we don't have any information about Gary being furry.\n\nSince we know that all furry people are white (from 5), but we don't have any information about Gary being white, we cannot conclude that Gary is furry based on this statement.\n\nHowever, we can try to deduce if Gary is furry by looking at statement 13. Statement 13 says that if someone is white and smart then they are furry. We don't have any information about Gary being white, but we know that Gary is smart (from 2).\n\nWe also know that if someone is quiet and cold, then they are white (from 6). However, we don't have any information about Gary being cold.\n\nLet's try to find any other information that can help us determine if Gary is furry. We know that Gary is big, smart, and quiet (from 1, 2, 3, and 4).\n\nSince all furry people are white (from 5), but we don't have any information about Gary being white, we cannot conclude that Gary is furry based on this statement.\n\nHowever, statement 13 says that if someone is white and smart then they are furry. We know that Gary is smart (from 2), but we don't have any information about Gary being white.\n\nWe also know that Harry is white and furry (from 9, 10, 11, and 13). However, we don't have any information about Gary being furry.\n\nSince we know that all furry people are white (from 5), but we don't have any information about Gary being white, we cannot conclude that Gary is furry based on this statement.\n\nHowever, statement 5 says that all furry people are white. We don't have any information about Gary being furry.\n\nHowever, statement 13 says that if someone is white and smart then they are furry. We know that Gary is smart (from 2), but we don't have any information about Gary being white.\n\nSince we don't have any information about Gary being cold, we cannot conclude his color based on statement 6.\n\nWe also know that Harry is white and furry (from 9, 10, 11, and 13). However, we don't have any information about Gary being furry.\n\nSince we know that all furry people are white (from 5), but we don't have any information about Gary being white, we cannot conclude that Gary is furry based on this statement.\n\nHowever, we can try to deduce if Gary is furry by looking at statement 13. Statement 13 says that if someone is white and smart then they are furry. We don't have any information about Gary being white, but we know that Gary is smart (from 2).\n\nHowever, statement 5 says that all furry people are white. We don't have any information about Gary being furry.\n\nHowever, statement 13 says that if someone is white and smart then they are furry. We know that Gary is smart (from 2), but we don't have any information about Gary being white.\n\nSince we don't have any information about Gary being cold, we cannot conclude his color based on statement 6.\n\nWe also know that Harry is white and furry (from 9, 10, 11, and 13). However, we don't have any information about Gary being furry.\n\nSince we know that all furry people are white (from 5), but we don't have any information about Gary being white, we cannot conclude that Gary is furry based on this statement.\n\nHowever, we can try to deduce if Gary is furry by looking at statement 13. Statement",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_gary, smart_gary), quiet_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_gary, smart_gary), furry_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_gary, smart_gary), furry_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_X, white_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_X, white_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_X, smart_X), furry_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_X, smart_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_X, smart_X), quiet_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_X, cold_X)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_X, white_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_harry, smart_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_harry, cold_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_gary, smart_gary), furry_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == Unknown",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_X, smart_X), furry_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_X, white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_X, cold_X), white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_X, white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_harry, cold_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_X, smart_X), quiet_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_X, smart_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_X, smart_X), furry_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_X, white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_X, cold_X), white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_harry, cold_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_X, smart_X), quiet_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_X, smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary) -> smart(gary)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not furry(gary)",
+          "z3_formula": "Not(furry_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_harry, cold_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_harry, cold_harry), white_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_gary, smart_gary), furry_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_gary, smart_gary), furry_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_gary, smart_gary), quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 15
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_X, smart_X), furry_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_X, white_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_X, cold_X), white_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_X, white_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(harry) -> cold(harry)",
+          "z3_formula": "Implies(big_harry, cold_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_X, smart_X), quiet_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_X, smart_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_gary, smart_gary), furry_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_gary, rough_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_harry, cold_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_X, smart_X), furry_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_X, white_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_X, cold_X), white_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_X, white_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_harry, cold_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_X, smart_X), quiet_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_X, smart_X)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_gary, smart_gary), quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_gary, smart_gary), furry_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_harry, smart_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_harry, smart_harry), quiet_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_harry, cold_harry), white_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_harry, smart_harry), furry_harry)",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 176,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 37
+    },
+    "maxsat_stats": {
+      "satisfied": 37,
+      "excluded": 0,
+      "total_weight": 176,
+      "solve_time_ms": 1.1510532349348068
+    },
+    "timing": {
+      "trace_gen_s": 24.949,
+      "extraction_s": 38.167,
+      "dedup_s": 1.349,
+      "maxsat_s": 0.003,
+      "total_s": 64.468
+    }
+  }
+}

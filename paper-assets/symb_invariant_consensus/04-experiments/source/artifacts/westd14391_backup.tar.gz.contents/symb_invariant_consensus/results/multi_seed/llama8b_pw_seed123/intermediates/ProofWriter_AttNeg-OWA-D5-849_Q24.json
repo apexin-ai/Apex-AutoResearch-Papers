@@ -1,0 +1,1060 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-849_Q24",
+    "problem": "Anne is green. Bob is kind. Bob is rough. Erin is not rough. Fiona is nice. Fiona is not red. Fiona is rough. If something is green then it is not blue. Green things are red. Green, red things are rough. If Bob is blue then Bob is kind. All kind things are smart. Rough, red things are kind. If something is green and not kind then it is nice. All smart things are nice.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is blue.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nKind(Bob, True) ::: Bob is kind.\nRough(Bob, True) ::: Bob is rough.\nRough(Erin, False) ::: Erin is not rough.\nNice(Fiona, True) ::: Fiona is nice.\nRed(Fiona, False) ::: Fiona is not red.\nRough(Fiona, True) ::: Fiona is rough.\n\nRules:\nGreen($x, True) >>> Blue($x, False) ::: If something is green then it is not blue.\nGreen($x, True) >>> Red($x, True) ::: Green things are red.\nGreen($x, True) && Red($x, True) >>> Rough($x, True) ::: Green, red things are rough.\nBlue(Bob, True) >>> Kind(Bob, True) ::: If Bob is blue then Bob is kind.\nKind($x, True) >>> Smart($x, True) ::: All kind things are smart.\nRough($x, True) && Red($x, True) >>> Kind($x, True) ::: Rough, red things are kind.\nGreen($x, True) && Kind($x, False) >>> Nice($x, True) ::: If something is green and not kind then it is nice.\nSmart($x, True) >>> Nice($x, True) ::: All smart things are nice.\n\nQuery:\nBlue(Fiona, True) ::: Fiona is blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 93.0,
+      "Unknown": 136.5
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "False": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Fiona is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is rough. (Given)\n2. Fiona is not red. (Given)\n3. If something is green then it is not blue. (Given)\n4. Green things are red. (Given)\n   Since Fiona is not red (from step 2), Fiona is not green.\n5. Green, red things are rough. (Given)\n   Since Fiona is rough (from step 1), Fiona being green and red is not a necessary condition, but we can infer that Fiona is not green from step 4.\n6. If something is green and not kind then it is nice. (Given)\n   Since we cannot determine Fiona's color, we cannot apply this rule yet.\n7. Fiona is nice. (Given)\n   This statement is not necessarily true or false; we need more information to determine its truth value.\n8. All smart things are nice. (Given)\n   Since we don't know if Fiona is smart, we cannot apply this rule yet.\n9. All kind things are smart. (Given)\n   Since we don't know if Fiona is kind, we cannot apply this rule yet.\n10. Bob is kind. (Given)\n11. Bob is rough. (Given)\n12. If something is green then it is not blue. (Given)\n    This statement doesn't apply to Bob, so we can ignore it.\n13. Green things are red. (Given)\n    This statement doesn't apply to Bob, so we can ignore it.\n14. Green, red things are rough. (Given)\n    This statement doesn't apply to Bob, so we can ignore it.\n15. If Bob is blue then Bob is kind. (Given)\n    This statement doesn't provide any useful information for determining if Fiona is blue, so we can ignore it.\n16. Rough, red things are kind. (Given)\n    This statement doesn't apply to Fiona, so we can ignore it.\n17. Erin is not rough. (Given)\n    This statement doesn't apply to Fiona, so we can ignore it.\n18. Anne is green. (Given)\n    This statement doesn't apply to Fiona, so we can ignore it.\n19. Fiona is not blue if Fiona is green is not relevant to Fiona's color, so we ignore it.\n20. Since Fiona is rough (from step 1) and not red (from step 2), and we know that green things are red (from step 4), Fiona is not green, thus not blue or green.\n\nSince we have no information about Bob's color and it's not relevant to Fiona's color, we can ignore the statements about Bob.\n\nTherefore, the statement \"Fiona is blue\" is unknown because we don't have enough information to determine Fiona's color.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is blue\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Fiona is rough. (Given)\n2. Fiona is not red. (Given)\n3. If something is green then it is not blue. (Given)\n4. Green things are red. (Given)\n5. Green, red things are rough. (Given)\n6. If Bob is blue then Bob is kind. (Given)\n7. All kind things are smart. (Given)\n8. Rough, red things are kind. (Given)\n9. If something is green and not kind then it is nice. (Given)\n10. All smart things are nice. (Given)\n11. Anne is green. (Given)\n12. Bob is kind. (Given)\n13. Bob is rough. (Given)\n14. Erin is not rough. (Given)\n\nNow, let's analyze the information we have about Fiona:\n\n- From statement 5, we know that green, red things are rough. Since Fiona is rough, we can conclude that Fiona is either green or red. However, we also know that Fiona is not red (statement 2), so Fiona must be green.\n\n- From statement 3, we know that if something is green, then it is not blue. Since Fiona is green, we can conclude that Fiona is not blue.\n\nNow, let's consider the statement \"Fiona is blue.\" If this statement is true, then Fiona must be blue. However, we already concluded that Fiona is not blue (from statement 3 and the fact that Fiona is green). Therefore, the statement \"Fiona is blue\" must be false.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is blue\" is true, false, or unknown, we need to analyze the given information and use it to infer Fiona's color.\n\n1. Fiona is rough.\n   We know that Fiona is rough, which gives us some information about her characteristics.\n\n2. Fiona is not red.\n   This tells us that Fiona is not red, but it doesn't give us any information about her other possible colors.\n\n3. Green things are red.\n   This is an interesting statement. It implies that green things have some property that makes them red. However, it also implies that all green things are red.\n\n4. Fiona is not blue.\n   We already know that Fiona is rough, and we also know that Fiona is not red. If Fiona were green, then she would be red (based on statement 3), but we know she's not red. However, statement 4 implies that Fiona is not blue.\n\nHowever, there's no direct statement that links Fiona to being green or blue. But we can use the given information to infer Fiona's color.\n\nFrom statement 1, we know Fiona is rough. From statement 2, we know she's not red. We know that green, red things are rough (statement 3), and Fiona is rough. This suggests that Fiona might be green (since green, red things are rough). \n\nNow let's examine statement 5: \"If something is green then it is not blue.\" This tells us that green and blue are mutually exclusive.\n\nHowever, we cannot conclude that Fiona is green based on the given information alone. But we can use the fact that green and blue are mutually exclusive to infer that Fiona cannot be blue if she's green.\n\nHowever, we don't know Fiona's color yet. We can use the fact that Fiona is not red and the fact that green and blue are mutually exclusive to infer that Fiona cannot be blue.\n\nNow let's examine statement 6: \"If Fiona is green and not kind then it is nice.\" However, this statement is irrelevant to determining whether Fiona is blue or not. We don't know Fiona's color yet.\n\nNow let's examine statement 7: \"Green things are red.\" We already know that Fiona is not red. We don't know if Fiona is green or not yet.\n\nNow let's examine statement 8: \"If Bob is blue then Bob is kind.\" We don't know Bob's color yet. We don't know if this statement is relevant to determining Fiona's color.\n\nNow let's examine statement 9: \"All kind things are smart.\" We don't know Fiona's kind status yet.\n\nNow let's examine statement 10: \"Rough, red things are kind.\" We don't know Fiona's color yet.\n\nNow let's examine statement 11: \"If something is green and not kind then it is nice.\" However, this statement is irrelevant to determining whether Fiona is blue or not.\n\nNow let's examine statement 12: \"All smart things are nice.\" We don't know Fiona's kind status yet.\n\nHowever, we can use the fact that Fiona is rough and not red, and the fact that green, red things are rough, to infer that Fiona might be green.\n\nHowever, we don't know Fiona's color yet.\n\nNow let's examine statement 13: \"If something is green then it is not blue.\" We already know that green and blue are mutually exclusive.\n\nHowever, we don't know Fiona's color yet.\n\nNow let's examine statement 14: \"Anne is green.\" This statement is irrelevant to determining whether Fiona is blue or not.\n\nNow let's examine statement 15: \"Bob is kind.\" This statement is irrelevant to determining whether Fiona is blue or not.\n\nNow let's examine statement 16: \"Bob is rough.\" This statement is irrelevant to determining whether Fiona is blue or not.\n\nNow let's examine statement 17: \"Erin is not rough.\" This statement is irrelevant to determining whether Fiona is blue or not.\n\nNow let's examine statement 18: \"Fiona is nice.\" However, this statement is irrelevant to determining whether Fiona is blue or not.\n\nNow let's examine statement 19: \"Fiona is not red.\" We already know that Fiona is not red.\n\nNow let's examine statement 20: \"Fiona is rough.\" We already know that Fiona is rough.\n\nWe have analyzed all the statements and used the given information to infer Fiona's characteristics. However, we still don't know Fiona's color.\n\nFrom statement 3, we know that green things are red. However, Fiona is not red. This suggests that Fiona is not green.\n\nFrom statement 4, we know that Fiona is not blue.\n\nWe don't have any information that directly links Fiona to being blue. However, we can use the fact that green and blue are mutually exclusive (statement 5) to infer that Fiona cannot be blue if she's green.\n\nSince we don't know Fiona's color, and we don't have any information that directly links Fiona to being blue, we cannot determine whether the statement \"Fiona is blue\" is true or false.\n\nTherefore, the answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is blue\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Fiona is rough. (Given)\n2. Fiona is not red. (Given)\n3. If something is green then it is not blue. (Given)\n4. Green things are red. (Given)\n5. Green, red things are rough. (Given)\n6. If Bob is blue then Bob is kind. (Given)\n7. All kind things are smart. (Given)\n8. Rough, red things are kind. (Given)\n9. If something is green and not kind then it is nice. (Given)\n10. All smart things are nice. (Given)\n\nFrom statement 4, we can conclude that green things are not red, but from statement 1, Fiona is rough. Since green, red things are rough (statement 5), it is possible that Fiona is green (even though Fiona is not red, statement 2). \n\nHowever, if Fiona is green, then it must be red (statement 4). This would make Fiona a green, red thing, which is rough (statement 5), and kind (statement 8). But then, Fiona would be smart (statement 7), and nice (statement 10). \n\nNow, we have a contradiction: if Fiona is green, then Fiona must be kind, which means Fiona cannot be nice (statement 9). \n\nTherefore, Fiona is not green.\n\nFrom statement 1, we know that Fiona is rough, and from statement 2, we know that Fiona is not red. Since rough, red things are kind (statement 8), Fiona must not be red, red. \n\nHowever, if Fiona is not red, red, then Fiona must be blue. \n\nSo, we cannot conclude that Fiona is not blue.\n\nFrom statement 3, we can conclude that if Fiona is green, then Fiona is not blue. But we have already concluded that Fiona is not green. \n\nHowever, we have also concluded that Fiona might be blue. \n\nTherefore, we cannot conclude that Fiona is not blue.\n\nHowever, we have not been given any information that would lead us to conclude that Fiona is blue. \n\nSo, the statement \"Fiona is blue\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve the problem, we need to break it down step by step using the given information.\n\n1. Given information:\n   - Anne is green.\n   - Bob is kind.\n   - Bob is rough.\n   - Erin is not rough.\n   - Fiona is nice.\n   - Fiona is not red.\n   - Fiona is rough.\n   - If something is green then it is not blue.\n   - Green things are red.\n   - Green, red things are rough.\n   - If Bob is blue then Bob is kind.\n   - All kind things are smart.\n   - Rough, red things are kind.\n   - If something is green and not kind then it is nice.\n   - All smart things are nice.\n\n2. We need to determine whether the statement \"Fiona is blue\" is true, false, or unknown.\n\nFrom the given information, we know that:\n- Fiona is not red.\n- Fiona is rough.\n\nUsing the information that \"Green, red things are rough,\" we cannot directly apply this to Fiona since we know she is not red, but we can use the information that \"Rough, red things are kind\" to infer that Fiona is kind, because Fiona is rough and also not red.\n\nHowever, this is a contradiction to the statement \"Fiona is nice,\" as Fiona being kind would mean she is also not nice. This indicates that we have an inconsistency in our inference, and we need to go back to the original information.\n\nWe previously deduced that Fiona is kind, which implies that she is also smart because \"All kind things are smart.\" However, this also leads to the conclusion that Fiona is nice, as \"All smart things are nice.\"\n\nNow let's analyze the statement \"Fiona is blue\" with our new information.\n\nIf Fiona is blue, then using the information \"If something is green then it is not blue,\" we can infer that Fiona is not green.\n\nFrom the information that \"Green things are red\" and \"Fiona is not green,\" we can conclude that Fiona is not red.\n\nHowever, we already know that Fiona is not red. This information does not provide any new conclusions.\n\nNow let's consider the statement \"Fiona is blue\" in the context of Fiona being kind. If Fiona is kind, then using the information \"If Bob is blue then Bob is kind,\" we cannot directly apply this to Fiona, as there is no information about Bob's color being related to Fiona's kindness. However, this does not provide any new conclusions.\n\nWe cannot conclude whether Fiona is blue or not from the given information. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Fiona is blue, we need to analyze the given statements and their implications.\n\n1. Fiona is rough. (Fiona_R)\n2. Fiona is not red. (Fiona_NR)\n3. Green things are red. (GR = R)\n4. Green, red things are rough. (GR_R = R)\n5. Fiona is not blue. (This is what we want to prove, but we'll use the other statements to derive it)\n\nFrom statement 3, we can say that if something is green, then it is red. We don't know if Fiona is green, but let's assume she is (Fiona_G). Then, from statement 4, Fiona would be rough (which we already know). However, we also know that Fiona is not red (statement 2), so Fiona cannot be green.\n\nNow, let's look at the implications of Fiona not being green. \n\nFrom statement 1, Fiona is rough. \nFrom statement 6, all green things are red, so Fiona is not green (which we already established).\n\nFrom statement 7, if Fiona is green and not kind, then Fiona is nice. However, we cannot conclude this because Fiona is not green.\n\nFrom statement 8, if something is green then it is not blue. We can use this to derive that Fiona is not blue.\n\nFrom statement 5, we cannot conclude that Fiona is blue or not blue. However, since we know that Fiona is not green, we can use the implication in statement 8: if Fiona is green, then Fiona is not blue. Since Fiona is not green, we cannot conclude that Fiona is blue.\n\nHowever, we can use statement 9 to derive the answer. Statement 9 says: \"If Bob is blue then Bob is kind.\" We don't know if Bob is blue, but we know that Bob is kind. We can use the contrapositive of statement 9 to conclude that if Bob is kind, then Bob is not blue.\n\nHowever, we cannot conclude that Fiona is blue from the given statements.\n\nWe have to look at the fact that statement 1 is \"Fiona is rough\" and statement 5 is \"All green things are red.\" Since Fiona is not red (statement 2), Fiona is not green.\n\nStatement 10 says: \"Rough, red things are kind.\" We know that Fiona is rough and not red, so Fiona cannot be kind.\n\nHowever, we cannot conclude that Fiona is blue or not blue from the given statements. \n\nHowever, we can use the fact that statement 4 is \"Green, red things are rough.\" Since Fiona is not red, Fiona is not green.\n\nStatement 11 says: \"If something is green then it is not blue.\" Since Fiona is not green, we cannot conclude that Fiona is blue.\n\nHowever, we can use statement 12 to derive the answer. Statement 12 says: \"All smart things are nice.\" We cannot conclude that Fiona is smart or not smart.\n\nHowever, we can use the fact that statement 13 is \"Green things are red.\" Since Fiona is not green, Fiona is not red.\n\nHowever, we can use the fact that statement 14 is \"Green, red things are rough.\" Since Fiona is not green, Fiona is not rough.\n\nHowever, we can use the fact that statement 15 is \"All kind things are smart.\" Since Fiona is not kind, Fiona is not smart.\n\nHowever, we can use the fact that statement 16 is \"If something is green and not kind then it is nice.\" We cannot conclude that Fiona is nice or not nice.\n\nHowever, we can use the fact that statement 17 is \"All smart things are nice.\" We cannot conclude that Fiona is nice or not nice.\n\nHowever, we can use the fact that statement 18 is \"Rough, red things are kind.\" Since Fiona is rough but not red, Fiona is not kind.\n\nHowever, we can use the fact that statement 19 is \"All kind things are smart.\" Since Fiona is not kind, Fiona is not smart.\n\nHowever, we can use the fact that statement 20 is \"If Bob is blue then Bob is kind.\" We know that Bob is kind, so Bob is not blue.\n\nNow, let's analyze the given statements one by one.\n\nFrom statement 21, we know that Bob is kind. \n\nFrom statement 22, we know that Bob is rough.\n\nFrom statement 23, we know that Erin is not rough.\n\nFrom statement 24, we know that Fiona is nice.\n\nFrom statement 25, we know that Fiona is not red.\n\nFrom statement 26, we know that Fiona is rough.\n\nFrom statement 27, we know that if something is green then it is not blue.\n\nFrom statement 28, we know that green things are red.\n\nFrom statement 29, we know that green, red things are rough.\n\nFrom statement 30, we know that if Bob is blue then Bob is kind.\n\nFrom statement 31, we know that all kind things are smart.\n\nFrom statement 32, we know that rough, red things are kind.\n\nFrom statement 33, we know that if something is green and not kind then it is nice.\n\nFrom statement 34, we know that all smart things are nice.\n\nNow, let's use these statements to derive whether Fiona is blue.\n\nFrom statement 25, Fiona is not red.\n\nFrom statement 28, we know that if Fiona is green, then Fiona is red. Since Fiona is not red, Fiona is not green.\n\nFrom statement 27, we know that if Fiona is green, then Fiona is not blue. Since Fiona is not green, we cannot conclude that Fiona is blue.\n\nHowever, from statement 26, we know that Fiona is rough.\n\nFrom statement 28, we know that if Fiona is green, then Fiona is red. Since Fiona is not red, Fiona is not green.\n\nHowever, we cannot conclude that Fiona is blue or not blue from the given statements.\n\nHowever, we can use the fact that statement 21 is \"Anne is green.\" We don't know what color Anne is.\n\nHowever, we can use the fact that statement 22 is \"Bob is kind.\" We know that Bob is kind.\n\nHowever, we can use the fact that statement 23 is \"Bob is rough.\" We know that Bob is rough.\n\nHowever, we can use the fact that statement 24 is \"Erin is not rough.\" We know that Erin is not rough.\n\nHowever, we can use the fact that statement 25 is \"Fiona is not red.\" We know that Fiona is not red.\n\nHowever, we can use the fact that statement 26 is \"Fiona is rough.\" We know that Fiona is rough.\n\nHowever, we can use the fact that statement 27 is \"If something is green then it is not blue.\" We know that if Fiona is green, then Fiona is not blue.\n\nHowever, we can use the fact that statement 28 is \"Green things are red.\" We know that if Fiona is green, then Fiona is red.\n\nHowever, we can use the fact that statement 29 is \"Green, red things are rough.\" We know that if Fiona is green, then Fiona is rough.\n\nHowever, we can use the fact that statement 30 is \"If Bob is blue then Bob is kind.\" We know that if Bob is blue, then Bob is kind.\n\nHowever, we can use the fact that statement 31 is \"All kind things are smart.\" We know that all kind things are smart.\n\nHowever, we can use the fact that statement 32 is \"Rough, red things are kind.\" We know that rough, red things are kind.\n\nHowever, we can use the fact that statement 33 is \"If something is green and not kind then it is nice.\" We know that if Fiona is green and not kind, then Fiona is nice.\n\nHowever, we can use the fact that statement 34 is \"All smart things are nice.\" We know that all smart things are nice.\n\nFrom the given statements, we cannot conclude that Fiona is blue.\n\nHowever, we can use the fact that statement 35 is \"Anne is green.\" We don't know what color Anne is.\n\nHowever, we can use the fact that statement 36 is \"Bob is kind.\" We know that Bob is kind.\n\nHowever, we can use the fact that statement 37 is \"Bob is rough.\" We know that Bob is rough.\n\nHowever, we can use the fact that statement 38 is \"Erin is not rough.\" We know that Erin is not rough.\n\nHowever, we can use the fact that statement 39 is \"Fiona is nice.\" We know that Fiona is nice.\n\nHowever, we can use the fact that statement 40 is \"Fiona is not red.\" We know that Fiona is not red.\n\nHowever, we can use the fact that statement 41 is \"Fiona is rough.\" We know that Fiona is rough.\n\nHowever, we can use the fact that statement 42 is \"If something is green then it is not blue.\" We know that if Fiona is green, then Fiona is not blue.\n\nHowever, we can use the fact that statement 43 is \"Green things are red.\" We know that if Fiona is green, then Fiona is red.\n\nHowever, we can use the fact that statement 44 is \"Green, red things are rough.\" We know that if Fiona is green, then Fiona is rough.\n\nHowever, we can use the fact that statement 45 is \"If Bob is blue then Bob is kind.\" We know that if Bob is blue, then Bob is kind.\n\nHowever, we can use the fact that statement 46 is \"All kind things are smart.\" We know that all kind things are smart.\n\nHowever, we can use the fact that statement 47 is \"Rough, red things are kind.\" We know that rough, red things are kind.\n\nHowever, we can use the fact that statement 48 is \"If something is green and not",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether Fiona is blue, we need to analyze the given statements and use logical deductions.\n\n1. Fiona is rough. \n2. Fiona is not red.\n3. Green things are red.\nFrom statement 3, we can deduce that Fiona is not green since it's not red.\n4. Green, red things are rough.\nThis statement is true, but we can't apply it to Fiona because Fiona is not green.\n5. Fiona is rough. \nThis statement confirms that Fiona is indeed rough.\n\nNow, let's analyze the statement \"If something is green then it is not blue.\"\n\n6. If something is green then it is not blue.\nThis statement tells us that green and blue are mutually exclusive.\n\nNow, let's analyze the statement \"If Bob is blue then Bob is kind.\"\n\n7. If Bob is blue then Bob is kind.\nThis statement tells us that Bob can be blue, and in that case, he would be kind.\n\nNow, let's analyze the statement \"All kind things are smart.\"\n\n8. All kind things are smart.\nThis statement tells us that if something is kind, then it is smart.\n\nNow, let's analyze the statement \"Rough, red things are kind.\"\n\n9. Rough, red things are kind.\nThis statement tells us that if something is rough and red, then it is kind.\n\nNow, let's analyze the statement \"If something is green and not kind then it is nice.\"\n\n10. If something is green and not kind then it is nice.\nThis statement tells us that if something is green and not kind, then it is nice.\n\nNow, let's analyze the statement \"All smart things are nice.\"\n\n11. All smart things are nice.\nThis statement tells us that if something is smart, then it is nice.\n\nGiven that Fiona is rough, but not green (from statement 2 and our deduction), and not red (from statement 2), we can't conclude that Fiona is blue.\n\nHowever, we need to determine whether Fiona is blue or not.\n\nTo do this, let's analyze the given statements and use logical deductions.\n\nStatement 12: Bob is rough.\nStatement 13: Erin is not rough.\nStatement 14: Fiona is nice. \nStatement 15: Fiona is nice. \nStatement 16: If Bob is blue then Bob is kind. \nStatement 17: All kind things are smart. \nStatement 18: Rough, red things are kind. \nStatement 19: If something is green and not kind then it is nice. \nStatement 20: All smart things are nice.\n\nWe already deduced that Fiona is not green, and we can't conclude that Fiona is blue. However, we still need to determine whether Fiona is blue or not.\n\nTo do this, let's analyze statement 6: If something is green then it is not blue.\n\nIf we assume Fiona is green, then it would contradict statement 2: Fiona is not red. However, we already deduced that Fiona is not green.\n\nNow, let's analyze the given statements and use logical deductions.\n\nGiven that Fiona is not green, and we can't conclude that Fiona is blue.\n\nThe problem statement doesn't provide any direct information about Bob being blue. However, we can analyze statement 16: If Bob is blue then Bob is kind.\n\nIf we assume Bob is blue, then he would be kind (from statement 16).\n\nNow, let's analyze statement 17: All kind things are smart.\n\nIf Bob is kind, then he is smart (from statement 17).\n\nNow, let's analyze statement 20: All smart things are nice.\n\nIf Bob is smart, then he is nice (from statement 20).\n\nNow, let's analyze statement 14: Fiona is nice.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 19: If something is green and not kind then it is nice.\n\nSince Fiona is not green, this statement doesn't apply to Fiona.\n\nHowever, we know that Bob is rough (from statement 12), and we can't conclude that Bob is blue.\n\nNow, let's analyze statement 18: Rough, red things are kind.\n\nThis statement tells us that if something is rough and red, then it is kind.\n\nHowever, we know that Fiona is not red (from statement 2), and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 15: Fiona is nice.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 13: Erin is not rough.\n\nThis statement tells us that Erin is not rough.\n\nHowever, we know that Fiona is rough (from statement 1), and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 14: Fiona is nice.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 19: If something is green and not kind then it is nice.\n\nSince Fiona is not green, this statement doesn't apply to Fiona.\n\nNow, let's analyze statement 20: All smart things are nice.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 17: All kind things are smart.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 16: If Bob is blue then Bob is kind.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 18: Rough, red things are kind.\n\nHowever, we know that Fiona is not red (from statement 2), and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 14: Fiona is nice.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 13: Erin is not rough.\n\nThis statement tells us that Erin is not rough.\n\nHowever, we know that Fiona is rough (from statement 1), and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 19: If something is green and not kind then it is nice.\n\nSince Fiona is not green, this statement doesn't apply to Fiona.\n\nNow, let's analyze statement 20: All smart things are nice.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 17: All kind things are smart.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 16: If Bob is blue then Bob is kind.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 18: Rough, red things are kind.\n\nHowever, we know that Fiona is not red (from statement 2), and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 14: Fiona is nice.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 13: Erin is not rough.\n\nThis statement tells us that Erin is not rough.\n\nHowever, we know that Fiona is rough (from statement 1), and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 19: If something is green and not kind then it is nice.\n\nSince Fiona is not green, this statement doesn't apply to Fiona.\n\nNow, let's analyze statement 20: All smart things are nice.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 17: All kind things are smart.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 16: If Bob is blue then Bob is kind.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 18: Rough, red things are kind.\n\nHowever, we know that Fiona is not red (from statement 2), and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 14: Fiona is nice.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 13: Erin is not rough.\n\nThis statement tells us that Erin is not rough.\n\nHowever, we know that Fiona is rough (from statement 1), and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 19: If something is green and not kind then it is nice.\n\nSince Fiona is not green, this statement doesn't apply to Fiona.\n\nNow, let's analyze statement 20: All smart things are nice.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 17: All kind things are smart.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 16: If Bob is blue then Bob is kind.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 18: Rough, red things are kind.\n\nHowever, we know that Fiona is not red (from statement 2), and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 14: Fiona is nice.\n\nHowever, we know that Fiona is not green, and we can't conclude that Fiona is blue.\n\nNow, let's analyze statement 13: Erin is not rough.\n\nThis statement tells us that Erin",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n1. Anne is green.\n2. Bob is kind.\n3. Bob is rough.\n4. Erin is not rough.\n5. Fiona is nice.\n6. Fiona is not red.\n7. Fiona is rough.\n8. If something is green then it is not blue.\n9. Green things are red.\n10. Green, red things are rough.\n11. If Bob is blue then Bob is kind.\n12. All kind things are smart.\n13. Rough, red things are kind.\n14. If something is green and not kind then it is nice.\n15. All smart things are nice.\n\nNow, let's analyze the statement \"Fiona is blue.\"\n\nFrom the given information (statement 8), we know that if something is green, then it is not blue. We can infer this as a biconditional statement (if A then B and if B then A).\n\nTo determine whether Fiona is blue, we need to find a relationship between Fiona and the given conditions.\n\nFrom statement 7, we know that Fiona is rough.\n\nFrom statement 9, we know that green things are red.\n\nFrom statement 10, we know that green, red things are rough.\n\nLet's assume Fiona is green.\n\nIf Fiona is green, then (from statement 9) Fiona is red. \n\nFrom statement 10, green, red things are rough, which matches our initial information (statement 7) that Fiona is rough.\n\nNow we have a contradiction in the initial information. Initially, we assumed that Fiona is green, but we also know that Fiona is not red (from statement 6). This creates a contradiction.\n\nHowever, we can't conclude that Fiona is blue yet. \n\nFrom statement 7, we know that Fiona is rough. \n\nFrom statement 13, rough, red things are kind. \n\nHowever, Fiona is not red (from statement 6). Therefore, Fiona cannot be a rough, red thing. \n\nFrom statement 7, we know that Fiona is rough.\n\nFrom statement 14, if something is green and not kind, then it is nice. We don't have any information that Fiona is green or not kind, but we do know that Fiona is nice (from statement 5).\n\nNow, let's analyze the relationship between Fiona and being blue.\n\nWe can't conclude whether Fiona is blue or not based on the given information.\n\nTherefore, the final answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is blue\" is true, false, or unknown, we need to analyze the given information and use it to derive conclusions about Fiona's color.\n\nFrom the given information:\n\n1. Fiona is rough. (Statement 4)\n2. Fiona is not red. (Statement 3)\n3. Green things are red. (Statement 6)\n4. If something is green then it is not blue. (Statement 5)\n5. Green, red things are rough. (Statement 7)\n\nSince Fiona is rough (Statement 1), we can infer that Fiona must be either green or not green. If Fiona were not green, then she would not be rough (Statement 7), which contradicts the fact that she is rough. Therefore, Fiona must be green.\n\nNow, since Fiona is green, we can conclude that she is not blue (Statement 4 and Statement 5). \n\nHowever, since Fiona is green, and green things are red (Statement 6), we can conclude that Fiona is red.\n\nWe cannot conclude whether Fiona is blue or not, because we already determined that Fiona is red, and there is no information that says red things are blue. However, we know that Fiona is not blue because green things are not blue.\n\nSince we cannot conclude that Fiona is blue, the answer is: Fiona is blue is unknown.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is blue' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is rough. (Given)\n\n2. Fiona is not red. (Given)\n\n3. Green things are red. (Given, but since Fiona is not red, we can conclude Fiona is not green.)\n\n4. Fiona is rough. (From step 1)\n   Green, red things are rough. (Given, but since Fiona is not red, we can conclude Fiona is not green and red. Hence, it cannot be a green, red thing.)\n\n5. Erin is not rough. (Given)\n   We cannot conclude anything about Fiona from this statement.\n\n6. Fiona is nice. (From step 1, Fiona is rough. Given, 'If something is green and not kind then it is nice.') This statement is misleading because it uses 'green', which we already concluded Fiona is not.\n\n7. Fiona is not red. (From step 2)\n   Green things are red. (Given, but since Fiona is not red, we can conclude Fiona is not green.)\n\n8. If something is green then it is not blue. (Given, but since we concluded Fiona is not green, this statement is irrelevant to Fiona.)\n\n9. All kind things are smart. (Given)\n   We do not have enough information to conclude whether Fiona is kind or not.\n\n10. Fiona is rough. (From step 1)\n    Rough, red things are kind. (Given, but since Fiona is not red, we can conclude Fiona is not red and rough, red. Hence, it cannot be a rough, red thing.)\n\n11. Bob is kind. (Given)\n    Bob is rough. (Given)\n    We cannot conclude whether Fiona is blue based on these statements about Bob.\n\n12. If Bob is blue then Bob is kind. (Given)\n    We already know Bob is kind (from step 11), so this statement is not relevant.\n\n13. Anne is green. (Given)\n    We cannot conclude anything about Fiona from this statement.\n\nAfter analyzing all the given statements and information, we cannot conclude whether Fiona is blue or not. The information given about Fiona does not directly relate to the color blue. Since we cannot determine the truth of the statement 'Fiona is blue' based on the given information, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is blue\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven statements:\n1. Anne is green.\n2. Bob is kind.\n3. Bob is rough.\n4. Erin is not rough.\n5. Fiona is nice.\n6. Fiona is not red.\n7. Fiona is rough.\n8. If something is green then it is not blue.\n9. Green things are red.\n10. Green, red things are rough.\n11. If Bob is blue then Bob is kind.\n12. All kind things are smart.\n13. Rough, red things are kind.\n14. If something is green and not kind then it is nice.\n15. All smart things are nice.\n\nWe want to find out if Fiona is blue.\n\nStep 1: Analyze the given statements to find any direct connections to Fiona.\n- Fiona is nice (statement 5).\n- Fiona is not red (statement 6).\n- Fiona is rough (statement 7).\n\nStep 2: Analyze the given statements to find any direct connections to Bob and Fiona.\n- Bob is kind (statement 2).\n- Bob is rough (statement 3).\n- Fiona is rough (statement 7).\n- If something is green and not kind then it is nice (statement 14). But there's no information about Fiona being green.\n\nStep 3: Analyze the given statements to find any direct connections to green and blue.\n- If something is green then it is not blue (statement 8).\n- Green things are red (statement 9).\n- Green, red things are rough (statement 10).\n\nStep 4: Analyze the given statements to find any direct connections to red.\n- Fiona is not red (statement 6).\n- Fiona is rough (statement 7).\n\nStep 5: Analyze the given statements to find any direct connections to kind and smart.\n- Bob is kind (statement 2).\n- All kind things are smart (statement 12).\n- Rough, red things are kind (statement 13).\n\nStep 6: Determine if Fiona is blue by combining all the information gathered.\n- Fiona is rough (statement 7).\n- Fiona is not red (statement 6).\n- There's no information about Fiona being green or blue.\n\nSince Fiona is not red and there's no information about her being green, we can't conclude anything about her being blue directly. However, we can conclude that since Fiona is not red and Fiona is rough, then Fiona is kind (due to statement 13).\n\nStep 7: Determine if Fiona is blue by using the information about kind and blue.\n- Bob is kind (statement 2).\n- If Bob is blue then Bob is kind (statement 11). However, there's no information that Bob is blue.\n- Fiona is kind (due to step 6).\n- There's no information that Fiona is blue.\n\nSince we can't conclude whether Fiona is blue or not, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Fiona is blue, we need to analyze the given statements and the given information about Fiona. \n\nFrom the given statements:\n1. Fiona is rough. \n2. Fiona is not red. \n3. All kind things are smart. \n4. If something is green then it is not blue. \n5. Green things are red. \n6. Green, red things are rough. \n7. If Bob is blue then Bob is kind. \n8. All kind things are smart. \n9. Rough, red things are kind. \n10. If something is green and not kind then it is nice. \n11. All smart things are nice.\n\nGiven information about Fiona:\n- Fiona is not red.\n- Fiona is rough.\n\nLet's first determine the possible colors of Fiona based on the given statements.\n\nFrom statement 5: Green things are red.\nFrom statement 6: Green, red things are rough.\nSince Fiona is rough, Fiona must be green (because Fiona is not red, and there's no other reason for Fiona to be rough).\n\nNow, we need to determine whether Fiona is blue or not.\n\nFrom statement 4: If something is green then it is not blue.\nSince Fiona is green, Fiona is not blue.\n\nNow, let's check if Fiona is blue based on the given information about Bob.\n\nFrom statement 7: If Bob is blue then Bob is kind.\nSince Fiona is not blue, we can't conclude anything about Bob being kind.\n\nNow, let's analyze the given information about Fiona and the statements.\n\nFrom statement 1: Fiona is rough.\nFrom statement 2: Fiona is not red.\nFrom statement 9: Rough, red things are kind.\nSince Fiona is not red, Fiona is not kind (because there's no reason for Fiona to be kind).\n\nNow, let's check if Fiona is blue based on the given information about Fiona and the statements.\n\nFrom statement 10: If something is green and not kind then it is nice.\nSince Fiona is green and not kind, Fiona is nice.\n\nSince Fiona is nice, Fiona is not blue (because we already concluded Fiona is not blue).\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(fiona)",
+          "z3_formula": "Not(red_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_fiona, Not(blue_fiona))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "Not(green_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & not kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_fiona, Not(kind_fiona)), nice_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_fiona, nice_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> smart(X)",
+          "z3_formula": "Implies(kind_fiona, smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_bob, Not(blue_bob))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_bob, red_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_bob, red_bob), rough_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_bob, kind_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(rough_bob, red_bob), kind_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(erin)",
+          "z3_formula": "Not(rough_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(fiona) if green(fiona)",
+          "z3_formula": "Implies(green_fiona, Not(blue_fiona))",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(fiona)",
+          "z3_formula": "Not(blue_fiona)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(fiona)",
+          "z3_formula": "Not(red_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_fiona, Not(blue_fiona))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_fiona, red_fiona), rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(Bob) -> kind(Bob)",
+          "z3_formula": "Implies(blue_Bob, kind_Bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> smart(X)",
+          "z3_formula": "Implies(kind_Bob, smart_Bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(rough_Bob, red_Bob), kind_Bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & not kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_X, Not(kind_X)), nice_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_Bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_Bob == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(erin)",
+          "z3_formula": "Not(rough_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(fiona)",
+          "z3_formula": "Not(blue_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(fiona)",
+          "z3_formula": "Not(blue_fiona)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(fiona)",
+          "z3_formula": "Not(red_fiona) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_fiona, red_fiona), rough_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_fiona, Not(blue_fiona))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(fiona)",
+          "z3_formula": "Not(blue_fiona) == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(fiona)",
+          "z3_formula": "Not(red_fiona) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_fiona, Not(blue_fiona))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_fiona, red_fiona), rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(Bob) -> kind(Bob)",
+          "z3_formula": "Implies(blue_bob, kind_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> smart(X)",
+          "z3_formula": "Implies(kind_bob, smart_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(rough_fiona, red_fiona), kind_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & not kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_fiona, Not(kind_fiona)), nice_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_bob, nice_bob)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(erin))",
+          "z3_formula": "Not(rough_erin) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(fiona))",
+          "z3_formula": "Not(red_fiona) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not(blue(X))",
+          "z3_formula": "Implies(green_X, Not(blue_X))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_X, red_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_X, red_X), rough_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(bob) -> kind(bob)",
+          "z3_formula": "Implies(blue_bob, kind_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> smart(X)",
+          "z3_formula": "Implies(kind_X, smart_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(rough_X, red_X), kind_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & not(kind(X)) -> nice(X)",
+          "z3_formula": "Implies(And(green_X, Not(kind_X)), nice_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(fiona)",
+          "z3_formula": "not red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_fiona, red_fiona), rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_fiona, not blue_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(fiona)",
+          "z3_formula": "not blue_fiona == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(fiona)",
+          "z3_formula": "Not(red_fiona) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_fiona, Not(blue_fiona))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "Not(green_fiona) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_bob, kind_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> smart(X)",
+          "z3_formula": "Implies(kind_bob, smart_bob)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_bob, nice_bob)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & not kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_fiona, Not(kind_fiona)), nice_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(rough_fiona, red_fiona), kind_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(erin)",
+          "z3_formula": "Not(rough_erin) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(erin))",
+          "z3_formula": "Not(rough_erin) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(fiona))",
+          "z3_formula": "Not(red_fiona) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not(blue(X))",
+          "z3_formula": "Implies(green_X, Not(blue_X))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_X, red_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_X, red_X), rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_X, kind_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> smart(X)",
+          "z3_formula": "Implies(kind_X, smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(rough_X, red_X), kind_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & not(kind(X)) -> nice(X)",
+          "z3_formula": "Implies(And(green_X, Not(kind_X)), nice_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(fiona)",
+          "z3_formula": "not red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_fiona, not blue_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_fiona, red_fiona), rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(fiona)",
+          "z3_formula": "not blue_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(fiona)",
+          "z3_formula": "Not(red_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "Not(green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not green(fiona)",
+          "z3_formula": "Not(green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_fiona, Not(blue_fiona))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "Not(green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & not kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_fiona, Not(kind_fiona)), nice_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not red(fiona)",
+          "z3_formula": "Not(red_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "Not(green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_fiona, red_fiona), rough_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(rough_fiona, red_fiona), kind_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_bob, kind_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(erin))",
+          "z3_formula": "Not(rough_erin) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(fiona))",
+          "z3_formula": "Not(red_fiona) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not(blue(X))",
+          "z3_formula": "Implies(green_anne, Not(blue_anne))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_anne, red_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_anne, red_anne), rough_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> kind(X)",
+          "z3_formula": "Implies(blue_bob, kind_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> smart(X)",
+          "z3_formula": "Implies(kind_bob, smart_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(rough_bob, red_bob), kind_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & not(kind(X)) -> nice(X)",
+          "z3_formula": "Implies(And(green_anne, Not(kind_anne)), nice_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_bob, nice_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(fiona)",
+          "z3_formula": "not red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> smart(X)",
+          "z3_formula": "Implies(kind_fiona, smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_fiona, not blue_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_fiona, red_fiona), rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_fiona, red_fiona), rough_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(Bob) -> kind(Bob)",
+          "z3_formula": "Implies(blue_bob, kind_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> smart(X)",
+          "z3_formula": "Implies(kind_fiona, smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(rough_fiona, red_fiona), kind_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & not kind(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_fiona, not kind_fiona), nice_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_fiona, nice_fiona)",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 155,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 45
+    },
+    "maxsat_stats": {
+      "satisfied": 42,
+      "excluded": 3,
+      "total_weight": 147,
+      "solve_time_ms": 1.4187982305884361
+    },
+    "timing": {
+      "trace_gen_s": 24.844,
+      "extraction_s": 26.122,
+      "dedup_s": 1.416,
+      "maxsat_s": 0.004,
+      "total_s": 52.385
+    }
+  }
+}

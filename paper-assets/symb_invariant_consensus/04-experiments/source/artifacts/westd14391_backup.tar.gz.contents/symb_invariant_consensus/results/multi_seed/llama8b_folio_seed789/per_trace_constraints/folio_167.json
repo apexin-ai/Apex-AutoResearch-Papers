@@ -1,0 +1,420 @@
+{
+  "pid": "folio_167",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "german(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nazi_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "member_prussian_state_parliament(heinrich_schmidt)",
+          "z3_formula": "member_prussian_state_parliament_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "member_nazi_reichstag(heinrich_schmidt)",
+          "z3_formula": "member_nazi_reichstag_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "german(heinrich_schmidt) | russian(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt | russian_heinrich_schmidt",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nazi_german_politician(X) -> german(X)",
+          "z3_formula": "Implies(nazi_german_politician_heinrich_schmidt, german_heinrich_schmidt)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "german(heinrich_schmidt) | russian(heinrich_schmidt)",
+          "z3_formula": "Or(german_heinrich_schmidt, russian_heinrich_schmidt)",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "german_heinrich_schmidt",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "politician_heinrich_schmidt",
+          "z3_formula": "politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "german(X) & politician(X) -> german_or_russian(X)",
+          "z3_formula": "Implies(And(german_heinrich_schmidt, politician_heinrich_schmidt), german_or_russian_heinrich_schmidt)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "german_or_russian_heinrich_schmidt",
+          "z3_formula": "german_or_russian_heinrich_schmidt == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "german(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "member_of_prussian_state_parliament_and_nazi_reichstag(heinrich_schmidt)",
+          "z3_formula": "member_of_prussian_state_parliament_and_nazi_reichstag_heinrich_schmidt == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nazi_german_politician(X) -> german(X)",
+          "z3_formula": "Implies(nazi_german_politician_heinrich_schmidt, german_heinrich_schmidt)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "german(X) | russian(X)",
+          "z3_formula": "Or(german_heinrich_schmidt, russian_heinrich_schmidt)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "russian(heinrich_schmidt) == False",
+          "z3_formula": "Not(russian_heinrich_schmidt) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "politician(heinrich_schmidt, german)",
+          "z3_formula": "politician_heinrich_schmidt_german == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "politician(X, german) -> german(X)",
+          "z3_formula": "Implies(politician_heinrich_schmidt_german, german_heinrich_schmidt)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "member(heinrich_schmidt, prussian_state_parliament)",
+          "z3_formula": "member_heinrich_schmidt_prussian_state_parliament == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "member(heinrich_schmidt, nazi_reichstag)",
+          "z3_formula": "member_heinrich_schmidt_nazi_reichstag == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "german(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(heinrich_schmidt, german_or_russian)",
+          "z3_formula": "german_heinrich_schmidt | Not(german_heinrich_schmidt)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "german(heinrich_schmidt)",
+          "z3_formula": "heinrich_schmidt_german == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "member(heinrich_schmidt, prussian_state_parliament)",
+          "z3_formula": "heinrich_schmidt_member_prussian_state_parliament == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "member(heinrich_schmidt, nazi_reichstag)",
+          "z3_formula": "heinrich_schmidt_member_nazi_reichstag == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "german(heinrich_schmidt) | russian(heinrich_schmidt)",
+          "z3_formula": "heinrich_schmidt_german == True | heinrich_schmidt_russian == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nazi_german_heinrich_schmidt",
+          "z3_formula": "nazi_german_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "german_heinrich_schmidt",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "member_prussian_state_parliament_heinrich_schmidt",
+          "z3_formula": "member_prussian_state_parliament_heinrich_schmidt == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "member_nazi_reichstag_heinrich_schmidt",
+          "z3_formula": "member_nazi_reichstag_heinrich_schmidt == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "german_or_russian_heinrich_schmidt",
+          "z3_formula": "german_heinrich_schmidt | russian_heinrich_schmidt == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nazi_heinrich_schmidt",
+          "z3_formula": "nazi_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nazi_heinrich_schmidt -> german_heinrich_schmidt",
+          "z3_formula": "Implies(nazi_heinrich_schmidt, german_heinrich_schmidt)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_heinrich_schmidt",
+          "z3_formula": "prussian_state_parliament_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "prussian_state_parliament_heinrich_schmidt -> german_heinrich_schmidt",
+          "z3_formula": "Implies(prussian_state_parliament_heinrich_schmidt, german_heinrich_schmidt)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "german_heinrich_schmidt",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "german_heinrich_schmidt | russian_heinrich_schmidt",
+          "z3_formula": "german_heinrich_schmidt | russian_heinrich_schmidt",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nazi_german_heinrich_schmidt",
+          "z3_formula": "nazi_german_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "german_heinrich_schmidt",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_heinrich_schmidt",
+          "z3_formula": "prussian_state_parliament_heinrich_schmidt == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nazi_reichstag_heinrich_schmidt",
+          "z3_formula": "nazi_reichstag_heinrich_schmidt == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "german_or_russian_heinrich_schmidt",
+          "z3_formula": "german_heinrich_schmidt | russian_heinrich_schmidt == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_member(heinrich_schmidt) & nazi_reichstag_member(heinrich_schmidt)",
+          "z3_formula": "And(prussian_state_parliament_member_heinrich_schmidt, nazi_reichstag_member_heinrich_schmidt) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nazi_german_politician(X) -> german(X)",
+          "z3_formula": "Implies(nazi_german_politician_heinrich_schmidt, german_heinrich_schmidt)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "german(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "german(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nazi_politician(X) -> german(X)",
+          "z3_formula": "Implies(nazi_politician_heinrich_schmidt, german_heinrich_schmidt)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "prussian_state_parliament_member(X) & nazi_reichstag_member(X) -> german(X)",
+          "z3_formula": "Implies(And(prussian_state_parliament_member_heinrich_schmidt, nazi_reichstag_member_heinrich_schmidt), german_heinrich_schmidt)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not russian(heinrich_schmidt)",
+          "z3_formula": "not russian_heinrich_schmidt == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "politician(heinrich_schmidt)",
+          "z3_formula": "politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "german(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "member(heinrich_schmidt, prussian_state_parliament)",
+          "z3_formula": "member_heinrich_schmidt_prussian_state_parliament == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "member(heinrich_schmidt, nazi_reichstag)",
+          "z3_formula": "member_heinrich_schmidt_nazi_reichstag == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "german_or_russian(heinrich_schmidt)",
+          "z3_formula": "german_heinrich_schmidt == True | russian_heinrich_schmidt == True",
+          "source_step": 3
+        }
+      ]
+    }
+  ]
+}

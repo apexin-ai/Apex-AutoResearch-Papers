@@ -1,0 +1,576 @@
+{
+  "pid": "folio_162",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(george, music)",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "access(program, george)",
+          "z3_formula": "access_program_george == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, music) -> wants_to_compose(X)",
+          "z3_formula": "Implies(likes_george_music, wants_to_compose_george)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "access(X, program) -> can_compose(X)",
+          "z3_formula": "Implies(access_program_george, can_compose_george)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can_compose(X) & wants_to_compose(X) -> will_compose(X)",
+          "z3_formula": "Implies(And(can_compose_george, wants_to_compose_george), will_compose_george)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not will_compose(george)",
+          "z3_formula": "Not(will_compose_george)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not can_compose(george)",
+          "z3_formula": "Not(can_compose_george)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(george, music)",
+          "z3_formula": "Not(likes_george_music)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not access(program, george)",
+          "z3_formula": "Not(access_program_george)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(george, music)",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, music) -> wants_to_compose(X)",
+          "z3_formula": "Implies(likes_george_music, wants_to_compose_george)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_access(george, program)",
+          "z3_formula": "has_access_george_program == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_access(X, program) -> can_compose(X)",
+          "z3_formula": "Implies(has_access_george_program, can_compose_george)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can_compose(X) & wants_to_compose(X) -> will_compose(X)",
+          "z3_formula": "Implies(And(can_compose_george, wants_to_compose_george), will_compose_george)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "will_not_compose(george)",
+          "z3_formula": "will_not_compose_george == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "will_compose(george)",
+          "z3_formula": "will_compose_george == False",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "likes_music(George) -> wants_to_compose(George)",
+          "z3_formula": "Implies(likes_george_music, wants_to_george_compose)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_access_to_program(George) -> can_compose(George)",
+          "z3_formula": "Implies(has_george_access_to_program, can_george_compose)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "(can_compose(George) & wants_to_compose(George)) -> will_compose(George)",
+          "z3_formula": "Implies(And(can_george_compose, wants_to_george_compose), will_george_compose)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(will_compose(George)) -> Not(can_compose(George))",
+          "z3_formula": "Not(will_george_compose) == Not(can_george_compose)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(george, music)",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(george, music) -> wants(george, compose)",
+          "z3_formula": "Implies(likes_george_music, wants_george_compose)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_access(george, program)",
+          "z3_formula": "has_access_george_program == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_access(george, program) -> can(george, compose)",
+          "z3_formula": "Implies(has_access_george_program, can_george_compose)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can(george, compose) & wants(george, compose) -> will(george, compose)",
+          "z3_formula": "Implies(And(can_george_compose, wants_george_compose), will_george_compose)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "will(george, compose)",
+          "z3_formula": "will_george_compose == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "will_not(george, compose)",
+          "z3_formula": "will_not_george_compose == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "will_not(george, compose) -> will_not(george, can(compose))",
+          "z3_formula": "Implies(will_not_george_compose, will_not_george_can_compose)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(george, music)",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(george, music) -> wants(george, compose)",
+          "z3_formula": "Implies(likes_george_music, wants_george_compose)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_access(george, program)",
+          "z3_formula": "has_access_george_program == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_access(george, program) -> can(george, compose)",
+          "z3_formula": "Implies(has_access_george_program, can_george_compose)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can(george, compose) & wants(george, compose) -> will(george, compose)",
+          "z3_formula": "Implies(And(can_george_compose, wants_george_compose), will_george_compose)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "will(george, compose)",
+          "z3_formula": "will_george_compose == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "will(george, compose) -> can(george, compose)",
+          "z3_formula": "Implies(will_george_compose, can_george_compose)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "can(george, compose)",
+          "z3_formula": "can_george_compose == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "\u00acwill(george, compose) -> \u00accan(george, compose)",
+          "z3_formula": "Implies(Not(will_george_compose), Not(can_george_compose))",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "likes_music(George) -> wants_to_compose(George)",
+          "z3_formula": "Implies(likes_george_music, wants_to_compose_george)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_access_to_program(George) -> can_compose(George)",
+          "z3_formula": "Implies(has_access_to_program_george, can_compose_george)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "can_compose(George) & wants_to_compose(George) -> will_compose(George)",
+          "z3_formula": "Implies(And(can_compose_george, wants_to_compose_george), will_compose_george)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "will_not_compose(George) -> cannot_compose(George)",
+          "z3_formula": "Implies(will_not_compose_george, cannot_compose_george)",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(george, music)",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, music) -> wants_to_compose(X)",
+          "z3_formula": "Implies(likes_george_music, wants_to_compose_george)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_access(george, program)",
+          "z3_formula": "has_access_george_program == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_access(X, program) -> can_compose(X)",
+          "z3_formula": "Implies(has_access_george_program, can_compose_george)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can_compose(X) & wants_to_compose(X) -> will_compose(X)",
+          "z3_formula": "Implies(And(can_compose_george, wants_to_compose_george), will_compose_george)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "will_not_compose(george)",
+          "z3_formula": "will_not_compose_george == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cannot_compose(george)",
+          "z3_formula": "cannot_compose_george == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(george, music)",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(george, music) -> wants_to_compose(george)",
+          "z3_formula": "Implies(likes_george_music, wants_to_compose_george)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_access(george, program)",
+          "z3_formula": "has_access_george_program == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_access(george, program) -> can_compose(george)",
+          "z3_formula": "Implies(has_access_george_program, can_compose_george)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can_compose(george) & wants_to_compose(george) -> will_compose(george)",
+          "z3_formula": "Implies(And(can_compose_george, wants_to_compose_george), will_compose_george)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not will_compose(george)",
+          "z3_formula": "Not(will_compose_george) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not can_compose(george)",
+          "z3_formula": "Not(can_compose_george) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "likes_music(George) -> wants_to_compose(George)",
+          "z3_formula": "Implies(likes_george_music, wants_to_compose_george)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_access_to_program(George) -> can_compose(George)",
+          "z3_formula": "Implies(has_access_to_program_george, can_compose_george)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "can_compose(George) & wants_to_compose(George) -> will_compose(George)",
+          "z3_formula": "Implies(And(can_compose_george, wants_to_compose_george), will_compose_george)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(will_compose(George)) & can_compose(George)",
+          "z3_formula": "And(Not(will_compose_george), can_compose_george)",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes_george_music",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes_george_music -> wants_george_compose",
+          "z3_formula": "Implies(likes_george_music, wants_george_compose)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_access_george_program",
+          "z3_formula": "has_access_george_program == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_access_george_program -> can_george_compose",
+          "z3_formula": "Implies(has_access_george_program, can_george_compose)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can_george_compose & wants_george_compose -> will_george_compose",
+          "z3_formula": "Implies(And(can_george_compose, wants_george_compose), will_george_compose)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "will_george_compose",
+          "z3_formula": "will_george_compose == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not will_george_compose",
+          "z3_formula": "Not(will_george_compose) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not can_george_compose",
+          "z3_formula": "Not(can_george_compose) == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(george, music)",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(george, music) -> wants(george, compose)",
+          "z3_formula": "Implies(likes_george_music, wants_george_compose)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "has_access(george, program)",
+          "z3_formula": "has_access_george_program == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_access(george, program) -> can(george, compose)",
+          "z3_formula": "Implies(has_access_george_program, can_george_compose)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can(george, compose) & wants(george, compose) -> will(george, compose)",
+          "z3_formula": "Implies(And(can_george_compose, wants_george_compose), will_george_compose)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "will(george, compose)",
+          "z3_formula": "will_george_compose == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(will(george, compose))",
+          "z3_formula": "Not(will_george_compose) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(can(george, compose))",
+          "z3_formula": "Not(can_george_compose) == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False (but uncertain)",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(george, music)",
+          "z3_formula": "likes_george_music == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(george, music) -> wants(george, compose)",
+          "z3_formula": "Implies(likes_george_music, wants_george_compose)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "access(george, program)",
+          "z3_formula": "access_george_program == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "access(george, program) -> can(george, compose)",
+          "z3_formula": "Implies(access_george_program, can_george_compose)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can(george, compose) & wants(george, compose) -> will(george, compose)",
+          "z3_formula": "Implies(And(can_george_compose, wants_george_compose), will_george_compose)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "will(george, compose)",
+          "z3_formula": "will_george_compose == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(will(george, compose))",
+          "z3_formula": "Not(will_george_compose) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not(will(george, compose)) -> not(can(george, compose))",
+          "z3_formula": "Implies(Not(will_george_compose), Not(can_george_compose))",
+          "source_step": 8
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+% Proposition 1: Symbolic Confirmation Bias is Structural
+% Place after the empirical BR paragraph in §3.2 (analysis.tex, ~line 17),
+% or at the end of §2.3 (method.tex) after Eq.(4) degeneration condition.
+% Requires: amsmath, amssymb, enumitem (all already loaded in main.tex).
+
+\textbf{Proposition 1} \textit{(Symbolic Confirmation Bias is Structural).}\;%
+Let $t_1, \dots, t_K \overset{\mathrm{i.i.d.}}{\sim} P_M(\cdot \mid q)$ be reasoning traces from model $M$ on question $q$.
+Assume:
+\begin{enumerate}[label=\textbf{A\arabic*.},leftmargin=2.5em,nosep]
+\item Answers are trace-determined: $a_i = h(t_i)$.
+\item Constraints are trace-determined: $c_i = f(t_i)$.
+\end{enumerate}
+Let $\hat{a} = \mathrm{mode}(a_1, \dots, a_K)$, $n_a = |\{i : a_i = a\}|$, and $Y$ the ground truth. Then:
+\begin{enumerate}[label=\textit{(\roman*)},leftmargin=1.8em,itemsep=2pt,topsep=3pt]
+\item \textit{Voting degeneration.}\;
+Under source attribution $\sigma(c_i, a) \triangleq \mathbf{1}[a_i = a]$, the constraint score reduces to the majority-vote count: $\operatorname{score}(a) = n_a$.
+When $|\{a : n_a > 0\}| \geq 2$, the bias ratio satisfies $\mathrm{BR} \triangleq n_{\hat{a}} \big/ \max_{a' \neq \hat{a}} n_{a'} \geq 1$.
+
+\item \textit{Information ceiling.}\;
+$I(C_{1:K};\, Y) \leq I(T_{1:K};\, Y)$ and $I(C_{1:K};\, Y \mid A_{1:K}) \leq I(T_{1:K};\, Y \mid A_{1:K})$:
+self-extracted constraints cannot carry more information about $Y$ than the source traces---even beyond what the answers already encode.
+\end{enumerate}
+\noindent
+Both bounds hold for \emph{any} model $M$, task $q$, and extraction function $f$.
+
+\medskip
+\textit{Proof.}\;%
+\textit{(i)}\; By definition, $\operatorname{score}(a) = \sum_{i=1}^K \mathbf{1}[a_i = a] = n_a$, maximized at $\hat{a}$, so $\mathrm{BR} \geq 1$.
+\textit{(ii)}\; $c_i = f(t_i)$ makes $C_{1:K}$ a deterministic function of $T_{1:K}$, so $Y \mathop{\text{---}} T_{1:K} \mathop{\text{---}} C_{1:K}$ forms a Markov chain and the data processing inequality gives $I(C_{1:K}; Y) \leq I(T_{1:K}; Y)$.
+The conditional bound follows identically: $c_i = f(t_i)$ holds unconditionally, so the Markov property and DPI apply within each stratum $\{A_{1:K} = \mathbf{a}\}$.\hfill$\square$
+
+\medskip\noindent
+Each constraint is a downstream product of a trace that simultaneously determines an answer; constraint-based aggregation therefore cannot escape the distributional bias of the answer vote.
+Neither bound depends on model capability, task difficulty, or extraction quality---the bias is a structural artifact of the self-extraction pipeline.
+
+\medskip\noindent
+\textbf{Remark.}\;%
+Part~\textit{(i)} relies on source attribution (Eq.~\ref{eq:score}), the mechanism used by SICA.
+Under \emph{semantic} evaluation---checking whether $c_i$ is logically consistent with answer $a$ directly---$\mathrm{BR} \geq 1$ additionally requires \emph{answer alignment}: $P(c_i \text{ supports } a_i) \geq P(c_i \text{ supports } a')$ for $a' \neq a_i$.
+This property is structurally motivated (the reasoning chain producing $a_i$ generates intermediate steps aligned with $a_i$) and is empirically validated across all nine model--task conditions ($\mathrm{BR} \in [1.66,\, 4.97]$; Table~\ref{tab:frontier-scb}), but is not a mathematical necessity of self-extraction alone---it could fail if $f$ systematically extracted premises that contradict their source trace's conclusion.
+
+% ============================================================
+% AUTHOR NOTE: Honesty check on proof strength
+% ============================================================
+%
+% 1. Part (i) is intentionally trivial. The triviality IS the contribution:
+%    it makes explicit that source attribution (σ function) renders the
+%    constraint layer exactly redundant with answer counting. The simplicity
+%    underscores that SCB is not a subtle empirical phenomenon but an
+%    immediate structural consequence.
+%
+% 2. Part (ii) uses only the standard DPI, requiring no assumptions beyond
+%    A1-A2. The conditional form I(C;Y|A) ≤ I(T;Y|A) is the stronger
+%    result: it says constraints add no *independent* verification signal
+%    beyond the traces themselves. Note this does NOT say I(C;Y|A) = 0;
+%    constraints may carry some info about Y beyond A, but only info already
+%    present in T. True independence requires breaking the T→C pipeline.
+%
+% 3. BR ≥ 1 is deterministic (holds for every realization), not just
+%    E[BR] ≥ 1. It equals 1 iff â ties with a runner-up. This is stronger
+%    than the empirical finding and explains why BR > 1 universally.
+%
+% 4. The Remark is essential for intellectual honesty: under semantic
+%    attribution, answer alignment is needed and is NOT a pure structural
+%    guarantee. However, since SICA actually uses source attribution, the
+%    main Proposition stands unconditionally.
+%
+% 5. Potential reviewer pushback: "This is obvious." Response: if it were
+%    obvious, prior work (including the original SICA paper) would not have
+%    proposed self-extraction as a verification mechanism. The proposition
+%    formalizes why that mechanism is structurally vacuous.
+%
+% 6. Deduplication caveat: with constraint deduplication, a constraint
+%    shared across answer groups contributes equally to all scores (cancels
+%    out). Answer-specific constraints drive the ranking, and these are
+%    proportional to trace counts. In the degenerate case where minority
+%    traces produce disproportionately more *unique* constraints, BR could
+%    theoretically drop below 1. Empirically this never happens (Table 5).
+%    The proposition covers the pre-deduplication base case; the
+%    degeneration condition (Eq.4) covers the practical case.

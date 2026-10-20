@@ -1,0 +1,760 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-960_Q3",
+    "problem": "Anne is quiet. Anne is not round. Anne is young. Charlie is not quiet. Charlie is young. Dave is blue. Dave is not smart. Harry is blue. Harry is kind. Harry is young. All blue, kind things are rough. Rough, kind things are quiet. Round things are kind. If Anne is round then Anne is kind. If Anne is smart and Anne is quiet then Anne is not round. All blue things are round. If something is kind and not round then it is young. If something is quiet and not blue then it is young. Quiet things are young.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is rough.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nSmart($x, bool) ::: Is x smart?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nQuiet(Anne, True) ::: Anne is quiet.\nRound(Anne, False) ::: Anne is not round.\nYoung(Anne, True) ::: Anne is young.\nQuiet(Charlie, False) ::: Charlie is not quiet.\nYoung(Charlie, True) ::: Charlie is young.\nBlue(Dave, True) ::: Dave is blue.\nSmart(Dave, False) ::: Dave is not smart.\nBlue(Harry, True) ::: Harry is blue.\nKind(Harry, True) ::: Harry is kind.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nBlue($x, True) && Kind($x, True) >>> Rough($x, True) ::: All blue, kind things are rough.\nRough($x, True) && Kind($x, True) >>> Quiet($x, True) ::: Rough, kind things are quiet.\nRound($x, True) >>> Kind($x, True) ::: Round things are kind.\nRound(Anne, True) >>> Kind(Anne, True) ::: If Anne is round then Anne is kind.\nSmart(Anne, True) && Quiet(Anne, True) >>> Round(Anne, False) ::: If Anne is smart and Anne is quiet then Anne is not round.\nBlue($x, True) >>> Round($x, True) ::: All blue things are round.\nKind($x, True) && Round($x, False) >>> Young($x, True) ::: If something is kind and not round then it is young.\nQuiet($x, True) && Blue($x, False) >>> Young($x, True) ::: If something is quiet and not blue then it is young.\nQuiet($x, True) >>> Young($x, True) ::: Quiet things are young.\n\nQuery:\nRough(Harry, True) ::: Harry is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 101.0,
+      "Unknown": 75.0
+    },
+    "answer_counts": {
+      "True": 10,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Harry is rough, we need to analyze the given statements and use the process of deduction.\n\n1. All blue, kind things are rough. \n   We know that Harry is blue (statement 4) and Harry is kind (statement 7). \n   From statement 1, we can conclude that Harry is rough.\n\nTherefore, the statement \"Harry is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is rough' is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\nGiven statements:\n1. All blue, kind things are rough.\n2. Rough, kind things are quiet.\n3. Round things are kind.\n4. If Anne is round then Anne is kind.\n5. If Anne is smart and Anne is quiet then Anne is not round.\n6. All blue things are round.\n7. If something is kind and not round then it is young.\n8. If something is quiet and not blue then it is young.\n9. Quiet things are young.\n\nFrom statement 6, we know that Harry is blue (since Harry is blue is mentioned). \n\nFrom statement 6, we also know that all blue things are round. Therefore, Harry is round.\n\nFrom statement 3, we know that round things are kind. Therefore, Harry is kind.\n\nNow we need to determine if Harry is rough. \n\nFrom statement 1, we know that all blue, kind things are rough. We know Harry is blue and kind. Therefore, Harry is rough.\n\nSo, after analyzing the given information, we can conclude that the statement 'Harry is rough' is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and the rules provided to determine the relationship between the given attributes.\n\nGiven statements:\n1. Anne is quiet.\n2. Anne is not round.\n3. Anne is young.\n4. Charlie is not quiet.\n5. Charlie is young.\n6. Dave is blue.\n7. Dave is not smart.\n8. Harry is blue.\n9. Harry is kind.\n10. Harry is young.\n11. All blue, kind things are rough.\n12. Rough, kind things are quiet.\n13. Round things are kind.\n14. If Anne is round then Anne is kind.\n15. If Anne is smart and Anne is quiet then Anne is not round.\n16. All blue things are round.\n17. If something is kind and not round then it is young.\n18. If something is quiet and not blue then it is young.\n19. Quiet things are young.\n\nTo determine whether the statement \"Harry is rough\" is true, false, or unknown, we need to find the relationship between Harry and the given attributes.\n\nFirst, we will find the relationship between Harry and \"rough.\" We have two statements related to \"rough\":\n11. All blue, kind things are rough.\n12. Rough, kind things are quiet.\n\nHowever, we have the following statements related to Harry:\n8. Harry is blue.\n9. Harry is kind.\n10. Harry is young.\n\nSince Harry is blue and kind, we can use the statement 11 to conclude that Harry is rough.\n\nNow, we have determined that Harry is rough. Therefore, the statement \"Harry is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is quiet.\n   - Anne is not round.\n   - Anne is young.\n   - Charlie is not quiet.\n   - Charlie is young.\n   - Dave is blue.\n   - Dave is not smart.\n   - Harry is blue.\n   - Harry is kind.\n   - Harry is young.\n   - All blue, kind things are rough.\n   - Rough, kind things are quiet.\n   - Round things are kind.\n   - If Anne is round then Anne is kind.\n   - If Anne is smart and Anne is quiet then Anne is not round.\n   - All blue things are round.\n   - If something is kind and not round then it is young.\n   - If something is quiet and not blue then it is young.\n   - Quiet things are young.\n\n2. We are given the statement \"Harry is rough\" and we need to determine whether it is true, false, or unknown.\n\n3. We can start by analyzing the statement \"All blue, kind things are rough\" from the given information. This statement implies that if something is both blue and kind, then it is rough.\n\n4. We are given that Harry is blue and Harry is kind. Since Harry satisfies both conditions, we can conclude that Harry is rough.\n\n5. Therefore, based on the given information, the statement \"Harry is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. All blue, kind things are rough.\n2. Rough, kind things are quiet.\n3. Round things are kind.\n4. If Anne is round then Anne is kind.\n5. If Anne is smart and Anne is quiet then Anne is not round.\n6. All blue things are round.\n7. If something is kind and not round then it is young.\n8. If something is quiet and not blue then it is young.\n9. Quiet things are young.\n\nFrom statement 6, we can infer that since Harry is blue (statement 4), Harry is round.\n\nFrom statement 3, since round things are kind, we can infer that Harry is kind.\n\nNow, we need to determine if Harry is rough or not. We know that Harry is blue and kind (from previous inferences). We can use statement 1: All blue, kind things are rough. This statement directly connects blue and kind things with being rough.\n\nHowever, we also have statement 2: Rough, kind things are quiet. This statement connects rough and kind things with being quiet. \n\nCombining these two statements, it seems that there is a potential contradiction between Harry being rough and quiet. However, we must consider all the given information.\n\nFrom statement 8, if something is quiet and not blue then it is young. However, we can't directly infer that Harry is quiet because we don't know if Harry is not blue. \n\nFrom statement 7, if something is kind and not round then it is young. Since Harry is kind (from previous inferences) and round (from previous inferences), this statement does not apply to Harry.\n\nFrom statement 9, quiet things are young. However, this statement alone does not provide enough information to conclude that Harry is quiet or not.\n\nConsidering all the given statements and their implications, we cannot determine if Harry is rough or not. The information given does not provide enough evidence to make a conclusive statement about Harry's roughness.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use a combination of logical deduction and the given statements. \n\n1. All blue, kind things are rough. \n2. Harry is blue. \n3. Harry is kind.\n\nFrom statement 1, we can deduce that if something is blue and kind, it is rough. Since Harry is both blue (statement 2) and kind (statement 3), Harry is rough.\n\nTherefore, the statement \"Harry is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will use the given premises and deductions to determine if the statement \"Harry is rough\" is true, false, or unknown.\n\n1. All blue, kind things are rough. (Premise)\n2. Harry is blue. (Premise)\n3. Harry is kind. (Premise)\n\nFrom premises 2 and 3, we can conclude that Harry is a blue, kind thing. \n\nUsing the information from premise 1, we can deduce that since Harry is a blue, kind thing, he is rough.\n\nTherefore, the statement \"Harry is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is rough\" is true, false, or unknown, we need to analyze the given information and apply the rules of inference.\n\n1. All blue, kind things are rough. \n2. Harry is blue. \n3. Harry is kind.\n\nFrom rule 1, we can conclude that if something is both blue and kind, then it is rough.\n\nFrom rules 2 and 3, we can conclude that Harry is both blue and kind.\n\nTherefore, using rule 1, we can conclude that Harry is rough.\n\nSo, the final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is rough\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\n1. All blue, kind things are rough. (Rule 1)\n2. Harry is blue. (Rule 5)\n3. Harry is kind. (Rule 6)\n\nFrom Rule 1 and Steps 2-3, we can conclude that Harry is rough because he satisfies all the conditions of Rule 1.\n\nTherefore, the statement \"Harry is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is rough' is true, false, or unknown, we need to analyze the given information and the relationships between the attributes.\n\n1. We are given that 'All blue, kind things are rough.' \n2. We are also given that 'Harry is blue' and 'Harry is kind.' \n\nFrom the above two points, we can conclude that Harry is indeed rough because he satisfies the conditions of being blue and kind.\n\nTherefore, the statement 'Harry is rough' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether Harry is rough, we need to analyze the given information step by step.\n\n1. All blue, kind things are rough. (Rule 1)\n2. Harry is blue. (Given)\n3. Harry is kind. (Given)\nFrom Rule 1 and the given information in points 2 and 3, we can conclude that Harry is rough.\n\nHowever, we need to check if there are any other rules or information that might contradict this conclusion.\n\n4. If something is kind and not round then it is young. (Rule 4)\nWe have already established that Harry is kind (point 3). However, we do not have any information about Harry's roundness yet.\n\n5. Round things are kind. (Rule 3)\nThis rule does not provide any new information about Harry being round or not. \n\n6. All blue things are round. (Rule 5)\nFrom point 2, we know that Harry is blue. Therefore, we can conclude that Harry is round using Rule 5.\n\n7. If something is round then Anne is kind. (Rule 2)\nWe cannot use this rule to determine Harry's roughness.\n\n8. If Anne is round then Anne is kind. (Rule 6)\nThis rule is related to Anne's characteristics and does not provide any information about Harry.\n\n9. Harry is young. (Given)\nWe can use Rule 4 to justify this conclusion. We have established that Harry is kind (point 3), and we do not have any information about Harry's roundness yet. However, we can conclude that Harry is young using the given information in point 9 and Rule 4.\n\n10. Quiet things are young. (Rule 7)\nWe cannot use this rule to determine Harry's roughness.\n\n11. Harry is not quiet. (Given)\nWe cannot use this rule to determine Harry's roughness.\n\nNow that we have analyzed all the given information, we can conclude that Harry is rough (from Rule 1 and points 2 and 3), and Harry is young (from point 9 and Rule 4).\n\nSince all blue, kind things are rough (Rule 1), and Harry is blue and kind, we can conclude that Harry is rough.\n\nTherefore, the statement \"Harry is rough\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is rough' is true, false, or unknown, we need to use the given information and apply logical reasoning step by step.\n\n1. Given information:\n   - Harry is blue.\n   - Harry is kind.\n   - Harry is young.\n   - All blue, kind things are rough.\n   - Rough, kind things are quiet.\n   - Round things are kind.\n   - If Anne is round then Anne is kind.\n   - If Anne is smart and Anne is quiet then Anne is not round.\n   - All blue things are round.\n   - If something is kind and not round then it is young.\n   - If something is quiet and not blue then it is young.\n   - Quiet things are young.\n\n2. From the given information, we can conclude that Harry is round because all blue things are round.\n   - Since Harry is round, then Harry is kind (Round things are kind).\n   - However, if Harry were kind and round, then Harry would be young (If something is kind and not round then it is young). But we already know Harry is young from the given information.\n\n3. We also know Harry is blue, and blue things are round. Since Harry is blue, then Harry is round (All blue things are round).\n   - This information confirms that Harry is indeed round.\n\n4. We have established that Harry is round, and we know round things are kind. But since Harry is kind, it does not necessarily mean Harry is rough because we have two different conditions for 'rough': 'All blue, kind things are rough' and 'Rough, kind things are quiet'.\n   - If we consider the first condition, we cannot conclude that Harry is rough because we do not know if Harry is blue and kind.\n   - If we consider the second condition, we cannot conclude that Harry is rough because we do not know if Harry is quiet.\n\n5. However, we can use the fact that Harry is kind and not round to determine Harry's age (If something is kind and not round then it is young).\n   - Since Harry is young, we can use the fact that quiet things are young to determine if Harry is quiet or not.\n   - If Harry were quiet, then Harry would be rough (Rough, kind things are quiet). But we are trying to determine if Harry is rough.\n\n6. We are trying to determine if Harry is rough. If Harry is quiet, then Harry would be rough. But we cannot conclude that Harry is quiet because we do not have enough information.\n   - If Harry is not quiet, we cannot determine if Harry is rough because we do not have enough information.\n\n7. Since we do not have enough information to determine if Harry is quiet, we cannot conclude that Harry is rough. Therefore, the statement 'Harry is rough' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_harry, kind_harry), rough_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_harry, kind_harry), rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(anne))",
+          "z3_formula": "Not(round_anne) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(quiet(charlie))",
+          "z3_formula": "Not(quiet_charlie) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(smart(dave))",
+          "z3_formula": "Not(smart_dave) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_harry, kind_harry), rough_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, kind_harry), quiet_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_harry, kind_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_anne, kind_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> not(round(X))",
+          "z3_formula": "Implies(And(smart_anne, quiet_anne), Not(round_anne))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_harry, round_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(round(X)) -> young(X)",
+          "z3_formula": "Implies(And(kind_harry, Not(round_harry)), young_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not(blue(X)) -> young(X)",
+          "z3_formula": "Implies(And(quiet_harry, Not(blue_harry)), young_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_harry, young_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(anne))",
+          "z3_formula": "Not(round_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(quiet(charlie))",
+          "z3_formula": "Not(quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(smart(dave))",
+          "z3_formula": "Not(smart_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_harry, kind_harry), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, kind_harry), quiet_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_anne, kind_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> not(round(X))",
+          "z3_formula": "Implies(And(smart_anne, quiet_anne), Not(round_anne))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_dave, round_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(round(X)) -> young(X)",
+          "z3_formula": "Implies(And(kind_harry, Not(round_harry)), young_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not(blue(X)) -> young(X)",
+          "z3_formula": "Implies(And(quiet_harry, Not(blue_harry)), young_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_harry, young_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(round(X)) -> young(X)",
+          "z3_formula": "Implies(And(kind_harry, Not(round_harry)), young_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not(blue(X)) -> young(X)",
+          "z3_formula": "Implies(And(quiet_harry, Not(blue_harry)), young_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_harry, kind_harry), rough_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, kind_harry), quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_harry, kind_harry), rough_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_harry, kind_harry), rough_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_harry, kind_harry), rough_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry) & kind(harry)",
+          "z3_formula": "And(blue_harry, kind_harry) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_harry, kind_harry), rough_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_harry, kind_harry), rough_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_harry, kind_harry), rough_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(round(X)) -> young(X)",
+          "z3_formula": "Implies(And(kind_harry, Not(round_harry)), young_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_harry, round_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_harry, kind_harry), rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, kind_harry), quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> kind(X)",
+          "z3_formula": "Implies(round_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_harry, young_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_harry, young_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_harry, round_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(round(X)) -> young(X)",
+          "z3_formula": "Implies(And(kind_harry, Not(round_harry)), young_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_harry, young_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_harry, young_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == Unknown",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 105,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 26
+    },
+    "maxsat_stats": {
+      "satisfied": 26,
+      "excluded": 0,
+      "total_weight": 105,
+      "solve_time_ms": 1.0876106098294258
+    },
+    "timing": {
+      "trace_gen_s": 7.06,
+      "extraction_s": 19.652,
+      "dedup_s": 0.588,
+      "maxsat_s": 0.003,
+      "total_s": 27.302
+    }
+  }
+}

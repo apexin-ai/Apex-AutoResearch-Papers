@@ -1,0 +1,516 @@
+{
+  "pid": "folio_65",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(cow)",
+          "z3_formula": "pet_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "not domesticated_alligator == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(some, cow)",
+          "z3_formula": "pet_some_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "not domesticated_alligator == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cow(ted) -> not pet(ted)",
+          "z3_formula": "Implies(cow_ted, not pet_ted)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(some, cow)",
+          "z3_formula": "pet_some_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "not domesticated_alligator == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not bovine(ted)",
+          "z3_formula": "not bovine_ted == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not bovine(X) -> not pet(X)",
+          "z3_formula": "Implies(not bovine_ted, not pet_ted)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not pet(ted)",
+          "z3_formula": "not pet_ted == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(X) & cow(X)",
+          "z3_formula": "And(pet_cow, cow_cow) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "Not(domesticated_alligator) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(some, cow)",
+          "z3_formula": "pet_some_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "not domesticated_alligator == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cow(X) -> not pet(X)",
+          "z3_formula": "Implies(cow_ted, not pet_ted)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(cow)",
+          "z3_formula": "pet_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "not domesticated_alligator == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cow(ted) -> not pet(ted)",
+          "z3_formula": "Implies(cow_ted, not pet_ted)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(cow)",
+          "z3_formula": "pet_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "not domesticated_alligator == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not cow(ted)",
+          "z3_formula": "not cow_ted == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not pet(ted)",
+          "z3_formula": "not pet_ted == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(cow)",
+          "z3_formula": "pet_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "not domesticated_alligator == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cow(ted)",
+          "z3_formula": "cow_ted == False",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cow(X) -> not pet(X)",
+          "z3_formula": "Implies(cow_ted, not pet_ted)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(some, cow)",
+          "z3_formula": "pet_some_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "not domesticated_alligator == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not cow(ted)",
+          "z3_formula": "not cow_ted == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(cow)",
+          "z3_formula": "pet_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "not domesticated_alligator == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cow(ted) -> not pet(ted)",
+          "z3_formula": "Implies(cow_ted, not pet_ted)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(some, cow)",
+          "z3_formula": "pet_some_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "not domesticated_alligator == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "bovine(cow)",
+          "z3_formula": "bovine_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pet(some, cow)",
+          "z3_formula": "pet_some_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "bovine(X) -> domesticated(X)",
+          "z3_formula": "Implies(bovine_cow, domesticated_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not domesticated(alligator)",
+          "z3_formula": "not domesticated_alligator == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "alligator(ted)",
+          "z3_formula": "alligator_ted == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not cow(ted)",
+          "z3_formula": "not cow_ted == True",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

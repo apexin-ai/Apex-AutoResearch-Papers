@@ -1,0 +1,888 @@
+{
+  "pid": "ProofWriter_AttNoneg-OWA-D5-1057_Q5",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), quiet_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> white(charlie)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_erin, kind_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_erin, white_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> white(charlie)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_erin, white_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), quiet_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_erin, kind_erin), rough_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_erin, white_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_erin, white_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, rough_X), furry_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_X, furry_X), quiet_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_X, kind_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_X, kind_X), rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_X, white_X), kind_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_X, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> white(charlie)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 13
+        }
+      ]
+    }
+  ]
+}

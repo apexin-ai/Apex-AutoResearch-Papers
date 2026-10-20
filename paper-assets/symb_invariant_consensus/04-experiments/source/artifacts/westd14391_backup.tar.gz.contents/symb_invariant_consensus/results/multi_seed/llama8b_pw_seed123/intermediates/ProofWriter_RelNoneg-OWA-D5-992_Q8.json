@@ -1,0 +1,1161 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-992_Q8",
+    "problem": "The bear is nice. The bear likes the cat. The bear sees the dog. The cat eats the bear. The cat is cold. The cat sees the bear. The dog eats the bear. The dog eats the lion. The dog is blue. The dog sees the cat. The lion eats the cat. The lion is cold. The lion likes the bear. The lion likes the cat. If someone is big then they eat the dog. If someone is cold then they are nice. If someone is blue and they see the bear then they see the dog. If someone eats the dog then the dog is nice. If someone is blue and they see the dog then they are big. If someone eats the bear and they are nice then they are blue. If someone eats the bear and they see the dog then the dog is big.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat does not see the dog.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nCold($x, bool) ::: Is x cold?\nBlue($x, bool) ::: Is x blue?\nBig($x, bool) ::: Is x big?\n\nFacts:\nNice(Bear, True) ::: The bear is nice.\nLikes(Bear, Cat, True) ::: The bear likes the cat.\nSees(Bear, Dog, True) ::: The bear sees the dog.\nEats(Cat, Bear, True) ::: The cat eats the bear.\nCold(Cat, True) ::: The cat is cold.\nSees(Cat, Bear, True) ::: The cat sees the bear.\nEats(Dog, Bear, True) ::: The dog eats the bear.\nEats(Dog, Lion, True) ::: The dog eats the lion.\nBlue(Dog, True) ::: The dog is blue.\nSees(Dog, Cat, True) ::: The dog sees the cat.\nEats(Lion, Cat, True) ::: The lion eats the cat.\nCold(Lion, True) ::: The lion is cold.\nLikes(Lion, Bear, True) ::: The lion likes the bear.\nLikes(Lion, Cat, True) ::: The lion likes the cat.\n\nRules:\nBig($x, True) >>> Eats($x, Dog, True) ::: If someone is big then they eat the dog.\nCold($x, True) >>> Nice($x, True) ::: If someone is cold then they are nice.\nBlue($x, True) && Sees($x, Bear, True) >>> Sees($x, Dog, True) ::: If someone is blue and they see the bear then they see the dog.\nEats($x, Dog, True) >>> Nice(Dog, True) ::: If someone eats the dog then the dog is nice.\nBlue($x, True) && Sees($x, Dog, True) >>> Big($x, True) ::: If someone is blue and they see the dog then they are big.\nEats($x, Bear, True) && Nice($x, True) >>> Blue($x, True) ::: If someone eats the bear and they are nice then they are blue.\nEats($x, Bear, True) && Sees($x, Dog, True) >>> Big(Dog, True) ::: If someone eats the bear and they see the dog then the dog is big.\n\nQuery:\nSees(Cat, Dog, False) ::: The cat does not see the dog."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 150.5,
+      "Unknown": 111.5
+    },
+    "answer_counts": {
+      "False": 7,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The cat does not see the dog\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the given statements:\n1. The dog sees the cat. (This implies the dog can see the cat, but it doesn't directly relate to the cat seeing the dog.)\n2. The lion eats the cat and the lion sees the cat. (This implies the lion sees the cat, but it doesn't directly relate to the cat seeing the dog.)\n3. The lion is cold and the lion likes the bear. (This information doesn't directly relate to the cat seeing the dog.)\n4. The lion is cold, so the lion is nice. (This implies the lion is nice, but it doesn't directly relate to the cat seeing the dog.)\n5. The cat eats the bear. (This implies the cat is nice, as per the rule: If someone eats the bear and they are nice then they are blue, which can be later determined but isn't necessary to solve the question.)\n6. The cat is cold. (This implies the cat is nice, as per the rule: If someone is cold then they are nice.)\n7. The cat sees the bear. (This is directly related to our question, but we still need to see if it affects the cat seeing the dog.)\n8. If someone is blue and they see the bear then they see the dog. (This rule can be used later, but we first need to find out if the cat is blue or not.)\n9. The dog eats the bear. (This implies the dog is nice, as per the rule: If someone eats the dog then the dog is nice.)\n10. The dog eats the lion. (This implies the dog is nice, as per the rule: If someone eats the dog then the dog is nice, but this is a different dog.)\n11. The dog is blue. (This information can be used with rule 8 to determine if the cat sees the dog.)\n12. The dog sees the cat. (This is directly related to our question.)\n\nHowever, there is a problem with the information. Rules 5, 6, 7, 9, and 11 imply that the cat is nice, the dog is nice, and the dog sees the cat. However, rules 1 and 12 are contradictory to rule 8 when used with the information that the dog is blue. Since the dog sees the cat, and the dog is blue, it should see the dog according to rule 8. This is only possible if the dog sees the cat and the cat sees the dog. This is a contradiction because the information that the cat sees the dog is not given directly, but it is implied by the rules.\n\nHowever, since the rules imply the dog is blue and the dog sees the cat, then the cat should see the dog according to rule 8. But since there is no direct information about the cat seeing the dog, we can't conclude that the cat sees the dog directly from the given information.\n\nHowever, we can determine that the cat sees the dog is unknown.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that the dog is blue.\n2. We also know that if someone is blue and they see the bear, then they see the dog. However, this is not directly relevant to our problem.\n3. We know that the dog sees the cat. This is a crucial piece of information because it directly contradicts our statement that the cat does not see the dog.\n\nBased on the given information, we can conclude that the statement \"The cat does not see the dog\" is false. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not see the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given information, we know:\n\n1. The bear likes the cat.\n2. The cat eats the bear. (This means the cat is not nice, as it eats the bear. But we don't have enough information about the cat's color yet.)\n3. The cat is cold. (This means the cat is nice, according to the rule \"If someone is cold then they are nice.\")\n4. The cat sees the bear.\n\nNow, we need to analyze the information related to the dog.\n\n1. The dog eats the bear.\n2. The dog eats the lion.\n3. The dog is blue.\n4. The lion eats the cat.\n5. The lion is cold.\n6. The lion likes the bear.\n7. The lion likes the cat.\n8. The dog sees the cat.\n\nWe know that if someone is blue and they see the bear then they see the dog. However, in this case, we don't know if the lion is blue or not. We only know that the dog is blue and sees the cat.\n\nNow, we need to analyze the rules related to the cat and the dog.\n\n1. If someone eats the dog then the dog is nice.\n2. If someone is blue and they see the dog then they are big.\n3. If someone eats the bear and they are nice then they are blue.\n4. If someone eats the bear and they see the dog then the dog is big.\n\nFrom rule 1, we can conclude that the cat is nice because it eats the dog. However, we already know that the cat is not nice because it eats the bear. So, this rule is not applicable in this case.\n\nFrom rule 2, we can conclude that the lion is big because it is blue and it sees the dog.\n\nFrom rule 3, we can conclude that the lion is blue because it eats the bear and it is nice.\n\nFrom rule 4, we can conclude that the lion is big because it eats the bear and it sees the dog.\n\nHowever, the statement we are interested in is \"The cat does not see the dog.\" To determine whether this statement is true or false, we need to analyze the information we have.\n\nFrom the given information, we know that the cat sees the bear, but we don't know if it sees the dog or not. However, we also know that the dog sees the cat, which implies that the cat is in the dog's line of sight. \n\nSo, we cannot conclude that the cat does not see the dog. We can only conclude that we don't have enough information to determine whether the cat sees the dog or not. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the information provided and apply the given conditions.\n\nFrom the statement, we know:\n1. The cat eats the bear.\n2. The cat is cold.\n3. The cat sees the bear.\n\nNow, we will apply the given conditions:\n\nCondition 1: If someone is cold then they are nice.\nSince the cat is cold, the cat is nice.\n\nCondition 2: If someone sees the bear and they are blue and they see the bear then they see the dog.\nThis condition is not relevant to the cat.\n\nCondition 3: If someone eats the bear and they are nice then they are blue.\nSince the cat eats the bear and the cat is nice, the cat is blue.\n\nNow we have the following information about the cat:\n- The cat eats the bear.\n- The cat is blue.\n- The cat is nice.\n- The cat sees the bear.\n\nThe statement to be evaluated is:\nThe cat does not see the dog.\n\nTo determine this, we will use Condition 4: If someone sees the dog then the dog is nice.\nWe don't know if the cat sees the dog or not, so we can't apply this condition directly.\n\nHowever, we can use another condition to determine the relationship between the cat and the dog.\n\nCondition 5: If someone is blue and they see the dog then they are big.\nSince the cat is blue, if the cat sees the dog, then the cat is big.\n\nNow, let's examine the statements related to the cat and the dog:\n- The cat eats the bear.\n- The cat is blue.\n- The cat sees the bear.\n- The dog eats the bear.\n- The dog eats the lion.\n- The dog is blue.\n- The dog sees the cat.\n\nWe know that the cat is blue, and the dog is also blue. The cat sees the bear and the dog sees the cat.\n\nNow we will use Condition 6: If someone eats the bear and they see the dog then the dog is big.\nSince the cat eats the bear and the cat sees the dog, the dog is big.\n\nCondition 7: If someone is big then they eat the dog.\nSince the dog is big, the dog eats the cat is not necessarily true, but the condition is satisfied in the given statement that the dog sees the cat.\n\nHowever, the statement \"The cat does not see the dog\" is false because it is stated that \"The dog sees the cat.\"",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not see the dog\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\nGiven information:\n1. The cat eats the bear.\n2. The cat is cold.\n3. The cat sees the bear.\n4. The dog eats the bear.\n5. The dog eats the lion.\n6. The dog is blue.\n7. The dog sees the cat.\n8. The lion eats the cat.\n9. The lion is cold.\n10. The lion likes the bear.\n11. The lion likes the cat.\n\nConditions:\n1. If someone is big then they eat the dog.\n2. If someone is cold then they are nice.\n3. If someone is blue and they see the bear then they see the dog.\n4. If someone eats the dog then the dog is nice.\n5. If someone is blue and they see the dog then they are big.\n6. If someone eats the bear and they are nice then they are blue.\n7. If someone eats the bear and they see the dog then the dog is big.\n\nWe are given the statement \"The cat does not see the dog.\" To determine the truth of this statement, we need to analyze the information and the conditions. However, there is a condition that directly relates to this statement:\n\n Condition 3: If someone is blue and they see the bear then they see the dog.\n\nGiven that the dog is blue (statement 6), we can infer that the dog sees the bear (condition 3). Since the cat sees the bear (statement 3), we can conclude that the cat sees the dog (condition 3).\n\nHowever, since we have established that the cat sees the dog, the statement \"The cat does not see the dog\" must be false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not see the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the bear. (Given)\n2. The cat is cold. (Given)\n3. If someone is cold then they are nice. (Given rule)\n   Therefore, the cat is nice.\n\n4. The dog eats the bear. (Given)\n5. The cat sees the bear. (Given)\n6. If someone eats the bear and they see the dog then the dog is big. (Given rule)\n   However, we don't have information about the dog's size yet.\n\n7. The cat is nice. (From step 3)\n8. The cat likes the bear. (Given)\n9. The cat eats the bear. (From step 1)\n10. If someone eats the bear and they are nice then they are blue. (Given rule)\n    Therefore, the cat is blue.\n\n11. The cat is blue. (From step 10)\n12. The cat sees the bear. (From step 5)\n13. If someone is blue and they see the bear then they see the dog. (Given rule)\n    Therefore, the cat sees the dog.\n\nFrom step 13, we can conclude that the cat sees the dog, making the statement \"The cat does not see the dog\" false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not see the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The dog is blue. (Given statement)\n2. The lion is blue. (Given statement)\n3. If someone is blue and they see the bear then they see the dog. (Given rule)\n   - Since the lion is blue, and we don't have any information about the lion seeing the bear, we cannot conclude that the lion sees the dog. However, we can still analyze this information.\n4. If someone is blue and they see the dog then they are big. (Given rule)\n   - Since the lion is blue, we can conclude that the lion is big.\n5. The lion eats the cat. (Given statement)\n6. If someone is big then they eat the dog. (Given rule)\n   - Since the lion is big, we can conclude that the lion eats the dog.\n7. The lion sees the cat. (Implicit conclusion from step 5)\n8. The cat sees the bear. (Given statement)\n9. The dog eats the bear. (Given statement)\n10. If someone eats the bear and they are nice then they are blue. (Given rule)\n    - Since the dog eats the bear, and the dog is blue (from step 1), we can conclude that the dog is nice (from the given statement that if someone eats the dog then the dog is nice).\n11. If someone eats the bear and they see the dog then the dog is big. (Given rule)\n    - Since the dog eats the bear, we can conclude that the dog is big (from step 11).\n12. The dog sees the cat. (Implicit conclusion from step 11)\n\nNow, let's analyze the statement \"The cat does not see the dog.\"\n\nFrom step 12, we have concluded that the dog sees the cat, but we still need to determine if the cat sees the dog.\n\nHowever, from the given statements, we don't have any direct information about the cat seeing the dog.\n\nBut we can make an indirect conclusion using the information from steps 7 and 8.\n\nThe lion sees the cat (from step 7), and the cat sees the bear (from step 8). This implies that the cat can see the lion since the lion is in the line of sight.\n\nSince the lion is big (from step 4), and it eats the dog (from step 6), we can conclude that the lion is in a higher level in the food chain than the dog.\n\nTherefore, the cat can see the dog, as the cat sees the lion, and the lion sees the dog.\n\nHence, the statement \"The cat does not see the dog\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not see the dog\" is true, false, or unknown, we need to analyze the given information.\n\n1. The dog sees the cat.\nThis statement implies that the cat and the dog see each other.\n\n2. If someone is blue and they see the bear then they see the dog.\nThis statement doesn't directly relate to the cat, but it tells us that seeing the bear might be related to seeing the dog.\n\n3. If someone is blue and they see the dog then they are big.\nThis statement tells us that being blue and seeing the dog makes someone big.\n\n4. The cat eats the bear.\n5. If someone eats the bear and they are nice then they are blue.\nThis statement implies that the cat is blue because it ate the bear and it is nice (since it is cold).\n\n6. If someone is blue and they see the dog then they are big.\nSince the cat is blue, it means the cat is big.\n\n7. The cat sees the bear.\nSince the cat is big, it means it sees the dog.\n\nFrom these statements, we can conclude that the cat does see the dog. Therefore, the statement \"The cat does not see the dog\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and identify the relevant ones that will help us determine if the cat sees the dog. We will use the given conditions to derive new information step by step.\n\n1. The dog is blue. (Given)\n2. The dog sees the cat. (Given)\n   From the condition: If someone is blue and they see the bear then they see the dog.\n   We can derive that the lion sees the dog because it is blue and it likes the bear. (However, this information is not directly relevant to our question.)\n\n3. The cat eats the bear. (Given)\n   From the condition: If someone eats the bear and they are nice then they are blue.\n   We cannot determine if the cat is blue from this condition alone, as we don't know if the cat is nice.\n\n4. The cat sees the bear. (Given)\n   From the condition: If someone is blue and they see the bear then they see the dog.\n   We cannot determine if the cat sees the dog from this condition alone, as we don't know if the cat is blue.\n\n5. The dog eats the bear. (Given)\n   From the condition: If someone eats the bear and they see the dog then the dog is big.\n   However, this does not provide any information about the cat and the dog.\n\n6. The lion eats the cat. (Given)\n   This information is not relevant to determining if the cat sees the dog.\n\n7. The dog eats the lion. (Given)\n   From the condition: If someone is big then they eat the dog.\n   However, this does not provide any information about the cat and the dog.\n\n8. The lion is cold. (Given)\n   From the condition: If someone is cold then they are nice.\n   However, this does not provide any information about the cat and the dog.\n\n9. The cat is cold. (Given)\n   From the condition: If someone is cold then they are nice.\n   However, this does not provide any information about the cat seeing the dog.\n\n10. The lion likes the bear. (Given)\n    The lion's likes or dislikes do not provide any information about the cat and the dog.\n\n11. The lion likes the cat. (Given)\n    This information is not relevant to determining if the cat sees the dog.\n\nFrom the given conditions, we cannot derive any direct information about the cat seeing the dog. However, we can use the condition: If someone is blue and they see the bear then they see the dog. We know that the lion sees the bear (because it likes the bear) and the lion is blue (because the dog is blue). Therefore, the lion sees the dog.\n\nHowever, we cannot determine if the cat sees the dog from the given conditions. The only information we have is that the dog sees the cat. Therefore, we cannot conclude that the cat does not see the dog, but we also cannot conclude that the cat sees the dog.\n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given conditions to the statements involving the cat and the dog.\n\n1. The cat eats the bear. \n2. The cat is cold. \n3. The cat sees the bear.\n\nFrom condition 2, we know that since the cat is cold, they are nice.\n\n4. The dog eats the bear.\n\nFrom condition 5, we know that since the dog eats the bear, the dog is nice.\n\n5. The dog sees the cat.\n\nWe now have information about the cat and the dog.\n\n6. If someone is blue then they see the dog and they see the bear. \n7. If someone is blue and they see the dog then they are big.\n\nWe cannot determine if the cat is blue or not. However, we can use the information in condition 7 to infer that if the cat were blue, then they would be big.\n\n8. If someone is blue and they see the bear then they see the dog.\n\nSince we cannot determine if the cat is blue or not, we also cannot determine if they see the bear and the dog.\n\n9. If someone eats the bear and they are nice then they are blue.\n\nFrom condition 1, we know that the cat eats the bear. Since the cat is nice (condition 2), the cat must be blue.\n\n10. If someone eats the bear and they see the dog then the dog is big.\n\nFrom conditions 1 and 5, we know that the cat eats the bear and sees the dog. Therefore, the dog is big.\n\nSince we have determined that the cat is blue and the dog is big, we can now look at the original statement.\n\nThe original statement is: The cat does not see the dog.\n\nFrom condition 3, we know that the cat sees the bear. \nFrom condition 8, we know that if the cat were blue (which we have determined) and sees the bear, then the cat sees the dog.\n\nHowever, from condition 8, we also know that if the cat is blue and sees the bear, then the cat sees the dog. But from condition 5, we know that the dog sees the cat. \n\nThis is a paradox. However, since we cannot determine if the cat sees the dog or not, we will apply condition 9 to infer that the cat is blue.\n\nSince the cat is blue, then by condition 7, the cat is big. However, since the cat is big, then by condition 1, the cat sees the dog.\n\nTherefore, we can say that the cat does see the dog.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not see the dog\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the statement \"The dog sees the cat,\" we can infer that the dog is aware of the cat's presence. However, this does not directly tell us whether the cat sees the dog.\n\nNow, let's examine the conditions related to the cat and the dog:\n\n1. There is no condition that directly states the cat sees the dog.\n2. We know the cat eats the bear.\n3. However, we also know the lion eats the cat, but this doesn't tell us about the relationship between the cat and the dog.\n4. Since the dog eats the lion, we can conclude the dog is big because \"If someone is blue and they see the dog then they are big.\" However, this information doesn't help us determine the cat's relationship with the dog.\n5. \"If someone is blue and they see the bear then they see the dog.\" Since the lion is blue and it likes the bear, it does see the bear, and thus the lion sees the dog. However, the lion is not the cat, so this information doesn't directly apply to the cat.\n6. \"If someone eats the bear and they are nice then they are blue.\" Since the cat eats the bear and it is cold (which means it is nice), the cat should be blue. However, there is no condition that directly states the cat sees the dog because of this.\n7. \"If someone eats the bear and they see the dog then the dog is big.\" Since the cat eats the bear and it is cold (which means it is nice), the cat should be blue. And since the cat is blue, it should see the dog (because \"If someone is blue and they see the bear then they see the dog\"). However, we cannot be certain about this conclusion because it relies on the lion's relationship with the dog.\n\nConsidering the given conditions and the information we can derive from them, we cannot directly determine whether the cat sees the dog or not. Therefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not see the dog\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear is nice.\n2. The bear likes the cat.\n3. The bear sees the dog.\n4. The cat eats the bear.\n5. The cat is cold.\n6. The cat sees the bear.\n7. The dog eats the bear.\n8. The dog eats the lion.\n9. The dog is blue.\n10. The dog sees the cat.\n11. The lion eats the cat.\n12. The lion is cold.\n13. The lion likes the bear.\n14. The lion likes the cat.\n\nNow, let's analyze the given conditions:\n\n1. If someone is big then they eat the dog.\n2. If someone is cold then they are nice.\n3. If someone is blue and they see the bear then they see the dog.\n4. If someone eats the dog then the dog is nice.\n5. If someone is blue and they see the dog then they are big.\n6. If someone eats the bear and they are nice then they are blue.\n7. If someone eats the bear and they see the dog then the dog is big.\n\nFrom statement 4, we know \"The cat eats the bear.\" \nFrom statement 5, we know \"The cat is cold.\"\nFrom condition 2, since \"The cat is cold,\" then \"The cat is nice.\"\n\nNow, we have two possibilities:\n- The cat eats the bear and it is nice.\n- The cat eats the bear and it sees the dog.\n\nFrom condition 6, since \"The cat eats the bear\" and \"The cat is nice,\" then \"The cat is blue.\"\n\nFrom condition 3, since \"The cat is blue\" and \"The cat sees the bear,\" then \"The cat sees the dog.\"\n\nTherefore, we can conclude that \"The cat sees the dog\" is true.\n\nSince we found that the cat does see the dog, the statement \"The cat does not see the dog\" is false.\n\n\\boxed{false}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_lion, nice_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_cat_bear, nice_cat), blue_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_cat, nice_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_dog, sees_cat_bear), sees_cat_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> nice(X)",
+          "z3_formula": "Implies(eats_dog_bear, nice_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> nice(X)",
+          "z3_formula": "Implies(eats_dog_lion, nice_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_dog, sees_dog_bear), sees_dog_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(cat, dog)",
+          "z3_formula": "Not(sees_cat_dog) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_cat, nice_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> nice(X)",
+          "z3_formula": "Implies(eats_dog_bear, nice_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_dog, sees_dog_bear), sees_dog_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_bear_lion, nice_lion), blue_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(eats_bear_lion, sees_lion_dog), big_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == False",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == Unknown",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_cat, nice_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(sees_cat_bear, blue_cat, sees_cat_bear), sees_cat_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_cat_bear, nice_cat), blue_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(eats_cat_bear, sees_cat_dog), big_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, dog)",
+          "z3_formula": "Implies(big_dog, eats_dog_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(cat, dog)",
+          "z3_formula": "Not(sees_cat_dog)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, dog)",
+          "z3_formula": "Implies(big_X, eats_X_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_X, nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_X, sees_X_bear), sees_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> nice(dog)",
+          "z3_formula": "Implies(eats_X_dog, nice_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(blue_X, sees_X_dog), big_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_X_bear, nice_X), blue_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(X, dog) -> big(dog)",
+          "z3_formula": "Implies(And(eats_X_bear, sees_X_dog), big_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_cat, nice_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(X, dog) -> big(dog)",
+          "z3_formula": "Implies(And(eats_cat_bear, sees_cat_dog), big_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, bear)",
+          "z3_formula": "likes_cat_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_cat_bear, nice_cat), blue_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_cat, sees_cat_bear), sees_cat_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_lion, sees_lion_bear), sees_lion_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(blue_lion, sees_lion_dog), big_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, dog)",
+          "z3_formula": "Implies(big_lion, eats_lion_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, cat)",
+          "z3_formula": "sees_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_dog_bear, nice_dog), blue_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(eats_dog_bear, sees_dog_dog), big_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> sees(Y, X)",
+          "z3_formula": "Implies(sees_dog_cat, sees_cat_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_X, sees_X_bear), sees_X_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(blue_X, sees_X_dog), big_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_X_bear, nice_X), blue_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_cat, big_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_dog, sees_lion_bear), sees_lion_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_cat_bear, nice_cat), blue_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_cat, sees_cat_bear), sees_cat_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(eats_dog_bear, sees_dog_cat), big_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_lion, nice_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_cat, nice_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_cat, nice_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> nice(X)",
+          "z3_formula": "Implies(eats_dog_bear, nice_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> sees(X, dog) & sees(X, bear)",
+          "z3_formula": "Implies(blue_X, And(sees_X_dog, sees_X_bear))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(blue_X, sees_X_dog), big_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_X, sees_X_bear), sees_X_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_X_bear, nice_X), blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(eats_X_bear, sees_X_dog), big_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(dog)",
+          "z3_formula": "big_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 15
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, dog)",
+          "z3_formula": "sees_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, lion)",
+          "z3_formula": "eats_dog_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, cat)",
+          "z3_formula": "sees_dog_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bear)",
+          "z3_formula": "likes_lion_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> eats(X, dog)",
+          "z3_formula": "Implies(big_X, eats_X_dog)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_X, nice_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, bear) -> sees(X, dog)",
+          "z3_formula": "Implies(And(blue_X, sees_X_bear), sees_X_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> nice(dog)",
+          "z3_formula": "Implies(eats_X_dog, nice_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & sees(X, dog) -> big(X)",
+          "z3_formula": "Implies(And(blue_X, sees_X_dog), big_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(eats_X_bear, nice_X), blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & sees(X, dog) -> big(dog)",
+          "z3_formula": "Implies(And(eats_X_bear, sees_X_dog), big_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, dog)",
+          "z3_formula": "sees_cat_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(cat, dog)",
+          "z3_formula": "Not(sees_cat_dog)",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 172,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 59
+    },
+    "maxsat_stats": {
+      "satisfied": 57,
+      "excluded": 2,
+      "total_weight": 168,
+      "solve_time_ms": 1.3821423053741455
+    },
+    "timing": {
+      "trace_gen_s": 8.085,
+      "extraction_s": 42.732,
+      "dedup_s": 2.038,
+      "maxsat_s": 0.005,
+      "total_s": 52.859
+    }
+  }
+}

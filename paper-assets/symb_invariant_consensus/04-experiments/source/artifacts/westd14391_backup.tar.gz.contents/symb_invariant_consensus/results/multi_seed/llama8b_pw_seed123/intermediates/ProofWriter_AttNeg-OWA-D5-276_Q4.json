@@ -1,0 +1,816 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-276_Q4",
+    "problem": "Bob is kind. Bob is round. Charlie is rough. Erin is green. Erin is rough. Erin is round. Gary is cold. All rough people are green. If someone is green then they are white. If someone is white then they are not big. If someone is green and not big then they are kind. If someone is kind and not big then they are round.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not white.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nRound($x, bool) ::: Is x round?\nRough($x, bool) ::: Is x rough?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nKind(Bob, True) ::: Bob is kind.\nRound(Bob, True) ::: Bob is round.\nRough(Charlie, True) ::: Charlie is rough.\nGreen(Erin, True) ::: Erin is green.\nRough(Erin, True) ::: Erin is rough.\nRound(Erin, True) ::: Erin is round.\nCold(Gary, True) ::: Gary is cold.\n\nRules:\nRough($x, True) >>> Green($x, True) ::: All rough people are green.\nGreen($x, True) >>> White($x, True) ::: If someone is green then they are white.\nWhite($x, True) >>> Big($x, False) ::: If someone is white then they are not big.\nGreen($x, True) && Big($x, False) >>> Kind($x, True) ::: If someone is green and not big then they are kind.\nKind($x, True) && Big($x, False) >>> Round($x, True) ::: If someone is kind and not big then they are round.\n\nQuery:\nWhite(Erin, False) ::: Erin is not white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 96.5,
+      "True": 77.0,
+      "Unknown": 73.5
+    },
+    "answer_counts": {
+      "False": 8,
+      "Unknown": 1,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the properties of each person.\n\n1. All rough people are green. \n   - This implies that if someone is rough, they are green.\n\n2. Erin is rough and Erin is green. \n   - From statement 1, since Erin is rough, Erin is green.\n\n3. If someone is green then they are white. \n   - This implies that green people are white.\n\n4. Erin is green (from statement 2) and Erin is white (from statement 3). \n   - However, we need to determine if the statement \"Erin is not white\" is true or false.\n\n5. Since Erin is indeed white (from statement 4), we can conclude that the statement \"Erin is not white\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not white\" is true, false, or unknown, we need to use the given information and apply logical reasoning.\n\n1. Erin is green. (Given)\n2. All rough people are green. (Given)\n3. Erin is rough. (Given)\n4. If someone is green then they are white. (Given)\n   From (1) and (4), we can infer that Erin is white.\n\nNow, let's analyze the statement \"Erin is not white.\"\n\nSince we have determined that Erin is white (from step 4), we can conclude that the statement \"Erin is not white\" is false.\n\nThe final answer is: $\\boxed{\\text{false}}$",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that:\n   - Erin is green\n   - Erin is rough\n   - Erin is round\n\n2. From the given information, we know that:\n   - All rough people are green (so Erin being rough implies Erin being green, which is already given)\n   - If someone is green then they are white (this is a direct contradiction to the given information that Erin is green)\n\n   From the above statement, we can conclude that Erin is white because the statement says if someone is green then they are white.\n\n3. Now we have a contradiction. We were given that Erin is green, but we concluded that Erin is white. This means that the given information and the information derived from the given information cannot be true at the same time.\n\n4. To find out whether the statement \"Erin is not white\" is true, false, or unknown, we need to check if the derived information is true or false. We concluded that Erin is white, which means the statement \"Erin is not white\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Erin is not white, we need to analyze the given information step by step.\n\n1. Erin is green.\n2. All rough people are green.\n3. Erin is rough.\nFrom (2) and (3), we can conclude that Erin is indeed green because she is rough.\n\nNow, let's analyze the properties of green people:\n4. If someone is green, then they are white.\nFrom (4) and the fact that Erin is green, we can conclude that Erin is white.\n\nNow, let's analyze the properties of white people:\n5. If someone is white, then they are not big.\nFrom (5) and the fact that Erin is white, we can conclude that Erin is not big.\n\nNow, let's analyze the properties of green people who are not big:\n6. If someone is green and not big, then they are kind.\nFrom (6) and the fact that Erin is green and not big, we can conclude that Erin is kind.\n\nNow, let's analyze the properties of kind people who are not big:\n7. If someone is kind and not big, then they are round.\nFrom (7) and the fact that Erin is kind and not big, we can conclude that Erin is round.\n\nHowever, the statement we are evaluating is \"Erin is not white.\" Based on the analysis above, we have found that Erin is white. Therefore, the statement \"Erin is not white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is not white' is true, false, or unknown, we need to analyze the given information and the logical rules provided.\n\nGiven information:\n\n1. Erin is green.\n2. Erin is rough.\n3. Erin is round.\n\nLogical rules:\n\n1. All rough people are green.\n   This implies that Erin's roughness is the reason she is green, not the other way around.\n\n2. If someone is green then they are white.\n   This seems to be a contradictory statement with the first rule, as it suggests that being green and being rough are mutually exclusive.\n\nHowever, to follow the format provided, let's proceed with the given rules.\n\n3. If someone is white then they are not big.\n   This rule does not directly relate to Erin's characteristics.\n\n4. If someone is green and not big then they are kind.\n   Since Erin is green, we need to determine if she is big or not to apply this rule.\n\n5. If someone is kind and not big then they are round.\n   This rule does not directly relate to Erin's characteristics.\n\nNow, let's re-analyze the information in light of the rules:\n\n1. Erin is green.\n2. From the first rule, we know that Erin's roughness is the reason she is green.\n\n3. The second rule states that if someone is green then they are white. Since Erin is green, this means Erin is white.\n\nNow, let's evaluate the statement 'Erin is not white' based on the above analysis.\n\nSince Erin is white, the statement 'Erin is not white' is false.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is green. (Given)\n2. All rough people are green. (Given)\n3. Erin is rough. (Given)\n4. Since Erin is rough, and all rough people are green, it follows that Erin is green. (From step 1 and step 2)\n5. If someone is green then they are white. (Given)\n6. Since Erin is green (from step 4), it follows that Erin is white. (From step 5)\n7. If someone is white then they are not big. (Given)\n8. Since Erin is white (from step 6), it follows that Erin is not big. (From step 7)\n9. If someone is green and not big then they are kind. (Given)\n10. Since Erin is green (from step 1) and not big (from step 8), it follows that Erin is kind. (From step 9)\n11. If someone is kind and not big then they are round. (Given)\n12. Since Erin is kind (from step 10) and not big (from step 8), it follows that Erin is round. (From step 11)\n\nBased on the analysis, we know that Erin is white (from step 6), but we need to determine whether \"Erin is not white\" is true or false. Since Erin is white, the statement \"Erin is not white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is green. \n2. All rough people are green. \n3. Erin is rough. \nFrom statements 2 and 3, we can conclude that Erin is indeed green, as it satisfies both conditions.\n\n4. If someone is green then they are white.\nHowever, this statement directly contradicts statement 1, which says Erin is green. \n\nTo resolve this contradiction, we need to understand the logical structure of the statements. \n\nStatement 4 implies a relationship between being green and being white. However, the other statements suggest that Erin's characteristics are more closely related to being rough and round. \n\nSince we have a contradiction, we cannot conclude that Erin is white or not white based on the given information alone. \n\nHowever, we can analyze the given information again to see if there's any other conclusion we can draw.\n\n5. Erin is round. \n6. If someone is round then they are not big.\n7. Erin is round and rough, but we can't conclude if Erin is big or not. However, statement 6 implies that if Erin is round, then Erin is not big.\n\nNow, considering the statements 1, 3, 5, and 6, we have some information about Erin's characteristics, but not enough to determine if Erin is white or not white.\n\n8. If someone is green then they are white.\nThis statement is a contradiction to the information we already have about Erin (Erin is green). This statement suggests a relationship between being green and being white, but the other statements suggest that Erin's characteristics are more closely related to being rough and round.\n\nTo conclude, we cannot determine if the statement \"Erin is not white\" is true or false based on the given information alone.\n\nTherefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Erin is green. \n2. From the information given, we know that \"All rough people are green.\" However, we also know that Erin is round. \n   We need more information to conclude that Erin is rough. But we can conclude that Erin is green, which is consistent with being rough.\n3. From the information given, we also know that \"If someone is green then they are white.\"\n   So, we can conclude that Erin is white.\n\nGiven the above conclusions, the statement \"Erin is not white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to follow the given statements and apply the rules to determine the truth value of the statement \"Erin is not white.\"\n\nGiven statements:\n1. Bob is kind.\n2. Bob is round.\n3. Charlie is rough.\n4. Erin is green.\n5. Erin is rough.\n6. Erin is round.\n7. Gary is cold.\n8. All rough people are green.\n9. If someone is green then they are white.\n10. If someone is white then they are not big.\n11. If someone is green and not big then they are kind.\n12. If someone is kind and not big then they are round.\n\nNow, let's analyze the statement \"Erin is not white.\"\n\nWe have two statements related to Erin's color:\n4. Erin is green.\n9. If someone is green then they are white.\n\nUsing statement 9, we can conclude that Erin is white (since Erin is green), which contradicts the statement \"Erin is not white.\"\n\nSo, the statement \"Erin is not white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, let's analyze the given information and the conclusion we need to draw.\n\n1. All rough people are green. \n   - This means that if someone is rough, they must be green.\n\n2. Erin is rough. \n   - Since Erin is rough, Erin must be green (from statement 1).\n\n3. If someone is green then they are white. \n   - This is a contradictory statement because we already know Erin is green from statement 2. \n   - However, we will continue with the problem to see what conclusion we can draw.\n\n4. Erin is green. \n   - We already know this from statement 2.\n\n5. Erin is white. \n   - This statement directly contradicts statement 4, but we will continue to see if we can determine whether Erin is not white.\n\n6. If someone is white then they are not big. \n   - This statement is irrelevant to our conclusion about Erin being white or not.\n\n7. Erin is not big. \n   - This statement is also irrelevant to our conclusion about Erin being white or not.\n\n8. If someone is green and not big then they are kind. \n   - This statement is also irrelevant to our conclusion about Erin being white or not.\n\n9. If someone is kind and not big then they are round. \n   - This statement is also irrelevant to our conclusion about Erin being white or not.\n\nHowever, we still need to determine whether the statement 'Erin is not white' is true, false, or unknown.\n\nFrom the given statements, we know Erin is green. \nWe also know that if someone is green, then they are white (from statement 3). \nBut this statement is contradictory to our knowledge that Erin is green. \nTherefore, we cannot directly conclude whether Erin is white or not. \nWe can only conclude that the statement 'Erin is white' is false due to the contradiction. \n\nHowever, the statement 'Erin is not white' does not necessarily mean it is true. \nSince we have a contradiction, the correct answer is unknown.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will use a logical approach based on the given statements.\n\nGiven statements:\n\n1. Bob is kind.\n2. Bob is round.\n3. Charlie is rough.\n4. Erin is green.\n5. Erin is rough.\n6. Erin is round.\n7. Gary is cold.\n8. All rough people are green.\n9. If someone is green then they are white.\n10. If someone is white then they are not big.\n11. If someone is green and not big then they are kind.\n12. If someone is kind and not big then they are round.\n\nWe need to determine whether the statement \"Erin is not white\" is true, false, or unknown.\n\nFrom statement 4, we know that Erin is green.\nFrom statement 9, we know that if someone is green then they are white.\nHowever, we also have another statement 8, that states all rough people are green, and from statement 5, we know that Erin is rough.\nCombining these statements, we conclude that Erin is indeed green and rough.\n\nNow, we need to determine whether Erin is white or not. From statement 9, we know that if someone is green then they are white. However, we have to consider all the conditions.\n\nFrom statement 5, we know Erin is rough, which makes her green (statement 8), and from statement 10, we know that if someone is white then they are not big.\n\nHowever, we know that Erin is green (statement 4) and rough (statement 5), and from statement 5, we know that Erin is round (statement 6). This makes Erin a combination of green and round.\n\nFrom statement 11, we know that if someone is green and not big then they are kind. We do not have any information that contradicts this statement. However, from statement 12, we know that if someone is kind and not big then they are round.\n\nCombining the statements, we conclude that Erin is green and round, and also, from the conditions provided, that Erin is indeed kind.\n\nHowever, from statement 10, we know that if someone is white then they are not big, which implies that Erin is not white since Erin is indeed big in the sense that Erin is a person.\n\nTherefore, we can conclude that the statement \"Erin is not white\" is true.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Erin is green.\n   - Erin is rough.\n   - Erin is round.\n\n2. Inference 1:\n   All rough people are green. (Given)\n   Since Erin is rough, Erin is green. (This doesn't add any new information)\n   We already know that Erin is green.\n\n3. Inference 2:\n   If someone is green then they are white. (Given)\n   However, we also know that not all green people are white, because:\n   - Erin is green.\n   - Erin is not white (We want to determine this)\n   - This means \"If someone is green then they are white\" is not always true. \n\n4. Since we have a contradiction, the statement \"If someone is green then they are white\" is false.\n   Now we know that Erin is green and Erin is not white. The statement \"If someone is green then they are white\" is false.\n\n5. Inference 3:\n   If someone is white then they are not big. (Given)\n   Since Erin is not white, we cannot determine whether Erin is big or not. Therefore, we cannot determine whether Erin is kind or round.\n   However, the statement we want to determine is \"Erin is not white\". We already know that Erin is not white.\n\n6. Conclusion:\n   The statement \"Erin is not white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_erin, green_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not white(erin)",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_erin, green_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not white(erin)",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_erin, green_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not white(erin)",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_erin, green_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> not big(X)",
+          "z3_formula": "Implies(white_erin, not big_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not big(erin)",
+          "z3_formula": "not big_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & not big(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_erin, not big_erin), kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not big(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_erin, not big_erin), round_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_erin, green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> not big(X)",
+          "z3_formula": "Implies(white_erin, not big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & not big(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_erin, not big_erin), kind_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_rough_people_are_green",
+          "z3_formula": "all_rough_people_are_green == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> not_big(X)",
+          "z3_formula": "Implies(white_erin, not_big_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not_big(erin)",
+          "z3_formula": "not_big_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & not_big(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_erin, not_big_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not_big(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_erin, not_big_erin), round_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_erin, green_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not big(X)",
+          "z3_formula": "Implies(round_erin, not big_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin) & rough(erin)",
+          "z3_formula": "And(round_erin, rough_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not big(erin)",
+          "z3_formula": "not big_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not white(erin)",
+          "z3_formula": "Not(white_erin)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_erin, green_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_erin, green_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> Not(big(X))",
+          "z3_formula": "Implies(white_erin, Not(big_erin))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & Not(big(X)) -> kind(X)",
+          "z3_formula": "Implies(And(green_erin, Not(big_erin)), kind_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(big(X)) -> round(X)",
+          "z3_formula": "Implies(And(kind_erin, Not(big_erin)), round_erin)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_erin, green_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> Not(big(X))",
+          "z3_formula": "Implies(white_erin, Not(big_erin))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "Not(big(erin))",
+          "z3_formula": "Not(big_erin) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & Not(big(X)) -> kind(X)",
+          "z3_formula": "Implies(And(green_erin, Not(big_erin)), kind_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(big(X)) -> round(X)",
+          "z3_formula": "Implies(And(kind_erin, Not(big_erin)), round_erin)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_erin, green_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> Not(big(X))",
+          "z3_formula": "Implies(white_erin, Not(big_erin))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & Not(big(X)) -> kind(X)",
+          "z3_formula": "Implies(And(green_erin, Not(big_erin)), kind_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(big(X)) -> round(X)",
+          "z3_formula": "Implies(And(kind_erin, Not(big_erin)), round_erin)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_erin, green_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not white(erin)",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> not big(X)",
+          "z3_formula": "Implies(white_erin, not big_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(erin) | not round(erin)",
+          "z3_formula": "Or(Not(kind_erin), Not(round_erin)) == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 114,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 24
+    },
+    "maxsat_stats": {
+      "satisfied": 22,
+      "excluded": 2,
+      "total_weight": 101,
+      "solve_time_ms": 1.2011704966425896
+    },
+    "timing": {
+      "trace_gen_s": 5.95,
+      "extraction_s": 16.139,
+      "dedup_s": 0.477,
+      "maxsat_s": 0.003,
+      "total_s": 22.568
+    }
+  }
+}

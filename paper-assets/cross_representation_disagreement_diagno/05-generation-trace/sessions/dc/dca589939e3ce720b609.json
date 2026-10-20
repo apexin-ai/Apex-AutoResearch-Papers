@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dca589939e3ce720b609",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "fix sc baseline v2",
+  "task_key": "worker_fix_sc_baseline_v2_20260515T072917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_sc_baseline_v2_20260515T072917_result.json",
+    "occurrence": 1,
+    "bytes": 1005,
+    "sha256": "87c8dd8da7bb778b73c18cd75a6026e0d20e8008dee7c507610febec112a9bf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，验证通过。\n\n---\n\n### 改动总结\n\n**问题 1 — `--mode` 参数（标准 SC vs 温度扫描）**\n\n- 新增 `--mode {standard,sweep}` 参数，默认 `standard`\n- `standard`：固定 temp=0.7，k 次 i.i.d. 采样（符合 Wang et al. 2022）\n- `sweep`：原逻辑，温度扫描 [0.6, 0.7, 0.8, 0.9, 1.0]（保留作 appendix）\n\n**问题 2 — `_crd_is_correct()` 单一答案判定**\n\n旧逻辑对 disagree 样本用 `fol_v == gt or code_v == gt`（oracle upper bound），改为：\n\n| 情况 | 最终答案 |\n|------|----------|\n| agree / both_error | 共识答案（fol_verdict） |\n| disagree + 有 repair + 有效 verdict | 最后一轮 repair 的 `exec_result.verdict` |\n| disagree + 无有效 repair, predicted_error_side=code | fol_verdict（FOL 更可靠） |\n| disagree + 无有效 repair, predicted_error_side=fol | code_verdict（Code 更可靠） |\n| disagree + 无 stability 信息 | fol_verdict（默认，FOL 准确率更高） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-sc-baseline-v2.md"
+}

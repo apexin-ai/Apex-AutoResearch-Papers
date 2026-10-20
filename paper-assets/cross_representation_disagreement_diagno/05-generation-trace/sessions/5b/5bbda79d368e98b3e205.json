@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bbda79d368e98b3e205",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "analysis c1c5 audit",
+  "task_key": "worker_analysis_c1c5_audit_20260514T143419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c1c5_audit_20260514T143419_result.json",
+    "occurrence": 1,
+    "bytes": 981,
+    "sha256": "bc606dd789e1b4675a14b1709a5d93ce519a2935f479e4f7bcfeffdde3cab4fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。文件已写入 `artifacts/c1c5_audit.md`。\n\n核心发现：\n\n1. **C5 是同义反复** — evaluate_mvp.py 的 `predicted`（`disagreement.error_side`）和 `actual`（从 `fol_correct`/`code_correct` 推导）是同源数据，100% 是必然结果。用 analyze.py 的两层方法评估，C5=44.4% FAIL。MVP 真实状态是 **4/5 PASS**。\n\n2. **三源矛盾根因** — Registry 引用 evaluate_mvp.py 口径（C3=3, C5=100%），ROADMAP 引用 analyze.py 口径（C3=5, C5=45.8%），两个脚本计算逻辑不同。Report.md 还存在 C3/C4/C5 编号错位。\n\n3. **C4 方向拆分** — FOL targeted (50%) < FOL blind (75%)，delta=-25pp；Code targeted (83.3%) > Code blind (45.8%)，delta=+37.5pp。混合 +21.9pp 掩盖了 FOL 方向的负贡献。\n\n4. **36.3pp 不可复现** — 在当前数据的所有切片上都无法得到此值，最接近的是 code-only delta (+37.5~39.1pp)，可能来自历史快照或编号错位。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c1c5-audit.md"
+}

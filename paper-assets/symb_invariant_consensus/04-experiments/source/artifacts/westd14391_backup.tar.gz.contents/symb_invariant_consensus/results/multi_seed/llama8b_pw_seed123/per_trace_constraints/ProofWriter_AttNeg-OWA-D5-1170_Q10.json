@@ -1,0 +1,1115 @@
+{
+  "pid": "ProofWriter_AttNeg-OWA-D5-1170_Q10",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary) & white(gary)",
+          "z3_formula": "And(red_gary, white_gary) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_gary, red_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_gary, white_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) -> all(X)",
+          "z3_formula": "Implies(white_gary, all_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & quiet(X) -> not kind(X)",
+          "z3_formula": "Implies(And(rough_gary, quiet_gary), Not(kind_gary))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, Not(smart_gary)), kind_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_gary, quiet_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, Not(rough_gary)), quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(gary)",
+          "z3_formula": "Not(quiet_gary) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_X, rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_X, red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_X, rough_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_X, white_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_X, rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_X, white_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & quiet(X) -> Not(kind(X))",
+          "z3_formula": "Implies(And(rough_X, quiet_X), Not(kind_X))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_X, Not(smart_X)), kind_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_X, quiet_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(rough(X)) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_X, Not(rough_X)), quiet_X)",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(gary) & white(gary) -> quiet(gary)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_X, rough_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_X, red_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_X, white_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> white(X)",
+          "z3_formula": "Implies(white_X, white_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_X, white_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & quiet(X) -> Not(kind(X))",
+          "z3_formula": "Implies(And(rough_X, quiet_X), Not(kind_X))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_X, Not(smart_X)), kind_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_X, quiet_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(rough(X)) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_X, Not(rough_X)), quiet_X)",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_gary, white_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_gary, red_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_gary, kind_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, Not(smart_gary)), kind_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_gary, quiet_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, Not(rough_gary)), quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) & quiet(X) -> not kind(X)",
+          "z3_formula": "Implies(And(rough_gary, quiet_gary), Not(kind_gary))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, Not(smart_gary)), kind_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(gary)",
+          "z3_formula": "Not(quiet_gary)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_gary, white_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(white_gary, red_gary), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary) & white(gary)",
+          "z3_formula": "And(red_gary, white_gary) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & rough(X) -> not kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, rough_gary), Not(kind_gary))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, Not(smart_gary)), kind_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_gary, quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, Not(rough_gary)), quiet_gary)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_gary, white_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, Not(smart_gary)), kind_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_gary, quiet_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not(rough(X)) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, Not(rough_gary)), quiet_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & quiet(X) -> not(kind(X))",
+          "z3_formula": "Implies(And(rough_gary, quiet_gary), Not(kind_gary))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(kind(gary))",
+          "z3_formula": "Not(kind_gary) == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_gary, red_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_gary, white_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_gary, nice_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_gary, white_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & quiet(X) -> Not(kind(X))",
+          "z3_formula": "Implies(And(rough_gary, quiet_gary), Not(kind_gary))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, Not(smart_gary)), kind_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_gary, quiet_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(rough(X)) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, Not(rough_gary)), quiet_gary)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_gary, white_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary) & white(gary)",
+          "z3_formula": "And(red_gary, white_gary) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary) & quiet(gary)",
+          "z3_formula": "And(white_gary, quiet_gary) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": []
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_gary, white_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_gary, red_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & quiet(X) -> not kind(X)",
+          "z3_formula": "Implies(And(rough_gary, quiet_gary), not kind_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(gary)",
+          "z3_formula": "not kind_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, not smart_gary), kind_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(gary)",
+          "z3_formula": "not smart_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_gary, quiet_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(gary)",
+          "z3_formula": "not smart_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, not rough_gary), quiet_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(gary)",
+          "z3_formula": "not smart_gary == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X) | not smart(X)",
+          "z3_formula": "Implies(quiet_gary, Or(kind_gary, not smart_gary))",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(gary)",
+          "z3_formula": "not smart_gary == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, not smart_gary), kind_gary)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(gary)",
+          "z3_formula": "not kind_gary == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, not rough_gary), quiet_gary)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(gary)",
+          "z3_formula": "not smart_gary == True",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X) | not smart(X)",
+          "z3_formula": "Implies(quiet_gary, Or(kind_gary, not smart_gary))",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(gary)",
+          "z3_formula": "not quiet_gary == True",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, not rough_gary), quiet_gary)",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(gary)",
+          "z3_formula": "not quiet_gary == True",
+          "source_step": 29
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_gary, rough_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_gary, red_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_gary, nice_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & quiet(X) -> not kind(X)",
+          "z3_formula": "Implies(And(rough_gary, quiet_gary), Not(kind_gary))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_gary, Not(smart_gary)), kind_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_gary, quiet_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_gary, Not(rough_gary)), quiet_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == Unknown",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(gary)",
+          "z3_formula": "Not(quiet_gary) == False",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(gary) & white(gary) -> quiet(gary)",
+          "z3_formula": "Implies(And(red_gary, white_gary), quiet_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_X, rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_X, red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> white(X)",
+          "z3_formula": "Implies(nice_X, white_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> rough(X)",
+          "z3_formula": "Implies(white_X, rough_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & quiet(X) -> Not(kind(X))",
+          "z3_formula": "Implies(And(rough_X, quiet_X), Not(kind_X))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_X, Not(smart_X)), kind_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_X, quiet_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(rough(X)) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_X, Not(rough_X)), quiet_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 20
+        }
+      ]
+    }
+  ]
+}

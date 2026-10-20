@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1508e6fef5182eae4768",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "code write evaluate mvp",
+  "task_key": "worker_code_write_evaluate_mvp_20260514T142325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_write_evaluate_mvp_20260514T142325_result.json",
+    "occurrence": 1,
+    "bytes": 753,
+    "sha256": "803a3fc762f877208a820a972a634bb30794ac2008b67122dfb8796553bca6ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本部署完成，试跑结果：\n\n```\n=== MVP Gate Evaluation ===\nInput: results/mvp_v4_full.json\nTotal samples: 80\n\n--- All Samples ---\n                        Value   Threshold  Status\nC1 disagree_rate        30.0%      >=10%   PASS\nC2 diagnostic_rate      87.5%      >=40%   PASS\nC3 error_types              5        >=2   PASS\nC4 targeted_delta     +22.6pp       >5pp   PASS\nC5 localization         45.8%      >=60%   FAIL\n\nMVP Gate: 4/5 PASS -> FAIL\n\n--- Excl. Unknown-GT ---\nExcluded: 29 samples (36.2%), Remaining: 51\nC1 29.4% PASS | C2 86.7% PASS | C3 4 PASS | C4 +10.0pp PASS | C5 46.7% FAIL\n\nMVP Gate: 4/5 PASS -> FAIL\n```\n\nC1-C4 全部通过，唯一未过的是 **C5 localization** (45.8% < 60%)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-write-evaluate-mvp.md"
+}

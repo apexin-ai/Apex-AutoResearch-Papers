@@ -1,0 +1,38 @@
+{
+  "experiment": "exp-d134-e6-closed-model",
+  "model": "gpt-4o",
+  "dataset": "FOLIO-204 (validation)",
+  "status": "partial",
+  "completed": "154/204 (75.5%)",
+  "note": "Process exited without error at problem 155/204. No traceback/OOM/kill signal found in logs.",
+  "summary": {
+    "n_problems": 154,
+    "sica_accuracy": 0.7143,
+    "sc_accuracy": 0.7338,
+    "sica_correct": 110,
+    "sc_correct": 113,
+    "extraction_rate": 0.9962,
+    "contradiction_rate": 0.0157,
+    "problems_with_contradictions": 26,
+    "total_constraints_extracted": 11796,
+    "total_unique_constraints": 3698,
+    "k": 12,
+    "mode": "api",
+    "total_wall_time_s": 16630.4,
+    "total_wall_time_h": 4.6
+  },
+  "per_class_accuracy": {
+    "True":    {"n": 58, "sica": "55/58 (0.948)", "sc": "54/58 (0.931)"},
+    "False":   {"n": 41, "sica": "34/41 (0.829)", "sc": "34/41 (0.829)"},
+    "Unknown": {"n": 55, "sica": "21/55 (0.382)", "sc": "25/55 (0.455)"}
+  },
+  "sica_vs_sc": {
+    "disagreements": 9,
+    "sica_wins": 2,
+    "sc_wins": 5
+  },
+  "server": "westd-16639",
+  "results_path": "/root/symb_invariant_consensus/results/e6_gpt4o_folio204/results.json",
+  "log_path": "/tmp/e6_full.log",
+  "harvested_at": "2026-05-21"
+}

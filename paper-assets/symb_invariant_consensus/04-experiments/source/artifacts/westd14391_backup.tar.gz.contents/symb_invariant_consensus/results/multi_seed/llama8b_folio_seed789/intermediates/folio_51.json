@@ -1,0 +1,701 @@
+{
+  "problem": {
+    "id": "folio_51",
+    "problem": "Given the following premises:\nNo digital media are analog. Every printed text is analog. All streaming services are digital. If an object is a hardcover book then it is printed text. If 1984 is a streaming service, then 1984 is a hardcover book.\n\nDetermine whether the following conclusion is true, false, or uncertain:\n1984 is not a streaming service.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Digital(x) \u2192 \u00acAnalog(x))",
+      "\u2200x (PrintedText(x) \u2192 Analog(x))",
+      "\u2200x (StreamingService(x) \u2192 Digital(x))",
+      "\u2200x (HardcoverBook(x) \u2192 PrintedText(x))",
+      "StreamingService(y1984) \u2192 HardcoverBook(y1984)"
+    ],
+    "conclusion_fol": "\u00acStreamingService(y1984)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 43.0,
+      "True": 64.0,
+      "Unknown": 60.5
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "True": 3,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: No digital media are analog.\nPremise 2: Every printed text is analog.\nPremise 3: All streaming services are digital.\nPremise 4: If an object is a hardcover book then it is printed text.\nPremise 5: If 1984 is a streaming service, then 1984 is a hardcover book.\n\nWe need to determine the relationship between 1984 and the categories of digital media, printed text, and hardcover books.\n\nFrom Premise 3, we know that all streaming services are digital. This means that if 1984 is a streaming service, it must be digital.\n\nFrom Premise 4, we know that if an object is a hardcover book, then it is a printed text. This means that a hardcover book is a subset of printed text.\n\nHowever, Premise 5 introduces a contradictory statement: if 1984 is a streaming service, then 1984 is a hardcover book. This creates a paradox, as 1984 cannot be both a digital streaming service (Premise 3) and a printed text (Premise 4).\n\nTo resolve this paradox, we need to examine the conclusion we're trying to evaluate: 1984 is not a streaming service.\n\nIf 1984 is not a streaming service, then it must not be digital. From Premise 2, we know that every printed text is analog. Therefore, if 1984 is not digital, it must be a printed text.\n\nHowever, Premise 5 states that if 1984 is a streaming service, then it is a hardcover book. This means that if 1984 is not a streaming service, it must not be a hardcover book.\n\nFrom Premise 4, we know that if an object is a hardcover book, then it is a printed text. Therefore, if 1984 is not a hardcover book, it is not a printed text.\n\nSince 1984 is not a printed text, it cannot be analog (Premise 2). Therefore, 1984 must be digital.\n\nFrom Premise 3, we know that all streaming services are digital. Therefore, 1984 is a streaming service.\n\nSince 1984 is a streaming service, Premise 5 states that 1984 is a hardcover book. However, we previously concluded that 1984 is not a hardcover book.\n\nThis creates a logical contradiction, indicating that the original premises are inconsistent. Therefore, we cannot determine whether the conclusion is true or false with absolute certainty.\n\nHowever, based on the logical analysis, we can conclude that the conclusion \"1984 is not a streaming service\" is uncertain, as the original premises are inconsistent.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the premises and the given conclusion step by step.\n\nPremise 1: No digital media are analog.\nPremise 2: Every printed text is analog.\nPremise 3: All streaming services are digital.\n\nFrom Premise 1 and Premise 2, we can conclude that no printed texts are digital media. This is because if something is analog, it cannot be digital (by Premise 1).\n\nFrom Premise 3, we know that all streaming services are digital.\n\nNow, let's examine the given conclusion: \"1984 is not a streaming service.\"\n\nTo determine whether this conclusion is true, false, or uncertain, we need to consider the premises that relate to the statement \"1984 is a streaming service.\"\n\nPremise 4: If 1984 is a streaming service, then 1984 is a hardcover book.\n\nThis premise creates a conditional relationship between 1984 being a streaming service and 1984 being a hardcover book. If 1984 is a streaming service, it implies that 1984 is also a hardcover book.\n\nHowever, Premise 5: If an object is a hardcover book then it is printed text. \n\nThis premise tells us that if something is a hardcover book, then it must be a printed text. \n\nSince all printed texts are analog (by Premise 2), and no digital media are analog (by Premise 1), it means that if 1984 is a hardcover book, it cannot be a digital medium.\n\nBut we know that all streaming services are digital (by Premise 3). Therefore, if 1984 is a hardcover book, it cannot be a streaming service.\n\nGiven the conditional relationship in Premise 4, we can conclude that if 1984 is not a streaming service, then 1984 is not a hardcover book. However, this does not necessarily mean the conclusion \"1984 is not a streaming service\" is true.\n\nHowever, we have determined that if 1984 is a hardcover book (and thus a printed text), it cannot be a digital medium. This includes streaming services. Therefore, if 1984 is a hardcover book (and thus a printed text), then it cannot be a streaming service.\n\nSince we cannot determine whether 1984 is a hardcover book or not from the premises given, we cannot determine the truth of the conclusion \"1984 is not a streaming service\" with certainty.\n\nTherefore, the conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they lead to the conclusion logically.\n\nPremise 1: No digital media are analog.\nThis premise tells us that digital media and analog media are mutually exclusive.\n\nPremise 2: Every printed text is analog.\nThis premise tells us that all printed texts are analog media.\n\nPremise 3: All streaming services are digital.\nThis premise tells us that all streaming services are digital media.\n\nPremise 4: If an object is a hardcover book, then it is a printed text.\nThis premise gives us a relationship between hardcover books and printed texts.\n\nPremise 5: If 1984 is a streaming service, then 1984 is a hardcover book.\nThis premise is a conditional statement that relates 1984 to being a streaming service and a hardcover book.\n\nNow, let's analyze the conclusion: 1984 is not a streaming service.\n\nTo determine the truth of the conclusion, we need to see if the premises lead to it logically.\n\nFrom Premise 3, we know that all streaming services are digital media. \n\nIf 1984 is a streaming service, then from Premise 5, it must be a hardcover book. \n\nBut from Premise 4, if 1984 is a hardcover book, then it must be a printed text. \n\nFrom Premise 2, all printed texts are analog media. \n\nNow, combining Premise 1 and Premise 3, we know that digital media and analog media are mutually exclusive. \n\nIf 1984 is a printed text (from the chain of relationships above), then it is analog media. \n\nBut if 1984 is a streaming service (from the conclusion), then it is digital media. \n\nSince 1984 cannot be both analog and digital at the same time (from Premise 1), this creates a contradiction.\n\nThis contradiction means that the premises cannot lead to the conclusion logically. \n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion step by step.\n\nPremise 1: No digital media are analog.\nPremise 2: Every printed text is analog.\nPremise 3: All streaming services are digital.\nPremise 4: If an object is a hardcover book then it is printed text.\nPremise 5: If 1984 is a streaming service, then 1984 is a hardcover book.\n\nConclusion: 1984 is not a streaming service.\n\nFrom Premise 3, we know that all streaming services are digital. \n\nFrom Premise 5, we know that if 1984 is a streaming service, then 1984 is a hardcover book. \n\nHowever, we also know from Premise 4 that if an object is a hardcover book, then it is a printed text. \n\nFrom Premise 2, we know that every printed text is analog. \n\nNow, let's analyze the conclusion: 1984 is not a streaming service. \n\nWe can prove this conclusion as follows:\n\nIf 1984 is a streaming service, then it must be digital (Premise 3).\nHowever, if 1984 is a hardcover book, then it must be printed text (Premise 4).\nIf it is a printed text, then it must be analog (Premise 2).\nBut we also know that all analog media are not streaming services (from Premise 1 and 3).\nTherefore, 1984 cannot be both a streaming service and a hardcover book.\n\nFrom Premise 5, if 1984 is a streaming service, then 1984 is a hardcover book. \nThis creates a contradiction with our previous statement.\nTherefore, we can conclude that 1984 is not a streaming service.\n\nSince we have a valid conclusion from the premises, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the conclusion, we need to analyze the given premises step by step.\n\nPremise 1: No digital media are analog. \nThis premise implies that all digital media are not analog, but it does not provide any information about the type of media.\n\nPremise 2: Every printed text is analog. \nThis premise implies that all printed texts are analog, but it does not provide any information about digital media.\n\nPremise 3: All streaming services are digital. \nThis premise implies that all streaming services are digital, but it does not provide any information about printed texts.\n\nPremise 4: If an object is a hardcover book, then it is a printed text. \nThis premise implies that all hardcover books are printed texts, but it does not provide any information about streaming services.\n\nPremise 5: If 1984 is a streaming service, then 1984 is a hardcover book. \nThis premise implies that if 1984 is a streaming service, then it must also be a hardcover book. However, this premise does not provide any information about the conclusion that 1984 is not a streaming service.\n\nNow, we need to analyze the conclusion: \"1984 is not a streaming service.\"\n\nIf 1984 is a hardcover book (Premise 4), then it is a printed text (Premise 4). Since all printed texts are analog (Premise 2) and all streaming services are digital (Premise 3), a printed text cannot be a streaming service.\n\nHowever, Premise 5 states that if 1984 is a streaming service, then it is a hardcover book. This does not provide any direct information about the conclusion, but we can use a process of elimination.\n\nIf 1984 is a hardcover book, then it is a printed text, and a printed text cannot be a streaming service. \n\nWe cannot conclude that 1984 is not a streaming service based on the given premises. The given premises only provide a relationship between hardcover books and printed texts, but they do not provide any direct information about the streaming service status of 1984.\n\nTherefore, the conclusion \"1984 is not a streaming service\" is uncertain, because it cannot be determined with certainty based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion \"1984 is not a streaming service\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: No digital media are analog.\nThis premise tells us that anything that is digital cannot be analog. This is a general statement about digital and analog media.\n\nPremise 2: Every printed text is analog.\nThis premise tells us that anything that is a printed text is analog. This is another general statement about printed text.\n\nPremise 3: All streaming services are digital.\nThis premise tells us that all streaming services are digital. This is a general statement about streaming services.\n\nPremise 4: If an object is a hardcover book, then it is a printed text.\nThis premise tells us that if something is a hardcover book, then it is a printed text. This is a conditional statement that connects hardcover books to printed texts.\n\nPremise 5: If 1984 is a streaming service, then 1984 is a hardcover book.\nThis premise tells us that if 1984 is a streaming service, then it is also a hardcover book. This is another conditional statement that connects 1984 to streaming services and hardcover books.\n\nNow, let's analyze the conclusion \"1984 is not a streaming service\" using the given premises.\n\nWe know that if 1984 is a streaming service, then it is a hardcover book (Premise 5). We also know that all streaming services are digital (Premise 3). If 1984 were a streaming service, it would be digital, and since it is not analog (because it is a streaming service), it would be digital.\n\nHowever, we are given a conditional statement (Premise 5) that says if 1984 is a streaming service, then it is a hardcover book. From this, we can infer that if 1984 is a hardcover book, it must be a printed text (Premise 4). And since all printed texts are analog (Premise 2), 1984 would be analog.\n\nThis creates a contradiction: if 1984 is a streaming service (digital), it would be digital, but if it is a hardcover book (printed text), it would be analog. This is a contradiction, and we cannot have a statement that is both digital and analog at the same time.\n\nSince we have a contradiction, we cannot conclude that 1984 is not a streaming service. In fact, we can conclude the opposite: 1984 cannot be a streaming service because it would lead to a contradiction with the premises. However, this is not the same as saying it is a streaming service. We simply cannot conclude that 1984 is a streaming service or not, based on the given premises.\n\nTherefore, the conclusion \"1984 is not a streaming service\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning and follow the given premises.\n\nPremise 1: No digital media are analog.\nPremise 2: Every printed text is analog.\nPremise 3: All streaming services are digital.\nPremise 4: If an object is a hardcover book then it is printed text.\nPremise 5: If 1984 is a streaming service, then 1984 is a hardcover book.\n\nConclusion to be determined: 1984 is not a streaming service.\n\nStep 1: \nFrom Premise 3, we know that all streaming services are digital.\nSince we are trying to determine whether 1984 is not a streaming service, let's consider the opposite - 1984 being a streaming service.\n\nStep 2: \nIf 1984 is a streaming service (which we'll call statement A), then from Premise 5, we know that 1984 is a hardcover book.\n\nStep 3: \nIf 1984 is a hardcover book, then from Premise 4, we know that 1984 is a printed text.\nBut from Premise 2, we know that every printed text is analog.\nThis means that if 1984 is a streaming service (statement A), then 1984 must be both digital (from Premise 3) and analog (from Premise 2).\n\nStep 4: \nThis is a contradiction because something cannot be both digital and analog at the same time (from Premise 1).\nTherefore, statement A (1984 is a streaming service) must be false.\n\nStep 5: \nSince statement A is false, the original conclusion (1984 is not a streaming service) must be true.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion \"1984 is not a streaming service\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: No digital media are analog.\nPremise 2: Every printed text is analog.\nPremise 3: All streaming services are digital.\nPremise 4: If an object is a hardcover book, then it is a printed text.\nPremise 5: If 1984 is a streaming service, then 1984 is a hardcover book.\n\nFrom Premise 1 and Premise 3, we can conclude that all streaming services are not analog, as they are digital. This implies that if 1984 is a streaming service, it is not a hardcover book (because all streaming services are digital, not analog), which contradicts Premise 5.\n\nHowever, we cannot directly conclude that 1984 is not a streaming service from the given premises. We can only say that if 1984 is a streaming service, then it cannot be a hardcover book.\n\nNow, let's analyze the conclusion \"1984 is not a streaming service.\" If this conclusion is true, then we can use modus tollens to deduce a contradiction. Modus tollens states that if \"A implies B\" and \"B is false,\" then \"A is false.\"\n\nIn our case, we have:\nPremise 5: If 1984 is a streaming service, then 1984 is a hardcover book.\nConclusion: 1984 is not a streaming service.\n\nIf we assume that the conclusion is true, then we can apply modus tollens as follows:\nIf 1984 is a streaming service, then 1984 is a hardcover book. (Premise 5)\nBut 1984 is not a streaming service. (Conclusion)\n\u2234 1984 is not a hardcover book.\n\nHowever, this contradicts Premise 4, which states that if an object is a hardcover book, then it is a printed text. Therefore, if the conclusion \"1984 is not a streaming service\" is true, we have a logical contradiction.\n\nSince we have a contradiction, we can conclude that the conclusion \"1984 is not a streaming service\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the validity of the conclusion \"1984 is not a streaming service,\" we need to evaluate the given premises and their relationships to the conclusion.\n\nPremise 1: No digital media are analog.\nPremise 2: Every printed text is analog.\nPremise 3: All streaming services are digital.\nPremise 4: If an object is a hardcover book, then it is printed text.\nPremise 5: If 1984 is a streaming service, then 1984 is a hardcover book.\n\nFrom Premise 3, we can infer that streaming services are digital, and therefore, they cannot be analog. Combining this with Premise 1, we can conclude that streaming services are not analog.\n\nFrom Premise 2, we know that printed texts are analog. Therefore, if 1984 is a printed text (as per Premise 4), it must be analog. However, we have already established that streaming services are not analog (from Premise 1 and 3). This creates a contradiction because if 1984 is a printed text, it should be analog, but streaming services are not analog.\n\nHowever, Premise 5 states that if 1984 is a streaming service, then it is a hardcover book. If 1984 is a hardcover book, then it is a printed text (Premise 4). In this case, 1984 being a streaming service would imply it is both a digital media (because it is a streaming service) and an analog media (because it is a printed text), which contradicts Premise 1.\n\nNow, considering the conclusion \"1984 is not a streaming service,\" we can use the principle of contrapositive to check its validity. The contrapositive of this conclusion would be \"If 1984 is a streaming service, then it is not true.\" However, as we've established earlier, this creates a contradiction. \n\nTherefore, the conclusion \"1984 is not a streaming service\" is uncertain because if 1984 is a streaming service, it leads to a contradiction with the premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and use them to determine the conclusion.\n\nPremise 1: No digital media are analog.\nPremise 2: Every printed text is analog.\nPremise 3: All streaming services are digital.\nPremise 4: If an object is a hardcover book then it is printed text.\nPremise 5: If 1984 is a streaming service, then 1984 is a hardcover book.\n\nConclusion: 1984 is not a streaming service.\n\nTo determine the conclusion, let's analyze the premises:\n\n- From Premise 4, we know that if an object is a hardcover book, then it is a printed text.\n- From Premise 2, we know that all printed texts are analog.\n- From Premise 1, we know that no digital media are analog. Therefore, if something is analog, it cannot be digital.\n- From Premise 3, we know that all streaming services are digital.\n\nNow, let's look at the given statement: \"If 1984 is a streaming service, then 1984 is a hardcover book.\"\n\nIf 1984 is a streaming service, then it must be digital (from Premise 3). But if it is digital, it cannot be analog (from Premise 1). However, if 1984 is a hardcover book (from Premise 4), then it is a printed text (from Premise 2), which means it is analog. \n\nThis creates a contradiction because if 1984 is a streaming service, it must be both digital and analog, which is impossible.\n\nNow, let's examine the conclusion: 1984 is not a streaming service.\n\nIf 1984 is not a streaming service, then we do not have the contradiction we had before. In this case, we do not have to worry about 1984 being both digital and analog.\n\nSince we do not have any information that says 1984 is a streaming service, we cannot conclude that 1984 is not a streaming service based on the given premises. \n\nTherefore, the conclusion \"1984 is not a streaming service\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's break down the premises step by step:\n\n1. No digital media are analog. \nThis premise tells us that anything that is digital cannot be analog.\n\n2. Every printed text is analog. \nThis premise tells us that anything that is a printed text is analog.\n\n3. All streaming services are digital. \nThis premise tells us that all streaming services are digital.\n\n4. If an object is a hardcover book, then it is printed text. \nThis premise tells us that if an object is a hardcover book, then it is a printed text.\n\n5. If 1984 is a streaming service, then 1984 is a hardcover book. \nThis premise tells us that if 1984 is a streaming service, then it must also be a hardcover book.\n\nNow, let's examine the conclusion: \"1984 is not a streaming service.\"\n\nTo evaluate this conclusion, we need to see if it conflicts with any of the premises. \n\nFrom premise 3, we know that all streaming services are digital. \n\nFrom premise 5, we know that if 1984 is a streaming service, then it is a hardcover book. \n\nFrom premise 4, we know that if 1984 is a hardcover book, then it is a printed text. \n\nFrom premise 2, we know that every printed text is analog.\n\nFrom premise 1, we know that no digital media are analog.\n\nHowever, if 1984 is a streaming service, then it is both digital (from premise 3) and analog (from premise 2, as it is a printed text).\n\nThis creates a contradiction because premise 1 states that no digital media are analog. Therefore, we cannot conclude that 1984 is a streaming service, as it would contradict the premises.\n\nHowever, we are trying to conclude that 1984 is not a streaming service. \n\nIf we assume 1984 is a streaming service, it leads to a contradiction. \n\nTherefore, we can safely conclude that 1984 is not a streaming service, as it would lead to a contradiction if it were.\n\nThe conclusion is true.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: No digital media are analog. \nThis premise tells us that digital media and analog media are mutually exclusive.\n\nPremise 2: Every printed text is analog.\nThis premise tells us that printed texts are analog, but it doesn't tell us anything about digital media.\n\nPremise 3: All streaming services are digital.\nThis premise tells us that streaming services are digital, which aligns with Premise 1.\n\nPremise 4: If an object is a hardcover book then it is printed text.\nThis premise tells us that hardcover books are printed texts.\n\nPremise 5: If 1984 is a streaming service, then 1984 is a hardcover book.\nThis premise seems to be a conditional statement, but it's also stating a contradiction. If 1984 is a streaming service, then it's a hardcover book, which means it's not a streaming service according to the premises.\n\nHowever, the given conclusion is: \"1984 is not a streaming service.\"\nWe need to determine if this conclusion is true, false, or uncertain based on the given premises.\n\nUsing Modus Tollens (a form of argument used to infer a conclusion from a conditional statement and its negation), we can infer the following:\n\nPremise 5 states: If 1984 is a streaming service, then 1984 is a hardcover book.\nIf we negate the antecedent (the \"if\" part), we get: 1984 is not a streaming service.\nAnd then we can conclude: Therefore, 1984 is not a hardcover book. (By Modus Tollens)\n\nHowever, Premise 4 states: If an object is a hardcover book then it is printed text.\nIf we negate the antecedent, we get: 1984 is not a hardcover book.\nAnd then we can conclude: Therefore, 1984 is not a printed text. (By Modus Tollens)\n\nNow, Premise 2 states: Every printed text is analog.\nIf we negate the consequent (the \"then\" part), we get: 1984 is not an analog.\nWe don't have any information about 1984 being digital or not, but we know that it's not analog.\n\nHowever, we also know that all digital media are not analog (Premise 1), but we don't know if 1984 is digital or not.\n\nBut, we can conclude that 1984 is not a streaming service. \nBecause if 1984 were a streaming service, it would be a hardcover book (Premise 5), but that would be a contradiction, since it would be both a streaming service and a hardcover book.\n\nTherefore, the conclusion \"1984 is not a streaming service\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "analog(X) == False",
+          "z3_formula": "not analog_X == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog(X) == False",
+          "z3_formula": "not analog_X == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "printed_text(X) == analog(X)",
+          "z3_formula": "printed_text_X == analog_X",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital(X) == False",
+          "z3_formula": "not digital_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> digital(X)",
+          "z3_formula": "Implies(streaming_service_X, digital_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_X, printed_text_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(1984) -> hardcover_book(1984)",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "digital(1984)",
+          "z3_formula": "digital_1984 == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "streaming_service(1984)",
+          "z3_formula": "streaming_service_1984 == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "hardcover_book(1984)",
+          "z3_formula": "hardcover_book_1984 == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "analog(digital_media)",
+          "z3_formula": "analog_digital_media == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog(printed_text)",
+          "z3_formula": "analog_printed_text == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital(streaming_service)",
+          "z3_formula": "digital_streaming_service == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "analog(X) -> not digital(X)",
+          "z3_formula": "Implies(analog_digital_media, Not(digital_digital_media))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "analog(X) -> not digital(X)",
+          "z3_formula": "Implies(analog_printed_text, Not(digital_printed_text))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "analog(X) -> not digital(X)",
+          "z3_formula": "Implies(analog_digital_media, Not(digital_digital_media))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "analog(X) -> not digital(X)",
+          "z3_formula": "Implies(analog_printed_text, Not(digital_printed_text))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "analog(X) -> not digital(X)",
+          "z3_formula": "Implies(analog_digital_media, Not(digital_digital_media))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "analog(X) -> not digital(X)",
+          "z3_formula": "Implies(analog_printed_text, Not(digital_printed_text))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "digital(X) -> digital(X)",
+          "z3_formula": "Implies(digital_streaming_service, digital_streaming_service)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "digital(X) -> digital(X)",
+          "z3_formula": "Implies(digital_streaming_service, digital_streaming_service)",
+          "source_step": "11"
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "printed_text(X) -> analog(X)",
+          "z3_formula": "Implies(printed_text_1984, analog_1984)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "analog(X) -> not digital(X)",
+          "z3_formula": "Implies(analog_1984, Not(digital_1984))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "digital(X) -> not hardcover_book(X)",
+          "z3_formula": "Implies(digital_1984, Not(hardcover_book_1984))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> not streaming_service(X)",
+          "z3_formula": "Implies(hardcover_book_1984, Not(streaming_service_1984))",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not streaming_service(1984)",
+          "z3_formula": "Not(streaming_service_1984) == Unknown",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "analog(X) -> ~digital(X)",
+          "z3_formula": "Implies(analog_X, Not(digital_X))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog(printed_text)",
+          "z3_formula": "analog_printed_text == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital(streaming_service)",
+          "z3_formula": "digital_streaming_service == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_X, printed_text_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(1984) -> hardcover_book(1984)",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not digital(1984)",
+          "z3_formula": "Not(digital_1984) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "analog(digital_media)",
+          "z3_formula": "analog_digital_media == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog(printed_text)",
+          "z3_formula": "analog_printed_text == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital(streaming_service)",
+          "z3_formula": "digital_streaming_service == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> digital(X)",
+          "z3_formula": "Implies(streaming_service_1984, digital_1984)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "printed_text(X) -> analog(X)",
+          "z3_formula": "Implies(printed_text_1984, analog_1984)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "analog(X) & digital(X) -> Not(streaming_service(X))",
+          "z3_formula": "Implies(And(analog_1984, digital_1984), Not(streaming_service_1984))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> hardcover_book(X)",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(streaming_service(1984))",
+          "z3_formula": "Not(streaming_service_1984) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not_analog(digital_media)",
+          "z3_formula": "not_analog_digital_media == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog(printed_text)",
+          "z3_formula": "analog_printed_text == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital(streaming_service)",
+          "z3_formula": "digital_streaming_service == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> hardcover_book(X)",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not_analog(digital_media)",
+          "z3_formula": "Not(analog_digital_media)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog(printed_text)",
+          "z3_formula": "analog_printed_text == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital(streaming_service)",
+          "z3_formula": "digital_streaming_service == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> hardcover_book(X)",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "digital_media(X) -> ~analog(X)",
+          "z3_formula": "Implies(digital_media_X, Not(analog_X))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "printed_text(X) -> analog(X)",
+          "z3_formula": "Implies(printed_text_X, analog_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "streaming_service(X) -> digital(X)",
+          "z3_formula": "Implies(streaming_service_X, digital_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_X, printed_text_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(1984) -> hardcover_book(1984)",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "~streaming_service(1984)",
+          "z3_formula": "Not(streaming_service_1984) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not_analog(digital_media)",
+          "z3_formula": "Not(analog_digital_media)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog(printed_text)",
+          "z3_formula": "analog_printed_text == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital(streaming_service)",
+          "z3_formula": "digital_streaming_service == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> hardcover_book(X)",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not_analog(digital_media)",
+          "z3_formula": "Not(analog_digital_media) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog(printed_text)",
+          "z3_formula": "analog_printed_text == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital(streaming_service)",
+          "z3_formula": "digital_streaming_service == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> hardcover_book(X)",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not_analog(streaming_service)",
+          "z3_formula": "Not(analog_streaming_service) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "analog(printed_text) -> analog(hardcover_book)",
+          "z3_formula": "Implies(analog_printed_text, analog_hardcover_book_1984)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "analog(hardcover_book) & digital(streaming_service) -> contradiction",
+          "z3_formula": "Implies(And(analog_hardcover_book_1984, digital_streaming_service), contradiction_1984)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not_analog(digital_media)",
+          "z3_formula": "Not(analog_digital_media)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog(printed_text)",
+          "z3_formula": "analog_printed_text == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital(streaming_service)",
+          "z3_formula": "digital_streaming_service == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> hardcover_book(X)",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "analog(X) -> ~digital(X)",
+          "z3_formula": "Implies(analog_X, Not(digital_X))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "printed_text(X) -> analog(X)",
+          "z3_formula": "Implies(printed_text_X, analog_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital(streaming_service(X))",
+          "z3_formula": "digital_streaming_service_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_X, printed_text_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> hardcover_book(X)",
+          "z3_formula": "Implies(streaming_service_X, hardcover_book_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "~streaming_service(1984)",
+          "z3_formula": "~streaming_service_1984 == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "analog(digital_media)",
+          "z3_formula": "analog_digital_media == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "analog(printed_text)",
+          "z3_formula": "analog_printed_text == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "digital(streaming_service)",
+          "z3_formula": "digital_streaming_service == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "hardcover_book(X) -> printed_text(X)",
+          "z3_formula": "Implies(hardcover_book_1984, printed_text_1984)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "streaming_service(X) -> hardcover_book(X)",
+          "z3_formula": "Implies(streaming_service_1984, hardcover_book_1984)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not streaming_service(1984)",
+          "z3_formula": "Not(streaming_service_1984)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not hardcover_book(1984)",
+          "z3_formula": "Not(hardcover_book_1984)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not printed_text(1984)",
+          "z3_formula": "Not(printed_text_1984)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not analog(1984)",
+          "z3_formula": "Not(analog_1984)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not digital(1984) or not analog(1984)",
+          "z3_formula": "Or(Not(digital_1984), Not(analog_1984))",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 94,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 36
+    },
+    "maxsat_stats": {
+      "satisfied": 32,
+      "excluded": 4,
+      "total_weight": 89,
+      "solve_time_ms": 1.0735830292105675
+    },
+    "timing": {
+      "trace_gen_s": 7.462,
+      "extraction_s": 16.994,
+      "dedup_s": 0.859,
+      "maxsat_s": 0.003,
+      "total_s": 25.318
+    }
+  }
+}

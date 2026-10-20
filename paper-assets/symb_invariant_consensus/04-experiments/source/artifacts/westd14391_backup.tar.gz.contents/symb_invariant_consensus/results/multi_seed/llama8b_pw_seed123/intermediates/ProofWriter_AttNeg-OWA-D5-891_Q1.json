@@ -1,0 +1,820 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-891_Q1",
+    "problem": "Bob is green. Bob is kind. Charlie is green. Charlie is not smart. Erin is not young. Fiona is nice. Fiona is young. Green, smart things are quiet. If something is kind then it is green. Smart things are young. Young things are kind. Quiet things are furry. All quiet, nice things are furry. Nice, green things are smart. If Bob is kind and Bob is not green then Bob is furry.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not young.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\nFurry($x, bool) ::: Is x furry?\n\nFacts:\nGreen(Bob, True) ::: Bob is green.\nKind(Bob, True) ::: Bob is kind.\nGreen(Charlie, True) ::: Charlie is green.\nSmart(Charlie, False) ::: Charlie is not smart.\nYoung(Erin, False) ::: Erin is not young.\nNice(Fiona, True) ::: Fiona is nice.\nYoung(Fiona, True) ::: Fiona is young.\n\nRules:\nGreen($x, True) && Smart($x, True) >>> Quiet($x, True) ::: Green, smart things are quiet.\nKind($x, True) >>> Green($x, True) ::: If something is kind then it is green.\nSmart($x, True) >>> Young($x, True) ::: Smart things are young.\nYoung($x, True) >>> Kind($x, True) ::: Young things are kind.\nQuiet($x, True) >>> Furry($x, True) ::: Quiet things are furry.\nQuiet($x, True) && Nice($x, True) >>> Furry($x, True) ::: All quiet, nice things are furry.\nNice($x, True) && Green($x, True) >>> Smart($x, True) ::: Nice, green things are smart.\nKind(Bob, True) && Green(Bob, False) >>> Furry(Bob, True) ::: If Bob is kind and Bob is not green then Bob is furry.\n\nQuery:\nYoung(Erin, False) ::: Erin is not young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 70.0,
+      "Unknown": 99.5
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "True": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine the truth value of the statement \"Erin is not young,\" we need to analyze the given information and the logical deductions we can make.\n\n1. Erin is not young. (Given statement)\n   Since the given statement directly contradicts the conclusion we are trying to determine, we will ignore this statement for now and proceed with analyzing the other information.\n\n2. Erin is not young. (From the problem statement)\n   However, we cannot use this information as it directly contradicts the statement we are trying to evaluate. We will ignore this statement for now.\n\n3. Bob is kind. Bob is not green. Bob is furry. (From the problem statement, using the rule \"If Bob is kind and Bob is not green then Bob is furry.\")\n   This is a specific case, and we cannot use it to draw conclusions about Erin.\n\n4. Erin is not young. (From the problem statement, again)\n   As mentioned earlier, we cannot use this information as it contradicts the statement we are trying to evaluate.\n\n5. Fiona is nice. Fiona is young. (From the problem statement)\n   We know that Fiona is young, but we cannot directly apply this information to Erin.\n\n6. All quiet, nice things are furry. (From the problem statement)\n   We cannot directly apply this information to Erin, as we do not know whether Erin is quiet or nice.\n\n7. Nice, green things are smart. (From the problem statement)\n   We cannot directly apply this information to Erin, as we do not know whether Erin is nice or green.\n\n8. Erin is not young. (From the problem statement, yet again)\n   As mentioned earlier, we cannot use this information as it contradicts the statement we are trying to evaluate.\n\n9. If something is kind then it is green. (From the problem statement)\n   We cannot directly apply this information to Erin, as we do not know whether Erin is kind.\n\n10. Smart things are young. (From the problem statement)\n    We cannot directly apply this information to Erin, as we do not know whether Erin is smart.\n\n11. Green, smart things are quiet. (From the problem statement)\n    We cannot directly apply this information to Erin, as we do not know whether Erin is green, smart, or quiet.\n\n12. Young things are kind. (From the problem statement)\n    We know that Fiona is young and kind, but we cannot directly apply this information to Erin.\n\n13. Charlie is green. Charlie is not smart. (From the problem statement)\n    We cannot directly apply this information to Erin, as we do not know whether Erin is green or smart.\n\n14. Charlie is not smart. (From the problem statement, again)\n    We cannot directly apply this information to Erin, as we do not know whether Erin is smart.\n\n15. Fiona is young. Fiona is nice. (From the problem statement, yet again)\n    We know that Fiona is young, but we cannot directly apply this information to Erin.\n\n16. Erin is not young. (From the problem statement, yet again)\n    As mentioned earlier, we cannot use this information as it contradicts the statement we are trying to evaluate.\n\n17. Erin is not young. (From the problem statement, one last time)\n    As mentioned earlier, we cannot use this information as it contradicts the statement we are trying to evaluate.\n\nNow, let's summarize the information we have:\n\n- We are given the statement \"Erin is not young.\"\n- We know that Fiona is young and nice.\n- We know that if something is kind then it is green, but we do not know whether Erin is kind.\n- We know that young things are kind, but we do not know whether Erin is young.\n- We know that smart things are young, but we do not know whether Erin is smart.\n- We know that all quiet, nice things are furry, but we do not know whether Erin is quiet or nice.\n- We know that nice, green things are smart, but we do not know whether Erin is nice or green.\n- We know that green, smart things are quiet, but we do not know whether Erin is green, smart, or quiet.\n- We know that Charlie is green, but we do not know whether Erin is green.\n- We know that Charlie is not smart, but we do not know whether Erin is smart.\n- We know that Bob is kind and Bob is not green, but we do not know whether Erin is kind or green.\n\nAfter analyzing the given information and the logical deductions we can make, we cannot determine whether the statement \"Erin is not young\" is true or false. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them to the statement \"Erin is not young.\"\n\n1. Erin is not young.\n   - This is the statement we need to evaluate.\n\n2. The given statements:\n   - Bob is green.\n   - Bob is kind.\n   - Charlie is green.\n   - Charlie is not smart.\n   - Erin is not young. (This one is already given, so we will ignore it for now.)\n   - Fiona is nice.\n   - Fiona is young.\n   - Green, smart things are quiet.\n   - If something is kind then it is green.\n   - Smart things are young.\n   - Young things are kind.\n   - Quiet things are furry.\n   - All quiet, nice things are furry.\n   - Nice, green things are smart.\n   - If Bob is kind and Bob is not green then Bob is furry.\n\n3. From the given statements, we can derive the following:\n   - Since Erin is not young (given statement), we don't have any information about Erin being young. However, we can use the statement \"Young things are kind\" to derive a contradiction, but since this does not affect our solution, we can ignore this for now.\n   - We know that if something is kind then it is green (statement 8). This does not help us directly because we do not know if Erin is kind or not.\n   - However, we can use the statement \"If something is kind then it is green\" to derive that if Erin is kind, then Erin is green. Since we don't know if Erin is kind, we cannot determine if Erin is green.\n   - We can also use the statement \"Nice, green things are smart\" to derive that if Erin is green and nice, then Erin is smart. However, we don't have enough information to determine if Erin is green and nice.\n   - We know that smart things are young (statement 9). This statement is contradictory to the statement \"Erin is not young\" because it suggests that Erin is young.\n\n4. However, we can use the statement \"Erin is not young\" and \"Smart things are young\" to derive a contradiction. If smart things are young, and Erin is not young, then Erin cannot be smart. Since Erin is not young, and we cannot determine if Erin is smart, we cannot determine if Erin is young or not.\n\nHowever, since the statement \"Erin is not young\" is given, we know that Erin is not young.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether Erin is not young, we need to analyze the given statements and the information we can deduce from them.\n\n1. Erin is not young. \n   (We are given this statement, but we'll analyze it as if we don't know the answer to verify if it's true or false.)\n\n2. Bob is green.\n3. Bob is kind.\n4. Charlie is green.\n5. Charlie is not smart.\n6. Erin is not young.\n7. Fiona is nice.\n8. Fiona is young.\n9. Green, smart things are quiet.\n10. If something is kind then it is green.\n11. Smart things are young.\n12. Young things are kind.\n13. Quiet things are furry.\n14. All quiet, nice things are furry.\n15. Nice, green things are smart.\n16. If Bob is kind and Bob is not green then Bob is furry.\n\nFrom statement 10, we know that if something is kind, then it is green. So, Bob is green (statement 2).\n\nHowever, statement 16 says that if Bob is kind and Bob is not green, then Bob is furry. This creates a paradox because we already know Bob is green (statement 2) and also know he is kind (statement 3). But if we follow statement 16, it would mean that Bob is furry.\n\nNow, let's try to find the answer for Erin. Statements 1, 6, and 11 are related to Erin's age. We know Erin is not young (statement 6), but we need to verify if this statement is true or false.\n\nFrom statement 12, we know that young things are kind. This implies that if something is not young, it may not be kind.\n\nStatement 11 says that smart things are young. This implies that if something is not young, it may not be smart.\n\nStatement 1 (Erin is not young) seems true based on the given information.\n\nHowever, we cannot confirm the truth of statement 1 with absolute certainty, because the paradox created by Bob's green and furry status using statements 2, 3, and 16 might lead to inconsistent conclusions in the statements.\n\nTherefore, we cannot confirm whether Erin is not young with absolute certainty, so the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not young\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nGiven statements:\n\n1. Bob is green.\n2. Bob is kind.\n3. Charlie is green.\n4. Charlie is not smart.\n5. Erin is not young.\n6. Fiona is nice.\n7. Fiona is young.\n8. Green, smart things are quiet.\n9. If something is kind then it is green.\n10. Smart things are young.\n11. Young things are kind.\n12. Quiet things are furry.\n13. All quiet, nice things are furry.\n14. Nice, green things are smart.\n15. If Bob is kind and Bob is not green then Bob is furry.\n\nWe can ignore statement 5 because it is already given in the question we need to verify. We can also ignore statements 3 and 4 because they do not relate to the statement we need to verify.\n\nNow, let's analyze the given information:\n\n- From statement 2, we know that Bob is kind.\n- From statement 9, we know that if something is kind, then it is green.\n- Since Bob is kind, we can conclude that Bob is green (from statement 9).\n- From statement 15, we know that if Bob is kind and Bob is not green, then Bob is furry. However, we already concluded that Bob is green, so this statement does not apply.\n- Since Bob is green, we can conclude that Bob is not furry (from statement 12).\n- From statement 13, we know that all quiet, nice things are furry. However, we already concluded that Bob is not furry, so this statement does not apply.\n\nNow, let's analyze the given information related to Erin:\n\n- Statement 7 says that Fiona is young, but this does not provide any information about Erin.\n- Statement 10 says that smart things are young, but this does not provide any information about Erin.\n- Statement 11 says that young things are kind, but this does not provide any information about Erin.\n- Statement 5 says that Erin is not young, but this is the statement we need to verify.\n\nSince the information about Erin is not related to the information about Bob or the other statements, we cannot conclude whether Erin is young or not. Therefore, the statement \"Erin is not young\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is not young' is true, false, or unknown, we need to analyze the given information and apply the rules provided.\n\n1. Erin is not young.\n   Since this statement is already given, we can directly proceed to verify its validity.\n\n2. All quiet, nice things are furry.\n   This rule doesn't directly relate to Erin, so we can move on.\n\n3. Nice, green things are smart.\n   This rule also doesn't directly relate to Erin, so we can move on.\n\n4. If something is kind then it is green.\n   We don't know if Erin is kind, so we can't conclude anything about Erin's color based on this rule.\n\n5. Erin is not young.\n   This statement is given as a fact, but we need to verify it based on other rules.\n\n6. Erin is not young.\n   Since this statement is already given as a fact, we need to see if it contradicts or aligns with other given facts.\n\nNow, let's apply the rules to see if there's any direct conclusion about Erin's age:\n\n- There is no direct rule that states Erin is young or not young based on the given information.\n- Young things are kind (Rule 7), but this rule doesn't apply to Erin as we don't have information about Erin's age.\n- Smart things are young (Rule 6), but this rule doesn't apply to Erin as we don't have information about Erin's age.\n\nHowever, Rule 5 states: Erin is not young. This statement directly contradicts the given statement. \n\nTherefore, the statement 'Erin is not young' cannot be concluded as true or false based on the given information. Hence, the answer is \\boxed{Unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Erin is not young, we need to analyze the given statements and use logical deductions.\n\nGiven statements:\n\n1. Bob is green.\n2. Bob is kind.\n3. Charlie is green.\n4. Charlie is not smart.\n5. Erin is not young. \n6. Fiona is nice.\n7. Fiona is young.\n8. Green, smart things are quiet.\n9. If something is kind then it is green.\n10. Smart things are young.\n11. Young things are kind.\n12. Quiet things are furry.\n13. All quiet, nice things are furry.\n14. Nice, green things are smart.\n15. If Bob is kind and Bob is not green then Bob is furry.\n\nFrom statement 9, we know that if something is kind, it is green. Since Bob is kind (statement 2), we can conclude that Bob is green (statement 1).\n\nHowever, this contradicts the conclusion from statement 15, which states that if Bob is kind and Bob is not green, then Bob is furry. This means that statement 15 is actually true, not statement 1. \n\nSo, we re-analyze the given statements and conclude that statement 1 is false. From statement 9, if something is kind, it is green, but we already concluded that statement 1 is false. So, the statement \"If something is kind then it is green\" is false.\n\nNow, let's analyze the given statement \"Erin is not young.\" \n\nFrom statement 5, we know that Erin is not young. \n\nWe need to verify whether this statement is true or false based on the given information.\n\nSince we found that statement 1 is false, we can re-analyze the given statements again.\n\nFrom statement 9, if something is kind, it is green. However, this statement is false, as we concluded earlier.\n\nFrom statement 10, smart things are young. \n\nFrom statement 11, young things are kind.\n\nFrom statement 12, quiet things are furry.\n\nFrom statement 13, all quiet, nice things are furry.\n\nFrom statement 14, nice, green things are smart.\n\nWe don't have any direct information about Erin. However, we can use the given statements to derive some information.\n\nFrom statement 5, we know that Erin is not young.\n\nFrom statement 11, young things are kind. \n\nSince Erin is not young, we cannot conclude that Erin is kind.\n\nFrom statement 10, smart things are young. \n\nSince Erin is not young, we cannot conclude that Erin is smart.\n\nFrom statement 14, nice, green things are smart. \n\nWe cannot conclude anything about Erin being nice or green.\n\nFrom statement 13, all quiet, nice things are furry.\n\nWe cannot conclude anything about Erin being quiet or nice.\n\nFrom statement 12, quiet things are furry.\n\nWe cannot conclude anything about Erin being quiet.\n\nWe cannot derive any information about Erin from the given statements.\n\nTherefore, the statement \"Erin is not young\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will use a method called resolution. We will analyze the given statements and apply them to the statement \"Erin is not young\" to determine whether it's true, false, or unknown.\n\nGiven statements:\n1. Bob is green.\n2. Bob is kind.\n3. Charlie is green.\n4. Charlie is not smart.\n5. Erin is not young.\n6. Fiona is nice.\n7. Fiona is young.\n8. Green, smart things are quiet.\n9. If something is kind then it is green.\n10. Smart things are young.\n11. Young things are kind.\n12. Quiet things are furry.\n13. All quiet, nice things are furry.\n14. Nice, green things are smart.\n15. If Bob is kind and Bob is not green then Bob is furry.\n\nGiven statement for analysis: \nErin is not young.\n\nWe will start by analyzing the statements that directly relate to Erin. However, we notice that we only have one statement directly involving Erin, which is statement 5: Erin is not young. \n\nNow, let's analyze statements 1-4, 6-7, and 9-15 to see if we can derive any information about Erin's age.\n\nStatement 9: If something is kind then it is green.\nFrom statement 2: Bob is kind.\nApplying statement 9 to statement 2: Bob is green.\nHowever, we know from statement 1 that Bob is indeed green. Therefore, we cannot derive any new information about Bob's greenness.\n\nStatement 9 also implies that kind things are green. We can now apply this to the statement \"Erin is not young.\" However, we need more information about Erin being kind.\n\nStatement 10: Smart things are young.\nStatement 11: Young things are kind.\nFrom statement 7: Fiona is young.\nApplying statement 11 to statement 7: Fiona is kind.\n\nStatement 9: If something is kind then it is green.\nApplying statement 9 to statement 7: Fiona is green.\nHowever, we know from statement 6 that Fiona is indeed nice. Therefore, we cannot derive any new information about Fiona's greenness.\n\nStatement 14: Nice, green things are smart.\nApplying statement 14 to statement 6 and statement 7: Fiona is smart.\nNow, we can apply statement 10 to statement 14: Fiona is young.\n\nFrom statement 12: Quiet things are furry.\nStatement 13: All quiet, nice things are furry.\nApplying statement 13 to statement 6 and statement 12: Fiona is furry.\nWe know from statement 7 that Fiona is indeed young.\n\nStatement 15: If Bob is kind and Bob is not green then Bob is furry.\nFrom statement 2: Bob is kind.\nApplying statement 15 to statement 2: If Bob is not green then Bob is furry.\nHowever, we know from statement 1 that Bob is indeed green. Therefore, we cannot derive any new information about Bob's furiness.\n\nWe can conclude that statement 5: Erin is not young. is indeed the only statement directly involving Erin. Since we have no additional information about Erin's age, kind, or greenness, we cannot derive any information about Erin's age. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and analyze the given statements.\n\nGiven statements:\n\n1. Bob is green.\n2. Bob is kind.\n3. Charlie is green.\n4. Charlie is not smart.\n5. Erin is not young.\n6. Fiona is nice.\n7. Fiona is young.\n8. Green, smart things are quiet.\n9. If something is kind then it is green.\n10. Smart things are young.\n11. Young things are kind.\n12. Quiet things are furry.\n13. All quiet, nice things are furry.\n14. Nice, green things are smart.\n15. If Bob is kind and Bob is not green then Bob is furry.\n\nNow, let's analyze the statement we need to determine: Erin is not young.\n\nFrom statement 5, we know that Erin is not young.\n\nHowever, we also have some other statements that might be relevant to this problem:\n\n- From statement 11, we know that young things are kind.\n- From statement 10, we know that smart things are young.\n- From statement 14, we know that nice, green things are smart.\n\nBut we don't have any direct information about Erin's color, smartness, or niceness.\n\nNow, let's try to find a contradiction. Suppose Erin is young. Then, from statement 11, we know that Erin is kind.\n\nFrom statement 2, we know that Bob is kind. Now, from statement 9, we know that if something is kind, then it is green. This means that Bob is green.\n\nBut we have a contradiction. From statement 1, we know that Bob is green, but statement 15 says that if Bob is kind and Bob is not green, then Bob is furry. Since we assumed Erin is young, Bob must be kind (from statement 2) and green (from statement 1). But statement 15 says that if Bob is kind and green, then Bob is furry. This is a contradiction.\n\nSince we found a contradiction when assuming Erin is young, we can conclude that Erin is indeed not young.\n\nTherefore, the statement \"Erin is not young\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not young\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. Erin is not young. \nThis is the statement we need to evaluate.\n\n2. Rules:\n   - If something is kind then it is green. \n   - Smart things are young.\n   - Young things are kind.\n   - Quiet things are furry.\n   - All quiet, nice things are furry.\n   - Nice, green things are smart.\n   - If Bob is kind and Bob is not green then Bob is furry.\n\nNow, let's analyze the information given about Erin:\n   - We don't have any direct information about Erin being kind or smart.\n   - We don't have any information about Erin being quiet or nice.\n\nHowever, we can make some inferences from the rules:\n   - We know that Erin is not young (from the given statement). \n   - If Erin is not young, then Erin is not kind (rule 3: Young things are kind).\n   - If Erin is not kind, then Erin is not green (rule 1: If something is kind then it is green).\n   - If Erin is not green, then we cannot determine if Erin is smart (rule 6: Nice, green things are smart).\n\nSince we can't determine if Erin is smart, and we don't have any other information about Erin, we cannot conclude whether Erin is nice or quiet.\n\nTherefore, the statement \"Erin is not young\" is considered true, but the information about Erin being nice or quiet is unknown.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not young\" is true, false, or unknown, we need to analyze the given information and the rules.\n\nFrom the given information, we know:\n1. Erin is not young. (Direct information)\n\nWe also have the following rules:\n1. If something is kind then it is green.\n2. Young things are kind.\n3. If something is kind and not green, then it is furry.\n\nHowever, we don't have any direct information about Erin being kind or not, being green or not, or being furry or not. We only know that Erin is not young.\n\nTo determine if the statement \"Erin is not young\" is true, we can analyze the given rules to see if there is any implication that contradicts this statement.\n\nRule 2 states that \"Young things are kind.\" If Erin is not young, it does not necessarily mean that Erin is not kind. However, we cannot conclude that Erin is kind either. We just don't have enough information.\n\nRule 3 states that \"If something is kind and not green, then it is furry.\" Since we don't know if Erin is kind or not, we cannot use this rule to conclude anything about Erin.\n\nTherefore, based on the given information and rules, we cannot determine if Erin is kind, green, or furry. We can only conclude that Erin is not young.\n\nSo, the statement \"Erin is not young\" is indeed true, as it directly states the information we have about Erin.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether Erin is not young, we need to analyze the given statements and use logical reasoning.\n\n1. Erin is not young.\nThis statement is the one we need to evaluate. \n\nHowever, we need to find more information about Erin from the given statements.\n\n2. Erin is not young. (This statement is the one we need to evaluate, but let's see if there's any other information given about Erin in other statements)\n\n3. If something is kind then it is green.\nThis statement doesn't provide any direct information about Erin, but we can use it later.\n\n4. If Bob is kind and Bob is not green then Bob is furry.\nThis statement doesn't provide any direct information about Erin, but we can use it later.\n\n5. Erin is not young. (This statement is the one we need to evaluate, but let's see if there's any other information given about Erin in other statements)\n\n6. Bob is green. Bob is kind.\nThese statements don't provide any direct information about Erin.\n\n7. Charlie is green. Charlie is not smart.\nThis statement doesn't provide any direct information about Erin.\n\n8. Fiona is nice. Fiona is young.\nThis statement doesn't provide any direct information about Erin, but it gives us a clue that 'young' and 'nice' can be related to 'kind', which is related to 'green'.\n\n9. Green, smart things are quiet.\nThis statement doesn't provide any direct information about Erin.\n\n10. Smart things are young.\nThis statement gives us a clue that 'smart' is related to 'young'.\n\n11. Young things are kind.\nThis statement gives us a clue that 'young' is related to 'kind'.\n\n12. Quiet things are furry.\nThis statement doesn't provide any direct information about Erin.\n\n13. All quiet, nice things are furry.\nThis statement doesn't provide any direct information about Erin.\n\n14. Nice, green things are smart.\nThis statement gives us a clue that 'green' is related to 'smart'.\n\nNow, let's analyze the information about Erin.\n\nWe know that Erin is not young. However, there's no statement that directly contradicts this information.\n\nFrom statements 8 and 11, we know that 'young' and 'kind' are related. However, we don't know if Erin is 'kind' or not.\n\nFrom statements 3 and 14, we know that 'green' and 'smart' are related, and 'kind' and 'green' are related. However, we don't know if Erin is 'green' or not.\n\nFrom statement 10, we know that 'smart' is related to 'young'. However, we already know that Erin is not young.\n\nWe can't find any direct information about Erin's 'kindness' or 'smartness'. Therefore, we can't determine if Erin is furry or not.\n\nThe final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the truth value of the statement \"Erin is not young,\" we need to analyze the given information step by step.\n\n1. Erin is not young. (Given statement)\n   However, Fiona is young. (Given information)\n   We cannot directly determine Erin's age from this information, so let's continue.\n\n2. Erin is not young. (Given statement)\n   Young things are kind. (Given information)\n   However, we cannot determine Erin's kind nature directly from this information. We need more information about Erin.\n\n3. Erin is not young. (Given statement)\n   Erin is not young. (Statement is given as a statement, so it's given as true)\n   Kind things are green. (Given information)\n   However, we cannot determine Erin's color directly from this information. We need more information about Erin.\n\n4. Erin is not young. (Given statement)\n   Nice things are green. (Given information)\n   However, we cannot determine Erin's color directly from this information. We need more information about Erin.\n\n5. Erin is not young. (Given statement)\n   Green, smart things are quiet. (Given information)\n   However, we cannot determine Erin's quiet nature directly from this information. We need more information about Erin.\n\n6. Erin is not young. (Given statement)\n   If something is kind then it is green. (Given information)\n   However, we cannot determine Erin's kind nature directly from this information. We need more information about Erin.\n\n7. Erin is not young. (Given statement)\n   Nice, green things are smart. (Given information)\n   However, we cannot determine Erin's smart nature directly from this information. We need more information about Erin.\n\n8. Erin is not young. (Given statement)\n   All quiet, nice things are furry. (Given information)\n   However, we cannot determine Erin's quiet or nice nature directly from this information. We need more information about Erin.\n\n9. Erin is not young. (Given statement)\n   Quiet things are furry. (Given information)\n   However, we cannot determine Erin's quiet nature directly from this information. We need more information about Erin.\n\n10. Erin is not young. (Given statement)\n    Erin is not young. (Statement is given as a statement, so it's given as true)\n    Since we have the statement \"Erin is not young,\" we need to find a contradiction or a conclusion.\n\n11. Erin is not young. (Given statement)\n    Since we have the statement \"Erin is not young,\" and it is given as a statement, so it's given as true. However, we still can't find any conclusion about Erin from the given information.\n\nSince we cannot find any information that contradicts or directly determines Erin's age, we cannot conclude that the statement \"Erin is not young\" is true or false based on the given information. Therefore, the truth value of the statement \"Erin is not young\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "not young(erin)",
+          "z3_formula": "not_young_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_erin, green_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_erin, kind_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, Not(green_bob)), furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_fiona, nice_fiona), furry_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_charlie, green_charlie), smart_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_charlie, smart_charlie), quiet_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(charlie)",
+          "z3_formula": "Not(smart_charlie) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bob)",
+          "z3_formula": "Not(green_bob) == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == False",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == False",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not young(erin)",
+          "z3_formula": "not_young_erin == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == False",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not_young(erin)",
+          "z3_formula": "not_young_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_smart(charlie)",
+          "z3_formula": "not_smart_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not_young(erin)",
+          "z3_formula": "not_young_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_bob, smart_bob), quiet_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_bob, green_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_bob, young_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_bob, kind_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_bob, furry_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_bob, nice_bob), furry_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_bob, green_bob), smart_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, Not(green_bob)), furry_bob)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_bob, green_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(green(X)) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, Not(green_bob)), furry_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Not(furry(bob))",
+          "z3_formula": "Not(furry_bob) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_fiona, nice_fiona), furry_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "Not(furry(bob))",
+          "z3_formula": "Not(furry_bob) == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_fiona, young_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_fiona, furry_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_erin, kind_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_erin, young_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == False",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_bob, green_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_bob, green_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & not green(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_bob, Not(green_bob)), furry_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bob)",
+          "z3_formula": "Not(green_bob) == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(X) -> not green(X)",
+          "z3_formula": "Implies(Not(kind_bob), Not(green_bob))",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not young(X) -> not kind(X)",
+          "z3_formula": "Implies(Not(young_erin), Not(kind_erin))",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not young(X) -> not smart(X)",
+          "z3_formula": "Implies(Not(young_erin), Not(smart_erin))",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "nice(X) & quiet(X) -> furry(X)",
+          "z3_formula": "Implies(And(nice_erin, quiet_erin), furry_erin)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_erin, furry_erin)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not smart(charlie)",
+          "z3_formula": "not smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not young(erin)",
+          "z3_formula": "not young_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_charlie, smart_charlie), quiet_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_bob, green_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_fiona, young_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_fiona, furry_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_fiona, nice_fiona), furry_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, green_fiona), smart_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_bob, not green_bob), furry_bob)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not smart(charlie)",
+          "z3_formula": "not smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not young(erin)",
+          "z3_formula": "not young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_X, smart_X), quiet_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_X, green_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_X, young_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_X, kind_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_X, furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_X, nice_X), furry_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_X, green_X), smart_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not green(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, not green_X), furry_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_erin, young_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_erin, green_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_erin, kind_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_erin, furry_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_erin, nice_erin), furry_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, green_erin), smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(green(X)) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, Not(green_erin)), furry_erin)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_erin, green_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & Not(green(X)) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, Not(green_erin)), furry_erin)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not young(erin)",
+          "z3_formula": "not_young_erin == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_erin, green_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_erin, quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, green_erin), smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_erin, nice_erin), furry_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> furry(X)",
+          "z3_formula": "Implies(quiet_erin, furry_erin)",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 115,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 47
+    },
+    "maxsat_stats": {
+      "satisfied": 45,
+      "excluded": 2,
+      "total_weight": 110,
+      "solve_time_ms": 1.3328511267900467
+    },
+    "timing": {
+      "trace_gen_s": 11.497,
+      "extraction_s": 18.767,
+      "dedup_s": 1.259,
+      "maxsat_s": 0.004,
+      "total_s": 31.528
+    }
+  }
+}

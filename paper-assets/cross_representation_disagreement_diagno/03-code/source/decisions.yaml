@@ -1,0 +1,167 @@
+_next_id: 14
+decisions:
+- id: D001
+  date: 2026-05-14 04:22 UTC
+  summary: MVP 方案：FOLIO + Qwen3-32B + FOL/Python 双表征验证分歧诊断假设
+  rationale: 选择 FOLIO 因为：(1) 逻辑推理任务天然适合 FOL+Z3 表征，同时也可写 Python 约束代码，双路径互补性最强；(2) 数据集较小（~200条），MVP
+    成本低；(3) 已有 ground truth label，可直接评估诊断准确性。选择 Qwen3-32B thinking mode 因为：(1) IDEA_BRIEF
+    指定的主模型；(2) Apache 2.0 开源；(3) Qwen Cloud API 价格低（$0.08/M input）。Pass/fail 标准：分歧率≥10%、诊断信息量≥40%、≥2种错误类型、定向修复>盲目重生成。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-14 04:25 UTC
+  summary: 采纳 Reviewer 反馈修订 MVP：增加 Step 0 baseline 门控、C4≥5pp、C5 定位准确率≥60%、灰色区间规则
+  rationale: Reviewer 指出四个有效问题：(1) C4 无量化阈值可能放行无意义差异→加≥5pp；(2) C1/C2 灰色地带未定义→灰色区间扩展到第二数据集；(3)
+    Qwen3-32B FOLIO baseline 未知，若>90%错误样本不足→增加 Step 0 前置测试；(4) 错误定位是核心环节但未纳入 MVP→增加
+    C5 定位准确率≥60%。
+  related_experiments: []
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-14 04:26 UTC
+  summary: 增加 post-MVP 时间骨架和 MVP fail 应急方案（FOLIO fail→ProofWriter→Qwen3-8B→kill）
+  rationale: Reviewer 指出 ROADMAP 缺少 MVP 后阶段规划和 fail 应急方案。11 天 DDL 下任何决策延迟代价极高。时间骨架仅为粗粒度分配（不是详细研究规划），fail
+    路径按成本递增排列：换数据集(低成本)→换模型(中成本)→kill(止损)。
+  related_experiments: []
+  depends_on:
+  - D002
+- id: D004
+  date: 2026-05-14 05:28 UTC
+  summary: 回退 qwen3.6-plus → 要求 Qwen3-32B 或同级开源模型，Reviewer critical 判定
+  rationale: Reviewer 指出两个 critical 问题：(1) qwen3.6-plus 是闭源 API 模型，EMNLP 要求可复现性；(2)
+    模型能力远超 Qwen3-32B（GPQA Diamond 88% vs 66.8%），FOLIO baseline 可能>90%导致错误样本不足，headroom
+    story 不成立。Agent 无权自行做核心方法论变更（模型选择是 IDEA_BRIEF 设计决策），必须上报 Director。
+  related_experiments: []
+  depends_on:
+  - D001
+- id: D005
+  date: 2026-05-14 08:17 UTC
+  summary: MVP 第一轮未通过（2/5），根因是 Z3 prompt 质量（78% crash），非假设失败。启动 iteration 2 修复 prompt
+  rationale: FOL 路径 78% exec_crash 导致真分歧样本极少（4%），修复优势为负（-28pp）。但 baseline 74% 确认 FOLIO
+    是合适的数据集、headroom 充足。Code 路径 52% accuracy 表明 Python 表征可行。核心问题是 Z3 代码生成质量——加 few-shot
+    examples + 输出验证预期可大幅降低 crash 率。Day 4 硬截止前有足够时间做 1-2 次 prompt 迭代。
+  related_experiments:
+  - exp_id: mvp_baseline_001
+    role: baseline
+    result: 74% accuracy, PASS_FOLIO
+  - exp_id: mvp_pipeline_001
+    role: mvp_v1
+    result: NOT PASSED 2/5, FOL 78% crash
+  depends_on:
+  - D001
+  - D002
+- id: D006
+  date: 2026-05-14 09:47 UTC
+  summary: MVP v2 结果：FOL crash 78%→10%、C4/C5 翻转为 PASS，但 Code crash 40% 需修复后迭代 v3
+  rationale: Few-shot + syntax fix 大幅改善 FOL 侧（accuracy 14%→90%）。C4 从 -28pp 翻转为 +40pp，C5
+    从 42% 翻转为 100%。新瓶颈是 Python Code 侧 thinking token 泄漏导致 40% crash，压缩了有效双表征样本量。C1=0%
+    在仅 10 条中不具统计意义，修复 Code crash 后扩大样本是关键。
+  related_experiments:
+  - exp_id: mvp_pipeline_002
+    role: mvp_v2_test10
+    result: FOL crash 10%, Code crash 40%, C1=0%, C4=+40pp, C5=100%
+  depends_on:
+  - D005
+- id: D007
+  date: 2026-05-14 13:07 UTC
+  summary: 撤回 v5 closed-world 方案，改为 v5b：保持 3-way 输出但改进 prompt 减少 lazy Unknown
+  rationale: v5 强制 Code 路径 closed-world 2-way 输出，而 FOL 保持 open-world 3-way。FOLIO ~39%
+    GT=Unknown，导致这些样本上 FOL=Unknown vs Code=False 的人为 disagreement。审稿人会质疑分歧信号有多少来自语义假设差异而非推理错误。正确做法：保持两条路径同一语义基础（都
+    3-way），通过改进 few-shot 和指令减少"不敢判断就输出 Unknown"的 lazy 行为。
+  related_experiments:
+  - exp_id: mvp_pipeline_004
+    role: baseline
+    result: running, 41/204, Code Unknown rate 46.3%
+  depends_on: []
+- id: D008
+  date: 2026-05-14 18:03 UTC
+  summary: repair.py prompt bug 确认为 C4 下降根因，修复后 repair-only 重跑全量 204 样本
+  rationale: Reviewer 发现 BLIND_REGEN_PROMPT 和 TARGETED_REPAIR_PROMPT 硬编码 "Python script"，FOL(Z3)
+    修复时给模型矛盾指令，导致 FOL-side targeted repair 50% vs blind 90%（-40pp）。C4 从 +22.6→+7.4
+    的下降趋势直接由此解释。修复方案：动态 repr_type 替换硬编码，pipeline 完成后对全部 204 样本仅重跑 repair+eval 阶段得到干净可比数据。
+  related_experiments:
+  - exp_id: mvp_pipeline_004
+    role: affected
+    result: C4 All-mode +7.4pp (suppressed by bug), C4 excl-Unknown +0.0pp
+  depends_on:
+  - D006
+  - D007
+- id: D009
+  date: 2026-05-15 05:59 UTC
+  summary: 通过 MVP gate，C4 作为已知弱点进入 research 阶段解决
+  rationale: All-mode 5/5 PASS（原始+repair后均通过）。核心假设（跨表征分歧→诊断→定位）由 C1(39.6%), C2(86.8%),
+    C3(3 types), C5(85.4%) 强力支持。C4 技术上通过（+5.2pp > 5pp）但 margin 仅 0.2pp，Excl-Unknown
+    组 0.0pp，统计上不显著。C4 弱点是 paper framing 问题而非方法论根本缺陷——repair 是下游应用，核心贡献在 diagnosis+localization。Research
+    阶段需要：(1) 改进 repair 机制拉大 delta，或 (2) reframe paper 弱化 repair claim 聚焦 diagnosis+localization。
+  related_experiments:
+  - exp_id: mvp_pipeline_004
+    role: primary
+    result: All-mode 5/5 PASS, C4 margin 0.2pp
+  depends_on:
+  - D008
+- id: D010
+  date: 2026-05-15 06:06 UTC
+  summary: D008 假设（prompt bug = C4 根因）未获支撑；C4 reframe 为 error-type-conditional advantage
+  rationale: Reviewer 统计分析：修复前后仅 3/192 次结果翻转（targeted +1, blind +2），blind 改善多于 targeted，C4
+    delta 反而从 +6.25pp 降到 +5.2pp。C4 aggregate +5.2pp 的 p≈0.23 无统计显著性。但 Unknown 子组 +13.5pp
+    (T:23/37 vs B:18/37) 显示诊断信号在系统性错误（Code overclaiming）上有效，非 Unknown 组 +0.0pp 显示对随机推理错误无效。C4
+    弱不是 bug 导致的，是方法论层面的 error-type-dependent 局限。Paper framing Claim 3 已更新：不 claim
+    aggregate repair superiority，claim conditional advantage + boundary characterization。
+  related_experiments:
+  - exp_id: mvp_pipeline_004
+    role: primary
+    result: C4 aggregate +5.2pp (p≈0.23), Unknown +13.5pp, non-Unknown +0.0pp
+  depends_on:
+  - D008
+  - D009
+- id: D011
+  date: 2026-05-15 06:15 UTC
+  summary: 统一指标为 per-sample 计算；Claim 3 更新为 GT-label-dependent 三分效应（Unknown +14.7pp
+    / False +6.7pp / True -13.6pp）
+  rationale: Reviewer 发现 evaluate_mvp.py (per-side) 和 deep_analysis.py (per-sample)
+    两套指标不一致。per-sample 更贴合论文叙事（每个问题一个诊断），选为标准。GT=True 子组发现 targeted repair 反效果 -13.6pp（blind
+    77.3% vs targeted 63.6%），不只是"无帮助"而是"有害"。Claim 3 从 "conditional advantage" 升级为
+    "GT-label-dependent three-way split"——这是更有价值的发现。5.6:1 不对称性（非 9:1）已修正到 framing。
+  related_experiments:
+  - exp_id: mvp_pipeline_004
+    role: primary
+    result: GT=True -13.6pp, GT=False +6.7pp, GT=Unknown +14.7pp. Asymmetry 5.6:1.
+  depends_on:
+  - D010
+- id: D012
+  date: 2026-05-15 06:57 UTC
+  summary: C5 报告双指标：C5-committed (85.4%, 仅明确预测) + C5-coverage (53.0%, 含 ambiguous=fail)；D009
+    MVP 判定维持
+  rationale: evaluate_mvp.py 过滤 ambiguous 预测 → C5=85.4% (35/41)；evaluate_unified.py
+    不过滤 → C5=53.0% (35/66)。差异根因是 38% 样本 stability test 返回 ambiguous。两个视角都有效：committed
+    衡量"做了预测时的精度"，coverage 衡量"整体覆盖率"。论文应诚实报告两个数字。D009 MVP 使用 C5-committed，判定维持——localization
+    的 coverage 局限是已知弱点，不否定核心假设（分歧作为诊断信号）。GT=Unknown C5=35.7% 但 C4=+14.7pp 的悖论说明修复效用来自
+    disagreement pattern（信息含量）而非 error_side 定位精度——这本身是有价值的发现。
+  related_experiments:
+  - exp_id: mvp_pipeline_004
+    role: primary
+    result: C5-committed 85.4% (35/41), C5-coverage 53.0% (35/66), ambiguous rate
+      38%
+  depends_on:
+  - D011
+- id: D013
+  date: 2026-05-15 07:17 UTC
+  summary: 'Dream #1 三档均 3/6 (borderline/weak reject)，识别 5 个结构性问题，更新 framing+plan
+    后 re-dream'
+  rationale: 'Dream dream_20260515T060408 三档评分: Best=3/6 borderline reject, Median=3/6
+    weak reject, Worst=3/6 borderline reject。未达 "best ≥ weak accept" 门槛。跨三档一致的结构性问题:
+    (1) Related work 严重不足——缺 self-consistency/LEVER/Faithful CoT/self-debug/multi-agent
+    debate; (2) 引用不完整; (3) Error taxonomy 未验证; (4) "first systematic study" claim
+    过强; (5) 缺 self-consistency baseline 对比。已采取行动: paper_framing.md 降低 novelty claim
+    + 加 R8-R11 reviewer concerns; experiment_plan.yaml 新增 exp-012 (self-consistency
+    baseline, P0) + exp-013 (taxonomy cross-validation, P1) + exp-007 升 P0。需 re-dream
+    验证改进效果后才能批准 P0 实验。'
+  related_experiments:
+  - exp_id: exp-012
+    role: 新增 P0 — self-consistency baseline
+  - exp_id: exp-013
+    role: 新增 P1 — taxonomy validation
+  - exp_id: exp-007
+    role: P1→P0 升级 — selection vs repair
+  depends_on:
+  - D009

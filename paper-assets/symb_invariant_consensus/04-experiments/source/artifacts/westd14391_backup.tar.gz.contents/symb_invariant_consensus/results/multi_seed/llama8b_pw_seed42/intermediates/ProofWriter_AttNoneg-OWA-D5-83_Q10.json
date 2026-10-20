@@ -1,0 +1,994 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-83_Q10",
+    "problem": "Dave is cold. Dave is rough. Erin is cold. Erin is rough. Fiona is blue. Fiona is smart. Gary is blue. All smart, rough people are young. If someone is cold and white then they are quiet. All cold people are white. If someone is quiet and young then they are blue. White, quiet people are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not young.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nBlue($x, bool) ::: Is x blue?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nQuiet($x, bool) ::: Is x quiet?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nCold(Dave, True) ::: Dave is cold.\nRough(Dave, True) ::: Dave is rough.\nCold(Erin, True) ::: Erin is cold.\nRough(Erin, True) ::: Erin is rough.\nBlue(Fiona, True) ::: Fiona is blue.\nSmart(Fiona, True) ::: Fiona is smart.\nBlue(Gary, True) ::: Gary is blue.\n\nRules:\nSmart($x, True) && Rough($x, True) >>> Young($x, True) ::: All smart, rough people are young.\nCold($x, True) && White($x, True) >>> Quiet($x, True) ::: If someone is cold and white then they are quiet.\nCold($x, True) >>> White($x, True) ::: All cold people are white.\nQuiet($x, True) && Young($x, True) >>> Blue($x, True) ::: If someone is quiet and young then they are blue.\nWhite($x, True) && Quiet($x, True) >>> Smart($x, True) ::: White, quiet people are smart.\n\nQuery:\nYoung(Erin, False) ::: Erin is not young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 130.5,
+      "Unknown": 98.5
+    },
+    "answer_counts": {
+      "False": 9,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Erin is not young\" is true, false, or unknown, we need to analyze the given information and break it down step by step.\n\n1. All cold people are white. \n   Erin is cold. \n   Therefore, Erin is white.\n\n2. White, quiet people are smart. \n   We don't know if Erin is quiet yet, but we can proceed with the information we have.\n\n3. All cold, rough people are young. \n   Erin is cold and rough. \n   Therefore, Erin is young.\n\nNow, let's consider the statement \"Erin is not young.\" Given the information from step 3, we already know that Erin is young. Therefore, the statement \"Erin is not young\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conclusion we are trying to draw.\n\nGiven statements:\n\n1. Dave is cold. Dave is rough. Erin is cold. Erin is rough. Fiona is blue. Fiona is smart. Gary is blue.\n2. All smart, rough people are young.\n3. If someone is cold and white then they are quiet. (Note: All cold people are white. This is an implicit assumption in statement 3.)\n4. All cold people are white.\n5. If someone is quiet and young then they are blue.\n6. White, quiet people are smart.\n\nWe are trying to determine whether the statement \"Erin is not young\" is true, false, or unknown.\n\nStep 1: From statements 1 and 4, we can infer that Erin is white because Erin is cold.\n\nStep 2: From statement 3, we can infer that since Erin is white and cold, Erin is quiet.\n\nStep 3: From statement 5, we can infer that since Erin is quiet and young (we don't know yet whether Erin is young or not, so this is a possibility), Erin is blue.\n\nStep 4: From statement 6, we can infer that since Erin is white and quiet, Erin is smart.\n\nStep 5: From statement 2, we can infer that since Erin is smart and rough, Erin is young.\n\nHowever, in step 5, we reached a conclusion that contradicts the statement we are trying to evaluate. From step 5, we concluded that Erin is young, but we are trying to determine whether the statement \"Erin is not young\" is true, false, or unknown. Since we have a direct contradiction, we can conclude that the statement \"Erin is not young\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deductions based on the given statements.\n\n1. All cold people are white.\n2. Erin is cold. \nFrom statement 1 and 2, we can deduce that Erin is white.\n\n3. White, quiet people are smart.\n4. If someone is cold and white then they are quiet.\nSince Erin is white (from statement 2 and 1), we can conclude that Erin is quiet using statement 4.\nNow, using statement 3, we can deduce that Erin is smart.\n\n5. All smart, rough people are young.\n6. Erin is smart (from above).\n7. Erin is rough.\nFrom statement 5, 6, and 7, we can conclude that Erin is young.\n\nNow, we need to determine whether the statement \"Erin is not young\" is true, false, or unknown.\nWe have already deduced that Erin is young (from statement 5, 6, and 7).\nTherefore, the statement \"Erin is not young\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Erin is young or not, let's analyze the given information step by step:\n\n1. All cold people are white. \n   Since Erin is cold, Erin is white.\n\n2. White, quiet people are smart. \n   Since Erin is white, Erin is smart (if Erin is quiet).\n\n3. All smart, rough people are young. \n   Since Erin is smart and rough, Erin is young.\n\nNow, we need to determine whether the statement 'Erin is not young' is true, false, or unknown.\n\nFrom the analysis above, we know that Erin is young. Therefore, the statement 'Erin is not young' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the truth value of the statement \"Erin is not young,\" we need to analyze the given information and apply it to Erin.\n\n1. Erin is cold. (Given)\n2. Erin is rough. (Given)\n3. All cold people are white. (From the given information)\n   Since Erin is cold, we can conclude that Erin is white.\n\n4. White, quiet people are smart. (From the given information)\n   We don't know if Erin is quiet, but we know Erin is white. Let's assume Erin is quiet for now.\n   If Erin is quiet and white, then Erin is smart.\n\n5. All smart, rough people are young. (From the given information)\n   We know Erin is smart and rough, but we don't know if Erin is young.\n\nNow, let's consider the given statement \"Erin is not young.\" If this statement is true, then Erin must not be young.\n\nIf Erin is not young, then Erin cannot be smart and rough because all smart, rough people are young. But we already know Erin is smart and rough, so this would create a contradiction.\n\nHowever, we can also analyze the statement \"If someone is quiet and young then they are blue.\" (From the given information)\n   We know Erin is cold, which implies Erin is white. We also assumed Erin is quiet. If Erin is quiet and young, then Erin is blue.\n\nBut if Erin is blue, then Erin is smart (because Fiona is blue and smart, and Gary is blue). We already concluded that Erin is smart, so this doesn't create a contradiction.\n\nNow, let's go back to the original statement \"Erin is not young.\" If Erin is not young, then Erin cannot be blue (because blue people are young). But we already concluded that Erin is white, and we assumed Erin is quiet. If Erin is quiet and white, then Erin is smart. But if Erin is smart, then Erin must be blue (because white, quiet people are smart).\n\nThis creates a contradiction, so our assumption that \"Erin is not young\" must be false.\n\nHowever, we cannot conclude that Erin is young because we don't know if Erin is quiet. If Erin is not quiet, then Erin is not white, and Erin is not smart. But we know Erin is rough and cold, so we cannot conclude anything about Erin's age.\n\nTherefore, the truth value of the statement \"Erin is not young\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is cold.\n2. Erin is rough.\n3. All cold people are white. (From 1, we can conclude that Erin is white.)\n4. If someone is cold and white then they are quiet. (From 1 and 3, we can conclude that Erin is quiet.)\n5. White, quiet people are smart. (From 3 and 4, we can conclude that Erin is smart.)\n6. All smart, rough people are young. (We know Erin is smart and rough from 2 and 5, but we cannot conclude that Erin is young because the statement is not universal for all smart people.)\n\nFrom the given information, we cannot conclude that Erin is young. Therefore, we cannot conclude that Erin is not young either. The statement \"Erin is not young\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not young\" is true, false, or unknown, we need to break down the given information and apply it to Erin's characteristics.\n\nGiven information:\n\n1. All smart, rough people are young.\n2. If someone is cold and white then they are quiet.\n3. All cold people are white.\n4. If someone is quiet and young then they are blue.\n5. White, quiet people are smart.\n\nCharacteristics of Erin:\n\n- Erin is cold.\n- Erin is rough.\n\nFrom point 3, we know that all cold people are white. So, Erin is white.\n\nFrom point 2, we know that if someone is cold and white, then they are quiet. Since Erin is cold and white, Erin is quiet.\n\nFrom point 1, we know that all smart, rough people are young. We cannot conclude that Erin is smart yet, but we do know Erin is rough. If we assume Erin is smart, then Erin must be young.\n\nHowever, we can also use point 5 to infer that Erin might be smart: White, quiet people are smart. Since Erin is white and quiet, Erin might be smart.\n\nNow, we need to use the fact that Erin is quiet and young (from our assumptions) to determine whether Erin is blue.\n\nFrom point 4, we know that if someone is quiet and young, then they are blue. Since Erin is quiet and young, Erin is blue.\n\nNow we have Erin's characteristics:\n- Erin is cold.\n- Erin is white.\n- Erin is quiet.\n- Erin is blue.\n- Erin is rough.\n- Erin might be smart.\n\nSince we know Erin is blue and we are asked to determine whether Erin is not young, let's examine the given information again.\n\nAll smart, rough people are young. (point 1)\nWe cannot conclude that Erin is not young based on this statement alone, as we do not know Erin's age.\n\nIf someone is quiet and young then they are blue. (point 4)\nWe know Erin is quiet and young, so Erin is indeed blue, which is true.\n\nSince we are given that Erin is blue, and from point 4 we know that if someone is quiet and young then they are blue, we can infer that Erin is indeed young.\n\nTherefore, the statement \"Erin is not young\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given:\n   - Dave is cold. \n   - Dave is rough.\n   - Erin is cold.\n   - Erin is rough.\n   - Fiona is blue.\n   - Fiona is smart.\n   - Gary is blue.\n   - All smart, rough people are young.\n   - If someone is cold and white then they are quiet.\n   - All cold people are white.\n   - If someone is quiet and young then they are blue.\n   - White, quiet people are smart.\n\n2. From the information:\n   - Erin is cold (from given statement).\n   - All cold people are white (from given statement).\n   - Therefore, Erin is white.\n\n3. Since Erin is white and cold, \n   - If someone is cold and white then they are quiet (from given statement).\n   - Therefore, Erin is quiet.\n\n4. Erin is quiet and white, \n   - White, quiet people are smart (from given statement).\n   - Therefore, Erin is smart.\n\n5. Erin is smart and rough, \n   - All smart, rough people are young (from given statement).\n   - Therefore, Erin is young.\n\nNow, we need to determine the truth value of the statement \"Erin is not young\".\n\nSince we found that Erin is indeed young (step 5), the statement \"Erin is not young\" is false.\n\nTherefore, the answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given statements, we know:\n   - All smart, rough people are young. (This implies that smart and rough people are young, but it doesn't necessarily mean that all young people are smart and rough.)\n   - All cold people are white. (This implies that if someone is cold, they are white.)\n   - If someone is cold and white, then they are quiet. (This implies that cold, white people are quiet.)\n   - White, quiet people are smart. (This implies that white people who are quiet are smart.)\n   - If someone is quiet and young, then they are blue. (This implies that quiet, young people are blue.)\n   - Erin is cold. Erin is rough. (From these two statements, we can conclude that Erin is young because all smart, rough people are young, and Erin is rough.)\n\n2. Now, let's analyze the statement \"Erin is not young.\"\n   - Based on the given information, we know that Erin is young because Erin is rough and cold, and all smart, rough people are young. (From step 1)\n   - Therefore, the statement \"Erin is not young\" is false because Erin is actually young.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that \"Erin is rough\" and \"All smart, rough people are young.\" \nFrom this, we can deduce that Erin is young because being young is a property of being a \"smart, rough person\" which Erin is.\n\n2. We also know that \"All cold people are white\" and \"Erin is cold.\" \nFrom this, we can deduce that Erin is white because being white is a property of all cold people, which Erin is.\n\n3. Now we have two properties of Erin: Erin is young and Erin is white.\n\n4. We know that \"White, quiet people are smart\" and \"All cold people are white\" and \"If someone is cold and white then they are quiet.\" \nFrom this, we can deduce that Erin is quiet because being quiet is a property of being a \"white, cold person\" which Erin is.\n\n5. Now we have three properties of Erin: Erin is young, Erin is white, and Erin is quiet.\n\n6. We know that \"If someone is quiet and young then they are blue\" and \"Fiona is blue\" and \"Fiona is smart.\" \nFrom this, we can deduce that Erin is not blue because the given statement is referring to Fiona, not Erin. However, we can still conclude that Erin is not blue.\n\n7. Since we have found a property of Erin that is not true for Fiona, we can't conclude that Erin is not young.\n\nHowever, based on our initial deduction that Erin is young, we now know that \"Erin is young\" is the only possible conclusion.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not young\" is true, false, or unknown, we need to analyze the given information and deduce the age of Erin.\n\n1. All cold people are white. \n   Since Erin is cold, Erin is white.\n\n2. If someone is cold and white then they are quiet. \n   Since Erin is cold and white, Erin is quiet.\n\n3. White, quiet people are smart. \n   Since Erin is white and quiet, Erin is smart.\n\n4. All smart, rough people are young. \n   Since Erin is smart and rough (given), we cannot conclude Erin's age yet. We need more information.\n\n5. Erin is cold and Erin is rough. \n   These two facts combine with the above points, still not enough to conclude Erin's age.\n\nNow, let's look at the statement \"If someone is quiet and young then they are blue.\" and the information about Fiona and Gary.\n\n6. Fiona is blue. Fiona is smart. \n   From the above point 3, we know that white, quiet people are smart. Since Fiona is smart and blue, we can't conclude Fiona's color based on this information alone.\n\n7. Gary is blue. \n   There is no direct connection between Gary and the characteristics that we've discussed so far.\n\nHowever, let's re-evaluate the given information and the statement \"If someone is quiet and young then they are blue.\" \n\nIf someone is quiet and young then they are blue. (This means being blue is a possible characteristic of people who are quiet and young.)\n\nCombining this with the information from point 2 (If someone is cold and white then they are quiet.) and the fact that all cold people are white (point 1), we can conclude that Erin is quiet and white, which makes her possibly smart (point 3).\n\nSince Erin is smart and rough (point 4), we can conclude that Erin is young because all smart, rough people are young.\n\nNow that we've concluded Erin is young, we need to determine whether the statement \"Erin is not young\" is true or false.\n\nSince Erin is young, the statement \"Erin is not young\" is FALSE.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information step by step and apply it to the statement \"Erin is not young.\"\n\n1. Erin is cold. (Given)\n2. Erin is rough. (Given)\n3. All cold people are white. (Given)\n   From (1) and (3), we can conclude that Erin is white.\n\n4. All cold people are white. (Given)\n   We already know Erin is cold (from step 1) and white (from step 3), so we can conclude that Erin is white.\n5. White, quiet people are smart. (Given)\n   Since Erin is white, we don't have enough information yet to conclude that Erin is quiet or smart.\n\n6. If someone is cold and white then they are quiet. (Given)\n   We know Erin is cold (from step 1) and white (from step 3), so we can conclude that Erin is quiet.\n\n7. Since Erin is quiet (from step 6) and we previously established that Erin is white (from step 3), we can conclude that Erin is smart (from step 5).\n\n8. All smart, rough people are young. (Given)\n   We know Erin is smart (from step 7) and rough (from step 2), so we can conclude that Erin is young.\n\nHowever, the original question asks if Erin is not young. Since we concluded in step 8 that Erin is young, the statement \"Erin is not young\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(cold_erin, rough_erin), young_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_X, rough_X), young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_X, white_X), quiet_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_X, white_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_X, young_X), blue_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_X, quiet_X), smart_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == Unknown",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_erin, young_erin), blue_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_erin, smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == False",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_erin, young_erin), blue_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_X, rough_X), young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_X, white_X), quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_X, white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_X, young_X), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_X, quiet_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(X) <- smart(X) & rough(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_erin, young_erin), blue_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_erin, young_erin), blue_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(erin)",
+          "z3_formula": "Not(blue_erin) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == False",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_erin, white_erin), smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_erin, white_erin), smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 144,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 28
+    },
+    "maxsat_stats": {
+      "satisfied": 26,
+      "excluded": 2,
+      "total_weight": 138,
+      "solve_time_ms": 1.0889656841754913
+    },
+    "timing": {
+      "trace_gen_s": 6.209,
+      "extraction_s": 21.389,
+      "dedup_s": 0.99,
+      "maxsat_s": 0.003,
+      "total_s": 28.59
+    }
+  }
+}

@@ -1,0 +1,136 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\citation{pan2023logiclm,olausson2023linc}
+\citation{condorcet1785}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{wang2023selfconsistency}
+\citation{chen2023usc}
+\citation{li2023diverse}
+\citation{taubenfeld2025weighted}
+\citation{loo2025sc}
+\citation{pan2023logiclm}
+\citation{olausson2023linc}
+\citation{dylos2026}
+\citation{aristotle2025}
+\citation{fover2025}
+\citation{li2024independence}
+\citation{fleiss1971}
+\citation{snell2025scaling}
+\citation{lightman2023prm}
+\citation{cobbe2021orm}
+\citation{deepseekr1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency and Extensions.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Neuro-Symbolic Reasoning.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Condorcet Jury Theorem and LLM Ensembles.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Test-Time Compute and Verification.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: \textsc  {Sica}{} Pipeline}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Overview}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage 1: Trace Sampling.}{2}{section*.5}\protected@file@percent }
+\citation{fleiss1971}
+\citation{han2022folio}
+\citation{tafjord2021proofwriter}
+\citation{liu2023logiqa}
+\citation{geva2021strategyqa}
+\citation{clark2018arc}
+\citation{cobbe2021gsm8k}
+\@writefile{toc}{\contentsline {paragraph}{Stage 2: Constraint Extraction.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage 3: MAX-SAT Aggregation.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Independence Quantification}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Diagnostic Metrics}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-Candidate Rate (C0).}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Oracle Control.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Configuration.}{3}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results: SC vs.\ \textsc  {Sica}{} across models and domains. $n$: number of problems. C0: multi-candidate rate. $\Delta $: SICA $-$ SC in percentage points. Bold: statistically significant ($p < 0.05$).}}{4}{table.caption.13}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main}{{1}{4}{Main results: SC vs.\ \sica {} across models and domains. $n$: number of problems. C0: multi-candidate rate. $\Delta $: SICA $-$ SC in percentage points. Bold: statistically significant ($p < 0.05$)}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Oracle control on Qwen2.5-14B FOLIO ($n$=204). Gold FOL: human-annotated first-order logic constraints. Self: model-extracted constraints.}}{4}{table.caption.14}\protected@file@percent }
+\newlabel{tab:oracle}{{2}{4}{Oracle control on Qwen2.5-14B FOLIO ($n$=204). Gold FOL: human-annotated first-order logic constraints. Self: model-extracted constraints}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Oracle Gap Analysis}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Trace independence metrics. $\kappa $: Fleiss' kappa. $\text  {Eff-K}{}$: effective independent voters for $K$=12. SC: self-consistency accuracy. $\Delta $: \textsc  {Sica}{}$-$SC.}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:independence}{{3}{5}{Trace independence metrics. $\kappa $: Fleiss' kappa. $\effk {}$: effective independent voters for $K$=12. SC: self-consistency accuracy. $\Delta $: \sica {}$-$SC}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Joint $\text  {Eff-K}{}$+SC prediction accuracy across 12 conditions. The framework predicts the sign of $\Delta $ at chance level (50\%).}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:prediction}{{4}{5}{Joint $\effk {}$+SC prediction accuracy across 12 conditions. The framework predicts the sign of $\Delta $ at chance level (50\%)}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Independence Quantification}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}K Sensitivity}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces $K$ sensitivity. Left: Mistral-7B on FOLIO-204 (seed 42). Right: Qwen2.5-14B on D012 (60 problems). None of the pairwise differences are statistically significant.}}{6}{table.caption.17}\protected@file@percent }
+\newlabel{tab:ksens}{{5}{6}{$K$ sensitivity. Left: Mistral-7B on FOLIO-204 (seed 42). Right: Qwen2.5-14B on D012 (60 problems). None of the pairwise differences are statistically significant}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Temperature sensitivity for Mistral-7B on FOLIO-204 ($K$=12). Multi-temp mixes equal numbers of traces at $T$=0.3, 0.7, and 1.0. $\text  {Eff-K}{}$ computed from Fleiss' $\kappa $ at each temperature.}}{6}{table.caption.18}\protected@file@percent }
+\newlabel{tab:tsens}{{6}{6}{Temperature sensitivity for Mistral-7B on FOLIO-204 ($K$=12). Multi-temp mixes equal numbers of traces at $T$=0.3, 0.7, and 1.0. $\effk {}$ computed from Fleiss' $\kappa $ at each temperature}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Temperature Sensitivity}{6}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Constraint Quality Analysis}{6}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Qualitative analysis.}{6}{section*.19}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Aggregation mechanism ablation ($n$=804). Agreement: fraction of problems where method and count-only produce the same answer.}}{7}{table.caption.22}\protected@file@percent }
+\newlabel{tab:ablation}{{7}{7}{Aggregation mechanism ablation ($n$=804). Agreement: fraction of problems where method and count-only produce the same answer}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {paragraph}{Quantitative correlation.}{7}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Aggregation mechanism ablation.}{7}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Seed Replication}{7}{subsection.5.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Remediation Attempts}{7}{subsection.5.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Additional Baselines}{7}{subsection.5.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Weighted SC.}{7}{section*.24}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Nine remediation strategies and their outcomes. All were applied to Mistral-7B FOLIO. ``Outcome'' indicates the effect on $\Delta $ relative to the base condition.}}{8}{table.caption.23}\protected@file@percent }
+\newlabel{tab:remediation}{{8}{8}{Nine remediation strategies and their outcomes. All were applied to Mistral-7B FOLIO. ``Outcome'' indicates the effect on $\Delta $ relative to the base condition}{table.caption.23}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Weighted SC variants on the primary dataset ($n$=804). All differences are non-significant.}}{8}{table.caption.25}\protected@file@percent }
+\newlabel{tab:weightedsc}{{9}{8}{Weighted SC variants on the primary dataset ($n$=804). All differences are non-significant}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {paragraph}{Logic-LM baseline.}{8}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Deployment Diagnostic: C0 + SC}{8}{subsection.5.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{C0 screening.}{8}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{SC accuracy regime.}{8}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}Overhead Analysis}{9}{subsection.5.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The self-extraction trap.}{9}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations of the independence framework.}{9}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-temperature as a promising direction.}{9}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\bibdata{references}
+\bibstyle{plainnat}
+\bibcite{wang2023selfconsistency}{{1}{2023}{{Wang et al.}}{{}}}
+\bibcite{pan2023logiclm}{{2}{2023}{{Pan et al.}}{{}}}
+\bibcite{olausson2023linc}{{3}{2023}{{Olausson et al.}}{{}}}
+\bibcite{condorcet1785}{{4}{1785}{{Condorcet}}{{}}}
+\bibcite{austensmith1996}{{5}{1996}{{Austen-Smith and Banks}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Tiebreak Analysis}{10}{appendix.A}\protected@file@percent }
+\newlabel{app:tiebreak}{{A}{10}{Tiebreak Analysis}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}QwQ-32B Negative Control}{10}{appendix.B}\protected@file@percent }
+\newlabel{app:qwq}{{B}{10}{QwQ-32B Negative Control}{appendix.B}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Full Overhead Breakdown}{10}{appendix.C}\protected@file@percent }
+\newlabel{app:overhead}{{C}{10}{Full Overhead Breakdown}{appendix.C}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Wall-time breakdown per problem (mean over all conditions).}}{10}{table.caption.33}\protected@file@percent }
+\bibcite{li2024independence}{{6}{2024}{{Li et al.}}{{}}}
+\bibcite{fleiss1971}{{7}{1971}{{Fleiss}}{{}}}
+\bibcite{chen2023usc}{{8}{2023}{{Chen et al.}}{{}}}
+\bibcite{li2023diverse}{{9}{2023}{{Li et al.}}{{}}}
+\bibcite{taubenfeld2025weighted}{{10}{2025}{{Taubenfeld et al.}}{{}}}
+\bibcite{loo2025sc}{{11}{2025}{{Loo et al.}}{{}}}
+\bibcite{dylos2026}{{12}{2026}{{DyLoS}}{{}}}
+\bibcite{aristotle2025}{{13}{2025}{{Aristotle}}{{}}}
+\bibcite{fover2025}{{14}{2025}{{FoVer}}{{}}}
+\bibcite{snell2025scaling}{{15}{2025}{{Snell et al.}}{{}}}
+\bibcite{deepseekr1}{{16}{2025}{{DeepSeek-AI}}{{}}}
+\bibcite{cobbe2021orm}{{17}{2021}{{Cobbe et al.}}{{}}}
+\bibcite{cobbe2021gsm8k}{{18}{2021b}{{Cobbe et al.}}{{}}}
+\bibcite{lightman2023prm}{{19}{2023}{{Lightman et al.}}{{}}}
+\bibcite{liang2023debate}{{20}{2023}{{Liang et al.}}{{}}}
+\bibcite{du2023debate}{{21}{2023}{{Du et al.}}{{}}}
+\bibcite{wei2022cot}{{22}{2022}{{Wei et al.}}{{}}}
+\bibcite{kojima2022zerocot}{{23}{2022}{{Kojima et al.}}{{}}}
+\bibcite{han2022folio}{{24}{2022}{{Han et al.}}{{}}}
+\bibcite{tafjord2021proofwriter}{{25}{2021}{{Tafjord et al.}}{{}}}
+\bibcite{clark2018arc}{{26}{2018}{{Clark et al.}}{{}}}
+\bibcite{geva2021strategyqa}{{27}{2021}{{Geva et al.}}{{}}}
+\bibcite{liu2023logiqa}{{28}{2023}{{Liu et al.}}{{}}}
+\bibcite{jiang2023mistral}{{29}{2023}{{Jiang et al.}}{{}}}
+\bibcite{qwen2024}{{30}{2024}{{Qwen Team}}{{}}}
+\bibcite{touvron2023llama}{{31}{2023}{{Touvron et al.}}{{}}}
+\bibcite{satbench2025}{{32}{2025}{{SATBench}}{{}}}
+\bibcite{llmcp2025}{{33}{2025}{{LLM-CP}}{{}}}
+\gdef \@abspage@last{12}

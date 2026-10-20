@@ -1,0 +1,494 @@
+{
+  "problem": {
+    "id": "folio_61",
+    "problem": "Given the following premises:\nInternational students in US have either an F1 visa or a J1 visa. An international student in US with an F1 visa needs to apply for CPT or OPT if the student wants to work in the US. Mike is an international student. Mike needs to apply for CPT if he wants to work in the US.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nMike has an F1 visa.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (InternationalStudent(x) \u2192 F1(x) \u2295 J1(x))",
+      "\u2200x (InternationalStudent(x) \u2227 F1(x) \u2227 WantWorkInUS(x) \u2192 Apply(x, cpt) \u2228 Apply(x, opt))",
+      "InternationalStudent(mike)",
+      "WantWorkInUS(mike) \u2192 Apply(mike, cpt)"
+    ],
+    "conclusion_fol": "F1(mike)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 56.0,
+      "Unknown": 25.0
+    },
+    "answer_counts": {
+      "True": 10,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. International students in the US have either an F1 visa or a J1 visa.\n   - This premise gives us information about the two types of visas available to international students. However, it doesn't provide any information about Mike's visa status.\n\n2. An international student in the US with an F1 visa needs to apply for CPT or OPT if the student wants to work in the US.\n   - This premise tells us about the requirements for working in the US with an F1 visa. It doesn't provide any information about Mike's visa status or his work plans.\n\n3. Mike is an international student.\n   - This premise tells us that Mike is an international student, but it doesn't give us any information about his visa status or work plans.\n\n4. Mike needs to apply for CPT if he wants to work in the US.\n   - This premise is consistent with the information provided in premise 2, but it doesn't provide any information about Mike's visa status.\n\nBased on these premises, we can make a logical conclusion about Mike's visa status.\n\nFrom premise 1, we know that international students have either an F1 visa or a J1 visa. From premise 4, we know that Mike needs to apply for CPT if he wants to work in the US. This information is consistent with premise 2, which states that an international student with an F1 visa needs to apply for CPT or OPT if they want to work in the US.\n\nTherefore, the most likely scenario is that Mike has an F1 visa, as it is the only visa type that requires CPT or OPT for working in the US.\n\nConclusion: The conclusion that \"Mike has an F1 visa\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. International students in the US have either an F1 visa or a J1 visa. \n   This premise establishes two possible visa options for international students in the US.\n\n2. An international student in the US with an F1 visa needs to apply for CPT or OPT if the student wants to work in the US.\n   This premise provides a condition for when an international student needs to apply for CPT or OPT. It states that if an international student has an F1 visa and wants to work in the US, then the student needs to apply for CPT or OPT.\n\n3. Mike is an international student.\n   This premise establishes Mike's status as an international student, which is a common category for individuals with F1 or J1 visas.\n\n4. Mike needs to apply for CPT if he wants to work in the US.\n   This premise establishes a condition for Mike, stating that if he wants to work in the US, then he needs to apply for CPT.\n\nNow, let's examine the conclusion: \"Mike has an F1 visa.\"\n\nWe can infer from premises 1 and 3 that Mike is likely to have either an F1 visa or a J1 visa. However, premise 4 states that Mike needs to apply for CPT if he wants to work in the US. This condition aligns with premise 2, which states that an international student with an F1 visa needs to apply for CPT or OPT if they want to work in the US.\n\nBased on this analysis, we can infer that Mike likely has an F1 visa. Therefore, the conclusion \"Mike has an F1 visa\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: International students in the US have either an F1 visa or a J1 visa.\n\nPremise 2: An international student in the US with an F1 visa needs to apply for CPT or OPT if the student wants to work in the US.\n\nPremise 3: Mike is an international student.\nPremise 4: Mike needs to apply for CPT if he wants to work in the US.\n\nFrom Premise 3, we know Mike is an international student. \n\nFrom Premise 1, we know that international students have either an F1 visa or a J1 visa.\n\nFrom Premise 4, we know Mike needs to apply for CPT if he wants to work in the US. \n\nWe can infer that Mike has an F1 visa because:\n\n- If Mike had a J1 visa, he would not need to apply for CPT (Premise 2).\n- Since Mike needs to apply for CPT (Premise 4), it implies he has an F1 visa.\n\nTherefore, the conclusion \"Mike has an F1 visa\" is logically true based on the given premises.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: International students in US have either an F1 visa or a J1 visa.\nThis premise gives us two possibilities for Mike's visa type: F1 or J1.\n\nPremise 2: An international student in US with an F1 visa needs to apply for CPT or OPT if the student wants to work in the US.\nThis premise gives us a condition for Mike to work in the US: he needs to apply for CPT or OPT if he has an F1 visa.\n\nWe are also given that Mike needs to apply for CPT if he wants to work in the US.\n\nNow, let's examine the conclusion: Mike has an F1 visa.\n\nFrom Premise 2, we know that Mike needs to apply for CPT if he has an F1 visa. Since Mike needs to apply for CPT to work in the US, it is likely that he has an F1 visa. However, we cannot be certain about this conclusion because we do not have any information about Mike's visa type being F1 or J1, only the condition for working in the US.\n\nTherefore, the conclusion is uncertain because we are making an assumption about Mike's visa type based on a condition, but we do not have any direct information about it.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. International students in US have either an F1 visa or a J1 visa.\n\nThis premise tells us that there are only two possible visa options for international students in the US: F1 or J1. This does not provide any information about Mike's specific visa status.\n\n2. An international student in US with an F1 visa needs to apply for CPT or OPT if the student wants to work in the US.\n\nThis premise tells us that if Mike has an F1 visa, he needs to apply for CPT or OPT to work in the US. However, it does not tell us what type of visa Mike has. \n\n3. Mike is an international student. Mike needs to apply for CPT if he wants to work in the US.\n\nThis premise tells us that Mike is an international student and that he needs to apply for CPT to work in the US. However, it does not directly tell us what type of visa Mike has.\n\nFrom the premises, we can conclude that Mike needs to apply for CPT to work in the US (Premise 3). We also know that if Mike has an F1 visa, he would need to apply for CPT (Premise 2).\n\nHowever, the premises do not directly tell us that Mike has an F1 visa. They only tell us that if he has an F1 visa, he would need to apply for CPT. This means that Mike could also have a J1 visa and still need to apply for CPT.\n\nTherefore, based on the given premises, we cannot determine with certainty that Mike has an F1 visa.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: International students in the US have either an F1 visa or a J1 visa.\n\nThis premise gives us two possible visa options for international students in the US: F1 or J1.\n\nPremise 2: An international student in the US with an F1 visa needs to apply for CPT or OPT if the student wants to work in the US.\n\nThis premise tells us the required action for international students with an F1 visa who want to work in the US. However, it does not provide information about the visa type of students who do not want to work in the US.\n\nPremise 3: Mike is an international student. Mike needs to apply for CPT if he wants to work in the US.\n\nThis premise provides information about Mike's situation. Since Mike needs to apply for CPT if he wants to work in the US, it implies that Mike has an F1 visa, as this is the only visa type mentioned that requires CPT for work.\n\nNow, let's analyze the conclusion:\nConclusion: Mike has an F1 visa.\n\nFrom Premise 1, we know that Mike could have either an F1 visa or a J1 visa. However, from Premise 3, we know that Mike needs to apply for CPT to work in the US. Since Premise 2 states that students with an F1 visa need to apply for CPT or OPT to work, it implies that Mike has an F1 visa. Therefore, we can conclude that the conclusion is true.\n\nFinal Answer: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremises:\n\n1. International students in the US have either an F1 visa or a J1 visa.\n2. An international student in the US with an F1 visa needs to apply for CPT or OPT if the student wants to work in the US.\n3. Mike is an international student.\n4. Mike needs to apply for CPT if he wants to work in the US.\n\nConclusion: Mike has an F1 visa.\n\nStep 1: Analyze the relationship between the premises and the conclusion.\n\nFrom premise 2, we know that if Mike has an F1 visa and wants to work in the US, he needs to apply for CPT or OPT. However, premise 4 states that Mike needs to apply for CPT if he wants to work in the US. This implies that Mike's situation matches the condition specified in premise 2, where he has an F1 visa and wants to work in the US.\n\nStep 2: Analyze the premises to determine the type of visa Mike has.\n\nFrom premise 1, we know that international students in the US have either an F1 visa or a J1 visa. Since Mike is an international student (premise 3), we can conclude that Mike must have either an F1 visa or a J1 visa.\n\nHowever, premise 4 provides additional information: Mike needs to apply for CPT if he wants to work in the US. This information is only applicable to students with an F1 visa, as stated in premise 2.\n\nTherefore, we can deduce that Mike must have an F1 visa, as the condition specified in premise 4 only applies to students with an F1 visa.\n\nConclusion: The conclusion \"Mike has an F1 visa\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they logically lead to the conclusion.\n\nPremise 1: International students in US have either an F1 visa or a J1 visa.\nPremise 2: An international student in US with an F1 visa needs to apply for CPT or OPT if the student wants to work in the US.\nPremise 3: Mike is an international student.\nPremise 4: Mike needs to apply for CPT if he wants to work in the US.\n\nFrom Premise 3, we know Mike is an international student. From Premise 1, we know that international students have either an F1 visa or a J1 visa. This means Mike must have either an F1 visa or a J1 visa.\n\nNow, we are given that Mike needs to apply for CPT if he wants to work in the US (Premise 4). From Premise 2, we know that an international student with an F1 visa needs to apply for CPT or OPT if they want to work in the US. This implies that Mike must have an F1 visa, because only then would he need to apply for CPT.\n\nTherefore, based on the premises, we can conclude that Mike has an F1 visa.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: International students in US have either an F1 visa or a J1 visa.\n\nPremise 2: An international student in US with an F1 visa needs to apply for CPT or OPT if the student wants to work in the US.\n\nConclusion: Mike has an F1 visa.\n\nFrom Premise 1, we know that international students in the US have either an F1 visa or a J1 visa. This gives us two possibilities for Mike's visa type.\n\nFrom Premise 2, we know that an international student with an F1 visa needs to apply for CPT or OPT if they want to work in the US. This premise does not mention the J1 visa.\n\nWe are also given that Mike needs to apply for CPT if he wants to work in the US. This implies that Mike has an F1 visa, as the premise specifically mentions F1 visa holders needing to apply for CPT or OPT.\n\nUsing logical reasoning, we can infer that Mike must have an F1 visa, as this is the only visa type that requires applying for CPT or OPT to work in the US.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: International students in the US have either an F1 visa or a J1 visa.\n\nPremise 2: An international student in the US with an F1 visa needs to apply for CPT or OPT if the student wants to work in the US.\n\nPremise 3: Mike is an international student.\n\nPremise 4: Mike needs to apply for CPT if he wants to work in the US.\n\nFrom Premise 3, we know Mike is an international student. From Premise 1, we know that international students have either an F1 visa or a J1 visa. Since we don't have any information about Mike's visa type, we cannot conclude that Mike has an F1 visa.\n\nHowever, from Premise 4, we know Mike needs to apply for CPT if he wants to work in the US. From Premise 2, we know that only international students with an F1 visa need to apply for CPT or OPT. Therefore, we can conclude that Mike has an F1 visa.\n\nThe conclusion is not uncertain because we have sufficient information to make a definitive conclusion. The conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion \"Mike has an F1 visa\" is true, false, or uncertain, let's break down the given premises step by step:\n\n1. International students in US have either an F1 visa or a J1 visa. \n   - This premise gives us information about the possible visa types that international students in the US can have.\n\n2. An international student in US with an F1 visa needs to apply for CPT or OPT if the student wants to work in the US. \n   - This premise establishes a condition for when an international student with an F1 visa needs to apply for CPT or OPT.\n\n3. Mike is an international student.\n   - This premise establishes that Mike is a type of student covered by the initial premise.\n\n4. Mike needs to apply for CPT if he wants to work in the US.\n   - This premise creates a requirement for Mike if he wants to work in the US, which is consistent with the condition established in premise 2.\n\nFrom these premises, we can deduce that Mike has an F1 visa. The reason is that the premises state that Mike needs to apply for CPT if he wants to work in the US, and we know from premise 2 that only international students with an F1 visa need to apply for CPT or OPT to work in the US.\n\nTherefore, the conclusion \"Mike has an F1 visa\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's break down the information given step by step:\n\n1. International students in the US have either an F1 visa or a J1 visa. \nThis premise provides us with two possible visa options for international students in the US.\n\n2. An international student in the US with an F1 visa needs to apply for CPT or OPT if the student wants to work in the US.\nThis premise tells us the requirement for working in the US for students with an F1 visa.\n\n3. Mike is an international student.\nThis premise tells us that Mike is an international student, which means he has either an F1 visa or a J1 visa, according to the first premise.\n\n4. Mike needs to apply for CPT if he wants to work in the US.\nThis premise implies that Mike has an F1 visa, as the second premise states that students with an F1 visa need to apply for CPT or OPT to work in the US.\n\nFrom the fourth premise, we can infer that Mike has an F1 visa, as the requirement for applying for CPT is specific to F1 visa holders. Therefore, the conclusion that Mike has an F1 visa is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "international_student(X) -> (f1_visa(X) | j1_visa(X))",
+          "z3_formula": "Implies(international_student_mike, Or(f1_visa_mike, j1_visa_mike))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "f1_visa(X) -> (cpt(X) | opt(X))",
+          "z3_formula": "Implies(f1_visa_mike, Or(cpt_mike, opt_mike))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "f1_visa(mike)",
+          "z3_formula": "f1_visa_mike == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "international_student(mike) & (f1_visa(mike) | j1_visa(mike))",
+          "z3_formula": "And(international_student_mike, Or(f1_visa_mike, j1_visa_mike)) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "f1_visa(X) & wants_to_work_in_us(X) -> needs_cpt_or_opt(X)",
+          "z3_formula": "Implies(And(f1_visa_mike, wants_to_work_in_us_mike), needs_cpt_or_opt_mike)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "wants_to_work_in_us(mike)",
+          "z3_formula": "wants_to_work_in_us_mike == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs_cpt_or_opt(X) -> f1_visa(X)",
+          "z3_formula": "Implies(needs_cpt_or_opt_mike, f1_visa_mike)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "f1_visa(mike)",
+          "z3_formula": "f1_visa_mike == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "f1_or_j1(international_student)",
+          "z3_formula": "f1_or_j1_international_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "f1(international_student) -> needs_cpt(international_student)",
+          "z3_formula": "Implies(f1_international_student, needs_cpt_international_student)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "j1(international_student) -> not needs_cpt(international_student)",
+          "z3_formula": "Implies(j1_international_student, Not(needs_cpt_international_student))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "f1(mike)",
+          "z3_formula": "f1_mike == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "has_f1_or_j1_visa(mike)",
+          "z3_formula": "has_f1_or_j1_visa_mike == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_f1_visa(X) -> (needs_cpt(X) | needs_opt(X))",
+          "z3_formula": "Implies(has_f1_visa_mike, Or(needs_cpt_mike, needs_opt_mike))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "has_f1_visa(mike)",
+          "z3_formula": "has_f1_visa_mike == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "international_student(X) & has_f1(X) -> needs_cpt(X)",
+          "z3_formula": "Implies(And(international_student_mike, has_f1_mike), needs_cpt_mike)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "international_student(X) -> has_f1(X) | has_j1(X)",
+          "z3_formula": "Implies(international_student_mike, Or(has_f1_mike, has_j1_mike))",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "international_student_in_us(mike)",
+          "z3_formula": "international_student_in_us_mike == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "f1_or_j1(international_student_in_us(mike))",
+          "z3_formula": "f1_or_j1_international_student_in_us_mike == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "f1(X) -> (cpt(X) | opt(X))",
+          "z3_formula": "Implies(f1_mike, Or(cpt_mike, opt_mike))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "f1(mike)",
+          "z3_formula": "f1_mike == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "international_student(X) & (F1(X) | J1(X))",
+          "z3_formula": "And(international_student_mike, Or(F1_mike, J1_mike))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "F1(X) & wants_to_work_in_us(X) -> needs_cpt_or_opt(X)",
+          "z3_formula": "Implies(And(F1_mike, wants_to_work_in_us_mike), needs_cpt_or_opt_mike)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "F1(mike)",
+          "z3_formula": "F1_mike == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "f1_or_j1(international_student)",
+          "z3_formula": "f1_or_j1_international_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "f1(international_student) -> (cpt(international_student) | opt(international_student))",
+          "z3_formula": "Implies(f1_international_student, Or(cpt_international_student, opt_international_student))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "f1(international_student) -> cpt(international_student)",
+          "z3_formula": "Implies(f1_international_student, cpt_international_student)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "international_student_in_us(mike)",
+          "z3_formula": "international_student_in_us_mike == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "f1_or_j1_visa(international_student_in_us(mike))",
+          "z3_formula": "f1_or_j1_visa_international_student_in_us_mike == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "f1_visa(X) -> needs_cpt_or_opt(X)",
+          "z3_formula": "Implies(f1_visa_international_student_in_us_mike, needs_cpt_mike)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "f1_visa(mike)",
+          "z3_formula": "f1_visa_international_student_in_us_mike == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "has_f1_or_j1_visa(international_student)",
+          "z3_formula": "has_f1_or_j1_visa_international_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "international_student(X) & has_f1_or_j1_visa(X) -> (f1_visa(X) | j1_visa(X))",
+          "z3_formula": "Implies(And(international_student_mike, has_f1_or_j1_visa_international_student), Or(f1_visa_mike, j1_visa_mike))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "international_student(X) & f1_visa(X) -> needs_cpt_or_opt(X)",
+          "z3_formula": "Implies(And(international_student_mike, f1_visa_mike), needs_cpt_or_opt_mike)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "f1_visa(mike)",
+          "z3_formula": "f1_visa_mike == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs_cpt(mike)",
+          "z3_formula": "needs_cpt_mike == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "international_student(X) & (F1(X) | J1(X))",
+          "z3_formula": "Implies(And(international_student_mike, Or(F1_mike, J1_mike)), True)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "F1(X) -> (CPT(X) | OPT(X))",
+          "z3_formula": "Implies(F1_mike, Or(CPT_mike, OPT_mike))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "F1(mike)",
+          "z3_formula": "F1_mike == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "international_student(mike)",
+          "z3_formula": "international_student_mike == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "has_f1_or_j1_visa(international_student)",
+          "z3_formula": "has_f1_or_j1_visa == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_f1_visa(X) -> needs_cpt_or_opt(X)",
+          "z3_formula": "Implies(has_f1_visa, needs_cpt_or_opt)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "has_f1_visa(mike)",
+          "z3_formula": "has_f1_visa_mike == True",
+          "source_step": 4
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 60,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 36
+    },
+    "maxsat_stats": {
+      "satisfied": 36,
+      "excluded": 0,
+      "total_weight": 60,
+      "solve_time_ms": 0.9252680465579033
+    },
+    "timing": {
+      "trace_gen_s": 4.973,
+      "extraction_s": 11.691,
+      "dedup_s": 0.522,
+      "maxsat_s": 0.003,
+      "total_s": 17.189
+    }
+  }
+}

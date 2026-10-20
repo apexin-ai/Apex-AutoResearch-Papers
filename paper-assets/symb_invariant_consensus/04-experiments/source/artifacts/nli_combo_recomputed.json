@@ -1,0 +1,277 @@
+{
+  "proofwriter": {
+    "Mistral-7B": {
+      "n": 600,
+      "sc": {
+        "acc": 39.33,
+        "n_correct": 236
+      },
+      "w1": {
+        "acc": 40.17,
+        "n_correct": 241,
+        "delta_pp": 0.83,
+        "mcnemar_p": 0.359283447265625,
+        "b": 12,
+        "c": 7
+      },
+      "w3": {
+        "acc": 46.0,
+        "n_correct": 276,
+        "delta_pp": 6.67,
+        "mcnemar_p": 1.1296023055413025e-05,
+        "b": 61,
+        "c": 21
+      },
+      "w5": {
+        "acc": 50.33,
+        "n_correct": 302,
+        "delta_pp": 11.0,
+        "mcnemar_p": 6.178035816936483e-07,
+        "b": 120,
+        "c": 54
+      }
+    },
+    "LLaMA-3.1-8B": {
+      "n": 600,
+      "sc": {
+        "acc": 72.5,
+        "n_correct": 435
+      },
+      "w1": {
+        "acc": 73.33,
+        "n_correct": 440,
+        "delta_pp": 0.83,
+        "mcnemar_p": 0.359283447265625,
+        "b": 12,
+        "c": 7
+      },
+      "w3": {
+        "acc": 73.33,
+        "n_correct": 440,
+        "delta_pp": 0.83,
+        "mcnemar_p": 0.6646454904132133,
+        "b": 45,
+        "c": 40
+      },
+      "w5": {
+        "acc": 72.0,
+        "n_correct": 432,
+        "delta_pp": -0.5,
+        "mcnemar_p": 0.8707787409560847,
+        "b": 74,
+        "c": 77
+      }
+    },
+    "Qwen2.5-14B": {
+      "n": 600,
+      "sc": {
+        "acc": 74.0,
+        "n_correct": 444
+      },
+      "w1": {
+        "acc": 74.17,
+        "n_correct": 445,
+        "delta_pp": 0.17,
+        "mcnemar_p": 1.0,
+        "b": 3,
+        "c": 2
+      },
+      "w3": {
+        "acc": 74.67,
+        "n_correct": 448,
+        "delta_pp": 0.67,
+        "mcnemar_p": 0.5034446716308594,
+        "b": 12,
+        "c": 8
+      },
+      "w5": {
+        "acc": 75.17,
+        "n_correct": 451,
+        "delta_pp": 1.17,
+        "mcnemar_p": 0.3603776529357674,
+        "b": 25,
+        "c": 18
+      }
+    },
+    "Qwen3-14B": {
+      "n": 600,
+      "sc": {
+        "acc": 85.83,
+        "n_correct": 515
+      },
+      "w1": {
+        "acc": 86.0,
+        "n_correct": 516,
+        "delta_pp": 0.17,
+        "mcnemar_p": 1.0,
+        "b": 1,
+        "c": 0
+      },
+      "w3": {
+        "acc": 86.33,
+        "n_correct": 518,
+        "delta_pp": 0.5,
+        "mcnemar_p": 0.453125,
+        "b": 5,
+        "c": 2
+      },
+      "w5": {
+        "acc": 87.0,
+        "n_correct": 522,
+        "delta_pp": 1.17,
+        "mcnemar_p": 0.21003961563110352,
+        "b": 15,
+        "c": 8
+      }
+    }
+  },
+  "folio": {
+    "Mistral-7B": {
+      "n": 204,
+      "sc": {
+        "acc": 55.88,
+        "n_correct": 114
+      },
+      "w1": {
+        "acc": 56.37,
+        "n_correct": 115,
+        "delta_pp": 0.49,
+        "mcnemar_p": 1.0,
+        "b": 4,
+        "c": 3
+      },
+      "w3": {
+        "acc": 58.82,
+        "n_correct": 120,
+        "delta_pp": 2.94,
+        "mcnemar_p": 0.210113525390625,
+        "b": 11,
+        "c": 5
+      }
+    }
+  },
+  "spearman": {
+    "generators": [
+      "Mistral-7B",
+      "LLaMA-3.1-8B",
+      "Qwen2.5-14B",
+      "Qwen3-14B"
+    ],
+    "deberta_standalone": 55.0,
+    "gaps": [
+      15.67,
+      -17.5,
+      -19.0,
+      -30.83
+    ],
+    "gains": [
+      6.67,
+      0.83,
+      0.67,
+      0.5
+    ],
+    "rho": 1.0,
+    "p": 0.0
+  },
+  "bh_correction": {
+    "m": 12,
+    "test_labels": [
+      "Mistral-7B_w1",
+      "Mistral-7B_w3",
+      "Mistral-7B_w5",
+      "LLaMA-3.1-8B_w1",
+      "LLaMA-3.1-8B_w3",
+      "LLaMA-3.1-8B_w5",
+      "Qwen2.5-14B_w1",
+      "Qwen2.5-14B_w3",
+      "Qwen2.5-14B_w5",
+      "Qwen3-14B_w1",
+      "Qwen3-14B_w3",
+      "Qwen3-14B_w5"
+    ],
+    "raw_pvals": [
+      0.3592834473,
+      1.1296e-05,
+      6.178e-07,
+      0.3592834473,
+      0.6646454904,
+      0.870778741,
+      1.0,
+      0.5034446716,
+      0.3603776529,
+      1.0,
+      0.453125,
+      0.2100396156
+    ],
+    "adjusted_pvals": [
+      0.7207553059,
+      6.77761e-05,
+      7.4136e-06,
+      0.7207553059,
+      0.8861939872,
+      1.0,
+      1.0,
+      0.7551670074,
+      0.7207553059,
+      1.0,
+      0.7551670074,
+      0.7207553059
+    ],
+    "significant_after_bh": [
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "n_significant": 2
+  },
+  "sc_baseline_shift": {
+    "note": "Alphabetical tiebreaking (with invalid-answer filtering) changes SC baselines from combo traces",
+    "changes": {
+      "Mistral-7B": {
+        "counter_n": 236,
+        "alpha_n": 236,
+        "diff": 0
+      },
+      "LLaMA-3.1-8B": {
+        "counter_n": 420,
+        "alpha_n": 435,
+        "diff": 15
+      },
+      "Qwen2.5-14B": {
+        "counter_n": 441,
+        "alpha_n": 444,
+        "diff": 3
+      },
+      "Qwen3-14B": {
+        "counter_n": 510,
+        "alpha_n": 515,
+        "diff": 5
+      }
+    }
+  },
+  "paper_changes_needed": [
+    {
+      "section": "NLI Combo Table",
+      "description": "SC baselines shift: LLaMA 420\u2192435(+15), Qwen2.5 441\u2192444(+3), Qwen3 510\u2192515(+5), Mistral unchanged. Combo gains shrink. Only Mistral w3/w5 remain significant after BH.",
+      "old_significant_count": 4,
+      "new_significant_count": 2
+    },
+    {
+      "section": "Spearman correlation (capability gap vs combo gain)",
+      "description": "rho=1.0, p=0.0"
+    },
+    {
+      "section": "FOLIO combo",
+      "description": "Mistral FOLIO SC=55.88%(114/204), w1=56.37%(+0.49pp,p=1.0), w3=58.82%(+2.94pp,p=0.21)"
+    }
+  ]
+}

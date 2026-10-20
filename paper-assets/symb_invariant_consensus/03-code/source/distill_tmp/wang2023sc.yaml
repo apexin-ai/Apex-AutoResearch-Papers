@@ -1,0 +1,28 @@
+paper_key: "wang2023sc"
+title: "Self-Consistency Improves Chain of Thought Reasoning in Language Models"
+venue: "ICLR 2023"
+full_text_available: false
+
+research:
+  baselines: ["greedy CoT", "sample-and-rank", "beam search"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "GSM8K", size: "1319"}
+    - {name: "SVAMP", size: "1000"}
+    - {name: "AQuA", size: "254"}
+    - {name: "StrategyQA", size: "2290"}
+    - {name: "ARC-Challenge", size: "2590"}
+  ablation_dimensions: ["num_samples", "temperature", "model_scale"]
+  training_recipe: {info: "N/A — decoding strategy"}
+  method_family: "self-consistency / majority voting"
+
+positioning:
+  core_claim: "Sampling multiple reasoning paths and marginalizing over them via majority voting substantially improves CoT accuracy without any training"
+  key_results: "GSM8K: +17.9% over greedy CoT with 40 samples (PaLM-540B)"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

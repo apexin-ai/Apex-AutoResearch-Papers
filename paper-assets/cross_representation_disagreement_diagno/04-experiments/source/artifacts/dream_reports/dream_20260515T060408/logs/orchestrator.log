@@ -1,0 +1,3 @@
+2026-05-15 06:34:52,557 INFO    core.tools.feishu  create_chat: name='审稿-cross_representation_disagreement_diagno' → chat_id=oc_48de2e6d62cde5ffa010f515bebf91f1
+2026-05-15 06:34:52,561 INFO    core.tools.dream  [dream] auto-created Group C for project=cross_representation_disagreement_diagno: oc_48de2e6d62cde5ffa010f515bebf91f1
+2026-05-15 06:34:52,742 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0513_3/config/mcp_config_dream_review_director.json

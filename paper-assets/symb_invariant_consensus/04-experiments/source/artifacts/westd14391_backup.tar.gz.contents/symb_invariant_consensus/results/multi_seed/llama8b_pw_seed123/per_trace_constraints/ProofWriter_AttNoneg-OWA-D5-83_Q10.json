@@ -1,0 +1,912 @@
+{
+  "pid": "ProofWriter_AttNoneg-OWA-D5-83_Q10",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_erin, white_erin), smart_erin)",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 30
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & smart(X) -> young(X)",
+          "z3_formula": "Implies(And(rough_erin, smart_erin), young_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_erin, young_erin), blue_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin) == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "(S \u2227 R) -> Y",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "(C \u2227 W) -> Q",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "C -> W",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "(Q \u2227 Y) -> B",
+          "z3_formula": "Implies(And(quiet_erin, young_erin), blue_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "(W \u2227 Q) -> S",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == Unknown",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> smart(X)",
+          "z3_formula": "Implies(white_erin, smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(erin)",
+          "z3_formula": "Not(rough_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) & white(X) -> not young(X)",
+          "z3_formula": "Implies(And(smart_erin, quiet_erin, white_erin), Not(young_erin))",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_erin, white_erin), smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> not not young(X)",
+          "z3_formula": "Implies(young_erin, Not(Not(young_erin)))",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_erin, young_erin), blue_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_erin, young_erin), blue_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_erin, young_erin), blue_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin) & rough(erin)",
+          "z3_formula": "And(cold_erin, rough_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> smart(X)",
+          "z3_formula": "Implies(white_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_erin, young_erin), blue_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_fiona, white_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X) & young(X)",
+          "z3_formula": "Implies(blue_fiona, And(quiet_fiona, young_fiona))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> smart(X)",
+          "z3_formula": "Implies(white_fiona, smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_fiona, white_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X) & white(X)",
+          "z3_formula": "Implies(quiet_fiona, And(cold_fiona, white_fiona))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X) & young(X)",
+          "z3_formula": "Implies(blue_gary, And(quiet_gary, young_gary))",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> smart(X)",
+          "z3_formula": "Implies(white_gary, smart_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_gary, white_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == False",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_erin, white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_erin, white_erin), quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_erin, quiet_erin), smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & rough(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_erin, rough_erin), young_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

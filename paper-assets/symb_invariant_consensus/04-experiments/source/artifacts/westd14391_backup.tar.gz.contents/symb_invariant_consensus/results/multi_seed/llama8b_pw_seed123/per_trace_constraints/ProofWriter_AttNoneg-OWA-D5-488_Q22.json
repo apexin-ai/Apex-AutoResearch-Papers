@@ -1,0 +1,1007 @@
+{
+  "pid": "ProofWriter_AttNoneg-OWA-D5-488_Q22",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin) & white(erin)",
+          "z3_formula": "And(furry_erin, white_erin) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_erin, white_erin), blue_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, big_harry), nice_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_harry, nice_harry), rough_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_harry, nice_harry), young_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_harry, young_harry), white_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(big_harry, blue_harry), white_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_harry, blue_harry), nice_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(erin) & white(erin) -> blue(erin)",
+          "z3_formula": "Implies(And(furry_erin, white_erin), blue_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, big_harry), nice_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_harry, nice_harry), rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_harry, nice_harry), young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_harry, young_harry), white_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(big_harry, blue_harry), white_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_harry, blue_harry), nice_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(erin) & white(erin) -> blue(erin)",
+          "z3_formula": "Implies(And(furry_erin, white_erin), blue_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, big_harry), nice_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_harry, nice_harry), rough_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_harry, nice_harry), young_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_harry, young_harry), white_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(big_harry, blue_harry), white_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_harry, blue_harry), nice_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(big(harry))",
+          "z3_formula": "Not(big_harry)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(erin) & white(erin) -> blue(erin)",
+          "z3_formula": "Implies(And(furry_erin, white_erin), blue_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, big_harry), nice_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_harry, nice_harry), rough_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_harry, nice_harry), young_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_harry, young_harry), white_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(big_harry, blue_harry), white_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_harry, blue_harry), nice_harry)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_erin, furry_erin), blue_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, big_harry), nice_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_harry, nice_harry), rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_harry, nice_harry), young_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_harry, young_harry), white_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(big_harry, blue_harry), white_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_harry, blue_harry), nice_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_harry, young_harry), white_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_harry, nice_harry), young_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_harry, nice_harry), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == Unknown",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_harry, nice_harry), young_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_harry, young_harry), white_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_harry, nice_harry), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_harry, nice_harry), young_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == Unknown",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_harry, nice_harry), rough_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, big_harry), nice_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not big(harry)",
+          "z3_formula": "Not(big_harry)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_bob, furry_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_erin, white_erin), blue_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_bob, big_bob), nice_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_bob, furry_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_harry, nice_harry), rough_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_bob, nice_bob), young_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_bob, young_bob), white_bob)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(big_bob, blue_erin), white_bob)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_erin, blue_erin), nice_erin)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == Unknown",
+          "source_step": 22
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_erin, white_erin), blue_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_harry, nice_harry), young_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_harry, young_harry), white_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(big_harry, blue_harry), white_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_harry, blue_harry), nice_harry)",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_erin, white_erin), blue_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_harry, big_harry), nice_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_harry, nice_harry), rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(furry_harry, nice_harry), young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_harry, young_harry), white_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(big_X, blue_X), white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_X, blue_X), nice_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 4
+        }
+      ]
+    }
+  ]
+}

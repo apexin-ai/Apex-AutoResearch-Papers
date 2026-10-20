@@ -1,0 +1,426 @@
+{
+  "pid": "folio_88",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "read_harry_walden",
+          "z3_formula": "read_harry_walden == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, Y) -> gains_knowledge(X)",
+          "z3_formula": "Implies(read_harry_walden, gains_harry_knowledge)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge(X) -> becomes_smarter(X)",
+          "z3_formula": "Implies(gains_harry_knowledge, becomes_smarter_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "contains_knowledge(book)",
+          "z3_formula": "contains_knowledge_book == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, book) -> gains_knowledge(X)",
+          "z3_formula": "Implies(reads_walden_book, gains_knowledge)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge -> smarter",
+          "z3_formula": "Implies(gains_knowledge, smarter)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reads(walden, book)",
+          "z3_formula": "reads_walden_book == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "contains_knowledge(walden)",
+          "z3_formula": "contains_knowledge_walden == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "walden_is_book",
+          "z3_formula": "walden_is_book == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "book(X) -> contains_knowledge(X)",
+          "z3_formula": "Implies(book_walden, contains_knowledge_walden)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "contains_knowledge(walden)",
+          "z3_formula": "contains_knowledge_walden == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "contains_knowledge(book)",
+          "z3_formula": "contains_knowledge_book == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "reads(person, book)",
+          "z3_formula": "reads_person_book == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, Y) -> gains_knowledge(X)",
+          "z3_formula": "Implies(reads_person_book, gains_knowledge_person)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(gains_knowledge_person, smarter_person)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "book(walden)",
+          "z3_formula": "book_walden == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "contains_knowledge(walden)",
+          "z3_formula": "contains_knowledge_walden == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "knowledge(books)",
+          "z3_formula": "knowledge_books == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, Y) -> knowledge(Y)",
+          "z3_formula": "Implies(reads_walden_books, knowledge_books)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(knowledge_books, smarter_books)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "book(walden)",
+          "z3_formula": "book_walden == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "knowledge(walden)",
+          "z3_formula": "knowledge_walden == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "knowledge(book)",
+          "z3_formula": "knowledge_book == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, Y) -> knowledge(Y)",
+          "z3_formula": "Implies(reads_harry_walden, knowledge_walden)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(knowledge_walden, smarter_walden)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reads(harry, walden)",
+          "z3_formula": "reads_harry_walden == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "knowledge(walden)",
+          "z3_formula": "knowledge_walden == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, book) -> gains_knowledge(X)",
+          "z3_formula": "Implies(reads_harry_walden, gains_knowledge)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge -> becomes_smarter",
+          "z3_formula": "Implies(gains_knowledge, becomes_smarter)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reads(harry, walden)",
+          "z3_formula": "reads_harry_walden == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "knowledge(books)",
+          "z3_formula": "knowledge_books == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, Y) -> knowledge(Y)",
+          "z3_formula": "Implies(reads_walden, knowledge_walden)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(knowledge_walden, smarter_walden)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "book(walden)",
+          "z3_formula": "book_walden == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "reads(person, walden)",
+          "z3_formula": "reads_person_walden == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "knowledge(walden)",
+          "z3_formula": "knowledge_walden == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "knowledge(books)",
+          "z3_formula": "knowledge_books == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X) -> knowledge(X)",
+          "z3_formula": "Implies(reads_walden, knowledge_walden)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(knowledge_walden, smarter_walden)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reads(walden)",
+          "z3_formula": "reads_walden == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "contains_knowledge(books)",
+          "z3_formula": "contains_knowledge_books == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, book) -> gains_knowledge(X)",
+          "z3_formula": "Implies(reads_harry_walden, gains_knowledge_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(gains_knowledge_harry, smarter_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reads(harry, walden)",
+          "z3_formula": "reads_harry_walden == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "contains_knowledge(walden)",
+          "z3_formula": "contains_knowledge_walden == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "knowledge(walden)",
+          "z3_formula": "knowledge_walden == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "book(X) -> knowledge(X)",
+          "z3_formula": "Implies(book_walden, knowledge_walden)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "knowledge(walden)",
+          "z3_formula": "knowledge_walden == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads_book(X) -> gains_knowledge(X)",
+          "z3_formula": "Implies(reads_book_harry_walden, gains_knowledge_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(gains_knowledge_harry, smarter_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reads_book(harry, walden)",
+          "z3_formula": "reads_book_harry_walden == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "books_contain_knowledge(walden)",
+          "z3_formula": "books_contain_knowledge_walden == True",
+          "source_step": 5
+        }
+      ]
+    }
+  ]
+}

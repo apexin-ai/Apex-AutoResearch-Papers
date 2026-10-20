@@ -1,0 +1,1432 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-187_Q7",
+    "problem": "Anne is big. Anne is rough. Dave is blue. Dave is cold. Dave is red. Dave is rough. Dave is round. Gary is round. Harry is cold. Harry is rough. All round things are blue. If something is cold then it is blue. Blue, red things are round. If something is rough then it is red. All big, red things are cold. All round things are green. Round, cold things are big. If something is green then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is blue.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nRough($x, bool) ::: Is x rough?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nRough(Anne, True) ::: Anne is rough.\nBlue(Dave, True) ::: Dave is blue.\nCold(Dave, True) ::: Dave is cold.\nRed(Dave, True) ::: Dave is red.\nRough(Dave, True) ::: Dave is rough.\nRound(Dave, True) ::: Dave is round.\nRound(Gary, True) ::: Gary is round.\nCold(Harry, True) ::: Harry is cold.\nRough(Harry, True) ::: Harry is rough.\n\nRules:\nRound($x, True) >>> Blue($x, True) ::: All round things are blue.\nCold($x, True) >>> Blue($x, True) ::: If something is cold then it is blue.\nBlue($x, True) && Red($x, True) >>> Round($x, True) ::: Blue, red things are round.\nRough($x, True) >>> Red($x, True) ::: If something is rough then it is red.\nBig($x, True) && Red($x, True) >>> Cold($x, True) ::: All big, red things are cold.\nRound($x, True) >>> Green($x, True) ::: All round things are green.\nRound($x, True) && Cold($x, True) >>> Big($x, True) ::: Round, cold things are big.\nGreen($x, True) >>> Blue($x, True) ::: If something is green then it is blue.\n\nQuery:\nBlue(Anne, True) ::: Anne is blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 212.0,
+      "Unknown": 211.0
+    },
+    "answer_counts": {
+      "Unknown": 4,
+      "True": 6
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Anne is blue\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning step by step.\n\n1. The given statements are:\n   - Anne is big.\n   - Anne is rough.\n   - Dave is blue.\n   - Dave is cold.\n   - Dave is red.\n   - Dave is rough.\n   - Dave is round.\n   - Gary is round.\n   - Harry is cold.\n   - Harry is rough.\n   - All round things are blue.\n   - If something is cold then it is blue.\n   - Blue, red things are round.\n   - If something is rough then it is red.\n   - All big, red things are cold.\n   - All round things are green.\n   - Round, cold things are big.\n   - If something is green then it is blue.\n\n2. From the given information, we can infer the following:\n   - Anne is big and rough, but we don't know if she is round or not.\n   - If Anne is round, then she is blue (from \"All round things are blue\").\n   - However, if Anne is round, then she must be green (from \"All round things are green\"), and therefore blue (from \"If something is green then it is blue\").\n   - But if Anne is round, then she is red (from \"Blue, red things are round\"), and therefore cold (from \"All round, blue things are blue\" and \"All round things are green\" is an exception to the fact that blue, round things are blue, however this statement is contradictory so we cannot apply it).\n   - Also, if Anne is round, then she is big and red, which means she is cold (from \"All big, red things are cold\").\n   - However, if Anne is round, then she is big and cold, which means she is rough (from \"Round, cold things are big\"), but then she is red (from \"If something is rough then it is red\").\n   - If Anne is round, then she is big, red, and cold, which means she is rough and red, and therefore blue (from \"If something is cold then it is blue\"), but then she is round (from \"All round things are blue\"), and therefore green, and therefore blue (from \"If something is green then it is blue\"), and this creates a loop.\n\n3. We see that if Anne is round, we have a loop of implications that does not lead to a conclusion.\n   - We also know that if Anne is big and rough, but not round, then she is red (from \"If something is rough then it is red\"), but we cannot conclude whether she is blue or not.\n\n4. Therefore, the statement \"Anne is blue\" is unknown, because we cannot conclude whether Anne is blue or not based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is blue\" is true, false, or unknown, we need to analyze the given information and apply the rules.\n\n1. From the given information, we know:\n   - Anne is big. (Rule 1)\n   - Anne is rough. (Rule 1)\n   - All big, red things are cold. (Rule 7)\n   - If something is rough then it is red. (Rule 9)\n   - All round things are blue. (Rule 3)\n   - All round things are green. (Rule 8)\n   - Blue, red things are round. (Rule 6)\n   - If something is green then it is blue. (Rule 10)\n   - If something is cold then it is blue. (Rule 4)\n\n2. We can start by applying the rule that if something is rough then it is red. Since Anne is rough, Anne is red.\n   - Anne is red.\n\n3. Now, we know that all big, red things are cold. Since Anne is big and red, Anne is cold.\n   - Anne is cold.\n\n4. We also know that if something is cold then it is blue. Since Anne is cold, Anne is blue.\n\nHowever, there is another rule that says all round things are green. Since we don't have any information about Anne being round, we can't conclude that Anne is green.\n\n5. Now, we have two possible conclusions: \n   - Anne is blue (from rule 4)\n   - Anne is green (from rule 8)\n\nSince we can't determine whether Anne is round or not, we can't conclude that Anne is green or blue. Therefore, the statement \"Anne is blue\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine if the statement \"Anne is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is big.\n   - Anne is rough.\n   - Dave is blue.\n   - Dave is cold.\n   - Dave is red.\n   - Dave is rough.\n   - Dave is round.\n   - Gary is round.\n   - Harry is cold.\n   - Harry is rough.\n   - All round things are blue.\n   - If something is cold then it is blue.\n   - Blue, red things are round.\n   - If something is rough then it is red.\n   - All big, red things are cold.\n   - All round things are green. (This statement conflicts with the initial statement \"All round things are blue.\")\n   - Round, cold things are big.\n   - If something is green then it is blue.\n   - Anne is big. Anne is rough. Dave is blue. Dave is cold. Dave is red. Dave is rough. Dave is round. Gary is round. Harry is cold. Harry is rough.\n\n   Since there's a conflict between statements, we need to determine which ones are consistent and which ones can be disregarded.\n\n2. Analyzing the information:\n   - The initial statement \"All round things are blue\" is contradicted by the statement \"All round things are green.\" This means that the statement \"All round things are green\" is the correct one.\n   - Based on the statement \"All round things are green,\" and \"All round things are blue\" being incorrect, then we can't use the statement \"All round things are blue\" or the statement \"Blue, red things are round\" since they rely on the statement \"All round things are blue\" being true.\n   - If something is cold then it is blue and if something is cold then it is blue. This means we can conclude that blue things are cold.\n   - Dave is blue and Dave is cold. This means we can conclude that Dave is blue and cold. Since blue things are cold, then we can also conclude that Dave is blue and cold.\n   - All round things are green and round, cold things are big. Since Dave is round and cold, then we can conclude that Dave is big.\n   - Dave is red. If something is rough then it is red. Dave is rough, so Dave is red.\n   - All big, red things are cold. Dave is big and red, so Dave is cold.\n\n   However, we are trying to determine the truth of \"Anne is blue.\" We have not found any information that directly links Anne to being blue.\n\n   Since we have not found any information that directly links Anne to being blue, we have to look at the information we have about Anne and see if we can derive any information about Anne being blue from it.\n\n   - Anne is big. \n   - Anne is rough. \n   - If something is rough then it is red. \n   - All big, red things are cold.\n\n   Since Anne is big and rough, then we can conclude that Anne is red. But we still have not found any information that directly links Anne to being blue.\n\n   Since we have not found any information that directly links Anne to being blue, then the truth of the statement \"Anne is blue\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Anne is big.\n   - Anne is rough.\n   - Dave is blue.\n   - Dave is cold.\n   - Dave is red.\n   - Dave is rough.\n   - Dave is round.\n   - Gary is round.\n   - Harry is cold.\n   - Harry is rough.\n   - All round things are blue.\n   - If something is cold then it is blue.\n   - Blue, red things are round.\n   - If something is rough then it is red.\n   - All big, red things are cold.\n   - All round things are green.\n   - Round, cold things are big.\n   - If something is green then it is blue.\n\n2. From the statement \"All round things are green\" and \"If something is green then it is blue,\" we can conclude that all round things are blue.\n\n3. We are not given any information about Anne being round, but we are given that Anne is big and rough.\n\n4. From the statement \"If something is rough then it is red\" and \"Anne is rough,\" we can conclude that Anne is red.\n\n5. From the statement \"All big, red things are cold\" and \"Anne is big and red,\" we can conclude that Anne is cold.\n\n6. From the statement \"If something is cold then it is blue\" and \"Anne is cold,\" we can conclude that Anne is blue.\n\nTherefore, based on the given information, the statement \"Anne is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Anne is big.\n   - Anne is rough.\n   - Dave is blue.\n   - Dave is cold.\n   - Dave is red.\n   - Dave is rough.\n   - Dave is round.\n   - Gary is round.\n   - Harry is cold.\n   - Harry is rough.\n   - All round things are blue.\n   - If something is cold then it is blue.\n   - Blue, red things are round.\n   - If something is rough then it is red.\n   - All big, red things are cold.\n   - All round things are green.\n   - Round, cold things are big.\n   - If something is green then it is blue.\n\n2. Analyze given information:\n   - From \"All round things are blue\" and \"All round things are green,\" we can conclude that \"All round things are both blue and green.\" However, this statement seems to contradict \"Blue, red things are round\" and \"Round, cold things are big.\" This shows that there may be inconsistencies in the given information.\n\n3. Analyze \"Anne is big\" and \"Anne is rough\":\n   - We have \"All big, red things are cold\" and \"If something is rough then it is red.\" Since Anne is big and rough, we can conclude that Anne is red and cold.\n\n4. Analyze \"Anne is red\" and \"Anne is cold\":\n   - From \"Blue, red things are round,\" we can infer that red things can be blue. However, \"All round things are green\" contradicts this statement, suggesting that there might be inconsistencies in the given information.\n\n5. Analyze \"If something is cold then it is blue\":\n   - We already concluded that Anne is cold. Therefore, we can infer that Anne is blue.\n\nConsidering the provided information, we can conclude that Anne is blue.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given several statements about various individuals (Anne, Dave, Gary, Harry) and properties (big, rough, blue, cold, red, round, green).\n\n2. From the given statements, we can derive the following rules:\n   - All round things are blue.\n   - If something is cold then it is blue.\n   - Blue, red things are round.\n   - If something is rough then it is red.\n   - All big, red things are cold.\n   - All round things are green. (This statement seems to contradict the first one, but we'll follow the order of given information)\n   - Round, cold things are big.\n   - If something is green then it is blue.\n\n3. We notice that the statement \"All round things are green\" seems to contradict the first statement \"All round things are blue.\" However, we must follow the order of information and analyze the information given.\n\n4. Since the statement \"All round things are green\" seems to contradict the first statement, we might initially think that it could be an error in the given information. However, we will proceed as if it is correct.\n\n5. The statement \"Round, cold things are big\" tells us that if something is round and cold, it is big. However, this statement contradicts the fact that \"All big, red things are cold\" and \"Round, cold things are big\" would imply that \"Round things are red\" because \"Round, cold things are big\" and \"Big, red things are cold\". This seems like a contradiction.\n\n6. However, we see that \"All round things are green\" and \"All round things are blue\" is a contradiction, but we can't use it to conclude anything about Anne because it's about round things. We can use the information about big, red things being cold to see if Anne is big and red. \n\n7. We are given that Anne is big and rough. We can use the information that \"If something is rough then it is red\" to conclude that Anne is red.\n\n8. Since Anne is red and round (because \"All round things are green\" and \"If something is green then it is blue\" might not be correct, but we have more information about round, red things), we can use the information that \"Blue, red things are round\" to conclude that Anne is blue.\n\nHowever, since \"All round things are green\" is a contradiction, we might not be able to conclude that Anne is blue. But since we can conclude that Anne is red and round, we can use the information that \"Blue, red things are round\" to conclude that Anne is blue.\n\nTherefore, the statement \"Anne is blue\" is true.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven statements:\n\n1. Anne is big.\n2. Anne is rough.\n3. Dave is blue.\n4. Dave is cold.\n5. Dave is red.\n6. Dave is rough.\n7. Dave is round.\n8. Gary is round.\n9. Harry is cold.\n10. Harry is rough.\n11. All round things are blue.\n12. If something is cold then it is blue.\n13. Blue, red things are round.\n14. If something is rough then it is red.\n15. All big, red things are cold.\n16. All round things are green.\n17. Round, cold things are big.\n18. If something is green then it is blue.\n\nFrom statement 12, we know that if something is cold, then it is blue.\n\nFrom statement 2, we know that Anne is rough. \nFrom statement 14, we know that if something is rough then it is red.\n\nSo, Anne is red (from the given information that if something is rough then it is red, and Anne is rough).\n\nNow, we need to check if Anne is blue. To do this, we need to find out if Anne is round or cold.\n\nFrom statement 2, we know that Anne is rough. \nFrom statement 14, we know that if something is rough then it is red. \nSo, we already know that Anne is red.\n\nFrom statement 16, we know that all round things are green. \nFrom statement 11, we know that all round things are blue. \nThese two statements are contradictory because they say the same thing (all round things are either green or blue), but they cannot be true at the same time.\n\nHowever, statement 16 says that all round things are green and statement 17 says that round, cold things are big. \nIf Anne is round, then Anne would be big (from statement 17), and from statement 2, we know that Anne is big.\nNow, if Anne is big and red (from the information that if something is rough then it is red, and Anne is rough), then from statement 15, we know that Anne is cold.\n\nNow, we know that Anne is cold and red.\nFrom statement 13, we know that blue, red things are round. \nHowever, we also know that round things are green (from statement 16), and if something is green, then it is blue (from statement 18).\nSo, we can conclude that Anne is green, and therefore, Anne is blue.\n\nTherefore, the statement \"Anne is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven statements:\n\n1. Anne is big.\n2. Anne is rough.\n3. Dave is blue.\n4. Dave is cold.\n5. Dave is red.\n6. Dave is rough.\n7. Dave is round.\n8. Gary is round.\n9. Harry is cold.\n10. Harry is rough.\n11. All round things are blue.\n12. If something is cold then it is blue.\n13. Blue, red things are round.\n14. If something is rough then it is red.\n15. All big, red things are cold.\n16. All round things are green.\n17. Round, cold things are big.\n18. If something is green then it is blue.\n\nWe will start by analyzing the given information about Anne:\n\n1. Anne is big.\n2. Anne is rough.\n\nFrom the given statements, we can deduce the following:\n- All round things are green. (Statement 16)\n- Round, cold things are big. (Statement 17)\n- If something is rough then it is red. (Statement 14)\n- All big, red things are cold. (Statement 15)\n\nHowever, there is a contradiction in the information. If Anne is round, then she should be green (Statement 16). But if Anne is cold, then she should be blue (Statement 12). However, we cannot directly say that Anne is round or cold. \n\nHowever, we know that Anne is rough, and all rough things are red (Statement 14). So, we can conclude that Anne is red.\n\nSince Anne is red, she must be blue because blue, red things are round (Statement 13). However, we cannot conclude that Anne is round directly.\n\nHowever, given that Anne is big and red, we can conclude that Anne is cold (Statement 15).\n\nGiven that Anne is cold, we can conclude that Anne is blue (Statement 12).\n\nTherefore, the statement \"Anne is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Anne is big.\n   - Anne is rough.\n   - Dave is blue.\n   - Dave is cold.\n   - Dave is red.\n   - Dave is rough.\n   - Dave is round.\n   - Gary is round.\n   - Harry is cold.\n   - Harry is rough.\n   - All round things are blue.\n   - If something is cold then it is blue.\n   - Blue, red things are round.\n   - If something is rough then it is red.\n   - All big, red things are cold.\n   - All round things are green.\n   - Round, cold things are big.\n   - If something is green then it is blue.\n\n2. Analyzing the statements:\n   - We know that Anne is big and rough, but we don't know if she is blue or not.\n   - We also know that round things are green, not blue.\n   - If something is cold, then it is blue, but we don't know if Anne is cold or not.\n   - We can use the information \"If something is rough then it is red\" to conclude that Anne is red since she is rough.\n\n3. Now, we have two possibilities for Anne:\n   - Either Anne is red and cold (if she is cold), or\n   - Either Anne is red and not cold (if she is not cold).\n\n4. If Anne is cold, then she is blue (since if something is cold then it is blue).\n   But, we also know that round, cold things are big, and all round things are green. \n   This means that if Anne is cold, then she must be round and green, which contradicts the fact that all round things are green and blue, but since blue, red things are round, we conclude that Anne is round. \n   So, if Anne is cold, then she is round, green, and blue.\n\n5. But, we also know that round things are green, not blue.\n   This means that Anne cannot be cold.\n\n6. If Anne is not cold, then we know that she is red (since if something is rough then it is red).\n   Since we also know that all big, red things are cold, this means that Anne must be cold.\n\n7. We reached a contradiction in step 4 and step 6.\n   This means that our initial assumption that Anne can be cold is incorrect.\n\n8. Since Anne is not cold, then she is not blue (since if something is cold then it is blue).\n\n9. However, we also know that all big, red things are cold, and Anne is big and red.\n   This means that Anne must be cold, which is a contradiction.\n\n10. However, since we know that all big, red things are cold, and we also know that blue, red things are round, and round things are green, not blue, this means that if Anne is big and red, then she must be round and green, and since she is also blue, red, we conclude that she is indeed blue.\n\nSo, since Anne is big and red, we conclude that she is blue.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is blue' is true, false, or unknown, we need to analyze the given information and apply the rules of inference.\n\nGiven information:\n1. Anne is big.\n2. Anne is rough.\n3. Dave is blue.\n4. Dave is cold.\n5. Dave is red.\n6. Dave is rough.\n7. Dave is round.\n8. Gary is round.\n9. Harry is cold.\n10. Harry is rough.\n11. All round things are blue.\n12. If something is cold then it is blue.\n13. Blue, red things are round.\n14. If something is rough then it is red.\n15. All big, red things are cold.\n16. All round things are green.\n17. Round, cold things are big.\n18. If something is green then it is blue.\n\nWe are asked to determine whether Anne is blue. To do this, let's find out if we can infer any new information from the given statements.\n\nFrom statement 16, we know 'All round things are green'. And from statement 17, we know 'Round, cold things are big'. We can combine these two statements with statement 1, which says 'Anne is big'. But we cannot determine Anne's roundness from these statements.\n\nHowever, from statement 2, we know 'Anne is rough'. We can use this information to find out Anne's color. From statement 14, we know 'If something is rough then it is red'. So, Anne is red.\n\nNow, we need to find out if Anne is blue or not. From statement 13, we know 'Blue, red things are round'. This means if something is both blue and red, then it must be round. But we cannot determine if Anne is round or not.\n\nHowever, from statement 16, we know 'All round things are green'. If Anne is round, then Anne is green. But from statement 18, we know 'If something is green then it is blue'. So, if Anne is green, then Anne is blue.\n\nHowever, we cannot determine Anne's roundness from the given information. Therefore, we cannot determine if Anne is blue or not. \n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information into statements and apply them to the statement we want to evaluate: \"Anne is blue.\"\n\nGiven information:\n\n1. Anne is big.\n2. Anne is rough.\n3. Dave is blue.\n4. Dave is cold.\n5. Dave is red.\n6. Dave is rough.\n7. Dave is round.\n8. Gary is round.\n9. Harry is cold.\n10. Harry is rough.\n11. All round things are blue.\n12. If something is cold then it is blue.\n13. Blue, red things are round.\n14. If something is rough then it is red.\n15. All big, red things are cold.\n16. All round things are green.\n17. Round, cold things are big.\n18. If something is green then it is blue.\n\nStatement to evaluate: \"Anne is blue.\"\n\nTo determine the truth value of the statement, we need to apply the given information.\n\nFrom statement 1: Anne is big.\nFrom statement 2: Anne is rough.\n\nFrom statement 14: If something is rough then it is red.\nSo, Anne is red.\n\nFrom statement 15: All big, red things are cold.\nSo, Anne is cold.\n\nFrom statement 12: If something is cold then it is blue.\nSo, Anne is blue.\n\nHowever, we also have statement 16: All round things are green.\nAnd statement 17: Round, cold things are big.\n\nFrom statement 7: Dave is round.\nFrom statement 4: Dave is cold.\nFrom statement 17: Round, cold things are big.\nSo, Dave is big.\n\nFrom statement 3: Dave is blue.\nFrom statement 13: Blue, red things are round.\nFrom statement 5: Dave is red.\nFrom statement 13: Blue, red things are round.\nSo, Dave is round.\n\nNow, we have a problem. We have two possible conclusions about Anne's color: blue (from statement 12) and green (from statement 16). We cannot conclude that Anne is blue because we also have the information that all round things are green.\n\nTherefore, we cannot determine whether the statement \"Anne is blue\" is true or false; it is unknown.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Anne is big.\n   - Anne is rough.\n   - All big, red things are cold. \n   - All round things are green.\n   - Round, cold things are big.\n   - All round things are blue.\n   - If something is cold then it is blue.\n   - Blue, red things are round.\n   - If something is rough then it is red.\n   - All round things are green.\n   - If something is green then it is blue.\n   - Gary is round.\n   - Harry is cold.\n   - Harry is rough.\n   - Dave is blue.\n   - Dave is cold.\n   - Dave is red.\n   - Dave is round.\n   - Dave is rough.\n\n2. From the given statements, we can infer the following:\n   - Since Dave is blue, round, and red, we can conclude that \"Blue, red things are round\" is true.\n   - Since Dave is round and blue, we can conclude that \"All round things are blue\" is true.\n   - Since Dave is round and red, we can conclude that \"Blue, red things are round\" is true.\n   - Since Dave is round, red, and rough, we can conclude that \"If something is rough then it is red\" is true.\n   - Since Dave is round, red, and rough, we can conclude that \"All round things are red\" is true.\n   - Since Dave is round, we can conclude that \"All round things are green\" is false.\n   - Since Dave is round and cold, we can conclude that \"Round, cold things are big\" is true.\n   - Since Dave is blue, we can conclude that \"If something is cold then it is blue\" is true.\n   - Since Dave is blue, round, and red, we can conclude that \"Blue, red things are round\" is true.\n\n3. Now let's analyze Anne:\n   - Anne is big.\n   - Anne is rough.\n   - Since Anne is rough, we can conclude that Anne is red.\n   - Since Anne is red, we can conclude that Anne is cold.\n   - Since Anne is cold, we can conclude that Anne is blue.\n\nBased on the given information, we can conclude that the statement \"Anne is blue\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_anne, blue_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_anne, blue_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_dave, red_dave), round_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_anne, red_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_anne, red_anne), cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(round_anne, cold_anne), big_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_anne, blue_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_anne, red_anne), cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_anne, red_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_anne, blue_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_anne, green_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_anne, red_anne), round_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_anne, blue_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_anne, blue_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_X, red_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_X, red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_X, red_X), cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_X, red_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_X, red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_X, red_X), cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(round_X, cold_X), big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_X, red_X), round_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_X, red_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_X, red_X), cold_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(round_X, cold_X), big_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_X, blue_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_anne, red_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_anne, red_anne), round_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_anne, red_anne), cold_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(round_anne, cold_anne), big_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_anne, green_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_anne, blue_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_anne, blue_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_X, red_X), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_X, red_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_X, red_X), cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_X, red_X), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_X, red_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_X, red_X), cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_X, round_X), big_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_X, blue_X)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_X, red_X), round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_X, red_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_X, red_X), cold_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(round_X, cold_X), big_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_X, blue_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_anne, blue_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_anne, blue_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_anne, red_anne), round_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_anne, red_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_anne, red_anne), cold_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_anne, green_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(round_anne, cold_anne), big_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_anne, blue_anne)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_X, red_X), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_X, red_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_X, red_X), cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_X, round_X), big_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_X, blue_X)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> cold(X)",
+          "z3_formula": "Implies(And(big_anne, red_anne), cold_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_anne, green_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> big(X)",
+          "z3_formula": "Implies(And(round_anne, cold_anne), big_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_anne, blue_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_anne, blue_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_anne, red_anne), round_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> red(X)",
+          "z3_formula": "Implies(rough_anne, red_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_anne, green_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_anne, blue_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 20
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 217,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 34
+    },
+    "maxsat_stats": {
+      "satisfied": 34,
+      "excluded": 0,
+      "total_weight": 217,
+      "solve_time_ms": 1.062670722603798
+    },
+    "timing": {
+      "trace_gen_s": 8.371,
+      "extraction_s": 32.696,
+      "dedup_s": 1.758,
+      "maxsat_s": 0.003,
+      "total_s": 42.829
+    }
+  }
+}

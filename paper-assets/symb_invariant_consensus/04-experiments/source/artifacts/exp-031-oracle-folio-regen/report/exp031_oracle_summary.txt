@@ -1,0 +1,1 @@
+Oracle SICA (exp-031): 89.71% (183/204), SC: 75.49% (154/204), SICA(self): 74.51% (152/204). Delta +14.22pp, McNemar p=2.0e-07, b=29 c=0. Z3 gold agreement 95.10% (194/204), FOL parse 204/204. Per-type: True 97.2%/93.1%, False 93.6%/87.3%, Unknown 78.3%/46.4%. Results at /root/symb_invariant_consensus/results/oracle_folio_regen/exp031_results.json

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8f67647a9e3d5719fa3",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "code self consistency baseline",
+  "task_key": "worker_code_self_consistency_baseline_20260515T072259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_self_consistency_baseline_20260515T072259_result.json",
+    "occurrence": 1,
+    "bytes": 1865,
+    "sha256": "db4971211818046343662fb874fd3479ca4e0635ea5efa6f9bb4ddd1eb2810cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法和参数解析都正常。\n\n---\n\n**代码架构**：\n\n| 模块 | 复用内容 |\n|------|---------|\n| `formalize.py` | `FOL_SYSTEM_PROMPT`, `CODE_SYSTEM_PROMPT`, 对应 user template, `_extract_code`, `_strip_thinking`, `_get_client` |\n| `executor.py` | `execute_code` — 沙箱执行生成的代码，提取 verdict |\n| `data_loader.py` | `load_folio` — 加载 FOLIO 204 样本 |\n| `config.py` | API 连接参数、token 计费、路径 |\n\n**独立实现的部分**：\n- `_call_llm_temp` — 基于 `_call_llm` 逻辑，增加 temperature 参数（原版硬编码 0.7）\n- 独立的 token tracking（`_sc_usage`），不污染 formalize 的全局计数器\n- `majority_vote` — Counter-based 投票\n- CRD 结果加载 + 正确性判断（处理 agree/disagree/repair 等情况）\n- JSONL streaming + resume（与 pipeline.py 一致的模式）\n\n**运行命令**：\n```bash\n# 完整运行（204 样本 × k=5 × 2 表征 = 2040 次 LLM 调用）\npython3 src/self_consistency_baseline.py \\\n    --output results/sc_baseline.jsonl \\\n    --k 5 \\\n    --crd-results results/mvp_v4_full.jsonl\n\n# 小规模测试\npython3 src/self_consistency_baseline.py \\\n    --output results/sc_baseline_test.jsonl \\\n    --k 5 --max-examples 5\n\n# 断点续跑\npython3 src/self_consistency_baseline.py \\\n    --output results/sc_baseline.jsonl \\\n    --k 5 --resume results/sc_baseline.jsonl \\\n    --crd-results results/mvp_v4_full.jsonl\n```\n\n**预估 token 成本**：\n- 每次 FOL 调用：~1500 input + ~800 output ≈ 2300 tokens\n- 每次 Code 调用：~1200 input + ~600 output ≈ 1800 tokens\n- 单样本 k=5：(2300 + 1800) × 5 = 20,500 tokens\n- 204 样本总计：204 × 20,500 ≈ **4.18M tokens**（约为 CRD single-pass 的 5× 倍）\n- 本地 Qwen3-32B-AWQ 推理，无 API 费用，仅耗 GPU 时间"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-self-consistency-baseline.md"
+}

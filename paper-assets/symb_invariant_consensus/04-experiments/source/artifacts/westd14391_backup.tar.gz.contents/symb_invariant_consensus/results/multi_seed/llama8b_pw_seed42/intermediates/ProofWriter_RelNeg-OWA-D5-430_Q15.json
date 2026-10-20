@@ -1,0 +1,1199 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-430_Q15",
+    "problem": "The bear sees the squirrel. The bear visits the rabbit. The lion is not round. The lion does not like the rabbit. The lion visits the bear. The rabbit is not big. The rabbit is kind. The rabbit likes the squirrel. The rabbit sees the bear. The rabbit does not visit the bear. The squirrel visits the lion. If something is big and it visits the lion then the lion visits the rabbit. If something sees the lion then it does not like the lion. If something likes the squirrel then the squirrel visits the rabbit. If something sees the squirrel and it visits the squirrel then the squirrel does not see the lion. If something visits the lion then the lion is not round. If something sees the lion and it does not see the bear then it sees the squirrel. If something visits the rabbit then it sees the lion. If something sees the lion then it is big.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit does not see the lion.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nRound($x, bool) ::: Is x round?\nLikes($x, $y, bool) ::: Does x like y?\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nSees(Bear, Squirrel, True) ::: The bear sees the squirrel.\nVisits(Bear, Rabbit, True) ::: The bear visits the rabbit.\nRound(Lion, False) ::: The lion is not round.\nLikes(Lion, Rabbit, False) ::: The lion does not like the rabbit.\nVisits(Lion, Bear, True) ::: The lion visits the bear.\nBig(Rabbit, False) ::: The rabbit is not big.\nKind(Rabbit, True) ::: The rabbit is kind.\nLikes(Rabbit, Squirrel, True) ::: The rabbit likes the squirrel.\nSees(Rabbit, Bear, True) ::: The rabbit sees the bear.\nVisits(Rabbit, Bear, False) ::: The rabbit does not visit the bear.\nVisits(Squirrel, Lion, True) ::: The squirrel visits the lion.\n\nRules:\nBig($x, True) && Visits($x, Lion, True) >>> Visits(Lion, Rabbit, True) ::: If something is big and it visits the lion then the lion visits the rabbit.\nSees($x, Lion, True) >>> Likes($x, Lion, False) ::: If something sees the lion then it does not like the lion.\nLikes($x, Squirrel, True) >>> Visits(Squirrel, Rabbit, True) ::: If something likes the squirrel then the squirrel visits the rabbit.\nSees($x, Squirrel, True) && Visits($x, Squirrel, True) >>> Sees(Squirrel, Lion, False) ::: If something sees the squirrel and it visits the squirrel then the squirrel does not see the lion.\nVisits($x, Lion, True) >>> Round(Lion, False) ::: If something visits the lion then the lion is not round.\nSees($x, Lion, True) && Sees($x, Bear, False) >>> Sees($x, Squirrel, True) ::: If something sees the lion and it does not see the bear then it sees the squirrel.\nVisits($x, Rabbit, True) >>> Sees($x, Lion, True) ::: If something visits the rabbit then it sees the lion.\nSees($x, Lion, True) >>> Big($x, True) ::: If something sees the lion then it is big.\n\nQuery:\nSees(Rabbit, Lion, False) ::: The rabbit does not see the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 110.5,
+      "True": 81.0,
+      "Unknown": 102.0
+    },
+    "answer_counts": {
+      "False": 4,
+      "True": 3,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the lion\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The rabbit likes the squirrel. \n2. If something likes the squirrel then the squirrel visits the rabbit. \nFrom 1 and 2, we can conclude that the squirrel visits the rabbit.\n\n3. The rabbit sees the bear. \n4. The rabbit does not visit the bear. \nFrom 3 and 4, we cannot conclude anything new.\n\n5. The squirrel visits the lion. \n6. The lion is not round. \nFrom 5 and 6, we cannot conclude anything new.\n\n7. The lion does not like the rabbit. \n8. If something sees the lion then it does not like the lion. \nHowever, this rule does not apply to the lion itself. \n\n9. If something sees the lion and it does not see the bear then it sees the squirrel. \nSince the rabbit sees the lion, then it must see the squirrel (because it does see the bear).\n\n10. The rabbit is not big. \n11. If something sees the lion then it is big. \nFrom 10 and 11, we cannot conclude that the rabbit is big.\n\n12. The rabbit sees the lion. \nThis directly contradicts the statement we want to determine: \"The rabbit does not see the lion.\"\n\nTherefore, since we have found that the rabbit sees the lion, the statement \"The rabbit does not see the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given statements, we have:\n   - If something is big and it visits the lion then the lion visits the rabbit. \n   - If something sees the lion then it does not like the lion.\n   - If something likes the squirrel then the squirrel visits the rabbit.\n   - If something sees the squirrel and it visits the squirrel then the squirrel does not see the lion.\n   - If something visits the lion then the lion is not round.\n   - If something sees the lion and it does not see the bear then it sees the squirrel.\n   - If something visits the rabbit then it sees the lion.\n   - If something sees the lion then it is big.\n   - The lion is not round.\n   - The lion does not like the rabbit.\n   - The rabbit is not big.\n   - The rabbit is kind.\n   - The rabbit likes the squirrel.\n   - The rabbit sees the bear.\n   - The rabbit does not visit the bear.\n   - The squirrel visits the lion.\n   \n2. Analyzing the information:\n   - The rabbit sees the bear (given).\n   - The rabbit does not visit the bear (given).\n   - The rabbit likes the squirrel (given).\n   - The rabbit does not like the lion (we don't have direct information, but we can infer this based on the given statements).\n\n3. From the given statements, we can infer that the rabbit sees the squirrel because it likes the squirrel (statement 3).\n   - If something sees the squirrel and it visits the squirrel then the squirrel does not see the lion (statement 4).\n   - Since the rabbit sees the squirrel and it visits the squirrel, we can infer that the squirrel does not see the lion.\n\n4. Now, let's consider the statement \"If something sees the lion and it does not see the bear then it sees the squirrel\" (statement 6).\n   - We don't have direct information that the rabbit sees the lion. However, we can use this statement to infer that if the rabbit sees the lion, it must see the squirrel because the rabbit does not see the bear (given).\n\n5. Considering the statement \"If something visits the lion then the lion is not round\" (statement 5), we can conclude that the lion is not round because the squirrel visits the lion (given).\n\n6. Since the squirrel visits the lion, we can apply the statement \"If something is big and it visits the lion then the lion visits the rabbit\" (statement 1).\n   - However, we don't have information about the size of the squirrel. We only know that the rabbit is not big (given).\n\n7. Based on the statement \"If something sees the lion then it is big\" (statement 8), we can infer that the lion is seen by something big because the lion does not like the rabbit (given).\n\n8. Now, let's analyze the statement \"The rabbit sees the lion\" (our target statement).\n   - If the rabbit sees the lion, it must be big (statement 8), which contradicts the fact that the rabbit is not big (given).\n\nHowever, there is an inconsistency in our previous analysis. We previously concluded that the lion is seen by something big, but we didn't consider the possibility that the lion is seen by something that is not big.\n\n9. Let's re-examine the statement \"If something sees the lion then it is big\" (statement 8).\n   - This statement implies that the lion is seen by something big, but it doesn't necessarily mean that the lion is seen by something that is big and visits the lion (statement 1).\n\n10. Now, let's analyze the statement \"The rabbit sees the lion\" again.\n    - If the rabbit sees the lion, it must see the squirrel (statement 6).\n    - However, we don't have direct information about the size of the rabbit. We only know that the rabbit is not big (given).\n\n11. Considering the statement \"If something sees the lion then it is big\" (statement 8), we can infer that the rabbit is not big because it sees the lion (given).\n\n12. Since the rabbit sees the lion, it must be true that the rabbit sees the lion.\n\nBased on our analysis, we can conclude that the statement \"The rabbit does not see the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will break down the given information and the statements into smaller parts and analyze them step by step.\n\n1. The rabbit is kind.\n2. The rabbit likes the squirrel.\n3. If something likes the squirrel then the squirrel visits the rabbit. \nFrom statement 2 and 3, we can infer that the squirrel visits the rabbit.\n\n4. The rabbit sees the bear.\n5. The rabbit does not visit the bear.\n6. If something visits the rabbit then it sees the lion. (This implies that the rabbit visits something, but it is not directly related to the given options. However, we can infer that the rabbit sees the lion if it visits it. However, we do not know if the rabbit visits the lion.)\n\n7. The lion does not like the rabbit.\n8. The lion visits the bear.\n9. The lion is not round.\n10. If something visits the lion then the lion is not round. \nThis statement is redundant, as it is already given in statement 9.\n\n11. The bear sees the squirrel.\n12. The bear visits the rabbit.\n13. The squirrel visits the lion.\n14. If something is big and it visits the lion then the lion visits the rabbit. \nWe do not have enough information to determine if the lion is big or not, or if it visits the rabbit.\n\n15. The rabbit is not big.\n16. If something sees the lion then it is big. \nFrom statement 16, we can infer that the lion is not big, as the rabbit sees the lion and it is not big.\n\n17. The rabbit does not see the lion. \nWe need to check if this statement is true or false.\n\nNow, let's analyze the given statement and the information we have. If the rabbit sees the lion, then it must not like the lion (from statement 7). However, the rabbit likes the squirrel (from statement 2), and the squirrel visits the lion (from statement 13). If the rabbit sees the lion, then it must not see the squirrel (from statement 5), which contradicts the fact that the rabbit likes the squirrel.\n\nHowever, if the rabbit does not see the lion, then it must like the lion (from statement 7). This is consistent with the information we have.\n\nTherefore, the statement \"The rabbit does not see the lion\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"If something is big and it visits the lion then the lion visits the rabbit\" we can't determine anything about the size of the rabbit.\n\n2. From the statement \"If something sees the lion then it does not like the lion\" we can't determine whether the rabbit sees the lion or not.\n\n3. From the statement \"The rabbit is kind\" we can't determine whether the rabbit sees the lion or not.\n\n4. From the statement \"The rabbit likes the squirrel\" we can't determine whether the rabbit sees the lion or not.\n\n5. From the statement \"The rabbit is not big\" we can't determine whether the rabbit sees the lion or not.\n\n6. From the statement \"The lion does not like the rabbit\" we can't determine whether the rabbit sees the lion or not.\n\n7. From the statement \"The rabbit sees the bear\" we can't determine whether the rabbit sees the lion or not.\n\n8. From the statement \"The rabbit does not visit the bear\" we can't determine whether the rabbit sees the lion or not.\n\n9. From the statement \"The squirrel visits the lion\" we can't determine whether the rabbit sees the lion or not.\n\n10. From the statement \"If something sees the lion and it does not see the bear then it sees the squirrel\" we can't determine whether the rabbit sees the lion or not.\n\n11. From the statement \"If something visits the rabbit then it sees the lion\" we can't determine whether the rabbit sees the lion or not.\n\n12. From the statement \"If something sees the lion then it is big\" we can't determine whether the rabbit sees the lion or not.\n\n13. From the statement \"The lion is not round\" we can't determine whether the rabbit sees the lion or not.\n\n14. From the statement \"The squirrel is not mentioned as big\" we can't determine whether the rabbit sees the lion or not.\n\n15. From the statement \"The rabbit is not mentioned as big\" we can't determine whether the rabbit sees the lion or not.\n\n16. From the statement \"The lion is not round. The lion does not like the rabbit. The lion visits the bear. The rabbit is kind. The rabbit is not big. The rabbit likes the squirrel. The rabbit sees the bear. The rabbit does not visit the bear. The squirrel visits the lion. If something is big and it visits the lion then the lion visits the rabbit. If something sees the lion then it does not like the lion. If something likes the squirrel then the squirrel visits the rabbit. If something sees the squirrel and it visits the squirrel then the squirrel does not see the lion. If something visits the lion then the lion is not round. If something sees the lion and it does not see the bear then it sees the squirrel. If something visits the rabbit then it sees the lion. If something sees the lion then it is big. \" we can't determine whether the rabbit sees the lion or not.\n\n17. Now let's examine the facts that are relevant to the rabbit and the lion. From the statement \"The rabbit sees the bear\" we know that the rabbit sees the bear. From the statement \"If something visits the rabbit then it sees the lion\" we know that the rabbit is visited by the squirrel. Since the squirrel visits the rabbit, it sees the lion. From the statement \"If something sees the lion then it is big\" we know that the squirrel is big.\n\nSince the squirrel is big, it visits the lion. From the statement \"If something is big and it visits the lion then the lion visits the rabbit\" we know that the lion visits the rabbit.\n\nFrom the statement \"The lion visits the bear\" we know that the lion sees the bear. From the statement \"The rabbit sees the bear\" we know that the rabbit does not see the lion because if the rabbit sees the lion, then it does not like the lion.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information, we know:\n   - The lion is not round.\n   - The lion does not like the rabbit.\n   - The lion visits the bear.\n   - The rabbit is not big.\n   - The rabbit is kind.\n   - The rabbit likes the squirrel.\n   - The rabbit sees the bear.\n   - The rabbit does not visit the bear.\n   - The squirrel visits the lion.\n\n2. We also have the following conditional statements:\n   - If something is big and it visits the lion then the lion visits the rabbit.\n   - If something sees the lion then it does not like the lion.\n   - If something likes the squirrel then the squirrel visits the rabbit.\n   - If something sees the squirrel and it visits the squirrel then the squirrel does not see the lion.\n   - If something visits the lion then the lion is not round.\n   - If something sees the lion and it does not see the bear then it sees the squirrel.\n   - If something visits the rabbit then it sees the lion.\n   - If something sees the lion then it is big.\n\n3. Analyzing the statement \"The rabbit does not see the lion\":\n   - We know the rabbit sees the bear (from the given information).\n   - We can use the conditional statement: \"If something sees the lion and it does not see the bear then it sees the squirrel.\"\n   - This implies that if the rabbit sees the lion, then it must see the bear because it doesn't fit the condition (sees the lion and does not see the bear).\n   - However, this is not the case, as we know the rabbit sees the bear.\n   - We need to find a way to relate the rabbit to the lion using the given information and conditional statements.\n   - Since we know the lion visits the bear and the rabbit sees the bear, we can use the conditional statement: \"If something visits the rabbit then it sees the lion.\"\n   - This implies that the bear (which visits the rabbit) sees the lion.\n\n4. Now, we need to find out if the bear likes the lion:\n   - We know the lion does not like the rabbit.\n   - We also know that the bear sees the lion.\n   - We can use the conditional statement: \"If something sees the lion then it does not like the lion.\"\n   - This implies that the bear does not like the lion.\n\n5. We can now use the conditional statement: \"If something is big and it visits the lion then the lion visits the rabbit.\"\n   - We don't know if the bear is big or not.\n   - However, we do know that if something sees the lion then it is big (from the given information).\n   - Since the bear sees the lion, it must be big.\n   - This implies that the lion must visit the rabbit because the bear is big and it visits the lion.\n\n6. Now, we need to find out if the rabbit is big:\n   - We know the rabbit is not big (from the given information).\n   - This implies that the conditional statement \"If something is big and it visits the lion then the lion visits the rabbit\" does not apply to the rabbit.\n\n7. We know the rabbit likes the squirrel and the squirrel visits the lion.\n   - We can use the conditional statement: \"If something likes the squirrel then the squirrel visits the rabbit.\"\n   - This implies that the rabbit must visit the squirrel because the squirrel visits the lion (and we know the rabbit likes the squirrel).\n\n8. Now, we need to find out if the rabbit sees the lion:\n   - We know the rabbit visits the squirrel and the squirrel visits the lion.\n   - We can use the conditional statement: \"If something sees the lion and it does not see the bear then it sees the squirrel.\"\n   - This implies that the rabbit must see the lion because it visits the squirrel and it does not see the bear (since the bear sees the lion).\n\nHowever, the rabbit cannot see the lion because we previously determined that the bear sees the lion and the bear does not like the lion. This creates a contradiction.\n\nSince we have a contradiction, the statement \"The rabbit does not see the lion\" cannot be determined as true or false using the given information and conditional statements.\n\nTherefore, the answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the information given, we know:\n1. The rabbit is kind.\n2. The rabbit likes the squirrel.\n3. The rabbit sees the bear.\n4. The rabbit does not visit the bear.\n\nNow, let's examine the given rules:\n\n1. If something is big and it visits the lion then the lion visits the rabbit. (Rule 1)\n2. If something sees the lion then it does not like the lion. (Rule 2)\n3. If something likes the squirrel then the squirrel visits the rabbit. (Rule 3)\n4. If something sees the squirrel and it visits the squirrel then the squirrel does not see the lion. (Rule 4)\n5. If something visits the lion then the lion is not round. (Rule 5)\n6. If something sees the lion and it does not see the bear then it sees the squirrel. (Rule 6)\n7. If something visits the rabbit then it sees the lion. (Rule 7)\n8. If something sees the lion then it is big. (Rule 8)\n\nTo determine whether the rabbit sees the lion or not, we can use the rules. However, we cannot directly use any rule to conclude that the rabbit sees the lion. But, we can use Rule 7 to infer that the rabbit is seen by something else. Since the rabbit is seen by the bear (from statement 3), we can use Rule 8 to conclude that the bear is big. But, we cannot conclude the relationship between the bear and the lion directly using the given information.\n\nHowever, from the statements given, we know that the lion is not round (statement 3) and that the lion does not like the rabbit (statement 4). But we cannot directly conclude whether the rabbit sees the lion using the given information. \n\nHowever, from the rule \"If something sees the lion and it does not see the bear then it sees the squirrel\" (Rule 6) and the given information that the rabbit sees the bear (statement 3) and the rabbit does not like the lion (we cannot conclude this, but we can use it to test the possibility), we can say that the rabbit sees the squirrel as per the rule that \"If something likes the squirrel then the squirrel visits the rabbit\" (Rule 3) is not satisfied here.\n\nHowever, the squirrel visits the lion (statement 8). Therefore, according to Rule 6, the squirrel sees the lion. The squirrel also sees the rabbit (because the squirrel visits the rabbit as per rule 3 is not satisfied but the rabbit likes the squirrel). Therefore, the rabbit sees the lion. \n\nThe statement \"The rabbit does not see the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit likes the squirrel. (Given)\n2. If something likes the squirrel then the squirrel visits the rabbit. (Given)\n   - Since the rabbit likes the squirrel, the squirrel must visit the rabbit. (From 1 and 2)\n   - The squirrel visits the lion. (Given)\n   - Therefore, the squirrel visits the lion and the rabbit. (From 2 and the above conclusion)\n\n3. If something sees the lion and it does not see the bear then it sees the squirrel. (Given)\n   - The rabbit sees the lion. (This is what we are trying to determine)\n   - If the rabbit sees the lion, it does not see the bear. (We need to determine if this is true or false)\n   - If the rabbit sees the lion, it sees the squirrel. (From 3)\n\nHowever, we already know that the squirrel visits the rabbit. If the rabbit sees the lion and sees the squirrel, then the squirrel must see the lion. But we have another rule that says:\n\"If something sees the squirrel and it visits the squirrel then the squirrel does not see the lion.\" (Given)\n- If the rabbit sees the squirrel, the squirrel does not see the lion. (From the above rule)\n- But we also know that the squirrel sees the lion. (From the given information)\n\nSo, we have a contradiction. If the rabbit sees the lion, then the squirrel sees the lion, but the squirrel does not see the lion if it sees the rabbit and visits the squirrel.\n\nTherefore, we can conclude that the rabbit does not see the lion is the only possibility that satisfies all the conditions.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will break down the given information into statements and their corresponding rules. We will then apply these rules to determine the relationship between the rabbit and the lion.\n\n1. Statements:\n   - The bear sees the squirrel.\n   - The bear visits the rabbit.\n   - The lion is not round.\n   - The lion does not like the rabbit.\n   - The lion visits the bear.\n   - The rabbit is not big.\n   - The rabbit is kind.\n   - The rabbit likes the squirrel.\n   - The rabbit sees the bear.\n   - The rabbit does not visit the bear.\n   - The squirrel visits the lion.\n\n2. Rules:\n   - If something is big and it visits the lion then the lion visits the rabbit.\n   - If something sees the lion then it does not like the lion.\n   - If something likes the squirrel then the squirrel visits the rabbit.\n   - If something sees the squirrel and it visits the squirrel then the squirrel does not see the lion.\n   - If something visits the lion then the lion is not round.\n   - If something sees the lion and it does not see the bear then it sees the squirrel.\n   - If something visits the rabbit then it sees the lion.\n   - If something sees the lion then it is big.\n\nNow, let's determine the relationship between the rabbit and the lion:\n\nFrom the statements, we know that the rabbit likes the squirrel (rule 3) and the rabbit sees the bear (rule 7). However, we cannot directly determine if the rabbit sees the lion from these statements.\n\nApplying rule 6 to the rabbit, we know that the rabbit sees the lion and it does not see the bear (rule 7). According to rule 6, this implies that the rabbit sees the squirrel.\n\nHowever, we cannot determine the relationship between the rabbit and the lion using the given statements. Therefore, the statement \"The rabbit does not see the lion\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is kind. (Given)\n2. The rabbit likes the squirrel. (Given)\n3. If something likes the squirrel, then the squirrel visits the rabbit. (Given)\n   - This rule implies that the squirrel visits the rabbit because the rabbit likes the squirrel.\n\n4. The squirrel visits the lion. (Given)\n5. If something visits the lion, then the lion is not round. (Given)\n   - This rule implies that the lion is not round because the squirrel visits the lion.\n\n6. The lion is not round. (From step 5)\n7. The lion does not like the rabbit. (Given)\n8. If something sees the lion, then it does not like the lion. (Given)\n   - This rule implies that the lion does not like the rabbit because it sees the lion.\n\n9. The rabbit sees the bear. (Given)\n10. If something sees the lion and it does not see the bear, then it sees the squirrel. (Given)\n    - Since we know the lion sees the rabbit (from step 8), and the rabbit sees the bear, this rule does not apply directly to the rabbit.\n\n11. The rabbit is not big. (Given)\n12. If something is big and it visits the lion, then the lion visits the rabbit. (Given)\n    - This rule does not apply to the rabbit because it is not big.\n\nHowever, from the given statements, we cannot directly infer whether the rabbit sees the lion or not. \n\nGiven the information from step 3, we know that the squirrel visits the rabbit, and from the given statements, the squirrel visits the lion. Now, we can use the rule from step 4 and 5 to analyze the situation.\n\nThe given rules do not directly tell us whether the rabbit sees the lion or not. However, we can infer information about the lion and the rabbit from the rules.\n\nUsing the rule from step 10: \"If something sees the lion and it does not see the bear, then it sees the squirrel,\" we can see that this rule does not apply directly to the rabbit.\n\nHowever, the rule \"If something sees the lion, then it does not like the lion\" (step 8) implies that the lion sees the rabbit because the rabbit does not like the lion. \n\nWe can now analyze this situation using the given information: The rabbit sees the bear. If the rabbit sees the lion, then it should not like the lion, but we already know that the rabbit likes the squirrel.\n\nNow let's use the rule from step 3: If something likes the squirrel then the squirrel visits the rabbit. We know the rabbit likes the squirrel, and we also know that the squirrel visits the lion.\n\nHowever, there is no direct information to infer whether the rabbit sees the lion or not.\n\nTo find a solution to this problem, we can use the information given in the problem and apply it to the given statements.\n\nFrom the rule \"If something sees the lion then it does not like the lion,\" we can see that the lion sees the rabbit because the rabbit does not like the lion.\n\nUsing the rule \"If something sees the lion then it is big,\" we know that the lion is big because it sees the rabbit.\n\nNow let's apply the rule from step 12: \"If something is big and it visits the lion, then the lion visits the rabbit.\" We can see that the lion visits the rabbit because it is big and it sees the lion (the rabbit).\n\nWe can use the rule \"If something visits the rabbit then it sees the lion\" to analyze this situation.\n\nNow, the rabbit visits the lion is false because the rabbit does not visit the lion. However, we know that the lion visits the rabbit.\n\nUsing the rule \"If something sees the lion and it does not see the bear then it sees the squirrel,\" we know that this rule does not apply directly to the rabbit.\n\nHowever, the rule \"If something sees the lion then it does not like the lion\" implies that the lion sees the rabbit because the rabbit does not like the lion.\n\nWe can use the rule \"If something sees the lion then it is big\" to infer that the lion is big because it sees the rabbit.\n\nNow, let's analyze this situation using the rule from step 8: \"If something sees the lion then it does not like the lion.\"\n\nWe can see that the rabbit does not see the lion because it likes the squirrel.\n\nTherefore, the statement \"The rabbit does not see the lion\" is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules step by step.\n\n1. The rabbit is kind.\n2. The rabbit likes the squirrel.\nFrom statement 2, we can apply rule 4 (If something likes the squirrel then the squirrel visits the rabbit) is not directly applicable because it does not tell us if the squirrel visits the rabbit. However, we can look at rule 5, (If something sees the squirrel and it visits the squirrel then the squirrel does not see the lion).\n\n3. The rabbit is not big. \n4. The lion does not like the rabbit.\n5. The lion is not round.\nFrom statement 5, we can apply rule 7 (If something visits the lion then the lion is not round), but this statement does not tell us anything about the lion's roundness.\n\n6. The bear visits the rabbit.\n7. The lion visits the bear.\n8. The lion is not round.\nWe have already seen this in statement 5. \n\n9. The rabbit sees the bear.\n10. The rabbit does not visit the bear.\n11. The squirrel visits the lion.\nFrom statement 11, we can apply rule 7 (If something visits the lion then the lion is not round), but this statement does not tell us anything about the lion's roundness.\n\n12. The rabbit sees the bear.\nFrom statement 9, we can apply rule 10 (If something sees the lion and it does not see the bear then it sees the squirrel) is not directly applicable because it does not tell us if the rabbit sees the lion. However, we can look at rule 1, (If something sees the lion then it is big) and statement 3, (The rabbit is not big). This tells us that the rabbit does not see the lion because if it did, it would be big.\n\nHowever, since we cannot be 100% certain based on the information, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit is kind.\n2. The rabbit likes the squirrel.\n3. If something likes the squirrel then the squirrel visits the rabbit. (This implies that the squirrel visits the rabbit.)\n4. The squirrel visits the lion.\n5. If something visits the lion then the lion is not round. (This implies that the lion is not round.)\n6. The lion is not round. (This is already given in the initial information.)\n7. The rabbit sees the bear.\n8. The rabbit does not visit the bear.\n9. If something sees the lion and it does not see the bear then it sees the squirrel. (This implies that the rabbit sees the squirrel because it sees the lion and does not see the bear.)\n10. The rabbit sees the squirrel.\n\nNow, we need to determine if the rabbit sees the lion. We have the following information:\n\n11. If something sees the lion then it does not like the lion.\n12. The lion does not like the rabbit.\n\nHowever, we cannot directly conclude that the rabbit sees the lion from the given information. Let's try to connect the information we have.\n\n13. If something is big and it visits the lion then the lion visits the rabbit. (We do not know if the rabbit is big, so this implication is not directly applicable.)\n14. The lion is not round (which is already given).\n15. The lion does not like the rabbit (which is already given).\n\nNow, we know that the rabbit sees the bear (from statement 7) and the rabbit sees the squirrel (from statement 10). We also know that the squirrel visits the lion (from statement 4).\n\nHowever, we cannot directly conclude whether the rabbit sees the lion from the given information. The information we have does not provide a clear connection between the rabbit and the lion.\n\nTherefore, based on the given information, the statement \"The rabbit does not see the lion\" is **unknown**, as we cannot determine whether the rabbit sees the lion or not.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"The rabbit sees the bear,\" we can conclude that the rabbit sees the bear, but this doesn't directly relate to the lion.\n\n2. The statement \"If something sees the lion then it does not like the lion\" can be used later, but for now, we just know that this condition exists.\n\n3. The statement \"If something sees the lion and it does not see the bear then it sees the squirrel\" is crucial. We don't have any information yet about the rabbit seeing the bear, but we'll get to that later.\n\n4. The statement \"The rabbit is kind\" and \"The rabbit likes the squirrel\" are irrelevant to the current problem.\n\n5. The statement \"If something likes the squirrel then the squirrel visits the rabbit\" is also irrelevant for now.\n\n6. The statement \"The rabbit does not visit the bear\" is relevant, but we don't know yet whether the rabbit sees the bear.\n\n7. The statement \"If something visits the lion then the lion is not round\" is irrelevant for now.\n\n8. The statement \"The lion does not like the rabbit\" is also irrelevant for now.\n\n9. The statement \"The lion is not round\" is also irrelevant for now.\n\n10. From the statement \"If something sees the lion then it is big,\" we can conclude that the lion is big, which is irrelevant to the current problem.\n\n11. The statement \"The rabbit is not big\" is also irrelevant to the current problem.\n\n12. The statement \"The squirrel visits the lion\" is relevant. This implies that the lion is not round (from the statement \"If something visits the lion then the lion is not round\").\n\n13. Now, let's consider the statement \"The lion sees the bear.\" We don't have any information about the lion seeing the bear directly, but we can use the statements \"If something sees the lion and it does not see the bear then it sees the squirrel\" and \"The rabbit sees the bear\" to conclude that the rabbit sees the squirrel.\n\n14. Now, let's apply the statement \"If something sees the squirrel and it visits the squirrel then the squirrel does not see the lion.\" However, we don't have any information about the rabbit visiting the squirrel yet.\n\n15. We still need to determine whether the rabbit sees the lion. Let's analyze the statements \"If something visits the lion then the lion visits the rabbit\" and \"The squirrel visits the lion.\" This implies that the lion visits the rabbit.\n\n16. Since the lion visits the rabbit, we can conclude that the rabbit sees the lion.\n\nTherefore, the statement \"The rabbit does not see the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(squirrel, X)",
+          "z3_formula": "Implies(likes_rabbit_squirrel, visits_squirrel_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(rabbit, bear)",
+          "z3_formula": "Not(visits_rabbit_bear) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not round(lion)",
+          "z3_formula": "Not(round_lion) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, rabbit)",
+          "z3_formula": "Not(likes_lion_rabbit) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> not likes(X, lion)",
+          "z3_formula": "Implies(sees_lion_rabbit, Not(likes_lion_rabbit))",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not sees(X, bear) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_lion_rabbit, Not(sees_rabbit_bear)), sees_rabbit_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not big(rabbit)",
+          "z3_formula": "Not(big_rabbit) == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> big(X)",
+          "z3_formula": "Implies(sees_lion_rabbit, big_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not big(rabbit)",
+          "z3_formula": "Not(big_rabbit) == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, rabbit)",
+          "z3_formula": "likes_squirrel_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_visit(rabbit, bear)",
+          "z3_formula": "does_not_visit_rabbit_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_like(lion, rabbit)",
+          "z3_formula": "does_not_like_lion_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "is_not_big(rabbit)",
+          "z3_formula": "is_not_big_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "is_kind(rabbit)",
+          "z3_formula": "is_kind_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(likes_rabbit_squirrel, sees_rabbit_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & visits(X, Y) -> does_not_see(Y, X)",
+          "z3_formula": "Implies(And(sees_squirrel_lion, visits_squirrel_lion), does_not_see_lion_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & does_not_see(X, bear) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_rabbit_lion, does_not_see_rabbit_bear), sees_rabbit_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> is_not_round(lion)",
+          "z3_formula": "Implies(visits_squirrel_lion, is_not_round_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & is_big(X) -> visits(lion, X)",
+          "z3_formula": "Implies(And(visits_squirrel_lion, is_big_squirrel), visits_lion_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> is_big(X)",
+          "z3_formula": "Implies(sees_rabbit_lion, is_big_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "is_big(X) -> is_round(X)",
+          "z3_formula": "Implies(is_big_squirrel, is_round_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, lion)",
+          "z3_formula": "Implies(visits_rabbit_lion, sees_rabbit_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> is_big(X)",
+          "z3_formula": "Implies(sees_squirrel_lion, is_big_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == False",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == False",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(squirrel, X)",
+          "z3_formula": "Implies(likes_rabbit_squirrel, visits_squirrel_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(visit(rabbit, bear))",
+          "z3_formula": "not_visit_rabbit_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(lion, X)",
+          "z3_formula": "Implies(visits_rabbit_lion, sees_lion_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sees_rabbit_lion == Unknown",
+          "z3_formula": "visits_rabbit_lion == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(lion, rabbit))",
+          "z3_formula": "not_likes_lion_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "not_round_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not(round(lion))",
+          "z3_formula": "Implies(visits_lion_X, not_round_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not_round_lion == True",
+          "z3_formula": "not_round_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, squirrel)",
+          "z3_formula": "sees_bear_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> visits(lion, rabbit)",
+          "z3_formula": "Implies(And(big_X, visits_X_lion), visits_lion_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "visits_lion_rabbit == Unknown",
+          "z3_formula": "visits_lion_rabbit == Unknown",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(rabbit))",
+          "z3_formula": "not_big_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> big(X)",
+          "z3_formula": "Implies(sees_X_lion, big_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not(big_lion)",
+          "z3_formula": "not_big_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not(sees(rabbit, lion))",
+          "z3_formula": "not_sees_rabbit_lion == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, lion)",
+          "z3_formula": "Implies(visits_squirrel_rabbit, sees_squirrel_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> big(X)",
+          "z3_formula": "Implies(sees_squirrel_lion, big_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(And(big_squirrel, visits_squirrel_lion), visits_lion_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> not likes(X, lion)",
+          "z3_formula": "Implies(sees_rabbit_lion, not likes_rabbit_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(rabbit, lion)",
+          "z3_formula": "not sees_rabbit_lion == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not round(lion)",
+          "z3_formula": "not round_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, rabbit)",
+          "z3_formula": "not likes_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not big(rabbit)",
+          "z3_formula": "not big_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(rabbit, bear)",
+          "z3_formula": "not visits_rabbit_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> visits(lion, rabbit)",
+          "z3_formula": "Implies(And(big_X, visits_X_lion), visits_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> not likes(X, lion)",
+          "z3_formula": "Implies(sees_X_lion, not likes_X_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(squirrel, X)",
+          "z3_formula": "Implies(likes_X_squirrel, visits_squirrel_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & visits(X, squirrel) -> not sees(squirrel, lion)",
+          "z3_formula": "Implies(And(sees_X_squirrel, visits_X_squirrel), not sees_squirrel_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not round(lion)",
+          "z3_formula": "Implies(visits_X_lion, not round_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not sees(X, bear) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_X_lion, not sees_X_bear), sees_X_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, lion)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> big(X)",
+          "z3_formula": "Implies(sees_X_lion, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bear, lion)",
+          "z3_formula": "sees_bear_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(bear, lion)",
+          "z3_formula": "not likes_bear_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(rabbit, bear)",
+          "z3_formula": "Not(visits_rabbit_bear) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(And(big_X, visits_X_lion), visits_lion_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> not likes(X, lion)",
+          "z3_formula": "Implies(sees_X_lion, Not(likes_X_lion))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(squirrel, X)",
+          "z3_formula": "Implies(likes_X_squirrel, visits_squirrel_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & visits(X, squirrel) -> not sees(squirrel, lion)",
+          "z3_formula": "Implies(And(sees_X_squirrel, visits_X_squirrel), Not(sees_squirrel_lion))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not round(lion)",
+          "z3_formula": "Implies(visits_X_lion, Not(round_lion))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not sees(X, bear) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_X_lion, Not(sees_X_bear)), sees_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, lion)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> big(X)",
+          "z3_formula": "Implies(sees_X_lion, big_X)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(squirrel, X)",
+          "z3_formula": "Implies(likes_rabbit_squirrel, visits_squirrel_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & Not(sees(X, bear)) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_rabbit_lion, Not(sees_rabbit_bear)), sees_rabbit_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & visits(squirrel, X) -> Not(sees(squirrel, lion))",
+          "z3_formula": "Implies(And(sees_rabbit_squirrel, visits_squirrel_rabbit), Not(sees_squirrel_lion))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, lion)",
+          "z3_formula": "sees_squirrel_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(sees(rabbit, lion))",
+          "z3_formula": "Not(sees_rabbit_lion) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bear, squirrel)",
+          "z3_formula": "sees_bear_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "not(round_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(lion, rabbit))",
+          "z3_formula": "not(likes_lion_rabbit) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(rabbit))",
+          "z3_formula": "not(big_rabbit) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(rabbit, bear))",
+          "z3_formula": "not(visits_rabbit_bear) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> visits(lion, rabbit)",
+          "z3_formula": "Implies(And(big_X, visits_X_lion), visits_lion_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> not(likes(X, lion))",
+          "z3_formula": "Implies(sees_X_lion, not(likes_X_lion))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(squirrel, rabbit)",
+          "z3_formula": "Implies(likes_X_squirrel, visits_squirrel_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & visits(X, squirrel) -> not(sees(X, lion))",
+          "z3_formula": "Implies(And(sees_X_squirrel, visits_X_squirrel), not(sees_X_lion))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not(round(lion))",
+          "z3_formula": "Implies(visits_X_lion, not(round_lion))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not(sees(X, bear)) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_X_lion, not(sees_X_bear)), sees_X_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(lion, X)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_lion_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> big(X)",
+          "z3_formula": "Implies(sees_X_lion, big_X)",
+          "source_step": 19
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits_squirrel(X)",
+          "z3_formula": "Implies(likes_rabbit_squirrel, visits_squirrel_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & visits_squirrel(X) -> !sees_squirrel(lion)",
+          "z3_formula": "Implies(And(sees_rabbit_bear, visits_squirrel_rabbit), !sees_squirrel_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not big(rabbit)",
+          "z3_formula": "not big_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, rabbit)",
+          "z3_formula": "not likes_lion_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not round(lion)",
+          "z3_formula": "not round_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not round(lion)",
+          "z3_formula": "Implies(visits_lion_bear, not round_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, bear)",
+          "z3_formula": "visits_lion_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(rabbit, bear)",
+          "z3_formula": "not visits_rabbit_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> big(X)",
+          "z3_formula": "Implies(sees_rabbit_lion, big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> !sees(X, bear)",
+          "z3_formula": "Implies(sees_rabbit_lion, !sees_rabbit_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "!sees(rabbit, lion)",
+          "z3_formula": "!sees_rabbit_lion == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(squirrel, X)",
+          "z3_formula": "Implies(likes_rabbit_squirrel, visits_squirrel_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not(round(lion))",
+          "z3_formula": "Implies(visits_squirrel_lion, not(round_lion))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "not(round_lion) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(rabbit, bear))",
+          "z3_formula": "not(visits_rabbit_bear) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not(sees(X, bear)) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_rabbit_lion, not(sees_rabbit_bear)), sees_rabbit_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> not(likes(X, lion))",
+          "z3_formula": "Implies(sees_lion_rabbit, not(likes_rabbit_lion))",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(rabbit, lion))",
+          "z3_formula": "not(likes_rabbit_lion) == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(And(big_rabbit, visits_rabbit_lion), visits_lion_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(lion))",
+          "z3_formula": "not(round_lion) == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(rabbit, lion))",
+          "z3_formula": "not(likes_rabbit_lion) == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> not likes(X, lion)",
+          "z3_formula": "Implies(sees_lion_rabbit, not likes_lion_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not sees(X, bear) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_lion_rabbit, not sees_bear_rabbit), sees_rabbit_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) -> visits(X, squirrel)",
+          "z3_formula": "Implies(likes_rabbit_squirrel, visits_rabbit_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(rabbit, bear)",
+          "z3_formula": "not visits_rabbit_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not round(X)",
+          "z3_formula": "Implies(visits_lion_rabbit, not round_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, rabbit)",
+          "z3_formula": "not likes_lion_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not round(lion)",
+          "z3_formula": "not round_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bear)",
+          "z3_formula": "sees_lion_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not sees(X, bear) -> sees(X, squirrel)",
+          "z3_formula": "Implies(And(sees_lion_rabbit, not sees_bear_rabbit), sees_rabbit_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & visits(X, squirrel) -> not sees(X, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_squirrel, visits_rabbit_squirrel), not sees_lion_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, lion)",
+          "z3_formula": "visits_squirrel_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> visits(lion, X)",
+          "z3_formula": "Implies(visits_squirrel_lion, visits_lion_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_lion_rabbit == True",
+          "source_step": 17
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 178,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 72
+    },
+    "maxsat_stats": {
+      "satisfied": 69,
+      "excluded": 3,
+      "total_weight": 151,
+      "solve_time_ms": 2.3109540343284607
+    },
+    "timing": {
+      "trace_gen_s": 11.689,
+      "extraction_s": 43.509,
+      "dedup_s": 2.536,
+      "maxsat_s": 0.006,
+      "total_s": 57.74
+    }
+  }
+}

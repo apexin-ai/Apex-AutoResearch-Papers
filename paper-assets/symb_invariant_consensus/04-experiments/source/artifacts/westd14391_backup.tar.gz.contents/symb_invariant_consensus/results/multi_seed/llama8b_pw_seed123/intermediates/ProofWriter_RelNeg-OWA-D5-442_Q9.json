@@ -1,0 +1,1050 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-442_Q9",
+    "problem": "The bald eagle chases the cat. The bald eagle does not eat the mouse. The cat eats the cow. The cow eats the cat. The cow is blue. The cow is young. The cow sees the cat. The cow does not see the mouse. The mouse does not chase the cow. The mouse eats the bald eagle. The mouse is round. If something eats the mouse then it is round. If the mouse is red then the mouse sees the cow. If something chases the cat then it does not chase the mouse. If the mouse chases the cat then the cat eats the mouse. If something is round then it chases the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat chases the cat.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nBlue($x, bool) ::: Is x blue?\nYoung($x, bool) ::: Is x young?\nSees($x, $y, bool) ::: Does x see y?\nRound($x, bool) ::: Is x round?\nRed($x, bool) ::: Is x red?\n\nFacts:\nChases(BaldEagle, Cat, True) ::: The bald eagle chases the cat.\nEats(BaldEagle, Mouse, False) ::: The bald eagle does not eat the mouse.\nEats(Cat, Cow, True) ::: The cat eats the cow.\nEats(Cow, Cat, True) ::: The cow eats the cat.\nBlue(Cow, True) ::: The cow is blue.\nYoung(Cow, True) ::: The cow is young.\nSees(Cow, Cat, True) ::: The cow sees the cat.\nSees(Cow, Mouse, False) ::: The cow does not see the mouse.\nChases(Mouse, Cow, False) ::: The mouse does not chase the cow.\nEats(Mouse, BaldEagle, True) ::: The mouse eats the bald eagle.\nRound(Mouse, True) ::: The mouse is round.\n\nRules:\nEats($x, Mouse, True) >>> Round($x, True) ::: If something eats the mouse then it is round.\nRed(Mouse, True) >>> Sees(Mouse, Cow, True) ::: If the mouse is red then the mouse sees the cow.\nChases($x, Cat, True) >>> Chases($x, Mouse, False) ::: If something chases the cat then it does not chase the mouse.\nChases(Mouse, Cat, True) >>> Eats(Cat, Mouse, True) ::: If the mouse chases the cat then the cat eats the mouse.\nRound($x, True) >>> Chases($x, Cat, True) ::: If something is round then it chases the cat.\n\nQuery:\nChases(Cat, Cat, True) ::: The cat chases the cat."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 108.5,
+      "True": 50.0,
+      "Unknown": 122.5
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "False": 3,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The cat chases the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the cow. (Given)\n2. The cow eats the cat. (Given)\n3. If something eats the mouse then it is round. (Given)\n4. If the mouse is red then the mouse sees the cow. (Given)\n5. The mouse does not chase the cow. (Given)\n6. The mouse eats the bald eagle. (Given)\n7. The mouse is round. (Given)\n8. If something chases the cat then it does not chase the mouse. (Given)\n9. If the mouse chases the cat then the cat eats the mouse. (Given)\n10. If something is round then it chases the cat. (Given)\n\nFrom step 1 and step 2, we have a cycle where the cat eats the cow, and the cow eats the cat. This indicates a contradictory relationship, but it does not directly relate to the statement \"The cat chases the cat.\"\n\nHowever, we need to look for any connection between the cat and the cat in the given statements. \n\nFrom step 10, we know that if something is round then it chases the cat. Since the mouse is round (step 7) and it eats the bald eagle (step 6), we can infer that the mouse chases the cat (because it is round).\n\nNow, let's consider the statement \"The cat chases the cat.\" We need to determine if it is true, false, or unknown.\n\nIf the cat chases the cat, then it should not chase the mouse (step 8), but since the mouse chases the cat (because it is round), this creates a contradiction.\n\nHowever, looking closer at the information, we can see that the mouse is the one that is round, not the cat. So, the cat does not meet the criteria to chase the cat based on its roundness.\n\nLooking at the statement \"The cat chases the cat\" again, we can see that the cat does chase the cat in one instance, when the cow eats the cat. However, this is not an instance of the cat actively chasing the cat.\n\nSince the information given does not directly state that the cat actively chases the cat, but rather the cat is eaten by the cow in a cycle, the statement \"The cat chases the cat\" can be considered unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The cat chases the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the cow. (Given)\n2. The cow eats the cat. (Given)\nFrom this information, we can conclude that the cat and the cow are in a predator-prey relationship.\n\n3. The cow is blue. (Given)\n4. The cow is young. (Given)\n5. The cow sees the cat. (Given)\n6. The cow does not see the mouse. (Given)\n7. The mouse does not chase the cow. (Given)\n8. The mouse eats the bald eagle. (Given)\n9. The mouse is round. (Given)\n10. If something eats the mouse then it is round. (Given)\n11. If the mouse is red then the mouse sees the cow. (Given)\n12. If something chases the cat then it does not chase the mouse. (Given)\n13. If the mouse chases the cat then the cat eats the mouse. (Given)\n14. If something is round then it chases the cat. (Given)\n\nNow, we need to determine whether the cat chases the cat. Let's analyze the possibilities:\n\n* If the cat chases the cat, then according to statement 14, the cat must be round. However, there is no information that directly states the cat is round. \n* However, statement 12 suggests that if something chases the cat, it does not chase the mouse. But this statement is a conditional and is not directly applicable to our situation since we're examining if the cat chases the cat, not if something else chases the cat.\n* Since there is no direct information stating the cat chases the cat, we can't determine if this statement is true or false based on the given information. However, statement 13 implies that if the mouse chases the cat, the cat eats the mouse. There is no information that the mouse chases the cat, but we can conclude that if the cat chases the cat, the statement that the mouse eats the bald eagle is consistent with this situation, but we cannot conclude the mouse chases the cat from this information alone.\n\nHowever, statement 13 gives us a clue. We can see that the cat is the subject of the sentence \"if the mouse chases the cat then the cat eats the mouse\". This implies that the sentence \"the cat chases the cat\" would be the subject of the statement \"if the cat chases the cat then the cat eats the cat\". So we get a contradiction with the statement 2 which states \"The cow eats the cat\". This is a circular argument and does not lead us to the answer.\n\nLooking at the information that \"The mouse is round.\" and \"If something eats the mouse then it is round\" we can conclude that the mouse is round because the mouse eats the bald eagle. However, statement 14 implies that the mouse chases the cat since the mouse is round.\n\nHowever, since we know that \"if the mouse chases the cat then the cat eats the mouse\" we can conclude that the cat eats the mouse. Since the mouse eats the bald eagle and the cat eats the mouse, we can conclude that the cat chases the mouse, but we cannot conclude that the cat chases the cat.\n\nSince the cat chases the mouse and \"if something chases the cat then it does not chase the mouse\" we can conclude that the cat does not chase the cat.\n\nTherefore, the statement \"The cat chases the cat\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The cat chases the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cow eats the cat. (Statement 3)\n   This means that the cat is the food of the cow.\n\n2. The cow sees the cat. (Statement 7)\n   This means that the cow has knowledge about the cat.\n\n3. The cow does not see the mouse. (Statement 8)\n   This means that the cow does not have knowledge about the mouse.\n\n4. If the mouse chases the cat then the cat eats the mouse. (Statement 11)\n   This is a conditional statement that gives a condition for the cat eating the mouse.\n\n5. If something chases the cat then it does not chase the mouse. (Statement 10)\n   This is another conditional statement that gives a condition for the relationship between chasing the cat and chasing the mouse.\n\n6. The mouse does not chase the cow. (Statement 6)\n   This statement does not provide any information about the mouse chasing the cat.\n\n7. The mouse eats the bald eagle. (Statement 9)\n   This is an unrelated statement that gives information about the mouse's relationship with the bald eagle.\n\n8. If the mouse is red then the mouse sees the cow. (Statement 12)\n   This is a conditional statement that gives a condition for the mouse seeing the cow.\n\n9. If something eats the mouse then it is round. (Statement 2)\n   This is a conditional statement that gives a condition for something being round.\n\n10. The mouse is round. (Statement 15)\n    This means that the mouse satisfies the condition for being round.\n\n11. The cat eats the cow. (Statement 3)\n    This is an unrelated statement that gives information about the cat's relationship with the cow.\n\n12. The cow is blue. (Statement 5)\n    This is an unrelated statement that gives information about the cow's color.\n\n13. The cow is young. (Statement 6)\n    This is an unrelated statement that gives information about the cow's age.\n\n14. The cow sees the cat. (Statement 7)\n    This is an unrelated statement that gives information about the cow's knowledge about the cat.\n\n15. If something is round then it chases the cat. (Statement 16)\n    This is a conditional statement that gives a condition for something chasing the cat.\n\nNow, let's combine the information we have about the mouse and the roundness condition:\n- The mouse is round. (Statement 15)\n- If something eats the mouse then it is round. (Statement 2)\n- Since the cat does not eat the mouse, it does not satisfy the condition for being round.\n\nThe condition for chasing the cat is that something is round (Statement 15 and 16), but the mouse does not satisfy the condition for being round. Therefore, we cannot conclude that the cat chases the cat based on the given conditions.\n\nHowever, we can use the condition \"If something chases the cat then it does not chase the mouse\" (Statement 10). Since the mouse does not chase the cat, it follows that the cat does not chase the cat.\n\nTherefore, the statement \"The cat chases the cat\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The cat chases the cat\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given statements:\n\n1. The cat eats the cow. \n2. The cow eats the cat.\n3. The cow is blue. \n4. The cow is young. \n5. The cow sees the cat. \n6. The cow does not see the mouse. \n7. The mouse does not chase the cow. \n8. The mouse eats the bald eagle. \n9. The mouse is round. \n10. If something eats the mouse then it is round. \n11. If the mouse is red then the mouse sees the cow. \n12. If something chases the cat then it does not chase the mouse. \n13. If the mouse chases the cat then the cat eats the mouse. \n14. If something is round then it chases the cat.\n\nNow, we can deduce the following information:\n\n- From statement 14, if something is round, then it chases the cat. \n- From statement 9, the mouse is round, so the mouse chases the cat (by statement 14).\n- However, from statement 13, if the mouse chases the cat, then the cat eats the mouse, but this is not the case. \n- Therefore, from statement 12, if something chases the cat, then it does not chase the mouse. Since we concluded that the mouse chases the cat, the cat cannot chase the cat. \n\nFrom the given statements, we cannot directly conclude whether the cat chases the cat or not. However, we can use the given statements to reach a contradiction.\n\nIf the cat chases the cat, then by statement 12, the cat does not chase the mouse. But we know from statement 13 that if the mouse chases the cat, then the cat eats the mouse. Since we cannot have a contradiction, the cat cannot chase the cat.\n\nTherefore, we can conclude that the statement \"The cat chases the cat\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The cat chases the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the cow. (Given statement)\n\nFrom this, we can infer that the cow is the prey of the cat, and the cat is not the prey of the cow, as the cow eats the cat. (Given statement)\n\n2. The cow eats the cat. (Given statement)\n\nThis statement directly contradicts the previous inference that the cat is not the prey of the cow. However, this does not necessarily mean that the cat chases the cow. The cow eating the cat could be a separate event.\n\n3. The cow sees the cat. (Given statement)\n\nHowever, this does not provide any information about the cat chasing the cow.\n\n4. The cow is blue and young. (Given statements)\n\nThese statements do not provide any information about the cat chasing the cow.\n\n5. The mouse eats the bald eagle. (Given statement)\n\nThis statement does not provide any information about the cat chasing the cow.\n\n6. If something eats the mouse then it is round. (Given statement)\n\nThis statement is not applicable to the cat chasing the cow scenario.\n\n7. If the mouse is red then the mouse sees the cow. (Given statement)\n\nThis statement is not applicable to the cat chasing the cow scenario.\n\n8. If something chases the cat then it does not chase the mouse. (Given statement)\n\nThis statement does not provide any information about the cat chasing the cat.\n\n9. If the mouse chases the cat then the cat eats the mouse. (Given statement)\n\nThis statement does not provide any information about the cat chasing the cat.\n\n10. If something is round then it chases the cat. (Given statement)\n\nThis statement is not applicable to the cat chasing the cat scenario.\n\nNow, let's analyze the given information about the cat and the cow.\n\n- The cat eats the cow.\n- The cow eats the cat.\n\nFrom this information, we can conclude that the cat and the cow have a predator-prey relationship with each other.\n\nHowever, there is no direct information about the cat chasing the cat.\n\nBut, if the cow sees the cat, and the cow chases the cat, then the statement \"The cow chases the cat\" would be true.\n\nHowever, we are not given any information about the cow chasing the cat.\n\nWe are given information about the cow eating the cat. And the cat eating the cow.\n\nGiven that the cow eats the cat, it means the cat is the prey of the cow. \n\nBut, given that the cat eats the cow, it means the cow is the prey of the cat. \n\nHowever, we are given information that the cat and the cow are in a predator-prey relationship.\n\nTherefore, the cat chases the cow, and the cow eats the cat.\n\nSo, it is reasonable to conclude that the cat chases the cat.\n\nHence, the answer is \\boxed{True}.",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The cat chases the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the cow. (Given)\n2. The cow eats the cat. (Given)\n3. If the cow eats the cat, then the cat cannot eat the cow because in a cycle of predator and prey, the prey cannot eat the predator. However, this information is not explicitly stated, so we'll continue with the given statements.\n4. The cat eats the cow. (From statement 1)\n5. The cow is young. (Given)\n6. The cow sees the cat. (Given)\n7. The cow does not see the mouse. (Given)\n8. The mouse does not chase the cow. (Given)\n9. The mouse eats the bald eagle. (Given)\n10. The mouse is round. (Given)\n11. If something eats the mouse then it is round. (Given)\n12. The mouse is round. (From statement 10 and statement 11)\n13. The cat eats the mouse is not stated, so we can't conclude that the mouse is round due to the cat eating the mouse.\n14. If something is round then it chases the cat. (Given)\n15. The mouse is round. (From statement 12)\n16. The mouse chases the cat is unknown because we cannot directly conclude this from the given information.\n17. If the mouse chases the cat then the cat eats the mouse. (Given)\n18. The mouse chases the cat is unknown (From statement 16), so we cannot conclude this statement.\n\nNow, to determine if the cat chases the cat, let's look at the following information:\n\n19. The cat chases the cat can be deduced if the cat chases the mouse and if the mouse chases the cat, or if the mouse is round and the mouse chases the cat.\n20. If the mouse chases the cat then the cat eats the mouse (Given in statement 17).\n21. However, there is no direct information about the cat chasing the mouse. Instead, we have the following information:\n22. If something chases the cat then it does not chase the mouse. (Given)\n23. Since the cat chases the cat, it implies that the cat does not chase the mouse.\n\nFrom the given information, we cannot directly conclude whether the cat chases the cat or not. The statements given do not provide a clear conclusion to this problem.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The cat chases the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the cow. (Given)\n2. The cow eats the cat. (Given)\n3. The cow is blue. (Given, but this information is not relevant to the statement we're evaluating.)\n4. The cow is young. (Given, but this information is not relevant to the statement we're evaluating.)\n5. The cow sees the cat. (Given)\n6. The cow does not see the mouse. (Given, but this information is not relevant to the statement we're evaluating.)\n7. The mouse does not chase the cow. (Given, but this information is not relevant to the statement we're evaluating.)\n8. The mouse eats the bald eagle. (Given, but this information is not relevant to the statement we're evaluating.)\n9. The mouse is round. (Given)\n10. If something eats the mouse then it is round. (Given)\n11. If the mouse is red then the mouse sees the cow. (Given, but this information is not relevant to the statement we're evaluating.)\n12. If something chases the cat then it does not chase the mouse. (Given)\n13. If the mouse chases the cat then the cat eats the mouse. (Given)\n14. If something is round then it chases the cat. (Given)\n\nNow, let's analyze the statement \"The cat chases the cat\" based on the given information:\n\n- From statement 2, we know that the cow eats the cat. But we don't know if the cat chases the cow or the cat chases the cat.\n\n- From statement 14, if something is round then it chases the cat. However, we know that the mouse is round (statement 9). If the mouse is round, then it chases the cat (statement 14). But we don't know if the mouse chases the cat or not.\n\n- From statement 13, if the mouse chases the cat then the cat eats the mouse. However, we don't know if the mouse chases the cat or not.\n\n- From statement 12, if something chases the cat then it does not chase the mouse. But we don't know if the cat chases the cat or not.\n\nBased on the given information, we can't determine whether the cat chases the cat or not. The statement \"The cat chases the cat\" is unknown because we can't deduce it from the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The cat chases the cat\" is true, false, or unknown, we will break down the given information step by step.\n\n1. The cat eats the cow. (Given)\n2. The cow eats the cat. (Given)\n   This implies a cycle of predation and consumption between the cat and the cow. We cannot determine the direction of the chase based on this information alone.\n\nHowever, since the cow eats the cat, this means the cat is the food source for the cow. This doesn't directly imply a chase.\n\n3. The cat does not chase the mouse. (Given)\n4. The mouse eats the bald eagle. (Given)\n   This information does not directly relate to the cat chasing the cat.\n\n5. The mouse is round. (Given)\n6. If something eats the mouse then it is round. (Given)\n   Since the mouse is round and it eats the bald eagle, this is a valid statement. However, it still doesn't relate to the cat chasing the cat.\n\n7. The mouse does not chase the cow. (Given)\n8. The cow does not see the mouse. (Given)\n   These statements do not provide any information about the cat chasing the cat.\n\n9. If the mouse is red then the mouse sees the cow. (Given)\n   Since the mouse is not red, this statement is irrelevant to determining whether the cat chases the cat.\n\n10. If something chases the cat then it does not chase the mouse. (Given)\n11. If the mouse chases the cat then the cat eats the mouse. (Given)\n    These statements imply a relationship between the cat and the mouse but do not provide any information about the cat chasing the cat.\n\n12. If something is round then it chases the cat. (Given)\n13. The mouse is round. (From statement 5 and 6)\n   Since the mouse is round and it chases the cat (from statement 11), this is a valid statement.\n\nHowever, the initial question is about the cat chasing the cat, not the mouse chasing the cat.\n\nWe still don't have any information that the cat chases the cat.\n\nThe only information we have about the cat and the cat's behavior is that the cow eats the cat (statement 2), which implies a cycle of predation and consumption but does not provide any information about the cat chasing the cat.\n\nTherefore, based on the given information, we cannot determine whether the cat chases the cat. The answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'The cat chases the cat' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the cow. \n   - This statement does not provide any information about the cat chasing another animal.\n\n2. The cow eats the cat.\n   - This statement is a contradiction to the first statement. If the cat eats the cow, then it cannot be true that the cow eats the cat. However, this does not provide any information about the cat chasing another animal.\n\n3. The cow is blue.\n   - This statement does not provide any information about the cat chasing another animal.\n\n4. The cow is young.\n   - This statement does not provide any information about the cat chasing another animal.\n\n5. The cow sees the cat.\n   - This statement does not provide any information about the cat chasing another animal.\n\n6. The cow does not see the mouse.\n   - This statement does not provide any information about the cat chasing another animal.\n\n7. The mouse does not chase the cow.\n   - This statement does not provide any information about the cat chasing another animal.\n\n8. The mouse eats the bald eagle.\n   - This statement does not provide any information about the cat chasing another animal.\n\n9. The mouse is round.\n   - This statement does not provide any information about the cat chasing another animal.\n\n10. If something eats the mouse then it is round.\n    - We know the mouse eats the bald eagle, but this does not give any information about the cat chasing another animal.\n\n11. If the mouse is red then the mouse sees the cow.\n    - The statement does not provide any information about the mouse's color, so we cannot conclude anything about the cat chasing another animal.\n\n12. If something chases the cat then it does not chase the mouse.\n    - This statement does not provide any information about the cat chasing another animal.\n\n13. If the mouse chases the cat then the cat eats the mouse.\n    - This statement does not provide any information about the cat chasing another animal.\n\n14. If something is round then it chases the cat.\n    - We know the mouse is round, but the statement about the mouse does not tell us anything about the cat chasing another animal.\n\nNow, let's analyze the original statements again to see if we can find any information about the cat chasing the cat. We find the following statement:\n- The cow eats the cat.\n\nThis statement implies that the cat is being eaten by the cow, but it does not say anything about the cat chasing the cow. However, we have the following statement:\n- The cow sees the cat.\n\nThis statement tells us that the cow is aware of the cat. But we have another statement:\n- If the cow sees the cat then the cat sees the cow.\n   - This is a logical implication that we can derive from the information given. However, the original list does not contain this statement.\n\nSince we cannot derive this information from the original list, we will make an assumption to check the statement. \n\nGiven the information we have, we know that the cow sees the cat, and we can make the assumption that if the cow sees the cat, then the cat sees the cow. This is based on the assumption that the cow's perception of the cat implies the cat's perception of the cow.\n\nWith this assumption, we now have the following information:\n- The cat sees the cow.\n\nWe also have the following statement:\n- The cow eats the cat.\n\nThis statement tells us that the cow is eating the cat, but it does not provide any information about the cat chasing the cow.\n\nHowever, we have the following statement:\n- If the cat chases the cat then the cat sees the cow.\n\nWe know the cat sees the cow, so this statement is consistent with the information we have.\n\nWe also have the following statement:\n- If something chases the cat then it does not chase the mouse.\n    - This statement does not provide any information about the cat chasing the cat.\n\nWe have the following statement:\n- If the mouse chases the cat then the cat eats the mouse.\n    - This statement does not provide any information about the cat chasing the cat.\n\nWe have the following statement:\n- If something is round then it chases the cat.\n    - We know the mouse is round, but the statement about the mouse does not tell us anything about the cat chasing the cat.\n\nNow, let's analyze the original statements again to see if we can find any information about the cat chasing the cat. We find the following statement:\n- The cat eats the cow.\n\nThis statement implies that the cat is eating the cow, but it does not say anything about the cat chasing the cow.\n\nHowever, we have the following statement:\n- If the cat chases the cat then the cat sees the cow.\n   - This is a logical implication that we can derive from the information given. However, the original list does not contain this statement.\n\nSince we cannot derive this information from the original list, we will make an assumption to check the statement. \n\nGiven the information we have, we know that the cat eats the cow. We can make the assumption that if the cat eats the cow, then the cat is capable of chasing the cow.\n\nWith this assumption, we now have the following information:\n- The cat is capable of chasing the cow.\n\nHowever, we have the following statement:\n- If the cat chases the cow then the cat does not chase the mouse.\n    - This statement implies that the cat cannot chase the mouse if the cat chases the cow.\n\nWe know the cat eats the cow, and we can make the assumption that the cat chases the cow because it eats the cow.\n\nWith this assumption, we now have the following information:\n- The cat does not chase the mouse.\n\nHowever, we have the following statement:\n- If the cat does not chase the mouse then the cat chases the cat.\n    - This is a logical implication that we can derive from the information given.\n\nSince we have the following information:\n- The cat does not chase the mouse.\n- If the cat does not chase the mouse then the cat chases the cat.\n\nWe can conclude that the cat chases the cat.\n\nTherefore, the statement 'The cat chases the cat' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The cat chases the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the cow. (Given)\n2. The cow eats the cat. (Given)\n   From (1) and (2), we can conclude that the cat and the cow are in a predator-prey relationship, but it doesn't tell us about the cat's behavior regarding itself.\n\n3. If something chases the cat then it does not chase the mouse. (Given)\n   This rule is not directly applicable here, as it doesn't tell us about the cat's behavior towards itself.\n\n4. If the mouse chases the cat then the cat eats the mouse. (Given)\n   Again, this rule is not applicable here as it talks about the mouse chasing the cat.\n\n5. If something is round then it chases the cat. (Given)\n   The mouse is round. (Given)\n   But, this rule doesn't apply to the cat, as the cat is not round.\n\n6. The statement \"The cat chases the cat\" is about the cat's behavior towards itself. The given information doesn't provide any direct evidence or rule to prove or disprove this statement.\n\nBased on the given information, we cannot determine whether the cat chases the cat or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and use logical deductions to determine the truth value of the statement \"The cat chases the cat.\"\n\n1. The cat eats the cow. (Given)\n2. The cow eats the cat. (Given)\n3. The cow is blue. (Given)\n4. The cow is young. (Given)\n5. The cow sees the cat. (Given)\n6. The cow does not see the mouse. (Given)\n7. The mouse does not chase the cow. (Given)\n8. The mouse eats the bald eagle. (Given)\n9. The mouse is round. (Given)\n10. If something eats the mouse then it is round. (Given)\n11. If the mouse is red then the mouse sees the cow. (Given)\n12. If something chases the cat then it does not chase the mouse. (Given)\n13. If the mouse chases the cat then the cat eats the mouse. (Given)\n14. If something is round then it chases the cat. (Given)\n\nNow, let's analyze the statement \"The cat chases the cat.\"\n\nFrom (1), we know that the cat eats the cow.\nFrom (2), we know that the cow eats the cat. This creates a cycle where the cat and the cow are eating each other, but this does not affect the statement \"The cat chases the cat.\"\n\nTo determine whether the cat chases the cat, we need to examine the given conditions that involve the cat and the cat's actions.\n\nFrom (12), we know that if something chases the cat then it does not chase the mouse. However, this does not provide any direct information about the cat chasing the cat.\n\nFrom (13), we know that if the mouse chases the cat then the cat eats the mouse. Again, this does not provide any direct information about the cat chasing the cat.\n\nFrom (14), we know that if something is round then it chases the cat. We know that the mouse is round (from (9)). However, this does not provide any information about the cat's actions.\n\nWe do not have any direct information that indicates the cat chases the cat. However, we do have information that might indirectly relate to this statement.\n\nFrom (5), we know that the cow sees the cat. This does not provide any information about the cat's actions, but it does not contradict the statement \"The cat chases the cat\" either.\n\nFrom (12), we know that if something chases the cat then it does not chase the mouse. This does not provide any direct information about the cat chasing the cat, but it does provide a condition for something to chase the cat.\n\nNow, let's look at the condition for something to chase the cat from (14), which states that if something is round then it chases the cat. We know that the mouse is round (from (9)). However, this does not provide any information about the cat's actions.\n\nWe also know that the mouse eats the bald eagle (from (8)), but this does not provide any information about the cat chasing the cat.\n\nGiven the information provided, we cannot determine whether the cat chases the cat or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The cat chases the cat\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. The cat eats the cow. (Statement 3)\n2. The cow eats the cat. (Statement 5)\nFrom statement 1 and 2, it seems there is a contradiction, but we'll continue analyzing the information.\n\n3. If the mouse chases the cat, then the cat eats the mouse. (Statement 9)\nHowever, we have no information that the mouse chases the cat. So, we cannot conclude that the cat eats the mouse based on this statement.\n\n4. If something chases the cat then it does not chase the mouse. (Statement 8)\nThis statement implies that if the cat chases something, it will not chase the mouse. But it does not directly relate to whether the cat chases the cat or not.\n\n5. The cow sees the cat. (Statement 6)\nThis statement is irrelevant to determining whether the cat chases the cat.\n\n6. The cat does not eat the mouse. (Statement 2)\nThis statement implies that the cat does not eat the mouse, but it does not provide information about whether the cat chases the mouse.\n\n7. If something is round then it chases the cat. (Statement 10)\nSince the mouse is round (Statement 11), the mouse chases the cat based on this statement.\n\n8. The mouse chases the cat. (From statement 7)\nSince the mouse chases the cat, we can apply statement 3: If the mouse chases the cat, then the cat eats the mouse. This implies that the cat eats the mouse.\n\nNow, let's examine the information that relates to the cat chasing the cat.\n\n9. The mouse eats the bald eagle. (Statement 6)\n10. The bald eagle does not eat the mouse. (Statement 1)\n11. The mouse is round. (Statement 11)\n12. If something eats the mouse then it is round. (Statement 4)\nSince the mouse eats the bald eagle (Statement 6), the mouse is round (Statement 11), which matches statement 12.\n\n13. If something is round then it chases the cat. (Statement 7)\nSince the mouse is round (Statement 11), the mouse chases the cat based on this statement.\n\n14. The cat chases the cat.\nGiven that the mouse chases the cat (Statement 13), we can apply statement 8: If something chases the cat then it does not chase the mouse. This implies that the cat does not chase the mouse. However, we cannot directly conclude that the cat does not chase the cat.\n\nHowever, we know that the mouse chases the cat. If the cat chased the cat, it would be a case of the cat chasing itself. This would imply that the cat chases the cat if and only if the cat sees itself. Since there is no information that the cat sees itself, we cannot conclude that the cat chases the cat.\n\nTherefore, the statement \"The cat chases the cat\" is unknown, as we cannot determine its truth value based on the given information.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse_mouse, round_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "mouse == red -> sees(mouse, cow)",
+          "z3_formula": "Implies(red_mouse, sees_mouse_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, cow))",
+          "z3_formula": "Not(chases_mouse_cow) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, eagle)",
+          "z3_formula": "eats_mouse_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not(chases(X, mouse))",
+          "z3_formula": "Implies(chases_X_cat, Not(chases_X_mouse))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(mouse, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_cat_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_X, chases_X_cat)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, cow)",
+          "z3_formula": "Not(sees_mouse_cow) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bald_eagle)",
+          "z3_formula": "eats_mouse_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse_bald_eagle, round_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, cow)",
+          "z3_formula": "Implies(red_mouse, sees_mouse_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not chases(X, mouse)",
+          "z3_formula": "Implies(chases_cat_cat, Not(chases_cat_mouse))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(mouse, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_cat_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(cat, cat)",
+          "z3_formula": "Not(chases_cat_cat) == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(cow, mouse)",
+          "z3_formula": "Not(sees_cow_mouse) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not chases(X, mouse)",
+          "z3_formula": "Implies(chases_cat, Not(chases_mouse))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not chases(mouse, X)",
+          "z3_formula": "Implies(chases_cat, Not(chases_mouse_cat))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(mouse, cow)",
+          "z3_formula": "Not(chases_mouse_cow) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, eagle)",
+          "z3_formula": "eats_mouse_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, cow)",
+          "z3_formula": "Implies(red_mouse, sees_mouse_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse, round_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, cow)",
+          "z3_formula": "Not(sees_mouse_cow) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(mouse, cow)",
+          "z3_formula": "Not(chases_mouse_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, eagle)",
+          "z3_formula": "eats_mouse_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse_eagle, round_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, cow)",
+          "z3_formula": "Implies(red_mouse, sees_mouse_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not chases(X, mouse)",
+          "z3_formula": "Implies(chases_cat_cat, Not(chases_cat_mouse))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(mouse, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_cat_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "predator_prey(cat, cow)",
+          "z3_formula": "predator_prey_cat_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & chases(X, Y) -> chases(X, Y)",
+          "z3_formula": "Implies(And(sees_cow_cat, chases_cow_cat), chases_cow_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cow)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> chases(Y, Y)",
+          "z3_formula": "Implies(chases_cat_cow, chases_cat_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cat)",
+          "z3_formula": "chases_cat_cat == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) & eats(Y, X) -> Not(eats(X, Y))",
+          "z3_formula": "Implies(And(eats_cow_cat, eats_cat_cow), Not(eats_cat_cow))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "Not(sees(mouse, cow))",
+          "z3_formula": "Not(sees_mouse_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "Not(chases(mouse, cow))",
+          "z3_formula": "Not(chases_mouse_cow) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, eagle)",
+          "z3_formula": "eats_mouse_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse_eagle, round_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, X)",
+          "z3_formula": "Implies(chases_mouse_cat, chases_cat_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == Unknown",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> Not(chases(cat, X))",
+          "z3_formula": "Implies(chases_cat_mouse, Not(chases_cat_mouse))",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cat)",
+          "z3_formula": "chases_cat_cat == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, cow)",
+          "z3_formula": "Not(sees_mouse_cow) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(mouse, cow)",
+          "z3_formula": "Not(chases_mouse_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, eagle)",
+          "z3_formula": "eats_mouse_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse_eagle, round_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> sees(X, cow)",
+          "z3_formula": "Implies(red_mouse, sees_mouse_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not chases(X, mouse)",
+          "z3_formula": "Implies(chases_cat_cat, Not(chases_X_mouse))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(mouse, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_cat_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> Not(chases(X, Y))",
+          "z3_formula": "Implies(eats_cow_cat, Not(chases_cat_cat))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "Not(chases(cat, mouse))",
+          "z3_formula": "Not(chases_cat_mouse) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, eagle)",
+          "z3_formula": "eats_mouse_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse_eagle, round_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "Not(chases(mouse, cow))",
+          "z3_formula": "Not(chases_mouse_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "Not(sees(cow, mouse))",
+          "z3_formula": "Not(sees_cow_mouse) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(mouse) -> sees(mouse, cow)",
+          "z3_formula": "Implies(red_mouse, sees_mouse_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "Not(red(mouse))",
+          "z3_formula": "Not(red_mouse) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> Not(chases(X, mouse))",
+          "z3_formula": "Implies(chases_X_cat, Not(chases_X_mouse))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(mouse, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_cat_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cat)",
+          "z3_formula": "chases_cat_cat == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(eats_cat_cow, sees_cat_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, cow)",
+          "z3_formula": "sees_cat_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "If sees(X, Y) then sees(Y, X)",
+          "z3_formula": "Implies(sees_cat_cow, sees_cow_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(cat, cow) -> chases(cat, cow)",
+          "z3_formula": "Implies(eats_cat_cow, chases_cat_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cow)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(cat, cow) -> Not(chases(cat, mouse))",
+          "z3_formula": "Implies(chases_cat_cow, Not(chases_cat_mouse))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(chases(cat, mouse))",
+          "z3_formula": "Not(chases_cat_mouse) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "Not(chases(cat, mouse)) -> chases(cat, cat)",
+          "z3_formula": "Implies(Not(chases_cat_mouse), chases_cat_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cat)",
+          "z3_formula": "chases_cat_cat == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not(chases(X, mouse))",
+          "z3_formula": "Implies(chases_X_cat, Not(chases_X_mouse))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(mouse, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_cat_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_X, chases_X_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(cow, mouse)",
+          "z3_formula": "Not(sees_cow_mouse) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(mouse, cow)",
+          "z3_formula": "Not(chases_mouse_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bald_eagle)",
+          "z3_formula": "eats_mouse_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(mouse)",
+          "z3_formula": "round_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_X_mouse, round_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(mouse) -> sees(mouse, cow)",
+          "z3_formula": "Implies(red_mouse, sees_mouse_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not chases(X, mouse)",
+          "z3_formula": "Implies(chases_X_cat, Not(chases_X_mouse))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(mouse, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_cat_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_X, chases_X_cat)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cow)",
+          "z3_formula": "eats_cat_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, cat)",
+          "z3_formula": "eats_cow_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> eats(X, Y)",
+          "z3_formula": "Implies(chases_cat_cat, eats_cat_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> not(chases(X, mouse))",
+          "z3_formula": "Implies(chases_X_cat, Not(chases_X_mouse))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(cat, mouse))",
+          "z3_formula": "Not(eats_cat_mouse) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "chases(mouse, cat)",
+          "z3_formula": "chases_mouse_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> eats(X, Y)",
+          "z3_formula": "Implies(chases_mouse_cat, eats_mouse_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, bald_eagle)",
+          "z3_formula": "eats_mouse_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(bald_eagle, mouse))",
+          "z3_formula": "Not(eats_bald_eagle_mouse) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> round(X)",
+          "z3_formula": "Implies(eats_mouse_bald_eagle, round_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> chases(X, cat)",
+          "z3_formula": "Implies(round_mouse, chases_mouse_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, cat)",
+          "z3_formula": "chases_cat_cat == True",
+          "source_step": 14
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 153,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 50
+    },
+    "maxsat_stats": {
+      "satisfied": 45,
+      "excluded": 5,
+      "total_weight": 148,
+      "solve_time_ms": 1.8660472705960274
+    },
+    "timing": {
+      "trace_gen_s": 15.415,
+      "extraction_s": 27.356,
+      "dedup_s": 1.419,
+      "maxsat_s": 0.005,
+      "total_s": 44.194
+    }
+  }
+}

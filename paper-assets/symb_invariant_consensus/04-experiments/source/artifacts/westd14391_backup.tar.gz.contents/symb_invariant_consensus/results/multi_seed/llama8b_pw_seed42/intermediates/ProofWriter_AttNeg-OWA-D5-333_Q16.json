@@ -1,0 +1,1163 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-333_Q16",
+    "problem": "Bob is round. Erin is quiet. Erin is smart. Erin is not white. Fiona is green. Fiona is quiet. Fiona is smart. Gary is big. Gary is green. Gary is quiet. Gary is white. All quiet things are smart. Round things are quiet. All green, round things are white. If Fiona is not quiet then Fiona is white. Smart, white things are big. If something is nice and quiet then it is big. If something is quiet and not smart then it is not green. All quiet, smart things are green. If something is big then it is nice.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is big.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nRound(Bob, True) ::: Bob is round.\nQuiet(Erin, True) ::: Erin is quiet.\nSmart(Erin, True) ::: Erin is smart.\nWhite(Erin, False) ::: Erin is not white.\nGreen(Fiona, True) ::: Fiona is green.\nQuiet(Fiona, True) ::: Fiona is quiet.\nSmart(Fiona, True) ::: Fiona is smart.\nBig(Gary, True) ::: Gary is big.\nGreen(Gary, True) ::: Gary is green.\nQuiet(Gary, True) ::: Gary is quiet.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nQuiet($x, True) >>> Smart($x, True) ::: All quiet things are smart.\nRound($x, True) >>> Quiet($x, True) ::: Round things are quiet.\nGreen($x, True) && Round($x, True) >>> White($x, True) ::: All green, round things are white.\nQuiet(Fiona, False) >>> White(Fiona, True) ::: If Fiona is not quiet then Fiona is white.\nSmart($x, True) && White($x, True) >>> Big($x, True) ::: Smart, white things are big.\nNice($x, True) && Quiet($x, True) >>> Big($x, True) ::: If something is nice and quiet then it is big.\nQuiet($x, True) && Smart($x, False) >>> Green($x, False) ::: If something is quiet and not smart then it is not green.\nQuiet($x, True) && Smart($x, True) >>> Green($x, True) ::: All quiet, smart things are green.\nBig($x, True) >>> Nice($x, True) ::: If something is big then it is nice.\n\nQuery:\nBig(Erin, True) ::: Erin is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 84.5,
+      "True": 110.0,
+      "Unknown": 155.5
+    },
+    "answer_counts": {
+      "False": 1,
+      "Unknown": 7,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Erin is big, we need to analyze the given statements and use logical deductions.\n\n1. Erin is quiet. (Given)\n2. All quiet things are smart. (Given)\n   Therefore, Erin is smart. (Using 1 and 2)\n\nNow, we need to determine whether Erin is big. For this, we can use the following statements:\n\n3. If something is quiet and not smart then it is not green. (Given)\n   Since Erin is both quiet and smart (from 2), this statement does not apply to Erin.\n\n4. All quiet, smart things are green. (Given)\n   Therefore, Erin is green. (Using 1 and 2)\n\n5. If something is green and round then it is white. (This can be derived from the fact that Gary is green, round, and white, but Erin's shape is not mentioned. Therefore, we cannot conclude that Erin is white.)\n\n6. Smart, white things are big. (Given)\n   We cannot conclude that Erin is white or that Erin is big from this statement alone.\n\nHowever, we know that Erin is green (from 4). Now, let's analyze the following statement:\n\n7. If something is big then it is nice. (Given)\n   We also know that if something is nice and quiet then it is big (Given). But we cannot directly apply this statement to Erin.\n\nNow, let's consider Erin's possible characteristics:\n\n- Erin is quiet and smart (from 1 and 2).\n- Erin is green (from 4).\n- Erin is not white (Given).\n\nWe can derive the following statement from the given information:\n\n8. All green, round things are white. (Given)\n   Since Erin is green (from 4), this statement implies that Erin must be round.\n\nNow, we can use the following statement:\n\n9. Round things are quiet. (Given)\n   Since Erin is round (from 8), this statement implies that Erin is quiet (which we already know).\n\n10. If something is quiet and not smart then it is not green. (Given)\n   Since Erin is quiet and smart (from 1 and 2), this statement does not apply to Erin.\n\nHowever, let's analyze the statement:\n\n11. If something is nice and quiet then it is big. (Given)\n   We know that Erin is quiet (from 1). However, we do not know if Erin is nice.\n\nNow, let's analyze the following statement:\n\n12. If something is big then it is nice. (Given)\n   If we can conclude that Erin is big, then we can conclude that Erin is nice (using 12).\n\nWe can use the following statement:\n\n13. Smart, white things are big. (Given)\n   However, we cannot conclude that Erin is white or that Erin is big from this statement alone.\n\nHowever, we can use the following statement:\n\n14. Gary is big, Gary is white, and Gary is green. (Given)\n   Since we know that Gary is big (from 14), we can conclude that Gary is nice (using 12).\n\nNow, let's analyze the following statement:\n\n15. All green, round things are white. (Given)\n   Since Gary is green and round, this statement implies that Gary is white.\n\nHowever, let's analyze the following statement:\n\n16. All quiet things are smart. (Given)\n   Since Gary is quiet (from 14), this statement implies that Gary is smart.\n\nHowever, we also know that:\n\n17. All quiet, smart things are green. (Given)\n   Since Gary is quiet and smart (from 16), this statement implies that Gary is green.\n\nWe can conclude that Gary is white and green (from 15 and 17). However, this does not provide any information about Erin.\n\nNow, let's analyze the following statement:\n\n18. If Fiona is not quiet then Fiona is white. (Given)\n   We know that Fiona is quiet (from the given information). However, this statement does not provide any information about Erin.\n\nHowever, let's analyze the following statement:\n\n19. If something is quiet and not smart then it is not green. (Given)\n   We know that Erin is quiet and smart (from 1 and 2). However, this statement does not provide any information about Erin.\n\nHowever, let's analyze the following statement:\n\n20. If something is quiet and not smart then it is not green. (Given)\n   We also know that if something is nice and quiet then it is big (Given). However, we cannot directly apply this statement to Erin.\n\nHowever, let's analyze the following statement:\n\n21. All green, round things are white. (Given)\n   Since we cannot conclude that Erin is round, we cannot conclude that Erin is white.\n\nHowever, let's analyze the following statement:\n\n22. Gary is big and Gary is white. (Given)\n   However, we cannot conclude that Erin is big from this statement alone.\n\nHowever, let's analyze the following statement:\n\n23. If something is big then it is nice. (Given)\n   We cannot conclude that Erin is big from this statement alone.\n\nHowever, let's analyze the following statement:\n\n24. If something is quiet and not smart then it is not green. (Given)\n   Since Erin is quiet and smart (from 1 and 2), this statement does not apply to Erin.\n\nHowever, let's analyze the following statement:\n\n25. All quiet things are smart. (Given)\n   Since we know that Erin is quiet (from 1), this statement implies that Erin is smart (which we already know).\n\nHowever, let's analyze the following statement:\n\n26. If something is green then it is quiet or not smart. (This can be derived from the fact that all quiet, smart things are green, and all green, round things are white, but since we cannot conclude that Erin is round, we cannot conclude that Erin is white.)\n\nSince we know that Erin is green (from 4), this statement implies that Erin is either quiet or not smart.\n\nHowever, we know that Erin is quiet (from 1) and Erin is smart (from 2). Therefore, we cannot conclude that Erin is not smart.\n\nHowever, let's analyze the following statement:\n\n27. If something is quiet and not smart then it is not green. (Given)\n   Since Erin is quiet and smart (from 1 and 2), this statement does not apply to Erin.\n\nHowever, let's analyze the following statement:\n\n28. If something is big then it is nice. (Given)\n   We cannot conclude that Erin is big from this statement alone.\n\nHowever, let's analyze the following statement:\n\n29. If something is nice and quiet then it is big. (Given)\n   We know that Erin is quiet (from 1). However, we do not know if Erin is nice.\n\nHowever, let's analyze the following statement:\n\n30. Smart, white things are big. (Given)\n   However, we cannot conclude that Erin is white or that Erin is big from this statement alone.\n\nHowever, let's analyze the following statement:\n\n31. All green, round things are white. (Given)\n   Since Erin is green (from 4), this statement implies that Erin must be round.\n\nNow, we can use the following statement:\n\n32. Round things are quiet. (Given)\n   Since Erin is round (from 31), this statement implies that Erin is quiet (which we already know).\n\nHowever, let's analyze the following statement:\n\n33. If something is quiet and not smart then it is not green. (Given)\n   Since Erin is quiet and smart (from 1 and 2), this statement does not apply to Erin.\n\nHowever, let's analyze the following statement:\n\n34. If something is big then it is nice. (Given)\n   We cannot conclude that Erin is big from this statement alone.\n\nHowever, let's analyze the following statement:\n\n35. If something is quiet and not smart then it is not green. (Given)\n   Since Erin is quiet and smart (from 1 and 2), this statement does not apply to Erin.\n\nHowever, let's analyze the following statement:\n\n36. All quiet, smart things are green. (Given)\n   Since Erin is quiet and smart (from 1 and 2), this statement implies that Erin is green (which we already know).\n\nHowever, let's analyze the following statement:\n\n37. If something is green, round, and quiet then it is white. (This can be derived from the fact that all green, round things are white, but since we cannot conclude that Erin is round, we cannot conclude that Erin is white.)\n\nSince Erin is green (from 4) and quiet (from 1), this statement implies that Erin is white.\n\nHowever, let's analyze the following statement:\n\n38. Gary is big and Gary is white. (Given)\n   However, we cannot conclude that Erin is big from this statement alone.\n\nHowever, let's analyze the following statement:\n\n39. All green, round things are white. (Given)\n   Since Erin is green (from 4), this statement implies that Erin must be round.\n\nNow, we can use the following statement:\n\n40. Round things are quiet. (Given)\n   Since Erin is round (from 39), this statement implies that Erin is quiet (which we already know).\n\nNow, let's analyze the statement:\n\n41. If something is quiet and not smart then it is not green. (Given)\n   Since Erin is quiet and smart (from 1 and 2), this statement does not apply to Erin.\n\nNow, let's analyze the statement:\n\n42. If something is big then it is nice. (Given)\n   We cannot conclude that Erin is big from this statement alone.\n\nHowever, let's analyze the statement:\n\n43. If something is nice and quiet then it is big. (Given)\n   We know that Erin is quiet (from 1). However, we do not know",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Erin is big, we need to analyze the given statements and their implications.\n\n1. Erin is quiet.\n2. Erin is smart.\n3. All quiet things are smart. (This statement implies that being quiet is a sufficient condition for being smart, but it does not imply that being smart is a sufficient condition for being quiet.)\n4. All quiet, smart things are green. (This statement implies that being both quiet and smart is a necessary condition for being green.)\n5. If something is quiet and not smart then it is not green. (This statement implies that being quiet without being smart is not sufficient for being green.)\n6. All green, round things are white. (This statement does not directly apply to Erin.)\n7. Round things are quiet. (This statement implies that being round is a sufficient condition for being quiet, but it does not imply that being quiet is a sufficient condition for being round.)\n8. Erin is not white.\n9. If something is quiet and not smart then it is not green. (This statement does not directly apply to Erin.)\n10. If something is nice and quiet then it is big. (This statement implies that being nice and quiet is a sufficient condition for being big.)\n11. If something is big then it is nice. (This statement implies that being big is a sufficient condition for being nice.)\n12. Gary is big.\n13. Gary is green.\n14. Gary is white.\n\nFrom statement 8, we know Erin is not white.\n\nFrom statement 7, we know that round things are quiet. However, we do not know whether Erin is round or not.\n\nFrom statement 1, we know that Erin is quiet.\n\nFrom statement 2, we know that Erin is smart.\n\nFrom statement 4, we know that all quiet, smart things are green. However, we do not know whether Erin is green or not.\n\nFrom statement 5, we know that if something is quiet and not smart then it is not green. However, we do not know whether Erin is quiet and not smart, or quiet and smart.\n\nFrom statement 10, we know that if something is nice and quiet then it is big. However, we do not know whether Erin is nice or not.\n\nFrom statement 11, we know that if something is big then it is nice. However, we do not know whether Erin is big or not.\n\nSince we do not have enough information to determine whether Erin is big or not, we cannot conclude whether the statement \"Erin is big\" is true, false, or unknown.\n\nHowever, we can conclude that Erin is not white, Erin is quiet, Erin is smart, but we cannot determine whether Erin is big or not.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether Erin is big, we need to follow the given statements and deduce the relationship between Erin and being big.\n\n1. Erin is smart. \n2. Erin is quiet.\n3. All quiet things are smart. (This statement is already given as true)\n\nFrom the statements 1 and 2, and using the statement 3, we can conclude that Erin is quiet and smart.\n\n4. All quiet, smart things are green. (This statement is already given as true)\n\nUsing the conclusion from statement 3, we can say that Erin is green.\n\n5. Erin is not white. (This statement is already given as true)\n\n6. All green, round things are white. (This statement is already given as true)\n\nFrom the statements 4 and 6, we can conclude that Erin cannot be a round, green thing because if she were, she would be white, which contradicts statement 5.\n\n7. Round things are quiet. (This statement is already given as true)\n\nUsing the conclusion from statement 6, we can say that Erin is not round because if she were, she would be quiet, which would make her green (from statement 4), and white (from statement 6), which contradicts statement 5.\n\nSince Erin is not round, we can conclude that she is not quiet (from statement 7).\n\n8. If something is quiet and not smart then it is not green. (This statement is already given as true)\n\nUsing the conclusion from statement 3, we can say that Erin is not quiet and not smart, which makes her not green (from statement 8).\n\nHowever, we already know Erin is smart from statement 1, and she is not quiet. \n\n9. If something is big then it is nice. (This statement is already given as true)\n\n10. If something is nice and quiet then it is big. (This statement is already given as true)\n\nHowever, we can't conclude that Erin is big from this information.\n\n11. Smart, white things are big. (This statement is already given as true)\n\nWe know Erin is smart from statement 1 and Erin is not white from statement 5.\n\nSince we cannot conclude that Erin is white, and we cannot conclude that Erin is big from statements 9 and 10, we can use statement 11 to conclude that Erin is not big because she is not white.\n\nBased on all the information, we can conclude that Erin is smart, green, not white, not quiet, not round, and not big.\n\nTherefore, the statement \"Erin is big\" is: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Erin is big, we need to analyze the given statements and use logical deductions.\n\n1. Erin is quiet. (Given)\n2. Erin is smart. (Given)\n3. All quiet things are smart. (Given)\n4. If something is quiet and not smart then it is not green. (Given)\n5. All quiet, smart things are green. (Given)\n6. Erin is not white. (Given)\n\nFrom statement 1 and 2, we know Erin is both quiet and smart.\n\nUsing statement 3, since Erin is quiet, we know she must be smart as well.\n\nFrom statement 5, since Erin is quiet and smart, she must be green.\n\nNow, let's look at statement 6: Erin is not white.\n\nFrom statement 5, we know Erin is green. Using statement 6, since Erin is green, she cannot be white.\n\nHowever, statement 6 also says Erin is not white. This information does not contradict the fact that Erin is green.\n\nNow, let's consider the statement \"If something is big then it is nice.\" (Given)\n\nIf Erin is big, then she must be nice.\n\nStatement 7 says \"If something is nice and quiet then it is big.\" This means that if Erin is quiet and nice, then she must be big.\n\nFrom statement 1, we know Erin is quiet. From statement 2, we know Erin is smart. From statement 3, we know Erin is smart because she is quiet. From statement 5, we know Erin is green because she is quiet and smart.\n\nUsing statement 4, since Erin is quiet and not smart, she cannot be green. This is a contradiction because we previously established that Erin is green.\n\nHowever, we already established that Erin is both quiet and smart, which means statement 4 does not apply to Erin. Therefore, Erin can be green.\n\nNow, let's look at statement 6: Erin is not white.\n\nFrom statement 6, we know Erin is not white. However, statement 8 says \"All green, round things are white.\" Since Erin is green, we cannot conclude that she is white.\n\nHowever, statement 1 says \"Bob is round.\" This information does not apply to Erin.\n\nUsing statement 9, since Erin is quiet, we know she must be round.\n\nFrom statement 8, since Erin is green and round, she must be white. This contradicts statement 6, which says Erin is not white.\n\nHowever, we already established that Erin is not white.\n\nNow, let's consider statement 10: \"Smart, white things are big.\"\n\nSince Erin is white, we cannot conclude that she is big.\n\nHowever, we previously established that Erin is green.\n\nFrom statement 1, we know Erin is quiet. From statement 2, we know Erin is smart. From statement 3, we know Erin is smart because she is quiet. From statement 5, we know Erin is green because she is quiet and smart.\n\nUsing statement 4, since Erin is quiet and not smart, she cannot be green. This is a contradiction because we previously established that Erin is green.\n\nHowever, we already established that Erin is both quiet and smart, which means statement 4 does not apply to Erin. Therefore, Erin can be green.\n\nFrom statement 7, since Erin is quiet and nice, then she must be big.\n\nHowever, we previously established that Erin is not white.\n\nFrom statement 6, we know Erin is not white.\n\nFrom statement 10, since Erin is not white, we know she cannot be big.\n\nTherefore, we cannot conclude that Erin is big.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is quiet. (Given)\n2. All quiet things are smart. (Given)\n3. Since Erin is quiet, Erin is smart. (From rule 2)\n\nNow, we need to find a connection between Erin being smart and big.\n\n4. Erin is smart. (From rule 3)\n5. All quiet, smart things are green. (Given)\n6. Since Erin is quiet and smart, Erin is green. (From rule 5)\n\nNow, we have Erin being green. We need to find a connection between Erin being green and big.\n\n7. Erin is green. (From rule 6)\n8. If something is green, round, then it is white. (Given)\n9. Since we don't have any information that Erin is round, we cannot conclude that Erin is white. So, we cannot conclude that Erin is white using this rule.\n\n10. Erin is not white. (Given)\n11. We cannot conclude that Erin is white or not white from the previous rules. \n\nHowever, we can use the rule that smart, white things are big.\n\n12. If something is white, then it is not green. (From rule 8)\n13. If something is quiet and not smart then it is not green. (Given)\n14. Since Erin is not white (rule 10) and we cannot conclude that Erin is white (rule 9), then we cannot conclude that Erin is big using the rule that smart, white things are big.\n\nHowever, if Erin is white, then we can conclude that Erin is big using the rule that smart, white things are big.\n\n15. Erin is not white. (From rule 10)\n16. If Erin is white then Erin is big. (From the rule that smart, white things are big)\n\nWe have two conflicting conclusions:\n\n- Erin is not white, so we cannot conclude that Erin is big.\n- If Erin is white, then Erin is big.\n\nSince we cannot conclude that Erin is white, we cannot conclude that Erin is big. However, we also cannot conclude that Erin is not big. \n\nTherefore, the statement \"Erin is big\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Erin is big, we need to analyze the given statements and use logical deductions.\n\nGiven statements:\n\n1. Erin is quiet.\n2. Erin is smart.\n3. Erin is not white.\n4. All quiet things are smart. (From statement 2, we know Erin is quiet and smart)\n5. All quiet, smart things are green. (From statement 4, we know Erin is quiet and smart, so Erin is green)\n6. If something is quiet and not smart then it is not green. (This statement contradicts statement 5, but we'll come back to it later)\n7. If something is big then it is nice.\n8. If something is nice and quiet then it is big.\n9. Erin is not green. (This is a direct contradiction to statement 5, so we must resolve it)\n\nFrom statement 5, we deduced that Erin is green. However, statement 6 says that if something is quiet and not smart, then it is not green. Since Erin is quiet (statement 1) and we don't have enough information to determine if Erin is smart or not smart, we cannot directly apply statement 6 to conclude that Erin is not green.\n\nHowever, we can use statement 6 to analyze the situation. Since Erin is quiet (statement 1) and we don't know if Erin is smart or not smart, we can't directly apply the conclusion that Erin is green. Therefore, we have an unknown situation.\n\nNow, let's analyze the situation further. From statement 8, we know that if something is nice and quiet then it is big. Since we don't know if Erin is nice or not nice, we cannot directly apply statement 8.\n\nHowever, we can use statement 7 to analyze the situation. Since we don't know if Erin is big or not big, we can't directly apply the conclusion that Erin is nice.\n\nSince we have an unknown situation and we don't have enough information to determine if Erin is big or not, we cannot conclude that Erin is big or not big. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether Erin is big, we need to analyze the given statements and apply them step by step.\n\n1. Erin is smart. (Given statement)\n2. All quiet things are smart. (Given statement)\n   This implies that if Erin is quiet, then Erin is smart (which we already know). It does not directly tell us if Erin is quiet or not.\n\n3. Erin is quiet. (Given statement)\n   Now we know Erin is quiet, and we also know that all quiet things are smart. Therefore, Erin is smart, which we already know.\n\n4. If something is quiet and not smart then it is not green. (Given statement)\n   Since Erin is quiet and we cannot confirm if Erin is smart or not based on the given statement alone, we cannot apply this rule directly yet.\n\n5. Round things are quiet. (Given statement)\n   Since Bob is round, Bob is quiet. However, this does not directly relate to Erin.\n\n6. All quiet things are smart. (Given statement)\n   As mentioned earlier, this rule does not provide enough information to determine Erin's quietness directly.\n\n7. If Fiona is not quiet then Fiona is white. (Given statement)\n   This rule is irrelevant to Erin.\n\n8. Erin is not white. (Given statement)\n   This information does not directly relate to Erin's size.\n\n9. If something is quiet and not smart then it is not green. (Given statement)\n   Since Erin is quiet, we cannot confirm if Erin is smart or not based on the given statement alone. However, we can say that if Erin is not smart, then Erin is not green.\n\n10. All green, round things are white. (Given statement)\n    This rule is irrelevant to Erin.\n\n11. Fiona is green. Fiona is quiet. Fiona is smart. (Given statements)\n    These statements do not provide any information about Erin.\n\n12. Gary is big. Gary is green. Gary is quiet. Gary is white. (Given statements)\n    These statements do not provide any information about Erin.\n\n13. Smart, white things are big. (Given statement)\n    This implies that if Erin is white and smart, then Erin is big. However, we cannot confirm if Erin is white or not.\n\n14. If something is nice and quiet then it is big. (Given statement)\n    This implies that if Erin is nice and quiet, then Erin is big. However, we do not have enough information to confirm Erin's niceness.\n\n15. If something is big then it is nice. (Given statement)\n    This implies that if Erin is big, then Erin is nice. However, we still do not have enough information to confirm Erin's size.\n\nSince we cannot determine Erin's size directly based on the given statements, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is smart. (Given)\n2. All quiet things are smart. (Given)\n3. Erin is quiet. (Given)\n\nFrom step 2 and 3, we can conclude that Erin is quiet and smart. \n\n4. All quiet, smart things are green. (Given)\n\nHowever, this conclusion is not enough to determine if Erin is big. We need more information.\n\n5. If something is big then it is nice. (Given)\n\nBut, we don't have any information about Erin being big or nice.\n\n6. Erin is not white. (Given)\n\nWe also need to find out if Erin is white or not, to use this information later.\n\n7. All green, round things are white. (Given)\n\nHowever, we don't have any information about Erin being round or green.\n\n8. Round things are quiet. (Given)\n\nBut, we don't have any information about Erin being round.\n\n9. Fiona is green. Fiona is quiet. Fiona is smart. Fiona is not white. (Given)\n\nWe can conclude that Fiona is green, quiet, and smart, but we don't know if Fiona is big or not.\n\n10. If Fiona is not quiet then Fiona is white. (Given)\n\nSince Fiona is quiet, we can't conclude anything from this statement.\n\n11. Gary is big. Gary is green. Gary is quiet. Gary is white. (Given)\n\nWe can conclude that Gary is big, green, quiet, and white.\n\n12. All quiet things are smart. (Given)\n\nSince Gary is quiet, we can conclude that Gary is smart.\n\n13. Smart, white things are big. (Given)\n\nSince Gary is smart and white, we can conclude that Gary is big.\n\n14. If something is nice and quiet then it is big. (Given)\n\nSince Gary is nice and quiet, we can conclude that Gary is big.\n\n15. If something is quiet and not smart then it is not green. (Given)\n\nWe can't apply this statement to Erin because we don't know if Erin is quiet and not smart.\n\nFrom the given information, we can't directly conclude whether Erin is big or not. However, we can use the information that \"If something is big then it is nice\" and \"If something is nice and quiet then it is big\" to make a connection.\n\nSince we don't have any information about Erin being nice or quiet, we can't conclude if Erin is big or not.\n\nTherefore, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Erin is big, we need to break down the given statements and use the rules provided to deduce Erin's characteristics.\n\n1. Erin is quiet. (Given)\n2. Erin is smart. (Given)\n3. All quiet things are smart. (Rule) \n   - This rule confirms the truth of statement 2, but it doesn't provide any new information.\n\n4. Erin is not white. (Given)\n\nNow, we need to determine if Erin is big. To do this, we must consider all the given rules and statements:\n\n5. If something is nice and quiet then it is big. (Rule)\n   - To apply this rule, we need to determine if Erin is nice. Unfortunately, there's no direct information about Erin being nice or not. However, we can explore other rules to see if they provide any clues.\n\n6. If something is big then it is nice. (Rule)\n   - This rule suggests that if Erin is big, then she must be nice. However, we can't apply this rule directly since we're trying to determine if Erin is big.\n\n7. All quiet, smart things are green. (Rule)\n   - Erin is quiet (1) and smart (2), so this rule applies to her. However, this rule doesn't provide any information about Erin's color.\n\n8. If something is quiet and not smart then it is not green. (Rule)\n   - Since Erin is smart (2), this rule doesn't apply to her.\n\n9. All quiet things are smart. (Rule)\n   - As mentioned earlier, this rule confirms the truth of statement 2, but it doesn't provide any new information.\n\n10. Round things are quiet. (Rule)\n    - This rule doesn't provide any information about Erin since it's not given that Erin is round.\n\n11. All green, round things are white. (Rule)\n    - This rule doesn't provide any information about Erin since it's not given that Erin is green or round.\n\n12. If Fiona is not quiet then Fiona is white. (Rule)\n    - This rule is irrelevant to Erin.\n\n13. Smart, white things are big. (Rule)\n    - We don't know if Erin is white (4), and even if she is, we can't determine if she's big based on this rule.\n\nConsidering all the given rules and statements, we can't directly determine if Erin is big. The only information we have about Erin is that she is quiet (1) and smart (2), and not white (4). Since we can't determine if Erin is nice (which is necessary to apply rule 5), and there's no other direct information about Erin being big, the statement \"Erin is big\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Erin is big, we need to break down the given statements and apply them step by step.\n\n1. Erin is smart.\n2. Erin is quiet.\n3. All quiet things are smart.\n4. All quiet, smart things are green.\n5. Erin is not white.\n\nFrom statements 1 and 2, we know Erin is both quiet and smart.\n\nUsing statement 3, since Erin is quiet, we can conclude that Erin is indeed smart (as all quiet things are smart).\n\nUsing statement 4, since Erin is quiet and smart, we can conclude that Erin is green.\n\nNow, let's analyze the relationship between Erin's color and her size.\n\n1. Erin is green.\n2. Gary is big, Gary is green, Gary is quiet.\n3. Gary is white.\n4. If something is green, round things are white.\n5. If something is quiet and not smart then it is not green.\n\nFrom statement 4, since Erin is green, and considering the relationship between green, round things and being white (statement 4), we cannot directly conclude Erin's color based on this statement alone. But if we look at the relationships, if Erin is green, and she's not white (from statement 5), then she must be round because green, round things are white. But if we look at the statement about green, round things being white, we could conclude that Erin is not round because if she was, she'd be white. However, that contradicts our other statement that says all quiet things are quiet and round. \n\nHowever, we can say this: Erin can't be green and white at the same time because Erin is not white, and all green round things are white. But Erin is green, so we can say Erin is not round because if she was, she'd be white. But we know Erin is quiet, so Erin must be round. \n\nNow we have a problem: Erin is round and green. But we know that green, round things are white. So Erin must be white. However, this contradicts our initial statement that Erin is not white.\n\nHowever, given that Erin is quiet, and all quiet things are round, Erin is indeed round. Given that Erin is smart and quiet, Erin is indeed green. Given that all green, round things are white, Erin is indeed white.\n\nHowever, we initially stated that Erin is not white. But since Erin is quiet and Erin is round, and all quiet things are round, Erin is indeed round. Given that Erin is green, and Erin is smart, Erin is indeed green. Given that all green, round things are white, Erin is indeed white.\n\nSo we have a contradiction: Erin is not white, but Erin is white. This is a problem. \n\nLet's try to determine Erin's size.\n\n1. Erin is smart.\n2. Erin is quiet.\n3. All quiet things are smart.\n4. All quiet, smart things are green.\n5. Erin is not white.\n6. Gary is big, Gary is green, Gary is quiet.\n7. Gary is white.\n8. If something is green, round things are white.\n9. If something is quiet and not smart then it is not green.\n10. If something is nice and quiet then it is big.\n11. If something is big then it is nice.\n12. Erin is green.\n13. Erin is round.\n14. Erin is white.\n\nGiven statement 10, we know that if something is nice and quiet then it is big. We can conclude that Erin is big.\n\nNow, we can directly use statement 10 to determine Erin's size.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is big' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is quiet. \nSince all quiet things are smart, \n   Erin is smart.\n\n2. Erin is not white. \nWe cannot determine if Erin is big or not yet, so let's continue analyzing the other statements.\n\n3. Fiona is green. Fiona is quiet. Fiona is smart. \nSince Fiona is quiet, \n   Fiona is smart (already given).\nSince all quiet things are smart, \n   it's already given that Fiona is smart.\nSince Fiona is smart and quiet, \n   Fiona is green (given statement: all quiet, smart things are green).\n\n4. Gary is big. Gary is green. Gary is quiet. Gary is white. \nSince Gary is quiet, \n   Gary is smart (all quiet things are smart).\nSince Gary is green and quiet, \n   Gary is green (given statement: all quiet, smart things are green).\n\n5. If something is big then it is nice. \nSince Gary is big, \n   Gary is nice.\n\n6. If something is nice and quiet then it is big. \nSince Gary is nice and quiet, \n   Gary is big (already given).\n\n7. All quiet, smart things are green. \nSince Erin is smart and quiet, \n   Erin is green.\n\n8. All green, round things are white. \nSince Erin is green and round (Bob is round), \n   Erin is white (contradicts the given statement: Erin is not white).\n\nHowever, the initial conclusion that Erin is white contradicts the given statement that Erin is not white. This means that some of the statements above must be false or have some unknown conditions. \n\nSince we cannot determine Erin's color with certainty, we cannot conclude if Erin is big or not.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deductions based on the given statements. Let's break it down step by step:\n\n1. Erin is quiet. \n   Since all quiet things are smart, \n   we can conclude that Erin is smart.\n\n2. Erin is not white. \n   We don't have enough information yet to determine Erin's color or size.\n\n3. Erin is smart. \n   We already concluded this from step 1.\n\n4. We need to find a connection between Erin's characteristics and the characteristics of big things.\n\nFrom the given statements, we know:\n- If something is quiet and not smart, then it is not green.\n- If something is quiet and smart, then it is green.\n- If something is quiet, then it is not green or it is green.\n- If something is green, round, and quiet, then it is white.\n\nHowever, we can't conclude that Erin is green because we don't know if Erin is round. \n\n5. Let's explore the possibilities for Erin's color and size.\n\nIf Erin is green, then we would have two possibilities:\n- Erin is round: In this case, Erin would be white (from the statement \"All green, round things are white\"), but we already know Erin is not white.\n- Erin is not round: In this case, Erin could be white or not white. However, we already know Erin is not white.\n\nSince Erin is green and not white, we can conclude that Erin is not green.\n\n6. Now, let's consider the possibility that Erin is not green.\n\nIf Erin is not green, then we can't conclude that Erin is round or not round because we don't have enough information about Erin's color.\n\n7. Let's explore the possibilities for Erin's size.\n\nIf Erin is big, then Erin is nice (from the statement \"If something is big then it is nice\").\n\n8. We need to find a connection between Erin's characteristics and the characteristics of nice things.\n\nFrom the given statements, we know:\n- If something is nice and quiet then it is big.\n- If something is quiet and not smart then it is not green.\n\nHowever, we can't conclude that Erin is quiet and not smart because we already know Erin is smart.\n\n9. Let's explore the possibilities for Erin's quietness and smartness.\n\nIf Erin is quiet, then Erin is smart (from the statement \"All quiet things are smart\").\n\nIf Erin is not quiet, then Erin is not smart. However, we already know Erin is smart.\n\n10. Since Erin is smart, Erin is quiet (from the statement \"All quiet things are smart\").\n\n11. Since Erin is quiet, Erin is green (from the statement \"All quiet, smart things are green\").\n\n12. However, we already concluded that Erin is not green.\n\n13. This creates a contradiction, and we can't conclude that Erin is big.\n\nSince we can't conclude that Erin is big, we can't conclude that Erin is nice.\n\nHowever, we can conclude that if Erin is big, then Erin is nice.\n\nTherefore, the statement \"Erin is big\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_erin, smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_erin, smart_erin), green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(smart(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(quiet_erin, Not(smart_erin)), Not(green_erin))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_erin, quiet_erin), big_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_erin, nice_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "Not(white(erin))",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_erin, quiet_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "Not(white(erin))",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_erin, smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_erin, smart_erin), green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not white(erin)",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(round_erin, green_erin), white_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not round(erin)",
+          "z3_formula": "Not(round_erin) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(erin)",
+          "z3_formula": "Not(quiet_erin) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> not green(X)",
+          "z3_formula": "Implies(And(quiet_erin, Not(smart_erin)), Not(green_erin))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin) == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not white(erin)",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_erin, white_erin), big_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not big(erin)",
+          "z3_formula": "Not(big_erin) == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_erin, smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_erin, smart_erin), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not white(erin)",
+          "z3_formula": "not white_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_erin, smart_erin), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> not green(X)",
+          "z3_formula": "Implies(And(quiet_erin, Not(smart_erin)), Not(green_erin))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_erin, round_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(green_erin, round_erin), white_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_erin, white_erin), big_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_erin, quiet_erin), big_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_erin, nice_erin)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_erin, smart_erin), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(green_erin, round_erin), white_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == Unknown",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not white(erin)",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> not green(X)",
+          "z3_formula": "Implies(white_erin, Not(green_erin))",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(X) & not smart(X) -> not green(X)",
+          "z3_formula": "Implies(And(Not(quiet_erin), Not(smart_erin)), Not(green_erin))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin) == Unknown",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_erin, white_erin), big_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == Unknown",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not white(erin)",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> big(X)",
+          "z3_formula": "Implies(white_erin, big_erin)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not white(erin)",
+          "z3_formula": "not white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_erin, smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_erin, smart_erin), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> not green(X)",
+          "z3_formula": "Implies(And(quiet_erin, Not(smart_erin)), Not(green_erin))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_erin, nice_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_erin, quiet_erin), big_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not green(erin)",
+          "z3_formula": "not green_erin == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(smart(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(quiet_erin, Not(smart_erin)), Not(green_erin))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_bob, quiet_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_bob, smart_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> white(X)",
+          "z3_formula": "Implies(Not(quiet_fiona), white_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "Not(white(erin))",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(smart(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(quiet_erin, Not(smart_erin)), Not(green_erin))",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_erin, white_erin), big_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_erin, quiet_erin), big_erin)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_erin, nice_erin)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_erin, smart_erin), green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_erin, nice_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_erin, quiet_erin), big_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not white(erin)",
+          "z3_formula": "not white_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(green_erin, round_erin), white_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_erin, quiet_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not white(fiona)",
+          "z3_formula": "not white_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_gary, white_gary), big_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_gary, quiet_gary), big_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> not green(X)",
+          "z3_formula": "Implies(And(quiet_erin, not smart_erin), not green_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == Unknown",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_erin, smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not white(erin)",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_erin, quiet_erin), big_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_erin, nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_erin, smart_erin), green_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(smart(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(quiet_erin, Not(smart_erin)), Not(green_erin))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_erin, smart_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_erin, quiet_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(green_erin, round_erin), white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(Fiona)) -> white(Fiona)",
+          "z3_formula": "Implies(Not(quiet_fiona), white_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_erin, white_erin), big_erin)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_erin, smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_erin, smart_erin), green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not white(erin)",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(green_erin, round_erin), white_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> not green(X)",
+          "z3_formula": "Implies(And(quiet_erin, Not(smart_erin)), Not(green_erin))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_erin, round_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(green_erin, round_erin), white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_erin, quiet_erin), big_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_erin, nice_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not white(erin)",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_fiona, smart_fiona), green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_gary, smart_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_gary, smart_gary), green_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_gary, nice_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_gary, quiet_gary), big_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(quiet_erin, smart_erin), green_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) -> white(X)",
+          "z3_formula": "Implies(And(green_erin, round_bob), white_erin)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "Not white(erin)",
+          "z3_formula": "Not(white_erin)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not white(erin)",
+          "z3_formula": "Not(white_erin) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> not green(X)",
+          "z3_formula": "Implies(And(quiet_erin, Not(smart_erin)), Not(green_erin))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_erin, green_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & round(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(green_erin, round_erin, quiet_erin), white_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_erin, nice_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_erin, quiet_erin), big_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not smart(X) -> not green(X)",
+          "z3_formula": "Implies(And(quiet_erin, Not(smart_erin)), Not(green_erin))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin) == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == Unknown",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == Unknown",
+          "source_step": 17
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 172,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 47
+    },
+    "maxsat_stats": {
+      "satisfied": 42,
+      "excluded": 5,
+      "total_weight": 163,
+      "solve_time_ms": 2.1859295666217804
+    },
+    "timing": {
+      "trace_gen_s": 24.246,
+      "extraction_s": 34.841,
+      "dedup_s": 1.463,
+      "maxsat_s": 0.005,
+      "total_s": 60.554
+    }
+  }
+}

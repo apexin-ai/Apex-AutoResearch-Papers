@@ -1,0 +1,3054 @@
+paper:
+  title: ''
+  version: 174
+  generated_at: '2026-05-25T00:06:26.340254+00:00'
+claims:
+- id: C001
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: In SICA self-extraction, sigma(c,a) is a source-answer indicator, not an independent
+    logical check
+  type: methodological
+  evidence:
+  - exp_id: sica_constraint_ablation_013
+    detail: MAX-SAT = count-only = random-weight confirms sigma acts as source coupling
+  decisions: []
+  deprecated: true
+- id: C002
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Oracle-SICA with gold FOL + Z3 achieves 88.24% vs SC 79.41%, +8.82pp, p<0.001
+    on FOLIO n=204
+  type: quantitative
+  evidence:
+  - exp_id: exp-021-oracle-folio
+    detail: oracle_sica_accuracy=0.8824, sc_accuracy=0.7941, mcnemar_p=6.15e-05
+  decisions: []
+  deprecated: true
+- id: C003
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'QwQ-32B on AIME: SICA=SC=72.7%, delta=0, C0 effectively 0%'
+  type: quantitative
+  evidence:
+  - exp_id: exp-005
+    detail: aime_delta_pp=0, qwq_aggregate_c0_effective_pct=2.6
+  decisions: []
+  deprecated: true
+- id: C004
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Qwen2.5-14B StrategyQA n=60: exact binomial p=0.50 (2 discordant pairs, both
+    SICA wins)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-017-strategyqa-v3
+    detail: mcnemar_chi2=0.5, discordant_sica_wins=2, discordant_sc_wins=0
+  decisions: []
+  deprecated: true
+- id: C005
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Oracle experiment confirms that sound FOL constraints do improve aggregation
+    (+8.82pp)
+  type: quantitative
+  evidence:
+  - exp_id: exp-021-oracle-folio
+    metric: oracle_vs_sc_delta_pp
+    value: 8.82
+  decisions: []
+  deprecated: true
+- id: C007
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: C0 drops below 5% for reasoning models on our benchmarks
+  type: quantitative
+  evidence:
+  - exp_id: exp-005
+    metric: qwq_aggregate_c0_effective_pct
+    value: 2.6
+  decisions: []
+  deprecated: true
+- id: C010
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Self-extracted constraints encode the same biases present in the original
+    traces
+  type: qualitative
+  evidence:
+  - exp_id: sica_constraint_ablation_013
+    metric: agreement_802_of_804
+    value: true
+  decisions: []
+  deprecated: true
+- id: C011
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Only 11.5% of unique constraints (37.2% by frequency-weighted mass) evaluated
+    differently across candidates
+  type: quantitative
+  evidence:
+  - exp_id: pilot-constraint-filtering
+    metric: discriminative_ratio_count=0.115, discriminative_ratio_weight=0.372
+  decisions: []
+  deprecated: true
+- id: C012
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: In only 4 of 23 multi-answer problems (17.4%) did discriminative constraints
+    favor a non-majority answer
+  type: quantitative
+  evidence:
+  - exp_id: pilot-constraint-filtering
+    metric: effective_flip_rate=0.174, problems_disc_favors_different=4
+  decisions: []
+  deprecated: true
+- id: C013
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 803/804 agreement between MAX-SAT and count-only aggregation
+  type: quantitative
+  evidence:
+  - exp_id: sica_constraint_ablation_013
+    metric: agreement_maxsat_vs_countonly=803/804
+  decisions: []
+  deprecated: true
+- id: C014
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: SICA adds 48.7% wall-clock overhead relative to SC
+  type: quantitative
+  evidence:
+  - exp_id: exp-009-overhead-analysis
+    metric: sica_overhead_pct=48.7
+  decisions: []
+  deprecated: true
+- id: C015
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Constraint extraction consuming 47.0% of total pipeline time while MAX-SAT
+    solving accounts for less than 0.01%
+  type: quantitative
+  evidence:
+  - exp_id: exp-009-overhead-analysis
+    metric: extract_pct=47.0, maxsat_pct=0.005
+  decisions: []
+  deprecated: true
+- id: C016
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: SICA and SC agree on 773 of 804 predictions; 31 disagreements yield net gain
+    of 2 (16 SICA wins, 14 SC wins)
+  type: quantitative
+  evidence:
+  - exp_id: sica_constraint_ablation_013
+    metric: 'agreement_maxsat_vs_sc=773/804, notes: 16 SICA wins / 14 SC wins / 1
+      both wrong diff'
+  decisions: []
+  deprecated: true
+- id: C017
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: SICA provides no statistically significant improvement over SC across five
+    models and three domains
+  type: quantitative
+  evidence:
+  - 'sica_expanded_14b: gap_pp=0.3'
+  - 'exp-010-mistral-v3: delta_pp=0'
+  - 'exp-020-llama8b-folio-204: delta_pp=-2.45'
+  decisions: []
+  deprecated: true
+- id: C019
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Oracle-SICA achieves +8.82pp over SC (p=6.15e-5)
+  type: quantitative
+  evidence:
+  - 'exp-021-oracle-folio: oracle_vs_sc_delta_pp=8.82, mcnemar_p=6.15e-05'
+  decisions: []
+  deprecated: true
+- id: C022
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: MAX-SAT and count-only agree on 803 of 804 predictions
+  type: quantitative
+  evidence:
+  - 'sica_constraint_ablation_013: agreement_maxsat_vs_countonly=803/804'
+  decisions: []
+  deprecated: true
+- id: C026
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 11.5% of unique constraints evaluate differently across candidates
+  type: quantitative
+  evidence:
+  - 'pilot-constraint-filtering: discriminative_ratio_count=0.115'
+  decisions: []
+  deprecated: true
+- id: C031
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 48.7% wall-clock overhead
+  type: quantitative
+  evidence:
+  - 'exp-009-overhead-analysis: sica_overhead_pct=48.7'
+  decisions: []
+  deprecated: true
+- id: C037
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: N > 1300 across primary benchmarks
+  type: quantitative
+  evidence:
+  - 'sica_expanded_14b: n=804'
+  - 'exp-019: n=200'
+  - 'exp-020: n=204'
+  decisions: []
+  deprecated: true
+- id: C038
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: SICA provides no statistically significant improvement over SC in any tested
+    condition
+  type: quantitative
+  evidence:
+  - 'all conditions: delta n.s.'
+  decisions: []
+  deprecated: true
+- id: C040
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Oracle achieves +8.82pp over SC (p<0.001)
+  type: quantitative
+  evidence:
+  - 'exp-021-oracle-folio: oracle_vs_sc_delta_pp=8.82, mcnemar_p=6.15e-05'
+  decisions: []
+  deprecated: true
+- id: C043
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 11.5% of self-extracted constraints evaluate differently across candidate
+    answers
+  type: quantitative
+  evidence:
+  - 'pilot-constraint-filtering: discriminative_ratio_count=0.115'
+  decisions: []
+  deprecated: true
+- id: C044
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: SICA provides no statistically significant improvement over SC, gaps -3.3
+    to +3.3pp
+  type: quantitative
+  evidence:
+  - 'all conditions: delta n.s.'
+  decisions: []
+  deprecated: true
+- id: C046
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Oracle achieves +8.82pp over SC (p<0.001)
+  type: quantitative
+  evidence:
+  - 'exp-021-oracle-folio: oracle_vs_sc_delta_pp=8.82'
+  decisions: []
+  deprecated: true
+- id: C049
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 11.5% of constraints evaluate differently across candidates
+  type: quantitative
+  evidence:
+  - 'pilot-constraint-filtering: discriminative_ratio_count=0.115'
+  decisions: []
+  deprecated: true
+- id: C053
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: MAX-SAT agrees with count-only on 803/804 predictions
+  type: quantitative
+  evidence:
+  - 'sica_constraint_ablation_013: agreement=803/804'
+  decisions: []
+  deprecated: true
+- id: C058
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 48.7% wall-clock overhead
+  type: quantitative
+  evidence:
+  - 'exp-009-overhead-analysis: sica_overhead_pct=48.7'
+  decisions: []
+  deprecated: true
+- id: C059
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Qwen2.5-7B SICA=SC=69.64% on FOLIO+PW (n=56, p=1.0)
+  type: quantitative
+  evidence:
+  - 'exp-004-qwen7b: sica=69.64%, sc=69.64%, n=56, discordant 2:2'
+  decisions: []
+  deprecated: true
+- id: C060
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Mistral-7B on FOLIO achieves Delta=+4.90pp (p=0.013, b=12, c=2, n=204)
+  type: quantitative
+  evidence:
+  - exp_id: exp-033
+    metric: delta_pp=4.9, mcnemar_p_value=0.0129, mcnemar_discordant_b=12, mcnemar_discordant_c=2
+  decisions: []
+  deprecated: true
+- id: C062
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Qwen2.5-14B on StrategyQA shows +3.33pp (n=60, suggestive)
+  type: quantitative
+  evidence:
+  - exp_id: exp-017-strategyqa-v3
+    metric: delta_pp=3.33, n=60
+  decisions: []
+  deprecated: true
+- id: C065
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Seven high-accuracy conditions (SC>=63%) produce |Delta|<=3.33pp, all nonsignificant,
+    combined N=1875
+  type: quantitative
+  evidence:
+  - exp_id: exp-020-llama8b-folio-204
+    metric: delta_pp=-2.45, p=0.2668
+  - exp_id: exp-019-llama8b-strategyqa-200
+    metric: delta_pp=2.0, p=0.424
+  - exp_id: sica_expanded_14b
+    metric: sica_sc_gap_pp=0.3
+  - exp_id: exp-035
+    metric: delta_pp=-0.49, p=1.0
+  - exp_id: exp-038-14b-logiqa200-16639
+    metric: delta_pp=-0.5, p=1.0
+  - exp_id: exp-027-qwen3-14b-non-thinking
+    metric: delta_pp=0.49, p=0.655
+  decisions: []
+  deprecated: true
+- id: C069
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Oracle-SICA achieves 89.71% on FOLIO vs 75.49% SC (+14.22pp, p=2.0e-7, b=29,
+    c=0)
+  type: quantitative
+  evidence:
+  - exp_id: exp-031-oracle-folio-regen
+    metric: oracle_sica_accuracy=0.8971, sc_accuracy=0.7549, oracle_vs_sc_delta_pp=14.22,
+      mcnemar_p_oracle_vs_sc=2.0024e-07
+  decisions: []
+  deprecated: true
+- id: C074
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Oracle ProofWriter: 86.67% vs 75.17% (+11.50pp, p=9.21e-15), Z3 gold agreement
+    97.1%'
+  type: quantitative
+  evidence:
+  - exp_id: exp-022-oracle-proofwriter
+    metric: oracle_sica_accuracy=0.8667, sc_accuracy=0.7517, oracle_vs_sc_delta_pp=11.5,
+      mcnemar_p_oracle_vs_sc=9.21e-15, z3_gold_agreement=0.9714
+  decisions: []
+  deprecated: true
+- id: C080
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Mistral-7B captures only 34.5% of FOLIO oracle ceiling (4.90/14.22)
+  type: quantitative
+  evidence:
+  - exp_id: exp-033
+    metric: delta_pp=4.9
+  - exp_id: exp-031-oracle-folio-regen
+    metric: oracle_vs_sc_delta_pp=14.22
+  decisions: []
+  deprecated: true
+- id: C087
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Entropy high bin: both models benefit, Mistral +9.6pp, Qwen +4.8pp'
+  type: quantitative
+  evidence:
+  - exp_id: exp-033+exp-026 entropy analysis
+    metric: mistral_high_delta=+9.6, qwen_high_delta=+4.8
+  decisions: []
+  deprecated: true
+- id: C095
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Unanimous rate 18.6% (Mistral) vs 58.8% (Qwen); Override precision 70.6% vs
+    28.6%; Confirmation bias 31.9% vs 62.3%
+  type: quantitative
+  evidence:
+  - exp_id: exp-033+exp-026 entropy analysis
+    metric: unanimous_mistral=0.186, unanimous_qwen=0.588, override_prec_mistral=0.706,
+      override_prec_qwen=0.286, conf_bias_mistral=0.319, conf_bias_qwen=0.623
+  decisions: []
+  deprecated: true
+- id: C104
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: MAX-SAT and count-only agree on 803/804 predictions
+  type: quantitative
+  evidence:
+  - exp_id: sica_constraint_ablation_013
+    metric: agreement_maxsat_vs_countonly=803/804
+  decisions: []
+  deprecated: true
+- id: C114
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Contrastive: disc rate drops 8.2% to 6.0%, Delta=-1.10pp, p=0.752'
+  type: quantitative
+  evidence:
+  - exp_id: exp-029-contrastive-folio204
+    metric: discriminative_rate=0.0604, delta_pp=-1.1, mcnemar_p=0.7518
+  decisions: []
+  deprecated: true
+- id: C125
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Cross-model (Mistral from Qwen traces): Delta=0.00pp, disc rate 0%'
+  type: quantitative
+  evidence:
+  - exp_id: exp-030-crossmodel-mistral-folio204
+    metric: delta_pp=0, discriminative_rate=0
+  decisions: []
+  deprecated: true
+- id: C137
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Qwen3-14B: SC=83.82%, Delta=+0.49pp, p=0.655'
+  type: quantitative
+  evidence:
+  - exp_id: exp-027-qwen3-14b-non-thinking
+    metric: sc_accuracy=0.8382, delta_pp=0.49
+  decisions: []
+  deprecated: true
+- id: C150
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Z3 Feedback: 0.9% UNSAT trigger (22/2448), 0 answer flips'
+  type: quantitative
+  evidence:
+  - exp_id: exp-036-z3-feedback-folio204
+    metric: unsat_rate=0.009, unsat_traces=22, total_traces=2448, problems_flipped=0
+  decisions: []
+  deprecated: true
+- id: C164
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Consistency filtering at T>=4 reduces constraints from 13.2 to 1.8, reverts
+    to SC
+  type: quantitative
+  evidence:
+  - exp_id: exp-043-consistency-filtering
+    metric: avg_unique_constraints=13.2, avg_filtered_t4=1.8, sica_t4=0.75=sc
+  decisions: []
+  deprecated: true
+- id: C179
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Cross-trace UNSAT: 56.4% zero shared variables, accuracy impact 0'
+  type: quantitative
+  evidence:
+  - exp_id: exp-036b-cross-trace-unsat
+    metric: zero_shared_var_pairs_pct=0.564, accuracy_impact=0
+  decisions: []
+  deprecated: true
+- id: C180
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Oracle FOLIO +14.22pp (p=2.0e-7), Oracle PW +11.50pp (p=9.21e-15)
+  type: quantitative
+  evidence:
+  - exp_id: exp-031-oracle-folio-regen
+    metric: oracle_vs_sc_delta_pp=14.22, mcnemar_p=2.0024e-07
+  - exp_id: exp-022-oracle-proofwriter
+    metric: oracle_vs_sc_delta_pp=11.5, mcnemar_p=9.21e-15
+  decisions: []
+  deprecated: true
+- id: C182
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Confirmation bias 62.3% (Qwen) vs 31.9% (Mistral), override precision 28.6%
+    vs 70.6%
+  type: quantitative
+  evidence:
+  - exp_id: exp-033+exp-026 entropy analysis
+    metric: conf_bias_qwen=0.623, conf_bias_mistral=0.319, override_prec_qwen=0.286,
+      override_prec_mistral=0.706
+  decisions: []
+  deprecated: true
+- id: C185
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 39.2% source-discriminative weight, 8.2% Z3-discriminative (CI [7.6, 8.8],
+    N=804)
+  type: quantitative
+  evidence:
+  - exp_id: exp-023-discriminative-rate
+    metric: source_disc_rate_weight=0.392, z3_semantic_disc_rate=0.082, z3_semantic_disc_ci95=[0.076,0.088]
+  decisions: []
+  deprecated: true
+- id: C189
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Six remediation strategies all fail; contrastive disc 6.0% vs baseline 8.2%
+  type: quantitative
+  evidence:
+  - exp_id: exp-029-contrastive-folio204
+    metric: discriminative_rate=0.0604
+  - exp_id: exp-030-crossmodel-mistral-folio204
+    metric: discriminative_rate=0
+  - exp_id: exp-027-qwen3-14b-non-thinking
+    metric: delta_pp=0.49
+  - exp_id: exp-036-z3-feedback-folio204
+    metric: unsat_rate=0.009
+  - exp_id: exp-043-consistency-filtering
+    metric: sica_t4=0.75=sc
+  - exp_id: exp-036b-cross-trace-unsat
+    metric: zero_shared_var_pairs_pct=0.564
+  decisions: []
+  deprecated: true
+- id: C194
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Self-extraction captures 34.5% of oracle ceiling (4.90/14.22)
+  type: quantitative
+  evidence:
+  - exp_id: exp-033
+    metric: delta_pp=4.9
+  - exp_id: exp-031-oracle-folio-regen
+    metric: oracle_vs_sc_delta_pp=14.22
+  decisions: []
+  deprecated: true
+- id: C200
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Constraint extraction adds 48.7% overhead, roughly doubling wall-clock cost
+  type: quantitative
+  evidence:
+  - exp_id: exp-009-overhead-analysis
+    metric: sica_overhead_pct=48.7
+  decisions: []
+  deprecated: true
+- id: C207
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 803/804 agreement between MAX-SAT and count-only
+  type: quantitative
+  evidence:
+  - exp_id: sica_constraint_ablation_013
+    metric: agreement_maxsat_vs_countonly=803/804
+  decisions: []
+  deprecated: true
+- id: C208
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Mistral-7B high-entropy bin: +9.6pp on n=73 problems, approximately 7 flipped'
+  type: quantitative
+  evidence:
+  - exp_id: exp-033+exp-026 entropy analysis
+    metric: mistral_high_entropy_delta=+9.6, n=73
+  decisions: []
+  deprecated: true
+- id: C209
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Qwen high-entropy n=21 (+4.8pp) is approximately 1 problem difference, directionally
+    consistent but insufficient
+  type: quantitative
+  evidence:
+  - exp_id: exp-033+exp-026 entropy analysis
+    metric: qwen_high_entropy_delta=+4.8, n=21, approx_1_problem
+  decisions: []
+  deprecated: true
+- id: C210
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Mistral-7B achieves +4.90pp on FOLIO (p=0.013, n=204) in low-accuracy regime
+  type: quantitative
+  evidence:
+  - exp_id: exp-033
+    metric: delta_pp=4.9, mcnemar_p=0.0129, n=204
+  decisions: []
+  deprecated: true
+- id: C212
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Seven high-accuracy conditions (SC>=63%) produce |Delta|<=3.33pp, all n.s.,
+    combined N=1875
+  type: quantitative
+  evidence:
+  - exp_id: exp-020-llama8b-folio-204
+    metric: delta_pp=-2.45
+  - exp_id: exp-019-llama8b-strategyqa-200
+    metric: delta_pp=2.0
+  - exp_id: sica_expanded_14b
+    metric: sica_sc_gap_pp=0.3
+  - exp_id: exp-035
+    metric: delta_pp=-0.49
+  - exp_id: exp-038-14b-logiqa200-16639
+    metric: delta_pp=-0.5
+  - exp_id: exp-027-qwen3-14b-non-thinking
+    metric: delta_pp=0.49
+  - exp_id: exp-014-deepseek-r1-7b
+    metric: delta_pp=-3.33
+  decisions: []
+  deprecated: true
+- id: C215
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Oracle: +14.22pp FOLIO (p=2.0e-7), +11.50pp PW (p<0.001)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-031-oracle-folio-regen
+    metric: oracle_vs_sc_delta_pp=14.22, mcnemar_p=2.0024e-07
+  - exp_id: exp-022-oracle-proofwriter
+    metric: oracle_vs_sc_delta_pp=11.5, mcnemar_p=9.21e-15
+  decisions: []
+  deprecated: true
+- id: C219
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Confirmation bias 62.3% (Qwen) vs 31.9% (Mistral), override precision 28.6%
+    vs 70.6%
+  type: quantitative
+  evidence:
+  - exp_id: exp-033+exp-026 entropy analysis
+    metric: conf_bias_qwen=0.623, conf_bias_mistral=0.319, override_prec_qwen=0.286,
+      override_prec_mistral=0.706
+  decisions: []
+  deprecated: true
+- id: C224
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Mistral high-entropy: +9.6pp (n=73), proportion 35.8% vs Qwen 10.3%'
+  type: quantitative
+  evidence:
+  - exp_id: exp-033+exp-026 entropy analysis
+    metric: mistral_high_entropy_delta=+9.6, n_high_mistral=73, pct_high_mistral=35.8,
+      pct_high_qwen=10.3
+  decisions: []
+  deprecated: true
+- id: C230
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Best self-extraction captures 34.5% of oracle ceiling (4.90/14.22)
+  type: quantitative
+  evidence:
+  - exp_id: exp-033
+    metric: delta_pp=4.9
+  - exp_id: exp-031-oracle-folio-regen
+    metric: oracle_vs_sc_delta_pp=14.22
+  decisions: []
+  deprecated: true
+- id: C237
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Unanimous rate 58.8% (Qwen) vs 18.6% (Mistral)
+  type: quantitative
+  evidence:
+  - exp_id: exp-033+exp-026 entropy analysis
+    metric: unanimous_qwen=0.588, unanimous_mistral=0.186
+  decisions: []
+  deprecated: true
+- id: C238
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: seven models from four base architectures (7B to 32B parameters) on four reasoning
+    domains with more than 2,100 total instances
+  type: setup
+  evidence:
+  - exp_id: sica_expanded_14b
+    metric: setup
+  - exp_id: exp-030
+    metric: setup
+  - exp_id: exp-031
+    metric: setup
+  decisions: []
+  deprecated: true
+- id: C240
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'In the low-accuracy regime (SC <= 55%), SICA provides significant gains:
+    Mistral-7B achieves +4.90pp on FOLIO (p=0.013)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-030
+    metric: delta_pp=+4.90, p=0.013, n=204
+  decisions: []
+  deprecated: true
+- id: C243
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Above approximately 63% SC, constraints become non-discriminative and SICA
+    reduces to majority voting across all seven tested conditions
+  type: quantitative
+  evidence:
+  - exp_id: sica_expanded_14b
+    metric: delta_range=-3.33 to +2.00, all p>0.05
+  - exp_id: exp-026
+    metric: delta=-0.49pp
+  - exp_id: exp-040
+    metric: Qwen3-14B delta=+0.49pp, p=0.655
+  decisions: []
+  deprecated: true
+- id: C247
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Oracle controls yield +14.22pp on FOLIO and +11.50pp on ProofWriter (both
+    p<0.001)
+  type: quantitative
+  evidence:
+  - exp_id: exp-031
+    metric: delta_pp=+14.22, p=2.0e-7
+  - exp_id: exp-022
+    metric: delta_pp=+11.50, p=9.21e-15
+  decisions: []
+  deprecated: true
+- id: C252
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Confirmation bias 62.3% for Qwen2.5-14B vs 31.9% for Mistral-7B
+  type: quantitative
+  evidence:
+  - exp_id: exp-032
+    metric: 'confirmation_bias: Qwen=62.3%, Mistral=31.9%'
+  decisions: []
+  deprecated: true
+- id: C258
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Six remediation strategies spanning prompt, architecture, and solver dimensions
+    all fail
+  type: quantitative
+  evidence:
+  - exp_id: exp-033
+    metric: 'contrastive: delta=-1.10pp'
+  - exp_id: exp-034
+    metric: 'cross-model: delta=0.00'
+  - exp_id: exp-040
+    metric: 'Qwen3: delta=+0.49pp'
+  - exp_id: exp-035
+    metric: 'Z3 feedback: 0.9% UNSAT'
+  - exp_id: exp-036
+    metric: 'consistency filtering: reverts to SC'
+  - exp_id: exp-037
+    metric: 'cross-trace UNSAT: 56.4% empty vars'
+  decisions: []
+  deprecated: true
+- id: C265
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: C0 combined with SC accuracy provides a two-dimensional deployment diagnostic
+  type: methodological
+  evidence:
+  - exp_id: exp-032
+    metric: C0 diagnostic framework
+  decisions: []
+  deprecated: true
+- id: C266
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: seven models from four base architectures (7B to 32B) on four reasoning domains,
+    2,100+ instances
+  type: setup
+  evidence:
+  - exp_id: sica_expanded_14b
+    metric: setup
+  - exp_id: exp-030
+    metric: setup
+  decisions: []
+  deprecated: true
+- id: C268
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Low-accuracy regime (SC<=55%): Mistral-7B +4.90pp on FOLIO (p=0.013)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-030
+    metric: delta_pp=+4.90, p=0.013
+  decisions: []
+  deprecated: true
+- id: C271
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Above ~63% SC: seven conditions |Delta|<=3.33pp, all nonsignificant'
+  type: quantitative
+  evidence:
+  - exp_id: sica_expanded_14b
+    metric: delta_range
+  - exp_id: exp-026
+    metric: delta=-0.49pp
+  - exp_id: exp-040
+    metric: delta=+0.49pp
+  decisions: []
+  deprecated: true
+- id: C275
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Regime boundary between 55% and 63% SC
+  type: quantitative
+  evidence:
+  - exp_id: exp-030
+    metric: SC=54.41%
+  - exp_id: sica_expanded_14b
+    metric: LLaMA SC=63.24%
+  decisions: []
+  deprecated: true
+- id: C280
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Oracle FOLIO +14.22pp (p=2.0e-7)
+  type: quantitative
+  evidence:
+  - exp_id: exp-031
+    metric: delta_pp=+14.22, p=2.0e-7
+  decisions: []
+  deprecated: true
+- id: C286
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Oracle ProofWriter +11.50pp (p=9.21e-15)
+  type: quantitative
+  evidence:
+  - exp_id: exp-022
+    metric: delta_pp=+11.50, p=9.21e-15
+  decisions: []
+  deprecated: true
+- id: C293
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Confirmation bias 62.3% Qwen vs 31.9% Mistral
+  type: quantitative
+  evidence:
+  - exp_id: exp-032
+    metric: confirmation_bias
+  decisions: []
+  deprecated: true
+- id: C301
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Override precision 28.6% Qwen vs 70.6% Mistral
+  type: quantitative
+  evidence:
+  - exp_id: exp-032
+    metric: override_precision
+  decisions: []
+  deprecated: true
+- id: C310
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 803/804 agreement with count-only (n=804)
+  type: quantitative
+  evidence:
+  - exp_id: sica_expanded_14b
+    metric: ablation agreement
+  decisions: []
+  deprecated: true
+- id: C320
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Six remediation strategies all fail to close extraction-oracle gap
+  type: quantitative
+  evidence:
+  - exp_id: exp-033
+    metric: contrastive
+  - exp_id: exp-034
+    metric: cross-model
+  - exp_id: exp-040
+    metric: generational
+  - exp_id: exp-035
+    metric: Z3 feedback
+  - exp_id: exp-036
+    metric: filtering
+  - exp_id: exp-037
+    metric: cross-trace
+  decisions: []
+  deprecated: true
+- id: C331
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Self-extraction captures only 34.5% of oracle ceiling
+  type: quantitative
+  evidence:
+  - exp_id: exp-030
+    metric: recovery_rate=34.5%
+  - exp_id: exp-031
+    metric: oracle_ceiling=+14.22pp
+  decisions: []
+  deprecated: true
+- id: C343
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: C0 and SC accuracy form two-dimensional diagnostic
+  type: methodological
+  evidence:
+  - exp_id: exp-032
+    metric: C0 diagnostic
+  decisions: []
+  deprecated: true
+- id: C344
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: 'Regime-dependent: gains when SC<=55%, non-discriminative above ~63%'
+  type: quantitative
+  evidence:
+  - exp_id: exp-030
+    metric: delta=+4.90pp at SC=54.41%
+  - exp_id: sica_expanded_14b
+    metric: seven null conditions at SC>=63%
+  decisions: []
+  deprecated: true
+- id: C345
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: 'Oracle: +14.22pp FOLIO, +11.50pp ProofWriter'
+  type: quantitative
+  evidence:
+  - exp_id: exp-031
+    metric: delta=+14.22pp
+  - exp_id: exp-022
+    metric: delta=+11.50pp
+  decisions: []
+  deprecated: true
+- id: C346
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Self-reliance limits high-accuracy regime; low-accuracy retains partial independence
+  type: qualitative
+  evidence:
+  - exp_id: exp-030
+    metric: override_precision=70.6% Mistral
+  - exp_id: exp-032
+    metric: confirmation_bias=62.3% Qwen vs 31.9% Mistral
+  decisions: []
+  deprecated: true
+- id: C347
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Constraint independence depends on baseline accuracy
+  type: qualitative
+  evidence:
+  - exp_id: exp-032
+    metric: 'entropy distribution: Mistral 35.8% high-entropy vs Qwen 10.3%'
+  decisions: []
+  deprecated: true
+- id: C348
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: 'Regime dependence: gains at low accuracy, degeneration at high accuracy'
+  type: qualitative
+  evidence:
+  - exp_id: exp-030
+    metric: delta=+4.90pp low-SC
+  - exp_id: sica_expanded_14b
+    metric: 803/804 count-only agreement high-SC
+  decisions: []
+  deprecated: true
+- id: C349
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: C0 x SC accuracy two-dimensional screening criterion
+  type: methodological
+  evidence:
+  - exp_id: exp-032
+    metric: C0 diagnostic framework
+  decisions: []
+  deprecated: true
+- id: C350
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Low-accuracy self-extraction captures only 34.5% of oracle ceiling
+  type: quantitative
+  evidence:
+  - exp_id: exp-030
+    metric: recovery_rate=4.90/14.22=34.5%
+  - exp_id: exp-031
+    metric: oracle_ceiling=+14.22pp
+  decisions: []
+  deprecated: true
+- id: C351
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: C0=2.6% for QwQ-32B
+  type: quantitative
+  evidence:
+  - exp_id: exp-005
+    metric: C0=2.6%
+  decisions: []
+  deprecated: true
+- id: C353
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: 'Regime-dependent: gains at SC<=55%, non-discriminative above ~63%'
+  type: quantitative
+  evidence:
+  - exp_id: exp-030
+    metric: delta=+4.90pp
+  - exp_id: sica_expanded_14b
+    metric: seven null conditions
+  decisions: []
+  deprecated: true
+- id: C356
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: 'Oracle: +14.22pp FOLIO, +11.50pp ProofWriter'
+  type: quantitative
+  evidence:
+  - exp_id: exp-031
+    metric: delta=+14.22pp
+  - exp_id: exp-022
+    metric: delta=+11.50pp
+  decisions: []
+  deprecated: true
+- id: C360
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Low-accuracy self-extraction captures 34.5% of oracle ceiling
+  type: quantitative
+  evidence:
+  - exp_id: exp-030
+    metric: 4.90/14.22=34.5%
+  decisions: []
+  deprecated: true
+- id: C361
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'twelve remediation strategies: nine prompt-level and three method-level'
+  type: quantitative
+  evidence:
+  - exp_id: exp-074
+    desc: ICG FOLIO
+  - exp_id: exp-074c
+    desc: ICG FOLIO s123
+  - exp_id: exp-075b
+    desc: Contrastive FOLIO
+  - exp_id: exp-076
+    desc: Debate FOLIO
+  - exp_id: exp-079
+    desc: ICG LogiQA
+  decisions: []
+  deprecated: true
+- id: C362
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: ICG produces Δ=-1.96pp (seed 42) and +1.47pp (seed 123) on FOLIO; Δ=-0.50pp
+    on LogiQA
+  type: quantitative
+  evidence:
+  - exp_id: exp-074
+    metric: delta
+    value: -0.0196
+  - exp_id: exp-074c
+    metric: delta
+    value: 0.0147
+  - exp_id: exp-079
+    metric: delta
+    value: -0.005
+  decisions: []
+  deprecated: true
+- id: C363
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Contrastive yields Δ=-9.31pp on FOLIO with 20.1% degenerate scores
+  type: quantitative
+  evidence:
+  - exp_id: exp-075b
+    metric: delta
+    value: -0.0931
+  - exp_id: exp-075b
+    metric: degenerate_count
+    value: 41
+  decisions: []
+  deprecated: true
+- id: C364
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Debate produces Δ=-18.63pp on FOLIO, largest degradation across all twelve
+    strategies
+  type: quantitative
+  evidence:
+  - exp_id: exp-076
+    metric: delta
+    value: -0.1863
+  decisions: []
+  deprecated: true
+- id: C365
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: SC κ=0.44 Eff-K=2.02; Diverse-Prompt κ=0.40 Eff-K=2.21; Debate κ=0.15 Eff-K=4.44
+  type: quantitative
+  evidence:
+  - exp_id: exp-077
+    metric: sc_kappa
+    value: 0.4384
+  - exp_id: exp-077
+    metric: diverse_prompt_kappa
+    value: 0.403
+  - exp_id: exp-077
+    metric: debate_kappa
+    value: 0.1549
+  decisions: []
+  deprecated: true
+- id: C366
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'Debate collapses accuracy by -18.6pp while tripling Eff-K: fundamental independence-accuracy
+    trade-off'
+  type: interpretive
+  evidence:
+  - exp_id: exp-077
+    desc: kappa generalization
+  - exp_id: exp-076
+    desc: Debate accuracy
+  decisions: []
+  deprecated: true
+- id: C367
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Twelve interventions all fail
+  type: quantitative
+  evidence:
+  - exp_id: exp-074
+    desc: ICG
+  - exp_id: exp-075b
+    desc: Contrastive
+  - exp_id: exp-076
+    desc: Debate
+  decisions: []
+  deprecated: true
+- id: C368
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Twelve remediation strategies all fail; kappa generalization reveals independence-accuracy
+    trade-off
+  type: quantitative
+  evidence:
+  - exp_id: exp-077
+    desc: kappa generalization
+  decisions: []
+  deprecated: true
+- id: C369
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'kappa generalization: Debate reduces kappa 0.44->0.15 but collapses accuracy
+    -18.6pp'
+  type: quantitative
+  evidence:
+  - exp_id: exp-077
+    metric: debate_kappa
+    value: 0.1549
+  - exp_id: exp-076
+    metric: delta
+    value: -0.1863
+  decisions: []
+  deprecated: true
+- id: C370
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: twelve remediation strategies all fail; kappa generalization reveals independence-accuracy
+    trade-off in introduction
+  type: quantitative
+  evidence:
+  - exp_id: exp-077
+    desc: kappa generalization
+  - exp_id: exp-076
+    desc: Debate accuracy
+  decisions: []
+  deprecated: true
+- id: C371
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Diverse-Prompt kappa=0.40 nearly identical to SC kappa=0.44; Debate kappa=0.15
+    but collapses accuracy -18.6pp; Pareto frontier
+  type: interpretive
+  evidence:
+  - exp_id: exp-077
+    metric: diverse_prompt_kappa
+    value: 0.403
+  - exp_id: exp-077
+    metric: sc_kappa
+    value: 0.4384
+  - exp_id: exp-077
+    metric: debate_kappa
+    value: 0.1549
+  - exp_id: exp-076
+    metric: delta
+    value: -0.1863
+  decisions: []
+  deprecated: true
+- id: C372
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'C4 contribution: Independence-Accuracy Trade-off — Debate kappa 0.44->0.15
+    but -18.6pp; Diverse-Prompt kappa=0.40 approx SC; Pareto frontier'
+  type: interpretive
+  evidence:
+  - exp_id: exp-077
+    desc: kappa generalization
+  - exp_id: exp-076
+    desc: Debate accuracy
+  decisions: []
+  deprecated: true
+- id: C373
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Fleiss kappa ranges from 0.21 to 0.82 across instruction-tuned models, Eff-K
+    = 1.20-3.62 at K=12
+  type: quantitative
+  evidence:
+  - exp_id: exp-icg-kappa-corrected
+    metric: icg_accuracy
+    value: '51.96'
+  - exp_id: exp-077
+    metric: sc_accuracy
+    value: '56.86'
+  decisions: []
+  deprecated: true
+- id: C375
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Qwen3-14B thinking mode reaches kappa = 0.91 (Eff-K = 1.09)
+  type: quantitative
+  evidence:
+  - exp_id: exp-059
+    metric: fleiss_kappa
+  decisions: []
+  deprecated: true
+- id: C378
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 91.8% of constraints technically discriminative, removing 8.2% non-discriminative
+    yields zero improvement
+  type: quantitative
+  evidence:
+  - exp_id: exp-015
+    metric: discriminative_rate
+  decisions: []
+  deprecated: true
+- id: C382
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: MAX-SAT and count-only agree on 803/804 predictions
+  type: quantitative
+  evidence:
+  - exp_id: exp-015
+    metric: ablation_agreement
+  decisions: []
+  deprecated: true
+- id: C387
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: K=12 only setting with Delta > 2pp among five K values
+  type: quantitative
+  evidence:
+  - exp_id: exp-025
+    metric: k_sensitivity
+  decisions: []
+  deprecated: true
+- id: C393
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Only T=0.7 among four temperatures yields positive effect
+  type: quantitative
+  evidence:
+  - exp_id: exp-025
+    metric: temperature_sensitivity
+  decisions: []
+  deprecated: true
+- id: C400
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: High-entropy Delta up to +12.8pp in intermediate-SC region
+  type: quantitative
+  evidence:
+  - exp_id: exp-009
+    metric: entropy_decomposition
+  decisions: []
+  deprecated: true
+- id: C408
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Nine prompt-level strategies all fail
+  type: quantitative
+  evidence:
+  - exp_id: exp-015
+    metric: remediation_results
+  decisions: []
+  deprecated: true
+- id: C417
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: ICG produces Delta = -1.96pp and +1.47pp across two FOLIO seeds; -0.50pp on
+    LogiQA
+  type: quantitative
+  evidence:
+  - exp_id: exp-073
+    metric: icg_delta
+  decisions: []
+  deprecated: true
+- id: C427
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Contrastive yields Delta = -9.31pp on FOLIO with 20.1% degenerate scores
+  type: quantitative
+  evidence:
+  - exp_id: exp-076
+    metric: contrastive_delta
+  decisions: []
+  deprecated: true
+- id: C438
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Debate produces Delta = -18.63pp on FOLIO
+  type: quantitative
+  evidence:
+  - exp_id: exp-075
+    metric: debate_delta
+  decisions: []
+  deprecated: true
+- id: C450
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: SC kappa=0.44, Diverse-Prompt kappa=0.40, Debate kappa=0.15 (Eff-K=4.44)
+  type: quantitative
+  evidence:
+  - exp_id: exp-077
+    metric: kappa_generalization
+  decisions: []
+  deprecated: true
+- id: C463
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Debate collapses accuracy by -18.6pp while tripling effective sample size
+  type: quantitative
+  evidence:
+  - exp_id: exp-077
+    metric: independence_accuracy_tradeoff
+  decisions: []
+  deprecated: true
+- id: C464
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Mistral-7B FOLIO seed 42 Delta = +3.43pp (p=0.092), seed 123 Delta = +2.94pp
+    (p=0.070)
+  type: quantitative
+  evidence:
+  - exp_id: exp-009
+    metric: sica_delta
+  decisions: []
+  deprecated: false
+- id: C466
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 4-seed mean +1.47pp, no seed reaches p < 0.05
+  type: quantitative
+  evidence:
+  - exp_id: exp-040
+    metric: replication
+  decisions: []
+  deprecated: false
+- id: C469
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Qwen2.5-14B PW Delta = -2.50pp (p=0.011)
+  type: quantitative
+  evidence:
+  - exp_id: exp-009
+    metric: pw_degradation
+  decisions: []
+  deprecated: false
+- id: C473
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Mistral-7B PW Delta = -2.83pp (p=0.014)
+  type: quantitative
+  evidence:
+  - exp_id: exp-009
+    metric: type_c_result
+  decisions: []
+  deprecated: false
+- id: C478
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Oracle FOLIO +14.22pp, PW +11.50pp
+  type: quantitative
+  evidence:
+  - exp_id: exp-022
+    metric: oracle_delta
+  decisions: []
+  deprecated: false
+- id: C484
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Self-extraction captures 24.1% of oracle ceiling
+  type: quantitative
+  evidence:
+  - exp_id: exp-022
+    metric: extraction_gap
+  decisions: []
+  deprecated: false
+- id: C485
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Oracle +14.22pp FOLIO, +11.50pp PW, self-extraction 24.1% of ceiling
+  type: quantitative
+  evidence:
+  - exp_id: exp-022
+    metric: oracle_gap
+  decisions: []
+  deprecated: true
+- id: C487
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Diverse-Prompt kappa=0.40, Debate kappa=0.15 with -18.6pp accuracy collapse
+  type: quantitative
+  evidence:
+  - exp_id: exp-077
+    metric: kappa_generalization
+  decisions: []
+  deprecated: true
+- id: C490
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Four-seed p-values: 0.092, 0.070, 1.0, 1.0'
+  type: quantitative
+  evidence:
+  - exp_id: exp-040
+    metric: replication_pvalues
+  decisions: []
+  deprecated: true
+- id: C494
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Negative effects significant: -2.83pp (p=0.014), -2.50pp (p=0.011)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-009
+    metric: significant_negatives
+  decisions: []
+  deprecated: true
+- id: C495
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Fleiss kappa 0.21-0.82 instruction-tuned, 0.91 thinking mode, Eff-K 1.20-3.62
+  type: quantitative
+  evidence:
+  - exp_id: exp-077
+    metric: sc_kappa
+    value: '0.44'
+  - exp_id: exp-077
+    metric: dp_kappa
+    value: '0.40'
+  - exp_id: exp-icg-kappa-corrected
+    metric: icg_kappa
+    value: '0.47'
+  decisions: []
+  deprecated: true
+- id: C497
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Best +3.43pp, mean +1.47pp, none reaching p < 0.05
+  type: quantitative
+  evidence:
+  - exp_id: exp-040
+    metric: replication
+  decisions: []
+  deprecated: true
+- id: C500
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Oracle +14.22pp FOLIO, +11.50pp PW, self-extraction 24% of ceiling
+  type: quantitative
+  evidence:
+  - exp_id: exp-022
+    metric: oracle_gap
+  decisions: []
+  deprecated: true
+- id: C504
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Debate kappa 0.44->0.15, accuracy -18.6pp
+  type: quantitative
+  evidence:
+  - exp_id: exp-077
+    metric: kappa_generalization
+  decisions: []
+  deprecated: true
+- id: C505
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 92% of constraints technically discriminative
+  type: quantitative
+  evidence:
+  - exp_id: exp-015
+    metric: discriminative_rate
+  decisions: []
+  deprecated: false
+- id: C507
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 56.4% of cross-answer pairs share zero Z3 variables
+  type: quantitative
+  evidence:
+  - exp_id: exp-015
+    metric: variable_isolation
+  decisions: []
+  deprecated: false
+- id: C508
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: kappa 0.21-0.82, Eff-K 1.20-3.62 at K=12
+  type: quantitative
+  evidence:
+  - exp_id: exp-009
+    metric: fleiss_kappa
+  decisions: []
+  deprecated: true
+- id: C510
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: +3.43pp best, +1.47pp mean, p<0.10 in 2/4 seeds
+  type: quantitative
+  evidence:
+  - exp_id: exp-040
+    metric: replication
+  decisions: []
+  deprecated: true
+- id: C513
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Oracle +14.22pp FOLIO, +11.50pp PW, 24% ceiling
+  type: quantitative
+  evidence:
+  - exp_id: exp-022
+    metric: oracle_gap
+  decisions: []
+  deprecated: true
+- id: C517
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Debate kappa 0.44->0.15, -18.6pp
+  type: quantitative
+  evidence:
+  - exp_id: exp-077
+    metric: kappa_generalization
+  decisions: []
+  deprecated: true
+- id: C518
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Debate produces -18.63pp on FOLIO and -23.00pp on LogiQA
+  type: quantitative
+  evidence:
+  - exp_id: exp-075
+    metric: debate_folio_delta
+  - exp_id: exp-078
+    metric: debate_logiqa_delta
+  decisions: []
+  deprecated: true
+- id: C519
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Debate collapses accuracy by -18.6pp FOLIO and -23.0pp LogiQA
+  type: quantitative
+  evidence:
+  - exp_id: exp-075
+    metric: debate_folio_delta
+  - exp_id: exp-078
+    metric: debate_logiqa_delta
+  decisions: []
+  deprecated: true
+- id: C520
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Debate collapses accuracy -18.6pp FOLIO, -23.0pp LogiQA
+  type: quantitative
+  evidence:
+  - exp_id: exp-075
+    metric: debate_folio
+  - exp_id: exp-078
+    metric: debate_logiqa
+  decisions: []
+  deprecated: true
+- id: C521
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Debate -18.6pp FOLIO, -23.0pp LogiQA
+  type: quantitative
+  evidence:
+  - exp_id: exp-075
+    metric: debate_folio
+  - exp_id: exp-078
+    metric: debate_logiqa
+  decisions: []
+  deprecated: true
+- id: C522
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Contrastive yields -9.31pp FOLIO and -4.50pp LogiQA with ~21% degenerate scores
+  type: quantitative
+  evidence:
+  - exp_id: exp-076
+    metric: contrastive_folio_delta
+  - exp_id: exp-080
+    metric: contrastive_logiqa_delta
+  decisions: []
+  deprecated: true
+- id: C523
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Oracle +14.22pp FOLIO, +11.50pp PW, self-extraction 24.1% ceiling
+  type: quantitative
+  evidence:
+  - exp_id: exp-077
+    metric: sc_kappa
+    value: '0.44'
+  - exp_id: exp-077
+    metric: dp_kappa
+    value: '0.40'
+  - exp_id: exp-icg-kappa-corrected
+    metric: icg_kappa
+    value: '0.47'
+  decisions: []
+  deprecated: true
+- id: C525
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Diverse-Prompt kappa=0.40, Debate kappa=0.15, -18.6pp FOLIO -23.0pp LogiQA
+  type: quantitative
+  evidence:
+  - exp_id: exp-077
+    metric: kappa_generalization
+  - exp_id: exp-078
+    metric: debate_logiqa
+  decisions: []
+  deprecated: true
+- id: C528
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Four-seed p-values: 0.092, 0.070, 1.0, 1.0'
+  type: quantitative
+  evidence:
+  - exp_id: exp-040
+    metric: replication_pvalues
+  decisions: []
+  deprecated: true
+- id: C532
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Significant negatives: -2.83pp (p=0.014), -2.50pp (p=0.011)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-009
+    metric: significant_negatives
+  decisions: []
+  deprecated: true
+- id: C533
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Debate kappa 0.44->0.15, -18.6pp FOLIO, -23.0pp LogiQA
+  type: quantitative
+  evidence:
+  - exp_id: exp-077
+    metric: kappa_generalization
+  - exp_id: exp-078
+    metric: debate_logiqa
+  decisions: []
+  deprecated: true
+- id: C535
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: kappa 0.21-0.82, Eff-K 1.20-3.62 at K=12
+  type: quantitative
+  evidence:
+  - exp_id: exp-009
+    metric: fleiss_kappa
+  decisions: []
+  deprecated: true
+- id: C538
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Oracle +14.22pp FOLIO, +11.50pp PW, 24% ceiling
+  type: quantitative
+  evidence:
+  - exp_id: exp-022
+    metric: oracle_gap
+  decisions: []
+  deprecated: true
+- id: C542
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: +3.43pp best, +1.47pp mean, none reaching p<0.05
+  type: quantitative
+  evidence:
+  - exp_id: exp-040
+    metric: replication
+  decisions: []
+  deprecated: true
+- id: C543
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: MAX-SAT and count-only agree on 94.4% of predictions (759/804), disagreements
+    18 vs 17
+  type: quantitative
+  evidence:
+  - exp_id: exp-013
+    metric: ablation_agreement
+  decisions: []
+  deprecated: true
+- id: C544
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'Per-domain: MAX-SAT 59.3% vs count-only 56.9% in intermediate-SC; 36.5% vs
+    37.2% in Type C'
+  type: quantitative
+  evidence:
+  - exp_id: exp-013
+    metric: ablation_per_domain
+  decisions: []
+  deprecated: true
+- id: C545
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Process-level CoT cosine similarity quantifies reasoning homogeneity beyond
+    answer-level kappa
+  type: methodological
+  evidence: Eq. process-sim
+  decisions: []
+  deprecated: false
+- id: C546
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: When SICA errs, 83.3% of extracted constraints support the incorrect majority
+    answer, a bias ratio of 4.97x
+  type: quantitative
+  evidence:
+  - exp_id: exp-confirmation-bias
+    metric: bias_ratio=4.97, wrong_constraints_when_sica_errs=0.833
+  decisions: []
+  deprecated: false
+- id: C548
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 94% of SICA errors overlap with SC errors
+  type: quantitative
+  evidence:
+  - exp_id: exp-confirmation-bias
+    metric: sica_errors_follow_sc=0.94
+  decisions: []
+  deprecated: false
+- id: C551
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 12 instances where SICA corrects SC errors, 43% from minority trace gold-aligned
+    constraints
+  type: quantitative
+  evidence:
+  - exp_id: exp-confirmation-bias
+    metric: correct_flips=12, minority_gold_support=0.43
+  decisions: []
+  deprecated: false
+- id: C555
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: CEGIS achieves +3.43pp in round 1 but oscillates in rounds 2-5
+  type: quantitative
+  evidence:
+  - exp_id: exp-direction-d-cegis
+    metric: R1_delta=+3.43, R2-R5=oscillating
+  decisions: []
+  deprecated: false
+- id: C560
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Cross-model extraction produces accuracy within ±1pp of self-extraction
+  type: quantitative
+  evidence:
+  - exp_id: exp-059-cross-qwen3-extractor
+    metric: delta_vs_self=+0.98
+  - exp_id: exp-060-cross-qwen25-14b-extractor
+    metric: delta_vs_self=-0.98
+  decisions: []
+  deprecated: false
+- id: C566
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: CoT cosine similarity 0.69 vs answer-level kappa 0.41
+  type: quantitative
+  evidence:
+  - exp_id: exp-wild4-process-kappa
+    metric: process_cosine_mean=0.6902, answer_kappa=0.4093
+  decisions: []
+  deprecated: false
+- id: C573
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'Cosine similarity and kappa uncorrelated: r=-0.06, p=0.36'
+  type: quantitative
+  evidence:
+  - exp_id: exp-wild4-process-kappa
+    metric: pearson_r=-0.064, pearson_p=0.36
+  decisions: []
+  deprecated: false
+- id: C581
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 9.3% of trace pairs converge on reasoning while disagreeing on answer
+  type: quantitative
+  evidence:
+  - exp_id: exp-wild4-process-kappa
+    metric: same_answer_diff_process_pct=9.3
+  decisions: []
+  deprecated: false
+- id: C590
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: PROVE achieves 15.2% compilable programs, delta=-1.9pp
+  type: quantitative
+  evidence:
+  - exp_id: exp-direction-a-prove
+    metric: code_gen=15.2%, delta=-1.9
+  decisions: []
+  deprecated: false
+- id: C600
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: DeepConf logprob gap 0.006 between correct and incorrect
+  type: quantitative
+  evidence:
+  - exp_id: exp-direction-b-deepconf
+    metric: logprob_correct=-0.135, logprob_incorrect=-0.141
+  decisions: []
+  deprecated: false
+- id: C611
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Cross-model SICA reduces kappa from 0.53 to 0.42, delta=-0.49pp
+  type: quantitative
+  evidence:
+  - exp_id: exp-cross-model-phase2
+    metric: kappa_cross=0.422, kappa_within=0.532, delta=-0.49
+  decisions: []
+  deprecated: false
+- id: C623
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Problem perturbation increases kappa to 0.70 (anti-effect)
+  type: quantitative
+  evidence:
+  - exp_id: exp-wild3-perturbation
+    metric: kappa_perturbed=0.696
+  decisions: []
+  deprecated: false
+- id: C636
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: MIN-UNSAT objective delta=-6.5pp
+  type: quantitative
+  evidence:
+  - exp_id: exp-wild1-max-unsat
+    metric: min_unsat_delta_pp=-6.5
+  decisions: []
+  deprecated: false
+- id: C650
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Kappa-aware SC yields delta=0 across 11 conditions
+  type: quantitative
+  evidence:
+  - exp_id: exp-wild6-kappa-aware-sc
+    metric: conditions=11, delta_all=0
+  decisions: []
+  deprecated: false
+- id: C665
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Z3 trace filtering precision 49.1%, delta=-0.49pp
+  type: quantitative
+  evidence:
+  - exp_id: exp-wave3-dir-i-z3-filter
+    metric: precision=49.1%, delta=-0.49
+  decisions: []
+  deprecated: false
+- id: C681
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Bootstrapped gold constraints oscillate like CEGIS
+  type: qualitative
+  evidence:
+  - exp_id: exp-wave3-dir-j-bootstrap
+    metric: R1=+2.45pp then oscillates
+  decisions: []
+  deprecated: false
+- id: C698
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: ASCII perturbation yields kappa reduction 0.39 to 0.36
+  type: quantitative
+  evidence:
+  - exp_id: exp-wild2-ascii
+    metric: kappa_standard=0.39, kappa_variable=0.36
+  decisions: []
+  deprecated: false
+- id: C716
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: More than twenty remediation strategies all produce neutral or negative results
+  type: aggregate
+  evidence:
+  - exp_id: multiple
+    metric: 9 prompt + 3 method + 10 additional = 22 interventions, all negative/neutral
+  decisions: []
+  deprecated: false
+- id: C717
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: kappa = 0.21-0.82 across instruction-tuned conditions, Eff-K = 1.20-3.62 for
+    K=12
+  type: quantitative
+  evidence:
+  - exp_id: multiple
+    metric: kappa range from Table 3
+  decisions: []
+  deprecated: false
+- id: C719
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: CoT cosine similarity 0.69 far exceeds answer-level kappa 0.41
+  type: quantitative
+  evidence:
+  - exp_id: exp-wild4-process-kappa
+    metric: process_cosine_mean=0.6902, answer_kappa=0.4093
+  decisions: []
+  deprecated: false
+- id: C722
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 83.3% of self-extracted constraints support wrong majority, bias ratio 4.97x,
+    94% error overlap with SC
+  type: quantitative
+  evidence:
+  - exp_id: exp-confirmation-bias
+    metric: bias_ratio=4.97, wrong_constraints=0.833, overlap=0.94
+  decisions: []
+  deprecated: false
+- id: C726
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: More than twenty remediation strategies all produce neutral or negative results
+  type: aggregate
+  evidence:
+  - exp_id: multiple
+    metric: 9 prompt + 3 method + 10 additional
+  decisions: []
+  deprecated: false
+- id: C731
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Oracle gold FOL yields +14.22pp FOLIO, +11.50pp ProofWriter, self-extraction
+    captures 24%
+  type: quantitative
+  evidence:
+  - exp_id: exp-021-oracle-folio
+    metric: delta=+14.22, p<0.001
+  - exp_id: exp-022-oracle-proofwriter
+    metric: delta=+11.50, p<0.001
+  decisions: []
+  deprecated: false
+- id: C737
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Debate reduces kappa from 0.44 to 0.15 but collapses accuracy by -18.6pp
+  type: quantitative
+  evidence:
+  - exp_id: exp-076-debate-mistral-folio
+    metric: kappa=0.15, delta=-18.63
+  decisions: []
+  deprecated: false
+- id: C738
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: More than twenty remediation strategies fail because each addresses a symptom
+    rather than confirmation bias root cause
+  type: aggregate
+  evidence:
+  - exp_id: multiple
+    metric: 22+ interventions all negative/neutral
+  decisions: []
+  deprecated: false
+- id: C740
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Process-level similarity 0.69 vs answer-level kappa 0.41 implies deeper bottleneck
+  type: quantitative
+  evidence:
+  - exp_id: exp-wild4-process-kappa
+    metric: process_cosine_mean=0.6902, answer_kappa=0.4093
+  decisions: []
+  deprecated: false
+- id: C741
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Confirmation bias: 83.3% wrong constraints, bias ratio 4.97x, 94% error overlap'
+  type: quantitative
+  evidence:
+  - exp_id: exp-confirmation-bias
+    metric: bias_ratio=4.97, wrong_constraints=0.833, overlap=0.94
+  decisions: []
+  deprecated: false
+- id: C743
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Process-level: CoT cosine 0.69 vs answer kappa 0.41'
+  type: quantitative
+  evidence:
+  - exp_id: exp-wild4-process-kappa
+    metric: process_cosine_mean=0.6902, answer_kappa=0.4093
+  decisions: []
+  deprecated: false
+- id: C746
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: More than twenty remediation strategies all fail
+  type: aggregate
+  evidence:
+  - exp_id: multiple
+    metric: 22+ interventions
+  decisions: []
+  deprecated: false
+- id: C750
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Oracle +14.22pp FOLIO, +11.50pp PW, self-extraction 24%
+  type: quantitative
+  evidence:
+  - exp_id: exp-021-oracle-folio
+    metric: delta=+14.22
+  - exp_id: exp-022-oracle-proofwriter
+    metric: delta=+11.50
+  decisions: []
+  deprecated: false
+- id: C751
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Zero of nine conditions reaches p<0.05, multiple show significant degradation
+  type: aggregate
+  evidence:
+  - exp_id: multiple
+    metric: Table 1 results
+  decisions: []
+  deprecated: true
+- id: C753
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 83.3% wrong constraints, bias ratio 4.97x, 94% error overlap
+  type: quantitative
+  evidence:
+  - exp_id: exp-confirmation-bias
+    metric: bias_ratio=4.97, wrong_constraints=0.833, overlap=0.94
+  decisions: []
+  deprecated: true
+- id: C756
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: CoT cosine similarity 0.69 vs answer-level kappa 0.41
+  type: quantitative
+  evidence:
+  - exp_id: exp-wild4-process-kappa
+    metric: process_cosine_mean=0.6902, answer_kappa=0.4093
+  decisions: []
+  deprecated: true
+- id: C760
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: More than twenty remediation strategies all fail
+  type: aggregate
+  evidence:
+  - exp_id: multiple
+    metric: 22+ interventions
+  decisions: []
+  deprecated: true
+- id: C765
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Debate kappa=0.15, -18.6pp; correlation floor kappa>=0.40 across 3 families
+  type: quantitative
+  evidence:
+  - exp_id: exp-076-debate-mistral-folio
+    metric: kappa=0.15, delta=-18.63
+  - exp_id: exp-077-kappa-generalization
+    metric: all families kappa>=0.41
+  decisions: []
+  deprecated: true
+- id: C771
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Oracle +14.22pp FOLIO, +11.50pp PW, self-extraction 24%
+  type: quantitative
+  evidence:
+  - exp_id: exp-021-oracle-folio
+    metric: delta=+14.22
+  - exp_id: exp-022-oracle-proofwriter
+    metric: delta=+11.50
+  decisions: []
+  deprecated: true
+- id: C772
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Cross-model SICA reduces kappa from 0.53 to 0.42, delta=-0.49pp p=1.0
+  type: quantitative
+  evidence:
+  - exp_id: exp-cross-model-phase2
+    metric: kappa_cross=0.422, kappa_within=0.532, delta=-0.49, p=1.0
+  decisions: []
+  deprecated: false
+- id: C773
+  location:
+    section: solutions
+    paragraph: 0
+    sentence: 0
+  text: DeBERTa NLI alone achieves 49.51%, below SC's 54.41% baseline
+  type: quantitative
+  evidence:
+  - exp_id: exp-wave3-dir-r-nli-verifier
+    metric: nli_standalone=0.4951, sc_accuracy=0.5441
+  decisions: []
+  deprecated: false
+- id: C775
+  location:
+    section: solutions
+    paragraph: 0
+    sentence: 0
+  text: Combo mode at w=3 reaches 58.82% (+4.41pp, McNemar p=0.039, 95% CI [0.59,
+    6.28]pp)
+  type: quantitative
+  evidence:
+  - exp_id: exp-wave3-dir-r-nli-verifier
+    metric: combo_w3=0.5882, delta_w3_pp=4.41, mcnemar_p=0.0391, ci95_lower=0.59,
+      ci95_upper=6.28
+  decisions: []
+  deprecated: false
+- id: C778
+  location:
+    section: solutions
+    paragraph: 0
+    sentence: 0
+  text: w=1 gives +3.43pp, w=3 gives +4.41pp, w=5 gives +5.88pp (best absolute, 60.29%)
+  type: quantitative
+  evidence:
+  - exp_id: exp-wave3-dir-r-nli-verifier
+    metric: combo_w1=0.5784, delta_w1_pp=3.43
+  - exp_id: exp-wave3-dir-r-combo-extended
+    metric: best_combo_acc=0.6029, best_delta_sc_pp=5.88
+  decisions: []
+  deprecated: false
+- id: C782
+  location:
+    section: solutions
+    paragraph: 0
+    sentence: 0
+  text: NLI achieves 71.43% on False vs SC's 38.10% (+33pp)
+  type: quantitative
+  evidence:
+  - exp_id: exp-wave3-dir-r-nli-verifier
+    metric: nli_false_acc=0.7143, sc_false_acc=0.381
+  decisions: []
+  deprecated: false
+- id: C787
+  location:
+    section: solutions
+    paragraph: 0
+    sentence: 0
+  text: SC reaches 68.12% on Unknown vs NLI 18.84% (+49pp for SC)
+  type: quantitative
+  evidence:
+  - exp_id: exp-wave3-dir-r-nli-verifier
+    metric: sc_unknown_acc=0.6812, nli_unknown_acc=0.1884
+  decisions: []
+  deprecated: false
+- id: C793
+  location:
+    section: solutions
+    paragraph: 0
+    sentence: 0
+  text: When NLI and SC agree (45.1% coverage), accuracy reaches 68.48% (+14.07pp
+    over SC)
+  type: quantitative
+  evidence:
+  - exp_id: exp-wave3-dir-r-nli-verifier
+    metric: intersection_acc=0.6848, intersection_coverage=0.451
+  decisions: []
+  deprecated: false
+- id: C800
+  location:
+    section: solutions
+    paragraph: 0
+    sentence: 0
+  text: At 47.5% agreement coverage, accuracy is 70.1%
+  type: quantitative
+  evidence:
+  - exp_id: exp-wave3-dir-r-combo-extended
+    metric: sica_nli_agreement=0.475, agreement_accuracy=0.701
+  decisions: []
+  deprecated: false
+- id: C801
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Z3 validates 99% of self-extracted constraints
+  type: quantitative
+  evidence:
+  - exp_sica_z3_rejection
+  decisions: []
+  deprecated: false
+- id: C803
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: MAX-SAT produces answers identical to SC on 94.4% of problems
+  type: quantitative
+  evidence:
+  - exp_ablation_maxsat_vs_count
+  decisions: []
+  deprecated: false
+- id: C806
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: No condition shows significant positive effect after FDR control
+  type: quantitative
+  evidence:
+  - exp_main_results
+  decisions: []
+  deprecated: false
+- id: C810
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Four conditions confirm equivalence within pm 2pp
+  type: quantitative
+  evidence:
+  - exp_tost
+  decisions: []
+  deprecated: false
+- id: C815
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 83.3% of self-extracted constraints support wrong majority answer on incorrect
+    problems
+  type: quantitative
+  evidence:
+  - exp_scb_mistral
+  decisions: []
+  deprecated: false
+- id: C821
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: BR 1.66-4.97x across nine models from 7B to frontier
+  type: quantitative
+  evidence:
+  - exp_frontier_scb
+  decisions: []
+  deprecated: false
+- id: C828
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Shuffle control confirms structural bias (p > 0.7)
+  type: quantitative
+  evidence:
+  - exp_shuffle_control
+  decisions: []
+  deprecated: false
+- id: C836
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 27 training-free remediation strategies fail
+  type: quantitative
+  evidence:
+  - exp_interventions
+  decisions: []
+  deprecated: false
+- id: C845
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: +6.67pp cross-architecture NLI on weakest generator (p < 0.001)
+  type: quantitative
+  evidence:
+  - exp_cross_arch_nli
+  decisions: []
+  deprecated: false
+- id: C855
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Three diagnostics classify all 60 tested conditions
+  type: quantitative
+  evidence:
+  - exp_diagnostic_framework
+  decisions: []
+  deprecated: false
+- id: C856
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Under source attribution (Eq. score), SICA scoring degenerates to majority-vote
+    count score(a) = n_a, with BR >= 1 whenever multiple answers exist
+  type: theoretical
+  evidence:
+  - exp_id: sica_constraint_ablation_013
+    detail: MAX-SAT = count-only on 94.4% of problems
+  decisions: []
+  deprecated: false
+- id: C857
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'Self-extracted constraints cannot carry more information about Y than the
+    source traces: I(C;Y) <= I(T;Y) and I(C;Y|A) <= I(T;Y|A) by DPI'
+  type: theoretical
+  evidence:
+  - exp_id: proposition1_proof
+    detail: Data processing inequality on Markov chain Y -- T_{1:K} -- C_{1:K}
+  decisions: []
+  deprecated: false
+- id: C858
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Degeneration condition holds on 94.4% of problems, extending Proposition 1
+    conclusions to the complete SICA scoring function
+  type: quantitative
+  evidence:
+  - exp_id: sica_constraint_ablation_013
+    detail: MAX-SAT agreement with count-only = 94.4%
+  decisions: []
+  deprecated: false
+- id: C859
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'Causal DAG shows C ⊥ Y | A: all information about ground truth reaching constraints
+    is mediated by the answer, making self-verification inherently answer-biased'
+  type: theoretical
+  evidence:
+  - exp_id: proposition1_proof
+    detail: DPI on Markov chain Y -- T -- C with A as mediator
+  decisions: []
+  deprecated: false
+- id: C860
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Proposition 1 establishes d-separation C perp Y given A, making self-verification
+    an information bottleneck; extends Huang et al. self-correction impossibility
+    to formal verification
+  type: qualitative
+  evidence:
+  - exp_id: proposition1_proof
+    detail: DPI on Markov chain Y -- T -- C, d-separation in causal DAG
+  decisions: []
+  deprecated: false
+- id: C861
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 56.4% of problems have zero variable overlap across answer groups, making
+    cross-group satisfiability evaluation undefined
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C862
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: DPI bound explains why trained verifiers circumvent self-extraction ceiling
+    by breaking the Markov chain
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C863
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Cross-model extraction κ≈0.40-0.47 vs same-model 0.47-0.51, +0.49pp n.s.
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+tables:
+- id: tab:main_results
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: Mistral-7B FOLIO
+    col: SC
+    value: '54.41'
+    source:
+      exp_id: exp-033
+      metric: sc_accuracy
+  - row: Mistral-7B FOLIO
+    col: SICA
+    value: '59.31'
+    source:
+      exp_id: exp-033
+      metric: sica_accuracy
+  - row: Mistral-7B FOLIO
+    col: Delta
+    value: '+4.90'
+    source:
+      exp_id: exp-033
+      metric: delta_pp
+  - row: Mistral-7B FOLIO
+    col: p
+    value: '0.013'
+    source:
+      exp_id: exp-033
+      metric: mcnemar_p_value
+  - row: Oracle FOLIO
+    col: SC
+    value: '75.49'
+    source:
+      exp_id: exp-031-oracle-folio-regen
+      metric: sc_accuracy
+  - row: Oracle FOLIO
+    col: SICA
+    value: '89.71'
+    source:
+      exp_id: exp-031-oracle-folio-regen
+      metric: oracle_sica_accuracy
+  - row: Oracle FOLIO
+    col: Delta
+    value: '+14.22'
+    source:
+      exp_id: exp-031-oracle-folio-regen
+      metric: oracle_vs_sc_delta_pp
+  - row: Oracle PW
+    col: SC
+    value: '75.17'
+    source:
+      exp_id: exp-022-oracle-proofwriter
+      metric: sc_accuracy
+  - row: Oracle PW
+    col: SICA
+    value: '86.67'
+    source:
+      exp_id: exp-022-oracle-proofwriter
+      metric: oracle_sica_accuracy
+  - row: Oracle PW
+    col: Delta
+    value: '+11.50'
+    source:
+      exp_id: exp-022-oracle-proofwriter
+      metric: oracle_vs_sc_delta_pp
+  - row: Qwen2.5-14B FOLIO+PW
+    col: SC
+    value: '76.24'
+    source:
+      exp_id: sica_expanded_14b
+      metric: sc_accuracy
+  - row: Qwen2.5-14B FOLIO+PW
+    col: SICA
+    value: '76.49'
+    source:
+      exp_id: sica_expanded_14b
+      metric: sica_accuracy
+  - row: Qwen2.5-14B LogiQA
+    col: SC
+    value: '78.50'
+    source:
+      exp_id: exp-038-14b-logiqa200-16639
+      metric: sc_accuracy
+  - row: Qwen2.5-14B LogiQA
+    col: Delta
+    value: '-0.50'
+    source:
+      exp_id: exp-038-14b-logiqa200-16639
+      metric: delta_pp
+  - row: Qwen3-14B FOLIO
+    col: SC
+    value: '83.82'
+    source:
+      exp_id: exp-027-qwen3-14b-non-thinking
+      metric: sc_accuracy
+  - row: Qwen3-14B FOLIO
+    col: Delta
+    value: '+0.49'
+    source:
+      exp_id: exp-027-qwen3-14b-non-thinking
+      metric: delta_pp
+  - row: Qwen2.5-7B FOLIO
+    col: SC
+    value: '77.34'
+    source:
+      exp_id: exp-035
+      metric: sc_accuracy
+  - row: Qwen2.5-7B FOLIO
+    col: Delta
+    value: '-0.49'
+    source:
+      exp_id: exp-035
+      metric: delta_pp
+  - row: LLaMA FOLIO
+    col: Delta
+    value: '-2.45'
+    source:
+      exp_id: exp-020-llama8b-folio-204
+      metric: delta_pp
+  - row: LLaMA StrategyQA
+    col: Delta
+    value: '+2.00'
+    source:
+      exp_id: exp-019-llama8b-strategyqa-200
+      metric: delta_pp
+  deprecated: true
+- id: tab:entropy
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: High Mistral
+    col: Delta
+    value: '+9.6'
+    source:
+      exp_id: exp-033+exp-026
+      metric: entropy_high_delta_mistral
+  - row: High Qwen
+    col: Delta
+    value: '+4.8'
+    source:
+      exp_id: exp-033+exp-026
+      metric: entropy_high_delta_qwen
+  deprecated: true
+- id: tab:ablation
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: SICA
+    col: Agreement
+    value: 773/804
+    source:
+      exp_id: sica_constraint_ablation_013
+      metric: agreement_maxsat_vs_sc
+  deprecated: true
+- id: tab:remediation
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: Contrastive
+    col: Delta
+    value: '-1.10'
+    source:
+      exp_id: exp-029-contrastive-folio204
+      metric: delta_pp
+  - row: Cross-model
+    col: Delta
+    value: '0.00'
+    source:
+      exp_id: exp-030-crossmodel-mistral-folio204
+      metric: delta_pp
+  - row: Qwen3-14B
+    col: Delta
+    value: '+0.49'
+    source:
+      exp_id: exp-027-qwen3-14b-non-thinking
+      metric: delta_pp
+  deprecated: true
+- id: tab:method_interventions
+  location:
+    section: analysis
+    table_number: 0
+  caption: ''
+  cells:
+  - row: ICG
+    col: FOLIO Delta
+    value: -1.96 / +1.47
+    source:
+      exp_id: exp-073
+      metric: icg_delta
+  - row: Contrastive
+    col: FOLIO Delta
+    value: '-9.31'
+    source:
+      exp_id: exp-076
+      metric: contrastive_delta
+  - row: Debate
+    col: FOLIO Delta
+    value: '-18.63'
+    source:
+      exp_id: exp-075
+      metric: debate_delta
+  deprecated: true
+- id: tab:kappa_generalization
+  location:
+    section: analysis
+    table_number: 0
+  caption: ''
+  cells:
+  - row: SC
+    col: kappa
+    value: '0.44'
+    source:
+      exp_id: exp-077
+      metric: sc_kappa
+  - row: Diverse-Prompt
+    col: kappa
+    value: '0.40'
+    source:
+      exp_id: exp-077
+      metric: diverse_kappa
+  - row: Debate
+    col: kappa
+    value: '0.15'
+    source:
+      exp_id: exp-077
+      metric: debate_kappa
+  - row: Debate
+    col: Acc change
+    value: '-18.6'
+    source:
+      exp_id: exp-077
+      metric: debate_acc_change
+  deprecated: true
+figures:
+- id: F001
+  location:
+    section: analysis
+    figure_number: 0
+  caption: ''
+  type: other
+  source: {}
+  output_path: ''
+  deprecated: true
+- id: F002
+  location:
+    section: analysis
+    figure_number: 0
+  caption: ''
+  type: other
+  source: {}
+  output_path: ''
+  deprecated: false
+_completeness:
+  coverage: 62/66
+  claims: 65
+  tables: 0
+  figures: 1
+  tier_counts:
+    tier1: 0
+    tier2: 62
+    tier3: 4
+    tierX: 0
+  last_checked: '2026-05-25T00:06:26.340312+00:00'

@@ -1,0 +1,605 @@
+{
+  "pid": "folio_183",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice_to_animals(X) & mean_to_animals(X)",
+          "z3_formula": "And(nice_to_animals_tom, mean_to_animals_tom) == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "grumpy(X) & mean_to_animals(X)",
+          "z3_formula": "And(grumpy_tom, mean_to_animals_tom) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal_lover(X) == nice_to_animals(X)",
+          "z3_formula": "animal_lover_tom == nice_to_animals_tom",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> animal_lover(X)",
+          "z3_formula": "Implies(pet_owner_tom, animal_lover_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "pet_owner(tom)",
+          "z3_formula": "pet_owner_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "animal_lover(tom)",
+          "z3_formula": "animal_lover_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice_to_animals(tom)",
+          "z3_formula": "nice_to_animals_tom == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "mean_to_animals(tom)",
+          "z3_formula": "mean_to_animals_tom == False",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "grumpy_tom",
+          "z3_formula": "grumpy_tom == Or(grumpy_tom, Not(And(grumpy_tom, mean_to_animals_tom)))",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice_to_animals_implies_not_mean_to_animals",
+          "z3_formula": "Implies(nice_to_animals, not_mean_to_animals)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "grumpy_and_mean_to_animals",
+          "z3_formula": "And(grumpy, mean_to_animals)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal_lover_implies_nice_to_animals",
+          "z3_formula": "Implies(animal_lover, nice_to_animals)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "pet_owner_implies_animal_lover",
+          "z3_formula": "Implies(pet_owner, animal_lover)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "tom_is_nice_to_animals",
+          "z3_formula": "nice_to_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "tom_is_not_mean_to_animals",
+          "z3_formula": "not_mean_to_animals == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "tom_is_not_grumpy",
+          "z3_formula": "grumpy == False",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "pet_owner(tom)",
+          "z3_formula": "pet_owner_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> animal_lover(X)",
+          "z3_formula": "Implies(pet_owner_tom, animal_lover_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal_lover(X) -> nice(X)",
+          "z3_formula": "Implies(animal_lover_tom, nice_tom)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> not mean(X)",
+          "z3_formula": "Implies(nice_tom, not mean_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "grumpy(X) -> mean(X)",
+          "z3_formula": "Implies(grumpy_tom, mean_tom)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "pet_owner(tom)",
+          "z3_formula": "pet_owner_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> animal_lover(X)",
+          "z3_formula": "Implies(pet_owner_tom, animal_lover_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal_lover(X) -> nice_to_animals(X)",
+          "z3_formula": "Implies(animal_lover_tom, nice_to_animals_tom)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice_to_animals(tom)",
+          "z3_formula": "nice_to_animals_tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice_to_animals(X) -> not mean_to_animals(X)",
+          "z3_formula": "Implies(nice_to_animals_tom, not mean_to_animals_tom)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not mean_to_animals(tom)",
+          "z3_formula": "not mean_to_animals_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "grumpy(X) & mean_to_animals(X)",
+          "z3_formula": "And(grumpy_X, mean_to_animals_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not grumpy(X) | not mean_to_animals(X)",
+          "z3_formula": "Or(Not(grumpy_tom), Not(mean_to_animals_tom))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not grumpy(tom)",
+          "z3_formula": "grumpy_tom == False",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": []
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "pet_owner(tom)",
+          "z3_formula": "pet_owner_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> loves_animals(X)",
+          "z3_formula": "Implies(pet_owner_tom, loves_animals_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loves_animals(X) -> nice_to_animals(X)",
+          "z3_formula": "Implies(loves_animals_tom, nice_to_animals_tom)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice_to_animals(X) -> not mean_to_animals(X)",
+          "z3_formula": "Implies(nice_to_animals_tom, not mean_to_animals_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "grumpy(X) -> may_be mean_to_animals(X)",
+          "z3_formula": "Implies(grumpy_tom, may_be mean_to_animals_tom)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not mean_to_animals(tom)",
+          "z3_formula": "not mean_to_animals_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "may_be mean_to_animals(tom)",
+          "z3_formula": "may_be mean_to_animals_tom == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice_to_animals(X) & mean_to_animals(X)",
+          "z3_formula": "And(nice_to_animals_tom, mean_to_animals_tom) == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "grumpy(X) & mean_to_animals(X)",
+          "z3_formula": "And(grumpy_tom, mean_to_animals_tom) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal_lover(X) & nice_to_animals(X)",
+          "z3_formula": "And(animal_lover_tom, nice_to_animals_tom) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> animal_lover(X)",
+          "z3_formula": "Implies(pet_owner_tom, animal_lover_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "pet_owner(tom)",
+          "z3_formula": "pet_owner_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "animal_lover(tom)",
+          "z3_formula": "animal_lover_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice_to_animals(tom)",
+          "z3_formula": "nice_to_animals_tom == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not mean_to_animals(tom)",
+          "z3_formula": "Not(mean_to_animals_tom)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not grumpy(tom) & mean_to_animals(tom)",
+          "z3_formula": "And(Not(grumpy_tom), mean_to_animals_tom)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "pet_owner(tom)",
+          "z3_formula": "pet_owner_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> loves_animals(X)",
+          "z3_formula": "Implies(pet_owner_tom, loves_animals_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loves_animals(X) -> nice_to_animals(X)",
+          "z3_formula": "Implies(loves_animals_tom, nice_to_animals_tom)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice_to_animals(X) -> not mean_to_animals(X)",
+          "z3_formula": "Implies(nice_to_animals_tom, not mean_to_animals_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not mean_to_animals(tom)",
+          "z3_formula": "not mean_to_animals_tom == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "grumpy(X) -> mean_to_animals(X)",
+          "z3_formula": "Implies(grumpy_tom, mean_to_animals_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "some(grumpy(X), mean_to_animals(X))",
+          "z3_formula": "some(grumpy_tom, mean_to_animals_tom) == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not grumpy(tom)",
+          "z3_formula": "grumpy_tom == False",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice_to_animals(X) & mean_to_animals(X)",
+          "z3_formula": "Not(And(nice_to_animals_tom, mean_to_animals_tom)) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "grumpy(X) & mean_to_animals(X)",
+          "z3_formula": "grumpy_tom & mean_to_animals_tom == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal_lover(X) -> nice_to_animals(X)",
+          "z3_formula": "Implies(animal_lover_tom, nice_to_animals_tom)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "pet(X) -> animal_lover(X)",
+          "z3_formula": "Implies(pet_tom, animal_lover_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice_to_animals(tom)",
+          "z3_formula": "nice_to_animals_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "grumpy(X) & mean_to_animals(X) -> nice_to_animals(X)",
+          "z3_formula": "Implies(And(grumpy_tom, mean_to_animals_tom), nice_to_animals_tom)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "grumpy_tom & mean_to_animals_tom == False",
+          "z3_formula": "Not(And(grumpy_tom, mean_to_animals_tom)) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not_grumpy(tom)",
+          "z3_formula": "not_grumpy_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "mean_grumpy_animals",
+          "z3_formula": "mean_grumpy_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice_animals(X) -> not_mean_animals(X)",
+          "z3_formula": "Implies(nice_animals_tom, not_mean_animals_tom)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "grumpy(X) -> mean_grumpy_animals",
+          "z3_formula": "Implies(grumpy_tom, mean_grumpy_animals)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loves_animals(X) -> nice_animals(X)",
+          "z3_formula": "Implies(loves_animals_tom, nice_animals_tom)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "owns_pet(X) -> loves_animals(X)",
+          "z3_formula": "Implies(owns_pet_tom, loves_animals_tom)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice_animals(tom)",
+          "z3_formula": "nice_animals_tom == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not_mean_animals(tom)",
+          "z3_formula": "not_mean_animals_tom == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not_grumpy(tom)",
+          "z3_formula": "not_grumpy_tom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "mean(tom, animals)",
+          "z3_formula": "mean_tom_animals == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice_to_animals(X) -> not_mean_to_animals(X)",
+          "z3_formula": "Implies(nice_to_animals_tom, not_mean_to_animals_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "grumpy(X) -> mean_to_animals(X)",
+          "z3_formula": "Implies(grumpy_tom, mean_tom_animals)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> loves_animals(X)",
+          "z3_formula": "Implies(pet_owner_tom, loves_animals_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loves_animals(X) -> nice_to_animals(X)",
+          "z3_formula": "Implies(loves_animals_tom, nice_to_animals_tom)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not_mean_to_animals(tom)",
+          "z3_formula": "not_mean_to_animals_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice_to_animals(tom)",
+          "z3_formula": "nice_to_animals_tom == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "grumpy(tom) & mean_to_animals(tom)",
+          "z3_formula": "And(grumpy_tom, mean_tom_animals)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "grumpy(tom) | not_grumpy(tom)",
+          "z3_formula": "Or(grumpy_tom, not_grumpy_tom)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not_grumpy(tom) & mean_to_animals(tom)",
+          "z3_formula": "And(not_grumpy_tom, mean_tom_animals)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not_grumpy(tom) & not_mean_to_animals(tom)",
+          "z3_formula": "And(not_grumpy_tom, not_mean_to_animals_tom)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not_grumpy(tom)",
+          "z3_formula": "not_grumpy_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "pet_owner(tom)",
+          "z3_formula": "pet_owner_tom == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "pet_owner(X) -> loves_animals(X)",
+          "z3_formula": "Implies(pet_owner_tom, loves_animals_tom)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loves_animals(X) -> nice_to_animals(X)",
+          "z3_formula": "Implies(loves_animals_tom, nice_to_animals_tom)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "grumpy(X) -> mean_to_animals(X)",
+          "z3_formula": "Implies(grumpy_tom, mean_to_animals_tom)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice_to_animals(tom)",
+          "z3_formula": "nice_to_animals_tom == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not mean_to_animals(tom)",
+          "z3_formula": "Not(mean_to_animals_tom) == True",
+          "source_step": 7
+        }
+      ]
+    }
+  ]
+}

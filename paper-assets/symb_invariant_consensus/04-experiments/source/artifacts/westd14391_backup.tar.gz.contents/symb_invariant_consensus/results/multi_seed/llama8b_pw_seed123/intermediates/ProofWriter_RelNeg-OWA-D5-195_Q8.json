@@ -1,0 +1,827 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-195_Q8",
+    "problem": "The bald eagle chases the cat. The bald eagle is not green. The cat eats the lion. The cat is not cold. The cat is not green. The cat is red. The dog does not chase the lion. The dog is red. The lion chases the dog. The lion is not red. If someone is blue then they like the lion. If someone likes the bald eagle then they like the cat. If someone chases the dog then they eat the dog. If someone eats the dog then they like the bald eagle. If someone chases the cat then they eat the bald eagle. If someone is green and rough then they chase the lion. If someone eats the lion then they do not eat the cat. If someone likes the cat and the cat is not green then the cat is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion does not like the cat.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nGreen($x, bool) ::: Is x green?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\nBlue($x, bool) ::: Is x blue?\nEats($x, $y, bool) ::: Does x eat y?\nLikes($x, $y, bool) ::: Does x like y?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nChases(BaldEagle, Cat, True) ::: The bald eagle chases the cat.\nGreen(BaldEagle, False) ::: The bald eagle is not green.\nEats(Cat, Lion, True) ::: The cat eats the lion.\nCold(Cat, False) ::: The cat is not cold.\nGreen(Cat, False) ::: The cat is not green.\nRed(Cat, True) ::: The cat is red.\nChases(Dog, Lion, False) ::: The dog does not chase the lion.\nRed(Dog, True) ::: The dog is red.\nChases(Lion, Dog, True) ::: The lion chases the dog.\nRed(Lion, False) ::: The lion is not red.\n\nRules:\nBlue($x, True) >>> Likes($x, Lion, True) ::: If someone is blue then they like the lion.\nLikes($x, BaldEagle, True) >>> Likes($x, Cat, True) ::: If someone likes the bald eagle then they like the cat.\nChases($x, Dog, True) >>> Eats($x, Dog, True) ::: If someone chases the dog then they eat the dog.\nEats($x, Dog, True) >>> Likes($x, BaldEagle, True) ::: If someone eats the dog then they like the bald eagle.\nChases($x, Cat, True) >>> Eats($x, BaldEagle, True) ::: If someone chases the cat then they eat the bald eagle.\nGreen($x, True) && Rough($x, True) >>> Chases($x, Lion, True) ::: If someone is green and rough then they chase the lion.\nEats($x, Lion, True) >>> Eats($x, Cat, False) ::: If someone eats the lion then they do not eat the cat.\nLikes($x, Cat, True) && Green(Cat, False) >>> Blue(Cat, True) ::: If someone likes the cat and the cat is not green then the cat is blue.\n\nQuery:\nLikes(Lion, Cat, False) ::: The lion does not like the cat."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 77.0,
+      "True": 84.0,
+      "Unknown": 78.0
+    },
+    "answer_counts": {
+      "False": 2,
+      "Unknown": 5,
+      "True": 4
+    },
+    "traces": [
+      {
+        "trace": "To solve the problem, we need to break down the given statements and analyze the information provided.\n\n1. The bald eagle chases the cat.\n2. The bald eagle is not green.\n3. The cat eats the lion.\n4. The cat is not cold.\n5. The cat is not green.\n6. The cat is red.\n7. The dog does not chase the lion.\n8. The dog is red.\n9. The lion chases the dog.\n10. The lion is not red.\n11. If someone is blue then they like the lion.\n12. If someone likes the bald eagle then they like the cat.\n13. If someone chases the dog then they eat the dog.\n14. If someone eats the dog then they like the bald eagle.\n15. If someone chases the cat then they eat the bald eagle.\n16. If someone is green and rough then they chase the lion.\n17. If someone eats the lion then they do not eat the cat.\n18. If someone likes the cat and the cat is not green then the cat is blue.\n\nNow, let's analyze the statement we need to determine: \"The lion does not like the cat.\"\n\nFrom the given statements, we know that:\n- The cat eats the lion (statement 3).\n- If someone eats the lion then they do not eat the cat (statement 17).\n\nHowever, this information does not directly tell us about the lion's feelings towards the cat. We need to find a connection between the lion and the cat's relationship.\n\nFrom statement 11, we know that if someone is blue, then they like the lion. But there's no information about the lion's feelings towards the cat.\n\nFrom statement 12, we know that if someone likes the bald eagle, then they like the cat. But we still don't have any information about the lion's feelings towards the cat.\n\nLet's analyze the statement \"The lion chases the dog\" (statement 9). If the lion chases the dog, then according to statement 13, the lion eats the dog. \n\nHowever, from statement 14, if someone eats the dog, then they like the bald eagle. So, the lion likes the bald eagle.\n\nNow, let's find a connection between the lion and the cat through the bald eagle. From statement 12, we know that if someone likes the bald eagle, then they like the cat. So, since the lion likes the bald eagle, the lion likes the cat.\n\nTherefore, the statement \"The lion does not like the cat\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the lion likes the cat or not, we need to analyze the given statements and their implications.\n\n1. The cat eats the lion.\n2. The cat is not cold.\n3. The cat is not green.\n4. The cat is red.\n\nFrom statement 3, we know the cat is not green.\n\n5. If someone likes the bald eagle then they like the cat.\n6. The bald eagle is not green.\n7. We cannot directly determine whether the bald eagle likes the cat, but we can find the relation between them later.\n\n8. The lion chases the dog.\n9. The lion is not red.\n10. The dog is red.\n\n11. If someone is blue then they like the lion.\n12. If someone likes the bald eagle then they like the cat.\n13. If someone chases the dog then they eat the dog.\n14. If someone eats the dog then they like the bald eagle.\n15. If someone eats the lion then they do not eat the cat.\n16. If someone chases the cat then they eat the bald eagle.\n\nWe need to use statement 8 and 9 to find a relation with the lion. We know the lion chases the dog and the lion is not red. The dog is red, but the lion's color does not affect our statement directly.\n\nNow we will use statements 1 and 15 to analyze the situation:\n1. The cat eats the lion.\n15. If someone eats the lion then they do not eat the cat.\n\nFrom statement 15, if the cat eats the lion, the cat cannot eat the lion. This creates a paradox. However, we know the cat eats the lion from statement 1, which means statement 15 is wrong in this context.\n\nSince statement 15 is wrong in this context, we cannot use it to determine whether the lion likes the cat or not. We have a paradox, so we will try to resolve it.\n\nThe only way to resolve the paradox is to assume that statement 1 is not true, but it's given as true. We will assume it's false for this problem.\n\nSince statement 1 is false, we cannot determine the relation between the lion and the cat directly.\n\nHowever, we know that the cat is blue from statement 11 and 3. The lion does not chase the cat, but we cannot directly determine whether the lion likes the cat or not.\n\nWe have not enough information to determine whether the lion likes the cat or not. The statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we'll need to use logical reasoning and deduce the relationships between the characters based on the given statements.\n\n1. The cat eats the lion. (Statement 3)\nFrom this, we can conclude that the cat does not like the lion because if someone eats something, they typically do not like it.\n\nThe statement \"The lion does not like the cat\" is a claim that we need to verify. To do this, we'll try to find evidence that supports or refutes this statement.\n\nSince the cat eats the lion, it's likely that the cat does not like the lion. However, we need to ensure that this conclusion doesn't conflict with any other statements.\n\nNow, let's analyze the relationship between the cat and the lion in more detail:\n\n- The cat eats the lion. (Statement 3)\n- If someone eats the lion, then they do not eat the cat. (Statement 12)\nHowever, this statement doesn't directly relate to the cat's feelings about the lion.\n\nNext, let's analyze the statement \"If someone likes the cat and the cat is not green then the cat is blue.\" (Statement 15)\n\nFrom the given statements, we know that the cat is red, not green, and not blue (since it's red). However, this statement doesn't directly relate to the cat's feelings about the lion.\n\nNow, let's analyze the relationship between the lion and the cat in more detail:\n\n- The lion chases the dog. (Statement 7)\n- The lion is not red. (Statement 8)\n- The dog is red. (Statement 6)\n\nFrom these statements, we can conclude that the lion is not red, but it's also not related to the lion's feelings about the cat.\n\nNow, let's analyze the statement \"If someone likes the bald eagle then they like the cat.\" (Statement 9)\n\nSince the cat eats the lion, it's unlikely that the cat likes the lion. However, this statement doesn't directly relate to the lion's feelings about the cat.\n\nBased on the given statements, we know that the cat eats the lion, and there's no direct evidence that the lion likes the cat. However, there's also no direct evidence that the lion dislikes the cat. \n\nBut since we know the cat eats the lion, we can conclude the lion does not like the cat.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the lion likes the cat, we need to analyze the given statements and rules. Let's start by breaking down the statements and rules:\n\n1. The bald eagle chases the cat.\n2. The bald eagle is not green.\n3. The cat eats the lion.\n4. The cat is not cold.\n5. The cat is not green.\n6. The cat is red.\n7. The dog does not chase the lion.\n8. The dog is red.\n9. The lion chases the dog.\n10. The lion is not red.\n11. If someone is blue then they like the lion.\n12. If someone likes the bald eagle then they like the cat.\n13. If someone chases the dog then they eat the dog.\n14. If someone eats the dog then they like the bald eagle.\n15. If someone eats the bald eagle then they chase the cat.\n16. If someone is green and rough then they chase the lion.\n17. If someone eats the lion then they do not eat the cat.\n18. If someone likes the cat and the cat is not green then the cat is blue.\n\nFrom statement 3, we know the cat eats the lion. \n\nNow let's analyze the possible colors of the lion:\n\n- We cannot conclude the lion is red because statement 10 says the lion is not red.\n- We cannot conclude the lion is green because if the lion were green, someone green and rough would chase the lion (rule 16), but there is no information about someone green and rough.\n\nNow, let's consider the possible colors of the cat:\n\n- We know the cat is red (statement 6).\n\nNow let's analyze the possible colors of the lion and the cat together:\n\n- If the lion is blue, then it likes itself (rule 11), which is a contradiction.\n- If the lion is not blue, then it does not like the cat (rule 11).\n- Since the cat is red, and the lion does not like the cat, we cannot conclude the lion likes the cat.\n\nFrom statement 3, we know the cat eats the lion. If someone eats the lion, then they do not eat the cat (rule 17). Since the cat eats the lion, the cat does not eat the cat, which is a true statement.\n\nNow let's consider rule 18: If someone likes the cat and the cat is not green then the cat is blue. We know the cat is red (statement 6) and the cat is not green (statement 5), so we can conclude the cat is blue.\n\nNow let's analyze the rules related to the cat and the lion:\n\n- The cat is blue (rule 18).\n- If someone is blue then they like the lion (rule 11).\n- So, the cat likes the lion.\n- The lion chases the dog (statement 9).\n- The lion does not like the cat (we are trying to determine this).\n- If someone likes the lion then they do not like the cat (because the lion chases the dog).\n\nNow, let's analyze the rules related to the cat and the lion together:\n\n- The cat is blue.\n- If someone likes the cat and the cat is not green then the cat is blue (rule 18).\n- The lion likes the cat.\n- If someone is blue then they like the lion (rule 11).\n\nFrom the rules, we can conclude that the lion does not like the cat because someone who likes the lion (the cat) does not like the cat. \n\nTherefore, the statement \"The lion does not like the cat\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the lion likes the cat, we need to analyze the given statements and their implications.\n\nFrom the statement: \"If someone is blue then they like the lion.\"\nWe do not have any information about the color of the lion or the cat being blue. However, we do know that \"the cat is not green.\" \n\nFrom the statement: \"If someone likes the bald eagle then they like the cat.\"\nWe do not have any information about the lion's preferences, but we can infer that if the lion likes the cat, then the lion would have to like the bald eagle indirectly. However, we cannot determine this with the given information.\n\nFrom the statement: \"If someone likes the cat and the cat is not green then the cat is blue.\"\nSince we know the cat is red, not blue and not green, this statement does not apply to the cat.\n\nFrom the statement: \"The cat eats the lion.\"\nThis implies that the cat likes the lion, which contradicts the statement that the lion does not like the cat. However, the statement \"The cat eats the lion\" does not necessarily imply that the lion likes the cat. It only implies that the cat likes the lion and eats it.\n\nConsidering all the statements, we have a contradiction when we assume that the lion does not like the cat. If the lion does not like the cat, then the cat should not eat the lion, which is not the case. However, this does not necessarily mean that the lion likes the cat. \n\nTherefore, the statement \"The lion does not like the cat\" is unknown because we do not have enough information to determine whether the lion likes the cat or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the lion. (This is a direct statement)\n2. If someone eats the lion then they do not eat the cat. (This implies that the cat cannot eat the lion and also eat the cat)\n   However, we have the statement that the cat eats the lion. \n   So we need to find what does eat the lion. Since the lion is eaten by the cat and cat does not eat the cat according to the statement, then there must be something else that eats the lion. \n\n3. The lion chases the dog. \n4. The lion is not red.\n5. The dog is red. \n6. The cat is red.\n\nFrom point 6, we can deduce that the lion, who is not red, cannot be the one that is red. However, since the lion chases the dog, and the dog is red, it means the lion is not red but is chasing something that is red. It is possible that the cat is the one that is red since the cat is red and is eating the lion.\n\n7. If someone is blue then they like the lion. (This implies that the lion has a liker)\n8. The lion is being eaten by the cat, which is red. \n\nSince the lion is being eaten by the cat, which is red, it implies that the lion does not like the cat. The statement that says \"If someone likes the bald eagle then they like the cat\" does not apply here, because there is no evidence that the lion likes the bald eagle.\n\nTherefore, the statement \"The lion does not like the cat\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not like the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the information given, we have:\n1. The cat eats the lion. (This implies that the lion does not eat the cat.)\n\nNow, let's try to find a connection between the lion and the cat through the given statements.\n\nFrom the information given, we have:\n2. If someone eats the lion then they do not eat the cat. (This implies that if the cat eats the lion, the cat does not eat the lion.)\n\nHowever, from statement 1, we know that the cat eats the lion. This means that the cat does not eat the lion, which contradicts statement 1. This is an inconsistency in the given statements.\n\nWe cannot determine whether the statement \"The lion does not like the cat\" is true or false because the given statements are inconsistent.\n\nHowever, based on the logical flow, we can say that the information is unknown because the given statements are contradictory.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step:\n\n1. The cat is red (from statement 4).\n2. The cat is not green (from statement 4 and statement 5).\n3. If someone likes the cat and the cat is not green, then the cat is blue (from statement 14). Since the cat is not green, the cat is blue.\n4. The cat eats the lion (from statement 2).\n5. If someone eats the lion, then they do not eat the cat (from statement 13). However, since the cat eats the lion (from statement 2), this statement does not apply to our situation, and we cannot conclude that the lion does not eat the cat.\n6. The lion chases the dog (from statement 7).\n7. The dog is red (from statement 8).\n8. The lion is not red (from statement 9).\n9. Since the lion is not red and the lion chases the dog (which is red), we cannot conclude that the lion likes or dislikes the dog.\n10. The lion does not chase the cat, because if it did, it would eat the bald eagle (from statement 12), and the lion would not like the bald eagle (from statement 11).\n11. The lion does not like the bald eagle, because the lion does not chase the cat, which would make the lion eat the bald eagle.\n12. If the lion likes the bald eagle, then it likes the cat (from statement 11).\n13. Since the lion does not like the bald eagle (from statement 11), it does not like the cat.\n\nTherefore, based on the given information, we can conclude that the lion does not like the cat.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the lion. \n   - This statement implies that the cat likes the lion, but we are not sure about the lion's feelings towards the cat yet.\n\n2. The cat is not cold, the cat is not green, and the cat is red.\n   - These statements give us information about the cat's color, but we don't know how this affects the lion's feelings.\n\n3. The lion chases the dog.\n   - This statement doesn't directly relate to the lion's feelings towards the cat.\n\n4. The lion is not red.\n   - This statement gives us more information about the lion's color, but we still don't know its feelings towards the cat.\n\n5. If someone is blue then they like the lion.\n   - This statement gives us a condition, but we don't know if the cat is blue.\n\n6. If someone likes the bald eagle then they like the cat.\n   - This statement implies that if someone likes the bald eagle, they also like the cat. However, we don't know the relationship between the lion and the bald eagle yet.\n\n7. The bald eagle is not green.\n   - This statement gives us information about the bald eagle's color, but we still don't know the lion's feelings towards the cat.\n\n8. If someone chases the dog then they eat the dog.\n   - This statement implies that if someone chases the dog, they also eat the dog. However, we don't know who chases the dog or who eats it yet.\n\n9. The dog does not chase the lion, and the lion is not red.\n   - These statements don't directly relate to the lion's feelings towards the cat.\n\n10. If someone eats the dog then they like the bald eagle.\n    - This statement implies that if someone eats the dog, they also like the bald eagle. However, we don't know who eats the dog yet.\n\n11. The dog is red.\n    - This statement gives us information about the dog's color, but we still don't know the lion's feelings towards the cat.\n\n12. If someone chases the cat then they eat the bald eagle.\n    - This statement implies that if someone chases the cat, they also eat the bald eagle. However, we don't know who chases the cat or who eats the bald eagle yet.\n\n13. If someone eats the lion then they do not eat the cat.\n    - This statement implies that the cat and the lion are related, but we don't know the lion's feelings towards the cat yet.\n\n14. If someone is green and rough then they chase the lion.\n    - This statement implies that if someone is green and rough, they chase the lion. However, we don't know who is green and rough yet.\n\n15. If someone likes the cat and the cat is not green then the cat is blue.\n    - This statement implies that if someone likes the cat and the cat is not green, the cat is blue. However, we don't know if someone likes the cat or not yet.\n\nNow, let's analyze the statement we need to determine: The lion does not like the cat.\n\nFrom statement 1, we know that the cat eats the lion, which implies that the cat likes the lion. However, we don't know if the lion likes the cat or not.\n\nSince we can't find any direct information about the lion's feelings towards the cat, the statement is unknown.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the lion. \n   - This implies that the lion is eaten by the cat.\n\n2. If someone eats the lion then they do not eat the cat. \n   - From the previous statement, we know the cat eats the lion. \n   - Therefore, the cat cannot eat the cat itself.\n\n3. If someone eats the lion then they do not eat the cat. \n   - This statement implies that if someone eats the lion, then they do not eat the cat. \n   - However, we cannot directly conclude that the cat does not like the lion from this statement.\n\n4. If someone likes the bald eagle then they like the cat. \n   - This is a general statement that does not directly relate to our target statement.\n\n5. The cat is red. \n   - This is a characteristic of the cat but does not directly relate to the lion.\n\n6. If someone is blue then they like the lion. \n   - This is a general statement that does not directly relate to our target statement.\n\n7. If someone likes the cat and the cat is not green then the cat is blue. \n   - Since we know the cat is red and not green, this statement implies that the cat is blue.\n\n8. Since the cat is blue, \n   - we can conclude that the cat likes the lion based on the general statement.\n\nFrom steps 1, 2, 7, and 8, we can conclude that the cat likes the lion. Therefore, the statement \"The lion does not like the cat\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not like the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the lion. \nThis means that the lion is eaten by the cat. We can deduce that the lion is a food source for the cat.\n\n2. If someone eats the lion then they do not eat the cat. \nSince the cat eats the lion, it does not eat the cat. This statement provides more information about the cat's behavior.\n\n3. If someone likes the bald eagle then they like the cat. \nSince we do not have any information about someone liking the bald eagle, we cannot determine whether this statement is true or false.\n\n4. If someone likes the cat and the cat is not green then the cat is blue. \nSince the cat is red (not green), we can conclude that the cat is blue.\n\n5. The cat is blue. \nThis is a direct conclusion from the previous statement.\n\n6. If someone is blue then they like the lion. \nSince the cat is blue, we can conclude that the cat likes the lion.\n\nFrom the given information, we know that the lion is eaten by the cat and the cat likes the lion. This seems to be a contradiction because if the cat likes the lion, it should not eat the lion. However, we need to consider the given information more carefully.\n\n7. If someone chases the cat then they eat the bald eagle. \nWe do not have any information about someone chasing the cat.\n\n8. The cat eats the lion. \nThis statement implies that the cat is the predator, and the lion is the prey.\n\nBased on the given information, we can conclude that the cat likes the lion (from statement 6), which seems to be a contradiction to the fact that the cat eats the lion (from statement 1). However, the information about someone liking the lion is based on the condition that they are blue, and the cat is blue.\n\nConsidering the given information, we cannot directly determine whether the lion likes the cat or not. The information about the cat eating the lion and the cat liking the lion seems to be contradictory, but it is based on different conditions. Therefore, the statement \"The lion does not like the cat\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The lion does not like the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the lion. (From statement 3)\n\nThis statement implies that the cat likes to eat the lion, but it doesn't directly state the lion's feelings about the cat. However, we can use this information to derive other relationships.\n\n2. The cat is not cold. (From statement 4)\n   The cat is not green. (From statement 5)\n   The cat is red. (From statement 6)\n\nThese statements give us more information about the cat's characteristics but do not directly relate to the lion's feelings about the cat.\n\n3. The dog does not chase the lion. (From statement 7)\n   The dog is red. (From statement 8)\n   The lion chases the dog. (From statement 9)\n   The lion is not red. (From statement 10)\n\nThese statements provide more information about the relationships between the dog and the lion but do not help us determine the lion's feelings about the cat.\n\n4. If someone is blue then they like the lion. (From statement 11)\n\nThis statement provides a rule to determine someone's feelings towards the lion based on their color. However, we do not know the color of the lion or the cat.\n\n5. If someone likes the bald eagle then they like the cat. (From statement 12)\n\nThis statement provides a relationship between the bald eagle and the cat but does not help us determine the lion's feelings about the cat.\n\n6. If someone chases the dog then they eat the dog. (From statement 13)\n   If someone eats the dog then they like the bald eagle. (From statement 14)\n   If someone chases the cat then they eat the bald eagle. (From statement 15)\n\nThese statements provide additional relationships between the animals but do not help us determine the lion's feelings about the cat.\n\n7. If someone is green and rough then they chase the lion. (From statement 16)\n\nThis statement provides a rule to determine someone's actions based on their characteristics, but we do not know if anyone fits this description.\n\n8. If someone eats the lion then they do not eat the cat. (From statement 17)\n\nThis statement implies that eating the lion and eating the cat are mutually exclusive actions, but it does not help us determine the lion's feelings about the cat.\n\n9. If someone likes the cat and the cat is not green then the cat is blue. (From statement 18)\n\nThis statement provides a rule to determine the cat's color based on someone's feelings and the cat's characteristics. However, we do not know the color of the cat.\n\nTo determine the lion's feelings about the cat, we need to find a connection between the lion and the cat that is not dependent on other animals. From statement 3, we know that the cat eats the lion. \n\nWe cannot directly determine the lion's feelings about the cat using the given information. Therefore, the statement \"The lion does not like the cat\" is unknown because we do not have enough information to make a conclusion. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cat)",
+          "z3_formula": "chases_bald_eagle_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(bald_eagle)",
+          "z3_formula": "not green_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(cat)",
+          "z3_formula": "not cold_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not green(cat)",
+          "z3_formula": "not green_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not red(dog)",
+          "z3_formula": "not red_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, dog)",
+          "z3_formula": "chases_lion_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not red(lion)",
+          "z3_formula": "not red_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, lion)",
+          "z3_formula": "Implies(blue_X, likes_X_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> likes(X, cat)",
+          "z3_formula": "Implies(likes_X_bald_eagle, likes_X_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> eats(X, dog)",
+          "z3_formula": "Implies(chases_X_dog, eats_X_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(eats_X_dog, likes_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(chases_X_cat, eats_X_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> chases(X, lion)",
+          "z3_formula": "Implies(And(green_X, rough_X), chases_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not eats(X, cat)",
+          "z3_formula": "Implies(eats_X_lion, not eats_X_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) & not green(cat) -> blue(X)",
+          "z3_formula": "Implies(And(likes_X_cat, not green_cat), blue_X)",
+          "source_step": 18
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> not likes(X, Y)",
+          "z3_formula": "Implies(eats_cat_lion, not likes_cat_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, cat)",
+          "z3_formula": "not likes_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) & not green(cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_X_cat, not green_cat), blue_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(cat)",
+          "z3_formula": "not blue_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cat)",
+          "z3_formula": "likes_bald_eagle_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> likes(X, cat)",
+          "z3_formula": "Implies(likes_X_bald_eagle, likes_X_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(lion, cat)",
+          "z3_formula": "not likes_lion_cat == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cat)",
+          "z3_formula": "chases_bald_eagle_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(bald_eagle)",
+          "z3_formula": "not green_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(cat)",
+          "z3_formula": "not cold_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(cat)",
+          "z3_formula": "not cold_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(dog, lion)",
+          "z3_formula": "not chases_dog_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, dog)",
+          "z3_formula": "chases_lion_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not red(lion)",
+          "z3_formula": "not red_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, lion)",
+          "z3_formula": "Implies(blue_X, likes_X_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> likes(X, cat)",
+          "z3_formula": "Implies(likes_X_bald_eagle, likes_X_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> eats(X, dog)",
+          "z3_formula": "Implies(chases_X_dog, eats_X_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(eats_X_dog, likes_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> chases(X, cat)",
+          "z3_formula": "Implies(eats_X_bald_eagle, chases_X_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> chases(X, lion)",
+          "z3_formula": "Implies(And(green_X, rough_X), chases_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not eats(X, cat)",
+          "z3_formula": "Implies(eats_X_lion, not eats_X_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) & not green(cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_X_cat, not green_cat), blue_cat)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, lion)",
+          "z3_formula": "Implies(blue_X, likes_X_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(cat)",
+          "z3_formula": "not_green_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> likes(X, cat)",
+          "z3_formula": "Implies(likes_X_bald_eagle, likes_X_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) & not green(cat) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_X_cat, not_green_cat), blue_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, lion)",
+          "z3_formula": "likes_cat_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(lion, cat)",
+          "z3_formula": "not_likes_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(likes(lion, cat))",
+          "z3_formula": "unknown_likes_lion_cat == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not eats(X, cat)",
+          "z3_formula": "Implies(eats_cat_lion, Not(eats_lion_cat))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, dog)",
+          "z3_formula": "chases_lion_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not red(lion)",
+          "z3_formula": "Not(red_lion) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, lion)",
+          "z3_formula": "Implies(blue_X, likes_X_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not eats(X, cat)",
+          "z3_formula": "Implies(eats_cat_lion, Not(eats_lion_cat))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not eats(X, lion)",
+          "z3_formula": "Implies(eats_cat_lion, Not(eats_cat_lion))",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(cat)",
+          "z3_formula": "Not(green_cat) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X) & not green(X) -> blue(X)",
+          "z3_formula": "Implies(And(likes_cat, Not(green_cat)), blue_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not eats(X, cat)",
+          "z3_formula": "Implies(eats_cat_lion, Not(eats_lion_cat))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(lion, cat)",
+          "z3_formula": "Not(eats_lion_cat) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, dog)",
+          "z3_formula": "chases_lion_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not red(lion)",
+          "z3_formula": "Not(red_lion) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(lion, dog)",
+          "z3_formula": "Not(likes_lion_dog) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(lion, cat)",
+          "z3_formula": "Not(chases_lion_cat) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X) -> not eats(X, eagle)",
+          "z3_formula": "Implies(likes_lion_eagle, Not(eats_lion_eagle))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "not likes(X) -> not likes(Y)",
+          "z3_formula": "Implies(Not(likes_lion_eagle), Not(likes_lion_cat))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(lion, cat)",
+          "z3_formula": "Not(likes_lion_cat) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> likes(X, Y)",
+          "z3_formula": "Implies(eats_cat_lion, likes_cat_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, cat)",
+          "z3_formula": "Not(likes_lion_cat) == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> Not(eats(X, cat))",
+          "z3_formula": "Implies(eats_cat_lion, Not(eats_cat_cat))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> Not(eats(X, cat))",
+          "z3_formula": "Implies(eats_cat_lion, Not(eats_cat_cat))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> likes(X, lion)",
+          "z3_formula": "Implies(likes_bald_eagle_cat, likes_bald_eagle_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, lion)",
+          "z3_formula": "Implies(blue_cat, likes_cat_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) & Not(green(X)) -> blue(X)",
+          "z3_formula": "Implies(And(likes_cat_cat, Not(green_cat)), blue_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, lion)",
+          "z3_formula": "likes_cat_lion == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not(eats(X, cat))",
+          "z3_formula": "Implies(eats_cat_lion, Not(eats_lion_cat))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) & not(green(cat)) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_lion_cat, Not(green_cat)), blue_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cat)",
+          "z3_formula": "blue_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, lion)",
+          "z3_formula": "Implies(blue_cat, likes_lion_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(cat))",
+          "z3_formula": "Not(cold_cat) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(green(cat))",
+          "z3_formula": "Not(green_cat) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(dog, lion))",
+          "z3_formula": "Not(chases_dog_lion) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(dog)",
+          "z3_formula": "red_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, dog)",
+          "z3_formula": "chases_lion_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(lion))",
+          "z3_formula": "Not(red_lion) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> likes(X, lion)",
+          "z3_formula": "Implies(blue_X, likes_X_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> likes(X, cat)",
+          "z3_formula": "Implies(likes_X_bald_eagle, likes_X_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> eats(X, dog)",
+          "z3_formula": "Implies(chases_X_dog, eats_X_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> likes(X, bald_eagle)",
+          "z3_formula": "Implies(eats_X_dog, likes_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(chases_X_cat, eats_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> chases(X, lion)",
+          "z3_formula": "Implies(And(green_X, rough_X), chases_X_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not(eats(X, cat))",
+          "z3_formula": "Implies(eats_X_lion, Not(eats_X_cat))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) & not(green(cat)) -> blue(cat)",
+          "z3_formula": "Implies(And(likes_X_cat, Not(green_cat)), blue_cat)",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 116,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 43
+    },
+    "maxsat_stats": {
+      "satisfied": 41,
+      "excluded": 2,
+      "total_weight": 107,
+      "solve_time_ms": 1.2363167479634285
+    },
+    "timing": {
+      "trace_gen_s": 8.961,
+      "extraction_s": 30.572,
+      "dedup_s": 0.846,
+      "maxsat_s": 0.004,
+      "total_s": 40.382
+    }
+  }
+}

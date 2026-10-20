@@ -1,0 +1,61 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{wang2023selfconsistency}
+\citation{chen2023universal}
+\citation{olausson2023linc}
+\citation{pan2023logiclm}
+\citation{cobbe2021gsm8k,lightman2023lets}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency and Voting.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Symbolic Reasoning with LLMs.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Weighted Aggregation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Overview}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Constraint Extraction}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Weighted Partial MAX-SAT Aggregation}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces SICA vs.\ SC accuracy (\%) on 204 problems with Qwen2.5-14B-Instruct ($K\!=\!12$, $T\!=\!0.7$). $p$-values from bootstrap resampling.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{3}{SICA vs.\ SC accuracy (\%) on 204 problems with Qwen2.5-14B-Instruct ($K\!=\!12$, $T\!=\!0.7$). $p$-values from bootstrap resampling}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Multi-Candidate Rate ($C_0$)}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Deployment Decision Rule}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Configuration.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results: SICA vs.\ Self-Consistency}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:main_results}{{4.2}{3}{Main Results: SICA vs.\ Self-Consistency}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Tiebreak strategy comparison (\%). SICA significantly outperforms random tiebreaking on 204 questions ($p=0.041$, Monte Carlo bootstrap).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:tiebreak}{{2}{4}{Tiebreak strategy comparison (\%). SICA significantly outperforms random tiebreaking on 204 questions ($p=0.041$, Monte Carlo bootstrap)}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces $K$ ablation ($N\!=\!60$, 14B-Instruct). Accuracy in \%. ``Wins'' = SICA correct on tied questions. $\dagger $Odd $K$: majority vote produces no ties, SICA $\equiv $ SC.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:k_ablation}{{3}{4}{$K$ ablation ($N\!=\!60$, 14B-Instruct). Accuracy in \%. ``Wins'' = SICA correct on tied questions. $\dagger $Odd $K$: majority vote produces no ties, SICA $\equiv $ SC}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Tiebreak Analysis}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:tiebreak}{{4.3}{4}{Tiebreak Analysis}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}$K$ Ablation: Causal Evidence for Tiebreaking}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:k_ablation}{{4.4}{4}{$K$ Ablation: Causal Evidence for Tiebreaking}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Model Scaling and Operating Regime}{4}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:scaling}{{4.5}{4}{Model Scaling and Operating Regime}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Model scaling ($N\!=\!60$, $K\!=\!12$). Accuracy in \%. $\dagger $AWQ 4-bit quantization. SICA gain decreases monotonically with $C_0$.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:scaling}{{4}{5}{Model scaling ($N\!=\!60$, $K\!=\!12$). Accuracy in \%. $\dagger $AWQ 4-bit quantization. SICA gain decreases monotonically with $C_0$}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces $C_0$ vs.\ SICA--SC gap (pp) across configurations. ``Pred.'' from linear fit ($\text  {gap} = 0.11 \cdot C_0 - 1.8$, $R^2\!=\!0.83$). Gap in pp.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:c0_predictor}{{5}{5}{$C_0$ vs.\ SICA--SC gap (pp) across configurations. ``Pred.'' from linear fit ($\text {gap} = 0.11 \cdot C_0 - 1.8$, $R^2\!=\!0.83$). Gap in pp}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}$C_0$ as a Zero-Cost Predictor}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:c0_analysis}{{4.6}{5}{$C_0$ as a Zero-Cost Predictor}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Computational Overhead}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:overhead}{{4.7}{5}{Computational Overhead}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Qualitative Analysis}{5}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:qualitative}{{4.8}{5}{Qualitative Analysis}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Wall-time decomposition per question. Constraint extraction is embarrassingly parallel across traces, reducing practical overhead to $\sim $8\%.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:overhead}{{6}{6}{Wall-time decomposition per question. Constraint extraction is embarrassingly parallel across traces, reducing practical overhead to $\sim $8\%}{table.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}When Does Symbolic Consensus Degenerate?}{6}{section.5}\protected@file@percent }
+\newlabel{sec:degenerate}{{5}{6}{When Does Symbolic Consensus Degenerate?}{section.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{6}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Broader Applicability.}{6}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{6}{section.7}\protected@file@percent }
+\gdef \@abspage@last{7}

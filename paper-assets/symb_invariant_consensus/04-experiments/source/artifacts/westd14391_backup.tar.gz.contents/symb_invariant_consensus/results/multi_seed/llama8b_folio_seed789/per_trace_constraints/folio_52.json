@@ -1,0 +1,816 @@
+{
+  "pid": "folio_52",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all Romance languages are Indo-European languages",
+          "z3_formula": "all_Romance_languages_are_Indo_European_languages == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "Romance languages are a language family",
+          "z3_formula": "Romance_languages_are_a_language_family == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all languages within a language family are related to each other",
+          "z3_formula": "all_languages_within_a_language_family_are_related_to_each_other == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "French and Spanish are both Romance languages",
+          "z3_formula": "French_and_Spanish_are_both_Romance_languages == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "German is related to Spanish",
+          "z3_formula": "German_is_related_to_Spanish == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "Basque is not related to any other language",
+          "z3_formula": "Basque_is_not_related_to_any_other_language == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "all Romance languages are Indo-European languages",
+          "z3_formula": "Implies(all_Romance_languages_are_Indo_European_languages, all_Romance_languages_are_Indo_European_languages == True)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "Romance languages are a language family",
+          "z3_formula": "Implies(Romance_languages_are_a_language_family, Romance_languages_are_a_language_family == True)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "all languages within a language family are related to each other",
+          "z3_formula": "Implies(all_languages_within_a_language_family_are_related_to_each_other, all_languages_within_a_language_family_are_related_to_each_other == True)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "if a language is related to another language, then it is part of the same language family",
+          "z3_formula": "Implies(language_X_is_related_to_language_Y, language_X_is_part_of_language_family_Y == True)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "Basque is a Romance language",
+          "z3_formula": "Basque_is_a_Romance_language == False",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(Romance, Indo-European)",
+          "z3_formula": "all_Romance_Indo_European == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "is_language_family(Romance)",
+          "z3_formula": "is_language_family_Romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "all(language_family, related(language_family))",
+          "z3_formula": "Implies(all_language_family_related_language_family, True)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "Romance(French) & Romance(Spanish)",
+          "z3_formula": "Romance_French == True & Romance_Spanish == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "related(Spanish, German)",
+          "z3_formula": "related_Spanish_German == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(related(Basque, _))",
+          "z3_formula": "not_related_Basque__ == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(Romance(Basque))",
+          "z3_formula": "not_Romance_Basque == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "Indo-European(basque)",
+          "z3_formula": "indoeuropean_basque == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "Romance(X) -> Indo-European(X)",
+          "z3_formula": "Implies(romance_language, indo european_basque)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "Romance(language_family)",
+          "z3_formula": "romance_language_family == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related(X, Y)",
+          "z3_formula": "Implies(language_family, related)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "Romance(french)",
+          "z3_formula": "romance_french == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "Romance(spanish)",
+          "z3_formula": "romance_spanish == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "related(X, Y) -> Romance(Y)",
+          "z3_formula": "Implies(related, romance_language)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "related(german, spanish)",
+          "z3_formula": "related_german_spanish == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not related(basque, X)",
+          "z3_formula": "not_related_basque == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "indoeuropean(romance)",
+          "z3_formula": "indoeuropean_romance == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(romance)",
+          "z3_formula": "language_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related(X, Y)",
+          "z3_formula": "Implies(language_family_romance, related_romance_Y)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "romance(french)",
+          "z3_formula": "romance_french == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "romance(spanish)",
+          "z3_formula": "romance_spanish == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "romance(X) -> related(X, Y)",
+          "z3_formula": "Implies(romance_french, related_french_Y)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "related(spanish, german)",
+          "z3_formula": "related_spanish_german == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "unrelated(basque, Y)",
+          "z3_formula": "unrelated_basque_Y == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "indoeuropean(Romance)",
+          "z3_formula": "indoeuropean_Romance == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(Romance)",
+          "z3_formula": "language_family_Romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related(X, Y)",
+          "z3_formula": "Implies(language_family_Romance, related_Romance_Y)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "romance(French) & romance(Spanish)",
+          "z3_formula": "And(romance_French, romance_Spanish) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "related(X, Y) -> related(X, Z)",
+          "z3_formula": "Implies(related_Romance_Y, related_Romance_Z)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "related(German, Spanish)",
+          "z3_formula": "related_German_Spanish == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not related(Basque, X)",
+          "z3_formula": "Not(related_Basque_X) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "indoeuropean(basque)",
+          "z3_formula": "indoeuropean_basque == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "romancelanguage(basque)",
+          "z3_formula": "romancelanguage_basque == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "indoeuropean(X) -> romancelanguage(X)",
+          "z3_formula": "Implies(indoeuropean_basque, romancelanguage_basque)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "romancelanguage(french)",
+          "z3_formula": "romancelanguage_french == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "romancelanguage(spanish)",
+          "z3_formula": "romancelanguage_spanish == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X, Y) -> related(X, Y)",
+          "z3_formula": "Implies(language_family_romancelanguage, related_languages)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(romancelanguage, romancelanguage)",
+          "z3_formula": "language_family_romancelanguage == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X, X) -> related(X, X)",
+          "z3_formula": "Implies(language_family_romancelanguage, related_languages)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "related(spanish, german)",
+          "z3_formula": "related_spanish_german == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not related(basque, X)",
+          "z3_formula": "Not(related_basque_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "romancelanguage(basque)",
+          "z3_formula": "romancelanguage_basque == False",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(Romance, Indo-European)",
+          "z3_formula": "all_romance_indo_european == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(Romance)",
+          "z3_formula": "language_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all(language_family(X), related(X, X))",
+          "z3_formula": "all_language_family_related == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "romance(French) & romance(Spanish)",
+          "z3_formula": "romance_french & romance_spanish == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "related(Spanish, German)",
+          "z3_formula": "related_spanish_german == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(related(Basque, X))",
+          "z3_formula": "not_related_basque == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> all(X, related(X, X))",
+          "z3_formula": "Implies(language_family_romance, all_romance_related)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "romance(X) & related(X, Y) -> romance(Y)",
+          "z3_formula": "Implies(And(romance_french, related_french_spanish), romance_spanish)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "romance(Spanish)",
+          "z3_formula": "romance_spanish == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "related(Spanish, German)",
+          "z3_formula": "related_spanish_german == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(romance(Basque))",
+          "z3_formula": "not_romance_basque == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "indo_european(romance)",
+          "z3_formula": "indo_european_romance == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(romance)",
+          "z3_formula": "language_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related(X, Y)",
+          "z3_formula": "Implies(language_family_romance, related_romance)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "romance(french)",
+          "z3_formula": "romance_french == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "romance(spanish)",
+          "z3_formula": "romance_spanish == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "romance(X) -> related(X, Y)",
+          "z3_formula": "Implies(romance_french, related_french)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "related(X, Y) & related(X, Z) -> related(X, Y, Z)",
+          "z3_formula": "Implies(And(related_french, related_spanish), related_french_spanish)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "related(spanish, german)",
+          "z3_formula": "related_spanish_german == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "related(X, Y) -> related(X, Z)",
+          "z3_formula": "Implies(related_spanish_german, related_german)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "related(X, Y) -> related(X, Z)",
+          "z3_formula": "Implies(related_french, related_german)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not_related(basque, X)",
+          "z3_formula": "not_related_basque == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "indo_european(romance)",
+          "z3_formula": "indo_european_romance == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(romance)",
+          "z3_formula": "language_family_romance == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related(X, Y)",
+          "z3_formula": "Implies(language_family_romance, related_romance)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "not_related(X, Y) -> not_related(X, Z)",
+          "z3_formula": "Implies(not_related_basque, not_related_basque_german)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "not_related(X, Y) -> not_related(X, Z)",
+          "z3_formula": "Implies(not_related_basque, not_related_basque_french)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "not_related(X, Y) -> not_related(X, Z)",
+          "z3_formula": "Implies(not_related_basque, not_related_basque_spanish)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not_romance(basque)",
+          "z3_formula": "not_romance_basque == True",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(Romance, Indo-European)",
+          "z3_formula": "all_romance_indo_european == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "is_family(Romance)",
+          "z3_formula": "is_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "is_family(X) -> related(X, X)",
+          "z3_formula": "Implies(is_family_romance, related_romance_romance)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "related(X, X) -> all(X, related(X, X))",
+          "z3_formula": "Implies(related_romance_romance, all_romance_related_romance_romance)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "and(Romance, Romance)",
+          "z3_formula": "and_romance_romance == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "all(X, related(X, Y)) -> related(X, Y)",
+          "z3_formula": "Implies(all_romance_related_romance_romance, related_romance_romance)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "and(Romance, Romance)",
+          "z3_formula": "and_romance_romance == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "related(French, Spanish)",
+          "z3_formula": "related_french_spanish == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "related(German, Spanish)",
+          "z3_formula": "related_german_spanish == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(related(Basque, _))",
+          "z3_formula": "not_related_basque == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "is_family(X) -> all(X, related(X, Y))",
+          "z3_formula": "Implies(is_family_romance, all_romance_related_romance)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(is_family(Basque, Romance))",
+          "z3_formula": "not_is_family_basque_romance == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "indo_european(romance)",
+          "z3_formula": "indo_european_romance == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(romance)",
+          "z3_formula": "language_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related(X, Y)",
+          "z3_formula": "Implies(language_family_romance, related_romance_Y)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "romance(french)",
+          "z3_formula": "romance_french == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "romance(spanish)",
+          "z3_formula": "romance_spanish == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "romance(X) -> related(X, Y)",
+          "z3_formula": "Implies(romance_french, related_french_Y)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "related(spanish, german)",
+          "z3_formula": "related_spanish_german == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "related(french, german)",
+          "z3_formula": "related_french_german == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not_related(basque, _)",
+          "z3_formula": "not_related_basque == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not_related(german, romance)",
+          "z3_formula": "not_related_german_romance == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "indoeuropean(Romance)",
+          "z3_formula": "indoeuropean_romance == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(Romance)",
+          "z3_formula": "language_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related(X, Y)",
+          "z3_formula": "Implies(language_family_romance, related_romance_Y)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "romance(French)",
+          "z3_formula": "romance_french == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "romance(Spanish)",
+          "z3_formula": "romance_spanish == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "romance(X) -> romance_family(X)",
+          "z3_formula": "Implies(romance_french, romance_family_french)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "related(X, Y) -> related(Y, X)",
+          "z3_formula": "Implies(related_romance_spanish, related_spanish_romance)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "related(German, Spanish)",
+          "z3_formula": "related_german_spanish == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not_related(Basque, X)",
+          "z3_formula": "not_related_basque_X == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not romance(Basque)",
+          "z3_formula": "not_romance_basque == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "indoeuropean(romance)",
+          "z3_formula": "indoeuropean_romance == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "language_family(romance)",
+          "z3_formula": "language_family_romance == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related(X, Y)",
+          "z3_formula": "Implies(language_family_romance, related_romance_Y)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "romance(french)",
+          "z3_formula": "romance_french == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "romance(spanish)",
+          "z3_formula": "romance_spanish == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "language_family(X) -> related(X, Y) & related(X, Z)",
+          "z3_formula": "Implies(language_family_X, And(related_X_Y, related_X_Z))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "related(spanish, german)",
+          "z3_formula": "related_spanish_german == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not_related(basque, _)",
+          "z3_formula": "Not(related_basque_X) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "romance(basque)",
+          "z3_formula": "romance_basque == True",
+          "source_step": 9
+        }
+      ]
+    }
+  ]
+}

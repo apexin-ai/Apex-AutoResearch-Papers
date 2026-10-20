@@ -1,0 +1,212 @@
+{
+  "metadata": {
+    "model": "Mistral-7B-Instruct-v0.3",
+    "folio_source": "/root/symb_invariant_consensus/results/exp033_mistral_7b_folio204/exp033_results.json",
+    "pw_source": "/root/symb_invariant_consensus/results/exp046_mistral_7b_pw600/exp046_results.json",
+    "folio_n": 204,
+    "pw_n": 600,
+    "analysis": "sub-population SICA vs SC comparison",
+    "mcnemar_test": "exact (two-sided binomial)",
+    "server": "westd-25068",
+    "constraint_metric": "unique_after_dedup from constraints_stats in results JSON",
+    "sc_baseline": "corrected (alphabetical tiebreaking)"
+  },
+  "by_answer_type": {
+    "folio204": [
+      {
+        "group": "FOLIO-204/True",
+        "n": 72,
+        "sc_correct": 41,
+        "sc_accuracy": 0.5694,
+        "sica_correct": 45,
+        "sica_accuracy": 0.625,
+        "delta_pp": 0.0556,
+        "mcnemar_b_sica_plus_sc_minus": 4,
+        "mcnemar_c_sica_minus_sc_plus": 0,
+        "mcnemar_exact_p": 0.125
+      },
+      {
+        "group": "FOLIO-204/False",
+        "n": 63,
+        "sc_correct": 27,
+        "sc_accuracy": 0.4286,
+        "sica_correct": 27,
+        "sica_accuracy": 0.4286,
+        "delta_pp": 0.0,
+        "mcnemar_b_sica_plus_sc_minus": 3,
+        "mcnemar_c_sica_minus_sc_plus": 3,
+        "mcnemar_exact_p": 1.0
+      },
+      {
+        "group": "FOLIO-204/Unknown",
+        "n": 69,
+        "sc_correct": 46,
+        "sc_accuracy": 0.6667,
+        "sica_correct": 49,
+        "sica_accuracy": 0.7101,
+        "delta_pp": 0.0435,
+        "mcnemar_b_sica_plus_sc_minus": 3,
+        "mcnemar_c_sica_minus_sc_plus": 0,
+        "mcnemar_exact_p": 0.25
+      },
+      {
+        "group": "FOLIO-204/Overall",
+        "n": 204,
+        "sc_correct": 114,
+        "sc_accuracy": 0.5588,
+        "sica_correct": 121,
+        "sica_accuracy": 0.5931,
+        "delta_pp": 0.0343,
+        "mcnemar_b_sica_plus_sc_minus": 10,
+        "mcnemar_c_sica_minus_sc_plus": 3,
+        "mcnemar_exact_p": 0.092285
+      }
+    ],
+    "pw600": [
+      {
+        "group": "PW-600/True",
+        "n": 200,
+        "sc_correct": 17,
+        "sc_accuracy": 0.085,
+        "sica_correct": 12,
+        "sica_accuracy": 0.06,
+        "delta_pp": -0.025,
+        "mcnemar_b_sica_plus_sc_minus": 0,
+        "mcnemar_c_sica_minus_sc_plus": 5,
+        "mcnemar_exact_p": 0.0625
+      },
+      {
+        "group": "PW-600/False",
+        "n": 200,
+        "sc_correct": 39,
+        "sc_accuracy": 0.195,
+        "sica_correct": 29,
+        "sica_accuracy": 0.145,
+        "delta_pp": -0.05,
+        "mcnemar_b_sica_plus_sc_minus": 8,
+        "mcnemar_c_sica_minus_sc_plus": 18,
+        "mcnemar_exact_p": 0.075519
+      },
+      {
+        "group": "PW-600/Unknown",
+        "n": 200,
+        "sc_correct": 180,
+        "sc_accuracy": 0.9,
+        "sica_correct": 178,
+        "sica_accuracy": 0.89,
+        "delta_pp": -0.01,
+        "mcnemar_b_sica_plus_sc_minus": 5,
+        "mcnemar_c_sica_minus_sc_plus": 7,
+        "mcnemar_exact_p": 0.774414
+      },
+      {
+        "group": "PW-600/Overall",
+        "n": 600,
+        "sc_correct": 236,
+        "sc_accuracy": 0.3933,
+        "sica_correct": 219,
+        "sica_accuracy": 0.365,
+        "delta_pp": -0.0283,
+        "mcnemar_b_sica_plus_sc_minus": 13,
+        "mcnemar_c_sica_minus_sc_plus": 30,
+        "mcnemar_exact_p": 0.013718
+      }
+    ]
+  },
+  "by_constraint_count": {
+    "folio204": [
+      {
+        "group": "FOLIO-204/constr_Low",
+        "n": 74,
+        "sc_correct": 46,
+        "sc_accuracy": 0.6216,
+        "sica_correct": 47,
+        "sica_accuracy": 0.6351,
+        "delta_pp": 0.0135,
+        "mcnemar_b_sica_plus_sc_minus": 3,
+        "mcnemar_c_sica_minus_sc_plus": 2,
+        "mcnemar_exact_p": 1.0,
+        "constraint_range": "[0, 32]",
+        "mean_constraints": 21.7,
+        "tertile_thresholds": [32, 47]
+      },
+      {
+        "group": "FOLIO-204/constr_Mid",
+        "n": 64,
+        "sc_correct": 32,
+        "sc_accuracy": 0.5,
+        "sica_correct": 38,
+        "sica_accuracy": 0.5938,
+        "delta_pp": 0.0938,
+        "mcnemar_b_sica_plus_sc_minus": 6,
+        "mcnemar_c_sica_minus_sc_plus": 0,
+        "mcnemar_exact_p": 0.03125,
+        "constraint_range": "[33, 47]",
+        "mean_constraints": 39.7,
+        "tertile_thresholds": [32, 47]
+      },
+      {
+        "group": "FOLIO-204/constr_High",
+        "n": 66,
+        "sc_correct": 36,
+        "sc_accuracy": 0.5455,
+        "sica_correct": 36,
+        "sica_accuracy": 0.5455,
+        "delta_pp": 0.0,
+        "mcnemar_b_sica_plus_sc_minus": 1,
+        "mcnemar_c_sica_minus_sc_plus": 1,
+        "mcnemar_exact_p": 1.0,
+        "constraint_range": "[48, 83]",
+        "mean_constraints": 58.7,
+        "tertile_thresholds": [32, 47]
+      }
+    ],
+    "pw600": [
+      {
+        "group": "PW-600/constr_Low",
+        "n": 212,
+        "sc_correct": 93,
+        "sc_accuracy": 0.4387,
+        "sica_correct": 84,
+        "sica_accuracy": 0.3962,
+        "delta_pp": -0.0425,
+        "mcnemar_b_sica_plus_sc_minus": 6,
+        "mcnemar_c_sica_minus_sc_plus": 15,
+        "mcnemar_exact_p": 0.078354,
+        "constraint_range": "[0, 39]",
+        "mean_constraints": 28.8,
+        "tertile_thresholds": [39, 52]
+      },
+      {
+        "group": "PW-600/constr_Mid",
+        "n": 196,
+        "sc_correct": 80,
+        "sc_accuracy": 0.4082,
+        "sica_correct": 73,
+        "sica_accuracy": 0.3724,
+        "delta_pp": -0.0357,
+        "mcnemar_b_sica_plus_sc_minus": 5,
+        "mcnemar_c_sica_minus_sc_plus": 12,
+        "mcnemar_exact_p": 0.143463,
+        "constraint_range": "[40, 52]",
+        "mean_constraints": 45.8,
+        "tertile_thresholds": [39, 52]
+      },
+      {
+        "group": "PW-600/constr_High",
+        "n": 192,
+        "sc_correct": 63,
+        "sc_accuracy": 0.3281,
+        "sica_correct": 62,
+        "sica_accuracy": 0.3229,
+        "delta_pp": -0.0052,
+        "mcnemar_b_sica_plus_sc_minus": 2,
+        "mcnemar_c_sica_minus_sc_plus": 3,
+        "mcnemar_exact_p": 1.0,
+        "constraint_range": "[53, 99]",
+        "mean_constraints": 63.7,
+        "tertile_thresholds": [39, 52]
+      }
+    ]
+  }
+}

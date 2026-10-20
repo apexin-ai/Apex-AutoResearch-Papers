@@ -1,0 +1,1198 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-844_Q1",
+    "problem": "Anne is big. Anne is cold. Anne is furry. Anne is white. Erin is cold. Fiona is round. Gary is smart. All smart things are furry. Big, blue things are round. If Gary is cold then Gary is smart. All blue, furry things are big. If Gary is furry then Gary is blue. Round things are cold. Cold, white things are furry. Round things are blue.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is cold.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nWhite($x, bool) ::: Is x white?\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nCold(Anne, True) ::: Anne is cold.\nFurry(Anne, True) ::: Anne is furry.\nWhite(Anne, True) ::: Anne is white.\nCold(Erin, True) ::: Erin is cold.\nRound(Fiona, True) ::: Fiona is round.\nSmart(Gary, True) ::: Gary is smart.\n\nRules:\nSmart($x, True) >>> Furry($x, True) ::: All smart things are furry.\nBig($x, True) && Blue($x, True) >>> Round($x, True) ::: Big, blue things are round.\nCold(Gary, True) >>> Smart(Gary, True) ::: If Gary is cold then Gary is smart.\nBlue($x, True) && Furry($x, True) >>> Big($x, True) ::: All blue, furry things are big.\nFurry(Gary, True) >>> Blue(Gary, True) ::: If Gary is furry then Gary is blue.\nRound($x, True) >>> Cold($x, True) ::: Round things are cold.\nCold($x, True) && White($x, True) >>> Furry($x, True) ::: Cold, white things are furry.\nRound($x, True) >>> Blue($x, True) ::: Round things are blue.\n\nQuery:\nCold(Anne, True) ::: Anne is cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 168.0,
+      "Unknown": 161.0
+    },
+    "answer_counts": {
+      "True": 6,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To solve the problem, we need to apply the given premises to the statement \"Anne is cold.\" \n\nWe are given the following premises:\n\n1. Anne is big.\n2. Anne is cold.\n3. Anne is furry.\n4. Anne is white.\n5. Erin is cold.\n6. Fiona is round.\n7. Gary is smart.\n8. All smart things are furry.\n9. Big, blue things are round.\n10. If Gary is cold then Gary is smart.\n11. All blue, furry things are big.\n12. If Gary is furry then Gary is blue.\n13. Round things are cold.\n14. Cold, white things are furry.\n15. Round things are blue.\n\nFrom premises 6 and 13, we can conclude that Fiona is cold because round things are cold.\n\nFrom premise 1, we know Anne is big. However, there is no direct relationship between \"Anne is big\" and \"Anne is cold\" in the given premises. But we can use premises 9 and 10 to draw some conclusions.\n\nFrom premise 9, we know that big, blue things are round. We can infer that big things might be blue because if a big thing is blue, it is round. However, there is no direct relationship between \"Anne is big\" and \"Anne is blue.\"\n\nFrom premise 12, we know that if Gary is furry, then Gary is blue. But we cannot conclude anything about Anne's furiness or color from this premise.\n\nFrom premise 14, we know that cold, white things are furry. However, there is no direct information about Anne being white or cold in the given premises.\n\nFrom premise 2, we know Anne is cold. We can use this to apply the premises to conclude the statement.\n\nSince there is direct information about Anne being cold, we can conclude that the statement \"Anne is cold\" is true based on premise 2.\n\nHowever, let's verify if we can derive the same conclusion using the premises.\n\nSince there is no direct information about Anne being blue or furry, we cannot conclude anything about Anne's furiness or color. But we can use premise 2 (Anne is cold) to apply the premises.\n\nFrom premise 14, we know that cold, white things are furry. But we cannot conclude anything about Anne being white or furry from this premise.\n\nFrom premise 13, we know that round things are cold. But we cannot conclude anything about Anne being round from the given premises.\n\nFrom premise 2 (Anne is cold), we can conclude that Anne is furry from premise 14 (Cold, white things are furry) does not apply to Anne because there is no information about Anne being white. \n\nHowever, there is no information about Anne being furry in the premises other than \"Anne is furry\" which is premise 3.\n\nSince there is no direct information about Anne being furry or white, we cannot conclude anything about Anne's furiness or color. However, we can conclude that Anne is cold from premise 2.\n\nTherefore, the statement \"Anne is cold\" is true based on premise 2.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. We will break down the statements into premises and conclusions.\n\n1. Anne is big. \n2. Anne is cold. \n3. Anne is furry. \n4. Anne is white. \n5. Erin is cold. \n6. Fiona is round. \n7. Gary is smart. \n8. All smart things are furry. \n9. Big, blue things are round. \n10. If Gary is cold then Gary is smart. \n11. All blue, furry things are big. \n12. If Gary is furry then Gary is blue. \n13. Round things are cold. \n14. Cold, white things are furry. \n15. Round things are blue.\n\nFirst, let's find the information we have about Gary:\n\n- Gary is smart (7).\n- If Gary is cold, then Gary is smart (10).\n- If Gary is furry, then Gary is blue (12).\n\nFrom statement 8, we know all smart things are furry. \nSince Gary is smart (7), Gary must be furry.\n\nSince Gary is furry, we can apply statement 12. If Gary is furry, then Gary is blue.\n\nNow, let's find the information we have about Anne:\n\n- Anne is big (1).\n- Anne is cold (2).\n- Anne is furry (3).\n- Anne is white (4).\n\nFrom statement 13, we know round things are cold. \nFrom statement 15, we know round things are blue. \nFrom statement 11, we know all blue, furry things are big. \nHowever, we do not know if Anne is round.\n\nHowever, we do know that Gary is blue and furry, and blue, furry things are big (11), but we don't know if Anne is blue or Gary is big. \n\nNow, let's consider the white condition:\n- Anne is white (4).\n- Cold, white things are furry (14).\n\nSince Anne is cold and white, Anne must be furry (14).\n\nWe already know that Anne is furry (3), which aligns with our conclusion from the white condition.\n\nHowever, we still do not have enough information to determine if Anne is cold.\n\nTherefore, the answer is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is cold\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning step by step.\n\n1. Anne is big. (This gives us information about Anne, but it's not directly related to her temperature.)\n2. Anne is cold. (This statement is the one we need to evaluate.)\n3. Anne is furry. (This gives us information about Anne, but it's not directly related to her temperature.)\n4. Anne is white. (This gives us information about Anne, but it's not directly related to her temperature.)\n\nFrom the given premises, we can derive some additional information:\n\n- All smart things are furry. (This gives us a relationship between smart things and fur.)\n- If Gary is cold then Gary is smart. (This gives us a relationship between Gary's temperature and his intelligence.)\n- All blue, furry things are big. (This gives us a relationship between blue things, fur, and size.)\n- If Gary is furry then Gary is blue. (This gives us a relationship between Gary's fur and his color.)\n- Round things are cold. (This gives us a relationship between round objects and temperature.)\n- Cold, white things are furry. (This gives us a relationship between cold white objects and fur.)\n- Round things are blue. (This gives us a relationship between round objects and color.)\n\nNow, let's analyze the given information to see if we can derive any conclusions about Anne's temperature:\n\n- We know Anne is white (from statement 4) and round (because round things are blue, and since Anne is white, she might be round).\n- Since round things are cold (from the derived information), we can infer that Anne is cold.\n\nTherefore, based on the given information and logical reasoning, the statement \"Anne is cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we'll analyze the given statements step by step and use the rules of inference to determine the relationship between the statements.\n\nGiven statements:\n1. Anne is big.\n2. Anne is cold.\n3. Anne is furry.\n4. Anne is white.\n5. Erin is cold.\n6. Fiona is round.\n7. Gary is smart.\n8. All smart things are furry.\n9. Big, blue things are round.\n10. If Gary is cold then Gary is smart.\n11. All blue, furry things are big.\n12. If Gary is furry then Gary is blue.\n13. Round things are cold.\n14. Cold, white things are furry.\n15. Round things are blue.\n\nNow, let's analyze the statement \"Anne is cold\" using the given statements.\n\nGiven statement 2: Anne is cold.\nHowever, we need to determine whether this statement is true or false using the other given statements.\n\nFrom statement 9: Big, blue things are round.\nFrom statement 1: Anne is big.\nFrom statement 14: Cold, white things are furry.\nFrom statement 4: Anne is white.\n\nHowever, we cannot directly conclude that Anne is cold from these statements. \n\nThe only statement that directly relates to Anne being cold is statement 2 itself, which is the statement we're trying to verify. The other given statements do not provide sufficient information to conclude that Anne is cold.\n\nHowever, we can use the statements to conclude that Anne is cold from a different perspective.\n\nStatement 14: Cold, white things are furry.\nStatement 4: Anne is white.\nStatement 3: Anne is furry.\n\nStatement 13: Round things are cold.\nStatement 15: Round things are blue.\nStatement 9: Big, blue things are round.\nStatement 1: Anne is big.\nStatement 2 is false since Anne is not round, but this is the only information we have that contradicts statement 2.\n\nGiven that statement 2 cannot be verified from the given statements, we cannot determine that Anne is cold as true or false. Therefore, the answer is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is cold\" is true, false, or unknown, we need to use the given premises and the rules to infer the conclusion.\n\n1. Anne is white. (Given)\n2. Cold, white things are furry. (Given)\n   From this rule, we can infer that Anne is furry because Anne is white and cold, white things are furry.\n3. Anne is furry. (Inferred)\n4. Anne is white. (Given)\n5. Anne is cold. (To be determined)\n\nNow, let's analyze the other premises to see if we can find any information about Anne being cold.\n\n6. All smart things are furry. (Given)\n   However, we don't have any information about Anne being smart, so we can't use this rule to infer that Anne is cold.\n7. Gary is smart. (Given)\n   From this rule, we can't infer anything about Anne being cold because Gary being smart doesn't imply Anne being cold.\n8. If Gary is cold then Gary is smart. (Given)\n   We can't use this rule to infer anything about Anne being cold because it talks about Gary being cold, not Anne.\n9. Gary is furry. (Given)\n   Since we don't have any information about Gary being cold, we can't use this rule to infer anything about Anne being cold.\n10. Gary is blue. (Given)\n    From this rule, we can't infer anything about Anne being cold because it talks about Gary being blue, not Anne.\n11. All blue, furry things are big. (Given)\n    We can't use this rule to infer anything about Anne being cold because it talks about blue, furry things being big, not cold.\n12. Big, blue things are round. (Given)\n    We can't use this rule to infer anything about Anne being cold because it talks about big, blue things being round, not cold.\n13. Erin is cold. (Given)\n    We can't use this rule to infer anything about Anne being cold because it talks about Erin being cold, not Anne.\n14. Fiona is round. (Given)\n    From this rule, we can't infer anything about Anne being cold because it talks about Fiona being round, not Anne.\n15. Round things are cold. (Given)\n    We can't use this rule to infer anything about Anne being cold because it talks about round things being cold, not Anne.\n16. Erin is cold. (Given)\n    We can't use this rule to infer anything about Anne being cold because it talks about Erin being cold, not Anne.\n17. Gary is round. (From 15 and 17, Round things are cold, is applicable to Gary but Gary is round because Gary is cold)\n    We can't use this rule to infer anything about Anne being cold because it talks about Gary being round, not Anne.\n18. If Gary is furry then Gary is blue. (Given)\n    From this rule, we can't infer anything about Anne being cold because it talks about Gary being furry, not Anne.\n\nSince we can't find any information about Anne being cold using the given premises and the rules, we can conclude that the statement \"Anne is cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is cold\" is true, false, or unknown, we need to analyze the given information step by step and use the rules of logic.\n\n1. Given information:\n   - Anne is big.\n   - Anne is cold.\n   - Anne is furry.\n   - Anne is white.\n   - Erin is cold.\n   - Fiona is round.\n   - Gary is smart.\n   - All smart things are furry.\n   - Big, blue things are round.\n   - If Gary is cold then Gary is smart.\n   - All blue, furry things are big.\n   - If Gary is furry then Gary is blue.\n   - Round things are cold.\n   - Cold, white things are furry.\n   - Round things are blue.\n\n2. Analyze the rules:\n   - From rule 8, we know that Anne is furry and white. So, we can apply rule 12 to conclude that Anne is cold.\n\nHowever, we can't be certain of this conclusion yet because we don't know if the statement \"Anne is cold\" is true or false based on the information given about Anne. \n\nLooking at the statement \"Anne is cold\" in relation to the given information, we can see that Anne is indeed cold from rule 12, which states \"Cold, white things are furry\" and Anne is furry and white.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is big.\n   - Anne is cold.\n   - Anne is furry.\n   - Anne is white.\n   - Erin is cold.\n   - Fiona is round.\n   - Gary is smart.\n   - All smart things are furry.\n   - Big, blue things are round.\n   - If Gary is cold then Gary is smart.\n   - All blue, furry things are big.\n   - If Gary is furry then Gary is blue.\n   - Round things are cold.\n   - Cold, white things are furry.\n   - Round things are blue.\n\n2. Analyze the information:\n   - We are given that Anne is big, furry, and white.\n   - We know that \"Cold, white things are furry.\" However, this does not directly tell us if Anne is cold or not.\n\n3. We need to look for more information that links Anne's characteristics to the condition of being cold. \n   - We know that \"Round things are cold\" and \"Round things are blue.\" Since Anne is big, we can infer that Anne might be round (from the \"Big, blue things are round\" statement). \n   - However, we still cannot conclude whether Anne is cold or not.\n\n4. We need to look for more information that links round things to the condition of being cold. \n   - We know that \"If Gary is furry then Gary is blue.\" Since Gary is smart, and \"All smart things are furry,\" we can conclude that Gary is furry. This means we can conclude that Gary is blue.\n   - Given that \"Gary is blue\" and \"Round things are blue,\" we can infer that Gary is round.\n\n5. Now, we can use this information to conclude whether Gary is cold or not.\n   - We know that \"Round things are cold\" and Gary is round. Therefore, Gary is cold.\n\n6. Since \"If Gary is cold then Gary is smart\" and Gary is cold, we can conclude that Gary is indeed smart.\n\n7. Given that \"If Gary is furry then Gary is blue\" and Gary is furry, we can confirm that Gary is blue.\n\n8. We have already concluded that Anne is big, furry, and white. However, we still cannot conclude whether Anne is cold or not.\n\n9. We need to look for more information that links Anne's characteristics to the condition of being cold.\n   - Given that \"Cold, white things are furry\" and Anne is white and furry, we can conclude that Anne is indeed cold.\n\n10. Therefore, we can conclude that the statement \"Anne is cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is cold\" is true, false, or unknown, we need to analyze the given information step by step and use logical deductions.\n\n1. We are given the following facts:\n   - Anne is big.\n   - Anne is cold.\n   - Anne is furry.\n   - Anne is white.\n   - Erin is cold.\n   - Fiona is round.\n   - Gary is smart.\n   - All smart things are furry.\n   - Big, blue things are round.\n   - If Gary is cold then Gary is smart.\n   - All blue, furry things are big.\n   - If Gary is furry then Gary is blue.\n   - Round things are cold.\n   - Cold, white things are furry.\n   - Round things are blue.\n\n2. We can start by using the information about Anne. \n   - Anne is big. (Fact)\n   - Anne is white. (Fact)\n   - Big, blue things are round. (Fact)\n   - Round things are blue. (Fact)\n   - Since Anne is big and blue, it implies that Anne is round. (Logical deduction)\n   - Round things are cold. (Fact)\n   - Therefore, Anne is cold. (Logical deduction)\n\n3. Based on our analysis, we can conclude that the statement \"Anne is cold\" is true.\n\nSo, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we'll analyze each statement and apply the rules given. \n\n1. Anne is big. \n2. Anne is cold. \n3. Anne is furry. \n4. Anne is white. \n\nWe need to determine if statement 2 is true, false, or unknown. \n\nFrom the rules, we know:\n- All cold, white things are furry. (Rule 9)\n- All furry things are white or not. (We can't determine Anne's color from the given rules)\n- Anne is white (Statement 4)\n- Anne is furry (Statement 3)\n\nWe can't directly determine Anne's coldness from the given statements, but we can use the rules to deduce it.\n\nSince Anne is white and furry, we can use Rule 9: \"Cold, white things are furry.\" However, this rule doesn't directly tell us Anne's temperature. We can use it to conclude that Anne is either cold or not. \n\nWe can't find a rule that directly states Anne's coldness, but we can use the information we have to try and find a conclusion. \n\nThe statement \"Anne is cold\" is given as a fact in the problem, but we need to analyze it based on the given rules. However, the rules don't provide any direct information about Anne's coldness, so the statement's truth value is unknown.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is cold\" is true, false, or unknown, we need to analyze the given information using a logical approach.\n\n1. Given information:\n   - Anne is big.\n   - Anne is cold.\n   - Anne is furry.\n   - Anne is white.\n   - Erin is cold.\n   - Fiona is round.\n   - Gary is smart.\n   - All smart things are furry.\n   - Big, blue things are round.\n   - If Gary is cold then Gary is smart.\n   - All blue, furry things are big.\n   - If Gary is furry then Gary is blue.\n   - Round things are cold.\n   - Cold, white things are furry.\n   - Round things are blue.\n\n2. Analyze the given information to find any relevant connections to Anne.\n\n   - We know Anne is big, cold, furry, and white.\n   - From the information, we can see that \"Big, blue things are round\" and \"Round things are blue,\" which implies that Anne might be blue since she is big.\n   - However, we also know that \"Anne is white,\" which conflicts with the implication that Anne might be blue.\n   - Therefore, based on the given information, we cannot confirm Anne's color.\n\n3. Analyze the given information to find any relevant connections to Anne being cold.\n\n   - We know Anne is cold.\n   - From the information, we can see that \"Cold, white things are furry\" and \"Anne is white,\" which implies that Anne is furry since she is cold and white.\n   - However, we also know that \"Anne is furry\" from the given information, which confirms this implication.\n   - From the information, we can also see that \"Round things are cold,\" but we do not have any information that confirms Anne is round.\n\n4. Determine whether the statement \"Anne is cold\" is true, false, or unknown.\n\n   Based on the analysis, we can confirm that Anne is cold, and we have information that confirms she is furry. However, we do not have any information that directly confirms or denies the statement \"Anne is cold.\" The statement \"Anne is cold\" is already given in the information. Therefore, we can conclude that the statement \"Anne is cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is cold' is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven statements:\n1. Anne is big.\n2. Anne is cold.\n3. Anne is furry.\n4. Anne is white.\n5. Erin is cold.\n6. Fiona is round.\n7. Gary is smart.\n8. All smart things are furry.\n9. Big, blue things are round.\n10. If Gary is cold then Gary is smart.\n11. All blue, furry things are big.\n12. If Gary is furry then Gary is blue.\n13. Round things are cold.\n14. Cold, white things are furry.\n15. Round things are blue.\n\nLet's start by analyzing statement 2, 'Anne is cold'. However, before we can determine whether this statement is true or false, we need more information about Anne.\n\nFrom statement 3, we know 'Anne is furry'. Now, let's use statement 8, 'All smart things are furry.' This implies that Anne might be smart, but there is no information that directly states Anne is smart.\n\nNow let's use statement 14, 'Cold, white things are furry.' This implies that Anne, being white, could be cold, but we need more information about the combination of Anne being white and cold.\n\nUsing statement 3, we know 'Anne is furry.' Now, let's use statement 15, 'Round things are blue.' Since we don't have any information that directly links Anne being round to any other attribute, we cannot use this statement to determine whether Anne is cold.\n\nFrom statement 1, we know 'Anne is big.' Using statement 9, 'Big, blue things are round.' This implies that Anne, being big, could be round, but we need more information about the combination of Anne being big and round.\n\nHowever, using statement 13, 'Round things are cold.' This implies that Anne, being round, could be cold.\n\nSince we have two possible conclusions (Anne being cold due to being round, and Anne being cold due to being white), we cannot determine whether the statement 'Anne is cold' is true or false based on the given information.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to determine the properties of Anne based on the given information.\n\n1. Anne is big. \n2. Anne is cold. \n3. Anne is furry. \n4. Anne is white.\n\nWe need to use the given rules to determine whether Anne is cold.\n\nRule 1: All blue, furry things are big. \nRule 2: If Gary is furry then Gary is blue. \nRule 3: Round things are blue.\nRule 4: Round things are cold.\nRule 5: Cold, white things are furry.\nRule 6: All smart things are furry.\nRule 7: If Gary is cold then Gary is smart.\n\nLet's analyze the rules and see if we can find any information about Anne being cold.\n\nFrom Rule 1, we can't determine anything about Anne directly.\nFrom Rule 2, we can't determine anything about Anne directly.\nFrom Rule 3, we can't determine anything about Anne directly.\nFrom Rule 4, we know that round things are cold, but we don't know if Anne is round.\nFrom Rule 5, we know that cold, white things are furry, and Anne is white and furry, but we don't know if Anne is cold because of being white and furry.\n\nNow, let's try to find a connection between Anne and being cold.\n\nFrom Rule 4, we know that round things are cold, and from Rule 3, we know that round things are blue.\nHowever, we don't know if Anne is round or blue.\n\nFrom Rule 2, we know that if Gary is furry then Gary is blue, but this doesn't give us any information about Anne.\nFrom Rule 1, we know that all blue, furry things are big, but this doesn't give us any information about Anne.\n\nFrom Rule 5, we know that cold, white things are furry, and Anne is white and furry, but we still don't know if Anne is cold.\n\nWe need to find another connection.\n\nLet's analyze the given information about Anne: Anne is big, Anne is cold, Anne is furry, and Anne is white.\n\nWe know from Rule 5 that cold, white things are furry, and Anne is white and furry, so we can conclude that Anne is cold because she is white and furry.\n\nFinal answer: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), round_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_gary, furry_gary), big_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_fiona, cold_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_anne, white_anne), furry_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_fiona, blue_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), round_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_gary, smart_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_gary, furry_gary), big_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_gary, cold_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_anne, white_anne), furry_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_gary, blue_gary)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(gary) -> smart(gary)",
+          "z3_formula": "Implies(cold_gary, smart_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_X, furry_X), big_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(gary) -> blue(gary)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_X, cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_X, white_X), furry_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), round_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_anne, white_anne), furry_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_gary, smart_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_gary, furry_gary), big_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_fiona, cold_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_anne, white_anne), furry_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_gary, blue_gary)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_anne, cold_anne), furry_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_anne, furry_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_gary, smart_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_gary, furry_gary), big_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_gary, round_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_X, cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_X, cold_X)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_X, blue_X)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_gary, furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), round_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(gary) -> smart(gary)",
+          "z3_formula": "Implies(cold_gary, smart_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_gary, furry_gary), big_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(gary) -> blue(gary)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_gary, cold_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_anne, white_anne), furry_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_gary, blue_gary)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_gary, furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), round_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_gary, blue_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_gary, round_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_gary, cold_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_gary, smart_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_gary, furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(big_anne, blue_anne), round_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(big_anne, blue_anne), round_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> smart(X)",
+          "z3_formula": "Implies(cold_gary, smart_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_gary, furry_gary), big_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_anne, blue_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_anne, cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_anne, white_anne), furry_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_anne, blue_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_anne, white_anne), furry_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X) | not white(X)",
+          "z3_formula": "Implies(furry_anne, Or(white_anne, Not(white_anne)))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), round_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_gary, round_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(big_gary, blue_gary), round_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_gary, furry_gary), big_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_gary, cold_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_anne, white_anne), furry_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(big_anne, blue_anne), round_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_gary, blue_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_gary, big_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_anne, furry_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_gary, furry_gary), big_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_fiona, blue_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_anne, white_anne), furry_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_anne, cold_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_X, furry_X), big_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(Gary) -> blue(Gary)",
+          "z3_formula": "Implies(furry_Gary, blue_Gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_X, cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_X, white_X), furry_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(Gary) -> smart(Gary)",
+          "z3_formula": "Implies(cold_Gary, smart_Gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 178,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 40
+    },
+    "maxsat_stats": {
+      "satisfied": 40,
+      "excluded": 0,
+      "total_weight": 178,
+      "solve_time_ms": 1.1028358712792397
+    },
+    "timing": {
+      "trace_gen_s": 8.08,
+      "extraction_s": 26.754,
+      "dedup_s": 1.163,
+      "maxsat_s": 0.003,
+      "total_s": 36.0
+    }
+  }
+}

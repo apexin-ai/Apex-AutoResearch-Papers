@@ -1,0 +1,1235 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-873_Q17",
+    "problem": "The bald eagle is green. The bald eagle likes the squirrel. The bald eagle likes the tiger. The bear is nice. The bear is round. The bear likes the bald eagle. The bear likes the tiger. The squirrel is young. The squirrel likes the bear. The squirrel needs the bald eagle. The squirrel sees the tiger. The tiger is cold. The tiger likes the bear. The tiger likes the squirrel. The tiger needs the bear. The tiger sees the bear. If something needs the bald eagle and the bald eagle likes the bear then the bald eagle needs the tiger. If something needs the squirrel then it needs the tiger. If something is green then it needs the squirrel. If something needs the bear and it needs the bald eagle then the bear likes the bald eagle. If something likes the bald eagle then it is young. If something likes the bear and it sees the bald eagle then it needs the bear. Round things are green. If something sees the squirrel and the squirrel likes the bear then it is cold. If something needs the bear and the bear is green then it is round.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger is not young.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nLikes($x, $y, bool) ::: Does x like y?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nGreen(BaldEagle, True) ::: The bald eagle is green.\nLikes(BaldEagle, Squirrel, True) ::: The bald eagle likes the squirrel.\nLikes(BaldEagle, Tiger, True) ::: The bald eagle likes the tiger.\nNice(Bear, True) ::: The bear is nice.\nRound(Bear, True) ::: The bear is round.\nLikes(Bear, BaldEagle, True) ::: The bear likes the bald eagle.\nLikes(Bear, Tiger, True) ::: The bear likes the tiger.\nYoung(Squirrel, True) ::: The squirrel is young.\nLikes(Squirrel, Bear, True) ::: The squirrel likes the bear.\nNeeds(Squirrel, BaldEagle, True) ::: The squirrel needs the bald eagle.\nSees(Squirrel, Tiger, True) ::: The squirrel sees the tiger.\nCold(Tiger, True) ::: The tiger is cold.\nLikes(Tiger, Bear, True) ::: The tiger likes the bear.\nLikes(Tiger, Squirrel, True) ::: The tiger likes the squirrel.\nNeeds(Tiger, Bear, True) ::: The tiger needs the bear.\nSees(Tiger, Bear, True) ::: The tiger sees the bear.\n\nRules:\nNeeds($x, BaldEagle, True) && Likes(BaldEagle, Bear, True) >>> Needs(BaldEagle, Tiger, True) ::: If something needs the bald eagle and the bald eagle likes the bear then the bald eagle needs the tiger.\nNeeds($x, Squirrel, True) >>> Needs($x, Tiger, True) ::: If something needs the squirrel then it needs the tiger.\nGreen($x, True) >>> Needs($x, Squirrel, True) ::: If something is green then it needs the squirrel.\nNeeds($x, Bear, True) && Needs($x, BaldEagle, True) >>> Likes(Bear, BaldEagle, True) ::: If something needs the bear and it needs the bald eagle then the bear likes the bald eagle.\nLikes($x, BaldEagle, True) >>> Young($x, True) ::: If something likes the bald eagle then it is young.\nLikes($x, Bear, True) && Sees($x, BaldEagle, True) >>> Needs($x, Bear, True) ::: If something likes the bear and it sees the bald eagle then it needs the bear.\nRound($x, True) >>> Green($x, True) ::: Round things are green.\nSees($x, Squirrel, True) && Likes(Squirrel, Bear, True) >>> Cold($x, True) ::: If something sees the squirrel and the squirrel likes the bear then it is cold.\nNeeds($x, Bear, True) && Green(Bear, True) >>> Round($x, True) ::: If something needs the bear and the bear is green then it is round.\n\nQuery:\nYoung(Tiger, False) ::: The tiger is not young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 142.0,
+      "The tiger is not young.": 111.5,
+      "Unknown": 143.5
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "False": 5,
+      "The tiger is not young.": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The tiger is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"The bald eagle likes the squirrel\" and \"The squirrel is young\", we can infer that the bald eagle likes young things. However, we do not know if the tiger is young or not.\n\n2. From the statement \"If something needs the squirrel then it needs the tiger\", we cannot conclude anything about the tiger's age.\n\n3. From the statement \"If something likes the bald eagle then it is young\", we cannot conclude anything about the tiger's age. We only know that something that likes the bald eagle is young.\n\n4. We have no information about the tiger's age directly.\n\nHowever, we can make a conclusion using the information given in the problem. The statement \"If something sees the squirrel and the squirrel likes the bear then it is cold\" does not provide a direct link to the tiger's age. \n\nBut, the statement \"The bear is nice. The bear is round. The bear likes the bald eagle. The bear likes the tiger.\" indicates that the bear likes the tiger. The statement \"The tiger likes the bear. The tiger likes the squirrel.\" indicates that the tiger likes the squirrel and the bear. The statement \"The tiger is cold.\" indicates that the tiger is cold. \n\nHowever, the statement \"Round things are green.\" does not directly affect the conclusion of the tiger's age. \n\nFrom the statement \"If something needs the bear and the bear is green then it is round\", we cannot conclude that the tiger is round. The only conclusion we can make from this statement is that if the bear is green, then the thing that needs the bear is round. \n\nThe statement \"The bald eagle is green.\" and \"The bear is round.\" indicates that the bear is green and the round things are green. Therefore, the bear is green.\n\nFrom the statement \"If something sees the squirrel and the squirrel likes the bear then it is cold\" and \"The squirrel likes the bear\", we can conclude that the tiger is cold because it sees the squirrel and the squirrel likes the bear.\n\nHowever, we cannot conclude that the tiger is not young. We only know that the tiger is cold.\n\nTherefore, the answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. \n\n1. The bald eagle is green.\n2. The bald eagle likes the squirrel.\n3. The bald eagle likes the tiger.\n4. The bear is nice.\n5. The bear is round.\n6. The bear likes the bald eagle.\n7. The bear likes the tiger.\n8. The squirrel is young.\n9. The squirrel likes the bear.\n10. The squirrel needs the bald eagle.\n11. The squirrel sees the tiger.\n12. The tiger is cold.\n13. The tiger likes the bear.\n14. The tiger likes the squirrel.\n15. The tiger needs the bear.\n16. The tiger sees the bear.\n\nFrom statement 1, we know the bald eagle is green. \n\nUsing the statement \"Round things are green\" from the given conditions, we can infer that the bear is round because it is green (statement 5).\n\nFrom statement 5, we know the bear is round, and from statement 4, we know the bear is nice. \n\nFrom statement 6, we know the bear likes the bald eagle.\n\nUsing the statement \"If something likes the bald eagle then it is young\" from the given conditions, we can infer that the bear is young because it likes the bald eagle.\n\nNow we are going to check the statement we want to verify: \"The tiger is not young.\"\n\nUsing the statement \"If something is young then it likes the bald eagle\" is not given in the problem but we do have that if something likes the bald eagle then it is young. Therefore, we can infer that the tiger is young because it likes the bald eagle (statement 13). \n\nHowever, we also have another statement that says \"The tiger is cold.\" (statement 12)\n\nUsing the statement \"If something sees the squirrel and the squirrel likes the bear then it is cold\" from the given conditions, we can infer that the tiger is cold because it sees the squirrel and the squirrel likes the bear (statements 8 and 11).\n\nWe now have two different statements about the tiger, one that says it is young and one that says it is cold.\n\nWe can conclude that the statement \"The tiger is not young\" is false because the tiger is indeed young. \n\nSo, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and logical deductions to determine whether the statement \"The tiger is not young\" is true, false, or unknown.\n\n1. Given statements:\n   a. The bald eagle is green.\n   b. The bald eagle likes the squirrel.\n   c. The bald eagle likes the tiger.\n   d. The bear is nice.\n   e. The bear is round.\n   f. The bear likes the bald eagle.\n   g. The bear likes the tiger.\n   h. The squirrel is young.\n   i. The squirrel likes the bear.\n   j. The squirrel needs the bald eagle.\n   k. The squirrel sees the tiger.\n   l. The tiger is cold.\n   m. The tiger likes the bear.\n   n. The tiger likes the squirrel.\n   o. The tiger needs the bear.\n   p. The tiger sees the bear.\n\n2. Deductions:\n   a. From statement b, if the bald eagle likes the squirrel, then the squirrel is young (h).\n   b. From statement j, if the squirrel needs the bald eagle, then the bald eagle needs the tiger.\n   c. From statement a, if the bald eagle is green, then it needs the squirrel. However, we don't know that the bald eagle is green.\n   d. From statement o, if the tiger needs the bear, then the bear likes the tiger (from statement f).\n   e. From statement m, if the tiger likes the bear, then the bear is nice (from statement d).\n   f. From statement p, if the tiger sees the bear, then the tiger needs the bear (from statement o).\n   g. From statement k, if the squirrel sees the tiger and the squirrel likes the bear, then the tiger is cold (l).\n\n3. To determine whether the tiger is young, we need to find any statement that directly or indirectly links the tiger to being young. Since there's no direct link, we need to look for any possible link through other statements.\n\n4. From statement n, the tiger likes the squirrel. Since the squirrel is young (h), we can't directly conclude that the tiger is young.\n\n5. However, from statement n, the tiger likes the squirrel. If something needs the squirrel (j), then it needs the tiger. But the tiger doesn't need the squirrel; the squirrel needs the bald eagle (j). So, we can't use this statement to conclude that the tiger is young.\n\n6. Statement i says that the squirrel likes the bear. Statement k says that the squirrel sees the tiger. Statement l says that the tiger is cold. From these statements, we can't directly conclude that the tiger is young.\n\n7. Since we can't directly or indirectly conclude that the tiger is young, we can say that we don't have enough information to determine whether the tiger is young or not.\n\nTherefore, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and use it to determine whether the statement \"The tiger is not young\" is true, false, or unknown.\n\nFrom the information given, we know:\n1. The bald eagle likes the squirrel. (A likes S)\n2. The bald eagle likes the tiger. (A likes T)\n3. The bear is nice. (B is nice)\n4. The bear is round. (B is round)\n5. The bear likes the bald eagle. (B likes A)\n6. The bear likes the tiger. (B likes T)\n7. The squirrel is young. (S is young)\n8. The squirrel likes the bear. (S likes B)\n9. The squirrel needs the bald eagle. (S needs A)\n10. The squirrel sees the tiger. (S sees T)\n11. The tiger is cold. (T is cold)\n12. The tiger likes the bear. (T likes B)\n13. The tiger likes the squirrel. (T likes S)\n14. The tiger needs the bear. (T needs B)\n15. The tiger sees the bear. (T sees B)\n\nWe need to determine whether the tiger is young or not. \n\nFrom the information given, if something likes the bald eagle then it is young. Since the tiger likes the bald eagle (A), we might think the tiger is young. However, we need to be careful because this statement only says \"if something likes the bald eagle then it is young.\" It does not say \"if something is young then it likes the bald eagle.\" There might be other statements that affect the truth of \"The tiger is young.\"\n\nFrom the information given, if something sees the squirrel and the squirrel likes the bear then it is cold. Since the squirrel sees the tiger (T sees S) and the squirrel likes the bear (S likes B), we can conclude that the tiger is indeed cold. However, this information does not help us determine whether the tiger is young or not.\n\nFrom the information given, if something needs the bear and the bear is green then it is round. However, we do not know if the bear is green yet, so we cannot use this statement to conclude anything about the tiger.\n\nFrom the information given, if something needs the squirrel then it needs the tiger. However, we do not know if the tiger needs the squirrel or not, so we cannot use this statement to conclude anything about the tiger.\n\nFrom the information given, if something is green then it needs the squirrel. However, we do not know if the tiger is green or not, so we cannot use this statement to conclude anything about the tiger.\n\nFrom the information given, if something needs the bald eagle and the bald eagle likes the bear then the bald eagle needs the tiger. Since the bald eagle likes the bear (A likes B) and the bald eagle needs the squirrel (S needs A), we can conclude that the bald eagle needs the tiger. However, this information does not help us determine whether the tiger is young or not.\n\nFrom the information given, if something is round then it is green. Since the bear is round (B is round) and we know that round things are green, we can conclude that the bear is green. Now we have a new piece of information: the bear is green.\n\nFrom the information given, if something needs the bear and the bear is green then it is round. Since the tiger needs the bear (T needs B) and the bear is green (B is green), we can conclude that the tiger is round.\n\nFrom the information given, if something sees the squirrel and the squirrel likes the bear then it is cold. Since the squirrel sees the tiger (S sees T) and the squirrel likes the bear (S likes B), we can conclude that the tiger is cold. We already knew this, but now we have another piece of information.\n\nFrom the information given, if something likes the bear and it sees the bald eagle then it needs the bear. Since the tiger likes the bear (T likes B) and the tiger sees the bald eagle (T sees A), we can conclude that the tiger needs the bear. We already knew this, but now we have another piece of information.\n\nNow, let's analyze the statement \"The tiger is not young.\" We know that the tiger is cold (T is cold) and the tiger is round (T is round). We also know that the tiger needs the bear (T needs B). However, we do not know if the tiger is young or not.\n\nFrom the information given, if something likes the bald eagle then it is young. Since the tiger does not like the bald eagle (the bald eagle likes the tiger, but the tiger does not like the bald eagle), we cannot conclude that the tiger is young or not.\n\nTherefore, based on the given information, we cannot determine whether the statement \"The tiger is not young\" is true or false. It is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. The bald eagle is green.\n2. The bald eagle likes the squirrel.\n3. The bald eagle likes the tiger.\n4. The bear is nice.\n5. The bear is round.\n6. The bear likes the bald eagle.\n7. The bear likes the tiger.\n8. The squirrel is young.\n9. The squirrel likes the bear.\n10. The squirrel needs the bald eagle.\n11. The squirrel sees the tiger.\n12. The tiger is cold.\n13. The tiger likes the bear.\n14. The tiger likes the squirrel.\n15. The tiger needs the bear.\n16. The tiger sees the bear.\n\nFrom the given statements, we have:\n- If something needs the bald eagle and the bald eagle likes the bear then the bald eagle needs the tiger. (Statement 17, implied)\n- If something needs the squirrel then it needs the tiger. (Statement 18, implied)\n- If something is green then it needs the squirrel. (Statement 19, implied)\n- If something needs the bear and it needs the bald eagle then the bear likes the bald eagle. (Statement 20, implied)\n- If something likes the bald eagle then it is young. (Statement 21, implied)\n- If something likes the bear and it sees the bald eagle then it needs the bear. (Statement 22, implied)\n- Round things are green. (Statement 23, implied)\n- If something sees the squirrel and the squirrel likes the bear then it is cold. (Statement 24, implied)\n- If something needs the bear and the bear is green then it is round. (Statement 25, implied)\n\nNow, we need to find out whether the statement \"The tiger is not young\" is true, false, or unknown.\n\nFrom statement 21, if something likes the bald eagle, then it is young. But we don't have any information about the tiger liking the bald eagle. We can only infer that the bald eagle likes the tiger (Statement 3).\n\nHowever, we do know that the tiger likes the bald eagle (Statement 14), which implies that the tiger is young (Statement 21).\n\nTherefore, the statement \"The tiger is not young\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not young\" is true, false, or unknown, we need to find the information related to the tiger's age.\n\nFrom the given problem, we have the following information about the tiger:\n\n1. The tiger is cold.\n2. The tiger likes the bear.\n3. The tiger likes the squirrel.\n4. The tiger needs the bear.\n5. The tiger sees the bear.\n6. The tiger is cold.\n\nWe also have the following information about the relationship between \"young\" and \"likes the bald eagle\":\n\nIf something likes the bald eagle then it is young.\n\nSince the tiger likes the bald eagle (from statement 3), we can conclude that the tiger is young.\n\nNow we need to determine the truth value of the statement \"The tiger is not young\".\n\nSince the tiger is young, the statement \"The tiger is not young\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not young\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the given statements:\n- The bald eagle likes the squirrel.\n- The bald eagle likes the tiger.\n- If something likes the bald eagle then it is young.\nSince the bald eagle likes the tiger, we can conclude that the tiger is young.\n\nTherefore, the statement \"The tiger is not young\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not young\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\nFrom the given information and rules, we can derive the following conclusions:\n\n1. The bald eagle is green.\n   - Since the bald eagle is green, it needs the squirrel. (Rule: If something is green then it needs the squirrel.)\n\n2. The squirrel needs the bald eagle.\n   - Since the squirrel needs the bald eagle, the squirrel needs the tiger. (Rule: If something needs the squirrel then it needs the tiger.)\n\n3. The bear likes the bald eagle.\n   - Since the bear likes the bald eagle and the bald eagle needs the tiger, the bear likes the tiger. (Given information)\n   - Since the bear likes the bald eagle and it needs the bald eagle, the bear is young. (Rule: If something likes the bald eagle then it is young.)\n\n4. The bear is round.\n   - Since the bear is round, it is green. (Rule: Round things are green.)\n\n5. The squirrel likes the bear.\n   - Since the squirrel sees the tiger and the squirrel likes the bear, the squirrel is cold. (Rule: If something sees the squirrel and the squirrel likes the bear then it is cold.)\n\n6. The tiger likes the bear.\n   - Since the tiger sees the bear and it likes the bear, the tiger needs the bear. (Rule: If something likes the bear and it sees the bald eagle then it needs the bear.)\n\nNow, let's analyze the statement \"The tiger is not young.\" \n\nFrom the given information, we know that the bear is young because it likes the bald eagle. However, there is no direct information about the tiger's age. The statement \"The tiger is not young\" cannot be proven true or false with the given information. \n\nTherefore, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\nFrom the given statements:\n\n1. If something needs the bald eagle and the bald eagle likes the bear, then the bald eagle needs the tiger.\n   - This implies that the bald eagle needs the tiger, but it's not directly related to the statement about the tiger being young.\n\n2. If something needs the squirrel, then it needs the tiger.\n   - This statement is related to the squirrel's needs, but we don't know if the tiger needs the squirrel.\n\n3. If something is green, then it needs the squirrel.\n   - This implies that green things need the squirrel, but we don't know if the tiger is green.\n\n4. If something needs the bear and it needs the bald eagle, then the bear likes the bald eagle.\n   - This is not directly related to the statement about the tiger being young.\n\n5. If something likes the bald eagle, then it is young.\n   - This statement is related to the young status of something that likes the bald eagle.\n\n6. If something likes the bear and it sees the bald eagle, then it needs the bear.\n   - This is not directly related to the statement about the tiger being young.\n\n7. Round things are green.\n   - This statement implies that if something is round, it might be green.\n\n8. If something sees the squirrel and the squirrel likes the bear, then it is cold.\n   - This statement is not directly related to the statement about the tiger being young.\n\n9. If something needs the bear and the bear is green, then it is round.\n   - This statement implies that if something needs the bear and the bear is green, then it is round.\n\nFrom the statements, we can determine the following:\n\n- The tiger sees the bear (Statement 10).\n- The tiger likes the bear (Statement 11).\n- The bear is nice and round (Statement 2 and 4).\n- Round things are green (Statement 7).\n- Therefore, the bear is green.\n\nNow, we need to determine if the tiger is young.\n\n- The tiger likes the bear (Statement 11).\n- The bear likes the bald eagle (Statement 3).\n- The bald eagle likes the squirrel (Statement 2).\n\nWe don't have a direct statement that says the tiger is young, but we can make an inference using Statement 5: If something likes the bald eagle, then it is young. Since the bear likes the bald eagle, the bear is young.\n\nHowever, we don't have enough information to conclude that the tiger is young. \n\nSince we don't have enough information to conclude whether the tiger is young, we will say that the statement \"The tiger is not young\" is also unknown. \n\nBut the information given in the prompt, especially the \"If something sees the squirrel and the squirrel likes the bear, then it is cold\" statement (which is statement 8), gives us information about the tiger seeing the squirrel and the squirrel liking the bear. \n\nFrom statement 8, since the squirrel likes the bear, and the tiger sees the squirrel and the squirrel likes the bear, the tiger is cold.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and use them to derive information about the properties of the bald eagle, the bear, the squirrel, and the tiger.\n\n1. The bald eagle is green.\n2. The bald eagle likes the squirrel.\n3. The bald eagle likes the tiger.\n4. The bear is nice.\n5. The bear is round.\n6. The bear likes the bald eagle.\n7. The bear likes the tiger.\n8. The squirrel is young.\n9. The squirrel likes the bear.\n10. The squirrel needs the bald eagle.\n11. The squirrel sees the tiger.\n12. The tiger is cold.\n13. The tiger likes the bear.\n14. The tiger likes the squirrel.\n15. The tiger needs the bear.\n16. The tiger sees the bear.\n\nNow, let's analyze the given statements:\n\nFrom statement 16, the tiger sees the bear.\n\nFrom statement 13, the tiger likes the bear.\n\nFrom statement 17 (which is not given, but is implied by statement 13), if the tiger sees the bear and it likes the bear, then it needs the bear (from the given statement 15).\n\nFrom statement 1, the bald eagle is green.\n\nFrom statement 1 and statement 18 (which is not given), if something is green then it needs the squirrel (from statement 4).\n\nFrom statement 10, the squirrel needs the bald eagle.\n\nFrom statement 10 and statement 19 (which is not given), if something needs the bald eagle and the bald eagle likes the bear then the bald eagle needs the tiger (from statement 15).\n\nFrom statement 1, the bald eagle is green.\n\nFrom statement 1 and statement 20 (which is not given), if something is green then it needs the squirrel (from statement 4).\n\nFrom statement 4, the bear is nice.\n\nFrom statement 5, the bear is round.\n\nFrom statement 6, the bear likes the bald eagle.\n\nFrom statement 7, the bear likes the tiger.\n\nFrom statement 9, the squirrel likes the bear.\n\nFrom statement 11, the squirrel sees the tiger.\n\nFrom statement 12, the tiger is cold.\n\nFrom statement 14, the tiger likes the squirrel.\n\nFrom statement 15, the tiger needs the bear.\n\nNow, let's derive information about the properties of the bald eagle, the bear, the squirrel, and the tiger:\n\nThe tiger is young because from statement 8, if something likes the bald eagle then it is young.\n\nThe tiger is not young. (Final Answer)\n\n\\boxed{The tiger is not young.}",
+        "answer": "The tiger is not young.",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given information states: \"If something likes the bald eagle then it is young.\"\n   We can conclude that since the tiger likes the bear and the bald eagle likes the bear, then the tiger is young.\n\n   However, we still need to check if there are any other statements that might contradict this.\n\n2. The given information states: \"The tiger likes the bear.\"\n   Since the bald eagle likes the bear and the tiger likes the bear, this information is consistent with our previous conclusion.\n\n3. The given information states: \"The bald eagle likes the bear.\"\n   This information is consistent with our previous conclusion.\n\n4. The given information states: \"The squirrel sees the tiger.\"\n   This information does not affect our conclusion about the tiger's age.\n\n5. The given information states: \"If something sees the squirrel and the squirrel likes the bear then it is cold.\"\n   Since the squirrel sees the tiger and the squirrel likes the bear, this would imply that the tiger is cold. However, this information does not affect our conclusion about the tiger's age.\n\n6. The given information states: \"If something needs the bear and the bear is green then it is round.\"\n   Since the bear is round, it does not affect our conclusion about the tiger's age.\n\n7. The given information states: \"Round things are green.\"\n   Since the bear is round and the bear is not green, this information is inconsistent with the information that the bear is round.\n\nHowever, this inconsistency does not affect our conclusion about the tiger's age. \n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"If something likes the bald eagle then it is young\" is given. \nThis implies that the bald eagle likes the squirrel and the squirrel is young. \n\n2. The statement \"If something needs the squirrel then it needs the tiger\" is given.\nHowever, there is no information that directly connects the squirrel's need for the bald eagle to the tiger's characteristics.\n\n3. The statement \"The tiger likes the squirrel\" is given. \nThis implies that the tiger might not be young as per the first statement.\n\nHowever, we cannot conclude the statement \"The tiger is not young\" as true based on the given information. There is no information that directly connects the tiger's likes or needs to the condition of being young. Therefore, the answer is unknown because there is insufficient information to determine whether the tiger is young or not.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_bear, green_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, bald_eagle)",
+          "z3_formula": "likes_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(likes_bear_bald_eagle, young_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(likes_tiger_bear, young_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & likes(squirrel, bear) -> cold(X)",
+          "z3_formula": "Implies(And(sees_tiger_squirrel, likes_squirrel_bear), cold_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, squirrel)",
+          "z3_formula": "likes_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, tiger)",
+          "z3_formula": "likes_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, bald_eagle)",
+          "z3_formula": "likes_bear_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, tiger)",
+          "z3_formula": "likes_bear_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, squirrel)",
+          "z3_formula": "likes_tiger_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> young(Y)",
+          "z3_formula": "Implies(likes_bald_eagle_squirrel, young_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> needs(Y, X)",
+          "z3_formula": "Implies(needs_bald_eagle_squirrel, needs_squirrel_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, Y)",
+          "z3_formula": "Implies(green_bald_eagle, needs_bald_eagle_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> likes(X, Y)",
+          "z3_formula": "Implies(needs_tiger_bear, likes_tiger_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> nice(Y)",
+          "z3_formula": "Implies(likes_bear_tiger, nice_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & likes(X, Z) & cold(Y) -> cold(Y)",
+          "z3_formula": "Implies(And(sees_squirrel_tiger, likes_squirrel_bear, cold_tiger), cold_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == False",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, squirrel)",
+          "z3_formula": "likes_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, tiger)",
+          "z3_formula": "likes_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, bald_eagle)",
+          "z3_formula": "likes_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, tiger)",
+          "z3_formula": "likes_bear_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, squirrel)",
+          "z3_formula": "likes_tiger_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(likes_tiger_bald_eagle, young_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & likes(squirrel, bear) -> cold(X)",
+          "z3_formula": "Implies(And(sees_tiger_squirrel, likes_squirrel_bear), cold_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & green(bear) -> round(X)",
+          "z3_formula": "Implies(And(needs_tiger_bear, green_bear), round_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> needs(X, tiger)",
+          "z3_formula": "Implies(needs_tiger_squirrel, needs_tiger_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(green_tiger, needs_tiger_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & likes(bald_eagle, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(needs_tiger_bald_eagle, likes_bald_eagle_bear), needs_tiger_tiger)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_bear, green_bear)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & green(bear) -> round(X)",
+          "z3_formula": "Implies(And(needs_tiger_bear, green_bear), round_tiger)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & likes(squirrel, bear) -> cold(X)",
+          "z3_formula": "Implies(And(sees_tiger_squirrel, likes_squirrel_bear), cold_tiger)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & sees(X, bald_eagle) -> needs(X, bear)",
+          "z3_formula": "Implies(And(likes_tiger_bear, sees_tiger_bald_eagle), needs_tiger_bear)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == False",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == Unknown",
+          "source_step": 30
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, squirrel)",
+          "z3_formula": "likes_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, tiger)",
+          "z3_formula": "likes_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, bald_eagle)",
+          "z3_formula": "likes_bear_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, tiger)",
+          "z3_formula": "likes_bear_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, squirrel)",
+          "z3_formula": "likes_tiger_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & likes(bald_eagle, Y) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(needs_X_bald_eagle, likes_bald_eagle_Y), needs_X_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> needs(X, tiger)",
+          "z3_formula": "Implies(needs_X_squirrel, needs_X_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(green_X, needs_X_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & green(bear) -> round(X)",
+          "z3_formula": "Implies(And(needs_X_bear, green_bear), round_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(likes_X_bald_eagle, young_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & sees(X, bald_eagle) -> needs(X, bear)",
+          "z3_formula": "Implies(And(likes_X_bear, sees_X_bald_eagle), needs_X_bear)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & likes(squirrel, bear) -> cold(X)",
+          "z3_formula": "Implies(And(sees_X_squirrel, likes_squirrel_bear), cold_X)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & green(bear) -> round(X)",
+          "z3_formula": "Implies(And(needs_X_bear, green_bear), round_X)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not young(tiger)",
+          "z3_formula": "Not(young_tiger)",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, squirrel)",
+          "z3_formula": "likes_tiger_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(likes_tiger_bald_eagle, young_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not young(tiger)",
+          "z3_formula": "Not(young_tiger) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, squirrel)",
+          "z3_formula": "likes_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, tiger)",
+          "z3_formula": "likes_bald_eagle_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(likes_bald_eagle_tiger, young_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(green_bald_eagle, needs_bald_eagle_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, bald_eagle)",
+          "z3_formula": "likes_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(likes_bear_bald_eagle, young_bear)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_bear, green_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & likes(squirrel, bear) -> cold(X)",
+          "z3_formula": "Implies(And(sees_tiger_squirrel, likes_squirrel_bear), cold_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) & sees(X, bald_eagle) -> needs(X, bear)",
+          "z3_formula": "Implies(And(likes_bear_bald_eagle, sees_bear_bald_eagle), needs_bear_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, bear)",
+          "z3_formula": "needs_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, bear)",
+          "z3_formula": "likes_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & needs(X, bald_eagle) -> likes(bear, bald_eagle)",
+          "z3_formula": "Implies(And(needs_bald_eagle_bear, needs_bald_eagle_tiger), likes_bear_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(likes_bald_eagle_bear, young_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bear) -> young(X)",
+          "z3_formula": "Implies(likes_bear_bald_eagle, young_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> needs(X, tiger)",
+          "z3_formula": "Implies(needs_bear_squirrel, needs_bear_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(green_tiger, needs_tiger_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_bear, green_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & likes(squirrel, bear) -> cold(X)",
+          "z3_formula": "Implies(And(sees_tiger_squirrel, likes_squirrel_bear), cold_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == Unknown",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not young(tiger)",
+          "z3_formula": "Not(young_tiger) == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(bald_eagle)",
+          "z3_formula": "green_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, squirrel)",
+          "z3_formula": "likes_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, tiger)",
+          "z3_formula": "likes_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bear)",
+          "z3_formula": "nice_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, bald_eagle)",
+          "z3_formula": "likes_bear_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, tiger)",
+          "z3_formula": "likes_bear_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, bald_eagle)",
+          "z3_formula": "needs_squirrel_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, squirrel)",
+          "z3_formula": "likes_tiger_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bear)",
+          "z3_formula": "needs_tiger_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & likes(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(And(sees_tiger_bear, likes_tiger_bear), needs_tiger_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(green_bald_eagle, needs_bald_eagle_squirrel)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & likes(bald_eagle, bear) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(needs_bald_eagle_squirrel, likes_bald_eagle_bear), needs_bald_eagle_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(green_bald_eagle, needs_bald_eagle_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not young(tiger)",
+          "z3_formula": "Not(young_tiger) == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(likes_tiger_bald_eagle, young_tiger)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, bear)",
+          "z3_formula": "likes_bald_eagle_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, bear)",
+          "z3_formula": "likes_bald_eagle_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & likes(squirrel, bear) -> cold(X)",
+          "z3_formula": "Implies(And(sees_squirrel_tiger, likes_squirrel_bear), cold_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, tiger)",
+          "z3_formula": "sees_squirrel_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, bear)",
+          "z3_formula": "likes_squirrel_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, bear)",
+          "z3_formula": "needs_bear_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bear) & green(bear) -> round(X)",
+          "z3_formula": "Implies(And(needs_bear_bear, green_bear), round_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_bear, green_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "green(bear)",
+          "z3_formula": "green_bear == False",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, squirrel)",
+          "z3_formula": "likes_tiger_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(likes_bald_eagle_squirrel, young_squirrel)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> needs(X, tiger)",
+          "z3_formula": "Implies(needs_X_squirrel, needs_X_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, squirrel)",
+          "z3_formula": "likes_tiger_squirrel == True",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 184,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 64
+    },
+    "maxsat_stats": {
+      "satisfied": 62,
+      "excluded": 2,
+      "total_weight": 178,
+      "solve_time_ms": 1.3968385756015778
+    },
+    "timing": {
+      "trace_gen_s": 12.153,
+      "extraction_s": 38.054,
+      "dedup_s": 2.134,
+      "maxsat_s": 0.005,
+      "total_s": 52.346
+    }
+  }
+}

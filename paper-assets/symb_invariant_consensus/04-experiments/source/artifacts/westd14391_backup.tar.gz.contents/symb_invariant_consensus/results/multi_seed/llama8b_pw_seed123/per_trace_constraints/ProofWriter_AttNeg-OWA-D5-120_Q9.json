@@ -1,0 +1,972 @@
+{
+  "pid": "ProofWriter_AttNeg-OWA-D5-120_Q9",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_erin, nice_erin), round_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(round_erin, rough_erin), nice_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & Not(cold(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(cold_erin)), green_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_erin, round_erin), nice_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_gary, nice_gary), cold_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin) -> green(erin)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin) -> Not(red(erin))",
+          "z3_formula": "Implies(round_erin, Not(red_erin))",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & Not(cold(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(cold_erin)), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_erin, nice_erin), round_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & Not(cold(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(cold_erin)), green_erin)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_erin, round_erin), nice_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_erin, nice_erin), round_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not smart(gary)",
+          "z3_formula": "Not(smart_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_gary, rough_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not cold(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(cold_erin)), green_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_erin, nice_erin), round_erin)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not round(erin)",
+          "z3_formula": "Not(round_erin)",
+          "source_step": 22
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_erin, nice_erin), rough_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_gary, green_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not(cold(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(cold_erin)), green_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary) & nice(gary) -> rough(gary)",
+          "z3_formula": "Implies(And(round_gary, nice_gary), rough_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary) -> green(gary)",
+          "z3_formula": "Implies(round_gary, green_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_erin, nice_erin), round_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not cold(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(cold_erin)), green_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> green(X)",
+          "z3_formula": "Implies(nice_erin, green_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X) => red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(Implies(red_erin, nice_erin), Implies(And(red_erin, nice_erin), cold_erin))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X) => cold(X) -> rough(X)",
+          "z3_formula": "Implies(Implies(And(red_erin, nice_erin), cold_erin), Implies(cold_erin, rough_erin))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin) & nice(erin)",
+          "z3_formula": "And(red_erin, nice_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin) & nice(erin) -> cold(erin)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin) -> rough(erin)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin) -> green(erin)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin) -> not nice(erin)",
+          "z3_formula": "Implies(green_erin, Not(nice_erin))",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not smart(gary)",
+          "z3_formula": "Not(smart_gary) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, round_X), nice_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_X, nice_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_X, nice_X), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_X, rough_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_X, nice_X), cold_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_X, green_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not cold(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_X, Not(cold_X)), green_X)",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_erin, green_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & Not(cold(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(cold_erin)), green_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "Not(green(erin))",
+          "z3_formula": "Not(green_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_gary, nice_gary), round_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_gary, rough_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(erin))",
+          "z3_formula": "Not(round_erin)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_erin, nice_erin), cold_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_erin, nice_erin), round_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == Unknown",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_erin, cold_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_erin, nice_erin), round_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == Unknown",
+          "source_step": 11
+        }
+      ]
+    }
+  ]
+}

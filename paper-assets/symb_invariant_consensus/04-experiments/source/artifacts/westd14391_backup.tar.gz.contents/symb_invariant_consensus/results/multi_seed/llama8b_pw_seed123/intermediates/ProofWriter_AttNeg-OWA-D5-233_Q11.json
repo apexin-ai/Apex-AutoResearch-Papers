@@ -1,0 +1,1002 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-233_Q11",
+    "problem": "Dave is furry. Dave is green. Dave is kind. Dave is smart. Erin is rough. Gary is furry. Gary is green. Gary is kind. Harry is not furry. Harry is kind. Harry is white. All furry, big things are green. If something is big and furry then it is green. If something is white and rough then it is furry. If something is smart then it is white. All big, rough things are white. If something is big and furry then it is white. Rough things are big. If something is big then it is rough. All green, furry things are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is kind.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nSmart($x, bool) ::: Is x smart?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\n\nFacts:\nFurry(Dave, True) ::: Dave is furry.\nGreen(Dave, True) ::: Dave is green.\nKind(Dave, True) ::: Dave is kind.\nSmart(Dave, True) ::: Dave is smart.\nRough(Erin, True) ::: Erin is rough.\nFurry(Gary, True) ::: Gary is furry.\nGreen(Gary, True) ::: Gary is green.\nKind(Gary, True) ::: Gary is kind.\nFurry(Harry, False) ::: Harry is not furry.\nKind(Harry, True) ::: Harry is kind.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nFurry($x, True) && Big($x, True) >>> Green($x, True) ::: All furry, big things are green.\nBig($x, True) && Furry($x, True) >>> Green($x, True) ::: If something is big and furry then it is green.\nWhite($x, True) && Rough($x, True) >>> Furry($x, True) ::: If something is white and rough then it is furry.\nSmart($x, True) >>> White($x, True) ::: If something is smart then it is white.\nBig($x, True) && Rough($x, True) >>> White($x, True) ::: All big, rough things are white.\nBig($x, True) && Furry($x, True) >>> White($x, True) ::: If something is big and furry then it is white.\nRough($x, True) >>> Big($x, True) ::: Rough things are big.\nBig($x, True) >>> Rough($x, True) ::: If something is big then it is rough.\nGreen($x, True) && Furry($x, True) >>> Kind($x, True) ::: All green, furry things are kind.\n\nQuery:\nKind(Erin, True) ::: Erin is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 54.0,
+      "True": 143.0,
+      "Unknown": 78.0
+    },
+    "answer_counts": {
+      "True": 9,
+      "Unknown": 2,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given information and apply the rules step by step.\n\n1. Erin is rough (given information)\n2. If something is white and rough then it is furry (rule 6)\n   - Since Erin is rough, we can conclude that Erin is furry, but we don't know if Erin is white or not.\n\n3. If something is furry then it is green (rule 1)\n   - We already know Erin is furry from step 2, so Erin must be green.\n\n4. All green, furry things are kind (rule 9)\n   - Since Erin is both green and furry, we can conclude that Erin is kind.\n\nSo, the final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is kind\" is true, false, or unknown, we need to analyze the given information and apply the rules.\n\n1. We know Erin is rough (given statement).\n2. We also know that if something is white and rough then it is furry (rule 5).\n3. However, we cannot directly conclude Erin's color or fur status from this information. We need more data.\n4. From rule 3, we know that if something is smart then it is white. But we don't have any information about Erin's intelligence.\n5. From rule 7, we know that if something is big then it is rough. But we don't have any information about Erin's size.\n\nHowever, let's analyze the possibilities:\n\n- If Erin is big, then she is rough (rule 7).\n- If Erin is rough, then she is big (rule 5 and rule 7).\n- If Erin is big and furry, then she is green (rule 1). \n- If Erin is big and furry, then she is white (rule 6).\n- Since Erin is big and furry, she must be white (rule 6) and green (rule 1).\n- All green, furry things are kind (rule 10).\n\nSo, Erin is big, furry, green, and white, and therefore, Erin is kind.\n\nTherefore, the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is kind\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\nGiven information:\n1. Dave is furry. \n2. Dave is green. \n3. Dave is kind. \n4. Dave is smart. \n5. Erin is rough. \n6. Gary is furry. \n7. Gary is green. \n8. Gary is kind. \n9. Harry is not furry. \n10. Harry is kind. \n11. Harry is white. \n12. All furry, big things are green.\n13. If something is big and furry then it is green.\n14. If something is white and rough then it is furry.\n15. If something is smart then it is white.\n16. All big, rough things are white.\n17. If something is big and furry then it is white.\n18. Rough things are big.\n19. If something is big then it is rough.\n20. All green, furry things are kind.\n\nStatement to be evaluated: Erin is kind.\n\nFirst, let's find out what Erin is:\nErin is rough (given information: statement 5).\nFrom statement 18, we know that if something is rough, then it is big.\nFrom statement 19, we know that if something is big, then it is rough. This is a loop and doesn't give us any additional information.\nFrom statement 16, we know that all big, rough things are white.\nSo, Erin is white.\n\nNow, let's find out if Erin is furry or not:\nFrom statement 14, we know that if something is white and rough, then it is furry.\nSince Erin is white and rough, Erin is furry.\n\nNow that we know Erin is furry, let's check if Erin is kind or not:\nFrom statement 20, we know that all green, furry things are kind.\nWe need to find out if Erin is green or not:\nFrom statement 12, we know that all furry, big things are green.\nWe already know that Erin is furry and big (from statement 18). However, we don't have a direct rule that says all furry things are green. Instead, we have rule 13 which says that if something is big and furry then it is green. Since Erin is big and furry, Erin is green.\nNow that we know Erin is green, furry, and we previously found that Erin is white, we don't have a rule that combines green, furry, and white to determine if something is kind or not. However, we do have a rule that says all big, rough things are white (statement 16) and a rule that says all furry, big things are green (statement 12). Since Erin is both white and green, we can deduce that Erin is big and rough. \n\nSince Erin is big and rough, we can use rule 20 to conclude that Erin is kind.\n\nTherefore, the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is kind' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is rough.\n2. All white and rough things are furry.\n   - From this, we can infer that Erin is furry.\n3. All furry, big things are green.\n   - Since Erin is furry, we can conclude that Erin is big.\n4. All big, rough things are white.\n   - Since Erin is big and rough, we can conclude that Erin is white.\n5. All big things are rough.\n   - Since Erin is big, we can confirm that Erin is indeed rough.\n6. If something is smart then it is white.\n   - This statement does not directly apply to Erin.\n7. All green, furry things are kind.\n   - Since we know Erin is furry, but we don't know if Erin is green or not, we cannot conclude Erin's kindness.\n\nAs Erin is furry and we don't have any direct information that Erin is green, we cannot determine if Erin is kind or not based on the given statements. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their relationships. We can represent each statement as a predicate and use a truth table to determine the value of the statement \"Erin is kind.\"\n\nLet's define the predicates:\n- F(x): x is furry.\n- G(x): x is green.\n- K(x): x is kind.\n- S(x): x is smart.\n- W(x): x is white.\n- R(x): x is rough.\n- B(x): x is big.\n\nNow, let's analyze the given statements and their relationships.\n\n1. All furry, big things are green: B(x) \u2227 F(x) \u2192 G(x)\n2. If something is big and furry then it is green: B(x) \u2227 F(x) \u2192 G(x)\n3. If something is white and rough then it is furry: W(x) \u2227 R(x) \u2192 F(x)\n4. If something is smart then it is white: S(x) \u2192 W(x)\n5. All big, rough things are white: B(x) \u2227 R(x) \u2192 W(x)\n6. If something is big and furry then it is white: B(x) \u2227 F(x) \u2192 W(x)\n7. Rough things are big: R(x) \u2192 B(x)\n8. If something is big then it is rough: B(x) \u2192 R(x)\n9. All green, furry things are kind: G(x) \u2227 F(x) \u2192 K(x)\n\nNow, let's determine whether Erin is kind. To do this, we need to find the values of the predicates F, G, R, S, and W for Erin.\n\nFrom the statement \"Erin is rough,\" we can conclude that Erin is big (R(x) \u2192 B(x)) and Erin is rough (R(x)). Using the transitive property, we can conclude that Erin is white (B(x) \u2227 R(x) \u2192 W(x)) and Erin is furry (W(x) \u2227 R(x) \u2192 F(x)).\n\nHowever, we also know that all furry, big things are green (B(x) \u2227 F(x) \u2192 G(x)), which means Erin is green (B(x) \u2227 F(x) \u2192 G(x)). \n\nUsing the fact that Erin is furry and green, we can conclude that Erin is kind (G(x) \u2227 F(x) \u2192 K(x)).\n\nTherefore, the final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is kind\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Erin is rough.\n2. If something is white and rough then it is furry.\nFrom the above statements, we can conclude that Erin is furry.\n\n3. Erin is furry.\n4. If something is big and furry then it is green.\nHowever, we don't know if Erin is big or not. We need more information to make a conclusion about Erin's color.\n\n5. Erin is furry.\n6. All furry, big things are green.\nSince we don't know if Erin is big, we can't conclude Erin's color.\n\n7. Erin is rough.\n8. If something is rough, then it is big.\nFrom this, we can conclude that Erin is big.\n\n9. Erin is big.\n10. Erin is furry.\n11. All big, furry things are green.\nFrom this, we can conclude that Erin is green.\n\n12. Erin is green.\n13. All green, furry things are kind.\nFrom this, we can conclude that Erin is kind.\n\nTherefore, based on the given information, the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules to determine Erin's characteristics.\n\n1. All furry, big things are green. (Rule 1)\n2. If something is big and furry then it is green. (Rule 2)\n3. If something is white and rough then it is furry. (Rule 3)\n4. If something is big and furry then it is white. (Rule 4)\n5. Rough things are big. (Rule 5)\n6. If something is big then it is rough. (Rule 6)\n7. All green, furry things are kind. (Rule 7)\n\nFrom the given statements, we know:\n\n- Dave is furry, green, kind, and smart.\n- Erin is rough.\n- Gary is furry, green, and kind.\n- Harry is not furry, kind, and white.\n\nNow, let's apply the rules to determine Erin's characteristics:\n\n- Since Erin is rough, we can apply Rule 5: Rough things are big.\n- Since Erin is big, we can apply Rule 6: If something is big then it is rough. (This rule is already applied, so we can skip it.)\n- Since Erin is big and rough, we can apply Rule 4: If something is big and furry then it is white. (This rule applies only to furry things, but we don't know if Erin is furry yet.)\n- Since Erin is big, we can apply Rule 2: If something is big and furry then it is green. (This rule also applies only to furry things, but we don't know if Erin is furry yet.)\n\nNow, let's analyze the rules related to Erin's characteristics:\n\n- We know Erin is rough, but we don't know if Erin is furry or white.\n- If Erin is furry, then Erin is white (Rule 4) and green (Rule 2).\n- If Erin is white, then Erin is furry (Rule 3).\n\nHowever, Rule 3 states that if something is white and rough then it is furry. Since Erin is rough and white, we can apply this rule.\n\n- Erin is white and rough, so Erin is furry (Rule 3).\n- Erin is furry, so Erin is green (Rule 2).\n- Erin is green and furry, so Erin is kind (Rule 7).\n\nTherefore, Erin is kind.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given statements and the properties of Erin.\n\nGiven statements:\n1. Erin is rough.\n2. If something is white and rough then it is furry.\n3. If something is big and furry then it is green.\n4. If something is big and furry then it is white.\n5. All big, rough things are white.\n6. If something is big then it is rough.\n7. All green, furry things are kind.\n\nFrom statement 1, we know Erin is rough.\n\nFrom statement 6, we know since Erin is rough, Erin is big.\n\nFrom statement 4, we know since Erin is big and furry, Erin is white.\n\nHowever, from statement 5, we know that all big, rough things are white, which implies that Erin being white is a result of being big and rough. Since we already established that Erin is big (from statement 6) and rough (from statement 1), Erin being white is true.\n\nFrom statement 2, we know that if something is white and rough, it is furry. Since Erin is white and rough, Erin is furry.\n\nNow, we need to determine if Erin is kind. From statement 3, we know that if something is big and furry, it is green. Since Erin is big (from statement 6) and furry (from the analysis above), Erin is green.\n\nFrom statement 7, we know that all green, furry things are kind. Since Erin is green and furry, Erin is kind.\n\nTherefore, the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given information and apply the rules to Erin's properties.\n\nFirst, let's identify Erin's properties:\n- Erin is rough.\n\nNow, let's apply the given rules to Erin's properties:\n\n1. Erin is rough.\n2. If something is white and rough, then it is furry.\n3. If something is big and furry, then it is green. \n4. If something is big, then it is rough.\n5. All big, rough things are white.\n6. If something is big and furry, then it is white.\n7. All furry, big things are green.\n8. If something is smart, then it is white.\n9. All green, furry things are kind.\n\nFrom the given rules, we can deduce the following:\n\n- Erin is rough (rule 1).\n- Since Erin is rough, Erin is big (rule 4).\n- Since Erin is big and rough, Erin is white (rule 5).\n- Since Erin is white and rough, Erin is furry (rule 2).\n\nNow we have Erin's properties as:\n- Erin is white.\n- Erin is furry.\n- Erin is rough.\n\nUsing the deduced properties, we can further analyze Erin's properties:\n\n- Erin is white (rule 5) and furry (rule 2), so Erin is big (rule 6).\n- Since Erin is big and furry, Erin is green (rule 7).\n\nNow we have Erin's properties as:\n- Erin is white.\n- Erin is furry.\n- Erin is rough.\n- Erin is green.\n\nHowever, we still need to determine if Erin is kind. To do that, we need to look at Erin's properties in relation to the given rules.\n\n- Erin is green and furry (rule 7).\n- All green, furry things are kind (rule 9).\n\nSince Erin is green and furry, Erin is kind.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is kind\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. Erin is rough. (Given)\n2. If something is white and rough then it is furry. (Given)\n3. If something is big and furry then it is white. (Given)\n4. If something is big then it is rough. (Given)\n5. Rough things are big. (Given)\n6. If something is big and furry then it is green. (Given)\n7. All furry, big things are green. (Given)\n8. If something is green and furry then it is kind. (Given)\n\nFrom statement 1, we know that Erin is rough. \n\nFrom statement 5, we know that rough things are big.\n\nFrom statement 4, we know that if something is big then it is rough. Since Erin is rough (from statement 1), we can conclude that Erin is big.\n\nNow, from statement 6, we know that if something is big and furry then it is green. However, we cannot conclude that Erin is furry from this statement alone.\n\nFrom statement 7, we know that all furry, big things are green. If we assume that Erin is furry, then we can conclude that Erin is green. \n\nHowever, we still cannot conclude that Erin is furry. To determine whether Erin is furry, we need to look at statement 8, which states that if something is green and furry then it is kind. We will come back to this later.\n\nFrom statement 3, we know that if something is big and furry then it is white. However, we cannot conclude that Erin is furry from this statement alone.\n\nFrom statement 2, we know that if something is white and rough then it is furry. However, we cannot conclude that Erin is furry from this statement alone.\n\nFrom statement 3, we know that if something is big and furry then it is white. However, we cannot conclude that Erin is furry from this statement alone.\n\nFrom statement 8, we know that if something is green and furry then it is kind. We have not yet concluded whether Erin is furry or not. However, we know that Erin is rough (from statement 1) and that rough things are big (from statement 5). We also know that Erin is big (from statement 5). We also know that all big things are rough (from statement 4). We also know that all green, furry things are kind (from statement 8). However, we still cannot conclude whether Erin is furry or not.\n\nHowever, we can conclude that Erin is not white, because if Erin were white, then Erin would be furry (from statement 2), and then Erin would be big (from statement 4), and then Erin would be rough (from statement 4), which would mean that Erin is not rough (from statement 2), which is a contradiction.\n\nNow, from statement 3, we know that if something is big and furry then it is white. Since Erin is not white (from above), we can conclude that Erin is not big and furry.\n\nFrom statement 7, we know that all furry, big things are green. Since Erin is not big and furry (from above), we can conclude that Erin is not green and furry.\n\nFrom statement 8, we know that if something is green and furry then it is kind. Since Erin is not green and furry (from above), we still cannot conclude whether Erin is kind or not.\n\nHowever, we can conclude that Erin is not furry, because if Erin were furry, then Erin would be big (from statement 6), and then Erin would be rough (from statement 4), and then Erin would be white (from statement 3), which would mean that Erin is not rough (from statement 2), which is a contradiction.\n\nFrom statement 2, we know that if something is white and rough then it is furry. Since Erin is not furry (from above), we can conclude that Erin is not white and rough.\n\nFrom statement 1, we know that Erin is rough. We also know that rough things are big (from statement 5). Since Erin is big (from statement 5), we can conclude that Erin is not white (from above).\n\nNow, from statement 3, we know that if something is big and furry then it is white. Since Erin is not white (from above), we can conclude that Erin is not big and furry.\n\nHowever, we can conclude that Erin is not kind, because if Erin were kind, then Erin would be furry (from statement 8), and then Erin would be big (from statement 6), and then Erin would be green (from statement 6), and then Erin would be white (from statement 3), which would mean that Erin is not rough (from statement 2), which is a contradiction.\n\nTherefore, the statement \"Erin is kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and logical deductions. We will break down the problem step by step.\n\n1. Given statements:\n   - Dave is furry.\n   - Dave is green.\n   - Dave is kind.\n   - Dave is smart.\n   - Erin is rough.\n   - Gary is furry.\n   - Gary is green.\n   - Gary is kind.\n   - Harry is not furry.\n   - Harry is kind.\n   - Harry is white.\n   - All furry, big things are green.\n   - If something is big and furry then it is green.\n   - If something is white and rough then it is furry.\n   - If something is smart then it is white.\n   - All big, rough things are white.\n   - If something is big and furry then it is white.\n   - Rough things are big.\n   - If something is big then it is rough.\n   - All green, furry things are kind.\n\n2. Determine the properties of Erin based on the given statements:\n   - Erin is rough (given statement).\n   - Since Erin is rough, and all rough things are big (from the given statement), Erin is big.\n   - Since Erin is big, and all big things are rough (from the given statement), Erin is indeed rough (no new information is gained).\n   - Since Erin is big, and all big things are rough (from the given statement), Erin is rough (no new information is gained).\n   - Since Erin is rough, and all rough things are white (from the given statement), Erin is white.\n   - Since Erin is white, and all white and rough things are furry (from the given statement), Erin is furry.\n\n3. Now that we know Erin is furry, we can use the given statements to determine if Erin is kind:\n   - Erin is furry.\n   - Since Erin is furry, and all furry things are not necessarily kind (we cannot determine if Erin is kind based on this information alone), we need to use other statements.\n   - However, we can use the statement that all big things are rough, and all rough things are big. Since Erin is big and rough, we can use the statement that all green, furry things are kind.\n   - Unfortunately, we cannot determine if Erin is green (we don't have enough information), but we can use the statement that all furry, big things are green.\n   - Since Erin is furry and big, we can use the statement that all furry, big things are green.\n   - However, we cannot determine if Erin is kind based on this information alone (we need to know if Erin is green).\n   - But wait, we can use the statement that all furry things are not necessarily kind, and the fact that Erin is furry, but we also know that Erin is rough and big, and all rough, big things are white.\n   - Since Erin is white and furry, and all white and rough things are furry, Erin is indeed furry (no new information is gained).\n   - However, we can use the statement that all green, furry things are kind, but we still need to determine if Erin is green.\n   - Since Erin is furry and big, and all furry, big things are green, we can use this statement to determine if Erin is kind.\n\n4. However, we can use the statement that all furry, big things are green, and all green, furry things are kind, to determine if Erin is kind.\n   - Since Erin is furry and big, and all furry, big things are green, Erin is green.\n   - Since Erin is green and furry, and all green, furry things are kind, Erin is kind.\n\nBased on our analysis, the statement \"Erin is kind\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given information and apply it step by step.\n\n1. Erin is rough. (Given information)\n\n2. All big, rough things are white. (Given information)\n   However, we also know that if something is big and furry then it is green. (Given information)\n   We can't directly apply this information to Erin because we don't know whether Erin is big or not. However, we know that rough things are big. (Given information)\n   Therefore, Erin is big.\n\n3. Erin is big. (From step 2)\n   Since Erin is big and rough, we can apply the information that all big, rough things are white. (Given information)\n   Therefore, Erin is white.\n\n4. Erin is white. (From step 3)\n   We also know that if something is white and rough then it is furry. (Given information)\n   Therefore, Erin is furry.\n\n5. Erin is furry. (From step 4)\n   Since Erin is furry, we can apply the information that all furry, big things are green. (Given information)\n   However, we've already established that Erin is white. (From step 3)\n   We can't directly apply this information to Erin because it conflicts with the information that all furry, big things are green.\n\n6. We have a conflict in our information about Erin. \n   Erin is white (From step 3), but all furry, big things are green (Given information).\n   However, we also know that if something is big and furry then it is green. (Given information)\n   Since Erin is big and furry (From steps 2 and 4), this statement should apply to Erin. \n   This means that Erin should be green, but we've already established that Erin is white. (From step 3)\n   The only way to resolve this conflict is to say that Erin is not big, or Erin is not furry, or Erin is not green, or Erin is not white. However, we've already established that Erin is big, furry, white, and rough. (From steps 2-4)\n   Therefore, we cannot determine whether Erin is kind or not, so the statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_erin, rough_erin), furry_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_erin, green_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), kind_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_erin, rough_erin), furry_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_erin, rough_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(big_erin, furry_erin), green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(big_erin, furry_erin), white_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), kind_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not furry(harry)",
+          "z3_formula": "not furry_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_X, big_X), green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(big_X, furry_X), green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_X, rough_X), furry_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_X, white_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(big_X, rough_X), white_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(big_X, furry_X), white_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_X, rough_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_X, furry_X), kind_X)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_erin, rough_erin), furry_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_erin, big_erin), green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(big_erin, rough_erin), white_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_erin, rough_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_erin, white_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), kind_erin)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "R(x) -> B(x)",
+          "z3_formula": "Implies(rough_erin, big_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "R(x) -> B(x)",
+          "z3_formula": "Implies(rough_erin, big_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "B(x) & R(x) -> W(x)",
+          "z3_formula": "Implies(And(big_erin, rough_erin), white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "W(x) & R(x) -> F(x)",
+          "z3_formula": "Implies(And(white_erin, rough_erin), furry_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "B(x) & F(x) -> G(x)",
+          "z3_formula": "Implies(And(big_erin, furry_erin), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "G(x) & F(x) -> K(x)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), kind_erin)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_erin, rough_erin), furry_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(big_erin, furry_erin), green_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == Unknown",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_erin, big_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(big_erin, furry_erin), green_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), kind_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_X, big_X), green_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_X, white_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_X, rough_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_X, furry_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_X, rough_X), furry_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_X, furry_X), kind_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_erin, rough_erin), furry_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(big_erin, furry_erin), green_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(big_erin, furry_erin), white_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(big_erin, rough_erin), white_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_erin, rough_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), kind_erin)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_erin, rough_erin), furry_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(big_erin, furry_erin), white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_erin, rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(big_erin, rough_erin), white_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_erin, big_erin), green_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_erin, rough_erin), furry_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_erin, rough_erin), furry_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(big_erin, furry_erin), white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_erin, rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_erin, big_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X) -> green(X)",
+          "z3_formula": "Implies(And(big_erin, furry_erin), green_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_erin, big_erin), green_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> kind(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), kind_erin)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(furry(harry))",
+          "z3_formula": "not(furry_harry) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(furry_X, big_X), green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(big_X, furry_X), green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_X, rough_X), furry_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_X, white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(big_X, rough_X), white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(big_X, furry_X), white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_X, rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> kind(X)",
+          "z3_formula": "Implies(And(furry_X, green_X), kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_erin, rough_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> white(X)",
+          "z3_formula": "Implies(And(big_erin, rough_erin), white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(big_erin, furry_erin), green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == Unknown",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 145,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 39
+    },
+    "maxsat_stats": {
+      "satisfied": 39,
+      "excluded": 0,
+      "total_weight": 145,
+      "solve_time_ms": 1.1797156184911728
+    },
+    "timing": {
+      "trace_gen_s": 12.273,
+      "extraction_s": 26.237,
+      "dedup_s": 1.207,
+      "maxsat_s": 0.003,
+      "total_s": 39.721
+    }
+  }
+}

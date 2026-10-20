@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "eb0be1d51e6224d8cd37",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "worker",
+  "title": "exp proofwriter pilot",
+  "task_key": "worker_exp_proofwriter_pilot_20260515T065710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_proofwriter_pilot_20260515T065710.log",
+    "occurrence": 1,
+    "bytes": 1007074,
+    "sha256": "513361cffff26c1c36416217711980e73ee0d1ba775869e5986bba83e759a63a"
+  },
+  "statistics": {
+    "messages": 521,
+    "user_turns": 0,
+    "tool_calls": 207,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 102,
+      "tool_call": 207,
+      "tool_result": 207,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 521,
+      "chunks": [
+        {
+          "path": "eb0be1d51e6224d8cd37-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb0be1d51e6224d8cd37-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb0be1d51e6224d8cd37-part-0003.json",
+          "message_count": 161
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-proofwriter-pilot.md"
+}

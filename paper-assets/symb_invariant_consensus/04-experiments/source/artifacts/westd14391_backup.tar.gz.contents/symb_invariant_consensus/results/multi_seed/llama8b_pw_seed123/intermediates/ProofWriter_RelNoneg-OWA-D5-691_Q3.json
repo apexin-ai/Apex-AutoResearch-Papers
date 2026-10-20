@@ -1,0 +1,1006 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-691_Q3",
+    "problem": "The bald eagle sees the cat. The cat eats the dog. The cat is big. The cat is kind. The dog eats the bald eagle. The dog eats the cat. The dog is kind. The dog sees the lion. The lion eats the bald eagle. The lion is green. The lion is nice. The lion sees the dog. Cold things are green. If something sees the lion then it needs the dog. If something needs the bald eagle then it sees the lion. If something is nice then it sees the lion. If something is big then it sees the cat. If something is green and it needs the dog then it eats the cat. If something is green and it eats the cat then the cat needs the bald eagle. If something eats the bald eagle then the bald eagle is nice.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion sees the lion.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nGreen($x, bool) ::: Is x green?\nCold($x, bool) ::: Is x cold?\nNeeds($x, $y, bool) ::: Does x need y?\n\nFacts:\nSees(BaldEagle, Cat, True) ::: The bald eagle sees the cat.\nEats(Cat, Dog, True) ::: The cat eats the dog.\nBig(Cat, True) ::: The cat is big.\nKind(Cat, True) ::: The cat is kind.\nEats(Dog, BaldEagle, True) ::: The dog eats the bald eagle.\nEats(Dog, Cat, True) ::: The dog eats the cat.\nKind(Dog, True) ::: The dog is kind.\nSees(Dog, Lion, True) ::: The dog sees the lion.\nEats(Lion, BaldEagle, True) ::: The lion eats the bald eagle.\nGreen(Lion, True) ::: The lion is green.\nNice(Lion, True) ::: The lion is nice.\nSees(Lion, Dog, True) ::: The lion sees the dog.\n\nRules:\nCold($x, True) >>> Green($x, True) ::: Cold things are green.\nSees($x, Lion, True) >>> Needs($x, Dog, True) ::: If something sees the lion then it needs the dog.\nNeeds($x, BaldEagle, True) >>> Sees($x, Lion, True) ::: If something needs the bald eagle then it sees the lion.\nNice($x, True) >>> Sees($x, Lion, True) ::: If something is nice then it sees the lion.\nBig($x, True) >>> Sees($x, Cat, True) ::: If something is big then it sees the cat.\nGreen($x, True) && Needs($x, Dog, True) >>> Eats($x, Cat, True) ::: If something is green and it needs the dog then it eats the cat.\nGreen($x, True) && Eats($x, Cat, True) >>> Needs(Cat, BaldEagle, True) ::: If something is green and it eats the cat then the cat needs the bald eagle.\nEats($x, BaldEagle, True) >>> Nice(BaldEagle, True) ::: If something eats the bald eagle then the bald eagle is nice.\n\nQuery:\nSees(Lion, Lion, True) ::: The lion sees the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 93.0,
+      "Unknown": 81.5
+    },
+    "answer_counts": {
+      "True": 4,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The lion eats the bald eagle. \n2. The lion is green.\n3. The lion is nice.\n4. The lion sees the dog.\n\nFrom rule 8, we know that if something is nice, then it sees the lion. However, this rule cannot be applied directly to the lion because it is already the subject. \n\nFrom rule 8, we also know that if something is green and it needs the dog, then it eats the cat. But this rule does not help us determine if the lion sees the lion.\n\nHowever, we can analyze the situation from rule 9, which states that if something is green and it eats the cat then the cat needs the bald eagle. Since the lion eats the cat (rule 3), we can conclude that the cat needs the bald eagle (rule 9).\n\nNow, using rule 5, if something needs the bald eagle then it sees the lion. The cat needs the bald eagle, so the cat sees the lion.\n\nUsing rule 4, the lion sees the dog. \n\nNow we need to determine if the dog sees the lion. From rule 10, if something sees the lion, then it needs the dog. The lion sees the dog, so the lion needs the dog.\n\nUsing rule 6, if something is green and it needs the dog, then it eats the cat. Since the lion is green and it needs the dog, it eats the cat.\n\nHowever, we cannot use this rule directly to determine if the lion sees the lion. But we can use rule 7, which states that if something eats the bald eagle then the bald eagle is nice. The lion eats the bald eagle, so the bald eagle is nice.\n\nNow, using rule 5, if something needs the bald eagle then it sees the lion. The lion needs the bald eagle, so the lion sees the bald eagle.\n\nHowever, this does not directly tell us if the lion sees the lion.\n\nFrom rule 1, the dog eats the bald eagle.\n\nUsing rule 7, if something eats the bald eagle then the bald eagle is nice. The dog eats the bald eagle, so the bald eagle is nice.\n\nNow, using rule 5, if something needs the bald eagle then it sees the lion. The dog needs the bald eagle, so the dog sees the lion.\n\nNow we know the lion sees the dog, the lion sees the bald eagle, and the dog sees the lion.\n\nSince the lion sees the dog, and the dog sees the lion, we can conclude that the lion sees the lion.\n\nTherefore, the statement \"The lion sees the lion\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we need to analyze the given information and the conditions.\n\nFrom the information, we know that the lion eats the bald eagle, and the bald eagle sees the cat. However, we do not have any direct information about whether the lion sees the cat or not.\n\nWe can analyze the conditions as follows:\n\n1. \"If something sees the lion then it needs the dog.\" \nThis condition does not provide any information about whether the lion sees itself.\n\n2. \"If something needs the bald eagle then it sees the lion.\"\nSince the lion eats the bald eagle, this condition implies that the lion sees the lion is not a direct consequence of this condition.\n\n3. \"If something is nice then it sees the lion.\"\nSince the lion eats the bald eagle and the bald eagle is nice, this condition implies that the lion sees the lion is not a direct consequence of this condition.\n\n4. \"If something is green and it needs the dog then it eats the cat.\"\nThis condition does not provide any information about whether the lion sees itself.\n\n5. \"If something is green and it eats the cat then the cat needs the bald eagle.\"\nThis condition does not provide any information about whether the lion sees itself.\n\n6. \"If something eats the bald eagle then the bald eagle is nice.\"\nSince the lion eats the bald eagle, this condition implies that the bald eagle is nice, but it does not provide any information about whether the lion sees itself.\n\nFrom the conditions above, we cannot conclude whether the lion sees the lion. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nFrom the given information, we know that:\n- The lion eats the bald eagle.\n- The lion is green.\n- The lion is nice.\n\nWe can use the rules to deduce the following information:\n- Since the lion is nice, the lion sees the lion (Rule 4).\n\nHowever, we also need to consider another possibility based on the information provided.\n- The lion is green (Rule 6).\n- The lion sees the dog (Implicit from the fact that the lion is green, as it's stated that cold things are green, but it doesn't necessarily mean that the lion sees the dog. However, we will use the information given to derive another rule that the lion sees the dog is not necessarily true. We only know that the lion sees the dog because it is stated that the lion sees the dog.)\n\nNow we can apply the rule for green things that need the dog to see the dog.\n- Since the lion is green and it sees the dog, it doesn't necessarily mean that the lion needs the dog (Rule 1). However, we can use the rule for green things that eat the cat to derive another rule.\n- If the lion is green and it eats the cat, then the cat needs the bald eagle (Rule 6). But we know that the cat eats the dog, not the lion. However, this rule is not used in this scenario.\n\nTo derive another rule for the green lion, we can use the rule for green things that see the dog.\n- Since the lion is green, it can be used to derive the rule that if something is green then it sees the lion (Rule 1).\n\nNow we can use this derived rule to determine whether the lion sees the lion.\n- Since the lion is green, it sees the lion (Derived rule).\n\nHowever, this derived rule is the same as the original rule that we derived from the information that the lion is nice. This means that we have two different ways to derive the same conclusion. Therefore, the statement \"The lion sees the lion\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the lion sees the lion, we need to analyze the given information and the rules.\n\n1. The lion is green. (From the given information)\n2. Cold things are green. (From the given information)\n3. The lion eats the bald eagle. (From the given information)\n4. If something sees the lion then it needs the dog. (From the rules)\n5. If something sees the lion then it needs the dog. This means the lion needs the dog because it sees itself. However, we can't conclude that the lion needs the dog from this rule alone.\n6. The lion is green. (From the given information)\n7. If something is green and it needs the dog then it eats the cat. (From the rules)\n8. We can't conclude that the lion needs the dog from rule 4. However, we can say that since the lion is green and we don't have information about the lion needing the dog, we can't use rule 7 to determine if the lion eats the cat.\n9. The cat eats the dog. (From the given information)\n10. The lion eats the bald eagle. (From the given information)\n11. If something eats the bald eagle then the bald eagle is nice. (From the rules)\n12. Since the lion eats the bald eagle, the bald eagle is nice. (From rule 11)\n13. If something is nice then it sees the lion. (From the rules)\n14. Since the bald eagle is nice and it sees the lion, the lion sees the bald eagle. (From rule 13)\n15. The lion sees the bald eagle. (From step 14)\n\nHowever, the question is whether the lion sees the lion. We have established that the lion sees the bald eagle. But we don't have any information that suggests the lion sees the lion. In fact, the lion is described as seeing the dog and the bald eagle, but there is no information that suggests the lion sees itself.\n\nTherefore, the statement is unknown because we can't determine if the lion sees itself based on the given information and the rules.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to break down the information provided and use logical reasoning.\n\n1. The lion is green. (Given)\n2. The lion is nice. (Given)\n3. If something sees the lion then it needs the dog. (Given)\n4. If something is nice then it sees the lion. (Given)\n5. The lion sees the dog. (From 3 and 2, since the lion is nice)\n\nNow, let's examine the statement \"The lion sees the lion.\"\n\n1. If the lion sees the lion, then the lion needs the dog. (From 3)\n2. However, we already know that the lion sees the dog. (From 5)\n3. Therefore, if the lion sees the lion, then it needs the dog, and since it sees the dog, it satisfies this condition.\n4. Now, we need to determine if the lion can see itself. \n\nTo do this, let's look at the rule \"If something is green and it needs the dog then it eats the cat.\" (Given)\n1. The lion is green. (From 1)\n2. The lion needs the dog. (From 3 and 5)\n3. Therefore, the lion eats the cat. (From 1 and 2)\n\nHowever, we are given another rule: \"If something is green and it eats the cat then the cat needs the bald eagle.\" (Given)\n1. The lion eats the cat. (From 3)\n2. Therefore, the cat needs the bald eagle. (From 1)\n\nNow, we need to determine if the cat can see the lion. Let's look at the rule \"If something is big then it sees the cat.\" (Given)\n1. The cat is big. (Given)\n2. However, there is another rule \"The cat is big\" which is not necessarily the same as \"something is big\" but we don't know that the cat sees the lion.\n\nWe don't have enough information to determine whether the lion can see itself or not, so we conclude that the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we need to analyze the given premises and the rules.\n\nFrom the premises, we have the following information:\n\n- The lion eats the bald eagle.\n- The lion is green.\n- The lion is nice.\n- The lion sees the dog.\n\nWe also have the following rules:\n\n1. If something sees the lion then it needs the dog.\n   - This rule does not apply to the lion itself, so we cannot use it to determine if the lion sees itself.\n\n2. If something needs the bald eagle then it sees the lion.\n   - This rule does not apply to the lion either, as it does not need the bald eagle.\n\n3. If something is nice then it sees the lion.\n   - Since the lion is nice, it might see the lion, but this is not a definitive conclusion.\n\n4. If something is big then it sees the cat.\n   - This rule does not apply to the lion.\n\n5. If something is green and it needs the dog then it eats the cat.\n   - This rule does not apply to the lion.\n\n6. If something is green and it eats the cat then the cat needs the bald eagle.\n   - This rule does not apply to the lion.\n\n7. If something eats the bald eagle then the bald eagle is nice.\n   - This rule does not apply to the lion.\n\nHowever, we have one more rule:\n\n8. Cold things are green.\n   - This rule is not applicable to animals, so it does not provide any information about the lion.\n\nWe also have the following statement:\n- The lion sees the dog.\n\nFrom this statement, we can infer that the lion sees at least one other animal. However, it does not tell us whether the lion sees itself.\n\nNow, let's consider the following statement:\n- The lion is nice.\n\nSince the lion is nice, it might see the lion (rule 3), but this is not a definitive conclusion.\n\nIn conclusion, we do not have enough information to determine whether the lion sees itself or not. Therefore, the statement \"The lion sees the lion\" is unknown.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the lion sees the lion, we need to analyze the given statements and the conditions provided.\n\n1. The lion is green. (From the statement: The lion is green.)\n2. The lion is nice. (From the statement: The lion is nice.)\n3. If something sees the lion then it needs the dog. (From the statement: If something sees the lion then it needs the dog.)\n   Since the lion sees itself, it implies that the lion needs the dog. However, there is no condition that states if the lion needs the dog, then it sees the lion. The condition only states that something that sees the lion needs the dog, but it does not mention anything about the lion needing the dog and seeing itself.\n\n4. If something is nice then it sees the lion. (From the statement: If something is nice then it sees the lion.)\n   Since the lion is nice, it implies that the lion sees the lion. This is the first condition that directly connects the lion seeing itself.\n\nTherefore, based on the given conditions, the statement \"The lion sees the lion\" is true.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we need to analyze the given information and the rules provided. \n\n1. The lion eats the bald eagle. (Given information)\n2. If something eats the bald eagle, then the bald eagle is nice. (Rule)\n   Since the lion eats the bald eagle, the bald eagle is nice. \n   But, the statement \"If something is nice then it sees the lion.\" is also true.\n   So, the bald eagle sees the lion.\n\n3. The lion sees the dog. (Given information)\n4. The lion is green. (Given information)\n   However, the statement \"Cold things are green\" implies that being green does not directly relate to the lion's characteristics or actions.\n\n5. The lion is nice. (Given information)\n   As we've already determined, this statement is true because the lion eats the bald eagle.\n\nNow, let's analyze the statement \"The lion sees the lion.\"\n\nFrom the information provided, the only way to establish a direct relationship between the lion and the lion is to find a rule that links the lion to itself. However, the given rules only provide relationships between different entities, not between an entity and itself.\n\nSince there is no direct rule that states \"something sees itself,\" we cannot conclude that the lion sees itself. The rules only provide relationships between entities, and there is no explicit rule that implies a self-referential relationship.\n\nTherefore, the statement \"The lion sees the lion\" is unknown, as we cannot establish a direct relationship between the lion and itself based on the given rules. \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we need to analyze the given information and use the given rules to deduce the relationships between the entities.\n\n1. The lion sees the dog. (Direct information)\n2. The lion is green. (Direct information)\n3. Cold things are green. (Direct information)\n4. If something sees the lion then it needs the dog. (Rule)\n5. The lion sees the dog, so it needs the dog. (From rule 4)\n6. If something is green and it needs the dog then it eats the cat. (Rule)\n7. The lion is green and it needs the dog, so it eats the cat. (From rules 3 and 5, and rule 6)\n8. If something is green and it eats the cat then the cat needs the bald eagle. (Rule)\n9. The lion is green and it eats the cat, so the cat needs the bald eagle. (From rule 8)\n10. The lion is nice. (Direct information)\n11. If something is nice then it sees the lion. (Rule)\n12. The lion is nice, so it sees the lion. (From rule 11)\n\nHowever, we need to analyze the rules to see if there is any contradiction. Let's analyze the information again from a different perspective.\n\n13. The dog sees the lion. (Direct information)\n14. The lion eats the bald eagle. (Direct information)\n15. The dog eats the bald eagle. (Direct information)\n16. If something eats the bald eagle then the bald eagle is nice. (Rule)\n17. The dog eats the bald eagle, so the bald eagle is nice. (From rule 16)\n18. The lion is nice. (Direct information)\n19. The lion sees the dog. (Direct information)\n20. The lion sees the lion. (Conclusion from rules 11 and 19)\n\nHowever, we have two different conclusions: \n\n- Conclusion 1: The lion sees the lion is true from rules 11 and 19.\n- Conclusion 2: There is no direct evidence that the lion sees the lion, and the only reason we might think the lion sees the lion is because it is nice, but this might not be true.\n\nTo resolve this, let's analyze the rules from a different perspective. We have two conclusions and we need to determine whether they are both true or not.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that \"Cold things are green.\" This means that the lion, being green, is a cold thing.\n\n2. We also know that \"If something is green and it needs the dog then it eats the cat.\" Since the lion is green and needs the dog, we can conclude that it eats the cat. However, we don't know if the lion needs the dog yet.\n\n3. Further, we know that \"If something is green and it eats the cat then the cat needs the bald eagle.\" Since the lion is green and it eats the cat, we can conclude that the cat needs the bald eagle.\n\n4. We also know that \"If something sees the lion then it needs the dog.\" But the lion sees the dog, and we need to figure out what this implies about the lion needing the dog.\n\n5. We know that \"The lion sees the dog.\" This implies that the lion needs the dog according to the given information.\n\n6. Combining this information from steps 2 and 5, we can conclude that the lion needs the dog and eats the cat, making it true that the lion is green, it needs the dog, and it eats the cat.\n\n7. We know that \"If something is green and it needs the dog then it eats the cat,\" which makes the lion eats the cat true.\n\n8. We also know that \"The cat needs the bald eagle.\" This is also true because we know that \"If something eats the cat then the cat needs the bald eagle.\"\n\n9. From step 8, we know that the cat eats the dog, and \"The dog eats the bald eagle.\" This means that the bald eagle is eaten by the dog and is nice according to the information given.\n\n10. Now, if something is nice then it sees the lion. Since the bald eagle is nice, this implies that the bald eagle sees the lion.\n\n11. We know that \"If something sees the lion then it needs the dog.\" Since the bald eagle sees the lion, this implies that the bald eagle needs the dog.\n\n12. However, we need to analyze the relationship between the lion and the dog. We know that \"The dog sees the lion.\" This means that the dog needs the lion according to the given information.\n\n13. However, from the information given, there is no information about the lion needing the dog or seeing the lion. \n\n14. However, we do know that \"The lion eats the bald eagle.\" However, we don't have information about the lion eating the lion.\n\n15. However, from the information given, there is no information about the lion seeing the lion.\n\nSo based on the given information, we can conclude that \"The lion sees the lion\" is unknown.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The lion sees the lion\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The lion eats the bald eagle. (Rule 7)\n   This does not tell us directly if the lion sees the lion.\n\n2. The lion is green. (Rule 9)\n   This tells us that the lion is green, but we need to find out if it sees the lion.\n\n3. The lion is nice. (Rule 10)\n   This tells us that the lion is nice, but it does not tell us if it sees the lion.\n\n4. If something is nice then it sees the lion. (Rule 5)\n   Since the lion is nice, it must see the lion. This is a definitive statement.\n\nTherefore, based on the given rules, the lion sees the lion. The answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'The lion sees the lion' is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\nGiven information:\n1. The lion eats the bald eagle.\n2. The lion is green.\n3. The lion is nice.\n4. The lion sees the dog.\n\nConditions:\n1. If something sees the lion then it needs the dog.\n2. If something needs the bald eagle then it sees the lion.\n3. If something is nice then it sees the lion.\n4. If something is green and it needs the dog then it eats the cat.\n5. If something is green and it eats the cat then the cat needs the bald eagle.\n6. If something eats the bald eagle then the bald eagle is nice.\n\nNow, let's analyze the statement 'The lion sees the lion'.\n\nFrom condition 1, we know that if something sees the lion, then it needs the dog. However, this condition doesn't tell us anything about the lion seeing itself.\n\nFrom condition 2, we know that if something needs the bald eagle then it sees the lion. However, this condition also doesn't tell us anything about the lion seeing itself.\n\nFrom condition 3, we know that if something is nice then it sees the lion. Since the lion is nice (given information), this condition implies that the lion sees the lion. \n\nTherefore, based on the given information and the conditions, the statement 'The lion sees the lion' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, bald_eagle)",
+          "z3_formula": "eats_lion_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, lion)",
+          "z3_formula": "Implies(nice_lion, sees_lion_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> eats(X, cat)",
+          "z3_formula": "Implies(And(green_lion, needs_lion_dog), eats_lion_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_lion_bald_eagle, sees_lion_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> nice(bald_eagle)",
+          "z3_formula": "Implies(eats_lion_bald_eagle, nice_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> eats(X, cat)",
+          "z3_formula": "Implies(And(green_lion, needs_lion_dog), eats_lion_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(eats_lion_cat, needs_lion_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> needs(X, dog)",
+          "z3_formula": "Implies(sees_lion_lion, needs_lion_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> nice(bald_eagle)",
+          "z3_formula": "Implies(eats_dog_bald_eagle, nice_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_dog_bald_eagle, sees_lion_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, bald_eagle)",
+          "z3_formula": "eats_lion_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> needs(X, dog)",
+          "z3_formula": "Implies(sees_lion_lion, needs_lion_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_lion_bald_eagle, sees_lion_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, lion)",
+          "z3_formula": "Implies(nice_lion, sees_lion_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> eats(X, cat)",
+          "z3_formula": "Implies(And(green_lion, needs_lion_dog), eats_lion_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, cat) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(green_lion, eats_lion_cat), needs_lion_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> nice(bald_eagle)",
+          "z3_formula": "Implies(eats_lion_bald_eagle, nice_bald_eagle)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, bald_eagle)",
+          "z3_formula": "eats_lion_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, X)",
+          "z3_formula": "Implies(nice_lion, sees_lion_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> sees(X, dog)",
+          "z3_formula": "Implies(green_lion, sees_lion_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> needs(X, dog)",
+          "z3_formula": "Implies(green_lion, needs_lion_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> needs(X, dog)",
+          "z3_formula": "Implies(sees_X_lion, needs_X_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> eats(X, cat)",
+          "z3_formula": "Implies(And(green_X, needs_X_dog), eats_X_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cat eats dog",
+          "z3_formula": "cat_eats_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "lion eats bald_eagle",
+          "z3_formula": "lion_eats_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> nice(bald_eagle)",
+          "z3_formula": "Implies(eats_lion_bald_eagle, nice_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, lion)",
+          "z3_formula": "Implies(nice_X, sees_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> needs(X, dog)",
+          "z3_formula": "Implies(sees_lion_lion, needs_lion_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, lion)",
+          "z3_formula": "Implies(nice_lion, sees_lion_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> eats(X, cat)",
+          "z3_formula": "Implies(And(green_lion, needs_lion_dog), eats_lion_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, cat) -> needs(cat, eagle)",
+          "z3_formula": "Implies(And(green_lion, eats_lion_cat), needs_cat_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, eagle)",
+          "z3_formula": "needs_cat_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, cat)",
+          "z3_formula": "Implies(big_cat, sees_cat_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, bald_eagle)",
+          "z3_formula": "eats_lion_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> needs(X, dog)",
+          "z3_formula": "Implies(sees_lion_lion, needs_lion_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_lion_bald_eagle, sees_lion_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, lion)",
+          "z3_formula": "Implies(nice_lion, sees_lion_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, cat)",
+          "z3_formula": "Implies(big_lion, sees_lion_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> eats(X, cat)",
+          "z3_formula": "Implies(And(green_lion, needs_lion_dog), eats_lion_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, cat) -> needs(cat, bald_eagle)",
+          "z3_formula": "Implies(And(green_lion, eats_lion_cat), needs_cat_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> nice(bald_eagle)",
+          "z3_formula": "Implies(eats_lion_bald_eagle, nice_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_lion, green_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> needs(X, dog)",
+          "z3_formula": "Implies(sees_lion_lion, needs_lion_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, lion)",
+          "z3_formula": "Implies(nice_lion, sees_lion_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, bald_eagle)",
+          "z3_formula": "eats_lion_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> nice(bald_eagle)",
+          "z3_formula": "Implies(eats_lion_bald_eagle, nice_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, lion)",
+          "z3_formula": "Implies(nice_bald_eagle, sees_bald_eagle_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_lion, green_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == False",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_X, green_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> needs(X, dog)",
+          "z3_formula": "Implies(sees_lion_dog, needs_lion_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, dog)",
+          "z3_formula": "needs_lion_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> eats(X, cat)",
+          "z3_formula": "Implies(And(green_lion, needs_lion_dog), eats_lion_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "eats(lion, cat)",
+          "z3_formula": "eats_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, cat) -> needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(green_lion, eats_lion_cat), needs_lion_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, bald_eagle)",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, lion)",
+          "z3_formula": "Implies(nice_lion, sees_lion_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, lion)",
+          "z3_formula": "sees_dog_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, bald_eagle)",
+          "z3_formula": "eats_lion_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> nice(bald_eagle)",
+          "z3_formula": "Implies(eats_dog_bald_eagle, nice_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_lion, cold_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs_dog(X) -> eats_cat(X)",
+          "z3_formula": "Implies(And(green_lion, needs_dog_lion), eats_cat_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats_cat(X) -> needs_bald_eagle(cat)",
+          "z3_formula": "Implies(And(green_lion, eats_cat_lion), needs_bald_eagle_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees_lion(X) -> needs_dog(X)",
+          "z3_formula": "Implies(sees_lion_dog, needs_dog_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees_lion(dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs_dog(lion)",
+          "z3_formula": "needs_dog_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs_dog(X) -> eats_cat(X)",
+          "z3_formula": "Implies(And(green_lion, needs_dog_lion), eats_cat_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "eats_cat(lion)",
+          "z3_formula": "eats_cat_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats_cat(X) -> needs_bald_eagle(cat)",
+          "z3_formula": "Implies(eats_cat_lion, needs_bald_eagle_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs_bald_eagle(cat)",
+          "z3_formula": "needs_bald_eagle_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats_cat(dog)",
+          "z3_formula": "eats_cat_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats_dog(bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees_lion(X)",
+          "z3_formula": "Implies(nice_bald_eagle, sees_lion_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees_lion(bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees_lion(X) -> needs_dog(X)",
+          "z3_formula": "Implies(sees_lion_bald_eagle, needs_dog_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees_lion(dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "needs_dog(bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs_dog(bald_eagle)",
+          "z3_formula": "needs_dog_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees_lion(lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees_lion(X) -> needs_dog(X)",
+          "z3_formula": "Implies(sees_lion_lion, needs_dog_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees_lion(lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "needs_dog(lion)",
+          "z3_formula": "needs_dog_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats_lion(bald_eagle)",
+          "z3_formula": "eats_lion_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "eats_lion(lion)",
+          "z3_formula": "eats_lion_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "sees_lion(lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, bald_eagle)",
+          "z3_formula": "eats_lion_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, lion)",
+          "z3_formula": "Implies(nice_lion, sees_lion_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, bald_eagle)",
+          "z3_formula": "eats_lion_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, dog)",
+          "z3_formula": "sees_lion_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> needs(X, dog)",
+          "z3_formula": "Implies(sees_lion, needs_lion_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_lion_bald_eagle, sees_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> sees(X, lion)",
+          "z3_formula": "Implies(nice_lion, sees_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & needs(X, dog) -> eats(X, cat)",
+          "z3_formula": "Implies(And(green_lion, needs_lion_dog), eats_lion_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, cat) -> needs(cat, bald_eagle)",
+          "z3_formula": "Implies(And(green_lion, eats_lion_cat), needs_cat_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> nice(bald_eagle)",
+          "z3_formula": "Implies(eats_lion_bald_eagle, nice_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sees(lion, lion)",
+          "z3_formula": "sees_lion_lion == True",
+          "source_step": 11
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 146,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 60
+    },
+    "maxsat_stats": {
+      "satisfied": 59,
+      "excluded": 1,
+      "total_weight": 145,
+      "solve_time_ms": 1.201130449771881
+    },
+    "timing": {
+      "trace_gen_s": 7.076,
+      "extraction_s": 28.819,
+      "dedup_s": 1.451,
+      "maxsat_s": 0.004,
+      "total_s": 37.351
+    }
+  }
+}

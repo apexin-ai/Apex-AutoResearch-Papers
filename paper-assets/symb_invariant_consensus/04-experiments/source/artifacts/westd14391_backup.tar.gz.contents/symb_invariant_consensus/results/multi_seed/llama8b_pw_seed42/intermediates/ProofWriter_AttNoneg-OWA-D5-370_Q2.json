@@ -1,0 +1,928 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-370_Q2",
+    "problem": "Anne is kind. Anne is nice. Anne is quiet. Anne is round. Erin is cold. Erin is nice. Erin is rough. Erin is smart. Fiona is kind. Fiona is nice. Harry is kind. Harry is nice. Harry is quiet. Harry is rough. Harry is round. Harry is smart. If someone is rough then they are cold. If someone is quiet and nice then they are round. If Harry is cold then Harry is rough. Rough people are quiet. Quiet people are round. Kind, nice people are quiet. If someone is round then they are rough. All cold people are nice. All kind, cold people are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not quiet.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nKind(Anne, True) ::: Anne is kind.\nNice(Anne, True) ::: Anne is nice.\nQuiet(Anne, True) ::: Anne is quiet.\nRound(Anne, True) ::: Anne is round.\nCold(Erin, True) ::: Erin is cold.\nNice(Erin, True) ::: Erin is nice.\nRough(Erin, True) ::: Erin is rough.\nSmart(Erin, True) ::: Erin is smart.\nKind(Fiona, True) ::: Fiona is kind.\nNice(Fiona, True) ::: Fiona is nice.\nKind(Harry, True) ::: Harry is kind.\nNice(Harry, True) ::: Harry is nice.\nQuiet(Harry, True) ::: Harry is quiet.\nRough(Harry, True) ::: Harry is rough.\nRound(Harry, True) ::: Harry is round.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nRough($x, True) >>> Cold($x, True) ::: If someone is rough then they are cold.\nQuiet($x, True) && Nice($x, True) >>> Round($x, True) ::: If someone is quiet and nice then they are round.\nCold(Harry, True) >>> Rough(Harry, True) ::: If Harry is cold then Harry is rough.\nRough($x, True) >>> Quiet($x, True) ::: Rough people are quiet.\nQuiet($x, True) >>> Round($x, True) ::: Quiet people are round.\nKind($x, True) && Nice($x, True) >>> Quiet($x, True) ::: Kind, nice people are quiet.\nRound($x, True) >>> Rough($x, True) ::: If someone is round then they are rough.\nCold($x, True) >>> Nice($x, True) ::: All cold people are nice.\nKind($x, True) && Cold($x, True) >>> Smart($x, True) ::: All kind, cold people are smart.\n\nQuery:\nQuiet(Harry, False) ::: Harry is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 123.0,
+      "Unknown": 110.0
+    },
+    "answer_counts": {
+      "Unknown": 2,
+      "False": 9
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Harry is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Harry is kind, and Harry is nice. From the information given, \"Kind, nice people are quiet,\" we can conclude that Harry is quiet.\n\n2. However, we are also given two conflicting statements:\n   a. \"Rough people are quiet.\" \n   b. \"Quiet people are round.\"\n\nIf Harry is rough, then he is quiet (from a). But if Harry is quiet, then he is round (from b). \n\nWe also know that Harry is round (from the initial information). \n\nNow, let's see what happens if we apply the statement \"If someone is round then they are rough\" to Harry. This would mean Harry is rough.\n\nNow we have a contradiction:\n- If Harry is quiet, then he is round.\n- If Harry is round, then he is rough.\n- If Harry is rough, then he is quiet.\n\nThis creates an infinite loop and it is unknown whether Harry is quiet or not because of the circular dependency.\n\nHowever, we initially concluded that Harry is quiet because Harry is kind and nice. \n\nSo to determine the truth value of the statement \"Harry is not quiet,\" we should first verify whether Harry is quiet or not.\n\nSince we can't determine whether Harry is quiet or not, we can't determine the truth value of the statement \"Harry is not quiet.\"\n\nTherefore, the truth value of \"Harry is not quiet\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and the rules provided. \n\nFirst, let's list down the given statements:\n\n1. Anne is kind. \n2. Anne is nice. \n3. Anne is quiet. \n4. Anne is round. \n5. Erin is cold. \n6. Erin is nice. \n7. Erin is rough. \n8. Erin is smart. \n9. Fiona is kind. \n10. Fiona is nice. \n11. Harry is kind. \n12. Harry is nice. \n13. Harry is quiet. \n14. Harry is rough. \n15. Harry is round. \n16. Harry is smart. \n\nNow, let's list down the given rules:\n\n1. If someone is rough then they are cold. \n2. If someone is quiet and nice then they are round. \n3. If Harry is cold then Harry is rough. \n4. Rough people are quiet. \n5. Quiet people are round. \n6. Kind, nice people are quiet. \n7. If someone is round then they are rough. \n8. All cold people are nice. \n9. All kind, cold people are smart.\n\nNow, let's analyze the given statement \"Harry is not quiet.\"\n\nFrom rule 6, we know that kind, nice people are quiet. We know that Harry is kind (rule 11) and Harry is nice (rule 12). \n\nSo, from rule 6, we can conclude that Harry is quiet.\n\nTherefore, the statement \"Harry is not quiet\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information given, we have:\n   - Harry is kind.\n   - Harry is nice.\n   - Harry is quiet.\n   - Harry is rough.\n   - Harry is round.\n   - Harry is smart.\n\n2. The following statements are given:\n   - If someone is kind, then they are nice. (Not directly applicable to Harry, but we have kind and nice already.)\n   - If someone is quiet and nice, then they are round. (This doesn't directly apply to Harry since we already know Harry is round.)\n   - If someone is rough then they are cold. (This implies that Harry is cold because Harry is rough.)\n   - If someone is cold then they are nice. (This implies that Harry is nice because Harry is cold.)\n   - If someone is kind and cold, then they are smart. (This implies that Harry is smart because Harry is kind and Harry is cold.)\n\n3. We can now make the following conclusions based on the given information:\n   - Harry is quiet.\n   - Harry is nice.\n   - Harry is cold.\n   - Harry is rough.\n   - Harry is round.\n   - Harry is smart.\n\n4. We are asked to determine whether the statement \"Harry is not quiet\" is true, false, or unknown.\n   - From the information gathered, Harry is quiet.\n   - Therefore, the statement \"Harry is not quiet\" is false.\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not quiet\" is true, false, or unknown, we need to analyze the given information and the premises.\n\nGiven information:\n- Harry is kind.\n- Harry is nice.\n- Harry is rough.\n- Harry is round.\n- Harry is smart.\n\nPremises:\n1. If someone is rough then they are cold.\n2. If someone is quiet and nice then they are round.\n3. If Harry is cold then Harry is rough.\n4. Rough people are quiet.\n5. Quiet people are round.\n6. Kind, nice people are quiet.\n7. If someone is round then they are rough.\n8. All cold people are nice.\n9. All kind, cold people are smart.\n\nFrom premise 1: If someone is rough then they are cold. \nFrom given information: Harry is rough. \nWe can conclude that Harry is cold (by the contrapositive of premise 1).\n\nFrom given information: Harry is cold. \nFrom premise 3: If Harry is cold then Harry is rough. \nThis is not needed because we already know Harry is cold and Harry is rough.\n\nFrom premise 8: All cold people are nice. \nFrom the information that Harry is cold, we can conclude that Harry is nice.\n\nFrom given information: Harry is nice. \nFrom premise 6: Kind, nice people are quiet. \nWe can conclude that Harry is quiet.\n\nFrom premise 5: Quiet people are round. \nFrom the information that Harry is quiet, we can conclude that Harry is round.\n\nFrom premise 7: If someone is round then they are rough. \nFrom the information that Harry is round, we can conclude that Harry is rough.\n\nWe have a contradiction because we know Harry is quiet, but also know Harry is rough, which means Harry must be quiet (premise 4).\n\nFrom premise 4: Rough people are quiet.\nFrom the information that Harry is rough, we can conclude that Harry is quiet.\n\nFrom premise 6: Kind, nice people are quiet.\nFrom the information that Harry is kind and nice, we can conclude that Harry is quiet.\n\nThis means that the statement \"Harry is not quiet\" is false.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will use the given information and deduce the truth value of the statement \"Harry is not quiet.\"\n\nGiven statements:\n1. Anne is kind. \n2. Anne is nice. \n3. Anne is quiet. \n4. Anne is round. \n5. Erin is cold. \n6. Erin is nice. \n7. Erin is rough. \n8. Erin is smart. \n9. Fiona is kind. \n10. Fiona is nice. \n11. Harry is kind. \n12. Harry is nice. \n13. Harry is quiet. \n14. Harry is rough. \n15. Harry is round. \n16. Harry is smart. \n\nAlso given:\n- If someone is rough then they are cold. \n- If someone is quiet and nice then they are round. \n- If Harry is cold then Harry is rough. \n- Rough people are quiet. \n- Quiet people are round. \n- Kind, nice people are quiet. \n- If someone is round then they are rough. \n- All cold people are nice. \n- All kind, cold people are smart.\n\nNow, let's analyze the statements:\n- From (13) we know Harry is quiet.\n- From (12) we know Harry is nice.\n- From (11) we know Harry is kind.\n\nCombining the information from (12), (11), and (13), we can apply the rule: \"Kind, nice people are quiet.\"\nThis means that Harry being kind and nice makes him quiet, which is consistent with statement (13). However, this does not directly help us determine if Harry is quiet or not, as statement (13) already tells us he is quiet.\n\nNow, let's look at the rule \"If someone is quiet and nice then they are round.\"\nSince Harry is quiet (13) and nice (12), this rule applies to Harry. However, this rule does not directly help us determine if Harry is quiet or not.\n\nNow, let's analyze the given rule \"If someone is round then they are rough.\"\nSince we know Harry is round (15), this means Harry must be rough, which is consistent with statement (14).\n\nWe are given the rule \"Rough people are quiet.\"\nSince Harry is rough (14), this means Harry must be quiet, which is consistent with statement (13).\n\nHowever, we are also given the rule \"If Harry is cold then Harry is rough.\"\nBut from the other rules, we know that Harry being quiet and nice (12, 13) makes him round (from \"Kind, nice people are quiet\" and \"Quiet people are round\"), and from the rule \"If someone is round then they are rough,\" we also know that Harry must be rough.\n\nHowever, we have two rules that seem to contradict each other:\n1. \"If Harry is cold then Harry is rough.\"\n2. \"If someone is rough then they are cold.\"\n\nLet's analyze the given information to resolve the contradiction.\n\nFrom (14) we know Harry is rough.\nFrom (14) we also know Harry is rough, and from the rule \"If someone is rough then they are cold,\" this means Harry must be cold.\n\nNow, from the rule \"If Harry is cold then Harry is rough,\" this is consistent with our previous conclusion that Harry must be rough.\n\nHowever, we also know that Harry is round (15), and from the rule \"If someone is round then they are rough,\" this also means Harry must be rough.\n\nWe have two rules that seem to contradict each other:\n1. \"If Harry is cold then Harry is rough.\"\n2. \"If someone is round then they are rough.\"\n\nHowever, we also know that all cold people are nice, and all kind, cold people are smart. This means that if Harry is cold, he must be nice and smart. However, we already know that Harry is nice (12), so this does not provide any new information.\n\nNow, let's look at the statement we want to evaluate: \"Harry is not quiet.\"\nSince we know Harry is quiet (13), this statement is false.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information step by step and apply the rules to the statement \"Harry is not quiet.\"\n\n1. Given information:\n   - Anne is kind, nice, quiet, round.\n   - Erin is cold, nice, rough, smart.\n   - Fiona is kind, nice.\n   - Harry is kind, nice, quiet, rough, round, smart.\n\n   Rules:\n   - If someone is rough then they are cold.\n   - If someone is quiet and nice then they are round.\n   - If Harry is cold then Harry is rough.\n   - Rough people are quiet.\n   - Quiet people are round.\n   - Kind, nice people are quiet.\n   - If someone is round then they are rough.\n   - All cold people are nice.\n   - All kind, cold people are smart.\n\n2. We can start by looking at the statement \"Harry is not quiet.\" To determine if this is true, false, or unknown, we need to analyze the rules related to Harry and the property of being quiet.\n\n   From the given information, we know that Harry is quiet. However, we also have rules that might contradict this or provide more information about Harry's characteristics.\n\n3. Rule 3 states, \"If Harry is cold then Harry is rough.\" However, we don't have any information that directly states Harry is cold. \n\n   Let's examine if we can determine if Harry is cold or not.\n\n   Rule 1 states, \"If someone is rough then they are cold.\" This implies that if Harry is rough, he might be cold. However, we need to check if Harry is indeed rough.\n\n   From the given information, we know that Harry is rough.\n\n   Now, we can apply rule 1 to conclude that Harry is indeed cold.\n\n4. Now that we know Harry is cold, we can apply rule 7, \"All cold people are nice.\" This rule confirms that Harry is nice.\n\n5. Rule 8 states, \"All kind, cold people are smart.\" Since Harry is cold and nice, and rule 6 states that \"Kind, nice people are quiet,\" this confirms that Harry is indeed quiet.\n\nHowever, we are asked to determine if the statement \"Harry is not quiet\" is true, false, or unknown.\n\nBased on our analysis, we have concluded that Harry is indeed quiet. Therefore, the statement \"Harry is not quiet\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules to determine if Harry is quiet or not.\n\n1. Given statements:\n   - Harry is kind.\n   - Harry is nice.\n   - Harry is quiet.\n   - Harry is rough.\n   - Harry is round.\n   - Harry is smart.\n\n2. Analyzing the rules:\n   - If someone is rough then they are cold. (Rule 1)\n   - If someone is quiet and nice then they are round. (Rule 2)\n   - If Harry is cold then Harry is rough. (Rule 3)\n   - Rough people are quiet. (Rule 4)\n   - Quiet people are round. (Rule 5)\n   - Kind, nice people are quiet. (Rule 6)\n   - If someone is round then they are rough. (Rule 7)\n   - All cold people are nice. (Rule 8)\n   - All kind, cold people are smart. (Rule 9)\n\n3. Applying the rules to the given statements:\n   - From Rule 3, we know that if Harry is cold, then he is rough. We cannot directly determine if Harry is cold, but we can start by assuming Harry is not cold.\n   - If Harry is not cold, then we cannot conclude if he is rough or not.\n   - From Rule 4, we know that rough people are quiet. But we also know that Harry is quiet (given statement). So, if Harry is rough, then he must be quiet.\n   - From Rule 5, we know that quiet people are round. Since Harry is quiet, we can conclude that Harry is round.\n\n4. Re-evaluating the given statements and the applied rules:\n   - We already know that Harry is quiet, kind, and nice. From Rule 6, we can conclude that kind, nice people are quiet, which supports our previous conclusion.\n   - However, we also know that Harry is round (from Rule 5). But Rule 7 states that if someone is round, then they are rough. This creates a conflict.\n\n5. Resolving the conflict:\n   - If Harry is round, then he must be rough (from Rule 7).\n   - But if Harry is rough, then he must be quiet (from Rule 4).\n   - However, we already know that Harry is quiet (given statement). This creates an inconsistency.\n\n6. Conclusion:\n   - The given statements and rules lead to an inconsistency. We cannot determine if Harry is quiet or not based on the provided information.\n   - However, we can say that the statement \"Harry is not quiet\" cannot be proven true or false based on the given statements and rules.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information given, we know that Harry is kind and Harry is nice. Since kind, nice people are quiet, we can conclude that Harry is quiet.\n\n2. Now, let's consider the statement \"Harry is not quiet.\" Given that we have already concluded that Harry is quiet, this statement cannot be true.\n\n3. We need to check if there's any information that would make the statement \"Harry is not quiet\" unknown. However, we have already concluded that Harry is quiet, so there's no ambiguity in this case.\n\nTherefore, based on the given information, we can conclude that the statement \"Harry is not quiet\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is not quiet' is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given information:\n1. Harry is kind.\n2. Harry is nice.\n3. Kind, nice people are quiet. (From 'If someone is kind, then they are quiet' or 'If someone is nice, then they are quiet' is not directly mentioned, but if someone is both kind and nice, they are quiet.)\n\nFrom the above information, we can conclude that Harry is quiet.\n\nNow, let's analyze the statement 'Harry is not quiet'.\n\nSince we have already concluded that Harry is quiet, we can say that 'Harry is not quiet' is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is not quiet' is true, false, or unknown, we need to analyze the given information.\n\n1. Harry is kind. (Given)\n2. Harry is nice. (Given)\n3. Kind, nice people are quiet. (From the given information)\n   From (1) and (2), we can conclude that Harry is quiet.\n\nNow, we need to check if this conclusion contradicts with the statement 'Harry is not quiet.'\n\nSince we have concluded that Harry is quiet, it contradicts with the statement 'Harry is not quiet.' \n\nTherefore, the statement 'Harry is not quiet' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the relationship between them. We will use the process of elimination and logical deduction to find the answer.\n\nGiven statements:\n\n1. Anne is kind. \n2. Anne is nice. \n3. Anne is quiet. \n4. Anne is round. \n5. Erin is cold. \n6. Erin is nice. \n7. Erin is rough. \n8. Erin is smart. \n9. Fiona is kind. \n10. Fiona is nice. \n11. Harry is kind. \n12. Harry is nice. \n13. Harry is quiet. \n14. Harry is rough. \n15. Harry is round. \n16. Harry is smart. \n17. If someone is rough then they are cold. \n18. If someone is quiet and nice then they are round. \n19. If Harry is cold then Harry is rough. \n20. Rough people are quiet. \n21. Quiet people are round. \n22. Kind, nice people are quiet. \n23. If someone is round then they are rough. \n24. All cold people are nice. \n25. All kind, cold people are smart.\n\nNow, let's analyze the statement \"Harry is not quiet\" using the given statements.\n\nFrom statement 22, we know that kind, nice people are quiet. Since Harry is kind (statement 11) and Harry is nice (statement 12), Harry is quiet (statement 13).\n\nNow, we have a contradiction with the statement \"Harry is not quiet.\" Since Harry is quiet, the statement \"Harry is not quiet\" is false.\n\nTherefore, the answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Harry is kind.\n   - Harry is nice.\n   - Harry is quiet.\n   - Harry is rough.\n   - Harry is round.\n   - Harry is smart.\n\n2. From the given statements, we can see that \"Harry is quiet\" is explicitly stated.\n\nHowever, we can also analyze the information given in the problem statement:\n\n3. If someone is rough then they are cold.\n   - This statement does not directly affect Harry's quietness, but it's worth noting.\n\n4. If someone is quiet and nice then they are round.\n   - This statement does not directly affect Harry's quietness, but it's worth noting.\n\n5. If Harry is cold then Harry is rough.\n   - This statement does not directly affect Harry's quietness, but it's worth noting.\n\n6. Rough people are quiet.\n   - This statement contradicts the fact that Harry is quiet (from statement 2) because it implies that rough people are quiet, which would mean Harry is not quiet if he is rough.\n\n7. Quiet people are round.\n   - This statement does not directly affect Harry's quietness, but it's worth noting.\n\n8. Kind, nice people are quiet.\n   - This statement does not directly affect Harry's quietness, but it's worth noting.\n\n9. If someone is round then they are rough.\n   - This statement contradicts the fact that Harry is round (from statement 2) because it implies that round people are rough, which would mean Harry is not quiet if he is round.\n\n10. All cold people are nice.\n    - This statement does not directly affect Harry's quietness, but it's worth noting.\n\n11. All kind, cold people are smart.\n    - This statement does not directly affect Harry's quietness, but it's worth noting.\n\nNow, let's look at the statement \"Harry is not quiet\" and analyze it using the information from the problem statement:\n\n- Harry is quiet (from statement 2).\n- Rough people are quiet (statement 6).\n- Round people are quiet (statement 7).\n\nHowever, considering statement 9, \"If someone is round then they are rough,\" we can conclude that Harry is rough because he is round. \n\nNow, using the information from statement 6, \"Rough people are quiet,\" we can conclude that Harry is quiet because he is rough.\n\nHowever, we also have a direct statement from the problem that \"Harry is quiet.\" Therefore, the information from the problem statement does not change the fact that Harry is quiet.\n\nGiven that we have a direct statement and multiple indirect statements that confirm Harry is quiet, the statement \"Harry is not quiet\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_harry, nice_harry), quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> quiet(X)",
+          "z3_formula": "Implies(rough_harry, quiet_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_harry, rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry) -> rough(harry)",
+          "z3_formula": "Implies(round_harry, rough_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry) -> round(harry)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry) -> quiet(harry)",
+          "z3_formula": "Implies(rough_harry, quiet_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_harry, nice_harry), quiet_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(harry)",
+          "z3_formula": "Not(quiet_harry) == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_harry, nice_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, nice_harry), round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_harry, cold_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_harry, nice_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), smart_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(harry)",
+          "z3_formula": "Not(quiet_harry) == False",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_harry, cold_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, nice_harry), round_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_harry, rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> quiet(X)",
+          "z3_formula": "Implies(rough_harry, quiet_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_harry, nice_harry), quiet_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_harry, rough_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_harry, nice_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), smart_harry)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_harry, nice_harry), quiet_harry)",
+          "source_step": "Kind, nice people are quiet."
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, nice_harry), round_harry)",
+          "source_step": "Quiet people are round."
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_harry, rough_harry)",
+          "source_step": "If someone is round then they are rough."
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> quiet(X)",
+          "z3_formula": "Implies(rough_harry, quiet_harry)",
+          "source_step": "Rough people are quiet."
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_harry, cold_harry)",
+          "source_step": "If someone is rough then they are cold."
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_harry, rough_harry)",
+          "source_step": "If Harry is cold then Harry is rough."
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": "We have two rules that seem to contradict each other: 1. If Harry is cold then Harry is rough. 2. If someone is round then they are rough."
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": "We have two rules that seem to contradict each other: 1. If Harry is cold then Harry is rough. 2. If someone is rough then they are cold."
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(harry)",
+          "z3_formula": "Not(quiet_harry) == True",
+          "source_step": "Now, let's look at the statement we want to evaluate: Harry is not quiet."
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_harry, cold_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_anne, nice_anne), round_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, nice_harry), round_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_harry, rough_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> quiet(X)",
+          "z3_formula": "Implies(rough_harry, quiet_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_harry, nice_harry), quiet_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_harry, rough_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_erin, nice_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), smart_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_harry, cold_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, nice_harry), round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_harry, rough_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> quiet(X)",
+          "z3_formula": "Implies(rough_harry, quiet_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_harry, nice_harry), quiet_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_harry, rough_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_harry, nice_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & cold(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_harry, cold_harry), smart_harry)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_harry, nice_harry), quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(harry)",
+          "z3_formula": "Not(quiet_harry) == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_harry, nice_harry), quiet_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(harry)",
+          "z3_formula": "Not(quiet_harry)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_harry, nice_harry), quiet_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_harry, nice_harry), quiet_harry)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(harry)",
+          "z3_formula": "Not(quiet_harry) == True",
+          "source_step": "contradiction"
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_harry, cold_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, nice_harry), round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_harry, rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> quiet(X)",
+          "z3_formula": "Implies(rough_harry, quiet_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_harry, rough_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(harry)",
+          "z3_formula": "Not(quiet_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 133,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 30
+    },
+    "maxsat_stats": {
+      "satisfied": 29,
+      "excluded": 1,
+      "total_weight": 126,
+      "solve_time_ms": 0.9144367650151253
+    },
+    "timing": {
+      "trace_gen_s": 10.076,
+      "extraction_s": 21.442,
+      "dedup_s": 0.711,
+      "maxsat_s": 0.003,
+      "total_s": 32.231
+    }
+  }
+}

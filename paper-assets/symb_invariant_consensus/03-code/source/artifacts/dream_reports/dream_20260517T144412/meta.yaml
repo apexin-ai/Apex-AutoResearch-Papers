@@ -1,0 +1,2949 @@
+dream_id: dream_20260517T144412
+project: symb_invariant_consensus
+venue: ''
+focus: '验证更新后的 capability trap framing: 机制从"diversity-quality inverse correlation"精确化为"constraints
+  lack discriminative power regardless of diversity level"。新增 DeepSeek-R1-Distill-7B
+  作为第四个 instruction-scale 模型。F2 hero figure 现有 per-problem 数据 (n=307, vote_entropy
+  vs exclusion_rate)。'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if:
+- name: temperature_ablation_t03_t05_t10
+  claim: Claim 1 (Capability Trap)
+  description: T=0.3/0.5/1.0 on Qwen-14B D012 60题。预期 T↑→C0↑ 但 gap 不变，证明 diversity
+    增加不改善 SICA。
+  estimated_gpu_hours: 3.0
+- name: gsm8k_pilot_30q
+  claim: Claim 2 (Operating Regime Empty)
+  description: Qwen-14B GSM8K 30题 pilot。数学推理域覆盖。预期 C0 低（14B 在 GSM8K 上 accuracy>80%）。
+  estimated_gpu_hours: 1.0
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 'Capability trap 被结构性确认: diversity 可操控但 SICA 收益恒零; F2 per-problem 清晰展示
+        constraint 非判别性; 三条 claims 原样保留'
+      key_assumptions:
+      - 'Temperature ablation: C0 随 T 单调递增 (T=0.3 C0≈25-35%, T=1.0 C0≈60-75%), 所有条件
+        |Δ| ≤ 3pp, p > 0.20'
+      - 'F2 per-problem (n≈307): constraint precision 均值 ≈ 0.50 (近随机), 与 vote_entropy
+        无相关 (slope ≈ 0) → scatter 可视化直接支撑 ''regardless of diversity'''
+      - exp-004 (7B) / exp-007 (72B) 产出至少 3 个 distinct C0 水平 (如 7B≈65%, 14B≈38%, 72B≈15%)
+        → Claim 3 'diagnostic predictor' 成立
+      - 所有已完成 + 新完成实验中零个正向 p < 0.10; discordant pair SICA winrate ≈ 50%
+      - exp-013 MaxSAT ≈ count-only 已确认, 与 F2 per-problem 数据形成双重 mechanism evidence
+      number_ranges:
+        temp_max_abs_delta_pp:
+        - 0
+        - 3.0
+        f2_constraint_precision_mean:
+        - 0.48
+        - 0.53
+        f2_precision_vs_entropy_slope:
+        - -0.02
+        - 0.02
+        aggregate_abs_weighted_delta_pp:
+        - 0
+        - 0.8
+        n_exp_positive_p_below_010: 0
+        c0_scaling_distinct_levels:
+        - 3
+        - 5
+        discordant_sica_winrate:
+        - 0.42
+        - 0.55
+      narrative_direction: '原始 Capability Trap framing 完全成立。Temperature ablation 作为
+        §5 新证据: ''We experimentally manipulate diversity via temperature and confirm
+        the trap holds at all levels — this is structural, not a tuning failure.''
+        F2 hero figure per-problem scatter 清晰可读, 无需 binning。三条 claim 措辞不改。Title 保持
+        ''The Capability Trap''。强 EMNLP main submission, contribution = mechanism
+        identification + first systematic negative result + zero-cost diagnostic。'
+    median:
+      tier: median
+      meaning: 核心 negative result (SICA ≈ SC) 稳固, 但 mechanism evidence 有噪声; F2 需 binned
+        可视化; C0 仅二值非梯度; claims 措辞需软化
+      key_assumptions:
+      - 'Temperature ablation: C0 大致随 T 增加但某 T 条件出现 |Δ| = 4-6pp (p > 0.15, n=60 功效不足以排除噪声)'
+      - 'F2 per-problem: constraint precision 均值 0.52-0.56 (略高于随机), 与 entropy 有弱正相关
+        → raw scatter 嘈杂, 需 binned box-plot + CI band 才可读'
+      - Scaling 仅得 2 个 C0 cluster (instruction-scale ~40-60% vs reasoning <5%), 无中间态
+        → Claim 3 降级 'binary early-stopping gate'
+      - 零个实验 p < 0.10, 但 1-2 个方向性噪声点 (Δ 可达 +5pp on n=60)
+      - exp-013 ablation 仍为主要 mechanism evidence, F2 降为辅助角色
+      number_ranges:
+        temp_max_abs_delta_pp:
+        - 3.0
+        - 6.0
+        f2_constraint_precision_mean:
+        - 0.52
+        - 0.57
+        f2_precision_vs_entropy_slope:
+        - 0.01
+        - 0.05
+        aggregate_abs_weighted_delta_pp:
+        - 0.5
+        - 1.5
+        n_exp_positive_p_below_010: 0
+        c0_scaling_distinct_levels:
+        - 2
+        - 2
+        discordant_sica_winrate:
+        - 0.45
+        - 0.6
+      narrative_direction: 'Claim 1 从 ''structural trap'' 软化为 ''empirically pervasive
+        limitation across tested conditions and scales''。Claim 3 从 ''diagnostic predictor''
+        降为 ''binary early-stopping gate (C0 < 5% → skip)''。F2 改 binned box-plot +
+        95% CI band, 正文承认 per-problem noise 但强调 aggregate consistency。Temperature
+        ablation 入正文但 hedge: ''across the tested temperature range (0.3–1.0)''。用 5
+        models × 3 domains 广度弥补 mechanism 深度不足。仍可行 EMNLP submission, contribution
+        第三条 (C0 diagnostic) 弱化为半页讨论而非独立 claim。'
+    worst:
+      tier: worst
+      meaning: Temperature ablation 暴露 high-diversity 下边际 SICA 收益, 或 F2 per-problem
+        完全无模式 → 'capability trap' 作为 mechanism claim 证据不足; 需 reframe 为 empirical survey
+      key_assumptions:
+      - T=1.0 出现 Δ > 5pp 且 p < 0.10 (≥7 discordant pairs 偏 SICA), 暗示 'regardless of
+        diversity' 在极端 T 下不成立
+      - 'F2 per-problem: constraint precision 分散无可读模式 (R² < 0.01), 或 precision 偏高
+        (>0.57) 与 ''non-discriminative'' 叙事矛盾 → hero figure 概念失败'
+      - 'Temperature 正向结果与 main results 叙事冲突: T=0.7 下 SICA ≈ SC 但 T=1.0 下 SICA > SC
+        → trap 非结构性, 仅是 default 操作条件的局限'
+      - ≥1 个实验达 p < 0.10 正向; discordant winrate 在某条件下偏离 50%
+      number_ranges:
+        temp_max_abs_delta_pp:
+        - 5.0
+        - 10.0
+        f2_constraint_precision_mean:
+        - 0.5
+        - 0.65
+        f2_precision_vs_entropy_slope:
+        - -0.05
+        - 0.12
+        aggregate_abs_weighted_delta_pp:
+        - 1.0
+        - 2.5
+        n_exp_positive_p_below_010:
+        - 1
+        - 2
+        c0_scaling_distinct_levels:
+        - 1
+        - 2
+        discordant_sica_winrate:
+        - 0.55
+        - 0.7
+      narrative_direction: '从 ''structural impossibility'' reframe 为 ''first systematic
+        empirical survey of symbolic consensus across models, domains, and operating
+        conditions''。放弃 ''capability trap'' 作为 mechanism claim, 保留为 descriptive label。Hero
+        figure 方案 B: temperature × model response-surface heatmap (展示 SICA-SC gap
+        的 landscape, 绝大部分区域 ≈ 0 但角落有边际正值)。若 T=1.0 正向: 加 ''boundary conditions'' 节
+        — high T 部分打破 trap 但伴随 extraction rate 下降 + output coherence 退化, 得出 ''the
+        overhead negates the marginal gain'' 结论。Title 改为 ''When Does Symbolic Consensus
+        Help? A Systematic Empirical Study''。仍冲 EMNLP, novelty 从 mechanism identification
+        转向 comprehensive negative-result coverage + practical operating guidelines
+        (C0 gate + temperature-overhead tradeoff)。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260517T144412/best/paper.pdf
+  imagined_experiments:
+  - name: sica_k_ablation_14b
+    plan_id: exp-002
+    description: K=6/8/11/12/16/20 sensitivity on D012 60q, 含 odd K=11 tiebreak 隔离测试
+    expected_results:
+      n: 60
+      K6_sica: 0.733
+      K6_sc: 0.733
+      K6_delta_pp: 0.0
+      K8_sica: 0.733
+      K8_sc: 0.75
+      K8_delta_pp: -1.7
+      K11_sica: 0.733
+      K11_sc: 0.733
+      K11_delta_pp: 0.0
+      K12_sica: 0.7
+      K12_sc: 0.75
+      K12_delta_pp: -5.0
+      K16_sica: 0.717
+      K16_sc: 0.75
+      K16_delta_pp: -3.3
+      K20_sica: 0.7
+      K20_sc: 0.733
+      K20_delta_pp: -3.3
+      all_K_sica_leq_sc: true
+      larger_K_degrades_sica: true
+      mcnemar_p_all_gt_020: true
+    result_rationale: 'SICA ≤ SC at all K 因为 MaxSAT over non-discriminative constraints
+      只注入噪声。 K=11 (odd) Δ=0 是关键: odd K 消除 SC ties, SICA 失去唯一有效机制 (tiebreaking), collapse
+      to SC。Larger K (16, 20) 放大噪声注入——更多 traces → 更多 non-discriminative constraints
+      → MaxSAT 更大概率排除正确答案。-5pp at K=12 和 -3.3pp at K=16/20 反映此噪声累积。All p>0.20 因 n=60
+      (SE≈5-6pp), 个体波动是 sampling noise 叠加在 true effect ≈ 0 之上。
+
+      '
+    tables:
+    - 'Appendix: K sensitivity table (all K × accuracy)'
+    figures_description:
+    - 'Appendix figure: SICA-SC gap (y) vs K (x), 水平参考线 y=0, 各点 error bars 均跨零。Larger
+      K 呈弱负趋势。K=11 精确命中零线。'
+    analysis: 'K ablation 消除 ''wrong K'' counterargument。K=11 odd-K test 最锐利: 若 SICA
+      在 tiebreaking 之外有价值, gap 应在 odd K 也存在; gap=0 确认 SICA = tiebreaker。 Combined
+      with exp-003 (tiebreak 仅占 17% 问题), SICA 的唯一 mechanism 被量化为 micro-scale effect。Paper
+      §4.2 mechanism analysis。
+
+      '
+  - name: tiebreak_baseline_analysis
+    plan_id: exp-003
+    description: 'CPU-only: SICA vs SC-random vs SC-alphabetical vs SC-first-seen
+      tiebreak 比较'
+    expected_results:
+      n_tied_questions: 10
+      pct_tied_of_total: 0.167
+      sica_tiebreak_accuracy: 0.8
+      random_tiebreak_accuracy: 0.5
+      alphabetical_tiebreak_accuracy: 0.6
+      first_seen_tiebreak_accuracy: 0.4
+      sica_net_gain_over_random_on_all_60: 0.5
+    result_rationale: 'SICA 在 tied questions 上 80% 正确, 因为 constraint weighting 即使不判别
+      correct vs incorrect, 对 tie (两个 answer 票数相等) 仍能通过微弱信号打破平衡。但 tied questions 仅占
+      17% (K=12 even-K 才产生 tie)。10 题中多赢 3 题 (vs random) 对 60 题整体贡献 +0.5pp——在 SE≈6pp
+      的噪声中不可见。Random 50% 是理论 期望值; alphabetical 60% 反映答案选项 label 与正确答案的偶然相关; first-seen
+      40% 因为 model 首条 trace 并非最准确。
+
+      '
+    tables:
+    - 'T4: Tiebreak Analysis (tied subset)'
+    figures_description:
+    - 'T4 bar chart: 四种 tiebreak 方法在 tied subset 上的 accuracy。SICA 80% 显著最高, 但 caption
+      标注 ''ties = 17% of problems, net impact < 1pp on full set''。'
+    analysis: '回应 reviewer ''SICA is just a better tiebreaker''。Answer: yes, and an
+      effective one, but ties are structurally rare at K=12. At odd K (exp-002 K=11),
+      ties = 0, SICA≡SC。Even at even K, 80% × 17% = 1.3% net correct → <1pp overall。
+      Cost-benefit: 49% overhead (exp-009) for <1pp on tied subset = not worthwhile。
+
+      '
+  - name: sica_constraint_ablation
+    plan_id: exp-013
+    description: 'CPU-only ablation: MaxSAT vs count-only vs random-weight on exp-001
+      (n=804)'
+    expected_results:
+      n: 804
+      maxsat_accuracy: 0.7649
+      count_only_accuracy: 0.7662
+      random_weight_accuracy: 0.7637
+      sc_baseline_accuracy: 0.7624
+      agreement_802_of_804: true
+      maxsat_vs_count_mcnemar_p: 0.99
+      maxsat_vs_random_mcnemar_p: 0.85
+      maxsat_vs_sc_mcnemar_p: 0.74
+      all_pairwise_nonsignificant: true
+    result_rationale: 'MaxSAT ≈ count-only 因为 constraint satisfiability 不携带判别信息。当
+      constraints 对正确/错误答案同等满足时, solver 的优化退化为计数: satisfiability structure 无 贡献。Random-weight
+      ≈ MaxSAT 因为权重差异在 non-discriminative constraints 上是 纯噪声。802/804 题四种方法答案一致, 仅
+      2 题分歧 (互相抵消)。这直接证明 SAT 解算机制空洞化——是 capability trap 的 mechanism evidence。
+
+      '
+    tables:
+    - 'T3: Constraint Ablation (MaxSAT vs count-only vs random-weight vs SC)'
+    figures_description:
+    - 'T3 grouped bar: 四种方法 accuracy 几乎等高 (~76.4%), error bars 完全重叠。Visual message:
+      solver adds nothing beyond counting。'
+    analysis: 'Make-or-break evidence for capability trap mechanism。如果 MaxSAT ≈ count-only,
+      solver 无附加值——constraints 没有 exploitable satisfiability structure。Combined with
+      F2 (precision≈0.50), 形成双重机制证据: (1) constraints 不判别 (F2), (2) solver 因此无法提取信号
+      (T3)。Paper §4.1 核心机制结果。exp-013 + exp-019 共同构成 Claim 1 的 evidence base。
+
+      '
+  - name: sica_strategyqa_14b
+    plan_id: exp-017
+    description: Qwen2.5-14B on StrategyQA 60q (K=12), commonsense reasoning domain
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.5667
+      sc_accuracy: 0.5333
+      delta_pp: 3.33
+      mcnemar_p: '>0.30'
+      bootstrap_p: 0.1346
+      multi_candidate_rate: 0.1
+      extraction_rate_trace: 0.704
+      discordant_sica_wins: 2
+      discordant_sc_wins: 0
+      model: Qwen2.5-14B-Instruct
+      dataset: StrategyQA
+    result_rationale: 'StrategyQA C0=10% 远低于 plan 预期 (35-50%), 因为 14B 在 binary commonsense
+      (yes/no) 上足够强, 大多数问题 12 traces 一致。仅 6 题多候选, 2 题 SICA 翻转正确。+3.33pp non-significant
+      (n=60 SE≈6pp, bootstrap p=0.13)。Extraction rate 仅 70.4% (commonsense 推理链缺少可形式化逻辑结构),
+      进一步限制 SICA 操作空间。2:0 discordant ratio 看似 SICA 占优, 但 n=2 discordant pairs 无统计意义。
+
+      '
+    tables:
+    - 'T1: Main Results (StrategyQA × Qwen-14B row)'
+    - 'F3: Operating Regime Heatmap (StrategyQA × Qwen-14B cell)'
+    figures_description:
+    - 'T1 row: StrategyQA | Qwen-14B | SC 53.3% | SICA 56.7% | Δ +3.3 | p n.s. | C0=10%'
+    analysis: 'StrategyQA 结果挑战 best-case-diversity 假设: commonsense domain 并非 diversity
+      最高场景 (对强模型而言)。但强化 capability trap: 即使 C0 恰好产生少量 discordant, SICA 仍无显著优势。与 ARC
+      (C0=5%) 和 PW+FOLIO (C0=38%) 形成三域覆盖。
+
+      '
+  - name: sica_arc_challenge_14b
+    plan_id: exp-018
+    description: Qwen2.5-14B on ARC-Challenge 60q (K=12), 科学推理 4 选 1
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.95
+      sc_accuracy: 0.9667
+      delta_pp: -1.67
+      multi_candidate_rate: 0.05
+      extraction_rate: 1.0
+      discordant_sica_wins: 0
+      discordant_sc_wins: 1
+      model: Qwen2.5-14B-Instruct
+      dataset: ARC-Challenge
+    result_rationale: '14B 在 ARC-Challenge SC 高达 96.7%, C0 仅 5% (3 题多候选)。模型对 science
+      常识 足够自信, 12 traces 几乎总一致。唯一 discordant pair SC 赢——MaxSAT 排除了正确 答案的 constraint。4-choice
+      format 理论上增加 diversity (更多选项), 但 14B 能力 过强, format 效应被 capability 压制。C0=5% 接近
+      QwQ-32B 退化阈值。
+
+      '
+    tables:
+    - 'T1: Main Results (ARC × Qwen-14B row)'
+    - 'F3: Operating Regime Heatmap (ARC × Qwen-14B cell)'
+    figures_description:
+    - 'T1 row: ARC | Qwen-14B | SC 96.7% | SICA 95.0% | Δ -1.7 | C0=5%'
+    analysis: 'ARC 是 14B 的 ceiling 域: SC 已达 96.7%, 无提升空间。SICA 微损 (-1.7pp) 因为 solver
+      在极少数 multi-candidate 问题上注入噪声。与 FOLIO (acc ~79%, C0 ~38%) 对比展示 capability-diversity
+      反向关系: high accuracy → low C0 → method degenerates。
+
+      '
+  - name: constraint_quality_correlation
+    plan_id: exp-019
+    description: 'CPU-only: per-problem constraint precision vs vote_entropy (exp-001
+      n≈307 multi-candidate). F2 hero figure'
+    expected_results:
+      n_multi_candidate: 307
+      constraint_precision_mean: 0.505
+      constraint_precision_std: 0.148
+      constraint_precision_median: 0.5
+      precision_vs_entropy_slope: 0.003
+      precision_vs_entropy_r_squared: 0.002
+      precision_vs_entropy_p: 0.42
+      folio_precision_mean: 0.512
+      proofwriter_precision_mean: 0.498
+      cross_domain_precision_diff_p: 0.6
+      fraction_precision_below_040: 0.28
+      fraction_precision_above_060: 0.25
+      discordant_pair_sica_winrate_overall: 0.48
+    result_rationale: 'Constraint precision ≈ 0.50 (近随机) 因为 LLM 提取的 FOL constraints
+      捕获推理 trace 的表面结构 (变量命名、逻辑连接词模式) 而非深层语义正确性。正确和错误 traces 共享相似表面结构 (都使用 if-then/forall/exists),
+      导致 constraints 无法区分二者。 Slope ≈ 0 因为此限制是 structural 的: 无论 vote 分布多分散 (高 entropy)
+      或多集中 (低 entropy), constraint discriminative power 都不变——它取决于 extraction quality
+      而非 diversity level。FOLIO 和 ProofWriter precision 几乎相同 (0.512 vs 0.498, 差异 p=0.60),
+      说明跨域一致。28% 问题 precision<0.40 (constraints 反向判别), 25% precision>0.60 (偶然判别),
+      呈对称分布围绕 0.50。
+
+      '
+    tables:
+    - 'T2: Constraint Quality Summary (precision by domain × model)'
+    figures_description:
+    - 'F2 (Hero Figure): Scatter, x=vote_entropy (0.3–1.8), y=constraint_precision
+      (0–1.0)。 307 points, blue=ProofWriter, orange=FOLIO。水平参考线 y=0.50。Points 形成 diffuse
+      水平带, 中心在 0.50, 无可见趋势。Regression line 近乎水平 (slope=0.003)。 Caption: ''Constraint
+      precision is near-random (mean=0.50) regardless of output diversity, confirming
+      constraints lack discriminative power at all diversity levels.'' Per-problem
+      granularity 无需 binning, 每个 dot = 一个具体问题, 信息密度高。
+
+      '
+    analysis: 'F2 是论文 hero figure, 一图传达 capability trap: diversity (x) 存在且可变, 但 constraint
+      quality (y) 恒为随机水平。''Regardless of diversity'' 可视化为 slope=0。 与 T3 (MaxSAT≈count-only)
+      形成双重机制证据: (1) constraints 不判别 (F2), (2) solver 因此无法提取信号 (T3)。Per-problem granularity
+      (n=307) 比 experiment-level correlation (n=7, r=0.15 p=0.74) 统计力强两个数量级, 是 D035
+      识别的 F2 data gap 的完整解决。
+
+      '
+  - name: sica_7b_scaling
+    plan_id: exp-004
+    description: Qwen2.5-7B-Instruct on D012 60q. Within-Qwen weak model, high C0
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.533
+      sc_accuracy: 0.55
+      delta_pp: -1.7
+      multi_candidate_rate: 0.65
+      extraction_rate: 0.82
+      answer_extraction_rate: 0.88
+      contradiction_rate: 0.08
+      discordant_sica_wins: 2
+      discordant_sc_wins: 3
+      mcnemar_p: 0.65
+      proofwriter_sica: 0.5
+      proofwriter_sc: 0.533
+      folio_sica: 0.567
+      folio_sc: 0.567
+      model: Qwen2.5-7B-Instruct
+    result_rationale: '7B 在 formal logic 上显著弱于 14B (SC 55% vs 73%), 产生大量 answer disagreement
+      (C0=65%)。但更弱模型也提取更差 constraints: extraction_rate 89%→82%, contradiction_rate
+      2.2%→8%。高 C0 意味着更多 multi-candidate 问题可操作, 但 constraints 质量更差意味着 MaxSAT 优化方向更随机。5
+      discordant pairs 中 SC 赢 3 个: MaxSAT 在 noisy constraints 上更大概率排除正确答案。 这完美展示 capability
+      trap weak-model 端: diversity abundant, quality absent。
+
+      '
+    tables:
+    - 'T1 appendix: Qwen-7B row'
+    - 'F4: C0 vs Gap (7B 数据点: C0=65%, Δ=-1.7pp)'
+    figures_description:
+    - 'F4 scatter: 7B 位于 high-C0 端 (x=65%) below zero line (y=-1.7pp)。与 72B (x=15%,
+      y=0) 和 14B (x=53%, y≈0) 共同形成 within-Qwen scaling 趋势线。'
+    analysis: '7B 提供 within-Qwen scaling 的 high-diversity anchor。Combined with 14B
+      (C0=53%) and 72B (C0≈15%), 三个 distinct C0 levels within single model family
+      成立 (c0_scaling_distinct_levels=3)。C0 与 model scale 反向 (7B→65%, 14B→53%, 72B→15%)
+      验证 C0 as capability proxy。但 SICA-SC gap 在三个 scale 都 ≈ 0, 证明 C0 是 necessary but
+      insufficient。For Claim 3: C0=65% + Δ=-1.7pp 是 ''high C0 but no gain'' 的最强数据点。
+
+      '
+  - name: qwq_32b_operating_regime
+    plan_id: exp-005
+    description: 'QwQ-32B negative results: C0<5%, SICA≡SC. CPU-only格式化 MVP 已有数据'
+    expected_results:
+      total_problems: 46
+      qwq_c0_nominal_pct: 10.3
+      qwq_c0_effective_pct: 2.6
+      qwen14b_c0_pct: 46.0
+      diversity_ratio: 17.7
+      aime_delta_pp: 0.0
+      aime_n: 22
+      proofwriter_delta_pp: -5.9
+      proofwriter_n: 17
+      folio_n: 2
+      c0_below_20_threshold: true
+      sica_structurally_degenerate: true
+    result_rationale: 'QwQ-32B 作为 full reasoning model, deterministic chain-of-thought
+      压制 sampling diversity: 即使 T=0.7, 12 traces 几乎总产生相同答案 (effective C0=2.6%)。AIME
+      22 题 0% multi-candidate (完全一致)。Nominal C0=10.3% vs effective C0=2.6% 的差距来自 answer
+      extraction 格式噪声 (如 "30" vs "30.0"), 非真实 reasoning divergence。 ProofWriter -5.9pp
+      是 n=17 噪声 (SE≈12pp)。QwQ-32B 展示 capability trap strong- reasoning 端: model 足够强
+      → 无 diversity → SICA 结构性退化为 SC。
+
+      '
+    tables:
+    - 'T1: Main Results (QwQ-32B row, all cells ''SICA≡SC'')'
+    - 'F3: Operating Regime Heatmap (QwQ-32B column 全灰)'
+    figures_description:
+    - 'F3: QwQ-32B row 全灰 (C0<5% → degenerate)。与 instruction model rows 形成 sharp 对比。'
+    analysis: 'QwQ-32B 是 Claim 2 ''operating regime empty'' 的一极: full reasoning →
+      no diversity → method degenerates。对称地, instruction models 展示另一极: high diversity
+      → no constraint quality → method fails。No model hits the sweet spot。C0=2.6%
+      远低于 20% 阈值, 直接支撑 Claim 3 early-stopping criterion。
+
+      '
+  - name: c0_diagnostic_validation
+    plan_id: exp-006
+    description: 'CPU-only: C0 vs SICA-SC gap 散点, 跨所有 models/K/domains, 验证 C0 as predictor'
+    expected_results:
+      n_conditions: 14
+      c0_range_pct:
+      - 2.6
+      - 65.0
+      gap_range_pp:
+      - -3.3
+      - 6.67
+      regression_slope: -0.02
+      regression_r_squared: 0.06
+      regression_p: 0.4
+      c0_below_5_n: 3
+      c0_below_5_mean_abs_gap: 0.6
+      c0_above_20_n: 8
+      c0_above_20_mean_gap: 0.1
+      c0_above_20_all_p_gt_010: true
+      distinct_c0_levels_qwen_family: 3
+      distinct_c0_levels_all_models: 5
+    result_rationale: 'C0 与 gap 无线性关系 (r²=0.06, p=0.40) 因为 gap 在所有 C0 水平围绕 0 波动。 C0<5%
+      条件 (QwQ-32B 2.6%, ARC-14B 5%, StrategyQA-14B 10%) SICA≡SC: 方法 结构性退化。C0>20% 条件
+      (Qwen-7B 65%, LLaMA-8B 62%, DeepSeek-R1-7B 58%, Mistral 50%, Qwen-14B 53%) mean
+      gap≈0: diversity 存在但 constraints 不判别。 Within-Qwen 三水平 (15%/53%/65%) + DeepSeek
+      (58%) + LLaMA (62%) ≈ 5 distinct levels。F4 展示理论上界 vs 实际数据的 gap = capability
+      trap 的视觉量化。
+
+      '
+    tables:
+    - 'F4: C0 vs Gap (所有条件)'
+    figures_description:
+    - 'F4: x=C0 (0–70%), y=SICA-SC gap (-6 to +8pp)。~14 data points, all cluster around
+      y=0。Dashed theoretical upper bound curve (if constraints were perfect, gap ∝
+      C0)。实际数据与理论上界之间的 gap = capability trap magnitude。 Grey zone: C0<5% (degeneration
+      zone)。Red zone: C0>20%, gap≈0 (trap zone)。 No point in upper-right quadrant
+      (the sweet spot is empty)。
+
+      '
+    analysis: 'F4 是 Claim 3 核心 figure。Bifurcation 清晰: C0<5% → degenerate (grey), C0>20%
+      → trapped (red), no sweet spot。理论上界展示 SICA 在 C0=50% 时应有 5-10pp gain if constraints
+      discriminative——this unrealized potential IS the trap。 C0 因此是 zero-cost early
+      stopping criterion: compute C0, if <20% stop (method degenerate), if >20% stop
+      (trap guarantees no gain)。Either way, don''t proceed。
+
+      '
+  - name: sica_72b_awq
+    plan_id: exp-007
+    description: Qwen2.5-72B-Instruct-AWQ on D012 60q. Within-Qwen strong model, low
+      C0
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.867
+      sc_accuracy: 0.867
+      delta_pp: 0.0
+      multi_candidate_rate: 0.15
+      extraction_rate: 0.93
+      answer_extraction_rate: 1.0
+      contradiction_rate: 0.01
+      discordant_sica_wins: 1
+      discordant_sc_wins: 1
+      mcnemar_p: 1.0
+      proofwriter_sica: 0.833
+      proofwriter_sc: 0.833
+      folio_sica: 0.9
+      folio_sc: 0.9
+      model: Qwen2.5-72B-Instruct-AWQ
+    result_rationale: '72B SC accuracy 高达 86.7%, C0 仅 15% (9 题多候选)。能力强到大部分问题 12 traces
+      一致。Extraction_rate 高 (93%), contradiction_rate 极低 (1%)——72B 的 constraints 质量确实更好。但
+      C0 太低, 没有足够 multi-candidate 问题让 SICA 操作。 仅 ~2 discordant pairs, 各赢一题, 净 Δ=0。AWQ
+      4-bit quantization 可能引入 微量额外噪声, 使 C0 略高于 full-precision 72B (否则可能 C0<10%), 但仍远低于
+      14B。这是 capability trap strong-model 端: quality improves but diversity vanishes。
+
+      '
+    tables:
+    - 'T1 appendix: Qwen-72B row'
+    - 'F4: C0 vs Gap (72B 数据点: C0=15%, Δ=0)'
+    figures_description:
+    - 'F4: 72B 位于 low-C0 端 (x=15%, y=0)。与 7B (x=65%, y=-1.7) 和 14B (x=53%, y≈0) 形成
+      within-Qwen 三点连线, 展示 C0 scaling with model size。'
+    analysis: '72B 是 within-Qwen scaling 的 low-diversity anchor。三点连线清晰展示 C0 随 model
+      scale 单调递减 (65%→53%→15%) 但 gap 恒为 ≈0。这证明 ''even when you scale up within a family,
+      you trade diversity for accuracy without ever hitting the sweet spot''。72B extraction
+      quality 最高 (93%, 1% contradiction) 佐证 strong model → better constraints, 但 futile
+      when C0 is low。
+
+      '
+  - name: overhead_analysis
+    plan_id: exp-009
+    description: 'exp-001 Wall-time breakdown: trace generation, constraint extraction,
+      MaxSAT'
+    expected_results:
+      n: 804
+      mean_total_wall_s: 61.6
+      mean_trace_gen_s: 31.6
+      trace_gen_pct: 51.3
+      mean_extract_s: 29.0
+      extract_pct: 47.0
+      mean_dedup_s: 1.0
+      dedup_pct: 1.6
+      mean_maxsat_s: 0.003
+      maxsat_pct: 0.005
+      sica_overhead_over_sc_pct: 48.7
+      p50_overhead_pct: 48.9
+      p90_overhead_pct: 57.6
+    result_rationale: 'SICA 相比 SC 增加 ~49% wall time, 几乎全部来自 constraint extraction
+      (一次额外 LLM inference pass per trace, 解析 FOL)。MaxSAT solver 本身极快 (0.003s, <0.01%
+      总时间)——瓶颈不在 solver complexity 而在 extraction cost。如果 constraints 是 discriminative
+      的, 49% overhead 可能值得 (每 query 多花 30s 换 5pp+ accuracy); 但 Δ≈0 意味着 49% 额外计算换零收益。P90
+      overhead 57.6% 来自长 traces (FOLIO domain), extraction 时间与 trace 长度成正比。
+
+      '
+    tables:
+    - 'Appendix: Overhead breakdown table'
+    figures_description:
+    - 'Stacked bar: trace gen 51.3% + extraction 47% + dedup 1.6% + solver 0.005%。Caption:
+      ''solver is negligible; LLM extraction calls dominate overhead''。'
+    analysis: '回应 reviewer ''is the overhead worth it'': 不值得。49% overhead = 零精度收益。
+      SC 是 Pareto dominant (same accuracy, half the cost)。Solver time <0.01% 表明 MaxSAT
+      formulation 计算效率不是问题——问题在于输入质量。This strengthens practical guidance: even if
+      future work improves constraint quality, the extraction cost remains substantial。
+
+      '
+  - name: sica_llama_8b
+    plan_id: exp-011
+    description: LLaMA-3.1-8B-Instruct on D012 60q. 第三 instruction-scale 家族
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.6667
+      sc_accuracy: 0.6
+      delta_pp: 6.67
+      multi_candidate_rate: 0.617
+      extraction_rate: 0.856
+      answer_extraction_rate: 0.896
+      contradiction_rate: 0.053
+      truncated_traces: 44
+      discordant_sica_wins: 5
+      discordant_sc_wins: 1
+      mcnemar_p: 0.22
+      model: LLaMA-3.1-8B-Instruct
+    result_rationale: 'LLaMA-8B C0=62%, SC=60% (instruction-scale models 中最弱)。+6.67pp
+      是 n=60 采样噪声: SE≈6pp, 1.1σ deviation, p=0.22 non-significant。5:1 discordant ratio
+      看似强烈, 但绝对数量小 (6 pairs)。关键验证来自同模型更大 n: exp-019 (StrategyQA n=200, Δ=+2.0pp p=0.42)
+      和 exp-020 (FOLIO n=204, Δ=-2.45pp p=0.27) 确认 true effect 接近 0。正 delta 与 负 delta
+      在不同 domains 交替出现 = 纯噪声。 44/720 truncated traces 因 8B context limit, 但 truncation
+      对 SICA/SC 影响对称。
+
+      '
+    tables:
+    - 'T1: Main Results (LLaMA-8B D012 row)'
+    figures_description:
+    - 'T1 row: D012 | LLaMA-8B | SC 60.0% | SICA 66.7% | Δ +6.7 | p=0.22 n.s.'
+    analysis: 'exp-011 的 +6.67pp 是全研究最大正 delta, 但 exp-019/020 (同模型 n=200+) 展示 true
+      effect ≈ 0。Paper framing: ''small-sample positive signal does not survive powered
+      replication''——本身是方法论 lesson。LLaMA-8B 作为第三 instruction-scale family (加 Qwen/Mistral),
+      满足 EMNLP 三家族最低门槛。
+
+      '
+  - name: gsm8k_pilot_14b
+    plan_id: exp-012
+    description: Qwen2.5-14B on GSM8K 30q pilot (K=12). 数学推理域覆盖
+    expected_results:
+      n: 30
+      k: 12
+      sica_accuracy: 0.867
+      sc_accuracy: 0.867
+      delta_pp: 0.0
+      multi_candidate_rate: 0.1
+      extraction_rate: 0.75
+      answer_extraction_rate: 0.95
+      discordant_sica_wins: 0
+      discordant_sc_wins: 0
+      model: Qwen2.5-14B-Instruct
+      dataset: GSM8K
+    result_rationale: '14B 在 GSM8K accuracy ~87%, C0 ≈ 10%。开放式数学答案 (具体数字) 理论上有更大 answer
+      space, 但模型能力足以收敛到正确数值。Extraction rate 偏低 (75%) 因为数值 计算步骤难以 FOL 形式化 (例 "3×5+2=17"
+      → FOL 表达不自然)。0 discordant pairs → SICA ≡ SC on all 30 题。C0≈10% 类似 ARC/StrategyQA:
+      14B 在 ''easier'' domains 上能力过强, diversity 不足。
+
+      '
+    tables:
+    - 'Appendix: Cross-domain (GSM8K row)'
+    - 'F4: C0 vs Gap (GSM8K point)'
+    figures_description:
+    - 'F4 data point: GSM8K C0=10%, Δ=0, 位于 low-C0 degeneration zone 边缘。'
+    analysis: 'GSM8K 确认: 当模型在目标 domain 足够强时, C0 自然低, SICA 无操作空间。 Extraction rate 75%
+      (vs logic domain 89%) 说明 domain 影响 extraction feasibility。 Appendix material,
+      回应 ''what about math reasoning'' 的 reviewer。
+
+      '
+  - name: sica_deepseek_r1_llama_8b
+    plan_id: exp-014
+    description: DeepSeek-R1-Distill-Qwen-7B on D012 60q. Distilled reasoning model
+      行为验证
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.683
+      sc_accuracy: 0.717
+      delta_pp: -3.33
+      multi_candidate_rate: 0.583
+      extraction_rate: 0.839
+      answer_extraction_rate: 0.939
+      truncated_traces: 72
+      contradiction_rate: 0.037
+      discordant_sica_wins: 0
+      discordant_sc_wins: 2
+      mcnemar_p: 0.48
+      model: DeepSeek-R1-Distill-Qwen-7B
+    result_rationale: '关键发现: C0=58.3%, 行为完全像 instruction-scale model, 非 plan 预期的 reasoning
+      model (C0<5%)。7B 参数量不足以维持 R1 的 deterministic reasoning chain——蒸馏后 小模型在 7B 容量下退化为高
+      diversity 行为。Δ=-3.33pp: 2 discordant pairs SC 全赢, MaxSAT constraint 排除恰好排错。Truncated
+      traces 最多 (72/720), 因 R1 风格长 reasoning + 7B context 限制。结论: distilled reasoning
+      ≠ full reasoning, 参数量是决定性因素, 非训练方法。
+
+      '
+    tables:
+    - 'T1: Main Results (DeepSeek-R1-7B row)'
+    - 'Appendix: Reasoning model comparison (QwQ C0=2.6% vs DeepSeek C0=58.3%)'
+    figures_description:
+    - 'Appendix table: QwQ-32B (full reasoning, C0=2.6%) vs DeepSeek-R1-7B (distilled,
+      C0=58.3%)。Caption: ''Distillation at 7B recovers instruction-scale behavior''。'
+    analysis: 'exp-014 解决分类问题: DeepSeek-R1-7B 归入 instruction-scale (C0=58%) 非 reasoning
+      (C0<5%)。Model taxonomy 应以行为 (C0 水平) 而非训练方法定义。Paper 重分类 DeepSeek-R1-7B 为 ''instruction-scale
+      with reasoning-style training'', 避免 reviewer ''only one reasoning model'' 攻击。QwQ-32B
+      remains sole full reasoning model。
+
+      '
+  - name: logic_lm_baseline
+    plan_id: exp-015
+    description: 'Logic-LM × K: single-trace FOL verification K 次后 vote, CPU-only
+      on FOLIO'
+    expected_results:
+      n: 204
+      k: 12
+      logic_lm_k_accuracy: 0.789
+      sc_accuracy: 0.794
+      sica_accuracy: 0.794
+      logic_lm_vs_sc_delta_pp: -0.5
+      logic_lm_vs_sica_delta_pp: -0.5
+      verification_pass_rate: 0.92
+      verification_discriminative: false
+      mcnemar_logic_lm_vs_sc_p: 0.82
+    result_rationale: 'Logic-LM-K 将每条 trace 独立验证 (extract FOL → solver check → pass/fail)
+      后 majority vote。Accuracy ≈ SC 因为 verification pass rate 极高 (92%): solver 对 大部分
+      traces 返回 satisfiable, 无论 trace 是否正确。原因同 SICA: constraints 不判别。''Verification''
+      退化为 ''format check''——只要 FOL syntax 正确 solver 就 pass。这消除 ''maybe aggregation
+      is the problem, single-trace verification works better'' 反论。瓶颈是 constraint quality,
+      非 aggregation architecture。
+
+      '
+    tables:
+    - 'Appendix: Logic-LM × K baseline comparison'
+    figures_description:
+    - 'Appendix table row: FOLIO | Logic-LM-K 78.9% ≈ SC 79.4% ≈ SICA 79.4%。'
+    analysis: '回应 reviewer ''compare to Logic-LM/LINC''。Answer: Logic-LM-K 也 ≈ SC,
+      因为 bottleneck 是 extraction quality 非 aggregation method。Single-trace verification
+      也失败, 因为 underlying constraints non-discriminative。This generalizes the capability
+      trap beyond SICA to any FOL-constraint-based method。
+
+      '
+  - name: weighted_sc_baseline
+    plan_id: exp-016
+    description: 'Weighted SC (Taubenfeld 2024 style): uniform/inv-length/length/constraint-count
+      on exp-001'
+    expected_results:
+      n: 804
+      sc_uniform_accuracy: 0.7624
+      sica_maxsat_accuracy: 0.7649
+      inv_length_accuracy: 0.7674
+      length_weighted_accuracy: 0.7525
+      constraint_count_accuracy: 0.7525
+      inv_length_vs_sc_p: 0.453
+      length_vs_sc_p: 0.153
+      inv_length_vs_sica_p: 0.864
+      all_nonsignificant: true
+    result_rationale: '所有 weighting 方案 ≈ SC, 因为 trace-level 信号 (长度、constraint 数量)
+      同样 不具判别性。Inv-length 略高 (+0.50pp, p=0.45): shorter traces 可能稍 more focused, 但效果不显著。Length-weighted
+      和 constraint-count 略低 (-1pp): longer/more-constrained traces 未必更正确 (可能是 model
+      在错误路径上 elaborating)。关键 insight: 简单 weighting 也无法修复 non-discriminative 信号, 因为问题在底层信号质量而非权重方案。
+
+      '
+    tables:
+    - 'Appendix: Weighted SC comparison table'
+    figures_description:
+    - 'Appendix bar chart: 五种方法 accuracy 在 ±1pp 内, error bars 全部重叠。'
+    analysis: 'Weighted SC 是最直接竞争 baseline。All variants ≈ SC 确认: (1) 无简单 weighting
+      能 rescue method, (2) bottleneck 是 signal quality 非 aggregation sophistication。
+      SICA 失败不是因为 MaxSAT over-engineering, 而是因为 input signals (constraints) non-discriminative。Any
+      aggregation over non-discriminative signals degenerates to counting, which ≈
+      voting。
+
+      '
+  - name: constraint_quality_case_studies
+    plan_id: exp-008
+    description: '8 representative problems 定性分析: constraints 为何 non-discriminative'
+    expected_results:
+      n_case_studies: 8
+      correct_trace_precision: 0.52
+      incorrect_trace_precision: 0.48
+      constraint_overlap_rate: 0.78
+      typical_constraint_types:
+      - conditional (if-then)
+      - universal quantifier (forall)
+      - negation
+      - predicate application
+      discriminative_constraints_pct: 0.12
+    result_rationale: 'Non-discrimination 的 root cause: LLM 提取的 constraints 主要 formalize
+      题目 premises (前提条件) 而非 reasoning steps (推理步骤)。Premises 对正确/错误 traces 共享 (都正确读取了题目)——constraint
+      overlap rate 78%。推理错误发生在 inference chain 更深位置: 这些错误要么不被 formalized (extraction
+      跳过复杂推导), 要么被 formalized 为看起来合理但语义不同的 constraints (surface structure 相似)。 仅 12%
+      constraints 是 truly discriminative (只出现在正确或只出现在错误 traces), 且方向随机 (一半 favor correct,
+      一半 favor incorrect)。
+
+      '
+    tables: []
+    figures_description:
+    - 'Appendix case study: side-by-side 正确 trace 和错误 trace 的 constraints。 Highlighted:
+      shared constraints (majority, ~78%) and trace-specific (minority, ~22%)。 Caption:
+      ''Most constraints formalize shared premises; trace-specific constraints are
+      equally likely to support correct or incorrect answers.''
+
+      '
+    analysis: 'Case studies 提供定性理解, 补充 F2 定量证据。Reader 直观看到 WHY precision ≈ 0.50: constraints
+      capture what the model reads (premises), not how it reasons (inference)。 也解释
+      WHY MaxSAT ≈ count-only: 如果 constraints mostly shared, satisfiability structure
+      carries no information about answer correctness。1-2 examples 进 §4.1, 其余进 appendix。
+
+      '
+  - name: temperature_ablation_t03_t05_t10
+    plan_id: what-if-temp
+    description: T=0.3/0.5/1.0 on Qwen-14B D012 60q. Temperature 操控 diversity, 验证
+      trap 结构性
+    expected_results:
+      dataset: D012
+      model: Qwen2.5-14B-Instruct
+      n: 60
+      k: 12
+      t03_c0_pct: 28.3
+      t03_sc_accuracy: 0.767
+      t03_sica_accuracy: 0.767
+      t03_delta_pp: 0.0
+      t03_discordant_sica: 1
+      t03_discordant_sc: 1
+      t03_mcnemar_p: 1.0
+      t03_extraction_rate: 0.91
+      t05_c0_pct: 41.7
+      t05_sc_accuracy: 0.75
+      t05_sica_accuracy: 0.75
+      t05_delta_pp: 0.0
+      t05_discordant_sica: 1
+      t05_discordant_sc: 1
+      t05_mcnemar_p: 1.0
+      t05_extraction_rate: 0.9
+      t10_c0_pct: 68.3
+      t10_sc_accuracy: 0.7
+      t10_sica_accuracy: 0.683
+      t10_delta_pp: -1.7
+      t10_discordant_sica: 1
+      t10_discordant_sc: 2
+      t10_mcnemar_p: 0.56
+      t10_extraction_rate: 0.87
+      baseline_t07_c0_pct: 53.3
+      baseline_t07_delta_pp: 0.0
+      c0_monotonic_increase: true
+      c0_sequence: 28.3% → 41.7% → 53.3% → 68.3%
+      max_abs_delta_pp: 1.7
+      all_p_gt_020: true
+    result_rationale: "Temperature 直接控制 sampling distribution entropy, 因此 C0 随 T 单调递增:\
+      \ T=0.3 时 logit distribution 尖锐, traces 集中到 modal answer, 仅 17 题多候选; T=1.0 时分布平坦,\
+      \ 41 题多候选。这是 structural: T→entropy→C0 是因果链。\nSC accuracy 随 T 先平后降: T=0.3-0.7\
+      \ SC≈73-77% (集中在正确答案近邻), T=1.0 SC 降到 70% (更多随机错误破坏多数票)。已知 SC behavior。\nSICA-SC\
+      \ gap 在所有 T 下 |Δ| ≤ 1.7pp: - T=0.3 (C0=28%): 仅 17 题多候选, 1 discordant, 1:1 →\
+      \ Δ=0。少数 multi-candidate\n  问题上 constraints 恰好一胜一负。\n- T=0.5 (C0=42%): 25 题多候选,\
+      \ constraints 仍 non-discriminative → Δ=0。\n  更多 problems 可操作, 但操作方向随机。\n- T=1.0\
+      \ (C0=68%): 41 题多候选, constraints 质量因 noisier traces 进一步下降\n  (高温 traces 更长、更散漫,\
+      \ extraction noise 增加) → Δ=-1.7pp。MaxSAT 在\n  嘈杂 constraints 上做了一次净错误排除。\n\n\
+      All p>0.20 at n=60 (SE≈5-6pp)。True effect = 0 at all temperatures。\n"
+    tables:
+    - '§5 Table: Temperature ablation (T × C0 × SC × SICA × Δ)'
+    figures_description:
+    - '§5 Figure (dual-axis): Left y=C0 (blue bars), 单调递增 28→42→53→68。 Right y=SICA-SC
+      gap (red line+dots), 平坦在 0 附近, error bars 均跨零。 X-axis: T (0.3, 0.5, 0.7, 1.0)。Caption:
+      ''Increasing temperature monotonically increases output diversity (C0) but does
+      not improve SICA over SC, confirming the capability trap is structural, not
+      a tuning failure.''
+
+      '
+    - 'Alternative: 2×2 panel, each T 一个 mini bar chart (SC vs SICA)。 C0 标注在每个 panel
+      上。Visual: bars 等高, C0 label 递增。
+
+      '
+    analysis: 'Temperature ablation 是论文最强 causal evidence: 通过实验操控 diversity (非仅 跨模型观察),
+      确认 diversity↑ 不改善 SICA。排除 confounders: 同一模型、同一数据、 只改 T, C0 从 28% 到 68% 连续变化,
+      gap 恒为 0。如 reviewer 问 ''maybe you haven''t found the right diversity level'':
+      this answers definitively — we swept the full range, it doesn''t help。与 F2 互补:
+      F2 shows WHY (precision≈0.50), temp ablation shows THAT (gap=0 at all diversity
+      levels)。§5 new evidence for EMNLP submission。
+
+      '
+  - name: gsm8k_pilot_30q
+    plan_id: what-if-gsm8k
+    description: 等同 exp-012。Qwen-14B on GSM8K 30q, 数学推理域 pilot
+    expected_results:
+      note: 同 exp-012, 参见上方 gsm8k_pilot_14b entry
+      n: 30
+      k: 12
+      sica_accuracy: 0.867
+      sc_accuracy: 0.867
+      delta_pp: 0.0
+      multi_candidate_rate: 0.1
+      extraction_rate: 0.75
+      model: Qwen2.5-14B-Instruct
+      dataset: GSM8K
+    result_rationale: '与 exp-012 相同实验。14B 在 GSM8K accuracy ~87%, C0 ~10%。数学推理的 open-ended
+      answer space (具体数字) 理论上增加 diversity, 但 14B 能力收敛到正确数值。 Extraction rate 偏低 (75%)
+      因为数值计算难以 FOL 化。SICA ≡ SC。 作为 appendix cross-domain data point, 为 ''what about
+      math'' reviewer concern 提供证据。
+
+      '
+    tables:
+    - 'Appendix: GSM8K row (同 exp-012)'
+    figures_description:
+    - 'F4 data point: GSM8K C0=10%, Δ=0'
+    analysis: '与 exp-012 完全重复。收录条件: 如果 GPU budget 允许, 作为第四个 domain 进入 appendix (主文已有
+      FOLIO + StrategyQA + ARC + ProofWriter 四域)。'
+  review_report: "---\ndream_id: dream_20260517T144412\ntier: best\noverall_score:\
+    \ 3.5/6 Borderline\ntimestamp: 2026-05-17T15:52:43.986152+00:00\n---\n\n# Dream\
+    \ Review Report: \"The Capability Trap: Why Symbolic Consensus Cannot Beat Majority\
+    \ Voting for LLM Reasoning\"\n\n**dream_id:** 20260517T144412\n**Review mode:**\
+    \ full (2 Reviewers, complete roundtable)\n**Date:** 2026-05-17\n\n---\n\n## Roundtable\
+    \ Summary\n\n| Reviewer | Focus | Independent Score | Post-Roundtable Score |\
+    \ Confidence |\n|----------|-------|------------------|-----------------------|------------|\n\
+    | R1 | Methods + Experiments | 4/6 (Weak Accept) | 4/6 (Weak Accept) | 4/5 |\n\
+    | R2 | Novelty + Related Work | 3/6 (Weak Reject) | 3/6 (Weak Reject) | 4/5 |\n\
+    | **Consensus** | | | **3.5/6 (Borderline)** | **4/5** |\n\n---\n\n## Step 1:\
+    \ Independent Reviews\n\n### R1 (Methods + Experiments)\n\n**Strengths identified:**\n\
+    - S1: The constraint ablation (Table 3) is the paper's strongest evidence. MAX-SAT,\
+    \ count-only, and random-weight produce 802/804 identical answers (McNemar p=0.99).\
+    \ This convincingly demonstrates the solver adds no value beyond counting.\n-\
+    \ S2: Per-problem constraint precision analysis (n=307, mean=0.505, flat regression\
+    \ slope=0.003 against vote entropy) is methodologically sound and establishes\
+    \ the mechanism at fine granularity.\n- S3: Honest negative result. The authors'\
+    \ pivot from seeking positive results to diagnosing failure lends credibility.\n\
+    - S4: C0 as a practitioner-facing diagnostic is simple and actionable.\n- S5:\
+    \ Overhead analysis (49% wall-time for zero gain, solver <0.01% of time) is a\
+    \ useful practical contribution.\n- S6: Qualitative analysis (Section 6.4) identifying\
+    \ that constraints formalize premises (~78% shared) rather than reasoning steps\
+    \ is insightful.\n\n**Weaknesses identified:**\n- W1 (Major): **Underpowered non-central\
+    \ experiments.** 8 of 9 conditions use n≤60 (SE ≈ 5-8pp). These experiments have\
+    \ <15% power to detect effects of 3pp. The combined N>1,300 figure is misleading\
+    \ because 804 come from one model on one domain. The paper draws sweeping conclusions\
+    \ from experiments that cannot detect effects smaller than ~10pp.\n- W2 (Major):\
+    \ **Self-extraction confound.** The same model generates traces and extracts constraints.\
+    \ A model that makes a reasoning error will likely extract constraints consistent\
+    \ with that error. Without testing a stronger/separate extraction model, the paper\
+    \ cannot distinguish \"symbolic consensus is fundamentally limited\" from \"LLM\
+    \ self-extraction of constraints is limited.\"\n- W3 (Major): **Domain imbalance.**\
+    \ SICA is genuinely tested (C0>20%) almost exclusively on formal logic (FOLIO+ProofWriter).\
+    \ On StrategyQA (C0=10%), ARC (C0=5%), and GSM8K (C0=10%), the model's high accuracy\
+    \ suppresses diversity, making these conditions uninformative about the method's\
+    \ potential. Claiming \"3 domains\" is technically true but substantively misleading.\n\
+    - W4 (Moderate): **Broken figure cross-references.** F2 (hero scatter plot) and\
+    \ F4 (C0 vs gap) are referenced as \"Figure ??\" in the text, indicating broken\
+    \ LaTeX references. The paper's most important visualizations may not be rendered.\n\
+    - W5 (Moderate): **8 references** is far below venue standards.\n- W6 (Minor):\
+    \ C0 thresholds (<5%, >20%) are empirically derived from limited data. Generalization\
+    \ to other models/domains/formalisms is unknown.\n\n**R1 Questions for Authors:**\n\
+    1. Have you considered using a stronger model for constraint extraction while\
+    \ keeping the trace generation model constant?\n2. How does constraint precision\
+    \ vary across the other 4 models (not just Qwen-14B)?\n3. Have you considered\
+    \ running the temperature ablation at powered sample sizes (n=804)?\n4. The framing\
+    \ document references Mistral-7B (n=60, Δ=0.0) but this does not appear in Table\
+    \ 1. Was this experiment completed?\n5. For the 2 problems where MAX-SAT and count-only\
+    \ disagree, can you characterize what makes them different?\n\n### R2 (Novelty\
+    \ + Related Work)\n\n**Strengths identified:**\n- S1: Clear narrative structure\
+    \ (problem → method → negative result → mechanism → diagnostic).\n- S2: The mechanism\
+    \ analysis is a genuine empirical insight. The combination of per-problem precision\
+    \ and constraint ablation provides convincing evidence for why the method fails.\n\
+    - S3: Honest framing of negative results is commendable.\n- S4: Tables are well-formatted\
+    \ with consistent precision and appropriate statistical tests.\n\n**Weaknesses\
+    \ identified:**\n- W1 (Major): **Limited novelty.** The capability trap is a useful\
+    \ label but the underlying finding is expected. Logic-LM and LINC already document\
+    \ that LLM-to-FOL translation is error-prone. That aggregating noisy extractions\
+    \ across K traces does not produce discriminative signal follows predictably.\
+    \ The diversity-quality tension is a well-known property of LLM scaling.\n- W2\
+    \ (Major): **Over-generalized claims.** The title \"Why Symbolic Consensus Cannot\
+    \ Beat Majority Voting\" implies a general impossibility result, but only one\
+    \ specific pipeline (LLM self-extracted FOL + MAX-SAT) is tested. Other symbolic\
+    \ methods (DyLoS, Aristotle, FoVer, LogicAgent) reportedly achieve gains on the\
+    \ same benchmarks (FOLIO, ProofWriter). The paper conflates \"our method doesn't\
+    \ work\" with \"this class of methods can't work.\"\n- W3 (Major): **8 references\
+    \ is critically below venue standards** (EMNLP expects 30-60). Missing critical\
+    \ citations include:\n  - Loo et al. 2025 (SC scaling plateaus) — directly contextualizes\
+    \ QwQ-32B finding\n  - Snell et al. 2025 (test-time compute scaling, ICLR Oral)\
+    \ — contextualizes diversity-capability relationship\n  - DyLoS (EACL 2026), FoVer\
+    \ (TACL 2025), Aristotle (ACL 2025) — neuro-symbolic methods that work on FOLIO/ProofWriter\n\
+    \  - DeepSeek-R1 technical report — essential for reasoning model characterization\n\
+    \  - Taubenfeld et al. 2025 (confidence-weighted SC) — the paper cites their 2024\
+    \ debate biases paper instead\n  - Wan et al. 2024 (RASC), LogicAgent, SATBench,\
+    \ etc.\n- W4 (Major): **No figures rendered.** The hero scatter plot (F2) and\
+    \ C0-vs-gap plot (F4) are described textually but not included. For a paper whose\
+    \ central claim is about diversity-quality relationships, this is a serious presentation\
+    \ failure.\n- W5 (Moderate): **C0 diagnostic is trivially obvious** as a metric\
+    \ (it is the multi-candidate rate that SC already computes). The paper's own regression\
+    \ (slope=-0.02, r²=0.06, p=0.40) shows C0 has no continuous predictive power,\
+    \ only binary filter value.\n- W6 (Moderate): **Temperature ablation labeled \"\
+    causal\" is confounded.** Temperature simultaneously affects diversity, trace\
+    \ quality (SC drops 76.7→70.0%), and extraction quality (rate drops 91→87%). The\
+    \ null gap at high temperature could reflect worse constraints from noisier traces,\
+    \ not a structural limitation.\n- W7 (Moderate): **The paper attacks a method\
+    \ (SICA) the authors themselves designed.** No established community is building\
+    \ on this paradigm, limiting the practical impact of disproving it.\n\n**R2 Questions\
+    \ for Authors:**\n1. How do you reconcile \"symbolic consensus cannot beat majority\
+    \ voting\" with DyLoS, Aristotle, and FoVer achieving gains on the exact same\
+    \ benchmarks?\n2. Why not use FOLIO's gold FOL annotations as an oracle to separate\
+    \ extraction failure from aggregation failure?\n3. Is the Taubenfeld citation\
+    \ intentionally the 2024 debate biases paper, or should it be the 2025 confidence-weighted\
+    \ SC paper?\n4. The constraint-sharing analysis (78% shared, 12% discriminative)\
+    \ covers only 8 problems. Has this been verified at scale?\n5. Have you considered\
+    \ comparison against a Best-of-N with an off-the-shelf reward model?\n\n---\n\n\
+    ## Step 2: Cross-Sharing\n\nR1 and R2 exchanged reviews. Key reactions:\n\n**R1\
+    \ on R2's points:** R1 agrees that the reference count is critically low and that\
+    \ the over-generalization of claims is a substantive issue, not just a framing\
+    \ issue. R1 acknowledges the importance of comparing against methods that demonstrably\
+    \ work on FOLIO/ProofWriter. R1 maintains that the empirical mechanism analysis\
+    \ has independent value even if the finding is \"expected.\"\n\n**R2 on R1's points:**\
+    \ R2 agrees that the constraint ablation (802/804) and per-problem precision analysis\
+    \ are methodologically strong. R2 emphasizes that even this strong mechanism evidence\
+    \ is weakened by the self-extraction confound: the ablation shows SICA's specific\
+    \ constraints are vacuous, not that all possible constraint-based aggregation\
+    \ is vacuous.\n\n---\n\n## Step 3: Convergence\n\n### Points of Agreement (Strong\
+    \ Consensus)\n\n1. **The mechanism analysis is the paper's core contribution.**\
+    \ Both reviewers agree that the combination of per-problem constraint precision\
+    \ (Table 2, n=307, mean=0.505) and the constraint ablation (Table 3, 802/804 agreement)\
+    \ provides convincing evidence that, in the tested configuration, MAX-SAT optimization\
+    \ degenerates to counting. This is empirically well-executed.\n\n2. **8 references\
+    \ is a critical deficiency.** Both reviewers independently flagged this as unacceptable\
+    \ for a top venue. The paper's own literature map identifies 25+ relevant papers,\
+    \ most absent from the submission.\n\n3. **The self-extraction confound is a major\
+    \ unaddressed gap.** Using the same model for trace generation and constraint\
+    \ extraction conflates extraction quality with aggregation limitations. Without\
+    \ a stronger/separate extractor or gold-FOL oracle experiment, the paper cannot\
+    \ distinguish \"symbolic consensus is fundamentally limited\" from \"LLM self-extraction\
+    \ is limited.\"\n\n4. **Claims substantially exceed evidence.** The title generalizes\
+    \ to \"symbolic consensus\" but only one pipeline is tested. The domain coverage\
+    \ claim (\"3 domains\") is undermined by the fact that non-logic domains have\
+    \ C0<10%, making them uninformative. The \"N>1,300\" figure is dominated by one\
+    \ model on one domain pair.\n\n5. **Missing figures are a serious gap.** The hero\
+    \ figure (F2) and diagnostic plot (F4) are referenced but not rendered, creating\
+    \ broken cross-references and eliminating the paper's most important visual evidence.\n\
+    \n6. **Non-central experiments are underpowered.** 8 of 9 conditions at n≤60 cannot\
+    \ detect effects smaller than ~10pp. The paper's breadth-over-depth design trades\
+    \ statistical power for model/domain coverage, but the resulting evidence is too\
+    \ thin to support the sweeping conclusions drawn.\n\n### Point of Disagreement\n\
+    \n**C0 diagnostic value and overall score:**\n- R1 views C0 as a simple but practically\
+    \ useful contribution (the binary classification into degenerate/trapped regimes\
+    \ provides clear guidance). Combined with the mechanism analysis, R1 sees enough\
+    \ value for a borderline accept (4/6).\n- R2 views C0 as trivially obvious (the\
+    \ multi-candidate rate is already implicit in SC) and the finding as largely expected\
+    \ from prior work on FOL extraction noise. Combined with the thin references and\
+    \ over-generalized claims, R2 sees the paper below the acceptance bar (3/6).\n\
+    \n**Resolution:** Both reviewers acknowledge the other's position as reasonable.\
+    \ The disagreement reflects different weighting of \"practical value of systematic\
+    \ negative result\" (R1) vs. \"novelty bar for top venue\" (R2). The consensus\
+    \ score is 3.5/6 (borderline), with the paper's fate hinging on whether the venue\
+    \ values systematic empirical work on negative results or demands higher conceptual\
+    \ novelty.\n\n---\n\n## Step 4: Consolidated Assessment\n\n### Overall Score:\
+    \ 3.5/6 (Borderline Reject-Accept)\n\n### Confidence: 4/5\n\n### Meta-Review\n\
+    \nThis paper presents a systematic study of Symbolic Invariant Consensus Aggregation\
+    \ (SICA) and finds it provides no accuracy gain over Self-Consistency (majority\
+    \ voting) across multiple models and domains. The core mechanism analysis is well-executed:\
+    \ the constraint ablation (MAX-SAT ≈ count-only ≈ random-weight, 802/804 agreement)\
+    \ and per-problem precision analysis (mean=0.505, flat against vote entropy) convincingly\
+    \ demonstrate that, in the tested configuration, LLM-extracted FOL constraints\
+    \ lack discriminative power and the MAX-SAT solver degenerates to counting.\n\n\
+    However, the paper has several critical issues that prevent a clear recommendation\
+    \ for acceptance:\n\n**1. Scope-evidence mismatch (both reviewers, highest priority).**\
+    \ The title and claims generalize to \"symbolic consensus\" broadly, but evidence\
+    \ covers one specific pipeline. Other symbolic methods (DyLoS, Aristotle, FoVer)\
+    \ reportedly achieve gains on the same benchmarks. The self-extraction confound\
+    \ means the paper demonstrates \"LLM self-extracted FOL constraints are vacuous\"\
+    \ rather than \"symbolic consensus is impossible.\" This distinction is fundamental\
+    \ to the paper's contribution and must be addressed.\n\n**2. Critically thin scholarship\
+    \ (both reviewers).** 8 references is unacceptable. The paper omits directly relevant\
+    \ work on SC scaling (Loo et al. 2025), test-time compute (Snell et al. 2025),\
+    \ neuro-symbolic methods that work on the tested benchmarks (DyLoS, FoVer, Aristotle),\
+    \ and reasoning models (DeepSeek-R1). The Related Work section at ~0.5 pages is\
+    \ insufficient for positioning at the intersection of self-consistency, neuro-symbolic\
+    \ reasoning, and test-time compute.\n\n**3. Missing figures (both reviewers).**\
+    \ The hero scatter plot (F2) and C0-vs-gap plot (F4) are described textually but\
+    \ not rendered, with broken LaTeX cross-references (\"Figure ??\"). These are\
+    \ the paper's most important visualizations.\n\n**4. Statistical power limitations\
+    \ (R1 primary, R2 concurs).** The powered experiment (n=804, Qwen-14B, FOLIO+PW)\
+    \ is strong, but 8 other conditions at n≤60 cannot detect effects under ~10pp.\
+    \ The \"3 domains\" claim is undermined by degenerate C0 on non-logic domains.\n\
+    \n**5. Novelty concerns (R2 primary).** The capability trap, while well-named,\
+    \ describes a predictable consequence of known FOL extraction limitations. The\
+    \ C0 diagnostic has limited incremental value.\n\n### Actionable Recommendations\
+    \ (Priority Order)\n\n1. **Narrow claims to match evidence.** Retitle to specify\
+    \ the tested pipeline (e.g., \"LLM-Extracted FOL Constraints\" not \"Symbolic\
+    \ Consensus\"). Acknowledge methods that achieve gains on the same benchmarks\
+    \ and explain why SICA's failure does not generalize.\n\n2. **Expand references\
+    \ to 30+.** The project's own literature map provides the missing citations. At\
+    \ minimum add: Loo et al. 2025, Snell et al. 2025, DeepSeek-R1 report, DyLoS,\
+    \ FoVer, Aristotle, Taubenfeld et al. 2025 (correct citation), LogicAgent.\n\n\
+    3. **Include F2 and F4 as actual rendered figures.** Fix the LaTeX cross-references.\
+    \ These visualizations are critical to the paper's argument.\n\n4. **Add a gold-FOL\
+    \ oracle experiment** (FOLIO provides human-authored FOL). This would definitively\
+    \ separate extraction failure from aggregation failure and is the single experiment\
+    \ most likely to change the paper's contribution level.\n\n5. **Add a stronger-extractor\
+    \ control.** Use a larger model (e.g., 72B or a frontier model) for constraint\
+    \ extraction while keeping 14B for trace generation. This tests whether extraction\
+    \ quality is the binding constraint.\n\n6. **Run powered temperature ablation.**\
+    \ Repeat T=0.3 and T=1.0 on the full n=804 dataset to transform the causal claim\
+    \ from suggestive to definitive.\n\n7. **Report QwQ-32B accuracy values in Table\
+    \ 1** (currently shown as \"--\").\n\n8. **Include Mistral-7B results** if available\
+    \ (referenced in framing documents but absent from paper).\n\n### Experiment Coverage\
+    \ Assessment\n\nCompared to the 16 planned experiments in the review context:\n\
+    \n| Experiment | In Paper? | Coverage Quality |\n|-----------|-----------|-----------------|\n\
+    | sica_k_ablation_14b (exp-002) | Yes (Table 5) | Adequate, n=60 |\n| tiebreak_baseline\
+    \ (exp-003) | Yes (Table 4) | Adequate |\n| sica_constraint_ablation (exp-013)\
+    \ | Yes (Table 3) | Strong, n=804 |\n| sica_strategyqa_14b (exp-017) | Yes (Table\
+    \ 1) | Weak, C0=10% degenerate |\n| sica_arc_challenge_14b (exp-018) | Yes (Table\
+    \ 1) | Weak, C0=5% degenerate |\n| constraint_quality_correlation (exp-019) |\
+    \ Yes (Table 2) | Strong, n=307 |\n| sica_7b_scaling (exp-004) | Yes (Table 1,\
+    \ 7) | Adequate |\n| qwq_32b_operating_regime (exp-005) | Yes (Table 1, App A.1)\
+    \ | Adequate |\n| c0_diagnostic_validation (exp-006) | Partial (Section 6.1, no\
+    \ figure) | Missing F4 figure |\n| sica_72b_awq (exp-007) | Yes (Table 1, 7) |\
+    \ Adequate |\n| overhead_analysis (exp-009) | Yes (Section 6.3) | Adequate |\n\
+    | sica_llama_8b (exp-011) | Yes (Table 1) | Adequate, n=60 |\n| gsm8k_pilot_14b\
+    \ (exp-012) | Yes (App A.3) | Weak, n=30 pilot |\n| sica_deepseek_r1 (exp-014)\
+    \ | Yes (Table 1) | Adequate |\n| logic_lm_baseline (exp-015) | Yes (Section 6.2)\
+    \ | Adequate |\n| weighted_sc_baseline (exp-016) | Yes (Section 6.2) | Adequate\
+    \ |\n| temperature_ablation (what-if-temp) | Yes (Table 6, Section 5) | Adequate,\
+    \ n=60 |\n| case_studies (exp-008) | Partial (Section 6.4) | Text only, no figure\
+    \ |\n\nCoverage is generally good (16/16 experiments represented), but several\
+    \ lack rendered figures and some key conditions are underpowered or degenerate.\
+    \ The paper benefits from breadth but would benefit more from depth on 2-3 critical\
+    \ experiments.\n\n### Final Verdict\n\nThe paper has a solid empirical core (Tables\
+    \ 2-3) but needs significant revision in claim scoping, scholarship, and presentation\
+    \ before it meets the bar for a top ML venue. The mechanism analysis is publishable-quality\
+    \ work wrapped in over-generalized framing with critically thin references and\
+    \ missing figures. With the recommended revisions (especially items 1-5), this\
+    \ could become a solid contribution."
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260517T144412/median/paper.pdf
+  imagined_experiments:
+  - name: sica_k_ablation_14b
+    plan_id: exp-002
+    description: 'Qwen2.5-14B K=6,8,11,12,16,20 on D012 60 questions。 核心问题：SICA 是否仅在
+      even-K tie 时有价值？K=11 (odd) 是关键测试。
+
+      '
+    expected_results:
+      K6_sica_accuracy: 0.733
+      K6_sc_accuracy: 0.733
+      K6_delta_pp: 0.0
+      K8_sica_accuracy: 0.717
+      K8_sc_accuracy: 0.733
+      K8_delta_pp: -1.7
+      K11_sica_accuracy: 0.733
+      K11_sc_accuracy: 0.733
+      K11_delta_pp: 0.0
+      K12_sica_accuracy: 0.733
+      K12_sc_accuracy: 0.7
+      K12_delta_pp: 3.3
+      K16_sica_accuracy: 0.717
+      K16_sc_accuracy: 0.733
+      K16_delta_pp: -1.7
+      K20_sica_accuracy: 0.7
+      K20_sc_accuracy: 0.717
+      K20_delta_pp: -1.7
+      max_abs_delta_pp: 3.3
+      all_p_gt_015: true
+      K11_odd_gap: 0.0
+      sica_leq_sc_at_large_K: true
+    result_rationale: 'n=60 功效不足——每个 K 条件的 SE ≈ 5-6pp，因此 ±3pp 波动完全在噪声范围内。 K=11 (odd)
+      delta=0 是关键信号：odd-K 几乎无 tie，SICA 无 tiebreak 优势时退化为 SC， 证明 SICA 的全部增益来自 tiebreak
+      而非 constraint 信息。 大 K (16,20) 轻微劣于 SC，因为更多 trace 引入更多低质量 constraints， MaxSAT
+      在噪声 constraints 上的 exclusion 偶尔排除正确答案。 无任何 K 值达到 p < 0.15，与 median 档 "零个实验 p
+      < 0.10" 一致。
+
+      '
+    tables:
+    - name: T_K_ablation
+      description: K × (SICA, SC, Δpp, p-value) 表格，附 tiebreak frequency 列
+    figures_description:
+    - 'Line plot: K (x) vs Δpp (y)，flat at ~0 with ±3pp noise band。标注 K=11 odd 点。'
+    analysis: 'SICA ≤ SC at all K ≥ 16; K=11 (odd) gap=0 确认 tie-only mechanism。 Larger
+      K does not help — noise injection from additional low-quality constraints。 结论：SICA
+      对 K 值不敏感，其全部价值仅在 even-K tie 场景。
+
+      '
+  - name: tiebreak_baseline_analysis
+    plan_id: exp-003
+    description: 'CPU-only：SICA vs SC-random-tiebreak vs SC-deterministic vs SC-alphabetical
+      在所有已有数据上。量化 SICA 的 tiebreak 质量。
+
+      '
+    expected_results:
+      n_tied_questions: 32
+      tied_question_pct: 5.3
+      sica_tiebreak_accuracy: 0.781
+      random_tiebreak_accuracy: 0.5
+      alphabetical_tiebreak_accuracy: 0.594
+      first_seen_tiebreak_accuracy: 0.438
+      sica_vs_random_on_tied_p: 0.031
+      overall_sica_accuracy: 0.765
+      overall_random_tiebreak_accuracy: 0.756
+      overall_gap_from_tiebreak_pp: 0.9
+    result_rationale: 'Tied questions 仅占 ~5% (约 32/600+)，因此 tiebreak quality 对 overall
+      accuracy 的贡献 被 denominator 严重稀释（0.78 × 5% ≈ +0.9pp）。SICA 在 tied subset 上确实优于
+      random (78% vs 50%, p~0.03)，但 tied subset 太小，使得 overall 影响可忽略。 这与 median 档一致：mechanism
+      在微观上有效（tiebreak 确实更好），但 operating regime 太窄（ties 太少）， 整体收益被噪声淹没。alphabetical
+      > random 因为正确答案在某些 domain 有字母偏好。
+
+      '
+    tables:
+    - name: T_tiebreak
+      description: Tiebreak method × (tied accuracy, overall accuracy, Δ vs random)
+    figures_description: []
+    analysis: 'SICA is a superior tiebreaker (78% vs 50%) but ties are ≤5% of problems。
+      Overall impact: <1pp。Confirms capability trap at scale — even when constraints
+      have information, it''s exercised too rarely to matter。
+
+      '
+  - name: sica_7b_scaling
+    plan_id: exp-004
+    description: 'Qwen2.5-7B-Instruct on D012 60 questions, K=12, T=0.7。 测试: weaker
+      model → higher C0 → larger SICA gain?
+
+      '
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.583
+      sc_accuracy: 0.567
+      delta_pp: 1.7
+      mcnemar_p: 0.73
+      multi_candidate_rate: 0.617
+      c0_pct: 61.7
+      extraction_rate: 0.82
+      answer_extraction_rate: 0.88
+      contradiction_rate: 0.068
+      baseline_acc_drop_vs_14b: -16.3
+      constraint_precision_mean: 0.51
+    result_rationale: '7B 能力弱于 14B，SC baseline ~57% (vs 14B 的 70%)。更弱的模型产生更多 diversity
+      (C0 ~62% vs 14B 的 ~46%)，但提取的 constraints 质量也更差 (precision ~0.51 ≈ random)。 更高
+      C0 × 更低 precision = 净效果为零，delta +1.7pp 完全在 n=60 噪声范围内 (SE ≈ 6pp)。 这正是 capability
+      trap：diversity 增加了但 discriminative power 没有跟上。 extraction_rate 下降 (0.82 vs 0.89)
+      反映 7B 生成的 reasoning trace 格式更不规范。 此结果填入 C0 scatter 的 instruction-scale cluster，C0=62%
+      但 gap≈0。
+
+      '
+    tables:
+    - name: T_7b_row
+      description: 添加到 T1 Main Results 的一行
+    figures_description:
+    - F4 C0 vs Gap scatter 增加一点 (C0=62%, Δ=+1.7pp)，在 instruction cluster 内。
+    analysis: 'C0 从 46%→62% 但 gap 不变。Confirms: diversity alone is insufficient。 7B
+      落入 instruction-scale cluster (C0=40-65%)，无中间态，支持 binary C0 interpretation。
+
+      '
+  - name: qwq_32b_operating_regime
+    plan_id: exp-005
+    description: 'QwQ-32B 已有 MVP 数据 (AIME/MATH/PW/FOLIO) 重新格式化为 paper 的 Operating
+      Regime 节。 CPU-only，无新 GPU。
+
+      '
+    expected_results:
+      total_problems: 46
+      qwq_c0_effective_pct: 2.8
+      qwq_c0_nominal_pct: 10.5
+      aime_sica_accuracy: 0.727
+      aime_sc_accuracy: 0.727
+      aime_delta_pp: 0.0
+      aime_c0_pct: 0.0
+      aime_n: 22
+      proofwriter_sica_accuracy: 0.588
+      proofwriter_sc_accuracy: 0.647
+      proofwriter_delta_pp: -5.9
+      proofwriter_c0_pct: 18.8
+      proofwriter_n: 17
+      folio_c0_pct: 0.0
+      folio_n: 2
+      temp_diversity_n: 5
+      temp_diversity_divergence: 0
+    result_rationale: 'QwQ-32B 是 full reasoning model，deterministic chain dominates
+      sampling randomness。 即使 T=0.7-1.0，reasoning chain 的确定性使得 12 个 trace 几乎总是收敛到同一答案，
+      effective C0 ~3% (只有少数 PW 题有 2 个 candidate)。SICA ≡ SC structurally—— MaxSAT
+      exclusion 操作无法改变 unanimous vote。PW 上 -5.9pp 来自 2 个 exclusion 意外排除了正确答案的少数 multi-candidate
+      问题。 这是 capability trap 的 "左墙"：reasoning model 太 consistent → 无 diversity → SICA
+      redundant。
+
+      '
+    tables:
+    - name: T_qwq_row
+      description: QwQ-32B 行添加到 T1，C0<5% 标注 "degenerates to SC"
+    figures_description:
+    - 'F4: QwQ-32B 点在 C0≈3% 处，gap=0。与 instruction cluster (C0=40-60%) 形成鲜明两簇。'
+    analysis: 'QwQ-32B: C0<5%, SICA≡SC。Reasoning model 的 chain-of-thought 消除了 output
+      diversity， 使 symbolic consensus 退化为 majority vote。支持 Claim 2 的 "reasoning model"
+      分支。
+
+      '
+  - name: c0_diagnostic_validation
+    plan_id: exp-006
+    description: 'CPU-only: 汇总所有 model × domain 的 C0 vs SICA-SC gap scatter。验证 C0
+      作为 predictor。
+
+      '
+    expected_results:
+      n_datapoints: 12
+      c0_cluster_high_mean: 48.2
+      c0_cluster_high_range:
+      - 38
+      - 62
+      c0_cluster_high_gap_mean_pp: 0.3
+      c0_cluster_low_mean: 3.1
+      c0_cluster_low_range:
+      - 0
+      - 5
+      c0_cluster_low_gap_mean_pp: -1.2
+      n_distinct_clusters: 2
+      intermediate_c0_points: 0
+      pearson_r: 0.08
+      pearson_p: 0.81
+      c0_below_5_always_gap_leq_0: true
+      c0_above_30_gap_range_pp:
+      - -3.3
+      - 3.3
+    result_rationale: 'Median 档只有 2 个 C0 cluster：instruction-scale (C0=38-62%) 和 reasoning
+      (C0<5%)。 无中间态——没有 C0=15-25% 的数据点（7B/14B 都在 40%+ 区间，QwQ 在 <5%）。 两个 cluster 内
+      gap 方差大 (instruction cluster 内 Δ 从 -3.3pp 到 +3.3pp)， 因此 C0 vs gap 的线性相关极弱 (r≈0.08)。C0
+      唯一可靠的 predictive power 是 "C0<5% → gap=0"，即 binary gate，而非 gradient predictor。
+      这迫使 Claim 3 降级为 "binary early-stopping gate" 而非 "diagnostic predictor"。
+
+      '
+    tables:
+    - name: T_c0_scatter_data
+      description: Model × Domain × C0 × Δpp 汇总表
+    figures_description:
+    - 'F4 修订版: C0 (x) vs Δpp (y) scatter, 仅两簇, 无回归线。用虚线标注 C0=5% threshold。'
+    analysis: '仅 2 个 cluster，无 gradient。C0 的价值是 binary gate: C0<5% → 跳过 SICA。 C0>30%
+      不预测任何方向的 gain。Claim 3 降级为半页讨论。
+
+      '
+  - name: sica_72b_awq
+    plan_id: exp-007
+    description: 'Qwen2.5-72B-Instruct AWQ 4-bit on D012 60 questions, K=12, T=0.7。
+      Within-Qwen scaling: 高 baseline non-reasoning model。
+
+      '
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.817
+      sc_accuracy: 0.833
+      delta_pp: -1.7
+      mcnemar_p: 0.65
+      multi_candidate_rate: 0.383
+      c0_pct: 38.3
+      extraction_rate: 0.91
+      answer_extraction_rate: 1.0
+      contradiction_rate: 0.018
+      baseline_acc_gain_vs_14b: 13.3
+      constraint_precision_mean: 0.54
+    result_rationale: '72B 更强 → SC baseline 更高 (~83% vs 14B 的 70%)。C0 下降到 ~38% (vs
+      14B 的 46%) 因为更强模型更 consistent，但仍远高于 5% threshold → 落入 instruction-scale cluster。
+      Delta -1.7pp 在 n=60 噪声范围内。72B 的 constraints 质量略好 (precision 0.54) 但提升微弱，不足以改变
+      outcome。 关键贡献：在 C0 scatter 中填入 C0=38% 点，与 7B (C0=62%) 和 14B (C0=46%) 一起 展示 within-family
+      C0 随 scale 递减趋势，但三点都在 instruction cluster 内。 无中间态 (C0 没有从 40% 跌到 15%)——从 instruction
+      直接跳到 reasoning (<5%)。
+
+      '
+    tables:
+    - name: T_72b_row
+      description: 72B 行添加到 T1 Main Results
+    figures_description:
+    - 'F4: Qwen 三点 (7B C0=62%, 14B C0=46%, 72B C0=38%) 连线，都在 instruction cluster，gap≈0。'
+    analysis: '72B C0=38%，仍在 instruction cluster。Within-Qwen scaling 展示 C0 递减但无质变。
+      三个 Qwen scale 点都在 capability trap 内——更高 accuracy 但 constraints 仍不 discriminative。
+
+      '
+  - name: constraint_quality_case_studies
+    plan_id: exp-008
+    description: '5-10 个代表性问题的 constraint 质量定性分析。 Constraints 是否语义有意义？被排除的 constraints
+      是否对应推理错误？
+
+      '
+    expected_results:
+      n_cases: 8
+      constraints_syntactically_valid_pct: 85
+      constraints_semantically_relevant_pct: 62
+      constraints_discriminative_pct: 18
+      exclusion_correct_pct: 45
+      case_categories:
+        unanimous_correct: 3
+        unanimous_wrong: 1
+        multi_candidate_sica_correct: 2
+        multi_candidate_sica_wrong: 2
+    result_rationale: 'Median 档下，constraints 的核心问题是 discriminative power 不足而非 extraction
+      failure。 大多数 constraints 是合法 FOL 且语义相关 (~62%)，但只有 ~18% 能区分正确/错误答案。 原因：LLM 从
+      trace 中提取的 constraints 倾向于 tautological（"如果 A 那么 A" 型） 或 overly general（"答案必须是正数"
+      型），对所有 candidate answers 都满足。 被 MaxSAT exclusion 排除的 constraints 中，约一半确实对应推理错误
+      (45%)， 但另一半是有效但与 solver 冲突的 constraints——即 false positive exclusion。 这支持 capability
+      trap narrative：extraction 工作了，但提取出的东西缺乏信息量。
+
+      '
+    tables: []
+    figures_description:
+    - 'Box: 2 个对比 case study (一个 SICA 正确翻转，一个 SICA 错误翻转)，展示 constraint 质量差异。'
+    analysis: 'Constraints 有语法正确性但缺 discriminative power。Case studies 为 exp-013 的
+      "MaxSAT ≈ count-only" 提供定性解释：当 constraints 无法区分答案时， MaxSAT 的 satisfiability
+      reasoning 退化为 constraint counting。
+
+      '
+  - name: overhead_analysis
+    plan_id: exp-009
+    description: 'Wall-time breakdown: generation / constraint extraction / MaxSAT
+      solving。 每问题成本。
+
+      '
+    expected_results:
+      n: 804
+      mean_total_wall_s: 62.0
+      mean_trace_gen_s: 32.0
+      trace_gen_pct: 51.6
+      mean_extraction_s: 29.0
+      extraction_pct: 46.8
+      mean_dedup_s: 0.9
+      dedup_pct: 1.5
+      mean_maxsat_s: 0.004
+      maxsat_pct: 0.006
+      sica_overhead_vs_sc_pct: 48.4
+      sica_overhead_s_per_problem: 30.0
+      pw_overhead_pct: 51.0
+      folio_overhead_pct: 39.0
+    result_rationale: 'Trace generation 和 constraint extraction 各占 ~50% 时间。MaxSAT
+      solving 本身极快 (<0.01%)——Z3 在这个 scale 的 FOL 问题上几乎即时。核心 overhead 来自 LLM constraint
+      extraction call (对每个 trace 做一次 extraction prompt)。 这意味着 SICA 的计算成本是 SC 的 ~2x
+      (12 traces + 12 extraction calls vs 12 traces)。 对于 Δ≈0pp 的收益，~2x overhead 是不可接受的
+      ROI。 Median 档下这个数据直接支持 "practical recommendation: use SC" 的结论。
+
+      '
+    tables:
+    - name: T_overhead
+      description: Pipeline stage × (mean_s, pct, p50, p90)
+    figures_description:
+    - 'Stacked bar: trace_gen / extraction / dedup / maxsat 各阶段耗时占比。'
+    analysis: 'SICA 增加 ~49% overhead (主要是 constraint extraction LLM calls)。 结合 Δ≈0pp，cost-benefit
+      结论明确：SC 是更好的 default。
+
+      '
+  - name: sica_llama_8b
+    plan_id: exp-011
+    description: 'LLaMA-3.1-8B-Instruct on D012 60 questions, K=12。 第二个 non-Qwen family，消除
+      Qwen-specific artifact。
+
+      '
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.65
+      sc_accuracy: 0.6
+      delta_pp: 5.0
+      mcnemar_p: 0.29
+      multi_candidate_rate: 0.6
+      c0_pct: 60.0
+      extraction_rate: 0.86
+      answer_extraction_rate: 0.9
+      contradiction_rate: 0.053
+      truncated_traces: 40
+      discordant_sica_wins: 4
+      discordant_sc_wins: 1
+      proofwriter_sica: 0.6
+      proofwriter_sc: 0.567
+      proofwriter_delta_pp: 3.3
+      folio_sica: 0.7
+      folio_sc: 0.633
+      folio_delta_pp: 6.7
+    result_rationale: 'LLaMA-8B 是 median 档中 1-2 个 "方向性噪声点" 之一——Δ=+5pp 看似 positive
+      但 p=0.29 远超显著性阈值 (n=60 SE ≈ 6pp)。高 C0 (~60%) 反映 8B 模型能力不足导致的 高 diversity (多个
+      candidate 答案)。discordant pair 4:1 偏向 SICA 但样本太小。 关键：这不是 real signal，而是 n=60
+      的 sampling noise。exp-019 (n=200 StrategyQA) 和 exp-020 (n=204 FOLIO) 用 LLaMA-8B
+      做的 powered test 将显示 gap 收缩到 +2pp 和 -2.4pp，证明 D012 的 +5pp 是 upward noise。 truncated_traces=40
+      (7%) 反映 8B 生成更长更散的 reasoning traces。
+
+      '
+    tables:
+    - name: T_llama_row
+      description: LLaMA-8B 行添加到 T1 Main Results
+    figures_description: []
+    analysis: 'Δ=+5pp 是 n=60 噪声 (p=0.29)。将与 exp-019/020 的 powered tests 一起展示， 证明 small-n
+      估计的不可靠性。正文必须 hedge 此数据点。
+
+      '
+  - name: gsm8k_pilot_14b
+    plan_id: exp-012
+    description: 'Qwen2.5-14B on GSM8K 30 questions, K=12。 Cross-domain: 开放答案数学域的
+      C0 行为。
+
+      '
+    expected_results:
+      n: 30
+      k: 12
+      sica_accuracy: 0.867
+      sc_accuracy: 0.867
+      delta_pp: 0.0
+      multi_candidate_rate: 0.133
+      c0_pct: 13.3
+      extraction_rate: 0.93
+      constraint_precision_mean: 0.58
+    result_rationale: 'Qwen-14B 在 GSM8K 上 accuracy >85%，模型足够强使得大部分问题 12 个 trace 收敛到
+      同一正确答案。C0 ~13%——低于 NLI 域的 46% 但高于 reasoning model 的 <5%。 然而 n=30 仅 4 个 multi-candidate
+      问题，太少以至于 SICA 无法展示任何 signal。 此结果介于两个 cluster 之间 (C0=13% 在 5-30% 区间)，但 n 太小不能视为
+      可靠的 "intermediate" 数据点。在 exp-006 scatter 中标注为 pilot (open marker)。 constraint_precision
+      略高 (0.58) 因为数学 constraints 更 well-defined， 但样本太小无统计意义。
+
+      '
+    tables:
+    - name: T_gsm8k_pilot_row
+      description: GSM8K pilot 行，标注 n=30 pilot
+    figures_description: []
+    analysis: 'C0=13% — 低于 instruction-scale cluster 均值但 n 太小。 放入 appendix 作为 "domain
+      coverage" 数据点而非主 claim 的证据。
+
+      '
+  - name: constraint_ablation
+    plan_id: exp-013
+    description: 'CPU-only: MaxSAT vs count-only vs random-weight。 如果 MaxSAT ≈ count-only
+      → constraint satisfiability 信息无贡献， confirming capability trap mechanism。
+
+      '
+    expected_results:
+      n: 804
+      maxsat_accuracy: 0.765
+      count_only_accuracy: 0.766
+      random_weight_accuracy: 0.764
+      sc_baseline_accuracy: 0.762
+      maxsat_vs_countonly_delta_pp: -0.1
+      maxsat_vs_random_delta_pp: 0.1
+      countonly_vs_sc_delta_pp: 0.4
+      agreement_maxsat_countonly: 801
+      agreement_all_three: 799
+      mcnemar_maxsat_vs_countonly_p: 0.82
+      mcnemar_maxsat_vs_random_p: 0.78
+      problems_where_method_differs: 5
+    result_rationale: '这是 median 档的 make-or-break evidence。MaxSAT ≈ count-only ≈ random-weight
+      (三者在 804 题中 799 题给出相同答案)。这证明 Z3 solver 的 satisfiability reasoning 没有贡献任何信息——constraint
+      count 已经捕获了全部 signal。 原因：当 constraints 缺乏 discriminative power (precision ≈
+      0.53) 时， MaxSAT 的 "满足尽可能多 constraints" 策略退化为 "选择有最多 constraints 的答案"， 即 count-only。random-weight
+      也 ≈ count-only 因为权重在 noise 上的加和仍趋向 count。 5 个 divergent 问题中 MaxSAT 胜 2 败 3，无系统性优势。
+      这是 capability trap 的 mechanistic core：solver 是 vacuous layer。
+
+      '
+    tables:
+    - name: T3_constraint_ablation
+      description: Method × (accuracy, vs-SC Δpp, inter-method agreement rate)
+    figures_description:
+    - 'Bar chart: MaxSAT / count-only / random-weight / SC，四个几乎等高的 bar + error bars
+      重叠。'
+    analysis: 'MaxSAT ≈ count-only ≈ random-weight (agreement 99.4%)。 SAT solver 在
+      non-discriminative constraints 上是 no-op。 这是论文最重要的 mechanism evidence — 入 Section
+      5 正文。
+
+      '
+  - name: logic_lm_baseline
+    plan_id: exp-015
+    description: 'Logic-LM × K + majority vote on FOLIO。 用 exp-001 已有 traces 做 single-trace
+      FOL verification then vote。
+
+      '
+    expected_results:
+      n_folio: 204
+      logic_lm_k12_accuracy: 0.789
+      sc_k12_accuracy: 0.794
+      sica_k12_accuracy: 0.794
+      logic_lm_vs_sc_delta_pp: -0.5
+      logic_lm_vs_sica_delta_pp: -0.5
+      logic_lm_fol_verify_rate: 0.72
+      logic_lm_fol_reject_rate: 0.28
+      logic_lm_reject_correct_pct: 0.31
+    result_rationale: 'Logic-LM 对每个 trace 独立做 FOL verification，reject 不可验证的 traces，
+      然后对剩余 traces majority vote。FOL verification reject rate ~28%—— 很多 traces 的 FOL
+      无法被 solver 验证 (timeout, 格式错误, etc.)。 被 reject 的 traces 中 31% 实际上是正确的 → verification
+      本身有 noise。 最终 accuracy 0.789 ≈ SC (0.794)，因为 reject 噪声抵消了 verification 的 potential
+      benefit。Logic-LM × K 并不优于简单 SC。 这从另一个角度支持 capability trap：不仅 MaxSAT aggregation
+      无效， single-trace FOL verification 也无法 reliably 筛选 trace quality。
+
+      '
+    tables:
+    - name: T_logiclm_baseline
+      description: Logic-LM × K vs SC vs SICA on FOLIO
+    figures_description: []
+    analysis: 'Logic-LM × K ≈ SC ≈ SICA on FOLIO。FOL verification 本身 noisy (reject
+      31% correct traces)。 Symbolic methods 的 limitation 不限于 aggregation——单 trace
+      verification 也 unreliable。
+
+      '
+  - name: weighted_sc_baseline
+    plan_id: exp-016
+    description: 'Weighted SC (uniform / inv-length / length / constraint-count) on
+      exp-001 数据。 CPU-only。
+
+      '
+    expected_results:
+      n: 804
+      sc_uniform_accuracy: 0.762
+      inv_length_accuracy: 0.767
+      length_weighted_accuracy: 0.753
+      constraint_count_accuracy: 0.753
+      inv_length_vs_sc_p: 0.45
+      length_vs_sc_p: 0.15
+      constraint_count_vs_sc_p: 0.2
+      inv_length_vs_sica_p: 0.86
+      all_nonsignificant: true
+    result_rationale: 'inv-length 略好于 SC (+0.5pp) 因为更短 traces 倾向于更 confident 更 correct
+      (7B 级别下 长 traces 往往是 hedging / 错误推理的信号)。但 p=0.45 远非显著。 length-weighted 反而 worse
+      (-0.9pp) 因为长 traces 不一定更好。 constraint-count weighted 也 worse (-0.9pp) 因为更多 constraints
+      不等于更好的推理。 所有 weighting schemes 都 non-significant vs SC，SICA 无优势 vs inv-length。
+      结论：simple weighting 是 SICA 的直接竞争者，且同样无效。
+
+      '
+    tables:
+    - name: T_weighted_sc
+      description: Weighting method × (accuracy, Δ vs SC, p-value)
+    figures_description: []
+    analysis: '所有 weighting methods ≈ SC (none significant)。SICA 的 MaxSAT 不优于 simple
+      heuristics。 进一步确认 aggregation mechanism 无信息贡献。
+
+      '
+  - name: sica_strategyqa_14b
+    plan_id: exp-017
+    description: 'Qwen2.5-14B on StrategyQA 60 questions, K=12。 Commonsense reasoning,
+      binary answer, 预期 high diversity。
+
+      '
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.567
+      sc_accuracy: 0.533
+      delta_pp: 3.3
+      mcnemar_p: 0.48
+      bootstrap_p_delta_le_0: 0.13
+      multi_candidate_rate: 0.1
+      c0_pct: 10.0
+      extraction_rate_problem: 1.0
+      extraction_rate_trace: 0.7
+      contradiction_detected: 5
+      discordant_sica_wins: 2
+      discordant_sc_wins: 0
+    result_rationale: 'StrategyQA 是 binary (yes/no) → 14B 足够强使大部分问题 SC unanimous，
+      C0 仅 ~10% (低于预期的 35-50%)。binary answer space 限制了 diversity—— 不像 NLI 的 3-class
+      或 math 的 open-ended。 Delta +3.3pp 来自 2 个 discordant pairs (SICA 全赢)，但 n=60 binary
+      outcome 的噪声极大，p=0.48。bootstrap CI 包含 0。 这是 median 档的另一个 "方向性噪声点"——看似 positive
+      但不可靠。 extraction_rate_trace 仅 70% 因为 commonsense reasoning traces 格式更自由， FOL
+      extraction 常失败。这本身就是 capability trap 的一个 facet： 非形式推理更难转化为 formal constraints。
+
+      '
+    tables:
+    - name: T_strategyqa_row
+      description: StrategyQA 行添加到 T1 Main Results
+    figures_description: []
+    analysis: 'C0=10%，低于预期。Binary answer format 限制 diversity。 Δ=+3.3pp non-significant
+      (p=0.48)。Commonsense traces 的 extraction rate 较低。
+
+      '
+  - name: sica_arc_challenge_14b
+    plan_id: exp-018
+    description: 'Qwen2.5-14B on ARC-Challenge 60 questions, K=12。 Science reasoning,
+      4-choice。
+
+      '
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.95
+      sc_accuracy: 0.967
+      delta_pp: -1.7
+      multi_candidate_rate: 0.05
+      c0_pct: 5.0
+      extraction_rate: 1.0
+      contradiction_detected: 3
+      discordant_sica_wins: 0
+      discordant_sc_wins: 1
+    result_rationale: '14B 在 ARC-Challenge 上极强 (SC ~97%)，几乎所有问题 12 个 trace unanimous
+      correct。 C0 仅 ~5%——接近 reasoning model 的 cluster。仅 3 个 multi-candidate 问题， 其中
+      1 个 SICA exclusion 错误排除了正确答案 → Δ=-1.7pp。 ARC-Challenge 对 14B 太简单——ceiling effect
+      使得 SICA 无 operating space。 4-choice format 和 science domain 的 constraints 实际上
+      extraction 良好 (rate=1.0) 但无用武之地因为答案几乎 unanimous。 放入 T1 作为 "domain breadth" 证据，但
+      C0 ~5% 意味着 ARC 数据对 capability trap 的 mechanism 讨论贡献有限。
+
+      '
+    tables:
+    - name: T_arc_row
+      description: ARC-Challenge 行添加到 T1 Main Results
+    figures_description: []
+    analysis: 'C0=5%, SC 已 97%。Ceiling effect → SICA 无空间。 验证 capability trap 的另一面：当
+      model 够强时 diversity 消失。
+
+      '
+  - name: constraint_quality_correlation
+    plan_id: exp-019
+    description: 'CPU-only: per-problem constraint precision × vote entropy × C0 ×
+      SICA-SC gap。 F2 hero figure 的数据源。
+
+      '
+    expected_results:
+      n_per_problem: 307
+      constraint_precision_mean: 0.538
+      constraint_precision_std: 0.21
+      constraint_precision_median: 0.53
+      precision_vs_entropy_pearson_r: 0.09
+      precision_vs_entropy_pearson_p: 0.11
+      precision_vs_entropy_slope: 0.028
+      binned_precision_low_entropy: 0.51
+      binned_precision_mid_entropy: 0.54
+      binned_precision_high_entropy: 0.57
+      bin_n_low: 102
+      bin_n_mid: 105
+      bin_n_high: 100
+      binned_ci_overlap: true
+      aggregate_precision_by_domain:
+        proofwriter: 0.54
+        folio: 0.52
+        strategyqa: 0.55
+      f2_raw_scatter_r_squared: 0.008
+    result_rationale: 'Per-problem constraint precision 均值 0.538 (barely above random
+      0.50)， 与 entropy 有极弱正相关 (r=0.09, p=0.11)。raw scatter 极嘈杂 (R²=0.008) 因为每个 problem
+      的 constraint 数量变异大 (5-40+)，且 precision 的 per-problem 估计本身有高方差。 binned box-plot
+      显示方向性趋势 (low→mid→high entropy 对应 0.51→0.54→0.57 precision) 但 95% CI 重叠。这是 median
+      档定义的核心特征：aggregate 方向一致但 per-problem noise 大，需要 binned visualization 才可读。 F2
+      不能作为独立 evidence——必须与 exp-013 (MaxSAT ≈ count-only) 搭配。 正文承认 "per-problem precision
+      is noisy (σ=0.21)" 但强调 "aggregate constraint precision is consistently near
+      chance (0.52-0.56 across domains)"。
+
+      '
+    tables:
+    - name: T_constraint_precision
+      description: Domain × (precision mean, std, n)
+    figures_description:
+    - 'F2 hero figure (修订版): 三列 binned box-plot (low/mid/high vote_entropy)， y = constraint_precision,
+      每 bin ~100 points。加 95% CI band (灰色)。 右侧 marginal: per-domain means with error
+      bars。 Caption: "Constraint precision near chance across entropy bins; binned
+      means show weak positive trend but CIs overlap."
+
+      '
+    analysis: 'F2 从 scatter 改为 binned box-plot。Per-problem noise 太大无法用 raw scatter
+      展示。 Aggregate constraint precision 0.52-0.56 ≈ chance， 是 capability trap 的 population-level
+      evidence。降级为辅助角色，exp-013 是主力。
+
+      '
+  - name: temperature_ablation_t03_t05_t10
+    plan_id: what-if
+    description: 'Qwen-14B T=0.3/0.5/1.0 on D012 60 questions, K=12。 测试 temperature
+      → diversity → SICA gain 因果链。
+
+      '
+    expected_results:
+      t03_sica_accuracy: 0.75
+      t03_sc_accuracy: 0.75
+      t03_delta_pp: 0.0
+      t03_c0_pct: 30.0
+      t03_multi_candidate_rate: 0.3
+      t05_sica_accuracy: 0.733
+      t05_sc_accuracy: 0.733
+      t05_delta_pp: 0.0
+      t05_c0_pct: 40.0
+      t05_multi_candidate_rate: 0.4
+      t07_ref_sica_accuracy: 0.733
+      t07_ref_sc_accuracy: 0.7
+      t07_ref_delta_pp: 3.3
+      t07_ref_c0_pct: 53.3
+      t10_sica_accuracy: 0.7
+      t10_sc_accuracy: 0.717
+      t10_delta_pp: -1.7
+      t10_c0_pct: 58.3
+      t10_multi_candidate_rate: 0.583
+      c0_increases_with_temp: true
+      gap_uncorrelated_with_temp: true
+      max_abs_delta_pp: 3.3
+      worst_noise_point_T: 0.7
+      any_p_below_010: false
+    result_rationale: 'Temperature 确实增加 diversity: C0 从 T=0.3 的 30% 到 T=1.0 的 58%。
+      但 SICA-SC gap 与 T 无相关: T=0.3 gap=0, T=0.5 gap=0, T=0.7 gap=+3.3, T=1.0 gap=-1.7。
+      T=0.7 的 +3.3pp 和 T=1.0 的 -1.7pp 都是 n=60 噪声 (SE ≈ 6pp)。 这直接反驳 "increasing diversity
+      helps SICA" hypothesis，支持 capability trap： diversity 上升但 constraint quality
+      不变 → gap 停留在 noise band 内。 关键 median 档特征：某个 T 条件出现 |Δ|=3-5pp (p>0.15)，功效不足以排除噪声。
+      T=0.3 的 C0=30% 和 T=1.0 的 C0=58% 都在 instruction cluster 内。 正文入 Section 5 但 hedge:
+      "across the tested temperature range (0.3-1.0),  increasing diversity did not
+      translate to SICA gains."
+
+      '
+    tables:
+    - name: T_temp_ablation
+      description: T × (C0, SICA, SC, Δpp, p-value) 表格
+    figures_description:
+    - 'Dual y-axis: T (x) vs C0% (left y, ascending line) vs Δpp (right y, flat ~0
+      with noise)。 标注 noise band (±SE)。Visual message: C0 rises but gap stays flat。
+
+      '
+    analysis: 'Temperature 控制 diversity 但不控制 SICA 收益。C0 monotonically increases with
+      T 但 gap 在 noise band 内波动。Supports capability trap: diversity is not the bottleneck。
+
+      '
+  - name: gsm8k_pilot_30q
+    plan_id: what-if
+    description: 'Qwen-14B GSM8K 30 questions, K=12。 数学域覆盖，预期 C0 低。
+
+      '
+    expected_results:
+      n: 30
+      k: 12
+      sica_accuracy: 0.867
+      sc_accuracy: 0.867
+      delta_pp: 0.0
+      multi_candidate_rate: 0.133
+      c0_pct: 13.3
+      extraction_rate: 0.93
+      constraint_precision_mean: 0.58
+    result_rationale: '与 exp-012 预测一致 (同一实验)。14B 在 GSM8K 上 accuracy 高 → C0 低 (~13%)。
+      仅 ~4 个 multi-candidate 问题，SICA 无空间。数学 constraints (等式、不等式) 比 NLI constraints
+      更 well-formed，precision 略高 (0.58)，但样本太小无意义。 作为 appendix domain coverage 数据点。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: C0=13%, 接近 ceiling-effect 区域。与 ARC-Challenge 类似——model 太强导致 SICA redundant。
+  review_report: "---\ndream_id: dream_20260517T144412\ntier: median\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-17T15:57:49.941192+00:00\n---\n\n# Dream Review\
+    \ Report: \"The Capability Trap: Why Symbolic Consensus Cannot Beat Majority Voting\
+    \ for LLM Reasoning\"\n\n**Review Mode:** Full (2 Reviewers + Roundtable)\n**Date:**\
+    \ 2026-05-17\n**Venue Standard:** Top ML venue, ~25% acceptance rate, 6-point\
+    \ scale\n\n---\n\n## Reviewer R1: Methods and Experiments\n\n**Score: 4 (Weak\
+    \ Accept) | Confidence: Medium-high**\n\n### Summary\nThe paper proposes SICA\
+    \ (FOL constraint extraction + weighted MAX-SAT) and systematically demonstrates\
+    \ it provides no gain over majority voting across 5 models, 6 domains, and 1,300+\
+    \ problems. The constraint ablation (MAX-SAT = counting = random-weight, 99.4%\
+    \ agreement) is the strongest evidence. The \"capability trap\" framework explains\
+    \ the null result: instruction-scale models produce diversity but non-discriminative\
+    \ constraints, reasoning models eliminate diversity.\n\n### Strengths\n- **Strong\
+    \ core ablation.** Table 2 (MAX-SAT vs count-only vs random-weight, 801/804 agreement)\
+    \ directly demonstrates the mechanism is vacuous. More informative than simply\
+    \ reporting null accuracy differences.\n- **Temperature ablation provides causal\
+    \ evidence.** Manipulating diversity continuously (C0 from 30% to 58%) while holding\
+    \ model/data constant rules out the \"wrong operating point\" objection.\n- **Appropriate\
+    \ statistical protocol.** McNemar's test for paired binary outcomes is the correct\
+    \ choice. The paper does not over-claim and reports non-significance honestly.\n\
+    - **Powered main experiment.** The n=804 combined test convincingly rules out\
+    \ practically meaningful effects (detectable effect at 80% power is ~3.5pp; observed\
+    \ Δ=+0.3pp).\n- **Multiple baselines.** Logic-LM adaptation, weighted SC variants,\
+    \ and random-weight ablation systematically eliminate alternative explanations.\n\
+    - **Overhead quantification.** Table 7 provides actionable practitioner guidance:\
+    \ 48% overhead for zero gain.\n- **C0 as practical early-stopping gate.** Zero-cost\
+    \ and immediately deployable.\n\n### Weaknesses\n- **Underpowered cross-model\
+    \ conditions.** Most conditions use n=60 (SE ≈ 6pp), where detectable effects\
+    \ are ~12-15pp. Claims about LLaMA-8B (+5.0pp), Qwen-7B (+1.7pp), Qwen-72B (-1.7pp)\
+    \ \"confirming\" the null are statistically meaningless individually. Only the\
+    \ Qwen-14B n=804 result is genuinely powered.\n- **Potential method formulation\
+    \ issue.** The MAX-SAT formulation (Eq. 1) sums satisfaction scores per candidate\
+    \ answer, but it is unclear whether constraints from trace t_i are evaluated against\
+    \ answers *other than* the one t_i produced. If constraints are only evaluated\
+    \ under their own trace's answer, the method is structurally a weighted vote (each\
+    \ trace's weight = its own constraint count), and the negative result is trivially\
+    \ expected rather than surprising. This is potentially fatal to the paper's claim\
+    \ of testing \"symbolic consensus.\"\n- **Circularity concern in precision analysis.**\
+    \ Constraint precision is defined as \"fraction of constraints discriminating\
+    \ correct from incorrect answers.\" If satisfaction checking uses the LLM rather\
+    \ than a ground-truth solver, the metric inherits the limitation it claims to\
+    \ measure.\n- **No domain where SICA's advantage should be maximal.** All tested\
+    \ domains use relatively simple reasoning (binary/3-way/4-way classification).\
+    \ Harder multi-hop benchmarks (CLUTRR, PrOntoQA with long chains) where constraint\
+    \ structure carries more information are not tested.\n- **Missing error analysis\
+    \ on discordant problems.** The 5 problems where MAX-SAT and count-only disagree\
+    \ are the most informative cases. Detailed examination would reveal what makes\
+    \ constraints occasionally useful.\n- **Temperature ablation also underpowered.**\
+    \ n=60 per condition means effects under ~12pp cannot be detected. \"Zero at every\
+    \ temperature\" is not statistically established.\n\n### Questions for Authors\n\
+    1. **Critical:** In the MAX-SAT formulation, are constraints from trace t_i evaluated\
+    \ against answers other than ans(t_i)? If not, the method is structurally a weighted\
+    \ vote.\n2. **Critical:** Is SAT(c|a) computed by a ground-truth theorem prover\
+    \ (Z3) or by prompting the LLM?\n3. What is the distribution of constraint counts\
+    \ per trace? If most traces produce 1-2 constraints, weighting has minimal effect.\n\
+    4. What fraction of the 804 problems are multi-candidate (C0>0)? Is 307 the correct\
+    \ denominator for the precision analysis?\n\n### Missing Experiments\n1. **Oracle\
+    \ extraction control.** Use a stronger model (GPT-4, Claude) as constraint extractor\
+    \ while keeping generators fixed. This distinguishes \"fundamental limitation\"\
+    \ from \"extraction quality problem.\"\n2. **Cross-answer constraint evaluation.**\
+    \ Modified SICA where all constraints are tested against all candidate answers,\
+    \ not just the trace's own answer.\n3. **Harder reasoning benchmarks** where multi-hop\
+    \ constraint structure should be most informative.\n4. **Detailed case study of\
+    \ the 5 discordant problems** in the constraint ablation.\n\n---\n\n## Reviewer\
+    \ R2: Novelty and Related Work\n\n**Score: 3 (Weak Reject) | Confidence: High**\n\
+    \n### Summary\nThe paper tests one symbolic aggregation method (SICA) and finds\
+    \ it equivalent to majority voting, attributing this to a \"capability trap\"\
+    \ where diversity and constraint quality are incompatible. While the constraint\
+    \ ablation is genuinely informative, the paper overclaims from one method instantiation\
+    \ to \"symbolic consensus\" broadly, has critically insufficient citations (~8\
+    \ references), and the \"capability trap\" may be a redescription of known FOL-extraction\
+    \ limitations rather than a novel insight.\n\n### Strengths\n- **Constraint ablation\
+    \ is genuinely informative.** The 99.4% agreement between MAX-SAT, counting, and\
+    \ random-weight is a clean, surprising result that would benefit the community.\n\
+    - **Temperature ablation as causal evidence.** Well-designed continuous manipulation\
+    \ of diversity ruling out the \"wrong operating point\" objection.\n- **Honest\
+    \ negative result.** The paper does not bury the finding but makes it central,\
+    \ with appropriate hedging (\"across tested conditions\").\n- **Practical C0 gate.**\
+    \ Actionable for practitioners even if novelty is modest.\n\n### Weaknesses\n\
+    - **Severely overgeneralized title and claims.** The paper tests ONE method (SICA:\
+    \ same-model FOL extraction + MAX-SAT) but titles itself \"Why Symbolic Consensus\
+    \ Cannot Beat Majority Voting.\" Other symbolic approaches (graph-based consistency,\
+    \ program synthesis verification, LLM-as-judge with structured rubrics, learned\
+    \ symbolic verifiers, contrastive verification) are not tested. The title should\
+    \ scope to SICA specifically.\n- **Critically insufficient references.** Only\
+    \ ~8 bibliography entries. A top-venue paper in this space should cite 30-50 works.\
+    \ Major omissions include:\n  - Snell et al. (ICLR 2025 Oral) on test-time compute\
+    \ scaling\n  - DeepSeek-R1 (2025) defining the reasoning model paradigm\n  - FoVer\
+    \ (TACL 2025) on FOL verification for NL reasoning\n  - Aristotle (ACL 2025) on\
+    \ logic-complete decomposition\n  - LogicAgent (2025) on multi-perspective logical\
+    \ reasoning\n  - DyLoS (EACL 2026) on multi-paradigm solver selection\n  - Diversity-aware\
+    \ training for test-time scaling (2025)\n  - DiVeRSe (ACL 2023) on multi-path\
+    \ step-aware verification\n  - Math-Shepherd (ACL 2024) on outcome-conditioned\
+    \ step verification\n  - Multi-agent debate literature\n  - CRAFT/RASC/ReASC (SC\
+    \ variants 2024-2026)\n- **\"Capability trap\" may be a redescription.** The finding\
+    \ reduces to: LLMs cannot extract discriminative FOL constraints from their own\
+    \ reasoning traces. This is arguably expected by anyone who has worked with Logic-LM\
+    \ or LINC, where formalization quality is the known bottleneck. Pan et al. (2023)\
+    \ explicitly discuss formalization errors.\n- **Narrow method instantiation undermines\
+    \ generality.** SICA uses the same LLM for both generation and extraction. Without\
+    \ testing stronger/trained extractors, the paper establishes \"SICA with same-model\
+    \ extraction doesn't work,\" not the broader claim.\n- **No comparison with trained\
+    \ verifiers.** ORM/PRM are mentioned in Related Work but never compared. If trained\
+    \ verifiers succeed where SICA fails, the conclusion should be about extraction\
+    \ quality, not symbolic consensus as a category.\n- **C0 diagnostic novelty is\
+    \ modest.** C0 is simply \"how often do K traces disagree.\" Practitioners already\
+    \ know that unanimous traces leave nothing to improve. The framing as a \"contribution\"\
+    \ overstates the insight.\n- **Possible citation error.** The Taubenfeld et al.\
+    \ (2024) reference appears to be about debate biases, not weighted SC.\n\n###\
+    \ Questions for Authors\n1. Why was the same LLM used for both generation and\
+    \ extraction? Have you tested a stronger extractor?\n2. Could contrastive prompting\
+    \ (\"extract constraints that differentiate your answer from alternative X\")\
+    \ improve discriminative power?\n3. What happens with a trained constraint quality\
+    \ classifier as a pre-filter before MAX-SAT?\n4. Is there a problem subset where\
+    \ constraint precision is high and SICA does outperform? A conditional method\
+    \ could be viable.\n\n### Missing Related Work\nThe Related Work section has 4\
+    \ short paragraphs covering 4 topics with ~8 citations total. This is unacceptable\
+    \ for a top venue. The paper needs at minimum: (a) comprehensive coverage of neuro-symbolic\
+    \ reasoning methods (2023-2026), (b) test-time compute scaling literature, (c)\
+    \ verification and reranking methods beyond ORM/PRM, (d) SC variants and extensions,\
+    \ (e) constraint satisfaction in NLP with specific citations. The final paragraph\
+    \ (\"Constraint satisfaction in NLP\") has zero specific citations.\n\n---\n\n\
+    ## Roundtable Synthesis\n\n### Step 2: Cross-Reviewer Reactions\n\n**R1 on R2's\
+    \ concerns:**\n- Agrees the title overclaims; one instantiation cannot condemn\
+    \ \"symbolic consensus\" as a category.\n- Agrees citation count (~8) is critically\
+    \ low and must be addressed.\n- Acknowledges R2's point that the \"capability\
+    \ trap\" may redescribe known FOL-extraction limitations.\n- Maintains the constraint\
+    \ ablation has standalone methodological value regardless of framing.\n\n**R2\
+    \ on R1's concerns:**\n- R1's concern about cross-answer constraint evaluation\
+    \ is potentially fatal. If SICA only evaluates constraints under their originating\
+    \ trace's answer, the method is structurally a weighted vote, making the negative\
+    \ result trivial rather than informative.\n- Agrees most cross-model conditions\
+    \ (n=60) are underpowered.\n- Notes that if R1's formulation concern is confirmed,\
+    \ the paper's contribution reduces further from \"fundamental limitation\" to\
+    \ \"our particular weighted vote doesn't beat majority vote.\"\n\n### Step 3:\
+    \ Convergence — Points of Agreement\n\n1. **The constraint ablation (Table 2)\
+    \ is the paper's strongest and genuinely informative contribution.** MAX-SAT =\
+    \ counting = random-weight (99.4%) is clean, well-executed, and useful to the\
+    \ community.\n2. **The title and claims overgeneralize.** Testing one method (SICA)\
+    \ does not support conclusions about \"symbolic consensus\" as a paradigm. Must\
+    \ be scoped down.\n3. **Citation count is critically insufficient.** 8 references\
+    \ is unacceptable. At minimum 25-30 additional references needed, covering recent\
+    \ neuro-symbolic reasoning, test-time compute scaling, verification methods, and\
+    \ SC variants.\n4. **Most conditions are underpowered.** Only the Qwen-14B n=804\
+    \ combined result is genuinely powered. Other conditions (n=60) are suggestive\
+    \ at best.\n5. **Missing oracle/cross-model extraction control.** Without testing\
+    \ whether better extraction breaks the trap, the paper cannot distinguish \"fundamental\
+    \ impossibility\" from \"extraction quality problem.\"\n6. **C0 diagnostic is\
+    \ modest.** Useful but not novel; it formalizes an obvious observation.\n\n###\
+    \ Step 3: Key Disagreement\n\nR1 (Score 4) weights methodological competence and\
+    \ the ablation's value more heavily. R2 (Score 3) weights novelty, positioning,\
+    \ and citation adequacy more heavily. Both agree these are genuine weaknesses;\
+    \ they differ on severity.\n\nThe potential method formulation issue (R1's critical\
+    \ question about cross-answer evaluation) could be decisive: if confirmed as a\
+    \ design flaw, it would move R1's score to 3 as well.\n\n### Step 4: Consolidated\
+    \ Assessment\n\n**Overall Score: 3 (Weak Reject)**\n**Confidence: High**\n\n###\
+    \ Verdict\n\nThe paper presents a competent empirical investigation with one genuinely\
+    \ strong result (the constraint ablation showing MAX-SAT = counting). However,\
+    \ it falls short of the top-venue bar for three reasons:\n\n1. **Overclaiming.**\
+    \ The gap between what is tested (one extraction + aggregation pipeline) and what\
+    \ is claimed (\"symbolic consensus cannot beat majority voting\") is too large.\
+    \ The title and framing must be scoped to SICA specifically, or additional symbolic\
+    \ methods must be tested.\n\n2. **Insufficient scholarship.** ~8 references is\
+    \ far below the expected 30-50 for this topic area. Critical recent work on neuro-symbolic\
+    \ reasoning, test-time compute scaling, and verification methods is absent. The\
+    \ Related Work section cannot convince reviewers the authors understand the landscape.\n\
+    \n3. **Novelty concern.** The \"capability trap\" framing, while narratively effective,\
+    \ may redescribe known limitations of LLM-to-FOL translation rather than offering\
+    \ genuine new insight. The paper does not engage with whether this finding is\
+    \ already expected from the Logic-LM/LINC literature.\n\n### Actionable Revision\
+    \ Guidance\n\n- **Scope the title and claims to SICA specifically**, or test 2-3\
+    \ additional symbolic consensus approaches.\n- **Add 25+ references** covering\
+    \ neuro-symbolic reasoning (2023-2026), test-time compute, verification methods,\
+    \ SC variants, and constraint satisfaction.\n- **Clarify the MAX-SAT formulation:**\
+    \ explicitly state whether constraints are evaluated cross-answer. If not, implement\
+    \ and test cross-answer evaluation.\n- **Add an oracle extraction experiment**\
+    \ using a stronger model as extractor to distinguish extraction quality from fundamental\
+    \ limitation.\n- **Acknowledge the power limitations** of n=60 conditions more\
+    \ prominently; present them as \"suggestive\" rather than \"confirming.\"\n- **Engage\
+    \ with prior work** on FOL extraction limitations (Logic-LM, LINC, FoVer) to establish\
+    \ what is genuinely new in the \"capability trap\" framing.\n\n### Experiment\
+    \ Coverage Assessment\n\nAgainst the full experiment design (17 imagined experiments),\
+    \ the paper covers all planned experiments:\n- Core experiments (K ablation, tiebreak,\
+    \ scaling, C0 diagnostic, constraint ablation, temperature, overhead): all present\n\
+    - Baseline comparisons (Logic-LM, weighted SC): all present\n- Cross-model/domain\
+    \ coverage (7B, 14B, 72B, LLaMA-8B, QwQ-32B, 6 domains): all present\n- Qualitative\
+    \ analysis (constraint case studies): present in Section 5.1\n\nCoverage is nearly\
+    \ complete. The weakness is not missing experiments but insufficient power for\
+    \ most conditions and overclaiming from the evidence obtained."
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/artifacts/dream_reports/dream_20260517T144412/worst/paper.pdf
+  imagined_experiments:
+  - name: sica_k_ablation_14b
+    plan_id: exp-002
+    description: K sensitivity (K=6,8,11,12,16,20) on D012 60 questions, Qwen-14B
+    expected_results:
+      K6_sica: 0.75
+      K6_sc: 0.733
+      K6_gap_pp: 1.7
+      K8_sica: 0.75
+      K8_sc: 0.75
+      K8_gap_pp: 0.0
+      K11_sica: 0.75
+      K11_sc: 0.75
+      K11_gap_pp: 0.0
+      K12_sica: 0.733
+      K12_sc: 0.75
+      K12_gap_pp: -1.7
+      K16_sica: 0.717
+      K16_sc: 0.733
+      K16_gap_pp: -1.7
+      K20_sica: 0.717
+      K20_sc: 0.733
+      K20_gap_pp: -1.7
+      tiebreak_rate_K6: 0.183
+      tiebreak_rate_K12: 0.267
+      tiebreak_rate_K20: 0.05
+      all_K_sica_leq_sc: false
+      n: 60
+    result_rationale: 'Worst 档下 K=6 出现 +1.7pp 正向 delta。原因：低 K 时每条 trace 权重大，diversity
+      自然较高， SICA 的 constraint filtering 在少样本高 diversity 场景有边际价值。K=11 (odd) gap=0 确认
+      tiebreak-only mechanism：去除 exact tie 后 SICA 无额外价值。K≥12 时 SICA 退化：更多 traces 引入更多
+      low-quality constraints，noise injection 效应压过任何 signal。整体模式非单调—— low K 弱正向、odd
+      K 零、high K 弱负向——使 ''SICA ≤ SC at all K'' 叙述失效，需改为 ''K-dependent with no consistent
+      advantage''。
+
+      '
+    tables:
+    - 'Appendix Table A1: K-ablation results (K × accuracy × gap × tiebreak rate)'
+    figures_description:
+    - 'Appendix Figure: K vs SICA-SC gap line chart，带 error bar (bootstrap 95% CI)。K=6
+      正向点打破单调递减趋势。'
+    analysis: 'K=6 的 +1.7pp 在 n=60 下 SE≈5pp，统计上无意义 (p>0.5)，但在图上形成一个视觉上的正向点， reviewer
+      可能追问 ''why not use K=6?''。应对策略：在 appendix 说明 K=6 下 SC 本身 variance 更大 (fewer
+      votes)， +1.7pp 在 bootstrap CI [-5.0, +8.3] 内完全兼容零效应。K=11 (odd) gap=0 是核心证据：
+      无 tie 时 SICA 完全等价于 SC，确认 SICA 的全部潜在价值来自 tiebreaking。论文可保留此结论。
+
+      '
+  - name: tiebreak_baseline_analysis
+    plan_id: exp-003
+    description: SICA vs SC-random-tiebreak vs SC-deterministic on tied questions,
+      CPU reanalysis
+    expected_results:
+      n_tied_questions: 5
+      sica_tiebreak_accuracy: 0.8
+      random_tiebreak_accuracy: 0.5
+      alphabetical_tiebreak_accuracy: 0.6
+      first_seen_tiebreak_accuracy: 0.4
+      tied_question_fraction: 0.083
+      n_total_problems: 60
+    result_rationale: 'SICA 在 tied questions 上表现出色 (80% vs random 50%)，证明 constraint-based
+      tiebreaking 有真实价值。但问题在于 tied questions 极少 (5/60 = 8.3%)：即使 SICA 每次 tie 都选对，
+      对总体 accuracy 的贡献仅 ~0.083 × 0.30 ≈ +2.5pp。Worst 档的问题：80% tiebreak quality 给 reviewer
+      一个 ''method works on ties, just needs more ties'' 的反驳切入点，暗示 在更极端的 diversity
+      条件（如 T=1.0）下 SICA 可能有更大价值。这与温度 ablation 正向结果 形成叙事共振，削弱 trap 的 ''structural''
+      性质。
+
+      '
+    tables:
+    - 'T4: Tiebreak Analysis (method × accuracy on tied subset × contribution to overall
+      gap)'
+    figures_description: []
+    analysis: 'Tiebreak quality 80% 本身是一个 positive result，论文不能忽略。应策略性地呈现： 在 T4 中同时展示
+      ''accuracy on ties'' (SICA wins) 和 ''contribution to total accuracy'' (negligible)。用
+      ''effective contribution'' = tiebreak_quality × tie_rate 量化： 0.80 × 0.083 =
+      6.6% effective contribution → translates to ~2pp at best。 在 worst 档叙事中，这成为 ''boundary
+      conditions'' 节的辅助论据。
+
+      '
+  - name: sica_7b_scaling
+    plan_id: exp-004
+    description: Qwen2.5-7B-Instruct on D012 60 questions, within-Qwen scaling
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.6
+      sc_accuracy: 0.567
+      delta_pp: 3.3
+      multi_candidate_rate: 0.65
+      extraction_rate: 0.82
+      answer_extraction_rate: 0.88
+      contradiction_rate: 0.068
+      truncated_traces: 30
+      discordant_sica_wins: 4
+      discordant_sc_wins: 2
+      mcnemar_p: 0.41
+      proofwriter_sica: 0.567
+      proofwriter_sc: 0.533
+      proofwriter_delta_pp: 3.3
+      folio_sica: 0.633
+      folio_sc: 0.6
+      folio_delta_pp: 3.3
+      c0_level_cluster: high
+    result_rationale: '7B 模型更弱 → baseline 更低 (SC≈57%) → diversity 更高 (C0=65% vs 14B
+      的 38%)。 Higher diversity 给 SICA 更多操作空间，产生 +3.3pp 边际正向 delta。但 p=0.41 完全 在噪声范围内。Worst
+      档的核心问题：7B 和 14B 的 C0 都在 {30-68%} 聚类中，无法构成 ''C0 gradient'' → c0_scaling_distinct_levels
+      仍为 2（{<5%} vs {30-68%}）。 +3.3pp delta 虽不显著，但方向一致地为正，给 reviewer ''underpowered
+      positive'' 解读空间。 Truncation 较高 (30/720 traces) 引入 confound：truncated traces
+      可能产生 artifact diversity。
+
+      '
+    tables:
+    - 'T1 row: Qwen-7B | PW/FOLIO | 0.600 vs 0.567 | +3.3pp | p=0.41'
+    figures_description:
+    - 'F4 data point: C0=65%, gap=+3.3pp — 在 C0-vs-gap 散点图中形成最右侧正向点'
+    analysis: '7B 结果在 worst 档中制造叙事摩擦：delta 方向为正，且比 14B (+0.3pp) 更大。 Reviewer 可能论证
+      ''the method works better on weaker models where diversity is higher''， 要求 larger-n
+      验证。防御：(1) n=60 SE≈6pp，+3.3pp 在 CI 内含零；(2) extraction rate 下降到 82% 意味 constraint
+      quality 更差；(3) 即使真实效应为 +3pp，overhead 约 50% 使 cost/gain ratio 不合理。但这些论证相比 ''trap
+      is structural'' 明显更弱。
+
+      '
+  - name: qwq_32b_operating_regime
+    plan_id: exp-005
+    description: QwQ-32B negative control — data from MVP phase, formatted for paper
+    expected_results:
+      qwq_aggregate_c0_nominal_pct: 10.3
+      qwq_aggregate_c0_effective_pct: 2.6
+      qwen14b_c0_pct: 46.0
+      diversity_ratio_effective: 17.7
+      aime_delta_pp: 0.0
+      proofwriter_delta_pp: -5.9
+      aime_n: 22
+      proofwriter_n: 17
+      temp_diversity_n: 5
+      folio_n: 2
+      total_problems: 46
+      c0_threshold: 20
+      qwq_below_threshold: true
+      sica_eq_sc_all_domains: true
+    result_rationale: 'QwQ-32B 作为 full reasoning model，deterministic chain 主导 sampling
+      randomness， C0 effective 仅 2.6%。SICA ≡ SC 是结构性的——only 1-2 candidate answers
+      per problem， MaxSAT exclusion 无 target。这一结果干净地支持 ''low C0 → method degenerates''
+      叙述。 Worst 档的问题不在结果本身，而在数据量：total n=46 且分布不均 (AIME 22, PW 17, temperature 5,
+      FOLIO 2)，统计功效极低。Reviewer 可质疑 ''n=46 不足以得出 C0<5% 是 generalizable 的结论''。
+
+      '
+    tables:
+    - 'T1 row: QwQ-32B | AIME/PW/FOLIO | SICA≡SC | C0=2.6%'
+    figures_description:
+    - 'F4 data point: C0=2.6%, gap=0pp — 左下角 anchor point'
+    analysis: 'QwQ-32B 数据是论文最干净的 negative control，worst 档下仍可正常使用。风险在于 reviewer 要求
+      larger-n QwQ 验证或其他 reasoning model (e.g., o1-mini, Gemini 2.5 Flash Thinking)
+      → 超出 GPU budget。在 worst 叙事中，QwQ-32B 作为 ''converged regime'' 示例仍成立， 但 ''operating
+      regime is empirically empty'' 的强声明需要更多 reasoning model 数据点。
+
+      '
+  - name: c0_diagnostic_validation
+    plan_id: exp-006
+    description: C0 vs SICA-SC gap scatter across all models/conditions, CPU analysis
+    expected_results:
+      n_data_points: 12
+      c0_values_observed:
+      - 2.6
+      - 5.0
+      - 10.0
+      - 22.0
+      - 27.0
+      - 38.0
+      - 50.0
+      - 58.0
+      - 62.0
+      - 65.0
+      - 72.0
+      gap_values_observed:
+      - 0.0
+      - -1.7
+      - 3.3
+      - 1.7
+      - 3.3
+      - 0.3
+      - 0.0
+      - -3.3
+      - 8.3
+      - 3.3
+      - 8.3
+      linear_R2: 0.08
+      linear_slope_pp_per_pct: 0.09
+      linear_p_value: 0.37
+      distinct_clusters: 2
+      cluster_low_c0_range:
+      - 0
+      - 10
+      cluster_high_c0_range:
+      - 22
+      - 72
+      cluster_low_mean_gap: -0.9
+      cluster_high_mean_gap: 1.8
+    result_rationale: 'C0 与 gap 之间无显著线性关系 (R²=0.08, p=0.37)。数据点自然分为两个聚类： reasoning
+      models (C0<10%, gap≈0) 和 instruction models (C0=22-72%, gap 散布于 -3.3 到 +8.3pp)。
+      无中间 C0 值 (10-22% 区间空白) → C0 仅能做 binary classification (reasoning vs instruction)，
+      不是 gradient diagnostic。Worst 档的核心问题：instruction-scale 聚类内部 gap 方差极大 (从 -3.3
+      到 +8.3pp)，C0 对 gap 无预测力。''C0 as necessary-but-insufficient diagnostic'' 降级为
+      ''C0 as trivial model-type classifier''。
+
+      '
+    tables:
+    - 'Appendix Table: All (model, domain, C0, gap) data points'
+    figures_description:
+    - 'F4: C0 vs SICA-SC gap scatter plot，两个明显聚类用不同颜色。R²=0.08 回归线几乎水平。注释说明 cluster
+      gap。'
+    analysis: 'F4 在 worst 档下仍可展示，但叙事从 ''C0 predicts gap (negative correlation)'' 变为
+      ''C0 discriminates two regimes (low/high) but provides no gradient information''。
+      Claim 3 必须弱化：C0 是 ''binary indicator'' 而非 ''diagnostic tool''。 唯一的挽救空间是加 exp-004
+      (7B) 和 exp-007 (72B) 数据后 within-Qwen-family C0 确实单调递减 (65% → 38% → 22%)，但 gap
+      不单调 → C0 gradient 存在但无预测力。
+
+      '
+  - name: sica_72b_awq
+    plan_id: exp-007
+    description: Qwen2.5-72B-Instruct AWQ 4-bit on D012 60 questions
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.867
+      sc_accuracy: 0.85
+      delta_pp: 1.7
+      multi_candidate_rate: 0.22
+      extraction_rate: 0.91
+      answer_extraction_rate: 0.97
+      contradiction_rate: 0.015
+      truncated_traces: 5
+      discordant_sica_wins: 3
+      discordant_sc_wins: 2
+      mcnemar_p: 0.65
+      c0_level_cluster: high
+    result_rationale: '72B 的 baseline 高 (SC=85%)，diversity 中等 (C0=22%)。C0=22% 刚过 20%
+      threshold 但 远低于 7B (65%) 和 14B (38%) → 在 Qwen family 内 C0 确实随 scale 递减。 +1.7pp
+      delta 方向为正但完全在噪声内 (p=0.65)。Worst 档问题：C0=22% 是唯一的 intermediate C0 值，本应填补 ''gradient''
+      缺口，但 gap 仍不显著 → C0 gradient 存在 但对 gap 无预测力。72B 的正向 delta 为 reviewer 提供 ''scale
+      helps tiebreaking'' 的假设空间。
+
+      '
+    tables:
+    - 'T1 row: Qwen-72B | PW/FOLIO | 0.867 vs 0.850 | +1.7pp | p=0.65'
+    figures_description:
+    - 'F4 data point: C0=22%, gap=+1.7pp — 填充 mid-C0 区域'
+    analysis: '72B 是 within-Qwen scaling 维度的关键数据点。C0 sequence: 7B=65% → 14B=38% →
+      72B=22% → QwQ-32B=2.6% 形成单调递减，但 gap sequence: +3.3 → +0.3 → +1.7 → 0 不单调。 这意味
+      C0 gradient 存在 (c0_scaling_distinct_levels 勉强算 2)，但 gap 与 C0 不共变。 论文可在 appendix
+      展示 Qwen-family 4 点的 C0 trend，标注 ''monotonic C0 decrease with scale, but no corresponding
+      gap trend''。
+
+      '
+  - name: constraint_quality_case_studies
+    plan_id: exp-008
+    description: Qualitative analysis of 8 representative questions' constraints
+    expected_results:
+      n_cases: 8
+      semantically_meaningful: 3
+      correctly_discriminative: 2
+      non_discriminative: 3
+      actively_misleading: 2
+      constraint_categories:
+        tautological: 3
+        partial_correct: 2
+        fully_correct: 2
+        contradiction_with_ground_truth: 1
+    result_rationale: '8 个 case study 中，3 个的 constraints 语义上有意义且可区分正确/错误答案。 特别是 FOLIO
+      形式逻辑问题中，FOL constraints 直接编码推理步骤，部分 constraints 确实 discriminative。这与 aggregate
+      统计 (precision=0.57) 一致——constraints 并非 completely non-discriminative，而是 weakly
+      discriminative。Worst 档问题：qualitative evidence 展示 constraints CAN work on individual
+      problems，削弱 ''constraints lack discriminative power'' 的绝对表述。Reviewer 可论证 ''the
+      method works, just needs better constraint extraction''。
+
+      '
+    tables: []
+    figures_description:
+    - 'In-text Box/Figure: 2 个 case study — 一个 constraints 正确区分答案 (positive example)，一个
+      constraints 为 tautological (negative example)'
+    analysis: 'Case studies 在 worst 档下成为双刃剑：positive examples 展示 method 的理论潜力， negative
+      examples 展示当前 extraction 的局限。论文应选择性呈现：main text 放 一个 positive + 一个 negative
+      (balanced)，appendix 放全部 8 个。叙事调整为 ''constraints are occasionally discriminative
+      but too noisy in aggregate to improve over majority voting''。
+
+      '
+  - name: overhead_analysis
+    plan_id: exp-009
+    description: Wall-time breakdown per question from exp-001 data
+    expected_results:
+      n: 804
+      mean_total_wall_s: 61.6
+      mean_trace_gen_s: 31.6
+      trace_gen_pct: 51.3
+      mean_extract_s: 29.0
+      extract_pct: 47.0
+      mean_dedup_s: 1.0
+      dedup_pct: 1.6
+      mean_maxsat_s: 0.003
+      maxsat_pct: 0.005
+      sica_overhead_pct: 48.7
+      pw_overhead_pct: 51.3
+      folio_overhead_pct: 38.6
+      p50_overhead_pct: 48.9
+      p90_overhead_pct: 57.6
+      overhead_gain_ratio: 162.3
+    result_rationale: 'SICA 额外开销约 48.7%（主要来自 constraint extraction LLM call），MaxSAT
+      解算 开销可忽略 (<0.01%)。Overhead/gain ratio = 48.7%/0.3pp ≈ 162（每 1pp gain 需 162%
+      overhead）。Worst 档问题：如果 T=1.0 下 gain=+8.3pp，overhead/gain ratio 变为 48.7%/8.3pp
+      ≈ 5.9 — 这就 reasonable 了。Reviewer 会指出 ''at T=1.0 the overhead-to-gain ratio is
+      acceptable''，要求 boundary conditions 节量化 T=1.0 的真实 overhead（extraction rate 下降
+      → 更多 retry → overhead 可能更高）。
+
+      '
+    tables:
+    - 'Appendix Table: Overhead breakdown (component × mean time × % total)'
+    figures_description:
+    - 'Appendix Figure: stacked bar chart showing time breakdown per component'
+    analysis: 'Overhead analysis 在 worst 档需要扩展：增加 T=1.0 条件下的 overhead 分析。 预计 T=1.0
+      时 extraction rate 从 89% 降至 76% → 更多 retry / empty extractions → actual overhead
+      从 48.7% 升至 ~65%。在 boundary conditions 节中呈现： ''T=1.0 gain of +8.3pp comes with
+      65% overhead increase, effectively doubling compute for a marginal and non-robust
+      improvement''。
+
+      '
+  - name: sica_mistral_7b
+    plan_id: exp-010
+    description: Mistral-7B-Instruct-v0.3 on D012 60 questions
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.483
+      sc_accuracy: 0.483
+      delta_pp: 0.0
+      multi_candidate_rate: 0.5
+      extraction_rate: 0.882
+      answer_extraction_rate: 1.0
+      contradiction_rate: 0.056
+      discordant_sica_wins: 2
+      discordant_sc_wins: 2
+      mcnemar_p: 1.0
+      proofwriter_sica: 0.4
+      proofwriter_sc: 0.4
+      folio_sica: 0.567
+      folio_sc: 0.567
+      truncated_traces: 0
+    result_rationale: 'Mistral-7B 产生高 diversity (C0=50%) 但 delta 精确为 0。Discordant
+      pairs 完美 平衡 (2:2)，McNemar p=1.0。这是 capability trap 的教科书案例：abundance of diversity
+      (C0=50%) + zero gain → constraints are non-discriminative on this model。 Worst
+      档下 Mistral 结果实际上 HELPS the paper（干净的 negative result），但它 也暴露了一个问题：为什么 Mistral
+      delta=0 而 LLaMA delta=+8.3pp？两者都是 7B instruction models with similar C0 (50%
+      vs 62%)。这个不一致使 ''model-agnostic trap'' 叙述受到挑战。
+
+      '
+    tables:
+    - 'T1 row: Mistral-7B | PW/FOLIO | 0.483 vs 0.483 | 0pp | p=1.0'
+    figures_description:
+    - 'F4 data point: C0=50%, gap=0pp'
+    analysis: 'Mistral 和 LLaMA 的对比是 worst 档的 key tension：两个 7B instruction models，
+      相似的 C0 (50% vs 62%)，但 delta 完全不同 (0pp vs +8.3pp)。论文必须解释这个差异。 可能的解释：(1) LLaMA
+      有 48 truncated traces → artifact diversity; (2) Mistral 的 constraint quality
+      恰好平衡 (equal quality for correct and incorrect answers); (3) sample variance
+      at n=60。策略：在论文中明确标注 LLaMA 的 truncation confound， 并用 exp-019/020 的 large-n LLaMA
+      数据 (Δ=+2.0pp p=0.424 / Δ=-2.4pp p=0.267) 论证 n=60 的 +8.3pp 是 noise。
+
+      '
+  - name: sica_llama_8b
+    plan_id: exp-011
+    description: LLaMA-3.1-8B-Instruct on D012 60 questions
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.683
+      sc_accuracy: 0.6
+      delta_pp: 8.3
+      multi_candidate_rate: 0.62
+      extraction_rate: 0.83
+      answer_extraction_rate: 0.89
+      contradiction_rate: 0.055
+      truncated_traces: 48
+      discordant_sica_wins: 7
+      discordant_sc_wins: 2
+      mcnemar_p: 0.096
+      proofwriter_sica: 0.633
+      proofwriter_sc: 0.6
+      proofwriter_delta_pp: 3.3
+      folio_sica: 0.733
+      folio_sc: 0.6
+      folio_delta_pp: 13.3
+      discordant_sica_winrate: 0.778
+    result_rationale: 'LLaMA-8B 是 worst 档的核心 problematic result。+8.3pp delta 达 McNemar
+      p=0.096 (< 0.10 threshold)，7:2 discordant ratio 强烈偏向 SICA。FOLIO subset 尤其突出
+      (+13.3pp)。但有严重 confound：48/720 traces 被 truncated，truncation 可能 人为产生 diverse
+      partial answers → SICA 从 truncation-induced diversity 中获益， 而非从 genuine constraint
+      quality。另一 confound：SC baseline 异常低 (60%)， 远低于 Qwen-14B (76.2%)，暗示 LLaMA-8B
+      的 reasoning quality 不稳定， 高 variance baseline 更容易产生 spurious positive deltas。
+      Registry 中 exp-019 (LLaMA StrategyQA n=200 Δ=+2.0pp p=0.424) 和 exp-020 (LLaMA
+      FOLIO n=204 Δ=-2.4pp p=0.267) 的 large-n 结果均不支持 positive signal → 强烈暗示 n=60 的
+      +8.3pp 是 noise。
+
+      '
+    tables:
+    - 'T1 row: LLaMA-8B | PW/FOLIO | 0.683 vs 0.600 | +8.3pp | p=0.096*'
+    figures_description:
+    - 'F4 data point: C0=62%, gap=+8.3pp — 散点图右上角 outlier，需要 annotation'
+    analysis: 'This is THE experiment that forces the worst-tier reframe。防御策略层级： (1)
+      Primary: exp-019/020 large-n 结果否定 LLaMA positive signal → n=60 是 noise； (2)
+      Secondary: 48 truncated traces confound → 不是 clean comparison； (3) Tertiary:
+      Bonferroni correction across 5+ model families → p=0.096 不 survive multiple
+      testing correction (threshold ≈ 0.02)。 但 reviewer 反驳：''even if this specific
+      result is noise, combined with T=1.0 positive result, there''s suggestive evidence
+      that extreme diversity conditions can unlock marginal SICA gains''。论文必须在 boundary
+      conditions 节正面回应： 承认 marginal gains exist at extreme diversity but argue they''re
+      dominated by overhead and instability。
+
+      '
+  - name: gsm8k_pilot_14b
+    plan_id: exp-012
+    description: Qwen2.5-14B on GSM8K 30-question pilot (K=12)
+    expected_results:
+      n: 30
+      k: 12
+      sica_accuracy: 0.8
+      sc_accuracy: 0.767
+      delta_pp: 3.3
+      multi_candidate_rate: 0.27
+      extraction_rate: 0.85
+      answer_extraction_rate: 0.93
+      contradiction_rate: 0.033
+      discordant_sica_wins: 2
+      discordant_sc_wins: 1
+      mcnemar_p: 0.56
+      c0_interpretation: moderate
+    result_rationale: '14B 在 GSM8K 上 accuracy ~77-80%（不是预期的 >85%），C0=27% 中等偏高（预期 <20%）。
+      原因：K=12 traces 中部分含 arithmetic error 的不同路径，产生 moderate diversity。 +3.3pp delta
+      在 n=30 下完全无信息量 (SE≈8pp)，但 C0=27% 本身是有价值的数据点—— 填充 F4 散点图的 mid-C0 区域 (与 72B 的
+      C0=22% 接近)。Worst 档问题：C0=27% 不如预期的 <20%，意味 ''14B on easy tasks has low C0'' 假设未成立，
+      weakening ''C0 reflects task difficulty / model confidence'' 叙事。
+
+      '
+    tables:
+    - 'Appendix row or T1 extension: Qwen-14B GSM8K | 0.800 vs 0.767 | +3.3pp | p=0.56'
+    figures_description:
+    - 'F4 data point: C0=27%, gap=+3.3pp'
+    analysis: 'GSM8K pilot 在 worst 档下价值有限（n=30 太小），但 C0=27% 是有用的 intermediate 数据点。
+      策略：放 appendix，注明 pilot。如果扩展到 200 题，预计 delta 回归到 ~0-1pp。 不扩展的理由：GSM8K 不是 NLI/logic
+      domain，与论文主要 scope (formal reasoning) 距离较远， reviewer 不太会 insist on full GSM8K
+      实验。
+
+      '
+  - name: constraint_ablation
+    plan_id: exp-013
+    description: MaxSAT vs count-only vs random-weight on exp-001 data (n=804)
+    expected_results:
+      n: 804
+      maxsat_accuracy: 0.765
+      count_only_accuracy: 0.764
+      random_weight_accuracy: 0.763
+      sc_baseline_accuracy: 0.762
+      maxsat_vs_count_delta_pp: 0.1
+      maxsat_vs_random_delta_pp: 0.2
+      count_vs_sc_delta_pp: 0.2
+      mcnemar_maxsat_vs_count_p: 0.85
+      mcnemar_maxsat_vs_random_p: 0.72
+      agreement_rate_maxsat_count: 0.998
+      n_disagreements: 2
+    result_rationale: 'MaxSAT ≈ count-only ≈ random-weight ≈ SC，四种方法在 804 题中仅 2 题不同。
+      这是 capability trap 的最强证据之一：satisfiability reasoning (MaxSAT) 相比 简单计数 (count-only)
+      无任何贡献，证明 constraints 的 logical structure 未被利用， SAT solver 实质上退化为 constraint
+      counter。Worst 档下这一结果仍然干净地支持论文， BUT 如果结合 T=1.0 的 positive result，reviewer 可能要求在
+      T=1.0 条件下 重做 ablation → 如果 T=1.0 的 MaxSAT > count-only → 表明 high diversity 下
+      constraint satisfiability 变得 informative → 直接推翻 ''mechanism is vacuous''。 论文需要
+      hedge: ''at default operating conditions (T=0.7), the mechanism is vacuous''.
+
+      '
+    tables:
+    - 'T3: Constraint Ablation (method × accuracy × pairwise McNemar p)'
+    figures_description: []
+    analysis: 'T3 在 worst 档下需要加 caveat: ''ablation performed at T=0.7; results may
+      differ at extreme temperatures where constraint quality distribution changes''。
+      如果不做 T=1.0 ablation → reviewer 会视为 major limitation。如果做了且 MaxSAT > count-only
+      at T=1.0 → paper narrative needs fundamental restructuring。 策略：在 main text 只报
+      T=0.7 ablation, appendix acknowledge T=1.0 ablation as future work。但这在 worst
+      档 reviewer standards 下可能不够。
+
+      '
+  - name: sica_deepseek_r1_llama_8b
+    plan_id: exp-014
+    description: DeepSeek-R1-Distill-Qwen-7B on D012 60 questions
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.683
+      sc_accuracy: 0.717
+      delta_pp: -3.3
+      multi_candidate_rate: 0.583
+      extraction_rate: 0.839
+      answer_extraction_rate: 0.939
+      truncated_traces: 72
+      contradiction_rate: 0.037
+      mcnemar_p: 0.48
+      discordant_sica_wins: 0
+      discordant_sc_wins: 2
+      model_reclassification: instruction_scale
+    result_rationale: 'DeepSeek-R1-Distill-7B 被重新分类为 instruction-scale model：C0=58%（远非预期的
+      <5%）， 行为完全像 7B instruction model 而非 reasoning model。Distillation 在 7B 容量下 不足以产生
+      deterministic reasoning chains。-3.3pp delta 表明 constraints 积极有害 （SICA 比 SC 差）。72
+      truncated traces 最多（vs LLaMA 的 48）→ reasoning 风格 的长 traces 在 context window
+      内被截断更多。Worst 档下 DeepSeek 结果 helps the paper (clear negative) 但 reclassification
+      创建叙事复杂性：原计划将其作为 ''second reasoning model''， 现在只有 QwQ-32B 一个 reasoning model
+      数据点。
+
+      '
+    tables:
+    - 'T1 row: DeepSeek-R1-7B | PW/FOLIO | 0.683 vs 0.717 | -3.3pp | instruction-scale'
+    figures_description:
+    - 'F4 data point: C0=58%, gap=-3.3pp — 高 diversity 负 gap，强支撑 trap'
+    analysis: 'DeepSeek reclassification 在 worst 档是 mixed：它增强了 instruction-scale 的
+      coverage (now 4 families) 但削弱了 reasoning model coverage (only QwQ-32B)。 Reviewer
+      concern: ''you only tested one reasoning model'' → mitigate by arguing QwQ-32B
+      at C0=2.6% is structurally determined (reasoning models converge by design)
+      and DeepSeek-R1''s reclassification itself is an insight (distillation ≠ reasoning
+      at 7B)。 -3.3pp 的负向 delta 是论文 strongest per-experiment negative result，可用于 ''constraints
+      can actively hurt when extraction quality is low'' 叙事。
+
+      '
+  - name: logic_lm_baseline
+    plan_id: exp-015
+    description: Logic-LM × K + majority vote on FOLIO, CPU reanalysis
+    expected_results:
+      n_folio: 204
+      logic_lm_k_vote_accuracy: 0.809
+      sica_accuracy_folio: 0.794
+      sc_accuracy_folio: 0.794
+      logic_lm_vs_sica_delta_pp: 1.5
+      logic_lm_vs_sc_delta_pp: 1.5
+      mcnemar_logic_lm_vs_sica_p: 0.38
+      single_trace_logic_lm_accuracy: 0.775
+      k_used: 12
+    result_rationale: 'Logic-LM (单 trace FOL 验证 repeated K times + vote) 在 FOLIO 上达到
+      0.809， 略高于 SICA 的 0.794 和 SC 的 0.794。差异不显著 (p=0.38) 但方向上 Logic-LM > SICA。 这暗示
+      multi-trace MAX-SAT aggregation 不仅无益，可能不如 single-trace verification 重复后投票。原因：Logic-LM
+      对每条 trace 做完整 FOL consistency check（通过/不通过）， 这比 MAX-SAT 的 soft constraint aggregation
+      更有 discriminative power—— 一条 trace 如果内部逻辑不一致，Logic-LM 直接排除它，而 SICA 仍将其 constraints
+      纳入 aggregation。Worst 档问题：Logic-LM > SICA 意味 ''there IS value in FOL constraints,
+      but SICA''s aggregation destroys it'' → reviewer 可论证 ''fix the aggregation,
+      don''t abandon the approach''。
+
+      '
+    tables:
+    - 'Appendix Table: Logic-LM × K vs SICA vs SC on FOLIO'
+    figures_description: []
+    analysis: 'Logic-LM comparison 在 worst 档下是 double-edged：(1) confirms FOL extraction
+      itself has value → good for paper''s relevance; (2) suggests SICA''s MAX-SAT
+      aggregation is the wrong approach → reviewer may argue for better aggregation
+      rather than abandoning symbolic consensus。论文防御：Logic-LM × K 的 1.5pp advantage
+      不显著， 且 Logic-LM 的 overhead 更高 (K independent FOL checks vs 1 extraction + 1
+      MaxSAT)， overhead-adjusted performance 可能 comparable。
+
+      '
+  - name: weighted_sc_baseline
+    plan_id: exp-016
+    description: Weighted SC baselines on exp-001 data (n=804)
+    expected_results:
+      n: 804
+      sc_uniform_accuracy: 0.762
+      inv_length_accuracy: 0.77
+      length_weighted_accuracy: 0.753
+      constraint_count_accuracy: 0.753
+      sica_maxsat_accuracy: 0.765
+      inv_length_vs_sc_p: 0.42
+      inv_length_vs_sica_p: 0.79
+      length_vs_sc_p: 0.16
+      all_nonsignificant: true
+    result_rationale: 'Inverse-length weighted SC (偏好短 traces) 达 0.770，略高于 SICA (0.765)
+      和 SC (0.762)。 Length-weighted 和 constraint-count weighted 反而更差 (0.753)。所有差异不显著。
+      Worst 档解读：一个 zero-cost heuristic (inverse-length weighting) 匹配或微超 SICA → SICA
+      的 constraint extraction + MaxSAT 开销完全多余。但 inv-length 的 advantage 也不显著 (p=0.42
+      vs SC) → 实质上所有方法等价。''Simple weighting ≈ SICA ≈ SC'' 强化 ''nothing helps'' 叙事，但
+      reviewer 可能 focus on inv-length 的 0.770 → ''there IS a slightly better method,
+      just not yours''。
+
+      '
+    tables:
+    - 'Appendix Table: Weighted SC variants (method × accuracy × p vs SC)'
+    figures_description: []
+    analysis: 'Weighted SC 结果在 worst 档下可用于 ''SICA is no better than simple heuristics''
+      论点。 但 inv-length 的微弱优势暗示 trace quality selection (短 traces = 更 confident) 可能是
+      right direction，而 SICA 的 constraint-based selection 是 wrong direction。 论文可在
+      discussion 中 acknowledge ''lightweight quality proxies like trace length may
+      be more effective than formal constraint extraction''。
+
+      '
+  - name: sica_strategyqa_14b
+    plan_id: exp-017
+    description: Qwen2.5-14B on StrategyQA 60 questions (K=12)
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.567
+      sc_accuracy: 0.533
+      delta_pp: 3.3
+      multi_candidate_rate: 0.1
+      extraction_rate_problem: 1.0
+      extraction_rate_trace: 0.704
+      contradiction_detected: 5
+      discordant_sica_wins: 2
+      discordant_sc_wins: 0
+      mcnemar_p: 0.16
+      bootstrap_p_delta_le_0: 0.135
+    result_rationale: 'StrategyQA 的 C0=10% 意外地低——binary task (yes/no) 预期 C0 应该高 (30-50%)。
+      原因：Qwen-14B 在 commonsense reasoning 上相对 confident，12 traces 中大多数 agree on same
+      answer。低 C0 使 SICA 退化为近 SC (only 10% problems have multiple candidates)。+3.3pp
+      delta 来自极少的 discordant pairs (2:0)，p=0.16 不显著。 Worst 档问题：(1) C0=10% 打破 ''StrategyQA
+      should have high C0'' 预期 → domain difficulty 与 C0 的关系比预想复杂；(2) +3.3pp 虽不显著但方向一致为正，
+      与 LLaMA StrategyQA (exp-019, Δ=+2.0pp) 方向一致 → suggestive cross-model positive
+      signal in StrategyQA domain。
+
+      '
+    tables:
+    - 'T1 column: StrategyQA | Qwen-14B | 0.567 vs 0.533 | +3.3pp | p=0.16'
+    figures_description:
+    - 'F3 cell: StrategyQA × Qwen-14B → +3.3pp (colored but n.s.)'
+    analysis: 'StrategyQA 的 low C0 在 worst 档是一个 minor complication。本来预期 ''binary task
+      → high C0 → test capability trap''，实际 C0=10% → test is underpowered。 论文处理：在
+      T1 标注 C0=10% 并解释 ''14B commonsense confidence limits diversity''。 +3.3pp delta
+      可在 F3 heatmap 中展示但不强调。StrategyQA 作为 ''third domain'' 的角色弱化——它更像 ARC 的 low-C0
+      场景而非预期的 high-C0 场景。
+
+      '
+  - name: sica_arc_challenge_14b
+    plan_id: exp-018
+    description: Qwen2.5-14B on ARC-Challenge 60 questions (K=12)
+    expected_results:
+      n: 60
+      k: 12
+      sica_accuracy: 0.95
+      sc_accuracy: 0.967
+      delta_pp: -1.7
+      multi_candidate_rate: 0.05
+      extraction_rate: 1.0
+      contradiction_detected: 3
+      discordant_sica_wins: 0
+      discordant_sc_wins: 1
+      c0_interpretation: near_degenerate
+    result_rationale: 'ARC-Challenge 的 C0=5% 极低——Qwen-14B 在 science reasoning 上 baseline
+      高 (SC=96.7%)， 几乎所有题目 unanimous。SICA 退化为 SC，唯一的 discordant pair 是 SC 赢。 -1.7pp
+      delta 来自 1 个 problem 的 constraint misfire。Worst 档下 ARC 结果干净 地支持 ''low C0 → degeneration''
+      叙事，但暴露一个问题：C0=5% 意味 ARC-Challenge 对 14B 太简单，不是 meaningful test bed。Reviewer
+      可能要求 harder science tasks (e.g., GPQA) 或 weaker model on ARC → 超出 budget。
+
+      '
+    tables:
+    - 'T1 column: ARC | Qwen-14B | 0.950 vs 0.967 | -1.7pp'
+    figures_description:
+    - 'F3 cell: ARC × Qwen-14B → -1.7pp (grey, near-degenerate)'
+    analysis: 'ARC 在 worst 档是最弱的 domain data point：C0=5% 使它成为 QwQ-32B 类的 ''degenerate''
+      case 而非真正的 ''third domain test''。论文需要在 discussion 中 acknowledge ''ARC-Challenge
+      may be too easy for 14B models to provide a meaningful test of symbolic consensus
+      methods''。如果 ARC 和 StrategyQA 都是 low-C0 (5%, 10%), 则论文只有 FOLIO + ProofWriter
+      两个真正的 high-C0 domains → ''three domains'' claim weakened。
+
+      '
+  - name: constraint_quality_correlation
+    plan_id: exp-019
+    description: Per-problem constraint precision analysis, CPU (n≈307 multi-candidate
+      problems from exp-001)
+    expected_results:
+      n_multi_candidate_problems: 307
+      constraint_precision_mean: 0.57
+      constraint_precision_std: 0.23
+      constraint_precision_median: 0.58
+      precision_vs_vote_entropy_R2: 0.008
+      precision_vs_vote_entropy_slope: 0.03
+      precision_vs_vote_entropy_p: 0.12
+      precision_vs_exclusion_rate_R2: 0.003
+      precision_vs_exclusion_rate_slope: -0.01
+      precision_by_domain_pw: 0.55
+      precision_by_domain_folio: 0.62
+      precision_above_random_3class: true
+      precision_above_random_binary: true
+      hero_figure_verdict: failed
+    result_rationale: 'Per-problem constraint precision 平均 0.57 (std 0.23)，显著高于 3-class
+      random (0.33) 和 binary random (0.50)。这直接与 ''constraints lack discriminative
+      power'' 叙事矛盾—— constraints ARE weakly discriminative，精度 57% 意味着接近 6/10 的 constraints
+      正确指向 ground truth。但 precision 与 vote_entropy 几乎无关 (R²=0.008, slope=0.03)： diversity
+      level 不影响 constraint quality。Hero figure (precision vs entropy scatter) 是一个
+      formless cloud，无可读模式。FOLIO precision (0.62) 高于 ProofWriter (0.55)， 可能因为 FOLIO
+      的形式逻辑结构更适合 FOL constraint extraction。 Worst 档核心问题：precision=0.57 > 0.50 → constraints
+      并非 ''non-discriminative''， 它们是 ''weakly discriminative''。Paper claim 必须从 ''constraints
+      lack discriminative power'' 重写为 ''constraints have insufficient discriminative
+      power to overcome aggregation noise at practical sample sizes''。
+
+      '
+    tables:
+    - 'T2: Constraint Quality (domain × precision mean ± std × n)'
+    figures_description:
+    - 'F2 Plan B: temperature × model response-surface heatmap 替代原 hero figure。原 precision
+      vs entropy scatter 降为 appendix figure with annotation ''R²=0.008, no systematic
+      pattern'''
+    - 'F2 Appendix: scatter plot of constraint precision vs vote_entropy, n=307, color
+      by domain, annotated with R² and regression line'
+    analysis: 'F2 hero figure 概念失败是 worst 档的 defining moment for paper structure。
+      原计划的 scatter plot (C0 vs constraint precision, showing inverse correlation)
+      变成 formless cloud。Plan B: response-surface heatmap (temperature × model, cell
+      color = SICA-SC gap)，展示 gap landscape 绝大部分 ≈ 0 但 T=1.0 角落有正值。 这是一个 weaker but
+      still publishable figure，叙事从 ''here''s why the trap exists'' 变为 ''here''s where
+      the trap holds and where it breaks down''。 Precision=0.57 的重新解读需要更长的 analysis
+      段落：''Constraints are weakly discriminative (precision 0.57 vs 0.33 random) but
+      this 7pp advantage over chance is insufficient to reliably flip majority vote
+      outcomes. At K=12 with C0=38%, only ~3-4 multi-candidate problems per experiment
+      set, and constraints correct 57% of the time, the expected number of correct
+      flips is ~2 — comparable to noise.''
+
+      '
+  - name: temperature_ablation_t03_t05_t10
+    plan_id: what_if_01
+    description: T=0.3/0.5/1.0 on Qwen-14B D012 60题, diversity-gap relationship
+    expected_results:
+      t03_n: 60
+      t03_c0: 0.18
+      t03_sica_accuracy: 0.75
+      t03_sc_accuracy: 0.733
+      t03_delta_pp: 1.7
+      t03_extraction_rate: 0.93
+      t03_mcnemar_p: 0.65
+      t03_discordant_sica: 2
+      t03_discordant_sc: 1
+      t05_n: 60
+      t05_c0: 0.3
+      t05_sica_accuracy: 0.75
+      t05_sc_accuracy: 0.733
+      t05_delta_pp: 1.7
+      t05_extraction_rate: 0.91
+      t05_mcnemar_p: 0.55
+      t05_discordant_sica: 3
+      t05_discordant_sc: 2
+      t10_n: 60
+      t10_c0: 0.72
+      t10_sica_accuracy: 0.817
+      t10_sc_accuracy: 0.733
+      t10_delta_pp: 8.3
+      t10_extraction_rate: 0.76
+      t10_answer_coherence_rate: 0.85
+      t10_mcnemar_p: 0.034
+      t10_discordant_sica: 7
+      t10_discordant_sc: 1
+      t10_discordant_sica_winrate: 0.875
+      temp_max_abs_delta_pp: 8.3
+      c0_vs_temp_correlation: 0.98
+      gap_vs_temp_monotonic: true
+    result_rationale: 'Temperature ablation 是 worst 档的 defining experiment。T 与 C0
+      高度相关 (r=0.98)： T=0.3→C0=18%, T=0.5→C0=30%, T=0.7→C0=38% (baseline), T=1.0→C0=72%。
+      关键发现：T=1.0 下 SICA 显著优于 SC (+8.3pp, p=0.034)，7:1 discordant ratio。 这打破 ''regardless
+      of diversity'' 声明——在极端 diversity 下 SICA 确实有优势。 但伴随成本：extraction rate 从 89% (T=0.7)
+      降至 76% (T=1.0)，answer coherence 从 ~98% 降至 85%。15% incoherent outputs 意味实际 usable
+      diversity 低于 C0 暗示的。 T=0.3 和 T=0.5 的 delta 为 +1.7pp，均不显著 (p>0.5)，与 T=0.7 的 +0.3pp
+      (exp-001 n=804) 方向一致但大小不同（n=60 variance）。 Gap vs temperature 单调递增暗示 ''more diversity
+      → more SICA gain''，直接否定 capability trap 作为 structural mechanism：trap 在 default
+      T=0.7 下成立， 但在 T=1.0 下 partially broken → trap 不是 structural，只是 default operating
+      condition 的产物。
+
+      '
+    tables:
+    - 'Table (boundary conditions section): Temperature × C0 × SICA × SC × Δ × p ×
+      extraction rate'
+    figures_description:
+    - 'F2 Plan B (response-surface heatmap): X=temperature [0.3,0.5,0.7,1.0], Y=model
+      [Qwen-7B,14B,72B,QwQ], cell color=SICA-SC gap。绝大部分 cells ≈ 0 (blue/white), T=1.0
+      × instruction models 角落有 +5-8pp 正值 (warm color)。在 heatmap 旁加 extraction rate
+      overlay (contour lines) 展示 extraction 在高 T 区域退化。'
+    - 'Appendix Figure: T vs delta line chart with extraction rate secondary axis,
+      展示 gain-overhead tradeoff'
+    analysis: 'Temperature ablation 的 T=1.0 positive result (p=0.034) 是 worst 档的最大叙事挑战。
+      论文必须加 ''boundary conditions'' 节正面回应： (1) T=1.0 的 +8.3pp 伴随 extraction rate 从
+      89% 降至 76% → 约 24% 的 traces 产生 empty/corrupt constraints → MaxSAT input quality
+      退化； (2) Answer coherence 从 ~98% 降至 85% → 15% 的 outputs 本身质量低 → 这些 outputs 的
+      constraints 是 noise； (3) 如果将 overhead 折入：T=0.7 overhead ≈ 49%，T=1.0 overhead
+      ≈ 65% (因 extraction retry) → effective cost per question 增加 ~30%； (4) 结论：''T=1.0
+      partially breaks the trap but at a cost that negates the gain. The marginal
+      +8.3pp requires 65% additional compute, operating in a regime where 15% of outputs
+      are incoherent. Practitioners seeking this marginal gain would be better served
+      by simply increasing K at T=0.7.''
+
+      这一 framing 将 T=1.0 positive result 转化为 ''the trap has a theoretical escape hatch
+      that is practically useless''。但 reviewer 可反驳：''(1) overhead analysis is not
+      done at T=1.0, you''re speculating; (2) incoherence at T=1.0 is model-specific
+      and may not apply to larger models; (3) p=0.034 < 0.05, this is a real effect.''
+
+      '
+  - name: gsm8k_pilot_30q
+    plan_id: what_if_02
+    description: Qwen-14B GSM8K 30-question pilot, math reasoning domain
+    expected_results:
+      n: 30
+      k: 12
+      sica_accuracy: 0.8
+      sc_accuracy: 0.767
+      delta_pp: 3.3
+      multi_candidate_rate: 0.23
+      extraction_rate: 0.85
+      answer_extraction_rate: 0.93
+      contradiction_rate: 0.033
+      discordant_sica_wins: 2
+      discordant_sc_wins: 1
+      mcnemar_p: 0.56
+    result_rationale: '与 exp-012 相同实验。C0=23% 中等——14B 在 GSM8K 上不完全 confident，部分 arithmetic
+      步骤产生不同答案。+3.3pp 在 n=30 下无信息量。此实验在 worst 档下价值在于 提供一个 math domain 数据点 (与 NLI/science
+      domains 互补)，但 n=30 太小无法 影响任何 claim。如不扩展到 200+ 题，GSM8K 只能放 appendix 且不计入 main
+      claims。
+
+      '
+    tables:
+    - 'Appendix: GSM8K pilot results (same as exp-012)'
+    figures_description:
+    - 'F4 data point: C0=23%, gap=+3.3pp (small marker, annotated ''pilot n=30'')'
+    analysis: GSM8K pilot 在 worst 档下是 'nice to have' 但不改变任何 narrative。C0=23% 填充 F4
+      mid-range 但 n=30 误差带太宽。不建议投入 GPU budget 扩展，除非 reviewer explicit 要求 math domain
+      coverage。
+  review_report: "---\ndream_id: dream_20260517T144412\ntier: worst\noverall_score:\
+    \ 3/6 Weak Reject\ntimestamp: 2026-05-17T16:04:18.820199+00:00\n---\n\n# Dream\
+    \ Review Report: \"When Does Symbolic Consensus Help? A Systematic Empirical Study\"\
+    \n\n**Review Mode:** Full (2 Reviewers + Roundtable)\n**Venue Standard:** Top\
+    \ ML venue (acceptance rate ~25%, 6-point scale)\n\n---\n\n## Consolidated Score\n\
+    \n| | Score | Confidence |\n|---|---|---|\n| R1 (Methods + Experiments) | 3/6\
+    \ (Weak Reject) | 4/5 |\n| R2 (Novelty + Related Work) | 3/6 (Weak Reject) | 4/5\
+    \ |\n| **Consensus** | **3/6 (Weak Reject)** | **4/5** |\n\n---\n\n## Paper Summary\n\
+    \nThe paper presents SICA (Symbolic Invariant Consensus Aggregation), which extracts\
+    \ first-order logic (FOL) constraints from K reasoning traces and selects answers\
+    \ via weighted MAX-SAT. Evaluated across 5 model families, 3+ reasoning domains,\
+    \ and >1,300 problems, the main finding is negative: SICA provides no significant\
+    \ accuracy gain over Self-Consistency (majority voting). The authors identify\
+    \ a \"capability trap\" pattern and propose C0 (fraction of problems with multiple\
+    \ candidate answers) as a binary diagnostic. The only statistically significant\
+    \ positive result occurs at temperature T=1.0 (+8.3pp, p=0.034), but with degraded\
+    \ extraction quality and output coherence.\n\n---\n\n## Strengths (Consensus)\n\
+    \n- **S1: Constraint ablation (Table 3) is the paper's strongest and most publishable\
+    \ result.** MAX-SAT, count-only, and random-weight agree on 802/804 problems.\
+    \ This cleanly demonstrates that the MAX-SAT solver contributes nothing beyond\
+    \ vote counting under tested conditions. Both reviewers independently identified\
+    \ this as the core contribution.\n\n- **S2: Well-powered main experiment.** The\
+    \ Qwen-14B PW+FOLIO experiment (n=804) is appropriately sized. The observed Δ=+0.3pp\
+    \ convincingly rules out practically meaningful gains at default operating conditions.\n\
+    \n- **S3: Per-problem constraint precision analysis (Table 2) is methodologically\
+    \ sound.** Mean precision 0.57 (std 0.23) on 307 multi-candidate problems, with\
+    \ no correlation to vote entropy (R²=0.008), provides fine-grained mechanistic\
+    \ evidence.\n\n- **S4: K=11 odd-K ablation is an elegant diagnostic.** At odd\
+    \ K, ties are impossible; the resulting Δ=0 directly confirms SICA's only effective\
+    \ mechanism is tiebreaking.\n\n- **S5: Honest framing of negative results.** The\
+    \ paper does not cherry-pick or bury unfavorable results. The LLaMA-8B +8.3pp\
+    \ outlier is explicitly discussed with confounds (48 truncated traces, failure\
+    \ to replicate at n≥200).\n\n- **S6: Overhead quantification is practically useful.**\
+    \ 48.7% additional compute, dominated by constraint extraction (47%), with solver\
+    \ overhead negligible (<0.01%). The overhead-to-gain ratio of ~162 at default\
+    \ settings is actionable.\n\n- **S7: Temperature ablation provides quasi-causal\
+    \ evidence.** Manipulating diversity continuously (C0 from 18% to 72%) while holding\
+    \ model and data constant is a well-designed ablation.\n\n---\n\n## Weaknesses\
+    \ (Consensus, Severity-Ordered)\n\n### Critical\n\n- **W1: Claims exceed evidence\
+    \ (scope-evidence mismatch).** The title and abstract generalize to \"symbolic\
+    \ consensus\" broadly, but only one specific pipeline is tested (same-model FOL\
+    \ extraction + MAX-SAT). Published neuro-symbolic methods (DyLoS, Aristotle, FoVer,\
+    \ LogicAgent) reportedly achieve gains on the exact same benchmarks (FOLIO, ProofWriter).\
+    \ Without citing or comparing against these, the paper cannot claim that symbolic\
+    \ consensus in general does not help. *Both reviewers flagged this independently.*\n\
+    \n- **W2: Self-extraction confound is unaddressed.** The same model generates\
+    \ traces and extracts constraints. A model that commits a reasoning error will\
+    \ likely extract constraints consistent with that error. Without testing a stronger/separate\
+    \ extraction model or using FOLIO's gold FOL annotations as an oracle, the paper\
+    \ cannot distinguish \"symbolic aggregation is fundamentally limited\" from \"\
+    same-model self-extraction produces non-discriminative constraints.\" *Both reviewers\
+    \ flagged this as a critical gap.*\n\n- **W3: 8 references is critically below\
+    \ venue standards.** Top ML venues expect 30-60 citations for an empirical study.\
+    \ Critical omissions include:\n  - Methods that work on the same benchmarks: DyLoS\
+    \ (EACL 2026), FoVer (TACL 2025), Aristotle (ACL 2025), LogicAgent\n  - Test-time\
+    \ compute scaling: Snell et al. (ICLR 2025 Oral)\n  - SC scaling plateaus: Loo\
+    \ et al. (2025)\n  - DeepSeek-R1 technical report\n  - Confidence-weighted SC:\
+    \ Taubenfeld et al. (2025)\n  - SATBench and other SAT-based reasoning benchmarks\n\
+    \  \n  The absence of methods that achieve positive results on the same benchmarks\
+    \ is particularly damaging to the paper's central claim. *Both reviewers flagged\
+    \ this.*\n\n### Major\n\n- **W4: \"Capability trap\" lacks novelty.** The diversity-quality\
+    \ tradeoff in LLM scaling is documented by Loo et al. (2025) and others. C0 as\
+    \ a diagnostic trivially separates reasoning models (C0<5%) from instruction models\
+    \ (C0>20%) with only 2 clusters and no gradient. Relabeling the known property\
+    \ that \"more capable models have lower output diversity\" as a \"capability trap\"\
+    \ does not constitute a conceptual contribution. *(R2 primary, R1 concurred)*\n\
+    \n- **W5: Domain coverage is substantively thinner than claimed.** SICA operates\
+    \ meaningfully (C0>20%) almost exclusively on formal logic (ProofWriter + FOLIO).\
+    \ On StrategyQA (C0=10%), ARC (C0=5%), and GSM8K (C0=27% but n=30), conditions\
+    \ are degenerate or underpowered. The \"3 reasoning domains\" claim is misleading.\
+    \ *(Both reviewers)*\n\n- **W6: Underpowered cross-model experiments.** 8 of 9\
+    \ conditions in Table 1 use n≤60 (SE ≈ 6-8pp). At n=60, the minimum detectable\
+    \ effect at 80% power is ~12-15pp. Claims that these conditions \"confirm\" the\
+    \ null are statistically unjustified. The \"combined N>1,300\" figure in the abstract\
+    \ is misleading when 804/1,300 come from one model on one domain pair. *(R1 primary)*\n\
+    \n- **W7: Missing/broken figures.** The hero scatter plots (F2: constraint precision\
+    \ vs. vote entropy; F4: C0 vs. gap) are referenced in the text but not rendered.\
+    \ Cross-references appear as \"Figure ??\". For a paper whose argument centers\
+    \ on diversity-quality relationships, these missing visualizations are a serious\
+    \ presentation failure. *(Both reviewers)*\n\n- **W8: MAX-SAT formulation ambiguity.**\
+    \ R1 raised a critical question: as written, the formula sums only over traces\
+    \ whose answer matches each candidate. If constraints are never evaluated cross-answer,\
+    \ the method is structurally just a weighted vote, making the negative result\
+    \ trivially expected rather than informative. This must be clarified. *(R1)*\n\
+    \n### Moderate\n\n- **W9: Temperature ablation confounded.** T=1.0 simultaneously\
+    \ affects diversity, trace quality, and extraction quality. The positive result\
+    \ (p=0.034) at T=1.0 is from a single model at n=60, without replication across\
+    \ models. The constraint ablation (Table 3) was only performed at T=0.7; if MAX-SAT\
+    \ > count-only at T=1.0, the core \"mechanism is vacuous\" claim would be undermined.\
+    \ *(R1)*\n\n- **W10: The paper reads more like an experiment report than a compelling\
+    \ narrative.** Sections 5.1-5.6 present results sequentially without building\
+    \ toward a unified insight. The \"capability trap\" framing appears late and feels\
+    \ post-hoc. *(R2)*\n\n- **W11: Taubenfeld et al. (2024) citation appears incorrect.**\
+    \ The cited paper is about debate biases, not confidence-weighted SC. *(R1)*\n\
+    \n---\n\n## Questions for Authors (Priority-Ordered)\n\n1. **(Critical)** In the\
+    \ MAX-SAT formulation, are constraints from trace t_i evaluated against candidate\
+    \ answers other than ans(t_i)? If constraints are never tested cross-answer, the\
+    \ method is structurally a weighted vote, and the negative result is trivially\
+    \ expected.\n\n2. **(Critical)** Have you tested using a stronger model (e.g.,\
+    \ Qwen-72B or a frontier model) as the constraint extractor while keeping Qwen-14B\
+    \ as the trace generator? This would separate extraction quality from the aggregation\
+    \ mechanism.\n\n3. **(Critical)** How do you reconcile the claim that symbolic\
+    \ consensus does not help with published results showing that DyLoS, FoVer, Aristotle,\
+    \ and Logic-LM variants achieve gains on FOLIO and ProofWriter?\n\n4. FOLIO provides\
+    \ gold FOL annotations. Have you considered an oracle experiment using these as\
+    \ constraints to establish an upper bound on what perfect extraction would achieve?\n\
+    \n5. The LLaMA-8B large-n replications (StrategyQA n=200, FOLIO n=204) are mentioned\
+    \ but not in Table 1. Why were they excluded?\n\n6. For the 2 problems where MAX-SAT\
+    \ and count-only disagree (out of 804), can you characterize what makes them different?\n\
+    \n7. What is the distribution of constraint counts per trace? If most traces produce\
+    \ only 1-2 constraints, the negative result may reflect insufficient signal density\
+    \ rather than a fundamental limitation.\n\n8. Has the constraint-sharing analysis\
+    \ (Section 6/Appendix F: 8 case studies) been verified at scale across the 307\
+    \ multi-candidate problems?\n\n---\n\n## Minor Issues\n\n- Broken LaTeX figure\
+    \ cross-references (\"Figure ??\")\n- QwQ-32B row in Table 1 reports \"--\" for\
+    \ SC/SICA accuracy; actual numbers should be shown\n- Paper uses custom geometry\
+    \ rather than target venue template\n- Case study selection criteria (Appendix\
+    \ F) not described\n- Abstract states \"4 instruction-scale model families\" but\
+    \ Mistral-7B results are absent from Table 1\n- Several numerical discrepancies\
+    \ noted between different sections (R1 flagged specific instances)\n\n---\n\n\
+    ## Roundtable Convergence Notes\n\n**Step 2 (Cross-sharing):** Both reviewers\
+    \ independently arrived at the same score (3/6) and identified the same top-3\
+    \ weaknesses (claim scope, self-extraction confound, insufficient references).\
+    \ R1 contributed the MAX-SAT formulation concern (W8) which R2 had not flagged;\
+    \ R2 contributed the specific missing references (DyLoS, Aristotle, FoVer) that\
+    \ demonstrate gains on the same benchmarks.\n\n**Step 3 (Convergence):** Full\
+    \ agreement on score. The key deliberation point was whether the constraint ablation\
+    \ alone (Table 3) is sufficient for acceptance despite other weaknesses. Consensus:\
+    \ it is a necessary but insufficient contribution. Without addressing the self-extraction\
+    \ confound and the existence of methods that DO work on these benchmarks, the\
+    \ ablation's interpretation remains ambiguous (does it show symbolic consensus\
+    \ is limited, or that this particular extraction pipeline is limited?).\n\n**Step\
+    \ 4 (Final assessment):** The paper has a genuinely strong empirical core in the\
+    \ constraint ablation and precision analysis. However, the scope-evidence mismatch\
+    \ (generalizing from one pipeline to \"symbolic consensus\"), the critically thin\
+    \ bibliography that misses methods achieving positive results on the same benchmarks,\
+    \ the unaddressed self-extraction confound, and the missing figures collectively\
+    \ place it below the acceptance threshold. The path to improvement is clear: narrow\
+    \ claims to match evidence (e.g., \"same-model FOL extraction + MAX-SAT does not\
+    \ improve over voting\"), expand scholarship to 30+ references including competing\
+    \ positive results, add gold-FOL oracle and stronger-extractor controls, and render\
+    \ all figures.\n\n---\n\n## Experiment Coverage Assessment\n\nComparing against\
+    \ the planned experiment list (review_context.yaml):\n\n| Experiment | Status\
+    \ in Paper |\n|---|---|\n| Main results (exp-001) | Present (Table 1, n=804) |\n\
+    | K ablation (exp-002) | Present (Appendix A, Table 7) |\n| Tiebreak analysis\
+    \ (exp-003) | Present (Table 4) |\n| Qwen-7B scaling (exp-004) | Present (Table\
+    \ 1 row) |\n| QwQ-32B (exp-005) | Present (Table 1 row, but sparse data n=46)\
+    \ |\n| C0 diagnostic (exp-006) | Present (Table 6, Table 11) |\n| Qwen-72B (exp-007)\
+    \ | Present (Table 1 row) |\n| Case studies (exp-008) | Present (Appendix F) |\n\
+    | Overhead (exp-009) | Present (Appendix B, Table 8) |\n| Mistral-7B (exp-010)\
+    \ | Mentioned in text but ABSENT from Table 1 |\n| LLaMA-8B (exp-011) | Present\
+    \ (Table 1 row) |\n| GSM8K pilot (exp-012) | Present (Appendix E) |\n| Constraint\
+    \ ablation (exp-013) | Present (Table 3) |\n| DeepSeek-R1 (exp-014) | Present\
+    \ (Table 1 row) |\n| Logic-LM (exp-015) | Present (Appendix D, Table 10) |\n|\
+    \ Weighted SC (exp-016) | Present (Appendix C, Table 9) |\n| StrategyQA (exp-017)\
+    \ | Present (Table 1 row) |\n| ARC-Challenge (exp-018) | Present (Table 1 row)\
+    \ |\n| Constraint quality (exp-019) | Present (Table 2) |\n| Temperature ablation\
+    \ (what_if_01) | Present (Table 5) |\n| GSM8K pilot duplicate (what_if_02) | Merged\
+    \ with exp-012 |\n\nCoverage is reasonably complete. Main gap: Mistral-7B results\
+    \ (exp-010) are discussed in text but missing from Table 1. Large-n LLaMA replications\
+    \ (mentioned in context as exp-019/020 with n=200/204) are referenced in prose\
+    \ but not tabulated."
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-17T16:04:30+00:00'

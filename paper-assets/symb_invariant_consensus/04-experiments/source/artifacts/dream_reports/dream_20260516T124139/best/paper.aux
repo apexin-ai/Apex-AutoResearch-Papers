@@ -1,0 +1,85 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\citation{wang2023selfconsistency}
+\citation{chen2023universal}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{pan2023logiclm}
+\citation{olausson2023linc}
+\citation{kuhn2023semantic}
+\citation{xiong2024llms}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency and voting methods.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Symbolic reasoning with LLMs.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Uncertainty quantification in LLMs.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Overview}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Constraint Extraction}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Weighted Partial MAX-SAT}{2}{subsection.3.3}\protected@file@percent }
+\citation{han2022folio}
+\citation{tafjord2021proofwriter}
+\citation{cobbe2021gsm8k}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Trace Diversity Metric: $C_0{}$}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical testing.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{3}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{3}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results}{3}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main-results}{{5.1}{3}{Main Results}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results: \textsc  {Sica}{} vs.\ Self-Consistency (SC) accuracy (\%). $C_0{}$ is multi-candidate rate. $\Delta $ is \textsc  {Sica}{}$-$SC in percentage points. Results for Qwen2.5-14B are on the full 804-question set; others on D012 (60 questions). $^\dagger $GSM8K pilot (30 questions). $^\ddagger $Reasoning models. Bold indicates the better method per row.}}{4}{table.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main}{{1}{4}{Main results: \sica {} vs.\ Self-Consistency (SC) accuracy (\%). $\czero {}$ is multi-candidate rate. $\Delta $ is \sica {}$-$SC in percentage points. Results for Qwen2.5-14B are on the full 804-question set; others on D012 (60 questions). $^\dagger $GSM8K pilot (30 questions). $^\ddagger $Reasoning models. Bold indicates the better method per row}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Tiebreak accuracy (\%) on 129 tied instances from the Qwen2.5-14B expanded evaluation. \textsc  {Sica}{} uses MAX-SAT constraint weighting; baselines use different arbitrary rules.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:tiebreak}{{2}{4}{Tiebreak accuracy (\%) on 129 tied instances from the Qwen2.5-14B expanded evaluation. \sica {} uses MAX-SAT constraint weighting; baselines use different arbitrary rules}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Tiebreak Analysis}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:tiebreak}{{5.2}{4}{Tiebreak Analysis}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}$C_0{}$ as a Diagnostic for \textsc  {Sica}{} Deployment}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:c0}{{5.3}{4}{$\czero {}$ as a Diagnostic for \sica {} Deployment}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces $K$ sensitivity for Qwen2.5-14B on D012 (60 questions). Tie rate is the fraction of problems with tied SC votes.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:ksens}{{3}{5}{$K$ sensitivity for Qwen2.5-14B on D012 (60 questions). Tie rate is the fraction of problems with tied SC votes}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}$K$ Sensitivity Analysis}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:ksensitivity}{{5.4}{5}{$K$ Sensitivity Analysis}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Operating Regime: When \textsc  {Sica}{} Degenerates}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:regime}{{5.5}{5}{Operating Regime: When \sica {} Degenerates}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Active regime ($C_0{}>20\%$).}{5}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Degenerate regime ($C_0{}<5\%$).}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Constraint Ablation: Is MAX-SAT Essential?}{5}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:ablation}{{5.6}{5}{Constraint Ablation: Is MAX-SAT Essential?}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Constraint aggregation ablation (804 questions, Qwen2.5-14B). Tiebreak accuracy is on the 129 tied instances.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:ablation}{{4}{6}{Constraint aggregation ablation (804 questions, Qwen2.5-14B). Tiebreak accuracy is on the 129 tied instances}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Per-question wall time breakdown. Generation cost is shared with SC; only extraction, MAX-SAT, and aggregation are \textsc  {Sica}{}-specific overhead.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:overhead}{{5}{6}{Per-question wall time breakdown. Generation cost is shared with SC; only extraction, MAX-SAT, and aggregation are \sica {}-specific overhead}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Overhead Analysis}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:overhead}{{5.7}{6}{Overhead Analysis}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Qualitative Analysis: Constraint Quality}{6}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:casestudies}{{5.8}{6}{Qualitative Analysis: Constraint Quality}{subsection.5.8}{}}
+\bibstyle{plain}
+\bibcite{wang2023selfconsistency}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Cross-Family Validation}{7}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:crossfamily}{{5.9}{7}{Cross-Family Validation}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{$C_0{}$ and epistemic uncertainty.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical deployment guidance.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why not just use a reasoning model?}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{7}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{7}{Conclusion}{section.7}{}}
+\bibcite{chen2023universal}{2}
+\bibcite{pan2023logiclm}{3}
+\bibcite{olausson2023linc}{4}
+\bibcite{kuhn2023semantic}{5}
+\bibcite{xiong2024llms}{6}
+\bibcite{han2022folio}{7}
+\bibcite{tafjord2021proofwriter}{8}
+\bibcite{cobbe2021gsm8k}{9}
+\gdef \@abspage@last{8}

@@ -1,0 +1,546 @@
+{
+  "pid": "folio_22",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "popular(stranger_things)",
+          "z3_formula": "popular_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(X) -> binge_watches_karen(X)",
+          "z3_formula": "Implies(popular_stranger_things, binge_watches_karen_stranger_things)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches_karen(X) -> downloads_karen(X)",
+          "z3_formula": "Implies(binge_watches_karen_stranger_things, downloads_karen_stranger_things)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not downloads_karen(black_mirror)",
+          "z3_formula": "Not(downloads_karen_black_mirror) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix(black_mirror)",
+          "z3_formula": "netflix_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches_karen(X) -> shares_lisa(X)",
+          "z3_formula": "Implies(binge_watches_karen_black_mirror, shares_lisa_black_mirror)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watches(netflix_show, karen)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_netflix_show_karen)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> downloads(netflix_show, karen)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, downloads_netflix_show_karen)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not downloads(netflix_show_black_mirror, karen)",
+          "z3_formula": "Not(downloads_netflix_show_black_mirror_karen) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(netflix_show_black_mirror)",
+          "z3_formula": "netflix_show_netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> shares(netflix_show, karen, lisa)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, shares_netflix_show_karen_lisa)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watches(karen, netflix_show)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_karen_netflix_show)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(karen, netflix_show) -> downloads(karen, netflix_show)",
+          "z3_formula": "Implies(binge_watches_karen_netflix_show, downloads_karen_netflix_show)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not downloads(karen, black_mirror)",
+          "z3_formula": "not downloads_karen_black_mirror == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(black_mirror)",
+          "z3_formula": "netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(karen, netflix_show) -> shares(karen, lisa, netflix_show)",
+          "z3_formula": "Implies(binge_watches_karen_netflix_show, shares_karen_lisa_netflix_show)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not popular(black_mirror)",
+          "z3_formula": "not popular_black_mirror == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "popular(netflix, stranger_things)",
+          "z3_formula": "popular_netflix_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix, X) -> binge_watches(karen, X)",
+          "z3_formula": "Implies(popular_netflix_X, binge_watches_karen_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(karen, X) -> downloads(karen, X)",
+          "z3_formula": "Implies(binge_watches_karen_X, downloads_karen_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not downloads(karen, black_mirror)",
+          "z3_formula": "not downloads_karen_black_mirror == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix(Black_Mirror)",
+          "z3_formula": "netflix_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(karen, X) -> shares(karen, lisa, X)",
+          "z3_formula": "Implies(binge_watches_karen_X, shares_karen_lisa_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not popular(Black_Mirror)",
+          "z3_formula": "not popular_black_mirror == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(popular(Black_Mirror))",
+          "z3_formula": "unknown_popular_black_mirror == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watches(netflix_show, karen)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_netflix_show_karen)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> downloads(netflix_show, karen)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, downloads_netflix_show_karen)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(downloads(netflix_show_black_mirror, karen))",
+          "z3_formula": "not(downloads_netflix_show_black_mirror_karen) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(netflix_show_black_mirror)",
+          "z3_formula": "netflix_show_netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> shares(netflix_show, karen, lisa)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, shares_netflix_show_karen_lisa)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(X) -> binge_watches(X, karen)",
+          "z3_formula": "Implies(popular_netflix_show_stranger_things, binge_watches_netflix_show_karen)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(X, karen) <-> downloads(X, karen)",
+          "z3_formula": "Implies(And(binge_watches_netflix_show_karen, Not(downloads_netflix_show_karen)), False)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(downloads(karen, black_mirror))",
+          "z3_formula": "Not(downloads_karen_black_mirror) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(black_mirror)",
+          "z3_formula": "netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(X, karen) -> shares(X, karen, lisa)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, shares_netflix_show_karen_lisa)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(Netflix_show) -> binge_watches_karen(Netflix_show)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_karen_netflix_show)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches_karen(Netflix_show) <-> downloads_karen(Netflix_show)",
+          "z3_formula": "Implies(And(binge_watches_karen_netflix_show, downloads_karen_netflix_show), True) & Implies(And(downloads_karen_netflix_show, binge_watches_karen_netflix_show), True)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not downloads_karen(black_mirror)",
+          "z3_formula": "not downloads_karen_black_mirror == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(black_mirror)",
+          "z3_formula": "netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches_karen(Netflix_show) -> shares_lisa(Netflix_show)",
+          "z3_formula": "Implies(binge_watches_karen_netflix_show, shares_lisa_netflix_show)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not popular(black_mirror)",
+          "z3_formula": "not popular_black_mirror == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watches(karen, netflix_show)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_karen_netflix_show)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(karen, netflix_show) -> downloads(karen, netflix_show)",
+          "z3_formula": "Implies(binge_watches_karen_netflix_show, downloads_karen_netflix_show)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(downloads(karen, black_mirror))",
+          "z3_formula": "Not(downloads_karen_black_mirror) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(black_mirror)",
+          "z3_formula": "netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(karen, netflix_show) -> shares(karen, lisa, netflix_show)",
+          "z3_formula": "Implies(binge_watches_karen_netflix_show, shares_karen_lisa_netflix_show)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "popular(stranger_things)",
+          "z3_formula": "popular_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watches(netflix_show, karen)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_netflix_show_karen)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> downloads(netflix_show, karen)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, downloads_netflix_show_karen)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not downloads(black_mirror, karen)",
+          "z3_formula": "Not(downloads_black_mirror_karen) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(black_mirror)",
+          "z3_formula": "netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> shares(netflix_show, karen, lisa)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, shares_netflix_show_karen_lisa)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show)",
+          "z3_formula": "popular_netflix_show == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watches(netflix_show, karen)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_netflix_show_karen)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> downloads(netflix_show, karen)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, downloads_netflix_show_karen)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not downloads(black_mirror, karen)",
+          "z3_formula": "not downloads_black_mirror_karen == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(black_mirror)",
+          "z3_formula": "netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> shares(netflix_show, karen, lisa)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, shares_netflix_show_karen_lisa)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watches(netflix_show, karen)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_netflix_show_karen)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> downloads(netflix_show, karen)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, downloads_netflix_show_karen)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(downloads(netflix_show_black_mirror, karen))",
+          "z3_formula": "not(downloads_netflix_show_black_mirror_karen) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show_black_mirror",
+          "z3_formula": "netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> shares(netflix_show, karen, lisa)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, shares_netflix_show_karen_lisa)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(popular(netflix_show_black_mirror))",
+          "z3_formula": "not(popular_netflix_show_black_mirror) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watch(karen, netflix_show)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watch_karen_netflix_show)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watch(karen, netflix_show) <-> download(karen, netflix_show)",
+          "z3_formula": "Implies(And(binge_watch_karen_netflix_show, Not(download_karen_netflix_show)), False)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "Not(download(karen, netflix_show_black_mirror))",
+          "z3_formula": "Not(download_karen_netflix_show_black_mirror) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(netflix_show_black_mirror)",
+          "z3_formula": "netflix_show_netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watch(karen, netflix_show) -> share(karen, lisa, netflix_show)",
+          "z3_formula": "Implies(binge_watch_karen_netflix_show, share_karen_lisa_netflix_show)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(popular(netflix_show_black_mirror))",
+          "z3_formula": "Not(popular_netflix_show_black_mirror) == True",
+          "source_step": 7
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Remote file on westd-32608: /root/symb_invariant_consensus/analysis/f2_per_problem.csv
+307 rows (multi-candidate problems, n_unique_answers > 1), 13 columns: problem_id, dataset, level, ground_truth, n_unique_answers, vote_entropy, constraint_count, constraint_exclusion_rate, sica_answer, sc_answer, sica_correct, sc_correct, sica_flipped

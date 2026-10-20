@@ -1,0 +1,1252 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-399_Q3",
+    "problem": "Bob is quiet. Bob is smart. Charlie is kind. Charlie is smart. Charlie is white. Erin is blue. Harry is green. White, green things are smart. Smart, quiet things are white. All quiet, kind things are white. If Erin is kind and Erin is blue then Erin is white. All kind things are quiet. White things are quiet. Green things are kind. All white, smart things are furry.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is white.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nKind($x, bool) ::: Is x kind?\nWhite($x, bool) ::: Is x white?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nFurry($x, bool) ::: Is x furry?\n\nFacts:\nQuiet(Bob, True) ::: Bob is quiet.\nSmart(Bob, True) ::: Bob is smart.\nKind(Charlie, True) ::: Charlie is kind.\nSmart(Charlie, True) ::: Charlie is smart.\nWhite(Charlie, True) ::: Charlie is white.\nBlue(Erin, True) ::: Erin is blue.\nGreen(Harry, True) ::: Harry is green.\n\nRules:\nWhite($x, True) && Green($x, True) >>> Smart($x, True) ::: White, green things are smart.\nSmart($x, True) && Quiet($x, True) >>> White($x, True) ::: Smart, quiet things are white.\nQuiet($x, True) && Kind($x, True) >>> White($x, True) ::: All quiet, kind things are white.\nKind(Erin, True) && Blue(Erin, True) >>> White(Erin, True) ::: If Erin is kind and Erin is blue then Erin is white.\nKind($x, True) >>> Quiet($x, True) ::: All kind things are quiet.\nWhite($x, True) >>> Quiet($x, True) ::: White things are quiet.\nGreen($x, True) >>> Kind($x, True) ::: Green things are kind.\nWhite($x, True) && Smart($x, True) >>> Furry($x, True) ::: All white, smart things are furry.\n\nQuery:\nWhite(Bob, True) ::: Bob is white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 177.0,
+      "Unknown": 179.0
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "True": 6
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is quiet. (Given)\n2. Bob is smart. (Given)\n3. Charlie is kind. (Given)\n4. Charlie is smart. (Given)\n5. Charlie is white. (Given)\n6. Erin is blue. (Given)\n7. Harry is green. (Given)\n8. White, green things are smart. (Inference from statement 5 and 7)\n9. Smart, quiet things are white. (Given)\n10. All quiet, kind things are white. (Given)\n11. If Erin is kind and Erin is blue then Erin is white. (Inference from statements 3, 6, and 10)\n12. All kind things are quiet. (Given)\n13. White things are quiet. (Given)\n14. Green things are kind. (Inference from statement 7)\n15. All white, smart things are furry. (Given)\n\nNow, let's analyze the given statement: \"Bob is white.\"\n\nFrom statement 1, we know Bob is quiet. From statement 9, we know smart, quiet things are white. However, we cannot confirm if Bob is smart or not. \n\nFrom statement 12, we know all kind things are quiet. But we cannot confirm if Bob is kind or not. \n\nHowever, we can infer from statement 9 that smart, quiet things are white. We cannot confirm if Bob is smart, but we can confirm he is quiet.\n\nFrom statement 5, we know Charlie is white, and he is smart. However, we cannot confirm if Bob is smart or not.\n\nNow, let's analyze the information we have about Charlie and Bob. Charlie is white and smart, but we cannot confirm if Bob is white or smart.\n\nFrom statement 9, we know smart, quiet things are white. We cannot confirm if Bob is smart, but we can confirm he is quiet.\n\nHowever, we cannot confirm if Bob is smart or not. We can confirm Bob is quiet, but we cannot confirm if he is white or not.\n\nTherefore, the statement \"Bob is white\" is unknown.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1.  Given information:\n    - Bob is quiet.\n    - Bob is smart.\n    - Charlie is kind.\n    - Charlie is smart.\n    - Charlie is white.\n    - Erin is blue.\n    - Harry is green.\n    - White, green things are smart.\n    - Smart, quiet things are white.\n    - All quiet, kind things are white.\n    - If Erin is kind and Erin is blue then Erin is white.\n    - All kind things are quiet.\n    - White things are quiet.\n    - Green things are kind.\n    - All white, smart things are furry.\n\n2.  We are asked to determine whether the statement \"Bob is white\" is true, false, or unknown.\n\n3.  Let's analyze the given information:\n    - Bob is quiet (from statement 1).\n    - Bob is smart (from statement 1).\n    - All quiet, kind things are white (from statement 7).\n    - All quiet things are white is not mentioned, however all quiet, kind things are white. It implies that if a thing is quiet and kind, then it is white.\n\n4.  Now let's determine whether Bob is kind or not:\n    - We don't have any direct information about Bob being kind.\n    - However, all quiet things are not necessarily kind (it is only the quiet, kind things that are white, not all quiet things).\n    - Since we don't have any information that Bob is kind or not, we cannot conclude that Bob is white based on the information that he is quiet.\n\n5.  Since we cannot conclude that Bob is white, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine if the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\nGiven statements:\n1. Bob is quiet.\n2. Bob is smart.\n3. Charlie is kind.\n4. Charlie is smart.\n5. Charlie is white.\n6. Erin is blue.\n7. Harry is green.\n8. White, green things are smart.\n9. Smart, quiet things are white.\n10. All quiet, kind things are white.\n11. If Erin is kind and Erin is blue then Erin is white.\n12. All kind things are quiet.\n13. White things are quiet.\n14. Green things are kind.\n15. All white, smart things are furry.\n\nFrom statement 8, we know that white, green things are smart. We can't determine if Bob is white or green, but we can analyze the possibilities.\n\nStatement 9 says that smart, quiet things are white. We know that Bob is smart (statement 2) and Bob is quiet (statement 1). This matches the description in statement 9, so we can conclude that Bob is white.\n\nHowever, we also need to check if there are any other statements that contradict this conclusion. We can analyze the other statements that involve white things.\n\nStatement 13 says that white things are quiet. Since Bob is white, we can apply this statement to conclude that Bob is quiet (which we already know), but it doesn't provide any new information.\n\nStatement 10 says that all quiet, kind things are white. However, we don't have enough information to determine if Bob is kind.\n\nStatement 11 is a conditional statement that says if Erin is kind and Erin is blue then Erin is white. We know that Erin is blue (statement 6), but we don't know if Erin is kind.\n\nStatement 12 says that all kind things are quiet. We don't have enough information to determine if Bob is kind.\n\nStatement 15 says that all white, smart things are furry. We know that Bob is white and Bob is smart, but this statement doesn't provide any information that contradicts our initial conclusion.\n\nConsidering all the given statements, we can conclude that the statement \"Bob is white\" is true based on statements 1, 2, and 9.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is white' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Bob is quiet. (1)\n   - Bob is smart. (2)\n   - Charlie is kind. (3)\n   - Charlie is smart. (4)\n   - Charlie is white. (5)\n   - Erin is blue. (6)\n   - Harry is green. (7)\n   - White, green things are smart. (8)\n   - Smart, quiet things are white. (9)\n   - All quiet, kind things are white. (10)\n   - If Erin is kind and Erin is blue then Erin is white. (11)\n   - All kind things are quiet. (12)\n   - White things are quiet. (13)\n   - Green things are kind. (14)\n   - All white, smart things are furry. (15)\n\n2. We need to analyze the information to determine whether 'Bob is white.' \n\nFrom statement (1), Bob is quiet. \nFrom statement (2), Bob is smart.\n\nWe don't have any direct information that links 'Bob' to the color 'white.' However, statement (9) says 'Smart, quiet things are white.' Since we know from statements (1) and (2) that Bob is both smart and quiet, we can apply this rule to conclude that 'Bob is white.'\n\nHowever, we also need to check if this conclusion is affected by other rules. Statement (10) says 'All quiet, kind things are white.' Since we know Bob is quiet from statement (1), this statement could also imply that Bob is white if Bob is also kind.\n\nTo determine if Bob is kind, we need to check the statements. Statement (3) says 'Charlie is kind,' but there's no direct information linking Bob's kind nature. However, statement (12) says 'All kind things are quiet.' This means if Bob is kind, then he must be quiet. But we already know from statement (1) that Bob is quiet. This doesn't provide any new information.\n\nHowever, statement (14) says 'Green things are kind.' This means if something is green, it must be kind. But we are not given any information that links Bob to the color green. So, we cannot conclude that Bob is kind.\n\nWe cannot conclude that Bob is white only from statement (9) 'Smart, quiet things are white,' as there is another possible conclusion that can be drawn from statement (10) 'All quiet, kind things are white.' However, since we know that Bob is quiet from statement (1) and there is no information that links Bob to the color green, we cannot conclude that Bob is kind from statement (14). \n\nTherefore, based on the information we have, we can only conclude that Bob is white from statement (9) 'Smart, quiet things are white.' \n\nSo, the statement 'Bob is white' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Bob is quiet.\n   - Bob is smart.\n   - Charlie is kind.\n   - Charlie is smart.\n   - Charlie is white.\n   - Erin is blue.\n   - Harry is green.\n   - White, green things are smart.\n   - Smart, quiet things are white.\n   - All quiet, kind things are white.\n   - If Erin is kind and Erin is blue, then Erin is white.\n   - All kind things are quiet.\n   - White things are quiet.\n   - Green things are kind.\n   - All white, smart things are furry.\n\n2. Analyzing the given information:\n   - From the statement \"All quiet, kind things are white,\" we can infer that if a thing is quiet and kind, it is white.\n   - From the statement \"All kind things are quiet,\" we can infer that if a thing is kind, it is quiet.\n   - From the statement \"Green things are kind,\" we can infer that Harry, who is green, is kind.\n   - Since Harry is kind, we can infer that Harry is quiet (from \"All kind things are quiet\").\n\n3. Now, let's focus on Bob:\n   - Bob is quiet.\n   - We don't know if Bob is kind or not, but we do know that if Bob were kind, then he would be quiet (from \"All kind things are quiet\") and white (from \"All quiet, kind things are white\").\n\n4. Since we don't know if Bob is kind or not, we can't determine his color directly from the information given.\n   However, we can look at the statement \"Smart, quiet things are white.\" \n   - We know Bob is quiet, so if he were smart, then he would be white.\n\n5. Now, let's consider Bob's smartness:\n   - We know Bob is smart, which means that if he were quiet, he would be white (from \"Smart, quiet things are white\").\n\n6. From the information given, we can't directly determine whether Bob is white or not, because we don't have enough information to conclude whether he is kind or not.\n\n7. However, since we do have a conclusion that if Bob were smart and quiet, then he would be white, but we cannot conclude that he is both smart and quiet or that he is not smart and quiet, we cannot say that the statement \"Bob is white\" is false.\n\n8. Therefore, we cannot determine the truth of the statement \"Bob is white\" based on the given information, so it is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nGiven statements:\n\n1. Bob is quiet. (1)\n2. Bob is smart. (2)\n3. Charlie is kind. (3)\n4. Charlie is smart. (4)\n5. Charlie is white. (5)\n6. Erin is blue. (6)\n7. Harry is green. (7)\n8. White, green things are smart. (8)\n9. Smart, quiet things are white. (9)\n10. All quiet, kind things are white. (10)\n11. If Erin is kind and Erin is blue then Erin is white. (11)\n12. All kind things are quiet. (12)\n13. White things are quiet. (13)\n14. Green things are kind. (14)\n15. All white, smart things are furry. (15)\n\nFrom statement (14), we know that green things are kind. Since Harry is green (statement 7), Harry is kind (by substitution).\n\nFrom statement (12), we know that all kind things are quiet. Since Harry is kind, Harry is quiet (by substitution).\n\nFrom statement (13), we know that white things are quiet. \n\nFrom statement (9), we know that smart, quiet things are white. Since Bob is quiet (statement 1) and Bob is smart (statement 2), Bob is white (by substitution).\n\nSo, we can conclude that \"Bob is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is white' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given statements are:\n   - Bob is quiet.\n   - Bob is smart.\n   - Charlie is kind.\n   - Charlie is smart.\n   - Charlie is white.\n   - Erin is blue.\n   - Harry is green.\n   - White, green things are smart.\n   - Smart, quiet things are white.\n   - All quiet, kind things are white.\n   - If Erin is kind and Erin is blue then Erin is white.\n   - All kind things are quiet.\n   - White things are quiet.\n   - Green things are kind.\n   - All white, smart things are furry.\n\n2. From the given statements, we can form the following conclusions:\n   - Charlie is white and Charlie is smart. So, all white, smart things are furry. (Statement 9)\n   - But since Charlie is white and Charlie is smart, Charlie must be furry. (From statement 9)\n   - There is no information given about Bob being green. So, we cannot conclude anything about Bob being kind based on statement 8 (Green things are kind).\n   - We know Bob is quiet. But we do not have information about Bob being kind or smart.\n   - Statement 5 (Charlie is white) and statement 6 (Erin is blue) are used to form the conclusion that if Erin is kind and Erin is blue then Erin is white. But we do not know if Erin is kind.\n   - If we assume Erin is kind, then Erin must be quiet (statement 10) and Erin must be white (statement 11).\n\n3. Now, let's try to conclude whether Bob is white or not.\n   - From statement 7 (All quiet, kind things are white), we can conclude that if Bob is kind and Bob is quiet, then Bob is white.\n   - But we do not have information about Bob being kind.\n\n4. To determine whether Bob is white, we need to know whether Bob is kind or not.\n   - If we assume Bob is kind, then Bob must be quiet (statement 10) and Bob must be white (statement 7).\n   - But we do not have information about Bob being kind.\n\n5. Since we cannot conclude whether Bob is kind or not, we cannot conclude whether Bob is white or not.\n\nTherefore, the final answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information to determine whether the statement \"Bob is white\" is true, false, or unknown. We will analyze each piece of information step by step.\n\n1. Bob is quiet. \n2. Bob is smart. \n3. Charlie is kind. \n4. Charlie is smart. \n5. Charlie is white. \n6. Erin is blue. \n7. Harry is green. \n8. White, green things are smart. \n9. Smart, quiet things are white. \n10. All quiet, kind things are white. \n11. If Erin is kind and Erin is blue then Erin is white. \n12. All kind things are quiet. \n13. White things are quiet. \n14. Green things are kind. \n15. All white, smart things are furry.\n\nFrom statement 12, we know that all kind things are quiet. \nFrom statement 3, we know that Charlie is kind, so Charlie is quiet (from statement 12). \nFrom statement 9, we know that smart, quiet things are white. \nSince Charlie is quiet (from the previous step), we can conclude that Charlie is white (from statement 9).\n\nNow, let's try to find a connection between Bob and white. From statement 1, we know that Bob is quiet. \nFrom statement 10, we know that all quiet, kind things are white. However, we don't know whether Bob is kind or not.\n\nFrom statement 2, we know that Bob is smart. \nFrom statement 8, we know that white, green things are smart. But we don't have any information about Bob being green. \nFrom statement 9, we know that smart, quiet things are white. However, we don't know whether Bob is white or not.\n\nNow, let's examine statement 15. We know that all white, smart things are furry. But we don't have any information about Bob being furry or not.\n\nWe can't conclude that Bob is white because we don't have enough information. The statement \"Bob is white\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is quiet. \n2. Bob is smart. \n3. Charlie is kind. \n4. Charlie is smart. \n5. Charlie is white. \n6. Erin is blue. \n7. Harry is green. \n8. White, green things are smart. \n9. Smart, quiet things are white. \n10. All quiet, kind things are white. \n11. If Erin is kind and Erin is blue then Erin is white. \n12. All kind things are quiet. \n13. White things are quiet. \n14. Green things are kind. \n15. All white, smart things are furry.\n\nLet's start with what we know about Bob: Bob is quiet and Bob is smart.\n\nFrom statement 9, we know that smart, quiet things are white. This means that Bob is white.\n\nHowever, we need to consider other possibilities that might contradict this conclusion. From statement 10, we know that all quiet, kind things are white. But we don't know if Bob is kind or not.\n\nWe also need to look at the statement \"All kind things are quiet\" (statement 12) and \"White things are quiet\" (statement 13). These statements seem to support the idea that being quiet and white are related, but they don't necessarily imply that Bob is white.\n\nHowever, we don't have enough information about Bob being kind or not, but we do have information about Erin: Erin is blue and Erin is kind. From statement 11, we know that if Erin is kind and Erin is blue then Erin is white. But this does not apply to Bob.\n\nNow let's look at the statement \"All kind things are quiet\" (statement 12). We know that Erin is kind and Erin is blue. This does not tell us anything about Bob being kind or not.\n\nNow let's look at the statement \"Green things are kind\" (statement 14). We know that Harry is green. This does not tell us anything about Bob being kind or not.\n\nHowever, we do have information about white, smart things from statement 15: All white, smart things are furry. But this does not tell us anything about Bob being white or not.\n\nFrom statement 8, we know that white, green things are smart. We also know that Charlie is white and Charlie is smart. However, this does not tell us anything about Bob being white or not.\n\nConsidering all the information given, we can conclude that Bob is white because he is quiet and smart, and from statement 9, we know that smart, quiet things are white.\n\nTherefore, the final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Bob is quiet: \"Bob is quiet.\"\n2. We also know that Bob is smart: \"Bob is smart.\"\n3. From the given information, we can conclude that all quiet, kind things are white: \"All quiet, kind things are white.\"\n   However, we don't know if Bob is kind or not. We need more information about Bob to apply this rule.\n\n4. We also know that all quiet things are white: \"White things are quiet.\"\n   But again, we don't know if Bob is quiet or not because we don't know if he is kind or not.\n\n5. We can also conclude that all kind things are quiet: \"All kind things are quiet.\"\n   However, we don't know if Bob is kind or not.\n\n6. We also know that all smart, quiet things are white: \"Smart, quiet things are white.\"\n   We know Bob is smart (2) and we don't know if he is quiet or not. However, we can conclude that if Bob is quiet then he is white.\n\n7. We also know that Erin is kind, Erin is blue, and therefore Erin is white: \"Erin is kind. Erin is blue. Then Erin is white.\"\n   However, this information doesn't help us determine if Bob is white or not because it doesn't relate to Bob.\n\n8. We know that Harry is green and green things are kind: \"Harry is green. Green things are kind.\"\n   Again, this information doesn't help us determine if Bob is white or not because it doesn't relate to Bob.\n\n9. We know that all white, smart things are furry: \"All white, smart things are furry.\"\n   However, we don't know if Bob is white or smart.\n\nBased on the given information, we can conclude that:\n\n- If Bob is quiet, then Bob is white.\n- However, we can't conclude if Bob is quiet or not.\n\nTherefore, the statement \"Bob is white\" is unknown based on the given information. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information:\n   - Bob is quiet.\n   - Bob is smart.\n   - Charlie is kind.\n   - Charlie is smart.\n   - Charlie is white.\n   - Erin is blue.\n   - Harry is green.\n   - White, green things are smart.\n   - Smart, quiet things are white.\n   - All quiet, kind things are white.\n   - If Erin is kind and Erin is blue then Erin is white.\n   - All kind things are quiet.\n   - White things are quiet.\n   - Green things are kind.\n   - All white, smart things are furry.\n\n2. Let's start by analyzing the information given about Bob:\n   - Bob is quiet.\n   - Bob is smart.\n\n3. We know that \"Smart, quiet things are white.\" From this information, we can conclude that Bob is white because he is both smart and quiet.\n\nHowever, we need to be careful because there might be additional information that contradicts this conclusion.\n\n4. Let's examine the statement \"If Erin is kind and Erin is blue then Erin is white.\" \n   - Since we know Erin is blue and we do not have any information about Erin being kind or not, we cannot directly apply this rule to Bob.\n   - However, we can infer that if Erin were kind, then she would be white. But since Erin is blue, the rule does not apply to Bob.\n\n5. Now let's examine the rule \"All kind things are quiet\" and \"All quiet, kind things are white.\"\n   - We know that Bob is quiet, but we do not have any information about Bob being kind or not. \n   - We cannot directly apply the rule to Bob because we do not have enough information to determine if Bob is kind.\n\n6. Based on the rules we have examined, we can conclude that Bob is white because he is smart and quiet, which satisfies the rule \"Smart, quiet things are white.\"\n\nTherefore, the statement \"Bob is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1.  Given statements:\n    1.  Bob is quiet.\n    2.  Bob is smart.\n    3.  Charlie is kind.\n    4.  Charlie is smart.\n    5.  Charlie is white.\n    6.  Erin is blue.\n    7.  Harry is green.\n    8.  White, green things are smart.\n    9.  Smart, quiet things are white.\n    10. All quiet, kind things are white.\n    11. If Erin is kind and Erin is blue then Erin is white.\n    12. All kind things are quiet.\n    13. White things are quiet.\n    14. Green things are kind.\n    15. All white, smart things are furry.\n\n2.  We are asked to determine whether \"Bob is white\" is true, false, or unknown.\n\nFrom the given statements, we can deduce the following information:\n\n-   From statement 9, smart, quiet things are white.\n-   From statement 2, Bob is smart.\n-   From statement 1, Bob is quiet.\n-   Using the information from statements 9, 2, and 1, we can conclude that Bob is white.\n\nHowever, we also need to check if this conclusion is contradicted by any other statements.\n\nFrom statement 5, Charlie is white.\nFrom statement 14, Green things are kind.\nFrom statement 7, Harry is green.\nFrom statement 10, All quiet, kind things are white.\nFrom statement 1, Bob is quiet.\nFrom statement 2, Bob is smart.\nFrom statement 13, White things are quiet.\nFrom statement 12, All kind things are quiet.\n\nUsing the information from statements 14, 7, and 1, we can conclude that Harry is quiet and kind, which makes Harry white according to statement 10.\n\nHowever, from statement 15, all white, smart things are furry.\nCharlie is white from statement 5, and Charlie is smart from statement 4.\nTherefore, Charlie is furry.\n\nThis does not contradict our previous conclusion that Bob is white.\n\nHence, based on the given information, the statement \"Bob is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_harry, green_harry), smart_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_bob, quiet_bob), white_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_bob, quiet_bob), white_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_erin, blue_erin), white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_bob, quiet_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_harry, kind_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_bob, smart_bob), furry_bob)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_harry, green_harry), smart_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_bob, quiet_bob), white_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_bob, kind_bob), white_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_erin, blue_erin), white_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_bob, quiet_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_harry, kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_bob, smart_bob), furry_bob)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_X, green_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_X, quiet_X), white_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_X, kind_X), white_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_X, blue_X), white_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_X, quiet_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_X, kind_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_X, smart_X), furry_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_X, green_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_X, quiet_X), white_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_X, kind_X), white_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_X, blue_X), white_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_X, quiet_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_X, kind_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_X, smart_X), furry_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(green_harry)",
+          "z3_formula": "white_green_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_erin, blue_erin), white_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_X, quiet_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_harry, kind_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": "15"
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_X, kind_X), white_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "smart(X) -> white(X)",
+          "z3_formula": "Implies(smart_X, white_X)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob) -> white(bob)",
+          "z3_formula": "Implies(smart_bob, white_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_X, quiet_X), white_X)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob) & quiet(bob) -> white(bob)",
+          "z3_formula": "Implies(And(smart_bob, quiet_bob), white_bob)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob) -> quiet(bob)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_X, quiet_X)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob) -> quiet(bob)",
+          "z3_formula": "Implies(kind_bob, quiet_bob)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_X, quiet_X), white_X)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob) & quiet(bob) -> white(bob)",
+          "z3_formula": "Implies(And(kind_bob, quiet_bob), white_bob)",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_X, smart_X), furry_X)",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob) & smart(bob) -> furry(bob)",
+          "z3_formula": "Implies(And(white_bob, smart_bob), furry_bob)",
+          "source_step": 28
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_harry, green_harry), smart_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_bob, quiet_bob), white_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_harry, quiet_harry), white_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_erin, blue_erin), white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_harry, quiet_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_harry, quiet_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_harry, kind_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_bob, smart_bob), furry_bob)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_X, green_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_X, quiet_X), white_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_X, kind_X), white_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_X, blue_X), white_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_X, quiet_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_X, kind_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_X, smart_X), furry_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_harry, green_harry), smart_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_bob, quiet_bob), white_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_X, kind_X), white_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_erin, blue_erin), white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_X, quiet_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_X, kind_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_X, smart_X), furry_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_bob, quiet_bob), white_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_bob, quiet_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_erin, blue_erin), white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_harry, kind_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_charlie, green_charlie), smart_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_charlie, smart_charlie), furry_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_bob, quiet_bob), white_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_bob, white_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_bob, quiet_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_bob, quiet_bob), white_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_harry, kind_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_bob, smart_bob), furry_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_harry, green_harry), smart_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_bob, quiet_bob), white_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_bob, quiet_bob), white_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_erin, blue_erin), white_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_bob, quiet_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_harry, kind_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_bob, smart_bob), furry_bob)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_gary, green_gary), smart_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & quiet(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_bob, quiet_bob), white_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_bob, kind_bob), white_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> white(X)",
+          "z3_formula": "Implies(And(kind_erin, blue_erin), white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_bob, quiet_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_harry, kind_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(white_charlie, smart_charlie), furry_charlie)",
+          "source_step": 15
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 187,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 39
+    },
+    "maxsat_stats": {
+      "satisfied": 39,
+      "excluded": 0,
+      "total_weight": 187,
+      "solve_time_ms": 1.2886486947536469
+    },
+    "timing": {
+      "trace_gen_s": 7.583,
+      "extraction_s": 31.303,
+      "dedup_s": 1.316,
+      "maxsat_s": 0.004,
+      "total_s": 40.206
+    }
+  }
+}

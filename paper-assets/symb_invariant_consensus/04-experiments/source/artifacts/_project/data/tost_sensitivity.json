@@ -1,0 +1,411 @@
+{
+  "margins_pp": [
+    1,
+    2,
+    3
+  ],
+  "method": "TOST via paired proportion z-test. SE derived from McNemar z-statistic where raw_p < 1.0; estimated via paired proportion model (r=0.95 inter-method correlation) where raw_p = 1.0.",
+  "conditions": [
+    {
+      "model": "Mistral-7B",
+      "dataset": "PW-D5",
+      "n": 600,
+      "delta_pp": -2.83,
+      "raw_p": 0.014,
+      "se": 0.011517,
+      "se_method": "derived",
+      "tost_1pp": {
+        "p": 0.943967,
+        "equivalent": false,
+        "classification": "genuinely_different"
+      },
+      "tost_2pp": {
+        "p": 0.764447,
+        "equivalent": false,
+        "classification": "genuinely_different"
+      },
+      "tost_3pp": {
+        "p": 0.441325,
+        "equivalent": false,
+        "classification": "underpowered"
+      }
+    },
+    {
+      "model": "Mistral-7B",
+      "dataset": "LogiQA",
+      "n": 200,
+      "delta_pp": 0.5,
+      "raw_p": 1.0,
+      "se": 0.011177,
+      "se_method": "estimated_r095",
+      "tost_1pp": {
+        "p": 0.327308,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_2pp": {
+        "p": 0.089786,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_3pp": {
+        "p": 0.01265,
+        "equivalent": true,
+        "classification": "equivalent"
+      }
+    },
+    {
+      "model": "Mistral-7B",
+      "dataset": "FOLIO (s123)",
+      "n": 204,
+      "delta_pp": 2.94,
+      "raw_p": 0.07,
+      "se": 0.016226,
+      "se_method": "derived",
+      "tost_1pp": {
+        "p": 0.884076,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_2pp": {
+        "p": 0.718813,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_3pp": {
+        "p": 0.485251,
+        "equivalent": false,
+        "classification": "underpowered"
+      }
+    },
+    {
+      "model": "Mistral-7B (4s)",
+      "dataset": "FOLIO",
+      "n": 204,
+      "delta_pp": 3.43,
+      "raw_p": 0.092,
+      "se": 0.020357,
+      "se_method": "derived",
+      "tost_1pp": {
+        "p": 0.883703,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_2pp": {
+        "p": 0.758806,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_3pp": {
+        "p": 0.583647,
+        "equivalent": false,
+        "classification": "underpowered"
+      }
+    },
+    {
+      "model": "Mistral-7B",
+      "dataset": "FOLIO (s456)",
+      "n": 204,
+      "delta_pp": 0.0,
+      "raw_p": 1.0,
+      "se": 0.010993,
+      "se_method": "estimated_r095",
+      "tost_1pp": {
+        "p": 0.181506,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_2pp": {
+        "p": 0.034434,
+        "equivalent": true,
+        "classification": "equivalent"
+      },
+      "tost_3pp": {
+        "p": 0.003177,
+        "equivalent": true,
+        "classification": "equivalent"
+      }
+    },
+    {
+      "model": "Mistral-7B",
+      "dataset": "FOLIO (s789)",
+      "n": 204,
+      "delta_pp": -0.49,
+      "raw_p": 1.0,
+      "se": 0.011032,
+      "se_method": "estimated_r095",
+      "tost_1pp": {
+        "p": 0.32193,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_2pp": {
+        "p": 0.085532,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_3pp": {
+        "p": 0.011445,
+        "equivalent": true,
+        "classification": "equivalent"
+      }
+    },
+    {
+      "model": "LLaMA-3.1-8B",
+      "dataset": "FOLIO",
+      "n": 204,
+      "delta_pp": -4.41,
+      "raw_p": 0.093,
+      "se": 0.026253,
+      "se_method": "derived",
+      "tost_1pp": {
+        "p": 0.903007,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_2pp": {
+        "p": 0.820684,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_3pp": {
+        "p": 0.704391,
+        "equivalent": false,
+        "classification": "underpowered"
+      }
+    },
+    {
+      "model": "LLaMA-3.1-8B",
+      "dataset": "StrategyQA",
+      "n": 200,
+      "delta_pp": 2.0,
+      "raw_p": 0.424,
+      "se": 0.025016,
+      "se_method": "derived",
+      "tost_1pp": {
+        "p": 0.65533,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_2pp": {
+        "p": 0.5,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_3pp": {
+        "p": 0.34467,
+        "equivalent": false,
+        "classification": "underpowered"
+      }
+    },
+    {
+      "model": "Qwen2.5-14B",
+      "dataset": "FOLIO (ICL)",
+      "n": 199,
+      "delta_pp": 0.5,
+      "raw_p": 1.0,
+      "se": 0.009757,
+      "se_method": "estimated_r095",
+      "tost_1pp": {
+        "p": 0.304172,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_2pp": {
+        "p": 0.062107,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_3pp": {
+        "p": 0.005201,
+        "equivalent": true,
+        "classification": "equivalent"
+      }
+    },
+    {
+      "model": "Qwen2.5-14B",
+      "dataset": "PW-D5",
+      "n": 600,
+      "delta_pp": -2.5,
+      "raw_p": 0.011,
+      "se": 0.009832,
+      "se_method": "derived",
+      "tost_1pp": {
+        "p": 0.936448,
+        "equivalent": false,
+        "classification": "genuinely_different"
+      },
+      "tost_2pp": {
+        "p": 0.694463,
+        "equivalent": false,
+        "classification": "genuinely_different"
+      },
+      "tost_3pp": {
+        "p": 0.305537,
+        "equivalent": false,
+        "classification": "underpowered"
+      }
+    },
+    {
+      "model": "Qwen2.5-14B",
+      "dataset": "FOLIO",
+      "n": 204,
+      "delta_pp": -0.98,
+      "raw_p": 1.0,
+      "se": 0.009594,
+      "se_method": "estimated_r095",
+      "tost_1pp": {
+        "p": 0.491684,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_2pp": {
+        "p": 0.143859,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_3pp": {
+        "p": 0.017627,
+        "equivalent": true,
+        "classification": "equivalent"
+      }
+    },
+    {
+      "model": "Qwen2.5-7B",
+      "dataset": "FOLIO",
+      "n": 204,
+      "delta_pp": 0.49,
+      "raw_p": 1.0,
+      "se": 0.009427,
+      "se_method": "estimated_r095",
+      "tost_1pp": {
+        "p": 0.294261,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_2pp": {
+        "p": 0.054609,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_3pp": {
+        "p": 0.003879,
+        "equivalent": true,
+        "classification": "equivalent"
+      }
+    },
+    {
+      "model": "Qwen2.5-14B",
+      "dataset": "LogiQA",
+      "n": 200,
+      "delta_pp": -0.5,
+      "raw_p": 1.0,
+      "se": 0.009228,
+      "se_method": "estimated_r095",
+      "tost_1pp": {
+        "p": 0.293961,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_2pp": {
+        "p": 0.052023,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_3pp": {
+        "p": 0.003372,
+        "equivalent": true,
+        "classification": "equivalent"
+      }
+    },
+    {
+      "model": "Qwen3-14B",
+      "dataset": "FOLIO",
+      "n": 204,
+      "delta_pp": -0.49,
+      "raw_p": 1.0,
+      "se": 0.008007,
+      "se_method": "estimated_r095",
+      "tost_1pp": {
+        "p": 0.262088,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_2pp": {
+        "p": 0.029662,
+        "equivalent": true,
+        "classification": "equivalent"
+      },
+      "tost_3pp": {
+        "p": 0.00086,
+        "equivalent": true,
+        "classification": "equivalent"
+      }
+    },
+    {
+      "model": "Qwen3-14B",
+      "dataset": "PW-D5",
+      "n": 600,
+      "delta_pp": 0.67,
+      "raw_p": 1.0,
+      "se": 0.004575,
+      "se_method": "estimated_r095",
+      "tost_1pp": {
+        "p": 0.235336,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_2pp": {
+        "p": 0.001822,
+        "equivalent": true,
+        "classification": "equivalent"
+      },
+      "tost_3pp": {
+        "p": 0.0,
+        "equivalent": true,
+        "classification": "equivalent"
+      }
+    },
+    {
+      "model": "Qwen3-14B (think)",
+      "dataset": "FOLIO",
+      "n": 204,
+      "delta_pp": 0.49,
+      "raw_p": 1.0,
+      "se": 0.007571,
+      "se_method": "estimated_r095",
+      "tost_1pp": {
+        "p": 0.250264,
+        "equivalent": false,
+        "classification": "underpowered"
+      },
+      "tost_2pp": {
+        "p": 0.023045,
+        "equivalent": true,
+        "classification": "equivalent"
+      },
+      "tost_3pp": {
+        "p": 0.000457,
+        "equivalent": true,
+        "classification": "equivalent"
+      }
+    }
+  ],
+  "summary": {
+    "1pp": {
+      "n_equivalent": 0,
+      "n_different": 2,
+      "n_underpowered": 14
+    },
+    "2pp": {
+      "n_equivalent": 4,
+      "n_different": 2,
+      "n_underpowered": 10
+    },
+    "3pp": {
+      "n_equivalent": 10,
+      "n_different": 0,
+      "n_underpowered": 6
+    }
+  }
+}

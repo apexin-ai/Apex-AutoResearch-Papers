@@ -1,0 +1,894 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-572_Q4",
+    "problem": "Charlie is green. Charlie is kind. Charlie is nice. Charlie is rough. Erin is kind. Erin is nice. Erin is quiet. Fiona is quiet. Fiona is rough. Harry is smart. All rough, green people are quiet. If someone is green and rough then they are nice. All kind, smart people are green. If Erin is green and Erin is blue then Erin is quiet. All quiet people are smart. All kind people are green. If someone is smart then they are kind. All rough, nice people are blue.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is not quiet.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nGreen(Charlie, True) ::: Charlie is green.\nKind(Charlie, True) ::: Charlie is kind.\nNice(Charlie, True) ::: Charlie is nice.\nRough(Charlie, True) ::: Charlie is rough.\nKind(Erin, True) ::: Erin is kind.\nNice(Erin, True) ::: Erin is nice.\nQuiet(Erin, True) ::: Erin is quiet.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRough(Fiona, True) ::: Fiona is rough.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nRough($x, True) && Green($x, True) >>> Quiet($x, True) ::: All rough, green people are quiet.\nGreen($x, True) && Rough($x, True) >>> Nice($x, True) ::: If someone is green and rough then they are nice.\nKind($x, True) && Smart($x, True) >>> Green($x, True) ::: All kind, smart people are green.\nGreen(Erin, True) && Blue(Erin, True) >>> Quiet(Erin, True) ::: If Erin is green and Erin is blue then Erin is quiet.\nQuiet($x, True) >>> Smart($x, True) ::: All quiet people are smart.\nKind($x, True) >>> Green($x, True) ::: All kind people are green.\nSmart($x, True) >>> Kind($x, True) ::: If someone is smart then they are kind.\nRough($x, True) && Nice($x, True) >>> Blue($x, True) ::: All rough, nice people are blue.\n\nQuery:\nQuiet(Charlie, False) ::: Charlie is not quiet."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 100.0,
+      "True": 80.0,
+      "Unknown": 102.0
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "False": 3,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Charlie is not quiet\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information:\n   - Charlie is green.\n   - Charlie is kind.\n   - Charlie is nice.\n   - Charlie is rough.\n\nWe don't know Charlie's quiet status yet.\n\n2. We have the following rules:\n   - All rough, green people are quiet.\n   - If someone is green and rough then they are nice.\n   - All kind, smart people are green.\n   - If Erin is green and Erin is blue then Erin is quiet. (This rule does not affect Charlie directly.)\n   - All quiet people are smart.\n   - All kind people are green.\n   - If someone is smart then they are kind.\n   - All rough, nice people are blue.\n\n3. Since Charlie is both green and rough, we can apply the following rules:\n   - All rough, green people are quiet.\n   - If someone is green and rough then they are nice.\n   \nFrom the first rule, we can conclude that Charlie is quiet.\n\nHowever, we can also conclude that Charlie is nice from the given information.\n\n4. Now we have two conflicting rules for Charlie's quiet status:\n   - All rough, green people are quiet.\n   - If someone is green and rough then they are nice.\n\nThe second rule states that someone who is green and rough is nice. However, being nice doesn't necessarily imply that someone is quiet.\n\n5. Since we have conflicting rules, we cannot conclusively determine whether Charlie is quiet or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not quiet\" is true, false, or unknown, we need to analyze the given information and apply it to the characteristics of Charlie.\n\n1. Charlie is green.\n2. Charlie is kind.\n3. Charlie is nice.\n4. Charlie is rough.\n\nFrom the given information:\n\n- All kind people are green. (From statement 2, Charlie is kind and green, so this statement is true.)\n- All kind people are green. (From statement 7, if someone is kind, they are green, so Charlie being kind also means he is green.)\n- All rough, green people are quiet. (From statement 4, Charlie is rough and green, but this statement does not tell us that Charlie is quiet.)\n- All kind, smart people are green. (From statement 7, if someone is kind and smart, they are green, but we do not know if Charlie is smart.)\n- All rough, nice people are blue. (From statement 4, Charlie is rough and nice, so Charlie must be blue.)\n\nNow, we need to determine if Charlie is quiet or not. The only relevant statement for this is:\n- All rough, green people are quiet. (This does not apply to Charlie because he is blue, not green.)\n\nHowever, we have another relevant statement:\n- All quiet people are smart. (This does not apply to Charlie because we do not know if Charlie is quiet or not.)\n\nAnd we also have:\n- If someone is smart then they are kind. (This does not apply to Charlie because we do not know if Charlie is smart or not.)\n\nThe key statement here is:\n- All kind people are green. (From statement 2, Charlie is kind and green, so this statement is true.)\n\nBut also:\n- All kind people are green. (From statement 7, if someone is kind, they are green, so Charlie being kind also means he is green.)\n\nNow we need to find Charlie's color and determine if he is quiet or not:\n- Charlie is blue (from the statement 4, Charlie is rough and nice, so Charlie must be blue).\n\nNow we need to see if Charlie is quiet or not, and determine if the statement \"Charlie is not quiet\" is true, false, or unknown.\n\n- All rough, green people are quiet. (This does not apply to Charlie because he is blue, not green.)\n\n- All quiet people are smart. (This does not apply to Charlie because we do not know if Charlie is quiet or not.)\n\n- All rough, nice people are blue. (This is true for Charlie.)\n\nNow we need to determine if Charlie is quiet or not. We do not have any information that tells us Charlie is quiet or not quiet, so we cannot determine if the statement \"Charlie is not quiet\" is true or false.\n\nTherefore, the answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is not quiet' is true, false, or unknown, we need to analyze the given information.\n\n1. Charlie is green. (Given)\n2. Charlie is kind. (Given)\n3. Charlie is nice. (Given)\n4. Charlie is rough. (Given)\n5. All kind, smart people are green. (Given)\n   However, since Charlie is not smart (there's no information stating Harry is the only smart person), we cannot conclude Charlie is green based on this statement.\n6. All kind people are green. (Given)\n   This statement is more relevant to Charlie's situation. Since Charlie is kind (given), we can conclude that Charlie is green.\n7. All rough, green people are quiet. (Given)\n   Since Charlie is green and rough, we can conclude that Charlie is quiet. However, this conclusion is not based on the original question, but rather an analysis of the given information.\n\nBased on the analysis, we have found a contradiction between statements 1 and 7. Initially, we concluded that Charlie is green based on the statement 'All kind people are green'. However, we also concluded that Charlie is quiet based on the statement 'All rough, green people are quiet'. This creates a paradox since Charlie cannot be both green and not quiet.\n\nHowever, our analysis was incorrect in step 7 as it is a contradiction to our previous conclusion in step 6. To properly determine the answer, we should re-evaluate our statements.\n\nSince Charlie is green and kind, based on the statement 'All kind people are green', we can conclude that Charlie is indeed green.\n\nBut then, given the statement 'All rough, green people are quiet', we cannot conclude that Charlie is not quiet since we do not have any information that says Charlie is not quiet. \n\nIn conclusion, we cannot determine whether Charlie is quiet or not based on the given information. Therefore, the statement 'Charlie is not quiet' is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine their implications.\n\n1. All rough, green people are quiet.\n2. If someone is green and rough then they are nice.\n3. All kind, smart people are green.\n4. If Erin is green and Erin is blue then Erin is quiet. (This statement is not relevant to our problem, but it's worth noting.)\n5. All quiet people are smart.\n6. All kind people are green.\n7. If someone is smart then they are kind.\n8. All rough, nice people are blue.\n\nNow, let's analyze the given statement: \"Charlie is not quiet.\"\n\nTo determine this, we need to first find out if Charlie is quiet or not. \n\nFrom statement 1, we know that all rough, green people are quiet. To check if Charlie is quiet, we need to find out if Charlie is green and rough.\n\nStatement 2 implies that if someone is green and rough, then they are nice. This does not give us direct information about Charlie, but it's worth noting.\n\nFrom statement 6, we know that all kind people are green. However, we don't have any information about Charlie being kind or not. \n\nStatement 7 implies that if someone is smart, then they are kind. However, this does not give us any information about Charlie.\n\nNow, let's look at the given statements again. We have the following information about Charlie:\n\n- Charlie is green.\n- Charlie is kind.\n- Charlie is nice.\n- Charlie is rough.\n\nSince Charlie is green and rough, statement 2 implies that Charlie is nice, which we already knew. Now, from statement 1, we know that all rough, green people are quiet. Therefore, Charlie is quiet.\n\nSince we have found that Charlie is quiet, we can now conclude that the statement \"Charlie is not quiet\" is false.\n\nSo, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is not quiet' is true, false, or unknown, we need to analyze the given statements and use logical deductions.\n\nGiven statements:\n\n1. Charlie is green.\n2. Charlie is kind.\n3. Charlie is nice.\n4. Charlie is rough.\n5. Erin is kind.\n6. Erin is nice.\n7. Erin is quiet.\n8. Fiona is quiet.\n9. Fiona is rough.\n10. Harry is smart.\n11. All rough, green people are quiet. (From statements 4, 1, and 7)\n12. If someone is green and rough then they are nice. (From statements 1, 4, and 3)\n13. All kind, smart people are green. (From statements 2, 10, and 1)\n14. If Erin is green and Erin is blue then Erin is quiet. (This statement seems to be contradictory and is not necessary for the given problem)\n15. All quiet people are smart. (From statements 7, 10, and 13)\n16. All kind people are green. (From statements 2, 1, and 13)\n17. If someone is smart then they are kind. (From statements 2, 10, and 16)\n18. All rough, nice people are blue. (From statements 3, 4, and 18)\n\nTo determine whether 'Charlie is not quiet,' we need to analyze Charlie's characteristics and see if they contradict the statement 'All quiet people are smart.'\n\nStatement 4: Charlie is rough.\nStatement 11: All rough, green people are quiet.\nSince Charlie is green (statement 1), Charlie is rough (statement 4), and all rough, green people are quiet (statement 11), we can deduce that Charlie is quiet.\n\nHowever, we can also deduce that Charlie is not blue (from statement 18, as Charlie is nice and rough), and from statement 13, Charlie must be smart (since Charlie is kind, from statement 2, and all kind people are green, from statement 16).\n\nBut from statement 15, all quiet people are smart, and we've determined Charlie is quiet. Therefore, Charlie must be smart, which aligns with statement 10.\n\nSo, Charlie's characteristics: Charlie is green (1), Charlie is kind (2), Charlie is nice (3), Charlie is rough (4), and Charlie is smart (from 2 and 10). \n\nFrom statement 17, all smart people are kind. Since Charlie is smart (from 10), Charlie must be kind (from 2).\n\nGiven statements 11 and 12, since Charlie is green and rough, Charlie is nice. \n\nHowever, statement 18 is incorrect as it contradicts with the information given in the other statements. The correct rule should be: All rough, green people are quiet, and all rough, nice people are blue.\n\nSince we have already determined that Charlie is green, rough, and nice, and Charlie is not blue, we can conclude that the statement 'Charlie is not quiet' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not quiet\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\nGiven information:\n- Charlie is green.\n- Charlie is kind.\n- Charlie is nice.\n- Charlie is rough.\n\nConditions:\n1. All rough, green people are quiet.\n2. If someone is green and rough then they are nice.\n3. All kind, smart people are green.\n4. If Erin is green and Erin is blue then Erin is quiet. (This condition does not directly apply to Charlie, so we can ignore it.)\n5. All quiet people are smart.\n6. All kind people are green.\n7. If someone is smart then they are kind.\n8. All rough, nice people are blue.\n\nWe will use the conditions to deduce whether Charlie is quiet or not.\n\nFrom condition 1, we know that all rough, green people are quiet. Since Charlie is both green and rough, we can conclude that Charlie is quiet.\n\nHowever, we cannot directly apply condition 7, which states that if someone is smart, then they are kind. We know Charlie is kind (condition 2), but we do not know if Charlie is smart. If Charlie were smart, then Charlie would be kind (condition 7), which is true, but we still need to determine if Charlie is smart.\n\nFrom condition 6, we know that all kind people are green, and we know Charlie is kind (condition 2) and green (condition 1). So, Charlie satisfies the condition of being kind and green. However, this does not directly tell us if Charlie is smart or not.\n\nNow, let's consider condition 3: all kind, smart people are green. We know Charlie is kind (condition 2) and green (condition 1). If Charlie were smart, then Charlie would be green (condition 3), which is true. However, we cannot determine if Charlie is smart from this condition alone.\n\nSince Charlie is both green and rough, we can apply condition 2: if someone is green and rough then they are nice. This condition tells us that Charlie is nice.\n\nNow, let's consider condition 8: all rough, nice people are blue. Since Charlie is rough (condition 1) and nice (condition 2), we can conclude that Charlie is blue.\n\nWe cannot determine if Charlie is smart or not, but we do know Charlie is blue, which is a contradiction to the fact that all rough, green people are quiet (condition 1). \n\nGiven that Charlie is blue, we know Charlie is not green. Since Charlie is not green, we cannot apply condition 1 to conclude that Charlie is quiet.\n\nHowever, we can apply condition 5: all quiet people are smart. Since we do not know if Charlie is quiet, we cannot conclude that Charlie is smart.\n\nGiven that Charlie is not green, we cannot apply condition 6 to conclude that Charlie is not kind. However, we do know that Charlie is kind (condition 2).\n\nTherefore, we cannot conclude that Charlie is not quiet based on the given information.\n\nThe statement \"Charlie is not quiet\" is unknown. \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not quiet\" is true, false, or unknown, we need to analyze the given information.\n\n1. All rough, green people are quiet. \n   Since Charlie is green and rough, this statement alone suggests that Charlie is quiet.\n\n2. All rough, nice people are blue. \n   Since Charlie is rough and nice, this statement alone suggests that Charlie is blue.\n\nHowever, we cannot conclude anything about Charlie's color or quietness from this statement alone because it contradicts with statement 1 about Charlie being quiet.\n\n3. All rough, green people are quiet.\n   Since Charlie is both green and rough, we need to look at statement 4 for more information about green people.\n\n4. All kind, smart people are green.\n   There is no information that suggests Charlie is smart or kind, but we know that all kind people are green from statement 5.\n\n5. All kind people are green.\n   Since Charlie is kind, this statement suggests that Charlie is green.\n\n6. If someone is green and rough then they are nice.\n   Since Charlie is green and rough, this statement suggests that Charlie is nice.\n\nNow we know that Charlie is green, rough, and nice, but not quiet from statement 1. \n\nFrom this information, we can conclude that the statement \"Charlie is not quiet\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not quiet\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Charlie is green. \n2. Charlie is kind. \n3. Charlie is nice. \n4. Charlie is rough.\n\nFrom statement 4, we know Charlie is rough. \n\nFrom the given statements, we have the following implications:\n\n- All rough, green people are quiet. (Statement 6)\n- If someone is green and rough then they are nice. (Statement 5)\n- However, we also have the statement, \"All rough, nice people are blue.\" (Statement 9)\n\nWe know Charlie is rough and nice. Therefore, Charlie is blue. \n\nNow, we also have the statement \"All blue people are not quiet.\" (Implicitly, since we are not given an explicit statement about blue people being quiet, but we can deduce this from the other statements).\n\nHowever, the statement \"All quiet people are smart.\" (Statement 8) is given, and we know that all blue people are not quiet. \n\nTherefore, if Charlie is blue, then Charlie is not quiet.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not quiet\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Charlie is green. \n2. Charlie is kind. \n3. Charlie is nice. \n4. Charlie is rough.\n\nFrom statements 1 and 4, we can conclude that Charlie is both green and rough. \n\nGiven the rule: If someone is green and rough then they are nice, we can confirm that Charlie is nice.\n\nHowever, we need to determine Charlie's quietness. \n\nThe given rule states: All rough, green people are quiet. However, we also have another rule stating that if someone is green and rough, then they are nice. Since Charlie is both green and rough, we can't directly conclude Charlie's quietness based on this rule.\n\nWe need to consider the relationship between being green, rough, and quiet. We have two rules that relate these conditions:\n\n1. All rough, green people are quiet.\n2. If someone is green and rough then they are nice.\n\nSince we know Charlie is green, rough, and nice, we can conclude that Charlie fits the conditions of both rules. However, these rules contradict each other when applied to Charlie. \n\nThe first rule implies Charlie is quiet, while the second rule implies Charlie is nice (and doesn't mention quietness directly). We can't conclude Charlie's quietness using these rules alone.\n\nNow, let's examine the other given information to see if we can deduce Charlie's quietness:\n\nAll kind people are green. \nCharlie is kind. \nTherefore, Charlie is green (already given in statement 1). \n\nAll kind, smart people are green. \nSince Charlie is kind and green, we can't conclude Charlie's smartness directly from this rule.\n\nAll quiet people are smart. \nHowever, we can't determine Charlie's quietness or smartness directly from this rule.\n\nAll rough, nice people are blue. \nCharlie is nice and rough. \nTherefore, Charlie is blue. \n\nNow we have another condition for Charlie: Charlie is blue. \n\nWe need to revisit the rules to see if we can determine Charlie's quietness. \n\nThe rule stating that all rough, green people are quiet doesn't apply to Charlie because Charlie is blue (not green).\n\nWe can't use the rule stating that if someone is green and rough then they are nice to conclude Charlie's quietness because it doesn't directly mention quietness.\n\nHowever, we know that Charlie is kind, and all kind people are green. We also know that Charlie is green and rough, which makes Charlie nice. \n\nWe can use the rule stating that all kind people are green to conclude Charlie is green, but this doesn't help determine Charlie's quietness. \n\nNow let's look at Erin's information to see if we can deduce Charlie's quietness:\n\nErin is kind. \nErin is nice. \nErin is quiet.\n\nSince Erin is quiet, we can use the rule stating that all quiet people are smart to conclude that Erin is smart.\n\nHowever, Erin's information doesn't help us determine Charlie's quietness.\n\nThe final piece of information is Fiona's information:\n\nFiona is quiet. \nFiona is rough.\n\nHowever, this information doesn't help us determine Charlie's quietness.\n\nBased on the given information, we can't conclude Charlie's quietness directly. The rules provided lead to conflicting conclusions when applied to Charlie's conditions. Therefore, the statement \"Charlie is not quiet\" is unknown because we can't determine Charlie's quietness with certainty.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not quiet\" is true, false, or unknown, we need to analyze the given statements and their logical implications.\n\nGiven statements:\n1. Charlie is green.\n2. Charlie is kind.\n3. Charlie is nice.\n4. Charlie is rough.\n5. Erin is kind.\n6. Erin is nice.\n7. Erin is quiet.\n8. Fiona is quiet.\n9. Fiona is rough.\n10. Harry is smart.\n11. All rough, green people are quiet.\n12. If someone is green and rough then they are nice.\n13. All kind, smart people are green.\n14. If Erin is green and Erin is blue then Erin is quiet.\n15. All quiet people are smart.\n16. All kind people are green.\n17. If someone is smart then they are kind.\n18. All rough, nice people are blue.\n\nTo analyze the statement \"Charlie is not quiet,\" we need to find out if Charlie can be quiet or not.\n\nFrom statement 11, we know that all rough, green people are quiet. \nFrom statement 12, we know that if someone is green and rough, then they are nice.\nGiven that Charlie is green (statement 1), Charlie is rough (statement 4), and Charlie is nice (statement 3), we can conclude that Charlie is indeed a rough, green person.\n\nSince Charlie is a rough, green person, we can apply statement 11, which says all rough, green people are quiet.\n\nTherefore, based on the given statements, we can conclude that Charlie is quiet.\n\nThe statement \"Charlie is not quiet\" is FALSE.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and create a series of logical deductions. We will break down the information into individual statements and then use them to determine the truth value of the given statement.\n\nGiven statements:\n\n1. Charlie is green.\n2. Charlie is kind.\n3. Charlie is nice.\n4. Charlie is rough.\n5. Erin is kind.\n6. Erin is nice.\n7. Erin is quiet.\n8. Fiona is quiet.\n9. Fiona is rough.\n10. Harry is smart.\n11. All rough, green people are quiet.\n12. If someone is green and rough then they are nice.\n13. All kind, smart people are green.\n14. If Erin is green and Erin is blue then Erin is quiet.\n15. All quiet people are smart.\n16. All kind people are green.\n17. If someone is smart then they are kind.\n18. All rough, nice people are blue.\n\nNow, let's analyze the given statement: \"Charlie is not quiet.\"\n\nTo determine whether this statement is true, false, or unknown, we need to see if Charlie is quiet or not. We will start by using the given statements to create a series of logical deductions.\n\nFrom statement 1, we know Charlie is green.\n\nFrom statement 4, we know Charlie is rough.\n\nFrom statement 12, we know that if someone is green and rough, then they are nice.\n\nSince Charlie is both green and rough, we can conclude that Charlie is nice (from statement 12).\n\nNow, we need to determine whether Charlie is quiet or not. We can use the given statements to create another series of logical deductions.\n\nFrom statement 4, we know Charlie is rough.\n\nFrom statement 11, we know that all rough, green people are quiet.\n\nHowever, we cannot conclude that Charlie is quiet from this statement because Charlie is not explicitly stated to be green and rough at the same time. We only know that Charlie is rough and Charlie is green.\n\nLet's look at the other statements to see if we can find any information about Charlie being quiet. From statement 1, we know Charlie is green. From statement 2, we know Charlie is kind. From statement 3, we know Charlie is nice. We do not have any information about Charlie being quiet.\n\nNow, let's look at the statement \"All rough, green people are quiet.\" This statement does not say that all rough people are quiet or all green people are quiet. It only says that all rough, green people are quiet. Since we do not know that Charlie is both green and rough, we cannot conclude that Charlie is quiet.\n\nHowever, statement 11 says that all rough, green people are quiet. Let's assume that Charlie is green and rough. Then, statement 11 would imply that Charlie is quiet.\n\nLet's look at the other statements to see if we can find any information about Charlie being both green and rough. From statement 1, we know Charlie is green. From statement 4, we know Charlie is rough.\n\nFrom statement 11, we know that all rough, green people are quiet. If Charlie is both green and rough, then Charlie would be quiet.\n\nHowever, we do not know that Charlie is both green and rough. We only know that Charlie is green and Charlie is rough. Since we do not know that Charlie is both green and rough, we cannot conclude that Charlie is quiet.\n\nWe can try to prove that Charlie is not quiet. If Charlie is not quiet, then Charlie is not rough, green.\n\nIf Charlie is not rough, green, then statement 11 does not apply.\n\nIf statement 11 does not apply, then we do not know if Charlie is quiet or not.\n\nHowever, we know that Charlie is green (from statement 1) and Charlie is rough (from statement 4). Since we know that Charlie is both green and rough, we can use statement 11 to conclude that Charlie is quiet.\n\nWe reached a contradiction. We know that Charlie is green (from statement 1) and Charlie is rough (from statement 4). However, if Charlie is both green and rough, then statement 11 would imply that Charlie is quiet. But we also know that Charlie is not quiet (from the original statement).\n\nThis means that statement 11 cannot be applied to Charlie. Therefore, we cannot conclude that Charlie is quiet or not quiet.\n\nSince we cannot conclude that Charlie is quiet or not quiet, the truth value of the statement \"Charlie is not quiet\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is not quiet' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All rough, green people are quiet.\n   - This statement implies that if someone is both rough and green, then they are quiet.\n\n2. If someone is green and rough then they are nice.\n   - This statement implies that green and rough people are nice, but it does not directly state that they are quiet. However, from statement 1, we know that rough and green people are quiet.\n\n3. All kind, smart people are green.\n   - This statement tells us about the characteristics of kind and smart people, but we do not have any information about Charlie being smart.\n\n4. If Erin is green and Erin is blue then Erin is quiet.\n   - This statement is irrelevant to Charlie's characteristics.\n\n5. All quiet people are smart.\n   - This statement implies that quiet people are smart, but we do not have any information about Charlie being quiet.\n\n6. All kind people are green.\n   - This statement implies that kind people are green, but we do not have any information about Charlie being kind.\n\n7. If someone is smart then they are kind.\n   - This statement implies that smart people are kind, but we do not have any information about Charlie being smart.\n\n8. All rough, nice people are blue.\n   - This statement tells us about the characteristics of rough and nice people, but we do not have any information about Charlie's color.\n\nFrom the given statements, we know:\n- Charlie is green (statement 1 and 2)\n- Charlie is kind (statement 2)\n- Charlie is nice (statement 2)\n\nNow, let's analyze the statement 'Charlie is not quiet.' Since we know that Charlie is green and rough (from statement 2), we can conclude that Charlie is quiet (from statement 1).\n\nTherefore, the statement 'Charlie is not quiet' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_charlie, green_charlie), quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_charlie, rough_charlie), nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_charlie, green_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_charlie, kind_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_charlie, smart_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_erin, blue_erin), quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_charlie, nice_charlie), blue_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == False",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "Or(quiet_charlie == True, quiet_charlie == False)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_charlie, green_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> green(X)",
+          "z3_formula": "Implies(green_charlie, green_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_charlie, green_charlie), quiet_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_charlie, smart_charlie), green_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_charlie, nice_charlie), blue_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_charlie, smart_charlie), green_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_charlie, green_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_charlie, green_charlie), quiet_charlie)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(green, charlie)",
+          "z3_formula": "rough_green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_charlie, rough_charlie), nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_charlie, rough_charlie), quiet_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_charlie, green_charlie), quiet_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_charlie, rough_charlie), nice_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_charlie, smart_charlie), green_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> green(X)",
+          "z3_formula": "Implies(And(green_charlie, kind_charlie), green_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_charlie, kind_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_charlie, nice_charlie), blue_charlie)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_charlie, green_charlie), quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_charlie, rough_charlie), nice_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_charlie, green_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_charlie, kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_charlie, smart_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_charlie, rough_charlie), nice_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_charlie, nice_charlie), blue_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(charlie)",
+          "z3_formula": "Not(quiet_charlie) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(charlie)",
+          "z3_formula": "Not(quiet_charlie) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(charlie) & green(charlie)",
+          "z3_formula": "rough_charlie & green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_charlie, green_charlie), quiet_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie) & nice(charlie)",
+          "z3_formula": "rough_charlie & nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_charlie, nice_charlie), blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_charlie, green_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_charlie, rough_charlie), nice_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(charlie)",
+          "z3_formula": "Not(quiet_charlie) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(charlie)",
+          "z3_formula": "Not(quiet_charlie) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_charlie, green_charlie), quiet_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_charlie, rough_charlie), nice_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & nice(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_charlie, nice_charlie), blue_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(blue_charlie, Not(quiet_charlie))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_charlie, smart_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(charlie))",
+          "z3_formula": "Not(quiet_charlie) == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_charlie, rough_charlie), quiet_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_charlie, rough_charlie), nice_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> smart(X)",
+          "z3_formula": "Implies(quiet_erin, smart_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(quiet(charlie))",
+          "z3_formula": "Not(Or(Implies(And(green_charlie, rough_charlie), quiet_charlie), Implies(And(green_charlie, rough_charlie), Not(quiet_charlie))))",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_charlie, green_charlie), quiet_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_charlie, rough_charlie), quiet_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(charlie)",
+          "z3_formula": "Not(quiet_charlie) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Or(quiet_charlie, Not(quiet_charlie)) == False",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(green)",
+          "z3_formula": "rough_green == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_green, green_charlie), quiet_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> nice(X)",
+          "z3_formula": "Implies(And(green_charlie, rough_charlie), nice_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(green)",
+          "z3_formula": "kind_green == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_charlie, kind_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 127,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 34
+    },
+    "maxsat_stats": {
+      "satisfied": 30,
+      "excluded": 4,
+      "total_weight": 116,
+      "solve_time_ms": 1.8394459038972855
+    },
+    "timing": {
+      "trace_gen_s": 11.003,
+      "extraction_s": 20.081,
+      "dedup_s": 0.736,
+      "maxsat_s": 0.005,
+      "total_s": 31.826
+    }
+  }
+}

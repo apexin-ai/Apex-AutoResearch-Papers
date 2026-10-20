@@ -1,0 +1,1092 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-721_Q6",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & needs(X, rabbit) -> sees(rabbit, mouse)",
+          "z3_formula": "Implies(And(big_rabbit, needs_rabbit_mouse), sees_rabbit_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & needs(X, rabbit) -> sees(rabbit, mouse)",
+          "z3_formula": "Implies(And(big_rabbit, needs_rabbit_mouse), sees_rabbit_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, lion)",
+          "z3_formula": "Implies(cold_rabbit, needs_rabbit_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(rabbit, lion)",
+          "z3_formula": "Not(needs_rabbit_lion) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "\u00ac(eats(bald_eagle, mouse))",
+          "z3_formula": "Not(eats_bald_eagle_mouse) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "\u00acRough(bald_eagle)",
+          "z3_formula": "Not(rough_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, big_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(nice_lion, eats_lion_rabbit), eats_lion_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, cold_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & big(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, big_rabbit), sees_rabbit_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, lion)",
+          "z3_formula": "Implies(cold_rabbit, needs_rabbit_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> Not(needs(X, bald_eagle))",
+          "z3_formula": "Implies(And(cold_rabbit, big_rabbit), Not(needs_rabbit_bald_eagle))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_rabbit_lion, sees_rabbit_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & Not(big(X)) -> eats(X, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, Not(big_rabbit)), eats_rabbit_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> Not(sees(X, lion))",
+          "z3_formula": "Implies(eats_rabbit_lion, Not(sees_rabbit_lion))",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "\u00ac(needs(rabbit, lion))",
+          "z3_formula": "Not(needs_rabbit_lion) == True",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(big_rabbit, sees_rabbit_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, mouse)",
+          "z3_formula": "sees_rabbit_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> needs(X, lion)",
+          "z3_formula": "Implies(sees_rabbit_lion, needs_rabbit_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(rabbit, lion)",
+          "z3_formula": "Not(needs_rabbit_lion)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not eats(rabbit, lion)",
+          "z3_formula": "not eats_rabbit_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, eagle) & sees(X, eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_eagle, sees_rabbit_eagle), big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(Y, rabbit) & big(X) -> sees(Y, mouse)",
+          "z3_formula": "Implies(And(needs_mouse_rabbit, big_rabbit), sees_mouse_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_rabbit_lion, sees_rabbit_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & sees(Y, X) -> eats(Y, eagle)",
+          "z3_formula": "Implies(And(nice_lion, sees_rabbit_lion), eats_rabbit_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not needs(X, eagle)",
+          "z3_formula": "Implies(big_rabbit, not needs_rabbit_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_rabbit_eagle, cold_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & big(X) -> sees(rabbit, mouse)",
+          "z3_formula": "Implies(And(needs_mouse_rabbit, big_rabbit), sees_rabbit_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, lion)",
+          "z3_formula": "Implies(cold_rabbit, needs_rabbit_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> not needs(X, eagle)",
+          "z3_formula": "Implies(And(cold_rabbit, big_rabbit), not needs_rabbit_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> sees(X, eagle)",
+          "z3_formula": "Implies(needs_rabbit_lion, sees_rabbit_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) & not big(X) -> eats(eagle, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_eagle, not big_rabbit), eats_eagle_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(eagle, lion) -> not sees(X, lion)",
+          "z3_formula": "Implies(eats_eagle_lion, not sees_rabbit_lion)",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> not needs(X, bald_eagle)",
+          "z3_formula": "Implies(big_rabbit, not needs_rabbit_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(rabbit, bald_eagle)",
+          "z3_formula": "not needs_rabbit_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & not big(X) -> eats(bald_eagle, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, not big_rabbit), eats_bald_eagle_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(bald_eagle, lion)",
+          "z3_formula": "not eats_bald_eagle_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, cold_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, lion)",
+          "z3_formula": "Implies(cold_rabbit, needs_rabbit_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & not big(X) -> eats(Y, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, Not(big_rabbit)), eats_bald_eagle_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> cold(X)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, cold_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, lion)",
+          "z3_formula": "Implies(cold_rabbit, needs_rabbit_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> not needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(cold_rabbit, big_rabbit), Not(needs_rabbit_bald_eagle))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_rabbit_lion, sees_rabbit_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(Y, lion) -> not sees(Y, lion)",
+          "z3_formula": "Implies(eats_bald_eagle_lion, Not(sees_bald_eagle_lion))",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(rabbit, lion)",
+          "z3_formula": "Not(needs_rabbit_lion) == True",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> big(X)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, Y)",
+          "z3_formula": "Implies(big_rabbit, sees_rabbit_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> needs(X, Z) & needs(Z, lion) & nice(lion) & sees(lion, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(And(sees_rabbit_mouse, needs_rabbit_lion, needs_lion_lion, nice_lion, sees_lion_mouse), needs_rabbit_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> needs(X, Z) -> Not(needs(Z, X))",
+          "z3_formula": "Implies(And(sees_rabbit_mouse, needs_rabbit_lion), Not(needs_lion_rabbit))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == False",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not_eats_bald_eagle_mouse",
+          "z3_formula": "not_eats_bald_eagle_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_rough_bald_eagle",
+          "z3_formula": "not_rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs_lion_bald_eagle",
+          "z3_formula": "needs_lion_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees_lion_bald_eagle",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice_lion",
+          "z3_formula": "nice_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind_mouse",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs_bald_eagle_mouse",
+          "z3_formula": "needs_bald_eagle_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs_lion_mouse",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees_lion_mouse",
+          "z3_formula": "sees_lion_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats_bald_eagle_rabbit",
+          "z3_formula": "eats_bald_eagle_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs_mouse_rabbit",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_bald_eagle_rabbit, sees_bald_eagle_rabbit), big_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(nice_lion, eats_lion_rabbit), eats_lion_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_bald_eagle_rabbit, cold_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs_rabbit(X) & big(X) -> sees_mouse(X)",
+          "z3_formula": "Implies(And(needs_mouse_rabbit, big_rabbit), sees_mouse_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs_lion(X)",
+          "z3_formula": "Implies(cold_rabbit, needs_lion_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> not_needs_bald_eagle(X)",
+          "z3_formula": "Implies(And(cold_rabbit, big_rabbit), not_needs_bald_eagle_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs_lion(X) -> sees_bald_eagle(X)",
+          "z3_formula": "Implies(needs_lion_rabbit, sees_bald_eagle_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees_bald_eagle(X) & not_big(X) -> eats_lion_bald_eagle",
+          "z3_formula": "Implies(And(sees_bald_eagle_rabbit, not_big_rabbit), eats_lion_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats_lion_bald_eagle -> not_sees_lion_bald_eagle",
+          "z3_formula": "Implies(eats_lion_bald_eagle, not_sees_lion_bald_eagle)",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, cold_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, lion)",
+          "z3_formula": "Implies(cold_rabbit, needs_rabbit_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(nice_X, eats_X_rabbit), eats_X_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, cold_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & big(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(And(needs_X_rabbit, big_X), sees_X_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, lion)",
+          "z3_formula": "Implies(cold_rabbit, needs_rabbit_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> not needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(cold_rabbit, big_rabbit), Not(needs_rabbit_bald_eagle))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_rabbit_lion, sees_rabbit_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & not big(X) -> eats(bald_eagle, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, Not(big_rabbit)), eats_bald_eagle_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(bald_eagle, lion) -> not sees(bald_eagle, lion)",
+          "z3_formula": "Implies(eats_bald_eagle_lion, Not(sees_bald_eagle_lion))",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, mouse)",
+          "z3_formula": "eats_bald_eagle_mouse == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == False",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(nice_lion, eats_lion_rabbit), eats_lion_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, cold_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & big(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(And(needs_lion_rabbit, big_lion), sees_lion_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, lion)",
+          "z3_formula": "Implies(cold_rabbit, needs_rabbit_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> not needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(cold_rabbit, big_rabbit), Not(needs_rabbit_bald_eagle))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_rabbit_lion, sees_rabbit_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & not big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, Not(big_rabbit)), eats_rabbit_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not sees(X, lion)",
+          "z3_formula": "Implies(eats_rabbit_lion, Not(sees_rabbit_lion))",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(big_rabbit, sees_rabbit_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_rabbit_lion, sees_rabbit_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, cold_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> not(needs(X, bald_eagle))",
+          "z3_formula": "Implies(And(cold_rabbit, big_rabbit), Not(needs_rabbit_bald_eagle))",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not(needs(bald_eagle, lion))",
+          "z3_formula": "Not(needs_bald_eagle_lion) == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & not(big(X)) -> bald_eagle_eats_lion",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, Not(big_rabbit)), bald_eagle_eats_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not(bald_eagle_eats_lion)",
+          "z3_formula": "Not(bald_eagle_eats_lion) == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(needs(rabbit, lion))",
+          "z3_formula": "unknown(needs_rabbit_lion) == True",
+          "source_step": 18
+        }
+      ]
+    }
+  ]
+}

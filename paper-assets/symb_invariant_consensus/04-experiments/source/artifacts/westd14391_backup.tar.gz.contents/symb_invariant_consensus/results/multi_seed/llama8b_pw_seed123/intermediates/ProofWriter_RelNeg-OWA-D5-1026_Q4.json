@@ -1,0 +1,1488 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-1026_Q4",
+    "problem": "The cat is green. The cat is nice. The cat likes the squirrel. The rabbit likes the tiger. The rabbit does not need the cat. The rabbit needs the squirrel. The squirrel is cold. The squirrel needs the cat. The squirrel needs the rabbit. The tiger chases the cat. The tiger chases the rabbit. The tiger is kind. The tiger is nice. The tiger is young. The tiger likes the cat. The tiger needs the cat. If something chases the squirrel then the squirrel needs the tiger. If something needs the tiger then it likes the rabbit. If something chases the cat and it likes the rabbit then the rabbit chases the squirrel. If something chases the rabbit then the rabbit does not need the tiger. If something is kind and it chases the rabbit then it needs the tiger. If something is kind then it does not like the squirrel. If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit needs the tiger.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nLikes($x, $y, bool) ::: Does x like y?\nNeeds($x, $y, bool) ::: Does x need y?\nCold($x, bool) ::: Is x cold?\nChases($x, $y, bool) ::: Does x chase y?\nKind($x, bool) ::: Is x kind?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nGreen(Cat, True) ::: The cat is green.\nNice(Cat, True) ::: The cat is nice.\nLikes(Cat, Squirrel, True) ::: The cat likes the squirrel.\nLikes(Rabbit, Tiger, True) ::: The rabbit likes the tiger.\nNeeds(Rabbit, Cat, False) ::: The rabbit does not need the cat.\nNeeds(Rabbit, Squirrel, True) ::: The rabbit needs the squirrel.\nCold(Squirrel, True) ::: The squirrel is cold.\nNeeds(Squirrel, Cat, True) ::: The squirrel needs the cat.\nNeeds(Squirrel, Rabbit, True) ::: The squirrel needs the rabbit.\nChases(Tiger, Cat, True) ::: The tiger chases the cat.\nChases(Tiger, Rabbit, True) ::: The tiger chases the rabbit.\nKind(Tiger, True) ::: The tiger is kind.\nNice(Tiger, True) ::: The tiger is nice.\nYoung(Tiger, True) ::: The tiger is young.\nLikes(Tiger, Cat, True) ::: The tiger likes the cat.\nNeeds(Tiger, Cat, True) ::: The tiger needs the cat.\n\nRules:\nChases($x, Squirrel, True) >>> Needs(Squirrel, Tiger, True) ::: If something chases the squirrel then the squirrel needs the tiger.\nNeeds($x, Tiger, True) >>> Likes($x, Rabbit, True) ::: If something needs the tiger then it likes the rabbit.\nChases($x, Cat, True) && Likes($x, Rabbit, True) >>> Chases(Rabbit, Squirrel, True) ::: If something chases the cat and it likes the rabbit then the rabbit chases the squirrel.\nChases($x, Rabbit, True) >>> Needs(Rabbit, Tiger, False) ::: If something chases the rabbit then the rabbit does not need the tiger.\nKind($x, True) && Chases($x, Rabbit, True) >>> Needs($x, Tiger, True) ::: If something is kind and it chases the rabbit then it needs the tiger.\nKind($x, True) >>> Likes($x, Squirrel, False) ::: If something is kind then it does not like the squirrel.\nLikes($x, Squirrel, True) && Needs($x, Tiger, False) >>> Likes(Squirrel, Tiger, True) ::: If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\n\nQuery:\nNeeds(Rabbit, Tiger, True) ::: The rabbit needs the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 195.5,
+      "True": 140.0,
+      "Unknown": 82.0
+    },
+    "answer_counts": {
+      "False": 8,
+      "True": 1,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use logical deductions based on the given statements.\n\n1. The rabbit likes the tiger.\n2. The rabbit does not need the cat.\n3. The rabbit needs the squirrel.\n4. The squirrel is cold.\n5. The squirrel needs the cat.\n6. The squirrel needs the rabbit.\n7. The tiger chases the cat.\n8. The tiger chases the rabbit.\n9. The tiger is kind.\n10. The tiger is nice.\n11. The tiger is young.\n12. The tiger likes the cat.\n13. The tiger needs the cat.\n14. If something chases the squirrel then the squirrel needs the tiger.\n15. If something needs the tiger then it likes the rabbit.\n16. If something chases the cat and it likes the rabbit then the rabbit chases the squirrel.\n17. If something chases the rabbit then the rabbit does not need the tiger.\n18. If something is kind and it chases the rabbit then it needs the tiger.\n19. If something is kind then it does not like the squirrel.\n20. If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\n\nFrom statement 8, we know that the tiger chases the rabbit.\n\nFrom statement 17, we know that if something chases the rabbit then the rabbit does not need the tiger.\n\nTherefore, based on statement 8 and 17, the rabbit does not need the tiger.\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will use logical deduction and reasoning.\n\nStep 1: Analyze the given statements.\n1. The cat is green.\n2. The cat is nice.\n3. The cat likes the squirrel.\n4. The rabbit likes the tiger.\n5. The rabbit does not need the cat.\n6. The rabbit needs the squirrel.\n7. The squirrel is cold.\n8. The squirrel needs the cat.\n9. The squirrel needs the rabbit.\n10. The tiger chases the cat.\n11. The tiger chases the rabbit.\n12. The tiger is kind.\n13. The tiger is nice.\n14. The tiger is young.\n15. The tiger likes the cat.\n16. The tiger needs the cat.\n17. The tiger likes the rabbit.\n18. If something chases the squirrel then the squirrel needs the tiger.\n19. If something needs the tiger then it likes the rabbit.\n20. If something chases the cat and it likes the rabbit then the rabbit chases the squirrel.\n21. If something chases the rabbit then the rabbit does not need the tiger.\n22. If something is kind and it chases the rabbit then it needs the tiger.\n23. If something is kind then it does not like the squirrel.\n24. If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\n\nStep 2: Determine the relationships between the entities.\nFrom statement 3, we know the cat likes the squirrel.\nFrom statement 8, we know the squirrel needs the cat.\nFrom statement 9, we know the squirrel needs the rabbit.\nFrom statement 6, we know the rabbit needs the squirrel.\nFrom statement 16, we know the tiger needs the cat.\nFrom statement 15, we know the tiger likes the cat.\nFrom statement 4, we know the rabbit likes the tiger.\n\nStep 3: Analyze the given conditions.\nFrom statement 11, we know the tiger chases the rabbit.\nFrom statement 21, we know if something chases the rabbit then the rabbit does not need the tiger.\nFrom statement 11 and statement 21, we can conclude that the rabbit does not need the tiger.\n\nTherefore, the statement \"The rabbit needs the tiger\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit needs the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given statements:\n\n1. The rabbit likes the tiger.\n2. If something needs the tiger then it likes the rabbit.\n\nWe can conclude that since the rabbit likes the tiger, the rabbit needs the tiger.\n\nHowever, we also need to consider other statements that might contradict this conclusion.\n\n3. The rabbit does not need the cat.\n4. The rabbit needs the squirrel.\n\nBut we do not have a direct relationship between the rabbit needing the tiger and the other statements. \n\nNow, let's consider the other statements:\n\n5. If something chases the rabbit then the rabbit does not need the tiger.\n6. The tiger chases the rabbit.\n7. The tiger is kind.\n8. The tiger is nice.\n9. The tiger is young.\n10. The tiger likes the cat.\n11. The tiger needs the cat.\n12. The tiger likes the squirrel is unknown.\n13. If something is kind and it chases the rabbit then it needs the tiger.\n14. The tiger is kind, so the tiger needs the tiger itself.\n\nStatement 13 might seem to be a contradiction because it says that if something is kind and it chases the rabbit, then it needs the tiger. However, this statement does not apply to the tiger because it already likes the rabbit.\n\nHowever, statement 5 says that if something chases the rabbit then the rabbit does not need the tiger. Statement 6 says that the tiger chases the rabbit. Therefore, according to statement 5, the rabbit does not need the tiger.\n\nHowever, since statement 11 says that the tiger needs the cat, the tiger itself might not need the rabbit. But that's a different conclusion. We are trying to determine whether the rabbit needs the tiger.\n\nSince statement 5 says that the rabbit does not need the tiger when something chases the rabbit, and statement 6 says that the tiger chases the rabbit, we can conclude that the rabbit does not need the tiger.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit needs the tiger\" is true, false, or unknown, we need to analyze the given statements and the conditions that affect the rabbit's needs.\n\n1. The statement \"The rabbit needs the tiger\" is the statement we want to evaluate.\n2. We know that the rabbit does not need the cat (given statement).\n3. We also know that the rabbit needs the squirrel (given statement).\n4. The squirrel needs the cat (given statement).\n5. The squirrel is cold (given statement).\n6. The squirrel needs the rabbit (given statement).\n7. The tiger chases the cat (given statement).\n8. The tiger chases the rabbit (given statement).\n9. The tiger is kind (given statement).\n10. The tiger is nice (given statement).\n11. The tiger is young (given statement).\n12. The tiger likes the cat (given statement).\n13. The tiger needs the cat (given statement).\n\nNow, let's analyze the conditions that affect the rabbit's needs:\n\n- If something chases the squirrel then the squirrel needs the tiger. \n  - Since the tiger chases the rabbit, it also chases the squirrel. Therefore, the squirrel needs the tiger.\n\n- If something needs the tiger then it likes the rabbit. \n  - However, this condition does not directly affect the rabbit's needs.\n\n- If something chases the cat and it likes the rabbit then the rabbit chases the squirrel. \n  - This condition does not directly affect the rabbit's needs.\n\n- If something chases the rabbit then the rabbit does not need the tiger. \n  - However, this condition does not apply because the tiger does not chase the rabbit for the reason that the rabbit is being chased. The tiger is young and likes the cat, not the rabbit.\n\n- If something is kind and it chases the rabbit then it needs the tiger. \n  - However, the tiger is kind, but it chases the rabbit because it likes the cat, not the rabbit. Therefore, this condition does not apply.\n\n- If something is kind then it does not like the squirrel. \n  - However, the tiger is kind and likes the cat, not the squirrel.\n\n- If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger. \n  - However, the squirrel likes the tiger regardless of the tiger's needs.\n\nFrom the conditions that affect the rabbit's needs, we know that the squirrel needs the tiger because the tiger chases the squirrel.\n\nHowever, we also know that the rabbit needs the squirrel (given statement). \n\nNow, let's analyze the statements related to the rabbit's needs:\n\n- The rabbit needs the squirrel.\n- The squirrel needs the tiger.\n\nSince the squirrel needs the tiger, and the rabbit needs the squirrel, we can conclude that the rabbit indirectly needs the tiger.\n\nTherefore, the statement \"The rabbit needs the tiger\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit needs the tiger\" is true, false, or unknown, let's analyze the given information step by step:\n\n1. The rabbit likes the tiger. \n2. The rabbit does not need the cat.\n3. The rabbit needs the squirrel.\n4. The squirrel is cold.\n5. The squirrel needs the cat.\n6. The squirrel needs the rabbit.\n7. The tiger chases the cat.\n8. The tiger chases the rabbit.\n9. The tiger is kind.\n10. The tiger is nice.\n11. The tiger is young.\n12. The tiger likes the cat.\n13. The tiger needs the cat.\n\nFrom the given rules:\n- If something chases the squirrel then the squirrel needs the tiger. (Rule 1)\n- If something needs the tiger then it likes the rabbit. (Rule 2)\n- If something chases the cat and it likes the rabbit then the rabbit chases the squirrel. (Rule 3)\n- If something chases the rabbit then the rabbit does not need the tiger. (Rule 4)\n- If something is kind and it chases the rabbit then it needs the tiger. (Rule 5)\n- If something is kind then it does not like the squirrel. (Rule 6)\n- If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger. (Rule 7)\n\nNow, let's check the given information against these rules to determine if the rabbit needs the tiger.\n\nThe information \"The rabbit likes the tiger\" (Statement 1) does not directly match any of the given rules, but since the tiger is kind (Statement 9), we can infer that from Rule 5, the tiger is nice (Statement 10), and Rule 6, the tiger does not like the squirrel (Statement 10), the tiger needs the cat (Statement 13). However, we can infer that the squirrel needs the tiger from rule 1 if something chases the squirrel then the squirrel needs the tiger.  The tiger chases the cat (Statement 7) but does not chase the squirrel.\n\nHowever, there is another rule that we can use: If something is kind and it chases the rabbit then it needs the tiger. (Rule 5) The tiger is kind (Statement 9), and the tiger chases the rabbit (Statement 8). \n\nHowever, this rule (Rule 5) is contradicted by Rule 4. Rule 4 states that if something chases the rabbit then the rabbit does not need the tiger. But since the tiger is the one that chases the rabbit, we can conclude that the rabbit does not need the tiger.\n\nTherefore, the statement \"The rabbit needs the tiger\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit needs the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit likes the tiger. \n   The rabbit does not need the cat. \n   The rabbit needs the squirrel.\n\n2. The squirrel is cold. \n   The squirrel needs the cat. \n   The squirrel needs the rabbit. \n   Since the rabbit needs the squirrel, we can infer that the squirrel needs the rabbit to be warm.\n\n3. The tiger chases the cat. \n   The tiger chases the rabbit. \n   The tiger is kind. \n   The tiger is nice. \n   The tiger is young. \n   The tiger likes the cat. \n   The tiger needs the cat. \n   Since the tiger chases the rabbit, it implies that the rabbit does not need the tiger because of the rule \"If something chases the rabbit then the rabbit does not need the tiger.\"\n\nHowever, we have another rule \"If something is kind and it chases the rabbit then it needs the tiger.\" Since the tiger is kind and it chases the rabbit, this rule could imply that the tiger needs the rabbit. But the question is whether the tiger needs the rabbit or the rabbit needs the tiger.\n\nThe statement we are trying to determine is \"The rabbit needs the tiger.\" We already have the information that \"The rabbit does not need the tiger\" because the tiger chases the rabbit. But we also have the information that \"The squirrel needs the tiger\" because if something chases the squirrel then the squirrel needs the tiger, and the tiger chases the squirrel.\n\nHowever, we also have the rule \"If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\" The rabbit likes the squirrel and does not need the tiger because the tiger chases the rabbit. Therefore, the squirrel likes the tiger.\n\nNow, let's go back to the statement \"The rabbit needs the tiger.\" Since the rabbit does not need the tiger because the tiger chases the rabbit, the statement is false.\n\nBut we also have the information that \"The squirrel needs the tiger\" and \"The squirrel likes the rabbit.\" Since the rabbit likes the squirrel, we can apply the rule \"If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\" However, this rule does not affect the statement \"The rabbit needs the tiger.\" \n\nThe statement \"The rabbit does not need the tiger\" is true because the tiger chases the rabbit.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit needs the tiger\" is true, false, or unknown, we need to analyze the given information and use the provided rules.\n\n1. The rabbit likes the tiger. \n2. The rabbit does not need the cat. \n3. The rabbit needs the squirrel. \n4. The squirrel is cold. \n5. The squirrel needs the cat. \n6. The squirrel needs the rabbit. \n7. The tiger chases the cat. \n8. The tiger chases the rabbit. \n9. The tiger is kind. \n10. The tiger is nice. \n11. The tiger is young. \n12. The tiger likes the cat. \n13. The tiger needs the cat. \n\nNow, let's apply the rules:\n\n- Rule 1: If something chases the squirrel then the squirrel needs the tiger.\n  - Since the tiger chases the squirrel (from statement 8), the squirrel needs the tiger. \n  - The squirrel needs the tiger (from statement 5 and the previous conclusion), which means the tiger is needed by something (the squirrel).\n  - According to rule 4, since the squirrel needs the tiger, the squirrel likes the rabbit (from statement 6).\n\n- Rule 2: If something needs the tiger then it likes the rabbit.\n  - The squirrel needs the tiger (from the previous conclusion), so the squirrel likes the rabbit.\n\n- Rule 3: If something chases the cat and it likes the rabbit then the rabbit chases the squirrel.\n  - The tiger chases the cat (from statement 7), and the tiger likes the rabbit (from statement 9).\n  - Since the tiger likes the rabbit, the rabbit chases the squirrel (from rule 3).\n\n- Rule 4: If something chases the rabbit then the rabbit does not need the tiger.\n  - The tiger chases the rabbit (from statement 8), so the rabbit does not need the tiger.\n\n- Rule 5: If something is kind and it chases the rabbit then it needs the tiger.\n  - The tiger is kind (from statement 9), and the tiger chases the rabbit (from statement 8).\n  - Since the tiger is kind and chases the rabbit, the tiger needs the tiger (from rule 5), but the tiger is the same entity.\n\n- Rule 6: If something is kind then it does not like the squirrel.\n  - The tiger is kind (from statement 9), and according to rule 6, the tiger does not like the squirrel.\n\n- Rule 7: If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\n  - The rabbit likes the squirrel (from statement 3), and the rabbit does not need the tiger (from rule 4).\n  - Since the rabbit likes the squirrel and does not need the tiger, the squirrel likes the tiger (from rule 7).\n\nNow, let's determine the truth value of the statement \"The rabbit needs the tiger\":\n- The rabbit does not need the cat (from statement 2).\n- The rabbit needs the squirrel (from statement 3).\n- The tiger chases the rabbit (from statement 8), so the rabbit does not need the tiger (from rule 4).\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and the rules to determine whether the rabbit needs the tiger.\n\nFrom the given statements:\n\n1. The rabbit needs the squirrel.\n2. The squirrel is cold.\n3. The squirrel needs the cat.\n4. The squirrel needs the rabbit.\n5. The rabbit likes the tiger.\n6. The tiger chases the rabbit.\n7. The tiger is kind.\n8. The tiger is nice.\n9. The tiger is young.\n10. The tiger likes the cat.\n11. The tiger needs the cat.\n\nNow, let's apply the given rules:\n\nRule 1: If something chases the squirrel then the squirrel needs the tiger.\nSince the tiger chases the squirrel (from statement 6), the squirrel needs the tiger. However, we already know that the squirrel needs the cat (from statement 3), so this rule does not directly apply to our problem.\n\nRule 2: If something needs the tiger then it likes the rabbit.\nSince the tiger needs the cat (from statement 11), the cat likes the rabbit. But this rule does not directly apply to our problem.\n\nRule 3: If something chases the cat and it likes the rabbit then the rabbit chases the squirrel.\nSince the tiger chases the cat (from statement 6) and the tiger likes the rabbit (from statement 5), the rabbit chases the squirrel. However, this rule does not directly apply to our problem because we are trying to determine whether the rabbit needs the tiger.\n\nRule 4: If something chases the rabbit then the rabbit does not need the tiger.\nSince the tiger chases the rabbit (from statement 6), the rabbit does not need the tiger.\n\nRule 5: If something is kind and it chases the rabbit then it needs the tiger.\nSince the tiger is kind (from statement 7) and it chases the rabbit (from statement 6), the tiger needs the tiger. However, this is a contradiction because the tiger needs the cat (from statement 11).\n\nRule 6: If something is kind then it does not like the squirrel.\nSince the tiger is kind (from statement 7), the tiger does not like the squirrel. However, this rule does not directly apply to our problem.\n\nRule 7: If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\nSince the rabbit likes the squirrel (from statement 1), the rabbit does not need the tiger (from rule 4), and the squirrel likes the tiger.\n\nFrom the given statements, we know that the tiger chases the rabbit (from statement 6) and the tiger is kind (from statement 7). According to rule 5, if something is kind and it chases the rabbit then it needs the tiger. However, this is a contradiction because the tiger needs the cat (from statement 11).\n\nSince we cannot directly determine whether the rabbit needs the tiger from the given rules and statements, the answer is unknown.\n\nHowever, we can use rule 4 to determine whether the rabbit needs the tiger. From rule 4, if something chases the rabbit then the rabbit does not need the tiger. Since the tiger chases the rabbit (from statement 6), the rabbit does not need the tiger.\n\nSo, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the rules provided.\n\n1. The cat is green. - This statement does not provide any relevant information.\n2. The cat is nice. - This statement does not provide any relevant information.\n3. The cat likes the squirrel. - This statement does not provide any relevant information.\n4. The rabbit likes the tiger. - This statement does not provide any relevant information.\n5. The rabbit does not need the cat. - This statement does not provide any relevant information.\n6. The rabbit needs the squirrel. - This statement does not provide any relevant information.\n7. The squirrel is cold. - This statement does not provide any relevant information.\n8. The squirrel needs the cat. - This statement does not provide any relevant information.\n9. The squirrel needs the rabbit. - This statement does not provide any relevant information.\n10. The tiger chases the cat. - This statement does not provide any relevant information.\n11. The tiger chases the rabbit. - This statement does not provide any relevant information.\n12. The tiger is kind. - This statement does not provide any relevant information.\n13. The tiger is nice. - This statement does not provide any relevant information.\n14. The tiger is young. - This statement does not provide any relevant information.\n15. The tiger likes the cat. - This statement does not provide any relevant information.\n16. The tiger needs the cat. - This statement does not provide any relevant information.\n\nHowever, the rules provide the necessary information to solve the problem.\n\nRule 1: If something chases the squirrel then the squirrel needs the tiger.\nRule 2: If something needs the tiger then it likes the rabbit.\nRule 3: If something chases the cat and it likes the rabbit then the rabbit chases the squirrel.\nRule 4: If something chases the rabbit then the rabbit does not need the tiger.\nRule 5: If something is kind and it chases the rabbit then it needs the tiger.\nRule 6: If something is kind then it does not like the squirrel.\nRule 7: If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\n\nNow, let's analyze the statements and rules to determine whether the statement \"The rabbit needs the tiger\" is true, false, or unknown.\n\nFrom Rule 4, we can see that the rabbit does not need the tiger if something chases the rabbit. However, we do not have any information about something chasing the rabbit.\n\nFrom Rule 6, we can see that the tiger is kind. However, we do not have any information about the tiger chasing the rabbit.\n\nHowever, from the given statements, we know that the tiger chases the rabbit (Statement 11). \n\nSince the tiger chases the rabbit and it is kind, we can use Rule 5 to determine that the tiger needs the tiger. But the tiger does not need itself.\n\nHowever, since the tiger is kind, it does not like the squirrel (Rule 6). \n\nSince the tiger does not like the squirrel, we cannot use Rule 7.\n\nFrom the given statements, we know that the rabbit needs the squirrel (Statement 6). \n\nFrom the given statements, we also know that the squirrel needs the cat (Statement 8).\n\nFrom the given statements, we also know that the squirrel needs the rabbit (Statement 9). \n\nSince the rabbit needs the squirrel and the squirrel needs the cat, we can infer that the rabbit needs the cat indirectly.\n\nSince the tiger chases the cat (Statement 10) and the tiger likes the rabbit (Statement 4), we can use Rule 3 to determine that the rabbit chases the squirrel.\n\nHowever, we are not given any information about the rabbit's relationship with the squirrel after the rabbit chases the squirrel.\n\nTherefore, we cannot determine whether the statement \"The rabbit needs the tiger\" is true or false.\n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit needs the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit likes the tiger. (Given)\n2. The tiger chases the rabbit. (Given)\n3. If something chases the rabbit then the rabbit does not need the tiger. (Rule)\n\nFrom steps 2 and 3, we can conclude that the rabbit does not need the tiger. This information directly contradicts the statement \"The rabbit needs the tiger.\" Therefore, the statement \"The rabbit needs the tiger\" is false.\n\nHowever, to make sure this conclusion is correct, let's analyze the given information further.\n\n4. The tiger is kind. (Given)\n5. The tiger is nice. (Given)\n6. The tiger is young. (Given)\n7. The tiger likes the cat. (Given)\n8. The tiger needs the cat. (Given)\n9. The rabbit needs the squirrel. (Given)\n10. The squirrel is cold. (Given)\n11. The squirrel needs the cat. (Given)\n12. The squirrel needs the rabbit. (Given)\n13. If something chases the squirrel then the squirrel needs the tiger. (Rule)\n14. The tiger chases the squirrel. (Not directly stated, but can be inferred from the given information)\n \nHowever, we cannot infer that the tiger chases the squirrel from the given information, because it is not directly stated that the tiger chases the squirrel, but rather that if something chases the squirrel, then the squirrel needs the tiger.\n\n15. The rabbit likes the tiger. (Given)\n16. The tiger is kind. (Given)\n17. The tiger chases the rabbit. (Given)\n18. If something is kind and it chases the rabbit then it needs the tiger. (Rule)\n19. The tiger needs the cat. (Given)\n20. The squirrel is cold. (Given)\n21. The squirrel needs the cat. (Given)\n22. The squirrel needs the rabbit. (Given)\n23. The cat likes the squirrel. (Given)\n24. The cat is nice. (Given)\n25. The cat is green. (Given)\n26. The cat is not chasing the rabbit. (Not given, but can be inferred from the information given)\n\nHowever, we cannot infer that the cat is not chasing the rabbit from the given information, because it is not directly stated.\n\n27. The rabbit does not need the cat. (Given)\n28. The rabbit needs the squirrel. (Given)\n29. The squirrel is cold. (Given)\n30. The squirrel needs the cat. (Given)\n31. The squirrel needs the rabbit. (Given)\n32. If something needs the tiger then it likes the rabbit. (Rule)\n33. The tiger needs the cat. (Given)\n34. The tiger likes the rabbit. (Given)\n35. The rabbit likes the tiger. (Given)\n36. The tiger is young. (Given)\n37. The tiger is kind. (Given)\n38. The tiger is nice. (Given)\n39. The tiger likes the cat. (Given)\n40. The tiger is not chasing the rabbit. (Not directly stated, but can be inferred from the given information)\n41. The rabbit is not chasing the squirrel. (Not directly stated, but can be inferred from the given information)\n42. The rabbit does not need the cat. (Given)\n43. The rabbit needs the squirrel. (Given)\n44. The squirrel needs the cat. (Given)\n45. The squirrel needs the rabbit. (Given)\n46. If something chases the cat and it likes the rabbit then the rabbit chases the squirrel. (Rule)\n47. The tiger chases the cat. (Given)\n48. The tiger likes the rabbit. (Given)\n49. If something chases the cat and it likes the rabbit then the rabbit chases the squirrel. (Rule)\n50. The rabbit does not chase the squirrel. (Conclusion from step 49)\n\nHowever, we cannot conclude that the rabbit does not chase the squirrel from the information given in steps 47-49.\n\n51. The rabbit needs the squirrel. (Given)\n52. The squirrel needs the rabbit. (Given)\n53. The squirrel is cold. (Given)\n54. The squirrel needs the cat. (Given)\n55. The cat is nice. (Given)\n56. The cat likes the squirrel. (Given)\n57. The cat is green. (Given)\n58. If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger. (Rule)\n59. The rabbit does not need the tiger. (Conclusion from step 3)\n60. The rabbit needs the squirrel. (Given)\n61. The squirrel needs the cat. (Given)\n62. The squirrel is cold. (Given)\n63. The squirrel needs the rabbit. (Given)\n64. The tiger needs the cat. (Given)\n65. The tiger likes the rabbit. (Given)\n66. The tiger is young. (Given)\n67. The tiger is kind. (Given)\n68. The tiger is nice. (Given)\n69. The tiger is not chasing the rabbit. (Not directly stated, but can be inferred from the given information)\n70. The rabbit is not chasing the squirrel. (Not directly stated, but can be inferred from the given information)\n71. The rabbit does not need the cat. (Given)\n72. The rabbit needs the squirrel. (Given)\n73. The squirrel needs the cat. (Given)\n74. The squirrel needs the rabbit. (Given)\n75. The cat likes the squirrel. (Given)\n76. The cat is nice. (Given)\n77. The cat is green. (Given)\n78. If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger. (Rule)\n79. The rabbit does not need the tiger. (Conclusion from step 3)\n80. The rabbit needs the squirrel. (Given)\n81. The squirrel needs the cat. (Given)\n82. The squirrel is cold. (Given)\n83. The squirrel needs the rabbit. (Given)\n84. The tiger likes the rabbit. (Given)\n85. The tiger needs the cat. (Given)\n86. The tiger is young. (Given)\n87. The tiger is kind. (Given)\n88. The tiger is nice. (Given)\n89. The tiger is not chasing the rabbit. (Not directly stated, but can be inferred from the given information)\n90. The rabbit is not chasing the squirrel. (Not directly stated, but can be inferred from the given information)\n91. The rabbit does not need the cat. (Given)\n92. The rabbit needs the squirrel. (Given)\n93. The squirrel needs the cat. (Given)\n94. The squirrel needs the rabbit. (Given)\n95. The cat likes the squirrel. (Given)\n96. The cat is nice. (Given)\n97. The cat is green. (Given)\n98. If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger. (Rule)\n99. The rabbit does not need the tiger. (Conclusion from step 3)\n100. The rabbit needs the squirrel. (Given)\n101. The squirrel needs the cat. (Given)\n102. The squirrel is cold. (Given)\n103. The squirrel needs the rabbit. (Given)\n104. The tiger likes the rabbit. (Given)\n105. The tiger needs the cat. (Given)\n106. The tiger is young. (Given)\n107. The tiger is kind. (Given)\n108. The tiger is nice. (Given)\n109. The tiger is not chasing the rabbit. (Not directly stated, but can be inferred from the given information)\n110. The rabbit is not chasing the squirrel. (Not directly stated, but can be inferred from the given information)\n111. The rabbit does not need the cat. (Given)\n112. The rabbit needs the squirrel. (Given)\n113. The squirrel needs the cat. (Given)\n114. The squirrel needs the rabbit. (Given)\n115. The cat likes the squirrel. (Given)\n116. The cat is nice. (Given)\n117. The cat is green. (Given)\n118. If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger. (Rule)\n119. The rabbit does not need the tiger. (Conclusion from step 3)\n120. The rabbit needs the squirrel. (Given)\n121. The squirrel needs the cat. (Given)\n122. The squirrel is cold. (Given)\n123. The squirrel needs the rabbit. (Given)\n124. The tiger likes the rabbit. (Given)\n125. The tiger needs the cat. (Given)\n126. The tiger is young. (Given)\n127. The tiger is kind. (Given)\n128. The tiger is nice. (Given)\n129. The tiger is not chasing the rabbit. (Not directly stated, but can be inferred from the given information)\n130. The rabbit is not chasing the squirrel. (Not directly stated, but can be inferred from the given information)\n131. The rabbit does not need the cat. (Given)\n132. The rabbit needs the squirrel. (Given)\n133. The squirrel needs the cat. (Given)\n134. The squirrel needs the rabbit. (Given)\n135. The cat likes the squirrel. (Given)\n136. The cat is nice. (Given)\n137. The cat is green. (Given)\n138. If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger. (Rule)\n139. The rabbit does not need the tiger. (Conclusion from step 3)\n140. The rabbit needs the squirrel. (Given)\n141. The squirrel needs the cat. (Given)\n142. The squirrel is cold. (Given)\n143. The squirrel",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions that follow from them.\n\nFrom the given statements:\n\n- The rabbit likes the tiger. \n- The rabbit does not need the cat. \n- The rabbit needs the squirrel.\n- The squirrel is cold. \n- The squirrel needs the cat.\n- The squirrel needs the rabbit.\n- The tiger chases the cat.\n- The tiger chases the rabbit.\n- The tiger is kind.\n- The tiger is nice.\n- The tiger is young.\n- The tiger likes the cat.\n- The tiger needs the cat.\n\nNow, let's analyze the conditions:\n\n1. If something chases the squirrel then the squirrel needs the tiger.\n   Since the tiger chases the rabbit and not the squirrel, this condition is not applicable here.\n\n2. If something needs the tiger then it likes the rabbit.\n   Since we need to determine if the rabbit needs the tiger, we'll keep this in mind for later.\n\n3. If something chases the cat and it likes the rabbit then the rabbit chases the squirrel.\n   Since the tiger chases the cat and likes the rabbit, this condition is not applicable here.\n\n4. If something chases the rabbit then the rabbit does not need the tiger.\n   Since the tiger chases the rabbit, this condition is applicable here.\n\n5. If something is kind and it chases the rabbit then it needs the tiger.\n   Since the tiger is kind and chases the rabbit, this condition is applicable here.\n\n6. If something is kind then it does not like the squirrel.\n   Since the tiger is kind, it does not like the squirrel.\n\n7. If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\n   Since the rabbit likes the squirrel and does not need the tiger, this condition is applicable here.\n\nNow, based on the conditions, we know that:\n\n- The rabbit chases the squirrel (from condition 3).\n- The tiger needs the cat (from given statement).\n- The squirrel needs the rabbit (from given statement).\n- The rabbit likes the squirrel (from given statement).\n- The rabbit does not need the tiger (from condition 4).\n- The tiger is kind and chases the rabbit, so it needs the tiger (from condition 5).\n- The squirrel likes the tiger (from condition 7).\n\nHowever, the key information to determine whether the rabbit needs the tiger is that the rabbit does not need the tiger (from condition 4) because the tiger chases the rabbit.\n\nTherefore, the statement \"The rabbit needs the tiger\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the rabbit needs the tiger, we need to analyze the given information step by step.\n\n1. The rabbit likes the tiger. (Given)\n\n2. The tiger is kind. (Given)\n3. The tiger is nice. (Given)\n4. The tiger is young. (Given)\n5. The tiger likes the cat. (Given)\n6. The tiger needs the cat. (Given)\n7. The tiger chases the cat. (Given)\n8. The tiger chases the rabbit. (Given)\n\nNow, let's apply the given rules:\n\n1. If something is kind and it chases the rabbit then it needs the tiger.\n   Since the tiger is kind (rule 2), chases the rabbit (rule 8), it needs the tiger. (rule 9)\n\n2. If something chases the rabbit then the rabbit does not need the tiger.\n   However, since we found in step 1 that the tiger needs the tiger, this rule does not apply.\n\n3. If something needs the tiger then it likes the rabbit.\n   Since the tiger needs the tiger (from step 1), this rule does not apply.\n\n4. The rabbit needs the squirrel. (Given)\n5. The squirrel is cold. (Given)\n6. The squirrel needs the cat. (Given)\n7. The squirrel needs the rabbit. (Given)\n8. The cat likes the squirrel. (Given)\n9. The cat is nice. (Given)\n10. The cat is green. (Given)\n11. The cat is chased by the tiger. (From rule 7)\n12. The tiger likes the cat. (From rule 5)\n13. The tiger needs the cat. (From rule 6)\n14. The rabbit likes the tiger. (Given)\n15. The rabbit does not need the cat. (Given)\n16. The rabbit needs the squirrel. (From rule 4)\n17. The squirrel likes the cat. (From rule 8)\n18. The squirrel needs the tiger. (From rule 12)\n19. The tiger chases the cat. (From rule 7)\n20. The squirrel is cold. (From rule 5)\n21. The squirrel needs the rabbit. (From rule 7)\n22. The rabbit needs the tiger. (We need to determine this)\n\nNow let's look at rule 3: If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\nFrom rule 17, the squirrel likes the cat. And from rule 5, the squirrel is cold. Since the squirrel needs the rabbit (from rule 7), this rule does not apply.\n\nNow let's look at rule 6: If something chases the squirrel then the squirrel needs the tiger.\nThe tiger chases the squirrel (from rule 7) so this rule applies. Thus, the squirrel needs the tiger (rule 6).\n\nNow let's look at rule 1: If something is kind and it chases the rabbit then it needs the tiger.\nFrom rule 8, the tiger chases the rabbit, and from rule 2, the tiger is kind. Thus, the tiger needs the tiger (rule 1).\n\nNow let's look at rule 10: If something chases the cat and it likes the rabbit then the rabbit chases the squirrel.\nThe tiger chases the cat (from rule 7) and the tiger likes the rabbit (from rule 1). Thus, the rabbit chases the squirrel (rule 10).\n\nNow let's look at rule 5: If something needs the tiger then it likes the rabbit.\nThe rabbit needs the tiger (from rule 1) so the rabbit likes the rabbit (rule 5).\n\nNow let's look at rule 4: If something is kind then it does not like the squirrel.\nThe tiger is kind (from rule 2) so the tiger does not like the squirrel (rule 4).\n\nNow let's look at rule 2: If something chases the rabbit then the rabbit does not need the tiger.\nThe tiger chases the rabbit (from rule 8) so the rabbit does not need the tiger (rule 2).\n\nNow let's look at rule 1: If something needs the tiger then it likes the rabbit.\nThe rabbit needs the tiger (from rule 2) so the rabbit likes the rabbit (rule 1).\n\nNow let's look at rule 7: If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\nThe squirrel likes the cat (from rule 8) and the cat does not need the tiger (from rule 2). Thus, the squirrel likes the tiger (rule 7).\n\nNow let's look at rule 6: If something chases the rabbit then the rabbit does not need the tiger.\nThe tiger chases the rabbit (from rule 8) so the rabbit does not need the tiger (rule 6).\n\nNow let's look at rule 5: If something is kind then it does not like the squirrel.\nThe tiger is kind (from rule 2) so the tiger does not like the squirrel (rule 5).\n\nNow let's look at rule 4: If something needs the tiger then it likes the rabbit.\nThe rabbit needs the tiger (from rule 6) so the rabbit likes the rabbit (rule 4).\n\nNow let's look at rule 3: If something is kind and it chases the rabbit then it needs the tiger.\nThe tiger is kind (from rule 2) and the tiger chases the rabbit (from rule 8) so the tiger needs the tiger (rule 3).\n\nNow let's look at rule 2: If something chases the rabbit then the rabbit does not need the tiger.\nThe tiger chases the rabbit (from rule 8) so the rabbit does not need the tiger (rule 2).\n\nNow let's look at rule 1: If something needs the tiger then it likes the rabbit.\nThe rabbit needs the tiger (from rule 3) so the rabbit likes the rabbit (rule 1).\n\nNow let's look at rule 7: If something chases the squirrel then the squirrel needs the tiger.\nThe tiger chases the squirrel (from rule 8) so the squirrel needs the tiger (rule 7).\n\nNow let's look at rule 6: If something is kind and it chases the rabbit then it needs the tiger.\nThe tiger is kind (from rule 2) and the tiger chases the rabbit (from rule 8) so the tiger needs the tiger (rule 6).\n\nNow let's look at rule 5: If something chases the rabbit then the rabbit does not need the tiger.\nThe tiger chases the rabbit (from rule 8) so the rabbit does not need the tiger (rule 5).\n\nNow let's look at rule 4: If something needs the tiger then it likes the rabbit.\nThe rabbit needs the tiger (from rule 6) so the rabbit likes the rabbit (rule 4).\n\nNow let's look at rule 3: If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\nThe squirrel likes the cat (from rule 8) and the cat does not need the tiger (from rule 5). Thus, the squirrel likes the tiger (rule 3).\n\nNow let's look at rule 2: If something chases the rabbit then the rabbit does not need the tiger.\nThe tiger chases the rabbit (from rule 8) so the rabbit does not need the tiger (rule 2).\n\nNow let's look at rule 1: If something needs the tiger then it likes the rabbit.\nThe rabbit needs the tiger (from rule 5) so the rabbit likes the rabbit (rule 1).\n\nNow let's look at rule 7: If something chases the squirrel then the squirrel needs the tiger.\nThe tiger chases the squirrel (from rule 8) so the squirrel needs the tiger (rule 7).\n\nNow let's look at rule 6: If something is kind and it chases the rabbit then it needs the tiger.\nThe tiger is kind (from rule 2) and the tiger chases the rabbit (from rule 8) so the tiger needs the tiger (rule 6).\n\nNow let's look at rule 5: If something chases the rabbit then the rabbit does not need the tiger.\nThe tiger chases the rabbit (from rule 8) so the rabbit does not need the tiger (rule 5).\n\nNow let's look at rule 4: If something needs the tiger then it likes the rabbit.\nThe rabbit needs the tiger (from rule 6) so the rabbit likes the rabbit (rule 4).\n\nNow let's look at rule 3: If something likes the squirrel and it does not need the tiger then the squirrel likes the tiger.\nThe squirrel likes the cat (from rule 8) and the cat does not need the tiger (from rule 5). Thus, the squirrel likes the tiger (rule 3).\n\nNow let's look at rule 2: If something chases the rabbit then the rabbit does not need the tiger.\nThe tiger chases the rabbit (from rule 8) so the rabbit does not need the tiger (rule 2).\n\nNow let's look at rule 1: If something needs the tiger then it likes the rabbit.\nThe rabbit needs the tiger (from rule 6) so the rabbit likes the rabbit (rule 1).\n\nNow let's look at rule 7: If something chases the squirrel then the squirrel needs the tiger.\nThe tiger chases the squirrel (from rule 8) so the squirrel needs the tiger (rule 7).\n\nNow let's look at rule 6: If something is kind and it chases the rabbit then it needs the tiger.\nThe tiger is kind (from rule 2) and the tiger chases the rabbit (from rule 8) so the tiger needs the",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(rabbit, cat)",
+          "z3_formula": "Not(needs_rabbit_cat) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(squirrel, X)",
+          "z3_formula": "Implies(chases_tiger_squirrel, needs_squirrel_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_tiger_rabbit, likes_rabbit_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(chases_rabbit_cat, likes_rabbit_tiger), chases_rabbit_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(rabbit, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, Not(needs_rabbit_tiger))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(kind_tiger, Not(likes_tiger_squirrel))",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, tiger)",
+          "z3_formula": "Implies(And(likes_squirrel_tiger, Not(needs_squirrel_tiger)), likes_squirrel_tiger)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(rabbit, tiger)",
+          "z3_formula": "Not(needs_rabbit_tiger) == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(rabbit, cat)",
+          "z3_formula": "not needs_rabbit_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, rabbit)",
+          "z3_formula": "likes_tiger_rabbit == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(squirrel, tiger)",
+          "z3_formula": "Implies(chases_tiger_squirrel, needs_squirrel_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_tiger_rabbit, likes_rabbit_rabbit)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(chases_rabbit_cat, likes_rabbit_rabbit), chases_rabbit_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(rabbit, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, not needs_rabbit_tiger)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, tiger)",
+          "z3_formula": "Implies(And(likes_squirrel_squirrel, not needs_squirrel_tiger), likes_squirrel_tiger)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, tiger)",
+          "z3_formula": "Implies(And(likes_squirrel_squirrel, not needs_squirrel_tiger), likes_squirrel_tiger)",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_rabbit_tiger, likes_rabbit_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(rabbit, cat)",
+          "z3_formula": "Not(needs_rabbit_cat) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(rabbit, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, Not(needs_rabbit_tiger))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, tiger)",
+          "z3_formula": "needs_tiger_tiger == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cat) == False",
+          "z3_formula": "needs_rabbit_cat == False",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel) == True",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat) == True",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel) == True",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit) == True",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat) == True",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit) == True",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger) == True",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger) == True",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger) == True",
+          "z3_formula": "young_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat) == True",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(squirrel, tiger)",
+          "z3_formula": "Implies(chases_tiger_squirrel, needs_squirrel_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_tiger_rabbit, likes_tiger_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(chases_tiger_cat, likes_tiger_rabbit), chases_rabbit_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> needs(rabbit, tiger) == False",
+          "z3_formula": "Implies(chases_tiger_rabbit, needs_rabbit_tiger == False)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(kind_tiger, Not(likes_tiger_squirrel))",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & needs(X, tiger) == False -> likes(squirrel, tiger)",
+          "z3_formula": "Implies(And(likes_squirrel_tiger, Not(needs_squirrel_tiger)), likes_squirrel_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger) == True",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, tiger) == True",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(rabbit, cat)",
+          "z3_formula": "not needs_rabbit_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(squirrel, tiger)",
+          "z3_formula": "Implies(chases_X_squirrel, needs_squirrel_tiger)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_X_tiger, likes_X_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(chases_X_cat, likes_X_rabbit), chases_rabbit_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(rabbit, tiger)",
+          "z3_formula": "Implies(chases_X_rabbit, not needs_rabbit_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_X, chases_X_rabbit), needs_X_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(kind_X, not likes_X_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, tiger)",
+          "z3_formula": "Implies(And(likes_X_squirrel, not needs_X_tiger), likes_squirrel_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(rabbit, tiger)",
+          "z3_formula": "not needs_rabbit_tiger == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(rabbit, cat)",
+          "z3_formula": "Not(needs_rabbit_cat) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & needs(Y, X) -> warm(Y)",
+          "z3_formula": "Implies(And(needs_squirrel_rabbit, needs_rabbit_squirrel), warm_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, Not(needs_tiger_tiger))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, tiger)",
+          "z3_formula": "Implies(And(likes_rabbit_squirrel, Not(needs_rabbit_tiger)), likes_squirrel_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(rabbit, tiger)",
+          "z3_formula": "Not(needs_rabbit_tiger) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(rabbit, cat)",
+          "z3_formula": "Not(needs_rabbit_cat) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(squirrel, tiger)",
+          "z3_formula": "Implies(chases_tiger_squirrel, needs_squirrel_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_squirrel_tiger, likes_squirrel_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(chases_tiger_cat, likes_tiger_rabbit), chases_rabbit_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(rabbit, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, Not(needs_rabbit_tiger))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(kind_tiger, Not(likes_tiger_squirrel))",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, tiger)",
+          "z3_formula": "Implies(And(likes_rabbit_squirrel, Not(needs_rabbit_tiger)), likes_squirrel_tiger)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(squirrel, tiger)",
+          "z3_formula": "Implies(chases_tiger_squirrel, needs_squirrel_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_tiger_cat, likes_cat_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(chases_tiger_cat, likes_tiger_rabbit), chases_rabbit_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(rabbit, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, not needs_rabbit_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(kind_tiger, not likes_tiger_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, tiger)",
+          "z3_formula": "Implies(And(likes_rabbit_squirrel, not needs_rabbit_tiger), likes_squirrel_tiger)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(kind_tiger, not likes_tiger_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(chases_tiger_cat, likes_tiger_rabbit), chases_rabbit_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> true",
+          "z3_formula": "Implies(needs_tiger_tiger, True)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> false",
+          "z3_formula": "Implies(needs_tiger_tiger, False)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Or(needs_tiger_tiger == True, needs_tiger_tiger == False, Not(needs_tiger_tiger == True) & Not(needs_tiger_tiger == False))",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, Not(needs_tiger_rabbit))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(rabbit, tiger)",
+          "z3_formula": "Not(needs_rabbit_tiger) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(rabbit, cat)",
+          "z3_formula": "not needs_rabbit_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(squirrel, X)",
+          "z3_formula": "Implies(chases_tiger_squirrel, needs_squirrel_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_rabbit_tiger, likes_rabbit_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & likes(X, rabbit) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(chases_tiger_cat, likes_tiger_rabbit), chases_rabbit_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(rabbit, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, not needs_rabbit_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(kind_tiger, not likes_tiger_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, tiger)",
+          "z3_formula": "Implies(And(likes_rabbit_squirrel, not needs_rabbit_tiger), likes_squirrel_tiger)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, squirrel)",
+          "z3_formula": "likes_rabbit_squirrel == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(rabbit, tiger)",
+          "z3_formula": "not needs_rabbit_tiger == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, tiger)",
+          "z3_formula": "needs_tiger_tiger == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(tiger, squirrel)",
+          "z3_formula": "not likes_tiger_squirrel == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(rabbit, tiger)",
+          "z3_formula": "not needs_rabbit_tiger == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(rabbit, tiger)",
+          "z3_formula": "not needs_rabbit_tiger == True",
+          "source_step": 30
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, cat)",
+          "z3_formula": "needs_tiger_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & chases(X, rabbit) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(kind_tiger, chases_tiger_rabbit), needs_tiger_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> not needs(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_rabbit, Not(needs_tiger_tiger))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_tiger_tiger, likes_rabbit_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, squirrel)",
+          "z3_formula": "needs_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, cat)",
+          "z3_formula": "needs_squirrel_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, rabbit)",
+          "z3_formula": "needs_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & not needs(X, tiger) -> likes(squirrel, tiger)",
+          "z3_formula": "Implies(And(likes_cat_squirrel, Not(needs_tiger_cat)), likes_squirrel_tiger)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> needs(squirrel, tiger)",
+          "z3_formula": "Implies(chases_tiger_squirrel, needs_squirrel_tiger)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 22
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 226,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 52
+    },
+    "maxsat_stats": {
+      "satisfied": 47,
+      "excluded": 5,
+      "total_weight": 205,
+      "solve_time_ms": 2.095303498208523
+    },
+    "timing": {
+      "trace_gen_s": 24.837,
+      "extraction_s": 44.125,
+      "dedup_s": 1.816,
+      "maxsat_s": 0.005,
+      "total_s": 70.784
+    }
+  }
+}

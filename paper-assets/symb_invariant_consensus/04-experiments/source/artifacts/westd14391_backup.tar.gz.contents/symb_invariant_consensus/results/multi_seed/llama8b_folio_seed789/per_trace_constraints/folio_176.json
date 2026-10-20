@@ -1,0 +1,372 @@
+{
+  "pid": "folio_176",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "olympic_games_sporting_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "olympic_game(X) -> sporting_event(X)",
+          "z3_formula": "Implies(olympic_games, olympic_games_sporting_event)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games(tokyo)",
+          "z3_formula": "olympic_games_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "us_won_most_medals(tokyo)",
+          "z3_formula": "us_won_most_medals_tokyo == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "world_championships_sporting_event == Unknown",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "uncertain but leaning towards true",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games_in_tokyo",
+          "z3_formula": "olympic_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "united_states_won_most_medals",
+          "z3_formula": "united_states_won_most_medals == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "sporting_event_world_championships == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "last_games_in_tokyo",
+          "z3_formula": "last_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "us_won_most_medals_in_tokyo",
+          "z3_formula": "us_won_most_medals_in_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sporting_event(X) -> sporting_event(Y)",
+          "z3_formula": "Implies(sporting_event_olympic_games, sporting_event_world_championships)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "sporting_event_world_championships == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "last_olympic_games_location(tokyo)",
+          "z3_formula": "last_olympic_games_location_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "united_states_won_most_medals_in_tokyo",
+          "z3_formula": "united_states_won_most_medals_in_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "sporting_event_world_championships == Unknown",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games_in_tokyo",
+          "z3_formula": "olympic_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "us_won_most_medals_tokyo",
+          "z3_formula": "us_won_most_medals_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "sporting_event_world_championships == Unknown",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "olympic_games_sporting_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sporting_event(X) -> sporting_event(world_championships)",
+          "z3_formula": "Implies(olympic_games_sporting_event, world_championships_sporting_event)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games_location(tokyo)",
+          "z3_formula": "tokyo_olympic_games_location == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "united_states_medals(tokyo)",
+          "z3_formula": "united_states_tokyo_medals == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "olympic_games_sporting_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "last_olympic_games_in_tokyo",
+          "z3_formula": "last_olympic_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "united_states_won_most_medals_in_tokyo",
+          "z3_formula": "united_states_won_most_medals_in_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "world_championships_sporting_event == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games_in_tokyo",
+          "z3_formula": "olympic_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "us_won_most_medals_in_tokyo",
+          "z3_formula": "us_won_most_medals_in_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "sporting_event_world_championships == Unknown",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "last_olympic_games_in_tokyo",
+          "z3_formula": "last_olympic_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "united_states_won_most_medals_in_tokyo",
+          "z3_formula": "united_states_won_most_medals_in_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "sporting_event_world_championships == Unknown",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "olympic_games_sporting_event == True",
+          "source_step": 1
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "olympic_games_sporting_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "location(last_olympic_games, tokyo)",
+          "z3_formula": "last_olympic_games_location_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "result(last_olympic_games, united_states)",
+          "z3_formula": "last_olympic_games_result_united_states == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "world_championships_sporting_event == Unknown",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "olympic_games_sporting_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships)",
+          "z3_formula": "world_championships_sporting_event == Unknown",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships) == True",
+          "z3_formula": "world_championships_sporting_event == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships) == False",
+          "z3_formula": "world_championships_sporting_event == False",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sporting_event(world_championships) == Unknown",
+          "z3_formula": "world_championships_sporting_event == Unknown",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

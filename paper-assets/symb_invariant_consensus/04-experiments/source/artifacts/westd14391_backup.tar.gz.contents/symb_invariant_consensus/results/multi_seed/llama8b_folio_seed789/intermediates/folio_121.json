@@ -1,0 +1,434 @@
+{
+  "problem": {
+    "id": "folio_121",
+    "problem": "Given the following premises:\nSome affection is love. Some love is positive.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSome affection is positive.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (Affection(x) \u2227 Love(x))",
+      "\u2203x (Love(x) \u2227 Positive(x))"
+    ],
+    "conclusion_fol": "\u2203x (Affection(x) \u2227 Positive(x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 32.0,
+      "True (but uncertain)": 6.0,
+      "Unknown": 13.0
+    },
+    "answer_counts": {
+      "True": 9,
+      "Unknown": 2,
+      "True (but uncertain)": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we can use the principles of categorical logic and syllogisms. \n\nGiven premises:\n1. Some affection is love. \n2. Some love is positive.\n\nWe are asked to determine the validity of the conclusion:\nSome affection is positive.\n\nFirst, let's break down the premises and try to understand their relationships.\n\nPremise 1: Some affection is love. \nThis statement implies that affection and love have some overlap, but they are not the same. It's like saying some dogs are mammals (not all dogs are mammals, but some are).\n\nPremise 2: Some love is positive. \nThis statement implies that love is not always positive, but some forms of love are.\n\nNow, let's examine the conclusion: Some affection is positive.\n\nUsing the principle of modus ponens, if we can find a relationship between the premises and the conclusion, we can determine the validity of the conclusion.\n\nFrom premise 1, we know that some affection is love. \n\nFrom premise 2, we know that some love is positive.\n\nCombining these two premises, we can infer that some affection (which is also some love) is positive.\n\nTherefore, using the syllogism:\nSome affection is love.\nSome love is positive.\n\u2234 Some affection is positive.\n\nThe conclusion logically follows from the premises, so it is a valid conclusion.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some affection is positive\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Some affection is love.\nPremise 2: Some love is positive.\n\nWe can use a Venn diagram or a logical diagram to represent the given information:\n\nLet A = Affection\nLet L = Love\nLet P = Positive\n\nFrom Premise 1: A \u2229 L \u2260 \u2205 (Some affection is love, which means there is a non-empty intersection between A and L)\n\nFrom Premise 2: L \u2229 P \u2260 \u2205 (Some love is positive, which means there is a non-empty intersection between L and P)\n\nWe need to determine whether some affection is positive, i.e., A \u2229 P \u2260 \u2205.\n\nSince A \u2229 L \u2260 \u2205 and L \u2229 P \u2260 \u2205, we can conclude that A \u2229 P \u2260 \u2205 by the principle of transitivity (if A \u2229 L \u2260 \u2205 and L \u2229 P \u2260 \u2205, then A \u2229 P \u2260 \u2205).\n\nTherefore, the conclusion \"Some affection is positive\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use a technique called categorical syllogism, which is a form of deductive reasoning. \n\nGiven premises:\n1. Some affection is love. \n   - This can be written as: A \u2286 L (where A represents affection and L represents love)\n2. Some love is positive. \n   - This can be written as: L \u2286 P (where P represents positive)\n\nNow, we need to determine whether the conclusion \"Some affection is positive\" is true, false, or uncertain. This can be written as: A \u2286 P.\n\nTo do this, we can combine the given premises using the principle of transitive property. \n\nFrom premise 1, we know that A \u2286 L.\nFrom premise 2, we know that L \u2286 P.\n\nUsing the transitive property, we can conclude that if A \u2286 L and L \u2286 P, then A \u2286 P.\n\nTherefore, the conclusion \"Some affection is positive\" is true. \n\nFinal answer: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the truth of the conclusion \"Some affection is positive,\" we need to analyze the given premises and their relationship to the conclusion.\n\nPremise 1: Some affection is love.\nPremise 2: Some love is positive.\n\nWe are trying to conclude: Some affection is positive.\n\nStep 1: Understand the premises\n- Premise 1 states that some affection is love, but it does not specify the type of love. It could be positive, negative, or neutral.\n- Premise 2 states that some love is positive. This gives us a specific type of love (positive) but does not directly relate to affection.\n\nStep 2: Analyze the relationship between the premises and the conclusion\n- If some affection is love (Premise 1), and some love is positive (Premise 2), we can infer that some affection might be positive. However, we cannot be certain about this conclusion because Premise 1 does not specify the type of love.\n\nStep 3: Determine the truth of the conclusion\n- The conclusion \"Some affection is positive\" is uncertain because Premise 1 does not provide enough information to confirm the positive nature of the love.\n\nTherefore, the final answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Some affection is love.\nPremise 2: Some love is positive.\n\nWe can start by breaking down the premises into individual statements.\n\nLet A represent affection, B represent love, and C represent positivity.\n\nPremise 1: \u2203x (A(x) \u2227 B(x))  (Some affection is love)\nPremise 2: \u2203x (B(x) \u2227 C(x))  (Some love is positive)\n\nNow, let's examine the conclusion:\n\nConclusion: \u2203x (A(x) \u2227 C(x))  (Some affection is positive)\n\nTo determine whether the conclusion is true, we need to find a logical connection between the premises and the conclusion.\n\nFrom Premise 1, we know that there exists at least one thing that is both affection and love (\u2203x (A(x) \u2227 B(x))). \n\nFrom Premise 2, we know that there exists at least one thing that is both love and positive (\u2203x (B(x) \u2227 C(x))). \n\nSince we don't know if the same thing is both affection and love and also love and positive, we can't conclude that there exists at least one thing that is both affection and positive.\n\nHowever, we can use the principle of existential instantiation to derive the following statements:\n\n\u2203x (A(x) \u2227 B(x)) (Premise 1) \u2192 A(a) \u2227 B(a)  (Existential instantiation)\n\u2203x (B(x) \u2227 C(x)) (Premise 2) \u2192 B(a) \u2227 C(a)  (Existential instantiation)\n\nNow, we have A(a) \u2227 B(a) and B(a) \u2227 C(a). We can use the principle of conjunction elimination to derive A(a) \u2227 C(a).\n\nSince A(a) \u2227 C(a) is equivalent to \u2203x (A(x) \u2227 C(x)), we can conclude that:\n\n\u2203x (A(x) \u2227 C(x))  (Some affection is positive)\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises using logical reasoning.\n\nPremise 1: Some affection is love.\nPremise 2: Some love is positive.\n\nWe are asked to evaluate the conclusion: Some affection is positive.\n\nUsing the premises, we can draw a logical argument as follows:\n\n1. Some affection is love (Premise 1)\n2. Some love is positive (Premise 2)\n3. Therefore, some affection is positive (because if some love is positive, and some affection is love, then some affection is positive by transitive property)\n\nHowever, there's an important thing to consider. Even if some love is positive, it does not necessarily mean that all love is positive. It only means that some love is positive. Similarly, even if some affection is love, it does not necessarily mean that all affection is love. It only means that some affection is love.\n\nTherefore, from the given premises, we can only conclude that some affection is positive, not all affection. This conclusion is uncertain because it is possible that all affection is not love, or all love is not positive.\n\nHowever, we can conclude that the conclusion \"Some affection is positive\" is TRUE given the premises, but it is uncertain because there might be other possibilities that are not considered by the premises.\n\nFinal Answer: \\boxed{True (but uncertain)}",
+        "answer": "True (but uncertain)",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to use the rules of syllogism. \n\nGiven premises:\n1. Some affection is love. (Some A is B)\n2. Some love is positive. (Some B is C)\n\nWe want to determine the truth value of:\nSome affection is positive. (Some A is C)\n\nUsing the rules of syllogism, we can infer that if some A is B and some B is C, then some A is C.\n\nSo, we can conclude that:\nSome affection is positive. \n\nTherefore, the conclusion is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the premises and see if we can logically derive the conclusion from them.\n\nPremise 1: Some affection is love. \nThis means that at least one affection is equivalent to love.\n\nPremise 2: Some love is positive. \nThis means that there is at least one love that is positive.\n\nNow, let's try to derive the conclusion from the premises:\n\nWe know that some affection is love (Premise 1). This means that at least one affection is equivalent to love. And we know that some love is positive (Premise 2). This means that at least one love is positive.\n\nWe can combine the two premises by saying that some affection (which is love) is positive. This is because the \"love\" in Premise 2 is the same \"love\" that is equivalent to some affection in Premise 1.\n\nTherefore, we can logically conclude that:\n\nSome affection is positive.\n\nSince we have derived the conclusion from the premises using logical reasoning, the conclusion is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some affection is positive\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Some affection is love.\nPremise 2: Some love is positive.\n\nFrom Premise 1, we can conclude that affection and love share some common instances (all the affection that is love). \n\nWe can represent this as:\nA (Affection) \u2229 L (Love) \u2260 \u2205 (There exists affection that is love)\n\nFrom Premise 2, we know that some love is positive. We can represent this as:\nL \u2229 P (Positive) \u2260 \u2205 (There exists love that is positive)\n\nNow, we need to determine whether some affection is positive. We know that some affection is love (Premise 1), and some love is positive (Premise 2). We can combine these two premises to conclude that some affection is positive.\n\nUsing the principle of transitive inference, we can conclude:\nA \u2229 L \u2229 P \u2260 \u2205 (There exists affection that is positive)\n\nTherefore, the conclusion \"Some affection is positive\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises step by step.\n\nPremise 1: Some affection is love.\nThis premise establishes a relationship between affection and love, but it does not specify the type of love.\n\nPremise 2: Some love is positive.\nThis premise specifies that some love is positive, but it does not establish a direct relationship with affection.\n\nNow, let's examine the conclusion:\n\nConclusion: Some affection is positive.\n\nTo determine the truth value of the conclusion, we need to find a connection between the premises and the conclusion. We can do this by using logical reasoning.\n\nFrom Premise 1, we know that some affection is love. \nFrom Premise 2, we know that some love is positive.\n\nWe can combine these two premises using the transitive property, which states that if A = B and B = C, then A = C.\n\nSo, we can say:\nSome affection (A) = love (B)\nSome love (B) = positive (C)\n\nTherefore, by the transitive property, we can conclude:\nSome affection (A) = positive (C)\n\nHence, the conclusion \"Some affection is positive\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some affection is positive\" is true, false, or uncertain, we can use the premises given and a process called modus ponens. However, in this case, we need to use another method called modus tollens or another method to establish our argument. \n\nSince the premises are not directly stating \"If affection is love, then it is positive\" we can't use the modus ponens method. But we can infer that if affection is love, it might be positive since some love is positive.\n\nHere are the premises:\n1. Some affection is love. \n2. Some love is positive.\n\nWe are trying to determine the truth of the conclusion:\n3. Some affection is positive.\n\nWe can first use the first premise to infer that if affection is love, it could be positive. Let's call \"A\" as affection, \"L\" as love and \"P\" as positive.\n\nFrom premise 1: A \u2283 L (some affection is love)\nFrom premise 2: L \u2283 P (some love is positive)\n\nNow, we can use the rule of syllogism, which states: if A \u2283 B and B \u2283 C then A \u2283 C. But we need to get from A to P.\n\nHowever, the premises don't directly give us A \u2283 P. But we can try to use the premises to establish a connection between affection and positive. Since some love is positive and some affection is love, we can't directly say that some affection is positive. \n\nBut we can make an inference that if some love is positive and some affection is love, then some affection might be positive because love is a subset of affection. However, we can't establish a direct conclusion that \"Some affection is positive\" with absolute certainty.\n\nTherefore, the conclusion \"Some affection is positive\" is uncertain because we can't establish a direct connection between affection and positive using the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises.\n\nPremise 1: Some affection is love.\nPremise 2: Some love is positive.\n\nWe want to conclude whether some affection is positive.\n\nLet's break down the given premises step by step:\n\n1. Premise 1: Some affection is love. \nThis means that there is at least one instance of affection that is equal to love. We can represent this as an intersection of affection (A) and love (L): A \u2229 L \u2260 \u2205.\n\n2. Premise 2: Some love is positive. \nThis means that there is at least one instance of love that is equal to positive. We can represent this as an intersection of love (L) and positive (P): L \u2229 P \u2260 \u2205.\n\nNow, let's combine the two premises:\n\nSince A \u2229 L \u2260 \u2205 (some affection is love) and L \u2229 P \u2260 \u2205 (some love is positive), we can infer that there is at least one instance of love that is equal to both affection and positive.\n\nBy transitive property, we can conclude that some affection is positive (A \u2229 P \u2260 \u2205).\n\nTherefore, the conclusion \"Some affection is positive\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "affection(X) & love(X)",
+          "z3_formula": "affection_love == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "love(X) & positive(X)",
+          "z3_formula": "love_positive == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "affection(X) & positive(X)",
+          "z3_formula": "affection_positive == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "some_affection_is_love",
+          "z3_formula": "some_affection_is_love == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "some_love_is_positive",
+          "z3_formula": "some_love_is_positive == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some_affection_is_positive",
+          "z3_formula": "some_affection_is_positive == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "affection \u2286 love",
+          "z3_formula": "affection \u2286 love == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "love \u2286 positive",
+          "z3_formula": "love \u2286 positive == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "A \u2286 L & L \u2286 P -> A \u2286 P",
+          "z3_formula": "Implies(And(affection \u2286 love, love \u2286 positive), affection \u2286 positive)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "affection \u2286 positive",
+          "z3_formula": "affection \u2286 positive == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "some_affection_is_love",
+          "z3_formula": "some_affection_is_love == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some_love_is_positive",
+          "z3_formula": "some_love_is_positive == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "love(X) -> positive(X)",
+          "z3_formula": "Implies(some_love_is_love, some_love_is_positive)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "some_affection_is_positive",
+          "z3_formula": "some_affection_is_positive == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "\u2203x (A(x) \u2227 B(x))",
+          "z3_formula": "exists x (And(A(x), B(x)) == True)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "\u2203x (B(x) \u2227 C(x))",
+          "z3_formula": "exists x (And(B(x), C(x)) == True)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "\u2203x (A(x) \u2227 B(x)) -> \u2203x (A(x) \u2227 C(x))",
+          "z3_formula": "Implies(exists x (And(A(x), B(x)) == True), exists x (And(A(x), C(x)) == True))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "\u2203x (A(x) \u2227 C(x))",
+          "z3_formula": "exists x (And(A(x), C(x)) == True)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "love(X) & affection(X)",
+          "z3_formula": "love_affection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "love(X) -> positive(X)",
+          "z3_formula": "Implies(love_affection, positive_love)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "affection(X) -> positive(X)",
+          "z3_formula": "Implies(affection, positive_affection)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "affection(X) -> positive(X)",
+          "z3_formula": "Implies(affection, positive_affection)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "some_affection_is_love",
+          "z3_formula": "some_affection_is_love == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some_love_is_positive",
+          "z3_formula": "some_love_is_positive == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some A is B & some B is C -> some A is C",
+          "z3_formula": "Implies(And(some_affection_is_love, some_love_is_positive), some_affection_is_positive)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "some_affection_is_positive",
+          "z3_formula": "some_affection_is_positive == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "love(affection)",
+          "z3_formula": "love_affection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "love(X) -> positive(X)",
+          "z3_formula": "Implies(live_affection, positive_love)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "positive(affection)",
+          "z3_formula": "positive_affection == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "love(affection)",
+          "z3_formula": "love_affection == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "positive(l)",
+          "z3_formula": "positive_l == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "love(X) -> affection(X)",
+          "z3_formula": "Implies(love_affection, affection_affection)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "love(X) -> love(X)",
+          "z3_formula": "Implies(love_affection, love_affection)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "love(X) & love(X) -> love(X)",
+          "z3_formula": "Implies(And(love_affection, love_affection), love_affection)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "love(X) & positive(X) -> positive(X)",
+          "z3_formula": "Implies(And(love_affection, positive_l), positive_l)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "love(X) & positive(X) -> positive(X)",
+          "z3_formula": "Implies(And(love_affection, positive_l), positive_l)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "affection(X) & love(X) & positive(X) -> positive(X)",
+          "z3_formula": "Implies(And(affection_affection, love_affection, positive_l), positive_l)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "positive(affection)",
+          "z3_formula": "positive_affection == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "affection(X) = love(X)",
+          "z3_formula": "affection_X == love_X",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "love(X) = positive(X)",
+          "z3_formula": "love_X == positive_X",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "A = B & B = C -> A = C",
+          "z3_formula": "Implies(And(A == B, B == C), A == C)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "affection(X) = positive(X)",
+          "z3_formula": "affection_X == positive_X",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "some_affection_is_love",
+          "z3_formula": "some_affection_is_love == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some_love_is_positive",
+          "z3_formula": "some_love_is_positive == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_affection_is_love -> some_affection_might_be_positive",
+          "z3_formula": "Implies(some_affection_is_love, some_affection_might_be_positive)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "some_love_is_positive & some_affection_is_love -> some_affection_might_be_positive",
+          "z3_formula": "Implies(And(some_love_is_positive, some_affection_is_love), some_affection_might_be_positive)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some_affection_might_be_positive",
+          "z3_formula": "some_affection_might_be_positive == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "affection \u2229 love \u2260 \u2205",
+          "z3_formula": "affection_love != False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "love \u2229 positive \u2260 \u2205",
+          "z3_formula": "love_positive != False",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "affection \u2229 positive \u2260 \u2205",
+          "z3_formula": "affection_positive == True",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 50,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 23
+    },
+    "maxsat_stats": {
+      "satisfied": 23,
+      "excluded": 0,
+      "total_weight": 40,
+      "solve_time_ms": 1.0153772309422493
+    },
+    "timing": {
+      "trace_gen_s": 5.329,
+      "extraction_s": 9.321,
+      "dedup_s": 0.329,
+      "maxsat_s": 0.002,
+      "total_s": 14.981
+    }
+  }
+}

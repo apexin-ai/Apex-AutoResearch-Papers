@@ -1,0 +1,1249 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-858_Q5",
+    "problem": "Anne is big. Anne is smart. Bob is cold. Gary is big. Gary is furry. Harry is not cold. Harry is green. All young people are cold. If someone is smart then they are young. If someone is furry then they are green. Green people are white. If someone is green and cold then they are white. If Harry is green and Harry is young then Harry is furry. Green people are furry. All cold people are furry. If Gary is green then Gary is furry.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is green.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nSmart($x, bool) ::: Is x smart?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nSmart(Anne, True) ::: Anne is smart.\nCold(Bob, True) ::: Bob is cold.\nBig(Gary, True) ::: Gary is big.\nFurry(Gary, True) ::: Gary is furry.\nCold(Harry, False) ::: Harry is not cold.\nGreen(Harry, True) ::: Harry is green.\n\nRules:\nYoung($x, True) >>> Cold($x, True) ::: All young people are cold.\nSmart($x, True) >>> Young($x, True) ::: If someone is smart then they are young.\nFurry($x, True) >>> Green($x, True) ::: If someone is furry then they are green.\nGreen($x, True) >>> White($x, True) ::: Green people are white.\nGreen($x, True) && Cold($x, True) >>> White($x, True) ::: If someone is green and cold then they are white.\nGreen(Harry, True) && Young(Harry, True) >>> Furry(Harry, True) ::: If Harry is green and Harry is young then Harry is furry.\nGreen($x, True) >>> Furry($x, True) ::: Green people are furry.\nCold($x, True) >>> Furry($x, True) ::: All cold people are furry.\nGreen(Gary, True) >>> Furry(Gary, True) ::: If Gary is green then Gary is furry.\n\nQuery:\nGreen(Bob, True) ::: Bob is green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 159.0,
+      "Unknown": 155.0
+    },
+    "answer_counts": {
+      "Unknown": 4,
+      "True": 6
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given information and the relationships between the different attributes.\n\n1. Bob is cold. (Given)\n\n2. All young people are cold. (Given)\n   => Bob is young (because he is cold).\n\n3. If someone is smart then they are young. (Given)\n   => Anne is young (because she is smart).\n\n4. Since Anne is young and Bob is young, and both young people are cold, it does not provide any direct information about Bob being green, but it shows that Bob is young.\n\n5. Gary is big and Gary is furry. (Given)\n   => Gary is not green (because if Gary is green, then Gary is furry, but it's already given that Gary is furry).\n\n6. Gary is not green, but if someone is green and cold then they are white, and all cold people are furry. It doesn't provide any information about Gary being green, so it's still unknown.\n\n7. Harry is not cold, and Harry is green. (Given)\n   => Harry is not white (because green people are white, but it's given that Harry is green).\n\n8. If Harry is green and Harry is young, then Harry is furry. (Given)\n   => Harry is young (because we already know Harry is green).\n\n9. Since Harry is young, Harry is cold (because all young people are cold), which contradicts the given information that Harry is not cold.\n\n   This means that our initial conclusion that Harry is young is incorrect. The statement \"If Harry is green and Harry is young then Harry is furry\" is true for Harry being green and young, but not the other way around. So, Harry is not young.\n\n10. The statement \"Harry is green and Harry is young\" is false, so the statement \"If Harry is green and Harry is young then Harry is furry\" does not apply.\n\n   However, we can still conclude that Harry is green (because it's given), and the statement \"Harry is green\" does not imply that Harry is young.\n\n11. All green people are furry, and all cold people are furry. (Given)\n   => Since Harry is green, Harry is furry.\n\n12. Since Harry is green and Harry is furry, it does not provide any direct information about Bob being green.\n\n13. If someone is green and cold then they are white. (Given)\n   => Since Harry is not cold and Harry is green, it does not provide any direct information about Bob being green.\n\nHowever, we cannot conclude anything about Bob being green based on the given information. We know that Bob is cold, and we cannot determine whether he is green or not.\n\nTherefore, the answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given statements, we know:\n\n1. All young people are cold.\n2. If someone is smart then they are young.\n3. Anne is smart, so Anne is young.\n4. Since Anne is young, Anne is cold.\n5. Gary is big.\n6. Gary is furry.\n7. Harry is not cold.\n8. Harry is green.\n9. If someone is green and cold then they are white.\n10. If Harry is green and Harry is young then Harry is furry.\n11. Green people are furry.\n12. All cold people are furry.\n13. If Gary is green then Gary is furry.\n\nNow, let's examine the statement \"Bob is green.\"\n\nFrom the given statements, we know:\n- Bob is cold.\n- If someone is cold, they must be young (from statement 1).\n- Since Bob is young, we can conclude that Bob is cold and young.\n\nNow, let's consider the implications of the statements on Bob's color:\n\n- From statement 9, we know that if someone is green and cold, they are white. However, this does not directly apply to Bob, as we do not know if Bob is green.\n- From statement 8, we know that Harry is green, and from statement 10, we can conclude that Harry is furry because he is young and green. However, this information does not directly apply to Bob.\n- From statement 11, we know that green people are furry. However, we do not know if Bob is green.\n- From statement 12, we know that all cold people are furry. Since Bob is cold, we can conclude that Bob is furry.\n\nHowever, we still do not know if Bob is green or not.\n\nWe can deduce the following:\n- Bob is cold.\n- Bob is young.\n- Bob is furry.\n\nHowever, we cannot determine if Bob is green or not, as there is no direct information linking Bob to the color green.\n\nTherefore, the statement \"Bob is green\" is unknown.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Anne is big. Anne is smart. \n   - Bob is cold. \n   - Gary is big. Gary is furry.\n   - Harry is not cold. Harry is green.\n   - All young people are cold.\n   - If someone is smart then they are young.\n   - If someone is furry then they are green.\n   - Green people are white.\n   - If someone is green and cold then they are white.\n   - If Harry is green and Harry is young then Harry is furry.\n   - Green people are furry.\n   - All cold people are furry.\n   - If Gary is green then Gary is furry.\n\n2. From the statements, we can deduce the following:\n   - Since Harry is green and Harry is not cold, it means Harry is not white (because green people are white when they are cold).\n   - Since Harry is green and young, and green people are furry, Harry must be furry.\n   - Since Harry is green and furry, Harry must be green (because green people are furry).\n   - Since all cold people are furry, and Bob is cold, Bob must be furry.\n   - Since Bob is furry, and furry people are green, Bob must be green.\n\nBased on the deductions above, we can conclude that the statement \"Bob is green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All young people are cold.\n2. If someone is smart then they are young.\n   From (1) and (2), we can conclude that if someone is smart, then they are cold.\n\n3. Anne is smart.\n   From (2), we can conclude that Anne is young.\n   From (1), we can conclude that Anne is cold.\n\n4. Bob is cold.\n   From (1), we can conclude that Bob is young.\n\n5. Gary is big.\n6. Gary is furry.\n   From (5) and (6), we cannot conclude anything new.\n\n7. Harry is not cold.\n8. Harry is green.\n   From (7) and (8), we cannot conclude anything new.\n\n9. If someone is green and cold then they are white.\n10. Green people are white.\n   We cannot conclude anything new from (8), (9), or (10).\n\n11. If someone is green and Harry is young then Harry is furry.\n   We know from (8) that Harry is green. However, we don't know that Harry is cold or not. \n   Since we know from (7) that Harry is not cold, then Harry cannot be furry from (11). \n   We can conclude that Harry is not furry.\n\n12. Green people are furry.\n13. All cold people are furry.\n   We cannot conclude anything new from (8), (12), or (13).\n\n14. If Gary is green then Gary is furry.\n   We know from (5) that Gary is big, but we don't know if Gary is green or not.\n\nFrom the given information, we have:\n- Bob is cold (from (4))\n- Bob is young (from (4) and (1))\n- We don't have any information that directly relates to Bob being green.\n\nHowever, since we know from (4) that Bob is cold and from (8) that Harry is green, we can use (9) to conclude that Harry is white, not green. \nWe also know from (8) that Harry is green, and we can use (11) to conclude that Harry is not furry, which is correct as we concluded earlier.\n\nWe also know that if someone is green and cold then they are white. However, we cannot use this information to conclude that Bob is white, as we don't know if Bob is green or not.\n\nTo conclude whether Bob is green or not, we need to find a direct relationship between Bob and the colors.\n\nFrom (8), we know that Harry is green. \nFrom (11), we know that if Harry is green and young, then Harry is furry. \nSince we know from (7) that Harry is not cold, then Harry cannot be furry from (11).\nFrom (12), we know that green people are furry. \nHowever, we also know from (13) that all cold people are furry. \nSince Harry is not cold, then Harry cannot be furry from (13). \nThis means that our initial assumption in (11) that Harry is green and young must be incorrect.\n\nWe cannot conclude anything new from this information.\n\nNow, let's analyze the information related to Gary.\nFrom (5), we know that Gary is big.\nFrom (14), we know that if Gary is green then Gary is furry.\nHowever, we cannot conclude that Gary is green from (5).\n\nNow, let's analyze the information related to Bob.\nFrom (4), we know that Bob is cold.\nFrom (1), we know that all young people are cold. \nHowever, we cannot conclude that Bob is young from this information.\n\nSince we don't have any information that directly relates to Bob being green, we cannot conclude whether the statement \"Bob is green\" is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given information and the premises.\n\nFrom the premises:\n\n1. All young people are cold. \n2. If someone is smart then they are young.\n3. Anne is smart. \n4. Anne is big. \n5. Bob is cold.\n6. Gary is big. \n7. Gary is furry. \n8. Harry is not cold.\n9. Harry is green.\n10. If someone is furry then they are green.\n11. Green people are white.\n12. If someone is green and cold then they are white.\n13. If Harry is green and Harry is young then Harry is furry.\n14. Green people are furry.\n15. All cold people are furry.\n16. If Gary is green then Gary is furry.\n\nFirst, let's find out if Harry is green and young. \nFrom premise 13, we know that if Harry is green and Harry is young then Harry is furry. We also know that Harry is green (premise 9). However, we cannot directly determine if Harry is young or not from the given information.\n\nNow, let's analyze if Bob is green or not.\nFrom premise 5, we know that Bob is cold.\nFrom premise 12, we know that if someone is green and cold then they are white.\nFrom premise 11, we know that green people are white. However, this does not necessarily mean that Bob is green.\n\nNow, we need to find out if Bob is young or not.\nFrom premise 1, we know that all young people are cold. We also know that Bob is cold (premise 5). However, we cannot directly determine if Bob is young or not from the given information.\n\nFrom premise 10, we know that if someone is furry then they are green.\nFrom premise 15, we know that all cold people are furry.\nFrom premise 5, we know that Bob is cold.\nFrom premise 15, we know that Bob is furry.\nFrom premise 10, we know that Bob is green.\n\nThe statement \"Bob is green\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we'll use the given statements and infer the relationships between the variables. We'll break it down step by step.\n\n1. Statements:\n   - Anne is big. Anne is smart.\n   - Bob is cold.\n   - Gary is big. Gary is furry.\n   - Harry is not cold. Harry is green.\n   - All young people are cold.\n   - If someone is smart then they are young.\n   - If someone is furry then they are green.\n   - Green people are white.\n   - If someone is green and cold then they are white.\n   - If Harry is green and Harry is young then Harry is furry.\n   - Green people are furry.\n   - All cold people are furry.\n   - If Gary is green then Gary is furry.\n\n2. Infer the following relationships:\n   - Since Anne is smart, Anne is young (Statement 6).\n   - Since Bob is cold, Bob is furry (Statement 10).\n   - Since Gary is big and Gary is furry, we can't determine if Gary is green or not from these two statements alone, but we know that if Gary is green then Gary is furry (Statement 12).\n   - Since Harry is green and Harry is not cold, we can't determine if Harry is white or not from these two statements alone, but we know that Harry is green and Harry is young, which means Harry is furry (Statement 9).\n   - Since Harry is green and Harry is furry, we know that Harry is green and Harry is furry (Statement 8).\n   - Since Harry is green and Harry is furry, and all green people are furry (Statement 8), we know that all green people are furry (Statement 7).\n   - Since Harry is green and Harry is not cold, and all green people are furry (Statement 7), we know that all green people are furry (Statement 7).\n\n3. Determine if Bob is green:\n   - We don't have any direct information that Bob is green.\n   - Since Bob is cold, we know that Bob is furry (Statement 10).\n   - However, we don't have any information that links being furry to being green.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is green' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is cold. (Direct information)\n\n2. All young people are cold. (Rule 1)\n\n   This means Bob could be young.\n\n3. If someone is smart then they are young. (Rule 2)\n\n   But we don't know if Bob is smart or not, so we can't determine Bob's age from this rule alone.\n\n4. If someone is furry then they are green. (Rule 3)\n\n   But we don't know if Bob is furry or not, so we can't determine Bob's color from this rule alone.\n\n5. All cold people are furry. (Rule 7)\n\n   Since Bob is cold (from step 1), he must be furry.\n\n6. If someone is furry then they are green. (Rule 3)\n\n   Since Bob is furry (from step 5), he must be green.\n\nConsidering the information we've deduced, we can conclude that Bob is green.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All young people are cold. \n2. If someone is smart then they are young. \n3. Anne is smart. \n4. Anne is young. (From 2 and 3)\n5. Since Anne is young, Anne is cold. (From 1 and 4)\n6. Gary is big. Gary is furry. \n7. If Gary is green then Gary is furry. (From 6)\n8. Gary is not green, but we don't know yet whether Gary is green or not.\n\n9. Green people are furry. \n10. If someone is furry then they are green. (This statement and 9 are contradictory, but we can still use the information to determine the color of Gary)\n\n11. Gary is furry (From 6)\n12. If Gary is furry, then Gary is green (From 10 and 9, though 9 and 10 are contradictory)\n\n13. Since Gary is furry and furry people are green (From 12), Gary is green.\n14. If Gary is green then Gary is furry. (From 7)\n15. Gary is furry (From 6)\n16. Since Gary is green and Gary is furry, Gary is indeed furry (From 14)\n\nNow, let's analyze the given information about Bob:\n\n1. Bob is cold. \n2. All cold people are furry. \n3. Since Bob is cold, Bob is furry (From 1 and 2)\n4. All young people are cold. \n5. If someone is smart then they are young. \n6. Anne is smart. \n7. Anne is young. (From 5 and 6)\n8. Since Anne is young, Anne is cold. (From 4 and 7)\n9. Bob is not young because we have no information that links Bob to being young or old.\n\n10. Green people are furry. \n11. All cold people are furry. \n12. If someone is furry then they are green. (This statement and 10 are contradictory, but we can still use the information to determine the color of Bob)\n\n13. Bob is furry (From 1 and 2)\n14. Since Bob is furry, Bob is green (From 12 and 10, though 10 and 12 are contradictory)\n\nFrom the above steps, we can see that we have two different conclusions about Gary's color: Gary is green (From 13) and Gary is not green (From 8). However, when we analyze Bob's information, we can see that the only way Bob can be furry is if he is green.\n\nSince Gary is indeed green (From 13), and Gary is furry (From 6), the statement \"Gary is green\" is true.\n\nNow, let's go back to the statement \"Bob is green\" to determine whether it is true, false, or unknown. \n\nSince Gary is green and Gary is furry (From 6), and all cold people are furry (From 1 and 2), and Bob is cold (From 1), we can conclude that Bob is furry (From 1 and 2). However, we also have two contradictory statements about the relationship between being furry and green: \"Green people are furry\" (From 9) and \"If someone is furry then they are green\" (From 10 and 12).\n\nFrom the above steps, we can see that the only way Bob can be furry is if he is green. Since we have contradictory statements, we cannot determine whether Bob is green or not.\n\nTherefore, the statement \"Bob is green\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and the rules of inference. We will analyze each statement and derive conclusions from them.\n\nGiven statements:\n1. Anne is big.\n2. Anne is smart.\n3. Bob is cold.\n4. Gary is big.\n5. Gary is furry.\n6. Harry is not cold.\n7. Harry is green.\n8. All young people are cold.\n9. If someone is smart then they are young.\n10. If someone is furry then they are green.\n11. Green people are white.\n12. If someone is green and cold then they are white.\n13. If Harry is green and Harry is young then Harry is furry.\n14. Green people are furry.\n15. All cold people are furry.\n16. If Gary is green then Gary is furry.\n\nWe are asked to determine whether the statement \"Bob is green\" is true, false, or unknown.\n\nLet's analyze the given statements:\nFrom statement 3, we know that Bob is cold.\n\nUsing rule 8, we can conclude that Bob is young, because all young people are cold.\n\nUsing rule 15, we can conclude that Bob is furry, because all cold people are furry.\n\nUsing rule 10, we can conclude that Bob is green, because if someone is furry then they are green.\n\nSo, we can derive that Bob is green.\n\nTherefore, the statement \"Bob is green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given statements and use the rules of inference to derive new information.\n\nGiven statements:\n1. Anne is big.\n2. Anne is smart.\n3. Bob is cold.\n4. Gary is big.\n5. Gary is furry.\n6. Harry is not cold.\n7. Harry is green.\n8. All young people are cold.\n9. If someone is smart then they are young.\n10. If someone is furry then they are green.\n11. Green people are white.\n12. If someone is green and cold then they are white.\n13. If Harry is green and Harry is young then Harry is furry.\n14. Green people are furry.\n15. All cold people are furry.\n16. If Gary is green then Gary is furry.\n\nNow, let's analyze the statement \"Bob is green\".\n\nWe know from statement 3 that Bob is cold. \n\nFrom statement 8, all young people are cold. This means that Bob is young because if he is cold, he must be young.\n\nNow, from statement 9, if someone is smart, they are young. But we don't know if Anne is young or not, so we can't conclude anything about Anne's age.\n\nHowever, we do know from statement 2 that Anne is smart. So, from statement 9, Anne is young.\n\nFrom statement 10, if someone is furry, then they are green. We don't know if Bob is furry or not, so we can't conclude if Bob is green.\n\nWe know from statement 15 that all cold people are furry. Since Bob is cold, he must be furry.\n\nFrom statement 10, if someone is furry, then they are green. Therefore, since Bob is furry, he must be green.\n\nSo, \"Bob is green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. All young people are cold. (This means that if someone is young, they must be cold.)\n\n2. If someone is smart then they are young. (This means that if someone is smart, they must be young, and therefore, cold.)\n\n3. Anne is smart. (This means Anne is young and cold.)\n\n4. Gary is big. Gary is furry. (We cannot conclude anything about Gary's age, temperature, or color from this information alone.)\n\n5. Harry is not cold. Harry is green. (This means Harry is not young, as young people are cold.)\n\n6. If Harry is green and Harry is young then Harry is furry. (However, we know Harry is not young, so we cannot use this statement to conclude Harry is furry.)\n\n7. Green people are furry. (This statement is a general rule.)\n\n8. All cold people are furry. (This statement is another general rule.)\n\n9. If someone is green and cold then they are white. (This statement is a general rule.)\n\n10. If Gary is green then Gary is furry. (This statement is specific to Gary.)\n\nNow, let's analyze the given information to determine the color of Bob. We know:\n- Bob is cold (from statement 1).\n- All cold people are furry (from statement 8).\n- If someone is green and cold then they are white (from statement 9).\n\nHowever, we cannot conclude Bob's color directly from this information. But we can analyze the color of Gary, who is big and furry.\n\nFrom statement 10, if Gary is green then Gary is furry. But Gary is furry, and he is big, but we do not know if Gary is green. \n\nHowever, we can conclude that Gary is furry, and we know that all cold people are furry. But we cannot conclude Gary's color from this information.\n\nNow, let's analyze the information about Harry. We know Harry is green and not cold. We also know that green people are furry (from statement 7), but Harry is not cold.\n\nHowever, we cannot conclude Bob's color directly from this information.\n\nNow, let's analyze the statement \"If someone is green and cold then they are white\" (from statement 9). We know Bob is cold, but we do not know if Bob is green.\n\nSince we cannot conclude Bob's color directly from the given information, we must say that the statement \"Bob is green\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is green\" is true, false, or unknown, we need to analyze the given information and apply it to the statement.\n\n1. All young people are cold.\n2. If someone is smart then they are young.\n3. Anne is smart. (Therefore, Anne is young, from rule 2)\n4. All young people are cold. (from rule 1)\n5. Therefore, Anne is cold. (from rules 3 and 4)\n6. Bob is cold. (from the initial information)\n7. If someone is furry then they are green. (rule 5)\n8. All cold people are furry. (rule 6)\n9. If someone is furry then they are green. (rule 7)\n10. All cold people are furry. (rule 8)\n11. Therefore, since Bob is cold, Bob is furry. (from rules 6 and 8, and rule 9)\n12. Since Bob is furry, Bob is green. (from rule 7)\n\nHowever, we also have the following rules:\n13. If Gary is green then Gary is furry.\n14. Gary is big. Gary is furry. (from the initial information)\n\nFrom rules 13 and 14, we can infer that Gary is green because if Gary is green, then Gary is furry, and Gary is furry (from rule 14).\n15. Green people are furry. (rule 14)\n16. If someone is green and cold then they are white. (rule 5)\n17. Green people are white. (rule 15)\n18. If Harry is green and Harry is young then Harry is furry. (rule 5)\n19. Harry is not cold. Harry is green. (from the initial information)\n20. Since Harry is not cold, Harry is not furry. (from rule 8)\n21. Therefore, since Harry is green but not furry, Harry is white. (from rules 18, 19, and 17)\n\nWe have:\n- Anne is big, Anne is smart, Anne is cold, and Anne is young (from rules 3 and 1)\n- Bob is cold and Bob is furry (from rules 6 and 11)\n- Gary is big and Gary is furry (from rule 14)\n- Harry is not cold, Harry is green, and Harry is white (from rules 19 and 21)\n\nNow, let's analyze the statement \"Bob is green\":\n- Bob is cold (from the initial information)\n- All cold people are furry (from rule 8)\n- Therefore, Bob is furry (from rule 6)\n- Since Bob is furry, Bob is green (from rule 7)\n\nTherefore, the statement \"Bob is green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_bob, young_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_anne, young_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(harry)",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, young_harry), furry_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not young(harry)",
+          "z3_formula": "Not(young_harry) == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_harry, furry_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(green_harry, cold_harry), white_harry)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(harry)",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not white(harry)",
+          "z3_formula": "Not(white_harry) == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, young_harry), furry_harry)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "not young(harry)",
+          "z3_formula": "Not(young_harry) == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_harry, furry_harry)",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 29
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 30
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(green_bob, cold_bob), white_bob)",
+          "source_step": 31
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(harry)",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 32
+        },
+        {
+          "type": "derived",
+          "expression": "not white(harry)",
+          "z3_formula": "Not(white_harry) == True",
+          "source_step": 33
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, young_harry), furry_harry)",
+          "source_step": 34
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 35
+        },
+        {
+          "type": "derived",
+          "expression": "not young(harry)",
+          "z3_formula": "Not(young_harry) == True",
+          "source_step": 36
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 37
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 38
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_harry, furry_harry)",
+          "source_step": 39
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 40
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 41
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> young(X)",
+          "z3_formula": "Implies(cold_bob, young_bob)",
+          "source_step": 42
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 43
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 44
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(green_bob, cold_bob), white_bob)",
+          "source_step": 45
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_bob, cold_bob)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_anne, young_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(harry))",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(green_harry, cold_harry), white_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, young_harry), furry_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_harry, furry_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_bob, furry_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == False",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(harry))",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_harry, cold_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_anne, young_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_harry, green_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_harry, white_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(green_harry, cold_harry), white_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, young_harry), furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_bob, furry_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_bob, furry_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(white(harry))",
+          "z3_formula": "Not(white_harry) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 12
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_X, young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(harry))",
+          "z3_formula": "Not(cold_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_X, white_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(green_X, cold_X), white_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_X, young_X), furry_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_X, furry_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_X, furry_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(gary) -> furry(gary)",
+          "z3_formula": "Implies(green_gary, furry_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 17
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_bob, cold_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_bob, young_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_bob, furry_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_X, young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_gary, furry_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not green(gary)",
+          "z3_formula": "Not(green_gary) == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_gary, green_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_gary, furry_gary)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_bob, furry_bob)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_bob, furry_bob)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == Unknown",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(harry))",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_bob, cold_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_anne, young_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_harry, white_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(green_harry, cold_harry), white_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, young_harry), furry_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_gary, furry_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_bob, furry_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_gary, green_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(harry))",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_bob, cold_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_anne, young_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_bob, furry_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(green_bob, cold_bob), white_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, young_harry), furry_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_bob, furry_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_bob, furry_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_gary, furry_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 19
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_X, young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_bob, furry_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> furry(X)",
+          "z3_formula": "Implies(green_gary, furry_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary) & furry(gary)",
+          "z3_formula": "And(big_gary, furry_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(green_gary, cold_gary), white_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry) & not(cold(harry))",
+          "z3_formula": "And(green_harry, Not(cold_harry))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> furry(X)",
+          "z3_formula": "Implies(cold_harry, furry_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not(furry(harry))",
+          "z3_formula": "Not(furry_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 19
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 187,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 55
+    },
+    "maxsat_stats": {
+      "satisfied": 50,
+      "excluded": 5,
+      "total_weight": 179,
+      "solve_time_ms": 1.8169153481721878
+    },
+    "timing": {
+      "trace_gen_s": 9.751,
+      "extraction_s": 57.356,
+      "dedup_s": 2.158,
+      "maxsat_s": 0.005,
+      "total_s": 69.27
+    }
+  }
+}

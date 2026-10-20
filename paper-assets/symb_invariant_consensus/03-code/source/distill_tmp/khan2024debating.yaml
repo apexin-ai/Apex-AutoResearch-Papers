@@ -1,0 +1,84 @@
+paper_key: "khan2024debating"
+title: "Debating with More Persuasive LLMs Leads to More Truthful Answers"
+venue: "ICML 2024"
+full_text_available: true
+
+research:
+  baselines: ["Naive judge", "Consultancy (correct)", "Consultancy (incorrect)", "Non-interactive debate"]
+  metrics:
+    - {name: "judge_accuracy", direction: "higher_better"}
+    - {name: "Elo_rating", direction: "higher_better"}
+  datasets:
+    - {name: "QuALITY", size: "reading comprehension"}
+  ablation_dimensions: ["protocol_type", "interactivity", "debater_model", "judge_model", "BoN_size", "quote_system", "round_count", "word_limits", "majority_voting", "few_shot_count", "finetuning_data_type", "human_vs_LLM_judges", "persuasiveness_optimization"]
+  training_recipe: {optimizer: "BoN + RL", lr: "N/A", hardware: "N/A"}
+  method_family: "multi-agent debate for AI safety"
+
+positioning:
+  core_claim: "Adversarial debate between LLM experts with persuasiveness optimization lets weaker judges identify truth better than non-adversarial consultancy"
+  key_results: "Debate: 88% human / 76% LLM accuracy vs Consultancy: 78%/54% vs Naive: 60%/48%"
+  limitations:
+    - "Information asymmetry only (not reasoning gap)"
+    - "RLHF-honest models only"
+    - "Quote verification dependency"
+    - "Single dataset (QuALITY)"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Scalable oversight — how do we verify AI behavior when it exceeds human capability?"
+  tension: "Alignment techniques depend on human labels, but humans can't label superhuman behavior"
+  key_insight: "Figures 3-4 mirror pair — persuasiveness helps debate (correct debater gains advantage) but hurts consultancy (incorrect consultant becomes more persuasive)"
+  argument_chain: "alignment crisis → debate as theoretical solution → empirical setup with LLM proxy → 9 cumulative insights → persuasiveness as unsupervised training signal"
+  contribution_framing: "Framed as 'insights' rather than 'contributions' — 9 numbered insights for cumulative evidence"
+  intro_structure: "5 paragraphs: (1) scalable oversight problem, (2) debate proposal recap, (3) experimental approach, (4) key findings preview, (5) implications"
+  notable_technique: "Numbered Insight 1-9 structure replaces traditional contribution list; Figure 3-4 mirror design as argumentative backbone"
+
+figures:
+  figure_count: 17
+  figure1:
+    type: "method_overview"
+    description: "Debate vs consultancy protocol comparison"
+    narrative_role: "Establishes the two paradigms being compared"
+    design_elements: ["side-by-side protocols", "agent roles", "information flow"]
+    visual_style: "Schematic with two parallel protocol diagrams"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "bar_chart"
+      what_compared: "Judge accuracy across protocols"
+      how_gain_highlighted: "Debate consistently above consultancy"
+      design_note: "Clear protocol comparison"
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Elo rating vs persuasiveness optimization for debate"
+      how_gain_highlighted: "Correct-answer Elo grows with optimization"
+      design_note: "Mirror pair with Figure 4 — debate's mechanism"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Elo rating vs persuasiveness optimization for consultancy"
+      how_gain_highlighted: "Incorrect consultant Elo grows — consultancy breaks"
+      design_note: "Mirror with Fig3 showing opposite effect"
+  ablation_figures:
+    - figure_id: "Figures 5-17"
+      viz_type: "mixed"
+      dimensions_varied: ["13 ablation dimensions"]
+      design_note: "Massive ablation suite — all visual, no tables"
+  figure_narrative_role: "Fig1(protocol) → Fig2(main result) → Fig3-4(mechanism mirror) → Fig5-17(extensive ablations) — remarkably figure-heavy, only 1 table"
+
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "definitions"
+    col_axis: "N/A"
+    row_organization: "flat"
+    col_organization: "flat"
+    highlight_strategy: "N/A"
+    statistical_reporting: "N/A"
+    num_baselines: 0
+    design_note: "Definitional table only — all quantitative results are figures"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Additional experimental details"
+    reason: "All main results presented visually"

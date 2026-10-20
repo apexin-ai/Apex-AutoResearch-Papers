@@ -1,0 +1,1373 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-305_Q1",
+    "problem": "Anne is quiet. Bob is not rough. Gary is big. Gary is kind. Gary is rough. Gary is young. Harry is young. All big people are furry. Young people are furry. All quiet, kind people are furry. If Harry is furry and Harry is quiet then Harry is round. Rough, kind people are quiet. Young, rough people are kind. All quiet, furry people are round. Furry people are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is young.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nQuiet($x, bool) ::: Is x quiet?\nRough($x, bool) ::: Is x rough?\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\nFurry($x, bool) ::: Is x furry?\nYoung($x, bool) ::: Is x young?\nRound($x, bool) ::: Is x round?\n\nFacts:\nQuiet(Anne, True) ::: Anne is quiet.\nRough(Bob, False) ::: Bob is not rough.\nBig(Gary, True) ::: Gary is big.\nKind(Gary, True) ::: Gary is kind.\nRough(Gary, True) ::: Gary is rough.\nYoung(Gary, True) ::: Gary is young.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nBig($x, True) >>> Furry($x, True) ::: All big people are furry.\nYoung($x, True) >>> Furry($x, True) ::: Young people are furry.\nQuiet($x, True) && Kind($x, True) >>> Furry($x, True) ::: All quiet, kind people are furry.\nFurry(Harry, True) && Quiet(Harry, True) >>> Round(Harry, True) ::: If Harry is furry and Harry is quiet then Harry is round.\nRough($x, True) && Kind($x, True) >>> Quiet($x, True) ::: Rough, kind people are quiet.\nYoung($x, True) && Rough($x, True) >>> Kind($x, True) ::: Young, rough people are kind.\nQuiet($x, True) && Furry($x, True) >>> Round($x, True) ::: All quiet, furry people are round.\nFurry($x, True) >>> Rough($x, True) ::: Furry people are rough.\n\nQuery:\nYoung(Gary, True) ::: Gary is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 186.5,
+      "True": 149.0,
+      "Unknown": 186.0
+    },
+    "answer_counts": {
+      "False": 3,
+      "Unknown": 4,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we'll use a series of logical deductions based on the given statements. \n\n1. Given statements:\n   - Anne is quiet.\n   - Bob is not rough.\n   - Gary is big.\n   - Gary is kind.\n   - Gary is rough.\n   - Gary is young.\n   - Harry is young.\n   - All big people are furry.\n   - Young people are furry.\n   - All quiet, kind people are furry.\n   - If Harry is furry and Harry is quiet then Harry is round.\n   - Rough, kind people are quiet.\n   - Young, rough people are kind.\n   - All quiet, furry people are round.\n   - Furry people are rough.\n\n2. Deductions:\n   - Gary is big (given).\n   - All big people are furry (given), so Gary is furry.\n   - Gary is kind (given).\n   - Gary is rough (given).\n   - Furry people are rough (given), which is consistent with the previous statement.\n   - Since Gary is kind and rough, we can deduce that Gary is quiet (from \"Rough, kind people are quiet\").\n   - Since Gary is furry and quiet, we can deduce that Gary is round (from \"All quiet, furry people are round\").\n\n3. However, the original statement says \"Gary is young.\" We need to determine if this is true, false, or unknown.\n   - Gary is young (given).\n   - However, we also know Gary is big (given).\n   - If Gary is big, then he must be furry (from \"All big people are furry\").\n   - Since Gary is furry, we can deduce that he is rough (from \"Furry people are rough\").\n   - Now we have two pieces of conflicting information: Gary is young, but he is also big. \n\n4. We can deduce that Gary cannot be young because if he were young, then he would be furry (from \"Young people are furry\") and rough (from \"Furry people are rough\"), but then he could not be big (since all big people are furry, and Gary is not young). Therefore, Gary cannot be young.\n\n5. Therefore, the statement \"Gary is young\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will use a method called truth tables or natural deduction to analyze the given statements and determine the validity of the statement \"Gary is young.\"\n\nGiven statements:\n1. Anne is quiet.\n2. Bob is not rough.\n3. Gary is big.\n4. Gary is kind.\n5. Gary is rough.\n6. Gary is young.\n7. Harry is young.\n8. All big people are furry.\n9. Young people are furry.\n10. All quiet, kind people are furry.\n11. If Harry is furry and Harry is quiet then Harry is round.\n12. Rough, kind people are quiet.\n13. Young, rough people are kind.\n14. All quiet, furry people are round.\n15. Furry people are rough.\n\nWe are asked to determine the validity of statement 6: Gary is young.\n\nLet's start by analyzing the given statements and try to deduce the truth value of statement 6.\n\nFrom statement 8, we know that all big people are furry. Since Gary is big (statement 3), we can conclude that Gary is furry (statement 8 and 3).\n\nFrom statement 9, we know that young people are furry. Since Harry is young (statement 7), we can conclude that Harry is furry (statement 9 and 7).\n\nFrom statement 15, we know that furry people are rough. Since Gary is furry (from statement 8 and 3), we can conclude that Gary is rough (statement 15).\n\nHowever, we also know that Gary is kind (statement 4) and Gary is rough (from statement 15). From statement 12, we know that rough, kind people are quiet. Therefore, we can conclude that Gary is quiet.\n\nNow we have two conflicting statements about Gary: Gary is young (statement 6) and Gary is not young (since we already concluded that Gary is not young from the fact that he is big, which is not a characteristic of young people).\n\nHowever, we know that all quiet, furry people are round (statement 14) and Gary is quiet (from statement 12) and Gary is furry (from statement 8 and 3). However, there's no information that would allow us to directly deduce that Gary is round.\n\nHowever, we have a statement that says that Harry is quiet (since if Harry is furry and Harry is quiet then Harry is round, statement 11), and we know that Harry is furry (from statement 9 and 7).\n\nSince Gary is quiet (from statement 12) and we know that Harry is furry and quiet (from statement 11), and all quiet, furry people are round (statement 14), we can conclude that Harry is round.\n\nHowever, this conclusion doesn't provide any information about Gary's age.\n\nNow let's examine statement 6: Gary is young.\n\nFrom statement 13, we know that young, rough people are kind. Since Gary is young (statement 6), Gary is rough (from statement 15), and Gary is kind (statement 4), we can conclude that Gary is a young, rough, and kind person.\n\nHowever, we already know that Gary is big (statement 3), which is not a characteristic of young people.\n\nThis creates a contradiction, as we have a statement that says Gary is young, and we have a conclusion that Gary is not young because he is big.\n\nHowever, we cannot conclude that statement 6 is false or true using the given statements and logical deductions.\n\nTherefore, the final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is young\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Gary is big.\n2. Gary is kind.\n3. Gary is rough.\n4. Gary is young.\n\nFrom statement 1, we know Gary is big.\nFrom statement 5, all big people are furry.\nSo, Gary is furry.\n\nFrom statement 6, young people are furry.\nThis implies that Gary might be young, but we can't conclude it for sure because there could be other reasons for Gary being furry.\n\nHowever, from statement 3, we know Gary is rough, and from statement 8, furry people are rough.\nThis implies that Gary being furry is due to being rough.\n\nNow, we need to analyze Gary's other characteristics to see if they are consistent with the statement \"Gary is young\".\n\nFrom statement 3, we know Gary is rough.\nFrom statement 7, young, rough people are kind.\nSo, Gary being rough is consistent with being young.\n\nFrom statement 2, we know Gary is kind.\nFrom statement 7, young, rough people are kind.\nSo, Gary being kind is consistent with being young.\n\nHowever, we have to analyze Gary's age based on the given statements.\n\nFrom statement 3, we know Gary is rough.\nFrom statement 10, rough, kind people are quiet.\nFrom statement 1, we know Gary is big.\nFrom statement 4, all quiet, kind people are furry.\nFrom statement 5, all big people are furry.\nWe already know that Gary is furry and big, so being quiet and kind can be possible for Gary.\n\nHowever, from statement 9, if Harry is furry and Harry is quiet then Harry is round.\nThis doesn't imply anything about Gary being round, but it shows that being furry and quiet doesn't necessarily mean being young.\n\nFrom statement 6, we know young people are furry.\nHowever, from statement 8, furry people are rough.\nSo, being furry doesn't necessarily mean being young.\n\nNow, let's analyze Gary's age based on the statement that Gary is young.\n\nFrom statement 3, we know Gary is rough.\nFrom statement 6, young people are furry.\nWe already know that Gary is furry, so being young is consistent with Gary's characteristics.\n\nHowever, we also know from statement 7, young, rough people are kind.\nFrom statement 2, we know Gary is kind.\nSo, Gary being young, rough, and kind is consistent with the given statements.\n\nBut we have to see if Gary is young based on the statement that Gary is big.\n\nFrom statement 3, we know Gary is rough.\nFrom statement 6, young people are furry.\nWe already know that Gary is furry, so being young is consistent with Gary's characteristics.\n\nHowever, from statement 7, young, rough people are kind.\nFrom statement 2, we know Gary is kind.\nSo, Gary being young, rough, and kind is consistent with the given statements.\n\nFrom statement 4, all big people are furry.\nWe already know that Gary is furry, so being big is consistent with Gary's characteristics.\n\nHowever, from statement 6, young people are furry.\nWe already know that Gary is furry, so being young is consistent with Gary's characteristics.\n\nNow, let's analyze Gary's age based on the statement that Gary is kind.\n\nFrom statement 3, we know Gary is rough.\nFrom statement 7, young, rough people are kind.\nFrom statement 2, we know Gary is kind.\nSo, Gary being young, rough, and kind is consistent with the given statements.\n\nFrom statement 10, rough, kind people are quiet.\nFrom statement 1, we know Gary is big.\nFrom statement 4, all quiet, kind people are furry.\nFrom statement 5, all big people are furry.\nWe already know that Gary is furry and big, so being quiet and kind can be possible for Gary.\n\nHowever, from statement 6, young people are furry.\nHowever, from statement 8, furry people are rough.\nSo, being furry doesn't necessarily mean being young.\n\nNow, let's analyze Gary's age based on the statement that Gary is rough.\n\nFrom statement 3, we know Gary is rough.\nFrom statement 7, young, rough people are kind.\nFrom statement 2, we know Gary is kind.\nSo, Gary being young, rough, and kind is consistent with the given statements.\n\nHowever, from statement 6, young people are furry.\nWe already know that Gary is furry, so being young is consistent with Gary's characteristics.\n\nHowever, from statement 8, furry people are rough.\nWe already know that Gary is furry, so being rough is consistent with Gary's characteristics.\n\nHowever, from statement 10, rough, kind people are quiet.\nFrom statement 1, we know Gary is big.\nFrom statement 4, all quiet, kind people are furry.\nFrom statement 5, all big people are furry.\nWe already know that Gary is furry and big, so being quiet and kind can be possible for Gary.\n\nHowever, from statement 6, young people are furry.\nHowever, from statement 8, furry people are rough.\nSo, being furry doesn't necessarily mean being young.\n\nFrom statement 3, we know Gary is rough.\nFrom statement 10, rough, kind people are quiet.\nFrom statement 4, all quiet, kind people are furry.\nFrom statement 5, all big people are furry.\nWe already know that Gary is furry and big, so being quiet and kind can be possible for Gary.\n\nHowever, from statement 6, young people are furry.\nHowever, from statement 8, furry people are rough.\nSo, being furry doesn't necessarily mean being young.\n\nBased on the given statements, we can conclude that Gary is young.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is big. (Given)\n2. All big people are furry. (Given)\n   - Therefore, Gary is furry. (From 1 and 2)\n\n3. Gary is rough. (Given)\n4. Gary is kind. (Given)\n5. Furry people are rough. (Given)\n   - Therefore, Gary is furry. (From 2)\n   - We already knew this from step 2. The information is redundant.\n\n6. Rough, kind people are quiet. (Given)\n   - Therefore, Gary is quiet. (From 3, 4, and 6)\n\n7. Young people are furry. (Given)\n8. All quiet, kind people are furry. (Given)\n   - Therefore, Gary is furry. (From 7 and 8)\n   - We already knew this from step 2. The information is redundant.\n\n9. Gary is young. (Statement to be determined)\n\nFrom the information given, we know Gary is big (1), and all big people are furry (2), which led us to conclude Gary is furry (step 2). We also know Gary is rough (3), quiet (6), and furry (steps 2 and 8). \n\nWe have the following information about young people:\n- Young people are furry (7).\n- Young, rough people are kind (Given).\n- Harry is young (Given), and Harry is furry (Given), so Harry is quiet (Given), and Harry is round (Given).\n\nTo determine whether Gary is young, we need to find out if being young is related to any of Gary's characteristics. We know Gary is big (1), which makes him furry (2). However, we don't have a direct relationship between being big and being young.\n\nWe do know that being young makes someone furry (7), but we already established that Gary is furry from other information. \n\nWe also know that young, rough people are kind (Given), but Gary is not young, rough (we don't know that Gary is young yet), so this information is irrelevant.\n\nThe only information that seems to be relevant is that young people are furry (7). But, we already concluded that Gary is furry from other information. \n\nSince the information that directly relates to Gary being young is not conclusive, we cannot definitively say that Gary is young or not.\n\nHowever, we do know that young people are furry (7) and that furry people are rough (5) and that rough, kind people are quiet (6). \n\nFrom the information provided, we know Gary is big (1), and all big people are furry (2). We also know Gary is rough (3), which makes him furry (5), and we know Gary is quiet (6).\n\nGiven the information that all quiet, furry people are round (Given), we can conclude that Gary is round (because Gary is furry (2 and 5) and quiet (6)). \n\nHowever, this does not help us determine whether Gary is young or not.\n\nHowever, we know Harry is young (Given), Harry is furry (Given), and Harry is round (Given). And since all quiet, furry people are round (Given), we can conclude that Harry is quiet (Given), which makes him furry (7). \n\nGiven that we know Gary is furry (2 and 5), and we know Harry is furry (Given), this does not directly tell us whether Gary is young or not.\n\nHowever, we do know that young, rough people are kind (Given), and Gary is rough (3) and kind (4). But this does not tell us whether Gary is young.\n\nHowever, we know that young people are furry (7), and we know Gary is furry (2 and 5). However, this information is redundant.\n\nThe only relevant information we have is that young people are furry (7), but we already established that Gary is furry from other information.\n\nSo we cannot conclude that Gary is young or not.\n\nHowever, we know that young people are furry (7), and we also know that all quiet, furry people are round (Given), but we already concluded that Gary is round (because Gary is furry (2 and 5) and quiet (6)).\n\nHowever, since young people are furry (7), and furry people are rough (5), and rough, kind people are quiet (6), we can say that young people are quiet (because young people are furry (7) and furry people are rough (5) and rough, kind people are quiet (6)). \n\nHowever, we already know that Gary is quiet (6).\n\nHowever, we know that all quiet people are round (because all quiet, furry people are round (Given) and furry people are rough (5) and rough, kind people are quiet (6) and young people are furry (7) and young, rough people are kind (Given) and Gary is rough (3), kind (4) and quiet (6) and round (because Gary is furry (2 and 5) and quiet (6)).\n\nHowever, this information is still irrelevant to determining whether Gary is young or not.\n\nSince young people are furry (7), and we know Gary is furry (2 and 5), this information is redundant.\n\nHowever, we know that all quiet, furry people are round (Given), and we know Gary is furry (2 and 5) and quiet (6), so we can conclude that Gary is round (Given). \n\nHowever, this does not tell us whether Gary is young.\n\nWe know that young people are furry (7), but we already established that Gary is furry from other information.\n\nHowever, we know that young, rough people are kind (Given), and Gary is rough (3) and kind (4). However, this does not tell us whether Gary is young.\n\nHowever, we know that young people are furry (7), and furry people are rough (5), and rough, kind people are quiet (6). However, we already know that Gary is quiet (6).\n\nSince all quiet, furry people are round (Given), and Gary is furry (2 and 5) and quiet (6), we can conclude that Gary is round (Given).\n\nHowever, this information does not help us determine whether Gary is young or not.\n\nSince young people are furry (7), and furry people are rough (5), and rough, kind people are quiet (6), we can say that young people are quiet (because young people are furry (7) and furry people are rough (5) and rough, kind people are quiet (6)). \n\nHowever, we already know that Gary is quiet (6).\n\nHowever, we know that all quiet people are round (because all quiet, furry people are round (Given) and furry people are rough (5) and rough, kind people are quiet (6) and young people are furry (7) and young, rough people are kind (Given) and Gary is rough (3), kind (4) and quiet (6) and round (because Gary is furry (2 and 5) and quiet (6)).\n\nHowever, this information is still irrelevant to determining whether Gary is young or not.\n\nSince all quiet people are round (because all quiet, furry people are round (Given) and furry people are rough (5) and rough, kind people are quiet (6) and young people are furry (7) and young, rough people are kind (Given) and Gary is rough (3), kind (4) and quiet (6) and round (because Gary is furry (2 and 5) and quiet (6))), we can say that young people are round (because all quiet, furry people are round (Given) and furry people are rough (5) and rough, kind people are quiet (6) and young people are furry (7) and young, rough people are kind (Given) and Gary is rough (3), kind (4) and quiet (6) and round (because Gary is furry (2 and 5) and quiet (6))).\n\nHowever, this does not tell us whether Gary is young or not.\n\nHowever, we know that young, rough people are kind (Given), and Gary is rough (3) and kind (4). However, this does not tell us whether Gary is young.\n\nHowever, we know that young people are furry (7), and furry people are rough (5), and rough, kind people are quiet (6). However, we already know that Gary is quiet (6).\n\nSince all quiet, furry people are round (Given), and Gary is furry (2 and 5) and quiet (6), we can conclude that Gary is round (Given).\n\nHowever, this information does not help us determine whether Gary is young or not.\n\nWe can conclude that all quiet people are round (because all quiet, furry people are round (Given) and furry people are rough (5) and rough, kind people are quiet (6) and young people are furry (7) and young, rough people are kind (Given) and Gary is rough (3), kind (4) and quiet (6) and round (because Gary is furry (2 and 5) and quiet (6))).\n\nHowever, this information is still irrelevant to determining whether Gary is young or not.\n\nHowever, we can say that young people are furry (7), and furry people are rough (5), and rough, kind people are quiet (6), and all quiet people are round (because all quiet, furry people are round (Given) and furry people are rough (5) and rough, kind people are quiet (6) and young people are furry (7) and young, rough people are kind (Given) and Gary is rough (3), kind (4) and quiet (6) and round (because Gary is furry (2 and 5) and quiet (6))).\n\nHowever",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is big.\n2. Gary is kind.\n3. Gary is rough.\n4. Gary is young.\n\nFrom statements 1 and 5 (All big people are furry), we can conclude that Gary is furry.\n\nFrom statement 6 (Young people are furry), we cannot conclude that Gary is young because there might be other reasons for Gary being furry.\n\nFrom statements 7 (All quiet, kind people are furry) and 8 (Furry people are rough), we cannot conclude that Gary is quiet because Gary is already known to be rough.\n\nFrom statement 2 (Gary is kind) and statement 3 (Gary is rough), we can conclude that Gary is quiet using rule 9 (Rough, kind people are quiet).\n\nFrom statement 4 (Gary is young), we cannot conclude that Gary is furry because statement 6 (Young people are furry) only guarantees that young people are furry, not that Gary is young because he is furry.\n\nFrom statement 4 (Gary is young) and statement 7 (All quiet, kind people are furry), we cannot conclude that Gary is furry because there might be other reasons for Gary being quiet and kind.\n\nFrom statement 1 (Gary is big) and statement 5 (All big people are furry), we already know that Gary is furry.\n\nFrom statement 1 (Gary is big) and statement 5 (All big people are furry), we cannot conclude that Gary is young because there might be other reasons for Gary being furry.\n\nHowever, from statement 4 (Gary is young) and statement 6 (Young people are furry), we can conclude that Gary is furry.\n\nFrom statement 4 (Gary is young) and statement 6 (Young people are furry), we can conclude that Gary is furry, but this does not conflict with the conclusion that Gary is furry from statement 1 (Gary is big) and statement 5 (All big people are furry).\n\nFrom statement 3 (Gary is rough) and statement 8 (Furry people are rough), we can conclude that Gary is furry, but this does not conflict with the conclusion that Gary is furry from statement 1 (Gary is big) and statement 5 (All big people are furry).\n\nHowever, since we have multiple conclusions that Gary is furry and we know Gary is furry from statements 1, 4, and 3, we cannot conclude that Gary is not young.\n\nFrom statement 2 (Gary is kind) and statement 9 (All quiet, kind people are furry), we cannot conclude that Gary is furry because Gary is already known to be furry.\n\nHowever, from statement 2 (Gary is kind) and statement 10 (Rough, kind people are quiet), we can conclude that Gary is quiet, but this does not conflict with the conclusion that Gary is quiet from statement 2 (Gary is kind) and statement 7 (All quiet, kind people are furry).\n\nFrom statement 3 (Gary is rough) and statement 10 (Rough, kind people are quiet), we can conclude that Gary is quiet, but this does not conflict with the conclusion that Gary is quiet from statement 2 (Gary is kind) and statement 7 (All quiet, kind people are furry).\n\nFrom statement 3 (Gary is rough) and statement 11 (Young, rough people are kind), we cannot conclude that Gary is young because there might be other reasons for Gary being rough.\n\nFrom statement 3 (Gary is rough) and statement 8 (Furry people are rough), we can conclude that Gary is furry, but this does not conflict with the conclusion that Gary is furry from statement 1 (Gary is big) and statement 5 (All big people are furry).\n\nHowever, since we have multiple conclusions that Gary is furry and we know Gary is furry from statements 1, 3, and 4, we cannot conclude that Gary is not young.\n\nHowever, we can conclude that Gary is not young using statement 4 (Gary is young) and statement 12 (Harry is young). Statement 13 (Harry is young) and statement 14 (Harry is furry) tell us that Harry is furry, but statement 15 (Furry people are rough) and statement 16 (Harry is furry) tell us that Harry is rough.\n\nStatement 17 (Harry is quiet) and statement 18 (If Harry is furry and Harry is quiet then Harry is round) tell us that Harry is round.\n\nHowever, statement 19 (Rough, kind people are quiet) and statement 20 (Young, rough people are kind) tell us that Harry is quiet and Harry is kind, but statement 21 (All quiet, kind people are furry) tells us that Harry is furry.\n\nHowever, since we know Harry is furry, we can conclude that Harry is rough using statement 22 (Furry people are rough).\n\nFrom statement 12 (Harry is young) and statement 23 (Harry is young), we cannot conclude that Harry is not young.\n\nHowever, statement 24 (All quiet, kind people are furry) and statement 25 (Harry is furry) tell us that Harry is furry, but statement 26 (Young people are furry) and statement 27 (Harry is furry) tell us that Harry is young.\n\nHowever, we cannot conclude that Gary is not young because there might be other reasons for Harry being young.\n\nHowever, we can conclude that Gary is not young using statement 28 (Harry is young) and statement 29 (Harry is young). Statement 30 (Harry is young) and statement 31 (Harry is furry) tell us that Harry is furry, but statement 32 (Furry people are rough) and statement 33 (Harry is furry) tell us that Harry is rough.\n\nHowever, statement 34 (All big people are furry) and statement 35 (Gary is big) tell us that Gary is furry, but statement 36 (Young people are furry) and statement 37 (Harry is young) tell us that Harry is furry.\n\nHowever, statement 38 (Gary is big) and statement 39 (All big people are furry) tell us that Gary is furry, but statement 40 (Young people are furry) and statement 41 (Harry is young) tell us that Harry is furry.\n\nHowever, statement 42 (Harry is young) and statement 43 (Harry is furry) tell us that Harry is furry, but statement 44 (All big people are furry) and statement 45 (Gary is big) tell us that Gary is furry.\n\nHowever, we can conclude that Gary is not young because Harry is young and there is no statement that directly links Gary to Harry.\n\nTherefore, the statement \"Gary is young\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is young\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Gary is big. (Given)\n2. All big people are furry. (Given)\n3. Furry people are rough. (Given)\n4. Gary is rough. (Given)\n\nFrom statement 3 and 4, we can conclude that Gary is furry.\n\n5. Gary is kind. (Given)\n6. Rough, kind people are quiet. (Given)\n\nFrom statement 6, we can conclude that Gary is quiet.\n\n7. Gary is young is what we are trying to determine.\n\nNow, let's look at the given information related to furry people:\n\n8. Young people are furry. (Given)\n9. All quiet, furry people are round. (Given)\n10. Furry people are rough. (Given)\n\nFrom statement 8, we know that young people are furry. \n\nFrom statement 9 and the fact that Gary is furry, we can conclude that Gary is quiet (since quiet, furry people are round).\n\nBut, we already know from statement 6 that Gary is quiet.\n\nSince we have a contradiction, we need to analyze the given information again.\n\nFrom statement 6, we know that Gary is quiet and rough.\n\nFrom statement 8, we know that young people are furry.\n\nFrom statement 10, we know that furry people are rough.\n\nNow, let's analyze the given information related to quiet, furry people:\n\n11. All quiet, kind people are furry. (Given)\n12. Quiet, furry people are round. (Given)\n\nFrom statement 11 and 5 (Gary is kind), we cannot conclude that Gary is furry.\n\nHowever, we already know from statement 3 and 4 that Gary is furry.\n\nSince we have a contradiction, we need to re-analyze the given information again.\n\nFrom statement 6, we know that Gary is quiet and rough.\n\nFrom statement 8, we know that young people are furry.\n\nFrom statement 10, we know that furry people are rough.\n\nFrom statement 3, we know that big people are furry.\n\nFrom statement 4, we know that Gary is rough.\n\nSince Gary is big and rough, we can conclude that Gary is furry (from statement 3).\n\nNow, let's analyze the given information related to rough people:\n\n13. Young, rough people are kind. (Given)\n14. Gary is rough. (Given)\n\nFrom statement 14, we know that Gary is rough.\n\nFrom statement 13, we know that young, rough people are kind.\n\nHowever, we already know from statement 5 that Gary is kind.\n\nSince Gary is rough and kind, we can conclude that Gary is quiet (from statement 6).\n\nFrom statement 8, we know that young people are furry.\n\nNow, let's analyze the given information related to furry people:\n\n8. Young people are furry. (Given)\n15. Furry people are rough. (Given)\n\nFrom statement 15, we know that furry people are rough.\n\nFrom statement 8, we know that young people are furry.\n\nHowever, we already know from statement 4 that Gary is rough.\n\nSince Gary is furry and rough, we can conclude that Gary is young (from statement 8).\n\nTherefore, the statement \"Gary is young\" is \\boxed{true}.",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and the given statements.\n\nGiven Statements:\n\n1. Anne is quiet.\n2. Bob is not rough.\n3. Gary is big.\n4. Gary is kind.\n5. Gary is rough.\n6. Gary is young.\n7. Harry is young.\n8. All big people are furry.\n9. Young people are furry.\n10. All quiet, kind people are furry.\n11. If Harry is furry and Harry is quiet then Harry is round.\n12. Rough, kind people are quiet.\n13. Young, rough people are kind.\n14. All quiet, furry people are round.\n15. Furry people are rough.\n\nWe need to determine whether the statement \"Gary is young\" is true, false, or unknown.\n\nFrom statement 3 (Gary is big) and statement 8 (All big people are furry), we can infer that Gary is furry (using Modus Ponens: If P then Q, P is true, therefore Q is true).\n\nFrom statement 5 (Gary is rough) and statement 14 (Furry people are rough), we can infer that Gary is furry (using Modus Ponens: If P then Q, P is true, therefore Q is true). This supports our previous inference.\n\nFrom statement 4 (Gary is kind) and statement 10 (All quiet, kind people are furry), we cannot infer that Gary is quiet, as we do not know if Gary is quiet. However, we can infer that Gary is furry (using Modus Ponens: If P then Q, P is true, therefore Q is true). This supports our previous inferences.\n\nNow, we need to determine whether Gary is young. \n\nFrom statement 5 (Gary is rough) and statement 12 (Rough, kind people are quiet), we cannot infer that Gary is quiet, as we do not know if Gary is quiet. However, we can infer that Gary is kind (using Modus Ponens: If P then Q, P is true, therefore Q is true). This supports our previous inferences.\n\nFrom statement 3 (Gary is big) and statement 9 (Young people are furry), we cannot infer that Gary is young. However, we can infer that Gary is furry (using Modus Ponens: If P then Q, P is true, therefore Q is true). This supports our previous inferences.\n\nWe have contradictory inferences for Gary's age (young vs. not young). However, we can use statement 6 (Gary is young) as an initial assumption and check if it leads to any contradictions.\n\nIf we assume Gary is young, then from statement 3 (Gary is big) and statement 9 (Young people are furry), we can infer that Gary is furry (using Modus Ponens: If P then Q, P is true, therefore Q is true). This is consistent with our previous inferences.\n\nHowever, if Gary is young, then from statement 5 (Gary is rough) and statement 13 (Young, rough people are kind), we can infer that Gary is kind (using Modus Ponens: If P then Q, P is true, therefore Q is true). This is consistent with our previous inferences.\n\nWe cannot derive any contradictions from assuming Gary is young. However, we can derive more information.\n\nIf Gary is young, then from statement 5 (Gary is rough) and statement 13 (Young, rough people are kind), we can infer that Gary is kind (using Modus Ponens: If P then Q, P is true, therefore Q is true). From statement 4 (Gary is kind) and statement 10 (All quiet, kind people are furry), we can infer that Gary is furry (using Modus Ponens: If P then Q, P is true, therefore Q is true). We already knew this, but it's a nice confirmation.\n\nHowever, if Gary is young, then we cannot directly infer that Gary is round, as we do not know if Gary is quiet.\n\nNow, let's re-examine the original statement about Harry.\n\nFrom statement 7 (Harry is young) and statement 9 (Young people are furry), we can infer that Harry is furry.\n\nFrom statement 7 (Harry is young) and statement 11 (If Harry is furry and Harry is quiet then Harry is round), we cannot conclude that Harry is round, as we do not know if Harry is quiet.\n\nHowever, if Harry is furry, then from statement 15 (Furry people are rough), we can infer that Harry is rough.\n\nNow, from statement 15 (Furry people are rough) and statement 12 (Rough, kind people are quiet), we can infer that Harry is quiet.\n\nNow, we can conclude that Harry is quiet and Harry is furry. From statement 14 (All quiet, furry people are round), we can infer that Harry is round.\n\nSince we cannot derive any contradictions from assuming Gary is young, and the assumption is consistent with our previous inferences, the statement \"Gary is young\" is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information provided, we have the following facts:\n   - Gary is big.\n   - Gary is kind.\n   - Gary is rough.\n   - Gary is young.\n\nHowever, this information is contradictory as Gary cannot be both big and young because \"All big people are furry\" and \"Young people are furry\" which means big and young people are the same and we also know \"Furry people are rough\" but we also know Gary is big which means Gary is furry, but we also know Gary is not young as it contradicts with the fact \"Young people are furry\" since Gary is big and furry.\n\nTherefore, we can conclude that \"Gary is young\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller parts and use the given information to determine the validity of the statement.\n\n1. We are given the following statements:\n   - Anne is quiet.\n   - Bob is not rough.\n   - Gary is big.\n   - Gary is kind.\n   - Gary is rough.\n   - Gary is young.\n   - Harry is young.\n   - All big people are furry.\n   - Young people are furry.\n   - All quiet, kind people are furry.\n   - If Harry is furry and Harry is quiet then Harry is round.\n   - Rough, kind people are quiet.\n   - Young, rough people are kind.\n   - All quiet, furry people are round.\n   - Furry people are rough.\n\n2. To determine whether the statement \"Gary is young\" is true, false, or unknown, we need to analyze the given information. \n\n   - We know that Gary is big (statement 3) and Gary is rough (statement 5). \n   - We are also given that all big people are furry (statement 7) and young people are furry (statement 8). \n   - However, Gary is big, but that doesn't necessarily mean Gary is young. \n   - To further analyze this, we need to use the other given information.\n\n   - From statement 7 (all big people are furry) and statement 5 (Gary is rough), we can infer that Gary is furry.\n   - From statement 8 (young people are furry) and statement 5 (Gary is rough), we cannot directly infer Gary's age because being furry does not necessarily mean being young.\n   - However, we know that Gary is kind (statement 4) and rough (statement 5), and we have the statement \"Rough, kind people are quiet\" (statement 9). \n   - This implies that Gary is quiet.\n\n   - Now, we have Gary as big (statement 3), furry (inferred), rough (statement 5), kind (statement 4), and quiet (inferred). \n   - From the statement \"All quiet, kind people are furry\" (statement 6), we know Gary is furry.\n   - From the statement \"Furry people are rough\" (statement 14), we know Gary is indeed rough, but we already knew this.\n   - Now, we need to use the statement \"All quiet, furry people are round\" (statement 13) and the fact that Gary is quiet and furry to determine if Gary is round or not.\n   - However, we do not have any direct information about Gary's roundness.\n\n   - From statement 10 (if Harry is furry and Harry is quiet then Harry is round) and the fact that Harry is young (statement 6), we can infer that Harry is furry (statement 6) and quiet (statement 10). \n   - Since Harry is furry and quiet, we can conclude that Harry is round (statement 10).\n\n   - Now, we have Harry as round (inferred), furry (inferred), and young (statement 6). \n   - From the statement \"All quiet, furry people are round\" (statement 13), we know that quiet, furry people are indeed round.\n\n   - However, we have a contradiction here. If all quiet, furry people are round (statement 13), then Gary cannot be round because Gary is quiet and furry but we don't have information about Gary's roundness, whereas Harry is round.\n\n   - Since we have a contradiction, we cannot determine if Gary is round or not, and therefore, we cannot determine if Gary is young or not because being young does not necessarily mean being round or not.\n\n   - Therefore, the statement \"Gary is young\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Gary is young, we need to analyze the given statements and find any information related to Gary being young.\n\n1. Gary is big. (Statement 3)\n2. Gary is kind. (Statement 4)\n3. Gary is rough. (Statement 5)\n4. Gary is young. (We are trying to determine this)\n\nFrom the given statements:\n- All big people are furry. (Statement 2)\n- Young people are furry. (Statement 1)\n\nSince Gary is big (Statement 3), we can conclude that Gary is furry (Statement 2).\n\nFrom the statements:\n- Furry people are rough. (Statement 8)\n- Gary is furry (derived from Statement 3)\nSo, Gary is rough (Statement 5).\n\nFrom the statements:\n- Gary is rough (Statement 5)\n- Young, rough people are kind (Statement 7)\nWe can conclude that Gary is kind (Statement 4), because being young and rough implies being kind.\n\nNow we have:\n- Gary is big (Statement 3)\n- Gary is furry (derived from Statement 3)\n- Gary is kind (Statement 4)\n- Gary is rough (Statement 5)\n\nFrom the statements:\n- Young people are furry (Statement 1)\n- Gary is furry (derived from Statement 3)\nHowever, being big doesn't necessarily mean Gary is not young. We cannot rule out the possibility that Gary is young based on this information alone.\n\nBut, from the statements:\n- Gary is rough (Statement 5)\n- Young, rough people are kind (Statement 7)\n- Gary is kind (Statement 4)\n\nSince Gary is rough and kind, we can conclude that Gary is quiet (Statement 6).\n\nFrom the statements:\n- Gary is quiet (derived)\n- Gary is furry (derived from Statement 3)\n- All quiet, furry people are round. (Statement 9)\n\nSince Gary is quiet and furry, we can conclude that Gary is round.\n\nNow we have:\n- Gary is big (Statement 3)\n- Gary is round (derived)\n- Gary is kind (Statement 4)\n- Gary is rough (Statement 5)\n- Gary is quiet (derived)\n\nFrom the statements:\n- Young people are furry (Statement 1)\n- Gary is furry (derived from Statement 3)\n\nHowever, being big doesn't necessarily mean Gary is not young. We cannot rule out the possibility that Gary is young based on this information alone.\n\nSince we have Gary being quiet (derived) and furry (derived from Statement 3), we can conclude that Gary is round (Statement 9). However, the statement 'Young people are furry' (Statement 1) does not contradict the possibility of Gary being young. Therefore, the truth value of 'Gary is young' remains unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and the rules of logic. \n\nFirst, let's organize the given information in a more readable format:\n\n1. Anne is quiet.\n2. Bob is not rough.\n3. Gary is big.\n4. Gary is kind.\n5. Gary is rough.\n6. Gary is young.\n7. Harry is young.\n8. All big people are furry.\n9. Young people are furry.\n10. All quiet, kind people are furry.\n11. If Harry is furry and Harry is quiet then Harry is round.\n12. Rough, kind people are quiet.\n13. Young, rough people are kind.\n14. All quiet, furry people are round.\n15. Furry people are rough.\n\nNow, let's analyze the information step by step:\n\nFrom (3) and (8), we know that Gary is big and all big people are furry, so Gary is furry (by the rule of universal instantiation).\n\nFrom (5) and (15), we know that Gary is rough and furry people are rough, so Gary is indeed furry.\n\nNow, let's try to find out whether Gary is young. From (5), we know that Gary is rough, and from (13), we know that young, rough people are kind. We also know that Gary is kind from (4). But we also know that Gary is rough and kind from (5) and (4). Therefore, we can conclude that Gary is quiet (by the rule of modus ponens from (12)).\n\nHowever, we know that Gary is big from (3) and all big people are furry from (8). We also know that Gary is furry from the previous step. Therefore, Gary is furry.\n\nFrom (10), we know that all quiet, kind people are furry, and we already concluded that Gary is quiet and kind. Therefore, Gary is furry.\n\nNow, let's see if we can find any information that contradicts the statement \"Gary is young\". From (9), we know that young people are furry, and we already concluded that Gary is furry. However, we cannot conclude that Gary is young from this information.\n\nFrom (4) and (12), we know that Gary is kind and rough, kind people are quiet. We also know that Gary is quiet from the previous step. Therefore, Gary is furry.\n\nHowever, we know that Gary is furry from the previous step. \n\nNow, let's see if we can find any information that supports the statement \"Gary is young\". From (5), we know that Gary is rough, and from (13), we know that young, rough people are kind. We also know that Gary is kind from (4). However, we cannot conclude that Gary is young from this information.\n\nWe cannot find any information that supports or contradicts the statement \"Gary is young\". Therefore, we cannot determine whether the statement is true or false.\n\nHowever, we can conclude that Gary is young is unknown.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we can use a truth table or natural deduction. In this case, we'll use natural deduction.\n\nGiven statements:\n1. Anne is quiet.\n2. Bob is not rough.\n3. Gary is big.\n4. Gary is kind.\n5. Gary is rough.\n6. Gary is young.\n7. Harry is young.\n8. All big people are furry.\n9. Young people are furry.\n10. All quiet, kind people are furry.\n11. If Harry is furry and Harry is quiet then Harry is round.\n12. Rough, kind people are quiet.\n13. Young, rough people are kind.\n14. All quiet, furry people are round.\n15. Furry people are rough.\n\nWe need to determine whether statement 6 (Gary is young) is true, false, or unknown.\n\nLet's analyze the statements:\n\nFrom 8 and 9, we can conclude that Gary is furry because Gary is big (statement 3) and young (statement 6).\n\nFrom 10, we can conclude that Gary is quiet because Gary is kind (statement 4).\n\nNow, we have that Gary is furry (from 8 and 9) and quiet (from 10).\n\nFrom 14, we can conclude that Gary is round because Gary is quiet and furry.\n\nHowever, we also know that Gary is rough (statement 5). From 15, we can conclude that Gary is furry (which we already know).\n\nFrom 12, we can conclude that Gary is quiet because Gary is rough and kind.\n\nWe can now combine the information: Gary is rough (statement 5), kind (statement 4), and quiet (from 12).\n\nNow, we have that Gary is rough (statement 5), kind (statement 4), and quiet (from 12). From 13, we can conclude that Gary is kind (which we already know) because Gary is young and rough.\n\nHowever, this creates a contradiction. If Gary is young and rough, then Gary is kind (from 13). But we already know that Gary is kind (statement 4). This means that statement 6 (Gary is young) cannot be true if Gary is kind.\n\nFrom 10, we can conclude that Gary is furry (which we already know) and quiet (from 10).\n\nNow, we have that Gary is furry (from 10) and quiet (from 10). From 14, we can conclude that Gary is round (which we already know) because Gary is quiet and furry.\n\nNow, we have that Gary is rough (statement 5), round (from 14), and furry (from 10).\n\nNow, let's analyze the statements again:\n\nFrom 12, we can conclude that Gary is quiet (which we already know) because Gary is rough and kind.\n\nWe can now combine the information: Gary is rough (statement 5), kind (statement 4), and quiet (from 12).\n\nHowever, we already know that Gary is round (from 14) and furry (from 10).\n\nNow, we have that Gary is furry (from 10) and round (from 14). From 11, we can conclude that Gary is quiet (which we already know) because Gary is furry and round.\n\nWe can now combine the information: Gary is rough (statement 5), kind (statement 4), quiet (from 12), round (from 14), and furry (from 10).\n\nNow, let's analyze the statements again:\n\nFrom 15, we can conclude that Gary is furry (which we already know) because Gary is rough.\n\nWe can now combine the information: Gary is rough (statement 5), kind (statement 4), quiet (from 12), round (from 14), and furry (from 15).\n\nFrom 11, we can conclude that Gary is quiet (which we already know) because Harry is furry, Harry is quiet, and Harry is round.\n\nFrom 14, we can conclude that Gary is round (which we already know) because Gary is quiet and furry.\n\nFrom 10, we can conclude that Gary is furry (which we already know) because Gary is kind.\n\nNow, we have that Gary is rough (statement 5), round (from 14), and furry (from 10).\n\nFrom 11, we can conclude that Gary is quiet (which we already know) because Harry is furry, Harry is quiet, and Harry is round.\n\nWe can now combine the information: Gary is rough (statement 5), round (from 14), furry (from 10), and quiet (from 11).\n\nFrom 15, we can conclude that Gary is furry (which we already know) because Gary is rough.\n\nWe can now combine the information: Gary is rough (statement 5), round (from 14), furry (from 15), and quiet (from 11).\n\nNow, we have that Gary is rough (statement 5), round (from 14), furry (from 15), and quiet (from 11). From 12, we can conclude that Gary is quiet (which we already know) because Gary is rough and kind.\n\nNow, we have that Gary is rough (statement 5), kind (statement 4), quiet (from 12), round (from 14), furry (from 15), and Harry is quiet and Harry is furry.\n\nFrom 11, we can conclude that Harry is round (which we already know) because Harry is furry and quiet.\n\nNow, we have that Gary is rough (statement 5), kind (statement 4), quiet (from 12), round (from 14), furry (from 15), and Harry is quiet, Harry is furry, and Harry is round.\n\nNow, let's analyze the statements again:\n\nFrom 10, we can conclude that Gary is furry (which we already know) because Gary is kind.\n\nFrom 9, we can conclude that Gary is furry (which we already know) because Gary is young.\n\nWe can now combine the information: Gary is rough (statement 5), round (from 14), furry (from 9), and quiet (from 12).\n\nNow, we have that Gary is rough (statement 5), round (from 14), furry (from 9), and quiet (from 12). From 15, we can conclude that Gary is furry (which we already know) because Gary is rough.\n\nWe can now combine the information: Gary is rough (statement 5), round (from 14), furry (from 15), and quiet (from 12).\n\nNow, we have that Gary is rough (statement 5), round (from 14), furry (from 15), and quiet (from 12). From 11, we can conclude that Gary is quiet (which we already know) because Harry is furry, Harry is quiet, and Harry is round.\n\nWe can now combine the information: Gary is rough (statement 5), round (from 14), furry (from 15), and quiet (from 11).\n\nFrom 10, we can conclude that Gary is furry (which we already know) because Gary is kind.\n\nNow, we have that Gary is rough (statement 5), round (from 14), furry (from 10), and quiet (from 11).\n\nFrom 9, we can conclude that Gary is furry (which we already know) because Gary is young.\n\nWe can now combine the information: Gary is rough (statement 5), round (from 14), furry (from 9), and quiet (from 11).\n\nFrom 15, we can conclude that Gary is furry (which we already know) because Gary is rough.\n\nWe can now combine the information: Gary is rough (statement 5), round (from 14), furry (from 15), and quiet (from 11).\n\nFrom 12, we can conclude that Gary is quiet (which we already know) because Gary is rough and kind.\n\nWe can now combine the information: Gary is rough (statement 5), round (from 14), furry (from 15), and quiet (from 12).\n\nFrom 13, we can conclude that Gary is kind (which we already know) because Gary is young and rough.\n\nWe can now combine the information: Gary is rough (statement 5), round (from 14), furry (from 15), and kind (from 13).\n\nFrom 10, we can conclude that Gary is furry (which we already know) because Gary is kind.\n\nNow, we have that Gary is rough (statement 5), round (from 14), furry (from 10), and kind (from 13).\n\nFrom 9, we can conclude that Gary is furry (which we already know) because Gary is young.\n\nWe can now combine the information: Gary is rough (statement 5), round (from 14), furry (from 9), and kind (from 13).\n\nFrom 15, we can conclude that Gary is furry (which we already know) because Gary is rough.\n\nWe can now combine the information: Gary is rough (statement 5), round (from 14), furry (from 15), and kind (from 13).\n\nFrom 12, we can conclude that Gary is quiet (which we already know) because Gary is rough and kind.\n\nWe can now combine the information: Gary is rough (statement 5), round (from 14), furry (from 15), quiet (from 12), and kind (from 13).\n\nNow, we have that Gary is rough (statement 5), round (from 14), furry (from 15), quiet (from 12), and kind (from 13). From 11, we can conclude that Gary is quiet (which we already know) because Harry is furry, Harry is quiet, and Harry is round.\n\nWe can now combine the information: Gary is rough (statement 5), round",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(bob))",
+          "z3_formula": "Not(rough_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_gary, furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_gary, quiet_gary), round_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), quiet_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_gary, furry_gary), round_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(young(gary))",
+          "z3_formula": "Not(young_gary) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(bob))",
+          "z3_formula": "Not(rough_bob) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_gary, furry_gary), round_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & furry(Y) & quiet(Y) -> round(Y)",
+          "z3_formula": "Implies(And(furry_harry, furry_gary, quiet_gary), round_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_gary, furry_gary)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_gary, furry_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), quiet_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), furry_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_gary, quiet_gary), round_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> furry(X)",
+          "z3_formula": "Implies(rough_gary, furry_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_gary, quiet_gary), round_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_gary, furry_gary), round_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_gary, furry_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, furry_gary), rough_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(young_gary, furry_gary), quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, furry_gary), round_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary, kind_gary), quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, furry_gary, rough_gary), kind_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, furry_gary, quiet_gary), round_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_gary, furry_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), furry_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), rough_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), quiet_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> young(X)",
+          "z3_formula": "Implies(young_gary, young_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> furry(X)",
+          "z3_formula": "Implies(furry_gary, furry_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_gary, furry_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, quiet_harry), round_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, kind_harry), quiet_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> furry(X)",
+          "z3_formula": "Implies(And(furry_harry, quiet_harry), furry_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_harry, kind_harry), furry_harry)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> young(X)",
+          "z3_formula": "Implies(young_harry, young_harry)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> furry(X)",
+          "z3_formula": "Implies(furry_harry, furry_harry)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> furry(X)",
+          "z3_formula": "Implies(furry_harry, furry_harry)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 32
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 33
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "Not(young_gary)",
+          "source_step": 34
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_gary, furry_gary), round_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(young_gary, furry_gary), round_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> furry(X)",
+          "z3_formula": "Implies(rough_gary, furry_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(bob))",
+          "z3_formula": "Not(rough_bob) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_gary, furry_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), furry_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), quiet_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_gary, furry_gary), round_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry) -> furry(harry)",
+          "z3_formula": "Implies(young_harry, furry_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry) & furry(harry) -> round(harry)",
+          "z3_formula": "Implies(And(young_harry, furry_harry), round_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry) -> rough(harry)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry) & kind(harry) -> quiet(harry)",
+          "z3_formula": "Implies(And(rough_harry, kind_harry), quiet_harry)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry) & furry(harry) -> round(harry)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), round_harry)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry) -> rough(harry)",
+          "z3_formula": "Implies(furry_harry, rough_harry)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_gary, furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not young(gary)",
+          "z3_formula": "Not(young_gary) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(bob))",
+          "z3_formula": "Not(rough_bob) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_gary, furry_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), furry_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, quiet_harry), round_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), quiet_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_gary, furry_gary), round_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_gary, furry_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_gary, furry_gary), round_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(bob)",
+          "z3_formula": "not_rough_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> furry(X)",
+          "z3_formula": "Implies(big_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_gary, furry_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_gary, kind_gary), furry_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_harry, quiet_harry), round_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), quiet_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(young_gary, rough_gary), kind_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_gary, furry_gary), round_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> rough(X)",
+          "z3_formula": "Implies(furry_gary, rough_gary)",
+          "source_step": 15
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 207,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 38
+    },
+    "maxsat_stats": {
+      "satisfied": 37,
+      "excluded": 1,
+      "total_weight": 204,
+      "solve_time_ms": 1.229078508913517
+    },
+    "timing": {
+      "trace_gen_s": 24.888,
+      "extraction_s": 51.433,
+      "dedup_s": 1.514,
+      "maxsat_s": 0.003,
+      "total_s": 77.839
+    }
+  }
+}

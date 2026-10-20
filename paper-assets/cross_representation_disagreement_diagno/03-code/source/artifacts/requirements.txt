@@ -1,0 +1,3 @@
+openai>=1.0
+z3-solver
+datasets

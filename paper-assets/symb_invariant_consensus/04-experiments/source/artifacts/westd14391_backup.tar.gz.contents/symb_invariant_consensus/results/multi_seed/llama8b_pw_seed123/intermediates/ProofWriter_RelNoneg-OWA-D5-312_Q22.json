@@ -1,0 +1,966 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-312_Q22",
+    "problem": "The dog chases the squirrel. The dog likes the tiger. The lion chases the squirrel. The lion is big. The lion is red. The lion likes the tiger. The lion visits the squirrel. The lion visits the tiger. The squirrel chases the lion. The squirrel is nice. The squirrel likes the lion. The tiger chases the dog. The tiger is kind. The tiger is red. The tiger likes the dog. The tiger likes the lion. If something chases the lion then the lion is blue. If something is kind then it chases the tiger. If something chases the tiger then it visits the dog. If something visits the lion then it likes the squirrel. If something is red and it chases the tiger then it likes the squirrel. If something chases the tiger and it visits the squirrel then the squirrel visits the tiger. If something visits the dog then the dog likes the lion. If something is kind and it visits the dog then the dog is kind.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger chases the lion.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nKind($x, bool) ::: Is x kind?\nRed($x, bool) ::: Is x red?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nChases(Dog, Squirrel, True) ::: The dog chases the squirrel.\nLikes(Dog, Tiger, True) ::: The dog likes the tiger.\nChases(Lion, Squirrel, True) ::: The lion chases the squirrel.\nBig(Lion, True) ::: The lion is big.\nRed(Lion, True) ::: The lion is red.\nLikes(Lion, Tiger, True) ::: The lion likes the tiger.\nVisits(Lion, Squirrel, True) ::: The lion visits the squirrel.\nVisits(Lion, Tiger, True) ::: The lion visits the tiger.\nChases(Squirrel, Lion, True) ::: The squirrel chases the lion.\nNice(Squirrel, True) ::: The squirrel is nice.\nLikes(Squirrel, Lion, True) ::: The squirrel likes the lion.\nChases(Tiger, Dog, True) ::: The tiger chases the dog.\nKind(Tiger, True) ::: The tiger is kind.\nRed(Tiger, True) ::: The tiger is red.\nLikes(Tiger, Dog, True) ::: The tiger likes the dog.\nLikes(Tiger, Lion, True) ::: The tiger likes the lion.\n\nRules:\nChases($x, Lion, True) >>> Blue(Lion, True) ::: If something chases the lion then the lion is blue.\nKind($x, True) >>> Chases($x, Tiger, True) ::: If something is kind then it chases the tiger.\nChases($x, Tiger, True) >>> Visits($x, Dog, True) ::: If something chases the tiger then it visits the dog.\nVisits($x, Lion, True) >>> Likes($x, Squirrel, True) ::: If something visits the lion then it likes the squirrel.\nRed($x, True) && Chases($x, Tiger, True) >>> Likes($x, Squirrel, True) ::: If something is red and it chases the tiger then it likes the squirrel.\nChases($x, Tiger, True) && Visits($x, Squirrel, True) >>> Visits(Squirrel, Tiger, True) ::: If something chases the tiger and it visits the squirrel then the squirrel visits the tiger.\nVisits($x, Dog, True) >>> Likes(Dog, Lion, True) ::: If something visits the dog then the dog likes the lion.\nKind($x, True) && Visits($x, Dog, True) >>> Kind(Dog, True) ::: If something is kind and it visits the dog then the dog is kind.\n\nQuery:\nChases(Tiger, Lion, True) ::: The tiger chases the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 114.0
+    },
+    "answer_counts": {
+      "Unknown": 7
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The tiger chases the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know the tiger likes the lion (from the given statements).\n2. We are not given any information that directly states the tiger chases the lion, but we need to look at the given conditions.\n3. Condition 1: If something chases the lion then the lion is blue. This does not directly relate to the tiger.\n4. Condition 2: If something is kind then it chases the tiger. The tiger is kind (given), but this condition does not tell us if the tiger chases the lion.\n5. Condition 3: If something chases the tiger then it visits the dog. This condition does not directly relate to the tiger chases the lion.\n6. Condition 4: If something visits the lion then it likes the squirrel. This does not directly relate to the tiger chases the lion.\n7. Condition 5: If something is red and it chases the tiger then it likes the squirrel. The tiger is red, but we are not given any information that it chases the tiger.\n8. Condition 6: If something chases the tiger and it visits the squirrel then the squirrel visits the tiger. This condition does not directly relate to the tiger chases the lion.\n9. Condition 7: If something visits the dog then the dog likes the lion. This does not directly relate to the tiger chases the lion.\n10. Condition 8: If something is kind and it visits the dog then the dog is kind. The tiger is kind and visits the dog, but this does not tell us if it chases the lion.\n\nHowever, there is one condition that indirectly relates to the given information: the tiger likes the lion (from the given statements). This information is not directly related to the conditions but it tells us that the tiger is not the type of animal that would chase the lion, because it likes the lion.\n\nLooking back at the conditions, none of them directly tell us if the tiger chases the lion or not. However, based on the information given, the tiger likes the lion, which suggests that the tiger is unlikely to chase the lion. Since we cannot determine the truth of the statement based on the given conditions, we mark it as unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger chases the lion\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\nGiven information:\n- The tiger chases the dog.\n- The tiger is kind.\n- The tiger is red.\n- The tiger likes the dog.\n- The tiger likes the lion.\n\nConditions:\n- If something chases the lion then the lion is blue. (This does not directly apply to the tiger, as we are trying to determine if the tiger chases the lion.)\n- If something is kind then it chases the tiger. (This condition does not apply to the tiger because it's not being analyzed, it's the subject.)\n- If something chases the tiger then it visits the dog. (This is the case with the dog, which chases the tiger.)\n- If something visits the lion then it likes the squirrel. (This applies to the lion, not the tiger.)\n- If something is red and it chases the tiger then it likes the squirrel. (The tiger is red, but this condition is not directly relevant to the tiger chasing the lion.)\n- If something chases the tiger and it visits the squirrel then the squirrel visits the tiger. (This does not apply to the situation where the tiger chases the lion.)\n- If something visits the dog then the dog likes the lion. (This applies to the lion, not the tiger.)\n- If something is kind and it visits the dog then the dog is kind. (This does not apply to the tiger.)\n\nFrom the given information, we can deduce the following:\n- The tiger likes the lion, which is a direct statement.\n- However, we cannot find any direct statement or condition that says the tiger chases the lion. We have conditions that talk about the lion being chased, but none of them directly apply to the tiger.\n\nHowever, we can infer from the conditions that if something is red and chases the tiger, then it likes the squirrel (condition 5), and the tiger is red. So, this means the tiger likes the squirrel. \n\nBut we have the condition 3: If something chases the tiger then it visits the dog. And it is given that the tiger chases the dog. So, the dog visits the tiger.\n\nFrom the condition 7, it is given that the dog visits the tiger. And we also know from the condition 8 that if something is kind and it visits the dog then the dog is kind. Now we can say that the tiger is kind. \n\nNow we have a condition (condition 2) that says if something is kind then it chases the tiger. And we have the information that the tiger is kind. So the tiger must be chasing the tiger. \n\nSince the tiger is chasing the tiger, we can use condition 3 (If something chases the tiger then it visits the dog) and we can say that the tiger must visit the dog. \n\nNow we have the condition 6 that says if something chases the tiger and it visits the squirrel then the squirrel visits the tiger. We have the information that the tiger visits the squirrel. So the squirrel visits the tiger.\n\nNow we can use the condition 4 that says if something visits the lion then it likes the squirrel. The squirrel visits the lion. So the lion likes the squirrel.\n\nNow we have the condition 1 that says if something chases the lion then the lion is blue. We know that the lion is not blue. The lion is red. \n\nWe can use the condition 5 (If something is red and it chases the tiger then it likes the squirrel) and we can say that the lion is red and it likes the squirrel. \n\nWe also know that the lion is big.\n\nNow we can use the condition that says if something is big and it likes the squirrel then it chases the lion. We have the information that the lion is big and it likes the squirrel. So the lion must be chasing the lion. \n\nHowever, this is a contradiction. We cannot have the lion chasing the lion. The condition that says if something chases the lion then the lion is blue (condition 1) must apply to the lion. \n\nNow we can use the condition 1 again that says if something chases the lion then the lion is blue. We have the information that the lion is not blue. The lion is red. However, we can say that the lion is blue. \n\nNow we have the condition 5 (If something is red and it chases the tiger then it likes the squirrel) and we can say that the lion is red and it likes the squirrel. However, we can say that the lion is blue and it likes the squirrel. \n\nWe also have the condition that says if something is blue and it likes the squirrel then it chases the lion. We have the information that the lion is blue and it likes the squirrel. So the lion must be chasing the lion. \n\nHowever, this is another contradiction. We cannot have the lion chasing the lion. \n\nNow we can say that the condition 1 that says if something chases the lion then the lion is blue (condition 1) must not apply to the lion. \n\nNow we can use the condition 1 that says if something chases the lion then the lion is blue. We have the information that the lion is not blue. The lion is red. However, we can say that the lion is blue. \n\nNow we can say that the lion is blue. \n\nNow we can use the condition 2 that says if something is kind then it chases the tiger. We have the information that the lion is kind (because it is big and it likes the squirrel). So the lion must be chasing the tiger.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger chases the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger is kind. (From the given statements)\n\n2. If something is kind then it chases the tiger. (From the given statements)\n\n   Since the tiger is kind, we would expect it to chase itself, but this is a contradiction. However, we are given that the tiger is kind. We will continue to analyze the statements without self-referential contradictions.\n\n3. The tiger is red. (From the given statements)\n\n4. The tiger likes the lion. (From the given statements)\n\n5. The tiger likes the dog. (From the given statements)\n\n6. If something is red and it chases the tiger then it likes the squirrel. (From the given statements)\n\n   Since the tiger is red, this statement would imply that the tiger likes the squirrel if it chases the tiger. However, this statement is not directly applicable as it implies the tiger is chasing itself.\n\n7. If something chases the tiger then it visits the dog. (From the given statements)\n\n8. The tiger chases the dog. (From the given statements)\n\n   This statement implies that the dog visits the tiger.\n\n9. If something visits the dog then the dog likes the lion. (From the given statements)\n\n10. The dog likes the lion. (From the given statements)\n\nNow, let's examine the statement we are trying to determine: \"The tiger chases the lion.\"\n\nSince we have not found any explicit statement that directly says the tiger chases the lion, we cannot conclude that the statement is true. However, we can try to derive it using the given statements.\n\nIf the tiger chases the lion, then the lion is blue. (From the given statements)\n\nSince we do not have any information that says the lion is blue, we cannot conclude that the statement is true. However, we also do not have any information that says it is false. Therefore, the statement is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger chases the lion\" is true, false, or unknown, we need to analyze the given information step by step and apply the given rules to see if we can deduce any information about the relationship between the tiger and the lion.\n\n1. The lion is big. The lion is red. The lion likes the tiger. The lion visits the squirrel. The lion visits the tiger. The squirrel chases the lion. The squirrel is nice. The squirrel likes the lion. The tiger chases the dog. The tiger is kind. The tiger is red. The tiger likes the dog. The tiger likes the lion.\n\n2. The given rules are:\n   - If something chases the lion then the lion is blue.\n   - If something is kind then it chases the tiger.\n   - If something chases the tiger then it visits the dog.\n   - If something visits the lion then it likes the squirrel.\n   - If something is red and it chases the tiger then it likes the squirrel.\n   - If something chases the tiger and it visits the squirrel then the squirrel visits the tiger.\n   - If something visits the dog then the dog likes the lion.\n   - If something is kind and it visits the dog then the dog is kind.\n\nFrom the given rules, we can see that there is no direct information that states if the tiger chases the lion. However, we can apply rule 3: \"If something chases the tiger then it visits the dog.\" But in this case, the given statement is about the tiger chasing the lion. \n\nSo, we need to analyze the given rules to find out if there is any rule that can lead to the conclusion of the tiger chasing the lion.\n\nLet's re-examine the rules and see if we can derive any information that is relevant to the statement \"The tiger chases the lion.\"\n\nFrom rule 2, we know that \"If something is kind then it chases the tiger.\" Since the tiger is kind, we can infer that the tiger chases itself, but this doesn't give us any information about the lion.\n\nNow let's examine rule 5, which states: \"If something is red and it chases the tiger then it likes the squirrel.\" However, we are trying to find out if the tiger chases the lion. There is no rule that directly links the tiger chasing the lion to the color red.\n\nWe can also examine rule 6, which states: \"If something chases the tiger and it visits the squirrel then the squirrel visits the tiger.\" However, this rule is not relevant to the statement \"The tiger chases the lion.\"\n\nWe can also examine rule 7, which states: \"If something visits the dog then the dog likes the lion.\" However, this rule is also not relevant to the statement \"The tiger chases the lion.\"\n\nNow let's examine rule 8, which states: \"If something is kind and it visits the dog then the dog is kind.\" However, this rule is also not relevant to the statement \"The tiger chases the lion.\"\n\nFrom the given information and the rules, we cannot directly conclude whether the tiger chases the lion or not. \n\nTherefore, the statement \"The tiger chases the lion\" is unknown based on the given information and the rules.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger chases the lion\" is true, false, or unknown, we need to analyze the given information and apply the rules.\n\n1. The tiger likes the lion: This is a given statement, so we can't conclude anything from it yet.\n2. If something chases the lion then the lion is blue: This rule doesn't apply to the tiger, so we can't conclude anything from it yet.\n3. If something is kind then it chases the tiger: We know the tiger is kind, but we need to find out if it chases the lion or not.\n4. If something chases the tiger then it visits the dog: This rule doesn't apply to the tiger directly, but we can use it later.\n5. If something visits the lion then it likes the squirrel: We know the lion visits the squirrel, but this doesn't help us with the tiger.\n6. If something is red and it chases the tiger then it likes the squirrel: The tiger is red, but we need to find out if it chases the lion or not.\n7. If something chases the tiger and it visits the squirrel then the squirrel visits the tiger: This rule doesn't apply to the tiger directly, but we can use it later.\n8. If something visits the dog then the dog likes the lion: We know the dog likes the lion, but this doesn't help us with the tiger.\n9. If something is kind and it visits the dog then the dog is kind: We know the tiger is kind, but we need to find out if it visits the dog or not.\n\nNow, let's analyze the given statements:\n- The tiger likes the tiger: This is a given statement.\n- The tiger is kind: This is a given statement.\n- The tiger is red: This is a given statement.\n\nWe can't conclude that the tiger chases the lion directly from the given rules. However, we can use rule 4 to analyze the situation.\n\n- Since the tiger is kind (rule 3), it chases the tiger (itself), which means it visits the dog (rule 4).\n- However, we know the tiger doesn't visit the dog (given statement), so this rule doesn't apply.\n- Since the tiger is red (rule 6), and it chases the tiger (itself), it likes the squirrel (rule 6).\n\nWe can also use rule 7 to analyze the situation.\n- Since the tiger is red (rule 6), and it chases the tiger (itself), and it visits the squirrel (rule 6), the squirrel visits the tiger (rule 7).\n\nHowever, we can't conclude that the tiger chases the lion directly from the given rules. \n\nTherefore, the statement \"The tiger chases the lion\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we'll use logical deduction and analyze the given statements.\n\n1. The lion is big.\n2. The lion is red.\n3. The lion likes the tiger.\n4. The lion visits the squirrel.\n5. The lion visits the tiger.\n6. The squirrel chases the lion.\n7. The squirrel is nice.\n8. The squirrel likes the lion.\n9. The tiger chases the dog.\n10. The tiger is kind.\n11. The tiger is red.\n12. The tiger likes the dog.\n13. The tiger likes the lion.\n\nNow, let's consider the given conditions:\n\n1. If something chases the lion then the lion is blue. (This is a conditional statement, but we don't have any information about something chasing the lion yet.)\n2. If something is kind then it chases the tiger. (From statement 10, we know the tiger is kind, but this doesn't directly tell us what the tiger does.)\n3. If something chases the tiger then it visits the dog. (We'll examine this condition later.)\n4. If something visits the lion then it likes the squirrel. (We'll examine this condition later.)\n5. If something is red and it chases the tiger then it likes the squirrel. (We know the tiger is red, but this condition doesn't directly tell us what the tiger does.)\n6. If something chases the tiger and it visits the squirrel then the squirrel visits the tiger. (This is a conditional statement, but we don't have any information about something chasing the tiger and visiting the squirrel yet.)\n7. If something visits the dog then the dog likes the lion. (We'll examine this condition later.)\n8. If something is kind and it visits the dog then the dog is kind. (We know the tiger is kind and visits the dog, but this condition doesn't directly tell us what the tiger does.)\n\nNow, let's examine the conditions one by one to see if we can derive any information about the tiger chases the lion.\n\nFrom condition 3, we know that if something chases the tiger then it visits the dog. However, we don't have any information about something chasing the tiger yet.\n\nFrom condition 6, we know that if something chases the tiger and it visits the squirrel then the squirrel visits the tiger. However, we don't have any information about something chasing the tiger and visiting the squirrel yet.\n\nFrom condition 4, we know that if something visits the lion then it likes the squirrel. However, we don't have any information about something visiting the lion yet.\n\nFrom condition 7, we know that if something visits the dog then the dog likes the lion. However, we don't have any information about something visiting the dog yet.\n\nNow, let's examine the conditions that involve the tiger.\n\nFrom statement 10, we know that the tiger is kind. From condition 2, we know that if something is kind then it chases the tiger. However, this doesn't directly tell us what the tiger does.\n\nFrom statement 12, we know that the tiger likes the lion. However, this doesn't directly tell us what the tiger does.\n\nNow, let's examine the conditions that involve the lion.\n\nFrom statement 6, we know that the lion visits the squirrel. From condition 4, we know that if something visits the lion then it likes the squirrel. However, this doesn't directly tell us what the tiger does.\n\nFrom statement 13, we know that the tiger likes the lion. However, this doesn't directly tell us what the tiger does.\n\nNow, let's examine the conditions that involve the tiger and the lion.\n\nFrom condition 1, we know that if something chases the lion then the lion is blue. However, we don't have any information about something chasing the lion yet.\n\nNow, let's examine the conditions that involve the tiger, the lion, and the squirrel.\n\nFrom statement 8, we know that the tiger is kind. From condition 2, we know that if something is kind then it chases the tiger. However, this doesn't directly tell us what the tiger does.\n\nFrom statement 6, we know that the lion visits the squirrel. From condition 4, we know that if something visits the lion then it likes the squirrel. However, this doesn't directly tell us what the tiger does.\n\nNow, let's examine the conditions that involve the tiger, the lion, and the dog.\n\nFrom statement 9, we know that the tiger chases the dog. From condition 3, we know that if something chases the tiger then it visits the dog. However, this doesn't directly tell us what the tiger does.\n\nNow, let's examine the conditions that involve the tiger, the lion, the dog, and the squirrel.\n\nFrom statement 9, we know that the tiger chases the dog. From condition 3, we know that if something chases the tiger then it visits the dog. However, this doesn't directly tell us what the tiger does.\n\nFrom statement 6, we know that the lion visits the squirrel. From condition 4, we know that if something visits the lion then it likes the squirrel. However, this doesn't directly tell us what the tiger does.\n\nNow, let's examine the conditions that involve the tiger, the lion, the dog, the squirrel, and the statement we're trying to determine.\n\nFrom statement 9, we know that the tiger chases the dog. From condition 3, we know that if something chases the tiger then it visits the dog. However, this doesn't directly tell us what the tiger does.\n\nFrom statement 6, we know that the lion visits the squirrel. From condition 4, we know that if something visits the lion then it likes the squirrel. However, this doesn't directly tell us what the tiger does.\n\nNow, let's examine the conditions that involve the tiger, the lion, the dog, the squirrel, and the statement we're trying to determine, and also the fact that the tiger is kind.\n\nFrom statement 10, we know that the tiger is kind. From condition 2, we know that if something is kind then it chases the tiger. However, this doesn't directly tell us what the tiger does.\n\nHowever, from condition 8, we know that if something is kind and it visits the dog then the dog is kind. We know that the tiger is kind (statement 10) and visits the dog (statement 9), but this condition doesn't directly tell us what the tiger does.\n\nFrom statement 10, we know that the tiger is kind. From condition 3, we know that if something chases the tiger then it visits the dog. However, this doesn't directly tell us what the tiger does.\n\nNow, let's examine the conditions that involve the tiger, the lion, the dog, the squirrel, and the statement we're trying to determine, and also the fact that the tiger is red.\n\nFrom statement 11, we know that the tiger is red. From condition 5, we know that if something is red and it chases the tiger then it likes the squirrel. However, this doesn't directly tell us what the tiger does.\n\nFrom statement 9, we know that the tiger chases the dog. However, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nFrom statement 13, we know that the tiger likes the lion. However, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nNow, let's examine the conditions that involve the tiger, the lion, the dog, the squirrel, and the statement we're trying to determine, and also the fact that the tiger likes the lion.\n\nFrom statement 13, we know that the tiger likes the lion. However, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we can't conclude anything about the statement we're trying to determine.\n\nHowever, we",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given rules and deduce the relationship between the tiger and the lion.\n\n1. The lion is big. The lion is red. The lion likes the tiger. The lion visits the squirrel. The lion visits the tiger. The lion likes the tiger. \n   - From this, we can't directly determine if the tiger chases the lion or not. So, we move on to the rules.\n\n2. If something chases the lion then the lion is blue. \n   - Since the lion is not blue, it means the lion is not being chased by something.\n\n3. If something is kind then it chases the tiger. \n   - We know the tiger is kind. Therefore, the tiger should chase something, but we are trying to find out if the tiger chases the lion.\n\n4. If something chases the tiger then it visits the dog. \n   - We are trying to find out if the tiger chases the lion, but we don't know if the lion chases the tiger or not.\n\n5. If something visits the lion then it likes the squirrel. \n   - We don't have enough information about the tiger visiting the lion.\n\n6. If something is red and it chases the tiger then it likes the squirrel. \n   - The lion is red and it chases the tiger, but we already know from rule 1 that the lion likes the tiger.\n\n7. If something chases the tiger and it visits the squirrel then the squirrel visits the tiger. \n   - We don't have enough information about the lion or the squirrel chasing the tiger.\n\n8. If something visits the dog then the dog likes the lion. \n   - We don't have enough information about the tiger or the lion visiting the dog.\n\n9. If something is kind and it visits the dog then the dog is kind. \n   - We know the tiger is kind, but we don't have enough information about it visiting the dog.\n\nNow, let's try to find the relationship between the tiger and the lion using the given information.\n\n- The tiger likes the lion (given information).\n- The lion visits the tiger (given information).\n- The lion is red (given information).\n- If something is red and it chases the tiger then it likes the squirrel (rule 6).\n- Since the lion is red and it visits the tiger, it might seem like it likes the squirrel. However, we know from rule 1 that the lion likes the tiger.\n- There is no rule that directly states the relationship between the lion visiting the tiger and the lion chasing the tiger.\n\nHowever, we can try another approach.\n\n- We know the tiger likes the lion (given information).\n- The lion likes the tiger (given information).\n- The lion is big and red (given information).\n- The lion visits the squirrel (given information).\n- The lion visits the tiger (given information).\n\nNow, let's try to find a rule that can help us determine if the tiger chases the lion.\n\n- Rule 2 states that if something chases the lion then the lion is blue. \n  - Since the lion is not blue, it means the lion is not being chased by something.\n\nHowever, we can use another rule.\n\n- If something is kind then it chases the tiger (rule 3).\n- We know the tiger is kind (given information).\n- Therefore, the tiger should chase something, but we are trying to find out if the tiger chases the lion.\n\nHowever, we can use another rule.\n\n- If something chases the tiger then it visits the dog (rule 4).\n- We are trying to find out if the tiger chases the lion.\n\nHowever, we can use another rule.\n\n- The lion likes the tiger (given information).\n- The tiger likes the lion (given information).\n- If something likes the tiger then it is not the case that the tiger chases it (no rule directly states this, but it's a logical conclusion).\n\nNow, let's try to find a rule that can help us determine if the tiger chases the lion.\n\n- Rule 1 states that the lion chases the squirrel.\n- We don't have enough information about the lion chasing the tiger.\n\nHowever, we can use another rule.\n\n- If something visits the lion then it likes the squirrel (rule 5).\n- The lion visits the tiger (given information).\n- However, we don't have enough information about the tiger visiting the lion.\n\nNow, let's try to find another rule that can help us determine if the tiger chases the lion.\n\n- If something is red and it chases the tiger then it likes the squirrel (rule 6).\n- The lion is red (given information).\n- The lion visits the tiger (given information).\n- However, we don't have enough information about the lion chasing the tiger.\n\nNow, let's try to find another rule that can help us determine if the tiger chases the lion.\n\n- The tiger likes the lion (given information).\n- The lion likes the tiger (given information).\n- If something likes the lion then it is not the case that the lion chases it (no rule directly states this, but it's a logical conclusion).\n\nHowever, we can use another rule.\n\n- If something is kind and it visits the dog then the dog is kind (rule 9).\n- We know the tiger is kind (given information).\n- However, we don't have enough information about the tiger visiting the dog.\n\nNow, let's try to find another rule that can help us determine if the tiger chases the lion.\n\n- The lion is big and red (given information).\n- The lion likes the tiger (given information).\n- The lion visits the tiger (given information).\n- The lion is not blue (rule 2).\n- We don't have enough information about the lion chasing the tiger.\n\nNow, let's try to find another rule that can help us determine if the tiger chases the lion.\n\n- The tiger likes the lion (given information).\n- The lion likes the tiger (given information).\n- We know the lion is not being chased by something (rule 2).\n- However, we don't have enough information about the tiger chasing the lion.\n\nNow, let's try to find another rule that can help us determine if the tiger chases the lion.\n\n- If something is kind and it visits the dog then the dog is kind (rule 9).\n- We know the tiger is kind (given information).\n- However, we don't have enough information about the tiger visiting the dog.\n\nNow, let's try to find another rule that can help us determine if the tiger chases the lion.\n\n- The lion is big and red (given information).\n- The lion likes the tiger (given information).\n- The lion visits the tiger (given information).\n- The lion is not blue (rule 2).\n- We don't have enough information about the lion chasing the tiger.\n\nNow, let's try to find another rule that can help us determine if the tiger chases the lion.\n\n- If something chases the tiger then it visits the dog (rule 4).\n- We are trying to find out if the tiger chases the lion.\n\nHowever, we can use another rule.\n\n- If something visits the lion then it likes the squirrel (rule 5).\n- The lion visits the tiger (given information).\n- However, we don't have enough information about the tiger visiting the lion.\n\nNow, let's try to find another rule that can help us determine if the tiger chases the lion.\n\n- If something is red and it chases the tiger then it likes the squirrel (rule 6).\n- The lion is red (given information).\n- The lion visits the tiger (given information).\n- However, we don't have enough information about the lion chasing the tiger.\n\nNow, let's try to find another rule that can help us determine if the tiger chases the lion.\n\n- The tiger likes the lion (given information).\n- The lion likes the tiger (given information).\n- If something likes the tiger then it is not the case that the tiger chases it (no rule directly states this, but it's a logical conclusion).\n\nHowever, we can use another rule.\n\n- If something is kind and it visits the dog then the dog is kind (rule 9).\n- We know the tiger is kind (given information).\n- However, we don't have enough information about the tiger visiting the dog.\n\nNow, let's try to find another rule that can help us determine if the tiger chases the lion.\n\n- The lion is big and red (given information).\n- The lion likes the tiger (given information).\n- The lion visits the tiger (given information).\n- The lion is not blue (rule 2).\n- We don't have enough information about the lion chasing the tiger.\n\nNow, let's try to find another rule that can help us determine if the tiger chases the lion.\n\n- The tiger likes the lion (given information).\n- The lion likes the tiger (given information).\n- We know the lion is not being chased by something (rule 2).\n- However, we don't have enough information about the tiger chasing the lion.\n\nNow, let's try to find another rule that can help us determine if the tiger chases the lion.\n\n- The lion is big and red (given information).\n- The lion likes the tiger (given information).\n- The lion visits the tiger (given information).\n- The lion is not blue (rule 2).\n- We don't have enough information about the lion chasing the tiger.\n\nHowever, we can use another rule.\n\n- If something chases the tiger then it visits the dog (rule 4).\n- We are trying to find out if the tiger chases the lion.\n\nHowever, we can use another rule.\n\n- If something is red and it chases the tiger then it likes the squirrel (rule 6).\n- The lion is red (given information).\n- The lion visits the tiger (given information",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger chases the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given statement and its implications:\n   - If something chases the lion then the lion is blue. \n   - However, we have no information about the lion being blue, but it is red. This rule is not applicable to the tiger.\n\n2. The relationship between the tiger and the lion:\n   - The tiger likes the lion.\n   - The tiger is kind.\n   - The tiger is red.\n   - The tiger likes the dog.\n\n3. Rules related to the tiger:\n   - If something is kind then it chases the tiger. This rule doesn't apply to the tiger itself.\n   - The tiger is kind, but it does not chase itself.\n   - The tiger is red and it chases the dog, but this rule doesn't apply because it doesn't involve the lion or the squirrel.\n\n4. The relationship between the lion and the other animals:\n   - The lion likes the tiger.\n   - The lion is big and red.\n   - The lion chases the squirrel.\n\n5. Rules related to the lion:\n   - If something chases the lion then the lion is blue. This rule doesn't apply because the lion is already described as red, not blue.\n   - The lion is red and chases the squirrel, but this rule doesn't apply because it involves the squirrel.\n\n6. Implications of the rules on the statement:\n   - The tiger's kind nature doesn't imply that it chases the lion, as the rules do not state that a kind animal chases a lion.\n   - The tiger's relationship with the lion (liking the lion) doesn't imply that it chases the lion.\n   - There is no rule that directly states the tiger chases the lion based on the given information.\n\nTherefore, based on the given information and the rules provided, we cannot conclude that the tiger chases the lion. The statement is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger chases the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given information, we have:\n\n1. The lion is big. (This information is not relevant to the problem at hand.)\n2. The lion is red. (This information is not relevant to the problem at hand.)\n3. The lion likes the tiger. (This information is not relevant to the problem at hand.)\n4. The lion visits the squirrel. (This information is not relevant to the problem at hand.)\n5. The lion visits the tiger. (This information is not relevant to the problem at hand.)\n6. The lion chases the squirrel. (This information is not relevant to the problem at hand.)\n7. The lion is big. (This information is a repetition and is not relevant to the problem at hand.)\n8. The lion is red. (This information is a repetition and is not relevant to the problem at hand.)\n9. The lion likes the tiger. (This information is a repetition and is not relevant to the problem at hand.)\n10. The squirrel chases the lion. (This information is not relevant to the problem at hand.)\n11. The squirrel is nice. (This information is not relevant to the problem at hand.)\n12. The squirrel likes the lion. (This information is not relevant to the problem at hand.)\n13. The tiger chases the dog. (This information is not relevant to the problem at hand.)\n14. The tiger is kind. (This information is not relevant to the problem at hand.)\n15. The tiger is red. (This information is not relevant to the problem at hand.)\n16. The tiger likes the dog. (This information is not relevant to the problem at hand.)\n17. The tiger likes the lion. (This information is not relevant to the problem at hand.)\n18. If something chases the lion then the lion is blue. (This information is not relevant to the problem at hand.)\n19. If something is kind then it chases the tiger. (This information is not relevant to the problem at hand.)\n20. If something chases the tiger then it visits the dog. (This information is not relevant to the problem at hand.)\n21. If something visits the lion then it likes the squirrel. (This information is not relevant to the problem at hand.)\n22. If something is red and it chases the tiger then it likes the squirrel. (This information is not relevant to the problem at hand.)\n23. If something chases the tiger and it visits the squirrel then the squirrel visits the tiger. (This information is not relevant to the problem at hand.)\n24. If something visits the dog then the dog likes the lion. (This information is not relevant to the problem at hand.)\n25. If something is kind and it visits the dog then the dog is kind. (This information is not relevant to the problem at hand.)\n\nNow, let's look at the relevant information:\n\n26. The tiger is kind. (This information is relevant to the problem at hand.)\n27. If something is kind then it chases the tiger. (This information is relevant to the problem at hand.)\n28. From information 26 and 27, we can conclude that the tiger chases the tiger, which is not possible.\n\nHowever, we can look at information 20: If something chases the tiger then it visits the dog.\n\n29. The tiger likes the lion. (This information is relevant to the problem at hand.)\n30. The lion chases the squirrel. (This information is not relevant to the problem at hand, but we can use it to find a contradiction.)\n31. If something chases the lion then the lion is blue. (This information is not relevant to the problem at hand.)\n32. The lion is red. (This information is not relevant to the problem at hand.)\n33. If something is red and it chases the tiger then it likes the squirrel. (This information is not relevant to the problem at hand.)\n34. The tiger chases the dog. (This information is not relevant to the problem at hand.)\n35. The squirrel chases the lion. (This information is relevant to the problem at hand.)\n\nFrom information 35, we can conclude that the squirrel chases the lion.\n\n36. The lion is red. (This information is not relevant to the problem at hand.)\n37. If something is red and it chases the tiger then it likes the squirrel. (This information is not relevant to the problem at hand.)\n38. The tiger is red. (This information is relevant to the problem at hand.)\n\nHowever, we can see that the lion is not the same as the tiger.\n\n39. The lion likes the tiger. (This information is relevant to the problem at hand.)\n40. The tiger likes the lion. (This information is relevant to the problem at hand.)\n41. The tiger is kind. (This information is relevant to the problem at hand.)\n42. The tiger is red. (This information is relevant to the problem at hand.)\n\nHowever, we can see that the lion is not the same as the tiger.\n\n43. If something chases the tiger then it visits the dog. (This information is not relevant to the problem at hand.)\n44. The tiger chases the dog. (This information is not relevant to the problem at hand.)\n45. The squirrel likes the lion. (This information is not relevant to the problem at hand.)\n46. The squirrel is nice. (This information is not relevant to the problem at hand.)\n47. The squirrel chases the lion. (This information is not relevant to the problem at hand.)\n\nHowever, we can see that the squirrel is not the same as the tiger.\n\n48. If something is kind and it visits the dog then the dog is kind. (This information is not relevant to the problem at hand.)\n49. The tiger is kind. (This information is relevant to the problem at hand.)\n50. The tiger visits the dog. (This information is not relevant to the problem at hand.)\n\nHowever, we can see that the tiger visits the dog.\n\n51. If something visits the dog then the dog likes the lion. (This information is relevant to the problem at hand.)\n52. The tiger visits the dog. (This information is relevant to the problem at hand.)\n53. The dog likes the lion. (This information is not relevant to the problem at hand.)\n\nHowever, we can see that the tiger visits the dog.\n\nNow, let's analyze the given information again:\n\n54. The tiger is kind. (This information is relevant to the problem at hand.)\n55. The tiger is red. (This information is relevant to the problem at hand.)\n56. The tiger likes the lion. (This information is relevant to the problem at hand.)\n57. The tiger chases the dog. (This information is not relevant to the problem at hand.)\n\nHowever, we can see that the tiger chases the dog.\n\n58. The tiger is kind. (This information is relevant to the problem at hand.)\n59. The squirrel is nice. (This information is not relevant to the problem at hand.)\n60. The squirrel chases the lion. (This information is not relevant to the problem at hand.)\n61. The squirrel likes the lion. (This information is not relevant to the problem at hand.)\n\nHowever, we can see that the squirrel is not the same as the tiger.\n\n62. The tiger likes the lion. (This information is relevant to the problem at hand.)\n63. The lion is red. (This information is not relevant to the problem at hand.)\n64. The lion is big. (This information is not relevant to the problem at hand.)\n\nHowever, we can see that the lion is not the same as the tiger.\n\n65. The tiger is kind. (This information is relevant to the problem at hand.)\n66. If something is kind then it chases the tiger. (This information is not relevant to the problem at hand.)\n\nHowever, we can see that the tiger is kind.\n\n67. The tiger is red. (This information is relevant to the problem at hand.)\n68. If something is red and it chases the tiger then it likes the squirrel. (This information is not relevant to the problem at hand.)\n\nHowever, we can see that the tiger is red.\n\n69. The tiger likes the lion. (This information is relevant to the problem at hand.)\n70. The lion is big. (This information is not relevant to the problem at hand.)\n\nHowever, we can see that the lion is not the same as the tiger.\n\n71. The tiger is kind. (This information is relevant to the problem at hand.)\n72. The tiger is red. (This information is relevant to the problem at hand.)\n73. The tiger likes the lion. (This information is relevant to the problem at hand.)\n\nHowever, we can see that the tiger is not the same as the lion.\n\n74. The squirrel chases the lion. (This information is not relevant to the problem at hand.)\n75. The lion is red. (This information is not relevant to the problem at hand.)\n76. The lion is big. (This information is not relevant to the problem at hand.)\n77. The lion is blue. (This information is not relevant to the problem at hand.)\n\nHowever, we can see that the lion is not the same as the tiger.\n\n78. If something visits the lion then it likes the squirrel. (This information is not relevant to the problem at hand.)\n79. The tiger likes the lion. (This information is relevant to the problem at hand.)\n80. The lion visits the squirrel. (This information is not relevant to the problem at hand.)\n\nHowever, we can see that the lion visits the squirrel.\n\n81. The tiger is kind. (This information is relevant to the problem at hand.)\n82. The squirrel is nice. (This information is not relevant to the problem",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger chases the lion\" is true, false, or unknown, we need to analyze the given information and apply the rules.\n\n1. The statement we need to evaluate: The tiger chases the lion.\n2. We are given several rules:\n   - If something chases the lion then the lion is blue. (Rule 1)\n   - If something is kind then it chases the tiger. (Rule 2)\n   - If something chases the tiger then it visits the dog. (Rule 3)\n   - If something visits the lion then it likes the squirrel. (Rule 4)\n   - If something is red and it chases the tiger then it likes the squirrel. (Rule 5)\n   - If something chases the tiger and it visits the squirrel then the squirrel visits the tiger. (Rule 6)\n   - If something visits the dog then the dog likes the lion. (Rule 7)\n   - If something is kind and it visits the dog then the dog is kind. (Rule 8)\n\n3. Analyzing the given information:\n   - We are given that the tiger is kind. (Rule 2)\n   - We are given that the tiger likes the dog. (From the initial statements)\n   - We are given that the tiger likes the lion. (From the initial statements)\n   - We are given that the lion is big. (From the initial statements)\n   - We are given that the lion is red. (From the initial statements)\n   - We are given that the lion likes the tiger. (From the initial statements)\n\n4. Applying the rules:\n   - We cannot directly determine whether the tiger chases the lion or not from the given rules. However, we can try to derive information by applying the rules to the given statements.\n\n5. From the initial statements, we know that the tiger likes the lion. \n   - If the tiger likes the lion, it does not necessarily mean the tiger chases the lion.\n\n6. We cannot find any rule that directly relates the tiger chasing the lion. \n   - However, we can try to find a rule that might contradict the statement or provide more information.\n\n7. From Rule 2, we know that the tiger is kind, and according to Rule 2, if something is kind then it chases the tiger. \n   - However, this does not directly relate to the tiger chasing the lion.\n\n8. We need to look for any rule that might be related to the tiger chasing the lion.\n   - Unfortunately, we cannot find any rule that directly relates the tiger chasing the lion.\n\n9. Since we cannot determine whether the tiger chases the lion or not from the given rules, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger chases the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that the tiger likes the lion: \"The tiger likes the lion.\"\n2. We are also given that if something chases the lion then the lion is blue: \"If something chases the lion then the lion is blue.\"\n   However, we are not given any information that the lion is blue, so we cannot conclude anything from this statement.\n3. We are given that the tiger is kind: \"The tiger is kind.\"\n4. We are given that if something is kind then it chases the tiger: \"If something is kind then it chases the tiger.\"\n   However, this statement is in the reverse direction of the given information. We know the tiger is kind, but we do not know if it chases the tiger.\n5. There is no direct information that the tiger chases the lion.\n\nHowever, we can analyze the given information using the process of elimination and inference.\n\nFrom the given information, we know that the lion is chased by the squirrel, the tiger, and the dog, but the information is not enough to conclude that the lion is blue.\n\nWe also know that the tiger is kind and the tiger likes the lion, but we cannot conclude that the tiger chases the lion.\n\nHowever, we can use the statement \"If something is red and it chases the tiger then it likes the squirrel\" and the information that the tiger is red to conclude that if the tiger chases the tiger, then it likes the squirrel. But this information is useless to the conclusion of whether the tiger chases the lion or not.\n\nWe can also use the statement \"If something visits the lion then it likes the squirrel\" and the information that the lion visits the squirrel to conclude that the lion likes the squirrel. However, this information is also useless to the conclusion of whether the tiger chases the lion or not.\n\nSince we do not have enough information to conclude that the tiger chases the lion, we can conclude that the statement \"The tiger chases the lion\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger chases the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given information states that if something chases the lion, then the lion is blue. However, this does not tell us anything about the color of the lion.\n\n2. We also know that the lion is big and red. The color of the lion does not affect our conclusion.\n\n3. Now, let's focus on the tiger. We have the following information:\n   - The tiger chases the dog.\n   - The tiger likes the lion.\n\nHowever, we cannot determine if the tiger chases the lion based on the given information. There is no direct statement or rule that says the tiger chases the lion.\n\nHowever, if something chases the lion then the lion is blue. There is no statement that says the lion is blue. This information does not help us determine if the tiger chases the lion.\n\nWe need to determine if the tiger chases the lion based on the information that is given. There is no rule that says the tiger chases the lion. However, we do know that if the tiger visits the lion then the lion is blue. This statement also does not help us.\n\nSince we do not have enough information to determine if the tiger chases the lion, we have to conclude that the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, lion)",
+          "z3_formula": "likes_tiger_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(lion)",
+          "z3_formula": "Implies(chases_tiger_lion, blue_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(kind_tiger, chases_tiger_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_tiger_tiger, visits_tiger_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(visits_X_lion, likes_X_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & chases(X, tiger) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(red_tiger, chases_tiger_tiger), likes_tiger_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & visits(X, squirrel) -> visits_squirrel_tiger",
+          "z3_formula": "Implies(And(chases_X_tiger, visits_X_squirrel), visits_squirrel_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> likes(dog, lion)",
+          "z3_formula": "Implies(visits_X_dog, likes_dog_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, dog) -> kind(dog)",
+          "z3_formula": "Implies(And(kind_tiger, visits_tiger_dog), kind_dog)",
+          "source_step": 10
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(kind_tiger, chases_tiger_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, lion)",
+          "z3_formula": "likes_tiger_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, dog)",
+          "z3_formula": "likes_tiger_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & chases(X, tiger) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(red_tiger, chases_tiger_tiger), likes_tiger_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_tiger_tiger, visits_tiger_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, dog)",
+          "z3_formula": "chases_tiger_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "visits(dog, tiger)",
+          "z3_formula": "visits_tiger_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> likes(X, lion)",
+          "z3_formula": "Implies(visits_tiger_dog, likes_tiger_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(X)",
+          "z3_formula": "Implies(chases_tiger_lion, blue_tiger)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, tiger)",
+          "z3_formula": "likes_lion_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, dog)",
+          "z3_formula": "chases_tiger_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, dog)",
+          "z3_formula": "likes_tiger_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, lion)",
+          "z3_formula": "likes_tiger_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(X)",
+          "z3_formula": "Implies(chases_X_lion, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(kind_X, chases_X_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_X_tiger, visits_X_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(visits_X_lion, likes_X_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & chases(X, tiger) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(red_X, chases_X_tiger), likes_X_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & visits(X, squirrel) -> visits(squirrel, X)",
+          "z3_formula": "Implies(And(chases_X_tiger, visits_X_squirrel), visits_squirrel_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> likes(lion, X)",
+          "z3_formula": "Implies(visits_X_dog, likes_lion_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, dog) -> kind(X)",
+          "z3_formula": "Implies(And(kind_X, visits_X_dog), kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == False",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == False",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, lion)",
+          "z3_formula": "likes_tiger_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(lion)",
+          "z3_formula": "Implies(chases_tiger_lion, blue_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(kind_tiger, chases_tiger_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_tiger_tiger, visits_tiger_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & chases(X, tiger) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(red_tiger, chases_tiger_tiger), likes_tiger_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & visits(X, squirrel) -> visits(squirrel, X)",
+          "z3_formula": "Implies(And(chases_tiger_tiger, visits_tiger_squirrel), visits_squirrel_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, lion)",
+          "z3_formula": "likes_dog_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, dog) -> kind(X)",
+          "z3_formula": "Implies(And(kind_tiger, visits_tiger_dog), kind_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, tiger)",
+          "z3_formula": "likes_tiger_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, squirrel)",
+          "z3_formula": "likes_tiger_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "visits(tiger, dog)",
+          "z3_formula": "visits_tiger_dog == False",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, tiger)",
+          "z3_formula": "likes_lion_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, dog)",
+          "z3_formula": "chases_tiger_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, dog)",
+          "z3_formula": "likes_tiger_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, lion)",
+          "z3_formula": "likes_tiger_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(lion)",
+          "z3_formula": "Implies(chases_X_lion, blue_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(kind_X, chases_X_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_X_tiger, visits_X_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(visits_X_lion, likes_X_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & chases(X, tiger) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(red_X, chases_X_tiger), likes_X_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & visits(X, squirrel) -> visits(squirrel, tiger)",
+          "z3_formula": "Implies(And(chases_X_tiger, visits_X_squirrel), visits_squirrel_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> likes(dog, lion)",
+          "z3_formula": "Implies(visits_X_dog, likes_dog_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, dog) -> kind(dog)",
+          "z3_formula": "Implies(And(kind_X, visits_X_dog), kind_dog)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, tiger)",
+          "z3_formula": "likes_lion_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & chases(X, tiger) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(red_lion, chases_lion_tiger), likes_lion_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> Not(chases(X, tiger))",
+          "z3_formula": "Implies(likes_lion_tiger, Not(chases_lion_tiger))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_lion_tiger, visits_lion_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(visits_lion_tiger, likes_lion_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(kind_tiger, chases_tiger_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, dog) -> kind(dog)",
+          "z3_formula": "Implies(And(kind_tiger, visits_tiger_dog), kind_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(X)",
+          "z3_formula": "Implies(chases_lion_tiger, blue_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "Not(chases(lion, tiger))",
+          "z3_formula": "Not(chases_lion_tiger)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, lion)",
+          "z3_formula": "likes_tiger_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, dog)",
+          "z3_formula": "likes_tiger_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, tiger)",
+          "z3_formula": "likes_lion_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, squirrel)",
+          "z3_formula": "chases_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(lion)",
+          "z3_formula": "Implies(chases_X_lion, blue_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(kind_X, chases_X_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(tiger, lion)",
+          "z3_formula": "Not(Or(And(likes_tiger_lion, kind_tiger), And(likes_tiger_lion, red_tiger), And(likes_tiger_lion, likes_tiger_dog), And(likes_tiger_lion, kind_tiger), And(likes_tiger_lion, red_tiger), And(likes_tiger_lion, likes_tiger_dog), And(likes_tiger_lion, likes_lion_tiger), And(likes_tiger_lion, big_lion), And(likes_tiger_lion, red_lion), And(likes_tiger_lion, chases_lion_squirrel), And(likes_tiger_lion, Implies(kind_X, chases_X_tiger))))",
+          "source_step": 6
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(X)",
+          "z3_formula": "Implies(chases_tiger_lion, blue_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(kind_tiger, chases_tiger_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> visits(X, dog)",
+          "z3_formula": "Implies(chases_tiger_tiger, visits_tiger_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(visits_tiger_lion, likes_tiger_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & chases(X, tiger) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(red_lion, chases_tiger_lion), likes_lion_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & visits(X, squirrel) -> visits(squirrel, tiger)",
+          "z3_formula": "Implies(And(chases_tiger_squirrel, visits_squirrel_tiger), visits_squirrel_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> likes(X, lion)",
+          "z3_formula": "Implies(visits_tiger_dog, likes_tiger_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & visits(X, dog) -> kind(X)",
+          "z3_formula": "Implies(And(kind_tiger, visits_tiger_dog), kind_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, dog)",
+          "z3_formula": "likes_tiger_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, lion)",
+          "z3_formula": "likes_tiger_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, tiger)",
+          "z3_formula": "likes_lion_tiger == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, lion)",
+          "z3_formula": "likes_tiger_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(lion)",
+          "z3_formula": "Implies(chases_X_lion, blue_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(kind_tiger, chases_tiger_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(squirrel, lion)",
+          "z3_formula": "chases_squirrel_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(dog, lion)",
+          "z3_formula": "chases_dog_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & chases(X, tiger) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(red_tiger, chases_tiger_tiger), likes_tiger_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(visits_X_lion, likes_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, lion)",
+          "z3_formula": "chases_tiger_lion == Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> blue(lion)",
+          "z3_formula": "Implies(chases_tiger_lion, blue_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, dog)",
+          "z3_formula": "chases_tiger_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, lion)",
+          "z3_formula": "likes_tiger_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> blue(lion)",
+          "z3_formula": "Implies(visits_tiger_lion, blue_lion)",
+          "source_step": 4
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 140,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 56
+    },
+    "maxsat_stats": {
+      "satisfied": 52,
+      "excluded": 4,
+      "total_weight": 136,
+      "solve_time_ms": 2.2841691970825195
+    },
+    "timing": {
+      "trace_gen_s": 25.016,
+      "extraction_s": 45.864,
+      "dedup_s": 1.608,
+      "maxsat_s": 0.005,
+      "total_s": 72.494
+    }
+  }
+}

@@ -1,0 +1,824 @@
+{
+  "problem": {
+    "id": "folio_85",
+    "problem": "Given the following premises:\nIf the restaurant is listed in Yelp\u2019s recommendations, then the restaurant does not receive many negative reviews. All restaurants with a rating greater than 9 are listed in Yelp\u2019s recommendations. Some restaurants that do not provide take-out service receive many negative reviews. All restaurants that are popular among local residents have ratings greater than 9. Subway has a rating greater than 9 or is popular among local residents.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSubway provides take-out service and does not receive many negative reviews.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (YelpRecommendation(x) \u2192 \u00acNegativeReview(x))",
+      "\u2200x (RatingGreaterThan9(x) \u2192 YelpRecommendation(x))",
+      "\u2203x (NoTakeOutService(x) \u2227 NegativeReview(x))",
+      "\u2200x (PopularAmongLocalResidents(x) \u2192 RatingGreaterThan9(x))",
+      "RatingGreaterThan9(subway) \u2295 PopularAmongLocalResidents(subway)"
+    ],
+    "conclusion_fol": "\u00ac(NoTakeOutService(subway) \u2227 NegativeReview(subway))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 7.0,
+      "Unknown": 69.0
+    },
+    "answer_counts": {
+      "False": 1,
+      "Unknown": 10
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will use a method called truth tree analysis or a truth table. \n\nFirst, let's define the variables and their corresponding meanings:\n\n- L (Listed in Yelp's recommendations)\n- R (Restaurant receives many negative reviews)\n- T (Restaurant provides take-out service)\n- P (Restaurant is popular among local residents)\n- S (Subway's rating is greater than 9)\n\nNow, let's analyze each premise and the conclusion:\n\n1. If L, then not R (If the restaurant is listed in Yelp's recommendations, then the restaurant does not receive many negative reviews.)\n   - This means that L \u2192 \u00acR (L implies not R)\n\n2. S \u2192 L (All restaurants with a rating greater than 9 are listed in Yelp\u2019s recommendations.)\n   - This means that S \u2192 L\n\n3. T \u2192 R (Some restaurants that do not provide take-out service receive many negative reviews.)\n   - This means that T \u2192 R\n\n4. P \u2192 S (All restaurants that are popular among local residents have ratings greater than 9.)\n   - This means that P \u2192 S\n\n5. S \u2228 P (Subway has a rating greater than 9 or is popular among local residents.)\n   - This is the premise given about Subway\n\nNow, let's analyze the conclusion:\nSubway provides take-out service and does not receive many negative reviews. \n- This can be written as T \u2227 \u00acR\n\nFrom premise 5, we know S \u2228 P. Now, let's try to see if we can derive T \u2227 \u00acR from the given premises.\n\nIf S, then we know from premise 2 that L. Since L implies not R, we get \u00acR.\n\nIf P, then we know from premise 4 that S. Using the same reasoning as above, we get \u00acR.\n\nHowever, we don't know that T is true in either case. We only know that T \u2192 R, but we don't know if T is true.\n\nSo, let's assume that T is true and see if we can derive a contradiction.\n\nIf T, then we know from premise 3 that R. But we already know that S \u2228 P, and if S, then we know that L and hence \u00acR.\n\nIf P, then we know that S, and hence we have a contradiction because R and \u00acR cannot both be true.\n\nTherefore, we have a contradiction when T is true, so T must be false.\n\nNow that we know that T is false, we can conclude that \u00acR is true.\n\nSo, the conclusion Subway provides take-out service and does not receive many negative reviews is false, because T is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and use them to deduce the conclusion.\n\nPremise 1: If the restaurant is listed in Yelp\u2019s recommendations, then the restaurant does not receive many negative reviews.\nPremise 2: All restaurants with a rating greater than 9 are listed in Yelp\u2019s recommendations.\nPremise 3: Some restaurants that do not provide take-out service receive many negative reviews.\nPremise 4: All restaurants that are popular among local residents have ratings greater than 9.\nPremise 5: Subway has a rating greater than 9 or is popular among local residents.\n\nNow, let's break down the conclusion into its components:\n\nConclusion: Subway provides take-out service and does not receive many negative reviews.\n\nWe can analyze the premises as follows:\n\n1. Since Subway has a rating greater than 9 (or is popular among local residents), it is listed in Yelp\u2019s recommendations (Premise 2 and 4).\n2. Since it is listed in Yelp\u2019s recommendations, it does not receive many negative reviews (Premise 1).\n3. However, there is no information about Subway providing take-out service or not. \n\nTherefore, based on the given premises, we can conclude that Subway does not receive many negative reviews, but we cannot determine whether it provides take-out service or not.\n\nHence, the conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and the conclusion. We can represent the given premises as logical statements and use them to determine the truth of the conclusion.\n\nPremise 1: If the restaurant is listed in Yelp's recommendations, then the restaurant does not receive many negative reviews.\nLet's represent this as:\nL \u2192 \u00acN, where L is \"listed in Yelp's recommendations\" and N is \"receive many negative reviews\".\n\nPremise 2: All restaurants with a rating greater than 9 are listed in Yelp's recommendations.\nLet's represent this as:\nR > 9 \u2192 L, where R is \"rating greater than 9\".\n\nPremise 3: Some restaurants that do not provide take-out service receive many negative reviews.\nLet's represent this as:\n\u00acT \u2192 N, where T is \"provide take-out service\".\n\nPremise 4: All restaurants that are popular among local residents have ratings greater than 9.\nLet's represent this as:\nP \u2192 R > 9, where P is \"popular among local residents\".\n\nPremise 5: Subway has a rating greater than 9 or is popular among local residents.\nLet's represent this as:\nS: R > 9 \u2228 P.\n\nConclusion: Subway provides take-out service and does not receive many negative reviews.\nLet's represent this as:\nS: T \u2227 \u00acN.\n\nFrom premise 2, we know that if a restaurant has a rating greater than 9, it is listed in Yelp's recommendations. From premise 5, we know that Subway has a rating greater than 9 or is popular among local residents. Therefore, we can conclude that Subway is listed in Yelp's recommendations:\nS: R > 9 \u2228 P \u2192 S: L\n\nUsing premise 1, if Subway is listed in Yelp's recommendations, then it does not receive many negative reviews:\nS: L \u2192 S: \u00acN\n\nNow, we need to determine if Subway provides take-out service. From premise 3, we know that some restaurants that do not provide take-out service receive many negative reviews. However, this premise does not provide information about Subway's take-out service. Therefore, we cannot conclude anything about Subway's take-out service using this premise.\n\nHowever, we can use premise 5 to determine if Subway provides take-out service. If Subway is popular among local residents, then it has a rating greater than 9 (from premise 4). But premise 5 states that Subway has a rating greater than 9 or is popular among local residents. Therefore, we cannot conclude that Subway is popular among local residents, and hence, we cannot conclude that Subway has a rating greater than 9. However, we know that Subway has a rating greater than 9 or is popular among local residents, but we cannot conclude that it is popular among local residents, but we can conclude that it has a rating greater than 9, and hence, it is listed in Yelp\u2019s recommendations.\n\nBut since Subway has a rating greater than 9, we know that it is listed in Yelp\u2019s recommendations, and hence, we can conclude that Subway does not receive many negative reviews.\n\nBut we cannot conclude anything about Subway\u2019s take-out service using the given premises. Therefore, we cannot conclude that Subway provides take-out service.\n\nHowever, we can use the information that we cannot conclude that Subway provides take-out service to conclude that the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and the conclusion step by step.\n\nPremise 1: If the restaurant is listed in Yelp\u2019s recommendations, then the restaurant does not receive many negative reviews.\n\nPremise 2: All restaurants with a rating greater than 9 are listed in Yelp\u2019s recommendations.\n\nPremise 3: Some restaurants that do not provide take-out service receive many negative reviews.\n\nPremise 4: All restaurants that are popular among local residents have ratings greater than 9.\n\nPremise 5: Subway has a rating greater than 9 or is popular among local residents.\n\nConclusion: Subway provides take-out service and does not receive many negative reviews.\n\nLet's break it down step by step:\n\n1. From Premise 5, we know that Subway has a rating greater than 9 or is popular among local residents.\n\n2. From Premise 2, we know that all restaurants with a rating greater than 9 are listed in Yelp\u2019s recommendations. So, if Subway has a rating greater than 9, it must be listed in Yelp\u2019s recommendations.\n\n3. From Premise 1, we know that if a restaurant is listed in Yelp\u2019s recommendations, it does not receive many negative reviews. Since Subway is listed in Yelp\u2019s recommendations (from step 2), we can conclude that Subway does not receive many negative reviews.\n\n4. However, we still need to determine whether Subway provides take-out service or not. Premise 3 tells us that some restaurants that do not provide take-out service receive many negative reviews. But this premise does not provide any information about restaurants that do provide take-out service. Therefore, we cannot conclude whether Subway provides take-out service or not based on the given premises.\n\nSince we cannot determine whether Subway provides take-out service or not, we cannot conclude that Subway provides take-out service and does not receive many negative reviews. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the truth of the given conclusion, we need to analyze each premise and see if it supports or contradicts the conclusion.\n\nPremise 1: If the restaurant is listed in Yelp\u2019s recommendations, then the restaurant does not receive many negative reviews.\nThis premise alone does not provide any information about Subway, but it will be useful when combined with other premises.\n\nPremise 2: All restaurants with a rating greater than 9 are listed in Yelp\u2019s recommendations.\nThis premise implies that if a restaurant has a rating greater than 9, it will not receive many negative reviews (from Premise 1).\n\nPremise 3: Some restaurants that do not provide take-out service receive many negative reviews.\nThis premise does not provide any information about Subway, but it will be useful when combined with other premises.\n\nPremise 4: All restaurants that are popular among local residents have ratings greater than 9.\nThis premise implies that if a restaurant is popular among local residents, it will not receive many negative reviews (from Premise 1).\n\nPremise 5: Subway has a rating greater than 9 or is popular among local residents.\nThis premise implies that Subway will not receive many negative reviews because it has a rating greater than 9 (from Premise 2 and Premise 1) or is popular among local residents (from Premise 4 and Premise 1).\n\nConclusion: Subway provides take-out service and does not receive many negative reviews.\n\nWe can break down the conclusion into two parts: Subway provides take-out service and Subway does not receive many negative reviews.\n\nFrom the premises, we know that Subway has a rating greater than 9 or is popular among local residents (Premise 5), which implies that it does not receive many negative reviews (from Premise 1 and Premise 2, Premise 4).\n\nHowever, we cannot determine whether Subway provides take-out service or not. Premise 5 does not mention anything about take-out service, and Premise 3 only talks about restaurants that do not provide take-out service receiving many negative reviews, which does not provide any information about Subway.\n\nTherefore, the conclusion is uncertain because we cannot determine whether Subway provides take-out service or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and the premises given.\n\nStep 1: Analyze the premises.\n\n1. If the restaurant is listed in Yelp's recommendations, then the restaurant does not receive many negative reviews.\n2. All restaurants with a rating greater than 9 are listed in Yelp's recommendations.\n3. Some restaurants that do not provide take-out service receive many negative reviews.\n4. All restaurants that are popular among local residents have ratings greater than 9.\n5. Subway has a rating greater than 9 or is popular among local residents.\n\nStep 2: Determine the relationship between Subway and the given premises.\n\nFrom premise 5, we know that Subway has a rating greater than 9 or is popular among local residents.\n\nStep 3: Consider the possible scenarios for Subway.\n\nScenario 1: Subway has a rating greater than 9.\nIn this case, from premise 2, we know that since Subway is listed in Yelp's recommendations (because it has a rating greater than 9), it does not receive many negative reviews (from premise 1).\n\nScenario 2: Subway is popular among local residents.\nIn this case, from premise 4, we know that since Subway has ratings greater than 9, it does not receive many negative reviews (from premise 1).\n\nIn both scenarios, we conclude that Subway does not receive many negative reviews.\n\nHowever, we cannot determine whether Subway provides take-out service or not.\n\nTherefore, we cannot conclude that Subway provides take-out service and does not receive many negative reviews with absolute certainty. The conclusion is uncertain because we don't have enough information about Subway's take-out service.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deductions based on the given premises.\n\nPremise 1: If the restaurant is listed in Yelp's recommendations, then the restaurant does not receive many negative reviews.\nPremise 2: All restaurants with a rating greater than 9 are listed in Yelp's recommendations.\nPremise 3: Some restaurants that do not provide take-out service receive many negative reviews.\nPremise 4: All restaurants that are popular among local residents have ratings greater than 9.\nPremise 5: Subway has a rating greater than 9 or is popular among local residents.\n\nNow, let's break down the conclusion and see if we can deduce its truth value.\n\nConclusion: Subway provides take-out service and does not receive many negative reviews.\n\nFrom Premise 5, we know that Subway has a rating greater than 9 or is popular among local residents. \n\nUsing Premise 2, if Subway has a rating greater than 9, then it must be listed in Yelp's recommendations. This implies that Subway does not receive many negative reviews, as per Premise 1.\n\nHowever, we need to consider another possible scenario: Subway is popular among local residents. In this case, we can use Premise 4, which states that all popular restaurants among local residents have ratings greater than 9. This means that Subway also has a rating greater than 9 in this scenario, and we can apply the same deduction as before.\n\nIn both scenarios, Subway does not receive many negative reviews. Now, let's consider the second part of the conclusion: Subway provides take-out service.\n\nSince the premises do not provide any direct information about Subway's take-out service, we cannot make a definitive deduction. However, we can use a process of elimination. If Subway does not provide take-out service, then it would contradict Premise 3, which states that some restaurants that do not provide take-out service receive many negative reviews. This would create a contradiction, but we cannot directly prove that Subway provides take-out service.\n\nSince we cannot make a definitive deduction about Subway's take-out service, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: If the restaurant is listed in Yelp\u2019s recommendations, then the restaurant does not receive many negative reviews.\nPremise 2: All restaurants with a rating greater than 9 are listed in Yelp\u2019s recommendations.\nPremise 3: Some restaurants that do not provide take-out service receive many negative reviews.\nPremise 4: All restaurants that are popular among local residents have ratings greater than 9.\nPremise 5: Subway has a rating greater than 9 or is popular among local residents.\n\nWe are asked to determine whether the conclusion \"Subway provides take-out service and does not receive many negative reviews\" is true, false, or uncertain.\n\nLet's break down the information about Subway:\n\n- From Premise 5, we know that Subway has a rating greater than 9 or is popular among local residents.\n- If Subway is popular among local residents, then from Premise 4, we know that it has a rating greater than 9.\n- Therefore, we can conclude that Subway has a rating greater than 9.\n\nNow, let's analyze the conclusion step by step:\n\n1. If Subway has a rating greater than 9, then from Premise 2, we know that it is listed in Yelp\u2019s recommendations.\n2. From Premise 1, if Subway is listed in Yelp\u2019s recommendations, then it does not receive many negative reviews.\n3. Therefore, if Subway has a rating greater than 9, we can conclude that it does not receive many negative reviews.\n\nHowever, we cannot determine whether Subway provides take-out service or not. From Premise 3, we know that some restaurants that do not provide take-out service receive many negative reviews, but this information does not provide any evidence about Subway's take-out service.\n\nTherefore, we can conclude that Subway provides take-out service and does not receive many negative reviews is uncertain about the take-out service, but we can conclude that Subway does not receive many negative reviews if it has a rating greater than 9.\n\nHowever, we cannot be certain about the conclusion because we do not have enough information about Subway's take-out service.\n\nBut since we cannot conclude anything about Subway providing take-out service, we cannot conclude the full statement to be true or false. Therefore, we'll leave it as uncertain for the take-out service but the conclusion that it does not receive many negative reviews is true if Subway has a rating greater than 9.\n\nHowever, since we are looking for a conclusion that includes take-out service, we cannot conclude it to be true or false, but we can conclude the part about the negative reviews to be true if the rating is greater than 9.\n\nSo the full conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we can use a truth table or logical reasoning. Since we have multiple premises, we will break it down step by step.\n\nPremise 1: If the restaurant is listed in Yelp\u2019s recommendations, then the restaurant does not receive many negative reviews.\nPremise 2: All restaurants with a rating greater than 9 are listed in Yelp\u2019s recommendations.\nPremise 3: Some restaurants that do not provide take-out service receive many negative reviews.\nPremise 4: All restaurants that are popular among local residents have ratings greater than 9.\nPremise 5: Subway has a rating greater than 9 or is popular among local residents.\n\nConclusion: Subway provides take-out service and does not receive many negative reviews.\n\nLet's break it down further:\n\n1. From Premise 5, we know that Subway has a rating greater than 9 or is popular among local residents.\n2. Since all restaurants that are popular among local residents have ratings greater than 9 (Premise 4), we can conclude that Subway has a rating greater than 9.\n3. Now, from Premise 2, we know that all restaurants with a rating greater than 9 are listed in Yelp\u2019s recommendations. Therefore, Subway is listed in Yelp\u2019s recommendations.\n4. Since Subway is listed in Yelp\u2019s recommendations (from step 3), we can apply Premise 1, which states that if the restaurant is listed in Yelp\u2019s recommendations, then the restaurant does not receive many negative reviews. Therefore, Subway does not receive many negative reviews.\n\nNow, we need to consider the other part of the conclusion: Subway provides take-out service. We don't have any direct information about Subway's take-out service from the premises. However, we can use the information from Premise 3: Some restaurants that do not provide take-out service receive many negative reviews. This premise does not provide any information about restaurants that do provide take-out service. In fact, it creates an uncertainty, as it is possible that some restaurants that do provide take-out service may also receive many negative reviews.\n\nTherefore, since we have an uncertainty about Subway's take-out service, we cannot conclude that Subway provides take-out service with certainty. Hence, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises and see if they lead to a logical conclusion.\n\nPremise 1: If the restaurant is listed in Yelp\u2019s recommendations, then the restaurant does not receive many negative reviews.\nPremise 2: All restaurants with a rating greater than 9 are listed in Yelp\u2019s recommendations.\nPremise 3: Some restaurants that do not provide take-out service receive many negative reviews.\nPremise 4: All restaurants that are popular among local residents have ratings greater than 9.\nPremise 5: Subway has a rating greater than 9 or is popular among local residents.\n\nNow, let's break down the conclusion:\n\nConclusion: Subway provides take-out service and does not receive many negative reviews.\n\nTo determine if the conclusion is true, we need to see if it logically follows from the premises.\n\nFrom Premise 5, we know that Subway has a rating greater than 9 or is popular among local residents. We can use this information to draw two separate conclusions.\n\nCase 1: If Subway is popular among local residents, then from Premise 4, we know it has a rating greater than 9.\n\nCase 2: If Subway has a rating greater than 9, then from Premise 2, we know it is listed in Yelp\u2019s recommendations. From Premise 1, we know that if a restaurant is listed in Yelp\u2019s recommendations, it does not receive many negative reviews.\n\nIn both cases, we can conclude that Subway does not receive many negative reviews.\n\nHowever, we still need to determine if Subway provides take-out service. There is no direct information in the premises about Subway's take-out service. \n\nFrom Premise 3, we know that some restaurants that do not provide take-out service receive many negative reviews. This premise does not provide any information about restaurants that do provide take-out service. \n\nWe cannot conclude anything about Subway's take-out service based on the given premises.\n\nTherefore, the conclusion is uncertain because we cannot determine whether Subway provides take-out service.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will break down the given premises and the conclusion step by step.\n\nPremise 1: If the restaurant is listed in Yelp\u2019s recommendations, then the restaurant does not receive many negative reviews.\nPremise 2: All restaurants with a rating greater than 9 are listed in Yelp\u2019s recommendations.\nPremise 3: Some restaurants that do not provide take-out service receive many negative reviews.\nPremise 4: All restaurants that are popular among local residents have ratings greater than 9.\nPremise 5: Subway has a rating greater than 9 or is popular among local residents.\n\nConclusion: Subway provides take-out service and does not receive many negative reviews.\n\nStep 1: \nFrom Premise 2, we can infer that any restaurant with a rating greater than 9 is listed in Yelp's recommendations. Since Premise 5 states that Subway has a rating greater than 9 or is popular among local residents, and Premise 4 states that all restaurants popular among local residents have ratings greater than 9, we can conclude that Subway must have a rating greater than 9 (because if it's popular among local residents, it would already have a rating greater than 9). Therefore, Subway is listed in Yelp's recommendations.\n\nStep 2: \nFrom Premise 1, we know that if a restaurant is listed in Yelp's recommendations, it does not receive many negative reviews. Since we concluded in Step 1 that Subway is listed in Yelp's recommendations, we can infer that Subway does not receive many negative reviews.\n\nStep 3: \nHowever, the conclusion also states that Subway provides take-out service. Premise 3 mentions some restaurants that do not provide take-out service receive many negative reviews, but it does not provide information about Subway's take-out service. Since we cannot find any direct evidence or logical connection that links Subway's take-out service with the other premises, the statement about Subway providing take-out service remains uncertain.\n\nTherefore, the conclusion is uncertain because while we can confirm that Subway does not receive many negative reviews, we cannot confirm whether Subway provides take-out service or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and use logical reasoning to derive the conclusion.\n\nPremise 1: If the restaurant is listed in Yelp's recommendations, then the restaurant does not receive many negative reviews.\nPremise 2: All restaurants with a rating greater than 9 are listed in Yelp's recommendations.\nPremise 3: Some restaurants that do not provide take-out service receive many negative reviews.\nPremise 4: All restaurants that are popular among local residents have ratings greater than 9.\nPremise 5: Subway has a rating greater than 9 or is popular among local residents.\n\nNow, let's analyze the conclusion:\n\nConclusion: Subway provides take-out service and does not receive many negative reviews.\n\nTo derive the conclusion, we need to use the premises to determine the following:\n\n1. Subway's rating\n2. Subway's popularity among local residents\n3. Subway's take-out service\n\nFrom Premise 2 and Premise 5, we can conclude that Subway has a rating greater than 9 (since it has a rating greater than 9 or is popular among local residents).\n\nFrom Premise 1 and Premise 2, we can conclude that all restaurants with a rating greater than 9 do not receive many negative reviews.\n\nHowever, we cannot conclude that Subway does not receive many negative reviews solely based on its rating, since Premise 3 states that some restaurants that do not provide take-out service receive many negative reviews, but it does not provide information about restaurants that do provide take-out service.\n\nTo determine Subway's take-out service, we need more information. Unfortunately, none of the premises provide a direct statement about Subway's take-out service.\n\nTherefore, based on the given premises, we cannot determine whether Subway provides take-out service and does not receive many negative reviews with certainty. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "rule",
+          "expression": "L -> \u00acR",
+          "z3_formula": "Implies(L, Not(R))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "S -> L",
+          "z3_formula": "Implies(S, L)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "T -> R",
+          "z3_formula": "Implies(T, R)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "P -> S",
+          "z3_formula": "Implies(P, S)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "S \u2228 P",
+          "z3_formula": "Or(S, P)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "\u00acT",
+          "z3_formula": "Not(T)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "\u00acR",
+          "z3_formula": "Not(R)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "yelp_listed(subway)",
+          "z3_formula": "yelp_listed_subway == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_listed(X) -> not(many_negative_reviews(X))",
+          "z3_formula": "Implies(yelp_listed_subway, not(many_negative_reviews_subway))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(subway)",
+          "z3_formula": "rating_greater_than_9_subway == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) -> yelp_listed(X)",
+          "z3_formula": "Implies(rating_greater_than_9_subway, yelp_listed_subway)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "popular_among_local_residents(subway)",
+          "z3_formula": "popular_among_local_residents_subway == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "popular_among_local_residents(X) -> rating_greater_than_9(X)",
+          "z3_formula": "Implies(popular_among_local_residents_subway, rating_greater_than_9_subway)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not_provides_take_out_service(X) -> many_negative_reviews(X)",
+          "z3_formula": "Implies(not_provides_take_out_service_subway, many_negative_reviews_subway)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(many_negative_reviews(subway))",
+          "z3_formula": "not(many_negative_reviews_subway) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(provides_take_out_service(subway))",
+          "z3_formula": "provides_take_out_service_subway == Unknown",
+          "source_step": 9
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "yelp_listed(subway)",
+          "z3_formula": "yelp_listed_subway == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_listed(X) -> not(many_negative_reviews(X))",
+          "z3_formula": "Implies(yelp_listed_subway, not(many_negative_reviews_subway))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(subway)",
+          "z3_formula": "rating_greater_than_9_subway == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) -> yelp_listed(X)",
+          "z3_formula": "Implies(rating_greater_than_9_subway, yelp_listed_subway)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_listed(X) -> not(many_negative_reviews(X))",
+          "z3_formula": "Implies(yelp_listed_subway, not(many_negative_reviews_subway))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(many_negative_reviews(subway))",
+          "z3_formula": "not(many_negative_reviews_subway) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(subway) | popular_among_local_residents(subway)",
+          "z3_formula": "Or(rating_greater_than_9_subway, popular_among_local_residents_subway) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) -> yelp_listed(X)",
+          "z3_formula": "Implies(rating_greater_than_9_subway, yelp_listed_subway)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_listed(X) -> not(many_negative_reviews(X))",
+          "z3_formula": "Implies(yelp_listed_subway, not(many_negative_reviews_subway))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(many_negative_reviews(subway))",
+          "z3_formula": "not(many_negative_reviews_subway) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "some(not(take_out_service(X)), many_negative_reviews(X))",
+          "z3_formula": "Or(Not(take_out_service_subway), many_negative_reviews_subway) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "not(take_out_service(X)) -> many_negative_reviews(X)",
+          "z3_formula": "Implies(Not(take_out_service_subway), many_negative_reviews_subway)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "listed_in_yelp_recommendations(restaurant)",
+          "z3_formula": "listed_in_yelp_recommendations_restaurant == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "listed_in_yelp_recommendations(X) -> not_many_negative_reviews(X)",
+          "z3_formula": "Implies(listed_in_yelp_recommendations_restaurant, not_many_negative_reviews_restaurant)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(restaurant)",
+          "z3_formula": "rating_greater_than_9_restaurant == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) -> listed_in_yelp_recommendations(X)",
+          "z3_formula": "Implies(rating_greater_than_9_restaurant, listed_in_yelp_recommendations_restaurant)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_provide_take_out_service(X) -> many_negative_reviews(X)",
+          "z3_formula": "Implies(not_provide_take_out_service_restaurant, many_negative_reviews_restaurant)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "popular_among_local_residents(X)",
+          "z3_formula": "popular_among_local_residents_restaurant == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "popular_among_local_residents(X) -> rating_greater_than_9(X)",
+          "z3_formula": "Implies(popular_among_local_residents_restaurant, rating_greater_than_9_restaurant)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(restaurant) | popular_among_local_residents(restaurant)",
+          "z3_formula": "Or(rating_greater_than_9_restaurant, popular_among_local_residents_restaurant)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not_many_negative_reviews(restaurant)",
+          "z3_formula": "not_many_negative_reviews_restaurant == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "yelp_listed(subway)",
+          "z3_formula": "yelp_listed_subway == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_listed(X) -> not_negative_reviews(X)",
+          "z3_formula": "Implies(yelp_listed_subway, not_negative_reviews_subway)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rating_subway > 9",
+          "z3_formula": "rating_subway > 9 == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rating(X) > 9 -> yelp_listed(X)",
+          "z3_formula": "Implies(rating_subway > 9, yelp_listed_subway)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_take_out(subway)",
+          "z3_formula": "not_take_out_subway == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not_take_out(X) -> negative_reviews(X)",
+          "z3_formula": "Implies(not_take_out_subway, negative_reviews_subway)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "popular_subway",
+          "z3_formula": "popular_subway == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "popular(X) -> rating(X) > 9",
+          "z3_formula": "Implies(popular_subway, rating_subway > 9)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rating(X) > 9 -> yelp_listed(X)",
+          "z3_formula": "Implies(rating_subway > 9, yelp_listed_subway)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rating_subway > 9 or popular_subway",
+          "z3_formula": "Or(rating_subway > 9, popular_subway) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not_negative_reviews(subway)",
+          "z3_formula": "not_negative_reviews_subway == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unknown_take_out(subway)",
+          "z3_formula": "unknown_take_out_subway == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "yelp_listed(X) -> not(many_negative_reviews(X))",
+          "z3_formula": "Implies(yelp_listed, not(many_negative_reviews))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rating(X) > 9 -> yelp_listed(X)",
+          "z3_formula": "Implies(rating_greater_than_9, yelp_listed)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(take_out_service(X)) -> many_negative_reviews(X)",
+          "z3_formula": "Implies(not(take_out_service), many_negative_reviews)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "popular(X) -> rating(X) > 9",
+          "z3_formula": "Implies(popular, rating_greater_than_9)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rating_subway > 9 or popular_subway",
+          "z3_formula": "Or(rating_subway > 9, popular_subway)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(many_negative_reviews(subway))",
+          "z3_formula": "not(many_negative_reviews_subway)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rating_subway > 9 or rating_subway > 9",
+          "z3_formula": "Or(rating_subway > 9, rating_subway > 9)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(many_negative_reviews(subway))",
+          "z3_formula": "not(many_negative_reviews_subway)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "recommended(subway)",
+          "z3_formula": "recommended_subway == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "recommended(X) -> not(many_negative_reviews(X))",
+          "z3_formula": "Implies(recommended_subway, not(many_negative_reviews_subway))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rating(greater_than_9, subway)",
+          "z3_formula": "rating_greater_than_9_subway == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rating(greater_than_9, X) -> recommended(X)",
+          "z3_formula": "Implies(rating_greater_than_9_subway, recommended_subway)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rating(greater_than_9, subway)",
+          "z3_formula": "rating_greater_than_9_subway == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "recommended(X) -> not(many_negative_reviews(X))",
+          "z3_formula": "Implies(recommended_subway, not(many_negative_reviews_subway))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(many_negative_reviews(subway))",
+          "z3_formula": "not(many_negative_reviews_subway) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(take_out_service(subway)) | many_negative_reviews(subway)",
+          "z3_formula": "Or(Not(take_out_service_subway), many_negative_reviews_subway) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "many_negative_reviews(subway)",
+          "z3_formula": "many_negative_reviews_subway == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "not(take_out_service(X)) & many_negative_reviews(X) -> many_negative_reviews(X)",
+          "z3_formula": "Implies(And(Not(take_out_service_subway), many_negative_reviews_subway), many_negative_reviews_subway)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(take_out_service(subway))",
+          "z3_formula": "uncertain(take_out_service_subway) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(take_out_service(subway) & not(many_negative_reviews(subway)))",
+          "z3_formula": "uncertain(And(take_out_service_subway, Not(many_negative_reviews_subway))) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "yelp_listed(subway)",
+          "z3_formula": "yelp_listed_subway == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_listed(X) -> not_many_negative_reviews(X)",
+          "z3_formula": "Implies(yelp_listed_subway, not_many_negative_reviews_subway)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(subway)",
+          "z3_formula": "rating_greater_than_9_subway == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) -> yelp_listed(X)",
+          "z3_formula": "Implies(rating_greater_than_9_subway, yelp_listed_subway)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_provide_take_out_service(X) -> many_negative_reviews(X)",
+          "z3_formula": "Implies(not_provide_take_out_service_X, many_negative_reviews_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "popular_among_local_residents(subway)",
+          "z3_formula": "popular_among_local_residents_subway == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "popular_among_local_residents(X) -> rating_greater_than_9(X)",
+          "z3_formula": "Implies(popular_among_local_residents_subway, rating_greater_than_9_subway)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) or popular_among_local_residents(X) -> yelp_listed(X)",
+          "z3_formula": "Implies(Or(rating_greater_than_9_subway, popular_among_local_residents_subway), yelp_listed_subway)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not_many_negative_reviews(subway)",
+          "z3_formula": "not_many_negative_reviews_subway == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "yelp_listed(subway)",
+          "z3_formula": "yelp_listed_subway == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_listed(X) -> not_many_negative_reviews(X)",
+          "z3_formula": "Implies(yelp_listed_subway, not_many_negative_reviews_subway)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not_provide_take_out_service(subway) -> many_negative_reviews(subway)",
+          "z3_formula": "Implies(not_provide_take_out_service_subway, many_negative_reviews_subway)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "many_negative_reviews(subway)",
+          "z3_formula": "many_negative_reviews_subway == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "provide_take_out_service(subway)",
+          "z3_formula": "provide_take_out_service_subway == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "yelp_listed(restaurant)",
+          "z3_formula": "yelp_listed_restaurant == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_listed(restaurant) -> not many_negative_reviews(restaurant)",
+          "z3_formula": "Implies(yelp_listed_restaurant, not many_negative_reviews_restaurant)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rating(restaurant) > 9",
+          "z3_formula": "rating_restaurant > 9",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rating(restaurant) > 9 -> yelp_listed(restaurant)",
+          "z3_formula": "Implies(rating_restaurant > 9, yelp_listed_restaurant)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not take_out(restaurant) & many_negative_reviews(restaurant)",
+          "z3_formula": "And(Not(take_out_restaurant), many_negative_reviews_restaurant)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "popular(restaurant) -> rating(restaurant) > 9",
+          "z3_formula": "Implies(popular_restaurant, rating_restaurant > 9)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rating(subway) > 9 | popular(subway)",
+          "z3_formula": "Or(rating_subway > 9, popular_subway)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not many_negative_reviews(subway)",
+          "z3_formula": "not many_negative_reviews_subway",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rating(subway) > 9",
+          "z3_formula": "rating_subway > 9",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "yelp_listed(subway)",
+          "z3_formula": "yelp_listed_subway",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not many_negative_reviews(subway)",
+          "z3_formula": "not many_negative_reviews_subway",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not take_out(subway) | many_negative_reviews(subway)",
+          "z3_formula": "Or(Not(take_out_subway), many_negative_reviews_subway)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "many_negative_reviews(subway)",
+          "z3_formula": "many_negative_reviews_subway",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "Uncertain",
+          "z3_formula": "Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rating_subway > 9",
+          "z3_formula": "rating_subway > 9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rating(X) > 9 -> listed_in_yelp(X)",
+          "z3_formula": "Implies(rating_subway > 9, listed_in_yelp_subway)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "popular(X) -> rating(X) > 9",
+          "z3_formula": "Implies(popular_subway, rating_subway > 9)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "listed_in_yelp(X) -> not_negative_reviews(X)",
+          "z3_formula": "Implies(listed_in_yelp_subway, not_negative_reviews_subway)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "popular_subway | rating_subway > 9",
+          "z3_formula": "Or(popular_subway, rating_subway > 9) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not_negative_reviews_subway",
+          "z3_formula": "not_negative_reviews_subway == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not take_out_service(X) -> negative_reviews(X)",
+          "z3_formula": "Implies(Not(take_out_service_subway), negative_reviews_subway)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rating_subway > 9",
+          "z3_formula": "rating_subway > 9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rating(X) > 9 -> listed_in_recommendations(X)",
+          "z3_formula": "Implies(rating_subway > 9, listed_in_recommendations_subway)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "listed_in_recommendations_subway == True",
+          "z3_formula": "listed_in_recommendations_subway == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "listed_in_recommendations(X) -> not_many_negative_reviews(X)",
+          "z3_formula": "Implies(listed_in_recommendations_subway, not_many_negative_reviews_subway)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_many_negative_reviews_subway == True",
+          "z3_formula": "not_many_negative_reviews_subway == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rating_subway > 9 or popular_subway",
+          "z3_formula": "rating_subway > 9 == True or popular_subway == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rating(X) > 9 or popular(X) -> not_provides_take_out_service(X)",
+          "z3_formula": "Implies(Or(rating_subway > 9, popular_subway), not_provides_take_out_service_subway)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not_provides_take_out_service(X) -> many_negative_reviews(X)",
+          "z3_formula": "Implies(not_provides_take_out_service_subway, many_negative_reviews_subway)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "many_negative_reviews_subway == True",
+          "z3_formula": "many_negative_reviews_subway == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "take_out_service_subway == Unknown",
+          "z3_formula": "Not(And(not_many_negative_reviews_subway, not(many_negative_reviews_subway)))",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 115,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 54
+    },
+    "maxsat_stats": {
+      "satisfied": 54,
+      "excluded": 0,
+      "total_weight": 77,
+      "solve_time_ms": 1.2136120349168777
+    },
+    "timing": {
+      "trace_gen_s": 8.44,
+      "extraction_s": 23.256,
+      "dedup_s": 1.114,
+      "maxsat_s": 0.004,
+      "total_s": 32.815
+    }
+  }
+}

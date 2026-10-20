@@ -1,0 +1,1108 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-14_Q6",
+    "problem": "The cat needs the mouse. The cat visits the lion. The lion is cold. The lion is red. The lion is round. The lion likes the squirrel. The lion needs the squirrel. The lion visits the squirrel. The mouse is cold. The mouse needs the lion. The mouse visits the lion. The squirrel likes the lion. If something needs the mouse and it needs the lion then the lion needs the mouse. If something visits the lion then it needs the cat. If the mouse visits the squirrel then the squirrel likes the cat. If something is rough then it is cold. If the squirrel is cold then the squirrel visits the cat. If something visits the cat then the cat likes the mouse. If something visits the squirrel then the squirrel is rough. If something likes the mouse then it does not need the squirrel. If something is red and it does not need the squirrel then it visits the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel is not cold.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nLikes($x, $y, bool) ::: Does x like y?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nNeeds(Cat, Mouse, True) ::: The cat needs the mouse.\nVisits(Cat, Lion, True) ::: The cat visits the lion.\nCold(Lion, True) ::: The lion is cold.\nRed(Lion, True) ::: The lion is red.\nRound(Lion, True) ::: The lion is round.\nLikes(Lion, Squirrel, True) ::: The lion likes the squirrel.\nNeeds(Lion, Squirrel, True) ::: The lion needs the squirrel.\nVisits(Lion, Squirrel, True) ::: The lion visits the squirrel.\nCold(Mouse, True) ::: The mouse is cold.\nNeeds(Mouse, Lion, True) ::: The mouse needs the lion.\nVisits(Mouse, Lion, True) ::: The mouse visits the lion.\nLikes(Squirrel, Lion, True) ::: The squirrel likes the lion.\n\nRules:\nNeeds($x, Mouse, True) && Needs($x, Lion, True) >>> Needs(Lion, Mouse, True) ::: If something needs the mouse and it needs the lion then the lion needs the mouse.\nVisits($x, Lion, True) >>> Needs($x, Cat, True) ::: If something visits the lion then it needs the cat.\nVisits(Mouse, Squirrel, True) >>> Likes(Squirrel, Cat, True) ::: If the mouse visits the squirrel then the squirrel likes the cat.\nRough($x, True) >>> Cold($x, True) ::: If something is rough then it is cold.\nCold(Squirrel, True) >>> Visits(Squirrel, Cat, True) ::: If the squirrel is cold then the squirrel visits the cat.\nVisits($x, Cat, True) >>> Likes(Cat, Mouse, True) ::: If something visits the cat then the cat likes the mouse.\nVisits($x, Squirrel, True) >>> Rough(Squirrel, True) ::: If something visits the squirrel then the squirrel is rough.\nLikes($x, Mouse, True) >>> Needs($x, Squirrel, False) ::: If something likes the mouse then it does not need the squirrel.\nRed($x, True) && Needs($x, Squirrel, False) >>> Visits($x, Mouse, True) ::: If something is red and it does not need the squirrel then it visits the mouse.\n\nQuery:\nCold(Squirrel, False) ::: The squirrel is not cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 62.0,
+      "True": 53.0,
+      "Unknown": 117.0
+    },
+    "answer_counts": {
+      "False": 3,
+      "True": 1,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The squirrel is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is cold. (Given)\n2. If the squirrel is cold, then the squirrel visits the cat. (Given)\n3. We don't have any information that directly states the squirrel's temperature, but we can infer some information from other statements:\n   - The squirrel likes the lion. (Given)\n   - The lion is red. (Given)\n   - The lion is round. (Given)\n   - If the lion is red and it does not need the squirrel, then it visits the mouse. (Given)\n   - The lion needs the squirrel. (Given)\n   - The lion visits the squirrel. (Given)\n4. From statements 3, we can infer that the lion needs the squirrel because it visits the squirrel, and it's not visiting the mouse.\n5. Since the lion needs the squirrel, it cannot visit the mouse, which means the lion does not need the squirrel (because it visits the squirrel). This creates a contradiction with statement 1, which says the lion is cold.\n6. Now we have a contradiction: the lion is cold, but it's not visiting the cat (because it needs the squirrel). However, we know that if the mouse visits the squirrel, then the squirrel likes the cat. This means the lion is not cold because if it were, the squirrel would visit the cat, not the lion.\n7. So, we can conclude that the lion is not cold.\n\nNow let's consider the statement \"The squirrel is not cold.\"\n8. If the squirrel is not cold, then it does not visit the cat. (Given)\n9. The lion is not cold. (Concluded in step 7)\n10. The lion needs the squirrel. (Given)\n11. The lion visits the squirrel. (Given)\n12. If the squirrel does not visit the cat, then it does not like the lion. (Contradiction)\n   - This means the squirrel must be cold because if it's not cold, then it visits the cat, which contradicts statement 8.\n\nHowever, we already concluded that the lion is not cold in step 7. Therefore, we cannot directly conclude whether the squirrel is cold or not.\n\nWe need to find another way to determine whether the squirrel is cold or not.\n13. The mouse visits the lion. (Given)\n14. If the mouse visits the lion, then the mouse needs the lion. (Given)\n15. If the mouse needs the lion, then the lion needs the mouse. (Given)\n16. The lion needs the squirrel. (Given)\n17. Since the lion needs the mouse and it needs the squirrel, we can conclude that the lion needs both the mouse and the squirrel.\n18. The lion is red. (Given)\n19. The lion is round. (Given)\n20. The lion is cold. (Given)\n21. If the lion is red and it does not need the squirrel, then it visits the mouse. (Given)\n22. The lion does not visit the mouse because it needs the squirrel, not the mouse. (Contradiction)\n   - However, we already concluded that the lion is not cold in step 7.\n   - This means that the lion does not visit the mouse because it needs the squirrel.\n   - This does not directly help us determine whether the squirrel is cold or not.\n\nHowever, we can infer some information from statement 21:\n23. If the lion is red and it does not need the squirrel, then it visits the mouse.\n24. The lion is red. (Given)\n25. The lion does not need the squirrel because it visits the squirrel. (Contradiction)\n   - However, we already concluded that the lion is not cold in step 7.\n   - This means that the lion needs the squirrel.\n26. The lion needs the squirrel. (Given)\n27. The lion visits the squirrel. (Given)\n28. Since the lion needs the squirrel, it cannot visit the mouse.\n29. From statement 23, we can conclude that the lion is cold because it visits the squirrel and it's not visiting the mouse.\n30. However, we already concluded that the lion is not cold in step 7.\n\nNow we have a contradiction: the lion is cold, but it's not cold.\nThis is not possible, so we need to find another way to determine whether the squirrel is cold or not.\n\nWe can use statement 18:\n31. The lion is red. (Given)\n32. The lion is round. (Given)\n33. If the lion is red and it does not need the squirrel, then it visits the mouse. (Given)\n34. The lion needs the squirrel. (Given)\n35. The lion visits the squirrel. (Given)\n36. Since the lion needs the squirrel, it cannot visit the mouse.\n37. From statement 33, we can conclude that the lion is cold because it visits the squirrel and it's not visiting the mouse.\n38. However, we already concluded that the lion is not cold in step 7.\n\nNow we have a contradiction: the lion is cold, but it's not cold.\nThis is not possible, so we need to find another way to determine whether the squirrel is cold or not.\n\nWe can use statement 18:\n39. The lion is red. (Given)\n40. If the lion is red and it does not need the squirrel, then it visits the mouse. (Given)\n41. The lion needs the squirrel. (Given)\n42. The lion visits the squirrel. (Given)\n43. Since the lion needs the squirrel, it cannot visit the mouse.\n44. From statement 40, we can conclude that the lion is not cold because it visits the squirrel and it's not visiting the mouse.\n45. However, we already concluded that the lion is not cold in step 7.\n\nNow we have a contradiction: the lion is not cold, but it's not cold.\nThis is not possible, so we need to find another way to determine whether the squirrel is cold or not.\n\nWe can use statement 18:\n46. The lion is red. (Given)\n47. The lion is round. (Given)\n48. If the lion is red and it does not need the squirrel, then it visits the mouse. (Given)\n49. The lion needs the squirrel. (Given)\n50. The lion visits the squirrel. (Given)\n51. Since the lion needs the squirrel, it cannot visit the mouse.\n52. From statement 48, we can conclude that the lion is cold because it visits the squirrel and it's not visiting the mouse.\n53. However, we already concluded that the lion is not cold in step 7.\n\nNow we have a contradiction: the lion is cold, but it's not cold.\nThis is not possible, so we need to find another way to determine whether the squirrel is cold or not.\n\nWe can use statement 18:\n54. The lion is red. (Given)\n55. The lion is round. (Given)\n56. The lion is cold. (Given)\n57. If the lion is red and it does not need the squirrel, then it visits the mouse. (Given)\n58. The lion needs the squirrel. (Given)\n59. The lion visits the squirrel. (Given)\n60. Since the lion needs the squirrel, it cannot visit the mouse.\n61. From statement 57, we can conclude that the lion is not cold because it visits the squirrel and it's not visiting the mouse.\n62. However, we already concluded that the lion is not cold in step 7.\n\nNow we have a contradiction: the lion is not cold, but it's not cold.\nThis is not possible, so we need to find another way to determine whether the squirrel is cold or not.\n\nWe can use statement 18:\n63. The lion is red. (Given)\n64. The lion is round. (Given)\n65. If the lion is red and it does not need the squirrel, then it visits the mouse. (Given)\n66. The lion needs the squirrel. (Given)\n67. The lion visits the squirrel. (Given)\n68. Since the lion needs the squirrel, it cannot visit the mouse.\n69. From statement 65, we can conclude that the lion is cold because it visits the squirrel and it's not visiting the mouse.\n70. However, we already concluded that the lion is not cold in step 7.\n\nNow we have a contradiction: the lion is cold, but it's not cold.\nThis is not possible, so we need to find another way to determine whether the squirrel is cold or not.\n\nWe can use statement 18:\n71. The lion is red. (Given)\n72. The lion is round. (Given)\n73. The lion is cold. (Given)\n74. If the lion is red and it does not need the squirrel, then it visits the mouse. (Given)\n75. The lion needs the squirrel. (Given)\n76. The lion visits the squirrel. (Given)\n77. Since the lion needs the squirrel, it cannot visit the mouse.\n78. From statement 74, we can conclude that the lion is not cold because it visits the squirrel and it's not visiting the mouse.\n79. However, we already concluded that the lion is not cold in step 7.\n\nNow we have a contradiction: the lion is not cold, but it's not cold.\nThis is not possible, so we need to find another way to determine whether the squirrel is cold or not.\n\nWe can use statement 18:\n80. The lion is red. (Given)\n81. The lion is round. (Given)\n82. The lion is cold. (Given)\n83. If the lion is red and it does not need the squirrel, then it visits the mouse. (Given)\n84. The lion needs the squirrel.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and rules step by step.\n\n1. The mouse is cold. \n   Rule: If something is rough then it is cold. (We do not have enough information yet to conclude if the mouse is rough or not. This is unknown for now.)\n\n2. The lion is cold.\n   Rule: If something is rough then it is cold. (We do not have enough information yet to conclude if the lion is rough or not. This is unknown for now.)\n\n3. The lion needs the squirrel.\n   The lion likes the squirrel.\n   The lion visits the squirrel.\n\n4. The mouse visits the lion.\n   Rule: If something visits the lion then it needs the cat.\n   So, the mouse needs the cat.\n\n5. The mouse needs the lion.\n   The lion needs the mouse.\n   Rule: If something needs the mouse and it needs the lion then the lion needs the mouse.\n   This is consistent with the given statement.\n\n6. The lion is red.\n   The lion is round.\n\n7. The squirrel likes the lion.\n   The squirrel is cold.\n   Rule: If something is cold then it visits the cat.\n   So, the squirrel visits the cat.\n\n8. The squirrel visits the squirrel.\n   Rule: If something visits the squirrel then the squirrel is rough.\n   So, the squirrel is rough.\n\n9. The mouse is cold.\n   Rule: If something is rough then it is cold.\n   So, the mouse is rough.\n\n10. The lion is cold.\n    Rule: If something is rough then it is cold.\n    So, the lion is rough.\n\n11. The lion is red and it does not need the squirrel.\n    The lion is red.\n    The lion does not need the squirrel because it likes the squirrel.\n    Rule: If something is red and it does not need the squirrel then it visits the mouse.\n    So, the lion visits the mouse.\n\n12. The mouse visits the squirrel.\n    Rule: If the mouse visits the squirrel then the squirrel likes the cat.\n    So, the squirrel likes the cat.\n\n13. The lion needs the mouse.\n    We already concluded this from the given statements.\n\nFrom the given statements and rules, we can conclude the following:\n- The lion is cold.\n- The mouse is cold.\n- The squirrel is cold.\n- The lion is rough.\n- The mouse is rough.\n- The squirrel is rough.\n\nNow, to determine whether the statement \"The squirrel is not cold\" is true, false, or unknown, we can see that we have enough information to conclude that the squirrel is cold. Therefore, the statement \"The squirrel is not cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is cold. (Given)\n2. The mouse is cold. (Given)\n3. If something is rough then it is cold. (Rule)\n4. If the mouse visits the squirrel then the squirrel is rough. (Rule)\n   - We do not know if the mouse visits the squirrel or not. Therefore, we cannot conclude that the squirrel is rough.\n\n5. If the squirrel is cold then the squirrel visits the cat. (Rule)\n   - We do not know if the squirrel is cold or not. Therefore, we cannot conclude that the squirrel visits the cat.\n\n6. The squirrel likes the lion. (Given)\n7. If something likes the lion then it does not visit the lion. However, this is not given.\n8. The lion likes the squirrel. (Given)\n9. If something visits the lion then it needs the cat. (Rule)\n   - We do not know if the squirrel visits the lion or not. Therefore, we cannot conclude that the squirrel needs the cat.\n\n10. The squirrel is red. (Given)\n11. If something is red and it does not need the squirrel then it visits the mouse. (Rule)\n    - Since the lion is red and it does not need the squirrel (because the lion likes the squirrel), we can conclude that the lion visits the mouse. However, this does not provide any information about the squirrel.\n\n12. The lion is round. (Given)\n13. The lion is cold. (Given)\n14. The lion needs the squirrel. (Given)\n15. The lion visits the squirrel. (Given)\n16. If the lion needs the squirrel then it is not cold. However, this is not given in the problem.\n\nBased on the information given, we cannot conclude whether the squirrel is cold or not. The statement \"The squirrel is not cold\" is unknown.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to use the given information and deduce the necessary facts.\n\n1. The lion is cold. (Given)\n2. If something is rough then it is cold. (Given)\n   From this, we cannot directly conclude that the lion is rough, but we can say that if the lion is rough, then it is cold. \n\n3. The lion is round. (Given)\n   This information does not help us in determining the coldness of the squirrel.\n\n4. The squirrel likes the lion. (Given)\n   This information does not help us in determining the coldness of the squirrel.\n\n5. The squirrel is cold. (Not given, but we can derive from the information below)\n\n6. If the mouse visits the squirrel, then the squirrel is rough. (Given)\n   However, this information is only applicable if the mouse visits the squirrel. We cannot conclude that the squirrel is rough from the given information.\n\n7. The mouse is cold. (Given)\n   This information does not help us in determining the coldness of the squirrel.\n\n8. If the mouse visits the lion, then the mouse needs the lion. (From the first premise)\n   However, this information does not help us in determining the coldness of the squirrel.\n\n9. The lion needs the mouse. (From the first premise)\n   However, this information does not help us in determining the coldness of the squirrel.\n\n10. The lion visits the squirrel. (Given)\n    This information does not help us in determining the coldness of the squirrel.\n\n11. The lion needs the squirrel. (Given)\n    This information does not help us in determining the coldness of the squirrel.\n\n12. The lion is red. (Given)\n    If the lion is red and it does not need the squirrel, then it visits the mouse. \n    However, we cannot conclude that the lion does not need the squirrel from the given information.\n\n13. If the squirrel is cold then the squirrel visits the cat. (Given)\n    However, this information is only applicable if the squirrel is cold.\n\nNow, let's derive the information.\n\nFrom the information given, we cannot directly conclude that the squirrel is cold. However, we have the following:\n\n   The lion is cold.\n   If the squirrel is cold, then it visits the cat. (From the information given)\n\nWe cannot conclude that the squirrel is cold, but we can conclude that if the squirrel is cold, it visits the cat. However, we also have the following information:\n\n   The lion visits the squirrel.\n   The lion needs the squirrel.\n   The lion is red.\n\nFrom this information, we can conclude:\n\n   The lion is red and it needs the squirrel.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   However, we know that the lion visits the squirrel and it needs the squirrel.\n\nSo, we can conclude that the lion does not visit the mouse.\n\nNow, let's use the information given:\n\n   If the mouse visits the squirrel, then the squirrel is rough.\n   The lion is red.\n   The lion does not visit the mouse.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n\nHowever, we know that the lion needs the squirrel and it visits the squirrel.\n\nSo, we can conclude that the lion needs the squirrel.\n\nNow, let's use the information given:\n\n   The lion needs the squirrel.\n   The lion is red.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   However, we know that the lion needs the squirrel and it visits the squirrel.\n\nSo, we can conclude that the lion needs the squirrel.\n\nNow, let's use the information given:\n\n   The lion is red.\n   The lion does not visit the mouse.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   However, we know that the lion visits the squirrel and it needs the squirrel.\n\nSo, we can conclude that the lion does not need the squirrel.\n\nHowever, this is a contradiction. \n\nNow, let's use the information given:\n\n   The lion needs the squirrel.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   However, we know that the lion needs the squirrel.\n\nSo, we can conclude that the lion does not visit the mouse.\n\nNow, let's use the information given:\n\n   The lion visits the squirrel.\n   The lion needs the squirrel.\n   If the lion is red, then it does not visit the mouse.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   However, we know that the lion needs the squirrel.\n\nSo, we can conclude that the lion does not visit the mouse.\n\nHowever, this is a contradiction.\n\nNow, let's use the information given:\n\n   The lion is red.\n   The lion needs the squirrel.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   However, we know that the lion needs the squirrel.\n\nSo, we can conclude that the lion does not visit the mouse.\n\nHowever, this is a contradiction.\n\nNow, let's use the information given:\n\n   The lion is red.\n   The lion needs the squirrel.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   The lion does not visit the mouse.\n   However, we know that the lion needs the squirrel.\n\nSo, we can conclude that the lion needs the squirrel.\n\nHowever, this is a contradiction.\n\nNow, let's use the information given:\n\n   The lion is red.\n   The lion does not visit the mouse.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   However, we know that the lion needs the squirrel.\n\nSo, we can conclude that the lion does not need the squirrel.\n\nHowever, this is a contradiction.\n\nNow, let's use the information given:\n\n   The lion is red.\n   The lion needs the squirrel.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   However, we know that the lion needs the squirrel.\n\nSo, we can conclude that the lion needs the squirrel.\n\nHowever, this is a contradiction.\n\nNow, let's use the information given:\n\n   The lion needs the squirrel.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   However, we know that the lion needs the squirrel.\n\nSo, we can conclude that the lion does not visit the mouse.\n\nHowever, this is a contradiction.\n\nNow, let's use the information given:\n\n   The lion is red.\n   The lion needs the squirrel.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   The lion does not visit the mouse.\n   However, we know that the lion needs the squirrel.\n\nSo, we can conclude that the lion does not need the squirrel.\n\nHowever, this is a contradiction.\n\nNow, let's use the information given:\n\n   The lion needs the squirrel.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   However, we know that the lion needs the squirrel.\n\nSo, we can conclude that the lion does not visit the mouse.\n\nHowever, this is a contradiction.\n\nNow, let's use the information given:\n\n   The lion is red.\n   The lion needs the squirrel.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   The lion does not visit the mouse.\n   However, we know that the lion needs the squirrel.\n\nSo, we can conclude that the lion does not need the squirrel.\n\nHowever, this is a contradiction.\n\nNow, let's use the information given:\n\n   The lion needs the squirrel.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   However, we know that the lion needs the squirrel.\n\nSo, we can conclude that the lion does not visit the mouse.\n\nHowever, this is a contradiction.\n\nNow, let's use the information given:\n\n   The lion is red.\n   The lion needs the squirrel.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   The lion does not visit the mouse.\n   However, we know that the lion needs the squirrel.\n\nSo, we can conclude that the lion does not need the squirrel.\n\nHowever, this is a contradiction.\n\nNow, let's use the information given:\n\n   The lion needs the squirrel.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   However, we know that the lion needs the squirrel.\n\nSo, we can conclude that the lion does not visit the mouse.\n\nHowever, this is a contradiction.\n\nNow, let's use the information given:\n\n   The lion is red.\n   The lion needs the squirrel.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   The lion does not visit the mouse.\n   However, we know that the lion needs the squirrel.\n\nSo, we can conclude that the lion does not need the squirrel.\n\nHowever, this is a contradiction.\n\nNow, let's use the information given:\n\n   The lion needs the squirrel.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   However, we know that the lion needs the squirrel.\n\nSo, we can conclude that the lion does not visit the mouse.\n\nHowever, this is a contradiction.\n\nNow, let's use the information given:\n\n   The lion is red.\n   The lion needs the squirrel.\n   If the lion is red and it does not need the squirrel, then it visits the mouse.\n   The lion does not visit the mouse.\n   However",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not cold\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\nFrom the given information:\n\n1. The lion is cold. (Rule 4)\n2. The mouse is cold. (Rule 9)\n3. The squirrel likes the lion. (Rule 7)\n4. The mouse visits the lion. (Rule 10)\n5. The lion needs the squirrel. (Rule 8)\n6. The lion visits the squirrel. (Rule 11)\n7. If something is rough then it is cold. (Rule 5)\n8. If something visits the squirrel then the squirrel is rough. (Rule 12)\n\nFrom the rules:\n\n1. If the mouse visits the squirrel then the squirrel likes the cat. (Rule 13) - This rule doesn't directly relate to the statement, but we'll consider it later.\n\nWe can deduce the following:\n\n1. The squirrel is not mentioned as being cold directly, but we can analyze the given information to determine if it is cold or not.\n2. The lion is cold, but this doesn't directly imply that the squirrel is cold.\n3. The squirrel likes the lion, which means the lion is not rough, as per rule 12.\n4. The lion needs the squirrel, which means the lion visits the squirrel, and the squirrel is rough (rule 12).\n\nSince the lion needs the squirrel, we can apply rule 1 to deduce that the lion needs the mouse. Then, we can apply rule 6 to deduce that the lion visits the mouse.\n\nNow, we need to analyze the given information again:\n\n1. The lion visits the mouse. (Rule 6)\n2. If something visits the cat then the cat likes the mouse. (Rule 14)\n3. The lion visits the cat. (Rule 6)\n4. The cat likes the mouse. (Rule 14)\n\nFrom rule 14, we know that the cat likes the mouse. However, we cannot determine if the squirrel is cold or not from this information.\n\nHowever, we can deduce that the squirrel is not cold from rule 13: \"If the mouse visits the squirrel then the squirrel likes the cat.\" Since the cat likes the mouse (rule 14), we can apply rule 13 to deduce that the squirrel likes the cat. Since the squirrel likes the cat, we can apply rule 13 to deduce that the mouse visits the squirrel.\n\nNow, we have two possible scenarios:\n\n1. The mouse visits the squirrel.\n2. The lion visits the squirrel.\n\nFrom rule 12, if something visits the squirrel, then the squirrel is rough. Therefore, the squirrel is rough.\n\nFrom rule 5, if something is rough, then it is cold. Therefore, the squirrel is cold.\n\nSince the squirrel is cold, the statement \"The squirrel is not cold\" is false.\n\nHowever, we can also deduce that the squirrel is not cold from rule 12: \"If something visits the squirrel then the squirrel is rough.\" We know that the lion visits the squirrel (rule 11), which means the squirrel is rough. However, from rule 5, we know that if something is rough, then it is cold. Therefore, we cannot conclude that the squirrel is cold.\n\nHowever, we also know that the lion is cold (rule 4), and the lion visits the squirrel (rule 11). Therefore, the squirrel is not cold.\n\nSo, we can conclude that the statement \"The squirrel is not cold\" is true.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information given, we can deduce the following:\n\n- The lion is cold.\n- The lion is red.\n- The lion is round.\n\nHowever, this does not directly relate to the squirrel being cold or not.\n\n2. The statement \"The squirrel likes the lion\" is given, but it does not provide any information about the squirrel's temperature.\n\n3. The statement \"The squirrel is rough\" is given. However, being rough does not necessarily mean the squirrel is cold.\n\n4. Now, let's consider the rule \"If something is rough then it is cold.\" However, this rule is not applicable in this case because the statement \"The squirrel is rough\" does not directly relate to the rule. We don't know the condition for the rule to be applied in this case.\n\n5. Now, let's consider the rule \"If the squirrel is cold then the squirrel visits the cat.\" However, we don't know whether the squirrel is cold or not. This rule doesn't help us determine the temperature of the squirrel.\n\n6. Now, let's consider the rule \"If something visits the squirrel then the squirrel is rough.\" However, this rule does not provide any information about the squirrel's temperature.\n\n7. Now, let's consider the rule \"If something is red and it does not need the squirrel then it visits the mouse.\" We know the lion is red and it does not need the squirrel (the lion needs the squirrel's competitor, the mouse). The lion visits the mouse, so this rule doesn't help us determine the temperature of the squirrel.\n\n8. Now, let's consider the rule \"If something visits the lion then it needs the cat.\" We know the mouse visits the lion. So, the mouse needs the cat. This rule doesn't help us determine the temperature of the squirrel.\n\n9. Now, let's consider the rule \"If something visits the cat then the cat likes the mouse.\" We know the lion visits the cat. So, the cat likes the mouse. This rule doesn't help us determine the temperature of the squirrel.\n\n10. Now, let's consider the rule \"If the mouse visits the squirrel then the squirrel likes the cat.\" We know the mouse visits the squirrel. So, the squirrel likes the cat. This rule doesn't help us determine the temperature of the squirrel.\n\n11. Now, let's consider the rule \"If something likes the mouse then it does not need the squirrel.\" We know the squirrel likes the cat and the cat likes the mouse. However, this rule doesn't help us determine the temperature of the squirrel.\n\n12. Now, let's consider the rule \"If the squirrel is cold then the squirrel visits the cat.\" We know the lion is cold. However, we don't know whether the squirrel is cold or not. This rule doesn't help us determine the temperature of the squirrel.\n\n13. Now, let's consider the rule \"If something visits the cat then the cat likes the mouse.\" We know the lion visits the cat. So, the cat likes the mouse. This rule doesn't help us determine the temperature of the squirrel.\n\nHowever, we can use the following information to derive the conclusion:\n\n- The lion is cold.\n- The lion is red.\n- The lion is round.\n- The lion needs the squirrel.\n- The lion visits the squirrel.\n- The lion is not the squirrel.\n- The squirrel likes the lion.\n\nTherefore, we can conclude that the squirrel is not the lion, and the lion is cold. However, we cannot conclude that the squirrel is cold.\n\nSince we cannot conclude that the squirrel is cold, we cannot conclude that the squirrel is not cold either.\n\nTherefore, the statement \"The squirrel is not cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the information provided and the given rules.\n\n1. The lion is cold. (Rule: If something is rough then it is cold. However, the lion is round, not rough. We cannot conclude this directly.)\n   However, we can use the rule: The lion is red. The lion is round. The lion is cold. \n   We do not know the lion is round. We know the lion is red. But since the lion is red and it is cold then we can conclude the lion is cold. \n\n2. The lion needs the squirrel. \n   Since the lion needs the squirrel, we can use the rule: If something needs the mouse and it needs the lion then the lion needs the mouse. \n   However, we do not have enough information to determine if the lion needs the mouse.\n\n3. The lion visits the squirrel. \n   Since the lion visits the squirrel, we can use the rule: If something visits the lion then it needs the cat. \n   This implies the squirrel needs the cat.\n\n4. The mouse is cold. \n   We cannot directly conclude this from the given rules.\n\n5. The mouse needs the lion. \n   Since the mouse needs the lion, we can use the rule: If something visits the lion then it needs the cat. \n   This implies the lion needs the cat.\n\n6. The mouse visits the lion. \n   Since the mouse visits the lion, we can use the rule: If something visits the lion then it needs the cat. \n   This implies the mouse needs the cat.\n\n7. The squirrel likes the lion. \n   We cannot directly conclude this from the given rules.\n\n8. If the mouse visits the squirrel then the squirrel likes the cat. \n   However, we do not have enough information to determine if the mouse visits the squirrel.\n\n9. The squirrel is cold. \n   Since the lion is cold and we do not have enough information to determine if the lion is rough, we cannot conclude this directly. However, we can use the rule: If the squirrel is cold then the squirrel visits the cat. \n   We do not have enough information to determine if the squirrel visits the cat.\n\n10. The mouse visits the squirrel. \n    Since the mouse visits the squirrel, we can use the rule: If the mouse visits the squirrel then the squirrel likes the cat. \n    This implies the squirrel likes the cat.\n\n11. The squirrel likes the lion. \n    We cannot directly conclude this from the given rules.\n\n12. If something likes the mouse then it does not need the squirrel. \n    Since the squirrel likes the lion, we cannot directly conclude if the squirrel needs the lion.\n\n13. If something is red and it does not need the squirrel then it visits the mouse. \n    Since the lion is red and we cannot directly conclude if the lion needs the squirrel, we cannot conclude if the lion visits the mouse.\n\nFrom the given information, we cannot determine if the squirrel is cold or not. Therefore, the statement \"The squirrel is not cold\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we'll need to break down the given information and use it to determine whether the statement \"The squirrel is not cold\" is true, false, or unknown.\n\n1. From the information, we know that \"If the squirrel is cold then the squirrel visits the cat.\" \n2. We are also given that \"If something visits the squirrel then the squirrel is rough.\" However, this alone does not tell us whether the squirrel is cold or not. \n3. We can see that the statement \"The squirrel is not cold\" implies that the squirrel does not visit the cat. \n4. However, we know that \"The mouse visits the lion. The lion needs the squirrel. The lion visits the squirrel.\" So the lion needs the squirrel and visits the squirrel. \n5. Since \"If something visits the lion then it needs the cat,\" then the lion needs the cat. \n6. And from \"The cat visits the lion,\" we can see that the cat visits the lion. \n7. Therefore, the cat visits the squirrel because it visits the lion. \n8. Since \"If something visits the squirrel then the squirrel is rough,\" the squirrel is rough. \n9. However, we are not directly told whether the squirrel is cold or not. \n10. We are given that \"If something is rough then it is cold.\" \n11. From steps 8 and 10, we can conclude that the squirrel is cold. \n12. Since we've found that the squirrel is cold, the statement \"The squirrel is not cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is cold.\n2. The lion is red.\n3. The lion is round.\n4. The lion likes the squirrel.\n5. The lion needs the squirrel.\n6. The lion visits the squirrel.\n\nFrom the given rules:\n\n- If something is rough then it is cold.\n- If the squirrel is cold then the squirrel visits the cat.\n\nWe don't have any information directly linking the squirrel to being cold or rough. However, we can conclude that the lion is cold (rule 1).\n\nSince the lion likes the squirrel and the lion needs the squirrel (rules 4 and 5), this does not directly tell us anything about the squirrel's temperature.\n\nHowever, we do have information about the squirrel visiting the lion (rule 6), which tells us that the squirrel is not rough. \n\nNow, since the lion is cold (rule 1) and we know the lion is red and does not need the squirrel (rules 2 and 5), we can conclude that the lion visits the mouse (rule 7).\n\nThe lion needs the mouse (rule 1) and visits the mouse (rule 8), which means the mouse needs the cat (rule 2). The lion needs the cat (rule 2), but we don't have any information about the cat's temperature.\n\nHowever, we do have information that if the mouse visits the squirrel then the squirrel likes the cat (rule 9). Since the mouse visits the lion (rule 8) and the lion visits the squirrel (rule 6), this means the squirrel likes the cat.\n\nFrom rule 10, if something visits the cat then the cat likes the mouse. This means the cat and the mouse have a friendly relationship.\n\nFrom rule 11, if the mouse visits the squirrel then the squirrel likes the cat. This is consistent with the information we already have.\n\nHowever, we do not have any information about the squirrel's temperature. The information that the lion is cold (rule 1) does not tell us anything about the squirrel's temperature.\n\nTherefore, based on the given information, we cannot determine whether the squirrel is cold or not.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not cold\" is true, false, or unknown, we need to analyze the given information.\n\n1. The lion is cold. \n   This statement directly tells us that the lion is cold. However, it does not provide any information about the squirrel.\n\n2. The lion is red.\n   This statement provides information about the lion but does not relate to the squirrel's temperature.\n\n3. The lion is round.\n   This statement provides more information about the lion but does not give any information about the squirrel.\n\n4. The lion likes the squirrel.\n   This statement tells us about the lion's preference but does not provide any information about the squirrel's temperature.\n\n5. The lion needs the squirrel.\n   This statement tells us about the lion's need but does not give any information about the squirrel's temperature.\n\n6. The lion visits the squirrel.\n   This statement tells us about the lion's action but does not give any information about the squirrel's temperature.\n\n7. The mouse is cold.\n   This statement tells us about the mouse's temperature but does not provide any information about the squirrel.\n\n8. The mouse needs the lion.\n   This statement tells us about the mouse's need but does not provide any information about the squirrel.\n\n9. The mouse visits the lion.\n   This statement tells us about the mouse's action but does not give any information about the squirrel.\n\n10. The squirrel likes the lion.\n    This statement tells us about the squirrel's preference but does not provide any information about the squirrel's temperature.\n\n11. If something is rough then it is cold.\n    This rule does not directly relate to the squirrel's temperature.\n\n12. If the mouse visits the squirrel then the squirrel likes the cat.\n    This rule does not provide any information about the squirrel's temperature.\n\n13. If something visits the cat then the cat likes the mouse.\n    This rule does not provide any information about the squirrel's temperature.\n\n14. If something visits the squirrel then the squirrel is rough.\n    Since we do not have any information about the squirrel visiting anything, we cannot determine if the squirrel is rough.\n\n15. If something likes the mouse then it does not need the squirrel.\n    This rule does not provide any information about the squirrel's temperature.\n\n16. If something is red and it does not need the squirrel then it visits the mouse.\n    The lion is red and does not need the squirrel, but this does not provide any information about the squirrel's temperature.\n\nBased on the given information, we cannot determine the squirrel's temperature. Therefore, the statement \"The squirrel is not cold\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is cold. (From the statement \"The lion is cold.\")\n\n2. The lion is red. (From the statement \"The lion is red.\")\n\n3. If the lion is red and it does not need the squirrel, then it visits the mouse. \n   Since the lion is red, we need to check if it needs the squirrel or not.\n\n4. The lion likes the squirrel. (From the statement \"The lion likes the squirrel.\")\n   This means the lion needs the squirrel.\n\n5. Since the lion needs the squirrel, we can conclude that it does not visit the mouse.\n\n6. The lion is cold. (From the statement \"The lion is cold.\")\n   We also know that if something is rough then it is cold.\n\n7. The lion visits the squirrel. (From the statement \"The lion visits the squirrel.\")\n   According to the rule \"If something visits the squirrel then the squirrel is rough,\" we can conclude that the squirrel is rough.\n\n8. Since the squirrel is rough, we can conclude that the squirrel is cold.\n\nTherefore, the statement \"The squirrel is not cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is not cold\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the premises, we have:\n1. The lion is cold.\n2. The mouse is cold.\n3. If something is rough then it is cold.\n4. If the mouse visits the squirrel then the squirrel likes the cat.\n5. If the mouse visits the squirrel then the squirrel is rough.\n6. If something visits the squirrel then the squirrel is rough.\n7. The lion likes the squirrel.\n8. The mouse needs the lion and the mouse visits the lion.\n\nFrom premise 6, if the mouse visits the squirrel, then the squirrel is rough. \nHowever, from premise 5, if the mouse visits the squirrel then the squirrel is rough. \nAlso, from premise 8, the mouse visits the lion, and from premise 8, the mouse needs the lion.\n\nNow, we need to determine if the squirrel is cold. To do that, let's analyze the information given. From premise 5, we know that if the mouse visits the squirrel, then the squirrel is rough. From premise 3, if something is rough then it is cold. Therefore, if the mouse visits the squirrel, then the squirrel is cold.\n\nHowever, the problem does not state that the mouse visits the squirrel. So we can't directly say that the squirrel is cold based on the given premises. But there's another way to determine if the squirrel is cold. From premise 6, if something visits the squirrel then the squirrel is rough. And from premise 3, if something is rough then it is cold. Therefore, the fact that the mouse visits the lion (premise 8) does not directly tell us that the squirrel is cold. However, from premise 8, the mouse visits the lion, and from premise 1, the lion is cold. We do not have any information about the lion visiting the squirrel. But we can infer that the mouse is cold (premise 2) and the mouse visits the lion, so the mouse and the lion are cold. From premise 7, the lion likes the squirrel, so the lion and the squirrel are not enemies. However, we still do not have any information that directly tells us if the squirrel is cold.\n\nHowever, from premise 6, if the mouse visits the squirrel then the squirrel is rough. We do not have any information about the mouse visiting the squirrel. But we can infer that the mouse is cold (premise 2). We can also infer that the mouse needs the lion (premise 8), so the lion needs the mouse (premise 1). From premise 1, the lion is cold. We still do not have any information about the squirrel being cold. \n\nHowever, let's analyze the information given. From premise 7, the lion likes the squirrel. From premise 8, the mouse needs the lion. From premise 1, the lion is cold. We do not have any information about the squirrel being cold, but we can infer that the lion is cold. \n\nHowever, we can infer that the lion needs the mouse (premise 8). The lion is cold (premise 1), and we can infer that the lion needs the mouse (premise 8). We can also infer that the mouse needs the lion (premise 8), and we can infer that the lion is cold (premise 1). We still do not have any information about the squirrel being cold. However, from premise 6, if something visits the squirrel then the squirrel is rough. We do not have any information about the mouse visiting the squirrel. But we can infer that the mouse is cold (premise 2). We can also infer that the mouse needs the lion (premise 8), so the lion needs the mouse (premise 1). From premise 1, the lion is cold. We still do not have any information about the squirrel being cold. \n\nHowever, from premise 6, if the mouse visits the squirrel then the squirrel is rough. We do not have any information about the mouse visiting the squirrel. But we can infer that the mouse is cold (premise 2). We can also infer that the mouse needs the lion (premise 8), so the lion needs the mouse (premise 1). From premise 1, the lion is cold. We still do not have any information about the squirrel being cold. However, from premise 1, the lion is cold, and from premise 1, the lion is red. From premise 4, we cannot infer that the lion is not red. We can also infer that the lion is round (premise 4).\n\nNow, let's analyze the information given. From premise 7, the lion likes the squirrel. From premise 8, the mouse needs the lion. From premise 1, the lion is cold. We do not have any information about the squirrel being cold, but we can infer that the lion is cold. However, from premise 1, the lion is cold, and from premise 1, the lion is red. From premise 5, if the lion is red and it does not need the squirrel then it visits the mouse. From premise 1, the lion is red. From premise 7, the lion likes the squirrel, so the lion does not need the squirrel. From premise 5, if the lion is red and it does not need the squirrel then it visits the mouse. Therefore, we can infer that the lion visits the mouse.\n\nHowever, we can infer that the lion is cold (premise 1), and the lion visits the mouse. From premise 6, if something visits the squirrel then the squirrel is rough. The lion visits the mouse (premise 5), so the lion does not visit the squirrel. However, we can infer that the lion is cold (premise 1), and the lion visits the mouse. However, from premise 6, if something visits the squirrel then the squirrel is rough. We do not have any information about the mouse visiting the squirrel. But we can infer that the mouse is cold (premise 2). We can also infer that the mouse needs the lion (premise 8), so the lion needs the mouse (premise 1). From premise 1, the lion is cold. We still do not have any information about the squirrel being cold.\n\nHowever, let's analyze the information given. From premise 1, the lion is cold. From premise 7, the lion likes the squirrel. From premise 8, the mouse needs the lion. We can also infer that the mouse is cold (premise 2). We can also infer that the mouse needs the lion (premise 8), so the lion needs the mouse (premise 1). However, from premise 1, the lion is cold. We can also infer that the lion visits the mouse (premise 5). From premise 5, if something is red and it does not need the squirrel then it visits the mouse. From premise 1, the lion is red. From premise 7, the lion likes the squirrel, so the lion does not need the squirrel. From premise 5, if the lion is red and it does not need the squirrel then it visits the mouse. Therefore, we can infer that the lion visits the mouse.\n\nHowever, we can infer that the lion is cold (premise 1), and the lion visits the mouse. From premise 6, if something visits the squirrel then the squirrel is rough. We do not have any information about the mouse visiting the squirrel. But we can infer that the mouse is cold (premise 2). We can also infer that the mouse needs the lion (premise 8), so the lion needs the mouse (premise 1). From premise 1, the lion is cold. We still do not have any information about the squirrel being cold. However, from premise 6, if something visits the squirrel then the squirrel is rough. We do not have any information about the mouse visiting the squirrel. However, we can infer that the mouse is cold (premise 2).\n\nNow, let's analyze the information given. From premise 7, the lion likes the squirrel. From premise 8, the mouse needs the lion. From premise 1, the lion is cold. We do not have any information about the squirrel being cold, but we can infer that the lion is cold. We can also infer that the lion is red (premise 1). We can also infer that the lion does not need the squirrel (premise 7). From premise 5, if the lion is red and it does not need the squirrel then it visits the mouse. Therefore, we can infer that the lion visits the mouse.\n\nHowever, we can infer that the lion is cold (premise 1), and the lion visits the mouse. From premise 6, if something visits the squirrel then the squirrel is rough. The lion visits the mouse (premise 5), so the lion does not visit the squirrel. However, we can infer that the lion is cold (premise 1), and the lion visits the mouse. However, from premise 6, if something visits the squirrel then the squirrel is rough. We do not have any information about the mouse visiting the squirrel. But we can infer that the mouse is cold (premise 2). We can also infer that the mouse needs the lion (premise 8), so the lion needs the mouse (premise 1). From premise 1, the lion is cold. We still do not have any information about the squirrel being cold.\n\nHowever, let's analyze the information given. From premise 1, the lion is cold. From premise 7, the lion likes the squirrel. From premise 8, the mouse needs the lion. We can also infer that the mouse is cold (",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_X, cold_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "mouse_visits_squirrel -> rough(squirrel)",
+          "z3_formula": "Implies(mouse_visits_squirrel, rough_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(squirrel) -> squirrel_visits_cat",
+          "z3_formula": "Implies(cold_squirrel, squirrel_visits_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "squirrel_likes_lion",
+          "z3_formula": "squirrel_likes_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes_lion(X) -> not(visits_lion(X))",
+          "z3_formula": "Implies(likes_lion_X, not(visits_lion_X))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "lion_likes_squirrel",
+          "z3_formula": "lion_likes_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits_lion(X) -> needs_cat(X)",
+          "z3_formula": "Implies(visits_lion_X, needs_cat_X)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not(needs_squirrel(X)) -> visits_mouse(X)",
+          "z3_formula": "Implies(And(red_X, not(needs_squirrel_X)), visits_mouse_X)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "lion_needs_squirrel",
+          "z3_formula": "lion_needs_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "lion_visits_squirrel",
+          "z3_formula": "lion_visits_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs_squirrel(X) -> not(cold(X))",
+          "z3_formula": "Implies(needs_squirrel_X, not(cold_X))",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_lion, cold_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(mouse, squirrel) -> rough(squirrel)",
+          "z3_formula": "Implies(visits_mouse_squirrel, rough_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(mouse, lion) -> needs(mouse, lion)",
+          "z3_formula": "Implies(visits_mouse_lion, needs_mouse_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, squirrel)",
+          "z3_formula": "needs_lion_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & !needs(X, Y) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(red_lion, Not(needs_lion_squirrel)), visits_lion_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, cat)",
+          "z3_formula": "Implies(cold_squirrel, visits_squirrel_cat)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, squirrel)",
+          "z3_formula": "needs_lion_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_X, cold_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> rough(squirrel)",
+          "z3_formula": "Implies(visits_X_squirrel, rough_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> rough(squirrel)",
+          "z3_formula": "Implies(visits_X_squirrel, rough_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> likes(cat, mouse)",
+          "z3_formula": "Implies(visits_X_cat, likes_cat_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> likes(cat, mouse)",
+          "z3_formula": "Implies(visits_X_cat, likes_cat_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == False",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_squirrel, cold_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, cat)",
+          "z3_formula": "Implies(cold_squirrel, visits_squirrel_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> rough(X)",
+          "z3_formula": "Implies(visits_X_squirrel, rough_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & ~needs(X, squirrel) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(red_lion, Not(needs_lion_squirrel)), visits_lion_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(visits_X_lion, needs_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> likes(X, mouse)",
+          "z3_formula": "Implies(visits_X_cat, likes_X_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_X_squirrel, likes_X_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> ~needs(X, squirrel)",
+          "z3_formula": "Implies(likes_X_mouse, Not(needs_X_squirrel))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, cat)",
+          "z3_formula": "Implies(cold_squirrel, visits_squirrel_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "lion != squirrel",
+          "z3_formula": "lion != squirrel",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "squirrel != lion",
+          "z3_formula": "squirrel != lion",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel) == Unknown",
+          "z3_formula": "cold_squirrel == Unknown",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "lion_cold == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_lion, lion_cold)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "lion_round == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & cold(X) -> cold(X)",
+          "z3_formula": "Implies(And(red_lion, lion_cold), lion_cold)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> needs(X, Z)",
+          "z3_formula": "Implies(needs_lion_squirrel, needs_lion_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, squirrel)",
+          "z3_formula": "needs_lion_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, cat)",
+          "z3_formula": "Implies(visits_squirrel_lion, needs_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "mouse_cold == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(visits_mouse_lion, needs_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> likes(Y, cat)",
+          "z3_formula": "Implies(visits_squirrel_mouse, likes_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> not needs(X, Z)",
+          "z3_formula": "Implies(likes_lion_mouse, not needs_lion_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not needs(X, Y) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(red_lion, not needs_lion_squirrel), visits_lion_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "squirrel_cold == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, cat)",
+          "z3_formula": "Implies(squirrel_cold, visits_squirrel_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> likes(Y, cat)",
+          "z3_formula": "Implies(visits_squirrel_mouse, likes_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> not needs(X, Z)",
+          "z3_formula": "Implies(likes_squirrel_lion, not needs_squirrel_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not needs(X, Y) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(red_lion, not needs_lion_squirrel), visits_lion_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> likes(Y, X)",
+          "z3_formula": "Implies(likes_lion_mouse, likes_mouse_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> needs(X, Z)",
+          "z3_formula": "Implies(needs_lion_mouse, needs_lion_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(visits_mouse_lion, needs_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> likes(Y, cat)",
+          "z3_formula": "Implies(visits_squirrel_mouse, likes_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, mouse)",
+          "z3_formula": "visits_squirrel_mouse == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> not needs(X, Z)",
+          "z3_formula": "Implies(likes_squirrel_lion, not needs_squirrel_lion)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not needs(X, Y) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(red_lion, not needs_lion_squirrel), visits_lion_mouse)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "squirrel_cold == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel)",
+          "z3_formula": "squirrel_cold == Unknown",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, cat)",
+          "z3_formula": "Implies(cold_squirrel, visits_squirrel_cat)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> rough(squirrel)",
+          "z3_formula": "Implies(visits_something_squirrel, rough_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not(cold(squirrel)) -> not(visits(squirrel, cat))",
+          "z3_formula": "Not(cold_squirrel) == Not(visits_squirrel_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, squirrel)",
+          "z3_formula": "needs_lion_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(visits_something_lion, needs_something_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, squirrel)",
+          "z3_formula": "visits_cat_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> rough(squirrel)",
+          "z3_formula": "Implies(visits_something_squirrel, rough_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_squirrel, cold_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(cold(squirrel))",
+          "z3_formula": "Not(cold_squirrel)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, squirrel)",
+          "z3_formula": "needs_lion_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_lion, cold_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, cat)",
+          "z3_formula": "Implies(cold_squirrel, visits_squirrel_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> not rough(X)",
+          "z3_formula": "Implies(visits_squirrel_lion, not rough_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) & likes(X, lion) -> visits(X, lion)",
+          "z3_formula": "Implies(And(needs_lion_squirrel, likes_lion_squirrel), visits_lion_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> visits(X, squirrel)",
+          "z3_formula": "Implies(visits_lion_mouse, visits_mouse_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_mouse_squirrel, likes_mouse_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> likes(X, mouse)",
+          "z3_formula": "Implies(visits_squirrel_cat, likes_squirrel_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(squirrel)",
+          "z3_formula": "not cold_squirrel",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, squirrel)",
+          "z3_formula": "needs_lion_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, lion)",
+          "z3_formula": "likes_squirrel_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_X, cold_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(mouse, squirrel) -> likes(squirrel, cat)",
+          "z3_formula": "Implies(visits_mouse_squirrel, likes_squirrel_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(cat, X) -> likes(cat, mouse)",
+          "z3_formula": "Implies(visits_cat_X, likes_cat_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> rough(squirrel)",
+          "z3_formula": "Implies(visits_X_squirrel, rough_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> not needs(X, squirrel)",
+          "z3_formula": "Implies(likes_X_mouse, not needs_X_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not needs(X, squirrel) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(red_X, not needs_X_squirrel), visits_X_mouse)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(lion)",
+          "z3_formula": "red_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & Not(needs(X, Y)) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(red_lion, Not(needs_lion_squirrel)), visits_lion_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "likes_lion_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "Not(visits(lion, mouse))",
+          "z3_formula": "Not(visits_lion_mouse) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_squirrel, cold_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> rough(squirrel)",
+          "z3_formula": "Implies(visits_lion_squirrel, rough_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "lion_cold == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "mouse_cold == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_squirrel, cold_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> rough(squirrel)",
+          "z3_formula": "Implies(eats_mouse_squirrel, rough_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> rough(squirrel)",
+          "z3_formula": "Implies(visits_mouse_squirrel, rough_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, squirrel)",
+          "z3_formula": "lion_likes_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "mouse_needs_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & !needs(X, squirrel) -> visits(X, mouse)",
+          "z3_formula": "Implies(And(lion_red, Not(needs_lion_squirrel)), visits_lion_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, mouse)",
+          "z3_formula": "visits_lion_mouse == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 163,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 72
+    },
+    "maxsat_stats": {
+      "satisfied": 70,
+      "excluded": 2,
+      "total_weight": 147,
+      "solve_time_ms": 2.0120060071349144
+    },
+    "timing": {
+      "trace_gen_s": 25.031,
+      "extraction_s": 39.652,
+      "dedup_s": 2.405,
+      "maxsat_s": 0.006,
+      "total_s": 67.093
+    }
+  }
+}

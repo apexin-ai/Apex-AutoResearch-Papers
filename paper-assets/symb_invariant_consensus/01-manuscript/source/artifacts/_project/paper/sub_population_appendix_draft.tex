@@ -1,0 +1,61 @@
+% Sub-population Analysis: SICA vs SC (Mistral-7B)
+% Draft for Director review — do NOT merge directly into appendix.tex
+
+\subsection{Sub-population Analysis}
+\label{app:subpopulation}
+
+% ────────────────────────────────────────────────
+% Table 1: By Answer Type
+% ────────────────────────────────────────────────
+\begin{table}[h]
+\centering
+\small
+\caption{SICA vs.\ SC accuracy by gold-label type (Mistral-7B). $\Delta$\,pp = SICA $-$ SC. $p$-values from exact McNemar test (two-sided).}
+\label{tab:subpop-answer-type}
+\begin{tabular}{ll rrr rr}
+\toprule
+\textbf{Dataset} & \textbf{Label} & $n$ & \textbf{SC} & \textbf{SICA} & $\Delta$\,pp & $p$ \\
+\midrule
+\multirow{4}{*}{FOLIO-204}
+ & True    &  72 & 55.6 & 62.5 & $+$6.9 & .063 \\
+ & False   &  63 & 38.1 & 42.9 & $+$4.8 & .375 \\
+ & Unknown &  69 & 68.1 & 71.0 & $+$2.9 & .625 \\
+ & \textit{Overall} & 204 & 54.4 & 59.3 & $+$4.9 & .013\rlap{*} \\
+\midrule
+\multirow{4}{*}{PW-600}
+ & True    & 200 &  8.5 &  6.0 & $-$2.5 & .063 \\
+ & False   & 200 & 19.5 & 14.5 & $-$5.0 & .076 \\
+ & Unknown & 200 & 90.0 & 89.0 & $-$1.0 & .774 \\
+ & \textit{Overall} & 600 & 39.3 & 36.5 & $-$2.8 & .014\rlap{*} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ────────────────────────────────────────────────
+% Table 2: By Constraint Count (tertiles)
+% ────────────────────────────────────────────────
+\begin{table}[h]
+\centering
+\small
+\caption{SICA vs.\ SC accuracy by extracted constraint count tertile (Mistral-7B). Constraint counts are unique deduplicated constraints per problem.}
+\label{tab:subpop-constraint}
+\begin{tabular}{ll rr rrr rr}
+\toprule
+\textbf{Dataset} & \textbf{Tertile} & $n$ & $\bar{c}$ & \textbf{SC} & \textbf{SICA} & $\Delta$\,pp & $p$ \\
+\midrule
+\multirow{3}{*}{FOLIO-204}
+ & Low \scriptsize{[0--32]}   &  74 & 21.7 & 60.8 & 63.5 & $+$2.7 & .625 \\
+ & Mid \scriptsize{[33--47]}  &  64 & 39.7 & 51.6 & 59.4 & $+$7.8 & .125 \\
+ & High \scriptsize{[48--83]} &  66 & 58.7 & 50.0 & 54.5 & $+$4.5 & .250 \\
+\midrule
+\multirow{3}{*}{PW-600}
+ & Low \scriptsize{[0--39]}   & 212 & 28.8 & 43.9 & 39.6 & $-$4.3 & .078 \\
+ & Mid \scriptsize{[40--52]}  & 196 & 45.8 & 40.8 & 37.2 & $-$3.6 & .143 \\
+ & High \scriptsize{[53--99]} & 192 & 63.7 & 32.8 & 32.3 & $-$0.5 & 1.0\hphantom{00} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On FOLIO-204, SICA consistently improves over SC across all three answer types, with the largest gain on \textsc{True} labels ($+$6.9\,pp) where constraint-weighted consensus helps recover correct answers from minority traces.
+The improvement is directionally consistent but individually non-significant at $\alpha{=}0.05$ within each subgroup due to small cell sizes; the aggregate effect is significant ($p{=}.013$).
+On ProofWriter-600, SICA shows a small uniform degradation across all subgroups; this is consistent with the overall negative transfer reported in the main results, and the constraint-count analysis shows the degradation attenuates in the high-constraint tertile ($\Delta{=}{-}0.5$\,pp, $p{=}1.0$), suggesting that when more constraints are available the symbolic aggregation at least does not hurt.

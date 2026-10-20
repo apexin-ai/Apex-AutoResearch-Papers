@@ -1,0 +1,1144 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-315_Q16",
+    "problem": "Bob is blue. Bob is cold. Bob is green. Dave is blue. Dave is cold. Dave is green. Dave is kind. Dave is smart. Dave is white. Erin is smart. Fiona is blue. Blue people are smart. If Fiona is green and Fiona is blue then Fiona is big. Smart people are cold. If Bob is kind and Bob is blue then Bob is not green. If someone is blue then they are white. Green people are white. All big people are kind. If someone is cold then they are green.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is big.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\n\nFacts:\nBlue(Bob, True) ::: Bob is blue.\nCold(Bob, True) ::: Bob is cold.\nGreen(Bob, True) ::: Bob is green.\nBlue(Dave, True) ::: Dave is blue.\nCold(Dave, True) ::: Dave is cold.\nGreen(Dave, True) ::: Dave is green.\nKind(Dave, True) ::: Dave is kind.\nSmart(Dave, True) ::: Dave is smart.\nWhite(Dave, True) ::: Dave is white.\nSmart(Erin, True) ::: Erin is smart.\nBlue(Fiona, True) ::: Fiona is blue.\n\nRules:\nBlue($x, True) >>> Smart($x, True) ::: Blue people are smart.\nGreen(Fiona, True) && Blue(Fiona, True) >>> Big(Fiona, True) ::: If Fiona is green and Fiona is blue then Fiona is big.\nSmart($x, True) >>> Cold($x, True) ::: Smart people are cold.\nKind(Bob, True) && Blue(Bob, True) >>> Green(Bob, False) ::: If Bob is kind and Bob is blue then Bob is not green.\nBlue($x, True) >>> White($x, True) ::: If someone is blue then they are white.\nGreen($x, True) >>> White($x, True) ::: Green people are white.\nBig($x, True) >>> Kind($x, True) ::: All big people are kind.\nCold($x, True) >>> Green($x, True) ::: If someone is cold then they are green.\n\nQuery:\nBig(Dave, True) ::: Dave is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 144.0,
+      "Unknown": 148.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Dave is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"If Fiona is green and Fiona is blue then Fiona is big,\" we can deduce that Fiona is big because Fiona is both green and blue. \n\n2. From the statement \"Fiona is blue,\" we can infer that Fiona is white because \"If someone is blue then they are white.\" Since we now know Fiona is white, we can deduce Fiona is not big because the only statement that says someone is big is when they are both green and blue.\n\n3. However, Fiona's information doesn't directly relate to Dave's information. But from the statement \"If someone is cold then they are green,\" we can see that green people are cold. \n\n4. From the statement \"Dave is blue. Dave is cold. Dave is green,\" we can conclude that Dave is green because he is both cold and green.\n\n5. Since we know Dave is green from step 4, we can use the information from step 2 that says Fiona is not big because she is both blue and white, but Dave is green. So, the only requirement for someone to be big is to be both green and blue. Dave is indeed green, but we don't know if he is blue or not, so we can't conclude if Dave is big or not.\n\n6. Looking at the original statement \"Dave is blue,\" we still don't know if Dave is blue or not. However, from the statement \"Blue people are smart,\" and \"Dave is smart,\" we can conclude that Dave is indeed blue because he is smart.\n\n7. Since Dave is both green and blue from step 4 and step 6, we can now conclude that Dave is big from the statement \"If Fiona is green and Fiona is blue then Fiona is big.\"",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine if Dave is big, we need to analyze the given information and the rules provided.\n\n1. Dave is blue. \n2. Dave is cold. \n3. Dave is green. \n4. Dave is kind. \n5. Dave is smart. \n6. Dave is white.\n\nFrom the given rules:\n- Blue people are smart.\n- Smart people are cold.\n- Green people are white.\n- If someone is cold then they are green.\n- If Bob is kind and Bob is blue then Bob is not green. (Note: This rule is specific to Bob and doesn't apply to Dave, but we can use it to analyze our information.)\n\nSince Dave is blue (rule 1) and blue people are smart (rule 2), Dave is smart (rule 5).\nSince Dave is smart (rule 5) and smart people are cold (rule 3), Dave is cold (rule 2).\nSince Dave is cold (rule 2) and if someone is cold then they are green (rule 7), Dave is green (rule 3).\n\nNow, we have two conflicting statements:\n- Dave is blue (rule 1)\n- Dave is green (rule 3)\n\nFrom the rule \"If Bob is kind and Bob is blue then Bob is not green\" (rule 9), we can't directly apply this to Dave, but we can use it to analyze our information. We know Dave is kind (rule 4), but this doesn't help us determine if Dave is big or not.\n\nTo determine if Dave is big, we need to analyze the statement \"If Fiona is green and Fiona is blue then Fiona is big\" (rule 8). We know Fiona is blue (rule 11), but we don't know if Fiona is green.\n\nHowever, we can analyze the statement \"If someone is blue then they are white\" (rule 10). Since Dave is blue (rule 1) and if someone is blue then they are white (rule 10), Dave is white (rule 6).\n\nSince we have conflicting statements about Dave's color (blue and green), we can't determine if Dave is big or not. The information is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given statements, we know:\n   - Dave is blue.\n   - Dave is cold.\n   - Dave is green.\n   - Dave is kind.\n   - Dave is smart.\n   - Dave is white.\n\n2. From the given rules:\n   - If someone is blue, then they are white. (This rule is already satisfied by Dave's characteristics.)\n   - Green people are white. (This rule is also satisfied by Dave's characteristics.)\n   - Smart people are cold. (This rule is already satisfied by Dave's characteristics.)\n   - Blue people are smart. (This rule is already satisfied by Dave's characteristics.)\n\n3. To determine if Dave is big, we need to find a connection between Dave's characteristics and the definition of \"big.\"\n   - If Fiona is green and Fiona is blue, then Fiona is big. (This statement defines \"big\" people as those who are both green and blue.)\n   - Since Dave is green, this part of the definition is satisfied.\n   - However, we do not have information about whether Dave is blue or not.\n\n4. We need to find out if Dave is blue or not.\n   - If someone is blue, then they are white. (We already know Dave is white, but we need to determine if Dave is blue.)\n   - Blue people are smart. (Dave is smart, but this does not confirm Dave's blue status.)\n   - We know that Bob is blue and Bob is white, but this does not imply that all blue people are white (it's just one example). However, this does imply that if Dave is blue then Dave is white.\n\n5. Since we know that blue people are white and Dave is white, we can conclude that Dave is not blue.\n\n6. We concluded that Dave is not blue. Therefore, we cannot conclude that Dave is big.\n\n7. The statement \"Dave is big\" is unknown because we do not have enough information to confirm or deny it.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that:\n   - Dave is blue.\n   - Dave is cold.\n   - Dave is green.\n   - Dave is kind.\n   - Dave is smart.\n   - Dave is white.\n\n2. From the given information, we can derive the following statements:\n   - Since someone is blue then they are white (rule 9), and since Dave is blue then Dave is white (rule 1). However, this conflicts with rule 8, which states Dave is white and rule 7 which states green people are white. However, rule 1 also states Dave is green, which contradicts the rule that if someone is blue then they are white. But we can infer that since blue people are white (rule 9) and green people are white (rule 7) then since Dave is green, Dave is white. So, Dave's color doesn't affect his whiteness.\n\n3. We also know that:\n   - Smart people are cold (rule 4).\n   - Since Dave is smart (rule 5), Dave is cold (rule 4).\n\n4. However, we have the following conflict:\n   - Since someone is blue then they are white (rule 9), and since Dave is blue then Dave is white (rule 1).\n   - But, we also know that Dave is green (rule 3), and green people are white (rule 7). This seems to create a contradiction.\n\nHowever, from the information given, we can derive that since blue people are smart (rule 2), and smart people are cold (rule 4), then blue people are cold. But, from rule 8, we can say that if someone is blue then they are white. However, from rule 7, we can say that green people are white. Since Dave is blue and Dave is green, we can say that Dave is white.\n\nNow, we need to determine if Dave is big. To do this, we need to know if Fiona is big. We know that:\n   - If Fiona is green and Fiona is blue then Fiona is big (rule 6).\n\n5. We know that:\n   - Fiona is blue (rule 10).\n\n6. However, we also know that:\n   - Fiona is green (rule 10).\n\n7. Since Fiona is both green and blue, we can conclude that Fiona is big (rule 6).\n\n8. We also know that:\n   - All big people are kind (rule 10).\n\n9. Since Fiona is big (step 7), Fiona is kind (rule 8).\n\n10. We know that:\n    - If someone is kind and blue then they are not green (rule 8).\n\nHowever, since Dave is both blue and green, we can't conclude that Dave is not green using this rule.\n\nBut, we can conclude that Fiona is blue and green. And, from rule 8, we can say that since Fiona is blue and kind, Fiona is not green. This conflicts with the information that Fiona is both green and blue.\n\nHowever, this conflict is not with Dave but with Fiona. \n\nHowever, we can use the information about Fiona to conclude that since Fiona is kind and blue, then Fiona is not green. But we know that Fiona is both green and blue. So, this rule doesn't apply to Fiona.\n\nNow, we can use the information about Dave to conclude that since Dave is blue, Dave is white. Since Fiona is also blue, Fiona is also white. But, we know that Fiona is green and white. Since green people are white, this is consistent.\n\nHowever, we know that Dave is also green and white. Since green people are white, this is consistent.\n\nNow, we need to determine if Dave is big. To do this, we need to use the information that all big people are kind (rule 10). We know that Dave is kind (rule 5). However, we also know that if someone is kind and blue then they are not green (rule 8).\n\nBut, this rule doesn't apply to Dave because Dave is both blue and green.\n\nHowever, we know that Dave is cold (rule 3). We also know that if someone is cold then they are green (rule 10).\n\nSo, since Dave is cold, Dave is green (rule 10). We also know that Dave is blue (rule 3) and green (rule 3). \n\nHowever, we know that blue people are white (rule 9) and green people are white (rule 7). So, Dave is white (rule 9 and rule 7).\n\nHowever, we also know that if Fiona is green and Fiona is blue then Fiona is big (rule 6).\n\nSince Dave is blue and green, we can conclude that Dave is big.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know the following about Dave:\n   - Dave is blue.\n   - Dave is cold.\n   - Dave is green.\n   - Dave is kind.\n   - Dave is smart.\n   - Dave is white.\n\n2. We have the following rules:\n   - Smart people are cold. (Rule 1)\n   - Cold people are green. (Rule 7)\n   - Green people are white. (Rule 6)\n   - Blue people are smart. (Rule 2)\n\nFrom Rule 1, since Dave is smart, he must be cold. But from the given information, we already know Dave is cold. So, Rule 1 doesn't provide any new information.\n\nFrom Rule 2, since Dave is blue, we know he must be smart. However, we already know Dave is smart from the given information. So, Rule 2 also doesn't provide any new information.\n\nFrom Rule 7, since Dave is cold, we know he must be green. This matches the given information that Dave is green.\n\nFrom Rule 6, since Dave is green, we know he must be white. This matches the given information that Dave is white.\n\nNow, let's analyze the given statement about Fiona:\n- Fiona is blue.\n- Fiona is green.\n- If Fiona is blue and green, then Fiona is big.\n\nFrom Rule 2, since Fiona is blue, we know she must be smart. However, we don't have any information about Fiona being smart or not. So, we cannot conclude that Fiona is big based on this rule.\n\nNow, let's analyze the given statement about Bob:\n- Bob is blue.\n- If Bob is kind and blue, then Bob is not green.\n\nFrom the given information, we know Bob is blue and also blue people are smart (Rule 2). However, we don't have any information about Bob being kind or not. So, we cannot conclude anything about Bob's color based on this rule.\n\nNow, let's analyze the given statement about blue people:\n- If someone is blue, then they are white. (Rule 5)\n\nFrom Rule 5, since Dave is blue, we know he must be white. This matches the given information that Dave is white.\n\nNow, let's analyze the given statement about big people:\n- All big people are kind. (Rule 8)\n\nSince we don't have any information about Dave being big or not, we cannot conclude anything about Dave's kindness based on this rule.\n\nNow, let's analyze the given statement about blue people being white:\n- If someone is blue then they are white. (Rule 5)\n\nFrom Rule 5, since Dave is blue, we know he must be white. This matches the given information that Dave is white.\n\nNow, let's analyze the given statement about green people being white:\n- Green people are white. (Rule 6)\n\nFrom Rule 6, since Dave is green, we know he must be white. This matches the given information that Dave is white.\n\nNow, let's analyze the given statement about cold people:\n- If someone is cold then they are green. (Rule 7)\n\nFrom Rule 7, since Dave is cold, we know he must be green. This matches the given information that Dave is green.\n\nBased on the given information and the rules, we know that Dave is blue, cold, green, kind, smart, and white. We also know that all big people are kind and if someone is blue then they are white.\n\nNow, let's try to conclude whether Dave is big or not. We know that Dave is kind (Rule 4), so if Dave is big, then he must be kind. However, we already know Dave is kind. This doesn't provide any new information.\n\nSince we don't have any information that directly contradicts the statement \"Dave is big\" or \"Dave is not big\", we cannot conclude whether Dave is big or not. Therefore, the statement \"Dave is big\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve the given problem, we need to use the process of elimination and logical reasoning. We will analyze the given statements and use them to determine the truth value of the statement \"Dave is big.\"\n\nGiven statements:\n\n1. Bob is blue.\n2. Bob is cold.\n3. Bob is green.\n4. Dave is blue.\n5. Dave is cold.\n6. Dave is green.\n7. Dave is kind.\n8. Dave is smart.\n9. Dave is white.\n10. Erin is smart.\n11. Fiona is blue.\n12. Blue people are smart.\n13. If Fiona is green and Fiona is blue then Fiona is big.\n14. Smart people are cold.\n15. If Bob is kind and Bob is blue then Bob is not green.\n16. If someone is blue then they are white.\n17. Green people are white.\n18. All big people are kind.\n19. If someone is cold then they are green.\n\nNow, let's analyze the statement \"Dave is big.\"\n\nWe need to determine if Dave is big. To do this, we can use the statements 6, 7, and 8, which tell us that Dave is green, kind, and smart. \n\nSince Dave is smart (statement 8), he is cold (statement 14).\n\nNow, since Dave is cold, he is green (statement 19).\n\nWe know that Dave is green and we can use statement 13 to say that if Fiona is green and blue then she is big. However, this statement is conditional, meaning that it is only true if Fiona is both green and blue. Since Dave is green, not Fiona, we can't directly apply this statement to Dave.\n\nHowever, we can use the fact that Dave is green and cold to apply statement 19, which says that if someone is cold, then they are green. This tells us that Dave is indeed green, but it doesn't tell us anything about Dave being big.\n\nLet's use statement 17, which says that green people are white. Since Dave is green, we can use this statement to say that Dave is white. This is consistent with statement 9, which says that Dave is white.\n\nWe still can't determine if Dave is big or not. We can use statement 16, which says that if someone is blue, then they are white. Since Dave is white, it's possible that Dave is blue, but we can't determine this for sure.\n\nHowever, we can use the fact that Dave is blue and we know from statement 12 that blue people are smart. Since Dave is smart, we can use statement 14, which says that smart people are cold. This is consistent with statement 5, which says that Dave is cold.\n\nWe can also use statement 18, which says that all big people are kind. Since Dave is kind (statement 7), we can use this statement to say that if Dave is big, then he must be kind. This is consistent with statement 7, which says that Dave is kind.\n\nNow, let's use the fact that Bob is blue and we know from statement 1 that Bob is blue. We can use statement 15, which says that if Bob is kind and blue, then he is not green. Since Bob is blue and green (statements 1 and 3), this statement is false. However, this doesn't tell us anything about Dave.\n\nWe can also use the fact that Fiona is blue and we know from statement 11 that Fiona is blue. We can use statement 13, which says that if Fiona is green and blue, then she is big. However, we don't know if Fiona is green or not.\n\nLet's use the fact that Dave is blue and we know from statement 4 that Dave is blue. We can use statement 16, which says that if someone is blue, then they are white. Since Dave is white (statement 9), this statement is true.\n\nNow, let's use the fact that Fiona is blue and we know from statement 11 that Fiona is blue. We can use statement 12, which says that blue people are smart. However, this doesn't tell us anything about Fiona being big.\n\nWe can use the fact that Bob is blue and we know from statement 1 that Bob is blue. We can use statement 15, which says that if Bob is kind and blue, then he is not green. However, this statement is false, as Bob is indeed green.\n\nWe can use the fact that Dave is blue and we know from statement 4 that Dave is blue. We can use statement 12, which says that blue people are smart. However, this doesn't tell us anything about Dave being big.\n\nWe can use the fact that Fiona is blue and we know from statement 11 that Fiona is blue. We can use statement 12, which says that blue people are smart. However, this doesn't tell us anything about Fiona being big.\n\nNow, let's analyze the statement \"If someone is blue then they are white.\" Since Dave is blue (statement 4), we can use this statement to say that Dave is white (statement 16). This is consistent with statement 9, which says that Dave is white.\n\nWe can use the fact that Dave is green and cold to apply statement 19, which says that if someone is cold, then they are green. This tells us that Dave is indeed green, but it doesn't tell us anything about Dave being big.\n\nHowever, we can use the fact that Dave is blue and we know from statement 4 that Dave is blue. We can use statement 18, which says that all big people are kind. Since Dave is kind (statement 7), we can use this statement to say that if Dave is big, then he must be kind. This is consistent with statement 7, which says that Dave is kind.\n\nNow, let's use the fact that Dave is blue and we know from statement 4 that Dave is blue. We can use statement 16, which says that if someone is blue, then they are white. Since Dave is white (statement 9), this statement is true.\n\nHowever, we can use the fact that Dave is green and cold to apply statement 19, which says that if someone is cold, then they are green. This tells us that Dave is indeed green, but it doesn't tell us anything about Dave being big.\n\nWe can use the fact that Fiona is blue and we know from statement 11 that Fiona is blue. We can use statement 13, which says that if Fiona is green and blue, then she is big. However, we don't know if Fiona is green or not.\n\nWe can use the fact that Bob is blue and we know from statement 1 that Bob is blue. We can use statement 12, which says that blue people are smart. However, this doesn't tell us anything about Bob being big.\n\nWe can use the fact that Dave is blue and we know from statement 4 that Dave is blue. We can use statement 16, which says that if someone is blue, then they are white. Since Dave is white (statement 9), this statement is true.\n\nHowever, we can use the fact that Dave is green and cold to apply statement 19, which says that if someone is cold, then they are green. This tells us that Dave is indeed green, but it doesn't tell us anything about Dave being big.\n\nWe can use the fact that Dave is blue and we know from statement 4 that Dave is blue. We can use statement 12, which says that blue people are smart. However, this doesn't tell us anything about Dave being big.\n\nNow, let's analyze the statement \"If someone is cold then they are green.\" Since Dave is cold (statement 5), we can use this statement to say that Dave is green (statement 19). This is consistent with statement 6, which says that Dave is green.\n\nNow, let's analyze the statement \"All big people are kind.\" Since Dave is kind (statement 7), we can use this statement to say that if Dave is big, then he must be kind. This is consistent with statement 7, which says that Dave is kind.\n\nHowever, we can use the fact that Fiona is blue and we know from statement 11 that Fiona is blue. We can use statement 13, which says that if Fiona is green and blue, then she is big. However, we don't know if Fiona is green or not.\n\nWe can use the fact that Dave is blue and we know from statement 4 that Dave is blue. We can use statement 16, which says that if someone is blue, then they are white. Since Dave is white (statement 9), this statement is true.\n\nHowever, we can use the fact that Dave is green and cold to apply statement 19, which says that if someone is cold, then they are green. This tells us that Dave is indeed green, but it doesn't tell us anything about Dave being big.\n\nWe can use the fact that Dave is blue and we know from statement 4 that Dave is blue. We can use statement 12, which says that blue people are smart. However, this doesn't tell us anything about Dave being big.\n\nNow, let's analyze the statement \"If someone is green and blue, then they are big.\" Since Fiona is blue (statement 11), we can use this statement to say that Fiona is green (statement 13). However, we don't know if Fiona is green or not.\n\nNow, let's analyze the statement \"All big people are kind.\" Since Dave is kind (statement 7), we can use this statement to say that if Dave is big, then he must be kind. This is consistent with statement 7, which says that Dave is kind.\n\nHowever, we can use the fact that Dave is blue and we know from statement 4 that Dave is blue. We can use statement 16, which says",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and the rules of logic to determine whether the statement \"Dave is big\" is true, false, or unknown.\n\nGiven Statements:\n\n1. Bob is blue.\n2. Bob is cold.\n3. Bob is green.\n4. Dave is blue.\n5. Dave is cold.\n6. Dave is green.\n7. Dave is kind.\n8. Dave is smart.\n9. Dave is white.\n10. Erin is smart.\n11. Fiona is blue.\n12. Blue people are smart.\n13. If Fiona is green and Fiona is blue then Fiona is big.\n14. Smart people are cold.\n15. If Bob is kind and Bob is blue then Bob is not green.\n16. If someone is blue then they are white.\n17. Green people are white.\n18. All big people are kind.\n19. If someone is cold then they are green.\n\nNow, we will apply the rules of logic to determine whether the statement \"Dave is big\" is true, false, or unknown.\n\nWe need to check if any of the following conditions are met:\n\n- Condition 1: Dave is blue and Fiona is blue.\n- Condition 2: Dave is green and Fiona is blue.\n\nCondition 1: Dave is blue and Fiona is blue.\n- From statement 12, we know that Blue people are smart.\n- From statement 11, we know that Fiona is blue.\n- From statement 12, we know that Fiona is smart.\n- Since Fiona is smart, from statement 14, we know that Fiona is cold.\n- From statement 19, we know that if someone is cold then they are green.\n- From statement 19, we know that Fiona is green.\n- Now, we have a contradiction because Fiona is both blue and green, but statement 3 says that Bob is green and statement 11 says that Fiona is blue, and statement 13 says that if Fiona is green and Fiona is blue then Fiona is big. Hence Fiona is big.\n\nCondition 2: Dave is green and Fiona is blue.\n- From statement 19, we know that if someone is cold then they are green.\n- From statement 5, we know that Dave is cold.\n- From statement 19, we know that Dave is green.\n\nSince condition 2 is met, we can conclude that Dave is big.\n\nWe can also check the other conditions:\n\n- Condition 3: Dave is kind and Fiona is blue.\n- From statement 7, we know that Dave is kind.\n- From statement 11, we know that Fiona is blue.\n- Condition 4: Dave is blue and Fiona is green.\n- From statement 4, we know that Dave is blue.\n- From statement 6, we know that Dave is green.\n- Condition 5: Dave is kind and Fiona is green.\n- From statement 7, we know that Dave is kind.\n- From statement 6, we know that Dave is green.\n- Condition 6: Dave is blue and Fiona is big.\n- From statement 11, we know that Fiona is blue.\n- From condition 1, we know that Fiona is big.\n\nSince we found that Dave is big in condition 2, we don't need to check the other conditions.\n\nTherefore, the statement \"Dave is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information provided, we have the following statements:\n   - Dave is blue.\n   - Dave is cold.\n   - Dave is green.\n   - Dave is kind.\n   - Dave is smart.\n   - Dave is white.\n\n2. We also have some rules or relationships:\n   - Blue people are smart.\n   - Smart people are cold.\n   - If someone is blue then they are white.\n   - Green people are white.\n   - If Bob is kind and Bob is blue then Bob is not green.\n   - If someone is cold then they are green.\n   - If Fiona is green and Fiona is blue then Fiona is big. (Note: This rule only applies to Fiona, not Dave.)\n\n3. Since Dave is blue and blue people are smart, Dave is indeed smart.\n\n4. Since Dave is smart and smart people are cold, Dave is indeed cold.\n\n5. However, we need to determine if Dave is big or not. To do this, we need to analyze the rules related to being big.\n\n6. The only rule that involves being big is: \"If Fiona is green and Fiona is blue then Fiona is big.\" This rule only applies to Fiona, not Dave. \n\n7. Therefore, we cannot conclude that Dave is big based on the given information. The relationship between being blue, green, and being big only applies to Fiona, not Dave.\n\n8. Since we cannot conclude that Dave is big, the answer is: unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Dave is big or not, we need to analyze the given information step by step.\n\n1. We are given the following information about Dave:\n   - Dave is blue\n   - Dave is cold\n   - Dave is green\n   - Dave is kind\n   - Dave is smart\n   - Dave is white\n\n2. We can also use the given statements to infer additional information:\n   - Blue people are smart. Since Dave is blue, we can conclude that Dave is smart (which we already know).\n   - Smart people are cold. Since Dave is smart, we can conclude that Dave is cold (which we already know).\n   - If someone is cold, then they are green. Since Dave is cold, we can conclude that Dave is green (which we already know).\n\n3. Now, we need to determine whether Dave is big or not. We are given the following information:\n   - If Fiona is green and Fiona is blue, then Fiona is big. This statement only applies to Fiona, not Dave.\n   - All big people are kind. This statement does not provide any information about Dave being big or not.\n   - We are given the information about Bob, but it does not affect the conclusion about Dave being big.\n\n4. Since we cannot determine whether Dave is big or not using the given information, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Dave is blue.\n   - Dave is cold.\n   - Dave is green.\n   - Dave is kind.\n   - Dave is smart.\n   - Dave is white.\n   - Erin is smart.\n   - Fiona is blue.\n   - Blue people are smart.\n   - Smart people are cold.\n   - If Bob is kind and Bob is blue then Bob is not green.\n   - If someone is blue then they are white.\n   - Green people are white.\n   - All big people are kind.\n   - If someone is cold then they are green.\n\n2. We can start by analyzing the given statements that are relevant to Dave's characteristics:\n   - Dave is blue.\n   - Dave is cold.\n   - Dave is green.\n   - Dave is kind.\n   - Dave is smart.\n   - Dave is white.\n\n3. From the statement \"If someone is blue then they are white\" and \"Dave is blue,\" we can conclude that Dave is white (white).\n\n4. From the statement \"If someone is cold then they are green\" and \"Dave is cold,\" we can conclude that Dave is green (green).\n\n5. Now, let's analyze the statement \"Dave is big\" based on the given information:\n   - We have already concluded that Dave is green.\n   - From the statement \"If Fiona is green and Fiona is blue then Fiona is big,\" we can't directly conclude that Dave is big because we don't have information that says Dave is both blue and green.\n   - However, from the statement \"All big people are kind,\" we can infer that if Dave is big, then he must be kind.\n\n6. Now, let's analyze the statement \"Dave is kind\" based on the given information:\n   - We have already concluded that Dave is kind.\n\n7. From the statement \"If Bob is kind and Bob is blue then Bob is not green\" and \"Dave is blue and Dave is kind,\" we can't directly conclude that Dave is not green because the statement is about Bob, not Dave.\n\n8. However, from the statement \"If Bob is kind and Bob is blue then Bob is not green\" and \"Dave is kind and Dave is blue,\" we can infer that we don't have enough information to determine whether Dave is green or not because the statement is about Bob, not Dave.\n\n9. Based on the information, we can conclude that:\n   - Dave is blue.\n   - Dave is white.\n   - Dave is green.\n   - Dave is kind.\n\n10. However, we can't conclude whether Dave is big or not because we don't have enough information that says Dave is both blue and green. \n\n   The statement \"Dave is big\" is unknown because we can't determine whether it's true or false based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is big' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know the following about Dave:\n   - Dave is blue.\n   - Dave is cold.\n   - Dave is green.\n   - Dave is kind.\n   - Dave is smart.\n   - Dave is white.\n\n2. From the given information:\n   - Blue people are smart. (This is consistent with Dave being smart since he is blue.)\n   - Smart people are cold. (This is consistent with Dave being cold since he is smart.)\n   - If someone is blue then they are white. (This is consistent with Dave being white since he is blue.)\n   - Green people are white. (This is consistent with Dave being white since he is green.)\n   - If someone is cold then they are green. (This is consistent with Dave being green since he is cold.)\n\n3. However, we also know:\n   - If someone is blue then they are white. (This implies that being blue is a stronger characteristic than being green for color.)\n   - Green people are white. (This implies that being green is a weaker characteristic than being white for color.)\n\n4. Now we analyze the statement 'Dave is big' based on the given information:\n   - If Fiona is green and Fiona is blue, then Fiona is big. (This implies a relationship between being green and being blue with being big.)\n   - All big people are kind. (This implies a relationship between being big and being kind.)\n   - If Bob is kind and Bob is blue, then Bob is not green. (This implies a relationship between being kind and not being green for blue people.)\n\n5. To determine whether Dave is big or not, we need to find a connection between Dave's characteristics and the given statements about big people.\n\nSince we have not found any direct relationship between Dave's characteristics and the given statements about big people, we cannot conclude whether 'Dave is big' is true or false based on the given information. Therefore, the answer is 'unknown' due to a lack of direct evidence.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is big\" is true, false, or unknown, we need to use the given information and apply logical deductions.\n\nFrom the information given, we can see that:\n\n- Dave is blue (Statement 4)\n- Blue people are smart (Statement 7)\n- Smart people are cold (Statement 8)\n- If someone is cold then they are green (Statement 11)\n\nFrom these statements, we can deduce that Dave is cold and green. However, we cannot directly conclude that Dave is big from this information.\n\nNow, let's analyze the statement \"If Fiona is green and Fiona is blue then Fiona is big\" (Statement 9). Since Fiona is both green and blue, it follows that Fiona is indeed big.\n\nHowever, we cannot directly link the information about Fiona being big to Dave being big. The only common attribute we can find between Dave and Fiona is that they are both blue. However, being blue does not guarantee being big, as we have seen from the information given about Dave.\n\nHowever, from the statement \"If someone is blue then they are white\" (Statement 10), we can deduce that since Dave is blue, then Dave is white. Also from statement 4, we know Dave is white, and from statement 6 we know Dave is white.\n\nFrom the statement \"Green people are white\" (Statement 6), we can deduce that since Dave is green, then Dave is white. But we already know Dave is white. However, we also know that Dave is green, and from the statement \"If someone is cold then they are green\" (Statement 11), we can deduce that Dave is indeed green.\n\nHowever, from the statement \"All big people are kind\" (Statement 10) and \"If Bob is kind and Bob is blue then Bob is not green\" (Statement 9), we cannot conclude that since Fiona is big, then Fiona is kind. However, we cannot conclude that Fiona is kind.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "rule",
+          "expression": "green(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(green_fiona, blue_fiona), big_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_fiona, white_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not big(fiona)",
+          "z3_formula": "Not(big_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dave, green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_dave, smart_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_dave, smart_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_dave, cold_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_dave, white_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dave, green_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(bob) & blue(bob) -> not green(bob)",
+          "z3_formula": "Implies(And(kind_bob, blue_bob), Not(green_bob))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_dave, white_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_dave, cold_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_dave, smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(green_dave, blue_dave), big_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(dave)",
+          "z3_formula": "Not(blue_dave) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not big(dave)",
+          "z3_formula": "Not(big_dave) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_dave, white_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_dave, cold_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> cold(X)",
+          "z3_formula": "Implies(And(blue_dave, smart_dave), cold_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_dave, white_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> Not(green(X))",
+          "z3_formula": "Implies(And(kind_dave, blue_dave), Not(green_dave))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dave, green_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(blue_dave, green_dave), big_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_dave, cold_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_dave, smart_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dave, green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_dave, white_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_dave, smart_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_dave, kind_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dave, green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_dave, white_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_dave, smart_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_dave, cold_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dave, green_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_dave, kind_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(green_dave, blue_dave), big_dave)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_dave, smart_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_dave, white_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & blue(Y) -> smart(Y)",
+          "z3_formula": "Implies(And(blue_dave, blue_fiona), smart_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & blue(Y) -> white(Y)",
+          "z3_formula": "Implies(And(blue_dave, blue_fiona), white_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & blue(Y) -> big(Y)",
+          "z3_formula": "Implies(And(green_dave, blue_fiona), big_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dave, green_dave)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_fiona, green_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> not green(X)",
+          "z3_formula": "Implies(And(kind_bob, blue_bob), Not(green_bob))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_dave, smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_dave, cold_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_dave, white_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> not green(X)",
+          "z3_formula": "Implies(And(kind_dave, blue_dave), Not(green_dave))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dave, green_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(green_fiona, blue_fiona), big_fiona)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_dave, smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_dave, cold_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dave, green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & blue(X) -> big(Fiona)",
+          "z3_formula": "Implies(And(green_dave, blue_dave), big_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_dave, kind_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dave, green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_dave, kind_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> not green(X)",
+          "z3_formula": "Implies(And(blue_dave, kind_dave), Not(green_dave))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_dave, smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_dave, cold_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_dave, white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dave, green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> big(Fiona)",
+          "z3_formula": "Implies(And(blue_dave, white_dave), big_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_dave, kind_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> Not(green(X))",
+          "z3_formula": "Implies(And(kind_dave, blue_dave), Not(green_dave))",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": "unknown"
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_dave, smart_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_dave, cold_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dave, green_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": "unknown"
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_dave, white_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> green(X)",
+          "z3_formula": "Implies(cold_dave, green_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_X, kind_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & blue(X) -> not green(X)",
+          "z3_formula": "Implies(And(kind_X, blue_X), Not(green_X))",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 169,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 34
+    },
+    "maxsat_stats": {
+      "satisfied": 30,
+      "excluded": 4,
+      "total_weight": 162,
+      "solve_time_ms": 1.3451827690005302
+    },
+    "timing": {
+      "trace_gen_s": 24.258,
+      "extraction_s": 24.478,
+      "dedup_s": 1.283,
+      "maxsat_s": 0.003,
+      "total_s": 50.022
+    }
+  }
+}

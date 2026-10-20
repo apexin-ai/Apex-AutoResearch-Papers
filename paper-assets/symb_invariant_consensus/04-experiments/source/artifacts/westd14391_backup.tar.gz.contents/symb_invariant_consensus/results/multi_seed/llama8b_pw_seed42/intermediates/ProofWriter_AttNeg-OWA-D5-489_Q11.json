@@ -1,0 +1,943 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-489_Q11",
+    "problem": "Bob is green. Bob is not nice. Dave is furry. Erin is furry. Erin is nice. Fiona is big. Fiona is not furry. Kind things are young. Young, big things are green. If something is young then it is green. If something is big and rough then it is not nice. If something is big then it is nice. If Bob is furry then Bob is young. If something is furry then it is big. If something is nice then it is kind.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is green.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nFurry($x, bool) ::: Is x furry?\nBig($x, bool) ::: Is x big?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nGreen(Bob, True) ::: Bob is green.\nNice(Bob, False) ::: Bob is not nice.\nFurry(Dave, True) ::: Dave is furry.\nFurry(Erin, True) ::: Erin is furry.\nNice(Erin, True) ::: Erin is nice.\nBig(Fiona, True) ::: Fiona is big.\nFurry(Fiona, False) ::: Fiona is not furry.\n\nRules:\nKind($x, True) >>> Young($x, True) ::: Kind things are young.\nYoung($x, True) && Big($x, True) >>> Green($x, True) ::: Young, big things are green.\nYoung($x, True) >>> Green($x, True) ::: If something is young then it is green.\nBig($x, True) && Rough($x, True) >>> Nice($x, False) ::: If something is big and rough then it is not nice.\nBig($x, True) >>> Nice($x, True) ::: If something is big then it is nice.\nFurry(Bob, True) >>> Young(Bob, True) ::: If Bob is furry then Bob is young.\nFurry($x, True) >>> Big($x, True) ::: If something is furry then it is big.\nNice($x, True) >>> Kind($x, True) ::: If something is nice then it is kind.\n\nQuery:\nGreen(Dave, True) ::: Dave is green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 89.0,
+      "Unknown": 125.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given statements:\n   - Erin is furry. Erin is nice. (We know Erin is furry and nice)\n   - Dave is furry. (We know Dave is furry)\n\n2. Since Erin is furry and Erin is nice, and \"If something is furry then it is big,\" we can infer that Erin is big. However, we cannot directly apply this to Dave without further information.\n\n3. From the given statements:\n   - Kind things are young. Young, big things are green. If something is young then it is green.\n   - Erin is nice. If something is nice then it is kind. (We can infer Erin is young because Erin is nice and kind)\n\n4. We cannot directly apply the information about Erin being young and big to Dave. However, we can consider the statement \"If something is big then it is nice.\" This statement is contradictory to the statement \"If something is big and rough then it is not nice.\" For simplicity, let's assume we only consider the first statement for now and revisit later if necessary.\n\n5. Since we cannot directly determine Dave's color based on the given information, we need to explore other possibilities.\n\n6. We cannot determine Dave's color because we do not have enough information about Dave being young or big.\n\n7. Since we cannot determine Dave's color, we cannot directly apply the statements \"If something is young then it is green\" or \"Young, big things are green\" to Dave.\n\n8. Let's revisit the statement \"If something is big and rough then it is not nice.\" We do not have any information about Dave being rough, but this statement is contradictory to \"If something is big then it is nice.\" Since we do not have any information that contradicts Dave being big, we can assume Dave might be big for now.\n\n9. However, without more information about Dave being young or not being rough, we cannot determine if Dave is green or not.\n\n10. Based on the given information, we cannot determine if Dave is green or not. Therefore, the statement \"Dave is green\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to evaluate the given information and the conditions that affect Dave's color.\n\n1. We are given that:\n   - Kind things are young.\n   - Young, big things are green.\n   - If something is young then it is green.\n   - If something is big and rough then it is not nice.\n   - If something is big then it is nice.\n   - If Bob is furry then Bob is young.\n   - If something is furry then it is big.\n   - If something is nice then it is kind.\n   - Dave is furry.\n\n2. From the given information, we know that:\n   - Dave is furry, and since something is furry then it is big, Dave is big.\n   - Since Dave is furry and big, we do not have enough information to directly determine if Dave is young, green, or nice. However, we can infer that since Dave is big, he is nice, according to the condition that if something is big then it is nice.\n\n3. Now, to determine if Dave is green, we need to consider the conditions that affect Dave's color. We have the following conditions:\n   - Young, big things are green.\n   - If something is young then it is green.\n   - Since Dave is furry and big, we know he is not necessarily young, but we do not have enough information to determine if he is young or not.\n\n4. Since Dave is big, he is nice, and we do not have enough information to determine if he is young, we cannot conclude that Dave is green based on the conditions provided.\n\nTherefore, the statement \"Dave is green\" is unknown because we do not have enough information to determine Dave's color.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is furry. (Given)\n2. Erin is furry. (Given)\n3. If something is furry, then it is big. (Rule 6)\n   Since Dave is furry, then Dave is big.\n\n4. If something is big, then it is nice. (Rule 5)\n   Since Dave is big, then Dave is nice.\n\n5. If something is young, then it is green. (Rule 2)\n   We do not have any information about Dave being young.\n\n6. If something is big and rough, then it is not nice. (Rule 4)\n   Since Dave is big and nice, we cannot conclude that Dave is not nice.\n\n7. Bob is green. (Given)\n8. Bob is not nice. (Given)\n9. If Bob is furry, then Bob is young. (Rule 7)\n   Since Bob is not furry (unknown), we cannot conclude that Bob is young.\n\n10. If something is furry, then it is big. (Rule 6)\n    We do not have any information about Bob being furry.\n\n11. If something is nice, then it is kind. (Rule 8)\n    Since Dave is nice, then Dave is kind.\n\n12. Kind things are young. (Rule 1)\n    Since Dave is kind, we cannot conclude that Dave is young.\n\n13. Young, big things are green. (Rule 3)\n    Since we do not know if Dave is young, we cannot conclude that Dave is green.\n\nBased on the given information, we cannot conclude that Dave is green. We have some information about Dave being big and nice, but not enough to determine if he is young or green. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nGiven statements:\n1. Dave is furry.\n2. Erin is furry.\n3. Erin is nice.\n4. Fiona is big.\n5. Fiona is not furry.\n6. Kind things are young.\n7. Young, big things are green.\n8. If something is young then it is green.\n9. If something is big and rough then it is not nice.\n10. If something is big then it is nice.\n11. If Bob is furry then Bob is young.\n12. If something is furry then it is big.\n13. If something is nice then it is kind.\n\nWe are trying to determine the value of \"Dave is green.\" To do this, we need to find a path from the given statements to the value of \"Dave is green.\"\n\nFrom statement 1, we know that Dave is furry.\n\nFrom statement 12, we know that if something is furry then it is big.\n\nSo, Dave is big.\n\nNow, we need to determine if Dave is green. To do this, we can use statements 7 and 8.\n\nStatement 7 says that young, big things are green.\n\nStatement 8 says that if something is young then it is green.\n\nHowever, we don't have any direct information that Dave is young or not young. But, we can find a path using the given statements.\n\nFrom statement 6, we know that kind things are young.\n\nFrom statement 13, we know that if something is nice then it is kind.\n\nHowever, we don't have any direct information that Dave is nice or not nice.\n\nBut, we can find a path using statements 3 and 10.\n\nStatement 3 says that Erin is nice.\n\nStatement 10 says that if something is big then it is nice.\n\nHowever, we know that Erin is furry (statement 2), and from statement 12, we know that if something is furry then it is big.\n\nSo, Erin is big, and since Erin is nice (statement 3), we can conclude that big things are nice (using statement 10).\n\nHowever, we also know that if something is big and rough then it is not nice (statement 9).\n\nFrom statement 11, we know that if Bob is furry then Bob is young.\n\nHowever, we don't have any direct information about Bob being furry or not.\n\nFrom statement 5, we know that Fiona is not furry.\n\nFrom statement 12, we know that if something is furry then it is big.\n\nHowever, we also know that Fiona is big (statement 4).\n\nSo, Fiona is big but not furry.\n\nFrom statement 9, we know that big and rough things are not nice.\n\nHowever, we don't have any direct information that Fiona is rough or not.\n\nBut, we can conclude that Fiona is not nice because it's big but not furry (statements 4 and 5), and from statement 9, we know that big and rough things are not nice.\n\nFrom statement 10, we know that if something is big then it is nice.\n\nHowever, we already know that Fiona is not nice.\n\nSo, the statement \"if something is big then it is nice\" is false for Fiona.\n\nHowever, this doesn't affect the conclusion about Dave.\n\nFrom the given statements, we cannot conclude whether Dave is young or not young. \n\nHowever, we can conclude that if Dave is not young, then Dave is not green (statement 8).\n\nBut, we cannot conclude whether Dave is green or not green from the given statements.\n\nTherefore, the statement \"Dave is green\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nFrom the information given:\n\n1. Dave is furry. (Direct statement)\n2. Erin is furry. (Direct statement)\n3. Erin is nice. (Direct statement)\n4. If something is furry then it is big. (Rule 6)\n   - Since Dave is furry, Dave is big. (Inference)\n\nNow, let's break down the information about big things:\n\n1. If something is big and rough then it is not nice. (Rule 7)\n   - This doesn't apply to Dave, as we don't know if Dave is rough.\n2. If something is big then it is nice. (Rule 8)\n   - Since Dave is big, Dave is nice. (Inference)\n\nNow, let's analyze the information about green things:\n\n1. If something is young then it is green. (Rule 4)\n2. If something is big then it is nice. (Rule 8)\n3. If something is young and big, then it is green. (Inference from Rules 4 and 8)\n\nWe don't have any information about Dave being young, but we do know that being big and nice doesn't necessarily make something green. We need to find a direct or indirect statement about Dave being young.\n\nFrom the information given:\n\n1. Kind things are young. (Rule 3)\n2. If something is nice then it is kind. (Rule 10)\n   - Since Dave is nice, Dave is kind. (Inference)\n3. If something is young then it is green. (Rule 4)\n   - This doesn't directly apply to Dave, but if we assume that kind things are young, and Dave is kind, then Dave might be young.\n\nHowever, there's a contradiction. If Dave is young, then he is green (Rule 4). But we also know that Fiona is big, and Fiona is not furry (Rule 5), so Fiona is not young (Inference from Rule 4). Since Fiona is big and not young, Fiona is nice (Rule 8). However, if something is young then it is green (Rule 4), and if something is big then it is nice (Rule 8). Therefore, if something is young and big, then it is green (Inference from Rules 4 and 8). \n\nHowever, from the information given, we can infer that if something is nice then it is kind (Rule 10), and kind things are young (Rule 3). However, we don't have any information about the relationship between \"nice\" and \"young\" directly. We do know that young things are green (Rule 4) and that kind things are young (Rule 3).\n\nHowever, from the information given, we can infer that if Bob is furry then Bob is young (Rule 9) and that if something is furry then it is big (Rule 6). However, we don't have any information about the relationship between \"furry\" and \"young\" or \"big\" and \"green\" directly.\n\nNow, since Dave is furry (Direct statement) and if something is furry then it is big (Rule 6), Dave is big. However, since Dave is big, Dave is nice (Inference from Rule 8). Since Dave is nice, Dave is kind (Inference from Rule 10). However, we also know that kind things are young (Rule 3), so Dave is young. Since Dave is young, Dave is green (Inference from Rule 4).\n\nHowever, there's another piece of information that contradicts the statement \"Dave is green.\" We know that Fiona is big and Fiona is not furry (Rule 5), so Fiona is not young (Inference from Rule 4). Since Fiona is big and not young, Fiona is nice (Rule 8). Since Fiona is nice, Fiona is kind (Inference from Rule 10). However, since Fiona is big and Fiona is not young, Fiona is green (Inference from Rules 4 and 8). However, this contradicts the statement \"Fiona is not furry,\" because if something is not furry, then it is not big (Inference from Rule 6). However, this is incorrect because if something is not furry, then it is not big (Inference from Rule 6), and if something is not big, then it is not nice (Inference from Rule 8). However, this is incorrect because if something is not big, then it is not nice (Inference from Rule 8), and if something is not nice, then it is not kind (Inference from Rule 10). However, this is incorrect because if something is not kind, then it is not young (Inference from Rule 3). However, this is incorrect because if something is not young, then it is not green (Inference from Rule 4).\n\nHowever, the statement \"Fiona is not furry\" is a direct statement, and we cannot contradict it. However, the statement \"Dave is green\" is an inference, and we cannot conclude that it is true or false.\n\nHowever, we can conclude that Dave is big and nice. Since Dave is nice, Dave is kind. However, we cannot conclude that Dave is young. However, we cannot conclude that Dave is not green.\n\nHowever, since we cannot conclude that Dave is not green, we cannot conclude that the statement \"Dave is green\" is false. However, we cannot conclude that the statement \"Dave is green\" is true.\n\nTherefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Dave is furry. (Given)\n2. Erin is furry. (Given)\n3. Erin is nice. (Given)\n4. Fiona is big. (Given)\n5. Fiona is not furry. (Given)\n6. Kind things are young. (Given)\n7. Young, big things are green. (Given)\n8. If something is young then it is green. (Given)\n9. If something is big and rough then it is not nice. (Given)\n10. If something is big then it is nice. (Given)\n11. If Bob is furry then Bob is young. (Given)\n12. If something is furry then it is big. (Given)\n13. If something is nice then it is kind. (Given)\n\nNow, let's analyze the statement \"Dave is green.\" To determine whether this statement is true, false, or unknown, we need to see if we can deduce any information about Dave.\n\nFrom statement (1), we know that Dave is furry. \n\nFrom statement (12), we know that if something is furry, then it is big.\n\nTherefore, Dave is big.\n\nHowever, we cannot directly determine whether Dave is green or not from the given information. We know that young, big things are green (statement (7)), but we do not know if Dave is young or not.\n\nFrom statement (8), we know that if something is young, then it is green. However, we cannot conclude that Dave is young because we do not have any information that directly links Dave to being young.\n\nAlso, from statement (7), we know that young, big things are green. But we cannot determine if Dave is young because we do not have any information that directly links Dave to being young.\n\nHowever, we can try to deduce more information about Dave. From statement (1), we know that Dave is furry. From statement (12), we know that if something is furry, then it is big. Therefore, Dave is big.\n\nFrom statement (13), we know that if something is nice, then it is kind. However, we do not have any information that directly links Dave to being nice. But, we can see that Erin is nice (statement (3)) and Erin is furry (statement (2)), so Erin is big (from statement (12)), which means that Erin is not nice (from statement (9)). This means that our assumption that if something is furry, then it is big, and also that if something is furry, then it is nice, cannot be true at the same time.\n\nHowever, we can see that Erin is furry (statement (2)), and Erin is nice (statement (3)), which means that Erin is big (from statement (12)), and also that Erin is not nice (from statement (9)), which means that our assumption that if something is big, then it is nice, cannot be true at the same time.\n\nBut, we can see that Erin is big (from statement (12)), and Erin is not nice (from statement (9)), which means that our assumption that if something is big and rough, then it is not nice, cannot be true at the same time.\n\nHowever, we can see that Erin is furry (statement (2)), and Erin is nice (statement (3)), which means that Erin is big (from statement (12)), and also that Erin is not big (from statement (9)), which means that our assumption that if something is big, then it is nice, cannot be true at the same time.\n\nBut, we can see that Erin is furry (statement (2)), and Erin is nice (statement (3)), which means that Erin is big (from statement (12)), which means that our assumption that if something is furry, then it is big, cannot be true at the same time.\n\nHowever, we can see that Erin is furry (statement (2)), and Erin is nice (statement (3)), which means that Erin is kind (from statement (13)), which means that Erin is young (from statement (6)), which means that Erin is green (from statement (8)).\n\nHowever, we cannot conclude that Dave is green or not from the given information.\n\nTherefore, the statement \"Dave is green\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is furry. (Given)\n2. Erin is furry. (Given)\n3. Erin is nice. (Given)\n4. If something is furry then it is big. (Given)\n   - Since Dave is furry, we can conclude that Dave is big. (Using rule 4)\n\n5. Fiona is big. (Given)\n6. Fiona is not furry. (Given)\n7. If something is big and rough then it is not nice. (Given)\n   - Since we don't have any information about Fiona being rough, we cannot conclude that Fiona is not nice. However, we will come back to this later.\n8. If something is big then it is nice. (Given)\n   - Since we already concluded that Dave is big, we can use this rule to conclude that Dave is nice. (Using rule 8)\n\n9. If something is nice then it is kind. (Given)\n   - Since we concluded that Dave is nice, we can conclude that Dave is kind. (Using rule 9)\n\n10. Young, big things are green. (Given)\n    - Since we concluded that Dave is big and kind, we can use this rule to conclude that Dave is young. (Using rule 10)\n    - Since we concluded that Dave is young and big, we can conclude that Dave is green. (Using rule 10)\n\nSo, after analyzing the given information, we can conclude that the statement \"Dave is green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is green' is true, false, or unknown, we need to break down the given information and apply it to the statement.\n\n1. Dave is furry. (Given)\n2. Erin is furry. (Given)\n3. If something is furry then it is big. (Given)\n   From (1) and (3), we can conclude that Dave is big.\n\n4. If something is big then it is nice. (Given)\n   From (3), we know Dave is big, so we can conclude that Dave is nice.\n\n5. If something is nice then it is kind. (Given)\n   From (4), we know Dave is nice, so we can conclude that Dave is kind.\n\n6. Kind things are young. (Given)\n   From (5), we know Dave is kind, so we can conclude that Dave is young.\n\n7. If something is young, then it is green. (Given)\n   From (6), we know Dave is young, so we can conclude that Dave is green.\n\nBased on the steps above, we can conclude that the statement 'Dave is green' is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. Dave is furry. (Given)\n2. Erin is furry. (Given)\n3. Erin is nice. (Given)\n4. Fiona is big. (Given)\n5. Fiona is not furry. (Given)\n6. Kind things are young. (Given)\n7. Young, big things are green. (Given)\n8. If something is young then it is green. (Given)\n9. If something is big and rough then it is not nice. (Given)\n10. If something is big then it is nice. (Given)\n11. If Bob is furry then Bob is young. (Given)\n12. If something is furry then it is big. (Given)\n13. If something is nice then it is kind. (Given)\n\nWe are trying to find out whether Dave is green. To do this, we need to analyze the information given about Dave.\n\nFrom statement 1, we know that Dave is furry. \n\nFrom statement 12, we know that if something is furry, then it is big. Therefore, we can conclude that Dave is big.\n\nFrom statement 10, we know that if something is big, then it is nice. However, from statement 9, we know that if something is big and rough, then it is not nice. Since we don't have any information about Dave being rough or not, we cannot conclude whether Dave is nice or not. Therefore, we cannot conclude whether Dave is kind or not.\n\nFrom statement 6, we know that kind things are young. Since we don't know whether Dave is kind or not, we cannot conclude whether Dave is young or not.\n\nFrom statement 8, we know that if something is young, then it is green. However, we cannot conclude whether Dave is young or not.\n\nFrom statement 7, we know that young, big things are green. Since we know that Dave is big, but we don't know whether Dave is young or not, we cannot conclude whether Dave is green or not.\n\nTherefore, the statement \"Dave is green\" is unknown, as we cannot conclude whether it is true or false based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine if the statement \"Dave is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is furry. (Given information)\n2. Erin is furry. (Given information)\n3. Erin is nice. (Given information)\n4. If something is furry, then it is big. (Given information)\n   Since Dave is furry, then Dave is big.\n\n5. Fiona is big. (Given information)\n6. Fiona is not furry. (Given information)\n7. If something is big and rough then it is not nice. (Given information)\n   Since Fiona is big and not furry, then Fiona is not rough. However, we can't conclude that Fiona is nice or not nice yet.\n\n8. If something is big, then it is nice. (Given information)\n   Since Fiona is big, then Fiona is nice.\n\n9. Kind things are young. (Given information)\n   Since Erin is nice, then Erin is kind.\n\n10. If something is kind, then it is young. (Given information)\n    Since Erin is kind, then Erin is young.\n\n11. Young, big things are green. (Given information)\n    Since Erin is young and big, then Erin is green.\n\n12. If something is young, then it is green. (Given information)\n    Since Erin is young, then Erin is green.\n\n13. If Bob is furry, then Bob is young. (Given information)\n   Since Bob is not furry (we cannot conclude that Bob is young or not young yet).\n\n14. If something is big, then it is nice. (Given information)\n   Since Dave is big, then Dave is nice.\n\n15. If something is nice, then it is kind. (Given information)\n   Since Dave is nice, then Dave is kind.\n\n16. Kind things are young. (Given information)\n   Since Dave is kind, then Dave is young.\n\n17. Young, big things are green. (Given information)\n   Since Dave is young and big, then Dave is green.\n\nTherefore, based on the given information, the statement \"Dave is green\" is true.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and rules to find out if Dave is green.\n\nGiven statements:\n1. Bob is green.\n2. Bob is not nice.\n3. Dave is furry.\n4. Erin is furry.\n5. Erin is nice.\n6. Fiona is big.\n7. Fiona is not furry.\n8. Kind things are young.\n9. Young, big things are green.\n10. If something is young then it is green.\n11. If something is big and rough then it is not nice.\n12. If something is big then it is nice.\n13. If Bob is furry then Bob is young.\n14. If something is furry then it is big.\n15. If something is nice then it is kind.\n\nWe need to determine the truth value of the statement \"Dave is green.\"\n\nLet's analyze the statements:\n\nFrom statement 14, we know that if something is furry, then it is big. Since Dave is furry (statement 3), we can conclude that Dave is big.\n\nHowever, we still don't know if Dave is green. We need to find more information.\n\nFrom statement 15, we know that if something is nice, then it is kind. But we don't know if Dave is nice or not.\n\nFrom statement 13, we know that if Bob is furry, then Bob is young. But this doesn't give us any information about Dave.\n\nFrom statement 8, we know that kind things are young. But we don't know if Dave is kind or not.\n\nHowever, from statement 10, we know that if something is young, then it is green. But we don't have enough information to conclude that Dave is young.\n\nWe can use the statement \"If something is big then it is nice\" (statement 12) to conclude that Dave is nice. Since Dave is big and nice, we can conclude that Dave is kind.\n\nBut this still doesn't help us to determine if Dave is green or not.\n\nWe can use the statement \"If something is young then it is green\" (statement 10) to conclude that if Dave is young, then Dave is green.\n\nHowever, we still don't know if Dave is young or not.\n\nWe can use the statement \"Young, big things are green\" (statement 9) to conclude that if Dave is both young and big, then Dave is green.\n\nHowever, we still don't know if Dave is both young and big.\n\nWe can use the statement \"If something is big and rough then it is not nice\" (statement 11) to conclude that since Dave is nice, Dave is not rough.\n\nBut this still doesn't help us to determine if Dave is green or not.\n\nWe can use the statement \"If something is furry then it is big\" (statement 14) to conclude that since Dave is furry, Dave is big.\n\nHowever, we still don't know if Dave is green.\n\nWe can use the statement \"If Bob is furry then Bob is young\" (statement 13) to conclude that since Bob is furry, Bob is young.\n\nBut this still doesn't help us to determine if Dave is green or not.\n\nWe can use the statement \"If something is big then it is nice\" (statement 12) to conclude that since Dave is big, Dave is nice.\n\nHowever, we still don't know if Dave is green.\n\nWe can use the statement \"Kind things are young\" (statement 8) to conclude that since Dave is kind, Dave is young.\n\nNow we can use the statement \"If something is young then it is green\" (statement 10) to conclude that since Dave is young, Dave is green.\n\nHowever, this is not the correct conclusion. From statement 3, we know that Dave is furry, and from statement 14, we know that if something is furry, then it is big. We also know that from statement 12, since Dave is big, Dave is nice.\n\nWe can use the statement \"Fiona is big\" (statement 6) and \"Fiona is not furry\" (statement 7) to conclude that Fiona is not furry and big.\n\nWe can use the statement \"If something is furry then it is big\" (statement 14) to conclude that since Fiona is not furry, Fiona is not big.\n\nHowever, this is a contradiction. This means that we cannot conclude that Fiona is not furry and big.\n\nLet's re-examine the statement \"If something is furry then it is big\" (statement 14).\n\nFrom statement 3, we know that Dave is furry. From statement 14, we can conclude that Dave is big.\n\nHowever, this still doesn't help us to determine if Dave is green or not.\n\nWe can use the statement \"Kind things are young\" (statement 8) to conclude that since Dave is kind, Dave is young.\n\nNow we can use the statement \"If something is young then it is green\" (statement 10) to conclude that since Dave is young, Dave is green.\n\nHowever, this is not the correct conclusion.\n\nWe can use the statement \"If something is furry then it is big\" (statement 14) to conclude that since Dave is furry, Dave is big.\n\nFrom statement 12, we know that if something is big, then it is nice. Since Dave is big, we can conclude that Dave is nice.\n\nFrom statement 8, we know that kind things are young. Since Dave is nice, we can conclude that Dave is kind.\n\nNow we can use the statement \"If something is young then it is green\" (statement 10) to conclude that since Dave is young, Dave is green.\n\nHowever, we still don't know if Dave is young or not.\n\nWe can use the statement \"If something is big and rough then it is not nice\" (statement 11) to conclude that since Dave is nice, Dave is not rough.\n\nBut this still doesn't help us to determine if Dave is green or not.\n\nWe can use the statement \"If something is furry then it is big\" (statement 14) to conclude that since Dave is furry, Dave is big.\n\nHowever, we still don't know if Dave is green.\n\nFrom statement 4, we know that Erin is furry. From statement 14, we know that if something is furry, then it is big. We can conclude that Erin is big.\n\nFrom statement 12, we know that if something is big, then it is nice. We can conclude that Erin is nice.\n\nFrom statement 8, we know that kind things are young. We can conclude that Erin is young.\n\nNow we can use the statement \"If something is young then it is green\" (statement 10) to conclude that since Erin is young, Erin is green.\n\nHowever, this still doesn't help us to determine if Dave is green or not.\n\nWe can use the statement \"If something is furry then it is big\" (statement 14) to conclude that since Dave is furry, Dave is big.\n\nHowever, we still don't know if Dave is green.\n\nFrom statement 3, we know that Dave is furry. From statement 14, we know that if something is furry, then it is big. We can conclude that Dave is big.\n\nHowever, we still don't know if Dave is green.\n\nFrom statement 8, we know that kind things are young. Since Erin is kind (statement 15), we can conclude that Erin is young.\n\nFrom statement 9, we know that young, big things are green. However, we don't know if Erin is big or not.\n\nWe can use the statement \"If something is big and rough then it is not nice\" (statement 11) to conclude that since Erin is nice, Erin is not rough.\n\nHowever, this still doesn't help us to determine if Dave is green or not.\n\nFrom statement 6, we know that Fiona is big. From statement 12, we know that if something is big, then it is nice. We can conclude that Fiona is nice.\n\nFrom statement 7, we know that Fiona is not furry. From statement 14, we know that if something is furry, then it is big. We can conclude that Fiona is not big.\n\nHowever, this is a contradiction.\n\nFrom statement 6, we know that Fiona is big. From statement 14, we know that if something is furry, then it is big. We can conclude that Fiona is not furry.\n\nHowever, this is a contradiction.\n\nWe can use the statement \"If something is furry then it is big\" (statement 14) to conclude that since Erin is furry, Erin is big.\n\nHowever, this is a contradiction.\n\nWe can use the statement \"If something is furry then it is big\" (statement 14) to conclude that since Dave is furry, Dave is big.\n\nHowever, we still don't know if Dave is green.\n\nWe can use the statement \"If something is big then it is nice\" (statement 12) to conclude that since Dave is big, Dave is nice.\n\nHowever, we still don't know if Dave is green.\n\nWe can use the statement \"Young, big things are green\" (statement 9) to conclude that since Erin is young and big, Erin is green.\n\nHowever, this is a contradiction.\n\nFrom statement 4, we know that Erin is furry. From statement 14, we know that if something is furry, then it is big. We can conclude that Erin is big.\n\nHowever, this is a contradiction.\n\nFrom statement 4, we know that Erin is furry. From statement 14, we know that if something is furry, then it is big. We can conclude that Erin is big.\n\nHowever, we still don't know if Erin is green.\n\nWe can use the statement \"If something is young then it is green\" (statement 10) to conclude that since Erin is young, Erin is green.\n\nHowever, this is a contradiction.\n\nWe can use the statement \"If something is",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Dave is green, we need to analyze the given information and use logical deductions.\n\n1. Dave is furry. (Given)\n2. Erin is furry. (Given)\n3. Erin is nice. (Given)\n4. If something is furry then it is big. (Given)\n   - From (1) and (4), Dave is big.\n5. If something is big then it is nice. (Given)\n   - From (4) and (5), Dave is nice.\n6. If something is nice then it is kind. (Given)\n   - From (5) and (6), Dave is kind.\n7. Kind things are young. (Given)\n   - From (6), Dave is young.\n8. Young, big things are green. (Given)\n   - From (7) and (4), Dave is big (already established in step 4).\n   - From (7) and (7), Dave is young (already established in step 7).\n   - From (8), Dave is green.\n\nSo, the statement \"Dave is green\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_erin, big_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_erin, young_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(young_erin, big_erin), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_erin, green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_dave, nice_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> not nice(X)",
+          "z3_formula": "Implies(And(big_dave, rough_dave), not_nice_dave)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_dave, kind_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(young_dave, big_dave), green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> Not(nice(X))",
+          "z3_formula": "Implies(And(big_dave, rough_dave), Not(nice_dave))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_dave, nice_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(Bob) -> young(Bob)",
+          "z3_formula": "Implies(furry_bob, young_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(Dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_dave, nice_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(bob)",
+          "z3_formula": "not nice_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_bob, young_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(bob)",
+          "z3_formula": "not furry_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_bob, big_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_dave, young_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young, big(X) -> green(X)",
+          "z3_formula": "Implies(And(young_dave, big_dave), green_dave)",
+          "source_step": 13
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_dave, nice_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_dave, young_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_fiona, big_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == False",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_fiona, nice_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_fiona, kind_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not young(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_fiona, Not(young_fiona)), nice_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not young(X) -> green(X)",
+          "z3_formula": "Implies(And(big_fiona, Not(young_fiona)), green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not furry(X) -> not big(X)",
+          "z3_formula": "Implies(Not(furry_fiona), Not(big_fiona))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not big(fiona)",
+          "z3_formula": "Not(big_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not big(X) -> not nice(X)",
+          "z3_formula": "Implies(Not(big_fiona), Not(nice_fiona))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(fiona)",
+          "z3_formula": "Not(nice_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not nice(X) -> not kind(X)",
+          "z3_formula": "Implies(Not(nice_fiona), Not(kind_fiona))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(fiona)",
+          "z3_formula": "Not(kind_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not kind(X) -> not young(X)",
+          "z3_formula": "Implies(Not(kind_fiona), Not(young_fiona))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not young(fiona)",
+          "z3_formula": "Not(young_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not young(X) -> not green(X)",
+          "z3_formula": "Implies(Not(young_fiona), Not(green_fiona))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "Not(green_fiona)",
+          "source_step": 8
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not furry(fiona)",
+          "z3_formula": "not furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> not nice(X)",
+          "z3_formula": "Implies(And(big_fiona, rough_fiona), not nice_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_dave, nice_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(young_dave, big_dave), green_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_dave, nice_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_dave, young_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_dave, nice_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> not nice(X)",
+          "z3_formula": "Implies(And(big_dave, rough_dave), Not(nice_dave))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_dave, young_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(young_dave, big_dave), green_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not furry(fiona)",
+          "z3_formula": "Not(furry_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not furry(X) -> not nice(X)",
+          "z3_formula": "Implies(And(big_fiona, Not(furry_fiona)), Not(nice_fiona))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_fiona, nice_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_erin, young_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_erin, young_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(young_erin, big_erin), green_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_erin, green_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_bob, young_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_dave, nice_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_dave, young_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(young_dave, big_dave), green_dave)",
+          "source_step": 18
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_erin, big_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_dave, nice_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_dave, big_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> nice(X)",
+          "z3_formula": "Implies(big_dave, nice_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_dave, young_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(young_dave, big_dave), green_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 136,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 49
+    },
+    "maxsat_stats": {
+      "satisfied": 45,
+      "excluded": 4,
+      "total_weight": 129,
+      "solve_time_ms": 1.7117327079176903
+    },
+    "timing": {
+      "trace_gen_s": 24.368,
+      "extraction_s": 50.643,
+      "dedup_s": 1.369,
+      "maxsat_s": 0.004,
+      "total_s": 76.384
+    }
+  }
+}

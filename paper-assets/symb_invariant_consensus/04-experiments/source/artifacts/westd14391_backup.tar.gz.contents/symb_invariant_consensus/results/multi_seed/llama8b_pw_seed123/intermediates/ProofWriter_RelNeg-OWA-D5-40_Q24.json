@@ -1,0 +1,1393 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-40_Q24",
+    "problem": "The bald eagle is big. The bald eagle likes the cat. The bald eagle sees the squirrel. The cat chases the squirrel. The cat sees the squirrel. The squirrel likes the cat. The squirrel does not like the tiger. The tiger is big. The tiger is not young. The tiger sees the squirrel. If the tiger likes the bald eagle then the bald eagle sees the squirrel. If something likes the tiger and it does not chase the cat then the cat is not big. If something sees the cat then the cat is big. If something is big then it sees the bald eagle. If something sees the bald eagle then the bald eagle is young. Cold things are big. If something chases the tiger and it sees the cat then the tiger is big. If something is big then it chases the tiger. If something sees the bald eagle then it sees the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe squirrel is rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nLikes($x, $y, bool) ::: Does x like y?\nSees($x, $y, bool) ::: Does x see y?\nChases($x, $y, bool) ::: Does x chase y?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nBig(BaldEagle, True) ::: The bald eagle is big.\nLikes(BaldEagle, Cat, True) ::: The bald eagle likes the cat.\nSees(BaldEagle, Squirrel, True) ::: The bald eagle sees the squirrel.\nChases(Cat, Squirrel, True) ::: The cat chases the squirrel.\nSees(Cat, Squirrel, True) ::: The cat sees the squirrel.\nLikes(Squirrel, Cat, True) ::: The squirrel likes the cat.\nLikes(Squirrel, Tiger, False) ::: The squirrel does not like the tiger.\nBig(Tiger, True) ::: The tiger is big.\nYoung(Tiger, False) ::: The tiger is not young.\nSees(Tiger, Squirrel, True) ::: The tiger sees the squirrel.\n\nRules:\nLikes(Tiger, BaldEagle, True) >>> Sees(BaldEagle, Squirrel, True) ::: If the tiger likes the bald eagle then the bald eagle sees the squirrel.\nLikes($x, Tiger, True) && Chases($x, Cat, False) >>> Big(Cat, False) ::: If something likes the tiger and it does not chase the cat then the cat is not big.\nSees($x, Cat, True) >>> Big(Cat, True) ::: If something sees the cat then the cat is big.\nBig($x, True) >>> Sees($x, BaldEagle, True) ::: If something is big then it sees the bald eagle.\nSees($x, BaldEagle, True) >>> Young(BaldEagle, True) ::: If something sees the bald eagle then the bald eagle is young.\nCold($x, True) >>> Big($x, True) ::: Cold things are big.\nChases($x, Tiger, True) && Sees($x, Cat, True) >>> Big(Tiger, True) ::: If something chases the tiger and it sees the cat then the tiger is big.\nBig($x, True) >>> Chases($x, Tiger, True) ::: If something is big then it chases the tiger.\nSees($x, BaldEagle, True) >>> Sees($x, Cat, True) ::: If something sees the bald eagle then it sees the cat.\n\nQuery:\nRough(Squirrel, True) ::: The squirrel is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 182.5
+    },
+    "answer_counts": {
+      "Unknown": 9
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to break down the given statements and use them to find a relationship between the squirrel and being \"rough.\"\n\n1. The bald eagle is big. \n   We don't have enough information about the bald eagle being \"rough,\" so let's move on.\n\n2. The bald eagle likes the cat. \n   This doesn't help us find a relationship between the squirrel and being \"rough.\"\n\n3. The bald eagle sees the squirrel. \n   This also doesn't help us find a relationship between the squirrel and being \"rough.\"\n\n4. The cat chases the squirrel. \n   This doesn't help us find a relationship between the squirrel and being \"rough.\"\n\n5. The cat sees the squirrel. \n   This also doesn't help us find a relationship between the squirrel and being \"rough.\"\n\n6. The squirrel likes the cat. \n   This doesn't help us find a relationship between the squirrel and being \"rough.\"\n\n7. The squirrel does not like the tiger. \n   This also doesn't help us find a relationship between the squirrel and being \"rough.\"\n\n8. The tiger is big. \n   We don't have enough information about the tiger being \"rough,\" so let's move on.\n\n9. The tiger is not young. \n   This also doesn't help us find a relationship between the squirrel and being \"rough.\"\n\n10. The tiger sees the squirrel. \n   This doesn't help us find a relationship between the squirrel and being \"rough.\"\n\n11. If the tiger likes the bald eagle then the bald eagle sees the squirrel. \n   We don't have enough information about the tiger liking the bald eagle, so let's move on.\n\n12. If something likes the tiger and it does not chase the cat then the cat is not big. \n   This also doesn't help us find a relationship between the squirrel and being \"rough.\"\n\n13. If something sees the cat then the cat is big. \n   This also doesn't help us find a relationship between the squirrel and being \"rough.\"\n\n14. If something is big then it sees the bald eagle. \n   This doesn't help us find a relationship between the squirrel and being \"rough.\"\n\n15. If something sees the bald eagle then the bald eagle is young. \n   This doesn't help us find a relationship between the squirrel and being \"rough.\"\n\n16. Cold things are big. \n   We don't have enough information about the squirrel being cold, so let's move on.\n\n17. If something chases the tiger and it sees the cat then the tiger is big. \n   This also doesn't help us find a relationship between the squirrel and being \"rough.\"\n\n18. If something is big then it chases the tiger. \n   This also doesn't help us find a relationship between the squirrel and being \"rough.\"\n\n19. If something sees the bald eagle then it sees the cat. \n   This doesn't help us find a relationship between the squirrel and being \"rough.\"\n\nHowever, we can find a connection between the squirrel and being \"rough\" using the fact that the statement \"The squirrel is rough\" is not directly related to any of the previous statements. We cannot deduce the truth value of the statement \"The squirrel is rough\" from the given statements. The only way to make an assertion about the squirrel is through information that has not been provided.\n\nSince we cannot find a connection between the squirrel and being \"rough\" using the given statements, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is rough\" is true, false, or unknown, we need to analyze the given information.\n\n1. The bald eagle is big. \n2. The bald eagle likes the cat. \n3. The bald eagle sees the squirrel. \n4. The cat chases the squirrel. \n5. The cat sees the squirrel. \n6. The squirrel likes the cat. \n7. The squirrel does not like the tiger. \n8. The tiger is big. \n9. The tiger is not young. \n10. The tiger sees the squirrel. \n\nFrom the given statements, we can derive the following conclusions:\n\n- If something sees the cat then the cat is big. (Statement 5 implies the cat is big)\n- If something sees the bald eagle then the bald eagle is young. (Statement 3 implies the bald eagle is young)\n- If something sees the bald eagle then it sees the cat. (Statement 3 implies the cat is seen by something that sees the bald eagle)\n\nNow let's look at the statements related to being big:\n\n- If something is big then it sees the bald eagle. (Statement 1 implies the bald eagle is seen by something that is big)\n- If something is big then it chases the tiger. (Statement 8 implies the tiger is chased by something that is big)\n- If something chases the tiger and it sees the cat then the tiger is big. (Statement 10 implies the tiger is big if it is chased by something that sees the cat)\n\nNow, we need to analyze the relationship between being rough and the given information. There is no direct statement that relates being rough to the given information. However, we can use the fact that cold things are big (Statement 10 does not mention cold things, it says the tiger is big) to derive a new statement.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle is big. \n   - This statement does not provide any information about the squirrel.\n\n2. The bald eagle likes the cat. \n   - This statement does not provide any information about the squirrel.\n\n3. The bald eagle sees the squirrel. \n   - This statement does provide information about the squirrel, but we don't know if the squirrel is rough or not.\n\n4. The cat chases the squirrel. \n   - This statement does provide information about the squirrel, but we don't know if the squirrel is rough or not.\n\n5. The cat sees the squirrel. \n   - This statement does provide information about the squirrel, but we don't know if the squirrel is rough or not.\n\n6. The squirrel likes the cat. \n   - This statement does provide information about the squirrel, but we don't know if the squirrel is rough or not.\n\n7. The squirrel does not like the tiger. \n   - This statement does provide information about the squirrel, but we don't know if the squirrel is rough or not.\n\n8. The tiger is big. \n   - This statement does not provide any information about the squirrel.\n\n9. The tiger is not young. \n   - This statement does not provide any information about the squirrel.\n\n10. The tiger sees the squirrel. \n    - This statement does provide information about the squirrel, but we don't know if the squirrel is rough or not.\n\n11. If the tiger likes the bald eagle then the bald eagle sees the squirrel. \n    - This statement does not provide any information about the squirrel.\n\n12. If something likes the tiger and it does not chase the cat then the cat is not big. \n    - This statement does not provide any information about the squirrel.\n\n13. If something sees the cat then the cat is big. \n    - This statement does not provide any information about the squirrel.\n\n14. If something is big then it sees the bald eagle. \n    - This statement does not provide any information about the squirrel.\n\n15. If something sees the bald eagle then the bald eagle is young. \n    - This statement does not provide any information about the squirrel.\n\n16. Cold things are big. \n    - This statement does not provide any information about the squirrel.\n\n17. If something chases the tiger and it sees the cat then the tiger is big. \n    - This statement does not provide any information about the squirrel.\n\n18. If something is big then it chases the tiger. \n    - This statement does not provide any information about the squirrel.\n\n19. If something sees the bald eagle then it sees the cat. \n    - This statement does not provide any information about the squirrel.\n\nNow, we can see that none of the statements provide direct information about the squirrel being rough. The statements that provide information about the squirrel (3, 4, 5, 6, 7, and 10) are inconclusive regarding the statement \"The squirrel is rough.\" Therefore, the statement \"The squirrel is rough\" is unknown based on the given information. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is rough\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\nLet's define the following:\n\n- B: The bald eagle is big.\n- C: The cat is big.\n- E: The bald eagle is young.\n- S: The squirrel is big.\n- T: The tiger is big.\n\nFrom the given information:\n- The squirrel does not like the tiger.\n- The tiger is big (T).\n- The tiger sees the squirrel.\n- If something sees the squirrel and it likes the tiger, then this rule is not applicable.\n\nFrom the rules:\n1. If the tiger likes the bald eagle, then the bald eagle sees the squirrel.\n   - We do not have enough information to determine if the tiger likes the bald eagle.\n\n2. If something likes the tiger and it does not chase the cat, then the cat is not big.\n   - We do not have enough information to determine if something likes the tiger and does not chase the cat.\n\n3. If something sees the cat, then the cat is big.\n   - This rule does not apply to the squirrel.\n\n4. If something is big, then it sees the bald eagle.\n   - We can use this rule to find out if the squirrel is big or not.\n\n5. If something sees the bald eagle, then the bald eagle is young.\n   - We can use this rule to find out if the squirrel is big or not.\n\n6. Cold things are big.\n   - This rule does not apply to the squirrel.\n\n7. If something chases the tiger and it sees the cat, then the tiger is big.\n   - This rule does not apply to the squirrel.\n\n8. If something is big, then it chases the tiger.\n   - This rule does not apply to the squirrel.\n\n9. If something sees the bald eagle, then it sees the cat.\n   - This rule does not apply to the squirrel.\n\nNow, let's analyze the information provided about the squirrel:\n- The squirrel likes the cat.\n- The squirrel sees the cat.\n- The squirrel does not like the tiger.\n- The tiger is big.\n\nFrom rule 4: If something is big, then it sees the bald eagle.\n- Since the tiger is big (T), the tiger sees the bald eagle.\n\nFrom rule 5: If something sees the bald eagle, then the bald eagle is young.\n- Since the tiger sees the bald eagle, the bald eagle is young (E).\n\nNow, let's analyze rule 3: If something sees the cat, then the cat is big.\n- Since the squirrel sees the cat, the cat is big (C).\n\nNow, let's analyze rule 4: If something is big, then it sees the bald eagle.\n- Since the cat is big (C), the cat sees the bald eagle.\n\nFrom rule 5: If something sees the bald eagle, then the bald eagle is young.\n- Since the cat sees the bald eagle, the bald eagle is young (E).\n\nNow, let's analyze rule 9: If something sees the bald eagle, then it sees the cat.\n- Since the cat sees the bald eagle, the cat sees the cat. This rule does not provide any new information.\n\nNow, let's analyze rule 8: If something is big, then it chases the tiger.\n- Since the cat is big (C), the cat chases the tiger.\n\nNow, let's analyze rule 7: If something chases the tiger and it sees the cat, then the tiger is big.\n- Since the cat chases the tiger and sees the cat, the tiger is big (T).\n\nNow, let's analyze rule 6: If something is big, then it is cold.\n- Since the tiger is big (T), the tiger is cold.\n\nNow, let's analyze rule 4: If something is big, then it sees the bald eagle.\n- Since the tiger is big (T), the tiger sees the bald eagle.\n\nNow, let's analyze rule 5: If something sees the bald eagle, then the bald eagle is young.\n- Since the tiger sees the bald eagle, the bald eagle is young (E).\n\nNow, let's analyze rule 4: If something is big, then it sees the bald eagle.\n- Since the cat is big (C), the cat sees the bald eagle.\n\nNow, let's analyze rule 5: If something sees the bald eagle, then the bald eagle is young.\n- Since the cat sees the bald eagle, the bald eagle is young (E).\n\nNow, let's analyze rule 9: If something sees the bald eagle, then it sees the cat.\n- Since the cat sees the bald eagle, the cat sees the cat. This rule does not provide any new information.\n\nFrom the analysis above, we have found the following:\n\n- The squirrel does not like the tiger.\n- The tiger is big.\n- The squirrel likes the cat.\n- The squirrel sees the cat.\n- The cat is big.\n- The cat chases the tiger.\n- The tiger is big.\n\nHowever, we do not have enough information to determine if the squirrel is big or not.\n\nSince we do not have enough information to determine if the squirrel is big or not, we cannot determine if the squirrel is rough or not.\n\nTherefore, the statement \"The squirrel is rough\" is unknown.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'The squirrel is rough' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement 'The squirrel is rough' is not directly given in the problem. However, we have a statement that says 'Cold things are big.' This implies that we have a definition for 'big' which is related to 'cold.'\n\n2. We are also given that 'The tiger is big' and 'The tiger is not young.' This statement does not provide any information about the squirrel, but it does provide information about the tiger.\n\n3. The statement 'The squirrel does not like the tiger' is given. This does not provide any information about the squirrel's roughness.\n\n4. The statement 'The squirrel likes the cat' is given. This does not provide any information about the squirrel's roughness.\n\n5. The statement 'The cat chases the squirrel' is given. This does not provide any information about the squirrel's roughness.\n\n6. The statement 'The cat sees the squirrel' is given. This does not provide any information about the squirrel's roughness.\n\n7. The statement 'If something sees the bald eagle then the bald eagle is young' is given. We do not have any information about the squirrel seeing the bald eagle.\n\n8. The statement 'If something is big then it sees the bald eagle' is given. We do not have any information about the squirrel being big.\n\n9. The statement 'If something is big then it chases the tiger' is given. We do not have any information about the squirrel being big.\n\n10. The statement 'If something chases the tiger and it sees the cat then the tiger is big' is given. We do not have any information about the squirrel chasing the tiger.\n\n11. The statement 'If something sees the cat then the cat is big' is given. We do not have any information about the squirrel seeing the cat.\n\n12. The statement 'If the tiger likes the bald eagle then the bald eagle sees the squirrel' is given. We do not have any information about the tiger liking the bald eagle.\n\n13. The statement 'If something likes the tiger and it does not chase the cat then the cat is not big' is given. We do not have any information about something liking the tiger and not chasing the cat.\n\n14. The statement 'The tiger sees the squirrel' is given. This does not provide any information about the squirrel's roughness.\n\nSince none of the given statements provide any information about the squirrel's roughness, we cannot determine whether the statement 'The squirrel is rough' is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine if the statement \"The squirrel is rough\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nGiven statements:\n\n1. The bald eagle is big. \n2. The bald eagle likes the cat. \n3. The bald eagle sees the squirrel. \n4. The cat chases the squirrel. \n5. The cat sees the squirrel. \n6. The squirrel likes the cat. \n7. The squirrel does not like the tiger. \n8. The tiger is big. \n9. The tiger is not young. \n10. The tiger sees the squirrel. \n11. If the tiger likes the bald eagle then the bald eagle sees the squirrel. \n12. If something likes the tiger and it does not chase the cat then the cat is not big. \n13. If something sees the cat then the cat is big. \n14. If something is big then it sees the bald eagle. \n15. If something sees the bald eagle then the bald eagle is young. \n16. Cold things are big. \n17. If something chases the tiger and it sees the cat then the tiger is big. \n18. If something is big then it chases the tiger. \n19. If something sees the bald eagle then it sees the cat.\n\nFrom the given information, we have:\n- The squirrel sees the cat (from statement 19 and statement 3).\n- The cat chases the squirrel (from statement 4).\n- The tiger sees the squirrel (from statement 10).\n- The squirrel does not like the tiger (from statement 7).\n\nWe can conclude the following:\n- The cat is big (from statement 5 and statement 13).\n- The tiger is big (from statement 10, statement 17, and statement 4).\n- The bald eagle sees the squirrel (from statement 3).\n- The bald eagle is young (from statement 15 and statement 3).\n- The tiger is not young (from statement 9).\n\nHowever, we have no information about the properties of the squirrel being rough. There are no statements directly related to the squirrel's properties.\n\nTherefore, the final answer to the problem is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we'll need to use the given statements to derive information about the relationships between the entities mentioned (bald eagle, cat, squirrel, tiger).\n\n1. The bald eagle is big. \n   - Let's denote this as B (Bald Eagle is big)\n   - So, B = True\n\n2. The bald eagle likes the cat.\n   - Let's denote this as L1 (Bald Eagle likes Cat)\n   - So, L1 = True\n\n3. The bald eagle sees the squirrel.\n   - Let's denote this as S1 (Bald Eagle sees Squirrel)\n   - So, S1 = True\n\n4. The cat chases the squirrel.\n   - Let's denote this as C1 (Cat chases Squirrel)\n   - So, C1 = True\n\n5. The cat sees the squirrel.\n   - Let's denote this as S2 (Cat sees Squirrel)\n   - So, S2 = True\n\n6. The squirrel likes the cat.\n   - Let's denote this as L2 (Squirrel likes Cat)\n   - So, L2 = True\n\n7. The squirrel does not like the tiger.\n   - Let's denote this as N1 (Squirrel does not like Tiger)\n   - So, N1 = True\n\n8. The tiger is big.\n   - Let's denote this as T1 (Tiger is big)\n   - So, T1 = True\n\n9. The tiger is not young.\n   - Let's denote this as Y1 (Tiger is not young)\n   - So, Y1 = True\n\n10. The tiger sees the squirrel.\n    - Let's denote this as S3 (Tiger sees Squirrel)\n    - So, S3 = True\n\n11. If the tiger likes the bald eagle then the bald eagle sees the squirrel.\n    - This means if T likes B then B sees S. But we already know that B sees S.\n\n12. If something likes the tiger and it does not chase the cat then the cat is not big.\n    - Since we know that S likes T (Squirrel likes Tiger) and S does not chase C, then C is not big. However, we do not know this yet because S does not chase C.\n\n13. If something sees the cat then the cat is big.\n    - This is a crucial statement. We have B sees C and C sees S, but we do not know if C is big.\n\n14. If something is big then it sees the bald eagle.\n    - This statement is important but does not help us determine if C is big or not.\n\n15. If something sees the bald eagle then the bald eagle is young.\n    - This statement does not help us determine if C is big or not.\n\n16. Cold things are big.\n    - This statement is not applicable to our problem.\n\n17. If something chases the tiger and it sees the cat then the tiger is big.\n    - This statement is not applicable to our problem.\n\n18. If something is big then it chases the tiger.\n    - This statement is not applicable to our problem.\n\n19. If something sees the bald eagle then it sees the cat.\n    - This statement is crucial. We know that B sees C and S sees B, so S sees C.\n\nNow, we will try to find out if the squirrel is big or not. We know that S likes C and C chases S, but we do not know if C is big. We also know that B sees S and S sees C.\n\nTo find out if C is big, we need to check if the cat sees the cat. We already know that S sees C, so S sees the cat.\n\nWe will try to find out if C is big by using the statements.\n\nFrom statement 13, if something sees the cat then the cat is big.\nWe know that S sees C, so C is big.\n\nNow we know that C is big. We will try to find out if S is big or not.\n\nFrom statement 14, if something is big then it sees the bald eagle.\nWe know that C is big, but we do not know if C sees B.\n\nFrom statement 18, if something is big then it chases the tiger.\nWe know that C is big, so C chases T.\n\nFrom statement 17, if something chases the tiger and it sees the cat then the tiger is big.\nWe know that C chases T and C sees C, so T is big.\n\nWe now know that T is big.\n\nFrom statement 14, if something is big then it sees the bald eagle.\nWe know that T is big, so T sees B.\n\nFrom statement 15, if something sees the bald eagle then the bald eagle is young.\nWe know that T sees B, so B is young.\n\nFrom statement 1, the bald eagle is big.\nWe know that B is big.\n\nThis is a contradiction. We have found that B is young and B is big.\n\nSince we have a contradiction, we cannot determine the statement \"The squirrel is rough\" to be true or false.\n\nHowever, to answer the original question, we need to follow the instructions.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is rough\" is true, false, or unknown, we need to break down the given information into a series of logical statements.\n\nLet's define the following variables:\n- B: The bald eagle is big.\n- C: The cat is big.\n- E: The bald eagle is young.\n- S: The squirrel is big.\n- T: The tiger is big.\n- Y: The squirrel is young.\n\nFrom the given information:\n\n1. The bald eagle likes the cat.\n2. The cat chases the squirrel.\n3. The cat sees the squirrel.\n4. The squirrel likes the cat.\n5. The squirrel does not like the tiger.\n6. The tiger is big.\n7. The tiger is not young.\n8. The tiger sees the squirrel.\n9. If the tiger likes the bald eagle, then the bald eagle sees the squirrel.\n10. If something likes the tiger and it does not chase the cat, then the cat is not big.\n11. If something sees the cat, then the cat is big.\n12. If something is big, then it sees the bald eagle.\n13. If something sees the bald eagle, then the bald eagle is young.\n14. Cold things are big.\n15. If something chases the tiger and it sees the cat, then the tiger is big.\n16. If something is big, then it chases the tiger.\n17. If something sees the bald eagle, then it sees the cat.\n\nFrom (4), we know the squirrel likes the cat, but we cannot determine if the squirrel is big or young.\n\nFrom (1), we know the bald eagle likes the cat, and from (12), if the cat is big, then it sees the bald eagle. However, we cannot determine if the cat is big or not from the given information.\n\nFrom (5), we know the squirrel does not like the tiger, and from (6), we know the tiger is big.\n\nFrom (7), we know the tiger is not young.\n\nFrom (8), we know the tiger sees the squirrel.\n\nFrom (9), we know if the tiger likes the bald eagle, then the bald eagle sees the squirrel. However, we do not know if the tiger likes the bald eagle.\n\nFrom (10), we know if something likes the tiger and it does not chase the cat, then the cat is not big. However, we do not know if something likes the tiger and does not chase the cat.\n\nFrom (11), we know if something sees the cat, then the cat is big. However, we do not know if something sees the cat.\n\nFrom (12), we know if something is big, then it sees the bald eagle. However, we do not know if something is big.\n\nFrom (13), we know if something sees the bald eagle, then the bald eagle is young. However, we do not know if something sees the bald eagle.\n\nFrom (14), we know cold things are big. However, we do not know if the squirrel is cold.\n\nFrom (15), we know if something chases the tiger and it sees the cat, then the tiger is big. However, we do not know if something chases the tiger and sees the cat.\n\nFrom (16), we know if something is big, then it chases the tiger. However, we do not know if something is big.\n\nFrom (17), we know if something sees the bald eagle, then it sees the cat. However, we do not know if something sees the bald eagle.\n\nWe cannot determine if the squirrel is big or young, or if it likes the tiger or not.\n\nHowever, we can conclude that the tiger is big (from (6)), the squirrel does not like the tiger (from (5)), the squirrel likes the cat (from (4)), the cat chases the squirrel (from (2)), and the cat sees the squirrel (from (3)).\n\nWe cannot determine if the statement \"The squirrel is rough\" is true or false from the given information because we do not have any information about the squirrel's texture or quality.\n\nTherefore, the final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use a process of deduction to determine if the statement \"The squirrel is rough\" is true, false, or unknown.\n\nLet's start by breaking down the given statements:\n\n1. The bald eagle is big.\n2. The bald eagle likes the cat.\n3. The bald eagle sees the squirrel.\n4. The cat chases the squirrel.\n5. The cat sees the squirrel.\n6. The squirrel likes the cat.\n7. The squirrel does not like the tiger.\n8. The tiger is big.\n9. The tiger is not young.\n10. The tiger sees the squirrel.\n11. If the tiger likes the bald eagle then the bald eagle sees the squirrel.\n12. If something likes the tiger and it does not chase the cat then the cat is not big.\n13. If something sees the cat then the cat is big.\n14. If something is big then it sees the bald eagle.\n15. If something sees the bald eagle then the bald eagle is young.\n16. Cold things are big.\n17. If something chases the tiger and it sees the cat then the tiger is big.\n18. If something is big then it chases the tiger.\n19. If something sees the bald eagle then it sees the cat.\n\nFrom statement 19, we can deduce that since the squirrel sees the bald eagle (statement 3), the squirrel sees the cat.\n\nFrom statement 16, we know that cold things are big. However, there is no information about the squirrel being cold or not. Therefore, we cannot determine if the squirrel is big or not based on this statement.\n\nFrom statement 17, we can deduce that since the cat chases the tiger (there is no direct statement, but we can infer it from the fact that the cat chases the squirrel and the tiger sees the squirrel), the tiger is big. However, this statement does not provide any information about the squirrel.\n\nFrom statement 18, we can deduce that since the tiger is big (statement 8), the tiger chases the squirrel. However, this statement does not provide any information about the squirrel.\n\nFrom statement 12, we can deduce that since the squirrel likes the tiger (statement 7) and it does not chase the cat (there is no direct statement, but we can infer it from the fact that the squirrel likes the cat), the cat is not big. However, this statement does not provide any information about the squirrel.\n\nFrom statement 13, we can deduce that since the squirrel sees the cat (deduced from statement 19), the cat is big. This contradicts the previous deduction from statement 12, which stated that the cat is not big.\n\nSince we have a contradiction, we cannot determine if the statement \"The squirrel is rough\" is true, false, or unknown. However, based on the given statements, we can conclude that the statement \"The cat is big\" is unknown.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to determine the relationships between the different entities (bald eagle, cat, squirrel, tiger) and their properties (big, young, likes, sees, chases, rough).\n\nFirst, let's identify the facts given in the problem:\n\n1. The bald eagle likes the cat.\n2. The bald eagle sees the squirrel.\n3. The cat chases the squirrel.\n4. The cat sees the squirrel.\n5. The squirrel likes the cat.\n6. The squirrel does not like the tiger.\n7. The tiger is big.\n8. The tiger is not young.\n9. The tiger sees the squirrel.\n10. If the tiger likes the bald eagle then the bald eagle sees the squirrel.\n11. If something likes the tiger and it does not chase the cat then the cat is not big.\n12. If something sees the cat then the cat is big.\n13. If something is big then it sees the bald eagle.\n14. If something sees the bald eagle then the bald eagle is young.\n15. Cold things are big.\n16. If something chases the tiger and it sees the cat then the tiger is big.\n17. If something is big then it chases the tiger.\n18. If something sees the bald eagle then it sees the cat.\n\nNow, let's determine the properties of each entity:\n\n* Bald eagle: sees the squirrel (2), likes the cat (1), young (14)\n* Cat: chases the squirrel (3), sees the squirrel (4), big (12)\n* Squirrel: likes the cat (5), sees the cat (18)\n* Tiger: big (7), not young (8), sees the squirrel (9), chases (not directly stated)\n\nTo determine if the squirrel is rough, we need to find any information related to its properties. However, there is no direct statement about the squirrel being rough or not.\n\nFrom fact 15, we know that cold things are big, but there is no information about the squirrel being cold.\n\nFrom fact 17, we know that if something is big then it chases the tiger, but the squirrel is not big, so this fact does not apply to the squirrel.\n\nFrom fact 17, we also know that if something is big then it chases the tiger, but the cat is big (12), and it chases the squirrel (3), not the tiger.\n\nFrom fact 16, we know that if something chases the tiger and it sees the cat then the tiger is big, but there is no information about the squirrel chasing the tiger.\n\nIn summary, we have no information about the squirrel being rough, so we cannot determine whether the statement \"The squirrel is rough\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The squirrel is rough\" is true, false, or unknown, we need to find any information related to the squirrel's characteristics. However, there's no information provided that directly states the squirrel is rough or not.\n\nGiven the information provided, we can use it to deduce that the tiger is big and old because it says \"The tiger is big\" and \"The tiger is not young.\" We also know that the squirrel likes the cat, the cat chases the squirrel, and the cat sees the squirrel.\n\nNow, let's look at the rules and see if we can apply them to the given information:\n\n1. \"If the tiger likes the bald eagle then the bald eagle sees the squirrel.\"\n   Since we don't know if the tiger likes the bald eagle, we can't conclude anything about the bald eagle yet.\n\n2. \"If something likes the tiger and it does not chase the cat then the cat is not big.\"\n   We don't have any information that the cat likes the tiger or not, and we don't know if something likes the tiger and does not chase the cat.\n\n3. \"If something sees the cat then the cat is big.\"\n   We know that the squirrel sees the cat, but we can't conclude the cat's size yet.\n\n4. \"If something is big then it sees the bald eagle.\"\n   We know the tiger is big, so the tiger sees the bald eagle.\n\n5. \"If something sees the bald eagle then the bald eagle is young.\"\n   We know the tiger sees the bald eagle, so the bald eagle is young.\n\n6. \"Cold things are big.\"\n   We don't know if squirrels are cold or not.\n\n7. \"If something chases the tiger and it sees the cat then the tiger is big.\"\n   We don't have any information about something chasing the tiger and seeing the cat.\n\n8. \"If something is big then it chases the tiger.\"\n   We know the tiger is big, but we can't conclude that it chases the tiger based on this rule.\n\n9. \"If something sees the bald eagle then it sees the cat.\"\n   We know the tiger sees the bald eagle, so it sees the cat.\n\nWe can conclude that the bald eagle is young, and the tiger is big and old. However, there's no information provided that directly relates the squirrel's characteristics to any of the rules.\n\nSince we don't have any information that directly states the squirrel is rough or not, we can't determine if the statement is true or false. Therefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the rules to determine the properties of the entities.\n\n1. The bald eagle is big.\n2. The bald eagle likes the cat.\n3. The bald eagle sees the squirrel.\n4. The cat chases the squirrel.\n5. The cat sees the squirrel.\n6. The squirrel likes the cat.\n7. The squirrel does not like the tiger.\n8. The tiger is big.\n9. The tiger is not young.\n10. The tiger sees the squirrel.\n \nWe need to determine whether the statement \"The squirrel is rough\" is true, false, or unknown. There is no direct information about the squirrel being rough.\n\nLet's analyze the rules:\n11. If the tiger likes the bald eagle then the bald eagle sees the squirrel. (This rule does not apply as we don't have information about the tiger liking the bald eagle.)\n12. If something likes the tiger and it does not chase the cat then the cat is not big. (This rule does not apply as we don't have information about something liking the tiger and not chasing the cat.)\n13. If something sees the cat then the cat is big. (This rule applies to the bald eagle, which likes the cat, but we know the cat is big from rule 15.)\n14. If something is big then it sees the bald eagle. (This rule applies to the tiger, which is big, so it sees the bald eagle.)\n15. If something sees the bald eagle then the bald eagle is young. (This rule applies to the tiger, which sees the bald eagle, so the bald eagle is young. However, rule 1 says the bald eagle is big, which contradicts this rule. This means the tiger cannot see the bald eagle.)\n16. Cold things are big. (This rule does not apply as we don't have information about the squirrel being cold.)\n17. If something chases the tiger and it sees the cat then the tiger is big. (This rule does not apply as we don't have information about something chasing the tiger and seeing the cat.)\n18. If something is big then it chases the tiger. (This rule applies to the tiger itself, which is big.)\n19. If something sees the bald eagle then it sees the cat. (This rule applies to the squirrel, which sees the bald eagle, so the squirrel sees the cat.)\n\nSince the squirrel sees the cat (rule 19), and the cat is big (rule 13), we can conclude that the squirrel sees the cat, but we still don't know whether the squirrel is rough or not.\n\nHowever, we can analyze another path to determine the properties of the squirrel. From rule 4, the cat chases the squirrel. From rule 8, the tiger is big. From rule 10, the tiger sees the squirrel. From rule 9, the tiger is not young. From rule 18, since the tiger is big, it chases the tiger. This creates a contradiction because a thing cannot chase itself.\n\nThis contradiction means that our initial assumption that the tiger is big must be incorrect. However, this is not possible as the tiger is explicitly stated to be big (rule 8). This contradiction implies that our initial assumption that the tiger is big and chases itself must be incorrect, which in turn implies that the squirrel is not rough because we can't determine the properties of the squirrel in this scenario.\n\nHowever, given the information in the problem, we cannot determine whether the squirrel is rough or not.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cat)",
+          "z3_formula": "likes_bald_eagle_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, squirrel)",
+          "z3_formula": "chases_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cat)",
+          "z3_formula": "likes_squirrel_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(squirrel, tiger)",
+          "z3_formula": "Not(likes_squirrel_tiger) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not young(tiger)",
+          "z3_formula": "Not(young_tiger) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> sees(X, squirrel)",
+          "z3_formula": "Implies(likes_tiger_bald_eagle, sees_tiger_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & not chases(X, cat) -> not big(cat)",
+          "z3_formula": "Implies(And(likes_X_tiger, Not(chases_X_cat)), Not(big_cat))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> big(cat)",
+          "z3_formula": "Implies(sees_X_cat, big_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_X, sees_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(bald_eagle)",
+          "z3_formula": "Implies(sees_X_bald_eagle, young_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & sees(X, cat) -> big(tiger)",
+          "z3_formula": "Implies(And(chases_X_tiger, sees_X_cat), big_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(big_X, chases_X_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_X_bald_eagle, sees_X_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cat)",
+          "z3_formula": "likes_bald_eagle_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, squirrel)",
+          "z3_formula": "chases_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cat)",
+          "z3_formula": "likes_squirrel_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(squirrel, tiger)",
+          "z3_formula": "not likes_squirrel_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not young(tiger)",
+          "z3_formula": "not young_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> big(cat)",
+          "z3_formula": "Implies(sees_cat_squirrel, big_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(sees_bald_eagle_squirrel, young_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_bald_eagle_squirrel, sees_cat_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_bald_eagle, sees_bald_eagle_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(big_tiger, chases_tiger_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & sees(X, cat) -> big(tiger)",
+          "z3_formula": "Implies(And(chases_tiger_squirrel, sees_cat_squirrel), big_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, squirrel)",
+          "z3_formula": "chases_tiger_squirrel == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cat)",
+          "z3_formula": "likes_bald_eagle_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, squirrel)",
+          "z3_formula": "chases_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cat)",
+          "z3_formula": "likes_squirrel_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(squirrel, tiger)",
+          "z3_formula": "Not(likes_squirrel_tiger) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not young(tiger)",
+          "z3_formula": "Not(young_tiger) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> sees(X, squirrel)",
+          "z3_formula": "Implies(likes_tiger_bald_eagle, sees_tiger_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & not chases(X, cat) -> not big(cat)",
+          "z3_formula": "Implies(And(likes_X_tiger, Not(chases_X_cat)), Not(big_cat))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> big(cat)",
+          "z3_formula": "Implies(sees_X_cat, big_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_X, sees_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(sees_X_bald_eagle, young_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_X, big_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & sees(X, cat) -> big(tiger)",
+          "z3_formula": "Implies(And(chases_X_tiger, sees_X_cat), big_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(big_X, chases_X_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_X_bald_eagle, sees_X_cat)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cat)",
+          "z3_formula": "likes_squirrel_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, cat)",
+          "z3_formula": "sees_squirrel_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(squirrel, tiger)",
+          "z3_formula": "Not(likes_squirrel_tiger) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_tiger, sees_tiger_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(bald_eagle)",
+          "z3_formula": "Implies(sees_tiger_bald_eagle, young_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> big(cat)",
+          "z3_formula": "Implies(sees_squirrel_cat, big_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_cat, sees_cat_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(bald_eagle)",
+          "z3_formula": "Implies(sees_cat_bald_eagle, young_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(big_cat, chases_cat_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & sees(X, cat) -> big(tiger)",
+          "z3_formula": "Implies(And(chases_cat_tiger, sees_cat_cat), big_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_tiger, cold_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_tiger, sees_tiger_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(bald_eagle)",
+          "z3_formula": "Implies(sees_tiger_bald_eagle, young_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_cat, sees_cat_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(bald_eagle)",
+          "z3_formula": "Implies(sees_cat_bald_eagle, young_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(squirrel)",
+          "z3_formula": "Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_squirrel, big_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not young(tiger)",
+          "z3_formula": "not_young_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(tiger, squirrel)",
+          "z3_formula": "not_likes_tiger_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cat)",
+          "z3_formula": "likes_squirrel_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, squirrel)",
+          "z3_formula": "chases_cat_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(bald_eagle)",
+          "z3_formula": "Implies(sees_squirrel_bald_eagle, young_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_squirrel, sees_squirrel_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & chases(X, tiger) -> sees(X, cat)",
+          "z3_formula": "Implies(And(big_squirrel, chases_squirrel_tiger), sees_squirrel_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> big(cat)",
+          "z3_formula": "Implies(sees_squirrel_cat, big_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & not chases(X, cat) -> not big(cat)",
+          "z3_formula": "Implies(And(likes_squirrel_tiger, not_chases_squirrel_cat), not_big_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cat)",
+          "z3_formula": "likes_bald_eagle_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, squirrel)",
+          "z3_formula": "chases_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cat)",
+          "z3_formula": "likes_squirrel_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(squirrel, tiger)",
+          "z3_formula": "Not(likes_squirrel_tiger) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not young(tiger)",
+          "z3_formula": "Not(young_tiger) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(tiger, bald_eagle) -> sees(bald_eagle, squirrel)",
+          "z3_formula": "Implies(likes_tiger_bald_eagle, sees_bald_eagle_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & not chases(X, cat) -> not big(cat)",
+          "z3_formula": "Implies(And(likes_X_tiger, Not(chases_X_cat)), Not(big_cat))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> big(cat)",
+          "z3_formula": "Implies(sees_X_cat, big_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_X, sees_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(bald_eagle)",
+          "z3_formula": "Implies(sees_X_bald_eagle, young_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & sees(X, cat) -> big(tiger)",
+          "z3_formula": "Implies(And(chases_X_tiger, sees_X_cat), big_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(big_X, chases_X_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_X_bald_eagle, sees_X_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not young(tiger)",
+          "z3_formula": "Not(young_tiger) == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == Unknown",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cat)",
+          "z3_formula": "likes_bald_eagle_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, squirrel)",
+          "z3_formula": "chases_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cat)",
+          "z3_formula": "likes_squirrel_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(squirrel, tiger)",
+          "z3_formula": "not likes_squirrel_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not young(tiger)",
+          "z3_formula": "not young_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(tiger, bald_eagle) -> sees(bald_eagle, squirrel)",
+          "z3_formula": "Implies(likes_tiger_bald_eagle, sees_bald_eagle_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & not chases(X, cat) -> not big(cat)",
+          "z3_formula": "Implies(And(likes_X_tiger, not chases_X_cat), not big_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> big(cat)",
+          "z3_formula": "Implies(sees_X_cat, big_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(bald_eagle, X)",
+          "z3_formula": "Implies(big_X, sees_bald_eagle_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(bald_eagle)",
+          "z3_formula": "Implies(sees_X_bald_eagle, young_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "young(bald_eagle) == False",
+          "z3_formula": "Not(young_bald_eagle) == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "big(bald_eagle) == False",
+          "z3_formula": "Not(big_bald_eagle) == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cat)",
+          "z3_formula": "likes_bald_eagle_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, squirrel)",
+          "z3_formula": "chases_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cat)",
+          "z3_formula": "likes_squirrel_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(squirrel, tiger)",
+          "z3_formula": "not likes_squirrel_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not young(tiger)",
+          "z3_formula": "not young_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> sees(X, squirrel)",
+          "z3_formula": "Implies(likes_tiger_bald_eagle, sees_tiger_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & not chases(X, cat) -> not big(cat)",
+          "z3_formula": "Implies(And(likes_X_tiger, not chases_X_cat), not big_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> big(cat)",
+          "z3_formula": "Implies(sees_X_cat, big_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_X, sees_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(bald_eagle)",
+          "z3_formula": "Implies(sees_X_bald_eagle, young_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_X, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & sees(X, cat) -> big(tiger)",
+          "z3_formula": "Implies(And(chases_X_tiger, sees_X_cat), big_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(big_X, chases_X_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_X_bald_eagle, sees_X_cat)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cat)",
+          "z3_formula": "likes_bald_eagle_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, squirrel)",
+          "z3_formula": "chases_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cat)",
+          "z3_formula": "likes_squirrel_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(squirrel, tiger)",
+          "z3_formula": "Not(likes_squirrel_tiger) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not young(tiger)",
+          "z3_formula": "Not(young_tiger) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> sees(X, squirrel)",
+          "z3_formula": "Implies(likes_tiger_bald_eagle, sees_tiger_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & not chases(X, cat) -> not big(cat)",
+          "z3_formula": "Implies(And(likes_squirrel_tiger, Not(chases_squirrel_cat)), Not(big_cat))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> big(cat)",
+          "z3_formula": "Implies(sees_squirrel_cat, big_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_tiger, sees_tiger_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(X)",
+          "z3_formula": "Implies(sees_tiger_bald_eagle, young_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_squirrel, big_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & sees(X, cat) -> big(tiger)",
+          "z3_formula": "Implies(And(chases_cat_tiger, sees_cat_squirrel), big_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(big_tiger, chases_tiger_squirrel)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_squirrel_bald_eagle, sees_squirrel_cat)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, cat)",
+          "z3_formula": "likes_bald_eagle_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, squirrel)",
+          "z3_formula": "sees_bald_eagle_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, squirrel)",
+          "z3_formula": "chases_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, squirrel)",
+          "z3_formula": "sees_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cat)",
+          "z3_formula": "likes_squirrel_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(squirrel, tiger)",
+          "z3_formula": "not likes_squirrel_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not young(tiger)",
+          "z3_formula": "not young_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, squirrel)",
+          "z3_formula": "sees_tiger_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, bald_eagle) -> sees(X, squirrel)",
+          "z3_formula": "Implies(likes_tiger_bald_eagle, sees_tiger_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & not chases(X, cat) -> not big(cat)",
+          "z3_formula": "Implies(And(likes_X_tiger, not chases_X_cat), not big_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> big(cat)",
+          "z3_formula": "Implies(sees_X_cat, big_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(big_X, sees_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> young(bald_eagle)",
+          "z3_formula": "Implies(sees_X_bald_eagle, young_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_X, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & sees(X, cat) -> big(tiger)",
+          "z3_formula": "Implies(And(chases_X_tiger, sees_X_cat), big_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(big_X, chases_X_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_X_bald_eagle, sees_X_cat)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not young(tiger)",
+          "z3_formula": "Not(young_tiger) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cat)",
+          "z3_formula": "likes_squirrel_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, squirrel)",
+          "z3_formula": "chases_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, cat)",
+          "z3_formula": "sees_squirrel_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, eagle) -> sees(X, squirrel)",
+          "z3_formula": "Implies(likes_tiger_eagle, sees_tiger_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & not(chases(X, cat)) -> not(big(cat))",
+          "z3_formula": "Implies(And(likes_tiger_cat, Not(chases_tiger_cat)), Not(big_cat))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) -> big(cat)",
+          "z3_formula": "Implies(sees_squirrel_cat, big_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> sees(X, eagle)",
+          "z3_formula": "Implies(big_tiger, sees_tiger_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) -> young(eagle)",
+          "z3_formula": "Implies(sees_tiger_eagle, young_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> big(X)",
+          "z3_formula": "Implies(cold_squirrel, big_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) & sees(X, cat) -> big(tiger)",
+          "z3_formula": "Implies(And(chases_tiger_cat, sees_tiger_cat), big_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> chases(X, tiger)",
+          "z3_formula": "Implies(big_tiger, chases_tiger_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) -> sees(X, cat)",
+          "z3_formula": "Implies(sees_tiger_eagle, sees_tiger_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(eagle)",
+          "z3_formula": "young_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "old(tiger)",
+          "z3_formula": "old_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == False",
+          "source_step": 15
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 211,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 68
+    },
+    "maxsat_stats": {
+      "satisfied": 64,
+      "excluded": 4,
+      "total_weight": 202,
+      "solve_time_ms": 2.0751170814037323
+    },
+    "timing": {
+      "trace_gen_s": 13.422,
+      "extraction_s": 40.837,
+      "dedup_s": 2.307,
+      "maxsat_s": 0.006,
+      "total_s": 56.572
+    }
+  }
+}

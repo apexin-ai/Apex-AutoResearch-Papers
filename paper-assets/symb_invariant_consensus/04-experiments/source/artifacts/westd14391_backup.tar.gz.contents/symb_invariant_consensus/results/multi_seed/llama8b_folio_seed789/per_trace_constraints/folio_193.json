@@ -1,0 +1,353 @@
+{
+  "pid": "folio_193",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "happy_or_sad(event)",
+          "z3_formula": "happy_or_sad_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "at_least_one_happy(event)",
+          "z3_formula": "at_least_one_happy_event == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "all_sad(event) -> not_happy(event)",
+          "z3_formula": "Implies(all_sad_event, not_happy_event)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "all_sad(event)",
+          "z3_formula": "all_sad_event == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "happy_or_sad(event)",
+          "z3_formula": "happy_or_sad_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "happy(event)",
+          "z3_formula": "happy_event == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "All events are sad -> Not(happy(X))",
+          "z3_formula": "Implies(AllEventsAreSad, Not(happy_event))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "All events are sad",
+          "z3_formula": "AllEventsAreSad == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "Not(All events are sad)",
+          "z3_formula": "Not(AllEventsAreSad) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "happy(event) | sad(event)",
+          "z3_formula": "happy_event == True Or sad_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "happy(event)",
+          "z3_formula": "happy_event == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sad(event)",
+          "z3_formula": "Not(happy_event) & sad_event == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": []
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "happy_or_sad(event)",
+          "z3_formula": "happy_or_sad_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "at_least_one_happy(event)",
+          "z3_formula": "at_least_one_happy_event == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "all_events_sad(event)",
+          "z3_formula": "Not(at_least_one_happy_event) | Not(happy_or_sad_event)",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "happy(event) | sad(event)",
+          "z3_formula": "happy_event == True Or sad_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "happy(event)",
+          "z3_formula": "happy_event == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sad(event)",
+          "z3_formula": "sad_event == False",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "happy(X) | sad(X)",
+          "z3_formula": "Or(happy_event, sad_event)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "happy(X)",
+          "z3_formula": "happy_event == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "happy(X) | sad(X) -> all(X, sad(X))",
+          "z3_formula": "Implies(Or(happy_event, sad_event), all_event, sad_event)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "all(X, sad(X))",
+          "z3_formula": "all_event, sad_event == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not all(X, sad(X))",
+          "z3_formula": "Not(all_event, sad_event)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not happy(X)",
+          "z3_formula": "Not(happy_event)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "happy(event) | sad(event)",
+          "z3_formula": "Or(happy_event, sad_event)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "happy(event)",
+          "z3_formula": "happy_event == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "happy(event) -> ~sad(event)",
+          "z3_formula": "Implies(happy_event, Not(sad_event))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "~happy(event) -> ~sad(event)",
+          "z3_formula": "Implies(Not(happy_event), Not(sad_event))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "sad(event)",
+          "z3_formula": "sad_event == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "happy_or_sad(event)",
+          "z3_formula": "happy_or_sad_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "at_least_one_happy(event)",
+          "z3_formula": "at_least_one_happy_event == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "happy_or_sad(event) -> (happy(event) | sad(event))",
+          "z3_formula": "Implies(happy_or_sad_event, Or(happy_event, sad_event))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "all_sad(event) -> not(happy(event))",
+          "z3_formula": "Implies(all_sad_event, Not(happy_event))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "at_least_one_happy(event) & all_sad(event)",
+          "z3_formula": "And(at_least_one_happy_event, all_sad_event)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "all_sad(event)",
+          "z3_formula": "all_sad_event == False",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "happy_or_sad(event)",
+          "z3_formula": "happy_or_sad_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "happy(event)",
+          "z3_formula": "happy_event == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "happy_or_sad(event) -> happy(event) | sad(event)",
+          "z3_formula": "Implies(happy_or_sad_event, Or(happy_event, sad_event))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sad(event)",
+          "z3_formula": "sad_event == False",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "happy_or_sad(event)",
+          "z3_formula": "happy_or_sad_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "at_least_one_happy(event)",
+          "z3_formula": "at_least_one_happy_event == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "happy_or_sad(event) -> (happy(event) | sad(event))",
+          "z3_formula": "Implies(happy_or_sad_event, Or(happy_event, sad_event))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "all_events_sad(event)",
+          "z3_formula": "all_events_sad_event == False",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "happy(event) | sad(event)",
+          "z3_formula": "Or(happy_event, sad_event)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "happy(event)",
+          "z3_formula": "happy_event == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sad(event)",
+          "z3_formula": "Not(Or(happy_event, sad_event))",
+          "source_step": 3
+        }
+      ]
+    }
+  ]
+}

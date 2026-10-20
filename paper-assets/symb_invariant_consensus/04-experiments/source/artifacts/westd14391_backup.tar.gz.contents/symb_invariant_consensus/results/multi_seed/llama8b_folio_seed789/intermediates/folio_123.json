@@ -1,0 +1,685 @@
+{
+  "problem": {
+    "id": "folio_123",
+    "problem": "Given the following premises:\nIf something can transport multiple passengers, then they are not empty. All airlines can transport multiple passengers. All planes are empty. All Boeing 707s are planes. If Greyhound is not an airline, then there are no Greyhound planes.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nA Greyhound is a Boeing 707.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (TransportMultiplePassengers(x) \u2192 \u00acEmpty(x))",
+      "\u2200x (Airline(x) \u2192 TransportMultiplePassengers(x))",
+      "\u2200x (Plane(x) \u2192 Empty(x))",
+      "\u2200x (Boeing707(x) \u2192 Plane(x))",
+      "\u00acAirline(greyhound) \u2192 \u00ac(Airline(greyhound) \u2228 Plane(greyhound))"
+    ],
+    "conclusion_fol": "Boeing707(greyhound)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 19.0,
+      "Unknown": 60.5
+    },
+    "answer_counts": {
+      "Unknown": 10,
+      "False": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion \"A Greyhound is a Boeing 707\" is true, false, or uncertain, we need to analyze the given premises and the conclusion step by step.\n\n**Premise 1:** If something can transport multiple passengers, then they are not empty.\n- This premise does not directly relate to the conclusion. We can ignore it for now.\n\n**Premise 2:** All airlines can transport multiple passengers.\n- This premise also doesn't directly relate to the conclusion. We can ignore it for now.\n\n**Premise 3:** All planes are empty.\n- This premise is also irrelevant to the conclusion. We can ignore it for now.\n\n**Premise 4:** All Boeing 707s are planes.\n- This premise doesn't directly relate to the conclusion. We can ignore it for now.\n\n**Premise 5:** If Greyhound is not an airline, then there are no Greyhound planes.\n- This premise is crucial to our analysis. We need to determine whether Greyhound is an airline or not.\n\nTo determine whether the conclusion \"A Greyhound is a Boeing 707\" is true or false, we need to analyze the possible scenarios:\n\nScenario 1: Greyhound is an airline.\n- If Greyhound is an airline, then it can transport multiple passengers (Premise 2).\n- However, we don't have any information about the type of planes Greyhound uses. Therefore, we cannot conclude whether Greyhound is a Boeing 707 or not.\n\nScenario 2: Greyhound is not an airline.\n- If Greyhound is not an airline, then there are no Greyhound planes (Premise 5).\n- Since there are no Greyhound planes, it is impossible for a Greyhound to be a Boeing 707.\n\n**Conclusion:** Based on the analysis, the conclusion \"A Greyhound is a Boeing 707\" is uncertain if Greyhound is an airline, and false if Greyhound is not an airline.\n\nHowever, we can draw a conclusion about the uncertainty of the statement. If we can't conclude whether the statement is true or false, then it's uncertain. Therefore, we can say that the statement \"A Greyhound is a Boeing 707\" is uncertain.\n\nSo, the answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"A Greyhound is a Boeing 707\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: If something can transport multiple passengers, then they are not empty. \nThis premise does not directly relate to the conclusion, so we can set it aside for now.\n\nPremise 2: All airlines can transport multiple passengers.\nThis premise does not directly relate to the conclusion, so we can set it aside for now.\n\nPremise 3: All planes are empty.\nThis premise does not directly relate to the conclusion, so we can set it aside for now.\n\nPremise 4: All Boeing 707s are planes.\nThis premise does not directly relate to the conclusion, so we can set it aside for now.\n\nPremise 5: If Greyhound is not an airline, then there are no Greyhound planes.\nThis premise is a conditional statement. We need to consider two cases:\n- Case 1: Greyhound is not an airline. \n  In this case, there are no Greyhound planes (by premise 5).\n  Since all planes are empty (by premise 3), it does not tell us about Greyhound.\n- Case 2: Greyhound is an airline.\n  If Greyhound is an airline, it can transport multiple passengers (by premise 2).\n  Since it can transport multiple passengers, it is not empty (by premise 1).\n  However, this information does not tell us about the type of plane Greyhound uses.\n\nNow, let's analyze the conclusion \"A Greyhound is a Boeing 707.\"\n\nWe cannot directly conclude from the premises that a Greyhound is a Boeing 707 because we do not have enough information about the type of plane Greyhound uses. However, we can use the process of elimination and the given premises to determine that the conclusion is uncertain.\n\nIf Greyhound is not an airline (case 1), then it is not a Boeing 707 because all Boeing 707s are planes, and if Greyhound is not a plane, then it is not a Boeing 707.\n\nIf Greyhound is an airline (case 2), then it is a plane because all airlines can transport multiple passengers (by premise 2), and all planes are empty (by premise 3), which does not tell us about Greyhound. However, we do not know the type of plane Greyhound uses.\n\nTherefore, based on the given premises, we cannot determine with certainty that a Greyhound is a Boeing 707. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion \"A Greyhound is a Boeing 707\" is true, false, or uncertain, we need to analyze the given premises and their implications.\n\nPremise 1: If something can transport multiple passengers, then they are not empty.\nPremise 2: All airlines can transport multiple passengers.\nPremise 3: All planes are empty.\nPremise 4: All Boeing 707s are planes.\nPremise 5: If Greyhound is not an airline, then there are no Greyhound planes.\n\nFrom Premise 2, we can infer that since all airlines can transport multiple passengers, airlines are not empty.\n\nNow, combining Premise 1 and the inference from Premise 2, we can conclude that airlines are not empty.\n\nHowever, from Premise 3, we know that all planes are empty. This directly contradicts the conclusion from Premise 1 and the inference from Premise 2 that airlines are not empty. This is a contradiction.\n\nSince we have a contradiction, we cannot logically conclude that all airlines are empty, but we can conclude that at least one of the premises must be false or that the premises are inconsistent.\n\nNow, let's analyze the conclusion \"A Greyhound is a Boeing 707.\"\n\nTo determine whether this conclusion is true, we need to analyze the premises and see if we can derive this conclusion.\n\nPremise 4 states that all Boeing 707s are planes. This does not provide any direct information about Greyhound.\n\nPremise 5 states that if Greyhound is not an airline, then there are no Greyhound planes. This premise implies that if Greyhound is not an airline, it cannot be a plane.\n\nHowever, we cannot determine whether Greyhound is an airline or not from the given premises. If we assume that Greyhound is an airline, then it is not empty (from Premise 1), but this does not provide any direct information about whether it is a Boeing 707.\n\nIf we assume that Greyhound is not an airline, then Premise 5 implies that there are no Greyhound planes. However, we do not have any information about whether Greyhound is a Boeing 707 or not.\n\nTherefore, based on the given premises, we cannot determine whether the conclusion \"A Greyhound is a Boeing 707\" is true or false. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion \"A Greyhound is a Boeing 707\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: If something can transport multiple passengers, then they are not empty.\nThis premise tells us that if an object can transport multiple passengers, then it cannot be empty. This gives us a condition for an object to be non-empty.\n\nPremise 2: All airlines can transport multiple passengers.\nThis premise tells us that airlines are capable of transporting multiple passengers, which means they cannot be empty according to Premise 1.\n\nPremise 3: All planes are empty.\nThis premise directly contradicts Premise 2, as it states that planes cannot be empty, but rather they are all empty.\n\nPremise 4: All Boeing 707s are planes.\nThis premise tells us that Boeing 707s are a type of plane. Given Premise 3, we know that all planes are empty.\n\nPremise 5: If Greyhound is not an airline, then there are no Greyhound planes.\nThis premise gives us a condition for the existence of Greyhound planes. If Greyhound is not an airline, then there are no Greyhound planes.\n\nNow, let's analyze the conclusion \"A Greyhound is a Boeing 707\" based on the given premises.\n\nFrom Premise 4, we know that Boeing 707s are planes. Since all planes are empty according to Premise 3, we can conclude that all Boeing 707s are empty.\n\nFrom Premise 1, we know that if something can transport multiple passengers, then it is not empty. Since airlines can transport multiple passengers (Premise 2) and are not empty, we can conclude that airlines are not planes.\n\nSince Greyhound is not an airline (if we assume this for now), we can use Premise 5 to conclude that there are no Greyhound planes.\n\nHowever, there is a problem. We cannot directly conclude that Greyhound is not an airline from the premises, but we can infer that if Greyhound is not an airline, then there are no Greyhound planes (Premise 5). \n\nIn order to determine the conclusion, we have to assume that Greyhound is not an airline, then we can conclude that there are no Greyhound planes (Premise 5). \n\nIf we assume that Greyhound is not an airline and there are no Greyhound planes, then we cannot conclude that a Greyhound is a Boeing 707.\n\nHowever, if we assume that Greyhound is an airline (which contradicts Premise 5), then we can conclude that there are Greyhound planes, but from Premise 3, we know that all planes are empty, and from Premise 4, we know that all Boeing 707s are planes, so all Boeing 707s are empty.\n\nBased on the given premises, we can conclude that a Boeing 707 is empty (all Boeing 707s are planes, and all planes are empty).\n\nHowever, the conclusion \"A Greyhound is a Boeing 707\" is uncertain because the premises do not provide enough information to determine whether Greyhound is an airline or not.\n\nIn order to determine the conclusion, we need more information about whether Greyhound is an airline or not.\n\nTherefore, the final answer is: \n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deductions based on the given premises.\n\nPremise 1: If something can transport multiple passengers, then they are not empty. \nPremise 2: All airlines can transport multiple passengers. \nPremise 3: All planes are empty. \nPremise 4: All Boeing 707s are planes. \nPremise 5: If Greyhound is not an airline, then there are no Greyhound planes.\n\nWe need to determine whether the conclusion 'A Greyhound is a Boeing 707' is true, false, or uncertain.\n\nLet's analyze the premises:\n\n- From Premise 2, we can infer that all airlines can transport multiple passengers, which means they are not empty (Premise 1).\n- From Premise 3, we know all planes are empty, but this does not directly relate to Greyhound or Boeing 707.\n- From Premise 4, we know all Boeing 707s are planes, but this still does not directly relate to Greyhound.\n- From Premise 5, we can infer that if Greyhound is not an airline, then there are no Greyhound planes. This premise is crucial for determining whether a Greyhound is a Boeing 707.\n\nNow, let's examine the conclusion 'A Greyhound is a Boeing 707.' To determine its validity, we need to consider the possibilities:\n\n- If Greyhound is an airline, then it can transport multiple passengers (Premise 2). This would mean that a Greyhound (airline) is not empty (Premise 1). However, all planes are empty (Premise 3), which contradicts the fact that a Greyhound is not empty. Therefore, if Greyhound is an airline, the conclusion is false.\n- If Greyhound is not an airline, then there are no Greyhound planes (Premise 5). This means we cannot conclude that a Greyhound is a Boeing 707, as there are no Greyhound planes to begin with. Therefore, the conclusion is uncertain.\n\nBased on the analysis, the conclusion 'A Greyhound is a Boeing 707' is uncertain because it depends on whether Greyhound is an airline or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use the method of logical deduction and analyze the premises one by one.\n\nPremise 1: If something can transport multiple passengers, then they are not empty.\nThis premise gives us a relationship between the ability to transport multiple passengers and being empty.\n\nPremise 2: All airlines can transport multiple passengers.\nThis premise tells us that airlines have the ability to transport multiple passengers, which means they cannot be empty according to premise 1.\n\nPremise 3: All planes are empty.\nThis premise gives us a general property of all planes, which is that they are always empty.\n\nPremise 4: All Boeing 707s are planes.\nThis premise tells us that all Boeing 707s have the property of being planes, which means they are always empty according to premise 3.\n\nPremise 5: If Greyhound is not an airline, then there are no Greyhound planes.\nThis premise gives us a relationship between Greyhound being an airline or not and the existence of Greyhound planes.\n\nNow, let's analyze the conclusion:\n\nConclusion: A Greyhound is a Boeing 707.\nTo determine the validity of this conclusion, we need to see if we can logically deduce it from the premises.\n\nFrom premise 2, we know that all airlines can transport multiple passengers, and from premise 1, we know that if something can transport multiple passengers, it is not empty. However, we also have premise 3, which says that all planes are empty, including Boeing 707s (premise 4). This creates a contradiction because Boeing 707s are planes and planes are empty, but airlines are not empty.\n\nSince the conclusion \"A Greyhound is a Boeing 707\" would imply that a Greyhound is an airline (because Boeing 707s are planes and planes are empty, which contradicts the fact that airlines are not empty), and we know from premise 5 that if Greyhound is not an airline, then there are no Greyhound planes, the conclusion \"A Greyhound is a Boeing 707\" would imply that Greyhound is an airline.\n\nHowever, we cannot conclude that Greyhound is an airline because the premises do not provide any information about whether Greyhound is an airline or not. \n\nGiven this analysis, we cannot logically deduce the conclusion from the premises, and therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion \"A Greyhound is a Boeing 707\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: If something can transport multiple passengers, then they are not empty.\nPremise 2: All airlines can transport multiple passengers.\nPremise 3: All planes are empty.\nPremise 4: All Boeing 707s are planes.\nPremise 5: If Greyhound is not an airline, then there are no Greyhound planes.\n\nWe are given a conclusion: A Greyhound is a Boeing 707.\n\nTo determine the truth value of the conclusion, let's analyze the premises:\n\n- From Premise 3, we know all planes are empty.\n- From Premise 4, we know all Boeing 707s are planes. Therefore, all Boeing 707s are empty.\n\nWe can also analyze the relationship between Greyhound and the other terms in the premises:\n\n- From Premise 5, we have a conditional statement: If Greyhound is not an airline, then there are no Greyhound planes. However, this statement does not provide information about whether Greyhound is an airline or not.\n\n- From Premise 2, we know all airlines can transport multiple passengers. However, this does not provide any information about whether Greyhound is an airline.\n\nTo determine whether a Greyhound is a Boeing 707, let's assume the opposite of the conclusion and see if we can derive a contradiction.\n\nIf a Greyhound is not a Boeing 707:\n\n- We do not know if Greyhound is a plane (or not), so we cannot conclude that it's empty.\n- We cannot conclude that a Greyhound is an airline, because we do not have enough information to make that inference.\n\nHowever, let's analyze the conditional statement in Premise 5: If Greyhound is not an airline, then there are no Greyhound planes. \n\nThis statement implies that if Greyhound is an airline, then there must be Greyhound planes. Therefore, we can conclude that:\n\n- If Greyhound is an airline, then there are Greyhound planes.\n\nCombining this conclusion with Premise 2, we know that:\n\n- If Greyhound is an airline, then Greyhound can transport multiple passengers.\n- Since Greyhound can transport multiple passengers, we can conclude that Greyhound is not empty, using Premise 1.\n\nNow, let's analyze the relationship between Greyhound and Boeing 707:\n\n- From Premise 4, we know all Boeing 707s are planes. Therefore, if Greyhound is a Boeing 707, it must be a plane.\n\n- However, we already know that Greyhound can transport multiple passengers (from the previous analysis), which means Greyhound is not empty.\n\nThis creates a conflict with Premise 3, which states that all planes are empty.\n\nTherefore, we can conclude that:\n\n- A Greyhound cannot be a Boeing 707, because it would imply that a Greyhound is a plane, and planes are empty, which contradicts the fact that Greyhound can transport multiple passengers.\n\nSo, the conclusion \"A Greyhound is a Boeing 707\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and determine if they lead to the conclusion that a Greyhound is a Boeing 707.\n\nPremise 1: If something can transport multiple passengers, then they are not empty.\nThis premise tells us that if something can transport multiple passengers, it's not empty. However, it doesn't give us any information about what those things are.\n\nPremise 2: All airlines can transport multiple passengers.\nThis premise tells us that airlines can transport multiple passengers. It also doesn't give us any information about what airlines are.\n\nPremise 3: All planes are empty.\nThis premise tells us that all planes are empty. However, it's worth noting that the premise about planes being empty seems to contradict the premise about airlines being able to transport multiple passengers, unless we're talking about different types of planes.\n\nPremise 4: All Boeing 707s are planes.\nThis premise tells us that all Boeing 707s are planes. It doesn't give us any information about what Boeing 707s are.\n\nPremise 5: If Greyhound is not an airline, then there are no Greyhound planes.\nThis premise tells us that if Greyhound is not an airline, then there are no Greyhound planes. It also implies that if Greyhound is an airline, then there may be Greyhound planes.\n\nNow, let's try to determine if the conclusion that a Greyhound is a Boeing 707 is true, false, or uncertain.\n\nWe know that:\n- If Greyhound is an airline, then there may be Greyhound planes (Premise 5).\n- All airlines can transport multiple passengers (Premise 2).\n- If something can transport multiple passengers, then they are not empty (Premise 1).\n- All planes are empty (Premise 3).\n- All Boeing 707s are planes (Premise 4).\n\nIf a Greyhound is an airline (and we can't conclude that it's not an airline), then we have a possible scenario where there may be Greyhound planes. However, we also know that all planes are empty (Premise 3). This doesn't necessarily mean that a Greyhound plane couldn't exist, but it would be empty.\n\nWe also know that all Boeing 707s are planes (Premise 4). If we assume that a Greyhound is a Boeing 707, then it would be a plane. However, we also know that all planes are empty (Premise 3).\n\nThe problem is that we can't conclude that a Greyhound is a Boeing 707 from the given premises. We can't conclude that Greyhound is an airline or not, and we can't conclude that a Greyhound plane exists or not.\n\nTherefore, the conclusion that a Greyhound is a Boeing 707 is **uncertain**.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we will use a method called truth trees or semantic tableaux. \n\nStep 1: Break down the premises into individual statements.\n\n- Premise 1: If something can transport multiple passengers, then they are not empty.\n- Premise 2: All airlines can transport multiple passengers.\n- Premise 3: All planes are empty.\n- Premise 4: All Boeing 707s are planes.\n- Premise 5: If Greyhound is not an airline, then there are no Greyhound planes.\n\nStep 2: Analyze the relationship between the premises and the conclusion.\n\n- The conclusion: A Greyhound is a Boeing 707.\n\nStep 3: Determine the relationship between Greyhound and the other statements.\n\n- From Premise 5, if Greyhound is not an airline, then there are no Greyhound planes. This creates a connection between Greyhound being an airline and the existence of Greyhound planes.\n\nStep 4: Determine the relationship between Greyhound being a Boeing 707 and the other statements.\n\n- From Premise 4, all Boeing 707s are planes.\n\nStep 5: Create a truth tree to analyze the premises and conclusion.\n\n- Assume Greyhound is a Boeing 707.\n- From Premise 4, if Greyhound is a Boeing 707, then it is a plane.\n- From Premise 3, all planes are empty.\n- Since Greyhound is a plane, it must be empty.\n\nHowever, we know from Premise 1 that something that can transport multiple passengers is not empty. \n\n- From Premise 2, all airlines can transport multiple passengers. \n- Since Greyhound is an airline, it can transport multiple passengers.\n- Therefore, Greyhound cannot be empty.\n\nThis is a contradiction, which means our assumption that Greyhound is a Boeing 707 is false.\n\nConclusion: The conclusion \"A Greyhound is a Boeing 707\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will use the method of logical reasoning and the rules of inference.\n\nGiven Premises:\n1. If something can transport multiple passengers, then they are not empty. (This is a conditional statement, where the antecedent is \"can transport multiple passengers\" and the consequent is \"are not empty\".)\n2. All airlines can transport multiple passengers. (This is a categorical statement that all airlines have the property of being able to transport multiple passengers.)\n3. All planes are empty. (This is a categorical statement that all planes have the property of being empty.)\n4. All Boeing 707s are planes. (This is a categorical statement that all Boeing 707s have the property of being planes.)\n5. If Greyhound is not an airline, then there are no Greyhound planes. (This is a conditional statement with two parts: the antecedent is \"Greyhound is not an airline\" and the consequent is \"there are no Greyhound planes\".)\n\nConclusion to be evaluated:\nA Greyhound is a Boeing 707.\n\nTo evaluate the conclusion, we need to examine the premises and see if they support or contradict the conclusion.\n\nStep 1: From premise 2, we know that all airlines can transport multiple passengers. Since Greyhound is an airline (this is not explicitly stated but will be used as a premise), we can deduce that Greyhound can transport multiple passengers.\n\nStep 2: From premise 1, we know that if something can transport multiple passengers, then they are not empty. Since Greyhound can transport multiple passengers (deduced in Step 1), we can infer that Greyhound is not empty.\n\nStep 3: We need to examine if the conclusion \"A Greyhound is a Boeing 707\" can be supported or contradicted by the premises. From premise 4, we know that all Boeing 707s are planes. We also know that planes are empty (premise 3). However, we concluded in Step 2 that Greyhound is not empty. Therefore, we can deduce that Greyhound cannot be a Boeing 707, as Boeing 707s are empty and Greyhound is not empty.\n\nStep 4: Now, we need to examine the relationship between Greyhound and Boeing 707. From premise 5, we know that if Greyhound is not an airline, then there are no Greyhound planes. This premise does not provide any direct information about the relationship between Greyhound and Boeing 707. However, we can use the fact that Greyhound is not a Boeing 707 (deduced in Step 3) to draw a conclusion about the uncertainty of the statement \"A Greyhound is a Boeing 707\".\n\nConclusion:\nThe premises do not support the conclusion that \"A Greyhound is a Boeing 707\" is true. However, they also do not provide any direct evidence that the conclusion is false. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will use the method of logical deduction, breaking down the given premises and applying the rules of logic to determine the validity of the conclusion.\n\nGiven Premises:\n\n1. If something can transport multiple passengers, then they are not empty.\n2. All airlines can transport multiple passengers.\n3. All planes are empty.\n4. All Boeing 707s are planes.\n5. If Greyhound is not an airline, then there are no Greyhound planes.\n\nConclusion: A Greyhound is a Boeing 707.\n\nLet's break down the given premises:\n\n- From premise 2, we know that all airlines can transport multiple passengers.\n- From premise 1, we can conclude that if something is an airline, then it is not empty (since airlines transport multiple passengers).\n- However, from premise 3, we know that all planes are empty, which seems to contradict the previous conclusion.\n- But, we can see that this apparent contradiction is due to the fact that the premises are talking about different things: airlines and planes. An airline is not a plane, but rather a company that operates planes.\n\nNow, let's examine the conclusion: A Greyhound is a Boeing 707.\n\n- From premise 4, we know that all Boeing 707s are planes.\n- But, we don't have any information about Greyhound being a Boeing 707. We only have information about Greyhound being related to planes in the following statement: \"If Greyhound is not an airline, then there are no Greyhound planes.\"\n\nNow, let's examine the statement \"If Greyhound is not an airline, then there are no Greyhound planes.\" \n\n- This statement can be rewritten as: Greyhound is an airline or there are no Greyhound planes. We don't know whether Greyhound is an airline or not, but we do know that all airlines can transport multiple passengers (premise 2).\n\nNow, let's consider the two possible cases:\n\n- Case 1: Greyhound is an airline.\n- In this case, we know that Greyhound can transport multiple passengers (premise 2), and therefore, it is not empty (premise 1).\n- However, we also know that all planes are empty (premise 3), which seems to contradict the fact that Greyhound can transport multiple passengers.\n\n- Case 2: Greyhound is not an airline.\n- In this case, we know that there are no Greyhound planes (from the statement \"If Greyhound is not an airline, then there are no Greyhound planes\").\n\nNow, let's examine the conclusion: A Greyhound is a Boeing 707.\n\n- We can conclude that Greyhound is a Boeing 707 only if Greyhound is a plane.\n- But, we don't know whether Greyhound is a plane or not. We only know that there are no Greyhound planes if Greyhound is not an airline.\n\nSince we have two possible cases, and in both cases, we don't have enough information to conclude that Greyhound is a Boeing 707, we can say that the conclusion is uncertain.\n\nTherefore, the final answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and use the rules of logical inference.\n\nPremise 1: If something can transport multiple passengers, then they are not empty.\nPremise 2: All airlines can transport multiple passengers.\nPremise 3: All planes are empty.\nPremise 4: All Boeing 707s are planes.\nPremise 5: If Greyhound is not an airline, then there are no Greyhound planes.\n\nFrom Premise 2 and Premise 3, we can infer that all airlines are not empty, since they can transport multiple passengers.\n\nNow, let's examine the conclusion: \"A Greyhound is a Boeing 707.\"\n\nTo determine whether this conclusion is true, false, or uncertain, we need to analyze the premises again.\n\nIf a Greyhound is a Boeing 707, then it must be an airline, since all Boeing 707s are planes (Premise 4) and all airlines can transport multiple passengers (Premise 2).\n\nHowever, Premise 5 states that if Greyhound is not an airline, then there are no Greyhound planes. This implies that if Greyhound is an airline, it must have planes.\n\nFrom Premise 3, we know that all planes are empty. Therefore, if a Greyhound is an airline, it must have empty planes.\n\nNow, let's go back to Premise 1, which states that if something can transport multiple passengers, then they are not empty. Since a Greyhound is an airline (as inferred earlier), it can transport multiple passengers. Therefore, it cannot be empty, according to Premise 1.\n\nThis creates a contradiction: a Greyhound is both empty and not empty, which is a logical contradiction.\n\nHowever, this conclusion isn't supported by the premises, which all state things about airlines and planes.  A Greyhound is a bus company that does not fly.\n\nTherefore, the conclusion \"A Greyhound is a Boeing 707\" is uncertain because it is based on an assumption (Greyhound is an airline) that is not supported by the premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "airline(greyhound)",
+          "z3_formula": "airline_greyhound == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "airline(X) -> transport_multiple_passengers(X)",
+          "z3_formula": "Implies(airline_greyhound, transport_multiple_passengers_greyhound)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "transport_multiple_passengers(greyhound)",
+          "z3_formula": "transport_multiple_passengers_greyhound == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "plane(boeing_707)",
+          "z3_formula": "plane_boeing_707 == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "plane(greyhound)",
+          "z3_formula": "plane_greyhound == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not airline(X) -> not plane(X)",
+          "z3_formula": "Implies(Not(airline_greyhound), Not(plane_greyhound))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(greyhound, boeing_707)",
+          "z3_formula": "uncertain_greyhound_boeing_707 == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "airline(greyhound)",
+          "z3_formula": "airline_greyhound == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "airline(X) -> transport_multiple_passengers(X)",
+          "z3_formula": "Implies(airline_greyhound, transport_multiple_passengers_greyhound)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(transport_multiple_passengers_greyhound, not empty_greyhound)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not empty(X) -> plane(X)",
+          "z3_formula": "Implies(not empty_greyhound, plane_greyhound)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "plane(X) -> not Boeing_707(X)",
+          "z3_formula": "Implies(plane_greyhound, not Boeing_707_greyhound)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "airline(X) -> plane(X)",
+          "z3_formula": "Implies(airline_greyhound, plane_greyhound)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "plane(X) == True",
+          "z3_formula": "plane_greyhound == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "Boeing_707(X) == True",
+          "z3_formula": "Boeing_707_greyhound == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not Boeing_707(greyhound)",
+          "z3_formula": "not Boeing_707_greyhound == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(transport_multiple_passengers, not empty)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "airlines(X) -> transport_multiple_passengers(X)",
+          "z3_formula": "Implies(airlines, transport_multiple_passengers)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "planes(X) -> empty(X)",
+          "z3_formula": "Implies(planes, empty)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "boeing_707(X) -> planes(X)",
+          "z3_formula": "Implies(boeing_707, planes)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "greyhound_not_airline -> not greyhound_planes",
+          "z3_formula": "Implies(greyhound_not_airline, not greyhound_planes)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "airlines(X) -> not empty(X)",
+          "z3_formula": "Implies(airlines, not empty)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "airlines(X) & transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(And(airlines, transport_multiple_passengers), not empty)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "contradiction",
+          "z3_formula": "Not(And(airlines, transport_multiple_passengers, planes))",
+          "source_step": 8
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "transport_multiple_passengers(airline)",
+          "z3_formula": "transport_multiple_passengers_airline == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "transport_multiple_passengers(airline) -> not(empty(airline))",
+          "z3_formula": "Implies(transport_multiple_passengers_airline, not(empty_airline))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "airline == True",
+          "z3_formula": "airline == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(empty(airline))",
+          "z3_formula": "not(empty_airline) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "empty(plane) == True",
+          "z3_formula": "empty_plane == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "plane == True",
+          "z3_formula": "plane == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "boeing_707 == True",
+          "z3_formula": "boeing_707 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "plane -> boeing_707",
+          "z3_formula": "Implies(plane, boeing_707)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "greyhound == True",
+          "z3_formula": "greyhound == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "not(airline(greyhound)) -> not(plane(greyhound))",
+          "z3_formula": "Implies(Not(airline_greyhound), Not(plane_greyhound))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "airline(greyhound) -> not(empty(greyhound))",
+          "z3_formula": "Implies(airline_greyhound, not(empty_greyhound))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(empty(greyhound))",
+          "z3_formula": "not(empty_greyhound) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "empty(greyhound)",
+          "z3_formula": "empty_greyhound == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(plane(greyhound))",
+          "z3_formula": "Not(plane_greyhound) == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "plane(greyhound) -> boeing_707(greyhound)",
+          "z3_formula": "Implies(plane_greyhound, boeing_707_greyhound)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "boeing_707(greyhound)",
+          "z3_formula": "boeing_707_greyhound == True",
+          "source_step": 16
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "can_transport_multiple_passengers(airline)",
+          "z3_formula": "can_transport_multiple_passengers_airline == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "can_transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(can_transport_multiple_passengers_airline, not empty_airline)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "empty(plane)",
+          "z3_formula": "empty_plane == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plane(boeing_707)",
+          "z3_formula": "plane_boeing_707 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "boeing_707(X) -> plane(X)",
+          "z3_formula": "Implies(boeing_707_X, plane_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not airline(greyhound)",
+          "z3_formula": "not_airline_greyhound == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not airline(X) -> not plane(X)",
+          "z3_formula": "Implies(not_airline_greyhound, not_plane_greyhound)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not plane(greyhound)",
+          "z3_formula": "not_plane_greyhound == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not empty(greyhound)",
+          "z3_formula": "not_empty_greyhound == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not empty(greyhound) & empty(plane) -> False",
+          "z3_formula": "Not(And(not_empty_greyhound, empty_plane)) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "False",
+          "z3_formula": "False == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(transport_multiple_passengers_X, not empty_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "airline(X) -> transport_multiple_passengers(X)",
+          "z3_formula": "Implies(airline_X, transport_multiple_passengers_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "plane(X) == True",
+          "z3_formula": "plane_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "boeing_707(X) -> plane(X)",
+          "z3_formula": "Implies(boeing_707_X, plane_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "greyhound_not_airline -> not greyhound_plane",
+          "z3_formula": "Implies(greyhound_not_airline, not greyhound_plane)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(greyhound_plane)",
+          "z3_formula": "uncertain_greyhound_plane",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "can_transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(can_transport_multiple_passengers, not empty)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "airline(X) -> can_transport_multiple_passengers(X)",
+          "z3_formula": "Implies(airline, can_transport_multiple_passengers)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "plane(X)",
+          "z3_formula": "plane == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "boeing_707(X) -> plane(X)",
+          "z3_formula": "Implies(boeing_707, plane)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not airline(Greyhound) -> not plane(Greyhound)",
+          "z3_formula": "Implies(not airline_Greyhound, not plane_Greyhound)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "can_transport_multiple_passengers(airline)",
+          "z3_formula": "can_transport_multiple_passengers_airline == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "airline(greyhound)",
+          "z3_formula": "airline_greyhound == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "can_transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(can_transport_multiple_passengers_airline, not empty_airline)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "empty(plane)",
+          "z3_formula": "empty_plane == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plane(boeing_707)",
+          "z3_formula": "plane_boeing_707 == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "Implies(not airline(X), not plane(X))",
+          "z3_formula": "Implies(not airline_greyhound, not plane_greyhound)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "can_transport_multiple_passengers(greyhound)",
+          "z3_formula": "can_transport_multiple_passengers_greyhound == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not empty(greyhound)",
+          "z3_formula": "not empty_greyhound == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not greyhound_is_boeing_707",
+          "z3_formula": "not greyhound_is_boeing_707 == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(greyhound_is_boeing_707)",
+          "z3_formula": "uncertain_greyhound_is_boeing_707 == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "airline(X) -> multiple_passengers(X)",
+          "z3_formula": "Implies(airline_X, multiple_passengers_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "airline(X)",
+          "z3_formula": "airline_X == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "plane(X) -> empty(X)",
+          "z3_formula": "Implies(plane_X, empty_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plane(X)",
+          "z3_formula": "plane_X == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "boeing_707(X) -> plane(X)",
+          "z3_formula": "Implies(boeing_707_X, plane_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "greyhound(X) -> not_airline(X) | not greyhound_plane(X)",
+          "z3_formula": "Implies(greyhound_X, Or(not_airline_X, not greyhound_plane_X))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "greyhound(X) -> multiple_passengers(X)",
+          "z3_formula": "Implies(greyhound_X, multiple_passengers_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "greyhound(X) -> not empty(X)",
+          "z3_formula": "Implies(greyhound_X, not empty_X)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "greyhound(X) -> plane(X)",
+          "z3_formula": "Implies(greyhound_X, plane_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "greyhound(X) -> boeing_707(X)",
+          "z3_formula": "Implies(greyhound_X, boeing_707_X)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(transport_multiple_passengers_X, not empty_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "airline(X) -> transport_multiple_passengers(X)",
+          "z3_formula": "Implies(airline_X, transport_multiple_passengers_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "plane(X)",
+          "z3_formula": "plane_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "boeing_707(X) -> plane(X)",
+          "z3_formula": "Implies(boeing_707_X, plane_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not airline(Greyhound) -> not plane(Greyhound)",
+          "z3_formula": "Implies(not airline_Greyhound, not plane_Greyhound)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "airline(X) -> not empty(X)",
+          "z3_formula": "Implies(airline_X, not empty_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "airline(Greyhound)",
+          "z3_formula": "airline_Greyhound == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "empty(Greyhound)",
+          "z3_formula": "empty_Greyhound == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "transport_multiple_passengers(Greyhound)",
+          "z3_formula": "transport_multiple_passengers_Greyhound == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not empty(Greyhound)",
+          "z3_formula": "not empty_Greyhound == True",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 92,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 48
+    },
+    "maxsat_stats": {
+      "satisfied": 45,
+      "excluded": 3,
+      "total_weight": 67,
+      "solve_time_ms": 1.1921636760234833
+    },
+    "timing": {
+      "trace_gen_s": 8.273,
+      "extraction_s": 30.501,
+      "dedup_s": 0.868,
+      "maxsat_s": 0.004,
+      "total_s": 39.646
+    }
+  }
+}

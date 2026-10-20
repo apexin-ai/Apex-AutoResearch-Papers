@@ -1,0 +1,24 @@
+{
+  "exp_id": "mvp_pipeline_003",
+  "project": "cross_representation_disagreement_diagno",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:45:17.358Z",
+    "updated_at": "2026-05-14T10:45:17.358Z",
+    "spec": {
+      "model_name": "Qwen3-32B-AWQ (awq_marlin)",
+      "server": "autodl-rtx6000pro",
+      "data_path": "FOLIO validation set (full)",
+      "data_count": 204,
+      "seed": 0,
+      "parent": "mvp_pipeline_002",
+      "changes": "truncation detection + thinking-off retry in _call_llm to fix FOL 80% empty output",
+      "command": "cd /root/autodl-tmp/crdd && python src/pipeline.py --output results/mvp_v4_full.json"
+    }
+  },
+  "timestamp": "2026-05-14T10:45:17.373713+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,9 @@
+Figure 7 files on westd-16639:
+- /root/symb_invariant_consensus/artifacts/capability_gap_scatter.pdf (33KB)
+- /root/symb_invariant_consensus/artifacts/capability_gap_scatter.png (124KB)
+
+Stats:
+- DeBERTa-only (excl LLaMA, n=6): Spearman rho=0.986, p=0.0003
+- DeBERTa-all (incl LLaMA, n=7): Spearman rho=0.955, p=0.0008
+- Linear R²=0.919, p=0.0007
+- Sigmoid (9pt): R²=0.909, inflection=-8.1pp, L=5.00, k=0.144

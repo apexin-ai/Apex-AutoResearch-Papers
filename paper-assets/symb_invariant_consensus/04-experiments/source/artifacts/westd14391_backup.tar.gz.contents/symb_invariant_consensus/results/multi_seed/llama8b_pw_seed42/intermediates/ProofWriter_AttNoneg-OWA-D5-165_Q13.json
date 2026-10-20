@@ -1,0 +1,1415 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-165_Q13",
+    "problem": "Anne is furry. Anne is nice. Anne is rough. Anne is white. Erin is furry. Erin is rough. Erin is white. Fiona is big. Fiona is nice. Fiona is round. Harry is nice. Harry is rough. All furry things are white. If Harry is red then Harry is round. All round, red things are furry. If Harry is rough then Harry is round. Nice, red things are big. Round, red things are white. All nice, white things are red. If something is round then it is furry.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not big.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\nRound($x, bool) ::: Is x round?\nRed($x, bool) ::: Is x red?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nNice(Anne, True) ::: Anne is nice.\nRough(Anne, True) ::: Anne is rough.\nWhite(Anne, True) ::: Anne is white.\nFurry(Erin, True) ::: Erin is furry.\nRough(Erin, True) ::: Erin is rough.\nWhite(Erin, True) ::: Erin is white.\nBig(Fiona, True) ::: Fiona is big.\nNice(Fiona, True) ::: Fiona is nice.\nRound(Fiona, True) ::: Fiona is round.\nNice(Harry, True) ::: Harry is nice.\nRough(Harry, True) ::: Harry is rough.\n\nRules:\nFurry($x, True) >>> White($x, True) ::: All furry things are white.\nRed(Harry, True) >>> Round(Harry, True) ::: If Harry is red then Harry is round.\nRound($x, True) && Red($x, True) >>> Furry($x, True) ::: All round, red things are furry.\nRough(Harry, True) >>> Round(Harry, True) ::: If Harry is rough then Harry is round.\nNice($x, True) && Red($x, True) >>> Big($x, True) ::: Nice, red things are big.\nRound($x, True) && Red($x, True) >>> White($x, True) ::: Round, red things are white.\nNice($x, True) && White($x, True) >>> Red($x, True) ::: All nice, white things are red.\nRound($x, True) >>> Furry($x, True) ::: If something is round then it is furry.\n\nQuery:\nBig(Erin, False) ::: Erin is not big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 138.5,
+      "True": 174.0,
+      "Unknown": 190.5
+    },
+    "answer_counts": {
+      "True": 2,
+      "Unknown": 5,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Erin is not big\" is true, false, or unknown, we need to analyze the given information step by step:\n\n1. All furry things are white. (Fact 1)\n2. Erin is furry. (Fact 2)\n3. Since Erin is furry, we can conclude that Erin is white from Fact 1. (Conclusion 1)\n\n4. All round, red things are furry. (Fact 3)\n5. All round things are furry. (Fact 4)\n   Since there's a Fact 3 stating that round red things are furry and Fact 4 stating that round things are furry, we know that red is not a necessary condition for a thing to be furry. However, Fact 4 gives us more information. Fact 4 doesn't make any claims about red things. It is saying that all round things are furry. So we can conclude that Erin is round because she is furry, as stated in Fact 2. (Conclusion 2)\n\n6. Erin is round. (Conclusion 2)\n7. Since Erin is round, we can conclude that Erin is furry from Conclusion 2. (Conclusion 3)\n8. Erin is furry. (Conclusion 3) \n9. Erin is white. (Conclusion 1)\n10. Erin is round. (Conclusion 2)\n11. Erin is rough. (Given fact)\n\nWe can also analyze the statement \"Erin is not big\" from the following facts:\n\n12. All nice, white things are red. (Fact 5)\n13. All round, red things are furry. (Fact 3)\n14. All furry things are white. (Fact 1)\n15. Since Erin is white from Conclusion 1, we can't conclude that Erin is red from Fact 5.\n16. Erin is round from Conclusion 2.\n17. Since Erin is round from Conclusion 2, we can conclude that Erin is furry from Fact 4.\n18. Erin is furry from Conclusion 3.\n19. Erin is furry from Conclusion 2.\n20. Erin is white from Conclusion 1.\n21. Erin is rough from given fact.\n22. Erin is not nice. (Conclusion 4)\n\nWe cannot determine if Erin is big or not because we do not have any facts or conclusions that state Erin is big. However, we can analyze the statement \"Erin is not big\" from the fact that \"Nice, red things are big\" (Fact 6). Since Erin is not nice (Conclusion 4), we can conclude that Erin is not big from Fact 6.\n\nTherefore, the statement \"Erin is not big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply logical reasoning.\n\nGiven statements:\n1. Anne is furry.\n2. Anne is nice.\n3. Anne is rough.\n4. Anne is white.\n5. Erin is furry.\n6. Erin is rough.\n7. Erin is white.\n8. Fiona is big.\n9. Fiona is nice.\n10. Fiona is round.\n11. Harry is nice.\n12. Harry is rough.\n13. All furry things are white.\n14. If Harry is red then Harry is round.\n15. All round, red things are furry.\n16. If Harry is rough then Harry is round.\n17. Nice, red things are big.\n18. Round, red things are white.\n19. All nice, white things are red.\n20. If something is round then it is furry.\n\nWe are asked to determine whether the statement \"Erin is not big\" is true, false, or unknown.\n\nTo evaluate this statement, we need to consider the information provided and the relationships between the different attributes.\n\nFrom statement 8, we know that Fiona is big. However, we cannot directly infer anything about Erin's size from this information.\n\nNow, let's analyze the relationships between the attributes.\n\nFrom statement 13, we know that all furry things are white. We can use this information to determine Erin's color.\n\nFrom statements 5 and 13, we can conclude that Erin is white.\n\nNow, let's consider the statement \"Erin is not big.\" We need to determine whether this statement is true, false, or unknown.\n\nFrom statement 8, we know that Fiona is big. However, we cannot directly infer anything about Erin's size from this information.\n\nWe also know that Erin is white (from statement 13). \n\nNow, let's use statement 19, which says that all nice, white things are red. This means that Erin must be red.\n\nNow, let's use statement 17, which says that nice, red things are big. This means that Erin must be big.\n\nHowever, we also know that Erin is rough (from statement 6). \n\nNow, let's use statement 12, which says that Harry is rough. \n\nAlso, let's use statement 16, which says that if Harry is rough then Harry is round.\n\nAlso, let's use statement 20, which says that if something is round then it is furry.\n\nSince Harry is round, and all round things are furry, then Harry is furry.\n\nNow, let's use statement 14, which says that if Harry is red then Harry is round.\n\nSince Harry is round, and all round, red things are furry (from statement 15), then Harry must be red.\n\nNow, let's use statement 17, which says that nice, red things are big. This means that Harry must be big.\n\nWe now have a conflict: Erin is big (because Erin is red and nice, from statement 17), but we cannot directly infer whether Erin is big or not from the given statements.\n\nTherefore, the statement \"Erin is not big\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether Erin is not big, we need to analyze the given statements and use logical reasoning.\n\n1. All furry things are white.\n2. Erin is furry. \n3. Erin is white.\n4. Erin is rough.\n5. If Harry is rough then Harry is round.\n6. It does not directly state that Erin being rough implies Erin is round.\n7. However, statement 5 implies that since Harry is rough and round, then Erin is not necessarily round because it only applies to Harry.\n\n8. All round, red things are furry.\n9. If Harry is red then Harry is round.\n10. Since Harry is nice, we do not have information about Harry's color.\n11. If something is round then it is furry.\n12. Since Erin is furry and we do not have information that Erin is round, we cannot determine if Erin is round.\n13. Round, red things are white.\n14. All nice, white things are red.\n15. Fiona is big. Fiona is nice. Fiona is round.\n16. Erin is not necessarily big because there is no direct relationship between Erin's characteristics and being big.\n\nSince we do not have enough information to determine Erin's size, we cannot conclude that Erin is big or not big. Therefore, the statement \"Erin is not big\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All furry things are white. \n   - Since Erin is furry, then Erin is white.\n\n2. Erin is rough. \n   - No new information is derived from this statement.\n\n3. Fiona is big. Fiona is nice. Fiona is round. \n   - This statement provides information about Fiona, but we don't have any information about Erin.\n\n4. Harry is nice. Harry is rough. \n   - This statement provides information about Harry, but we don't have any information about Erin.\n\n5. All furry things are white. \n   - We already know this from statement 1.\n\n6. If Harry is red then Harry is round. \n   - This statement provides a condition for Harry, but we don't have any information about Erin.\n\n7. All round, red things are furry. \n   - This statement provides information about round, red things, but we don't have any information about Erin.\n\n8. If Harry is rough then Harry is round. \n   - This statement provides a condition for Harry, but we don't have any information about Erin.\n\n9. Nice, red things are big. \n   - This statement provides information about nice, red things, but we don't have any information about Erin.\n\n10. Round, red things are white. \n    - This statement provides information about round, red things, but we don't have any information about Erin.\n\n11. All nice, white things are red. \n    - This statement provides information about nice, white things, but we don't have any information about Erin.\n\n12. If something is round then it is furry. \n    - This statement provides information about round things, but we don't have any information about Erin.\n\nSince we know that Erin is furry and white from statement 1, we can use statements 12 and 1 to conclude that Erin is round.\n\nNow we have enough information to make a conclusion about Erin being big or not. \n\nGiven that Erin is round and using statement 12, we know that Erin is furry. \n\nGiven that Erin is furry and white, we can use statement 10 to conclude that Erin is red.\n\nGiven that Erin is round, red, and using statement 9, we know that Erin is big.\n\nTherefore, the statement \"Erin is not big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not big\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. From the given information, we know that Erin is furry, Erin is rough, and Erin is white.\n2. Since all furry things are white, we can confirm that Erin is indeed white.\n3. We also know that all round, red things are furry. However, this statement is irrelevant to Erin's characteristics for now.\n4. We are given that if something is round, then it is furry. However, we do not have enough information about Erin's shape to determine whether Erin is round or not.\n5. Since all nice, white things are red, but we do not have any information about Erin being nice, we cannot determine Erin's color.\n6. The statement \"Nice, red things are big\" does not apply to Erin since we do not know whether Erin is nice or red.\n7. We are given that Fiona is big, but this information is irrelevant to Erin's size.\n8. The statement \"If Harry is rough then Harry is round\" does not provide any information about Erin's size or shape.\n\nTo determine whether Erin is big or not, we need to analyze the given information again. We know that Erin is furry and white, but we do not have enough information to determine whether Erin is big or not. However, we can use the information that \"Round, red things are white\" and \"All round, things are furry\" to conclude that Erin is round, but we cannot determine Erin's color (red or not). But we do not know whether Erin is round or not since we have no information about Erin's shape.\n\nNow, we need to analyze the statement \"Erin is not big\". To do this, we need to determine whether Erin is big or not. However, we do not have enough information to make this determination. We do not know whether Erin is big or not. Therefore, we cannot conclude that Erin is not big.\n\nTherefore, the statement \"Erin is not big\" is **unknown**.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is not big' is true, false, or unknown, we need to analyze the given information and apply it to Erin.\n\nFrom the given information:\n\n1. Erin is furry.\n2. Erin is rough.\n3. Erin is white.\n\nWe know that 'All furry things are white' is true, and 'Erin is furry' and 'Erin is white' both hold true. Therefore, Erin being furry implies that Erin is white.\n\nNow, let's analyze the relationship between being furry and being round. We have two pieces of information that relate to this:\n1. 'All round, red things are furry.'\n2. 'If something is round then it is furry.'\n\nHowever, 'All round, red things are furry' implies that for something to be round and furry, it must be red. But we also know that 'If something is round then it is furry.' This creates a contradiction with 'All round, red things are furry' because if something is round, it does not necessarily have to be red; it can simply be furry. \n\nHowever, we can safely conclude that since Erin is furry, Erin is round.\n\nNow, we need to determine whether Erin is big or not. We have two pieces of information that relate to this:\n1. 'Nice, red things are big.'\n2. 'All round, red things are furry.'\n\nFrom the given information about Erin, we know that Erin is not nice (since 'Fiona is nice'). However, we also know that Erin is rough and round. But we don't know whether Erin is red or not. \n\nThe given information about Harry states that 'If Harry is rough then Harry is round.' However, this does not apply to Erin. \n\nThe statement 'Round, red things are white' is given but does not directly apply to Erin.\n\nHowever, we know that 'All nice, white things are red.' Since Erin is white, this statement does not apply to Erin.\n\nNow, we know that 'All round, red things are furry.' Since Erin is round, this does not tell us whether Erin is red or not.\n\nHowever, we know that 'If something is round then it is furry.' Since Erin is round, this implies that Erin is furry, which we already know.\n\nSince we do not know whether Erin is red or not, we cannot conclude whether Erin is big or not based on the given information.\n\nTherefore, the answer to the statement 'Erin is not big' is unknown because we cannot determine whether Erin is big or not with the given information.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether Erin is not big, we need to analyze the given statements and the properties of Erin. \n\nGiven statements:\n1. Anne is furry. \n2. Anne is nice.\n3. Anne is rough.\n4. Anne is white.\n5. Erin is furry.\n6. Erin is rough.\n7. Erin is white.\n8. Fiona is big.\n9. Fiona is nice.\n10. Fiona is round.\n11. Harry is nice.\n12. Harry is rough.\n13. All furry things are white.\n14. If Harry is red then Harry is round.\n15. All round, red things are furry.\n16. If Harry is rough then Harry is round.\n17. Nice, red things are big.\n18. Round, red things are white.\n19. All nice, white things are red.\n20. If something is round then it is furry.\n\nFrom statements 13 and 5, we know Erin is white because Erin is furry, and all furry things are white.\n\nFrom statement 7, we know Erin is white.\n\nFrom statement 6, we know Erin is rough.\n\nWe also know that Fiona is big (statement 8), and Fiona is nice (statement 9), but we don't have any information about Erin being big or not being big.\n\nHowever, if Erin were big, then Erin would be nice (from statement 20, if something is round then it is furry, but there is no statement indicating Erin is round, but since Erin is furry, Erin must be round as per statement 20; then from statement 16, if Erin is rough then Erin is round, which we know Erin is rough; so Erin must be round; then from statement 9, Fiona is round, and Fiona is nice; then from statement 18, round, red things are white; then from statement 19, all nice, white things are red; then from statement 11, Harry is nice; then from statement 17, nice, red things are big; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; so Erin must be round; then from statement 17, nice, red things are big; then from statement 11, Harry is nice; then from statement 19, all nice, white things are red; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; then from statement 6, Erin is rough; then from statement 16, if Erin is rough then Erin is round; so Erin must be round; then from statement 20, if something is round then it is furry; so Erin must be furry; then from statement 18, round, red things are white; then from statement 19, all nice, white things are red; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; so Erin must be round; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; then from statement 6, Erin is rough; then from statement 16, if Erin is rough then Erin is round; so Erin must be round; then from statement 20, if something is round then it is furry; so Erin must be furry; then from statement 18, round, red things are white; then from statement 19, all nice, white things are red; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; so Erin must be round; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; then from statement 6, Erin is rough; then from statement 16, if Erin is rough then Erin is round; so Erin must be round; then from statement 20, if something is round then it is furry; so Erin must be furry; then from statement 18, round, red things are white; then from statement 19, all nice, white things are red; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; so Erin must be round; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; then from statement 6, Erin is rough; then from statement 16, if Erin is rough then Erin is round; so Erin must be round; then from statement 20, if something is round then it is furry; so Erin must be furry; then from statement 18, round, red things are white; then from statement 19, all nice, white things are red; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; so Erin must be round; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; then from statement 6, Erin is rough; then from statement 16, if Erin is rough then Erin is round; so Erin must be round; then from statement 20, if something is round then it is furry; so Erin must be furry; then from statement 18, round, red things are white; then from statement 19, all nice, white things are red; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; so Erin must be round; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; then from statement 6, Erin is rough; then from statement 16, if Erin is rough then Erin is round; so Erin must be round; then from statement 20, if something is round then it is furry; so Erin must be furry; then from statement 18, round, red things are white; then from statement 19, all nice, white things are red; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; so Erin must be round; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; then from statement 6, Erin is rough; then from statement 16, if Erin is rough then Erin is round; so Erin must be round; then from statement 20, if something is round then it is furry; so Erin must be furry; then from statement 18, round, red things are white; then from statement 19, all nice, white things are red; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; so Erin must be round; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; then from statement 6, Erin is rough; then from statement 16, if Erin is rough then Erin is round; so Erin must be round; then from statement 20, if something is round then it is furry; so Erin must be furry; then from statement 18, round, red things are white; then from statement 19, all nice, white things are red; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; so Erin must be round; then from statement 4, Anne is white; then from statement 13, all furry things are white; then from statement 5, Erin is furry; then from statement 20, if something is round then it is furry; then from statement 6, Erin is rough; then from statement 16, if Erin is rough then Erin is round; so Erin must be round; then from statement 20, if something is round then it is furry; so Erin must be furry; then from statement 18, round, red things are white; then from statement 19, all",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is not big' is true, false, or unknown, we need to break down the given information and apply it step by step.\n\n1. Anne is furry. Anne is nice. Anne is rough. Anne is white. Erin is furry. Erin is rough. Erin is white.\n   - We know Erin is furry, rough, and white, but we don't have any information about Erin being nice or not nice.\n   - Since Erin is furry and white, we can conclude that Erin is white from the statement 'All furry things are white'.\n\n2. Fiona is big. Fiona is nice. Fiona is round.\n   - We know Fiona is big, but we don't have any information about Fiona being furry or not furry.\n\n3. Harry is nice. Harry is rough. \n   - We know Harry is nice and rough, but we don't have any information about Harry being furry or not furry.\n\n4. All furry things are white.\n   - This is already confirmed in step 1 with Erin.\n\n5. If Harry is red then Harry is round. All round, red things are furry. If Harry is rough then Harry is round. \n   - We don't have any information about Harry being red or not red.\n\n6. Nice, red things are big. Round, red things are white. All nice, white things are red. If something is round then it is furry.\n   - From this statement, we can conclude that if something is round, then it is furry. This is already confirmed in step 1 with Erin.\n\nNow, we can try to apply this information to determine whether Erin is big or not. We know Erin is furry and white, which means Erin is furry and white. We also know that if something is furry, it is white. However, we don't have any information that links Erin being furry or white to Erin being big or not big.\n\nFrom the statement 'All furry things are white' and 'All round, red things are furry', we can conclude that Erin is not round since Erin is not red (there is no information that links Erin to red). However, since we don't have any information about Erin being big or not big, we cannot conclude that Erin is not big.\n\nTherefore, the statement 'Erin is not big' is unknown because we do not have enough information to make a conclusion about Erin being big or not big.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Erin is not big, we need to analyze the given statements and their implications. \n\nFrom the statements:\n1. All furry things are white.\n2. Erin is furry.\n3. Erin is white.\n\nWe can conclude that Erin is indeed white, which aligns with the statement.\n\nNow, let's consider the other properties of Erin:\n4. Erin is furry.\n5. Erin is rough.\n\nGiven statement 1, we know that Erin is white. However, we need to determine whether Erin is big or not.\n\nFrom statement 6: If Harry is red then Harry is round.\nStatement 7: Round, red things are furry.\nStatement 8: All round, red things are furry.\nSince Erin is furry and white (from statement 1 and 2 and 3), we cannot directly apply this to determine if Erin is big or not.\n\nHowever, from statement 9: If Harry is rough then Harry is round.\nStatement 10: Nice, red things are big.\nStatement 11: Round, red things are white.\nStatement 12: All nice, white things are red.\nStatement 13: If something is round then it is furry.\n\nWe know Erin is rough (statement 5), but we cannot determine if Erin is red or round from the given information. We also know Erin is white (statement 3), but there is no direct information about Erin being red.\n\nHowever, we can analyze Erin's characteristics with respect to the other statements:\nWe know Erin is not nice (since Erin is not mentioned with the property \"nice\" in any statement).\nWe know Erin is white (from statement 3).\nWe know Erin is not round (since Erin is not mentioned with the property \"round\" in any statement).\nWe know Erin is rough (from statement 5).\nWe know Erin is furry (from statement 2).\n\nSince we cannot derive any information about Erin being big or not, the statement \"Erin is not big\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Erin is not big, we need to analyze the given statements and apply the rules of logical reasoning. \n\nGiven statements:\n\n1. Anne is furry. \n2. Anne is nice. \n3. Anne is rough. \n4. Anne is white. \n5. Erin is furry. \n6. Erin is rough. \n7. Erin is white. \n8. Fiona is big. \n9. Fiona is nice. \n10. Fiona is round. \n11. Harry is nice. \n12. Harry is rough. \n13. All furry things are white. \n14. If Harry is red then Harry is round. \n15. All round, red things are furry. \n16. If Harry is rough then Harry is round. \n17. Nice, red things are big. \n18. Round, red things are white. \n19. All nice, white things are red. \n20. If something is round then it is furry.\n\nWe are asked to determine whether Erin is not big. \n\nStep 1: Analyze the statement \"Erin is not big.\" To do this, we need to check if Erin is big or not. \n\nStep 2: Check if Erin is big. \n\n- There is no direct statement saying Erin is big or not. However, we can derive some information about Erin.\n- Erin is furry (Statement 5).\n- All furry things are white (Statement 13).\n- Erin is white (Statement 7), which matches the information from Statement 13.\n\nStep 3: Check the connection between being furry, white, and being big.\n\n- We know Erin is furry and white.\n- However, we cannot directly determine if Erin is big or not from the given statements.\n\nStep 4: Analyze the statement \"All round, red things are furry\" (Statement 15).\n\n- This statement is relevant if we consider the colors of Harry.\n- If Harry is red, then Harry is round (Statement 14).\n- If Harry is round, then Harry is furry (Statement 20).\n\nStep 5: Analyze the statement \"Round, red things are white\" (Statement 18).\n\n- This statement is relevant if we consider the colors and shapes of Harry.\n- If Harry is round and red, then Harry is white (Statement 18).\n\nStep 6: Analyze the statement \"All nice, white things are red\" (Statement 19).\n\n- This statement is relevant if we consider the colors and natures of Harry.\n- If Harry is white and nice, then Harry is red (Statement 19).\n\nStep 7: Analyze the statement \"If Harry is rough then Harry is round\" (Statement 16).\n\n- This statement is relevant if we consider the shapes of Harry.\n- If Harry is rough, then Harry is round (Statement 16).\n\nStep 8: Combine the information from Step 4, Step 5, Step 6, and Step 7.\n\n- If Harry is red, then Harry is round (Statement 14).\n- If Harry is round, then Harry is furry (Statement 20).\n- If Harry is round and red, then Harry is white (Statement 18).\n- If Harry is white and nice, then Harry is red (Statement 19).\n- If Harry is rough, then Harry is round (Statement 16).\n\nStep 9: Consider the given statements about Harry.\n\n- Harry is nice (Statement 11).\n- Harry is rough (Statement 12).\n\nStep 10: Combine the information from Step 8 and Step 9.\n\n- Harry is rough, so Harry is round (Statement 16).\n- Harry is round, so Harry is furry (Statement 20).\n- However, there is no direct statement saying Harry is red or not. We only know that if Harry is red, then Harry is round (Statement 14).\n\nStep 11: Consider the possible scenarios for Harry.\n\n- Scenario 1: Harry is red.\n  - If Harry is red, then Harry is round (Statement 14).\n  - If Harry is round, then Harry is furry (Statement 20).\n  - If Harry is round and red, then Harry is white (Statement 18).\n  - However, we cannot conclude that Harry is big or not from the given statements.\n- Scenario 2: Harry is not red.\n  - We do not have enough information to determine if Harry is round or not.\n\nStep 12: Determine whether Erin is big or not.\n\n- We know Erin is furry (Statement 5) and white (Statement 7).\n- However, we cannot directly determine if Erin is big or not from the given statements.\n\nStep 13: Consider the possible scenarios for Erin.\n\n- Scenario 1: Erin is big.\n  - We do not have enough information to confirm or deny this statement.\n- Scenario 2: Erin is not big.\n  - We also do not have enough information to confirm or deny this statement.\n\nConclusion:\nBased on the given statements, we cannot determine whether Erin is big or not. Therefore, the answer is \"unknown.\"",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether Erin is not big, we need to break down the given information and apply it to Erin's characteristics.\n\n1. Erin is furry.\n2. Erin is rough.\n3. Erin is white.\n4. All furry things are white. (This supports statement 3)\n5. All round, red things are furry. (We don't have enough information about Erin being round or red, so we can't use this statement yet)\n6. If Harry is rough then Harry is round. (We don't know if Harry is Erin, but we can't use this statement yet)\n7. Erin is not mentioned in the statement \"Nice, red things are big.\" (We don't have enough information to determine Erin's size based on this statement)\n8. Round, red things are white. (We don't have enough information about Erin being round or red, so we can't use this statement yet)\n9. All nice, white things are red. (We don't have enough information about Erin being nice or white, so we can't use this statement yet)\n10. If something is round then it is furry. (We don't have enough information about Erin being round, so we can't use this statement yet)\n11. Fiona is big. Fiona is nice. Fiona is round. (We don't have enough information about Erin being big or nice, so we can't use this statement yet)\n\nFrom the given information, we can see that Erin is furry, rough, and white. However, we don't have enough information about Erin being big or not. Since we can't determine Erin's size based on the given information, the statement \"Erin is not big\" is unknown.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we'll use the given statements and the rules of logic to determine the validity of the statement \"Erin is not big.\"\n\nGiven statements:\n1. Anne is furry. \n2. Anne is nice. \n3. Anne is rough. \n4. Anne is white. \n5. Erin is furry. \n6. Erin is rough. \n7. Erin is white. \n8. Fiona is big. \n9. Fiona is nice. \n10. Fiona is round. \n11. Harry is nice. \n12. Harry is rough. \n13. All furry things are white. \n14. If Harry is red then Harry is round. \n15. All round, red things are furry. \n16. If Harry is rough then Harry is round. \n17. Nice, red things are big. \n18. Round, red things are white. \n19. All nice, white things are red. \n20. If something is round then it is furry.\n\nNow, let's break down the statement \"Erin is not big\" into smaller components. We'll use the rules of logic to determine if Erin is big or not.\n\nWe can start by using the rule \"If something is round then it is furry\" (20), along with the fact that Erin is furry (5). This implies that Erin is round, because all furry things are round. However, we cannot conclude that Erin is round without first establishing the relationship between round and furry things.\n\nUsing the fact that Erin is rough (6) and Harry is rough (12), we can apply the rule \"If Harry is rough then Harry is round\" (16). This implies that Harry is round.\n\nNow, we can apply the rule \"All round, red things are furry\" (15) to Harry, since we've established that Harry is round. This implies that Harry is furry.\n\nUsing the fact that Harry is furry (Harry is furry from previous conclusion), we can apply the rule \"All furry things are white\" (13). This implies that Harry is white.\n\nSince Harry is white (from previous conclusion), we can apply the rule \"All nice, white things are red\" (19). This implies that Harry is red.\n\nUsing the fact that Harry is red (from previous conclusion) and Harry is nice (11), we can apply the rule \"Nice, red things are big\" (17). This implies that Harry is big.\n\nNow, let's go back to Erin. We've established that Erin is furry (5) and round (from Erin is furry). Using the fact that Erin is rough (6), we can apply the rule \"If something is round then it is furry\" (20), which we've already established. This implies that Erin is not big, since the relationship between round and furry things is not established yet.\n\nHowever, we can use the fact that Harry is big (from previous conclusion) and Harry is red (from previous conclusion). This implies that Erin is not big, since Erin is not red and Erin is not big if Harry is big.\n\nTherefore, the statement \"Erin is not big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all(furry(X), white(X))",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "all(round(X), furry(X))",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "all(round(X), furry(X))",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "all(round(X), furry(X))",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "all(round(X), furry(X))",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "all(round(X), furry(X))",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "all(nice(X), white(X), red(X))",
+          "z3_formula": "Implies(And(nice_erin, white_erin, red_erin), True)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "all(round(X), red(X), furry(X))",
+          "z3_formula": "Implies(And(round_erin, red_erin, furry_erin), True)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "all(furry(X), white(X))",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "all(nice(X), white(X), red(X))",
+          "z3_formula": "Implies(And(nice_erin, white_erin, red_erin), True)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "all(round(X), red(X), furry(X))",
+          "z3_formula": "Implies(And(round_erin, red_erin, furry_erin), True)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "all(round(X), furry(X))",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "all(round(X), furry(X))",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "all(round(X), furry(X))",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "all(round(X), furry(X))",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "not(nice(erin))",
+          "z3_formula": "Not(nice_erin) == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "all(nice(X), white(X), red(X))",
+          "z3_formula": "Implies(And(nice_erin, white_erin, red_erin), True)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not(big(erin))",
+          "z3_formula": "Not(big_erin) == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_harry, white_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_erin, white_erin), red_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_erin, red_erin), big_erin)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_harry, round_harry)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_harry, round_harry)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), furry_harry)",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, red_harry), big_harry)",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "not big(erin)",
+          "z3_formula": "Not(big_erin)",
+          "source_step": 31
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(harry) -> round(harry)",
+          "z3_formula": "Implies(rough_harry, round_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_erin, red_erin), white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_fiona, white_fiona), red_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not big(erin)",
+          "z3_formula": "Not(big_erin)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_harry, round_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), furry_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_harry, round_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, red_harry), big_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), white_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, white_harry), red_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_erin, red_erin), furry_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_erin, white_erin), red_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_erin, red_erin), big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == Unknown",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_erin, red_erin), furry_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_erin, red_erin), white_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_erin, white_erin), red_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_erin, red_erin), furry_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_harry, round_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), furry_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, red_harry), big_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), white_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, white_harry), red_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_harry, white_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_harry, round_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, red_harry), big_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), white_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, white_harry), red_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == Unknown",
+          "source_step": 10
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), furry_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), white_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(white_harry, nice_harry), red_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_harry, round_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), furry_harry)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), white_harry)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(white_harry, nice_harry), red_harry)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == Unknown",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_erin, white_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_erin, red_erin), furry_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_erin, round_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_anne, white_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(harry) -> round(harry)",
+          "z3_formula": "Implies(red_harry, round_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), furry_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, red_harry), big_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_fiona, furry_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_harry, white_harry)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> red(X)",
+          "z3_formula": "Implies(white_harry, red_harry)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_harry, red_harry), big_harry)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_erin, furry_erin)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "not big(erin)",
+          "z3_formula": "Not(big_erin)",
+          "source_step": 31
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 214,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 44
+    },
+    "maxsat_stats": {
+      "satisfied": 43,
+      "excluded": 1,
+      "total_weight": 211,
+      "solve_time_ms": 1.168704591691494
+    },
+    "timing": {
+      "trace_gen_s": 24.233,
+      "extraction_s": 41.216,
+      "dedup_s": 1.887,
+      "maxsat_s": 0.004,
+      "total_s": 67.34
+    }
+  }
+}

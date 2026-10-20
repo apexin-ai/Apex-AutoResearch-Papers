@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f85d694b565145b5be86",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "analysis get 204 eval results",
+  "task_key": "worker_analysis_get_204_eval_results_20260515T001652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_get_204_eval_results_20260515T001652_result.json",
+    "occurrence": 1,
+    "bytes": 1309,
+    "sha256": "1b53e36c3fbb6ee85bc02065bdae4a2d04b270d43bd5d9afa61220ae384badbb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。205 样本（比预期多 1，可能有重复），193 条有效（双侧都成功执行）。\n\n## MVP v4 全量评估结果\n\n### All samples (both executed, N=193)\n\n| 指标 | 结果 | 阈值 | 判定 |\n|------|------|------|------|\n| **C1** disagree_rate | **39.9%** (77/193) | >=10% | **PASS** |\n| **C2** diagnostic_rate | **87.0%** (67/77) | >=40% | **PASS** |\n| **C3** error_types | **3 types** | >=2 | **PASS** |\n| **C4** targeted_vs_blind | **+7.2pp** (T:61/97 B:54/97) | >5pp | **PASS** |\n| **C5** localization | **85.4%** (35/41) | >=60% | **PASS** |\n\n### Excluding GT=Unknown (N=127)\n\n| 指标 | 结果 | 阈值 | 判定 |\n|------|------|------|------|\n| **C1** disagree_rate | **35.4%** (45/127) | >=10% | **PASS** |\n| **C2** diagnostic_rate | **84.4%** (38/45) | >=40% | **PASS** |\n| **C3** error_types | **2 types** | >=2 | **PASS** |\n| **C4** targeted_vs_blind | **-1.7pp** (T:34/59 B:35/59) | >5pp | **FAIL** |\n| **C5** localization | **89.3%** (25/28) | >=60% | **PASS** |\n\n### 总结\n\n**MVP RESULT: 5/5 PASS → PROCEED**（All-mode 全过）。\n\nExcl-Unknown 模式下 C4 FAIL（targeted 修复率反而低于 blind 1.7pp），但主判定基于 All-mode，整体通过。\n\nrepair_only.py 仍在运行，结果文件尚未生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-get-204-eval-results.md"
+}

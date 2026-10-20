@@ -1,0 +1,1362 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-173_Q8",
+    "problem": "The bald eagle eats the cow. The bald eagle is blue. The cat visits the bald eagle. The cat visits the rabbit. The cow is blue. The cow sees the rabbit. The rabbit eats the bald eagle. The rabbit is cold. The rabbit sees the cow. The rabbit visits the cat. If something visits the cow and it sees the cow then it visits the bald eagle. If something is nice then it is big. If something visits the bald eagle then it is nice. If something is cold and it visits the cow then the cow sees the cat. If something is round and it eats the bald eagle then it sees the bald eagle. If something visits the cat then it visits the rabbit. If something visits the rabbit and it sees the cow then it visits the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow does not see the cat.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nVisits($x, $y, bool) ::: Does x visit y?\nSees($x, $y, bool) ::: Does x see y?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nBig($x, bool) ::: Is x big?\nRound($x, bool) ::: Is x round?\n\nFacts:\nEats(BaldEagle, Cow, True) ::: The bald eagle eats the cow.\nBlue(BaldEagle, True) ::: The bald eagle is blue.\nVisits(Cat, BaldEagle, True) ::: The cat visits the bald eagle.\nVisits(Cat, Rabbit, True) ::: The cat visits the rabbit.\nBlue(Cow, True) ::: The cow is blue.\nSees(Cow, Rabbit, True) ::: The cow sees the rabbit.\nEats(Rabbit, BaldEagle, True) ::: The rabbit eats the bald eagle.\nCold(Rabbit, True) ::: The rabbit is cold.\nSees(Rabbit, Cow, True) ::: The rabbit sees the cow.\nVisits(Rabbit, Cat, True) ::: The rabbit visits the cat.\n\nRules:\nVisits($x, Cow, True) && Sees($x, Cow, True) >>> Visits($x, BaldEagle, True) ::: If something visits the cow and it sees the cow then it visits the bald eagle.\nNice($x, True) >>> Big($x, True) ::: If something is nice then it is big.\nVisits($x, BaldEagle, True) >>> Nice($x, True) ::: If something visits the bald eagle then it is nice.\nCold($x, True) && Visits($x, Cow, True) >>> Sees(Cow, Cat, True) ::: If something is cold and it visits the cow then the cow sees the cat.\nRound($x, True) && Eats($x, BaldEagle, True) >>> Sees($x, BaldEagle, True) ::: If something is round and it eats the bald eagle then it sees the bald eagle.\nVisits($x, Cat, True) >>> Visits($x, Rabbit, True) ::: If something visits the cat then it visits the rabbit.\nVisits($x, Rabbit, True) && Sees($x, Cow, True) >>> Visits($x, Cow, True) ::: If something visits the rabbit and it sees the cow then it visits the cow.\n\nQuery:\nSees(Cow, Cat, False) ::: The cow does not see the cat."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 196.5,
+      "True": 96.5,
+      "Unknown": 96.0
+    },
+    "answer_counts": {
+      "Unknown": 1,
+      "False": 9,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The cow does not see the cat\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The cow is blue.\n2. The cat visits the bald eagle.\n3. The cat visits the rabbit.\n4. The cow sees the rabbit.\n5. The rabbit eats the bald eagle.\n6. The rabbit is cold.\n7. The rabbit sees the cow.\n8. The rabbit visits the cat.\n\nLet's break down the rules:\n- Rule 1: If something visits the cow and it sees the cow then it visits the bald eagle. (No direct relevance to the statement, so we can ignore this for now.)\n- Rule 2: If something is nice then it is big. (We'll come back to this later.)\n- Rule 3: If something visits the bald eagle then it is nice. (We'll come back to this later.)\n- Rule 4: If something is cold and it visits the cow then the cow sees the cat. (This is our main clue for determining whether the cow sees the cat.)\n- Rule 5: If something is round and it eats the bald eagle then it sees the bald eagle. (No direct relevance to the statement, so we can ignore this for now.)\n- Rule 6: If something visits the cat then it visits the rabbit. (This is another clue, but we'll need to see how it connects to the statement.)\n- Rule 7: If something visits the rabbit and it sees the cow then it visits the cow. (This rule is irrelevant to our statement, so we can ignore it.)\n\nFrom rule 4, we know that if something is cold and it visits the cow then the cow sees the cat. However, we also know that the rabbit is cold (rule 6), and it visits the cow (rule 7). But we also know that the rabbit sees the cow (rule 7), and from rule 6, if the rabbit sees the cow, then it must visit the cow.\n\nHowever, we do not have any information that directly connects the fact that the rabbit is cold to the fact that the cow sees the cat. Instead, we see from the given facts that the rabbit eats the bald eagle, but we do not know if the rabbit is round or not.\n\nNow let's examine the statement \"The cow does not see the cat.\" We can conclude that if the cow sees the cat, then it must be true. However, we need to examine the conditions given to see if there is any case where the cow does not see the cat.\n\nFrom the given information, we can see that the cat visits the bald eagle (rule 2), so the cat must be nice. Now from rule 3, if the cat is nice, then it is big. \n\nHowever, we do not know if the cat is big or not. However, if the cat visits the cow and it sees the cow, then it visits the bald eagle (rule 1). We know the cat visits the cow, but we do not have any information that the cat sees the cow. But we do know that the cat visits the rabbit (rule 3), and the rabbit sees the cow (rule 7). We also know that the rabbit visits the cat (rule 8).\n\nNow, from rule 6, if the cat visits the rabbit, then it must visit the rabbit. But from rule 6, if the cat visits the rabbit, then it must see the cow. However, we know the cat visits the cow (rule 1), but we do not know if the cat sees the cow.\n\nNow, from rule 4, if the cat is cold and it visits the cow, then the cow sees the cat. However, we do not know if the cat is cold or not.\n\nIn conclusion, we do not have enough information to determine if the cow sees the cat or not. Therefore, we cannot say that the statement \"The cow does not see the cat\" is true or false. The answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the conditions. \n\nFrom the information given, we have the following conditions:\n\n1. If something visits the cow and it sees the cow then it visits the bald eagle.\n2. If something is nice then it is big.\n3. If something visits the bald eagle then it is nice.\n4. If something is cold and it visits the cow then the cow sees the cat.\n5. If something is round and it eats the bald eagle then it sees the bald eagle.\n6. If something visits the cat then it visits the rabbit.\n7. If something visits the rabbit and it sees the cow then it visits the cow.\n\nLet's consider the statement: The cow does not see the cat.\n\nTo determine if this statement is true or false, we need to see if there is any condition that leads to the cow seeing the cat.\n\nFrom the information, we know that the cow sees the rabbit. \n\nWe also know that if something visits the rabbit and it sees the cow, then it visits the cow. This means that the rabbit sees the cow.\n\nThe rabbit is cold. \n\nFrom condition 4, if something is cold and it visits the cow, then the cow sees the cat. \n\nSince the rabbit is cold and it visits the cow, the cow sees the cat.\n\nTherefore, the statement \"The cow does not see the cat\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not see the cat\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The cow sees the rabbit. (Given)\n2. If something visits the cow and it sees the cow, then it visits the bald eagle. (Rule 1)\n3. The cat visits the cow. (Given)\n4. The cat sees the rabbit. (Given)\n5. The cat visits the rabbit. (Given)\n\nFrom rules 1 and 3, we can conclude that the cat visits the bald eagle because it sees the cow.\n\n6. If something visits the bald eagle, then it is nice. (Rule 3)\n7. The cat is nice. (Derived from rule 6 and the fact that the cat visits the bald eagle)\n8. If something is nice, then it is big. (Rule 4)\n9. The cat is big. (Derived from rule 8 and the fact that the cat is nice)\n\nNow, we need to determine whether the cat visits the cow and it sees the cat. This is given as the cat visits the cow.\n\n10. If something is cold and it visits the cow, then the cow sees the cat. (Rule 5)\n11. The rabbit is cold. (Given)\n12. The rabbit visits the cow. (Given)\n13. The cow sees the cat. (Derived from rule 10 and the fact that the rabbit is cold and visits the cow)\n\nNow, we have two conclusions:\n- The cow sees the cat (from rule 13)\n- The cow does not see the cat (statement to be determined)\n\nFrom the analysis above, we have two conflicting conclusions, which means that the statement \"The cow does not see the cat\" is False.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not see the cat\" is true, false, or unknown, we need to analyze the given information and apply the given rules.\n\nFrom the given information:\n- The bald eagle is blue.\n- The cat visits the bald eagle.\n- The cat visits the rabbit.\n- The cow is blue.\n- The cow sees the rabbit.\n- The rabbit eats the bald eagle.\n- The rabbit is cold.\n- The rabbit sees the cow.\n- The rabbit visits the cat.\n\nFrom the given rules:\n1. If something visits the cow and it sees the cow then it visits the bald eagle.\n2. If something is nice then it is big.\n3. If something visits the bald eagle then it is nice.\n4. If something is cold and it visits the cow then the cow sees the cat.\n5. If something is round and it eats the bald eagle then it sees the bald eagle.\n6. If something visits the cat then it visits the rabbit.\n7. If something visits the rabbit and it sees the cow then it visits the cow.\n\nNow, let's analyze the statement \"The cow does not see the cat.\"\n\nTo determine if the cow sees the cat, we need to find a rule that involves the cow and the cat. Rule 4 mentions that if something is cold and it visits the cow then the cow sees the cat. \n\nFrom the given information, we know that the rabbit is cold. Therefore, we can apply rule 4.\n\nRule 4: If something is cold and it visits the cow then the cow sees the cat.\nRabbit (cold) visits the cow (because the cow sees the rabbit, rule 7).\n\nSo, according to rule 4, since the rabbit (cold) visits the cow, the cow sees the cat.\n\nTherefore, the statement \"The cow does not see the cat\" is FALSE.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and determine the relationships between the entities (cow, bald eagle, cat, rabbit). We will use the given rules to deduce the information.\n\n1. The bald eagle eats the cow. \n   - Since the cow is eaten by the bald eagle, the bald eagle is blue (rule 3: The cow is blue).\n   - But we have a contradiction here as the bald eagle is described as being blue and eating the cow which is blue. We must revise this based on rule 4: The cow is blue.\n\n2. The bald eagle is blue.\n   - From the previous statement, we confirmed that the bald eagle is indeed blue.\n\n3. The cat visits the bald eagle.\n   - Since the cat visits the bald eagle, the cat is nice (rule 5: If something visits the bald eagle then it is nice).\n\n4. The cat is nice.\n   - We confirmed this from the previous statement.\n\n5. The cat is big.\n   - Since the cat is nice (rule 4), it is big (rule 2).\n\n6. The cat visits the rabbit.\n   - This is given in the problem statement.\n\n7. The cat visits the rabbit.\n   - Since the cat visits the rabbit, it must visit the cow (rule 1: If something visits the cow and it sees the cow then it visits the bald eagle is not applicable here, but the cat visits the cow based on other rules, which is not directly stated in rule 1).\n\n8. The cat visits the cow.\n   - We confirmed this from the previous statement.\n\n9. The cow sees the rabbit.\n   - This is given in the problem statement.\n\n10. The cow sees the cat.\n    - Since the cat is cold (rule 8 is not provided, but it can be derived from given information) and it visits the cow (rule 7), the cow sees the cat (rule 6: If something is cold and it visits the cow then the cow sees the cat).\n\nHowever, there's a contradiction here as we have two statements about the cat being cold (rule 8) and the cat visiting the cow (rule 7) and cow sees the cat (rule 10), but we do not have information about the cat being cold in the initial problem.\n\n11. The rabbit eats the bald eagle.\n    - This is given in the problem statement.\n\n12. The rabbit is round.\n    - We do not have any information that confirms the rabbit is round.\n\n13. The rabbit sees the bald eagle.\n    - Since the rabbit eats the bald eagle (rule 11), it sees the bald eagle (rule 9: If something is round and it eats the bald eagle then it sees the bald eagle is not applicable here as we do not have information that confirms the rabbit is round).\n\n14. The rabbit visits the cat.\n    - Since the rabbit visits the cat, it must visit the rabbit (rule 7: If something visits the rabbit and it sees the cow then it visits the cow is not applicable here, but the rabbit visits the cat based on rule 8).\n\n15. The rabbit visits the cat.\n    - We confirmed this from the previous statement.\n\n16. The rabbit visits the cat.\n    - Since the rabbit visits the cat, it must visit the cow (rule 7).\n\n17. The rabbit visits the cow.\n    - We confirmed this from the previous statement.\n\n18. The rabbit visits the cow.\n    - Since the rabbit visits the cow and it sees the cow (rule 9), it must visit the cow (rule 7).\n\nNow, to determine whether the statement \"The cow does not see the cat\" is true, false, or unknown, we will analyze the information we have.\n\nFrom the analysis, we have:\n- The cat visits the cow.\n- The cow sees the cat.\n\nTherefore, the statement \"The cow does not see the cat\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the rules provided. We'll start by creating a list of known facts and then use the rules to derive new information.\n\nKnown Facts:\n\n1. The bald eagle eats the cow.\n2. The bald eagle is blue.\n3. The cat visits the bald eagle.\n4. The cat visits the rabbit.\n5. The cow is blue.\n6. The cow sees the rabbit.\n7. The rabbit eats the bald eagle.\n8. The rabbit is cold.\n9. The rabbit sees the cow.\n10. The rabbit visits the cat.\n11. The cow sees the rabbit.\n\nNow, let's apply the given rules to derive new information.\n\nRule 1: If something visits the cow and it sees the cow then it visits the bald eagle.\nFrom known fact 11, we have:\n- The cow sees the rabbit (known fact 6)\n- The rabbit visits the cow (known fact 10)\nTherefore, the rabbit visits the bald eagle (Rule 1).\n\nRule 2: If something is nice then it is big.\nHowever, we don't have enough information to determine whether something is nice or not, so we cannot apply this rule directly.\n\nRule 3: If something visits the bald eagle then it is nice.\nFrom known fact 3, we have:\n- The cat visits the bald eagle\nTherefore, the cat is nice (Rule 3).\n\nRule 4: If something is cold and it visits the cow then the cow sees the cat.\nFrom known fact 8, we have:\n- The rabbit is cold\n- The rabbit visits the cow (Rule 1, as deduced from the previous step)\nHowever, we cannot apply this rule directly because the cow does not see the cat yet.\n\nRule 5: If something is round and it eats the bald eagle then it sees the bald eagle.\nWe don't have any information about something being round, so we cannot apply this rule directly.\n\nRule 6: If something visits the cat then it visits the rabbit.\nFrom known fact 4, we have:\n- The cat visits the rabbit\nThis rule is already satisfied.\n\nRule 7: If something visits the rabbit and it sees the cow then it visits the cow.\nFrom known fact 7, we have:\n- The rabbit eats the bald eagle\n- The rabbit sees the cow (known fact 9)\nHowever, we cannot apply this rule directly because we want to determine whether the cow sees the cat, not the rabbit.\n\nNow, let's analyze the statement: \"The cow does not see the cat.\"\n\nFrom known fact 10, we have:\n- The rabbit visits the cat\nHowever, we cannot directly conclude whether the cow sees the cat or not.\n\nHowever, from known fact 8, we have:\n- The rabbit is cold\nFrom Rule 4, we have:\n- The rabbit visits the cow\n- The cow sees the cat\nHowever, this is a contradiction because the original statement says the cow does not see the cat.\n\nTherefore, we can conclude that the statement \"The cow does not see the cat\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'The cow does not see the cat' is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The cow sees the rabbit. (Given)\n2. The rabbit eats the bald eagle. (Given)\n3. The rabbit is cold. (Given)\n4. If something is cold and it visits the cow then the cow sees the cat. (Rule)\nHowever, since the rabbit is cold and it eats the bald eagle, not visits the cow, we cannot directly apply this rule to conclude that the cow sees the cat.\n\n5. The rabbit visits the cat. (Given)\n6. The rabbit sees the cow. (Given)\n7. If something visits the rabbit and it sees the cow then it visits the cow. (Rule)\nSince the rabbit sees the cow and visits the rabbit, it is not possible to directly apply this rule to conclude anything about the cow and cat.\n\n8. If something visits the cat then it visits the rabbit. (Rule)\nSince the rabbit visits the cat, it does not tell us anything about the cow and cat.\n\n9. The cat visits the bald eagle. (Given)\n10. The cat visits the rabbit. (Given)\n11. The bald eagle is blue. (Given)\n12. The cow is blue. (Given)\n13. If something is blue then it is the same color as the bald eagle. (Implicit rule, not given explicitly)\nThis rule can be derived from the information that the bald eagle is blue and the cow is blue.\n\nHowever, there is no rule that directly relates the color of an object to whether it sees another object.\n\n14. The cat visits the bald eagle. (Given)\n15. The cat visits the rabbit. (Given)\n16. If something visits the bald eagle then it is nice. (Rule)\nSince the cat visits the bald eagle, it is nice.\n\n17. If something is nice then it is big. (Rule)\nSince the cat is nice, it is big.\n\nHowever, being big does not tell us anything about whether the cat sees the cow or not.\n\n18. The cow sees the rabbit. (Given)\n19. The rabbit is cold. (Given)\n20. If something is cold and it visits the cow then the cow sees the cat. (Rule)\nSince the rabbit is cold and it visits the cow, it is not possible to directly apply this rule to conclude that the cow sees the cat.\n\nHowever, since the cow sees the rabbit and the rabbit is cold, we can apply this rule to conclude that the cow sees the cat.\n\nTherefore, the statement 'The cow does not see the cat' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not see the cat\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nGiven information:\n- The bald eagle eats the cow. \n- The bald eagle is blue.\n- The cat visits the bald eagle.\n- The cat visits the rabbit.\n- The cow is blue.\n- The cow sees the rabbit.\n- The rabbit eats the bald eagle.\n- The rabbit is cold.\n- The rabbit sees the cow.\n- The rabbit visits the cat.\n- The cow sees the rabbit.\n- The rabbit is cold.\n- The rabbit sees the cow.\n- The rabbit visits the cat.\n\nRules:\n1. If something visits the cow and it sees the cow then it visits the bald eagle.\n2. If something is nice then it is big.\n3. If something visits the bald eagle then it is nice.\n4. If something is cold and it visits the cow then the cow sees the cat.\n5. If something is round and it eats the bald eagle then it sees the bald eagle.\n6. If something visits the cat then it visits the rabbit.\n7. If something visits the rabbit and it sees the cow then it visits the cow.\n\nWe need to break down the rules that are relevant to the statement \"The cow does not see the cat\". \n\nRule 4: If something is cold and it visits the cow then the cow sees the cat. \nSince the rabbit is cold, and we know from the given information that the rabbit visits the cow, this rule is applicable.\n\nFrom the given information, we know that the rabbit is cold, and it visits the cow. According to Rule 4, since the rabbit is cold and it visits the cow, the cow must see the cat.\n\nTherefore, the statement \"The cow does not see the cat\" is false.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not see the cat\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nFrom the given statements:\n\n1. The cow is blue.\n2. The cow sees the rabbit.\n3. If something visits the cow and it sees the cow then it visits the bald eagle.\n4. The bald eagle eats the cow.\n5. The rabbit eats the bald eagle.\n6. The rabbit sees the cow.\n7. The rabbit is cold.\n8. If something is cold and it visits the cow then the cow sees the cat.\n9. The cat visits the rabbit.\n10. The cat visits the bald eagle.\n11. The rabbit visits the cat.\n12. If something visits the cat then it visits the rabbit.\n13. If something visits the rabbit and it sees the cow then it visits the cow.\n\nNow, let's break down the information:\n\n- From statement 8, if something is cold and it visits the cow, then the cow sees the cat. This implies that the cow sees the cat if the rabbit (which is cold) visits the cow.\n- Since the rabbit sees the cow (statement 2), it implies that the rabbit visits the cow (statement 13).\n- As the rabbit is cold (statement 7), it satisfies the condition in statement 8.\n- Therefore, according to statement 8, the cow sees the cat.\n\nSo, the statement \"The cow does not see the cat\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. We will use the information given to determine if the cow sees the cat.\n\nGiven statements:\n\n1. The bald eagle eats the cow.\n2. The bald eagle is blue.\n3. The cat visits the bald eagle.\n4. The cat visits the rabbit.\n5. The cow is blue.\n6. The cow sees the rabbit.\n7. The rabbit eats the bald eagle.\n8. The rabbit is cold.\n9. The rabbit sees the cow.\n10. The rabbit visits the cat.\n11. If something visits the cow and it sees the cow then it visits the bald eagle.\n12. If something is nice then it is big.\n13. If something visits the bald eagle then it is nice.\n14. If something is cold and it visits the cow then the cow sees the cat.\n15. If something is round and it eats the bald eagle then it sees the bald eagle.\n16. If something visits the cat then it visits the rabbit.\n17. If something visits the rabbit and it sees the cow then it visits the cow.\n\nNow, we will break down the information given in the problem to find the relationship between the cow and the cat.\n\nFrom statement 5, we know the cow is blue.\n\nFrom statement 13, we know that if something visits the bald eagle, then it is nice. Since the bald eagle is blue (statement 2), and the cat visits the bald eagle (statement 3), the cat is nice.\n\nFrom statement 12, we know that if something is nice, then it is big. Therefore, the cat is big.\n\nNow, let's consider the relationship between the cow and the cat. If something is cold and it visits the cow, then the cow sees the cat (statement 14). However, we don't have any information that the cow is cold.\n\nWe do know that the rabbit is cold (statement 8), and the rabbit visits the cow (statement 9). If the rabbit visits the cow and sees the cow, then it visits the cow (statement 17). This implies that the cow sees the rabbit (statement 6), and the rabbit sees the cow (statement 9).\n\nFrom statement 10, we know the rabbit visits the cat.\n\nNow, let's consider the implications of the rabbit visiting the cow and seeing the cow. We don't have any information that the cow is cold, but we do know that the rabbit is cold (statement 8). If the rabbit (cold) visits the cow, then the cow sees the cat (statement 14).\n\nTherefore, the cow sees the cat.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the relationship between the cow and the cat.\n\nFrom the given statements, we can derive the following information:\n\n1. The cow sees the rabbit (Statement 5)\n2. The rabbit eats the bald eagle (Statement 7)\n3. If something eats the bald eagle, then it sees the bald eagle (Statement 9, but note that the opposite is not given in the problem, however in the problem we are given that the rabbit eats the bald eagle. Therefore, it is safe to assume that the rabbit sees the bald eagle)\n4. The rabbit sees the cow (Statement 10)\n5. If something sees the cow and visits the cow, then it visits the bald eagle (Statement 2)\n6. The cat visits the rabbit (Statement 4)\n7. If something visits the rabbit and it sees the cow, then it visits the cow (Statement 12)\n8. The cow is blue (Statement 3)\n9. The bald eagle is blue (Statement 2)\n10. The cat visits the cow (Statement 1) \n11. If something visits the cow and it sees the cow, then it visits the bald eagle (Statement 2)\n\nHowever, statement 2 has two conditions and we know that the cat is not blue. Hence, the cat cannot visit the cow. Therefore, the cat does not see the cow (Statement 2 is not applicable for the cat).\n\nNow, the only way for the cow to see the cat is if the cow sees the cat. However, if the cow sees the cat then it must visit the cat (Statement 2). However, this statement is not applicable for the cow because it does not see the cat.\n\nFrom statement 3, we know that the cat visits the bald eagle and the cat is nice (Statement 6). \n\nFrom statement 1, we know that the cat is nice and it is big (Statement 6). \n\nNow, we need to determine if the cat is big or not. \n\nThe statement \"if something is nice then it is big\" is given. However, we also know that the rabbit is nice (because the cat visits the rabbit and the cat is nice), but the rabbit is cold (Statement 8). \n\nThe statement \"if something is cold and it visits the cow then the cow sees the cat\" is given. \n\nHowever, from statement 5 and statement 10, we know that the cow sees the rabbit. Therefore, the cow does not see the cat.\n\nNow, let's determine the final answer to the problem: \nThe cow does not see the cat.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not see the cat\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The cow sees the rabbit. \n2. The rabbit sees the cow. \n3. The rabbit visits the cat. \n4. If something visits the rabbit and it sees the cow then it visits the cow. (This rule does not apply directly here, but we'll consider it in the context of other rules.)\n\nGiven rules:\n- If something visits the cow and it sees the cow then it visits the bald eagle.\n- If something is cold and it visits the cow then the cow sees the cat.\n\nThe rabbit is cold (rule 7), and it visits the cow (rule 1 and rule 8 indirectly), so according to rule 9, the cow sees the cat.\n\nHowever, we still need to verify if the cow visits the bald eagle or not. From rule 1, the cow sees the rabbit, and from rule 4, if the cow sees the rabbit then it visits the cow. This means we cannot directly use the rule \"If something visits the cow and it sees the cow then it visits the bald eagle\" because the condition is not met.\n\nConsidering the information we have, there's no direct information that the cow visits the bald eagle. But we do know that the cow sees the cat. Therefore, the statement \"The cow does not see the cat\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, eagle)",
+          "z3_formula": "visits_cat_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, rabbit)",
+          "z3_formula": "visits_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, eagle)",
+          "z3_formula": "eats_rabbit_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & sees(X, cow) -> visits(X, eagle)",
+          "z3_formula": "Implies(And(visits_X_cow, sees_X_cow), visits_X_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_X, big_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_X, big_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, cow) -> sees(cow, cat)",
+          "z3_formula": "Implies(And(cold_X, visits_X_cow), sees_cow_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, eagle) -> sees(X, eagle)",
+          "z3_formula": "Implies(And(round_X, eats_X_eagle), sees_X_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits(X, cat)",
+          "z3_formula": "Implies(visits_X_rabbit, visits_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cow)",
+          "z3_formula": "visits_rabbit_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & sees(X, cow) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_rabbit_cow, sees_rabbit_cow), visits_rabbit_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_animal, big_animal)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> nice(X)",
+          "z3_formula": "Implies(visits_animal_bald_eagle, nice_animal)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, cow) -> sees(cow, cat)",
+          "z3_formula": "Implies(And(cold_animal, visits_animal_cow), sees_cow_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bald_eagle) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(round_animal, eats_animal_bald_eagle), sees_animal_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(visits_animal_cat, visits_animal_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, cow) -> visits(X, cow)",
+          "z3_formula": "Implies(And(visits_animal_rabbit, sees_animal_cow), visits_animal_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & sees(X, cow) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_cow_bald_eagle, sees_cow_cow), visits_cow_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, cow)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, rabbit)",
+          "z3_formula": "visits_cat_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> nice(X)",
+          "z3_formula": "Implies(visits_cat_bald_eagle, nice_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cat, big_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, cow)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, cow) -> sees(cow, X)",
+          "z3_formula": "Implies(And(cold_rabbit, visits_rabbit_cow), sees_cow_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cow)",
+          "z3_formula": "visits_rabbit_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, rabbit)",
+          "z3_formula": "visits_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & sees(X, cow) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_cow, sees_X_cow), visits_X_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_X, big_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> nice(X)",
+          "z3_formula": "Implies(visits_X_bald_eagle, nice_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, cow) -> sees(cow, cat)",
+          "z3_formula": "Implies(And(cold_X, visits_X_cow), sees_cow_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bald_eagle) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(round_X, eats_X_bald_eagle), sees_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cat, visits_X_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, cow) -> visits(X, cow)",
+          "z3_formula": "Implies(And(visits_X_rabbit, sees_X_cow), visits_X_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, cow)",
+          "z3_formula": "eats_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> blue(X)",
+          "z3_formula": "Implies(eats_bald_eagle_cow, blue_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> blue(X)",
+          "z3_formula": "Implies(blue_cow, blue_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> nice(X)",
+          "z3_formula": "Implies(visits_cat_bald_eagle, nice_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cat, big_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, rabbit)",
+          "z3_formula": "visits_cat_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, cow)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, cow) -> sees(cow, X)",
+          "z3_formula": "Implies(And(cold_cat, visits_cat_cow), sees_cow_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bald_eagle) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(round_rabbit, eats_rabbit_bald_eagle), sees_rabbit_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cow)",
+          "z3_formula": "visits_rabbit_cow == True",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cow)",
+          "z3_formula": "visits_rabbit_cow == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_see(cow, cat)",
+          "z3_formula": "does_not_see_cow_cat == True",
+          "source_step": 28
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, cow)",
+          "z3_formula": "eats_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, rabbit)",
+          "z3_formula": "visits_cat_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & sees(X, cow) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_cow, sees_X_cow), visits_X_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_X, big_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> nice(X)",
+          "z3_formula": "Implies(visits_X_bald_eagle, nice_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, cow) -> sees(cow, X)",
+          "z3_formula": "Implies(And(cold_X, visits_X_cow), sees_cow_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bald_eagle) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(round_X, eats_X_bald_eagle), sees_X_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cat, visits_X_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, cow) -> visits(X, cow)",
+          "z3_formula": "Implies(And(visits_X_rabbit, sees_X_cow), visits_X_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, bald_eagle)",
+          "z3_formula": "visits_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == Not(cold_rabbit & visits_rabbit_cow)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, cow) -> sees(cow, cat)",
+          "z3_formula": "Implies(And(cold_rabbit, visits_rabbit_cow), sees_cow_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, cow) -> visits(X, cow)",
+          "z3_formula": "Implies(And(visits_rabbit_cat, sees_rabbit_cow), visits_rabbit_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(visits_cat_rabbit, visits_rabbit_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, rabbit)",
+          "z3_formula": "visits_cat_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> blue(bald_eagle)",
+          "z3_formula": "Implies(blue_cow, blue_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, rabbit)",
+          "z3_formula": "visits_cat_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> nice(X)",
+          "z3_formula": "Implies(visits_cat_bald_eagle, nice_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cat, big_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, cow) -> sees(cow, cat)",
+          "z3_formula": "Implies(And(cold_rabbit, visits_rabbit_cow), sees_cow_cat)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, cow)",
+          "z3_formula": "eats_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, bald_eagle)",
+          "z3_formula": "visits_cat_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, rabbit)",
+          "z3_formula": "visits_cat_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & sees(X, cow) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_cow, sees_X_cow), visits_X_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_X, big_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> nice(X)",
+          "z3_formula": "Implies(visits_X_bald_eagle, nice_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, cow) -> sees(cow, cat)",
+          "z3_formula": "Implies(And(cold_X, visits_X_cow), sees_cow_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bald_eagle) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(round_X, eats_X_bald_eagle), sees_X_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cat, visits_X_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, cow) -> visits(X, cow)",
+          "z3_formula": "Implies(And(visits_X_rabbit, sees_X_cow), visits_X_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & sees(X, cow) -> visits(X, eagle)",
+          "z3_formula": "Implies(And(visits_cow_cow, sees_cow_cow), visits_cow_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(eagle, cow)",
+          "z3_formula": "eats_eagle_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, eagle)",
+          "z3_formula": "eats_rabbit_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, cow) -> sees(cow, cat)",
+          "z3_formula": "Implies(And(cold_rabbit, visits_rabbit_cow), sees_cow_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, rabbit)",
+          "z3_formula": "visits_cat_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, eagle)",
+          "z3_formula": "visits_cat_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(visits_cat_cat, visits_cat_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, cow) -> visits(X, cow)",
+          "z3_formula": "Implies(And(visits_rabbit_rabbit, sees_rabbit_cow), visits_rabbit_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) -> nice(X)",
+          "z3_formula": "Implies(visits_cat_eagle, nice_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(eagle)",
+          "z3_formula": "blue_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, eagle)",
+          "z3_formula": "visits_cat_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cat, big_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cow)",
+          "z3_formula": "visits_rabbit_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, rabbit)",
+          "z3_formula": "visits_cow_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cow)",
+          "z3_formula": "visits_rabbit_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & sees(X, cow) -> visits(X, eagle)",
+          "z3_formula": "Implies(And(visits_rabbit_cow, sees_rabbit_cow), visits_rabbit_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, cow) -> sees(cow, cat)",
+          "z3_formula": "Implies(And(cold_rabbit, visits_rabbit_cow), sees_cow_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) & visits(X, cow) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_rabbit_cow, visits_rabbit_cow), visits_rabbit_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, rabbit)",
+          "z3_formula": "visits_cat_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, cow) -> visits(X, cow)",
+          "z3_formula": "Implies(And(visits_cat_rabbit, sees_cat_cow), visits_cat_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bald_eagle)",
+          "z3_formula": "blue_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, cow)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & sees(X, cow) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_cat_cow, sees_cat_cow), visits_cat_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cat, big_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_cat, big_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cat)",
+          "z3_formula": "nice_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, cow) -> sees(cow, X)",
+          "z3_formula": "Implies(And(cold_rabbit, visits_rabbit_cow), sees_cow_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(cow, cat)",
+          "z3_formula": "Not(sees_cow_cat)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cow, rabbit)",
+          "z3_formula": "sees_cow_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, cat)",
+          "z3_formula": "visits_rabbit_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) & sees(X, cow) -> visits(X, cow)",
+          "z3_formula": "Implies(And(visits_X_rabbit, sees_X_cow), visits_X_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) & sees(X, cow) -> visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_cow, sees_X_cow), visits_X_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & visits(X, cow) -> sees(cow, cat)",
+          "z3_formula": "Implies(And(cold_X, visits_X_cow), sees_cow_cat == True)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cow, cat)",
+          "z3_formula": "sees_cow_cat == True",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 205,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 64
+    },
+    "maxsat_stats": {
+      "satisfied": 62,
+      "excluded": 2,
+      "total_weight": 203,
+      "solve_time_ms": 2.1177222952246666
+    },
+    "timing": {
+      "trace_gen_s": 10.178,
+      "extraction_s": 35.72,
+      "dedup_s": 2.476,
+      "maxsat_s": 0.006,
+      "total_s": 48.381
+    }
+  }
+}

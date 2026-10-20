@@ -1,0 +1,414 @@
+{
+  "pid": "folio_179",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_humans_are_horses -> all_humans_who_are_horses_have_hooves",
+          "z3_formula": "Implies(some_humans_are_horses, all_humans_who_are_horses_have_hooves)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "all_humans_who_are_horses_have_hooves -> all_humans_have_hooves",
+          "z3_formula": "Implies(all_humans_who_are_horses_have_hooves, all_humans_have_hooves)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "all_humans_have_hooves -> no_humans_have_hooves",
+          "z3_formula": "Implies(all_humans_have_hooves, no_humans_have_hooves)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "some_humans_are_horses",
+          "z3_formula": "some_humans_are_horses == False",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_humans_are_horses -> some_humans_have_hooves",
+          "z3_formula": "Implies(some_humans_are_horses, some_humans_have_hooves)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "some_humans_have_hooves",
+          "z3_formula": "some_humans_have_hooves == False",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "hooves(X) -> horse(X)",
+          "z3_formula": "Implies(hooves_X, horse_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "some_humans_are_horses",
+          "z3_formula": "Not(Implies(no_humans_have_hooves, Not(humans_have_hooves))) == False",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(horses, hooves)",
+          "z3_formula": "all_horses_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(all(humans, hooves))",
+          "z3_formula": "not_all_humans_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "horse(X) -> hooves(X)",
+          "z3_formula": "Implies(horse_X, hooves_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> not(hooves(X))",
+          "z3_formula": "Implies(human_X, Not(hooves_X))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some(humans, horse)",
+          "z3_formula": "some_humans_horse == False",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "all_A_are_B -> some_B_are_A",
+          "z3_formula": "Implies(all_horses_have_hooves, some_horses_are_humans)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "no_A_are_B -> not_some_A_are_B",
+          "z3_formula": "Implies(no_humans_have_hooves, Not(some_humans_are_horses))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some_humans_are_horses",
+          "z3_formula": "some_humans_are_horses == Unknown",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "horse(X) -> has_hooves(X)",
+          "z3_formula": "Implies(horse_X, has_hooves_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> not has_hooves(X)",
+          "z3_formula": "Implies(human_X, Not(has_hooves_X))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not some_humans_are_horses",
+          "z3_formula": "Not(some_humans_are_horses)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some_humans_are_horses -> all_humans_have_hooves",
+          "z3_formula": "Implies(some_humans_are_horses, all_humans_have_hooves)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "all_humans_have_hooves",
+          "z3_formula": "all_humans_have_hooves == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some_humans_are_horses",
+          "z3_formula": "some_humans_are_horses == False",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "horse(X) -> hooves(X)",
+          "z3_formula": "Implies(horse_X, hooves_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(humans_are_horses)",
+          "z3_formula": "Not(humans_are_horses) == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "hooves(X) -> horse(X)",
+          "z3_formula": "Implies(hooves_X, horse_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> not(hooves(X))",
+          "z3_formula": "Implies(human_X, Not(hooves_X))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(human(X) & hooves(X))",
+          "z3_formula": "Not(And(human_X, hooves_X))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(horse(X) & human(X))",
+          "z3_formula": "Not(And(horse_X, human_X))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(horses, have(hooves))",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(all(humans, have(hooves)))",
+          "z3_formula": "not_all_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(humans, are(horses))",
+          "z3_formula": "some_humans_are_horses == False",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all(horses, hooves)",
+          "z3_formula": "all_horses_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(all(humans, hooves))",
+          "z3_formula": "not_all_humans_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "some(humans, horses) -> all(humans, hooves)",
+          "z3_formula": "Implies(some_humans_horses, all_humans_hooves)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(some(humans, horses))",
+          "z3_formula": "not_some_humans_horses == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "all_horses_have_hooves",
+          "z3_formula": "all_horses_have_hooves == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_humans_have_hooves",
+          "z3_formula": "no_humans_have_hooves == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "hooves(X) -> horse(X)",
+          "z3_formula": "Implies(hooves_X, horse_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> not(hooves(X))",
+          "z3_formula": "Implies(human_X, Not(hooves_X))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(some_humans_are_horses)",
+          "z3_formula": "Not(some_humans_are_horses)",
+          "source_step": 5
+        }
+      ]
+    }
+  ]
+}

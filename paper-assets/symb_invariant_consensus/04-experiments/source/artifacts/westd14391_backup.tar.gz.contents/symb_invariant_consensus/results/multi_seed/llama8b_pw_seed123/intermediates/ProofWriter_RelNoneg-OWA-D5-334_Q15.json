@@ -1,0 +1,1649 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-334_Q15",
+    "problem": "The bear is round. The bear is young. The bear needs the dog. The bear sees the cat. The cat eats the bear. The cat is green. The cat needs the mouse. The dog eats the cat. The dog is cold. The dog is green. The dog needs the cat. The dog sees the bear. The mouse eats the dog. The mouse is cold. The mouse needs the bear. The mouse needs the dog. If something eats the mouse then it needs the dog. If the mouse sees the bear then the bear needs the mouse. If something eats the dog and the dog eats the bear then it needs the bear. If something is round and it eats the bear then it sees the bear. If something eats the bear then it is round. If something eats the dog and it needs the cat then it eats the bear. If something needs the mouse then the mouse needs the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe dog does not eat the bear.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nGreen($x, bool) ::: Is x green?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nRound(Bear, True) ::: The bear is round.\nYoung(Bear, True) ::: The bear is young.\nNeeds(Bear, Dog, True) ::: The bear needs the dog.\nSees(Bear, Cat, True) ::: The bear sees the cat.\nEats(Cat, Bear, True) ::: The cat eats the bear.\nGreen(Cat, True) ::: The cat is green.\nNeeds(Cat, Mouse, True) ::: The cat needs the mouse.\nEats(Dog, Cat, True) ::: The dog eats the cat.\nCold(Dog, True) ::: The dog is cold.\nGreen(Dog, True) ::: The dog is green.\nNeeds(Dog, Cat, True) ::: The dog needs the cat.\nSees(Dog, Bear, True) ::: The dog sees the bear.\nEats(Mouse, Dog, True) ::: The mouse eats the dog.\nCold(Mouse, True) ::: The mouse is cold.\nNeeds(Mouse, Bear, True) ::: The mouse needs the bear.\nNeeds(Mouse, Dog, True) ::: The mouse needs the dog.\n\nRules:\nEats($x, Mouse, True) >>> Needs($x, Dog, True) ::: If something eats the mouse then it needs the dog.\nSees(Mouse, Bear, True) >>> Needs(Bear, Mouse, True) ::: If the mouse sees the bear then the bear needs the mouse.\nEats($x, Dog, True) && Eats(Dog, Bear, True) >>> Needs($x, Bear, True) ::: If something eats the dog and the dog eats the bear then it needs the bear.\nRound($x, True) && Eats($x, Bear, True) >>> Sees($x, Bear, True) ::: If something is round and it eats the bear then it sees the bear.\nEats($x, Bear, True) >>> Round($x, True) ::: If something eats the bear then it is round.\nEats($x, Dog, True) && Needs($x, Cat, True) >>> Eats($x, Bear, True) ::: If something eats the dog and it needs the cat then it eats the bear.\nNeeds($x, Mouse, True) >>> Needs(Mouse, Cat, True) ::: If something needs the mouse then the mouse needs the cat.\n\nQuery:\nEats(Dog, Bear, False) ::: The dog does not eat the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 223.5,
+      "True": 0.0,
+      "Unknown": 218.5
+    },
+    "answer_counts": {
+      "False": 7,
+      "Unknown": 4,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The dog does not eat the bear\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The bear is round. (This information is not relevant to the problem yet.)\n2. The bear is young. (This information is not relevant to the problem yet.)\n3. The bear needs the dog. (This information is not relevant to the problem yet.)\n4. The bear sees the cat. (This information is not relevant to the problem yet.)\n5. The cat eats the bear. (This information is not relevant to the problem yet.)\n6. The cat is green. (This information is not relevant to the problem yet.)\n7. The cat needs the mouse. (This information is not relevant to the problem yet.)\n8. The dog eats the cat. (This information is not relevant to the problem yet.)\n9. The dog is cold. (This information is not relevant to the problem yet.)\n10. The dog is green. (This information is not relevant to the problem yet.)\n11. The dog needs the cat. (This information is not relevant to the problem yet.)\n12. The dog sees the bear. (This information is not relevant to the problem yet.)\n13. The mouse eats the dog. (This information is not relevant to the problem yet.)\n14. The mouse is cold. (This information is not relevant to the problem yet.)\n15. The mouse needs the bear. (This information is not relevant to the problem yet.)\n16. The mouse needs the dog. (This information is not relevant to the problem yet.)\n17. If something eats the mouse then it needs the dog. (This is a rule, we'll consider it later.)\n18. If the mouse sees the bear then the bear needs the mouse. (This is a rule, we'll consider it later.)\n19. If something eats the dog and the dog eats the bear then it needs the bear. (This is a rule, we'll consider it later.)\n20. If something is round and it eats the bear then it sees the bear. (This is a rule, we'll consider it later.)\n21. If something eats the bear then it is round. (This is a rule, we'll consider it later.)\n22. If something eats the dog and it needs the cat then it eats the bear. (This is a rule, we'll consider it later.)\n23. If something needs the mouse then the mouse needs the cat. (This is a rule, we'll consider it later.)\n\nNow, let's analyze the given rules and the information we have.\n\nFrom rule 22, we know that if something eats the dog and it needs the cat then it eats the bear. Since the dog eats the cat (from statement 8), the dog needs the cat (from statement 11).\n\nNow, since the dog needs the cat, according to rule 22, the dog eats the bear.\n\nTherefore, the statement \"The dog does not eat the bear\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not eat the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear is round.\n2. The bear is young.\n3. The bear needs the dog.\n4. The bear sees the cat.\n5. The cat eats the bear.\n6. The cat is green.\n7. The cat needs the mouse.\n8. The dog eats the cat.\n9. The dog is cold.\n10. The dog is green.\n11. The dog needs the cat.\n12. The dog sees the bear.\n13. The mouse eats the dog.\n14. The mouse is cold.\n15. The mouse needs the bear.\n16. The mouse needs the dog.\n17. If something eats the mouse then it needs the dog.\n18. If the mouse sees the bear then the bear needs the mouse.\n19. If something eats the dog and the dog eats the bear then it needs the bear.\n20. If something is round and it eats the bear then it sees the bear.\n21. If something eats the bear then it is round.\n22. If something eats the dog and it needs the cat then it eats the bear.\n23. If something needs the mouse then the mouse needs the cat.\n\nFrom the given statements, we can derive the following information:\n\n- The cat eats the bear (Statement 5).\n- If something eats the bear then it is round (Statement 21).\n- If something is round and it eats the bear then it sees the bear (Statement 20).\n- The cat is round (from Statement 5 and Statement 21).\n- The cat sees the bear (from Statement 5 and Statement 20).\n\nNow, let's consider the dog. We have the following information:\n\n- The dog eats the cat (Statement 8).\n- The dog needs the cat (Statement 11).\n- If something eats the dog and it needs the cat then it eats the bear (Statement 22).\n\nSince the dog eats the cat, and the dog needs the cat, it implies that the dog needs the cat because the dog eats the cat.\n\nNow, using Statement 22, we can conclude that the dog eats the bear.\n\nHowever, we are asked to determine whether the statement \"The dog does not eat the bear\" is true, false, or unknown. Since we have found that the dog eats the bear, this statement is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nFrom the given information:\n1. The bear is round.\n2. The bear is young.\n3. The bear needs the dog.\n4. The bear sees the cat.\n5. The cat eats the bear.\n6. The cat is green.\n7. The cat needs the mouse.\n8. The dog eats the cat.\n9. The dog is cold.\n10. The dog is green.\n11. The dog needs the cat.\n12. The dog sees the bear.\n13. The mouse eats the dog.\n14. The mouse is cold.\n15. The mouse needs the bear.\n16. The mouse needs the dog.\n17. If something eats the mouse then it needs the dog.\n18. If the mouse sees the bear then the bear needs the mouse.\n19. If something eats the dog and the dog eats the bear then it needs the bear.\n20. If something is round and it eats the bear then it sees the bear.\n21. If something eats the bear then it is round.\n22. If something eats the dog and it needs the cat then it eats the bear.\n23. If something needs the mouse then the mouse needs the cat.\n\nNow, let's break down the statement \"The dog does not eat the bear.\"\n\nGiven rules 5 and 8:\n5. The cat eats the bear.\n8. The dog eats the cat.\n\nUsing rule 22:\n22. If something eats the dog and it needs the cat then it eats the bear.\nSince the dog eats the cat, we can substitute the dog in rule 22 to get:\n\"If the dog eats the dog and the dog needs the cat then it eats the bear.\"\n\nHowever, we already have information from rule 8 that the dog eats the cat. This means we can use rule 22 to infer that the dog eats the bear, but only if the dog needs the cat. \n\nGiven rule 11:\n11. The dog needs the cat.\n\nSince the dog needs the cat, we can use rule 22 to conclude that the dog eats the bear.\n\nTherefore, the statement \"The dog does not eat the bear\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not eat the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear is round.\n   - This statement does not directly relate to the dog eating the bear. However, it might be useful later.\n\n2. The bear is young.\n   - This statement does not directly relate to the dog eating the bear. However, it might be useful later.\n\n3. The bear needs the dog.\n   - This statement does not directly relate to the dog eating the bear. However, it might be useful later.\n\n4. The bear sees the cat.\n   - This statement does not directly relate to the dog eating the bear. However, it might be useful later.\n\n5. The cat eats the bear.\n   - Since the cat eats the bear, it must be round because of rule 11: If something eats the bear then it is round.\n\n6. The cat is green.\n   - This statement does not directly relate to the dog eating the bear. However, it might be useful later.\n\n7. The cat needs the mouse.\n   - This statement does not directly relate to the dog eating the bear. However, it might be useful later.\n\n8. The dog eats the cat.\n   - This is a key statement. However, it does not directly relate to the dog eating the bear.\n\n9. The dog is cold.\n   - This statement does not directly relate to the dog eating the bear. However, it might be useful later.\n\n10. The dog is green.\n    - This statement does not directly relate to the dog eating the bear. However, it might be useful later.\n\n11. The dog needs the cat.\n    - Since the dog eats the cat, it means that the dog needs the cat (rule 8). This is also consistent with the fact that the dog is green and the cat is green (rule 10).\n\n12. The dog sees the bear.\n    - Since the dog sees the bear and the dog eats the cat, and the cat eats the bear, it means the dog needs the bear (rule 6: If something eats the dog and the dog eats the bear then it needs the bear).\n\n13. The mouse eats the dog.\n    - This is another key statement. However, it does not directly relate to the dog eating the bear.\n\n14. The mouse is cold.\n    - This statement does not directly relate to the dog eating the bear. However, it might be useful later.\n\n15. The mouse needs the bear.\n    - Since the mouse sees the bear, it means the bear needs the mouse (rule 5: If something sees the bear then the bear needs the mouse). However, this is not directly related to the dog eating the bear.\n\n16. The mouse needs the dog.\n    - Since the mouse needs the dog and the mouse eats the dog, it means the mouse needs the cat (rule 9: If something needs the mouse then the mouse needs the cat).\n\n17. If something eats the mouse then it needs the dog.\n    - This statement does not directly relate to the dog eating the bear.\n\n18. If the mouse sees the bear then the bear needs the mouse.\n    - This statement does not directly relate to the dog eating the bear.\n\n19. If something eats the dog and the dog eats the bear then it needs the bear.\n    - Since the mouse eats the dog and the dog eats the cat and the cat eats the bear, it means the mouse needs the bear (rule 19).\n\n20. If something is round and it eats the bear then it sees the bear.\n    - Since the cat eats the bear and is round, it means the cat sees the bear (rule 20).\n\n21. If something eats the bear then it is round.\n    - Since the cat eats the bear and is round, it means the cat is round (rule 21).\n\n22. If something eats the dog and it needs the cat then it eats the bear.\n    - Since the mouse eats the dog and the mouse needs the cat, it means the mouse eats the bear (rule 22).\n\nBased on the given rules and statements, we can conclude that the dog sees the bear (statement 12) and the dog needs the bear (rule 6). Since the cat eats the bear (statement 5), it means the cat is round (rule 11), the cat sees the bear (rule 20), and the cat eats the bear (statement 5). If the mouse eats the dog and the mouse needs the cat, then the mouse eats the bear (rule 22). If the mouse sees the bear, then the bear needs the mouse (rule 5). Since the mouse sees the bear, it means the bear needs the mouse (rule 5).\n\nNow let's analyze the statement \"The dog does not eat the bear.\" Based on the rules and statements above:\n\n- The cat eats the bear (statement 5).\n- The dog eats the cat (statement 8).\n- The mouse eats the dog (statement 13).\n- The mouse eats the bear (rule 22).\n- The dog sees the bear (statement 12).\n- The dog needs the bear (rule 6).\n\nFrom these statements and rules, we can conclude that the dog does not eat the bear is:\n\nSince the cat eats the bear and the mouse eats the bear, it means the cat sees the bear (rule 20). Since the mouse sees the bear, it means the bear needs the mouse (rule 5). The dog needs the bear (rule 6), the dog sees the bear (statement 12), and the dog is green (statement 10). Since the dog eats the cat (statement 8) and the cat eats the bear (statement 5), it means the dog needs the bear (rule 6). The mouse eats the dog (statement 13), and the mouse needs the cat (rule 16). If the mouse eats the dog, it means the mouse eats the bear (rule 22). Based on the information, we can conclude that the dog needs the bear, the dog sees the bear, and the dog is green.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the information provided step by step.\n\n1. The bear sees the cat.\n2. The cat eats the bear.\nFrom statement 2, we can conclude that the cat is round (since it eats the bear, and the bear is round).\n\n3. The cat needs the mouse.\n4. The dog eats the cat.\nSince the dog eats the cat, and the cat is round, we can conclude that the dog sees the bear (from the rule \"If something is round and it eats the bear then it sees the bear\").\n\n5. The dog is cold.\n6. The dog is green.\n7. The dog needs the cat.\n\nFrom statement 4, we know the dog eats the cat, but we also know that the cat eats the bear (statement 2). This satisfies the condition of the rule \"If something eats the dog and the dog eats the bear then it needs the bear.\" However, this does not directly relate to whether the dog eats the bear.\n\n8. The mouse eats the dog.\n9. The mouse is cold.\n10. The mouse needs the bear.\n11. The mouse needs the dog.\n\nFrom statement 8, we know the mouse eats the dog, which means the mouse needs the dog (since it eats the dog and it needs the dog). However, this does not directly relate to whether the dog eats the bear.\n\n12. If something eats the mouse then it needs the dog.\nSince the mouse eats the dog, the statement that \"something eats the mouse then it needs the dog\" does not directly apply here.\n\n13. If the mouse sees the bear then the bear needs the mouse.\nSince there is no information about the mouse seeing the bear, we cannot apply this rule.\n\n14. The mouse needs the cat.\nFrom statement 3, we know the cat needs the mouse. Since the mouse needs the cat (statement 14), we can conclude that the mouse needs the cat.\n\nNow, let's analyze the given statement: \"The dog does not eat the bear.\"\n\nFrom the information provided, we know the cat eats the bear (statement 2), and the dog eats the cat (statement 4). However, we cannot directly conclude that the dog eats the bear from the given information.\n\nHowever, we can conclude that the dog sees the bear (from statement 4 and rule \"If something is round and it eats the bear then it sees the bear\"). This information is not related to whether the dog eats the bear.\n\nAdditionally, we know the mouse eats the dog (statement 8). Since the dog eats the cat (statement 4), and the cat eats the bear (statement 2), we can conclude that the mouse eats the dog (statement 8) and the mouse needs the dog (from rule \"If something eats the mouse then it needs the dog\").\n\nHowever, we cannot directly conclude that the dog eats the bear from the given information.\n\nSince the given information does not provide a direct conclusion about whether the dog eats the bear, the statement \"The dog does not eat the bear\" cannot be determined as true or false based on the given information.\n\nTherefore, the final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not eat the bear\" is true, false, or unknown, we need to analyze the given information and the conditions.\n\n1. The bear is round. (This doesn't directly relate to the statement, but it's a given fact)\n2. The bear is young. (This doesn't directly relate to the statement, but it's a given fact)\n3. The bear needs the dog. (This doesn't directly relate to the statement, but it's a given fact)\n4. The bear sees the cat. (This doesn't directly relate to the statement, but it's a given fact)\n5. The cat eats the bear. (This directly relates to the statement. It implies that the cat eats the bear, but it does not directly relate to the dog eating the bear)\n6. The cat is green. (This doesn't directly relate to the statement, but it's a given fact)\n7. The cat needs the mouse. (This doesn't directly relate to the statement, but it's a given fact)\n8. The dog eats the cat. (This directly relates to the statement. If the dog eats the cat, then it implies that the dog does not eat the bear based on condition 10)\n9. The dog is cold. (This doesn't directly relate to the statement, but it's a given fact)\n10. The dog is green. (This doesn't directly relate to the statement, but it's a given fact)\n11. The dog needs the cat. (This doesn't directly relate to the statement, but it's a given fact)\n12. The dog sees the bear. (This doesn't directly relate to the statement, but it's a given fact)\n13. The mouse eats the dog. (This directly relates to the statement. If the mouse eats the dog, then it implies that the dog does not eat the bear based on condition 14)\n14. The mouse is cold. (This doesn't directly relate to the statement, but it's a given fact)\n15. The mouse needs the bear. (This doesn't directly relate to the statement, but it's a given fact)\n16. The mouse needs the dog. (This doesn't directly relate to the statement, but it's a given fact)\n17. If something eats the mouse then it needs the dog. (This doesn't directly relate to the statement, but it's a given fact)\n18. If the mouse sees the bear then the bear needs the mouse. (This doesn't directly relate to the statement, but it's a given fact)\n19. If something eats the dog and the dog eats the bear then it needs the bear. (This doesn't directly relate to the statement, but it's a given fact)\n20. If something is round and it eats the bear then it sees the bear. (This doesn't directly relate to the statement, but it's a given fact)\n21. If something eats the bear then it is round. (This doesn't directly relate to the statement, but it's a given fact)\n22. If something eats the dog and it needs the cat then it eats the bear. (This doesn't directly relate to the statement, but it's a given fact)\n23. If something needs the mouse then the mouse needs the cat. (This doesn't directly relate to the statement, but it's a given fact)\n\nFrom the conditions 8 and 13, we can deduce that either the dog does not eat the bear or the mouse eats the dog.\n\nNow, let's look at the statement \"The dog does not eat the bear\". If this is true, then the statement is true.\n\nHowever, we cannot be certain about the statement \"The dog does not eat the bear\" based on the information provided.\n\nFrom condition 14, we know that the mouse eats the dog. But we cannot conclude whether the dog eats the bear or not based on this information.\n\nTherefore, the statement \"The dog does not eat the bear\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not eat the bear\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The bear is round. \n2. The bear is young. \n3. The bear needs the dog. \n4. The bear sees the cat. \n5. The cat eats the bear. \n6. The cat is green. \n7. The cat needs the mouse. \n8. The dog eats the cat. \n9. The dog is cold. \n10. The dog is green. \n11. The dog needs the cat. \n12. The dog sees the bear. \n13. The mouse eats the dog. \n14. The mouse is cold. \n15. The mouse needs the bear. \n16. The mouse needs the dog. \n17. If something eats the mouse then it needs the dog. \n18. If the mouse sees the bear then the bear needs the mouse. \n19. If something eats the dog and the dog eats the bear then it needs the bear. \n20. If something is round and it eats the bear then it sees the bear. \n21. If something eats the bear then it is round. \n22. If something eats the dog and it needs the cat then it eats the bear. \n23. If something needs the mouse then the mouse needs the cat.\n\nFrom statement 8, we know that \"The dog eats the cat.\"\n\nNow, let's look at statement 22: \"If something eats the dog and it needs the cat then it eats the bear.\" We have two conditions here: \n- The dog needs the cat (statement 11).\n- The dog eats the cat (statement 8).\n\nCombining these two conditions, we can infer that the dog needs the cat and the dog eats the cat. From statement 22, this means the dog eats the bear.\n\nSo, the dog does eat the bear. Therefore, the statement \"The dog does not eat the bear\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not eat the bear\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The bear is round.\n2. The bear is young.\n3. The bear needs the dog.\n4. The bear sees the cat.\n5. The cat eats the bear. \n6. The cat is green.\n7. The cat needs the mouse.\n8. The dog eats the cat.\n9. The dog is cold.\n10. The dog is green.\n11. The dog needs the cat.\n12. The dog sees the bear.\n13. The mouse eats the dog.\n14. The mouse is cold.\n15. The mouse needs the bear.\n16. The mouse needs the dog.\n17. If something eats the mouse then it needs the dog.\n18. If the mouse sees the bear then the bear needs the mouse.\n19. If something eats the dog and the dog eats the bear then it needs the bear.\n20. If something is round and it eats the bear then it sees the bear.\n21. If something eats the bear then it is round.\n22. If something eats the dog and it needs the cat then it eats the bear.\n23. If something needs the mouse then the mouse needs the cat.\n\nTo determine whether the dog eats the bear, we can look at the statements and the rules.\n\nFrom statement 8: The dog eats the cat.\nFrom statement 11: The dog needs the cat.\nFrom statement 22: If something eats the dog and it needs the cat then it eats the bear.\nSince the dog eats the cat, it implies that the dog needs the cat. Therefore, according to the rule 22, the dog eats the bear.\n\nHence, the statement \"The dog does not eat the bear\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The dog does not eat the bear\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The statement to be evaluated: The dog does not eat the bear.\n2. Given information:\n   - The bear is round.\n   - The cat eats the bear.\n   - The cat is green.\n   - The cat needs the mouse.\n   - The dog eats the cat.\n   - The dog is cold.\n   - The dog is green.\n   - The dog needs the cat.\n   - The dog sees the bear.\n   - The mouse eats the dog.\n   - The mouse is cold.\n   - The mouse needs the bear.\n   - The mouse needs the dog.\n3. Rules:\n   - If something eats the mouse then it needs the dog.\n   - If the mouse sees the bear then the bear needs the mouse.\n   - If something eats the dog and the dog eats the bear then it needs the bear.\n   - If something is round and it eats the bear then it sees the bear.\n   - If something eats the bear then it is round.\n   - If something eats the dog and it needs the cat then it eats the bear.\n   - If something needs the mouse then the mouse needs the cat.\n\nNow, we'll analyze the given information and rules to determine the relationship between the dog and the bear.\n\n- The dog is mentioned to eat the cat.\n- The cat is mentioned to eat the bear.\n- From rule 6, if something eats the dog and it needs the cat then it eats the bear. However, the cat is not eating the dog in this context.\n- The dog is eating the cat and needs the cat, but there's no direct relationship to the bear based on the rules.\n- The dog sees the bear, but this doesn't imply that the dog eats the bear.\n\nWe cannot directly conclude that the dog eats the bear based on the given information and rules. However, the information provided does not explicitly state that the dog does not eat the bear either.\n\nGiven the available information and rules, we cannot definitively determine the relationship between the dog and the bear, making the statement \"The dog does not eat the bear\" unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given rules and deduce the necessary information.\n\nRule 1: If something eats the mouse then it needs the dog.\nRule 2: If the mouse sees the bear then the bear needs the mouse.\nRule 3: If something eats the dog and the dog eats the bear then it needs the bear.\nRule 4: If something is round and it eats the bear then it sees the bear.\nRule 5: If something eats the bear then it is round.\nRule 6: If something eats the dog and it needs the cat then it eats the bear.\nRule 7: If something needs the mouse then the mouse needs the cat.\n\nNow, let's apply these rules to the given information:\n\n1. The mouse eats the dog. (From the given information)\n2. The mouse needs the bear. (From the given information)\n3. The mouse sees the bear. (From Rule 2)\n4. The bear is round. (From the given information)\n5. The bear sees the cat. (From the given information)\n6. The cat eats the bear. (From the given information)\n7. The cat is green. (From the given information)\n8. The cat needs the mouse. (From the given information)\n9. The dog eats the cat. (From the given information)\n10. The dog is cold. (From the given information)\n11. The dog is green. (From the given information)\n12. The dog needs the cat. (From the given information)\n13. The dog sees the bear. (From the given information)\n14. The dog does not eat the bear. (This is the statement we need to determine)\n\nNow, let's examine the possible scenarios:\n\nScenario 1: The cat eats the dog. \n- The cat needs the mouse. (From Rule 7)\n- The cat eats the bear. (From the given information)\n- The cat is green. (From the given information)\n- The cat sees the bear. (From Rule 4)\n\nScenario 2: The dog eats the cat.\n- The dog needs the bear. (From Rule 3)\n- The dog does not eat the bear. (From the given statement)\n- The dog is cold. (From the given information)\n- The dog is green. (From the given information)\n- The dog sees the bear. (From the given information)\n\nIn Scenario 1, the cat eats the bear, which means the cat is round (From Rule 5). However, the cat is also green (From the given information), which is a contradiction.\n\nIn Scenario 2, we have a possibility where the dog sees the bear but does not eat it.\n\nHowever, if the dog does not eat the bear, it contradicts Rule 6: If something eats the dog and it needs the cat then it eats the bear.\n\nGiven the above information, we cannot conclude whether the statement \"The dog does not eat the bear\" is true or false. Therefore, the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the given information and the provided rules. \n\nFirst, let's break down the information:\n1. The bear is round.\n2. The cat eats the bear.\n3. The dog eats the cat.\n4. The dog sees the bear.\n5. The mouse eats the dog.\n6. The mouse is cold.\n7. The mouse needs the bear.\n8. The mouse needs the dog.\n\nNow, let's analyze the given rules:\n1. If something eats the mouse then it needs the dog.\n2. If the mouse sees the bear then the bear needs the mouse.\n3. If something eats the dog and the dog eats the bear then it needs the bear.\n4. If something is round and it eats the bear then it sees the bear.\n5. If something eats the bear then it is round.\n6. If something eats the dog and it needs the cat then it eats the bear.\n7. If something needs the mouse then the mouse needs the cat.\n\nWe can start by analyzing rule 5, which states that if something eats the bear then it is round. Since the cat eats the bear (rule 2), the cat is round (rule 5).\n\nNow, let's apply rule 4, which states that if something is round and it eats the bear then it sees the bear. Since the cat is round and it eats the bear, the cat sees the bear.\n\nNext, let's analyze rule 3, which states that if something eats the dog and the dog eats the bear then it needs the bear. Since the mouse eats the dog (rule 5) and the dog eats the cat (rule 3), the mouse needs the bear.\n\nNow, let's apply rule 1, which states that if something needs the mouse then the mouse needs the cat. Since the mouse needs the bear (rule 7) and the bear needs the mouse (rule 2), the mouse needs the cat.\n\nWe can now analyze the statement: The dog does not eat the bear.\n\nIf the dog does not eat the bear, then we cannot conclude that the dog needs the bear (rule 3). \n\nHowever, we can conclude that the cat is round (rule 5) and the cat sees the bear (rule 4). \n\nThe mouse needs the bear (rule 7), but we also know that the mouse needs the cat (rule 1 and the previous conclusion). \n\nSince the mouse eats the dog (rule 5) and the mouse needs the cat, then the mouse eats the bear (rule 6). \n\nNow, let's apply rule 5, which states that if something eats the bear then it is round. Since the mouse eats the bear, the mouse is round.\n\nWe can now apply rule 4, which states that if something is round and it eats the bear then it sees the bear. Since the mouse is round and it eats the bear, the mouse sees the bear.\n\nNow, let's apply rule 2, which states that if the mouse sees the bear then the bear needs the mouse. Since the mouse sees the bear, the bear needs the mouse.\n\nSince the bear needs the mouse and the mouse needs the cat, we can conclude that the bear needs the cat.\n\nWe can now apply rule 6, which states that if something eats the dog and it needs the cat then it eats the bear. Since the mouse eats the dog and the mouse needs the cat, the mouse eats the bear. \n\nHowever, we already know that the mouse eats the bear. \n\nNow, let's analyze the statement: The dog does not eat the bear.\n\nIf the dog does not eat the bear, then we cannot conclude that the dog is green (rule 8).\n\nHowever, we can conclude that the cat is green (rule 9).\n\nThe dog eats the cat (rule 3), but we cannot conclude that the dog needs the bear (rule 3).\n\nSince the mouse eats the dog (rule 5), the mouse needs the bear (rule 7), and the mouse needs the cat (rule 1 and the previous conclusion).\n\nThe statement \"The dog does not eat the bear\" is true because we cannot conclude that the dog needs the bear (rule 3).\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and use logical deductions to determine the truth value of the statement \"The dog does not eat the bear.\"\n\n1. The bear is round. (Given)\n2. The bear is young. (Given)\n3. The bear needs the dog. (Given)\n4. The bear sees the cat. (Given)\n5. The cat eats the bear. (Given)\n6. The cat is green. (Given)\n7. The cat needs the mouse. (Given)\n8. The dog eats the cat. (Given)\n9. The dog is cold. (Given)\n10. The dog is green. (Given)\n11. The dog needs the cat. (Given)\n12. The dog sees the bear. (Given)\n13. The mouse eats the dog. (Given)\n14. The mouse is cold. (Given)\n15. The mouse needs the bear. (Given)\n16. The mouse needs the dog. (Given)\n17. If something eats the mouse then it needs the dog. (Rule 1)\n18. If the mouse sees the bear then the bear needs the mouse. (Rule 2)\n19. If something eats the dog and the dog eats the bear then it needs the bear. (Rule 3)\n20. If something is round and it eats the bear then it sees the bear. (Rule 4)\n21. If something eats the bear then it is round. (Rule 5)\n22. If something eats the dog and it needs the cat then it eats the bear. (Rule 6)\n23. If something needs the mouse then the mouse needs the cat. (Rule 7)\n\nNow, let's analyze the statement \"The dog does not eat the bear.\"\n\nFrom statement 5, we know that the cat eats the bear. \nFrom rule 5, we know that if something eats the bear then it is round. \nSince the cat eats the bear and the cat is round (rule 5), we can conclude that the cat is round.\n\nFrom statement 8, we know that the dog eats the cat.\nFrom rule 6, we know that if something eats the dog and it needs the cat then it eats the bear.\nSince the dog eats the cat and the dog needs the cat (statement 11), we can conclude that the dog needs the cat.\n\nFrom statement 12, we know that the dog sees the bear.\nFrom rule 4, we know that if something is round and it eats the bear then it sees the bear.\nHowever, we do not know if the dog is round. \nBut from rule 5, we know that if something eats the bear then it is round.\nSince the cat eats the bear (statement 5), the cat is round (concluded earlier). \nBut we do not know if the dog eats the bear.\n\nHowever, we can use rule 3 to conclude that the dog needs the bear.\nFrom statement 8, we know that the dog eats the cat.\nFrom statement 5, we know that the cat eats the bear.\nSince the dog eats the cat and the cat eats the bear, we can conclude that the dog eats the bear.\n\nTherefore, the statement \"The dog does not eat the bear\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, mouse)",
+          "z3_formula": "needs_cat_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_X_mouse, needs_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(mouse, bear) -> needs(bear, mouse)",
+          "z3_formula": "Implies(sees_mouse_bear, needs_bear_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & eats(X, bear) -> needs(X, bear)",
+          "z3_formula": "Implies(And(eats_X_dog, eats_X_bear), needs_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(And(round_X, eats_X_bear), sees_X_bear)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> round(X)",
+          "z3_formula": "Implies(eats_X_bear, round_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & needs(X, cat) -> eats(X, bear)",
+          "z3_formula": "Implies(And(eats_X_dog, needs_X_cat), eats_X_bear)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> needs(mouse, cat)",
+          "z3_formula": "Implies(needs_X_mouse, needs_mouse_cat)",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bear)",
+          "z3_formula": "needs_dog_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, mouse)",
+          "z3_formula": "needs_cat_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_mouse_X, needs_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(mouse, bear) -> needs(bear, mouse)",
+          "z3_formula": "Implies(sees_mouse_bear, needs_bear_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & eats(dog, bear) -> needs(X, bear)",
+          "z3_formula": "Implies(And(eats_dog_X, eats_dog_bear), needs_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(And(round_X, eats_X_bear), sees_X_bear)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> round(X)",
+          "z3_formula": "Implies(eats_X_bear, round_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & needs(X, cat) -> eats(X, bear)",
+          "z3_formula": "Implies(And(eats_X_dog, needs_X_cat), eats_X_bear)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> needs(mouse, cat)",
+          "z3_formula": "Implies(needs_X_mouse, needs_mouse_cat)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, mouse)",
+          "z3_formula": "needs_cat_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_X_mouse, needs_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(mouse, bear) -> needs(bear, mouse)",
+          "z3_formula": "Implies(sees_mouse_bear, needs_bear_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & eats(X, bear) -> needs(X, bear)",
+          "z3_formula": "Implies(And(eats_X_dog, eats_X_bear), needs_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(And(round_X, eats_X_bear), sees_X_bear)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> round(X)",
+          "z3_formula": "Implies(eats_X_bear, round_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & needs(X, cat) -> eats(X, bear)",
+          "z3_formula": "Implies(And(eats_X_dog, needs_X_cat), eats_X_bear)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> needs(mouse, cat)",
+          "z3_formula": "Implies(needs_X_mouse, needs_mouse_cat)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(dog, bear))",
+          "z3_formula": "Not(eats_dog_bear)",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, mouse)",
+          "z3_formula": "needs_cat_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> round(X)",
+          "z3_formula": "Implies(eats_cat_bear, round_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(eats_cat_bear, sees_cat_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> round(X)",
+          "z3_formula": "Implies(eats_cat_bear, round_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & needs(X, cat) -> eats(X, bear)",
+          "z3_formula": "Implies(And(eats_mouse_dog, needs_mouse_cat), eats_mouse_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(bear, X)",
+          "z3_formula": "Implies(sees_mouse_bear, needs_bear_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & needs(X, cat) -> eats(X, bear)",
+          "z3_formula": "Implies(And(eats_mouse_dog, needs_mouse_cat), eats_mouse_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(eats_cat_bear, sees_cat_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & eats(dog, bear) -> needs(X, bear)",
+          "z3_formula": "Implies(And(eats_mouse_dog, eats_dog_bear), needs_mouse_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(And(round_cat, eats_cat_bear), sees_cat_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> round(X)",
+          "z3_formula": "Implies(eats_cat_bear, round_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & needs(X, cat) -> eats(X, bear)",
+          "z3_formula": "Implies(And(eats_mouse_dog, needs_mouse_cat), eats_mouse_bear)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(dog, bear))",
+          "z3_formula": "Not(eats_dog_bear)",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(And(round_cat, eats_cat_bear), sees_cat_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(And(round_cat, eats_cat_bear), sees_cat_bear)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & eats(dog, bear) -> needs(X, bear)",
+          "z3_formula": "Implies(And(eats_dog_dog, eats_dog_bear), needs_dog_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_X_mouse, needs_X_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(bear, X)",
+          "z3_formula": "Implies(sees_X_bear, needs_bear_X)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, mouse)",
+          "z3_formula": "needs_cat_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, cat)",
+          "z3_formula": "needs_mouse_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "does_not_eat(dog, bear)",
+          "z3_formula": "Not(eats_dog_bear)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, mouse)",
+          "z3_formula": "needs_cat_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_mouse_dog, needs_mouse_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_bear_mouse, needs_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & eats(X, bear) -> needs(X, bear)",
+          "z3_formula": "Implies(And(eats_dog_bear, eats_dog_bear), needs_dog_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(And(round_bear, eats_bear_bear), sees_bear_bear)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> round(X)",
+          "z3_formula": "Implies(eats_bear_bear, round_bear)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & needs(X, cat) -> eats(X, bear)",
+          "z3_formula": "Implies(And(eats_dog_cat, needs_dog_cat), eats_dog_bear)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> needs(X, cat)",
+          "z3_formula": "Implies(needs_mouse, needs_cat)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(dog, bear))",
+          "z3_formula": "Not(eats_dog_bear)",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bear)",
+          "z3_formula": "needs_dog_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, mouse)",
+          "z3_formula": "needs_cat_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_X_mouse, needs_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(mouse, bear) -> needs(bear, mouse)",
+          "z3_formula": "Implies(sees_mouse_bear, needs_bear_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & eats(X, bear) -> needs(X, bear)",
+          "z3_formula": "Implies(And(eats_X_dog, eats_X_bear), needs_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(And(round_X, eats_X_bear), sees_X_bear)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> round(X)",
+          "z3_formula": "Implies(eats_X_bear, round_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & needs(X, cat) -> eats(X, bear)",
+          "z3_formula": "Implies(And(eats_X_dog, needs_X_cat), eats_X_bear)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> needs(mouse, cat)",
+          "z3_formula": "Implies(needs_X_mouse, needs_mouse_cat)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, bear)",
+          "z3_formula": "needs_dog_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bear)",
+          "z3_formula": "sees_cat_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, mouse)",
+          "z3_formula": "needs_cat_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_X_mouse, needs_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(mouse, bear) -> needs(bear, mouse)",
+          "z3_formula": "Implies(sees_mouse_bear, needs_bear_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & eats(dog, bear) -> needs(X, bear)",
+          "z3_formula": "Implies(And(eats_X_dog, eats_dog_bear), needs_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(And(round_X, eats_X_bear), sees_X_bear)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> round(X)",
+          "z3_formula": "Implies(eats_X_bear, round_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & needs(X, cat) -> eats(X, bear)",
+          "z3_formula": "Implies(And(eats_X_dog, needs_X_cat), eats_X_bear)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> needs(mouse, cat)",
+          "z3_formula": "Implies(needs_X_mouse, needs_mouse_cat)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, bear)",
+          "z3_formula": "eats_dog_bear == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, mouse)",
+          "z3_formula": "needs_cat_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_mouse_dog, needs_mouse_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(mouse, bear) -> needs(bear, mouse)",
+          "z3_formula": "Implies(sees_mouse_bear, needs_bear_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & eats(X, bear) -> needs(X, bear)",
+          "z3_formula": "Implies(And(eats_dog_bear, eats_dog_bear), needs_dog_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(And(round_bear, eats_bear_bear), sees_bear_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> round(X)",
+          "z3_formula": "Implies(eats_bear_bear, round_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & needs(X, cat) -> eats(X, bear)",
+          "z3_formula": "Implies(And(eats_dog_cat, needs_dog_cat), eats_dog_bear)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> needs(mouse, cat)",
+          "z3_formula": "Implies(needs_mouse_cat, needs_mouse_cat)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, bear)",
+          "z3_formula": "sees_mouse_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, mouse)",
+          "z3_formula": "needs_cat_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(dog, bear))",
+          "z3_formula": "not(eats_dog_bear) == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_mouse_dog, needs_X_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "mouse sees bear -> bear sees mouse",
+          "z3_formula": "Implies(And(sees_mouse_bear, mouse), sees_bear_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & eats(dog, bear) -> eats(X, bear)",
+          "z3_formula": "Implies(And(eats_X_dog, eats_dog_bear), eats_X_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(And(round_X, eats_X_bear), sees_X_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> round(X)",
+          "z3_formula": "Implies(eats_X_bear, round_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & needs(X, cat) -> eats(X, bear)",
+          "z3_formula": "Implies(And(eats_X_dog, needs_X_cat), eats_X_bear)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> needs(mouse, cat)",
+          "z3_formula": "Implies(needs_X_mouse, needs_mouse_cat)",
+          "source_step": 21
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bear)",
+          "z3_formula": "round_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, dog)",
+          "z3_formula": "needs_bear_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, cat)",
+          "z3_formula": "sees_bear_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(cat)",
+          "z3_formula": "green_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, mouse)",
+          "z3_formula": "needs_cat_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cat)",
+          "z3_formula": "eats_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dog)",
+          "z3_formula": "cold_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, cat)",
+          "z3_formula": "needs_dog_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, bear)",
+          "z3_formula": "sees_dog_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, dog)",
+          "z3_formula": "eats_mouse_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, dog)",
+          "z3_formula": "needs_mouse_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_mouse_X, needs_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(mouse, bear) -> needs(bear, mouse)",
+          "z3_formula": "Implies(sees_mouse_bear, needs_bear_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & eats(dog, bear) -> needs(X, bear)",
+          "z3_formula": "Implies(And(eats_dog_X, eats_dog_bear), needs_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, bear) -> sees(X, bear)",
+          "z3_formula": "Implies(And(round_X, eats_X_bear), sees_X_bear)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> round(X)",
+          "z3_formula": "Implies(eats_X_bear, round_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) & needs(X, cat) -> eats(X, bear)",
+          "z3_formula": "Implies(And(eats_X_dog, needs_X_cat), eats_X_bear)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> needs(mouse, cat)",
+          "z3_formula": "Implies(needs_X_mouse, needs_mouse_cat)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(dog, bear))",
+          "z3_formula": "Not(eats_dog_bear)",
+          "source_step": 24
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 253,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 51
+    },
+    "maxsat_stats": {
+      "satisfied": 50,
+      "excluded": 1,
+      "total_weight": 248,
+      "solve_time_ms": 1.6787564381957054
+    },
+    "timing": {
+      "trace_gen_s": 15.387,
+      "extraction_s": 54.009,
+      "dedup_s": 2.169,
+      "maxsat_s": 0.004,
+      "total_s": 71.57
+    }
+  }
+}

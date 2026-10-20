@@ -1,0 +1,84 @@
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+% \usepackage{inconsolata} % removed: not available in this TeX distribution
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% tcolorbox removed: unused in content
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{enumitem}
+% pifont removed: no longer used
+\usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes.geometric,arrows.meta}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+% hyperref loaded by acl.sty; cleveref unused
+
+\lstset{
+  basicstyle=\small\ttfamily,
+  breaklines=true,
+  frame=tb,
+  framerule=0.4pt,
+  rulecolor=\color{gray},
+  backgroundcolor=\color{gray!5},
+  xleftmargin=1em,
+  xrightmargin=1em,
+  aboveskip=0.8em,
+  belowskip=1.2em,
+}
+
+\graphicspath{{../figures/paper/}{figures/}}
+
+\title{Beyond Self-Consistency: Self-Extracted Constraints\\Reduce to Majority Voting under Zero-Shot Extraction}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+% Tighten spacing for 8-page budget
+\setlength{\textfloatsep}{5pt plus 2pt minus 4pt}
+\setlength{\dbltextfloatsep}{5pt plus 2pt minus 4pt}
+\setlength{\floatsep}{3pt plus 2pt minus 2pt}
+\setlength{\dblfloatsep}{3pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
+\setlength{\abovedisplayskip}{4pt plus 1pt minus 2pt}
+\setlength{\belowdisplayskip}{4pt plus 1pt minus 2pt}
+\setlength{\intextsep}{5pt plus 1pt minus 2pt}
+
+\input{abstract}
+
+\input{introduction}
+
+\input{related_work}
+
+\input{method}
+
+\input{experiments}
+
+\input{analysis}
+
+\input{solutions}
+
+\input{discussion}
+
+\section*{Limitations}
+\input{limitations_content}
+
+\bibliography{references}
+
+\appendix
+\input{appendix}
+
+\end{document}

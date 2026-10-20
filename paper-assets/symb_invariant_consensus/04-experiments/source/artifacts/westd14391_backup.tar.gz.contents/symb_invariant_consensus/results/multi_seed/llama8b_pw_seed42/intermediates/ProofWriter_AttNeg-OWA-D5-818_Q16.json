@@ -1,0 +1,1025 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-818_Q16",
+    "problem": "Charlie is young. Erin is blue. Erin is not kind. Fiona is blue. Fiona is white. Gary is blue. Gary is kind. Furry, nice things are white. If something is young and blue then it is smart. All blue, smart things are furry. All smart, white things are furry. Young things are nice. If Fiona is smart and Fiona is young then Fiona is not furry. If Erin is kind then Erin is furry. If Gary is smart and Gary is white then Gary is not kind. If something is nice then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is nice.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\nWhite($x, bool) ::: Is x white?\nFurry($x, bool) ::: Is x furry?\nSmart($x, bool) ::: Is x smart?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nYoung(Charlie, True) ::: Charlie is young.\nBlue(Erin, True) ::: Erin is blue.\nKind(Erin, False) ::: Erin is not kind.\nBlue(Fiona, True) ::: Fiona is blue.\nWhite(Fiona, True) ::: Fiona is white.\nBlue(Gary, True) ::: Gary is blue.\nKind(Gary, True) ::: Gary is kind.\n\nRules:\nFurry($x, True) && Nice($x, True) >>> White($x, True) ::: Furry, nice things are white.\nYoung($x, True) && Blue($x, True) >>> Smart($x, True) ::: If something is young and blue then it is smart.\nBlue($x, True) && Smart($x, True) >>> Furry($x, True) ::: All blue, smart things are furry.\nSmart($x, True) && White($x, True) >>> Furry($x, True) ::: All smart, white things are furry.\nYoung($x, True) >>> Nice($x, True) ::: Young things are nice.\nSmart(Fiona, True) && Young(Fiona, True) >>> Furry(Fiona, False) ::: If Fiona is smart and Fiona is young then Fiona is not furry.\nKind(Erin, True) >>> Furry(Erin, True) ::: If Erin is kind then Erin is furry.\nSmart(Gary, True) && White(Gary, True) >>> Kind(Gary, False) ::: If Gary is smart and Gary is white then Gary is not kind.\nNice($x, True) >>> Blue($x, True) ::: If something is nice then it is blue.\n\nQuery:\nNice(Erin, True) ::: Erin is nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 87.0,
+      "True": 67.5,
+      "Unknown": 134.5
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "False": 2,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Erin is nice, we need to use the given statements and logical deductions.\n\n1. Erin is blue. (Given)\n2. Erin is not kind. (Given)\n3. Furry, nice things are white. (Given)\n4. All blue, smart things are furry. (Given)\n5. All smart, white things are furry. (Given)\n6. Young things are nice. (Given)\n7. If Fiona is smart and Fiona is young then Fiona is not furry. (Given)\n8. If Erin is kind then Erin is furry. (Given)\n9. If Gary is smart and Gary is white then Gary is not kind. (Given)\n10. If something is nice then it is blue. (Given)\n\nWe can start by using statement 2 (Erin is not kind). We can use this to deduce more information about Erin's characteristics.\n\nSince Erin is not kind, we can't directly determine whether Erin is furry or not, but we can try to deduce more information from the other statements.\n\nWe know that all blue, smart things are furry (statement 4). However, we don't know if Erin is smart or not. We can't assume that Erin is smart just because it's blue.\n\nWe also know that all smart, white things are furry (statement 5). However, we don't know if Erin is white or not. We can't assume that Erin is white just because it's blue.\n\nLet's try to deduce more information from the other statements.\n\nWe know that young things are nice (statement 6). However, we don't know if Erin is young or not.\n\nWe also know that if Fiona is smart and Fiona is young then Fiona is not furry (statement 7). However, this statement doesn't provide any information about Erin.\n\nWe know that if Erin is kind then Erin is furry (statement 8). However, this statement is the opposite of statement 2, which says that Erin is not kind.\n\nWe know that if Gary is smart and Gary is white then Gary is not kind (statement 9). However, this statement doesn't provide any information about Erin.\n\nWe know that if something is nice then it is blue (statement 10). However, we don't know if Erin is nice or not.\n\nSince we don't have enough information to determine whether Erin is nice or not, we can't conclude that Erin is nice. However, we can use statement 10 to deduce that if Erin is nice, then Erin must be blue, which is already given (statement 1).\n\nWe can't conclude that Erin is nice because we don't have enough information to determine whether Erin is nice or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the rules of inference to derive conclusions.\n\n1. Charlie is young.\n2. Erin is blue.\n3. Erin is not kind.\n4. Fiona is blue.\n5. Fiona is white.\n6. Gary is blue.\n7. Gary is kind.\n8. Furry, nice things are white.\n9. If something is young and blue then it is smart.\n10. All blue, smart things are furry.\n11. All smart, white things are furry.\n12. Young things are nice.\n13. If Fiona is smart and Fiona is young then Fiona is not furry.\n14. If Erin is kind then Erin is furry.\n15. If Gary is smart and Gary is white then Gary is not kind.\n16. If something is nice then it is blue.\n\nFirst, let's examine statement 2: Erin is blue. This does not give us much information about Erin's kindness or niceness.\n\nFrom statement 12, we know that young things are nice. But from statement 1, we know that Charlie is young, and we cannot derive any information about Erin's age from the given statements.\n\nNow, let's analyze statement 9: If something is young and blue then it is smart. We know that Charlie is young and blue, but we cannot derive any information about Charlie's niceness or kindness.\n\nFrom statement 10, we know that all blue, smart things are furry. But we have no information about Erin being smart.\n\nHowever, let's consider statement 3: Erin is not kind. We cannot derive any information about Erin's niceness or age from this statement.\n\nNow, let's look at statement 16: If something is nice then it is blue. We cannot directly apply this rule to Erin, as we do not know if Erin is nice or not.\n\nHowever, if we assume that Erin is nice, we can apply statement 16 and conclude that Erin is blue (which is already given in statement 2).\n\nBut now we have a problem. If we assume that Erin is nice, then from statement 16, we know that Erin is blue. But from statement 2, we already know that Erin is blue. This does not give us any new information.\n\nHowever, let's analyze statement 15: If Gary is smart and Gary is white then Gary is not kind. We know that Gary is blue, not white, so we cannot apply this rule to Gary.\n\nBut let's consider statement 14: If Erin is kind then Erin is furry. We cannot derive any information about Erin's kindness or furiness from this statement.\n\nHowever, if we assume that Erin is kind, then from statement 14, we know that Erin is furry. But from statement 10, we know that all blue, smart things are furry. This does not give us any new information.\n\nNow, let's analyze statement 7: Gary is kind. We cannot derive any information about Gary's age or niceness from this statement.\n\nFrom statement 7, we know that Gary is kind. If we assume that Gary is smart, then we can apply statement 15 and conclude that Gary is not kind, which is a contradiction. Therefore, Gary is not smart.\n\nNow, let's analyze statement 13: If Fiona is smart and Fiona is young then Fiona is not furry. We know that Fiona is young (from statement 5 and statement 12), but we cannot derive any information about Fiona's furiness or kindness from this statement.\n\nHowever, from statement 5, we know that Fiona is white. We cannot derive any information about Fiona's niceness or age from this statement.\n\nNow, let's analyze statement 11: All smart, white things are furry. We know that Fiona is white (from statement 5), but we cannot derive any information about Fiona's furiness or kindness from this statement.\n\nHowever, let's consider statement 9: If something is young and blue then it is smart. We know that Charlie is young and blue, but we cannot derive any information about Charlie's niceness or kindness.\n\nNow, let's analyze statement 8: Furry, nice things are white. We cannot derive any information about Erin's furiness or niceness from this statement.\n\nHowever, let's consider statement 12: Young things are nice. We know that Charlie is young, but we cannot derive any information about Charlie's kindness or furiness from this statement.\n\nNow, let's analyze statement 6: Gary is blue. We cannot derive any information about Gary's age or niceness from this statement.\n\nHowever, from statement 7, we know that Gary is kind. If we assume that Gary is nice, then from statement 16, we know that Gary is blue. But from statement 6, we already know that Gary is blue. This does not give us any new information.\n\nNow, let's analyze statement 5: Fiona is white. We know that Fiona is blue (from statement 4), so we cannot derive any information about Fiona's furiness or kindness from this statement.\n\nHowever, from statement 13, we know that if Fiona is smart and Fiona is young then Fiona is not furry. We know that Fiona is young (from statement 5 and statement 12), but we cannot derive any information about Fiona's furiness or kindness from this statement.\n\nNow, let's analyze statement 4: Fiona is blue. We cannot derive any information about Fiona's furiness or kindness from this statement.\n\nHowever, from statement 5, we know that Fiona is white. We cannot derive any information about Fiona's furiness or kindness from this statement.\n\nNow, let's analyze statement 3: Erin is not kind. We cannot derive any information about Erin's age or furiness from this statement.\n\nHowever, from statement 2, we know that Erin is blue. If we assume that Erin is young, then from statement 9, we know that Erin is smart. But from statement 10, we know that all blue, smart things are furry. This does not give us any new information.\n\nNow, let's analyze statement 2: Erin is blue. We cannot derive any information about Erin's age or kindness from this statement.\n\nHowever, if we assume that Erin is nice, then from statement 16, we know that Erin is blue. But from statement 2, we already know that Erin is blue. This does not give us any new information.\n\nTherefore, we cannot conclude that Erin is nice or not from the given statements.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Erin is blue. (Given)\n2. Erin is not kind. (Given)\n3. Furry, nice things are white. (Given)\n4. If something is young and blue then it is smart. (Given)\n5. If something is young and blue then it is smart, which means all blue, smart things are furry. (Implicit, from 4)\n6. All smart, white things are furry. (Given)\n7. Young things are nice. (Given)\n8. If Fiona is smart and Fiona is young then Fiona is not furry. (Given, but this statement is about Fiona, not Erin)\n9. If Erin is kind then Erin is furry. (Given, but this is a conditional statement and Erin is not kind)\n10. If Gary is smart and Gary is white then Gary is not kind. (Given, but this statement is about Gary, not Erin)\n11. If something is nice then it is blue. (Given)\n\nWe can start by trying to find a relationship between Erin and the color white or the color fur. However, we can see that Erin is blue (1) and we do not have any information that directly links Erin to being white or furry.\n\nFrom statement 4, we know that if something is young and blue then it is smart. However, we do not know if Erin is young.\n\nFrom statement 7, we know that young things are nice. However, we do not know if Erin is young.\n\nFrom statement 11, we know that if something is nice then it is blue. This statement does not tell us if Erin is nice, but it tells us that if Erin is nice, then Erin is blue. Since we already know that Erin is blue (1), this statement does not add any new information.\n\nFrom statement 2, we know that Erin is not kind. From statement 9, if Erin were kind, then Erin would be furry. However, we do not know if Erin is kind or not. Therefore, we cannot conclude that Erin is furry or not.\n\nFrom statement 5, we know that all blue, smart things are furry. However, we do not know if Erin is smart.\n\nFrom statement 8, we know that if Fiona is smart and Fiona is young then Fiona is not furry. However, this statement is about Fiona, not Erin.\n\nFrom statement 10, we know that if Gary is smart and Gary is white then Gary is not kind. However, this statement is about Gary, not Erin.\n\nTherefore, based on the given information, we cannot determine whether Erin is nice or not. The statement \"Erin is nice\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Erin is blue.\n   - Erin is not kind.\n   - Fiona is blue.\n   - Fiona is white.\n   - Gary is blue.\n   - Gary is kind.\n   - Furry, nice things are white.\n   - If something is young and blue then it is smart.\n   - All blue, smart things are furry.\n   - All smart, white things are furry.\n   - Young things are nice.\n   - If Fiona is smart and Fiona is young then Fiona is not furry.\n   - If Erin is kind then Erin is furry.\n   - If Gary is smart and Gary is white then Gary is not kind.\n   - If something is nice then it is blue.\n\n2. Analyze the given statements to find information about Erin being nice:\n   - Erin is blue (Erin is blue).\n   - Erin is not kind (Erin is not kind).\n\n3. Determine whether Erin is nice:\n   - We have a statement that says \"If something is nice then it is blue.\" Since Erin is blue, this does not directly tell us if Erin is nice or not.\n   - However, we also have a statement that says \"If something is nice then it is blue.\" Combining this with the fact that \"Furry, nice things are white,\" we can deduce that if Erin were nice, then Erin would have to be white, which contradicts the fact that Erin is blue. This means Erin cannot be nice, since being nice would imply being white, and Erin is blue.\n\n4. Conclusion:\n   - Based on the analysis, we can conclude that Erin is not nice.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will use the given information and logical deductions to determine if Erin is nice. \n\n1. Let's start by analyzing the given statements:\n   - Charlie is young.\n   - Erin is blue.\n   - Erin is not kind.\n   - Fiona is blue.\n   - Fiona is white.\n   - Gary is blue.\n   - Gary is kind.\n   - Furry, nice things are white.\n   - If something is young and blue then it is smart.\n   - All blue, smart things are furry.\n   - All smart, white things are furry.\n   - Young things are nice.\n   - If Fiona is smart and Fiona is young then Fiona is not furry.\n   - If Erin is kind then Erin is furry.\n   - If Gary is smart and Gary is white then Gary is not kind.\n   - If something is nice then it is blue.\n\n2. Now, let's analyze the statement to be determined:\n   - Erin is nice.\n\n3. We can start by using the given statements to determine if Erin is nice. From the given statements, we know that:\n   - Erin is blue.\n   - Erin is not kind.\n   - If something is nice then it is blue.\n   - If Erin is kind then Erin is furry.\n\n4. Using the information in step 3, we can deduce that:\n   - Erin is not nice (because Erin is not kind), but\n   - Erin is blue, so Erin could be nice.\n\n5. However, we have more information about Erin. We know that Erin is blue, and from the given statements, we know that:\n   - If something is young and blue then it is smart.\n   - All blue, smart things are furry.\n   - If something is nice then it is blue.\n   - Erin is not kind.\n\n6. Since Erin is not kind, we can't use the information that \"If Erin is kind then Erin is furry.\" However, we still need to consider the possibility that Erin is young and blue.\n\n7. From the given statements, we know that:\n   - Charlie is young.\n   - Erin is blue.\n   - If something is young and blue then it is smart.\n\n8. We can deduce that Erin is not young (because Charlie is young, and Erin is not Charlie), so Erin cannot be young and blue.\n\n9. Since Erin is blue, but not young and blue, we cannot use the information that \"If something is young and blue then it is smart.\" However, we still need to consider the other possibilities.\n\n10. We know that Erin is blue, and from the given statements, we know that:\n   - If something is blue then it is not necessarily nice (because Erin is blue and Erin is not nice).\n   - If something is blue and smart then it is furry (but we don't know if Erin is smart).\n   - If something is blue and not kind then it is not necessarily furry (because Erin is blue and Erin is not kind).\n\n11. Since we don't have enough information to determine if Erin is smart, furry, or kind, we cannot determine if Erin is nice.\n\n12. However, we can still try to use the information that \"If something is nice then it is blue.\" We know that Erin is blue, but we don't know if Erin is nice.\n\n13. Since we cannot determine if Erin is nice, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n1. Erin is blue.\n2. Erin is not kind.\n3. Furry, nice things are white.\n4. If something is young and blue then it is smart.\n5. All blue, smart things are furry.\n6. All smart, white things are furry.\n7. Young things are nice.\n8. If Fiona is smart and Fiona is young then Fiona is not furry.\n9. If Erin is kind then Erin is furry.\n10. If Gary is smart and Gary is white then Gary is not kind.\n11. If something is nice then it is blue.\n\nStep 1: Analyze the given information about Erin.\n- Erin is blue (1)\n- Erin is not kind (2)\n- From (11), we know that if something is nice, then it is blue. But since Erin is blue, this information does not give us any new insights about Erin's niceness.\n\nStep 2: Analyze the given information about Fiona and Gary.\n- Fiona is blue (4) \n- Fiona is white (5)\n- If Fiona is smart and Fiona is young then Fiona is not furry (8)\n- Since Fiona is white, we can deduce that Fiona is not smart, because if Fiona were smart, then it would be furry (6), but this contradicts (8).\n- Gary is blue (7)\n- Gary is kind (8)\n- From (9), we know that if Erin is kind then Erin is furry. But since we know that Erin is not kind (2), this information does not give us any new insights about Erin's niceness.\n\nStep 3: Analyze the relationship between young, smart, blue, and nice things.\n- From (4), we know that if something is young and blue then it is smart.\n- From (11), we know that if something is nice then it is blue.\n- From (7), we know that young things are nice.\n\nStep 4: Determine whether Erin is nice.\n- We know that Erin is blue (1), which means Erin is smart, because Erin is blue (4) and Erin is not kind (2).\n- Since Erin is blue and smart, Erin is furry, because all blue, smart things are furry (5).\n- However, we also know that Erin is not kind (2), which means Erin is not furry, because if Erin were furry, then Erin would be kind (9).\n- This is a contradiction, which means we cannot determine whether Erin is nice or not.\n\nConclusion: The statement \"Erin is nice\" is unknown, because we cannot determine whether Erin is nice or not based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their relationships. We will use a truth table or logical deductions to determine the truth value of the given statement.\n\nGiven statements:\n1. Charlie is young.\n2. Erin is blue.\n3. Erin is not kind.\n4. Fiona is blue.\n5. Fiona is white.\n6. Gary is blue.\n7. Gary is kind.\n8. Furry, nice things are white.\n9. If something is young and blue then it is smart.\n10. All blue, smart things are furry.\n11. All smart, white things are furry.\n12. Young things are nice.\n13. If Fiona is smart and Fiona is young then Fiona is not furry.\n14. If Erin is kind then Erin is furry.\n15. If Gary is smart and Gary is white then Gary is not kind.\n16. If something is nice then it is blue.\n\nTo determine the truth value of the statement \"Erin is nice\", we need to examine the statements that provide information about Erin.\n\nFrom statement 2, we know that Erin is blue. From statement 3, we know that Erin is not kind.\n\nNow, let's analyze the relationship between being blue, smart, and furry. From statement 9, if something is young and blue, then it is smart. However, we don't have any information about Erin's age. \n\nFrom statement 10, all blue, smart things are furry. However, this statement requires that the thing is both blue and smart, which we don't know about Erin.\n\nFrom statement 14, if Erin is kind, then Erin is furry. However, we already know that Erin is not kind (statement 3).\n\nNow, let's analyze the relationship between being nice and being blue. From statement 16, if something is nice, then it is blue.\n\nWe are given that Erin is blue, and we know that if something is nice, then it is blue. However, we can't directly conclude that Erin is nice from this information because we need to consider the implications of Erin being blue and the other statements.\n\nFrom statement 2, we know that Erin is blue. From statement 16, if something is nice, then it is blue. Therefore, we can conclude that Erin is nice if Erin is not blue. However, since Erin is blue, then Erin cannot be nice if Erin is blue.\n\nHowever, there is a possibility that Erin is not nice, but we cannot conclude this with certainty because we are missing information about Erin's age and whether Erin is smart.\n\nNow, let's examine the possibilities for Erin's properties.\n\n1. Erin is not blue: This is not possible because Erin is blue (statement 2).\n2. Erin is not young: This is unknown because we don't have any information about Erin's age.\n3. Erin is not smart: This is unknown because we don't have any information about Erin's intelligence.\n4. Erin is not nice: This is possible because we don't have any information about Erin's niceness.\n\nSince we cannot conclude with certainty whether Erin is nice, we must classify the truth value of the statement \"Erin is nice\" as unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Erin is nice, we need to analyze the given statements and use logical deductions.\n\n1. Erin is blue. \n2. Erin is not kind.\n3. Furry, nice things are white.\n4. All blue, smart things are furry.\n5. All smart, white things are furry.\n6. Young things are nice.\n7. If Fiona is smart and Fiona is young then Fiona is not furry.\n8. If Erin is kind then Erin is furry.\n9. If Gary is smart and Gary is white then Gary is not kind.\n10. If something is nice then it is blue.\n\nFrom statement 1, we know Erin is blue. \n\nWe don't have direct information about Erin being nice or smart. However, we can try to connect these statements through logical deductions.\n\nFrom statement 6, we know that young things are nice. However, we don't have any information about Erin's age.\n\nIf Erin is nice, then from statement 10, Erin is blue. However, we already know that Erin is blue from statement 1. This doesn't give us any new information.\n\nHowever, if Erin is nice, then Erin is blue, and Erin is not kind (from statement 2). We don't have any direct information about Erin being smart or furry.\n\nFrom statement 8, we know that if Erin is kind, then Erin is furry. But we already know that Erin is not kind (from statement 2).\n\nWe also know that Gary is kind (from statement 7), and Gary is blue (from statement 4). However, this doesn't give us any information about Erin.\n\nFrom statement 9, we know that if Gary is smart and Gary is white, then Gary is not kind. However, this is not applicable to Erin, as Erin is not white.\n\nFrom statement 7, we know that if Fiona is smart and Fiona is young, then Fiona is not furry. However, this is not applicable to Erin, as Erin's smartness is unknown.\n\nWe can conclude that we don't have enough information to determine whether Erin is nice or not. \n\nHowever, there is a possible path to deduce Erin is nice, Erin is blue, and Erin is not kind. \n\n1. If Erin is blue and Erin is not kind, then Erin is not furry. (From statement 4 and statement 8)\n2. If Erin is blue, Erin is not kind, and Erin is not furry, then Erin is smart. (From statement 2 and statement 4)\n3. If Erin is blue and Erin is smart, then Erin is white. (From statement 4)\n4. If Erin is white, Erin is smart, and Erin is blue, then Erin is nice. (From statement 3 and statement 6)\n\nTherefore, we can deduce that Erin is nice.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is nice\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Erin is blue. (Statement 2)\n2. Erin is not kind. (Statement 3)\n\nFrom the given statements, we know that all nice things are blue (Statement 8). This implies that if Erin is nice, then Erin must be blue, which is consistent with Statement 2. However, we also know that Erin is not kind (Statement 3).\n\nHowever, there is no direct information that connects being kind or nice to being furry or white. We can infer that Erin could be white or furry, but that doesn't necessarily help us determine if Erin is nice.\n\nHowever, we can make use of another given statement. Young things are nice (Statement 5). However, Erin's age is not specified.\n\nConsidering the following statement: \"If something is young and blue then it is smart\" (Statement 4). Since Erin is blue (Statement 2) and young things are nice (Statement 5), it implies that Erin is smart, which in turn implies that Erin is furry (Statement 1 and Statement 4).\n\nNow, since Erin is furry and blue, but not kind (Statement 3), and all blue, smart things are furry (Statement 1 and Statement 4), it implies that Erin is not nice because Erin is not kind.\n\nHowever, we can't be sure about Erin being nice based on the given statements, because Erin's age is not specified. Therefore, we can't conclude that Erin is nice.\n\nSo, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is nice\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nGiven statements:\n\n1. Erin is blue.\n2. Erin is not kind.\n3. Furry, nice things are white.\n4. If something is young and blue then it is smart.\n5. All blue, smart things are furry.\n6. All smart, white things are furry.\n7. Young things are nice.\n8. If Fiona is smart and Fiona is young then Fiona is not furry.\n9. If Erin is kind then Erin is furry.\n10. If Gary is smart and Gary is white then Gary is not kind.\n11. If something is nice then it is blue.\n\nWe need to find a relationship between Erin and the properties \"nice\" and \"blue\" using the given statements.\n\nFrom statement 1, Erin is blue.\n\nStatement 11 implies that if something is nice, then it is blue. However, we cannot directly conclude that Erin is nice from this statement alone.\n\nStatement 2 implies that Erin is not kind.\n\nStatement 9 implies that if Erin is kind, then Erin is furry. However, this does not provide any information about Erin being nice or not.\n\nStatement 3 implies that furry, nice things are white. However, we do not know if Erin is furry or not.\n\nFrom statement 4, if something is young and blue, then it is smart. However, we do not know if Erin is young or not.\n\nFrom statement 7, young things are nice. However, we do not know if Erin is young or not.\n\nFrom statement 8, if Fiona is smart and Fiona is young, then Fiona is not furry. However, we do not know if Fiona is Erin or not.\n\nFrom statement 10, if Gary is smart and Gary is white, then Gary is not kind. However, we do not know if Gary is Erin or not.\n\nWe cannot directly conclude that Erin is nice or not from the given statements. However, we can use the process of elimination to make an educated guess.\n\nLet's assume that Erin is nice. Then, from statement 11, Erin is blue (which is already given).\n\nHowever, this assumption does not provide any additional information that can help us determine if Erin is nice or not. Therefore, we cannot conclude that the statement \"Erin is nice\" is true or false based on the given statements.\n\nTherefore, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and deduce the information about Erin.\n\n1. Erin is blue.\n2. Erin is not kind.\n3. If something is young and blue then it is smart.\n4. If Fiona is smart and Fiona is young then Fiona is not furry.\n5. All smart, white things are furry.\n6. Young things are nice.\n7. If something is nice then it is blue.\n8. All blue, smart things are furry.\n9. If Erin is kind then Erin is furry.\n10. Gary is blue.\n11. Gary is kind.\n12. Gary is white.\n13. Furry, nice things are white.\n\nFrom statement 1, we know Erin is blue. \nFrom statement 2, we know Erin is not kind.\n\nWe can use statement 3 to find out if Erin is smart or not. Since Erin is blue, we need to find out if Erin is young or not. \n\nBut let's first check if there's any other information that could help us. \n\nStatement 4 talks about Fiona, but it does not provide any information about Erin.\n\nStatement 5 does not help us, as we do not know if Erin is white or not.\n\nStatement 6 says young things are nice, but we do not know if Erin is young or not.\n\nStatement 7 says if something is nice then it is blue. But we do not know if Erin is nice or not.\n\nStatement 8 does not help us, as we do not know if Erin is smart or not.\n\nStatement 9 says if Erin is kind then Erin is furry. But we already know Erin is not kind from statement 2.\n\nStatement 10-12 give information about Gary, but they do not provide any information about Erin.\n\nStatement 13 does not help us, as we do not know if Erin is nice or not.\n\nNow let's go back to statement 3, which says if something is young and blue then it is smart. We need to find out if Erin is young or not. \n\nLet's analyze statement 6, which says young things are nice. If Erin is young, then Erin must be nice. But statement 7 says if something is nice then it is blue. We already know Erin is blue from statement 1. \n\nSo, if Erin is young, then Erin is nice, and Erin is blue. This would make Erin a blue, young thing, which means Erin is smart from statement 3.\n\nNow let's go back to statement 8, which says all blue, smart things are furry. If Erin is smart, then Erin must be furry.\n\nHowever, statement 4 says if Fiona is smart and Fiona is young then Fiona is not furry. This statement is not applicable to Erin, but it creates a contradiction with statement 8.\n\nThis means that our assumption that Erin is young is not correct.\n\nSince we cannot determine if Erin is young or not, we cannot determine if Erin is nice or not. \n\nTherefore, the statement \"Erin is nice\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we'll use a method called truth table or a similar form of logical reasoning. We will try to derive the statement \"Erin is nice\" from the given premises.\n\n1. Charlie is young. (Premise)\n2. Erin is blue. (Premise)\n3. Erin is not kind. (Premise)\n4. Fiona is blue. (Premise)\n5. Fiona is white. (Premise)\n6. Gary is blue. (Premise)\n7. Gary is kind. (Premise)\n8. Furry, nice things are white. (Premise)\n9. If something is young and blue then it is smart. (Premise)\n10. All blue, smart things are furry. (Premise)\n11. All smart, white things are furry. (Premise)\n12. Young things are nice. (Premise)\n13. If Fiona is smart and Fiona is young then Fiona is not furry. (Premise)\n14. If Erin is kind then Erin is furry. (Premise)\n15. If Gary is smart and Gary is white then Gary is not kind. (Premise)\n16. If something is nice then it is blue. (Premise)\n\nFrom premise 2, we know Erin is blue. \n\nFrom premise 9, if Erin is young and blue, then Erin is smart. We don't know if Erin is young yet. \n\nHowever, from premise 12, we know young things are nice. So if Erin is young, then Erin is nice. \n\nNow let's examine Erin's age. \n\nIf Erin is not young, then we cannot conclude if Erin is nice or not. \n\nBut, if Erin is young, then from premise 9, Erin is smart. \n\nNow let's use this information in premise 16: If something is nice then it is blue. If Erin is nice (because Erin is young) then Erin is blue (which we already know). But we also know from premise 3 that Erin is not kind. Therefore, Erin is not furry (because Erin is not kind). \n\nFrom premise 10, all blue, smart things are furry. If Erin is smart (because Erin is young) then Erin is furry (because Erin is blue). But from the last step, Erin is not furry. Therefore, our assumption that Erin is smart (because Erin is young) was incorrect. \n\nHowever, this does not help us to conclude whether Erin is nice or not. We still don't know Erin's age.\n\nBut we can derive that Erin is not nice from premise 16: If something is nice then it is blue. We already know Erin is blue. If Erin were nice, then Erin would be blue (which we know), but we cannot conclude anything more. However, we can conclude that if Erin is not kind (premise 3) then Erin is not nice. And from premise 16, we know that if something is nice then it is blue. If Erin is blue (premise 2) then Erin is nice. However, we know that Erin is not nice (because Erin is not kind). Therefore, Erin is not blue (which is a contradiction to premise 2). But this is not the only possible explanation. If Erin is not blue, then we cannot conclude anything from premise 16. However, we can use premise 16 to conclude that if Erin is nice then Erin is blue. If Erin is blue (premise 2) then Erin is nice. But we know that Erin is not nice. Therefore, Erin is not blue (which is a contradiction to premise 2). However, this is not the only possible explanation. We can also use premise 16 to conclude that if Erin is nice then Erin is blue. If Erin is blue (premise 2) then Erin is not kind (because Erin is not nice). But we already know that Erin is not kind (premise 3). Therefore, Erin is not nice (because Erin is not kind).\n\nBut we can also use premise 3: Erin is not kind. From premise 14, if Erin is kind then Erin is furry. Therefore, Erin is not furry. Now we can use premise 16 to conclude that if Erin is nice then Erin is blue. If Erin is blue (premise 2) then Erin is nice. But we know that Erin is not nice. Therefore, Erin is not blue (which is a contradiction to premise 2). However, this is not the only possible explanation. We can also use premise 16 to conclude that if Erin is nice then Erin is blue. If Erin is blue (premise 2) then Erin is not kind (because Erin is not nice). But we already know that Erin is not kind (premise 3). Therefore, Erin is not nice (because Erin is not kind).\n\nBut we can also use premise 15: If Gary is smart and Gary is white then Gary is not kind. We know that Gary is kind (premise 7). Therefore, Gary is not white. Now we can use premise 8: Furry, nice things are white. If something is nice then it is blue (premise 16). If something is blue then it is not white (because something that is blue is either furry or not, and if it is furry then it is white, but if it is not furry then it is not white). Therefore, if something is blue then it is not nice. We already know that Erin is blue (premise 2). Therefore, Erin is not nice.\n\nHowever, we can also use premise 8: Furry, nice things are white. If something is nice then it is blue (premise 16). If something is blue then it is not white (because something that is blue is either furry or not, and if it is furry then it is white, but if it is not furry then it is not white). Therefore, if something is blue then it is not nice. We already know that Erin is blue (premise 2). Therefore, Erin is not nice.\n\nTherefore, from the given premises, we can conclude that Erin is not nice.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_erin, nice_erin), white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_erin, smart_erin), furry_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_erin, white_erin), furry_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_erin, nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(Fiona) & young(Fiona) -> Not(furry(Fiona))",
+          "z3_formula": "Implies(And(smart_fiona, young_fiona), Not(furry_fiona))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(erin) -> furry(erin)",
+          "z3_formula": "Implies(kind_erin, furry_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> Not(kind(X))",
+          "z3_formula": "Implies(And(smart_gary, white_gary), Not(kind_gary))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_erin, blue_erin)",
+          "source_step": 10
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_erin, blue_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X) -> furry(X)",
+          "z3_formula": "Implies(Implies(And(young_erin, blue_erin), smart_erin), furry_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_erin, white_erin), furry_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_erin, nice_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_erin, blue_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_erin, furry_erin)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_X, nice_X), white_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_X, blue_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), furry_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_X, white_X), furry_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "fiona is smart & fiona is young -> fiona is not furry",
+          "z3_formula": "Implies(And(smart_fiona, young_fiona), Not(furry_fiona))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(erin) -> furry(erin)",
+          "z3_formula": "Implies(kind_erin, furry_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "gary is smart & gary is white -> gary is not kind",
+          "z3_formula": "Implies(And(smart_gary, white_gary), Not(kind_gary))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_X, blue_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(erin))",
+          "z3_formula": "Not(kind_erin) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_X, nice_X), white_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_X, blue_X), smart_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), furry_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_X, white_X), furry_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_X, furry_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_X, kind_X), white_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> blue(X)",
+          "z3_formula": "Implies(kind_X, blue_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(erin))",
+          "z3_formula": "Not(nice_erin) == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not(furry(erin))",
+          "z3_formula": "Not(furry_erin) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not(kind(erin))",
+          "z3_formula": "Not(kind_erin) == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not(young(erin))",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not(smart(erin))",
+          "z3_formula": "Not(smart_erin) == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not(furry(erin))",
+          "z3_formula": "Not(furry_erin) == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(erin))",
+          "z3_formula": "Not(nice_erin) == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(erin))",
+          "z3_formula": "Not(nice_erin) == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(erin))",
+          "z3_formula": "Not(nice_erin) == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(erin))",
+          "z3_formula": "Not(nice_erin) == True",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_erin, blue_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_erin, nice_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_erin, blue_erin), smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_erin, smart_erin), furry_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not kind(X) -> not furry(X)",
+          "z3_formula": "Implies(Not(kind_erin), Not(furry_erin))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> not kind(X)",
+          "z3_formula": "Implies(And(smart_gary, white_gary), Not(kind_gary))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_erin, kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(erin)",
+          "z3_formula": "Not(nice_erin)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(erin))",
+          "z3_formula": "not(kind_erin) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_X, nice_X), white_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_X, blue_X), smart_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), furry_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_X, white_X), furry_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) & young(X) -> not(furry(X))",
+          "z3_formula": "Implies(And(kind_X, smart_X, young_X), not(furry_X))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_X, furry_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> not(kind(X))",
+          "z3_formula": "Implies(And(smart_X, white_X), not(kind_X))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_X, blue_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_erin, nice_erin), white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_erin, smart_erin), furry_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> not kind(X)",
+          "z3_formula": "Implies(And(smart_erin, white_erin), Not(kind_erin))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_erin, nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> not furry(X)",
+          "z3_formula": "Implies(And(smart_fiona, young_fiona), Not(furry_fiona))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_erin, furry_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> not kind(X)",
+          "z3_formula": "Implies(And(smart_gary, white_gary), Not(kind_gary))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_erin, blue_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(erin)",
+          "z3_formula": "Not(furry_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_erin, blue_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_erin, blue_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_erin, nice_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_erin, smart_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_erin, smart_erin), furry_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(erin)",
+          "z3_formula": "Not(nice_erin)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_erin, blue_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_erin, blue_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_erin, smart_erin), furry_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> not kind(X)",
+          "z3_formula": "Implies(And(smart_gary, white_gary), Not(kind_gary))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_erin, nice_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_erin, nice_erin), white_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> not furry(X)",
+          "z3_formula": "Implies(And(smart_fiona, young_fiona), Not(furry_fiona))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_erin, furry_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> not kind(X)",
+          "z3_formula": "Implies(And(smart_gary, white_gary), Not(kind_gary))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(erin))",
+          "z3_formula": "Not(kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_erin, blue_erin), smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_erin, nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_erin, blue_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_erin, blue_erin), furry_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_erin, furry_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & smart(X) -> not(furry(X))",
+          "z3_formula": "Implies(And(young_fiona, smart_fiona), Not(furry_fiona))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_gary, nice_gary), white_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(furry(erin))",
+          "z3_formula": "Not(furry_erin)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "not kind_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_X, nice_X), white_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_X, blue_X), smart_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), furry_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> not kind(X)",
+          "z3_formula": "Implies(And(smart_X, white_X), not kind_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> not furry(X)",
+          "z3_formula": "Implies(And(smart_X, young_X), not furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_X, furry_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_X, white_X), furry_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_X, blue_X)",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 149,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 40
+    },
+    "maxsat_stats": {
+      "satisfied": 35,
+      "excluded": 5,
+      "total_weight": 138,
+      "solve_time_ms": 1.7257826402783394
+    },
+    "timing": {
+      "trace_gen_s": 16.285,
+      "extraction_s": 34.292,
+      "dedup_s": 1.184,
+      "maxsat_s": 0.004,
+      "total_s": 51.765
+    }
+  }
+}

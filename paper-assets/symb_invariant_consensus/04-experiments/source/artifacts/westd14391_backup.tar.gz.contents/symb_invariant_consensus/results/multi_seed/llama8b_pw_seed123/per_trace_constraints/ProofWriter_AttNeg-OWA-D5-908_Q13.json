@@ -1,0 +1,1236 @@
+{
+  "pid": "ProofWriter_AttNeg-OWA-D5-908_Q13",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_fiona, red_fiona), rough_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_fiona, kind_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_fiona, red_fiona), rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_fiona, kind_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> Not(big(X))",
+          "z3_formula": "Implies(And(round_fiona, nice_fiona), Not(big_fiona))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_fiona, red_fiona), rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_fiona, kind_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_fiona, red_fiona), rough_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie) == True",
+          "z3_formula": "big_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie) == True",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie) == True",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(kind(charlie))",
+          "z3_formula": "Not(kind_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "Not(big(fiona))",
+          "z3_formula": "Not(big_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona)) -> nice(fiona)",
+          "z3_formula": "Implies(Not(round_fiona), nice_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "Not(big(fiona))",
+          "z3_formula": "Not(big_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Not(big(fiona))",
+          "z3_formula": "Not(big_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 23
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not big(X)",
+          "z3_formula": "Implies(And(round_fiona, nice_fiona), Not(big_fiona))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_fiona, red_fiona), rough_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_fiona, kind_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(fiona)",
+          "z3_formula": "Not(rough_fiona) == True",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_fiona, red_fiona), rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> Not(big(X))",
+          "z3_formula": "Implies(And(round_fiona, nice_fiona), Not(big_fiona))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_fiona, kind_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> Not(big(X))",
+          "z3_formula": "Implies(And(round_fiona, nice_fiona), Not(big_fiona))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == Unknown",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bob)",
+          "z3_formula": "Not(red_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_X, quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> not kind(X)",
+          "z3_formula": "Implies(And(kind_X, big_X), Not(kind_X))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_X, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not big(X)",
+          "z3_formula": "Implies(And(round_X, nice_X), Not(big_X))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X)",
+          "z3_formula": "round_X == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_X, red_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(fiona)",
+          "z3_formula": "Not(rough_fiona) == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & big(X) -> not kind(X)",
+          "z3_formula": "Implies(And(nice_charlie, big_charlie), not kind_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not big(X)",
+          "z3_formula": "Implies(kind_charlie, not big_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not big(charlie)",
+          "z3_formula": "not big_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "contradiction",
+          "z3_formula": "And(big_charlie, not big_charlie) == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(And(rough_fiona, round_fiona), And(And(quiet_fiona, big_fiona), quiet_fiona))) == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_fiona, red_fiona), rough_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(And(rough_fiona, round_fiona), And(And(quiet_fiona, big_fiona), quiet_fiona))) == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_anne, kind_anne)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(And(rough_fiona, round_fiona), And(And(quiet_fiona, big_fiona), quiet_fiona))) == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(And(rough_fiona, round_fiona), And(And(quiet_fiona, big_fiona), quiet_fiona))) == True",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> nice(X)",
+          "z3_formula": "Implies(quiet_fiona, nice_fiona)",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(And(rough_fiona, round_fiona), And(And(quiet_fiona, big_fiona), quiet_fiona))) == True",
+          "source_step": 28
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round_fiona",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice_fiona",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not big(X)",
+          "z3_formula": "Implies(And(round_fiona, nice_fiona), not big_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not big_fiona",
+          "z3_formula": "not big_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet_fiona",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not big(X) -> not quiet(X)",
+          "z3_formula": "Implies(not big_fiona, not quiet_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet_fiona",
+          "z3_formula": "not quiet_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not rough(X) -> not round(X)",
+          "z3_formula": "Implies(not rough_fiona, not round_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not rough_fiona",
+          "z3_formula": "not rough_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_fiona, rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough_fiona",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not rough_fiona == True",
+          "z3_formula": "not rough_fiona == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_fiona, nice_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_anne, red_anne), rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) & nice(X) -> not big(X)",
+          "z3_formula": "Implies(And(round_bob, nice_bob), not big_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) & big(X) -> not kind(X)",
+          "z3_formula": "Implies(And(nice_charlie, big_charlie), not kind_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_charlie, kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_fiona, quiet_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_fiona, round_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == False",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(fiona)",
+          "z3_formula": "not rough_fiona == True",
+          "source_step": 23
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bob)",
+          "z3_formula": "Not(red_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_X, nice_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_X, red_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_X, quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> Not(big(X))",
+          "z3_formula": "Implies(And(kind_X, nice_X), Not(big_X))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_X, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> Not(big(X))",
+          "z3_formula": "Implies(And(round_X, nice_X), Not(big_X))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(fiona)",
+          "z3_formula": "Not(rough_fiona) == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(bob))",
+          "z3_formula": "not(red_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_X, nice_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_X, red_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_X, quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> round(X)",
+          "z3_formula": "Implies(rough_X, round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> not(big(X))",
+          "z3_formula": "Implies(And(nice_X, round_X), not(big_X))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(charlie) & big(charlie) -> not(kind(charlie))",
+          "z3_formula": "Implies(And(kind_charlie, big_charlie), not(kind_charlie))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_X, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not(big(X))",
+          "z3_formula": "Implies(And(round_X, nice_X), not(big_X))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(fiona))",
+          "z3_formula": "not(rough_fiona) == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(big(fiona))",
+          "z3_formula": "not(big_fiona) == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(fiona))",
+          "z3_formula": "not(round_fiona) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(fiona))",
+          "z3_formula": "not(rough_fiona) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(fiona))",
+          "z3_formula": "not(rough_fiona) == True",
+          "source_step": 5
+        }
+      ]
+    }
+  ]
+}

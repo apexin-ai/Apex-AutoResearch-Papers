@@ -1,0 +1,1403 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-296_Q13",
+    "problem": "Anne is green. Charlie is big. Charlie is quiet. Charlie is round. Erin is green. Erin is kind. Erin is nice. Erin is quiet. Fiona is blue. Fiona is kind. Fiona is quiet. If something is kind then it is nice. If something is round and quiet then it is blue. If Charlie is kind then Charlie is big. All big, blue things are kind. Nice things are quiet. All green things are big. Quiet things are kind. Big things are kind. If Anne is green then Anne is round.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not blue.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nBig(Charlie, True) ::: Charlie is big.\nQuiet(Charlie, True) ::: Charlie is quiet.\nRound(Charlie, True) ::: Charlie is round.\nGreen(Erin, True) ::: Erin is green.\nKind(Erin, True) ::: Erin is kind.\nNice(Erin, True) ::: Erin is nice.\nQuiet(Erin, True) ::: Erin is quiet.\nBlue(Fiona, True) ::: Fiona is blue.\nKind(Fiona, True) ::: Fiona is kind.\nQuiet(Fiona, True) ::: Fiona is quiet.\n\nRules:\nKind($x, True) >>> Nice($x, True) ::: If something is kind then it is nice.\nRound($x, True) && Quiet($x, True) >>> Blue($x, True) ::: If something is round and quiet then it is blue.\nKind(Charlie, True) >>> Big(Charlie, True) ::: If Charlie is kind then Charlie is big.\nBig($x, True) && Blue($x, True) >>> Kind($x, True) ::: All big, blue things are kind.\nNice($x, True) >>> Quiet($x, True) ::: Nice things are quiet.\nGreen($x, True) >>> Big($x, True) ::: All green things are big.\nQuiet($x, True) >>> Kind($x, True) ::: Quiet things are kind.\nBig($x, True) >>> Kind($x, True) ::: Big things are kind.\nGreen(Anne, True) >>> Round(Anne, True) ::: If Anne is green then Anne is round.\n\nQuery:\nBlue(Erin, False) ::: Erin is not blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 121.0,
+      "True": 136.0,
+      "Unknown": 183.5
+    },
+    "answer_counts": {
+      "False": 3,
+      "True": 4,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will analyze the given statements and use them to deduce the relationship between Erin and blue. We will use the process of elimination and inference to determine whether the statement \"Erin is not blue\" is true, false, or unknown.\n\n1. We know that Erin is green (from the problem statement).\n2. All green things are big (from the problem statement).\n3. Big things are kind (from the problem statement).\n4. Quiet things are kind (from the problem statement).\n5. Erin is kind (from the problem statement).\n6. Erin is quiet (from the problem statement).\n7. We also know that if something is round and quiet, then it is blue (from the problem statement).\n8. However, we don't know whether Erin is round or not.\n\nFrom statement 1, we can infer that Erin is big (from statement 2). We can also infer that Erin is kind (from statements 3 and 6). But we still don't know whether Erin is round or not.\n\nTo determine whether Erin is blue or not, we need to know whether she is round or not. However, we have an additional piece of information: if Anne is green, then Anne is round (from the problem statement). \n\nWe can use this information to make an inference about Erin. However, since Anne is green (from the problem statement), and we know that Erin is also green (from the problem statement), we can use the transitive property to make an inference about Erin: if Anne is green then Anne is round, and Erin is green, therefore we can infer that Erin is round.\n\nNow that we know Erin is round, we can use the rule that if something is round and quiet, then it is blue (from the problem statement). Since Erin is round (from our inference) and Erin is quiet (from the problem statement), we can infer that Erin is blue.\n\nHowever, we are asked to determine whether the statement \"Erin is not blue\" is true, false, or unknown. Since we have inferred that Erin is blue, the statement \"Erin is not blue\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and use the rules to determine the truth value of the statement.\n\n1. Anne is green.\n   - From this, we can conclude that Anne is round, because if Anne is green then Anne is round. (Given rule)\n\n2. Charlie is big.\n   - No information is given about Charlie's color, so this statement is true for now.\n\n3. Charlie is quiet.\n   - This statement is given.\n\n4. Charlie is round.\n   - No information is given about Charlie's shape, so this statement is unknown for now.\n\n5. Erin is green.\n   - No information is given about Erin's color, so this statement is unknown for now.\n\n6. Erin is kind.\n   - This statement is given.\n\n7. Erin is nice.\n   - This statement is given.\n\n8. Erin is quiet.\n   - This statement is given.\n\n9. Fiona is blue.\n   - No information is given about Fiona's color, so this statement is unknown for now.\n\n10. Fiona is kind.\n   - This statement is given.\n\n11. Fiona is quiet.\n    - This statement is given.\n\nFrom the given rules:\n\n1. If something is kind then it is nice.\n   - This means that if something is kind, it must also be nice.\n\n2. If something is round and quiet then it is blue.\n   - This means that if something is round and quiet, it must be blue.\n\n3. If Charlie is kind then Charlie is big.\n   - This means that if Charlie is kind, then Charlie is big.\n\n4. All big, blue things are kind.\n   - This means that if something is big and blue, it must be kind.\n\n5. Nice things are quiet.\n   - This means that if something is nice, it must be quiet.\n\n6. All green things are big.\n   - This means that if something is green, it must be big.\n\n7. Quiet things are kind.\n   - This means that if something is quiet, it must be kind.\n\n8. Big things are kind.\n   - This means that if something is big, it must be kind.\n\nNow, let's analyze the given statements again:\n\n- From statement 1, we know that Anne is round.\n\n- From statement 6, we know that Erin is big, because Erin is green.\n\n- From statement 7, we know that Erin is quiet, because Erin is nice.\n\n- From statement 8, we know that Erin is kind, because Erin is quiet.\n\n- From statement 2, we know that Charlie is quiet.\n\n- From statement 3, we know that Charlie is big, because Charlie is quiet and big things are kind.\n\n- From statement 4, we know that Charlie is round.\n\n- From statement 5, we know that Fiona is quiet.\n\n- From statement 6, we know that Fiona is kind.\n\nNow, let's analyze the given rules again:\n\n- From rule 2, we know that if something is round and quiet, it must be blue.\n\n- From statements 2, 4, and 5, we know that Charlie is round and quiet. Therefore, Charlie must be blue.\n\n- From statement 6, we know that Erin is big.\n\n- From statement 8, we know that Erin is kind.\n\n- From rule 4, we know that if something is big and blue, it must be kind. However, we already know that Erin is kind.\n\n- From statement 1, we know that Anne is green.\n\n- From rule 6, we know that all green things are big. Therefore, Anne must be big.\n\n- From statement 7, we know that Erin is quiet.\n\n- From statement 8, we know that Erin is kind.\n\n- From rule 7, we know that quiet things are kind. However, we already know that Erin is kind.\n\nNow, let's analyze the statement to be determined:\n\nErin is not blue.\n\n- From statement 7, we know that Erin is quiet.\n\n- From rule 5, we know that nice things are quiet. However, we already know that Erin is quiet.\n\n- From statement 7, we know that Erin is quiet.\n\n- From statement 8, we know that Erin is kind.\n\n- From rule 4, we know that if something is big and blue, it must be kind. However, we already know that Erin is kind.\n\nHowever, from rule 2, we know that if something is round and quiet, it must be blue. But we don't know if Erin is round.\n\nFrom statement 1, we know that Anne is green.\n\nFrom rule 6, we know that all green things are big. Therefore, Anne must be big.\n\nFrom statement 1, we know that Anne is round.\n\nFrom statement 8, we know that Erin is quiet.\n\nFrom rule 2, we know that if something is round and quiet, it must be blue. However, we don't know if Erin is round.\n\nFrom statement 8, we know that Erin is kind.\n\nFrom rule 7, we know that quiet things are kind. However, we already know that Erin is kind.\n\nHowever, we have one piece of information left:\n\n- From statement 8, we know that Erin is kind.\n\n- From rule 1, we know that if something is kind, then it is nice. Therefore, Erin must be nice.\n\n- From statement 7, we know that Erin is nice.\n\n- From rule 5, we know that nice things are quiet. Therefore, Erin must be quiet.\n\n- From statement 7, we know that Erin is quiet.\n\n- From rule 2, we know that if something is round and quiet, it must be blue. However, we still don't know if Erin is round.\n\nHowever, we can conclude that Erin is not blue because we cannot conclude that Erin is round.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is green. \n2. Erin is kind.\n3. Erin is nice.\n4. Erin is quiet.\n\nWe also have the following premises:\n\n- If something is kind then it is nice. (Premise 1)\n- If something is round and quiet then it is blue. (Premise 2)\n- If Charlie is kind then Charlie is big. (Premise 3) (This premise is not relevant to Erin, so we can ignore it)\n- All big, blue things are kind. (Premise 4)\n- Nice things are quiet. (Premise 5)\n- All green things are big. (Premise 6)\n- Quiet things are kind. (Premise 7)\n- Big things are kind. (Premise 8)\n- If Anne is green then Anne is round. (Premise 9) (This premise is not relevant to Erin, so we can ignore it)\n\nWe need to determine whether Erin is blue or not. To do this, let's consider the premises that might be relevant.\n\nFrom Premise 2, we know that if something is round and quiet then it is blue. However, we don't have enough information to determine whether Erin is round or not.\n\nFrom Premise 6, we know that all green things are big. Since Erin is green, we can conclude that Erin is big.\n\nFrom Premise 8, we know that big things are kind. Since Erin is big, we can conclude that Erin is kind.\n\nFrom Premise 7, we know that quiet things are kind. Since Erin is quiet, we can conclude that Erin is kind (this is consistent with our previous conclusion).\n\nHowever, we still don't know whether Erin is blue or not. To determine this, we need to find a contradiction or a logical conclusion from the given premises.\n\nLet's assume that Erin is blue. If Erin is blue, then from Premise 2, we know that Erin must be round and quiet. However, from Premise 6, we know that all green things are big, and from Premise 8, we know that big things are kind. Since Erin is green, we can conclude that Erin is big, which means Erin cannot be quiet (because quiet things are kind, and Erin is kind, but big things are kind, so Erin cannot be quiet and big). This creates a contradiction, so our assumption that Erin is blue must be false.\n\nTherefore, we can conclude that Erin is not blue.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not blue\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the information given:\n\n1. Erin is green.\n2. All green things are big.\n3. All big things are kind.\n4. Erin is kind.\n5. Erin is nice.\n6. If something is kind then it is nice.\n7. Erin is quiet.\n8. If something is kind then it is quiet (from point 7 and the fact that Erin is kind and quiet).\n9. Nice things are quiet (from point 5 and the fact that Erin is nice and quiet).\n10. If something is quiet then it is kind (from point 7 and 8).\n11. If something is round and quiet then it is blue (from the given information).\n12. Charlie is quiet.\n13. Erin is quiet.\n\nWe are trying to determine whether Erin is blue. We know Erin is quiet (point 7) and kind (point 4). We can use point 11 to check if Erin is blue: \n\nFrom the information given, we know Erin is quiet and kind (points 4 and 7), but we cannot directly apply point 11 to Erin because it requires roundness. However, point 11 states that if something is round and quiet, then it is blue. We don't have any information about Erin being round, so we cannot directly apply this point.\n\nHowever, we can use the information given to try and infer whether Erin is blue or not. We know all green things are big (point 2) and all green things are not blue (because green things are big, and all big things are not blue; however, this is not explicitly stated in the problem, but given that blue things are round and quiet, and big things are kind, this can be inferred). We also know that Erin is green.\n\nSince we know Erin is green and we have the information that all green things are big (point 2), but we cannot directly apply this to determine whether Erin is blue or not, we must find another path. Since all big, blue things are kind (point 6), and Erin is kind (point 4), we cannot directly apply this information to determine whether Erin is blue or not. \n\nHowever, we can use point 5 to try and infer that Erin is not blue. Erin is nice (point 5), and nice things are quiet (point 9), and Erin is quiet (point 7), so Erin is kind (point 10), and all blue things are round and quiet (point 11), so Erin cannot be blue.\n\nTherefore, based on the given information and logical reasoning, the statement \"Erin is not blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether Erin is not blue, we need to analyze the given statements and their implications.\n\n1. Given statements:\n   - Anne is green.\n   - Charlie is big.\n   - Charlie is quiet.\n   - Charlie is round.\n   - Erin is green.\n   - Erin is kind.\n   - Erin is nice.\n   - Erin is quiet.\n   - Fiona is blue.\n   - Fiona is kind.\n   - Fiona is quiet.\n\n2. Logical implications:\n   - If something is kind then it is nice. (From Erin is kind and Erin is nice)\n   - If something is round and quiet then it is blue. (From Charlie is round, Charlie is quiet, and Fiona is blue)\n   - If Charlie is kind then Charlie is big. (From Charlie is kind and Charlie is big, but Charlie is quiet; this statement is actually irrelevant)\n   - All big, blue things are kind. (From Charlie is big, Charlie is blue, and Fiona is blue)\n   - Nice things are quiet. (From Erin is nice and Erin is quiet)\n   - All green things are big. (From Anne is green and Anne is round; this statement has no other implications)\n   - Quiet things are kind. (From Erin is quiet and Erin is kind)\n   - Big things are kind. (From Charlie is big and Charlie is kind, but Charlie is quiet; this statement is actually irrelevant)\n   - If Anne is green then Anne is round. (From Anne is green and Anne is round)\n\nNow, let's analyze the given statement: Erin is not blue.\n\nTo determine whether Erin is blue, we need to look for any statement that implies Erin is blue. However, we don't have any direct statement that Erin is blue.\n\nHowever, we have a statement that says: If something is round and quiet then it is blue. (From Charlie is round, Charlie is quiet, and Fiona is blue)\n\nLet's see if Erin is round and quiet. We know Erin is quiet. Now we need to check if Erin is round.\n\nThere's no direct statement that Erin is round. However, there's a statement that says: If something is green then it is big. (From Anne is green and Anne is round) and Erin is green.\n\nHowever, there is no statement that directly connects being green to being round. There is also a statement that says: All green things are big. \n\nHowever, there is no statement that connects being big to being round. However, we have a statement that says: If something is big then it is kind. (From Charlie is big and Charlie is kind)",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we have the following facts:\n   - Erin is green.\n   - Erin is kind.\n   - Erin is nice.\n   - Erin is quiet.\n   - If something is kind then it is nice. (This implies that kind things are also nice.)\n   - If something is round and quiet then it is blue. (This gives us a condition for something to be blue.)\n   - If Charlie is kind then Charlie is big. (This implies that kind things are big, but we cannot directly apply this to Erin.)\n   - All big, blue things are kind. (This gives us a condition for something to be kind.)\n   - Nice things are quiet. (This implies that nice things are also quiet.)\n   - All green things are big. (This implies that green things are big.)\n   - Quiet things are kind. (This implies that quiet things are also kind.)\n   - Big things are kind. (This implies that big things are kind.)\n\n2. We can start by analyzing the statement \"Erin is not blue.\" To determine whether this statement is true or false, we need to find out if Erin can be blue or not.\n\n3. From the given information, we know that Erin is green. But we cannot conclude that Erin is not blue. We need to check if there is any condition that makes Erin blue.\n\n4. The condition for something to be blue is: \"If something is round and quiet then it is blue.\" However, we do not know if Erin is round or not.\n\n5. To check if Erin can be blue, we need to find out if Erin is round or not. We can use the information: \"If Anne is green then Anne is round.\" Since Anne is green and also green is mentioned as a characteristic of Anne, we can conclude that Anne is indeed round.\n\n6. However, we cannot directly apply this information to Erin because there is no information that links Anne's roundness to Erin's roundness. But we can conclude that all green things are big.\n\n7. Since Erin is green, Erin is big. And we already know that Erin is quiet and kind.\n\n8. Now, we can apply the condition for something to be blue: \"If something is round and quiet then it is blue.\" But we know that Erin is not round (there is no information that Erin is round), so Erin cannot be blue.\n\n9. Therefore, we can conclude that the statement \"Erin is not blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to determine the truth value of the statement \"Erin is not blue.\" \n\nStep 1: Determine the color of Erin.\nFrom the given information, we know that Erin is green. \n\nStep 2: Determine the relationship between being green and being blue.\nThere is no direct relationship between being green and being blue. However, we do know that all green things are big. \n\nStep 3: Determine the color of blue things.\nFrom the given information, we know that if something is round and quiet, then it is blue. We also know that Erin is quiet and we need to determine if Erin is round.\n\nStep 4: Determine if Erin is round.\nWe know that if something is green, then it is round. We also know that Erin is green, so Erin must be round.\n\nStep 5: Determine the color of Erin based on the round and quiet criteria.\nSince Erin is round and quiet, we can conclude that Erin is blue.\n\nStep 6: Evaluate the statement \"Erin is not blue.\"\nSince Erin is blue, the statement \"Erin is not blue\" is false.\n\nTherefore, the final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Erin is not blue, we need to analyze the given information and use the provided rules to make conclusions.\n\nGiven rules:\n1. If something is kind then it is nice.\n2. If something is round and quiet then it is blue.\n3. If Charlie is kind then Charlie is big.\n4. All big, blue things are kind.\n5. Nice things are quiet.\n6. All green things are big.\n7. Quiet things are kind.\n8. Big things are kind.\n9. If Anne is green then Anne is round.\n\nFirst, we need to find information about Erin.\n\nGiven information about Erin:\n1. Erin is green.\n2. Erin is kind.\n3. Erin is nice.\n4. Erin is quiet.\n\nFrom rule 1, we know that if something is kind, then it is nice. This is already given in the information about Erin (Erin is kind and Erin is nice).\n\nFrom rule 7, we know that quiet things are kind. This is also given in the information about Erin (Erin is quiet and Erin is kind).\n\nNow, let's analyze the given information about other people to see if we can find any information about Erin being blue.\n\nGiven information about Charlie:\n1. Charlie is big.\n2. Charlie is quiet.\n3. Charlie is round.\n\nFrom rule 2, we know that if something is round and quiet, then it is blue. However, we do not have any information that says Charlie is green or blue.\n\nGiven information about Fiona:\n1. Fiona is blue.\n2. Fiona is kind.\n3. Fiona is quiet.\n\nFrom rule 4, we know that all big, blue things are kind. However, we do not have any information that says Fiona is big.\n\nGiven information about Anne:\n1. Anne is green.\n2. From rule 6, we know that all green things are big.\n3. From rule 9, we know that if Anne is green, then Anne is round.\n\nNow, let's analyze the given information about Erin again. We know Erin is green. From rule 6, we know that all green things are big. So, Erin is big.\n\nFrom rule 8, we know that big things are kind. We already know Erin is kind.\n\nFrom rule 5, we know that nice things are quiet. We already know Erin is nice and Erin is quiet.\n\nSince we have concluded that Erin is big, kind, nice, and quiet, we now need to analyze the given information to see if Erin can be blue.\n\nFrom rule 2, we know that if something is round and quiet, then it is blue. However, we do not have any information that says Erin is round.\n\nFrom rule 4, we know that all big, blue things are kind. We already know Erin is big and kind. However, we do not have any information that says Erin is blue.\n\nFrom rule 3, we know that if Charlie is kind, then Charlie is big. However, we do not have any information that says Charlie is kind.\n\nFrom rule 1, we know that if something is kind, then it is nice. We already know Erin is nice.\n\nFrom rule 6, we know that all green things are big. We already know Erin is green and big.\n\nFrom rule 9, we know that if Anne is green, then Anne is round. However, we do not have any information that says Erin is round.\n\nSince we have concluded that Erin is green, big, kind, and nice, we now need to analyze the given information to see if Erin can be blue.\n\nWe cannot conclude that Erin is blue from the given information. We can only conclude that Erin is not blue from the following rule: If something is round and quiet then it is blue. However, we do not have any information that says Erin is round.\n\nThe given information does not provide any direct information about Erin being blue or not. We can only conclude that Erin is not blue from the rule: If something is round and quiet then it is blue. However, we do not have any information that says Erin is round.\n\nTherefore, we cannot conclude that Erin is not blue from the given information. The statement \"Erin is not blue\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know that:\n   - Erin is green.\n   - Erin is kind.\n   - Erin is nice.\n   - Erin is quiet.\n\n2. We also know that:\n   - If something is green, then it is big. (From \"All green things are big.\")\n   - If something is kind, then it is nice. (From \"If something is kind then it is nice.\")\n   - If something is quiet, then it is kind. (From \"Quiet things are kind.\")\n   - If something is big, then it is kind. (From \"Big things are kind.\")\n\n3. However, we are given the following condition that is not explicitly listed above:\n   - If something is round and quiet, then it is blue.\n\n4. We are not given any information about Charlie's color, but it is mentioned that Charlie is big. However, this is not relevant to the problem at hand.\n\n5. We need to determine whether Erin is blue or not. To do this, let's examine the condition \"If something is round and quiet then it is blue.\" We do not have any information about Erin being round, but we do know that Erin is quiet.\n\n6. Since we do not have enough information about Erin's roundness, we cannot conclude that Erin is blue or not.\n\n7. However, we can analyze the given statement \"If Charlie is kind then Charlie is big\" in a different way: If Charlie is round and quiet, then Charlie is blue (from the condition). Since all blue things are kind (from \"All big, blue things are kind\"), and nice things are quiet (from \"Nice things are quiet\"), it follows that all nice things are kind and blue. Given that Erin is nice, it follows that Erin is kind and blue.\n\nSince Erin is kind and blue, and Erin is not green, we can conclude that Erin is blue.\n\n8. Therefore, the statement \"Erin is not blue\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is not blue' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is green. Erin is kind. Erin is nice. Erin is quiet. (Given information)\n2. If something is kind then it is nice. (Rule)\n   Since Erin is kind, Erin is nice. (From rule 2 and given information)\n3. Nice things are quiet. (Rule)\n   Since Erin is nice, Erin is quiet. (From rule 3 and given information)\n4. Erin is quiet. (From step 1)\n   Erin is quiet. (From step 3)\n   We have two instances of Erin being quiet. This confirms that Erin is indeed quiet. (Both confirm the same information)\n5. Erin is green. (From step 1)\n6. All green things are big. (Rule)\n   Since Erin is green, Erin is big. (From rule 6 and step 5)\n7. Erin is big. (From step 6)\n8. Erin is kind. (From step 1)\n9. Erin is quiet. (From step 4)\n10. Erin is nice. (From step 1)\n11. Big things are kind. (Rule)\n    Since Erin is big, Erin is kind. (From rule 11 and step 7)\n12. Quiet things are kind. (Rule)\n    Since Erin is quiet, Erin is kind. (From rule 12 and step 9)\n13. Erin is kind. (From step 8)\n    Erin is kind. (From step 11)\n    Erin is kind. (From step 12)\n   We have three instances of Erin being kind. This confirms that Erin is indeed kind. (All confirm the same information)\n14. Erin is kind. (From step 13)\n15. If something is kind then it is nice. (Rule)\n   Since Erin is kind, Erin is nice. (From rule 15 and step 14)\n16. Erin is nice. (From step 10)\n   Erin is nice. (From step 15)\n   We have two instances of Erin being nice. This confirms that Erin is indeed nice. (Both confirm the same information)\n17. Erin is not blue. (Statement to evaluate)\n\nTo determine whether Erin is blue, we need to analyze the given rules.\n\n18. If something is round and quiet then it is blue. (Rule)\n   Since Erin is quiet (from step 9), we need to find out if Erin is round to apply this rule.\n   Erin is green. (From step 5)\n   If Anne is green then Anne is round. (Rule)\n   However, there is no information about Anne being round in the context of this problem.\n   Therefore, we cannot conclude that Erin is round based on this rule.\n\nHowever, there's another rule that we can use to determine if Erin is blue.\n\n19. Fiona is blue. Fiona is kind. Fiona is quiet. (Given information)\n   If something is round and quiet then it is blue. (Rule)\n   Since Fiona is quiet (from given information) and we do not have information about Fiona being round, we cannot apply this rule to Fiona.\n   But we can see that Fiona is not big because the only thing that is big is green and green is big (Rule 6). Therefore Fiona is not blue because all blue things are big (Rule 20 below).\n20. All big, blue things are kind. (Rule)\n   We already know that Fiona is not big. So Fiona is not blue.\n\nNow we will evaluate all the rules we have to see if Erin is blue.\n\n21. Erin is green. (From step 5)\n   Erin is big. (From step 6)\n   We already know that all blue things are big (Rule 20). So if Erin is blue then Erin is big.\n   We have already established that Erin is big (From step 6).\n   Since Erin is big and all blue things are big (Rule 20), Erin could be blue.\n   However, we also know that Erin is green (From step 5). If Erin is blue then Erin is not green.\n   We cannot conclude that Erin is blue.\n\nHowever, there is one more rule that we can use to determine if Erin is blue.\n\n22. Erin is round and quiet. (From step 9 and information not given but implied from previous rules)\n   If something is round and quiet then it is blue. (Rule)\n   Since Erin is round and quiet, Erin is blue.\n\nTherefore, we have two conclusions about Erin being blue. One that we cannot conclude that Erin is blue and another that Erin is blue.\n\nSince we have two conclusions about Erin being blue that conflict with each other, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not blue\" is true, false, or unknown, we need to use the given information to find out if Erin is blue or not.\n\nStep 1: We know that Erin is green. (Given statement)\nStep 2: We also know that Erin is kind. (Given statement)\nStep 3: From the information \"If something is kind then it is nice,\" we can conclude that Erin is nice. (Using given rules)\nStep 4: Since Erin is nice, we can conclude that Erin is quiet, based on the rule \"Nice things are quiet.\" (Using given rules)\nStep 5: We know that Erin is quiet. (From step 4)\nStep 6: From the rule \"If something is round and quiet then it is blue,\" we can conclude that Erin is not round. (Using given rules)\nStep 7: We know that Erin is green and all green things are big, so Erin is big. (Using given rules)\nStep 8: We know that Erin is big and from the rule \"All big, blue things are kind,\" we cannot determine Erin's color yet, so we will keep this in mind for further steps.\nStep 9: We know that Erin is big and from the rule \"Big things are kind,\" we can conclude that Erin is kind. (Using given rules)\nStep 10: Since we have already concluded that Erin is kind in step 2, we can skip this step.\nStep 11: We know that Erin is big and from the rule \"If Charlie is kind then Charlie is big,\" we cannot use this rule to determine Erin's color, as it's about Charlie, so we can skip this step.\nStep 12: We know that Erin is green and all green things are big. We cannot use this rule to determine Erin's color as it's already given in step 7.\nStep 13: We know that Erin is quiet and from the rule \"Quiet things are kind,\" we can conclude that Erin is kind. (Using given rules)\nStep 14: Since we have already concluded that Erin is kind in step 2, we can skip this step.\nStep 15: We know that Erin is quiet and from the rule \"Quiet things are kind,\" we can conclude that Erin is kind. (Using given rules)\nStep 16: Since we have already concluded that Erin is kind in step 2, we can skip this step.\nStep 17: We know that Erin is green and from the rule \"If Anne is green then Anne is round,\" we cannot use this rule to determine Erin's color, as it's about Anne, so we can skip this step.\nStep 18: We know that Erin is blue and from the rule \"If something is round and quiet then it is blue,\" we cannot use this rule to determine Erin's color as it's not round.\nStep 19: We know that Erin is big and from the rule \"All big, blue things are kind,\" we cannot use this rule to determine Erin's color as it's not blue.\nStep 20: We know that Erin is big and from the rule \"Big things are kind,\" we can conclude that Erin is kind. (Using given rules)\nStep 21: Since we have already concluded that Erin is kind in step 2, we can skip this step.\n\nNow let's consider the information we have about Erin's color: \n- Erin is green.\n- We cannot conclude that Erin is blue because the rules that would determine Erin's color as blue do not apply to Erin.\n\nBased on the given information, we cannot determine Erin's color as blue. Therefore, we cannot conclude that the statement \"Erin is not blue\" is true or false. The answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Erin is not blue, we need to analyze the given information and deduce the possible properties of Erin.\n\n1. Erin is green. \n   Since all green things are big, we can conclude that Erin is big.\n\n2. Erin is kind. \n   We know that Erin is big, and all big things are kind. This confirms that Erin is indeed kind.\n\n3. Erin is nice. \n   Since Erin is kind, and nice things are quiet, we can conclude that Erin is quiet.\n\n4. Erin is not quiet. \n   This statement contradicts the previous conclusion that Erin is quiet. However, we need to reevaluate our previous conclusions.\n\nFrom the initial analysis, we concluded that Erin is quiet. However, this contradicts the fact that Erin is nice. We need to revisit the given information to resolve this contradiction.\n\nGiven: \n- Nice things are quiet.\n- Erin is nice.\n- Quiet things are kind.\n- Erin is kind.\n\nSince Erin is both nice and kind, and nice things are quiet, we can conclude that Erin is indeed quiet. However, this also means that Erin is kind, which is consistent with the initial analysis.\n\nReevaluating the given information, we have:\n- Erin is green.\n- Erin is big (since all green things are big).\n- Erin is quiet (since nice things are quiet and Erin is kind).\n- Erin is kind.\n\nNow, let's analyze the possible properties of Erin in relation to the color blue:\n\n- If something is round and quiet, then it is blue.\n- Erin is not round (since all green things are big, and big things are not round).\n- Erin is quiet, but this does not necessarily mean Erin is blue.\n\nConsidering the properties of blue things:\n- All big, blue things are kind.\n- Erin is big and kind, but this does not necessarily mean Erin is blue.\n\nGiven: \n- Erin is not blue. \n   This statement is consistent with the analysis above.\n\nHowever, we still need to verify if Erin is not blue.\n\nFrom the given information:\n- If something is round and quiet then it is blue.\n- Erin is not round, so Erin cannot be blue based on this condition.\n- Erin is quiet, but this does not necessarily mean Erin is blue.\n\nConsidering the properties of blue things:\n- All big, blue things are kind.\n- Erin is big and kind, but this does not necessarily mean Erin is blue.\n\nSince all the conditions related to Erin being blue are not met, we can conclude that Erin is not blue.\n\nThe statement \"Erin is not blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_erin, big_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_erin, kind_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), blue_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_erin, round_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == False",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), blue_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_charlie, blue_charlie), kind_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_anne, big_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_erin, kind_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_charlie, kind_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == Unknown",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == Unknown",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), blue_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_erin, kind_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_erin, kind_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_erin, big_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_erin, kind_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(erin)",
+          "z3_formula": "Not(blue_erin)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_erin, big_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_erin, quiet_erin), quiet_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_erin, kind_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), blue_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_charlie, kind_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_anne, big_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_charlie, blue_charlie), kind_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), blue_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> big(X)",
+          "z3_formula": "Implies(kind_charlie, big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_erin, blue_erin), kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_erin, big_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(erin)",
+          "z3_formula": "Not(blue_erin) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_erin, big_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), blue_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_erin, round_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(erin)",
+          "z3_formula": "Not(blue_erin) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_erin, kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_charlie, quiet_charlie), blue_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_fiona, blue_fiona), kind_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_anne, big_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_anne, round_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_erin, big_erin)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_erin, kind_erin)",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), blue_erin)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_erin, blue_erin), kind_erin)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_charlie, nice_charlie)",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_erin, big_erin)",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_anne, round_anne)",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_erin, round_erin)",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 32
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 33
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "Not(Implies(And(round_erin, quiet_erin), blue_erin))",
+          "source_step": 34
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_erin, big_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), blue_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_erin, big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_erin, kind_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_erin, kind_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), blue_erin)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_erin, big_erin)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_erin, big_erin)",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), blue_erin)",
+          "source_step": 28
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin) & quiet(erin)",
+          "z3_formula": "And(round_erin, quiet_erin) == True",
+          "source_step": 29
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 30
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 31
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 32
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 33
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_fiona, quiet_fiona), blue_fiona)",
+          "source_step": 34
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 35
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_fiona, blue_fiona), kind_fiona)",
+          "source_step": 36
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == False",
+          "source_step": 37
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == False",
+          "source_step": 38
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), blue_erin)",
+          "source_step": 39
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 40
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 41
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_erin, big_erin)",
+          "source_step": 42
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 43
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == Unknown",
+          "source_step": 44
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), blue_erin)",
+          "source_step": 45
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin) & quiet(erin)",
+          "z3_formula": "And(round_erin, quiet_erin) == True",
+          "source_step": 46
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 47
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_erin, big_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(erin)",
+          "z3_formula": "Not(quiet_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), blue_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not round(erin)",
+          "z3_formula": "Not(round_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & blue(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_erin, blue_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(erin)",
+          "z3_formula": "Not(blue_erin)",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 212,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 49
+    },
+    "maxsat_stats": {
+      "satisfied": 43,
+      "excluded": 6,
+      "total_weight": 202,
+      "solve_time_ms": 1.8855668604373932
+    },
+    "timing": {
+      "trace_gen_s": 14.485,
+      "extraction_s": 42.943,
+      "dedup_s": 1.949,
+      "maxsat_s": 0.005,
+      "total_s": 59.382
+    }
+  }
+}

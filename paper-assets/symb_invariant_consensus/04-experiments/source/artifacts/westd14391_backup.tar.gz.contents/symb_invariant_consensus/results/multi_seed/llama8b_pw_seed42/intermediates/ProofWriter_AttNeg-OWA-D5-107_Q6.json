@@ -1,0 +1,1366 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-107_Q6",
+    "problem": "Charlie is cold. Charlie is furry. Charlie is red. Charlie is rough. Charlie is smart. Dave is furry. Dave is rough. Fiona is kind. Fiona is young. Harry is red. If something is rough then it is cold. All smart things are red. All kind things are rough. All red, kind things are rough. If Dave is cold and Dave is young then Dave is kind. Cold, young things are furry. Cold, furry things are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not cold.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nSmart($x, bool) ::: Is x smart?\nKind($x, bool) ::: Is x kind?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nCold(Charlie, True) ::: Charlie is cold.\nFurry(Charlie, True) ::: Charlie is furry.\nRed(Charlie, True) ::: Charlie is red.\nRough(Charlie, True) ::: Charlie is rough.\nSmart(Charlie, True) ::: Charlie is smart.\nFurry(Dave, True) ::: Dave is furry.\nRough(Dave, True) ::: Dave is rough.\nKind(Fiona, True) ::: Fiona is kind.\nYoung(Fiona, True) ::: Fiona is young.\nRed(Harry, True) ::: Harry is red.\n\nRules:\nRough($x, True) >>> Cold($x, True) ::: If something is rough then it is cold.\nSmart($x, True) >>> Red($x, True) ::: All smart things are red.\nKind($x, True) >>> Rough($x, True) ::: All kind things are rough.\nRed($x, True) && Kind($x, True) >>> Rough($x, True) ::: All red, kind things are rough.\nCold(Dave, True) && Young(Dave, True) >>> Kind(Dave, True) ::: If Dave is cold and Dave is young then Dave is kind.\nCold($x, True) && Young($x, True) >>> Furry($x, True) ::: Cold, young things are furry.\nCold($x, True) && Furry($x, True) >>> Smart($x, True) ::: Cold, furry things are smart.\n\nQuery:\nCold(Fiona, False) ::: Fiona is not cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 189.0,
+      "Unknown": 173.5
+    },
+    "answer_counts": {
+      "False": 7,
+      "Unknown": 5
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to analyze the given information and the logical statements.\n\n1. Given information:\n   - Charlie is cold. Charlie is furry. Charlie is red. Charlie is rough. Charlie is smart.\n   - Dave is furry. Dave is rough.\n   - Fiona is kind. Fiona is young.\n   - Harry is red.\n   - If something is rough then it is cold.\n   - All smart things are red.\n   - All kind things are rough.\n   - All red, kind things are rough.\n   - If Dave is cold and Dave is young then Dave is kind.\n   - Cold, young things are furry.\n   - Cold, furry things are smart.\n\n2. Let's start with the given statement \"Fiona is not cold.\" We need to find a reason to confirm or deny this statement using the given logical statements.\n\n3. We can start by looking at the given logical statements that involve the term \"cold\":\n   - If something is rough then it is cold.\n   - If Dave is cold and Dave is young then Dave is kind.\n   - Cold, young things are furry.\n   - Cold, furry things are smart.\n\n4. We need to see if we can derive a conclusion about Fiona being cold or not from these statements.\n\n5. From the statement \"All kind things are rough,\" and \"Fiona is kind,\" we can infer that Fiona is rough.\n\n6. Using the statement \"If something is rough then it is cold,\" we can conclude that Fiona is cold.\n\n7. However, we also have the statement \"Fiona is not cold\" that we need to verify.\n\n8. Since we have found a conclusion that Fiona is cold, we can say that the statement \"Fiona is not cold\" is false.\n\nSo, the final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. Charlie is cold. \n2. Charlie is furry. \n3. Charlie is red. \n4. Charlie is rough. \n5. Charlie is smart. \n6. Dave is furry. \n7. Dave is rough. \n8. Fiona is kind. \n9. Fiona is young. \n10. Harry is red. \n11. If something is rough then it is cold. \n12. All smart things are red. \n13. All kind things are rough. \n14. All red, kind things are rough. \n15. If Dave is cold and Dave is young then Dave is kind. \n16. Cold, young things are furry. \n17. Cold, furry things are smart.\n\nFrom statement 8, we know that Fiona is kind. From statement 13, we know that all kind things are rough. Therefore, Fiona is rough.\n\nFrom statement 11, we know that if something is rough then it is cold. Therefore, if Fiona is rough, then Fiona is cold.\n\nHowever, the statement we need to evaluate is \"Fiona is not cold.\" Since we have found that Fiona is cold, this statement is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to analyze the given information and the logical deductions.\n\n1. We are given the following statements:\n   - Charlie is cold.\n   - Charlie is furry.\n   - Charlie is red.\n   - Charlie is rough.\n   - Charlie is smart.\n   - Dave is furry.\n   - Dave is rough.\n   - Fiona is kind.\n   - Fiona is young.\n   - Harry is red.\n   - If something is rough then it is cold.\n   - All smart things are red.\n   - All kind things are rough.\n   - All red, kind things are rough.\n   - If Dave is cold and Dave is young then Dave is kind.\n   - Cold, young things are furry.\n   - Cold, furry things are smart.\n\n2. Let's start by analyzing the statement \"Fiona is not cold\" using the given information.\n\n   - We don't have any direct information about Fiona's temperature. \n   - However, we can make some deductions from the given information.\n   - Since \"All kind things are rough\" and \"Fiona is kind\", we can deduce that Fiona is rough.\n   - Since \"All red, kind things are rough\" and Fiona is kind, we can deduce that Fiona is not red (because if Fiona were red, then we could also deduce that Fiona is rough, which contradicts the fact that we already deduced that Fiona is rough). \n\n3. Now let's analyze the statement \"Fiona is not cold\" again.\n\n   - We don't have any direct information about Fiona's temperature.\n   - We already deduced that Fiona is rough, and \"If something is rough then it is cold\".\n   - This means that Fiona must be cold, because being rough implies being cold.\n   - Therefore, the statement \"Fiona is not cold\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Fiona is kind.\n2. We also know that all kind things are rough.\n   So, Fiona is rough.\n\n3. However, we cannot directly determine if Fiona is cold or not from the given information.\n4. We can see that if something is rough then it is cold.\n   But we cannot conclude that Fiona is cold because we don't know if Fiona is rough because it is kind or if Fiona is rough and therefore cold.\n5. We have two possibilities for Fiona being rough: \n   a. Fiona is rough because it is kind. (Fiona is kind, and all kind things are rough)\n   b. Fiona is rough and cold (since if something is rough then it is cold)\n\n6. For option a, if Fiona is rough because it is kind, then Fiona could be either cold or not cold. We cannot determine if Fiona is cold or not.\n\n7. For option b, if Fiona is rough and cold, then we can use the information \"Cold, young things are furry\" to determine if Fiona is cold or not.\n   a. However, we do not know if Fiona is young or not. We know that Fiona is young is not mentioned in the problem.\n   b. Also, even if Fiona is young, we cannot conclude that Fiona is cold because we do not have any information about the relationship between being young and being cold when Fiona is rough.\n\n8. We can use another option to determine if Fiona is cold or not. We can use the information \"Cold, furry things are smart\" to determine if Fiona is cold or not.\n   a. However, we do not know if Fiona is furry or not.\n   b. Also, even if Fiona is furry, we cannot conclude that Fiona is cold because we do not have any information about the relationship between being furry and being cold when Fiona is smart.\n\n9. Since we do not have enough information to conclude if Fiona is cold or not, we cannot determine if the statement \"Fiona is not cold\" is true or false.\n\nTherefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. We are given several statements about Charlie, Dave, Fiona, and Harry:\n   - Charlie is cold, furry, red, rough, and smart.\n   - Dave is furry and rough.\n   - Fiona is kind and young.\n   - Harry is red.\n\n2. We are also given several rules:\n   - If something is rough, then it is cold.\n   - All smart things are red.\n   - All kind things are rough.\n   - All red, kind things are rough.\n   - If Dave is cold and Dave is young, then Dave is kind.\n   - Cold, young things are furry.\n   - Cold, furry things are smart.\n\n3. First, we need to determine if Fiona is cold or not. Since we don't have any direct information about Fiona being cold, we will proceed with analyzing the given rules.\n\n4. From the rule \"All kind things are rough,\" we know that Fiona is rough because she is kind. However, this does not tell us about her temperature.\n\n5. The rule \"If something is rough, then it is cold\" suggests that Fiona might be cold because she is rough. However, we need to consider the other rules as well.\n\n6. From the rule \"Cold, young things are furry,\" we can conclude that since Fiona is young, she must be furry if she is cold.\n\n7. However, this contradicts the fact that Dave is furry and we don't know if Fiona is furry or not. We need to determine if Fiona is cold or not to proceed further.\n\n8. Let's assume that Fiona is not cold. Then, from the rule \"If something is rough, then it is cold,\" we can conclude that Fiona is not rough, which contradicts the fact that she is kind and all kind things are rough.\n\n9. Therefore, our assumption that Fiona is not cold leads to a contradiction. This means that Fiona must be cold.\n\n10. Now that we know Fiona is cold, we can use the rule \"Cold, young things are furry\" to conclude that Fiona is furry.\n\n11. Since Fiona is cold, furry, and young, we can use the rule \"Cold, furry things are smart\" to conclude that Fiona is smart.\n\n12. However, this does not help us determine if the statement \"Fiona is not cold\" is true or false.\n\n13. The only way to determine the truth of the statement \"Fiona is not cold\" is to check if there is any direct information or rule that contradicts it. Since we have concluded that Fiona is cold, the statement \"Fiona is not cold\" is false.\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve the problem, we need to use the given information and the rules provided to determine if Fiona is not cold.\n\nGiven information: \n- Charlie is cold.\n- Charlie is furry.\n- Charlie is red.\n- Charlie is rough.\n- Charlie is smart.\n- Dave is furry.\n- Dave is rough.\n- Fiona is kind.\n- Fiona is young.\n- Harry is red.\n\nRules:\n1. If something is rough then it is cold.\n2. All smart things are red.\n3. All kind things are rough.\n4. All red, kind things are rough.\n5. If Dave is cold and Dave is young then Dave is kind.\n6. Cold, young things are furry.\n7. Cold, furry things are smart.\n\nStatement to be evaluated: Fiona is not cold.\n\nLet's analyze the given information and rules.\n\nFrom rule 1: If something is rough then it is cold.\nFrom the given information: Fiona is kind (rule 3), and kind things are rough (rule 3).\nTherefore, Fiona is rough.\n\nSince Fiona is rough (from the previous step), using rule 1, Fiona is cold.\n\nThe statement \"Fiona is not cold\" is false because we have determined that Fiona is cold.\n\nSo, the final answer is: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to analyze the given information and apply the rules of inference.\n\nGiven Information:\n1. Charlie is cold. Charlie is furry. Charlie is red. Charlie is rough. Charlie is smart.\n2. Dave is furry. Dave is rough.\n3. Fiona is kind. Fiona is young.\n4. Harry is red.\n5. If something is rough then it is cold. \n6. All smart things are red.\n7. All kind things are rough.\n8. All red, kind things are rough.\n9. If Dave is cold and Dave is young then Dave is kind.\n10. Cold, young things are furry.\n11. Cold, furry things are smart.\n\nTo analyze the statement \"Fiona is not cold,\" we need to find out whether Fiona is cold or not.\n\nFrom statements 3 and 10, we can conclude that Fiona is not young because if she were young, she would be cold and furry (from statement 10), which is not the case as there is no information that Fiona is furry.\n\nHowever, we cannot directly conclude that Fiona is not cold using the given information, so the statement is unknown.\n\nSo, the final answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to use the given information to derive a conclusion about Fiona's temperature.\n\n1. Given information:\n- Charlie is cold.\n- Charlie is furry.\n- Charlie is red.\n- Charlie is rough.\n- Charlie is smart.\n- Dave is furry.\n- Dave is rough.\n- Fiona is kind.\n- Fiona is young.\n- Harry is red.\n- If something is rough then it is cold.\n- All smart things are red.\n- All kind things are rough.\n- All red, kind things are rough.\n- If Dave is cold and Dave is young then Dave is kind.\n- Cold, young things are furry.\n- Cold, furry things are smart.\n\n2. We need to derive a conclusion about Fiona's temperature.\n\nFirst, let's analyze the given information about Fiona:\n- Fiona is kind.\n- Fiona is young.\n\nFrom the information:\n- All kind things are rough.\n- Fiona is kind, so Fiona is rough.\n\nHowever, we cannot directly conclude that Fiona is cold from this information. The rule \"If something is rough then it is cold\" does not apply directly to Fiona because it only tells us that rough things are cold, not the other way around.\n\nNext, let's analyze the information about Dave:\n- Dave is cold.\n- Dave is young.\n\nFrom the information:\n- If Dave is cold and Dave is young then Dave is kind.\n- Fiona is young, but we don't know if Fiona is cold.\n\nNow, let's analyze the information about cold, young things:\n- Cold, young things are furry.\n- Fiona is young, but we don't know if Fiona is cold.\n\nHowever, we cannot conclude that Fiona is furry because we don't know if she is cold. \n\nSince we cannot conclude that Fiona is cold, we cannot conclude that Fiona is not cold.\n\nTherefore, the statement \"Fiona is not cold\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Charlie is cold.\n   - Charlie is furry.\n   - Charlie is red.\n   - Charlie is rough.\n   - Charlie is smart.\n   - Dave is furry.\n   - Dave is rough.\n   - Fiona is kind.\n   - Fiona is young.\n   - Harry is red.\n   - If something is rough then it is cold.\n   - All smart things are red.\n   - All kind things are rough.\n   - All red, kind things are rough.\n   - If Dave is cold and Dave is young then Dave is kind.\n   - Cold, young things are furry.\n   - Cold, furry things are smart.\n\n2. Analyzing the given information:\n   - Since all kind things are rough, Fiona being kind implies Fiona is rough.\n   - Since all rough things are cold, Fiona being rough implies Fiona is cold.\n\nNow, we need to determine whether Fiona is cold or not.\n\n3. From step 2, we know that Fiona is cold.\n   Therefore, the statement \"Fiona is not cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to analyze the given information and the premises.\n\n1. We know that:\n   - Charlie is cold.\n   - Charlie is furry.\n   - Charlie is red.\n   - Charlie is rough.\n   - Charlie is smart.\n   - Dave is furry.\n   - Dave is rough.\n   - Fiona is kind.\n   - Fiona is young.\n   - Harry is red.\n\n2. We also know that:\n   - If something is rough then it is cold. (Premise 1)\n   - All smart things are red. (Premise 2)\n   - All kind things are rough. (Premise 3)\n   - All red, kind things are rough. (Premise 4)\n   - If Dave is cold and Dave is young then Dave is kind. (Premise 5)\n   - Cold, young things are furry. (Premise 6)\n   - Cold, furry things are smart. (Premise 7)\n\nNow, let's analyze the statement \"Fiona is not cold\".\n\nTo determine whether Fiona is cold or not, we need to find a premise that relates to Fiona and cold. From the given information, we know that:\n- Fiona is kind (Premise 8).\n- All kind things are rough (Premise 3).\nHowever, there is no direct information about Fiona's temperature.\n\nHowever, from the premise \"All red, kind things are rough\" (Premise 4), we can infer that if Fiona is red and kind, then she is rough. \n\nWe also know that \"If something is rough then it is cold\" (Premise 1). However, we cannot directly apply this premise to Fiona since we don't have any information about her being rough.\n\nHowever, if we look at Premise 3 again, we can see that all kind things are rough. And from Premise 1, we can see that all rough things are cold.\n\nWe also know that Fiona is young (Premise 8). From Premise 5, if Dave is cold and Dave is young then Dave is kind. This does not directly apply to Fiona since it involves Dave, not Fiona. \n\nHowever, we can look at Premise 6, which states that cold, young things are furry. And from Premise 7, we can see that cold, furry things are smart. \n\nWe cannot find a direct connection between Fiona and the premises that relate to cold. However, we can find a connection between Fiona and the premises that relate to kind and furry.\n\nFiona is young (Premise 8), and from Premise 5, we know that if Dave is cold and Dave is young then Dave is kind. However, this does not apply to Fiona.\n\nHowever, if we look at Premise 6, which states that cold, young things are furry. And from Premise 7, we can see that cold, furry things are smart.\n\nHowever, we cannot conclude that Fiona is cold based on this information.\n\nBut we can look at the premises that relate to kind. Fiona is kind (Premise 8), and from Premise 3, we know that all kind things are rough.\n\nHowever, we cannot find a direct connection between Fiona's being rough and her temperature.\n\nBut we can look at Premise 1, which states that if something is rough then it is cold. However, we cannot directly apply this premise to Fiona since we don't have any information about her being rough.\n\nHowever, we know that all red, kind things are rough (Premise 4). However, we cannot find any information about Fiona being red.\n\nHowever, we know that all red, kind things are rough (Premise 4). And we know that all kind things are rough (Premise 3).\n\nAnd we know that Harry is red (Premise 10). However, we cannot find any information that relates Harry's being red to Fiona.\n\nHowever, we cannot find a direct connection between Fiona and the premises that relate to cold.\n\nHowever, since we cannot find any information that directly relates Fiona to the premises that relate to cold, we cannot conclude whether the statement \"Fiona is not cold\" is true, false, or unknown.\n\nTherefore, we cannot determine the truth value of the statement \"Fiona is not cold\" based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given information step by step.\n\n1. Given information:\n   - Charlie is cold.\n   - Charlie is furry.\n   - Charlie is red.\n   - Charlie is rough.\n   - Charlie is smart.\n   - Dave is furry.\n   - Dave is rough.\n   - Fiona is kind.\n   - Fiona is young.\n   - Harry is red.\n   - If something is rough then it is cold.\n   - All smart things are red.\n   - All kind things are rough.\n   - All red, kind things are rough.\n   - If Dave is cold and Dave is young then Dave is kind.\n   - Cold, young things are furry.\n   - Cold, furry things are smart.\n\n2. We want to determine whether the statement \"Fiona is not cold\" is true, false, or unknown.\n\nTo do this, we need to see if we can derive any information about Fiona's temperature from the given information.\n\n3. Let's start with the information we have about Fiona: Fiona is kind and young. We know that all kind things are rough (Step 1) and all young things are furry (Step 1).\n\n4. From this, we can conclude that Fiona is rough and furry.\n\n5. Now, let's see if we can find any information about Fiona's temperature. We know that all rough things are cold (Step 1), but this does not necessarily mean that Fiona is cold.\n\n6. However, we also know that if something is rough and young, it is furry (Step 1). And if something is cold and young, it is furry (Step 1). This means that the two pieces of information \"something is rough and young\" and \"something is cold and young\" both lead to the same conclusion, \"something is furry\".\n\n7. Since all young things are furry (Step 1), and if something is cold and young then it is furry (Step 1), we can conclude that Fiona is furry.\n\n8. However, this information alone does not tell us whether Fiona is cold or not. We still need to determine whether Fiona is cold or not.\n\n9. Let's see if we can find any information about Fiona's temperature. We know that all cold, furry things are smart (Step 1). However, we do not know whether Fiona is smart or not.\n\n10. We know that Charlie is cold, furry, and smart (Step 1), but this does not necessarily mean that Fiona is cold.\n\n11. However, we also know that if something is cold and young, it is furry (Step 1), and all cold, furry things are smart (Step 1). This means that the two pieces of information \"something is cold and young\" and \"something is furry\" both lead to the same conclusion, \"something is smart\".\n\n12. Since Fiona is young and furry, we can conclude that Fiona is smart.\n\n13. Now, we also know that all smart things are red (Step 1), so Fiona is red.\n\n14. We also know that all red, kind things are rough (Step 1), and Fiona is kind and red, so Fiona is rough.\n\n15. Since we know that all rough things are cold (Step 1), we can conclude that Fiona is cold.\n\n16. Therefore, the statement \"Fiona is not cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not cold\" is true, false, or unknown, we need to analyze the given information and the premises provided.\n\nFrom the premises:\n\n1. All kind things are rough. \n2. Fiona is kind. \n   Therefore, Fiona is rough. (From 1 and 2)\n\n3. All red, kind things are rough. \n   Since we already know Fiona is kind and rough, but we don't know if she is red or not, we cannot determine if she is red from this statement alone.\n\n4. All smart things are red. \n   We don't know if Fiona is smart or not, so we cannot determine if she is red from this statement alone.\n\n5. Cold, furry things are smart. \n   We don't know if Fiona is cold or furry, so we cannot determine if she is smart from this statement alone.\n\n6. Cold, young things are furry. \n   We don't know if Fiona is cold or young, so we cannot determine if she is furry from this statement alone.\n\nHowever, from statement 6, we know that if something is young and cold then it is furry. But we don't know if Fiona is cold or not.\n\nLet's analyze the statement \"Fiona is not cold.\" To determine if this statement is true, false, or unknown, we need to consider the possibilities.\n\nIf Fiona is not cold, then from statement 6, we cannot determine if she is furry or not, because we don't know if she is young or not. \n\nBut we do know that if Fiona is young (and we don't know if she is), then from statement 6, she is furry. However, we don't know if she is young or not.\n\nNow let's consider the possibilities for Fiona being young or not:\n\na. If Fiona is young, then she is furry (from statement 6). \n   Since we know that if something is furry and cold, then it is smart (from statement 5), but we don't know if she is cold or not, we cannot determine if she is smart or not. However, we don't know if she is cold or not.\n\n   If Fiona is young and not cold, then from statement 6, we don't know if she is furry or not, but from statement 1, since she is kind, she is rough.\n\nb. If Fiona is not young, then from the premises, we cannot determine if she is furry, smart, or red.\n\nNow let's analyze the possibilities for Fiona being cold or not:\n\na. If Fiona is cold, then from statement 6, she is furry. \n   Since we know that if something is furry and cold, then it is smart (from statement 5), we can conclude that if Fiona is cold, she is smart.\n\nb. If Fiona is not cold, then we cannot determine if she is furry, smart, or red.\n\nHowever, we don't know if Fiona is young or not, and we don't know if she is cold or not. Therefore, we cannot determine if Fiona is furry, smart, or red.\n\nIn conclusion, we cannot determine if Fiona is not cold, because we don't have enough information to determine if she is young or cold or not. \n\nSince we cannot determine if the statement \"Fiona is not cold\" is true or false, we have to conclude that the statement is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_X, cold_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_X, red_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_X, kind_X), rough_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_X, young_X), furry_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, furry_X), smart_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) & kind(X) -> kind(X)",
+          "z3_formula": "Implies(And(cold_X, young_X, kind_X), kind_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_X, young_X), furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_charlie, cold_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_charlie, red_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_fiona, rough_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_fiona, kind_fiona), rough_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_dave, young_dave), furry_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_charlie, furry_charlie), smart_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(fiona)",
+          "z3_formula": "Not(cold_fiona) == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_X, cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_X, red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_X, kind_X), rough_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_X, young_X), furry_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, furry_X), smart_X)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not red(fiona)",
+          "z3_formula": "Not(red_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_fiona, rough_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_fiona, cold_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_fiona, rough_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_fiona, cold_fiona), furry_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), smart_fiona)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_X, cold_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_X, red_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_X, kind_X), rough_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_X, young_X), furry_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, furry_X), smart_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(fiona)",
+          "z3_formula": "Not(cold_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona) == True",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not not cold(fiona)",
+          "z3_formula": "Not(Not(cold_fiona))",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_charlie, cold_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_charlie, red_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_fiona, rough_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_fiona, kind_fiona), rough_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_dave, young_dave), furry_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_charlie, furry_charlie), smart_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(fiona)",
+          "z3_formula": "Not(cold_fiona)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_X, cold_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_X, red_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_X, kind_X), rough_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_X, young_X), furry_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, furry_X), smart_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(fiona)",
+          "z3_formula": "Not(cold_fiona)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_X, cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_X, red_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_fiona, rough_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_X, kind_X), rough_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> kind(X)",
+          "z3_formula": "Implies(And(cold_dave, young_dave), kind_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_X, young_X), furry_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, furry_X), smart_X)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_X, cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_X, red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_X, kind_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_X, young_X), furry_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, furry_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(dave) & young(dave) -> kind(dave)",
+          "z3_formula": "Implies(And(furry_dave, young_dave), kind_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_X, cold_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_X, red_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_X, kind_X), rough_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> kind(X)",
+          "z3_formula": "Implies(And(cold_X, young_X), kind_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, furry_X), smart_X)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_X, cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_X, red_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_X, kind_X), rough_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_X, young_X), furry_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_X, furry_X), smart_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_fiona, rough_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_fiona, kind_fiona), rough_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> red(X)",
+          "z3_formula": "Implies(smart_fiona, red_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(cold_fiona, furry_fiona), smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(cold_fiona, young_fiona), furry_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(fiona))",
+          "z3_formula": "Not(cold_fiona) == True",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 206,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 38
+    },
+    "maxsat_stats": {
+      "satisfied": 36,
+      "excluded": 2,
+      "total_weight": 200,
+      "solve_time_ms": 1.081744208931923
+    },
+    "timing": {
+      "trace_gen_s": 10.832,
+      "extraction_s": 31.099,
+      "dedup_s": 1.402,
+      "maxsat_s": 0.003,
+      "total_s": 43.337
+    }
+  }
+}

@@ -1,0 +1,1018 @@
+{
+  "pid": "ProofWriter_AttNoneg-OWA-D5-1205_Q12",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_anne, white_anne), furry_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_anne, furry_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_anne, blue_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_harry, rough_harry), kind_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_harry, red_harry), white_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_gary, rough_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_anne, furry_anne), rough_anne)",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_harry, rough_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_anne, furry_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_anne, red_anne), white_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_anne, furry_anne), rough_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_gary, rough_gary), kind_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_charlie, red_charlie), white_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry)",
+          "z3_formula": "Not(kind_harry) == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_harry, white_harry), furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_anne, furry_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_anne, blue_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_harry, rough_harry), kind_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_harry, red_harry), white_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_harry, blue_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_harry, furry_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_harry, furry_harry), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry)",
+          "z3_formula": "Not(kind_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(harry)",
+          "z3_formula": "Not(rough_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry) & furry(harry) -> rough(harry)",
+          "z3_formula": "Implies(And(kind_harry, furry_harry), rough_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry) -> not rough(harry)",
+          "z3_formula": "Implies(Not(kind_harry), Not(rough_harry))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry)",
+          "z3_formula": "Not(kind_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not not kind(harry)",
+          "z3_formula": "Not(Not(kind_harry))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry) == False",
+          "z3_formula": "Not(kind_harry) == False",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry) == True",
+          "z3_formula": "kind_harry == True",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": []
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_X, blue_X)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_X, furry_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_X, furry_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_harry, rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(harry)",
+          "z3_formula": "not kind_harry",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_harry, furry_harry), rough_harry)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_harry, blue_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_harry, furry_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_harry, furry_harry), rough_harry)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_harry, blue_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_harry, furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_harry, red_harry), white_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_harry, rough_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_harry, furry_harry), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry)",
+          "z3_formula": "Not(kind_harry) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_white, white_X), furry_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_X, furry_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_X, furry_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_X, rough_X), red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_X, rough_X), kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_X, red_X), white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_X, rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_X, furry_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": []
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_anne, white_anne), furry_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_anne, furry_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_anne, blue_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_gary, rough_gary), kind_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_gary, red_gary), white_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_gary, rough_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_gary, furry_gary), rough_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(harry)",
+          "z3_formula": "Not(rough_harry)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not red(harry)",
+          "z3_formula": "Not(red_harry)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(harry)",
+          "z3_formula": "Not(blue_harry)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(harry)",
+          "z3_formula": "Not(furry_harry)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry)",
+          "z3_formula": "Not(kind_harry)",
+          "source_step": 27
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> rough(X)",
+          "z3_formula": "Implies(nice_harry, rough_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(nice_harry, rough_harry), red_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_harry, blue_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_harry, furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 16
+        }
+      ]
+    }
+  ]
+}

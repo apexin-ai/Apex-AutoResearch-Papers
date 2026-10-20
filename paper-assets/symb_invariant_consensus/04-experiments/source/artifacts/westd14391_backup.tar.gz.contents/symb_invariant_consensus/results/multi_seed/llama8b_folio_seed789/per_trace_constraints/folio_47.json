@@ -1,0 +1,587 @@
+{
+  "pid": "folio_47",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "four_seasons",
+          "z3_formula": "four_seasons == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> love_summer(X)",
+          "z3_formula": "Implies(long_vacation, love_summer)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "love_summer(emma)",
+          "z3_formula": "love_summer_emma == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "emma_favorite_season == summer",
+          "z3_formula": "emma_favorite_season == summer",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "emma_favorite_season == summer",
+          "z3_formula": "emma_favorite_season == summer",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mia_favorite_season != emma_favorite_season",
+          "z3_formula": "mia_favorite_season != summer",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "long_vacation(james)",
+          "z3_formula": "long_vacation_james == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "james_favorite_season == fall",
+          "z3_formula": "james_favorite_season == fall",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "four_seasons",
+          "z3_formula": "four_seasons == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> loves_summer(X)",
+          "z3_formula": "Implies(long_vacation_james, loves_summer_james)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "emma_loves_summer",
+          "z3_formula": "emma_loves_summer == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "emma_loves_summer -> mia_does_not_love_summer",
+          "z3_formula": "Implies(emma_loves_summer, mia_does_not_love_summer)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "james_wants_long_vacation",
+          "z3_formula": "james_wants_long_vacation == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "james_favorite_season_fall",
+          "z3_formula": "james_favorite_season_fall == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "four_seasons",
+          "z3_formula": "four_seasons == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation -> loves_summer",
+          "z3_formula": "Implies(long_vacation, loves_summer)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "emma_loves_summer",
+          "z3_formula": "emma_loves_summer == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "emma_loves_summer -> mia_does_not_love_summer",
+          "z3_formula": "Implies(emma_loves_summer, Not(mia_loves_summer))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "james_wants_long_vacation",
+          "z3_formula": "james_wants_long_vacation == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "james_favorite_season_is_fall",
+          "z3_formula": "james_favorite_season_is_fall == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "four_seasons",
+          "z3_formula": "four_seasons == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> loves_summer(X)",
+          "z3_formula": "Implies(long_vacation_james, loves_summer_james)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_season_emma == summer",
+          "z3_formula": "favorite_season_emma == summer",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_season_mia != favorite_season_emma",
+          "z3_formula": "Not(favorite_season_mia == favorite_season_emma)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "long_vacation_james == True",
+          "z3_formula": "long_vacation_james == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "favorite_season_james == fall",
+          "z3_formula": "favorite_season_james == fall",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "four_seasons",
+          "z3_formula": "four_seasons == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation -> loves_summer",
+          "z3_formula": "Implies(long_vacation, loves_summer)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "emma_fav_season == summer",
+          "z3_formula": "emma_fav_season == summer",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "emma_fav_season != mia_fav_season",
+          "z3_formula": "Not(emma_fav_season == mia_fav_season)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "james_wants_long_vacation",
+          "z3_formula": "james_wants_long_vacation == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "james_fav_season == summer",
+          "z3_formula": "Or(james_wants_long_vacation == True, Not(james_fav_season == summer))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "james_fav_season == fall",
+          "z3_formula": "Not(james_wants_long_vacation == True) | james_fav_season == fall",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "seasons(Spring, Summer, Fall, Winter)",
+          "z3_formula": "seasons_Spring_Summer_Fall_Winter == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> loves(X, Summer)",
+          "z3_formula": "Implies(long_vacation_X, loves_X_Summer)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_season(emma, Summer)",
+          "z3_formula": "favorite_season_emma_Summer == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "long_vacation(emma)",
+          "z3_formula": "long_vacation_emma == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_season(mia, ?)",
+          "z3_formula": "favorite_season_mia == ?_1",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "favorite_season(mia, Spring) | favorite_season(mia, Fall) | favorite_season(mia, Winter)",
+          "z3_formula": "Or(favorite_season_mia_Spring, favorite_season_mia_Fall, favorite_season_mia_Winter)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_season(james, ?)",
+          "z3_formula": "favorite_season_james == ?_2",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "long_vacation(james)",
+          "z3_formula": "long_vacation_james == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "loves(james, Summer)",
+          "z3_formula": "loves_james_Summer == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(favorite_season(james, Summer)) | Not(favorite_season(james, Fall))",
+          "z3_formula": "Or(Not(favorite_season_james_Summer), Not(favorite_season_james_Fall))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "seasons(Spring, Summer, Fall, Winter)",
+          "z3_formula": "seasons_Spring_Summer_Fall_Winter == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> love_summer(X)",
+          "z3_formula": "Implies(long_vacation_X, love_summer_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_season(emma, summer)",
+          "z3_formula": "favorite_season_emma_summer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_season(mia, ?)",
+          "z3_formula": "favorite_season_mia == ? and favorite_season_mia != favorite_season_emma",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "favorite_season(james, ?)",
+          "z3_formula": "favorite_season_james == ? and (favorite_season_james == summer or Not(love_summer_james))",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "season(Spring)",
+          "z3_formula": "season_Spring == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "season(Summer)",
+          "z3_formula": "season_Summer == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "season(Fall)",
+          "z3_formula": "season_Fall == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "season(Winter)",
+          "z3_formula": "season_Winter == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "long_vacation(Emma, Summer)",
+          "z3_formula": "long_vacation_Emma_Summer == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_season(Emma, Summer)",
+          "z3_formula": "favorite_season_Emma_Summer == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(favorite_season(Mia, Emma))",
+          "z3_formula": "Not(favorite_season_Mia_Emma) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "long_vacation(James, True)",
+          "z3_formula": "long_vacation_James == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X, Y) -> loves(X, Summer)",
+          "z3_formula": "Implies(long_vacation_Emma_Summer, loves_Emma_Summer)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X, Y) -> loves(X, Summer)",
+          "z3_formula": "Implies(long_vacation_James, loves_James_Summer)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "loves(Emma, Summer)",
+          "z3_formula": "loves_Emma_Summer == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "loves(James, Summer)",
+          "z3_formula": "loves_James_Summer == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(favorite_season(Mia, Summer))",
+          "z3_formula": "Not(favorite_season_Mia_Summer) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "favorite_season(James, Summer)",
+          "z3_formula": "favorite_season_James_Summer == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(favorite_season(James, Fall))",
+          "z3_formula": "Not(favorite_season_James_Fall) == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "seasons(Spring, Summer, Fall, Winter)",
+          "z3_formula": "seasons_Spring_Summer_Fall_Winter == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> love_summer(X)",
+          "z3_formula": "Implies(long_vacation_james, love_summer_james)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_season(emma, summer)",
+          "z3_formula": "favorite_season_emma_summer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_season(mia, not summer)",
+          "z3_formula": "favorite_season_mia_not_summer == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "long_vacation(james)",
+          "z3_formula": "long_vacation_james == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "four_seasons",
+          "z3_formula": "four_seasons == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> loves(X, summer)",
+          "z3_formula": "Implies(long_vacation_james, loves_james_summer)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "emma_loves_summer",
+          "z3_formula": "emma_loves_summer == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "emma_loves_summer -> mia_loves_different",
+          "z3_formula": "Implies(emma_loves_summer, mia_loves_different)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mia_loves_different",
+          "z3_formula": "mia_loves_different == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "james_wants_long_vacation",
+          "z3_formula": "james_wants_long_vacation == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "james_fav_season",
+          "z3_formula": "james_fav_season == Unknown",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "four_seasons",
+          "z3_formula": "four_seasons == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> loves(X, summer)",
+          "z3_formula": "Implies(long_vacation_james, loves_james_summer)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loves_emma_summer",
+          "z3_formula": "loves_emma_summer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not loves_mia_summer",
+          "z3_formula": "not loves_mia_summer == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "long_vacation_james",
+          "z3_formula": "long_vacation_james == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not loves_mia_summer",
+          "z3_formula": "not loves_mia_summer == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "loves(X, summer) -> loves(X, fall)",
+          "z3_formula": "Implies(loves_james_summer, loves_james_fall)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "loves_mia_fall",
+          "z3_formula": "loves_mia_fall == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "loves_mia_fall",
+          "z3_formula": "loves_mia_fall == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "loves_james_fall",
+          "z3_formula": "loves_james_fall == Unknown",
+          "source_step": 10
+        }
+      ]
+    }
+  ]
+}

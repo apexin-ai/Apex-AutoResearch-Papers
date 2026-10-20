@@ -1,0 +1,878 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-948_Q21",
+    "problem": "The bear is big. The bear likes the cat. The cat eats the bear. The cat likes the squirrel. The mouse does not chase the bear. The squirrel is blue. The squirrel is green. If something likes the cat then the cat eats the mouse. If something chases the squirrel then it eats the cat. If the mouse eats the cat then the cat chases the squirrel. If something eats the mouse then the mouse chases the squirrel. If something chases the squirrel then the squirrel eats the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear does not like the bear.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nLikes($x, $y, bool) ::: Does x like y?\nEats($x, $y, bool) ::: Does x eat y?\nChases($x, $y, bool) ::: Does x chase y?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nBig(bear, True) ::: The bear is big.\nLikes(bear, cat, True) ::: The bear likes the cat.\nEats(cat, bear, True) ::: The cat eats the bear.\nLikes(cat, squirrel, True) ::: The cat likes the squirrel.\nChases(mouse, bear, False) ::: The mouse does not chase the bear.\nBlue(squirrel, True) ::: The squirrel is blue.\nGreen(squirrel, True) ::: The squirrel is green.\n\nRules:\nLikes($x, cat, True) >>> Eats(cat, mouse, True) ::: If something likes the cat then the cat eats the mouse.\nChases($x, squirrel, True) >>> Eats($x, cat, True) ::: If something chases the squirrel then it eats the cat.\nEats(mouse, cat, True) >>> Chases(cat, squirrel, True) ::: If the mouse eats the cat then the cat chases the squirrel.\nEats($x, mouse, True) >>> Chases(mouse, squirrel, True) ::: If something eats the mouse then the mouse chases the squirrel.\nChases($x, squirrel, True) >>> Eats(squirrel, cat, True) ::: If something chases the squirrel then the squirrel eats the cat.\n\nQuery:\nLikes(bear, bear, False) ::: The bear does not like the bear."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 120.0
+    },
+    "answer_counts": {
+      "Unknown": 10
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. Let's break it down step by step.\n\n1. The bear likes the cat.\n2. The cat eats the bear.\n3. The cat likes the squirrel.\n4. The mouse does not chase the bear.\n5. The squirrel is blue.\n6. The squirrel is green.\n\nNow, let's analyze the implications:\n\n1. If something likes the cat then the cat eats the mouse.\n   - We know the bear likes the cat, but it doesn't directly state that the bear eats the mouse.\n   - However, from statement 2, we know that the cat eats the bear. This does not directly relate to the statement \"something likes the cat then the cat eats the mouse.\"\n\n2. If something chases the squirrel then it eats the cat.\n   - We know the cat likes the squirrel, but there is no information about the cat chasing the squirrel.\n   - However, we do know that the mouse does not chase the bear, but we don't have any information about the mouse chasing the squirrel.\n\n3. If the mouse eats the cat then the cat chases the squirrel.\n   - There is no statement that the mouse eats the cat.\n   - Therefore, this implication is unknown.\n\n4. If something eats the mouse then the mouse chases the squirrel.\n   - There is no statement that something eats the mouse.\n   - Therefore, this implication is unknown.\n\n5. If something chases the squirrel then the squirrel eats the cat.\n   - We know that the cat likes the squirrel, but there is no information about the cat chasing the squirrel.\n   - However, there are no statements that directly relate to the cat chasing the squirrel.\n\nNow, let's analyze the statement \"The bear does not like the bear.\"\n\nSince the bear likes the cat (statement 1), we cannot conclude that the bear does not like the bear because of statement 1. However, we cannot also conclude that the bear likes the bear because of statement 1. There is no information that directly relates to the bear liking or not liking the bear.\n\nHowever, let's consider the given statement \"If something likes the cat then the cat eats the mouse.\" \nSince the bear likes the cat, then it implies the cat eats the mouse. However, this does not directly relate to whether the bear likes the bear.\n\nFrom statement 2, we know the cat eats the bear. This implies that the cat does not like the bear. However, since the cat eats the mouse and the bear likes the cat, we cannot conclude that the bear does not like the bear.\n\nBased on the given statements and their implications, we cannot determine whether the statement \"The bear does not like the bear\" is true or false. The answer is unknown because there is no information that directly relates to the bear liking or not liking the bear.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the relationships between the animals.\n\n1. The bear likes the cat. \n2. The cat eats the bear. \n3. The cat likes the squirrel. \n4. The mouse does not chase the bear. \n5. The squirrel is blue. \n6. The squirrel is green. \n\nWe also have several conditional statements:\n- If something likes the cat then the cat eats the mouse.\n- If something chases the squirrel then it eats the cat.\n- If the mouse eats the cat then the cat chases the squirrel.\n- If something eats the mouse then the mouse chases the squirrel.\n- If something chases the squirrel then the squirrel eats the cat.\n\nWe want to determine whether the statement \"The bear does not like the bear\" is true, false, or unknown.\n\nLet's analyze the given statements. From statement 1, we know that the bear likes the cat.\n\nNow, let's examine the conditional statements one by one to see if we can infer any information about the bear.\n\n- We don't have any statement that directly relates to the bear liking or not liking the bear.\n- If something likes the cat then the cat eats the mouse. We know the bear likes the cat, but we don't know if the cat eats the mouse.\n- If something chases the squirrel then it eats the cat. We don't have any information about the bear chasing the squirrel.\n- If the mouse eats the cat then the cat chases the squirrel. We don't know if the mouse eats the cat.\n- If something eats the mouse then the mouse chases the squirrel. We don't have any information about the bear eating the mouse.\n- If something chases the squirrel then the squirrel eats the cat. We don't have any information about the bear chasing the squirrel.\n\nWe can conclude that there is no direct information about the bear liking or not liking the bear based on the given statements.\n\nHowever, the statement \"The bear does not like the bear\" implies that the bear likes the bear. We can use the law of non-contradiction, which states that something cannot both be and not be at the same time.\n\nSince we have no information to contradict this statement, we can say that the statement \"The bear does not like the bear\" is unknown because we cannot determine its truth value based on the given information.\n\nSo, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and their logical implications step by step.\n\n1. The bear likes the cat.\n2. The cat eats the bear. (This statement contradicts the first one. If the bear likes the cat, it cannot eat the cat. This statement seems incorrect but we will proceed with the analysis.)\n\n3. The cat likes the squirrel.\n4. The mouse does not chase the bear.\n5. The squirrel is blue.\n6. The squirrel is green.\n\nNow we will analyze the given conditional statements:\n\n- If something likes the cat then the cat eats the mouse.\n- If something chases the squirrel then it eats the cat.\n- If the mouse eats the cat then the cat chases the squirrel.\n- If something eats the mouse then the mouse chases the squirrel.\n- If something chases the squirrel then the squirrel eats the cat.\n\nFrom statements 1 and 3, we can infer that the cat eats the mouse because the bear likes the cat (1), and the cat likes the squirrel (3), which satisfies the first conditional statement.\n\nNow we need to analyze the relationship between the bear and the cat. We cannot determine the relationship between the bear and the cat from the given statements, as statement 2 contradicts statement 1.\n\nHowever, since we have the information that the cat eats the mouse, we can infer that the mouse chases the squirrel because the first conditional statement implies that the cat eats the mouse, which satisfies the fourth conditional statement.\n\nNow we need to determine whether the bear chases the squirrel. We cannot directly determine this from the given statements.\n\nNow let's analyze the relationship between the bear and the statement \"The bear does not like the bear.\" \n\nSince we don't know anything about the bear liking or not liking itself, we cannot directly infer the truth of the statement \"The bear does not like the bear.\" from the given statements.\n\nSince we cannot determine the relationship between the bear and the cat, we cannot infer the truth of the statement \"The bear does not like the bear.\" from the given statements.\n\nSo, the statement \"The bear does not like the bear.\" is unknown because we do not have enough information to determine its truth value.\n\nTherefore, the final answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. Let's break down the statements and their consequences:\n\n1. The bear likes the cat.\n   - This statement is given, but we don't know if the bear likes anything else yet.\n\n2. The cat eats the bear.\n   - This statement contradicts the first one. If the bear likes the cat, then it's unlikely that the cat would eat the bear. However, we'll keep this in mind for later analysis.\n\n3. The cat likes the squirrel.\n   - This statement is given, but we don't know if the cat likes anything else yet.\n\n4. The mouse does not chase the bear.\n   - This statement is given, but it doesn't provide any information about the bear's relationships with other animals.\n\n5. The squirrel is blue. The squirrel is green.\n   - These statements are contradictory, but they don't provide any information about the squirrel's relationships with other animals.\n\nNow, let's analyze the implications of the given statements:\n\n- If something likes the cat, then the cat eats the mouse.\n  - This statement implies that the cat eats the mouse if the mouse likes the cat. However, we don't know if the mouse likes the cat.\n\n- If something chases the squirrel, then it eats the cat.\n  - This statement implies that if something chases the squirrel, it eats the cat. However, we don't know what chases the squirrel.\n\n- If the mouse eats the cat, then the cat chases the squirrel.\n  - This statement implies that the cat chases the squirrel if the mouse eats the cat. However, we don't know if the mouse eats the cat.\n\n- If something eats the mouse, then the mouse chases the squirrel.\n  - This statement implies that the mouse chases the squirrel if something eats the mouse. However, we don't know what eats the mouse.\n\n- If something chases the squirrel, then the squirrel eats the cat.\n  - This statement implies that the squirrel eats the cat if something chases the squirrel. However, we don't know what chases the squirrel.\n\nNow, let's try to find a relationship between the bear and itself using the given statements. We know that the bear likes the cat, but we don't know if the bear likes anything else. However, if the bear likes the cat, then we can use the statement \"If something likes the cat, then the cat eats the mouse.\" to imply that the cat eats the mouse. \n\nWe know that the mouse does not chase the bear, but we don't know if the mouse likes the cat. However, if the mouse likes the cat, then the cat eats the mouse. This means that the cat eats the mouse because it likes the cat, and the mouse does not chase the bear.\n\nSince the cat eats the mouse, we can use the statement \"If the mouse eats the cat, then the cat chases the squirrel.\" to imply that the cat chases the squirrel. However, this statement contradicts the statement \"If something chases the squirrel, then the squirrel eats the cat.\"\n\nWe can use the statement \"If something chases the squirrel, then the squirrel eats the cat.\" to imply that the squirrel eats the cat if something chases the squirrel. Since the cat chases the squirrel, we can use this statement to imply that the squirrel eats the cat.\n\nNow, let's go back to the bear. We know that the bear likes the cat, and the cat eats the mouse. Since the mouse does not chase the bear, we can use the statement \"If something eats the mouse, then the mouse chases the squirrel.\" to imply that the mouse does not eat the bear.\n\nHowever, we still don't know if the bear likes itself or not. To determine this, we need to analyze the statement \"If the mouse eats the cat, then the cat chases the squirrel.\" \n\nIf the mouse eats the cat, then the cat chases the squirrel. However, this statement contradicts the statement \"If the mouse eats the cat, then the cat chases the squirrel.\" is actually false. Therefore, the mouse does not eat the cat.\n\nSince the mouse does not eat the cat, we can use the statement \"If something likes the cat, then the cat eats the mouse.\" to imply that the bear does not like the cat. However, this statement contradicts the statement \"The bear likes the cat.\"\n\nNow, let's go back to the statement \"If something eats the mouse, then the mouse chases the squirrel.\" \n\nIf the bear eats the mouse, then the mouse chases the squirrel. However, we know that the mouse does not chase the bear.\n\nNow, let's go back to the statement \"If something chases the squirrel, then it eats the cat.\" \n\nIf the bear chases the squirrel, then the bear eats the cat. However, this statement contradicts the statement \"The bear likes the cat.\"\n\nNow, let's go back to the statement \"If the mouse eats the cat, then the cat chases the squirrel.\" \n\nIf the bear eats the cat, then the cat chases the squirrel. However, this statement contradicts the statement \"The cat eats the bear.\"\n\nNow, let's go back to the statement \"If something eats the mouse, then the mouse chases the squirrel.\" \n\nIf the bear eats the mouse, then the mouse chases the squirrel. However, we know that the mouse does not chase the bear.\n\nNow, let's go back to the statement \"If something chases the squirrel, then the squirrel eats the cat.\" \n\nIf the bear chases the squirrel, then the squirrel eats the cat. However, this statement contradicts the statement \"The cat eats the bear.\"\n\nNow, let's go back to the statement \"If the mouse eats the cat, then the cat chases the squirrel.\" \n\nIf the bear eats the cat, then the cat chases the squirrel. However, this statement contradicts the statement \"The cat eats the bear.\"\n\nNow, let's go back to the statement \"If something eats the mouse, then the mouse chases the squirrel.\" \n\nIf the bear eats the mouse, then the mouse chases the squirrel. However, we know that the mouse does not chase the bear.\n\nSince none of the statements directly imply that the bear likes itself, we can conclude that the statement \"The bear does not like the bear\" is unknown.\n\nHowever, we can use the statement \"If something likes the cat, then the cat eats the mouse.\" to imply that the bear does not like the cat if the cat eats the mouse. \n\nWe know that the mouse does not chase the bear, but we don't know if the mouse likes the cat. However, if the mouse likes the cat, then the cat eats the mouse. This means that the cat eats the mouse because it likes the cat, and the mouse does not chase the bear.\n\nSince the cat eats the mouse, we can use the statement \"If something eats the mouse, then the mouse chases the squirrel.\" to imply that the mouse chases the squirrel. However, we know that the mouse does not chase the bear.\n\nNow, let's go back to the statement \"If something likes the cat, then the cat eats the mouse.\" \n\nIf the bear likes the cat, then the cat eats the mouse. However, this statement contradicts the statement \"The cat eats the bear.\" Therefore, the bear does not like the cat.\n\nSince the bear does not like the cat, we can use the statement \"If something eats the mouse, then the mouse chases the squirrel.\" to imply that the bear eats the mouse. However, this statement contradicts the statement \"The mouse does not chase the bear.\" Therefore, the bear does not eat the mouse.\n\nNow, let's go back to the statement \"If something chases the squirrel, then it eats the cat.\" \n\nIf the bear chases the squirrel, then the bear eats the cat. However, this statement contradicts the statement \"The bear likes the cat.\"\n\nNow, let's go back to the statement \"If the mouse eats the cat, then the cat chases the squirrel.\" \n\nIf the bear eats the cat, then the cat chases the squirrel. However, this statement contradicts the statement \"The cat eats the bear.\"\n\nNow, let's go back to the statement \"If something eats the mouse, then the mouse chases the squirrel.\" \n\nIf the bear eats the mouse, then the mouse chases the squirrel. However, we know that the mouse does not chase the bear.\n\nSince none of the statements directly imply that the bear likes itself, we can conclude that the statement \"The bear does not like the bear\" is unknown.\n\nHowever, we can conclude that the bear does not like the cat, but we can't conclude that the bear likes itself or not.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to carefully analyze the given statements and their implications. Let's break it down step by step:\n\n1. The bear likes the cat. (This statement alone does not tell us anything about the bear's feelings towards itself.)\n2. If something likes the cat then the cat eats the mouse. (This statement implies that the cat eats the mouse because the bear likes the cat, but it doesn't tell us anything about the bear's feelings towards itself.)\n3. The cat eats the bear. (This statement contradicts the initial statement that the bear likes the cat, which implies that the cat does not eat the bear. However, we'll continue to analyze the statements further.)\n4. The cat likes the squirrel. (This statement is irrelevant to the bear's feelings towards itself.)\n5. The mouse does not chase the bear. (This statement is irrelevant to the bear's feelings towards itself.)\n6. The squirrel is blue. (This statement is irrelevant to the bear's feelings towards itself.)\n7. The squirrel is green. (This statement is irrelevant to the bear's feelings towards itself.)\n8. If something likes the cat then the cat eats the mouse. (As mentioned earlier, this statement is irrelevant to the bear's feelings towards itself.)\n9. If something chases the squirrel then it eats the cat. (This statement is irrelevant to the bear's feelings towards itself.)\n10. If the mouse eats the cat then the cat chases the squirrel. (This statement is irrelevant to the bear's feelings towards itself.)\n11. If something eats the mouse then the mouse chases the squirrel. (This statement is irrelevant to the bear's feelings towards itself.)\n12. If something chases the squirrel then the squirrel eats the cat. (This statement is irrelevant to the bear's feelings towards itself.)\n\nFrom the given statements, we can't directly infer the bear's feelings towards itself. However, we know that the cat eats the bear, which contradicts the initial statement that the bear likes the cat. This creates a paradox, but it doesn't directly affect the bear's feelings towards itself.\n\nSince we can't determine the bear's feelings towards itself from the given statements, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information and analyze the relationships between the animals. \n\n1. The bear likes the cat.\n2. The cat eats the bear. (This statement seems contradictory to the first statement, but we will continue analyzing.)\n3. The cat likes the squirrel.\n4. The mouse does not chase the bear.\n5. The squirrel is blue.\n6. The squirrel is green.\n\nNow, let's analyze the given conditions:\n\n- If something likes the cat then the cat eats the mouse.\n- If something chases the squirrel then it eats the cat.\n- If the mouse eats the cat then the cat chases the squirrel.\n- If something eats the mouse then the mouse chases the squirrel.\n- If something chases the squirrel then the squirrel eats the cat.\n\nFrom the first condition, we can deduce that the bear eats the mouse because it likes the cat.\n\nNow, let's examine the possibilities based on the given conditions:\n\n- If the cat eats the mouse, then the mouse cannot chase the squirrel (because it's already dead).\n- If the mouse eats the cat, then the cat chases the squirrel. However, we do not have information about the mouse eating the cat. This is a possible scenario but we cannot confirm it.\n- The other conditions do not provide any direct information about the bear's relationship with the cat.\n\nGiven the information, we cannot confirm whether the bear likes the bear or not. The only statement we can make is that the bear eats the mouse, but we do not have enough information to determine the bear's relationship with itself.\n\nTherefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to follow the given rules and deduce the relationships between the entities (bear, cat, squirrel, mouse).\n\n1. The bear likes the cat.\n2. The cat eats the bear. (From rule 1, we cannot conclude this directly, but we can analyze other rules to see if they imply this)\n3. The cat likes the squirrel.\n4. The mouse does not chase the bear.\n5. The squirrel is blue. (This statement does not provide any useful information for this problem)\n6. The squirrel is green. (This statement does not provide any useful information for this problem)\n\nNow, let's analyze the given rules:\n\n- Rule 1: If something likes the cat then the cat eats the mouse.\n- Rule 2: If something chases the squirrel then it eats the cat.\n- Rule 3: If the mouse eats the cat then the cat chases the squirrel.\n- Rule 4: If something eats the mouse then the mouse chases the squirrel.\n- Rule 5: If something chases the squirrel then the squirrel eats the cat.\n\nWe need to determine the relationship between the bear and the bear (i.e., whether the bear likes the bear).\n\nFrom rule 1, we know that if something likes the cat, then the cat eats the mouse. However, this rule does not provide any information about the bear.\n\nFrom rule 2, we know that if something chases the squirrel then it eats the cat. But we do not know if the bear chases the squirrel.\n\nFrom rule 3, we know that if the mouse eats the cat then the cat chases the squirrel. We do not have enough information to determine if the mouse eats the cat.\n\nFrom rule 4, we know that if something eats the mouse then the mouse chases the squirrel. We do not have enough information to determine if the bear eats the mouse.\n\nFrom rule 5, we know that if something chases the squirrel then the squirrel eats the cat. We do not have enough information to determine if the bear chases the squirrel.\n\nFrom rule 1, we cannot conclude that the bear eats the mouse. We cannot conclude that the bear likes the cat because we have a statement that says the cat eats the bear. \n\nHowever, we can say that if the bear likes the cat then the cat eats the mouse. And we have a statement that says the bear likes the cat, but we cannot conclude that the cat eats the mouse because we have another statement that says the cat eats the bear. \n\nThe only thing we can conclude from the given rules is that the cat eats the bear (from statement 2), and the bear likes the cat (from statement 1). However, we cannot conclude the relationship between the bear and the bear.\n\nNow let's try to find the relationship between the bear and the bear using the rules. \n\nWe can start with the statement that the bear likes the cat. If the bear likes the cat, then the cat eats the mouse (rule 1). We don't have information about whether the cat eats the mouse or not.\n\nBut from the statement that the cat eats the bear, we can infer that the cat does not like the bear (because if it liked the bear, it would not eat it). \n\nHowever, from rule 1, we know that if something likes the cat, then the cat eats the mouse. We cannot conclude that the bear likes the mouse.\n\nNow let's analyze rule 5: If something chases the squirrel then the squirrel eats the cat. We don't have information about the bear chasing the squirrel.\n\nFrom rule 4, we know that if something eats the mouse then the mouse chases the squirrel. We cannot conclude that the bear eats the mouse.\n\nFrom rule 3, we know that if the mouse eats the cat then the cat chases the squirrel. We don't have information about whether the mouse eats the cat or not.\n\nHowever, if the cat eats the bear, then we can infer that the cat does not like the bear (because if it liked the bear, it would not eat it). \n\nBut if the cat eats the bear, then from rule 3, we know that the cat chases the squirrel. \n\nHowever, we cannot conclude that the bear likes the bear.\n\nWe can conclude that the cat eats the bear. \n\nHowever, we cannot conclude that the bear likes the bear.\n\nThe statement \"The bear does not like the bear\" is not directly supported by any of the given rules. \n\nThe only thing we can say is that the bear likes the cat, and the cat eats the bear. However, we cannot conclude whether the bear likes the bear or not.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not like the bear\" is true, false, or unknown, we need to analyze the given information.\n\n1. The bear likes the cat. (This means the bear is something that likes the cat.)\n2. If something likes the cat, then the cat eats the mouse. (This gives us a condition related to the bear's liking for the cat.)\n3. The bear does not like the bear. (This is the statement we are trying to evaluate.)\n\nHowever, we can see that the information given does not directly support the statement \"The bear does not like the bear.\" To analyze this, we need to see if there is a condition that would lead to this outcome. \n\nGiven that there is no direct relationship stated between the bear and the mouse or the squirrel in terms of eating or chasing, we can't conclude that the bear does not like the bear based on the given information.\n\nTherefore, we will assume this statement is unknown because we don't have enough information to determine whether it is true or false.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and the conditions provided in the problem. \n\nLet's break down the conditions:\n\n1. If something likes the cat then the cat eats the mouse.\n   - We don't have any information about the bear liking the cat. However, the statement is about the bear, and we are trying to determine if it likes the bear.\n\n2. If something chases the squirrel then it eats the cat.\n   - We don't have any information about the bear chasing the squirrel.\n\n3. If the mouse eats the cat then the cat chases the squirrel.\n   - We don't have any information about the mouse eating the cat.\n\n4. If something eats the mouse then the mouse chases the squirrel.\n   - We don't have any information about the bear eating the mouse.\n\n5. If something chases the squirrel then the squirrel eats the cat.\n   - We don't have any information about the bear chasing the squirrel.\n\nHowever, we have the following information:\n\n- The bear likes the cat.\n- The cat eats the bear.\n- The bear does not like the bear, or we do not have any information about it liking itself.\n\nSince we have a direct statement that the cat eats the bear, and the bear likes the cat, we can use the first condition to determine if the bear likes itself. If something likes the cat then the cat eats the mouse. However, we have a more direct statement that the cat eats the bear, and since the bear likes the cat, we can assume that the cat does not like the bear. \n\nSince the statement is the bear does not like the bear, we need to determine if the cat likes the bear or not. If the cat likes the bear, then it contradicts the given statement that the cat eats the bear. \n\nHowever, the condition that if something likes the cat then the cat eats the mouse does not apply here because the statement is not about the cat liking the mouse but about the bear not liking itself.\n\nWe have two statements:\n- The bear likes the cat.\n- The cat eats the bear.\n\nSince the bear likes the cat, we can assume the cat does not like the bear. However, we don't have any information that the bear likes the bear or the cat likes the bear.\n\nGiven that the cat eats the bear, we cannot conclude that the bear likes itself or not because the cat does not like the bear.\n\nTherefore, the statement \"The bear does not like the bear\" is unknown.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not like the bear\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nGiven information:\n- The bear is big.\n- The bear likes the cat.\n- The cat eats the bear.\n- The cat likes the squirrel.\n- The mouse does not chase the bear.\n- The squirrel is blue.\n- The squirrel is green.\n\nRules:\n1. If something likes the cat then the cat eats the mouse.\n2. If something chases the squirrel then it eats the cat.\n3. If the mouse eats the cat then the cat chases the squirrel.\n4. If something eats the mouse then the mouse chases the squirrel.\n5. If something chases the squirrel then the squirrel eats the cat.\n\nWe need to analyze the given statement \"The bear does not like the bear.\" Since the bear likes the cat (given information), we cannot directly conclude anything about the bear's relationship with itself based on the rules.\n\nHowever, rule 1 states that \"If something likes the cat then the cat eats the mouse.\" This does not provide any information about the bear's relationship with itself.\n\nSimilarly, none of the other rules directly provide information about the bear's relationship with itself.\n\nSince the statement \"The bear does not like the bear\" is not directly supported or refuted by the given information or the rules, we cannot determine its truth value.\n\nTherefore, the final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not like the bear\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear likes the cat. (Given)\n2. If something likes the cat then the cat eats the mouse. (Given)\n   - Since the bear likes the cat, it implies that the cat eats the mouse.\n\n3. The cat eats the bear. (Given)\n   - This contradicts the implication that the cat eats the mouse. However, we cannot conclude this from the given information.\n\n4. The mouse does not chase the bear. (Given)\n   - This statement is irrelevant to the analysis.\n\n5. The squirrel is blue. The squirrel is green. (Given)\n   - This statement is irrelevant to the analysis.\n\n6. If something chases the squirrel then it eats the cat. (Given)\n   - This statement is irrelevant to the analysis.\n\n7. If the mouse eats the cat then the cat chases the squirrel. (Given)\n   - This statement is irrelevant to the analysis.\n\n8. If something eats the mouse then the mouse chases the squirrel. (Given)\n   - This statement is irrelevant to the analysis.\n\n9. If something chases the squirrel then the squirrel eats the cat. (Given)\n   - This statement is irrelevant to the analysis.\n\nNow, we can analyze the statement \"The bear does not like the bear\" based on the given information.\n\n- We have the statement \"The bear likes the cat.\" (Given)\n- However, there is no information about the bear's feelings towards itself. In other words, there is no information that the bear likes or dislikes the bear.\n\nTherefore, we cannot determine whether the statement \"The bear does not like the bear\" is true or false based on the given information. Hence, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. The bear is big.\n   - This statement doesn't provide any information about the bear's relationships with other animals.\n\n2. The bear likes the cat.\n   - This statement implies that the bear is related to the cat, but we don't know how.\n\n3. The cat eats the bear.\n   - This statement contradicts the previous statement (2). If the bear likes the cat, it's unlikely that the cat would eat the bear.\n\n4. The cat likes the squirrel.\n   - This statement implies a relationship between the cat and the squirrel.\n\n5. The mouse does not chase the bear.\n   - This statement provides information about the mouse's actions, but it's irrelevant to the bear's likes or dislikes.\n\n6. The squirrel is blue.\n   - This statement is irrelevant to the problem.\n\n7. The squirrel is green.\n   - This statement is also irrelevant to the problem.\n\nNow, let's analyze the given implications:\n\n1. If something likes the cat then the cat eats the mouse.\n   - This implication doesn't provide any information about the bear's likes or dislikes.\n\n2. If something chases the squirrel then it eats the cat.\n   - This implication doesn't provide any information about the bear's likes or dislikes.\n\n3. If the mouse eats the cat then the cat chases the squirrel.\n   - This implication doesn't provide any information about the bear's likes or dislikes.\n\n4. If something eats the mouse then the mouse chases the squirrel.\n   - This implication doesn't provide any information about the bear's likes or dislikes.\n\n5. If something chases the squirrel then the squirrel eats the cat.\n   - This implication doesn't provide any information about the bear's likes or dislikes.\n\nNow, let's analyze the given statement:\n\"The bear does not like the bear.\"\n\nTo determine whether this statement is true, false, or unknown, we need to find out if there's any information that suggests the bear likes or dislikes itself. However, the given statements don't provide any information about the bear's self-referential preferences.\n\nSince there's no information about the bear's self-referential preferences, we cannot determine whether the statement is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, bear))",
+          "z3_formula": "not(chases_mouse_bear) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(likes_bear_cat, eats_cat_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> chases(cat, squirrel)",
+          "z3_formula": "Implies(eats_X_cat, chases_cat_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, squirrel)",
+          "z3_formula": "Implies(eats_X_mouse, chases_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(squirrel, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_squirrel_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(likes(bear, bear))",
+          "z3_formula": "not(likes_bear_bear) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, bear))",
+          "z3_formula": "not(chases_mouse_bear) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(likes_bear_cat, eats_cat_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(mouse, cat) -> chases(cat, squirrel)",
+          "z3_formula": "Implies(eats_mouse_cat, chases_cat_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, squirrel)",
+          "z3_formula": "Implies(eats_X_mouse, chases_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(squirrel, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_squirrel_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(likes(bear, bear))",
+          "z3_formula": "not(likes_bear_bear) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(bear, bear))",
+          "z3_formula": "Not(chases_bear_bear) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(likes_bear_cat, eats_cat_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_X_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(mouse, cat) -> chases(cat, squirrel)",
+          "z3_formula": "Implies(eats_mouse_cat, chases_cat_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, squirrel)",
+          "z3_formula": "Implies(eats_X_mouse, chases_X_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(squirrel, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_squirrel_cat)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, bear))",
+          "z3_formula": "not(chases_mouse_bear) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(likes_bear_cat, eats_cat_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(squirrel, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_squirrel_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(mouse, cat) -> chases(cat, squirrel)",
+          "z3_formula": "Implies(eats_mouse_cat, chases_cat_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(mouse, squirrel)",
+          "z3_formula": "Implies(eats_X_mouse, chases_mouse_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(squirrel, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_squirrel_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(likes(bear, bear))",
+          "z3_formula": "not(likes_bear_bear) == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(likes_bear_cat, eats_cat_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, bear))",
+          "z3_formula": "not(chases_mouse_bear) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(likes_bear_cat, eats_cat_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_X_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(mouse, cat) -> chases(cat, squirrel)",
+          "z3_formula": "Implies(eats_mouse_cat, chases_cat_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, squirrel)",
+          "z3_formula": "Implies(eats_X_mouse, chases_X_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(squirrel, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_squirrel_cat)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, bear))",
+          "z3_formula": "not(chases_mouse_bear) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(likes_bear_cat, eats_cat_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_X_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(mouse, cat) -> chases(cat, squirrel)",
+          "z3_formula": "Implies(eats_mouse_cat, chases_cat_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(mouse, squirrel)",
+          "z3_formula": "Implies(eats_X_mouse, chases_mouse_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(squirrel, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_squirrel_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "eats(bear, mouse)",
+          "z3_formula": "eats_bear_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats(cat, mouse)) | eats(mouse, cat)",
+          "z3_formula": "Or(Not(eats_cat_mouse), eats_mouse_cat)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(likes_bear_cat, eats_cat_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(mouse, squirrel)",
+          "z3_formula": "Implies(eats_bear_mouse, chases_mouse_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> chases(cat, squirrel)",
+          "z3_formula": "Implies(eats_cat_bear, chases_cat_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(squirrel, cat)",
+          "z3_formula": "Implies(chases_bear_squirrel, eats_squirrel_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(likes_bear_cat, eats_cat_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(bear, bear)",
+          "z3_formula": "Not(likes_bear_bear) == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> eats(cat, Y)",
+          "z3_formula": "Implies(likes_bear_cat, eats_cat_Y)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_X_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> chases(X, squirrel)",
+          "z3_formula": "Implies(eats_X_cat, chases_X_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, squirrel)",
+          "z3_formula": "Implies(eats_X_mouse, chases_X_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(squirrel, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_squirrel_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(bear, bear)",
+          "z3_formula": "Not(likes_bear_bear)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, bear))",
+          "z3_formula": "not(chases_mouse_bear) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(likes_bear_cat, eats_cat_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_X_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(mouse, cat) -> chases(cat, squirrel)",
+          "z3_formula": "Implies(eats_mouse_cat, chases_cat_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, squirrel)",
+          "z3_formula": "Implies(eats_X_mouse, chases_X_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(squirrel, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_squirrel_cat)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(likes_bear_cat, eats_cat_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, bear))",
+          "z3_formula": "Not(chases_mouse_bear) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_X_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(mouse, squirrel)",
+          "z3_formula": "Implies(eats_X_mouse, chases_mouse_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(squirrel, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_squirrel_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(likes(bear, bear))",
+          "z3_formula": "Not(likes_bear_bear) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, cat)",
+          "z3_formula": "likes_bear_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, bear)",
+          "z3_formula": "eats_cat_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(mouse, bear))",
+          "z3_formula": "Not(chases_mouse_bear) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> eats(cat, mouse)",
+          "z3_formula": "Implies(likes_bear_cat, eats_cat_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_X_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(mouse, cat) -> chases(cat, squirrel)",
+          "z3_formula": "Implies(eats_mouse_cat, chases_cat_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> chases(X, squirrel)",
+          "z3_formula": "Implies(eats_X_mouse, chases_X_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_X_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(likes(bear, bear))",
+          "z3_formula": "Not(likes_bear_bear) == True",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 125,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 24
+    },
+    "maxsat_stats": {
+      "satisfied": 24,
+      "excluded": 0,
+      "total_weight": 125,
+      "solve_time_ms": 0.8279904723167419
+    },
+    "timing": {
+      "trace_gen_s": 21.672,
+      "extraction_s": 23.131,
+      "dedup_s": 0.595,
+      "maxsat_s": 0.002,
+      "total_s": 45.4
+    }
+  }
+}

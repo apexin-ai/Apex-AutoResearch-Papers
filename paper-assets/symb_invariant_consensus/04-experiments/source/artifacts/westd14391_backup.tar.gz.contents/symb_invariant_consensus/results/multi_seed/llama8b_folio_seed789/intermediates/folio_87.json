@@ -1,0 +1,951 @@
+{
+  "problem": {
+    "id": "folio_87",
+    "problem": "Given the following premises:\nIn superhero movies, the good guys always win. The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie. Good guys fight bad guys and vice versa. Sir Digby fights his nemesis. If a superhero movie is named after a character, that character is a good guy. The Surprising Adventures of Sir Digby Chicken Caesar is named after Sir Digby. If somebody wins a fight, the person they are fighting loses. If a superhero movie is named after a character, that character appears in the movie.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSir Digby\u2019s nemesis loses.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x \u2200y (SuperheroMovie(x) \u2227 GoodGuy(y) \u2227 AppearsIn(y, x) \u2192 Wins(y))",
+      "SuperheroMovie(surprisingAdventuresofSirDigbyChickenCaesar)",
+      "\u2200x \u2200y (GoodGuy(x) \u2227 Fights(x, y) \u27f7 BadGuy(y) \u2227 Fights(y, x))",
+      "Fights(sirDigby, sirDigbyNemesis)",
+      "\u2200x \u2200y (SuperheroMovie(x), NamedAfter(x, y) \u2192 GoodGuy(y))",
+      "NamedAfter(surprisingAdventuresofSirDigbyChickenCaesar, sirDigby)",
+      "\u2200x \u2200y (Fights(x, y) \u2227 Wins(x) \u2192 \u00acWins(y))"
+    ],
+    "conclusion_fol": "\u2200x \u2200y (SuperheroMovie(x) \u2227 AppearsIn(y, x) \u2192 GoodGuy(y))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 126.0
+    },
+    "answer_counts": {
+      "True": 10
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to apply the premises to the conclusion. \n\nPremise 1: In superhero movies, the good guys always win.\nPremise 2: The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie.\nPremise 3: Good guys fight bad guys and vice versa.\nPremise 4: Sir Digby fights his nemesis.\nPremise 5: If a superhero movie is named after a character, that character is a good guy.\nPremise 6: The Surprising Adventures of Sir Digby Chicken Caesar is named after Sir Digby.\nPremise 7: If somebody wins a fight, the person they are fighting loses.\nPremise 8: If a superhero movie is named after a character, that character appears in the movie.\n\nConclusion: Sir Digby's nemesis loses.\n\nFrom Premise 2 and Premise 6, we can conclude that Sir Digby is a good guy (because he is the main character of a superhero movie named after him).\n\nFrom Premise 3 and Premise 4, we can conclude that Sir Digby's nemesis is a bad guy (because good guys fight bad guys).\n\nFrom Premise 1, we can conclude that Sir Digby wins the fight against his nemesis (because good guys always win in superhero movies).\n\nFrom Premise 7, we can conclude that Sir Digby's nemesis loses the fight (because the person who loses a fight is the one they are fighting).\n\nTherefore, based on the premises, the conclusion is true: Sir Digby's nemesis loses.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning and the given premises. We will break down the information and analyze it step by step.\n\nPremises:\n\n1. In superhero movies, the good guys always win.\n2. The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie.\n3. Good guys fight bad guys and vice versa.\n4. Sir Digby fights his nemesis.\n5. If a superhero movie is named after a character, that character is a good guy.\n6. The Surprising Adventures of Sir Digby Chicken Caesar is named after Sir Digby.\n7. If somebody wins a fight, the person they are fighting loses.\n8. If a superhero movie is named after a character, that character appears in the movie.\n\nWe are trying to determine if the following conclusion is true, false, or uncertain:\nSir Digby's nemesis loses.\n\nLet's analyze the premises and the conclusion step by step:\n\nFrom premise 8, we know that since The Surprising Adventures of Sir Digby Chicken Caesar is named after Sir Digby, Sir Digby appears in the movie. \n\nSince Sir Digby is a good guy (from premise 5), and good guys fight bad guys (from premise 3), Sir Digby's nemesis must be a bad guy.\n\nFrom premise 1, we know that in superhero movies, the good guys always win. Since Sir Digby is a good guy, he must win the fight against his nemesis.\n\nFrom premise 7, we know that if somebody wins a fight, the person they are fighting loses. Since Sir Digby wins the fight, his nemesis must lose.\n\nTherefore, the conclusion \"Sir Digby's nemesis loses\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we'll break it down step by step using the given premises.\n\n1. **In superhero movies, the good guys always win.** (Premise 1)\nThis premise tells us that in superhero movies, the good guys always emerge victorious.\n\n2. **The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie.** (Premise 2)\nThis premise informs us that the movie in question falls under the category of superhero movies.\n\n3. **Good guys fight bad guys and vice versa.** (Premise 3)\nThis premise tells us that the opposing sides in a fight are good guys and bad guys. Since good guys fight bad guys, this implies that if someone is a good guy, they will fight a bad guy.\n\n4. **Sir Digby fights his nemesis.** (Premise 4)\nThis premise tells us that Sir Digby is involved in a fight with his nemesis.\n\n5. **If a superhero movie is named after a character, that character is a good guy.** (Premise 5)\nThis premise tells us that if a superhero movie is named after a character, that character is a good guy. Since the movie is named after Sir Digby, we can infer that Sir Digby is a good guy.\n\n6. **The Surprising Adventures of Sir Digby Chicken Caesar is named after Sir Digby.** (Premise 6)\nThis premise confirms that the movie is named after Sir Digby.\n\n7. **If somebody wins a fight, the person they are fighting loses.** (Premise 7)\nThis premise tells us that when one person wins a fight, the other person loses.\n\n8. **If a superhero movie is named after a character, that character appears in the movie.** (Premise 8)\nThis premise tells us that if a superhero movie is named after a character, that character will appear in the movie.\n\nNow, we can analyze the conclusion:\n\n**Conclusion:** Sir Digby's nemesis loses.\n\nSince Sir Digby is a good guy (Premise 5 and Premise 6), and good guys always win in superhero movies (Premise 1), we can conclude that Sir Digby will win the fight against his nemesis.\n\nGiven that Sir Digby will win the fight (Premise 7), we can conclude that his nemesis will lose the fight.\n\nTherefore, the conclusion that Sir Digby's nemesis loses is **True**.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we'll analyze the given premises step by step.\n\nPremise 1: In superhero movies, the good guys always win.\nPremise 2: The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie.\nPremise 3: Good guys fight bad guys and vice versa.\nPremise 4: Sir Digby fights his nemesis.\nPremise 5: If a superhero movie is named after a character, that character is a good guy.\nPremise 6: The Surprising Adventures of Sir Digby Chicken Caesar is named after Sir Digby.\nPremise 7: If somebody wins a fight, the person they are fighting loses.\nPremise 8: If a superhero movie is named after a character, that character appears in the movie.\n\nFrom Premise 2, we know that The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie.\nFrom Premise 5, we know that since it's named after a character, Sir Digby is a good guy.\nFrom Premise 6, we know that the movie is named after Sir Digby, so he appears in the movie (Premise 8).\nFrom Premise 4, we know that Sir Digby fights his nemesis.\nFrom Premise 3, we know that good guys fight bad guys, but in this case, Sir Digby (a good guy) is fighting his nemesis, which means his nemesis must be a bad guy.\n\nNow, let's connect the premises to the conclusion. \n\nFrom Premise 1, we know that in superhero movies, the good guys always win.\nFrom the previous step, we know that Sir Digby is a good guy and his nemesis is a bad guy.\nSince Sir Digby is a good guy and his nemesis is a bad guy, the good guy (Sir Digby) will win the fight.\nFrom Premise 7, if the good guy wins the fight, his nemesis will lose.\n\nTherefore, based on the premises, the conclusion that \"Sir Digby's nemesis loses\" is true.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will analyze the premises step by step and determine their implications.\n\nPremise 1: In superhero movies, the good guys always win.\nThis premise tells us the general outcome of superhero movies but doesn't give us any information about the specific movie, The Surprising Adventures of Sir Digby Chicken Caesar.\n\nPremise 2: The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie.\nThis premise connects our specific movie to the general outcome mentioned in premise 1.\n\nPremise 3: Good guys fight bad guys and vice versa.\nThis premise tells us about the nature of the conflict between good guys and bad guys but doesn't give us any information about the specific fight between Sir Digby and his nemesis.\n\nPremise 4: Sir Digby fights his nemesis.\nThis premise introduces the specific fight we're interested in, but it doesn't tell us who wins.\n\nPremise 5: If a superhero movie is named after a character, that character is a good guy.\nThis premise tells us about Sir Digby's nature based on the name of the movie. It implies that Sir Digby is the good guy in the movie.\n\nPremise 6: The Surprising Adventures of Sir Digby Chicken Caesar is named after Sir Digby.\nThis premise confirms that the movie is indeed named after Sir Digby, which means he is the good guy.\n\nPremise 7: If somebody wins a fight, the person they are fighting loses.\nThis premise tells us about the outcome of a fight but doesn't tell us who wins or loses in the specific fight between Sir Digby and his nemesis.\n\nPremise 8: If a superhero movie is named after a character, that character appears in the movie.\nThis premise confirms that Sir Digby appears in the movie, which we already knew from premise 6.\n\nNow, let's analyze the conclusion: \"Sir Digby\u2019s nemesis loses.\"\nFrom premise 1 and premise 2, we know that good guys win in superhero movies. From premise 5 and premise 6, we know that Sir Digby is the good guy in the movie. Therefore, based on premise 1, we can conclude that Sir Digby wins.\n\nFrom premise 7, we know that if someone wins a fight, their opponent loses. Since we concluded that Sir Digby wins, we can apply premise 7 and conclude that his nemesis loses.\n\nTherefore, the conclusion \"Sir Digby\u2019s nemesis loses\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use the rules of deductive logic and the given premises.\n\nPremise 1: In superhero movies, the good guys always win.\nPremise 2: The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie.\nPremise 3: Good guys fight bad guys and vice versa.\nPremise 4: Sir Digby fights his nemesis.\nPremise 5: If a superhero movie is named after a character, that character is a good guy.\nPremise 6: The Surprising Adventures of Sir Digby Chicken Caesar is named after Sir Digby.\nPremise 7: If somebody wins a fight, the person they are fighting loses.\nPremise 8: If a superhero movie is named after a character, that character appears in the movie.\n\nNow, we will use these premises to determine the truth of the conclusion.\n\nConclusion: Sir Digby\u2019s nemesis loses.\n\nSince the Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie (Premise 2), in this movie, the good guys always win (Premise 1). \n\nAccording to Premise 6, Sir Digby is the character the movie is named after, which means Sir Digby is the good guy in the movie. \n\nAccording to Premise 5, good guys fight bad guys and vice versa (Premise 3). Therefore, Sir Digby fights his nemesis (Premise 4), who is the bad guy.\n\nSince Sir Digby is the good guy and the good guy always wins, Sir Digby must win the fight against his nemesis.\n\nNow, we apply Premise 7: If somebody wins a fight, the person they are fighting loses. Since Sir Digby wins the fight, his nemesis must lose the fight.\n\nTherefore, the conclusion that \"Sir Digby\u2019s nemesis loses\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will use the premises to deduce whether Sir Digby's nemesis loses.\n\n1. In superhero movies, the good guys always win.\n2. The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie.\n3. Good guys fight bad guys and vice versa.\n4. Sir Digby fights his nemesis.\n5. If a superhero movie is named after a character, that character is a good guy.\n6. The Surprising Adventures of Sir Digby Chicken Caesar is named after Sir Digby.\n7. If somebody wins a fight, the person they are fighting loses.\n8. If a superhero movie is named after a character, that character appears in the movie.\n\nFrom premise 5 and premise 6, we can infer that Sir Digby is a good guy.\n\nFrom premise 3, we can infer that Sir Digby's nemesis is a bad guy, since good guys fight bad guys.\n\nFrom premise 7, we can conclude that if Sir Digby wins the fight, his nemesis loses.\n\nHowever, we still need to determine whether Sir Digby wins the fight. We can use premise 1 and premise 2 to deduce that Sir Digby wins the fight, since The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie, and in these movies, the good guys always win.\n\nTherefore, since Sir Digby wins the fight, his nemesis loses, according to premise 7.\n\nThe conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Sir Digby's nemesis loses, we need to evaluate the premises and apply logical reasoning.\n\nPremise 1: In superhero movies, the good guys always win.\n\nPremise 2: The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie.\n\nPremise 3: Good guys fight bad guys and vice versa.\n\nPremise 4: Sir Digby fights his nemesis.\n\nPremise 5: If a superhero movie is named after a character, that character is a good guy.\n\nPremise 6: The Surprising Adventures of Sir Digby Chicken Caesar is named after Sir Digby.\n\nPremise 7: If somebody wins a fight, the person they are fighting loses.\n\nPremise 8: If a superhero movie is named after a character, that character appears in the movie.\n\nConclusion: Sir Digby's nemesis loses.\n\nFrom Premise 2 and Premise 6, we know that Sir Digby is a good guy (Premise 5). \n\nFrom Premise 3, we can conclude that Sir Digby's nemesis is a bad guy (good guys fight bad guys and vice versa).\n\nFrom Premise 1 and Premise 7, we know that good guys always win in superhero movies, and the person they are fighting loses. \n\nSince Sir Digby is a good guy and his nemesis is a bad guy, and the good guy always wins in superhero movies, we can conclude that Sir Digby wins the fight against his nemesis.\n\nNow, according to Premise 7, if Sir Digby wins the fight, his nemesis loses. \n\nTherefore, we can conclude that Sir Digby's nemesis loses.\n\nFinal answer: $\\boxed{True}$",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"Sir Digby's nemesis loses\" is true, false, or uncertain, we will analyze the given premises step by step:\n\n1. In superhero movies, the good guys always win.\n2. The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie.\n3. Good guys fight bad guys and vice versa.\n4. Sir Digby fights his nemesis.\n5. If a superhero movie is named after a character, that character is a good guy.\n6. The Surprising Adventures of Sir Digby Chicken Caesar is named after Sir Digby.\n7. If somebody wins a fight, the person they are fighting loses.\n8. If a superhero movie is named after a character, that character appears in the movie.\n\nFrom premise 5 and premise 6, we can conclude that Sir Digby is a good guy because the movie is named after him.\n\nFrom premise 3, we know that good guys fight bad guys. Since Sir Digby is a good guy, his nemesis must be a bad guy.\n\nFrom premise 1, we know that in superhero movies, good guys always win. Since Sir Digby is a good guy, we can conclude that Sir Digby wins his fight.\n\nNow, let's examine the fight between Sir Digby and his nemesis. From premise 7, we know that if somebody wins a fight, the person they are fighting loses. Since Sir Digby wins the fight, his nemesis must lose.\n\nTherefore, the conclusion \"Sir Digby's nemesis loses\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning and the premises provided. We will break down the steps as follows:\n\nPremise 1: In superhero movies, the good guys always win.\n\nPremise 2: The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie.\n\nPremise 3: Good guys fight bad guys and vice versa.\n\nPremise 4: Sir Digby fights his nemesis.\n\nPremise 5: If a superhero movie is named after a character, that character is a good guy.\n\nPremise 6: The Surprising Adventures of Sir Digby Chicken Caesar is named after Sir Digby.\n\nPremise 7: If somebody wins a fight, the person they are fighting loses.\n\nPremise 8: If a superhero movie is named after a character, that character appears in the movie.\n\nConclusion: Sir Digby\u2019s nemesis loses.\n\nStep 1: From Premise 2 and Premise 5, we can conclude that Sir Digby is a good guy.\n\nStep 2: From Premise 4 and Premise 3, we know that Sir Digby fights his nemesis, which is a bad guy.\n\nStep 3: From Premise 1 and Step 1, we can conclude that Sir Digby wins the fight.\n\nStep 4: From Step 2 and Step 3, we can conclude that Sir Digby\u2019s nemesis loses.\n\nTherefore, based on the premises provided, the conclusion that Sir Digby\u2019s nemesis loses is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: In superhero movies, the good guys always win.\nPremise 2: The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie.\nPremise 3: Good guys fight bad guys and vice versa.\nPremise 4: Sir Digby fights his nemesis.\nPremise 5: If a superhero movie is named after a character, that character is a good guy.\nPremise 6: The Surprising Adventures of Sir Digby Chicken Caesar is named after Sir Digby.\nPremise 7: If somebody wins a fight, the person they are fighting loses.\nPremise 8: If a superhero movie is named after a character, that character appears in the movie.\n\nFrom Premise 2 and Premise 6, we can conclude that Sir Digby is a good guy because The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie and it is named after Sir Digby.\n\nFrom Premise 7, we can conclude that if Sir Digby wins the fight, his nemesis loses.\n\nNow, let's look at Premise 4: Sir Digby fights his nemesis. Since we know from Premise 7 that the person who wins the fight is the one who loses (because the other person wins), we can conclude that Sir Digby's nemesis is the one who loses.\n\nHowever, we can also conclude from Premise 4 that the fight between Sir Digby and his nemesis is between a good guy (Sir Digby) and a bad guy (his nemesis). Since good guys always win (Premise 1), we can conclude that Sir Digby wins the fight.\n\nNow we have a problem: Sir Digby wins the fight (because he is a good guy) and his nemesis loses (because he is the one Sir Digby is fighting). This seems to be a paradox.\n\nHowever, let's analyze it further. We know that good guys always win (Premise 1) and that Sir Digby is a good guy (because he is the main character of a superhero movie named after him). If Sir Digby is a good guy, he must win the fight. But then, his nemesis must lose.\n\nTherefore, we can conclude that the conclusion \"Sir Digby's nemesis loses\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given premises and apply them to the conclusion.\n\nPremise 1: In superhero movies, the good guys always win.\nPremise 2: The Surprising Adventures of Sir Digby Chicken Caesar is a superhero movie.\nPremise 3: Good guys fight bad guys and vice versa.\nPremise 4: Sir Digby fights his nemesis.\nPremise 5: If a superhero movie is named after a character, that character is a good guy.\nPremise 6: The Surprising Adventures of Sir Digby Chicken Caesar is named after Sir Digby.\nPremise 7: If somebody wins a fight, the person they are fighting loses.\nPremise 8: If a superhero movie is named after a character, that character appears in the movie.\n\nConclusion: Sir Digby's nemesis loses.\n\nFrom Premise 2 and Premise 6, we can conclude that Sir Digby is a good guy because the movie is named after him.\n\nFrom Premise 3, we know that good guys fight bad guys and vice versa, but since Sir Digby is a good guy, his nemesis must be a bad guy.\n\nFrom Premise 1, we know that good guys always win in superhero movies. Since Sir Digby is a good guy, he must win the fight against his nemesis.\n\nFrom Premise 7, we can conclude that Sir Digby's nemesis must lose the fight.\n\nTherefore, based on the given premises, the conclusion \"Sir Digby's nemesis loses\" is true.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_guy(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, good_guy_sir_digby)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_guy_sir_digby == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(sir_digby) -> bad_guy(nemesis)",
+          "z3_formula": "Implies(good_guy_sir_digby, bad_guy_nemesis)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "bad_guy(nemesis)",
+          "z3_formula": "bad_guy_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(X) -> win(X)",
+          "z3_formula": "Implies(good_guy_sir_digby, win_sir_digby)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "win(sir_digby)",
+          "z3_formula": "win_sir_digby == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "win(sir_digby) -> lose(nemesis)",
+          "z3_formula": "Implies(win_sir_digby, lose_nemesis)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "lose(nemesis)",
+          "z3_formula": "lose_nemesis == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "good_guys_win",
+          "z3_formula": "good_guys_win == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_guys_win(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, good_guys_win)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy(X) -> bad_guy_opponent(X)",
+          "z3_formula": "Implies(good_guy_sir_digby, bad_guy_nemesis)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "good_guys_win(X) -> good_guy_wins(X)",
+          "z3_formula": "Implies(good_guys_win, good_guy_wins)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy_wins(X) -> bad_guy_loses(X)",
+          "z3_formula": "Implies(good_guy_wins, bad_guy_loses)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> character_appears(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, character_appears)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> character_appears(X)",
+          "z3_formula": "Implies(named_after_character, character_appears)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> good_guy(X)",
+          "z3_formula": "Implies(named_after_character, good_guy_sir_digby)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "bad_guy_nemesis_loses",
+          "z3_formula": "bad_guy_loses == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "good_movie(superhero)",
+          "z3_formula": "good_movie_superhero == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures)",
+          "z3_formula": "superhero_movie_surprising_adventures == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_movie(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures, good_movie_superhero)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> good(X)",
+          "z3_formula": "Implies(named_after_character_sir_digby, good_sir_digby)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "named_after_character(sir_digby)",
+          "z3_formula": "named_after_character_sir_digby == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> character_appears(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures, character_appears_sir_digby)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "wins_fight(X) -> loses_fight(Y)",
+          "z3_formula": "Implies(wins_fight_sir_digby, loses_fight_nemesis)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> character_appears(X)",
+          "z3_formula": "Implies(named_after_character_sir_digby, character_appears_sir_digby)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "good(sir_digby)",
+          "z3_formula": "good_sir_digby == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "wins_fight(sir_digby)",
+          "z3_formula": "wins_fight_sir_digby == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "loses_fight(nemesis)",
+          "z3_formula": "loses_fight_nemesis == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "good_guys_win",
+          "z3_formula": "good_guys_win == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_guys_win(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, good_guys_win_surprising_adventures_of_sir_digby_chicken_caesar)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> good_guy(X)",
+          "z3_formula": "Implies(named_after_character_sir_digby, good_guy_sir_digby)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> appears_in_movie(X)",
+          "z3_formula": "Implies(named_after_character_sir_digby, appears_in_movie_sir_digby)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy(X) -> good_guy_fights_bad_guy(X)",
+          "z3_formula": "Implies(good_guy_sir_digby, good_guy_fights_bad_guy_sir_digby)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy_fights_bad_guy(X) -> bad_guy(X)",
+          "z3_formula": "Implies(good_guy_fights_bad_guy_sir_digby, bad_guy_nemesis)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy(X) & bad_guy(Y) -> good_guy_wins(X, Y)",
+          "z3_formula": "Implies(And(good_guy_sir_digby, bad_guy_nemesis), good_guy_wins_sir_digby_nemesis)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy_wins(X, Y) -> Y_loses(X, Y)",
+          "z3_formula": "Implies(good_guy_wins_sir_digby_nemesis, nemesis_loses_sir_digby)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "named_after_character(sir_digby)",
+          "z3_formula": "named_after_character_sir_digby == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_guy_sir_digby == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "appears_in_movie(sir_digby)",
+          "z3_formula": "appears_in_movie_sir_digby == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "bad_guy(nemesis)",
+          "z3_formula": "bad_guy_nemesis == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "good_guy_wins(sir_digby, nemesis)",
+          "z3_formula": "good_guy_wins_sir_digby_nemesis == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "nemesis_loses(sir_digby)",
+          "z3_formula": "nemesis_loses_sir_digby == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "good_guys_always_win",
+          "z3_formula": "good_guys_always_win == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie_surprising_adventures",
+          "z3_formula": "superhero_movie_surprising_adventures == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie_named_after_character -> good_guy_character",
+          "z3_formula": "Implies(superhero_movie_named_after_character, good_guy_character)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie_surprising_adventures_named_after_sir_digby",
+          "z3_formula": "superhero_movie_surprising_adventures_named_after_sir_digby == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "somebody_wins_fight -> opponent_loses",
+          "z3_formula": "Implies(somebody_wins_fight, opponent_loses)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie_named_after_character -> character_appears_in_movie",
+          "z3_formula": "Implies(superhero_movie_named_after_character, character_appears_in_movie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sir_digby_is_good_guy",
+          "z3_formula": "good_guy_character == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sir_digby_wins",
+          "z3_formula": "good_guys_always_win == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sir_digby_nemesis_loses",
+          "z3_formula": "opponent_loses == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "good_guys_always_win",
+          "z3_formula": "good_guys_always_win == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie_surprising_adventures",
+          "z3_formula": "superhero_movie_surprising_adventures == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_guys_always_win",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures, good_guys_always_win)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_guys_fight_bad_guys",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures, good_guys_fight_bad_guys)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> good_guy(X)",
+          "z3_formula": "Implies(named_after_character_sir_digby, good_guy_sir_digby)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) & named_after_character(X) -> good_guy(X)",
+          "z3_formula": "Implies(And(superhero_movie_surprising_adventures, named_after_character_sir_digby), good_guy_sir_digby)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy(X) -> fights_bad_guy(X)",
+          "z3_formula": "Implies(good_guy_sir_digby, fights_bad_guy_sir_digby)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "fights_bad_guy(X) -> bad_guy(X)",
+          "z3_formula": "Implies(fights_bad_guy_sir_digby, bad_guy_sir_digby)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "wins_fight(X) -> loses_fight(Y)",
+          "z3_formula": "Implies(wins_fight_sir_digby, loses_fight_nemesis)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "loses_fight(nemesis)",
+          "z3_formula": "loses_fight_nemesis == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_guy_sir_digby == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_guy(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, good_guy_sir_digby)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy(X) -> bad_guy(opp(X))",
+          "z3_formula": "Implies(good_guy_sir_digby, bad_guy_nemesis)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "wins(X, Y) -> loses(opp(Y), X)",
+          "z3_formula": "Implies(wins_sir_digby_nemesis, loses_nemesis_sir_digby)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> wins(good_guy(X), opp(good_guy(X)))",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, wins_sir_digby_nemesis)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_character(X) -> appears_in_movie(X)",
+          "z3_formula": "Implies(named_after_character_sir_digby, appears_in_movie_sir_digby)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "good_guys_always_win",
+          "z3_formula": "good_guys_always_win == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "surprising_adventures_is_superhero_movie",
+          "z3_formula": "surprising_adventures_is_superhero_movie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie_named_after_character -> good_guy",
+          "z3_formula": "Implies(surprising_adventures_is_superhero_movie & named_after_character, good_guy)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie_named_after_character -> character_appears_in_movie",
+          "z3_formula": "Implies(surprising_adventures_is_superhero_movie & named_after_character, character_appears_in_movie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "wins_fight -> loses",
+          "z3_formula": "Implies(wins_fight, loses)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy -> wins_fight",
+          "z3_formula": "Implies(good_guy, wins_fight)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_sir_digby == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "bad_guy(nemesis)",
+          "z3_formula": "bad_nemesis == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sir_digby_wins_fight",
+          "z3_formula": "sir_digby_wins_fight == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nemesis_loses",
+          "z3_formula": "nemesis_loses == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "good_guys_win",
+          "z3_formula": "good_guys_win == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie_named_after_character(X) -> good_guy(X)",
+          "z3_formula": "Implies(superhero_movie_named_after_character_surprising_adventures_of_sir_digby_chicken_caesar, good_guy_sir_digby)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie_named_after_character(X) -> character_appears_in_movie(X)",
+          "z3_formula": "Implies(superhero_movie_named_after_character_surprising_adventures_of_sir_digby_chicken_caesar, character_appears_in_movie_sir_digby)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy(X) -> good_guy_fights_bad_guy(X)",
+          "z3_formula": "Implies(good_guy_sir_digby, good_guy_fights_bad_guy_sir_digby)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "wins_fight(X, Y) -> loses_fight(Y, X)",
+          "z3_formula": "Implies(wins_fight_sir_digby_nemesis, loses_fight_nemesis_sir_digby)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_guy_sir_digby == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "good_guy_fights_bad_guy(sir_digby)",
+          "z3_formula": "good_guy_fights_bad_guy_sir_digby == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "wins_fight(sir_digby, nemesis)",
+          "z3_formula": "wins_fight_sir_digby_nemesis == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "loses_fight(nemesis, sir_digby)",
+          "z3_formula": "loses_fight_nemesis_sir_digby == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> good_guy(X)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, good_guy_sir_digby)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_guy_sir_digby == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) -> named_after_character(X, Y)",
+          "z3_formula": "Implies(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, named_after_character_surprising_adventures_of_sir_digby_chicken_caesar_sir_digby)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "named_after_character(surprising_adventures_of_sir_digby_chicken_caesar, sir_digby)",
+          "z3_formula": "named_after_character_surprising_adventures_of_sir_digby_chicken_caesar_sir_digby == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_guy_sir_digby == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "good_guy(X) -> wins(X, Y)",
+          "z3_formula": "Implies(good_guy_sir_digby, wins_sir_digby_nemesis)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "wins(sir_digby, nemesis)",
+          "z3_formula": "wins_sir_digby_nemesis == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fights(sir_digby, nemesis)",
+          "z3_formula": "fights_sir_digby_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "fights(X, Y) -> good_guy(X) | bad_guy(Y)",
+          "z3_formula": "Implies(And(fights_sir_digby_nemesis, good_guy_sir_digby), Or(bad_guy_nemesis, Not(bad_guy_nemesis)))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "wins(X, Y) -> loses(Y)",
+          "z3_formula": "Implies(wins_sir_digby_nemesis, loses_nemesis)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "loses(nemesis)",
+          "z3_formula": "loses_nemesis == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "good_guys_always_win",
+          "z3_formula": "good_guys_always_win == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guys_fight_bad_guys",
+          "z3_formula": "good_guys_fight_bad_guys == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sir_digby_fights_nemesis",
+          "z3_formula": "sir_digby_fights_nemesis == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) & named_after_character(X, Y) -> good_guy(Y)",
+          "z3_formula": "Implies(And(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, named_after_character_sir_digby_chicken_caesar_sir_digby), good_guy_sir_digby)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "superhero_movie(X) & named_after_character(X, Y) -> character_appears_in_movie(Y, X)",
+          "z3_formula": "Implies(And(superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar, named_after_character_sir_digby_chicken_caesar_sir_digby), character_appears_in_movie_sir_digby_surprising_adventures_of_sir_digby_chicken_caesar)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "wins_fight(X) -> loses_fight(Y)",
+          "z3_formula": "Implies(wins_fight_sir_digby, loses_fight_nemesis)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "good_guy(sir_digby)",
+          "z3_formula": "good_guy_sir_digby == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sir_digby_wins_fight",
+          "z3_formula": "wins_fight_sir_digby == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nemesis_loses_fight",
+          "z3_formula": "loses_fight_nemesis == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "superhero_movie(surprising_adventures_of_sir_digby_chicken_caesar)",
+          "z3_formula": "superhero_movie_surprising_adventures_of_sir_digby_chicken_caesar == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "named_after_character(surprising_adventures_of_sir_digby_chicken_caesar, sir_digby)",
+          "z3_formula": "named_after_character_surprising_adventures_of_sir_digby_chicken_caesar_sir_digby == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "named_after_character(surprising_adventures_of_sir_digby_chicken_caesar, sir_digby) -> good_guy(sir_digby)",
+          "z3_formula": "Implies(named_after_character_surprising_adventures_of_sir_digby_chicken_caesar_sir_digby, good_guy_sir_digby)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(sir_digby) -> bad_guy(nemesis)",
+          "z3_formula": "Implies(good_guy_sir_digby, bad_guy_nemesis)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "good_guy(sir_digby) -> win(sir_digby, nemesis)",
+          "z3_formula": "Implies(good_guy_sir_digby, win_sir_digby_nemesis)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "win(sir_digby, nemesis) -> lose(nemesis)",
+          "z3_formula": "Implies(win_sir_digby_nemesis, lose_nemesis)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "lose(nemesis)",
+          "z3_formula": "lose_nemesis == True",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 136,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 81
+    },
+    "maxsat_stats": {
+      "satisfied": 81,
+      "excluded": 0,
+      "total_weight": 136,
+      "solve_time_ms": 1.2954622507095337
+    },
+    "timing": {
+      "trace_gen_s": 6.248,
+      "extraction_s": 27.748,
+      "dedup_s": 2.344,
+      "maxsat_s": 0.006,
+      "total_s": 36.346
+    }
+  }
+}

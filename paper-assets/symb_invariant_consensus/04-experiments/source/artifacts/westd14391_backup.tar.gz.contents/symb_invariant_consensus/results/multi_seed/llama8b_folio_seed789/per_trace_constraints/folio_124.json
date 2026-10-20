@@ -1,0 +1,683 @@
+{
+  "pid": "folio_124",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "transport_multiple_passengers(airline)",
+          "z3_formula": "transport_multiple_passengers_airline == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "transport_multiple_passengers(airline)",
+          "z3_formula": "transport_multiple_passengers_airline == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "empty(plane)",
+          "z3_formula": "empty_plane == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plane(boeing_707)",
+          "z3_formula": "plane_boeing_707 == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(transport_multiple_passengers_airline, not empty_airline)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "airline(X) -> transport_multiple_passengers(X)",
+          "z3_formula": "Implies(airline_X, transport_multiple_passengers_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "airline(X) -> not plane(X)",
+          "z3_formula": "Implies(airline_X, not plane_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "not airline(X) -> not plane(X)",
+          "z3_formula": "Implies(not airline_X, not plane_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "airline(greyhound)",
+          "z3_formula": "airline_greyhound == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not airline(greyhound)",
+          "z3_formula": "not airline_greyhound == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not plane(greyhound)",
+          "z3_formula": "not plane_greyhound == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not plane(boeing_707)",
+          "z3_formula": "not plane_boeing_707 == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not airline(greyhound) | not plane(boeing_707)",
+          "z3_formula": "Or(not airline_greyhound, not plane_boeing_707)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "transport_multiple_passengers -> not_empty",
+          "z3_formula": "Implies(transport_multiple_passengers, not_empty)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_airlines -> transport_multiple_passengers",
+          "z3_formula": "Implies(all_airlines, transport_multiple_passengers)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_planes -> empty",
+          "z3_formula": "Implies(all_planes, empty)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_boeing_707s -> all_planes",
+          "z3_formula": "Implies(all_boeing_707s, all_planes)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "greyhound_is_not_airline -> no_greyhound_planes",
+          "z3_formula": "Implies(greyhound_is_not_airline, no_greyhound_planes)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "can_transport_multiple_passengers(airline)",
+          "z3_formula": "can_transport_multiple_passengers_airline == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "can_transport_multiple_passengers(airline)",
+          "z3_formula": "can_transport_multiple_passengers_airline == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "empty(plane)",
+          "z3_formula": "empty_plane == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plane(boeing_707)",
+          "z3_formula": "plane_boeing_707 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "airline(greyhound)",
+          "z3_formula": "airline_greyhound == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "can_transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(can_transport_multiple_passengers_airline, not empty_airline)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "airline(X) -> can_transport_multiple_passengers(X)",
+          "z3_formula": "Implies(airline_greyhound, can_transport_multiple_passengers_greyhound)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "airline(X) -> not empty(X)",
+          "z3_formula": "Implies(airline_greyhound, not empty_greyhound)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not airline(X) -> not plane(X)",
+          "z3_formula": "Implies(Not(airline_greyhound), Not(plane_greyhound))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not plane(greyhound)",
+          "z3_formula": "Not(plane_greyhound) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(transport_multiple_passengers_X, not empty_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "airline(X) -> transport_multiple_passengers(X)",
+          "z3_formula": "Implies(airline_X, transport_multiple_passengers_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "plane(X) -> empty(X)",
+          "z3_formula": "Implies(plane_X, empty_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "boeing_707(X) -> plane(X)",
+          "z3_formula": "Implies(boeing_707_X, plane_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not airline(Greyhound) -> not plane(Greyhound)",
+          "z3_formula": "Implies(not airline_Greyhound, not plane_Greyhound)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(Greyhound is not Boeing 707)",
+          "z3_formula": "Or(Implies(airline_Greyhound, And(transport_multiple_passengers_Greyhound, empty_boeing_707)), Implies(not airline_Greyhound, not plane_Greyhound))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "transport_multiple_passengers(airline)",
+          "z3_formula": "transport_multiple_passengers_airline == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "empty(plane)",
+          "z3_formula": "empty_plane == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plane(boeing_707)",
+          "z3_formula": "plane_boeing_707 == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(transport_multiple_passengers_airline, not empty_airline)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "airline(X) -> transport_multiple_passengers(X)",
+          "z3_formula": "Implies(airline_greyhound, transport_multiple_passengers_airline)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "plane(X) -> empty(X)",
+          "z3_formula": "Implies(plane_boeing_707, empty_plane)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "empty(boeing_707)",
+          "z3_formula": "empty_boeing_707 == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "can_transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(can_transport_multiple_passengers_X, not empty_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "airline(X) -> can_transport_multiple_passengers(X)",
+          "z3_formula": "Implies(airline_X, can_transport_multiple_passengers_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "plane(X) -> empty(X)",
+          "z3_formula": "Implies(plane_X, empty_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "boeing_707(X) -> plane(X)",
+          "z3_formula": "Implies(boeing_707_X, plane_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not airline(Greyhound) -> not plane(Greyhound)",
+          "z3_formula": "Implies(not airline_Greyhound, not plane_Greyhound)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "can_transport_multiple_passengers(airline)",
+          "z3_formula": "can_transport_multiple_passengers_airline == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "can_transport_multiple_passengers(airline)",
+          "z3_formula": "can_transport_multiple_passengers_airline == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "empty(plane)",
+          "z3_formula": "empty_plane == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plane(boeing_707)",
+          "z3_formula": "plane_boeing_707 == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can_transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(can_transport_multiple_passengers_X, not empty_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "airline(X) -> can_transport_multiple_passengers(X)",
+          "z3_formula": "Implies(airline_X, can_transport_multiple_passengers_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "airline(X) -> can_transport_multiple_passengers(X)",
+          "z3_formula": "Implies(airline_X, can_transport_multiple_passengers_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not airline(Greyhound) -> not plane(Greyhound)",
+          "z3_formula": "Implies(not airline_Greyhound, not plane_Greyhound)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not airline(Greyhound)",
+          "z3_formula": "not airline_Greyhound == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not empty(Greyhound)",
+          "z3_formula": "not empty_Greyhound == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "plane(Greyhound)",
+          "z3_formula": "plane_Greyhound == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not plane(Greyhound)",
+          "z3_formula": "not plane_Greyhound == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not Boeing_707(Greyhound)",
+          "z3_formula": "not Boeing_707_Greyhound == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "transport_multiple_passengers(airline)",
+          "z3_formula": "transport_multiple_passengers_airline == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "can_transport_multiple_passengers(airline)",
+          "z3_formula": "can_transport_multiple_passengers_airline == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "empty(plane)",
+          "z3_formula": "empty_plane == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "is_airline(greyhound)",
+          "z3_formula": "is_greyhound_airline == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "can_transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(can_transport_multiple_passengers_airline, not empty_airline)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "is_airline(X) -> can_transport_multiple_passengers(X)",
+          "z3_formula": "Implies(is_greyhound_airline, can_transport_multiple_passengers_greyhound)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "is_airline(X) -> not empty(X)",
+          "z3_formula": "Implies(is_greyhound_airline, not empty_greyhound)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "is_plane(X) -> empty(X)",
+          "z3_formula": "Implies(is_plane, empty_plane)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "is_plane(X) -> is_airline(X)",
+          "z3_formula": "Implies(is_plane, is_greyhound_airline)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "is_airline(X) -> not is_plane(X)",
+          "z3_formula": "Implies(is_greyhound_airline, not is_plane_greyhound)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "is_plane(boeing_707)",
+          "z3_formula": "is_boeing_707_plane == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "is_boeing_707(boeing_707)",
+          "z3_formula": "is_boeing_707_boeing_707 == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "not is_airline(X) -> not exists Y (is_greyhound(Y))",
+          "z3_formula": "Implies(not is_greyhound_airline, not exists is_greyhound)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not is_greyhound(boeing_707)",
+          "z3_formula": "not is_greyhound_boeing_707 == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(transport_multiple_passengers_X, not empty_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "airline(X) -> transport_multiple_passengers(X)",
+          "z3_formula": "Implies(airline_X, transport_multiple_passengers_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "plane(X) == True",
+          "z3_formula": "plane_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plane(X) -> empty(X)",
+          "z3_formula": "Implies(plane_X, empty_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "boeing_707(X) -> plane(X)",
+          "z3_formula": "Implies(boeing_707_X, plane_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not airline(Greyhound) -> not plane(Greyhound)",
+          "z3_formula": "Implies(not airline_Greyhound, not plane_Greyhound)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "transport_multiple_passengers(airline)",
+          "z3_formula": "transport_multiple_passengers_airline == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "can_transport_multiple_passengers(airline)",
+          "z3_formula": "can_transport_multiple_passengers_airline == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "empty(plane)",
+          "z3_formula": "empty_plane == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plane(boeing_707)",
+          "z3_formula": "plane_boeing_707 == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "transport_multiple_passengers(X) -> not empty(X)",
+          "z3_formula": "Implies(transport_multiple_passengers_airline, not empty_airline)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "airline(X) -> transport_multiple_passengers(X)",
+          "z3_formula": "Implies(airline, transport_multiple_passengers)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "plane(X) -> empty(X)",
+          "z3_formula": "Implies(plane, empty)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "boeing_707(X) -> plane(X)",
+          "z3_formula": "Implies(boeing_707, plane)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not airline(Greyhound) -> not plane(Greyhound)",
+          "z3_formula": "Implies(not airline_Greyhound, not plane_Greyhound)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not airline(Greyhound) | not plane(Greyhound)",
+          "z3_formula": "Or(not airline_Greyhound, not plane_Greyhound)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "airline(Greyhound) -> not empty(Greyhound)",
+          "z3_formula": "Implies(airline_Greyhound, not empty_Greyhound)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "airline(Greyhound) -> not boeing_707(Greyhound)",
+          "z3_formula": "Implies(airline_Greyhound, not boeing_707_Greyhound)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "airline(X) -> multiple_passengers(X)",
+          "z3_formula": "Implies(airline_X, multiple_passengers_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "airline(X)",
+          "z3_formula": "airline_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "plane(X)",
+          "z3_formula": "plane_X == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "plane(X) -> empty(X)",
+          "z3_formula": "Implies(plane_X, empty_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "plane(X) -> Boeing_707(X)",
+          "z3_formula": "Implies(plane_X, Boeing_707_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "Boeing_707(X)",
+          "z3_formula": "Boeing_707_X == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "airline(X) -> Boeing_707(X)",
+          "z3_formula": "Implies(airline_X, Boeing_707_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "airline(X) -> not empty(X)",
+          "z3_formula": "Implies(airline_X, Not(empty_X))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "not airline(X) -> not plane(X)",
+          "z3_formula": "Implies(Not(airline_X), Not(plane_X))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not Boeing_707(Greyhound)",
+          "z3_formula": "Not(Boeing_707_Greyhound)",
+          "source_step": 11
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1482 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-29_Q21",
+    "problem": "The bald eagle is big. The bald eagle is red. The bald eagle sees the tiger. The bald eagle visits the bear. The bear needs the bald eagle. The bear sees the bald eagle. The bear does not see the tiger. The rabbit is big. The rabbit needs the bald eagle. The rabbit needs the bear. The rabbit visits the tiger. The tiger needs the bald eagle. The tiger needs the rabbit. The tiger visits the bear. If something is big then it needs the tiger. If something needs the tiger and it sees the bald eagle then the tiger is big. If something needs the tiger and it visits the bear then the tiger needs the rabbit. If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger. If something needs the tiger then it is red. If the bear sees the rabbit then the rabbit sees the tiger. If something is blue then it visits the bear. If something is blue and it needs the tiger then it does not visit the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear does not visit the rabbit.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nNeeds($x, $y, bool) ::: Does x need y?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nBig(BaldEagle, True) ::: The bald eagle is big.\nRed(BaldEagle, True) ::: The bald eagle is red.\nSees(BaldEagle, Tiger, True) ::: The bald eagle sees the tiger.\nVisits(BaldEagle, Bear, True) ::: The bald eagle visits the bear.\nNeeds(Bear, BaldEagle, True) ::: The bear needs the bald eagle.\nSees(Bear, BaldEagle, True) ::: The bear sees the bald eagle.\nSees(Bear, Tiger, False) ::: The bear does not see the tiger.\nBig(Rabbit, True) ::: The rabbit is big.\nNeeds(Rabbit, BaldEagle, True) ::: The rabbit needs the bald eagle.\nNeeds(Rabbit, Bear, True) ::: The rabbit needs the bear.\nVisits(Rabbit, Tiger, True) ::: The rabbit visits the tiger.\nNeeds(Tiger, BaldEagle, True) ::: The tiger needs the bald eagle.\nNeeds(Tiger, Rabbit, True) ::: The tiger needs the rabbit.\nVisits(Tiger, Bear, True) ::: The tiger visits the bear.\n\nRules:\nBig($x, True) >>> Needs($x, Tiger, True) ::: If something is big then it needs the tiger.\nNeeds($x, Tiger, True) && Sees($x, BaldEagle, True) >>> Big(Tiger, True) ::: If something needs the tiger and it sees the bald eagle then the tiger is big.\nNeeds($x, Tiger, True) && Visits($x, Bear, True) >>> Needs(Tiger, Rabbit, True) ::: If something needs the tiger and it visits the bear then the tiger needs the rabbit.\nVisits(BaldEagle, Bear, True) && Needs(BaldEagle, Tiger, True) >>> Needs(Bear, Tiger, True) ::: If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger.\nNeeds($x, Tiger, True) >>> Red($x, True) ::: If something needs the tiger then it is red.\nSees(Bear, Rabbit, True) >>> Sees(Rabbit, Tiger, True) ::: If the bear sees the rabbit then the rabbit sees the tiger.\nBlue($x, True) >>> Visits($x, Bear, True) ::: If something is blue then it visits the bear.\nBlue($x, True) && Needs($x, Tiger, True) >>> Visits($x, BaldEagle, False) ::: If something is blue and it needs the tiger then it does not visit the bald eagle.\n\nQuery:\nVisits(Bear, Rabbit, False) ::: The bear does not visit the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 109.0,
+      "True": 130.0,
+      "Unknown": 190.5
+    },
+    "answer_counts": {
+      "True": 1,
+      "False": 2,
+      "Unknown": 7
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The bear does not visit the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given statements:\n\n1. The bald eagle sees the tiger. \n2. The bald eagle visits the bear. \n3. The bear needs the bald eagle. \n4. The bear sees the bald eagle. \n5. The bear does not see the tiger. \n6. The rabbit is big. \n7. The rabbit needs the bald eagle. \n8. The rabbit needs the bear. \n9. The rabbit visits the tiger. \n10. The tiger needs the bald eagle. \n11. The tiger needs the rabbit. \n12. The tiger visits the bear. \n13. If something is big then it needs the tiger. \n14. If something needs the tiger and it sees the bald eagle then the tiger is big. \n15. If something needs the tiger and it visits the bear then the tiger needs the rabbit. \n16. If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger. \n17. If something needs the tiger then it is red. \n18. If the bear sees the rabbit then the rabbit sees the tiger. \n19. If something is blue then it visits the bear. \n20. If something is blue and it needs the tiger then it does not visit the bald eagle.\n\nWe are asked to determine whether the statement \"The bear does not visit the rabbit\" is true, false, or unknown.\n\nFrom statement 8, we know that \"The rabbit needs the bear.\" \n\nFrom statement 13, we know that if something is big then it needs the tiger. \n\nFrom statement 6, we know that \"The rabbit is big.\" \n\nFrom statement 13, we can conclude that \"The rabbit needs the tiger.\"\n\nFrom statement 14, we know that if something needs the tiger and it sees the bald eagle then the tiger is big. \n\nFrom statement 2, we know that \"The bald eagle visits the bear.\" \n\nFrom statement 3, we know that \"The bear needs the bald eagle.\" \n\nFrom statement 4, we know that \"The bear sees the bald eagle.\" \n\nWe cannot conclude that the bear sees the rabbit, and we cannot conclude that the rabbit sees the bear. \n\nFrom statement 15, we know that if something needs the tiger and it visits the bear then the tiger needs the rabbit. \n\nFrom statement 12, we know that \"The tiger visits the bear.\" \n\nFrom statement 10, we know that \"The tiger needs the bald eagle.\" \n\nFrom statement 11, we know that \"The tiger needs the rabbit.\" \n\nFrom statement 16, we know that if the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger. \n\nFrom statement 2, we know that \"The bald eagle visits the bear.\" \n\nFrom statement 3, we know that \"The bear needs the bald eagle.\" \n\nFrom statement 10, we can conclude that the bald eagle needs the tiger.\n\nFrom statement 16, we can conclude that \"The bear needs the tiger.\"\n\nFrom statement 17, we know that if something needs the tiger then it is red. \n\nFrom statement 3, we know that \"The bear needs the bald eagle.\" \n\nFrom statement 10, we know that \"The tiger needs the bald eagle.\" \n\nFrom statement 17, we can conclude that \"The bear is red.\" \n\nFrom statement 17, we know that if something needs the tiger then it is red. \n\nFrom statement 7, we know that \"The rabbit needs the bald eagle.\" \n\nFrom statement 10, we know that \"The tiger needs the bald eagle.\" \n\nFrom statement 17, we can conclude that \"The rabbit is red.\"\n\nFrom statement 18, we know that if the bear sees the rabbit then the rabbit sees the tiger. \n\nWe cannot conclude that the bear sees the rabbit. \n\nTherefore, we cannot conclude that the rabbit sees the tiger.\n\nFrom statement 20, we know that if something is blue then it visits the bear. \n\nWe do not have any information that the rabbit is blue. \n\nFrom statement 8, we know that \"The rabbit needs the bear.\" \n\nFrom statement 19, we know that if something is blue then it visits the bear. \n\nWe cannot conclude that the rabbit is blue. \n\nFrom statement 20, we know that if something is blue and it needs the tiger then it does not visit the bald eagle. \n\nWe cannot conclude that the rabbit is blue, and we cannot conclude that the rabbit needs the tiger.\n\nFrom statement 12, we know that \"The tiger visits the bear.\" \n\nFrom statement 9, we know that \"The rabbit visits the tiger.\" \n\nFrom statement 12, we can conclude that \"The tiger visits the bear.\"\n\nFrom statement 9, we can conclude that \"The rabbit visits the tiger.\" \n\nFrom statement 12, we know that \"The tiger visits the bear.\" \n\nFrom statement 2, we know that \"The bald eagle visits the bear.\" \n\nWe cannot conclude that the bear visits the rabbit.\n\nTherefore, the statement \"The bear does not visit the rabbit\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not visit the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle is big. (This information is not directly related to the statement, so we can ignore it for now.)\n\n2. The bald eagle is red. (This information is not directly related to the statement, so we can ignore it for now.)\n\n3. The bald eagle sees the tiger. (This information is not directly related to the statement, so we can ignore it for now.)\n\n4. The bald eagle visits the bear. (This information is not directly related to the statement, so we can ignore it for now.)\n\n5. The bear needs the bald eagle. (This information is not directly related to the statement, so we can ignore it for now.)\n\n6. The bear sees the bald eagle. (This information is not directly related to the statement, so we can ignore it for now.)\n\n7. The bear does not see the tiger. (This information is not directly related to the statement, so we can ignore it for now.)\n\n8. The rabbit is big. (This information is not directly related to the statement, so we can ignore it for now.)\n\n9. The rabbit needs the bald eagle. (This information is not directly related to the statement, so we can ignore it for now.)\n\n10. The rabbit needs the bear. (This information is not directly related to the statement, so we can ignore it for now.)\n\n11. The rabbit visits the tiger. (This information is not directly related to the statement, so we can ignore it for now.)\n\n12. The tiger needs the bald eagle. (This information is not directly related to the statement, so we can ignore it for now.)\n\n13. The tiger needs the rabbit. (This information is not directly related to the statement, so we can ignore it for now.)\n\n14. The tiger visits the bear. (This information is not directly related to the statement, so we can ignore it for now.)\n\n15. If something is big then it needs the tiger. (This information is not directly related to the statement, so we can ignore it for now.)\n\n16. If something needs the tiger and it sees the bald eagle then the tiger is big. (This information is not directly related to the statement, so we can ignore it for now.)\n\n17. If something needs the tiger and it visits the bear then the tiger needs the rabbit. (This information is not directly related to the statement, so we can ignore it for now.)\n\n18. If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger. (This information is not directly related to the statement, so we can ignore it for now.)\n\n19. If something needs the tiger then it is red. (This information is not directly related to the statement, so we can ignore it for now.)\n\n20. If the bear sees the rabbit then the rabbit sees the tiger. (This information is not directly related to the statement, so we can ignore it for now.)\n\n21. If something is blue then it visits the bear. (This information is not directly related to the statement, so we can ignore it for now.)\n\n22. If something is blue and it needs the tiger then it does not visit the bald eagle. (This information is not directly related to the statement, so we can ignore it for now.)\n\nHowever, we can use the following rules to determine the relationship between the bear and the rabbit:\n\n- The rabbit visits the tiger. \n- The tiger needs the rabbit. \n- The rabbit is big. \n- If something is big then it needs the tiger. \n- The tiger needs the bald eagle. \n- The bald eagle visits the bear.\n\nWe can conclude that the tiger needs the rabbit because the rabbit visits the bear and the tiger needs the rabbit when the tiger visits the bear (Rule 17). \n\nWe can also conclude that the tiger is big because the tiger sees the bald eagle and the tiger needs the bald eagle (Rule 16). \n\nHowever, we cannot directly conclude whether the bear visits the rabbit or not using the given rules. We need to find a relationship between the bear and the rabbit.\n\nSince the bear sees the bald eagle (Rule 6), the bear does not see the tiger (Rule 7). \n\nWe know that the rabbit is big (Rule 8) and big things need the tiger (Rule 15). We also know that the tiger is big (derived from Rule 16), and big things need the tiger. \n\nHowever, the bear does not see the tiger (Rule 7). \n\nThe only way for the bear to not see the tiger is if the bear visits the rabbit (because if the bear sees the rabbit then the rabbit sees the tiger (Rule 20)). \n\nHowever, we need to check if visiting the rabbit is consistent with the other rules. \n\nIf the bear visits the rabbit, then the rabbit sees the tiger (Rule 20). \n\nHowever, visiting the rabbit does not contradict any of the other rules. \n\nTherefore, we can conclude that the bear does not visit the rabbit is false because visiting the rabbit is a possible scenario.\n\nSo, the answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and create a logical chain to determine whether the statement \"The bear does not visit the rabbit\" is true, false, or unknown.\n\n1. The bald eagle is big.\n2. The bald eagle is red.\n3. The bald eagle sees the tiger.\n4. The bald eagle visits the bear.\n5. The bear needs the bald eagle.\n6. The bear sees the bald eagle.\n7. The bear does not see the tiger.\n8. The rabbit is big.\n9. The rabbit needs the bald eagle.\n10. The rabbit needs the bear.\n11. The rabbit visits the tiger.\n12. The tiger needs the bald eagle.\n13. The tiger needs the rabbit.\n14. The tiger visits the bear.\n15. If something is big then it needs the tiger.\n16. If something needs the tiger and it sees the bald eagle then the tiger is big.\n17. If something needs the tiger and it visits the bear then the tiger needs the rabbit.\n18. If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger.\n19. If something needs the tiger then it is red.\n20. If the bear sees the rabbit then the rabbit sees the tiger.\n21. If something is blue then it visits the bear.\n22. If something is blue and it needs the tiger then it does not visit the bald eagle.\n\nFrom statement 4, we know that the bald eagle visits the bear.\n\nFrom statement 18, if the bald eagle visits the bear and the bald eagle needs the tiger, then the bear needs the tiger.\n\nWe don't know if the bald eagle needs the tiger, but we can continue to analyze the statements.\n\nFrom statement 9, the rabbit needs the bear.\n\nFrom statement 10, the rabbit visits the tiger.\n\nFrom statement 21, we can't directly conclude that the rabbit is blue, but we can continue to analyze the statements.\n\nFrom statement 16, if something needs the tiger and it sees the bald eagle, then the tiger is big.\n\nWe don't know if the rabbit sees the bald eagle, but we can continue to analyze the statements.\n\nFrom statement 6, the bear sees the bald eagle.\n\nFrom statement 20, if the bear sees the rabbit, then the rabbit sees the tiger.\n\nWe don't know if the bear sees the rabbit, but we can continue to analyze the statements.\n\nFrom statement 7, the bear does not see the tiger.\n\nFrom statement 11, the rabbit visits the tiger.\n\nNow we need to analyze the statement \"The bear does not visit the rabbit.\"\n\nWe don't have a direct statement that says the bear visits the rabbit. However, we can try to find a contradiction.\n\nFrom statement 22, if something is blue and it needs the tiger, then it does not visit the bald eagle. We don't know if the rabbit is blue, but we can continue to analyze the statements.\n\nFrom statement 9, the rabbit needs the bear.\n\nFrom statement 13, the tiger needs the rabbit.\n\nFrom statement 17, if something needs the tiger and it visits the bear, then the tiger needs the rabbit. However, we don't know if the tiger needs the rabbit.\n\nFrom statement 14, the tiger visits the bear.\n\nFrom statement 10, the rabbit needs the bear.\n\nFrom statement 22, if something is blue and it needs the tiger, then it does not visit the bald eagle. We don't know if the rabbit is blue, but we can continue to analyze the statements.\n\nFrom statement 15, if something is big then it needs the tiger. We don't know if the bear is big.\n\nFrom statement 16, if something needs the tiger and it sees the bald eagle, then the tiger is big. We don't know if the bear sees the bald eagle.\n\nFrom statement 18, if the bald eagle visits the bear and the bald eagle needs the tiger, then the bear needs the tiger. We don't know if the bald eagle needs the tiger.\n\nFrom statement 7, the bear does not see the tiger.\n\nNow we can analyze the statement \"The bear does not visit the rabbit.\"\n\nLet's assume that the bear visits the rabbit.\n\nFrom statement 10, the rabbit needs the bear.\n\nFrom statement 11, the rabbit visits the tiger.\n\nFrom statement 13, the tiger needs the rabbit.\n\nFrom statement 17, if something needs the tiger and it visits the bear, then the tiger needs the rabbit. However, we already know that the tiger needs the rabbit.\n\nFrom statement 15, if something is big then it needs the tiger. We don't know if the bear is big.\n\nFrom statement 16, if something needs the tiger and it sees the bald eagle, then the tiger is big. We don't know if the bear sees the bald eagle.\n\nFrom statement 18, if the bald eagle visits the bear and the bald eagle needs the tiger, then the bear needs the tiger. We don't know if the bald eagle needs the tiger.\n\nFrom statement 6, the bear sees the bald eagle.\n\nFrom statement 20, if the bear sees the rabbit, then the rabbit sees the tiger. However, we already know that the rabbit sees the tiger.\n\nFrom statement 7, the bear does not see the tiger.\n\nNow we can analyze the statement \"The bear does not visit the rabbit\" again.\n\nLet's assume that the bear visits the rabbit.\n\nFrom statement 10, the rabbit needs the bear.\n\nFrom statement 11, the rabbit visits the tiger.\n\nFrom statement 13, the tiger needs the rabbit.\n\nHowever, if the bear visits the rabbit, then the rabbit sees the tiger.\n\nFrom statement 20, if the bear sees the rabbit, then the rabbit sees the tiger. However, we already know that the rabbit sees the tiger.\n\nWe can conclude that the bear visits the rabbit.\n\nTherefore, the statement \"The bear does not visit the rabbit\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve the problem, we need to use the given information and rules to determine the relationship between the bear and the rabbit.\n\n1. The bald eagle sees the tiger. (Given)\n2. The bald eagle visits the bear. (Given)\n3. The bear needs the bald eagle. (Given)\n4. The bear sees the bald eagle. (Given)\n5. The bear does not see the tiger. (Given)\n6. The rabbit is big. (Given)\n7. The rabbit needs the bald eagle. (Given)\n8. The rabbit needs the bear. (Given)\n9. The rabbit visits the tiger. (Given)\n10. The tiger needs the bald eagle. (Given)\n11. The tiger needs the rabbit. (Given)\n12. The tiger visits the bear. (Given)\n13. If something is big then it needs the tiger. (Rule)\n14. If something needs the tiger and it sees the bald eagle then the tiger is big. (Rule)\n15. If something needs the tiger and it visits the bear then the tiger needs the rabbit. (Rule)\n16. If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger. (Rule)\n17. If something needs the tiger then it is red. (Rule)\n18. If the bear sees the rabbit then the rabbit sees the tiger. (Rule)\n19. If something is blue then it visits the bear. (Rule)\n20. If something is blue and it needs the tiger then it does not visit the bald eagle. (Rule)\n\nNow, we need to determine the relationship between the bear and the rabbit.\n\nFrom statement 8, the rabbit needs the bear. \n\nFrom statement 18, if the bear sees the rabbit then the rabbit sees the tiger. However, we do not know if the bear sees the rabbit.\n\nFrom statement 5, the bear does not see the tiger.\n\nTo determine if the bear sees the rabbit, we need to use the rules.\n\nFrom statement 2, the bald eagle visits the bear. \n\nFrom statement 3, the bear needs the bald eagle.\n\nFrom statement 16, if the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger.\n\nFrom statement 10, the tiger needs the bald eagle.\n\nSo, the bald eagle needs the tiger, and the bear needs the bald eagle.\n\nFrom statement 16, the bear needs the tiger.\n\nFrom statement 13, if something is big then it needs the tiger. However, we do not know if the bear is big.\n\nHowever, from statement 6, the rabbit is big.\n\nFrom statement 13, the rabbit is big, so it needs the tiger.\n\nNow we need to use statement 14 to determine if the tiger is big.\n\nFrom statement 2, the bald eagle visits the bear.\n\nFrom statement 3, the bear needs the bald eagle.\n\nFrom statement 10, the tiger needs the bald eagle.\n\nSo, the tiger sees the bald eagle, and the tiger needs the bald eagle.\n\nFrom statement 14, if something needs the tiger and it sees the bald eagle then the tiger is big.\n\nTherefore, the tiger is big.\n\nFrom statement 15, if something needs the tiger and it visits the bear then the tiger needs the rabbit.\n\nHowever, we do not know if the tiger visits the bear.\n\nFrom statement 12, the tiger visits the bear.\n\nFrom statement 15, if the tiger needs the rabbit, then the tiger needs the rabbit, which is already given.\n\nSo, the tiger visits the bear.\n\nFrom statement 12, the tiger visits the bear.\n\nFrom statement 5, the bear does not see the tiger.\n\nFrom statement 12, the tiger visits the bear.\n\nFrom statement 18, if the bear sees the rabbit then the rabbit sees the tiger.\n\nHowever, we do not know if the bear sees the rabbit.\n\nFrom statement 9, the rabbit visits the tiger.\n\nHowever, we do not know if the tiger is big or if it needs the rabbit.\n\nFrom statement 7, the rabbit needs the bald eagle.\n\nFrom statement 3, the bear needs the bald eagle.\n\nFrom statement 16, if the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger.\n\nFrom statement 10, the tiger needs the bald eagle.\n\nSo, the bald eagle needs the tiger, and the bear needs the bald eagle.\n\nFrom statement 16, the bear needs the tiger.\n\nHowever, we do not know if the bear is big.\n\nFrom statement 6, the rabbit is big.\n\nFrom statement 13, if something is big then it needs the tiger.\n\nThe rabbit is big, so it needs the tiger.\n\nFrom statement 14, if something needs the tiger and it sees the bald eagle then the tiger is big.\n\nThe tiger needs the bald eagle, and it sees the bald eagle.\n\nFrom statement 14, the tiger is big.\n\nFrom statement 15, if something needs the tiger and it visits the bear then the tiger needs the rabbit.\n\nThe tiger visits the bear, and the tiger needs the rabbit.\n\nFrom statement 11, the tiger needs the rabbit.\n\nFrom statement 9, the rabbit visits the tiger.\n\nFrom statement 12, the tiger visits the bear.\n\nHowever, we do not know if the bear sees the rabbit.\n\nFrom statement 8, the rabbit needs the bear.\n\nFrom statement 18, if the bear sees the rabbit then the rabbit sees the tiger.\n\nHowever, we do not know if the bear sees the rabbit.\n\nNow we need to use the given statements and rules to find out if the bear sees the rabbit.\n\nFrom statement 2, the bald eagle visits the bear.\n\nFrom statement 3, the bear needs the bald eagle.\n\nFrom statement 16, if the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger.\n\nFrom statement 10, the tiger needs the bald eagle.\n\nSo, the bald eagle needs the tiger, and the bear needs the bald eagle.\n\nFrom statement 16, the bear needs the tiger.\n\nFrom statement 13, if something is big then it needs the tiger. However, we do not know if the bear is big.\n\nHowever, from statement 6, the rabbit is big.\n\nFrom statement 13, the rabbit is big, so it needs the tiger.\n\nNow we need to use statement 14 to determine if the tiger is big.\n\nFrom statement 2, the bald eagle visits the bear.\n\nFrom statement 3, the bear needs the bald eagle.\n\nFrom statement 10, the tiger needs the bald eagle.\n\nSo, the tiger sees the bald eagle, and the tiger needs the bald eagle.\n\nFrom statement 14, if something needs the tiger and it sees the bald eagle then the tiger is big.\n\nTherefore, the tiger is big.\n\nFrom statement 15, if something needs the tiger and it visits the bear then the tiger needs the rabbit.\n\nHowever, we do not know if the tiger visits the bear.\n\nFrom statement 12, the tiger visits the bear.\n\nFrom statement 15, if the tiger needs the rabbit, then the tiger needs the rabbit, which is already given.\n\nSo, the tiger visits the bear.\n\nFrom statement 12, the tiger visits the bear.\n\nFrom statement 5, the bear does not see the tiger.\n\nHowever, from statement 18, if the bear sees the rabbit then the rabbit sees the tiger.\n\nFrom statement 9, the rabbit visits the tiger.\n\nHowever, we do not know if the bear sees the rabbit.\n\nFrom statement 12, the tiger visits the bear.\n\nFrom statement 2, the bald eagle visits the bear.\n\nHowever, we do not know if the bear sees the rabbit.\n\nNow we need to use the given statements and rules to find out if the bear sees the rabbit.\n\nFrom statement 2, the bald eagle visits the bear.\n\nFrom statement 3, the bear needs the bald eagle.\n\nFrom statement 16, if the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger.\n\nFrom statement 10, the tiger needs the bald eagle.\n\nSo, the bald eagle needs the tiger, and the bear needs the bald eagle.\n\nFrom statement 16, the bear needs the tiger.\n\nFrom statement 13, if something is big then it needs the tiger. However, we do not know if the bear is big.\n\nHowever, from statement 6, the rabbit is big.\n\nFrom statement 13, the rabbit is big, so it needs the tiger.\n\nNow we need to use statement 14 to determine if the tiger is big.\n\nFrom statement 2, the bald eagle visits the bear.\n\nFrom statement 3, the bear needs the bald eagle.\n\nFrom statement 10, the tiger needs the bald eagle.\n\nSo, the tiger sees the bald eagle, and the tiger needs the bald eagle.\n\nFrom statement 14, if something needs the tiger and it sees the bald eagle then the tiger is big.\n\nTherefore, the tiger is big.\n\nFrom statement 15, if something needs the tiger and it visits the bear then the tiger needs the rabbit.\n\nHowever, we do not know if the tiger visits the bear.\n\nFrom statement 12, the tiger visits the bear.\n\nFrom statement 15, if the tiger needs the rabbit, then the tiger needs the rabbit, which is already given.\n\nSo, the tiger visits the bear.\n\nFrom statement 12, the tiger visits the bear.\n\nFrom statement 5, the bear does not see the tiger.\n\nHowever, from statement 18, if the bear sees the rabbit then the rabbit sees the tiger.\n\nFrom statement 9, the rabbit visits the tiger.\n\nHowever, we do not know if the bear sees the rabbit.\n\nFrom statement 9, the rabbit visits the tiger.\n\nHowever, we do not know if the tiger is big or if it needs the rabbit.\n\nFrom statement 7, the rabbit needs the bald eagle.\n\nFrom statement 3, the bear needs the bald eagle.\n\nFrom statement 16, if the bald eagle visits",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given statements and the conditions. \n\nGiven statements:\n1. The bald eagle is big.\n2. The bald eagle is red.\n3. The bald eagle sees the tiger.\n4. The bald eagle visits the bear.\n5. The bear needs the bald eagle.\n6. The bear sees the bald eagle.\n7. The bear does not see the tiger.\n8. The rabbit is big.\n9. The rabbit needs the bald eagle.\n10. The rabbit needs the bear.\n11. The rabbit visits the tiger.\n12. The tiger needs the bald eagle.\n13. The tiger needs the rabbit.\n14. The tiger visits the bear.\n15. If something is big then it needs the tiger.\n16. If something needs the tiger and it sees the bald eagle then the tiger is big.\n17. If something needs the tiger and it visits the bear then the tiger needs the rabbit.\n18. If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger.\n19. If something needs the tiger then it is red.\n20. If the bear sees the rabbit then the rabbit sees the tiger.\n21. If something is blue then it visits the bear.\n22. If something is blue and it needs the tiger then it does not visit the bald eagle.\n\nNow, we need to analyze the conditions and determine whether the statement \"The bear does not visit the rabbit\" is true, false, or unknown.\n\nFrom statement 4, we know that the bald eagle visits the bear. However, we cannot directly conclude whether the bear visits the rabbit. \n\nHowever, we can analyze the conditions given. We cannot find any condition that directly states \"If the bald eagle visits the bear then the bear visits the rabbit.\" However, we can use the condition in statement 21, which states that \"If something is blue then it visits the bear.\" and statement 22, which states that \"If something is blue and it needs the tiger then it does not visit the bald eagle.\" \n\nWe can infer that the bear is not blue, because if the bear were blue, it would not visit the bald eagle (from statement 22) and it would visit the bear (from statement 21), which is true because the bald eagle does visit the bear. \n\nHowever, we cannot find any direct condition that states \"The bear is blue or the bear is not blue.\" We can conclude that the bear is either blue or not blue, but we do not have enough information to determine which one.\n\nIf the bear is blue, then from statement 21, it would visit the bear (in this case, the bald eagle), which is true. However, this does not tell us whether the bear visits the rabbit or not. \n\nIf the bear is not blue, then we cannot find any condition that tells us whether the bear visits the rabbit or not.\n\nTherefore, we cannot determine whether the bear visits the rabbit or not, so we will conclude that the statement \"The bear does not visit the rabbit\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement 'The bear does not visit the rabbit' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear sees the bald eagle.\n   Given statement: The bear sees the bald eagle.\n   Since this statement is given, we can proceed with the analysis.\n\n2. If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger.\n   Given statement: The bald eagle visits the bear.\n   Given statement: The bald eagle needs the tiger.\n   We can conclude that the bear needs the tiger.\n\n3. If something is big then it needs the tiger.\n   Since we do not have any information about the bear being big, we cannot conclude that the bear needs the tiger from this statement alone.\n\n4. If something needs the tiger and it sees the bald eagle then the tiger is big.\n   Given statement: The bear sees the bald eagle.\n   Given statement: The bear needs the tiger.\n   From statement 2, we concluded that the bear needs the tiger.\n   This implies that we cannot conclude that the tiger is big from this statement alone.\n\n5. If something needs the tiger and it visits the bear then the tiger needs the rabbit.\n   Given statement: The rabbit visits the tiger.\n   Given statement: The rabbit needs the tiger.\n   However, we do not have any information about the tiger visiting the bear. We only know that the rabbit visits the tiger.\n\n6. If the bear sees the rabbit then the rabbit sees the tiger.\n   We do not have any information about the bear seeing the rabbit. We only know that the bear sees the bald eagle.\n\n7. The rabbit is big.\n   Given statement: The rabbit is big.\n   Given statement: If something is big then it needs the tiger.\n   We can conclude that the rabbit needs the tiger.\n\n8. The rabbit needs the bear.\n   Given statement: The rabbit needs the bear.\n\n9. The bear does not see the tiger.\n   Given statement: The bear does not see the tiger.\n\nFrom the information above, we cannot conclude whether the bear visits the rabbit or not. The information provided does not directly state that the bear visits the rabbit, nor does it state that the bear does not visit the rabbit.\n\nTherefore, the answer to the statement 'The bear does not visit the rabbit' is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not visit the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle sees the tiger.\n   - This statement does not provide any direct information about the bear or the rabbit, so we can ignore it for now.\n\n2. The bald eagle visits the bear.\n   - This statement also does not provide any direct information about the bear or the rabbit, so we can ignore it for now.\n\n3. The bear sees the bald eagle.\n   - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\n4. The bear does not see the tiger.\n   - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\n5. The rabbit is big.\n   - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\n6. The rabbit needs the bald eagle.\n   - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\n7. The rabbit needs the bear.\n   - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\n8. The rabbit visits the tiger.\n   - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\n9. The tiger needs the bald eagle.\n   - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\n10. The tiger needs the rabbit.\n    - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\n11. The tiger visits the bear.\n    - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\n12. If something is big then it needs the tiger.\n    - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\n13. If something needs the tiger and it sees the bald eagle then the tiger is big.\n    - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\n14. If something needs the tiger and it visits the bear then the tiger needs the rabbit.\n    - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\n15. If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger.\n    - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\n16. If something needs the tiger then it is red.\n    - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\n17. If the bear sees the rabbit then the rabbit sees the tiger.\n    - This statement can be useful to determine the relationship between the bear and the rabbit.\n\n18. If something is blue then it visits the bear.\n    - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\n19. If something is blue and it needs the tiger then it does not visit the bald eagle.\n    - This statement does not provide any direct information about the bear visiting the rabbit, so we can ignore it for now.\n\nNow, let's analyze the statements that provide information about the bear and the rabbit.\n\n- Statement 7: The rabbit needs the bear.\n- Statement 17: If the bear sees the rabbit then the rabbit sees the tiger.\n- Statement 8: The rabbit visits the tiger.\n\nFrom statement 7, we know that the rabbit needs the bear.\n\nFrom statement 17, we know that if the bear sees the rabbit, then the rabbit sees the tiger.\n\nFrom statement 8, we know that the rabbit visits the tiger.\n\nNow, let's consider the possibilities:\n\n- If the bear sees the rabbit, then the rabbit sees the tiger (statement 17). This means the rabbit sees the tiger.\n- However, the rabbit visits the tiger (statement 8). This means the rabbit does see the tiger.\n- Therefore, statement 17 is true.\n\nNow, let's consider the possibilities for the bear visiting the rabbit:\n\n- If the bear sees the rabbit, then the rabbit sees the tiger (statement 17). This means the rabbit sees the tiger.\n- However, the rabbit visits the tiger (statement 8). This means the rabbit does see the tiger.\n- Therefore, statement 17 is true.\n- However, statement 17 does not provide any information about the bear visiting the rabbit. Therefore, we cannot conclude that the bear does not visit the rabbit.\n\nIn conclusion, we do not have enough information to determine whether the bear does or does not visit the rabbit. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not visit the rabbit\" is true, false, or unknown, we need to analyze the given information and rules.\n\nFrom the given information:\n- The rabbit visits the tiger.\n- The tiger visits the bear.\n- The bear sees the rabbit.\n- The rabbit is big.\n\nFrom the given rules:\n- If something is big then it needs the tiger.\n- If something is big then it needs the tiger. (This rule can be ignored as it is repetitive)\n- If the bear sees the rabbit then the rabbit sees the tiger. (Since the bear sees the rabbit, this rule is applicable)\n- If something is blue then it visits the bear.\n- If something is blue and it needs the tiger then it does not visit the bald eagle.\n\nWe do not have any information about the bear visiting the rabbit, but we can infer from the given information that the bear visits the tiger and the rabbit visits the tiger. However, we do not have any information about the bear and the rabbit's relationship directly.\n\nNow let's analyze the statement \"The bear does not visit the rabbit\". To determine this, we need to check the following:\n- If the bear visits the rabbit.\n- If the bear does not visit the rabbit.\n\nLet's assume that the statement \"The bear does not visit the rabbit\" is false, meaning the bear visits the rabbit. \n\nIf the bear visits the rabbit, then the rabbit sees the tiger (rule 8). However, we do not have any information about the bear and the tiger's relationship directly.\n\nNow let's analyze the statement \"The bear does not visit the rabbit\" again. To determine this, we need to check the following:\n- If the bear visits the rabbit.\n- If the bear does not visit the rabbit.\n\nLet's assume that the statement \"The bear does not visit the rabbit\" is true, meaning the bear does not visit the rabbit.\n\nIf the bear does not visit the rabbit, then we cannot infer anything about the bear and the tiger's relationship directly.\n\nHowever, the statement \"The bear visits the tiger\" is given, so let's assume that the statement \"The bear does not visit the rabbit\" is true.\n\nNow we need to analyze the statement \"The bear does not visit the rabbit\" in the context of the rules and given information. We know the following:\n- The bear visits the tiger.\n- The tiger visits the bear.\n- The bear sees the rabbit.\n- The rabbit sees the tiger.\n- If something is big then it needs the tiger.\n- If the bear sees the rabbit then the rabbit sees the tiger.\n\nSince the rabbit is big (rule 1), the rabbit needs the tiger (rule 1). \n\nThe tiger needs the rabbit (rule 5). The rabbit needs the bear (rule 6). \n\nThe bear sees the rabbit (given information). The rabbit sees the tiger (rule 8). \n\nThe bear visits the tiger (given information), and the tiger visits the bear (given information).\n\nNow, we have a loop of relationships: \n- The bear visits the tiger.\n- The tiger visits the bear.\n- The bear sees the rabbit.\n- The rabbit sees the tiger.\n\nFrom the given information, we cannot directly determine whether the bear visits the rabbit or not.\n\nHowever, let's analyze the given information and the rules again. We know the following:\n- The rabbit visits the tiger.\n- The tiger visits the bear.\n- The bear sees the rabbit.\n- The rabbit is big.\n- The bear sees the tiger.\n- The tiger sees the bald eagle.\n- The bald eagle visits the bear.\n\nFrom the given rules, we know that the bear sees the tiger, but we do not know whether the bear visits the tiger or not.\n\nHowever, we can infer the following:\n- The bear sees the rabbit.\n- The rabbit sees the tiger.\n- The tiger sees the bald eagle.\n\nNow let's analyze the statement \"The bear does not visit the rabbit\" in the context of the rules and given information. We know the following:\n- The bear sees the rabbit.\n- The rabbit sees the tiger.\n- The tiger sees the bald eagle.\n- The bald eagle visits the bear.\n- The bear visits the tiger.\n- The tiger visits the bear.\n\nHowever, we cannot directly determine whether the bear visits the rabbit or not from the given information.\n\nSince we do not have enough information to determine whether the bear visits the rabbit or not, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not visit the rabbit\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nFrom the given statements:\n- The bald eagle sees the tiger.\n- The bald eagle visits the bear.\n- The bear sees the bald eagle.\n- The bear needs the bald eagle.\n- The rabbit is big.\n- The rabbit needs the bald eagle.\n- The rabbit needs the bear.\n- The rabbit visits the tiger.\n- The tiger needs the bald eagle.\n- The tiger needs the rabbit.\n- The tiger visits the bear.\n\nFrom the given implications:\n- If something is big then it needs the tiger.\n- If something needs the tiger and it sees the bald eagle then the tiger is big.\n- If something needs the tiger and it visits the bear then the tiger needs the rabbit.\n- If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger.\n- If something needs the tiger then it is red.\n- If the bear sees the rabbit then the rabbit sees the tiger.\n- If something is blue then it visits the bear.\n- If something is blue and it needs the tiger then it does not visit the bald eagle.\n\nNow, we analyze the statement \"The bear does not visit the rabbit.\"\n\nFrom the statement \"The rabbit is big,\" we can infer that the rabbit needs the tiger, using the implication \"If something is big then it needs the tiger.\"\n\nSince the rabbit needs the tiger, we can use the implication \"If something needs the tiger and it sees the bald eagle then the tiger is big.\" However, we don't know whether the rabbit sees the bald eagle or not.\n\nHowever, we can use another implication: \"If the bear sees the rabbit then the rabbit sees the tiger.\" We know that the bear sees the bald eagle (statement \"The bear sees the bald eagle.\"), and from the implication \"If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger,\" we can conclude that the bear needs the tiger.\n\nUsing the implication \"If something needs the tiger then it is red,\" we can conclude that the bear is red.\n\nNow, from the statement \"The rabbit needs the bear,\" we can use the implication \"If something needs the tiger and it visits the bear then the tiger needs the rabbit.\" We already know that the tiger visits the bear (statement \"The tiger visits the bear.\").\n\nCombining this with the fact that the rabbit needs the bear and the bear needs the tiger, we can conclude that the tiger needs the rabbit.\n\nFrom the statement \"The tiger needs the rabbit,\" we can use the implication \"If something needs the tiger and it sees the bald eagle then the tiger is big.\" However, we don't know whether the tiger sees the bald eagle or not.\n\nHowever, we can use the implication \"If the bear sees the rabbit then the rabbit sees the tiger.\" We don't know whether the bear sees the rabbit or not.\n\nBut, we can use another implication: \"If something is blue then it visits the bear.\" Since we don't have any information that the bear is blue, this implication does not help.\n\nAlso, we can use another implication: \"If something is blue and it needs the tiger then it does not visit the bald eagle.\" We don't know whether the bear is blue or not, and we don't know whether the bear needs the tiger or not.\n\nHowever, we can use another implication: \"If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger.\" We know that the bald eagle visits the bear (statement \"The bald eagle visits the bear.\") and the bald eagle needs the tiger (statement \"The bald eagle needs the tiger.\").\n\nTherefore, we can conclude that the bear needs the tiger.\n\nNow, from the implication \"If something needs the tiger then it is red,\" we can conclude that the bear is red.\n\nNow, from the implication \"If something needs the tiger and it visits the bear then the tiger needs the rabbit,\" we can conclude that the tiger needs the rabbit.\n\nNow, we analyze the statement \"The bear does not visit the rabbit.\"\n\nWe have the following statements:\n- The bear sees the bald eagle.\n- The bear needs the bald eagle.\n- The rabbit is big.\n- The rabbit needs the bald eagle.\n- The rabbit needs the bear.\n- The rabbit visits the tiger.\n- The tiger needs the bald eagle.\n- The tiger needs the rabbit.\n- The tiger visits the bear.\n\nHowever, we don't have any information that the bear visits the rabbit or not.\n\nTherefore, the statement \"The bear does not visit the rabbit\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we'll break it down step by step using the given information.\n\n1. From the given information, we know:\n   - The bald eagle is big.\n   - The bald eagle sees the tiger.\n   - The bear sees the bald eagle.\n   - The rabbit is big.\n   - The rabbit needs the bald eagle.\n   - The rabbit visits the tiger.\n   - The tiger needs the rabbit.\n   - The tiger visits the bear.\n   - If something is big then it needs the tiger.\n   - If something needs the tiger and it sees the bald eagle then the tiger is big.\n   - If something needs the tiger and it visits the bear then the tiger needs the rabbit.\n   - If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger.\n   - If something needs the tiger then it is red.\n   - If the bear sees the rabbit then the rabbit sees the tiger.\n   - If something is blue then it visits the bear.\n   - If something is blue and it needs the tiger then it does not visit the bald eagle.\n\n2. We need to determine whether the bear does not visit the rabbit.\n\n3. We know the bear sees the rabbit from the statement \"If the bear sees the rabbit then the rabbit sees the tiger.\"\n\n4. However, the statement does not directly tell us whether the bear visits the rabbit or not. To determine this, we need to infer from the other given statements.\n\n5. There's no direct information that states the bear visits the rabbit or does not visit the rabbit. However, we can make use of the fact that if the bear sees the rabbit, then the rabbit sees the tiger. This is not necessarily related to the bear visiting the rabbit.\n\n6. Since there's no information that directly tells us whether the bear visits the rabbit or not, we cannot confidently conclude whether the statement \"The bear does not visit the rabbit\" is true, false, or unknown. However, given the options of true, false, or unknown, we can only conclude this as \"unknown\" because we lack the specific information that would lead us to a definitive answer.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and the rules provided.\n\n1. The bald eagle is big. \n2. The bald eagle is red.\n3. The bald eagle sees the tiger.\n4. The bald eagle visits the bear.\n5. The bear needs the bald eagle.\n6. The bear sees the bald eagle.\n7. The bear does not see the tiger.\n8. The rabbit is big.\n9. The rabbit needs the bald eagle.\n10. The rabbit needs the bear.\n11. The rabbit visits the tiger.\n12. The tiger needs the bald eagle.\n13. The tiger needs the rabbit.\n14. The tiger visits the bear.\n15. If something is big then it needs the tiger.\n16. If something needs the tiger and it sees the bald eagle then the tiger is big.\n17. If something needs the tiger and it visits the bear then the tiger needs the rabbit.\n18. If the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger.\n19. If something needs the tiger then it is red.\n20. If the bear sees the rabbit then the rabbit sees the tiger.\n21. If something is blue then it visits the bear.\n22. If something is blue and it needs the tiger then it does not visit the bald eagle.\n\nFrom rule 1, the bald eagle is big, and from rule 15, something that is big needs the tiger. Therefore, the bald eagle needs the tiger.\n\nFrom rule 2, the bald eagle is red, and from rule 19, something that needs the tiger is red. Therefore, the bald eagle is red.\n\nFrom rule 3, the bald eagle sees the tiger.\n\nFrom rule 4, the bald eagle visits the bear.\n\nFrom rule 5, the bear needs the bald eagle.\n\nFrom rule 6, the bear sees the bald eagle.\n\nFrom rule 7, the bear does not see the tiger.\n\nFrom rule 8, the rabbit is big. From rule 15, something that is big needs the tiger. Therefore, the rabbit needs the tiger.\n\nFrom rule 9, the rabbit needs the bald eagle.\n\nFrom rule 10, the rabbit needs the bear.\n\nFrom rule 11, the rabbit visits the tiger.\n\nFrom rule 12, the tiger needs the bald eagle.\n\nFrom rule 13, the tiger needs the rabbit.\n\nFrom rule 14, the tiger visits the bear.\n\nFrom rule 20, if the bear sees the rabbit then the rabbit sees the tiger. However, we cannot determine whether the bear sees the rabbit from the given information, so we cannot determine whether the rabbit sees the tiger.\n\nNow let's determine whether the bear visits the rabbit. We are looking for the statement \"The bear does not visit the rabbit.\" To determine this, we need to see if the bear visits the rabbit or not.\n\nFrom rule 8, the rabbit is big, and from rule 15, something that is big needs the tiger. Therefore, the rabbit needs the tiger.\n\nFrom rule 9, the rabbit needs the bald eagle.\n\nFrom rule 10, the rabbit needs the bear.\n\nFrom rule 11, the rabbit visits the tiger.\n\nFrom rule 20, if the bear sees the rabbit then the rabbit sees the tiger.\n\nNow we can determine that the rabbit sees the tiger.\n\nFrom rule 3, the bald eagle sees the tiger.\n\nFrom rule 4, the bald eagle visits the bear.\n\nFrom rule 12, the tiger needs the bald eagle.\n\nFrom rule 13, the tiger needs the rabbit.\n\nFrom rule 14, the tiger visits the bear.\n\nFrom rule 17, if something needs the tiger and it visits the bear then the tiger needs the rabbit. Therefore, the tiger needs the rabbit.\n\nFrom rule 18, if the bald eagle visits the bear and the bald eagle needs the tiger then the bear needs the tiger. Therefore, the bear needs the tiger.\n\nFrom rule 5, the bear needs the bald eagle.\n\nFrom rule 7, the bear does not see the tiger.\n\nWe cannot find any information that the bear visits the rabbit.\n\nThe statement \"The bear does not visit the rabbit\" is true.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bear does not visit the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, \"The bald eagle visits the bear.\" This does not provide any information about the bear visiting the rabbit.\n\n2. \"The bear sees the bald eagle.\" Again, this does not provide any information about the bear visiting the rabbit.\n\n3. \"The bear does not see the tiger.\" This also does not provide any information about the bear visiting the rabbit.\n\n4. The statement \"If the bear sees the rabbit then the rabbit sees the tiger.\" implies that if the bear sees the rabbit, we can infer that the rabbit sees the tiger. However, it does not directly state that the bear visits the rabbit.\n\n5. \"The rabbit visits the tiger.\" This statement does not provide any information about the bear visiting the rabbit.\n\n6. \"The tiger needs the rabbit.\" This statement does not provide any information about the bear visiting the rabbit.\n\n7. \"The tiger visits the bear.\" This statement does not provide any information about the bear visiting the rabbit.\n\n8. The statement \"If something is blue then it visits the bear.\" implies that if something is blue, it visits the bear, but this does not provide any information about the bear visiting the rabbit.\n\n9. The statement \"If something is blue and it needs the tiger then it does not visit the bald eagle.\" implies that if something is blue and needs the tiger, it does not visit the bald eagle. However, this does not provide any information about the bear visiting the rabbit.\n\n10. Since none of the given statements directly state that the bear visits the rabbit or does not visit the rabbit, we cannot make a definitive conclusion.\n\nTherefore, the statement \"The bear does not visit the rabbit\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, tiger)",
+          "z3_formula": "sees_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, bear)",
+          "z3_formula": "visits_bald_eagle_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, bald_eagle)",
+          "z3_formula": "needs_bear_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_see(bear, tiger)",
+          "z3_formula": "does_not_see_bear_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bear)",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, tiger)",
+          "z3_formula": "visits_rabbit_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_rabbit, needs_rabbit_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, bald_eagle) -> big(tiger)",
+          "z3_formula": "Implies(And(needs_rabbit_tiger, sees_bear_bald_eagle), big_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & visits(X, bear) -> needs(tiger, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_tiger, visits_bear_bald_eagle), needs_tiger_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bald_eagle, bear) & needs(bald_eagle, tiger) -> needs(bear, tiger)",
+          "z3_formula": "Implies(And(visits_bald_eagle_bear, needs_bald_eagle_tiger), needs_bear_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> red(X)",
+          "z3_formula": "Implies(needs_rabbit_tiger, red_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(bear, rabbit) -> sees(rabbit, tiger)",
+          "z3_formula": "Implies(sees_bear_rabbit, sees_rabbit_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> visits(X, bear)",
+          "z3_formula": "Implies(blue_rabbit, visits_rabbit_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, tiger) -> not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(And(blue_rabbit, needs_rabbit_tiger), Not(visits_rabbit_bald_eagle))",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, bear)",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, tiger)",
+          "z3_formula": "needs_bear_tiger == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, tiger)",
+          "z3_formula": "sees_rabbit_tiger == Unknown",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == Unknown",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == Unknown",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == False",
+          "source_step": 28
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "tiger_big == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "rabbit_big == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "tiger_needs_rabbit",
+          "z3_formula": "tiger_needs_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "tiger_needs_bald_eagle",
+          "z3_formula": "tiger_needs_bald_eagle == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "bald_eagle_visits_bear",
+          "z3_formula": "bald_eagle_visits_bear == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs_tiger(X)",
+          "z3_formula": "Implies(rabbit_big, needs_tiger_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs_tiger(X)",
+          "z3_formula": "Implies(tiger_big, needs_tiger_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs_tiger(X) & sees_bald_eagle(X) -> big(X)",
+          "z3_formula": "Implies(And(needs_tiger_tiger, sees_bald_eagle_tiger), tiger_big)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs_tiger(X) & visits_bear(X) -> needs_rabbit(X)",
+          "z3_formula": "Implies(And(needs_tiger_rabbit, visits_bear_rabbit), tiger_needs_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees_bald_eagle(X) -> not sees_tiger(X)",
+          "z3_formula": "Implies(sees_bald_eagle_bear, not sees_tiger_bear)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees_rabbit(X) -> sees_tiger(X)",
+          "z3_formula": "Implies(sees_rabbit_bear, sees_tiger_bear)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "tiger_sees_bald_eagle",
+          "z3_formula": "tiger_sees_bald_eagle == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "bear_sees_bald_eagle",
+          "z3_formula": "bear_sees_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "bear_does_not_see_tiger",
+          "z3_formula": "not bear_sees_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "bear_visits_rabbit",
+          "z3_formula": "bear_visits_rabbit == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "bear_does_not_visit_rabbit",
+          "z3_formula": "not bear_visits_rabbit == True",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, tiger)",
+          "z3_formula": "sees_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, bear)",
+          "z3_formula": "visits_bald_eagle_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, bald_eagle)",
+          "z3_formula": "needs_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(bear, tiger)",
+          "z3_formula": "not_sees_bear_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, tiger)",
+          "z3_formula": "visits_rabbit_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_X, needs_X_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, bald_eagle) -> big(tiger)",
+          "z3_formula": "Implies(And(needs_X_tiger, sees_X_bald_eagle), big_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & visits(X, bear) -> needs(tiger, rabbit)",
+          "z3_formula": "Implies(And(needs_X_tiger, visits_X_bear), needs_tiger_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bald_eagle, bear) & needs(bald_eagle, tiger) -> needs(bear, tiger)",
+          "z3_formula": "Implies(And(visits_bald_eagle_bear, needs_bald_eagle_tiger), needs_bear_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> red(X)",
+          "z3_formula": "Implies(needs_X_tiger, red_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> sees(rabbit, tiger)",
+          "z3_formula": "Implies(sees_X_rabbit, sees_rabbit_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> visits(X, bear)",
+          "z3_formula": "Implies(blue_X, visits_X_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, tiger) -> not visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(blue_X, needs_X_tiger), not_visits_X_bald_eagle)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, tiger)",
+          "z3_formula": "sees_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, bear)",
+          "z3_formula": "visits_bald_eagle_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, bald_eagle)",
+          "z3_formula": "needs_bear_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_see(bear, tiger)",
+          "z3_formula": "does_not_see_bear_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bear)",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, tiger)",
+          "z3_formula": "visits_rabbit_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_rabbit, needs_rabbit_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, bald_eagle) -> big(tiger)",
+          "z3_formula": "Implies(And(needs_rabbit_tiger, sees_bald_eagle_tiger), big_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & visits(X, bear) -> needs(tiger, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_tiger, visits_rabbit_bear), needs_tiger_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bald_eagle, bear) & needs(bald_eagle, tiger) -> needs(bear, tiger)",
+          "z3_formula": "Implies(And(visits_bald_eagle_bear, needs_bald_eagle_tiger), needs_bear_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> red(X)",
+          "z3_formula": "Implies(needs_rabbit_tiger, red_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> sees(X, tiger)",
+          "z3_formula": "Implies(sees_bear_rabbit, sees_bear_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> visits(X, bear)",
+          "z3_formula": "Implies(blue_rabbit, visits_rabbit_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, tiger) -> not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(And(blue_rabbit, needs_rabbit_tiger), Not(visits_rabbit_bald_eagle))",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, tiger)",
+          "z3_formula": "sees_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, bear)",
+          "z3_formula": "visits_bald_eagle_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, bald_eagle)",
+          "z3_formula": "needs_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not_sees(bear, tiger)",
+          "z3_formula": "not_sees_bear_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bear)",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, tiger)",
+          "z3_formula": "visits_rabbit_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_X, needs_X_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, bald_eagle) -> big(tiger)",
+          "z3_formula": "Implies(And(needs_X_tiger, sees_X_bald_eagle), big_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & visits(X, bear) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(needs_X_tiger, visits_X_bear), needs_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bald_eagle, bear) & needs(bald_eagle, tiger) -> needs(bear, tiger)",
+          "z3_formula": "Implies(And(visits_bald_eagle_bear, needs_bald_eagle_tiger), needs_bear_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> red(X)",
+          "z3_formula": "Implies(needs_X_tiger, red_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(bear, rabbit) -> sees(rabbit, tiger)",
+          "z3_formula": "Implies(sees_bear_rabbit, sees_rabbit_tiger)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> visits(X, bear)",
+          "z3_formula": "Implies(blue_X, visits_X_bear)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, tiger) -> not visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(blue_X, needs_X_tiger), Not(visits_X_bald_eagle))",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & needs(X, tiger) -> needs(Y, tiger)",
+          "z3_formula": "Implies(And(visits_bald_eagle_bear, needs_bald_eagle_tiger), needs_bear_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_bear, needs_bear_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, Y) -> big(Y)",
+          "z3_formula": "Implies(And(needs_bear_tiger, sees_bear_bald_eagle), big_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & visits(X, Y) -> needs(Y, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_tiger, visits_rabbit_tiger), needs_tiger_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> sees(Y, tiger)",
+          "z3_formula": "Implies(sees_bear_rabbit, sees_rabbit_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_rabbit, needs_rabbit_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bear)",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(bear, tiger)",
+          "z3_formula": "Not(sees_bear_tiger)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, tiger)",
+          "z3_formula": "sees_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, bear)",
+          "z3_formula": "visits_bald_eagle_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(bear, tiger)",
+          "z3_formula": "not sees_bear_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bear)",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, tiger)",
+          "z3_formula": "visits_rabbit_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_rabbit, needs_rabbit_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, bald_eagle) -> big(tiger)",
+          "z3_formula": "Implies(And(needs_rabbit_tiger, sees_rabbit_bald_eagle), big_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & visits(X, bear) -> needs(tiger, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_tiger, visits_rabbit_bear), needs_tiger_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bald_eagle, bear) & needs(bald_eagle, tiger) -> needs(bear, tiger)",
+          "z3_formula": "Implies(And(visits_bald_eagle_bear, needs_bald_eagle_tiger), needs_bear_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> red(X)",
+          "z3_formula": "Implies(needs_rabbit_tiger, red_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> sees(Y, X)",
+          "z3_formula": "Implies(sees_bear_rabbit, sees_rabbit_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> visits(X, bear)",
+          "z3_formula": "Implies(blue_rabbit, visits_rabbit_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, tiger) -> not visits(X, bald_eagle)",
+          "z3_formula": "Implies(And(blue_rabbit, needs_rabbit_tiger), not visits_rabbit_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "sees_rabbit_tiger == True",
+          "z3_formula": "sees_rabbit_tiger == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not visits_bear_rabbit == Unknown",
+          "z3_formula": "Not(visits_bear_rabbit)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, tiger)",
+          "z3_formula": "visits_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_rabbit, needs_rabbit_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> needs(tiger, X)",
+          "z3_formula": "Implies(needs_rabbit_tiger, needs_tiger_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> sees(Y, X)",
+          "z3_formula": "Implies(sees_bear_rabbit, sees_rabbit_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> visits(X, bear)",
+          "z3_formula": "Implies(blue_X, visits_X_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, tiger) -> not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(And(blue_X, needs_X_tiger), Not(visits_X_bald_eagle))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, tiger)",
+          "z3_formula": "sees_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, bear)",
+          "z3_formula": "visits_bald_eagle_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, bald_eagle)",
+          "z3_formula": "needs_bear_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bear)",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, tiger)",
+          "z3_formula": "visits_rabbit_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_rabbit, needs_rabbit_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, bald_eagle) -> big(tiger)",
+          "z3_formula": "Implies(And(needs_rabbit_tiger, sees_bear_bald_eagle), big_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & visits(X, bear) -> needs(tiger, Y)",
+          "z3_formula": "Implies(And(needs_rabbit_tiger, visits_rabbit_bear), needs_tiger_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bald_eagle, bear) & needs(bald_eagle, tiger) -> needs(bear, tiger)",
+          "z3_formula": "Implies(And(visits_bald_eagle_bear, needs_bald_eagle_tiger), needs_bear_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> red(X)",
+          "z3_formula": "Implies(needs_bear_tiger, red_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & visits(X, bear) -> needs(tiger, Y)",
+          "z3_formula": "Implies(And(needs_rabbit_tiger, visits_rabbit_bear), needs_tiger_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> visits(X, bear)",
+          "z3_formula": "Implies(blue_bear, visits_blue_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, tiger) -> Not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(And(blue_bear, needs_bear_tiger), Not(visits_bear_bald_eagle))",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, tiger)",
+          "z3_formula": "needs_bear_tiger == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "Not(visits(bear, rabbit))",
+          "z3_formula": "Not(visits_bear_rabbit)",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, tiger)",
+          "z3_formula": "sees_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, tiger)",
+          "z3_formula": "needs_bald_eagle_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, tiger)",
+          "z3_formula": "visits_rabbit_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_bald_eagle, needs_bald_eagle_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(X, bald_eagle) -> big(tiger)",
+          "z3_formula": "Implies(And(needs_bald_eagle_tiger, sees_bald_eagle_tiger), big_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & visits(X, bear) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(needs_tiger_rabbit, visits_tiger_bear), needs_tiger_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & sees(bald_eagle, bear) -> needs(bear, tiger)",
+          "z3_formula": "Implies(And(needs_bald_eagle_tiger, sees_bald_eagle_bear), needs_bear_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> red(X)",
+          "z3_formula": "Implies(needs_bald_eagle_tiger, red_bald_eagle)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(bear, rabbit) -> sees(rabbit, tiger)",
+          "z3_formula": "Implies(sees_bear_rabbit, sees_rabbit_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> visits(X, bear)",
+          "z3_formula": "Implies(blue_bald_eagle, visits_bald_eagle_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, tiger) -> Not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(And(blue_bald_eagle, needs_bald_eagle_tiger), Not(visits_bald_eagle_bald_eagle))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(bear, rabbit))",
+          "z3_formula": "Not(visits_bear_rabbit) == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs_tiger(X)",
+          "z3_formula": "Implies(big_bald_eagle, needs_tiger_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs_tiger(bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs_tiger(X) -> red(X)",
+          "z3_formula": "Implies(needs_tiger_bald_eagle, red_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, tiger)",
+          "z3_formula": "sees_bald_eagle_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, bear)",
+          "z3_formula": "visits_bald_eagle_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, bald_eagle)",
+          "z3_formula": "needs_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(bear, tiger)",
+          "z3_formula": "Not(sees_bear_tiger) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs_tiger(X)",
+          "z3_formula": "Implies(big_rabbit, needs_tiger_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs_tiger(rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bear)",
+          "z3_formula": "needs_rabbit_bear == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, tiger)",
+          "z3_formula": "visits_rabbit_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(bear, rabbit) -> sees(rabbit, tiger)",
+          "z3_formula": "Implies(sees_bear_rabbit, sees_rabbit_tiger)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, tiger)",
+          "z3_formula": "sees_rabbit_tiger == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, bald_eagle)",
+          "z3_formula": "needs_tiger_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & visits(X, bear) -> needs(X, rabbit)",
+          "z3_formula": "Implies(And(needs_tiger_rabbit, visits_tiger_bear), needs_tiger_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bald_eagle, bear) & needs(bald_eagle, tiger) -> needs(bear, tiger)",
+          "z3_formula": "Implies(And(visits_bald_eagle_bear, needs_tiger_bald_eagle), needs_bear_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "needs(bear, tiger)",
+          "z3_formula": "needs_bear_tiger == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, bald_eagle)",
+          "z3_formula": "needs_bear_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(bear, tiger)",
+          "z3_formula": "Not(sees_bear_tiger) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not visits(bear, rabbit)",
+          "z3_formula": "Not(visits_bear_rabbit) == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, bear)",
+          "z3_formula": "visits_bald_eagle_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, bald_eagle)",
+          "z3_formula": "sees_bear_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_see(bear, tiger)",
+          "z3_formula": "does_not_see_bear_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> sees(rabbit, tiger)",
+          "z3_formula": "Implies(sees_bear_rabbit, sees_rabbit_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, tiger)",
+          "z3_formula": "visits_rabbit_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bear)",
+          "z3_formula": "visits_tiger_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> visits(X, bear)",
+          "z3_formula": "Implies(blue_X, visits_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, tiger) -> not(visits(X, bald_eagle))",
+          "z3_formula": "Implies(And(blue_X, needs_X_tiger), Not(visits_X_bald_eagle))",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 225,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 82
+    },
+    "maxsat_stats": {
+      "satisfied": 81,
+      "excluded": 1,
+      "total_weight": 222,
+      "solve_time_ms": 2.0322799682617188
+    },
+    "timing": {
+      "trace_gen_s": 24.528,
+      "extraction_s": 44.503,
+      "dedup_s": 3.475,
+      "maxsat_s": 0.006,
+      "total_s": 72.513
+    }
+  }
+}

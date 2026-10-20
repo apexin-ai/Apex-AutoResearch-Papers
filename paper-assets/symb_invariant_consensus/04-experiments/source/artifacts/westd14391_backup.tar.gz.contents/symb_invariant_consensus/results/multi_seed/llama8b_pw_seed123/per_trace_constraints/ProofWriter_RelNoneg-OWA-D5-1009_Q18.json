@@ -1,0 +1,904 @@
+{
+  "pid": "ProofWriter_RelNoneg-OWA-D5-1009_Q18",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_lion, likes_lion_squirrel), cold_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_lion, likes_lion_mouse)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_mouse, likes_mouse_squirrel), cold_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_mouse, visits_mouse_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & likes(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_mouse_lion, likes_mouse_cat), visits_mouse_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_mouse_lion, red_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_mouse, likes_mouse_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_mouse_mouse, visits_mouse_lion), likes_mouse_squirrel)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_X, likes_X_squirrel), cold_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_X, visits_X_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & likes(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_X_lion, likes_X_cat), visits_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(X)",
+          "z3_formula": "Implies(visits_X_mouse, red_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_X, likes_X_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_X_mouse, visits_X_lion), likes_X_squirrel)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_X, likes_X_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(mouse, lion) & visits(mouse, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_mouse_lion, visits_mouse_lion), likes_X_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_X_mouse, red_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(X)",
+          "z3_formula": "Not(cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(X, mouse)",
+          "z3_formula": "Not(likes_X_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "Not(likes_mouse_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "visits(X, lion)",
+          "z3_formula": "Not(visits_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(X, squirrel)",
+          "z3_formula": "Not(likes_X_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "visits(X, mouse)",
+          "z3_formula": "Not(visits_X_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "red(mouse)",
+          "z3_formula": "Not(red_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "red(squirrel)",
+          "z3_formula": "Not(red_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "Unknown",
+          "source_step": 17
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_mouse, likes_mouse_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, mouse)",
+          "z3_formula": "likes_mouse_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, mouse)",
+          "z3_formula": "likes_mouse_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_mouse_mouse, visits_mouse_lion), likes_mouse_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, squirrel)",
+          "z3_formula": "likes_mouse_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, squirrel)",
+          "z3_formula": "likes_mouse_squirrel == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(lion, squirrel)",
+          "z3_formula": "Not(likes_lion_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_mouse, likes_mouse_squirrel), cold_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_mouse, visits_mouse_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(Y, lion) & likes(Y, cat) -> visits(Y, squirrel)",
+          "z3_formula": "Implies(And(visits_lion_mouse, likes_lion_cat), visits_lion_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_lion_mouse, red_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_mouse, likes_mouse_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_lion_mouse, visits_lion_mouse), likes_lion_squirrel)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_X, likes_X_squirrel), cold_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_X, visits_X_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & likes(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_X_lion, likes_X_cat), visits_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(X)",
+          "z3_formula": "Implies(visits_X_mouse, red_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_X, likes_X_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_X_mouse, visits_X_lion), likes_X_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, mouse)",
+          "z3_formula": "likes_lion_mouse == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_mouse, likes_mouse_squirrel), cold_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_mouse, visits_mouse_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & likes(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_cat_lion, likes_cat_squirrel), visits_cat_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(X)",
+          "z3_formula": "Implies(visits_mouse_lion, red_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_mouse, likes_mouse_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_mouse_lion, visits_mouse_lion), likes_mouse_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "visits(mouse, squirrel)",
+          "z3_formula": "visits_mouse_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, squirrel)",
+          "z3_formula": "visits_cat_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, lion)",
+          "z3_formula": "likes_mouse_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "red(mouse)",
+          "z3_formula": "red_mouse == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "likes(mouse, squirrel)",
+          "z3_formula": "likes_mouse_squirrel == True",
+          "source_step": 18
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_X, likes_X_squirrel), cold_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_X, visits_X_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & likes(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_X_lion, likes_X_cat), visits_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(X)",
+          "z3_formula": "Implies(visits_X_mouse, red_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_X, likes_X_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(X, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_X_mouse, visits_X_lion), likes_X_squirrel)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, squirrel)",
+          "z3_formula": "likes_cat_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, squirrel)",
+          "z3_formula": "eats_lion_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(mouse, lion)",
+          "z3_formula": "visits_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(squirrel)",
+          "z3_formula": "red_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, cat)",
+          "z3_formula": "visits_squirrel_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & likes(X, squirrel) -> cold(squirrel)",
+          "z3_formula": "Implies(And(cold_mouse, likes_mouse_squirrel), cold_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> visits(X, squirrel)",
+          "z3_formula": "Implies(cold_mouse, visits_mouse_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & likes(X, cat) -> visits(X, squirrel)",
+          "z3_formula": "Implies(And(visits_mouse_lion, likes_mouse_cat), visits_mouse_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, mouse) -> red(mouse)",
+          "z3_formula": "Implies(visits_X_mouse, red_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(cold_mouse, likes_mouse_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & visits(mouse, lion) -> likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_mouse_squirrel, visits_mouse_lion), likes_X_squirrel)",
+          "source_step": 13
+        }
+      ]
+    }
+  ]
+}

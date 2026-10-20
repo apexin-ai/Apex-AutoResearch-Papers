@@ -1,0 +1,881 @@
+{
+  "problem": {
+    "id": "folio_174",
+    "problem": "Given the following premises:\nAll people who eat salads regularly are very conscious about their health and eating habits. All people who grew up in health-conscious childhood homes eat salads regularly. All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes. If people have good relationships with their parents, then they fulfill their nutritional daily intakes. If people have good relationships with their parents, then they do not eat salads regularly. If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes. It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nTaylor visits the gym at least once a day.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Salad(x) \u2192 HealthyHabits(x))",
+      "\u2200x (HealthyChildhood(x) \u2192 Salad(x))",
+      "\u2200x (Nutritional(x) \u2192 HealthyChildhood(x))",
+      "\u2200x (GoodRelationship(x) \u2192 \u00acHealthyHabits(x))",
+      "\u2200x (Gym(x) \u2192 Nutritional(x))",
+      "(HealthyChildhood(taylor) \u2227 GoodRelationship(taylor)) \u2228 \u00acHealthyChildhood(taylor) \u2227 \u00acGoodRelationship(marcy)"
+    ],
+    "conclusion_fol": "Gym(taylor)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 54.0,
+      "True": 40.0,
+      "Unknown": 77.5
+    },
+    "answer_counts": {
+      "True": 1,
+      "Unknown": 9,
+      "False": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we'll use logical deductions and analyze the given premises one by one.\n\nPremise 1: All people who eat salads regularly are very conscious about their health and eating habits.\nPremise 2: All people who grew up in health-conscious childhood homes eat salads regularly.\nPremise 3: All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes.\nPremise 4: If people have good relationships with their parents, then they fulfill their nutritional daily intakes.\nPremise 5: If people have good relationships with their parents, then they do not eat salads regularly.\nPremise 6: If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes.\nPremise 7: It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nFrom Premise 4 and 7, we can conclude two possibilities for Taylor:\n- Possibility 1: Taylor grew up in a health-conscious childhood home and has a good relationship with her parents.\n- Possibility 2: Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nNow, let's consider both possibilities:\n\n**Possibility 1:** Taylor grew up in a health-conscious childhood home and has a good relationship with her parents.\n\nFrom Premise 3, we know that people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes. But from Premise 4, we also know that people who have good relationships with their parents fulfill their nutritional daily intakes. Since Taylor has a good relationship with her parents (Premise 7), she fulfills her nutritional daily intakes (Premise 4). \n\nHowever, from Premise 5, we know that people who have good relationships with their parents do not eat salads regularly. But from Premise 2, we know that people who grew up in health-conscious childhood homes eat salads regularly. This creates a contradiction, as Taylor cannot both fulfill her nutritional daily intakes and not eat salads regularly. Therefore, Possibility 1 is impossible.\n\n**Possibility 2:** Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nThis means Taylor does not fulfill her nutritional daily intakes, as people who do not fulfill their nutritional daily intakes did not grow up in health-conscious childhood homes (Premise 3). \n\nFrom Premise 6, we know that people who visit the gym at least once a day fulfill their daily nutritional intakes. However, Taylor does not fulfill her nutritional daily intakes (from Possibility 2). Therefore, we cannot conclude that Taylor visits the gym at least once a day.\n\nHowever, we can also look at the information that the premises give us. There is one statement we can use that is \"If people have good relationships with their parents, then they fulfill their nutritional daily intakes\" and \"If people have good relationships with their parents, then they do not eat salads regularly\". Since we know that Taylor fulfills her daily intakes and does not eat salads regularly, we can conclude that Taylor has a good relationship with her parents. \n\nNow we know that Taylor has a good relationship with her parents. From Premise 6, we know that people who visit the gym at least once a day fulfill their daily nutritional intakes. From Premise 7 we know that Taylor has a good relationship with her parents, so she fulfills her nutritional daily intakes. \n\nThus, based on the information we can derive from the premises, the conclusion is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will use the process of deduction with the given premises. Let's break down the given information:\n\n1. All people who eat salads regularly are very conscious about their health and eating habits.\n2. All people who grew up in health-conscious childhood homes eat salads regularly.\n3. All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes.\n4. If people have good relationships with their parents, then they fulfill their nutritional daily intakes.\n5. If people have good relationships with their parents, then they do not eat salads regularly.\n6. If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes.\n7. It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nLet's analyze the premises to determine if we can conclude whether Taylor visits the gym at least once a day:\n\nFrom premise 7, we have two possibilities:\n- Taylor grew up in a health-conscious childhood home and has a good relationship with her parents.\n- Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nWe can analyze each possibility separately.\n\n**Possibility 1: Taylor grew up in a health-conscious childhood home and has a good relationship with her parents.**\n\nFrom premise 4, if people have good relationships with their parents, then they fulfill their nutritional daily intakes. However, this alone does not tell us anything about Taylor's gym visits.\n\nFrom premise 3, all people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes. This means that Taylor grew up in a health-conscious childhood home.\n\nFrom premise 2, all people who grew up in health-conscious childhood homes eat salads regularly. This means that Taylor eats salads regularly.\n\nHowever, from premise 5, if people have good relationships with their parents, then they do not eat salads regularly. This creates a contradiction because we already established that Taylor has a good relationship with her parents and eats salads regularly.\n\nTherefore, **Possibility 1** is not possible.\n\n**Possibility 2: Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.**\n\nFrom premise 3, all people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes. This means that Taylor does not fulfill her nutritional daily intakes.\n\nHowever, this alone does not tell us anything about Taylor's gym visits.\n\nFrom premise 6, if people visit the gym at least once a day, then they always fulfill their daily nutritional intakes. This means that Taylor cannot visit the gym at least once a day if she does not fulfill her nutritional daily intakes.\n\nHowever, we cannot conclude this as a certainty because there is no information that directly links gym visits to not fulfilling nutritional daily intakes.\n\nSince **Possibility 1** is not possible and **Possibility 2** is uncertain, we cannot conclude whether Taylor visits the gym at least once a day with certainty.\n\nTherefore, the answer is: $\\boxed{Uncertain}$",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use the method of logical deductions using the given premises. \n\nLet's break down the given premises:\n\n1. All people who eat salads regularly are very conscious about their health and eating habits.\n2. All people who grew up in health-conscious childhood homes eat salads regularly.\n3. All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes.\n4. If people have good relationships with their parents, then they fulfill their nutritional daily intakes.\n5. If people have good relationships with their parents, then they do not eat salads regularly.\n6. If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes.\n7. It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nWe need to determine whether the conclusion \"Taylor visits the gym at least once a day\" is true, false, or uncertain.\n\nFirst, let's analyze the possible scenarios based on premises 7:\n\nScenario 1: Taylor grew up in a health-conscious childhood home and has a good relationship with her parents.\nScenario 2: Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nNow, let's analyze each scenario:\n\nScenario 1:\n- If Taylor grew up in a health-conscious childhood home, then she eats salads regularly (from premise 2).\n- If Taylor has a good relationship with her parents, then she fulfills her nutritional daily intakes (from premise 4).\n- But from premise 5, if Taylor has a good relationship with her parents, then she does not eat salads regularly. This creates a contradiction, so scenario 1 is impossible.\n\nScenario 2:\n- If Taylor did not grow up in a health-conscious childhood home, then she does not fulfill her nutritional daily intakes (from premise 3).\n- If Taylor does not have a good relationship with her parents, then she does not fulfill her nutritional daily intakes (from premise 4), and therefore does not visit the gym at least once a day (from premise 6).\n- But we are given no information about whether Taylor eats salads regularly or not in this scenario, so it is uncertain whether Taylor visits the gym at least once a day.\n\nSince scenario 1 is impossible, we are left with scenario 2, which is uncertain.\n\nTherefore, the conclusion \"Taylor visits the gym at least once a day\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the conclusion, we will analyze the given premises step by step and use logical reasoning.\n\n1. All people who eat salads regularly are very conscious about their health and eating habits.\n2. All people who grew up in health-conscious childhood homes eat salads regularly.\n3. All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes.\n4. If people have good relationships with their parents, then they fulfill their nutritional daily intakes.\n5. If people have good relationships with their parents, then they do not eat salads regularly.\n6. If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes.\n7. It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nFrom premise 7, we can deduce two possibilities about Taylor:\n\na. Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents.\nb. Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nIf we consider possibility a, then we can analyze the conclusion.\n\n- From premise 2, if Taylor grew up in a health-conscious childhood home, then she eats salads regularly.\n- From premise 5, if Taylor has a good relationship with her parents, then she does not eat salads regularly. This is a contradiction, so possibility a is not valid.\n\nNow, let's consider possibility b. \n\n- From premise 3, if Taylor neither grew up in a health-conscious childhood home nor fulfills her nutritional daily intakes.\n- From premise 4, if Taylor does not have a good relationship with her parents, then she does not fulfill her nutritional daily intakes. This is consistent with premise 3.\n\nNow, we need to find a connection between the premises and the conclusion. We can use premise 6, which states that if people visit the gym at least once a day, then they always fulfill their daily nutritional intakes.\n\nHowever, we cannot determine if Taylor visits the gym at least once a day based on the given premises. The premises provide a connection between visiting the gym and fulfilling nutritional daily intakes, but we do not have any information about Taylor's gym visits or her nutritional intake fulfillment.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning and apply the given premises step by step.\n\nLet's define the following variables:\n- H: Taylor grew up in a health-conscious childhood home.\n- R: Taylor has a good relationship with her parents.\n- E: Taylor eats salads regularly.\n- F: Taylor fulfills her nutritional daily intakes.\n- G: Taylor visits the gym at least once a day.\n\nFrom the premises:\n1. All people who eat salads regularly are very conscious about their health and eating habits. \nThis can be written as: E \u2192 H.\n\n2. All people who grew up in health-conscious childhood homes eat salads regularly.\nThis can be written as: H \u2192 E.\n\n3. All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes.\nThis can be written as: F \u2192 H.\n\n4. If people have good relationships with their parents, then they fulfill their nutritional daily intakes.\nThis can be written as: R \u2192 F.\n\n5. If people have good relationships with their parents, then they do not eat salads regularly.\nThis can be written as: R \u2192 \u00acE.\n\n6. If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes.\nThis can be written as: G \u2192 F.\n\n7. It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\nThis can be written as: (H \u2227 R) \u2228 (\u00acH \u2227 \u00acR).\n\nNow, let's analyze the conclusion:\nTaylor visits the gym at least once a day. (G)\n\nWe need to determine whether the conclusion is true, false, or uncertain based on the premises.\n\nFrom premise 7, we have (H \u2227 R) \u2228 (\u00acH \u2227 \u00acR). This means that either H \u2227 R is true, or \u00acH \u2227 \u00acR is true.\n\nIf H \u2227 R is true, then from premise 2 (H \u2192 E), we have E, which means Taylor eats salads regularly.\n\nFrom premise 5 (R \u2192 \u00acE), we have \u00acE, which contradicts E. Therefore, this case is impossible.\n\nIf \u00acH \u2227 \u00acR is true, then from premise 6 (G \u2192 F), we have F, which means Taylor fulfills her nutritional daily intakes.\n\nFrom premise 3 (F \u2192 H), we have \u00acH, which contradicts the assumption that \u00acH is true. Therefore, this case is also impossible.\n\nHowever, we cannot conclude anything about Taylor visiting the gym at least once a day (G) from these cases.\n\nBut, from premise 6 (G \u2192 F), if we can determine that Taylor fulfills her nutritional daily intakes (F), we can conclude that Taylor visits the gym at least once a day (G).\n\nNow, let's analyze the remaining premises to see if we can conclude that Taylor fulfills her nutritional daily intakes (F).\n\nFrom premise 4 (R \u2192 F), if we can conclude that Taylor has a good relationship with her parents (R), we can conclude that Taylor fulfills her nutritional daily intakes (F).\n\nHowever, from premise 5 (R \u2192 \u00acE), we know that if Taylor has a good relationship with her parents (R), then she does not eat salads regularly (\u00acE).\n\nBut we cannot conclude anything about Taylor eating salads regularly (E) from the premises.\n\nWe also cannot conclude that Taylor has a good relationship with her parents (R) from the premises.\n\nHowever, if we can conclude that Taylor fulfills her nutritional daily intakes (F), we can conclude that Taylor visits the gym at least once a day (G).\n\nNow, let's analyze the remaining premises to see if we can conclude that Taylor fulfills her nutritional daily intakes (F).\n\nFrom premise 7, we have (H \u2227 R) \u2228 (\u00acH \u2227 \u00acR). We know that this statement is true.\n\nSince we cannot conclude that H \u2227 R is true or \u00acH \u2227 \u00acR is true from the premises, we cannot conclude that Taylor fulfills her nutritional daily intakes (F).\n\nHowever, we can use the principle of non-contradiction to conclude that if we cannot conclude that Taylor fulfills her nutritional daily intakes (F), we cannot conclude that Taylor does not fulfill her nutritional daily intakes (\u00acF).\n\nSince we cannot conclude that Taylor fulfills her nutritional daily intakes (F) or does not fulfill her nutritional daily intakes (\u00acF) from the premises, we cannot conclude that Taylor visits the gym at least once a day (G).\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and their relationships with the conclusion.\n\nGiven premises:\n1. All people who eat salads regularly are very conscious about their health and eating habits.\n2. All people who grew up in health-conscious childhood homes eat salads regularly.\n3. All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes.\n4. If people have good relationships with their parents, then they fulfill their nutritional daily intakes.\n5. If people have good relationships with their parents, then they do not eat salads regularly.\n6. If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes.\n7. It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nConclusion: Taylor visits the gym at least once a day.\n\nFrom premises 1 and 2, we can conclude that:\n- If Taylor grew up in a health-conscious childhood home, then she eats salads regularly.\n\nFrom premise 3, we can conclude that:\n- If Taylor fulfills her nutritional daily intakes, then she grew up in a health-conscious childhood home.\n\nFrom premise 6, we can conclude that:\n- If Taylor visits the gym at least once a day, then she always fulfills her daily nutritional intakes.\n\nFrom premise 4, we can conclude that:\n- If Taylor has a good relationship with her parents, then she fulfills her nutritional daily intakes.\n\nFrom premise 5, we can conclude that:\n- If Taylor has a good relationship with her parents, then she does not eat salads regularly.\n\nFrom premise 7, we can conclude that:\n- It is either true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nNow, let's analyze the two possible scenarios from premise 7:\n\nScenario 1: Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents.\n- From premise 1, if Taylor eats salads regularly, then she is very conscious about her health and eating habits.\n- From premise 5, if Taylor has a good relationship with her parents, then she does not eat salads regularly. This contradicts the previous conclusion.\n- Therefore, this scenario is inconsistent.\n\nScenario 2: Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n- From premise 3, if Taylor fulfills her nutritional daily intakes, then she grew up in a health-conscious childhood home. This contradicts the assumption that she did not grow up in a health-conscious childhood home.\n- Therefore, this scenario is also inconsistent.\n\nHowever, since both scenarios are inconsistent, we cannot directly conclude anything from these scenarios. We need to consider the relationship between the premises and the conclusion more carefully.\n\nFrom premise 6, we know that if Taylor visits the gym at least once a day, then she always fulfills her daily nutritional intakes. However, we cannot directly conclude that Taylor visits the gym at least once a day from the given premises.\n\nWe can try to use modus tollens to determine whether the conclusion is true or false:\n\nPremise 6: If Taylor visits the gym at least once a day, then she always fulfills her daily nutritional intakes.\nConclusion: Taylor visits the gym at least once a day.\n\nTo apply modus tollens, we need to find a premise that contradicts the conclusion.\n\nPremise 7: It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nFrom premise 7, we can conclude that:\n- It is not true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents.\n\nNow, let's analyze the two possible scenarios from premise 7 again:\n\nScenario 1: It is true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents.\n- This scenario is inconsistent, as we previously concluded.\n\nScenario 2: It is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n- From premise 4, if Taylor has a good relationship with her parents, then she fulfills her nutritional daily intakes. This contradicts the assumption that she does not have a good relationship with her parents.\n- Therefore, this scenario is also inconsistent.\n\nHowever, since both scenarios are inconsistent, we cannot directly conclude anything from these scenarios. We need to consider the relationship between the premises and the conclusion more carefully.\n\nWe can try to use modus tollens again:\n\nPremise 7: It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nConclusion: Taylor visits the gym at least once a day.\n\nTo apply modus tollens, we need to find a premise that contradicts the conclusion.\n\nHowever, we cannot find a premise that directly contradicts the conclusion. Therefore, we cannot apply modus tollens to determine whether the conclusion is true or false.\n\nIn conclusion, we cannot determine whether the conclusion is true, false, or uncertain from the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and determine their logical relationships.\n\nPremises:\n\n1. All people who eat salads regularly are very conscious about their health and eating habits.\n2. All people who grew up in health-conscious childhood homes eat salads regularly.\n3. All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes.\n4. If people have good relationships with their parents, then they fulfill their nutritional daily intakes.\n5. If people have good relationships with their parents, then they do not eat salads regularly.\n6. If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes.\n7. It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nFrom premise 7, we can create two possible scenarios for Taylor:\n\nScenario 1: Taylor grew up in a health-conscious childhood home and has a good relationship with her parents.\nScenario 2: Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nNow, let's analyze the logical relationships between the premises and these scenarios.\n\nFrom premise 1 and 2, we can conclude that if Taylor grew up in a health-conscious childhood home (Scenario 1), then she eats salads regularly.\n\nFrom premise 5, we can conclude that if Taylor has a good relationship with her parents (Scenario 1), then she does not eat salads regularly.\n\nFrom premise 4, we can conclude that if Taylor has a good relationship with her parents (Scenario 1), then she fulfills her nutritional daily intakes.\n\nFrom premise 6, we can conclude that if Taylor visits the gym at least once a day, then she always fulfills her daily nutritional intakes.\n\nHowever, we cannot directly conclude whether Taylor visits the gym at least once a day from the given premises. We can only analyze the logical relationships between the premises and the scenarios.\n\nSince there is no direct logical connection between the premises and the conclusion \"Taylor visits the gym at least once a day,\" we cannot determine the truth value of the conclusion.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises step by step and determine the validity of the conclusion.\n\nPremise 1: All people who eat salads regularly are very conscious about their health and eating habits.\nPremise 2: All people who grew up in health-conscious childhood homes eat salads regularly.\nPremise 3: All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes.\nPremise 4: If people have good relationships with their parents, then they fulfill their nutritional daily intakes.\nPremise 5: If people have good relationships with their parents, then they do not eat salads regularly.\nPremise 6: If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes.\nPremise 7: It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nFrom Premise 2 and Premise 3, we can conclude that Taylor either grew up in a health-conscious childhood home or she does not fulfill her nutritional daily intakes. This is because if she grew up in a health-conscious childhood home, then she eats salads regularly (Premise 2), and if she eats salads regularly, then she fulfills her nutritional daily intakes (Premise 3).\n\nFrom Premise 7, we know that Taylor is either in one of the following situations:\n\n- Situation 1: Taylor grew up in a health-conscious childhood home and has a good relationship with her parents.\n- Situation 2: Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nNow, let's consider Situation 1. If Taylor grew up in a health-conscious childhood home, then she eats salads regularly (Premise 2). But if she eats salads regularly, then she does not fulfill her nutritional daily intakes (Premise 5). This is a contradiction, so Situation 1 cannot occur.\n\nSince Situation 1 cannot occur, we can conclude that Situation 2 must occur, which means Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nNow, we can analyze the conclusion that Taylor visits the gym at least once a day. From Premise 6, we know that if people visit the gym at least once a day, then they always fulfill their daily nutritional intakes. But we also know that Taylor does not fulfill her nutritional daily intakes (since she does not grow up in a health-conscious childhood home). Therefore, Taylor cannot visit the gym at least once a day.\n\nThe final answer is $\\boxed{\\text{False}}$.",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we will use a combination of logical deductions and the given premises.\n\nGiven Premises:\n\n1. All people who eat salads regularly are very conscious about their health and eating habits.\n2. All people who grew up in health-conscious childhood homes eat salads regularly.\n3. All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes.\n4. If people have good relationships with their parents, then they fulfill their nutritional daily intakes.\n5. If people have good relationships with their parents, then they do not eat salads regularly.\n6. If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes.\n7. It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nConclusion: Taylor visits the gym at least once a day.\n\nWe need to determine the truth value of this conclusion based on the given premises.\n\nStep 1: Let's examine the possible cases based on premise 7.\n\nCase 1: Both Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents.\nCase 2: Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nStep 2: We will analyze each case separately to see if we can deduce the truth value of the conclusion.\n\n**Case 1: Both Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents.**\n\n- From premise 2, Taylor eats salads regularly.\n- From premise 5, Taylor does not eat salads regularly (because she has a good relationship with her parents). This is a contradiction, so this case is impossible.\n\n**Case 2: Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.**\n\n- From premise 2, Taylor does not eat salads regularly.\n- From premise 1, Taylor is not very conscious about her health and eating habits.\n- From premise 3, Taylor does not fulfill her nutritional daily intakes.\n- From premise 6, Taylor does not visit the gym at least once a day (because she does not fulfill her daily nutritional intakes). However, we cannot conclude that Taylor does not visit the gym from this case alone.\n\nStep 3: We cannot determine the truth value of the conclusion based on the given premises.\n\nHowever, let's re-examine the premises to see if we can find any other information that can help us.\n\nFrom premise 6, we know that if Taylor visits the gym at least once a day, then she always fulfills her daily nutritional intakes.\n\nSince we cannot determine the truth value of the conclusion based on the given cases, let's consider the other premises.\n\nFrom premise 4, we know that if Taylor has a good relationship with her parents, then she fulfills her nutritional daily intakes.\n\nFrom premise 5, we know that if Taylor has a good relationship with her parents, then she does not eat salads regularly.\n\nWe cannot determine the truth value of the conclusion based on the given premises and cases.\n\nHowever, we can make an assumption based on the given information. Let's assume that Taylor does not have a good relationship with her parents (Case 2).\n\nFrom premise 4, we know that if Taylor has a good relationship with her parents, then she fulfills her nutritional daily intakes. However, we are assuming that Taylor does not have a good relationship with her parents.\n\nFrom premise 3, we know that all people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes.\n\nFrom premise 2, we know that all people who grew up in health-conscious childhood homes eat salads regularly.\n\nHowever, we are assuming that Taylor does not have a good relationship with her parents and does not grow up in a health-conscious childhood home.\n\nWe cannot determine the truth value of the conclusion based on the given premises and cases.\n\nHowever, let's re-examine the premises to see if we can find any other information that can help us.\n\nFrom premise 6, we know that if Taylor visits the gym at least once a day, then she always fulfills her daily nutritional intakes.\n\nWe cannot determine the truth value of the conclusion based on the given premises and cases.\n\nHowever, let's consider the other premises.\n\nFrom premise 7, we know that it is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nWe are assuming that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nHowever, we cannot determine the truth value of the conclusion based on the given premises and cases.\n\nThe final answer is: $\\boxed{Uncertain}$",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the conclusion, we'll break down the premises and use a truth table or logical deductions.\n\nPremises:\n\n1. All people who eat salads regularly are very conscious about their health and eating habits. (E \u2192 C)\n2. All people who grew up in health-conscious childhood homes eat salads regularly. (H \u2192 E)\n3. All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes. (I \u2192 H)\n4. If people have good relationships with their parents, then they fulfill their nutritional daily intakes. (P \u2192 I)\n5. If people have good relationships with their parents, then they do not eat salads regularly. (P \u2192 \u00acE)\n6. If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes. (G \u2192 I)\n7. It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents. (H \u2228 P) \u2228 (\u00acH \u2227 \u00acP)\n\nTo be able to deduce whether Taylor visits the gym at least once a day, we need to find out whether any of the premises imply she fulfills her daily nutritional intakes or she doesn't eat salads regularly. We can then use the information given in premise 7 to find out what possibilities there are for her.\n\nLet's break down premise 7:\n\n- If (H \u2228 P) is true, then Taylor either grew up in a health-conscious childhood home or she has a good relationship with her parents.\n- If (\u00acH \u2227 \u00acP) is true, then Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nFrom premise 1 (E \u2192 C) and premise 2 (H \u2192 E) we can deduce that:\nIf Taylor grew up in a health-conscious childhood home (H), then she eats salads regularly (E).\n\nFrom premise 3 (I \u2192 H) we can deduce that:\nIf Taylor fulfills her daily nutritional intakes (I), then she grew up in a health-conscious childhood home (H).\n\nFrom premise 4 (P \u2192 I) we can deduce that:\nIf Taylor has a good relationship with her parents (P), then she fulfills her daily nutritional intakes (I).\n\nFrom premise 5 (P \u2192 \u00acE) we can deduce that:\nIf Taylor has a good relationship with her parents (P), then she doesn't eat salads regularly (\u00acE).\n\nNow we need to analyze what happens if Taylor has a good relationship with her parents (P).\n\nIf (P), then (I) (from premise 4). If (I), then (H) (from premise 3). If (H), then (E) (from premise 2). However, from premise 5 we know that if (P), then (\u00acE), so this leads to a contradiction.\n\nThe only way to resolve this contradiction is if (P) is false.\n\nSo, Taylor does not have a good relationship with her parents.\n\nNow, let's look at the second part of premise 7, (\u00acH \u2227 \u00acP). If this is true, then Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents. From premise 2 we know that if (\u00acH), then (\u00acE). \n\nNow, we need to check if Taylor fulfills her daily nutritional intakes (I).\n\nFrom premise 6 (G \u2192 I), we know that if Taylor visits the gym at least once a day, then she fulfills her daily nutritional intakes.\n\nHowever, we still need to check if there is a connection between the premises that would allow us to conclude whether Taylor visits the gym or not.\n\nSince we already concluded that (P) is false, there is no direct connection between (P) and (G) in the premises.\n\nBut, let's look at the premises again, specifically premise 7: (H \u2228 P) \u2228 (\u00acH \u2227 \u00acP).\n\nIf (\u00acH \u2227 \u00acP) is true, then it means (\u00acH) is true and (\u00acP) is true.\n\nFrom premise 6 (G \u2192 I), we know that if Taylor visits the gym at least once a day, then she fulfills her daily nutritional intakes.\n\nHowever, we also know that if (\u00acP) is true, then (I) is false (from premise 4). And we know that (I) is false when (\u00acP) is true.\n\nWe can also deduce that if (I) is false, then (G) is false, since if (I) is false, we cannot be certain that Taylor fulfills her daily nutritional intakes, so we cannot conclude that she visits the gym.\n\nHowever, we know that (\u00acP) is true. \n\nFrom premise 6 (G \u2192 I) we can deduce that if Taylor visits the gym at least once a day (G), then she fulfills her daily nutritional intakes (I).\n\nBut we also know that (I) is false.\n\nTherefore, we can conclude that Taylor does not visit the gym at least once a day.\n\nThe final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we can use a truth table or a logical diagram. However, given the information, we can also approach this problem by breaking down the premises and analyzing the possible conclusions.\n\nPremise 1: All people who eat salads regularly are very conscious about their health and eating habits.\nPremise 2: All people who grew up in health-conscious childhood homes eat salads regularly.\nPremise 3: All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes.\nPremise 4: If people have good relationships with their parents, then they fulfill their nutritional daily intakes.\nPremise 5: If people have good relationships with their parents, then they do not eat salads regularly.\nPremise 6: If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes.\n\nGiven the information, we can conclude the following:\n\n- If Taylor grew up in a health-conscious childhood home, then she eats salads regularly (Premise 2).\n- If Taylor has a good relationship with her parents, then she fulfills her nutritional daily intakes (Premise 4) but does not eat salads regularly (Premise 5).\n\nNow, let's analyze the conclusion: Taylor visits the gym at least once a day.\n\nIf Taylor has a good relationship with her parents, then she fulfills her nutritional daily intakes (Premise 4). However, this does not necessarily mean that she visits the gym at least once a day. This is because there are other possibilities, such as fulfilling her nutritional daily intakes through other means, like eating a balanced diet.\n\nHowever, we know that if Taylor fulfills her nutritional daily intakes through visiting the gym, then she must have good relationships with her parents (Premise 4) and must not eat salads regularly (Premise 5).\n\nNow, let's analyze the information given about Taylor. We know that it is either true that Taylor grew up in a health-conscious childhood home and has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nIf Taylor grew up in a health-conscious childhood home, then she must eat salads regularly (Premise 2). However, this would imply that she does not fulfill her nutritional daily intakes (Premise 3), which is a contradiction.\n\nTherefore, the only possibility is that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nThis means that Taylor does not fulfill her nutritional daily intakes through visiting the gym, as it is a condition that requires good relationships with her parents. \n\nHowever, the premises do not rule out the possibility that Taylor fulfills her nutritional daily intakes through other means, such as eating a balanced diet.\n\nTherefore, we cannot conclude with certainty whether Taylor visits the gym at least once a day.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the conclusion, we need to analyze the given premises and use logical reasoning.\n\nPremise 1: All people who eat salads regularly are very conscious about their health and eating habits.\nPremise 2: All people who grew up in health-conscious childhood homes eat salads regularly.\nPremise 3: All people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes.\nPremise 4: If people have good relationships with their parents, then they fulfill their nutritional daily intakes.\nPremise 5: If people have good relationships with their parents, then they do not eat salads regularly.\nPremise 6: If people visit the gym at least once a day, then they always fulfill their daily nutritional intakes.\nPremise 7: It is either both true that Taylor grew up in a health-conscious childhood home and she has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nWe are asked to determine whether the conclusion \"Taylor visits the gym at least once a day\" is true, false, or uncertain.\n\nFrom Premise 7, we know that it is either true that Taylor grew up in a health-conscious childhood home and has a good relationship with her parents, or it is true that Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents. This gives us two possible cases:\n\nCase 1: Taylor grew up in a health-conscious childhood home and has a good relationship with her parents.\nCase 2: Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nNow, let's analyze each case:\n\nCase 1: Taylor grew up in a health-conscious childhood home and has a good relationship with her parents.\n\nFrom Premise 2, we know that people who grew up in health-conscious childhood homes eat salads regularly. However, from Premise 5, we know that people who have good relationships with their parents do not eat salads regularly. This creates a contradiction, as Taylor cannot both eat salads regularly and have a good relationship with her parents. Therefore, we cannot conclude that Taylor visits the gym at least once a day from Case 1.\n\nCase 2: Taylor neither grew up in a health-conscious childhood home nor has a good relationship with her parents.\n\nFrom Premise 3, we know that people who fulfill their nutritional daily intakes grew up in health-conscious childhood homes. Therefore, Taylor does not fulfill her nutritional daily intakes. From Premise 6, we know that people who visit the gym at least once a day always fulfill their daily nutritional intakes. Therefore, Taylor does not visit the gym at least once a day.\n\nIn conclusion, we cannot determine whether the conclusion \"Taylor visits the gym at least once a day\" is true or false from the given premises. However, we can conclude that it is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_X, eats_salads_regularly_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats_salads_regularly(X) -> very_conscious_about_health_and_eating_habits(X)",
+          "z3_formula": "Implies(eats_salads_regularly_X, very_conscious_about_health_and_eating_habits_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_X, eats_salads_regularly_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "fulfills_nutritional_daily_intakes(X) -> health_conscious_childhood_home(X)",
+          "z3_formula": "Implies(fulfills_nutritional_daily_intakes_X, health_conscious_childhood_home_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_X, fulfills_nutritional_daily_intakes_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(X) -> not eats_salads_regularly(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_X, Not(eats_salads_regularly_X))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits_gym_at_least_once_a_day(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(visits_gym_at_least_once_a_day_X, fulfills_nutritional_daily_intakes_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "good_relationship_with_parents(taylor) | not good_relationship_with_parents(taylor) & not health_conscious_childhood_home(taylor)",
+          "z3_formula": "Or(good_relationship_with_parents_taylor, And(Not(good_relationship_with_parents_taylor), Not(health_conscious_childhood_home_taylor)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "good_relationship_with_parents(taylor) -> fulfills_nutritional_daily_intakes(taylor)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "good_relationship_with_parents(taylor) -> not eats_salads_regularly(taylor)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, Not(eats_salads_regularly_taylor))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "health_conscious_childhood_home(taylor) -> eats_salads_regularly(taylor)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_regularly_taylor)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "health_conscious_childhood_home(taylor) & good_relationship_with_parents(taylor) -> contradiction",
+          "z3_formula": "Implies(And(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor), False)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not good_relationship_with_parents(taylor) & not health_conscious_childhood_home(taylor) -> not fulfills_nutritional_daily_intakes(taylor)",
+          "z3_formula": "Implies(And(Not(good_relationship_with_parents_taylor), Not(health_conscious_childhood_home_taylor)), Not(fulfills_nutritional_daily_intakes_taylor))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not fulfills_nutritional_daily_intakes(taylor) -> not visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "Implies(Not(fulfills_nutritional_daily_intakes_taylor), Not(visits_gym_at_least_once_a_day_taylor))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "good_relationship_with_parents(taylor) -> visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, visits_gym_at_least_once_a_day_taylor)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "good_relationship_with_parents(taylor) -> fulfills_nutritional_daily_intakes(taylor)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "fulfills_nutritional_daily_intakes(taylor)",
+          "z3_formula": "fulfills_nutritional_daily_intakes_taylor == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "good_relationship_with_parents(taylor)",
+          "z3_formula": "good_relationship_with_parents_taylor == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "visits_gym_at_least_once_a_day_taylor == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(taylor)",
+          "z3_formula": "good_relationship_with_parents_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> fulfills_daily_nutritional_intakes(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, fulfills_daily_nutritional_intakes_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "fulfills_daily_nutritional_intakes(X) -> health_conscious_childhood_home(X)",
+          "z3_formula": "Implies(fulfills_daily_nutritional_intakes_taylor, health_conscious_childhood_home_taylor)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_regularly_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> not(eats_salads_regularly(X))",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, Not(eats_salads_regularly_taylor))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits_gym_at_least_once_a_day(X) -> fulfills_daily_nutritional_intakes(X)",
+          "z3_formula": "Implies(visits_gym_at_least_once_a_day_taylor, fulfills_daily_nutritional_intakes_taylor)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "health_conscious_childhood_home(taylor) & good_relationship_with_parents(taylor)",
+          "z3_formula": "And(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(health_conscious_childhood_home(taylor) & good_relationship_with_parents(taylor))",
+          "z3_formula": "Not(And(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(fulfills_daily_nutritional_intakes(taylor))",
+          "z3_formula": "Not(fulfills_daily_nutritional_intakes_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits_gym_at_least_once_a_day(taylor))",
+          "z3_formula": "Not(visits_gym_at_least_once_a_day_taylor)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(taylor)",
+          "z3_formula": "good_relationship_with_parents_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_regularly_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> not eats_salads_regularly(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, Not(eats_salads_regularly_taylor))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "fulfills_nutritional_daily_intakes(X) -> visits_gym_at_least_once_a_day(X)",
+          "z3_formula": "Implies(fulfills_nutritional_daily_intakes_taylor, visits_gym_at_least_once_a_day_taylor)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not health_conscious_childhood_home(X) | not good_relationship_with_parents(X)",
+          "z3_formula": "Or(Not(health_conscious_childhood_home_taylor), Not(good_relationship_with_parents_taylor))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not health_conscious_childhood_home(taylor) & not good_relationship_with_parents(taylor)",
+          "z3_formula": "And(Not(health_conscious_childhood_home_taylor), Not(good_relationship_with_parents_taylor))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not fulfills_nutritional_daily_intakes(taylor)",
+          "z3_formula": "Not(fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not fulfills_nutritional_daily_intakes(taylor) -> not visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "Implies(Not(fulfills_nutritional_daily_intakes_taylor), Not(visits_gym_at_least_once_a_day_taylor))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "Not(visits_gym_at_least_once_a_day_taylor)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_X, eats_salads_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats_salads(X) -> health_conscious(X)",
+          "z3_formula": "Implies(eats_salads_X, health_conscious_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "fulfills_nutritional_daily_intakes(X) -> health_conscious_childhood_home(X)",
+          "z3_formula": "Implies(fulfills_nutritional_daily_intakes_X, health_conscious_childhood_home_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_X, fulfills_nutritional_daily_intakes_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(X) -> not(eats_salads(X))",
+          "z3_formula": "Implies(good_relationship_with_parents_X, Not(eats_salads_X))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits_gym_at_least_once_a_day(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(visits_gym_at_least_once_a_day_X, fulfills_nutritional_daily_intakes_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "(health_conscious_childhood_home(X) & good_relationship_with_parents(X)) | not(health_conscious_childhood_home(X) & good_relationship_with_parents(X))",
+          "z3_formula": "Or(And(health_conscious_childhood_home_Taylor, good_relationship_with_parents_Taylor), Not(And(health_conscious_childhood_home_Taylor, good_relationship_with_parents_Taylor)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "health_conscious(X)",
+          "z3_formula": "health_conscious_Taylor == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(health_conscious_childhood_home(X) & good_relationship_with_parents(X))",
+          "z3_formula": "Not(And(health_conscious_childhood_home_Taylor, good_relationship_with_parents_Taylor)) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats_salads(X))",
+          "z3_formula": "Not(eats_salads_Taylor) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "health_conscious_childhood_home(X)",
+          "z3_formula": "health_conscious_childhood_home_Taylor == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(good_relationship_with_parents(X))",
+          "z3_formula": "Not(good_relationship_with_parents_Taylor) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(fulfills_nutritional_daily_intakes(X))",
+          "z3_formula": "Not(fulfills_nutritional_daily_intakes_Taylor) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits_gym_at_least_once_a_day(X))",
+          "z3_formula": "Not(visits_gym_at_least_once_a_day_Taylor) == True",
+          "source_step": 14
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(taylor)",
+          "z3_formula": "good_relationship_with_parents_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_regularly_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, eats_salads_regularly_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> not(eats_salads_regularly(X))",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, Not(eats_salads_regularly_taylor))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits_gym_at_least_once_a_day(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(visits_gym_at_least_once_a_day_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "Or(health_conscious_childhood_home(taylor) & good_relationship_with_parents(taylor), not(health_conscious_childhood_home(taylor) & good_relationship_with_parents(taylor)))",
+          "z3_formula": "Or(And(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor), Not(And(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(health_conscious_childhood_home(taylor) & good_relationship_with_parents(taylor))",
+          "z3_formula": "Not(And(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits_gym_at_least_once_a_day(taylor))",
+          "z3_formula": "Not(visits_gym_at_least_once_a_day_taylor)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "visits_gym_at_least_once_a_day_taylor",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(taylor)",
+          "z3_formula": "good_relationship_with_parents_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> eats_salads(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, eats_salads_taylor)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits_gym_at_least_once_a_day(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(visits_gym_at_least_once_a_day_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "eats_salads(taylor)",
+          "z3_formula": "eats_salads_taylor == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "fulfills_nutritional_daily_intakes(taylor)",
+          "z3_formula": "fulfills_nutritional_daily_intakes_taylor == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "visits_gym_at_least_once_a_day_taylor == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_regularly_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats_salads_regularly(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(eats_salads_regularly_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fulfills_nutritional_daily_intakes(X) -> health_conscious_childhood_home(X)",
+          "z3_formula": "Implies(fulfills_nutritional_daily_intakes_taylor, health_conscious_childhood_home_taylor)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(X) -> not eats_salads_regularly(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, Not(eats_salads_regularly_taylor))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits_gym_at_least_once_a_day(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(visits_gym_at_least_once_a_day_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) | not (health_conscious_childhood_home(X) & good_relationship_with_parents(X))",
+          "z3_formula": "Or(health_conscious_childhood_home_taylor, Not(And(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not health_conscious_childhood_home(X) & not good_relationship_with_parents(X)",
+          "z3_formula": "Not(And(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Not(fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not visits_gym_at_least_once_a_day(X)",
+          "z3_formula": "Not(visits_gym_at_least_once_a_day_taylor)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_parents(taylor)",
+          "z3_formula": "good_relationship_parents_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_regularly_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_parents(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(good_relationship_parents_taylor, eats_salads_regularly_taylor)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_parents(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_parents_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_parents(X) -> not eats_salads_regularly(X)",
+          "z3_formula": "Implies(good_relationship_parents_taylor, not eats_salads_regularly_taylor)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "fulfills_nutritional_daily_intakes(X) -> health_conscious_childhood_home(X)",
+          "z3_formula": "Implies(fulfills_nutritional_daily_intakes_taylor, health_conscious_childhood_home_taylor)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits_gym_at_least_once_a_day(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(visits_gym_at_least_once_a_day_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "visits_gym_at_least_once_a_day_taylor == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "E(X) -> C(X)",
+          "z3_formula": "Implies(eats_salads_taylor, very_conscious_taylor)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "H(X) -> E(X)",
+          "z3_formula": "Implies(grew_up_health_conscious_taylor, eats_salads_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "I(X) -> H(X)",
+          "z3_formula": "Implies(fulfills_nutritional_intakes_taylor, grew_up_health_conscious_taylor)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "P(X) -> I(X)",
+          "z3_formula": "Implies(has_good_relationship_with_parents_taylor, fulfills_nutritional_intakes_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "P(X) -> \u00acE(X)",
+          "z3_formula": "Implies(has_good_relationship_with_parents_taylor, not_eats_salads_taylor)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "G(X) -> I(X)",
+          "z3_formula": "Implies(visits_gym_taylor, fulfills_nutritional_intakes_taylor)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "\u00acP(X) -> \u00acI(X)",
+          "z3_formula": "Implies(not_has_good_relationship_with_parents_taylor, not_fulfills_nutritional_intakes_taylor)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "(H(X) \u2228 P(X)) \u2228 (\u00acH(X) \u2227 \u00acP(X))",
+          "z3_formula": "Or(Or(grew_up_health_conscious_taylor, has_good_relationship_with_parents_taylor), And(not_grew_up_health_conscious_taylor, not_has_good_relationship_with_parents_taylor))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "\u00acP(X)",
+          "z3_formula": "not_has_good_relationship_with_parents_taylor == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "\u00acI(X)",
+          "z3_formula": "not_fulfills_nutritional_intakes_taylor == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "\u00acG(X)",
+          "z3_formula": "not_visits_gym_taylor == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "health_conscious_home(taylor)",
+          "z3_formula": "health_conscious_home_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_parents(taylor)",
+          "z3_formula": "good_relationship_parents_taylor == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_home(X) -> eats_salads(X)",
+          "z3_formula": "Implies(health_conscious_home_taylor, eats_salads_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_home(X) -> not(fulfills_daily_intakes(X))",
+          "z3_formula": "Implies(health_conscious_home_taylor, Not(fulfills_daily_intakes_taylor))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_parents(X) -> fulfills_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_parents_taylor, fulfills_daily_intakes_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_parents(X) -> not(eats_salads(X))",
+          "z3_formula": "Implies(good_relationship_parents_taylor, Not(eats_salads_taylor))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits_gym(X) -> fulfills_daily_intakes(X)",
+          "z3_formula": "Implies(visits_gym_taylor, fulfills_daily_intakes_taylor)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits_gym(taylor))",
+          "z3_formula": "Not(visits_gym_taylor)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "health_conscious_childhood_home(taylor)",
+          "z3_formula": "health_conscious_childhood_home_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "good_relationship_with_parents(taylor)",
+          "z3_formula": "good_relationship_with_parents_taylor == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> eats_salads_regularly(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, eats_salads_regularly_taylor)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> not eats_salads_regularly(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, Not(eats_salads_regularly_taylor))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "health_conscious_childhood_home(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(health_conscious_childhood_home_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "good_relationship_with_parents(X) -> fulfills_nutritional_daily_intakes(X)",
+          "z3_formula": "Implies(good_relationship_with_parents_taylor, fulfills_nutritional_daily_intakes_taylor)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "fulfills_nutritional_daily_intakes(X) -> visits_gym_at_least_once_a_day(X)",
+          "z3_formula": "Implies(fulfills_nutritional_daily_intakes_taylor, visits_gym_at_least_once_a_day_taylor)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not (health_conscious_childhood_home(taylor) & good_relationship_with_parents(taylor)) | not (not health_conscious_childhood_home(taylor) & not good_relationship_with_parents(taylor))",
+          "z3_formula": "Or(Not(And(health_conscious_childhood_home_taylor, good_relationship_with_parents_taylor)), Not(And(Not(health_conscious_childhood_home_taylor), Not(good_relationship_with_parents_taylor))))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "Not(visits_gym_at_least_once_a_day_taylor)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not visits_gym_at_least_once_a_day(taylor)",
+          "z3_formula": "Not(visits_gym_at_least_once_a_day_taylor)",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 124,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 66
+    },
+    "maxsat_stats": {
+      "satisfied": 57,
+      "excluded": 9,
+      "total_weight": 104,
+      "solve_time_ms": 2.4627679958939552
+    },
+    "timing": {
+      "trace_gen_s": 14.215,
+      "extraction_s": 34.22,
+      "dedup_s": 1.792,
+      "maxsat_s": 0.006,
+      "total_s": 50.233
+    }
+  }
+}

@@ -1,0 +1,972 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-145_Q9",
+    "problem": "Anne is kind. Anne is quiet. Anne is smart. Bob is kind. Bob is nice. Bob is smart. Fiona is not nice. Fiona is red. Gary is nice. Gary is white. If Bob is kind then Bob is smart. If something is kind and nice then it is smart. If something is nice and red then it is smart. If something is quiet and not nice then it is smart. All green things are kind. If Anne is quiet and Anne is white then Anne is kind. If Fiona is not nice then Fiona is green. All smart, kind things are white. If something is kind and green then it is quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is smart.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nNice($x, bool) ::: Is x nice?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nKind(Anne, True) ::: Anne is kind.\nQuiet(Anne, True) ::: Anne is quiet.\nSmart(Anne, True) ::: Anne is smart.\nKind(Bob, True) ::: Bob is kind.\nNice(Bob, True) ::: Bob is nice.\nSmart(Bob, True) ::: Bob is smart.\nNice(Fiona, False) ::: Fiona is not nice.\nRed(Fiona, True) ::: Fiona is red.\nNice(Gary, True) ::: Gary is nice.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nKind(Bob, True) >>> Smart(Bob, True) ::: If Bob is kind then Bob is smart.\nKind($x, True) && Nice($x, True) >>> Smart($x, True) ::: If something is kind and nice then it is smart.\nNice($x, True) && Red($x, True) >>> Smart($x, True) ::: If something is nice and red then it is smart.\nQuiet($x, True) && Nice($x, False) >>> Smart($x, True) ::: If something is quiet and not nice then it is smart.\nGreen($x, True) >>> Kind($x, True) ::: All green things are kind.\nQuiet(Anne, True) && White(Anne, True) >>> Kind(Anne, True) ::: If Anne is quiet and Anne is white then Anne is kind.\nNice(Fiona, False) >>> Green(Fiona, True) ::: If Fiona is not nice then Fiona is green.\nSmart($x, True) && Kind($x, True) >>> White($x, True) ::: All smart, kind things are white.\nKind($x, True) && Green($x, True) >>> Quiet($x, True) ::: If something is kind and green then it is quiet.\n\nQuery:\nSmart(Fiona, True) ::: Fiona is smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 81.5,
+      "True": 121.5,
+      "Unknown": 61.0
+    },
+    "answer_counts": {
+      "Unknown": 1,
+      "True": 10,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is not nice.\n   This statement is given directly.\n\n2. If Fiona is not nice then Fiona is green.\n   From the given information, we can conclude that Fiona is green.\n\n3. If something is kind and green then it is quiet.\n   Since Fiona is green, this rule does not apply directly to Fiona. We cannot conclude that Fiona is quiet based on this information alone.\n\n4. If something is nice and red then it is smart.\n   This rule does not apply to Fiona because we already know she is not nice.\n\n5. If something is quiet and not nice then it is smart.\n   This rule does not apply to Fiona because we already know she is not quiet.\n\n6. If something is kind and nice then it is smart.\n   This rule does not apply to Fiona because we already know she is not nice.\n\n7. All smart, kind things are white.\n   This rule does not apply to Fiona because we do not have enough information about Fiona being kind.\n\n8. Fiona is red.\n   This statement is given directly.\n\nSince Fiona is red and not nice, we can apply rule 4: If something is nice and red then it is smart.\nHowever, we know that Fiona is not nice. Therefore, this rule does not apply to Fiona because the conditions do not match.\n\nBut we also know that Fiona is red and not nice, so we can apply rule 4 using the negation, then Fiona is not smart.\nHowever, we are given that Fiona is red. So we can apply rule 4: If something is nice and red then it is smart. However, we know that Fiona is not nice. Therefore, this rule does not apply to Fiona because the conditions do not match.\n\nSince we do not have enough information to determine whether Fiona is smart, we cannot conclude that the statement \"Fiona is smart\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Fiona is smart, we need to analyze the given statements and use logical deductions.\n\n1. From the given statements:\n   - If something is kind and nice then it is smart.\n   - If Fiona is not nice then Fiona is green.\n   - All green things are kind.\n   - If something is kind and green then it is quiet.\n   - If something is kind and nice then it is smart.\n\n2. We are given that Fiona is not nice. Therefore, Fiona is green.\n\n3. Since Fiona is green, we can conclude that Fiona is kind (from the statement \"All green things are kind\").\n\n4. Now, we have two possibilities:\n   - Fiona is kind and nice (which would make her smart), or\n   - Fiona is kind and not nice (which would not make her smart).\n\n5. However, we know that Fiona is not nice. This means Fiona is kind and not nice.\n\n6. Since Fiona is kind and not nice, and she is green, we can conclude that Fiona is quiet (from the statement \"If something is kind and green then it is quiet\").\n\n7. From the statement \"If something is quiet and not nice then it is smart,\" we can conclude that Fiona is smart.\n\nTherefore, the statement \"Fiona is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether Fiona is smart, we need to analyze the given information step by step.\n\n1. From the information \"If Fiona is not nice then Fiona is green,\" we know that Fiona being not nice implies Fiona is green.\n\n2. We are also given that \"Fiona is red.\" \n\n3. The information \"All green things are kind\" implies that Fiona being green means Fiona is kind.\n\n4. However, we also know that \"Fiona is not nice.\" \n\n5. The statement \"If something is quiet and not nice then it is smart\" does not apply to Fiona since Fiona is not quiet. \n\n6. The information \"If something is kind and green then it is quiet\" implies that Fiona being kind and green makes Fiona quiet.\n\n7. Since Fiona is quiet and not nice, the statement \"If something is quiet and not nice then it is smart\" applies to Fiona.\n\n8. Therefore, based on the given conditions and information, we can conclude that Fiona is smart.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Fiona is smart, we need to analyze the given statements and rules.\n\n1. Fiona is not nice. (Given)\n2. Fiona is red. (Given)\n3. If something is nice and red then it is smart. (Rule)\n   Since Fiona is not nice (Statement 1), this rule does not apply to Fiona.\n4. If Fiona is not nice then Fiona is green. (Rule)\n   From Statement 1, we know that Fiona is not nice. Therefore, Fiona must be green.\n5. If something is kind and green then it is quiet. (Rule)\n   From Statement 4, we know that Fiona is green. However, we cannot conclude that Fiona is kind yet. Let's continue analyzing the rules.\n6. If something is kind and nice then it is smart. (Rule)\n   Since Fiona is not nice (Statement 1), this rule does not apply to Fiona.\n7. All green things are kind. (Rule)\n   Since Fiona is green (Statement 4), Fiona must be kind.\n8. If something is kind then it is smart. (Rule)\n   From Statement 7, we know that Fiona is kind. Therefore, Fiona must be smart.\n\nHowever, there is a catch. We have a rule that says: \"All smart, kind things are white.\" (Rule)\nAnd another rule that says: \"If Anne is quiet and Anne is white then Anne is kind.\" (Rule)\nWe cannot conclude anything about Anne's kind or smart nature from the initial statement, but let's keep that in mind.\n\nWe have concluded that Fiona is green, and green things are kind. We also concluded that Fiona is kind. However, from rule 9 we know that all green things are kind, and from rule 10 we know that all smart, kind things are white. Since Fiona is green, we cannot conclude that she is white or not white. \n\nSince Fiona is kind and green, then Fiona is quiet, according to rule 8. Therefore, Fiona is smart, and we have a conclusion that contradicts the given rule that all smart, kind things are white.\n\nBut we cannot conclude that Fiona is white or not white. Therefore, we can say that the statement \"Fiona is smart\" is True.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether Fiona is smart, we need to analyze the given statements and the conditions that lead to the conclusion.\n\nFrom the given statements, we know:\n1. Fiona is not nice.\n2. Fiona is red.\n3. If something is nice and red then it is smart. (This statement directly contradicts the first condition, but we'll consider it for now.)\n4. If Fiona is not nice then Fiona is green. (This statement takes precedence over the third statement.)\n\nFrom the fourth statement, we can conclude that Fiona is green.\n\nNow, let's consider the conditions that lead to the conclusion that something is smart:\n\n1. If something is kind and nice then it is smart.\n2. If something is nice and red then it is smart.\n3. If something is quiet and not nice then it is smart.\n\nSince Fiona is green (not red), the second condition doesn't apply. We also know that Fiona is not nice, which doesn't directly apply to any of the smart conditions.\n\nHowever, we have another condition that might help us: If all green things are kind, and if something is kind and green then it is quiet. This leads us to conclude that Fiona is quiet.\n\nNow, let's apply the condition: If something is quiet and not nice then it is smart. This condition applies to Fiona.\n\nTherefore, based on the given statements and conditions, we can conclude that Fiona is smart.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is not nice.\n   - From this, we cannot determine if Fiona is smart or not. So, the statement is unknown for now.\n\n2. Fiona is red.\n   - We know that if something is nice and red, then it is smart. But Fiona is not nice, so this rule doesn't apply to Fiona.\n\n3. If Fiona is not nice then Fiona is green.\n   - Since Fiona is not nice, we can conclude that Fiona is green.\n\n4. All green things are kind.\n   - Since Fiona is green, we can conclude that Fiona is kind.\n\n5. If something is kind and green then it is quiet.\n   - Since Fiona is kind and green, we can conclude that Fiona is quiet.\n\n6. If something is quiet and not nice then it is smart.\n   - Since Fiona is quiet and not nice, we can conclude that Fiona is smart.\n\nTherefore, based on the given information, the statement \"Fiona is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is smart' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know:\n   - Fiona is not nice.\n   - Fiona is red.\n   - If Fiona is not nice then Fiona is green.\n\nFrom this, we can conclude that Fiona is green because she is not nice.\n\n2. We are also given:\n   - All green things are kind.\n   - If something is kind and green then it is quiet.\n   - If something is kind and nice then it is smart.\n\nSince Fiona is green, she must be kind. This leads to two possibilities: either Fiona is quiet or Fiona is smart.\n\n3. However, we know Fiona is not nice, so we can use this information to further narrow down the possibilities:\n   - If something is quiet and not nice then it is smart.\n\nThis means that if Fiona is quiet, then she must be smart.\n\n4. From the information given earlier, we know:\n   - Fiona is red.\n   - If something is nice and red then it is smart.\n\nThis information does not directly affect our conclusion because we already know Fiona is not nice. However, it does provide an alternative way to determine if Fiona is smart.\n\n5. Now, we also know:\n   - All smart, kind things are white.\n\nHowever, this information does not directly affect our conclusion because we already know Fiona is green, not white.\n\n6. We can summarize our findings so far:\n   - Fiona is green (because she is not nice).\n   - Fiona is kind (because she is green).\n   - If Fiona is quiet, then she must be smart (because she is quiet and not nice).\n\n7. However, we have not yet determined whether Fiona is quiet or not. To do this, we can use the information given:\n   - If something is kind and green then it is quiet.\n   - Fiona is kind and green.\n\nFrom this, we can conclude that Fiona is quiet.\n\n8. Since Fiona is quiet and not nice, we know from earlier that she must be smart.\n\nTherefore, the statement 'Fiona is smart' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Fiona is smart, we need to analyze the given information and the conditions that lead to Fiona being smart.\n\nGiven information:\n\n- Fiona is not nice.\n- Fiona is red.\n\nFrom the conditions:\n\n1. If something is kind and nice then it is smart. (This does not apply to Fiona, as she is not nice.)\n2. If something is nice and red then it is smart. (This does not apply to Fiona, as she is not nice.)\n3. If Fiona is not nice then Fiona is green. (This implies that Fiona is green.)\n4. If something is kind and green then it is quiet. (This implies that Fiona is quiet, as she is green.)\n5. If something is quiet and not nice then it is smart. (This applies to Fiona, as she is quiet and not nice.)\n\nSince Fiona is quiet and not nice, according to condition 5, Fiona is smart.\n\nTherefore, the statement \"Fiona is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is not nice. \n2. Fiona is red. \n\nFrom the given information, we have the following rules:\n- If something is nice and red then it is smart.\n- If Fiona is not nice then Fiona is green.\n\nSince Fiona is not nice, we can conclude that Fiona is green.\n\nNow we have:\n- Fiona is green\n- Fiona is red\n\nHowever, we have a rule that states: All green things are kind. \n\nSo we can conclude that Fiona is kind.\n\nNow we have:\n- Fiona is kind\n- Fiona is red\n\nFrom the given information, we have another rule:\n- If something is kind and green then it is quiet.\n\nHowever, Fiona is red, not green. So, we cannot conclude that Fiona is quiet.\n\nNow we have:\n- Fiona is kind\n- Fiona is not quiet (unknown)\n- Fiona is red\n\nWe still need to determine whether Fiona is smart. From the given information, we have another rule:\n- If something is kind and red then it is smart.\n\nSince Fiona is kind and red, we can conclude that Fiona is smart.\n\nTherefore, the statement \"Fiona is smart\" is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and apply the rules to determine whether the statement \"Fiona is smart\" is true, false, or unknown.\n\n1. All green things are kind. \n2. Fiona is not nice. \n3. If Fiona is not nice, then Fiona is green. (From 2 and 1, we can infer that Fiona is green since she's not nice.)\n\nNow, we have:\n- Fiona is green.\n- All green things are kind. (From 1)\n- Therefore, Fiona is kind.\n\n4. If something is kind and nice, then it is smart. (However, we know Fiona is not nice, so this rule does not apply to Fiona.)\n5. If something is nice and red, then it is smart. (However, we know Fiona is not nice and red, so this rule does not apply to Fiona.)\n6. If something is quiet and not nice, then it is smart. (However, we do not know whether Fiona is quiet, so we cannot apply this rule.)\n7. Fiona is red. \n8. If something is red and nice, then it is smart. (However, we know Fiona is not nice, so this rule does not apply to Fiona.)\n\nSince Fiona is not nice, we cannot directly apply the rules to determine whether she is smart. However, we can try to infer more information:\n\n9. All smart, kind things are white. (This rule is irrelevant to Fiona, as we do not know whether she is smart, and we know she is kind but not smart.)\n10. If something is kind and green, then it is quiet. (We know Fiona is green and kind, but we do not know whether she is quiet.)\n\n11. If Anne is quiet and Anne is white, then Anne is kind. (This rule is irrelevant to Fiona.)\n12. Bob is kind. Bob is nice. Bob is smart. (This rule is irrelevant to Fiona.)\n\nHowever, we can use the information we have to deduce that Fiona is not smart. We cannot conclude that Fiona is smart, but we can conclude that she is not smart.\n\nTherefore, the statement \"Fiona is smart\" is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine if the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Fiona is not nice. \n2. If Fiona is not nice, then Fiona is green. \n   From (2), we can conclude that Fiona is green.\n\n3. All green things are kind. \n   From (2) and (3), we can conclude that Fiona is kind.\n\n4. If something is kind and green, then it is quiet. \n   From (3) and (4), we can conclude that Fiona is quiet.\n\n5. If something is quiet and not nice, then it is smart. \n   From (1) and (5), we can conclude that Fiona is smart.\n\nHowever, we need to verify if this conclusion contradicts any other information. \n\n6. If something is kind and nice, then it is smart. \n   We know that Fiona is kind (from step 3) but not nice (from step 1). This does not directly apply to Fiona.\n\n7. If something is nice and red, then it is smart. \n   We know that Fiona is not nice (from step 1) and Fiona is red (from the problem statement). However, this does not directly apply to Fiona.\n\n8. All smart, kind things are white. \n   We know that Fiona is kind (from step 3) and smart (from step 5). However, this does not directly apply to Fiona.\n\nSince none of the above steps contradict the conclusion that Fiona is smart, we can conclude that:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine if the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is kind. \n   - Anne is quiet. \n   - Anne is smart. \n   - Bob is kind. \n   - Bob is nice. \n   - Bob is smart. \n   - Fiona is not nice. \n   - Fiona is red. \n   - Gary is nice. \n   - Gary is white. \n\n   Rules:\n   1. If Bob is kind then Bob is smart.\n   2. If something is kind and nice then it is smart.\n   3. If something is nice and red then it is smart.\n   4. If something is quiet and not nice then it is smart.\n   5. All green things are kind.\n   6. If Anne is quiet and Anne is white then Anne is kind.\n   7. If Fiona is not nice then Fiona is green.\n   8. All smart, kind things are white.\n   9. If something is kind and green then it is quiet.\n\n2. Analyzing the given information and rules:\n   - From rule 7, we can conclude that Fiona is green because Fiona is not nice.\n\n3. Now that we know Fiona is green, let's analyze rule 5 and rule 9:\n   - Rule 5 states that all green things are kind. Since Fiona is green, Fiona must be kind.\n   - Rule 9 states that if something is kind and green then it is quiet. Since Fiona is kind and green, Fiona must be quiet.\n\n4. Now that we know Fiona is quiet, let's analyze rule 4:\n   - Rule 4 states that if something is quiet and not nice then it is smart. Since Fiona is quiet and not nice, Fiona must be smart.\n\n5. Conclusion:\n   - Based on the analysis, we can conclude that the statement \"Fiona is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not nice(X) -> green(X)",
+          "z3_formula": "Implies(not nice_fiona, green_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_fiona, green_fiona), quiet_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, red_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_fiona, not nice_fiona), smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_fiona, nice_fiona), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_fiona, kind_fiona), white_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all green(X) -> kind(X)",
+          "z3_formula": "Implies(kind_green, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all green(X) -> kind(X)",
+          "z3_formula": "Implies(kind_green, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_fiona, green_fiona), quiet_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_fiona, not nice_fiona), quiet_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_fiona, not nice_fiona), smart_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(fiona) == False",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not nice(X) -> green(X)",
+          "z3_formula": "Implies(nice_fiona == False, green_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_fiona, green_fiona), quiet_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_fiona, not nice_fiona), smart_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, red_fiona), smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not nice(X) -> green(X)",
+          "z3_formula": "Implies(Not(nice_fiona), green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_fiona, green_fiona), quiet_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & kind(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, kind_fiona), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_fiona, kind_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> smart(X)",
+          "z3_formula": "Implies(kind_fiona, smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_fiona, kind_fiona), white_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_anne, white_anne), kind_anne)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, red_fiona), smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not nice(X) -> green(X)",
+          "z3_formula": "Implies(Not(nice_fiona), green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "all green(X) -> kind(X)",
+          "z3_formula": "ForAll([X], Implies(green_X, kind_X))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_X, green_X), quiet_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_fiona, Not(nice_fiona)), smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not nice(X) -> green(X)",
+          "z3_formula": "Implies(nice_fiona == False, green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_fiona, kind_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_fiona, green_fiona), quiet_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_fiona, nice_fiona == False), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "not nice(X) -> green(X)",
+          "z3_formula": "Implies(not nice_fiona, green_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all green(X) -> kind(X)",
+          "z3_formula": "Implies(all green, kind)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_fiona, green_fiona), quiet_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_fiona, nice_fiona), smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_fiona, not nice_fiona), smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all smart(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(all smart, kind_fiona), white_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_fiona, green_fiona), quiet_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_fiona, nice_fiona), smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, red_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "not nice(X) -> green(X)",
+          "z3_formula": "Implies(not nice_fiona, green_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_fiona, green_fiona), quiet_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_fiona, not nice_fiona), smart_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, red_fiona), smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not nice(X) -> green(X)",
+          "z3_formula": "Implies(Not(nice_fiona), green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_fiona, green_fiona), quiet_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona) & red(fiona)",
+          "z3_formula": "And(kind_fiona, red_fiona) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_fiona, red_fiona), smart_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "Not(nice_fiona) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not nice(X) -> green(X)",
+          "z3_formula": "Implies(Not(nice_fiona), green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_fiona, kind_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_fiona, nice_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, red_fiona), smart_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_fiona, Not(nice_fiona)), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, red_fiona), smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "Not(nice_fiona) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_fiona, green_fiona), quiet_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_anne, white_anne), kind_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(fiona)",
+          "z3_formula": "Not(smart_fiona) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "not nice(X) -> green(X)",
+          "z3_formula": "Implies(nice_fiona == False, green_fiona == True)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_fiona, green_fiona), quiet_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_fiona, not nice_fiona), smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_fiona, nice_fiona), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, red_fiona), smart_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_fiona, kind_fiona), white_fiona)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(fiona)",
+          "z3_formula": "not nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> smart(X)",
+          "z3_formula": "Implies(kind_bob, smart_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(kind_anne, nice_anne), smart_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_fiona, red_fiona), smart_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not nice(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_anne, not nice_anne), smart_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(kind_fiona, green_fiona), quiet_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 140,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 32
+    },
+    "maxsat_stats": {
+      "satisfied": 30,
+      "excluded": 2,
+      "total_weight": 124,
+      "solve_time_ms": 1.199117861688137
+    },
+    "timing": {
+      "trace_gen_s": 5.649,
+      "extraction_s": 24.108,
+      "dedup_s": 0.715,
+      "maxsat_s": 0.003,
+      "total_s": 30.475
+    }
+  }
+}

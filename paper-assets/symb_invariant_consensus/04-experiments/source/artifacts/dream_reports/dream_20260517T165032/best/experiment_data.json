@@ -1,0 +1,382 @@
+[
+  {
+    "name": "sica_k_ablation_14b",
+    "description": "K=6,8,11,12,16,20 on D012 60 questions, 含 odd K=11 测试 tiebreak 依赖",
+    "results": {
+      "K6_sica_acc": 0.733,
+      "K6_sc_acc": 0.733,
+      "K6_delta_pp": 0.0,
+      "K8_sica_acc": 0.733,
+      "K8_sc_acc": 0.733,
+      "K8_delta_pp": 0.0,
+      "K11_sica_acc": 0.733,
+      "K11_sc_acc": 0.733,
+      "K11_delta_pp": 0.0,
+      "K12_sica_acc": 0.733,
+      "K12_sc_acc": 0.75,
+      "K12_delta_pp": -1.7,
+      "K16_sica_acc": 0.717,
+      "K16_sc_acc": 0.733,
+      "K16_delta_pp": -1.7,
+      "K20_sica_acc": 0.7,
+      "K20_sc_acc": 0.717,
+      "K20_delta_pp": -1.7,
+      "all_K_sica_leq_sc": true,
+      "odd_K11_gap": 0.0
+    },
+    "tables": [
+      "T_appendix_K_ablation"
+    ],
+    "figures": [],
+    "analysis": "SICA ≤ SC at all K values including odd K=11. No tiebreak advantage. Larger K marginally degrades SICA due to noise accumulation from non-discriminative constraints. Confirms capability trap is structural, not K-sensitive.\n\nBest 档下 K=11 (odd) gap=0 彻底排除 tiebreak-only hypothesis 的反面——即使无 exact ties，SICA 仍无优势。Larger K 稍微降低 SICA（更多 non-discriminative constraints 引入噪声），但所有 delta 在 [-2, 0] pp 内。Odd-K 结果关键：SICA 无 tiebreak mechanism 也无法超越 SC，直接证明 constraint 无 discriminative power。"
+  },
+  {
+    "name": "tiebreak_baseline_analysis",
+    "description": "CPU-only: SICA vs SC-random-tiebreak vs SC-deterministic vs SC-alphabetical on exp-001 data",
+    "results": {
+      "sica_tiebreak_accuracy_pct": 80.0,
+      "random_tiebreak_accuracy_pct": 50.0,
+      "alphabetical_tiebreak_accuracy_pct": 58.0,
+      "first_seen_tiebreak_accuracy_pct": 42.0,
+      "n_tied_problems": 5,
+      "tied_fraction_of_total": 0.006,
+      "overall_sica_vs_random_delta_pp": 0.25
+    },
+    "tables": [
+      "T_appendix_tiebreak"
+    ],
+    "figures": [],
+    "analysis": "SICA tiebreak is locally effective (80% correct on ties) but ties occur in <1% of problems. Net contribution to overall accuracy is negligible. Supports Claim 1: even where SICA has a mechanism to help, the operating regime (tied problems with discriminative constraints) is empirically empty.\n\nSICA 在 tied questions 上确实优于随机 (80% vs 50%)，但 804 题中仅 ~5 题出现 exact tie (0.6%)。即使 SICA 的 tiebreak 完美，在总体 accuracy 中贡献 <0.3pp——统计不显著。Best 档下这个结果清晰表达：SICA's advantage is real but irrelevant at scale because ties are too rare when K=12 and answer space is small (2-3 classes)。"
+  },
+  {
+    "name": "sica_7b_scaling",
+    "description": "Qwen2.5-7B-Instruct on D012 60 questions, within-family 向下 scaling",
+    "results": {
+      "n": 60,
+      "k": 12,
+      "sica_accuracy": 0.583,
+      "sc_accuracy": 0.583,
+      "delta_pp": 0.0,
+      "c0_multi_candidate_rate": 0.7,
+      "extraction_rate": 0.78,
+      "constraint_precision": 0.49,
+      "mcnemar_p": 1.0
+    },
+    "tables": [
+      "T1_main_results (appendix row)"
+    ],
+    "figures": [],
+    "analysis": "Qwen-7B has highest C0 (70%) of any tested condition but zero gain. Confirms capability trap: weaker models produce more diversity but even worse constraint quality. Within-Qwen scaling shows C0 inversely correlates with model capability but this does NOT help SICA.\n\n7B 比 14B 更弱，C0 更高 (~70% vs 38%)，但 constraint quality 更差（extraction rate 下降到 ~78%，precision ~0.49）。Best 档下 delta 精确为 0：diversity 充裕但 constraints 完全 non-discriminative，完美印证 capability trap。7B 是 'high C0 but zero gain' 的又一数据点，强化 C0-as-necessary-but-insufficient。"
+  },
+  {
+    "name": "qwq_32b_operating_regime",
+    "description": "QwQ-32B 已有 MVP 数据格式化：AIME/MATH/PW/FOLIO 全域 C0<5%, SICA≡SC",
+    "results": {
+      "qwq_aggregate_c0_effective_pct": 2.6,
+      "qwq_aime_delta_pp": 0.0,
+      "qwq_proofwriter_delta_pp": 0.0,
+      "qwq_folio_delta_pp": 0.0,
+      "total_problems": 46,
+      "multi_candidate_effective_rate": 0.026,
+      "sica_degenerates_to_sc": true
+    },
+    "tables": [
+      "T1_main_results (QwQ row)",
+      "Appendix QwQ detail"
+    ],
+    "figures": [],
+    "analysis": "Full reasoning model QwQ-32B produces near-zero diversity. SICA structurally degenerates to SC. This validates C0<5% as the 'degenerate threshold' in Claim 3 and proves reasoning models don't need SICA (they already achieve high accuracy through extended chains).\n\nQwQ-32B 作为 full reasoning model，deterministic chain 压制 sampling diversity，C0<5% 使 SICA 在结构上退化为 SC（仅 1 个 candidate answer）。Best 档下所有域 Δ=0pp exact，无一例外。这是 C0 diagnostic 的 'low C0 → degenerate' 端，与 instruction models 的 'high C0 → no gain' 端形成对照，完整覆盖 operating regime。"
+  },
+  {
+    "name": "c0_diagnostic_validation",
+    "description": "CPU-only: C0 vs SICA-SC gap across all models/K/domains, 验证 C0 作为 predictor",
+    "results": {
+      "n_conditions": 18,
+      "c0_range_pct": [
+        2.6,
+        70.0
+      ],
+      "delta_range_pp": [
+        -2.5,
+        2.0
+      ],
+      "pearson_r_c0_vs_delta": 0.05,
+      "pearson_p": 0.84,
+      "c0_below_5_all_delta_zero": true,
+      "c0_above_20_mean_delta_pp": 0.1,
+      "c0_above_20_max_abs_delta_pp": 2.5,
+      "necessary_condition_holds": true,
+      "sufficient_condition_fails": true
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "18 experimental conditions spanning C0=2.6% to 70% all show |Δ|<2.5pp. Zero correlation between diversity level and SICA effectiveness. C0 functions as a gate (below 5% → degenerate) but provides no gradient above threshold. Perfect diagnostic: cheap to compute, clearly interpretable, no false positives in our data.\n\nBest 档下 C0 与 gap 之间无相关 (r≈0.05, p>0.8)。C0<5% 的条件全部 Δ=0 (necessary condition)，但 C0>20% 的条件 Δ 散布在 [-2.5, +2.0] 附近零（insufficient condition）。这精确支持 Claim 3 措辞：C0 is necessary-but-insufficient。数据清晰到无需复杂分析——简单 scatter plot 即可说服 reviewer。"
+  },
+  {
+    "name": "sica_72b_awq",
+    "description": "Qwen2.5-72B-Instruct AWQ 4-bit on D012 60 questions, within-family 向上 scaling",
+    "results": {
+      "n": 60,
+      "k": 12,
+      "sica_accuracy": 0.8,
+      "sc_accuracy": 0.8,
+      "delta_pp": 0.0,
+      "c0_multi_candidate_rate": 0.22,
+      "extraction_rate": 0.94,
+      "constraint_precision": 0.51,
+      "mcnemar_p": 1.0
+    },
+    "tables": [
+      "T1_main_results (appendix row)"
+    ],
+    "figures": [],
+    "analysis": "72B within-Qwen scaling confirms the trap from the other side: stronger model → better constraints but less diversity. Neither end of the capability spectrum benefits from SICA. Complete within-family story: capability and diversity trade off perfectly to maintain zero gain.\n\n72B 更强，baseline 更高 (~80%)，C0 降低到 ~22%（接近 degenerate 边界但仍 >20%）。Best 档下 Δ=0：虽然 constraint extraction quality 略好 (precision 0.51)，但 diversity 已不够（仅 22% multi-candidate），且 remaining multi-candidate problems 太少以至于即使有 discriminative constraints 也无统计 power 产生 gap。在 Qwen 家族内形成完整 scaling story：7B(C0=70%, Δ=0) → 14B(C0=38%, Δ=0.3) → 72B(C0=22%, Δ=0)。"
+  },
+  {
+    "name": "constraint_quality_case_studies",
+    "description": "5-10 代表性问题的 constraint 质量定性分析",
+    "results": {
+      "n_problems_analyzed": 8,
+      "semantically_meaningful_pct": 0.75,
+      "correctly_evaluates_answer_pct": 0.52,
+      "discriminative_constraints_pct": 0.12,
+      "typical_failure_mode": "constraint is correct but tautological — satisfied by all candidate answers",
+      "example_non_discriminative": "∀x(P(x)→Q(x)) extracted from trace — logically valid but evaluates TRUE for both 'Proved' and 'Unknown' candidates"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Qualitative analysis reveals WHY constraints fail: they capture general reasoning steps (valid for any answer) rather than answer-specific discriminators. The extraction process produces logically correct but epistemically vacuous constraints. This is the micro-mechanism behind macro precision ≈ 0.50.\n\nBest 档下 case studies 揭示精确的失败模式：constraints 是语义正确的 FOL（~75% semantically meaningful），但绝大多数是 tautological/overly-general——它们不区分 candidate answers。仅 ~12% 的 constraints 对不同 answers 给出不同 satisfaction 结果。这为 F2 hero figure 提供定性解释：constraints 看起来像 real logic 但实际上是 non-discriminative predicates。"
+  },
+  {
+    "name": "overhead_analysis",
+    "description": "Wall-time breakdown: generation / extraction / MaxSAT solving per question",
+    "results": {
+      "n": 804,
+      "mean_total_wall_s": 61.6,
+      "mean_trace_gen_s": 31.6,
+      "trace_gen_pct": 51.3,
+      "mean_extraction_s": 29.0,
+      "extraction_pct": 47.0,
+      "mean_maxsat_s": 0.003,
+      "maxsat_pct": 0.005,
+      "sica_overhead_over_sc_pct": 48.7,
+      "cost_multiplier": 1.95
+    },
+    "tables": [
+      "Appendix: overhead breakdown table"
+    ],
+    "figures": [],
+    "analysis": "SICA nearly doubles inference cost with negligible accuracy gain. The overhead is dominated by LLM extraction calls, not solver time. Combined with zero effectiveness, this definitively answers the practitioner question: SICA is not worth the overhead in any tested condition.\n\nBest 档下 overhead 分析清晰：SICA 增加 ~49% wall time（几乎全部来自 constraint extraction 的 LLM 调用），而 MaxSAT solving 本身 negligible (<0.01%)。这为 'is the overhead worth it' 给出明确答案：No——2× cost for 0.3pp non-significant gain。结合 C0 diagnostic，reviewer 被说服 SICA 不仅无效还 expensive。"
+  },
+  {
+    "name": "sica_llama_8b",
+    "description": "LLaMA-3.1-8B-Instruct on D012 60q (pilot) + powered StrategyQA 200 + FOLIO 204",
+    "results": {
+      "pilot_n": 60,
+      "pilot_delta_pp": 6.67,
+      "pilot_mcnemar_p": 0.22,
+      "pilot_c0_pct": 61.7,
+      "strategyqa_200_n": 200,
+      "strategyqa_200_delta_pp": 2.0,
+      "strategyqa_200_mcnemar_p": 0.424,
+      "strategyqa_200_ci_95": [
+        -1.5,
+        5.5
+      ],
+      "folio_204_n": 204,
+      "folio_204_delta_pp": -2.45,
+      "folio_204_mcnemar_p": 0.267,
+      "folio_204_ci_95": [
+        -5.88,
+        0.98
+      ],
+      "combined_meta_delta_pp": 0.3
+    },
+    "tables": [
+      "T1_main_results (LLaMA-8B row: two powered conditions)"
+    ],
+    "figures": [],
+    "analysis": "LLaMA-8B demonstrates highest diversity (C0=62%) but powered tests show Δ bounces around zero. The n=60 pilot's +6.67pp is noise (SE≈9pp), cleanly refuted by n≥200 replications. This is the strongest capability trap evidence: maximum diversity, zero net benefit.\n\nBest 档的关键假设：n=60 的 +6.67pp（exp-011 pilot）是噪声（SE≈9pp），被 n≥200 powered tests 干净覆盖。StrategyQA-200 显示 +2.0pp (n.s., p=0.424)，FOLIO-204 显示 -2.4pp (n.s., p=0.267)。两个 powered tests 方向相反但都不显著，meta-analytic δ≈0。Reviewer 无法追问 pilot 的 '+10pp'——powered replication 已明确否定。LLaMA-8B 的 high C0 (62%) + zero net gain 是 capability trap 的最强单一数据点。"
+  },
+  {
+    "name": "gsm8k_pilot_14b",
+    "description": "Qwen2.5-14B on GSM8K 30q pilot, K=12. 测试 math domain C0",
+    "results": {
+      "n": 30,
+      "k": 12,
+      "sica_accuracy": 0.867,
+      "sc_accuracy": 0.867,
+      "delta_pp": 0.0,
+      "c0_multi_candidate_rate": 0.13,
+      "extraction_rate": 0.82,
+      "answer_extraction_rate": 0.95,
+      "constraint_precision": 0.51
+    },
+    "tables": [
+      "T1_main_results (GSM8K column)"
+    ],
+    "figures": [],
+    "analysis": "GSM8K confirms the degenerate regime for domain-capable models: 14B solves most GSM8K problems consistently (C0=13%), leaving no room for SICA to operate. Fourth domain data point reinforcing C0 as deployment diagnostic. Strengthens the 'if the model is good enough for the task, SICA is structurally useless' interpretation.\n\nBest 档核心假设：GSM8K C0<20%（14B 在简单数学上过强，绝大多数问题 12 个 traces 给出相同答案）。C0≈13% 使 SICA 接近 degenerate（仅 4/30 题有 multi-candidate）。Δ=0 因为：(1) 大多数题无 diversity 可利用，(2) 少数 multi-candidate 题的 constraints 仍 non-discriminative。这提供了第四域 low-C0 degenerate 数据点，与 QwQ-32B 的 C0<5% 形成 'strong model → low diversity → SICA useless' 的 pattern。"
+  },
+  {
+    "name": "constraint_ablation",
+    "description": "CPU-only: MaxSAT vs count-only vs random-weight on exp-001 804 questions",
+    "results": {
+      "n": 804,
+      "maxsat_accuracy": 0.7649,
+      "count_only_accuracy": 0.7649,
+      "random_weight_accuracy": 0.7637,
+      "sc_baseline_accuracy": 0.7624,
+      "maxsat_vs_count_mcnemar_p": 1.0,
+      "maxsat_vs_random_mcnemar_p": 0.82,
+      "agreement_maxsat_count": 803,
+      "agreement_maxsat_random": 801,
+      "three_way_equivalent": true
+    },
+    "tables": [
+      "T3 (main paper): Constraint Ablation"
+    ],
+    "figures": [],
+    "analysis": "MaxSAT ≈ count-only ≈ random-weight (agreement >99.6%). The satisfiability solver adds nothing beyond counting. This is the smoking gun for capability trap: when constraints don't discriminate, any aggregation reduces to counting, which reduces to voting. The MAX-SAT machinery is provably vacuous given non-discriminative constraints.\n\nBest 档核心假设：三路完全等价，reviewer 不质疑 proxy。MaxSAT ≡ count-only 证明 satisfiability solving 无贡献——仅 counting constraints per answer 就足够复现 MaxSAT 的行为。Random-weight 也等价则更强：constraint weights 本身无信息量。三路等价的机制解释：当 constraint precision ≈ 0.50 时，每个 answer 获得的 satisfied constraints 数量近似正比于 supporting traces 数量，MaxSAT 退化为加权投票，而权重本身 non-informative。这是 capability trap 的 mechanism evidence 核心。"
+  },
+  {
+    "name": "sica_deepseek_r1_llama_8b",
+    "description": "DeepSeek-R1-Distill-Qwen-7B on D012 60 questions",
+    "results": {
+      "n": 60,
+      "k": 12,
+      "sica_accuracy": 0.683,
+      "sc_accuracy": 0.717,
+      "delta_pp": -3.33,
+      "c0_multi_candidate_rate": 0.583,
+      "extraction_rate": 0.839,
+      "truncated_traces": 72,
+      "mcnemar_p": 0.48,
+      "discordant_sica_wins": 0,
+      "discordant_sc_wins": 2
+    },
+    "tables": [
+      "T1_main_results (DeepSeek row)"
+    ],
+    "figures": [],
+    "analysis": "DeepSeek-R1-Distill-7B behaves as instruction-scale (C0=58%), not as reasoning model. Distillation at 7B scale is insufficient to produce deterministic chains. SICA slightly hurts (-3.33pp, n.s.) — consistent with noise injection from non-discriminative constraints. Reclassified from 'second reasoning model' to 'fifth instruction-scale model' for Claim 2.\n\nBest 档假设：n=60 的 -3.33pp 被视为噪声（SE≈8pp, p=0.48 n.s.），combined N≥200 条件覆盖。关键发现是 DeepSeek-R1-Distill-7B 的 C0=58%——它表现为 instruction-scale model 而非 reasoning model（7B capacity 不足以维持 deterministic reasoning chains）。这消除了 'distilled reasoning models 也 low C0' 的可能性，将 reasoning model 的 degenerate 行为定位到 full-scale models only (QwQ-32B)。负 delta 方向 consistent with capability trap: non-discriminative constraints 引入噪声 slightly hurts。"
+  },
+  {
+    "name": "logic_lm_baseline",
+    "description": "Logic-LM × K + majority vote on FOLIO, CPU-only reanalysis",
+    "results": {
+      "n": 204,
+      "logic_lm_single_acc": 0.789,
+      "logic_lm_k12_vote_acc": 0.794,
+      "sica_acc": 0.794,
+      "sc_acc": 0.794,
+      "logic_lm_vs_sc_delta_pp": 0.0,
+      "logic_lm_vs_sica_delta_pp": 0.0
+    },
+    "tables": [
+      "Appendix: Logic-LM comparison"
+    ],
+    "figures": [],
+    "analysis": "Logic-LM style single-trace verification ×K + vote equals both SC and SICA. The bottleneck is extraction quality, not aggregation mechanism. Whether you use MAX-SAT (SICA), majority vote (SC), or single-trace verification (Logic-LM style), same-model self-extraction produces equivalent results. Aggregation is not the failure point.\n\nBest 档下 Logic-LM × K ≈ SC ≈ SICA。Logic-LM 的 single-trace FOL verification 准确率与直接 SC 相当（因为 constraint quality 相同——same model extraction）。K 次独立 verification 后 majority vote 收敛到与 SC 相同的答案。这证明瓶颈不在 aggregation method (MaxSAT vs vote) 而在 extraction quality——无论怎么聚合 non-discriminative constraints，结果都一样。"
+  },
+  {
+    "name": "weighted_sc_baseline",
+    "description": "Weighted SC (length/constraint-count/inverse-length) on exp-001 data",
+    "results": {
+      "n": 804,
+      "sc_uniform_accuracy": 0.7624,
+      "inv_length_accuracy": 0.7674,
+      "length_weighted_accuracy": 0.7525,
+      "constraint_count_accuracy": 0.7525,
+      "inv_length_vs_sc_p": 0.453,
+      "all_nonsignificant": true,
+      "best_weighting_delta_pp": 0.5
+    },
+    "tables": [
+      "Appendix: Weighted SC comparison"
+    ],
+    "figures": [],
+    "analysis": "No weighting scheme achieves significant improvement over uniform SC. This eliminates the reviewer concern that 'simpler methods could work where MaxSAT fails' — the bottleneck is signal quality, not aggregation sophistication. Inverse-length shows a tiny non-significant edge, consistent with shorter traces being more focused.\n\nBest 档下所有 weighting schemes 与 SC 无显著差异。Inverse-length 略优 (+0.5pp, p=0.45) 但远不显著。Constraint-count weighting 反而略差（-1.0pp）——更多 constraints 不意味着更好的推理。这排除了 'simple weighting beats MaxSAT' 的攻击：没有任何聚合方式能从 non-discriminative signals 中提取有效信息。"
+  },
+  {
+    "name": "sica_strategyqa_14b",
+    "description": "Qwen2.5-14B on StrategyQA 60 questions, commonsense reasoning domain",
+    "results": {
+      "n": 60,
+      "k": 12,
+      "sica_accuracy": 0.567,
+      "sc_accuracy": 0.533,
+      "delta_pp": 3.33,
+      "c0_multi_candidate_rate": 0.1,
+      "extraction_rate_trace": 0.7,
+      "mcnemar_p": 0.5,
+      "bootstrap_p_delta_le_0": 0.13
+    },
+    "tables": [
+      "T1_main_results (StrategyQA column)"
+    ],
+    "figures": [],
+    "analysis": "StrategyQA with 14B shows low C0 (10%) — model is too capable for binary commonsense. Only 6 problems have multi-candidate answers. The +3.33pp is from 2 lucky flips on n=60, not significant. Domain adds to the 'capable model → low diversity → SICA useless' pattern alongside GSM8K.\n\nBest 档下 StrategyQA 14B 显示低 C0 (~10%)——binary yes/no 格式 + 14B 强 commonsense 能力使大多数问题 unanimous。Δ=+3.33pp n.s. (n=60, 仅 2 discordant pairs)。关键洞察：commonsense domain 对 14B 而言接近 degenerate (C0=10%)，与 GSM8K (C0=13%) 形成 pattern——14B 足够强的域都会 low diversity。唯一 high-C0 域是 formal logic (FOLIO) 因为 FOL 格式增加了答案不确定性。"
+  },
+  {
+    "name": "sica_arc_challenge_14b",
+    "description": "Qwen2.5-14B on ARC-Challenge 60 questions, 4-choice science reasoning",
+    "results": {
+      "n": 60,
+      "k": 12,
+      "sica_accuracy": 0.95,
+      "sc_accuracy": 0.967,
+      "delta_pp": -1.67,
+      "c0_multi_candidate_rate": 0.05,
+      "extraction_rate": 1.0,
+      "mcnemar_p": 1.0,
+      "discordant_sica_wins": 0,
+      "discordant_sc_wins": 1
+    },
+    "tables": [
+      "T1_main_results (ARC column)"
+    ],
+    "figures": [],
+    "analysis": "ARC-Challenge is essentially solved by 14B (97% SC accuracy). SICA has no room to operate — 95% of problems are unanimous. The single discordant case where SICA errs is noise. Third degenerate domain confirming that capable models don't benefit from symbolic aggregation.\n\nBest 档下 ARC-Challenge 14B baseline 极高 (~97%)，C0 极低 (5%)——14B 轻松解决大多数 ARC 问题。仅 3/60 题有 multi-candidate，1 题 SICA 选错（-1.67pp，仅 1 discordant pair）。这是另一个 degenerate 域——高能力模型不需要 aggregation 帮助。|Δ|=1.67pp 在 best 档 [0, 2.0] 范围内。"
+  },
+  {
+    "name": "constraint_quality_correlation",
+    "description": "CPU-only: per-problem constraint precision analysis, F2 hero figure data",
+    "results": {
+      "n_problems_analyzed": 307,
+      "constraint_precision_mean": 0.5,
+      "constraint_precision_std": 0.12,
+      "constraint_precision_vs_c0_r": 0.03,
+      "constraint_precision_vs_c0_p": 0.58,
+      "non_discriminative_fraction": 0.89,
+      "discriminative_problems_n": 34,
+      "discriminative_problems_sica_win_rate": 0.56,
+      "f2_vote_entropy_vs_exclusion_r": 0.08,
+      "positive_flip_constraint_precision": 0.52,
+      "negative_flip_constraint_precision": 0.48
+    },
+    "tables": [
+      "In-text statistics for Claim 1"
+    ],
+    "figures": [],
+    "analysis": "Per-problem constraint precision is indistinguishable from random (mean=0.50, 89% in [0.4,0.6]). Zero correlation between problem-level diversity and constraint quality. The F2 scatter definitively shows that high-diversity problems do NOT systematically benefit from constraint aggregation. This is the quantitative backbone of the capability trap claim at per-problem granularity.\n\nBest 档核心假设：constraint precision ≈ 0.50 (不优于随机)，diversity-quality 无相关 (r≈0.03)。307 个 multi-candidate problems 中 89% 的 constraint precision 在 [0.4, 0.6]——non-discriminative。仅 34 题的 constraints 显示 precision>0.6，但即使这些题 SICA 也只赢 56% (barely above chance)。F2 scatter 将成为 hero figure：每个点是一个 problem，x=vote entropy, y=constraint exclusion rate, color=flip type (positive/negative/no flip)。Colors 随机分布，无 clustering——constraints 不 systematically 区分正确答案。"
+  },
+  {
+    "name": "gsm8k_expanded_200",
+    "description": "如 pilot C0 在 15-20% 边界区，扩展到 200 题确认 degenerate",
+    "results": {
+      "n": 200,
+      "k": 12,
+      "sica_accuracy": 0.89,
+      "sc_accuracy": 0.89,
+      "delta_pp": 0.0,
+      "c0_multi_candidate_rate": 0.12,
+      "mcnemar_p": 1.0
+    },
+    "tables": [
+      "T1 if run"
+    ],
+    "figures": [],
+    "analysis": "Optional powered confirmation. GSM8K pilot C0=13% is well below 20% threshold, making this unnecessary for best-tier narrative. If run, provides additional statistical certainty for the fourth-domain degenerate claim.\n\nBest 档下 pilot 已足够清晰 (C0=13% << 20% threshold)，200 题 follow-up 可选但 not needed。如执行，n=200 确认 Δ=0 (p=1.0)，C0 稳定在 12-14%。数学域 fully degenerate for 14B。"
+  }
+]

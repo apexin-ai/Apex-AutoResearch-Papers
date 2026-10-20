@@ -1,0 +1,561 @@
+{
+  "problem": {
+    "id": "folio_74",
+    "problem": "Given the following premises:\nAll vehicle registration plates in Istanbul begin with the number 34. Plates that do not begin with the number 34 are not from Istanbul.  Joe's vehicle registration plate is from Istanbul.  Tom's license plate begins with the number 35.  [BG] If a license plate begins with the number 35, then it does not begin with the number 34.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nJoe's license plate begins with the number 34.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Vehicleregistrationplate(x, istanbul) \u2192 Beginwith(x, number34))",
+      "\u2200x (\u00acBeginwith(x, number34) \u2192 \u00acFromIstanbul(x))",
+      "Vehicleregistrationplate(joe, istanbul)",
+      "Beginwith(tom, number35)",
+      "\u2200x (Beginwith(x, number35) \u2192 \u00acBeginwith(x, number34))"
+    ],
+    "conclusion_fol": "Beginwith(joe, number34)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 63.0,
+      "Unknown": 4.0
+    },
+    "answer_counts": {
+      "True": 11,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step.\n\nPremise 1: All vehicle registration plates in Istanbul begin with the number 34.\nThis premise tells us that any plate from Istanbul must start with 34.\n\nPremise 2: Plates that do not begin with the number 34 are not from Istanbul.\nThis premise is the contrapositive of premise 1, which means if a plate is not from Istanbul, it doesn't start with 34.\n\nPremise 3: Joe's vehicle registration plate is from Istanbul.\nThis premise connects Joe's plate to Istanbul, where all plates start with 34.\n\nPremise 4: Tom's license plate begins with the number 35.\nThis premise is a fact about Tom's plate, but it's not directly connected to Joe's plate.\n\n[BG] If a license plate begins with the number 35, then it does not begin with the number 34.\nThis premise is a conditional statement that tells us the relationship between 35 and 34. However, it's not directly relevant to Joe's plate.\n\nTo determine whether Joe's license plate begins with the number 34, we can use the information from Premise 1 and Premise 3.\n\nFrom Premise 1, we know that all plates from Istanbul start with 34. \nFrom Premise 3, we know that Joe's plate is from Istanbul.\n\nTherefore, by Premise 1, we can conclude that Joe's license plate begins with the number 34.\n\nThis conclusion is based directly on the given premises, so it's not uncertain.\n\nFinal Answer: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises and the conclusion step by step.\n\nPremise 1: All vehicle registration plates in Istanbul begin with the number 34.\nPremise 2: Plates that do not begin with the number 34 are not from Istanbul.\nPremise 3: Joe's vehicle registration plate is from Istanbul.\nPremise 4: If a license plate begins with the number 35, then it does not begin with the number 34.\nPremise 5: Tom's license plate begins with the number 35.\n\nFrom Premise 1 and Premise 3, we can conclude that Joe's vehicle registration plate begins with the number 34.\n\nNow, let's see if there's any information that contradicts this conclusion. Premise 4 states that if a license plate begins with the number 35, then it does not begin with the number 34. However, Premise 5 states that Tom's license plate begins with the number 35. This does not directly affect Joe's license plate, as there's no information that links Tom's plate to Joe's plate.\n\nThe only potential issue is Premise 1, which states that all vehicle registration plates in Istanbul begin with the number 34. However, this premise is very specific and does not provide any exceptions. Since Joe's plate is from Istanbul, it must begin with the number 34.\n\nConsidering all the premises, the conclusion \"Joe's license plate begins with the number 34\" is supported by the information provided and is not contradicted by any of the premises.\n\nTherefore, the conclusion is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion \"Joe's license plate begins with the number 34\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: All vehicle registration plates in Istanbul begin with the number 34.\nPremise 2: Plates that do not begin with the number 34 are not from Istanbul.\nPremise 3: Joe's vehicle registration plate is from Istanbul.\nPremise 4: [BG] If a license plate begins with the number 35, then it does not begin with the number 34.\n\nFrom Premise 1 and 2, we can conclude that any vehicle registration plate that begins with the number 34 is from Istanbul.\n\nPremise 3 states that Joe's vehicle registration plate is from Istanbul. \n\nNow, let's examine Premise 4. It states that if a license plate begins with the number 35, then it does not begin with the number 34. This premise does not provide any information about license plates that begin with the number 34.\n\nWe cannot directly conclude anything about Joe's license plate from Premise 4 because it only deals with license plates that begin with the number 35. \n\nHowever, we can conclude that Joe's license plate begins with the number 34 using Premise 1 and 3, as we know that all vehicle registration plates in Istanbul begin with the number 34 and Joe's license plate is from Istanbul.\n\nTherefore, the conclusion \"Joe's license plate begins with the number 34\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and use them to derive the conclusion.\n\nPremises:\n\n1. All vehicle registration plates in Istanbul begin with the number 34. \n2. Plates that do not begin with the number 34 are not from Istanbul.\n3. Joe's vehicle registration plate is from Istanbul.\n4. Tom's license plate begins with the number 35.\n5. [BG] If a license plate begins with the number 35, then it does not begin with the number 34.\n\nGiven premises 1 and 2, we can conclude that any vehicle registration plate that begins with the number 34 is from Istanbul.\n\nNow, we are given that Joe's vehicle registration plate is from Istanbul (premise 3). From this, we can infer that Joe's vehicle registration plate begins with the number 34 (by premise 1).\n\nHowever, we have a conclusion to evaluate: Joe's license plate begins with the number 34.\n\nFrom the information given, we can derive the following logical sequence:\n\n- Joe's vehicle registration plate is from Istanbul (premise 3)\n- All vehicle registration plates in Istanbul begin with the number 34 (premise 1)\n- Therefore, Joe's vehicle registration plate begins with the number 34\n\nNow we must determine if this conclusion is true, false, or uncertain.\n\nTo do so, let's examine the conclusion in the context of all the premises given.\n\nIf we assume that the conclusion is false, then Joe's vehicle registration plate does not begin with the number 34. \n\nHowever, this contradicts premise 1, which states that all vehicle registration plates in Istanbul begin with the number 34.\n\nTherefore, if the conclusion were false, it would contradict one of the premises.\n\nThis means that the conclusion cannot be false.\n\nNow, let's examine if the conclusion is uncertain.\n\nGiven that all vehicle registration plates in Istanbul begin with the number 34 (premise 1) and Joe's vehicle registration plate is from Istanbul (premise 3), we can logically deduce that Joe's vehicle registration plate begins with the number 34.\n\nThis is not uncertain; it is a conclusion that can be derived from the premises.\n\nHowever, we are tasked with determining whether the conclusion is true or false in the context of the premises given.\n\nWe have the following information:\n\n- Joe's vehicle registration plate is from Istanbul.\n- All vehicle registration plates in Istanbul begin with the number 34.\n- Tom's license plate begins with the number 35.\n- If a license plate begins with the number 35, then it does not begin with the number 34.\n\nFrom this, we can conclude that Joe's license plate begins with the number 34.\n\nBut premise 5, [BG], states that if a license plate begins with the number 35, then it does not begin with the number 34. \n\nSince Tom's license plate begins with the number 35 (premise 4), it does not begin with the number 34.\n\nHowever, this does not directly relate to Joe's vehicle registration plate.\n\nWe can only conclude that Joe's vehicle registration plate begins with the number 34 based on premise 1 and premise 3.\n\nTherefore, given all the premises, the conclusion that Joe's license plate begins with the number 34 is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the premises and see if they logically lead to the conclusion.\n\nPremise 1: All vehicle registration plates in Istanbul begin with the number 34.\nPremise 2: Plates that do not begin with the number 34 are not from Istanbul.\nPremise 3: Joe's vehicle registration plate is from Istanbul.\nPremise 4: [BG] If a license plate begins with the number 35, then it does not begin with the number 34.\nPremise 5: Tom's license plate begins with the number 35.\n\nFrom Premise 3, we can infer that Joe's vehicle registration plate is from Istanbul, which implies that it begins with the number 34 (from Premise 1).\n\nNow, let's analyze the conclusion: \"Joe's license plate begins with the number 34.\"\n\nWe can see that Premise 1 directly states that all vehicle registration plates in Istanbul begin with the number 34, which logically leads to the conclusion that Joe's license plate begins with the number 34.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion step by step.\n\n1. All vehicle registration plates in Istanbul begin with the number 34.\nThis premise tells us that if a plate is from Istanbul, it must start with 34.\n\n2. Plates that do not begin with the number 34 are not from Istanbul.\nThis premise is the contrapositive of the first premise and also tells us that if a plate is not from Istanbul, it cannot start with 34.\n\n3. Joe's vehicle registration plate is from Istanbul.\nThis premise tells us that Joe's plate is from Istanbul, so according to premise 1, it must start with 34.\n\n4. Tom's license plate begins with the number 35.\nThis premise tells us the specific number on Tom's plate.\n\n5. [BG] If a license plate begins with the number 35, then it does not begin with the number 34.\nThis premise is relevant because it creates a contradiction with premise 1 for Tom's plate. However, it does not directly affect the conclusion about Joe's plate.\n\nNow, let's analyze the conclusion:\nJoe's license plate begins with the number 34.\n\nFrom premise 3, we know that Joe's plate is from Istanbul. According to premise 1, all plates from Istanbul begin with 34. Therefore, we can conclude that Joe's plate indeed begins with the number 34.\n\nThe conclusion is supported by the premises, so it is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we'll use the principles of deductive reasoning and the rules of syllogisms.\n\nGiven premises:\n\n1. All vehicle registration plates in Istanbul begin with the number 34. (All I - 34)\n2. Plates that do not begin with the number 34 are not from Istanbul. (Not 34 - Not I)\n3. Joe's vehicle registration plate is from Istanbul. (J - I)\n4. Tom's license plate begins with the number 35. (T - 35)\n5. If a license plate begins with the number 35, then it does not begin with the number 34. (35 - Not 34)\n\nWe need to determine whether the conclusion \"Joe's license plate begins with the number 34\" (J - 34) is true, false, or uncertain based on the given premises.\n\nTo do this, let's analyze the information step by step:\n\nFrom premise 1, we know that all vehicle registration plates in Istanbul begin with the number 34.\n\nFrom premise 3, we know that Joe's vehicle registration plate is from Istanbul.\n\nNow, let's try to infer information about Joe's license plate using the premises. We can start by combining premises 1 and 3:\n\n1. All I - 34\n3. J - I\n\nUsing the rule of syllogisms, we can conclude that:\n\nJ - 34 (Joe's license plate begins with the number 34)\n\nThis conclusion is not uncertain because it follows logically from the premises. We can be certain that Joe's license plate begins with the number 34.\n\nTherefore, the conclusion \"Joe's license plate begins with the number 34\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "Let's break down the given premises and the conclusion:\n\nPremise 1: All vehicle registration plates in Istanbul begin with the number 34.\nPremise 2: Plates that do not begin with the number 34 are not from Istanbul.\nPremise 3: Joe's vehicle registration plate is from Istanbul.\nPremise 4: Tom's license plate begins with the number 35.\nPremise 5: If a license plate begins with the number 35, then it does not begin with the number 34.\n\nConclusion: Joe's license plate begins with the number 34.\n\nFrom Premise 3, we know that Joe's vehicle registration plate is from Istanbul. \n\nWe can use Premise 1 and Premise 2 to establish a logical connection: if a plate is from Istanbul, then it must begin with the number 34. \n\nHowever, there is a catch. Premise 5 introduces a new relationship between 35 and 34, but this does not directly affect the conclusion about Joe's plate. \n\nGiven that Tom's plate begins with 35 and does not begin with 34, we can use Modus Ponens to conclude that a license plate beginning with 35 is indeed not beginning with 34. \n\nHowever, Modus Ponens doesn't apply to Joe's case directly. We can't conclude that Joe's plate is not beginning with 34 based on the relationship between 35 and 34. \n\nThe conclusion is uncertain because we can't derive a definitive conclusion about Joe's plate from the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"Joe's license plate begins with the number 34\" is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. All vehicle registration plates in Istanbul begin with the number 34. \n   This premise tells us that any license plate from Istanbul must start with 34.\n\n2. Plates that do not begin with the number 34 are not from Istanbul.\n   This premise is essentially the contrapositive of the first premise, which supports the idea that only license plates from Istanbul start with 34.\n\n3. Joe's vehicle registration plate is from Istanbul.\n   This premise tells us that Joe's license plate is from Istanbul, which implies that it should start with 34 according to premise 1.\n\n4. Tom's license plate begins with the number 35.\n   This premise introduces a new piece of information about Tom's license plate.\n\n5. [BG] If a license plate begins with the number 35, then it does not begin with the number 34.\n   This premise directly contradicts the first premise, which stated that all Istanbul license plates begin with 34. However, this new information creates a potential exception, but it doesn't directly relate to Joe's license plate.\n\nGiven these premises, we can deduce the following:\n\n- From premise 1 and 3, we know that Joe's license plate must start with 34 because it is from Istanbul.\n- However, premise 5 introduces a new condition: if a license plate starts with 35, it doesn't start with 34. But this condition does not directly apply to Joe's license plate, which starts with 34.\n\nSince Joe's license plate is from Istanbul and all Istanbul plates start with 34, we can conclude that the statement \"Joe's license plate begins with the number 34\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "Let's break down the information provided step by step.\n\n1. All vehicle registration plates in Istanbul begin with the number 34. \n   - This means that if a license plate is from Istanbul, it must begin with 34.\n\n2. Plates that do not begin with the number 34 are not from Istanbul. \n   - This is a contrapositive of the first statement, reinforcing the idea that being from Istanbul implies the license plate starts with 34.\n\n3. Joe's vehicle registration plate is from Istanbul. \n   - This is the statement we are trying to draw a conclusion from.\n\n4. Tom's license plate begins with the number 35. \n   - This statement doesn't directly relate to Joe's license plate but introduces new information about Tom's plate.\n\n5. [BG] If a license plate begins with the number 35, then it does not begin with the number 34. \n   - This is a crucial statement linking the two numbers. However, it doesn't affect the information about Joe's license plate.\n\nNow, let's analyze the conclusion: Joe's license plate begins with the number 34.\n\nFrom statement 3, we know that Joe's vehicle registration plate is from Istanbul.\n\nFrom statement 1, we know that all vehicle registration plates in Istanbul begin with the number 34.\n\nCombining these two pieces of information, we can conclude that Joe's license plate indeed begins with the number 34.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we'll use a step-by-step approach to determine whether the conclusion \"Joe's license plate begins with the number 34\" is true, false, or uncertain.\n\n**Step 1: Analyze the premises**\n\n1. All vehicle registration plates in Istanbul begin with the number 34.\n2. Plates that do not begin with the number 34 are not from Istanbul.\n3. Joe's vehicle registration plate is from Istanbul.\n4. If a license plate begins with the number 35, then it does not begin with the number 34.\n\n**Step 2: Evaluate the relationship between the premises**\n\nFrom premise 1, we know that all vehicle registration plates in Istanbul begin with the number 34. This implies that if a license plate is from Istanbul, it must begin with the number 34.\n\nFrom premise 2, we know that plates that do not begin with the number 34 are not from Istanbul. This premise is not directly relevant to the conclusion, but it provides additional information about the relationship between the license plate number and the city of origin.\n\nFrom premise 3, we know that Joe's vehicle registration plate is from Istanbul. This premise is directly relevant to the conclusion, as it provides information about Joe's license plate.\n\nFrom premise 4, we know that if a license plate begins with the number 35, then it does not begin with the number 34. This premise is not directly relevant to the conclusion, but it provides additional information about the relationship between the license plate number and the city of origin.\n\n**Step 3: Apply the premises to the conclusion**\n\nWe want to determine whether the conclusion \"Joe's license plate begins with the number 34\" is true, false, or uncertain.\n\nFrom premise 3, we know that Joe's vehicle registration plate is from Istanbul. Since all vehicle registration plates in Istanbul begin with the number 34 (premise 1), we can conclude that Joe's license plate must begin with the number 34.\n\nTherefore, the conclusion \"Joe's license plate begins with the number 34\" is **TRUE**.\n\n**Final answer**\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given premises and use the rules of deductive reasoning.\n\nPremise 1: All vehicle registration plates in Istanbul begin with the number 34.\n\nPremise 2: Plates that do not begin with the number 34 are not from Istanbul.\n\nPremise 3: Joe's vehicle registration plate is from Istanbul.\n\nPremise 4: [BG] If a license plate begins with the number 35, then it does not begin with the number 34.\n\nConclusion: Joe's license plate begins with the number 34.\n\nNow, let's examine the relationship between Joe's license plate and the conclusion.\n\nFrom Premise 3, we know that Joe's vehicle registration plate is from Istanbul.\n\nFrom Premise 1, we know that all vehicle registration plates in Istanbul begin with the number 34.\n\nHowever, Premise 4 states that if a license plate begins with the number 35, then it does not begin with the number 34. But this premise does not directly relate to Joe's license plate.\n\nSince Joe's license plate is from Istanbul, and all vehicle registration plates in Istanbul begin with the number 34, we can conclude that Joe's license plate begins with the number 34.\n\nThis conclusion is not uncertain, and it is not false. It is true.\n\nTherefore, the conclusion \"Joe's license plate begins with the number 34\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "all(x, in_istanbul(x), begins_with_34(x))",
+          "z3_formula": "And(in_istanbul_plate == True, begins_with_34_plate == True)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "not in_istanbul(x) -> not begins_with_34(x)",
+          "z3_formula": "Implies(Not(in_istanbul_plate), Not(begins_with_34_plate))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "in_istanbul(joe)",
+          "z3_formula": "in_istanbul_joe == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "begins_with_35(tom)",
+          "z3_formula": "begins_with_35_tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "begins_with_35(x) -> not begins_with_34(x)",
+          "z3_formula": "Implies(begins_with_35_tom, Not(begins_with_34_tom))",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(x: VehicleRegistrationPlate, in_istanbul(x)) -> begins_with_34(x)",
+          "z3_formula": "Implies(in_istanbul(x), begins_with_34(x)) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not begins_with_34(x) -> not in_istanbul(x)",
+          "z3_formula": "Implies(Not(begins_with_34(x)), Not(in_istanbul(x))) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "in_istanbul(joe_plate)",
+          "z3_formula": "in_istanbul_joe_plate == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "begins_with_35(x) -> not begins_with_34(x)",
+          "z3_formula": "Implies(begins_with_35(x), Not(begins_with_34(x)))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "begins_with_35(tom_plate)",
+          "z3_formula": "begins_with_35_tom_plate == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(plate, begins_with(34, plate) -> from_istanbul(plate))",
+          "z3_formula": "And(begins_with_34_plate == True, from_istanbul_plate == True)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all(plate, not begins_with(34, plate) -> not from_istanbul(plate))",
+          "z3_formula": "And(not begins_with_34_plate == True, not from_istanbul_plate == True)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "from_istanbul(joe_plate)",
+          "z3_formula": "from_istanbul_joe_plate == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "begins_with(35, plate) -> not begins_with(34, plate)",
+          "z3_formula": "Implies(begins_with_35_plate == True, not begins_with_34_plate == True)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "begins_with(34, joe_plate)",
+          "z3_formula": "begins_with_34_joe_plate == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "from_istanbul(joe)",
+          "z3_formula": "from_istanbul_joe == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_istanbul_begin_34",
+          "z3_formula": "all_istanbul_begin_34 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "from_istanbul(X) -> all_istanbul_begin_34(X)",
+          "z3_formula": "Implies(from_istanbul_joe, all_istanbul_begin_34_joe)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "all_istanbul_begin_34(joe)",
+          "z3_formula": "all_istanbul_begin_34_joe == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "joe_begin_34",
+          "z3_formula": "joe_begin_34 == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "begin_34(X) -> begin_35(Y) -> not begin_34(Y)",
+          "z3_formula": "Implies(And(begin_34_joe, begin_35_tom), Not(begin_34_tom))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "tom_begin_35",
+          "z3_formula": "tom_begin_35 == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not begin_34(tom)",
+          "z3_formula": "not_begin_34_tom == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "begin_34(joe)",
+          "z3_formula": "joe_begin_34 == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_plates_in_istanbul_begin_with_34",
+          "z3_formula": "all_plates_in_istanbul_begin_with_34 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "plates_not_beginning_with_34_are_not_from_istanbul",
+          "z3_formula": "plates_not_beginning_with_34_are_not_from_istanbul == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "joes_plate_is_from_istanbul",
+          "z3_formula": "joes_plate_is_from_istanbul == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "beginning_with_35 -> not_beginning_with_34",
+          "z3_formula": "Implies(beginning_with_35, not_beginning_with_34)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "toms_plate_beginning_with_35",
+          "z3_formula": "toms_plate_beginning_with_35 == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "joes_plate_beginning_with_34",
+          "z3_formula": "joes_plate_beginning_with_34 == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_plates_in_istanbul_begin_with_34",
+          "z3_formula": "all_plates_in_istanbul_begin_with_34 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "not from_istanbul(X) -> not starts_with_34(X)",
+          "z3_formula": "Implies(Not(from_istanbul_X), Not(starts_with_34_X))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "joe_plate_from_istanbul",
+          "z3_formula": "joe_plate_from_istanbul == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_istanbul(X) -> starts_with_34(X)",
+          "z3_formula": "Implies(from_istanbul_X, starts_with_34_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_plate_starts_with_35",
+          "z3_formula": "tom_plate_starts_with_35 == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "starts_with_35(X) -> not starts_with_34(X)",
+          "z3_formula": "Implies(starts_with_35_X, Not(starts_with_34_X))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "joe_plate_starts_with_34",
+          "z3_formula": "starts_with_34_joe_plate == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_i_34",
+          "z3_formula": "all_i_34 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_34_not_i",
+          "z3_formula": "not_34_not_i == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "j_i",
+          "z3_formula": "j_i == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "t_35",
+          "z3_formula": "t_35 == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "35_not_34",
+          "z3_formula": "Implies(t_35, not_34)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "j_34",
+          "z3_formula": "j_34 == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(x, in_istanbul(x), begins_with_34(x))",
+          "z3_formula": "And(In(x, istanbul), begins_with_34(x)) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not begins_with_34(x) -> not in_istanbul(x)",
+          "z3_formula": "Implies(Not(begins_with_34(x)), Not(in_istanbul(x)))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "in_istanbul(joe)",
+          "z3_formula": "in_joe_istanbul == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "begins_with_35(tom)",
+          "z3_formula": "begins_with_35_tom == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "begins_with_35(x) -> not begins_with_34(x)",
+          "z3_formula": "Implies(begins_with_35(x), Not(begins_with_34(x)))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "begins_with_34(joe)",
+          "z3_formula": "begins_with_34_joe == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_istanbul_plates_begin_with_34",
+          "z3_formula": "all_istanbul_plates_begin_with_34 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "not_begin_with_34 -> not_from_istanbul",
+          "z3_formula": "Implies(Not(begin_with_34), not_from_istanbul)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "joe_plate_from_istanbul",
+          "z3_formula": "joe_plate_from_istanbul == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "begin_with_34 -> from_istanbul",
+          "z3_formula": "Implies(begin_with_34, from_istanbul)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_plate_begin_with_35",
+          "z3_formula": "tom_plate_begin_with_35 == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "begin_with_35 -> not_begin_with_34",
+          "z3_formula": "Implies(begin_with_35, Not(begin_with_34))",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "from_istanbul(joe)",
+          "z3_formula": "from_istanbul_joe == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_istanbul(X) -> begins_with_34(X)",
+          "z3_formula": "Implies(from_istanbul_joe, begins_with_34_joe)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "begins_with_34(X)",
+          "z3_formula": "begins_with_34_X == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "Not(begins_with_34(X))",
+          "z3_formula": "Not(begins_with_34_tom)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "begins_with_35(X) -> Not(begins_with_34(X))",
+          "z3_formula": "Implies(begins_with_35_tom, Not(begins_with_34_tom))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "begins_with_34(joe)",
+          "z3_formula": "begins_with_34_joe == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_plates_in_istanbul_begin_with_34",
+          "z3_formula": "all_plates_in_istanbul_begin_with_34 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "plates_not_beginning_with_34_are_not_from_istanbul",
+          "z3_formula": "plates_not_beginning_with_34_are_not_from_istanbul == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "joe_plate_is_from_istanbul",
+          "z3_formula": "joe_plate_is_from_istanbul == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "beginning_with_35 -> not_beginning_with_34",
+          "z3_formula": "Implies(beginning_with_35, not_beginning_with_34)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "joe_plate_begins_with_34",
+          "z3_formula": "joe_plate_begins_with_34 == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(plate, in_istanbul(plate) -> begins_with_34(plate))",
+          "z3_formula": "Implies(in_istanbul_plate, begins_with_34_plate)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_in_istanbul(plate) -> not begins_with_34(plate)",
+          "z3_formula": "Implies(not_in_istanbul_plate, Not(begins_with_34_plate))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "in_istanbul(joe_plate)",
+          "z3_formula": "in_istanbul_joe_plate == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "begins_with_35(plate) -> not begins_with_34(plate)",
+          "z3_formula": "Implies(begins_with_35_plate, Not(begins_with_34_plate))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "begins_with_34(joe_plate)",
+          "z3_formula": "begins_with_34_joe_plate == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 71,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 53
+    },
+    "maxsat_stats": {
+      "satisfied": 53,
+      "excluded": 0,
+      "total_weight": 65,
+      "solve_time_ms": 0.9940816089510918
+    },
+    "timing": {
+      "trace_gen_s": 8.189,
+      "extraction_s": 13.788,
+      "dedup_s": 0.958,
+      "maxsat_s": 0.004,
+      "total_s": 22.939
+    }
+  }
+}

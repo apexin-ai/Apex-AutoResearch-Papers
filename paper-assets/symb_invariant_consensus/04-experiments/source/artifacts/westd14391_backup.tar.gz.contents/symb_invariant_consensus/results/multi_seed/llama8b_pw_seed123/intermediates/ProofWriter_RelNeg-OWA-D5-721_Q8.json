@@ -1,0 +1,765 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-721_Q8",
+    "problem": "The bald eagle does not eat the mouse. The bald eagle is not rough. The bald eagle needs the lion. The bald eagle sees the lion. The lion is nice. The mouse is kind. The mouse needs the bald eagle. The mouse needs the lion. The mouse sees the lion. The rabbit eats the bald eagle. The rabbit needs the mouse. If someone eats the bald eagle and they see the bald eagle then they are big. If someone is nice and they eat the rabbit then they eat the bald eagle. If someone eats the bald eagle then they are cold. If someone needs the rabbit and they are big then the rabbit sees the mouse. If someone is cold then they need the lion. If someone is cold and big then they do not need the bald eagle. If someone needs the lion then they see the bald eagle. If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion. If the bald eagle eats the lion then the bald eagle does not see the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit does not see the bald eagle.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nRough($x, bool) ::: Is x rough?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nNice($x, bool) ::: Is x nice?\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nEats(BaldEagle, Mouse, False) ::: The bald eagle does not eat the mouse.\nRough(BaldEagle, False) ::: The bald eagle is not rough.\nNeeds(BaldEagle, Lion, True) ::: The bald eagle needs the lion.\nSees(BaldEagle, Lion, True) ::: The bald eagle sees the lion.\nNice(Lion, True) ::: The lion is nice.\nKind(Mouse, True) ::: The mouse is kind.\nNeeds(Mouse, BaldEagle, True) ::: The mouse needs the bald eagle.\nNeeds(Mouse, Lion, True) ::: The mouse needs the lion.\nSees(Mouse, Lion, True) ::: The mouse sees the lion.\nEats(Rabbit, BaldEagle, True) ::: The rabbit eats the bald eagle.\nNeeds(Rabbit, Mouse, True) ::: The rabbit needs the mouse.\n\nRules:\nEats($x, BaldEagle, True) && Sees($x, BaldEagle, True) >>> Big($x, True) ::: If someone eats the bald eagle and they see the bald eagle then they are big.\nNice($x, True) && Eats($x, Rabbit, True) >>> Eats($x, BaldEagle, True) ::: If someone is nice and they eat the rabbit then they eat the bald eagle.\nEats($x, BaldEagle, True) >>> Cold($x, True) ::: If someone eats the bald eagle then they are cold.\nNeeds($x, Rabbit, True) && Big($x, True) >>> Sees(Rabbit, Mouse, True) ::: If someone needs the rabbit and they are big then the rabbit sees the mouse.\nCold($x, True) >>> Needs($x, Lion, True) ::: If someone is cold then they need the lion.\nCold($x, True) && Big($x, True) >>> Needs($x, BaldEagle, False) ::: If someone is cold and big then they do not need the bald eagle.\nNeeds($x, Lion, True) >>> Sees($x, BaldEagle, True) ::: If someone needs the lion then they see the bald eagle.\nSees(Rabbit, BaldEagle, True) && Big(Rabbit, False) >>> Eats(BaldEagle, Lion, True) ::: If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion.\nEats(BaldEagle, Lion, True) >>> Sees(BaldEagle, Lion, False) ::: If the bald eagle eats the lion then the bald eagle does not see the lion.\n\nQuery:\nSees(Rabbit, BaldEagle, False) ::: The rabbit does not see the bald eagle."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 72.5,
+      "True": 23.0,
+      "Unknown": 31.5
+    },
+    "answer_counts": {
+      "Unknown": 2,
+      "True": 2,
+      "False": 5
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the bald eagle\" is true, false, or unknown, we need to analyze the given statements and the conditions that affect the relationship between the rabbit and the bald eagle.\n\nFrom the given statements:\n\n1. The rabbit eats the bald eagle.\n2. If someone eats the bald eagle and they see the bald eagle then they are big.\n3. If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion.\n\nNow, let's analyze the conditions:\n\n- If the rabbit eats the bald eagle, it implies that the rabbit is big (from statement 2).\n- However, if the rabbit is big, then the rabbit seeing the bald eagle would lead to the bald eagle eating the lion (from statement 3). But the statement also says that the bald eagle sees the lion, which implies that the bald eagle does not eat the lion.\n- From the statement \"The bald eagle does not eat the lion,\" we can deduce that the condition in statement 3 (\"If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion\") is not met.\n- Therefore, we cannot conclude that the rabbit sees the bald eagle because the condition that would lead to the bald eagle seeing the lion is not met.\n\nBased on the given statements and the conditions that affect the relationship between the rabbit and the bald eagle, the statement \"The rabbit does not see the bald eagle\" is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the bald eagle\" is true, false, or unknown, we need to analyze the given statements and apply logical reasoning.\n\n1. The rabbit eats the bald eagle. (Given statement)\n2. If someone eats the bald eagle and they see the bald eagle then they are big. (Given statement)\n3. If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion. (Given statement)\n4. The rabbit does not see the bald eagle (Statement to be evaluated)\n\nFrom statement 1, we know that the rabbit eats the bald eagle.\n\nFrom statement 2, if someone eats the bald eagle and they see the bald eagle, then they are big. This implies that if the rabbit sees the bald eagle, then it should be big, which contradicts the fact that it eats the bald eagle (statement 1). However, there's a catch: statement 3 says that if the rabbit sees the bald eagle and the rabbit is not big, then the bald eagle eats the lion. \n\nGiven that the rabbit is eating the bald eagle, this creates a situation where the rabbit cannot see the bald eagle without contradicting the given conditions.\n\nHowever, since the rabbit eats the bald eagle, and if the rabbit were to see the bald eagle, it would be in a contradictory situation with the statement 3.\n\nHence, there are two possibilities:\n1. The rabbit sees the bald eagle (contradictory to the rabbit eating the bald eagle)\n2. The rabbit does not see the bald eagle\n\nFrom the information provided, it can be inferred that the rabbit eats the bald eagle but cannot see the bald eagle at the same time. Thus, the statement \"The rabbit does not see the bald eagle\" is **true**.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we will analyze the given information step by step.\n\nFrom the given information:\n\n1. The rabbit eats the bald eagle. (This implies that the rabbit sees the bald eagle because if someone eats the bald eagle, they see the bald eagle.)\n   The rabbit sees the bald eagle.\n\n2. The statement also says that if someone eats the bald eagle and they see the bald eagle then they are big.\n   This means the rabbit is big because it eats the bald eagle and sees the bald eagle.\n\n3. Now, we need to determine whether the rabbit sees the mouse. \n   The statement says, \"If someone needs the rabbit and they are big then the rabbit sees the mouse.\"\n   However, there's no information that someone needs the rabbit. Instead, the statement says the rabbit needs the mouse.\n   The rabbit needs the mouse.\n\n4. Since the rabbit needs the mouse, and we previously determined the rabbit is big, we can conclude that the rabbit sees the mouse.\n   However, this conclusion is not needed to answer the original question about the rabbit seeing the bald eagle.\n\n5. We know the rabbit sees the bald eagle and is big. We also know the bald eagle sees the lion.\n   However, we cannot conclude that the rabbit sees the lion because the statement \"If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion\" is not applicable here, since the rabbit is big.\n\n6. Now, we need to find out if the rabbit seeing the bald eagle affects the other statements about the bald eagle and the lion.\n   Since the bald eagle sees the lion, we can infer that the lion is not seen by the rabbit (or else the bald eagle would eat the lion). \n\nHowever, we can also infer that the lion is nice and the mouse needs the lion. \nBut we know the mouse needs the lion because the mouse sees the lion.\n\nFrom the previous steps, we know the rabbit sees the bald eagle and is big. The rabbit needs the mouse, and since the rabbit is big, the rabbit sees the mouse. \n\nThe statement \"The rabbit does not see the bald eagle\" is false because the rabbit sees the bald eagle.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'The rabbit does not see the bald eagle' is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. The rabbit eats the bald eagle. (From the given information)\n2. If someone eats the bald eagle and they see the bald eagle, then they are big. (From the given rules)\n3. Since the rabbit eats the bald eagle, it implies that the rabbit sees the bald eagle. (From rule 2)\n   - The rabbit eats the bald eagle.\n   - Therefore, the rabbit is big (because it sees the bald eagle).\n   - Therefore, the rabbit sees the bald eagle.\n\nHowever, this result leads to a contradiction with the statement we're trying to verify. So we need to look for another possible interpretation.\n\n4. If the rabbit sees the bald eagle and the rabbit is not big, then the bald eagle eats the lion. (From the given rules)\n5. Since the rabbit sees the bald eagle and we do not know whether the rabbit is big or not, we cannot conclude that the bald eagle eats the lion yet.\n6. If the rabbit sees the bald eagle and the rabbit is not big, then the bald eagle eats the lion, which implies that the rabbit does not see the lion.\n   - However, this conclusion is based on the assumption that the rabbit is not big.\n\nConsidering both possibilities, the truth of the statement 'The rabbit does not see the bald eagle' depends on whether the rabbit is big or not.\n\nSince we do not have enough information to determine whether the rabbit is big or not, we cannot conclude whether the statement is true or false.\n\nTherefore, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the truth of the given statement, we need to analyze the given conditions and derive conclusions from them.\n\nFrom the given conditions:\n\n1. The rabbit eats the bald eagle.\n2. If someone eats the bald eagle and they see the bald eagle then they are big.\n3. If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion.\n\nWe can conclude from condition 2 that since the rabbit eats the bald eagle, the rabbit is big.\n\nNow, we have to examine the conditions involving the rabbit seeing the bald eagle.\n\nCondition 3 states that if the rabbit sees the bald eagle and the rabbit is not big, then the bald eagle eats the lion. However, we know that the rabbit is big from our previous conclusion. \n\nSo, we can't directly apply condition 3 to conclude anything about the rabbit seeing the bald eagle.\n\nHowever, we can look at condition 4 which states that if the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion. This condition is false because we know that the rabbit is big.\n\nNow let's look at the statement: \"If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion.\" Since this statement is false, we can infer that the condition \"If the rabbit sees the bald eagle and the rabbit is big\" is true.\n\nThis means that the rabbit sees the bald eagle because it is big.\n\nTherefore, the statement \"The rabbit does not see the bald eagle\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit eats the bald eagle. (Given)\n2. If someone eats the bald eagle and they see the bald eagle then they are big. (Given)\n3. The rabbit eats the bald eagle. (From 1)\n   Therefore, the rabbit is big. (From 2)\n\nNow, we consider the cases where the rabbit is big.\n\n4. If someone is nice and they eat the rabbit then they eat the bald eagle. (Given)\n   The rabbit is big, but it is not specified that the rabbit is nice. (From 3)\n   Therefore, this statement does not apply to the rabbit.\n\n5. If someone needs the rabbit and they are big then the rabbit sees the mouse. (Given)\n   The rabbit is big, but it is not specified that the rabbit needs the mouse. (From 3)\n   Therefore, this statement does not apply to the rabbit.\n\n6. If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion. (Given)\n   The rabbit is big, but it is not specified that the rabbit sees the bald eagle. (From 3)\n   Therefore, this statement does not apply to the rabbit.\n\n7. The lion is nice. (Given)\n   The rabbit is big, but it is not specified that the rabbit is nice. (From 3)\n   Therefore, this statement does not apply to the rabbit.\n\n8. The mouse is kind. (Given)\n   The rabbit is big, but it is not specified that the rabbit is kind. (From 3)\n   Therefore, this statement does not apply to the rabbit.\n\n9. The mouse sees the lion. (Given)\n   The rabbit is big, but it is not specified that the rabbit sees the lion. (From 3)\n   Therefore, this statement does not apply to the rabbit.\n\n10. The lion is needed by the mouse. (From the given statement \"The mouse needs the lion.\")\n    The lion is nice. (Given)\n    The mouse is kind. (Given)\n    The mouse sees the lion. (Given)\n    The rabbit is big. (From 3)\n\nNow, we need to find the relationship between the rabbit and the bald eagle.\n\n11. The bald eagle sees the lion. (Given)\n    The lion is needed by the mouse. (From 10)\n    The mouse sees the lion. (From 9)\n    The mouse needs the lion. (From 9)\n\n12. The mouse needs the bald eagle. (Given)\n    The mouse sees the lion. (From 9)\n    The mouse needs the lion. (From 9)\n    The lion is nice. (From 7)\n\n13. The lion is needed by the mouse. (From 10)\n    The mouse sees the lion. (From 9)\n    The mouse needs the lion. (From 9)\n    The lion is nice. (From 7)\n\n14. If someone eats the bald eagle then they are cold. (Given)\n    The rabbit eats the bald eagle. (From 1)\n    Therefore, the rabbit is cold. (From 14)\n\n15. If someone is cold and big then they do not need the bald eagle. (Given)\n    The rabbit is big and cold. (From 3 and 14)\n    Therefore, the rabbit does not need the bald eagle. (From 15)\n\n16. The rabbit sees the mouse. (From the given statement \"If someone needs the rabbit and they are big then the rabbit sees the mouse.\")\n    The rabbit is big. (From 3)\n    The rabbit does not need the bald eagle. (From 15)\n\n17. If someone is cold then they need the lion. (Given)\n    The rabbit is cold. (From 14)\n    Therefore, the rabbit needs the lion. (From 17)\n\n18. The rabbit sees the bald eagle. (From the given statement \"The bald eagle sees the lion.\")\n    The lion is needed by the mouse. (From 10)\n    The mouse sees the lion. (From 9)\n    The mouse needs the lion. (From 9)\n\n19. If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion. (Given)\n    The rabbit is big. (From 3)\n    Therefore, this statement does not apply to the rabbit.\n\n20. If the bald eagle eats the lion then the bald eagle does not see the lion. (Given)\n    The rabbit needs the lion. (From 17)\n    Therefore, the rabbit needs the lion.\n\n21. The rabbit eats the lion. (From the given statement \"If someone is nice and they eat the rabbit then they eat the bald eagle.\")\n    The rabbit is big. (From 3)\n    The lion is nice. (From 7)\n\n22. If the rabbit eats the lion then the rabbit does not see the lion. (From 20)\n    The rabbit eats the lion. (From 21)\n    Therefore, the rabbit does not see the lion.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the bald eagle\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\nGiven Information:\n1. The rabbit eats the bald eagle.\n2. The rabbit needs the mouse.\n\nRules:\n1. If someone eats the bald eagle and they see the bald eagle then they are big.\n   - Since the rabbit eats the bald eagle, we can infer that the rabbit is big.\n\n2. If someone is nice and they eat the rabbit then they eat the bald eagle.\n   - There is no information about the rabbit being nice, so we cannot use this rule.\n\n3. If someone eats the bald eagle then they are cold.\n   - Since the rabbit eats the bald eagle, we can infer that the rabbit is cold.\n\n4. If someone needs the rabbit and they are big then the rabbit sees the mouse.\n   - There is no information about someone needing the rabbit, so we cannot use this rule.\n\n5. If someone is cold then they need the lion.\n   - Since the rabbit is cold, we can infer that the rabbit needs the lion.\n\n6. If someone is cold and big then they do not need the bald eagle.\n   - Since the rabbit is both cold and big, we can infer that the rabbit does not need the bald eagle.\n\n7. If someone needs the lion then they see the bald eagle.\n   - Since the rabbit needs the lion, we can infer that the rabbit sees the bald eagle.\n\nNow, let's analyze the given statement: \"The rabbit does not see the bald eagle.\"\n\nFrom rule 7, we know that the rabbit sees the bald eagle because it needs the lion.\n\nSo, the statement \"The rabbit does not see the bald eagle\" is false.\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the relationships between the animals. \n\n1. The bald eagle does not eat the mouse.\n2. The bald eagle is not rough.\n3. The bald eagle needs the lion.\n4. The bald eagle sees the lion.\n5. The lion is nice.\n6. The mouse is kind.\n7. The mouse needs the bald eagle.\n8. The mouse needs the lion.\n9. The mouse sees the lion.\n10. The rabbit eats the bald eagle.\n11. The rabbit needs the mouse.\n12. If someone eats the bald eagle and they see the bald eagle then they are big.\n13. If someone is nice and they eat the rabbit then they eat the bald eagle.\n14. If someone eats the bald eagle then they are cold.\n15. If someone needs the rabbit and they are big then the rabbit sees the mouse.\n16. If someone is cold then they need the lion.\n17. If someone is cold and big then they do not need the bald eagle.\n18. If someone needs the lion then they see the bald eagle.\n19. If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion.\n20. If the bald eagle eats the lion then the bald eagle does not see the lion.\n\nFrom statement 10, we know the rabbit eats the bald eagle. \n\nFrom statement 12, we know if someone eats the bald eagle and they see the bald eagle then they are big. However, since the rabbit eats the bald eagle, we need to determine if the rabbit sees the bald eagle. \n\nFrom statement 19, we know that if the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion. Since the rabbit is eating the bald eagle, it implies that the rabbit is not big (otherwise, it would be big and would not eat the bald eagle). \n\nSo, from statement 19, if the rabbit is not big and sees the bald eagle, then the bald eagle eats the lion. But we know the rabbit is eating the bald eagle, so it's not seeing it. \n\nHowever, this statement doesn't tell us directly if the rabbit sees the bald eagle. To find that out, we need to look at statement 19 in reverse. \n\nThe statement says if the rabbit sees the bald eagle and the rabbit is not big, then the bald eagle eats the lion. Since we know the rabbit is not big (it's eating the bald eagle), it could mean that the rabbit sees the bald eagle. But we can't be sure yet.\n\nTo find out, we need to look at the other statements again. \n\nFrom statement 10, we know the rabbit eats the bald eagle. From statement 14, if someone eats the bald eagle then they are cold. So, the rabbit is cold.\n\nFrom statement 16, if someone is cold then they need the lion. So, the rabbit needs the lion.\n\nFrom statement 18, if someone needs the lion then they see the bald eagle. Since the rabbit needs the lion, it implies that the rabbit sees the bald eagle.\n\nNow we know that the rabbit eats the bald eagle, sees the bald eagle, and needs the lion.\n\nFrom statement 17, if someone is cold and big then they do not need the bald eagle. But since the rabbit is cold and we don't know if it's big or not, we can't determine if it needs the bald eagle based on this statement.\n\nHowever, from statement 12, we know that if someone eats the bald eagle and they see the bald eagle then they are big. Since the rabbit eats the bald eagle and sees the bald eagle, it implies that the rabbit is big.\n\nNow we know that the rabbit is cold, big, and sees the bald eagle.\n\nFrom statement 17, if someone is cold and big then they do not need the bald eagle. Since the rabbit is cold and big, it implies that the rabbit does not need the bald eagle.\n\nNow we know that the rabbit eats the bald eagle, sees the bald eagle, is big, cold, and does not need the bald eagle.\n\nFrom statement 1, we know the bald eagle does not eat the mouse. From statement 7, we know the mouse needs the bald eagle. Since the bald eagle does not eat the mouse, it implies that the mouse sees the bald eagle.\n\nNow we know that the rabbit sees the mouse.\n\nFrom statement 11, we know the rabbit needs the mouse. Since the rabbit sees the mouse and needs the mouse, it implies that the mouse is not eating the rabbit.\n\nFrom statement 15, if someone needs the rabbit and they are big then the rabbit sees the mouse. Since the rabbit is big and sees the mouse, it implies that the mouse needs the rabbit.\n\nNow we know that the rabbit sees the mouse and the mouse needs the rabbit.\n\nFrom statement 6, we know the mouse is kind. From statement 5, we know the lion is nice. Since the lion is nice and the mouse sees the lion, it implies that the lion is not eating the mouse.\n\nFrom statement 3, we know the bald eagle needs the lion. Since the lion is not eating the mouse and the bald eagle needs the lion, it implies that the bald eagle sees the lion.\n\nNow we know that the bald eagle sees the lion.\n\nFrom statement 4, we know the bald eagle sees the lion. From statement 20, if the bald eagle eats the lion then the bald eagle does not see the lion. Since the bald eagle sees the lion, it implies that the bald eagle is not eating the lion.\n\nFrom statement 19, we know if the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion. Since the rabbit sees the bald eagle, it implies that the bald eagle is not eating the lion (because the rabbit is big).\n\nFrom statement 13, we know if someone is nice and they eat the rabbit then they eat the bald eagle. Since the rabbit is eating the bald eagle, it implies that the rabbit is not nice.\n\nFrom statement 18, if someone needs the lion then they see the bald eagle. Since the mouse sees the bald eagle, it implies that the mouse needs the lion.\n\nNow we know that the mouse sees the bald eagle and needs the lion.\n\nFrom statement 3, we know the bald eagle needs the lion. Since the mouse needs the lion and the bald eagle needs the lion, it implies that the mouse and the bald eagle need the lion together.\n\nHowever, we already know that the mouse sees the bald eagle. From statement 18, if someone needs the lion then they see the bald eagle. Since the mouse needs the lion, it implies that the mouse is not seeing the bald eagle. \n\nBut we already know that the mouse sees the bald eagle. So, this statement is not helpful.\n\nNow we need to look at the statement again. If the rabbit does not see the bald eagle, then we need to find out if it's true or false.\n\nWe know that the rabbit sees the mouse, the mouse sees the bald eagle, and the rabbit eats the bald eagle. \n\nFrom statement 11, we know the rabbit needs the mouse. Since the rabbit sees the mouse and needs the mouse, it implies that the mouse is not eating the rabbit.\n\nFrom statement 6, we know the mouse is kind. From statement 5, we know the lion is nice. Since the lion is nice and the mouse sees the lion, it implies that the lion is not eating the mouse.\n\nFrom statement 3, we know the bald eagle needs the lion. Since the lion is not eating the mouse and the bald eagle needs the lion, it implies that the bald eagle sees the lion.\n\nNow we know that the bald eagle sees the lion.\n\nFrom statement 4, we know the bald eagle sees the lion. From statement 20, if the bald eagle eats the lion then the bald eagle does not see the lion. Since the bald eagle sees the lion, it implies that the bald eagle is not eating the lion.\n\nFrom statement 19, we know if the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion. Since the rabbit sees the bald eagle, it implies that the bald eagle is not eating the lion (because the rabbit is big).\n\nNow we know that the rabbit sees the bald eagle. \n\nHowever, we can't be sure if the rabbit sees the bald eagle or not. \n\nFrom statement 12, we know if someone eats the bald eagle and they see the bald eagle then they are big. Since the rabbit eats the bald eagle and sees the bald eagle, it implies that the rabbit is big.\n\nNow we know that the rabbit is big.\n\nFrom statement 19, we know if the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion. Since the rabbit is big, it implies that the rabbit sees the bald eagle.\n\nHowever, we already know that the rabbit sees the bald eagle. So, this statement is not helpful.\n\nNow we need to look at the statement again. If the rabbit does not see the bald eagle, then we need to find out if it's true or false.\n\nWe know that the rabbit eats the bald eagle, is big, cold, and does not need the bald eagle.\n\nFrom statement 11, we know the rabbit needs the mouse. Since the rabbit sees the mouse and needs the mouse, it implies that the mouse is not eating the rabbit.\n\nFrom statement 6, we know the mouse is kind. From statement 5, we know the lion is nice. Since the lion is nice and the mouse sees the lion, it implies that the lion is not eating the mouse.\n\nFrom statement 3, we know the bald eagle needs the lion. Since the lion is not eating the mouse and the bald eagle needs the lion, it implies that the bald eagle sees the lion.\n\nNow we know that the bald eagle sees the lion",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the truth value of the statement \"The rabbit does not see the bald eagle,\" we need to analyze the given information and the given rules.\n\n1. The rabbit eats the bald eagle.\n2. If someone eats the bald eagle and they see the bald eagle then they are big.\n   - From this rule, we can infer that the rabbit sees the bald eagle because it eats the bald eagle, and this makes the rabbit \"big.\"\n\nHowever, we need to check the following rule: \n   - If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion.\n\nThis rule gives us two conditions for the bald eagle to eat the lion:\n   - The rabbit sees the bald eagle.\n   - The rabbit is not big.\n\nWe already know from the first rule that the rabbit eats the bald eagle, which makes it big (rule 2). This means the second condition of the above rule is not met.\n\nNow, we need to check if the bald eagle eats the lion in this scenario. \n   - If the rabbit sees the bald eagle and the rabbit is big, then this rule does not apply.\n\nHowever, we need to check another rule: \n   - If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion.\n\nSince the rabbit is big, this rule does not apply.\n\nNow we need to check another rule: \n   - If the rabbit sees the bald eagle then the rabbit is big.\n\nWe already know that the rabbit is big from rule 2.\n\nNow, we need to check another rule: \n   - If the rabbit is not big then the rabbit sees the mouse.\n\nWe already know that the rabbit is big, so this rule does not apply.\n\nNow we need to check another rule: \n   - If someone is cold and big then they do not need the bald eagle.\n\nWe do not have any information about the rabbit being cold or the rabbit needing the bald eagle.\n\nNow we need to check another rule: \n   - If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion.\n\nThis rule does not apply because the rabbit is big.\n\nNow we need to check another rule: \n   - If someone is cold then they need the lion.\n\nWe do not have any information about the rabbit being cold.\n\nNow we need to check another rule: \n   - If someone eats the bald eagle then they are cold.\n\nWe already know that the rabbit eats the bald eagle, which makes it cold.\n\nNow, we need to check another rule: \n   - If someone eats the bald eagle then they see the bald eagle.\n\nWe already know that the rabbit eats the bald eagle, which means it sees the bald eagle.\n\nNow, we need to check another rule: \n   - If the rabbit sees the bald eagle and the rabbit is big then the rabbit sees the mouse.\n\nHowever, we need to check another rule: \n   - If someone needs the rabbit and they are big then the rabbit sees the mouse.\n\nWe do not have any information about someone needing the rabbit.\n\nNow we need to check another rule: \n   - If someone is cold and big then they do not need the bald eagle.\n\nWe do not have any information about the rabbit needing the bald eagle.\n\nNow we need to check another rule: \n   - If the mouse sees the lion then the mouse needs the lion.\n\nWe do not have any information about the mouse seeing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the bald eagle.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the bald eagle.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If someone needs the lion then they see the bald eagle.\n\nWe do not have any information about someone needing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the lion.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the lion.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If someone is nice and they eat the rabbit then they eat the bald eagle.\n\nWe do not have any information about someone eating the rabbit.\n\nNow we need to check another rule: \n   - If someone eats the bald eagle then they are cold.\n\nWe already know that the rabbit eats the bald eagle, which makes it cold.\n\nNow, we need to check another rule: \n   - If someone eats the bald eagle then they see the bald eagle.\n\nWe already know that the rabbit eats the bald eagle, which means it sees the bald eagle.\n\nNow, we need to check another rule: \n   - If the rabbit sees the bald eagle and the rabbit is big then the rabbit sees the mouse.\n\nHowever, we need to check another rule: \n   - If someone needs the rabbit and they are big then the rabbit sees the mouse.\n\nWe do not have any information about someone needing the rabbit.\n\nNow we need to check another rule: \n   - If someone is cold and big then they do not need the bald eagle.\n\nWe do not have any information about the rabbit needing the bald eagle.\n\nNow we need to check another rule: \n   - If the mouse sees the lion then the mouse needs the lion.\n\nWe do not have any information about the mouse seeing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the bald eagle.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the bald eagle.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If someone needs the lion then they see the bald eagle.\n\nWe do not have any information about someone needing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the lion.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the lion.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If the lion is nice then the mouse sees the lion.\n\nWe do not have any information about the lion being nice.\n\nNow we need to check another rule: \n   - If the lion is nice then the mouse sees the lion.\n\nWe do not have any information about the lion being nice.\n\nNow we need to check another rule: \n   - If the mouse sees the lion then the mouse needs the lion.\n\nWe do not have any information about the mouse seeing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the bald eagle.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the bald eagle.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If someone needs the lion then they see the bald eagle.\n\nWe do not have any information about someone needing the lion.\n\nNow we need to check another rule: \n   - If the mouse sees the lion then the mouse needs the lion.\n\nWe do not have any information about the mouse seeing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the bald eagle.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the bald eagle.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If someone needs the lion then they see the bald eagle.\n\nWe do not have any information about someone needing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the lion.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the lion.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If the lion is nice then the mouse sees the lion.\n\nWe do not have any information about the lion being nice.\n\nNow we need to check another rule: \n   - If the lion is nice then the mouse sees the lion.\n\nWe do not have any information about the lion being nice.\n\nNow we need to check another rule: \n   - If the mouse sees the lion then the mouse needs the lion.\n\nWe do not have any information about the mouse seeing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the bald eagle.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the bald eagle.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If someone needs the lion then they see the bald eagle.\n\nWe do not have any information about someone needing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the lion.\n\nWe do not have any information about the mouse needing the lion.\n\nNow we need to check another rule: \n   - If the mouse needs the lion then they see the lion.\n\nWe do",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will use a process of deduction based on the given statements. We will break it down step by step.\n\n1. The bald eagle does not eat the mouse. \n2. The bald eagle is not rough.\n3. The bald eagle needs the lion.\n4. The bald eagle sees the lion.\n5. The lion is nice.\n6. The mouse is kind.\n7. The mouse needs the bald eagle.\n8. The mouse needs the lion.\n9. The mouse sees the lion.\n10. The rabbit eats the bald eagle.\n11. The rabbit needs the mouse.\n12. If someone eats the bald eagle and they see the bald eagle then they are big.\n13. If someone is nice and they eat the rabbit then they eat the bald eagle.\n14. If someone eats the bald eagle then they are cold.\n15. If someone needs the rabbit and they are big then the rabbit sees the mouse.\n16. If someone is cold then they need the lion.\n17. If someone is cold and big then they do not need the bald eagle.\n18. If someone needs the lion then they see the bald eagle.\n19. If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion.\n20. If the bald eagle eats the lion then the bald eagle does not see the lion.\n\nNow, let's analyze the given statements to determine whether the rabbit sees the bald eagle.\n\nFrom statement 10, we know that the rabbit eats the bald eagle. \nFrom statement 12, we know that if someone eats the bald eagle and they see the bald eagle, then they are big. \nHowever, statement 10 does not directly state that the rabbit sees the bald eagle before eating it. \n\nNow, let's analyze the possibilities based on the given statements:\n\n- If the rabbit eats the bald eagle and is big, then from statement 10, it is not directly related to the rabbit seeing the bald eagle before eating it.\n- If the rabbit eats the bald eagle and is not big, then from statement 19, the bald eagle eats the lion. But we do not have enough information to conclude that the rabbit sees the bald eagle before eating it.\n\nHowever, from statement 13, if someone is nice and they eat the rabbit, then they eat the bald eagle. Since the lion is nice (statement 5), we can use this to our advantage.\n\nFrom statement 15, if someone is cold and big, then they do not need the bald eagle. From statement 14, if someone eats the bald eagle, then they are cold. Therefore, the lion eats the rabbit (because it's nice), making the lion big. Now, the lion is cold (from statement 14) and big (from the process above).\n\nFrom statement 17, if someone is cold and big, then they do not need the bald eagle. Therefore, the lion does not need the bald eagle.\n\nFrom statement 3, the bald eagle needs the lion. Therefore, the bald eagle sees the lion (from statement 18).\n\nFrom statement 4, the bald eagle sees the lion.\n\nFrom statement 19, if the rabbit sees the bald eagle and the rabbit is not big, then the bald eagle eats the lion. Since the lion is big, this condition is not met.\n\nHowever, we have another condition from statement 11, which states that the rabbit needs the mouse. This is a crucial point in the solution.\n\nFrom statement 7, the mouse needs the bald eagle. From statement 3, the bald eagle needs the lion. Therefore, the mouse sees the lion (from statement 8).\n\nFrom statement 9, the mouse sees the lion.\n\nNow, let's analyze the rabbit's situation. The rabbit needs the mouse (statement 11). Since the mouse sees the lion (from statement 9), the mouse is not eating the bald eagle (from statement 1). Therefore, the rabbit must be eating the bald eagle (from statement 10).\n\nHowever, the rabbit's size is not explicitly stated. But from statement 15, if someone needs the rabbit and they are big, then the rabbit sees the mouse. In this case, the rabbit needs the mouse, so if the rabbit is big, it will see the mouse.\n\nNow, let's analyze the possibilities based on the given statements:\n\n- If the rabbit is big and it sees the mouse, then from statement 15, it is directly related to the rabbit needing the mouse. However, this does not directly tell us whether the rabbit sees the bald eagle.\n\nHowever, we have another condition from statement 10, which states that the rabbit eats the bald eagle. This implies that the rabbit sees the bald eagle before eating it.\n\nFrom statement 10, the rabbit eats the bald eagle.\n\nTherefore, we can conclude that the rabbit sees the bald eagle before eating it.\n\nThe final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the relationships between the animals.\n\nFrom the given statements, we can derive the following:\n\n1. The rabbit eats the bald eagle.\n2. If someone eats the bald eagle and they see the bald eagle, then they are big.\n   - From this, we can infer that the rabbit is big because it eats the bald eagle and sees it.\n\n3. If someone is nice and they eat the rabbit, then they eat the bald eagle.\n   - However, we don't have any information about someone being nice and eating the rabbit. This statement doesn't provide any direct information about the rabbit and the bald eagle relationship.\n\n4. If someone eats the bald eagle, then they are cold.\n   - Since the rabbit eats the bald eagle, it is cold.\n\n5. If someone needs the rabbit and they are big, then the rabbit sees the mouse.\n   - We don't know if anyone needs the rabbit, but we know the rabbit is big. This statement doesn't directly relate to the rabbit and the bald eagle.\n\n6. If someone is cold and big, then they do not need the bald eagle.\n   - The rabbit is both cold and big, so it does not need the bald eagle.\n\n7. If the rabbit sees the bald eagle and the rabbit is not big, then the bald eagle eats the lion.\n   - This statement is contradictory because we already know the rabbit is big.\n\n8. If the bald eagle eats the lion, then the bald eagle does not see the lion.\n   - This statement provides a relationship between the bald eagle and the lion.\n\n9. The mouse sees the lion.\n10. The lion is nice.\n11. The mouse needs the lion.\n12. The mouse is kind.\n13. The mouse needs the bald eagle.\n14. The mouse needs the lion.\n\nFrom the above statements, we can conclude that:\n\n- The rabbit is big and cold.\n- The rabbit does not need the bald eagle.\n- The mouse sees the lion.\n- The lion is nice.\n- The mouse needs the lion.\n- The mouse needs the bald eagle.\n\nNow, let's determine if the statement \"The rabbit does not see the bald eagle\" is true, false, or unknown.\n\nGiven that the rabbit is big (Statement 2) and it eats the bald eagle (Statement 1), we can infer that the rabbit sees the bald eagle. However, we also know that the rabbit is not big when it sees the bald eagle (Statement 7). This creates a contradiction.\n\nHowever, from Statement 7, we can infer that when the rabbit is not big, it sees the bald eagle. And from Statement 6, we know the rabbit is not big when it's cold, which is the case (Statement 4). But Statement 6 states that when someone is cold and big, then they do not need the bald eagle. In this case, the rabbit is cold but not big.\n\nGiven this, Statement 7 doesn't apply because the rabbit is not big, and Statement 6 does apply. From Statement 6, the rabbit does not need the bald eagle. But this does not determine if the rabbit sees the bald eagle.\n\nHowever, from Statement 1, we know the rabbit eats the bald eagle. And from Statement 2, if someone eats the bald eagle and they see the bald eagle, then they are big. So the rabbit is big because it eats the bald eagle. This creates a contradiction with Statement 6.\n\nHowever, this contradiction doesn't affect the original problem directly. We can ignore this contradiction for now.\n\nNow, let's analyze the statement \"The rabbit does not see the bald eagle\" again.\n\nGiven that the rabbit eats the bald eagle (Statement 1) and the rabbit is big (Statement 2), we can infer that the rabbit sees the bald eagle.\n\nHowever, we also know that the rabbit is not big when it sees the bald eagle (Statement 7). This creates a contradiction.\n\nHowever, from Statement 7, we can infer that when the rabbit is not big, it sees the bald eagle. And from Statement 6, we know the rabbit is not big when it's cold, which is the case (Statement 4).\n\nHowever, Statement 7 doesn't apply because the rabbit is not big, and Statement 6 does apply. From Statement 6, the rabbit does not need the bald eagle. But this does not determine if the rabbit sees the bald eagle.\n\nGiven the rabbit eats the bald eagle (Statement 1) and Statement 2, the rabbit is big. However, Statement 6 says that when someone is cold and big, they do not need the bald eagle. And the rabbit is cold (Statement 4) and big (Statement 2), so the rabbit does not need the bald eagle.\n\nHowever, from Statement 2, we know the rabbit is big because it eats the bald eagle. But Statement 6 states that when someone is cold and big, then they do not need the bald eagle.\n\nHowever, Statement 2 and Statement 6 create a contradiction because the rabbit is cold (Statement 4) and big (Statement 2).\n\nHowever, this contradiction doesn't affect the original problem directly. We can ignore this contradiction for now.\n\nNow, let's analyze the statement \"The rabbit does not see the bald eagle\" again.\n\nFrom Statement 7, we can infer that when the rabbit is not big, it sees the bald eagle. And from Statement 6, we know the rabbit is not big when it's cold, which is the case (Statement 4).\n\nHowever, Statement 7 doesn't apply because the rabbit is not big, and Statement 6 does apply. From Statement 6, the rabbit does not need the bald eagle. But this does not determine if the rabbit sees the bald eagle.\n\nHowever, from Statement 1, we know the rabbit eats the bald eagle. And from Statement 2, if someone eats the bald eagle and they see the bald eagle, then they are big.\n\nHowever, the rabbit eats the bald eagle, and Statement 2 states that the rabbit is big because it eats the bald eagle.\n\nHowever, Statement 6 states that when someone is cold and big, then they do not need the bald eagle. The rabbit is cold (Statement 4) and big (Statement 2), so the rabbit does not need the bald eagle.\n\nHowever, this doesn't determine if the rabbit sees the bald eagle.\n\nFrom Statement 1 and Statement 2, we know the rabbit eats the bald eagle and is big. However, Statement 6 states that when someone is cold and big, then they do not need the bald eagle. The rabbit is cold (Statement 4) and big (Statement 2), so the rabbit does not need the bald eagle.\n\nHowever, Statement 2 and Statement 6 create a contradiction because the rabbit is cold (Statement 4) and big (Statement 2).\n\nHowever, this contradiction doesn't affect the original problem directly. We can ignore this contradiction for now.\n\nFrom Statement 1 and Statement 2, we know the rabbit eats the bald eagle and is big. However, Statement 7 states that if the rabbit sees the bald eagle and the rabbit is not big, then the bald eagle eats the lion.\n\nHowever, we know the rabbit is big (Statement 2), so Statement 7 doesn't apply.\n\nHowever, Statement 7 implies that the rabbit is not big when it sees the bald eagle. This contradicts Statement 2, which states that the rabbit is big because it eats the bald eagle.\n\nHowever, this contradiction doesn't affect the original problem directly. We can ignore this contradiction for now.\n\nNow, let's analyze the statement \"The rabbit does not see the bald eagle\" again.\n\nFrom Statement 1 and Statement 2, we know the rabbit eats the bald eagle and is big. However, Statement 7 states that if the rabbit sees the bald eagle and the rabbit is not big, then the bald eagle eats the lion.\n\nHowever, we know the rabbit is big (Statement 2), so Statement 7 doesn't apply.\n\nHowever, Statement 7 implies that the rabbit is not big when it sees the bald eagle. This contradicts Statement 2, which states that the rabbit is big because it eats the bald eagle.\n\nHowever, this contradiction doesn't affect the original problem directly. We can ignore this contradiction for now.\n\nHowever, from Statement 1, we know the rabbit eats the bald eagle. And from Statement 2, if someone eats the bald eagle and they see the bald eagle, then they are big.\n\nHowever, Statement 7 states that if the rabbit sees the bald eagle and the rabbit is not big, then the bald eagle eats the lion.\n\nHowever, Statement 7 implies that the rabbit is not big when it sees the bald eagle. However, Statement 2 states that the rabbit is big because it eats the bald eagle.\n\nHowever, Statement 2 and Statement 7 create a contradiction because Statement 2 states that the rabbit is big because it eats the bald eagle, but Statement 7 states that the rabbit is not big when it sees the bald eagle.\n\nHowever, this contradiction doesn't affect the original problem directly. We can ignore this contradiction for now.\n\nNow, let's analyze the statement \"The rabbit does not see the bald eagle\" again.\n\nFrom Statement 1 and Statement 2, we know the rabbit eats the bald eagle and is big. However, Statement 7 states that if the rabbit sees the bald eagle and the rabbit is not big, then the bald eagle eats the lion.\n\nHowever, we know the rabbit is big (Statement 2), so Statement 7 doesn't apply.\n\nHowever, Statement 7 implies that the rabbit is not big when it sees the bald eagle. This contradicts Statement 2, which states that the rabbit is big because it eats the bald eagle.\n\nHowever, this contradiction doesn't affect the original problem directly. We can ignore this contradiction for now.\n\nHowever,",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit does not see the bald eagle\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit eats the bald eagle.\n2. If someone eats the bald eagle and they see the bald eagle then they are big.\n   This implies that the rabbit is big because it eats the bald eagle.\n3. If someone is nice and they eat the rabbit then they eat the bald eagle.\n   Since we don't know if the rabbit is nice or not, we cannot conclude this part.\n4. The rabbit needs the mouse.\n5. If someone needs the rabbit and they are big then the rabbit sees the mouse.\n   Since the rabbit is big (from statement 2), it sees the mouse.\n\nNow, let's analyze the statement \"The rabbit does not see the bald eagle\".\n\nTo determine if the rabbit sees the bald eagle, we need to look at the following statement:\n\"If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion.\"\n\nHowever, from our previous conclusions, we know that the rabbit is big (from statement 2), so this condition is not met.\n\nNow, let's look at the condition when the rabbit is big:\n\"If the rabbit sees the bald eagle, then the bald eagle eats the lion.\"\nBut the condition for this is when the rabbit is big and sees the bald eagle, not when the rabbit sees the bald eagle and is not big.\n\nThis condition is not met, so we cannot conclude the bald eagle eats the lion from the given statements.\n\nHowever, there is another condition that says:\n\"If the rabbit sees the bald eagle and the rabbit is not big then the bald eagle eats the lion.\"\n\nSince we know the rabbit is big (from statement 2), this condition is not met. \n\nHowever, we need to look at the statement \"If the rabbit sees the bald eagle then the bald eagle eats the lion\" more closely. Since the condition is \"If the rabbit sees the bald eagle and the rabbit is not big\" and since the rabbit is big, this condition is not met.\n\nHowever, we need to look at the condition \"If the rabbit sees the bald eagle and the rabbit is not big\" again. Since the condition says \"the rabbit is not big\", the statement \"the rabbit is big\" (from statement 2) does not affect this condition.\n\nNow, let's look at the condition \"If the rabbit sees the bald eagle and the rabbit is not big\". Since the rabbit sees the mouse (from statement 5), and the mouse sees the lion (from statement 6), we can infer that the rabbit also sees the lion.\n\nNow, let's look at the condition \"If the rabbit sees the bald eagle then the bald eagle eats the lion\". Since the condition is \"the rabbit sees the bald eagle and the rabbit is not big\", and since we know the rabbit sees the lion, we can infer that the condition for the bald eagle to eat the lion is met.\n\nSo, the condition \"If the rabbit sees the bald eagle then the bald eagle eats the lion\" is met.\n\nNow, let's look at the statement \"The bald eagle does not see the lion\". We know this statement is true from the given information.\n\nIf the bald eagle eats the lion, then it does not see the lion. But we know the condition for the bald eagle to eat the lion is met (from the previous step).\n\nSo, the bald eagle eats the lion.\n\nNow, let's look at the statement \"The rabbit does not see the bald eagle\".\n\nWe know that if the rabbit sees the bald eagle, then the bald eagle eats the lion. But we also know that the bald eagle eats the lion.\n\nThis implies that the condition \"if the rabbit sees the bald eagle then the bald eagle eats the lion\" is met.\n\nSo, the rabbit sees the bald eagle.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & Not(big(X)) -> eats(bald_eagle, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, Not(big_rabbit)), eats_bald_eagle_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "Not(eats(bald_eagle, lion))",
+          "z3_formula": "Not(eats_bald_eagle_lion) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & Not(big(X)) -> eats(bald_eagle, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, Not(big_rabbit)), eats_bald_eagle_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "Not(sees(rabbit, bald_eagle))",
+          "z3_formula": "Not(sees_rabbit_bald_eagle) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) & sees(X, Y) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & big(X) -> sees(X, Y)",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, big_rabbit), sees_rabbit_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, mouse)",
+          "z3_formula": "sees_rabbit_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & big(X) -> sees(Y, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, big_rabbit), sees_lion_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & big(X) -> Not(eats(X, lion))",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, big_rabbit), Not(eats_rabbit_lion))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(sees(rabbit, lion))",
+          "z3_formula": "Not(sees_rabbit_lion) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "Not(sees(X, Y)) -> Not(sees(Y, X))",
+          "z3_formula": "Implies(Not(sees_rabbit_lion), Not(sees_lion_rabbit))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(sees(lion, rabbit))",
+          "z3_formula": "Not(sees_lion_rabbit) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(sees_mouse_lion, needs_mouse_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> Not(sees(X, Y))",
+          "z3_formula": "Implies(needs_mouse_lion, Not(sees_mouse_lion))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(sees(mouse, lion))",
+          "z3_formula": "Not(sees_mouse_lion) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "Not(sees(rabbit, bald_eagle))",
+          "z3_formula": "Not(sees_rabbit_bald_eagle) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & Not(big(X)) -> eats(bald_eagle, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, Not(big_rabbit)), eats_bald_eagle_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "Not(sees(rabbit, lion))",
+          "z3_formula": "Not(sees_rabbit_lion) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & Not(big(X)) -> Not(sees(X, lion))",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, Not(big_rabbit)), Not(sees_rabbit_lion))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & Not(big(X)) -> eats(bald_eagle, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, Not(big_rabbit)), eats_bald_eagle_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(sees(rabbit, bald_eagle))",
+          "z3_formula": "Not(sees_rabbit_bald_eagle) == True",
+          "source_step": 9
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(nice_rabbit, eats_X_rabbit), eats_X_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, cold_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & big(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(And(needs_X_rabbit, big_rabbit), sees_X_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, lion)",
+          "z3_formula": "Implies(cold_rabbit, needs_rabbit_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> not needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(cold_rabbit, big_rabbit), Not(needs_rabbit_bald_eagle))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_rabbit_lion, sees_rabbit_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(rabbit, bald_eagle)",
+          "z3_formula": "Not(sees_rabbit_bald_eagle) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, mouse)",
+          "z3_formula": "eats_bald_eagle_mouse == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == False",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, lion)",
+          "z3_formula": "needs_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, bald_eagle)",
+          "z3_formula": "needs_mouse_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & eats(X, rabbit) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(nice_rabbit, eats_rabbit_rabbit), eats_rabbit_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, cold_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & big(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, big_rabbit), sees_mouse_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> needs(X, lion)",
+          "z3_formula": "Implies(cold_rabbit, needs_rabbit_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> not needs(X, bald_eagle)",
+          "z3_formula": "Implies(And(cold_rabbit, big_rabbit), Not(needs_rabbit_bald_eagle))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_rabbit_lion, sees_bald_eagle_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & not big(X) -> eats(X, lion)",
+          "z3_formula": "Implies(And(sees_rabbit_bald_eagle, Not(big_rabbit)), eats_bald_eagle_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not sees(X, lion)",
+          "z3_formula": "Implies(eats_bald_eagle_lion, Not(sees_bald_eagle_lion))",
+          "source_step": 20
+        }
+      ],
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, cold_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & big(X) -> not(need(X, bald_eagle))",
+          "z3_formula": "Implies(And(cold_rabbit, big_rabbit), Not(need_rabbit_bald_eagle))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(see(rabbit, bald_eagle))",
+          "z3_formula": "Not(see_rabbit_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "see(X, bald_eagle) & not(big(X)) -> eats(bald_eagle, lion)",
+          "z3_formula": "Implies(And(see_rabbit_bald_eagle, Not(big_rabbit)), eats_bald_eagle_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(bald_eagle, lion) -> not(see(bald_eagle, lion))",
+          "z3_formula": "Implies(eats_bald_eagle_lion, Not(see_bald_eagle_lion))",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "see(mouse, lion)",
+          "z3_formula": "see_mouse_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(lion)",
+          "z3_formula": "nice_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "need(mouse, lion)",
+          "z3_formula": "need_mouse_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "need(mouse, bald_eagle)",
+          "z3_formula": "need_mouse_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "need(mouse, lion)",
+          "z3_formula": "need_mouse_lion == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) & sees(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(And(eats_rabbit_bald_eagle, sees_rabbit_bald_eagle), big_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, mouse)",
+          "z3_formula": "needs_rabbit_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) & big(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(And(needs_rabbit_mouse, big_rabbit), sees_rabbit_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, mouse)",
+          "z3_formula": "sees_rabbit_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> eats(bald_eagle, lion)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, eats_bald_eagle_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "eats(bald_eagle, lion)",
+          "z3_formula": "eats_bald_eagle_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(sees_rabbit_lion, sees_rabbit_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> eats(bald_eagle, lion)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, eats_bald_eagle_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "eats(bald_eagle, lion)",
+          "z3_formula": "eats_bald_eagle_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(bald_eagle, lion)",
+          "z3_formula": "not_sees_bald_eagle_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> not sees(X, lion)",
+          "z3_formula": "Implies(eats_bald_eagle_lion, not_sees_bald_eagle_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(bald_eagle, lion)",
+          "z3_formula": "not_sees_bald_eagle_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) -> eats(bald_eagle, lion)",
+          "z3_formula": "Implies(sees_rabbit_bald_eagle, eats_bald_eagle_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, bald_eagle)",
+          "z3_formula": "sees_rabbit_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(rabbit, bald_eagle)",
+          "z3_formula": "not_sees_rabbit_bald_eagle == False",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 106,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 55
+    },
+    "maxsat_stats": {
+      "satisfied": 50,
+      "excluded": 5,
+      "total_weight": 97,
+      "solve_time_ms": 1.885787583887577
+    },
+    "timing": {
+      "trace_gen_s": 25.182,
+      "extraction_s": 41.492,
+      "dedup_s": 1.227,
+      "maxsat_s": 0.005,
+      "total_s": 67.906
+    }
+  }
+}

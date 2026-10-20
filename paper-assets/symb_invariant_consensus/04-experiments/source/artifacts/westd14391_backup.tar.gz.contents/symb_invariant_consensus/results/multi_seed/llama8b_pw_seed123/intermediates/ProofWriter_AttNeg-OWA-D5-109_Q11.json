@@ -1,0 +1,1290 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-109_Q11",
+    "problem": "Anne is green. Anne is rough. Bob is green. Bob is round. Dave is green. Dave is rough. Fiona is cold. All kind things are furry. Green things are round. If something is cold then it is kind. If something is furry then it is green. If Dave is quiet then Dave is not furry. Round things are not quiet. If something is quiet and not kind then it is not rough. All round, cold things are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is rough.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\nFurry($x, bool) ::: Is x furry?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nRough(Anne, True) ::: Anne is rough.\nGreen(Bob, True) ::: Bob is green.\nRound(Bob, True) ::: Bob is round.\nGreen(Dave, True) ::: Dave is green.\nRough(Dave, True) ::: Dave is rough.\nCold(Fiona, True) ::: Fiona is cold.\n\nRules:\nKind($x, True) >>> Furry($x, True) ::: All kind things are furry.\nGreen($x, True) >>> Round($x, True) ::: Green things are round.\nCold($x, True) >>> Kind($x, True) ::: If something is cold then it is kind.\nFurry($x, True) >>> Green($x, True) ::: If something is furry then it is green.\nQuiet(Dave, True) >>> Furry(Dave, False) ::: If Dave is quiet then Dave is not furry.\nRound($x, True) >>> Quiet($x, False) ::: Round things are not quiet.\nQuiet($x, True) && Kind($x, False) >>> Rough($x, False) ::: If something is quiet and not kind then it is not rough.\nRound($x, True) && Cold($x, True) >>> Rough($x, True) ::: All round, cold things are rough.\n\nQuery:\nRough(Fiona, True) ::: Fiona is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 85.0,
+      "True": 178.5,
+      "Unknown": 93.0
+    },
+    "answer_counts": {
+      "True": 10,
+      "False": 1,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nGiven information:\n\n1. Anne is green. \n2. Anne is rough. \n3. Bob is green. \n4. Bob is round. \n5. Dave is green. \n6. Dave is rough. \n7. Fiona is cold. \n8. All kind things are furry. \n9. Green things are round. \n10. If something is cold then it is kind. \n11. If something is furry then it is green. \n12. If Dave is quiet then Dave is not furry. \n13. Round things are not quiet. \n14. If something is quiet and not kind then it is not rough. \n15. All round, cold things are rough.\n\nNow, we need to analyze the statement \"Fiona is rough.\" To do this, let's analyze the given information about Fiona:\n\n1. Fiona is cold. (statement 7)\n\nFrom statement 10, if something is cold then it is kind. \n\n2. Fiona is kind. \n\nSince Fiona is kind, we can infer from statement 8 that Fiona is furry. \n\n3. Fiona is furry.\n\nFrom statement 11, if something is furry then it is green. \n\n4. Fiona is green.\n\nNow, we have two possible scenarios:\n\nScenario 1: Fiona is round. \nScenario 2: Fiona is not round.\n\nLet's analyze Scenario 1: Fiona is round.\n\nFrom statement 9, green things are round. However, this does not imply that Fiona is round, only that green things can be round. To determine whether Fiona is round, we need more information.\n\nHowever, since Fiona is round, from statement 13, Round things are not quiet.\n\nWe do not know if Fiona is quiet or not. Therefore, we cannot determine if Fiona is rough or not based on this scenario.\n\nLet's analyze Scenario 2: Fiona is not round.\n\nIn this case, Fiona is not round. We cannot directly conclude that Fiona is rough or not.\n\nHowever, from statement 14, if something is quiet and not kind then it is not rough. \n\nSince we do not know if Fiona is quiet or not, we cannot determine if Fiona is rough or not.\n\nNow, let's look at statement 15: All round, cold things are rough.\n\nSince Fiona is cold, if Fiona is round, then Fiona is rough. However, since we do not know if Fiona is round, we cannot conclude that Fiona is rough.\n\nHowever, from statement 14, if something is quiet and not kind then it is not rough. \n\nWe know that Fiona is kind. We also know that Fiona is not round. We cannot conclude that Fiona is quiet or not. However, if Fiona is quiet and not kind, then Fiona is not rough. However, since Fiona is kind, this is not the case.\n\nHowever, statement 15 provides another option. All round, cold things are rough.\n\nSince Fiona is cold, if Fiona is round, then Fiona is rough.\n\nHowever, we cannot conclude that Fiona is round. Therefore, we cannot conclude that Fiona is rough or not.\n\nSince we cannot determine if Fiona is round or not, we cannot conclude that Fiona is rough or not.\n\nHowever, from statement 14, if something is quiet and not kind then it is not rough. \n\nWe know that Fiona is kind. We also know that Fiona is not round. We cannot conclude that Fiona is quiet or not. However, if Fiona is quiet and not kind, then Fiona is not rough. However, since Fiona is kind, this is not the case.\n\nHowever, statement 15 provides another option. All round, cold things are rough.\n\nSince Fiona is cold, if Fiona is round, then Fiona is rough.\n\nHowever, we cannot conclude that Fiona is round. Therefore, we cannot conclude that Fiona is rough or not.\n\nHowever, statement 15 provides another option. All round, cold things are rough.\n\nSince Fiona is cold, if Fiona is round, then Fiona is rough.\n\nHowever, we cannot conclude that Fiona is round. Therefore, we cannot conclude that Fiona is rough or not.\n\nFrom statement 15, we can conclude that Fiona is rough if Fiona is round and cold. However, we do not know if Fiona is round.\n\nWe cannot conclude that Fiona is round or not. However, we can conclude that Fiona is cold.\n\nWe also know that Fiona is kind.\n\nFrom statement 14, if something is quiet and not kind then it is not rough. \n\nWe know that Fiona is kind. However, this does not tell us anything about Fiona being quiet or rough.\n\nFrom statement 14, if something is quiet and not kind then it is not rough. \n\nWe know that Fiona is kind. However, this does not tell us anything about Fiona being quiet or rough.\n\nHowever, since we cannot determine if Fiona is round or not, we cannot conclude that Fiona is rough or not.\n\nHowever, we can analyze the information about Fiona in a different way.\n\nSince Fiona is cold and kind, from statement 11, if something is furry then it is green.\n\nFiona is furry, therefore Fiona is green.\n\nFrom statement 9, green things are round. \n\nSince Fiona is green, Fiona is round.\n\nFrom statement 13, Round things are not quiet.\n\nSince Fiona is round, Fiona is not quiet.\n\nFrom statement 15, All round, cold things are rough.\n\nSince Fiona is round and cold, Fiona is rough.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is cold. \n   - This statement is given directly.\n\n2. All kind things are furry. \n   - Since Fiona is cold, we can deduce that Fiona is kind (from the given information: \"If something is cold then it is kind\").\n\n3. If something is furry then it is green. \n   - This statement is given directly. However, we cannot directly conclude that Fiona is green because we don't know if Fiona is furry.\n\n4. Dave is green. Dave is rough. \n   - This statement is given directly, but it does not provide any information about Fiona.\n\n5. Green things are round. \n   - This statement is given directly.\n\n6. If something is quiet and not kind then it is not rough. \n   - This statement is given directly, but it does not provide any information about Fiona.\n\n7. Round things are not quiet. \n   - This statement is given directly.\n\n8. All round, cold things are rough. \n   - This statement is given directly.\n\nNow, let's analyze Fiona's characteristics:\n\n- Fiona is cold (given).\n- We know Fiona is kind (from step 2).\n- We know Fiona is not round because if Fiona were round, then Fiona would be rough (from step 8). However, we don't know if Fiona is rough yet.\n\nFrom step 5, we know that green things are round. However, since Fiona is not round, Fiona cannot be green.\n\nHowever, we also know that green things are round (from step 5), but green things are round only if they are furry (from step 3 and step 5). But since we don't know if Fiona is furry, we can't conclude if Fiona is green.\n\nHowever, we can conclude that Fiona is not green because Fiona is not round (from step 5).\n\nBut the conclusion that Fiona is not round also tells us that Fiona is not rough (from step 8).\n\nTherefore, we can conclude that Fiona is not rough.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether Fiona is rough, we need to analyze the given statements and their relationships.\n\n1. Fiona is cold. (Statement 1)\n2. All kind things are furry. (Statement 2)\n3. If something is cold then it is kind. (Statement 3)\n4. If something is furry then it is green. (Statement 4)\n5. If Dave is quiet then Dave is not furry. (Statement 5)\n6. Round things are not quiet. (Statement 6)\n7. Green things are round. (Statement 7)\n8. If something is quiet and not kind then it is not rough. (Statement 8)\n9. All round, cold things are rough. (Statement 9)\n\nFrom Statement 1, we know Fiona is cold.\n\nFrom Statement 3, since Fiona is cold, Fiona is kind.\n\nNow, since Fiona is kind (from Statement 1 and 3), we can use Statement 2, which states that all kind things are furry. Therefore, Fiona is furry.\n\nNow, from Statement 4, since Fiona is furry, Fiona is green.\n\nFrom Statement 7, since green things are round, Fiona is round.\n\nNow, from Statement 6, since round things are not quiet, Fiona is not quiet.\n\nHowever, we cannot directly conclude whether Fiona is rough or not from the given statements. But we can try to use Statement 9 to determine this.\n\nStatement 9 states that all round, cold things are rough. Since Fiona is round (from Statement 7) and cold (from Statement 1), we can apply Statement 9. Therefore, Fiona is rough.\n\nSo, the final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Fiona is cold. (Given)\n2. All kind things are furry. (Given)\n3. If something is cold then it is kind. (Given)\nFrom (1) and (3), we can conclude that Fiona is kind. Since Fiona is kind, we can apply rule (2) which states that all kind things are furry. Therefore, Fiona is furry.\n\n4. If something is furry then it is green. (Given)\nFrom (4), we can conclude that Fiona is green.\n\n5. Green things are round. (Given)\nFrom (5), we can conclude that Fiona is round.\n\n6. Round things are not quiet. (Given)\nSince Fiona is round, we can apply rule (6) and conclude that Fiona is not quiet.\n\n7. If something is quiet and not kind then it is not rough. (Given)\nWe know Fiona is not quiet and is kind. Therefore, we cannot conclude that Fiona is not rough based on this rule.\n\n8. All round, cold things are rough. (Given)\nWe know Fiona is round and cold. Therefore, we can apply rule (8) and conclude that Fiona is rough.\n\nBased on our analysis, we have found that Fiona is indeed rough. Therefore, the statement \"Fiona is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether Fiona is rough, we need to analyze the given statements and use the process of elimination.\n\n1. All kind things are furry. \n   Since Fiona is cold (Statement 7), and we know that if something is cold then it is kind (Statement 8), Fiona must be kind.\n\n2. Since Fiona is kind, we can conclude that Fiona is furry (Statement 1).\n\n3. Green things are round (Statement 4). \n   However, Fiona is cold (Statement 7), and we know that cold things are kind (Statement 8), but we cannot conclude Fiona's color yet.\n\n4. If something is furry then it is green (Statement 9). \n   We know Fiona is furry (Statement 2), so Fiona must be green.\n\n5. Green things are round (Statement 4). \n   Since Fiona is green, Fiona must be round.\n\n6. Round things are not quiet (Statement 10). \n   Since Fiona is round, Fiona must not be quiet.\n\n7. If something is quiet and not kind then it is not rough (Statement 11). \n   We know Fiona is not quiet (Statement 6), so we cannot conclude Fiona's roughness yet.\n\n8. All round, cold things are rough (Statement 12). \n   Since Fiona is round and cold, Fiona must be rough.\n\nTherefore, based on the given statements, Fiona is rough.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Fiona is rough, we need to analyze the given statements and the conditions that lead to 'Fiona is rough'. We'll use the process of elimination and logical deductions to find the answer.\n\n1. Given statements:\n   - Anne is green. \n   - Anne is rough. \n   - Bob is green. \n   - Bob is round. \n   - Dave is green. \n   - Dave is rough. \n   - Fiona is cold. \n   - All kind things are furry. \n   - Green things are round. \n   - If something is cold then it is kind. \n   - If something is furry then it is green. \n   - If Dave is quiet then Dave is not furry. \n   - Round things are not quiet. \n   - If something is quiet and not kind then it is not rough. \n   - All round, cold things are rough.\n\n2. From 'All kind things are furry' and 'Fiona is cold', we can deduce that Fiona is kind (because if something is cold then it is kind).\n   - Therefore, Fiona is kind.\n\n3. From 'If something is furry then it is green' and 'Fiona is kind', we can deduce that Fiona is green (because if Fiona is kind and all kind things are furry, then Fiona is furry, and hence Fiona is green).\n   - Therefore, Fiona is green.\n\n4. From 'Green things are round', we can deduce that Fiona is round (because Fiona is green).\n   - Therefore, Fiona is round.\n\n5. From 'Round things are not quiet', we can deduce that Fiona is not quiet (because Fiona is round).\n   - Therefore, Fiona is not quiet.\n\n6. From 'If something is quiet and not kind then it is not rough', we know that Fiona is not quiet and Fiona is kind. Hence, we cannot directly conclude whether Fiona is rough or not from this statement alone.\n\n7. However, we have one more statement: 'All round, cold things are rough'. Since Fiona is round and cold, we can apply this statement directly to Fiona.\n   - Therefore, Fiona is rough.\n\nSo, based on our analysis, we conclude that Fiona is rough.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to use the given information and logical deductions.\n\nGiven Information:\n\n1. Anne is green. Anne is rough. (This information is not directly relevant to Fiona, so we'll ignore it.)\n2. Bob is green. Bob is round. (This information is not directly relevant to Fiona, so we'll ignore it.)\n3. Dave is green. Dave is rough. (This information is not directly relevant to Fiona, so we'll ignore it.)\n4. Fiona is cold. (This is the only information directly related to Fiona, but it's not enough to determine whether she's rough.)\n5. All kind things are furry. (We don't know Fiona's kind status yet, so we'll keep this in mind.)\n6. Green things are round. (We don't know Fiona's color yet, so we'll keep this in mind.)\n7. If something is cold then it is kind. (We can use this to make an inference about Fiona's kind status.)\n8. If something is furry then it is green. (We don't know Fiona's fur status yet, so we'll keep this in mind.)\n9. If Dave is quiet then Dave is not furry. (This information is not directly relevant to Fiona, so we'll ignore it.)\n10. Round things are not quiet. (We don't know Fiona's round status yet, so we'll keep this in mind.)\n11. If something is quiet and not kind then it is not rough. (We don't know Fiona's quiet status yet, so we'll keep this in mind.)\n12. All round, cold things are rough. (We can use this to make an inference about Fiona's rough status.)\n\nNow, let's make some inferences:\n\nFrom (4), we know Fiona is cold.\nFrom (7), we can infer that Fiona is kind, since cold things are kind.\n\nNow we know Fiona is kind. From (5), we can infer that Fiona is furry, since kind things are furry.\n\nFrom (8), we can infer that Fiona is green, since furry things are green.\n\nFrom (6), we can infer that Fiona is round, since green things are round.\n\nNow we know Fiona is round and cold. From (12), we can infer that Fiona is rough, since round, cold things are rough.\n\nTherefore, the statement \"Fiona is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Fiona is rough, we need to analyze the given information step by step.\n\n1. Fiona is cold. (Given)\n2. All kind things are furry. (Given)\n3. If something is cold then it is kind. (Given)\n   - From this rule, we can conclude that Fiona is kind because it is cold.\n   - Since Fiona is kind, it must be furry, as per rule 2.\n\n4. If something is furry then it is green. (Given)\n   - Since Fiona is furry, it must be green.\n\n5. Green things are round. (Given)\n   - Since Fiona is green, it must be round.\n\n6. Round things are not quiet. (Given)\n   - Since Fiona is round, it cannot be quiet.\n\n7. If something is quiet and not kind then it is not rough. (Given)\n   - Since Fiona is not quiet and is kind, this rule does not apply to Fiona.\n\n8. All round, cold things are rough. (Given)\n   - Since Fiona is round and cold, this rule applies to Fiona.\n\nFrom steps 8 and the fact that Fiona is round and cold, we can conclude that Fiona is indeed rough.\n\nTherefore, the statement \"Fiona is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. We know that Fiona is cold.\n2. From the given information, \"If something is cold then it is kind.\" Therefore, Fiona is kind.\n3. We also know that \"If something is quiet and not kind then it is not rough.\" However, we cannot determine if Fiona is quiet or not based on the given information. Therefore, we cannot directly conclude anything from this statement.\n4. However, we can infer that since Fiona is cold (and thus kind), and all kind things are furry, Fiona is furry.\n5. From the given information, \"If something is furry then it is green.\" Therefore, Fiona is green.\n6. We know that \"Green things are round.\" Therefore, Fiona is round.\n7. We also know that \"Round things are not quiet.\" Therefore, Fiona is not quiet.\n8. Now, let's look at the statement \"All round, cold things are rough.\" Since Fiona is round and cold, this statement implies that Fiona is rough.\n\nTherefore, based on the given information, we can conclude that Fiona is rough.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Fiona is rough, we need to analyze the given statements and apply the rules step by step.\n\n1. Fiona is cold. (Given)\n2. If something is cold then it is kind. (Rule 3)\n   From 1 and 2, we can conclude that Fiona is kind.\n\n3. All kind things are furry. (Rule 4)\n   From 2 and 3, we can conclude that Fiona is furry.\n\n4. If something is furry then it is green. (Rule 5)\n   From 3 and 4, we can conclude that Fiona is green.\n\n5. Green things are round. (Rule 6)\n   From 4 and 5, we can conclude that Fiona is round.\n\n6. Round things are not quiet. (Rule 8)\n   From 5 and 6, we can conclude that Fiona is not quiet.\n\n7. If something is quiet and not kind then it is not rough. (Rule 9)\n   Since Fiona is not quiet (from 6) and we can't conclude whether Fiona is kind (from 2) or not, we can't determine whether Fiona is rough from this rule.\n\nHowever, we can conclude the following:\n- Fiona is round (from 5 and 6).\n- All round, cold things are rough. (Rule 10)\n  From 1 and this rule, we can conclude that Fiona is rough.\n\nThe final answer is \\boxed{True}.",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given conditions and rules step by step.\n\n1. We are given the following conditions:\n   - Anne is green.\n   - Anne is rough.\n   - Bob is green.\n   - Bob is round.\n   - Dave is green.\n   - Dave is rough.\n   - Fiona is cold.\n   - All kind things are furry.\n   - Green things are round.\n   - If something is cold then it is kind.\n   - If something is furry then it is green.\n   - If Dave is quiet then Dave is not furry.\n   - Round things are not quiet.\n   - If something is quiet and not kind then it is not rough.\n   - All round, cold things are rough.\n\n2. We can deduce the following information from the given conditions:\n   - From the condition 'If something is cold then it is kind', we know that Fiona is kind since she is cold.\n   - From the condition 'If something is furry then it is green', and 'All kind things are furry', we know that Fiona is green since she is kind and furry.\n\n3. Now, let's analyze the condition 'Fiona is rough'. To determine if this is true, false, or unknown, we need to apply the conditions and rules.\n\n4. From the condition 'Green things are round' and 'Fiona is green', we know that Fiona is round.\n\n5. From the condition 'Round things are not quiet', we know that Fiona is not quiet.\n\n6. From the condition 'If something is quiet and not kind then it is not rough', we know that Fiona is rough because Fiona is not quiet and is kind.\n\n7. However, we can also use another condition to determine if Fiona is rough. From the condition 'All round, cold things are rough' and 'Fiona is round and cold', we know that Fiona is rough.\n\nSince both conditions lead to the same conclusion that Fiona is rough, we can confidently say that the statement 'Fiona is rough' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is rough\" is true, false, or unknown, we need to analyze the given information and use the process of elimination.\n\n1. We know that Fiona is cold. \n2. We know that cold things are kind. \n3. From the given information, we can conclude that Fiona is kind because she is cold. \n4. We also know that kind things are furry. \n5. So, Fiona is furry. \n6. However, we also know that round things are not quiet, and furry things are green. \n7. From the given information, we cannot directly conclude that Fiona is round or green. \n8. But we can use the fact that green things are round. \n9. If Fiona is green, then she is round. \n10. However, this is a circular reasoning because we are using the fact that green things are round, which is the same fact we are trying to prove. \n11. Therefore, we cannot conclude that Fiona is round or green from the given information.\n\n12. Now, let's examine the statement \"All round, cold things are rough.\" \n13. We know that Fiona is cold. \n14. However, we cannot conclude that Fiona is round from the given information. \n15. Therefore, we cannot determine whether the statement \"Fiona is rough\" is true or false.\n\nThe statement \"Fiona is rough\" is unknown because we cannot determine its truth value from the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_fiona, furry_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_fiona, round_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_fiona, kind_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> not round(X)",
+          "z3_formula": "Implies(quiet_fiona, not round_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), rough_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not kind(X) -> not rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, not kind_fiona), not rough_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "not quiet_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_fiona, kind_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_fiona, round_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(kind(X)) -> Not(rough(X))",
+          "z3_formula": "Implies(And(quiet_fiona, Not(kind_fiona)), Not(rough_fiona))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(round_fiona, Not(quiet_fiona))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), rough_fiona)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_fiona, furry_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(Dave) -> Not(furry(Dave))",
+          "z3_formula": "Implies(quiet_Dave, Not(furry_Dave))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(round_fiona, Not(quiet_fiona))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_fiona, round_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(kind(X)) -> Not(rough(X))",
+          "z3_formula": "Implies(And(quiet_fiona, Not(kind_fiona)), Not(rough_fiona))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), rough_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_fiona, furry_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_fiona, round_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(round_fiona, Not(quiet_fiona))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(fiona))",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(kind(X)) -> Not(rough(X))",
+          "z3_formula": "Implies(And(quiet_fiona, Not(kind_fiona)), Not(rough_fiona))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona) == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), rough_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_fiona, kind_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_fiona, furry_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_fiona, round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(round_fiona, Not(quiet_fiona))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(fiona))",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & Not(kind(X)) -> Not(rough(X))",
+          "z3_formula": "Implies(And(quiet_fiona, Not(kind_fiona)), Not(rough_fiona))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), rough_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_anne, furry_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_fiona, furry_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_bob, round_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_dave, round_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_fiona, round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_fiona, kind_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> not furry(X)",
+          "z3_formula": "Implies(quiet_dave, not furry_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not quiet(X)",
+          "z3_formula": "Implies(round_bob, not quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not quiet(X)",
+          "z3_formula": "Implies(round_dave, not quiet_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not quiet(X)",
+          "z3_formula": "Implies(round_fiona, not quiet_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & not kind(X) -> not rough(X)",
+          "z3_formula": "Implies(And(quiet_dave, not kind_dave), not rough_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), rough_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "not quiet_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_fiona, kind_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_fiona, furry_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_fiona, round_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona) & cold(fiona)",
+          "z3_formula": "And(round_fiona, cold_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), rough_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_fiona, furry_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_fiona, round_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(round_fiona, Not(quiet_fiona))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(kind(X)) -> Not(rough(X))",
+          "z3_formula": "Implies(And(quiet_fiona, Not(kind_fiona)), Not(rough_fiona))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(fiona))",
+          "z3_formula": "Not(quiet_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), rough_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_fiona, kind_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(kind(X)) -> Not(rough(X))",
+          "z3_formula": "Implies(And(quiet_fiona, Not(kind_fiona)), Not(rough_fiona))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_fiona, furry_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_fiona, round_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(round_fiona, Not(quiet_fiona))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(fiona))",
+          "z3_formula": "Not(quiet_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), rough_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_fiona, kind_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_fiona, furry_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_fiona, round_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(round_fiona, Not(quiet_fiona))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(fiona))",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(kind(X)) -> Not(rough(X))",
+          "z3_formula": "Implies(And(quiet_fiona, Not(kind_fiona)), Not(rough_fiona))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "Not(quiet(fiona))",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(kind(fiona))",
+          "z3_formula": "Not(kind_fiona) == Unknown",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona) == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), rough_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_fiona, furry_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_fiona, round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_fiona, kind_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(dave) -> Not(furry(dave))",
+          "z3_formula": "Implies(quiet_dave, Not(furry_dave))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(round_fiona, Not(quiet_fiona))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & Not(kind(X)) -> Not(rough(X))",
+          "z3_formula": "Implies(And(quiet_fiona, Not(kind_fiona)), Not(rough_fiona))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_fiona, cold_fiona), rough_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(fiona))",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_fiona, kind_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_fiona, furry_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(round_fiona, Not(quiet_fiona))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_fiona, round_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona) | Not(round(fiona))",
+          "z3_formula": "Or(round_fiona, Not(round_fiona))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona) | Not(green(fiona))",
+          "z3_formula": "Or(green_fiona, Not(green_fiona))",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> rough(X)",
+          "z3_formula": "Implies(round_fiona, rough_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona)) | Not(rough(fiona))",
+          "z3_formula": "Or(Not(round_fiona), Not(rough_fiona))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona)) | Not(rough(fiona))",
+          "z3_formula": "Or(Not(round_fiona), Not(rough_fiona))",
+          "source_step": 15
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 193,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 33
+    },
+    "maxsat_stats": {
+      "satisfied": 31,
+      "excluded": 2,
+      "total_weight": 181,
+      "solve_time_ms": 1.5274332836270332
+    },
+    "timing": {
+      "trace_gen_s": 13.505,
+      "extraction_s": 28.717,
+      "dedup_s": 1.393,
+      "maxsat_s": 0.003,
+      "total_s": 43.618
+    }
+  }
+}

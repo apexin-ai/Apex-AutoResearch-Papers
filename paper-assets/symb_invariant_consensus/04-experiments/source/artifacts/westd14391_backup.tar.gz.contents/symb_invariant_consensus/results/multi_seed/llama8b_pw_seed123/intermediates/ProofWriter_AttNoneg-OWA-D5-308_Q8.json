@@ -1,0 +1,1013 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-308_Q8",
+    "problem": "Anne is cold. Anne is young. Charlie is cold. Erin is big. Fiona is blue. Fiona is red. Fiona is smart. If something is big and young then it is smart. If something is big and red then it is young. All cold things are red. If something is green then it is cold. If Anne is blue and Anne is smart then Anne is young. All smart, young things are green. If something is red and big then it is young. If something is big then it is young.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not green.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nSmart($x, bool) ::: Is x smart?\nRed($x, bool) ::: Is x red?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nYoung(Anne, True) ::: Anne is young.\nCold(Charlie, True) ::: Charlie is cold.\nBig(Erin, True) ::: Erin is big.\nBlue(Fiona, True) ::: Fiona is blue.\nRed(Fiona, True) ::: Fiona is red.\nSmart(Fiona, True) ::: Fiona is smart.\n\nRules:\nBig($x, True) && Young($x, True) >>> Smart($x, True) ::: If something is big and young then it is smart.\nBig($x, True) && Red($x, True) >>> Young($x, True) ::: If something is big and red then it is young.\nCold($x, True) >>> Red($x, True) ::: All cold things are red.\nGreen($x, True) >>> Cold($x, True) ::: If something is green then it is cold.\nBlue(Anne, True) && Smart(Anne, True) >>> Young(Anne, True) ::: If Anne is blue and Anne is smart then Anne is young.\nSmart($x, True) && Young($x, True) >>> Green($x, True) ::: All smart, young things are green.\nRed($x, True) && Big($x, True) >>> Young($x, True) ::: If something is red and big then it is young.\nBig($x, True) >>> Young($x, True) ::: If something is big then it is young.\n\nQuery:\nGreen(Erin, False) ::: Erin is not green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 132.5,
+      "True": 38.0,
+      "Unknown": 86.5
+    },
+    "answer_counts": {
+      "Unknown": 2,
+      "False": 9,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Erin is not green, we need to analyze the given statements and find the information related to Erin.\n\n1. Erin is big. (From the problem statement)\n2. If something is big and young then it is smart. (From the problem statement)\n3. If something is big and red then it is young. (From the problem statement)\n4. All cold things are red. (From the problem statement)\n5. If something is green then it is cold. (From the problem statement)\n\nFrom statement 1, we know Erin is big. \n\nNow, let's find the relationship between big and young. We have two statements related to this:\n- If something is big and young then it is smart.\n- If something is big and red then it is young.\n\nStatement 5 is not directly related to Erin, but we can use it to find the color of Erin, which will help us determine whether Erin is green or not.\n\nFrom statement 5, we know that if something is green then it is cold. However, statement 4 tells us that all cold things are red. This means if something is green, then it is not red.\n\nHowever, statement 4 also tells us that all cold things are red. And statement 3 tells us that if something is big and red then it is young.\n\nThis means, if Erin is young, then it is red.\n\nNow, let's analyze the possible colors of Erin:\n- If Erin is red, then it is young. (From statement 3)\n- If Erin is young, then it is red or green. (From statement 1 and the relationship between big and young)\n- If Erin is green, then it is cold. (From statement 5)\n- If Erin is cold, then it is red. (From statement 4)\n\nWe have a circular relationship here. We can conclude that Erin is either red or green.\n\nNow, let's determine whether Erin is green or not. If Erin is green, then it is cold. And if it is cold, then it is red. This creates a contradiction, as Erin cannot be both green and red at the same time.\n\nHowever, we cannot conclude that Erin is definitely not green. We can only say that Erin is not green if we can find a contradiction with the statement \"Erin is green.\" But we cannot find such a contradiction.\n\nTherefore, we cannot conclude whether Erin is not green or not. The answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will use logical deductions based on the given statements.\n\n1. We are given the following statements:\n   - Anne is cold.\n   - Anne is young.\n   - Charlie is cold.\n   - Erin is big.\n   - Fiona is blue.\n   - Fiona is red.\n   - Fiona is smart.\n   - If something is big and young then it is smart.\n   - If something is big and red then it is young.\n   - All cold things are red.\n   - If something is green then it is cold.\n   - If Anne is blue and Anne is smart then Anne is young.\n   - All smart, young things are green.\n   - If something is red and big then it is young.\n   - If something is big then it is young.\n\n2. We will start by analyzing the statement: \"Erin is not green.\"\n\n   To determine if this statement is true or false, we need to find out if Erin is green or not.\n\n3. From statement 8, we know that \"If something is green then it is cold.\"\n   But we don't have any information about Erin being cold or not.\n\n4. From statement 1, we know that \"Anne is cold.\"\n   Since Anne is cold, we can deduce from statement 3 that \"All cold things are red.\"\n   This means Anne is red.\n\n5. From statement 6, we know that \"Fiona is red.\"\n   Since Fiona is red, we can deduce from statement 7 that \"If something is red and big then it is young.\"\n   However, this information doesn't directly relate to Erin.\n\n6. From statement 5, we know that \"Fiona is blue.\"\n   But we also know that \"Fiona is red.\" \n   This creates a contradiction, and we cannot determine Fiona's color. However, this information is not directly related to Erin.\n\n7. From statement 9, we know that \"If something is big then it is young.\"\n   Since Erin is big (statement 4), we can conclude that Erin is young.\n\n8. Now we need to find out if Erin is green or not.\n\n   From statement 7, we know that \"All smart, young things are green.\"\n   But we also know that \"Fiona is smart\" (statement 6) and \"Fiona is young\" (from step 7).\n   Since Fiona is young and smart, we can deduce that Fiona is green.\n\n9. From statement 10, we know that \"If Anne is blue and Anne is smart then Anne is young.\"\n   Since Anne is smart (from statement 6) and blue (statement 5), we can conclude that Anne is young (from statement 2).\n\n10. From statement 2, we know that \"Anne is young.\"\n    Since Anne is young, we can deduce from statement 8 that \"All smart, young things are green.\"\n    This means Anne is green.\n\n11. Now we know that Anne is green (from step 10) and Erin is young (from step 7).\n    Since Erin is young, we can deduce from statement 8 that \"All big and young things are smart.\"\n    This means Erin is smart.\n\n12. From statement 11, we know that Erin is young and smart.\n    Since Erin is young and smart, we can deduce from statement 7 that \"All young and smart things are green.\"\n\n13. Now we have a contradiction between steps 10 and 12.\n   From step 10, we know that Anne is green.\n   From step 12, we know that all young and smart things are green.\n   Since Erin is young and smart (from step 11), we can conclude that Erin is also green.\n\n14. Based on the analysis above, we can conclude that the statement \"Erin is not green\" is FALSE.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not green\" is true, false, or unknown, we need to analyze the given information and apply it to Erin.\n\n1. Erin is big. (Given)\n2. If something is big, then it is young. (Rule 8)\n   So, Erin is young. (From rule 8)\n\n3. If something is young and big, then it is smart. (Rule 1)\n   So, Erin is smart. (From rule 1)\n\n4. If something is smart and young, then it is green. (Rule 10)\n   So, Erin is green. (From rule 10)\n\nNow, let's examine the statement: \"Erin is not green.\"\n\nSince we've found that Erin is indeed green (Step 4), the statement \"Erin is not green\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not green\" is true, false, or unknown, we need to analyze the given information and the relationships between the characteristics of the individuals.\n\n1. Erin is big. (Given)\n2. If something is big, then it is young. (Rule 1)\n   So, Erin is young. (Inference)\n\nNow, let's consider the statement \"Erin is not green.\" To evaluate this statement, we need to find out if Erin is green or not.\n\n3. If something is green, then it is cold. (Rule 6)\n   If something is cold, then it is red. (Rule 3)\n   So, if something is green, then it is red. (Inference)\n4. Erin is young. (Inference from Rule 1)\n   We also know that all smart, young things are green. (Rule 7)\n   But we don't know if Erin is smart or not. (Unknown)\n   If Erin is not smart, then we can't conclude that Erin is green. (Unknown)\n   However, if Erin is smart, then Erin is green. (Inference)\n\nNow, we have two possibilities:\n\na. Erin is not smart: In this case, we can't conclude that Erin is green or not.\nb. Erin is smart: In this case, Erin is green.\n\nSince we don't have enough information to determine whether Erin is smart or not, we can't conclude whether Erin is green or not.\n\nBut, we can conclude that if Erin is green, then Erin is not big. (Inference from Rules 3, 4, and 6)\nAnd we already know that Erin is big. (Given)\nSo, if Erin is big, then Erin is not green. (Inference)\n\nTherefore, the statement \"Erin is not green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not green\" is true, false, or unknown, we need to analyze the given information and apply the rules of inference.\n\n1. Erin is big. (Rule: If something is big then it is young)\n   Therefore, Erin is young.\n\n2. All smart, young things are green. (Rule: If something is smart and young then it is green)\n   Since we don't know if Erin is smart or not, we cannot conclude that Erin is green.\n\n3. All cold things are red. (Rule: If something is cold then it is red)\n   Since we don't know if Erin is cold or not, we cannot conclude that Erin is red.\n\n4. If something is red and big then it is young. (Rule: If something is red and big then it is young)\n   This rule is already covered by rule 1.\n\n5. If something is green then it is cold. (Rule: If something is green then it is cold)\n   This rule is not relevant to Erin.\n\n6. Erin is big. (Rule: Erin is big)\n   We already know this.\n\n7. Fiona is blue. Fiona is red. Fiona is smart. (No relevant information for Erin)\n\n8. Anne is young. Anne is blue. Anne is smart. (No relevant information for Erin)\n\n9. If something is red then it is cold. (Rule: If something is red then it is cold)\n   This rule is already covered by rule 3.\n\n10. If something is big and red then it is young. (Rule: If something is big and red then it is young)\n    This rule is already covered by rule 1.\n\n11. If something is big and young then it is smart. (Rule: If something is big and young then it is smart)\n    We already know that Erin is young and big, so Erin is smart.\n\n12. All smart, young things are green. (Rule: All smart, young things are green)\n    Since Erin is smart and young, we can conclude that Erin is green.\n\nNow that we know Erin is green, we can conclude that the statement \"Erin is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not green\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nGiven statements:\n1. Anne is cold.\n2. Anne is young.\n3. Charlie is cold.\n4. Erin is big.\n5. Fiona is blue.\n6. Fiona is red.\n7. Fiona is smart.\n8. If something is big and young then it is smart.\n9. If something is big and red then it is young.\n10. All cold things are red.\n11. If something is green then it is cold.\n12. If Anne is blue and Anne is smart then Anne is young.\n13. All smart, young things are green.\n14. If something is red and big then it is young.\n15. If something is big then it is young.\n\nAnalysis:\n\nFrom statement 12, we know Anne is blue and Anne is smart. Therefore, Anne is young (statement 2). Since Anne is young and all smart, young things are green (statement 13), Anne is green. However, since all green things are cold (statement 11), Anne is cold.\n\nFrom statement 10, all cold things are red. Therefore, since Anne is cold, Anne is red.\n\nNow, let's analyze Erin's characteristics:\n\n* Erin is big (statement 4).\n* Since all big things are young (statement 15), Erin is young.\n* Since all big things are young (statement 15) and all big and young things are smart (statement 8), Erin is smart.\n* Since Erin is big and red (statement 4 and the fact that Anne is red), Erin is young (statement 9). However, we already know Erin is young from statement 15. This is consistent with our previous conclusion.\n* Since Erin is big, Erin is young (statement 15). This is consistent with our previous conclusion.\n\nNow, let's examine the statement \"Erin is not green\":\n\nFrom statement 11, all green things are cold. Since we don't have any information about Erin being cold, we can't conclude that Erin is not green based on this statement.\n\nFrom statement 13, all smart, young things are green. We know Erin is young (from statement 15) and Erin is smart (from the fact that all big things are young and all big and young things are smart). Therefore, Erin is green.\n\nTherefore, the statement \"Erin is not green\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the rules to determine whether the statement \"Erin is not green\" is true, false, or unknown.\n\nGiven statements:\n1. Anne is cold.\n2. Anne is young.\n3. Charlie is cold.\n4. Erin is big.\n5. Fiona is blue.\n6. Fiona is red.\n7. Fiona is smart.\n8. If something is big and young then it is smart.\n9. If something is big and red then it is young.\n10. All cold things are red.\n11. If something is green then it is cold.\n12. If Anne is blue and Anne is smart then Anne is young.\n13. All smart, young things are green.\n14. If something is red and big then it is young.\n15. If something is big then it is young.\n\nTo determine whether the statement \"Erin is not green\" is true, false, or unknown, let's use the rules step by step.\n\nStep 1: Analyze the given statements to find any information about Erin.\nFrom statement 4, we know that Erin is big.\n\nStep 2: Use the rules to find any information about Erin being young.\nFrom statement 9, we know that if something is big and red then it is young. But we don't know if Erin is red.\nFrom statement 14, we know that if something is red and big then it is young. Again, we don't know if Erin is red.\nFrom statement 15, we know that if something is big then it is young. Since Erin is big, we can conclude that Erin is young.\n\nStep 3: Now that we know Erin is young, we can use the rules to find any information about Erin being smart.\nFrom statement 8, we know that if something is big and young then it is smart. Since Erin is big and young, we can conclude that Erin is smart.\n\nStep 4: Use the rules to find any information about Erin being green.\nFrom statement 11, we know that if something is green then it is cold. But we don't know if Erin is cold.\nFrom statement 12, we know that if Anne is blue and Anne is smart then Anne is young. This statement does not provide any information about Erin.\nFrom statement 13, we know that all smart, young things are green. Since Erin is smart and young, we can conclude that Erin is green.\n\nNow that we have found that Erin is green, we can determine the truth value of the statement \"Erin is not green\".\n\nSince Erin is indeed green, the statement \"Erin is not green\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Erin is big (given in the problem).\n2. From the given information, \"If something is big then it is young.\"\n   Therefore, Erin is young.\n\n3. From the given information, \"If something is big and young then it is smart.\"\n   Therefore, Erin is smart.\n\n4. From the given information, \"If something is big and red then it is young.\"\n   We don't know if Erin is red, but this doesn't affect the previous conclusion that Erin is young.\n\n5. From the given information, \"All smart, young things are green.\"\n   This implies that if something is both smart and young, then it must be green. \n   Since we know Erin is smart and young, we can conclude that Erin is green.\n\n6. The statement \"Erin is not green\" is now directly contradicted by our conclusion in step 5.\n   Therefore, the statement \"Erin is not green\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we will use the given information and the rules provided to determine whether Erin is not green.\n\n1. Given statements:\n   - Anne is cold.\n   - Anne is young.\n   - Charlie is cold.\n   - Erin is big.\n   - Fiona is blue.\n   - Fiona is red.\n   - Fiona is smart.\n   - If something is big and young then it is smart.\n   - If something is big and red then it is young.\n   - All cold things are red.\n   - If something is green then it is cold.\n   - If Anne is blue and Anne is smart then Anne is young.\n   - All smart, young things are green.\n   - If something is red and big then it is young.\n   - If something is big then it is young.\n\n2. We need to determine whether Erin is not green.\n\nTo do this, let's analyze the given information and rules to see if we can find any information about Erin's color.\n\nFirst, we know that Erin is big. \n\nFrom rule 8, \"If something is big then it is young.\" Since Erin is big, Erin is young.\n\nFrom rule 7, \"If something is big and red then it is young.\" Since Erin is big and we already know Erin is young, we can conclude that Erin is not necessarily red. However, we can still use this rule to see if Erin is red or not.\n\nNow, let's combine the information that Erin is big and young.\n\nFrom rule 5, \"If something is big and young then it is smart.\" Since Erin is big and young, Erin is smart.\n\nFrom rule 9, \"If something is red and big then it is young.\" We already know Erin is big and young, but this rule does not help us determine Erin's color.\n\nNow, let's analyze the rule \"If something is green then it is cold.\" (rule 6) and the rule \"All cold things are red.\" (rule 3) \n\nIf Erin is green, then Erin is cold. But all cold things are red, so Erin is red.\n\nHowever, we also know that Erin is big. If Erin is big and red, then Erin is young (rule 7). We already know Erin is young, so this information is consistent.\n\nNow, let's analyze the rule \"All smart, young things are green.\" (rule 10) and the rule \"If Anne is blue and Anne is smart then Anne is young.\" (rule 5) \n\nIf Erin is smart and young, then Erin is green. But we already know that Erin is big, which makes Erin young. Since Erin is big and young, Erin is smart (rule 5). Therefore, Erin is green.\n\nNow, we can conclude that Erin is green.\n\nSince we determined that Erin is green, we can conclude that the statement \"Erin is not green\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Erin is not green, we need to analyze the given information and apply it step by step.\n\n1.  Erin is big. (Given)\n2.  If something is big then it is young. (Given)\n   Therefore, Erin is young. (From 1 and 2)\n\n3.  If something is young and big then it is smart. (Given)\n   Therefore, Erin is smart. (From 2 and 3)\n\n4.  Erin is big and smart. (From 1 and 3)\n   Since Erin is young (From 2), we can't conclude that Erin is green. However, we need to check if Erin is green or not.\n\n5.  All green things are smart and young. (From Given information)\n   We already know Erin is smart and young. (From 3 and 2)\n   Therefore, Erin is green. (From 5)\n\nNow, we need to evaluate the statement \"Erin is not green.\"\n\n6.  We have found that Erin is indeed green (From 5).\n   Therefore, the statement \"Erin is not green\" is false.\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we'll break it down step by step.\n\nGiven information:\n1. Anne is cold.\n2. Anne is young.\n3. Charlie is cold.\n4. Erin is big.\n5. Fiona is blue.\n6. Fiona is red.\n7. Fiona is smart.\n8. If something is big and young then it is smart.\n9. If something is big and red then it is young.\n10. All cold things are red.\n11. If something is green then it is cold.\n12. If Anne is blue and Anne is smart then Anne is young.\n13. All smart, young things are green.\n14. If something is red and big then it is young.\n15. If something is big then it is young.\n\nStatement to evaluate: Erin is not green.\n\nStep 1: Analyze the given information and determine what we know about Erin.\nFrom statement 4, we know that Erin is big.\n\nStep 2: Apply the given rules to Erin's characteristics.\nFrom statement 9, we know that if something is big and red then it is young. However, we don't know if Erin is red.\nFrom statement 15, we know that if something is big then it is young. This directly applies to Erin because we know Erin is big.\n\nStep 3: Analyze the relationship between being big, young, and green.\nFrom statement 13, we know that all smart, young things are green. But, we don't have enough information to determine if Erin is smart or young.\n\nStep 4: Analyze the relationship between being big, red, and young.\nFrom statement 14, we know that if something is red and big then it is young. But, we don't know if Erin is red.\n\nStep 5: Determine the possible colors of Erin.\nFrom statement 10, we know that all cold things are red. But, we don't know if Erin is cold.\nFrom statement 11, we know that if something is green then it is cold. However, we don't have enough information to determine if Erin is green.\n\nStep 6: Determine the possible colors of Anne.\nFrom statement 2, we know that Anne is young. From statement 5, we know that Fiona is blue, but this doesn't directly apply to Anne.\nFrom statement 7, we know that Fiona is smart, but this doesn't directly apply to Anne.\nFrom statement 12, we know that if Anne is blue and Anne is smart then Anne is young. However, we don't know if Anne is smart or blue.\n\nStep 7: Evaluate the statement \"Erin is not green.\"\nSince we don't have enough information to determine if Erin is green or not, we can't conclude that the statement is true or false. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not green\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning step by step.\n\n1. Erin is big (Given statement)\n\nFrom the information given: \n- If something is big, then it is young (Statement 8)\n- If something is big and red, then it is young (Statement 9)\n- If something is big and young, then it is smart (Statement 2)\n\nWe can conclude that Erin is young.\n\n2. Since Erin is young, we need to determine if it's smart or not.\n\nFrom the information given: \n- If something is big and young, then it is smart (Statement 2)\n- Since Erin is big (Statement 1) and young (Conclusion 1), it is smart.\n\n3. Now, we need to determine Erin's color. \n\nFrom the information given: \n- All cold things are red (Statement 5)\n- If something is green, then it is cold (Statement 7)\n\nTo determine Erin's color, we need to know if Erin is cold or not.\n\n4. To determine if Erin is cold or not, we need to analyze the information given.\n\nFrom the information given: \n- If something is red and big, then it is young (Statement 9)\n- Since Erin is big (Statement 1) and young (Conclusion 1), it is indeed young, but this doesn't necessarily mean it's red.\n\nHowever, we can conclude that Erin is young, big, and smart (Conclusion 2).\n\n5. Since Erin is young, we need to analyze the information given to determine its color.\n\nFrom the information given: \n- If Anne is blue and Anne is smart, then Anne is young (Statement 6)\n- All smart, young things are green (Statement 6)\n- We know Erin is young and smart (Conclusion 2), but we don't know its color.\n\nHowever, we can conclude that Erin is young and smart, which makes it green.\n\n6. Now, we need to analyze the information given to determine if Erin is green or not.\n\nFrom the information given: \n- If something is green, then it is cold (Statement 7)\n- All cold things are red (Statement 5)\n\nThis creates a contradiction, as Erin cannot be both green and red.\n\nHowever, we can conclude that Erin is indeed young and smart, which makes it green.\n\n7. Now, let's analyze the information given to determine if Erin is not green.\n\nFrom the information given: \n- We concluded that Erin is indeed green (Conclusion 6).\n\nSince Erin is green, the statement \"Erin is not green\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_erin, young_erin), smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_erin, red_erin), young_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_erin, red_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_erin, cold_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin) | red(erin)",
+          "z3_formula": "Or(young_erin, red_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin) -> red(erin)",
+          "z3_formula": "Implies(green_erin, red_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_erin, young_erin), smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_erin, red_erin), young_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_anne, red_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_erin, cold_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_anne, smart_anne), young_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_erin, young_erin), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_erin, young_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin) == green_anne",
+          "z3_formula": "green_erin == green_anne",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_erin, young_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_erin, big_erin), smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_erin, young_erin), green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_erin, young_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_erin, cold_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_erin, red_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin) -> red(erin)",
+          "z3_formula": "Implies(green_erin, red_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(young_erin, smart_erin), green_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin) -> not big(erin)",
+          "z3_formula": "Implies(green_erin, Not(big_erin))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin) == True",
+          "source_step": 6
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_X, young_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_X, red_X), young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_X, cold_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), young_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_X, young_X), green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_X, young_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_X, young_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_X, red_X), young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_X, cold_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), young_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_X, young_X), green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(red_X, big_X), young_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_X, young_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_erin, young_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_erin, young_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_erin, red_erin), young_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_X, young_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_X, red_X), young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_X, cold_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), young_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_X, young_X), green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_erin, young_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_erin, big_erin), smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin) & smart(erin)",
+          "z3_formula": "And(big_erin, smart_erin) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_erin, big_erin), smart_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X) & young(X)",
+          "z3_formula": "Implies(green_erin, And(smart_erin, young_erin))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_erin, young_erin), smart_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_erin, red_erin), young_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_X, cold_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_anne, smart_anne), young_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_X, young_X), green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(red_erin, big_erin), young_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_erin, young_erin)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_erin, young_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_erin, red_erin), young_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_erin, young_erin), smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_erin, red_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_erin, cold_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_erin, cold_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_erin, red_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin) == True",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 147,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 35
+    },
+    "maxsat_stats": {
+      "satisfied": 33,
+      "excluded": 2,
+      "total_weight": 139,
+      "solve_time_ms": 1.4082929119467735
+    },
+    "timing": {
+      "trace_gen_s": 9.563,
+      "extraction_s": 29.59,
+      "dedup_s": 1.282,
+      "maxsat_s": 0.003,
+      "total_s": 40.439
+    }
+  }
+}

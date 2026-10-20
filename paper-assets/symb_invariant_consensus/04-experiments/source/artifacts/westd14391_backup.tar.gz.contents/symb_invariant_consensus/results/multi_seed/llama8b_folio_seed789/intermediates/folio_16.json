@@ -1,0 +1,628 @@
+{
+  "problem": {
+    "id": "folio_16",
+    "problem": "Given the following premises:\nAll rabbits are cute.  Some turtles exist.  An animal is either a rabbit or a squirrel. If something is skittish, then it is not still. All squirrels are skittish. Rock is still.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nRock is a turtle.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Rabbit(x) \u2192 Cute(x))",
+      "\u2203x (Turtle(x))",
+      "\u2200x (Rabbit(x) \u2228 Squirrel(x))",
+      "\u2200x (Skittish(x) \u2192 \u00acStill(x))",
+      "\u2200x (Squirrel(x) \u2192 Skittish(x))",
+      "Still(rock)"
+    ],
+    "conclusion_fol": "Turtle(rock)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 53.0,
+      "Unknown": 68.5
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "False": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will use the process of elimination and the rules of logic. We will analyze each premise and apply it to the conclusion.\n\nPremise 1: All rabbits are cute.\nPremise 2: Some turtles exist.\nPremise 3: An animal is either a rabbit or a squirrel.\nPremise 4: If something is skittish, then it is not still.\nPremise 5: All squirrels are skittish.\nPremise 6: Rock is still.\n\nConclusion: Rock is a turtle.\n\nStep 1: Analyze Premise 3, which states that an animal is either a rabbit or a squirrel. This implies that Rock cannot be a rabbit, because it would not be a turtle. However, this premise does not provide any information about whether Rock is a squirrel.\n\nStep 2: Analyze Premise 4, which states that if something is skittish, then it is not still. This implies that if Rock is skittish, then it is not still. However, since Rock is still (Premise 6), it cannot be skittish.\n\nStep 3: Analyze Premise 5, which states that all squirrels are skittish. Since Rock is not skittish (Step 2), it cannot be a squirrel.\n\nStep 4: Analyze Premise 3 again, which states that an animal is either a rabbit or a squirrel. Since Rock is not a squirrel (Step 3), it must be a rabbit.\n\nHowever, we have not used Premise 1 yet. Premise 1 states that all rabbits are cute. If Rock is a rabbit, then it must be cute. But Premise 6 states that Rock is still. The conclusion that Rock is a turtle is uncertain because it is not directly related to the premises.\n\nTherefore, based on the given information, we cannot conclude that Rock is a turtle with certainty. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a turtle\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. All rabbits are cute.  - This premise tells us that all rabbits are cute, but it doesn't give us any information about turtles, squirrels, or rock.\n\n2. Some turtles exist.  - This premise tells us that turtles do exist, but it doesn't tell us anything about rock.\n\n3. An animal is either a rabbit or a squirrel.  - This premise tells us that animals can be rabbits or squirrels, but it doesn't include turtles or rock in the list.\n\n4. If something is skittish, then it is not still.  - This premise tells us that if an animal is skittish, then it cannot be still. However, it doesn't give us any information about rock.\n\n5. All squirrels are skittish.  - This premise tells us that all squirrels are skittish, which means they cannot be still.\n\n6. Rock is still.  - This premise tells us that rock is still, which means it doesn't fit the description of being skittish.\n\nFrom the premises, we can see that rock is still (premise 6) and it doesn't fit the description of being a rabbit or a squirrel (premise 3). We can also see that turtles exist (premise 2), but there's no direct information that links rock to being a turtle.\n\nHowever, since there's no information that links rock to being a turtle and the premises don't provide a direct conclusion that rock is a turtle, we can conclude that the premises don't provide enough information to determine whether the conclusion \"Rock is a turtle\" is true or false.\n\nTherefore, the conclusion \"Rock is a turtle\" is **uncertain**.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a turtle\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremises:\n\n1. All rabbits are cute.\n2. Some turtles exist.\n3. An animal is either a rabbit or a squirrel.\n4. If something is skittish, then it is not still.\n5. All squirrels are skittish.\n6. Rock is still.\n\nNow, let's break down the conclusion:\n\nConclusion: Rock is a turtle.\n\nTo determine if this conclusion is true, false, or uncertain, we need to find any connections between the premises and the conclusion. We can start by looking for any information that relates to Rock.\n\nPremise 6 states that Rock is still. We know that something is still if it is not skittish (Premise 4). \n\nPremise 5 states that all squirrels are skittish. Since Rock is still (Premise 6), we can infer that Rock is not a squirrel, as squirrels are skittish.\n\nNow, let's look at Premise 3, which states that an animal is either a rabbit or a squirrel. We already determined that Rock is not a squirrel. This means that Rock must be a rabbit.\n\nHowever, we need to be cautious. We only know that Rock is a rabbit because it is not a squirrel and because of the structure of Premise 3. \n\nWe don't have any information directly linking Rock to the category of \"turtle.\" Premise 2 states that some turtles exist, but it does not imply that Rock is a turtle.\n\nSince we cannot directly link Rock to the category of \"turtle\" using the given premises, the conclusion \"Rock is a turtle\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a turtle\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremises:\n\n1. All rabbits are cute.\n2. Some turtles exist.\n3. An animal is either a rabbit or a squirrel.\n4. If something is skittish, then it is not still.\n5. All squirrels are skittish.\n6. Rock is still.\n\nSteps:\n\n1. From premise 3, we know that an animal is either a rabbit or a squirrel.\n2. From premise 5, we know that all squirrels are skittish. Since skittishness is a property of squirrels, we can conclude that Rock is not a squirrel because Rock is still (premise 6). If Rock were a squirrel, it would be skittish, but since Rock is still, it cannot be a squirrel.\n3. Since Rock is not a squirrel (from step 2), and from premise 3, Rock must be a rabbit.\n4. From premise 1, we know that all rabbits are cute. Since Rock is a rabbit (from step 3), Rock must be cute.\n5. The conclusion \"Rock is a turtle\" does not follow from the premises. We have concluded that Rock is a rabbit (step 3), not a turtle.\n\nConclusion:\nSince the premises do not provide any information about Rock being a turtle, and we have concluded that Rock is a rabbit (not a turtle), the conclusion \"Rock is a turtle\" is uncertain because we have not established a direct relationship between Rock and turtles based on the given premises.\n\nHowever, we can go one step further and say that the conclusion is false, because we have established that Rock is a rabbit, not a turtle. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a turtle\" is true, false, or uncertain, we need to analyze the given premises and see if they lead to the conclusion.\n\nPremise 1: All rabbits are cute.\nPremise 2: Some turtles exist.\nPremise 3: An animal is either a rabbit or a squirrel.\nPremise 4: If something is skittish, then it is not still.\nPremise 5: All squirrels are skittish.\nPremise 6: Rock is still.\n\nFrom Premise 3, we can infer that Rock is either a rabbit or a squirrel. \n\nNow, let's consider Premise 5: All squirrels are skittish. Since a skittish animal is not still (Premise 4), we can infer that Rock is not a squirrel because it is still (Premise 6).\n\nSince we have eliminated the possibility that Rock is a squirrel, we can conclude from Premise 3 that Rock must be a rabbit.\n\nBut now let's look at Premise 1: All rabbits are cute. This premise does not provide any information about Rock being a turtle.\n\nAlso, Premise 2: Some turtles exist, but this premise does not provide any information about Rock being a turtle.\n\nSince none of the premises provide any information about Rock being a turtle, we cannot conclude that Rock is a turtle. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a turtle\" is true, false, or uncertain, we need to analyze the given premises and see if we can derive the conclusion from them.\n\nGiven premises:\n\n1. All rabbits are cute.\n2. Some turtles exist.\n3. An animal is either a rabbit or a squirrel.\n4. If something is skittish, then it is not still.\n5. All squirrels are skittish.\n6. Rock is still.\n\nWe need to find a connection between Rock and a turtle. \n\nHowever, from the premises, we can see that Rock is not a rabbit or a squirrel (premise 3), and we also know that Rock is still (premise 6). But being still does not necessarily mean it's a turtle. \n\nMoreover, there's no information connecting Rock to a turtle. We only know that some turtles exist (premise 2), but we don't have any information that would link Rock to being a turtle. \n\nSince we cannot derive the conclusion \"Rock is a turtle\" from the given premises, the answer is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the validity of the conclusion \"Rock is a turtle,\" we'll break down the given premises and analyze their implications step by step.\n\n1. All rabbits are cute.\n2. Some turtles exist.\n3. An animal is either a rabbit or a squirrel.\n4. If something is skittish, then it is not still.\n5. All squirrels are skittish.\n6. Rock is still.\n\nFrom premise 3, we can infer that an animal is either a rabbit or a squirrel, meaning that if an animal is neither a rabbit nor a squirrel, it doesn't fit into the category. However, we don't have any information about rock being an animal, a rabbit, or a squirrel.\n\nFrom premise 6, we know that Rock is still. From premise 4, we can infer that if something is still, it is not skittish. We don't have any information about rock being a squirrel or rabbit, but since all squirrels are skittish (premise 5), and rock is not skittish (by implication), it's possible for rock to be a squirrel. However, we can also infer that rock is not a rabbit because if it were, it would be cute (by premise 1), which we can't conclude from the given information.\n\nHowever, the crucial information here is that we know rock is still, and we can conclude that rock is not a squirrel. Since rock is not a squirrel, it must be a rabbit, as those are the two categories an animal can be classified into. However, we cannot conclude rock is a turtle from the information provided.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a turtle\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. All rabbits are cute. (Premise 1)\n2. Some turtles exist. (Premise 2)\n3. An animal is either a rabbit or a squirrel. (Premise 3)\n4. If something is skittish, then it is not still. (Premise 4)\n5. All squirrels are skittish. (Premise 5)\n6. Rock is still. (Premise 6)\n\nFrom Premise 3, we can deduce that if an animal is not a rabbit, then it is a squirrel.\n\nFrom Premise 5, we can deduce that if an animal is a squirrel, then it is skittish. \n\nFrom Premise 4, we can deduce that if an animal is skittish, then it is not still.\n\nNow, let's consider the conclusion \"Rock is a turtle.\" To determine whether this conclusion is true, false, or uncertain, we need to analyze the given premises and the logical deductions we made.\n\nWe know from Premise 6 that Rock is still. \n\nFrom the deductions we made, we know that if an animal is skittish, then it is not still. But Rock is still, so Rock cannot be skittish. \n\nWe also know from Premise 3 that an animal is either a rabbit or a squirrel. \n\nIf Rock is not a squirrel, then it must be a rabbit. But we have no information that suggests Rock is a rabbit, so we cannot conclude that Rock is a rabbit.\n\nHowever, from Premise 2, we know that some turtles exist. We have no information that suggests Rock is a turtle or that it is not a turtle.\n\nWe also know from Premise 6 that Rock is still. We have no information that suggests turtles are not still.\n\nBut Premise 6 also tells us that Rock is still, and we have no information that suggests that Rock is a turtle.\n\nSince we cannot conclude that Rock is a rabbit, and we have no information that suggests Rock is not a turtle, we cannot conclude that Rock is not a turtle.\n\nBut we also cannot conclude that Rock is a turtle. We can only say that the information given does not allow us to conclude that Rock is or is not a turtle.\n\nTherefore, the conclusion \"Rock is a turtle\" is uncertain.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a turtle\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: All rabbits are cute.\nThis premise does not provide any information about rock, so we can ignore it for now.\n\nPremise 2: Some turtles exist.\nThis premise also does not provide any information about rock, so we can ignore it for now.\n\nPremise 3: An animal is either a rabbit or a squirrel.\nThis premise does not provide any information about rock, so we can ignore it for now.\n\nPremise 4: If something is skittish, then it is not still.\nThis premise does not provide any information about rock, so we can ignore it for now.\n\nPremise 5: All squirrels are skittish.\nThis premise does not provide any information about rock, so we can ignore it for now.\n\nPremise 6: Rock is still.\nThis premise tells us that rock is still, but it does not tell us what rock is. However, we can use this information later to draw a conclusion.\n\nNow, let's analyze the given conclusion: \"Rock is a turtle.\"\n\nTo determine whether this conclusion is true or false, we need to see if we can derive it from the given premises. However, we have not found any premises that directly tell us what rock is or that rock is a turtle.\n\nBut Premise 2 does tell us that some turtles exist. Premise 6 tells us that Rock is still. And Premise 4 tells us that if something is skittish then it is not still. And Premise 5 tells us that all squirrels are skittish.\n\nBut Premise 3 tells us that an animal is either a rabbit or a squirrel. If Rock is a rabbit or a squirrel, it would be skittish (as per Premise 5) and therefore, it would not be still (as per Premise 4). \n\nHowever, Premise 6 tells us that rock is still. Therefore, rock cannot be a rabbit or a squirrel. Since rock is not a rabbit or a squirrel, we cannot conclude anything about rock from Premise 3. \n\nAnd since rock is not a rabbit or a squirrel, it is not one of the animals we are considering, as per Premise 3. And Premise 2 only tells us that some turtles exist but it does not tell us that rock is a turtle. \n\nTherefore, we cannot derive the conclusion \"Rock is a turtle\" from the given premises. Hence, the conclusion is uncertain. \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a turtle\" is true, false, or uncertain, we need to analyze the given premises and their logical implications.\n\nPremise 1: All rabbits are cute.\nThis premise does not directly relate to the conclusion, but it might be useful later if we need to draw conclusions about rabbits.\n\nPremise 2: Some turtles exist.\nThis premise tells us that turtles are real, but it does not provide any information about Rock specifically.\n\nPremise 3: An animal is either a rabbit or a squirrel.\nThis premise creates a binary classification for animals, which might help us narrow down the possibilities for Rock.\n\nPremise 4: If something is skittish, then it is not still.\nThis premise is a conditional statement that relates skittishness to stillness. However, Rock is a rock, and rocks are not typically considered skittish or still.\n\nPremise 5: All squirrels are skittish.\nThis premise is another characteristic of squirrels, which can help us narrow down the possibilities for Rock.\n\nPremise 6: Rock is still.\nThis premise is a simple statement that tells us about Rock's state, but it does not provide any information about Rock's classification as an animal.\n\nNow, let's examine the conclusion: \"Rock is a turtle.\"\n\nFrom Premise 2, we know that turtles exist. However, we do not have any direct information about Rock being a turtle.\n\nFrom Premise 3, we know that animals are either rabbits or squirrels. This means that Rock cannot be a rabbit or a squirrel, as those categories are mutually exclusive.\n\nHowever, Premise 6 tells us that Rock is still, and Premise 4 states that if something is skittish, then it is not still. Since squirrels are skittish (Premise 5), and Rock is still, we can conclude that Rock is not a squirrel.\n\nPremise 6 also tells us that Rock is still, which is consistent with Premise 4. However, rocks are not typically considered skittish or still in the same way that living creatures are.\n\nFrom Premise 3, we know that animals are either rabbits or squirrels, but we have already concluded that Rock is not a squirrel. Therefore, we can infer that Rock is not an animal.\n\nSince Rock is not an animal, it is not a rabbit or a squirrel, and we cannot conclude that Rock is a turtle based on the given premises.\n\nThe conclusion \"Rock is a turtle\" is uncertain because we have not been provided with sufficient information to make a definitive conclusion.\n\nHowever, considering that Rock is a rock (which is an inanimate object), we can say with certainty that the conclusion \"Rock is a turtle\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will use a logical approach by analyzing the given premises and applying the rules of logical inference.\n\nPremise 1: All rabbits are cute.\nPremise 2: Some turtles exist.\nPremise 3: An animal is either a rabbit or a squirrel.\nPremise 4: If something is skittish, then it is not still.\nPremise 5: All squirrels are skittish.\nPremise 6: Rock is still.\n\nTo determine if the conclusion \"Rock is a turtle\" is true, false, or uncertain, we need to examine the premises and see if we can logically derive the conclusion.\n\nLet's start by examining the premises and looking for any connections to the conclusion.\n\nPremise 6 states that \"Rock is still.\"  Premise 4 states that \"If something is skittish, then it is not still.\"  From these two premises, we can infer that \"Rock is not skittish.\"  Since all squirrels are skittish (Premise 5), we can infer that \"Rock is not a squirrel.\"\n\nNow, let's look at Premise 3, which states that \"An animal is either a rabbit or a squirrel.\"  From the previous inference, we know that \"Rock is not a squirrel.\"  Therefore, we can conclude that \"Rock is a rabbit.\"\n\nHowever, Premise 1 states that \"All rabbits are cute.\"  This premise does not provide any information about whether Rock is a turtle or not.  In fact, we have not seen any premises that connect rabbits or squirrels to turtles.\n\nSince we have not seen any premises that connect Rock to a turtle, we cannot logically derive the conclusion that \"Rock is a turtle\" from the given premises.  Therefore, the conclusion is uncertain, as it is not supported by the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the premises and apply them to the conclusion.\n\nPremise 1: All rabbits are cute.\nPremise 2: Some turtles exist.\nPremise 3: An animal is either a rabbit or a squirrel.\nPremise 4: If something is skittish, then it is not still.\nPremise 5: All squirrels are skittish.\nPremise 6: Rock is still.\n\nConclusion: Rock is a turtle.\n\nLet's break it down step by step:\n\n1. From Premise 3, we can conclude that Rock is either a rabbit or a squirrel, because it must be one of the two options.\n2. From Premise 1, we know that rabbits are cute. However, this premise does not provide any information about Rock.\n3. From Premise 5, we know that squirrels are skittish. However, this premise does not provide any information about Rock.\n4. From Premise 4, we can conclude that something that is still cannot be skittish. Since Rock is still (Premise 6), it cannot be skittish.\n5. From Premise 3, we know that Rock is either a rabbit or a squirrel. From Premise 5, we know that all squirrels are skittish. Since Rock cannot be skittish (from step 4), it cannot be a squirrel.\n6. Since Rock is not a squirrel (from step 5), and it must be either a rabbit or a squirrel (from step 1), we can conclude that Rock is a rabbit.\n7. However, there is no information in the premises that suggests Rock is a turtle. The premises only provide information about rabbits, squirrels, and the fact that some turtles exist.\n\nSince the premises do not provide any information that connects Rock to a turtle, we cannot conclude that Rock is a turtle. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_rock, squirrel_rock)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish_rock, not still_rock)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "turtle_exists == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_X, squirrel_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish_X, not still_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_X, squirrel_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not(still(X))",
+          "z3_formula": "Implies(skittish_X, Not(still_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_X, squirrel_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not(still(X))",
+          "z3_formula": "Implies(skittish_X, Not(still_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "rabbit_rock | squirrel_rock",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish_rock, not still_rock)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rabbit(rock)",
+          "z3_formula": "rabbit_rock == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not squirrel(rock)",
+          "z3_formula": "not squirrel_rock == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cute(rock)",
+          "z3_formula": "cute_rock == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "turtle(rock)",
+          "z3_formula": "turtle_rock == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit, squirrel) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish, not still)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit, squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not(still(X))",
+          "z3_formula": "Implies(skittish, Not(still))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(skittish(rock))",
+          "z3_formula": "Not(skittish_rock)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(squirrel(rock))",
+          "z3_formula": "Not(squirrel_rock)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rabbit(rock)",
+          "z3_formula": "rabbit_rock == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_X, squirrel_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish_X, not still_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "squirrel(X) -> skittish(X)",
+          "z3_formula": "Implies(squirrel_X, skittish_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "or(rabbit, squirrel)",
+          "z3_formula": "or_rabbit_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not(still(X))",
+          "z3_formula": "Implies(skittish_X, not_still_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(or(rabbit, rock))",
+          "z3_formula": "Not(Or(rabbit_rock, rock_rabbit))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(or(squirrel, rock))",
+          "z3_formula": "Not(Or(squirrel_rock, rock_squirrel))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(turtle(rock))",
+          "z3_formula": "Not(turtle_rock == True)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_X, squirrel_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not(still(X))",
+          "z3_formula": "Implies(skittish_X, Not(still_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_X, squirrel_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not(still(X))",
+          "z3_formula": "Implies(skittish_X, not(still_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "rabbit_or_squirrel_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish_X, not still_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 82,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 24
+    },
+    "maxsat_stats": {
+      "satisfied": 23,
+      "excluded": 1,
+      "total_weight": 73,
+      "solve_time_ms": 0.8299592882394791
+    },
+    "timing": {
+      "trace_gen_s": 6.868,
+      "extraction_s": 12.181,
+      "dedup_s": 0.332,
+      "maxsat_s": 0.002,
+      "total_s": 19.383
+    }
+  }
+}

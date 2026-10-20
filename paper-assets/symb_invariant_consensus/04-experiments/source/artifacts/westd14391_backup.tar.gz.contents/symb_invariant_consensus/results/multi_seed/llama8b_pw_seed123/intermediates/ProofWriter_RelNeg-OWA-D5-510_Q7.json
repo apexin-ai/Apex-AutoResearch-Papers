@@ -1,0 +1,1172 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-510_Q7",
+    "problem": "The bear is cold. The bear is not green. The bear is rough. The rabbit is cold. The squirrel is nice. The squirrel does not visit the rabbit. The squirrel visits the tiger. The tiger chases the bear. The tiger does not eat the rabbit. The tiger is cold. The tiger is nice. The tiger is not rough. The tiger visits the rabbit. The tiger visits the squirrel. If something is green and it visits the squirrel then the squirrel is green. If something chases the rabbit then it eats the bear. If the squirrel eats the rabbit and the rabbit visits the bear then the bear is not red. If something is cold then it chases the rabbit. If the rabbit chases the squirrel then the squirrel eats the bear. If something chases the bear and it visits the tiger then the tiger chases the squirrel. If something is cold and not nice then it eats the rabbit. If something eats the bear and the bear visits the squirrel then it eats the rabbit. If something eats the bear then it chases the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger chases the squirrel.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nNice($x, bool) ::: Is x nice?\nVisits($x, $y, bool) ::: Does x visit y?\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nRed($x, bool) ::: Is x red?\n\nFacts:\nCold(Bear, True) ::: The bear is cold.\nGreen(Bear, False) ::: The bear is not green.\nRough(Bear, True) ::: The bear is rough.\nCold(Rabbit, True) ::: The rabbit is cold.\nNice(Squirrel, True) ::: The squirrel is nice.\nVisits(Squirrel, Rabbit, False) ::: The squirrel does not visit the rabbit.\nVisits(Squirrel, Tiger, True) ::: The squirrel visits the tiger.\nChases(Tiger, Bear, True) ::: The tiger chases the bear.\nEats(Tiger, Rabbit, False) ::: The tiger does not eat the rabbit.\nCold(Tiger, True) ::: The tiger is cold.\nNice(Tiger, True) ::: The tiger is nice.\nRough(Tiger, False) ::: The tiger is not rough.\nVisits(Tiger, Rabbit, True) ::: The tiger visits the rabbit.\nVisits(Tiger, Squirrel, True) ::: The tiger visits the squirrel.\n\nRules:\nGreen($x, True) && Visits($x, Squirrel, True) >>> Green(Squirrel, True) ::: If something is green and it visits the squirrel then the squirrel is green.\nChases($x, Rabbit, True) >>> Eats($x, Bear, True) ::: If something chases the rabbit then it eats the bear.\nEats(Squirrel, Rabbit, True) && Visits(Rabbit, Bear, True) >>> Red(Bear, False) ::: If the squirrel eats the rabbit and the rabbit visits the bear then the bear is not red.\nCold($x, True) >>> Chases($x, Rabbit, True) ::: If something is cold then it chases the rabbit.\nChases(Rabbit, Squirrel, True) >>> Eats(Squirrel, Bear, True) ::: If the rabbit chases the squirrel then the squirrel eats the bear.\nChases($x, Bear, True) && Visits($x, Tiger, True) >>> Chases(Tiger, Squirrel, True) ::: If something chases the bear and it visits the tiger then the tiger chases the squirrel.\nCold($x, True) && Nice($x, False) >>> Eats($x, Rabbit, True) ::: If something is cold and not nice then it eats the rabbit.\nEats($x, Bear, True) && Visits(Bear, Squirrel, True) >>> Eats($x, Rabbit, True) ::: If something eats the bear and the bear visits the squirrel then it eats the rabbit.\nEats($x, Bear, True) >>> Chases($x, Squirrel, True) ::: If something eats the bear then it chases the squirrel.\n\nQuery:\nChases(Tiger, Squirrel, True) ::: The tiger chases the squirrel."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 135.5,
+      "Unknown": 131.5
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "True": 5
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. The bear is cold.\n2. The bear is not green.\n3. The bear is rough.\n4. The rabbit is cold.\n5. The squirrel is nice.\n6. The squirrel does not visit the rabbit.\n7. The squirrel visits the tiger.\n8. The tiger chases the bear.\n9. The tiger does not eat the rabbit.\n10. The tiger is cold.\n11. The tiger is nice.\n12. The tiger is not rough.\n13. The tiger visits the rabbit.\n14. The tiger visits the squirrel.\n\nFrom statement 14, we know that the tiger visits the squirrel.\n\nNow, let's consider the implications:\n\n- From statement 14, we know that the tiger visits the squirrel. But there is no direct implication that the tiger chases the squirrel. However, we can use some of the other statements to make an inference.\n\n- From statement 1, we know that the bear is cold. Since the bear is cold, it implies that it chases the rabbit (statement 5). But since the tiger chases the bear (statement 8), it doesn't directly relate to the tiger chasing the squirrel.\n\n- From statement 10, we know that the tiger is cold. Since the tiger is cold, it implies that it chases the rabbit (statement 5). However, this information alone is not enough to determine if the tiger chases the squirrel.\n\n- From statement 8, we know that the tiger chases the bear. But we need to consider the statement that if something chases the bear and it visits the tiger then the tiger chases the squirrel (statement 9). In this case, the bear visits the squirrel (we can infer from statement 13 that the tiger visits the rabbit, but it doesn't explicitly mention the bear visiting the squirrel), but there is no information that the tiger visits the bear and then the bear visits the squirrel.\n\nHowever, considering the statement that if the squirrel eats the rabbit and the rabbit visits the bear then the bear is not red (statement 7), there is no information that the squirrel eats the rabbit, the rabbit visits the bear, or that the bear is red.\n\nConsidering all the implications, we cannot directly conclude if the tiger chases the squirrel based on the given statements. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger chases the squirrel\" is true, false, or unknown, we need to analyze the given information step by step and apply the logical rules.\n\n1. The tiger is cold. (Rule 1: If something is cold, then it chases the rabbit.)\n\nFrom this, we can infer that the tiger chases the rabbit, but we do not know yet whether it chases the squirrel.\n\n2. The tiger does not eat the rabbit. (No information about the tiger and the squirrel)\n\n3. The tiger visits the rabbit. (Rule 5: The tiger visits the rabbit)\n\n4. The tiger visits the squirrel. (Rule 6: The tiger visits the squirrel)\n\n5. The squirrel does not visit the rabbit. (Rule 2: The squirrel does not visit the rabbit)\n\n6. The squirrel is nice. (Rule 3: The squirrel is nice)\n\n7. The squirrel is not green. (Rule 4: The squirrel is not green)\n\n8. If the squirrel visits the tiger and it is green, then the squirrel is green. (Rule 7: This is a conditional statement)\n\nSince we know the squirrel is not green, we cannot use this rule to determine the relationship between the squirrel and the tiger.\n\n9. If the squirrel eats the rabbit and the rabbit visits the bear, then the bear is not red. (Rule 8: This is a conditional statement)\n\n10. If the squirrel eats the bear and the bear visits the squirrel, then it eats the rabbit. (Rule 10: This is a conditional statement)\n\n11. If something eats the bear and the bear visits the squirrel, then it eats the rabbit. (Rule 11: This is a conditional statement)\n\n12. If something eats the bear, then it chases the squirrel. (Rule 12: This is a conditional statement)\n\n13. If the rabbit chases the squirrel, then the squirrel eats the bear. (Rule 9: This is a conditional statement)\n\n14. The tiger is not rough. (Rule 13: The tiger is not rough)\n\n15. The bear is rough. (Rule 1: The bear is rough)\n\nNow, let's analyze the given statements again and apply the rules.\n\nThe tiger visits the rabbit and the squirrel, but we do not have enough information to conclude that the tiger chases the squirrel based on the given statements.\n\nHowever, from rule 1, we know that the tiger is cold, which implies that it chases the rabbit. But we need to check if it also chases the squirrel.\n\nThe squirrel does not visit the rabbit, which implies that the tiger cannot eat the squirrel based on rule 9. \n\nNow let's consider rule 1 and rule 6. The tiger chases the rabbit and the tiger visits the squirrel. \n\nSince the tiger is cold, the tiger chases the rabbit. From rule 1, we know that the tiger is cold, which implies that it chases the rabbit.\n\nNow let's consider rule 8. Since the squirrel does not visit the rabbit, the tiger does not eat the squirrel.\n\nNow let's consider rule 11 and rule 12. The tiger visits the squirrel and the tiger is cold. If the tiger eats the bear and the bear visits the squirrel, then it eats the rabbit. Since the tiger visits the squirrel and the bear is rough, the tiger does not eat the bear.\n\nAlso, if the tiger eats the bear, then it chases the squirrel. But we have not concluded that the tiger eats the bear. \n\nFrom rule 8, we know that the squirrel does not visit the rabbit. Now let's consider rule 10. If the squirrel eats the bear and the bear visits the squirrel, then it eats the rabbit. \n\nHowever, since the squirrel does not visit the rabbit, the bear does not visit the squirrel. So the bear cannot eat the rabbit. \n\nThe squirrel is nice and the squirrel is not green. Now let's consider rule 8. If the squirrel visits the tiger and it is green, then the squirrel is green. \n\nSince we know the squirrel is not green, the squirrel does not visit the tiger. However, we do know that the squirrel does not visit the rabbit and the squirrel visits the tiger. \n\nNow let's consider rule 8. If the squirrel visits the tiger, it does not imply that the squirrel is green. \n\nThe bear is rough and the tiger is nice. Now let's consider rule 5. The tiger visits the rabbit and the tiger is nice. \n\nThe tiger is not rough, and the bear is rough. Now let's consider rule 1. If something is cold then it chases the rabbit. \n\nThe tiger is cold and the tiger chases the rabbit. Now let's consider rule 9. If the squirrel eats the rabbit and the rabbit visits the bear, then the bear is not red. \n\nSince the bear is rough, we cannot use this rule to determine the relationship between the bear and the squirrel.\n\nNow let's consider rule 11 and rule 12. If the tiger eats the bear and the bear visits the squirrel, then it eats the rabbit. \n\nHowever, since the bear is rough and the tiger is nice, the tiger does not eat the bear.\n\nAlso, if the tiger eats the bear, then it chases the squirrel. But we have not concluded that the tiger eats the bear.\n\nThe squirrel does not visit the rabbit. Now let's consider rule 9. If the squirrel eats the rabbit and the rabbit visits the bear, then the bear is not red. \n\nHowever, since the bear is rough, we cannot use this rule to determine the relationship between the bear and the squirrel.\n\nNow let's consider rule 13. If the rabbit chases the squirrel, then the squirrel eats the bear. \n\nHowever, we do not know if the rabbit chases the squirrel.\n\nNow let's consider rule 14. If something chases the bear and it visits the tiger, then the tiger chases the squirrel.\n\nHowever, we do not know if the tiger chases the squirrel.\n\nNow let's consider rule 15. If something is cold and not nice then it eats the rabbit. \n\nHowever, we do not know if the tiger is cold and not nice.\n\nHowever, we do know that the tiger is cold. Now let's consider rule 1. If something is cold then it chases the rabbit. \n\nThe tiger is cold and the tiger chases the rabbit. Now let's consider rule 12. If something eats the bear then it chases the squirrel.\n\nHowever, we do not know if the tiger eats the bear.\n\nNow let's consider rule 8. If the squirrel eats the rabbit and the rabbit visits the bear, then the bear is not red. \n\nHowever, since the bear is rough, we cannot use this rule to determine the relationship between the bear and the squirrel.\n\nNow let's consider rule 9. If the squirrel eats the rabbit and the rabbit visits the bear, then the bear is not red. \n\nHowever, since the bear is rough, we cannot use this rule to determine the relationship between the bear and the squirrel.\n\nNow let's consider rule 10. If the squirrel eats the bear and the bear visits the squirrel, then it eats the rabbit. \n\nHowever, since the bear is rough, we cannot use this rule to determine the relationship between the bear and the squirrel.\n\nNow let's consider rule 11. If something eats the bear and the bear visits the squirrel, then it eats the rabbit. \n\nHowever, since the bear is rough, we cannot use this rule to determine the relationship between the bear and the squirrel.\n\nNow let's consider rule 12. If something eats the bear then it chases the squirrel.\n\nHowever, we do not know if the tiger eats the bear.\n\nNow let's consider rule 13. If the rabbit chases the squirrel, then the squirrel eats the bear. \n\nHowever, we do not know if the rabbit chases the squirrel.\n\nNow let's consider rule 14. If something chases the bear and it visits the tiger, then the tiger chases the squirrel.\n\nHowever, we do not know if the tiger chases the squirrel.\n\nNow let's consider rule 15. If something is cold and not nice then it eats the rabbit. \n\nHowever, we do not know if the tiger is cold and not nice.\n\nHowever, we do know that the tiger is cold. Now let's consider rule 1. If something is cold then it chases the rabbit. \n\nThe tiger is cold and the tiger chases the rabbit. Now let's consider rule 12. If something eats the bear then it chases the squirrel.\n\nHowever, we do not know if the tiger eats the bear.\n\nHowever, we do know that the tiger visits the squirrel. Now let's consider rule 1. The tiger is cold and the tiger chases the rabbit.\n\nNow let's consider rule 6. The tiger visits the squirrel.\n\nNow let's consider rule 12. If something eats the bear then it chases the squirrel.\n\nHowever, we do not know if the tiger eats the bear.\n\nHowever, we do know that the tiger is cold and the tiger chases the rabbit.\n\nThe tiger is cold, the tiger chases the rabbit, and the tiger visits the squirrel.\n\nNow let's consider rule 12. If something eats the bear then it chases the squirrel.\n\nHowever, we do not know if the tiger eats the bear.\n\nHowever, we do know that the tiger is cold and the tiger chases the rabbit.\n\nThe tiger is cold, the tiger chases the rabbit, and the tiger visits the squirrel.\n\nNow let's consider rule 1. If something is cold, then it chases the rabbit.\n\nThe tiger is cold, and the tiger chases the rabbit.\n\nNow let's consider rule 6. The tiger visits the squirrel.\n\nNow let's consider rule 1. If something is cold then it chases the rabbit",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules to determine the relationship between the tiger and the squirrel.\n\nGiven statements:\n\n1. The bear is cold.\n2. The bear is not green.\n3. The bear is rough.\n4. The rabbit is cold.\n5. The squirrel is nice.\n6. The squirrel does not visit the rabbit.\n7. The squirrel visits the tiger.\n8. The tiger chases the bear.\n9. The tiger does not eat the rabbit.\n10. The tiger is cold.\n11. The tiger is nice.\n12. The tiger is not rough.\n13. The tiger visits the rabbit.\n14. The tiger visits the squirrel.\n15. If something is green and it visits the squirrel then the squirrel is green.\n16. If something chases the rabbit then it eats the bear.\n17. If the squirrel eats the rabbit and the rabbit visits the bear then the bear is not red.\n18. If something is cold then it chases the rabbit.\n19. If the rabbit chases the squirrel then the squirrel eats the bear.\n20. If something chases the bear and it visits the tiger then the tiger chases the squirrel.\n21. If something is cold and not nice then it eats the rabbit.\n22. If something eats the bear and the bear visits the squirrel then it eats the rabbit.\n23. If something eats the bear then it chases the squirrel.\n\nFrom statement 8, we know the tiger chases the bear. Now, we need to determine if the tiger chases the squirrel.\n\nLet's analyze the possibilities:\n\n- If the tiger chases the squirrel, then from statement 20, we know the tiger visits the tiger. This is impossible, so the tiger cannot chase the squirrel.\n\n- We know the tiger is cold (statement 10) and nice (statement 11). From statement 18, if something is cold, then it chases the rabbit. However, we also know the tiger does not eat the rabbit (statement 9). \n\n- We can also apply rule 21, if something is cold and not nice, then it eats the rabbit. However, the tiger is nice (statement 11), so this rule does not apply.\n\n- The tiger visits the squirrel (statement 14), and from statement 7, we know the squirrel visits the tiger. \n\n- Since the tiger is nice (statement 11), we cannot apply rule 21.\n\n- From statement 13, the tiger visits the rabbit, and from statement 18, if something is cold, then it chases the rabbit. \n\nHowever, statement 10 indicates the tiger is cold, but from statement 9, we know the tiger does not eat the rabbit. So we cannot conclude that the tiger chases the squirrel based on this information alone. \n\nHowever, statement 14 tells us that the tiger visits the squirrel. If the tiger visits the squirrel, then the squirrel must be nice (rule 15 does not apply here). We can apply rule 23: If something eats the bear, then it chases the squirrel. Statement 8 says the tiger chases the bear. Therefore, from rule 23, the tiger chases the squirrel.\n\nThe statement is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply logical deductions.\n\n1. The bear is cold. (1)\n2. The bear is not green. (2)\n3. The bear is rough. (3)\n4. The rabbit is cold. (4)\n5. The squirrel is nice. (5)\n6. The squirrel does not visit the rabbit. (6)\n7. The squirrel visits the tiger. (7)\n8. The tiger chases the bear. (8)\n9. The tiger does not eat the rabbit. (9)\n10. The tiger is cold. (10)\n11. The tiger is nice. (11)\n12. The tiger is not rough. (12)\n13. The tiger visits the rabbit. (13)\n14. The tiger visits the squirrel. (14)\n15. If something is green and it visits the squirrel then the squirrel is green. (15)\n16. If something chases the rabbit then it eats the bear. (16)\n17. If the squirrel eats the rabbit and the rabbit visits the bear then the bear is not red. (17)\n18. If something is cold then it chases the rabbit. (18)\n19. If the rabbit chases the squirrel then the squirrel eats the bear. (19)\n20. If something chases the bear and it visits the tiger then the tiger chases the squirrel. (20)\n21. If something is cold and not nice then it eats the rabbit. (21)\n22. If something eats the bear and the bear visits the squirrel then it eats the rabbit. (22)\n23. If something eats the bear then it chases the squirrel. (23)\n\nFrom statement (18), since the tiger is cold (statement 10), it chases the rabbit.\n\nFrom statement (13), the tiger visits the rabbit. Since the tiger chases the rabbit (from statement 18) and visits the rabbit (from statement 13), we can't conclude anything yet.\n\nFrom statement (20), if something chases the bear and it visits the tiger, then the tiger chases the squirrel. We know that the tiger chases the bear (statement 8), but we don't know if the tiger visits the tiger (which is the same entity).\n\nFrom statement (8), the tiger chases the bear. We need to find out if the tiger visits the squirrel, and if that's the case, does it imply the tiger chases the squirrel?\n\nFrom statement (23), if something eats the bear, then it chases the squirrel. However, we don't know what eats the bear yet.\n\nFrom statement (8), the tiger chases the bear. We need to find out if the tiger visits the squirrel, and if that's the case, does it imply the tiger chases the squirrel?\n\nFrom statement (14), the tiger visits the squirrel.\n\nNow, let's go back to statement (20): If something chases the bear and it visits the tiger, then the tiger chases the squirrel. However, since the tiger is the same entity, we can say that if the tiger chases the bear and it visits the tiger (which is the same entity), then the tiger chases the squirrel.\n\nFrom statement (8), the tiger chases the bear. We know that the tiger visits the tiger (which is the same entity), so from statement (20), the tiger chases the squirrel.\n\nTherefore, the statement \"The tiger chases the squirrel\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the tiger chases the squirrel, we need to analyze the given statements and their implications.\n\n1. The squirrel visits the tiger.\n2. If something is green and it visits the squirrel, then the squirrel is green. (This statement does not provide any information about the squirrel's color, but we'll keep it in mind.)\n3. The squirrel is nice.\n4. The squirrel does not visit the rabbit.\n5. The squirrel is not green (implied by statement 3, since if the squirrel was green, statement 2 would imply that the squirrel is nice, which is already given, but this doesn't add any new information).\n\nFrom the given statements, we can derive the following implications:\n\n- The tiger visits the squirrel (from statement 1).\n- The tiger is not rough (from statement 7).\n- The tiger is cold (from statement 10).\n- The tiger is nice (from statement 12).\n\nFrom statement 9, \"If something chases the rabbit then it eats the bear,\" we can derive the following implication:\n- The tiger eats the bear (since the tiger chases the rabbit).\n\nHowever, this is not relevant to our main question, but it is a related statement.\n\nFrom statement 5, \"If something is cold then it chases the rabbit,\" we can derive the following implication:\n- The tiger chases the rabbit (since the tiger is cold).\n\nNow we have the following information:\n- The tiger visits the squirrel.\n- The tiger chases the rabbit.\n\nFrom statement 8, \"If something chases the bear and it visits the tiger then the tiger chases the squirrel,\" we can derive the following implication:\n- The tiger does not chase the squirrel (since the tiger visits the squirrel, not the bear).\n\nHowever, this is a false implication. We can derive a different implication from the same statement.\n\nFrom statement 8, \"If something chases the bear and it visits the tiger then the tiger chases the squirrel,\" we can derive the following implication:\n- If the tiger chases the bear and the bear visits the squirrel, then the tiger chases the squirrel.\n\nSince the tiger does not chase the bear (the tiger eats the bear, not chases), this implication is irrelevant.\n\nHowever, we can derive a different implication from the same statement.\n- If the bear chases the squirrel and the squirrel visits the tiger, then the tiger chases the squirrel.\n\nHowever, the bear does not chase the squirrel.\n\nFrom statement 15, \"If something eats the bear then it chases the squirrel,\" we can derive the following implication:\n- The tiger chases the squirrel (since the tiger eats the bear).\n\nNow we have a conflict. We have two implications:\n- The tiger chases the squirrel.\n- The tiger does not chase the squirrel.\n\nHowever, we can resolve this conflict.\n\nFrom statement 6, \"If the squirrel eats the rabbit and the rabbit visits the bear then the bear is not red,\" we can derive the following implication:\n- If the bear visits the squirrel and the squirrel eats the rabbit, then the bear is not red.\n\nHowever, this is not relevant to our main question.\n\nFrom statement 14, \"If something eats the bear and the bear visits the squirrel then it eats the rabbit,\" we can derive the following implication:\n- If the tiger eats the bear and the bear visits the squirrel, then the tiger eats the rabbit.\n\nHowever, this is not relevant to our main question.\n\nFrom statement 15, \"If something eats the bear then it chases the squirrel,\" we can derive the following implication:\n- The tiger chases the squirrel.\n\nHowever, we already know that the tiger eats the bear.\n\nFrom statement 4, \"The squirrel does not visit the rabbit,\" we can derive the following implication:\n- The tiger visits the rabbit (since the tiger visits the squirrel).\n\nHowever, this is not relevant to our main question.\n\nFrom statement 11, \"The tiger does not eat the rabbit,\" we can derive the following implication:\n- The tiger eats the bear (since the tiger chases the rabbit).\n\nHowever, this is not relevant to our main question.\n\nFrom statement 13, \"If the rabbit chases the squirrel then the squirrel eats the bear,\" we can derive the following implication:\n- If the rabbit chases the squirrel then the squirrel eats the bear.\n\nHowever, the rabbit does not chase the squirrel.\n\nFrom statement 3, \"The squirrel is nice,\" we can derive the following implication:\n- The squirrel is not green (since statement 2 does not provide any information about the squirrel's color).\n\nHowever, this is not relevant to our main question.\n\nFrom statement 5, \"The bear is rough,\" we can derive the following implication:\n- The bear is not green (since statement 2 does not provide any information about the bear's color).\n\nHowever, this is not relevant to our main question.\n\nFrom statement 16, \"If something is cold and not nice then it eats the rabbit,\" we can derive the following implication:\n- The tiger eats the rabbit (since the tiger is cold and nice).\n\nHowever, the tiger does not eat the rabbit.\n\nFrom statement 7, \"The tiger is not rough,\" we can derive the following implication:\n- The bear is rough (since statement 5 does not provide any information about the bear's color).\n\nHowever, this is not relevant to our main question.\n\nNow we have the following information:\n- The tiger visits the squirrel.\n- The tiger chases the rabbit.\n- The tiger eats the bear.\n- The tiger does not chase the squirrel.\n\nHowever, we have a conflict. We have two implications:\n- The tiger chases the squirrel.\n- The tiger does not chase the squirrel.\n\nHowever, we can resolve this conflict.\n\nFrom statement 8, \"If something chases the bear and it visits the tiger then the tiger chases the squirrel,\" we can derive the following implication:\n- If the bear chases the squirrel and the squirrel visits the tiger, then the tiger chases the squirrel.\n\nHowever, the bear does not chase the squirrel.\n\nHowever, we can derive a different implication from the same statement.\n- If the bear chases the squirrel, then the tiger chases the squirrel.\n\nHowever, the bear does not chase the squirrel.\n\nNow we have the following information:\n- The tiger eats the bear.\n- The tiger does not chase the squirrel.\n\nHowever, we have a conflict. We have two implications:\n- The tiger chases the squirrel.\n- The tiger does not chase the squirrel.\n\nHowever, we can resolve this conflict.\n\nFrom statement 15, \"If something eats the bear then it chases the squirrel,\" we can derive the following implication:\n- The tiger chases the squirrel.\n\nHowever, we already know that the tiger eats the bear.\n\nNow we have the following information:\n- The tiger eats the bear.\n- The tiger chases the rabbit.\n- The tiger visits the squirrel.\n- The tiger is not rough.\n- The tiger is cold.\n- The tiger is nice.\n\nFrom statement 5, \"If something is cold then it chases the rabbit,\" we can derive the following implication:\n- The tiger chases the rabbit.\n\nHowever, we already know that the tiger chases the rabbit.\n\nFrom statement 15, \"If something eats the bear then it chases the squirrel,\" we can derive the following implication:\n- The tiger chases the squirrel.\n\nHowever, we already know that the tiger eats the bear.\n\nFrom statement 15, \"If something eats the bear then it chases the squirrel,\" we can derive the following implication:\n- The tiger chases the squirrel.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger chases the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger visits the squirrel. (From statement 7)\n2. The tiger is cold. (From statement 8)\n3. The tiger is not rough. (From statement 9)\n4. The tiger is nice. (From statement 10)\n\nFrom the given statements, we don't have any information about the tiger chasing the squirrel directly. However, we can use the information to derive some conclusions.\n\n5. If something is cold then it chases the rabbit. (From statement 13)\n   But the tiger is not chasing the rabbit. We need to continue analyzing.\n\n6. The tiger is not chasing the rabbit, but it is cold. Therefore, we cannot conclude that the tiger chases the rabbit from statement 13.\n\n7. We need to use another statement to derive the conclusion. \n   If the tiger is cold and nice, then we cannot conclude that it eats the rabbit from statement 14, because it is nice.\n\n8. The tiger is cold and nice, and we don't have any information about it eating the rabbit. Therefore, we cannot conclude that the tiger chases the squirrel from statement 15.\n\n9. We need to use another statement to derive the conclusion.\n   The tiger visits the squirrel, but we cannot conclude that it chases the squirrel from the given statements.\n\nHowever, we have another statement that is relevant:\n\n   If something chases the bear and it visits the tiger then the tiger chases the squirrel. (From statement 17)\n\n10. The tiger visits the squirrel, but we don't have any information about the tiger chasing the bear.\n\n11. We need to find the information that can connect the tiger to the bear.\n   The tiger chases the bear. (From statement 8)\n\n12. Now we have the information to use statement 17: If something chases the bear and it visits the tiger then the tiger chases the squirrel.\n\n13. The tiger chases the bear, and it visits the tiger. Therefore, we can conclude that the tiger chases the squirrel from statement 17.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and use logical deductions to find out whether the statement \"The tiger chases the squirrel\" is true, false, or unknown.\n\nLet's break down the information given:\n\n1. The bear is cold.\n2. The bear is not green.\n3. The bear is rough.\n4. The rabbit is cold.\n5. The squirrel is nice.\n6. The squirrel does not visit the rabbit.\n7. The squirrel visits the tiger.\n8. The tiger chases the bear.\n9. The tiger does not eat the rabbit.\n10. The tiger is cold.\n11. The tiger is nice.\n12. The tiger is not rough.\n13. The tiger visits the rabbit.\n14. The tiger visits the squirrel.\n\nNow, let's analyze the given rules:\n\n1. If something is green and it visits the squirrel then the squirrel is green. (This rule is not relevant to the problem.)\n2. If something chases the rabbit then it eats the bear. (This rule is not directly relevant to the problem, but we can use it later.)\n3. If the squirrel eats the rabbit and the rabbit visits the bear then the bear is not red. (This rule is not relevant to the problem.)\n4. If something is cold then it chases the rabbit. (This rule is relevant to the problem.)\n5. If the rabbit chases the squirrel then the squirrel eats the bear. (This rule is not relevant to the problem.)\n6. If something chases the bear and it visits the tiger then the tiger chases the squirrel. (This rule is relevant to the problem.)\n7. If something is cold and not nice then it eats the rabbit. (This rule is not directly relevant to the problem.)\n8. If something eats the bear and the bear visits the squirrel then it eats the rabbit. (This rule is not directly relevant to the problem.)\n9. If something eats the bear then it chases the squirrel. (This rule is relevant to the problem.)\n\nNow, let's analyze the statement \"The tiger chases the squirrel\" using the rules and information given.\n\nFrom rule 4, we know that if something is cold then it chases the rabbit. We know that the tiger is cold (rule 10), so the tiger chases the rabbit (rule 4).\n\nFrom rule 13, we know that the tiger visits the rabbit.\n\nNow, let's consider rule 6: If something chases the bear and it visits the tiger then the tiger chases the squirrel.\n\nWe know that the tiger chases the bear (rule 8), but we don't know whether the bear visits the tiger or not. However, we do know that the tiger visits the bear (rule 13).\n\nUsing rule 6, if the bear chases the tiger, then the tiger would chase the squirrel. But we know that the tiger does not chase the squirrel (rule 8).\n\nHowever, we do not know whether the bear chases the tiger or not. If the bear chases the tiger, then the tiger would chase the squirrel (rule 6). But if the bear does not chase the tiger, then we cannot conclude anything about the tiger chasing the squirrel.\n\nSo, based on the information given and the rules, we cannot determine whether the tiger chases the squirrel or not.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we'll analyze the given statements and rules step by step to determine the relationship between the tiger and the squirrel.\n\n1. The tiger is cold. (Statement 10)\n2. The tiger is not rough. (Statement 13)\n3. The tiger is nice. (Statement 14)\n4. If something is cold then it chases the rabbit. (Rule 5) - Since the tiger is cold, it chases the rabbit.\n5. The tiger chases the rabbit. (From Rule 5 and Statement 10)\n6. The tiger does not eat the rabbit. (Statement 11)\n7. The tiger visits the rabbit. (Statement 15)\n8. The tiger visits the squirrel. (Statement 16)\n\nHowever, we need to determine if the tiger chases the squirrel or not. To do this, we'll examine the rules related to the squirrel and the tiger.\n\n1. The squirrel is nice. (Statement 4)\n2. The squirrel does not visit the rabbit. (Statement 6)\n3. The squirrel visits the tiger. (Statement 7)\n4. If something is cold and not nice then it eats the rabbit. (Rule 9) - This rule doesn't apply here since the tiger is nice.\n5. If something chases the bear and it visits the tiger then the tiger chases the squirrel. (Rule 8) - This rule also doesn't apply here as we don't have information about the bear.\n6. If something eats the bear and the bear visits the squirrel then it eats the rabbit. (Rule 7) - This rule also doesn't apply here as we don't have information about the bear eating or the bear visiting the squirrel.\n7. If something eats the bear then it chases the squirrel. (Rule 6) - This rule doesn't apply here as we don't have information about the bear being eaten.\n8. If the squirrel eats the rabbit and the rabbit visits the bear then the bear is not red. (Rule 4) - This rule doesn't apply here as we don't have information about the squirrel eating the rabbit or the rabbit visiting the bear.\n\nThe only information we have about the squirrel and the tiger is that the squirrel visits the tiger. We don't have any information that directly states the tiger chases the squirrel.\n\nHowever, since the tiger is cold and chases the rabbit (from Rule 5), we can't determine if the tiger chases the squirrel directly.\n\nBut we have another rule: If something is cold then it chases the rabbit. (Rule 5) - This means the tiger chases the rabbit (from Statement 10 and Rule 5). We also know that the tiger visits the squirrel. But since the tiger is cold and chases the rabbit, we can't directly apply this rule to the squirrel. However, we can apply another rule that states: If the squirrel eats the rabbit and the rabbit visits the bear then the bear is not red. (Rule 4) - This rule does not apply, but we know that the squirrel eats the bear is not mentioned in any of the previous statements. But we do have a statement that says the squirrel is nice. \n\nConsidering all the given rules and statements, we can see that the tiger is cold, nice, and visits the squirrel, but we can't directly determine if the tiger chases the squirrel or not.\n\nHowever, we can find a path that will lead to an answer. We know the tiger is cold and visits the squirrel. We also know that if something is cold then it chases the rabbit. (Rule 5) But we also know that the tiger is nice, not rough, and does not eat the rabbit. \n\nBut we know that if something eats the bear and the bear visits the squirrel then it eats the rabbit. (Rule 7) - This rule doesn't apply to the tiger.\n\nHowever, we know that the squirrel visits the tiger. We also know that the squirrel does not visit the rabbit. (Statement 6) This means that the squirrel and the tiger have a direct relationship. But we also know that the tiger is cold. If something is cold then it chases the rabbit. (Rule 5) This means that the tiger chases the rabbit. We also know that the tiger visits the squirrel. However, we don't know if the squirrel eats the bear.\n\nHowever, we can find another path. We know that the tiger visits the squirrel. We also know that the squirrel is nice. We also know that if the rabbit chases the squirrel then the squirrel eats the bear. (Rule 3) - This rule doesn't apply here.\n\nHowever, we can see that the squirrel is nice. We also know that the squirrel visits the tiger. We also know that the tiger is cold. We also know that if something is cold then it chases the rabbit. (Rule 5) This means that the tiger chases the rabbit. We also know that the tiger visits the squirrel. \n\nHowever, we can see that the squirrel does not visit the rabbit. (Statement 6) We also know that the tiger is nice. We also know that the tiger is cold. We also know that if something is cold then it chases the rabbit. (Rule 5) This means that the tiger chases the rabbit.\n\nHowever, we can find another path. We know that the tiger is cold. We also know that if something is cold then it chases the rabbit. (Rule 5) This means that the tiger chases the rabbit.\n\nHowever, we can see that the squirrel is nice. We also know that the squirrel visits the tiger. We also know that the tiger is cold. We also know that if something is cold then it chases the rabbit. (Rule 5) This means that the tiger chases the rabbit.\n\nHowever, we can see that the squirrel does not visit the rabbit. (Statement 6) We also know that the tiger is nice. We also know that the tiger is cold. We also know that if something is cold then it chases the rabbit. (Rule 5) This means that the tiger chases the rabbit.\n\nHowever, we can see that the squirrel visits the tiger. We also know that the tiger is cold. We also know that if something is cold then it chases the rabbit. (Rule 5) This means that the tiger chases the rabbit.\n\nHowever, we can see that the tiger is cold. We also know that if something is cold then it chases the rabbit. (Rule 5) This means that the tiger chases the rabbit.\n\nHowever, we can see that the tiger is cold. We also know that the tiger visits the squirrel. We also know that the squirrel does not visit the rabbit. (Statement 6) \n\nConsidering all the given rules and statements, we can see that the tiger is cold, nice, and visits the squirrel. But we can't directly determine if the tiger chases the squirrel or not.\n\nHowever, from Rule 6, If something eats the bear then it chases the squirrel, we can determine the answer.\n\nSince the tiger visits the squirrel and it's cold, it chases the rabbit. The tiger does not eat the rabbit. However, the tiger is nice. But we know that if something eats the bear then it chases the squirrel. We also know that the squirrel is nice. But we also know that the squirrel visits the tiger. \n\nFrom the rules, we know that if something eats the bear then it chases the squirrel. However, we also know that if the rabbit chases the squirrel then the squirrel eats the bear. But we also know that the squirrel does not visit the rabbit. \n\nHowever, we can see that the tiger visits the squirrel. We also know that the squirrel is nice. We also know that the tiger is cold. We also know that if something is cold then it chases the rabbit. (Rule 5) This means that the tiger chases the rabbit.\n\nHowever, from the given statements and rules, we can conclude that:\n\nIf the tiger eats the bear, then it chases the squirrel. However, we don't have information about the tiger eating the bear.\n\nHowever, we can see that the tiger is cold, nice, and visits the squirrel. We also know that if something is cold then it chases the rabbit. (Rule 5) This means that the tiger chases the rabbit.\n\nHowever, we can see that the tiger is cold, nice, and visits the squirrel. We also know that if something is cold then it chases the rabbit. (Rule 5) This means that the tiger chases the rabbit.\n\nHowever, from Rule 6, we can see that if something eats the bear then it chases the squirrel. But we don't have information about the tiger eating the bear.\n\nHowever, we can see that the tiger is cold, nice, and visits the squirrel. We also know that the squirrel is nice. We also know that the squirrel visits the tiger. \n\nHowever, we can see that the tiger is cold, nice, and visits the squirrel. We also know that the squirrel is nice. We also know that the squirrel visits the tiger.\n\nHowever, we can see that the squirrel is nice. We also know that the squirrel visits the tiger. We also know that the tiger is cold. We also know that if something is cold then it chases the rabbit. (Rule 5) This means that the tiger chases the rabbit.\n\nHowever, we can see that the tiger is cold. We also know that if something is cold then it chases the rabbit. (Rule 5) This means that the tiger chases the rabbit.\n\nHowever, we can see that the tiger is cold, nice, and visits the squirrel. We also know that if something is cold then it chases the rabbit. (Rule 5) This means that the tiger chases the rabbit.\n\nHowever, from the",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the tiger chases the squirrel, we need to analyze the given statements and use logical deductions.\n\n1. The tiger is cold. (Statement 9)\n2. If something is cold then it chases the rabbit. (Rule 5)\n   From statement 1 and rule 5, the tiger chases the rabbit.\n\n3. The tiger visits the squirrel. (Statement 10)\n4. The tiger visits the rabbit. (Statement 11)\n\nHowever, we cannot directly conclude that the tiger chases the squirrel. But we can deduce more information.\n\n5. The tiger is nice. (Statement 10)\n6. The tiger is not rough. (Statement 12)\n7. The tiger does not eat the rabbit. (Statement 13)\n\nNow, let's consider the possibilities where the tiger chases the squirrel.\n\n8. If the tiger chases the squirrel, then it must be cold and nice or cold and not nice. (Rule 5 and Rule 6)\n   Since the tiger is nice, it must be cold and nice.\n\n9. The tiger is not cold and not nice. (Elimination)\n   So, the tiger is cold and nice.\n\n10. The tiger chases the rabbit. (Statement 2 and Statement 1)\n    If the tiger chases the rabbit, then it must eat the bear. (Rule 2)\n\n11. If the tiger eats the bear, then it visits the squirrel. (Statement 1, Statement 3, Statement 7 and Rule 9)\n    If the tiger visits the squirrel, then it must chase the squirrel. (Statement 10 and Rule 8)\n\nHowever, we cannot conclude that the tiger chases the squirrel because we don't know if the tiger eats the bear. If the tiger eats the bear, then it must chase the squirrel.\n\nNow let's consider the possibilities where the tiger does not chase the squirrel.\n\n12. If the tiger does not chase the squirrel, then it must be cold and not nice or not cold and nice. (Rule 5 and Rule 6)\n    Since the tiger is nice, it must be not cold and nice.\n\n13. The tiger is not cold and not nice. (Elimination)\n   So, the tiger is not cold and nice.\n\n14. The tiger is not cold. (Elimination)\n    If the tiger is not cold, then it does not chase the rabbit. (Rule 5)\n\n15. The tiger does not chase the rabbit. (Statement 2 and Statement 13)\n    The tiger visits the squirrel. (Statement 10)\n    The squirrel does not visit the rabbit. (Statement 6)\n\nHowever, we can't conclude that the tiger does not chase the squirrel.\n\nIn conclusion, we cannot determine whether the tiger chases the squirrel because we have two possibilities:\n- If the tiger eats the bear, then it chases the squirrel.\n- If the tiger does not chase the squirrel, then it visits the squirrel.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the tiger chases the squirrel, we need to analyze the given information and apply logical reasoning.\n\n1. The tiger visits the squirrel. (Statement 9)\n2. The tiger is not rough. (Statement 10)\n3. The tiger is cold. (Statement 12)\n4. The tiger is nice. (Statement 13)\n\nNow, we have three possible conclusions based on the given information:\n- Conclusion 1: The tiger chases the rabbit (from Statement 14).\n- Conclusion 2: The tiger eats the rabbit (from Statement 15, because it is cold but we don't know if it is nice).\n- Conclusion 3: The tiger eats the rabbit (from Statement 15, because it is cold and not nice from Conclusion 1 and Statement 14).\n\nHowever, we also have more information that could be useful:\n- The tiger chases the bear. (Statement 8)\n- The tiger does not eat the rabbit. (Statement 11)\n- If something chases the bear and it visits the tiger then the tiger chases the squirrel. (Statement 16)\n\nNow let's break down Conclusion 1 and Conclusion 3 and see if we can derive a contradiction:\n- Conclusion 1: The tiger chases the rabbit (from Statement 14).\n- Conclusion 3: The tiger eats the rabbit (from Statement 15, because it is cold and not nice from Conclusion 1 and Statement 14).\n- If the tiger eats the rabbit, then it must be the case that the tiger chases the rabbit (Statement 15).\n- But we already know that the tiger chases the bear (Statement 8).\n- So, from Statement 16, we can conclude that the tiger chases the squirrel.\n\nHowever, this is a contradiction because Conclusion 3 says the tiger eats the rabbit, but Statement 11 says the tiger does not eat the rabbit. Therefore, Conclusion 3 is false and we can discard it.\n\nNow, let's look at Conclusion 2:\n- Conclusion 2: The tiger eats the rabbit (from Statement 15, because it is cold).\n- If the tiger eats the rabbit, then it must be the case that the tiger chases the rabbit (Statement 15).\n- But we already know that the tiger chases the bear (Statement 8).\n- So, from Statement 16, we can conclude that the tiger chases the squirrel.\n\nHowever, this is the conclusion we are looking for, so we can't discard it.\n\nHowever, we also know that:\n- The tiger is nice (Statement 13)\n- The tiger is cold (Statement 12)\n\nAnd from Statement 14:\n- If something is cold then it chases the rabbit.\n\nThis is a contradiction because the tiger is nice, but it chases the rabbit.\n\nTherefore, the statement \"The tiger chases the rabbit\" is false.\n\nAnd since the tiger chases the bear and the tiger visits the squirrel, then from Statement 16, the tiger chases the squirrel.\n\nBut we also know that:\n- The squirrel is nice (Statement 5)\n- The tiger is cold (Statement 12)\n\nAnd from Statement 14:\n- If something is cold then it chases the rabbit.\n\nThis is a contradiction because the tiger is nice, but it chases the rabbit.\n\nTherefore, the statement \"The tiger chases the squirrel\" is unknown because the only conclusion we have is that the tiger chases the rabbit and it visits the squirrel.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger chases the squirrel\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger visits the squirrel (from the statement \"The tiger visits the squirrel\").\n2. From the information \"If something is cold then it chases the rabbit\" and \"The tiger is cold\" (from the statement \"The tiger is cold\"), we can conclude that the tiger chases the rabbit.\n3. However, there is no direct information that the tiger chases the squirrel. We need to consider other statements to see if we can infer this.\n\nLet's consider other statements:\n- If something chases the bear and it visits the tiger then the tiger chases the squirrel (This statement does not apply to our case as the tiger does not chase the bear).\n- If the squirrel chases the rabbit then the squirrel eats the bear (This statement does not apply to our case as the squirrel does not chase the rabbit).\n\nHowever, we know that the tiger visits the squirrel (from the statement \"The tiger visits the squirrel\"). \nWe also know the tiger is not rough (from the statement \"The tiger is not rough\") and the tiger is nice (from the statement \"The tiger is nice\"). We can also conclude that the tiger is not cold from the statement \"The tiger is not rough\". However, this is not necessary for our conclusion.\n\nFrom the information \"If something eats the bear then it chases the squirrel\" and \"If something is cold then it chases the rabbit\" we can see that if the tiger eats the bear then it would chase the squirrel. However, there is no direct information that the tiger eats the bear.\n\nHowever, if we analyze the statement \"If something is green and it visits the squirrel then the squirrel is green\" we can see that if the tiger is green and it visits the squirrel then the squirrel is green. However, the tiger is not green.\n\nWe also know that the tiger visits the squirrel and the squirrel is nice (from the statement \"The squirrel is nice\"). \n\nNow let's analyze the statement \"If something eats the bear and the bear visits the squirrel then it eats the rabbit.\" We can see that the bear is cold (from the statement \"The bear is cold\") and the bear is rough (from the statement \"The bear is rough\"). However, there is no direct information that the bear visits the squirrel.\n\nHowever, we know that the squirrel does not eat the rabbit (from the statement \"The squirrel does not visit the rabbit\").\n\nFrom the information \"If something chases the bear then it eats the bear\" we can see that if the tiger chases the bear then it eats the bear. However, we do not have any information that the tiger chases the bear.\n\nHowever, we know that the tiger does not eat the bear. We can conclude this from the statement \"The tiger does not eat the rabbit.\" \n\nHowever, we do not have enough information to conclude that the tiger chases the squirrel.\n\nTherefore, the final answer is \\boxed{Unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we'll analyze the given statements and their implications step by step.\n\n1. The bear is cold. (Statement 1)\n2. The bear is not green. (Statement 2)\n3. The bear is rough. (Statement 3)\n4. The rabbit is cold. (Statement 4)\n5. The squirrel is nice. (Statement 5)\n6. The squirrel does not visit the rabbit. (Statement 6)\n7. The squirrel visits the tiger. (Statement 7)\n8. The tiger chases the bear. (Statement 8)\n9. The tiger does not eat the rabbit. (Statement 9)\n10. The tiger is cold. (Statement 10)\n11. The tiger is nice. (Statement 11)\n12. The tiger is not rough. (Statement 12)\n13. The tiger visits the rabbit. (Statement 13)\n14. The tiger visits the squirrel. (Statement 14)\n\nNow, let's consider the given rules:\n\n1. If something is green and it visits the squirrel then the squirrel is green.\n2. If something chases the rabbit then it eats the bear.\n3. If the squirrel eats the rabbit and the rabbit visits the bear then the bear is not red.\n4. If something is cold then it chases the rabbit.\n5. If the rabbit chases the squirrel then the squirrel eats the bear.\n6. If something chases the bear and it visits the tiger then the tiger chases the squirrel.\n7. If something is cold and not nice then it eats the rabbit.\n8. If something eats the bear and the bear visits the squirrel then it eats the rabbit.\n9. If something eats the bear then it chases the squirrel.\n\nWe'll analyze each statement and rule to determine the relationship between the tiger and the squirrel.\n\nFrom Statement 7, we know the squirrel visits the tiger. This does not provide any information about the tiger's actions towards the squirrel.\n\nFrom Statement 8, we know the tiger chases the bear. We cannot conclude anything about the tiger's actions towards the squirrel based on this information alone.\n\nHowever, considering Rule 6, if something chases the bear and it visits the tiger, then the tiger chases the squirrel. Since we know the tiger chases the bear (Statement 8), and the tiger visits the squirrel (Statement 14), we can apply Rule 6.\n\nApplying Rule 6: If the tiger chases the bear and the tiger visits the squirrel, then the tiger chases the squirrel.\n\nSince the tiger chases the bear (Statement 8) and the tiger visits the squirrel (Statement 14), we can conclude that the tiger chases the squirrel.\n\nTherefore, the statement \"The tiger chases the squirrel\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(squirrel, rabbit)",
+          "z3_formula": "Not(visits_squirrel_rabbit) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(tiger, rabbit)",
+          "z3_formula": "Not(eats_tiger_rabbit) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(tiger)",
+          "z3_formula": "Not(rough_tiger) == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, squirrel)",
+          "z3_formula": "visits_tiger_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & visits(Y, Z) -> chases(Z, X)",
+          "z3_formula": "Implies(And(chases_tiger_bear, visits_tiger_squirrel), chases_squirrel_tiger)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, Y)",
+          "z3_formula": "Implies(cold_bear, chases_bear_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, Y)",
+          "z3_formula": "Implies(cold_tiger, chases_tiger_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & visits(Y, Z) -> chases(Z, X)",
+          "z3_formula": "Implies(And(chases_tiger_bear, visits_bear_squirrel), chases_squirrel_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) & visits(Y, Z) -> not red(Z)",
+          "z3_formula": "Implies(And(eats_squirrel_rabbit, visits_rabbit_bear), Not(red_bear))",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(cold_tiger, chases_tiger_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, squirrel)",
+          "z3_formula": "visits_tiger_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(squirrel, rabbit)",
+          "z3_formula": "Not(visits_squirrel_rabbit) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not green(squirrel)",
+          "z3_formula": "Not(green_squirrel) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & green(Y) -> green(X)",
+          "z3_formula": "Implies(And(visits_squirrel_tiger, green_tiger), green_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & visits(rabbit, Y) -> not red(Y)",
+          "z3_formula": "Implies(And(eats_squirrel_rabbit, visits_rabbit_bear), Not(red_bear))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & visits(bear, Y) -> eats(X, Y)",
+          "z3_formula": "Implies(And(eats_tiger_bear, visits_bear_squirrel), eats_tiger_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & visits(bear, Y) -> chases(X, Y)",
+          "z3_formula": "Implies(And(eats_tiger_bear, visits_bear_squirrel), chases_tiger_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & visits(Y, Z) -> chases(X, Z)",
+          "z3_formula": "Implies(And(chases_rabbit_squirrel, visits_squirrel_tiger), chases_rabbit_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & visits(bear, Y) -> chases(X, Y)",
+          "z3_formula": "Implies(And(chases_tiger_rabbit, visits_bear_squirrel), chases_tiger_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(tiger)",
+          "z3_formula": "Not(rough_tiger) == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(bear)",
+          "z3_formula": "not green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(squirrel, rabbit)",
+          "z3_formula": "not visits_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(tiger, rabbit)",
+          "z3_formula": "not eats_tiger_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(tiger)",
+          "z3_formula": "not rough_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, squirrel)",
+          "z3_formula": "visits_tiger_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & visits(X, squirrel) -> green(squirrel)",
+          "z3_formula": "Implies(And(green_X, visits_X_squirrel), green_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> eats(X, bear)",
+          "z3_formula": "Implies(chases_X_rabbit, eats_X_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(squirrel, rabbit) & visits(rabbit, bear) -> not red(bear)",
+          "z3_formula": "Implies(And(eats_squirrel_rabbit, visits_rabbit_bear), not red_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(cold_X, chases_X_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(rabbit, squirrel) -> eats(squirrel, bear)",
+          "z3_formula": "Implies(chases_rabbit_squirrel, eats_squirrel_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & visits(X, tiger) -> chases(tiger, squirrel)",
+          "z3_formula": "Implies(And(chases_X_bear, visits_X_tiger), chases_tiger_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not nice(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(cold_X, not nice_X), eats_X_rabbit)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & visits(bear, squirrel) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(eats_X_bear, visits_bear_squirrel), eats_X_rabbit)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> chases(X, squirrel)",
+          "z3_formula": "Implies(eats_X_bear, chases_X_squirrel)",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(bear)",
+          "z3_formula": "not green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(squirrel, rabbit)",
+          "z3_formula": "not visits_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(tiger, rabbit)",
+          "z3_formula": "not eats_tiger_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(tiger)",
+          "z3_formula": "not rough_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, squirrel)",
+          "z3_formula": "visits_tiger_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & visits(X, squirrel) -> green(squirrel)",
+          "z3_formula": "Implies(And(green_X, visits_X_squirrel), green_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> eats(X, bear)",
+          "z3_formula": "Implies(chases_X_rabbit, eats_X_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(squirrel, rabbit) & visits(rabbit, bear) -> not red(bear)",
+          "z3_formula": "Implies(And(eats_squirrel_rabbit, visits_rabbit_bear), not red_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(cold_X, chases_X_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(rabbit, squirrel) -> eats(squirrel, bear)",
+          "z3_formula": "Implies(chases_rabbit_squirrel, eats_squirrel_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & visits(X, tiger) -> chases(tiger, squirrel)",
+          "z3_formula": "Implies(And(chases_X_bear, visits_X_tiger), chases_tiger_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not nice(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(cold_X, not nice_X), eats_X_rabbit)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & visits(bear, squirrel) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(eats_X_bear, visits_bear_squirrel), eats_X_rabbit)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> chases(X, squirrel)",
+          "z3_formula": "Implies(eats_X_bear, chases_X_squirrel)",
+          "source_step": 23
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(tiger, squirrel)",
+          "z3_formula": "visits_tiger_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(tiger))",
+          "z3_formula": "Not(rough_tiger) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(cold_tiger, chases_tiger_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(tiger, rabbit))",
+          "z3_formula": "Not(chases_tiger_rabbit) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> not(eats(X, rabbit))",
+          "z3_formula": "Implies(And(cold_tiger, nice_tiger), Not(eats_tiger_rabbit))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & nice(X) -> not(chases(X, squirrel))",
+          "z3_formula": "Implies(And(cold_tiger, nice_tiger), Not(chases_tiger_squirrel))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> not(chases(X, Y))",
+          "z3_formula": "Implies(visits_tiger_squirrel, Not(chases_tiger_squirrel))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & visits(X, tiger) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(chases_tiger_bear, visits_tiger_tiger), chases_tiger_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, tiger)",
+          "z3_formula": "visits_tiger_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, squirrel)",
+          "z3_formula": "chases_tiger_squirrel == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(bear)",
+          "z3_formula": "not green_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(squirrel, rabbit)",
+          "z3_formula": "not visits_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(tiger, rabbit)",
+          "z3_formula": "not eats_tiger_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(tiger)",
+          "z3_formula": "not rough_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, squirrel)",
+          "z3_formula": "visits_tiger_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(cold_tiger, chases_tiger_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & visits(X, tiger) -> chases(tiger, squirrel)",
+          "z3_formula": "Implies(And(chases_tiger_bear, visits_tiger_tiger), chases_tiger_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> eats(X, bear)",
+          "z3_formula": "Implies(chases_tiger_rabbit, eats_tiger_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> chases(X, squirrel)",
+          "z3_formula": "Implies(chases_X_tiger, chases_X_squirrel)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, squirrel)",
+          "z3_formula": "chases_tiger_squirrel == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(cold_tiger, chases_tiger_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, squirrel)",
+          "z3_formula": "visits_tiger_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> chases(X, squirrel)",
+          "z3_formula": "Implies(eats_tiger_bear, chases_tiger_squirrel)",
+          "source_step": 7
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(tiger, squirrel)",
+          "z3_formula": "visits_tiger_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(tiger))",
+          "z3_formula": "not_rough_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(tiger, rabbit))",
+          "z3_formula": "not_eats_tiger_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & visits(X, Y) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(chases_tiger_bear, visits_tiger_squirrel), chases_tiger_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases(tiger, rabbit))",
+          "z3_formula": "not_chases_tiger_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, squirrel)",
+          "z3_formula": "chases_tiger_squirrel == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(tiger, squirrel)",
+          "z3_formula": "visits_tiger_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(cold_tiger, chases_tiger_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, rabbit)",
+          "z3_formula": "chases_tiger_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & visits(X, tiger) -> chases(tiger, squirrel)",
+          "z3_formula": "Implies(And(chases_tiger_bear, visits_tiger_tiger), chases_tiger_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(tiger, bear))",
+          "z3_formula": "Not(chases_tiger_bear) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & green(X) -> green(squirrel)",
+          "z3_formula": "Implies(And(visits_tiger_squirrel, green_tiger), green_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(green(tiger))",
+          "z3_formula": "Not(green_tiger) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, squirrel)",
+          "z3_formula": "visits_tiger_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & visits(X, squirrel) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(eats_tiger_bear, visits_tiger_squirrel), eats_tiger_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> eats(X, squirrel)",
+          "z3_formula": "Implies(eats_tiger_bear, eats_tiger_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(tiger, bear))",
+          "z3_formula": "Not(eats_tiger_bear) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & visits(X, squirrel) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(eats_tiger_bear, visits_tiger_squirrel), eats_tiger_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(squirrel, rabbit))",
+          "z3_formula": "Not(eats_squirrel_rabbit) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) -> eats(X, bear)",
+          "z3_formula": "Implies(chases_tiger_bear, eats_tiger_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(tiger, bear))",
+          "z3_formula": "Not(eats_tiger_bear) == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(tiger, rabbit))",
+          "z3_formula": "Not(eats_tiger_rabbit) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, squirrel)",
+          "z3_formula": "chases_tiger_squirrel == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(bear)",
+          "z3_formula": "cold_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not green(bear)",
+          "z3_formula": "Not(green_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bear)",
+          "z3_formula": "rough_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(squirrel)",
+          "z3_formula": "nice_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(squirrel, rabbit)",
+          "z3_formula": "Not(visits_squirrel_rabbit) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, tiger)",
+          "z3_formula": "visits_squirrel_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, bear)",
+          "z3_formula": "chases_tiger_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not eats(tiger, rabbit)",
+          "z3_formula": "Not(eats_tiger_rabbit) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(tiger)",
+          "z3_formula": "Not(rough_tiger) == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, rabbit)",
+          "z3_formula": "visits_tiger_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, squirrel)",
+          "z3_formula": "visits_tiger_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & visits(X, squirrel) -> green(squirrel)",
+          "z3_formula": "Implies(And(green_X, visits_X_squirrel), green_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> eats(X, bear)",
+          "z3_formula": "Implies(chases_X_rabbit, eats_X_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(squirrel, rabbit) & visits(rabbit, bear) -> not red(bear)",
+          "z3_formula": "Implies(And(eats_squirrel_rabbit, visits_rabbit_bear), Not(red_bear))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(cold_X, chases_X_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(rabbit, squirrel) -> eats(squirrel, bear)",
+          "z3_formula": "Implies(chases_rabbit_squirrel, eats_squirrel_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, bear) & visits(X, tiger) -> chases(tiger, squirrel)",
+          "z3_formula": "Implies(And(chases_X_bear, visits_X_tiger), chases_tiger_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not nice(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(cold_X, Not(nice_X)), eats_X_rabbit)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) & visits(bear, squirrel) -> eats(X, rabbit)",
+          "z3_formula": "Implies(And(eats_X_bear, visits_bear_squirrel), eats_X_rabbit)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> chases(X, squirrel)",
+          "z3_formula": "Implies(eats_X_bear, chases_X_squirrel)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, squirrel)",
+          "z3_formula": "chases_tiger_squirrel == True",
+          "source_step": 24
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 174,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 58
+    },
+    "maxsat_stats": {
+      "satisfied": 52,
+      "excluded": 6,
+      "total_weight": 164,
+      "solve_time_ms": 2.581864595413208
+    },
+    "timing": {
+      "trace_gen_s": 24.997,
+      "extraction_s": 45.769,
+      "dedup_s": 1.915,
+      "maxsat_s": 0.006,
+      "total_s": 72.688
+    }
+  }
+}

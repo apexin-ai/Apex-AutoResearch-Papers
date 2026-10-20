@@ -1,0 +1,3 @@
+Path: /root/symb_invariant_consensus/data/logiqa_30.json
+N: 30, Label dist: A=8 B=8 C=7 D=7, Seed: 42
+Source: logiqa_200.json (200 items, test split)

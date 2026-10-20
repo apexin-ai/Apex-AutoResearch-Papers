@@ -1,0 +1,1213 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-478_Q5",
+    "problem": "The cow is kind. The cow sees the mouse. The mouse eats the cow. The mouse is kind. The mouse needs the squirrel. The rabbit eats the mouse. The rabbit is not blue. The squirrel is not blue. The squirrel is green. The squirrel is rough. The squirrel needs the mouse. The squirrel sees the rabbit. If something sees the cow then it sees the squirrel. If something sees the rabbit then it eats the cow. If something needs the cow then the cow eats the mouse. If something needs the squirrel and the squirrel needs the cow then the cow does not need the rabbit. If the mouse eats the rabbit and the rabbit does not see the mouse then the rabbit is green. If the cow needs the rabbit then the rabbit does not eat the mouse. If something eats the squirrel and the squirrel eats the cow then it needs the cow. If something eats the mouse then it eats the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit needs the cow.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nSees($x, $y, bool) ::: Does x see y?\nEats($x, $y, bool) ::: Does x eat y?\nNeeds($x, $y, bool) ::: Does x need y?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nKind(Cow, True) ::: The cow is kind.\nSees(Cow, Mouse, True) ::: The cow sees the mouse.\nEats(Mouse, Cow, True) ::: The mouse eats the cow.\nKind(Mouse, True) ::: The mouse is kind.\nNeeds(Mouse, Squirrel, True) ::: The mouse needs the squirrel.\nEats(Rabbit, Mouse, True) ::: The rabbit eats the mouse.\nBlue(Rabbit, False) ::: The rabbit is not blue.\nBlue(Squirrel, False) ::: The squirrel is not blue.\nGreen(Squirrel, True) ::: The squirrel is green.\nRough(Squirrel, True) ::: The squirrel is rough.\nNeeds(Squirrel, Mouse, True) ::: The squirrel needs the mouse.\nSees(Squirrel, Rabbit, True) ::: The squirrel sees the rabbit.\n\nRules:\nSees($x, Cow, True) >>> Sees($x, Squirrel, True) ::: If something sees the cow then it sees the squirrel.\nSees($x, Rabbit, True) >>> Eats($x, Cow, True) ::: If something sees the rabbit then it eats the cow.\nNeeds($x, Cow, True) >>> Eats(Cow, Mouse, True) ::: If something needs the cow then the cow eats the mouse.\nNeeds($x, Squirrel, True) && Needs(Squirrel, Cow, True) >>> Needs(Cow, Rabbit, False) ::: If something needs the squirrel and the squirrel needs the cow then the cow does not need the rabbit.\nEats(Mouse, Rabbit, True) && Sees(Rabbit, Mouse, False) >>> Green(Rabbit, True) ::: If the mouse eats the rabbit and the rabbit does not see the mouse then the rabbit is green.\nNeeds(Cow, Rabbit, True) >>> Eats(Rabbit, Mouse, False) ::: If the cow needs the rabbit then the rabbit does not eat the mouse.\nEats($x, Squirrel, True) && Eats(Squirrel, Cow, True) >>> Needs($x, Cow, True) ::: If something eats the squirrel and the squirrel eats the cow then it needs the cow.\nEats($x, Mouse, True) >>> Eats($x, Squirrel, True) ::: If something eats the mouse then it eats the squirrel.\n\nQuery:\nNeeds(Rabbit, Cow, True) ::: The rabbit needs the cow."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 149.0
+    },
+    "answer_counts": {
+      "True": 10
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to break down the given information and apply the given rules step by step.\n\nFrom the information given:\n\n1. The mouse eats the cow.\n2. The mouse needs the squirrel.\n3. The rabbit eats the mouse.\n4. The rabbit is not blue.\n5. The squirrel is not blue.\n6. The squirrel is green.\n7. The squirrel is rough.\n8. The squirrel needs the mouse.\n9. The squirrel sees the rabbit.\n10. If something sees the cow then it sees the squirrel.\n11. If something sees the rabbit then it eats the cow.\n12. If something needs the cow then the cow eats the mouse.\n13. If something needs the squirrel and the squirrel needs the cow then the cow does not need the rabbit.\n14. If the mouse eats the rabbit and the rabbit does not see the mouse then the rabbit is green.\n15. If the cow needs the rabbit then the rabbit does not eat the mouse.\n16. If something eats the squirrel and the squirrel eats the cow then it needs the cow.\n17. If something eats the mouse then it eats the squirrel.\n\nNow, let's consider the given statement: \"The rabbit needs the cow.\"\n\nTo determine whether this statement is true, false, or unknown, we need to apply the rules and analyze the given information.\n\nFrom rule 12, if something needs the cow then the cow eats the mouse. This implies that if the rabbit needs the cow, the cow would eat the mouse.\n\nHowever, from rule 3, the rabbit eats the mouse. \n\nAlso, from rule 17, if something eats the mouse then it eats the squirrel.\n\nSince the rabbit eats the mouse, the rabbit also eats the squirrel.\n\nNow, let's consider the rules related to the squirrel.\n\nFrom rule 10, if something sees the cow then it sees the squirrel. \n\nSince the rabbit eats the mouse (rule 3), from rule 10, the rabbit sees the cow.\n\nFrom rule 9, the squirrel sees the rabbit.\n\nSo, the squirrel sees the rabbit and the rabbit sees the cow, which means the squirrel sees the cow.\n\nFrom rule 11, if something sees the rabbit then it eats the cow.\n\nSince the squirrel sees the rabbit, the squirrel eats the cow.\n\nFrom rule 16, if something eats the squirrel and the squirrel eats the cow then it needs the cow.\n\nSince the rabbit eats the squirrel and the squirrel eats the cow, the rabbit needs the cow.\n\nSo, the statement \"The rabbit needs the cow\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will use logical deductions based on the given statements.\n\n1. The cow sees the mouse.\n2. The mouse eats the cow.\n3. The mouse is kind.\n4. The mouse needs the squirrel.\n5. The rabbit eats the mouse.\n6. The rabbit is not blue.\n7. The squirrel is not blue.\n8. The squirrel is green.\n9. The squirrel is rough.\n10. The squirrel needs the mouse.\n11. The squirrel sees the rabbit.\n12. If something sees the cow then it sees the squirrel.\n13. If something sees the rabbit then it eats the cow.\n14. If something needs the cow then the cow eats the mouse.\n15. If something needs the squirrel and the squirrel needs the cow then the cow does not need the rabbit.\n16. If the mouse eats the rabbit and the rabbit does not see the mouse then the rabbit is green.\n17. If the cow needs the rabbit then the rabbit does not eat the mouse.\n18. If something eats the squirrel and the squirrel eats the cow then it needs the cow.\n19. If something eats the mouse then it eats the squirrel.\n\nNow, let's analyze the statement \"The rabbit needs the cow.\"\n\nFrom the given statements, we know that the rabbit eats the mouse (statement 5). \n\nUsing statement 19, if the rabbit eats the mouse, then it eats the squirrel.\n\nFrom statement 18, if the rabbit eats the squirrel and the squirrel eats the cow, then the rabbit needs the cow. \n\nHowever, we don't have direct information about whether the squirrel eats the cow.\n\nTo determine whether the rabbit needs the cow, we need to know whether the squirrel eats the cow.\n\nFrom statement 2, we know that the mouse eats the cow. \n\nUsing statement 14, if something needs the cow, then the cow eats the mouse. This implies that the cow needs the mouse.\n\nFrom statement 10, we know that the squirrel needs the mouse.\n\nUsing statement 15, if the squirrel needs the mouse and the squirrel needs the cow, then the cow does not need the rabbit.\n\nHowever, we still don't have information about whether the squirrel eats the cow.\n\nSince the rabbit eats the squirrel (from statement 19) and the squirrel sees the rabbit (from statement 11), using statement 13, if the rabbit sees the squirrel, then it eats the cow.\n\nSince the rabbit eats the squirrel, the squirrel must eat the cow.\n\nFrom statement 18, if the rabbit eats the squirrel and the squirrel eats the cow, then the rabbit needs the cow.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit needs the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse eats the cow. \nThis statement provides us with a crucial piece of information about the cow and the mouse.\n\n2. The mouse is kind. \nThis statement gives us information about the mouse's character, but it's not directly relevant to the problem at hand.\n\n3. The mouse needs the squirrel. \nThis statement is crucial for determining the relationship between the mouse and the squirrel.\n\n4. The rabbit eats the mouse. \nThis statement is another key piece of information about the relationship between the rabbit and the mouse.\n\n5. The rabbit is not blue. \nThis statement is irrelevant to the problem at hand.\n\n6. The squirrel is not blue. \nThis statement is also irrelevant to the problem at hand.\n\n7. The squirrel is green. \nThis statement provides us with information about the squirrel's color, which might be relevant later.\n\n8. The squirrel is rough. \nThis statement gives us information about the squirrel's texture, but it's not directly relevant to the problem at hand.\n\n9. The squirrel needs the mouse. \nThis statement is crucial for determining the relationship between the squirrel and the mouse.\n\n10. The squirrel sees the rabbit. \nThis statement is another key piece of information about the relationship between the squirrel and the rabbit.\n\nNow, let's analyze the given rules:\n\n1. If something sees the cow then it sees the squirrel.\n   - This rule is not directly relevant to the problem at hand.\n\n2. If something sees the rabbit then it eats the cow.\n   - This rule is not directly relevant to the problem at hand.\n\n3. If something needs the cow then the cow eats the mouse.\n   - This rule is not directly relevant to the problem at hand.\n\n4. If something needs the squirrel and the squirrel needs the cow then the cow does not need the rabbit.\n   - This rule is crucial for determining the relationship between the cow and the rabbit.\n\n5. If the mouse eats the rabbit and the rabbit does not see the mouse then the rabbit is green.\n   - This rule is not directly relevant to the problem at hand.\n\n6. If the cow needs the rabbit then the rabbit does not eat the mouse.\n   - This rule is crucial for determining the relationship between the rabbit and the mouse.\n\n7. If something eats the squirrel and the squirrel eats the cow then it needs the cow.\n   - This rule is not directly relevant to the problem at hand.\n\n8. If something eats the mouse then it eats the squirrel.\n   - This rule is crucial for determining the relationship between the rabbit and the squirrel.\n\nNow, let's apply the rules to the problem at hand.\n\nFrom statement 4, we know that the squirrel needs the cow. \n\nFrom statement 9, we know that the squirrel needs the mouse.\n\nFrom statement 3, we know that the squirrel needs the cow and the cow needs the mouse.\n\nTherefore, from rule 4, we can conclude that the cow does not need the rabbit.\n\nHowever, we are asked to determine whether the rabbit needs the cow. \n\nWe know that the rabbit eats the mouse (statement 4), which means from rule 8, the rabbit eats the squirrel.\n\nWe also know that the squirrel eats the cow (statement 1), which means from rule 7, the rabbit needs the cow.\n\nTherefore, the statement \"The rabbit needs the cow\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. \n\nLet's break down the statements:\n\n1. The cow sees the mouse.\n2. The mouse eats the cow.\n3. The mouse is kind.\n4. The mouse needs the squirrel.\n5. The rabbit eats the mouse.\n6. The rabbit is not blue.\n7. The squirrel is not blue.\n8. The squirrel is green.\n9. The squirrel is rough.\n10. The squirrel needs the mouse.\n11. The squirrel sees the rabbit.\n\nNow, let's consider the given implications:\n\n1. If something sees the cow then it sees the squirrel.\n   - Since the cow sees the mouse (statement 1), the mouse sees the squirrel (by implication 1). \n   - The mouse eats the squirrel (by implication 8), and the mouse needs the squirrel (statement 10). \n   - Therefore, the cow sees the squirrel (since it sees the mouse).\n\n2. If something sees the rabbit then it eats the cow.\n   - The rabbit sees the squirrel (statement 11), so it eats the cow (by implication 2).\n\n3. If something needs the cow then the cow eats the mouse.\n   - This implication does not directly apply to our problem.\n\n4. If something needs the squirrel and the squirrel needs the cow then the cow does not need the rabbit.\n   - The squirrel needs the mouse (statement 10), and the squirrel needs the cow (by implication 3).\n   - However, this implication does not directly apply to our problem.\n\n5. If the mouse eats the rabbit and the rabbit does not see the mouse then the rabbit is green.\n   - The mouse eats the rabbit (statement 5), and the rabbit is not blue (statement 6).\n   - However, we do not have enough information to determine the color of the rabbit.\n\n6. If the cow needs the rabbit then the rabbit does not eat the mouse.\n   - This implication does not directly apply to our problem.\n\n7. If something eats the squirrel and the squirrel eats the cow then it needs the cow.\n   - The rabbit eats the squirrel (by implication 8), and the squirrel eats the cow (by implication 2).\n   - Therefore, the rabbit needs the cow (by implication 7).\n\n8. If something eats the mouse then it eats the squirrel.\n   - The rabbit eats the mouse (statement 5), so it eats the squirrel (by implication 8).\n\nNow, we need to determine whether the rabbit needs the cow. \n\nFrom implication 7, we know that the rabbit eats the squirrel and the squirrel eats the cow, so the rabbit needs the cow.\n\nTherefore, the statement \"The rabbit needs the cow\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit needs the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. There is no direct information that the rabbit needs the cow. So, we cannot immediately conclude that the statement is true.\n\n2. The information \"If something needs the squirrel and the squirrel needs the cow then the cow does not need the rabbit\" does not directly relate to the rabbit. However, this information tells us that the relationship between the squirrel's need and the cow's need is inversely related. We will use this information later.\n\n3. The information \"If the mouse eats the rabbit and the rabbit does not see the mouse then the rabbit is green\" is also not directly related to the rabbit's need for the cow. However, it tells us that if the mouse eats the rabbit, then the rabbit is green. We will use this information later.\n\n4. The information \"If something sees the rabbit then it eats the cow\" tells us about a relationship between seeing the rabbit and eating the cow, but it does not directly relate to the rabbit's need for the cow.\n\n5. There is no information about the mouse needing the cow directly. However, it is given that the mouse eats the cow. This information will be useful later.\n\n6. The information \"If something eats the mouse then it eats the squirrel\" tells us about a relationship between eating the mouse and eating the squirrel. This information is not directly related to the rabbit's need for the cow.\n\n7. The information \"If something eats the squirrel and the squirrel eats the cow then it needs the cow\" tells us about a relationship between eating the squirrel and needing the cow. This information will be useful later.\n\nNow, let's analyze the given statements:\n\n- The mouse sees the cow.\n- The mouse eats the cow.\n- The mouse needs the squirrel.\n- The squirrel sees the rabbit.\n- The squirrel is rough.\n- The squirrel is green.\n- The squirrel is not blue.\n- The rabbit eats the mouse.\n- The rabbit is not blue.\n- The squirrel needs the mouse.\n\nFrom the information in steps 2 and 5, we can conclude that the squirrel needs the mouse because the mouse eats the cow, and the squirrel needs the cow. This is consistent with the information that the squirrel needs the mouse.\n\nFrom the information in step 7, we can conclude that if the rabbit eats the squirrel, then the rabbit needs the cow because the squirrel eats the cow.\n\nNow, let's consider the statement \"The rabbit needs the cow\". If the rabbit needs the cow, then it must eat the squirrel because the squirrel needs the mouse, and the mouse eats the cow. \n\nFrom the information in step 7, if the rabbit eats the squirrel and the squirrel eats the cow, then the rabbit needs the cow. However, we don't know if the rabbit eats the squirrel.\n\nHowever, we can also consider the statement \"The rabbit needs the cow\" in the context of the information that if the mouse eats the rabbit and the rabbit does not see the mouse, then the rabbit is green. \n\nFrom the given information, we know that the rabbit eats the mouse. Therefore, it is possible that the mouse eats the rabbit. If the mouse eats the rabbit and the rabbit does not see the mouse, then the rabbit is green. However, it is given that the rabbit is not blue and is green. This means that the rabbit does see the mouse. However, we still cannot conclude that the rabbit needs the cow.\n\nHowever, from the information that the rabbit eats the mouse and the information in step 6, we can conclude that the rabbit eats the squirrel.\n\nFrom the information in step 7, if the rabbit eats the squirrel and the squirrel eats the cow, then the rabbit needs the cow.\n\nSince the rabbit eats the squirrel and the squirrel eats the cow, we can conclude that the rabbit needs the cow.\n\nTherefore, the statement \"The rabbit needs the cow\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use a logical approach and follow the given rules step by step.\n\nGiven rules:\n1. If something sees the cow then it sees the squirrel.\n2. If something sees the rabbit then it eats the cow.\n3. If something needs the cow then the cow eats the mouse.\n4. If something needs the squirrel and the squirrel needs the cow then the cow does not need the rabbit.\n5. If the mouse eats the rabbit and the rabbit does not see the mouse then the rabbit is green.\n6. If the cow needs the rabbit then the rabbit does not eat the mouse.\n7. If something eats the squirrel and the squirrel eats the cow then it needs the cow.\n8. If something eats the mouse then it eats the squirrel.\n\nGiven statements:\n1. The cow is kind.\n2. The cow sees the mouse.\n3. The mouse eats the cow.\n4. The mouse is kind.\n5. The mouse needs the squirrel.\n6. The rabbit eats the mouse.\n7. The rabbit is not blue.\n8. The squirrel is not blue.\n9. The squirrel is green.\n10. The squirrel is rough.\n11. The squirrel needs the mouse.\n12. The squirrel sees the rabbit.\n13. If something sees the cow then it sees the squirrel.\n14. If something sees the rabbit then it eats the cow.\n15. If something needs the cow then the cow eats the mouse.\n16. If something needs the squirrel and the squirrel needs the cow then the cow does not need the rabbit.\n17. If the mouse eats the rabbit and the rabbit does not see the mouse then the rabbit is green.\n18. If the cow needs the rabbit then the rabbit does not eat the mouse.\n19. If something eats the squirrel and the squirrel eats the cow then it needs the cow.\n20. If something eats the mouse then it eats the squirrel.\n\nWe need to determine whether the following statement is true, false, or unknown:\nThe rabbit needs the cow.\n\nFrom statement 6, we know the rabbit eats the mouse. \nUsing rule 8, if something eats the mouse then it eats the squirrel. \nTherefore, the rabbit eats the squirrel.\n\nFrom statement 12, we know the squirrel sees the rabbit.\nUsing rule 1, if something sees the cow then it sees the squirrel. However, since the squirrel sees the rabbit and not the cow, we cannot conclude anything about the rabbit seeing the cow.\n\nHowever, using rule 2, if something sees the rabbit then it eats the cow. \nIn this case, the squirrel sees the rabbit, but we cannot conclude that the squirrel eats the cow because there is no information about the squirrel seeing the cow.\n\nSince the rabbit eats the squirrel (from statement 6 and rule 8) and the squirrel eats the cow (from statement 3), \nwe can use rule 7, if something eats the squirrel and the squirrel eats the cow then it needs the cow.\nTherefore, the rabbit needs the cow.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit needs the cow\" is true, false, or unknown, we need to analyze the given information and rules.\n\n1. The statement \"The rabbit needs the cow\" can be represented as: R needs C, where R is the rabbit and C is the cow.\n\n2. We need to examine the rules to see if we can derive the conclusion that R needs C.\n\nRule 1: If something sees the cow then it sees the squirrel. (No information about the rabbit seeing the cow.)\n\nRule 2: If something sees the rabbit then it eats the cow. (No information about the rabbit seeing anything.)\n\nRule 3: If something needs the cow then the cow eats the mouse. (No information about the rabbit needing the cow.)\n\nRule 4: If something needs the squirrel and the squirrel needs the cow then the cow does not need the rabbit. (This rule is not directly applicable to the rabbit.)\n\nRule 5: If the mouse eats the rabbit and the rabbit does not see the mouse then the rabbit is green. (No information about the mouse eating the rabbit.)\n\nRule 6: If the cow needs the rabbit then the rabbit does not eat the mouse. (This rule is not directly applicable to the rabbit needing the cow.)\n\nRule 7: If something eats the squirrel and the squirrel eats the cow then it needs the cow. (This rule is not directly applicable to the rabbit.)\n\nRule 8: If something eats the mouse then it eats the squirrel. (This rule is not directly applicable to the rabbit.)\n\nFrom the given information, we know that the rabbit eats the mouse (R eats M) and the mouse eats the cow (M eats C).\n\nUsing Rule 2, we know that something that sees the rabbit eats the cow. Since the mouse sees the rabbit (because the mouse eats the rabbit), the mouse eats the cow.\n\nNow, using Rule 8, if the rabbit eats the mouse, then the rabbit eats the squirrel (R eats S).\n\nNow, from the given information, we know that the squirrel eats the cow (S eats C).\n\nUsing Rule 7, if the rabbit eats the squirrel and the squirrel eats the cow, then the rabbit needs the cow.\n\nSo, the rabbit eats the squirrel and the squirrel eats the cow, which implies that the rabbit needs the cow.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit needs the cow\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The mouse eats the cow. (Given)\n2. The rabbit eats the mouse. (Given)\n   From rule 8, we can conclude that the rabbit eats the squirrel. (Since the rabbit eats the mouse, and from rule 8, if something eats the mouse then it eats the squirrel)\n\n3. The rabbit is not blue. (Given)\n4. The squirrel is green. (Given)\n   However, we cannot conclude that the rabbit is green from the given information, as there is no rule that directly links the color of the squirrel to the color of the rabbit.\n\n5. The squirrel is rough. (Given)\n   This statement does not provide any relevant information about the rabbit or the cow.\n\n6. The squirrel needs the mouse. (Given)\n7. The rabbit sees the squirrel. (Given)\n   From rule 1, we can conclude that the rabbit sees the squirrel. However, this does not provide any information about whether the rabbit needs the cow.\n\n8. If something sees the rabbit then it sees the squirrel. (Rule)\n   This rule is already satisfied by the given information, as the rabbit sees the squirrel.\n\n9. If something sees the rabbit then it eats the cow. (Rule)\n   This rule does not apply to the rabbit, as it does not see the cow.\n\n10. If something needs the cow then the cow eats the mouse. (Rule)\n    This rule does not provide any information about the rabbit.\n\n11. If something needs the squirrel and the squirrel needs the cow then the cow does not need the rabbit. (Rule)\n    Since the squirrel needs the mouse, not the cow, this rule does not apply to the given situation.\n\n12. If the mouse eats the rabbit and the rabbit does not see the mouse then the rabbit is green. (Rule)\n    However, the mouse does not eat the rabbit, the rabbit eats the mouse. So, this rule does not apply.\n\n13. If the cow needs the rabbit then the rabbit does not eat the mouse. (Rule)\n    This rule does not provide any information about whether the rabbit needs the cow.\n\n14. If something eats the squirrel and the squirrel eats the cow then it needs the cow. (Rule)\n    Since the rabbit eats the squirrel, we can conclude that the rabbit needs the cow, as the squirrel eats the cow.\n\nTherefore, based on the given information and the rules provided, the statement \"The rabbit needs the cow\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit needs the cow\" is true, false, or unknown, we need to analyze the given information and the provided rules. \n\nFirst, let's organize the given information:\n1. The cow is kind.\n2. The cow sees the mouse.\n3. The mouse eats the cow.\n4. The mouse is kind.\n5. The mouse needs the squirrel.\n6. The rabbit eats the mouse.\n7. The rabbit is not blue.\n8. The squirrel is not blue.\n9. The squirrel is green.\n10. The squirrel is rough.\n11. The squirrel needs the mouse.\n12. The squirrel sees the rabbit.\n\nNow, let's break down the rules:\n1. If something sees the cow then it sees the squirrel.\n   - This rule doesn't directly affect the statement we want to evaluate.\n\n2. If something sees the rabbit then it eats the cow.\n   - This rule doesn't directly affect the statement we want to evaluate.\n\n3. If something needs the cow then the cow eats the mouse.\n   - This rule doesn't directly affect the statement we want to evaluate.\n\n4. If something needs the squirrel and the squirrel needs the cow then the cow does not need the rabbit.\n   - This rule doesn't directly affect the statement we want to evaluate.\n\n5. If the mouse eats the rabbit and the rabbit does not see the mouse then the rabbit is green.\n   - Since we don't have information about the mouse eating the rabbit, this rule doesn't directly affect the statement we want to evaluate.\n\n6. If the cow needs the rabbit then the rabbit does not eat the mouse.\n   - This rule doesn't directly affect the statement we want to evaluate.\n\n7. If something eats the squirrel and the squirrel eats the cow then it needs the cow.\n   - This rule doesn't directly affect the statement we want to evaluate.\n\n8. If something eats the mouse then it eats the squirrel.\n   - This rule doesn't directly affect the statement we want to evaluate.\n\nNow, let's analyze the given information and the rules to determine the statement's truth value. We are looking for information about the rabbit needing the cow.\n\nFrom the given information, we can see that the rabbit eats the mouse (rule 6). \n\nUsing rule 8, we can conclude that the rabbit eats the squirrel.\n\nUsing rule 7, we can conclude that the rabbit needs the cow because the squirrel eats the cow.\n\nTherefore, the statement \"The rabbit needs the cow\" is true. \n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the rabbit needs the cow, we need to analyze the given statements and rules.\n\nGiven statements:\n\n1. The mouse eats the cow.\n2. The mouse is kind.\n3. The mouse needs the squirrel.\n4. The rabbit eats the mouse.\n5. The rabbit is not blue.\n6. The squirrel is not blue.\n7. The squirrel is green.\n8. The squirrel is rough.\n9. The squirrel needs the mouse.\n10. The squirrel sees the rabbit.\n\nRules:\n\n1. If something sees the cow then it sees the squirrel.\n   - Let's call the subject 'x'. From this rule, we can deduce that if x sees the cow, then x sees the squirrel.\n\n2. If something sees the rabbit then it eats the cow.\n   - Let's call the subject 'x'. From this rule, we can deduce that if x sees the rabbit, then x eats the cow.\n\n3. If something needs the cow then the cow eats the mouse.\n   - Let's call the subject 'x'. From this rule, we can deduce that if x needs the cow, then the cow eats the mouse.\n\n4. If something needs the squirrel and the squirrel needs the cow then the cow does not need the rabbit.\n   - Let's call the subject 'x'. From this rule, we can deduce that if x needs the squirrel and the squirrel needs the cow, then the cow does not need the rabbit.\n\n5. If the mouse eats the rabbit and the rabbit does not see the mouse then the rabbit is green.\n   - From this rule, we can deduce that the rabbit is green.\n\n6. If the cow needs the rabbit then the rabbit does not eat the mouse.\n   - Let's call the subject 'x'. From this rule, we can deduce that if x needs the rabbit, then x does not eat the mouse.\n\n7. If something eats the squirrel and the squirrel eats the cow then it needs the cow.\n   - Let's call the subject 'x'. From this rule, we can deduce that if x eats the squirrel and the squirrel eats the cow, then x needs the cow.\n\n8. If something eats the mouse then it eats the squirrel.\n   - Let's call the subject 'x'. From this rule, we can deduce that if x eats the mouse, then x eats the squirrel.\n\nNow, let's analyze the statement \"The rabbit needs the cow.\" Using the rules, we can deduce that if the rabbit needs the cow, then from rule 3, the cow eats the mouse. But from statement 1, the mouse eats the cow, which contradicts rule 7 that states if the squirrel eats the cow then it needs the cow. However, it is not directly stated that the squirrel eats the cow but rather the mouse eats the cow.\n\nSince we cannot directly derive whether the rabbit needs the cow from the given statements and rules, the answer is unknown.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will break it down into steps using the given information.\n\n1. The statement we need to evaluate is \"The rabbit needs the cow.\"\n   We are not directly given this information, but we can derive it using the given statements and rules.\n\n2. Let's start with the information given in the problem statement:\n   - The cow is kind.\n   - The cow sees the mouse.\n   - The mouse eats the cow.\n   - The mouse is kind.\n   - The mouse needs the squirrel.\n   - The rabbit eats the mouse.\n   - The rabbit is not blue.\n   - The squirrel is not blue.\n   - The squirrel is green.\n   - The squirrel is rough.\n   - The squirrel needs the mouse.\n   - The squirrel sees the rabbit.\n\n3. Now let's examine the given rules:\n   - If something sees the cow then it sees the squirrel.\n   - If something sees the rabbit then it eats the cow.\n   - If something needs the cow then the cow eats the mouse.\n   - If something needs the squirrel and the squirrel needs the cow then the cow does not need the rabbit.\n   - If the mouse eats the rabbit and the rabbit does not see the mouse then the rabbit is green.\n   - If the cow needs the rabbit then the rabbit does not eat the mouse.\n   - If something eats the squirrel and the squirrel eats the cow then it needs the cow.\n   - If something eats the mouse then it eats the squirrel.\n\n4. Now let's apply the rules to the given information to determine if the rabbit needs the cow.\n\n   From the given statement \"The rabbit eats the mouse,\" we can use rule 7 to conclude that \"The rabbit eats the squirrel.\" Then we can apply rule 8 to conclude that \"The rabbit sees the squirrel.\"\n\n   Now let's use rule 1: \"If something sees the cow then it sees the squirrel.\" Since the rabbit sees the squirrel, we can conclude that the rabbit sees the cow (because the squirrel sees the cow).\n\n   We can now use rule 2: \"If something sees the rabbit then it eats the cow.\" Since the rabbit sees the cow, we can conclude that the rabbit eats the cow.\n\n   Now we have a problem: we know that the rabbit eats the cow, but we are trying to determine if the rabbit needs the cow. Since the rabbit eats the cow, it is possible that the rabbit does not need the cow. However, we need to consider the information given in rule 4: \"If the cow needs the rabbit then the rabbit does not eat the mouse.\" This rule does not directly apply to our situation, but it suggests that the cow's needs may be related to the rabbit's actions.\n\n   We can use rule 5: \"If something needs the squirrel and the squirrel needs the cow then the cow does not need the rabbit.\" Since the squirrel needs the mouse and the mouse needs the squirrel, we can conclude that the squirrel needs the cow. Now we can use rule 5 to conclude that the cow does not need the rabbit.\n\n   However, we are trying to determine if the rabbit needs the cow. If the cow does not need the rabbit, it does not necessarily mean that the rabbit does not need the cow.\n\n   Now let's examine the given information again. We know that the squirrel needs the mouse and the mouse needs the squirrel. This creates a cycle where the squirrel and mouse need each other. We can use rule 5 again to conclude that the cow does not need the rabbit. However, we are trying to determine if the rabbit needs the cow.\n\n   Since the rabbit eats the cow, it is possible that the rabbit does not need the cow. However, we need to consider the information given in rule 3: \"If something needs the cow then the cow eats the mouse.\" This rule does not directly apply to our situation, but it suggests that the cow's needs may be related to the mouse's needs.\n\n   Now let's examine the relationship between the rabbit and the squirrel. We know that the squirrel needs the mouse and the mouse needs the squirrel. This creates a cycle where the squirrel and mouse need each other. We also know that the squirrel sees the rabbit and the rabbit eats the mouse. This suggests that the rabbit may be involved in the cycle where the squirrel and mouse need each other.\n\n   Since the squirrel sees the rabbit and the rabbit eats the mouse, we can use rule 6 to conclude that the rabbit eats the cow. However, we already knew this.\n\n   Now let's examine the relationship between the rabbit and the cow. We know that the rabbit eats the cow, but we are trying to determine if the rabbit needs the cow. If the rabbit eats the cow, it may be that the rabbit does not need the cow. However, we need to consider the information given in rule 4: \"If the cow needs the rabbit then the rabbit does not eat the mouse.\" This rule does not directly apply to our situation, but it suggests that the cow's needs may be related to the rabbit's actions.\n\n   Since the rabbit eats the cow and the squirrel sees the rabbit, we can use rule 1 to conclude that the rabbit sees the squirrel. Now we can use rule 7 to conclude that the rabbit eats the squirrel. Then we can apply rule 8 to conclude that the rabbit eats the mouse.\n\n   Now let's examine the relationship between the rabbit and the mouse. We know that the rabbit eats the mouse, but we are trying to determine if the rabbit needs the cow. If the rabbit eats the mouse, it may be that the rabbit does not need the cow. However, we need to consider the information given in rule 3: \"If something needs the cow then the cow eats the mouse.\" This rule does not directly apply to our situation, but it suggests that the cow's needs may be related to the mouse's needs.\n\n   Since the rabbit eats the mouse and the mouse needs the squirrel, we can use rule 7 to conclude that the rabbit eats the squirrel. Then we can apply rule 8 to conclude that the rabbit sees the squirrel.\n\n   Now let's examine the relationship between the rabbit and the squirrel. We know that the rabbit sees the squirrel and the squirrel needs the mouse. This suggests that the rabbit may be involved in the cycle where the squirrel and mouse need each other.\n\n   Since the rabbit eats the squirrel and the squirrel needs the mouse, we can use rule 7 to conclude that the rabbit eats the mouse. However, we already knew this.\n\n   Now let's examine the relationship between the rabbit and the cow again. We know that the rabbit eats the cow, but we are trying to determine if the rabbit needs the cow. If the rabbit eats the cow, it may be that the rabbit does not need the cow. However, we need to consider the information given in rule 4: \"If the cow needs the rabbit then the rabbit does not eat the mouse.\" This rule does not directly apply to our situation, but it suggests that the cow's needs may be related to the rabbit's actions.\n\n   Now let's examine the relationship between the rabbit, the squirrel, and the mouse. We know that the rabbit eats the squirrel and the squirrel needs the mouse. This creates a cycle where the rabbit, squirrel, and mouse are related.\n\n   Since the rabbit eats the squirrel and the squirrel needs the mouse, we can use rule 7 to conclude that the rabbit eats the mouse. However, we already knew this.\n\n   Now let's examine the relationship between the rabbit and the squirrel again. We know that the rabbit sees the squirrel and the squirrel needs the mouse. This suggests that the rabbit may be involved in the cycle where the squirrel and mouse need each other.\n\n   Since the rabbit eats the squirrel and the squirrel needs the mouse, we can use rule 7 to conclude that the rabbit eats the mouse. However, we already knew this.\n\n   Now let's examine the relationship between the rabbit and the mouse again. We know that the rabbit eats the mouse, but we are trying to determine if the rabbit needs the cow. If the rabbit eats the mouse, it may be that the rabbit does not need the cow. However, we need to consider the information given in rule 3: \"If something needs the cow then the cow eats the mouse.\" This rule does not directly apply to our situation, but it suggests that the cow's needs may be related to the mouse's needs.\n\n   Since the rabbit eats the mouse and the mouse needs the squirrel, we can use rule 7 to conclude that the rabbit eats the squirrel. Then we can apply rule 8 to conclude that the rabbit sees the squirrel.\n\n   Now let's examine the relationship between the rabbit and the squirrel again. We know that the rabbit sees the squirrel and the squirrel needs the mouse. This suggests that the rabbit may be involved in the cycle where the squirrel and mouse need each other.\n\n   Since the rabbit eats the squirrel and the squirrel needs the mouse, we can use rule 7 to conclude that the rabbit eats the mouse. However, we already knew this.\n\n   Now let's examine the relationship between the rabbit and the cow again. We know that the rabbit eats the cow, but we are trying to determine if the rabbit needs the cow. If the rabbit eats the cow, it may be that the rabbit does not need the cow. However, we need to consider the information given in rule 4: \"If the cow needs the rabbit then the rabbit does not eat the mouse.\" This rule does not directly apply to our situation, but it suggests that the cow's needs may be related to the rabbit's actions.\n\n   Now let's examine the relationship between the rabbit, the squirrel, and the mouse again. We know that the rabbit eats the squirrel and the squirrel needs the mouse. This creates a cycle where the rabbit, squirrel, and mouse are related.\n\n   Since the rabbit eats the squirrel and the squirrel needs the mouse, we can use rule 7 to conclude that the rabbit eats the",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit needs the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"The mouse eats the cow,\" we know that the mouse eats the cow.\n\n2. From the statement \"The rabbit eats the mouse,\" we know that the rabbit eats the mouse.\n\n3. From the statement \"If something eats the mouse then it eats the squirrel,\" we know that the rabbit eats the squirrel.\n\n4. From the statement \"The squirrel eats the cow,\" we know that the squirrel eats the cow.\n\n5. From the statement \"If something eats the squirrel and the squirrel eats the cow then it needs the cow,\" we know that the rabbit needs the cow.\n\nTherefore, the statement \"The rabbit needs the cow\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, squirrel)",
+          "z3_formula": "needs_mouse_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(rabbit)",
+          "z3_formula": "not blue_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(squirrel)",
+          "z3_formula": "not blue_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_X_cow, sees_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_X_rabbit, eats_X_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> eats(cow, mouse)",
+          "z3_formula": "Implies(needs_X_cow, eats_cow_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(squirrel, cow) -> not needs(X, rabbit)",
+          "z3_formula": "Implies(And(needs_X_squirrel, needs_squirrel_cow), not needs_X_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & not sees(rabbit, X) -> green(X)",
+          "z3_formula": "Implies(And(eats_X_rabbit, not sees_rabbit_X), green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> not eats(rabbit, mouse)",
+          "z3_formula": "Implies(needs_X_rabbit, not eats_rabbit_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, cow) -> needs(X, cow)",
+          "z3_formula": "Implies(And(eats_X_squirrel, eats_squirrel_cow), needs_X_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> eats(X, squirrel)",
+          "z3_formula": "Implies(eats_X_mouse, eats_X_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cow, mouse)",
+          "z3_formula": "sees_cow_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(rabbit)",
+          "z3_formula": "not blue_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(squirrel)",
+          "z3_formula": "not blue_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_cow_mouse, sees_squirrel_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_rabbit_mouse, eats_rabbit_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> eats(cow, mouse)",
+          "z3_formula": "Implies(needs_rabbit_cow, eats_cow_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(squirrel, cow) -> not needs(X, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_squirrel, needs_squirrel_cow), not needs_rabbit_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & not sees(rabbit, X) -> green(X)",
+          "z3_formula": "Implies(And(eats_rabbit_rabbit, not sees_rabbit_rabbit), green_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> not eats(rabbit, mouse)",
+          "z3_formula": "Implies(needs_rabbit_rabbit, not eats_rabbit_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, cow) -> needs(X, cow)",
+          "z3_formula": "Implies(And(eats_rabbit_squirrel, eats_squirrel_cow), needs_rabbit_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> eats(X, squirrel)",
+          "z3_formula": "Implies(eats_rabbit_mouse, eats_rabbit_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, squirrel)",
+          "z3_formula": "needs_mouse_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(rabbit)",
+          "z3_formula": "not blue_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(squirrel)",
+          "z3_formula": "not blue_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_cow, sees_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_rabbit, eats_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> eats(cow, mouse)",
+          "z3_formula": "Implies(needs_cow, eats_cow_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(squirrel, cow) -> not needs(cow, rabbit)",
+          "z3_formula": "Implies(And(needs_squirrel, needs_squirrel_cow), not needs_cow_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & not sees(X, mouse) -> green(X)",
+          "z3_formula": "Implies(And(eats_rabbit, not sees_mouse), green_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> not eats(X, mouse)",
+          "z3_formula": "Implies(needs_rabbit, not eats_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, cow) -> needs(X, cow)",
+          "z3_formula": "Implies(And(eats_squirrel, eats_squirrel_cow), needs_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> eats(X, squirrel)",
+          "z3_formula": "Implies(eats_mouse, eats_squirrel)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(cow, rabbit)",
+          "z3_formula": "not needs_cow_rabbit == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cow, mouse)",
+          "z3_formula": "sees_cow_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, squirrel)",
+          "z3_formula": "needs_mouse_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(blue(rabbit))",
+          "z3_formula": "not_blue_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(blue(squirrel))",
+          "z3_formula": "not_blue_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_cow_mouse, sees_mouse_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, squirrel)",
+          "z3_formula": "sees_mouse_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_rabbit_squirrel, eats_rabbit_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "eats(rabbit, cow)",
+          "z3_formula": "eats_rabbit_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> eats(cow, mouse)",
+          "z3_formula": "Implies(needs_rabbit_cow, eats_cow_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "needs_rabbit_cow",
+          "z3_formula": "needs_rabbit_cow == False",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(squirrel, cow) -> not(needs(X, rabbit))",
+          "z3_formula": "Implies(And(needs_mouse_squirrel, needs_squirrel_cow), not(needs_rabbit_cow))",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not(needs_rabbit_cow)",
+          "z3_formula": "not(needs_rabbit_cow) == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & not(sees(rabbit, X)) -> green(X)",
+          "z3_formula": "Implies(And(eats_rabbit_mouse, not(sees_rabbit_mouse)), green_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "green_rabbit",
+          "z3_formula": "green_rabbit == Unknown",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> not(eats(rabbit, X))",
+          "z3_formula": "Implies(needs_rabbit_cow, not(eats_rabbit_cow))",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not(eats_rabbit_cow)",
+          "z3_formula": "not(eats_rabbit_cow) == False",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, cow) -> needs(X, cow)",
+          "z3_formula": "Implies(And(eats_rabbit_squirrel, eats_squirrel_cow), needs_rabbit_cow)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "needs_rabbit_cow",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> eats(X, squirrel)",
+          "z3_formula": "Implies(eats_rabbit_mouse, eats_rabbit_squirrel)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "eats_rabbit_squirrel",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(squirrel, cow) -> needs(X, cow)",
+          "z3_formula": "Implies(And(needs_rabbit_squirrel, needs_squirrel_cow), needs_rabbit_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cow)",
+          "z3_formula": "eats_squirrel_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(cow)",
+          "z3_formula": "kind_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, mouse)",
+          "z3_formula": "sees_cow_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, squirrel)",
+          "z3_formula": "needs_mouse_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(rabbit)",
+          "z3_formula": "not blue_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(squirrel)",
+          "z3_formula": "not blue_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_X_cow, sees_X_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_X_rabbit, eats_X_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> eats(cow, mouse)",
+          "z3_formula": "Implies(needs_X_cow, eats_cow_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(squirrel, cow) -> not needs(X, rabbit)",
+          "z3_formula": "Implies(And(needs_X_squirrel, needs_squirrel_cow), not needs_X_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & not sees(X, mouse) -> green(X)",
+          "z3_formula": "Implies(And(eats_X_rabbit, not sees_X_mouse), green_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> not eats(X, mouse)",
+          "z3_formula": "Implies(needs_X_rabbit, not eats_X_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, cow) -> needs(X, cow)",
+          "z3_formula": "Implies(And(eats_X_squirrel, eats_squirrel_cow), needs_X_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> eats(X, squirrel)",
+          "z3_formula": "Implies(eats_X_mouse, eats_X_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_rabbit_cow, sees_rabbit_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_rabbit_mouse, eats_mouse_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> eats(cow, mouse)",
+          "z3_formula": "Implies(needs_rabbit_cow, eats_cow_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(squirrel, cow) -> not needs(cow, X)",
+          "z3_formula": "Implies(And(needs_rabbit_squirrel, needs_squirrel_cow), not needs_cow_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & not sees(X, mouse) -> green(X)",
+          "z3_formula": "Implies(And(eats_mouse_rabbit, not sees_mouse_rabbit), green_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> not eats(X, mouse)",
+          "z3_formula": "Implies(needs_cow_rabbit, not eats_mouse_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, cow) -> needs(X, cow)",
+          "z3_formula": "Implies(And(eats_rabbit_squirrel, eats_squirrel_cow), needs_rabbit_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> eats(X, squirrel)",
+          "z3_formula": "Implies(eats_rabbit_mouse, eats_rabbit_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> eats(X, squirrel)",
+          "z3_formula": "Implies(eats_rabbit_mouse, eats_rabbit_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(rabbit)",
+          "z3_formula": "not blue_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_rabbit_squirrel, sees_rabbit_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_rabbit_squirrel, eats_rabbit_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> eats(cow, mouse)",
+          "z3_formula": "Implies(needs_rabbit_cow, eats_cow_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(squirrel, cow) -> not needs(cow, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_squirrel, needs_squirrel_cow), not needs_cow_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & not sees(X, rabbit) -> green(X)",
+          "z3_formula": "Implies(And(eats_mouse_rabbit, not sees_mouse_rabbit), green_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> not eats(X, mouse)",
+          "z3_formula": "Implies(needs_cow_rabbit, not eats_cow_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, cow) -> needs(X, cow)",
+          "z3_formula": "Implies(And(eats_rabbit_squirrel, eats_squirrel_cow), needs_rabbit_cow)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(cow)",
+          "z3_formula": "kind_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, mouse)",
+          "z3_formula": "sees_cow_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, squirrel)",
+          "z3_formula": "needs_mouse_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(blue(rabbit))",
+          "z3_formula": "Not(blue_rabbit) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(blue(squirrel))",
+          "z3_formula": "Not(blue_squirrel) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_X_cow, sees_X_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_X_rabbit, eats_X_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> eats(cow, mouse)",
+          "z3_formula": "Implies(needs_X_cow, eats_cow_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(squirrel, cow) -> not(needs(X, rabbit))",
+          "z3_formula": "Implies(And(needs_X_squirrel, needs_squirrel_cow), Not(needs_X_rabbit))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & not(sees(X, mouse)) -> green(X)",
+          "z3_formula": "Implies(And(eats_X_rabbit, Not(sees_X_mouse)), green_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> not(eats(X, mouse))",
+          "z3_formula": "Implies(needs_X_rabbit, Not(eats_X_mouse))",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, cow) -> needs(X, cow)",
+          "z3_formula": "Implies(And(eats_X_squirrel, eats_squirrel_cow), needs_X_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> eats(X, squirrel)",
+          "z3_formula": "Implies(eats_X_mouse, eats_X_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cow)",
+          "z3_formula": "needs_rabbit_cow == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, squirrel)",
+          "z3_formula": "needs_mouse_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(rabbit)",
+          "z3_formula": "not blue_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(squirrel)",
+          "z3_formula": "not blue_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(squirrel)",
+          "z3_formula": "rough_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, mouse)",
+          "z3_formula": "needs_squirrel_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cow) -> sees(X, squirrel)",
+          "z3_formula": "Implies(sees_x_cow, sees_x_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) -> eats(X, cow)",
+          "z3_formula": "Implies(sees_x_rabbit, eats_x_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> eats(cow, mouse)",
+          "z3_formula": "Implies(needs_x_cow, eats_cow_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) & needs(squirrel, cow) -> not needs(cow, rabbit)",
+          "z3_formula": "Implies(And(needs_x_squirrel, needs_squirrel_cow), not needs_cow_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) & not sees(X, mouse) -> green(X)",
+          "z3_formula": "Implies(And(eats_x_rabbit, not sees_x_mouse), green_x)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> not eats(X, mouse)",
+          "z3_formula": "Implies(needs_x_rabbit, not eats_x_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, cow) -> needs(X, cow)",
+          "z3_formula": "Implies(And(eats_x_squirrel, eats_squirrel_cow), needs_x_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> eats(X, squirrel)",
+          "z3_formula": "Implies(eats_x_mouse, eats_x_squirrel)",
+          "source_step": 18
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(mouse, cow)",
+          "z3_formula": "eats_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, mouse)",
+          "z3_formula": "eats_rabbit_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) -> eats(X, squirrel)",
+          "z3_formula": "Implies(eats_rabbit_mouse, eats_rabbit_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cow)",
+          "z3_formula": "eats_squirrel_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(And(eats_rabbit_squirrel, eats_squirrel_cow), needs_rabbit_cow)",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 181,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 51
+    },
+    "maxsat_stats": {
+      "satisfied": 50,
+      "excluded": 1,
+      "total_weight": 155,
+      "solve_time_ms": 1.464972272515297
+    },
+    "timing": {
+      "trace_gen_s": 24.231,
+      "extraction_s": 51.426,
+      "dedup_s": 1.366,
+      "maxsat_s": 0.004,
+      "total_s": 77.026
+    }
+  }
+}

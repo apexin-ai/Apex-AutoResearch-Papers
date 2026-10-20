@@ -1,0 +1,660 @@
+{
+  "pid": "folio_148",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "human(X) & student(X) -> human(X)",
+          "z3_formula": "Implies(And(human_X, student_X), human_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "teaches(X) -> adult(X)",
+          "z3_formula": "Implies(teaches_X, adult_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "student(X) -> human(X)",
+          "z3_formula": "Implies(student_X, human_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not teaches(jerry)",
+          "z3_formula": "Not(teaches_jerry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) | student(X)",
+          "z3_formula": "Or(young_X, student_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "student(rose)",
+          "z3_formula": "student_rose == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "human(rose)",
+          "z3_formula": "human_rose == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "human(student)",
+          "z3_formula": "human_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not teaches(young)",
+          "z3_formula": "Not(teaches_young)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not teaches(manager)",
+          "z3_formula": "Not(teaches_manager)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(rose) | student(rose)",
+          "z3_formula": "Or(young_rose, student_rose)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "student(rose)",
+          "z3_formula": "student_rose == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "human(rose)",
+          "z3_formula": "human_rose == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "student(X) -> human(X)",
+          "z3_formula": "Implies(student_X, human_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "student(jerry) | manager(jerry)",
+          "z3_formula": "Or(student_jerry, manager_jerry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "human(jerry) | manager(jerry)",
+          "z3_formula": "Or(human_jerry, manager_jerry)",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "student(X) -> human(X)",
+          "z3_formula": "Implies(student_X, human_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> !teaches(X)",
+          "z3_formula": "Implies(young_X, Not(teaches_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "neither(teaches_X, manager_X)",
+          "z3_formula": "And(Not(teaches_X), Not(manager_X))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) | student(X)",
+          "z3_formula": "Or(young_X, student_X)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "human(student)",
+          "z3_formula": "human_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(young(X) & teaches(X))",
+          "z3_formula": "Not(And(young_X, teaches_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(teaches(jerry) | manager(jerry))",
+          "z3_formula": "Not(Or(teaches_jerry, manager_jerry))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(Rose) | student(Rose)",
+          "z3_formula": "Or(young_Rose, student_Rose)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "human(Rose)",
+          "z3_formula": "human_Rose == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "human(Rose) | manager(jerry)",
+          "z3_formula": "Or(human_Rose, manager_jerry)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "human(student)",
+          "z3_formula": "human_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(teaches(young))",
+          "z3_formula": "Not(teaches_young) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(teaches(jerry)) & not(manages(jerry))",
+          "z3_formula": "And(Not(teaches_jerry), Not(manages_jerry)) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) | student(X)",
+          "z3_formula": "Or(young_Rose, student_Rose)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "human(X) & student(X)",
+          "z3_formula": "And(human_all_students, student_all_students)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_someone, student_someone)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_someone, teaches_someone)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "teaches(X) | manager(X)",
+          "z3_formula": "Or(teaches_someone, manager_someone)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(teaches(jerry)) & not(manager(jerry))",
+          "z3_formula": "Not(teaches_jerry) & Not(manager_jerry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) | student(X)",
+          "z3_formula": "Or(young_rose, student_rose)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "human(X) | manager(X)",
+          "z3_formula": "Or(human_rose, manager_jerry)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "human(student)",
+          "z3_formula": "human_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(teaches(young))",
+          "z3_formula": "Not(teaches_young) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(teaches(jerry))",
+          "z3_formula": "Not(teaches_jerry) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(rose) | student(rose)",
+          "z3_formula": "Or(young_rose, student_rose)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "human(rose) | manager(jerry)",
+          "z3_formula": "Or(human_rose, manager_jerry)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "student(X) -> human(X)",
+          "z3_formula": "Implies(student_X, human_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> ~teaches(X)",
+          "z3_formula": "Implies(young_X, Not(teaches_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "~teaches(Jerry) & ~manages(Jerry)",
+          "z3_formula": "And(Not(teaches_Jerry), Not(manages_Jerry))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) | student(X)",
+          "z3_formula": "Or(young_X, student_X)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "human(X)",
+          "z3_formula": "human_X == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "student(X) -> human(X)",
+          "z3_formula": "Implies(student_X, human_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) \u2228 teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) \u2228 \u00acteaches(X)",
+          "z3_formula": "Or(young_X, Not(teaches_X))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "\u00acteaches(jerry)",
+          "z3_formula": "Not(teaches_jerry) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) \u2228 student(X)",
+          "z3_formula": "Or(young_X, student_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "human(X)",
+          "z3_formula": "human_X == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "student(X)",
+          "z3_formula": "student_X == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "human(rose) \u2228 manager(jerry)",
+          "z3_formula": "Or(human_rose, manager_jerry)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "human(X) & student(X)",
+          "z3_formula": "And(human_student, student_jerry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_jerry, student_jerry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "teaches(X) | studies(X)",
+          "z3_formula": "Or(teaches_jerry, studies_jerry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> ~teaches(X)",
+          "z3_formula": "Implies(young_rose, Not(teaches_rose))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "teaches_jerry == False & manager_jerry == False",
+          "z3_formula": "And(Not(teaches_jerry), Not(manager_jerry))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) | student(X)",
+          "z3_formula": "Or(young_rose, student_rose)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(X) -> studies(X)",
+          "z3_formula": "Implies(young_rose, studies_rose)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_rose, student_rose)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "student(X) -> human(X)",
+          "z3_formula": "Implies(student_rose, human_rose)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(X) -> student(X)",
+          "z3_formula": "Implies(young_rose, student_rose)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "student(X) -> human(X)",
+          "z3_formula": "Implies(student_rose, human_rose)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(X) -> human(X)",
+          "z3_formula": "Implies(young_rose, human_rose)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "human(X) | manager(Y)",
+          "z3_formula": "Or(human_rose, manager_jerry)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "human(student)",
+          "z3_formula": "human_student == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not teaches(young)",
+          "z3_formula": "Not(teaches_young) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not teaches(jerry)",
+          "z3_formula": "Not(teaches_jerry) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not manager(jerry)",
+          "z3_formula": "Not(manager_jerry) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) | student(X)",
+          "z3_formula": "Or(young_Rose, student_Rose)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "human(Rose) | manager(Jerry)",
+          "z3_formula": "Or(human_Rose, manager_Jerry)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "student(X) -> human(X)",
+          "z3_formula": "Implies(student_X, human_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) -> student(X)",
+          "z3_formula": "Implies(studies_X, student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "studies(X) | teaches(X)",
+          "z3_formula": "Or(studies_X, teaches_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> !teaches(X)",
+          "z3_formula": "Implies(young_X, Not(teaches_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "!teaches(jerry) & !manager(jerry)",
+          "z3_formula": "And(Not(teaches_jerry), Not(manager_jerry))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) | student(X)",
+          "z3_formula": "Or(young_X, student_X)",
+          "source_step": 6
+        }
+      ]
+    }
+  ]
+}

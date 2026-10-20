@@ -1,0 +1,426 @@
+{
+  "pid": "folio_57",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not plays(X, Y)",
+          "z3_formula": "Implies(left_robert_lewandowski_bayern_munchen, Not(plays_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "soccer_player(robert_lewandowski)",
+          "z3_formula": "soccer_player_robert_lewandowski == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not plays(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "Not(plays_robert_lewandowski_bayern_munchen) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "star(robert_lewandowski)",
+          "z3_formula": "star_robert_lewandowski == Unknown",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not(currently_plays(X, Y))",
+          "z3_formula": "Implies(left_robert_lewandowski_bayern_munchen, Not(currently_plays_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "soccer_player(robert_lewandowski)",
+          "z3_formula": "soccer_player_robert_lewandowski == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(currently_plays(robert_lewandowski, bayern_munchen))",
+          "z3_formula": "Not(currently_plays_robert_lewandowski_bayern_munchen) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "star(robert_lewandowski)",
+          "z3_formula": "star_robert_lewandowski == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not(play(X, Y))",
+          "z3_formula": "Implies(And(left_robert_lewandowski_bayern_munchen, play_robert_lewandowski_bayern_munchen), Not(play_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "soccer_player(striker)",
+          "z3_formula": "soccer_player_striker == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not(play(X, Y))",
+          "z3_formula": "Implies(left_robert_lewandowski_bayern_munchen, not(play_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left_bayern_munchen(robert_lewandowski)",
+          "z3_formula": "left_bayern_munchen_robert_lewandowski == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left_team(X) -> not plays_for(X, team)",
+          "z3_formula": "Implies(left_bayern_munchen_robert_lewandowski, not plays_for_robert_lewandowski_bayern_munchen)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "soccer_player(robert_lewandowski)",
+          "z3_formula": "soccer_player_robert_lewandowski == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "soccer_player(striker)",
+          "z3_formula": "soccer_player_striker == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left_bayern_munchen(robert_lewandowski)",
+          "z3_formula": "left_bayern_munchen_robert_lewandowski == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left_team(X) -> not_play_for_team(X, Y)",
+          "z3_formula": "Implies(left_bayern_munchen_robert_lewandowski, not_play_for_team_robert_lewandowski_bayern_munchen)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "star(robert_lewandowski)",
+          "z3_formula": "star_robert_lewandowski == Unknown",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not plays(X, Y)",
+          "z3_formula": "Implies(And(left_robert_lewandowski_bayern_munchen, not plays_robert_lewandowski_bayern_munchen)",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not(plays(X, Y))",
+          "z3_formula": "Implies(left_robert_lewandowski_bayern_munchen, Not(plays_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "soccer_player(striker)",
+          "z3_formula": "soccer_player_striker == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left_bayern_munchen(robert_lewandowski)",
+          "z3_formula": "left_bayern_munchen_robert_lewandowski == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left_team(X) -> not plays_for_team(X, Y)",
+          "z3_formula": "Implies(left_bayern_munchen_robert_lewandowski, Not(plays_for_team_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "soccer_player(striker)",
+          "z3_formula": "soccer_player_striker == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "soccer_player(robert_lewandowski)",
+          "z3_formula": "soccer_player_robert_lewandowski == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left_bayern_munchen(robert_lewandowski)",
+          "z3_formula": "left_bayern_munchen_robert_lewandowski == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left_team(X) -> not_play_for_team(X, Y)",
+          "z3_formula": "Implies(left_bayern_munchen_robert_lewandowski, not_play_for_team_robert_lewandowski_bayern_munchen)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not_play_for_team(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "not_play_for_team_robert_lewandowski_bayern_munchen == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not(play(X, Y))",
+          "z3_formula": "Implies(And(left_robert_lewandowski_bayern_munchen, play_robert_lewandowski_bayern_munchen), Not(play_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "soccer_player(robert_lewandowski)",
+          "z3_formula": "soccer_player_robert_lewandowski == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        }
+      ]
+    }
+  ]
+}

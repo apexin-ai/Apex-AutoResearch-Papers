@@ -1,0 +1,70 @@
+{
+  "experiment": "Confirmation Bias Analysis",
+  "source": "exp-033 (Mistral-7B, FOLIO-204, SICA)",
+  "total_problems": 204,
+  "summary": {
+    "sica_accuracy": 0.5931,
+    "sc_accuracy": 0.5441,
+    "sica_wrong_count": 83,
+    "sica_wrong_follows_sc_count": 78,
+    "sica_wrong_follows_sc_rate": 0.9398
+  },
+  "category_stats": [
+    {
+      "category": "SICA correct",
+      "n_problems": 121,
+      "constraints_gold_frac": 0.7808,
+      "constraints_wrong_frac": 0.2192,
+      "weight_gold_frac": 0.7184,
+      "bias_ratio": 0.2808
+    },
+    {
+      "category": "SICA wrong",
+      "n_problems": 83,
+      "constraints_gold_frac": 0.1674,
+      "constraints_wrong_frac": 0.8326,
+      "weight_gold_frac": 0.1909,
+      "bias_ratio": 4.9746
+    },
+    {
+      "category": "SC wrong, SICA correct",
+      "n_problems": 12,
+      "constraints_gold_frac": 0.4303,
+      "constraints_wrong_frac": 0.5697,
+      "weight_gold_frac": 0.4832,
+      "bias_ratio": 1.324
+    },
+    {
+      "category": "SC correct, SICA wrong",
+      "n_problems": 2,
+      "constraints_gold_frac": 0.4548,
+      "constraints_wrong_frac": 0.5452,
+      "weight_gold_frac": 0.3504,
+      "bias_ratio": 1.1987
+    },
+    {
+      "category": "Both wrong",
+      "n_problems": 81,
+      "constraints_gold_frac": 0.1603,
+      "constraints_wrong_frac": 0.8397,
+      "weight_gold_frac": 0.187,
+      "bias_ratio": 5.2391
+    },
+    {
+      "category": "Both correct",
+      "n_problems": 109,
+      "constraints_gold_frac": 0.8193,
+      "constraints_wrong_frac": 0.1807,
+      "weight_gold_frac": 0.7443,
+      "bias_ratio": 0.2205
+    }
+  ],
+  "key_findings": {
+    "confirmation_bias_confirmed": true,
+    "mechanism": "When SICA is wrong, 94% of the time it follows the SC majority-vote answer. FOL constraints from LLM traces systematically support the trace's own answer, so when most traces answer incorrectly, the constraints overwhelmingly point to the wrong answer (83.3% wrong vs 16.7% gold).",
+    "bias_ratio_wrong_vs_correct": "4.97x more constraint weight toward wrong answers vs gold in SICA-wrong cases",
+    "sica_adds_value_when": "SC wrong but SICA correct (12 cases): constraints still lean wrong (57%) but gold support (43%) is enough to flip the answer — suggests constraint diversity from minority traces can sometimes overcome majority bias",
+    "sica_rarely_hurts": "Only 2 cases where SC correct but SICA wrong — SICA almost never overrides a correct SC answer"
+  },
+  "timestamp": "2026-05-20T16:35:00+08:00"
+}

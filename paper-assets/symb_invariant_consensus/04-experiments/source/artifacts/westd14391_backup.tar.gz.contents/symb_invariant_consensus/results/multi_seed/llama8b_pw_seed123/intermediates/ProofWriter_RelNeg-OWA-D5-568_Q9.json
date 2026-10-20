@@ -1,0 +1,1193 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-568_Q9",
+    "problem": "The bald eagle is kind. The bald eagle likes the rabbit. The cat is not kind. The cat is not nice. The cat visits the lion. The lion is green. The lion is kind. The lion likes the bald eagle. The lion likes the cat. The lion does not visit the cat. The lion visits the rabbit. The rabbit is cold. The rabbit likes the bald eagle. The rabbit needs the bald eagle. If the rabbit needs the bald eagle and the bald eagle visits the cat then the rabbit likes the cat. If the cat needs the rabbit then the cat does not visit the bald eagle. If someone visits the cat and they do not visit the bald eagle then they are kind. If someone is cold and not kind then they like the lion. If someone needs the rabbit then they visit the lion. If someone needs the rabbit and the rabbit does not need the lion then the rabbit is green. If someone likes the lion then the lion needs the rabbit. If someone visits the lion then they are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion visits the lion.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nLikes($x, $y, bool) ::: Does x like y?\nNice($x, bool) ::: Is x nice?\nVisits($x, $y, bool) ::: Does x visit y?\nGreen($x, bool) ::: Is x green?\nCold($x, bool) ::: Is x cold?\nNeeds($x, $y, bool) ::: Does x need y?\n\nFacts:\nKind(BaldEagle, True) ::: The bald eagle is kind.\nLikes(BaldEagle, Rabbit, True) ::: The bald eagle likes the rabbit.\nKind(Cat, False) ::: The cat is not kind.\nNice(Cat, False) ::: The cat is not nice.\nVisits(Cat, Lion, True) ::: The cat visits the lion.\nGreen(Lion, True) ::: The lion is green.\nKind(Lion, True) ::: The lion is kind.\nLikes(Lion, BaldEagle, True) ::: The lion likes the bald eagle.\nLikes(Lion, Cat, True) ::: The lion likes the cat.\nVisits(Lion, Cat, False) ::: The lion does not visit the cat.\nVisits(Lion, Rabbit, True) ::: The lion visits the rabbit.\nCold(Rabbit, True) ::: The rabbit is cold.\nLikes(Rabbit, BaldEagle, True) ::: The rabbit likes the bald eagle.\nNeeds(Rabbit, BaldEagle, True) ::: The rabbit needs the bald eagle.\n\nRules:\nNeeds(Rabbit, BaldEagle, True) && Visits(BaldEagle, Cat, True) >>> Likes(Rabbit, Cat, True) ::: If the rabbit needs the bald eagle and the bald eagle visits the cat then the rabbit likes the cat.\nNeeds(Cat, Rabbit, True) >>> Visits(Cat, BaldEagle, False) ::: If the cat needs the rabbit then the cat does not visit the bald eagle.\nVisits($x, Cat, True) && Visits($x, BaldEagle, False) >>> Kind($x, True) ::: If someone visits the cat and they do not visit the bald eagle then they are kind.\nCold($x, True) && Kind($x, False) >>> Likes($x, Lion, True) ::: If someone is cold and not kind then they like the lion.\nNeeds($x, Rabbit, True) >>> Visits($x, Lion, True) ::: If someone needs the rabbit then they visit the lion.\nNeeds($x, Rabbit, True) && Needs(Rabbit, Lion, False) >>> Green(Rabbit, True) ::: If someone needs the rabbit and the rabbit does not need the lion then the rabbit is green.\nLikes($x, Lion, True) >>> Needs(Lion, Rabbit, True) ::: If someone likes the lion then the lion needs the rabbit.\nVisits($x, Lion, True) >>> Cold($x, True) ::: If someone visits the lion then they are cold.\n\nQuery:\nVisits(Lion, Lion, True) ::: The lion visits the lion."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 85.0,
+      "True": 94.0,
+      "Unknown": 135.5
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "False": 2,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The lion visits the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is green.\n   From this, we cannot determine if the lion visits itself or not. This information alone is not sufficient.\n\n2. The lion visits the rabbit.\n   This statement does not provide any information about the lion visiting itself.\n\n3. If someone visits the lion then they are cold.\n   This statement tells us that visiting the lion results in being cold, but it does not tell us about the lion visiting itself.\n\n4. The lion likes the bald eagle.\n   This statement does not provide any information about the lion visiting itself.\n\n5. The lion is kind.\n   This statement does not provide any information about the lion visiting itself.\n\n6. The lion likes the cat.\n   This statement does not provide any information about the lion visiting itself.\n\n7. The lion does not visit the cat.\n   This statement does not provide any information about the lion visiting itself.\n\n8. The rabbit needs the bald eagle.\n   This statement does not provide any information about the lion visiting itself.\n\n9. If the rabbit needs the rabbit then the rabbit does not visit the lion.\n   This is a logical fallacy because it states the rabbit needs the rabbit, which doesn't make sense.\n\n10. If someone needs the rabbit then they visit the lion.\n    This statement tells us that someone who needs the rabbit will visit the lion, but it does not tell us about the lion visiting itself.\n\n11. If someone needs the rabbit and the rabbit does not need the lion then the rabbit is green.\n    The rabbit is cold, which is a different statement. We cannot determine if the lion visits itself from this statement.\n\nSince none of the statements provide any information about the lion visiting itself, we cannot determine whether the statement \"The lion visits the lion\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given rules to the statement \"The lion visits the lion.\"\n\n1. The given statement is \"The lion visits the lion.\"\n2. Rule: If someone visits the lion then they are cold. (So, the lion is cold.)\n3. We don't have any information about the lion's color, kindness, or the relationship between the lion and the cat.\n\nNow let's examine the other statements:\n\n- The lion is green: False (we have no information about the lion's color, but it is stated that the lion is green, so it could be true or false depending on what we can derive from other statements).\n- The lion is kind: True (it is stated that the lion is kind).\n- The lion likes the bald eagle: True (it is stated that the lion likes the bald eagle).\n- The lion likes the cat: True (it is stated that the lion likes the cat).\n- The lion does not visit the cat: True (it is stated that the lion does not visit the cat).\n- The lion visits the rabbit: True (it is stated that the lion visits the rabbit).\n\nNow let's look at the relationships between the characters:\n\n- The lion likes the bald eagle and the lion likes the cat: Both true, but we don't know if the lion likes both the cat and the bald eagle because we don't know if they like each other. However, it is stated that the lion likes the cat and the bald eagle.\n\nNow, let's consider the statements about the rabbit:\n\n- The rabbit is cold: False (we don't have any information about the rabbit's temperature).\n- The rabbit likes the bald eagle: True (it is stated that the rabbit likes the bald eagle).\n- The rabbit needs the bald eagle: True (it is stated that the rabbit needs the bald eagle).\n\nNow let's examine the statements about the cat:\n\n- The cat is not kind: True (it is stated that the cat is not kind).\n- The cat is not nice: True (it is stated that the cat is not nice).\n- The cat visits the lion: True (it is stated that the cat visits the lion).\n- The cat likes the bald eagle: Unknown (we don't have any information about the cat's preferences).\n\nNow, let's consider the statements about the cat and the bald eagle:\n\n- If the rabbit needs the bald eagle and the bald eagle visits the cat then the rabbit likes the cat: The rabbit needs the bald eagle (True), and the bald eagle visits the cat (True), so the rabbit likes the cat (True).\n\nNow let's look at the statements about the lion and the cat:\n\n- If someone needs the rabbit then they visit the lion: The lion does not need the rabbit (True), because it is stated that the lion likes the bald eagle.\n\nNow let's examine the statements about the lion and the rabbit:\n\n- If someone needs the rabbit and the rabbit does not need the lion then the rabbit is green: The rabbit needs the bald eagle (True) and the rabbit does not need the lion (True), so the rabbit is green (False).\n\nNow let's look at the statements about the lion and the rabbit:\n\n- If someone needs the rabbit then they visit the lion: The rabbit needs the bald eagle (True), but it is stated that the lion visits the rabbit.\n\nNow let's examine the statements about the cat and the rabbit:\n\n- If the cat needs the rabbit then the cat does not visit the bald eagle: The cat does not need the rabbit (True), because it is stated that the cat visits the lion.\n\nNow let's examine the statements about the cat and the lion:\n\n- If someone visits the cat and they do not visit the bald eagle then they are kind: The cat visits the lion (True), and the lion does not visit the bald eagle (True), so the lion is kind (True).\n\nNow let's examine the statements about the rabbit and the lion:\n\n- If the rabbit is cold and not kind then the rabbit likes the lion: The rabbit is not cold (False), because we don't have any information about the rabbit's temperature, and the rabbit is kind (True).\n\nNow let's examine the statements about the lion and the rabbit:\n\n- If someone needs the rabbit then they visit the lion: The lion does not need the rabbit (True), because it is stated that the lion likes the bald eagle.\n\nNow let's examine the statements about the lion and the bald eagle:\n\n- If someone likes the lion then the lion needs the rabbit: The lion does not need the rabbit (True), because it is stated that the lion likes the bald eagle.\n\nNow let's examine the statements about the lion and the bald eagle:\n\n- If someone visits the lion then they are cold: The lion is cold (True), because it is stated that the lion visits the rabbit.\n\nNow let's examine the statements about the lion and the lion:\n\n- The lion visits the lion: This statement is false, because it is stated that the lion does not visit the cat and the lion visits the rabbit.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the information to determine the truth value of the statement \"The lion visits the lion.\"\n\nLet's break down the given statements:\n\n1. The bald eagle likes the rabbit.\n2. The cat is not kind.\n3. The cat is not nice.\n4. The cat visits the lion.\n5. The lion is green.\n6. The lion is kind.\n7. The lion likes the bald eagle.\n8. The lion likes the cat.\n9. The lion does not visit the cat.\n10. The lion visits the rabbit.\n11. The rabbit is cold.\n12. The rabbit likes the bald eagle.\n13. The rabbit needs the bald eagle.\n14. If the rabbit needs the bald eagle and the bald eagle visits the cat then the rabbit likes the cat.\n15. If the cat needs the rabbit then the cat does not visit the bald eagle.\n16. If someone visits the cat and they do not visit the bald eagle then they are kind.\n17. If someone is cold and not kind then they like the lion.\n18. If someone needs the rabbit then they visit the lion.\n19. If someone needs the rabbit and the rabbit does not need the lion then the rabbit is green.\n20. If someone likes the lion then the lion needs the rabbit.\n21. If someone visits the lion then they are cold.\n\nWe can now analyze the statement \"The lion visits the lion\" using the given statements.\n\nLet's start by analyzing the statements that are related to the lion:\n\n5. The lion is green.\n6. The lion is kind.\n7. The lion likes the bald eagle.\n8. The lion likes the cat.\n9. The lion does not visit the cat.\n10. The lion visits the rabbit.\n\nFrom statement 5, we know that the lion is green. \nFrom statement 6, we know that the lion is kind.\nFrom statement 21, we know that if someone visits the lion, then they are cold.\n\nNow, let's analyze the given statement \"The lion visits the lion.\" \n\nStatement 9 says that the lion does not visit the cat, but statement 21 says that if someone visits the lion, then they are cold. This means that the lion can only visit the lion itself. However, we do not have enough information to confirm that the lion visits the lion. \n\nIn fact, we can use statement 21 to create a contradiction. If the lion visits the lion, then the lion must be cold (by statement 21). But we know that the lion is kind (by statement 6), and a cold and not kind person likes the lion (by statement 17). This would mean that the lion likes itself, which is a self-contradictory statement.\n\nTherefore, based on the given statements, we cannot determine whether the lion visits the lion. The statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the truth of the statement \"The lion visits the lion,\" we need to analyze the given information and the rules provided.\n\n1. The lion is green.\n2. The lion is kind.\n3. The lion likes the bald eagle.\n4. The lion likes the cat.\n5. The lion does not visit the cat.\n6. The lion visits the rabbit.\n7. The rabbit is cold.\n8. The rabbit likes the bald eagle.\n9. The rabbit needs the bald eagle.\n10. If the rabbit needs the bald eagle and the bald eagle visits the cat then the rabbit likes the cat.\n11. If the cat needs the rabbit then the cat does not visit the bald eagle.\n12. If someone visits the cat and they do not visit the bald eagle then they are kind.\n13. If someone is cold and not kind then they like the lion.\n14. If someone needs the rabbit then they visit the lion.\n15. If someone needs the rabbit and the rabbit does not need the lion then the rabbit is green.\n16. If someone likes the lion then the lion needs the rabbit.\n17. If someone visits the lion then they are cold.\n\nNow, let's examine the given statement: \"The lion visits the lion.\"\n\nBased on the given information:\n- The lion does not visit the cat (rule 5).\n- The lion visits the rabbit (rule 6).\n- If someone visits the lion then they are cold (rule 17).\n- The lion is cold (rule 7).\n\nHowever, we cannot directly apply rule 17 to determine that the lion visits itself, since the rule only states that if someone visits the lion, then they are cold, not that the lion visits itself.\n\nWe cannot apply any of the given rules to directly conclude whether the lion visits itself.\n\nTherefore, the truth of the statement \"The lion visits the lion\" is **unknown**, based on the given information and rules. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, let's analyze the given statements step by step.\n\n1. The lion is green.\n2. The lion is kind.\n3. The lion likes the bald eagle.\n4. The lion likes the cat.\n5. The lion does not visit the cat.\n6. The lion visits the rabbit.\n\nFrom statements 4 and 5, we know the lion likes the cat but doesn't visit the cat. This information alone doesn't tell us much, but we can continue to analyze other statements.\n\n7. The rabbit is cold.\n8. The rabbit likes the bald eagle.\n9. The rabbit needs the bald eagle.\n10. If the rabbit needs the bald eagle and the bald eagle visits the cat then the rabbit likes the cat.\n\nWe can't determine if the rabbit likes the cat from the given statements alone, but let's keep going.\n\n11. If the cat needs the rabbit then the cat does not visit the bald eagle.\n\n12. If someone visits the cat and they do not visit the bald eagle then they are kind.\n\n13. If someone is cold and not kind then they like the lion.\n\n14. If someone needs the rabbit then they visit the lion.\n\n15. If someone needs the rabbit and the rabbit does not need the lion then the rabbit is green.\n\n16. If someone likes the lion then the lion needs the rabbit.\n\n17. If someone visits the lion then they are cold.\n\nNow, let's analyze the given statement: \"The lion visits the lion.\"\n\nFrom statement 6, we know the lion visits the rabbit. From statement 17, if someone visits the lion, they are cold. However, we cannot conclude that the lion is cold from this information alone because the lion visits the rabbit.\n\nFrom statement 16, if someone likes the lion then the lion needs the rabbit. This statement implies that the lion needs the rabbit, which is consistent with the given information. However, this alone does not tell us if the lion visits the lion.\n\nFrom statement 14, if someone needs the rabbit, they visit the lion. Since the lion needs the rabbit (from statement 16), the lion visits the lion.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the information provided step by step.\n\nFrom the information given, we know the following:\n\n1. The lion visits the rabbit. (Statement 1)\n2. The lion is kind. (Statement 2)\n3. The lion likes the bald eagle. (Statement 3)\n4. The lion likes the cat. (Statement 4)\n5. The lion does not visit the cat. (Statement 5)\n6. The rabbit is cold. (Statement 6)\n7. The rabbit likes the bald eagle. (Statement 7)\n8. The rabbit needs the bald eagle. (Statement 8)\n\nNow, let's analyze the statements that might be related to the given statement, \"The lion visits the lion\":\n\nFrom the given information, we have the following rules:\n\n1. If someone visits the cat and they do not visit the bald eagle then they are kind. (Rule 1)\n2. If someone is cold and not kind then they like the lion. (Rule 2)\n3. If someone visits the lion then they are cold. (Rule 3)\n4. If someone needs the rabbit then they visit the lion. (Rule 4)\n5. If someone needs the rabbit and the rabbit does not need the lion then the rabbit is green. (Rule 5)\n6. If someone likes the lion then the lion needs the rabbit. (Rule 6)\n\nFrom Rule 3, we know that if someone visits the lion, then they are cold. However, we cannot conclude that the lion visits itself just by this rule.\n\nFrom Rule 4, we know that if someone needs the rabbit, then they visit the lion. But we cannot conclude that the lion visits itself just by this rule.\n\nWe cannot directly find any information about the lion visiting the lion from the given statements or rules.\n\nHowever, we can conclude that the given statement \"The lion visits the lion\" is false, because if the lion visited itself, it would imply that the lion needs the rabbit (from Rule 6), but it is given that the lion is kind (Statement 2), and being kind and visiting the cat and not the bald eagle would make the lion visit the rabbit (from Statement 1, Statement 5, and Rule 1).\n\nTherefore, the given statement \"The lion visits the lion\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve the problem, we will break it down into smaller statements and determine the truth value of each statement.\n\n1. The lion visits the lion.\n   We know the lion visits the rabbit. There is no information about the lion visiting the lion.\n\n2. The lion visits the rabbit.\n   This is given as true.\n\n3. The rabbit is cold.\n   We are given this as true.\n\n4. The rabbit likes the bald eagle.\n   We are given this as true.\n\n5. The bald eagle visits the cat.\n   We are given this as true.\n\n6. If the rabbit needs the bald eagle and the bald eagle visits the cat then the rabbit likes the cat.\n   Let's assume the rabbit needs the bald eagle. Then, since the bald eagle visits the cat, the rabbit likes the cat. This statement is true.\n\n7. The cat needs the rabbit.\n   We are given that the cat visits the lion. If the cat needs the rabbit, then the cat would not visit the bald eagle. However, we know the bald eagle visits the cat, so this statement is false.\n\n8. If someone visits the cat and they do not visit the bald eagle then they are kind.\n   Since the lion visits the cat but also visits the bald eagle, this statement is false.\n\n9. The lion is green.\n   We are given this as true.\n\n10. The lion is kind.\n    We are given this as true.\n\n11. The lion likes the bald eagle.\n    We are given this as true.\n\n12. The lion likes the cat.\n    We are given this as true.\n\n13. The lion does not visit the cat.\n    This is false.\n\n14. The lion needs the rabbit.\n    We know the lion likes the rabbit. If someone likes the lion, then the lion needs the rabbit. This statement is true.\n\n15. The rabbit is cold and not kind.\n    Since the rabbit is cold and we do not have enough information to conclude the rabbit is kind, this statement is true.\n\n16. If someone is cold and not kind then they like the lion.\n    Since the rabbit is cold and not kind, and the rabbit likes the lion, this statement is true.\n\n17. If someone needs the rabbit then they visit the lion.\n    Since the lion needs the rabbit and the lion visits the lion is what we are trying to determine, this statement is true.\n\n18. If someone needs the rabbit and the rabbit does not need the lion then the rabbit is green.\n    We do not have enough information to conclude whether the rabbit needs the lion or not. Therefore, this statement is unknown.\n\n19. If the lion visits the rabbit then the rabbit is green.\n    This is not given. The lion visits the rabbit, but we do not know if the rabbit is green.\n\nNow, we need to determine the truth value of \"The lion visits the lion.\"\n\nFrom statement 17, \"If someone needs the rabbit then they visit the lion,\" since the lion needs the rabbit (from statement 14), the lion visits the lion.\n\nTherefore, the statement \"The lion visits the lion\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to analyze the information provided. \n\nLet's break down the information into key points:\n\n1. The lion visits the rabbit. \n2. If someone visits the lion then they are cold. \nSo, since the lion visits the rabbit, the lion is cold.\n\n3. The lion is cold. \n4. If someone is cold and not kind then they like the lion. \nThis statement only provides information about people who are cold and not kind, but it does not directly relate to animals. We cannot conclude that the lion likes the lion based on this information.\n\n5. The lion is kind. \nHowever, this information contradicts statement 4, which states that someone is cold and not kind, and they like the lion. Since the lion is kind, we cannot conclude that the lion likes the lion.\n\n6. The lion is green. \n7. If someone needs the rabbit and the rabbit does not need the lion then the rabbit is green. \nHowever, this statement does not provide information about the lion needing the rabbit. We cannot conclude that the lion is green.\n\n8. The lion likes the bald eagle. \n9. The lion likes the cat. \n10. The lion does not visit the cat. \n11. The lion visits the rabbit. \n12. If someone likes the lion then the lion needs the rabbit. \nFrom statement 12, we can conclude that the lion needs the rabbit.\n\n13. The rabbit needs the bald eagle. \n14. If the rabbit needs the bald eagle and the bald eagle visits the cat then the rabbit likes the cat. \nHowever, we do not know if the bald eagle visits the cat. We cannot conclude that the rabbit likes the cat.\n\n15. The lion needs the rabbit. \nHowever, we do not have enough information to determine whether the lion visits the lion.\n\nFrom the given information, we cannot determine whether the lion visits the lion. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The lion visits the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is green. (Given)\n2. The lion likes the bald eagle. (Given)\n3. The lion is kind. (Given)\n4. The lion likes the cat. (Given)\n5. The lion does not visit the cat. (Given)\n6. The lion visits the rabbit. (Given)\n7. The rabbit is cold. (Given)\n8. The rabbit likes the bald eagle. (Given)\n9. The rabbit needs the bald eagle. (Given)\n10. If the rabbit needs the bald eagle and the bald eagle visits the cat then the rabbit likes the cat. (Given)\n11. If the cat needs the rabbit then the cat does not visit the bald eagle. (Given)\n12. If someone visits the cat and they do not visit the bald eagle then they are kind. (Given)\n13. If someone is cold and not kind then they like the lion. (Given)\n14. If someone needs the rabbit then they visit the lion. (Given)\n15. If someone needs the rabbit and the rabbit does not need the lion then the rabbit is green. (Given)\n16. If someone likes the lion then the lion needs the rabbit. (Given)\n17. If someone visits the lion then they are cold. (Given)\n\nWe need to check if there is any statement that implies the lion visits the lion.\n\nFrom statement 17, if someone visits the lion then they are cold. This does not directly imply that the lion visits the lion.\n\nFrom statement 14, if someone needs the rabbit then they visit the lion. However, we do not know if the lion needs the rabbit.\n\nFrom statement 16, if someone likes the lion then the lion needs the rabbit. However, we do not know if someone likes the lion.\n\nHowever, from statement 6, we know that the lion visits the rabbit.\n\nNow, if the lion needs the rabbit, it should be visiting the lion as per the statement \"If someone needs the rabbit then they visit the lion\". However, this creates a paradox because if the lion needs the rabbit and visits the lion, then it is essentially saying the lion visits the lion.\n\nBut if we consider statement 5, the lion does not visit the cat, then the lion cannot be visiting itself.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The lion visits the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is kind. (Given)\n2. The lion likes the bald eagle. (Given)\n3. The lion likes the cat. (Given)\n4. The lion does not visit the cat. (Given)\n\nFrom statement 4, we know the lion does not visit the cat. However, we are asked to determine if the lion visits the lion. This implies we need to find a connection between the lion and itself.\n\n5. If someone visits the lion then they are cold. (Given)\n6. The lion is green. (Given)\n\nFrom statement 6, we know the lion is green, but we need to find a connection to the lion visiting itself.\n\n7. If someone needs the rabbit then they visit the lion. (Given)\n8. The rabbit needs the bald eagle. (Given)\n9. The rabbit likes the bald eagle. (Given)\n\nFrom statement 8, we know the rabbit needs the bald eagle. However, we need to find a connection to the lion visiting itself.\n\n10. If someone needs the rabbit and the rabbit does not need the lion then the rabbit is green. (Given)\nSince the rabbit needs the bald eagle (statement 8), we can infer that the rabbit does not need the lion. However, this information is not necessary for our current goal.\n\n11. If the rabbit is cold and not kind then they like the lion. (Given)\n12. The rabbit is cold. (Given)\n13. The lion is kind. (Given from statement 1)\n\nFrom statement 12, we know the rabbit is cold, and from statement 13, we know the lion is kind. However, we need to find a connection to the lion visiting itself.\n\n14. The lion visits the rabbit. (Given)\n15. The lion is green. (Given from statement 6)\n\nFrom statement 14, we know the lion visits the rabbit. However, we need to find a connection to the lion visiting itself.\n\n16. If someone is kind and the lion is not green then they do not visit the lion. (Implicit rule from statements 5 and 6)\nSince the lion is green (statement 6) and the lion is kind (statement 1), this rule is not applicable here.\n\n17. If someone visits the cat and they do not visit the bald eagle then they are kind. (Given)\nSince the lion does not visit the cat (statement 4), this rule is not applicable here.\n\n18. The lion likes the bald eagle. (Given from statement 2)\n19. The lion likes the cat. (Given from statement 3)\n\nFrom statement 18, we know the lion likes the bald eagle, and from statement 19, we know the lion likes the cat. However, we need to find a connection to the lion visiting itself.\n\nSince we have not found any information that directly connects the lion to visiting itself, we can conclude that the statement \"The lion visits the lion\" is unknown, as there is no explicit or implicit rule that directly addresses this scenario.\n\nHowever, if we look at the information we have, we see that the lion does visit the rabbit (statement 14), but we cannot directly infer that the lion visits itself based on the given information.\n\nGiven the information and analysis, we cannot definitively say if the lion visits the lion or not. Therefore, our answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The lion visits the lion\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is green. (This information alone doesn't tell us anything about the lion's behavior.)\n\n2. The lion is kind. (This information alone doesn't tell us anything about the lion's behavior.)\n\n3. The lion likes the bald eagle. (This information alone doesn't tell us anything about the lion's behavior.)\n\n4. The lion likes the cat. (This information alone doesn't tell us anything about the lion's behavior.)\n\n5. The lion does not visit the cat. (This information tells us something about the lion's behavior, but it's not relevant to the statement we're trying to evaluate.)\n\n6. The lion visits the rabbit. (This information tells us something about the lion's behavior.)\n\n7. The rabbit is cold. (This information tells us something about the rabbit's condition, but it's not directly relevant to the lion's behavior.)\n\n8. If someone visits the lion then they are cold. (This is a rule that tells us something about the behavior of the lion's visitors.)\n\nFrom rule 8, we can conclude that the lion is cold because it visits the lion.\n\nHowever, we don't have enough information to determine whether the lion visits the lion. The statement \"The lion visits the lion\" is actually referring to the lion visiting itself, which is an impossible scenario.\n\nThe information given does not provide any logical explanation for the lion to visit itself. Therefore, the statement is unknown, as there is no logical conclusion that can be derived from the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, let's break down the given statements into rules and identify the relevant information for each rule.\n\n1. If the rabbit needs the bald eagle and the bald eagle visits the cat then the rabbit likes the cat.\n   - Relevant information: The rabbit needs the bald eagle, the bald eagle visits the cat.\n   - We do not know if the rabbit likes the cat yet.\n\n2. If the cat needs the rabbit then the cat does not visit the bald eagle.\n   - Relevant information: We do not know if the cat needs the rabbit yet.\n\n3. If someone visits the cat and they do not visit the bald eagle then they are kind.\n   - Relevant information: We do not know if someone visits the cat and does not visit the bald eagle yet.\n\n4. If someone is cold and not kind then they like the lion.\n   - Relevant information: The lion is green, the lion is kind.\n   - We do not know if the lion is cold or kind yet, but we know it is not cold.\n\n5. If someone needs the rabbit then they visit the lion.\n   - Relevant information: The rabbit needs the bald eagle.\n   - We do not know if the bald eagle needs the rabbit yet.\n\n6. If someone needs the rabbit and the rabbit does not need the lion then the rabbit is green.\n   - Relevant information: The rabbit needs the bald eagle, the lion is green.\n   - We do not know if the rabbit is green yet.\n\n7. If someone likes the lion then the lion needs the rabbit.\n   - Relevant information: The lion is green, the lion is kind, the lion likes the bald eagle.\n   - We do not know if the lion needs the rabbit yet.\n\n8. If someone visits the lion then they are cold.\n   - Relevant information: We do not know if anyone visits the lion yet.\n\nFrom the given statements, we know that the lion is green, the lion is kind, and the lion likes the bald eagle. However, there is no statement that says the lion visits the lion.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_X_lion, cold_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(lion, cat)",
+          "z3_formula": "Not(visits_lion_cat) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, X) -> not visits(X, lion)",
+          "z3_formula": "Implies(And(X == rabbit, X == rabbit), Not(visits_rabbit_lion))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & not needs(X, lion) -> green(rabbit)",
+          "z3_formula": "Implies(And(needs_X_rabbit, Not(needs_X_lion)), green_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, rabbit)",
+          "z3_formula": "likes_bald_eagle_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(cat))",
+          "z3_formula": "not(kind_cat) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(nice(cat))",
+          "z3_formula": "not(nice_cat) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(lion, cat))",
+          "z3_formula": "not(visits_lion_cat) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bald_eagle)",
+          "z3_formula": "likes_rabbit_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(rabbit, X) & visits(bald_eagle, cat) -> likes(rabbit, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_X, visits_bald_eagle_cat), likes_rabbit_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cat, rabbit) -> not(visits(bald_eagle, cat))",
+          "z3_formula": "Implies(needs_cat_rabbit, not(visits_bald_eagle_cat))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & not(visits(X, bald_eagle)) -> kind(X)",
+          "z3_formula": "Implies(And(visits_X_cat, not(visits_X_bald_eagle)), kind_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(kind(X)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(cold_X, not(kind_X)), likes_X_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_X_rabbit, visits_X_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & not(needs(X, lion)) -> green(X)",
+          "z3_formula": "Implies(And(needs_X_rabbit, not(needs_X_lion)), green_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> needs(X, rabbit)",
+          "z3_formula": "Implies(likes_X_lion, needs_X_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_X_lion, cold_X)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, eagle)",
+          "z3_formula": "likes_lion_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(lion, cat))",
+          "z3_formula": "Not(likes_lion_cat) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, eagle)",
+          "z3_formula": "likes_rabbit_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, eagle)",
+          "z3_formula": "needs_rabbit_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & visits(Y, Z) & visits(Z, cat) -> likes(X, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_eagle, visits_eagle_cat, visits_lion_cat), likes_rabbit_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> not(visits(X, eagle))",
+          "z3_formula": "Implies(needs_X_rabbit, Not(visits_X_eagle))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & not(visits(X, eagle)) -> kind(X)",
+          "z3_formula": "Implies(And(visits_X_cat, Not(visits_X_eagle)), kind_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(kind(X)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(cold_X, Not(kind_X)), likes_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_X_rabbit, visits_X_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & not(needs(X, lion)) -> green(X)",
+          "z3_formula": "Implies(And(needs_X_rabbit, Not(needs_X_lion)), green_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> needs(X, rabbit)",
+          "z3_formula": "Implies(likes_X_lion, needs_X_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_X_lion, cold_X)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(visit(lion, cat))",
+          "z3_formula": "Not(visit_lion_cat) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visit(lion, rabbit)",
+          "z3_formula": "visit_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bald_eagle)",
+          "z3_formula": "likes_rabbit_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & visit(Y, Z) -> likes(X, Z)",
+          "z3_formula": "Implies(And(needs_rabbit_bald_eagle, visit_bald_eagle_cat), likes_rabbit_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> not(visit(Y, Z))",
+          "z3_formula": "Implies(needs_cat_rabbit, Not(visit_bald_eagle_cat))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, Y) & not(visit(X, Z)) -> kind(X)",
+          "z3_formula": "Implies(And(visit_lion_cat, Not(visit_lion_bald_eagle)), kind_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(kind(X)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(cold_rabbit, Not(kind_rabbit)), likes_rabbit_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> visit(X, lion)",
+          "z3_formula": "Implies(needs_rabbit_lion, visit_lion_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & not(needs(Y, lion)) -> green(Y)",
+          "z3_formula": "Implies(And(needs_rabbit_bald_eagle, Not(needs_bald_eagle_lion)), green_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> needs(lion, Y)",
+          "z3_formula": "Implies(likes_lion_rabbit, needs_lion_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visit(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visit_lion_lion, cold_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "visit(lion, lion)",
+          "z3_formula": "visit_lion_lion == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(lion, cat)",
+          "z3_formula": "not visits_lion_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bald_eagle)",
+          "z3_formula": "likes_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & not visits(X, bald_eagle) -> kind(X)",
+          "z3_formula": "Implies(And(visits_lion_cat, Not(visits_lion_bald_eagle)), kind_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not kind(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(cold_rabbit, Not(kind_rabbit)), likes_rabbit_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_lion_lion, cold_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_lion_rabbit, visits_lion_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & not needs(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(needs_lion_rabbit, Not(needs_lion_lion)), green_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> needs(X, rabbit)",
+          "z3_formula": "Implies(likes_lion_lion, needs_lion_rabbit)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(lion, lion)",
+          "z3_formula": "visits_lion_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bald_eagle)",
+          "z3_formula": "likes_rabbit_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, cat)",
+          "z3_formula": "visits_bald_eagle_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & visits(Y, Z) -> likes(X, Z)",
+          "z3_formula": "Implies(And(needs_rabbit_bald_eagle, visits_bald_eagle_cat), likes_rabbit_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == False",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Z) & Not(visits(X, Y)) -> kind(X)",
+          "z3_formula": "Implies(And(visits_lion_cat, Not(visits_lion_bald_eagle)), kind_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "Not(visits(lion, cat))",
+          "z3_formula": "Not(visits_lion_cat) == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(likes_lion_rabbit, needs_lion_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit) & Not(kind(rabbit))",
+          "z3_formula": "And(cold_rabbit, Not(kind_rabbit)) == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(kind(X)) -> likes(X, lion)",
+          "z3_formula": "Implies(And(cold_rabbit, Not(kind_rabbit)), likes_rabbit_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> visits(X, Y)",
+          "z3_formula": "Implies(needs_lion_rabbit, visits_lion_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & Not(needs(Y, X)) -> green(Y)",
+          "z3_formula": "Implies(And(needs_rabbit_lion, Not(needs_lion_rabbit)), green_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> green(Y)",
+          "z3_formula": "Implies(visits_lion_rabbit, green_rabbit)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_lion_rabbit, cold_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(lion)",
+          "z3_formula": "cold_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(kind(X)) -> likes_lion(X)",
+          "z3_formula": "Implies(And(cold_lion, Not(kind_lion)), likes_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & Not(needs(rabbit, X)) -> green(X)",
+          "z3_formula": "Implies(And(needs_lion_rabbit, Not(needs_rabbit_lion)), green_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "Not(visits(lion, cat))",
+          "z3_formula": "Not(visits_lion_cat) == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> needs(X, rabbit)",
+          "z3_formula": "Implies(likes_lion, needs_lion_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & visits(Y, Z) -> likes(X, Z)",
+          "z3_formula": "Implies(And(needs_rabbit_bald_eagle, visits_bald_eagle_cat), likes_rabbit_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, cat)",
+          "z3_formula": "likes_rabbit_cat == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, rabbit)",
+          "z3_formula": "needs_lion_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "visits(lion, lion)",
+          "z3_formula": "visits_lion_lion == Unknown",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(lion, cat)",
+          "z3_formula": "not visits_lion_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bald_eagle)",
+          "z3_formula": "likes_rabbit_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) & visits(Y, Z) -> likes(X, Z)",
+          "z3_formula": "Implies(And(needs_rabbit_bald_eagle, visits_bald_eagle_cat), likes_rabbit_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> not visits(Y, bald_eagle)",
+          "z3_formula": "Implies(needs_cat_rabbit, not visits_bald_eagle_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) & not visits(X, bald_eagle) -> kind(X)",
+          "z3_formula": "Implies(And(visits_lion_cat, not visits_lion_bald_eagle), kind_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not kind(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(cold_rabbit, not kind_rabbit), likes_rabbit_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_X_rabbit, visits_X_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & not needs(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(needs_X_rabbit, not needs_X_lion), green_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> needs(lion, rabbit)",
+          "z3_formula": "Implies(likes_X_lion, needs_lion_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_X_lion, cold_X)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(lion, cat))",
+          "z3_formula": "Not(likes_lion_cat) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_lion_lion, cold_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_lion_rabbit, visits_lion_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, bald_eagle)",
+          "z3_formula": "likes_rabbit_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & not(needs(X, lion)) -> green(X)",
+          "z3_formula": "Implies(And(needs_lion_rabbit, Not(needs_lion_lion)), green_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(green(lion)) -> not(visits(X, lion))",
+          "z3_formula": "Implies(And(kind_lion, Not(green_lion)), Not(visits_lion_lion))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & not(visits(X, bald_eagle)) -> kind(X)",
+          "z3_formula": "Implies(And(visits_lion_cat, Not(visits_lion_bald_eagle)), kind_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, eagle)",
+          "z3_formula": "likes_lion_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(lion, cat))",
+          "z3_formula": "Not(likes_lion_cat) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, rabbit)",
+          "z3_formula": "visits_lion_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_lion_lion, cold_lion)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, bald_eagle)",
+          "z3_formula": "needs_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(bald_eagle, cat)",
+          "z3_formula": "visits_bald_eagle_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, bald_eagle) & visits(bald_eagle, cat) -> likes(rabbit, cat)",
+          "z3_formula": "Implies(And(needs_rabbit_bald_eagle, visits_bald_eagle_cat), likes_rabbit_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(cat, rabbit) -> !visits(bald_eagle, cat)",
+          "z3_formula": "Implies(needs_cat_rabbit, Not(visits_bald_eagle_cat))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) & !visits(X, bald_eagle) -> kind(X)",
+          "z3_formula": "Implies(And(visits_X_cat, Not(visits_X_bald_eagle)), kind_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & !kind(X) -> likes(X, lion)",
+          "z3_formula": "Implies(And(cold_X, Not(kind_X)), likes_X_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, bald_eagle)",
+          "z3_formula": "likes_lion_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> visits(X, lion)",
+          "z3_formula": "Implies(needs_X_rabbit, visits_X_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & !needs(rabbit, lion) -> green(rabbit)",
+          "z3_formula": "Implies(And(needs_X_rabbit, Not(needs_rabbit_lion)), green_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, lion) -> needs(lion, rabbit)",
+          "z3_formula": "Implies(likes_X_lion, needs_lion_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) -> cold(X)",
+          "z3_formula": "Implies(visits_X_lion, cold_X)",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 177,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 65
+    },
+    "maxsat_stats": {
+      "satisfied": 64,
+      "excluded": 1,
+      "total_weight": 166,
+      "solve_time_ms": 1.6801143065094948
+    },
+    "timing": {
+      "trace_gen_s": 12.636,
+      "extraction_s": 40.9,
+      "dedup_s": 1.98,
+      "maxsat_s": 0.005,
+      "total_s": 55.522
+    }
+  }
+}

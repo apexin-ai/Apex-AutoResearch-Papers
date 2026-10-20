@@ -1,0 +1,690 @@
+{
+  "pid": "folio_37",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "wrote(beethoven, symphony_no_9)",
+          "z3_formula": "wrote_beethoven_symphony_no_9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "leads(beethoven, vienna_music_society)",
+          "z3_formula": "leads_beethoven_vienna_music_society == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> led_by(X, conductor)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_vienna_music_society_conductor)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "premiered(some_orchestras, some_music_pieces)",
+          "z3_formula": "premiered_some_orchestras_some_music_pieces == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_beethoven)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "wrote(beethoven, symphony_no_9)",
+          "z3_formula": "wrote_beethoven_symphony_no_9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "leads(beethoven, vienna_music_society)",
+          "z3_formula": "leads_beethoven_vienna_music_society == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_conductor_vienna_music_society)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_X, music_piece_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "beethoven_wrote_symphony_no_9",
+          "z3_formula": "beethoven_wrote_symphony_no_9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vienna_music_society_premiered_symphony_no_9",
+          "z3_formula": "vienna_music_society_premiered_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "vienna_music_society_is_orchestra",
+          "z3_formula": "vienna_music_society_is_orchestra == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "beethoven_leads_vienna_music_society",
+          "z3_formula": "beethoven_leads_vienna_music_society == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_X, led_by_conductor_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "some_orchestras_premiered_music_pieces",
+          "z3_formula": "Or(orchestra_X, music_piece_Y)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "composer(beethoven)",
+          "z3_formula": "composer_beethoven == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "wrote(beethoven, symphony_no_9)",
+          "z3_formula": "wrote_beethoven_symphony_no_9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "leads(beethoven, vienna_music_society)",
+          "z3_formula": "leads_beethoven_vienna_music_society == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "led_by_conductor(orchestra)",
+          "z3_formula": "led_by_conductor_orchestra == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_conductor_vienna_music_society)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "some(orchestra, premiered_music_piece)",
+          "z3_formula": "some_orchestra_premiered_music_piece == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "composer(beethoven)",
+          "z3_formula": "composer_beethoven == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "leader(beethoven, vienna_music_society)",
+          "z3_formula": "leader_beethoven_vienna_music_society == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "composer(X) -> writes_music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, writes_music_piece_beethoven)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "writes_music_piece(X) -> premieres_music_piece(X)",
+          "z3_formula": "Implies(writes_music_piece_beethoven, premieres_music_piece_beethoven)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_conductor_vienna_music_society)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "premiered_music_piece(some(orchestra))",
+          "z3_formula": "premiered_music_piece_some_orchestra == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "composer(beethoven)",
+          "z3_formula": "composer_beethoven == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "premiered(orchestra, music_piece)",
+          "z3_formula": "premiered_orchestra_music_piece == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_X, music_piece_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "beethoven_wrote_symphony_no_9",
+          "z3_formula": "beethoven_wrote_symphony_no_9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vienna_music_society_premiered_symphony_no_9",
+          "z3_formula": "vienna_music_society_premiered_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "vienna_music_society_is_orchestra",
+          "z3_formula": "vienna_music_society_is_orchestra == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "beethoven_leads_vienna_music_society",
+          "z3_formula": "beethoven_leads_vienna_music_society == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_X, led_by_conductor_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "some(orchestra(X) & music_piece(Y))",
+          "z3_formula": "Or(And(orchestra_X, music_piece_Y), And(orchestra_X, music_piece_Y))",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_conductor_vienna_music_society)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Uncertain, but leaning towards True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "composer(beethoven) & music_piece(symphony_no_9)",
+          "z3_formula": "And(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "leads(beethoven, vienna_music_society)",
+          "z3_formula": "leads_beethoven_vienna_music_society == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_conductor_vienna_music_society)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "composer(beethoven) & music_piece(symphony_no_9)",
+          "z3_formula": "And(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "orchestra(vienna_music_society) & premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "And(orchestra_vienna_music_society, premiered_vienna_music_society_symphony_no_9)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "orchestra(vienna_music_society) & leads(beethoven, vienna_music_society) & led_by_conductor(vienna_music_society)",
+          "z3_formula": "And(And(orchestra_vienna_music_society, leads_beethoven_vienna_music_society), led_by_conductor_vienna_music_society)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) & premiered(X, Y) -> can_premiere(X, Y)",
+          "z3_formula": "Implies(And(orchestra_vienna_music_society, premiered_vienna_music_society_symphony_no_9), can_premiere_vienna_music_society_symphony_no_9)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> has_conductor(X)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, has_conductor_vienna_music_society)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) & has_conductor(X) -> can_premiere(X, Y)",
+          "z3_formula": "Implies(And(orchestra_vienna_music_society, has_conductor_vienna_music_society), can_premiere_vienna_music_society_symphony_no_9)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "some(orchestra(X) & premiered(X, Y))",
+          "z3_formula": "Or(premiered_vienna_music_society_symphony_no_9, Or(premiered_vienna_music_society_symphony_no_9, Unknown))",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "composer(X) -> music_piece(Y)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "composer(beethoven)",
+          "z3_formula": "composer_beethoven == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "conductor(beethoven)",
+          "z3_formula": "conductor_beethoven == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> conductor(Y)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, conductor_beethoven)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "some(orchestra(X), premiered(X, music_piece(Y)))",
+          "z3_formula": "Or(premiered_vienna_music_society_symphony_no_9, Exists(orchestra_X, And(orchestra_X, premiered_X_music_piece_Y)))",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> led_by(X, conductor)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_vienna_music_society_conductor)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "led_by(beethoven, vienna_music_society)",
+          "z3_formula": "led_by_beethoven_vienna_music_society == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "led_by(beethoven, vienna_music_society)",
+          "z3_formula": "led_by_beethoven_vienna_music_society == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "premiered(orchestra, music_piece)",
+          "z3_formula": "premiered_orchestra_music_piece == Unknown",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "music_piece(symphony_no_9)",
+          "z3_formula": "music_piece_symphony_no_9 == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "composer(X) -> music_piece(X)",
+          "z3_formula": "Implies(composer_beethoven, music_piece_symphony_no_9)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "composer(beethoven)",
+          "z3_formula": "composer_beethoven == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "premiered(vienna_music_society, symphony_no_9)",
+          "z3_formula": "premiered_vienna_music_society_symphony_no_9 == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orchestra(vienna_music_society)",
+          "z3_formula": "orchestra_vienna_music_society == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "orchestra(X) -> led_by_conductor(X)",
+          "z3_formula": "Implies(orchestra_vienna_music_society, led_by_conductor_vienna_music_society)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "led_by(beethoven, vienna_music_society)",
+          "z3_formula": "led_by_beethoven_vienna_music_society == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "led_by(X, Y) -> conductor(X)",
+          "z3_formula": "Implies(led_by_beethoven_vienna_music_society, conductor_beethoven)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "conductor(beethoven)",
+          "z3_formula": "conductor_beethoven == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "some(orchestra, premiered)",
+          "z3_formula": "some_orchestra_premiered == True",
+          "source_step": 10
+        }
+      ]
+    }
+  ]
+}

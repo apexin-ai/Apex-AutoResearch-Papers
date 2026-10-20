@@ -1,0 +1,886 @@
+{
+  "problem": {
+    "id": "folio_125",
+    "problem": "Given the following premises:\nAll mammals are animals. All monkeys are mammals.  An animal is either a monkey or a bird. All birds fly. All animals breathe. If something can fly, then it has wings. If Rock is neither a fly nor a bird, then Rock neither flies nor breathes.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nRock is a monkey.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x  (Mammal (x)\u2192  Animal (x))",
+      "\u2200x  (Monkey (x)\u2192  Mammal (x))",
+      "\u2200x ( Monkey (x) \u2228  Bird (x))",
+      "\u2200x  (Bird (x)\u2192  Fly (x))",
+      "\u2200x  (Animal (x)\u2192  Breathe (x))",
+      "\u2200x  (Fly (x)\u2192  HaveWings (x))",
+      "\u00ac Fly (rock) \u2227 \u00ac Bird (rock) \u2192 \u00ac Fly (rock) \u2227 \u00ac Breathe (rock) "
+    ],
+    "conclusion_fol": "Monkey(rock)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 69.0,
+      "Unknown": 64.0
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "False": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion \"Rock is a monkey\" is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremises:\n1. All mammals are animals.\n2. All monkeys are mammals.\n3. An animal is either a monkey or a bird.\n4. All birds fly.\n5. All animals breathe.\n6. If something can fly, then it has wings.\n7. If Rock is neither a fly nor a bird, then Rock neither flies nor breathes.\n\nConclusion: Rock is a monkey.\n\nLet's analyze the conclusion using the given premises:\n\n1. If Rock is a monkey, then it must be an animal (by premise 2).\n2. Since an animal is either a monkey or a bird (premise 3), if Rock is a monkey, it must be a bird as well (by the definition of \"or\" in logic).\n3. However, premise 4 states that all birds fly. This would imply that Rock can fly.\n4. But premise 7 states that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. This means that if Rock is not a bird, it cannot fly or breathe.\n5. Since Rock can breathe (as all animals breathe, premise 5), it must not be the case that Rock is neither a fly nor a bird (because if it were, it would not breathe).\n6. Therefore, Rock must be a bird (by the process of elimination).\n\nHowever, the conclusion states that Rock is a monkey, which is not supported by the given premises.\n\nBut there is also another option to consider. If Rock is a monkey, then it must fly (by the conclusion), and since all birds fly (premise 4), Rock would also be a bird, and this is a contradiction. However, this is not the case, it would imply Rock could be a monkey and a bird at the same time which would be a contradiction. Therefore we could conclude that the statement cannot be true.\n\nConsidering the analysis, the conclusion \"Rock is a monkey\" is uncertain, because we can show that it cannot be true based on the given premises, but we cannot prove that it is false.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a monkey\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. All mammals are animals. \n   This premise tells us that any mammal can be classified as an animal.\n\n2. All monkeys are mammals. \n   This premise tells us that any monkey can be classified as a mammal.\n\n3. An animal is either a monkey or a bird. \n   This premise tells us that any animal can be classified as either a monkey or a bird.\n\n4. All birds fly. \n   This premise tells us that any bird has the ability to fly.\n\n5. All animals breathe. \n   This premise tells us that any animal has the ability to breathe.\n\n6. If something can fly, then it has wings. \n   This premise tells us that anything that can fly must have wings.\n\n7. If Rock is neither a fly nor a bird, then Rock neither flies nor breathes. \n   This premise tells us that if Rock is not a bird, then it does not breathe.\n\nNow, we will analyze the conclusion \"Rock is a monkey.\" To determine whether this conclusion is true, false, or uncertain, we need to see if it can be deduced from the given premises.\n\nIf Rock is a monkey, then it must be a mammal (premise 2), and therefore it must be an animal (premise 1). \n\nHowever, according to premise 7, if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. But premise 3 states that an animal is either a monkey or a bird, which means Rock must be a bird. \n\nIf Rock is a bird, then it must fly (premise 4), and therefore it must have wings (premise 6). But premise 7 also states that if Rock is a bird, then it must breathe, which contradicts the assumption that Rock is neither a fly nor a bird.\n\nHowever, if Rock is a bird, this also contradicts the conclusion that Rock is a monkey, as premise 3 states that an animal is either a monkey or a bird.\n\nSince we have a contradiction, we cannot conclude that Rock is a monkey.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a monkey\" is true, false, or uncertain, we need to analyze the given premises and see if we can derive a conclusion about Rock being a monkey.\n\nGiven premises:\n1. All mammals are animals.\n2. All monkeys are mammals.\n3. An animal is either a monkey or a bird.\n4. All birds fly.\n5. All animals breathe.\n6. If something can fly, then it has wings.\n7. If Rock is neither a fly nor a bird, then Rock neither flies nor breathes.\n\nLet's analyze the premises:\n\nFrom 1 and 2, we can conclude that all monkeys are animals.\n\nFrom 3, we can conclude that all animals are either monkeys or birds.\n\nFrom 4, we know that birds fly.\n\nFrom 5, we know that all animals breathe.\n\nFrom 6, we can conclude that if something can fly, then it has wings.\n\nFrom 7, we can conclude that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes.\n\nNow, let's examine the conclusion \"Rock is a monkey.\"\n\nTo determine if Rock is a monkey, we need to see if we can derive any information about Rock from the premises.\n\nFrom premise 7, we know that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. This premise does not provide any information about whether Rock is a monkey or not.\n\nHowever, from premise 3, we can conclude that if Rock is an animal, then it must be either a monkey or a bird. But premise 7 tells us that Rock neither flies nor breathes, which means Rock cannot be a bird (since birds fly and breathe). Therefore, if Rock is an animal, it must be a monkey.\n\nBut we don't know if Rock is an animal or not. If Rock is not an animal, then the conclusion \"Rock is a monkey\" is false.\n\nSince we don't have enough information to determine whether Rock is an animal or not, we cannot conclude that Rock is a monkey with certainty.\n\nTherefore, the conclusion \"Rock is a monkey\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a monkey\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\n1. All mammals are animals. \n2. All monkeys are mammals.\n3. An animal is either a monkey or a bird.\n4. All birds fly.\n5. All animals breathe.\n6. If something can fly, then it has wings.\n7. If Rock is neither a fly nor a bird, then Rock neither flies nor breathes.\n\nFrom premise 3, we can infer that if an animal is not a monkey, then it must be a bird. However, we cannot conclude that an animal is a bird just because it is not a monkey.\n\nNow, let's examine the conclusion \"Rock is a monkey.\" To determine whether this conclusion is true, false, or uncertain, we need to consider the given premises and our current knowledge.\n\nWe know that Rock is neither a fly nor a bird (from premise 7), but we don't have any direct information about whether Rock is a monkey or not. \n\nHowever, we can use the transitive property to analyze this situation. From premise 2, we know that all monkeys are mammals. Therefore, if Rock is a monkey, then Rock must be a mammal.\n\nNow, let's examine the statement \"Rock is a mammal.\" We can apply the same transitive property to this statement. From premise 1, we know that all mammals are animals. If Rock is a mammal, then Rock must be an animal.\n\nNow, let's examine the statement \"Rock is an animal.\" We can apply the same transitive property to this statement. From premise 3, we know that an animal is either a monkey or a bird. If Rock is an animal, then Rock must be either a monkey or a bird.\n\nHowever, we know that Rock is neither a fly nor a bird (from premise 7). Therefore, if Rock is a bird, then it is a bird but not a fly, which contradicts the given information that Rock is neither a fly nor a bird.\n\nThis means that Rock cannot be a bird, so Rock must be a monkey.\n\nTherefore, we can conclude that if Rock is a monkey, then it is true that Rock is a monkey.\n\nHowever, we still need to determine whether Rock is a monkey or not.\n\nNow, let's examine the statement \"Rock neither flies nor breathes\" (from premise 7). We know that Rock is neither a fly nor a bird, so this statement is true.\n\nHowever, we can apply the same transitive property to this statement. From premise 5, we know that all animals breathe. If Rock is an animal, then Rock must breathe.\n\nHowever, we know that Rock neither flies nor breathes. Therefore, if Rock is an animal, then it is an animal but it neither flies nor breathes, which contradicts the given information that all animals breathe.\n\nThis means that Rock cannot be an animal.\n\nTherefore, we can conclude that Rock is not a monkey.\n\nSo, the conclusion \"Rock is a monkey\" is false.\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a monkey\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. All mammals are animals. \n   - This premise establishes a relationship between mammals and animals. It does not provide any direct information about Rock or monkeys.\n\n2. All monkeys are mammals. \n   - This premise also establishes a relationship between monkeys and mammals. However, it still does not provide any direct information about Rock.\n\n3. An animal is either a monkey or a bird. \n   - This premise establishes a relationship between animals, monkeys, and birds. However, it does not provide any direct information about Rock.\n\n4. All birds fly. \n   - This premise establishes a relationship between birds and flying. However, it does not provide any direct information about Rock.\n\n5. All animals breathe. \n   - This premise establishes a relationship between animals and breathing. However, it does not provide any direct information about Rock.\n\n6. If something can fly, then it has wings. \n   - This premise establishes a relationship between flying and wings. However, it does not provide any direct information about Rock.\n\n7. If Rock is neither a fly nor a bird, then Rock neither flies nor breathes. \n   - This premise provides information about Rock. It states that if Rock is not a fly or a bird, then it does not fly or breathe. This premise does not provide any direct information about Rock being a monkey, but it sets a condition for Rock's flying and breathing abilities.\n\nNow, let's consider the conclusion \"Rock is a monkey.\"\n\nTo determine whether this conclusion is true, false, or uncertain, we need to look for any information that directly relates Rock to monkeys. However, none of the premises provide any direct information about Rock being a monkey.\n\nThe closest information about Rock is from premise 7, which states that if Rock is neither a fly nor a bird, then it does not fly or breathe. However, this premise does not provide any information about Rock being a monkey.\n\nTherefore, based on the given premises, we cannot determine whether the conclusion \"Rock is a monkey\" is true or false. The information provided is insufficient to make a conclusion about Rock being a monkey.\n\nSince we cannot determine the truth value of the conclusion, the answer is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will break it down step by step using logical reasoning and the given premises.\n\n1. All mammals are animals. (Premise 1)\n2. All monkeys are mammals. (Premise 2)\n3. An animal is either a monkey or a bird. (Premise 3)\n4. All birds fly. (Premise 4)\n5. All animals breathe. (Premise 5)\n6. If something can fly, then it has wings. (Premise 6)\n7. If Rock is neither a fly nor a bird, then Rock neither flies nor breathes. (Premise 7)\n\nNow, let's analyze the conclusion: \"Rock is a monkey.\"\n\nFrom Premise 3, we know that an animal is either a monkey or a bird. If Rock is a monkey, it must be an animal.\n\nFrom Premise 1, all mammals are animals, and from Premise 2, all monkeys are mammals. Therefore, if Rock is a monkey, it is also a mammal, and consequently, an animal.\n\nHowever, Premise 3 states that an animal is either a monkey or a bird. If Rock is an animal, it must be a monkey or a bird. Since we are trying to determine if Rock is a monkey, let's assume it is a monkey.\n\nNow, from Premise 7, we can derive a conclusion about Rock's behavior. If Rock is a monkey, it is also an animal. Since Rock is not a bird (by assumption), we can apply Premise 7, which states that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. However, from Premise 6, if something can fly, then it has wings. But birds fly, and all birds have wings (Premise 4). Therefore, if Rock is a monkey, it is not a bird. However, Premise 7 does not cover the case where Rock is a monkey; it only covers the case where Rock is neither a fly nor a bird.\n\nHowever, from Premise 1 and Premise 2, we know all monkeys are mammals, and all mammals are animals. Therefore, a monkey is indeed an animal. But from Premise 5, all animals breathe. Since Rock is a monkey (by assumption), it must breathe.\n\nNow let's consider Premise 6: if something can fly, then it has wings. Since we know Rock is a monkey and monkeys are not birds, we can conclude that Rock does not fly. And if Rock does not fly, then from Premise 6, Rock does not have wings.\n\nHowever, we have not yet used the information about Rock not being a fly or a bird (from Premise 7). Let's combine this information with the fact that Rock is a monkey. From Premise 7, if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. Since Rock is a monkey and monkeys are not birds, this premise does not apply directly.\n\nBut since we have established that Rock is a monkey, and monkeys are animals, and all animals breathe (Premise 5), we can conclude that Rock does breathe. This conclusion contradicts the conclusion that we would get from Premise 7, which is that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes.\n\nHowever, we have not yet established that Rock is neither a fly nor a bird. Since Rock is a monkey, and monkeys are mammals, and all mammals are animals, and all animals breathe, we can see that Rock is indeed an animal. From Premise 3, an animal is either a monkey or a bird. Since Rock is a monkey, it is not a bird. But we have not yet established that Rock is neither a fly nor a bird.\n\nHowever, from Premise 4, all birds fly, and from Premise 6, if something can fly, then it has wings. Therefore, if Rock is a bird, it would fly, and it would have wings. Since Rock is not a bird (by assumption), it does not fly, and it does not have wings.\n\nBut we have not yet established that Rock is neither a fly nor a bird. Let's combine the information from Premise 7 with the fact that Rock is a monkey. Since Rock is a monkey, and monkeys are mammals, and all mammals are animals, and all animals breathe, we can see that Rock is indeed an animal. But Premise 7 does not apply directly because Rock is a monkey, and monkeys are animals.\n\nNow, let's consider Premise 7 again. If Rock is neither a fly nor a bird, then Rock neither flies nor breathes. Since Rock is a monkey, it does not have to be neither a fly nor a bird to breathe. From Premise 5, all animals breathe, and Rock is a monkey, and monkeys are animals. Therefore, Rock does breathe.\n\nTherefore, the conclusion that \"Rock is a monkey\" is uncertain.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a monkey\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. All mammals are animals. \n   This premise establishes a relationship between mammals and animals, but it does not provide any information about Rock.\n\n2. All monkeys are mammals.\n   This premise links monkeys to mammals, but it does not mention Rock.\n\n3. An animal is either a monkey or a bird.\n   This premise establishes a relationship between animals, monkeys, and birds, but it does not provide any information about Rock.\n\n4. All birds fly.\n   This premise establishes a relationship between birds and flying, but it does not provide any information about Rock.\n\n5. All animals breathe.\n   This premise establishes a relationship between animals and breathing, but it does not provide any information about Rock.\n\n6. If something can fly, then it has wings.\n   This premise establishes a relationship between flying and wings, but it does not provide any information about Rock.\n\n7. If Rock is neither a fly nor a bird, then Rock neither flies nor breathes.\n   This premise provides information about Rock, but it does not mention Rock being a monkey. However, we can use this premise to infer that Rock does not breathe if Rock is not a bird (premise 7). Since all animals breathe (premise 5), and Rock is not a bird, then Rock must not be an animal. If Rock is not an animal, then it cannot be a monkey (premise 3).\n\n8. Now, let's consider the conclusion \"Rock is a monkey\".\n   Based on the premises, we can conclude that Rock is not a monkey because if Rock is not a bird, then it is not an animal (premise 7 and premise 5), and if it is not an animal, then it cannot be a monkey (premise 3).\n\nTherefore, the conclusion \"Rock is a monkey\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the truth of the conclusion \"Rock is a monkey,\" we'll analyze the given premises and apply logical reasoning.\n\nGiven premises:\n1. All mammals are animals.\n2. All monkeys are mammals.\n3. An animal is either a monkey or a bird.\n4. All birds fly.\n5. All animals breathe.\n6. If something can fly, then it has wings.\n7. If Rock is neither a fly nor a bird, then Rock neither flies nor breathes.\n\nFrom premise 3, we know that an animal is either a monkey or a bird. \n\nPremise 2 states that all monkeys are mammals, and premise 1 states that all mammals are animals. Therefore, a monkey is an animal.\n\nPremise 4 states that all birds fly, which implies that if something is a bird, it can fly.\n\nPremise 7 states that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. Since we're trying to determine if Rock is a monkey, we need to consider the possibility that Rock could be a bird or a fly. However, premise 7 also implies that Rock cannot be a bird or a fly, since it states that if Rock is neither a bird nor a fly, then it doesn't breathe. \n\nFrom premise 5, all animals breathe. If Rock is an animal, it must breathe.\n\nConsidering the given premises, we need to evaluate the possibility of Rock being a monkey. \n\nSince Rock is neither a bird nor a fly (as per premise 7), it doesn't breathe (as per premise 7). However, premise 5 states that all animals breathe. This is a contradiction.\n\nTherefore, based on the given premises, we can conclude that Rock is not an animal.\n\nSince a monkey is an animal, and Rock is not an animal, we can conclude that Rock is not a monkey.\n\nThe conclusion \"Rock is a monkey\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a monkey\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. All mammals are animals. (Premise 1)\n2. All monkeys are mammals. (Premise 2)\n3. An animal is either a monkey or a bird. (Premise 3)\n4. All birds fly. (Premise 4)\n5. All animals breathe. (Premise 5)\n6. If something can fly, then it has wings. (Premise 6)\n7. If Rock is neither a fly nor a bird, then Rock neither flies nor breathes. (Premise 7)\n\nFrom Premise 3, we know that an animal is either a monkey or a bird. This implies that if Rock is an animal, it must be either a monkey or a bird.\n\nNow, let's analyze the conclusion \"Rock is a monkey.\" If Rock is a monkey, then it is a mammal (Premise 2). But Premise 1 states that all mammals are animals. So, if Rock is a monkey, it must be an animal.\n\nHowever, we know that Rock is neither a fly nor a bird (Premise 7). This does not necessarily mean that Rock is a monkey, but it implies that Rock is not a bird. If Rock is an animal, it must be a monkey (from Premise 3).\n\nFrom Premise 7, we also know that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. This means that we cannot conclude that Rock breathes. However, we know that all animals breathe (Premise 5), so if Rock is an animal, it must breathe.\n\nBut Premise 7 also tells us that Rock neither flies nor breathes if it is neither a fly nor a bird. This means that Rock cannot be an animal because animals breathe (Premise 5). Therefore, Rock cannot be a monkey.\n\nHowever, the conclusion \"Rock is a monkey\" does not contradict any of the premises. The only way to determine if the conclusion is true or false is by finding an inconsistency. Since we have not found any inconsistencies, we need to look for a possibility that does not contradict any premises.\n\nPremise 7 states that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. Since we have not found any information that contradicts this premise, we cannot conclude that Rock is a monkey.\n\nHowever, Premise 7 also does not prevent Rock from being a monkey because it only talks about Rock being neither a fly nor a bird. Therefore, the premises do not provide enough information to determine whether the conclusion \"Rock is a monkey\" is true or false. The conclusion is uncertain because the premises do not provide enough information to determine whether Rock is a monkey or not.\n\nBut, this reasoning is not precise and does not follow the logical rules. Let's re-analyze the problem.\n\nGiven Premise 3, we know that an animal is either a monkey or a bird. \n\nPremise 7 states that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. This implies that if Rock is not a bird, then Rock neither flies nor breathes.\n\nWe cannot conclude that Rock is a monkey from this information because it does not provide enough information to determine whether Rock is a monkey or not.\n\nHowever, Premise 7 is talking about Rock being neither a fly nor a bird. It does not say anything about Rock being a monkey.\n\nBut Premise 1 states that all mammals are animals. And Premise 2 states that all monkeys are mammals. Therefore, if Rock is a monkey, then Rock is a mammal and an animal.\n\nHowever, Premise 7 states that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. And Premise 3 states that an animal is either a monkey or a bird.\n\nTherefore, if Rock is an animal, then Rock is either a monkey or a bird. But Premise 7 states that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes.\n\nThis implies that if Rock is a bird, then Rock flies, and therefore, Rock has wings (Premise 4 and Premise 6).\n\nHowever, Premise 7 states that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. This implies that Rock cannot be a bird.\n\nTherefore, if Rock is an animal, then Rock is a monkey.\n\nBut Premise 7 states that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. This implies that if Rock is a bird, then Rock flies, and therefore, Rock has wings.\n\nThis is a contradiction. The premises are inconsistent.\n\nHowever, the premises do not provide enough information to determine whether Rock is a monkey or not.\n\nLet's re-analyze the problem again.\n\nFrom Premise 3, we know that an animal is either a monkey or a bird. \n\nPremise 7 states that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. This implies that if Rock is not a bird, then Rock neither flies nor breathes.\n\nThis implies that if Rock is a monkey, then Rock flies.\n\nHowever, Premise 4 states that all birds fly. This implies that if Rock is a bird, then Rock flies.\n\nTherefore, if Rock is a bird, then Rock flies.\n\nHowever, Premise 7 states that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. This implies that if Rock is a bird, then Rock flies, and therefore, Rock has wings.\n\nThis is a contradiction.\n\nHowever, the premises do not provide enough information to determine whether Rock is a monkey or not.\n\nThe final conclusion is uncertain because the premises do not provide enough information to determine whether Rock is a monkey or not.\n\nHowever, this is not the correct answer. \n\nLet's re-analyze the problem again.\n\nFrom Premise 3, we know that an animal is either a monkey or a bird. \n\nPremise 7 states that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. This implies that if Rock is not a bird, then Rock neither flies nor breathes.\n\nHowever, Premise 4 states that all birds fly. This implies that if Rock is a bird, then Rock flies.\n\nTherefore, if Rock is a bird, then Rock flies.\n\nHowever, Premise 6 states that if something can fly, then it has wings. This implies that if Rock is a bird, then Rock has wings.\n\nTherefore, if Rock is a bird, then Rock has wings.\n\nHowever, Premise 7 states that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. This implies that if Rock is a bird, then Rock flies, and therefore, Rock has wings.\n\nThis is a contradiction.\n\nHowever, Premise 7 states that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. This implies that if Rock is not a bird, then Rock neither flies nor breathes.\n\nTherefore, if Rock is a bird, then Rock flies.\n\nHowever, Premise 6 states that if something can fly, then it has wings. This implies that if Rock is a bird, then Rock has wings.\n\nTherefore, if Rock is a bird, then Rock has wings.\n\nHowever, the premises do not provide enough information to determine whether Rock is a monkey or not.\n\nBut we have a contradiction. \n\nTherefore, the final answer is: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a monkey\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. All mammals are animals. (Premise 1)\n   This means that any mammal is also an animal.\n\n2. All monkeys are mammals. (Premise 2)\n   This means that any monkey is also a mammal.\n\n3. An animal is either a monkey or a bird. (Premise 3)\n   This means that any animal can be classified as a monkey or a bird.\n\n4. All birds fly. (Premise 4)\n   This means that any bird has the ability to fly.\n\n5. All animals breathe. (Premise 5)\n   This means that any animal has the ability to breathe.\n\n6. If something can fly, then it has wings. (Premise 6)\n   This means that if an object has the ability to fly, then it must have wings.\n\n7. If Rock is neither a fly nor a bird, then Rock neither flies nor breathes. (Premise 7)\n   This means that if Rock is not a bird, and it is not a fly, then it does not fly and does not breathe.\n\nNow, let's examine the conclusion: \"Rock is a monkey.\"\n\nTo determine whether this conclusion is true, false, or uncertain, we need to analyze the given premises in relation to Rock.\n\nFrom Premise 3, we know that an animal is either a monkey or a bird. However, Premise 7 tells us that if Rock is neither a fly nor a bird, then it does not fly and does not breathe. But Premise 5 tells us that all animals breathe.\n\nSince Rock must be an animal (because all animals breathe), and it is not a bird (because if it were a bird, it would fly and breathe), we can conclude that Rock is not a bird.\n\nBut Premise 7 does not tell us that Rock is not a monkey. It only tells us that if Rock is not a bird, then it does not fly and does not breathe.\n\nNow, let's examine the possibilities for Rock:\n\n- If Rock is a monkey, then it would be a mammal (by Premise 2), an animal (by Premise 1), and it would breathe (by Premise 5). This conclusion is possible, but we need to check if it is consistent with the other premises.\n\n- If Rock is not a monkey, then it would not be a mammal (by Premise 2), and it would not be an animal (by Premise 1). But Premise 5 tells us that all animals breathe, so Rock would still breathe.\n\nSince the premises do not provide any information that contradicts the possibility of Rock being a monkey, we can conclude that the conclusion \"Rock is a monkey\" is uncertain, because we cannot determine with certainty whether Rock is a monkey or not based on the given premises.\n\nHowever, since Rock must be an animal (because all animals breathe), and it is not a bird (because if it were a bird, it would fly and breathe), we can conclude that the conclusion \"Rock is a bird\" is false.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a monkey\" is true, false, or uncertain, we need to analyze the given premises and their implications.\n\n1. All mammals are animals. (Premise 1)\n2. All monkeys are mammals. (Premise 2)\n3. An animal is either a monkey or a bird. (Premise 3)\n4. All birds fly. (Premise 4)\n5. All animals breathe. (Premise 5)\n6. If something can fly, then it has wings. (Premise 6)\n7. If Rock is neither a fly nor a bird, then Rock neither flies nor breathes. (Premise 7)\n\nFirst, let's consider Premise 3: \"An animal is either a monkey or a bird.\" This means that Rock cannot be a monkey, as it is categorized as either a monkey or a bird, and Premise 7 implies that Rock is neither a fly nor a bird. \n\nHowever, this conclusion is not directly relevant to whether Rock is a monkey, since it is categorically excluded from being a monkey.\n\nNow, we will examine the conclusion \"Rock is a monkey.\"\n\nFrom Premise 1, \"All mammals are animals,\" and Premise 2, \"All monkeys are mammals,\" we can infer that monkeys are animals. \n\nHowever, Premise 3 implies that an animal is either a monkey or a bird, but we can also infer that Rock is neither a monkey nor a bird because it is neither a fly nor a bird according to Premise 7.\n\nThus, the premises lead to the conclusion that Rock is not a monkey.\n\nHowever, Premise 7 implies that if Rock is neither a fly nor a bird, it neither flies nor breathes, but this does not necessarily mean that Rock is not an animal.\n\nTherefore, we cannot be certain about the category of Rock, but we can be certain that Rock is not a monkey.\n\nThe conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion \"Rock is a monkey\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nGiven premises:\n\n1. All mammals are animals.\n2. All monkeys are mammals.\n3. An animal is either a monkey or a bird.\n4. All birds fly.\n5. All animals breathe.\n6. If something can fly, then it has wings.\n7. If Rock is neither a fly nor a bird, then Rock neither flies nor breathes.\n\nLet's analyze the given conclusion: \"Rock is a monkey.\"\n\nTo determine whether this conclusion is true or false, we need to find out if Rock satisfies the conditions of being a monkey.\n\nFrom premise 3, we know that an animal is either a monkey or a bird. This implies that if an animal is not a monkey, then it must be a bird.\n\nHowever, from premise 7, we know that if Rock is neither a fly nor a bird, then Rock neither flies nor breathes. But premise 5 states that all animals breathe. Therefore, we can conclude that Rock must either be a bird or a non-bird animal that breathes.\n\nSince Rock breathes, we can eliminate the possibility of Rock being a non-bird animal (because non-bird animals that are not birds do not breathe according to premise 7).\n\nNow, we have two possibilities: Rock is a bird or Rock is a monkey.\n\nFrom premise 3, we know that an animal is either a monkey or a bird. Since Rock must be either a bird or a monkey, and we already know that Rock breathes (which is true for all animals, including birds and monkeys), we can conclude that Rock can be either a bird or a monkey.\n\nHowever, there is no information that directly links Rock to being a monkey. Therefore, based on the given premises, we cannot conclude that Rock is a monkey.\n\nConclusion: The conclusion \"Rock is a monkey\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(monkey)",
+          "z3_formula": "mammal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(monkey)",
+          "z3_formula": "animal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) & mammal(X) -> animal(X)",
+          "z3_formula": "Implies(And(animal_X, mammal_X), animal_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> (monkey(X) | bird(X))",
+          "z3_formula": "Implies(animal_X, Or(monkey_X, bird_X))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_X, fly_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> breathe(X)",
+          "z3_formula": "Implies(animal_X, breathe_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "fly(X) -> has_wings(X)",
+          "z3_formula": "Implies(fly_X, has_wings_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "Not(fly(X) | bird(X)) -> Not(fly(X) | breathe(X))",
+          "z3_formula": "Implies(Not(Or(fly_X, bird_X)), Not(Or(fly_X, breathe_X)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "breathe(rock)",
+          "z3_formula": "breathe_rock == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(bird(rock) | fly(rock))",
+          "z3_formula": "Not(Or(bird_rock, fly_rock))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(monkey(rock))",
+          "z3_formula": "Not(monkey_rock)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(monkey)",
+          "z3_formula": "mammal_monkey == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkey(monkey)",
+          "z3_formula": "monkey_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_monkey, animal_monkey)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> Or(monkey(X), bird(X))",
+          "z3_formula": "Implies(animal_monkey, Or(monkey_monkey, bird_monkey))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "bird(bird)",
+          "z3_formula": "bird_bird == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_monkey, fly_monkey)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "animal(animal)",
+          "z3_formula": "animal_animal == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) -> wings(X)",
+          "z3_formula": "Implies(fly_monkey, wings_monkey)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "Not(Or(fly(X), bird(X))) -> Not(breath(X))",
+          "z3_formula": "Implies(Not(Or(fly_monkey, bird_monkey)), Not(breath_monkey))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(monkey(rock))",
+          "z3_formula": "Not(monkey_rock) == True",
+          "source_step": 10
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "animal(monkey)",
+          "z3_formula": "animal_monkey == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(monkey)",
+          "z3_formula": "mammal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> (monkey(X) | bird(X))",
+          "z3_formula": "Implies(animal_X, Or(monkey_X, bird_X))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fly(bird)",
+          "z3_formula": "fly_bird == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "breathe(animal)",
+          "z3_formula": "breathe_animal == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) -> wings(X)",
+          "z3_formula": "Implies(fly_X, wings_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "Not(fly(X) & bird(X)) -> Not(fly(X) | breathe(X))",
+          "z3_formula": "Implies(Not(And(fly_X, bird_X)), Not(Or(fly_X, breathe_X)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(monkey(rock))",
+          "z3_formula": "Not(monkey_rock) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_rock, animal_rock)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkey(X) -> mammal(X)",
+          "z3_formula": "Implies(monkey_rock, mammal_rock)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> (monkey(X) | bird(X))",
+          "z3_formula": "Implies(animal_rock, Or(monkey_rock, bird_rock))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_rock, fly_rock)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> breathe(X)",
+          "z3_formula": "Implies(animal_rock, breathe_rock)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "fly(X) -> has_wings(X)",
+          "z3_formula": "Implies(fly_rock, has_wings_rock)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "Not(fly(X) | bird(X)) -> Not(fly(X) | breathe(X))",
+          "z3_formula": "Implies(Not(Or(fly_rock, bird_rock)), Not(Or(fly_rock, breathe_rock)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(monkey(rock)) | Not(monkey(rock))",
+          "z3_formula": "Or(Not(monkey_rock), Not(monkey_rock))",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(monkey)",
+          "z3_formula": "mammal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "animal(monkey) -> animal(X)",
+          "z3_formula": "Implies(animal_monkey, animal_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> (monkey(X) | bird(X))",
+          "z3_formula": "Implies(animal_X, Or(monkey_X, bird_X))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_X, fly_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) -> wings(X)",
+          "z3_formula": "Implies(fly_X, wings_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) == bird(X)",
+          "z3_formula": "fly_X == bird_X",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "monkey(X) -> mammal(X)",
+          "z3_formula": "Implies(monkey_X, mammal_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_X, animal_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> breathe(X)",
+          "z3_formula": "Implies(animal_X, breathe_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "monkey(X) & ~bird(X) -> (~fly(X) & ~breathe(X))",
+          "z3_formula": "Implies(And(monkey_X, Not(bird_X)), And(Not(fly_X), Not(breathe_X)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "monkey(rock)",
+          "z3_formula": "monkey_rock == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "animal(rock)",
+          "z3_formula": "animal_rock == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "breathe(rock)",
+          "z3_formula": "breathe_rock == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "fly(rock)",
+          "z3_formula": "fly_rock == False",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "wings(rock)",
+          "z3_formula": "wings_rock == False",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "bird(rock)",
+          "z3_formula": "bird_rock == False",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal, animal)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(monkey)",
+          "z3_formula": "mammal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "monkey(X) -> mammal(X)",
+          "z3_formula": "Implies(monkey, mammal)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(monkey) | animal(bird)",
+          "z3_formula": "Or(animal_monkey, animal_bird)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(bird)",
+          "z3_formula": "animal_bird == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird, fly)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> breathe(X)",
+          "z3_formula": "Implies(animal, breathe)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) -> wing(X)",
+          "z3_formula": "Implies(fly, wing)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "Not(fly(X) | bird(X)) -> Not(breathe(X))",
+          "z3_formula": "Implies(Not(Or(fly, bird)), Not(breathe))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(animal(rock))",
+          "z3_formula": "Not(animal_rock)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(monkey(rock))",
+          "z3_formula": "Not(monkey_rock)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "animal(monkey)",
+          "z3_formula": "animal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(monkey)",
+          "z3_formula": "mammal_monkey == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> animal_monkey",
+          "z3_formula": "Implies(animal_X, animal_monkey)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_X, animal_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> (monkey(X) | bird(X))",
+          "z3_formula": "Implies(animal_X, Or(monkey_X, bird_X))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "bird(fly)",
+          "z3_formula": "bird_fly == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_X, fly_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> breathe(X)",
+          "z3_formula": "Implies(animal_X, breathe_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) | bird(X) -> breathe(X)",
+          "z3_formula": "Implies(Or(fly_X, bird_X), breathe_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "Not(fly(X)) & Not(bird(X)) -> Not(breathe(X))",
+          "z3_formula": "Implies(And(Not(fly_X), Not(bird_X)), Not(breathe_X))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(animal(rock))",
+          "z3_formula": "Not(animal_rock) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(monkey(rock))",
+          "z3_formula": "Not(monkey_rock) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_X, animal_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkey(X) -> mammal(X)",
+          "z3_formula": "Implies(monkey_X, mammal_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> (monkey(X) | bird(X))",
+          "z3_formula": "Implies(animal_X, Or(monkey_X, bird_X))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_X, fly_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X)",
+          "z3_formula": "animal_X == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) -> has_wings(X)",
+          "z3_formula": "Implies(fly_X, has_wings_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "(~fly(X) & ~bird(X)) -> (~fly(X) & ~breathe(X))",
+          "z3_formula": "Implies(And(Not(fly_X), Not(bird_X)), And(Not(fly_X), Not(breathe_X)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "monkey(X)",
+          "z3_formula": "monkey_X == False",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(rock)",
+          "z3_formula": "mammal_rock == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_rock, animal_rock)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(rock)",
+          "z3_formula": "animal_rock == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "monkey(X) -> mammal(X)",
+          "z3_formula": "Implies(monkey_rock, mammal_rock)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_rock, animal_rock)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> Or(monkey(X), bird(X))",
+          "z3_formula": "Implies(animal_rock, Or(monkey_rock, bird_rock))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_rock, fly_rock)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "fly(X) -> wings(X)",
+          "z3_formula": "Implies(fly_rock, wings_rock)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "Not(Or(fly(X), bird(X))) -> Not(fly(X)) & Not(breathe(X))",
+          "z3_formula": "Implies(Not(Or(fly_rock, bird_rock)), And(Not(fly_rock), Not(breathe_rock)))",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "breathe(X)",
+          "z3_formula": "breathe_rock == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(bird(rock))",
+          "z3_formula": "Not(bird_rock) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "Or(monkey(rock), Not(monkey(rock)))",
+          "z3_formula": "Or(monkey_rock, Not(monkey_rock)) == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_X, animal_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkey(X) -> mammal(X)",
+          "z3_formula": "Implies(monkey_X, mammal_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) == (monkey(X) | bird(X))",
+          "z3_formula": "animal_X == Or(monkey_X, bird_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "bird(X) -> fly(X)",
+          "z3_formula": "Implies(bird_X, fly_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(X) -> breathe(X)",
+          "z3_formula": "Implies(animal_X, breathe_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "fly(X) -> wing(X)",
+          "z3_formula": "Implies(fly_X, wing_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) | bird(X) -> fly(X) & breathe(X)",
+          "z3_formula": "Implies(Or(fly_X, bird_X), And(fly_X, breathe_X))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not monkey(Rock)",
+          "z3_formula": "Not(monkey_Rock)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(monkey)",
+          "z3_formula": "mammal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "animal(monkey)",
+          "z3_formula": "animal_monkey == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "fly(bird)",
+          "z3_formula": "fly_bird == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "breathe(animal)",
+          "z3_formula": "breathe_animal == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) -> wing(X)",
+          "z3_formula": "Implies(fly_bird, wing_bird)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) | bird(X) -> breathe(X)",
+          "z3_formula": "Or(fly_bird, bird_bird) |-> breathe_bird",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) | bird(X) -> fly(X)",
+          "z3_formula": "Or(fly_bird, bird_bird) |-> fly_bird",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) | bird(X) -> wing(X)",
+          "z3_formula": "Or(fly_bird, bird_bird) |-> wing_bird",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) | bird(X) -> breathe(X)",
+          "z3_formula": "Or(fly_bird, bird_bird) |-> breathe_bird",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "fly(X) | bird(X) -> not fly(X)",
+          "z3_formula": "Not(Or(fly_bird, bird_bird)) |-> Not(fly_bird)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "breathe(rock)",
+          "z3_formula": "breathe_rock == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "fly(rock) | bird(rock)",
+          "z3_formula": "Or(fly_rock, bird_rock)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not fly(rock) & not bird(rock)",
+          "z3_formula": "Not(fly_rock) & Not(bird_rock)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not fly(rock) & not bird(rock) |-> not breathe(rock)",
+          "z3_formula": "Not(fly_rock) & Not(bird_rock) |-> Not(breathe_rock)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not breathe(rock)",
+          "z3_formula": "Not(breathe_rock)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not fly(rock) & not bird(rock) & breathe(rock)",
+          "z3_formula": "Not(fly_rock) & Not(bird_rock) & breathe_rock",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "fly(rock) | bird(rock) | monkey(rock)",
+          "z3_formula": "Or(fly_rock, bird_rock, monkey_rock)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not monkey(rock)",
+          "z3_formula": "Not(monkey_rock)",
+          "source_step": 15
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 125,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 66
+    },
+    "maxsat_stats": {
+      "satisfied": 59,
+      "excluded": 7,
+      "total_weight": 110,
+      "solve_time_ms": 2.4697771295905113
+    },
+    "timing": {
+      "trace_gen_s": 18.763,
+      "extraction_s": 33.182,
+      "dedup_s": 1.761,
+      "maxsat_s": 0.007,
+      "total_s": 53.713
+    }
+  }
+}

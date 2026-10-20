@@ -1,0 +1,342 @@
+{
+  "pid": "folio_33",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "diamond_mine_is_professional_wrestling_stable",
+          "z3_formula": "diamond_mine_is_professional_wrestling_stable == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "roderick_strong_leads_diamond_mine",
+          "z3_formula": "roderick_strong_leads_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "diamond_mine_has_feud_with_imperium",
+          "z3_formula": "diamond_mine_has_feud_with_imperium == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "is_professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "is_professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leads(diamond_mine, roderick_strong)",
+          "z3_formula": "leads_diamond_mine_roderick_strong == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "leads(roderick_strong, professional_wrestling_stable)",
+          "z3_formula": "leads_roderick_strong_professional_wrestling_stable == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leads(roderick_strong, diamond_mine)",
+          "z3_formula": "leads_roderick_strong_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "leads(roderick_strong, professional_wrestling_stable)",
+          "z3_formula": "leads_roderick_strong_professional_wrestling_stable == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leads(roderick_strong, diamond_mine)",
+          "z3_formula": "leads_roderick_strong_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "leads(roderick_strong, professional_wrestling_stable)",
+          "z3_formula": "leads_roderick_strong_professional_wrestling_stable == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leads(roderick_strong, diamond_mine)",
+          "z3_formula": "leads_roderick_strong_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "leads(X, Y) & professional_wrestling_stable(Y) -> leads(X, professional_wrestling_stable)",
+          "z3_formula": "Implies(And(leads_roderick_strong_diamond_mine, professional_wrestling_stable_diamond_mine), leads_roderick_strong_professional_wrestling_stable)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "leads(roderick_strong, professional_wrestling_stable)",
+          "z3_formula": "leads_roderick_strong_professional_wrestling_stable == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "diamond_mine_is_professional_wrestling_stable",
+          "z3_formula": "diamond_mine_is_professional_wrestling_stable == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "roderick_strong_leads_diamond_mine",
+          "z3_formula": "roderick_strong_leads_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "diamond_mine_includes_creeds_brothers_and_ivy_nile",
+          "z3_formula": "diamond_mine_includes_creeds_brothers_and_ivy_nile == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "imperium_has_feud_with_diamond_mine",
+          "z3_formula": "imperium_has_feud_with_diamond_mine == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "roderick_strong_leads_professional_wrestling_stable",
+          "z3_formula": "roderick_strong_leads_professional_wrestling_stable == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "diamond_mine_is_professional_wrestling_stable",
+          "z3_formula": "diamond_mine_is_professional_wrestling_stable == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "roderick_strong_leads_diamond_mine",
+          "z3_formula": "roderick_strong_leads_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "diamond_mine_is_professional_wrestling_stable -> roderick_strong_leads_professional_wrestling_stable",
+          "z3_formula": "Implies(diamond_mine_is_professional_wrestling_stable, roderick_strong_leads_professional_wrestling_stable)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "roderick_strong_leads_professional_wrestling_stable",
+          "z3_formula": "roderick_strong_leads_professional_wrestling_stable == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leads(roderick_strong, diamond_mine)",
+          "z3_formula": "leads_roderick_strong_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "leads(roderick_strong, professional_wrestling_stable)",
+          "z3_formula": "leads_roderick_strong_professional_wrestling_stable == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "diamond_mine_is_professional_wrestling_stable",
+          "z3_formula": "diamond_mine_is_professional_wrestling_stable == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "roderick_strong_leads_diamond_mine",
+          "z3_formula": "roderick_strong_leads_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "roderick_strong_leads_professional_wrestling_stable",
+          "z3_formula": "roderick_strong_leads_professional_wrestling_stable == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leads(roderick_strong, diamond_mine)",
+          "z3_formula": "leads_roderick_strong_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "leads(roderick_strong, professional_wrestling_stable)",
+          "z3_formula": "leads_roderick_strong_professional_wrestling_stable == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leader(diamond_mine, roderick_strong)",
+          "z3_formula": "leader_diamond_mine_roderick_strong == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "leader(roderick_strong, professional_wrestling_stable)",
+          "z3_formula": "leader_roderick_strong_professional_wrestling_stable == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leads(roderick_strong, diamond_mine)",
+          "z3_formula": "leads_roderick_strong_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "includes(diamond_mine, creed_brothers)",
+          "z3_formula": "includes_diamond_mine_creed_brothers == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "includes(diamond_mine, ivy_nile)",
+          "z3_formula": "includes_diamond_mine_ivy_nile == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "feud(imperium, diamond_mine)",
+          "z3_formula": "feud_imperium_diamond_mine == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "professional_wrestling_stable(X) & leads(Y, X) -> leads(Y, professional_wrestling_stable(X))",
+          "z3_formula": "Implies(And(professional_wrestling_stable_diamond_mine, leads_roderick_strong_diamond_mine), leads_roderick_strong_professional_wrestling_stable_diamond_mine)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "leads(roderick_strong, professional_wrestling_stable(diamond_mine))",
+          "z3_formula": "leads_roderick_strong_professional_wrestling_stable_diamond_mine == True",
+          "source_step": 7
+        }
+      ]
+    }
+  ]
+}

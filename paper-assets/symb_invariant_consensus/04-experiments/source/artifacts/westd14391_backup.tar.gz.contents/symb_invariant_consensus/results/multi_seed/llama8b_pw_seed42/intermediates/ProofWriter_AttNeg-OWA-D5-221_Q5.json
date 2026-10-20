@@ -1,0 +1,1028 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-221_Q5",
+    "problem": "Anne is nice. Anne is young. Dave is cold. Dave is smart. Dave is white. Fiona is nice. Fiona is not red. Fiona is young. Gary is cold. Gary is red. If someone is smart then they are green. If someone is green then they are nice. Nice people are young. If someone is white then they are young. If someone is cold then they are white. If someone is green and smart then they are white. All young, red people are smart. If Fiona is red then Fiona is green. If Anne is smart then Anne is not green.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is nice.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nNice(Anne, True) ::: Anne is nice.\nYoung(Anne, True) ::: Anne is young.\nCold(Dave, True) ::: Dave is cold.\nSmart(Dave, True) ::: Dave is smart.\nWhite(Dave, True) ::: Dave is white.\nNice(Fiona, True) ::: Fiona is nice.\nRed(Fiona, False) ::: Fiona is not red.\nYoung(Fiona, True) ::: Fiona is young.\nCold(Gary, True) ::: Gary is cold.\nRed(Gary, True) ::: Gary is red.\n\nRules:\nSmart($x, True) >>> Green($x, True) ::: If someone is smart then they are green.\nGreen($x, True) >>> Nice($x, True) ::: If someone is green then they are nice.\nNice($x, True) >>> Young($x, True) ::: Nice people are young.\nWhite($x, True) >>> Young($x, True) ::: If someone is white then they are young.\nCold($x, True) >>> White($x, True) ::: If someone is cold then they are white.\nGreen($x, True) && Smart($x, True) >>> White($x, True) ::: If someone is green and smart then they are white.\nYoung($x, True) && Red($x, True) >>> Smart($x, True) ::: All young, red people are smart.\nRed(Fiona, True) >>> Green(Fiona, True) ::: If Fiona is red then Fiona is green.\nSmart(Anne, True) >>> Green(Anne, False) ::: If Anne is smart then Anne is not green.\n\nQuery:\nNice(Dave, True) ::: Dave is nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 0.0,
+      "True": 146.0
+    },
+    "answer_counts": {
+      "False": 1,
+      "True": 9
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Dave is nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Dave is cold. (Given)\n2. If someone is cold then they are white. (Rule)\n   So, Dave is white. (Rule 2 implies Dave is white)\n\n3. Dave is white. (From step 2)\n4. If someone is white then they are young. (Rule)\n   So, Dave is young. (Rule 4 implies Dave is young)\n\n5. Dave is young. (From step 4)\n6. If someone is young then they are nice or they are not green. (Rule)\n   We cannot determine if Dave is nice or not green yet. So, we'll continue analyzing.\n\n7. Dave is white. (From step 3)\n8. If someone is green and smart then they are white. (Rule)\n   We cannot conclude Dave is green from this rule alone because we don't know if Dave is smart or not.\n\n9. Dave is smart or Dave is not green. (Rule)\n   We cannot determine if Dave is smart or not yet. So, we'll continue analyzing.\n\n10. Gary is red. (Given)\n11. Gary is red. (From step 10)\n12. Gary is red and Gary is young. (Given and step 4)\n13. All young, red people are smart. (Rule)\n   So, Gary is smart. (Rule 13 implies Gary is smart)\n\n14. Gary is smart. (From step 13)\n15. Gary is smart. (From step 14)\n16. If someone is smart then they are green. (Rule)\n   So, Gary is green. (Rule 16 implies Gary is green)\n\n17. Gary is green. (From step 16)\n18. Gary is green and Gary is white. (From step 3 and step 16)\n19. If someone is green and smart then they are white. (Rule)\n   So, Gary is white. (Rule 19 implies Gary is white)\n\n20. Gary is white. (From step 19)\n21. If someone is white then they are young. (Rule)\n   So, Gary is young. (Rule 21 implies Gary is young)\n\n22. Gary is white. (From step 20)\n23. Gary is smart. (From step 14)\n24. Gary is white and Gary is smart. (From step 22 and step 23)\n25. If someone is green and smart then they are white. (Rule)\n   So, Gary is green. (Rule 25 implies Gary is green)\n\n26. Gary is green. (From step 25)\n27. Gary is green. (From step 26)\n28. Gary is green. (From step 27)\n29. Gary is red. (From step 10)\n30. Gary is red and Gary is green. (From step 29 and step 28)\n31. If Fiona is red then Fiona is green. (Rule)\n   So, Fiona is green. (Rule 31 implies Fiona is green)\n\n32. Gary is green. (From step 28)\n33. Gary is green and Gary is white. (From step 20 and step 28)\n34. If someone is green and smart then they are white. (Rule)\n   So, Gary is white. (Rule 34 implies Gary is white)\n\n35. Gary is white. (From step 34)\n36. Gary is white. (From step 35)\n37. Gary is green. (From step 28)\n38. Gary is white and Gary is green. (From step 36 and step 37)\n39. If someone is green and smart then they are white. (Rule)\n   So, Gary is smart. (Rule 39 implies Gary is smart)\n\n40. Gary is smart. (From step 39)\n41. Gary is red. (From step 10)\n42. Gary is smart and Gary is red. (From step 40 and step 41)\n43. If someone is green and smart then they are white. (Rule)\n   So, Gary is white. (Rule 43 implies Gary is white)\n\n44. Gary is white. (From step 43)\n45. Gary is white. (From step 44)\n46. Gary is green. (From step 28)\n47. Gary is white and Gary is green. (From step 45 and step 46)\n48. If someone is green and smart then they are white. (Rule)\n   So, Gary is smart. (Rule 48 implies Gary is smart)\n\n49. Gary is green. (From step 46)\n50. Gary is green. (From step 49)\n51. Gary is green. (From step 50)\n52. Gary is red. (From step 10)\n53. Gary is red and Gary is green. (From step 52 and step 51)\n54. If Fiona is red then Fiona is green. (Rule)\n   So, Fiona is green. (Rule 54 implies Fiona is green)\n\n55. Gary is green. (From step 51)\n56. Gary is green. (From step 55)\n57. Gary is green. (From step 56)\n58. Gary is red. (From step 10)\n59. Gary is red and Gary is green. (From step 58 and step 57)\n60. If Fiona is red then Fiona is green. (Rule)\n   So, Fiona is green. (Rule 60 implies Fiona is green)\n\n61. Fiona is green. (From step 30)\n62. Fiona is green. (From step 61)\n63. Fiona is young. (From step 5)\n64. Fiona is green. (From step 62)\n65. If someone is green then they are nice. (Rule)\n   So, Fiona is nice. (Rule 65 implies Fiona is nice)\n\n66. Fiona is young. (From step 5)\n67. Fiona is young. (From step 66)\n68. Fiona is nice. (From step 65)\n69. If someone is young then they are nice or they are not green. (Rule)\n   We know Fiona is young, so Fiona is nice. (Rule 69 implies Fiona is nice)\n\n70. Fiona is young. (From step 67)\n71. Fiona is nice. (From step 68)\n72. If someone is young then they are nice or they are not green. (Rule)\n   We know Fiona is young, so Fiona is nice. (Rule 72 implies Fiona is nice)\n\n73. Anne is young. (From step 5)\n74. Anne is young. (From step 73)\n75. Anne is nice. (From step 3)\n76. Anne is nice. (From step 75)\n77. Anne is young. (From step 74)\n78. If someone is young then they are nice or they are not green. (Rule)\n   We know Anne is young, so Anne is nice. (Rule 78 implies Anne is nice)\n\n79. Anne is nice. (From step 78)\n80. Anne is young. (From step 77)\n81. Anne is young. (From step 80)\n82. Anne is nice. (From step 79)\n83. If someone is young then they are nice or they are not green. (Rule)\n   We know Anne is young, so Anne is nice. (Rule 83 implies Anne is nice)\n\n84. Dave is white. (From step 3)\n85. Dave is white. (From step 84)\n86. Dave is young. (From step 4)\n87. Dave is white. (From step 85)\n88. If someone is white then they are young. (Rule)\n   So, Dave is young. (Rule 88 implies Dave is young)\n\n89. Dave is white. (From step 87)\n90. If someone is white then they are young. (Rule)\n   So, Dave is young. (Rule 90 implies Dave is young)\n\n91. Dave is young. (From step 86)\n92. Dave is young. (From step 91)\n93. Dave is white. (From step 89)\n94. If someone is white then they are young. (Rule)\n   So, Dave is young. (Rule 94 implies Dave is young)\n\n95. Dave is young. (From step 92)\n96. Dave is white. (From step 93)\n97. Dave is young. (From step 95)\n98. Dave is white. (From step 96)\n99. Dave is white. (From step 98)\n100. Dave is young. (From step 97)\n\n101. Dave is white. (From step 99)\n102. Dave is white. (From step 101)\n103. If someone is young then they are nice or they are not green. (Rule)\n   We know Dave is young, so Dave is nice or Dave is not green.\n\n104. Dave is not green or Dave is nice. (From step 103)\n105. Dave is white. (From step 102)\n106. Dave is white. (From step 105)\n107. Dave is white. (From step 106)\n108. Dave is cold. (From step 1)\n109. Dave is white. (From step 107)\n110. If someone is cold then they are white. (Rule)\n   So, Dave is white. (Rule 110 implies Dave is white)\n\n111. Dave is white. (From step 110)\n112. Dave is young. (From step 4)\n113. Dave is young. (From step 112)\n114. Dave is white. (From step 111)\n115. Dave is young. (From step ",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Dave is cold. \n2. If someone is cold then they are white. \nFrom (2), we can deduce that Dave is white.\n\n3. Dave is white. \n4. If someone is white then they are young. \nFrom (4), we can deduce that Dave is young.\n\n5. Dave is young. \n6. Nice people are young. \nFrom (6), we can deduce that Dave is not nice, because we already know that Dave is young, and we are trying to determine if Dave is nice. But we have another condition that we can use.\n\n7. Dave is cold. \n8. If someone is cold then they are white. \n9. Dave is white. \n10. If someone is white then they are young. \n11. Dave is young. \n12. If someone is cold then they are white. \n13. Dave is white. \n14. If someone is white then they are young. \n15. Dave is young. \n16. Dave is white. \n17. If someone is white then they are young. \n18. Dave is young. \n19. Dave is white. \n20. If someone is white then they are young. \n21. Dave is young. \n22. Dave is white. \n23. Dave is young. \n24. Dave is white. \n25. Dave is young. \n26. If someone is young and white then they are cold. \nHowever, we cannot conclude this from the given statements because there is a statement that is contradictory to this.\n\n27. If someone is white then they are young. \n28. If someone is young then they are nice. \n29. Dave is young and white. \n30. If someone is young and white then they are nice. \nThis is an invalid conclusion because the original statement 27 is not a universal rule. It is only a rule if someone is white, then they are young. It is not the other way around. \n31. However, we can deduce that Dave is not green from the original statements. If someone is green then they are nice, and we already know that Dave is white. Therefore, Dave is not green. \n\n32. Dave is not green. \n33. If someone is green then they are nice. \n34. Dave is not green. \n35. Dave is not nice.\n\nHowever, we still need to consider if Dave is smart or not. \n\n36. Dave is cold. \n37. If someone is cold then they are white. \n38. Dave is white. \n39. If someone is white then they are young. \n40. Dave is young. \n41. Dave is white. \n42. If someone is white then they are young. \n43. Dave is young. \n44. Dave is white. \n45. If someone is white then they are young. \n46. Dave is young. \n47. Dave is white. \n48. Dave is young. \n49. If someone is white then they are young. \n50. Dave is young. \n51. Dave is white. \n52. If someone is white then they are young. \n53. Dave is young. \n54. Dave is white. \n55. Dave is young. \n56. Dave is white. \n57. Dave is young. \n58. Dave is white. \n59. If someone is white then they are young. \n60. Dave is young. \n61. Dave is white. \n62. If someone is white then they are young. \n63. Dave is young. \n64. Dave is white. \n65. Dave is young. \n66. Dave is white. \n67. If someone is cold then they are white. \n68. Dave is white. \n69. If someone is white then they are young. \n70. Dave is young. \n71. Dave is white. \n72. If someone is white then they are young. \n73. Dave is young. \n74. Dave is white. \n75. If someone is cold then they are white. \n76. Dave is white. \n77. If someone is white then they are young. \n78. Dave is young. \n79. Dave is white. \n80. Dave is young. \n81. If someone is white then they are young. \n82. Dave is young. \n83. Dave is white. \n84. If someone is white then they are young. \n85. Dave is young. \n86. If someone is green and smart then they are white. \n87. Dave is white. \n88. Dave is not green. \n89. Therefore, Dave is not smart.\n\n90. Dave is not green. \n91. If someone is green then they are nice. \n92. Dave is not green. \n93. Dave is not nice.\n\nFrom the given statements, we can deduce that Dave is not nice.\n\nTherefore, the statement \"Dave is nice\" is: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is nice\" is true, false, or unknown, we need to use the given information and logical deductions.\n\nGiven information:\n\n1. Dave is cold.\n2. Dave is smart.\n3. Dave is white.\n4. If someone is smart then they are green.\n5. If someone is green then they are nice.\n6. If someone is white then they are young.\n7. If someone is cold then they are white.\n8. If someone is green and smart then they are white.\n9. All young, red people are smart.\n10. If Fiona is red then Fiona is green.\n11. If Anne is smart then Anne is not green.\n\nDeductions:\n\nFrom (7) and (1), we know Dave is white because he is cold.\nFrom (6) and the previous statement, we know Dave is young because he is white.\n\nNow, let's check if Dave is green:\nWe know Dave is smart (2), so according to (4), Dave is green.\nHowever, we also know that if someone is green and smart then they are white (8), which we already concluded Dave is.\nSo, Dave is indeed white and green.\n\nFrom (5), we know that since Dave is green, he is nice.\n\nTherefore, the statement \"Dave is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is nice\" is true, false, or unknown, we need to analyze the given information and apply the given rules.\n\nGiven statements:\n1. Anne is nice.\n2. Anne is young.\n3. Dave is cold.\n4. Dave is smart.\n5. Dave is white.\n6. Fiona is nice.\n7. Fiona is not red.\n8. Fiona is young.\n9. Gary is cold.\n10. Gary is red.\n11. If someone is smart then they are green.\n12. If someone is green then they are nice.\n13. Nice people are young.\n14. If someone is white then they are young.\n15. If someone is cold then they are white.\n16. If someone is green and smart then they are white.\n17. All young, red people are smart.\n18. If Fiona is red then Fiona is green.\n19. If Anne is smart then Anne is not green.\n\nRules:\n1. Smart -> Green\n2. Green -> Nice\n3. Nice -> Young\n4. White -> Young\n5. Cold -> White\n6. Green & Smart -> White\n7. Young & Red -> Smart\n8. Red -> Green (if Fiona is red)\n9. Smart -> Not Green (if Anne is smart)\n\nNow, let's analyze the given statement \"Dave is nice.\"\nTo determine whether Dave is nice, we need to see if he satisfies the conditions for being nice.\n\nFrom the given statements, we know that Dave is smart (Statement 4) and cold (Statement 3). \n\nUsing Rule 5, we can infer that since Dave is cold, he must be white.\nUsing Rule 4, we can infer that since Dave is white, he must be young.\n\nNow, we need to determine if Dave is nice. From the given statements, we know that Dave is smart (Statement 4). \n\nUsing Rule 1, we can infer that since Dave is smart, he must be green.\n\nNow, let's check the conditions for being nice. From Rule 2, we know that if someone is green, they must be nice.\n\nHowever, we also know that Dave is smart (Statement 4). Using Rule 9, we can infer that if Anne is smart, then she is not green. This does not directly affect Dave, but it is an interesting point.\n\nHowever, we do not have enough information about Anne to determine whether she is smart or not. This means that Rule 9 does not apply to Dave directly.\n\nSince Dave is green, we can use Rule 2 to conclude that Dave is nice.\n\nTherefore, the statement \"Dave is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that \"If someone is cold then they are white.\" \n   We also know that \"Dave is cold.\" \n   Therefore, Dave is white.\n\n2. We know that \"If someone is white then they are young.\" \n   We already determined that Dave is white. \n   Therefore, Dave is young.\n\n3. We know that \"If someone is young, then they are nice.\" \n   We already determined that Dave is young. \n   Therefore, Dave is nice.\n\nHowever, let's verify the information we have using the other given conditions.\n\n4. We know that \"If someone is green then they are nice.\" \n   We also know that \"If someone is smart then they are green.\" \n   We don't have any information that directly states Dave is smart or green. \n   However, we do know that \"Gary is red.\" \n   We also know that \"Gary is cold.\" \n   Therefore, Gary is white (from condition 1). \n   We also know that \"If someone is white then they are young.\" \n   This is consistent with our previous conclusion. \n   We also know that \"Gary is young.\" \n   We also know that \"All young, red people are smart.\" \n   Therefore, Gary is smart.\n\n5. We know that \"If someone is green and smart then they are white.\" \n   We already determined that Gary is smart and white. \n   This condition is consistent with our previous conclusion.\n\n6. We know that \"Dave is white.\" \n   We also know that \"If someone is white then they are young.\" \n   We already determined that Dave is young. \n   This is consistent with our previous conclusion.\n\n7. We know that \"Dave is young.\" \n   We also know that \"If someone is young then they are nice.\" \n   We already determined that Dave is nice. \n   This is consistent with our previous conclusion.\n\n8. We know that \"If Anne is smart then Anne is not green.\" \n   We also know that \"If someone is green then they are nice.\" \n   We also know that \"If someone is smart then they are green.\" \n   Therefore, Anne cannot be both smart and nice at the same time.\n\n9. We know that \"Anne is nice.\" \n   We also know that \"If someone is nice then they are young.\" \n   We already determined that Anne is young. \n   This is consistent with our previous conclusion.\n\n10. We know that \"Fiona is nice.\" \n    We also know that \"If someone is nice then they are young.\" \n    We already determined that Fiona is young. \n    This is consistent with our previous conclusion.\n\n11. We know that \"Fiona is not red.\" \n    We also know that \"If Fiona is red then Fiona is green.\" \n    We don't have any information that directly states Fiona is red or green. \n    However, we do know that \"If someone is green then they are nice.\" \n    We already determined that Fiona is nice. \n    This is consistent with our previous conclusion.\n\nBased on the given information, we can conclude that Dave is nice.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and the rules provided to determine whether Dave is nice.\n\nStep 1: Analyze the information given about Dave.\n- Dave is cold.\n- Dave is smart.\n- Dave is white.\n\nStep 2: Use the rules to find a connection between the given information and the statement \"Dave is nice.\"\n- If someone is cold then they are white. (Rule 7)\n- Dave is cold, so Dave is white. (From Rule 7)\n- We already know Dave is white, so this confirms our information.\n- If someone is white then they are young. (Rule 4)\n- Dave is white, so Dave is young. (From Rule 4)\n- Nice people are young. (Rule 3)\n- Dave is young, so Dave is nice. (From Rule 3)\n\nHowever, we also need to check for any other rules that might contradict this information.\n\nStep 3: Check if there are any other rules that might affect the conclusion.\n- If someone is green and smart then they are white. (Rule 6)\n- We know Dave is smart, but we don't know if he's green. If Dave is green, then he would be white, which is already true. However, we also know that if someone is green, they are nice. (Rule 2)\n- If someone is smart then they are green. (Rule 1)\n- Dave is smart, so Dave is green. (From Rule 1)\n- If someone is green and smart then they are white. (Rule 6)\n- Dave is green and smart, so Dave is white. (From Rule 6)\n- We already know Dave is white, so this confirms our information.\n- If someone is green then they are nice. (Rule 2)\n- Dave is green, so Dave is nice. (From Rule 2)\n\nHowever, we also need to consider the information about Anne, as it might affect our conclusion.\n\nStep 4: Check if there are any other rules that might affect the conclusion, especially the information about Anne.\n- If Anne is smart then Anne is not green. (Rule 10)\n- However, we don't know if Anne is smart or not, so this rule doesn't affect our conclusion about Dave.\n- If Anne is smart then Anne is not green. (Rule 10)\n- We also know that if someone is green, they are nice. (Rule 2)\n- However, this rule is not relevant to our conclusion about Dave.\n\nStep 5: Consider the information about Fiona and Gary.\n- Fiona is nice. (Rule 5)\n- However, we don't know if Fiona is young or not, but we do know that nice people are young. (Rule 3)\n- Fiona is nice, so Fiona is young. (From Rule 3)\n- All young, red people are smart. (Rule 9)\n- However, we don't know if Fiona is red or not, but if she is red, then she would be smart. (From Rule 9)\n- If Fiona is red then Fiona is green. (Rule 11)\n- However, this rule is not relevant to our conclusion about Dave.\n- Gary is cold. (Given information)\n- Gary is red. (Given information)\n- Gary is cold. (Given information)\n- If someone is cold then they are white. (Rule 7)\n- Gary is cold, so Gary is white. (From Rule 7)\n- However, we don't know if Gary is young or not, but we do know that white people are young. (Rule 4)\n- Gary is white, so Gary is young. (From Rule 4)\n- All young, red people are smart. (Rule 9)\n- Gary is young and red, so Gary is smart. (From Rule 9)\n- If someone is smart then they are green. (Rule 1)\n- Gary is smart, so Gary is green. (From Rule 1)\n- If someone is green then they are nice. (Rule 2)\n- Gary is green, so Gary is nice. (From Rule 2)\n\nHowever, the information about Gary doesn't affect our conclusion about Dave.\n\nStep 6: Determine the final answer.\nBased on the given information and the rules, we can conclude that Dave is nice.\n\nFinal Answer:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is nice' is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given information, we know:\n- If someone is smart then they are green.\n- If someone is green then they are nice.\n- If someone is green and smart then they are white.\n- Dave is smart.\n- Dave is white.\n\nNow, let's use the given information to determine whether Dave is nice.\n\nSince Dave is smart, according to the rule 'If someone is smart then they are green', Dave is green.\n\nNow, since Dave is green and smart, we can use the rule 'If someone is green and smart then they are white'. This confirms that Dave is indeed white, which we already knew.\n\nNext, since Dave is green, according to the rule 'If someone is green then they are nice', we can conclude that Dave is nice.\n\nTherefore, based on the given information, the statement 'Dave is nice' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is cold. (Given)\n2. If someone is cold then they are white. (Rule 5)\n   So, Dave is white. (From 1 and 2)\n\n3. Dave is white. (From 2)\n4. If someone is white then they are young. (Rule 4)\n   So, Dave is young. (From 3 and 4)\n\n5. Dave is young. (From 4)\n6. Nice people are young. (Rule 3)\n7. So, nice people are a subset of young people. But we need to determine if Dave is nice or not.\n\n8. Dave is white. (From 2)\n9. If someone is white then they are young. (Rule 4)\n   Dave is young. (From 8 and 9) - We already know this from step 4.\n\n10. Dave is young. (From 5)\n11. If someone is green and smart then they are white. (Rule 7)\n    Since we don't know if Dave is green, we cannot conclude that he is white using this rule.\n\n12. Dave is cold. (Given)\n13. If someone is cold then they are white. (Rule 5)\n    Dave is white. (From 12 and 13) - We already know this from step 2.\n\n14. Dave is young. (From 5)\n15. Dave is white. (From 2)\n16. Nice people are young. (Rule 3)\n17. If someone is young and white then they are nice. (We can conclude this from rule 3 and 4)\n   So, Dave is nice. (From 14, 15 and 17)\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is cold. \n   From the given information: If someone is cold then they are white. \n   Therefore, Dave is white.\n\n2. Since Dave is white, we can conclude that Dave is young because if someone is white then they are young.\n\n3. Dave is white and young. \n   From the given information: If someone is young, then they are nice (nice people are young). \n   However, this is an indirect conclusion and we can't determine if he is nice or not yet. We need more information.\n\n4. Dave is smart. \n   Now we have two pieces of information about Dave: he is smart and white.\n\n5. Since Dave is smart and white, we can conclude that Dave is white. \n   From the given information: If someone is green and smart then they are white. \n   However, we already know Dave is white, but we don't know if he is green or not.\n\n6. Now we need to analyze the information about green people. \n   From the given information: If someone is smart then they are green. \n   However, we cannot determine if Dave is green or not yet.\n\n7. Combining the information from step 5 and 6, we can conclude that Dave is white and potentially green. \n   But Dave being green or not is still unknown.\n\n8. Now we need to analyze the information about nice people. \n   From the given information: If someone is green then they are nice. \n   However, we still don't know if Dave is green or not.\n\n9. Combining the information from step 7 and 8, we can conclude that Dave is white and potentially nice. \n   But Dave being nice or not is still unknown.\n\n10. We still have a lot of information left. \n    From the given information: If someone is green and smart then they are white. \n    This information doesn't help us determine if Dave is nice or not.\n\n11. From the given information: If someone is young, then they are nice. \n    We already know Dave is young (from step 2).\n\n12. From the given information: If Anne is smart then Anne is not green. \n    We don't know if Anne is smart or not, so this information is irrelevant to Dave.\n\n13. From the given information: If someone is green then they are nice. \n    We still don't know if Dave is green or not.\n\n14. From the given information: If someone is cold then they are white. \n    We already know Dave is white (from step 1).\n\n15. From the given information: Gary is cold and red. \n    We know Gary is white (from step 14) and red.\n\n16. From the given information: If Gary is red then Gary is green. \n    However, we don't know if this information is relevant to Dave or not.\n\n17. From the given information: If someone is red then they are smart. \n    However, we still don't know if Dave is red or not.\n\n18. From the given information: All young, red people are smart. \n    However, we still don't know if Dave is red or not.\n\n19. From the given information: If Fiona is red then Fiona is green. \n    However, we still don't know if Fiona is red or not.\n\n20. From the given information: Fiona is nice and not red. \n    We already know Fiona is young (from the given information).\n\n21. From the given information: If someone is young then they are nice. \n    We already know Fiona is young (from the given information).\n\n22. From the given information: If Fiona is green then Fiona is nice. \n    However, we don't know if Fiona is green or not.\n\n23. From the given information: If someone is green and smart then they are white. \n    However, we still don't know if Fiona is green or not.\n\n24. We still have a lot of information left. \n    From the given information: If someone is green then they are nice. \n    However, we still don't know if Fiona is green or not.\n\n25. From the given information: If someone is green then they are nice. \n    We already know Fiona is nice (from step 20).\n\n26. From the given information: If someone is green then they are nice. \n    We already know Fiona is nice (from step 20).\n\n27. From the given information: If someone is young then they are nice. \n    We already know Fiona is young (from the given information).\n\n28. From the given information: If Fiona is young then Fiona is nice. \n    We already know Fiona is nice (from step 20).\n\n29. We still have a lot of information left. \n    From the given information: If someone is white then they are young. \n    We already know Dave is white (from step 1).\n\n30. From the given information: If someone is white then they are young. \n    We already know Dave is white (from step 1) and young (from step 2).\n\n31. From the given information: If someone is young then they are nice. \n    We already know Dave is young (from step 2).\n\n32. From the given information: If someone is young then they are nice. \n    We already know Dave is young (from step 2).\n\n33. From the given information: If someone is young then they are nice. \n    We already know Dave is young (from step 2).\n\n34. From the given information: If someone is young then they are nice. \n    We already know Dave is young (from step 2).\n\n35. We still have a lot of information left. \n    From the given information: If someone is green and smart then they are white. \n    We already know Dave is white (from step 1).\n\n36. From the given information: If someone is green then they are nice. \n    However, we still don't know if Dave is green or not.\n\n37. We still have a lot of information left. \n    From the given information: If someone is green and smart then they are white. \n    We already know Dave is white (from step 1).\n\n38. From the given information: If someone is green then they are nice. \n    However, we still don't know if Dave is green or not.\n\n39. From the given information: If someone is green then they are nice. \n    We already know Fiona is green (from step 20).\n\n40. We still have a lot of information left. \n    From the given information: If someone is green then they are nice. \n    We already know Fiona is green (from step 20).\n\n41. From the given information: If someone is green then they are nice. \n    We already know Fiona is green (from step 20).\n\n42. From the given information: If someone is green then they are nice. \n    We already know Fiona is green (from step 20).\n\n43. We still have a lot of information left. \n    From the given information: If someone is green then they is nice. \n    We already know Fiona is nice (from step 20).\n\n44. From the given information: If someone is green then they are nice. \n    We already know Fiona is nice (from step 20).\n\n45. We still have a lot of information left. \n    From the given information: If someone is green and smart then they are white. \n    However, we still don't know if Dave is green or not.\n\n46. From the given information: If someone is green and smart then they are white. \n    However, we still don't know if Dave is green or not.\n\n47. From the given information: If someone is green and smart then they are white. \n    However, we still don't know if Dave is green or not.\n\n48. From the given information: If someone is green then they are nice. \n    However, we still don't know if Dave is green or not.\n\n49. We still have a lot of information left. \n    From the given information: If someone is green and smart then they are white. \n    We already know Dave is white (from step 1).\n\n50. From the given information: If someone is green and smart then they are white. \n    We already know Dave is white (from step 1).\n\n51. From the given information: If someone is green and smart then they are white. \n    We already know Dave is white (from step 1).\n\n52. From the given information: If someone is green then they are nice. \n    However, we still don't know if Dave is green or not.\n\n53. We still have a lot of information left. \n    From the given information: If someone is green then they are nice. \n    However, we still don't know if Dave is green or not.\n\n54. From the given information: If someone is young, then they are nice. \n    We already know Dave is young (from step 2).\n\n55. From the given information: If someone is young, then they are nice. \n    We already know Dave is young (from step 2).\n\n56. From the given information: If someone is young, then they are nice. \n    We already know Dave is young (from step 2).\n\n57. From the given information: If someone is young, then they are nice. \n    We already know Dave is young (from step 2).\n\n58. From the given information: If someone is young, then they are nice. \n    We already know Dave is young (from step 2).\n\n59. We still have a lot of information left. \n",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is cold.\n2. If someone is cold then they are white.\n   Therefore, Dave is white (from rule 2).\n\n3. If someone is white then they are young.\n   Therefore, Dave is young (from rule 3).\n\n4. Dave is smart.\n   This information is given in the problem.\n\n5. If someone is smart then they are green.\n   Therefore, Dave is green (from rule 5).\n\n6. If someone is green and smart then they are white.\n   This rule does not contradict with rule 2, but we can see that it is redundant and Dave is white regardless. However, we can see that Dave is white, green, and smart.\n\n7. If someone is green then they are nice.\n   Therefore, Dave is nice (from rule 7).\n\nBased on the information given in the problem and the rules provided, we can conclude that \"Dave is nice\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is nice\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning step by step.\n\n1. Dave is cold.\n2. If someone is cold then they are white. \n   - So, Dave is white.\n\n3. If someone is white then they are young.\n   - So, Dave is young.\n\n4. If someone is white then they are young.\n   - This doesn't give any new information for now.\n\n5. Dave is white.\n   - This is already determined in step 2.\n\n6. If someone is white then they are young.\n   - This is already determined in step 3.\n\n7. If someone is young then they are nice.\n   - So, Dave is nice.\n\nBased on the given information and logical reasoning, we can conclude that the statement \"Dave is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is nice\" is true, false, or unknown, we need to analyze the given information and apply the rules provided.\n\nGiven information:\n1. Dave is cold.\n2. Dave is smart.\n3. Dave is white.\n4. If someone is cold then they are white.\n5. If someone is green and smart then they are white.\n6. If someone is smart then they are green.\n7. If someone is green then they are nice.\n8. Nice people are young.\n9. If someone is white then they are young.\n\nFirst, we will use rule 4 to determine the color of Dave, given that he is cold.\nSince Dave is cold, he is white (rule 4).\n\nNow, we will check if the color of Dave being white affects his being nice. \n\nFrom rule 3, we know that Dave is white. \nFrom rule 9, we know that if someone is white, they are young.\nFrom rule 8, we know that young people are nice.\n\nHowever, we need to check the other rules to ensure that we are not missing any information.\n\nFrom rule 6, we know that if someone is smart, they are green. \nFrom rule 2, we know that Dave is smart. \nFrom rule 6, we can infer that Dave is green.\n\nNow we have two conflicting statements:\n1. Dave is white.\n2. Dave is green.\n\nTo resolve this conflict, we need to use rule 5, which states that if someone is green and smart, they are white. \nSince Dave is green and smart (rule 2), we can infer that Dave is white (rule 5). \nThis means that rule 1 is redundant.\n\nSince Dave is white, we can conclude from rule 9 that Dave is young. \n\nFrom rule 8, we know that young people are nice. \nFrom rule 7, we know that green people are nice. \n\nWe still need to verify the color of Dave. \n\nSince Dave is green and smart, we can use rule 5 to conclude that he is white. \nHowever, we know that Dave is white (rule 3). \nThis means that rule 5 is redundant.\n\nSince Dave is green, we can conclude from rule 7 that Dave is nice.\n\nTherefore, the statement \"Dave is nice\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_dave, green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_dave, nice_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_dave, young_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_dave, white_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(green_dave, smart_dave), white_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_dave, red_dave), smart_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(fiona) -> green(fiona)",
+          "z3_formula": "Implies(red_fiona, green_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(anne) -> Not(green(anne))",
+          "z3_formula": "Implies(smart_anne, Not(green_anne))",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not red(fiona)",
+          "z3_formula": "not red_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_dave, green_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_dave, nice_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_dave, young_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_dave, young_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_dave, white_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(green_dave, smart_dave), white_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_gary, red_gary), smart_gary)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_fiona, green_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> not green(X)",
+          "z3_formula": "Implies(smart_anne, not green_anne)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_dave, white_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_dave, young_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_gary, white_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_gary, young_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_gary, red_gary), smart_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_gary, green_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_gary, nice_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(green_gary, smart_gary), white_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_dave, young_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_anne, young_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_fiona, young_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not red(fiona)",
+          "z3_formula": "Not(red_fiona) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_fiona, green_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "Not(green_fiona) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_fiona, nice_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> not green(X)",
+          "z3_formula": "Implies(smart_anne, Not(green_anne))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_anne, nice_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_anne, green_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(anne)",
+          "z3_formula": "Not(nice_anne) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_dave, white_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_dave, young_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_dave, green_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_dave, nice_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_dave, green_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(green_dave, smart_dave), white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_dave, white_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_dave, young_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_dave, white_dave), nice_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(green_dave, smart_dave), white_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_dave, white_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> nice(X)",
+          "z3_formula": "Implies(And(young_dave, white_dave), nice_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_dave, white_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_dave, young_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_dave, white_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_dave, young_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_dave, green_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(green_dave, smart_dave), white_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_dave, nice_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_dave, white_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_dave, young_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> white(X)",
+          "z3_formula": "Implies(cold_dave, white_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(green_dave, smart_dave), white_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_dave, green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_dave, nice_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_dave, nice_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_dave, young_dave)",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 150,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 43
+    },
+    "maxsat_stats": {
+      "satisfied": 41,
+      "excluded": 2,
+      "total_weight": 147,
+      "solve_time_ms": 1.1663511395454407
+    },
+    "timing": {
+      "trace_gen_s": 24.747,
+      "extraction_s": 35.287,
+      "dedup_s": 1.145,
+      "maxsat_s": 0.004,
+      "total_s": 61.183
+    }
+  }
+}

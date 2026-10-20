@@ -1,0 +1,965 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-372_Q17",
+    "problem": "Charlie is young. Erin is blue. Erin is green. Fiona is big. Fiona is green. Gary is blue. Gary is green. All red things are furry. All furry things are red. Young things are red. If something is smart and not red then it is not green. All furry things are green. If something is red and green then it is blue. If something is young and big then it is smart. If something is blue and green then it is smart. Blue, red things are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not blue.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\nFurry($x, bool) ::: Is x furry?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nYoung(Charlie, True) ::: Charlie is young.\nBlue(Erin, True) ::: Erin is blue.\nGreen(Erin, True) ::: Erin is green.\nBig(Fiona, True) ::: Fiona is big.\nGreen(Fiona, True) ::: Fiona is green.\nBlue(Gary, True) ::: Gary is blue.\nGreen(Gary, True) ::: Gary is green.\n\nRules:\nRed($x, True) >>> Furry($x, True) ::: All red things are furry.\nFurry($x, True) >>> Red($x, True) ::: All furry things are red.\nYoung($x, True) >>> Red($x, True) ::: Young things are red.\nSmart($x, True) && !Red($x, True) >>> !Green($x, True) ::: If something is smart and not red then it is not green.\nFurry($x, True) >>> Green($x, True) ::: All furry things are green.\nRed($x, True) && Green($x, True) >>> Blue($x, True) ::: If something is red and green then it is blue.\nYoung($x, True) && Big($x, True) >>> Smart($x, True) ::: If something is young and big then it is smart.\nBlue($x, True) && Green($x, True) >>> Smart($x, True) ::: If something is blue and green then it is smart.\nBlue($x, True) && Red($x, True) >>> Smart($x, True) ::: Blue, red things are smart.\n\nQuery:\n!Blue(Fiona, True) ::: Fiona is not blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 105.5,
+      "True": 95.5,
+      "Unknown": 98.5
+    },
+    "answer_counts": {
+      "False": 5,
+      "True": 2,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Fiona is not blue\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n1. Fiona is big.\n2. Fiona is green.\n3. All red things are furry.\n4. All furry things are red.\n5. Young things are red.\n6. If something is smart and not red then it is not green.\n7. All furry things are green.\n8. If something is red and green then it is blue.\n9. If something is young and big then it is smart.\n10. If something is blue and green then it is smart.\n11. Blue, red things are smart.\n\nNow, let's analyze the given information:\n- From 7, since all furry things are green, we can say Fiona is green because she is big and it is given that Fiona is big.\n- From 8, since red and green things are blue, we can say Fiona is blue because she is green.\n- From 9, since young and big things are smart, we can say Fiona is smart because she is big.\n\nNow, let's analyze the statement \"Fiona is not blue\".\n- From the above deduction, Fiona is blue, which contradicts the given statement.\nTherefore, the statement \"Fiona is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not blue\" is true, false, or unknown, we need to analyze the given information.\n\n1. Fiona is big. (From the given statements)\n2. All red things are furry. All furry things are red. (From the given statements)\n3. Young things are red. (From the given statements)\n4. All furry things are green. (From the given statements)\n5. If something is red and green then it is blue. (From the given statements)\n\nFrom statement 3, we can deduce that big things are not necessarily red, as young things are red, but not big.\nFrom statement 4, we can deduce that big things are green, since all furry things are green and big things are furry.\n\nNow, we can determine that Fiona is green, as she is big and big things are green.\n\n6. Fiona is green. (From the given statements and our deduction)\n\nNow, we need to analyze the relationship between green and blue.\n7. Gary is blue. Gary is green. (From the given statements)\n8. If something is blue and green then it is smart. (From the given statements)\n\nFrom statement 7, we can deduce that Gary is both blue and green, which means that Gary is smart.\n\n9. If something is blue and green then it is smart. (From the given statements and our deduction)\n\nNow, we can analyze the relationship between blue and green.\n10. Erin is blue. Erin is green. (From the given statements)\n11. If something is blue and green then it is smart. (From the given statements and our deduction)\n\nFrom statement 10, we can deduce that Erin is smart, which means that the statement \"If something is blue and green then it is smart\" is true.\n\nNow, we need to analyze the statement \"Fiona is not blue\".\n12. Fiona is green. (From the given statements and our deduction)\n13. If something is blue and green then it is smart. (From the given statements and our deduction)\n14. If something is smart and not red then it is not green. (From the given statements)\n\nFrom statement 13, we can deduce that Fiona is not both blue and green, which means that Fiona is not smart (from statement 14).\nFrom statement 12, we can deduce that Fiona is green.\n\nNow, we can analyze the statement \"Fiona is not blue\".\nSince Fiona is green and not blue, we can conclude that the statement \"Fiona is not blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we'll go through the given statements and apply them to determine whether the statement 'Fiona is not blue' is true, false, or unknown.\n\n1. Fiona is big. \n   Since 'Fiona is big', we can apply the statement 'If something is young and big then it is smart.' However, we don't know if Fiona is young or not. So, we can't conclude that Fiona is smart yet.\n\n2. Fiona is green. \n   Since 'Fiona is green', we can apply the statement 'All furry things are green.' But we don't know if Fiona is furry or not. So, we can't conclude that Fiona is furry yet.\n\n3. All red things are furry. \n   Since 'All red things are furry', if Fiona is red, then it must be furry. But we don't know if Fiona is red or not.\n\n4. All furry things are red. \n   Since 'All furry things are red', if Fiona is furry, then it must be red. But we don't know if Fiona is furry or not.\n\n5. Young things are red. \n   Since 'Young things are red', if Fiona is young, then it must be red. But we don't know if Fiona is young or not.\n\n6. If something is smart and not red then it is not green. \n   This statement doesn't give us any information about Fiona.\n\n7. All furry things are green. \n   As mentioned earlier, this statement doesn't give us any information about Fiona.\n\n8. If something is red and green then it is blue. \n   Since 'Fiona is green' and we don't know if it's red or not, we can't conclude anything about Fiona's color using this statement.\n\n9. If something is blue and green then it is smart. \n   This statement doesn't give us any information about Fiona.\n\n10. Blue, red things are smart. \n    This statement doesn't give us any information about Fiona.\n\nNow, let's analyze the possibilities for Fiona's color and whether it's smart or not.\n\n- If Fiona is red and green, then it must be blue (Statement 8). We don't know if it's smart or not.\n- If Fiona is blue and green, then it must be smart (Statement 9). We know that Fiona is green (Statement 2), so it must be smart. But we don't know if it's blue or not.\n- If Fiona is red and not green, then it must be smart (Statement 6). We don't know if Fiona is red or not.\n\nSince Fiona is big and green, it's possible that it's smart. However, we can't conclude anything about its color.\n\nThe statement 'Fiona is not blue' can be true or false. To determine this, let's look at the possibilities again.\n\n- If Fiona is red and green, then it must be blue. This makes the statement 'Fiona is not blue' false.\n- If Fiona is blue and green, then it must be smart. But we don't know if it's blue or not. We can't conclude anything about the statement.\n- If Fiona is red and not green, then it must be smart. But we don't know if Fiona is red or not.\n\nTo conclude, we need more information about Fiona. Since we can't determine whether Fiona is blue or not, the answer is 'unknown'.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not blue\" is true, false, or unknown, we need to analyze the given statements and use logical deductions.\n\nGiven statements:\n1. Fiona is big.\n2. Fiona is green.\n3. All red things are furry.\n4. All furry things are red.\n5. Young things are red.\n6. If something is smart and not red then it is not green.\n7. All furry things are green.\n8. If something is red and green then it is blue.\n9. If something is young and big then it is smart.\n10. If something is blue and green then it is smart.\n11. Blue, red things are smart.\n\nFrom statement 1, we know Fiona is big.\nFrom statement 2, we know Fiona is green.\n\nUsing statement 9, since Fiona is young and big, we can conclude that Fiona is smart.\n\nNow, let's analyze the possible colors of Fiona based on the given statements:\n- If Fiona is red, then it must be furry (statement 3), and also green (statement 7).\n- If Fiona is green, then it must be big (statement 2) and smart (since it's big and young, statement 9).\n\nFrom statement 8, if Fiona is red and green, then it must be blue.\n\nNow, let's consider the color blue:\n- If Fiona is blue, then it must be smart (statement 10), which contradicts the fact that Fiona is young (since young things are red, statement 5).\n- Since Fiona is not young, it cannot be red (statement 5). Therefore, if Fiona is blue, it must be green.\n\nConsidering the statement \"Fiona is not blue\" and the analysis above, we can see that Fiona must be green and smart. However, we have two possibilities for Fiona's color: blue and green. We cannot conclude that Fiona is not blue because the statement \"Fiona is blue\" is not necessarily false. We can only conclude that Fiona is green and smart.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not blue' is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. Fiona is big. (Rule: Fiona is big)\n2. Big things can be either smart or not smart. However, we need to find a connection between big and other properties to narrow down the possibilities.\n3. If something is young and big then it is smart. (Rule: If something is young and big then it is smart)\n   However, we do not have any information that says Fiona is young. We cannot directly conclude Fiona's smartness from this rule.\n4. We have two properties that Fiona possesses: big and green. We need to see if we can find any connection between these properties and other rules.\n5. Fiona is green. (Rule: Fiona is green)\n6. All red things are furry. (Rule: All red things are furry)\n   All furry things are red. (Rule: All furry things are red)\n   Young things are red. (Rule: Young things are red)\n   From these rules, we can conclude that Fiona is not young and therefore not red, because Fiona is big, not young.\n7. Since Fiona is not young, it's not red, which means it's not furry. We can now look at the rule 'All furry things are green'.\n   Since Fiona is not furry, it's not green by this rule alone. However, we know Fiona is indeed green from the given information. So, we need to look at other properties of Fiona.\n8. Blue, red things are smart. (Rule: Blue, red things are smart)\n   Since we cannot conclude that Fiona is red or blue from the given information, we cannot use this rule directly to determine Fiona's smartness.\n9. If something is smart and not red then it is not green. (Rule: If something is smart and not red then it is not green)\n   We cannot use this rule directly to conclude anything about Fiona, because we do not know if Fiona is smart or not.\n10. Blue, green things are smart. (Rule: Blue, green things are smart)\n    Since we cannot conclude that Fiona is blue, we cannot use this rule directly to determine Fiona's smartness.\n11. If something is young and big then it is smart. (Rule: If something is young and big then it is smart)\n    As mentioned earlier, we cannot conclude Fiona is smart from this rule because we do not have any information that says Fiona is young.\n12. If something is blue and green then it is smart. (Rule: If something is blue and green then it is smart)\n    We cannot use this rule directly to conclude anything about Fiona, because we do not know if Fiona is blue or green.\n13. Blue, red things are smart. (Rule: Blue, red things are smart)\n    As mentioned earlier, we cannot conclude Fiona is smart from this rule because we do not know if Fiona is blue or red.\n14. If something is red and green then it is blue. (Rule: If something is red and green then it is blue)\n    Since Fiona is green, we can use this rule only if we can conclude that Fiona is red. However, we cannot conclude that Fiona is red from the given information.\n15. All furry things are green. (Rule: All furry things are green)\n    As mentioned earlier, we can conclude that Fiona is not furry. Therefore, we cannot use this rule to conclude that Fiona is green.\n\nFrom the given information and the rules, we cannot directly conclude whether Fiona is blue or not. However, we can conclude that the statement 'Fiona is not blue' is false if we can conclude that Fiona is blue. If we cannot conclude Fiona's color, then the statement is unknown.\n\nNow, let's look at the given information again:\n- Fiona is big.\n- Fiona is green.\n\nFrom the information and the rules, we cannot conclude that Fiona is blue. We can only conclude that Fiona is green.\n\nHowever, we do know that Gary is green. If Fiona were blue, then according to the rule 'Blue, green things are smart', Fiona would be smart. This would make Fiona both green and smart. \n\nIf Fiona were green and smart, then according to the rule 'If something is smart and not red then it is not green', Fiona would not be green. This is a contradiction, because we already know Fiona is green.\n\nTherefore, we can conclude that Fiona is not blue.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Fiona is not blue, we need to analyze the given information step by step.\n\n1. Fiona is big. \n   Since we don't have any information about big things being blue or not, we'll keep this in mind.\n\n2. Fiona is green.\n   We know that all green things are either furry or blue (from the fact that all blue things are green and all furry things are green).\n\n3. Since Fiona is green, she must be either furry or blue.\n\nNow, let's look at the relationship between furry and blue.\n\n4. All furry things are red.\n   This means that if Fiona is furry, she is red.\n\n5. All red things are furry.\n   Since we've already established that all furry things are red, this statement confirms that red and furry are the same.\n\n6. Young things are red.\n   This statement doesn't apply to Fiona, as we know she's not young (we don't have any information about her age).\n\n7. If something is red and green, then it is blue.\n   This is a crucial statement, as it tells us that if Fiona is red and green, she is blue.\n\n8. If something is blue and green, then it is smart.\n   This statement doesn't apply to Fiona, as we don't have any information about her being smart or not.\n\n9. Blue, red things are smart.\n   This statement also doesn't apply to Fiona, as we don't have any information about her being blue or red.\n\nSince Fiona is green, we can conclude that she must be either furry (red) or blue. If she is furry (red), then she is blue, which means she is also green (from statement 2). However, this creates a contradiction, as we can't have a single thing be both red and green at the same time (since it would be blue).\n\nTherefore, we can conclude that Fiona is blue. \n\nHence, the statement \"Fiona is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information \"Fiona is big,\" we can't directly conclude Fiona's color, so this statement is unknown.\n\n2. From the information \"Fiona is green,\" we can conclude that Fiona is green. This statement is true.\n\nHowever, we also need to consider Fiona's possible relation to blue.\n\n3. From the information \"Fiona is green,\" and \"All furry things are green,\" we can't conclude Fiona is furry yet because we also know that \"All red things are furry\" and we don't know Fiona's color.\n\n4. From the information \"Gary is blue and Gary is green,\" we can conclude that Gary is both blue and green. This statement is true.\n\n5. From the information \"All blue, red things are smart,\" we can't conclude whether Fiona is smart or not yet because we don't know Fiona's color.\n\n6. From the information \"If something is young and big then it is smart,\" we can't conclude Fiona is smart because we don't know whether Fiona is young.\n\n7. From the information \"If something is blue and green then it is smart,\" we can't conclude whether Fiona is smart or not yet because we don't know Fiona's color.\n\n8. From the information \"If something is red and green then it is blue,\" we can't conclude Fiona's color yet because we don't know Fiona's color.\n\nHowever, considering the given statement \"Fiona is green,\" and \"All furry things are green,\" we can conclude that Fiona is furry because it is green.\n\n9. From the information \"All furry things are red,\" we can conclude that Fiona is red because it is furry.\n\n10. From the information \"All red things are furry,\" this statement is redundant as we already concluded that all furry things are red.\n\nConsidering Fiona is red and green, we can conclude that Fiona is blue from the given information \"If something is red and green then it is blue.\"\n\nSo, from the information \"Fiona is green\" and \"If something is red and green then it is blue,\" we can conclude that Fiona is both green and blue.\n\nTherefore, the statement \"Fiona is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is big. (From the given statements)\n2. All young things are red. (From the given statements)\n3. All red things are furry. (From the given statements)\n4. All furry things are red. (From the given statements)\n5. All furry things are green. (From the given statements)\n6. Since Fiona is big, and if something is young and big then it is smart. (From the given statements)\n7. However, we cannot determine if Fiona is young or not. But if it is young, then it is red (from statement 2).\n8. If Fiona is red, then it is furry (from statement 3).\n9. If Fiona is furry, then it is green (from statement 5).\n10. Now, we have two possibilities: Fiona is either big and green (since it's furry and furry things are green) or it's big and smart (since it's young and big). \n\nNow let's consider the possibilities for the colors of Fiona:\n\n- If Fiona is young and big, then it is smart (from statement 6). However, we cannot determine if it is smart and blue at the same time. We can only say that if it is blue and green, then it is smart (from statement 8). We cannot say that if it is smart then it is blue.\n- If Fiona is not young, then it is not red, and it is green. \n\nFrom the statement \"If something is blue and green then it is smart\" (from the given statements), and \"Blue, red things are smart\" (from the given statements), we can infer that Fiona could be blue and green and be smart. However, we cannot confirm if Fiona is blue or not. We can only say that if Fiona is blue and green, then it is smart.\n\nGiven that we cannot confirm if Fiona is blue or not, we cannot determine if the statement \"Fiona is not blue\" is true or false.\n\nTherefore, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not blue' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is big. \nFrom this, we cannot directly determine if Fiona is blue or not. \n\n2. Fiona is green. \nNow we have two pieces of information about Fiona: she is big and she is green.\n\n3. All furry things are red. \nWe do not have any information about Fiona being furry, so we cannot conclude anything about her color yet.\n\n4. All furry things are green. \nThis statement contradicts the previous one. However, we still do not have any information about Fiona being furry.\n\n5. If something is red and green then it is blue. \nWe still do not have any information about Fiona being red and green.\n\n6. If something is blue and green then it is smart. \nThis statement is not relevant to determining if Fiona is blue or not.\n\n7. Blue, red things are smart. \nThis statement is not relevant to determining if Fiona is blue or not.\n\n8. All red things are furry. \nThis statement contradicts the previous one. However, we still do not have any information about Fiona being furry.\n\n9. Young things are red. \nWe do not have any information about Fiona being young.\n\n10. If something is smart and not red then it is not green. \nThis statement is not relevant to determining if Fiona is blue or not.\n\n11. If something is young and big then it is smart. \nWe do not have any information about Fiona being young or being smart.\n\n12. Gary is blue. \nThis information is not relevant to determining if Fiona is blue or not.\n\n13. Gary is green. \nThis information is not relevant to determining if Fiona is blue or not.\n\n14. Erin is blue. \nThis information is not relevant to determining if Fiona is blue or not.\n\n15. Erin is green. \nThis information is not relevant to determining if Fiona is blue or not.\n\nFrom the given information, we cannot directly conclude whether Fiona is blue or not. However, we can conclude that Fiona is green. \n\nSince Fiona is green and all green things that are blue are smart, but we cannot conclude that Fiona is blue from the given information, we cannot say for certain that Fiona is not blue. Therefore, the answer is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not blue\" is true, false, or unknown, we need to analyze the given statements and apply logical deductions.\n\n1. Fiona is big.\n2. If something is young and big, then it is smart.\nSince Fiona is big, we can conclude that Fiona is smart.\n\n3. If something is blue and green, then it is smart.\nHowever, this statement does not provide any information about Fiona.\n\n4. Blue, red things are smart.\nSince Fiona is smart, we cannot conclude that Fiona is blue or red.\n\n5. If something is blue and green, then it is smart.\nAgain, this statement does not provide any information about Fiona.\n\n6. Fiona is green.\nFrom this statement, we can conclude that Fiona is indeed green.\n\nNow, let's examine the properties of green things:\n- All furry things are green.\n- Gary is blue and green.\n- Gary is furry.\n- Therefore, Gary is an example of a furry green thing.\n\n7. All red things are furry.\nSince Gary is furry, we can conclude that Gary is red.\n\n8. Young things are red.\nSince Charlie is young, we can conclude that Charlie is red.\n\nNow, let's examine the properties of blue things:\n- Erin is blue.\n- Gary is blue.\n\nWe have not found any information about Fiona being blue, but we have information about blue things:\n- Blue, red things are smart.\nSince Gary is blue and red, we can conclude that Gary is smart.\n\nNow, let's examine the properties of blue and green things:\n- Erin is blue and green.\n- Erin is smart.\n\nWe have information about blue and green things being smart, but we do not have information about Fiona being blue and green. However, we do know that:\n- If something is blue and green then it is smart.\nSince Fiona is smart, we cannot conclude that Fiona is not blue.\n\nHowever, from the information we gathered, we can conclude that Fiona is big, green, and smart. We also know that blue, red things are smart. From the statement \"Gary is blue and green\" and \"Gary is red,\" we can conclude that blue and green things are not necessarily red. However, since Gary is both blue and green and smart, we can conclude that blue and green things are indeed smart.\n\nHowever, we do not have information about Fiona being blue. Therefore, we cannot conclude that Fiona is not blue. The correct answer is \"unknown.\"",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we'll use a step-by-step approach and apply the given conditions to determine the truth value of the statement \"Fiona is not blue.\"\n\n1. Given: \n   - Fiona is big.\n   - Fiona is green.\n\n2. From the given conditions, we can infer that:\n   - All furry things are green. (Condition 7)\n   - All red things are furry. (Condition 5)\n   - Young things are red. (Condition 3)\n\n3. Since Fiona is green, it can be concluded that Fiona is furry (Condition 7).\n\n4. From the previous conclusion, we can infer that Fiona is red (Condition 5).\n\n5. Given that Fiona is young and big, it can be concluded that Fiona is smart (Condition 9).\n\n6. Now, we need to determine whether Fiona is blue. If we can conclude that Fiona is blue, then the statement \"Fiona is not blue\" would be false.\n\n7. We can use the condition \"If something is red and green then it is blue\" (Condition 8) to determine whether Fiona is blue.\n\n8. Since Fiona is red and green, according to Condition 8, Fiona is blue.\n\n9. Therefore, the statement \"Fiona is not blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not blue' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that:\n   - Erin is blue.\n   - Gary is blue.\n   - Gary is green.\n   - Fiona is big.\n   - Fiona is green.\n\n2. From the information 'All furry things are red' and 'All furry things are green', we can conclude that:\n   - All green things are furry (since they are both green and furry).\n   - Since Fiona is green, Fiona is furry.\n\n3. From the information 'All furry things are red' and 'Fiona is furry', we can conclude that:\n   - Fiona is red.\n\n4. From the information 'If something is red and green then it is blue', we can conclude that:\n   - Since Fiona is both red and green, Fiona is blue.\n\nNow, we need to determine whether Fiona is not blue. Since we have already concluded that Fiona is blue, we can say that the statement 'Fiona is not blue' is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_fiona, furry_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_fiona, red_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_fiona, red_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(red(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(smart_fiona, Not(red_fiona)), Not(green_fiona))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_fiona, green_fiona), blue_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_fiona, green_fiona), smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_fiona, red_fiona), smart_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(fiona)",
+          "z3_formula": "Not(blue_fiona)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_fiona, furry_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_fiona, red_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_fiona, red_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_fiona, green_fiona), blue_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_erin, green_erin), smart_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_fiona, green_fiona), smart_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(red(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(smart_fiona, Not(red_fiona)), Not(green_fiona))",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "Not(blue(fiona))",
+          "z3_formula": "Not(blue_fiona) == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_fiona, big_fiona), smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_fiona, furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_fiona, red_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_fiona, red_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(red(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(smart_fiona, Not(red_fiona)), Not(green_fiona))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_fiona, green_fiona), smart_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_fiona, red_fiona), smart_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(blue_fiona, red_fiona), blue_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(blue(fiona))",
+          "z3_formula": "Not(blue_fiona) == True",
+          "source_step": 12
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_fiona, big_fiona), smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_fiona, red_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "all(X, red(X) -> furry(X))",
+          "z3_formula": "Implies(red_fiona, furry_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "all(X, furry(X) -> red(X))",
+          "z3_formula": "Implies(furry_fiona, red_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "all(X, young(X) -> red(X))",
+          "z3_formula": "Implies(young_fiona, red_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_fiona, green_fiona), smart_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(red(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(smart_fiona, Not(red_fiona)), Not(green_fiona))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_fiona, green_fiona), blue_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "Not(blue(fiona))",
+          "z3_formula": "Not(blue_fiona)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> (furry(X) | blue(X))",
+          "z3_formula": "Implies(And(furry_fiona, blue_fiona), green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_fiona, red_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_fiona, furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_fiona, green_fiona), blue_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_fiona, furry_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_fiona, red_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_fiona, green_fiona), blue_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona) & blue(fiona)",
+          "z3_formula": "And(green_fiona, blue_fiona) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_fiona, red_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_fiona, furry_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_fiona, red_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_fiona, big_fiona), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_fiona, green_fiona), smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_fiona, red_fiona), smart_fiona)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_fiona, red_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_fiona, green_fiona), blue_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_fiona, green_fiona), smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_fiona, blue_fiona), smart_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_fiona, red_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_fiona, red_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(red(X)) -> Not(green(X))",
+          "z3_formula": "Implies(And(smart_fiona, Not(red_fiona)), Not(green_fiona))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_fiona, big_fiona), smart_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_fiona, big_fiona), smart_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, green_X), smart_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, green_X), smart_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary) & green(gary)",
+          "z3_formula": "And(blue_gary, green_gary) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, red_gary), smart_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin) & green(erin)",
+          "z3_formula": "And(blue_erin, green_erin) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, green_X), smart_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(fiona)",
+          "z3_formula": "Not(blue_fiona)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_fiona, furry_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> red(X)",
+          "z3_formula": "Implies(young_fiona, red_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_fiona, green_fiona), blue_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_X, red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_fiona, green_fiona), blue_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 4
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 139,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 38
+    },
+    "maxsat_stats": {
+      "satisfied": 37,
+      "excluded": 1,
+      "total_weight": 134,
+      "solve_time_ms": 1.4126375317573547
+    },
+    "timing": {
+      "trace_gen_s": 11.161,
+      "extraction_s": 28.753,
+      "dedup_s": 0.964,
+      "maxsat_s": 0.004,
+      "total_s": 40.881
+    }
+  }
+}

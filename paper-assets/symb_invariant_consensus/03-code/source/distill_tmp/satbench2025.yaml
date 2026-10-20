@@ -1,0 +1,24 @@
+paper_key: "satbench2025"
+title: "SATBench: Benchmarking LLMs' Logical Reasoning via Automated Puzzle Generation from SAT Formulas"
+venue: "EMNLP 2025"
+full_text_available: false
+
+research:
+  baselines: ["o4-mini", "other frontier LLMs"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "SATBench", size: "2100 puzzles with adjustable difficulty"}
+  ablation_dimensions: ["number of clauses (difficulty)", "SAT vs UNSAT problems"]
+  training_recipe: {info: "evaluation benchmark, no training; automated puzzle generation from SAT formulas + LLM translation"}
+  method_family: "SAT-based reasoning benchmark"
+
+positioning:
+  core_claim: "LLMs have systematic failures in search-based logical reasoning: even the strongest model (o4-mini) achieves only 65% on hard UNSAT problems (near 50% random baseline), exhibiting satisfiability bias, context inconsistency, and condition omission"
+  key_results: "o4-mini: 65.0% on hard UNSAT (random baseline: 50%); systematic failures in satisfiability bias, context inconsistency, condition omission"
+  limitations: ["N/A"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,84 @@
+\section{Method}
+\label{sec:method}
+\label{sec:pipeline}
+\label{sec:condorcet}
+\label{sec:effective-k}
+
+Self-Consistency (SC) \citep{wang2023sc} samples $K$ reasoning traces and selects the majority answer. Under correlated traces (Fleiss' $\kappa$ \citep{fleiss1971kappa}), the effective ensemble size $K_\text{eff}$ is
+\begin{equation}
+\label{eq:effk}
+K_{\text{eff}} = K \,/\, [1 + (K{-}1) \cdot \kappa]
+\end{equation}
+(following \citet{ladha1992correlated}). Intuitively, $K_\text{eff}$ measures how many effectively independent votes $K$ correlated traces contribute; e.g., $K{=}12$ traces with $\kappa{=}0.69$ yield $K_\text{eff} \approx 1.4$, meaning twelve correlated traces carry no more independent information than 1.4 uncorrelated ones. This motivates constraint-based aggregation.
+
+Symbolic Invariant Consensus Aggregation (SICA) extends SC by extracting formal constraints from traces and selecting the answer best supported by the satisfiable subset (Figure~\ref{fig:pipeline}).
+
+\begin{table*}[t]
+\centering
+\small
+\caption{SICA vs.\ SC across all non-degenerate self-extraction conditions (sorted by SC). Two conditions show significant degradation after Benjamini--Hochberg (BH) correction ($m{=}6$ confirmatory; remaining exploratory); no condition shows a significant gain. $\Delta$ = SICA $-$ SC (pp). PW: ProofWriter. $^b$gold ICL; \textbf{bold}: $p < 0.05$; {*}\,BH adj.\ $p = 0.042$; $^{3s}$/$^{4s}$\,multi-seed aggregates; $^\dagger$\,4-seed replication (Table~\ref{tab:multi-seed}); $^\ddagger$\,pilot ($n{\leq}30$). Unmarked: single-seed exploratory (seed 123, not selected post hoc). Degenerate conditions and power analysis in Appendices~\ref{app:oracle} and~\ref{app:power}.}
+\label{tab:main_results}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Model & Domain & $n$ & SC (\%) & SICA (\%) & $\Delta$ (pp) & $p$ \\
+\midrule
+\multicolumn{7}{l}{\textit{Type C: error amplification (SC $\leq$ 40\%)}} \\
+Mistral-7B & PW-D5 & 600 & 39.33 & 36.50 & $\mathbf{-2.83}$ & 0.014{*} \\
+\midrule
+\multicolumn{7}{l}{\textit{Intermediate SC (SC $\sim$50--60\%, Mistral-7B only)}} \\
+Mistral-7B & LogiQA & 200 & 50.00 & 51.50 & $+$1.50 & 0.581 \\
+Mistral-7B & FOLIO (s123) & 204 & 54.41 & 57.35 & $+$2.94 & 0.070 \\
+Mistral-7B$^{3s}$ & FOLIO & 204 & 56.53 & 56.70 & $+$0.16 & 1.000 \\
+Mistral-7B & FOLIO (s456) & 204 & 55.88 & 55.88 & 0.00 & 1.000 \\
+Mistral-7B & FOLIO (s789) & 204 & 59.31 & 56.86 & $-$2.45 & 0.267 \\
+\midrule
+\multicolumn{7}{l}{\textit{Type A: confirmation bias (SC $\geq$ 60\%)}} \\
+LLaMA-3.1-8B & FOLIO & 204 & 66.18 & 61.76 & $-$4.41 & 0.093 \\
+LLaMA-3.1-8B & StrategyQA & 200 & 72.00 & 74.00 & $+$2.00 & 0.424 \\
+\addlinespace
+Qwen2.5-14B & FOLIO (ICL)$^b$ & 199 & 74.37 & 74.87 & $+$0.50 & 1.000 \\
+Qwen2.5-14B & PW-D5 & 600 & 74.00 & 71.50 & $\mathbf{-2.50}$ & 0.011{*} \\
+Qwen2.5-14B$^{4s}$ & FOLIO & 204 & 75.01 & 73.78 & $-$1.24 & 1.000 \\
+Qwen2.5-7B & FOLIO & 204 & 75.98 & 76.47 & $+$0.49 & 1.000 \\
+Qwen2.5-14B & LogiQA & 200 & 79.00 & 78.00 & $-$1.00 & 0.625 \\
+\addlinespace
+Qwen3-14B & FOLIO & 204 & 83.33 & 84.80 & $+$1.47 & 1.000 \\
+Qwen3-14B$^\dagger$ & PW-D5 & 600 & 85.83 & 85.67 & $-$0.17 & 1.000 \\
+Qwen3-14B (think) & FOLIO & 204 & 86.27 & 86.76 & $+$0.49 & 1.000 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\paragraph{Trace generation.} Given question $q$, an LLM generates $K$ traces $\{t_1, \ldots, t_K\}$ at temperature $T = 0.7$. Each trace $t_i$ yields answer $a_i$.
+
+\looseness=-1
+\paragraph{Constraint extraction.}\label{sec:constraint-extraction} The same LLM extracts logical constraints from each trace at $T_{\text{ext}} = 0.3$. The extraction prompt requests JSON output with constraint type, expression, and Z3-compatible formula (Appendix~\ref{app:prompts}); in practice, 99.0\% of extracted constraints are propositional at the Z3 level, with only 1.0\% using true quantifiers. The \emph{extraction rate} is the fraction of traces yielding at least one parseable constraint.
+
+\paragraph{Deduplication and MAX-SAT.} Constraints are deduplicated by syntactic equivalence (global average deduplication ratio: 46.0\%); each unique constraint $c_m$ receives weight $w_m$ equal to the number of source traces. The objective finds the largest-weight satisfiable subset:
+\begin{equation}
+\label{eq:maxsat}
+\mathcal{C}^* = \arg\max_{\mathcal{S} \subseteq \mathcal{C}} \sum_{c \in \mathcal{S}} w_c \quad \text{s.t.} \quad \mathcal{S} \text{ is satisfiable.}
+\end{equation}
+Z3 \citep{demoura2008z3} solves this with a 10-second timeout (Algorithm~\ref{alg:maxsat}; Appendix~\ref{app:z3-pseudocode}). Answer assertion constraints ($\texttt{answer\_a} == \texttt{True}$, weight 1) ensure every candidate receives a nonzero base score; SICA is thus a strict generalization of SC.
+
+\paragraph{Scoring.} Let $\mathcal{C}^{\setminus} = \mathcal{C} \setminus \mathcal{C}^*$. Each candidate $a$ is scored by:
+\begin{equation}
+\label{eq:score}
+\text{score}(a) = \sum_{c \in \mathcal{C}^*} w_c \cdot \sigma(c, a) - \alpha \sum_{c \in \mathcal{C}^{\setminus}} w_c \cdot \sigma(c, a),
+\end{equation}
+where $\sigma(c, a) = 1$ if $c$ was extracted from any trace producing answer $a$, and $\alpha = 0.5$. The selected answer is $a^* = \arg\max_{a} \text{score}(a)$.
+
+\paragraph{Degeneration condition.} If self-extracted constraints are coupled to their source answer, MAX-SAT retains nearly all ($|\mathcal{C}^{\setminus}| \approx 0$), and scoring degenerates to:
+\begin{equation}
+\label{eq:degenerate}
+\text{score}(a) \approx \sum_{\substack{c \in \mathcal{C}^* \\ \text{source}(c) \to a}} w_c,
+\end{equation}
+equivalent to majority voting. We formalize this as Observation~1 (\S\ref{sec:confirmation-bias}) and show empirically that all three conditions hold in practice.
+
+\paragraph{The $C_0$ diagnostic.} The multi-candidate rate $C_0 = |\{q : |\mathcal{A}(q)| > 1\}| / |\mathcal{Q}|$ is a lightweight diagnostic computable from pilot traces: $C_0 < 5\%$ means SICA reduces to SC. $\alpha = 0.5$ is not critical (${\pm}0.49$\,pp across $\alpha \in [0, 1]$).
+
+\paragraph{Bias ratio.} We quantify extraction bias via the \emph{bias ratio} (BR):
+\begin{equation}\label{eq:mirage}
+\text{BR}(M,T) = \frac{P(c \text{ supports } a_M \mid a_M \neq y)}{P(c \text{ supports } y \mid a_M \neq y)},
+\end{equation}
+where $c$ is a self-extracted constraint, $a_M$ the model's majority answer, and $y$ the ground truth. BR quantifies the degree of extraction degeneration under source-attribution scoring (Observation~1): values above 1 reflect the trace-count base rate inherent to source-attributed constraints. $\text{BR} = 1$ indicates no coupling beyond chance. We validate this metric empirically in \S\ref{sec:confirmation-bias}.

@@ -1,0 +1,1314 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1028_Q10",
+    "problem": "Bob is blue. Bob is round. Erin is nice. Erin is round. Erin is smart. Gary is not young. Harry is blue. Harry is furry. Harry is nice. Harry is round. All smart things are furry. Young, nice things are furry. If something is furry then it is young. Round, nice things are not quiet. All round things are smart. If Bob is young then Bob is nice. If something is smart and not young then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not nice.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nRound($x, bool) ::: Is x round?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\nFurry($x, bool) ::: Is x furry?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nBlue(Bob, True) ::: Bob is blue.\nRound(Bob, True) ::: Bob is round.\nNice(Erin, True) ::: Erin is nice.\nRound(Erin, True) ::: Erin is round.\nSmart(Erin, True) ::: Erin is smart.\nYoung(Gary, False) ::: Gary is not young.\nBlue(Harry, True) ::: Harry is blue.\nFurry(Harry, True) ::: Harry is furry.\nNice(Harry, True) ::: Harry is nice.\nRound(Harry, True) ::: Harry is round.\n\nRules:\nSmart($x, True) >>> Furry($x, True) ::: All smart things are furry.\nYoung($x, True) && Nice($x, True) >>> Furry($x, True) ::: Young, nice things are furry.\nFurry($x, True) >>> Young($x, True) ::: If something is furry then it is young.\nRound($x, True) && Nice($x, True) >>> Quiet($x, False) ::: Round, nice things are not quiet.\nRound($x, True) >>> Smart($x, True) ::: All round things are smart.\nYoung(Bob, True) >>> Nice(Bob, True) ::: If Bob is young then Bob is nice.\nSmart($x, True) && Young($x, False) >>> Blue($x, True) ::: If something is smart and not young then it is blue.\n\nQuery:\nNice(Bob, False) ::: Bob is not nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 166.0,
+      "True": 62.5,
+      "Unknown": 156.5
+    },
+    "answer_counts": {
+      "False": 7,
+      "Unknown": 4,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement 'Bob is not nice' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is blue. \n2. Bob is round.\n3. Erin is nice.\n4. Erin is round.\n5. Erin is smart.\n6. Gary is not young.\n7. Harry is blue.\n8. Harry is furry.\n9. Harry is nice.\n10. Harry is round.\n11. All smart things are furry.\n12. Young, nice things are furry.\n13. If something is furry then it is young.\n14. Round, nice things are not quiet.\n15. All round things are smart.\n16. If Bob is young then Bob is nice.\n17. If something is smart and not young then it is blue.\n\nFrom statements 11, 12, and 13, we can conclude that nice things are furry because if something is furry then it is young, and young, nice things are furry.\n\nFrom statement 15, we know that all round things are smart. Since Bob is round (statement 2), we can conclude that Bob is smart.\n\nFrom statement 16, we know that if Bob is young then Bob is nice. However, we cannot conclude that Bob is not young from the given information, so the statement 'Bob is not young' is unknown.\n\nHowever, from statement 17, if something is smart and not young then it is blue. Since Bob is smart (from statement 15) and we don't know if Bob is young or not, we can conclude that if Bob is not young then Bob is blue.\n\nNow, we need to determine whether Bob is nice or not. From statement 14, we know that round, nice things are not quiet, but it doesn't directly tell us about Bob's niceness.\n\nHowever, since Erin is round (statement 4) and nice (statement 3), and Erin is smart (statement 5), we can conclude that Erin is furry (from statement 11). Since Erin is furry, Erin is young (from statement 13).\n\nFrom statement 16, we know that if Erin is young then Erin is nice. We already know Erin is nice, so this statement is consistent.\n\nSince Erin is nice (statement 3) and Erin is young (from statement 13), Erin is furry (from statement 12). Since Erin is furry, Erin is young (from statement 13), which we already know.\n\nNow, let's look at Harry. Harry is nice (statement 9) and round (statement 10). From statement 14, we know that round, nice things are not quiet, which is consistent with Harry's characteristics.\n\nHowever, since Harry is round (statement 10) and nice (statement 9), we can conclude that Harry is smart (from statement 15).\n\nSince Harry is smart (from statement 15) and not young (from statement 6), we can conclude that Harry is blue (from statement 17).\n\nNow, let's go back to Bob. We know that Bob is round (statement 2) and smart (from statement 15). Since Bob is smart and not young (we don't know if Bob is young or not), we can conclude that Bob is blue (from statement 17).\n\nNow, we need to determine whether Bob is nice or not. Since Bob is round (statement 2) and smart (from statement 15), we can conclude that Bob is not young (from statement 17), which means Bob is blue (from statement 17).\n\nFrom statement 11, we know that smart things are furry. Since Bob is smart (from statement 15), Bob is furry.\n\nHowever, statement 13 tells us that if something is furry then it is young. Since Bob is furry, Bob is young.\n\nNow, we know that Bob is young (from statement 13) and smart (from statement 15). From statement 16, we know that if Bob is young then Bob is nice.\n\nTherefore, Bob is nice.\n\nNow, we can determine whether the statement 'Bob is not nice' is true, false, or unknown. Since we know that Bob is nice, the statement 'Bob is not nice' is false.\n\nSo the final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply the rules of logic to determine the relationship between the statements.\n\nLet's break down the given statements:\n\n1. All smart things are furry.\n2. Young, nice things are furry.\n3. If something is furry then it is young.\n4. Round, nice things are not quiet.\n5. All round things are smart.\n6. If Bob is young then Bob is nice.\n7. If something is smart and not young then it is blue.\n\nNow, let's analyze the statement: \"Bob is not nice.\"\n\nTo determine whether this statement is true, false, or unknown, we need to examine the relationship between Bob's characteristics.\n\nFrom statement 1, we know that all smart things are furry.\nFrom statement 5, we know that all round things are smart.\nTherefore, we can conclude that Bob is furry (since he is round) and smart (since he is round).\n\nFrom statement 2, we know that young, nice things are furry. However, we don't know if Bob is young or not. If Bob is not young, then we cannot conclude that he is nice.\n\nFrom statement 6, we know that if Bob is young, then he is nice. However, we still don't know if Bob is young or not.\n\nNow, let's examine the relationship between the characteristics of Bob and the other statements.\n\nFrom statement 7, we know that if something is smart and not young, then it is blue. Since Bob is smart (from statement 5), we can conclude that he is blue if he is not young.\n\nHowever, we still don't know if Bob is nice or not. We need to examine the relationship between Bob's characteristics and the other statements.\n\nFrom statement 4, we know that round, nice things are not quiet. However, this statement does not provide any information about Bob's niceness.\n\nFrom statement 3, we know that if something is furry, then it is young. Since Bob is furry (from statement 1), we can conclude that he is young if he is not already known to be young.\n\nNow, let's examine the relationship between Bob's youth and niceness.\n\nFrom statement 6, we know that if Bob is young, then he is nice. Since we concluded that Bob is young (from statement 3), we can conclude that Bob is nice.\n\nHowever, this conclusion contradicts the statement \"Bob is not nice.\" Therefore, the statement \"Bob is not nice\" is false.\n\nHowever, let's examine the relationship between Bob's youth and the statement \"Bob is not young.\" If Bob is not young, then he is not furry (from statement 3) and not smart (from statement 5).\n\nFrom statement 1, we know that all smart things are furry. Therefore, if Bob is not furry, then he is not smart.\n\nFrom statement 7, we know that if something is smart and not young, then it is blue. Therefore, if Bob is not smart (from statement 5), then we cannot conclude that he is blue.\n\nHowever, we still don't know if Bob is nice or not. We need to examine the relationship between Bob's characteristics and the other statements.\n\nSince Bob is blue (from statement 7), we can conclude that he is not young.\n\nFrom statement 6, we know that if Bob is young, then he is nice. However, we now know that Bob is not young.\n\nTherefore, we cannot conclude that Bob is nice or not nice. The statement \"Bob is not nice\" is unknown.\n\nSo the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not nice\" is true, false, or unknown, we need to use the given information and logical deductions.\n\nGiven Information:\n\n1. All smart things are furry.\n2. Young, nice things are furry.\n3. If something is furry then it is young.\n4. Round, nice things are not quiet.\n5. All round things are smart.\n6. If Bob is young then Bob is nice.\n7. If something is smart and not young then it is blue.\n8. Bob is blue.\n9. Bob is round.\n\nDeductions:\n\nFrom (8) and (9), we can conclude that Bob is round and smart since all round things are smart (5).\n\nNow, let's analyze the statement \"Bob is not nice.\" To prove this, we need to find a contradiction or show that Bob must be nice.\n\nIf Bob is not nice, then he cannot be young because young, nice things are furry (2). However, this leads to a contradiction since Bob is furry (he is round, and round things are smart, so he is furry by (1)). \n\nTherefore, the statement \"Bob is not nice\" is false because it leads to a contradiction.\n\nHowever, we still need to check if there is any other possibility where the statement could be true. \n\nSince Bob is not young (because round, nice things are not quiet, and Bob is round, so he must be smart, but smart things are furry, so he must be young for the initial statement to hold which it doesn't), then Bob must be blue (because he is smart and not young, then it is blue by (7)).\n\nNow, let's look at the statement \"Bob is not nice.\" Since we know Bob is blue, we can check if being blue means he is not nice. \n\nFrom the given information, we can't directly deduce that being blue means being not nice. However, we know that Bob is blue and round. Since Bob is round, he must be smart (5), and since he is smart and not young, he must be blue (7).\n\nSo, in this case, since Bob is smart and not young, he must be blue, which means he is not nice. However, we need to prove that this is the only case.\n\nNow, let's look at the possibilities:\n\n- Bob is not young, so he is blue, which means he is not nice.\n- Bob is young. If Bob is young, then he must be nice (6).\n\nTherefore, the statement \"Bob is not nice\" can be true when Bob is not young and he is blue.\n\nSince we have shown that the statement \"Bob is not nice\" can be true in at least one case, we conclude that the statement is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not nice\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the given statements:\n\n1. Bob is blue.\n2. Bob is round.\n3. If something is round then it is smart. (From \"All round things are smart\")\n4. Since Bob is round, Bob is smart. (From statement 3)\n5. If something is smart and not young then it is blue. (Given statement)\n6. We don't have any direct information about Bob's youth.\n\nNow, to analyze the statement \"Bob is not nice,\" let's consider the possible scenarios:\n\nScenario 1: Bob is young.\n- From statement 5, if Bob is young, then Bob is not smart (since Bob is smart in statement 4).\n- From statement 2, if Bob is not smart, then Bob is not blue (since all smart things are blue).\n- This contradicts statement 1, which says Bob is blue. Therefore, this scenario is not possible.\n\nScenario 2: Bob is not young.\n- From statement 5, if Bob is not young, then Bob is blue (since Bob is smart in statement 4).\n- This contradicts statement 1, which says Bob is blue. This is not possible, but this doesn't necessarily mean that Bob is not nice.\n\nHowever, from statement 1, we know that Bob is blue, which means that Bob must be not young (since if Bob is young, then Bob is not blue, and this contradicts statement 1). \n\nNow, since we know that Bob is not young, let's consider the statement \"Bob is nice.\"\n\n- From statement 1, we know that Bob is blue.\n- From statement 5, we know that if Bob is not young, then Bob is blue.\n- From statement 6, we know that if Bob is not young, then Bob is not young.\n\nHowever, we still don't have enough information to conclude whether Bob is nice or not.\n\nNow let's look at Erin, Erin is round, and Erin is smart. So Erin is blue. \n\nNow let's look at Gary, Gary is not young. So Gary is blue.\n\nNow let's look at Harry. Harry is blue, Harry is round, and Harry is smart. Harry is not young, so Harry is nice.\n\nNow let's look at the statement \"Bob is not nice.\" \n\nWe know that Harry is not young, and Harry is nice. We also know that Bob is not young.\n\nSo if we consider the statement \"Young, nice things are furry,\" we can conclude that Bob is furry.\n\nNow, since we know that Bob is furry, and all furry things are young, we can conclude that Bob is young.\n\nBut this contradicts our previous conclusion that Bob is not young. \n\nHowever, we also know that all round things are smart, and Bob is round. So Bob is smart. \n\nIf Bob is smart, then Bob is blue.\n\nBut we also know that all smart and not young things are blue, and Bob is smart and not young. So Bob is blue.\n\nNow let's look at the statement \"Round, nice things are not quiet.\" We know that Bob is round and nice.\n\nSo Bob is not quiet. \n\nNow we know that Bob is not quiet, and we also know that all round, nice things are not quiet. \n\nThis means that Bob is nice.\n\nSo the statement \"Bob is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not nice\" is true, false, or unknown, we need to analyze the given information and apply it to the statement.\n\n1. Given statements:\n   - Bob is blue.\n   - Bob is round.\n   - Erin is nice.\n   - Erin is round.\n   - Erin is smart.\n   - Gary is not young.\n   - Harry is blue.\n   - Harry is furry.\n   - Harry is nice.\n   - Harry is round.\n   - All smart things are furry.\n   - Young, nice things are furry.\n   - If something is furry then it is young.\n   - Round, nice things are not quiet.\n   - All round things are smart.\n   - If Bob is young then Bob is nice.\n   - If something is smart and not young then it is blue.\n\n2. From the given statements, we can infer that:\n   - Since Bob is round and all round things are smart, Bob is smart.\n   - From the statement \"All smart things are furry,\" we can infer that Bob is furry.\n   - However, from the statement \"If something is furry then it is young,\" we can infer that Bob is young.\n   - Since Bob is young, from the statement \"If Bob is young then Bob is nice,\" we can infer that Bob is nice.\n\n3. Now, let's analyze the statement \"Bob is not nice.\"\n   - We have already found that Bob is nice.\n   - Therefore, the statement \"Bob is not nice\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Bob is blue.\n   - Bob is round.\n   - If Bob is young, then Bob is nice.\n   - All round things are smart.\n   - If something is smart and not young, then it is blue.\n   - Round, nice things are not quiet.\n\n2. First, let's establish that Bob is round and therefore smart.\n   - Since Bob is round, we can conclude that Bob is smart (All round things are smart).\n\n3. Now, let's determine Bob's age.\n   - There's no direct information about Bob's age. However, we can use the information that if something is smart and not young, then it is blue.\n   - Since Bob is smart (from step 2) and blue (given information), we can use the above rule to conclude that Bob must be young (because if Bob were not young, then Bob would be blue due to being smart and not young).\n\n4. Now that we know Bob is young, we can apply the rule that if Bob is young, then Bob is nice.\n   - Therefore, Bob is nice.\n\n5. The given statement to evaluate is \"Bob is not nice.\"\n   - However, based on the analysis in step 4, we found that Bob is nice.\n   - Since Bob is indeed nice, the statement \"Bob is not nice\" is false.\n\nThe final answer is: $\\boxed{\\text{False}}$",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. \"Bob is blue. Bob is round.\"\n   - From this, we can conclude that Bob is both blue and round.\n\n2. \"All round things are smart.\"\n   - Since Bob is round, we can conclude that Bob is smart.\n\n3. \"If something is smart and not young then it is blue.\"\n   - Since Bob is smart, we need to determine if Bob is young or not. If Bob is young, then he is nice (from the statement \"If Bob is young then Bob is nice\"). However, we do not have enough information to conclude if Bob is young or not.\n\n4. \"If Bob is young then Bob is nice.\"\n   - This statement is conditional. We need to know if Bob is young or not to determine if he is nice.\n\n5. \"Bob is not young\" is not given, but \"Gary is not young\" is mentioned, so we cannot conclude that Bob is young based on this information.\n\n6. \"If something is furry then it is young.\" \"All smart things are furry.\" \"Harry is blue. Harry is furry. Harry is nice. Harry is round. All round things are smart.\"\n   - Since Harry is round, we know that Harry is smart. Since Harry is smart, we know that Harry is furry. Since Harry is furry, we know that Harry is young. This means that we can conclude that something being furry implies it is young.\n\n7. \"Round, nice things are not quiet.\" \n   - This statement is irrelevant to determining if Bob is nice or not.\n\n8. \"Erin is nice. Erin is round. Erin is smart.\"\n   - Since Erin is round, we know that Erin is smart. Since Erin is smart, we know that Erin is furry (from the statement \"All smart things are furry\"). Since Erin is furry, we know that Erin is young (from the statement \"If something is furry then it is young\"). However, this information is also irrelevant to determining if Bob is nice or not.\n\nBased on the given information, we cannot conclude if Bob is young or not, which means we cannot conclude if Bob is nice or not. Therefore, the statement \"Bob is not nice\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine if they can lead to the conclusion that \"Bob is not nice.\"\n\nGiven statements:\n\n1. Bob is blue.\n2. Bob is round.\n3. Erin is nice.\n4. Erin is round.\n5. Erin is smart.\n6. Gary is not young.\n7. Harry is blue.\n8. Harry is furry.\n9. Harry is nice.\n10. Harry is round.\n11. All smart things are furry.\n12. Young, nice things are furry.\n13. If something is furry then it is young.\n14. Round, nice things are not quiet.\n15. All round things are smart.\n16. If Bob is young then Bob is nice.\n17. If something is smart and not young then it is blue.\n\nNow, let's break down the statements to determine if \"Bob is not nice\" can be concluded:\n\nFrom statement 16: If Bob is young, then Bob is nice.\n\nFrom statement 13: If something is furry, then it is young.\n\nFrom statement 12: Young, nice things are furry.\n\nFrom statement 15: All round things are smart.\n\nFrom statement 2: Bob is round. Therefore, Bob is smart.\n\nFrom statement 11: All smart things are furry.\n\nSo, Bob is furry.\n\nFrom statement 13: If something is furry then it is young.\n\nTherefore, Bob is young.\n\nNow, we have a contradiction with the statement 16: If Bob is young then Bob is nice. \n\nHowever, we have shown that Bob is young. Hence, we can conclude that Bob is nice.\n\nSince we have concluded that Bob is nice, the statement \"Bob is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information given, we know that:\n   - All smart things are furry.\n   - Young, nice things are furry.\n   - If something is furry then it is young.\n   - All round things are smart.\n\n2. Since Bob is round, we can conclude that Bob is smart (from the information that all round things are smart).\n\n3. We also know that Bob is smart, and from the given information, if something is smart and not young, then it is blue. However, we don't have information about Bob's age yet.\n\n4. Let's analyze the information about Bob's age. We are given two pieces of information:\n   - If Bob is young then Bob is nice.\n   - If something is furry then it is young.\n\n5. Since Bob is round and smart, and all round things are smart, we can conclude that Bob is furry (from the information that all smart things are furry).\n\n6. However, we also know that if something is furry then it is young. So, Bob must be young.\n\n7. Now that we know Bob is young, we can conclude that Bob is nice (from the information that if Bob is young then Bob is nice).\n\n8. Since we have concluded that Bob is nice, we can determine whether the statement \"Bob is not nice\" is true or false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Bob is blue.\n   - Bob is round.\n   - All smart things are furry.\n   - Young, nice things are furry.\n   - If something is furry then it is young.\n   - Round, nice things are not quiet.\n   - All round things are smart.\n   - If Bob is young then Bob is nice.\n   - If something is smart and not young then it is blue.\n\n2. First, let's find out if Bob is smart. \n   - Since Bob is round, we can conclude that Bob is smart because all round things are smart.\n\n3. Now, we know Bob is smart, so let's find out if Bob is young or not.\n   - Since Bob is smart, and all smart things are furry, Bob is furry.\n   - Since Bob is furry, Bob is young because if something is furry then it is young.\n\n4. Now that we know Bob is young, we can conclude that Bob is nice because if Bob is young then Bob is nice.\n\n5. The statement \"Bob is not nice\" is false because we have already concluded that Bob is nice.\n\nTherefore, the statement \"Bob is not nice\" is \\boxed{false}.",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Bob is blue.\n   - Bob is round.\n   - Erin is nice.\n   - Erin is round.\n   - Erin is smart.\n   - Gary is not young.\n   - Harry is blue.\n   - Harry is furry.\n   - Harry is nice.\n   - Harry is round.\n   - All smart things are furry.\n   - Young, nice things are furry.\n   - If something is furry then it is young.\n   - Round, nice things are not quiet.\n   - All round things are smart.\n   - If Bob is young then Bob is nice.\n   - If something is smart and not young then it is blue.\n\n2. From the given statements, we can derive the following conclusions:\n   - Since Erin is smart and round, Erin is young (because all round things are smart, and if something is smart and not young, then it is blue, but there is no information that says Erin is blue, so Erin must be young).\n   - Since Erin is young and nice, Erin is furry (because young, nice things are furry).\n   - Since Erin is furry, Erin is young (this is already known).\n   - Since Erin is young and nice, Erin is furry (this is already known).\n   - Since Erin is furry, Erin is young (this is already known).\n   - From the given information, we can conclude that \"young\" and \"furry\" are equivalent properties.\n   - Since all smart things are furry, and all furry things are young (because if something is furry then it is young), all smart things are young.\n\n3. Now we need to analyze the statement \"Bob is not nice\".\n   - If Bob is young, then Bob is nice (because if Bob is young then Bob is nice).\n   - Since all round things are smart, and Bob is round, Bob is smart.\n   - Since Bob is smart and not young (because all smart things are young, but we don't know that Bob is young), Bob is blue (because if something is smart and not young then it is blue).\n\n4. From the given information, we know that Bob is blue. However, we don't know if Bob is nice or not. We can only conclude that if Bob is young, then Bob is nice. But we don't have enough information to determine if Bob is young or not.\n\nTherefore, the statement \"Bob is not nice\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. From the given information, we know:\n   - Bob is round (R1)\n   - Bob is blue (R2)\n   - All round things are smart (R3)\n   - All smart things are furry (R4)\n   - Round, nice things are not quiet (R5) (we don't know if this implies nice or not, but it is an interesting piece of information)\n   - If Bob is young then Bob is nice (R6)\n   - If something is smart and not young then it is blue (R7)\n\n2. Since Bob is round (R1) and all round things are smart (R3), we can conclude that Bob is smart.\n\n3. Since Bob is smart and all smart things are furry (R4), we can conclude that Bob is furry.\n\n4. Since Bob is round (R1), we can't conclude anything about Bob's age from this information alone.\n\n5. From R7, we know that if something is smart and not young then it is blue. Since Bob is smart and furry, we can conclude that Bob is not young (if Bob were young, then he would be furry and young, which would contradict R4).\n\n6. Now, since Bob is not young (from the previous step), we can conclude that Bob is blue from R7.\n\n7. From R6, we know that if Bob is young then Bob is nice. Since we've concluded that Bob is not young, we can't determine if Bob is nice or not from this information alone.\n\nHowever, we do know that Bob is round and we have the statement \"Round, nice things are not quiet\" (R5). Since this statement implies that if a thing is nice and round, then it's not quiet, we can't conclude that Bob is nice from this information alone.\n\n8. However, we can use the information that all round things are smart (R3), that all smart things are furry (R4), and that Bob is round and furry to determine that Bob is smart.\n\n9. Since Bob is smart and round, and given the information that all round things are smart (R3) and that round, nice things are not quiet (R5), we can't conclude that Bob is nice from this information alone.\n\n10. Since Bob is round (R1), smart (from step 3), and furry (from step 3), we can't conclude that Bob is not nice from the given information alone.\n\nTherefore, we can't determine if the statement \"Bob is not nice\" is true or false from the given information alone.\n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not young(gary)",
+          "z3_formula": "not_young_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_X, nice_X), furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_X, young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(round_X, nice_X), not_quiet_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_X, smart_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not young(X) -> blue(X)",
+          "z3_formula": "Implies(And(smart_X, not_young_X), blue_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_smart_things_are_furry",
+          "z3_formula": "all_smart_things_are_furry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young_nice_things_are_furry",
+          "z3_formula": "young_nice_things_are_furry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry_implies_young",
+          "z3_formula": "furry_implies_young == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round_nice_things_are_not_quiet",
+          "z3_formula": "round_nice_things_are_not_quiet == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "all_round_things_are_smart",
+          "z3_formula": "all_round_things_are_smart == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "bob_is_round",
+          "z3_formula": "bob_is_round == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_bob, nice_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(bob_is_round, smart_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not_young(X) -> blue(X)",
+          "z3_formula": "Implies(And(smart_bob, Not(young_bob)), blue_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "bob_is_furry",
+          "z3_formula": "bob_is_furry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "bob_is_smart",
+          "z3_formula": "bob_is_smart == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "bob_is_blue",
+          "z3_formula": "bob_is_blue == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not_young_bob",
+          "z3_formula": "not_young_bob == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "bob_is_nice",
+          "z3_formula": "bob_is_nice == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "bob_is_not_nice",
+          "z3_formula": "Not(bob_is_nice)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_bob, furry_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_bob, nice_bob), furry_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_bob, smart_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(young(X)) -> blue(X)",
+          "z3_formula": "Implies(And(smart_bob, Not(young_bob)), blue_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_bob, nice_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(nice(bob))",
+          "z3_formula": "Not(nice_bob)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_bob, smart_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(young(X)) -> blue(X)",
+          "z3_formula": "Implies(And(smart_bob, Not(young_bob)), blue_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "Not(young(bob))",
+          "z3_formula": "Not(young_bob) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(round_bob, nice_bob), Not(quiet_bob))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(bob))",
+          "z3_formula": "Not(quiet_bob) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_bob, nice_bob), furry_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_bob, young_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "Not(young(bob))",
+          "z3_formula": "Not(young_bob) == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> blue(X)",
+          "z3_formula": "Implies(smart_bob, blue_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(young(X)) -> blue(X)",
+          "z3_formula": "Implies(And(smart_bob, Not(young_bob)), blue_bob)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(young(X)) -> blue(X)",
+          "z3_formula": "Implies(And(smart_bob, Not(young_bob)), blue_bob)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(round_bob, nice_bob), Not(quiet_bob))",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(bob))",
+          "z3_formula": "Not(quiet_bob) == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(round_bob, nice_bob), Not(quiet_bob))",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(bob))",
+          "z3_formula": "Not(quiet_bob) == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(gary)",
+          "z3_formula": "not_young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_X, nice_X), furry_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_X, young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(round_X, nice_X), not_quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_X, smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not young(X) -> blue(X)",
+          "z3_formula": "Implies(And(smart_X, not_young_X), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_bob, nice_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_bob, smart_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(young(X)) -> blue(X)",
+          "z3_formula": "Implies(And(smart_bob, Not(young_bob)), blue_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(round_bob, nice_bob), Not(quiet_bob))",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_bob, smart_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(young(X)) -> blue(X)",
+          "z3_formula": "Implies(And(smart_bob, Not(young_bob)), blue_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_bob, nice_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "Not(young(bob))",
+          "z3_formula": "Not(young_bob) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(young(bob))",
+          "z3_formula": "Not(young_bob) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_bob, young_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_bob, furry_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(round_bob, nice_bob), Not(quiet_bob))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_erin, furry_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_erin, young_erin)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not young(gary)",
+          "z3_formula": "not_young_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_X, nice_X), furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_X, young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_X, smart_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_X, young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(round_X, nice_X), not_quiet_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not young(X) -> blue(X)",
+          "z3_formula": "Implies(And(smart_X, not_young_X), blue_X)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(smart(X), furry(X))",
+          "z3_formula": "Implies(smart_bob, furry_bob)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_bob, nice_bob), furry_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_bob, young_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_bob, smart_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(X) & not(young(X)) -> blue(X)",
+          "z3_formula": "Implies(And(smart_bob, Not(young_bob)), blue_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_bob, furry_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_bob, nice_bob), furry_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_bob, young_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(round_bob, nice_bob), Not(quiet_bob))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_bob, smart_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & Not(young(X)) -> blue(X)",
+          "z3_formula": "Implies(And(smart_bob, Not(young_bob)), blue_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_bob, nice_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(bob)",
+          "z3_formula": "Not(nice_bob) == False",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(gary)",
+          "z3_formula": "not_young_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_X, nice_X), furry_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_X, young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_X, nice_X), furry_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_X, young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young == furry",
+          "z3_formula": "young == furry",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_X, young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young -> nice(bob)",
+          "z3_formula": "Implies(young, nice_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_bob, smart_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not young(X) -> blue(X)",
+          "z3_formula": "Implies(And(smart_bob, not_young_bob), blue_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(bob)",
+          "z3_formula": "not_nice_bob == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> smart(X)",
+          "z3_formula": "Implies(round_bob, smart_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_bob, furry_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(round_bob, nice_bob), not quiet_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_bob, nice_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & not young(X) -> blue(X)",
+          "z3_formula": "Implies(And(smart_bob, not young_bob), blue_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not young(bob)",
+          "z3_formula": "not young_bob == True",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 197,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 57
+    },
+    "maxsat_stats": {
+      "satisfied": 54,
+      "excluded": 3,
+      "total_weight": 189,
+      "solve_time_ms": 1.4867885038256645
+    },
+    "timing": {
+      "trace_gen_s": 10.52,
+      "extraction_s": 32.749,
+      "dedup_s": 2.302,
+      "maxsat_s": 0.005,
+      "total_s": 45.575
+    }
+  }
+}

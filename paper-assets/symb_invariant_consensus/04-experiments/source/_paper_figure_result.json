@@ -1,0 +1,854 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure",
+      "image_path": "",
+      "caption": "The SICA pipeline. SC selects the majority answer from $K$ traces. SICA extracts logical constraints, deduplicates, and solves MAX-SAT via Z3. Red dashed box: the independence bottleneck. Dashed arrow",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "introduction.tex"
+    },
+    {
+      "number": "2",
+      "env_type": "figure",
+      "image_path": "f2_regime_scatter",
+      "caption": "SICA $\\Delta$ (pp) vs.\\ SC baseline. Filled: $n \\geq 100$; open: $n < 100$. The intermediate-SC region (50--60\\%, shaded) contains the only positive trends (none reaching $p < 0.05$). Type~C: nominall",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments.tex"
+    },
+    {
+      "number": "3",
+      "env_type": "figure",
+      "image_path": "",
+      "caption": "Causal DAG of the self-extraction pipeline. All information about ground truth $Y$ reaching constraints $C$ is mediated by answer $A$. Approximate conditional independence ($C \\approx\\!\\!\\perp Y \\mid ",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "analysis.tex"
+    },
+    {
+      "number": "4",
+      "env_type": "figure",
+      "image_path": "figures/fig2_interventions_compact.pdf",
+      "caption": "Twenty-three of 27 training-free strategies across four categories (four additional strategies tested but omitted for clarity). All produce neutral-to-negative $\\Delta$ vs.\\ SC. Grey band: $\\pm 1$\\,pp",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "analysis.tex"
+    },
+    {
+      "number": "A.1",
+      "env_type": "figure",
+      "image_path": "figures/fig3_process_kappa_scatter.pdf",
+      "caption": "Answer agreement vs.\\ CoT cosine similarity (Mistral-7B, FOLIO, $n{=}204$). Flat regression ($r = -0.06$, $p = 0.36$); stronger models show significant positive correlation ($r = +0.24$, Qwen-14B; Tab",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.2",
+      "env_type": "figure",
+      "image_path": "f3_k_sensitivity",
+      "caption": "SICA $\\Delta$ (pp) vs.\\ number of traces $K$ for Mistral-7B on FOLIO ($n = 204$, default seed, $T = 0.7$). Non-monotonic pattern: SICA accuracy plateaus at 59.31\\% for $K \\geq 12$; the apparent $\\Delt",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.3",
+      "env_type": "figure",
+      "image_path": "figures/f6_kappa_accuracy_scatter",
+      "caption": "Independence-accuracy trade-off across aggregation methods (Mistral-7B, filled markers) and model families (LLaMA-3.1-8B, Qwen2.5-7B, Qwen2.5-14B; open markers) on FOLIO ($n = 204$). Same-model method",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.4",
+      "env_type": "figure",
+      "image_path": "figures/capability_gap_scatter",
+      "caption": "Combo gain vs.\\ capability gap (verifier standalone $-$ generator SC) at $w{=}3$ across three NLI architectures. Gain decreases monotonically (Spearman $\\rho = 1.0$, exact permutation $p = 0.003$, $n{",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    }
+  ],
+  "results": [
+    {
+      "number": "1",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "2",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "3",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "4",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.1",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.2",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.3",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.4",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    }
+  ],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/_latex_iso_1yvjc90a/main.pdf"
+    },
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'f3_k_sensitivity' which does not exist",
+          "location": "appendix.tex:540"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'f2_regime_scatter' which does not exist",
+          "location": "diagnosis.tex:122"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'f2_regime_scatter' which does not exist",
+          "location": "experiments.tex:45"
+        },
+        {
+          "kind": "placeholder",
+          "message": "Possible PLACEHOLDER text",
+          "location": "appendix.tex:17"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:diagnosis} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cross-model-ablation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cil-data} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:process-sim} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:folio-nli-bart} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:subpop-answer-type} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:future-directions} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:error-categorization} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:folio-nli-roberta} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:yield-cv} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:solutions} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:cil_main} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:text-sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:constraint-extraction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:failure-modes} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:finetuned-nli} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:subpop-constraint} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:folio-nli-combo} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:relative_tost} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:multi-seed} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:nli-combo-full} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:main-results} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:br-permutation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:logiqa-nli-combo} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:results} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:process-gradient} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:multi-nli} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:trace-independence} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:roberta-combo-full} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cross-model-kappa} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:single-trace-stats} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:logiqa-nli-roberta} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:diagnostics} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:bart-combo-full} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:cil} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:logiqa-nli-deberta} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:folio-nli-deberta} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:subpopulation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:extended-discussion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:diagnostic-toolkit} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:nli-combo-full} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:interventions} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:single-trace} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cross-model-bias} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related-work} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:extraction-taxonomy} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:k-sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:scb-evaluation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:diagnostics} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:drc} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cross-model-process} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:text-sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:ablation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:3verifier-bh} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:logiqa-nli-bart} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:pw-oracle-subtype} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:t-sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:maxsat} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:kappa-scatter} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:exp-setup} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:frontier-scb} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:mirage} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "analysis.tex:13"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:206"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:233"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:264"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:289"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:336"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:367"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:432"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:457"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:754"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:779"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:961"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1236"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1329"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1373"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1424"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1449"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "solutions.tex:17"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "4 critical, 85 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 4,
+          "num_cites": 1
+        },
+        {
+          "file": "analysis.tex",
+          "role": "result",
+          "num_numbers": 81,
+          "num_cites": 1
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 5,
+          "num_cites": 0
+        },
+        {
+          "file": "diagnosis.tex",
+          "role": "other",
+          "num_numbers": 237,
+          "num_cites": 0
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 3
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 97,
+          "num_cites": 1
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 1,
+          "num_cites": 5
+        },
+        {
+          "file": "limitations_content.tex",
+          "role": "other",
+          "num_numbers": 7,
+          "num_cites": 0
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 20,
+          "num_cites": 12
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 60
+        },
+        {
+          "file": "solutions.tex",
+          "role": "other",
+          "num_numbers": 42,
+          "num_cites": 2
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 83.3, 'experiments' reports 83.33.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 1.0, 'experiments' reports 1.000.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 1.0, 'experiments' reports 1.00.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.008, 'experiments' reports 0.00.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.5, 'experiments' reports 0.50.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.5, 'experiments' reports 0.581.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.5, 'experiments' reports 0.51.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.26, 'experiments' reports 0.267.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 2.65, 'experiments' reports 2.6.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 2.5, 'experiments' reports 2.50.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.00, 'experiments' reports 0.001.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.172, 'experiments' reports 0.17.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kamoi2024selfcorrect' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\geq",
+              "\\pm",
+              "\\sim",
+              "\\times",
+              "\\to"
+            ],
+            "analysis": [
+              "\\Delta",
+              "\\alpha",
+              "\\approx",
+              "\\arg",
+              "\\cdot",
+              "\\dagger",
+              "\\geq",
+              "\\in",
+              "\\kappa",
+              "\\ldots",
+              "\\leq",
+              "\\max",
+              "\\mid",
+              "\\neq",
+              "\\operatorname",
+              "\\overset",
+              "\\perp",
+              "\\pm",
+              "\\rho",
+              "\\setminus",
+              "\\sigma",
+              "\\sim",
+              "\\times",
+              "\\to"
+            ],
+            "conclusion": [
+              "\\leq",
+              "\\times"
+            ],
+            "diagnosis": [
+              "\\Delta",
+              "\\approx",
+              "\\dag",
+              "\\dagger",
+              "\\geq",
+              "\\in",
+              "\\kappa",
+              "\\leq",
+              "\\pm",
+              "\\sim",
+              "\\times"
+            ],
+            "discussion": [
+              "\\leq"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\geq",
+              "\\in",
+              "\\kappa",
+              "\\leq",
+              "\\pm",
+              "\\sim",
+              "\\times"
+            ],
+            "introduction": [
+              "\\pm"
+            ],
+            "limitations_content": [
+              "\\sim",
+              "\\times"
+            ],
+            "method": [
+              "\\alpha",
+              "\\approx",
+              "\\arg",
+              "\\geq",
+              "\\in",
+              "\\kappa",
+              "\\ldots",
+              "\\max",
+              "\\pm",
+              "\\setminus",
+              "\\sigma",
+              "\\texttt",
+              "\\times"
+            ],
+            "related_work": [
+              "\\kappa",
+              "\\to"
+            ],
+            "solutions": [
+              "\\Delta",
+              "\\geq",
+              "\\leq",
+              "\\rho",
+              "\\sim",
+              "\\times"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 13,
+        "info": 1
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/_figure_backups/20260524_052002",
+  "error": "",
+  "timestamp": "2026-05-24T05:33:21.910721+00:00"
+}

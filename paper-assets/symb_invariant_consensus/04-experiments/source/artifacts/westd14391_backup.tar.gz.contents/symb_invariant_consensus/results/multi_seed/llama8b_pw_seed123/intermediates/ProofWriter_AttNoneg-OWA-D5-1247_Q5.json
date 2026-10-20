@@ -1,0 +1,801 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1247_Q5",
+    "problem": "Bob is blue. Bob is furry. Dave is white. Erin is green. Erin is white. Gary is green. Gary is red. If Erin is furry and Erin is blue then Erin is big. Red things are round. If something is blue and big then it is white. Red, furry things are white. If something is round then it is furry. If something is furry and green then it is blue. Blue, white things are furry. If something is green then it is red.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is furry.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nFurry($x, bool) ::: Is x furry?\nWhite($x, bool) ::: Is x white?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nBig($x, bool) ::: Is x big?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBlue(Bob, True) ::: Bob is blue.\nFurry(Bob, True) ::: Bob is furry.\nWhite(Dave, True) ::: Dave is white.\nGreen(Erin, True) ::: Erin is green.\nWhite(Erin, True) ::: Erin is white.\nGreen(Gary, True) ::: Gary is green.\nRed(Gary, True) ::: Gary is red.\n\nRules:\nFurry(Erin, True) && Blue(Erin, True) >>> Big(Erin, True) ::: If Erin is furry and Erin is blue then Erin is big.\nRed($x, True) >>> Round($x, True) ::: Red things are round.\nBlue($x, True) && Big($x, True) >>> White($x, True) ::: If something is blue and big then it is white.\nRed($x, True) && Furry($x, True) >>> White($x, True) ::: Red, furry things are white.\nRound($x, True) >>> Furry($x, True) ::: If something is round then it is furry.\nFurry($x, True) && Green($x, True) >>> Blue($x, True) ::: If something is furry and green then it is blue.\nBlue($x, True) && White($x, True) >>> Furry($x, True) ::: Blue, white things are furry.\nGreen($x, True) >>> Red($x, True) ::: If something is green then it is red.\n\nQuery:\nFurry(Gary, True) ::: Gary is furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 107.0,
+      "Unknown": 87.0
+    },
+    "answer_counts": {
+      "Unknown": 1,
+      "True": 11
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Gary is furry\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nGiven statements:\n1. Bob is blue. Bob is furry. \n2. Dave is white. \n3. Erin is green. Erin is white. \n4. Gary is green. Gary is red. \n5. If Erin is furry and Erin is blue then Erin is big. \n6. Red things are round. \n7. If something is blue and big then it is white. \n8. Red, furry things are white. \n9. If something is round then it is furry. \n10. If something is furry and green then it is blue. \n11. Blue, white things are furry. \n12. If something is green then it is red.\n\nWe are asked to determine if Gary is furry.\n\nFirst, let's use the statements to find out if Gary is blue, white, or round, as these properties might be related to being furry.\n\nFrom statement 4, we know Gary is green and red.\n\nUsing statement 12, we know that if something is green then it is red. This is already stated in statement 4, so it does not provide new information.\n\nUsing statement 10, we know that if something is furry and green then it is blue. Since Gary is green, Gary could potentially be blue if it is furry.\n\nNow, let's see if Gary is white or round, as these properties might help us determine if Gary is furry.\n\nFrom statement 4, we know Gary is red. Using statement 6, we know that red things are round.\n\nUsing statement 9, we know that if something is round then it is furry. Since Gary is round, Gary is potentially furry.\n\nNow, let's see if Gary is blue or white, as these properties might help us determine if Gary is furry.\n\nFrom statement 4, we know Gary is red, which means Gary is not white (since white and red are mutually exclusive in this context).\n\nUsing statement 7, we know that if something is blue and big then it is white. However, since Gary is not white, it does not have to be big.\n\nUsing statement 11, we know that blue, white things are furry. However, since Gary is not white, it does not have to be blue.\n\nUsing statement 8, we know that red, furry things are white. However, since Gary is not white, it does not have to be furry.\n\nHowever, we know that Gary is round, and using statement 9, we know that if something is round then it is furry. So, Gary is potentially furry.\n\nHowever, statement 10 says that if something is furry and green then it is blue. We know Gary is green, but we do not know if Gary is furry. If Gary is furry, then it is blue, but we do not know if Gary is blue.\n\nNow, let's analyze the statement \"Gary is furry\" with the given statements.\n\nIf Gary is furry, then it is blue (statement 10). But we cannot determine if Gary is blue.\n\nIf Gary is not furry, then we do not have enough information to determine if Gary is white or not.\n\nHowever, statement 9 says that if something is round then it is furry, and Gary is round. But, we know that Gary is red, and statement 8 says that red, furry things are white. However, this statement does not necessarily imply that Gary is furry.\n\nBut, if Gary is not furry, then it does not have to be round. However, we know that Gary is red, and statement 6 says that red things are round. However, this statement does not necessarily imply that Gary is not furry.\n\nHowever, we can analyze the statement \"Gary is furry\" with the statements that do not mention \"furry\".\n\nFrom statement 4, we know that Gary is green and red. Using statement 12, we know that if something is green then it is red.\n\nFrom statement 4, we know that Gary is red. Using statement 6, we know that red things are round.\n\nUsing statement 9, we know that if something is round then it is furry. Since Gary is round, Gary is potentially furry.\n\nHowever, statement 10 says that if something is furry and green then it is blue. We know Gary is green, but we do not know if Gary is furry.\n\nHowever, statement 7 says that if something is blue and big then it is white. But we do not know if Gary is big or blue.\n\nBut, statement 11 says that blue, white things are furry. But we do not know if Gary is white or blue.\n\nHowever, statement 8 says that red, furry things are white. But we do not know if Gary is furry.\n\nFrom statement 4, we know that Gary is green and red. Using statement 12, we know that if something is green then it is red.\n\nFrom statement 4, we know that Gary is red. Using statement 6, we know that red things are round.\n\nUsing statement 9, we know that if something is round then it is furry. Since Gary is round, Gary is potentially furry.\n\nHowever, statement 10 says that if something is furry and green then it is blue. We know Gary is green, but we do not know if Gary is furry.\n\nHowever, statement 7 says that if something is blue and big then it is white. But we do not know if Gary is big or blue.\n\nBut, statement 11 says that blue, white things are furry. But we do not know if Gary is white or blue.\n\nHowever, statement 8 says that red, furry things are white. But we do not know if Gary is furry.\n\nWe can see that we cannot determine if Gary is furry from the given statements.\n\nTherefore, the final answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is furry\" is true, false, or unknown, we need to use the given information and logical reasoning.\n\nFrom the information given:\n\n1. Gary is green. (Gary is green)\n2. Gary is red. (Gary is red)\n3. If something is green then it is red. (Rule 1)\n   - Since Gary is green, we can conclude that Gary is indeed red. However, we also need to consider the other rule: Gary is red. \n4. Red things are round. (Rule 2)\n   - Since Gary is red, we can conclude that Gary is round.\n\nNow, we need to determine if Gary is furry or not.\n\n1. Gary is round. (Gary is round, as concluded earlier)\n2. If something is round then it is furry. (Rule 3)\n   - Since Gary is round, we can conclude that Gary is furry.\n\nSo, based on the given information, we can conclude that Gary is furry.\n\nTherefore, the final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is furry\" is true, false, or unknown, we need to analyze the given conditions and apply them step by step to Gary.\n\nGiven conditions:\n1. Bob is blue. Bob is furry.\n2. Dave is white.\n3. Erin is green. Erin is white.\n4. Gary is green. Gary is red.\n5. If Erin is furry and Erin is blue then Erin is big.\n6. Red things are round.\n7. If something is blue and big then it is white.\n8. Red, furry things are white.\n9. If something is round then it is furry.\n10. If something is furry and green then it is blue.\n11. Blue, white things are furry.\n12. If something is green then it is red.\n\nNow, let's analyze the statement \"Gary is furry\" using these conditions:\n\nFrom condition 4, we know Gary is green. We need to find out if this makes Gary furry.\n\nCondition 10 states: \"If something is furry and green then it is blue.\" \nHowever, we don't have the condition that says \"If something is green then it is furry.\" But we do have the condition that says \"If something is green then it is red.\" (condition 12)\n\nSince Gary is green (condition 4) and we know that green things are red (condition 12), we can conclude that Gary is red.\n\nNow, let's see if Gary being red makes him furry. From condition 6, we know red things are round, and from condition 9, we know that round things are furry.\n\nTherefore, since Gary is red (which makes him round) and round things are furry (condition 9), we can conclude that Gary is furry.\n\nSo, the final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to break it down step by step based on the given information.\n\n1. Given information:\n   - Bob is blue. \n   - Bob is furry.\n   - Dave is white.\n   - Erin is green. \n   - Erin is white.\n   - Gary is green. \n   - Gary is red.\n   - If Erin is furry and Erin is blue then Erin is big.\n   - Red things are round.\n   - If something is blue and big then it is white.\n   - Red, furry things are white.\n   - If something is round then it is furry.\n   - If something is furry and green then it is blue.\n   - Blue, white things are furry.\n   - If something is green then it is red.\n\n2. Let's start with Gary's characteristics: Gary is green and Gary is red.\n\n3. From the given information, if something is green, then it is red. This matches Gary's characteristics. However, we still need to consider other possibilities.\n\n4. Since Gary is red, and red things are round, we can conclude that Gary is round.\n\n5. Now, since something that is round is furry, we can conclude that Gary is furry.\n\nTherefore, based on the given information and logical deductions, the statement \"Gary is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is furry\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Gary is green. \n2. Gary is red. \nFrom statement 1 and 6: If something is green then it is red. We can conclude that Gary is indeed red.\n\nNow, let's focus on determining whether Gary is furry. We have the following statements:\n \n1. Gary is red. \n2. Red things are round. \nFrom statement 2, we can conclude that Gary is round.\n\n3. If something is round then it is furry.\nFrom statement 3, we can conclude that Gary is furry.\n\nSo, by analyzing the given statements and their implications, we find that the statement \"Gary is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Gary is furry, we need to analyze the given statements and their implications.\n\n1. Gary is green. Gary is red.\n   From these statements, we can conclude that Gary is both green and red.\n\n2. If something is green then it is red. \n   This statement supports our previous conclusion that Gary is red, as it is green.\n\n3. Gary is green. Gary is red. \n   Since Gary is both green and red, and from statement 2, we can conclude that Gary is red.\n\n4. Red things are round.\n   Since Gary is red, this statement implies that Gary is round.\n\n5. If something is round then it is furry.\n   As Gary is round, this statement implies that Gary is furry.\n\nBased on the given statements and their implications, we can conclude that Gary is furry.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is green. (Given)\n2. If something is green then it is red. (Given)\n   Therefore, Gary is red. (From rule 2)\n\n3. Gary is red. (From step 2)\n4. Red things are round. (Given)\n   Therefore, Gary is round. (From rule 3)\n\n5. If something is round then it is furry. (Given)\n   Therefore, Gary is furry. (From rule 4)\n\nSince we have deduced that Gary is furry using the given information, the statement \"Gary is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is furry\" is true, false, or unknown, we need to analyze the given conditions and apply them step by step.\n\nGiven conditions:\n1. Bob is blue. Bob is furry.\n2. Dave is white.\n3. Erin is green. Erin is white.\n4. Gary is green. Gary is red.\n5. If Erin is furry and Erin is blue then Erin is big.\n6. Red things are round.\n7. If something is blue and big then it is white.\n8. Red, furry things are white.\n9. If something is round then it is furry.\n10. If something is furry and green then it is blue.\n11. Blue, white things are furry.\n12. If something is green then it is red.\n\nNow, let's analyze the statement \"Gary is furry\" using these conditions.\n\nFrom condition 4, we know Gary is green and Gary is red. \n\nFrom condition 12, since Gary is green, it is also red (Gary is green then it is red).\n\nNow, let's use condition 10: If something is furry and green then it is blue. We need to check if Gary is furry or not. If Gary is furry, then it is blue (according to condition 10). \n\nIf Gary is blue, then we can use condition 7: If something is blue and big then it is white. But we do not have any information about Gary being big. So, we cannot conclude that Gary is white based on this condition.\n\nHowever, we do not need to check the rest of the conditions. Let's go back to condition 10: If something is furry and green then it is blue. We are given that Gary is green. If Gary is furry, then it is blue. We also know from condition 4 that Gary is red. Now we have a new condition: If Gary is blue and Gary is red then Gary is furry. We know Gary is blue and Gary is red, therefore Gary is furry.\n\nNow, the statement \"Gary is furry\" can be concluded as true based on the given conditions.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply logical deductions to determine the characteristics of Gary.\n\n1. Gary is green. (Given statement)\n2. If something is green then it is red. (Given statement)\n   So, Gary is red. (Logical deduction)\n\n3. Gary is red. (From step 2)\n4. Red things are round. (Given statement)\n   So, Gary is round. (Logical deduction)\n\n5. Gary is round. (From step 4)\n6. If something is round then it is furry. (Given statement)\n   So, Gary is furry. (Logical deduction)\n\nTherefore, the statement \"Gary is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is furry\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Gary is green. Gary is red. \nFrom this, we know that Gary is both green and red. \n\n2. If something is green then it is red. \nThis statement is true, and since Gary is green, we can conclude that Gary is indeed red.\n\n3. Gary is red. Red things are round. \nThis implies that Gary is round.\n\n4. If something is round then it is furry. \nThis statement is true, and since Gary is round, we can conclude that Gary is furry.\n\nFrom our analysis, we have found that Gary is indeed furry, so the statement \"Gary is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether Gary is furry, we need to analyze the given information step by step.\n\n1. Gary is green. (Given)\n2. If something is green then it is red. (Given)\n   So, Gary is red. (From 1 and 2)\n\n3. Gary is red. (From 2)\n   Red things are round. (Given)\n   So, Gary is round. (From 3)\n\n4. Gary is round. (From 3)\n   If something is round then it is furry. (Given)\n   So, Gary is furry. (From 4)\n\nHowever, let's verify the conclusion by checking if any of the given conditions conflict with the conclusion. \n\n1. Gary is green. (Given)\n   If something is green then it is red. (Given)\n   So, Gary is red. (From 1 and 2)\n\n2. Gary is red and Gary is green. (From 1 and 2, then 1)\n   Gary is green. (From 1)\n   If something is green then it is red. (Given)\n   So, Gary is red. (From 1 and 2)\n   Gary is red. (From 2)\n   Gary is green. (From 1)\n   Gary is furry. (From 4)\n\nHowever, if Gary is green and Gary is furry then Erin is big. (From the given conditions)\nSo, if Erin is big, then Erin is blue and Erin is furry. (From the given conditions)\nGary is furry. (From 4)\nGary is furry and Erin is furry. (From the given conditions)\nErin is furry. (From 4)\nErin is blue and Erin is furry. (From the given conditions)\nSo, Erin is blue. (From the given conditions)\nErin is big. (From the given conditions)\nSo, Erin is blue and Erin is big. (From the given conditions)\nErin is white. (From the given conditions)\n\nGary is furry and Erin is furry. (From the given conditions)\nGary is furry and Erin is white. (From the given conditions)\nGary is furry and white. (From the given conditions)\nErin is white. (From the given conditions)\nErin is furry. (From 4)\nErin is blue. (From the given conditions)\nBlue, white things are furry. (From the given conditions)\nSo, Gary is furry and white. (From the given conditions)\nGary is furry and white. (From the given conditions)\nHowever, Gary is furry. (From 4)\nSo, the final answer is \\boxed{True}.",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is green. (Direct information)\n2. Gary is red. (Direct information)\n3. If something is green, then it is red. (Given rule)\n   - From step 1 and step 3, we can confirm that Gary is indeed red, but we already knew this from step 2. However, we can conclude that the statement \"Gary is green\" implies that Gary is also red, which is consistent with our information.\n\n4. Gary is red. (From step 2)\n5. Red things are round. (Given rule)\n   - From step 4, we can conclude that Gary is round.\n\n6. If something is round, then it is furry. (Given rule)\n   - From step 5, we can conclude that Gary is furry.\n\nHowever, we initially stated that Gary is green, and then we found that Gary is red, which is consistent with the rule that if something is green, then it is red. Now, we will analyze the statements about Gary being furry using the rules provided.\n\n7. If something is furry and green, then it is blue. (Given rule)\n   - We cannot directly apply this rule to Gary because it also says Gary is red. We cannot apply the rule to Gary because it does not directly state that Gary is furry and green at the same time.\n\n8. Gary is green. (Direct information)\n9. If something is green, then it is red. (Given rule)\n   - We can confirm that Gary is indeed red from step 9.\n\n10. Gary is red. (From step 9)\n11. Red, furry things are white. (Given rule)\n    - From step 10, we can conclude that Gary is white if Gary is furry. However, we do not know if Gary is furry or not yet.\n\n12. Gary is green. (Direct information)\n13. Gary is red. (Direct information)\n14. If something is furry and green, then it is blue. (Given rule)\n    - We can confirm that if Gary is furry, then Gary is blue.\n\nNow, we need to determine whether Gary is furry or not. We have two pieces of information about Gary's color: Gary is green, and Gary is red.\n\nFrom step 6, we know that if Gary is round, then Gary is furry. We also know that Gary is red, and red things are round. However, we cannot directly apply the rules to determine if Gary is furry or not yet.\n\n15. Gary is red. (From step 10)\n16. Red things are round. (Given rule)\n    - We can confirm that Gary is round from step 16.\n\n17. If something is round, then it is furry. (Given rule)\n    - We can confirm that Gary is furry from step 17.\n\nNow that we know Gary is furry, we can apply the rules to determine if Gary is blue, red, or white.\n\n18. Gary is furry. (From step 17)\n19. Gary is green. (Direct information)\n20. If something is furry and green, then it is blue. (Given rule)\n    - We can confirm that Gary is blue from step 20.\n\nHowever, we also know that Gary is red, and we need to analyze this information further.\n\n21. Gary is red. (Direct information)\n22. Red, furry things are white. (Given rule)\n    - We can confirm that Gary is white from step 22.\n\nNow that we know Gary is furry, we can conclude the following:\n\nGary is furry, and Gary is white, and Gary is blue, and Gary is red.\n\nThe statement \"Gary is furry\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(green_gary, furry_gary), blue_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_gary, furry_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_gary, round_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_gary, white_gary), furry_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(red_gary, furry_gary), white_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_gary, red_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_gary, big_gary), white_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_gary, white_gary), furry_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_gary, red_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_gary, round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_gary, furry_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_erin, furry_erin), big_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_X, furry_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_X, furry_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_gary, red_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_X, furry_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_erin, blue_erin), big_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_gary, round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_X, big_X), white_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(red_X, furry_X), white_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_gary, furry_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_X, green_X), blue_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_X, white_X), furry_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_X, red_X)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_gary, red_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_gary, round_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_gary, furry_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_gary, red_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_gary, round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_gary, furry_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_gary, red_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_gary, round_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_gary, furry_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_gary, red_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_gary, green_gary), blue_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_gary, red_gary), furry_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_gary, red_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_gary, round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_gary, furry_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_gary, red_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_gary, round_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_gary, furry_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 4
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_gary, red_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_gary, round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_gary, furry_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_gary, green_gary), blue_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_gary, green_gary), blue_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> white(X)",
+          "z3_formula": "Implies(furry_gary, white_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 14
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 112,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 29
+    },
+    "maxsat_stats": {
+      "satisfied": 29,
+      "excluded": 0,
+      "total_weight": 112,
+      "solve_time_ms": 0.9325537830591202
+    },
+    "timing": {
+      "trace_gen_s": 14.392,
+      "extraction_s": 36.33,
+      "dedup_s": 0.601,
+      "maxsat_s": 0.003,
+      "total_s": 51.326
+    }
+  }
+}

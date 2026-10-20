@@ -1,0 +1,528 @@
+{
+  "problem": {
+    "id": "folio_69",
+    "problem": "Given the following premises:\nBadults is a British Sitcom series, starring members of Pappy's. Badults piloted in July 2013 on BBC Three. The Working title \"The Secret Dude Society\" was used for Badults. Andrew Collins was the script editor for Badults\n\nDetermine whether the following conclusion is true, false, or uncertain:\nAndrew Collins was the script editor for a series with the working title \"The Secret Dude Society\".",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (MemberOf(x, pappys) \u2227 BritishSitcom(badults) \u2227 Series(badults) \u2227 Starring(badults, x))",
+      "PilotedIn(badults, july2013) \u2227 PilotedOn(badults, bbcthree)",
+      "WorkingTitle(thesecretdudesociety, badults)",
+      "ScriptEditor(andrewcollins) \u2227 ScriptEditorFor(andrewcollins, badults)"
+    ],
+    "conclusion_fol": "\u2203x (ScriptEditorFor(andrewcollins, x) \u2227 Series(x) \u2227 WorkingTitle(thesecretdudesociety, x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 66.0
+    },
+    "answer_counts": {
+      "True": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's. \nThis premise provides information about the series Badults, but it does not provide any information about its working title or script editor.\n\nPremise 2: Badults piloted in July 2013 on BBC Three.\nThis premise provides the piloting date and the channel of the series Badults, but it still does not provide any information about its working title or script editor.\n\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\nThis premise explicitly states that the working title of the series Badults was \"The Secret Dude Society.\" However, it does not mention Andrew Collins as the script editor.\n\nPremise 4: Andrew Collins was the script editor for Badults\nThis premise provides the information that Andrew Collins was the script editor for the series Badults.\n\nTo determine the conclusion, we need to connect the premises about the working title and the script editor. \n\nConclusion: Andrew Collins was the script editor for a series with the working title \"The Secret Dude Society\".\nSince we have a premise that states the working title of Badults was \"The Secret Dude Society\" (Premise 3) and another premise that states Andrew Collins was the script editor for Badults (Premise 4), we can logically conclude that Andrew Collins was the script editor for a series with the working title \"The Secret Dude Society.\"\n\nTherefore, the conclusion is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they support the conclusion.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's.\nPremise 2: Badults piloted in July 2013 on BBC Three.\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\nPremise 4: Andrew Collins was the script editor for Badults.\n\nFrom the premises, we can infer the following:\n\n- Badults has a working title \"The Secret Dude Society\" (Premise 3).\n- Andrew Collins was the script editor for Badults (Premise 4).\n\nNow, let's analyze the conclusion: \nAndrew Collins was the script editor for a series with the working title \"The Secret Dude Society\".\n\nSince we have two premises that directly relate to the conclusion:\n- The working title \"The Secret Dude Society\" is used for Badults (Premise 3).\n- Andrew Collins was the script editor for Badults (Premise 4).\n\nWe can conclude that the working title is indeed \"The Secret Dude Society\" for Badults, and Andrew Collins was the script editor for Badults. Therefore, it is reasonable to conclude that Andrew Collins was the script editor for a series with the working title \"The Secret Dude Society\".\n\nThe conclusion is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's. \nPremise 2: Badults piloted in July 2013 on BBC Three.\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\nPremise 4: Andrew Collins was the script editor for Badults.\n\nFrom Premise 3, we know that the working title for Badults was \"The Secret Dude Society.\"\nFrom Premise 4, we know that Andrew Collins was the script editor for Badults.\n\nWe can use these premises to conclude that Andrew Collins was the script editor for a series with the working title \"The Secret Dude Society.\"\n\nTherefore, the conclusion is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the truth of the conclusion, let's analyze the given premises step by step:\n\n1. Badults is a British Sitcom series.\n   - This premise doesn't provide any direct information about the working title or the script editor.\n\n2. Badults piloted in July 2013 on BBC Three.\n   - This premise gives us the airing date and channel of the series, but it doesn't provide any information about the working title or the script editor.\n\n3. The Working title \"The Secret Dude Society\" was used for Badults.\n   - This premise directly states that the working title \"The Secret Dude Society\" was used for Badults. \n\n4. Andrew Collins was the script editor for Badults.\n   - This premise directly states that Andrew Collins was the script editor for Badults.\n\nNow, let's analyze the conclusion: \"Andrew Collins was the script editor for a series with the working title 'The Secret Dude Society'.\"\n\nFrom premise 3, we know that \"The Secret Dude Society\" was the working title for Badults. From premise 4, we know that Andrew Collins was the script editor for Badults. Since \"The Secret Dude Society\" is the working title for Badults, and Andrew Collins is the script editor for Badults, we can conclude that Andrew Collins was indeed the script editor for a series with the working title \"The Secret Dude Society\".\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's break down the information given and apply logical reasoning.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's.\nPremise 2: Badults piloted in July 2013 on BBC Three.\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\nPremise 4: Andrew Collins was the script editor for Badults.\n\nNow, we need to evaluate the conclusion: Andrew Collins was the script editor for a series with the working title \"The Secret Dude Society\".\n\nWe know from Premise 3 that the working title \"The Secret Dude Society\" was used for Badults. This directly links the working title to the series Badults.\n\nFrom Premise 4, we know that Andrew Collins was the script editor for Badults.\n\nSince we have established a direct connection between the working title \"The Secret Dude Society\" and the series Badults (Premise 3), and we know that Andrew Collins was the script editor for Badults (Premise 4), we can logically infer that Andrew Collins was indeed the script editor for the series with the working title \"The Secret Dude Society\".\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises provided.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's.\nPremise 2: Badults piloted in July 2013 on BBC Three.\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\nPremise 4: Andrew Collins was the script editor for Badults.\n\nFrom the premises, we can infer the following information:\n\n1. Badults is a British Sitcom series.\n2. Badults has the working title \"The Secret Dude Society\".\n3. Andrew Collins is the script editor for Badults.\n\nNow, let's examine the conclusion: \n\"Andrew Collins was the script editor for a series with the working title 'The Secret Dude Society'.\"\n\nThe conclusion states \"a series with the working title 'The Secret Dude Society'\", but from the premises, we know that the series is actually called \"Badults\". However, the working title of the series is indeed \"The Secret Dude Society\".\n\nSince the conclusion is based on the correct information from the premises, we can determine that the conclusion is:\n\nTrue\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's.\nPremise 2: Badults piloted in July 2013 on BBC Three.\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\nPremise 4: Andrew Collins was the script editor for Badults.\n\nFrom Premise 4, we know that Andrew Collins was the script editor for Badults.\n\nFrom Premise 3, we know that the working title \"The Secret Dude Society\" was used for Badults.\n\nNow, let's examine the conclusion: Andrew Collins was the script editor for a series with the working title \"The Secret Dude Society\".\n\nWe have two pieces of information:\n\n1. Andrew Collins was the script editor for Badults.\n2. The working title \"The Secret Dude Society\" was used for Badults.\n\nWe can conclude that Andrew Collins was the script editor for a series with the working title \"The Secret Dude Society\" because:\n\n- The working title \"The Secret Dude Society\" was used for Badults (Premise 3).\n- Andrew Collins was the script editor for Badults (Premise 4).\n\nSince there is no information that suggests Andrew Collins was the script editor for a different series with the same working title, we can confidently conclude that the statement is true.\n\nTherefore, the conclusion is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's. \nPremise 2: Badults piloted in July 2013 on BBC Three.\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\nPremise 4: Andrew Collins was the script editor for Badults.\n\nFrom Premise 3, we know that the working title \"The Secret Dude Society\" was used for Badults. This directly relates to the conclusion, which states that Andrew Collins was the script editor for a series with the working title \"The Secret Dude Society\".\n\nSince Premise 4 states that Andrew Collins was the script editor for Badults, and Premise 3 states that the working title \"The Secret Dude Society\" was used for Badults, we can infer that Andrew Collins was indeed the script editor for a series with the working title \"The Secret Dude Society\".\n\nTherefore, the conclusion is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's. \n- This premise doesn't provide any information about the script editor or the working title.\n\nPremise 2: Badults piloted in July 2013 on BBC Three.\n- This premise still doesn't provide any information about the script editor or the working title.\n\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\n- Now we have information about the working title, which is \"The Secret Dude Society\" for Badults.\n\nPremise 4: Andrew Collins was the script editor for Badults.\n- This premise tells us that Andrew Collins was the script editor for Badults.\n\nNow, we need to determine whether the conclusion is true, false, or uncertain based on the given premises.\n\nConclusion: Andrew Collins was the script editor for a series with the working title \"The Secret Dude Society\".\n- Since we know from Premise 4 that Andrew Collins was the script editor for Badults, and from Premise 3 that the working title for Badults was \"The Secret Dude Society\", we can conclude that the statement is true.\n\nFinal Answer: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's.\nPremise 2: Badults piloted in July 2013 on BBC Three.\nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults.\nPremise 4: Andrew Collins was the script editor for Badults.\n\nFrom Premise 3, we know that the working title of Badults was \"The Secret Dude Society.\"\nFrom Premise 4, we know that Andrew Collins was the script editor for Badults.\n\nNow, we need to determine if Andrew Collins was the script editor for a series with the working title \"The Secret Dude Society.\"\nWe can conclude that Andrew Collins was indeed the script editor for Badults (from Premise 4).\nSince the working title of Badults was \"The Secret Dude Society\" (from Premise 3), it logically follows that Andrew Collins was the script editor for a series with the working title \"The Secret Dude Society.\"\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they support the conclusion.\n\nPremises:\n1. Badults is a British Sitcom series, starring members of Pappy's.\n2. Badults piloted in July 2013 on BBC Three.\n3. The Working title \"The Secret Dude Society\" was used for Badults.\n4. Andrew Collins was the script editor for Badults.\n\nConclusion: Andrew Collins was the script editor for a series with the working title \"The Secret Dude Society\".\n\nLet's break it down:\n\n- From premise 1, we know that Badults is the series, but we don't know anything about its working title.\n- From premise 2, we know the pilot date of Badults, but again, we don't know about its working title.\n- From premise 3, we know that the working title of Badults was \"The Secret Dude Society\".\n- From premise 4, we know that Andrew Collins was the script editor for Badults.\n\nNow, looking at the conclusion, it mentions a series with the working title \"The Secret Dude Society\". We already know from premise 3 that Badults had this working title, and from premise 4 that Andrew Collins was its script editor.\n\nTherefore, since we know that Badults had the working title \"The Secret Dude Society\" and Andrew Collins was its script editor, we can conclude that Andrew Collins was indeed the script editor for a series with the working title \"The Secret Dude Society\".\n\nFinal Answer: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Badults is a British Sitcom series, starring members of Pappy's. \nPremise 2: Badults piloted in July 2013 on BBC Three. \nPremise 3: The Working title \"The Secret Dude Society\" was used for Badults. \nPremise 4: Andrew Collins was the script editor for Badults.\n\nFrom Premise 3, we know that \"The Secret Dude Society\" was the working title for Badults. \nFrom Premise 4, we know that Andrew Collins was the script editor for Badults.\n\nNow, we need to determine if Andrew Collins was the script editor for a series with the working title \"The Secret Dude Society\".\n\nSince \"The Secret Dude Society\" is the working title for Badults, and Andrew Collins was the script editor for Badults, it is reasonable to conclude that Andrew Collins was the script editor for a series with the working title \"The Secret Dude Society\".\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_july_2013",
+          "z3_formula": "badults_piloted_july_2013 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_badults_secret_dude_society",
+          "z3_formula": "working_title_badults_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_script_editor",
+          "z3_formula": "andrew_collins_script_editor == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "andrew_collins_script_editor_for_badults_secret_dude_society",
+          "z3_formula": "andrew_collins_script_editor_for_badults_secret_dude_society == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "british_sitcom(badults)",
+          "z3_formula": "british_sitcom_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pappys_members(badults)",
+          "z3_formula": "pappys_members_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_july_2013(badults)",
+          "z3_formula": "piloted_july_2013_badults == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_badults",
+          "z3_formula": "working_title_badults == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor_badults",
+          "z3_formula": "script_editor_badults == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "british_sitcom(X) -> pappys_members(X)",
+          "z3_formula": "Implies(british_sitcom_badults, pappys_members_badults)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "piloted_july_2013(X) -> working_title(X)",
+          "z3_formula": "Implies(piloted_july_2013_badults, working_title_badults)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "working_title_badults",
+          "z3_formula": "working_title_badults == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "script_editor_badults",
+          "z3_formula": "script_editor_badults == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "british_sitcom(badults)",
+          "z3_formula": "british_sitcom_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "pappys_members(badults)",
+          "z3_formula": "pappys_members_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_in_july_2013(badults)",
+          "z3_formula": "piloted_in_july_2013_badults == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_badults == the_secret_dude_society",
+          "z3_formula": "working_title_badults == the_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor_badults == andrew_collins",
+          "z3_formula": "script_editor_badults == andrew_collins == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "working_title(X) == Y -> script_editor(X) == Z",
+          "z3_formula": "Implies(working_title_badults == the_secret_dude_society, script_editor_badults == andrew_collins)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "script_editor_badults == andrew_collins",
+          "z3_formula": "script_editor_badults == andrew_collins == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "british_sitcom(badults)",
+          "z3_formula": "british_sitcom_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "aired_in_july_2013(badults, bbc_three)",
+          "z3_formula": "aired_in_july_2013_badults_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title(badults, the_secret_dude_society)",
+          "z3_formula": "working_title_badults_the_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor(badults, andrew_collins)",
+          "z3_formula": "script_editor_badults_andrew_collins == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "script_editor(the_secret_dude_society, andrew_collins)",
+          "z3_formula": "script_editor_the_secret_dude_society_andrew_collins == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_july_2013",
+          "z3_formula": "badults_piloted_july_2013 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_secret_dude_society",
+          "z3_formula": "working_title_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_script_editor",
+          "z3_formula": "andrew_collins_script_editor == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "working_title_secret_dude_society -> badults",
+          "z3_formula": "Implies(working_title_secret_dude_society, badults)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "andrew_collins_script_editor_for_secret_dude_society",
+          "z3_formula": "andrew_collins_script_editor_for_secret_dude_society == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "british_sitcom(badults)",
+          "z3_formula": "british_sitcom_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_in_july_2013(badults)",
+          "z3_formula": "piloted_in_july_2013_badults == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_the_secret_dude_society(badults)",
+          "z3_formula": "working_title_the_secret_dude_society_badults == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor_andrew_collins(badults)",
+          "z3_formula": "script_editor_andrew_collins_badults == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "script_editor_andrew_collins(series_with_working_title_the_secret_dude_society)",
+          "z3_formula": "script_editor_andrew_collins_series_with_working_title_the_secret_dude_society == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "script_editor(andrew_collins, badults)",
+          "z3_formula": "script_editor_andrew_collins_badults == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "working_title(badults, the_secret_dude_society)",
+          "z3_formula": "working_title_badults_the_secret_dude_society == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "british_sitcom(badults)",
+          "z3_formula": "british_sitcom_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_in_july_2013(badults)",
+          "z3_formula": "piloted_in_july_2013_badults == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title(badults, the_secret_dude_society)",
+          "z3_formula": "working_title_badults_the_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor(badults, andrew_collins)",
+          "z3_formula": "script_editor_badults_andrew_collins == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "working_title(X, Y) -> script_editor(X, Z)",
+          "z3_formula": "Implies(working_title_badults_the_secret_dude_society, script_editor_badults_andrew_collins)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "script_editor(badults, andrew_collins)",
+          "z3_formula": "script_editor_badults_andrew_collins == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_july_2013",
+          "z3_formula": "badults_piloted_july_2013 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_badults_secret_dude_society",
+          "z3_formula": "working_title_badults_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_script_editor_badults",
+          "z3_formula": "andrew_collins_script_editor_badults == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "british_series(badults)",
+          "z3_formula": "british_series_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "starring_members_of_pappys(badults)",
+          "z3_formula": "starring_members_of_pappys_badults == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "piloted_in_july_2013_on_bbc_three(badults)",
+          "z3_formula": "piloted_in_july_2013_on_bbc_three_badults == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_secret_dude_society(badults)",
+          "z3_formula": "working_title_secret_dude_society_badults == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "script_editor_andrew_collins(badults)",
+          "z3_formula": "script_editor_andrew_collins_badults == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "working_title_secret_dude_society(X) -> script_editor_andrew_collins(X)",
+          "z3_formula": "Implies(working_title_secret_dude_society_badults, script_editor_andrew_collins_badults)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_july_2013",
+          "z3_formula": "badults_piloted_july_2013 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "working_title_badults_secret_dude_society",
+          "z3_formula": "working_title_badults_secret_dude_society == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_script_editor_badults",
+          "z3_formula": "andrew_collins_script_editor_badults == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "andrew_collins_script_editor_series_secret_dude_society",
+          "z3_formula": "andrew_collins_script_editor_series_secret_dude_society == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "badults_is_british_sitcom",
+          "z3_formula": "badults_is_british_sitcom == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "badults_piloted_on_bbc_three",
+          "z3_formula": "badults_piloted_on_bbc_three == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "secret_dude_society_was_working_title",
+          "z3_formula": "secret_dude_society_was_working_title == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "andrew_collins_was_script_editor",
+          "z3_formula": "andrew_collins_was_script_editor == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "working_title(X) -> script_editor(Y, X)",
+          "z3_formula": "Implies(secret_dude_society_was_working_title, script_editor_andrew_collins_badults)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "script_editor_andrew_collins_secret_dude_society",
+          "z3_formula": "script_editor_andrew_collins_secret_dude_society == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 66,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 39
+    },
+    "maxsat_stats": {
+      "satisfied": 39,
+      "excluded": 0,
+      "total_weight": 66,
+      "solve_time_ms": 0.922362320125103
+    },
+    "timing": {
+      "trace_gen_s": 4.339,
+      "extraction_s": 13.662,
+      "dedup_s": 0.593,
+      "maxsat_s": 0.003,
+      "total_s": 18.597
+    }
+  }
+}

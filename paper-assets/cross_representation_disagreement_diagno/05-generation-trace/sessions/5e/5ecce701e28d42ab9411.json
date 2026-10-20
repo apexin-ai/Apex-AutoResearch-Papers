@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ecce701e28d42ab9411",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "code kill duplicate pipeline",
+  "task_key": "worker_code_kill_duplicate_pipeline_20260514T105754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kill_duplicate_pipeline_20260514T105754_result.json",
+    "occurrence": 1,
+    "bytes": 436,
+    "sha256": "8228185bfc4b2c359de7041835b84397a0d1fb9b11c047fb53f36a2b857ffd76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n1. **PID 28613** — 已成功 kill（进程不存在）\n2. **PID 28500** — 也已不存在。日志最后一行显示 `EXIT_CODE=0`，说明该进程已正常完成退出\n3. **日志** — `mvp_pipeline_003.log` 最后记录在 18:57:20，以 `EXIT_CODE=0` 结束，pipeline 已正常跑完\n\n两个进程都已不在运行。保留的 PID 28500 是自然结束的（exit code 0），不是被误杀。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-kill-duplicate-pipeline.md"
+}

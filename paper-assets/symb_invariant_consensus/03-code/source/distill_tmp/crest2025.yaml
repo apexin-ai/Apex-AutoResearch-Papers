@@ -1,0 +1,78 @@
+paper_key: "crest2025"
+title: "Improving LLMs' Reasoning with Consistency-Driven Self-Training (CREST)"
+venue: "NAACL 2025"
+full_text_available: true
+
+research:
+  baselines: ["SFT", "RFT", "STaR", "REST-EM", "V-STaR", "DPO-vanilla"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "ReClor", size: "~6k"}
+    - {name: "ARC-Challenge", size: "2590"}
+    - {name: "CSQA", size: "~12k"}
+  ablation_dimensions: ["follow_up_questions", "tolerance_parameter_t", "DPO_lambda", "sample_count_N"]
+  training_recipe: {optimizer: "AdamW", lr: "5e-6", hardware: "4xA100"}
+  method_family: "consistency-driven self-training"
+
+positioning:
+  core_claim: "Follow-up question consistency provides richer signal than binary answer correctness for filtering self-training rationales, enabling better SFT+DPO training"
+  key_results: "+1.7-1.8% over best baseline on ReClor; consistent gains on ARC-C and CSQA across Llama-3-8B, Gemma-7B, Phi-2"
+  limitations:
+    - "Restricted to MCQ format"
+    - "All follow-up questions weighted equally"
+    - "No teacher-student setting explored"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Self-training with LLM-generated rationales is promising but suffers from false positive rationales"
+  tension: "Binary correctness filtering passes rationales with right answers but wrong reasoning"
+  key_insight: "Section 3.2 — follow-up questions stress-test rationale quality beyond just checking the final answer"
+  argument_chain: "self-training promise → false positive problem → follow-up question consistency → filtered SFT + DPO → multi-model validation"
+  contribution_framing: "3 contributions: consistency evaluation method, 4-stage training pipeline, empirical validation"
+  intro_structure: "4 paragraphs: (1) self-training promise, (2) false positive problem, (3) CREST solution, (4) contributions"
+  notable_technique: "Concrete example of a false positive rationale in intro to make the problem viscerally clear"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "problem_illustration"
+    description: "Example showing a rationale that gets the right answer through wrong reasoning, and how follow-up questions expose it"
+    narrative_role: "Makes the false positive problem concrete and motivates the solution"
+    design_elements: ["correct vs incorrect rationale comparison", "follow-up question examples", "red/green highlighting"]
+    visual_style: "Two-column comparison with text examples"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "Methods across 3 datasets × 3 models"
+      how_gain_highlighted: "CREST consistently highest or tied"
+      design_note: "3×3 grid layout for comprehensive comparison"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["tolerance_t", "DPO_lambda", "sample_N"]
+      design_note: "Sensitivity analysis with clear optimal ranges"
+  figure_narrative_role: "Fig1(problem example) → Fig2(method pipeline) → Fig3(main results) → Fig4(sensitivity)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets × models"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best + underline_second"
+    statistical_reporting: "mean across 3 seeds"
+    num_baselines: 6
+    design_note: "Separate sections for each model family"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["follow_up_questions", "SFT_only_vs_SFT+DPO"]
+      variation_style: "full_numbers"
+      design_note: "Isolates contribution of each pipeline stage"
+  supplementary_tables:
+    in_appendix: true
+    content: "Additional ablations, prompt templates, follow-up question examples"
+    reason: "Main text focuses on core comparisons"

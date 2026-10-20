@@ -1,0 +1,927 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1017_Q5",
+    "problem": "Dave is big. Dave is furry. Erin is blue. Erin is cold. Erin is round. Fiona is quiet. Gary is rough. If something is rough and cold then it is furry. Quiet, big things are not round. If Dave is blue then Dave is furry. All quiet, blue things are big. If Fiona is furry then Fiona is blue. If something is quiet then it is cold. All big things are cold. All blue, round things are not quiet. Cold things are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is furry.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nRound($x, bool) ::: Is x round?\nQuiet($x, bool) ::: Is x quiet?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nBig(Dave, True) ::: Dave is big.\nFurry(Dave, True) ::: Dave is furry.\nBlue(Erin, True) ::: Erin is blue.\nCold(Erin, True) ::: Erin is cold.\nRound(Erin, True) ::: Erin is round.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRough(Gary, True) ::: Gary is rough.\n\nRules:\nRough($x, True) && Cold($x, True) >>> Furry($x, True) ::: If something is rough and cold then it is furry.\nQuiet($x, True) && Big($x, True) >>> Round($x, False) ::: Quiet, big things are not round.\nBlue(Dave, True) >>> Furry(Dave, True) ::: If Dave is blue then Dave is furry.\nQuiet($x, True) && Blue($x, True) >>> Big($x, True) ::: All quiet, blue things are big.\nFurry(Fiona, True) >>> Blue(Fiona, True) ::: If Fiona is furry then Fiona is blue.\nQuiet($x, True) >>> Cold($x, True) ::: If something is quiet then it is cold.\nBig($x, True) >>> Cold($x, True) ::: All big things are cold.\nBlue($x, True) && Round($x, True) >>> Quiet($x, False) ::: All blue, round things are not quiet.\nCold($x, True) >>> Rough($x, True) ::: Cold things are rough.\n\nQuery:\nFurry(Erin, True) ::: Erin is furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 97.0,
+      "Unknown": 96.5
+    },
+    "answer_counts": {
+      "Unknown": 3,
+      "True": 8
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Erin is furry, we need to analyze the given statements and apply the rules to Erin.\n\n1. Erin is blue. \n2. Erin is cold. \n3. Erin is round.\n\nFrom the given statements:\n\n- If something is rough and cold then it is furry. \n- Cold things are rough.\n\nWe can conclude that Erin is rough.\n\n- If something is rough and cold then it is furry.\n- Erin is rough and cold.\n\nFrom the given statements:\n\n- Quiet, big things are not round.\n- Erin is round.\n\nWe cannot conclude that Erin is big or quiet based on the given information.\n\n- All quiet, blue things are big.\n- Erin is blue.\n\nWe still cannot conclude that Erin is big.\n\n- If something is quiet then it is cold.\n- Erin is cold.\n\nWe cannot conclude that Erin is quiet.\n\n- If Fiona is furry then Fiona is blue.\n- This statement does not apply to Erin.\n\n- If Dave is blue then Dave is furry.\n- This statement does not apply to Erin.\n\nBased on the given information, we cannot determine whether Erin is furry or not. Therefore, the statement \"Erin is furry\" is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Erin is furry, we need to analyze the given statements and their implications.\n\n1. Erin is blue. (Statement 1)\n2. Erin is cold. (Statement 2)\n3. Erin is round. (Statement 3)\n\nFrom Statement 4: If something is rough and cold then it is furry.\nWe can deduce that if Erin is cold (Statement 2), then Erin must be rough, and therefore furry. However, we cannot directly conclude that Erin is furry using this statement.\n\nFrom Statement 5: Quiet, big things are not round.\nWe cannot directly apply this statement to Erin because we don't have enough information about Erin's size or quietness.\n\nFrom Statement 6: If Dave is blue then Dave is furry.\nThis statement does not provide any information about Erin, so we cannot use it to determine whether Erin is furry.\n\nFrom Statement 7: All quiet, blue things are big.\nAgain, this statement does not provide any information about Erin.\n\nFrom Statement 8: If Fiona is furry then Fiona is blue.\nThis statement does not provide any information about Erin.\n\nFrom Statement 9: If something is quiet then it is cold.\nWe cannot determine whether Erin is quiet, but even if we assume Erin is quiet, we cannot conclude that Erin is furry using this statement alone.\n\nFrom Statement 10: All big things are cold.\nWe cannot determine whether Erin is big or not, but even if we assume Erin is big, we cannot conclude that Erin is furry using this statement alone.\n\nFrom Statement 11: All blue, round things are not quiet.\nWe cannot determine whether Erin is quiet or not, but even if we assume Erin is not quiet, we cannot conclude that Erin is furry using this statement alone.\n\nFrom Statement 12: Cold things are rough.\nWe already know that Erin is cold (Statement 2), so we can conclude that Erin is rough.\n\nNow, let's re-examine Statement 4: If something is rough and cold then it is furry.\nWe know that Erin is cold (Statement 2) and rough (Statement 12), so we can conclude that Erin is furry.\n\nTherefore, the statement \"Erin is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether Erin is furry, we need to analyze the given statements and their implications. \n\n1. Erin is cold. \n2. Erin is round.\n3. Erin is blue.\n\nFrom the given statements, we know:\n- If something is quiet, then it is cold. (Statement 6)\n- Erin is not quiet, because all blue, round things are not quiet. (Statement 8)\n- All cold things are rough. (Statement 10)\n- If something is rough and cold, then it is furry. (Statement 4)\n\nHowever, we don't have a direct statement that links Erin's properties to being furry. But we can deduce the following:\n\n- Erin is blue, round, and cold (Statements 1, 2, and 3).\n- Since Erin is blue and round, it is not quiet (Statement 8).\n- Erin is cold, so it is rough (Statement 10).\n- Erin is rough and cold, so it is furry (Statement 4).\n\nSo, based on the given statements, we can conclude that Erin is furry.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Erin is furry, we need to analyze the given information step by step.\n\n1. Erin is blue. \n2. Erin is cold.\n3. Erin is round.\n\nFrom the given information, we know:\n- If something is quiet then it is cold. (Rule 1)\n- All quiet, blue things are big. (Rule 4)\n- All big things are cold. (Rule 9)\n\nHowever, it is not explicitly mentioned that Erin is quiet or not, but from rule 1, if Erin is quiet then it is cold. Given that Erin is already cold (rule 2), this rule does not provide any new information.\n\nFrom rule 4, all quiet, blue things are big. However, this rule does not provide any information about Erin being quiet or not.\n\nFrom rule 9, all big things are cold. Given that Erin is cold (rule 2), this rule does not provide any new information.\n\nNow, we need to analyze if Erin is furry or not. We know:\n- Erin is blue. (rule 1)\n- Erin is cold. (rule 2)\n- Erin is round. (rule 3)\n\nFrom the given information, we know:\n- If something is rough and cold then it is furry. (Rule 5)\n- All blue, round things are not quiet. (Rule 8)\n- Cold things are rough. (Rule 10)\n\nGiven that Erin is cold (rule 2), and using rule 10, Erin is rough.\n\nNow, using rule 5, if something is rough and cold then it is furry. Given that Erin is both rough and cold, it means that Erin is furry.\n\nTherefore, the statement 'Erin is furry' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the process of elimination to determine whether Erin is furry or not.\n\n1. Dave is big.\n2. Dave is furry.\n3. Erin is blue.\n4. Erin is cold.\n5. Erin is round.\n6. Fiona is quiet.\n7. Gary is rough.\n8. If something is rough and cold then it is furry.\n9. Quiet, big things are not round.\n10. If Dave is blue then Dave is furry.\n11. All quiet, blue things are big.\n12. If Fiona is furry then Fiona is blue.\n13. If something is quiet then it is cold.\n14. All big things are cold.\n15. All blue, round things are not quiet.\n16. Cold things are rough.\n\nFrom statement 5, we know Erin is round. From statement 15, we know that all blue, round things are not quiet. However, from statement 6, we know Fiona is quiet, and from statement 12, if Fiona is furry then Fiona is blue. This means that Fiona is both blue and quiet. Since Fiona is blue and quiet, and all blue, round things are not quiet, it means that Fiona is not round, even though we initially thought she might be.\n\nNow, from statement 5, we know Erin is round. From statement 11, we know all quiet, blue things are big. We also know from statement 6 that Fiona is quiet, and from statement 12 that if Fiona is furry then Fiona is blue. This means that Fiona is both blue and quiet, and therefore big (from statement 11). However, we also know that Erin is round (from statement 5), and from statement 15 we know that all blue, round things are not quiet. This means that Erin is not quiet.\n\nFrom statement 4, we know Erin is cold. From statement 13, if something is quiet then it is cold. However, we already know that Erin is not quiet. This means that the condition for Erin being cold (i.e., being quiet) is not met, and we cannot conclude that Erin is cold from this statement alone.\n\nFrom statement 4, we know Erin is cold. From statement 16, we know that cold things are rough. This means that Erin is rough.\n\nNow, from statement 8, we know that if something is rough and cold then it is furry. We know that Erin is cold (from statement 4) and rough (from statement 16). However, we cannot conclude that Erin is furry from this statement alone, because we do not know whether Erin is also cold.\n\nFrom statement 3, we know Erin is blue. However, we do not know whether this means Erin is furry or not.\n\nFrom statement 10, we know that if Dave is blue then Dave is furry. However, we do not know whether Erin is Dave or not.\n\nFrom statement 12, we know that if Fiona is furry then Fiona is blue. However, we do not know whether Erin is Fiona or not.\n\nTherefore, based on the given statements, we cannot conclude whether Erin is furry or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Erin is furry, we need to analyze the given statements and their implications.\n\n1. Erin is blue. Erin is cold. Erin is round. \nThese statements directly describe Erin's properties.\n\n2. If something is rough and cold then it is furry.\nThis statement does not directly apply to Erin, as we do not know if Erin is rough.\n\n3. Quiet, big things are not round.\nThis statement is irrelevant to Erin, as we do not have enough information about Erin's quietness or size.\n\n4. If Dave is blue then Dave is furry.\nThis statement is irrelevant to Erin, as it is about Dave, not Erin.\n\n5. All quiet, blue things are big.\nThis statement is irrelevant to Erin, as we do not know if Erin is quiet or blue.\n\n6. If Fiona is furry then Fiona is blue.\nThis statement is irrelevant to Erin, as it is about Fiona, not Erin.\n\n7. If something is quiet then it is cold.\nThis statement does not directly apply to Erin, as we do not know if Erin is quiet.\n\n8. All big things are cold.\nThis statement does not directly apply to Erin, as we do not know if Erin is big.\n\n9. All blue, round things are not quiet.\nThis statement does not directly apply to Erin, as we do not know if Erin is quiet.\n\n10. Cold things are rough.\nThis statement does not directly apply to Erin, as we do not know if Erin is cold.\n\nNow, let's try to find a connection between Erin and the properties of being furry. \n\nFrom statement 1, we know Erin is blue, cold, and round. \n\nFrom statement 2, if something is rough and cold, then it is furry. However, we do not know if Erin is rough. \n\nFrom statement 10, we know that cold things are rough. This implies that Erin is rough, as Erin is cold. \n\nFrom statement 2, if something is rough and cold, then it is furry. Since Erin is both rough (from statement 10) and cold (from statement 1), Erin is furry.\n\nTherefore, the statement \"Erin is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is blue. (Given)\n2. Erin is cold. (Given)\n3. If something is quiet then it is cold. (Given)\n   This does not directly apply to Erin, so we can't conclude that Erin is quiet.\n\n4. Erin is round. (Given)\n5. All blue, round things are not quiet. (Given)\n   This does not directly apply to Erin's furiness, but it tells us that Erin is not quiet.\n\n6. Quiet, big things are not round. (Given)\n   Since Erin is round, we can conclude that Erin is not big.\n\n7. If something is rough and cold then it is furry. (Given)\n   We know Erin is cold (from statement 2), but we can't conclude that Erin is rough.\n\n8. Cold things are rough. (Given)\n   This tells us that Erin is rough, because Erin is cold.\n\n9. If something is rough and cold then it is furry. (Given)\n   Now we have two conditions that apply to Erin: Erin is rough and Erin is cold. Therefore, we can conclude that Erin is furry.\n\nFinal Answer: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze each statement and find the relationship between Erin and being furry. \n\nFrom the given statements:\n\n1. Erin is blue.\n2. Erin is cold.\n3. Erin is round.\n\nNow, let's look for relationships that could affect Erin's furiness:\n\n1. If something is rough and cold then it is furry.\n   - Since Erin is cold, this could be a possibility, but we need to determine if Erin is rough.\n\n2. Quiet, big things are not round.\n   - This statement doesn't directly relate to Erin's furiness, but it gives us some information about Erin's possible characteristics.\n\n3. If Dave is blue then Dave is furry.\n   - This statement doesn't directly relate to Erin.\n\n4. All quiet, blue things are big.\n   - Since Erin is blue, this could be a possibility, but we need to determine if Erin is quiet.\n\n5. If Fiona is furry then Fiona is blue.\n   - This statement doesn't directly relate to Erin.\n\n6. If something is quiet then it is cold.\n   - This statement doesn't directly relate to Erin's furiness.\n\n7. All big things are cold.\n   - Since Erin is cold, this could be a possibility, but we need to determine if Erin is big.\n\n8. All blue, round things are not quiet.\n   - This statement doesn't directly relate to Erin's furiness.\n\n9. Cold things are rough.\n   - Since Erin is cold, this could be a possibility, but we need to determine if Erin is rough.\n\nFrom the given statements, we can't directly determine if Erin is furry. However, we can use the following chain of reasoning:\n\n1. Erin is cold (statement 2).\n2. Since Erin is cold, Erin is rough (statement 9).\n3. Since Erin is rough and cold, Erin is furry (statement 1).\n\nTherefore, based on the given statements, Erin is furry.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is furry\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nGiven statements:\n\n1. Dave is big. Dave is furry.\n2. Erin is blue. Erin is cold. Erin is round.\n3. Fiona is quiet. Gary is rough.\n4. If something is rough and cold then it is furry.\n5. Quiet, big things are not round.\n6. If Dave is blue then Dave is furry.\n7. All quiet, blue things are big.\n8. If Fiona is furry then Fiona is blue.\n9. If something is quiet then it is cold.\n10. All big things are cold.\n11. All blue, round things are not quiet.\n12. Cold things are rough.\n\nFrom statement 2, we know that Erin is blue, cold, and round.\n\nFrom statement 11, we know that all blue, round things are not quiet.\n\nSince Erin is blue and round, we can conclude that Erin is not quiet. (From statement 11)\n\nFrom statement 9, we know that if something is quiet then it is cold. But we already know that Erin is not quiet, so Erin is not cold.\n\nHowever, from statement 10, we know that all big things are cold. We don't know if Erin is big or not, so we cannot conclude that Erin is not cold based on this statement.\n\nFrom statement 4, we know that if something is rough and cold then it is furry. Since Erin is not cold, we cannot conclude that Erin is furry based on this statement.\n\nFrom statement 6, we know that if Dave is blue then Dave is furry. But we don't know if Dave is blue or not, so we cannot use this statement to conclude that Erin is furry.\n\nFrom statement 8, we know that if Fiona is furry then Fiona is blue. But we don't know if Fiona is furry or not, so we cannot use this statement to conclude that Erin is furry.\n\nFrom statement 7, we know that all quiet, blue things are big. Since Erin is blue and not quiet, we cannot conclude that Erin is big.\n\nFrom statement 5, we know that quiet, big things are not round. But we already know that Erin is not quiet, so this statement does not provide any information about Erin.\n\nFrom statement 12, we know that cold things are rough. Since Erin is not cold, we cannot conclude that Erin is rough.\n\nWe cannot conclude that Erin is furry based on the given statements. The information provided does not directly imply that Erin is furry or not furry. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information given: Erin is blue. Erin is cold. Erin is round.\n\n2. We know that Erin is round and blue. From the information given: All blue, round things are not quiet.\n\n   So, Erin is not quiet.\n\n3. We also know that Erin is not quiet. From the information given: If something is quiet then it is cold.\n\n   This means that Erin is not cold.\n\n4. However, we initially concluded that Erin is cold in step 1. Now we have a contradiction. So, we can conclude that the initial statement that \"All big things are cold\" is actually false.\n\n5. Since we know that Erin is not cold and all big things are not cold, we cannot determine if Erin is big or not.\n\n6. We cannot determine if Erin is furry or not because we have contradictory information about Erin being cold and not being cold.\n\n7. However, we do know that Erin is blue. From the information given: If Dave is blue then Dave is furry. We cannot conclude that Erin is furry because we cannot conclude that Erin is Dave.\n\n8. There is another piece of information that could help us determine if Erin is furry: If something is rough and cold then it is furry. However, we know that Erin is not cold. But we also know that Erin is round and blue. From the information given: Cold things are rough. However, this is a contradictory piece of information as we know Erin is not cold. We have to conclude that the statement \"Cold things are rough\" is actually false.\n\n9. Now we have a piece of information that might help us determine if Erin is furry: If something is rough and cold then it is furry. However, we know that Erin is not cold. But we also know that Erin is round and blue. From the information given: If Fiona is furry then Fiona is blue. We cannot conclude that Erin is furry because we cannot conclude that Erin is Fiona.\n\n10. There is another piece of information that could help us determine if Erin is furry: If Dave is blue then Dave is furry. However, we know that Erin is blue. We also know that Erin is not cold and we know that Erin is not furry from the information given. We cannot conclude that Erin is furry because we cannot conclude that Erin is Dave.\n\nHowever, there is a chain of reasoning that leads us to the conclusion that Erin is not furry.\n\nGary is rough. Erin is round. Erin is blue. From the information given: If something is rough and cold then it is furry. However, we know that Erin is not cold. But we also know that Erin is round and blue. From the information given: If Fiona is furry then Fiona is blue. We cannot conclude that Erin is furry because we cannot conclude that Erin is Fiona.\n\nHowever, we also know that Erin is not quiet. From the information given: If something is quiet then it is cold. This means that Erin is not cold.\n\nWe also know that Erin is blue. We also know that Erin is round. However, from the information given: All blue, round things are not quiet. We know that Erin is not quiet. However, from the information given: If something is quiet then it is cold. We know that Erin is not cold.\n\nFrom the information given: Gary is rough. Erin is round. Erin is blue. From the information given: If something is rough and cold then it is furry. However, we know that Erin is not cold. We also know that Erin is round and blue. From the information given: If Fiona is furry then Fiona is blue. We cannot conclude that Erin is furry because we cannot conclude that Erin is Fiona.\n\nHowever, we also know that Erin is not quiet. From the information given: If something is quiet then it is cold. This means that Erin is not cold. We also know that Erin is blue. We also know that Erin is round. However, from the information given: All blue, round things are not quiet. We know that Erin is not quiet. However, from the information given: If something is quiet then it is cold. We know that Erin is not cold.\n\nWe also know that Gary is rough. From the information given: If something is rough and cold then it is furry. However, we know that Erin is not cold.\n\nWe also know that Erin is round and blue. From the information given: If Dave is blue then Dave is furry. However, we know that Erin is blue.\n\nWe cannot conclude that Erin is furry.\n\nHowever, we also know that Erin is blue. We also know that Erin is round. From the information given: All blue, round things are not quiet. We know that Erin is not quiet.\n\nFrom the information given: If something is quiet then it is cold. We know that Erin is not cold.\n\nHowever, we also know that Erin is round and blue. From the information given: If Fiona is furry then Fiona is blue. We cannot conclude that Erin is furry because we cannot conclude that Erin is Fiona.\n\nHowever, we also know that Erin is blue. We also know that Erin is round. However, from the information given: All blue, round things are not quiet. We know that Erin is not quiet. However, from the information given: If something is quiet then it is cold. We know that Erin is not cold.\n\nHowever, we also know that Erin is blue. We also know that Erin is round. However, from the information given: All blue, round things are not quiet. We know that Erin is not quiet.\n\nFrom the information given: If something is quiet then it is cold. We know that Erin is not cold.\n\nHowever, we also know that Erin is round and blue. From the information given: All blue, round things are not quiet. We know that Erin is not quiet.\n\nHowever, we also know that Erin is round and blue. From the information given: All blue, round things are not quiet. We know that Erin is not quiet.\n\nHowever, we also know that Erin is not quiet. From the information given: If something is quiet then it is cold. We know that Erin is not cold.\n\nHowever, we also know that Erin is blue. We also know that Erin is round. However, from the information given: All blue, round things are not quiet. We know that Erin is not quiet. However, from the information given: If something is quiet then it is cold. We know that Erin is not cold.\n\nHowever, we also know that Erin is round and blue. From the information given: If Dave is blue then Dave is furry. However, we know that Erin is blue.\n\nHowever, we also know that Erin is blue. We also know that Erin is round. However, from the information given: All blue, round things are not quiet. We know that Erin is not quiet. However, from the information given: If something is quiet then it is cold. We know that Erin is not cold.\n\nHowever, we also know that Erin is blue. We also know that Erin is round. However, from the information given: All blue, round things are not quiet. We know that Erin is not quiet.\n\nFrom the information given: If something is quiet then it is cold. We know that Erin is not cold.\n\nHowever, we also know that Erin is blue. We also know that Erin is round. However, from the information given: All blue, round things are not quiet. We know that Erin is not quiet.\n\nHowever, we also know that Erin is round and blue. From the information given: If Fiona is furry then Fiona is blue. We cannot conclude that Erin is furry because we cannot conclude that Erin is Fiona.\n\nHowever, we also know that Erin is blue. We also know that Erin is round. However, from the information given: All blue, round things are not quiet. We know that Erin is not quiet. However, from the information given: If something is quiet then it is cold. We know that Erin is not cold.\n\nHowever, we also know that Erin is blue. We also know that Erin is round. However, from the information given: All blue, round things are not quiet. We know that Erin is not quiet.\n\nHowever, we also know that Erin is round and blue. From the information given: If Dave is blue then Dave is furry. However, we know that Erin is blue.\n\nHowever, we also know that Erin is blue. We also know that Erin is round. However, from the information given: All blue, round things are not quiet. We know that Erin is not quiet. However, from the information given: If something is quiet then it is cold. We know that Erin is not cold.\n\nHowever, we also know that Erin is blue. We also know that Erin is round. However, from the information given: All blue, round things are not quiet. We know that Erin is not quiet. However, from the information given: If something is quiet then it is cold. We know that Erin is not cold.\n\nHowever, we also know that Erin is blue. We also know that Erin is round. However, from the information given: All blue, round things are not quiet. We know that Erin is not quiet.\n\nHowever, we also know that Erin is not quiet. From the information given: If something is quiet then it is cold. This means that Erin is not cold.\n\nHowever, we also know that Erin is blue. We also know that Erin is round. However, from the information given: All blue, round things are not quiet. We know that Erin is not quiet.\n\nHowever, we also know that Erin is round and blue. From the information given: If Fiona is furry then Fiona is blue. We cannot conclude that Erin is furry because we cannot conclude that Erin is Fiona.\n\nHowever, we also know that Erin is blue. We",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is furry\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\n1. Erin is blue. (Given statement)\n2. Erin is cold. (Given statement)\n3. Erin is round. (Given statement)\n\nFrom the given information:\n- If something is rough and cold then it is furry. (Statement 1)\n- Cold things are rough. (Statement 2)\n- Therefore, Erin is rough (since Erin is cold).\n\nNow, from Statement 1, we know that if something is rough and cold then it is furry. Since Erin is both rough and cold, we can conclude that Erin is furry.\n\nSo, the statement \"Erin is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Erin is furry, we need to analyze the given statements and find any connections or relationships that can help us conclude the statement.\n\nGiven statements:\n1. Dave is big.\n2. Dave is furry.\n3. Erin is blue.\n4. Erin is cold.\n5. Erin is round.\n6. Fiona is quiet.\n7. Gary is rough.\n8. If something is rough and cold then it is furry.\n9. Quiet, big things are not round.\n10. If Dave is blue then Dave is furry.\n11. All quiet, blue things are big.\n12. If Fiona is furry then Fiona is blue.\n13. If something is quiet then it is cold.\n14. All big things are cold.\n15. All blue, round things are not quiet.\n16. Cold things are rough.\n\nNow, we need to check if Erin being furry is true, false, or unknown. \n\nFrom statement 8, if something is rough and cold then it is furry. We can see that Erin is cold (statement 4) and we need to check if Erin is rough.\n\nFrom statement 16, we know that cold things are rough. So, Erin being cold means Erin is rough.\n\nNow, since Erin is rough and cold, we can apply statement 8. If something is rough and cold then it is furry. Therefore, Erin being furry is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_erin, cold_erin), furry_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> not(round(X))",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), Not(round_erin))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(big(erin) & quiet(erin))",
+          "z3_formula": "Not(And(big_erin, quiet_erin))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_erin, big_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(big(erin))",
+          "z3_formula": "Not(big_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> quiet(X)",
+          "z3_formula": "Implies(cold_erin, quiet_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(quiet(erin))",
+          "z3_formula": "Not(quiet_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(fiona) -> blue(fiona)",
+          "z3_formula": "Implies(furry_fiona, blue_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not(furry(erin))",
+          "z3_formula": "Not(furry_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(dave) -> furry(dave)",
+          "z3_formula": "Implies(blue_dave, furry_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not(furry(erin))",
+          "z3_formula": "Not(furry_erin)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_erin, cold_erin), furry_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_erin, cold_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(blue_erin, round_erin), Not(quiet_erin))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_erin, cold_erin), furry_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_erin, cold_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_erin, blue_erin), big_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_erin, cold_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_erin, cold_erin), furry_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(blue_erin, round_erin), Not(quiet_erin))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_X, cold_X), furry_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> Not(round(X))",
+          "z3_formula": "Implies(And(quiet_X, big_X), Not(round_X))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_X, cold_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_X, cold_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(blue_X, round_X), Not(quiet_X))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_X, rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "Not(furry(erin))",
+          "z3_formula": "Not(furry_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(erin))",
+          "z3_formula": "Not(quiet_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "Not(cold(erin))",
+          "z3_formula": "Not(cold_erin)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin) -> furry(erin)",
+          "z3_formula": "Implies(blue_erin, furry_erin)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave) -> blue(dave)",
+          "z3_formula": "Implies(furry_dave, blue_dave)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona) -> blue(fiona)",
+          "z3_formula": "Implies(furry_fiona, blue_fiona)",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_erin, cold_erin), furry_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_erin, cold_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> Not quiet(X)",
+          "z3_formula": "Implies(And(blue_erin, round_erin), Not(quiet_erin))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> Not round(X)",
+          "z3_formula": "Implies(And(quiet_X, big_X), Not(round_X))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "Not big(X)",
+          "z3_formula": "Not(big_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> cold(X)",
+          "z3_formula": "Implies(rough_erin, cold_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_erin, cold_erin), furry_erin)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_erin, cold_erin), furry_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> Not(round(X))",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), Not(round_erin))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(Dave) -> furry(Dave)",
+          "z3_formula": "Implies(blue_Dave, furry_Dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_erin, blue_erin), big_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(Fiona) -> blue(Fiona)",
+          "z3_formula": "Implies(furry_Fiona, blue_Fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_erin, cold_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_erin, cold_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(And(blue_erin, round_erin), Not(quiet_erin))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_X, cold_X), furry_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> not round(X)",
+          "z3_formula": "Implies(And(quiet_X, big_X), Not(round_X))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(blue_X, round_X), Not(quiet_X))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_X, cold_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_X, cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_X, furry_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_X, blue_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(quiet_X, blue_X), big_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_X, cold_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_X, rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(erin)",
+          "z3_formula": "Not(quiet_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(erin)",
+          "z3_formula": "Not(cold_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin",
+          "source_step": 7
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_erin, cold_erin), furry_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_erin, cold_erin), furry_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> rough(X)",
+          "z3_formula": "Implies(cold_erin, rough_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 133,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 42
+    },
+    "maxsat_stats": {
+      "satisfied": 38,
+      "excluded": 4,
+      "total_weight": 123,
+      "solve_time_ms": 1.5647606924176216
+    },
+    "timing": {
+      "trace_gen_s": 24.112,
+      "extraction_s": 37.546,
+      "dedup_s": 1.036,
+      "maxsat_s": 0.004,
+      "total_s": 62.698
+    }
+  }
+}

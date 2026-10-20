@@ -1,0 +1,840 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-131_Q1",
+    "problem": "The cat likes the cow. The cow is cold. The lion chases the tiger. The lion likes the cat. The lion needs the cow. The lion needs the tiger. The tiger likes the cow. If something likes the tiger then the tiger is cold. If something chases the lion and it needs the lion then it is green. If the cow chases the lion and the cow chases the cat then the lion needs the cow. If the tiger chases the cow then the tiger likes the cat. If something needs the lion then the lion needs the tiger. If something chases the cow then the cow likes the tiger. If something chases the cat then the cat chases the cow. If something is cold then it chases the cat. If something is cold and it chases the cat then it chases the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger likes the cow.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nLikes($x, $y, bool) ::: Does x like y?\nCold($x, bool) ::: Is x cold?\nChases($x, $y, bool) ::: Does x chase y?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nLikes(Cat, Cow, True) ::: The cat likes the cow.\nCold(Cow, True) ::: The cow is cold.\nChases(Lion, Tiger, True) ::: The lion chases the tiger.\nLikes(Lion, Cat, True) ::: The lion likes the cat.\nNeeds(Lion, Cow, True) ::: The lion needs the cow.\nNeeds(Lion, Tiger, True) ::: The lion needs the tiger.\nLikes(Tiger, Cow, True) ::: The tiger likes the cow.\n\nRules:\nLikes($x, Tiger, True) >>> Cold(Tiger, True) ::: If something likes the tiger then the tiger is cold.\nChases($x, Lion, True) && Needs($x, Lion, True) >>> Green($x, True) ::: If something chases the lion and it needs the lion then it is green.\nChases(Cow, Lion, True) && Chases(Cow, Cat, True) >>> Needs(Lion, Cow, True) ::: If the cow chases the lion and the cow chases the cat then the lion needs the cow.\nChases(Tiger, Cow, True) >>> Likes(Tiger, Cat, True) ::: If the tiger chases the cow then the tiger likes the cat.\nNeeds($x, Lion, True) >>> Needs(Lion, Tiger, True) ::: If something needs the lion then the lion needs the tiger.\nChases($x, Cow, True) >>> Likes(Cow, Tiger, True) ::: If something chases the cow then the cow likes the tiger.\nChases($x, Cat, True) >>> Chases(Cat, Cow, True) ::: If something chases the cat then the cat chases the cow.\nCold($x, True) >>> Chases($x, Cat, True) ::: If something is cold then it chases the cat.\nCold($x, True) && Chases($x, Cat, True) >>> Chases($x, Cow, True) ::: If something is cold and it chases the cat then it chases the cow.\n\nQuery:\nLikes(Tiger, Cow, True) ::: The tiger likes the cow."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 74.0,
+      "Unknown": 86.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The tiger likes the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger likes the cow. \n   However, we don't know if this is true or false yet. We'll come back to this later.\n\n2. The cow is cold.\n   We know this is true from the given information.\n\n3. If something is cold then it chases the cat.\n   Since the cow is cold, it chases the cat. This is a true statement.\n\n4. If something chases the cat then the cat chases the cow.\n   Since the cow chases the cat, the cat chases the cow. This is a true statement.\n\n5. If the cow chases the lion and the cow chases the cat then the lion needs the cow.\n   We know the cow chases the cat from statement 4, but we don't know if the cow chases the lion. This statement is currently unknown.\n\n6. The lion needs the tiger.\n   We know this is true from the given information.\n\n7. If something needs the lion then the lion needs the tiger.\n   Since the lion needs the tiger, this statement is true.\n\n8. The lion likes the cat.\n   We know this is true from the given information.\n\n9. If the tiger chases the cow then the tiger likes the cat.\n   We don't know if the tiger chases the cow. This statement is currently unknown.\n\n10. If something chases the cow then the cow likes the tiger.\n    We don't know if something chases the cow. This statement is currently unknown.\n\n11. The lion chases the tiger.\n    We don't know this from the given information. However, if the lion does chase the tiger, then it would be chasing the tiger and not the cow. If the lion is chasing the tiger, then it would not need the cow based on statement 5. If the lion is not chasing the tiger, then it is not chasing the cow based on statement 10.\n\n12. If something chases the lion and it needs the lion then it is green.\n    We don't know this from the given information.\n\n13. The tiger likes the cat.\n    We don't know if this is true or false yet. We'll come back to this later.\n\n14. If something likes the tiger then the tiger is cold.\n    Since we don't know if the cat likes the tiger, we can't determine if the tiger is cold based on this statement.\n\nBased on the given information, we can determine that the statement \"The tiger likes the cat\" is unknown. However, the question asks about the statement \"The tiger likes the cow.\" Let's consider statement 9 again.\n\nFrom statement 9, we know that if the tiger chases the cow then the tiger likes the cat. However, we don't know if the tiger chases the cow. If the tiger does chase the cow, then the tiger likes the cat based on statement 9. \n\nNow, let's consider the statement \"The tiger likes the cat.\" If the tiger likes the cat, then the tiger must be cold based on statement 14. However, we already know the cow is cold. Since the tiger can't be cold based on statement 14, it must not like the cat.\n\nHowever, if the tiger doesn't like the cat, then it must not chase the cow based on statement 9. If the tiger doesn't chase the cow, then the cow can't be cold based on statement 3. However, we already know the cow is cold. This is a contradiction, so our assumption that the tiger doesn't like the cat must be false.\n\nTherefore, the tiger must like the cat. Based on statement 9, if the tiger likes the cat, then it must chase the cow. If the tiger chases the cow, then the cow likes the tiger based on statement 10. \n\nNow, let's consider statement 14 again. If the cow likes the tiger, then the tiger is cold based on statement 14. However, we already know the tiger is not cold. This is a contradiction, so our assumption that the tiger likes the cat must be false.\n\nHowever, if the tiger doesn't like the cat, then it must not chase the cow based on statement 9. If the tiger doesn't chase the cow, then the cow can't be cold based on statement 3. However, we already know the cow is cold. This is a contradiction, so our assumption that the tiger doesn't like the cat must be false.\n\nTherefore, we have a contradiction in our reasoning, and we can't determine if the tiger likes the cow.\n\nHowever, we can use a different approach. We know the lion needs the tiger from statement 6. If the lion needs the tiger, then it must need the tiger based on statement 7. The lion needs the cow from statement 5. However, the lion needs the cow, the lion needs the tiger, and the lion likes the cat. This means the lion needs the cow and the tiger, and the lion likes the cat. \n\nNow, let's consider the statement \"The tiger likes the cow.\" If the tiger likes the cow, then the tiger likes the cat based on statement 13. However, if the tiger likes the cat, then the tiger must be cold based on statement 14. However, we already know the cow is cold. If the tiger is cold, then it chases the cat based on statement 3. However, we already know the cat chases the cow based on statement 4. This is a contradiction, so our assumption that the tiger likes the cow must be false.\n\nHowever, we can't determine if the tiger likes the cow based on the given information.\n\nBut, since we can't find any other information that can help us determine if the tiger likes the cow, then we can conclude that the statement \"The tiger likes the cow\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger likes the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger likes the cow. (Initial statement)\nHowever, we have to check if this statement is true or false.\n\n2. If something likes the tiger then the tiger is cold.\nThis rule doesn't directly affect our initial statement, but it gives us a condition to consider.\n\n3. If the tiger chases the cow then the tiger likes the cat.\nThis rule doesn't directly affect our initial statement, but it gives us another condition to consider.\n\n4. The tiger likes the cow. (Our initial statement)\nWe can't determine the truth of this statement yet. We need more information.\n\n5. The tiger chases the cow. (From rule 3, if the tiger likes the cow then this statement is true, however, if the tiger does not like the cow then this statement is false)\nHowever, we still can't determine the truth of this statement.\n\n6. If something chases the cow then the cow likes the tiger.\nThis rule doesn't directly affect our initial statement, but it gives us a condition to consider.\n\n7. The tiger likes the cow. (Our initial statement)\nWe can't determine the truth of this statement yet. We need more information.\n\n8. The tiger chases the cow. (From rule 3, if the tiger likes the cow then this statement is true, however, if the tiger does not like the cow then this statement is false)\nHowever, we still can't determine the truth of this statement.\n\n9. If something is cold then it chases the cat.\nThis rule doesn't directly affect our initial statement, but it gives us a condition to consider.\n\n10. The tiger is cold. (From rule 2, if something likes the tiger then the tiger is cold)\nNow we have a condition to consider.\n\n11. If something is cold and it chases the cat then it chases the cow.\nThis rule doesn't directly affect our initial statement, but it gives us a condition to consider.\n\n12. The tiger is cold. (From rule 10, if something likes the tiger then the tiger is cold)\nNow we have a condition to consider.\n\n13. The tiger chases the cat. (From rule 9, if the tiger is cold then it chases the cat)\nNow we have a condition to consider.\n\n14. If something chases the cat then the cat chases the cow. (From rule 5, if the tiger likes the cow then the tiger chases the cow, however, if the tiger does not like the cow then the tiger does not chase the cow)\nNow we have a condition to consider.\n\n15. The cat chases the cow. (From rule 14, if the tiger chases the cat then the cat chases the cow)\nNow we have a condition to consider.\n\n16. The cow chases the lion and the cow chases the cat then the lion needs the cow. (From rule 4, if the cow chases the lion and the cow chases the cat then the lion needs the cow)\nHowever, we still can't determine the truth of this statement.\n\n17. The tiger is cold. (From rule 10, if something likes the tiger then the tiger is cold)\nNow we have a condition to consider.\n\n18. The tiger chases the cat. (From rule 9, if the tiger is cold then it chases the cat)\nNow we have a condition to consider.\n\n19. The cat chases the cow. (From rule 14, if the tiger chases the cat then the cat chases the cow)\nNow we have a condition to consider.\n\n20. The cow chases the lion. (From rule 1, the cat likes the cow and rule 19, if the cat chases the cow then the cow chases the lion)\nHowever, we still can't determine the truth of this statement.\n\n21. The lion needs the cow. (From rule 16, if the cow chases the lion and the cow chases the cat then the lion needs the cow)\nHowever, we still can't determine the truth of this statement.\n\n22. The lion needs the tiger. (From rule 7, if something needs the lion then the lion needs the tiger)\nHowever, we still can't determine the truth of this statement.\n\n23. The lion needs the tiger. (From rule 22, if the lion needs the tiger then this statement is true, however, if the lion does not need the tiger then this statement is false)\nHowever, we still can't determine the truth of this statement.\n\n24. The lion chases the tiger. (From rule 6, if something chases the cow then the cow likes the tiger, however, if the lion does not chase the tiger then this statement is false)\nHowever, we still can't determine the truth of this statement.\n\n25. The lion needs the tiger. (From rule 23, if the lion needs the tiger then this statement is true, however, if the lion does not need the tiger then this statement is false)\nHowever, we still can't determine the truth of this statement.\n\n26. The lion chases the tiger. (From rule 24, if the lion needs the tiger then this statement is true, however, if the lion does not need the tiger then this statement is false)\nHowever, we still can't determine the truth of this statement.\n\n27. The tiger is cold. (From rule 10, if something likes the tiger then the tiger is cold)\nNow we have a condition to consider.\n\n28. The tiger likes the cat. (From rule 3, if the tiger chases the cow then the tiger likes the cat)\nHowever, we still can't determine the truth of this statement.\n\n29. The tiger likes the cat. (From rule 28, if the tiger likes the cat then this statement is true, however, if the tiger does not like the cat then this statement is false)\nHowever, we still can't determine the truth of this statement.\n\nHowever, let's look at rules 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, and 28, from which we can derive the following:\n\n- The tiger is cold (rule 10).\n- The tiger chases the cat (rule 9, if the tiger is cold then it chases the cat).\n- The cat chases the cow (rule 14, if the tiger chases the cat then the cat chases the cow).\n- The cow chases the lion (rule 20, if the cat chases the cow then the cow chases the lion).\n- The lion needs the cow (rule 16, if the cow chases the lion and the cow chases the cat then the lion needs the cow).\n- The lion needs the tiger (rule 22, if something needs the lion then the lion needs the tiger).\n\nFrom rule 6, we can conclude that the cow likes the tiger.\n\nFrom rule 3, we can conclude that the tiger likes the cat.\n\nHowever, we cannot conclude whether the tiger likes the cow or not. We need to check the other rules.\n\nFrom rule 3, we can conclude that if the tiger chases the cow then the tiger likes the cat.\n\nHowever, we cannot conclude whether the tiger likes the cow or not. We need to check the other rules.\n\nFrom rule 3, we can conclude that if the tiger chases the cow then the tiger likes the cat.\n\nHowever, we cannot conclude whether the tiger likes the cow or not. We need to check the other rules.\n\nFrom rule 3, we can conclude that if the tiger chases the cow then the tiger likes the cat.\n\nHowever, we cannot conclude whether the tiger likes the cow or not. We need to check the other rules.\n\nLet's try to find a contradiction.\n\n- The lion chases the tiger (rule 24, if the lion needs the tiger then this statement is true, however, if the lion does not need the tiger then this statement is false).\n- The lion needs the tiger (rule 22, if something needs the lion then the lion needs the tiger).\n- The lion needs the cow (rule 16, if the cow chases the lion and the cow chases the cat then the lion needs the cow).\n- The cow chases the lion (rule 20, if the cat chases the cow then the cow chases the lion).\n- The cat chases the cow (rule 19, if the tiger chases the cat then the cat chases the cow).\n- The tiger chases the cat (rule 9, if the tiger is cold then it chases the cat).\n- The tiger is cold (rule 10, if something likes the tiger then the tiger is cold).\n- The tiger likes the cat (rule 3, if the tiger chases the cow then the tiger likes the cat).\n\nHowever, let's look at rules 1 and 5.\n\n- The cat likes the cow (rule 1).\n- If something chases the lion and it needs the lion then it is green. (rule 5).\n\nHowever, there is no information about the tiger being green. \n\nHowever, we can conclude that the tiger is not green because the tiger does not chase the lion.\n\nHowever, we can conclude that the cow is green because the cow chases the lion.\n\nHowever, we can conclude that the lion is green because the lion needs the lion.\n\nHowever, we can conclude that the cow is green because the cow chases the lion.\n\nHowever, we can conclude that the cat is not green because the cat does not chase the lion.\n\nHowever, we can conclude that the tiger is not green because the tiger does not chase the lion.\n\nHowever, we can conclude that the lion needs the tiger",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger likes the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger likes the cow is not directly stated, so we need to find a path to determine this.\n2. If something likes the tiger then the tiger is cold. (This is not directly relevant to our statement, but it's worth noting.)\n3. If the tiger chases the cow, then the tiger likes the cat. (This is a key statement. If we can determine if the tiger chases the cow, we might be able to determine if the tiger likes the cat, and then if the tiger likes the cow.)\n4. If the tiger chases the cow, then the tiger likes the cat. However, we do not have information that the tiger chases the cow.\n5. We are given that the tiger likes the cow is not directly stated, but we can use the information that if something chases the cow then the cow likes the tiger, to see if that is a path. \n6. If the tiger chases the cow then the cow likes the tiger. (This is not directly relevant to our statement, but it's worth noting.)\n7. We are given the tiger likes the cow is not directly stated, but we can use the information that if the cow is cold then it chases the cat, and if the cow chases the cat then the cat chases the cow. This might help us if we can determine the status of the cat and cow, but it's not directly relevant to our statement.\n8. We are given the lion needs the tiger and the lion chases the tiger. We also know that if something chases the lion and it needs the lion then it is green. This information is not directly relevant to our statement.\n9. We are given that the lion likes the cat. We do not have information about the cat or the cow, so we cannot determine if the tiger likes the cow directly.\n10. However, we can use the information that if something needs the lion, then the lion needs the tiger. We know that the lion needs the tiger, but we do not know if the tiger needs the lion. We also know that the lion chases the tiger, and we do not know if the tiger chases the lion.\n11. Since we cannot determine if the tiger chases the lion, we cannot determine if the tiger needs the lion. We cannot determine if the tiger needs the lion because we do not know if the tiger chases the lion.\n12. We are given that if something chases the cat then the cat chases the cow. However, we do not have information that the tiger chases the cat.\n13. We are given that the cow is cold, but this does not help us determine if the tiger likes the cow.\n14. The only information we have that is relevant is that if the tiger chases the cow then the tiger likes the cat, but we do not know if the tiger chases the cow.\n\nSince we do not have enough information to determine if the tiger likes the cow, we cannot determine if the statement is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'The tiger likes the cow' is true, false, or unknown, we need to analyze the given conditions and their implications.\n\n1. The lion needs the tiger. \n   From condition 9: If something needs the lion then the lion needs the tiger. \n   We cannot conclude anything from this condition.\n\n2. The lion chases the tiger. \n   From condition 3: The lion chases the tiger. \n   No further implications from this condition.\n\n3. The lion likes the cat. \n   From condition 4: The lion likes the cat. \n   No further implications from this condition.\n\n4. The lion needs the cow. \n   From condition 5: The lion needs the cow. \n   No further implications from this condition.\n\n5. The tiger likes the cow. \n   We are trying to determine whether this statement is true, false, or unknown.\n\n6. The tiger is cold. \n   There is no condition that directly states the tiger is cold. However, we have the following conditions:\n   - If something likes the tiger then the tiger is cold. (Condition 1)\n   - The cat likes the tiger. (Not explicitly stated, but we can infer from the conditions)\n   - The cat likes the tiger because the cat is not stated to chase the lion, so we can't apply the condition about something chasing the lion and it needing the lion.\n   - The cow chases the lion and the cow chases the cat. (Condition 7)\n   - The lion needs the cow, but we don't know if the lion needs the cow because the cow chases the lion or the cat, so we can't apply the condition about the cow chasing the lion and the cow chasing the cat.\n   - The tiger chases the cow. (Not explicitly stated, but we can infer from the conditions)\n   - The tiger chases the cow because if the tiger likes the cow then the tiger is cold. (Condition 1)\n\n7. The cow likes the tiger. \n   From condition 10: If something chases the cow then the cow likes the tiger.\n   We know the tiger chases the cow, so the cow likes the tiger.\n\n8. The cat chases the cow. \n   From condition 11: If something chases the cat then the cat chases the cow.\n   There is no condition that directly states the cat chases the cow. However, we can infer from the conditions that the cat chases the cow because the cat likes the cow (we can infer from condition 1) and the cow is cold (we can infer from condition 1).\n\n9. The tiger chases the cat. \n   From condition 12: If something is cold then it chases the cat.\n   We know the tiger is cold because the tiger chases the cow and the cow is cold. We can conclude that the tiger is cold.\n\n10. The tiger chases the cow and the cow is cold. \n    From condition 12: If something is cold and it chases the cat then it chases the cow.\n    We know the cow is cold, and we can conclude that the cow chases the cat.\n\n11. The cat chases the cow. \n    We already know the cat chases the cow.\n\n12. The tiger likes the cat. \n    From condition 6: If the tiger chases the cow then the tiger likes the cat.\n    We know the tiger chases the cow, so the tiger likes the cat.\n\nSince we can conclude that the tiger likes the cat from condition 6 and the fact that the tiger chases the cow, we can conclude that the statement 'The tiger likes the cat' is true. We can apply the same logic to conclude that the statement 'The tiger likes the cow' is true because the tiger chases the cow, and the cow is cold.\n\nTherefore, the statement 'The tiger likes the cow' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller statements and use the given conditions to deduce the truth of the statement \"The tiger likes the cow.\"\n\nFrom the given conditions:\n\n1. The tiger likes the cow -> (This is the statement we need to evaluate)\n2. The cow is cold.\n3. The lion chases the tiger.\n4. The lion likes the cat.\n5. The lion needs the cow.\n6. The lion needs the tiger.\n7. Tiger likes the cow -> (This is the statement we need to evaluate)\n8. If something likes the tiger then the tiger is cold.\n9. If something chases the lion and it needs the lion then it is green.\n10. If the cow chases the lion and the cow chases the cat then the lion needs the cow.\n11. If the tiger chases the cow then the tiger likes the cat.\n12. If something needs the lion then the lion needs the tiger.\n13. If something chases the lion then the lion needs the tiger.\n14. If something chases the cow then the cow likes the tiger.\n15. If something chases the cat then the cat chases the cow.\n16. If something is cold then it chases the cat.\n17. If something is cold and it chases the cat then it chases the cow.\n\nTo start, we will evaluate each condition and use the given information to deduce the truth of the statement.\n\n- From condition 2, we know the cow is cold.\n- From condition 8, we know that since the cow likes the tiger, then the tiger is cold. (Because the tiger likes the cow, we can substitute \"something\" in the condition with \"the tiger\" and \"the cow\" in the condition with \"something\" to get the result)\n- Since the tiger is cold, from condition 16, we know the tiger chases the cat.\n- From condition 15, we know that the cat chases the cow.\n- From condition 17, we know that since the tiger is cold and it chases the cat, it chases the cow.\n\nNow we need to look at conditions 3-14 to see if we can determine whether the tiger likes the cow.\n\n- From condition 3, we know the lion chases the tiger.\n- From condition 6, we know the lion needs the tiger.\n- From condition 13, we know that since the lion chases the tiger, the lion needs the tiger.\n- From condition 12, we know that since the lion needs the tiger, the lion needs the cow.\n\nNow we need to look at conditions 10-14 to see if we can determine whether the tiger likes the cow.\n\n- From condition 10, we know that if the cow chases the lion and the cow chases the cat, the lion needs the cow. We already know that the lion needs the cow, but we don't know if the cow chases the lion or the cat.\n- From condition 11, we know that if the tiger chases the cow, the tiger likes the cat. However, we don't know if the tiger chases the cow.\n- From condition 14, we know that if something chases the cow, the cow likes the tiger. However, we don't know if anything chases the cow.\n- From condition 4, we know that the lion likes the cat. We don't have enough information to determine whether the tiger likes the cat based on this condition alone.\n\nHowever, we do have enough information to determine that the tiger likes the cow is true or false. Based on the information we have, we know that the tiger is cold, the tiger chases the cat, the cat chases the cow, the lion needs the cow, the lion needs the tiger, and the lion chases the tiger. \n\nNow let's look at condition 11 again. We know that the tiger is cold, the tiger chases the cat, the cat chases the cow, and the lion needs the cow. However, we don't have enough information to determine whether the tiger chases the cow. However, we do have enough information to determine whether the tiger likes the cow. If we substitute \"the tiger\" for \"something\" and \"the cow\" for \"the tiger\" in condition 11, we get \"If the cow chases the cow then the tiger likes the cat.\" This is a false statement because the cow cannot chase the cow. \n\nHowever, we do have enough information to determine whether the tiger likes the cow. If we substitute \"the tiger\" for \"something\" and \"the cow\" for \"the tiger\" in condition 11, we get \"If the cow chases the cow then the tiger likes the cat.\" This is a false statement because the cow cannot chase the cow. However, we do have enough information to determine whether the tiger likes the cow. If the cow chases the cow is false, then it must be the case that the tiger does not chase the cow. Therefore, we can substitute \"the tiger\" for \"something\" and \"the cow\" for \"the tiger\" in condition 11 to get \"If the tiger chases the cow then the tiger likes the cat.\" This is a false statement because the tiger does not chase the cow. \n\nTherefore, we can conclude that the tiger likes the cow is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger likes the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger likes the cow.  (Given statement)\n   However, we can't directly conclude the truth of this statement from the given information.\n\n2. The cow is cold.  (Given information)\n   We can use this information later.\n\n3. The lion chases the tiger.  (Given information)\n   We can use this information later.\n\n4. The lion likes the cat.  (Given information)\n   We can use this information later.\n\n5. The lion needs the cow.  (Given information)\n   We can use this information later.\n\n6. The lion needs the tiger.  (Given information)\n   We can use this information later.\n\n7. The tiger likes the cow.  (Given statement)\n   This statement is the one we're trying to determine the truth of.\n\n8. If something likes the tiger then the tiger is cold.  (Given information)\n   This rule tells us nothing directly about the relationship between the tiger and the cow, but we can use it later.\n\n9. If something chases the lion and it needs the lion then it is green.  (Given information)\n   This rule tells us nothing directly about the relationship between the tiger and the cow.\n\n10. If the cow chases the lion and the cow chases the cat then the lion needs the cow.  (Given information)\n    This rule tells us nothing directly about the relationship between the tiger and the cow.\n\n11. If the tiger chases the cow then the tiger likes the cat.  (Given information)\n    We can use this information later.\n\n12. If something needs the lion then the lion needs the tiger.  (Given information)\n    We can use this information later.\n\n13. If something chases the cow then the cow likes the tiger.  (Given information)\n    We can use this information later.\n\n14. If something chases the cat then the cat chases the cow.  (Given information)\n    We can use this information later.\n\n15. If something is cold then it chases the cat.  (Given information)\n    We can use this information later.\n\n16. If something is cold and it chases the cat then it chases the cow.  (Given information)\n    We can use this information later.\n\nNow, let's try to deduce the truth of the statement \"The tiger likes the cow\" by analyzing the given information.\n\nFrom rule 8, we know that if something likes the tiger then the tiger is cold. However, we don't know if the tiger is cold. \n\nFrom rule 11, we know that if the tiger chases the cow then the tiger likes the cat. But we don't know if the tiger chases the cow.\n\nFrom rule 11, we also know that if the tiger likes the cat, then the tiger likes the cow is not necessarily true. The statement in rule 11 is an implication, not an equivalence.\n\nWe can't directly conclude the truth of the statement \"The tiger likes the cow\" from the given information.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger likes the cow\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\n1. The tiger likes the cow. (Given statement)\n2. The cow is cold. (Given statement)\n3. If something likes the tiger then the tiger is cold. (Rule 1)\n4. We don't have any information about the tiger liking something. However, the tiger is liked by the cat (from the statement \"The lion likes the cat\" and the statement \"The lion needs the tiger\" implies the lion likes the tiger). Therefore, from rule 1, we can conclude that the tiger is cold.\n\nHowever, the problem is asking whether the tiger likes the cow, not whether the tiger is cold. We need more information to determine this.\n\n5. If the tiger chases the cow then the tiger likes the cat. (Rule 6)\n6. We don't have any information about the tiger chasing the cow. However, we do have information about the tiger needing the lion (from the statement \"The lion needs the tiger\") and the lion needing the cow (from the statement \"The lion needs the cow\"). This implies that the tiger needs the lion, which needs the cow.\n\n7. If something needs the lion then the lion needs the tiger. (Rule 8)\n8. We already know that the lion needs the tiger. Therefore, the tiger needs the lion, which in turn needs the cow.\n\n9. If something chases the cow then the cow likes the tiger. (Rule 10)\n10. We don't have any information about anything chasing the cow. However, we do have information about the cat chasing the cow (from the statement \"The cat chases the cow\" implies the cat chases the cow if the cat chases the lion and the cat chases the tiger is not mentioned but the tiger likes the cow, the tiger likes the cat and the cow is cold) and the lion needing the cow.\n\nHowever, the problem is asking whether the tiger likes the cow, not whether the cow likes the tiger. We need more information to determine this.\n\n11. If something likes the cat then the cat chases the cow. (Rule 12)\n12. We don't have any information about something liking the cat. However, we do have information about the lion liking the cat and the lion needs the cow.\n\nHowever, the problem is asking whether the tiger likes the cow, not whether the lion likes the cat or needs the cow. We need more information to determine this.\n\n13. The lion likes the cat. (Given statement)\n14. The lion needs the cow. (Given statement)\n15. The lion needs the tiger. (Given statement)\n16. If the cow is cold then it chases the cat. (Rule 14)\n17. We already know that the cow is cold. Therefore, the cow chases the cat.\n\n18. If something is cold and it chases the cat then it chases the cow. (Rule 15)\n19. We already know that the cow is cold and it chases the cat. Therefore, the cow chases the cow.\n\nHowever, the problem is asking whether the tiger likes the cow, not whether the cow chases the cat or cow. We need more information to determine this.\n\n20. If something chases the lion and it needs the lion then it is green. (Rule 2)\n21. We don't have any information about something chasing the lion and needing the lion.\n\nHowever, the problem is asking whether the tiger likes the cow, not whether something is green or needs the lion. We need more information to determine this.\n\nSince we don't have enough information to determine whether the tiger likes the cow, the answer is unknown.\n\nHowever, we can make use of the given statements to determine the answer.\n\nFrom the statement \"The lion needs the tiger\" and the statement \"The lion likes the cat\", we can conclude that the lion needs the tiger because the lion likes the cat.\n\nFrom the statement \"The lion needs the cow\" and the statement \"The lion likes the cat\", we can conclude that the lion needs the cow because the lion needs the cow and the lion likes the cat.\n\nSince the tiger needs the lion and the lion needs the cow, the tiger needs the cow. \n\nFrom the statement \"The tiger needs the cow\", we can conclude that the tiger likes the cow because the tiger needs the cow.\n\nTherefore, the statement \"The tiger likes the cow\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger likes the cow\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. The tiger likes the cow. (Statement to be evaluated)\n2. If something likes the tiger then the tiger is cold. (Rule 1)\n   - This rule implies that if the tiger likes the cow, then the cow is cold.\n\n3. The cow is cold. (From Rule 1)\n   - This is a conclusion from Rule 1.\n\n4. If something is cold then it chases the cat. (Rule 8)\n   - This rule implies that the cow chases the cat.\n\n5. If something chases the cat then the cat chases the cow. (Rule 7)\n   - This rule implies that the cow chases the cat, and therefore the cat chases the cow.\n\n6. The cat chases the cow. (From Rule 7)\n   - This is a conclusion from Rule 7.\n\n7. The lion needs the cow. (Given information)\n   - This is a given statement.\n\n8. If the cow chases the lion and the cow chases the cat then the lion needs the cow. (Rule 5)\n   - This rule implies that the lion needs the cow.\n\n9. The lion likes the cat. (Given information)\n   - This is a given statement.\n\n10. If something likes the cat then the cat likes the cow. (Rule 3)\n    - This rule is not applicable in this case because we do not know if the lion likes the cow.\n\n11. The lion chases the tiger. (Given information)\n    - This is a given statement.\n\n12. If something chases the lion and it needs the lion then it is green. (Rule 2)\n    - This rule implies that the tiger is green because it chases the lion.\n\n13. If something needs the lion then the lion needs the tiger. (Rule 6)\n    - This rule implies that the lion needs the tiger.\n\n14. The lion needs the tiger. (From Rule 13)\n    - This is a conclusion from Rule 13.\n\n15. If the tiger chases the cow then the tiger likes the cat. (Rule 4)\n    - This rule implies that the tiger likes the cat.\n\nHowever, we cannot directly conclude whether the tiger likes the cow from the given information.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger likes the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger likes the cow. (Premise)\n2. If something likes the tiger then the tiger is cold. (Premise)\n   - This implies that the tiger is cold because the tiger likes itself.\n   - So, the tiger is cold.\n\n3. If something is cold then it chases the cat. (Premise)\n   - Since the tiger is cold, the tiger chases the cat.\n\n4. If something chases the cat then the cat chases the cow. (Premise)\n   - Since the tiger chases the cat, the cat chases the cow.\n\n5. The cat likes the cow. (Premise)\n   - This is given in the problem.\n\n6. If the cow chases the lion and the cow chases the cat then the lion needs the cow. (Premise)\n   - We don't have information about the lion needing the cow yet.\n\n7. If the tiger chases the cow then the tiger likes the cat. (Premise)\n   - This is not applicable here because we don't have information about the tiger chasing the cow.\n\n8. The lion needs the tiger. (Premise)\n   - If something needs the lion then the lion needs the tiger. This implies that the lion needs the tiger.\n\n9. The lion likes the cat. (Premise)\n   - This is given in the problem.\n\n10. The lion needs the cow. (Premise)\n    - This is given in the problem.\n\n11. The lion chases the tiger. (Premise)\n    - This is not applicable here because we are looking for information about the tiger liking the cow.\n\n12. If something chases the lion and it needs the lion then it is green. (Premise)\n    - This is not applicable here because we are looking for information about the tiger liking the cow.\n\n13. The cow is cold. (Premise)\n    - This is given in the problem.\n\n14. If something likes the cow then the cow is cold. (Premise)\n    - This is not applicable here because we are looking for information about the tiger liking the cow.\n\n15. If the cow is cold then it chases the cat. (Premise)\n    - This is not applicable here because we are looking for information about the tiger liking the cow.\n\n16. If something chases the cow then the cow likes the tiger. (Premise)\n    - This is the key information we need. We need to check if something chases the cow.\n\nFrom step 3, we know that the tiger chases the cat. However, this information doesn't help us find out if someone chases the cow.\n\nFrom step 4, we know that the cat chases the cow. This is the information we need. Since the cat chases the cow, we can use step 16: If something chases the cow then the cow likes the tiger.\n\nSo, the cow likes the tiger.\n\nFrom step 2, we know that the tiger is cold because the tiger likes itself.\n\nFrom step 7, we know that if the tiger chases the cow then the tiger likes the cat. However, this is not applicable here because we don't have information about the tiger chasing the cow.\n\nFrom step 15, we know that if the cow is cold then it chases the cat. However, this is not applicable here because we are looking for information about the tiger liking the cow.\n\nHowever, we still need to find out if the tiger likes the cow. We can use step 7: If the tiger chases the cow then the tiger likes the cat.\n\nSince the tiger is cold (step 2) and the cat chases the cow (step 4), we can use step 5: The cat likes the cow. However, this doesn't help us find out if the tiger likes the cow.\n\nSince the cat likes the cow (step 5), we can use step 16: If something chases the cow then the cow likes the tiger.\n\nHowever, we know that the cat chases the cow (step 4), so the cow likes the tiger.\n\nBut, we still need to find out if the tiger likes the cow. We can use step 7: If the tiger chases the cow then the tiger likes the cat.\n\nHowever, we don't have information about the tiger chasing the cow.\n\nFrom step 8, we know that the lion needs the tiger. However, this doesn't help us find out if the tiger likes the cow.\n\nFrom step 9, we know that the lion likes the cat. However, this doesn't help us find out if the tiger likes the cow.\n\nFrom step 10, we know that the lion needs the cow. However, this doesn't help us find out if the tiger likes the cow.\n\nHowever, we still need to find out if the tiger likes the cow. We can use step 7: If the tiger chases the cow then the tiger likes the cat.\n\nSince the tiger is cold (step 2), we can use step 3: If something is cold then it chases the cat.\n\nSince the tiger is cold, the tiger chases the cat.\n\nHowever, we don't have information about the tiger chasing the cow.\n\nFrom step 4, we know that the cat chases the cow. However, this doesn't help us find out if the tiger likes the cow.\n\nSince the cat likes the cow (step 5), we can use step 16: If something chases the cow then the cow likes the tiger.\n\nHowever, we know that the cat chases the cow (step 4), so the cow likes the tiger.\n\nHowever, we still need to find out if the tiger likes the cow. We can use step 7: If the tiger chases the cow then the tiger likes the cat.\n\nHowever, we don't have information about the tiger chasing the cow.\n\nSince the cat chases the cow (step 4), we can use step 16: If something chases the cow then the cow likes the tiger.\n\nHowever, we still need to find out if the tiger likes the cow. We can use step 7: If the tiger chases the cow then the tiger likes the cat.\n\nHowever, we don't have information about the tiger chasing the cow.\n\nSince the cat chases the cow (step 4), we can use step 16: If something chases the cow then the cow likes the tiger.\n\nHowever, we still need to find out if the tiger likes the cow. We can use step 7: If the tiger chases the cow then the tiger likes the cat.\n\nHowever, we don't have information about the tiger chasing the cow.\n\nSince the cow is cold (step 13), we can use step 15: If the cow is cold then it chases the cat.\n\nHowever, we don't have information about the cow chasing the cat.\n\nSince the cat likes the cow (step 5), we can use step 16: If something chases the cow then the cow likes the tiger.\n\nHowever, we know that the cat chases the cow (step 4), so the cow likes the tiger.\n\nHowever, we still need to find out if the tiger likes the cow. We can use step 7: If the tiger chases the cow then the tiger likes the cat.\n\nHowever, we don't have information about the tiger chasing the cow.\n\nSince the tiger is cold (step 2), we can use step 3: If something is cold then it chases the cat.\n\nHowever, we don't have information about the cow chasing the cat.\n\nSince the cat likes the cow (step 5), we can use step 16: If something chases the cow then the cow likes the tiger.\n\nHowever, we know that the cat chases the cow (step 4), so the cow likes the tiger.\n\nHowever, we still need to find out if the tiger likes the cow. We can use step 7: If the tiger chases the cow then the tiger likes the cat.\n\nHowever, we don't have information about the tiger chasing the cow.\n\nSince the lion needs the tiger (step 8), we can use step 9: If something needs the lion then the lion needs the tiger.\n\nHowever, we don't have information about the lion needing the tiger.\n\nHowever, we still need to find out if the tiger likes the cow. We can use step 7: If the tiger chases the cow then the tiger likes the cat.\n\nHowever, we don't have information about the tiger chasing the cow.\n\nSince the cat likes the cow (step 5), we can use step 16: If something chases the cow then the cow likes the tiger.\n\nHowever, we know that the cat chases the cow (step 4), so the cow likes the tiger.\n\nHowever, we still need to find out if the tiger likes the cow. We can use step 7: If the tiger chases the cow then the tiger likes the cat.\n\nHowever, we don't have information about the tiger chasing the cow.\n\nSince the cow is cold (step 13), we can use step 15: If the cow is cold then it chases the cat.\n\nHowever, we don't have information about the cow chasing the cat.\n\nHowever, we still need to find out if the tiger likes the cow. We can use step 7: If the tiger chases the cow then the tiger likes the cat.\n\nHowever, we don't have information about the tiger chasing the cow.\n\nSince the lion needs the cow (step 10), we can use step 9: If something needs the lion then the lion needs the tiger.\n\nHowever, we don't have information about the lion needing the tiger.\n\nSince the lion needs the cow (step 10), we can use step ",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger likes the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger likes the cow: We want to find out if this statement is true, false, or unknown.\n2. The tiger likes the cow is not directly stated, but we can start by looking for any information related to the tiger and the cow.\n3. The tiger likes the cow (statement we are trying to verify): This is what we want to know.\n4. The tiger likes the cow (not directly stated, but we can look for related information): We can look at other statements involving the tiger and the cow.\n5. The tiger likes the cow (from previous statement): We can look at the previous statements to see if there's any information related to the tiger and the cow.\n6. The tiger likes the cow (from previous statement): We can look at the previous statements to see if there's any information related to the tiger and the cow.\n7. The tiger likes the cow (from previous statement): We can look at the previous statements to see if there's any information related to the tiger and the cow.\n8. The tiger likes the cow (from previous statement): We can look at the previous statements to see if there's any information related to the tiger and the cow.\n\nSince we're looking for information about the tiger and the cow, let's start from the beginning and work our way up.\n\nFrom the given information:\n- The lion chases the tiger.\n- If something chases the lion and it needs the lion then it is green. (This statement doesn't give us any information about the tiger and the cow, so we can ignore it for now.)\n- The tiger likes the cow is not directly stated, but we can look at other statements involving the tiger and the cow.\n\nLet's look at the statement \"If the tiger chases the cow then the tiger likes the cat.\" This statement implies that the tiger does not like the cow, but we can't conclude this from this statement alone.\n\nNow, let's analyze the statement \"If something is cold then it chases the cat.\" We don't know if the tiger is cold or not, so we can't conclude anything from this statement.\n\nLet's look at the statement \"If something is cold and it chases the cat then it chases the cow.\" We still don't know if the tiger is cold or not, so we can't conclude anything from this statement.\n\nLet's look at the statement \"If something chases the cat then the cat chases the cow.\" We don't know if the tiger chases the cat or not, so we can't conclude anything from this statement.\n\nLet's look at the statement \"If something chases the cow then the cow likes the tiger.\" We don't know if the tiger chases the cow or not, so we can't conclude anything from this statement.\n\nNow, let's look at the statement \"The lion needs the tiger.\" This statement implies that the tiger is needed by something, but we don't know what that something is.\n\nLet's look at the statement \"The lion needs the cow.\" This statement implies that the cow is needed by something, but we don't know what that something is.\n\nLet's look at the statement \"The lion likes the cat.\" This statement implies that the lion has a positive relationship with the cat, but we don't know if the cat likes the lion or not.\n\nNow, let's look at the statement \"The cat likes the cow.\" This statement implies that the cat has a positive relationship with the cow, but we don't know if the cow likes the cat or not.\n\nFrom the given information, we can conclude that:\n\n- The lion likes the cat.\n- The cat likes the cow.\n- The lion needs the tiger.\n- The lion needs the cow.\n- The tiger likes the cat (from the statement \"If the tiger chases the cow then the tiger likes the cat.\")\n\nHowever, we still don't know if the tiger likes the cow or not.\n\nSince we don't have enough information to conclude whether the tiger likes the cow or not, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger likes the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion chases the tiger. \n   We do not have enough information about the relationship between the lion and the tiger yet, but we can store this piece of information.\n\n2. The lion needs the tiger. \n   We now have two relationships between the lion and the tiger: the lion chases the tiger and the lion needs the tiger.\n\n3. If something likes the tiger then the tiger is cold.\n   We have no direct information about the relationship between the tiger and any other entity that likes it. However, we do know that the lion needs the tiger. We can store this piece of information.\n\n4. If something chases the lion and it needs the lion then it is green. \n   We do not have any information that matches this condition yet.\n\n5. If the cow chases the lion and the cow chases the cat then the lion needs the cow. \n   We do not have any information that matches this condition yet.\n\n6. If the tiger chases the cow then the tiger likes the cat. \n   We do not have any information that matches this condition yet.\n\n7. If something needs the lion then the lion needs the tiger. \n   We already know that the lion needs the tiger (from statement 2).\n\n8. If something chases the lion and it needs the lion then it is green. \n   We still do not have any information that matches this condition yet.\n\n9. If something chases the cow then the cow likes the tiger. \n   We do not have any information that matches this condition yet.\n\n10. If something chases the cat then the cat chases the cow. \n    We do not have any information that matches this condition yet.\n\n11. If something is cold then it chases the cat. \n    We do not have any information about the temperature of the entities yet.\n\n12. If something is cold and it chases the cat then it chases the cow. \n    We still do not have any information that matches this condition yet.\n\nNow we need to use the given information to find the relationship between the tiger and the cow.\n\n- We already know that the lion needs the tiger (from statement 2).\n- We also know that the lion likes the cat (from statement 1).\n- The lion needs the cow (from statements 5 and 8 are not possible).\n- The tiger likes the cow is not true from the given information (from statements 6, 9, and 11 are not possible).\n\nHowever, we do not have enough information to determine if the tiger likes the cow. So the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger likes the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The tiger likes the cow. (This is the statement we need to check)\n2. If something likes the tiger then the tiger is cold. (This is a rule, but we don't have any information that the tiger likes something yet)\n3. The lion chases the tiger. (This is a new piece of information)\n4. If something chases the lion and it needs the lion then it is green. (This is a rule, but we don't have any information that something chases the lion and needs the lion)\n5. The lion likes the cat. (This is a new piece of information)\n6. The lion needs the cow. (This is a new piece of information)\n7. The lion needs the tiger. (This is a new piece of information)\n8. The tiger likes the cow. (This statement is what we're trying to determine)\n\nHowever, we already have the statement that the tiger likes the cow. We need to check the truth of this statement. \n\nFrom the given information, we can find the following conclusions:\n\n- The lion needs the tiger (from 7).\n- If something needs the lion then the lion needs the tiger (rule). \n  Therefore, if something needs the lion then it needs the tiger.\n- The lion needs the cow (from 6).\n- The tiger likes the cow (from 8).\n\nWe can see that we have a loop here, and we cannot determine the truth of the statement \"The tiger likes the cow\" using the given rules and information.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cow)",
+          "z3_formula": "likes_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> cold(X)",
+          "z3_formula": "Implies(likes_tiger_cow, cold_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> likes(X, cat)",
+          "z3_formula": "Implies(chases_tiger_cow, likes_tiger_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> likes(X, cat)",
+          "z3_formula": "Implies(chases_tiger_cow, likes_tiger_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> cow_likes_X",
+          "z3_formula": "Implies(chases_tiger_cow, cow_likes_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> cow_chases_cat",
+          "z3_formula": "Implies(chases_tiger_cow, cow_chases_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & needs_lion(X) -> green(X)",
+          "z3_formula": "Implies(And(chases_tiger_lion, needs_lion_tiger), green_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs_lion(X) -> needs_lion_tiger",
+          "z3_formula": "Implies(needs_lion_X, needs_lion_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> needs_lion(X)",
+          "z3_formula": "Implies(chases_tiger_lion, needs_lion_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> needs_lion(X)",
+          "z3_formula": "Implies(chases_tiger_lion, needs_lion_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> cat_chases_cow",
+          "z3_formula": "Implies(chases_tiger_cat, cat_chases_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(lion, tiger)",
+          "z3_formula": "likes_lion_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(X, tiger)",
+          "z3_formula": "Implies(needs_lion_tiger, needs_lion_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, tiger)",
+          "z3_formula": "chases_lion_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> cold(tiger)",
+          "z3_formula": "Implies(likes_tiger_tiger, cold_tiger)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, tiger)",
+          "z3_formula": "likes_cat_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> likes(cow, tiger)",
+          "z3_formula": "Implies(chases_cow_cow, likes_cow_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cow)",
+          "z3_formula": "chases_tiger_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> likes(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_cow, likes_tiger_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, tiger)",
+          "z3_formula": "likes_cow_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(X, cow)",
+          "z3_formula": "Implies(chases_cat_cow, chases_cat_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, cow)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, cat)",
+          "z3_formula": "Implies(cold_tiger, chases_tiger_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & chases(X, cat) -> chases(X, cow)",
+          "z3_formula": "Implies(And(cold_tiger, chases_tiger_cat), chases_tiger_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cow) & cold(cow)",
+          "z3_formula": "And(chases_tiger_cow, cold_cow) == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(X, cow)",
+          "z3_formula": "Implies(chases_tiger_cat, chases_tiger_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(tiger, cow)",
+          "z3_formula": "chases_tiger_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> likes(X, cat)",
+          "z3_formula": "Implies(chases_tiger_cow, likes_tiger_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 12
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cow)",
+          "z3_formula": "likes_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, tiger)",
+          "z3_formula": "chases_lion_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cow)",
+          "z3_formula": "needs_lion_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, tiger)",
+          "z3_formula": "needs_lion_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cow)",
+          "z3_formula": "likes_tiger_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> cold(X)",
+          "z3_formula": "Implies(likes_tiger_cow, cold_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & needs(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(chases_lion_tiger, needs_lion_tiger), green_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(cow, lion) & chases(cow, cat) -> needs(lion, cow)",
+          "z3_formula": "Implies(And(chases_cow_lion, chases_cow_cat), needs_lion_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(tiger, cow) -> likes(tiger, cat)",
+          "z3_formula": "Implies(chases_tiger_cow, likes_tiger_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(X, tiger)",
+          "z3_formula": "Implies(needs_tiger_lion, needs_tiger_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> likes(X, tiger)",
+          "z3_formula": "Implies(chases_tiger_cow, likes_tiger_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(X, cow)",
+          "z3_formula": "Implies(chases_tiger_cat, chases_tiger_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, cat)",
+          "z3_formula": "Implies(cold_tiger, chases_tiger_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & chases(X, cat) -> chases(X, cow)",
+          "z3_formula": "Implies(And(cold_tiger, chases_tiger_cat), chases_tiger_cow)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cow)",
+          "z3_formula": "likes_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> cold(X)",
+          "z3_formula": "Implies(likes_tiger_cow, cold_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> likes(X, cat)",
+          "z3_formula": "Implies(chases_cow, likes_cow_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cow, cat)",
+          "z3_formula": "likes_cow_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> chases(X, cow)",
+          "z3_formula": "Implies(likes_cow_cat, chases_cow_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cow, cow)",
+          "z3_formula": "chases_cow_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & needs(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(chases_lion, needs_lion), green_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == Unknown",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(X, tiger)",
+          "z3_formula": "Implies(needs_lion, needs_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, tiger)",
+          "z3_formula": "needs_lion_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, lion)",
+          "z3_formula": "needs_tiger_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> needs(X, tiger)",
+          "z3_formula": "Implies(needs_cow, needs_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cow)",
+          "z3_formula": "needs_lion_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, cow)",
+          "z3_formula": "needs_tiger_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cow) -> likes(X, cow)",
+          "z3_formula": "Implies(needs_tiger_cow, likes_tiger_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, cow)",
+          "z3_formula": "likes_tiger_cow == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cow)",
+          "z3_formula": "likes_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> cold(X)",
+          "z3_formula": "Implies(likes_tiger_cow, cold_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, cat)",
+          "z3_formula": "Implies(cold_cow, chases_cow_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cow, cat)",
+          "z3_formula": "chases_cow_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, X)",
+          "z3_formula": "Implies(chases_cow_cat, chases_cat_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cow)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cow)",
+          "z3_formula": "needs_lion_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & needs(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(chases_tiger_lion, needs_tiger_lion), green_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> likes(cat, X)",
+          "z3_formula": "Implies(likes_lion_cat, likes_cat_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, tiger)",
+          "z3_formula": "chases_lion_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(lion, X)",
+          "z3_formula": "Implies(needs_tiger_lion, needs_lion_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, tiger)",
+          "z3_formula": "needs_lion_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> likes(X, cat)",
+          "z3_formula": "Implies(chases_tiger_cow, likes_tiger_cat)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cow)",
+          "z3_formula": "likes_tiger_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> cold(X)",
+          "z3_formula": "Implies(likes_tiger_cow, cold_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, cat)",
+          "z3_formula": "Implies(cold_tiger, chases_tiger_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases(tiger, cat)",
+          "z3_formula": "chases_tiger_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_tiger_cat, chases_cat_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cow)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> likes(cow, tiger)",
+          "z3_formula": "Implies(chases_cat_cow, likes_cow_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cow, tiger)",
+          "z3_formula": "likes_cow_tiger == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cow)",
+          "z3_formula": "cold_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, cat)",
+          "z3_formula": "Implies(cold_cow, chases_cow_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cow, cat)",
+          "z3_formula": "chases_cow_cat == False",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> likes(tiger, cow)",
+          "z3_formula": "Implies(chases_tiger_cow, likes_tiger_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, cow)",
+          "z3_formula": "likes_tiger_cow == False",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, tiger)",
+          "z3_formula": "needs_lion_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, cow)",
+          "z3_formula": "needs_lion_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & needs(Z, Y) -> green(X)",
+          "z3_formula": "Implies(And(chases_X_Y, needs_Z_Y), green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> likes(X, Y)",
+          "z3_formula": "Implies(chases_X_Y, likes_X_Y)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> likes(X, cow)",
+          "z3_formula": "Implies(chases_X_cat, likes_X_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> likes(X, tiger)",
+          "z3_formula": "Implies(chases_X_cow, likes_X_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> chases(cat, Y)",
+          "z3_formula": "Implies(chases_X_Y, chases_cat_Y)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, cow) == False",
+          "z3_formula": "Not(likes_tiger_cow)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(lion, tiger)",
+          "z3_formula": "chases_lion_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, tiger)",
+          "z3_formula": "needs_lion_tiger == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> cold(X)",
+          "z3_formula": "Implies(likes_tiger_X, cold_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(Y, lion) & needs(Y, lion) -> green(Y)",
+          "z3_formula": "Implies(And(chases_lion_Y, needs_lion_Y), green_Y)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & chases(X, cat) -> needs(X, lion)",
+          "z3_formula": "Implies(And(chases_lion_X, chases_lion_cat), needs_lion_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, tiger) -> likes(X, cat)",
+          "z3_formula": "Implies(chases_tiger_X, likes_lion_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> needs(X, tiger)",
+          "z3_formula": "Implies(needs_lion_X, needs_lion_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(Y, lion) & needs(Y, lion) -> green(Y)",
+          "z3_formula": "Implies(And(chases_lion_Y, needs_lion_Y), green_Y)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> likes(X, tiger)",
+          "z3_formula": "Implies(chases_cow_X, likes_tiger_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(X, cow)",
+          "z3_formula": "Implies(chases_lion_cat, chases_lion_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> chases(X, cat)",
+          "z3_formula": "Implies(cold_X, chases_X_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & chases(X, cat) -> chases(X, cow)",
+          "z3_formula": "Implies(And(cold_X, chases_X_cat), chases_X_cow)",
+          "source_step": 12
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 119,
+      "traces_with_constraints": 8,
+      "unique_after_dedup": 69
+    },
+    "maxsat_stats": {
+      "satisfied": 67,
+      "excluded": 2,
+      "total_weight": 116,
+      "solve_time_ms": 1.3065151870250702
+    },
+    "timing": {
+      "trace_gen_s": 24.931,
+      "extraction_s": 59.704,
+      "dedup_s": 1.862,
+      "maxsat_s": 0.005,
+      "total_s": 86.503
+    }
+  }
+}

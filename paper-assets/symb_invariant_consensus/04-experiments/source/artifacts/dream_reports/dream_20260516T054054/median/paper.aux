@@ -1,0 +1,85 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023selfconsistency}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{demoura2008z3}
+\citation{han2022folio}
+\citation{tafjord2021proofwriter}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Method}{2}{section.2}\protected@file@percent }
+\newlabel{sec:method}{{2}{2}{Method}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Problem Setup}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Constraint Extraction}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Constraint Weighting via MAX-SAT}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Relationship to Self-Consistency}{2}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Multi-Candidate Rate ($C_0$)}{2}{subsection.2.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results with Qwen2.5-14B-Instruct, $K{=}12$, $T{=}0.7$. \textsc  {Sica}{} achieves a statistically significant gain on FOLIO ($p{=}0.034$) but near-zero gain on ProofWriter-D5, where constraint quality is low. Combined bootstrap $p{=}0.082$.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{3}{Main results with Qwen2.5-14B-Instruct, $K{=}12$, $T{=}0.7$. \sica {} achieves a statistically significant gain on FOLIO ($p{=}0.034$) but near-zero gain on ProofWriter-D5, where constraint quality is low. Combined bootstrap $p{=}0.082$}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{3}{section.3}\protected@file@percent }
+\newlabel{sec:setup}{{3}{3}{Experimental Setup}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{3}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Configuration.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Main Results}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:main_results}{{4.1}{3}{Main Results}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Tiebreak Mechanism}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:tiebreak}{{4.2}{3}{Tiebreak Mechanism}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Tiebreak resolution accuracy on 42 tied questions. \textsc  {Sica}{} provides principled resolution (+14pp over random), though McNemar $p{=}0.19$ reflects limited tie count.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:tiebreak}{{2}{4}{Tiebreak resolution accuracy on 42 tied questions. \sica {} provides principled resolution (+14pp over random), though McNemar $p{=}0.19$ reflects limited tie count}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces $K$ sensitivity on 60 questions (FOLIO+PW). \textsc  {Sica}{} $\geq $ SC at all $K$ values. The gap co-varies with tie frequency, not $C_0$, confirming tiebreaking as the primary mechanism.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:k_ablation}{{3}{4}{$K$ sensitivity on 60 questions (FOLIO+PW). \sica {} $\geq $ SC at all $K$ values. The gap co-varies with tie frequency, not $C_0$, confirming tiebreaking as the primary mechanism}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}$K$ Sensitivity Ablation}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:k_ablation}{{4.3}{4}{$K$ Sensitivity Ablation}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Model Scaling and Operating Regime}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:scaling}{{4.4}{4}{Model Scaling and Operating Regime}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{QwQ-32B: the degenerate regime.}{4}{section*.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Model scaling on FOLIO+PW. Instruction models show monotonically decreasing $C_0$ and \textsc  {Sica}{} gap with scale. QwQ-32B (reasoning) has $C_0 \approx 0$ and zero gain.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:scaling}{{4}{5}{Model scaling on FOLIO+PW. Instruction models show monotonically decreasing $C_0$ and \sica {} gap with scale. QwQ-32B (reasoning) has $C_0 \approx 0$ and zero gain}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces QwQ-32B per-domain results. Near-zero $C_0$ across domains causes \textsc  {Sica}{} to degenerate to SC. The constraint exclusion rate remains high (38.7\%), indicating diverse reasoning \emph  {paths} but convergent \emph  {answers}.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:qwq}{{5}{5}{QwQ-32B per-domain results. Near-zero $C_0$ across domains causes \sica {} to degenerate to SC. The constraint exclusion rate remains high (38.7\%), indicating diverse reasoning \emph {paths} but convergent \emph {answers}}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Computational Overhead}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:overhead}{{4.5}{5}{Computational Overhead}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Analysis}{5}{section.5}\protected@file@percent }
+\newlabel{sec:analysis}{{5}{5}{Analysis}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}$C_0$ as Operating Regime Diagnostic}{5}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:c0_analysis}{{5.1}{5}{$C_0$ as Operating Regime Diagnostic}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Constraint Quality: FOLIO vs.\ ProofWriter}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:constraint_quality}{{5.2}{5}{Constraint Quality: FOLIO vs.\ ProofWriter}{subsection.5.2}{}}
+\citation{wang2023selfconsistency}
+\citation{chen2023universal}
+\citation{li2023making}
+\citation{pan2023logicllm}
+\citation{ye2023satlm}
+\citation{wang2024mixture}
+\citation{jiang2023llmblender}
+\citation{rice1976algorithm}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Computational overhead decomposition (804 questions, $K{=}12$, 14B model). \textsc  {Sica}{}'s marginal cost over SC is 12.7\%, dominated by constraint extraction (one short LLM call per trace).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:overhead}{{6}{6}{Computational overhead decomposition (804 questions, $K{=}12$, 14B model). \sica {}'s marginal cost over SC is 12.7\%, dominated by constraint extraction (one short LLM call per trace)}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces $C_0$ vs.\ \textsc  {Sica}{} gain regression statistics across 14 model$\times $dataset$\times $$K$ configurations. $C_0$ is a strong rank-order predictor (Spearman $\rho {=}0.78$) but explains only 52\% of variance.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:c0_stats}{{7}{6}{$C_0$ vs.\ \sica {} gain regression statistics across 14 model$\times $dataset$\times $$K$ configurations. $C_0$ is a strong rank-order predictor (Spearman $\rho {=}0.78$) but explains only 52\% of variance}{table.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Related Work}{6}{section.6}\protected@file@percent }
+\newlabel{sec:related}{{6}{6}{Related Work}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Self-Consistency and voting methods.}{6}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Symbolic reasoning with LLMs.}{6}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ensemble and aggregation methods.}{6}{section*.7}\protected@file@percent }
+\bibcite{chen2023universal}{{1}{2023}{{Chen et~al.}}{{}}}
+\bibcite{demoura2008z3}{{2}{2008}{{de~Moura and Bj{\o }rner}}{{}}}
+\bibcite{han2022folio}{{3}{2022}{{Han et~al.}}{{}}}
+\bibcite{jiang2023llmblender}{{4}{2023}{{Jiang et~al.}}{{}}}
+\bibcite{li2023making}{{5}{2023}{{Li et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Operating regime characterization.}{7}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{7}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{7}{7}{Limitations}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{7}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{7}{Conclusion}{section.8}{}}
+\bibcite{pan2023logicllm}{{6}{2023}{{Pan et~al.}}{{}}}
+\bibcite{rice1976algorithm}{{7}{1976}{{Rice}}{{}}}
+\bibcite{tafjord2021proofwriter}{{8}{2021}{{Tafjord et~al.}}{{}}}
+\bibcite{wang2023selfconsistency}{{9}{2023}{{Wang et~al.}}{{}}}
+\bibcite{wang2024mixture}{{10}{2024}{{Wang et~al.}}{{}}}
+\bibcite{ye2023satlm}{{11}{2023}{{Ye et~al.}}{{}}}
+\gdef \@abspage@last{8}

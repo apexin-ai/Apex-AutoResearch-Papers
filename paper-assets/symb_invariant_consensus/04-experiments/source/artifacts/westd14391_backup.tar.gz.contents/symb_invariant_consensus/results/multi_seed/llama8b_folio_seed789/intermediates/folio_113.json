@@ -1,0 +1,621 @@
+{
+  "problem": {
+    "id": "folio_113",
+    "problem": "Given the following premises:\nThe Picuris Mountains are a mountain range in New Mexico or Texas. Juan de Onate visited the Picuris Mountains. The Harding Pegmatite Mine, located in the Picuris Mountains, was donated. There are no mountain ranges in texas that have mines which have been donated.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nJuan de Onate visited a mountain range in Texas.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "MountainRange(picurismountains) \u2227 In(picurismountains, newmexico) \u2228 In(picurismountains, texas)",
+      "Visited(juandeonate, picurismountains)",
+      "In(hardingpegmatitemine, picurismountains) \u2227 Mine(hardingpegmatitemine) \u2227 Donated(hardingpegmatitemine)",
+      "\u2200x \u2200y (Mine(x) \u2227 Donated(x) \u2227 In(x, y) \u2227 MountainRange(y) \u2192 \u00acIn(y, texas))"
+    ],
+    "conclusion_fol": "\u2203x (Visited(juandeonate, x) \u2227 MountainRange(x) \u2227 In(x, texas))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 61.0,
+      "True": 32.5,
+      "Unknown": 28.5
+    },
+    "answer_counts": {
+      "False": 9,
+      "Unknown": 2,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use the given premises and logical reasoning to determine the truth value of the conclusion.\n\nPremise 1: The Picuris Mountains are a mountain range in New Mexico or Texas.\nThis premise tells us that the Picuris Mountains can be located in either New Mexico or Texas.\n\nPremise 2: Juan de Onate visited the Picuris Mountains.\nThis premise tells us that Juan de Onate visited the Picuris Mountains, but it doesn't specify whether it was in New Mexico or Texas.\n\nPremise 3: The Harding Pegmatite Mine, located in the Picuris Mountains, was donated.\nThis premise tells us that the Harding Pegmatite Mine was donated and is located in the Picuris Mountains.\n\nPremise 4: There are no mountain ranges in Texas that have mines which have been donated.\nThis premise tells us that there are no mountain ranges in Texas with donated mines.\n\nNow, let's analyze the conclusion: \"Juan de Onate visited a mountain range in Texas.\"\n\nIf we assume that the Picuris Mountains are in New Mexico (from Premise 1), then Premise 2 tells us that Juan de Onate visited the Picuris Mountains in New Mexico. In this case, the conclusion is false because Juan de Onate visited a mountain range in New Mexico, not Texas.\n\nHowever, if we assume that the Picuris Mountains are in Texas (from Premise 1), then Premise 2 tells us that Juan de Onate visited the Picuris Mountains in Texas. In this case, the conclusion is true.\n\nBut Premise 4 tells us that there are no mountain ranges in Texas with donated mines, and Premise 3 tells us that the Harding Pegmatite Mine was donated and is located in the Picuris Mountains. This creates a contradiction, as the Picuris Mountains cannot be in Texas if there are no donated mines in Texas.\n\nSince the Picuris Mountains cannot be in Texas (due to the contradiction), we can conclude that the Picuris Mountains are in New Mexico. Therefore, the conclusion \"Juan de Onate visited a mountain range in Texas\" is false.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step:\n\n1. The Picuris Mountains are a mountain range in New Mexico or Texas.\n\nThis premise tells us that the Picuris Mountains can be located in either New Mexico or Texas. However, it doesn't provide us with any specific information about where Juan de Onate visited.\n\n2. Juan de Onate visited the Picuris Mountains.\n\nThis premise states that Juan de Onate visited the Picuris Mountains, but it doesn't specify which state the Picuris Mountains are located in. We still don't have enough information to determine whether the conclusion is true or false.\n\n3. The Harding Pegmatite Mine, located in the Picuris Mountains, was donated.\n\nThis premise provides us with more information about the Picuris Mountains. It tells us that there is a mine in the Picuris Mountains, and that mine was donated.\n\n4. There are no mountain ranges in Texas that have mines which have been donated.\n\nThis premise is a crucial piece of information. It tells us that if a mine in Texas has been donated, then it's not possible for that mine to be located in a mountain range in Texas. However, since we know that the Harding Pegmatite Mine in the Picuris Mountains was donated, we can conclude that the Picuris Mountains are not located in Texas.\n\nNow, let's go back to the conclusion: \"Juan de Onate visited a mountain range in Texas.\"\n\nSince we've concluded that the Picuris Mountains are not located in Texas, we can also conclude that Juan de Onate did not visit a mountain range in Texas. The correct answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the validity of the conclusion, let's analyze the premises step by step:\n\n1. The Picuris Mountains are a mountain range in New Mexico or Texas.\n\n   - This premise does not specify which state the Picuris Mountains are located in. It only gives us two possibilities: New Mexico or Texas.\n\n2. Juan de Onate visited the Picuris Mountains.\n\n   - This premise tells us that Juan de Onate visited the Picuris Mountains. However, we still don't know in which state the Picuris Mountains are located.\n\n3. The Harding Pegmatite Mine, located in the Picuris Mountains, was donated.\n\n   - This premise tells us that there is a mine in the Picuris Mountains. However, it does not provide any additional information about the state in which the Picuris Mountains are located.\n\n4. There are no mountain ranges in Texas that have mines which have been donated.\n\n   - This premise tells us that there are no donated mines in mountain ranges of Texas. If there were a mine in a Texas mountain range, it would not have been donated.\n\nNow, let's try to find the conclusion in the premises:\n\n- The Picuris Mountains are located in New Mexico (from premise 1, given the information in premise 4).\n\n- Juan de Onate visited the Picuris Mountains (from premise 2).\n\n- The Picuris Mountains are in New Mexico (from premise 1 and our deduction above).\n\nWe can now conclude that Juan de Onate visited a mountain range in New Mexico. However, the conclusion asks whether Juan de Onate visited a mountain range in Texas. We have no information to confirm that the Picuris Mountains are in Texas.\n\nSince there are two possibilities (New Mexico or Texas), and we can confirm that the Picuris Mountains are in New Mexico, we can conclude that the given conclusion \"Juan de Onate visited a mountain range in Texas\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion \"Juan de Onate visited a mountain range in Texas\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: The Picuris Mountains are a mountain range in New Mexico or Texas.\n\nFrom this premise, we know that the Picuris Mountains can be either in New Mexico or Texas.\n\nPremise 2: Juan de Onate visited the Picuris Mountains.\n\nThis premise tells us that Juan de Onate visited the Picuris Mountains, but it does not specify whether the Picuris Mountains are in New Mexico or Texas.\n\nPremise 3: The Harding Pegmatite Mine, located in the Picuris Mountains, was donated.\n\nThis premise does not provide any new information about the location of the Picuris Mountains.\n\nPremise 4: There are no mountain ranges in Texas that have mines which have been donated.\n\nThis premise tells us that if a mountain range in Texas has a mine that has been donated, it is not possible. However, it does not provide any information about the Picuris Mountains being in Texas.\n\nNow, let's combine the information from the premises. \n\nFrom premise 1, we know that the Picuris Mountains are in New Mexico or Texas. \nFrom premise 2, we know that Juan de Onate visited the Picuris Mountains. \n\nHowever, we cannot determine whether the Picuris Mountains are in New Mexico or Texas from the premises alone. \nBut, from premise 4, we know that there are no mountain ranges in Texas that have mines which have been donated. \nIf the Picuris Mountains were in Texas, then the Harding Pegmatite Mine would be an exception to premise 4, which contradicts the information provided.\n\nTherefore, based on premise 4, we can conclude that the Picuris Mountains are not in Texas, as the information provided would be contradictory.\n\nSince we know that the Picuris Mountains are not in Texas, we can conclude that Juan de Onate visited a mountain range in New Mexico, not Texas.\n\nConclusion: The conclusion \"Juan de Onate visited a mountain range in Texas\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion \"Juan de Onate visited a mountain range in Texas\" is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. The Picuris Mountains are a mountain range in New Mexico or Texas.\n   This premise provides us with two possible locations for the Picuris Mountains: New Mexico or Texas.\n\n2. Juan de Onate visited the Picuris Mountains.\n   This premise tells us that Juan de Onate visited the Picuris Mountains, but it doesn't specify which state.\n\n3. The Harding Pegmatite Mine, located in the Picuris Mountains, was donated.\n   This premise gives us information about the location of the Harding Pegmatite Mine, which is in the Picuris Mountains.\n\n4. There are no mountain ranges in Texas that have mines which have been donated.\n   This premise is crucial in eliminating one of the possible locations for the Picuris Mountains. Since there are no donated mines in Texas, it's likely that the Picuris Mountains are in New Mexico.\n\nNow, let's combine the premises:\n\n- From premise 1, the Picuris Mountains can be either in New Mexico or Texas.\n- From premise 2, Juan de Onate visited the Picuris Mountains.\n- From premise 3 and premise 4, we can infer that the Picuris Mountains are likely in New Mexico, since there are no donated mines in Texas.\n\nHowever, we can't be 100% certain about the location of the Picuris Mountains. The conclusion that Juan de Onate visited a mountain range in Texas is uncertain because we don't have enough information to rule out the possibility that the Picuris Mountains are in Texas. \n\nHowever, given the information that there are no mountain ranges in Texas with donated mines, the most likely scenario is that the Picuris Mountains are in New Mexico.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: The Picuris Mountains are a mountain range in New Mexico or Texas.\n\nThis premise gives us two possible locations for the Picuris Mountains: New Mexico or Texas.\n\nPremise 2: Juan de Onate visited the Picuris Mountains.\n\nThis premise tells us that Juan de Onate visited the Picuris Mountains, but it doesn't specify whether he visited the Picuris Mountains in New Mexico or Texas.\n\nPremise 3: The Harding Pegmatite Mine, located in the Picuris Mountains, was donated.\n\nThis premise adds more information about the Picuris Mountains. Since the mine is located in the Picuris Mountains, we know that the Picuris Mountains must be in New Mexico, because premise 4 states there are no mountain ranges in Texas that have mines which have been donated.\n\nPremise 4: There are no mountain ranges in Texas that have mines which have been donated.\n\nThis premise eliminates the possibility of the Picuris Mountains being in Texas, as it specifically states that there are no mountain ranges in Texas with donated mines.\n\nNow, let's revisit the conclusion:\n\nConclusion: Juan de Onate visited a mountain range in Texas.\n\nGiven that we know the Picuris Mountains are in New Mexico (from premise 3 and premise 4), we can conclude that Juan de Onate did not visit a mountain range in Texas. Therefore, the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: The Picuris Mountains are a mountain range in New Mexico or Texas.\nThis premise provides information about the possible locations of the Picuris Mountains.\n\nPremise 2: Juan de Onate visited the Picuris Mountains.\nThis premise provides information about Juan de Onate's activities.\n\nPremise 3: The Harding Pegmatite Mine, located in the Picuris Mountains, was donated.\nThis premise provides information about the Harding Pegmatite Mine, specifically that it was donated and located in the Picuris Mountains.\n\nPremise 4: There are no mountain ranges in Texas that have mines which have been donated.\nThis premise provides crucial information that helps to eliminate possibilities.\n\nNow, let's analyze the possible locations of the Picuris Mountains based on Premise 1. The Picuris Mountains are in either New Mexico or Texas.\n\nSince the Harding Pegmatite Mine was donated, according to Premise 4, it must be located in New Mexico. This is because there are no mountain ranges in Texas with donated mines. Therefore, the Picuris Mountains must be located in New Mexico, not Texas.\n\nNow, let's revisit Premise 2: Juan de Onate visited the Picuris Mountains. If the Picuris Mountains are in New Mexico, it is possible that Juan de Onate visited a mountain range in New Mexico, but it does not necessarily imply that he visited a mountain range in Texas.\n\nGiven the information and logical reasoning, we cannot conclude that Juan de Onate visited a mountain range in Texas. Therefore, the conclusion is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. The Picuris Mountains are a mountain range in New Mexico or Texas.\n\nThis premise gives us two possible locations for the Picuris Mountains: New Mexico or Texas. However, it does not provide any information about the actual location.\n\n2. Juan de Onate visited the Picuris Mountains.\n\nThis premise tells us that Juan de Onate visited the Picuris Mountains, but it does not specify whether the visit was to the New Mexico location or the Texas location.\n\n3. The Harding Pegmatite Mine, located in the Picuris Mountains, was donated.\n\nThis premise informs us about a specific event related to the Picuris Mountains. However, it does not provide any information about the location of the Picuris Mountains.\n\n4. There are no mountain ranges in Texas that have mines which have been donated.\n\nThis premise provides crucial information about the relationship between mountain ranges in Texas and donated mines. It tells us that if a mine in Texas has been donated, then the mountain range must be in New Mexico (because there are no mountain ranges in Texas with donated mines).\n\nNow, let's analyze the conclusion in light of the premises:\n\nConclusion: Juan de Onate visited a mountain range in Texas.\n\nTo determine whether this conclusion is true, false, or uncertain, we need to examine the premises.\n\nFrom premise 4, we know that there are no mountain ranges in Texas with donated mines. However, premise 3 states that the Harding Pegmatite Mine, located in the Picuris Mountains, was donated. This means that the Picuris Mountains must be in New Mexico (because there are no mountain ranges in Texas with donated mines).\n\nHowever, premise 2 tells us that Juan de Onate visited the Picuris Mountains. We do not know whether the visit was to the New Mexico location or the Texas location.\n\nBut we can use the information from premise 4 and premise 3 to conclude that the Picuris Mountains are in New Mexico. \n\nTherefore, because the Picuris Mountains are in New Mexico, Juan de Onate did not visit a mountain range in Texas. \n\nHence, the conclusion is False.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: The Picuris Mountains are a mountain range in New Mexico or Texas.\nPremise 2: Juan de Onate visited the Picuris Mountains.\nPremise 3: The Harding Pegmatite Mine, located in the Picuris Mountains, was donated.\nPremise 4: There are no mountain ranges in Texas that have mines which have been donated.\n\nFrom Premise 1, we know that the Picuris Mountains can be located in either New Mexico or Texas.\n\nFrom Premise 2, we know that Juan de Onate visited the Picuris Mountains.\n\nFrom Premise 3, we know that the Harding Pegmatite Mine, located in the Picuris Mountains, was donated.\n\nFrom Premise 4, we know that there are no mountain ranges in Texas with donated mines.\n\nNow, let's analyze the conclusion: Juan de Onate visited a mountain range in Texas.\n\nIf the Picuris Mountains are in Texas (which Premise 1 allows), then from Premise 2, we know that Juan de Onate visited the Picuris Mountains in Texas. However, Premise 4 states that there are no mountain ranges in Texas with donated mines, which contradicts Premise 3, which states that the Harding Pegmatite Mine, located in the Picuris Mountains, was donated.\n\nThis contradiction means that if the Picuris Mountains are in Texas, then Premise 3 cannot be true, which in turn means that Premise 2 (Juan de Onate visited the Picuris Mountains) cannot be true if the Picuris Mountains are in Texas.\n\nHowever, Premise 1 does not rule out the possibility that the Picuris Mountains are in New Mexico. If the Picuris Mountains are in New Mexico, then Premise 2 is true (Juan de Onate visited the Picuris Mountains), and Premise 4 does not apply because it specifically mentions mountain ranges in Texas.\n\nTherefore, the conclusion \"Juan de Onate visited a mountain range in Texas\" is uncertain because it relies on the assumption that the Picuris Mountains are in Texas, which contradicts other premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: The Picuris Mountains are a mountain range in New Mexico or Texas.\n- This premise tells us that the Picuris Mountains are located in either New Mexico or Texas, but we don't know which one.\n\nPremise 2: Juan de Onate visited the Picuris Mountains.\n- This premise tells us that Juan de Onate visited a mountain range, which we now know could be either New Mexico or Texas.\n\nPremise 3: The Harding Pegmatite Mine, located in the Picuris Mountains, was donated.\n- This premise tells us that a mine in the Picuris Mountains was donated, but it doesn't tell us which state it's located in.\n\nPremise 4: There are no mountain ranges in Texas that have mines which have been donated.\n- This premise tells us that there are no donated mines in any mountain range in Texas. This implies that the Harding Pegmatite Mine, which was donated, cannot be located in a mountain range in Texas.\n\nNow, let's analyze the conclusion: \"Juan de Onate visited a mountain range in Texas.\"\n\nSince we know that the Harding Pegmatite Mine was donated (Premise 3), and there are no donated mines in any mountain range in Texas (Premise 4), we can conclude that the Harding Pegmatite Mine is not located in a mountain range in Texas. However, we know that the Harding Pegmatite Mine is located in the Picuris Mountains (Premise 3).\n\nSince the Picuris Mountains are a mountain range in New Mexico or Texas (Premise 1), we can conclude that the Picuris Mountains must be located in New Mexico. This is because if it were located in Texas, then the Harding Pegmatite Mine would be a donated mine in a Texas mountain range, which is not allowed (Premise 4).\n\nFinally, since the Picuris Mountains are located in New Mexico, and Juan de Onate visited the Picuris Mountains (Premise 2), we can conclude that Juan de Onate visited a mountain range in New Mexico, not Texas.\n\nTherefore, the conclusion \"Juan de Onate visited a mountain range in Texas\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremises:\n1. The Picuris Mountains are a mountain range in New Mexico or Texas.\n2. Juan de Onate visited the Picuris Mountains.\n3. The Harding Pegmatite Mine, located in the Picuris Mountains, was donated.\n4. There are no mountain ranges in Texas that have mines which have been donated.\n\nFrom premise 1, we know that the Picuris Mountains can be either in New Mexico or Texas. \n\nNow, let's consider premise 3, which states that the Harding Pegmatite Mine, located in the Picuris Mountains, was donated. \n\nUsing premise 4, we know that there are no mountain ranges in Texas that have mines which have been donated. This implies that the Harding Pegmatite Mine is not located in a mountain range in Texas, as it was donated.\n\nTherefore, since the Harding Pegmatite Mine is not located in a mountain range in Texas, the Picuris Mountains must be located in New Mexico.\n\nNow, let's look at premise 2, which states that Juan de Onate visited the Picuris Mountains. Since we have determined that the Picuris Mountains are located in New Mexico, we can conclude that Juan de Onate visited a mountain range in New Mexico, not Texas.\n\nHowever, the question is whether the conclusion \"Juan de Onate visited a mountain range in Texas\" is true, false, or uncertain. \n\nBased on the premises, we can conclude that Juan de Onate did not visit a mountain range in Texas. Therefore, the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "Let's break down the given premises and analyze them step by step:\n\nPremise 1: The Picuris Mountains are a mountain range in New Mexico or Texas.\n- This premise gives us information about the possible locations of the Picuris Mountains.\n\nPremise 2: Juan de Onate visited the Picuris Mountains.\n- This premise tells us that Juan de Onate visited the Picuris Mountains, but it doesn't specify whether it was in New Mexico or Texas.\n\nPremise 3: The Harding Pegmatite Mine, located in the Picuris Mountains, was donated.\n- This premise provides us with additional information about the Picuris Mountains.\n\nPremise 4: There are no mountain ranges in Texas that have mines which have been donated.\n- This premise gives us information about mountain ranges in Texas and the status of their mines.\n\nNow, let's analyze the conclusion:\n\nConclusion: Juan de Onate visited a mountain range in Texas.\n\nTo determine the truth of the conclusion, we need to analyze the premises and see if they support or contradict it.\n\nFrom Premise 1, we know that the Picuris Mountains are in New Mexico or Texas. \nFrom Premise 2, we know that Juan de Onate visited the Picuris Mountains. \n\nHowever, Premise 4 states that there are no mountain ranges in Texas that have donated mines. But we know from Premise 3 that the Harding Pegmatite Mine in the Picuris Mountains was donated. Since the Harding Pegmatite Mine is located in the Picuris Mountains, and the Picuris Mountains are in Texas (according to Premise 1), this means that the Picuris Mountains in Texas have a donated mine.\n\nThis directly contradicts Premise 4, which states that there are no mountain ranges in Texas with donated mines. \n\nSince Premise 4 is incorrect, and the Picuris Mountains in Texas have a donated mine, this means that the Picuris Mountains are indeed located in Texas.\n\nGiven this information, we can infer that Juan de Onate visited the Picuris Mountains in Texas.\n\nTherefore, the conclusion \"Juan de Onate visited a mountain range in Texas\" is TRUE.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "mountain_range_in_new_mexico_or_texas(picuris_mountains)",
+          "z3_formula": "mountain_range_in_new_mexico_or_texas_picuris_mountains == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "juan_de_onate_visited(picuris_mountains)",
+          "z3_formula": "juan_de_onate_visited_picuris_mountains == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "harding_pegmatite_mine_donated",
+          "z3_formula": "harding_pegmatite_mine_donated == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_donated_mines_in_texas",
+          "z3_formula": "no_donated_mines_in_texas == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "picuris_mountains_in_new_mexico",
+          "z3_formula": "picuris_mountains_in_new_mexico == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "juan_de_onate_visited_mountain_range_in_texas",
+          "z3_formula": "juan_de_onate_visited_mountain_range_in_texas == False",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mountain_range(picuris_mountains, new_mexico_or_texas)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico_or_texas == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(picuris_mountains, juan_de_onate)",
+          "z3_formula": "visited_picuris_mountains_juan_de_onate == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "donated(harding_pegmatite_mine, picuris_mountains)",
+          "z3_formula": "donated_harding_pegmatite_mine_picuris_mountains == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "donated(X) -> not mountain_range(X, texas)",
+          "z3_formula": "Implies(donated_harding_pegmatite_mine_picuris_mountains, not mountain_range_picuris_mountains_texas)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not mountain_range(picuris_mountains, texas)",
+          "z3_formula": "not mountain_range_picuris_mountains_texas == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not visited(picuris_mountains, juan_de_onate, texas)",
+          "z3_formula": "not visited_picuris_mountains_juan_de_onate_texas == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mountain_range(picuris_mountains, new_mexico) | mountain_range(picuris_mountains, texas)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico == True | mountain_range_picuris_mountains_texas == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(juan_de_onate, picuris_mountains)",
+          "z3_formula": "visited_juan_de_onate_picuris_mountains == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mine(harding_pegmatite_mine, picuris_mountains)",
+          "z3_formula": "mine_harding_pegmatite_mine_picuris_mountains == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "mountain_range(X, texas) & mine(Y, X) -> Not(donated(Y))",
+          "z3_formula": "Implies(And(mountain_range_picuris_mountains_texas, mine_harding_pegmatite_mine_picuris_mountains), Not(donated_harding_pegmatite_mine))",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mountain_range_in_new_mexico_or_texas(picuris_mountains)",
+          "z3_formula": "mountain_range_in_new_mexico_or_texas_picuris_mountains == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(picuris_mountains, juan_de_onate)",
+          "z3_formula": "visited_picuris_mountains_juan_de_onate == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "donated(harding_pegmatite_mine)",
+          "z3_formula": "donated_harding_pegmatite_mine == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_donated_mine_in_texas",
+          "z3_formula": "no_donated_mine_in_texas == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not_in_texas(picuris_mountains)",
+          "z3_formula": "not_in_texas_picuris_mountains == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "in_new_mexico(picuris_mountains)",
+          "z3_formula": "in_new_mexico_picuris_mountains == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visited_in_new_mexico(juan_de_onate)",
+          "z3_formula": "visited_in_new_mexico_juan_de_onate == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mountain_range_in_new_mexico_or_texas(picuris_mountains)",
+          "z3_formula": "mountain_range_in_new_mexico_or_texas_picuris_mountains == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(picuris_mountains, juan_de_onate)",
+          "z3_formula": "visited_picuris_mountains_juan_de_onate == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "donated(harding_pegmatite_mine)",
+          "z3_formula": "donated_harding_pegmatite_mine == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_donated_mines_in_texas",
+          "z3_formula": "no_donated_mines_in_texas == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likely_in_new_mexico(picuris_mountains)",
+          "z3_formula": "likely_in_new_mexico_picuris_mountains == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain_in_texas(picuris_mountains)",
+          "z3_formula": "uncertain_in_texas_picuris_mountains == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mountain_range(picuris_mountains, new_mexico) | mountain_range(picuris_mountains, texas)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico == True | mountain_range_picuris_mountains_texas == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(juan_de_onate, picuris_mountains)",
+          "z3_formula": "visited_juan_de_onate_picuris_mountains == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(harding_pegmatite_mine, picuris_mountains)",
+          "z3_formula": "located_in_harding_pegmatite_mine_picuris_mountains == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "donated(harding_pegmatite_mine)",
+          "z3_formula": "donated_harding_pegmatite_mine == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_donated_mines_in_texas",
+          "z3_formula": "no_donated_mines_in_texas == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "located_in(X, Y) & donated(X) -> mountain_range(Y, new_mexico)",
+          "z3_formula": "Implies(And(located_in_harding_pegmatite_mine_picuris_mountains, donated_harding_pegmatite_mine), mountain_range_picuris_mountains_new_mexico)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not mountain_range(picuris_mountains, texas)",
+          "z3_formula": "Not(mountain_range_picuris_mountains_texas)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not visited(juan_de_onate, picuris_mountains) | not mountain_range(picuris_mountains, texas)",
+          "z3_formula": "Not(visited_juan_de_onate_picuris_mountains) | Not(mountain_range_picuris_mountains_texas)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not visited(juan_de_onate, picuris_mountains)",
+          "z3_formula": "Not(visited_juan_de_onate_picuris_mountains)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visited(X, Y) -> visited(X, Y)",
+          "z3_formula": "Implies(visited_juan_de_onate_picuris_mountains, visited_juan_de_onate_picuris_mountains)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not visited(juan_de_onate, picuris_mountains) & visited(juan_de_onate, picuris_mountains)",
+          "z3_formula": "And(Not(visited_juan_de_onate_picuris_mountains), visited_juan_de_onate_picuris_mountains)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not visited(juan_de_onate, picuris_mountains)",
+          "z3_formula": "Not(visited_juan_de_onate_picuris_mountains)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "conclusion",
+          "z3_formula": "Not(visited_juan_de_onate_picuris_mountains)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mountain_range_in_new_mexico_or_texas(picuris_mountains)",
+          "z3_formula": "mountain_range_in_new_mexico_or_texas_picuris_mountains == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited_picuris_mountains(juan_de_onate)",
+          "z3_formula": "visited_picuris_mountains_juan_de_onate == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "harding_pegmatite_mine_donated",
+          "z3_formula": "harding_pegmatite_mine_donated == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_picuris_mountains(harding_pegmatite_mine)",
+          "z3_formula": "located_in_picuris_mountains_harding_pegmatite_mine == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_donated_mines_in_texas",
+          "z3_formula": "no_donated_mines_in_texas == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_new_mexico(picuris_mountains)",
+          "z3_formula": "located_in_new_mexico_picuris_mountains == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not_visited_texas(juan_de_onate)",
+          "z3_formula": "not_visited_texas_juan_de_onate == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mountain_range_in_new_mexico_or_texas(picuris_mountains)",
+          "z3_formula": "mountain_range_in_new_mexico_or_texas_picuris_mountains == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(picuris_mountains, juan_de_onate)",
+          "z3_formula": "visited_picuris_mountains_juan_de_onate == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "donated(harding_pegmatite_mine)",
+          "z3_formula": "donated_harding_pegmatite_mine == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "donated(X) & mountain_range_in_texas(Y) -> mountain_range_in_new_mexico(Y)",
+          "z3_formula": "Implies(And(donated_harding_pegmatite_mine, mountain_range_in_texas_picuris_mountains), mountain_range_in_new_mexico_picuris_mountains)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "mountain_range_in_new_mexico(picuris_mountains)",
+          "z3_formula": "mountain_range_in_new_mexico_picuris_mountains == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not visited(picuris_mountains, juan_de_onate) in Texas",
+          "z3_formula": "Not(visited_picuris_mountains_juan_de_onate & mountain_range_in_texas_picuris_mountains)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mountain_range_in_new_mexico_or_texas(picuris_mountains)",
+          "z3_formula": "mountain_range_in_new_mexico_or_texas_picuris_mountains == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(picuris_mountains, juan_de_onate)",
+          "z3_formula": "visited_picuris_mountains_juan_de_onate == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "donated(harding_pegmatite_mine)",
+          "z3_formula": "donated_harding_pegmatite_mine == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_donated_mines_in_texas",
+          "z3_formula": "no_donated_mines_in_texas == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mountain_range_in_new_mexico_or_texas(X) -> (visited(X, juan_de_onate) | visited(X, juan_de_onate) & mountain_range_in_new_mexico_or_texas(X))",
+          "z3_formula": "Implies(mountain_range_in_new_mexico_or_texas_picuris_mountains, Or(visited_picuris_mountains_juan_de_onate, And(visited_picuris_mountains_juan_de_onate, mountain_range_in_new_mexico_or_texas_picuris_mountains)))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visited(X, juan_de_onate) & mountain_range_in_new_mexico_or_texas(X) & no_donated_mines_in_texas -> False",
+          "z3_formula": "Implies(And(visited_picuris_mountains_juan_de_onate, mountain_range_in_new_mexico_or_texas_picuris_mountains, no_donated_mines_in_texas), False)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visited(picuris_mountains, juan_de_onate) & mountain_range_in_new_mexico_or_texas(picuris_mountains) & mountain_range_in_new_mexico_or_texas(picuris_mountains) & no_donated_mines_in_texas",
+          "z3_formula": "And(visited_picuris_mountains_juan_de_onate, mountain_range_in_new_mexico_or_texas_picuris_mountains, mountain_range_in_new_mexico_or_texas_picuris_mountains, no_donated_mines_in_texas) == False",
+          "source_step": 7
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "mountain_range(picuris_mountains, new_mexico) | mountain_range(picuris_mountains, texas)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico == True | mountain_range_picuris_mountains_texas == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(juan_de_onate, picuris_mountains)",
+          "z3_formula": "visited_juan_de_onate_picuris_mountains == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "donated(harding_pegmatite_mine)",
+          "z3_formula": "donated_harding_pegmatite_mine == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_donated_mines_in_texas",
+          "z3_formula": "no_donated_mines_in_texas == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not mountain_range(picuris_mountains, texas)",
+          "z3_formula": "Not(mountain_range_picuris_mountains_texas)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "mountain_range(picuris_mountains, new_mexico)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not visited(juan_de_onate, mountain_range_in_texas)",
+          "z3_formula": "Not(visited_juan_de_onate_mountain_range_in_texas)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mountain_range_in_new_mexico_or_texas(picuris_mountains)",
+          "z3_formula": "mountain_range_in_new_mexico_or_texas_picuris_mountains == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(picuris_mountains, juan_de_onate)",
+          "z3_formula": "visited_picuris_mountains_juan_de_onate == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "donated(harding_pegmatite_mine)",
+          "z3_formula": "donated_harding_pegmatite_mine == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(picuris_mountains, harding_pegmatite_mine)",
+          "z3_formula": "located_in_picuris_mountains_harding_pegmatite_mine == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "in_texas(picuris_mountains)",
+          "z3_formula": "in_texas_picuris_mountains == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "in_new_mexico_or_texas(X) -> (in_new_mexico(X) | in_texas(X))",
+          "z3_formula": "Implies(in_new_mexico_or_texas_picuris_mountains, Or(in_new_mexico_picuris_mountains, in_texas_picuris_mountains))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visited(X, Y) -> visited(X, Y)",
+          "z3_formula": "Implies(visited_picuris_mountains_juan_de_onate, visited_picuris_mountains_juan_de_onate)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "donated(X) -> (located_in(Y, X) -> in_texas(Y))",
+          "z3_formula": "Implies(donated_harding_pegmatite_mine, Implies(located_in_picuris_mountains_harding_pegmatite_mine, in_texas_picuris_mountains))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "in_texas(X) & donated(X) -> False",
+          "z3_formula": "Implies(And(in_texas_picuris_mountains, donated_harding_pegmatite_mine), False)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "in_texas(picuris_mountains)",
+          "z3_formula": "in_texas_picuris_mountains == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visited(picuris_mountains, juan_de_onate) & in_texas(picuris_mountains) -> visited(picuris_mountains, juan_de_onate)",
+          "z3_formula": "Implies(And(visited_picuris_mountains_juan_de_onate, in_texas_picuris_mountains), visited_picuris_mountains_juan_de_onate)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "visited(picuris_mountains, juan_de_onate)",
+          "z3_formula": "visited_picuris_mountains_juan_de_onate == True",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 81,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 40
+    },
+    "maxsat_stats": {
+      "satisfied": 36,
+      "excluded": 4,
+      "total_weight": 70,
+      "solve_time_ms": 1.3820119202136993
+    },
+    "timing": {
+      "trace_gen_s": 5.866,
+      "extraction_s": 35.63,
+      "dedup_s": 0.673,
+      "maxsat_s": 0.005,
+      "total_s": 42.174
+    }
+  }
+}

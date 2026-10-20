@@ -1,0 +1,546 @@
+{
+  "problem": {
+    "id": "folio_128",
+    "problem": "Given the following premises:\nAll people who have a wedding are people who have at least one child. All people who travel to Paris for their honeymoon are people who have a wedding. All weddings that occur in July belong to people who travel to Paris for their honeymoon. Some weddings in July are well-attended. If John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding. If John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nJohn has a wedding that is well-attended.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Wedding(x) \u2192 Child(x))",
+      "\u2200x (Paris(x) \u2192 Wedding(x))",
+      "\u2200x (July(x) \u2192 Paris(x))",
+      "\u2203x (July(x) \u2227 WellAttended(x))",
+      "Child(john) \u2192 \u00ac(Paris(john) \u2227 Wedding(john))",
+      "WellAttended(john) \u2192 July(john) \u2295 Paris(john)"
+    ],
+    "conclusion_fol": "WellAttended(john)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 19.0,
+      "Unknown": 33.0
+    },
+    "answer_counts": {
+      "True": 2,
+      "Unknown": 5
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will use a series of logical deductions based on the given premises.\n\nPremise 1: All people who have a wedding are people who have at least one child.\nPremise 2: All people who travel to Paris for their honeymoon are people who have a wedding.\nPremise 3: All weddings that occur in July belong to people who travel to Paris for their honeymoon.\nPremise 4: Some weddings in July are well-attended.\nPremise 5: If John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding.\nPremise 6: If John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\n\nWe are given the conclusion: John has a wedding that is well-attended.\n\nFrom Premise 1, we know that people who have a wedding must have at least one child. However, we do not have information about John's child status.\n\nFrom Premise 5, if John has at least one child, then he does not have a wedding. But Premise 1 states that people who have a wedding have at least one child. This creates a contradiction, which means we cannot conclude that John has a child or not.\n\nHowever, we can use a different approach. From Premise 6, if John has a wedding that is well-attended, then he has a wedding in July or travels to Paris for his honeymoon.\n\nSince we are given the conclusion that John has a wedding that is well-attended, we can use it to make a logical deduction.\n\nFrom the conclusion, we can say that John's wedding is well-attended, and from Premise 6, if this is true, then John has a wedding in July or travels to Paris for his honeymoon.\n\nWe can now consider two possibilities:\n\n- If John travels to Paris for his honeymoon, then he must have a wedding (from Premise 2). But then, from Premise 5, if John has at least one child, then he does not travel to Paris for his honeymoon and does not have a wedding. This creates a contradiction, which means we cannot conclude that John has a child or not.\n\n- If John has a wedding in July, then his wedding is well-attended (from Premise 4). This matches the conclusion that John has a wedding that is well-attended.\n\nBased on this logical deduction, we can conclude that the statement \"John has a wedding that is well-attended\" is consistent with the given premises, but we cannot prove it to be true or false. However, since we can deduce that John has a wedding in July if he has a well-attended wedding, we can say that the conclusion is uncertain, but the answer is true if we assume that the conditions are met.\n\nBut, to be precise, based on the premises given, the conclusion is uncertain because we cannot definitively conclude that John has a wedding that is well-attended. However, since John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\n\nBut, the information is ambiguous, and we cannot definitively conclude that John has a wedding that is well-attended.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, let's break it down into smaller steps and use logical deductions.\n\nStep 1: \nFrom the given premises, we can create the following statements:\n\n- All people who have a wedding are people who have at least one child. (1)\n- All people who travel to Paris for their honeymoon are people who have a wedding. (2)\n- All weddings that occur in July belong to people who travel to Paris for their honeymoon. (3)\n- Some weddings in July are well-attended. (4)\n- If John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding. (5)\n- If John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon. (6)\n\nStep 2:\nWe need to determine the truth of the conclusion: \"John has a wedding that is well-attended.\"\n\nTo do this, let's first analyze the given premises. From (5), we know that if John has at least one child, then he does not have a wedding. However, premise (1) states that all people who have a wedding are people who have at least one child. This seems to be a contradiction, but it actually implies that John cannot have a wedding.\n\nHowever, we are given that John has a wedding that is well-attended. From (6), if John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\n\nStep 3:\nFrom (6), we have two possibilities:\n\n- John has a wedding in July.\n- If not, then John travels to Paris for their honeymoon.\n\nFrom (3), if John has a wedding in July, then it must be for a couple who travels to Paris for their honeymoon. But from (5), we know that John cannot have a wedding because he has at least one child.\n\nTherefore, John's wedding cannot be in July. This means the first possibility is not true.\n\nStep 4:\nSince the first possibility is not true, we move on to the second possibility: If John has a wedding that is well-attended, then John travels to Paris for their honeymoon.\n\nHowever, from (5), we know that if John has at least one child, then he does not travel to Paris for his honeymoon and does not have a wedding. Since we are given that John has a wedding that is well-attended, it implies that John has at least one child (because from (1), all people who have a wedding are people who have at least one child).\n\nThis leads to a contradiction. If John has at least one child, then he cannot travel to Paris for their honeymoon, but we are given that he does. Therefore, the second possibility is also not true.\n\nStep 5:\nFrom Steps 3 and 4, we can conclude that neither possibility in (6) is true. Therefore, the statement \"John has a wedding that is well-attended\" is uncertain.\n\nHowever, since we can't directly conclude \"true\" or \"false\", we should conclude that we don't have enough information to determine whether John has a wedding that is well-attended.\n\nBut we can conclude that if John has a wedding that is well-attended, then John must have at least one child and must not travel to Paris for their honeymoon, and we know he has a wedding.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and use logical deductions.\n\nPremise 1: All people who have a wedding are people who have at least one child.\nPremise 2: All people who travel to Paris for their honeymoon are people who have a wedding.\nPremise 3: All weddings that occur in July belong to people who travel to Paris for their honeymoon.\nPremise 4: Some weddings in July are well-attended.\nPremise 5: If John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding.\nPremise 6: If John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\n\nConclusion: John has a wedding that is well-attended.\n\nLet's break down the premises and the conclusion step by step:\n\n1. From Premise 1, we know that John having a wedding implies that John has at least one child.\n2. Now, let's consider the two possible scenarios:\n   - Scenario 1: John has at least one child. In this case, from Premise 5, John does not travel to Paris for his honeymoon and does not have a wedding. This contradicts the fact that John has a wedding that is well-attended (Conclusion), so this scenario is not possible.\n   - Scenario 2: John does not have at least one child. However, from Premise 1, this would imply that John does not have a wedding, which also contradicts the Conclusion. Therefore, this scenario is also not possible.\n\nHowever, we can still use the information from Premise 6 to derive a possible conclusion. Premise 6 states that if John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon. \n\nGiven the information that John has a wedding that is well-attended, we can now use this to derive a possible conclusion.\n\n1. If John has a wedding that is well-attended, then John has a wedding in July (from Premise 6).\n2. If John has a wedding in July, then John travels to Paris for their honeymoon (from Premise 3).\n3. If John travels to Paris for their honeymoon, then John has a wedding (from Premise 2).\n\nHowever, we cannot directly conclude that John has a wedding that is well-attended from the information we have so far.\n\nNow, we have to use the information that John has at least one child is false (since that would imply John does not have a wedding that is well-attended) to derive our final conclusion.\n\n1. Since John does not have at least one child, then we cannot use Premise 5 to derive any information about John's wedding.\n2. However, we do know that John has a wedding that is well-attended (Conclusion).\n3. Since John has a wedding that is well-attended, then John has a wedding in July (from Premise 6).\n4. Since John has a wedding in July, then John does not travel to Paris for their honeymoon (from Premise 3).\n\nTherefore, we can conclude that John has a wedding that is well-attended, and John does not travel to Paris for their honeymoon.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: All people who have a wedding are people who have at least one child.\nPremise 2: All people who travel to Paris for their honeymoon are people who have a wedding.\nPremise 3: All weddings that occur in July belong to people who travel to Paris for their honeymoon.\nPremise 4: Some weddings in July are well-attended.\nPremise 5: If John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding.\nPremise 6: If John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\n\nGiven conclusion: John has a wedding that is well-attended.\n\nFrom Premise 5, if John has at least one child, then he does not have a wedding. This implies that John does not have at least one child, or he does have a wedding. However, the statement only explicitly states the negative case, so we cannot directly conclude anything from it.\n\nFrom Premise 6, if John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon. This premise gives us a condition based on the conclusion.\n\nCombining these premises, we have a conditional statement that John has a wedding that is well-attended. From this, we can conclude that John either has a wedding in July or travels to Paris for their honeymoon.\n\nHowever, from Premise 5, if John has at least one child, then he does not have a wedding. This implies that John does not have at least one child. But we also know from Premise 1 that all people who have a wedding are people who have at least one child. Therefore, it is a contradiction, and this scenario cannot occur.\n\nNow we consider the case where John does have at least one child. In this case, John does not have a wedding (from Premise 5), which contradicts the conclusion that John has a wedding that is well-attended.\n\nTherefore, we are left with the case where John does not have at least one child. In this case, the conclusion that John has a wedding that is well-attended is uncertain, as it depends on the condition in Premise 6.\n\nHowever, from Premise 5, if John has at least one child, then he does not have a wedding. Therefore, we can infer that if John does not have at least one child, then he must have a wedding. We cannot conclude that the wedding is well-attended.\n\nNow we apply this inference to the conclusion: John has a wedding that is well-attended. If John has a wedding, then it must be well-attended, but we cannot conclude this from the premises.\n\nHowever, we can now combine this with the conclusion: If John has a wedding, then it must be well-attended. This conclusion is uncertain because we have not established any connection between John's wedding and being well-attended.\n\nHowever, from Premise 4, we can infer that some weddings in July are well-attended. From Premise 3, all weddings that occur in July belong to people who travel to Paris for their honeymoon. From Premise 2, all people who travel to Paris for their honeymoon are people who have a wedding. This implies that John having a wedding in July implies that John has a wedding that is well-attended.\n\nHowever, from Premise 6, if John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon. This implies that John having a wedding in July or traveling to Paris for their honeymoon implies that John has a wedding that is well-attended.\n\nFrom these premises, we can conclude that John having a wedding implies that John has a wedding that is well-attended. However, we cannot determine whether John has a wedding or not.\n\nTherefore, we cannot conclude that John has a wedding that is well-attended.\n\nHowever, the conclusion that John has a wedding that is well-attended is uncertain because we cannot conclude that John does not have a wedding. \n\nGiven the premises and the information that John has a wedding that is well-attended, we can conclude that it is uncertain because we cannot determine whether John has a wedding.\n\nHowever, we can conclude that it is uncertain because John has a wedding that is well-attended.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether John has a wedding that is well-attended, we need to analyze the given premises and the information provided about John.\n\nPremises:\n\n1. All people who have a wedding are people who have at least one child. \n2. All people who travel to Paris for their honeymoon are people who have a wedding.\n3. All weddings that occur in July belong to people who travel to Paris for their honeymoon.\n4. Some weddings in July are well-attended.\n5. If John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding.\n6. If John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\n\nNow, let's break down the information provided about John:\n\n- We know John has at least one child, which means by premise 5, John does not travel to Paris for his honeymoon and does not have a wedding.\n\nHowever, the conclusion is about John having a wedding that is well-attended, not about John having a wedding or traveling to Paris. We need to look at premise 6, which states that if John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\n\nSince premise 6 is an \"if-then\" statement, we can ignore the \"if\" part and focus on the \"then\" part. \n\nIf we assume John has a wedding that is well-attended, then premise 6 says John has a wedding in July or travels to Paris for their honeymoon. However, premise 5 already tells us that John cannot have a wedding or travel to Paris because he has at least one child. \n\nThis creates a contradiction because premise 6 and premise 5 cannot be true at the same time. \n\nHowever, looking at premise 6, we see it's an \"if-then\" statement, and we can ignore the \"if\" part. We don't actually know if John has a wedding that is well-attended, but we're trying to figure out if it's possible for him to have one.\n\nLooking at premise 5, we know John cannot have a wedding because he has at least one child. However, premise 6 is about a well-attended wedding, which is different from premise 5. \n\nWe don't have any information that contradicts premise 6, so let's look at it more closely. If John has a wedding that is well-attended, premise 6 says John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\n\nWe know some weddings in July are well-attended (premise 4), so it's possible for John to have a wedding in July that is well-attended. \n\nIf John does have a wedding in July that is well-attended, then premise 6 says John must travel to Paris for their honeymoon. However, this contradicts premise 5, which says John cannot travel to Paris for his honeymoon because he has at least one child.\n\nWe have a contradiction, but only if we assume John has a wedding that is well-attended and also has a wedding in July. \n\nHowever, we don't actually know if John has a wedding in July or not. \n\nLooking at premise 6 again, if John does not have a wedding in July, then premise 6 says John must travel to Paris for their honeymoon. However, premise 5 says John cannot travel to Paris for his honeymoon because he has at least one child.\n\nWe have another contradiction, but only if we assume John has a wedding that is well-attended and does not have a wedding in July.\n\nHowever, premise 6 does not say it's impossible for John to have a wedding that is well-attended. \n\nPremise 6 says if John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon. It does not say that John must have a wedding that is well-attended.\n\nThis means we can ignore the part about John having a wedding that is well-attended. We only need to focus on the part about John having a wedding in July or traveling to Paris.\n\nSince premise 5 says John cannot travel to Paris for his honeymoon because he has at least one child, and premise 6 says if John does not have a wedding in July, then John must travel to Paris for their honeymoon, we have a contradiction.\n\nHowever, this contradiction only arises if we assume John has a wedding that is well-attended. \n\nThe truth is, we don't actually know if John has a wedding that is well-attended or not. \n\nWe can conclude that if John has a wedding that is well-attended, then we have a contradiction. However, we cannot conclude that John cannot have a wedding that is well-attended.\n\nThe conclusion that John has a wedding that is well-attended is uncertain because we cannot rule it out.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we'll use the given premises and break down the information step by step.\n\nPremise 1: All people who have a wedding are people who have at least one child.\nThis premise doesn't provide any information about John specifically, but it does tell us that having a wedding is linked to having at least one child.\n\nPremise 2: All people who travel to Paris for their honeymoon are people who have a wedding.\nThis premise connects traveling to Paris for the honeymoon to having a wedding.\n\nPremise 3: All weddings that occur in July belong to people who travel to Paris for their honeymoon.\nThis premise tells us that weddings in July are specifically related to Paris honeymoons.\n\nPremise 4: Some weddings in July are well-attended.\nThis premise provides more context about weddings in July but doesn't directly relate to John.\n\nPremise 5: If John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding.\nThis premise provides a crucial piece of information about John. If John has at least one child, he won't have a wedding or travel to Paris for the honeymoon.\n\nPremise 6: If John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\nThis premise provides another crucial piece of information about John. If John's wedding is well-attended, then it either occurs in July or he travels to Paris for the honeymoon.\n\nNow, let's analyze the conclusion: \"John has a wedding that is well-attended.\"\n\nFrom Premise 5, we know that if John has at least one child, he doesn't have a wedding. However, this premise doesn't tell us anything about John's wedding being well-attended. We need to consider other possibilities.\n\nFrom Premise 6, if John's wedding is well-attended, then it either occurs in July or he travels to Paris for the honeymoon. This premise seems to be a crucial one in determining the conclusion.\n\nNow, let's consider the possible scenarios:\n\n1. If John has at least one child (Premise 5), then he doesn't have a wedding. This doesn't tell us anything about the well-attended wedding.\n2. If John doesn't have at least one child, then we don't know anything about his wedding or its well-attended status. However, Premise 1 states that all people who have a wedding are people who have at least one child. This means that John cannot have a wedding if he doesn't have at least one child.\n3. If John does have a wedding, then it must be because he doesn't have at least one child (since Premise 1 states that all people who have a wedding are people who have at least one child). However, Premise 5 states that if John has at least one child, then he doesn't have a wedding. This seems to be a paradox.\n\nLet's consider another approach: If John's wedding is well-attended (Conclusion), then it either occurs in July or he travels to Paris for the honeymoon (Premise 6).\n\nIf John's wedding occurs in July, then it must be well-attended (Premise 4). However, if John's wedding occurs in July and is well-attended, then he must travel to Paris for the honeymoon (Premise 6).\n\nNow, let's revisit Premise 5: If John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding. If John travels to Paris for the honeymoon, then he must not have at least one child (Premise 5).\n\nHowever, if John's wedding is well-attended, then he travels to Paris for the honeymoon or has a wedding in July (Premise 6). This creates a paradox: if John has at least one child, then he doesn't have a wedding or travel to Paris for the honeymoon (Premise 5). However, if John's wedding is well-attended, then he either travels to Paris for the honeymoon or has a wedding in July.\n\nGiven the information, we can conclude that the paradox is resolved when we consider the following: John can have a well-attended wedding in July, but he doesn't travel to Paris for the honeymoon (Premise 6). This scenario satisfies both Premises 4 and 6.\n\nHowever, we still need to consider the possibility that John doesn't have at least one child. If John doesn't have at least one child, then he doesn't have a wedding (Premise 1). However, this contradicts the conclusion that John has a wedding that is well-attended.\n\nTo resolve the paradox, we need to consider the following: John's wedding is well-attended (Conclusion), and it either occurs in July or he travels to Paris for the honeymoon (Premise 6). If John's wedding occurs in July, then it must be well-attended (Premise 4). If John's wedding is well-attended and occurs in July, then John must have a wedding in July (Premise 4).\n\nFrom Premise 5, if John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding. This means that if John has at least one child, then John's wedding cannot be well-attended.\n\nFrom Premise 6, if John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\n\nGiven the information, we can conclude that John can have a well-attended wedding that occurs in July, but he doesn't travel to Paris for the honeymoon.\n\nThe conclusion is: John has a wedding that is well-attended.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we will analyze the given premises and apply them to the conclusion.\n\nPremise 1: All people who have a wedding are people who have at least one child.\nPremise 2: All people who travel to Paris for their honeymoon are people who have a wedding.\nPremise 3: All weddings that occur in July belong to people who travel to Paris for their honeymoon.\nPremise 4: Some weddings in July are well-attended.\nPremise 5: If John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding.\nPremise 6: If John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\n\nConclusion: John has a wedding that is well-attended.\n\nFrom Premise 5, we know that if John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding. However, we are not given any information about John's children, so we cannot conclude that he has a child. Therefore, we cannot apply Premise 5 to John.\n\nFrom Premise 6, we know that if John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon. This premise provides two possible outcomes: either John has a wedding in July, or John travels to Paris for their honeymoon.\n\nNow, let's analyze the two possible outcomes:\n\nOutcome 1: John has a wedding in July.\nFrom Premise 3, we know that all weddings in July belong to people who travel to Paris for their honeymoon. However, Premise 5 states that if John has a child, he does not have a wedding. Therefore, if John has a wedding in July, he cannot have a child. If John does not have a child, then Premise 5 does not apply, and we cannot conclude that he does not have a wedding.\n\nOutcome 2: John travels to Paris for their honeymoon.\nFrom Premise 2, we know that all people who travel to Paris for their honeymoon have a wedding. Therefore, if John travels to Paris for their honeymoon, he has a wedding.\n\nNow, let's apply these outcomes to the conclusion. The conclusion states that John has a wedding that is well-attended. If John has a wedding that is well-attended, then from Premise 6, John has a wedding in July or travels to Paris for their honeymoon.\n\nOutcome 1: John has a wedding in July.\nSince John has a wedding in July, he must have a child, because if he did not have a child, Premise 5 would not apply, and we would not be able to conclude that he does not have a wedding. However, this contradicts the conclusion that John has a wedding that is well-attended, because if John has a child, then from Premise 5, he does not have a wedding.\n\nOutcome 2: John travels to Paris for their honeymoon.\nSince John travels to Paris for their honeymoon, he has a wedding. Therefore, if John has a wedding that is well-attended, then from Premise 6, John travels to Paris for their honeymoon.\n\nIn summary, we have two possible outcomes:\n\n* If John has a wedding that is well-attended, then John travels to Paris for their honeymoon (Outcome 2).\n* If John has a wedding in July, then John must have a child and does not have a wedding (Outcome 1).\n\nSince Outcome 1 contradicts the conclusion that John has a wedding that is well-attended, we can eliminate Outcome 1. However, Outcome 2 is consistent with the conclusion.\n\nTherefore, the conclusion is uncertain, because we cannot conclude that John has a wedding that is well-attended with absolute certainty. However, we can conclude that it is possible that John has a wedding that is well-attended.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply them to the conclusion.\n\n1. All people who have a wedding are people who have at least one child.\n2. All people who travel to Paris for their honeymoon are people who have a wedding.\n3. All weddings that occur in July belong to people who travel to Paris for their honeymoon.\n4. Some weddings in July are well-attended.\n5. If John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding.\n6. If John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\n\nWe are given the conclusion:\nJohn has a wedding that is well-attended.\n\nFrom premise 5, if John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding. This premise implies that John might not have a wedding or travel to Paris for his honeymoon. However, we cannot directly conclude this from the premise alone, as it only discusses the scenario where John has at least one child.\n\nFrom premise 6, if John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon. This premise is crucial in our analysis. If John has a wedding that is well-attended, it doesn't directly tell us whether he has a wedding in July or travels to Paris for his honeymoon, as it provides two possible outcomes.\n\nHowever, let's consider the two possible scenarios based on premise 6:\nScenario 1: John has a wedding in July. (This is one of the possible outcomes if John has a wedding that is well-attended.)\nScenario 2: John travels to Paris for their honeymoon. (This is the other possible outcome if John has a wedding that is well-attended.)\n\nNow, let's analyze the premises again to see if we can deduce any information about John's wedding.\n\nFrom premise 1, we know that all people who have a wedding are people who have at least one child. This premise is useful in our analysis, but we cannot conclude anything about John's wedding yet.\n\nFrom premise 3, we know that all weddings that occur in July belong to people who travel to Paris for their honeymoon. If we consider Scenario 1 (John has a wedding in July), then this premise implies that John must travel to Paris for his honeymoon. However, premise 5 tells us that if John has at least one child, then he does not travel to Paris for his honeymoon and does not have a wedding. This creates a conflict, as we cannot conclude whether John has a wedding or not based on this scenario.\n\nHowever, we can consider the possibility that John does not have at least one child. If that's the case, then premise 5 does not apply to John. In this scenario, if John has a wedding in July (Scenario 1), then premise 3 implies that John must travel to Paris for his honeymoon.\n\nNow, let's consider Scenario 2 (John travels to Paris for their honeymoon). If John travels to Paris for his honeymoon, then premise 2 implies that John must have a wedding. However, premise 5 tells us that if John has at least one child, then he does not travel to Paris for his honeymoon and does not have a wedding. This creates a conflict, as we cannot conclude whether John has a wedding or not based on this scenario.\n\nHowever, we can consider the possibility that John does not have at least one child. If that's the case, then premise 5 does not apply to John. In this scenario, if John travels to Paris for his honeymoon (Scenario 2), then premise 2 implies that John must have a wedding.\n\nNow, let's analyze the conclusion \"John has a wedding that is well-attended\" based on the two possible scenarios.\n\nFrom Scenario 1 (John has a wedding in July), premise 3 implies that John must travel to Paris for his honeymoon. From premise 2, John must have a wedding. However, premise 5 tells us that if John has at least one child, then he does not travel to Paris for his honeymoon and does not have a wedding. This creates a conflict, as we cannot conclude whether John has a wedding or not based on this scenario. However, if John does not have at least one child, then premise 5 does not apply to John. In this scenario, John must have a wedding.\n\nFrom Scenario 2 (John travels to Paris for their honeymoon), premise 2 implies that John must have a wedding.\n\nNow, we need to analyze the conclusion \"John has a wedding that is well-attended\" based on the two possible scenarios.\n\nFrom Scenario 1 (John has a wedding in July), premise 4 tells us that some weddings in July are well-attended. However, we cannot conclude that John's wedding is well-attended, as it only implies that some weddings in July are well-attended. We cannot determine whether John's wedding is well-attended or not.\n\nFrom Scenario 2 (John travels to Paris for their honeymoon), premise 2 implies that John must have a wedding. However, premise 6 tells us that if John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon. In this scenario, John travels to Paris for their honeymoon. However, premise 6 also implies that John might have a wedding in July. We cannot conclude whether John's wedding is well-attended or not.\n\nBased on the analysis, we cannot conclude whether the conclusion \"John has a wedding that is well-attended\" is true or false. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and the given information about John.\n\nFrom the premises, we know:\n\n1. All people who have a wedding are people who have at least one child.\n2. All people who travel to Paris for their honeymoon are people who have a wedding.\n3. All weddings that occur in July belong to people who travel to Paris for their honeymoon.\n4. Some weddings in July are well-attended.\n5. If John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding.\n6. If John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\n\nGiven information about John:\n\n- John has at least one child.\n\nFrom premise 5, since John has at least one child, we can conclude that John does not travel to Paris for his honeymoon and does not have a wedding.\n\nNow, let's analyze the conclusion: \"John has a wedding that is well-attended.\"\n\nIf John has a wedding that is well-attended, then from premise 6, we can conclude that John has a wedding in July or John travels to Paris for their honeymoon. However, we already know from premise 5 that John does not travel to Paris for his honeymoon and does not have a wedding. This creates a contradiction.\n\nTherefore, based on the given premises and information about John, the conclusion \"John has a wedding that is well-attended\" is uncertain because it leads to a contradiction.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we can use a logical approach to analyze the given premises and determine the validity of the conclusion.\n\nGiven premises:\n\n1. All people who have a wedding are people who have at least one child.\n2. All people who travel to Paris for their honeymoon are people who have a wedding.\n3. All weddings that occur in July belong to people who travel to Paris for their honeymoon.\n4. Some weddings in July are well-attended.\n5. If John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding.\n6. If John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\n\nWe want to determine if the conclusion \"John has a wedding that is well-attended\" is true, false, or uncertain.\n\nTo do this, we can analyze the premises and try to derive the conclusion.\n\nFrom premise 6, we can deduce two possible scenarios for John:\n\nScenario 1: John has a wedding in July. (If not, then John travels to Paris for their honeymoon, but we don't have any information about John having a wedding that is not well-attended, so we can't conclude this scenario.)\n\nScenario 2: John travels to Paris for their honeymoon.\n\nNow, let's analyze the premises to see if they support the conclusion.\n\nFrom premise 1, we know that all people who have a wedding are people who have at least one child. However, premise 5 states that if John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding. This creates a contradiction, as we previously deduced that John might have a wedding in July or travel to Paris for their honeymoon.\n\nHowever, we can use premise 5 to infer that John might not have at least one child. If John does not have at least one child, then we can't conclude anything about John's wedding or honeymoon.\n\nNow, let's go back to the two scenarios for John:\n\nScenario 1: John has a wedding in July. From premise 4, we know that some weddings in July are well-attended. Therefore, it is possible that John's wedding is well-attended.\n\nScenario 2: John travels to Paris for their honeymoon. From premise 2, we know that all people who travel to Paris for their honeymoon are people who have a wedding. Therefore, it is possible that John has a wedding that is well-attended.\n\nIn both scenarios, we can conclude that John might have a wedding that is well-attended.\n\nSince we can derive the conclusion from the premises, we can conclude that the conclusion \"John has a wedding that is well-attended\" is uncertain, as we can't determine whether John actually has a wedding that is well-attended or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we'll analyze the premises step by step.\n\nPremise 1: All people who have a wedding are people who have at least one child.\nPremise 2: All people who travel to Paris for their honeymoon are people who have a wedding.\nPremise 3: All weddings that occur in July belong to people who travel to Paris for their honeymoon.\nPremise 4: Some weddings in July are well-attended.\nPremise 5: If John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding.\nPremise 6: If John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\n\nNow, let's consider the conclusion: John has a wedding that is well-attended.\n\nFrom Premise 5, we know that if John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding. This implies that if John has a wedding, then he does not have at least one child.\n\nFrom Premise 6, we know that if John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon. We can infer from this premise that having a well-attended wedding is a sufficient condition for John to have a wedding in July or travel to Paris for their honeymoon.\n\nWe don't know whether John has at least one child or not, but we can infer that if John has a wedding, then he doesn't have at least one child (from Premise 5). This means that John's wedding must be well-attended (since it's a necessary condition for John to have a wedding).\n\nNow, let's consider the two possible scenarios:\n\nScenario 1: John's wedding is well-attended and occurs in July. In this case, Premise 6 implies that John travels to Paris for their honeymoon. However, Premise 5 implies that if John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding. Since we don't know whether John has at least one child or not, we can't conclude that John travels to Paris for their honeymoon.\n\nScenario 2: John's wedding is well-attended but does not occur in July. In this case, Premise 6 implies that John travels to Paris for their honeymoon. However, Premise 5 implies that if John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding. Since we don't know whether John has at least one child or not, we can't conclude that John travels to Paris for their honeymoon.\n\nSince we can't conclude that John travels to Paris for their honeymoon in either scenario, we can't conclude that John has a wedding that is well-attended.\n\nHowever, we can conclude that if John has a wedding that is well-attended, then John has a wedding (since it's a necessary condition for John to have a wedding). But we can't conclude that John's wedding occurs in July or that John travels to Paris for their honeymoon.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "Let's break down the information given step by step:\n\n1. All people who have a wedding are people who have at least one child. \nThis means if someone has a wedding, they have at least one child. \n\n2. All people who travel to Paris for their honeymoon are people who have a wedding.\nThis means if someone travels to Paris for their honeymoon, they have a wedding.\n\n3. All weddings that occur in July belong to people who travel to Paris for their honeymoon.\nThis means if a wedding occurs in July, the couple travels to Paris for their honeymoon.\n\n4. Some weddings in July are well-attended.\nThis is a statement of fact about weddings in July.\n\n5. If John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding.\nThis is a conditional statement. It means if John has at least one child, then we can be certain that he does not travel to Paris for his honeymoon and does not have a wedding.\n\n6. If John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon.\nThis is another conditional statement. It means if John has a well-attended wedding, we can be certain that it is either in July or he travels to Paris for his honeymoon.\n\nNow, we need to determine whether the conclusion \"John has a wedding that is well-attended\" is true, false, or uncertain.\n\nWe are given the premise that if John has a wedding that is well-attended, then John has a wedding in July or, if not, then John travels to Paris for their honeymoon. \n\nHowever, we are also given the premise that if John has at least one child, then John does not travel to Paris for his honeymoon and does not have a wedding. \n\nGiven that John is implied to have a child (from the original statement) this means we can say that John does not have a wedding.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "has_child(X)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> has_wedding(X)",
+          "z3_formula": "Implies(has_child_john, has_wedding_john)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "travels_to_paris(X, Y)",
+          "z3_formula": "travels_to_paris_john_honeymoon == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "travels_to_paris(X, Y) -> has_wedding(X)",
+          "z3_formula": "Implies(travels_to_paris_john_honeymoon, has_wedding_john)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "wedding_in_july(X, Y)",
+          "z3_formula": "wedding_in_july_john == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "wedding_in_july(X, Y) -> travels_to_paris(X, Y)",
+          "z3_formula": "Implies(wedding_in_july_john, travels_to_paris_john_honeymoon)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "wedding_in_july(X, Y) -> well_attended(X, Y)",
+          "z3_formula": "Implies(wedding_in_july_john, well_attended_john)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "well_attended(X, Y) | travels_to_paris(X, Y)",
+          "z3_formula": "Or(well_attended_john, travels_to_paris_john_honeymoon)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "well_attended(X, Y)",
+          "z3_formula": "well_attended_john == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding(X) -> not has_child(X)",
+          "z3_formula": "Implies(has_wedding_john, not has_child_john)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding(X) & well_attended(X, Y) -> wedding_in_july(X, Y) | travels_to_paris(X, Y)",
+          "z3_formula": "Implies(And(has_wedding_john, well_attended_john), Or(wedding_in_july_john, travels_to_paris_john_honeymoon))",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "has_wedding(john)",
+          "z3_formula": "has_wedding_john == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding(X) -> has_child(X)",
+          "z3_formula": "Implies(has_wedding_john, has_child_john)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding(X) -> travels_to_paris(X)",
+          "z3_formula": "Implies(has_wedding_john, travels_to_paris_john)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding(X) -> wedding_in_july(X) | travels_to_paris(X)",
+          "z3_formula": "Implies(has_wedding_john, Or(wedding_in_july_john, travels_to_paris_john))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "wedding_in_july(X) -> travels_to_paris(X)",
+          "z3_formula": "Implies(wedding_in_july_john, travels_to_paris_john)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> not travels_to_paris(X) & not has_wedding(X)",
+          "z3_formula": "Implies(has_child_john, And(Not(travels_to_paris_john), Not(has_wedding_john)))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not wedding_in_july(john)",
+          "z3_formula": "Not(wedding_in_july_john) == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "has_child(john) & not travels_to_paris(john)",
+          "z3_formula": "And(has_child_john, Not(travels_to_paris_john)) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "well_attended(john)",
+          "z3_formula": "well_attended_john == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> wedding(X)",
+          "z3_formula": "Implies(has_child_john, wedding_john)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "wedding(X) -> has_child(X)",
+          "z3_formula": "Implies(wedding_john, has_child_john)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "wedding(X) & well_attended(X) -> wedding_in_july(X) | travels_to_paris(X)",
+          "z3_formula": "Implies(And(wedding_john, well_attended_john), Or(wedding_in_july_john, travels_to_paris_john))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "wedding_in_july(X) -> travels_to_paris(X)",
+          "z3_formula": "Implies(wedding_in_july_john, travels_to_paris_john)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "travels_to_paris(X) -> wedding(X)",
+          "z3_formula": "Implies(travels_to_paris_john, wedding_john)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "wedding(john)",
+          "z3_formula": "wedding_john == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "wedding_in_july(john)",
+          "z3_formula": "wedding_in_july_john == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "travels_to_paris(john)",
+          "z3_formula": "travels_to_paris_john == False",
+          "source_step": 8
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> not has_wedding(X) & not travels_to_paris(X)",
+          "z3_formula": "Implies(has_child_john, And(Not(has_wedding_john), Not(travels_to_paris_john)))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding(X) -> has_child(X) | travels_to_paris(X)",
+          "z3_formula": "Implies(has_wedding_john, Or(has_child_john, travels_to_paris_john))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding(X) & well_attended(X) -> has_wedding_in_july(X) | travels_to_paris(X)",
+          "z3_formula": "Implies(And(has_wedding_john, well_attended_john), Or(has_wedding_in_july_john, travels_to_paris_john))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some_weddings_in_july_are_well_attended",
+          "z3_formula": "some_weddings_in_july_are_well_attended == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "well_attended(john)",
+          "z3_formula": "well_attended_john == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all wedding -> at_least_one_child",
+          "z3_formula": "all_wedding_at_least_one_child == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all paris_honeymoon -> wedding",
+          "z3_formula": "all_paris_honeymoon_wedding == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all july_wedding -> paris_honeymoon",
+          "z3_formula": "all_july_wedding_paris_honeymoon == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "some july_wedding -> well_attended",
+          "z3_formula": "some_july_wedding_well_attended == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "at_least_one_child -> not paris_honeymoon & not wedding",
+          "z3_formula": "Implies(at_least_one_child, Not(and(paris_honeymoon, wedding)))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "well_attended -> july_wedding | paris_honeymoon",
+          "z3_formula": "Implies(well_attended, Or(july_wedding, paris_honeymoon))",
+          "source_step": 6
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> not(travel_to_paris(X)) & not(has_wedding(X))",
+          "z3_formula": "Implies(has_child_john, And(Not(travel_to_paris_john), Not(has_wedding_john)))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "travel_to_paris(john)",
+          "z3_formula": "travel_to_paris_john == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "travel_to_paris(X) -> has_wedding(X)",
+          "z3_formula": "Implies(travel_to_paris_john, has_wedding_john)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "has_wedding(john)",
+          "z3_formula": "has_wedding_john == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding(X) -> has_wedding_in_july(X) | travel_to_paris(X)",
+          "z3_formula": "Implies(has_wedding_john, Or(has_wedding_in_july_john, travel_to_paris_john))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "has_wedding_in_july(john)",
+          "z3_formula": "has_wedding_in_july_john == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding_in_july(X) -> travel_to_paris(X)",
+          "z3_formula": "Implies(has_wedding_in_july_john, travel_to_paris_john)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "well_attended(john)",
+          "z3_formula": "well_attended_john == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "well_attended(X) -> has_wedding_in_july(X) | travel_to_paris(X)",
+          "z3_formula": "Implies(well_attended_john, Or(has_wedding_in_july_john, travel_to_paris_john))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding_in_july(X) -> well_attended(X)",
+          "z3_formula": "Implies(has_wedding_in_july_john, well_attended_john)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "travel_to_paris(X) -> well_attended(X)",
+          "z3_formula": "Implies(travel_to_paris_john, well_attended_john)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "well_attended(john)",
+          "z3_formula": "well_attended_john == Unknown",
+          "source_step": 12
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> has_wedding(X)",
+          "z3_formula": "Implies(has_child_john, has_wedding_john)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "travels_to_paris(john)",
+          "z3_formula": "travels_to_paris_john == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "has_wedding(X) -> travels_to_paris(X)",
+          "z3_formula": "Implies(has_wedding_john, travels_to_paris_john)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "wedding_in_july(john)",
+          "z3_formula": "wedding_in_july_john == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "wedding_in_july(X) -> travels_to_paris(X)",
+          "z3_formula": "Implies(wedding_in_july_john, travels_to_paris_john)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "well_attended(john)",
+          "z3_formula": "well_attended_john == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "well_attended(X) -> wedding_in_july(X) | travels_to_paris(X)",
+          "z3_formula": "Implies(well_attended_john, Or(wedding_in_july_john, travels_to_paris_john))",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "has_child(john) -> not(travels_to_paris(john)) & not(has_wedding(john))",
+          "z3_formula": "Implies(has_child_john, And(Not(travels_to_paris_john), Not(has_wedding_john)))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "well_attended(john)",
+          "z3_formula": "well_attended_john == Unknown",
+          "source_step": 10
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "has_child(john)",
+          "z3_formula": "has_child_john == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "has_child(X) -> not wedding(X) & not travels_to_paris(X)",
+          "z3_formula": "Implies(has_child_john, And(Not(wedding_john), Not(travels_to_paris_john)))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "well_attended_wedding(john)",
+          "z3_formula": "well_attended_wedding_john == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "well_attended_wedding(X) -> (wedding_in_july(X) | travels_to_paris(X))",
+          "z3_formula": "Implies(well_attended_wedding_john, Or(wedding_in_july_john, travels_to_paris_john))",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 69,
+      "traces_with_constraints": 8,
+      "unique_after_dedup": 48
+    },
+    "maxsat_stats": {
+      "satisfied": 41,
+      "excluded": 7,
+      "total_weight": 58,
+      "solve_time_ms": 1.7122700810432434
+    },
+    "timing": {
+      "trace_gen_s": 14.695,
+      "extraction_s": 50.546,
+      "dedup_s": 0.843,
+      "maxsat_s": 0.004,
+      "total_s": 66.089
+    }
+  }
+}

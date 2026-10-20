@@ -1,0 +1,531 @@
+{
+  "problem": {
+    "id": "folio_46",
+    "problem": "Given the following premises:\n[BG] There are four seasons in a year: Spring, Summer, Fall, and Winter. All students who want to have a long vacation love summer the most. Emma's favorite season is summer. Mia's favorite season is not the same as Emma's.  James wants to have a long vacation.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nJames's favorite season is summer.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "Season(spring) \u2228 Season(summer) \u2228 Season(fall) \u2228 Season(winter)",
+      "\u2200x (WantlongVacation(x) \u2192 Love(x, summer))",
+      "Love(emma, summer)",
+      "\u00acLove(mia, emma)",
+      "WantlongVacation(james)"
+    ],
+    "conclusion_fol": "Love(james, summer)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 14.0,
+      "Unknown": 59.0
+    },
+    "answer_counts": {
+      "Unknown": 10,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. [BG] There are four seasons in a year: Spring, Summer, Fall, and Winter.\n   - This premise simply states the number of seasons in a year. It doesn't provide any information about individual preferences.\n\n2. All students who want to have a long vacation love summer the most.\n   - This premise implies a correlation between wanting a long vacation and loving summer the most. However, it does not specify that only students who want a long vacation love summer the most.\n\n3. Emma's favorite season is summer.\n   - This premise directly states Emma's favorite season, but it doesn't provide any information about James or Mia's favorite seasons.\n\n4. Mia's favorite season is not the same as Emma's.\n   - Since Emma's favorite season is summer, this premise implies that Mia's favorite season is either Spring, Fall, or Winter.\n\n5. James wants to have a long vacation.\n   - This premise tells us that James wants a long vacation, but it doesn't necessarily mean that he loves summer the most.\n\nNow, let's analyze the conclusion:\nJames's favorite season is summer.\n\n- We don't have any direct information about James's favorite season.\n- We know that James wants to have a long vacation, but that doesn't necessarily mean his favorite season is summer.\n- There is no information that links wanting a long vacation with loving summer the most for James specifically.\n\nSince we cannot conclude with certainty that James's favorite season is summer based on the given premises, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the premises step by step.\n\n1. Premise: There are four seasons in a year: Spring, Summer, Fall, and Winter.\n\nThis premise provides general information about the seasons but does not directly relate to the conclusion about James's favorite season.\n\n2. Premise: All students who want to have a long vacation love summer the most.\n\nThis premise creates a relationship between wanting a long vacation and loving summer the most. However, it does not directly imply that everyone who loves summer the most wants a long vacation, or that everyone who wants a long vacation loves summer the most.\n\n3. Premise: Emma's favorite season is summer.\n\nThis premise provides specific information about Emma's favorite season, which is summer.\n\n4. Premise: Mia's favorite season is not the same as Emma's.\n\nSince Emma's favorite season is summer, Mia's favorite season must be different from summer, which means Mia's favorite season is either Spring, Fall, or Winter.\n\n5. Premise: James wants to have a long vacation.\n\nThis premise provides specific information about James's desire for a long vacation but does not directly relate to his favorite season.\n\nNow, let's analyze the conclusion: James's favorite season is summer.\n\nTo determine the truth value of this conclusion, we need to consider the premises and the relationships between them. From premise 2, we know that all students who want to have a long vacation love summer the most, but we do not know if James loves summer the most. We only know that James wants a long vacation (premise 5), which does not necessarily mean he loves summer the most.\n\nSince we cannot directly infer James's favorite season from the premises, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: All students who want to have a long vacation love summer the most.\nPremise 2: Emma's favorite season is summer.\nPremise 3: Mia's favorite season is not the same as Emma's.\nPremise 4: James wants to have a long vacation.\n\nFrom Premise 1, we can infer that if a student wants to have a long vacation, their favorite season is likely summer. \n\nHowever, this does not necessarily mean that all students who want to have a long vacation have summer as their favorite season. It only provides a general correlation.\n\nPremise 4 states that James wants to have a long vacation, but it does not directly tell us his favorite season.\n\nNow, let's analyze the conclusion: James's favorite season is summer.\n\nTo conclude that James's favorite season is summer, we would need to know that James is a student who wants to have a long vacation (Premise 1) or that James's favorite season is the same as Emma's (Premise 2).\n\nHowever, neither of these conditions is met. We only know that James wants to have a long vacation, and we have no information about his favorite season.\n\nWe can also infer that Mia's favorite season is not summer (Premise 3), but this does not provide any information about James's favorite season.\n\nTherefore, we cannot conclude that James's favorite season is summer based on the given premises.\n\nThe conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we'll use a process of elimination and logical reasoning.\n\nGiven premises:\n\n1. There are four seasons in a year: Spring, Summer, Fall, and Winter.\n2. All students who want to have a long vacation love summer the most.\n3. Emma's favorite season is summer.\n4. Mia's favorite season is not the same as Emma's.\n5. James wants to have a long vacation.\n\nWe need to determine if the conclusion \"James's favorite season is summer\" is true, false, or uncertain.\n\nLet's break down the information:\n\n- From premise 2, we know that all students who want to have a long vacation love summer the most. This implies that if a student wants a long vacation, their favorite season is likely summer.\n- James wants to have a long vacation (premise 5), which suggests that his favorite season might be summer, as it is the most preferred season for a long vacation.\n- However, we cannot directly conclude that James's favorite season is summer because we don't have explicit information linking his desire for a long vacation to a specific favorite season.\n\nTo determine the conclusion, let's analyze the options:\n\nA. James's favorite season is summer: This conclusion is uncertain because, although James wants a long vacation, we don't have explicit information linking his desire for a long vacation to a specific favorite season.\n\nB. James's favorite season is not summer: This conclusion is also uncertain because we don't have information that explicitly states James's favorite season is not summer.\n\nC. James's favorite season is uncertain: This conclusion is uncertain because, although we have some information about James's desire for a long vacation, we don't have enough information to determine his favorite season.\n\nBased on the given premises, the conclusion \"James's favorite season is summer\" is uncertain because we lack explicit information linking his desire for a long vacation to a specific favorite season.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. Premise 1: [BG] There are four seasons in a year: Spring, Summer, Fall, and Winter. \n   This premise provides general information about the seasons but doesn't give any specific information about the favorite seasons of the students.\n\n2. Premise 2: All students who want to have a long vacation love summer the most.\n   This premise establishes a relationship between wanting a long vacation and loving summer the most. However, it doesn't imply that the only students who love summer are those who want a long vacation.\n\n3. Premise 3: Emma's favorite season is summer.\n   This premise directly states Emma's favorite season, which is summer.\n\n4. Premise 4: Mia's favorite season is not the same as Emma's.\n   This premise indicates that Mia's favorite season is different from Emma's, but it doesn't give any information about Mia's favorite season.\n\n5. Premise 5: James wants to have a long vacation.\n   This premise states James's desire for a long vacation, but it doesn't imply that his favorite season is summer.\n\nNow, let's examine the conclusion: \"James's favorite season is summer.\"\n\nFrom the premises, we know the following:\n- Emma loves summer (Premise 3).\n- Mia's favorite season is different from Emma's (Premise 4).\n- James wants a long vacation (Premise 5).\n\nHowever, Premise 2 only states that all students who want to have a long vacation love summer the most, not that they love summer exclusively. Therefore, it is possible that James loves summer, but we cannot be certain without more information.\n\nSince we don't have any direct information about James's favorite season, we cannot conclude that James's favorite season is summer with certainty. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step.\n\nPremise 1: [BG] There are four seasons in a year: Spring, Summer, Fall, and Winter.\n\nThis premise simply lists the four seasons in a year and does not provide any information about individual preferences.\n\nPremise 2: All students who want to have a long vacation love summer the most.\n\nThis premise states a general rule that students who want a long vacation love summer the most. However, it does not specify that all students love summer the most.\n\nPremise 3: Emma's favorite season is summer.\n\nThis premise directly states Emma's favorite season, which is summer. However, it does not provide any information about James's favorite season.\n\nPremise 4: Mia's favorite season is not the same as Emma's.\n\nSince Emma's favorite season is summer, Mia's favorite season cannot be summer. However, this premise still does not provide any information about James's favorite season.\n\nPremise 5: James wants to have a long vacation.\n\nThis premise tells us that James wants a long vacation, but it does not directly tell us his favorite season.\n\nNow, let's analyze the conclusion: \"James's favorite season is summer.\"\n\nTo determine whether this conclusion is true, false, or uncertain, we need to consider the given premises. We know that Emma's favorite season is summer (Premise 3), but we do not know James's favorite season. We also know that James wants to have a long vacation (Premise 5), which is consistent with the general rule that students who want a long vacation love summer the most (Premise 2).\n\nHowever, we cannot conclude that James's favorite season is summer based on the given premises. We do not have any information that links James's desire for a long vacation to a specific favorite season. Therefore, the conclusion is uncertain.\n\nSo, the final answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given premises and try to find a conclusion based on the information provided.\n\nPremise 1: All students who want to have a long vacation love summer the most.\n\nPremise 2: Emma's favorite season is summer.\n\nPremise 3: Mia's favorite season is not the same as Emma's.\n\nPremise 4: James wants to have a long vacation.\n\nFrom Premise 1, we can conclude that if a student wants to have a long vacation, their favorite season is summer. However, this is a general rule and does not apply to everyone. It only applies to the students who want to have a long vacation.\n\nFrom Premise 2, we know that Emma's favorite season is summer, but it does not mean that Emma wants a long vacation. \n\nFrom Premise 3, we know that Mia's favorite season is different from Emma's. Since Emma's favorite season is summer, Mia's favorite season must be one of the other three seasons (Spring, Fall, or Winter).\n\nFrom Premise 4, we know that James wants to have a long vacation. According to Premise 1, this means that James's favorite season is summer.\n\nHowever, we cannot be certain about this conclusion because we do not have any information about James's favorite season being different from Emma's or Mia's. It is possible that James's favorite season is indeed summer, but we cannot rule out the possibility that James's favorite season is one of the other three seasons and he simply wants a long vacation for some other reason.\n\nTherefore, the conclusion \"James's favorite season is summer\" is uncertain.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: There are four seasons in a year: Spring, Summer, Fall, and Winter.\nThis premise doesn't provide any information about individual preferences, so it's not relevant to the conclusion.\n\nPremise 2: All students who want to have a long vacation love summer the most.\nThis premise establishes a relationship between wanting a long vacation and loving summer the most. However, it doesn't imply that all students who love summer the most want a long vacation.\n\nPremise 3: Emma's favorite season is summer.\nThis premise states Emma's preference, but it doesn't provide any information about James's preference.\n\nPremise 4: Mia's favorite season is not the same as Emma's.\nSince Emma's favorite season is summer, Mia's favorite season must be one of the other three seasons: Spring, Fall, or Winter.\n\nPremise 5: James wants to have a long vacation.\nThis premise doesn't provide any information about James's favorite season.\n\nConclusion: James's favorite season is summer.\nTo determine whether the conclusion is true, false, or uncertain, we need to analyze the premises. From Premise 2, we know that all students who want a long vacation love summer the most. However, from Premise 5, we know that James wants a long vacation, which implies that he loves summer the most. Since there's no other information about James's preference, we can conclude that James's favorite season is indeed summer.\n\nFinal Answer: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning and the given premises.\n\nPremises:\n1. There are four seasons in a year: Spring, Summer, Fall, and Winter.\n2. All students who want to have a long vacation love summer the most.\n3. Emma's favorite season is summer.\n4. Mia's favorite season is not the same as Emma's.\n5. James wants to have a long vacation.\n\nConclusion: James's favorite season is summer.\n\nFrom premise 2, we know that students who want a long vacation love summer the most. \n\nFrom premise 5, we know James wants to have a long vacation.\n\nCombining this information with premise 2, we can infer that James probably loves summer the most, since he wants a long vacation. \n\nHowever, we cannot be 100% sure that James loves summer the most without more information.\n\nNow, looking at premise 3, we know Emma's favorite season is summer.\n\nFrom premise 4, we know Mia's favorite season is not the same as Emma's.\n\nThis means Mia's favorite season is either Spring, Fall, or Winter, since her favorite season cannot be the same as Emma's.\n\nNow, we have a situation where we have three possibilities for Mia's favorite season: Spring, Fall, or Winter. If James's favorite season is summer, it doesn't contradict any of the premises.\n\nHowever, we still cannot conclude with certainty that James's favorite season is summer. \n\nWe can only determine that it is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step:\n\n1. [BG] There are four seasons in a year: Spring, Summer, Fall, and Winter.\n   - This premise is a general fact and doesn't provide any specific information about the students.\n\n2. All students who want to have a long vacation love summer the most.\n   - This premise implies a relationship between wanting a long vacation and loving summer the most, but it doesn't mean that all students who love summer the most want a long vacation.\n\n3. Emma's favorite season is summer.\n   - This premise directly links Emma to summer as her favorite season.\n\n4. Mia's favorite season is not the same as Emma's.\n   - This premise implies that Mia's favorite season is either Spring, Fall, or Winter, as it cannot be summer.\n\n5. James wants to have a long vacation.\n   - This premise links James to wanting a long vacation, but it doesn't directly link him to a specific season.\n\nNow, let's analyze the conclusion:\nJames's favorite season is summer.\n\n- From premise 3, we know Emma's favorite season is summer.\n- From premise 4, we know Mia's favorite season is not summer.\n- We don't have any information that directly links James to summer as his favorite season. Premise 5 only tells us that James wants a long vacation, but it doesn't imply that his favorite season is summer.\n\nSince we don't have any direct link between James and summer, we can't conclude that James's favorite season is summer. The conclusion is uncertain because we can't determine James's favorite season based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given premises step by step and see if we can deduce the conclusion.\n\nPremise 1: [BG] There are four seasons in a year: Spring, Summer, Fall, and Winter.\n\nThis premise gives us information about the seasons, but it doesn't provide any information about the characters or their preferences. So, we can skip this premise for now.\n\nPremise 2: All students who want to have a long vacation love summer the most.\n\nThis premise gives us a connection between wanting a long vacation and loving summer. However, it only applies to students who want to have a long vacation. We don't know if James is a student, so we can't apply this premise directly to James.\n\nPremise 3: Emma's favorite season is summer.\n\nThis premise gives us information about Emma's favorite season. Since Emma loves summer, it's possible that she wants a long vacation (Premise 2). However, we still don't know if James is a student or if he wants a long vacation.\n\nPremise 4: Mia's favorite season is not the same as Emma's.\n\nThis premise gives us information about Mia's favorite season. Since Emma's favorite season is summer, Mia's favorite season must be one of the other three seasons (Spring, Fall, or Winter). However, this premise doesn't provide any information about James.\n\nPremise 5: James wants to have a long vacation.\n\nThis premise gives us information about James's desire for a long vacation. According to Premise 2, students who want to have a long vacation love summer the most. However, we don't know if James is a student or if he loves summer.\n\nNow, let's analyze the conclusion: James's favorite season is summer.\n\nTo determine if the conclusion is true, false, or uncertain, we need to see if we can deduce it from the premises. From Premise 5, we know that James wants to have a long vacation. According to Premise 2, students who want to have a long vacation love summer the most. However, Premise 2 only applies to students, and we don't know if James is a student.\n\nTherefore, we can't directly conclude that James loves summer just because he wants a long vacation. We need more information to determine James's favorite season.\n\nHowever, we do know that Emma loves summer (Premise 3), and we know that James wants to have a long vacation (Premise 5). But we don't have any direct connection between James and Emma's preferences. We also don't know if James is a student or not.\n\nSince we can't deduce the conclusion with certainty, the final answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. Premise 1: There are four seasons in a year: Spring, Summer, Fall, and Winter.\n   - This premise provides general information about the seasons but does not directly relate to the conclusion.\n\n2. Premise 2: All students who want to have a long vacation love summer the most.\n   - This premise establishes a relationship between wanting a long vacation and loving summer the most. However, it does not specify that only students who want a long vacation love summer the most, or that only students love summer.\n\n3. Premise 3: Emma's favorite season is summer.\n   - This premise directly states Emma's favorite season, but it does not provide any information about James's favorite season.\n\n4. Premise 4: Mia's favorite season is not the same as Emma's.\n   - This premise provides information about the favorite season of another student (Mia) and establishes that it is not the same as Emma's favorite season (summer).\n\n5. Premise 5: James wants to have a long vacation.\n   - This premise establishes that James wants a long vacation, which, according to premise 2, means he loves summer the most. However, this does not necessarily mean his favorite season is summer.\n\nFrom the premises, we know the following:\n- All students who want a long vacation love summer the most (premise 2).\n- James wants to have a long vacation (premise 5).\n- This implies that James loves summer the most (premise 2 and premise 5).\n- However, we do not know if James's love for summer is because it is his favorite season or because he wants a long vacation.\n\nTherefore, we cannot conclude that James's favorite season is summer. The conclusion is uncertain because we do not have enough information to determine whether James's love for summer is based on his favorite season or his desire for a long vacation.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "four_seasons",
+          "z3_formula": "four_seasons == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> loves_summer(X)",
+          "z3_formula": "Implies(long_vacation_james, loves_summer_james)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_season_emma == summer",
+          "z3_formula": "favorite_season_emma == summer",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "favorite_season_mia != summer",
+          "z3_formula": "Not(favorite_season_mia == summer)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "long_vacation_james == True",
+          "z3_formula": "long_vacation_james == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "four_seasons",
+          "z3_formula": "four_seasons == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> loves_summer_most(X)",
+          "z3_formula": "Implies(long_vacation_james, loves_summer_most_james)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "emma_fav_season == summer",
+          "z3_formula": "emma_fav_season == summer",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mia_fav_season != emma_fav_season",
+          "z3_formula": "Not(mia_fav_season == summer)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "james_wants_long_vacation",
+          "z3_formula": "james_wants_long_vacation == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "love_summer_most(X) -> love_summer_most(Y)",
+          "z3_formula": "Implies(love_summer_most_X, love_summer_most_Y)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "love_summer_most(emma)",
+          "z3_formula": "love_summer_most_emma == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "love_summer_most(mia) == love_summer_most(emma)",
+          "z3_formula": "love_summer_most_mia == love_summer_most_emma",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "want_long_vacation(james)",
+          "z3_formula": "want_long_vacation_james == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "seasons(Spring, Summer, Fall, Winter)",
+          "z3_formula": "seasons_Spring_Summer_Fall_Winter == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> loves_summer(X)",
+          "z3_formula": "Implies(long_vacation_James, loves_summer_James)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loves_summer(emma)",
+          "z3_formula": "loves_summer_emma == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(loves_summer(mia) == loves_summer(emma))",
+          "z3_formula": "Not(loves_summer_mia == loves_summer_emma)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "long_vacation(james)",
+          "z3_formula": "long_vacation_james == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "four_seasons",
+          "z3_formula": "four_seasons == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> loves_summer(X)",
+          "z3_formula": "Implies(long_vacation_james, loves_summer_james)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loves_summer(emma)",
+          "z3_formula": "loves_summer_emma == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(loves_summer(mia) == loves_summer(emma))",
+          "z3_formula": "Not(loves_summer_mia == loves_summer_emma)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "long_vacation(james)",
+          "z3_formula": "long_vacation_james == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "seasons(Spring, Summer, Fall, Winter)",
+          "z3_formula": "seasons_Spring_Summer_Fall_Winter == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> loves_summer(X)",
+          "z3_formula": "Implies(long_vacation_X, loves_summer_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_season(emma, summer)",
+          "z3_formula": "favorite_season_emma_summer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_season(mia, not summer)",
+          "z3_formula": "favorite_season_mia_not_summer == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "long_vacation(james)",
+          "z3_formula": "long_vacation_james == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "love_summer(emma)",
+          "z3_formula": "love_summer_emma == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_same_season(emma, mia)",
+          "z3_formula": "not_same_season_emma_mia == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "long_vacation(james)",
+          "z3_formula": "long_vacation_james == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> love_summer(X)",
+          "z3_formula": "Implies(long_vacation_james, love_summer_james)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "love_summer(james)",
+          "z3_formula": "love_summer_james == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "summer(james)",
+          "z3_formula": "summer_james == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "seasons_in_year",
+          "z3_formula": "seasons_in_year == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation -> love_summer",
+          "z3_formula": "Implies(long_vacation, love_summer)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "emma_loves_summer",
+          "z3_formula": "emma_loves_summer == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "mia_does_not_love_summer",
+          "z3_formula": "mia_does_not_love_summer == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "james_wants_long_vacation",
+          "z3_formula": "james_wants_long_vacation == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "james_loves_summer",
+          "z3_formula": "james_loves_summer == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "james_fav_season_summer",
+          "z3_formula": "james_fav_season_summer == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "seasons_in_year(Spring, Summer, Fall, Winter)",
+          "z3_formula": "seasons_in_year == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> loves_summer(X)",
+          "z3_formula": "Implies(long_vacation, loves_summer)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "emma_fav_season(summer)",
+          "z3_formula": "emma_fav_season == summer",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mia_fav_season != emma_fav_season",
+          "z3_formula": "mia_fav_season != emma_fav_season",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "james_wants_long_vacation",
+          "z3_formula": "james_wants_long_vacation == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "james_loves_summer",
+          "z3_formula": "james_loves_summer == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "mia_fav_season(Spring or Fall or Winter)",
+          "z3_formula": "mia_fav_season == Or(Spring, Fall, Winter)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "james_fav_season(summer)",
+          "z3_formula": "james_fav_season == summer",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "four_seasons",
+          "z3_formula": "four_seasons == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> loves_summer(X)",
+          "z3_formula": "Implies(long_vacation_X, loves_summer_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "emma_loves_summer",
+          "z3_formula": "emma_loves_summer == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "emma_loves_summer -> mia_does_not_love_summer",
+          "z3_formula": "Implies(emma_loves_summer, mia_does_not_love_summer)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mia_does_not_love_summer",
+          "z3_formula": "mia_does_not_love_summer == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "james_wants_long_vacation",
+          "z3_formula": "james_wants_long_vacation == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "four_seasons",
+          "z3_formula": "four_seasons == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "student(X) & long_vacation(X) -> loves_summer(X)",
+          "z3_formula": "Implies(And(student_james, long_vacation_james), loves_summer_james)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loves_summer(emma)",
+          "z3_formula": "loves_summer_emma == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not_equal(emma, mia)",
+          "z3_formula": "not_equal_emma_mia == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "long_vacation(james)",
+          "z3_formula": "long_vacation_james == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "seasons(Spring, Summer, Fall, Winter)",
+          "z3_formula": "seasons_Spring_Summer_Fall_Winter == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "long_vacation(X) -> loves_summer(X)",
+          "z3_formula": "Implies(long_vacation_X, loves_summer_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_season(emma, summer)",
+          "z3_formula": "favorite_season_emma_summer == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_season(mia, not summer)",
+          "z3_formula": "favorite_season_mia_not_summer == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "long_vacation(james)",
+          "z3_formula": "long_vacation_james == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 66,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 38
+    },
+    "maxsat_stats": {
+      "satisfied": 38,
+      "excluded": 0,
+      "total_weight": 66,
+      "solve_time_ms": 1.4086412265896797
+    },
+    "timing": {
+      "trace_gen_s": 6.704,
+      "extraction_s": 11.33,
+      "dedup_s": 0.694,
+      "maxsat_s": 0.004,
+      "total_s": 18.732
+    }
+  }
+}

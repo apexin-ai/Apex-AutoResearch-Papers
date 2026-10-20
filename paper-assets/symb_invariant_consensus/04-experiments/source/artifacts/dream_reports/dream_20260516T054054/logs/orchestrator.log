@@ -1,0 +1,2 @@
+2026-05-16 06:13:40,023 INFO    core.tools.feishu  create_chat: name='审稿-symb_invariant_consensus' → chat_id=oc_c338e034cbffa10b9cc723e731d288d8
+2026-05-16 06:13:40,027 INFO    core.tools.dream  [dream] auto-created Group C for project=symb_invariant_consensus: oc_c338e034cbffa10b9cc723e731d288d8

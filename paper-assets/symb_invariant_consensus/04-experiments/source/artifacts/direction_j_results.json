@@ -1,0 +1,817 @@
+{
+  "summary": {
+    "method": "direction_j_bootstrap",
+    "n_problems": 204,
+    "max_rounds": 5,
+    "converged_at": 5,
+    "sc_baseline": 0.5441,
+    "final_accuracy": 0.5245,
+    "delta_pp": -1.96,
+    "per_round": [
+      {
+        "round": 0,
+        "accuracy": 0.5441,
+        "flips": 0,
+        "flips_improved": 0,
+        "flips_degraded": 0
+      },
+      {
+        "round": 1,
+        "accuracy": 0.5686,
+        "flips": 32,
+        "flips_improved": 15,
+        "flips_degraded": 10
+      },
+      {
+        "round": 2,
+        "accuracy": 0.5441,
+        "flips": 16,
+        "flips_improved": 5,
+        "flips_degraded": 10
+      },
+      {
+        "round": 3,
+        "accuracy": 0.549,
+        "flips": 11,
+        "flips_improved": 5,
+        "flips_degraded": 4
+      },
+      {
+        "round": 4,
+        "accuracy": 0.5441,
+        "flips": 10,
+        "flips_improved": 4,
+        "flips_degraded": 5
+      },
+      {
+        "round": 5,
+        "accuracy": 0.5245,
+        "flips": 6,
+        "flips_improved": 1,
+        "flips_degraded": 5
+      }
+    ],
+    "model": "/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3",
+    "temperature": 0.7,
+    "per_answer_type": {
+      "True": {
+        "n": 72,
+        "acc": 0.7361
+      },
+      "False": {
+        "n": 63,
+        "acc": 0.3492
+      },
+      "Unknown": {
+        "n": 69,
+        "acc": 0.4638
+      }
+    }
+  },
+  "rounds": [
+    {
+      "round": 0,
+      "method": "sc_majority",
+      "accuracy": 0.5441,
+      "n_correct": 111,
+      "n_total": 204,
+      "flips": 0,
+      "flip_details": []
+    },
+    {
+      "round": 1,
+      "accuracy": 0.5686,
+      "n_correct": 116,
+      "n_total": 204,
+      "flips": 32,
+      "flips_improved": 15,
+      "flips_degraded": 10,
+      "flip_details": [
+        {
+          "problem_id": "folio_3",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_4",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_20",
+          "old_answer": "False",
+          "new_answer": "Unknown",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_21",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_23",
+          "old_answer": "False",
+          "new_answer": "Karen will not share \"Black Mirror\" with Lisa.",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_31",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_42",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_45",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_46",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_49",
+          "old_answer": "False",
+          "new_answer": "Unknown",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_63",
+          "old_answer": "False",
+          "new_answer": "Unknown",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_64",
+          "old_answer": "False",
+          "new_answer": "Unknown",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_73",
+          "old_answer": "False",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_75",
+          "old_answer": "False",
+          "new_answer": "Tom's license plate is not from Istanbul.",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_85",
+          "old_answer": "Unknown",
+          "new_answer": "True (for not receiving many negative reviews), Uncertain (for providing take-out service)",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_91",
+          "old_answer": "True",
+          "new_answer": "Machine translation is a language generation task.",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_92",
+          "old_answer": "False",
+          "new_answer": "True",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_101",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_102",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_104",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_106",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_114",
+          "old_answer": "False",
+          "new_answer": "Unknown",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_116",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_123",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_124",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_135",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_157",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_171",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_184",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_189",
+          "old_answer": "Unknown",
+          "new_answer": "partially true",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_191",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_192",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": false
+        }
+      ],
+      "wall_time_s": 52.7
+    },
+    {
+      "round": 2,
+      "accuracy": 0.5441,
+      "n_correct": 111,
+      "n_total": 204,
+      "flips": 16,
+      "flips_improved": 5,
+      "flips_degraded": 10,
+      "flip_details": [
+        {
+          "problem_id": "folio_7",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_32",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_41",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_52",
+          "old_answer": "False",
+          "new_answer": "Unknown",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_58",
+          "old_answer": "False",
+          "new_answer": "Unknown",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_65",
+          "old_answer": "True",
+          "new_answer": "False",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_71",
+          "old_answer": "True",
+          "new_answer": "Unknown",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_76",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_108",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_137",
+          "old_answer": "False",
+          "new_answer": "Unknown",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_153",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_158",
+          "old_answer": "True",
+          "new_answer": "Unknown",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_167",
+          "old_answer": "False",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_183",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_193",
+          "old_answer": "False",
+          "new_answer": "Unknown",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_198",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        }
+      ],
+      "wall_time_s": 47.8
+    },
+    {
+      "round": 3,
+      "accuracy": 0.549,
+      "n_correct": 112,
+      "n_total": 204,
+      "flips": 11,
+      "flips_improved": 5,
+      "flips_degraded": 4,
+      "flip_details": [
+        {
+          "problem_id": "folio_6",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_11",
+          "old_answer": "Unknown",
+          "new_answer": "Joey is an Ocellated wild turkey (if Joey is a wild turkey)",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_30",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_40",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_50",
+          "old_answer": "False",
+          "new_answer": "Unknown",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_53",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_86",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_100",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_155",
+          "old_answer": "False",
+          "new_answer": "Unknown",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_172",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_175",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        }
+      ],
+      "wall_time_s": 47.3
+    },
+    {
+      "round": 4,
+      "accuracy": 0.5441,
+      "n_correct": 111,
+      "n_total": 204,
+      "flips": 10,
+      "flips_improved": 4,
+      "flips_degraded": 5,
+      "flip_details": [
+        {
+          "problem_id": "folio_10",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_83",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_94",
+          "old_answer": "False",
+          "new_answer": "True",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_96",
+          "old_answer": "Unknown",
+          "new_answer": "koalas love to sleep",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_133",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_149",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_150",
+          "old_answer": "False",
+          "new_answer": "True",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_164",
+          "old_answer": "Unknown",
+          "new_answer": "Breaking Bad is not on Monday at 8 pm.",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_173",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_201",
+          "old_answer": "False",
+          "new_answer": "True",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        }
+      ],
+      "wall_time_s": 47.6
+    },
+    {
+      "round": 5,
+      "accuracy": 0.5245,
+      "n_correct": 107,
+      "n_total": 204,
+      "flips": 6,
+      "flips_improved": 1,
+      "flips_degraded": 5,
+      "flip_details": [
+        {
+          "problem_id": "folio_13",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_72",
+          "old_answer": "False",
+          "new_answer": "Unknown",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_99",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_128",
+          "old_answer": "Unknown",
+          "new_answer": "False",
+          "ground_truth": "False",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": false,
+          "now_correct": true
+        },
+        {
+          "problem_id": "folio_131",
+          "old_answer": "True",
+          "new_answer": "Unknown",
+          "ground_truth": "True",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        },
+        {
+          "problem_id": "folio_202",
+          "old_answer": "Unknown",
+          "new_answer": "True",
+          "ground_truth": "Unknown",
+          "reason": "current_unsat_alt_sat",
+          "was_correct": true,
+          "now_correct": false
+        }
+      ],
+      "wall_time_s": 47.4
+    }
+  ]
+}

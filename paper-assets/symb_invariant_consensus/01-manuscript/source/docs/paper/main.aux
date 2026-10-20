@@ -1,0 +1,2600 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2023sc}
+\citation{condorcet1785,ladha1992correlated}
+\citation{loo2025reevaluating,byerly2025selfconsistency}
+\citation{kim2025correlated}
+\citation{dietterich2000ensemble}
+\citation{pan2023logiclm,olausson2023linc,ye2024satlm}
+\citation{turpin2023language,wan2025unveiling}
+\citation{liang2023encouraging,du2023improving}
+\citation{huang2024selfcorrect,kamoi2024selfcorrect}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN@col{2}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\@LN{80}{0}
+\citation{snell2025scaling}
+\citation{wang2023sc}
+\citation{chen2024usc}
+\citation{taubenfeld2025cisc}
+\citation{li2023diverse}
+\citation{wan2024rasc,toh2024notallvotes,kim2026reasc}
+\citation{loo2025reevaluating,byerly2025selfconsistency}
+\citation{condorcet1785}
+\citation{dietterich2000ensemble,krogh1994neural}
+\citation{ladha1992correlated}
+\citation{kuncheva2003measures,brown2005diversity}
+\citation{kim2025correlated}
+\citation{kuai2026independent}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The SICA pipeline. SC selects the majority answer from $K$ traces. SICA extracts logical constraints, deduplicates, and solves MAX-SAT via Z3. Red dashed box: the independence bottleneck. Dashed arrow: oracle variant with gold FOL.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:pipeline}{{1}{2}{The SICA pipeline. SC selects the majority answer from $K$ traces. SICA extracts logical constraints, deduplicates, and solves MAX-SAT via Z3. Red dashed box: the independence bottleneck. Dashed arrow: oracle variant with gold FOL}{figure.caption.1}{}}
+\@LN@col{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN@col{2}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related-work}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Self-consistency and ensemble theory.}{2}{section*.2}\protected@file@percent }
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\@LN{135}{1}
+\@LN{136}{1}
+\@LN{137}{1}
+\@LN{138}{1}
+\@LN{139}{1}
+\@LN{140}{1}
+\@LN{141}{1}
+\@LN{142}{1}
+\@LN{143}{1}
+\citation{pan2023logiclm,olausson2023linc,ye2024satlm}
+\citation{gao2023pal,chen2023program,lyu2023faithful}
+\citation{ryu2025clover,xu2026dylos,xu2025aristotle}
+\citation{pei2025fover,singh2026verge,luo2025logicagent}
+\citation{miya2025eidoku}
+\citation{amonkar2025realitycheck}
+\citation{chan2026position}
+\citation{huang2024selfcorrect}
+\citation{wan2025unveiling,turpin2023language,jhaveri2026failing}
+\citation{snell2025scaling}
+\citation{yao2023tree}
+\citation{guo2025deepseekr1,qwen2024qwq}
+\citation{liang2023encouraging,du2023improving}
+\citation{xie2023selfevaluation,weng2023selfverification,madaan2023selfrefine,dhuliawala2023chainofverification}
+\citation{shinn2023reflexion,zhou2023lats}
+\citation{gou2024critic}
+\citation{feng2025vericot,chen2025sets}
+\citation{lifshitz2025mav}
+\citation{kamoi2024selfcorrect}
+\citation{cobbe2021gsm8k,lightman2024prm,wang2024mathshepherd}
+\citation{khalifa2023grace}
+\citation{zeng2025s2r}
+\citation{dupo2025}
+\citation{li2022alphacode,chen2023codet}
+\citation{wang2024mathshepherd}
+\citation{wang2023sc}
+\citation{fleiss1971kappa}
+\citation{ladha1992correlated}
+\citation{demoura2008z3}
+\@LN@col{1}
+\@LN{144}{2}
+\@writefile{toc}{\contentsline {paragraph}{Neuro-symbolic reasoning.}{3}{section*.3}\protected@file@percent }
+\@LN{145}{2}
+\@LN{146}{2}
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@writefile{toc}{\contentsline {paragraph}{Verification and test-time scaling.}{3}{section*.4}\protected@file@percent }
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN@col{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\newlabel{sec:pipeline}{{3}{3}{Method}{section.3}{}}
+\newlabel{sec:condorcet}{{3}{3}{Method}{section.3}{}}
+\newlabel{sec:effective-k}{{3}{3}{Method}{section.3}{}}
+\@LN{208}{2}
+\@LN{209}{2}
+\@LN{210}{2}
+\@LN{211}{2}
+\newlabel{eq:effk}{{1}{3}{Method}{equation.1}{}}
+\@LN{212}{2}
+\@LN{213}{2}
+\@LN{214}{2}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\@LN{219}{2}
+\@LN{220}{2}
+\@LN{221}{2}
+\@LN{222}{2}
+\@LN{223}{2}
+\@writefile{toc}{\contentsline {paragraph}{Trace generation.}{3}{section*.6}\protected@file@percent }
+\@LN{224}{2}
+\@LN{225}{2}
+\@LN{226}{2}
+\newlabel{sec:constraint-extraction}{{3}{3}{Constraint extraction}{section*.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Constraint extraction.}{3}{section*.7}\protected@file@percent }
+\@LN{227}{2}
+\@LN{228}{2}
+\@LN{229}{2}
+\@LN{230}{2}
+\@LN{231}{2}
+\@LN{232}{2}
+\@LN{233}{2}
+\@LN{234}{2}
+\@LN{235}{2}
+\@writefile{toc}{\contentsline {paragraph}{Deduplication and MAX-SAT.}{3}{section*.8}\protected@file@percent }
+\@LN{236}{2}
+\@LN{237}{2}
+\@LN{238}{2}
+\@LN{239}{2}
+\@LN{240}{2}
+\@LN{241}{2}
+\newlabel{eq:maxsat}{{2}{3}{Deduplication and MAX-SAT}{equation.2}{}}
+\@LN{242}{2}
+\citation{yang2024qwen25}
+\citation{jiang2023mistral}
+\citation{dubey2024llama3}
+\citation{qwen2024qwq}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces SICA vs.\ SC across all non-degenerate self-extraction conditions (sorted by SC). Two conditions show significant degradation after Benjamini--Hochberg (BH) correction ($m{=}6$ confirmatory; remaining exploratory); no condition shows a significant gain. $\Delta $ = SICA $-$ SC (pp). PW: ProofWriter. $^b$gold ICL; \textbf  {bold}: $p < 0.05$; {*}\,BH adj.\ $p = 0.042$; $^{3s}$/$^{4s}$\,multi-seed aggregates; $^\dagger $\,4-seed replication (Table~\ref {tab:multi-seed}); $^\ddagger $\,pilot ($n{\leq }30$). Unmarked: single-seed exploratory (seed 123, not selected post hoc). Degenerate conditions and power analysis in Appendices~\ref {app:oracle} and~\ref {app:power}.}}{4}{table.caption.5}\protected@file@percent }
+\newlabel{tab:main_results}{{1}{4}{SICA vs.\ SC across all non-degenerate self-extraction conditions (sorted by SC). Two conditions show significant degradation after Benjamini--Hochberg (BH) correction ($m{=}6$ confirmatory; remaining exploratory); no condition shows a significant gain. $\Delta $ = SICA $-$ SC (pp). PW: ProofWriter. $^b$gold ICL; \textbf {bold}: $p < 0.05$; {*}\,BH adj.\ $p = 0.042$; $^{3s}$/$^{4s}$\,multi-seed aggregates; $^\dagger $\,4-seed replication (Table~\ref {tab:multi-seed}); $^\ddagger $\,pilot ($n{\leq }30$). Unmarked: single-seed exploratory (seed 123, not selected post hoc). Degenerate conditions and power analysis in Appendices~\ref {app:oracle} and~\ref {app:power}}{table.caption.5}{}}
+\@LN@col{1}
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@writefile{toc}{\contentsline {paragraph}{Scoring.}{4}{section*.9}\protected@file@percent }
+\@LN{249}{3}
+\@LN{250}{3}
+\newlabel{eq:score}{{3}{4}{Scoring}{equation.3}{}}
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN{254}{3}
+\@writefile{toc}{\contentsline {paragraph}{Degeneration condition.}{4}{section*.10}\protected@file@percent }
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\newlabel{eq:degenerate}{{4}{4}{Degeneration condition}{equation.4}{}}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@writefile{toc}{\contentsline {paragraph}{The $C_0$ diagnostic.}{4}{section*.11}\protected@file@percent }
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN@col{2}
+\@LN{266}{3}
+\@LN{267}{3}
+\@writefile{toc}{\contentsline {paragraph}{Bias ratio.}{4}{section*.12}\protected@file@percent }
+\@LN{268}{3}
+\@LN{269}{3}
+\newlabel{eq:mirage}{{5}{4}{Bias ratio}{equation.5}{}}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN{278}{3}
+\@LN{279}{3}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\newlabel{sec:results}{{4}{4}{Experiments}{section.4}{}}
+\newlabel{sec:main-results}{{4}{4}{Experiments}{section.4}{}}
+\@LN{280}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:exp-setup}{{4.1}{4}{Experimental Setup}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.14}\protected@file@percent }
+\@LN{281}{3}
+\@LN{282}{3}
+\@LN{283}{3}
+\@LN{284}{3}
+\@LN{285}{3}
+\@LN{286}{3}
+\@LN{287}{3}
+\@LN{288}{3}
+\@LN{289}{3}
+\@LN{290}{3}
+\@LN{291}{3}
+\citation{han2022folio}
+\citation{tafjord2021proofwriter}
+\citation{liu2020logiqa}
+\citation{geva2021strategyqa}
+\citation{lakens2017equivalence}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces SICA $\Delta $ (pp) vs.\ SC baseline. Color: model family; shape: dataset (\scalebox {0.7}{$\blacksquare $}\,PW, \scalebox {0.7}{$\blacktriangle $}\,FOLIO, \scalebox {0.7}{$\bullet $}\,LogiQA). Circled: significant ($p < .05$). Grey band: $\pm 2$\,pp equivalence zone. Three regimes emerge: Type~C (error amplification), intermediate, and Type~A (confirmation bias).}}{5}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:regime-scatter}{{2}{5}{SICA $\Delta $ (pp) vs.\ SC baseline. Color: model family; shape: dataset (\scalebox {0.7}{$\blacksquare $}\,PW, \scalebox {0.7}{$\blacktriangle $}\,FOLIO, \scalebox {0.7}{$\bullet $}\,LogiQA). Circled: significant ($p < .05$). Grey band: $\pm 2$\,pp equivalence zone. Three regimes emerge: Type~C (error amplification), intermediate, and Type~A (confirmation bias)}{figure.caption.13}{}}
+\@LN{292}{4}
+\@LN{293}{4}
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{5}{section*.15}\protected@file@percent }
+\@LN{294}{4}
+\@LN{295}{4}
+\@LN{296}{4}
+\@LN{297}{4}
+\@LN{298}{4}
+\@LN{299}{4}
+\@writefile{toc}{\contentsline {paragraph}{Parameters.}{5}{section*.16}\protected@file@percent }
+\@LN{300}{4}
+\@LN{301}{4}
+\@LN{302}{4}
+\@LN{303}{4}
+\@LN{304}{4}
+\@LN{305}{4}
+\@LN{306}{4}
+\@LN{307}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results}{5}{subsection.4.2}\protected@file@percent }
+\@LN{308}{4}
+\@LN{309}{4}
+\@LN{310}{4}
+\@LN{311}{4}
+\@LN{312}{4}
+\@LN{313}{4}
+\@LN{314}{4}
+\@LN{315}{4}
+\@LN{316}{4}
+\@LN{317}{4}
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Causal DAG of the self-extraction pipeline. Traces $T$ produce both answers $A$ and constraints $C$; under degeneration (Observation~1), $C$ is determined by $A$ (dashed arrow), yielding $I(C;Y) \leq I(A;Y)$.}}{5}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:causal-dag}{{3}{5}{Causal DAG of the self-extraction pipeline. Traces $T$ produce both answers $A$ and constraints $C$; under degeneration (Observation~1), $C$ is determined by $A$ (dashed arrow), yielding $I(C;Y) \leq I(A;Y)$}{figure.caption.17}{}}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN{355}{4}
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\@LN{359}{4}
+\@LN{360}{4}
+\@LN{361}{4}
+\@LN{362}{4}
+\citation{cover2006elements}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Symbolic confirmation bias across nine models on FOLIO ($n{=}204$). BR: mean per-problem bias ratio. All models exhibit $\text  {BR} > 1$. Ext.: $^a$self-extraction; $^b$cross-model (Mistral-7B extracts FOL from target traces). $^*$Interim ($n{=}95$). $^\dagger $$n{=}196$ (8 API failures excluded). $^\ddagger $$n{=}161$ (43 API failures excluded).}}{6}{table.caption.18}\protected@file@percent }
+\newlabel{tab:frontier-scb}{{2}{6}{Symbolic confirmation bias across nine models on FOLIO ($n{=}204$). BR: mean per-problem bias ratio. All models exhibit $\text {BR} > 1$. Ext.: $^a$self-extraction; $^b$cross-model (Mistral-7B extracts FOL from target traces). $^*$Interim ($n{=}95$). $^\dagger $$n{=}196$ (8 API failures excluded). $^\ddagger $$n{=}161$ (43 API failures excluded)}{table.caption.18}{}}
+\@LN{363}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Analysis}{6}{section.5}\protected@file@percent }
+\newlabel{sec:analysis}{{5}{6}{Analysis}{section.5}{}}
+\@LN{364}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Symbolic Confirmation Bias}{6}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:confirmation-bias}{{5.1}{6}{Symbolic Confirmation Bias}{subsection.5.1}{}}
+\@LN{365}{5}
+\@LN{366}{5}
+\@LN{367}{5}
+\@LN{368}{5}
+\@LN{369}{5}
+\@LN{370}{5}
+\@LN{371}{5}
+\@LN{372}{5}
+\@LN{373}{5}
+\@LN{374}{5}
+\@LN{375}{5}
+\@LN{376}{5}
+\@LN{377}{5}
+\@LN{378}{5}
+\@LN{379}{5}
+\@LN{380}{5}
+\@LN{381}{5}
+\@LN{382}{5}
+\@LN{383}{5}
+\@LN{384}{5}
+\@LN{385}{5}
+\@LN{386}{5}
+\@LN{387}{5}
+\@LN{388}{5}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Answer agreement vs.\ CoT cosine similarity (Mistral-7B, FOLIO, $n{=}204$). Flat regression ($r = -0.06$, $p = 0.36$): process and answer independence are uncorrelated.}}{6}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:process-kappa}{{4}{6}{Answer agreement vs.\ CoT cosine similarity (Mistral-7B, FOLIO, $n{=}204$). Flat regression ($r = -0.06$, $p = 0.36$): process and answer independence are uncorrelated}{figure.caption.19}{}}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
+\@LN{416}{5}
+\@LN{417}{5}
+\@LN{418}{5}
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\newlabel{sec:process-kappa}{{5.1}{6}{Symbolic Confirmation Bias}{figure.caption.19}{}}
+\@LN{422}{5}
+\@LN{423}{5}
+\@LN{424}{5}
+\@LN{425}{5}
+\@LN{426}{5}
+\@LN{427}{5}
+\@LN{428}{5}
+\@LN{429}{5}
+\@LN{430}{5}
+\@LN{431}{5}
+\@LN{432}{5}
+\citation{he2021deberta}
+\citation{williams2018mnli}
+\citation{liu2019roberta}
+\citation{lewis2020bart}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-generator NLI escape with DeBERTa-large-mnli verifier (55.00\% standalone, ProofWriter $n{=}600$). Combo (SC + NLI ensemble) gain decreases monotonically with generator capability.}}{7}{table.caption.20}\protected@file@percent }
+\newlabel{tab:cross_generator_nli}{{3}{7}{Cross-generator NLI escape with DeBERTa-large-mnli verifier (55.00\% standalone, ProofWriter $n{=}600$). Combo (SC + NLI ensemble) gain decreases monotonically with generator capability}{table.caption.20}{}}
+\@LN{433}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Why Remediation Fails}{7}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:remediation}{{5.2}{7}{Why Remediation Fails}{subsection.5.2}{}}
+\newlabel{sec:interventions}{{5.2}{7}{Why Remediation Fails}{subsection.5.2}{}}
+\@LN{434}{6}
+\@LN{435}{6}
+\@LN{436}{6}
+\@LN{437}{6}
+\@LN{438}{6}
+\@LN{439}{6}
+\@LN{440}{6}
+\@LN{441}{6}
+\@LN{442}{6}
+\@LN{443}{6}
+\@LN{444}{6}
+\@LN{445}{6}
+\@LN{446}{6}
+\@LN{447}{6}
+\@LN{448}{6}
+\@LN{449}{6}
+\@LN{450}{6}
+\@LN{451}{6}
+\@LN{452}{6}
+\@LN{453}{6}
+\@LN{454}{6}
+\@LN{455}{6}
+\@LN{456}{6}
+\@LN{457}{6}
+\@LN{458}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Diagnostic Framework}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:diagnostic-framework}{{5.3}{7}{Diagnostic Framework}{subsection.5.3}{}}
+\newlabel{sec:diagnostics}{{5.3}{7}{Diagnostic Framework}{subsection.5.3}{}}
+\@LN{459}{6}
+\@LN{460}{6}
+\@LN{461}{6}
+\@LN{462}{6}
+\@LN{463}{6}
+\@LN{464}{6}
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\@LN{468}{6}
+\@LN{469}{6}
+\@LN{470}{6}
+\@LN{471}{6}
+\@LN{472}{6}
+\@LN{473}{6}
+\@LN{474}{6}
+\@LN{475}{6}
+\@LN@col{2}
+\@LN{476}{6}
+\@LN{477}{6}
+\@LN{478}{6}
+\@LN{479}{6}
+\@LN{480}{6}
+\@LN{481}{6}
+\@LN{482}{6}
+\@LN{483}{6}
+\@LN{484}{6}
+\@LN{485}{6}
+\@LN{486}{6}
+\@LN{487}{6}
+\@LN{488}{6}
+\@LN{489}{6}
+\@LN{490}{6}
+\@LN{491}{6}
+\@LN{492}{6}
+\@LN{493}{6}
+\@LN{494}{6}
+\@LN{495}{6}
+\@LN{496}{6}
+\@LN{497}{6}
+\@LN{498}{6}
+\@LN{499}{6}
+\@LN{500}{6}
+\@LN{501}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Architecture Escape}{7}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:cross-arch}{{5.4}{7}{Cross-Architecture Escape}{subsection.5.4}{}}
+\@LN{502}{6}
+\@LN{503}{6}
+\@LN{504}{6}
+\@LN{505}{6}
+\@LN{506}{6}
+\@LN{507}{6}
+\@LN{508}{6}
+\@LN{509}{6}
+\@LN{510}{6}
+\@LN{511}{6}
+\@LN{512}{6}
+\@LN{513}{6}
+\@LN{514}{6}
+\@LN{515}{6}
+\@LN{516}{6}
+\@LN{517}{6}
+\@LN{518}{6}
+\@LN{519}{6}
+\@LN{520}{6}
+\@LN{521}{6}
+\@LN{522}{6}
+\@LN{523}{6}
+\@LN{524}{6}
+\@LN{525}{6}
+\@LN{526}{6}
+\citation{huang2024selfcorrect}
+\citation{lightman2024prm,wang2024mathshepherd}
+\citation{cobbe2021gsm8k}
+\citation{snell2025scaling}
+\bibdata{references}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Combo gain vs.\ capability gap (verifier standalone $-$ generator SC) at $w{=}3$ across three NLI architectures. Significant gains occur only when the generator falls below the verifier's standalone accuracy. Stars: domain-adapted DeBERTa (Appendix~\ref {app:finetuned-nli}).}}{8}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:capability-gap}{{5}{8}{Combo gain vs.\ capability gap (verifier standalone $-$ generator SC) at $w{=}3$ across three NLI architectures. Significant gains occur only when the generator falls below the verifier's standalone accuracy. Stars: domain-adapted DeBERTa (Appendix~\ref {app:finetuned-nli})}{figure.caption.21}{}}
+\@LN{527}{7}
+\@LN{528}{7}
+\@LN{529}{7}
+\@LN{530}{7}
+\@LN{531}{7}
+\@LN{532}{7}
+\@LN{533}{7}
+\@LN{534}{7}
+\@LN{535}{7}
+\@LN{536}{7}
+\@LN{537}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion and Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion and Conclusion}{section.6}{}}
+\newlabel{sec:conclusion}{{6}{8}{Discussion and Conclusion}{section.6}{}}
+\@LN{538}{7}
+\@LN{539}{7}
+\@LN{540}{7}
+\@LN{541}{7}
+\@LN{542}{7}
+\@LN{543}{7}
+\@LN{544}{7}
+\@LN{545}{7}
+\@LN{546}{7}
+\@LN{547}{7}
+\@LN{548}{7}
+\@LN{549}{7}
+\@LN{550}{7}
+\@LN{551}{7}
+\@LN{552}{7}
+\@LN{553}{7}
+\@LN{554}{7}
+\@LN{555}{7}
+\@LN{556}{7}
+\@LN{557}{7}
+\@LN{558}{7}
+\@LN{559}{7}
+\@LN{560}{7}
+\@LN{561}{7}
+\@LN{562}{7}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Independence--accuracy trade-off across 27 remediation strategies on FOLIO ($n = 204$). Dashed line: Mistral-7B SC baseline.}}{8}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:kappa-accuracy}{{6}{8}{Independence--accuracy trade-off across 27 remediation strategies on FOLIO ($n = 204$). Dashed line: Mistral-7B SC baseline}{figure.caption.22}{}}
+\@LN{563}{7}
+\@LN{564}{7}
+\@LN{565}{7}
+\@LN{566}{7}
+\@LN{567}{7}
+\@LN{568}{7}
+\@LN{569}{7}
+\@LN{570}{7}
+\@LN{571}{7}
+\@LN{572}{7}
+\@LN{573}{7}
+\@LN{574}{7}
+\@LN{575}{7}
+\@LN{576}{7}
+\@LN{577}{7}
+\@LN{578}{7}
+\@LN{579}{7}
+\@LN{580}{7}
+\@LN{581}{7}
+\@LN{582}{7}
+\@LN{583}{7}
+\@LN{584}{7}
+\@LN{585}{7}
+\@LN{586}{7}
+\@LN{587}{7}
+\@LN{588}{7}
+\@LN{589}{7}
+\@LN{590}{7}
+\@LN{591}{7}
+\@LN{592}{7}
+\@LN{593}{7}
+\@LN{594}{7}
+\@LN{595}{7}
+\@LN{596}{7}
+\@LN{597}{7}
+\bibcite{amonkar2025realitycheck}{{1}{2025}{{Amonkar et~al.}}{{Amonkar, Kayan, Lai, Le~Bras, and Zhang}}}
+\bibcite{brown2005diversity}{{2}{2005}{{Brown et~al.}}{{Brown, Wyatt, Harris, and Yao}}}
+\bibcite{byerly2025selfconsistency}{{3}{2025}{{Byerly and Khashabi}}{{}}}
+\bibcite{chan2026position}{{4}{2026}{{Chan et~al.}}{{Chan, Gaizauskas, and Zhao}}}
+\bibcite{chen2023codet}{{5}{2023{a}}{{Chen et~al.}}{{Chen, Zhang, Nguyen, Zan, Lin, Lou, and Chen}}}
+\bibcite{chen2025sets}{{6}{2025}{{Chen et~al.}}{{Chen, Ren, Chen, Yang, Sun, Yoon, and Ar{\i }k}}}
+\bibcite{chen2023program}{{7}{2023{b}}{{Chen et~al.}}{{Chen, Ma, Wang, and Cohen}}}
+\bibcite{chen2024usc}{{8}{2024}{{Chen et~al.}}{{Chen, Aksitov, Alon, Ren, Xiao, Yin, Prakash, Sutton, Wang, and Zhou}}}
+\bibcite{cobbe2021gsm8k}{{9}{2021}{{Cobbe et~al.}}{{Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser, Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman}}}
+\bibcite{cover2006elements}{{10}{2006}{{Cover and Thomas}}{{}}}
+\bibcite{condorcet1785}{{11}{1785}{{de~Condorcet}}{{}}}
+\bibcite{demoura2008z3}{{12}{2008}{{de~Moura and Bj{\o }rner}}{{}}}
+\bibcite{dhuliawala2023chainofverification}{{13}{2023}{{Dhuliawala et~al.}}{{Dhuliawala, Komeili, Xu, Raileanu, Li, Celikyilmaz, and Weston}}}
+\bibcite{dietterich2000ensemble}{{14}{2000}{{Dietterich}}{{}}}
+\bibcite{du2023improving}{{15}{2024}{{Du et~al.}}{{Du, Li, Torralba, Tenenbaum, and Mordatch}}}
+\bibcite{feng2025vericot}{{16}{2025}{{Feng et~al.}}{{Feng, Weir, Bostrom, Bayless, Cassel, Chaudhary, Kiesl-Reiter, and Rangwala}}}
+\bibcite{fleiss1971kappa}{{17}{1971}{{Fleiss}}{{}}}
+\bibcite{gao2023pal}{{18}{2023}{{Gao et~al.}}{{Gao, Madaan, Zhou, Alon, Liu, Yang, Callan, and Neubig}}}
+\bibcite{geva2021strategyqa}{{19}{2021}{{Geva et~al.}}{{Geva, Khashabi, Segal, Khot, Roth, and Berant}}}
+\bibcite{gou2024critic}{{20}{2024}{{Gou et~al.}}{{Gou, Shao, Gong, Shen, Yang, Huang, Duan, and Chen}}}
+\bibcite{dubey2024llama3}{{21}{2024}{{Grattafiori et~al.}}{{Grattafiori, Dubey, Jauhri, Pandey, Kadian et~al.}}}
+\bibcite{guo2025deepseekr1}{{22}{2025}{{Guo et~al.}}{{Guo, Yang, Zhang, Song et~al.}}}
+\bibcite{han2022folio}{{23}{2024}{{Han et~al.}}{{Han, Schoelkopf, Zhao, Qi, Riddell, Zhou, Coady, Peng, Qiao, Benson, Sun, Wardle-Solano, Szab{\'o}, Zubova, Burtell, Fan, Liu, Wong, Sailor, Ni, Nan, Kasai, Yu, Zhang, Fabbri, Kryscinski, Yavuz, Liu, Lin, Joty, Zhou, Xiong, Ying, Cohan, and Radev}}}
+\bibcite{he2021deberta}{{24}{2021}{{He et~al.}}{{He, Liu, Gao, and Chen}}}
+\bibcite{huang2024selfcorrect}{{25}{2024}{{Huang et~al.}}{{Huang, Chen, Mishra, Zheng, Yu, Song, and Zhou}}}
+\@LN@col{1}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\@LN{623}{8}
+\@LN{624}{8}
+\@LN{625}{8}
+\@LN{626}{8}
+\@LN{627}{8}
+\@LN{628}{8}
+\@LN{629}{8}
+\@LN{630}{8}
+\@LN{631}{8}
+\@LN{632}{8}
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\@LN{639}{8}
+\@LN{640}{8}
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN@col{2}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@LN{655}{8}
+\@LN{656}{8}
+\@LN{657}{8}
+\@LN{658}{8}
+\@LN{659}{8}
+\@LN{660}{8}
+\@LN{661}{8}
+\@LN{662}{8}
+\@LN{663}{8}
+\@LN{664}{8}
+\@LN{665}{8}
+\@LN{666}{8}
+\@LN{667}{8}
+\@LN{668}{8}
+\@LN{669}{8}
+\@LN{670}{8}
+\@LN{671}{8}
+\@LN{672}{8}
+\@LN{673}{8}
+\@LN{674}{8}
+\@LN{675}{8}
+\@LN{676}{8}
+\@LN{677}{8}
+\@LN{678}{8}
+\@LN{679}{8}
+\@LN{680}{8}
+\@LN{681}{8}
+\@LN{682}{8}
+\@LN{683}{8}
+\@LN{684}{8}
+\@LN{685}{8}
+\@LN{686}{8}
+\@LN{687}{8}
+\@LN{688}{8}
+\@LN{689}{8}
+\@LN{690}{8}
+\@LN{691}{8}
+\@LN{692}{8}
+\@LN{693}{8}
+\@LN{694}{8}
+\@LN{695}{8}
+\@LN{696}{8}
+\@LN{697}{8}
+\@LN{698}{8}
+\@LN{699}{8}
+\@LN{700}{8}
+\@LN{701}{8}
+\@LN{702}{8}
+\@LN{703}{8}
+\@LN{704}{8}
+\bibcite{jhaveri2026failing}{{26}{2026}{{Jhaveri et~al.}}{{Jhaveri, GX-Chen, Sucholutsky, and Choi}}}
+\bibcite{jiang2023mistral}{{27}{2023}{{Jiang et~al.}}{{Jiang, Sablayrolles, Mensch, Bamford, Chaplot, de~las Casas, Bressand, Lengyel, Lample, Saulnier, Lavaud, Lachaux, Stock, Scao, Lavril, Wang, Lacroix, and El~Sayed}}}
+\bibcite{kamoi2024selfcorrect}{{28}{2024}{{Kamoi et~al.}}{{Kamoi, Zhang, Zhang, Han, and Zhang}}}
+\bibcite{khalifa2023grace}{{29}{2023}{{Khalifa et~al.}}{{Khalifa, Logeswaran, Lee, Lee, and Wang}}}
+\bibcite{kim2025correlated}{{30}{2025}{{Kim et~al.}}{{Kim, Garg, Peng, and Garg}}}
+\bibcite{kim2026reasc}{{31}{2026}{{Kim et~al.}}{{Kim, Yang, Min, and Jung}}}
+\bibcite{krogh1994neural}{{32}{1994}{{Krogh and Vedelsby}}{{}}}
+\bibcite{kuai2026independent}{{33}{2026}{{Kuai et~al.}}{{Kuai, Jiang, Zhu, Wang, Wu, Li, Zhang, Liu, Tu, Fan, and Zhou}}}
+\bibcite{kuncheva2003measures}{{34}{2003}{{Kuncheva and Whitaker}}{{}}}
+\bibcite{ladha1992correlated}{{35}{1992}{{Ladha}}{{}}}
+\bibcite{lakens2017equivalence}{{36}{2017}{{Lakens}}{{}}}
+\bibcite{lewis2020bart}{{37}{2020}{{Lewis et~al.}}{{Lewis, Liu, Goyal, Ghazvininejad, Mohamed, Levy, Stoyanov, and Zettlemoyer}}}
+\bibcite{li2023diverse}{{38}{2023}{{Li et~al.}}{{Li, Lin, Zhang, Fu, Chen, Lou, and Chen}}}
+\bibcite{li2022alphacode}{{39}{2022}{{Li et~al.}}{{Li, Choi, Chung, Kushman, Schrittwieser et~al.}}}
+\bibcite{liang2023encouraging}{{40}{2023}{{Liang et~al.}}{{Liang, He, Jiao, Wang, Wang, Wang, Yang, Tu, and Shi}}}
+\bibcite{lifshitz2025mav}{{41}{2025}{{Lifshitz et~al.}}{{Lifshitz, McIlraith, and Du}}}
+\bibcite{lightman2024prm}{{42}{2024}{{Lightman et~al.}}{{Lightman, Kosaraju, Burda, Edwards, Baker, Lee, Leike, Schulman, Sutskever, and Cobbe}}}
+\bibcite{liu2020logiqa}{{43}{2020}{{Liu et~al.}}{{Liu, Cui, Liu, Huang, Wang, and Zhang}}}
+\bibcite{liu2019roberta}{{44}{2019}{{Liu et~al.}}{{Liu, Ott, Goyal, Du, Joshi, Chen, Levy, Lewis, Zettlemoyer, and Stoyanov}}}
+\bibcite{loo2025reevaluating}{{45}{2025}{{Loo}}{{}}}
+\bibcite{lyu2023faithful}{{46}{2023}{{Lyu et~al.}}{{Lyu, Havaldar, Stein, Zhang, Rao, Wong, Apidianaki, and Callison-Burch}}}
+\bibcite{zeng2025s2r}{{47}{2025}{{Ma et~al.}}{{Ma, Wang, Liu, Liu, Chen, Zhang, Zhou, Du, and Li}}}
+\bibcite{madaan2023selfrefine}{{48}{2023}{{Madaan et~al.}}{{Madaan, Tandon, Gupta, Hallinan, Gao, Wiegreffe, Alon, Dziri, Prabhumoye, Yang et~al.}}}
+\@LN@col{1}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\@LN{731}{9}
+\@LN{732}{9}
+\@LN{733}{9}
+\@LN{734}{9}
+\@LN{735}{9}
+\@LN{736}{9}
+\@LN{737}{9}
+\@LN{738}{9}
+\@LN{739}{9}
+\@LN{740}{9}
+\@LN{741}{9}
+\@LN{742}{9}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN{745}{9}
+\@LN{746}{9}
+\@LN{747}{9}
+\@LN{748}{9}
+\@LN{749}{9}
+\@LN{750}{9}
+\@LN{751}{9}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\@LN{755}{9}
+\@LN{756}{9}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN@col{2}
+\@LN{759}{9}
+\@LN{760}{9}
+\@LN{761}{9}
+\@LN{762}{9}
+\@LN{763}{9}
+\@LN{764}{9}
+\@LN{765}{9}
+\@LN{766}{9}
+\@LN{767}{9}
+\@LN{768}{9}
+\@LN{769}{9}
+\@LN{770}{9}
+\@LN{771}{9}
+\@LN{772}{9}
+\@LN{773}{9}
+\@LN{774}{9}
+\@LN{775}{9}
+\@LN{776}{9}
+\@LN{777}{9}
+\@LN{778}{9}
+\@LN{779}{9}
+\@LN{780}{9}
+\@LN{781}{9}
+\@LN{782}{9}
+\@LN{783}{9}
+\@LN{784}{9}
+\@LN{785}{9}
+\@LN{786}{9}
+\@LN{787}{9}
+\@LN{788}{9}
+\@LN{789}{9}
+\@LN{790}{9}
+\@LN{791}{9}
+\@LN{792}{9}
+\@LN{793}{9}
+\@LN{794}{9}
+\@LN{795}{9}
+\@LN{796}{9}
+\@LN{797}{9}
+\@LN{798}{9}
+\@LN{799}{9}
+\@LN{800}{9}
+\@LN{801}{9}
+\@LN{802}{9}
+\@LN{803}{9}
+\@LN{804}{9}
+\@LN{805}{9}
+\@LN{806}{9}
+\@LN{807}{9}
+\@LN{808}{9}
+\@LN{809}{9}
+\@LN{810}{9}
+\@LN{811}{9}
+\@LN{812}{9}
+\bibcite{miya2025eidoku}{{49}{2025}{{Miya}}{{}}}
+\bibcite{olausson2023linc}{{50}{2023}{{Olausson et~al.}}{{Olausson, Gu, Lipkin, Zhang, Solar-Lezama, Tenenbaum, and Levy}}}
+\bibcite{pan2023logiclm}{{51}{2023}{{Pan et~al.}}{{Pan, Albalak, Wang, and Wang}}}
+\bibcite{pei2025fover}{{52}{2025}{{Pei et~al.}}{{Pei, Du, and Jin}}}
+\bibcite{qwen2024qwq}{{53}{2024}{{Qwen Team}}{{}}}
+\bibcite{ryu2025clover}{{54}{2025}{{Ryu et~al.}}{{Ryu, Kim, Lee, and Yang}}}
+\bibcite{dupo2025}{{55}{2025}{{She et~al.}}{{She, Bao, Lu, Xu, Li, Zhu, Huang, Cheng, Lu, and Wang}}}
+\bibcite{shinn2023reflexion}{{56}{2023}{{Shinn et~al.}}{{Shinn, Cassano, Gopinath, Narasimhan, and Yao}}}
+\bibcite{singh2026verge}{{57}{2026}{{Singh et~al.}}{{Singh, Cassel, Weir, Feng, and Bayless}}}
+\bibcite{snell2025scaling}{{58}{2025}{{Snell et~al.}}{{Snell, Lee, Xu, and Kumar}}}
+\bibcite{tafjord2021proofwriter}{{59}{2021}{{Tafjord et~al.}}{{Tafjord, Dalvi, and Clark}}}
+\bibcite{taubenfeld2025cisc}{{60}{2025}{{Taubenfeld et~al.}}{{Taubenfeld, Sheffer, Ofek, Feder, Goldstein, Gekhman, and Yona}}}
+\bibcite{toh2024notallvotes}{{61}{2024}{{Toh et~al.}}{{Toh, Ghosal, and Poria}}}
+\bibcite{turpin2023language}{{62}{2023}{{Turpin et~al.}}{{Turpin, Michael, Perez, and Bowman}}}
+\bibcite{wan2024rasc}{{63}{2024}{{Wan et~al.}}{{Wan, Wu, Chen, and Li}}}
+\bibcite{wan2025unveiling}{{64}{2025}{{Wan et~al.}}{{Wan, Jia, and Li}}}
+\bibcite{wang2024mathshepherd}{{65}{2024}{{Wang et~al.}}{{Wang, Li, Shao, Xu, Dai, Li, Chen, Wu, and Sui}}}
+\bibcite{wang2023sc}{{66}{2023}{{Wang et~al.}}{{Wang, Wei, Schuurmans, Le, Chi, Narang, Chowdhery, and Zhou}}}
+\bibcite{weng2023selfverification}{{67}{2023}{{Weng et~al.}}{{Weng, Zhu, Xia, Li, He, Liu, Sun, Liu, and Zhao}}}
+\bibcite{williams2018mnli}{{68}{2018}{{Williams et~al.}}{{Williams, Nangia, and Bowman}}}
+\bibcite{xie2023selfevaluation}{{69}{2023}{{Xie et~al.}}{{Xie, Kawaguchi, Zhao, Zhao, Kan, He, and Xie}}}
+\bibcite{xu2025aristotle}{{70}{2025}{{Xu et~al.}}{{Xu, Fei, Luo, Liu, Pan, Wang, Nakov, Lee, and Hsu}}}
+\bibcite{xu2026dylos}{{71}{2026}{{Xu et~al.}}{{Xu, Beckmann, Valentino, and Freitas}}}
+\bibcite{yang2024qwen25}{{72}{2024}{{Yang et~al.}}{{Yang, Yang, Zhang, Hui, Zheng et~al.}}}
+\bibcite{yao2023tree}{{73}{2023}{{Yao et~al.}}{{Yao, Yu, Zhao, Shafran, Griffiths, Cao, and Narasimhan}}}
+\@LN@col{1}
+\@LN{813}{10}
+\@LN{814}{10}
+\@LN{815}{10}
+\@LN{816}{10}
+\@LN{817}{10}
+\@LN{818}{10}
+\@LN{819}{10}
+\@LN{820}{10}
+\@LN{821}{10}
+\@LN{822}{10}
+\@LN{823}{10}
+\@LN{824}{10}
+\@LN{825}{10}
+\@LN{826}{10}
+\@LN{827}{10}
+\@LN{828}{10}
+\@LN{829}{10}
+\@LN{830}{10}
+\@LN{831}{10}
+\@LN{832}{10}
+\@LN{833}{10}
+\@LN{834}{10}
+\@LN{835}{10}
+\@LN{836}{10}
+\@LN{837}{10}
+\@LN{838}{10}
+\@LN{839}{10}
+\@LN{840}{10}
+\@LN{841}{10}
+\@LN{842}{10}
+\@LN{843}{10}
+\@LN{844}{10}
+\@LN{845}{10}
+\@LN{846}{10}
+\@LN{847}{10}
+\@LN{848}{10}
+\@LN{849}{10}
+\@LN{850}{10}
+\@LN{851}{10}
+\@LN{852}{10}
+\@LN{853}{10}
+\@LN{854}{10}
+\@LN{855}{10}
+\@LN{856}{10}
+\@LN{857}{10}
+\@LN{858}{10}
+\@LN{859}{10}
+\@LN{860}{10}
+\@LN{861}{10}
+\@LN{862}{10}
+\@LN{863}{10}
+\@LN{864}{10}
+\@LN{865}{10}
+\@LN{866}{10}
+\@LN@col{2}
+\@LN{867}{10}
+\@LN{868}{10}
+\@LN{869}{10}
+\@LN{870}{10}
+\@LN{871}{10}
+\@LN{872}{10}
+\@LN{873}{10}
+\@LN{874}{10}
+\@LN{875}{10}
+\@LN{876}{10}
+\@LN{877}{10}
+\@LN{878}{10}
+\@LN{879}{10}
+\@LN{880}{10}
+\@LN{881}{10}
+\@LN{882}{10}
+\@LN{883}{10}
+\@LN{884}{10}
+\@LN{885}{10}
+\@LN{886}{10}
+\@LN{887}{10}
+\@LN{888}{10}
+\@LN{889}{10}
+\@LN{890}{10}
+\@LN{891}{10}
+\@LN{892}{10}
+\@LN{893}{10}
+\@LN{894}{10}
+\@LN{895}{10}
+\@LN{896}{10}
+\@LN{897}{10}
+\@LN{898}{10}
+\@LN{899}{10}
+\@LN{900}{10}
+\@LN{901}{10}
+\@LN{902}{10}
+\@LN{903}{10}
+\@LN{904}{10}
+\@LN{905}{10}
+\@LN{906}{10}
+\@LN{907}{10}
+\@LN{908}{10}
+\@LN{909}{10}
+\@LN{910}{10}
+\@LN{911}{10}
+\@LN{912}{10}
+\@LN{913}{10}
+\@LN{914}{10}
+\@LN{915}{10}
+\@LN{916}{10}
+\@LN{917}{10}
+\@LN{918}{10}
+\bibcite{ye2024satlm}{{74}{2023}{{Ye et~al.}}{{Ye, Chen, Dillig, and Durrett}}}
+\bibcite{luo2025logicagent}{{75}{2025}{{Zhang et~al.}}{{Zhang, Zhang, Sheng, Li, Chen, Yu, Yang, and Song}}}
+\bibcite{zhou2023lats}{{76}{2024}{{Zhou et~al.}}{{Zhou, Yan, Shlapentokh-Rothman, Wang, and Wang}}}
+\@LN@col{1}
+\@LN{919}{11}
+\@LN{920}{11}
+\@LN{921}{11}
+\@LN{922}{11}
+\@LN{923}{11}
+\@LN{924}{11}
+\@LN{925}{11}
+\@LN{926}{11}
+\@LN{927}{11}
+\@LN{928}{11}
+\@LN{929}{11}
+\@LN{930}{11}
+\@LN{931}{11}
+\@LN{932}{11}
+\@LN{933}{11}
+\@LN{934}{11}
+\@LN{935}{11}
+\@LN{936}{11}
+\@LN{937}{11}
+\@LN{938}{11}
+\@LN{939}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Prompt Templates}{12}{appendix.A}\protected@file@percent }
+\newlabel{app:prompts}{{A}{12}{Prompt Templates}{appendix.A}{}}
+\@LN{940}{11}
+\@LN{941}{11}
+\@LN{942}{11}
+\@LN{943}{11}
+\@LN{944}{11}
+\@LN{945}{11}
+\@LN{946}{11}
+\@LN{947}{11}
+\@LN{948}{11}
+\@writefile{toc}{\contentsline {paragraph}{System Prompt.}{12}{section*.25}\protected@file@percent }
+\@LN{949}{11}
+\@LN{950}{11}
+\@LN{951}{11}
+\@LN{952}{11}
+\@LN{953}{11}
+\@LN{954}{11}
+\@LN{955}{11}
+\@LN{956}{11}
+\@LN{957}{11}
+\@LN{958}{11}
+\@LN{959}{11}
+\@writefile{toc}{\contentsline {paragraph}{Mathematical Constraint Extraction (EXTRACTION\_PROMPT).}{12}{section*.26}\protected@file@percent }
+\@LN{960}{11}
+\@LN{961}{11}
+\@LN{962}{11}
+\@LN{963}{11}
+\@LN{964}{11}
+\@LN{965}{11}
+\@LN{966}{11}
+\@LN{967}{11}
+\@LN{968}{11}
+\@LN{969}{11}
+\@LN{970}{11}
+\@LN{971}{11}
+\@LN{972}{11}
+\@LN{973}{11}
+\@LN{974}{11}
+\@LN@col{2}
+\@LN{975}{11}
+\@LN{976}{11}
+\@LN{977}{11}
+\@LN{978}{11}
+\@LN{979}{11}
+\@LN{980}{11}
+\@LN{981}{11}
+\@LN{982}{11}
+\@LN{983}{11}
+\@LN{984}{11}
+\@LN{985}{11}
+\@LN{986}{11}
+\@LN{987}{11}
+\@LN{988}{11}
+\@LN{989}{11}
+\@LN{990}{11}
+\@LN{991}{11}
+\@LN{992}{11}
+\@LN{993}{11}
+\@LN{994}{11}
+\@LN{995}{11}
+\@LN{996}{11}
+\@LN{997}{11}
+\@LN{998}{11}
+\@LN{999}{11}
+\@LN{1000}{11}
+\@LN{1001}{11}
+\@LN{1002}{11}
+\@LN{1003}{11}
+\@LN{1004}{11}
+\@LN{1005}{11}
+\@LN{1006}{11}
+\@LN{1007}{11}
+\@LN{1008}{11}
+\@LN{1009}{11}
+\@writefile{toc}{\contentsline {paragraph}{Logical Constraint Extraction (LOGIC\_EXTRACTION\_PROMPT).}{12}{section*.27}\protected@file@percent }
+\@LN{1010}{11}
+\@LN{1011}{11}
+\@LN{1012}{11}
+\@LN{1013}{11}
+\@LN{1014}{11}
+\@LN{1015}{11}
+\@LN{1016}{11}
+\@LN{1017}{11}
+\@LN{1018}{11}
+\@LN{1019}{11}
+\@LN{1020}{11}
+\@LN{1021}{11}
+\@LN{1022}{11}
+\@LN{1023}{11}
+\@LN{1024}{11}
+\@LN{1025}{11}
+\@LN{1026}{11}
+\@LN{1027}{11}
+\@LN{1028}{11}
+\@LN{1029}{11}
+\@LN{1030}{11}
+\@LN{1031}{11}
+\@LN{1032}{11}
+\@LN{1033}{11}
+\@LN{1034}{11}
+\@LN{1035}{11}
+\@LN{1036}{11}
+\@LN{1037}{11}
+\@LN{1038}{11}
+\@LN{1039}{11}
+\@LN{1040}{11}
+\@LN{1041}{11}
+\@LN{1042}{11}
+\@LN@col{1}
+\@LN{1043}{12}
+\@LN{1044}{12}
+\@LN{1045}{12}
+\@LN{1046}{12}
+\@LN{1047}{12}
+\@LN{1048}{12}
+\@LN{1049}{12}
+\@LN{1050}{12}
+\@LN{1051}{12}
+\@LN{1052}{12}
+\@LN{1053}{12}
+\@LN{1054}{12}
+\@LN{1055}{12}
+\@LN{1056}{12}
+\@LN{1057}{12}
+\@LN{1058}{12}
+\@LN{1059}{12}
+\@LN{1060}{12}
+\@LN{1061}{12}
+\@LN{1062}{12}
+\@LN{1063}{12}
+\@LN{1064}{12}
+\@LN{1065}{12}
+\@LN{1066}{12}
+\@LN{1067}{12}
+\@LN{1068}{12}
+\@LN{1069}{12}
+\@LN{1070}{12}
+\@LN{1071}{12}
+\@LN{1072}{12}
+\@LN{1073}{12}
+\@LN{1074}{12}
+\@LN{1075}{12}
+\@LN{1076}{12}
+\@LN{1077}{12}
+\@writefile{toc}{\contentsline {paragraph}{Output Schema.}{13}{section*.28}\protected@file@percent }
+\@LN{1078}{12}
+\@LN{1079}{12}
+\@LN{1080}{12}
+\@LN{1081}{12}
+\@LN{1082}{12}
+\@LN{1083}{12}
+\@LN{1084}{12}
+\@LN{1085}{12}
+\@LN{1086}{12}
+\@LN{1087}{12}
+\@LN{1088}{12}
+\@LN{1089}{12}
+\@LN{1090}{12}
+\@LN{1091}{12}
+\@LN{1092}{12}
+\@LN{1093}{12}
+\@LN{1094}{12}
+\@LN{1095}{12}
+\@LN{1096}{12}
+\@LN{1097}{12}
+\@LN{1098}{12}
+\@LN{1099}{12}
+\@LN{1100}{12}
+\@LN{1101}{12}
+\@LN{1102}{12}
+\@LN{1103}{12}
+\@LN{1104}{12}
+\@LN{1105}{12}
+\@LN{1106}{12}
+\@LN{1107}{12}
+\@LN{1108}{12}
+\@LN{1109}{12}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {paragraph}{Prompt Selection Logic.}{13}{section*.29}\protected@file@percent }
+\@LN{1110}{12}
+\@LN{1111}{12}
+\@LN{1112}{12}
+\@LN{1113}{12}
+\@LN{1114}{12}
+\@LN{1115}{12}
+\@LN{1116}{12}
+\@LN{1117}{12}
+\@LN{1118}{12}
+\@LN{1119}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Z3 MaxSAT Evaluation Pseudocode}{13}{appendix.B}\protected@file@percent }
+\newlabel{app:z3-pseudocode}{{B}{13}{Z3 MaxSAT Evaluation Pseudocode}{appendix.B}{}}
+\@LN{1120}{12}
+\@LN{1121}{12}
+\@LN{1122}{12}
+\@LN{1123}{12}
+\@LN{1124}{12}
+\@LN{1125}{12}
+\@LN{1126}{12}
+\@LN{1127}{12}
+\@LN{1128}{12}
+\@LN{1129}{12}
+\@LN{1130}{12}
+\@LN{1131}{12}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Z3 Weighted Partial MAX-SAT}}{13}{algorithm.1}\protected@file@percent }
+\newlabel{alg:maxsat}{{1}{13}{Z3 Weighted Partial MAX-SAT}{algorithm.1}{}}
+\@LN{1132}{12}
+\@LN{1133}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Capability-Accuracy Constraint Diagnostics}{13}{appendix.C}\protected@file@percent }
+\newlabel{app:diagnostics}{{C}{13}{Capability-Accuracy Constraint Diagnostics}{appendix.C}{}}
+\newlabel{app:cil}{{C}{13}{Capability-Accuracy Constraint Diagnostics}{appendix.C}{}}
+\@writefile{toc}{\contentsline {paragraph}{Conditional Correction Ratio.}{13}{section*.30}\protected@file@percent }
+\@LN{1134}{12}
+\@LN{1135}{12}
+\@LN@col{1}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Source-Trace Attribution Scoring}}{14}{algorithm.2}\protected@file@percent }
+\newlabel{alg:scorer}{{2}{14}{Source-Trace Attribution Scoring}{algorithm.2}{}}
+\@LN{1136}{13}
+\newlabel{eq:cil}{{6}{14}{Conditional Correction Ratio}{equation.6}{}}
+\@LN{1137}{13}
+\@LN{1138}{13}
+\@LN{1139}{13}
+\@LN{1140}{13}
+\@LN{1141}{13}
+\@LN{1142}{13}
+\@LN{1143}{13}
+\@writefile{toc}{\contentsline {paragraph}{Empirical CCR across verifier--generator pairs.}{14}{section*.31}\protected@file@percent }
+\@LN{1144}{13}
+\@LN{1145}{13}
+\@LN{1146}{13}
+\@LN{1147}{13}
+\@LN{1148}{13}
+\@LN{1149}{13}
+\@LN{1150}{13}
+\@LN{1151}{13}
+\@LN{1152}{13}
+\@LN{1153}{13}
+\@LN{1154}{13}
+\@LN{1155}{13}
+\@LN{1156}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Empirical CCR across eight verifier--generator conditions (sorted by CCR descending). $\text  {CCR} > 0$: cross-architecture NLI verifiers on ProofWriter. $\text  {CCR} < 0$: same-model SICA or mismatched capability gap.}}{14}{table.caption.32}\protected@file@percent }
+\newlabel{tab:cil_empirical}{{4}{14}{Empirical CCR across eight verifier--generator conditions (sorted by CCR descending). $\text {CCR} > 0$: cross-architecture NLI verifiers on ProofWriter. $\text {CCR} < 0$: same-model SICA or mismatched capability gap}{table.caption.32}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-condition diagnostics.}{14}{section*.33}\protected@file@percent }
+\@LN{1157}{13}
+\@LN{1158}{13}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Capability-accuracy constraint diagnostics. $C_0$: fraction of questions with multiple distinct candidate answers across $K=12$ traces. Extraction rate: fraction of traces yielding at least one parseable logical constraint. Contradiction rate: fraction of extracted constraint sets with internal contradictions. $\Delta $: SICA$-$SC gap (pp). $\dagger $: $n \leq 60$. Dashes indicate conditions where extraction diagnostics were not computed (StrategyQA uses boolean answers without symbolic extraction; QwQ-32B Combined had near-zero $C_0$, making extraction analysis uninformative). This table includes additional exploratory conditions not reported in Table~\ref {tab:main_results}.}}{14}{table.caption.34}\protected@file@percent }
+\newlabel{tab:capability_trap}{{5}{14}{Capability-accuracy constraint diagnostics. $C_0$: fraction of questions with multiple distinct candidate answers across $K=12$ traces. Extraction rate: fraction of traces yielding at least one parseable logical constraint. Contradiction rate: fraction of extracted constraint sets with internal contradictions. $\Delta $: SICA$-$SC gap (pp). $\dagger $: $n \leq 60$. Dashes indicate conditions where extraction diagnostics were not computed (StrategyQA uses boolean answers without symbolic extraction; QwQ-32B Combined had near-zero $C_0$, making extraction analysis uninformative). This table includes additional exploratory conditions not reported in Table~\ref {tab:main_results}}{table.caption.34}{}}
+\@LN{1159}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Statistical Power Analysis}{14}{appendix.D}\protected@file@percent }
+\newlabel{app:power}{{D}{14}{Statistical Power Analysis}{appendix.D}{}}
+\@LN{1160}{13}
+\@LN{1161}{13}
+\@LN{1162}{13}
+\@LN{1163}{13}
+\@LN{1164}{13}
+\@LN{1165}{13}
+\@LN{1166}{13}
+\@LN{1167}{13}
+\@LN{1168}{13}
+\@LN{1169}{13}
+\@LN{1170}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Power analysis for confirmatory conditions ($n \geq 200$). MDE = minimum detectable effect at 80\% power. All observed effects fall below their respective MDEs, and observed power remains below 21\% in every case.}}{14}{table.caption.35}\protected@file@percent }
+\newlabel{tab:power}{{6}{14}{Power analysis for confirmatory conditions ($n \geq 200$). MDE = minimum detectable effect at 80\% power. All observed effects fall below their respective MDEs, and observed power remains below 21\% in every case}{table.caption.35}{}}
+\@LN{1171}{13}
+\@LN{1172}{13}
+\@LN{1173}{13}
+\@LN{1174}{13}
+\@LN{1175}{13}
+\@LN{1176}{13}
+\@LN{1177}{13}
+\@LN{1178}{13}
+\@LN{1179}{13}
+\@LN@col{1}
+\@LN{1180}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Bootstrap Confidence Intervals}{15}{appendix.E}\protected@file@percent }
+\newlabel{app:bootstrap}{{E}{15}{Bootstrap Confidence Intervals}{appendix.E}{}}
+\@LN{1181}{14}
+\@LN{1182}{14}
+\@LN{1183}{14}
+\@LN{1184}{14}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Bootstrap 95\% confidence intervals for $\Delta (\text  {SICA} - \text  {SC})$ in percentage points. All intervals include zero, consistent with no reliable accuracy difference.}}{15}{table.caption.36}\protected@file@percent }
+\newlabel{tab:bootstrap}{{7}{15}{Bootstrap 95\% confidence intervals for $\Delta (\text {SICA} - \text {SC})$ in percentage points. All intervals include zero, consistent with no reliable accuracy difference}{table.caption.36}{}}
+\@LN{1185}{14}
+\@LN{1186}{14}
+\@LN{1187}{14}
+\@LN{1188}{14}
+\@LN{1189}{14}
+\@LN{1190}{14}
+\@LN{1191}{14}
+\@LN{1192}{14}
+\@LN{1193}{14}
+\@LN{1194}{14}
+\@LN{1195}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Case Studies: Discordant Predictions}{15}{appendix.F}\protected@file@percent }
+\newlabel{app:case-studies}{{F}{15}{Case Studies: Discordant Predictions}{appendix.F}{}}
+\@LN{1196}{14}
+\@LN{1197}{14}
+\@LN{1198}{14}
+\@LN{1199}{14}
+\@LN{1200}{14}
+\@LN{1201}{14}
+\@LN{1202}{14}
+\@LN{1203}{14}
+\@LN{1204}{14}
+\@LN{1205}{14}
+\@LN{1206}{14}
+\@LN{1207}{14}
+\@writefile{toc}{\contentsline {paragraph}{Case 1: SICA Wins (folio\_134, FOLIO).}{15}{section*.37}\protected@file@percent }
+\@LN{1208}{14}
+\@LN{1209}{14}
+\@LN{1210}{14}
+\@LN{1211}{14}
+\@LN{1212}{14}
+\@LN{1213}{14}
+\@LN{1214}{14}
+\@LN{1215}{14}
+\@LN{1216}{14}
+\@LN{1217}{14}
+\@LN{1218}{14}
+\@LN{1219}{14}
+\@LN{1220}{14}
+\@LN@col{2}
+\@LN{1221}{14}
+\@LN{1222}{14}
+\@LN{1223}{14}
+\@LN{1224}{14}
+\@LN{1225}{14}
+\@LN{1226}{14}
+\@LN{1227}{14}
+\@LN{1228}{14}
+\@writefile{toc}{\contentsline {paragraph}{Case 2: SC Wins (ProofWriter-1066\_Q6, ProofWriter).}{15}{section*.38}\protected@file@percent }
+\@LN{1229}{14}
+\@LN{1230}{14}
+\@LN{1231}{14}
+\@LN{1232}{14}
+\@LN{1233}{14}
+\@LN{1234}{14}
+\@LN{1235}{14}
+\@LN{1236}{14}
+\@LN{1237}{14}
+\@LN{1238}{14}
+\@LN{1239}{14}
+\@LN{1240}{14}
+\@LN{1241}{14}
+\@LN{1242}{14}
+\@LN{1243}{14}
+\@LN{1244}{14}
+\@LN{1245}{14}
+\@LN{1246}{14}
+\@LN{1247}{14}
+\@writefile{toc}{\contentsline {paragraph}{Case 3: Non-discriminative Constraints (ProofWriter-903\_Q6, ProofWriter).}{15}{section*.39}\protected@file@percent }
+\@LN{1248}{14}
+\@LN{1249}{14}
+\@LN{1250}{14}
+\@LN{1251}{14}
+\@LN{1252}{14}
+\@LN{1253}{14}
+\@LN{1254}{14}
+\@LN{1255}{14}
+\@LN{1256}{14}
+\@LN{1257}{14}
+\@LN{1258}{14}
+\@LN{1259}{14}
+\@LN{1260}{14}
+\@LN{1261}{14}
+\@LN{1262}{14}
+\@LN{1263}{14}
+\@LN{1264}{14}
+\@LN{1265}{14}
+\@LN{1266}{14}
+\@writefile{toc}{\contentsline {paragraph}{Pattern.}{15}{section*.40}\protected@file@percent }
+\@LN{1267}{14}
+\@LN{1268}{14}
+\@LN{1269}{14}
+\@LN{1270}{14}
+\@LN@col{1}
+\@LN{1271}{15}
+\@LN{1272}{15}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Summary of three representative discordant cases. All occur at exact 6:6 vote ties. Constraint exclusion can break ties in either direction (Cases 1--2) or have no effect (Case 3).}}{16}{table.caption.41}\protected@file@percent }
+\newlabel{tab:case_summary}{{8}{16}{Summary of three representative discordant cases. All occur at exact 6:6 vote ties. Constraint exclusion can break ties in either direction (Cases 1--2) or have no effect (Case 3)}{table.caption.41}{}}
+\@LN{1273}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Oracle Control}{16}{appendix.G}\protected@file@percent }
+\newlabel{app:oracle}{{G}{16}{Oracle Control}{appendix.G}{}}
+\newlabel{sec:oracle}{{G}{16}{Oracle Control}{appendix.G}{}}
+\newlabel{app:pw-oracle-subtype}{{G}{16}{Oracle Control}{appendix.G}{}}
+\@LN{1274}{15}
+\@LN{1275}{15}
+\@LN{1276}{15}
+\@LN{1277}{15}
+\@LN{1278}{15}
+\@LN{1279}{15}
+\@LN{1280}{15}
+\@LN{1281}{15}
+\@LN{1282}{15}
+\@LN{1283}{15}
+\@LN{1284}{15}
+\@LN{1285}{15}
+\@LN{1286}{15}
+\@LN{1287}{15}
+\@writefile{toc}{\contentsline {paragraph}{ProofWriter per-subtype analysis.}{16}{section*.42}\protected@file@percent }
+\@LN{1288}{15}
+\@LN{1289}{15}
+\@LN{1290}{15}
+\@LN{1291}{15}
+\@LN{1292}{15}
+\@LN{1293}{15}
+\@LN{1294}{15}
+\@LN{1295}{15}
+\@LN{1296}{15}
+\@LN{1297}{15}
+\@LN{1298}{15}
+\@LN{1299}{15}
+\@LN{1300}{15}
+\@LN{1301}{15}
+\@LN{1302}{15}
+\@LN{1303}{15}
+\@LN{1304}{15}
+\@LN{1305}{15}
+\@LN{1306}{15}
+\@LN{1307}{15}
+\@LN{1308}{15}
+\@LN{1309}{15}
+\@LN{1310}{15}
+\@LN{1311}{15}
+\@LN{1312}{15}
+\@LN{1313}{15}
+\@LN@col{2}
+\@LN{1314}{15}
+\@LN{1315}{15}
+\@LN{1316}{15}
+\@LN{1317}{15}
+\@LN{1318}{15}
+\@LN{1319}{15}
+\@LN{1320}{15}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces ProofWriter oracle experiment per-subtype breakdown. Oracle-SICA uses gold DSL annotations parsed deterministically to Z3 for consistency checking. Relation-predicate subtypes (RelNeg, RelNoneg) show larger gains than attribute-predicate subtypes; relation subtypes involve longer reasoning chains and benefit more from oracle constraints. Bold indicates best accuracy per row.}}{16}{table.caption.43}\protected@file@percent }
+\newlabel{tab:pw_oracle_subtype}{{9}{16}{ProofWriter oracle experiment per-subtype breakdown. Oracle-SICA uses gold DSL annotations parsed deterministically to Z3 for consistency checking. Relation-predicate subtypes (RelNeg, RelNoneg) show larger gains than attribute-predicate subtypes; relation subtypes involve longer reasoning chains and benefit more from oracle constraints. Bold indicates best accuracy per row}{table.caption.43}{}}
+\@LN{1321}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Constraint Ablation Details}{16}{appendix.H}\protected@file@percent }
+\newlabel{app:ablation}{{H}{16}{Constraint Ablation Details}{appendix.H}{}}
+\newlabel{sec:ablation}{{H}{16}{Constraint Ablation Details}{appendix.H}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Constraint ablation (Qwen2.5-14B, $n = 804$). Agreement: predictions identical to SC. MAX-SAT and count-only produce nearly identical predictions, confirming that self-extracted constraints carry no signal beyond vote counts.}}{16}{table.caption.44}\protected@file@percent }
+\newlabel{tab:ablation}{{10}{16}{Constraint ablation (Qwen2.5-14B, $n = 804$). Agreement: predictions identical to SC. MAX-SAT and count-only produce nearly identical predictions, confirming that self-extracted constraints carry no signal beyond vote counts}{table.caption.44}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces MAX-SAT vs.\ count-only agreement across constraint weight $\alpha \in [0,1]$ on FOLIO ($n = 204$). Mistral-7B (BR $= 4.97\times $, seed 42); Qwen2.5-14B (BR $= 3.93\times $, seed 123). $\alpha {=}0$: pure Z3 satisfiability (no source-attribution); $\alpha {=}1$: full source-attribution penalty. Agreement $\geq 99\%$ at all $\alpha $ including endpoints, confirming vacuity is weight-insensitive.}}{16}{table.caption.45}\protected@file@percent }
+\newlabel{tab:alpha-ablation}{{11}{16}{MAX-SAT vs.\ count-only agreement across constraint weight $\alpha \in [0,1]$ on FOLIO ($n = 204$). Mistral-7B (BR $= 4.97\times $, seed 42); Qwen2.5-14B (BR $= 3.93\times $, seed 123). $\alpha {=}0$: pure Z3 satisfiability (no source-attribution); $\alpha {=}1$: full source-attribution penalty. Agreement $\geq 99\%$ at all $\alpha $ including endpoints, confirming vacuity is weight-insensitive}{table.caption.45}{}}
+\@LN{1322}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Remediation Strategy Details}{16}{appendix.I}\protected@file@percent }
+\newlabel{app:remediation}{{I}{16}{Remediation Strategy Details}{appendix.I}{}}
+\@LN{1323}{15}
+\@LN{1324}{15}
+\@LN{1325}{15}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Twenty-three of 27 training-free strategies across four categories (four additional strategies tested but omitted for clarity). All produce neutral-to-negative $\Delta $ vs.\ SC. Grey band: $\pm 1$\,pp noise zone.}}{17}{figure.caption.46}\protected@file@percent }
+\newlabel{fig:interventions-summary}{{7}{17}{Twenty-three of 27 training-free strategies across four categories (four additional strategies tested but omitted for clarity). All produce neutral-to-negative $\Delta $ vs.\ SC. Grey band: $\pm 1$\,pp noise zone}{figure.caption.46}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Nine prompt-level remediation strategies. Baseline: Qwen2.5-14B FOLIO, SC $= 75.98\%$, $\Delta = -0.49$\,pp. None reaches significance. Three method-level strategies are reported in Table~\ref {tab:method_interventions}.}}{17}{table.caption.47}\protected@file@percent }
+\newlabel{tab:remediation}{{12}{17}{Nine prompt-level remediation strategies. Baseline: Qwen2.5-14B FOLIO, SC $= 75.98\%$, $\Delta = -0.49$\,pp. None reaches significance. Three method-level strategies are reported in Table~\ref {tab:method_interventions}}{table.caption.47}{}}
+\@LN{1326}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {J}Additional Intervention Results}{17}{appendix.J}\protected@file@percent }
+\newlabel{app:additional-interventions}{{J}{17}{Additional Intervention Results}{appendix.J}{}}
+\@LN{1327}{16}
+\@LN{1328}{16}
+\@LN{1329}{16}
+\@LN{1330}{16}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Method-level interventions on Mistral-7B with McNemar's paired test. All produce neutral-to-catastrophic results. Independent Constraint Generation (ICG) shows two FOLIO seeds; $p$ for the first. {*}{*}{*}\,$p < 0.001$; {*}{*}\,$p < 0.01$.}}{17}{table.caption.48}\protected@file@percent }
+\newlabel{tab:method_interventions}{{13}{17}{Method-level interventions on Mistral-7B with McNemar's paired test. All produce neutral-to-catastrophic results. Independent Constraint Generation (ICG) shows two FOLIO seeds; $p$ for the first. {*}{*}{*}\,$p < 0.001$; {*}{*}\,$p < 0.01$}{table.caption.48}{}}
+\@LN{1331}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {K}Extraction Error Taxonomy}{17}{appendix.K}\protected@file@percent }
+\newlabel{app:extraction}{{K}{17}{Extraction Error Taxonomy}{appendix.K}{}}
+\newlabel{sec:extraction-taxonomy}{{K}{17}{Extraction Error Taxonomy}{appendix.K}{}}
+\@LN{1332}{16}
+\@LN{1333}{16}
+\@LN{1334}{16}
+\@LN{1335}{16}
+\@LN{1336}{16}
+\@LN{1337}{16}
+\@LN{1338}{16}
+\@LN{1339}{16}
+\@LN{1340}{16}
+\@LN{1341}{16}
+\@LN{1342}{16}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Additional intervention results beyond the nine prompt-level and three method-level strategies reported in the main text. All produce neutral-to-negative results, completing the exhaustive remediation analysis across 27 distinct approaches.}}{18}{table.caption.49}\protected@file@percent }
+\newlabel{tab:additional_interventions}{{14}{18}{Additional intervention results beyond the nine prompt-level and three method-level strategies reported in the main text. All produce neutral-to-negative results, completing the exhaustive remediation analysis across 27 distinct approaches}{table.caption.49}{}}
+\@LN@col{1}
+\@LN{1343}{17}
+\@LN{1344}{17}
+\@LN{1345}{17}
+\@LN{1346}{17}
+\@LN{1347}{17}
+\@LN{1348}{17}
+\@LN{1349}{17}
+\@LN{1350}{17}
+\@LN{1351}{17}
+\@LN{1352}{17}
+\@LN{1353}{17}
+\@LN{1354}{17}
+\@LN{1355}{17}
+\@LN{1356}{17}
+\@LN{1357}{17}
+\@LN{1358}{17}
+\@LN{1359}{17}
+\@LN{1360}{17}
+\@LN{1361}{17}
+\@LN{1362}{17}
+\@LN{1363}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {L}Hyperparameter Sensitivity}{18}{appendix.L}\protected@file@percent }
+\newlabel{app:sensitivity}{{L}{18}{Hyperparameter Sensitivity}{appendix.L}{}}
+\newlabel{sec:k-sensitivity}{{L}{18}{Hyperparameter Sensitivity}{appendix.L}{}}
+\newlabel{sec:t-sensitivity}{{L}{18}{Hyperparameter Sensitivity}{appendix.L}{}}
+\@LN{1364}{17}
+\@writefile{toc}{\contentsline {subsection}{\numberline {L.1}K Sensitivity}{18}{subsection.L.1}\protected@file@percent }
+\@LN{1365}{17}
+\@LN{1366}{17}
+\@LN{1367}{17}
+\@LN{1368}{17}
+\@LN{1369}{17}
+\@LN{1370}{17}
+\@LN{1371}{17}
+\@LN{1372}{17}
+\@LN{1373}{17}
+\@LN{1374}{17}
+\@LN@col{2}
+\@LN{1375}{17}
+\@LN{1376}{17}
+\@LN{1377}{17}
+\@LN{1378}{17}
+\@LN{1379}{17}
+\@LN{1380}{17}
+\@LN{1381}{17}
+\@LN{1382}{17}
+\@LN{1383}{17}
+\@LN{1384}{17}
+\@LN{1385}{17}
+\@LN{1386}{17}
+\@LN{1387}{17}
+\@LN{1388}{17}
+\@LN{1389}{17}
+\@LN{1390}{17}
+\@writefile{toc}{\contentsline {subsection}{\numberline {L.2}Temperature Sensitivity}{18}{subsection.L.2}\protected@file@percent }
+\@LN{1391}{17}
+\@LN{1392}{17}
+\@LN{1393}{17}
+\@LN{1394}{17}
+\@LN{1395}{17}
+\@LN{1396}{17}
+\@LN{1397}{17}
+\@LN{1398}{17}
+\@LN{1399}{17}
+\@LN{1400}{17}
+\@LN{1401}{17}
+\@LN{1402}{17}
+\@LN{1403}{17}
+\@LN{1404}{17}
+\@LN{1405}{17}
+\@LN{1406}{17}
+\@LN{1407}{17}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces SICA $\Delta $ (pp) vs.\ number of traces $K$ for Mistral-7B on FOLIO ($n = 204$, default seed, $T = 0.7$). Non-monotonic pattern: SICA accuracy plateaus at 59.31\% for $K \geq 12$; the apparent $\Delta $ peak at $K = 12$ partly reflects a relatively low SC baseline (55.88\%) at that point. Error bars: 95\% bootstrap CI.}}{19}{figure.caption.50}\protected@file@percent }
+\newlabel{fig:k-sensitivity}{{8}{19}{SICA $\Delta $ (pp) vs.\ number of traces $K$ for Mistral-7B on FOLIO ($n = 204$, default seed, $T = 0.7$). Non-monotonic pattern: SICA accuracy plateaus at 59.31\% for $K \geq 12$; the apparent $\Delta $ peak at $K = 12$ partly reflects a relatively low SC baseline (55.88\%) at that point. Error bars: 95\% bootstrap CI}{figure.caption.50}{}}
+\@LN@col{1}
+\@LN{1408}{18}
+\@LN{1409}{18}
+\@LN{1410}{18}
+\@LN{1411}{18}
+\@LN{1412}{18}
+\@LN{1413}{18}
+\@LN{1414}{18}
+\@LN{1415}{18}
+\@LN{1416}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {M}Entropy Decomposition}{19}{appendix.M}\protected@file@percent }
+\newlabel{app:entropy}{{M}{19}{Entropy Decomposition}{appendix.M}{}}
+\newlabel{sec:entropy}{{M}{19}{Entropy Decomposition}{appendix.M}{}}
+\@LN{1417}{18}
+\@LN{1418}{18}
+\@LN{1419}{18}
+\@LN{1420}{18}
+\@LN{1421}{18}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Entropy decomposition of SICA $\Delta $ (pp). High-entropy: majority count $\leq 8$; low-entropy: majority count $\geq 9$. $^\dagger $Partial data (180/600). Pre-tiebreaking SC values; pattern robust to BH correction.}}{19}{table.caption.51}\protected@file@percent }
+\newlabel{tab:entropy}{{15}{19}{Entropy decomposition of SICA $\Delta $ (pp). High-entropy: majority count $\leq 8$; low-entropy: majority count $\geq 9$. $^\dagger $Partial data (180/600). Pre-tiebreaking SC values; pattern robust to BH correction}{table.caption.51}{}}
+\@LN{1422}{18}
+\@LN{1423}{18}
+\@LN{1424}{18}
+\@LN{1425}{18}
+\@LN{1426}{18}
+\@LN{1427}{18}
+\@LN{1428}{18}
+\@LN{1429}{18}
+\@LN@col{2}
+\@LN{1430}{18}
+\@LN{1431}{18}
+\@LN{1432}{18}
+\@LN{1433}{18}
+\@LN{1434}{18}
+\@LN{1435}{18}
+\@LN{1436}{18}
+\@LN{1437}{18}
+\@LN{1438}{18}
+\@LN{1439}{18}
+\@LN{1440}{18}
+\@LN{1441}{18}
+\@LN{1442}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {N}Failure Mode Analysis}{19}{appendix.N}\protected@file@percent }
+\newlabel{app:failure-modes}{{N}{19}{Failure Mode Analysis}{appendix.N}{}}
+\newlabel{sec:failure-modes}{{N}{19}{Failure Mode Analysis}{appendix.N}{}}
+\@LN{1443}{18}
+\@LN{1444}{18}
+\@LN{1445}{18}
+\@writefile{toc}{\contentsline {paragraph}{Type A: confirmation bias (SC $\geq $ $\sim $60\%).}{19}{section*.52}\protected@file@percent }
+\@LN{1446}{18}
+\@LN{1447}{18}
+\@LN{1448}{18}
+\@LN{1449}{18}
+\@LN{1450}{18}
+\@LN{1451}{18}
+\@LN{1452}{18}
+\@LN{1453}{18}
+\@LN{1454}{18}
+\@LN{1455}{18}
+\@LN{1456}{18}
+\@LN{1457}{18}
+\@LN{1458}{18}
+\@writefile{toc}{\contentsline {paragraph}{Type B: non-formalizable domains.}{19}{section*.53}\protected@file@percent }
+\@LN{1459}{18}
+\@LN{1460}{18}
+\@LN{1461}{18}
+\@LN{1462}{18}
+\@LN{1463}{18}
+\@LN@col{1}
+\@LN{1464}{19}
+\@LN{1465}{19}
+\@LN{1466}{19}
+\@LN{1467}{19}
+\@LN{1468}{19}
+\@LN{1469}{19}
+\@LN{1470}{19}
+\@LN{1471}{19}
+\@LN{1472}{19}
+\@writefile{toc}{\contentsline {paragraph}{Type C: error amplification (SC $\leq $ $\sim $40\%).}{20}{section*.54}\protected@file@percent }
+\@LN{1473}{19}
+\@LN{1474}{19}
+\@LN{1475}{19}
+\@LN{1476}{19}
+\@LN{1477}{19}
+\@LN{1478}{19}
+\@LN{1479}{19}
+\@LN{1480}{19}
+\@LN{1481}{19}
+\@LN{1482}{19}
+\@LN{1483}{19}
+\@LN{1484}{19}
+\@LN{1485}{19}
+\@LN{1486}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {O}Cross-Model Confirmation Bias}{20}{appendix.O}\protected@file@percent }
+\newlabel{app:cross-model-bias}{{O}{20}{Cross-Model Confirmation Bias}{appendix.O}{}}
+\@LN{1487}{19}
+\@LN{1488}{19}
+\@LN{1489}{19}
+\@LN{1490}{19}
+\@LN{1491}{19}
+\@LN{1492}{19}
+\@LN{1493}{19}
+\@LN{1494}{19}
+\@LN{1495}{19}
+\@LN{1496}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Cross-model confirmation bias on FOLIO ($n = 204$, $K = 12$). BR (wtd.): MaxSAT-weighted ratio of error-supporting constraints on incorrect vs.\ correct problems. Wrong \%: weighted fraction of constraints supporting the incorrect majority on error problems. $\Delta $: SICA $-$ SC (pp).}}{20}{table.caption.55}\protected@file@percent }
+\newlabel{tab:cross-model-bias}{{16}{20}{Cross-model confirmation bias on FOLIO ($n = 204$, $K = 12$). BR (wtd.): MaxSAT-weighted ratio of error-supporting constraints on incorrect vs.\ correct problems. Wrong \%: weighted fraction of constraints supporting the incorrect majority on error problems. $\Delta $: SICA $-$ SC (pp)}{table.caption.55}{}}
+\newlabel{app:frontier-scb}{{O}{20}{Frontier model universality}{section*.56}{}}
+\@writefile{toc}{\contentsline {paragraph}{Frontier model universality.}{20}{section*.56}\protected@file@percent }
+\@LN{1497}{19}
+\@LN{1498}{19}
+\@LN{1499}{19}
+\@LN{1500}{19}
+\@LN{1501}{19}
+\@LN{1502}{19}
+\@LN@col{2}
+\@LN{1503}{19}
+\@LN{1504}{19}
+\@LN{1505}{19}
+\@LN{1506}{19}
+\@LN{1507}{19}
+\@LN{1508}{19}
+\@LN{1509}{19}
+\@LN{1510}{19}
+\newlabel{app:process-sim}{{O}{20}{ProcessSim definition}{section*.57}{}}
+\@writefile{toc}{\contentsline {paragraph}{ProcessSim definition.}{20}{section*.57}\protected@file@percent }
+\@LN{1511}{19}
+\@LN{1512}{19}
+\@LN{1513}{19}
+\newlabel{eq:process-sim}{{7}{20}{ProcessSim definition}{equation.7}{}}
+\@LN{1514}{19}
+\@LN{1515}{19}
+\@LN{1516}{19}
+\newlabel{app:process-gradient}{{O}{20}{Process-$\kappa $ gradient}{section*.58}{}}
+\@writefile{toc}{\contentsline {paragraph}{Process-$\kappa $ gradient.}{20}{section*.58}\protected@file@percent }
+\@LN{1517}{19}
+\@LN{1518}{19}
+\@LN{1519}{19}
+\@LN{1520}{19}
+\@LN{1521}{19}
+\@LN{1522}{19}
+\@LN{1523}{19}
+\@LN{1524}{19}
+\@LN{1525}{19}
+\@LN{1526}{19}
+\@LN{1527}{19}
+\@LN{1528}{19}
+\@LN{1529}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Process-$\kappa $ gradient under cross-model extraction (Mistral-7B $\rightarrow $ target model traces, FOLIO). $\kappa _{\text  {proc}}$: process-level cosine similarity. $\Delta $: SICA $-$ SC (pp). Spearman $\rho (\kappa _{\text  {proc}} \rightarrow \Delta ) = -1.0$, $p = 0.0083$. $^*$Interim ($n = 95/204$).}}{20}{table.caption.59}\protected@file@percent }
+\newlabel{tab:process-gradient}{{17}{20}{Process-$\kappa $ gradient under cross-model extraction (Mistral-7B $\rightarrow $ target model traces, FOLIO). $\kappa _{\text {proc}}$: process-level cosine similarity. $\Delta $: SICA $-$ SC (pp). Spearman $\rho (\kappa _{\text {proc}} \rightarrow \Delta ) = -1.0$, $p = 0.0083$. $^*$Interim ($n = 95/204$)}{table.caption.59}{}}
+\@LN{1530}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {P}Independence-Accuracy Scatter Plot}{20}{appendix.P}\protected@file@percent }
+\newlabel{app:kappa-scatter}{{P}{20}{Independence-Accuracy Scatter Plot}{appendix.P}{}}
+\@LN{1531}{19}
+\@LN{1532}{19}
+\newlabel{app:trace-independence}{{P}{20}{Trace independence metrics}{section*.61}{}}
+\@writefile{toc}{\contentsline {paragraph}{Trace independence metrics.}{20}{section*.61}\protected@file@percent }
+\@LN{1533}{19}
+\@LN{1534}{19}
+\@LN{1535}{19}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Independence-accuracy trade-off (FOLIO, $n = 204$). Top: aggregation methods on Mistral-7B; bottom: SC across three model families. All families produce $\kappa \geq 0.41$, confirming an architecture-independent ceiling. $\kappa $: Fleiss' kappa on raw answers.}}{21}{table.caption.60}\protected@file@percent }
+\newlabel{tab:kappa_generalization}{{18}{21}{Independence-accuracy trade-off (FOLIO, $n = 204$). Top: aggregation methods on Mistral-7B; bottom: SC across three model families. All families produce $\kappa \geq 0.41$, confirming an architecture-independent ceiling. $\kappa $: Fleiss' kappa on raw answers}{table.caption.60}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Trace independence metrics ($K = 12$, sorted by $\kappa $ descending). $\kappa $: Fleiss' Kappa. $K_{\text  {eff}}$: Effective-K (Eq.~\ref {eq:effk}). SC: Self-Consistency baseline. $\Delta $: SICA $-$ SC (pp). {*}\,$p < 0.05$ (uncorrected; BH adj.\ $p = 0.042$, $m{=}6$); positive $\Delta $ values do not reach significance. multi-T $= T \in \{0.3, 0.7, 1.2\}$, 4 traces each. $^{\dag  }$\,$\kappa $ computed in an earlier pipeline run; all other rows recomputed from per-problem vote distributions with answer labels normalized to canonical categories.}}{21}{table.caption.62}\protected@file@percent }
+\newlabel{tab:independence}{{19}{21}{Trace independence metrics ($K = 12$, sorted by $\kappa $ descending). $\kappa $: Fleiss' Kappa. $K_{\text {eff}}$: Effective-K (Eq.~\ref {eq:effk}). SC: Self-Consistency baseline. $\Delta $: SICA $-$ SC (pp). {*}\,$p < 0.05$ (uncorrected; BH adj.\ $p = 0.042$, $m{=}6$); positive $\Delta $ values do not reach significance. multi-T $= T \in \{0.3, 0.7, 1.2\}$, 4 traces each. $^{\dag }$\,$\kappa $ computed in an earlier pipeline run; all other rows recomputed from per-problem vote distributions with answer labels normalized to canonical categories}{table.caption.62}{}}
+\@LN{1536}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {Q}Cross-Model Kappa Analysis}{21}{appendix.Q}\protected@file@percent }
+\newlabel{app:cross-model-kappa}{{Q}{21}{Cross-Model Kappa Analysis}{appendix.Q}{}}
+\@LN{1537}{20}
+\@LN{1538}{20}
+\@LN{1539}{20}
+\@LN{1540}{20}
+\@LN{1541}{20}
+\@LN{1542}{20}
+\@LN{1543}{20}
+\@LN{1544}{20}
+\@LN{1545}{20}
+\@LN{1546}{20}
+\@LN{1547}{20}
+\@LN{1548}{20}
+\@LN{1549}{20}
+\@LN{1550}{20}
+\@LN{1551}{20}
+\@LN{1552}{20}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Cross-model trace independence ($K = 12$, SC aggregation, FOLIO + ProofWriter). Higher $\kappa $ indicates stronger correlation and lower effective sample size.}}{21}{table.caption.63}\protected@file@percent }
+\newlabel{tab:cross_model_kappa}{{20}{21}{Cross-model trace independence ($K = 12$, SC aggregation, FOLIO + ProofWriter). Higher $\kappa $ indicates stronger correlation and lower effective sample size}{table.caption.63}{}}
+\@LN{1553}{20}
+\@LN{1554}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {R}Cross-Model Process-Level Independence}{21}{appendix.R}\protected@file@percent }
+\newlabel{app:cross-model-process}{{R}{21}{Cross-Model Process-Level Independence}{appendix.R}{}}
+\@LN{1555}{20}
+\@LN{1556}{20}
+\@LN{1557}{20}
+\@LN{1558}{20}
+\@LN{1559}{20}
+\@LN{1560}{20}
+\@LN{1561}{20}
+\@LN{1562}{20}
+\@LN{1563}{20}
+\@LN{1564}{20}
+\@LN{1565}{20}
+\@LN{1566}{20}
+\@LN{1567}{20}
+\@LN{1568}{20}
+\@LN{1569}{20}
+\@LN{1570}{20}
+\@LN{1571}{20}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Cross-model process-level independence on FOLIO ($n = 204$, $K = 12$). Mean Cosine: mean pairwise TF-IDF cosine similarity of reasoning traces (Eq.~\ref {eq:process-sim}). Answer $\kappa $: per-question answer agreement. Gap: Cosine $-$ $\kappa $. $r$: Pearson correlation between ProcessSim and answer agreement. Conv.: fraction of process-convergent but answer-divergent trace pairs. {*}{*}\,$p < 0.01$; {*}{*}{*}\,$p < 0.001$.}}{21}{table.caption.64}\protected@file@percent }
+\newlabel{tab:cross-model-process}{{21}{21}{Cross-model process-level independence on FOLIO ($n = 204$, $K = 12$). Mean Cosine: mean pairwise TF-IDF cosine similarity of reasoning traces (Eq.~\ref {eq:process-sim}). Answer $\kappa $: per-question answer agreement. Gap: Cosine $-$ $\kappa $. $r$: Pearson correlation between ProcessSim and answer agreement. Conv.: fraction of process-convergent but answer-divergent trace pairs. {*}{*}\,$p < 0.01$; {*}{*}{*}\,$p < 0.001$}{table.caption.64}{}}
+\@writefile{toc}{\contentsline {paragraph}{Representation robustness.}{21}{section*.65}\protected@file@percent }
+\@LN{1572}{20}
+\@LN{1573}{20}
+\@LN{1574}{20}
+\@LN{1575}{20}
+\@LN{1576}{20}
+\@LN{1577}{20}
+\@LN{1578}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {S}Constraint Quality Across Methods}{21}{appendix.S}\protected@file@percent }
+\newlabel{app:constraint-quality}{{S}{21}{Constraint Quality Across Methods}{appendix.S}{}}
+\@LN{1579}{20}
+\@LN{1580}{20}
+\@LN@col{1}
+\@LN{1581}{21}
+\@LN{1582}{21}
+\@LN{1583}{21}
+\@LN{1584}{21}
+\@LN{1585}{21}
+\@LN{1586}{21}
+\@LN{1587}{21}
+\@LN{1588}{21}
+\@LN{1589}{21}
+\@LN{1590}{21}
+\@LN{1591}{21}
+\@LN{1592}{21}
+\@LN{1593}{21}
+\@LN{1594}{21}
+\@LN{1595}{21}
+\@LN{1596}{21}
+\@LN{1597}{21}
+\@LN{1598}{21}
+\@LN{1599}{21}
+\@LN{1600}{21}
+\@LN{1601}{21}
+\@LN{1602}{21}
+\@LN{1603}{21}
+\@LN{1604}{21}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Constraint quality metrics across method-level interventions (Mistral-7B, FOLIO, $n = 204$). Parse: fraction of extraction attempts yielding valid JSON. Z3 Compile: fraction compiling to Z3 formulas. Unique/q: mean unique constraints per question. Redundancy: fraction of constraints duplicated across traces. Disc.: fraction discriminative (different Z3 outcome per candidate). Triv.\ Sat.: fraction trivially satisfied (no logical tension).}}{22}{table.caption.66}\protected@file@percent }
+\newlabel{tab:constraint_quality}{{22}{22}{Constraint quality metrics across method-level interventions (Mistral-7B, FOLIO, $n = 204$). Parse: fraction of extraction attempts yielding valid JSON. Z3 Compile: fraction compiling to Z3 formulas. Unique/q: mean unique constraints per question. Redundancy: fraction of constraints duplicated across traces. Disc.: fraction discriminative (different Z3 outcome per candidate). Triv.\ Sat.: fraction trivially satisfied (no logical tension)}{table.caption.66}{}}
+\newlabel{app:yield-cv}{{S}{22}{Per-trace constraint yield uniformity}{section*.67}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-trace constraint yield uniformity.}{22}{section*.67}\protected@file@percent }
+\@LN{1605}{21}
+\@LN{1606}{21}
+\@LN{1607}{21}
+\@LN{1608}{21}
+\@LN{1609}{21}
+\@LN{1610}{21}
+\@LN{1611}{21}
+\@LN{1612}{21}
+\@LN{1613}{21}
+\@LN{1614}{21}
+\@LN{1615}{21}
+\@LN{1616}{21}
+\@LN{1617}{21}
+\@LN{1618}{21}
+\@LN{1619}{21}
+\@LN{1620}{21}
+\@LN@col{2}
+\@LN{1621}{21}
+\@LN{1622}{21}
+\@LN{1623}{21}
+\@LN{1624}{21}
+\@LN{1625}{21}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Distribution of per-problem within-group CV for constraint yield (Mistral-7B, FOLIO, $n{=}204$). Median CV${=}0.26$ (red dashed); 64\% of problems have CV${\leq }0.3$. Five problems with CV${>}1.0$ (max $3.46$) are clipped for readability.}}{22}{figure.caption.68}\protected@file@percent }
+\newlabel{fig:cv-distribution}{{9}{22}{Distribution of per-problem within-group CV for constraint yield (Mistral-7B, FOLIO, $n{=}204$). Median CV${=}0.26$ (red dashed); 64\% of problems have CV${\leq }0.3$. Five problems with CV${>}1.0$ (max $3.46$) are clipped for readability}{figure.caption.68}{}}
+\@LN{1626}{21}
+\@LN{1627}{21}
+\@writefile{toc}{\contentsline {section}{\numberline {T}Error Categorization of Method-Level Interventions}{22}{appendix.T}\protected@file@percent }
+\newlabel{app:error-categorization}{{T}{22}{Error Categorization of Method-Level Interventions}{appendix.T}{}}
+\@LN{1628}{21}
+\@LN{1629}{21}
+\@LN{1630}{21}
+\@LN{1631}{21}
+\@writefile{toc}{\contentsline {paragraph}{Debate discordant analysis.}{22}{section*.69}\protected@file@percent }
+\@LN{1632}{21}
+\@LN{1633}{21}
+\@LN{1634}{21}
+\@LN{1635}{21}
+\@LN{1636}{21}
+\@LN{1637}{21}
+\@LN{1638}{21}
+\@LN{1639}{21}
+\@LN{1640}{21}
+\@LN{1641}{21}
+\@LN{1642}{21}
+\@LN{1643}{21}
+\@LN{1644}{21}
+\@LN{1645}{21}
+\@LN{1646}{21}
+\@LN{1647}{21}
+\@LN{1648}{21}
+\@writefile{toc}{\contentsline {paragraph}{Contrastive discordant analysis.}{22}{section*.70}\protected@file@percent }
+\@LN{1649}{21}
+\@LN{1650}{21}
+\@LN{1651}{21}
+\@LN{1652}{21}
+\@LN{1653}{21}
+\@LN{1654}{21}
+\@LN{1655}{21}
+\citation{lakens2017equivalence}
+\@LN@col{1}
+\@LN{1656}{22}
+\@LN{1657}{22}
+\@LN{1658}{22}
+\@LN{1659}{22}
+\@LN{1660}{22}
+\@LN{1661}{22}
+\@LN{1662}{22}
+\@LN{1663}{22}
+\@LN{1664}{22}
+\@writefile{toc}{\contentsline {paragraph}{Cross-method overlap.}{23}{section*.71}\protected@file@percent }
+\@LN{1665}{22}
+\@LN{1666}{22}
+\@LN{1667}{22}
+\@LN{1668}{22}
+\@LN{1669}{22}
+\@LN{1670}{22}
+\@LN{1671}{22}
+\@LN{1672}{22}
+\@LN{1673}{22}
+\@LN{1674}{22}
+\@LN{1675}{22}
+\@LN{1676}{22}
+\@LN{1677}{22}
+\@LN{1678}{22}
+\@writefile{toc}{\contentsline {section}{\numberline {U}TOST Equivalence Tests}{23}{appendix.U}\protected@file@percent }
+\newlabel{app:tost}{{U}{23}{TOST Equivalence Tests}{appendix.U}{}}
+\@LN{1679}{22}
+\@LN{1680}{22}
+\@LN{1681}{22}
+\@LN{1682}{22}
+\@LN{1683}{22}
+\@LN{1684}{22}
+\@LN{1685}{22}
+\@LN{1686}{22}
+\@LN{1687}{22}
+\@LN{1688}{22}
+\@LN{1689}{22}
+\@LN{1690}{22}
+\@LN{1691}{22}
+\@LN{1692}{22}
+\@LN{1693}{22}
+\@writefile{toc}{\contentsline {paragraph}{Margin sensitivity.}{23}{section*.72}\protected@file@percent }
+\@LN{1694}{22}
+\@LN{1695}{22}
+\@LN{1696}{22}
+\@LN{1697}{22}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces TOST classification sensitivity across equivalence margins (16 non-degenerate conditions).}}{23}{table.caption.73}\protected@file@percent }
+\newlabel{tab:tost-sensitivity}{{23}{23}{TOST classification sensitivity across equivalence margins (16 non-degenerate conditions)}{table.caption.73}{}}
+\@LN@col{2}
+\newlabel{app:relative_tost}{{U}{23}{Relative-margin TOST}{section*.74}{}}
+\@writefile{toc}{\contentsline {paragraph}{Relative-margin TOST.}{23}{section*.74}\protected@file@percent }
+\@LN{1698}{22}
+\@LN{1699}{22}
+\@LN{1700}{22}
+\@LN{1701}{22}
+\@LN{1702}{22}
+\@LN{1703}{22}
+\@LN{1704}{22}
+\@LN{1705}{22}
+\@LN{1706}{22}
+\@LN{1707}{22}
+\@LN{1708}{22}
+\newlabel{app:cil-data}{{U}{23}{Conditional Correction Ratio data}{section*.75}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Conditional Correction Ratio across eight verifier--generator conditions. $\text  {CCR} > 0$: cross-arch NLI on ProofWriter. $\text  {CCR} < 0$: same-model SICA or weak capability gap.}}{23}{table.caption.76}\protected@file@percent }
+\newlabel{tab:cil_main}{{24}{23}{Conditional Correction Ratio across eight verifier--generator conditions. $\text {CCR} > 0$: cross-arch NLI on ProofWriter. $\text {CCR} < 0$: same-model SICA or weak capability gap}{table.caption.76}{}}
+\@writefile{toc}{\contentsline {paragraph}{Conditional Correction Ratio data.}{23}{table.caption.76}\protected@file@percent }
+\@LN{1709}{22}
+\newlabel{app:drc}{{U}{23}{Disagreement-Routed Cascade details}{section*.77}{}}
+\@writefile{toc}{\contentsline {paragraph}{Disagreement-Routed Cascade details.}{23}{section*.77}\protected@file@percent }
+\@LN{1710}{22}
+\@LN{1711}{22}
+\@LN{1712}{22}
+\@LN{1713}{22}
+\@LN{1714}{22}
+\@LN{1715}{22}
+\@LN{1716}{22}
+\@LN{1717}{22}
+\@LN{1718}{22}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces DRC on Mistral-7B ($K{=}12$, DeBERTa-large-mnli, $w{=}3$). $\tau {=}0.7$ recovers 83--90\% of full-combo gain at ${\sim }35\%$ NLI cost across both datasets.}}{23}{table.caption.78}\protected@file@percent }
+\newlabel{tab:drc}{{25}{23}{DRC on Mistral-7B ($K{=}12$, DeBERTa-large-mnli, $w{=}3$). $\tau {=}0.7$ recovers 83--90\% of full-combo gain at ${\sim }35\%$ NLI cost across both datasets}{table.caption.78}{}}
+\@LN{1719}{22}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Multi-Verifier NLI Results}{23}{appendix.V}\protected@file@percent }
+\newlabel{app:multi-nli}{{V}{23}{Multi-Verifier NLI Results}{appendix.V}{}}
+\newlabel{app:3verifier-bh}{{V}{23}{Three-verifier BH correction}{section*.80}{}}
+\@writefile{toc}{\contentsline {paragraph}{Three-verifier BH correction.}{23}{section*.80}\protected@file@percent }
+\@LN{1720}{22}
+\@LN{1721}{22}
+\@LN{1722}{22}
+\@LN{1723}{22}
+\@LN{1724}{22}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces Cross-architecture NLI combo on ProofWriter depth-5 ($n{=}600$, Mistral-7B traces, SC $= 39.33\%$). Three NLI verifiers $\times $ three weight settings. {*}\,$p < 0.05$;\enspace  {**}\,$p < 0.01$;\enspace  {***}\,$p < 0.001$ (McNemar).}}{24}{table.caption.79}\protected@file@percent }
+\newlabel{tab:multi-nli}{{26}{24}{Cross-architecture NLI combo on ProofWriter depth-5 ($n{=}600$, Mistral-7B traces, SC $= 39.33\%$). Three NLI verifiers $\times $ three weight settings. {*}\,$p < 0.05$;\enspace {**}\,$p < 0.01$;\enspace {***}\,$p < 0.001$ (McNemar)}{table.caption.79}{}}
+\@LN{1725}{23}
+\@LN{1726}{23}
+\@writefile{lot}{\contentsline {table}{\numberline {27}{\ignorespaces BH correction across 3 verifiers $\times $ 5 weights on Mistral-7B ProofWriter ($n{=}600$, $m{=}15$). \text  {$\mathsurround \z@ \mathchar "558$}: $p_{\text  {BH}} < 0.05$.}}{24}{table.caption.81}\protected@file@percent }
+\newlabel{tab:3verifier-bh}{{27}{24}{BH correction across 3 verifiers $\times $ 5 weights on Mistral-7B ProofWriter ($n{=}600$, $m{=}15$). \checkmark : $p_{\text {BH}} < 0.05$}{table.caption.81}{}}
+\@LN{1727}{23}
+\@writefile{toc}{\contentsline {section}{\numberline {W}Capability Gap Data Points}{24}{appendix.W}\protected@file@percent }
+\newlabel{app:capability-gap}{{W}{24}{Capability Gap Data Points}{appendix.W}{}}
+\@LN{1728}{23}
+\@LN{1729}{23}
+\@LN{1730}{23}
+\@LN{1731}{23}
+\@LN{1732}{23}
+\@LN{1733}{23}
+\@LN{1734}{23}
+\@LN{1735}{23}
+\@LN{1736}{23}
+\@LN{1737}{23}
+\@LN{1738}{23}
+\@LN{1739}{23}
+\@LN{1740}{23}
+\@LN{1741}{23}
+\@LN{1742}{23}
+\@LN{1743}{23}
+\@LN{1744}{23}
+\@LN{1745}{23}
+\@LN{1746}{23}
+\@LN{1747}{23}
+\@LN{1748}{23}
+\@LN{1749}{23}
+\@LN{1750}{23}
+\@LN{1751}{23}
+\@LN@col{2}
+\@LN{1752}{23}
+\@writefile{toc}{\contentsline {paragraph}{Robustness check.}{24}{section*.82}\protected@file@percent }
+\@LN{1753}{23}
+\@LN{1754}{23}
+\@LN{1755}{23}
+\@LN{1756}{23}
+\@LN{1757}{23}
+\@writefile{lot}{\contentsline {table}{\numberline {28}{\ignorespaces Full cross-generator NLI combo results on ProofWriter depth-5 ($n{=}600$) with Benjamini--Hochberg correction ($m{=}12$, $\alpha {=}0.05$). All conditions use DeBERTa-large-mnli verifier (55.00\% standalone). Two of twelve conditions survive correction (Mistral-7B $w{=}3$ and $w{=}5$). {***}\,$p_{\text  {BH}} < 0.001$.}}{24}{table.caption.83}\protected@file@percent }
+\newlabel{tab:nli-combo-full}{{28}{24}{Full cross-generator NLI combo results on ProofWriter depth-5 ($n{=}600$) with Benjamini--Hochberg correction ($m{=}12$, $\alpha {=}0.05$). All conditions use DeBERTa-large-mnli verifier (55.00\% standalone). Two of twelve conditions survive correction (Mistral-7B $w{=}3$ and $w{=}5$). {***}\,$p_{\text {BH}} < 0.001$}{table.caption.83}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {29}{\ignorespaces Cross-generator NLI combo with BART-large-mnli verifier (46.17\% standalone) on ProofWriter depth-5 ($n{=}600$, $w{=}3$). Only Mistral-7B (below the verifier) gains significantly after BH correction.}}{24}{table.caption.84}\protected@file@percent }
+\newlabel{tab:bart-combo-full}{{29}{24}{Cross-generator NLI combo with BART-large-mnli verifier (46.17\% standalone) on ProofWriter depth-5 ($n{=}600$, $w{=}3$). Only Mistral-7B (below the verifier) gains significantly after BH correction}{table.caption.84}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {30}{\ignorespaces Cross-generator NLI combo with RoBERTa-large-mnli verifier (37.67\% standalone) on ProofWriter depth-5 ($n{=}600$, $w{=}3$). Only Mistral-7B (marginally above the verifier) gains significantly after BH correction.}}{24}{table.caption.85}\protected@file@percent }
+\newlabel{tab:roberta-combo-full}{{30}{24}{Cross-generator NLI combo with RoBERTa-large-mnli verifier (37.67\% standalone) on ProofWriter depth-5 ($n{=}600$, $w{=}3$). Only Mistral-7B (marginally above the verifier) gains significantly after BH correction}{table.caption.85}{}}
+\newlabel{app:finetuned-nli}{{W}{24}{Domain-adapted verifier results}{section*.92}{}}
+\@writefile{toc}{\contentsline {paragraph}{Domain-adapted verifier results.}{24}{table.caption.93}\protected@file@percent }
+\@LN{1758}{23}
+\newlabel{app:cross-model-ablation}{{W}{24}{Cross-model voting ablation}{section*.94}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-model voting ablation.}{24}{table.caption.95}\protected@file@percent }
+\@LN{1759}{23}
+\newlabel{app:2x2}{{W}{24}{Generator$\times $Extractor 2$\times $2 Matrix}{section*.96}{}}
+\@writefile{toc}{\contentsline {paragraph}{Generator$\times $Extractor 2$\times $2 Matrix.}{24}{section*.96}\protected@file@percent }
+\@LN{1760}{23}
+\@LN{1761}{23}
+\@LN{1762}{23}
+\@LN{1763}{23}
+\@LN{1764}{23}
+\@LN{1765}{23}
+\@LN{1766}{23}
+\@LN{1767}{23}
+\@LN{1768}{23}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {31}{\ignorespaces NLI combo on FOLIO ($n{=}204$) with DeBERTa-large-mnli verifier (49.51\% standalone). No condition reaches significance; all generators exceed the verifier's standalone accuracy, consistent with the capability-gap pattern. SC baselines match the cross-model ablation traces (Table~\ref {tab:cross-model-ablation}).}}{25}{table.caption.86}\protected@file@percent }
+\newlabel{tab:folio-nli-deberta}{{31}{25}{NLI combo on FOLIO ($n{=}204$) with DeBERTa-large-mnli verifier (49.51\% standalone). No condition reaches significance; all generators exceed the verifier's standalone accuracy, consistent with the capability-gap pattern. SC baselines match the cross-model ablation traces (Table~\ref {tab:cross-model-ablation})}{table.caption.86}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {32}{\ignorespaces NLI combo on FOLIO ($n{=}204$) with BART-large-mnli verifier (47.06\% standalone). No positive improvement reaches significance; for Qwen2.5-14B the weak verifier produces a significant \emph  {degradation} at $w{=}5$ ($p{=}.039$), consistent with the capability-gap pattern.}}{25}{table.caption.87}\protected@file@percent }
+\newlabel{tab:folio-nli-bart}{{32}{25}{NLI combo on FOLIO ($n{=}204$) with BART-large-mnli verifier (47.06\% standalone). No positive improvement reaches significance; for Qwen2.5-14B the weak verifier produces a significant \emph {degradation} at $w{=}5$ ($p{=}.039$), consistent with the capability-gap pattern}{table.caption.87}{}}
+\@LN{1769}{24}
+\@LN{1770}{24}
+\@LN{1771}{24}
+\@LN{1772}{24}
+\@LN{1773}{24}
+\@LN{1774}{24}
+\@LN{1775}{24}
+\@LN{1776}{24}
+\@writefile{toc}{\contentsline {section}{\numberline {X}Single-Trace and Aggregation Statistics}{25}{appendix.X}\protected@file@percent }
+\newlabel{app:single-trace}{{X}{25}{Single-Trace and Aggregation Statistics}{appendix.X}{}}
+\newlabel{app:text-sensitivity}{{X}{25}{Extraction temperature sensitivity}{section*.99}{}}
+\@writefile{toc}{\contentsline {paragraph}{Extraction temperature sensitivity.}{25}{table.caption.100}\protected@file@percent }
+\@LN{1777}{24}
+\@LN{1778}{24}
+\@LN{1779}{24}
+\@LN{1780}{24}
+\@LN{1781}{24}
+\@LN{1782}{24}
+\@LN{1783}{24}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {33}{\ignorespaces NLI combo on FOLIO ($n{=}204$) with RoBERTa-large-mnli verifier (46.57\% standalone). Cross-verifier consistency: no positive gain reaches significance, and Qwen2.5-14B shows a significant \emph  {degradation} at $w{=}5$ ($p{=}.012$), the same capability-gap signature as BART.}}{25}{table.caption.88}\protected@file@percent }
+\newlabel{tab:folio-nli-roberta}{{33}{25}{NLI combo on FOLIO ($n{=}204$) with RoBERTa-large-mnli verifier (46.57\% standalone). Cross-verifier consistency: no positive gain reaches significance, and Qwen2.5-14B shows a significant \emph {degradation} at $w{=}5$ ($p{=}.012$), the same capability-gap signature as BART}{table.caption.88}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {34}{\ignorespaces NLI combo on LogiQA ($n{=}200$) with DeBERTa-large-mnli verifier (26.50\% standalone, near the 25\% random baseline for 4-way classification). No condition reaches significance.}}{25}{table.caption.89}\protected@file@percent }
+\newlabel{tab:logiqa-nli-deberta}{{34}{25}{NLI combo on LogiQA ($n{=}200$) with DeBERTa-large-mnli verifier (26.50\% standalone, near the 25\% random baseline for 4-way classification). No condition reaches significance}{table.caption.89}{}}
+\@LN{1784}{24}
+\newlabel{app:multi-seed}{{X}{25}{Multi-seed replication}{section*.101}{}}
+\@writefile{toc}{\contentsline {paragraph}{Multi-seed replication.}{25}{table.caption.102}\protected@file@percent }
+\@LN{1785}{24}
+\@LN{1786}{24}
+\@LN{1787}{24}
+\@LN{1788}{24}
+\@LN{1789}{24}
+\@LN{1790}{24}
+\@LN{1791}{24}
+\@LN{1792}{24}
+\@LN{1793}{24}
+\@LN{1794}{24}
+\@LN{1795}{24}
+\@LN{1796}{24}
+\@LN{1797}{24}
+\@LN{1798}{24}
+\@LN{1799}{24}
+\@LN{1800}{24}
+\@LN{1801}{24}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {35}{\ignorespaces NLI combo on LogiQA ($n{=}200$) with BART-large-mnli verifier (33.00\% standalone). Near-random NLI accuracy yields no significant combo improvements.}}{26}{table.caption.90}\protected@file@percent }
+\newlabel{tab:logiqa-nli-bart}{{35}{26}{NLI combo on LogiQA ($n{=}200$) with BART-large-mnli verifier (33.00\% standalone). Near-random NLI accuracy yields no significant combo improvements}{table.caption.90}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {36}{\ignorespaces NLI combo on LogiQA ($n{=}200$) with RoBERTa-large-mnli verifier (31.50\% standalone). All three NLI verifiers produce the same null result on LogiQA.}}{26}{table.caption.91}\protected@file@percent }
+\newlabel{tab:logiqa-nli-roberta}{{36}{26}{NLI combo on LogiQA ($n{=}200$) with RoBERTa-large-mnli verifier (31.50\% standalone). All three NLI verifiers produce the same null result on LogiQA}{table.caption.91}{}}
+\@LN{1802}{25}
+\@LN{1803}{25}
+\@LN{1804}{25}
+\@LN{1805}{25}
+\@LN{1806}{25}
+\@writefile{toc}{\contentsline {subsection}{\numberline {X.1}Sub-population Analysis}{26}{subsection.X.1}\protected@file@percent }
+\newlabel{app:subpopulation}{{X.1}{26}{Sub-population Analysis}{subsection.X.1}{}}
+\@LN{1807}{25}
+\@LN{1808}{25}
+\@LN{1809}{25}
+\@LN{1810}{25}
+\@LN{1811}{25}
+\@LN{1812}{25}
+\@LN{1813}{25}
+\@LN{1814}{25}
+\@LN{1815}{25}
+\@LN{1816}{25}
+\@LN{1817}{25}
+\@LN{1818}{25}
+\@LN{1819}{25}
+\@LN{1820}{25}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {37}{\ignorespaces Domain-adapted NLI combo on ProofWriter depth-5 ($n{=}600$). DeBERTa-large fine-tuned on ProofWriter Open-World Assumption (OWA) (99.67\% standalone). All $p < 0.0001$. Complementarity: ratio of NLI-correct$\cap $SC-incorrect to SC-correct$\cap $NLI-incorrect.}}{26}{table.caption.93}\protected@file@percent }
+\newlabel{tab:finetuned-nli}{{37}{26}{Domain-adapted NLI combo on ProofWriter depth-5 ($n{=}600$). DeBERTa-large fine-tuned on ProofWriter Open-World Assumption (OWA) (99.67\% standalone). All $p < 0.0001$. Complementarity: ratio of NLI-correct$\cap $SC-incorrect to SC-correct$\cap $NLI-incorrect}{table.caption.93}{}}
+\@LN{1821}{25}
+\@LN{1822}{25}
+\newlabel{app:intervention-individual}{{X.1}{26}{Individual intervention significance}{section*.105}{}}
+\@writefile{toc}{\contentsline {paragraph}{Individual intervention significance.}{26}{section*.105}\protected@file@percent }
+\@LN{1823}{25}
+\@LN{1824}{25}
+\@LN{1825}{25}
+\@LN{1826}{25}
+\@LN{1827}{25}
+\@LN{1828}{25}
+\@LN{1829}{25}
+\@LN{1830}{25}
+\@LN{1831}{25}
+\@LN{1832}{25}
+\@LN{1833}{25}
+\@LN{1834}{25}
+\@LN{1835}{25}
+\@writefile{toc}{\contentsline {section}{\numberline {Y}Extended Discussion}{26}{appendix.Y}\protected@file@percent }
+\newlabel{app:extended-discussion}{{Y}{26}{Extended Discussion}{appendix.Y}{}}
+\newlabel{app:limitations-extended}{{Y}{26}{Extended Discussion}{appendix.Y}{}}
+\newlabel{app:per-trace-separation}{{Y}{26}{Extended Discussion}{appendix.Y}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-trace separation analysis.}{26}{section*.106}\protected@file@percent }
+\@LN{1836}{25}
+\@LN{1837}{25}
+\@LN{1838}{25}
+\@LN{1839}{25}
+\@LN{1840}{25}
+\@LN{1841}{25}
+\@LN{1842}{25}
+\@LN{1843}{25}
+\@LN{1844}{25}
+\@LN{1845}{25}
+\@LN{1846}{25}
+\@LN{1847}{25}
+\@LN{1848}{25}
+\@LN{1849}{25}
+\@LN{1850}{25}
+\@LN{1851}{25}
+\@LN{1852}{25}
+\@LN{1853}{25}
+\@LN{1854}{25}
+\@LN{1855}{25}
+\@LN{1856}{25}
+\@LN{1857}{25}
+\@LN{1858}{25}
+\citation{turpin2023language}
+\citation{wan2025unveiling,jhaveri2026failing}
+\citation{ye2024satlm}
+\citation{pan2023logiclm}
+\citation{guo2025deepseekr1}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {38}{\ignorespaces Cross-model voting ablation ($w \in \{3,5\}$). ``Cross LLM'' replaces the NLI verifier with a second LLM's SC votes at weight $w$; ``NLI'' uses DeBERTa-large-mnli (55.00\% standalone) at $w{=}3$. On ProofWriter, cross-model SC with a weak voter (Mistral-7B) degrades all strong generators (worsening at higher $w$), while NLI combo does not, indicating that structural independence, not merely model diversity, drives the escape.}}{27}{table.caption.95}\protected@file@percent }
+\newlabel{tab:cross-model-ablation}{{38}{27}{Cross-model voting ablation ($w \in \{3,5\}$). ``Cross LLM'' replaces the NLI verifier with a second LLM's SC votes at weight $w$; ``NLI'' uses DeBERTa-large-mnli (55.00\% standalone) at $w{=}3$. On ProofWriter, cross-model SC with a weak voter (Mistral-7B) degrades all strong generators (worsening at higher $w$), while NLI combo does not, indicating that structural independence, not merely model diversity, drives the escape}{table.caption.95}{}}
+\@writefile{toc}{\contentsline {paragraph}{Answer-leakage controls.}{27}{section*.107}\protected@file@percent }
+\@LN{1859}{26}
+\@LN{1860}{26}
+\@LN{1861}{26}
+\@LN{1862}{26}
+\@LN{1863}{26}
+\@LN{1864}{26}
+\@LN{1865}{26}
+\@writefile{toc}{\contentsline {paragraph}{SCB versus CoT unfaithfulness.}{27}{section*.108}\protected@file@percent }
+\@LN{1866}{26}
+\@LN{1867}{26}
+\@LN{1868}{26}
+\@LN{1869}{26}
+\@LN{1870}{26}
+\@LN{1871}{26}
+\@LN{1872}{26}
+\@LN{1873}{26}
+\@LN{1874}{26}
+\@LN{1875}{26}
+\@LN{1876}{26}
+\@LN{1877}{26}
+\@LN{1878}{26}
+\@LN{1879}{26}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {39}{\ignorespaces FOLIO $2{\times }2$ generator${\times }$extractor matrix ($n{=}204$). SC: Self-Consistency baseline. $\kappa $: answer-level Fleiss' kappa. BR: bias ratio.}}{27}{table.caption.97}\protected@file@percent }
+\newlabel{tab:2x2-folio}{{39}{27}{FOLIO $2{\times }2$ generator${\times }$extractor matrix ($n{=}204$). SC: Self-Consistency baseline. $\kappa $: answer-level Fleiss' kappa. BR: bias ratio}{table.caption.97}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {40}{\ignorespaces Single-trace accuracy (mean $\pm $ std over $K{=}12$ traces) and SC@12 majority vote on FOLIO ($n{=}204$). Aggregation gain = SC@12 $-$ single-trace mean. SC@12 uses alphabetical tiebreaking (consistent with Table~\ref {tab:main_results}).}}{27}{table.caption.98}\protected@file@percent }
+\newlabel{tab:single-trace-stats}{{40}{27}{Single-trace accuracy (mean $\pm $ std over $K{=}12$ traces) and SC@12 majority vote on FOLIO ($n{=}204$). Aggregation gain = SC@12 $-$ single-trace mean. SC@12 uses alphabetical tiebreaking (consistent with Table~\ref {tab:main_results})}{table.caption.98}{}}
+\@LN{1880}{26}
+\@LN{1881}{26}
+\@LN{1882}{26}
+\@LN{1883}{26}
+\@writefile{toc}{\contentsline {paragraph}{Implications for neuro-symbolic practitioners.}{27}{section*.109}\protected@file@percent }
+\@LN{1884}{26}
+\@LN{1885}{26}
+\@LN{1886}{26}
+\@LN{1887}{26}
+\@LN{1888}{26}
+\@LN{1889}{26}
+\@LN{1890}{26}
+\@LN{1891}{26}
+\@LN{1892}{26}
+\@LN{1893}{26}
+\@LN{1894}{26}
+\@LN{1895}{26}
+\@LN{1896}{26}
+\@LN{1897}{26}
+\@LN{1898}{26}
+\@LN{1899}{26}
+\@LN{1900}{26}
+\@LN{1901}{26}
+\@LN{1902}{26}
+\@LN{1903}{26}
+\@LN{1904}{26}
+\@LN{1905}{26}
+\@writefile{toc}{\contentsline {paragraph}{Test-time scaling implications.}{27}{section*.110}\protected@file@percent }
+\@LN{1906}{26}
+\@LN{1907}{26}
+\@LN{1908}{26}
+\@LN{1909}{26}
+\@LN{1910}{26}
+\@LN{1911}{26}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {41}{\ignorespaces Effect of extraction temperature $T_{\text  {ext}}$ on SICA accuracy (Mistral-7B, FOLIO $n{=}204$). $^\dagger $\,Uses a different trace set (SC $= 54.41\%$); all other conditions share the same traces (SC $= 55.88\%$).}}{28}{table.caption.100}\protected@file@percent }
+\newlabel{tab:text-sensitivity}{{41}{28}{Effect of extraction temperature $T_{\text {ext}}$ on SICA accuracy (Mistral-7B, FOLIO $n{=}204$). $^\dagger $\,Uses a different trace set (SC $= 54.41\%$); all other conditions share the same traces (SC $= 55.88\%$)}{table.caption.100}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {42}{\ignorespaces Multi-seed replication results across six model$\times $dataset conditions. Each row uses an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mistral-7B$\times $FOLIO shows directionally unstable $\Delta $ ($+0.16 \pm 2.70$\,pp). Mistral-7B, LLaMA-8B, and Qwen2.5-14B show consistently negative $\Delta $ on ProofWriter ($p < .001$ for LLaMA-8B and Mistral-7B); Qwen3-14B shows negligible mixed-sign $\Delta $ ($+0.92 \pm 1.14$\,pp, all n.s.), consistent with its high SC baseline minimizing correctable errors (\S  \ref {sec:discussion}).}}{28}{table.caption.102}\protected@file@percent }
+\newlabel{tab:multi-seed}{{42}{28}{Multi-seed replication results across six model$\times $dataset conditions. Each row uses an independent seed with fresh traces ($K{=}12$, $T{=}0.7$). Mistral-7B$\times $FOLIO shows directionally unstable $\Delta $ ($+0.16 \pm 2.70$\,pp). Mistral-7B, LLaMA-8B, and Qwen2.5-14B show consistently negative $\Delta $ on ProofWriter ($p < .001$ for LLaMA-8B and Mistral-7B); Qwen3-14B shows negligible mixed-sign $\Delta $ ($+0.92 \pm 1.14$\,pp, all n.s.), consistent with its high SC baseline minimizing correctable errors (\S \ref {sec:discussion})}{table.caption.102}{}}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {43}{\ignorespaces SICA vs.\ SC accuracy by gold-label type (Mistral-7B). Corrected SC baseline uses alphabetical tiebreaking. $\Delta $\,pp = SICA $-$ SC. $p$-values from exact McNemar test (two-sided).}}{28}{table.caption.103}\protected@file@percent }
+\newlabel{tab:subpop-answer-type}{{43}{28}{SICA vs.\ SC accuracy by gold-label type (Mistral-7B). Corrected SC baseline uses alphabetical tiebreaking. $\Delta $\,pp = SICA $-$ SC. $p$-values from exact McNemar test (two-sided)}{table.caption.103}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {44}{\ignorespaces SICA vs.\ SC accuracy by extracted constraint count tertile (Mistral-7B). Corrected SC baseline (alphabetical tiebreaking). Constraint counts are unique deduplicated constraints per problem.}}{28}{table.caption.104}\protected@file@percent }
+\newlabel{tab:subpop-constraint}{{44}{28}{SICA vs.\ SC accuracy by extracted constraint count tertile (Mistral-7B). Corrected SC baseline (alphabetical tiebreaking). Constraint counts are unique deduplicated constraints per problem}{table.caption.104}{}}
+\@LN{1912}{27}
+\@LN{1913}{27}
+\@LN{1914}{27}
+\@LN{1915}{27}
+\@LN{1916}{27}
+\@LN{1917}{27}
+\@LN{1918}{27}
+\@LN{1919}{27}
+\@LN{1920}{27}
+\newlabel{app:semantic-remark}{{Y}{28}{Semantic evaluation remark}{section*.111}{}}
+\@writefile{toc}{\contentsline {paragraph}{Semantic evaluation remark.}{28}{section*.111}\protected@file@percent }
+\@LN{1921}{27}
+\@LN{1922}{27}
+\@LN{1923}{27}
+\@LN{1924}{27}
+\@LN{1925}{27}
+\@LN{1926}{27}
+\@LN{1927}{27}
+\@LN{1928}{27}
+\@LN{1929}{27}
+\@LN{1930}{27}
+\@LN{1931}{27}
+\@LN{1932}{27}
+\@LN{1933}{27}
+\@LN{1934}{27}
+\newlabel{app:diagnostic-toolkit}{{Y}{28}{SCB diagnostic toolkit}{section*.112}{}}
+\@writefile{toc}{\contentsline {paragraph}{SCB diagnostic toolkit.}{28}{section*.112}\protected@file@percent }
+\@LN{1935}{27}
+\@LN{1936}{27}
+\@LN{1937}{27}
+\@LN{1938}{27}
+\@LN{1939}{27}
+\@LN{1940}{27}
+\@LN{1941}{27}
+\@LN{1942}{27}
+\citation{huang2024selfcorrect}
+\citation{madaan2023selfrefine}
+\citation{dhuliawala2023chainofverification}
+\citation{wang2023sc}
+\@LN@col{1}
+\@LN{1943}{28}
+\@LN{1944}{28}
+\@LN{1945}{28}
+\@LN{1946}{28}
+\@LN{1947}{28}
+\@LN{1948}{28}
+\@LN{1949}{28}
+\@LN{1950}{28}
+\@LN{1951}{28}
+\@LN{1952}{28}
+\@LN{1953}{28}
+\@LN{1954}{28}
+\@LN{1955}{28}
+\@LN{1956}{28}
+\@LN{1957}{28}
+\@LN{1958}{28}
+\@LN{1959}{28}
+\@LN{1960}{28}
+\@LN{1961}{28}
+\@LN{1962}{28}
+\@LN{1963}{28}
+\newlabel{app:br-permutation}{{Y}{29}{BR permutation null model}{section*.113}{}}
+\@writefile{toc}{\contentsline {paragraph}{BR permutation null model.}{29}{section*.113}\protected@file@percent }
+\@LN{1964}{28}
+\@LN{1965}{28}
+\@LN{1966}{28}
+\@LN{1967}{28}
+\@LN{1968}{28}
+\@LN{1969}{28}
+\@LN{1970}{28}
+\@LN{1971}{28}
+\@LN{1972}{28}
+\@LN{1973}{28}
+\@LN{1974}{28}
+\@LN{1975}{28}
+\@LN{1976}{28}
+\@LN{1977}{28}
+\@LN{1978}{28}
+\@LN{1979}{28}
+\@LN{1980}{28}
+\@LN{1981}{28}
+\@LN{1982}{28}
+\newlabel{app:future-directions}{{Y}{29}{Future directions: trained extractors and beyond}{section*.114}{}}
+\@LN{1983}{28}
+\@writefile{toc}{\contentsline {paragraph}{Future directions: trained extractors and beyond.}{29}{section*.114}\protected@file@percent }
+\@LN{1984}{28}
+\@LN{1985}{28}
+\@LN{1986}{28}
+\@LN{1987}{28}
+\@LN{1988}{28}
+\@LN{1989}{28}
+\@LN{1990}{28}
+\@LN{1991}{28}
+\@LN{1992}{28}
+\@LN{1993}{28}
+\@LN@col{2}
+\@LN{1994}{28}
+\@LN{1995}{28}
+\@LN{1996}{28}
+\@LN{1997}{28}
+\@LN{1998}{28}
+\@LN{1999}{28}
+\@LN{2000}{28}
+\@LN{2001}{28}
+\@LN{2002}{28}
+\@LN{2003}{28}
+\@LN{2004}{28}
+\@LN{2005}{28}
+\@LN{2006}{28}
+\@LN{2007}{28}
+\@LN{2008}{28}
+\@LN{2009}{28}
+\@LN{2010}{28}
+\@LN{2011}{28}
+\@LN{2012}{28}
+\@LN{2013}{28}
+\@LN{2014}{28}
+\@LN{2015}{28}
+\newlabel{app:scb-evaluation}{{Y}{29}{SCB as an evaluation framework}{section*.115}{}}
+\@writefile{toc}{\contentsline {paragraph}{SCB as an evaluation framework.}{29}{section*.115}\protected@file@percent }
+\@LN{2016}{28}
+\@LN{2017}{28}
+\@LN{2018}{28}
+\@LN{2019}{28}
+\@LN{2020}{28}
+\@LN{2021}{28}
+\@LN{2022}{28}
+\@LN{2023}{28}
+\@LN{2024}{28}
+\@LN{2025}{28}
+\@LN{2026}{28}
+\@LN{2027}{28}
+\@LN{2028}{28}
+\@LN{2029}{28}
+\@LN{2030}{28}
+\@LN{2031}{28}
+\@LN{2032}{28}
+\@LN{2033}{28}
+\@LN{2034}{28}
+\@LN{2035}{28}
+\@LN{2036}{28}
+\@LN{2037}{28}
+\@LN{2038}{28}
+\@LN{2039}{28}
+\@writefile{toc}{\contentsline {paragraph}{Additional scope considerations.}{29}{section*.116}\protected@file@percent }
+\@LN{2040}{28}
+\@LN{2041}{28}
+\@LN{2042}{28}
+\@LN{2043}{28}
+\@LN{2044}{28}
+\@LN@col{1}
+\@LN{2045}{29}
+\@LN{2046}{29}
+\@LN{2047}{29}
+\@LN{2048}{29}
+\@LN{2049}{29}
+\@LN{2050}{29}
+\@LN{2051}{29}
+\@LN{2052}{29}
+\@LN{2053}{29}
+\@LN{2054}{29}
+\@LN{2055}{29}
+\@LN{2056}{29}
+\@LN{2057}{29}
+\@LN{2058}{29}
+\@LN{2059}{29}
+\@LN{2060}{29}
+\@LN{2061}{29}
+\@LN{2062}{29}
+\@LN{2063}{29}
+\@LN{2064}{29}
+\@LN{2065}{29}
+\@LN{2066}{29}
+\@LN{2067}{29}
+\@LN{2068}{29}
+\@LN{2069}{29}
+\@LN{2070}{29}
+\@LN{2071}{29}
+\@LN{2072}{29}
+\@LN{2073}{29}
+\@LN{2074}{29}
+\@LN{2075}{29}
+\@LN{2076}{29}
+\@LN{2077}{29}
+\@LN{2078}{29}
+\@writefile{toc}{\contentsline {section}{\numberline {Z}Use of AI Assistance}{30}{appendix.Z}\protected@file@percent }
+\@LN{2079}{29}
+\@LN{2080}{29}
+\@LN@col{2}
+\gdef \@abspage@last{30}

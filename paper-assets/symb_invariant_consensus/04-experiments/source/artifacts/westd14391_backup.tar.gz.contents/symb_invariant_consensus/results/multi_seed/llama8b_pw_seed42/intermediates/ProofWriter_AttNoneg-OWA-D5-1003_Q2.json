@@ -1,0 +1,1320 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1003_Q2",
+    "problem": "Anne is big. Anne is blue. Anne is rough. Bob is cold. Bob is green. Bob is rough. Bob is white. Dave is blue. Dave is white. Harry is young. If Bob is big then Bob is white. Young people are white. Cold, young people are rough. If Anne is green and Anne is young then Anne is white. White, big people are blue. All blue people are green. If someone is young and white then they are big. Blue people are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is not big.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nBlue($x, bool) ::: Is x blue?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nBlue(Anne, True) ::: Anne is blue.\nRough(Anne, True) ::: Anne is rough.\nCold(Bob, True) ::: Bob is cold.\nGreen(Bob, True) ::: Bob is green.\nRough(Bob, True) ::: Bob is rough.\nWhite(Bob, True) ::: Bob is white.\nBlue(Dave, True) ::: Dave is blue.\nWhite(Dave, True) ::: Dave is white.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nBig(Bob, True) >>> White(Bob, True) ::: If Bob is big then Bob is white.\nYoung($x, True) >>> White($x, True) ::: Young people are white.\nCold($x, True) && Young($x, True) >>> Rough($x, True) ::: Cold, young people are rough.\nGreen(Anne, True) && Young(Anne, True) >>> White(Anne, True) ::: If Anne is green and Anne is young then Anne is white.\nWhite($x, True) && Big($x, True) >>> Blue($x, True) ::: White, big people are blue.\nBlue($x, True) >>> Green($x, True) ::: All blue people are green.\nYoung($x, True) && White($x, True) >>> Big($x, True) ::: If someone is young and white then they are big.\nBlue($x, True) >>> Cold($x, True) ::: Blue people are cold.\n\nQuery:\nBig(Anne, False) ::: Anne is not big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 176.5,
+      "True": 138.5,
+      "Unknown": 170.5
+    },
+    "answer_counts": {
+      "Unknown": 4,
+      "True": 1,
+      "False": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Anne is not big\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Let's start by looking at the statement \"If Bob is big then Bob is white.\" We can infer from this that Bob is big and white, but we cannot conclude that Bob is blue, green, or cold. \n\n2. The statement \"Young people are white\" tells us that people who are young are white. \n\n3. The statement \"Cold, young people are rough\" tells us that if someone is both cold and young, then they are rough.\n\n4. The statement \"If Anne is green and Anne is young then Anne is white\" tells us that if Anne is both green and young, then she is white.\n\n5. The statement \"White, big people are blue\" tells us that if someone is both white and big, then they are blue.\n\n6. The statement \"All blue people are green\" tells us that if someone is blue, then they are green.\n\n7. The statement \"If someone is young and white then they are big\" tells us that if someone is both young and white, then they are big.\n\n8. The statement \"Blue people are cold\" tells us that if someone is blue, then they are cold.\n\nNow, let's analyze the given information about Anne: \n- Anne is blue.\n- Anne is rough.\n- Anne is green.\n\nSince Anne is blue, we can infer that she is also green (from statement 6).\n\nSince Anne is green, we can infer that she is young (from statement 4).\n\nHowever, we cannot conclude that Anne is not big because we do not have enough information to contradict the statement \"Young people are big\" (which is an inference from statement 7).\n\nTherefore, the statement \"Anne is not big\" is unknown.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is not big' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we have the following statements:\n   - Anne is blue.\n   - Anne is rough.\n   - If Anne is green and Anne is young then Anne is white.\n   - All blue people are green.\n   - White, big people are blue.\n   - If someone is young and white then they are big.\n   - Blue people are cold.\n\n2. From the given information, we also have the following statements about other people:\n   - Bob is cold.\n   - Bob is green.\n   - Bob is rough.\n   - Bob is white.\n   - Dave is blue.\n   - Dave is white.\n   - Harry is young.\n\n3. Since we are asked to determine whether 'Anne is not big' is true, false, or unknown, let's analyze the information related to Anne.\n\n4. We know that Anne is blue. Since all blue people are green, Anne must be green.\n\n5. We also know that Anne is green. We have a statement that says 'If Anne is green and Anne is young then Anne is white.' However, we don't know if Anne is young or not. We only know that Harry is young.\n\n6. We know that Anne is blue. We also know that blue people are cold. However, we don't have any information about Anne's age.\n\n7. We know that if someone is young and white then they are big. However, we don't know if Anne is young or white.\n\n8. From the given information, we can't determine whether 'Anne is not big' is true or false. We don't have enough information about Anne's age or size.\n\nTherefore, the statement 'Anne is not big' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is not big' is true, false, or unknown, we need to analyze the given information and deduce the properties of Anne.\n\nGiven statements:\n\n1. Anne is big. \n2. Anne is blue. \n3. Anne is rough. \n4. Bob is cold. \n5. Bob is green. \n6. Bob is rough. \n7. Bob is white. \n8. Dave is blue. \n9. Dave is white. \n10. Harry is young. \n\nRules:\n1. If Bob is big then Bob is white.\n2. Young people are white.\n3. Cold, young people are rough.\n4. If Anne is green and Anne is young then Anne is white.\n5. White, big people are blue.\n6. All blue people are green.\n7. If someone is young and white then they are big.\n8. Blue people are cold.\n\nFrom statement 1, we know Anne is big. Now, we need to find out if there's any rule that contradicts this information.\n\nFrom rule 7, 'If someone is young and white then they are big.' However, this rule only applies to young people. To check if Anne is young, we need to look for any rule that links Anne with the 'young' property.\n\nFrom statement 10, we know Harry is young. However, there's no direct connection between Harry and Anne. We need to analyze the given information to determine Anne's age.\n\nFrom rule 4, 'If Anne is green and Anne is young then Anne is white.' This rule only applies when Anne is both green and young. We need to determine if Anne is green.\n\nFrom statement 5, we know Bob is green. However, this doesn't provide any information about Anne's color.\n\nFrom rule 6, 'All blue people are green.' This means if Anne is blue, she could be green. But from statement 2, we know Anne is blue. So, from rule 6, we can conclude that Anne is green.\n\nNow, from rule 4, 'If Anne is green and Anne is young then Anne is white.' We know Anne is green from rule 6, and we also know Anne is big from statement 1. However, to check if Anne is young, we need to look for any rule that links Anne with the 'young' property.\n\nUnfortunately, there's no direct rule that links Anne with the 'young' property. However, we know from rule 3, 'Cold, young people are rough.' And from statement 2, we know Anne is blue. From rule 8, 'Blue people are cold.' Therefore, we can conclude that Anne is cold.\n\nNow, we can use rule 3, 'Cold, young people are rough.' We know Anne is cold, so she could be young. But we can't conclude that Anne is young because there's no direct rule that links Anne with the 'young' property.\n\nHowever, we know from rule 7, 'If someone is young and white then they are big.' And from rule 4, 'If Anne is green and Anne is young then Anne is white.' We know Anne is green from rule 6, and we also know Anne is big from statement 1. However, to check if Anne is young, we need to look for any rule that links Anne with the 'young' property.\n\nUnfortunately, there's no direct rule that links Anne with the 'young' property. However, we know from rule 3, 'Cold, young people are rough.' And from statement 2, we know Anne is blue. From rule 8, 'Blue people are cold.' Therefore, we can conclude that Anne is cold.\n\nSince we know Anne is cold, we can't conclude that Anne is young using rule 3.\n\nHowever, we know from rule 5, 'White, big people are blue.' We know Anne is big from statement 1, but we can't conclude that Anne is white because there's no direct rule that links Anne with the 'white' property.\n\nNow, we know from rule 2, 'Young people are white.' We know from rule 7, 'If someone is young and white then they are big.' However, we can't conclude that Anne is young because there's no direct rule that links Anne with the 'young' property.\n\nHowever, we know from statement 1, 'Anne is big.' We also know from rule 5, 'White, big people are blue.' But we can't conclude that Anne is white because there's no direct rule that links Anne with the 'white' property.\n\nHowever, we know from rule 6, 'All blue people are green.' We know Anne is blue from statement 2. Therefore, we can conclude that Anne is green.\n\nNow, we know from statement 1, 'Anne is big.' We also know from rule 5, 'White, big people are blue.' But we can't conclude that Anne is white because there's no direct rule that links Anne with the 'white' property.\n\nHowever, we know from rule 7, 'If someone is young and white then they are big.' But we can't conclude that Anne is young because there's no direct rule that links Anne with the 'young' property.\n\nNow, we know from rule 1, 'If Bob is big then Bob is white.' But we can't conclude that Anne is big because Bob's properties don't affect Anne's properties.\n\nNow, we know from statement 1, 'Anne is big.' We also know from statement 2, 'Anne is blue.' We know from rule 5, 'White, big people are blue.' However, we can't conclude that Anne is white because there's no direct rule that links Anne with the 'white' property.\n\nHowever, we know from rule 7, 'If someone is young and white then they are big.' But we can't conclude that Anne is young because there's no direct rule that links Anne with the 'young' property.\n\nNow, we know from statement 2, 'Anne is blue.' We know from rule 8, 'Blue people are cold.' Therefore, we can conclude that Anne is cold.\n\nNow, we know from statement 3, 'Anne is rough.' We also know from statement 2, 'Anne is blue.' We know from rule 3, 'Cold, young people are rough.' However, we can't conclude that Anne is young because there's no direct rule that links Anne with the 'young' property.\n\nHowever, we know from rule 6, 'All blue people are green.' We know Anne is blue from statement 2. Therefore, we can conclude that Anne is green.\n\nNow, we know from rule 4, 'If Anne is green and Anne is young then Anne is white.' We know Anne is green from rule 6. However, we can't conclude that Anne is young because there's no direct rule that links Anne with the 'young' property.\n\nHowever, we know from rule 7, 'If someone is young and white then they are big.' But we can't conclude that Anne is young because there's no direct rule that links Anne with the 'young' property.\n\nHowever, we know from rule 5, 'White, big people are blue.' We know Anne is big from statement 1. However, we can't conclude that Anne is white because there's no direct rule that links Anne with the 'white' property.\n\nNow, we know from statement 1, 'Anne is big.' We also know from statement 2, 'Anne is blue.' We know from rule 5, 'White, big people are blue.' However, we can't conclude that Anne is white because there's no direct rule that links Anne with the 'white' property.\n\nHowever, we know from rule 7, 'If someone is young and white then they are big.' But we can't conclude that Anne is young because there's no direct rule that links Anne with the 'young' property.\n\nNow, we know from rule 1, 'If Bob is big then Bob is white.' But we can't conclude that Anne is big because Bob's properties don't affect Anne's properties.\n\nHowever, we know from statement 1, 'Anne is big.' We also know from statement 2, 'Anne is blue.' We know from rule 5, 'White, big people are blue.' However, we can't conclude that Anne is white because there's no direct rule that links Anne with the 'white' property.\n\nHowever, we know from rule 7, 'If someone is young and white then they are big.' But we can't conclude that Anne is young because there's no direct rule that links Anne with the 'young' property.\n\nNow, we know from rule 7, 'If someone is young and white then they are big.' We know Anne is big from statement 1. However, we can't conclude that Anne is white because there's no direct rule that links Anne with the 'white' property.\n\nHowever, we know from rule 6, 'All blue people are green.' We know Anne is blue from statement 2. Therefore, we can conclude that Anne is green.\n\nNow, we know from rule 4, 'If Anne is green and Anne is young then Anne is white.' We know Anne is green from rule 6. However, we can't conclude that Anne is young because there's no direct rule that links Anne with the 'young' property.\n\nHowever, we know from rule 7, 'If someone is young and white then they are big.' But we can't conclude that Anne is young because there's no direct rule that links Anne with the 'young' property.\n\nHowever, we know from rule 5, 'White, big people are blue.' We know Anne is big from statement 1. However, we can't conclude that Anne is white because there's no direct",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is big. (This is directly stated)\n   - Bob is big \u2192 Bob is white.\n   - Young people are white.\n   - Cold, young people are rough.\n   - Anne is green and Anne is young \u2192 Anne is white.\n   - White, big people are blue.\n   - All blue people are green.\n   - Young and white people are big.\n   - Blue people are cold.\n\n2. We need to determine if \"Anne is not big\". Since Anne is big (as stated), we should initially think this is false. However, we need to analyze the information given to see if there's a contradiction or an unknown.\n\n3. Analyze \"Anne is big\" with other given information:\n   - If Anne is big, then Anne is blue (since white, big people are blue).\n   - If Anne is blue, then Anne is green (since all blue people are green).\n   - Now we have a conflict:\n     - Anne is big (initially stated), and big people are white (from \"young and white people are big\").\n     - However, we also know that Anne is green (blue people are green).\n\n4. Since we have conflicting information:\n   - Initially stated: Anne is big and green.\n   - Derived: If Anne is big, then she is white (young and white people are big), but then she would be blue, and green (blue people are green).\n\n5. We can't conclude if Anne is big or not based on the given information. The information is conflicting, and we have a contradiction.\n\n6. Conclusion:\n   Since we have conflicting information and cannot determine if Anne is big or not, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not big\" is true, false, or unknown, we need to use the given information to infer whether Anne is big or not.\n\n1. Given statements:\n   - Anne is big. (This statement directly contradicts the one we are evaluating.)\n   - Anne is blue.\n   - Anne is rough.\n   - Bob is cold.\n   - Bob is green.\n   - Bob is rough.\n   - Bob is white.\n   - Dave is blue.\n   - Dave is white.\n   - Harry is young.\n   - If Bob is big then Bob is white.\n   - Young people are white.\n   - Cold, young people are rough.\n   - If Anne is green and Anne is young then Anne is white.\n   - White, big people are blue.\n   - All blue people are green.\n   - If someone is young and white then they are big.\n   - Blue people are cold.\n\n2. Inference:\n   - From \"Anne is big\" we can infer that Anne is not young because \"If someone is young and white then they are big.\" However, this is a different statement.\n   - From \"Young people are white\" and \"If someone is young and white then they are big,\" we can conclude that young people are big.\n   - Since \"Anne is blue,\" we can conclude that Anne is green because \"All blue people are green.\"\n   - From \"Anne is green,\" \"Anne is young,\" and \"If Anne is green and Anne is young then Anne is white,\" we can conclude that Anne is white.\n   - Since \"Anne is big\" and \"Anne is white,\" we can conclude that Anne is blue because \"White, big people are blue.\"\n\n3. From the above inferences, we can see that the statement \"Anne is big\" and the conclusion that Anne is blue is contradictory. \n\n4. Conclusion:\n   - Given the statement \"Anne is big,\" we can conclude that it is false.\n\nNow, we can evaluate the statement \"Anne is not big.\" Since \"Anne is big\" is false, the negation of this statement is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not big\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nGiven information:\n\n1. Anne is big. \n2. Bob is cold. \n3. Bob is green. \n4. Bob is rough. \n5. Bob is white. \n6. Dave is blue. \n7. Dave is white. \n8. Harry is young. \n9. If Bob is big then Bob is white. \n10. Young people are white. \n11. Cold, young people are rough. \n12. If Anne is green and Anne is young then Anne is white. \n13. White, big people are blue. \n14. All blue people are green. \n15. If someone is young and white then they are big. \n16. Blue people are cold.\n\nStatement to be evaluated: Anne is not big.\n\nStep 1: Analyze given information 1. Anne is big.\nThis directly contradicts the statement \"Anne is not big.\" However, we need to check if there are any conditions that make Anne not big.\n\nStep 2: Check the given conditions.\nFrom information 12, we know that if Anne is green and Anne is young then Anne is white. However, this does not directly impact the statement \"Anne is not big.\" We need to check if Anne is green and young.\n\nStep 3: Determine if Anne is green and young.\nThere is no direct information that says Anne is green. However, if we consider the possibility that Anne is green and young, we can evaluate the outcome.\n\nStep 4: Apply the condition from information 12 if Anne is green and Anne is young.\nIf Anne is green and young, then from information 12, we know Anne is white.\n\nStep 5: Evaluate the outcome of Anne being white.\nFrom information 15, we know that if someone is young and white then they are big. However, in this case, we are considering the condition that makes Anne not big, which is being green and young.\n\nStep 6: Evaluate the outcome of Anne being green.\nFrom information 14, we know all blue people are green. However, we do not have any information that directly says Anne is blue.\n\nStep 7: Evaluate the outcome of Anne being blue.\nFrom information 13, we know white, big people are blue. However, we already know Anne is big from information 1. \n\nHowever, there is no information that says Anne is blue, we only know that big people are blue (13) and white big people are blue (13). \n\nStep 8: Analyze information 1 and 13.\nSince we know Anne is big from information 1, and we know white, big people are blue from information 13, we can conclude that Anne is blue.\n\nStep 9: Analyze information 8, 10 and 11.\nFrom information 8, we know Harry is young. From information 10, we know young people are white. From information 11, we know cold, young people are rough. However, there is no information that directly says Anne is young.\n\nStep 10: Evaluate the statement \"Anne is not big.\"\nSince we have concluded that Anne is blue (Step 8), we can apply the condition from information 16 that says blue people are cold.\n\nStep 11: Analyze information 2 and 11.\nFrom information 2, we know Bob is cold. From information 11, we know cold, young people are rough. However, we already know Bob is not young.\n\nStep 12: Evaluate the statement \"Anne is not big.\"\nSince we have concluded that Anne is blue (Step 8), we can evaluate the statement \"Anne is not big.\" \n\nGiven information 1, we know Anne is big. However, we also know that Anne is blue, which makes her cold (Step 10). \n\nWe can conclude that the statement \"Anne is not big\" is false because information 1 directly contradicts it.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements to derive conclusions about Anne.\n\n1. At the end, put your final answer in \\boxed{}.\n\nGiven statements:\n1. Anne is big.\n2. Anne is blue.\n3. Anne is rough.\n4. Bob is cold.\n5. Bob is green.\n6. Bob is rough.\n7. Bob is white.\n8. Dave is blue.\n9. Dave is white.\n10. Harry is young.\n11. If Bob is big then Bob is white. (From 11, we can infer that Bob is big is a necessary condition for Bob to be white, but it's not a sufficient condition)\n12. Young people are white.\n13. Cold, young people are rough.\n14. If Anne is green and Anne is young then Anne is white.\n15. White, big people are blue.\n16. All blue people are green.\n17. If someone is young and white then they are big.\n18. Blue people are cold.\n\nWe need to determine whether the statement \"Anne is not big\" is true, false, or unknown.\n\nFirst, let's consider statement 1: \"Anne is big.\" We will use the given statements to derive conclusions about Anne being big.\n\nFrom statement 11, if Bob is big, then Bob is white. But we know that Bob is white (statement 7). However, we cannot conclude that Bob is big because we don't know the truth value of statement 11. But we can infer from statement 11 that Bob being big is a necessary condition for Bob to be white.\n\nNow, let's analyze statement 17: \"If someone is young and white then they are big.\" From statement 12, we know that young people are white. We can't directly conclude that someone who is young and white is big, because we don't know the truth value of statement 17.\n\nHowever, we can infer from statement 14: \"If Anne is green and Anne is young then Anne is white.\" We can't conclude that Anne is young because we don't know the truth value of statement 14.\n\nFrom statement 15: \"White, big people are blue.\" We can't conclude that Anne is big because we don't know the truth value of statement 15.\n\nNow, let's analyze statement 18: \"Blue people are cold.\" From statement 2: \"Anne is blue\" and statement 3: \"Anne is rough.\" We can't conclude that Anne is cold because we don't know the truth value of statement 18.\n\nHowever, from statement 13: \"Cold, young people are rough.\" We can't conclude that Anne is young because we don't know the truth value of statement 13.\n\nFrom statement 16: \"All blue people are green.\" We can't conclude that Anne is green because we don't know the truth value of statement 16.\n\nFrom statement 1: \"Anne is big.\" We will use the given statements to derive conclusions about Anne being not big.\n\nWe can't conclude that Anne is not big because we don't have enough information to do so.\n\nTherefore, we can't determine whether the statement \"Anne is not big\" is true or false, so the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not big\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nGiven statements:\n\n1. Anne is big. (A)\n2. Anne is blue. (B)\n3. Anne is rough. (C)\n4. Bob is cold. (D)\n5. Bob is green. (E)\n6. Bob is rough. (F)\n7. Bob is white. (G)\n8. Dave is blue. (H)\n9. Dave is white. (I)\n10. Harry is young. (J)\n11. If Bob is big then Bob is white. (K)\n12. Young people are white. (L)\n13. Cold, young people are rough. (M)\n14. If Anne is green and Anne is young then Anne is white. (N)\n15. White, big people are blue. (O)\n16. All blue people are green. (P)\n17. If someone is young and white then they are big. (Q)\n18. Blue people are cold. (R)\n\nStatement to determine: Anne is not big.\n\nWe can start by analyzing statement A, which says \"Anne is big.\" To determine if this statement is true or false, we can look for any contradictory information.\n\nFrom statement Q, we know that \"If someone is young and white then they are big.\" We also know from statement L that \"Young people are white.\" Combining these two statements, we can conclude that Anne is big because she is young and white.\n\nNow, we need to check if Anne being big contradicts any other information. From statement O, we know that \"White, big people are blue.\" Since Anne is big and white, we can conclude that Anne is blue.\n\nFrom statement B, we know that \"Anne is blue.\" And from statement P, we know that \"All blue people are green.\" So, we can conclude that Anne is green.\n\nNow, we have found that Anne is big, blue, and green. We need to check if this information contradicts any other statements.\n\nFrom statement N, we know that \"If Anne is green and Anne is young then Anne is white.\" We have already concluded that Anne is green and young, so we can apply this statement to conclude that Anne is white.\n\nFrom statement C, we know that \"Anne is rough.\" And from statement M, we know that \"Cold, young people are rough.\" We can conclude that Anne is cold because she is young and rough.\n\nHowever, from statement 17, we know that young people are big. We concluded earlier that Anne is young. So, Anne is big.\n\nWe have a contradiction here. We concluded that Anne is big, but we also found that Anne is cold, young, and rough. From statement M, we know that cold, young people are rough. So, Anne being young and rough does not contradict the fact that she is big.\n\nHowever, from statement 18, we know that blue people are cold. We concluded that Anne is blue. This information contradicts the fact that Anne is cold. This is a contradiction because Anne cannot be both blue and cold at the same time.\n\nHowever, the statement that contradicts the most is that Anne is big from statement A and she is cold from the conclusion we made from statement M. The problem is, from statement 18, we know that blue people are cold. We concluded that Anne is blue. This information contradicts the fact that Anne is cold. However, we also concluded that Anne is big. \n\nThe statement that directly contradicts \"Anne is not big\" is statement A, which says \"Anne is big.\" Since we have no information that contradicts the fact that Anne is big, we can conclude that the statement \"Anne is not big\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is not big' is true, false, or unknown, we need to analyze the given information and apply the rules of logic.\n\nFrom the given information:\n1. Anne is blue.\n2. Anne is rough.\n3. Bob is cold.\n4. Bob is green.\n5. Bob is rough.\n6. Bob is white.\n7. Dave is blue.\n8. Dave is white.\n9. Harry is young.\n10. If Bob is big then Bob is white.\n11. Young people are white.\n12. Cold, young people are rough.\n13. If Anne is green and Anne is young then Anne is white.\n14. White, big people are blue.\n15. All blue people are green.\n16. If someone is young and white then they are big.\n17. Blue people are cold.\n\nNow, let's try to determine whether Anne is big or not.\n\nFrom rule 14, we know that white, big people are blue. But we also know from rule 1 that Anne is blue. Since Anne is blue, we can use rule 15 to conclude that Anne is green.\n\nNow, from rule 13, we know that if Anne is green and Anne is young, then Anne is white. Since we already know that Anne is green (from rule 15), we can conclude that Anne is young. And from rule 13, we can also conclude that Anne is white.\n\nNow, from rule 16, we know that if someone is young and white, then they are big. Since we know that Anne is young (from rule 13) and white (from rule 13), we can conclude that Anne is big.\n\nSo, the statement 'Anne is not big' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not big\" is true, false, or unknown, we need to analyze the given information and use the rules provided.\n\nStep 1: From the given information, we know:\n- Anne is big.\n- All blue people are green.\n- White, big people are blue.\n- Blue people are cold.\n\nStep 2: We need to find out if Anne can be white, big, and blue.\n- If Anne is green and Anne is young, then Anne is white. However, we do not know if Anne is green or young.\n- We know that Anne is big, and if Anne is big then she might be blue. But we cannot conclude this with certainty yet.\n\nStep 3: We have more information about Bob:\n- Bob is big, cold, green, and rough.\n- If Bob is big then Bob is white.\n- White, big people are blue.\n- Blue people are cold.\n- This confirms that Bob is blue.\n\nStep 4: We need to determine if Anne can be blue:\n- Blue people are green.\n- We know that Anne is blue from this rule.\n\nStep 5: Since we know Anne is blue, and blue people are green, we can conclude that Anne is green.\n- If Anne is green and Anne is young then Anne is white.\n- We do not know if Anne is young or not.\n\nStep 6: We know that Dave is blue, and blue people are cold.\n- However, this information does not relate to Anne.\n\nStep 7: We need to find out if Anne can be young:\n- Young people are white.\n- If someone is young and white then they are big.\n- We know that Anne is white from step 5, but we do not know if she is young or not.\n\nStep 8: We know that Harry is young.\n- However, this information does not relate to Anne.\n\nStep 9: Since we know that young people are white, and if someone is young and white then they are big, we can conclude that if Anne is young then she is big.\n- However, we do not know if Anne is young or not.\n\nStep 10: Since we know that Anne is big, blue, and green, we can conclude that Anne is not white because blue people are green.\n\nConclusion: \nSince we have found a possible scenario where Anne is big, blue, and green, we can conclude that Anne is big. Therefore, the statement \"Anne is not big\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is not big\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nGiven statements:\n\n1. Anne is big.\n2. Anne is blue.\n3. Anne is rough.\n4. Bob is cold.\n5. Bob is green.\n6. Bob is rough.\n7. Bob is white.\n8. Dave is blue.\n9. Dave is white.\n10. Harry is young.\n11. If Bob is big then Bob is white.\n12. Young people are white.\n13. Cold, young people are rough.\n14. If Anne is green and Anne is young then Anne is white.\n15. White, big people are blue.\n16. All blue people are green.\n17. If someone is young and white then they are big.\n18. Blue people are cold.\n\nWe can start by using the given statements to find any contradictions or logical implications.\n\nFrom statement 1, we know that Anne is big. However, we need to check if there are any statements that contradict this.\n\nFrom statement 17, we know that if someone is young and white then they are big. But statement 1 says Anne is big. Statement 14 says if Anne is green and Anne is young then Anne is white. However, we don't have information about Anne's age or whether she is white. If Anne is young, then she would be white (statement 12), which would make her big (statement 17). But there is a contradiction in the information about Anne's color. Statement 2 says Anne is blue, statement 5 says Bob is green, and statement 16 says all blue people are green. This does not directly contradict, but there is an implication in statement 15, that white, big people are blue. If Anne is big (which we initially assumed from statement 1), she would be blue (statement 15). But then she would also be green (statement 16), which is the same color as Bob.\n\nFrom statement 12, we know that young people are white. And from statement 10, Harry is young. So, Harry is white.\n\nWe can use the information from statement 3, that Anne is rough, and statement 13, that cold, young people are rough, to infer some information about Anne's age and temperature. If Anne is rough and there is a possibility that she could be young (statement 14), then she might be cold (statement 13). But there is no direct statement about Anne's age or temperature.\n\nNow, let's analyze the statement \"Anne is not big.\" Given statement 1, we initially assumed that Anne is big. But we found some contradictions and implications that make it difficult to determine whether Anne is big or not.\n\nHowever, we can use the information from statement 12, that young people are white, and statement 17, that if someone is young and white then they are big, to infer that Anne is big if she is young. But we don't know Anne's age.\n\nFrom statement 14, if Anne is green and Anne is young then Anne is white. But statement 2 says Anne is blue, which contradicts the implication that Anne would be white if she is young and green.\n\nHowever, we can use the information from statement 12, that young people are white, and statement 17, that if someone is young and white then they are big, to infer that Harry is big because he is young and white.\n\nNow, let's go back to the statement \"Anne is not big.\" We initially assumed that Anne is big from statement 1, but we found some contradictions and implications that make it difficult to determine whether Anne is big or not.\n\nHowever, we can use the information from statement 15, that white, big people are blue, and statement 2, that Anne is blue, to infer that Anne is big if she is blue. But we don't know if Anne is white.\n\nWe can use the information from statement 12, that young people are white, and statement 17, that if someone is young and white then they are big, to infer that Harry is big because he is young and white.\n\nNow, let's go back to the statement \"Anne is not big.\" We initially assumed that Anne is big from statement 1, but we found some contradictions and implications that make it difficult to determine whether Anne is big or not.\n\nHowever, we can use the information from statement 2, that Anne is blue, and statement 16, that all blue people are green, to infer that Anne is green.\n\nFrom statement 14, if Anne is green and Anne is young then Anne is white. But statement 2 says Anne is blue, which contradicts the implication that Anne would be white if she is young and green.\n\nHowever, we can use the information from statement 12, that young people are white, and statement 17, that if someone is young and white then they are big, to infer that Harry is big because he is young and white.\n\nNow, let's go back to the statement \"Anne is not big.\" We initially assumed that Anne is big from statement 1, but we found some contradictions and implications that make it difficult to determine whether Anne is big or not.\n\nHowever, we can use the information from statement 16, that all blue people are green, and statement 2, that Anne is blue, to infer that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 15, we know that white, big people are blue. This implies that Anne is not white, because if she were white, she would be big and blue, which is a contradiction. However, we cannot conclude that Anne is not big because of the statement \"If Bob is big then Bob is white.\" which is not applicable to Anne. \n\nFrom statement 12, we know that young people are white. If someone is young and white then they are big (statement 17). But we cannot conclude that Anne is big because we don't know her age.\n\nHowever, we can use the information from statement 2, that Anne is blue, and statement 16, that all blue people are green, to infer that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 15, we know that white, big people are blue. This implies that Anne is not white, because if she were white, she would be big and blue, which is a contradiction.\n\nHowever, we can use the information from statement 16, that all blue people are green, and statement 2, that Anne is blue, to infer that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 14, if Anne is green and Anne is young then Anne is white. But statement 2 says Anne is blue, which contradicts the implication that Anne would be white if she is young and green.\n\nHowever, we can use the information from statement 2, that Anne is blue, and statement 16, that all blue people are green, to infer that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we know that Anne is blue. From statement 16, we know that all blue people are green. This implies that Anne is green.\n\nFrom statement 2, we",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is not big' is true, false, or unknown, we need to analyze the given information and apply the rules of logic.\n\nGiven information:\n1. Anne is big.\n2. Bob is cold.\n3. Bob is green.\n4. Bob is rough.\n5. Bob is white.\n6. Dave is blue.\n7. Dave is white.\n8. Harry is young.\n9. If Bob is big then Bob is white.\n10. Young people are white.\n11. Cold, young people are rough.\n12. If Anne is green and Anne is young then Anne is white.\n13. White, big people are blue.\n14. All blue people are green.\n15. If someone is young and white then they are big.\n16. Blue people are cold.\n\nNow, let's analyze the given information about Anne:\n- Anne is big (given).\n- Anne is blue (given).\n- Anne is rough (given).\n- There is no direct information about Anne's age, color, or size.\n\nWe need to determine whether the statement 'Anne is not big' is true, false, or unknown. To do this, we need to find out if there is any information that contradicts the given statement 'Anne is big.'\n\nFrom given statement 1, we know that Anne is big. We need to check if there is any rule or information that can contradict this.\n\nFrom given statement 9, we know that if Bob is big, then Bob is white. However, this rule doesn't apply to Anne.\n\nFrom given statement 12, we know that if Anne is green and Anne is young, then Anne is white. However, this rule is a conditional statement, and we don't know if Anne is young or green.\n\nFrom given statement 15, we know that if someone is young and white, then they are big. However, this rule is also a conditional statement, and we don't know if Anne is young or white.\n\nFrom given statement 16, we know that blue people are cold. However, this rule doesn't provide any information about Anne's size.\n\nFrom given statement 1, we know that Anne is big, and from given statement 3, we know that Anne is blue. Since blue people are green (given statement 14), we can conclude that Anne is green.\n\nNow, let's consider the statement 'Anne is not big.' Since we have found that Anne is green (from given statement 14), we can use given statement 12 to conclude that Anne is white.\n\nHowever, we still don't know if Anne is young or not. If Anne is young, then given statement 15 implies that Anne is big, which contradicts the given statement 'Anne is not big.' If Anne is not young, then we cannot conclude anything about Anne's size.\n\nSince we cannot determine whether Anne is young or not, we cannot conclude whether the statement 'Anne is not big' is true or false.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> white(X)",
+          "z3_formula": "Implies(big_bob, white_bob)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_X, white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_X, young_X), rough_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_X, young_X), white_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_X, big_X), blue_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_X, white_X), big_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_X, cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne) -> young(anne)",
+          "z3_formula": "Implies(green_anne, young_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne) & green(anne) -> white(anne)",
+          "z3_formula": "Implies(And(young_anne, green_anne), white_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne) -> big(anne)",
+          "z3_formula": "Implies(young_anne, big_anne)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(anne) & young(anne) -> white(anne)",
+          "z3_formula": "Implies(And(green_anne, young_anne), white_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_anne, green_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_anne, big_anne), blue_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_anne, white_anne), big_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(bob) -> white(bob)",
+          "z3_formula": "Implies(big_bob, white_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_X, white_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_X, young_X), rough_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_X, young_X), white_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_X, big_X), blue_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_X, white_X), big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_X, cold_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> white(X)",
+          "z3_formula": "Implies(big_anne, white_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_anne, white_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_anne, white_anne), rough_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_anne, young_anne), white_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_anne, big_anne), blue_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_anne, green_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_anne, white_anne), big_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_anne, cold_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(big(anne))",
+          "z3_formula": "Not(big_anne)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> white(X)",
+          "z3_formula": "Implies(big_bob, white_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_X, white_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_X, white_X), big_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_X, young_X), rough_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_X, young_X), white_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_X, big_X), blue_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_X, white_X), big_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> blue(X)",
+          "z3_formula": "Implies(cold_X, blue_X)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not big(anne)",
+          "z3_formula": "Not(big_anne)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(bob) -> white(bob)",
+          "z3_formula": "Implies(big_bob, white_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_X, white_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_X, young_X), rough_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_X, young_X), white_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_X, big_X), blue_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "all(X, blue(X) -> green(X))",
+          "z3_formula": "ForAll(X, Implies(blue_X, green_X))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_X, white_X), big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_X, cold_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(bob) -> white(bob)",
+          "z3_formula": "Implies(big_bob, white_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_X, white_X), big_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_X, young_X), white_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_X, big_X), blue_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_X, white_X), big_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_X, cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not big(anne)",
+          "z3_formula": "Not(big_anne)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(bob) -> white(bob)",
+          "z3_formula": "Implies(big_bob, white_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_X, white_X), big_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_X, white_X), big_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, cold_X), rough_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_X, young_X), white_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_X, big_X), blue_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_X, white_X), big_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_X, cold_X)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(bob) -> white(bob)",
+          "z3_formula": "Implies(big_bob, white_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_X, white_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, white_X), rough_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_X, young_X), white_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_X, big_X), blue_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_X, white_X), big_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_X, cold_X)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_anne, green_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_anne, cold_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_anne, big_anne), blue_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_anne, blue_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_anne, young_anne), white_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_anne, white_anne), big_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not white(anne)",
+          "z3_formula": "Not(white_anne) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> white(X)",
+          "z3_formula": "Implies(big_bob, white_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_harry, white_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & young(X) -> rough(X)",
+          "z3_formula": "Implies(And(cold_bob, young_bob), rough_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "(green(X) & young(X)) -> white(X)",
+          "z3_formula": "Implies(And(green_anne, young_anne), white_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_anne, big_anne), blue_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_anne, green_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_harry, white_harry), big_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_anne, cold_anne)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> white(X)",
+          "z3_formula": "Implies(big_bob, white_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> white(X)",
+          "z3_formula": "Implies(And(green_anne, young_anne), white_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> big(X)",
+          "z3_formula": "Implies(And(young_X, white_X), big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_X, cold_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> white(X)",
+          "z3_formula": "Implies(big_X, white_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_X, blue_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne) | not young(anne)",
+          "z3_formula": "Or(young_anne, Not(young_anne))",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 198,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 44
+    },
+    "maxsat_stats": {
+      "satisfied": 42,
+      "excluded": 2,
+      "total_weight": 193,
+      "solve_time_ms": 1.133820042014122
+    },
+    "timing": {
+      "trace_gen_s": 24.716,
+      "extraction_s": 29.924,
+      "dedup_s": 1.746,
+      "maxsat_s": 0.004,
+      "total_s": 56.391
+    }
+  }
+}

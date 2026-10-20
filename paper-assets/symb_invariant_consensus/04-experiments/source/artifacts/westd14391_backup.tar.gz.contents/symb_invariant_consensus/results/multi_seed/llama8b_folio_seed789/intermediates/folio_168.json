@@ -1,0 +1,384 @@
+{
+  "problem": {
+    "id": "folio_168",
+    "problem": "Given the following premises:\nHeinrich Scmidt was a Nazi German politician.  Heeinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSome Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "From(heinrichScmidt, naziGermany) \u2227 Politician(heinrichScmidt)",
+      "Member(heinrichScmidt, prussianStateParliament) \u2227 Member(heinrichScmidt, naziReichstag)"
+    ],
+    "conclusion_fol": "\u2203x (From(x, naziGermany) \u2227 Politician(x) \u2227 Member(x, prussianStateParliament) \u2227 Member(x, naziReichstag))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 37.0,
+      "Unknown": 19.0
+    },
+    "answer_counts": {
+      "True": 10,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Heinrich Scmidt was a Nazi German politician.\nPremise 2: Heinrich Scmidt was a member of the Prussian State Parliament and the Nazi Reichstag.\n\nWe are asked to evaluate the conclusion: Some Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag.\n\nFirst, let's identify the key elements in the conclusion:\n\n- \"Some Nazi German politician\": This indicates that the conclusion is making a general statement about a subset of Nazi German politicians.\n- \"was part of both the Prussian State Parliament and the Nazi Reichstag\": This specifies the two institutions that the politician is part of.\n\nNow, let's compare the conclusion with the premises:\n\n- Premise 1 is a general statement about Heinrich Scmidt being a Nazi German politician.\n- Premise 2 provides specific information about Heinrich Scmidt's membership in the Prussian State Parliament and the Nazi Reichstag.\n\nThe key observation is that Premise 2 provides a specific example (Heinrich Scmidt) that satisfies the conditions specified in the conclusion (being part of both institutions). This is often referred to as an \"instantiation\" of the conclusion.\n\nGiven that Premise 2 provides a specific example that satisfies the conditions in the conclusion, we can conclude that the conclusion is true. This is because the existence of at least one Nazi German politician (Heinrich Scmidt) who is part of both institutions supports the general statement in the conclusion.\n\nTherefore, the conclusion is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Heinrich Scmidt was a Nazi German politician.\nPremise 2: Heinrich Scmidt was a member of the Prussian State Parliament and the Nazi Reichstag.\n\nFrom Premise 2, we can infer that Heinrich Scmidt was part of both the Prussian State Parliament and the Nazi Reichstag.\n\nNow, let's consider the conclusion: Some Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag.\n\nThe conclusion is making a general statement about \"some\" Nazi German politician. Since we know that Heinrich Scmidt, who is also a Nazi German politician, was part of both the Prussian State Parliament and the Nazi Reichstag (from Premise 2), we can conclude that the statement is true.\n\nThis is because the existence of one Nazi German politician (Heinrich Scmidt) who satisfies the condition (being part of both the Prussian State Parliament and the Nazi Reichstag) is enough to support the conclusion that some Nazi German politician satisfies this condition.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the truth of the given conclusion, let's analyze the premises step by step:\n\n1. Premise 1: Heinrich Scmidt was a Nazi German politician. \n   This statement provides information about a specific person, Heinrich Scmidt, being a Nazi German politician.\n\n2. Premise 2: Heinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n   This statement further specifies that Heinrich Scmidt was a member of both the Prussian State Parliament and the Nazi Reichstag.\n\nThe conclusion to be evaluated is:\nSome Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag.\n\nBased on the given premises, we can infer that there exists at least one Nazi German politician who was part of both the Prussian State Parliament and the Nazi Reichstag, which is Heinrich Scmidt. \n\nTherefore, the conclusion is true, as there is at least one Nazi German politician who satisfies the conditions mentioned in the conclusion.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Heinrich Scmidt was a Nazi German politician.\nPremise 2: Heinrich Scmidt was a member of the Prussian State Parliament and the Nazi Reichstag.\n\nWe are asked to determine if the conclusion \"Some Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag\" is true, false, or uncertain.\n\nLet's break down the premises:\n\nPremise 1 tells us that Heinrich Scmidt is a Nazi German politician. This information alone does not tell us anything about his membership in the Prussian State Parliament or the Nazi Reichstag. We need more information.\n\nPremise 2 tells us that Heinrich Scmidt was a member of both the Prussian State Parliament and the Nazi Reichstag. This provides specific information about Heinrich Scmidt's membership in both organizations.\n\nNow, let's consider the conclusion. We want to know if some Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag.\n\nSince we know from Premise 2 that Heinrich Scmidt was a member of both organizations, and we also know from Premise 1 that he is a Nazi German politician, we can conclude that there is at least one Nazi German politician who was part of both the Prussian State Parliament and the Nazi Reichstag.\n\nThis conclusion is not uncertain because we have specific information from Premise 2 about Heinrich Scmidt's membership. The conclusion is also not false because we have evidence that supports it (Heinrich Scmidt's membership in both organizations).\n\nTherefore, the conclusion \"Some Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Heinrich Scmidt was a Nazi German politician.\nPremise 2: Heeinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n\nFrom these premises, we can infer that Heinrich Scmidt was a Nazi German politician who was a member of both the Prussian State Parliament and the Nazi Reichstag.\n\nNow, let's examine the conclusion:\nConclusion: Some Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag.\n\nSince we have a specific example (Heinrich Scmidt) who satisfies the conditions mentioned in the conclusion, we can infer that the conclusion is indeed true. The existence of one instance (Heinrich Scmidt) is enough to make the conclusion true.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we'll analyze the premises and apply logical reasoning.\n\nPremise 1: Heinrich Scmidt was a Nazi German politician.\nPremise 2: Heinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n\nWe're asked to evaluate the conclusion: Some Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag.\n\nFrom Premise 2, we know that Heinrich Scmidt was a member of both the Prussian State Parliament and the Nazi Reichstag. Since he is a Nazi German politician (from Premise 1), this satisfies the conclusion.\n\nHowever, the conclusion is phrased as \"some Nazi German politician,\" not specifically about Heinrich Scmidt. This is where the uncertainty arises. The premises only provide information about a single individual (Heinrich Scmidt), not about the group of Nazi German politicians as a whole.\n\nTherefore, the conclusion is uncertain, as we can't be sure if there are other Nazi German politicians who were members of both the Prussian State Parliament and the Nazi Reichstag.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the validity of the conclusion, let's break down the given premises and analyze the conclusion step by step.\n\nPremise 1: Heinrich Schmidt was a Nazi German politician.\nPremise 2: Heinrich Schmidt was a member of the Prussian State Parliament and the Nazi Reichstag.\n\nFrom Premise 2, we can infer that Heinrich Schmidt was a member of both the Prussian State Parliament and the Nazi Reichstag.\n\nNow, let's analyze the conclusion:\n\nConclusion: Some Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag.\n\nWe know that Heinrich Schmidt is a Nazi German politician (Premise 1) and that he was a member of both the Prussian State Parliament and the Nazi Reichstag (Premise 2). This satisfies the condition stated in the conclusion.\n\nTherefore, since we have at least one example (Heinrich Schmidt) that meets the condition, we can conclude that the statement is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to apply the rules of logical inference. \n\nFirst, let's analyze the premises:\n1. Heinrich Scmidt was a Nazi German politician.\n2. Heinrich Scmidt was a member of the Prussian State Parliament and the Nazi Reichstag.\n\nWe are asked to determine whether the following conclusion is true, false, or uncertain:\nSome Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag.\n\nFrom premise 1, we know that Heinrich Scmidt is a Nazi German politician.\n\nFrom premise 2, we know that Heinrich Scmidt is a member of both the Prussian State Parliament and the Nazi Reichstag.\n\nSince we have a specific example (Heinrich Scmidt) that satisfies the conditions in the conclusion, we can infer that the conclusion is true.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises.\n\nPremise 1: Heinrich Schmidt was a Nazi German politician.\nPremise 2: Heinrich Schmidt was a member of the Prussian State Parliament and the Nazi Reichstag.\n\nNow, let's examine the conclusion:\n\nConclusion: Some Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag.\n\nThe conclusion is making a general statement about some Nazi German politicians, whereas the premises are providing specific information about Heinrich Schmidt.\n\nFrom Premise 2, we know that Heinrich Schmidt was indeed a member of both the Prussian State Parliament and the Nazi Reichstag. However, we do not have any information about other Nazi German politicians who might also hold the same positions.\n\nTo determine the truth value of the conclusion, we need to consider the following:\n\n1. If we can find at least one more Nazi German politician who is a member of both the Prussian State Parliament and the Nazi Reichstag, then the conclusion is true.\n2. If we cannot find any other Nazi German politician who holds both positions, then the conclusion might be uncertain because we are relying on a single example (Heinrich Schmidt).\n3. If we know that Heinrich Schmidt is the only Nazi German politician who holds both positions, then the conclusion is false.\n\nHowever, we do not have any information that suggests Heinrich Schmidt is the only Nazi German politician who holds both positions. In fact, we do not have any information about other Nazi German politicians at all.\n\nTherefore, based on the given premises, we can conclude that:\n\nThe conclusion is uncertain because we are relying on a single example (Heinrich Schmidt), and we do not have any information about other Nazi German politicians who might also hold both positions.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the validity of the conclusion, let's break down the information given:\n\n1. Heinrich Schmidt was a Nazi German politician.\n2. Heinrich Schmidt was a member of the Prussian State Parliament and the Nazi Reichstag.\n\nFrom the information, we can infer that there is at least one Nazi German politician (Heinrich Schmidt) who was part of both the Prussian State Parliament and the Nazi Reichstag.\n\nTo determine whether the conclusion is true or not, let's analyze the conclusion:\n\"Some Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag.\"\n\nSince we have found at least one Nazi German politician (Heinrich Schmidt) who was part of both the Prussian State Parliament and the Nazi Reichstag, the conclusion is indeed true.\n\nTherefore, the conclusion is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Heinrich Scmidt was a Nazi German politician.\nPremise 2: Heinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n\nFrom these premises, we can infer that at least one Nazi German politician was a member of both the Prussian State Parliament and the Nazi Reichstag, which is Heinrich Scmidt.\n\nNow, let's examine the conclusion:\n\nConclusion: Some Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag.\n\nBased on the premises, we can deduce that the conclusion is indeed true, as Heinrich Scmidt serves as an example of a Nazi German politician who was part of both the Prussian State Parliament and the Nazi Reichstag.\n\nTherefore, the conclusion is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Heinrich Scmidt was a Nazi German politician.\n\nThis premise tells us that Heinrich Scmidt was a Nazi German politician, but it does not provide information about his membership in the Prussian State Parliament or the Nazi Reichstag.\n\nPremise 2: Heinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n\nThis premise provides more specific information about Heinrich Scmidt's membership in the Prussian State Parliament and the Nazi Reichstag.\n\nNow, let's consider the conclusion: Some Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag.\n\nThe conclusion is making a general statement about some Nazi German politician, but we only have information about one specific politician, Heinrich Scmidt.\n\nSince we have a specific example (Heinrich Scmidt) that satisfies the conclusion, we can infer that the conclusion is true. However, we cannot make any generalizations about all Nazi German politicians.\n\nTherefore, the conclusion is true, but it's based on a specific example. If we had no information about Heinrich Scmidt, we would consider the conclusion uncertain.\n\nSo, the conclusion is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_member(heinrich_schmidt) & nazi_reichstag_member(heinrich_schmidt)",
+          "z3_formula": "And(prussian_state_parliament_member_heinrich_schmidt, nazi_reichstag_member_heinrich_schmidt) == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some_nazi_german_politician(prussian_state_parliament_member, nazi_reichstag_member)",
+          "z3_formula": "Exists(X, And(nazi_german_politician_X, And(prussian_state_parliament_member_X, nazi_reichstag_member_X))) == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_member(heinrich_schmidt) & nazi_reichstag_member(heinrich_schmidt)",
+          "z3_formula": "And(prussian_state_parliament_member_heinrich_schmidt, nazi_reichstag_member_heinrich_schmidt) == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "prussian_state_parliament_member(X) & nazi_reichstag_member(X)",
+          "z3_formula": "And(prussian_state_parliament_member_X, nazi_reichstag_member_X) == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "member_of_prussian_state_parliament_and_nazi_reichstag(heinrich_schmidt)",
+          "z3_formula": "member_of_prussian_state_parliament_and_nazi_reichstag_heinrich_schmidt == True",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_heinrich_schmidt",
+          "z3_formula": "prussian_state_parliament_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nazi_reichstag_heinrich_schmidt",
+          "z3_formula": "nazi_reichstag_heinrich_schmidt == True",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_member(heinrich_schmidt)",
+          "z3_formula": "prussian_state_parliament_member_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nazi_reichstag_member(heinrich_schmidt)",
+          "z3_formula": "nazi_reichstag_member_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nazi_german_politician(heinrich_schmidt) & prussian_state_parliament_member(heinrich_schmidt) & nazi_reichstag_member(heinrich_schmidt)",
+          "z3_formula": "And(nazi_german_politician_heinrich_schmidt, prussian_state_parliament_member_heinrich_schmidt, nazi_reichstag_member_heinrich_schmidt) == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "Exists(X, nazi_german_politician(X) & prussian_state_parliament_member(X) & nazi_reichstag_member(X))",
+          "z3_formula": "Exists(X, And(nazi_german_politician_X, prussian_state_parliament_member_X, nazi_reichstag_member_X)) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "member_of_prussian_state_parliament_and_nazi_reichstag(heinrich_schmidt)",
+          "z3_formula": "member_of_prussian_state_parliament_and_nazi_reichstag_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some_nazi_german_politician_was_member_of_both",
+          "z3_formula": "Or(nazi_german_politician_heinrich_schmidt, member_of_prussian_state_parliament_and_nazi_reichstag_heinrich_schmidt)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_heinrich_schmidt",
+          "z3_formula": "nazi_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_heinrich_schmidt",
+          "z3_formula": "prussian_state_parliament_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nazi_reichstag_heinrich_schmidt",
+          "z3_formula": "nazi_reichstag_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nazi_reichstag_heinrich_schmidt & prussian_state_parliament_heinrich_schmidt",
+          "z3_formula": "And(nazi_reichstag_heinrich_schmidt, prussian_state_parliament_heinrich_schmidt) == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "some_nazi_politician_in_both",
+          "z3_formula": "some_nazi_politician_in_both == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_member_and_nazi_reichstag_member(heinrich_schmidt)",
+          "z3_formula": "prussian_state_parliament_member_and_nazi_reichstag_member_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some_nazi_german_politician_was_part_of_both_parliaments",
+          "z3_formula": "some_nazi_german_politician_was_part_of_both_parliaments == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_member(heinrich_schmidt)",
+          "z3_formula": "prussian_state_parliament_member_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nazi_reichstag_member(heinrich_schmidt)",
+          "z3_formula": "nazi_reichstag_member_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some_nazi_german_politician(prussian_state_parliament_member, nazi_reichstag_member)",
+          "z3_formula": "Or(And(nazi_german_politician_heinrich_schmidt, prussian_state_parliament_member_heinrich_schmidt, nazi_reichstag_member_heinrich_schmidt), Exists([X], And(nazi_german_politician(X), prussian_state_parliament_member(X), nazi_reichstag_member(X), Not(And(X == heinrich_schmidt))))",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_heinrich_schmidt",
+          "z3_formula": "nazi_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_heinrich_schmidt",
+          "z3_formula": "prussian_state_parliament_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nazi_reichstag_heinrich_schmidt",
+          "z3_formula": "nazi_reichstag_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some_nazi_politician_was_part_of_both",
+          "z3_formula": "some_nazi_politician_was_part_of_both == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_member(heinrich_schmidt) & nazi_reichstag_member(heinrich_schmidt)",
+          "z3_formula": "And(prussian_state_parliament_member_heinrich_schmidt, nazi_reichstag_member_heinrich_schmidt) == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(nazi_german_politician, prussian_state_parliament_member) & some(nazi_german_politician, nazi_reichstag_member)",
+          "z3_formula": "Or(nazi_german_politician_x == prussian_state_parliament_member_x, nazi_german_politician_x == nazi_reichstag_member_x)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nazi_german_politician(heinrich_schmidt)",
+          "z3_formula": "nazi_german_politician_heinrich_schmidt == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "prussian_state_parliament_member(heinrich_schmidt)",
+          "z3_formula": "prussian_state_parliament_member_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nazi_reichstag_member(heinrich_schmidt)",
+          "z3_formula": "nazi_reichstag_member_heinrich_schmidt == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(nazi_german_politician, prussian_state_parliament_member, nazi_reichstag_member)",
+          "z3_formula": "Exists(X, And(nazi_german_politician_X, prussian_state_parliament_member_X, nazi_reichstag_member_X)) == True",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 42,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 17
+    },
+    "maxsat_stats": {
+      "satisfied": 17,
+      "excluded": 0,
+      "total_weight": 38,
+      "solve_time_ms": 0.7717767730355263
+    },
+    "timing": {
+      "trace_gen_s": 4.454,
+      "extraction_s": 11.608,
+      "dedup_s": 0.192,
+      "maxsat_s": 0.002,
+      "total_s": 16.256
+    }
+  }
+}

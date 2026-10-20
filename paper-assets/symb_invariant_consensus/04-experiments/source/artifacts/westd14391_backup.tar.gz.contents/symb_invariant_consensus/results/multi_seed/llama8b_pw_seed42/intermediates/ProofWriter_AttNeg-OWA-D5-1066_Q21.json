@@ -1,0 +1,908 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1066_Q21",
+    "problem": "Bob is big. Charlie is furry. Charlie is kind. Charlie is smart. Fiona is furry. Fiona is young. Gary is smart. Big, smart things are kind. If something is red and not smart then it is kind. Smart things are furry. If something is red and big then it is furry. If Charlie is red then Charlie is kind. If something is kind then it is young. Young things are not red. If something is furry and smart then it is big.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not smart.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nKind($x, bool) ::: Is x kind?\nSmart($x, bool) ::: Is x smart?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nFurry(Charlie, True) ::: Charlie is furry.\nKind(Charlie, True) ::: Charlie is kind.\nSmart(Charlie, True) ::: Charlie is smart.\nFurry(Fiona, True) ::: Fiona is furry.\nYoung(Fiona, True) ::: Fiona is young.\nSmart(Gary, True) ::: Gary is smart.\n\nRules:\nBig($x, True) && Smart($x, True) >>> Kind($x, True) ::: Big, smart things are kind.\nRed($x, True) && Smart($x, False) >>> Kind($x, True) ::: If something is red and not smart then it is kind.\nSmart($x, True) >>> Furry($x, True) ::: Smart things are furry.\nRed($x, True) && Big($x, True) >>> Furry($x, True) ::: If something is red and big then it is furry.\nRed(Charlie, True) >>> Kind(Charlie, True) ::: If Charlie is red then Charlie is kind.\nKind($x, True) >>> Young($x, True) ::: If something is kind then it is young.\nYoung($x, True) >>> Red($x, False) ::: Young things are not red.\nFurry($x, True) && Smart($x, True) >>> Big($x, True) ::: If something is furry and smart then it is big.\n\nQuery:\nSmart(Fiona, False) ::: Fiona is not smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 89.0,
+      "Unknown": 104.0
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "False": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine the truth value of the statement \"Fiona is not smart,\" we need to analyze the given statements and their implications. We will use a process of elimination and logical deduction.\n\nGiven statements:\n1. Bob is big.\n2. Charlie is furry.\n3. Charlie is kind.\n4. Charlie is smart.\n5. Fiona is furry.\n6. Fiona is young.\n7. Gary is smart.\n8. Big, smart things are kind.\n9. If something is red and not smart then it is kind.\n10. Smart things are furry.\n11. If something is red and big then it is furry.\n12. If Charlie is red then Charlie is kind.\n13. If something is kind then it is young.\n14. Young things are not red.\n15. If something is furry and smart then it is big.\n\nNow, let's analyze the statement \"Fiona is not smart\" and the given statements:\n\nStatement to be evaluated: Fiona is not smart.\n\nFrom statement 6, we know that Fiona is young.\n\nFrom statement 13, if something is kind, then it is young. This does not provide any direct information about Fiona's kind or not kind nature, but it does confirm that Fiona being young is consistent with being kind.\n\nFrom statement 14, young things are not red. This does not provide any direct information about Fiona's color or smartness.\n\nFrom statement 10, smart things are furry. Since we are evaluating the statement \"Fiona is not smart,\" we need to consider if Fiona could be furry without being smart.\n\nFrom statement 15, if something is furry and smart then it is big. This does not provide any direct information about Fiona's size or smartness.\n\nFrom statement 5, we know that Fiona is furry. If Fiona were not smart, then this would imply that Fiona could be furry without being smart, which would contradict statement 15. However, statement 15 does not imply that Fiona must be big if she is furry, only that if she is both furry and smart, then she is big.\n\nNow, let's consider if Fiona could be furry and not smart. If Fiona is not smart, then she could still be furry (statement 5), and she would not be big (because statement 15 only implies that if she is furry and smart, then she is big, not that she must be big if she is furry).\n\nHowever, we also know from statement 10 that smart things are furry. This would imply that Fiona cannot be furry if she is not smart, unless there is another statement that implies that Fiona could be furry without being smart.\n\nFrom statement 15, we can infer that if something is furry and smart then it is big, which implies that furry and smart are related. However, statement 10 states that smart things are furry, which implies that smart and furry are related. This does not directly imply that Fiona could be furry without being smart.\n\nFrom statement 5, we know that Fiona is furry, and from statement 10, we know that smart things are furry. Since we are evaluating the statement \"Fiona is not smart,\" we need to determine if Fiona could be furry without being smart.\n\nThe key statement here is statement 5 (Fiona is furry) and statement 10 (smart things are furry). These two statements imply that if Fiona is furry, then she must be smart, unless there is another statement that implies that Fiona could be furry without being smart.\n\nHowever, there is another statement (statement 15) that implies that if something is furry and smart then it is big. This statement does not imply that Fiona must be big if she is furry, only that if she is both furry and smart, then she is big.\n\nNow, let's consider if there is any information that implies that Fiona could be furry without being smart.\n\nFrom statement 5, we know that Fiona is furry, and from statement 10, we know that smart things are furry. These two statements imply that if Fiona is furry, then she must be smart, unless there is another statement that implies that Fiona could be furry without being smart.\n\nHowever, we also know that Charlie is furry (statement 2), Charlie is smart (statement 4), and from statement 10, we know that smart things are furry. This implies that Charlie's furry nature is consistent with his smart nature.\n\nSince Charlie is a specific example of a furry thing that is also smart, we can infer that furry and smart are related. However, this does not directly imply that Fiona could be furry without being smart.\n\nThe key statement here is statement 5 (Fiona is furry) and statement 10 (smart things are furry). These two statements imply that if Fiona is furry, then she must be smart, unless there is another statement that implies that Fiona could be furry without being smart.\n\nHowever, there is another statement (statement 15) that implies that if something is furry and smart then it is big. This statement does not imply that Fiona must be big if she is furry, only that if she is both furry and smart, then she is big.\n\nNow, let's consider if there is any information that implies that Fiona could be furry without being smart.\n\nFrom statement 5, we know that Fiona is furry, and from statement 10, we know that smart things are furry. These two statements imply that if Fiona is furry, then she must be smart, unless there is another statement that implies that Fiona could be furry without being smart.\n\nHowever, there is no statement that directly implies that Fiona could be furry without being smart. Therefore, we cannot conclude that Fiona is not smart.\n\nSince we cannot conclude that Fiona is not smart, we cannot conclude that Fiona is smart either.\n\nTherefore, the truth value of the statement \"Fiona is not smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements to derive conclusions. \n\n1. Charlie is furry. (F1)\n2. Charlie is kind. (F2)\n3. Charlie is smart. (F3)\n4. Fiona is furry. (F4)\n5. Fiona is young. (F5)\n6. Gary is smart. (F6)\n7. Big, smart things are kind. (I1)\n8. If something is red and not smart then it is kind. (I2)\n9. Smart things are furry. (I3)\n10. If something is red and big then it is furry. (I4)\n11. If Charlie is red then Charlie is kind. (I5)\n12. If something is kind then it is young. (I6)\n13. Young things are not red. (I7)\n14. If something is furry and smart then it is big. (I8)\n\nNow, let's examine the statement: Fiona is not smart.\n\nTo determine whether Fiona is smart or not, we need to derive a conclusion about her being smart or not using the given statements.\n\nFrom F5 (Fiona is young), we know that young things are not red (I7). However, we cannot directly conclude anything about Fiona being smart or not. \n\nHowever, we can derive a conclusion about Fiona's color. Since young things are not red, Fiona cannot be red.\n\nNow, let's try to derive a conclusion about Fiona's smartness. From I3 (Smart things are furry) and F4 (Fiona is furry), we can conclude that Fiona is smart (using modus ponens).\n\nSo, we have derived that Fiona is smart, which contradicts the statement \"Fiona is not smart.\" \n\nTherefore, the statement \"Fiona is not smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve the problem, we will analyze the given statements and use them to determine whether the statement \"Fiona is not smart\" is true, false, or unknown.\n\nGiven statements:\n1. Bob is big.\n2. Charlie is furry.\n3. Charlie is kind.\n4. Charlie is smart.\n5. Fiona is furry.\n6. Fiona is young.\n7. Gary is smart.\n8. Big, smart things are kind.\n9. If something is red and not smart then it is kind.\n10. Smart things are furry.\n11. If something is red and big then it is furry.\n12. If Charlie is red then Charlie is kind.\n13. If something is kind then it is young.\n14. Young things are not red.\n15. If something is furry and smart then it is big.\n\nTo determine whether Fiona is not smart, we need to analyze the given statements.\n\nFrom statement 6, we know that Fiona is young.\n\nFrom statement 14, we know that young things are not red.\n\nWe cannot directly determine whether Fiona is smart or not from the given statements. \n\nHowever, we can use statement 5 (Fiona is furry) and statement 10 (Smart things are furry) to find a connection between Fiona being furry and Fiona being smart.\n\nStatement 10 says that smart things are furry. \n\nFrom statement 15, if something is furry and smart then it is big. However, we don't know if Fiona is big or not.\n\nStatement 8 says that big, smart things are kind. We already know that Charlie is kind from statement 3, and Charlie is smart from statement 4.\n\nStatement 9 says that if something is red and not smart then it is kind. However, we don't have any information about Fiona being red or not.\n\nFrom statement 12, if Charlie is red then Charlie is kind. This implies that Charlie being red is a condition for Charlie being kind. However, we cannot directly apply this to Fiona.\n\nWe cannot determine the truth of the statement \"Fiona is not smart\" based on the given information. The information provided does not give us enough data to conclude whether Fiona is smart or not.\n\nTherefore, the final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not smart\" is true, false, or unknown, we need to analyze the given premises and their implications. \n\n1. Fiona is furry. \n2. Fiona is young.\n\nFrom the given premises, we can derive some conclusions:\n\n1. Smart things are furry. (Premise)\n2. If something is furry and smart then it is big. (Premise)\n   From (1) and (2), we can conclude that Fiona is big.\n\n3. Young things are not red. (Premise)\n   From (2), we can conclude that Fiona is not red.\n\n4. If something is red and not smart then it is kind. (Premise)\n   Since Fiona is not red, we cannot apply this rule directly.\n\n5. Big, smart things are kind. (Premise)\n   We cannot conclude that Fiona is smart, but we can conclude that Fiona is big.\n\n6. If something is kind then it is young. (Premise)\n   This rule cannot be applied directly to Fiona, as we do not know if Fiona is kind.\n\n7. Charlie is smart. (Premise)\n   Charlie is not Fiona, so this statement does not provide information about Fiona's smartness.\n\n8. Charlie is furry. (Premise)\n   From this, we cannot conclude anything about Fiona.\n\n9. If Charlie is red then Charlie is kind. (Premise)\n   We cannot determine if Charlie is red or not.\n\n10. Fiona is furry. (Premise)\n    From this premise, we cannot conclude anything about Fiona that is not already known.\n\n11. Fiona is young. (Premise)\n    This premise does not provide any additional information about Fiona's smartness.\n\nSince we cannot conclude that Fiona is smart or not smart from the given premises, the statement \"Fiona is not smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following premises:\n\n- Bob is big.\n- Charlie is furry.\n- Charlie is kind.\n- Charlie is smart.\n- Fiona is furry.\n- Fiona is young.\n- Gary is smart.\n- Big, smart things are kind.\n- If something is red and not smart then it is kind.\n- Smart things are furry.\n- If something is red and big then it is furry.\n- If Charlie is red then Charlie is kind.\n- If something is kind then it is young.\n- Young things are not red.\n- If something is furry and smart then it is big.\n\n2. We need to apply the premises to determine whether Fiona is smart or not.\n\nFrom premise 6, we know that Fiona is furry. \n\nFrom premise 9, we know that smart things are furry.\n\nNow, we have two possible scenarios for Fiona:\n- Fiona is furry and smart (if Fiona is smart).\n- Fiona is furry but not smart.\n\nSince we don't know whether Fiona is smart or not, we can't conclude anything about the second scenario yet.\n\nFrom premise 5, we know that Fiona is young. \n\nFrom premise 13, we know that young things are not red.\n\nNow, we have two possible scenarios for Fiona:\n- Fiona is young and not red.\n- Fiona is young and red.\n\nAgain, we don't know whether Fiona is red or not yet.\n\nFrom premise 6, we know that Fiona is furry. \n\nFrom premise 7, we know that Gary is smart. \n\nFrom premise 9, we know that smart things are furry.\n\nThis tells us that Gary is furry because he is smart, but we don't know anything about Fiona being smart or red.\n\nHowever, from premise 3, we know that Charlie is smart, and from premise 9, we know that smart things are furry. \n\nSince we know Charlie is furry and smart, and from premise 14, we know that if something is furry and smart then it is big. \n\nThis tells us that Charlie is big.\n\nNow, from premise 8, we know that big, smart things are kind. \n\nSince Charlie is big and smart, we can conclude that Charlie is kind.\n\nFrom premise 4, we know that Charlie is kind. \n\nFrom premise 12, we know that if something is kind then it is young.\n\nSince Charlie is kind and young, we can conclude that Charlie is young.\n\nHowever, from premise 13, we know that young things are not red.\n\nThis tells us that Charlie is not red.\n\nFrom premise 11, we know that if Charlie is red then Charlie is kind.\n\nSince Charlie is not kind, we can conclude that Charlie is not red.\n\nNow, from premise 10, we know that if something is red and big then it is furry.\n\nSince Charlie is not red, we can't conclude anything about Charlie being furry or not.\n\nHowever, from premise 3, we know that Charlie is smart, and from premise 9, we know that smart things are furry. \n\nSince Charlie is furry and smart, we can conclude that Charlie is big.\n\nNow, from premise 14, we know that if something is furry and smart then it is big.\n\nThis tells us that Charlie is big because he is furry and smart.\n\nHowever, from premise 2, we know that big, smart things are kind.\n\nSince Charlie is big and smart, we can conclude that Charlie is kind.\n\nNow, from premise 3, we know that Charlie is kind. \n\nFrom premise 12, we know that if something is kind then it is young.\n\nSince Charlie is kind and young, we can conclude that Charlie is young.\n\nHowever, from premise 13, we know that young things are not red.\n\nThis tells us that Charlie is not red.\n\nNow, from premise 11, we know that if Charlie is red then Charlie is kind.\n\nSince Charlie is not kind, we can conclude that Charlie is not red.\n\nNow, from premise 10, we know that if something is red and big then it is furry.\n\nSince Charlie is not red, we can't conclude anything about Charlie being furry or not.\n\nHowever, from premise 9, we know that smart things are furry. \n\nFrom premise 3, we know that Charlie is smart. \n\nThis tells us that Charlie is furry because he is smart.\n\nHowever, from premise 14, we know that if something is furry and smart then it is big. \n\nThis tells us that Charlie is big because he is furry and smart.\n\nNow, from premise 2, we know that big, smart things are kind.\n\nSince Charlie is big and smart, we can conclude that Charlie is kind.\n\nNow, from premise 3, we know that Charlie is kind. \n\nFrom premise 12, we know that if something is kind then it is young.\n\nSince Charlie is kind and young, we can conclude that Charlie is young.\n\nHowever, from premise 13, we know that young things are not red.\n\nThis tells us that Charlie is not red.\n\nNow, from premise 11, we know that if Charlie is red then Charlie is kind.\n\nSince Charlie is not kind, we can conclude that Charlie is not red.\n\nNow, from premise 10, we know that if something is red and big then it is furry.\n\nSince Charlie is not red, we can't conclude anything about Charlie being furry or not.\n\nHowever, from premise 9, we know that smart things are furry. \n\nFrom premise 3, we know that Charlie is smart. \n\nThis tells us that Charlie is furry because he is smart.\n\nHowever, from premise 14, we know that if something is furry and smart then it is big. \n\nThis tells us that Charlie is big because he is furry and smart.\n\nNow, from premise 2, we know that big, smart things are kind.\n\nSince Charlie is big and smart, we can conclude that Charlie is kind.\n\nNow, from premise 3, we know that Charlie is kind. \n\nFrom premise 12, we know that if something is kind then it is young.\n\nSince Charlie is kind and young, we can conclude that Charlie is young.\n\nHowever, from premise 13, we know that young things are not red.\n\nThis tells us that Charlie is not red.\n\nNow, from premise 11, we know that if Charlie is red then Charlie is kind.\n\nSince Charlie is not kind, we can conclude that Charlie is not red.\n\nNow, from premise 10, we know that if something is red and big then it is furry.\n\nSince Charlie is not red, we can't conclude anything about Charlie being furry or not.\n\nHowever, from premise 9, we know that smart things are furry. \n\nFrom premise 3, we know that Charlie is smart. \n\nThis tells us that Charlie is furry because he is smart.\n\nHowever, from premise 14, we know that if something is furry and smart then it is big. \n\nThis tells us that Charlie is big because he is furry and smart.\n\nNow, from premise 2, we know that big, smart things are kind.\n\nSince Charlie is big and smart, we can conclude that Charlie is kind.\n\nNow, from premise 3, we know that Charlie is kind. \n\nFrom premise 12, we know that if something is kind then it is young.\n\nSince Charlie is kind and young, we can conclude that Charlie is young.\n\nHowever, from premise 13, we know that young things are not red.\n\nThis tells us that Charlie is not red.\n\nNow, from premise 11, we know that if Charlie is red then Charlie is kind.\n\nSince Charlie is not kind, we can conclude that Charlie is not red.\n\nNow, from premise 10, we know that if something is red and big then it is furry.\n\nSince Charlie is not red, we can't conclude anything about Charlie being furry or not.\n\nHowever, from premise 9, we know that smart things are furry. \n\nFrom premise 3, we know that Charlie is smart. \n\nThis tells us that Charlie is furry because he is smart.\n\nHowever, from premise 14, we know that if something is furry and smart then it is big. \n\nThis tells us that Charlie is big because he is furry and smart.\n\nNow, from premise 2, we know that big, smart things are kind.\n\nSince Charlie is big and smart, we can conclude that Charlie is kind.\n\nNow, from premise 3, we know that Charlie is kind. \n\nFrom premise 12, we know that if something is kind then it is young.\n\nSince Charlie is kind and young, we can conclude that Charlie is young.\n\nHowever, from premise 13, we know that young things are not red.\n\nThis tells us that Charlie is not red.\n\nNow, from premise 11, we know that if Charlie is red then Charlie is kind.\n\nSince Charlie is not kind, we can conclude that Charlie is not red.\n\nNow, from premise 10, we know that if something is red and big then it is furry.\n\nSince Charlie is not red, we can't conclude anything about Charlie being furry or not.\n\nHowever, from premise 9, we know that smart things are furry. \n\nFrom premise 3, we know that Charlie is smart. \n\nThis tells us that Charlie is furry because he is smart.\n\nHowever, from premise 14, we know that if something is furry and smart then it is big. \n\nThis tells us that Charlie is big because he is furry and smart.\n\nNow, from premise 2, we know that big, smart things are kind.\n\nSince Charlie is big and smart, we can conclude that Charlie is kind.\n\nNow, from premise 3, we know that Charlie is kind. \n\nFrom premise 12, we know that if something is kind then it is young.\n\nSince Charlie is kind and young, we can conclude that Charlie is young.\n\n",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Fiona is not smart, we need to analyze the given statements and their implications.\n\n1. Smart things are furry. (From statement 5)\n2. Fiona is furry. (From statement 3)\n   - Therefore, Fiona is smart. (From implication 1 and 2)\n\nNow, we need to evaluate the statement \"Fiona is not smart.\"\n\nFrom the above analysis, we know that Fiona is smart. Therefore, the statement \"Fiona is not smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. Big, smart things are kind. \n2. If something is red and not smart then it is kind.\n3. Smart things are furry.\n4. If something is red and big then it is furry.\n5. If Charlie is red then Charlie is kind.\n6. If something is kind then it is young.\n7. Young things are not red.\n8. If something is furry and smart then it is big.\n\nWe are asked to determine whether the statement \"Fiona is not smart\" is true, false, or unknown.\n\nFirst, let's analyze the given statements about Fiona:\n- Fiona is furry (statement 3 implies that smart things are furry, but statement 4 implies that if something is red and big then it is furry, so we cannot directly infer that Fiona is smart or not based on these statements alone)\n- Fiona is young (statement 6 implies that if something is kind then it is young, but we don't know if Fiona is kind or not yet)\n\nNow, let's examine the statement \"Fiona is not smart.\" To determine this, we need to find out if Fiona is smart or not.\n\nFrom statement 3, we know that smart things are furry, and since Fiona is furry, we can conclude that Fiona is smart (but this is an assumption, we have to verify it by other means).\n\nHowever, if we assume that Fiona is smart, then we can use statement 8, which says that if something is furry and smart then it is big. But we cannot determine if Fiona is big or not yet.\n\nNow, let's go back to the statement \"Fiona is not smart.\" If Fiona is not smart, then we can use statement 6, which says that if something is kind then it is young, and since Fiona is young, we can conclude that Fiona is kind.\n\nBut statement 2 says that if something is red and not smart then it is kind. If Fiona is kind, then she must be either red or not smart (or both). But statement 7 says that young things are not red, so Fiona cannot be red.\n\nTherefore, if Fiona is not smart, then she must be kind (because she is young), but this would imply that Fiona is not red, which is possible.\n\nHowever, we still cannot determine if the statement \"Fiona is not smart\" is true or false because we cannot rule out the possibility that Fiona is both smart and not red.\n\nNow, let's try to prove the statement \"Fiona is not smart\" is false. If Fiona is smart, then we can use statement 3, which says that smart things are furry, and since Fiona is furry, we can conclude that Fiona is smart.\n\nIf Fiona is smart, then we can use statement 8, which says that if something is furry and smart then it is big. But we cannot determine if Fiona is big or not yet.\n\nNow, let's go back to the statement \"Fiona is not smart.\" If Fiona is smart, then the statement \"Fiona is not smart\" is false.\n\nSince we cannot determine the truth value of the statement \"Fiona is not smart\" based on the given statements, we have to conclude that the statement is unknown.\n\nHowever, if we analyze the statements again, we can see that the only information we have about Fiona is that she is furry and young.\n\nIf Fiona is young, then we can use statement 6, which says that if something is kind then it is young, but we cannot determine if Fiona is kind or not yet.\n\nHowever, if we assume that Fiona is not smart, then we can use statement 6, which says that if something is kind then it is young, and since Fiona is young, we can conclude that Fiona is kind.\n\nBut statement 2 says that if something is red and not smart then it is kind. If Fiona is kind, then she must be either red or not smart (or both). But statement 7 says that young things are not red, so Fiona cannot be red.\n\nTherefore, if Fiona is not smart, then she must be kind (because she is young), but this would imply that Fiona is not red, which is possible.\n\nHowever, we still cannot determine if the statement \"Fiona is not smart\" is true or false because we cannot rule out the possibility that Fiona is both smart and not red.\n\nNow, let's try to prove the statement \"Fiona is not smart\" is false. If Fiona is smart, then we can use statement 3, which says that smart things are furry, and since Fiona is furry, we can conclude that Fiona is smart.\n\nIf Fiona is smart, then we can use statement 8, which says that if something is furry and smart then it is big. But we cannot determine if Fiona is big or not yet.\n\nHowever, since we have a statement that says \"If Charlie is red then Charlie is kind\" we can conclude that \"If Charlie is kind then Charlie is red\" does not hold.\n\nAlso, \"If Fiona is kind then Fiona is young\" and \"Young things are not red\" together implies \"If Fiona is kind then Fiona is not red\".",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not smart\" is true, false, or unknown, we need to use the given information and apply logical reasoning.\n\nGiven information:\n1. Charlie is furry. \n2. Charlie is kind.\n3. Charlie is smart.\n4. Fiona is furry.\n5. Fiona is young.\n6. Gary is smart.\n7. Big, smart things are kind.\n8. If something is red and not smart then it is kind.\n9. Smart things are furry.\n10. If something is red and big then it is furry.\n11. If Charlie is red then Charlie is kind.\n12. If something is kind then it is young.\n13. Young things are not red.\n14. If something is furry and smart then it is big.\n\nNow, let's analyze the statement \"Fiona is not smart\".\n\nTo determine the truth value of this statement, we need to find a contradiction with the given information.\n\nFrom statement 9, we know that smart things are furry. \nFrom statement 4, we know that Fiona is furry.\nFrom statement 14, we know that if something is furry and smart then it is big.\n\nSo, if Fiona is smart, then she must be furry (statement 9) and big (statement 14).\nFrom statement 12, if something is kind, then it is young. \nFrom statement 2, we know that Charlie is kind. \nFrom statement 5, we know that Fiona is young.\n\nNow, let's check for contradictions:\nIf Fiona is smart (and thus big), then she is kind (because big, smart things are kind, statement 7). \nIf Fiona is kind, then she must be young (statement 12), which is true (statement 5).\nHowever, if Fiona is young and smart, then she is big (statement 14), and since she is big, she must be kind (statement 7).\nThis creates a contradiction because we already know Charlie is kind (statement 2), and we also know that something that is kind is young (statement 12). \nHowever, there is no contradiction here between Fiona being young and Charlie being kind.\n\nNow, let's check another condition:\nFrom statement 13, we know that young things are not red.\nFrom statement 5, we know that Fiona is young.\nFrom statement 8, if something is red and not smart then it is kind.\nWe cannot conclude anything about Fiona's color from this information.\n\nNow, let's analyze another condition:\nIf Fiona is not smart, then she is not furry (because smart things are furry, statement 9).\nThis would mean that Fiona is not big (because furry and smart things are big, statement 14).\n\nHowever, if Fiona is not big, then she is not kind (because big, smart things are kind, statement 7).\nIf Fiona is not kind, then she is not young (because something that is kind is young, statement 12).\n\nBut we know that Fiona is young (statement 5). \nThis creates a contradiction because we assumed that Fiona is not young.\n\nSince we found a contradiction when we assumed that Fiona is not smart, we can conclude that the statement \"Fiona is not smart\" is false.\n\nHowever, let's check one more condition:\nWe cannot conclude anything about Fiona's color from the information given.\n\nNow, let's try to prove that Fiona is smart.\nFrom statement 9, we know that smart things are furry.\nFrom statement 4, we know that Fiona is furry.\nFrom statement 14, we know that if something is furry and smart then it is big.\n\nSo, if Fiona is smart, then she must be furry (statement 9) and big (statement 14).\nFrom statement 12, if something is kind, then it is young. \nFrom statement 2, we know that Charlie is kind. \nFrom statement 5, we know that Fiona is young.\n\nNow, let's check for contradictions:\nIf Fiona is smart (and thus big), then she is kind (because big, smart things are kind, statement 7). \nIf Fiona is kind, then she must be young (statement 12), which is true (statement 5).\nHowever, if Fiona is young and smart, then she is big (statement 14), and since she is big, she must be kind (statement 7).\nThis creates a contradiction because we already know Charlie is kind (statement 2), and we also know that something that is kind is young (statement 12). \nHowever, there is no contradiction here between Fiona being young and Charlie being kind.\n\nNow, let's check another condition:\nFrom statement 13, we know that young things are not red.\nFrom statement 5, we know that Fiona is young.\nFrom statement 8, if something is red and not smart then it is kind.\nWe cannot conclude anything about Fiona's color from this information.\n\nNow, let's analyze another condition:\nIf Fiona is not smart, then she is not furry (because smart things are furry, statement 9).\nThis would mean that Fiona is not big (because furry and smart things are big, statement 14).\n\nHowever, if Fiona is not big, then she is not kind (because big, smart things are kind, statement 7).\nIf Fiona is not kind, then she is not young (because something that is kind is young, statement 12).\n\nBut we know that Fiona is young (statement 5). \nThis creates a contradiction because we assumed that Fiona is not young.\n\nHowever, there is one condition that we haven't checked yet:\nFrom statement 3, we know that Charlie is smart.\nFrom statement 10, if something is red and big then it is furry.\nFrom statement 11, if Charlie is red then Charlie is kind.\nWe don't have any information that Charlie is red.\n\nFrom statement 9, we know that smart things are furry.\nFrom statement 4, we know that Fiona is furry.\nFrom statement 14, we know that if something is furry and smart then it is big.\n\nSo, if Fiona is smart, then she must be furry (statement 9) and big (statement 14).\nFrom statement 12, if something is kind, then it is young. \nFrom statement 2, we know that Charlie is kind. \nFrom statement 5, we know that Fiona is young.\n\nNow, let's check for contradictions:\nIf Fiona is smart (and thus big), then she is kind (because big, smart things are kind, statement 7). \nIf Fiona is kind, then she must be young (statement 12), which is true (statement 5).\nHowever, if Fiona is young and smart, then she is big (statement 14), and since she is big, she must be kind (statement 7).\nThis creates a contradiction because we already know Charlie is kind (statement 2), and we also know that something that is kind is young (statement 12). \nHowever, there is no contradiction here between Fiona being young and Charlie being kind.\n\nNow, let's check another condition:\nFrom statement 13, we know that young things are not red.\nFrom statement 5, we know that Fiona is young.\nFrom statement 8, if something is red and not smart then it is kind.\nWe cannot conclude anything about Fiona's color from this information.\n\nNow, let's analyze another condition:\nIf Fiona is not smart, then she is not furry (because smart things are furry, statement 9).\nThis would mean that Fiona is not big (because furry and smart things are big, statement 14).\n\nHowever, if Fiona is not big, then she is not kind (because big, smart things are kind, statement 7).\nIf Fiona is not kind, then she is not young (because something that is kind is young, statement 12).\n\nBut we know that Fiona is young (statement 5). \nThis creates a contradiction because we assumed that Fiona is not young.\n\nHowever, there is one condition that we haven't checked yet:\nFrom statement 3, we know that Charlie is smart.\nFrom statement 10, if something is red and big then it is furry.\nFrom statement 11, if Charlie is red then Charlie is kind.\nWe don't have any information that Charlie is red.\n\nNow, let's try to prove that Fiona is smart using another condition:\nFrom statement 6, we know that Gary is smart.\nFrom statement 9, we know that smart things are furry.\nFrom statement 4, we know that Fiona is furry.\nFrom statement 14, we know that if something is furry and smart then it is big.\n\nSo, if Fiona is smart, then she must be furry (statement 9) and big (statement 14).\nFrom statement 12, if something is kind, then it is young. \nFrom statement 2, we know that Charlie is kind. \nFrom statement 5, we know that Fiona is young.\n\nNow, let's check for contradictions:\nIf Fiona is smart (and thus big), then she is kind (because big, smart things are kind, statement 7). \nIf Fiona is kind, then she must be young (statement 12), which is true (statement 5).\nHowever, if Fiona is young and smart, then she is big (statement 14), and since she is big, she must be kind (statement 7).\nThis creates a contradiction because we already know Charlie is kind (statement 2), and we also know that something that is kind is young (statement 12). \nHowever, there is no contradiction here between Fiona being young and Charlie being kind.\n\nNow, let's check another condition:\nFrom statement 13, we know that young things are not red.\nFrom statement 5, we know that Fiona is young.\nFrom statement 8, if something is red and not smart then it is kind.\nWe cannot conclude anything about Fiona's color from this information.\n\nNow, let",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is furry. (Given)\n2. Smart things are furry. (From the given information)\n   - Since Fiona is furry, we can conclude that Fiona is smart. However, we also need to consider other information related to Fiona.\n3. Fiona is young. (Given)\n   - Since Fiona is young, we can conclude that Fiona is kind. (From the given information: If something is kind then it is young.)\n4. Fiona is not red. (From the given information: Young things are not red.)\n\nNow, considering the statement \"Fiona is not smart\":\n- From step 1, we know Fiona is furry.\n- From step 2, we know that smart things are furry. So, Fiona being furry implies that Fiona is smart.\n\nHowever, we also have the following information:\n\n- From step 3, we know Fiona is young, and from step 4, we know Fiona is not red. We also know that young things are kind (step 3), and if something is kind then it is young (step 3). But there's also information about red and kind things (from the given information). But, we can't conclude Fiona's smartness from the information about kind and young things being related to red things, because Fiona is not red.\n\nSo, our initial conclusion from step 2 that Fiona is smart, stands.\n\nTherefore, the statement \"Fiona is not smart\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the properties of the objects (Bob, Charlie, Fiona, Gary).\n\nGiven statements:\n\n1. Bob is big.\n2. Charlie is furry.\n3. Charlie is kind.\n4. Charlie is smart.\n5. Fiona is furry.\n6. Fiona is young.\n7. Gary is smart.\n8. Big, smart things are kind.\n9. If something is red and not smart then it is kind.\n10. Smart things are furry.\n11. If something is red and big then it is furry.\n12. If Charlie is red then Charlie is kind.\n13. If something is kind then it is young.\n14. Young things are not red.\n15. If something is furry and smart then it is big.\n\nNow, let's analyze the statement \"Fiona is not smart.\"\n\nTo determine whether this statement is true, false, or unknown, we need to analyze the given statements and apply them to Fiona.\n\nFrom statement 10, we know that smart things are furry. Since Fiona is furry (statement 5), we can conclude that Fiona might be smart.\n\nHowever, statement 15 says that if something is furry and smart then it is big. Since Fiona is furry (statement 5), we can conclude that Fiona might be big.\n\nFrom statement 14, we know that young things are not red. Since Fiona is young (statement 6), we can conclude that Fiona is not red.\n\nFrom statement 9, we know that if something is red and not smart then it is kind. Since Fiona is not red (from statement 14), we cannot apply this statement to Fiona.\n\nFrom statement 8, we know that big, smart things are kind. Since Fiona might be big (from statement 15) and might be smart (from statement 10), we cannot determine whether Fiona is kind or not.\n\nFrom statement 13, we know that if something is kind then it is young. However, we cannot determine whether Fiona is kind or not, so we cannot conclude that Fiona is young.\n\nTherefore, we cannot determine whether Fiona is not smart, so the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not smart\" is true, false, or unknown, we need to analyze the given information and the logical implications.\n\nGiven information:\n1. Charlie is furry.\n2. Charlie is kind.\n3. Charlie is smart.\n4. Fiona is furry.\n5. Fiona is young.\n6. Gary is smart.\n7. Big, smart things are kind.\n8. If something is red and not smart then it is kind.\n9. Smart things are furry.\n10. If something is red and big then it is furry.\n11. If Charlie is red then Charlie is kind.\n12. If something is kind then it is young.\n13. Young things are not red.\n14. If something is furry and smart then it is big.\n\nWe need to analyze the given information to find any logical implications related to Fiona's smartness.\n\nFrom statements 9 and 14, we can deduce that if something is furry and smart, then it is big. Since Fiona is furry (statement 4) and we don't know if she is smart or not, we cannot directly determine her size based on the given information.\n\nFrom statement 9, we know that smart things are furry. Since Fiona is furry (statement 4), it implies that Fiona might be smart, but we cannot confirm this with certainty.\n\nHowever, there is a logical implication that can be derived from statement 13: \"Young things are not red.\" Since Fiona is young (statement 5), it implies that Fiona is not red.\n\nNow, let's analyze the given information to see if we can find any other logical implications related to Fiona's smartness. From statement 12, we know that if something is kind, then it is young. Since Fiona is young (statement 5), it implies that Fiona might be kind.\n\nFrom statement 8, we know that if something is red and not smart then it is kind. Since Fiona is not red (derived from statement 13) and we are given the statement \"Fiona is not smart\" to evaluate, we cannot directly determine Fiona's kind nature based on this statement.\n\nHowever, let's evaluate the statement \"Fiona is not smart\" based on the given information. If Fiona is not smart, then from statement 9, we know that she cannot be furry. But Fiona is furry (statement 4), which contradicts the given information.\n\nBased on the analysis, we can conclude that the statement \"Fiona is not smart\" is false because if Fiona is not smart, it contradicts the given information that she is furry.\n\nHowever, since we cannot confirm that Fiona is smart or not with certainty, we could also say that the statement \"Fiona is not smart\" is false, but we could also be unsure about whether Fiona is smart or not, making the statement's truth value uncertain.\n\nBut based on the information we have, and the fact that we can prove that \"Fiona is not smart\" is false, the answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not smart\" is true, false, or unknown, we need to analyze the given statements and use logical deductions.\n\n1. Smart things are furry.\n   - This statement can be represented as F(S) = T, where F(S) means \"furry\" and \"smart\" (F and S), and T means true.\n\n2. If something is furry and smart then it is big.\n   - This statement can be represented as B(F(S)) = T, where B(F(S)) means \"big\" and \"furry\" and \"smart\" (B, F, and S), and T means true.\n\n3. Big, smart things are kind.\n   - This statement can be represented as K(B(S)) = T, where K(B(S)) means \"kind\" and \"big\" and \"smart\" (K, B, and S), and T means true.\n\n4. Fiona is furry.\n   - This statement can be represented as F(Fiona) = T.\n\n5. Fiona is young.\n   - This statement can be represented as Y(Fiona) = T.\n\nNow, let's analyze the given statement: \"Fiona is not smart.\"\n- If Fiona is not smart, then it is possible that Fiona is either young (Y(Fiona) = T) or not young (Y(Fiona) = F).\n  If Fiona is young, then Fiona is kind (K(Y(Fiona)) = T).\n  If Fiona is not young, then we need to analyze this further.\n\nFrom statement 1, we know that smart things are furry. But we don't know if Fiona is smart or not. However, we know that if Fiona is furry and smart, then Fiona is big (statement 2).\nIf Fiona is big, then Fiona is kind (statement 3).\nHowever, we also know that if something is kind, then it is young (statement 4).\nThis creates a loop and we cannot determine if Fiona is smart or not.\n\nTherefore, based on the given statements and logical deductions, the statement \"Fiona is not smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_bob, smart_bob), kind_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & Not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(red_X, Not(smart_X)), kind_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_X, big_X), furry_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_X, young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> Not(red(X))",
+          "z3_formula": "Implies(young_X, Not(red_X))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_X, smart_X), big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == False",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == Unknown",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_X, smart_X), kind_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & Not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(red_X, Not(smart_X)), kind_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_X, big_X), furry_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> red(X)",
+          "z3_formula": "Implies(kind_X, red_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_X, young_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> Not(red(X))",
+          "z3_formula": "Implies(young_X, Not(red_X))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_X, smart_X), big_X)",
+          "source_step": 14
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_fiona, furry_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_fiona, smart_fiona), big_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> Not(red(X))",
+          "z3_formula": "Implies(young_fiona, Not(red_fiona))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(red(fiona))",
+          "z3_formula": "Not(red_fiona) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & Not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(red_fiona, Not(smart_fiona)), kind_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(smart(fiona))",
+          "z3_formula": "Not(smart_fiona) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_fiona, smart_fiona), kind_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_charlie, kind_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_gary, smart_gary), kind_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & Not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(red_charlie, Not(smart_charlie)), kind_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_charlie, furry_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_charlie, big_charlie), furry_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_charlie, young_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> Not(red(X))",
+          "z3_formula": "Implies(young_charlie, Not(red_charlie))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_charlie, smart_charlie), big_charlie)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_fiona, furry_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_fiona, young_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> Not(red(X))",
+          "z3_formula": "Implies(young_fiona, Not(red_fiona))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & Not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(red_fiona, Not(smart_fiona)), kind_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_fiona, furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_fiona, smart_fiona), big_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> Not(smart(X))",
+          "z3_formula": "Implies(kind_fiona, Not(smart_fiona))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_fiona, smart_fiona), big_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(smart(fiona))",
+          "z3_formula": "Not(smart_fiona)",
+          "source_step": 9
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_fiona, furry_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_fiona, young_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not red(fiona)",
+          "z3_formula": "not red_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_fiona, young_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not red(X) -> not kind(X)",
+          "z3_formula": "Implies(And(young_fiona, Not(red_fiona)), Not(kind_fiona))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(fiona)",
+          "z3_formula": "Not(smart_fiona) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_bob, smart_bob), kind_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & Not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(red_X, Not(smart_X)), kind_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_X, big_X), furry_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> red(X)",
+          "z3_formula": "Implies(kind_X, red_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_X, young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> Not(red(X))",
+          "z3_formula": "Implies(young_X, Not(red_X))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_X, smart_X), big_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_X, smart_X), kind_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & Not(smart(X)) -> kind(X)",
+          "z3_formula": "Implies(And(red_X, Not(smart_X)), kind_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_X, furry_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(red_X, big_X), furry_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(charlie) -> kind(charlie)",
+          "z3_formula": "Implies(red_charlie, kind_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_X, young_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> Not(red(X))",
+          "z3_formula": "Implies(young_X, Not(red_X))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_X, smart_X), big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "Not(smart(fiona))",
+          "z3_formula": "Not(smart_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Not(red(fiona))",
+          "z3_formula": "Not(red_fiona)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona) & Not(smart(fiona))",
+          "z3_formula": "And(furry_fiona, Not(smart_fiona))",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "Not(furry(fiona) & Not(smart(fiona)))",
+          "z3_formula": "Not(And(furry_fiona, Not(smart_fiona)))",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "Not(Not(smart(fiona)))",
+          "z3_formula": "Not(Not(smart_fiona))",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "Not(smart(fiona)) == False",
+          "z3_formula": "Not(smart_fiona) == False",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_fiona, smart_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_fiona, smart_fiona), big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_fiona, kind_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_fiona, young_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(fiona)",
+          "z3_formula": "Not(smart_fiona) == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 130,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 48
+    },
+    "maxsat_stats": {
+      "satisfied": 45,
+      "excluded": 3,
+      "total_weight": 122,
+      "solve_time_ms": 1.8650321289896965
+    },
+    "timing": {
+      "trace_gen_s": 24.707,
+      "extraction_s": 36.024,
+      "dedup_s": 1.277,
+      "maxsat_s": 0.005,
+      "total_s": 62.012
+    }
+  }
+}

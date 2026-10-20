@@ -1,0 +1,998 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-532_Q21",
+    "problem": "Anne is furry. Anne is rough. Bob is cold. Bob is green. Bob is red. Gary is cold. Gary is quiet. Gary is red. Harry is not cold. Harry is red. Red things are not kind. If something is cold and not furry then it is not kind. Green, rough things are quiet. If something is furry and cold then it is quiet. If Bob is furry then Bob is green. Rough things are green. If something is kind and not furry then it is green. All quiet things are cold. Cold things are red.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not rough.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nRough($x, bool) ::: Is x rough?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nQuiet($x, bool) ::: Is x quiet?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nRough(Anne, True) ::: Anne is rough.\nCold(Bob, True) ::: Bob is cold.\nGreen(Bob, True) ::: Bob is green.\nRed(Bob, True) ::: Bob is red.\nCold(Gary, True) ::: Gary is cold.\nQuiet(Gary, True) ::: Gary is quiet.\nRed(Gary, True) ::: Gary is red.\nCold(Harry, False) ::: Harry is not cold.\nRed(Harry, True) ::: Harry is red.\n\nRules:\nRed($x, True) >>> Kind($x, False) ::: Red things are not kind.\nCold($x, True) && Furry($x, False) >>> Kind($x, False) ::: If something is cold and not furry then it is not kind.\nGreen($x, True) && Rough($x, True) >>> Quiet($x, True) ::: Green, rough things are quiet.\nFurry($x, True) && Cold($x, True) >>> Quiet($x, True) ::: If something is furry and cold then it is quiet.\nFurry(Bob, True) >>> Green(Bob, True) ::: If Bob is furry then Bob is green.\nRough($x, True) >>> Green($x, True) ::: Rough things are green.\nKind($x, True) && Furry($x, False) >>> Green($x, True) ::: If something is kind and not furry then it is green.\nQuiet($x, True) >>> Cold($x, True) ::: All quiet things are cold.\nCold($x, True) >>> Red($x, True) ::: Cold things are red.\n\nQuery:\nRough(Harry, False) ::: Harry is not rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 67.0,
+      "Unknown": 120.0
+    },
+    "answer_counts": {
+      "True": 4,
+      "Unknown": 7
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. We know that Harry is red. (From the given information)\n2. We know that red things are not kind. (From the given information)\n3. We also know that rough things are green. (From the given information)\n4. But we cannot directly determine whether Harry is rough or not. However, we can infer that if Harry is rough, then he would be green. (From the given information)\n5. Since Harry is red and not green, we can conclude that Harry is not rough. \n\nTherefore, the statement \"Harry is not rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Given facts:\n   - Anne is furry.\n   - Anne is rough.\n   - Bob is cold.\n   - Bob is green.\n   - Bob is red.\n   - Gary is cold.\n   - Gary is quiet.\n   - Gary is red.\n   - Harry is not cold.\n   - Harry is red.\n   - Red things are not kind.\n   - If something is cold and not furry then it is not kind.\n   - Green, rough things are quiet.\n   - If something is furry and cold then it is quiet.\n   - If Bob is furry then Bob is green.\n   - Rough things are green.\n   - If something is kind and not furry then it is green.\n   - All quiet things are cold.\n   - Cold things are red.\n\n2. Deduction:\n   - From \"Harry is not cold\" and \"Cold things are red,\" we can conclude that Harry is not red, which contradicts the fact that \"Harry is red.\" However, we can resolve this contradiction by finding that Harry cannot be red because he is not cold. Instead, we find that \"Harry is red\" is true due to the fact that \"Harry is red\" being directly stated in the problem, not the fact that \"Harry is not cold\" being true. \n   - From \"Harry is red\" and \"Red things are not kind,\" we can conclude that Harry is not kind.\n   - From \"If something is kind and not furry then it is green,\" we cannot directly conclude that Harry is green since we have already established that Harry is not kind.\n\n3. To determine whether Harry is rough or not, we need to analyze the given information again.\n   - We know that \"Red things are red\" does not give us any additional information.\n   - We also know that \"Harry is not cold\" and \"Cold things are red\" does not give us any information about Harry being rough or not.\n   - However, we know that \"If something is furry and cold then it is quiet\" does not give us any information about Harry being rough or not.\n   - We also know that \"All quiet things are cold\" does not give us any information about Harry being rough or not.\n   - We also know that \"Gary is quiet\" and \"Gary is red\" and \"Gary is cold\" does not give us any information about Harry being rough or not.\n   - We also know that \"Bob is red\" and \"Bob is green\" and \"Bob is cold\" does not give us any information about Harry being rough or not.\n   - We also know that \"Anne is furry\" and \"Anne is rough\" does not give us any information about Harry being rough or not.\n   - However, we know that \"Rough things are green\" does not give us any information about Harry being rough or not.\n   - We also know that \"Green, rough things are quiet\" does not give us any information about Harry being rough or not.\n   - We also know that \"Harry is not cold\" and \"Cold things are red\" does not give us any information about Harry being rough or not.\n   - However, we know that \"If something is kind and not furry then it is green\" does not give us any information about Harry being rough or not.\n   - We also know that \"Harry is not cold\" and \"If something is cold and not furry then it is not kind\" does not give us any information about Harry being rough or not.\n   - However, we know that \"Harry is not kind\" and \"If something is kind and not furry then it is green\" does not give us any information about Harry being rough or not.\n   - We also know that \"Harry is not kind\" and \"Red things are not kind\" does not give us any information about Harry being rough or not.\n\n4. However, we know that \"Harry is red\" and \"If something is cold and not furry then it is not kind\" does not give us any information about Harry being rough or not. But from \"Harry is not cold\" we can conclude that \"Harry is not furry\" because it is a \"not cold\" thing and from \"If something is cold and not furry then it is not kind\" we can conclude that Harry is not kind and we already know that \"If something is kind and not furry then it is green\" and from \"Harry is not kind\" we can conclude that Harry is not green and from \"If Bob is furry then Bob is green\" we can conclude that Harry is not green, because we already know that Harry is not furry and Bob is not Harry.\n   - We also know that \"Harry is not kind\" and \"Red things are not kind\" does not give us any information about Harry being rough or not. But from \"Harry is red\" we can conclude that Harry is not green because it is a \"Red thing\" and from \"Red things are not kind\" we can conclude that Harry is not kind and from \"If something is kind and not furry then it is green\" we can conclude that Harry is not green. And we know that \"Harry is not kind\" and \"If something is kind and not furry then it is green\" does not give us any information about Harry being rough or not. But from \"Harry is not kind\" we can conclude that Harry is not green because it is a \"not kind\" thing and from \"If Bob is furry then Bob is green\" we can conclude that Harry is not green, because we already know that Bob is not Harry.\n   - However, we also know that \"Harry is red\" and \"Red things are not kind\" does not give us any information about Harry being rough or not. But from \"Harry is red\" we can conclude that Harry is not green because it is a \"Red thing\" and from \"Rough things are green\" we can conclude that Harry is not rough because it is a \"not green\" thing.\n\n5. Conclusion:\n   From the given information and the analysis above, we can conclude that \"Harry is not rough.\"",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given information:\n\n1. Harry is red.\n2. Red things are not kind.\n3. Harry is not cold.\n\nNow, let's consider the properties of rough and furry things.\n\n1. Rough things are green.\n2. If something is furry and cold then it is quiet, but this doesn't necessarily mean Harry is quiet or furry.\n3. If Bob is furry then Bob is green, but this is about Bob, not Harry.\n4. All quiet things are cold, and if something is cold and not furry then it is not kind, but this doesn't give us any information about Harry.\n\nNow, let's look at the properties of green and quiet things.\n\n1. Green, rough things are quiet, but we don't know if Harry is quiet or rough.\n2. If something is kind and not furry then it is green, but we don't know if Harry is kind or furry.\n\nNow, let's consider the properties of Bob and Gary.\n\n1. Bob is cold.\n2. Bob is green.\n3. Bob is red.\n4. Gary is cold.\n5. Gary is quiet.\n6. Gary is red.\n\nWe can conclude that Bob is red, which means Bob is not green. However, we are given that \"If Bob is furry then Bob is green\", and since we know Bob is red, it is possible that Bob is not furry.\n\nHowever, since we are given that \"Rough things are green\" and \"Bob is red\", it is possible that Bob is rough, but we cannot conclude that Bob is furry or not.\n\nNow, let's go back to the statement \"Harry is not rough\". Since we don't have enough information to conclude whether Harry is rough or not, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information and use the rules provided to deduce the possible characteristics of Harry.\n\n1. Harry is red. \n   This information is directly provided.\n\n2. Red things are not kind. \n   Since Harry is red and kind is not defined for Harry yet, we cannot conclude anything from this statement directly.\n\n3. If something is cold and not furry then it is not kind. \n   This information is not directly related to Harry yet.\n\n4. Harry is not cold. \n   This information is not directly provided, so we need to consider other statements to deduce it.\n\n5. Gary is cold. \n   Since Gary is cold, and all quiet things are cold, we can conclude that Gary is quiet.\n\n6. Gary is quiet. \n   This is directly given.\n\n7. Gary is red. \n   This is directly given.\n\n8. Gary is not furry. \n   We don't have enough information to conclude this yet.\n\n9. Gary is cold. \n   This is directly given.\n\n10. If something is cold and not furry then it is not kind. \n    Since Gary is cold and not furry, we can conclude that Gary is not kind.\n\n11. Since Gary is cold, Harry must be cold or not cold. \n    However, we cannot conclude Harry's kind or furry status from this yet.\n\n12. If something is furry and cold then it is quiet. \n    This information is not directly related to Harry yet.\n\n13. All quiet things are cold. \n    We already concluded that Harry cannot be quiet.\n\n14. Bob is red. \n   This is directly given.\n\n15. Bob is cold. \n   This is directly given.\n\n16. If Bob is furry then Bob is green. \n   Since Bob is red, we cannot conclude this.\n\n17. If Bob is green then Bob is rough. \n   Since Bob is red and rough things are green, we cannot conclude this.\n\n18. If something is kind and not furry then it is green. \n   This information is not directly related to Harry yet.\n\n19. Anne is furry. \n   Since Anne is furry and not cold, we cannot conclude that Anne is quiet.\n\n20. Anne is rough. \n   Since rough things are green, we can conclude that Anne is green.\n\n21. Since Anne is green and rough, we can conclude that Anne is quiet. \n    But this is not related to Harry.\n\n22. Harry is red. \n   This is directly given.\n\n23. Since Harry is red and red things are cold, we can conclude that Harry is cold. \n    This is because Harry is red, and red things are cold.\n\n24. Since Harry is cold, we can conclude that Harry is kind or not kind. \n    We don't know Harry's kind status yet.\n\n25. Since Harry is cold, we can conclude that Harry is not rough or rough. \n    We don't know Harry's rough status yet.\n\n26. If something is furry and cold then it is quiet. \n   Since Harry is cold, we can conclude that Harry is furry or not furry. \n\n27. If Harry is furry, then Harry is quiet. \n   We know that Harry is not quiet.\n\n28. Since Harry is not quiet, we can conclude that Harry is not furry. \n   Therefore, Harry is not cold and furry.\n\n29. Since Harry is red and red things are cold, we can conclude that Harry is cold or not cold. \n\n30. Since Harry is not cold and furry, we can conclude that Harry is not cold.\n\n31. Since Harry is red, we can conclude that Harry is not kind. \n    We already knew this.\n\n32. Since Harry is not cold, we can conclude that Harry is not kind or kind. \n\n33. If something is kind and not furry then it is green. \n   Since Harry is not kind and not furry, we cannot conclude this.\n\n34. Since Harry is not cold, we can conclude that Harry is not rough or rough. \n    We know that Harry is not rough.\n\nBased on steps 24, 32, and 34, we can conclude that Harry is not rough.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to use the given premises and infer information about Harry.\n\n1. Harry is red. (Premise)\n2. Red things are not kind. (Premise)\n3. If something is kind and not furry then it is green. (Premise)\n   - From this premise, we can infer that Harry is not kind because he is red, so he is not green.\n4. If something is furry and cold then it is quiet. (Premise)\n   - We don't have any information about Harry being furry or cold, so we cannot infer his quietness from this premise.\n5. All quiet things are cold. (Premise)\n   - Since we don't know whether Harry is quiet or not, we cannot infer his temperature.\n6. Cold things are red. (Premise)\n   - This premise is consistent with our previous conclusion that Harry is red, but it doesn't provide any new information about Harry.\n7. Gary is red. (Premise)\n   - This premise doesn't provide any information about Harry.\n8. If Bob is furry then Bob is green. (Premise)\n   - This premise doesn't provide any information about Harry.\n9. Green, rough things are quiet. (Premise)\n   - This premise doesn't provide any information about Harry.\n\nNow, let's analyze the remaining premises to determine whether Harry is rough or not.\n\n1. Harry is not cold. (Inference from \"Harry is not cold\" is not mentioned in the premises, but we can say that Harry is not cold because he is red and red things are cold, but there is another premise that says \"Red things are not kind\" but \"If something is cold and not furry then it is not kind\" therefore, Harry is not cold because he is red and not kind because he is red, but this is a bit complex so we can simply say Harry is not cold because red things are cold but this can be false because we cannot directly conclude this from the premises, however, if we consider \"Harry is red\" and \"Red things are cold\" then \"Harry is red\" and \"Red things are cold\" can be true or false. But considering \"If something is kind and not furry then it is green\" we can infer that Harry is not kind because he is red and \"Red things are cold\" and \"Cold things are red\" therefore we can conclude Harry is red but we cannot directly conclude Harry is not cold because \"Harry is red\" is true and \"Red things are cold\" is true but we cannot say that Harry is cold, therefore, we can say Harry is not cold from the premise \"Harry is not cold\" is not mentioned in the premises but we can say this from the premises)\n2. Since Harry is not cold and \"If something is cold and not furry then it is not kind\" is true, we can infer that Harry is not kind.\n3. Since Harry is not kind and \"If something is kind and not furry then it is green\" is true, we can infer that Harry is not green.\n4. Now, let's consider the premise \"Rough things are green.\" Since Harry is not green, we can infer that Harry is not rough.\n\nBased on the given premises and our inferences, we can conclude that Harry is not rough.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know:\n   - Anne is furry.\n   - Anne is rough.\n   - Bob is cold.\n   - Bob is green.\n   - Bob is red.\n   - Gary is cold.\n   - Gary is quiet.\n   - Gary is red.\n   - Harry is not cold.\n   - Harry is red.\n   - Red things are not kind.\n   - If something is cold and not furry then it is not kind.\n   - Green, rough things are quiet.\n   - If something is furry and cold then it is quiet.\n   - If Bob is furry then Bob is green.\n   - Rough things are green.\n   - If something is kind and not furry then it is green.\n   - All quiet things are cold.\n   - Cold things are red.\n\n2. We need to determine the value of \"Rough\" for Harry. To do this, we should look for any relationships that involve \"Rough\" and \"Harry\".\n\n3. Since \"Rough\" is not directly mentioned in relation to Harry, we need to look at other characteristics that might lead us to a conclusion. \n\n4. We know that Harry is red. From the given information, we also know that \"Cold things are red.\" This implies that Harry might be cold, but we cannot be certain because we do not know if Harry is furry.\n\n5. Since we do not know if Harry is furry, we cannot conclude if Harry is quiet or not (because \"If something is furry and cold then it is quiet.\").\n\n6. However, since Harry is not cold (according to the given information), we can use the rule \"If something is cold and not furry then it is not kind.\" This implies that Harry might be kind because it is not cold.\n\n7. If Harry is kind and not furry, then according to the given information, \"If something is kind and not furry then it is green.\" This would mean Harry is green, but this does not provide any information about Harry being rough.\n\n8. However, since Harry is red (from the given information) and all quiet things are cold (from the given information), and Harry is not cold (from the given information), we can use the rule \"Red things are not kind.\" This implies that Harry might be kind, but this does not provide any information about Harry being rough.\n\n9. Since we cannot determine if Harry is rough or not based on the given information, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information given, we know:\n   - Harry is red.\n   - Harry is not cold.\n\n2. We also know that:\n   - Red things are not kind.\n   - If something is cold and not furry then it is not kind.\n\n3. From the information given, we can infer that Harry is kind because he is not cold, but we cannot conclude that he is not kind from the fact that he is red.\n\n4. However, we can also infer that Harry is not furry because if he were furry, then he would be quiet, but all quiet things are cold, which contradicts our initial information that Harry is not cold.\n\n5. Since Harry is not furry, we can now examine the relationship between rough things and green things. We know that:\n   - Green, rough things are quiet.\n   - Rough things are green.\n\n6. This information suggests that if Harry is rough, then he is green, and since all quiet things are cold, it would imply that Harry is cold, which contradicts the given information that Harry is not cold.\n\n7. Therefore, we can conclude that Harry is not rough, because if he were rough, it would lead to a contradiction with the information that Harry is not cold.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given statements and apply them to Harry.\n\n1. Given statements:\n   - Anne is furry. (Not relevant to Harry)\n   - Anne is rough. (Not relevant to Harry)\n   - Bob is cold. (Not relevant to Harry)\n   - Bob is green. (Not relevant to Harry)\n   - Bob is red. (Not relevant to Harry)\n   - Gary is cold. (Not relevant to Harry)\n   - Gary is quiet. (Not relevant to Harry)\n   - Gary is red. (Not relevant to Harry)\n   - Harry is not cold. (This statement directly gives information about Harry)\n   - Harry is red. (This statement directly gives information about Harry)\n   - Red things are not kind. (This statement is not directly relevant to Harry, but it gives information about red things)\n   - If something is cold and not furry then it is not kind. (This statement is not directly relevant to Harry, but it gives information about cold and furry things)\n   - Green, rough things are quiet. (This statement is not directly relevant to Harry, but it gives information about green and rough things)\n   - If something is furry and cold then it is quiet. (This statement is not directly relevant to Harry, but it gives information about furry and cold things)\n   - If Bob is furry then Bob is green. (This statement is not directly relevant to Harry, but it gives information about Bob)\n   - Rough things are green. (This statement is not directly relevant to Harry, but it gives information about rough things)\n   - If something is kind and not furry then it is green. (This statement is not directly relevant to Harry, but it gives information about kind and furry things)\n   - All quiet things are cold. (This statement is not directly relevant to Harry, but it gives information about quiet things)\n   - Cold things are red. (This statement is not directly relevant to Harry, but it gives information about cold things)\n\n2. Now, let's analyze the statements that are relevant to Harry:\n   - Harry is not cold.\n   - Harry is red.\n\n3. Since Harry is red, we know that red things are not kind (from the given statement \"Red things are not kind.\"). This implies that Harry is not kind.\n\n4. Now, let's examine the relationship between being furry and being kind. We know that if something is kind and not furry then it is green. However, we don't know if Harry is furry or not.\n\n5. Given the statement \"If Bob is furry then Bob is green,\" we can infer that if something is furry, then it is green. However, this does not directly apply to Harry.\n\n6. Since we don't know if Harry is furry or not, we cannot conclude whether Harry is green or not.\n\n7. However, we can conclude that if Harry is furry, then Harry is green. But we don't know if Harry is furry or not.\n\n8. Now, let's examine the relationship between being rough and being green. We know that green, rough things are quiet (from the given statement \"Green, rough things are quiet.\"). However, we don't know if Harry is rough or not.\n\n9. Given the statement \"Rough things are green,\" we can infer that if something is rough, then it is green. However, this does not directly apply to Harry.\n\n10. Since we don't know if Harry is rough or not, we cannot conclude whether Harry is green or not.\n\n11. However, we can conclude that if Harry is rough, then Harry is green. But we don't know if Harry is rough or not.\n\n12. Now, let's examine the statement \"Harry is not rough.\" To determine whether this statement is true, false, or unknown, we need to examine the relationship between being rough and being green.\n\n13. Since we know that Harry is red, and red things are not kind, we can infer that Harry is not kind.\n\n14. However, we don't know if Harry is furry or not.\n\n15. Given the statement \"If something is kind and not furry then it is green,\" we can infer that if something is not furry and not kind, then it is not green. However, this does not directly apply to Harry.\n\n16. Now, let's examine the relationship between being rough and being green.\n\n17. Since we don't know if Harry is rough or not, we cannot conclude whether Harry is green or not.\n\n18. However, we can conclude that if Harry is rough, then Harry is green. But we don't know if Harry is rough or not.\n\n19. Since we don't have enough information to conclude whether Harry is rough or not, we cannot determine whether the statement \"Harry is not rough\" is true or false.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Harry is not rough, we need to analyze the given information and apply the rules to Harry's characteristics.\n\n1. Harry is red. (Given statement)\n2. Red things are not kind. (Given rule)\n3. If something is kind and not furry then it is green. (Given rule) \n   - Since Harry is red and not green, it implies Harry is not kind.\n\n4. If something is cold and not furry then it is not kind. (Given rule)\n   - Since Harry is not kind and not furry, it could be either cold or not cold. But this rule doesn't provide any new information.\n\n5. Harry is not cold. (Given statement)\n   - This information already contradicts the rule \"Cold things are red.\" However, it doesn't provide any information about Harry's roughness.\n\n6. Gary is cold. Gary is red. (Given statements)\n   - Since Gary is cold and red, we can apply the rule \"Cold things are red.\"\n\n7. All quiet things are cold. (Given rule)\n   - Since Gary is cold, it implies Gary is quiet.\n\n8. Gary is quiet. Gary is red. (Given statements)\n   - This information already confirms the rule \"Cold things are red.\"\n\n9. If something is furry and cold then it is quiet. (Given rule)\n   - We can't apply this rule to Harry because we don't know if Harry is cold.\n\n10. Red things are not kind. (Given rule)\n    - Since Harry is red and not kind, it's already established.\n\n11. If Bob is furry then Bob is green. Rough things are green. (Given rules)\n    - Since Bob is green, it implies Bob is rough. But we don't know if Bob is furry.\n\n12. Green, rough things are quiet. (Given rule)\n    - Since Bob is green and rough, it implies Bob is quiet.\n\n13. All quiet things are cold. (Given rule)\n    - Since Bob is quiet, it implies Bob is cold.\n\n14. Bob is cold. Bob is green. Bob is red. (Given statements)\n    - Since Bob is cold and red, it confirms the rule \"Cold things are red.\"\n\nHowever, the rule \"If Bob is furry then Bob is green\" implies that Bob can be furry and green, which contradicts the rule \"Rough things are green.\" This contradiction indicates that Bob can be furry and red.\n\n15. Anne is furry. Anne is rough. (Given statements)\n    - Since Anne is furry and rough, it implies Anne is green.\n\nNow, we can apply the rule \"If Bob is furry then Bob is green.\" Since Anne is green, it implies Bob is furry.\n\n16. Bob is furry. Bob is green. (Given statements)\n    - Since Bob is furry and green, it confirms the rule \"If Bob is furry then Bob is green.\"\n\n17. Since Bob is furry and red, we can't determine if Harry is rough.\n\nHowever, we can apply the rule \"If something is furry and cold then it is quiet.\" Since Bob is furry and cold, it implies Bob is quiet. But we already established that Bob is quiet in statement 12.\n\n18. Since Harry is not cold, we can't apply the rule \"If something is furry and cold then it is quiet.\" But we can apply the rule \"If something is furry then it is not rough.\" \n\nSince we don't know if Harry is furry, we can't determine if Harry is not rough.\n\nTherefore, the statement \"Harry is not rough\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given premises and apply logical deductions.\n\n1. Harry is red. (Directly given in the premises)\n2. Red things are not kind. (Directly given in the premises)\n3. If something is kind and not furry then it is green. (Directly given in the premises)\n   - From (2) and (3), we can conclude that Harry is not kind and not furry because if Harry were kind or furry, he would be green, which contradicts the fact that Harry is red.\n4. If something is cold and not furry then it is not kind. (Directly given in the premises)\n   - Since Harry is red (cold) and not furry, we can deduce that he is not kind. However, this premise doesn't directly tell us about Harry's roughness.\n5. Gary is cold. Gary is red. Gary is red. (Directly given in the premises)\n   - We can eliminate the duplicate statement and conclude that Gary is cold and red.\n6. Cold things are red. (Directly given in the premises)\n   - This premise confirms that Gary is indeed red because he is cold.\n7. Harry is not cold. Harry is red. (Directly given in the premises)\n   - Since Harry is not cold but red, we can conclude that he doesn't fit the pattern of being cold and red.\n8. Gary is quiet. Gary is quiet. Gary is quiet. (Directly given in the premises)\n   - We can eliminate the duplicate statements and conclude that Gary is quiet.\n9. All quiet things are cold. (Directly given in the premises)\n   - This premise confirms that Gary is cold because he is quiet.\n10. Gary is cold. Gary is quiet. (Directly given in the premises)\n    - We can conclude that Gary is both cold and quiet.\n11. Gary is cold. Gary is quiet. Gary is red. (Directly given in the premises)\n    - We can confirm that Gary is cold, quiet, and red.\n12. If something is furry and cold then it is quiet. (Directly given in the premises)\n    - Since Gary is cold and quiet, we can deduce that he might be furry, but this premise doesn't provide enough information to confirm his furiness.\n13. Anne is furry. Anne is rough. (Directly given in the premises)\n    - We can conclude that Anne is both furry and rough.\n14. Bob is cold. Bob is green. Bob is red. (Directly given in the premises)\n    - We can confirm that Bob is cold, green, and red.\n15. If Bob is furry then Bob is green. Rough things are green. (Directly given in the premises)\n    - Since Bob is green, we can't conclude his furiness from these premises alone.\n16. Green, rough things are quiet. (Directly given in the premises)\n    - This premise doesn't provide enough information to confirm Bob's quietness or furiness.\n17. Bob is cold. Bob is red. (Directly given in the premises)\n    - We can confirm that Bob is cold and red.\n18. Cold things are red. (Directly given in the premises)\n    - This premise confirms that Bob is indeed red because he is cold.\n19. Gary is quiet. Gary is cold. Gary is red. (Directly given in the premises)\n    - We can confirm that Gary is cold, quiet, and red.\n20. Anne is furry. (Directly given in the premises)\n    - This premise doesn't provide enough information to conclude anything about Harry's roughness.\n\nNow, let's analyze the statement \"Harry is not rough.\"\n\nFrom the given premises, we have no direct information about Harry's roughness. However, we can deduce that Harry is not kind (from premises 1-3) and not furry (from premises 3-4). We can also conclude that Gary is rough because Anne is furry and rough, and Gary is not furry.\n\nFrom premises 15 and 16, we know that rough things are green and green, rough things are quiet. However, Gary is quiet and not green, which means Gary is not rough.\n\nWe can't conclude Harry's roughness directly from the premises, but we can make an educated guess based on the fact that Gary is not rough and Gary is not furry. If Gary is not furry and not rough, it's likely that Harry is not rough either, as there's no evidence to suggest Harry is rough.\n\nHowever, we can't be 100% sure because there's no direct information about Harry's roughness.\n\nTherefore, we can conclude that the statement \"Harry is not rough\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to use the given statements and apply logical reasoning.\n\nFrom the given statements, we have:\n\n1. Anne is furry.\n2. Anne is rough.\n3. Bob is cold.\n4. Bob is green.\n5. Bob is red.\n6. Gary is cold.\n7. Gary is quiet.\n8. Gary is red.\n9. Harry is not cold.\n10. Harry is red.\n11. Red things are not kind.\n12. If something is cold and not furry then it is not kind.\n13. Green, rough things are quiet.\n14. If something is furry and cold then it is quiet.\n15. If Bob is furry then Bob is green.\n16. Rough things are green.\n17. If something is kind and not furry then it is green.\n18. All quiet things are cold.\n19. Cold things are red.\n\nWe need to deduce the characteristics of Harry. To do this, we'll start by using the given information about Harry:\n\n20. Harry is not cold. (from statement 9)\n21. Harry is red. (from statement 10)\n\nNow, let's use the information about red things (statements 11 and 19):\n\n22. Red things are not kind. (from statement 11)\n23. Cold things are red. (from statement 19)\n\nWe can see that Harry is red, but we don't know if he's cold. However, we do know that Harry is not cold (from statement 20). This means that Harry cannot be a cold thing, which in turn means that Harry is not red by the definition of red things (statement 23).\n\nHowever, this conclusion is incorrect because Harry is indeed red (from statement 10). This means that our previous conclusion that Harry is not red is incorrect. Instead, we should look at the information about cold things (statements 12 and 20):\n\n24. If something is cold and not furry then it is not kind. (from statement 12)\n25. Harry is not cold. (from statement 20)\n\nWe know that Harry is not cold, which means that he does not fit the condition of being cold and not furry. However, we still don't know if Harry is furry or not.\n\nNow, let's use the information about Harry being red (statements 10 and 21):\n\n26. Red things are not kind. (from statement 11)\n27. Harry is red. (from statement 10)\n\nWe know that Harry is red, but we still don't know if he's kind or not.\n\nNow, let's use the information about rough things (statements 2, 16, and 18):\n\n28. Anne is rough. (from statement 2)\n29. If something is furry and cold then it is quiet. (from statement 14)\n30. If Bob is furry then Bob is green. (from statement 15)\n\nWe know that Anne is rough and furry, but we don't know if Anne is cold or not. However, we do know that if Anne is furry and cold then she is quiet (from statement 14), but we also know that all quiet things are cold (from statement 18), which means that Anne is indeed cold.\n\n31. Green, rough things are quiet. (from statement 13)\n32. Rough things are green. (from statement 16)\n\nWe know that Anne is rough, which means that she is also green (from statement 16).\n\nHowever, we still don't know if Harry is rough or not. Let's continue by using the information about furry things (statements 1, 3, and 20):\n\n33. Anne is furry. (from statement 1)\n34. Bob is cold. (from statement 3)\n35. Harry is not cold. (from statement 20)\n\nWe know that Anne is furry and Harry is not cold, but we still don't know if Harry is furry or not.\n\nNow, let's use the information about kind things (statements 17 and 24):\n\n36. If something is kind and not furry then it is green. (from statement 17)\n37. If something is cold and not furry then it is not kind. (from statement 12)\n\nWe know that if something is cold and not furry then it is not kind (from statement 12), but we also know that if something is kind and not furry then it is green (from statement 17).\n\nHowever, we still don't know if Harry is kind or not.\n\nNow, let's use the information about rough things (statements 16 and 28):\n\n38. Anne is rough. (from statement 2)\n39. Rough things are green. (from statement 16)\n\nWe know that Anne is rough, which means that she is also green (from statement 16).\n\nHowever, we still don't know if Harry is rough or not.\n\nSince we still don't have enough information to determine if Harry is rough or not, our final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is red. (This is given in the problem)\n\n2. Red things are not kind. (This is given in the problem)\n\n3. Since Harry is red, we can infer that Harry is not kind.\n\n4. If something is kind and not furry then it is green. (This is given in the problem)\n\n5. We already know that Harry is not kind. Therefore, we can't conclude that Harry is green.\n\n6. However, we can conclude that Harry is not green. If Harry were green, then we would have a contradiction with statement 1 (Harry is red). \n\n7. If something is cold and not furry then it is not kind. (This is given in the problem)\n\n8. Since Harry is not kind, we can't conclude that Harry is cold or not cold.\n\n9. All quiet things are cold. (This is given in the problem)\n\n10. Since Harry is not quiet, we can't conclude that Harry is cold or not cold.\n\n11. Gary is cold. Gary is quiet. Gary is red. (This is given in the problem)\n\n12. Since Harry is not quiet, we can't conclude that Harry is not cold.\n\n13. Cold things are red. (This is given in the problem)\n\n14. Since Harry is red, we can't conclude that Harry is not cold.\n\n15. Gary is cold and quiet. This makes Gary furry because if something is furry and cold then it is quiet. (This is given in the problem)\n\n16. Since Gary is furry and cold, we can't conclude that Harry is not furry.\n\n17. Anne is furry. Anne is rough. (This is given in the problem)\n\n18. Rough things are green. (This is given in the problem)\n\n19. Since Anne is rough, we can conclude that Anne is green.\n\n20. If Bob is furry then Bob is green. Rough things are green. (This is given in the problem)\n\n21. We already know that Anne is furry and rough. We can't conclude that Anne is Bob.\n\n22. We can't conclude that Harry is not rough from the information given.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(kind(X))",
+          "z3_formula": "Implies(red_harry, Not(kind_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(harry))",
+          "z3_formula": "Not(rough_harry)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(harry))",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(kind(X))",
+          "z3_formula": "Implies(red_harry, Not(kind_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(furry(X)) -> not(kind(X))",
+          "z3_formula": "Implies(And(cold_harry, Not(furry_harry)), Not(kind_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(quiet_X, rough_X), quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_X, cold_X), quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(bob) -> green(bob)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(furry(X)) -> green(X)",
+          "z3_formula": "Implies(And(kind_X, Not(furry_X)), green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_X, cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not(kind(harry))",
+          "z3_formula": "Not(kind_harry) == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(green(harry))",
+          "z3_formula": "Not(green_harry) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(kind(harry))",
+          "z3_formula": "Not(kind_harry) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(green(harry))",
+          "z3_formula": "Not(green_harry) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(harry))",
+          "z3_formula": "Not(rough_harry) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(kind(X))",
+          "z3_formula": "Implies(red_harry, not(kind_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(harry))",
+          "z3_formula": "not(cold_harry) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_harry, cold_harry), quiet_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(Bob) -> green(Bob)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_harry, cold_harry)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X) | not kind(X)",
+          "z3_formula": "Implies(cold_harry, Or(kind_harry, Not(kind_harry)))",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> not rough(X) | rough(X)",
+          "z3_formula": "Implies(cold_harry, Or(Not(rough_harry), rough_harry))",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_harry, cold_harry), quiet_harry)",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_harry, quiet_harry)",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(harry)",
+          "z3_formula": "Not(quiet_harry) == True",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "not quiet(X) -> not furry(X)",
+          "z3_formula": "Implies(Not(quiet_harry), Not(furry_harry))",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "not cold(X) -> not kind(X) | kind(X)",
+          "z3_formula": "Implies(Not(cold_harry), Or(Not(kind_harry), kind_harry))",
+          "source_step": 32
+        },
+        {
+          "type": "rule",
+          "expression": "not cold(X) -> not rough(X) | rough(X)",
+          "z3_formula": "Implies(Not(cold_harry), Or(Not(rough_harry), rough_harry))",
+          "source_step": 34
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(harry)",
+          "z3_formula": "Not(rough_harry) == True",
+          "source_step": 34
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(kind(X))",
+          "z3_formula": "Implies(red_harry, Not(kind_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(furry(X)) -> green(X)",
+          "z3_formula": "Implies(And(kind_harry, Not(furry_harry)), green_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not(kind(harry))",
+          "z3_formula": "Not(kind_harry) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(green(harry))",
+          "z3_formula": "Not(green_harry) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(harry))",
+          "z3_formula": "Not(rough_harry) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(harry))",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(kind(X))",
+          "z3_formula": "Implies(red_harry, Not(kind_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(furry(X)) -> not(kind(X))",
+          "z3_formula": "Implies(And(cold_harry, Not(furry_harry)), Not(kind_harry))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_harry, rough_harry), quiet_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_harry, cold_harry), quiet_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(bob) -> green(bob)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_anne, green_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(furry(X)) -> green(X)",
+          "z3_formula": "Implies(And(kind_harry, Not(furry_harry)), green_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_gary, cold_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(harry))",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(kind(X))",
+          "z3_formula": "Implies(red_harry, Not(kind_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not(furry(X)) -> not(kind(X))",
+          "z3_formula": "Implies(And(cold_harry, Not(furry_harry)), Not(kind_harry))",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(furry(harry))",
+          "z3_formula": "Not(furry_harry) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_harry, quiet_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_harry, cold_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(cold(harry))",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_harry, rough_harry), quiet_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(harry))",
+          "z3_formula": "Not(rough_harry) == True",
+          "source_step": 7
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not kind(X)",
+          "z3_formula": "Implies(red_harry, not kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not furry(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_harry, not furry_harry), green_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry)",
+          "z3_formula": "not kind_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not green(harry)",
+          "z3_formula": "not green_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> not rough(X)",
+          "z3_formula": "Implies(furry_harry, not rough_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(rough(harry))",
+          "z3_formula": "rough_harry == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_harry, nice_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_harry, furry_harry), green_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not green(X)",
+          "z3_formula": "Implies(kind_harry, Not(green_harry))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not kind(X)",
+          "z3_formula": "Implies(red_harry, Not(kind_harry))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not furry(X) -> not kind(X)",
+          "z3_formula": "Implies(And(cold_harry, Not(furry_harry)), Not(kind_harry))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(harry)",
+          "z3_formula": "Not(cold_harry) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_harry, red_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & cold(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_gary, cold_gary), quiet_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_harry, green_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_harry, rough_harry), quiet_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(harry)",
+          "z3_formula": "Not(quiet_harry) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not furry(gary)",
+          "z3_formula": "Not(furry_gary) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(gary)",
+          "z3_formula": "Not(rough_gary) == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_bob, green_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & rough(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_bob, rough_bob), quiet_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> cold(X)",
+          "z3_formula": "Implies(quiet_gary, cold_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_gary, red_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(harry)",
+          "z3_formula": "Not(rough_harry) == True",
+          "source_step": 21
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not kind(X)",
+          "z3_formula": "Implies(red_harry, not kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry)",
+          "z3_formula": "not kind_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not furry(X) -> green(X)",
+          "z3_formula": "Implies(And(kind_harry, not furry_harry), green_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not green(harry)",
+          "z3_formula": "not green_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not furry(X) -> not kind(X)",
+          "z3_formula": "Implies(And(cold_harry, not furry_harry), not kind_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(cold_harry)",
+          "z3_formula": "cold_harry == Unknown",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(harry)",
+          "z3_formula": "not quiet_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(cold_harry)",
+          "z3_formula": "cold_harry == Unknown",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_gary, furry_gary), quiet_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(furry_harry)",
+          "z3_formula": "furry_harry == Unknown",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_anne, green_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_anne, green_anne)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(harry_rough)",
+          "z3_formula": "harry_rough == Unknown",
+          "source_step": 22
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 145,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 50
+    },
+    "maxsat_stats": {
+      "satisfied": 48,
+      "excluded": 2,
+      "total_weight": 136,
+      "solve_time_ms": 1.7263302579522133
+    },
+    "timing": {
+      "trace_gen_s": 15.39,
+      "extraction_s": 42.849,
+      "dedup_s": 1.533,
+      "maxsat_s": 0.005,
+      "total_s": 59.777
+    }
+  }
+}

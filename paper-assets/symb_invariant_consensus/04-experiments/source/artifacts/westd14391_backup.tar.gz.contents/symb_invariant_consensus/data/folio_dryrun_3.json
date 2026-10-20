@@ -1,0 +1,41 @@
+[
+  {
+    "id": "folio_166",
+    "problem": "Given the following premises:\nOn some Mondays at 8 pm, roses are given out on TV. Every rose given out on TV is on the Bachelor. Everything on the Bachelor portrays the lives of real people. All shows portraying the lives of real people are reality TV shows. Breaking Bad is not a reality TV show.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf roses are given out during Breaking Bad, then it is on Monday at 8 pm.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (Mondayat8(x) \u2227 RoseGivenOutOnTv(x))",
+      "\u2200x (RoseGivenOutOnTv(x) \u2192 OnBachelor(x))",
+      "\u2200x (OnBachelor(x) \u2192 PortrayLiveOfRealPeople(x))",
+      "\u2200x (PortrayLiveOfRealPeople(x) \u2192 RealityTVShow(x))",
+      "\u00acRealityTVShow(breakingbad)"
+    ],
+    "conclusion_fol": "RoseGivenOutOnTv(breakingbad) \u2192 Mondayat8(breakingbad)"
+  },
+  {
+    "id": "folio_167",
+    "problem": "Given the following premises:\nHeinrich Scmidt was a Nazi German politician.  Heeinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nHeinrich Schmidt was either German or Russian.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "From(heinrichScmidt, naziGermany) \u2227 Politician(heinrichScmidt)",
+      "Member(heinrichScmidt, prussianStateParliament) \u2227 Member(heinrichScmidt, naziReichstag)"
+    ],
+    "conclusion_fol": "From(heinrichScmidt, naziGermany) \u2228 From(heinrichScmidt, russia)"
+  },
+  {
+    "id": "folio_168",
+    "problem": "Given the following premises:\nHeinrich Scmidt was a Nazi German politician.  Heeinrich Scmidt was also a member of the Prussian State Parliament and the Nazi Reichstag.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSome Nazi German politician was part of both the Prussian State Parliament and the Nazi Reichstag.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "From(heinrichScmidt, naziGermany) \u2227 Politician(heinrichScmidt)",
+      "Member(heinrichScmidt, prussianStateParliament) \u2227 Member(heinrichScmidt, naziReichstag)"
+    ],
+    "conclusion_fol": "\u2203x (From(x, naziGermany) \u2227 Politician(x) \u2227 Member(x, prussianStateParliament) \u2227 Member(x, naziReichstag))"
+  }
+]

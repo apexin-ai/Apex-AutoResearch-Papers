@@ -1,0 +1,762 @@
+{
+  "pid": "folio_84",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "yelp_listed_subway",
+          "z3_formula": "yelp_listed_subway == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "negative_reviews_subway",
+          "z3_formula": "negative_reviews_subway == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9_subway",
+          "z3_formula": "rating_greater_than_9_subway == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "popular_subway",
+          "z3_formula": "popular_subway == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_listed(X) -> not_negative_reviews(X)",
+          "z3_formula": "Implies(yelp_listed_subway, not_negative_reviews_subway)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) -> yelp_listed(X)",
+          "z3_formula": "Implies(rating_greater_than_9_subway, yelp_listed_subway)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not_negative_reviews(X) -> yelp_listed(X)",
+          "z3_formula": "Implies(not_negative_reviews_subway, yelp_listed_subway)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) -> not_take_out(X)",
+          "z3_formula": "Implies(rating_greater_than_9_subway, not_take_out_subway)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "popular(X) -> rating_greater_than_9(X)",
+          "z3_formula": "Implies(popular_subway, rating_greater_than_9_subway)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "take_out(X) & negative_reviews(X) -> rating_greater_than_9(X) & not_take_out(X)",
+          "z3_formula": "Implies(And(take_out_subway, negative_reviews_subway), And(rating_greater_than_9_subway, not_take_out_subway))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rating_greater_than_9_subway & not_take_out_subway",
+          "z3_formula": "And(rating_greater_than_9_subway, not_take_out_subway) == Unknown",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "yelp_listed(restaurant)",
+          "z3_formula": "yelp_listed_restaurant == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_listed(restaurant) -> not many_negative_reviews(restaurant)",
+          "z3_formula": "Implies(yelp_listed_restaurant, not many_negative_reviews_restaurant)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(restaurant)",
+          "z3_formula": "rating_greater_than_9_restaurant == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(restaurant) -> yelp_listed(restaurant)",
+          "z3_formula": "Implies(rating_greater_than_9_restaurant, yelp_listed_restaurant)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_take_out_service(restaurant) & many_negative_reviews(restaurant)",
+          "z3_formula": "And(not_take_out_service_restaurant, many_negative_reviews_restaurant)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9_or_popular(restaurant)",
+          "z3_formula": "rating_greater_than_9_or_popular_restaurant == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9_or_popular(restaurant) -> rating_greater_than_9(restaurant)",
+          "z3_formula": "Implies(rating_greater_than_9_or_popular_restaurant, rating_greater_than_9_restaurant)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(restaurant) -> not many_negative_reviews(restaurant) & yelp_listed(restaurant)",
+          "z3_formula": "Implies(rating_greater_than_9_restaurant, And(not many_negative_reviews_restaurant, yelp_listed_restaurant))",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9_or_popular(subway)",
+          "z3_formula": "rating_greater_than_9_or_popular_subway == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(restaurant) -> not take_out_service(restaurant)",
+          "z3_formula": "Implies(rating_greater_than_9_restaurant, not take_out_service_restaurant)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "recommended_in_yelp(restaurant)",
+          "z3_formula": "recommended_in_yelp_restaurant == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "recommended_in_yelp(X) -> not(many_negative_reviews(X))",
+          "z3_formula": "Implies(recommended_in_yelp_restaurant, not(many_negative_reviews_restaurant))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(restaurant)",
+          "z3_formula": "rating_greater_than_9_restaurant == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) -> recommended_in_yelp(X)",
+          "z3_formula": "Implies(rating_greater_than_9_restaurant, recommended_in_yelp_restaurant)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_provide_take_out_service(X) -> many_negative_reviews(X)",
+          "z3_formula": "Implies(not_provide_take_out_service_restaurant, many_negative_reviews_restaurant)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "popular_among_local_residents(X) -> rating_greater_than_9(X)",
+          "z3_formula": "Implies(popular_among_local_residents_restaurant, rating_greater_than_9_restaurant)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(X) or popular_among_local_residents(X)",
+          "z3_formula": "Or(rating_greater_than_9_restaurant, popular_among_local_residents_restaurant)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rating_greater_than_9(restaurant)",
+          "z3_formula": "rating_greater_than_9_restaurant == True",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "yelp_recommendation(restaurant)",
+          "z3_formula": "yelp_recommendation_restaurant == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_recommendation(restaurant) -> not(many_negative_reviews(restaurant))",
+          "z3_formula": "Implies(yelp_recommendation_restaurant, not(many_negative_reviews_restaurant))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(restaurant)",
+          "z3_formula": "rating_greater_than_9_restaurant == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(restaurant) -> yelp_recommendation(restaurant)",
+          "z3_formula": "Implies(rating_greater_than_9_restaurant, yelp_recommendation_restaurant)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_take_out_service(restaurant) -> many_negative_reviews(restaurant)",
+          "z3_formula": "Implies(not_take_out_service_restaurant, many_negative_reviews_restaurant)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "popular_among_local_residents(restaurant)",
+          "z3_formula": "popular_among_local_residents_restaurant == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "popular_among_local_residents(restaurant) -> rating_greater_than_9(restaurant)",
+          "z3_formula": "Implies(popular_among_local_residents_restaurant, rating_greater_than_9_restaurant)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "subway_rating_greater_than_9_or_popular(restaurant)",
+          "z3_formula": "subway_rating_greater_than_9_or_popular_restaurant == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "subway_rating_greater_than_9_or_popular(restaurant) -> (rating_greater_than_9(restaurant) | popular_among_local_residents(restaurant))",
+          "z3_formula": "Implies(subway_rating_greater_than_9_or_popular_restaurant, Or(rating_greater_than_9_restaurant, popular_among_local_residents_restaurant))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rating_greater_than_9(restaurant) & not_take_out_service(restaurant) -> (rating_greater_than_9(restaurant) & not_take_out_service(restaurant))",
+          "z3_formula": "Implies(And(rating_greater_than_9_restaurant, not_take_out_service_restaurant), And(rating_greater_than_9_restaurant, not_take_out_service_restaurant))",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "yelp_listed_subway",
+          "z3_formula": "yelp_listed_subway == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_listed(X) -> not many_negative_reviews(X)",
+          "z3_formula": "Implies(yelp_listed_subway, not many_negative_reviews_subway)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9_subway",
+          "z3_formula": "rating_greater_than_9_subway == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) -> yelp_listed(X)",
+          "z3_formula": "Implies(rating_greater_than_9_subway, yelp_listed_subway)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_provide_takeout_subway",
+          "z3_formula": "not_provide_takeout_subway == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not_provide_takeout(X) -> many_negative_reviews(X)",
+          "z3_formula": "Implies(not_provide_takeout_subway, many_negative_reviews_subway)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "popular_among_local_residents_subway",
+          "z3_formula": "popular_among_local_residents_subway == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "popular_among_local_residents(X) -> rating_greater_than_9(X)",
+          "z3_formula": "Implies(popular_among_local_residents_subway, rating_greater_than_9_subway)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) -> not many_negative_reviews(X)",
+          "z3_formula": "Implies(rating_greater_than_9_subway, not many_negative_reviews_subway)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rating_greater_than_9_subway & not_provide_takeout_subway",
+          "z3_formula": "And(rating_greater_than_9_subway, not_provide_takeout_subway)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "many_negative_reviews_subway",
+          "z3_formula": "many_negative_reviews_subway == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "yelp_listed(X) -> not_many_negative_reviews(X)",
+          "z3_formula": "Implies(yelp_listed_subway, not_many_negative_reviews_subway)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) -> yelp_listed(X)",
+          "z3_formula": "Implies(rating_greater_than_9_subway, yelp_listed_subway)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not_provide_take_out_service(X) -> many_negative_reviews(X)",
+          "z3_formula": "Implies(not_provide_take_out_service_subway, many_negative_reviews_subway)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "popular(X) -> rating_greater_than_9(X)",
+          "z3_formula": "Implies(popular_subway, rating_greater_than_9_subway)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) or popular(X)",
+          "z3_formula": "Or(rating_greater_than_9_subway, popular_subway)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "yelp_listed(subway)",
+          "z3_formula": "yelp_listed_subway == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rating_greater_than_9(subway) or popular(subway)",
+          "z3_formula": "Or(rating_greater_than_9_subway, popular_subway) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not_provide_take_out_service(subway) & many_negative_reviews(subway) -> rating_greater_than_9(subway) & not_provide_take_out_service(subway)",
+          "z3_formula": "Implies(And(not_provide_take_out_service_subway, many_negative_reviews_subway), And(rating_greater_than_9_subway, not_provide_take_out_service_subway))",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "yelp_listed(subway)",
+          "z3_formula": "yelp_listed_subway == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_listed(X) -> not(many_negative_reviews(X))",
+          "z3_formula": "Implies(yelp_listed_subway, not(many_negative_reviews_subway))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(subway) or popular_among_local_residents(subway)",
+          "z3_formula": "rating_greater_than_9_subway == True or popular_among_local_residents_subway == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) -> yelp_listed(X)",
+          "z3_formula": "Implies(rating_greater_than_9_subway, yelp_listed_subway)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some(not(take_out_service(X)), many_negative_reviews(X))",
+          "z3_formula": "some(not(take_out_service_subway), many_negative_reviews_subway)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not(take_out_service(X)) & many_negative_reviews(X) -> not(rating_greater_than_9(X))",
+          "z3_formula": "Implies(And(not(take_out_service_subway), many_negative_reviews_subway), not(rating_greater_than_9_subway))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rating_greater_than_9(subway) & not(take_out_service(subway))",
+          "z3_formula": "And(rating_greater_than_9_subway, not(take_out_service_subway)) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "yelp_listed(restaurant)",
+          "z3_formula": "yelp_listed_restaurant == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_listed(restaurant) -> not many_negative_reviews(restaurant)",
+          "z3_formula": "Implies(yelp_listed_restaurant, not many_negative_reviews_restaurant)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(restaurant)",
+          "z3_formula": "rating_greater_than_9_restaurant == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(restaurant) -> yelp_listed(restaurant)",
+          "z3_formula": "Implies(rating_greater_than_9_restaurant, yelp_listed_restaurant)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not take_out_service(restaurant) & many_negative_reviews(restaurant)",
+          "z3_formula": "And(not take_out_service_restaurant, many_negative_reviews_restaurant)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not take_out_service(restaurant) -> many_negative_reviews(restaurant)",
+          "z3_formula": "Implies(not take_out_service_restaurant, many_negative_reviews_restaurant)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "popular_among_local_residents(restaurant)",
+          "z3_formula": "popular_among_local_residents_restaurant == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "popular_among_local_residents(restaurant) -> rating_greater_than_9(restaurant)",
+          "z3_formula": "Implies(popular_among_local_residents_restaurant, rating_greater_than_9_restaurant)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(restaurant) | popular_among_local_residents(restaurant)",
+          "z3_formula": "Or(rating_greater_than_9_restaurant, popular_among_local_residents_restaurant)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rating_greater_than_9(restaurant) & not take_out_service(restaurant)",
+          "z3_formula": "And(rating_greater_than_9_restaurant, not take_out_service_restaurant)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "yelp_listed(subway)",
+          "z3_formula": "yelp_listed_subway == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_listed(X) -> not(many_negative_reviews(X))",
+          "z3_formula": "Implies(yelp_listed_subway, not(many_negative_reviews_subway))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(subway) or popular_among_local_residents(subway)",
+          "z3_formula": "Or(rating_greater_than_9_subway, popular_among_local_residents_subway)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "popular_among_local_residents(X) -> rating_greater_than_9(X)",
+          "z3_formula": "Implies(popular_among_local_residents_subway, rating_greater_than_9_subway)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_provides_take_out_service(X) -> many_negative_reviews(X)",
+          "z3_formula": "Implies(Not(provides_take_out_service_subway), many_negative_reviews_subway)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) -> not(many_negative_reviews(X))",
+          "z3_formula": "Implies(rating_greater_than_9_subway, not(many_negative_reviews_subway))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(rating_greater_than_9(subway) & not(provides_take_out_service(subway)))",
+          "z3_formula": "Not(And(rating_greater_than_9_subway, Not(provides_take_out_service_subway)))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "R",
+          "z3_formula": "R == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "N",
+          "z3_formula": "N == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "R -> not N",
+          "z3_formula": "Implies(R, Not(N))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "G -> R",
+          "z3_formula": "Implies(G, R)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "T & not N",
+          "z3_formula": "And(T, Not(N)) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "all P are G",
+          "z3_formula": "ForAll(P, Implies(P, G))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "G or P",
+          "z3_formula": "Or(G, P) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not G",
+          "z3_formula": "Not(G) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "P",
+          "z3_formula": "P == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "G",
+          "z3_formula": "G == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not T",
+          "z3_formula": "Not(T) == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "listed_in_yelp_recommendations(X)",
+          "z3_formula": "listed_in_yelp_recommendations_X == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(X)",
+          "z3_formula": "rating_greater_than_9_X == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_provide_take_out_service(X)",
+          "z3_formula": "does_not_provide_take_out_service_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "receives_many_negative_reviews(X)",
+          "z3_formula": "receives_many_negative_reviews_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "popular_among_local_residents(X)",
+          "z3_formula": "popular_among_local_residents_X == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "subway_has_rating_greater_than_9_or_is_popular(X)",
+          "z3_formula": "subway_has_rating_greater_than_9_or_is_popular_X == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "listed_in_yelp_recommendations(X) -> not receives_many_negative_reviews(X)",
+          "z3_formula": "Implies(listed_in_yelp_recommendations_X, not receives_many_negative_reviews_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(X) -> listed_in_yelp_recommendations(X)",
+          "z3_formula": "Implies(rating_greater_than_9_X, listed_in_yelp_recommendations_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "subway_has_rating_greater_than_9_or_is_popular(X) -> (rating_greater_than_9(X) or popular_among_local_residents(X))",
+          "z3_formula": "Implies(subway_has_rating_greater_than_9_or_is_popular_X, Or(rating_greater_than_9_X, popular_among_local_residents_X))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "does_not_provide_take_out_service(X) & receives_many_negative_reviews(X) -> rating_greater_than_9(X) & not does_provide_take_out_service(X)",
+          "z3_formula": "Implies(And(does_not_provide_take_out_service_X, receives_many_negative_reviews_X), And(rating_greater_than_9_X, not does_provide_take_out_service_X))",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "yelp_recommendation(restaurant)",
+          "z3_formula": "yelp_recommendation_restaurant == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "yelp_recommendation(restaurant) -> not_many_negative_reviews(restaurant)",
+          "z3_formula": "Implies(yelp_recommendation_restaurant, not_many_negative_reviews_restaurant)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9(restaurant)",
+          "z3_formula": "rating_greater_than_9_restaurant == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rating_greater_than_9(restaurant) -> yelp_recommendation(restaurant)",
+          "z3_formula": "Implies(rating_greater_than_9_restaurant, yelp_recommendation_restaurant)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_provide_take_out_service(restaurant)",
+          "z3_formula": "not_provide_take_out_service_restaurant == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not_provide_take_out_service(restaurant) -> many_negative_reviews(restaurant)",
+          "z3_formula": "Implies(not_provide_take_out_service_restaurant, many_negative_reviews_restaurant)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "popular_among_local_residents(restaurant)",
+          "z3_formula": "popular_among_local_residents_restaurant == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "popular_among_local_residents(restaurant) -> rating_greater_than_9(restaurant)",
+          "z3_formula": "Implies(popular_among_local_residents_restaurant, rating_greater_than_9_restaurant)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rating_greater_than_9_or_popular(restaurant)",
+          "z3_formula": "rating_greater_than_9_or_popular_restaurant == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "rating_greater_than_9(restaurant) & not_provide_take_out_service(restaurant)",
+          "z3_formula": "And(rating_greater_than_9_restaurant, not_provide_take_out_service_restaurant)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not_provide_take_out_service(restaurant)",
+          "z3_formula": "not_provide_take_out_service_restaurant == True",
+          "source_step": 11
+        }
+      ]
+    }
+  ]
+}

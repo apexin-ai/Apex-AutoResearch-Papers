@@ -1,0 +1,1188 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-371_Q22",
+    "problem": "Anne is nice. Anne is smart. Bob is nice. Fiona is green. Fiona is nice. Gary is blue. Gary is smart. All red things are nice. Big things are kind. If Bob is smart then Bob is green. Blue things are green. Green, smart things are big. If something is red and blue then it is big. Nice things are red. All kind things are red.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is smart.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\nRed($x, bool) ::: Is x red?\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\n\nFacts:\nNice(Anne, True) ::: Anne is nice.\nSmart(Anne, True) ::: Anne is smart.\nNice(Bob, True) ::: Bob is nice.\nGreen(Fiona, True) ::: Fiona is green.\nNice(Fiona, True) ::: Fiona is nice.\nBlue(Gary, True) ::: Gary is blue.\nSmart(Gary, True) ::: Gary is smart.\n\nRules:\nRed($x, True) >>> Nice($x, True) ::: All red things are nice.\nBig($x, True) >>> Kind($x, True) ::: Big things are kind.\nSmart(Bob, True) >>> Green(Bob, True) ::: If Bob is smart then Bob is green.\nBlue($x, True) >>> Green($x, True) ::: Blue things are green.\nGreen($x, True) && Smart($x, True) >>> Big($x, True) ::: Green, smart things are big.\nRed($x, True) && Blue($x, True) >>> Big($x, True) ::: If something is red and blue then it is big.\nNice($x, True) >>> Red($x, True) ::: Nice things are red.\nKind($x, True) >>> Red($x, True) ::: All kind things are red.\n\nQuery:\nSmart(Bob, True) ::: Bob is smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 92.0,
+      "True": 100.0,
+      "Unknown": 153.5
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "False": 1,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is nice. \nThis statement is given directly.\n\n2. Bob is smart. \nThis is the statement we are trying to determine. Let's proceed with other statements and see if we can derive a conclusion.\n\n3. Bob is smart then Bob is green. \nThis is given directly.\n\n4. Blue things are green. \nThis is also given directly.\n\n5. Gary is blue. Gary is smart. \nSince Gary is smart, it means Bob is not green because if Bob were smart, he would be green. This is because from statement 3, if Bob is smart, then he is green.\n\n6. Gary is blue. Since blue things are green (statement 4), Gary is green. \nHowever, this contradicts our previous conclusion that Bob is not green if he is smart (step 5). Since Gary is green, this implies that Bob is not smart. This is because if Bob is smart, he would be green (statement 3), but Gary being green indicates that Bob is not smart.\n\n7. Blue things are green. \nThis statement is given directly, and we can see that Gary being blue and green supports this statement.\n\n8. Gary is smart. Gary is blue. \nThis statement is given directly, and we can see that Gary being blue is green supports the previous conclusion that Bob is not smart.\n\nSince Bob is nice and Gary is smart and blue, and blue things are green, and all red things are nice, and big things are kind, and nice things are red, and all kind things are red, and if something is red and blue then it is big, we can conclude that:\n\nSince Bob is not green (step 6), he is not blue (statement 4). Since Bob is not blue, he is not red (because nice things are red, and all kind things are red, but blue things are green, and if Bob were red, he would be nice, but we already know that nice things are red). Since Bob is not red, and we do not know if Bob is green or not, we can conclude that the statement \"Bob is smart\" is unknown because we do not know if Bob is green or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given premises and apply logical reasoning.\n\n1. Bob is nice. (Premise)\n2. Bob is smart \u2192 Bob is green. (Premise)\n3. Blue things are green. (Premise)\n4. Gary is blue. (Premise)\n5. Gary is smart. (Premise)\n6. Nice things are red. (Premise)\n7. All red things are nice. (Premise)\n8. All kind things are red. (Premise)\n9. Big things are kind. (Premise)\n10. Green, smart things are big. (Premise)\n11. If something is red and blue then it is big. (Premise)\n\nFrom premise 4 and 10, we know Gary is blue and Gary is smart. Since blue things are green (premise 3), Gary is also green. As a result, Gary is both green and smart, making him big (premise 10). Since Gary is big, and big things are kind (premise 9), Gary is kind. Now, from premise 8, we know that kind things are red. Therefore, Gary is red.\n\nNow we can use the information about Gary and Bob to evaluate the statement \"Bob is smart.\"\n\nSince Bob is nice (premise 1), and nice things are red (premise 6), Bob is red. We also know that Gary is red (as deduced above). However, we do not know if Bob is blue or not. If Bob is blue, then he is green (premise 3), and since green, smart things are big (premise 10), Bob would be big. But if Bob is big, then he is kind (premise 9), and since kind things are red (premise 8), we would have a contradiction, as Bob would be both red and blue.\n\nHowever, we cannot conclude that Bob is big. But we can see that if Bob is smart, he would be green, and since green, smart things are big (premise 10), Bob would be big. And if Bob is big, he would be kind (premise 9), and since kind things are red (premise 8), we would have a contradiction, as Bob would be both red and blue.\n\nHowever, there is a possible solution to the problem.  Bob is not smart. This would be consistent with the premises.\n\nTherefore, we cannot conclude that the statement \"Bob is smart\" is true. We cannot conclude that it is false either. However, we can conclude that it is unknown.\n\nHowever, based on the premises given, we cannot prove that Bob is smart. However, we can prove that if Bob is smart, then the premises will be contradictory. Therefore, the statement \"Bob is smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to use the given information and apply logical reasoning step by step.\n\n1. Given statements:\n   - Anne is nice.\n   - Anne is smart.\n   - Bob is nice.\n   - Fiona is green.\n   - Fiona is nice.\n   - Gary is blue.\n   - Gary is smart.\n   - All red things are nice.\n   - Big things are kind.\n   - If Bob is smart then Bob is green.\n   - Blue things are green.\n   - Green, smart things are big.\n   - If something is red and blue then it is big.\n   - Nice things are red.\n   - All kind things are red.\n\n2. We need to find the relationship between Bob and being smart.\n\n3. From the given information, we have the following statements related to Bob:\n   - Bob is nice.\n   - If Bob is smart then Bob is green.\n\n4. Now we need to find a relationship between being nice and being smart for Bob.\n\n5. Since Bob is nice, and all red things are nice, then Bob is red.\n   - Using this information, we can infer that Bob is red because it's the only option that makes the statement \"All red things are nice\" true.\n\n6. Now, we also know that nice things are red, and all kind things are red. We can also infer that since big things are kind, then big things are red.\n\n7. Since Bob is red, and Gary is blue, and if something is red and blue then it is big, then Bob is big.\n\n8. We also know that green, smart things are big. Since Bob is big, then Bob is either green or smart.\n\n9. Now, let's consider the statement \"If Bob is smart then Bob is green.\" This statement does not say that if Bob is green then Bob is smart. Therefore, it's possible for Bob to be green without being smart.\n\n10. However, we know that Bob is big, and green, smart things are big. Since Bob is big, then Bob must be green and smart.\n\nBased on this step-by-step analysis, the statement \"Bob is smart\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is nice. (Given)\n2. All kind things are red. (Given)\n3. Big things are kind. (Given)\n4. If something is red and blue then it is big. (Given)\n5. Nice things are red. (Given)\n6. Blue things are green. (Given)\n7. Gary is blue. (Given)\n8. Gary is smart. (Given)\n\nFrom (7) and (6), we can infer that Gary is green.\nFrom (8) and the information that green, smart things are big, we can infer that Gary is big.\n\nNow, let's analyze the statement \"Bob is smart\" step by step:\n- If Bob is smart, then Bob is green (from the information that blue things are green).\n- If Bob is green, then Bob is big (from the information that green, smart things are big).\n- If Bob is big and Gary is big, then Bob is red (from the information that if something is red and blue then it is big, and Gary is blue).\n- If Bob is red, then Bob is nice (from the information that nice things are red).\n- We already know that Bob is nice (from (1)).\n\nHowever, we cannot directly conclude that Bob is smart. The only information we have about Bob being smart is that if Bob is smart, then Bob is green, and if Bob is green, then Bob is big. But we cannot confirm that Bob is smart based on this information alone.\n\nSince we cannot confirm that Bob is smart or not, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that \"Bob is nice.\"\n2. We are also given that \"All red things are nice\" and \"Nice things are red.\" This implies that Bob is red.\n3. We have a statement that \"If Bob is smart then Bob is green.\" However, this statement alone is not enough to conclude that Bob is green. To determine if Bob is green, we need more information.\n4. We are given that \"Gary is blue\" and \"Gary is smart.\" Additionally, we have the statement that \"Blue things are green.\" This implies that Gary is green, but it does not provide any information about Bob's color.\n5. We are given the statement that \"Blue things are green.\" However, this statement alone does not imply that all green things are blue. We can only conclude that blue things are a subset of green things.\n6. We are given the statement that \"Green, smart things are big.\" However, this statement alone does not provide any information about Bob's size or color.\n7. We are given the statement that \"If something is red and blue then it is big.\" However, this statement alone does not provide any information about Bob's color or size.\n8. We are given the statement that \"All kind things are red.\" However, this statement alone does not provide any information about Bob's kindness.\n\nNow, let's analyze the statement \"Bob is smart.\" To determine if this statement is true or false, we need to find out if there is any information that contradicts or supports it.\n\nFrom the given information, we have the following possibilities:\n\n- Bob is nice (given)\n- Bob is red (derived from the fact that Bob is nice)\n- Bob is not necessarily green (from the statement \"If Bob is smart then Bob is green\")\n- We do not have enough information to determine Bob's size or kindness\n\nThe given information does not provide a direct conclusion about Bob's smartness. However, it does provide a connection between Bob's color and his smartness. If Bob is green, then he might be smart, but we do not have enough information to confirm that.\n\nTherefore, based on the given information, we cannot determine whether the statement \"Bob is smart\" is true or false. The answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements to deduce whether \"Bob is smart\" is true, false, or unknown. We will break down the statements into premises and conclusions.\n\nGiven statements:\n1. Anne is nice.\n2. Anne is smart.\n3. Bob is nice.\n4. Fiona is green.\n5. Fiona is nice.\n6. Gary is blue.\n7. Gary is smart.\n8. All red things are nice.\n9. Big things are kind.\n10. If Bob is smart then Bob is green.\n11. Blue things are green.\n12. Green, smart things are big.\n13. If something is red and blue then it is big.\n14. Nice things are red.\n15. All kind things are red.\n\nWe want to determine if \"Bob is smart.\" Let's start by using the given statements to find connections between Bob and being smart.\n\nPremise 1: Bob is nice. (statement 3)\nPremise 2: Nice things are red. (statement 14)\nConclusion 1: Bob is red. (by modus ponens)\n\nPremise 3: All kind things are red. (statement 15)\nPremise 4: Big things are kind. (statement 9)\nConclusion 2: Big things are red. (by modus ponens)\n\nPremise 5: Bob is nice. (statement 3)\nPremise 6: Big things are kind. (statement 9)\nConclusion 3: Bob is kind. (by modus ponens)\n\nPremise 7: All kind things are red. (statement 15)\nConclusion 4: Bob is red. (by modus ponens)\n\nWe now have two conclusions that both say Bob is red. We can combine these to see if we can conclude that Bob is smart.\n\nPremise 8: Nice things are red. (statement 14)\nPremise 9: Bob is red. (Conclusion 1)\nConclusion 5: Bob is nice. (by modus ponens)\n\nPremise 10: If Bob is smart then Bob is green. (statement 10)\nPremise 11: Bob is nice. (Conclusion 5)\nConclusion 6: Bob is green. (by modus ponens)\n\nNow we have concluded that Bob is green and nice. We can use this to see if we can conclude that Bob is smart.\n\nPremise 12: Green, smart things are big. (statement 12)\nPremise 13: Bob is green. (Conclusion 6)\nConclusion 7: Bob is big. (by modus ponens)\n\nHowever, we cannot directly conclude that Bob is smart from the given statements. We can only say that Bob is big and green, but not smart.\n\nHowever, we can use another method to conclude that Bob is smart. From the statement \"Blue things are green.\" (statement 11) we know that blue things are green. \n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is green. \n\nFrom the statement \"Gary is smart.\" (statement 7) we know that Gary is smart. \n\nFrom the statement \"If something is red and blue then it is big.\" (statement 13) we know that something that is both red and blue is big. \n\nFrom the statement \"If Bob is smart then Bob is green.\" (statement 10) we know that if Bob is smart then Bob is green. \n\nFrom the statement \"Blue things are green.\" (statement 11) we know that blue things are green. \n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is green. \n\nFrom the statement \"Gary is smart.\" (statement 7) we know that Gary is smart. \n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue. \n\nFrom the statement \"Blue things are green.\" (statement 11) we know that blue things are green.\n\nFrom the statement \"Gary is green.\" (statement 12) we know that Gary is green. \n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue. \n\nFrom the statement \"Blue things are green.\" (statement 11) we know that blue things are green.\n\nFrom the statement \"Gary is smart.\" (statement 7) we know that Gary is smart.\n\nFrom the statement \"If Bob is smart then Bob is green.\" (statement 10) we know that if Bob is smart then Bob is green.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Gary is green.\" (statement 12) we know that Gary is green.\n\nFrom the statement \"Gary is smart.\" (statement 7) we know that Gary is smart.\n\nFrom the statement \"If something is red and blue then it is big.\" (statement 13) we know that something that is both red and blue is big.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"If Bob is smart then Bob is green.\" (statement 10) we know that if Bob is smart then Bob is green.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"If Bob is smart then Bob is green.\" (statement 10) we know that if Bob is smart then Bob is green.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Gary is green.\" (statement 12) we know that Gary is green.\n\nFrom the statement \"If Bob is smart then Bob is green.\" (statement 10) we know that if Bob is smart then Bob is green.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Gary is green.\" (statement 12) we know that Gary is green.\n\nFrom the statement \"Gary is smart.\" (statement 7) we know that Gary is smart.\n\nFrom the statement \"Gary is green.\" (statement 12) we know that Gary is green.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Gary is green.\" (statement 12) we know that Gary is green.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Gary is green.\" (statement 12) we know that Gary is green.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Gary is green.\" (statement 12) we know that Gary is green.\n\nFrom the statement \"Gary is green.\" (statement 12) we know that Gary is green.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Bob is nice.\" (statement 3) we know that Bob is nice.\n\nFrom the statement \"Gary is blue.\" (statement 6) we know that Gary is blue.\n\nFrom the statement \"Bob is nice.\" (statement",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is nice.\n   - Anne is smart.\n   - Bob is nice.\n   - Fiona is green.\n   - Fiona is nice.\n   - Gary is blue.\n   - Gary is smart.\n   - All red things are nice.\n   - Big things are kind.\n   - If Bob is smart then Bob is green.\n   - Blue things are green.\n   - Green, smart things are big.\n   - If something is red and blue then it is big.\n   - Nice things are red.\n   - All kind things are red.\n\n2. Analyzing the information:\n   - Since Bob is nice, and nice things are red, then Bob is red.\n   - Since Bob is red, and all red things are nice, then Bob is indeed nice.\n   - There is no direct information that says Bob is smart, but we can try to derive it from the given information.\n\n3. Using the information to derive the answer:\n   - We know that Bob is nice, and nice things are red.\n   - We also know that Bob is red, and all red things are nice.\n   - Now, we are looking for a connection between Bob being smart and his other properties.\n   - From the information, we know that Gary is blue and Gary is smart. Since blue things are green, then Gary is also green.\n   - We are also given that green, smart things are big.\n   - However, there is no direct information that connects Bob's properties (being red, nice, and possibly green) to being smart.\n\n4. Conclusion:\n   - Although we have some information that connects being smart to being green and big, we do not have enough information to determine whether Bob is smart or not.\n   - Therefore, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that \"Bob is nice.\" (From the given statements)\n\n2. We are asked to determine if \"Bob is smart.\" \n\n3. We also know that \"If Bob is smart then Bob is green.\" (From the given statements)\n\nSince we have a conditional statement, we can use it to determine if Bob is smart. However, we do not have enough information to directly conclude if Bob is smart. Therefore, we will have to explore other possibilities.\n\n4. We know that \"If Bob is smart then Bob is green.\" This implies that if Bob is not green, then he is not smart. However, this does not directly tell us if Bob is smart or not.\n\n5. Let's explore other possibilities. We know that \"Blue things are green.\" and \"Gary is blue.\" and \"Gary is smart.\" From this, we can conclude that Gary is green because Gary is blue, and blue things are green. Since Gary is green and smart, we can conclude that Gary is big because \"Green, smart things are big.\"\n\n6. We also know that \"If something is red and blue then it is big.\" and \"Gary is blue.\" and \"Gary is big.\" Since Gary is big, we can conclude that Gary is not big because Gary is red and blue does not imply that Gary is big, it implies that if Gary were red and blue then he would be big. Therefore, Gary is not red and blue.\n\n7. We also know that \"All kind things are red.\" and \"Big things are kind.\" Since Gary is big, we can conclude that Gary is red.\n\n8. We know that \"Nice things are red.\" and \"Bob is nice.\" and \"Gary is red.\" We cannot conclude that Bob is red because we do not know if Bob is red or not.\n\n9. However, we do know that \"All red things are nice.\" and \"Gary is red.\" and \"Gary is nice.\" This implies that if something is red then it is nice. However, this does not directly tell us if Bob is smart or not.\n\n10. We also know that \"If Bob is smart then Bob is green.\" and \"Blue things are green.\" and \"Bob is nice.\" However, we do not know if Bob is blue or not.\n\nHowever, we can conclude that the statement \"Bob is smart\" is unknown because we cannot directly determine if Bob is smart or not based on the given information.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply them step by step to determine the truth value of the statement \"Bob is smart.\"\n\nGiven statements:\n1. Anne is nice.\n2. Anne is smart.\n3. Bob is nice.\n4. Fiona is green.\n5. Fiona is nice.\n6. Gary is blue.\n7. Gary is smart.\n8. All red things are nice.\n9. Big things are kind.\n10. If Bob is smart then Bob is green.\n11. Blue things are green.\n12. Green, smart things are big.\n13. If something is red and blue then it is big.\n14. Nice things are red.\n15. All kind things are red.\n\nNow, let's analyze the statement \"Bob is smart.\"\n\nStatement to be evaluated: Bob is smart.\n\nGiven that:\n- Bob is nice (statement 3)\n- All kind things are red (statement 15)\n- Big things are kind (statement 9)\n- If something is red and blue then it is big (statement 13)\n- Blue things are green (statement 11)\n- Green, smart things are big (statement 12)\n- If Bob is smart then Bob is green (statement 10)\n\nWe know that if Bob is smart, then Bob is green (statement 10). Also, if something is green and smart, it is big (statement 12).\n\nNow, let's evaluate the possibilities:\n- If Bob is smart, then Bob is green (statement 10)\n- If Bob is green, then Bob is blue (because blue things are green, statement 11)\n- If Bob is blue, then Bob is red (because red and blue things are big, statement 13, and big things are kind, statement 9, and kind things are red, statement 15)\n- If Bob is red, then Bob is nice (because nice things are red, statement 14)\n\nSo, we have:\n- Bob is smart\n- Bob is green\n- Bob is blue\n- Bob is red\n- Bob is nice\n\nNow, we are given that Bob is smart (statement to be evaluated). From the given statements, we know that if Bob is smart, then Bob is green (statement 10). This is a conditional statement, so we cannot conclude that Bob is green directly.\n\nHowever, from the given statements, we know that:\n- Bob is smart (statement to be evaluated)\n- If Bob is smart then Bob is green (statement 10)\n\nSince this is a conditional statement, we cannot conclude that Bob is green directly. However, we can say that the truth value of \"Bob is smart\" is related to the truth value of \"Bob is green\" through the conditional statement.\n\nSince we cannot conclude that Bob is green directly, we cannot conclude that Bob is big (because green, smart things are big, statement 12). We cannot conclude that Bob is red (because we cannot conclude that Bob is big). We cannot conclude that Bob is nice (because we cannot conclude that Bob is red).\n\nHowever, we can conclude that the truth value of \"Bob is smart\" is related to the truth value of \"Bob is green\" through the conditional statement. Therefore, we cannot determine the truth value of the statement \"Bob is smart\" directly.\n\nSo, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules of logic. \n\nGiven statements:\n1. Anne is nice.\n2. Anne is smart.\n3. Bob is nice.\n4. Fiona is green.\n5. Fiona is nice.\n6. Gary is blue.\n7. Gary is smart.\n8. All red things are nice.\n9. Big things are kind.\n10. If Bob is smart then Bob is green.\n11. Blue things are green.\n12. Green, smart things are big.\n13. If something is red and blue then it is big.\n14. Nice things are red.\n15. All kind things are red.\n\nWe need to determine if the statement \"Bob is smart\" is true, false, or unknown.\n\nFrom statement 3, we know that Bob is nice. \n\nFrom statement 14, we know that nice things are red.\n\nFrom statement 14, we can conclude that Bob is red.\n\nFrom statement 6, we know that Gary is blue.\n\nFrom statement 13, we can conclude that Gary is big (since something red and blue is big).\n\nHowever, we cannot conclude that Bob is big from the given statements.\n\nFrom statement 11, we know that blue things are green.\n\nFrom statement 6, we can conclude that Gary is green.\n\nFrom statement 7, we know that Gary is smart.\n\nFrom statement 12, we can conclude that green, smart things are big.\n\nThis implies that Gary is big, which we already concluded.\n\nHowever, we cannot conclude that Bob is big from the given statements.\n\nFrom statement 10, we can conclude that if Bob is smart, then Bob is green.\n\nHowever, we do not know if Bob is green.\n\nWe can only conclude that Bob is nice, and that nice things are red.\n\nTherefore, the statement \"Bob is smart\" is unknown.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given information and the rules.\n\n1. From the information, we have the following rules:\n   - All red things are nice.\n   - All kind things are red.\n   - Nice things are red.\n   - If something is red and blue then it is big.\n   - Big things are kind.\n   - Blue things are green.\n   - Green, smart things are big.\n   - If Bob is smart then Bob is green.\n\n2. To determine if Bob is smart, we need to find out if the rule \"If Bob is smart then Bob is green\" applies to Bob.\n\n3. We already know that Bob is nice from the information given.\n\n4. Since nice things are red and all red things are nice, we can conclude that Bob is red.\n\n5. Since Bob is red, and blue things are green, we cannot directly conclude that Bob is green or blue.\n\n6. However, we know that green, smart things are big, and big things are kind. We still do not know if Bob is big or kind, but we do know that Bob is nice.\n\n7. Since Bob is red and nice, we can conclude that Bob is indeed red.\n\n8. Now, to determine if the statement \"Bob is smart\" is true or false, we need to examine the rule \"If Bob is smart then Bob is green.\"\n\n9. Since Bob is red, and red things are nice, and nice things are red, Bob being red is not a problem, but Bob being green and smart is what we need to examine.\n\n10. The information that green, smart things are big and big things are kind is a red herring, as it does not provide any information about Bob being smart.\n\n11. However, we know that Bob is nice and red, and we know that all red things are nice, and nice things are red. We also know that blue things are green.\n\n12. We do not know if Bob is green or blue, but we do know that Bob is nice and red.\n\n13. Now, we need to determine if the statement \"Bob is smart\" is true or false.\n\n14. Since we cannot directly apply the rule \"If Bob is smart then Bob is green\" to Bob, we cannot conclude that Bob is green, and therefore we cannot conclude that Bob is smart.\n\n15. Therefore, the statement \"Bob is smart\" is unknown, as we do not have enough information to determine if Bob is smart or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"Nice things are red\" and \"All red things are nice,\" we can conclude that nice things are both red and nice.\n\n2. From the given statement \"Bob is nice,\" we can conclude that Bob is both red and nice.\n\n3. From the statement \"All kind things are red,\" and \"Big things are kind,\" we can conclude that big things are both red and kind.\n\n4. From the statement \"Green, smart things are big\" and \"Gary is blue. Gary is smart,\" we cannot conclude that Gary is big, because blue things are green (from \"Blue things are green\") but we cannot conclude Bob is green from the statement \"Bob is smart then Bob is green\" because we don't know if Bob is smart. However, we do know that green, smart things are big.\n\n5. From the statement \"Bob is smart then Bob is green,\" we cannot conclude that Bob is green because we don't know if Bob is smart.\n\n6. However, we know that nice things are red, and big things are kind, and from \"If something is red and blue then it is big.\" We can't conclude that Bob is blue, because Bob is nice, and nice things are red. We also know from \"Blue things are green\" that blue things are green.\n\n7. From the statement \"If Bob is smart then Bob is green,\" and \"Bob is nice,\" we can conclude that if Bob is smart then Bob is green. However, we cannot conclude that Bob is smart because we don't know if Bob is green.\n\n8. However, we know that green, smart things are big. We can't conclude that Bob is big because we don't know if Bob is smart or green.\n\nHowever, if we assume that \"Bob is smart\" then we can conclude that \"Bob is green\" because \"Bob is smart then Bob is green\" and we can conclude that \"Bob is big\" because \"Green, smart things are big.\" \n\nFrom \"Bob is big\" and \"Big things are kind\" we can conclude that \"Bob is kind.\"\n\nFrom \"Bob is kind\" and \"All kind things are red,\" we can conclude that \"Bob is red.\"",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(bob) -> green(bob)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_gary, green_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(bob) -> green(bob)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not green(bob)",
+          "z3_formula": "Not(green_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_gary, green_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(bob)",
+          "z3_formula": "Not(blue_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not red(bob)",
+          "z3_formula": "Not(red_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "unknown smart(bob)",
+          "z3_formula": "smart_bob == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_bob, green_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_gary, green_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_gary, big_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_gary, kind_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> red(X)",
+          "z3_formula": "Implies(kind_gary, red_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(green_bob, smart_bob), big_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_bob, kind_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> red(X)",
+          "z3_formula": "Implies(kind_bob, red_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(red_bob, blue_bob), big_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bob) & red(bob) -> contradiction",
+          "z3_formula": "Not(And(nice_bob, red_bob))",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob) -> contradiction",
+          "z3_formula": "Not(smart_bob)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_X, nice_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> red(X)",
+          "z3_formula": "Implies(kind_X, red_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_X, kind_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_gary, green_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(green_X, smart_X), big_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(red_X, blue_X), big_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> red(X)",
+          "z3_formula": "Implies(nice_X, red_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob) | green(bob) | smart(bob)",
+          "z3_formula": "Or(big_bob, green_bob, smart_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all(kind(X), red(X))",
+          "z3_formula": "Forall(X, Implies(kind_X, red_X))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_X, kind_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(red_X, blue_X), big_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> red(X)",
+          "z3_formula": "Implies(nice_X, red_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob) & big(gary) -> red(bob)",
+          "z3_formula": "Implies(And(big_bob, big_gary), red_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob) -> nice(bob)",
+          "z3_formula": "Implies(red_bob, nice_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob) -> green(bob)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob) -> big(bob)",
+          "z3_formula": "Implies(green_bob, big_bob)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_bob, nice_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> red(X)",
+          "z3_formula": "Implies(nice_bob, red_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_gary, green_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(green_gary, smart_gary), big_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(red_gary, blue_gary), big_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> red(X)",
+          "z3_formula": "Implies(kind_bob, red_bob)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_bob, nice_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> red(X)",
+          "z3_formula": "Implies(kind_bob, red_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_bob, kind_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_gary, green_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(green_gary, smart_gary), big_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(red_bob, blue_bob), big_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> red(X)",
+          "z3_formula": "Implies(nice_bob, red_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> red(X)",
+          "z3_formula": "Implies(kind_bob, red_bob)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> red(X)",
+          "z3_formula": "Implies(nice_bob, red_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_bob, nice_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_X, kind_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_gary, green_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(green_gary, smart_gary), big_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(red_gary, blue_gary), big_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> red(X)",
+          "z3_formula": "Implies(nice_bob, red_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> red(X)",
+          "z3_formula": "Implies(kind_X, red_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_bob, green_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(red_bob, blue_bob), big_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> kind(X)",
+          "z3_formula": "Implies(red_bob, kind_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> red(X)",
+          "z3_formula": "Implies(kind_bob, red_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> red(X)",
+          "z3_formula": "Implies(nice_bob, red_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_bob, nice_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(smart(bob))",
+          "z3_formula": "Not(Or(smart_bob == True, smart_bob == False))",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_X, nice_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_X, nice_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_X, kind_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats_X_squirrel -> red(squirrel)",
+          "z3_formula": "Implies(eats_X_squirrel, red_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(green_X, smart_X), big_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(red_X, blue_X), big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> red(X)",
+          "z3_formula": "Implies(nice_X, red_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> red(X)",
+          "z3_formula": "Implies(kind_X, red_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> red(X)",
+          "z3_formula": "Implies(nice_bob, red_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(red_gary, blue_gary), big_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_gary, green_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(green_gary, smart_gary), big_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(bob)",
+          "z3_formula": "Not(And(nice_bob, Implies(smart_bob, green_bob)))",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_bob, nice_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> red(X)",
+          "z3_formula": "Implies(kind_bob, red_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> red(X)",
+          "z3_formula": "Implies(nice_bob, red_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(red_bob, blue_bob), big_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_bob, kind_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_bob, green_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(green_bob, smart_bob), big_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_bob, green_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(smart_bob, Not(smart_bob)))",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(X) -> red(X)",
+          "z3_formula": "Implies(nice_X, red_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> nice(X)",
+          "z3_formula": "Implies(red_X, nice_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(red_bob, blue_bob), big_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_bob, green_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_bob, blue_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> green(X)",
+          "z3_formula": "Implies(smart_bob, green_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(green_bob, smart_bob), big_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_bob, kind_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> red(X)",
+          "z3_formula": "Implies(kind_bob, red_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 176,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 53
+    },
+    "maxsat_stats": {
+      "satisfied": 46,
+      "excluded": 7,
+      "total_weight": 167,
+      "solve_time_ms": 2.3118415847420692
+    },
+    "timing": {
+      "trace_gen_s": 24.198,
+      "extraction_s": 27.669,
+      "dedup_s": 2.07,
+      "maxsat_s": 0.005,
+      "total_s": 53.943
+    }
+  }
+}

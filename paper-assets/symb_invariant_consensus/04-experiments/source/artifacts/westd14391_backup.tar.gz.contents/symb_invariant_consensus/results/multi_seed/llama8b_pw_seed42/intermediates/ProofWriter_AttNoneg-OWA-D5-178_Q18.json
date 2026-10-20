@@ -1,0 +1,724 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-178_Q18",
+    "problem": "Bob is big. Bob is quiet. Erin is white. Gary is big. Gary is red. Harry is green. Harry is smart. If someone is smart and big then they are white. All quiet, red people are smart. If someone is smart and white then they are green. Red, round people are quiet. If someone is big then they are round. If Erin is round and Erin is quiet then Erin is smart. If someone is red and green then they are big.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is smart.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nQuiet($x, bool) ::: Is x quiet?\nWhite($x, bool) ::: Is x white?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\nSmart($x, bool) ::: Is x smart?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nQuiet(Bob, True) ::: Bob is quiet.\nWhite(Erin, True) ::: Erin is white.\nBig(Gary, True) ::: Gary is big.\nRed(Gary, True) ::: Gary is red.\nGreen(Harry, True) ::: Harry is green.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nSmart($x, True) && Big($x, True) >>> White($x, True) ::: If someone is smart and big then they are white.\nQuiet($x, True) && Red($x, True) >>> Smart($x, True) ::: All quiet, red people are smart.\nSmart($x, True) && White($x, True) >>> Green($x, True) ::: If someone is smart and white then they are green.\nRed($x, True) && Round($x, True) >>> Quiet($x, True) ::: Red, round people are quiet.\nBig($x, True) >>> Round($x, True) ::: If someone is big then they are round.\nRound(Erin, True) && Quiet(Erin, True) >>> Smart(Erin, True) ::: If Erin is round and Erin is quiet then Erin is smart.\nRed($x, True) && Green($x, True) >>> Big($x, True) ::: If someone is red and green then they are big.\n\nQuery:\nSmart(Erin, True) ::: Erin is smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 85.0,
+      "Unknown": 66.0
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to analyze the given conditions and facts.\n\n1. Given facts:\n   - Erin is white.\n   - If someone is white and smart, then they are green. (Condition 5)\n   - If Erin is round and Erin is quiet, then Erin is smart. (Condition 8)\n\n2. To determine if Erin is smart, we need to find a path that directly leads to the conclusion or shows that it's unknown.\n\n- From Condition 5, we know that if someone is white and smart, then they are green. But we don't know if Erin is smart yet.\n- From Condition 8, we have two parts to consider: Erin being round and Erin being quiet. To use this condition, we need to know if Erin is round and quiet. \n\n3. Let's start with the condition that if someone is big, then they are round. (Condition 6)\n   - Given that Gary is big and Gary is red (Condition 2), we can use Condition 7 (If someone is red and green, then they are big) to infer that Gary is not big, but this is a contradictory statement. Therefore, we cannot use this path to determine if Erin is smart.\n\n4. Now let's consider Erin's color (white) and the fact that we don't know if Erin is round. We cannot directly use the given conditions to conclude that Erin is smart.\n\n5. Since we cannot find a direct path to determine if Erin is smart, the conclusion is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve the problem, we will analyze the given statements and use the rules to determine whether Erin is smart or not.\n\nGiven statements:\n\n1. Bob is big. Bob is quiet. \n2. Erin is white. \n3. Gary is big. Gary is red. \n4. Harry is green. Harry is smart. \n5. If someone is smart and big then they are white. \n6. All quiet, red people are smart. \n7. If someone is smart and white then they are green. \n8. Red, round people are quiet. \n9. If someone is big then they are round. \n10. If Erin is round and Erin is quiet then Erin is smart. \n11. If someone is red and green then they are big.\n\nNow, let's analyze the statement \"Erin is smart.\"\n\nWe have two possible paths to determine whether Erin is smart:\n\nPath 1: Using rule 5 and rule 7\nWe do not have any information that Erin is big, so we cannot use rule 5 directly. Also, we do not have any information that Erin is smart and white, so we cannot use rule 7 directly.\n\nPath 2: Using rule 10\nRule 10 states that if Erin is round and Erin is quiet, then Erin is smart. We need to determine whether Erin is round and quiet.\n\nFrom rule 9, we know that if someone is big, then they are round. We do not have any information that Erin is big, but we do not need to be big to be round. \n\nHowever, from rule 8, we know that red, round people are quiet. We do not have any information that Erin is red, but we do not need to be red to be quiet.\n\nWe can use rule 11 to determine whether Erin is big. Rule 11 states that if someone is red and green, then they are big. We do not have any information that Erin is red and green.\n\nWe can use rule 6 to determine whether Erin is smart. Rule 6 states that all quiet, red people are smart. We do not have any information that Erin is red, so we cannot use rule 6 directly.\n\nWe can use rule 10 to determine whether Erin is smart if Erin is round and Erin is quiet. From rule 8, we know that red, round people are quiet. We do not have any information that Erin is red. However, from rule 9, we know that if someone is big, then they are round. We do not have any information that Erin is big, but we do not need to be big to be round.\n\nWe can use rule 11 to determine whether Erin is big. Rule 11 states that if someone is red and green, then they are big. We do not have any information that Erin is red and green.\n\nWe can use rule 7 to determine whether Erin is smart if Erin is white. Rule 7 states that if someone is smart and white, then they are green. We do not have any information that Erin is smart and white.\n\nWe can use rule 5 to determine whether Erin is smart if Erin is big and smart. Rule 5 states that if someone is smart and big, then they are white. We do not have any information that Erin is big and smart.\n\nNow, we can determine whether Erin is big. We do not have any information that Erin is red and green, so we cannot use rule 11 directly. \n\nWe can use rule 3 to determine whether Erin is big. Rule 3 states that Gary is big. Gary is red. We do not have any information that Erin is red, but we do not need to be red to be big. We can use rule 11 to determine whether Erin is big. Rule 11 states that if someone is red and green, then they are big. We do not have any information that Erin is red and green.\n\nWe can use rule 2 to determine whether Erin is big. Rule 2 states that Erin is white. We do not have any information that Erin is red and green, so we cannot use rule 11 directly.\n\nWe can use rule 4 to determine whether Erin is big. Rule 4 states that Harry is green. Harry is smart. We do not have any information that Erin is smart and white, so we cannot use rule 7 directly. However, from rule 5, we know that if someone is smart and big, then they are white. We do not have any information that Erin is big and smart.\n\nWe can use rule 1 to determine whether Erin is big. Rule 1 states that Bob is big. Bob is quiet. We do not have any information that Erin is quiet, so we cannot use rule 6 directly.\n\nWe can use rule 10 to determine whether Erin is smart. Rule 10 states that if Erin is round and Erin is quiet, then Erin is smart. We need to determine whether Erin is round and quiet.\n\nFrom rule 9, we know that if someone is big, then they are round. We do not have any information that Erin is big, but we do not need to be big to be round.\n\nHowever, from rule 8, we know that red, round people are quiet. We do not have any information that Erin is red, so we cannot use rule 8 directly.\n\nFrom rule 11, we know that if someone is red and green, then they are big. We do not have any information that Erin is red and green.\n\nFrom rule 5, we know that if someone is smart and big, then they are white. We do not have any information that Erin is smart and big.\n\nFrom rule 7, we know that if someone is smart and white, then they are green. We do not have any information that Erin is smart and white.\n\nFrom rule 10, we know that if Erin is round and Erin is quiet, then Erin is smart. We need to determine whether Erin is round and quiet.\n\nFrom rule 9, we know that if someone is big, then they are round. We do not have any information that Erin is big, but we do not need to be big to be round.\n\nFrom rule 8, we know that red, round people are quiet. We do not have any information that Erin is red, so we cannot use rule 8 directly.\n\nFrom rule 11, we know that if someone is red and green, then they are big. We do not have any information that Erin is red and green.\n\nNow, we can determine whether Erin is round. We do not have any information that Erin is big, but we do not need to be big to be round.\n\nHowever, from rule 8, we know that red, round people are quiet. We do not have any information that Erin is red, so we cannot use rule 8 directly.\n\nNow, we can determine whether Erin is quiet. We do not have any information that Erin is red, so we cannot use rule 6 directly.\n\nWe can use rule 10 to determine whether Erin is smart. Rule 10 states that if Erin is round and Erin is quiet, then Erin is smart. We need to determine whether Erin is round and quiet.\n\nFrom rule 9, we know that if someone is big, then they are round. We do not have any information that Erin is big, but we do not need to be big to be round.\n\nHowever, from rule 8, we know that red, round people are quiet. We do not have any information that Erin is red, so we cannot use rule 8 directly.\n\nFrom rule 11, we know that if someone is red and green, then they are big. We do not have any information that Erin is red and green.\n\nFrom rule 5, we know that if someone is smart and big, then they are white. We do not have any information that Erin is smart and big.\n\nFrom rule 7, we know that if someone is smart and white, then they are green. We do not have any information that Erin is smart and white.\n\nFrom rule 10, we know that if Erin is round and Erin is quiet, then Erin is smart. We need to determine whether Erin is round and quiet.\n\nFrom rule 9, we know that if someone is big, then they are round. We do not have any information that Erin is big, but we do not need to be big to be round.\n\nFrom rule 8, we know that red, round people are quiet. We do not have any information that Erin is red, so we cannot use rule 8 directly.\n\nFrom rule 11, we know that if someone is red and green, then they are big. We do not have any information that Erin is red and green.\n\nWe can use rule 10 to determine whether Erin is smart. Rule 10 states that if Erin is round and Erin is quiet, then Erin is smart. We need to determine whether Erin is round and quiet.\n\nFrom rule 9, we know that if someone is big, then they are round. We do not have any information that Erin is big, but we do not need to be big to be round.\n\nHowever, from rule 8, we know that red, round people are quiet. We do not have any information that Erin is red, so we cannot use rule 8 directly.\n\nFrom rule 11, we know that if someone is red and green, then they are big. We do not have any information that Erin is red and green.\n\nFrom rule 5, we know that if someone is smart and big, then they are white. We do not have any information that Erin is smart and big.\n\nFrom rule 7, we know that if someone is smart and white, then they are green. We do not have any information that Erin is smart and white.\n\nNow, let's analyze the statement \"Erin is smart.\" We have two possible paths to determine whether Erin is smart:\n\nPath 1",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply them step by step to determine whether Erin is smart or not.\n\nGiven statements:\n1. If someone is smart and big then they are white.\n2. All quiet, red people are smart.\n3. If someone is smart and white then they are green.\n4. Red, round people are quiet.\n5. If someone is big then they are round.\n6. If Erin is round and Erin is quiet then Erin is smart.\n7. If someone is red and green then they are big.\n\nNow, let's analyze the given statements to determine whether Erin is smart.\n\nWe are given that Erin is white (statement 3) and Erin is round (statement 5). \n\nHowever, we are also given that Erin is quiet (statement 4) and Erin is red (statement 7).\n\nLet's examine the possible combinations of these characteristics:\n- Erin is quiet and red (statements 2 and 4), so Erin is smart (statement 2).\n- Erin is round and Erin is quiet (statement 6), so Erin is smart (statement 6).\n- Erin is red and Erin is green (statements 7 and 3), so Erin is big (statement 7).\n- Erin is big (statement 5), so Erin is round (statement 5).\n\nSince Erin is red and Erin is green, Erin is big (statement 7), which implies Erin is round (statement 5). This is a contradictory statement with Erin is round and Erin is quiet (statement 6).\n\nHowever, we can also consider that Erin is red and Erin is green (statements 7 and 3), which implies Erin is big (statement 7), which implies Erin is round (statement 5). Since Erin is round and Erin is quiet, Erin is smart (statement 6).\n\nNow let's consider the case when Erin is red and Erin is green. \n\nWe have a case where Erin is red and Erin is green, which implies Erin is big (statement 7). This is a case that satisfies the conditions of both statements 2 and 6.\n\nHowever, if we combine the information that Erin is red (statement 7) and Erin is green (statement 3) with statement 2, Erin is big and Erin is smart. Since Erin is big and Erin is smart (statements 1 and 2), Erin is white (statement 1).\n\nHowever, since Erin is white (statement 1) and Erin is smart (statement 3), Erin is green (statement 3). This is a contradictory statement with Erin is green (statement 7).\n\nSo now we need to analyze the information again to see if Erin is smart.\n\nWe have that Erin is red (statement 7) and Erin is green (statement 3). This implies Erin is big (statement 7).\n\nHowever, if Erin is big (statement 5), then Erin is round (statement 5). \n\nSince Erin is round and Erin is quiet (statements 6), Erin is smart (statement 6).\n\nHowever, Erin is red and Erin is quiet (statements 4 and 7). This implies Erin is smart (statement 2).\n\nSince Erin is red (statement 7) and Erin is quiet (statement 4), Erin is smart (statement 2).\n\nTherefore, Erin is smart.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Erin is smart, we need to break down the given statements and analyze the relationships between the properties (big, quiet, white, red, green, and smart).\n\n1. If someone is smart and big then they are white.\n2. All quiet, red people are smart.\n3. If someone is smart and white then they are green.\n4. Red, round people are quiet.\n5. If someone is big then they is round.\n6. If Erin is round and Erin is quiet then Erin is smart.\n7. If someone is red and green then they are big.\n\nLet's analyze the given information:\n\n- We don't know if Erin is red, round, or big. But we do know that Erin is white from statement 1.\n- We also know that Erin is quiet from statement 4 (Red, round people are quiet) and statement 5 (If someone is big then they is round).\n\nGiven that Erin is white, and we don't know if Erin is smart or not, we can't directly use statement 1 or 3 to conclude whether Erin is smart or not. \n\nHowever, we can use the information that Erin is quiet, round, and white. Let's try to use the information in statement 2 (All quiet, red people are smart) and statement 6 (If Erin is round and Erin is quiet then Erin is smart).\n\nWe don't know if Erin is red, so we can't use statement 2 directly. But if we can find a relationship between Erin's properties and the conditions in statement 6, we might be able to conclude whether Erin is smart or not.\n\nStatement 6 says that if Erin is round and Erin is quiet, then Erin is smart. We already know that Erin is quiet and round. But we also know that Erin is big from statement 5 (If someone is big then they is round). \n\nNow we have a problem. If Erin is big, then Erin is round (from statement 5), but we also know that Erin is round (from the premises). This creates a loop. But statement 7 (If someone is red and green then they are big) gives us an opportunity to break this loop.\n\nStatement 7 says that if someone is red and green then they are big. But we also know that Erin is white. We can't directly use this information to conclude whether Erin is big or not.\n\nHowever, if we combine this information with statement 1 (If someone is smart and big then they are white), we can conclude that Erin is not smart. This is because if Erin is big, then Erin is white (from statement 1), but we already know that Erin is white.\n\nSo, Erin can't be big. If Erin is not big, then Erin is not round (from statement 5). If Erin is not round, then Erin is not quiet (from statement 4).\n\nHowever, if we go back to the original statement, we see that Erin is quiet. Therefore, Erin is round.\n\nThis creates a loop, and we can't conclude whether Erin is smart or not based on the given information.\n\nTherefore, the statement \"Erin is smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given statements, we have the following information:\n\n1. Erin is white.\n2. If someone is white and smart, then they are green. (Statement 5)\n3. If Erin is round and Erin is quiet, then Erin is smart. (Statement 8)\n4. If Erin is round, we need to find out whether Erin is quiet or not.\n5. If someone is big then they are round. (Statement 6)\n6. If Erin is white, and Erin is quiet, we cannot directly conclude that Erin is smart because there is no direct relationship between being white and quiet and being smart.\n7. However, we can conclude that Erin is not smart from statement 4 because there is no information that Erin is big or round. \n8. From the information that Erin is white, we cannot determine if Erin is smart or not because being white does not directly imply that Erin is smart.\n9. From statement 3, if Erin is round then Erin is smart, but Erin is not round. \n10. Since we can't conclude that Erin is smart or not based on the given statements, we can conclude that the statement \"Erin is smart\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to use the given premises and rules to analyze the properties of Erin.\n\nFrom the premises, we know the following:\n1. Erin is white.\n2. If Erin is round and Erin is quiet then Erin is smart.\n3. If someone is red and green then they are big.\n4. If someone is big then they are round.\n5. If someone is smart and white then they are green.\n6. If someone is smart and big then they are white.\n\nNow, let's start with the given information about Erin:\n- Erin is white.\n\nWe need to determine if Erin is smart. To do this, we can try to deduce the properties of Erin using the given premises.\n\nFrom premise 1, we know that Erin is white.\n\nFrom premise 2, we can't directly say if Erin is smart or not because it depends on two conditions: being round and quiet. We don't have enough information to confirm if Erin is round or quiet.\n\nHowever, we can use premise 4 to deduce if Erin is round or not. Premise 4 states that if someone is big then they are round. We don't know if Erin is big, but we do know that Erin is white, and from premise 6, we can see that if someone is smart and big then they are white. So, if Erin is smart and big, then Erin is white. But we are trying to determine if Erin is smart, so this creates a loop. We need more information to break this loop.\n\nLet's analyze the given information more deeply:\n\nFrom premise 3, we can see that if someone is red and green then they are big. However, we don't know if Erin is red or green.\n\nFrom premise 5, we know that if someone is smart and white then they are green. We don't know if Erin is smart, but we know Erin is white. So, if Erin is smart, then Erin is green. However, this also creates a loop with premise 3, because if Erin is green, then Erin might be big, and if Erin is big, then Erin is round, and if Erin is round, then Erin might be smart.\n\nFrom premise 1, we know that Erin is white. From premise 6, we can see that if someone is smart and big then they are white. But we don't know if Erin is big or not.\n\nFrom premise 4, we know that if someone is big then they are round. But we don't know if Erin is big or not.\n\nWe can see that there are multiple loops and conditions that can lead to different conclusions. However, there is one more premise that can help us break the loop: premise 7, which states that if someone is red, round people are quiet. We don't know if Erin is red or round.\n\nSince we have multiple premises that can lead to different conclusions, we can't determine with certainty whether Erin is smart or not. Therefore, the statement \"Erin is smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\n1. Given information:\n   - Erin is white.\n   - Erin is round.\n   - Erin is quiet.\n\n2. Conditions:\n   - If someone is big then they are round. (This is not directly relevant to Erin, but it's good to know.)\n   - If Erin is round and Erin is quiet then Erin is smart. (This directly applies to Erin's situation.)\n   - If someone is red and green then they are big. (This condition does not directly apply to Erin.)\n   - If someone is smart and white then they are green. (This does not directly apply to Erin, but it's good to know.)\n   - If someone is smart and big then they are white. (This does not directly apply to Erin, but it's good to know.)\n   - If someone is quiet, red people are smart. (This condition does not directly apply to Erin.)\n   - If someone is big then they are round. (We already knew this, but it's good to know again.)\n\nFrom the given information:\n- Erin is white.\n- Erin is round.\n- Erin is quiet.\n\nNow, let's see if we can apply any of the conditions to Erin's situation:\n- We know Erin is round and Erin is quiet. \n- According to the condition: If Erin is round and Erin is quiet then Erin is smart.\n\nBased on this condition, we can conclude that Erin is smart.\n\nTherefore, the statement \"Erin is smart\" is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Erin is white.\n2. If Erin is round and Erin is quiet then Erin is smart.\n3. If someone is big then they are round.\n4. If someone is red and green then they are big.\n\nFrom statement 3, if Erin is big, then Erin is round. We don't know if Erin is big or not, so we can't conclude if Erin is round or not.\n\nHowever, from statement 1, we know Erin is white. But we can't conclude if Erin is smart or not from this information alone.\n\nNow, let's analyze statement 2. It says if Erin is round and Erin is quiet then Erin is smart. We know that if someone is big then they are round (statement 3), but we don't know if Erin is quiet or not.\n\nFrom statement 1, we know Erin is white. But statement 5 says if someone is smart and white then they are green. This means Erin can't be smart and white at the same time because Erin is white (statement 1) and if Erin were smart, Erin would be green (statement 5), which contradicts statement 1 (Erin is white).\n\nHowever, from statement 4, if someone is red and green then they are big. We also know that Gary is big (statement 2) and Gary is red (statement 3). But we can't conclude if Erin is red or green.\n\nNow, let's analyze statement 4 again. It says if someone is red and green then they are big. We also know that Harry is green (statement 3) and Harry is smart (statement 3). But we don't know if Harry is red or not.\n\nFrom statement 6, all quiet, red people are smart. We don't know if Erin is quiet or red. \n\nLet's analyze statement 4 one more time. It says if someone is red and green then they are big. We also know that Gary is big (statement 2) and Gary is red (statement 3). We also know that Gary is not green. \n\nHowever, from statement 3, if someone is big then they are round. We don't know if Erin is big or not. \n\nNow, let's analyze statement 7. It says if Erin is round and Erin is quiet then Erin is smart. We don't know if Erin is round or quiet.\n\nHowever, from statement 6, all quiet, red people are smart. We don't know if Erin is quiet or red.\n\nNow, let's analyze statement 7 again. It says if Erin is round and Erin is quiet then Erin is smart. We don't know if Erin is round or quiet.\n\nFrom statement 3, if someone is big then they are round. But we don't know if Erin is big or not.\n\nFrom statement 3, we also know that Gary is big (statement 2) and Gary is red (statement 3). We also know that Gary is not green. \n\nHowever, from statement 6, all quiet, red people are smart. We don't know if Erin is quiet or red.\n\nNow, let's analyze statement 2 again. It says if Erin is round and Erin is quiet then Erin is smart. We don't know if Erin is round or quiet.\n\nHowever, from statement 6, all quiet, red people are smart. We don't know if Erin is quiet or red.\n\nNow, let's analyze statement 7 one more time. It says if Erin is round and Erin is quiet then Erin is smart. We don't know if Erin is round or quiet.\n\nHowever, from statement 3, if someone is big then they are round. But we don't know if Erin is big or not.\n\nFrom statement 3, we also know that Gary is big (statement 2) and Gary is red (statement 3). We also know that Gary is not green. \n\nHowever, from statement 6, all quiet, red people are smart. We don't know if Erin is quiet or red.\n\nFrom statement 3, if someone is big then they are round. But we don't know if Erin is big or not.\n\nHowever, from statement 1, we know Erin is white. But statement 5 says if someone is smart and white then they are green. This means Erin can't be smart and white at the same time because Erin is white (statement 1) and if Erin were smart, Erin would be green (statement 5), which contradicts statement 1 (Erin is white).\n\nFrom statement 3, if someone is big then they are round. But we don't know if Erin is big or not.\n\nFrom statement 3, we also know that Gary is big (statement 2) and Gary is red (statement 3). We also know that Gary is not green. \n\nHowever, from statement 4, if someone is red and green then they are big. We also know that Harry is green (statement 3) and Harry is smart (statement 3). But we don't know if Harry is red or not.\n\nHowever, from statement 6, all quiet, red people are smart. We don't know if Erin is quiet or red.\n\nFrom statement 3, if someone is big then they are round. But we don't know if Erin is big or not.\n\nFrom statement 3, we also know that Gary is big (statement 2) and Gary is red (statement 3). We also know that Gary is not green. \n\nHowever, from statement 5, if someone is smart and white then they are green. We know that Erin is white (statement 1) and we know that Erin can't be smart and white at the same time because if Erin were smart, Erin would be green (statement 5), which contradicts statement 1 (Erin is white).\n\nNow, let's analyze statement 7 one more time. It says if Erin is round and Erin is quiet then Erin is smart. We don't know if Erin is round or quiet.\n\nHowever, from statement 3, if someone is big then they are round. But we don't know if Erin is big or not.\n\nFrom statement 3, we also know that Gary is big (statement 2) and Gary is red (statement 3). We also know that Gary is not green. \n\nHowever, from statement 6, all quiet, red people are smart. We don't know if Erin is quiet or red.\n\nNow, let's analyze statement 1 again. It says Erin is white. But statement 5 says if someone is smart and white then they are green. This means Erin can't be smart and white at the same time because Erin is white (statement 1) and if Erin were smart, Erin would be green (statement 5), which contradicts statement 1 (Erin is white).\n\nHowever, from statement 6, all quiet, red people are smart. We don't know if Erin is quiet or red.\n\nNow, let's analyze statement 3 again. If someone is big then they are round. We don't know if Erin is big or not.\n\nHowever, from statement 4, if someone is red and green then they are big. We also know that Harry is green (statement 3) and Harry is smart (statement 3). But we don't know if Harry is red or not.\n\nFrom statement 1, we know Erin is white. But statement 5 says if someone is smart and white then they are green. This means Erin can't be smart and white at the same time because Erin is white (statement 1) and if Erin were smart, Erin would be green (statement 5), which contradicts statement 1 (Erin is white).\n\nHowever, from statement 6, all quiet, red people are smart. We don't know if Erin is quiet or red.\n\nNow, let's analyze statement 3 one more time. If someone is big then they are round. We don't know if Erin is big or not.\n\nHowever, from statement 4, if someone is red and green then they are big. We also know that Harry is green (statement 3) and Harry is smart (statement 3). But we don't know if Harry is red or not.\n\nHowever, from statement 6, all quiet, red people are smart. We don't know if Erin is quiet or red.\n\nNow, let's analyze statement 7 one more time. It says if Erin is round and Erin is quiet then Erin is smart. We don't know if Erin is round or quiet.\n\nHowever, from statement 3, if someone is big then they are round. But we don't know if Erin is big or not.\n\nFrom statement 3, we also know that Gary is big (statement 2) and Gary is red (statement 3). We also know that Gary is not green. \n\nHowever, from statement 6, all quiet, red people are smart. We don't know if Erin is quiet or red.\n\nNow, let's analyze statement 2 again. It says if Erin is round and Erin is quiet then Erin is smart. We don't know if Erin is round or quiet.\n\nHowever, from statement 6, all quiet, red people are smart. We don't know if Erin is quiet or red.\n\nFrom statement 3, if someone is big then they are round. But we don't know if Erin is big or not.\n\nHowever, from statement 4, if someone is red and green then they are big. We also know that Harry is green (statement 3) and Harry is smart (statement 3). But we don't know if Harry is red or not.\n\nNow, let's analyze statement 1 again. It says Erin is white. But statement ",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Erin is smart, we need to follow the given statements and find out what we can infer about Erin.\n\n1. Erin is white. (Statement 4 is not applicable here, but we can use this info in conjunction with other statements)\n2. If someone is big then they are round. (Statement 6) \n   Since Erin is white and we cannot directly infer if she is big or not, we cannot conclude if Erin is round or not.\n3. If Erin is round and Erin is quiet then Erin is smart. (Statement 7)\n   We still don't have enough information about Erin's roundness or quietness.\n4. If someone is red and green then they are big. (Statement 8)\n   Erin is white, not red or green.\n5. Gary is red. (Statement 2) \n   This does not provide information about Erin.\n6. Erin is quiet. (Statement 5 is not applicable here, but this statement is provided)\n   Now we have a piece of information about Erin that can be used with other statements.\n\nNow, we can use the new information that Erin is quiet. \n\n7. If Erin is quiet, red people are smart. (Statement 3)\n   This statement cannot be used because Erin is not red.\n\nNow, let's check if we can use the roundness of Erin to conclude if she is smart or not.\n\n8. If Erin is round and Erin is quiet then Erin is smart. (Statement 7)\n   We still don't have enough information about Erin's roundness.\n\nNow, let's look at statement 6 again: If someone is big then they are round. We don't know if Erin is big or not.\n\nHowever, let's check if we can use the given information about Bob, Erin, Gary, and Harry to conclude if Erin is big or not.\n\n1. Bob is big. Bob is quiet. (Statement 1)\n   This does not provide information about Erin.\n2. Gary is big. Gary is red. (Statement 2)\n   This does not provide information about Erin.\n3. Erin is white. (Statement 1)\n   This does not provide information about Erin's big or quiet status.\n4. Erin is quiet. (Statement 6)\n   Now we have a piece of information about Erin that can be used with other statements.\n\nNow, let's check if we can use the given information about Bob, Erin, Gary, and Harry to conclude if Erin is big or not.\n\nWe know that Erin is quiet. \n\n5. If someone is red, round people are quiet. (Statement 5)\n   This statement cannot be used because Erin is not red.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n6. If someone is smart and white then they are green. (Statement 4)\n   This statement cannot be used because we do not know if Erin is smart.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n7. If someone is big then they are round. (Statement 6)\n   We still don't have enough information about Erin's big status.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n8. If someone is big then they are round. (Statement 6)\n   We still don't have enough information about Erin's big status.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n9. If Erin is round and Erin is quiet then Erin is smart. (Statement 7)\n   We still don't have enough information about Erin's roundness.\n\nNow, let's check if we can use the given information about Bob, Erin, Gary, and Harry to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n10. If someone is big then they are round. (Statement 6)\n    We still don't have enough information about Erin's big status.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\nNow, let's look at statement 7 again: If someone is big then they are round.\n\nWe still don't have enough information about Erin's big status.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n11. All quiet, red people are smart. (Statement 3)\n    This statement cannot be used because Erin is not red.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n12. If someone is smart and big then they are white. (Statement 2)\n    This statement cannot be used because we do not know if Erin is smart.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\nNow, let's look at statement 7 again: If someone is big then they are round.\n\nWe still don't have enough information about Erin's big status.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n13. If Erin is round and Erin is quiet then Erin is smart. (Statement 7)\n   We still don't have enough information about Erin's roundness.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n14. If someone is red and green then they are big. (Statement 8)\n   Erin is white, not red or green.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\nNow, let's look at statement 7 again: If someone is big then they are round.\n\nWe still don't have enough information about Erin's big status.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n15. Gary is big. Gary is red. (Statement 2)\n   This does not provide information about Erin.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n16. Bob is big. Bob is quiet. (Statement 1)\n   This does not provide information about Erin.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n17. If someone is big then they are round. (Statement 6)\n   We still don't have enough information about Erin's big status.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n18. Harry is green. Harry is smart. (Statement 3)\n   This does not provide information about Erin.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n19. If someone is red and green then they are big. (Statement 8)\n   Erin is white, not red or green.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n20. If someone is big then they are round. (Statement 6)\n   We still don't have enough information about Erin's big status.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\nNow, let's look at statement 2 again: Bob is big. Bob is quiet.\n\nWe know that Erin is quiet and white. \n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n21. If someone is big then they are round. (Statement 6)\n   We still don't have enough information about Erin's big status.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n22. If Erin is round and Erin is quiet then Erin is smart. (Statement 7)\n   We still don't have enough information about Erin's roundness.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\n23. Gary is big. Gary is red. (Statement 2)\n   This does not provide information about Erin.\n\nHowever, let's check if we can use the information that Erin is quiet and white to conclude if Erin is big or not.\n\nWe know that Erin is quiet and white. \n\nNow, let's look at statement 6",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\n1. We know that Erin is white from the statement \"Erin is white.\"\n\n2. We have the following rules:\n   - If someone is smart and big then they are white.\n   - If someone is smart and white then they are green.\n   - If Erin is round and Erin is quiet then Erin is smart.\n   - If Erin is round and Erin is quiet, we do not know if Erin is big, but we do know that if someone is big then they are round.\n\nFrom the information given, we can deduce the following:\n- Since Erin is white, and if someone is smart and white then they are green, we can infer that Erin is not smart and white (because it would make Erin green, but we know Erin is white). However, this does not tell us if Erin is smart or not.\n\n- We do not have any information directly stating that Erin is smart or not. However, we do have some information that might help us determine this.\n- From the statement \"If someone is big then they are round\" and the statement \"If Erin is round and Erin is quiet then Erin is smart,\" we can say that Erin is round if Erin is big (since we can conclude that Erin is big if Erin is round). However, since we do not have any information that directly states that Erin is quiet, we cannot conclude if Erin is smart or not using this information.\n\n- From the statement \"Red, round people are quiet\" and the statement \"Gary is red,\" we can say that Gary is round and quiet. However, this does not tell us anything about Erin.\n\n- From the statement \"If someone is smart and big then they are white,\" and the statement \"Gary is big,\" we can say that Gary is white (since we know Gary is big). However, this does not tell us anything about Erin.\n\n- From the statement \"If someone is red and green then they are big\" and the statement \"Harry is green,\" we can say that Harry is not big and not red. However, this does not tell us anything about Erin.\n\nBased on the analysis above, we cannot determine if Erin is smart or not using the given information. Therefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to analyze the given information and the logical rules.\n\nGiven information:\n- Bob is big.\n- Bob is quiet.\n- Erin is white.\n- Gary is big.\n- Gary is red.\n- Harry is green.\n- Harry is smart.\n- If someone is smart and big then they are white.\n- All quiet, red people are smart.\n- If someone is smart and white then they are green.\n- Red, round people are quiet.\n- If someone is big then they are round.\n- If Erin is round and Erin is quiet then Erin is smart.\n- If someone is red and green then they are big.\n\nWe need to find the relationship between Erin and being smart. \n\nFrom the given information, we know:\n- Erin is white.\n- If someone is smart and white then they are green. (Rule 5)\n\nSo, if Erin is smart, then Erin would be green, but Erin is not green. This implies that Erin is not smart.\n\nHowever, we also know:\n- Erin is white.\n- If someone is smart and big then they are white. (Rule 1)\n\nThis implies that if Erin is smart, then Erin must be big. But we know that Erin is not big.\n\nNow, let's analyze the statement \"Erin is round and Erin is quiet then Erin is smart.\" (Rule 10)\n\nIf Erin is round and quiet, then Erin would be smart. However, we know that Erin is not smart. So, Erin is not round and quiet.\n\nFrom the given information, we know:\n- If someone is big then they are round. (Rule 8)\n- If someone is big then they are round. This implies that Erin is not quiet because if Erin is round, then Erin must be big.\n\nNow, let's analyze the statement \"Red, round people are quiet.\" (Rule 6)\n\nIf Erin is round (because Erin is big), then Erin must be red (because red, round people are quiet). \n\nHowever, we know that Erin is white, not red.\n\nNow, let's analyze the statement \"If someone is red and green then they are big.\" (Rule 11)\n\nIf Erin is red and green, then Erin would be big. However, Erin is white, not big.\n\nHowever, we do know that Erin is white. And we know that \"If someone is smart and white then they are green.\" (Rule 5)\n\nThis implies that Erin is green and white.\n\nWe know that \"If someone is red and green then they are big.\" (Rule 11)\n\nThis implies that Erin is big.\n\nWe also know that \"If someone is big then they are round.\" (Rule 8)\n\nThis implies that Erin is round.\n\nHowever, we also know that \"Red, round people are quiet.\" (Rule 6)\n\nThis implies that Erin is quiet.\n\nNow, let's analyze the statement \"If Erin is round and Erin is quiet then Erin is smart.\" (Rule 10)\n\nSince Erin is round and quiet, then Erin would be smart.\n\nTherefore, the statement \"Erin is smart\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is smart\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given statements:\n\n1. Erin is white.\n2. If someone is smart and white then they are green.\n3. If Erin is round and Erin is quiet then Erin is smart.\n\nNow, let's break down the information about Erin:\n\n- We don't know if Erin is round or quiet.\n- We don't know if Erin is big or red.\n- We know that Erin is white.\n\nFrom statement 2, we can infer that if Erin is smart and white, then Erin is green. However, we don't know if Erin is smart yet, so we can't conclude anything about Erin's color based on this statement.\n\nFrom statement 3, we can see that if Erin is both round and quiet, then Erin is smart. However, we don't know if Erin is round or quiet, so we can't conclude if Erin is smart based on this statement.\n\nSince we don't have enough information to determine if Erin is smart, we can't conclude that the statement \"Erin is smart\" is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(white_erin, smart_erin), green_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(red_gary, green_gary), big_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(smart_erin, Not(smart_erin)))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_X, big_X), white_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_X, red_X), smart_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_X, white_X), green_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(red_X, green_X), big_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_X, round_X), quiet_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_X, quiet_X), smart_X)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_erin, big_erin), white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_erin, red_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_erin, white_erin), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_erin, round_erin), quiet_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_erin, round_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(red_erin, green_erin), big_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_erin, big_erin), white_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_erin, red_erin), smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_erin, white_erin), green_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(red_erin, green_erin), big_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> quiet(X)",
+          "z3_formula": "Implies(And(red_erin, round_erin), quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_erin, round_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), smart_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(white_erin, smart_erin), green_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_erin, round_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(erin)",
+          "z3_formula": "Not(smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(erin)",
+          "z3_formula": "Not(smart_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Or(Not(smart_erin), Not(Not(smart_erin)))",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(red_erin, green_erin), big_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_erin, round_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_erin, white_erin), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_erin, big_erin), white_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> (round(Y) -> quiet(Y))",
+          "z3_formula": "Implies(red_erin, Implies(round_erin, quiet_erin))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_erin, round_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(red_harry, green_harry), big_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_erin, quiet_erin), smart_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_erin, white_erin), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_erin, round_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_erin, round_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_erin, round_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_erin, round_erin)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), smart_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == Unknown",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_erin, big_erin), white_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_erin, white_erin), green_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_erin, big_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(smart(erin) & white(erin))",
+          "z3_formula": "Not(And(smart_erin, white_erin))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(smart(erin))",
+          "z3_formula": "Or(Not(smart_erin), Not(Not(smart_erin)))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & big(X) -> white(X)",
+          "z3_formula": "Implies(And(smart_X, big_X), white_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_X, red_X), smart_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_X, white_X), green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & green(X) -> big(X)",
+          "z3_formula": "Implies(And(red_X, green_X), big_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_X, big_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_X, round_X), smart_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_erin, white_erin), green_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_erin, quiet_erin), smart_erin)",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 99,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 33
+    },
+    "maxsat_stats": {
+      "satisfied": 30,
+      "excluded": 3,
+      "total_weight": 95,
+      "solve_time_ms": 1.2734178453683853
+    },
+    "timing": {
+      "trace_gen_s": 24.994,
+      "extraction_s": 18.447,
+      "dedup_s": 0.848,
+      "maxsat_s": 0.003,
+      "total_s": 44.291
+    }
+  }
+}

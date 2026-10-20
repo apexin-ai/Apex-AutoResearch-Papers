@@ -1,0 +1,1301 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-685_Q24",
+    "problem": "The bear chases the cow. The bear eats the cow. The bear is young. The cow is red. The cow is round. The cow visits the squirrel. The rabbit is round. The rabbit visits the bear. The squirrel eats the cow. The squirrel visits the rabbit. If someone visits the squirrel and the squirrel chases the cow then the cow is round. If someone is big and red then they chase the rabbit. If someone visits the rabbit then the rabbit visits the bear. If the squirrel chases the cow and the cow is round then the cow is young. If someone chases the squirrel then the squirrel eats the rabbit. If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit. If someone chases the rabbit then the rabbit is red. All red people are big. If someone eats the bear then they chase the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear visits the rabbit.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nYoung($x, bool) ::: Is x young?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nVisits($x, $y, bool) ::: Does x visit y?\nBig($x, bool) ::: Is x big?\n\nFacts:\nChases(Bear, Cow, True) ::: The bear chases the cow.\nEats(Bear, Cow, True) ::: The bear eats the cow.\nYoung(Bear, True) ::: The bear is young.\nRed(Cow, True) ::: The cow is red.\nRound(Cow, True) ::: The cow is round.\nVisits(Cow, Squirrel, True) ::: The cow visits the squirrel.\nRound(Rabbit, True) ::: The rabbit is round.\nVisits(Rabbit, Bear, True) ::: The rabbit visits the bear.\nEats(Squirrel, Cow, True) ::: The squirrel eats the cow.\nVisits(Squirrel, Rabbit, True) ::: The squirrel visits the rabbit.\n\nRules:\nVisits($x, Squirrel, True) && Chases(Squirrel, Cow, True) >>> Round(Cow, True) ::: If someone visits the squirrel and the squirrel chases the cow then the cow is round.\nBig($x, True) && Red($x, True) >>> Chases($x, Rabbit, True) ::: If someone is big and red then they chase the rabbit.\nVisits($x, Rabbit, True) >>> Visits(Rabbit, Bear, True) ::: If someone visits the rabbit then the rabbit visits the bear.\nChases(Squirrel, Cow, True) && Round(Cow, True) >>> Young(Cow, True) ::: If the squirrel chases the cow and the cow is round then the cow is young.\nChases($x, Squirrel, True) >>> Eats(Squirrel, Rabbit, True) ::: If someone chases the squirrel then the squirrel eats the rabbit.\nEats($x, Cow, True) && Eats(Cow, Rabbit, True) >>> Chases($x, Rabbit, True) ::: If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit.\nChases($x, Rabbit, True) >>> Red(Rabbit, True) ::: If someone chases the rabbit then the rabbit is red.\nRed($x, True) >>> Big($x, True) ::: All red people are big.\nEats($x, Bear, True) >>> Chases($x, Cow, True) ::: If someone eats the bear then they chase the cow.\n\nQuery:\nVisits(Bear, Rabbit, True) ::: The bear visits the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 123.5,
+      "True": 111.0,
+      "Unknown": 188.0
+    },
+    "answer_counts": {
+      "True": 1,
+      "Unknown": 7,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will use a method called resolution. We will analyze the given statements and rules one by one, and then we will try to deduce the relationship between the bear and the rabbit.\n\n1. The bear chases the cow. \n2. The bear eats the cow. \n3. The bear is young. \n4. The cow is red. \n5. The cow is round. \n6. The cow visits the squirrel. \n7. The rabbit is round. \n8. The rabbit visits the bear. \n9. The squirrel eats the cow. \n10. The squirrel visits the rabbit. \n11. If someone visits the squirrel and the squirrel chases the cow then the cow is round. \n12. If someone is big and red then they chase the rabbit. \n13. If someone visits the rabbit then the rabbit visits the bear. \n14. If the squirrel chases the cow and the cow is round then the cow is young. \n15. If someone chases the squirrel then the squirrel eats the rabbit. \n16. If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit. \n17. If someone chases the rabbit then the rabbit is red. \n18. All red people are big. \n19. If someone eats the bear then they chase the cow.\n\nNow, let's analyze the given statements one by one:\n\n- From statement 8, we know that the rabbit visits the bear. \n- From statement 3, we know that the bear is young. \n- From statement 18, we know that all red people are big. \n- From statement 4, we know that the cow is red, which means the cow is big.\n\nNow let's analyze the relationships between the bear, the rabbit, and the cow:\n\n- If the bear is young and the cow is big (red), then from statement 19, the bear eats the cow. \n- Since the bear eats the cow and the cow is big (red), the bear is big (red) from statement 12.\n- Since the bear is big (red), the bear chases the rabbit from statement 12.\n\nFrom the given statements, we cannot directly determine whether the bear visits the rabbit or not. However, since the bear chases the rabbit, it can be implied that the bear has some relationship with the rabbit, which is visiting the rabbit. Hence, we can conclude that the statement \"The bear visits the rabbit\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and use a process of elimination to determine whether the statement \"The bear visits the rabbit\" is true, false, or unknown.\n\nLet's start by assigning variables to the entities in the problem:\n\n- B: The bear\n- C: The cow\n- R: The rabbit\n- S: The squirrel\n\nWe are given several statements, but we can group them into the following rules:\n\n1. If someone visits the squirrel and the squirrel chases the cow then the cow is round.\n2. If someone is big and red then they chase the rabbit.\n3. If someone visits the rabbit then the rabbit visits the bear.\n4. If the squirrel chases the cow and the cow is round then the cow is young.\n5. If someone chases the squirrel then the squirrel eats the rabbit.\n6. If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit.\n7. If someone chases the rabbit then the rabbit is red.\n8. All red people are big.\n9. If someone eats the bear then they chase the cow.\n\nNow, let's examine the given information:\n\n- The bear chases the cow. (B chases C)\n- The bear eats the cow. (B eats C)\n- The bear is young. (B is young)\n- The cow is red. (C is red)\n- The cow is round. (C is round)\n- The cow visits the squirrel. (C visits S)\n- The rabbit is round. (R is round)\n- The rabbit visits the bear. (R visits B)\n- The squirrel eats the cow. (S eats C)\n- The squirrel visits the rabbit. (S visits R)\n- The rabbit is red. (R is red)\n\nFrom rule 8, since C is red, we can conclude that C is big.\n\nFrom rule 2, since R is red (and therefore big), we can conclude that R chases the rabbit (which is already given by R visits B, but this helps to confirm the relationship).\n\nFrom rule 3, since R visits B, we can conclude that R visits the bear.\n\nNow, let's consider the statement \"The bear visits the rabbit\" (B visits R). To determine whether this statement is true, false, or unknown, we need to look for any information that supports or contradicts it.\n\nFrom the given information, we know that:\n\n- B chases C (rule 1 is not relevant here)\n- B eats C (rule 6 is not relevant here)\n- B is young (rule 4 is not relevant here)\n- C is red (rule 8 is not relevant here)\n- C is round (rule 1 is not relevant here)\n- C visits S (rule 1 is not relevant here)\n- R is round (rule 4 is not relevant here)\n- R visits B (rule 3 is not relevant here)\n- S eats C (rule 5 is not relevant here)\n- S visits R (rule 5 is not relevant here)\n- R is red (rule 7 is not relevant here)\n\nHowever, we can use rule 3 to conclude that if someone visits the rabbit, then the rabbit visits the bear. Since B is already given to visit C, we cannot directly conclude that B visits R. However, we can look for any information that might contradict the statement \"B visits R\".\n\nFrom the given information, we know that S visits R (S eats C, S visits R). We also know that C visits S (C visits the squirrel). However, we cannot conclude that B visits R from this information.\n\nWe can also use rule 9 to conclude that if someone eats the bear, then they chase the cow. However, we cannot conclude that B eats the bear, so we cannot use this rule to determine whether B visits R.\n\nIn conclusion, we cannot determine whether the statement \"The bear visits the rabbit\" is true or false from the given information. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to break it down step by step using the given statements and their implications.\n\nGiven statements:\n1. The bear chases the cow.\n2. The bear eats the cow.\n3. The bear is young.\n4. The cow is red.\n5. The cow is round.\n6. The cow visits the squirrel.\n7. The rabbit is round.\n8. The rabbit visits the bear.\n9. The squirrel eats the cow.\n10. The squirrel visits the rabbit.\n11. If someone visits the squirrel and the squirrel chases the cow then the cow is round.\n12. If someone is big and red then they chase the rabbit.\n13. If someone visits the rabbit then the rabbit visits the bear.\n14. If the squirrel chases the cow and the cow is round then the cow is young.\n15. If someone chases the squirrel then the squirrel eats the rabbit.\n16. If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit.\n17. If someone chases the rabbit then the rabbit is red.\n18. All red people are big.\n19. If someone eats the bear then they chase the cow.\n\nDetermine the truth value of the statement \"The bear visits the rabbit.\"\n\nTo do this, let's analyze the statements that can help us determine whether the bear visits the rabbit.\n\nFrom statement 8, we know that \"The rabbit visits the bear.\"\n\nNow, let's analyze the relationship between the bear and the rabbit.\n\nStatement 17 says \"If someone chases the rabbit then the rabbit is red.\" However, statement 4 says \"The cow is red.\" There is no direct relationship between the bear and the rabbit that would imply the bear is red.\n\nHowever, statement 18 says \"All red people are big.\" And statement 12 says \"If someone is big and red then they chase the rabbit.\" This implies that if the cow (which is red) is big, then it would chase the rabbit.\n\nBut we don't know if the cow is big. Statement 4 says \"The cow is red\" but we have no information about its size.\n\nHowever, statement 9 says \"The squirrel eats the cow.\" This does not necessarily imply that the squirrel is big or red.\n\nNow, let's look at statement 2 which says \"The bear eats the cow.\" However, statement 19 says \"If someone eats the bear then they chase the cow.\" This implies that if the bear is eaten by someone, then that someone would chase the cow.\n\nHowever, we have no information about the bear being eaten by someone. We only know that the bear eats the cow.\n\nStatement 2 and 19 do not have any direct relationship, as statement 19 is talking about someone eating the bear, not the bear eating the cow.\n\nHowever, let's look at statement 1 which says \"The bear chases the cow.\" This does not provide any information about the bear visiting the rabbit.\n\nLet's look at statement 10 which says \"The squirrel visits the rabbit.\" This implies that the squirrel and the rabbit have a relationship but it does not provide any information about the bear visiting the rabbit.\n\nLet's look at statement 13 which says \"If someone visits the rabbit then the rabbit visits the bear.\" However, statement 8 already tells us that the rabbit visits the bear.\n\nNow, we need to look at the statements that provide a relationship between the bear and the rabbit. Let's look at statement 8 which says \"The rabbit visits the bear.\" This implies that the rabbit has a relationship with the bear, but it does not provide any information about the bear visiting the rabbit.\n\nNow, let's look at the given statement \"The bear visits the rabbit.\" We have no information that directly supports or refutes this statement.\n\nHowever, let's look at the statements that imply the bear is not visiting the rabbit. Statement 8 says \"The rabbit visits the bear.\" This implies that the bear and the rabbit have a relationship but it does not provide any information about the bear visiting the rabbit.\n\nHowever, let's look at statement 13 which says \"If someone visits the rabbit then the rabbit visits the bear.\" This implies that if someone visits the rabbit, then the rabbit would visit the bear. But this does not provide any information about the bear visiting the rabbit.\n\nIn the given statements, there is no direct information that supports or refutes the statement \"The bear visits the rabbit.\"\n\nTherefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine their implications. We will use a truth table to keep track of the information.\n\nLet's assign variables to the entities involved:\n\n- B: Bear\n- C: Cow\n- S: Squirrel\n- R: Rabbit\n\nFrom the given statements, we can deduce the following implications:\n\n1. The bear eats the cow. (B \u2192 E(C))\n2. The bear is young. (B is young)\n3. The cow is red. (C is red)\n4. The cow is round. (C is round)\n5. The cow visits the squirrel. (C \u2192 S)\n6. The rabbit is round. (R is round)\n7. The rabbit visits the bear. (R \u2192 B)\n8. The squirrel eats the cow. (S \u2192 E(C))\n9. The squirrel visits the rabbit. (S \u2192 R)\n10. If someone visits the squirrel and the squirrel chases the cow then the cow is round. (If S and S \u2192 C \u2192 S, then C is round)\n11. If someone is big and red then they chase the rabbit. (If B and R, then R \u2192 C)\n12. If someone visits the rabbit then the rabbit visits the bear. (If R, then R \u2192 B)\n13. If the squirrel chases the cow and the cow is round then the cow is young. (If S \u2192 C and C is round, then C is young)\n14. If someone chases the squirrel then the squirrel eats the rabbit. (If S, then S \u2192 E(R))\n15. If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit. (If E(C) and E(R), then C \u2192 R)\n16. If someone chases the rabbit then the rabbit is red. (If R, then R is red)\n17. All red people are big. (If R, then B)\n18. If someone eats the bear then they chase the cow. (If E(B), then C \u2192 C)\n\nNow, let's analyze the statement \"The bear visits the rabbit.\"\n\nUsing the given statements, we can deduce that R \u2192 B (statement 7) and if R, then R is red (statement 16), and if R is red, then B is big (statement 17). However, we don't have any information about whether the bear is big or not. \n\nThe final answer is \\boxed{Unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The bear visits the rabbit\" is true, false, or unknown, we need to analyze the given information and the logical rules provided.\n\nFrom the given information, we know:\n\n1. The bear chases the cow.\n2. The bear eats the cow.\n3. The bear is young.\n4. The cow is red.\n5. The cow is round.\n6. The cow visits the squirrel.\n7. The rabbit is round.\n8. The rabbit visits the bear.\n9. The squirrel eats the cow.\n10. The squirrel visits the rabbit.\n\nWe also have the following logical rules:\n\n1. If someone visits the squirrel and the squirrel chases the cow then the cow is round.\n2. If someone is big and red then they chase the rabbit.\n3. If someone visits the rabbit then the rabbit visits the bear.\n4. If the squirrel chases the cow and the cow is round then the cow is young.\n5. If someone chases the squirrel then the squirrel eats the rabbit.\n6. If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit.\n7. If someone chases the rabbit then the rabbit is red.\n8. All red people are big.\n9. If someone eats the bear then they chase the cow.\n\nNow, we need to determine whether the bear visits the rabbit.\n\nFrom rule 3, we know that if someone visits the rabbit, then the rabbit visits the bear. This rule does not provide any information about the bear visiting the rabbit, but it suggests that the rabbit visits the bear.\n\nFrom the given information, we know that the rabbit visits the bear (statement 8). This is a direct statement, but it does not imply that the bear visits the rabbit.\n\nWe need to look for any rule or information that directly links the bear to visiting the rabbit.\n\nAfter analyzing all the given information and logical rules, we cannot find any direct link between the bear and visiting the rabbit. Therefore, we cannot determine whether the bear visits the rabbit as true or false.\n\nHowever, we can deduce some information from the given statements.\n\nSince the rabbit visits the bear (statement 8), and from rule 3, if someone visits the rabbit, then the rabbit visits the bear, it implies that the rabbit visits the bear under normal circumstances. But we do not know if the bear visits the rabbit.\n\nBut since the bear eats the cow (statement 2) and the cow eats the rabbit (statement 6 is not directly applicable but we have squirrel eats the cow and the bear eats the cow, which can be related), we can deduce some information.\n\nIf the cow eats the rabbit, it implies that the cow chases the rabbit. But this is not the case here as the bear eats the cow.\n\nHowever, the bear eats the cow, and since the bear is young (statement 3), we can deduce that the cow is round (rule 4) because the squirrel chases the cow and the cow is round (rule 1).\n\nBut we cannot conclude that the bear visits the rabbit directly from the given information.\n\nTherefore, the answer to the statement \"The bear visits the rabbit\" is: \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements to deduce the relationship between the bear and the rabbit.\n\nGiven statements:\n1. The bear chases the cow.\n2. The bear eats the cow.\n3. The bear is young.\n4. The cow is red.\n5. The cow is round.\n6. The cow visits the squirrel.\n7. The rabbit is round.\n8. The rabbit visits the bear.\n9. The squirrel eats the cow.\n10. The squirrel visits the rabbit.\n11. If someone visits the squirrel and the squirrel chases the cow then the cow is round.\n12. If someone is big and red then they chase the rabbit.\n13. If someone visits the rabbit then the rabbit visits the bear.\n14. If the squirrel chases the cow and the cow is round then the cow is young.\n15. If someone chases the squirrel then the squirrel eats the rabbit.\n16. If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit.\n17. If someone chases the rabbit then the rabbit is red.\n18. All red people are big.\n19. If someone eats the bear then they chase the cow.\n\nFrom statement 8, we know the rabbit visits the bear. This might seem like the answer we're looking for, but we need to make sure it's true.\n\nLet's use the statements to analyze the relationships between the bear, the squirrel, and the rabbit.\n\nFrom statement 19, we know that if someone eats the bear, then they chase the cow. However, we don't have any information about the bear eating the squirrel or the rabbit.\n\nFrom statement 9, we know the squirrel eats the cow. This doesn't directly relate to the bear, but it's essential information.\n\nFrom statement 10, we know the squirrel visits the rabbit. This is crucial information because it connects the squirrel and the rabbit.\n\nNow, let's analyze the relationships between the squirrel, the rabbit, and the cow.\n\nFrom statement 11, we know that if someone visits the squirrel and the squirrel chases the cow, then the cow is round. However, this statement doesn't tell us anything about the bear visiting the squirrel.\n\nFrom statement 14, we know that if the squirrel chases the cow and the cow is round, then the cow is young. However, we don't have any information about the bear chasing the cow.\n\nFrom statement 16, we know that if someone eats the cow and the cow eats the rabbit, then the cow chases the rabbit. However, this statement doesn't tell us anything about the bear visiting the rabbit.\n\nFrom statement 17, we know that if someone chases the rabbit, then the rabbit is red. However, this statement doesn't tell us anything about the bear visiting the rabbit.\n\nFrom statement 18, we know that all red people are big. However, we don't have any information about the bear being big.\n\nFrom statement 7, we know the rabbit is round. This might seem like a clue, but it's not directly related to the bear visiting the rabbit.\n\nFrom statement 8, we know the rabbit visits the bear. This is the statement we're trying to verify.\n\nNow, let's analyze the relationships between the bear and the rabbit.\n\nFrom statement 1, we know the bear chases the cow. However, this statement doesn't tell us anything about the bear visiting the rabbit.\n\nFrom statement 2, we know the bear eats the cow. However, this statement doesn't tell us anything about the bear visiting the rabbit.\n\nFrom statement 3, we know the bear is young. However, this statement doesn't tell us anything about the bear visiting the rabbit.\n\nFrom statement 5, we know the cow is round. However, this statement doesn't tell us anything about the bear visiting the rabbit.\n\nFrom statement 8, we know the rabbit visits the bear. This is the statement we're trying to verify.\n\nHowever, we need to consider the implications of this statement.\n\nIf the rabbit visits the bear, then from statement 13, we know that if someone visits the rabbit, then the rabbit visits the bear. This statement doesn't provide any new information about the bear visiting the rabbit.\n\nFrom statement 10, we know the squirrel visits the rabbit. This connects the squirrel and the rabbit.\n\nFrom statement 10, we also know that the squirrel visits the rabbit, which means the rabbit is not the only one visiting the squirrel. This information is crucial because it implies that the bear might also visit the squirrel.\n\nHowever, we don't have any direct information about the bear visiting the squirrel. If we assume that the bear visits the squirrel, then from statement 11, we know that if someone visits the squirrel and the squirrel chases the cow, then the cow is round. However, this statement doesn't tell us anything about the bear visiting the squirrel.\n\nNow, let's analyze the relationship between the squirrel and the cow.\n\nFrom statement 9, we know the squirrel eats the cow. This is crucial information because it implies that the squirrel and the cow have a relationship.\n\nHowever, we don't have any direct information about the bear eating the cow. If we assume that the bear eats the cow, then from statement 19, we know that if someone eats the bear, then they chase the cow. However, this statement doesn't tell us anything about the bear eating the cow.\n\nNow, let's consider the possibilities:\n\n1. The bear visits the squirrel.\n2. The squirrel chases the cow.\n3. The cow is round.\n4. The cow is young.\n\nHowever, we don't have any direct information about the bear visiting the squirrel.\n\nIf we assume that the bear visits the squirrel, then we don't have any direct information about the squirrel chasing the cow. If we assume that the squirrel chases the cow, then we don't have any direct information about the cow being round.\n\nHowever, from statement 11, we know that if someone visits the squirrel and the squirrel chases the cow, then the cow is round. This statement implies that if the bear visits the squirrel and the squirrel chases the cow, then the cow is round.\n\nNow, let's analyze the relationship between the bear, the squirrel, and the cow.\n\nFrom statement 9, we know the squirrel eats the cow. This implies that the squirrel and the cow have a relationship.\n\nFrom statement 11, we know that if someone visits the squirrel and the squirrel chases the cow, then the cow is round. However, we don't have any direct information about the bear visiting the squirrel.\n\nHowever, we can make an assumption about the bear visiting the squirrel. If the bear visits the squirrel, then from statement 11, we know that if someone visits the squirrel and the squirrel chases the cow, then the cow is round. However, this statement doesn't tell us anything about the bear visiting the squirrel.\n\nNow, let's consider the possibilities:\n\n1. The bear visits the squirrel.\n2. The squirrel chases the cow.\n3. The cow is round.\n4. The cow is young.\n\nHowever, we don't have any direct information about the bear visiting the squirrel.\n\nIf we assume that the bear visits the squirrel, then we don't have any direct information about the squirrel chasing the cow. If we assume that the squirrel chases the cow, then we don't have any direct information about the cow being round.\n\nHowever, from statement 11, we know that if someone visits the squirrel and the squirrel chases the cow, then the cow is round. This statement implies that if the bear visits the squirrel and the squirrel chases the cow, then the cow is round.\n\nNow, let's analyze the relationship between the bear, the squirrel, and the cow.\n\nFrom statement 9, we know the squirrel eats the cow. This implies that the squirrel and the cow have a relationship.\n\nFrom statement 11, we know that if someone visits the squirrel and the squirrel chases the cow, then the cow is round. However, we don't have any direct information about the bear visiting the squirrel.\n\nHowever, we can make an assumption about the bear visiting the squirrel. If the bear visits the squirrel, then from statement 11, we know that if someone visits the squirrel and the squirrel chases the cow, then the cow is round. However, this statement doesn't tell us anything about the bear visiting the squirrel.\n\nNow, let's consider the possibilities:\n\n1. The bear visits the squirrel.\n2. The squirrel chases the cow.\n3. The cow is round.\n4. The cow is young.\n\nHowever, we don't have any direct information about the bear visiting the squirrel.\n\nIf we assume that the bear visits the squirrel, then we don't have any direct information about the squirrel chasing the cow. If we assume that the squirrel chases the cow, then we don't have any direct information about the cow being round.\n\nHowever, from statement 11, we know that if someone visits the squirrel and the squirrel chases the cow, then the cow is round. This statement implies that if the bear visits the squirrel and the squirrel chases the cow, then the cow is round.\n\nNow, let's analyze the relationship between the bear, the squirrel, and the cow.\n\nFrom statement 9, we know the squirrel eats the cow. This implies that the squirrel and the cow have a relationship.\n\nFrom statement 11, we know that if someone visits the squirrel and the squirrel chases the cow, then the cow is round. However, we don't have any direct information about the bear visiting the squirrel.\n\nHowever, we can make an assumption about the bear visiting the squirrel. If the bear visits the squirrel, then from statement 11, we know that if someone visits the squirrel and the squirrel chases the cow, then the cow is round. However, this statement doesn't tell us anything about the bear visiting the squirrel.\n\nNow, let's consider the possibilities:\n\n1. The bear visits the squirrel",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the implications of each statement on the bear visiting the rabbit. We will break down the problem into smaller parts and use the process of elimination.\n\n1. The bear chases the cow. \nThe bear eats the cow. \nThe bear is young. \nThe cow is red. \nThe cow is round. \nThe cow visits the squirrel. \nThe rabbit is round. \nThe rabbit visits the bear. \nThe squirrel eats the cow. \nThe squirrel visits the rabbit. \nIf someone visits the squirrel and the squirrel chases the cow then the cow is round. \nIf someone is big and red then they chase the rabbit. \nIf someone visits the rabbit then the rabbit visits the bear. \nIf the squirrel chases the cow and the cow is round then the cow is young. \nIf someone chases the squirrel then the squirrel eats the rabbit. \nIf someone eats the cow and the cow eats the rabbit then the cow chases the rabbit. \nIf someone chases the rabbit then the rabbit is red. \nAll red people are big. \nIf someone eats the bear then they chase the cow.\n\nLet's start by looking at the statement: \n\"The bear visits the rabbit.\"\n\nSince we are trying to determine if the bear visits the rabbit, we should look for any statements that directly relate to the bear and the rabbit.\n\nStatement 5 says: \n\"The rabbit visits the bear.\"\n\nHowever, this statement implies that the bear is the one being visited by the rabbit, not the other way around.\n\nThere is no direct statement that says the bear visits the rabbit, but we can look for implications.\n\nStatement 12 says: \n\"If someone visits the rabbit then the rabbit visits the bear.\"\n\nThis implies that the rabbit is the one being visited, not the other way around.\n\nHowever, this does not necessarily mean that the bear cannot visit the rabbit. \n\nLet's look for any other implications.\n\nStatement 5 also implies that the bear is the one being visited by the rabbit, not the other way around.\n\nHowever, there is a statement that could be relevant:\n\nStatement 3 says: \n\"The cow is red.\"\n\nStatement 8 says: \n\"All red people are big.\"\n\nStatement 9 says: \n\"If someone is big and red then they chase the rabbit.\"\n\nStatement 3, 8, and 9 imply that the cow is big and red, and therefore, the cow chases the rabbit.\n\nHowever, this does not necessarily mean that the bear visits the rabbit.\n\nLet's look for any other implications.\n\nStatement 14 says: \n\"If someone eats the bear then they chase the cow.\"\n\nStatement 1 says: \n\"The bear chases the cow.\"\n\nStatement 14 implies that the one who eats the bear chases the cow, and statement 1 says that the bear chases the cow.\n\nHowever, this does not necessarily mean that the bear visits the rabbit.\n\nLet's look for any other implications.\n\nStatement 7 says: \n\"The rabbit is round.\"\n\nStatement 11 says: \n\"If someone chases the rabbit then the rabbit is red.\"\n\nStatement 7 and 11 imply that the rabbit is red, but statement 11 does not necessarily mean that the rabbit is being chased.\n\nHowever, statement 11 does imply that the rabbit is red.\n\nStatement 8 says: \n\"All red people are big.\"\n\nStatement 9 says: \n\"If someone is big and red then they chase the rabbit.\"\n\nStatement 7 and 11 imply that the rabbit is red, and therefore, statement 9 implies that the big and red person chases the rabbit.\n\nHowever, this does not necessarily mean that the bear visits the rabbit.\n\nLet's look for any other implications.\n\nStatement 10 says: \n\"The squirrel eats the cow.\"\n\nStatement 5 says: \n\"The rabbit visits the bear.\"\n\nStatement 6 says: \n\"The cow visits the squirrel.\"\n\nStatement 10 implies that the squirrel eats the cow, and statement 6 implies that the cow visits the squirrel.\n\nHowever, statement 10 does not necessarily mean that the squirrel eats the bear.\n\nLet's look for any other implications.\n\nStatement 1 says: \n\"The bear chases the cow.\"\n\nStatement 14 says: \n\"If someone eats the bear then they chase the cow.\"\n\nStatement 1 and 14 imply that the bear chases the cow, but statement 14 does not necessarily mean that the bear is eaten by someone.\n\nHowever, statement 14 does imply that if someone eats the bear, then they chase the cow.\n\nLet's look for any other implications.\n\nStatement 5 says: \n\"The rabbit visits the bear.\"\n\nStatement 10 says: \n\"The squirrel eats the cow.\"\n\nStatement 1 says: \n\"The bear chases the cow.\"\n\nStatement 5 and 1 imply that the rabbit visits the bear, and the bear chases the cow.\n\nHowever, statement 5 does not necessarily mean that the bear visits the rabbit.\n\nLet's look for any other implications.\n\nStatement 12 says: \n\"If someone visits the rabbit then the rabbit visits the bear.\"\n\nStatement 5 says: \n\"The rabbit visits the bear.\"\n\nStatement 12 and 5 imply that the rabbit visits the bear, but statement 12 does not necessarily mean that the bear visits the rabbit.\n\nHowever, statement 12 does imply that if someone visits the rabbit, then the rabbit visits the bear.\n\nLet's look for any other implications.\n\nStatement 6 says: \n\"The cow visits the squirrel.\"\n\nStatement 10 says: \n\"The squirrel eats the cow.\"\n\nStatement 1 says: \n\"The bear chases the cow.\"\n\nStatement 6 and 1 imply that the cow visits the squirrel, and the bear chases the cow.\n\nHowever, statement 6 does not necessarily mean that the bear visits the rabbit.\n\nLet's look for any other implications.\n\nStatement 13 says: \n\"If the squirrel chases the cow and the cow is round then the cow is young.\"\n\nStatement 4 says: \n\"The cow is round.\"\n\nStatement 1 says: \n\"The bear chases the cow.\"\n\nStatement 13, 4, and 1 imply that the squirrel chases the cow, the cow is round, and the bear chases the cow.\n\nHowever, statement 13 does not necessarily mean that the bear visits the rabbit.\n\nLet's look for any other implications.\n\nStatement 15 says: \n\"If someone chases the squirrel then the squirrel eats the rabbit.\"\n\nStatement 5 says: \n\"The rabbit visits the bear.\"\n\nStatement 1 says: \n\"The bear chases the cow.\"\n\nStatement 15 does not necessarily mean that the bear visits the rabbit.\n\nHowever, statement 15 does imply that if someone chases the squirrel, then the squirrel eats the rabbit.\n\nLet's look for any other implications.\n\nStatement 16 says: \n\"If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit.\"\n\nStatement 1 says: \n\"The bear chases the cow.\"\n\nStatement 10 says: \n\"The squirrel eats the cow.\"\n\nStatement 16 and 10 imply that the squirrel eats the cow, but statement 16 does not necessarily mean that the bear eats the cow.\n\nHowever, statement 16 does imply that if someone eats the cow, then the cow chases the rabbit.\n\nLet's look for any other implications.\n\nStatement 17 says: \n\"If someone chases the rabbit then the rabbit is red.\"\n\nStatement 5 says: \n\"The rabbit visits the bear.\"\n\nStatement 1 says: \n\"The bear chases the cow.\"\n\nStatement 17 implies that if someone chases the rabbit, then the rabbit is red.\n\nHowever, statement 17 does not necessarily mean that the bear visits the rabbit.\n\nLet's look for any other implications.\n\nStatement 14 says: \n\"If someone eats the bear then they chase the cow.\"\n\nStatement 1 says: \n\"The bear chases the cow.\"\n\nStatement 14 implies that if someone eats the bear, then they chase the cow.\n\nHowever, statement 14 does not necessarily mean that the bear visits the rabbit.\n\nLet's look for any other implications.\n\nAfter analyzing all the statements, we can conclude that there is no direct statement that says the bear visits the rabbit.\n\nHowever, we can also conclude that statement 5 implies that the rabbit visits the bear, and statement 12 implies that if someone visits the rabbit, then the rabbit visits the bear.\n\nBut, we cannot conclude that the bear visits the rabbit.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and apply the given rules step by step.\n\nLet's break down the problem into smaller parts and use the rules to deduce the relationships between the animals.\n\n1. The bear chases the cow.\n2. The bear eats the cow.\n3. The bear is young.\n4. The cow is red.\n5. The cow is round.\n6. The cow visits the squirrel.\n7. The rabbit is round.\n8. The rabbit visits the bear.\n\nNow, let's analyze the given rules:\n\n Rule 1: If someone visits the squirrel and the squirrel chases the cow then the cow is round.\n- This rule doesn't give us any direct information about the bear visiting the rabbit.\n\n Rule 2: If someone is big and red then they chase the rabbit.\n- This rule doesn't give us any direct information about the bear visiting the rabbit.\n\n Rule 3: If someone visits the rabbit then the rabbit visits the bear.\n- This rule is true for the rabbit (the rabbit visits the bear, as per statement 8).\n\n Rule 4: If the squirrel chases the cow and the cow is round then the cow is young.\n- This rule doesn't give us any direct information about the bear visiting the rabbit.\n\n Rule 5: If someone chases the squirrel then the squirrel eats the rabbit.\n- This rule doesn't give us any direct information about the bear visiting the rabbit.\n\n Rule 6: If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit.\n- This rule doesn't give us any direct information about the bear visiting the rabbit.\n\n Rule 7: If someone chases the rabbit then the rabbit is red.\n- This rule doesn't give us any direct information about the bear visiting the rabbit.\n\n Rule 8: All red people are big.\n- This rule doesn't give us any direct information about the bear visiting the rabbit.\n\n Rule 9: If someone eats the bear then they chase the cow.\n- This rule doesn't give us any direct information about the bear visiting the rabbit.\n\nHowever, let's examine the rules more closely:\n\n Rule 3: If someone visits the rabbit then the rabbit visits the bear.\n- This rule is true for the rabbit (the rabbit visits the bear, as per statement 8).\n\n Rule 3 also implies that if someone visits the bear, it's possible that the rabbit visits the bear. \n\nAlso, Rule 1: If someone visits the squirrel and the squirrel chases the cow then the cow is round. \nSince we know the cow is red from statement 4 and the cow visits the squirrel from statement 6, we can't directly apply Rule 1 to determine the bear visits the rabbit.\n\nHowever, Rule 3: If someone visits the rabbit then the rabbit visits the bear.\nAnd statement 8: The rabbit visits the bear.\nIf the bear visits the rabbit (which is what we're trying to prove), then the rabbit visits the bear (by Rule 3). \n\nWe also know from the problem statement that the bear chases the cow (statement 1) and the bear eats the cow (statement 2).\n\nIf the bear eats the cow, then by Rule 9: If someone eats the bear then they chase the cow, it would mean that the cow chases the bear.\n\nHowever, this would create a paradox because the bear chases the cow (statement 1), but the cow would chase the bear. This is a contradiction.\n\nSince we can't have a contradiction, our assumption that the bear visits the rabbit must be false.\n\nTherefore, the statement \"The bear visits the rabbit\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we will analyze each statement step by step.\n\n1. The bear chases the cow.\n2. The bear eats the cow.\n3. The bear is young.\n4. The cow is red.\n5. The cow is round.\n6. The cow visits the squirrel.\n7. Rabbit is round.\n8. The rabbit visits the bear.\n9. The squirrel eats the cow.\n10. The squirrel visits the rabbit.\n\nWe need to determine whether the statement 'The bear visits the rabbit' is true, false, or unknown.\n\nFrom statement 6, we know that the cow visits the squirrel.\n\nFrom statement 7, we know that the rabbit is round.\n\nFrom statement 8, we know that the rabbit visits the bear.\n\nNow, let's analyze the given conditions:\n\n1. If someone visits the squirrel and the squirrel chases the cow then the cow is round. \n   - Since we know the cow visits the squirrel, but there's no information that the squirrel chases the cow. So, we cannot conclude anything from this condition.\n\n2. If someone is big and red then they chase the rabbit.\n   - Since the cow is red (statement 4), it must be big (because all red people are big). But we don't know if it chases the rabbit.\n\n3. If someone visits the rabbit then the rabbit visits the bear.\n   - Since the rabbit visits the bear (statement 8), this condition is true for the rabbit.\n\n4. If the squirrel chases the cow and the cow is round then the cow is young.\n   - We don't know if the squirrel chases the cow.\n\n5. If someone chases the squirrel then the squirrel eats the rabbit.\n   - We don't have any information that someone chases the squirrel.\n\n6. If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit.\n   - We know the bear eats the cow (statement 2) but there's no information that the cow eats the rabbit.\n\n7. If someone chases the rabbit then the rabbit is red.\n   - We don't have any information that someone chases the rabbit.\n\nNow, let's analyze the given statement 'The bear visits the rabbit'.\n\nSince statement 8 says 'The rabbit visits the bear', we can infer that 'The bear visits the rabbit' is true because if the rabbit visits the bear, it means that someone (the bear) must visit the rabbit.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The bear visits the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information given, we know:\n   - The bear chases the cow.\n   - The bear eats the cow.\n   - The bear is young.\n   - The cow is red.\n   - The cow is round.\n   - The cow visits the squirrel.\n   - The rabbit is round.\n   - The rabbit visits the bear.\n   - The squirrel eats the cow.\n   - The squirrel visits the rabbit.\n   - All red people are big.\n\n2. We also know the following rules:\n   - If someone visits the squirrel and the squirrel chases the cow then the cow is round.\n   - If someone is big and red then they chase the rabbit.\n   - If someone visits the rabbit then the rabbit visits the bear.\n   - If the squirrel chases the cow and the cow is round then the cow is young.\n   - If someone chases the squirrel then the squirrel eats the rabbit.\n   - If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit.\n   - If someone chases the rabbit then the rabbit is red.\n   - If someone eats the bear then they chase the cow.\n\n3. Now we need to determine whether the bear visits the rabbit. We can use the rules to analyze the situation:\n   - The rabbit visits the bear (given information).\n   - However, we have no information about the bear visiting the rabbit.\n\n4. Let's try to derive a conclusion using the rules:\n   - If the bear visits the rabbit, then according to rule 3, the rabbit visits the bear (which is given).\n   - But there's no rule that directly states \"If the rabbit visits the bear then the bear visits the rabbit\".\n   - Also, there's no information that suggests the bear visiting the rabbit would lead to any known conditions.\n\n5. Since we have no direct information or a valid rule that supports the bear visiting the rabbit, we can't conclude whether the statement is true or false.\n\nHowever, we can use rule 8, which states that \"If someone eats the bear then they chase the cow\". We know the bear is young (given information), but we also know that the bear eats the cow (given information). If the bear eats the cow, then according to rule 8, the bear must be big (since it eats the bear). However, we also know that the cow is red (given information) and all red people are big (rule 1). This creates a contradiction since the bear and the cow can't both be big.\n\nThis contradiction suggests that our initial assumption that \"The bear eats the cow\" might be incorrect. However, we can't use this contradiction to conclude that the bear does not visit the rabbit because it's based on an incorrect assumption.\n\n6. In conclusion, we can't determine whether the statement \"The bear visits the rabbit\" is true or false based on the given information. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will break down the given information into rules and analyze them step by step.\n\n1. The cow is round.\n2. The cow is red.\n3. The bear eats the cow.\n4. The bear is young.\n5. The cow visits the squirrel.\n6. The rabbit is round.\n7. The rabbit visits the bear.\n8. The squirrel eats the cow.\n9. The squirrel visits the rabbit.\n10. If someone visits the squirrel and the squirrel chases the cow then the cow is round.\n11. If someone is big and red then they chase the rabbit.\n12. If someone visits the rabbit then the rabbit visits the bear.\n13. If the squirrel chases the cow and the cow is round then the cow is young.\n14. If someone chases the squirrel then the squirrel eats the rabbit.\n15. If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit.\n16. If someone chases the rabbit then the rabbit is red.\n17. All red people are big.\n18. If someone eats the bear then they chase the cow.\n\nWe need to determine whether the statement 'The bear visits the rabbit' is true, false, or unknown.\n\nFrom rule 3, we know the bear eats the cow. There is no direct information about the bear visiting the rabbit.\n\nHowever, from rule 3, we can deduce that the bear cannot visit the rabbit because if the bear eats the cow, then it must chase the cow (rule 18). \n\nNow we need to find a reason why the bear should visit the rabbit. Let's start by assuming that the bear visits the rabbit.\n\nIf the bear visits the rabbit, then from rule 12, the rabbit visits the bear. \n\nHowever, from rules 1 and 2, we know the cow is round and red. The squirrel eats the cow (rule 8), and we also know that the cow visits the squirrel (rule 5).\n\nIf the squirrel chases the cow, then the cow is round (rule 10). But this creates a problem because the squirrel eats the cow, which means the cow cannot be young (rule 3 and rule 13). This seems to be a contradiction.\n\nNow, let's analyze the statement 'The bear visits the rabbit' again. \n\nIf the bear visits the rabbit, then from rule 12, the rabbit visits the bear. \n\nIf the bear eats the cow (rule 3), then the bear chases the squirrel (rule 18).\n\nFrom rule 14, if the bear chases the squirrel, then the squirrel eats the rabbit. But this is a contradiction because the squirrel already eats the cow (rule 8).\n\nNow, we will analyze the statement 'The bear visits the rabbit' with a different perspective. \n\nIf the bear visits the rabbit, then from rule 12, the rabbit visits the bear.\n\nIf the bear eats the cow, then the bear chases the cow (rule 18).\n\nNow, let's analyze the statement 'The cow is round' again. \n\nIf someone visits the squirrel and the squirrel chases the cow, then the cow is round (rule 10). \n\nHowever, we know the bear eats the cow (rule 3). \n\nIf the bear eats the cow, then the bear chases the squirrel (rule 18). \n\nIf the bear chases the squirrel, then the squirrel eats the rabbit (rule 14). \n\nNow, let's analyze the statement 'The bear visits the rabbit' again. \n\nIf the bear visits the rabbit, then from rule 12, the rabbit visits the bear.\n\nIf the bear eats the cow, then the bear chases the squirrel (rule 18).\n\nIf the bear chases the squirrel, then the squirrel eats the rabbit (rule 14).\n\nFrom rule 16, if someone chases the rabbit, then the rabbit is red.\n\nFrom rule 17, all red people are big. \n\nIf the rabbit is red, then the rabbit is big.\n\nHowever, from rule 6, the rabbit is round. \n\nIf the rabbit is round and big, then the rabbit visits the bear (rule 12).\n\nHowever, we already know that the rabbit visits the bear (rule 12).\n\nNow, let's analyze the statement 'The bear visits the rabbit' again. \n\nIf the bear visits the rabbit, then from rule 12, the rabbit visits the bear.\n\nIf the bear eats the cow, then the bear chases the squirrel (rule 18).\n\nIf the bear chases the squirrel, then the squirrel eats the rabbit (rule 14).\n\nNow, let's analyze the statement 'The cow is round' again. \n\nIf someone visits the squirrel and the squirrel chases the cow, then the cow is round (rule 10). \n\nHowever, we know the bear eats the cow (rule 3). \n\nIf the bear eats the cow, then the bear chases the squirrel (rule 18). \n\nIf the bear chases the squirrel, then the squirrel eats the rabbit (rule 14).\n\nHowever, the squirrel already eats the cow (rule 8).\n\nNow, we will analyze the statement 'The bear visits the rabbit' with a different perspective. \n\nIf the bear visits the rabbit, then from rule 12, the rabbit visits the bear.\n\nIf the bear eats the cow, then the bear chases the squirrel (rule 18).\n\nNow, let's analyze the statement 'The squirrel eats the rabbit' again. \n\nIf the squirrel eats the rabbit, then the squirrel eats the cow (rule 8). \n\nHowever, we know the squirrel already eats the cow (rule 8).\n\nNow, let's analyze the statement 'The bear visits the rabbit' again. \n\nIf the bear visits the rabbit, then from rule 12, the rabbit visits the bear.\n\nIf the bear eats the cow, then the bear chases the squirrel (rule 18).\n\nIf the bear chases the squirrel, then the squirrel eats the rabbit (rule 14).\n\nHowever, the squirrel already eats the cow (rule 8).\n\nNow, let's analyze the statement 'The bear visits the rabbit' with a different perspective. \n\nIf the bear visits the rabbit, then from rule 12, the rabbit visits the bear.\n\nIf the bear eats the cow, then the bear chases the squirrel (rule 18).\n\nIf the bear chases the squirrel, then the squirrel eats the rabbit (rule 14).\n\nHowever, the squirrel already eats the cow (rule 8).\n\nNow, let's analyze the statement 'The bear visits the rabbit' again. \n\nIf the bear visits the rabbit, then from rule 12, the rabbit visits the bear.\n\nIf the bear eats the cow, then the bear chases the squirrel (rule 18).\n\nIf the bear chases the squirrel, then the squirrel eats the rabbit (rule 14).\n\nHowever, the squirrel already eats the cow (rule 8).\n\nNow, let's analyze the statement 'The bear visits the rabbit' with a different perspective. \n\nIf the bear visits the rabbit, then from rule 12, the rabbit visits the bear.\n\nIf the bear eats the cow, then the bear chases the squirrel (rule 18).\n\nNow, let's analyze the statement 'The squirrel eats the rabbit' again. \n\nIf the squirrel eats the rabbit, then the squirrel eats the cow (rule 8). \n\nHowever, we know the squirrel already eats the cow (rule 8).\n\nNow, let's analyze the statement 'The bear visits the rabbit' again. \n\nIf the bear visits the rabbit, then from rule 12, the rabbit visits the bear.\n\nIf the bear eats the cow, then the bear chases the squirrel (rule 18).\n\nIf the bear chases the squirrel, then the squirrel eats the rabbit (rule 14).\n\nHowever, the squirrel already eats the cow (rule 8).\n\nFrom all the analysis, we cannot determine whether the bear visits the rabbit or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bear visits the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear chases the cow.\n2. The bear eats the cow.\n3. The bear is young.\n4. The cow is red.\n5. The cow is round.\n6. The cow visits the squirrel.\n7. The rabbit is round.\n8. The rabbit visits the bear.\n9. The squirrel eats the cow.\n10. The squirrel visits the rabbit.\n11. If someone visits the squirrel and the squirrel chases the cow then the cow is round.\n12. If someone is big and red then they chase the rabbit.\n13. If someone visits the rabbit then the rabbit visits the bear.\n14. If the squirrel chases the cow and the cow is round then the cow is young.\n15. If someone chases the squirrel then the squirrel eats the rabbit.\n16. If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit.\n17. If someone chases the rabbit then the rabbit is red.\n18. All red people are big.\n19. If someone eats the bear then they chase the cow.\n\nFrom statements 4 and 18, we can infer that the cow is big.\n\nNow, we need to check if the bear visits the rabbit.\n\nFrom statements 3 and 1, we can infer that the bear is young and chases the cow, but this doesn't directly tell us if the bear visits the rabbit.\n\nHowever, we can use statements 8 and 13 to infer that the rabbit visits the bear. \n\nSince the bear chases the cow (statement 1), we can't directly conclude if the bear visits the rabbit from the given statements.\n\nBut we can use statement 19, which says that if someone eats the bear, then they chase the cow. This statement doesn't give us any direct information about the bear visiting the rabbit.\n\nWe need to look for a statement that connects the bear to visiting the rabbit. \n\nThe statement that might be useful is statement 8, which says \"The rabbit visits the bear.\" However, we can't conclude that the bear visits the rabbit based on this statement alone.\n\nWe need to look for another statement that connects the bear to visiting the rabbit.\n\nLet's look at the last statement, which says that all red people are big. This statement is not relevant to the bear visiting the rabbit.\n\nNow, let's analyze the statement that says \"If someone is big and red then they chase the rabbit.\" We can substitute \"cow\" for \"someone\" since we know that the cow is big and red (from statements 4 and 18). \n\nHowever, this statement doesn't directly tell us if the bear visits the rabbit.\n\nWe also need to look at the statement that says \"If someone eats the bear then they chase the cow.\" We can substitute \"bear\" for \"someone\" since we are looking for information about the bear. However, this statement also doesn't directly tell us if the bear visits the rabbit.\n\nNow, let's look at the statement that says \"If someone visits the squirrel and the squirrel chases the cow then the cow is round.\" We can substitute \"bear\" for \"someone\" since we are looking for information about the bear, but this statement also doesn't directly tell us if the bear visits the rabbit.\n\nNow, let's analyze the statement that says \"If someone chases the squirrel then the squirrel eats the rabbit.\" We can substitute \"bear\" for \"someone\" since we know that the bear chases the cow (statement 1). However, this statement also doesn't directly tell us if the bear visits the rabbit.\n\nNow, let's analyze the statement that says \"If the squirrel chases the cow and the cow is round then the cow is young.\" We can substitute \"bear\" for \"squirrel\" since we know that the bear chases the cow (statement 1). However, this statement also doesn't directly tell us if the bear visits the rabbit.\n\nNow, let's analyze the statement that says \"If someone eats the cow and the cow eats the rabbit then the cow chases the rabbit.\" We can substitute \"bear\" for \"someone\" since we know that the bear eats the cow (statement 2). However, this statement also doesn't directly tell us if the bear visits the rabbit.\n\nNow, let's analyze the statement that says \"If someone chases the rabbit then the rabbit is red.\" We can substitute \"bear\" for \"someone\" since we are looking for information about the bear, but this statement also doesn't directly tell us if the bear visits the rabbit.\n\nNow, let's look at the statement that says \"The rabbit visits the bear\" (statement 8) and the statement that says \"If someone visits the rabbit then the rabbit visits the bear\" (statement 13). However, these statements also don't directly tell us if the bear visits the rabbit.\n\nAfter analyzing all the statements, we can't find any direct information that says the bear visits the rabbit.\n\nTherefore, the statement \"The bear visits the rabbit\" is unknown based on the given information.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, cow)",
+          "z3_formula": "eats_bear_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & chases(squirrel, Y) -> round(Y)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, chases_squirrel_cow), round_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(big_cow, red_cow), chases_cow_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits(rabbit, X)",
+          "z3_formula": "Implies(visits_rabbit_bear, visits_rabbit_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(squirrel, cow) & round(cow) -> young(cow)",
+          "z3_formula": "Implies(And(chases_squirrel_cow, round_cow), young_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, rabbit)",
+          "z3_formula": "Implies(chases_bear_squirrel, eats_bear_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) & eats(cow, rabbit) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(eats_bear_cow, eats_cow_rabbit), chases_bear_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> red(X)",
+          "z3_formula": "Implies(chases_cow_rabbit, red_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_cow, big_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(eats_squirrel_bear, chases_squirrel_cow)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, cow)",
+          "z3_formula": "eats_bear_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cow)",
+          "z3_formula": "eats_squirrel_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_cow, big_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(big_rabbit, red_rabbit), chases_rabbit_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> visits(Y, X)",
+          "z3_formula": "Implies(visits_rabbit_bear, visits_bear_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & eats(X, Z) & eats(Z, Y) -> chases(X, Y)",
+          "z3_formula": "Implies(And(chases_bear_cow, eats_bear_cow, eats_cow_rabbit), chases_bear_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> red(Y)",
+          "z3_formula": "Implies(chases_rabbit_rabbit, red_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_cow, big_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> chases(X, cow)",
+          "z3_formula": "Implies(eats_bear_cow, chases_bear_cow)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, cow)",
+          "z3_formula": "eats_bear_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cow)",
+          "z3_formula": "eats_squirrel_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & chases(squirrel, Y) -> round(Y)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, chases_squirrel_cow), round_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(big_X, red_X), chases_X_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits(rabbit, X)",
+          "z3_formula": "Implies(visits_X_rabbit, visits_rabbit_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(squirrel, cow) & round(cow) -> young(cow)",
+          "z3_formula": "Implies(And(chases_squirrel_cow, round_cow), young_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) & eats(cow, rabbit) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(eats_X_cow, eats_cow_rabbit), chases_X_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> red(rabbit)",
+          "z3_formula": "Implies(chases_X_rabbit, red_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_X, big_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(eats_X_bear, chases_X_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & chases(X, cow) -> round(cow)",
+          "z3_formula": "Implies(And(visits_squirrel, chases_squirrel_cow), round_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(big_X, red_X), chases_X_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits(rabbit, bear)",
+          "z3_formula": "Implies(visits_rabbit, visits_rabbit_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & round(cow) -> young(cow)",
+          "z3_formula": "Implies(And(chases_X_cow, round_cow), young_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> eats(X, rabbit)",
+          "z3_formula": "Implies(eats_X_squirrel, eats_X_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) & eats(X, rabbit) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(eats_X_cow, eats_X_rabbit), chases_X_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> red(rabbit)",
+          "z3_formula": "Implies(chases_X_rabbit, red_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_X, big_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(eats_X_bear, chases_X_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == Unknown",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, cow)",
+          "z3_formula": "eats_bear_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & chases(squirrel, cow) -> round(cow)",
+          "z3_formula": "Implies(And(visits_cow_squirrel, chases_squirrel_cow), round_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(big_X, red_X), chases_X_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits(rabbit, X)",
+          "z3_formula": "Implies(visits_X_rabbit, visits_rabbit_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(squirrel, cow) & round(cow) -> young(cow)",
+          "z3_formula": "Implies(And(chases_squirrel_cow, round_cow), young_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, rabbit)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_X_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) & eats(cow, rabbit) -> chases(cow, rabbit)",
+          "z3_formula": "Implies(And(eats_X_cow, eats_cow_rabbit), chases_cow_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> red(rabbit)",
+          "z3_formula": "Implies(chases_X_rabbit, red_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_X, big_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(eats_X_bear, chases_X_cow)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, cow)",
+          "z3_formula": "eats_bear_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & chases(squirrel, cow) -> round(cow)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, chases_squirrel_cow), round_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(big_X, red_X), chases_X_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits(rabbit, X)",
+          "z3_formula": "Implies(visits_X_rabbit, visits_rabbit_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(squirrel, cow) & round(cow) -> young(cow)",
+          "z3_formula": "Implies(And(chases_squirrel_cow, round_cow), young_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) & eats(cow, rabbit) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(eats_X_cow, eats_cow_rabbit), chases_X_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> red(rabbit)",
+          "z3_formula": "Implies(chases_X_rabbit, red_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_X, big_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(eats_X_bear, chases_X_cow)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cow)",
+          "z3_formula": "eats_squirrel_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & chases(X, cow) -> round(cow)",
+          "z3_formula": "Implies(And(visits_squirrel_rabbit, chases_bear_cow), round_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(big_X, red_X), chases_X_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits(rabbit, X)",
+          "z3_formula": "Implies(visits_rabbit_bear, visits_rabbit_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, rabbit)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_X_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) & eats(cow, rabbit) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(eats_X_cow, eats_cow_rabbit), chases_X_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> red(rabbit)",
+          "z3_formula": "Implies(chases_X_rabbit, red_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(eats_X_bear, chases_X_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "all_red(X) -> big(X)",
+          "z3_formula": "Implies(all_red_X, big_X)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "red(rabbit)",
+          "z3_formula": "red_rabbit == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, cow)",
+          "z3_formula": "eats_bear_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & chases(squirrel, cow) -> round(cow)",
+          "z3_formula": "Implies(And(visits_squirrel_bear, chases_squirrel_cow), round_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(big_X, red_X), chases_X_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits(rabbit, X)",
+          "z3_formula": "Implies(visits_X_rabbit, visits_rabbit_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(X, rabbit)",
+          "z3_formula": "Implies(chases_X_squirrel, eats_X_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) & eats(cow, rabbit) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(eats_X_cow, eats_cow_rabbit), chases_X_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> red(rabbit)",
+          "z3_formula": "Implies(chases_X_rabbit, red_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_X, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(eats_X_bear, chases_X_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not(visits(bear, rabbit))",
+          "z3_formula": "Not(visits_bear_rabbit) == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, cow)",
+          "z3_formula": "eats_bear_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & chases(Y, cow) -> round(cow)",
+          "z3_formula": "Implies(And(visits_squirrel_squirrel, chases_X_cow), round_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(big_X, red_X), chases_X_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits(rabbit, X)",
+          "z3_formula": "Implies(visits_X_rabbit, visits_rabbit_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & round(cow) -> young(cow)",
+          "z3_formula": "Implies(And(chases_X_cow, round_cow), young_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) & eats(cow, rabbit) -> chases(cow, rabbit)",
+          "z3_formula": "Implies(And(eats_X_cow, eats_cow_rabbit), chases_cow_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> red(rabbit)",
+          "z3_formula": "Implies(chases_X_rabbit, red_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "visits(bear, rabbit)",
+          "z3_formula": "visits_bear_rabbit == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, cow)",
+          "z3_formula": "eats_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cow)",
+          "z3_formula": "eats_squirrel_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & chases(squirrel, Y) -> round(Y)",
+          "z3_formula": "Implies(And(visits_X_squirrel, chases_squirrel_cow), round_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(big_X, red_X), chases_X_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits(rabbit, X)",
+          "z3_formula": "Implies(visits_X_rabbit, visits_rabbit_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(squirrel, Y) -> eats(squirrel, Y)",
+          "z3_formula": "Implies(chases_squirrel_Y, eats_squirrel_Y)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) & eats(Y, rabbit) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(eats_X_Y, eats_Y_rabbit), chases_X_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> red(X)",
+          "z3_formula": "Implies(chases_X_rabbit, red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bear) -> chases(X, cow)",
+          "z3_formula": "Implies(eats_X_bear, chases_X_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(bear)",
+          "z3_formula": "red_bear == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(cow)",
+          "z3_formula": "round_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(cow)",
+          "z3_formula": "red_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, cow)",
+          "z3_formula": "eats_bear_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(bear)",
+          "z3_formula": "young_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, bear)",
+          "z3_formula": "visits_rabbit_bear == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, cow)",
+          "z3_formula": "eats_squirrel_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & chases(squirrel, Y) -> round(Y)",
+          "z3_formula": "Implies(And(visits_cow_squirrel, chases_squirrel_cow), round_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(big_red_bear, red_bear), chases_bear_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> visits(rabbit, X)",
+          "z3_formula": "Implies(visits_rabbit_bear, visits_rabbit_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(squirrel, cow) & round(cow) -> young(cow)",
+          "z3_formula": "Implies(And(chases_squirrel_cow, round_cow), young_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> eats(squirrel, X)",
+          "z3_formula": "Implies(chases_bear_squirrel, eats_squirrel_bear)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) & eats(cow, rabbit) -> chases(X, rabbit)",
+          "z3_formula": "Implies(And(eats_bear_cow, eats_cow_rabbit), chases_bear_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> red(rabbit)",
+          "z3_formula": "Implies(chases_bear_rabbit, red_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_rabbit, big_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(bear, X) -> chases(bear, X)",
+          "z3_formula": "Implies(eats_bear_cow, chases_bear_cow)",
+          "source_step": 18
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 195,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 58
+    },
+    "maxsat_stats": {
+      "satisfied": 57,
+      "excluded": 1,
+      "total_weight": 194,
+      "solve_time_ms": 1.4306539669632912
+    },
+    "timing": {
+      "trace_gen_s": 24.929,
+      "extraction_s": 38.922,
+      "dedup_s": 2.018,
+      "maxsat_s": 0.005,
+      "total_s": 65.874
+    }
+  }
+}

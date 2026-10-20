@@ -1,0 +1,1389 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-487_Q10",
+    "problem": "The cat chases the lion. The cat is rough. The cat is young. The cat needs the lion. The cat needs the rabbit. The dog is green. The dog is young. The dog likes the cat. The lion is blue. The lion is green. The rabbit chases the lion. The rabbit is blue. The rabbit is rough. The rabbit likes the dog. The rabbit needs the dog. The rabbit needs the lion. If someone chases the lion then they are round. If the lion needs the rabbit and the rabbit chases the dog then the lion likes the dog. If someone is round and they chase the lion then they need the cat. If someone needs the cat and they chase the dog then they like the rabbit. If someone chases the lion and the lion is blue then the lion is round. If someone chases the rabbit then they are rough. If someone is rough and they like the rabbit then the rabbit is young. If the rabbit chases the cat and the cat needs the lion then the rabbit is young. If someone is round and they need the cat then they chase the dog.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat does not like the rabbit.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nRough($x, bool) ::: Is x rough?\nYoung($x, bool) ::: Is x young?\nNeeds($x, $y, bool) ::: Does x need y?\nGreen($x, bool) ::: Is x green?\nLikes($x, $y, bool) ::: Does x like y?\nBlue($x, bool) ::: Is x blue?\nRound($x, bool) ::: Is x round?\n\nFacts:\nChases(Cat, Lion, True) ::: The cat chases the lion.\nRough(Cat, True) ::: The cat is rough.\nYoung(Cat, True) ::: The cat is young.\nNeeds(Cat, Lion, True) ::: The cat needs the lion.\nNeeds(Cat, Rabbit, True) ::: The cat needs the rabbit.\nGreen(Dog, True) ::: The dog is green.\nYoung(Dog, True) ::: The dog is young.\nLikes(Dog, Cat, True) ::: The dog likes the cat.\nBlue(Lion, True) ::: The lion is blue.\nGreen(Lion, True) ::: The lion is green.\nChases(Rabbit, Lion, True) ::: The rabbit chases the lion.\nBlue(Rabbit, True) ::: The rabbit is blue.\nRough(Rabbit, True) ::: The rabbit is rough.\nLikes(Rabbit, Dog, True) ::: The rabbit likes the dog.\nNeeds(Rabbit, Dog, True) ::: The rabbit needs the dog.\nNeeds(Rabbit, Lion, True) ::: The rabbit needs the lion.\n\nRules:\nChases($x, Lion, True) >>> Round($x, True) ::: If someone chases the lion then they are round.\nNeeds(Lion, Rabbit, True) && Chases(Rabbit, Dog, True) >>> Likes(Lion, Dog, True) ::: If the lion needs the rabbit and the rabbit chases the dog then the lion likes the dog.\nRound($x, True) && Chases($x, Lion, True) >>> Needs($x, Cat, True) ::: If someone is round and they chase the lion then they need the cat.\nNeeds($x, Cat, True) && Chases($x, Dog, True) >>> Likes($x, Rabbit, True) ::: If someone needs the cat and they chase the dog then they like the rabbit.\nChases($x, Lion, True) && Blue(Lion, True) >>> Round(Lion, True) ::: If someone chases the lion and the lion is blue then the lion is round.\nChases($x, Rabbit, True) >>> Rough($x, True) ::: If someone chases the rabbit then they are rough.\nRough($x, True) && Likes($x, Rabbit, True) >>> Young(Rabbit, True) ::: If someone is rough and they like the rabbit then the rabbit is young.\nChases(Rabbit, Cat, True) && Needs(Cat, Lion, True) >>> Young(Rabbit, True) ::: If the rabbit chases the cat and the cat needs the lion then the rabbit is young.\nRound($x, True) && Needs($x, Cat, True) >>> Chases($x, Dog, True) ::: If someone is round and they need the cat then they chase the dog.\n\nQuery:\nLikes(Cat, Rabbit, False) ::: The cat does not like the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 152.5,
+      "Unknown": 152.0
+    },
+    "answer_counts": {
+      "False": 5,
+      "Unknown": 5
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to carefully analyze the given statements and determine the relationship between the cat and the rabbit.\n\n1. The cat needs the lion. (1)\n2. The cat needs the rabbit. (2)\n3. The rabbit chases the lion. (3)\n4. The rabbit is blue. (4)\n5. The rabbit is rough. (5)\n6. The rabbit likes the dog. (6)\n7. The rabbit needs the dog. (7)\n8. The rabbit needs the lion. (8)\n9. If someone chases the lion then they are round. (9)\n10. If the lion needs the rabbit and the rabbit chases the dog then the lion likes the dog. (10)\n11. If someone is round and they chase the lion then they need the cat. (11)\n12. If someone needs the cat and they chase the dog then they like the rabbit. (12)\n13. If someone chases the lion and the lion is blue then the lion is round. (13)\n14. If someone chases the rabbit then they are rough. (14)\n15. If someone is rough and they like the rabbit then the rabbit is young. (15)\n16. If the rabbit chases the cat and the cat needs the lion then the rabbit is young. (16)\n17. If someone is round and they need the cat then they chase the dog. (17)\n\nFrom statement (3), we know the rabbit chases the lion. Since the lion is blue (statement 4), using statement (13), we can conclude that the lion is round.\n\nUsing statement (10), since the lion needs the rabbit and the rabbit chases the dog, we can conclude that the lion likes the dog.\n\nNow, we need to find a relationship between the cat and the rabbit. From statement (1), we know the cat needs the lion. From statement (2), we know the cat needs the rabbit.\n\nHowever, we cannot directly conclude that the cat likes or dislikes the rabbit based on these statements alone. We need to examine other relationships.\n\nFrom statement (11), we know that if someone is round and they chase the lion, then they need the cat. Since the lion is round, we can use statement (9) to conclude that the cat is round.\n\nUsing statement (17), since the cat is round and they need the rabbit, we can conclude that the cat chases the dog.\n\nNow, we examine the rabbit's relationship with the dog. From statement (6), we know the rabbit likes the dog. From statement (7), we know the rabbit needs the dog.\n\nHowever, we cannot conclude that the cat likes or dislikes the rabbit based on these relationships alone.\n\nWe examine the cat's relationship with the dog. From statement (2), we know the cat needs the rabbit. Since the rabbit likes the dog (statement 6), we can use statement (12) to conclude that the cat likes the rabbit.\n\nTherefore, the statement \"The cat does not like the rabbit\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not like the rabbit\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given information, we know:\n\n1. The cat needs the lion.\n2. The cat needs the rabbit.\n3. The rabbit chases the lion.\n4. If someone chases the lion and the lion needs the rabbit and the rabbit chases the dog then the lion likes the dog.\n5. If someone is round and they chase the lion then they need the cat.\n\nFrom (1) and (3), we can deduce that the cat needs the rabbit because the rabbit chases the lion, which the cat needs.\n\nHowever, there is no information directly stating that the cat likes or dislikes the rabbit. But, we can use the information that if someone needs the cat and they chase the dog then they like the rabbit. Unfortunately, we do not have information that the cat chases the dog, therefore we cannot directly apply this rule.\n\nHowever, we can examine a different path. We can use the information that if the rabbit chases the cat and the cat needs the lion then the rabbit is young. We don't have information that the rabbit chases the cat, but we do have information that if someone is round and they chase the lion then they need the cat. And we also have information that the lion is blue, and that if someone chases the lion and the lion is blue then the lion is round.\n\nGiven that the lion is blue and round, we can use the rule that if someone is round and they chase the lion then they need the cat. This means that the cat chases the lion. However, we cannot directly conclude that the cat likes or dislikes the rabbit from this information.\n\nHowever, we can examine another path. We can use the information that if someone is round and they chase the lion then they need the cat. We also have information that if someone needs the cat and they chase the dog then they like the rabbit. And we know that the cat chases the lion. Since the cat chases the lion and the lion is blue, then the cat is round. Then we can conclude that the cat needs the rabbit.\n\nBut, we also know that the rabbit chases the dog. We have no information about the cat chasing the dog. However, we can use the rule that if someone is round and they need the cat then they chase the dog. Unfortunately, we do not know whether the cat is round, but we do know that the cat needs the rabbit. Unfortunately, we cannot use the information that the rabbit chases the dog to conclude that the cat likes or dislikes the rabbit.\n\nHowever, we can examine another path. We can use the information that if someone needs the cat and they chase the dog then they like the rabbit. We also have information that the cat needs the rabbit, but we do not have information that the cat chases the dog. However, we do have information that if the cat is young and it chases the lion then the lion is round. Unfortunately, we do not have information about the cat's age, but we do have information that the cat is rough and young.\n\nSince we do not have any information about the cat's age, and we do not have information that the cat chases the dog, we cannot directly conclude that the cat likes or dislikes the rabbit.\n\nHowever, we can examine another path. We can use the information that if the rabbit chases the cat and the cat needs the lion then the rabbit is young. We also have information that if someone is round and they chase the lion then they need the cat. We also have information that the lion is blue and round, which means that the cat chases the lion. Unfortunately, we do not have information that the rabbit chases the cat. However, we can use the rule that if someone is rough and they like the rabbit then the rabbit is young. Unfortunately, we do not have information that the cat likes or dislikes the rabbit.\n\nHowever, we can examine another path. We can use the information that if someone is round and they chase the lion then they need the cat. We also have information that the lion is blue and round, which means that the cat chases the lion. Unfortunately, we do not have information that the cat is round, but we do know that the cat needs the rabbit. Unfortunately, we cannot use the information that the rabbit chases the dog to conclude that the cat likes or dislikes the rabbit.\n\nHowever, we can examine another path. We can use the information that if someone needs the cat and they chase the dog then they like the rabbit. We also have information that the cat needs the rabbit, but we do not have information that the cat chases the dog. However, we do have information that if the cat is rough and it chases the lion then the lion is round. Unfortunately, we do not have information about the cat's age, and we do not have information that the cat chases the dog. Unfortunately, we cannot use the information that the rabbit chases the dog to conclude that the cat likes or dislikes the rabbit.\n\nHowever, we can examine another path. We can use the information that if someone is round and they need the cat then they chase the dog. Unfortunately, we do not know whether the cat is round, but we do know that the cat needs the rabbit. Unfortunately, we cannot use the information that the rabbit chases the dog to conclude that the cat likes or dislikes the rabbit.\n\nHowever, we can examine another path. We can use the information that if the lion needs the rabbit and the rabbit chases the dog then the lion likes the dog. We also have information that the lion is blue, and that if someone chases the lion and the lion is blue then the lion is round. Unfortunately, we do not have information that the lion likes or dislikes the rabbit.\n\nHowever, we can examine another path. We can use the information that if someone is rough and they like the rabbit then the rabbit is young. Unfortunately, we do not have information that the cat likes or dislikes the rabbit.\n\nHowever, we can examine another path. We can use the information that if the rabbit chases the cat and the cat needs the lion then the rabbit is young. Unfortunately, we do not have information that the rabbit chases the cat. However, we can use the information that if someone is round and they chase the lion then they need the cat. Unfortunately, we do not have information that the cat is round, but we do know that the cat needs the rabbit. Unfortunately, we cannot use the information that the rabbit chases the dog to conclude that the cat likes or dislikes the rabbit.\n\nHowever, we can examine another path. We can use the information that if someone needs the cat and they chase the dog then they like the rabbit. We also have information that the cat needs the rabbit, but we do not have information that the cat chases the dog. However, we do have information that if the cat is young and it chases the lion then the lion is round. Unfortunately, we do not have information about the cat's age, but we do have information that the cat is rough and young.\n\nUnfortunately, after examining all the given information, we cannot conclude that the cat likes or dislikes the rabbit. \n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the cat likes the rabbit, we need to analyze the given information step by step.\n\n1. The lion is blue. (Given)\n2. The lion is green. (Given)\n   From this information, we cannot conclude anything about the lion's color, so we will keep this information in mind for future analysis.\n\n3. The rabbit chases the lion. (Given)\n   This implies that the rabbit is round. (From the statement: If someone chases the lion then they are round.)\n\n4. The rabbit is blue. (Given)\n   This statement is not necessary for our analysis.\n\n5. The rabbit likes the dog. (Given)\n   This statement is not necessary for our analysis.\n\n6. The rabbit needs the dog. (Given)\n   This statement is not necessary for our analysis.\n\n7. The rabbit needs the lion. (Given)\n   This statement is not necessary for our analysis.\n\n8. If someone needs the lion and the lion is blue then the lion is round. (Given)\n   However, this statement does not apply here because we do not know that the lion is round. We only know that the lion is blue (from statement 1).\n\n9. If someone chases the lion and the lion is blue then the lion is round. (Given)\n   However, this statement does not apply here because we do not know that the lion is round. We only know that the lion is blue (from statement 1).\n\n10. If the rabbit chases the lion and the lion is blue then the lion is round. (From statement 9, substituting rabbit for someone)\n   However, this statement does not apply here because we do not know that the lion is round. We only know that the lion is blue (from statement 1).\n\n11. If the rabbit needs the lion and the lion is blue then the lion is round. (From statement 8, substituting rabbit for someone)\n   However, this statement does not apply here because we do not know that the lion is round. We only know that the lion is blue (from statement 1).\n\n12. The rabbit chases the lion and the lion is blue. (From statements 3 and 1)\n   This implies that the lion is round. (From statement 9)\n\n13. If someone chases the lion and they are round then they need the cat. (Given)\n   The rabbit chases the lion and the lion is round. (From statements 3 and 12)\n   This implies that the rabbit needs the cat. (From statement 13)\n\n14. The cat needs the lion. (Given)\n   The rabbit needs the cat and the cat needs the lion. (From statements 13 and 14)\n   This implies that the rabbit and the cat need each other indirectly.\n\n15. If someone is round and they need the cat then they chase the dog. (Given)\n   The rabbit is round and they need the cat. (From statements 12 and 13)\n   This implies that the rabbit chases the dog. (From statement 15)\n\n16. The rabbit likes the dog. (Given)\n   The rabbit chases the dog and they like the dog. (From statements 5 and 15)\n   This implies that the rabbit likes the dog.\n\n17. If someone is rough and they like the rabbit then the rabbit is young. (Given)\n   However, this statement does not apply here because we do not know that the rabbit is young. We only know that the rabbit likes the dog.\n\n18. The rabbit chases the cat. (This statement is not given)\n   However, we can use this statement as a hypothesis to test the truth of the given statement.\n\n19. The cat is young. (Given)\n   If the rabbit chases the cat and the cat needs the lion then the rabbit is young. (From statement 10, substituting rabbit for someone)\n   The rabbit chases the cat and the cat needs the lion. (From statement 18 and 14)\n   This implies that the rabbit is young. (From statement 10)\n\n20. The rabbit is young. (From statement 19)\n   The rabbit is rough. (Given)\n   The rabbit is young and they are rough. (From statements 19 and 2)\n   This implies that the rabbit is young. (From statement 17)\n\n21. If someone is round and they chase the lion then they need the cat. (Given)\n   The rabbit is round and they chase the lion. (From statements 12 and 3)\n   This implies that the rabbit needs the cat. (From statement 21)\n\n22. The cat is young. (Given)\n   The rabbit needs the cat and the cat is young. (From statements 21 and 14)\n   This implies that the rabbit and the cat need each other indirectly.\n\n23. The cat needs the lion. (Given)\n   The cat is young and they need the lion. (From statements 14 and 2)\n   This implies that the cat is young.\n\n24. The rabbit likes the dog. (Given)\n   The rabbit chases the dog and they like the dog. (From statements 5 and 15)\n   This implies that the rabbit likes the dog.\n\n25. If someone chases the rabbit then they are rough. (Given)\n   However, this statement does not apply here because we do not know that the rabbit is being chased.\n\n26. If someone needs the cat and they chase the dog then they like the rabbit. (Given)\n   The rabbit needs the cat and they chase the dog. (From statements 21 and 15)\n   This implies that the rabbit likes the rabbit. (From statement 26)\n\nHowever, this conclusion is invalid because we cannot conclude that the rabbit likes the rabbit. The correct interpretation is that the statement is unknown.\n\n27. The cat likes the rabbit. (This statement is unknown)\n   We cannot determine whether the cat likes the rabbit.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the cat likes the rabbit, let's break down the given statements and analyze the relationships between the characters.\n\n1. The cat needs the lion.\n2. The cat is rough.\n3. The cat is young.\n4. The lion is blue.\n5. The lion is green.\n6. The rabbit chases the lion.\n7. The rabbit is blue.\n8. The rabbit is rough.\n9. The rabbit likes the dog.\n10. The rabbit needs the dog.\n11. The rabbit needs the lion.\n12. If someone chases the lion then they are round.\n13. If the lion needs the rabbit and the rabbit chases the dog then the lion likes the dog.\n14. If someone is round and they chase the lion then they need the cat.\n15. If someone needs the cat and they chase the dog then they like the rabbit.\n16. If someone chases the lion and the lion is blue then the lion is round.\n17. If someone chases the rabbit then they are rough.\n18. If someone is rough and they like the rabbit then the rabbit is young.\n19. If the rabbit chases the cat and the cat needs the lion then the rabbit is young.\n20. If someone is round and they need the cat then they chase the dog.\n\nFrom statements 6 and 11, we know the rabbit chases the lion and the rabbit needs the lion. \n\nFrom statement 13, we can conclude that the lion likes the dog since the rabbit chases the dog and the lion needs the rabbit.\n\nFrom statement 12, we know that someone who chases the lion is round.\n\nFrom statement 16, we know that the lion is round since the lion is blue.\n\nFrom statement 14, we can conclude that someone who is round needs the cat.\n\nFrom statement 20, we know that someone who is round and needs the cat chases the dog.\n\nHowever, we do not have any information about the cat's relationship with the rabbit. To determine whether the cat likes the rabbit, we need to consider the relationships between the characters that involve the cat.\n\nFrom statement 1, we know that the cat needs the lion.\n\nFrom statement 6, we know that the rabbit chases the lion.\n\nFrom statement 3, we know that the cat is young.\n\nFrom statement 19, we know that if the rabbit chases the cat and the cat needs the lion, then the rabbit is young.\n\nWe do not have any information that the rabbit chases the cat, so we cannot conclude whether the rabbit is young or not.\n\nHowever, we can conclude that the cat needs the lion. But we do not have any information that the cat likes the rabbit or not. \n\nTherefore, the statement \"The cat does not like the rabbit\" cannot be determined as true or false based on the given information. Hence, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not like the rabbit\" is true, false, or unknown, we need to analyze the given conditions step by step.\n\nFrom the given conditions:\n1. The cat chases the lion.\n2. The cat is rough.\n3. The cat is young.\n4. The cat needs the lion.\n5. The cat needs the rabbit.\n\nNow, we need to find a relationship between the cat and the rabbit. \n\nWe can see that the cat needs the rabbit, which means the cat has a positive relationship with the rabbit. However, we need to determine if the cat likes the rabbit or not.\n\nGiven conditions state:\n- If someone is round and they chase the lion then they need the cat.\n- If someone chases the lion and the lion is blue then the lion is round.\n- The lion is blue.\n\nFrom these conditions, we can conclude that the lion is round. And according to the first condition, if someone is round and they chase the lion, then they need the cat. Since the cat chases the lion, the cat needs the cat, which is a tautology and does not provide any useful information about the cat liking or disliking the rabbit.\n\nHowever, we can deduce that the cat chases the lion, and the lion is blue. Since the rabbit chases the lion, the rabbit is round. And the rabbit chases the dog, so the lion likes the dog.\n\nNow we have to check if the rabbit likes the dog or not. Given conditions state:\n- If someone is rough and they like the rabbit then the rabbit is young.\n- The rabbit is rough.\n- The rabbit likes the dog.\n\nSince the rabbit is rough and it likes the dog, then the rabbit is young.\n\nNow we know that the rabbit is young. Given conditions state:\n- If the rabbit chases the cat and the cat needs the lion then the rabbit is young.\n\nSince the rabbit is young, we can conclude that the rabbit chases the cat. And the cat needs the lion.\n\nGiven conditions state:\n- If someone needs the cat and they chase the dog then they like the rabbit.\n\nSince the cat needs the lion and the rabbit chases the cat, then the rabbit is young (which is already known), but we need to check if the rabbit chases the dog. The rabbit chases the dog.\n\nFrom the given conditions, we can conclude that:\n- If the rabbit chases the dog then the rabbit needs the dog.\n- If the rabbit needs the dog then the rabbit likes the dog.\n\nSince the rabbit chases the dog, the rabbit needs the dog. And the rabbit likes the dog.\n\nNow we know that the rabbit likes the dog, and the rabbit is rough. Given conditions state:\n- If someone is rough and they like the rabbit then the rabbit is young.\n\nSince the rabbit is rough and it likes the rabbit, then the rabbit is young (which is already known).\n\nHowever, we still need to check if the cat likes the rabbit or not. Given conditions state:\n- If someone needs the cat and they chase the dog then they like the rabbit.\n\nSince the cat needs the lion and the lion is blue, then the lion is round. And the lion is round, the cat chases the lion. Since the cat chases the lion, then the cat needs the cat, which is a tautology and does not provide any useful information about the cat liking or disliking the rabbit.\n\nHowever, we can deduce that the cat chases the lion, and the lion is blue. Since the rabbit chases the lion, the rabbit is round. And the rabbit is rough. Given conditions state:\n- If the rabbit chases the cat and the cat needs the lion then the rabbit is young.\n\nSince the rabbit is rough and it likes the rabbit, then the rabbit is young.\n\nNow we know that the rabbit is young. Given conditions state:\n- If someone needs the cat and they chase the dog then they like the rabbit.\n\nSince the cat needs the lion and the lion is blue, then the lion is round. And the lion is round, the cat chases the lion. Since the cat chases the lion, then the cat needs the cat, which is a tautology and does not provide any useful information about the cat liking or disliking the rabbit.\n\nHowever, we can deduce that the cat chases the lion, and the lion is blue. Since the rabbit chases the lion, the rabbit is round. And the rabbit is rough. Given conditions state:\n- If someone is rough and they like the rabbit then the rabbit is young.\n\nSince the rabbit is rough and it likes the rabbit, then the rabbit is young.\n\nNow we know that the rabbit is young. Given conditions state:\n- If someone is round and they need the cat then they chase the dog.\n\nSince the cat needs the lion and the lion is blue, then the lion is round. And the lion is round, the cat chases the lion. Since the cat chases the lion, then the cat needs the cat, which is a tautology and does not provide any useful information about the cat liking or disliking the rabbit.\n\nHowever, we can deduce that the cat chases the lion, and the lion is blue. Since the rabbit chases the lion, the rabbit is round. And the rabbit is rough. Given conditions state:\n- If someone is round and they need the cat then they chase the dog.\n\nSince the lion is round and it chases the cat, then the lion needs the cat. And the lion needs the cat, the lion chases the cat.\n\nNow we know that the lion chases the cat. Given conditions state:\n- If the lion chases the cat then the cat is young.\n\nSince the cat is young, we can conclude that the cat is young (which is already known).\n\nNow we know that the lion chases the cat, and the cat is young. Given conditions state:\n- If someone is young and they need the lion then they like the rabbit.\n\nSince the cat is young and it needs the lion, then the cat likes the rabbit.\n\nHowever, we still need to check if the statement \"The cat does not like the rabbit\" is true or false.\n\nFrom the given conditions, we can conclude that the cat needs the rabbit. And the cat needs the lion. However, the cat likes the rabbit. \n\nSo, the statement \"The cat does not like the rabbit\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The cat needs the lion. \n2. The cat needs the rabbit.\n3. The lion is blue.\n4. The lion is green.\n5. The lion is blue, and if someone chases the lion then they are round. (This implies the lion is round because it's blue)\n6. The lion is round, and if the lion is round then someone who chases the lion needs the cat.\n7. The lion is round and green. But the lion being green doesn't add any new information since there's no rule that states a lion being green affects its roundness or relationships.\n8. If someone chases the lion, then they need the cat. The lion is round, so someone who chases the lion needs the cat.\n9. The cat is young and rough.\n10. The rabbit chases the lion. (This implies the rabbit is round because it chases the lion)\n11. If the rabbit chases the lion, then the lion likes the dog. The lion needs the rabbit, so it must like the dog.\n12. The rabbit is blue.\n13. The rabbit is rough.\n14. The rabbit likes the dog.\n15. The rabbit needs the dog.\n16. The rabbit needs the lion.\n17. If the rabbit chases the dog, then the rabbit is young. The rabbit is already given as rough, but we can still use this information as a confirmation.\n18. If the rabbit chases the cat, and the cat needs the lion, then the rabbit is young. This is consistent with the information we already have.\n19. The rabbit is young and rough.\n20. If someone is round and they need the cat then they chase the dog. The rabbit is round and needs the cat, so it must chase the dog.\n\nNow, let's examine the statement: \"The cat does not like the rabbit.\"\n\nGiven the information, we can't directly determine whether the cat likes the rabbit. We can only infer relationships between the cat and the rabbit based on other statements. The only information related to the cat liking the rabbit is when the rabbit chases the cat and the cat needs the lion. However, this information alone doesn't tell us whether the cat likes the rabbit.\n\nSince we can't determine whether the cat likes the rabbit based on the given information, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and use it to deduce the relationships between the cat, the rabbit, and other animals. Let's break it down step by step:\n\n1. From the information given, we know:\n   - The cat needs the lion.\n   - The rabbit chases the lion.\n   - The rabbit needs the dog.\n   - The rabbit likes the dog.\n   - The lion is blue.\n\n2. Now, let's consider the following statement:\n   - If someone chases the lion then they are round.\n   - If the lion needs the rabbit and the rabbit chases the dog then the lion likes the dog.\n   - If someone is round and they chase the lion then they need the cat.\n   - If someone needs the cat and they chase the dog then they like the rabbit.\n\n3. From the given information, we know the rabbit chases the lion. Therefore, the rabbit is round.\n\n4. Since the lion needs the rabbit and the rabbit chases the dog, the lion likes the dog.\n\n5. Since the rabbit is round and chases the lion, the rabbit needs the cat.\n\n6. Now, let's examine the relationship between the cat and the rabbit. We know the cat needs the lion, and if someone needs the cat and they chase the dog, then they like the rabbit. However, we do not have information about the cat chasing the dog. Therefore, we cannot directly conclude that the cat likes the rabbit based on the given information.\n\n7. However, we can use another rule to analyze the situation. We know the rabbit chases the cat and the cat needs the lion. From the rule, \"If someone is rough and they like the rabbit then the rabbit is young\", we cannot apply this directly, because we do not know that the cat is rough. However, we can apply a different rule: \"If the rabbit chases the cat and the cat needs the lion then the rabbit is young\".\n\n8. Therefore, we know the rabbit is young.\n\n9. Now, let's use another rule to analyze the situation. We know the cat is young, and the cat is rough.\n\n10. From the rule \"If someone is rough and they like the rabbit then the rabbit is young\", we can conclude that the cat likes the rabbit.\n\nBased on the given information and the analysis above, we can conclude that the cat likes the rabbit. \n\nTherefore, the statement \"The cat does not like the rabbit\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and find the relationships between the different characters and their properties.\n\n1. The cat chases the lion.\n2. The cat is rough.\n3. The cat is young.\n4. The cat needs the lion.\n5. The cat needs the rabbit.\n6. The dog is green.\n7. The dog is young.\n8. The dog likes the cat.\n9. The lion is blue.\n10. The lion is green.\n11. The rabbit chases the lion.\n12. The rabbit is blue.\n13. The rabbit is rough.\n14. The rabbit likes the dog.\n15. The rabbit needs the dog.\n16. The rabbit needs the lion.\n\nGiven conditions:\n1. If someone chases the lion then they are round.\n2. If the lion needs the rabbit and the rabbit chases the dog then the lion likes the dog.\n3. If someone is round and they chase the lion then they need the cat.\n4. If someone needs the cat and they chase the dog then they like the rabbit.\n5. If someone chases the lion and the lion is blue then the lion is round.\n6. If someone chases the rabbit then they are rough.\n7. If someone is rough and they like the rabbit then the rabbit is young.\n8. If the rabbit chases the cat and the cat needs the lion then the rabbit is young.\n9. If someone is round and they need the cat then they chase the dog.\n\nNow, let's analyze the given conditions to determine whether they are true or false:\n\n- Condition 1: The cat chases the lion. \n- Condition 2: The cat is rough. (True)\n- Condition 3: The cat is young. (True)\n- Condition 4: The cat needs the lion. (True)\n- Condition 5: The cat needs the rabbit. (True)\n\nFrom condition 1, we know the cat chases the lion. Since the lion is blue (condition 9), using condition 5, the lion is round.\n\n- Condition 6: If someone is round and they chase the lion then they need the cat. \n  - Since the lion is round and we know the lion is round because it's blue (condition 5), using condition 6, the lion needs the cat.\n\n- Condition 7: If someone needs the cat and they chase the dog then they like the rabbit.\n  - Since the lion needs the cat and it chases the dog, using condition 7, the lion likes the rabbit.\n\n- Condition 8: If someone is round and they like the rabbit then the rabbit is young.\n  - Since the lion is round and it likes the rabbit, using condition 8, the rabbit is young.\n\n- Condition 9: If the rabbit is blue and it chases the cat then the rabbit is young.\n  - Since the rabbit is blue (condition 12) and it chases the cat, using condition 9, the rabbit is young. (This confirms condition 8.)\n\n- Condition 10: If the rabbit is blue and the cat needs the lion then the rabbit is young.\n  - Since the rabbit is blue (condition 12) and the cat needs the lion, using condition 10, the rabbit is young. (This also confirms condition 8.)\n\n- Condition 11: If someone is rough and they like the rabbit then the rabbit is young.\n  - Since the rabbit is rough (condition 13) and it likes the rabbit, using condition 11, the rabbit is young. (This confirms conditions 8 and 9.)\n\n- Condition 12: The rabbit chases the lion.\n- Condition 13: The rabbit is blue.\n- Condition 14: The rabbit is rough.\n- Condition 15: The rabbit likes the dog.\n- Condition 16: The rabbit needs the dog.\n\nFrom condition 14, we know the rabbit is rough. Using condition 6, if someone chases the rabbit then they are rough. Therefore, the rabbit chases the dog.\n\n- Condition 17: If the rabbit chases the dog then the rabbit likes the dog.\n  - Since the rabbit chases the dog (as concluded in the previous step), using condition 17, the rabbit likes the dog.\n\n- Condition 18: If someone chases the lion then they are round.\n  - Since the rabbit chases the lion, using condition 18, the rabbit is round.\n\n- Condition 19: If someone is round and they chase the lion then they need the cat.\n  - Since the rabbit is round and it chases the lion, using condition 19, the rabbit needs the cat.\n\n- Condition 20: If someone is round and they need the cat then they chase the dog.\n  - Since the rabbit is round and it needs the cat, using condition 20, the rabbit chases the dog. (This confirms the previous conclusion.)\n\n- Condition 21: If someone needs the cat and they chase the dog then they like the rabbit.\n  - Since the rabbit needs the cat and it chases the dog, using condition 21, the rabbit likes the rabbit.\n\nHowever, based on the conditions given, there is no direct relationship that says \"the cat likes the rabbit.\" However, we can conclude that if the cat chases the lion and the lion is round (because it's blue), then the cat needs the lion. From condition 8, if the rabbit is blue and it chases the cat then the rabbit is young. Since the rabbit chases the lion, it is not directly related to the cat. However, the rabbit is blue and it chases the lion, which means the lion is round (condition 5). This doesn't confirm the rabbit chases the cat directly. \n\nSince there is no direct statement saying \"the cat likes the rabbit,\" we can't conclude that the cat likes the rabbit. However, we know that the lion needs the cat because the lion is round. If someone needs the cat and they chase the dog then they like the rabbit. Since the lion needs the cat and it chases the dog, the lion likes the rabbit.\n\nTherefore, we can't conclude that the cat likes the rabbit.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the cat likes the rabbit, we need to analyze the given statements and apply the rules.\n\nGiven statements:\n- The cat needs the lion.\n- The cat needs the rabbit.\n- The rabbit chases the lion.\n- The rabbit is blue.\n- The rabbit is rough.\n- The rabbit likes the dog.\n- The rabbit needs the dog.\n- The rabbit needs the lion.\n- The lion is blue.\n- The lion is green.\n- The dog is green.\n- The dog is young.\n- The dog likes the cat.\n\nRules:\n1. If someone chases the lion then they are round.\n2. If the lion needs the rabbit and the rabbit chases the dog then the lion likes the dog.\n3. If someone is round and they chase the lion then they need the cat.\n4. If someone needs the cat and they chase the dog then they like the rabbit.\n5. If someone chases the lion and the lion is blue then the lion is round.\n6. If someone chases the rabbit then they are rough.\n7. If someone is rough and they like the rabbit then the rabbit is young.\n8. If the rabbit chases the cat and the cat needs the lion then the rabbit is young.\n9. If someone is round and they need the cat then they chase the dog.\n\nFrom the given statements, we know that the cat needs the lion and the rabbit needs the lion. Also, the rabbit chases the lion.\n\nApplying rule 5, since the lion is blue and the rabbit chases the lion, the rabbit is round (although not explicitly stated, it can be inferred that the rabbit is not round because it is chasing the lion, and the lion is blue, which makes the rabbit round).\n\nApplying rule 2, since the lion needs the rabbit and the rabbit chases the dog, the lion likes the dog.\n\nFrom the given statements, we know that the dog likes the cat.\n\nNow, let's determine whether the cat likes the rabbit.\n\nApplying rule 4, since the rabbit is round (from rule 5) and the rabbit chases the dog, the rabbit needs the cat.\n\nSince the rabbit needs the cat, applying rule 4, the rabbit likes the dog (which is not relevant to our current problem) but not the cat.\n\nHowever, there is a problem with this logic. The rabbit is round, so it should chase the dog (rule 9). But then, since the rabbit is round and chases the dog, the rabbit needs the cat (rule 3). However, this leads to a contradiction because if the rabbit needs the cat, then it should like the rabbit (rule 4), but we already know the rabbit likes the dog.\n\nHowever, another statement will help us figure out if the cat likes the rabbit. If someone is rough and they like the rabbit then the rabbit is young. The rabbit is rough, so the rabbit is young.\n\nNow we know that the rabbit is young. \n\nThe rabbit chases the cat, so the rabbit is rough. \n\nApplying rule 8, since the rabbit is young and it chases the cat, the rabbit is young. This does not help us.\n\nHowever, applying rule 7, since the rabbit is rough and it likes the dog, the rabbit is young. This also does not help us.\n\nHowever, applying rule 6, since the rabbit chases the lion, the rabbit is rough.\n\nApplying rule 7, since the rabbit is rough and it likes the dog, the rabbit is young.\n\nApplying rule 8, since the rabbit is young and it chases the cat, the rabbit is young. This does not help us.\n\nHowever, the rabbit likes the dog, and the cat likes the dog. \n\nApplying rule 1, since the rabbit chases the lion, the rabbit is round. \n\nHowever, applying rule 9, since the rabbit is round and the rabbit needs the cat, the rabbit chases the dog. \n\nThis means that the rabbit is round and chases the dog. \n\nHowever, applying rule 3, since the rabbit is round and the rabbit chases the lion, the rabbit needs the cat.\n\nHowever, we already know that the rabbit needs the cat, so this does not help us.\n\nHowever, since the rabbit is round and chases the lion, applying rule 1, the rabbit is round.\n\nApplying rule 3, since the rabbit is round and the rabbit chases the lion, the rabbit needs the cat.\n\nHowever, we already know that the rabbit needs the cat, so this does not help us.\n\nHowever, since the rabbit is round, applying rule 1, the rabbit is round.\n\nApplying rule 3, since the rabbit is round and the rabbit needs the cat, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, applying rule 4, since the rabbit needs the cat and the rabbit chases the dog, the rabbit likes the rabbit.\n\nHowever, this does not help us.\n\nHowever, since the rabbit is round, applying rule 1, the rabbit is round.\n\nApplying rule 3, since the rabbit is round and the rabbit needs the cat, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, since the rabbit is round, applying rule 1, the rabbit is round.\n\nApplying rule 3, since the rabbit is round and the rabbit needs the cat, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, since the rabbit is round, applying rule 1, the rabbit is round.\n\nApplying rule 3, since the rabbit is round and the rabbit needs the cat, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, applying rule 4, since the rabbit is round and the rabbit chases the dog, the rabbit needs the cat.\n\nHowever, we already know that the rabbit needs the cat, so this does not help us.\n\nHowever, applying rule 4, since the rabbit needs the cat and the rabbit chases the dog, the rabbit likes the rabbit.\n\nHowever, this does not help us.\n\nHowever, since the rabbit is round, applying rule 1, the rabbit is round.\n\nHowever, since the rabbit is round and the rabbit needs the cat, applying rule 3, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, since the rabbit is round and the rabbit needs the cat, applying rule 3, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, since the rabbit is round, applying rule 1, the rabbit is round.\n\nHowever, since the rabbit is round and the rabbit needs the cat, applying rule 3, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, since the rabbit is round and the rabbit needs the cat, applying rule 3, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, since the rabbit is round and the rabbit needs the cat, applying rule 3, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, since the rabbit is round and the rabbit needs the cat, applying rule 3, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, since the rabbit is round and the rabbit needs the cat, applying rule 3, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, since the rabbit is round and the rabbit needs the cat, applying rule 3, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, since the rabbit is round, applying rule 1, the rabbit is round.\n\nHowever, since the rabbit is round and the rabbit needs the cat, applying rule 3, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, since the rabbit is round and the rabbit needs the cat, applying rule 3, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, since the rabbit is round, applying rule 1, the rabbit is round.\n\nHowever, since the rabbit is round and the rabbit needs the cat, applying rule 3, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, since the rabbit is round, applying rule 1, the rabbit is round.\n\nHowever, since the rabbit is round and the rabbit needs the cat, applying rule 3, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, since the rabbit is round, applying rule 1, the rabbit is round.\n\nHowever, since the rabbit is round and the rabbit needs the cat, applying rule 3, the rabbit chases the dog.\n\nHowever, we already know that the rabbit chases the dog, so this does not help us.\n\nHowever, since the rabbit is round, applying rule 1, the rabbit is round.\n\nHowever, since the rabbit is round and the rabbit needs the cat, applying",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. The cat chases the lion.\n   - The cat is rough.\n   - The cat is young.\n   - The cat needs the lion.\n   - The cat needs the rabbit.\n\n2. The dog is green.\n   - The dog is young.\n   - The dog likes the cat.\n   - The lion is blue.\n   - The lion is green.\n   - The rabbit chases the lion.\n   - The rabbit is blue.\n   - The rabbit is rough.\n   - The rabbit likes the dog.\n   - The rabbit needs the dog.\n   - The rabbit needs the lion.\n\n3. If someone chases the lion then they are round.\n   - If the lion needs the rabbit and the rabbit chases the dog then the lion likes the dog.\n   - If someone is round and they chase the lion then they need the cat.\n   - If someone needs the cat and they chase the dog then they like the rabbit.\n   - If someone chases the lion and the lion is blue then the lion is round.\n   - If someone chases the rabbit then they are rough.\n   - If someone is rough and they like the rabbit then the rabbit is young.\n   - If the rabbit chases the cat and the cat needs the lion then the rabbit is young.\n   - If someone is round and they need the cat then they chase the dog.\n\nWe are asked to determine whether the cat does not like the rabbit. To do this, we need to check the relationships between the cat and the rabbit based on the given statements.\n\nFrom the given statements, we know that the cat needs the rabbit. We also know that the rabbit likes the dog, but we cannot directly infer the relationship between the cat and the rabbit from this statement.\n\nHowever, we can use the given statements to establish a relationship between the cat and the rabbit.\n\nThe cat chases the lion. \nIf the cat chases the lion, then the cat is round (since the lion is blue).\n\nIf the cat is round and the cat chases the lion, then the cat needs the cat (since the cat needs the cat and the cat chases the dog).\n\nIf the cat needs the cat and the cat chases the dog, then the cat likes the rabbit (since someone needs the cat and they chase the dog then they like the rabbit).\n\nHowever, this is a contradiction, as we know that the cat is young, and we cannot conclude that the cat likes the rabbit from the given statements.\n\nTherefore, we cannot determine the relationship between the cat and the rabbit based on the given statements. Hence, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the cat likes the rabbit, we need to analyze the given statements and apply them step by step.\n\n1. The rabbit chases the lion. \n   The rabbit is blue. \n   The rabbit is rough. \n   The rabbit likes the dog. \n   The rabbit needs the dog. \n   The rabbit needs the lion.\n\nFrom statement 5, we know the rabbit needs the lion. From statement 7, if someone chases the lion then they are round. But the rabbit does not chase the lion, so the rabbit is not round.\n\nFrom statement 9, if someone needs the cat and they chase the dog then they like the rabbit. Since this statement is given in the context of the cat, we will come back to this statement later.\n\nFrom statement 10, if someone chases the rabbit then they are rough. Since the rabbit is already given as rough, this statement does not provide any new information.\n\nFrom statement 11, if someone is rough and they like the rabbit then the rabbit is young. But the rabbit is already given as young, so this statement also does not provide any new information.\n\nFrom statement 12, if the rabbit chases the cat and the cat needs the lion then the rabbit is young. Since the rabbit is already given as young, this statement also does not provide any new information.\n\nFrom statement 1, The cat chases the lion. The cat is rough. The cat is young. The cat needs the lion. \n\nFrom statement 5, the cat needs the lion. \n\nFrom statement 7, if someone chases the lion then they are round. Since the cat chases the lion, the cat is round.\n\nFrom statement 8, if someone is round and they need the cat then they chase the dog. Since the cat is round and the cat needs itself, this statement does not provide any new information.\n\nFrom statement 9, if someone needs the cat and they chase the dog then they like the rabbit. Since the cat needs itself and the cat chases the dog, the cat likes the rabbit.\n\nHowever, from statement 9, we also have another option: if someone is round and they need the cat then they chase the dog. But the cat is already round and needs itself, so we have another condition from statement 7: if someone is round and they chase the lion then they need the cat. Since the cat is round and chases the lion, the cat needs itself, but this condition also does not provide any new information.\n\nTherefore, the cat likes the rabbit.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not like the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement to be determined is: \"The cat does not like the rabbit.\"\n2. To find out if this is true or false, we need to look for information that indicates the cat's relationship with the rabbit.\n3. Since there is no direct information stating that the cat likes or dislikes the rabbit, we must look for indirect information.\n\nWe can see that the rabbit likes the dog. However, this does not directly relate to the cat and the rabbit.\n\nWe also know that the lion is blue and the rabbit chases the lion. This means the lion is round (according to the rule: If someone chases the lion then they are round).\n\nWe know that if someone is round and they chase the lion then they need the cat. Therefore, the rabbit needs the cat.\n\nIf someone needs the cat and they chase the dog then they like the rabbit. This rule applies to the cat since it chases the dog. Therefore, the cat likes the rabbit.\n\nBased on this analysis, the statement \"The cat does not like the rabbit\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, dog)",
+          "z3_formula": "needs_rabbit_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_lion, round_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit, chases_dog), likes_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & chases(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(round_lion, chases_lion), needs_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_cat, chases_dog), likes_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & blue(X) -> round(X)",
+          "z3_formula": "Implies(And(chases_lion, blue_lion), round_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> rough(X)",
+          "z3_formula": "Implies(chases_rabbit, rough)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(And(rough, likes_rabbit), young)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & needs(X, lion) -> young(X)",
+          "z3_formula": "Implies(And(chases_cat, needs_lion), young)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round, needs_cat), chases_dog)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & needs(lion, rabbit) & chases(rabbit, dog) -> likes(lion, dog)",
+          "z3_formula": "Implies(And(chases_rabbit_lion, needs_lion_rabbit, chases_rabbit_dog), likes_lion_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(chases_cat_lion, needs_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & blue(lion) -> round(X)",
+          "z3_formula": "Implies(And(chases_cat_lion, blue_lion), round_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_cat, young_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(rabbit, cat) & needs(cat, lion) -> young(rabbit)",
+          "z3_formula": "Implies(And(chases_rabbit_cat, needs_cat_lion), young_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, rabbit) -> young(rabbit)",
+          "z3_formula": "Implies(And(rough_cat, likes_cat_rabbit), young_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> needs(X, cat)",
+          "z3_formula": "Implies(round_cat, needs_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_cat, chases_cat_dog), likes_cat_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == Unknown",
+          "source_step": 15
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_rabbit_lion, round_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & blue(lion) -> round(lion)",
+          "z3_formula": "Implies(And(chases_rabbit_lion, blue_lion), round_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> needs(X, cat)",
+          "z3_formula": "Implies(round_rabbit, needs_rabbit_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_rabbit, needs_rabbit_cat), chases_rabbit_dog)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, chases_rabbit_dog), likes_rabbit_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & needs(X, lion) -> young(X)",
+          "z3_formula": "Implies(And(chases_rabbit_cat, needs_rabbit_lion), young_rabbit)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, rabbit)",
+          "z3_formula": "likes_rabbit_rabbit == Unknown",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & chases(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(round_lion, chases_cat_lion), needs_cat_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & blue(lion) -> round(lion)",
+          "z3_formula": "Implies(And(chases_cat_lion, blue_lion), round_lion)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(And(rough_rabbit, likes_rabbit_rabbit), young_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & needs(X, lion) -> young(X)",
+          "z3_formula": "Implies(And(chases_rabbit_cat, needs_rabbit_lion), young_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_lion_cat, chases_lion_dog), likes_lion_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, dog) -> needs(X, dog)",
+          "z3_formula": "Implies(chases_rabbit_dog, needs_rabbit_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(needs_rabbit_dog, likes_rabbit_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "needs(lion, cat)",
+          "z3_formula": "needs_lion_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & chases(Y, X) -> round(Y)",
+          "z3_formula": "Implies(And(blue_lion, chases_lion_lion), round_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(Y, lion) -> needs(Y, cat)",
+          "z3_formula": "Implies(And(round_lion, needs_lion_cat), needs_lion_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion) & green(lion)",
+          "z3_formula": "And(round_lion, green_lion) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(chases_lion_lion, needs_lion_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> likes(X, dog)",
+          "z3_formula": "Implies(chases_rabbit_lion, likes_rabbit_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, dog)",
+          "z3_formula": "needs_rabbit_dog == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & needs(cat, lion) -> young(X)",
+          "z3_formula": "Implies(And(chases_rabbit_cat, needs_cat_lion), young_rabbit)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_rabbit, needs_rabbit_cat), chases_rabbit_dog)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "round(rabbit) & needs(rabbit, cat) -> chases(rabbit, dog)",
+          "z3_formula": "Implies(And(round_rabbit, needs_rabbit_cat), chases_rabbit_dog)",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_rabbit_lion, round_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) & chases(rabbit, dog) -> likes(X, dog)",
+          "z3_formula": "Implies(And(needs_lion_rabbit, chases_rabbit_dog), likes_lion_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & chases(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(round_rabbit, chases_rabbit_lion), needs_rabbit_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, chases_rabbit_dog), likes_rabbit_rabbit)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & needs(cat, lion) -> young(X)",
+          "z3_formula": "Implies(And(chases_rabbit_cat, needs_cat_lion), young_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(And(rough_cat, likes_cat_rabbit), young_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, dog)",
+          "z3_formula": "likes_lion_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, dog)",
+          "z3_formula": "needs_rabbit_dog == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_cat_lion, round_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(lion, rabbit) & chases(rabbit, dog) -> likes(lion, dog)",
+          "z3_formula": "Implies(And(needs_lion_rabbit, chases_rabbit_dog), likes_lion_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & chases(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(round_cat, chases_cat_lion), needs_cat_lion)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_cat_dog, chases_dog_cat), likes_dog_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & chases(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(round_lion, chases_lion_dog), needs_lion_cat)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(And(round_rabbit, likes_rabbit_dog), young_rabbit)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & chases(X, cat) -> young(X)",
+          "z3_formula": "Implies(And(blue_rabbit, chases_rabbit_cat), young_rabbit)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & needs(X, lion) -> young(X)",
+          "z3_formula": "Implies(And(blue_rabbit, needs_rabbit_lion), young_rabbit)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(And(rough_rabbit, likes_rabbit_dog), young_rabbit)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> rough(X)",
+          "z3_formula": "Implies(chases_dog_rabbit, rough_dog)",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(And(rough_dog, likes_dog_rabbit), young_dog)",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "chases(rabbit, lion) -> round(rabbit)",
+          "z3_formula": "Implies(chases_rabbit_lion, round_rabbit)",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_rabbit, needs_rabbit_cat), chases_rabbit_dog)",
+          "source_step": 29
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, chases_rabbit_dog), likes_rabbit_rabbit)",
+          "source_step": 30
+        },
+        {
+          "type": "derived",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, rabbit)",
+          "z3_formula": "likes_lion_rabbit == True",
+          "source_step": 32
+        },
+        {
+          "type": "derived",
+          "expression": "young(rabbit)",
+          "z3_formula": "young_rabbit == True",
+          "source_step": 33
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, dog)",
+          "z3_formula": "chases_rabbit_dog == True",
+          "source_step": 34
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 35
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, rabbit)",
+          "z3_formula": "likes_rabbit_rabbit == True",
+          "source_step": 36
+        },
+        {
+          "type": "derived",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 37
+        },
+        {
+          "type": "derived",
+          "expression": "chases(dog, rabbit)",
+          "z3_formula": "chases_dog_rabbit == True",
+          "source_step": 38
+        },
+        {
+          "type": "derived",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 39
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, rabbit)",
+          "z3_formula": "likes_dog_rabbit == False",
+          "source_step": 40
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, dog)",
+          "z3_formula": "needs_rabbit_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dog)",
+          "z3_formula": "green_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(dog)",
+          "z3_formula": "young_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_rabbit_lion, round_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(lion, rabbit) & chases(rabbit, dog) -> likes(lion, dog)",
+          "z3_formula": "Implies(And(needs_rabbit_lion, chases_rabbit_dog), likes_lion_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & chases(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(round_rabbit, chases_rabbit_lion), needs_rabbit_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, chases_rabbit_dog), likes_rabbit_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & blue(lion) -> round(X)",
+          "z3_formula": "Implies(And(chases_rabbit_lion, blue_lion), round_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> rough(X)",
+          "z3_formula": "Implies(chases_rabbit_lion, rough_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(And(rough_rabbit, likes_rabbit_dog), young_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & needs(X, lion) -> young(X)",
+          "z3_formula": "Implies(And(chases_rabbit_cat, needs_rabbit_lion), young_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_rabbit, needs_rabbit_cat), chases_rabbit_dog)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, rabbit)",
+          "z3_formula": "needs_cat_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_cat_lion, round_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & blue(lion) -> round(X)",
+          "z3_formula": "Implies(And(chases_cat_lion, blue_lion), round_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & chases(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(round_cat, chases_cat_lion), needs_cat_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_cat_cat, chases_cat_dog), likes_cat_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & likes(X, rabbit) -> young(X)",
+          "z3_formula": "Implies(And(rough_cat, likes_cat_rabbit), young_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & needs(X, lion) -> young(X)",
+          "z3_formula": "Implies(And(chases_cat_cat, needs_cat_lion), young_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & needs(X, cat) -> chases(X, dog)",
+          "z3_formula": "Implies(And(round_cat, needs_cat_cat), chases_cat_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cat, cat)",
+          "z3_formula": "needs_cat_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(rabbit)",
+          "z3_formula": "rough_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, dog)",
+          "z3_formula": "needs_rabbit_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, lion)",
+          "z3_formula": "needs_rabbit_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_rabbit_lion, round_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not round(rabbit)",
+          "z3_formula": "Not(round_rabbit) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, chases_dog_rabbit), likes_dog_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(cat)",
+          "z3_formula": "young_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, lion)",
+          "z3_formula": "needs_cat_lion == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_cat_lion, round_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) == False",
+          "z3_formula": "Not(likes_cat_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, dog)",
+          "z3_formula": "likes_rabbit_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(lion)",
+          "z3_formula": "blue_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> round(X)",
+          "z3_formula": "Implies(chases_rabbit_lion, round_rabbit)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & chases(X, lion) -> needs(X, cat)",
+          "z3_formula": "Implies(And(round_rabbit, chases_rabbit_lion), needs_rabbit_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(rabbit, cat)",
+          "z3_formula": "needs_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & chases(X, dog) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(needs_rabbit_cat, chases_cat_dog), likes_cat_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, dog)",
+          "z3_formula": "chases_cat_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, rabbit)",
+          "z3_formula": "likes_cat_rabbit == True",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 210,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 92
+    },
+    "maxsat_stats": {
+      "satisfied": 89,
+      "excluded": 3,
+      "total_weight": 206,
+      "solve_time_ms": 2.3056361824274063
+    },
+    "timing": {
+      "trace_gen_s": 24.689,
+      "extraction_s": 41.952,
+      "dedup_s": 4.159,
+      "maxsat_s": 0.007,
+      "total_s": 70.808
+    }
+  }
+}

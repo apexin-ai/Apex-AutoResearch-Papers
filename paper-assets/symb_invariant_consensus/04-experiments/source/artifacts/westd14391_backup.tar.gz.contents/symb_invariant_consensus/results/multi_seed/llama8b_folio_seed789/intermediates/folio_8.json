@@ -1,0 +1,1218 @@
+{
+  "problem": {
+    "id": "folio_8",
+    "problem": "Given the following premises:\nMonkeypox is an infectious disease caused by the monkeypox virus. Monkeypox virus can occur in certain animals, including humans. Humans are mammals. Mammals are animals. Symptons of Monkeypox include fever, headache, muscle pains, feeling tired, and so on. People feel tired when they get a glu.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSymptons of Monkeypox include coughing.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (OccurMonkeypoxVirus(x) \u2227 GetMonkeypox(x))",
+      "\u2203x (Animal(x) \u2227 OccurMonkeypoxVirus(x))",
+      "\u2200x (Human(x) \u2192 Mammal(x))",
+      "\u2200x (Mammal(x) \u2192 Animal(x))",
+      "\u2203x (GetMonkeypox(x) \u2227 (Fever(x) \u2228 Headache(x) \u2228 MusclePain(x) \u2228 Tired(x)))",
+      "\u2200x (Human(x) \u2227 Flu(x) \u2192 Tired(x))"
+    ],
+    "conclusion_fol": "\u2203x (GetMonkeypox(x) \u2227 Coughing(x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 102.0,
+      "Uncertain/False (because there is no evidence)": 39.5,
+      "Unknown": 156.0
+    },
+    "answer_counts": {
+      "False": 3,
+      "Unknown": 8,
+      "Uncertain/False (because there is no evidence)": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nPremise 3: Humans are mammals.\nPremise 4: Mammals are animals.\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nPremise 6: People feel tired when they get a glu (this premise seems unrelated to Monkeypox, but we'll consider it anyway).\n\nFrom the premises, we can conclude that Monkeypox is a disease that affects animals, including humans. We also know the symptoms of Monkeypox, which include fever, headache, muscle pains, and feeling tired.\n\nHowever, there is no mention of coughing as a symptom of Monkeypox in the premises. The conclusion we're asked to evaluate is:\n\nSymptoms of Monkeypox include coughing.\n\nTo determine if this conclusion is true, false, or uncertain, we need to see if we can logically infer coughing as a symptom of Monkeypox from the given premises.\n\nThe premises do not mention coughing as a symptom of Monkeypox. Premise 5 lists the symptoms of Monkeypox as fever, headache, muscle pains, and feeling tired, but it does not include coughing.\n\nTherefore, based on the given premises, we cannot logically conclude that symptoms of Monkeypox include coughing. We do not have enough information to support this conclusion.\n\nConclusion: Uncertain (but not necessarily false, as we might not have all the information)\n\nHowever, to get an answer in the format requested, we need to pick one of the three options. Since we are uncertain about the conclusion, but cannot prove it to be false, the best option would be:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the premises and see if they logically lead to the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nPremise 3: Humans are mammals.\nPremise 4: Mammals are animals.\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nPremise 6: People feel tired when they get a glucose.\n\nConclusion: Symptoms of Monkeypox include coughing.\n\nLet's break down the reasoning:\n\n1. Premise 5 lists the symptoms of Monkeypox, which include fever, headache, muscle pains, feeling tired, and so on.\n2. There is no direct mention of coughing as a symptom of Monkeypox in Premise 5.\n3. Premise 6 states that people feel tired when they get a glucose, but this is irrelevant to the symptoms of Monkeypox.\n4. The premises do not provide any information about coughing being a symptom of Monkeypox.\n\nSince there is no logical connection between the premises and the conclusion, we cannot determine the truth of the conclusion. However, we can infer that the conclusion is uncertain because there is no evidence to support it.\n\nTherefore, the answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\n1. Monkeypox is an infectious disease caused by the monkeypox virus.\n2. Monkeypox virus can occur in certain animals, including humans.\n3. Humans are mammals.\n4. Mammals are animals.\n5. Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\n6. People feel tired when they get a glu.\n\nFirst, let's identify the relevant information for the conclusion. The conclusion is about the symptoms of Monkeypox, specifically whether coughing is included.\n\nFrom premise 5, we know that symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on. However, coughing is not explicitly mentioned.\n\nTo see if we can infer coughing as a symptom, let's examine the other premises. They provide information about the virus, its hosts, and some general facts about humans and animals. However, none of them directly mention coughing as a symptom of Monkeypox.\n\nPremise 6 mentions that people feel tired when they get a glu. However, this is unrelated to the symptoms of Monkeypox, as glu is not mentioned anywhere else in the premises, and it's unclear what \"get a glu\" means in this context.\n\nSince there's no direct or indirect logical connection between the premises and the conclusion that coughing is a symptom of Monkeypox, we cannot determine the truth value of the conclusion.\n\nTherefore, the answer is: \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nPremise 3: Humans are mammals.\nPremise 4: Mammals are animals.\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nPremise 6: People feel tired when they get a glucose (glu) level.\n\nNow, let's examine the conclusion: \"Symptoms of Monkeypox include coughing.\"\n\nThe given premises do not mention coughing as a symptom of Monkeypox. However, we can use the information given to make some logical deductions.\n\nFrom Premise 2, we know that Monkeypox virus can occur in humans. From Premise 3, we know that humans are mammals. From Premise 4, we know that mammals are animals. \n\nNow, let's look at Premise 5, which states that symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on. The word \"so on\" is a hint that there are other symptoms not explicitly mentioned.\n\nHowever, we still cannot determine whether coughing is a symptom of Monkeypox based on the given premises.\n\nPremise 6 mentions that people feel tired when they get a glucose level, which seems unrelated to Monkeypox.\n\nSince the given premises do not provide any information about coughing being a symptom of Monkeypox, we cannot conclude that the statement is true or false. However, we can say that the conclusion is uncertain because it is not supported by the given premises.\n\nTherefore, the answer is: \n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion step by step.\n\n1. Monkeypox is an infectious disease caused by the monkeypox virus.\n   - This premise does not provide any information about the symptoms of Monkeypox.\n\n2. Monkeypox virus can occur in certain animals, including humans.\n   - This premise does not provide any information about the symptoms of Monkeypox.\n\n3. Humans are mammals.\n   - This premise does not provide any information about the symptoms of Monkeypox.\n\n4. Mammals are animals.\n   - This premise does not provide any information about the symptoms of Monkeypox.\n\n5. Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\n   - This premise lists some symptoms of Monkeypox but does not include coughing.\n\n6. People feel tired when they get a glucose (glu).\n   - This premise is unrelated to the symptoms of Monkeypox.\n\nNow, we need to determine whether the conclusion \"Symptoms of Monkeypox include coughing\" is true, false, or uncertain.\n\nBased on the given premises, there is no information that suggests coughing is a symptom of Monkeypox. The only information about symptoms is listed in premise 5, which does not include coughing.\n\nTherefore, the conclusion \"Symptoms of Monkeypox include coughing\" is uncertain because it is not supported by the given premises, but it is also not directly contradicted. However, based on the information given, it is more accurate to say that there is no evidence to support the conclusion.\n\nSince there is no direct evidence to support or contradict the conclusion, and it is not a direct logical consequence of the premises, the best answer would be \"false\" but that would be incorrect, as it is a logical deduction to say \"there is no evidence to support it.\" Thus, in a strict logical sense, the answer would be: \n\n\\boxed{Uncertain/False (because there is no evidence)}",
+        "answer": "Uncertain/False (because there is no evidence)",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion.\n\nPremises:\n\n1. Monkeypox is an infectious disease caused by the monkeypox virus.\n2. Monkeypox virus can occur in certain animals, including humans.\n3. Humans are mammals.\n4. Mammals are animals.\n5. Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\n6. People feel tired when they get a flu (not a glucose, presumably).\n\nConclusion: Symptoms of Monkeypox include coughing.\n\nAnalysis:\n\n- Premise 1 states that Monkeypox is an infectious disease, but it does not provide information about its symptoms.\n- Premise 2 states that the virus can occur in certain animals, including humans, but it does not mention symptoms.\n- Premise 3 and 4 are about the classification of humans and mammals, which is not relevant to the symptoms of Monkeypox.\n- Premise 5 lists some symptoms of Monkeypox, but it does not include coughing.\n- Premise 6 mentions that people feel tired when they get a flu, but it is not related to Monkeypox.\n\nSince the conclusion (Symptoms of Monkeypox include coughing) is not supported by any of the premises, we cannot determine whether it is true or false based on the given information. Therefore, the conclusion is uncertain.\n\nHowever, since coughing is not mentioned in premise 5 as a symptom of Monkeypox, and no other premise provides information about coughing being a symptom of Monkeypox, we can make an educated guess that the conclusion is likely false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nPremise 3: Humans are mammals.\nPremise 4: Mammals are animals.\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nPremise 6: People feel tired when they get a flu.\n\nNow, let's examine the conclusion: Symptoms of Monkeypox include coughing.\n\nTo see if this conclusion follows logically from the premises, we can use the following steps:\n\n1. From Premise 5, we know that symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\n2. However, Premise 5 does not mention coughing as a symptom of Monkeypox.\n3. Premise 6 states that people feel tired when they get a flu (not Monkeypox), which is irrelevant to the symptoms of Monkeypox.\n4. Since coughing is not explicitly mentioned as a symptom of Monkeypox in Premise 5, and there is no other logical connection between Monkeypox and coughing based on the given premises, we cannot conclude that symptoms of Monkeypox include coughing.\n\nTherefore, the conclusion is uncertain because it is not directly supported by the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they logically lead to the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nPremise 3: Humans are mammals.\nPremise 4: Mammals are animals.\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nPremise 6: People feel tired when they get a flu.\n\nWe can infer the following from the premises:\n\n* Monkeypox is a disease that affects humans and possibly other animals.\n* Monkeypox has symptoms such as fever, headache, muscle pains, and feeling tired.\n* Feeling tired is a symptom of Monkeypox.\n* Feeling tired is also a symptom of the flu.\n\nHowever, the conclusion we are trying to determine is: Symptoms of Monkeypox include coughing.\n\nThere is no direct or indirect evidence in the premises that links Monkeypox to coughing. While the premises provide information about the symptoms of Monkeypox, they do not specifically mention coughing as one of the symptoms.\n\nMoreover, the conclusion is uncertain because we can't conclude for sure that coughing is a symptom of Monkeypox based on the given premises.\n\nTherefore, the conclusion is: **Uncertain**\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. Monkeypox is an infectious disease caused by the monkeypox virus.\n   This premise does not provide any information about the symptoms of Monkeypox, so we cannot draw any conclusions about the symptoms from this premise.\n\n2. Monkeypox virus can occur in certain animals, including humans.\n   This premise does not provide any information about the symptoms of Monkeypox, so we cannot draw any conclusions about the symptoms from this premise.\n\n3. Humans are mammals.\n   This premise does not provide any information about the symptoms of Monkeypox, so we cannot draw any conclusions about the symptoms from this premise.\n\n4. Mammals are animals.\n   This premise does not provide any information about the symptoms of Monkeypox, so we cannot draw any conclusions about the symptoms from this premise.\n\n5. Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\n   This premise explicitly mentions some of the symptoms of Monkeypox. However, it does not mention coughing.\n\n6. People feel tired when they get a glucose.\n   This premise does not provide any information about the symptoms of Monkeypox. The term \"glu\" seems to be a typo, and I assume it should be \"glucose.\" However, the information about glucose is not relevant to the symptoms of Monkeypox.\n\nNow, let's analyze the conclusion:\n\nThe conclusion states: \"Symptoms of Monkeypox include coughing.\"\n\nWe have not found any information in the premises that explicitly mentions coughing as a symptom of Monkeypox. The only information we have about the symptoms of Monkeypox is from premise 5, which mentions fever, headache, muscle pains, and feeling tired, but not coughing.\n\nTherefore, based on the given premises, we cannot conclude that symptoms of Monkeypox include coughing. This means that the conclusion is uncertain.\n\nHowever, we can say that the conclusion is likely to be false because there is no information in the premises that supports the conclusion. But we cannot rule out the possibility that the premises might be incomplete or that there might be additional information that is not provided.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nPremise 3: Humans are mammals.\nPremise 4: Mammals are animals.\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nPremise 6: People feel tired when they get a flu.\n\nConclusion: Symptoms of Monkeypox include coughing.\n\nLet's analyze the premises:\n\n- Premise 1 to 4 establish a connection between the monkeypox virus and its hosts, which are humans and animals.\n- Premise 5 lists some symptoms of Monkeypox, such as fever, headache, and muscle pains.\n- Premise 6 introduces a new condition, getting a flu, which is associated with feeling tired.\n\nNow, let's examine the conclusion: Symptoms of Monkeypox include coughing.\n\nThere is no direct connection between the given premises and the conclusion. The symptoms listed in Premise 5 (fever, headache, muscle pains, feeling tired) are mentioned, but coughing is not mentioned. Also, Premise 6 introduces a new condition (flu) that is not related to Monkeypox.\n\nThe only way to relate the conclusion to the premises is by using inductive reasoning. However, inductive reasoning involves making a generalization or drawing a conclusion based on specific observations or data. In this case, there is no specific data or observation that links Monkeypox to coughing.\n\nSince there is no direct logical connection between the premises and the conclusion, we cannot determine whether the conclusion is true or false based on the given information. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the premises and see if they logically lead to the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nThis premise doesn't provide information about the symptoms of Monkeypox.\n\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nThis premise also doesn't provide information about the symptoms of Monkeypox.\n\nPremise 3: Humans are mammals.\nThis premise doesn't provide information about the symptoms of Monkeypox.\n\nPremise 4: Mammals are animals.\nThis premise also doesn't provide information about the symptoms of Monkeypox.\n\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nThis premise lists some symptoms of Monkeypox, but it doesn't include coughing.\n\nPremise 6: People feel tired when they get a flu.\nThis premise is irrelevant to the symptoms of Monkeypox, as it talks about the flu, not Monkeypox.\n\nThe conclusion is: Symptoms of Monkeypox include coughing.\nTo determine if this conclusion is true or false, we need to see if we can logically derive it from the premises. \n\nThe premises don't mention coughing as a symptom of Monkeypox. In fact, Premise 5 specifically lists some symptoms of Monkeypox, but coughing is not one of them.\n\nTherefore, based on the given premises, we cannot conclude that symptoms of Monkeypox include coughing. This is an uncertain conclusion because the premises do not provide enough information to determine the truth or falsity of the conclusion.\n\nHowever, since the symptoms of monkeypox are not listed in the premises, it is more logical to conclude that coughing is not a symptom of monkeypox. \n\nThus the final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nPremise 3: Humans are mammals.\nPremise 4: Mammals are animals.\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nPremise 6: People feel tired when they get a glucose (glu) rush.\n\nWe are asked to evaluate the conclusion:\nConclusion: Symptoms of Monkeypox include coughing.\n\nFrom Premise 5, we know the symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on. However, coughing is not explicitly mentioned as a symptom of Monkeypox.\n\nThe premises do not provide any information that would suggest coughing is a symptom of Monkeypox. In fact, they do not even mention coughing as a symptom.\n\nHowever, from Premise 6, we can infer that people feel tired for various reasons, including getting a glucose (glu) rush. This premise seems unrelated to Monkeypox.\n\nSince the premises do not provide any information that would logically lead to the conclusion that coughing is a symptom of Monkeypox, we cannot definitively determine the conclusion to be true.\n\nBut, coughing is not mentioned in Premise 5, so we cannot say the conclusion is true. The premises are silent on this point, and we have no reason to assume coughing is a symptom of Monkeypox.\n\nSo, the conclusion is uncertain because it is not supported by the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox, monkeypox_virus)",
+          "z3_formula": "caused_by_monkeypox_monkeypox_virus == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "can_occur_in(monkeypox_virus, humans)",
+          "z3_formula": "can_occur_in_monkeypox_virus_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "feeling_tired(glu)",
+          "z3_formula": "feeling_tired_glu == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "infectious(X) -> disease(X)",
+          "z3_formula": "Implies(infectious_monkeypox, disease_monkeypox)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "disease(X) & animal(X) -> affects_animals(X)",
+          "z3_formula": "Implies(And(disease_monkeypox, animal_monkeypox), affects_animals_monkeypox)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "affects_animals(monkeypox)",
+          "z3_formula": "affects_animals_monkeypox == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, coughing)",
+          "z3_formula": "symptom_monkeypox_coughing == False",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox_virus, monkeypox)",
+          "z3_formula": "caused_by_monkeypox_virus_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox_virus, animals)",
+          "z3_formula": "occurs_in_monkeypox_virus_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "includes(humans, animals)",
+          "z3_formula": "includes_humans_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(glucose, feeling_tired)",
+          "z3_formula": "symptom_glucose_feeling_tired == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(glucose, feeling_tired)",
+          "z3_formula": "symptom_glucose_feeling_tired == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox_virus, monkeypox)",
+          "z3_formula": "caused_by_monkeypox_virus_monkeypox == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox_virus, humans)",
+          "z3_formula": "occurs_in_monkeypox_virus_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "feeling_tired(X) -> tired(X)",
+          "z3_formula": "Implies(feeling_tired_humans, tired_humans)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "tired(humans)",
+          "z3_formula": "tired_humans == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "feeling_tired(humans)",
+          "z3_formula": "feeling_tired_humans == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "glu",
+          "z3_formula": "glu == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "tired(X) -> feeling_tired(X)",
+          "z3_formula": "Implies(tired_humans, feeling_tired_humans)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "coughing(monkeypox)",
+          "z3_formula": "coughing_monkeypox == Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_occurs_in_humans",
+          "z3_formula": "monkeypox_virus_occurs_in_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "human_is_mammal",
+          "z3_formula": "human_is_mammal == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal_is_animal",
+          "z3_formula": "mammal_is_animal == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms_of_monkeypox_include_fever",
+          "z3_formula": "symptoms_of_monkeypox_include_fever == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms_of_monkeypox_include_headache",
+          "z3_formula": "symptoms_of_monkeypox_include_headache == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms_of_monkeypox_include_muscle_pains",
+          "z3_formula": "symptoms_of_monkeypox_include_muscle_pains == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms_of_monkeypox_include_feeling_tired",
+          "z3_formula": "symptoms_of_monkeypox_include_feeling_tired == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "people_feel_tired_when_getting_glu_level",
+          "z3_formula": "people_feel_tired_when_getting_glu_level == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_virus_occurs_in_humans -> human_is_mammal",
+          "z3_formula": "Implies(monkeypox_virus_occurs_in_humans, human_is_mammal)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "human_is_mammal -> mammal_is_animal",
+          "z3_formula": "Implies(human_is_mammal, mammal_is_animal)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "monkeypox_is_an_infectious_disease_caused_by_monkeypox_virus",
+          "z3_formula": "monkeypox_is_an_infectious_disease_caused_by_monkeypox_virus == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "monkeypox_virus_can_occur_in_humans",
+          "z3_formula": "monkeypox_virus_can_occur_in_humans == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "humans_are_mammals",
+          "z3_formula": "humans_are_mammals == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "mammals_are_animals",
+          "z3_formula": "mammals_are_animals == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "symptoms_of_monkeypox_include_fever",
+          "z3_formula": "symptoms_of_monkeypox_include_fever == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "symptoms_of_monkeypox_include_headache",
+          "z3_formula": "symptoms_of_monkeypox_include_headache == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "symptoms_of_monkeypox_include_muscle_pains",
+          "z3_formula": "symptoms_of_monkeypox_include_muscle_pains == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "symptoms_of_monkeypox_include_feeling_tired",
+          "z3_formula": "symptoms_of_monkeypox_include_feeling_tired == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "people_feel_tired_when_getting_glu_level",
+          "z3_formula": "people_feel_tired_when_getting_glu_level == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "coughing_is_not_a_symptom_of_monkeypox",
+          "z3_formula": "Not(coughing_is_a_symptom_of_monkeypox)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "virus(monkeypox)",
+          "z3_formula": "virus_monkeypox == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(human)",
+          "z3_formula": "mammal_human == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired])",
+          "z3_formula": "symptoms_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "glucose(glu)",
+          "z3_formula": "glucose_glu == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_human, animal_human)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired])",
+          "z3_formula": "symptoms_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "glucose(glu)",
+          "z3_formula": "glucose_glu == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired])",
+          "z3_formula": "symptoms_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "feeling_tired(X) -> tired(X)",
+          "z3_formula": "Implies(feeling_tired_glu, tired_glu)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired])",
+          "z3_formula": "symptoms_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "glucose(glu)",
+          "z3_formula": "glucose_glu == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired])",
+          "z3_formula": "symptoms_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired]) -> symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired, coughing])",
+          "z3_formula": "Implies(symptoms_monkeypox_feeling_tired, symptoms_monkeypox_coughing)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "symptoms(monkeypox, [fever, headache, muscle_pains, feeling_tired, coughing])",
+          "z3_formula": "symptoms_monkeypox_coughing == False",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "virus(monkeypox)",
+          "z3_formula": "virus_monkeypox == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(human)",
+          "z3_formula": "mammal_human == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "flu_causes_feeling_tired",
+          "z3_formula": "flu_causes_feeling_tired == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "infectious(X) -> animal(X)",
+          "z3_formula": "Implies(infectious_monkeypox, animal_monkeypox)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "virus(X) -> animal(X)",
+          "z3_formula": "Implies(virus_monkeypox, animal_monkeypox)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_human, animal_human)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> mammal(X)",
+          "z3_formula": "Implies(animal_mammal, mammal_mammal)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "symptom(X, Y) -> symptom(X, Z)",
+          "z3_formula": "Implies(symptom_monkeypox_fever, symptom_monkeypox_headache)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "flu(X) -> feeling_tired(X)",
+          "z3_formula": "Implies(flu, feeling_tired)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, coughing)",
+          "z3_formula": "symptom_monkeypox_coughing == False",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus == True",
+          "z3_formula": "monkeypox_virus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_occurs_in_humans",
+          "z3_formula": "monkeypox_virus_occurs_in_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "human_is_mammal",
+          "z3_formula": "human_is_mammal == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mammal_is_animal",
+          "z3_formula": "mammal_is_animal == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_symptoms == True",
+          "z3_formula": "monkeypox_symptoms == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "flu_symptoms_include_coughing",
+          "z3_formula": "flu_symptoms_include_coughing == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_symptoms(X) -> monkeypox_includes_fever(X)",
+          "z3_formula": "Implies(monkeypox_symptoms, monkeypox_includes_fever)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_symptoms(X) -> monkeypox_includes_headache(X)",
+          "z3_formula": "Implies(monkeypox_symptoms, monkeypox_includes_headache)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_symptoms(X) -> monkeypox_includes_muscle_pains(X)",
+          "z3_formula": "Implies(monkeypox_symptoms, monkeypox_includes_muscle_pains)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_symptoms(X) -> monkeypox_includes_feeling_tired(X)",
+          "z3_formula": "Implies(monkeypox_symptoms, monkeypox_includes_feeling_tired)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "flu(X) -> feeling_tired(X)",
+          "z3_formula": "Implies(flu, feeling_tired)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox, monkeypox_virus)",
+          "z3_formula": "caused_by_monkeypox_monkeypox_virus == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox_virus, humans)",
+          "z3_formula": "occurs_in_monkeypox_virus_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(flu, feeling_tired)",
+          "z3_formula": "symptom_flu_feeling_tired == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "disease(X) -> affects(X, humans)",
+          "z3_formula": "Implies(disease_monkeypox, affects_monkeypox_humans)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "disease(X) -> affects(X, animals)",
+          "z3_formula": "Implies(disease_monkeypox, affects_monkeypox_animals)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "disease(X) -> has_symptoms(X, Y)",
+          "z3_formula": "Implies(disease_monkeypox, has_symptoms_monkeypox_Y)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "symptom(X, Y) -> has_symptom(X, Y)",
+          "z3_formula": "Implies(symptom_monkeypox_feeling_tired, has_symptom_monkeypox_feeling_tired)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "symptom(X, Y) -> has_symptom(X, Y)",
+          "z3_formula": "Implies(symptom_flu_feeling_tired, has_symptom_flu_feeling_tired)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "has_symptom(monkeypox, coughing)",
+          "z3_formula": "has_symptom_monkeypox_coughing == False",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "virus(monkeypox)",
+          "z3_formula": "virus_monkeypox == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(human)",
+          "z3_formula": "mammal_human == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, tired)",
+          "z3_formula": "symptom_monkeypox_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_human, animal_human)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, coughing)",
+          "z3_formula": "symptom_monkeypox_coughing == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox_virus, monkeypox)",
+          "z3_formula": "caused_by_monkeypox_virus_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox_virus, humans)",
+          "z3_formula": "occurs_in_monkeypox_virus_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "tired_when(getting_flu)",
+          "z3_formula": "tired_when_getting_flu == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> mammal(X)",
+          "z3_formula": "Implies(animal_mammals, mammal_humans)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "tired_when(getting_flu)",
+          "z3_formula": "tired_when_getting_flu == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "coughing(monkeypox)",
+          "z3_formula": "coughing_monkeypox == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "virus(monkeypox)",
+          "z3_formula": "virus_monkeypox == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(human)",
+          "z3_formula": "animal_human == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(human)",
+          "z3_formula": "mammal_human == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_human, animal_human)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "symptom(monkeypox, X) -> symptom(monkeypox, coughing)",
+          "z3_formula": "Implies(symptom_monkeypox_X, symptom_monkeypox_coughing)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not symptom(monkeypox, coughing)",
+          "z3_formula": "Not(symptom_monkeypox_coughing) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus == True",
+          "z3_formula": "monkeypox_virus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(human)",
+          "z3_formula": "animal_human == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(human)",
+          "z3_formula": "mammal_human == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammal)",
+          "z3_formula": "animal_mammal == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, fever)",
+          "z3_formula": "symptom_monkeypox_fever == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, headache)",
+          "z3_formula": "symptom_monkeypox_headache == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, muscle_pains)",
+          "z3_formula": "symptom_monkeypox_muscle_pains == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, feeling_tired)",
+          "z3_formula": "symptom_monkeypox_feeling_tired == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "symptom(monkeypox, glu_rush)",
+          "z3_formula": "symptom_monkeypox_glu_rush == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "feeling_tired(glu_rush)",
+          "z3_formula": "feeling_tired_glu_rush == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "symptom(monkeypox, X) -> symptom(monkeypox, coughing)",
+          "z3_formula": "Implies(symptom_monkeypox_X, symptom_monkeypox_coughing)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "symptom(monkeypox, coughing)",
+          "z3_formula": "symptom_monkeypox_coughing == Unknown",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 180,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 79
+    },
+    "maxsat_stats": {
+      "satisfied": 78,
+      "excluded": 1,
+      "total_weight": 179,
+      "solve_time_ms": 1.6792910173535347
+    },
+    "timing": {
+      "trace_gen_s": 5.678,
+      "extraction_s": 34.555,
+      "dedup_s": 2.82,
+      "maxsat_s": 0.006,
+      "total_s": 43.059
+    }
+  }
+}

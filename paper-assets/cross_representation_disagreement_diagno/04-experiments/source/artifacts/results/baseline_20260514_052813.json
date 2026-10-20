@@ -1,0 +1,11 @@
+[
+  {
+    "id": "folio_validation_0",
+    "premises": "If people perform in school talent shows often, then they attend and are very engaged with school events. People either perform in school talent shows often or are inactive and disinterested members of their community. If people chaperone high school dances, then they are not students who attend the school. All people who are inactive and disinterested members of their community chaperone high school dances. All young children and teenagers who wish to further their academic careers and educational opportunities are students who attend the school. Bonnie either both attends and is very engaged with school events and is a student who attends the school, or she neither attends and is very engaged with school events nor is a student who attends the school. ",
+    "conclusion": "Bonnie performs in school talent shows often.",
+    "ground_truth": "Unknown",
+    "raw_response": "Unknown",
+    "answer": "Unknown",
+    "correct": true
+  }
+]

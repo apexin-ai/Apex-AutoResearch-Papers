@@ -1,0 +1,926 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-308_Q1",
+    "problem": "Anne is cold. Anne is young. Charlie is cold. Erin is big. Fiona is blue. Fiona is red. Fiona is smart. If something is big and young then it is smart. If something is big and red then it is young. All cold things are red. If something is green then it is cold. If Anne is blue and Anne is smart then Anne is young. All smart, young things are green. If something is red and big then it is young. If something is big then it is young.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is red.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nSmart($x, bool) ::: Is x smart?\nRed($x, bool) ::: Is x red?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nYoung(Anne, True) ::: Anne is young.\nCold(Charlie, True) ::: Charlie is cold.\nBig(Erin, True) ::: Erin is big.\nBlue(Fiona, True) ::: Fiona is blue.\nRed(Fiona, True) ::: Fiona is red.\nSmart(Fiona, True) ::: Fiona is smart.\n\nRules:\nBig($x, True) && Young($x, True) >>> Smart($x, True) ::: If something is big and young then it is smart.\nBig($x, True) && Red($x, True) >>> Young($x, True) ::: If something is big and red then it is young.\nCold($x, True) >>> Red($x, True) ::: All cold things are red.\nGreen($x, True) >>> Cold($x, True) ::: If something is green then it is cold.\nBlue(Anne, True) && Smart(Anne, True) >>> Young(Anne, True) ::: If Anne is blue and Anne is smart then Anne is young.\nSmart($x, True) && Young($x, True) >>> Green($x, True) ::: All smart, young things are green.\nRed($x, True) && Big($x, True) >>> Young($x, True) ::: If something is red and big then it is young.\nBig($x, True) >>> Young($x, True) ::: If something is big then it is young.\n\nQuery:\nRed(Fiona, True) ::: Fiona is red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 107.0,
+      "Unknown": 106.5
+    },
+    "answer_counts": {
+      "True": 5,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use them to determine the truth value of the statement \"Fiona is red.\"\n\n1. All cold things are red.\n2. If something is green then it is cold.\n3. If Anne is blue and Anne is smart then Anne is young.\n4. All smart, young things are green.\n5. Fiona is blue.\n6. Fiona is red.\n7. Fiona is smart.\n8. If something is big and young then it is smart.\n9. If something is big and red then it is young.\n10. If something is red and big then it is young.\n11. If something is big then it is young.\n\nFrom statement 5, we know that Fiona is blue.\n\nFrom statement 3, we can deduce that since Fiona is blue, and she is also smart (from statement 7), then Fiona is young.\n\nFrom statement 4, we can deduce that since Fiona is young and smart, then Fiona is green.\n\nNow, let's analyze the statement \"Fiona is red.\" We know from statement 1 that all cold things are red. However, we also know from statement 2 that if something is green then it is cold. Since Fiona is green, it means that Fiona is cold.\n\nUsing this information, we can conclude that Fiona is indeed red, as all cold things are red (from statement 1).\n\nTherefore, the statement \"Fiona is red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is red' is true, false, or unknown, we need to analyze the given information and the logical relationships between the variables.\n\nGiven information:\n1. Fiona is blue.\n2. Fiona is red.\n3. Fiona is smart.\n4. If something is big and young then it is smart.\n5. If something is big and red then it is young.\n6. All cold things are red.\n7. If something is green then it is cold.\n8. If Anne is blue and Anne is smart then Anne is young.\n9. All smart, young things are green.\n10. If something is red and big then it is young.\n11. If something is big then it is young.\n\nFrom statement 11, we can conclude that Erin is young since it is stated that Erin is big. \n\nFrom statement 4, we can conclude that Erin is smart since it is big and young.\n\nFrom statement 9, we can conclude that Erin is green since it is smart and young.\n\nFrom statement 7, we can conclude that Erin is cold since it is green.\n\nFrom statement 6, we can conclude that Erin is red since it is cold.\n\nNow, we can deduce that since Fiona is red, and Erin is also red and big, Fiona is also young according to statement 5.\n\nSince Fiona is smart and young, we can conclude that Fiona is green according to statement 9.\n\nTherefore, the statement 'Fiona is red' is true.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the color of Fiona.\n\nFrom the given statements:\n\n1. If something is red and big then it is young.\n2. If something is big then it is young.\n3. Fiona is red.\n4. Fiona is big.\n\nWe can deduce the following from statements 1 and 2:\n\nIf something is big, then it is young. \nSince Fiona is big (statement 4), Fiona must be young.\n\nHowever, we also have another statement that contradicts this deduction:\n5. Fiona is red.\n6. All cold things are red.\n7. If something is green then it is cold.\n8. If something is big and young then it is smart.\n9. Fiona is smart.\n10. All smart, young things are green.\n11. If Anne is blue and Anne is smart then Anne is young.\n12. Anne is cold.\n13. Anne is young.\n\nFrom statement 7, if something is green then it is cold. \nFrom statement 12, Anne is cold.\n\nFrom statement 10, all smart, young things are green.\nFrom statement 13, Anne is young.\nFrom statement 11, Anne is blue and smart, so Anne is young.\nWe can conclude that Anne is green, but since Anne is cold and green, we cannot conclude Fiona's color solely from this information.\n\nHowever, we can use the information that Fiona is smart and young to conclude that she is green from statement 10.\n\nNow, let's go back to statement 5, which says Fiona is red.\n\nFrom statement 6, all cold things are red.\nHowever, from statement 7, if something is green then it is cold. \nFrom statement 10, all smart, young things are green. \nSince Fiona is smart and young, Fiona is green (statement 10).\nIf Fiona is green, then Fiona is cold (statement 7).\n\nNow we have a contradiction between statement 5 and the information we deduced from other statements.\n\nFrom statement 6, if something is cold then it is red.\nHowever, from statement 7, if something is green then it is cold.\nSince Fiona is green, Fiona is cold. \nIf Fiona is cold, then Fiona is red (statement 6).\n\nNow, we have a contradiction between statement 5, which says Fiona is red, and the fact that we concluded Fiona is green.\n\nThis means the statement 'Fiona is red' cannot be determined as true or false based on the given information, so the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is red' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information: \n   - 'If something is big and young then it is smart.'\n   - 'If something is big and red then it is young.'\n   - 'All cold things are red.'\n   - 'If something is green then it is cold.'\n   - 'If Anne is blue and Anne is smart then Anne is young.'\n   - 'All smart, young things are green.'\n   - 'If something is red and big then it is young.'\n   - 'If something is big then it is young.'\n\n2. We are given the following statements about Fiona:\n   - Fiona is blue.\n   - Fiona is red.\n   - Fiona is smart.\n\n3. To determine if Fiona is red, we need to analyze the given statements about Fiona and the given information.\n\n4. Since Fiona is smart, we can analyze the statement 'If something is big and young then it is smart.' However, we cannot directly infer that Fiona is big or young from this statement.\n\n5. However, since Fiona is smart and young, we can use the statement 'All smart, young things are green.' This implies that Fiona is green.\n\n6. Now, we can use the statement 'If something is green then it is cold.' This implies that Fiona is cold.\n\n7. Since Fiona is cold, we can use the statement 'All cold things are red.' This implies that Fiona is red.\n\nTherefore, the statement 'Fiona is red' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is red\" is true, false, or unknown, we need to analyze the given information and the relationships between the variables.\n\n1. Given information:\n   - Anne is cold.\n   - Anne is young.\n   - Charlie is cold.\n   - Erin is big.\n   - Fiona is blue.\n   - Fiona is red.\n   - Fiona is smart.\n   - If something is big and young then it is smart.\n   - If something is big and red then it is young.\n   - All cold things are red.\n   - If something is green then it is cold.\n   - If Anne is blue and Anne is smart then Anne is young.\n   - All smart, young things are green.\n   - If something is red and big then it is young.\n   - If something is big then it is young.\n\n2. To determine whether Fiona is red, we need to analyze the given statements about Fiona.\n   - Fiona is blue.\n   - Fiona is red.\n   - Fiona is smart.\n\nFrom the given information, we know that:\n   - All cold things are red.\n   - If something is red and big then it is young.\n\nHowever, we don't have any information about Fiona's age, size, or whether she is cold.\n\nNow, let's consider the given statement \"Fiona is red.\" If we assume Fiona is red, we can analyze the relationships:\n   - Fiona is red.\n   - All cold things are red.\n\nThis implies that Fiona might be cold, but we don't have enough information to confirm this.\n\nNow, let's consider the given statement \"Fiona is blue.\" If we assume Fiona is blue, we can analyze the relationships:\n   - Fiona is blue.\n   - If Anne is blue and Anne is smart then Anne is young.\n\nHowever, we don't have any information about Anne's age or size, so we can't conclude anything about Fiona.\n\nNow, let's consider the given statement \"Fiona is smart.\" If we assume Fiona is smart, we can analyze the relationships:\n   - Fiona is smart.\n   - If something is big and young then it is smart.\n\nThis implies that Fiona might be big and young, but we don't have enough information to confirm this.\n\nHowever, we do have the following statement: \n- Fiona is red.\n- If something is red and big then it is young.\n- If something is big then it is young.\n\nThis implies that Fiona is young.\n\nWe also have the following statement:\n- Fiona is smart.\n- If something is big and young then it is smart.\n\nThis implies that Fiona is big.\n\nNow, we have the following information about Fiona:\n- Fiona is big.\n- Fiona is young.\n- Fiona is smart.\n\nFrom the given information, we know that:\n- If something is big and young then it is smart.\n\nThis confirms that the statement \"Fiona is smart\" is true.\n\nWe also have the following information:\n- Fiona is big.\n- Fiona is young.\n\nFrom the given information, we know that:\n- If something is big then it is young.\n\nThis confirms that the statement \"Fiona is young\" is true.\n\nFrom the given information, we know that:\n- Fiona is young.\n- Fiona is smart.\n\nFrom the given information, we know that:\n- All smart, young things are green.\n\nThis implies that Fiona is green.\n\nNow, let's consider the given statement \"Fiona is red.\" We know that Fiona is green, but we also know that:\n- If something is green then it is cold.\n- All cold things are red.\n\nThis implies that Fiona is red.\n\nSo, we can conclude that the statement \"Fiona is red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules to determine whether Fiona is red.\n\n1. Given statements:\n   - Anne is cold.\n   - Anne is young.\n   - Charlie is cold.\n   - Erin is big.\n   - Fiona is blue.\n   - Fiona is red.\n   - Fiona is smart.\n   - If something is big and young then it is smart.\n   - If something is big and red then it is young.\n   - All cold things are red.\n   - If something is green then it is cold.\n   - If Anne is blue and Anne is smart then Anne is young.\n   - All smart, young things are green.\n   - If something is red and big then it is young.\n   - If something is big then it is young.\n\n2. Analyze the given statement:\n   We need to determine whether the statement \"Fiona is red\" is true, false, or unknown.\n\n3. Applying the rules:\n   - From the given statement, we know that Fiona is red.\n   - Rule 9: If something is red and big then it is young.\n   - However, we do not have enough information to determine whether Fiona is big or not.\n   - Rule 5: If something is big and red then it is young.\n   - But, this rule does not apply because we do not know if Fiona is big.\n   - Rule 8: If something is big then it is young.\n   - This rule also does not apply because we do not know if Fiona is big.\n\n4. Conclusion:\n   Based on the given rules and statements, we cannot determine whether Fiona is red or not because we do not have enough information to determine whether Fiona is big or not.\n\n   Therefore, the statement \"Fiona is red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve the problem, we need to use the given statements to determine the truth value of the statement \"Fiona is red.\"\n\nGiven statements:\n\n1. Anne is cold. (A is cold)\n2. Anne is young. (A is young)\n3. Charlie is cold. (C is cold)\n4. Erin is big. (E is big)\n5. Fiona is blue. (F is blue)\n6. Fiona is red. (F is red) (This statement is the one we are trying to evaluate)\n7. Fiona is smart. (F is smart)\n8. If something is big and young then it is smart. (B and Y -> S)\n9. If something is big and red then it is young. (B and R -> Y)\n10. All cold things are red. (C -> R)\n11. If something is green then it is cold. (G -> C)\n12. If Anne is blue and Anne is smart then Anne is young. (B and S -> Y for A)\n13. All smart, young things are green. (S and Y -> G)\n14. If something is red and big then it is young. (R and B -> Y)\n15. If something is big then it is young. (B -> Y)\n\nNow, let's use these statements to determine the truth value of \"Fiona is red.\"\n\nFrom statement 5, we know that Fiona is blue.\nFrom statement 6, we know that Fiona is red.\nHowever, we also know from statement 10 that all cold things are red. We cannot immediately conclude if Fiona is cold or not, but we can use other statements to try to figure it out.\n\nFrom statement 11, we know that if something is green, then it is cold. But we do not know if Fiona is green or not.\n\nFrom statement 13, we know that all smart, young things are green. We know from statement 7 that Fiona is smart, but we do not know if Fiona is young or not. However, from statement 12, we know that if Anne is blue and Anne is smart, then Anne is young. But this does not give us any information about Fiona.\n\nFrom statement 14, we know that if something is red and big, then it is young. We do not know if Fiona is big or not.\n\nFrom statement 15, we know that if something is big, then it is young. We do not know if Fiona is big or not.\n\nFrom statement 9, we know that if something is big and red, then it is young. We do not know if Fiona is big or not.\n\nWe can use these statements to form a logical chain:\n\nFiona is blue (from statement 5)\nFiona is red (from statement 6)\nAll cold things are red (from statement 10)\nIf something is green, then it is cold (from statement 11)\nAll smart, young things are green (from statement 13)\nIf Anne is blue and Anne is smart, then Anne is young (from statement 12)\nIf something is red and big, then it is young (from statement 14)\nIf something is big, then it is young (from statement 15)\n\nFrom the statement 14, we know that if something is red and big, then it is young. If something is big, then it is young (from statement 15), which means that if something is red and big, then it is young (since big is a subset of big). This means that if Fiona is red, then Fiona must be young.\n\nFrom the statement 13, we know that all smart, young things are green. We know from statement 7 that Fiona is smart, and we now know that Fiona is young (since we have concluded that if Fiona is red, then Fiona must be young). This means that Fiona must be green.\n\nNow we have a new piece of information: Fiona is green.\n\nFrom statement 11, we know that if something is green, then it is cold. This means that Fiona must be cold.\n\nNow we have a new piece of information: Fiona is cold.\n\nFrom statement 10, we know that all cold things are red. This means that Fiona must be red.\n\nHowever, this is the statement we are trying to evaluate, and we have used it in our logical chain. This means that we are using the statement \"Fiona is red\" to conclude that Fiona is red. This is a circular argument, and it is not a valid logical chain.\n\nSince we cannot conclude that Fiona is red without using the statement \"Fiona is red\" in our logical chain, we cannot determine the truth value of the statement \"Fiona is red\" using the given statements.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following premises:\n   - Erin is big.\n   - Fiona is blue.\n   - Fiona is red.\n   - Fiona is smart.\n   - If something is big and young then it is smart.\n   - If something is big and red then it is young.\n   - All cold things are red.\n   - If something is green then it is cold.\n   - If Anne is blue and Anne is smart then Anne is young.\n   - All smart, young things are green.\n   - If something is red and big then it is young.\n   - If something is big then it is young.\n\n2. Let's start by analyzing the information we have about Fiona:\n   - Fiona is blue.\n   - Fiona is red.\n   - Fiona is smart.\n\n3. From the premises, we know that all cold things are red. However, we don't know if Fiona is cold or not. We also know that if something is green then it is cold, but we don't have any information about Fiona being green.\n\n4. Since Fiona is both red and smart, we need to find out if these properties are contradictory or not. We know that if something is red and big then it is young. However, we also know that all big things are young (if something is big then it is young), so Fiona is young.\n\n5. Now, we have two properties for Fiona: she is both red and young. From the premises, we know that if something is red and big then it is young. However, we also know that if something is big and red then it is young. The latter statement doesn't necessarily mean that Fiona is big because we have the former statement that allows for a red and young thing to be big but also gives us the condition that if something is red and big then it is young.\n\n6. Now let's look at the condition where if something is red and big then it is young. Fiona is red and young, so this condition is satisfied. However, we need to check if the condition where if something is big and red then it is young also holds for Fiona. \n\n7. To check this, we look at the premise where if something is big and young then it is smart. Fiona is young, so this condition is also satisfied. We also know that if something is big and young then it is smart. Fiona is smart, so the condition that if something is big and young then it is smart is also satisfied.\n\n8. Now, let's check the condition where all smart, young things are green. Fiona is both smart and young, so this condition is satisfied. We also know that if Anne is blue and Anne is smart then Anne is young. However, we are given that Fiona is blue, but we cannot apply this condition to Fiona because it is for Anne.\n\n9. Now, let's look at the condition where all green things are cold. Fiona is green, so this condition is satisfied. However, we don't know if Fiona is cold or not. We know that all cold things are red, but we don't have any information about Fiona being cold.\n\n10. Since Fiona is both green and smart, we can conclude that Fiona is cold because all green things are cold.\n\n11. Now, let's check the condition where all cold things are red. Fiona is cold, so this condition is satisfied. Fiona is red, so the condition that all cold things are red is satisfied.\n\n12. From the premises, we can conclude that the statement \"Fiona is red\" is true.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information given, we have two statements that are directly related to Fiona: \n   a. Fiona is blue.\n   b. Fiona is red.\n   c. Fiona is smart.\n\n2. Let's consider the statements related to \"red\" and \"big\":\n   a. All cold things are red.\n   b. If something is red and big, then it is young.\n   c. If something is big and red, then it is young.\n   d. If something is big, then it is young.\n\n3. Now, let's analyze the given statements related to Fiona and the information about \"red\", \"big\", and \"young\". Since Fiona is both blue and red, but the color of an object doesn't determine its size, we can't use statements b or c to determine the age of Fiona.\n\n4. But we can determine Fiona's age using statement d. Since all big things are young, and Fiona is smart, and smart young things are green (but we also know that green means cold and cold means red), we can't determine Fiona's age using statement a. \n\n5. We can use statement c. If something is big and red, then it is young. But we can't determine Fiona's size using the given information, but we do know Fiona is red and smart. \n\n6. We know Fiona is red and smart. We know that smart, young things are green, but green means cold and cold means red. This could potentially create a paradox, but we can still use this information. \n\n7. We also know that all smart, young things are green and green means cold and cold means red. This implies that Fiona being smart and red doesn't necessarily mean she's young.\n\n8. However, we also know that if something is red and big, then it is young. This statement directly contradicts the previous statement that all cold things are red. The previous statement would imply that Fiona is young because she's red, but the other statement would imply she's young because she's big.\n\n9. However, we do know that all cold things are red, and all smart, young things are green, which means green is cold. This creates a paradox because we have two statements that seem to contradict each other, but we can still use the information to conclude that Fiona is red.\n\n10. Since Fiona is red and smart, and we know that all smart, young things are green, this means Fiona cannot be young based on the given information. However, we also know that if something is red and big, then it is young, which means Fiona is young.\n\n11. However, we also know that all big things are young, and since Fiona is smart, this means Fiona must be young.\n\n12. But we know that all smart, young things are green, which means Fiona cannot be young.\n\n13. Since we have a paradox, the information is insufficient to determine whether Fiona is red or not.\n\nHowever, given the information that all big things are young, and Fiona is red, and smart, we can infer that Fiona is young because she is big.\n\nHowever, we can also infer that Fiona is red because all cold things are red.\n\nSo, we can conclude that Fiona is indeed red.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is red\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. Fiona is blue. (Given information)\n2. Fiona is red. (Statement to be determined)\n   However, we have a rule that says: If something is blue, then it is not necessarily red. \n   We cannot conclude that Fiona is red based on this information alone.\n\n3. Fiona is smart. (Given information)\n   We have a rule that says: If something is big and young then it is smart. However, we do not have any information about Fiona being big or young.\n   So, we cannot conclude that Fiona is smart based on this rule.\n\n4. Fiona is big. (This statement is not given, but we will analyze the given statements)\n   We have a rule that says: If something is big and red then it is young. But we also have another rule that says: If something is red and big then it is young. \n   Both rules are contradictory to each other. However, we will use this information to analyze further.\n\n5. We have two statements that say: If something is red and big then it is young, and If something is big and red then it is young.\n   Let's assume that the first statement is true. \n   Then, from this statement, we can conclude that Fiona is young because Fiona is big and red. \n\n6. We have a rule that says: All smart, young things are green. \n   However, we have another rule that says: If something is green then it is cold. \n   And we have a rule that says: All cold things are red. \n   This creates a loop. We cannot conclude whether Fiona is red or not based on this information alone.\n\n7. We have a rule that says: If something is blue then it is not necessarily red. \n   We also have a rule that says: If Anne is blue and Anne is smart then Anne is young. \n   However, we do not have any information about Anne being related to Fiona. \n   So, we cannot conclude that Fiona is red based on this information.\n\n8. We have a rule that says: If something is red and big then it is young. \n   Let's assume that this statement is true.\n   Then, from this statement, we can conclude that Fiona is young because Fiona is red and big.\n\n9. We have a rule that says: All cold things are red. \n   However, we do not have any information about Fiona being cold. \n   So, we cannot conclude that Fiona is red based on this information.\n\n10. We have a rule that says: If something is green then it is cold. \n    We have a rule that says: All cold things are red. \n    However, we do not have any information about Fiona being green. \n    So, we cannot conclude that Fiona is red based on this information.\n\nAfter analyzing all the given information and applying the rules, we still cannot conclude whether the statement \"Fiona is red\" is true or false.\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is red\" is true, false, or unknown, we will analyze the given information step by step.\n\n1. From the given information, we know that:\n   - Fiona is blue. (Statement 5)\n   - Fiona is red. (Statement 7)\n   - Fiona is red. (Statement 1)\n   Since we have two different statements about Fiona being red, we will analyze the other given statements for any constraints.\n\n2. We are given the following rules:\n   - If something is red and big, then it is young. (Rule 5)\n   - All cold things are red. (Rule 3)\n   - If something is green, then it is cold. (Rule 4)\n\n3. Since Fiona is blue, we don't know if Fiona is cold or not. However, we know that all green things are cold, and all cold things are red.\n\n4. From Statement 7, we know that Fiona is red. However, we need to check if this statement is consistent with the other given information.\n\n5. There is a statement (Statement 4) that says \"Fiona is smart.\" This statement is relevant because if something is big and young, then it is smart.\n\n6. We also know that if something is big and red, then it is young (Rule 5). However, this rule is already included in the statement \"If something is big, then it is young\" (Rule 6).\n\n7. Since Fiona is red (Statement 7), we can use Rule 5 to conclude that Fiona is young. However, we already know that Fiona is blue, and from Statement 8, we know that Fiona is smart. \n\n8. Rule 6 states that if something is big and young, then it is smart. However, we already know that Fiona is smart (Statement 8), so this does not provide any additional information.\n\n9. However, Rule 7 states that all smart, young things are green. Since we know that Fiona is smart and young, we can conclude that Fiona is green.\n\n10. From Rule 4, we know that if something is green, then it is cold. Therefore, Fiona is cold.\n\n11. From Rule 3, we know that all cold things are red. Therefore, Fiona is red.\n\nHowever, we already knew that Fiona is red (Statement 7), so this conclusion does not provide any new information.\n\nSince we have reached a contradiction, we cannot conclude whether the statement \"Fiona is red\" is true, false, or unknown.\n\nHowever, we can analyze this further and we find that Fiona is both blue and red.  If Fiona is red, it cannot be blue. But the opposite is not true, if Fiona is blue, it can be red. Therefore, we can conclude that Fiona is red.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is red\" is true, false, or unknown, we need to use the given information and the rules provided.\n\n1. Given information:\n   - Fiona is blue.\n   - Fiona is red.\n   - Fiona is smart.\n\n2. Rules:\n   - All cold things are red.\n   - If something is green then it is cold.\n   - If something is red and big then it is young.\n   - If something is big then it is young.\n   - If something is big and young then it is smart.\n   - All smart, young things are green.\n\nFrom the given information, we know Fiona is both blue and red. Since all cold things are red, we can conclude that Fiona is cold.\n\nNow, since all green things are cold (rule 2), we can't directly say Fiona is green because it would imply Fiona is cold, which we already know. However, we can use the rule that all smart, young things are green (rule 7), and the rule that if something is big and young then it is smart (rule 5) to try and conclude whether Fiona is green or not.\n\nSince Fiona is smart (rule 3) and we have the rule that if something is big and young then it is smart (rule 5), and also the rule that if something is red and big then it is young (rule 6), and the rule that if something is big then it is young (rule 4), we can see that if Fiona is big, then Fiona is young, which in turn means Fiona is smart. However, we know that all smart, young things are green (rule 7), and we have the rule that all cold things are red (rule 1), which we've already established applies to Fiona.\n\nHowever, we have Fiona is both red and blue. So we can conclude that Fiona is indeed red.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_fiona, red_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_anne, smart_anne), young_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_fiona, young_fiona), green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_X, young_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_X, red_X), young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(red_X, big_X), young_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_X, young_X)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_erin, young_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_erin, red_erin), young_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_erin, red_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_erin, cold_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_anne, smart_anne), young_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(green_erin, young_erin), smart_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(red_erin, big_erin), young_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_erin, young_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 18
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_fiona, young_fiona), smart_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_fiona, red_fiona), young_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_fiona, red_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_fiona, cold_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_anne, smart_anne), young_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_fiona, young_fiona), green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_X, young_X), smart_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_X, red_X), young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_X, cold_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), young_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_X, young_X), green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(red_X, big_X), young_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_X, young_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_erin, young_erin), smart_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_fiona, red_fiona), young_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_charlie, red_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_fiona, cold_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_fiona, young_fiona), green_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_anne, smart_anne), young_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(red_fiona, big_fiona), young_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_fiona, young_fiona)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_X, young_X), smart_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> young(X)",
+          "z3_formula": "Implies(And(big_X, red_X), young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_X, cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_X, young_X), green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(red_X, big_X), young_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_X, young_X)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_fiona, red_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(red_fiona, big_fiona), young_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_fiona, young_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> cold(X)",
+          "z3_formula": "Implies(red_fiona, cold_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_fiona, young_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & smart(X) -> green(X)",
+          "z3_formula": "Implies(And(young_fiona, smart_fiona), green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_fiona, cold_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> not red(X)",
+          "z3_formula": "Implies(blue_fiona, Not(red_fiona))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_fiona, young_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(red_fiona, big_fiona), young_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_fiona, green_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_fiona, cold_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_fiona, red_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(red_fiona, big_fiona), young_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_fiona, cold_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_fiona, red_fiona)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(red_fiona, big_fiona), young_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_fiona, red_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_fiona, cold_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_fiona, young_fiona), smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_fiona, cold_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_fiona, red_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_fiona, red_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_fiona, cold_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> cold(X)",
+          "z3_formula": "Implies(green_fiona, cold_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(red_fiona, big_fiona), young_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_fiona, young_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & young(X) -> smart(X)",
+          "z3_formula": "Implies(And(big_fiona, young_fiona), smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> green(X)",
+          "z3_formula": "Implies(And(smart_fiona, young_fiona), green_fiona)",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 133,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 42
+    },
+    "maxsat_stats": {
+      "satisfied": 41,
+      "excluded": 1,
+      "total_weight": 132,
+      "solve_time_ms": 1.3802247121930122
+    },
+    "timing": {
+      "trace_gen_s": 11.757,
+      "extraction_s": 29.995,
+      "dedup_s": 1.208,
+      "maxsat_s": 0.004,
+      "total_s": 42.964
+    }
+  }
+}

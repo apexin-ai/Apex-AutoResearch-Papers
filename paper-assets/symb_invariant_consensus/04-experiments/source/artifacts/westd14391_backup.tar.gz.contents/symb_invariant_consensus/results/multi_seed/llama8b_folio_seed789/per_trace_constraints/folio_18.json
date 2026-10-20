@@ -1,0 +1,695 @@
+{
+  "pid": "folio_18",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_X, squirrel_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not(still(X))",
+          "z3_formula": "Implies(skittish_X, Not(still_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": []
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit_or_squirrel(X)",
+          "z3_formula": "rabbit_or_squirrel_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not(still(X))",
+          "z3_formula": "Implies(skittish_X, not(still_X))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(skittish(rock))",
+          "z3_formula": "not(skittish_rock) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(squirrel(rock))",
+          "z3_formula": "not(squirrel_rock) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rabbit(rock)",
+          "z3_formula": "rabbit_rock == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cute(rock)",
+          "z3_formula": "cute_rock == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_X, squirrel_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "Not(rabbit(X)) -> squirrel(X)",
+          "z3_formula": "Implies(Not(rabbit_X), squirrel_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "squirrel(X) -> skittish(X)",
+          "z3_formula": "Implies(squirrel_X, skittish_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "Not(still(X)) -> skittish(X)",
+          "z3_formula": "Implies(Not(still_X), skittish_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "skittish(X)",
+          "z3_formula": "skittish_X == skittish_X",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cute(X) | turtle(X)",
+          "z3_formula": "Or(cute_X, turtle_X)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "turtle_exists == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "rabbit_or_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish, not_still)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not squirrel(rock)",
+          "z3_formula": "not_squirrel_rock == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rabbit(rock)",
+          "z3_formula": "rabbit_rock == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cute(rock)",
+          "z3_formula": "cute_rock == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_X, squirrel_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish_X, not still_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "squirrel(X) -> skittish(X)",
+          "z3_formula": "Implies(squirrel_X, skittish_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not still(squirrel)",
+          "z3_formula": "not still_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not squirrel(rock)",
+          "z3_formula": "not squirrel_rock == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rabbit(rock)",
+          "z3_formula": "rabbit_rock == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cute(rock)",
+          "z3_formula": "cute_rock == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal(rock)",
+          "z3_formula": "animal_rock == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "animal(X) -> rabbit(X) | squirrel(X)",
+          "z3_formula": "Implies(animal_rock, Or(rabbit_rock, squirrel_rock))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> Not(still(X))",
+          "z3_formula": "Implies(skittish, Not(still))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "squirrel(X) -> skittish(X)",
+          "z3_formula": "Implies(squirrel_rock, skittish_rock)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rabbit(rock)",
+          "z3_formula": "rabbit_rock == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rabbit(X) -> cute(X)",
+          "z3_formula": "Implies(rabbit_rock, cute_rock)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cute(rock)",
+          "z3_formula": "cute_rock == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cute(rock) | turtle(rock)",
+          "z3_formula": "Or(cute_rock, turtle_rock) == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_rock, squirrel_rock)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not(still(X))",
+          "z3_formula": "Implies(skittish_rock, not(still_rock))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(skittish(rock))",
+          "z3_formula": "Not(skittish_rock)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(squirrel(rock))",
+          "z3_formula": "Not(squirrel_rock)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rabbit(rock)",
+          "z3_formula": "rabbit_rock == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cute(rock)",
+          "z3_formula": "cute_rock == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "turtle(rock) | cute(rock)",
+          "z3_formula": "Or(turtle_rock, cute_rock)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "turtle_exists == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rabbit(X) -> cute(X)",
+          "z3_formula": "Implies(rabbit_rock, cute_rock)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_rock, squirrel_rock)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> Not(still(X))",
+          "z3_formula": "Implies(skittish_rock, Not(still_rock))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(squirrel(rock))",
+          "z3_formula": "Not(squirrel_rock)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(cute(rock))",
+          "z3_formula": "Not(cute_rock)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "turtle(rock) | cute(rock)",
+          "z3_formula": "Or(turtle_rock, cute_rock)",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists(turtle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "Or(rabbit_X, squirrel_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish_X, not still_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True, but uncertain about the turtle part",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "turtle_exists == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit_or_squirrel(X)",
+          "z3_formula": "rabbit_or_squirrel == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not(still(X))",
+          "z3_formula": "Implies(skittish, not(still))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rabbit(rock)",
+          "z3_formula": "rabbit_rock == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rabbit(X) -> cute(X)",
+          "z3_formula": "Implies(rabbit_rock, cute_rock)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cute(rock)",
+          "z3_formula": "cute_rock == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cute(rabbit)",
+          "z3_formula": "cute_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "exists(turtle)",
+          "z3_formula": "exists_turtle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rabbit(X) | squirrel(X)",
+          "z3_formula": "rabbit_X_or_squirrel_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "skittish(X) -> not still(X)",
+          "z3_formula": "Implies(skittish_X, not still_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "skittish(squirrel)",
+          "z3_formula": "skittish_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "still(rock)",
+          "z3_formula": "still_rock == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not rabbit(rock) & not squirrel(rock)",
+          "z3_formula": "not rabbit_rock_and_not_squirrel_rock == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not turtle(rock)",
+          "z3_formula": "not turtle_rock == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not cute(rock)",
+          "z3_formula": "not cute_rock == True",
+          "source_step": 9
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,637 @@
+{
+  "problem": {
+    "id": "folio_151",
+    "problem": "Given the following premises:\nNew Vessel Press is a publishing house which specializes in translating foreign literature into English. All of New Vessel Press's published books are in English. Neapolitan Chronicles is a book published by New Vessel Press. Neapolitan Chronicles was translated from Italian. Palace of Flies is a book published by New Vessel Press.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nHarry Potter was published by New Vessel Press.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "PublishingHouse(newvesselpress) \u2227 SpecializesIn(newvessel, translatingforeignliteratureintoenglish)",
+      "\u2200x (Book(x) \u2227 PublishedBy(x, newvesselpress) \u2192 In(x, english))",
+      "Book(neapolitanchronicles) \u2227 PublishedBy(neapolitanchronicles, newvesselpress)",
+      "TranslatedFrom(neapolitanchronicles, italian)",
+      "Book(palaceofflies) \u2227 PublishedBy(palaceofflies, newvesselpress)"
+    ],
+    "conclusion_fol": "PublishedBy(harrrypotter, newvesselpress)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 82.0
+    },
+    "answer_counts": {
+      "Unknown": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the premises and see if they lead to the conclusion.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\nPremise 2: All of New Vessel Press's published books are in English.\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\nPremise 4: Neapolitan Chronicles was translated from Italian.\nPremise 5: Palace of Flies is a book published by New Vessel Press.\n\nFrom Premise 1, we know that New Vessel Press specializes in translating foreign literature into English, but it doesn't mean they only translate foreign literature or that they publish all foreign literature translations.\n\nFrom Premise 2, we know that all of New Vessel Press's published books are in English, but we don't know if they publish only English books or if they publish other languages' translations.\n\nFrom Premise 3, we know that Neapolitan Chronicles is a book published by New Vessel Press, but we still don't know if it was originally in English or translated from another language.\n\nFrom Premise 4, we know that Neapolitan Chronicles was translated from Italian, which matches the information from Premise 1 that New Vessel Press specializes in translating foreign literature into English.\n\nFrom Premise 5, we know that Palace of Flies is a book published by New Vessel Press, but we don't have any information about its origin language.\n\nNow, let's look at the conclusion: Harry Potter was published by New Vessel Press.\n\nTo determine if the conclusion is true, false, or uncertain, we need to see if the premises provide any information about Harry Potter. However, there is no information about Harry Potter in the premises.\n\nThe premises only provide information about New Vessel Press's general specialization, its published books (Neapolitan Chronicles and Palace of Flies), and the fact that Neapolitan Chronicles was translated from Italian. There is no information about Harry Potter.\n\nTherefore, the conclusion is uncertain because there is no information provided about Harry Potter in the premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the premises and see if they support the conclusion.\n\nPremises:\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n2. All of New Vessel Press's published books are in English.\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n4. Neapolitan Chronicles was translated from Italian.\n5. Palace of Flies is a book published by New Vessel Press.\n\nConclusion: Harry Potter was published by New Vessel Press.\n\nFrom premises 1 and 2, we know that New Vessel Press specializes in translating foreign literature into English and all of their published books are in English. \n\nFrom premise 3, we know Neapolitan Chronicles is a book published by New Vessel Press.\n\nFrom premise 4, we know Neapolitan Chronicles was translated from Italian. \n\nFrom premise 5, we know Palace of Flies is a book published by New Vessel Press.\n\nNow, let's analyze the conclusion: Harry Potter was published by New Vessel Press.\n\nThere is no information in the premises that links Harry Potter to New Vessel Press. In fact, the premises do not mention Harry Potter at all. \n\nSince there is no information to support the conclusion, we can conclude that the conclusion is uncertain. We cannot determine whether the conclusion is true or false because there is no evidence to support or refute it.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and the conclusion.\n\nPremises:\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n2. All of New Vessel Press's published books are in English.\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n4. Neapolitan Chronicles was translated from Italian.\n5. Palace of Flies is a book published by New Vessel Press.\n\nConclusion: Harry Potter was published by New Vessel Press.\n\nFrom premise 1, we know that New Vessel Press specializes in translating foreign literature into English. However, we do not have any information about Harry Potter being a translated book or its language.\n\nFrom premise 2, we know that all of New Vessel Press's published books are in English. This does not provide any information about Harry Potter being published by New Vessel Press.\n\nFrom premise 3, we know that Neapolitan Chronicles is a book published by New Vessel Press. However, this does not provide any information about Harry Potter being published by New Vessel Press.\n\nFrom premise 4, we know that Neapolitan Chronicles was translated from Italian. This does not provide any information about Harry Potter being published by New Vessel Press.\n\nFrom premise 5, we know that Palace of Flies is a book published by New Vessel Press. However, this does not provide any information about Harry Potter being published by New Vessel Press.\n\nSince we have no information about Harry Potter being translated or published by New Vessel Press, we cannot determine whether the conclusion is true or false based on the given premises. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n\nPremise 2: All of New Vessel Press's published books are in English.\n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\n\nPremise 4: Neapolitan Chronicles was translated from Italian.\n\nPremise 5: Palace of Flies is a book published by New Vessel Press.\n\nFrom Premise 1 and 2, we can conclude that New Vessel Press publishes English translations of foreign literature.\n\nFrom Premise 3, we know that Neapolitan Chronicles is a book published by New Vessel Press.\n\nFrom Premise 4, we know that Neapolitan Chronicles was translated from Italian. This aligns with the information in Premise 1 and 2 that New Vessel Press specializes in translating foreign literature into English.\n\nPremise 5 mentions Palace of Flies, but it does not provide any additional information that is relevant to the conclusion.\n\nNow, let's examine the conclusion: Harry Potter was published by New Vessel Press.\n\nThere is no information in the given premises that links New Vessel Press to the book \"Harry Potter.\" The premises only provide information about Neapolitan Chronicles and Palace of Flies, which are both published by New Vessel Press, but there is no mention of \"Harry Potter.\"\n\nSince there is no information in the premises to support the conclusion that Harry Potter was published by New Vessel Press, we must classify the conclusion as uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's break down the given information and analyze it step by step.\n\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n   - This information tells us about the focus of New Vessel Press but does not provide any specific details about the books they publish.\n\n2. All of New Vessel Press's published books are in English.\n   - This information tells us that New Vessel Press only publishes books in English, which aligns with the information from point 1.\n\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n   - This information tells us that Neapolitan Chronicles is one of the books published by New Vessel Press.\n\n4. Neapolitan Chronicles was translated from Italian.\n   - This information tells us that Neapolitan Chronicles is a translated book, which aligns with the focus of New Vessel Press mentioned in point 1.\n\n5. Palace of Flies is a book published by New Vessel Press.\n   - This information tells us that Palace of Flies is another book published by New Vessel Press.\n\nNow, let's examine the conclusion:\n\nHarry Potter was published by New Vessel Press.\n\nTo evaluate this conclusion, we need to find any information that links Harry Potter to New Vessel Press. However, none of the given premises mention Harry Potter. \n\nBased on the given information, we can conclude that:\n\n- New Vessel Press specializes in translating foreign literature into English.\n- New Vessel Press publishes books in English.\n- Neapolitan Chronicles is a translated book published by New Vessel Press.\n- Palace of Flies is also a book published by New Vessel Press.\n\nSince there is no information provided about Harry Potter being published by New Vessel Press, we cannot determine whether the conclusion is true or false based on the given premises. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n- This premise tells us that New Vessel Press focuses on translating books from other languages into English, but it doesn't tell us anything about their original publications.\n\nPremise 2: All of New Vessel Press's published books are in English.\n- This premise confirms that New Vessel Press publishes books in English, but it doesn't provide information about the original language of the books.\n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\n- This premise links Neapolitan Chronicles to New Vessel Press as a publisher.\n\nPremise 4: Neapolitan Chronicles was translated from Italian.\n- This premise gives us information about the original language of Neapolitan Chronicles, which was translated into English by New Vessel Press.\n\nPremise 5: Palace of Flies is a book published by New Vessel Press.\n- This premise adds another book to the list of books published by New Vessel Press, but we don't have any information about its original language.\n\nNow, let's examine the conclusion: Harry Potter was published by New Vessel Press.\n\nTo determine the validity of the conclusion, we need to find out if there's any information linking Harry Potter to New Vessel Press. However, we can't find any direct or indirect information in the given premises about Harry Potter being published by New Vessel Press.\n\nSince there's no information about Harry Potter being published by New Vessel Press, we can't make a definitive conclusion. The conclusion is uncertain because we don't have enough information to confirm or deny it.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and determine if they lead to the conclusion that Harry Potter was published by New Vessel Press.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\nThis premise tells us about the specialty of New Vessel Press but does not directly state that they publish Harry Potter.\n\nPremise 2: All of New Vessel Press's published books are in English.\nThis premise tells us about the language of the books published by New Vessel Press, but it does not mention Harry Potter.\n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\nThis premise directly states that Neapolitan Chronicles was published by New Vessel Press, but we do not know if Harry Potter is related to Neapolitan Chronicles.\n\nPremise 4: Neapolitan Chronicles was translated from Italian.\nThis premise tells us about the origin of Neapolitan Chronicles but does not provide any information about Harry Potter.\n\nPremise 5: Palace of Flies is a book published by New Vessel Press.\nThis premise states another book published by New Vessel Press, but it does not provide any information about Harry Potter.\n\nTo determine if the conclusion is true, we need to find any relationship between Harry Potter and New Vessel Press based on the premises. However, none of the premises provide any information about Harry Potter being published by New Vessel Press.\n\nTherefore, based on the given premises, we cannot conclude that Harry Potter was published by New Vessel Press. The conclusion is uncertain because there is no information to support or refute it.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion \"Harry Potter was published by New Vessel Press\" is true, false, or uncertain, we can analyze the given premises.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\nThis premise does not provide any information about specific books published by New Vessel Press.\n\nPremise 2: All of New Vessel Press's published books are in English.\nThis premise implies that New Vessel Press only publishes books in the English language, but it does not specify that they only publish translations.\n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\nThis premise shows that New Vessel Press has published a book, but it does not provide any information about the original language of Neapolitan Chronicles.\n\nPremise 4: Neapolitan Chronicles was translated from Italian.\nThis premise implies that Neapolitan Chronicles is a translation of an Italian book, but it does not provide any information about the original language of other books published by New Vessel Press.\n\nPremise 5: Palace of Flies is a book published by New Vessel Press.\nThis premise shows that New Vessel Press has published another book, but it does not provide any information about the original language of Palace of Flies.\n\nNow, let's examine the conclusion: \"Harry Potter was published by New Vessel Press.\"\n\nWe can analyze the conclusion by considering the premises. We know that New Vessel Press specializes in translating foreign literature into English (Premise 1), and they have published at least two books: Neapolitan Chronicles (Premise 3) and Palace of Flies (Premise 5). However, we do not have any information about the original language of these books or whether Harry Potter is a translation.\n\nSince we do not have any information about the original language of Harry Potter or whether New Vessel Press has published it, we cannot determine with certainty whether the conclusion is true or false. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the truth of the conclusion, let's analyze the given premises step by step:\n\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English. \n   This premise tells us about New Vessel Press's specialty but does not provide information about any specific book. It's a general statement about their focus.\n\n2. All of New Vessel Press's published books are in English. \n   This premise confirms that New Vessel Press only publishes books in the English language, which aligns with their specialty mentioned in the first premise.\n\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n   This premise directly tells us that Neapolitan Chronicles is a book published by New Vessel Press.\n\n4. Neapolitan Chronicles was translated from Italian. \n   This premise provides more information about Neapolitan Chronicles, stating that it was translated from Italian. Since New Vessel Press specializes in translating foreign literature, it's possible that they translated Neapolitan Chronicles.\n\n5. Palace of Flies is a book published by New Vessel Press.\n   This premise simply confirms that Palace of Flies is a book published by New Vessel Press.\n\nNow, let's analyze the conclusion:\n\nHarry Potter was published by New Vessel Press.\n\nTo determine the truth of this conclusion, we need to find a connection between the premises and Harry Potter. However, there's no information in the premises that directly links Harry Potter to New Vessel Press.\n\nThe only connection we can make is that New Vessel Press publishes books in English, but that's a general statement and doesn't provide any specific information about Harry Potter. We also know that Neapolitan Chronicles was translated from Italian, but there's no information about Harry Potter being translated or published by New Vessel Press.\n\nSince we have no information about Harry Potter being published by New Vessel Press, we cannot determine the truth of the conclusion. Therefore, the conclusion is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n   - This premise tells us that New Vessel Press translates foreign literature into English but doesn't specify the languages they translate from or to.\n\n2. All of New Vessel Press's published books are in English.\n   - This premise confirms that New Vessel Press only publishes books in English, which aligns with their specialization in translating foreign literature.\n\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n   - This premise tells us that Neapolitan Chronicles is one of the books published by New Vessel Press, and since all their books are in English, Neapolitan Chronicles must also be in English.\n\n4. Neapolitan Chronicles was translated from Italian.\n   - This premise tells us that Neapolitan Chronicles is a translation from Italian to English.\n\n5. Palace of Flies is a book published by New Vessel Press.\n   - This premise tells us that Palace of Flies is another book published by New Vessel Press, which is also in English.\n\nNow, let's evaluate the conclusion: \"Harry Potter was published by New Vessel Press.\"\n\nWe have no information about Harry Potter being published by New Vessel Press or translated by them. The premises only discuss Neapolitan Chronicles and Palace of Flies, which are both translations from foreign languages to English by New Vessel Press. There's no mention of Harry Potter.\n\nGiven the information provided, we can conclude that the truth of the statement \"Harry Potter was published by New Vessel Press\" is uncertain because there is no direct or indirect evidence to support or refute this statement.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises.\n\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n   - This tells us that New Vessel Press translates books from other languages into English, but it doesn't tell us if they publish original English works.\n\n2. All of New Vessel Press's published books are in English.\n   - This tells us that every book published by New Vessel Press is in the English language, but it doesn't tell us if they publish original English works or translated works.\n\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n   - This tells us that Neapolitan Chronicles is a book published by New Vessel Press in English (from premise 2).\n\n4. Neapolitan Chronicles was translated from Italian.\n   - This tells us that Neapolitan Chronicles is a translated work, but it doesn't tell us if it's the only translated work published by New Vessel Press.\n\n5. Palace of Flies is a book published by New Vessel Press.\n   - This tells us that Palace of Flies is a book published by New Vessel Press in English (from premise 2).\n\nNow, let's look at the conclusion:\nHarry Potter was published by New Vessel Press.\n\nWe don't have any information in the premises that directly links Harry Potter to New Vessel Press. Since there's no information about Harry Potter being published by New Vessel Press, we can't determine the truth of this conclusion. The premises only provide information about Neapolitan Chronicles and Palace of Flies, which doesn't help us determine the publication of Harry Potter.\n\nTherefore, the conclusion is **uncertain**.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we will analyze the given premises and apply logical reasoning.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\nPremise 2: All of New Vessel Press's published books are in English.\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\nPremise 4: Neapolitan Chronicles was translated from Italian.\nPremise 5: Palace of Flies is a book published by New Vessel Press.\n\nNow, let's examine the conclusion: Harry Potter was published by New Vessel Press.\n\nTo determine the truth value of the conclusion, we need to find a connection between the premises and the conclusion. \n\nFrom Premise 3, we know that Neapolitan Chronicles was published by New Vessel Press. \n\nFrom Premise 4, we know that Neapolitan Chronicles was translated from Italian. \n\nWe can infer that the books published by New Vessel Press are translations of foreign literature into English (Premise 1).\n\nHowever, there is no information about Harry Potter being a translated book or having any connection to New Vessel Press.\n\nIn fact, Harry Potter is a series of fantasy novels written by J.K. Rowling and is not related to New Vessel Press or foreign literature translations.\n\nTherefore, based on the given premises, we cannot conclude that Harry Potter was published by New Vessel Press.\n\nThe conclusion is uncertain because we do not have enough information to determine its truth value.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "publishes(new_vessel_press, english)",
+          "z3_formula": "publishes_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(harry_potter)",
+          "z3_formula": "uncertain_harry_potter == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press)",
+          "z3_formula": "publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_published_books_in_english(new_vessel_press)",
+          "z3_formula": "all_published_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "book(neapolitan_chronicles, new_vessel_press)",
+          "z3_formula": "book_neapolitan_chronicles_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "book(palace_of_flies, new_vessel_press)",
+          "z3_formula": "book_palace_of_flies_new_vessel_press == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "published_by(new_vessel_press, harry_potter)",
+          "z3_formula": "published_by_new_vessel_press_harry_potter == False",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press)",
+          "z3_formula": "publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "book(neapolitan_chronicles, new_vessel_press)",
+          "z3_formula": "book_neapolitan_chronicles_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "book(palace_of_flies, new_vessel_press)",
+          "z3_formula": "book_palace_of_flies_new_vessel_press == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "book(harry_potter, new_vessel_press)",
+          "z3_formula": "book_harry_potter_new_vessel_press == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishes(New Vessel Press, English)",
+          "z3_formula": "publishes_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_of(New Vessel Press) are in English",
+          "z3_formula": "all_books_of_new_vessel_press_are_in_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(New Vessel Press, Neapolitan Chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from(Italian, Neapolitan Chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(New Vessel Press, Palace of Flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "publishes(X, English) & all_books_of(X) are in English -> publishes(X, English translations of foreign literature)",
+          "z3_formula": "Implies(And(publishes_new_vessel_press_english, all_books_of_new_vessel_press_are_in_english), publishes_new_vessel_press_english_translations_of_foreign_literature)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "publishes(New Vessel Press, English translations of foreign literature)",
+          "z3_formula": "publishes_new_vessel_press_english_translations_of_foreign_literature == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "published_by(New Vessel Press, Neapolitan Chronicles) & translated_from(Italian, Neapolitan Chronicles)",
+          "z3_formula": "And(published_by_new_vessel_press_neapolitan_chronicles, translated_from_italian_neapolitan_chronicles)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "published_by(New Vessel Press, Harry Potter)",
+          "z3_formula": "published_by_new_vessel_press_harry_potter == False",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "specializes_in_translating_foreign_literature(new_vessel_press)",
+          "z3_formula": "specializes_in_translating_foreign_literature_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(harry_potter_published_by_new_vessel_press)",
+          "z3_formula": "harry_potter_published_by_new_vessel_press == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishes(new_vessel_press, english)",
+          "z3_formula": "publishes_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_of(new_vessel_press, english)",
+          "z3_formula": "all_books_of_new_vessel_press_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "published_by(new_vessel_press, harry_potter)",
+          "z3_formula": "published_by_new_vessel_press_harry_potter == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press, specializes_in_translating_foreign_literature_into_english)",
+          "z3_formula": "publishing_house_new_vessel_press_specializes_in_translating_foreign_literature_into_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_published_by_new_vessel_press_are_in_english",
+          "z3_formula": "all_books_published_by_new_vessel_press_are_in_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "neapolitan_chronicles_published_by_new_vessel_press",
+          "z3_formula": "neapolitan_chronicles_published_by_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "neapolitan_chronicles_translated_from_italian",
+          "z3_formula": "neapolitan_chronicles_translated_from_italian == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "palace_of_flies_published_by_new_vessel_press",
+          "z3_formula": "palace_of_flies_published_by_new_vessel_press == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "publishing_house(X, specializes_in_translating_foreign_literature_into_english) -> ?(X, publishes, Y) & language(Y) == english",
+          "z3_formula": "Implies(publishing_house_new_vessel_press_specializes_in_translating_foreign_literature_into_english, And(?_new_vessel_press_publishes_harry_potter, language_harry_potter == english))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "?(X, publishes, Y) -> language(Y) == english",
+          "z3_formula": "Implies(?_new_vessel_press_publishes_harry_potter, language_harry_potter == english)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(harry_potter_published_by_new_vessel_press)",
+          "z3_formula": "uncertain_harry_potter_published_by_new_vessel_press == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press)",
+          "z3_formula": "publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "specializes_in_translation(new_vessel_press)",
+          "z3_formula": "specializes_in_translation_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_book(neapolitan_chronicles, new_vessel_press)",
+          "z3_formula": "published_book_neapolitan_chronicles_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_book(palace_of_flies, new_vessel_press)",
+          "z3_formula": "published_book_palace_of_flies_new_vessel_press == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "publishing_house(X) & specializes_in_translation(X) -> all_books_in_english(X)",
+          "z3_formula": "Implies(And(publishing_house_new_vessel_press, specializes_in_translation_new_vessel_press), all_books_in_english_new_vessel_press)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "published_book(X, Y) -> book_in_language(X, Y)",
+          "z3_formula": "Implies(published_book_neapolitan_chronicles_new_vessel_press, book_in_language_neapolitan_chronicles_new_vessel_press)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "published_book(X, Y) -> book_in_language(X, Y)",
+          "z3_formula": "Implies(published_book_palace_of_flies_new_vessel_press, book_in_language_palace_of_flies_new_vessel_press)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "translated_from_italian(X) -> book_in_language(X, italian)",
+          "z3_formula": "Implies(translated_from_italian_neapolitan_chronicles, book_in_language_neapolitan_chronicles_italian)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "published_by(new_vessel_press, harry_potter)",
+          "z3_formula": "published_by_new_vessel_press_harry_potter == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "specializes_in_new_vessel_press(english)",
+          "z3_formula": "specializes_in_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_new_vessel_press_books_in_english",
+          "z3_formula": "all_new_vessel_press_books_in_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by_new_vessel_press(neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by_new_vessel_press(palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishes(new_vessel_press, english)",
+          "z3_formula": "publishes_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books(new_vessel_press, english)",
+          "z3_formula": "all_books_new_vessel_press_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(harry_potter)",
+          "z3_formula": "uncertain_harry_potter == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishes(New Vessel Press, foreign literature)",
+          "z3_formula": "publishes_new_vessel_press_foreign_literature == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_of(New Vessel Press) are in English",
+          "z3_formula": "all_books_of_new_vessel_press_in_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(New Vessel Press, Neapolitan Chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from(Italian, Neapolitan Chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(New Vessel Press, Palace of Flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "published_by(New Vessel Press, Harry Potter)",
+          "z3_formula": "published_by_new_vessel_press_harry_potter == Unknown",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press)",
+          "z3_formula": "publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "english_books(new_vessel_press)",
+          "z3_formula": "english_books_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "book(neapolitan_chronicles)",
+          "z3_formula": "book_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "book(palace_of_flies)",
+          "z3_formula": "book_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "publishing_house(X) & english_books(X) -> translations_of_foreign_literature(X)",
+          "z3_formula": "Implies(And(publishing_house_new_vessel_press, english_books_new_vessel_press), translations_of_foreign_literature_new_vessel_press)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "translations_of_foreign_literature(new_vessel_press)",
+          "z3_formula": "translations_of_foreign_literature_new_vessel_press == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not_connection(harry_potter, new_vessel_press)",
+          "z3_formula": "not_connection_harry_potter_new_vessel_press == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(harry_potter_published_by_new_vessel_press)",
+          "z3_formula": "uncertain_harry_potter_published_by_new_vessel_press == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 84,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 44
+    },
+    "maxsat_stats": {
+      "satisfied": 44,
+      "excluded": 0,
+      "total_weight": 82,
+      "solve_time_ms": 0.9919190779328346
+    },
+    "timing": {
+      "trace_gen_s": 5.36,
+      "extraction_s": 19.441,
+      "dedup_s": 0.72,
+      "maxsat_s": 0.003,
+      "total_s": 25.524
+    }
+  }
+}

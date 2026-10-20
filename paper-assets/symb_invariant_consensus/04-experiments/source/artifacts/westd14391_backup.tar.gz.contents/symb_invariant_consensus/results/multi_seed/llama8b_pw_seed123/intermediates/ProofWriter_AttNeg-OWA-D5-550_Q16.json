@@ -1,0 +1,1278 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-550_Q16",
+    "problem": "Anne is furry. Anne is smart. Bob is furry. Dave is red. Dave is smart. Fiona is nice. Fiona is not round. All smart, round things are not nice. All smart, blue things are nice. If something is blue then it is green. All nice, furry things are not green. All furry things are green. If something is red then it is smart. If something is smart then it is round. Green things are red.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is red.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nSmart($x, bool) ::: Is x smart?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nSmart(Anne, True) ::: Anne is smart.\nFurry(Bob, True) ::: Bob is furry.\nRed(Dave, True) ::: Dave is red.\nSmart(Dave, True) ::: Dave is smart.\nNice(Fiona, True) ::: Fiona is nice.\nRound(Fiona, False) ::: Fiona is not round.\n\nRules:\nSmart($x, True) && Round($x, True) >>> Nice($x, False) ::: All smart, round things are not nice.\nSmart($x, True) && Blue($x, True) >>> Nice($x, True) ::: All smart, blue things are nice.\nBlue($x, True) >>> Green($x, True) ::: If something is blue then it is green.\nNice($x, True) && Furry($x, True) >>> Green($x, False) ::: All nice, furry things are not green.\nFurry($x, True) >>> Green($x, True) ::: All furry things are green.\nRed($x, True) >>> Smart($x, True) ::: If something is red then it is smart.\nSmart($x, True) >>> Round($x, True) ::: If something is smart then it is round.\nGreen($x, True) >>> Red($x, True) ::: Green things are red.\n\nQuery:\nRed(Fiona, True) ::: Fiona is red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 70.5,
+      "True": 110.5,
+      "Unknown": 169.0
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "False": 1,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to break down the given information and apply it step by step.\n\nGiven information:\n\n1. Anne is furry.\n2. Anne is smart.\n3. Bob is furry.\n4. Dave is red.\n5. Dave is smart.\n6. Fiona is nice.\n7. Fiona is not round.\n8. All smart, round things are not nice.\n9. All smart, blue things are nice.\n10. If something is blue then it is green.\n11. All nice, furry things are not green.\n12. All furry things are green.\n13. If something is red then it is smart.\n14. If something is smart then it is round.\n15. Green things are red.\n\nWe need to determine whether the statement \"Fiona is red\" is true, false, or unknown.\n\nStep 1: From statement 6, we know Fiona is nice.\n\nStep 2: From statement 7, we know Fiona is not round.\n\nStep 3: Since Fiona is not round, we can't directly apply statement 8, which says all smart, round things are not nice. However, we can use statement 9, which says all smart, blue things are nice.\n\nStep 4: From statement 10, we know that if something is blue, then it is green. However, this statement does not directly help us with the determination of \"Fiona is red.\"\n\nStep 5: From statement 11, we know that all nice, furry things are not green. However, we don't have enough information about Fiona being furry or not.\n\nStep 6: From statement 12, we know all furry things are green. However, this statement does not directly help us with the determination of \"Fiona is red.\"\n\nStep 7: From statement 13, we know that if something is red, then it is smart. However, we don't know if Fiona is red or not.\n\nStep 8: From statement 14, we know that if something is smart, then it is round. However, we don't know if Fiona is smart or not.\n\nStep 9: From statement 15, we know that green things are red. However, this statement does not directly help us with the determination of \"Fiona is red.\"\n\nNow, let's analyze the relationship between the given statements and the statement \"Fiona is red.\"\n\nFrom statement 6, we know Fiona is nice. From statement 13, if something is red, then it is smart. If something is smart, then it is round (from statement 14).\n\nHowever, we are stuck at the point that if something is red, then it is smart. Since we don't know if Fiona is red, we can't determine if Fiona is smart or not.\n\nNow, let's analyze the relationship between Fiona being smart or not and the given statements. \n\nIf Fiona is smart, then it is round (from statement 14). However, we already know that Fiona is not round (from statement 7). This is a contradiction, which means that Fiona cannot be smart.\n\nSince Fiona is not smart, we cannot apply the rule \"if something is smart then it is round\" (from statement 14). However, we can apply the rule \"if something is red then it is smart\" (from statement 13). Since we can't determine if Fiona is red, we can't determine if Fiona is smart or not.\n\nNow, let's analyze the relationship between Fiona being red and the given statements. \n\nWe know that green things are red (from statement 15). Also, all furry things are green (from statement 12). However, we don't know if Fiona is furry or not.\n\nIf Fiona is furry, then it is green (from statement 12). Since green things are red (from statement 15), Fiona would be red. However, we also know that all nice, furry things are not green (from statement 11). This is a contradiction, which means that Fiona cannot be furry.\n\nSince Fiona is not furry, we can't determine if Fiona is red or not.\n\nThe statement \"Fiona is red\" is unknown because we don't have enough information to determine whether it is true or false.\n\nHowever, we can deduce that the statement \"Fiona is not red\" is also unknown because we don't have enough information to determine whether it is true or false.\n\nTherefore, the statement \"Fiona is red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Fiona is red, we need to analyze the given statements and use logical deductions.\n\n1. All smart, round things are not nice.\n2. All smart, blue things are nice.\n3. If something is blue then it is green.\n4. All nice, furry things are not green.\n5. All furry things are green.\n6. If something is red then it is smart.\n7. If something is smart then it is round.\n8. Green things are red.\n\nFrom statement 5, we know all furry things are green. From statement 8, we can conclude that green things are red. This means that all furry things are red.\n\nNow, let's look at the information we have about Anne and Bob. \n1. Anne is furry. \n2. Bob is furry.\n\nSince both Anne and Bob are furry, we can conclude that they are both red, as all furry things are red.\n\nFrom statement 6, we know that if something is red, it is smart. Therefore, Anne and Bob are smart.\n\nFrom statement 7, we know that if something is smart, it is round. Therefore, Anne and Bob are round.\n\nNow, let's look at the information we have about Fiona.\n1. Fiona is nice.\n2. Fiona is not round.\n\nSince Fiona is nice and we know that all smart, round things are not nice (statement 1), we can conclude that Fiona is not smart.\n\nIf Fiona is not smart, then she is not round (statement 7). However, we already know that Fiona is not round (given information). \n\nWe also know that if something is blue then it is green (statement 3), but this does not give us any direct information about Fiona.\n\nHowever, we can conclude that Fiona is not red. \n- If Fiona is red, then she is smart (statement 6).\n- If Fiona is smart, then she is round (statement 7).\n- However, we already know that Fiona is not round (given information).\n- Also, we know that green things are red (statement 8) and all furry things are green (statement 5).\n- Since Fiona is not round, and all furry things are red, then Fiona is not furry.\n- Therefore, Fiona is not green.\n- Therefore, Fiona is not red.\n\nSince Fiona is not red, we cannot conclude that Fiona is red.\n\nTherefore, the answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether Fiona is red, we need to break down the given information step by step.\n\n1. All smart, round things are not nice.\n2. All smart, blue things are nice.\n3. If something is blue then it is green.\n4. All nice, furry things are not green.\n5. All furry things are green.\n6. If something is red then it is smart.\n7. If something is smart then it is round.\n8. Green things are red.\n\nFrom statement 5, we know that all furry things are green. However, from statement 4, we know that all nice, furry things are not green. This implies that Fiona cannot be both furry and nice.\n\nFrom statement 1, we know that all smart, round things are not nice. Since Fiona is not round (statement 2), we cannot conclude that Fiona is smart or not.\n\nFrom statement 6, we know that if something is red, it is smart. But from statement 7, we know that if something is smart, it is round. We cannot conclude that Fiona is red or not based on this information.\n\nHowever, from statement 8, we know that green things are red. Since all furry things are green (statement 5), we can conclude that if Fiona is furry, she is red.\n\nFrom statement 2, we know that Fiona is not round. Since all smart things are round (statement 7), we cannot conclude that Fiona is smart or not.\n\nHowever, we do know that if Fiona is furry, she is red. But we also know that if something is red, it is smart (statement 6). And if something is smart, it is round (statement 7). \n\nSo, if Fiona is furry, then she is red, smart, and round. However, this contradicts statement 1, which states that all smart, round things are not nice.\n\nFrom statement 2, we know that Fiona is not round. We also know that if Fiona is furry, she is red, smart, and round. However, this contradicts statement 4, which states that all nice, furry things are not green. \n\nSince Fiona is nice (statement 2), and if she is furry, she is red, smart, and round. However, this contradicts statement 4, which states that all nice, furry things are not green.\n\nNow let's go back to statement 8. We know that green things are red. However, we also know that all furry things are green (statement 5). We cannot conclude that Fiona is red or not based on this information.\n\nHowever, we do know that if Fiona is furry, she is red. We also know that if Fiona is nice, then she is not green (statement 4). \n\nSince all furry things are green (statement 5), we can conclude that Fiona is not furry.\n\nHowever, we also know that if Fiona is furry, she is red. Since Fiona is not furry, we cannot conclude that Fiona is red or not.\n\nHowever, we do know that if something is blue then it is green (statement 3), and if something is green then it is red (statement 8). \n\nWe cannot conclude that Fiona is blue or not. But we do know that if Fiona is blue, then she is green, and therefore red. However, we also know that Fiona is not round (statement 2), and if she is blue, then she is green, and therefore red, smart, and round.\n\nThis contradicts statement 1, which states that all smart, round things are not nice. However, we also know that all blue things are green, and all green things are red (statement 3 and statement 8). \n\nSince Fiona is nice (statement 2), we cannot conclude that Fiona is blue or not.\n\nWe do know that if Fiona is blue, then she is green, and therefore red, smart, and round. However, this contradicts statement 1, which states that all smart, round things are not nice.\n\nFrom statement 2, we know that Fiona is not round. We also know that if Fiona is blue, then she is green, and therefore red, smart, and round. However, this contradicts statement 1, which states that all smart, round things are not nice.\n\nHowever, we do know that all blue things are green, and all green things are red (statement 3 and statement 8). \n\nSince Fiona is not round (statement 2), and if she is blue, then she is green, and therefore red, smart, and round. However, this contradicts statement 1, which states that all smart, round things are not nice.\n\nWe cannot conclude that Fiona is blue or not. However, we do know that if Fiona is blue, then she is green, and therefore red, smart, and round. However, this contradicts statement 1, which states that all smart, round things are not nice.\n\nSince we cannot conclude that Fiona is blue or not, we cannot conclude that Fiona is red or not.\n\nTherefore, the statement \"Fiona is red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given: Fiona is nice. Fiona is not round.\n   From the information: All smart, round things are not nice. We cannot conclude that Fiona is smart or round, but we can say that Fiona is not round and nice.\n\n2. We are given: All smart, round things are not nice. \n   Since we know Fiona is not round, we cannot directly use this statement. However, we can use the information that All smart things are round to infer more.\n\n3. We are given: All smart things are round. \n   From the given information: Dave is smart. Dave is red. We can conclude that Dave is round (since he is smart) and red (since he is smart).\n\n4. We are given: If something is smart then it is round.\n   We already know that all smart things are round. However, this statement is just a reiteration of the information above.\n\n5. We are given: If something is red then it is smart. \n   We know Dave is red and smart. Therefore, this statement is true.\n\n6. We are given: All furry things are green. \n   We also know: All furry things are green. Anne is furry. So, Anne is green.\n\n7. We are given: Green things are red.\n   We know Anne is green, so Anne is red.\n\n8. We are given: If something is blue then it is green. \n   This statement is not useful in determining whether Fiona is red.\n\n9. We are given: All nice, furry things are not green. \n   This statement is not useful in determining whether Fiona is red.\n\n10. We are given: All smart, blue things are nice. \n    This statement is not useful in determining whether Fiona is red.\n\n11. We are given: Fiona is nice. Fiona is not round.\n    We have already established that Fiona is nice, but we do not have enough information to conclude whether Fiona is round or not.\n\n12. We are given: All furry things are green. \n    We know Anne is furry and green. However, we do not know if Fiona is furry.\n\n13. We are given: Fiona is not round.\n    We do not have enough information to conclude whether Fiona is round or not.\n\n14. We are given: Fiona is nice. \n    We know that Fiona is nice, but we do not have enough information to conclude whether Fiona is red or not.\n\nFrom the given information, we cannot conclude whether Fiona is red or not. Therefore, the statement \"Fiona is red\" is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is nice. (Given)\n2. All smart, round things are not nice. (Given)\n3. If something is blue then it is green. (Given)\n4. All smart, blue things are nice. (Given)\n5. All nice, furry things are not green. (Given)\n6. All furry things are green. (Given)\n7. If something is red then it is smart. (Given)\n8. If something is smart then it is round. (Given)\n9. Green things are red. (Given)\n\nFrom (7), if something is red then it is smart. And from (8), if something is smart then it is round. Therefore, red things are round.\n\nWe also know that green things are red from (9). Since green things are red, we can conclude that green things are also round (because red things are round).\n\nNow, let's analyze the given information about Fiona:\n\nFiona is nice (from (1)). And we know that all nice, furry things are not green (from (5)). But we also know that all furry things are green (from (6)).\n\nFrom (6), we can conclude that Fiona is furry because all furry things are green. But if Fiona is furry, then she is green (from (6)).\n\nIf Fiona is green, then she is red (from (9)). But if she is red, then she is smart (from (7)).\n\nHowever, if she is smart, then she is round (from (8)). But we already know that Fiona is nice (from (1)). And all smart, round things are not nice (from (2)).\n\nThis creates a contradiction because we have two different conclusions about Fiona's characteristics (she is smart and round, but she is also nice). This means that our initial assumption that Fiona is green must be false.\n\nSince we assumed Fiona is green and it led to a contradiction, we cannot conclude that Fiona is red.\n\nTherefore, the statement \"Fiona is red\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is furry. Anne is smart.\n   - Bob is furry.\n   - Dave is red. Dave is smart.\n   - Fiona is nice. Fiona is not round.\n   - All smart, round things are not nice.\n   - All smart, blue things are nice.\n   - If something is blue then it is green.\n   - All nice, furry things are not green.\n   - All furry things are green.\n   - If something is red then it is smart.\n   - If something is smart then it is round.\n   - Green things are red.\n\n2. We are asked to determine whether the statement \"Fiona is red\" is true, false, or unknown.\n\n3. From the given information, we know that Fiona is nice. We also know that \"All smart, round things are not nice.\" This implies that Fiona cannot be round because if she were, then she would be smart (since \"If something is smart then it is round\") and thus not nice, which contradicts the information that Fiona is nice.\n\n4. However, since Fiona is not round, we cannot directly determine whether she is smart or not, because the rule \"If something is smart then it is round\" only applies when something is smart. We cannot conclude that Fiona is smart based on this rule alone.\n\n5. Since we cannot conclude that Fiona is smart, we cannot conclude that she is red because the rule \"If something is red then it is smart\" only applies when something is red. However, we do know that if something is red, it is smart, and if something is smart, it is red. This creates a cycle where we cannot directly determine whether Fiona is red or not based on this rule alone.\n\n6. However, the information \"Green things are red\" is crucial here. We know that \"All furry things are green\" and \"All nice, furry things are not green.\" From this, we can conclude that Fiona cannot be furry because if she were, then she would be green (since \"All furry things are green\") and thus not green (since \"All nice, furry things are not green\"), which is a contradiction.\n\n7. Since Fiona is not furry, we cannot directly determine whether she is green or not based on the information that \"Green things are red.\" However, we can conclude that Fiona is not green.\n\n8. We know that \"If something is blue then it is green.\" This rule implies that Fiona cannot be blue, because if she were, then she would be green, which we already know she is not.\n\n9. Since Fiona is not blue, we cannot directly determine whether she is green or not based on the rule \"If something is blue then it is green.\" However, we can conclude that Fiona is not green.\n\n10. Now, let's look at the rule \"All nice, furry things are not green.\" We know that Fiona is nice, but we do not know whether she is furry or not. If Fiona were furry, then she would be green (since \"All furry things are green\") and thus not green (since \"All nice, furry things are not green\"), which is a contradiction.\n\n11. Since we cannot conclude that Fiona is furry, we cannot directly determine whether she is green or not based on the information that \"All furry things are green.\" However, we can conclude that Fiona is not furry.\n\n12. Now, let's look at the rule \"Green things are red.\" We know that Fiona is not green. However, this rule only tells us that green things are red, not that non-green things are not red.\n\n13. Since we cannot conclude that Fiona is red based on the information that \"Green things are red\" and \"Fiona is not green,\" we cannot directly determine whether Fiona is red or not.\n\n14. However, we know that \"If something is red then it is smart\" and \"If something is smart then it is round.\" We cannot conclude that Fiona is smart because the rule \"If something is smart then it is round\" only applies when something is smart.\n\n15. Since we cannot conclude that Fiona is smart, we cannot conclude that she is round.\n\n16. Now, let's look at the information that \"All smart, round things are not nice.\" We know that Fiona is nice, but we do not know whether she is smart or round. If Fiona were smart, then she would be round (since \"If something is smart then it is round\") and thus not nice, which contradicts the information that Fiona is nice.\n\n17. Since we cannot conclude that Fiona is round, we cannot directly determine whether the statement \"Fiona is red\" is true or false.\n\n18. However, based on the information that \"If something is red then it is smart\" and \"If something is smart then it is round,\" we can conclude that if Fiona were red, then she would be smart and thus round, which would mean that she is not nice, which contradicts the information that Fiona is nice.\n\n19. Therefore, we can conclude that the statement \"Fiona is red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is red\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. All smart, round things are not nice. (This statement implies that smart, round things cannot be nice.)\n2. All smart, blue things are nice. (This statement implies that smart, blue things are nice.)\n3. All nice, furry things are not green. (This statement implies that if something is nice and furry, it cannot be green.)\n4. All furry things are green. (This statement implies that if something is furry, it must be green.)\n5. If something is blue then it is green. (This statement is a tautology, but it implies that blue and green are equivalent properties.)\n6. If something is red then it is smart. (This statement implies that red things are smart.)\n7. If something is smart then it is round. (This statement implies that smart things are round.)\n8. Green things are red. (This statement implies that green and red are equivalent properties.)\n\nNow, let's analyze the given statements about individuals:\n- Anne is furry. (From this, we can conclude that Anne is green.)\n- Anne is smart. (From this, we can conclude that Anne is round.)\n- Bob is furry. (From this, we can conclude that Bob is green.)\n- Dave is red. (From this, we can conclude that Dave is smart and round.)\n- Dave is smart. (This is already concluded from the statement \"Dave is red.\")\n- Fiona is nice. (This statement implies that Fiona cannot be smart or round, as stated in the first implication.)\n- Fiona is not round. (This statement is consistent with the implication that Fiona is not smart.)\n- Fiona is not green. (We can conclude that Fiona is not green from the fact that she is not furry.)\n- Fiona is not red. (We can conclude that Fiona is not red from the fact that she is not smart.)\n\nHowever, we still don't have enough information to determine whether Fiona is red or not. The given statements about individuals do not provide any information that would directly contradict the statement \"Fiona is red.\" \n\nTherefore, the statement \"Fiona is red\" is unknown, as we cannot determine its truth value based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All smart, blue things are nice. \n   All nice, furry things are not green. \n   All furry things are green. \n   If something is blue then it is green.\n\nFrom the above information, we can conclude that blue things are green, which contradicts the initial information that all furry things are green. This means we need to prioritize this new information.\n\n   All furry things are green. \n   If something is blue then it is green.\n\nThis leads to the conclusion that blue and green things are the same, so blue things are green.\n\n2. All nice, furry things are not green. \n   All furry things are green.\n\nNow, we need to consider the initial information about blue things being nice and green. Since green and blue things are the same, this means all nice things are green.\n\n3. Fiona is nice. \n   All nice things are green.\n\nFiona is green.\n\n4. Green things are red.\n\nSince Fiona is green, she must be red.\n\nTherefore, based on the given information, we can conclude that \"Fiona is red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that: \n- All smart, round things are not nice.\n- All smart, blue things are nice.\n- If something is blue then it is green.\n- All nice, furry things are not green.\n- All furry things are green.\n- If something is red then it is smart.\n- If something is smart then it is round.\n- Green things are red.\n\n2. From the given information, we know that Fiona is not round (Fiona is nice. Fiona is not round).\n\n3. Since Fiona is not round, we cannot directly conclude that Fiona is not smart because \"All smart, round things are not nice.\" does not directly apply to Fiona.\n\n4. However, we know that \"All smart, blue things are nice.\" and \"If something is blue then it is green.\" This implies that if Fiona is blue, then Fiona is green.\n\n5. We also know that \"All furry things are green.\" and \"All nice, furry things are not green.\" This implies that Fiona cannot be furry because if Fiona were furry, then Fiona would be green, which contradicts the fact that \"All nice, furry things are not green.\"\n\n6. Given that Fiona is nice, we cannot conclude that Fiona is red because we do not have enough information about Fiona being smart.\n\n7. However, we know that \"If something is red then it is smart.\" and \"If something is smart then it is round.\" Since Fiona is not round, it is possible that Fiona is not smart.\n\n8. But we cannot conclude that Fiona is not red because we do not have enough information to determine whether Fiona is smart or not.\n\nTherefore, based on the given information, we cannot determine whether the statement \"Fiona is red\" is true or false. The statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the properties of each object.\n\n1. Anne is furry. \n   - We don't know anything about Anne's other properties.\n\n2. Anne is smart.\n   - We don't know anything about Anne's other properties.\n\n3. Bob is furry.\n   - We don't know anything about Bob's other properties.\n\n4. Dave is red.\n   - We don't know anything about Dave's other properties.\n\n5. Dave is smart.\n   - We don't know anything about Dave's other properties.\n\n6. Fiona is nice.\n   - We don't know anything about Fiona's other properties.\n\n7. Fiona is not round.\n   - We don't know anything about Fiona's other properties.\n\n8. All smart, round things are not nice.\n   - This statement doesn't give any information about Fiona.\n\n9. All smart, blue things are nice.\n   - This statement doesn't give any information about Fiona.\n\n10. If something is blue then it is green.\n   - This statement is irrelevant to our problem.\n\n11. All nice, furry things are not green.\n   - This statement doesn't give any information about Fiona.\n\n12. All furry things are green.\n   - This statement doesn't give any information about Fiona.\n\n13. If something is red then it is smart.\n   - We can use this statement to infer Dave's properties (Dave is smart, so Dave is red).\n\n14. If something is smart then it is round.\n   - We can use this statement to infer Dave's properties (Dave is smart, so Dave is round).\n\n15. Green things are red.\n   - We can use this statement to infer that green things are red, but we don't know anything about Fiona's color.\n\nNow, let's analyze the given information about Fiona:\n- Fiona is nice (statement 6).\n- Fiona is not round (statement 7).\n\nWe know that all smart, round things are not nice (statement 8). Since Fiona is not round, it is possible that Fiona is smart.\n\nHowever, we also know that all smart things are round (statement 14). If Fiona is smart, then Fiona must be round, which contradicts statement 7. Therefore, we cannot conclude that Fiona is smart.\n\nWe also know that all furry things are green (statement 12), and green things are red (statement 15). However, we don't know whether Fiona is furry or not.\n\nWe can conclude that Fiona is not smart and not round. We cannot conclude whether Fiona is furry or not, or whether Fiona is red or not.\n\nNow, let's analyze the statement \"Fiona is red.\" \n- If Fiona is red, then Fiona is smart (statement 13).\n- If Fiona is smart, then Fiona is round (statement 14).\n- This would contradict statement 7, which says that Fiona is not round.\n\nTherefore, we cannot conclude that the statement \"Fiona is red\" is true. However, we cannot conclude that the statement \"Fiona is red\" is false either. The truth value of the statement \"Fiona is red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine if the statement \"Fiona is red\" is true, false, or unknown, we need to break down the given information step by step.\n\n1. All smart, blue things are nice. (Statement 1)\n2. All nice, furry things are not green. (Statement 2)\n3. All furry things are green. (Statement 3)\n4. If something is blue then it is green. (Statement 4)\n5. Fiona is nice. (Statement 5)\n6. Fiona is not round. (Statement 6)\n7. All smart, round things are not nice. (Statement 7)\n8. If something is red then it is smart. (Statement 8)\n9. If something is smart then it is round. (Statement 9)\n10. Green things are red. (Statement 10)\n11. Anne is furry. (Statement 11)\n12. Anne is smart. (Statement 12)\n13. Bob is furry. (Statement 13)\n14. Dave is red. (Statement 14)\n15. Dave is smart. (Statement 15)\n16. Fiona is not round. (Statement 16)\n\nFrom Statement 4, we can conclude that if something is blue, then it is green. However, it's also stated that all blue things are nice (Statement 1). This does not give us any information about Fiona being blue.\n\nFrom Statement 3, all furry things are green. However, we do not have information that confirms Fiona is furry.\n\nFrom Statement 5, we know that Fiona is nice. However, Statement 7 states that all smart, round things are not nice. This means that Fiona cannot be round and smart.\n\nFrom Statement 8 and Statement 9, we can conclude that if something is red, then it is smart, and if something is smart, then it is round. However, this does not give us any information about Fiona being red.\n\nFrom Statement 10, we can conclude that green things are red. However, this does not give us any information about Fiona being red.\n\nNow, let's analyze the information about Fiona:\n\n- Fiona is nice (Statement 5).\n- Fiona is not round (Statement 6).\n- If something is blue then it is green (Statement 4).\n- All smart, round things are not nice (Statement 7).\n- All nice, furry things are not green (Statement 2).\n- All furry things are green (Statement 3).\n- If something is red then it is smart (Statement 8).\n- If something is smart then it is round (Statement 9).\n- Green things are red (Statement 10).\n\nSince we don't have any information that confirms Fiona is furry (Statement 3) or confirms Fiona is red (Statement 8), we cannot conclude that Fiona is red.\n\nFrom Statement 6, we know that Fiona is not round. We also know that all smart, round things are not nice (Statement 7). However, this does not give us any information about Fiona being red.\n\nFrom Statement 2, we know that all nice, furry things are not green. However, this does not give us any information about Fiona being red.\n\nSince we do not have enough information to confirm or deny that Fiona is red, we conclude that the statement \"Fiona is red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we'll break it down into smaller steps and analyze the given information.\n\n1. All smart, round things are not nice.\n2. All smart, blue things are nice.\n3. If something is blue then it is green.\n4. All nice, furry things are not green.\n5. All furry things are green.\n6. If something is red then it is smart.\n7. If something is smart then it is round.\n8. Green things are red.\n\nNow, let's apply these rules to the given statements about Anne, Bob, Dave, and Fiona:\n\n- Anne is furry. (rule 5) -> Anne is green.\n- Bob is furry. (rule 5) -> Bob is green.\n- Dave is red. (rule 6) -> Dave is smart. (rule 6)\n- Dave is smart. (rule 7) -> Dave is round.\n- Fiona is nice. (rule 2) does not directly apply, but we can use it to make an inference.\n- Fiona is not round. (rule 7) -> Fiona is not smart. (rule 7)\n- Since Fiona is not smart, Fiona is not red (rule 6).\n\nNow, we need to determine whether Fiona is red or not. Based on the above steps, we have concluded that Fiona is not red.\n\nHowever, we also have the rule \"All smart, blue things are nice\" which implies that Fiona is not blue (since Fiona is not nice). But we have another rule \"If something is blue then it is green\" which implies that Fiona is green.\n\nGiven the rule \"Fiona is not round\" and \"Fiona is green\" and \"Green things are red\", we can infer that Fiona is red.\n\nNow, we need to conclude whether the statement \"Fiona is red\" is true or false.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not(nice(X))",
+          "z3_formula": "Implies(And(smart_X, round_X), Not(nice_X))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, blue_X), nice_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> not(green(X))",
+          "z3_formula": "Implies(And(nice_X, furry_X), Not(green_X))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_X, red_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_anne, green_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_anne, red_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_anne, red_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_bob, red_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_anne, smart_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_anne, round_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_bob, smart_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_bob, round_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not round(fiona)",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_fiona, nice_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not nice(X)",
+          "z3_formula": "Implies(kind_fiona, Not(nice_fiona))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not red(X)",
+          "z3_formula": "Implies(green_fiona, Not(red_fiona))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> not green(X)",
+          "z3_formula": "Implies(furry_fiona, Not(green_fiona))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_fiona, red_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not red(fiona)",
+          "z3_formula": "Not(red_fiona) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == False",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == False",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == False",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_fiona, nice_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_fiona, round_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> Not(nice(X))",
+          "z3_formula": "Implies(And(round_fiona, smart_fiona), Not(nice_fiona))",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> Not(nice(X))",
+          "z3_formula": "Implies(green_fiona, Not(nice_fiona))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_fiona, smart_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_fiona, round_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not(nice(X))",
+          "z3_formula": "Implies(And(smart_X, round_X), Not(nice_X))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(fiona))",
+          "z3_formula": "Not(nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> not(green(X))",
+          "z3_formula": "Implies(And(nice_X, furry_X), Not(green_X))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, blue_X), nice_X)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not nice(X)",
+          "z3_formula": "Implies(And(smart_fiona, round_fiona), not nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_fiona, blue_fiona), nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> not green(X)",
+          "z3_formula": "Implies(And(nice_fiona, furry_fiona), not green_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_fiona, smart_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_fiona, round_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona) == False",
+          "z3_formula": "not round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> nice(X) == False",
+          "z3_formula": "Implies(And(smart_X, round_X), nice_X) == False",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> green(X) == False",
+          "z3_formula": "Implies(And(nice_X, furry_X), green_X) == False",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_X, red_X)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(green(fiona))",
+          "z3_formula": "Not(green_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(fiona))",
+          "z3_formula": "Not(red_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not(nice(X))",
+          "z3_formula": "Implies(And(smart_X, round_X), Not(nice_X))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, blue_X), nice_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> not(green(X))",
+          "z3_formula": "Implies(And(nice_X, furry_X), Not(green_X))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_X, smart_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_X, round_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_X, red_X)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), nice_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) & furry(X) -> not green(X)",
+          "z3_formula": "Implies(And(nice_X, furry_X), Not(green_X))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_X, green_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_X, green_X)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "blue_X == green_X",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "green_X == blue_X",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is green",
+          "z3_formula": "green_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_X, red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == False",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not nice(X)",
+          "z3_formula": "Implies(And(smart_fiona, round_fiona), not nice_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_fiona, blue_fiona), nice_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> not green(X)",
+          "z3_formula": "Implies(And(nice_fiona, furry_fiona), not green_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_fiona, smart_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_fiona, round_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not(nice(X))",
+          "z3_formula": "Implies(And(smart_fiona, round_fiona), Not(nice_fiona))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_fiona, round_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_fiona, smart_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> not(green(X))",
+          "z3_formula": "Implies(And(nice_fiona, furry_fiona), Not(green_fiona))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not(smart(fiona))",
+          "z3_formula": "Not(smart_fiona) == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(fiona))",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(red(fiona))",
+          "z3_formula": "Unknown(red_fiona) == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not round(fiona)",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & round(X) -> not nice(X)",
+          "z3_formula": "Implies(And(smart_fiona, round_fiona), Not(nice_fiona))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> not green(X)",
+          "z3_formula": "Implies(And(nice_fiona, furry_fiona), Not(green_fiona))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_fiona, green_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_fiona, smart_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_fiona, round_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_anne, green_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> green(X)",
+          "z3_formula": "Implies(furry_bob, green_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(bob)",
+          "z3_formula": "green_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> smart(X)",
+          "z3_formula": "Implies(red_dave, smart_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_dave, round_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_fiona, blue_fiona), nice_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(fiona)",
+          "z3_formula": "Not(nice_fiona) == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> round(X)",
+          "z3_formula": "Implies(smart_fiona, round_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not round(fiona)",
+          "z3_formula": "Not(round_fiona) == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> green(X)",
+          "z3_formula": "Implies(blue_fiona, green_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(fiona)",
+          "z3_formula": "Not(blue_fiona) == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_fiona, red_fiona)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 21
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 191,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 61
+    },
+    "maxsat_stats": {
+      "satisfied": 57,
+      "excluded": 4,
+      "total_weight": 178,
+      "solve_time_ms": 2.0176544785499573
+    },
+    "timing": {
+      "trace_gen_s": 13.11,
+      "extraction_s": 31.44,
+      "dedup_s": 2.39,
+      "maxsat_s": 0.005,
+      "total_s": 46.945
+    }
+  }
+}

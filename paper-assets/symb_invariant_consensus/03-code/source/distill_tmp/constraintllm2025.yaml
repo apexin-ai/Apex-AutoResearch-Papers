@@ -1,0 +1,25 @@
+paper_key: "constraintllm2025"
+title: "ConstraintLLM: A Neuro-Symbolic Framework for Industrial-Level Constraint Programming"
+venue: "EMNLP 2025"
+full_text_available: false
+
+research:
+  baselines: ["general-purpose LLMs on CP tasks"]
+  metrics:
+    - {name: "solving accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "IndusCP", size: "140 industrial-level tasks"}
+    - {name: "existing CP benchmarks", size: "N/A"}
+  ablation_dimensions: ["Constraint-Aware Retrieval Module", "Tree-of-Thoughts framework", "guided self-correction"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A", info: "multi-instruction supervised fine-tuning on open-source LLM"}
+  method_family: "neuro-symbolic constraint programming"
+
+positioning:
+  core_claim: "First LLM specifically designed for CP modeling, combining constraint-aware retrieval with Tree-of-Thoughts and self-correction to achieve 2x improvement over baselines on industrial-level CP tasks"
+  key_results: "State-of-the-art solving accuracy across multiple benchmarks; 2x improvement over baselines on IndusCP"
+  limitations: ["N/A"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,338 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-735_Q3",
+    "problem": "Bob is big. Bob is nice. Bob is smart. Charlie is nice. Dave is nice. Erin is big. Erin is blue. Erin is furry. Erin is quiet. Erin is round. Erin is smart. All nice things are big. All furry things are blue. Blue, furry things are quiet. If something is round and nice then it is blue. If Bob is round then Bob is blue. Big, quiet things are furry. If something is blue and furry then it is smart. If Charlie is nice and Charlie is big then Charlie is quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is big.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\nFurry($x, bool) ::: Is x furry?\nBlue($x, bool) ::: Is x blue?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nNice(Bob, True) ::: Bob is nice.\nSmart(Bob, True) ::: Bob is smart.\nNice(Charlie, True) ::: Charlie is nice.\nNice(Dave, True) ::: Dave is nice.\nBig(Erin, True) ::: Erin is big.\nBlue(Erin, True) ::: Erin is blue.\nFurry(Erin, True) ::: Erin is furry.\nQuiet(Erin, True) ::: Erin is quiet.\nRound(Erin, True) ::: Erin is round.\nSmart(Erin, True) ::: Erin is smart.\n\nRules:\nNice($x, True) >>> Big($x, True) ::: All nice things are big.\nFurry($x, True) >>> Blue($x, True) ::: All furry things are blue.\nBlue($x, True) && Furry($x, True) >>> Quiet($x, True) ::: Blue, furry things are quiet.\nRound($x, True) && Nice($x, True) >>> Blue($x, True) ::: If something is round and nice then it is blue.\nRound(Bob, True) >>> Blue(Bob, True) ::: If Bob is round then Bob is blue.\nBig($x, True) && Quiet($x, True) >>> Furry($x, True) ::: Big, quiet things are furry.\nBlue($x, True) && Furry($x, True) >>> Smart($x, True) ::: If something is blue and furry then it is smart.\nNice(Charlie, True) && Big(Charlie, True) >>> Quiet(Charlie, True) ::: If Charlie is nice and Charlie is big then Charlie is quiet.\n\nQuery:\nBig(Dave, True) ::: Dave is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 35.0
+    },
+    "answer_counts": {
+      "True": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Dave is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n1. All nice things are big.\n2. All furry things are blue.\n3. Blue, furry things are quiet.\n4. If something is round and nice then it is blue.\n5. If Bob is round then Bob is blue.\n6. Big, quiet things are furry.\n7. If something is blue and furry then it is smart.\n8. If Charlie is nice and Charlie is big then Charlie is quiet.\n\nNow, let's analyze the information related to Dave:\n1. Dave is nice (from the given statement \"Dave is nice\").\n2. We know that all nice things are big (from point 1).\n3. Therefore, we can conclude that Dave is big.\n\nSo, the statement \"Dave is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is big' is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. All nice things are big.\n2. Dave is nice. (Implicitly stated, not explicitly stated but since all nice things are big then Dave must be big)\n3. Big, quiet things are furry. (This statement is irrelevant to the problem because we don't have information about Dave being quiet or big.)\n4. If something is blue and furry then it is smart. (This statement is irrelevant to the problem because we don't have information about Dave being blue or furry.)\n5. Erin is big. Erin is blue. Erin is furry. Erin is quiet. Erin is round. Erin is smart. (These statements are irrelevant to the problem because they are about Erin, not Dave.)\n6. If Charlie is nice and Charlie is big then Charlie is quiet. (This statement is irrelevant to the problem because it is about Charlie, not Dave.)\n\nFrom statement 1, we know that all nice things are big. Since statement 2 is implicitly stated, it tells us that Dave is nice. Therefore, from statement 1, we can conclude that Dave is big.\n\nTherefore, the statement 'Dave is big' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is big' is true, false, or unknown, we need to analyze the given statements and the rules.\n\n1. All nice things are big. (Rule 1)\n2. Dave is nice. (From the problem statement)\n3. If something is round and nice then it is blue. (Rule 3)\n4. If Bob is round then Bob is blue. (Rule 4)\n5. If something is round and nice then it is blue. (Rule 3) - This can be rewritten as: If something is nice and round then it is blue. \n6. Erin is big. Erin is blue. Erin is furry. Erin is quiet. Erin is round. Erin is smart. (From the problem statement)\n7. All furry things are blue. (Rule 2)\n8. Blue, furry things are quiet. (Rule 5)\n9. Big, quiet things are furry. (Rule 7)\n10. If something is blue and furry then it is smart. (Rule 6)\n11. If Charlie is nice and Charlie is big then Charlie is quiet. (Rule 8)\n\nNow, let's analyze the given statement 'Dave is big'. We know from the problem statement that Dave is nice (Rule 2). Since all nice things are big (Rule 1), we can conclude that Dave is indeed big.\n\nTherefore, the statement 'Dave is big' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use them to determine the truth of the statement \"Dave is big.\"\n\nFrom the given statements:\n\n1. All nice things are big.\n2. Dave is nice. (We can infer this from statement 4: Charlie is nice, Dave is nice, and statement 5: Erin is big, Erin is nice, but we are not told Erin is the only nice thing.)\n\n3. Big, quiet things are furry. \n4. Charlie is nice. \n5. Dave is nice. \n6. Erin is big. \n7. Erin is blue. \n8. Erin is furry. \n9. Erin is quiet. \n10. Erin is round. \n11. Erin is smart. \n12. All furry things are blue. \n13. Blue, furry things are quiet. \n14. If something is round and nice then it is blue. \n15. If Bob is round then Bob is blue. \n16. Big, quiet things are furry. \n17. If something is blue and furry then it is smart. \n18. If Charlie is nice and Charlie is big then Charlie is quiet.\n\nWe need to analyze the given statements to determine the truth of the statement \"Dave is big.\"\n\nFrom statement 1, we know that all nice things are big. From statement 2, we know that Dave is nice. Therefore, we can conclude that Dave is big.\n\nHowever, we need to be cautious because statement 3 also implies that big, quiet things are furry. But from statement 5, we don't know if Dave is quiet or not. We cannot conclude that Dave is furry based on the given statements.\n\nTherefore, based on the given statements, we can conclude that Dave is big.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is big\" is true, false, or unknown, we need to analyze the given information and apply the logical rules.\n\nGiven information:\n1. Bob is big. \n2. Bob is nice. \n3. Bob is smart. \n4. Charlie is nice. \n5. Dave is nice. \n6. Erin is big. \n7. Erin is blue. \n8. Erin is furry. \n9. Erin is quiet. \n10. Erin is round. \n11. Erin is smart. \nLogical rules:\n12. All nice things are big. (From 1, 2, 3)\n13. All furry things are blue. (From 7, 8)\n14. Blue, furry things are quiet. (From 7, 8, 9)\n15. If something is round and nice then it is blue. (From 10, 11)\n16. If Bob is round then Bob is blue. (From 10)\n17. Big, quiet things are furry. (From 6, 9)\n18. If something is blue and furry then it is smart. (From 7, 8, 11)\n19. If Charlie is nice and Charlie is big then Charlie is quiet. (From 4, 6)\n\nNow, let's analyze the statement \"Dave is big\":\nWe know that Dave is nice (from 5). \nSince all nice things are big (from 12), we can conclude that Dave is big.\n\nTherefore, the statement \"Dave is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is big\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the given statements:\n1. All nice things are big.\n2. Dave is nice.\n3. If Bob is round then Bob is blue. (This statement doesn't provide any information about Dave, so we can ignore it for now.)\n4. Big, quiet things are furry. (This statement also doesn't provide any information about Dave, so we can ignore it for now.)\n5. If something is blue and furry then it is smart. (This statement also doesn't provide any information about Dave, so we can ignore it for now.)\n6. If Charlie is nice and Charlie is big then Charlie is quiet. (This statement also doesn't provide any information about Dave, so we can ignore it for now.)\n\nHowever, we can use statement 1 to conclude that since Dave is nice, Dave must be big.\n\nTherefore, the statement \"Dave is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller, manageable statements using the given information.\n\n1. All nice things are big.\n2. All furry things are blue.\n3. Blue, furry things are quiet.\n4. If something is round and nice then it is blue.\n5. If Bob is round then Bob is blue.\n6. Big, quiet things are furry.\n7. If something is blue and furry then it is smart.\n8. If Charlie is nice and Charlie is big then Charlie is quiet.\n\nNow, let's analyze the given statement: Dave is big.\n\nFrom statement 1, we know that all nice things are big. However, we don't know if Dave is nice or not. We do know that Dave is nice (given in the problem statement), but we're looking for a reason to determine if he's big.\n\nSince Dave is nice, and all nice things are big (statement 1), we can conclude that Dave is big. \n\nTherefore, the statement \"Dave is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is big\" is true, false, or unknown, we need to analyze the given information and apply the rules.\n\n1. All nice things are big.\n2. Dave is nice (from the fact that he is mentioned in the list of nice people).\n3. Since Dave is nice and all nice things are big, we can conclude that Dave is big.\n\nTherefore, based on the given information and applying the rules, the statement \"Dave is big\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - All nice things are big.\n   - Dave is nice.\n   - If something is round and nice then it is blue.\n   - If Bob is round then Bob is blue. (This statement might be relevant later, but it's not directly related to Dave.)\n   - Big, quiet things are furry.\n   - If something is blue and furry then it is smart.\n   - If Charlie is nice and Charlie is big then Charlie is quiet. (This statement might be relevant later, but it's not directly related to Dave.)\n   - Erin is blue. (This statement might be relevant later, but it's not directly related to Dave.)\n   - Erin is furry. (This statement might be relevant later, but it's not directly related to Dave.)\n   - Erin is quiet. (This statement might be relevant later, but it's not directly related to Dave.)\n   - Erin is round. (This statement might be relevant later, but it's not directly related to Dave.)\n   - Erin is smart. (This statement might be relevant later, but it's not directly related to Dave.)\n\n2. Analyzing the given information to find a connection to Dave:\n   - We know that Dave is nice, and all nice things are big. This information directly connects Dave to the property \"big.\"\n\n3. Conclusion:\n   Based on the given information, the statement \"Dave is big\" can be determined as true because Dave is nice and all nice things are big.\n\nSo, the answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is big' is true, false, or unknown, we need to analyze the given information and apply the logical rules.\n\n1. All nice things are big. (Rule 1)\n2. All furry things are blue. (Rule 2)\n3. Blue, furry things are quiet. (Rule 3)\n4. If something is round and nice then it is blue. (Rule 4)\n5. If Bob is round then Bob is blue. (Rule 5)\n6. Big, quiet things are furry. (Rule 6)\n7. If something is blue and furry then it is smart. (Rule 7)\n8. If Charlie is nice and Charlie is big then Charlie is quiet. (Rule 8)\n\nGiven statements:\n- Dave is nice. \n- Dave is not mentioned in any of the rules as being round or blue.\n\nWe can conclude the following:\n\n- Dave is nice, and according to Rule 1, all nice things are big, so Dave is big.\n\nTherefore, the statement 'Dave is big' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules to determine if the statement \"Dave is big\" is true, false, or unknown.\n\nGiven statements:\n1. Bob is big. \n2. Bob is nice. \n3. Bob is smart. \n4. Charlie is nice. \n5. Dave is nice. \n6. Erin is big. \n7. Erin is blue. \n8. Erin is furry. \n9. Erin is quiet. \n10. Erin is round. \n11. Erin is smart. \n12. All nice things are big. \n13. All furry things are blue. \n14. Blue, furry things are quiet. \n15. If something is round and nice then it is blue. \n16. If Bob is round then Bob is blue. \n17. Big, quiet things are furry. \n18. If something is blue and furry then it is smart. \n19. If Charlie is nice and Charlie is big then Charlie is quiet.\n\nNow, we will analyze the given statement \"Dave is big\" using the given rules:\n\nFrom rule 12: All nice things are big. \nSince Dave is nice (statement 5), we can infer that Dave is big.\n\nTherefore, the statement \"Dave is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine if the statement \"Dave is big\" is true, false, or unknown, we need to analyze the given information and apply it to the conditions provided.\n\nGiven Information:\n\n1. All nice things are big.\n2. All furry things are blue.\n3. Blue, furry things are quiet.\n4. If something is round and nice then it is blue.\n5. If Bob is round then Bob is blue.\n6. Big, quiet things are furry.\n7. If something is blue and furry then it is smart.\n8. If Charlie is nice and Charlie is big then Charlie is quiet.\n\nGiven Statement: Dave is big.\n\nTo determine the truth of this statement, we can use the information provided.\n\nFrom statement 1, we know that all nice things are big. However, we don't know if Dave is nice or not. But we do know that Dave is nice because of statement 3 isn't relevant and we have Dave is nice from general knowledge of previous statements.\n\nNow that we know Dave is nice and from statement 1, we know that nice things are big.\n\nTherefore, our final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_dave, big_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_nice(X) -> big(X)",
+          "z3_formula": "Implies(all_nice, big_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(Dave) -> big(Dave)",
+          "z3_formula": "Implies(nice_dave, big_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(Dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_dave, big_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_dave, big_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_dave, big_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_dave, big_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_dave, big_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_dave, big_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_dave, big_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_dave, big_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> big(X)",
+          "z3_formula": "Implies(nice_dave, big_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 35,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 4
+    },
+    "maxsat_stats": {
+      "satisfied": 4,
+      "excluded": 0,
+      "total_weight": 35,
+      "solve_time_ms": 0.8861711248755455
+    },
+    "timing": {
+      "trace_gen_s": 4.399,
+      "extraction_s": 12.278,
+      "dedup_s": 0.105,
+      "maxsat_s": 0.002,
+      "total_s": 16.783
+    }
+  }
+}

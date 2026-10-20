@@ -1,0 +1,94 @@
+paper_key: "ye2024satlm"
+title: "SatLM: Satisfiability-Aided Language Models Using Declarative Prompting"
+venue: "NeurIPS 2023"
+full_text_available: true
+
+research:
+  baselines: ["Standard Prompting", "CoT", "ProgLM"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "selective_accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "GSM", size: "1319"}
+    - {name: "GSM-Sys", size: "subset"}
+    - {name: "ALGEBRA", size: "textbook problems"}
+    - {name: "LSAT", size: "230"}
+    - {name: "BoardgameQA", size: "depth 1-3"}
+    - {name: "CLUTRR", size: "kinship reasoning"}
+    - {name: "ProofWriter", size: "depth-5"}
+    - {name: "COLOR", size: "BIG-bench"}
+    - {name: "REGEX", size: "StRegex"}
+  ablation_dimensions: ["solver_type (SAT vs CoT vs None)", "declarative_vs_imperative", "exemplar_sensitivity", "model_generalization"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A", model: "code-davinci-002, gpt-3.5-turbo, text-davinci-003"}
+  method_family: "declarative prompting + SAT/SMT solver (Z3)"
+
+positioning:
+  core_claim: "Shifting LLMs from generating imperative programs to declarative specifications enables SAT solvers to handle both planning and execution, eliminating planning errors that plague program-aided LMs"
+  key_results: "GSM-Sys: 69.4% (+23% over ProgLM); LSAT SoTA 37.4% (from 30.9%); BoardgameQA SoTA 80.7% (from 73.9%); GSM SC: 84.8% matching full-training-set models"
+  limitations:
+    - "Some problems naturally suit imperative procedures (SatLM slightly lags ProgLM on GSM greedy)"
+    - "SAT solver expressiveness limited for quantifiers and nonlinear arithmetic"
+    - "One-round parse-solve; no iterative refinement based on solver feedback"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "CoT prompting falls short on problems requiring sophisticated planning and search"
+  tension: "Program-aided LMs fix execution errors but not planning errors — LLM must both plan and execute in imperative paradigm"
+  key_insight: "Section 2, paragraph 3 — 'Our work tackles both execution errors and, more importantly, planning errors' by shifting to declarative specifications where the solver handles both planning and execution"
+  argument_chain: "CoT fails at planning → imperative programs still require LLM planning → declarative specs offload both planning+execution to solver → solver guarantees correctness → 8-dataset validation across 4 task types"
+  contribution_framing: "2 key advantages framed as properties: (1) declarative spec closer to problem description, (2) solver guarantees correctness. Plus 3 analysis findings"
+  intro_structure: "5 paragraphs: (1) CoT limitations for complex reasoning, (2) parse-plan-execute framework, (3) SatLM with declarative prompting, (4) results summary, (5) analysis findings"
+  notable_technique: "The parse-plan-execute decomposition is reframed to show SatLM offloads 2/3 steps (plan+execute) while ProgLM only offloads 1/3 (execute) — powerful comparative framing"
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "problem_illustration"
+    description: "Side-by-side comparison of CoT (imperative) vs SatLM (declarative) on a constraint satisfaction problem. Left shows LLM doing parse+plan+execute; right shows LLM only parsing into SAT specification, solver does the rest"
+    narrative_role: "Immediately demonstrates the declarative vs imperative paradigm shift on a concrete LSAT-style problem"
+    design_elements: ["side-by-side comparison", "code-style specification boxes", "color-coded errors in CoT", "SAT solver icon"]
+    visual_style: "Two-column layout with input problem on top, showing the full reasoning trace (left) vs compact specification + solver (right). Green/red annotations mark correct/incorrect steps"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "qualitative_comparison"
+      what_compared: "CoT vs ProgLM vs SatLM on arithmetic reasoning — showing specific errors"
+      how_gain_highlighted: "Red annotations on errors in CoT and ProgLM; SatLM produces correct answer"
+      design_note: "Concrete error examples make the planning-vs-execution distinction tangible"
+    - figure_id: "Figure 3"
+      viz_type: "qualitative_comparison"
+      what_compared: "SatLM variant with CoT solver (declarative spec + LLM solving)"
+      how_gain_highlighted: "Shows declarative prompting helps even without symbolic solver"
+      design_note: "Isolates contribution of declarative formulation vs symbolic execution"
+  ablation_figures: []
+  figure_narrative_role: "Fig1(paradigm comparison) → Fig2(concrete error analysis) → Fig3(ablation variant) → Fig4(commonsense parsing examples)"
+
+tables:
+  table_count: 7
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets (GSM-Sys, GSM, ALGE, LSAT, BOARD, CLUTRR, PROOF, COLOR, REGEX)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "bootstrap significance tests (p<0.05)"
+    num_baselines: 3
+    design_note: "Split into greedy and self-consistency decoding blocks; 9 datasets is unusually comprehensive"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["solver_type: SAT_SymSolver vs SAT_CoTSolver vs SAT_NoSolver"]
+      variation_style: "full_numbers"
+      design_note: "Isolates solver contribution — key insight that declarative prompting helps even without solver"
+    - table_id: "Table 3"
+      what_varied: ["error_type: planning vs execution"]
+      variation_style: "full_numbers"
+      design_note: "Error decomposition showing most CoTSolver errors are planning errors"
+    - table_id: "Table 5"
+      what_varied: ["selective prediction: correct, incorrect, error types (UNSAT, AMBIG)"]
+      variation_style: "full_numbers"
+      design_note: "Unique to SAT approach — solver feedback enables abstaining from uncertain predictions"
+  supplementary_tables:
+    in_appendix: true
+    content: "Dataset statistics, prompts, exemplar variations (Table 7), cross-model results (Table 6)"
+    reason: "Generalization analysis and prompt details too detailed for main text"

@@ -1,0 +1,1570 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-262_Q17",
+    "problem": "The cat is not big. The cat is kind. The cat sees the rabbit. The cow chases the rabbit. The cow chases the squirrel. The cow sees the squirrel. The cow visits the cat. The cow visits the squirrel. The rabbit chases the cat. The rabbit chases the cow. The rabbit is green. The rabbit visits the squirrel. The squirrel is blue. The squirrel is kind. The squirrel sees the rabbit. The squirrel visits the rabbit. If something visits the cow then it chases the rabbit. If something chases the cat then the cat chases the cow. If something chases the cow and the cow sees the squirrel then the squirrel is big. If something chases the cat then it visits the rabbit. If something visits the rabbit then it sees the cow. If something chases the cat and it sees the cow then the cow chases the cat. If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat does not chase the rabbit.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nKind($x, bool) ::: Is x kind?\nSees($x, $y, bool) ::: Does x see y?\nChases($x, $y, bool) ::: Does x chase y?\nVisits($x, $y, bool) ::: Does x visit y?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nBig(Cat, False) ::: The cat is not big.\nKind(Cat, True) ::: The cat is kind.\nSees(Cat, Rabbit, True) ::: The cat sees the rabbit.\nChases(Cow, Rabbit, True) ::: The cow chases the rabbit.\nChases(Cow, Squirrel, True) ::: The cow chases the squirrel.\nSees(Cow, Squirrel, True) ::: The cow sees the squirrel.\nVisits(Cow, Cat, True) ::: The cow visits the cat.\nVisits(Cow, Squirrel, True) ::: The cow visits the squirrel.\nChases(Rabbit, Cat, True) ::: The rabbit chases the cat.\nChases(Rabbit, Cow, True) ::: The rabbit chases the cow.\nGreen(Rabbit, True) ::: The rabbit is green.\nVisits(Rabbit, Squirrel, True) ::: The rabbit visits the squirrel.\nBlue(Squirrel, True) ::: The squirrel is blue.\nKind(Squirrel, True) ::: The squirrel is kind.\nSees(Squirrel, Rabbit, True) ::: The squirrel sees the rabbit.\nVisits(Squirrel, Rabbit, True) ::: The squirrel visits the rabbit.\n\nRules:\nVisits($x, Cow, True) >>> Chases($x, Rabbit, True) ::: If something visits the cow then it chases the rabbit.\nChases($x, Cat, True) >>> Chases(Cat, Cow, True) ::: If something chases the cat then the cat chases the cow.\nChases($x, Cow, True) && Sees(Cow, Squirrel, True) >>> Big(Squirrel, True) ::: If something chases the cow and the cow sees the squirrel then the squirrel is big.\nChases($x, Cat, True) >>> Visits($x, Rabbit, True) ::: If something chases the cat then it visits the rabbit.\nVisits($x, Rabbit, True) >>> Sees($x, Cow, True) ::: If something visits the rabbit then it sees the cow.\nChases($x, Cat, True) && Sees($x, Cow, True) >>> Chases(Cow, Cat, True) ::: If something chases the cat and it sees the cow then the cow chases the cat.\nSees($x, Rabbit, True) && Chases($x, Cat, True) >>> Chases(Rabbit, Squirrel, True) ::: If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\n\nQuery:\nChases(Cat, Rabbit, False) ::: The cat does not chase the rabbit."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 162.0,
+      "Unknown": 216.0
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The cat does not chase the rabbit\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nFrom the given information, we know that:\n\n1. The cat is not big.\n2. The cat is kind.\n3. The cat sees the rabbit.\n4. The rabbit chases the cat.\n\nFrom the rules, we have the following implications:\n\n1. If something visits the cow then it chases the rabbit. (This rule is not relevant to the cat and rabbit.)\n2. If something chases the cat then the cat chases the cow. (This rule is not relevant to the cat and rabbit.)\n3. If something chases the cow and the cow sees the squirrel then the squirrel is big. (This rule is not relevant to the cat and rabbit.)\n4. If something chases the cat then it visits the rabbit. (This rule is relevant to the rabbit and cat.)\n5. If something visits the rabbit then it sees the cow. (This rule is not relevant to the cat and rabbit.)\n6. If something chases the cat and it sees the cow then the cow chases the cat. (This rule is not relevant to the cat and rabbit.)\n7. If something sees the rabbit and it chases the cat then the rabbit chases the squirrel. (This rule is not directly relevant to the cat and rabbit.)\n\nNow, let's analyze the given information and the rules to determine the relationship between the cat and the rabbit.\n\nFrom the given information, we know that the rabbit chases the cat. This implies that the cat is chased by the rabbit. According to rule 4, if something chases the cat then it visits the rabbit. This implies that the rabbit visits the cat.\n\nHowever, we cannot directly conclude that the cat chases the rabbit based on the given information and the rules.\n\nNow, let's assume that the cat chases the rabbit. This would imply that the rabbit is chased by the cat. However, according to rule 4, if something chases the cat then it visits the rabbit. This implies that the cat visits the rabbit, which is not true according to the given information.\n\nSince we cannot conclude that the cat chases the rabbit based on the given information and the rules, and assuming that the cat chases the rabbit leads to a contradiction, we cannot definitively say that the cat does not chase the rabbit.\n\nTherefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not chase the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we can infer the following relationships:\n   - The cat sees the rabbit. (From statement 3)\n   - The rabbit chases the cat. (From statement 9)\n   - If something sees the rabbit and it chases the cat then the rabbit chases the squirrel. (From statement 17)\n   - Since the rabbit chases the cat, it does chase the cat, and the rabbit chases the squirrel is an additional statement which is not necessary to determine the statement \"The cat does not chase the rabbit\".\n   - The rabbit chases the cat and the cat sees the cow. (From statement 9 and 3)\n   - The cow chases the cat. (From statement 18)\n   - If something chases the cat then it visits the rabbit. (From statement 13)\n\n2. From the given information, we can infer the following relationships:\n   - The cow chases the cat. (From statement 18)\n   - The cow sees the squirrel. (From statement 5)\n   - The squirrel is kind. (From statement 11)\n   - If something chases the cat and it sees the cow then the cow chases the cat. (From statement 18)\n   - The cow visits the squirrel. (From statement 8)\n   - The squirrel visits the rabbit. (From statement 15)\n   - The rabbit sees the cow. (From statement 21)\n\n3. From the given information, we can infer the following relationships:\n   - The cat sees the rabbit. (From statement 3)\n   - The cat is kind. (From statement 2)\n   - The rabbit chases the cat. (From statement 9)\n   - If something visits the cow then it chases the rabbit. (From statement 1)\n   - The rabbit chases the cat and the cat sees the cow. (From statement 9 and 3)\n   - The cow chases the rabbit. (From statement 1 and 3)\n\nNow, let's analyze the statement \"The cat does not chase the rabbit\":\n- The rabbit chases the cat. (From statement 9)\n- If something chases the cat then it visits the rabbit. (From statement 13)\n- Therefore, the rabbit chases the cat, which implies that the rabbit visits the cat.\n\nHowever, there is no statement that directly supports or contradicts the idea that the cat chases the rabbit. But we can infer a relationship from the statement: \"If something visits the rabbit then it sees the cow.\" (From statement 19)\n\nSince the rabbit visits the cat, it does not necessarily mean that the cat sees the rabbit, but it does mean that the cat does not chase the rabbit because if the cat sees the rabbit then the cat is not the one who is being chased. \n\nBut we can make an argument that it is true that the cat does not chase the rabbit. If the cat was chasing the rabbit then the rabbit would not have chased the cat. \n\nHowever, in this case, the given information suggests that the rabbit chases the cat, which directly contradicts the idea that the cat chases the rabbit. Therefore, we can conclude that the cat does not chase the rabbit.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not chase the rabbit\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The cat is not big.\n2. The cat is kind.\n3. The cat sees the rabbit.\n4. The cow chases the rabbit.\n5. The cow chases the squirrel.\n6. The cow sees the squirrel.\n7. The cow visits the cat.\n8. The cow visits the squirrel.\n9. The rabbit chases the cat.\n10. The rabbit chases the cow.\n11. The rabbit is green.\n12. The rabbit visits the squirrel.\n13. The squirrel is blue.\n14. The squirrel is kind.\n15. The squirrel sees the rabbit.\n16. The squirrel visits the rabbit.\n\nNow, let's examine the rules:\n\n1. If something visits the cow then it chases the rabbit. (Rule 1)\n2. If something chases the cat then the cat chases the cow. (Rule 2)\n3. If something chases the cow and the cow sees the squirrel then the squirrel is big. (Rule 3)\n4. If something chases the cat then it visits the rabbit. (Rule 4)\n5. If something visits the rabbit then it sees the cow. (Rule 5)\n6. If something chases the cat and it sees the cow then the cow chases the cat. (Rule 6)\n7. If something sees the rabbit and it chases the cat then the rabbit chases the squirrel. (Rule 7)\n\nFrom the given information, we can conclude the following:\n\n- The cat sees the rabbit (Statement 3).\n- The rabbit chases the cat (Statement 9).\n\nUsing Rule 2, we can deduce that the rabbit chases the cat implies that the cat chases the cow (since it chases the cat). \n\nUsing Rule 6, we can deduce that the cat chases the cow implies that the cow chases the cat.\n\nNow, we have a cycle of chases between the cat and the cow, which is not explicitly stated to be false or true in the given rules.\n\nHowever, this cycle does not directly provide information about whether the cat chases the rabbit or not.\n\nLet's examine Rule 4: If something chases the cat then it visits the rabbit. We know that the rabbit chases the cat (Statement 9), so using Rule 4, we can deduce that the rabbit visits the cat.\n\nUsing Rule 5, we can deduce that the rabbit visits the cat implies that the rabbit sees the cow.\n\nNow, we have a situation where the rabbit sees the cow, chases the cat, and visits the cat.\n\nUsing Rule 7, we can deduce that the rabbit sees the cow and chases the cat implies that the rabbit chases the squirrel.\n\nHowever, this does not provide any information about the cat and the rabbit directly.\n\nWe need to look at Statement 9 again: The rabbit chases the cat. Using Rule 6, we can deduce that the rabbit chases the cat implies that the cow chases the cat.\n\nNow, we have a situation where the cow chases the cat and the cat sees the rabbit.\n\nUsing Rule 6, we can deduce that the cow chases the cat and the cat sees the rabbit implies that the cow chases the cat.\n\nHowever, this is the same situation we had before, and we cannot conclude that the cat chases the rabbit based on this information.\n\nSince we cannot conclude that the cat chases the rabbit based on the given rules and information, we cannot determine whether the statement \"The cat does not chase the rabbit\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not chase the rabbit\" is true, false, or unknown, we need to analyze the given information and the logical rules provided.\n\n1. The cat is not big.\n2. The cat is kind.\n3. The cat sees the rabbit.\n4. The cow chases the rabbit.\n5. The cow chases the squirrel.\n6. The cow sees the squirrel.\n7. The cow visits the cat.\n8. The cow visits the squirrel.\n9. The rabbit chases the cat.\n10. The rabbit chases the cow.\n11. The rabbit is green.\n12. The rabbit visits the squirrel.\n13. The squirrel is blue.\n14. The squirrel is kind.\n15. The squirrel sees the rabbit.\n16. The squirrel visits the rabbit.\n\nLogical Rules:\n1. If something visits the cow then it chases the rabbit.\n2. If something chases the cat then the cat chases the cow.\n3. If something chases the cow and the cow sees the squirrel then the squirrel is big.\n4. If something chases the cat then it visits the rabbit.\n5. If something visits the rabbit then it sees the cow.\n6. If something chases the cat and it sees the cow then the cow chases the cat.\n7. If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\n\nNow, let's analyze the statement \"The cat does not chase the rabbit.\"\n\nFrom statement 9, we know that \"The rabbit chases the cat.\" Using logical rule 2, we can conclude that \"If something chases the cat then the cat chases the cow.\" However, this doesn't directly relate to the cat chasing the rabbit.\n\nLet's analyze the rabbit's behavior. We know that the rabbit chases the cat. Using logical rule 7, we can conclude that \"If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\" However, this is not the case here, as the cat sees the rabbit.\n\nThe only information we have about the cat chasing the rabbit is from statement 3, \"The cat sees the rabbit.\" However, this does not imply that the cat chases the rabbit. \n\nTo determine whether the cat chases the rabbit, we need to analyze the logical rules further. There is no direct rule that states the cat chases the rabbit. However, we can use the given information and the logical rules to infer the cat's behavior.\n\nFrom statement 9, we know that the rabbit chases the cat. Using logical rule 4, we can conclude that \"If something chases the cat then it visits the rabbit.\" This implies that the rabbit visits the cat.\n\nNow, let's look at the statements from the cat's perspective. We know that the cat sees the rabbit (statement 3). If the cat sees the rabbit and the rabbit chases the cat, then using logical rule 7, we can conclude that the rabbit chases the squirrel.\n\nHowever, this does not directly relate to the cat's behavior towards the rabbit. The only information we have is that the cat sees the rabbit.\n\nFrom statement 7, we know that the squirrel visits the rabbit. Using logical rule 5, we can conclude that \"If something visits the rabbit then it sees the cow.\" This implies that the squirrel sees the cow.\n\nHowever, this does not directly relate to the cat chasing the rabbit.\n\nNow, let's look at the statements from the cow's perspective. We know that the cow chases the rabbit (statement 4). If the cow chases the rabbit and the cow sees the squirrel, then using logical rule 3, we can conclude that the squirrel is big. However, this does not directly relate to the cat chasing the rabbit.\n\nFrom statement 8, we know that the cow visits the squirrel. Using logical rule 1, we can conclude that \"If something visits the cow then it chases the rabbit.\" However, this implies that the cat chases the rabbit if it visits the cow, but we do not have any information that the cat visits the cow.\n\nFrom statement 7, we know that the squirrel visits the rabbit. Using logical rule 5, we can conclude that \"If something visits the rabbit then it sees the cow.\" However, this does not directly relate to the cat chasing the rabbit.\n\nNow, let's analyze the situation where the cat chases the rabbit. If the cat chases the rabbit, then using logical rule 4, we can conclude that the cat visits the rabbit. However, this is not the case as the cat sees the rabbit (statement 3).\n\nBased on the given information and the logical rules, we cannot determine whether the cat chases the rabbit or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. Let's break it down step by step:\n\n1. The rabbit chases the cat.\nThis implies that the cat does not chase the rabbit, because if the cat chased the rabbit, the rabbit would not be able to chase the cat.\n\n2. The rabbit chases the cow.\nThis implies that the cow does not chase the rabbit, because if the cow chased the rabbit, the rabbit would not be able to chase the cow.\n\n3. If something visits the cow then it chases the rabbit.\nWe don't have any information that the cat visits the cow, but we do have information that the cow visits the cat. So this statement doesn't directly affect the cat.\n\n4. If something chases the cat then the cat chases the cow.\nWe don't have any information that the cat chases the cow, but we do have information that the rabbit chases the cat.\n\n5. If something chases the cat and it sees the cow then the cow chases the cat.\nWe know that the rabbit chases the cat and sees the cow, but the statement says \"it\" (the thing that chases the cat) must see the cow for the cow to chase the cat. However, the rabbit doesn't see the cow before chasing the cat (according to this statement). So we cannot conclude that the cow chases the cat from this statement.\n\n6. If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\nThis implies that the cat does not see the rabbit, because if the cat saw the rabbit, it would chase the cat. However, the cat sees the rabbit (according to the initial statements).\n\n7. Since the cat sees the rabbit, the rabbit chases the cat. So we can conclude that the cat does chase the rabbit, because the cat is the thing that sees the rabbit.\n\nHowever, we can conclude the opposite: The cat does chase the rabbit.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not chase the rabbit\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nFrom the given information:\n- The cat is not big.\n- The cat is kind.\n- The cat sees the rabbit.\n- The cow chases the rabbit.\n- The cow chases the squirrel.\n- The cow sees the squirrel.\n- The cow visits the cat.\n- The cow visits the squirrel.\n- The rabbit chases the cat.\n- The rabbit chases the cow.\n- The rabbit is green.\n- The rabbit visits the squirrel.\n- The squirrel is blue.\n- The squirrel is kind.\n- The squirrel sees the rabbit.\n- The squirrel visits the rabbit.\n\nFrom the given rules:\n1. If something visits the cow then it chases the rabbit.\n2. If something chases the cat then the cat chases the cow.\n3. If something chases the cow and the cow sees the squirrel then the squirrel is big.\n4. If something chases the cat then it visits the rabbit.\n5. If something visits the rabbit then it sees the cow.\n6. If something chases the cat and it sees the cow then the cow chases the cat.\n7. If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\n\nNow, let's analyze the statement \"The cat does not chase the rabbit.\"\n\nFrom the given information, we know that:\n- The rabbit chases the cat.\n\nUsing rule 7:\n- If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\nWe don't have any information that directly supports or refutes the fact that the cat sees the rabbit. However, we do know that the cat sees the rabbit from the given information. \n\nUsing rule 7 with this information, we get:\n- The cat sees the rabbit and it chases the cat, then the rabbit chases the squirrel.\nHowever, we know that the rabbit already chases the squirrel from the given information. This rule does not directly affect the cat's behavior.\n\nHowever, since we know that the rabbit chases the cat, we can use rule 4:\n- If something chases the cat then it visits the rabbit.\nThis means that the rabbit chases the cat, which means it visits the cat. However, we are not given any information that the rabbit visits the cat in the context of this problem. \n\nUsing rule 2:\n- If something chases the cat then the cat chases the cow.\nWe don't have any information that directly supports or refutes the fact that the cat chases the cow. However, we do know that the rabbit chases the cat.\n\nUsing rule 2 with this information, we get:\n- The rabbit chases the cat, then the cat chases the cow.\nHowever, we don't have any information that the cat chases the cow in the context of this problem. \n\nUsing rule 1:\n- If something visits the cow then it chases the rabbit.\nWe don't have any information that directly supports or refutes the fact that something visits the cow. However, we do know that the cow visits the cat.\n\nUsing rule 1 with this information, we get:\n- The cow visits the cat, then it chases the rabbit.\nHowever, we don't have any information that the cow chases the rabbit in the context of this problem. \n\nHowever, we do know that the rabbit chases the cow, and the cow sees the squirrel. Using rule 3:\n- If something chases the cow and the cow sees the squirrel then the squirrel is big.\nThis rule does not directly affect the cat's behavior.\n\nHowever, we also know that the squirrel sees the rabbit. Using rule 5:\n- If something visits the rabbit then it sees the cow.\nWe don't have any information that directly supports or refutes the fact that something visits the rabbit. However, we do know that the squirrel visits the rabbit.\n\nUsing rule 5 with this information, we get:\n- The squirrel visits the rabbit, then it sees the cow.\nHowever, this rule does not directly affect the cat's behavior.\n\nHowever, we do know that the squirrel sees the rabbit and the squirrel chases the cat. Using rule 7:\n- If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\nHowever, we already know that the rabbit chases the squirrel from the given information. This rule does not directly affect the cat's behavior.\n\nHowever, we do know that the squirrel chases the cat. Using rule 6:\n- If something chases the cat and it sees the cow then the cow chases the cat.\nHowever, we don't have any information that directly supports or refutes the fact that the cow sees the squirrel in the context of this problem. \n\nHowever, we do know that the cow sees the squirrel from the given information. Using rule 6 with this information, we get:\n- The squirrel chases the cat, and the cow sees the squirrel, then the cow chases the cat.\nHowever, we don't have any information that the cow chases the cat in the context of this problem. \n\nHowever, we do know that the rabbit chases the cat. Using rule 7:\n- If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\nHowever, we already know that the rabbit chases the squirrel from the given information. This rule does not directly affect the cat's behavior.\n\nHowever, since we know that the rabbit chases the cat, we can use rule 4:\n- If something chases the cat then it visits the rabbit.\nThis means that the rabbit chases the cat, which means it visits the cat. However, we are not given any information that the rabbit visits the cat in the context of this problem.\n\nHowever, we also know that the squirrel chases the cat. Using rule 7:\n- If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\nHowever, we already know that the rabbit chases the squirrel from the given information. This rule does not directly affect the cat's behavior.\n\nHowever, we do know that the cat sees the rabbit. Using rule 7 with this information, we get:\n- The cat sees the rabbit, and it chases the cat, then the rabbit chases the squirrel.\nHowever, we already know that the rabbit chases the squirrel from the given information. This rule does not directly affect the cat's behavior.\n\nHowever, we do know that the cat is not big. Using this information, we can conclude that the cat does not chase the rabbit because there is no information in the problem that suggests the cat chases the rabbit.\n\nTherefore, the statement \"The cat does not chase the rabbit\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. The cat is not big.\n2. The cat is kind.\n3. The cat sees the rabbit.\n4. The cow chases the rabbit.\n5. The cow chases the squirrel.\n6. The cow sees the squirrel.\n7. The cow visits the cat.\n8. The cow visits the squirrel.\n9. The rabbit chases the cat.\n10. The rabbit chases the cow.\n11. The rabbit is green.\n12. The rabbit visits the squirrel.\n13. The squirrel is blue.\n14. The squirrel is kind.\n15. The squirrel sees the rabbit.\n16. The squirrel visits the rabbit.\n\nNow, let's consider the implications:\n\n- If something visits the cow then it chases the rabbit. (This statement is relevant to the cow and the rabbit, but it's not directly related to the cat and the rabbit.)\n\n- If something chases the cat then the cat chases the cow. (This statement is relevant to the cat and the cow, but it doesn't directly address the cat and the rabbit.)\n\n- If something chases the cow and the cow sees the squirrel then the squirrel is big. (This statement is irrelevant to the cat and the rabbit, as it involves the cow and the squirrel.)\n\n- If something chases the cat then it visits the rabbit. (This statement is relevant to the cat and the rabbit.)\n\n- If something visits the rabbit then it sees the cow. (This statement is relevant to the rabbit and the cow.)\n\n- If something chases the cat and it sees the cow then the cow chases the cat. (This statement is relevant to the cat, cow, and rabbit.)\n\n- If something sees the rabbit and it chases the cat then the rabbit chases the squirrel. (This statement is relevant to the rabbit and the squirrel.)\n\nNow, let's evaluate the given statement: \"The cat does not chase the rabbit.\"\n\nTo determine whether this statement is true, false, or unknown, we need to analyze the implications involving the cat and the rabbit.\n\nFrom the given statements, we have:\n\n- The cat sees the rabbit (Statement 3).\n- The rabbit chases the cat (Statement 9).\n- If something chases the cat then it visits the rabbit (Statement 4).\n- If something chases the cat then it visits the rabbit (Statement 5).\n\nThe rabbit chasing the cat (Statement 9) implies that the cat does not chase the rabbit, because if the cat chases the rabbit, then the rabbit would chase the cat (from Statement 9).\n\nHowever, we have another implication that something that sees the rabbit and chases the cat then the rabbit chases the squirrel (Statement 6). Since the cat sees the rabbit (Statement 3), this implies that the rabbit chases the squirrel.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not chase the rabbit\" is true, false, or unknown, we need to analyze the given information and logical rules step by step.\n\nFrom the given information, we know the following:\n\n1. The cat is not big.\n2. The cat is kind.\n3. The cat sees the rabbit.\n4. The cow chases the rabbit.\n5. The cow chases the squirrel.\n6. The cow sees the squirrel.\n7. The cow visits the cat.\n8. The cow visits the squirrel.\n9. The rabbit chases the cat.\n10. The rabbit chases the cow.\n11. The rabbit is green.\n12. The rabbit visits the squirrel.\n13. The squirrel is blue.\n14. The squirrel is kind.\n15. The squirrel sees the rabbit.\n16. The squirrel visits the rabbit.\n\nNow, let's examine the logical rules:\n\n1. If something visits the cow then it chases the rabbit. (Rule 1)\n2. If something chases the cat then the cat chases the cow. (Rule 2)\n3. If something chases the cow and the cow sees the squirrel then the squirrel is big. (Rule 3)\n4. If something chases the cat then it visits the rabbit. (Rule 4)\n5. If something visits the rabbit then it sees the cow. (Rule 5)\n6. If something chases the cat and it sees the cow then the cow chases the cat. (Rule 6)\n7. If something sees the rabbit and it chases the cat then the rabbit chases the squirrel. (Rule 7)\n\nNow, we will analyze the statement \"The cat does not chase the rabbit\" using the given information and logical rules.\n\nFrom Rule 4, we know that if something chases the cat, then it visits the rabbit. We can find a chain of events where the cat is chased by the rabbit (Statement 9), which means the rabbit visits the cat. However, we do not have any information that the rabbit visits the cow. So, we cannot directly apply Rule 1 to conclude whether the cat chases the rabbit.\n\nHowever, we do know from Statement 9 that the rabbit chases the cat. We can then apply Rule 2 to conclude that the cat chases the cow. Now, we do not have enough information to conclude whether the cat chases the rabbit based on the given statements.\n\nWe can also apply Rule 7 to the situation. Since the rabbit sees the cat (Statement 3) and it chases the cat (Statement 9), then according to Rule 7, the rabbit chases the squirrel. However, we do not have enough information to conclude whether the cat chases the rabbit based on this rule.\n\nSince we do not have enough information to conclude whether the cat chases the rabbit, we cannot determine whether the statement \"The cat does not chase the rabbit\" is true or false. Therefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not chase the rabbit\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know that \"The rabbit chases the cat.\" (Statement 9)\n\n2. Now we need to check the condition \"If something chases the cat then it visits the rabbit.\" (Rule 5) The rabbit chases the cat, so according to this rule, the rabbit visits the cat. However, the rabbit visits the cat is not among the given information, we are not told that the rabbit visits the cat but we are told the cat visits the rabbit (Statement 8). So we can not conclude anything from this rule.\n\n3. Next, we need to check the condition \"If something chases the cat then the cat chases the cow.\" (Rule 4) The rabbit chases the cat, so according to this rule, the cat chases the cow. However, the given information is that \"The cat sees the rabbit.\" (Statement 3) which is a different action. So we can not conclude anything from this rule.\n\n4. Now we need to check the condition \"If something chases the cat and it sees the cow then the cow chases the cat.\" (Rule 7) The rabbit chases the cat and sees the cat is not mentioned but we know that the cat sees the rabbit (Statement 3). The rabbit does not see the cow, however, the cow chases the rabbit (Statement 2). So we can not conclude anything from this rule.\n\n5. Now we need to check the condition \"If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\" (Rule 10) The cat sees the rabbit (Statement 3) and the cat does not chase the rabbit. However, we are not told the cat chases the rabbit. The cat visits the rabbit (Statement 8), which is a different action. So we can not conclude anything from this rule.\n\n6. Now we need to check the condition \"If something chases the cat then it chases the cow.\" (Rule 4) The rabbit chases the cat (Statement 9). This means the rabbit chases the cow (According to Rule 4). However, the given information is that \"The rabbit chases the cow.\" (Statement 10) which is consistent with this rule.\n\n7. Now we need to check the condition \"If something chases the cow and the cow sees the squirrel then the squirrel is big.\" (Rule 6) The rabbit chases the cow (Statement 10), and the cow sees the squirrel (Statement 5). This means the squirrel is big (According to Rule 6). However, the given information is that \"The squirrel is kind.\" (Statement 11), which is different.\n\n8. Since we are not told that the cat chases the rabbit, we can not conclude anything from the given information. Therefore, the statement \"The cat does not chase the rabbit\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller parts and analyze the given statements.\n\nGiven statements:\n\n1. The cat is not big.\n2. The cat is kind.\n3. The cat sees the rabbit.\n4. The cow chases the rabbit.\n5. The cow chases the squirrel.\n6. The cow sees the squirrel.\n7. The cow visits the cat.\n8. The cow visits the squirrel.\n9. The rabbit chases the cat.\n10. The rabbit chases the cow.\n11. The rabbit is green.\n12. The rabbit visits the squirrel.\n13. The squirrel is blue.\n14. The squirrel is kind.\n15. The squirrel sees the rabbit.\n16. The squirrel visits the rabbit.\n\nWe also have a set of rules:\n\n1. If something visits the cow then it chases the rabbit.\n2. If something chases the cat then the cat chases the cow.\n3. If something chases the cow and the cow sees the squirrel then the squirrel is big.\n4. If something chases the cat then it visits the rabbit.\n5. If something visits the rabbit then it sees the cow.\n6. If something chases the cat and it sees the cow then the cow chases the cat.\n7. If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\n\nNow, we need to determine whether the cat chases the rabbit. To do this, we can analyze the given statements and rules.\n\nFrom statement 3, we know that the cat sees the rabbit. However, we need to find out if the cat chases the rabbit.\n\nFrom rule 4, if something chases the cat then it visits the rabbit. We can't directly apply this rule to the cat since we don't know if the cat chases something.\n\nFrom rule 2, if something chases the cat then the cat chases the cow. We still can't directly apply this rule to the cat since we don't know if the cat chases something.\n\nHowever, from statement 9, we know that the rabbit chases the cat. Now, let's apply rule 2:\n\nIf the rabbit chases the cat, then the cat chases the cow (rule 2).\n\nHowever, this doesn't directly tell us if the cat chases the rabbit. Let's analyze further:\n\nFrom statement 4, we know that the cow chases the rabbit. Now, let's apply rule 1:\n\nIf the cow visits something, then it chases the rabbit (rule 1).\n\nWe can apply this rule to statement 7, which says the cow visits the cat. Therefore, the cow chases the rabbit (rule 1).\n\nHowever, this still doesn't tell us if the cat chases the rabbit. Let's analyze further:\n\nFrom statement 9, we know that the rabbit chases the cat. Now, let's apply rule 5:\n\nIf something sees the rabbit and it chases the cat, then the rabbit chases the squirrel (rule 5).\n\nWe know that the cat sees the rabbit (statement 3). Now, let's see if we can find something that sees the rabbit and chases the cat.\n\nHowever, we can't find any information that directly tells us if the cat chases the rabbit. But we can apply rule 6:\n\nIf something chases the cat and it sees the cow, then the cow chases the cat (rule 6).\n\nWe know that the rabbit chases the cat (statement 9) and the cow sees the squirrel (statement 6). However, we still can't find any information that directly tells us if the cat chases the rabbit.\n\nHowever, let's look at statement 11, which says the rabbit is green. Now, let's apply rule 7:\n\nIf something sees the rabbit and it chases the cat, then the rabbit chases the squirrel (rule 7).\n\nWe know that the squirrel sees the rabbit (statement 15). Now, let's see if we can find something that sees the rabbit and chases the cat.\n\nFrom statement 3, we know that the cat sees the rabbit. Now, let's see if we can find something that chases the cat.\n\nFrom statement 9, we know that the rabbit chases the cat. Now, let's see if we can find something that sees the rabbit and chases the cat.\n\nWe can't find any information that directly tells us if the cat chases the rabbit. However, let's look at statement 16, which says the squirrel visits the rabbit.\n\nNow, let's apply rule 5:\n\nIf something visits the rabbit, then it sees the cow (rule 5).\n\nHowever, we can't find any information that directly tells us if the cat chases the rabbit.\n\nHowever, let's look at statement 14, which says the squirrel is kind. Now, let's apply rule 6:\n\nIf something chases the cat and it sees the cow, then the cow chases the cat (rule 6).\n\nWe know that the rabbit chases the cat (statement 9) and the cow sees the squirrel (statement 6). However, we still can't find any information that directly tells us if the cat chases the rabbit.\n\nHowever, let's look at statement 1, which says the cat is not big. Now, let's apply rule 3:\n\nIf something chases the cow and the cow sees the squirrel, then the squirrel is big (rule 3).\n\nWe know that the rabbit chases the cow (statement 10) and the cow sees the squirrel (statement 6). However, we still can't find any information that directly tells us if the cat chases the rabbit.\n\nHowever, let's look at statement 15, which says the squirrel sees the rabbit. Now, let's apply rule 7:\n\nIf something sees the rabbit and it chases the cat, then the rabbit chases the squirrel (rule 7).\n\nWe know that the squirrel sees the rabbit (statement 15) and the rabbit chases the cat (statement 9). However, we still can't find any information that directly tells us if the cat chases the rabbit.\n\nHowever, let's look at statement 13, which says the squirrel is blue. Now, let's apply rule 3:\n\nIf something chases the cow and the cow sees the squirrel, then the squirrel is big (rule 3).\n\nWe know that the rabbit chases the cow (statement 10) and the cow sees the squirrel (statement 6). However, we still can't find any information that directly tells us if the cat chases the rabbit.\n\nHowever, let's look at statement 12, which says the rabbit visits the squirrel. Now, let's apply rule 5:\n\nIf something visits the rabbit, then it sees the cow (rule 5).\n\nHowever, we can't find any information that directly tells us if the cat chases the rabbit.\n\nHowever, let's look at statement 8, which says the cow visits the squirrel. Now, let's apply rule 1:\n\nIf something visits the cow, then it chases the rabbit (rule 1).\n\nHowever, we can't find any information that directly tells us if the cat chases the rabbit.\n\nHowever, let's look at statement 4, which says the cow chases the rabbit. Now, let's apply rule 2:\n\nIf something chases the cat, then the cat chases the cow (rule 2).\n\nHowever, we can't find any information that directly tells us if the cat chases the rabbit.\n\nHowever, let's look at statement 9, which says the rabbit chases the cat. Now, let's apply rule 6:\n\nIf something chases the cat and it sees the cow, then the cow chases the cat (rule 6).\n\nHowever, we still can't find any information that directly tells us if the cat chases the rabbit.\n\nHowever, let's look at statement 11, which says the rabbit is green. Now, let's apply rule 7:\n\nIf something sees the rabbit and it chases the cat, then the rabbit chases the squirrel (rule 7).\n\nWe know that the squirrel sees the rabbit (statement 15) and the rabbit chases the cat (statement 9). However, we still can't find any information that directly tells us if the cat chases the rabbit.\n\nHowever, let's look at statement 16, which says the squirrel visits the rabbit. Now, let's apply rule 5:\n\nIf something visits the rabbit, then it sees the cow (rule 5).\n\nHowever, we still can't find any information that directly tells us if the cat chases the rabbit.\n\nHowever, let's look at statement 2, which says the cat is kind. Now, let's apply rule 2:\n\nIf something chases the cat, then the cat chases the cow (rule 2).\n\nHowever, we still can't find any information that directly tells us if the cat chases the rabbit.\n\nHowever, let's look at statement 3, which says the cat sees the rabbit. Now, let's apply rule 7:\n\nIf something sees the rabbit and it chases the cat, then the rabbit chases the squirrel (rule 7).\n\nWe know that the squirrel sees the rabbit (statement 15) and the rabbit chases the cat (statement 9). However, we still can't find any information that directly tells us if the cat chases the rabbit.\n\nHowever, let's look at statement 15, which says the squirrel sees the rabbit. Now, let's apply rule 5:\n\nIf something visits the rabbit, then it sees the cow (rule 5).\n\nHowever, we can't find any information that directly tells us if the cat chases the rabbit.\n\nHowever, let's look at statement 14, which says the squirrel is kind. Now, let's apply rule 6:\n\nIf something",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not chase the rabbit\" is true, false, or unknown, we need to analyze the given information and apply the given rules.\n\nGiven information:\n- The cat is not big.\n- The cat is kind.\n- The cat sees the rabbit.\n- The cow chases the rabbit.\n- The cow chases the squirrel.\n- The cow sees the squirrel.\n- The cow visits the cat.\n- The cow visits the squirrel.\n- The rabbit chases the cat.\n- The rabbit chases the cow.\n- The rabbit is green.\n- The rabbit visits the squirrel.\n- The squirrel is blue.\n- The squirrel is kind.\n- The squirrel sees the rabbit.\n- The squirrel visits the rabbit.\n\nRules:\n1. If something visits the cow then it chases the rabbit.\n2. If something chases the cat then the cat chases the cow.\n3. If something chases the cow and the cow sees the squirrel then the squirrel is big.\n4. If something chases the cat then it visits the rabbit.\n5. If something visits the rabbit then it sees the cow.\n6. If something chases the cat and it sees the cow then the cow chases the cat.\n7. If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\n\nLet's analyze the statement \"The cat does not chase the rabbit.\" To prove this statement true or false, we need to check if there is any rule that directly or indirectly implies that the cat chases the rabbit.\n\nFrom rule 4, if something chases the cat then it visits the rabbit. However, this rule does not tell us anything about the cat's behavior towards the rabbit. \n\nNow, let's examine rule 2, which states that if something chases the cat then the cat chases the cow. This implies that the cat does chase something, but it does not tell us if the cat chases the rabbit or the cow.\n\nNow, let's examine rule 6, which states that if something chases the cat and it sees the cow then the cow chases the cat. This implies that there is something that chases the cat and sees the cow, but again, it does not tell us if the cat chases the rabbit or the cow.\n\nFrom rule 7, if something sees the rabbit and it chases the cat then the rabbit chases the squirrel. This implies that the rabbit sees the cat, and the rabbit chases the cat. However, this rule does not tell us about the cat's behavior towards the rabbit.\n\nFrom rule 5, if something visits the rabbit then it sees the cow. This implies that there is something that visits the rabbit, but it does not tell us about the cat's behavior towards the rabbit.\n\nNow, let's examine the given information and see if we can deduce any information about the cat's behavior towards the rabbit. We see that the rabbit chases the cat (given information), but we do not see any information that directly implies the cat chases the rabbit.\n\nWe cannot determine the truth of the statement \"The cat does not chase the rabbit\" because we have no information that directly or indirectly implies that the cat chases the rabbit. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not chase the rabbit\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nGiven information:\n- The cat is not big.\n- The cat is kind.\n- The cat sees the rabbit.\n- The cow chases the rabbit.\n- The cow chases the squirrel.\n- The cow sees the squirrel.\n- The cow visits the cat.\n- The cow visits the squirrel.\n- The rabbit chases the cat.\n- The rabbit chases the cow.\n- The rabbit is green.\n- The rabbit visits the squirrel.\n- The squirrel is blue.\n- The squirrel is kind.\n- The squirrel sees the rabbit.\n- The squirrel visits the rabbit.\n\nRules:\n1. If something visits the cow then it chases the rabbit.\n2. If something chases the cat then the cat chases the cow.\n3. If something chases the cow and the cow sees the squirrel then the squirrel is big.\n4. If something chases the cat then it visits the rabbit.\n5. If something visits the rabbit then it sees the cow.\n6. If something chases the cat and it sees the cow then the cow chases the cat.\n7. If something sees the rabbit and it chases the cat then the rabbit chases the squirrel.\n\nLet's analyze the statement \"The cat does not chase the rabbit.\"\n\nFrom the given information, we know that the rabbit chases the cat. \n\nApplying rule 6: If something chases the cat and it sees the cow then the cow chases the cat. This rule does not directly apply here as it's not stated the cat sees the cow. However, rule 2 does apply which is: If something chases the cat then the cat chases the cow. This means that the cat does chase the cow but not necessarily the rabbit. However, we need to continue evaluating other rules to see if they contradict or support this statement.\n\nApplying rule 4: If something chases the cat then it visits the rabbit. The rabbit chases the cat, so according to this rule, the rabbit visits the cat. \n\nNow we have a path from the rabbit to the cat:\n- The rabbit chases the cat.\n- The rabbit visits the cat (rule 4).\n- The cat sees the rabbit (given information).\n\nApplying rule 7: If something sees the rabbit and it chases the cat then the rabbit chases the squirrel. This rule does not directly apply here as it's not stated that the cat sees the rabbit. However, we do know that the cat sees the rabbit and we also know that the cat chases the cow (from rule 2). But to determine if the rabbit chases the squirrel, we need to see if the cat chasing the cow makes the squirrel big. \n\nApplying rule 3: If something chases the cow and the cow sees the squirrel then the squirrel is big. We know that the cow sees the squirrel (given information), but we do not have enough information to say if the cow chases the squirrel and is chased by something else. However, we do know that the cat chases the cow. \n\nWe now have two paths from the cat to the squirrel:\n- The cat chases the cow.\n- The cow sees the squirrel.\n- The cow chases the squirrel (given information).\n\nHowever, we also have the information that the rabbit chases the squirrel. \n\nThe information given does not directly state that the cat chases the rabbit. It only states that the rabbit chases the cat. However, the information given also does not contradict the statement that the cat does not chase the rabbit.\n\nBut we need to check if there is any rule that makes the cat chase the rabbit. After analyzing all the rules, none of them directly state that the cat chases the rabbit.\n\nHowever, there is a rule that states if something visits the cow then it chases the rabbit. There is no information that the cat visits the cow. However, we do know that the cow visits the cat. This rule does not apply here.\n\nIn conclusion, the statement \"The cat does not chase the rabbit\" is true.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_cow, chases_cow_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(X, cow)",
+          "z3_formula": "Implies(chases_cat, chases_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, squirrel) -> big(squirrel)",
+          "z3_formula": "Implies(And(chases_cow, sees_cow_squirrel), big_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_cat, visits_cat_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_rabbit, sees_rabbit_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_cat, sees_cat_cow), chases_cow_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(sees_rabbit, chases_rabbit), chases_rabbit_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, rabbit)",
+          "z3_formula": "chases_cat_rabbit == False",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cat, rabbit)",
+          "z3_formula": "visits_cat_rabbit == False",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, rabbit)",
+          "z3_formula": "chases_cat_rabbit == False",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, rabbit)",
+          "z3_formula": "chases_cat_rabbit == False",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(sees_cat_rabbit, chases_rabbit_cat), chases_cat_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_rabbit_cat, visits_rabbit_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, cat)",
+          "z3_formula": "chases_cow_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(X, cat)",
+          "z3_formula": "Implies(And(chases_cow_cat, sees_cow_squirrel), chases_cow_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, cow)",
+          "z3_formula": "sees_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_rabbit_cat, sees_cow_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_rabbit_cat, visits_rabbit_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cow, chases_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_X_cat, chases_cat_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, Y) -> big(Y)",
+          "z3_formula": "Implies(And(chases_X_cow, sees_cow_Y), big_Y)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_X_cat, visits_X_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_X_cat, sees_X_cow), chases_cow_cat)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(sees_X_rabbit, chases_X_cat), chases_rabbit_squirrel)",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cow, chases_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_X_cat, chases_cat_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, Y) -> big(Y)",
+          "z3_formula": "Implies(And(chases_X_cow, sees_cow_Y), big_Y)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_X_cat, visits_X_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_X_cat, sees_X_cow), chases_cow_cat)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, Y)",
+          "z3_formula": "Implies(And(sees_X_rabbit, chases_X_cat), chases_rabbit_Y)",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(cat, rabbit)",
+          "z3_formula": "Not(chases_cat_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(cow, rabbit)",
+          "z3_formula": "Not(chases_cow_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cow, chases_X_rabbit)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_X_cat, sees_X_cow), chases_cow_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat) & sees(rabbit, cow)",
+          "z3_formula": "And(chases_rabbit_cat, sees_rabbit_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(sees_X_rabbit, chases_X_cat), chases_rabbit_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, squirrel)",
+          "z3_formula": "chases_rabbit_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, rabbit)",
+          "z3_formula": "chases_cat_rabbit == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_cow_cat, chases_cat_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_rabbit_cat, chases_cat_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, Y) -> big(Y)",
+          "z3_formula": "Implies(And(chases_cow_squirrel, sees_cow_squirrel), big_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_rabbit_cat, visits_rabbit_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_squirrel_rabbit, sees_squirrel_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, X)",
+          "z3_formula": "Implies(And(chases_squirrel_cat, sees_cow_squirrel), chases_cow_squirrel)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, Y)",
+          "z3_formula": "Implies(And(sees_squirrel_rabbit, chases_squirrel_cat), chases_rabbit_squirrel)",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "Not(big_cat) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cow, chases_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_X_cat, chases_cat_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, squirrel) -> big(squirrel)",
+          "z3_formula": "Implies(And(chases_X_cow, sees_cow_squirrel), big_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_X_cat, visits_X_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(cow, cat) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_X_cat, sees_cow_cat), chases_cow_cat)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(sees_X_rabbit, chases_X_cat), chases_rabbit_squirrel)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not chases(cat, rabbit)",
+          "z3_formula": "Not(chases_cat_rabbit) == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cow, chases_X_rabbit)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_X_cat, chases_cat_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, Y) -> big(Y)",
+          "z3_formula": "Implies(And(chases_X_cow, sees_cow_Y), big_Y)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_X_cat, visits_X_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_X_cat, sees_X_cow), chases_cow_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, squirrel)",
+          "z3_formula": "Implies(And(sees_X_rabbit, chases_X_cat), chases_rabbit_squirrel)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, cat)",
+          "z3_formula": "Implies(chases_rabbit_cat, visits_rabbit_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, rabbit)",
+          "z3_formula": "visits_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_rabbit_cat, chases_cat_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_rabbit_cat, sees_cat_cow), chases_cow_cat)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, rabbit)",
+          "z3_formula": "chases_cat_rabbit == False",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(X, cow)",
+          "z3_formula": "Implies(chases_rabbit_cat, chases_rabbit_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(X, squirrel) -> big(squirrel)",
+          "z3_formula": "Implies(And(chases_rabbit_cow, sees_cow_squirrel), big_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(squirrel)",
+          "z3_formula": "big_squirrel == False",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_cow_cat, chases_cat_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(X, cow)",
+          "z3_formula": "Implies(chases_rabbit_cat, chases_rabbit_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, Y) -> big(Y)",
+          "z3_formula": "Implies(And(chases_rabbit_cow, sees_cow_squirrel), big_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_rabbit_cat, visits_rabbit_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_rabbit_cat, sees_cat_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, X)",
+          "z3_formula": "Implies(And(chases_rabbit_cat, sees_cat_cow), chases_cow_rabbit)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, Y)",
+          "z3_formula": "Implies(And(sees_squirrel_rabbit, chases_rabbit_cat), chases_rabbit_squirrel)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, rabbit)",
+          "z3_formula": "chases_cat_rabbit == Unknown",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cow, chases_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_X_cat, chases_cat_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, Y) -> big(Y)",
+          "z3_formula": "Implies(And(chases_X_cow, sees_cow_Y), big_Y)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_X_cat, visits_X_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, X)",
+          "z3_formula": "Implies(And(chases_X_cat, sees_X_cow), chases_cow_X)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, Y)",
+          "z3_formula": "Implies(And(sees_X_rabbit, chases_X_cat), chases_rabbit_Y)",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not big(cat)",
+          "z3_formula": "not big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(cat)",
+          "z3_formula": "kind_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, rabbit)",
+          "z3_formula": "sees_cat_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, rabbit)",
+          "z3_formula": "chases_cow_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cow_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, squirrel)",
+          "z3_formula": "sees_cow_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cow_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, squirrel)",
+          "z3_formula": "visits_cow_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cat)",
+          "z3_formula": "chases_rabbit_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, cow)",
+          "z3_formula": "chases_rabbit_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "visits(rabbit, squirrel)",
+          "z3_formula": "visits_rabbit_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(squirrel, rabbit)",
+          "z3_formula": "sees_squirrel_rabbit == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, rabbit)",
+          "z3_formula": "visits_squirrel_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cow) -> chases(X, rabbit)",
+          "z3_formula": "Implies(visits_X_cow, chases_X_rabbit)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> chases(cat, cow)",
+          "z3_formula": "Implies(chases_X_cat, chases_cat_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & sees(cow, Y) -> big(Y)",
+          "z3_formula": "Implies(And(chases_X_cow, sees_cow_Y), big_Y)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> visits(X, rabbit)",
+          "z3_formula": "Implies(chases_X_cat, visits_X_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, rabbit) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_rabbit, sees_X_cow)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) & sees(X, cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(And(chases_X_cat, sees_X_cow), chases_cow_cat)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & chases(X, cat) -> chases(rabbit, Y)",
+          "z3_formula": "Implies(And(sees_X_rabbit, chases_X_cat), chases_rabbit_Y)",
+          "source_step": 23
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 240,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 61
+    },
+    "maxsat_stats": {
+      "satisfied": 56,
+      "excluded": 5,
+      "total_weight": 234,
+      "solve_time_ms": 2.1312199532985687
+    },
+    "timing": {
+      "trace_gen_s": 24.661,
+      "extraction_s": 44.545,
+      "dedup_s": 3.091,
+      "maxsat_s": 0.005,
+      "total_s": 72.302
+    }
+  }
+}

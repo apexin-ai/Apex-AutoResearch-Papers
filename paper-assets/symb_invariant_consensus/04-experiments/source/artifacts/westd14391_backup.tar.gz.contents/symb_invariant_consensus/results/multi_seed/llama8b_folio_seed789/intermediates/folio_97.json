@@ -1,0 +1,988 @@
+{
+  "problem": {
+    "id": "folio_97",
+    "problem": "Given the following premises:\nIf animals are loved by tourists, then they are Max's favorite animals.  All animals from Australia are loved by tourists.  All quokka are animals from Australia.  All of Max's favorite animals are very fluffy. All of Max's favorite animals love to sleep.  If a koala is very fluffy, then the koala is not a quokka.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nKoalas love to sleep and are quokka.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (AnimalsLovedByTourists(x) \u2192 MaxFavoriteAnimals(x))",
+      " \u2200x (AnimalsFromAustralia(x) \u2192 AnimalsLovedByTourists(x))",
+      " \u2200x (Quokka(x) \u2192 AnimalsFromAustralia(x))",
+      " \u2200x (MaxFavoriteAnimals(x) \u2192 VeryFluffy(x)) ",
+      " \u2200x (MaxFavoriteAnimals(x) \u2192 LoveToSleep(x))",
+      " VeryFluffy(koala) \u2192 \u00acQuokka(koala)"
+    ],
+    "conclusion_fol": "LoveToSleep(koala) \u2227 Quokka(koala)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 51.0,
+      "Unknown": 120.5
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "False": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze each premise step by step.\n\n1. If animals are loved by tourists, then they are Max's favorite animals.\nThis premise establishes a relationship between the love of tourists and Max's favorite animals, but it does not provide any specific information about the animals themselves.\n\n2. All animals from Australia are loved by tourists.\nThis premise provides information about a specific group of animals (animals from Australia) and their relationship with tourists. However, it does not directly relate to Max's favorite animals.\n\n3. All quokka are animals from Australia.\nThis premise connects quokkas to a specific group of animals (animals from Australia) that are loved by tourists.\n\n4. All of Max's favorite animals are very fluffy.\nThis premise provides information about the characteristics of Max's favorite animals, but it does not provide any information about the specific animals themselves.\n\n5. All of Max's favorite animals love to sleep.\nThis premise provides information about the behavior of Max's favorite animals, but it does not provide any information about the specific animals themselves.\n\n6. If a koala is very fluffy, then the koala is not a quokka.\nThis premise provides a relationship between the characteristics of koalas and their classification as quokkas.\n\nNow, let's analyze the conclusion:\n\nKoalas love to sleep and are quokka.\n\nFrom premise 3, we know that all quokkas are animals from Australia, which are loved by tourists (premise 2). This implies that quokkas are Max's favorite animals (premise 1). \n\nHowever, from premise 4, we know that all of Max's favorite animals are very fluffy. If a koala is very fluffy (premise 6), then it is not a quokka. This creates a contradiction: if a koala is a quokka, then it cannot be very fluffy, but if it is very fluffy, then it cannot be a quokka. \n\nTherefore, we cannot conclude that koalas are quokkas.\n\nHowever, we can conclude that if koalas are quokkas, then they must be loved by tourists (premise 2), and thus they are Max's favorite animals (premise 1). \n\nFrom premise 5, we know that all of Max's favorite animals love to sleep, which implies that koalas love to sleep.\n\nTherefore, the conclusion is uncertain because we have found a situation where the conclusion could be true, but we have not been able to prove it.\n\nHowever, since we know that the premises do not contradict the conclusion directly, and we can find a situation where the conclusion could be true, the conclusion is uncertain in the sense that it is possible that the conclusion is true but we cannot determine it for certain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we'll break it down step by step using the premises provided.\n\nPremise 1: If animals are loved by tourists, then they are Max's favorite animals.\nPremise 2: All animals from Australia are loved by tourists.\nPremise 3: All quokkas are animals from Australia.\nPremise 4: All of Max's favorite animals are very fluffy.\nPremise 5: All of Max's favorite animals love to sleep.\nPremise 6: If a koala is very fluffy, then the koala is not a quokka.\n\nNow, let's analyze the conclusion we're trying to determine: \"Koalas love to sleep and are quokkas.\"\n\n1. We can start by analyzing Premise 6: If a koala is very fluffy, then the koala is not a quokka. This premise tells us that a koala cannot be a quokka if it's very fluffy. However, it doesn't say anything about a koala that is not very fluffy.\n\n2. We can use Premise 4: All of Max's favorite animals are very fluffy. This premise tells us that for an animal to be Max's favorite, it must be very fluffy.\n\n3. From Premise 5: All of Max's favorite animals love to sleep, we can conclude that any animal that is Max's favorite also loves to sleep.\n\n4. Now, let's use Premise 3: All quokkas are animals from Australia. This premise, combined with Premise 2: All animals from Australia are loved by tourists, tells us that all quokkas are loved by tourists.\n\n5. Using Premise 1: If animals are loved by tourists, then they are Max's favorite animals, we can conclude that all quokkas are Max's favorite animals, since they are loved by tourists.\n\n6. From step 2, we know that all of Max's favorite animals are very fluffy. Since we've concluded that all quokkas are Max's favorite animals, this means that all quokkas are very fluffy.\n\n7. However, this creates a conflict with Premise 6: If a koala is very fluffy, then the koala is not a quokka. If we assume that a quokka (which is very fluffy) is also a koala, then Premise 6 would be violated.\n\n8. Since we can't have a koala and a quokka being the same at the same time (as per Premise 6), we have to consider the possibility that koalas and quokkas are distinct. This means that the conclusion \"Koalas love to sleep and are quokkas\" cannot be definitively true or false based on the premises alone.\n\nHowever, we can safely say that if we assume a koala is a quokka, it leads to a logical contradiction. Therefore, the conclusion \"Koalas love to sleep and are quokkas\" is **uncertain**.\n\nBut, we can safely say that the premise \"Koalas are quokkas\" is **false** because if we assume a koala is a quokka, it leads to a logical contradiction.\n\nTherefore, we have \"Koalas love to sleep\" and \"Koalas are quokkas\" as two separate statements. Given the premises, we can say that \"Koalas love to sleep\" is **true**, but \"Koalas are quokkas\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises step by step and determine if the conclusion follows logically.\n\nPremise 1: If animals are loved by tourists, then they are Max's favorite animals.\nPremise 2: All animals from Australia are loved by tourists.\nPremise 3: All quokkas are animals from Australia.\nPremise 4: All of Max's favorite animals are very fluffy.\nPremise 5: All of Max's favorite animals love to sleep.\nPremise 6: If a koala is very fluffy, then the koala is not a quokka.\n\nWe are given the conclusion: Koalas love to sleep and are quokkas.\n\nStep 1: From Premise 2 and Premise 3, we can conclude that all quokkas are loved by tourists (since all animals from Australia are loved by tourists and all quokkas are animals from Australia).\n\nStep 2: Using Premise 1, we can infer that all quokkas are Max's favorite animals (since all quokkas are loved by tourists, which implies they are Max's favorite animals).\n\nStep 3: From Premise 4, we know that all of Max's favorite animals are very fluffy.\n\nStep 4: From Premise 6, we can conclude that a koala cannot be a quokka if it is very fluffy (since if a koala is very fluffy, then it is not a quokka).\n\nHowever, we have a conflict here. We previously concluded that all quokkas are Max's favorite animals (Step 2) and that all of Max's favorite animals are very fluffy (Step 3). But we also concluded that a koala cannot be a quokka if it is very fluffy (Step 4).\n\nThis conflict suggests that there might be some ambiguity or uncertainty in the conclusion. We cannot definitively conclude that koalas are quokkas, since we have contradictory information.\n\nHowever, let's continue with our analysis:\n\nStep 5: From Premise 5, we know that all of Max's favorite animals love to sleep.\n\nSince we concluded that all quokkas are Max's favorite animals (Step 2), we can infer that quokkas love to sleep (using Premise 5).\n\nHowever, we are trying to conclude that koalas love to sleep and are quokkas. The only way this conclusion could be true is if koalas are indeed quokkas.\n\nBut we have already established that there is a conflict between the premises (Steps 3 and 4). This means that we cannot logically conclude that koalas are quokkas.\n\nTherefore, the conclusion \"Koalas love to sleep and are quokkas\" is uncertain, as it relies on a contradictory assumption that koalas are quokkas despite the premises suggesting that they cannot be.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to break it down step by step.\n\nPremise 1: If animals are loved by tourists, then they are Max's favorite animals.\nThis premise gives us a conditional relationship between being loved by tourists and being Max's favorite animals.\n\nPremise 2: All animals from Australia are loved by tourists.\nThis premise gives us information about a specific group of animals (animals from Australia) and their relationship with being loved by tourists.\n\nPremise 3: All quokka are animals from Australia.\nThis premise gives us information about quokkas and their relationship with being animals from Australia.\n\nPremise 4: All of Max's favorite animals are very fluffy.\nThis premise gives us information about Max's favorite animals and their characteristics (very fluffy).\n\nPremise 5: All of Max's favorite animals love to sleep.\nThis premise gives us information about Max's favorite animals and their behavior (love to sleep).\n\nPremise 6: If a koala is very fluffy, then the koala is not a quokka.\nThis premise gives us a conditional relationship between being a koala, being very fluffy, and being a quokka.\n\nNow, let's analyze the conclusion: Koalas love to sleep and are quokka.\nTo determine the truth of this conclusion, we need to see if it logically follows from the premises.\n\nStep 1: From Premise 2 and Premise 3, we can conclude that all quokkas are loved by tourists (since they are animals from Australia).\n\nStep 2: From Premise 1, we can conclude that all quokkas are Max's favorite animals (since they are loved by tourists).\n\nStep 3: From Premise 4, we can conclude that all quokkas are very fluffy (since they are Max's favorite animals).\n\nStep 4: From Premise 6, we can conclude that all very fluffy quokkas are not koalas (since the premise states that if a koala is very fluffy, then it is not a quokka).\n\nNow, let's try to relate this to the conclusion: Koalas love to sleep and are quokka.\nIf koalas are quokkas, then they must be very fluffy (from Premise 3). But then, from Premise 6, we can conclude that they are not koalas (since they are very fluffy).\n\nHowever, we also know that all quokkas are Max's favorite animals (from Step 2) and all of Max's favorite animals love to sleep (from Premise 5).\n\nTherefore, we can conclude that quokkas love to sleep.\n\nBut we cannot conclude that koalas love to sleep and are quokkas. The conclusion is uncertain because it makes an assumption about koalas that we cannot logically derive from the premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the truth value of the conclusion \"Koalas love to sleep and are quokka,\" we need to break down the given premises and apply them to the conclusion.\n\n1. If animals are loved by tourists, then they are Max's favorite animals. \n   - This premise establishes a relationship between animals loved by tourists and Max's favorite animals.\n\n2. All animals from Australia are loved by tourists. \n   - This premise connects animals from Australia to the condition of being loved by tourists.\n\n3. All quokka are animals from Australia. \n   - This premise links quokkas to animals from Australia.\n\n4. All of Max's favorite animals are very fluffy. \n   - This premise connects Max's favorite animals to being very fluffy.\n\n5. All of Max's favorite animals love to sleep. \n   - This premise connects Max's favorite animals to loving to sleep.\n\n6. If a koala is very fluffy, then the koala is not a quokka. \n   - This premise creates a condition where if a koala is very fluffy, it cannot be a quokka.\n\nNow, we need to analyze the conclusion: \"Koalas love to sleep and are quokka.\"\n\nTo determine if this conclusion is true, false, or uncertain, let's break it down:\n\n- If koalas are quokkas, then they are animals from Australia (premise 3).\n- Since animals from Australia are loved by tourists (premise 2), koalas would also be loved by tourists.\n- As a result, koalas would be Max's favorite animals (premise 1).\n- All of Max's favorite animals are very fluffy (premise 4), so koalas would be very fluffy.\n- However, premise 6 states that if a koala is very fluffy, then it is not a quokka, which creates a contradiction.\n- Since we have a contradiction, we cannot conclude that the statement is true.\n\nHowever, we cannot conclude it is false either, because we cannot directly prove it is false with the given premises. It is uncertain because we cannot logically derive a conclusion that it is either true or false.\n\nSo, the final answer is:\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use a step-by-step approach and apply the rules of logic.\n\nGiven premises:\n\n1. If animals are loved by tourists, then they are Max's favorite animals. (Let's denote this as A \u2192 B)\n2. All animals from Australia are loved by tourists. (Let's denote this as B)\n3. All quokka are animals from Australia. (Let's denote this as C)\n4. All of Max's favorite animals are very fluffy. (Let's denote this as B \u2192 D)\n5. All of Max's favorite animals love to sleep. (Let's denote this as B \u2192 E)\n6. If a koala is very fluffy, then the koala is not a quokka. (Let's denote this as D \u2192 \u00acC)\n\nConclusion: Koalas love to sleep and are quokka. (Let's denote this as E \u2227 C)\n\nStep 1: Apply premise 2 to premise 3 using the rule of transitive inference (if A implies B, and B implies C, then A implies C). We get: All quokka are loved by tourists. (B \u2227 C)\n\nStep 2: Apply premise 1 to the result from step 1 (B \u2227 C). We get: All quokka are Max's favorite animals. (B \u2227 C \u2192 B)\n\nStep 3: Apply premise 4 to premise 2 using the rule of transitive inference (if A implies B, and B implies C, then A implies C). We get: All animals from Australia that are loved by tourists are very fluffy. (B \u2227 B \u2192 D)\n\nStep 4: Apply premise 6 to premise 3. If a koala is very fluffy, then the koala is not a quokka. Let's assume that a koala is very fluffy (D). Then, we can deduce that the koala is not a quokka (\u00acC).\n\nStep 5: Now, we need to determine whether the conclusion (E \u2227 C) is true, false, or uncertain based on the given premises. We know that koalas are animals from Australia (B), and all of Max's favorite animals love to sleep (B \u2192 E). \n\nStep 6:  If a koala is very fluffy, then the koala is not a quokka. We don't know if a koala is very fluffy or not, but we can use the information from step 4 to infer that if a koala is very fluffy, it is not a quokka.\n\nStep 7:  Now, we can conclude that if a koala is very fluffy, it is not a quokka. This implies that if a koala is very fluffy, it cannot be a quokka and also love to sleep, as it contradicts the information that all quokkas love to sleep. However, we cannot conclude that a koala is not quokka or does not love to sleep. We can only conclude that it is uncertain whether a koala is quokka or loves to sleep.\n\nTherefore, the conclusion (Koalas love to sleep and are quokka) is uncertain.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: If animals are loved by tourists, then they are Max's favorite animals.\nPremise 2: All animals from Australia are loved by tourists.\nPremise 3: All quokkas are animals from Australia.\nPremise 4: All of Max's favorite animals are very fluffy.\nPremise 5: All of Max's favorite animals love to sleep.\nPremise 6: If a koala is very fluffy, then the koala is not a quokka.\n\nNow, let's analyze the conclusion: Koalas love to sleep and are quokkas.\n\nTo determine whether the conclusion is true, false, or uncertain, we need to find the relationship between koalas and quokkas.\n\nFrom Premise 3, we know that all quokkas are animals from Australia.\n\nFrom Premise 2, we know that all animals from Australia are loved by tourists.\n\nUsing the transitive property, we can conclude that all quokkas are loved by tourists.\n\nFrom Premise 1, we know that if animals are loved by tourists, then they are Max's favorite animals.\n\nUsing the transitive property again, we can conclude that all quokkas are Max's favorite animals.\n\nFrom Premise 4, we know that all of Max's favorite animals are very fluffy.\n\nSo, we can conclude that quokkas are very fluffy.\n\nNow, let's analyze the relationship between koalas and quokkas. From Premise 6, we know that if a koala is very fluffy, then the koala is not a quokka.\n\nSince we already know that quokkas are very fluffy, we can conclude that koalas are not quokkas.\n\nHowever, the conclusion states that koalas love to sleep and are quokkas. We already know that all of Max's favorite animals love to sleep, and we know that quokkas are Max's favorite animals.\n\nSo, we can conclude that quokkas love to sleep.\n\nTherefore, the statement \"Koalas love to sleep and are quokkas\" is uncertain because we can conclude that quokkas love to sleep, but we cannot conclude that koalas are quokkas.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises step by step.\n\n1. If animals are loved by tourists, then they are Max's favorite animals.  (Premise 1)\n2. All animals from Australia are loved by tourists.  (Premise 2)\n3. All quokkas are animals from Australia.  (Premise 3)\n4. All of Max's favorite animals are very fluffy.  (Premise 4)\n5. All of Max's favorite animals love to sleep.  (Premise 5)\n6. If a koala is very fluffy, then the koala is not a quokka.  (Premise 6)\n\nFrom Premise 2 and Premise 3, we can conclude that all quokkas are loved by tourists. Using Premise 1, we can infer that all quokkas are Max's favorite animals.\n\nNow, we can combine this with Premise 4: all of Max's favorite animals are very fluffy. This implies that quokkas are very fluffy.\n\nHowever, Premise 6 states that if a koala is very fluffy, then the koala is not a quokka. Since we know that quokkas are very fluffy, we can conclude that quokkas are not koalas.\n\nFrom Premise 5, we know that all of Max's favorite animals love to sleep. Since quokkas are Max's favorite animals (from the inference above), we can conclude that quokkas love to sleep.\n\nThe conclusion states that koalas love to sleep and are quokkas. However, we have established that quokkas are not koalas. Therefore, the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the truth of the given conclusion, we need to analyze the premises step by step.\n\nPremise 1: If animals are loved by tourists, then they are Max's favorite animals.\nThis premise establishes a relationship between animals loved by tourists and Max's favorite animals.\n\nPremise 2: All animals from Australia are loved by tourists.\nThis premise states that any animal from Australia is loved by tourists.\n\nPremise 3: All quokka are animals from Australia.\nThis premise connects quokkas with Australia, indicating that quokkas are a type of animal from Australia.\n\nPremise 4: All of Max's favorite animals are very fluffy.\nThis premise states a characteristic of Max's favorite animals.\n\nPremise 5: All of Max's favorite animals love to sleep.\nThis premise states another characteristic of Max's favorite animals.\n\nPremise 6: If a koala is very fluffy, then the koala is not a quokka.\nThis premise establishes a contradictory relationship between koalas and quokkas based on their fluffiness.\n\nNow, let's analyze the conclusion: Koalas love to sleep and are quokkas.\n\nFrom Premise 2 and Premise 3, we can conclude that quokkas are animals loved by tourists.\n\nUsing Premise 1, since quokkas are loved by tourists, they must be Max's favorite animals.\n\nUsing Premise 4, since quokkas are Max's favorite animals, they are very fluffy.\n\nNow, let's look at the given conclusion: Koalas love to sleep and are quokkas.\n\nFrom the previous steps, we know that quokkas are very fluffy (Premise 4), and if a koala is very fluffy, then the koala is not a quokka (Premise 6). This creates a contradiction because if koalas are very fluffy, they cannot be quokkas.\n\nHowever, we also know from the premises that quokkas are Max's favorite animals (Premise 1, 2, and 3), which implies that quokkas love to sleep (Premise 5).\n\nCombining these facts, we can see that quokkas (which are Max's favorite animals) love to sleep (Premise 5). However, the conclusion states that koalas love to sleep and are quokkas.\n\nSince we've established a contradiction between koalas being very fluffy (which would make them not quokkas) and quokkas loving to sleep (a characteristic of Max's favorite animals), the conclusion \"Koalas love to sleep and are quokkas\" is uncertain.\n\nWe cannot definitively say whether the conclusion is true or false because the premises provide conflicting information about koalas and quokkas.\n\nTherefore, the final answer is:\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will use a process of elimination and logical reasoning based on the given premises.\n\nPremise 1: If animals are loved by tourists, then they are Max's favorite animals.\nPremise 2: All animals from Australia are loved by tourists.\nPremise 3: All quokka are animals from Australia.\nPremise 4: All of Max's favorite animals are very fluffy.\nPremise 5: All of Max's favorite animals love to sleep.\nPremise 6: If a koala is very fluffy, then the koala is not a quokka.\n\nConclusion: Koalas love to sleep and are quokkas.\n\nLet's break down the conclusion step by step:\n\n1. We know that koalas are very fluffy (from Premise 6).\n2. If a koala is very fluffy, then it is not a quokka (from Premise 6). This means that koalas cannot be quokkas.\n3. The conclusion states that koalas are quokkas, which contradicts the information from Premise 3 that all quokkas are animals from Australia.\n4. However, we also know that all animals from Australia are loved by tourists (from Premise 2), and all quokkas are animals from Australia (from Premise 3).\n5. Since koalas are very fluffy (from Premise 6), and all of Max's favorite animals are very fluffy (from Premise 4), we can conclude that koalas are Max's favorite animals.\n6. We also know that all of Max's favorite animals love to sleep (from Premise 5).\n\nNow, let's analyze the conclusion: \"Koalas love to sleep and are quokkas.\"\n\nFrom our previous analysis, we know that koalas are Max's favorite animals, and all of Max's favorite animals love to sleep (from Premise 5). Therefore, the statement \"Koalas love to sleep\" is true.\n\nHowever, we also know that koalas cannot be quokkas (from Premise 6). Therefore, the statement \"Koalas are quokkas\" is false.\n\nSince the conclusion contains both true and false statements, the entire conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "Let's break down the given premises and analyze the conclusion step by step:\n\n1. If animals are loved by tourists, then they are Max's favorite animals. \n   This premise establishes a relationship between animals loved by tourists and Max's favorite animals.\n\n2. All animals from Australia are loved by tourists. \n   This premise provides information about a subset of animals that are loved by tourists.\n\n3. All quokka are animals from Australia. \n   This premise establishes a relationship between quokkas and animals from Australia.\n\n4. All of Max's favorite animals are very fluffy. \n   This premise provides information about the characteristics of Max's favorite animals.\n\n5. All of Max's favorite animals love to sleep. \n   This premise provides information about another characteristic of Max's favorite animals.\n\n6. If a koala is very fluffy, then the koala is not a quokka. \n   This premise establishes a contradictory relationship between koalas and quokkas based on their fluffiness.\n\nNow, let's analyze the conclusion:\n\nKoalas love to sleep and are quokka.\n\nTo determine whether this conclusion is true, false, or uncertain, we need to analyze the premises and see if they support or contradict the conclusion.\n\nFrom premises 2 and 3, we know that all quokkas are animals from Australia and are loved by tourists. Since quokkas are loved by tourists, they are Max's favorite animals according to premise 1.\n\nFrom premise 4, we know that all of Max's favorite animals are very fluffy. This includes quokkas.\n\nFrom premise 6, we know that if a koala is very fluffy, then it is not a quokka. However, since quokkas are very fluffy (as established in the previous step), this premise contradicts the idea that a koala is very fluffy and also a quokka.\n\nHowever, we don't have any information about koalas loving to sleep or not. We only know that all of Max's favorite animals love to sleep (premise 5), but we don't know if koalas are among Max's favorite animals.\n\nSince we can't conclude that koalas are among Max's favorite animals, we can't determine if they love to sleep or not. Therefore, the conclusion \"Koalas love to sleep and are quokka\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we will analyze the premises step by step.\n\n1. If animals are loved by tourists, then they are Max's favorite animals.  (Premise 1)\n2. All animals from Australia are loved by tourists.  (Premise 2)\n3. All quokka are animals from Australia.  (Premise 3)\n4. All of Max's favorite animals are very fluffy.  (Premise 4)\n5. All of Max's favorite animals love to sleep.  (Premise 5)\n6. If a koala is very fluffy, then the koala is not a quokka.  (Premise 6)\n\nFrom Premise 2 and Premise 3, we can conclude that all quokka are loved by tourists. This is because they are animals from Australia.\n\nUsing Premise 1, we know that if quokka are loved by tourists, then they are Max's favorite animals.\n\nCombining the information from Premise 4 and the previous conclusion, we can determine that quokka are very fluffy.\n\nNow, let's examine the conclusion: Koalas love to sleep and are quokka.\n\nTo analyze this, we need to consider Premise 6, which states that if a koala is very fluffy, then the koala is not a quokka. This implies that if a koala is a quokka, then it cannot be very fluffy.\n\nHowever, we have already established that quokka are very fluffy. This creates a contradiction because a koala cannot be both very fluffy and a quokka at the same time.\n\nWe can still conclude that quokka are Max's favorite animals, very fluffy, and love to sleep. But we cannot determine whether koalas specifically are quokka or not, as the information from the premises does not support this conclusion.\n\nConsidering the premises and the conclusion, we cannot conclusively determine that koalas are quokka, love to sleep, and are quokka. The premises do not provide sufficient information to support this conclusion.\n\nTherefore, the final answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals_from_australia)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> max_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals_from_australia, max_favorite_animals_from_australia)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "animals_from_australia(australian_animals)",
+          "z3_formula": "animals_from_australia_australian_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "max_favorite(australian_animals)",
+          "z3_formula": "max_favorite_animals_from_australia == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "max_favorite(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, very_fluffy_animals_from_australia)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "very_fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(very_fluffy_australian_animals, not_quokka_australian_animals)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quokka(X) -> animals_from_australia(X)",
+          "z3_formula": "Implies(quokka_australian_animals, animals_from_australia_australian_animals)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(X) -> max_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals_from_australia, max_favorite_animals_from_australia)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "loved_by_tourists(australian_animals)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "max_favorite(australian_animals)",
+          "z3_formula": "max_favorite_animals_from_australia == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "max_favorite(X) -> loves_to_sleep(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, loves_to_sleep_animals_from_australia)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "loves_to_sleep(australian_animals)",
+          "z3_formula": "loves_to_sleep_animals_from_australia == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals_from_australia)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_animals_from_australia(animals_from_australia)",
+          "z3_formula": "all_animals_from_australia_animals_from_australia == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_quokkas(animals_from_australia)",
+          "z3_formula": "all_quokkas_animals_from_australia == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> maxs_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals_from_australia, maxs_favorite_animals_from_australia)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "maxs_favorite(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(maxs_favorite_animals_from_australia, very_fluffy_animals_from_australia)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "maxs_favorite(X) -> loves_to_sleep(X)",
+          "z3_formula": "Implies(maxs_favorite_animals_from_australia, loves_to_sleep_animals_from_australia)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(very_fluffy_animals_from_australia, not_quokka_animals_from_australia)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "loves_to_sleep(animals_from_australia)",
+          "z3_formula": "loves_to_sleep_animals_from_australia == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "maxs_favorite(animals_from_australia)",
+          "z3_formula": "maxs_favorite_animals_from_australia == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "very_fluffy(animals_from_australia)",
+          "z3_formula": "very_fluffy_animals_from_australia == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not_quokka(animals_from_australia)",
+          "z3_formula": "not_quokka_animals_from_australia == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals_from_australia)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_animals_from_australia(animals_from_australia)",
+          "z3_formula": "all_animals_from_australia_animals_from_australia == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_quokkas(animals_from_australia)",
+          "z3_formula": "all_quokkas_animals_from_australia == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> maxs_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals_from_australia, maxs_favorite_animals_from_australia)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "maxs_favorite(all_quokkas)",
+          "z3_formula": "maxs_favorite_all_quokkas == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "all_maxs_favorite(very_fluffy_animals)",
+          "z3_formula": "all_maxs_favorite_very_fluffy_animals == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "maxs_favorite(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(maxs_favorite_all_quokkas, very_fluffy_all_quokkas)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "all_quokkas(animals)",
+          "z3_formula": "all_quokkas_animals == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(very_fluffy_animals, not_quokka_animals)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not_quokka(animals)",
+          "z3_formula": "not_quokka_animals == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "all_maxs_favorite(love_to_sleep_animals)",
+          "z3_formula": "all_maxs_favorite_love_to_sleep_animals == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "love_to_sleep(all_quokkas)",
+          "z3_formula": "love_to_sleep_all_quokkas == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals_from_australia)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> max_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals_from_australia, max_favorite_animals_from_australia)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_animals_from_australia_are_loved_by_tourists",
+          "z3_formula": "all_animals_from_australia_are_loved_by_tourists == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_quokkas_are_animals_from_australia",
+          "z3_formula": "all_quokkas_are_animals_from_australia == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "all_max_favorite(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, very_fluffy_animals_from_australia)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "all_max_favorite(X) -> love_to_sleep(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, love_to_sleep_animals_from_australia)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(very_fluffy_animals_from_australia, not_quokka_animals_from_australia)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "all_quokkas_are_loved_by_tourists",
+          "z3_formula": "all_quokkas_are_loved_by_tourists == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "all_quokkas_are_max_favorite",
+          "z3_formula": "all_quokkas_are_max_favorite == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "all_quokkas_are_very_fluffy",
+          "z3_formula": "all_quokkas_are_very_fluffy == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "all_quokkas_are_not_koalas",
+          "z3_formula": "all_quokkas_are_not_koalas == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "quokkas_love_to_sleep",
+          "z3_formula": "quokkas_love_to_sleep == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_australia_animals_are_loved_by_tourists",
+          "z3_formula": "all_australia_animals_are_loved_by_tourists == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_quokkas_are_australia_animals",
+          "z3_formula": "all_quokkas_are_australia_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_max_favorites_are_fluffy",
+          "z3_formula": "all_max_favorites_are_fluffy == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "all_max_favorites_love_sleep",
+          "z3_formula": "all_max_favorites_love_sleep == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> max_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists, max_favorite)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> fluffy(X)",
+          "z3_formula": "Implies(max_favorite, fluffy)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> love_sleep(X)",
+          "z3_formula": "Implies(max_favorite, love_sleep)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(fluffy, not_quokka)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "koalas_are_quokkas",
+          "z3_formula": "koalas_are_quokkas == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "koalas_are_loved_by_tourists",
+          "z3_formula": "koalas_are_loved_by_tourists == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "koalas_are_max_favorites",
+          "z3_formula": "koalas_are_max_favorites == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "koalas_are_fluffy",
+          "z3_formula": "koalas_are_fluffy == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "koalas_are_not_quokkas",
+          "z3_formula": "koalas_are_not_quokkas == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "koalas_love_sleep_and_are_quokkas",
+          "z3_formula": "koalas_love_sleep_and_are_quokkas == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals)",
+          "z3_formula": "loved_by_tourists_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animals_from_australia(quokka)",
+          "z3_formula": "animals_from_australia_quokka == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "max_favorite_animals(animals_from_australia)",
+          "z3_formula": "max_favorite_animals_animals_from_australia == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "very_fluffy(max_favorite_animals)",
+          "z3_formula": "very_fluffy_max_favorite_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "love_to_sleep(max_favorite_animals)",
+          "z3_formula": "love_to_sleep_max_favorite_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(animals) -> max_favorite_animals(animals)",
+          "z3_formula": "Implies(loved_by_tourists_animals, max_favorite_animals_animals)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite_animals(animals_from_australia) -> very_fluffy(max_favorite_animals)",
+          "z3_formula": "Implies(max_favorite_animals_animals_from_australia, very_fluffy_max_favorite_animals)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(animals) & animals_from_australia(animals) -> very_fluffy(max_favorite_animals)",
+          "z3_formula": "Implies(And(loved_by_tourists_animals, animals_from_australia_quokka), very_fluffy_max_favorite_animals)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(animals) -> not animals_from_australia(animals)",
+          "z3_formula": "Implies(very_fluffy_animals, not animals_from_australia_animals)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "love_to_sleep(animals_from_australia) & animals_from_australia(animals_from_australia)",
+          "z3_formula": "And(love_to_sleep_animals_from_australia, animals_from_australia_animals_from_australia) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals_from_australia)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_animals_from_australia(loved_by_tourists)",
+          "z3_formula": "all_animals_from_australia_loved_by_tourists == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_quokkas(animals_from_australia)",
+          "z3_formula": "all_quokkas_animals_from_australia == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> max_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals_from_australia, max_favorite_animals_from_australia)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, very_fluffy_animals_from_australia)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> loves_to_sleep(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, loves_to_sleep_animals_from_australia)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(very_fluffy_animals_from_australia, not_quokka_animals_from_australia)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "all_quokkas(very_fluffy)",
+          "z3_formula": "very_fluffy_animals_from_australia == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quokkas(loves_to_sleep)",
+          "z3_formula": "loves_to_sleep_animals_from_australia == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not_quokka(koalas)",
+          "z3_formula": "not_quokka_koalas == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals)",
+          "z3_formula": "loved_by_tourists_animals == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(animals) -> max_favorite(animals)",
+          "z3_formula": "Implies(loved_by_tourists_animals, max_favorite_animals)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(australia_animals)",
+          "z3_formula": "loved_by_tourists_australia_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "australia_animals(quokkas)",
+          "z3_formula": "australia_animals_quokkas == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(animals) -> very_fluffy(animals)",
+          "z3_formula": "Implies(max_favorite_animals, very_fluffy_animals)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(animals) -> love_to_sleep(animals)",
+          "z3_formula": "Implies(max_favorite_animals, love_to_sleep_animals)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(animals) -> not_quokka(animals)",
+          "z3_formula": "Implies(very_fluffy_animals, not_quokka_animals)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "loved_by_tourists(quokkas)",
+          "z3_formula": "loved_by_tourists_quokkas == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "max_favorite(quokkas)",
+          "z3_formula": "max_favorite_quokkas == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "very_fluffy(quokkas)",
+          "z3_formula": "very_fluffy_quokkas == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not_quokka(quokkas)",
+          "z3_formula": "not_quokka_quokkas == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "love_to_sleep(quokkas)",
+          "z3_formula": "love_to_sleep_quokkas == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "koalas_love_to_sleep_and_are_quokkas",
+          "z3_formula": "koalas_love_to_sleep_and_are_quokkas == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals_from_australia)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_animals_from_australia(loved_by_tourists)",
+          "z3_formula": "all_animals_from_australia_loved_by_tourists == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_quokkas(animals_from_australia)",
+          "z3_formula": "all_quokkas_animals_from_australia == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "all_maxs_favorite_animals(very_fluffy)",
+          "z3_formula": "all_maxs_favorite_animals_very_fluffy == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all_maxs_favorite_animals(love_to_sleep)",
+          "z3_formula": "all_maxs_favorite_animals_love_to_sleep == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> maxs_favorite_animal(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals_from_australia, maxs_favorite_animal_animals_from_australia)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "maxs_favorite_animal(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(maxs_favorite_animal_animals_from_australia, very_fluffy_animals_from_australia)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "koala(X) & very_fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(And(koala_X, very_fluffy_X), not_quokka_X)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quokkas_are_maxs_favorite_animals",
+          "z3_formula": "quokkas_are_maxs_favorite_animals == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quokkas_are_very_fluffy",
+          "z3_formula": "quokkas_are_very_fluffy == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "koalas_are_quokkas",
+          "z3_formula": "koalas_are_quokkas == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "koalas_are_very_fluffy",
+          "z3_formula": "koalas_are_very_fluffy == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "koalas_are_quokkas_and_love_to_sleep",
+          "z3_formula": "koalas_are_quokkas_and_love_to_sleep == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals)",
+          "z3_formula": "loved_by_tourists_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> max_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals, max_favorite_animals)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "from_australia(animals)",
+          "z3_formula": "from_australia_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "from_australia(X) -> loved_by_tourists(X)",
+          "z3_formula": "Implies(from_australia_animals, loved_by_tourists_animals)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_australia(quokka)",
+          "z3_formula": "from_australia_quokka == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "from_australia(X) -> animal(X)",
+          "z3_formula": "Implies(from_australia_quokka, animal_quokka)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "favorite_max(animals)",
+          "z3_formula": "favorite_max_animals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "favorite_max(X) -> fluffy(X)",
+          "z3_formula": "Implies(favorite_max_animals, fluffy_animals)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy(animals)",
+          "z3_formula": "fluffy_animals == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "fluffy(X) -> sleep(X)",
+          "z3_formula": "Implies(fluffy_animals, sleep_animals)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy(koala)",
+          "z3_formula": "fluffy_koala == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(fluffy_koala, not_quokka_koala)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quokka(animals)",
+          "z3_formula": "quokka_animals == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sleep(animals)",
+          "z3_formula": "sleep_animals == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quokka(animals) == False",
+          "z3_formula": "Not(quokka_animals) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "sleep(animals) == True",
+          "z3_formula": "sleep_animals == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals_from_australia)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> max_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals_from_australia, max_favorite_animals_from_australia)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "animals_from_australia(quokka)",
+          "z3_formula": "animals_from_australia_quokka == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "max_favorite(quokka)",
+          "z3_formula": "max_favorite_quokka == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "max_favorite(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(max_favorite_quokka, very_fluffy_quokka)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "max_favorite(X) -> loves_to_sleep(X)",
+          "z3_formula": "Implies(max_favorite_quokka, loves_to_sleep_quokka)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(X) -> not quokka(X)",
+          "z3_formula": "Implies(very_fluffy_quokka, not_quokka_quokka)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not quokka(quokka)",
+          "z3_formula": "not_quokka_quokka == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quokka(koala)",
+          "z3_formula": "quokka_koala == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "koala(koala)",
+          "z3_formula": "koala_koala == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "very_fluffy(koala)",
+          "z3_formula": "very_fluffy_koala == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "loves_to_sleep(koala) == Unknown",
+          "z3_formula": "loves_to_sleep_koala == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals)",
+          "z3_formula": "loved_by_tourists_animals == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> max_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals, max_favorite_animals)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals_from_australia)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animals_from_australia(quokka)",
+          "z3_formula": "animals_from_australia_quokka == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(max_favorite_animals, very_fluffy_animals)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> love_to_sleep(X)",
+          "z3_formula": "Implies(max_favorite_animals, love_to_sleep_animals)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(very_fluffy_animals, not_quokka_animals)",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 142,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 101
+    },
+    "maxsat_stats": {
+      "satisfied": 100,
+      "excluded": 1,
+      "total_weight": 140,
+      "solve_time_ms": 1.3978825882077217
+    },
+    "timing": {
+      "trace_gen_s": 8.849,
+      "extraction_s": 27.477,
+      "dedup_s": 3.248,
+      "maxsat_s": 0.007,
+      "total_s": 39.581
+    }
+  }
+}

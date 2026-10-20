@@ -1,0 +1,536 @@
+{
+  "problem": {
+    "id": "folio_90",
+    "problem": "Given the following premises:\n[BG] Books contain tons of knowledge. [BG] When a person reads a book, that person gains knowledge.  [BG] If a person gains knowledge, they become smarter. Harry read the book \u201cWalden\u201d by Henry Thoreau.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nA person who is smarter has gained knowledge.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Book(x) \u2192 Knowledge(x))",
+      "\u2200x \u2200y (ReadBook(x, y) \u2192 GainKnowledge(x))",
+      "\u2200x (GainKnowledge(x) \u2192 Smarter(x))",
+      "ReadBook(harry, walden) \u2227 Book(walden)"
+    ],
+    "conclusion_fol": "\u2200x (Smarter(x) \u2192 GainKnowledge(x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 57.0,
+      "Unknown": 28.0
+    },
+    "answer_counts": {
+      "Unknown": 2,
+      "True": 9
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they logically lead to the conclusion.\n\nPremise 1: [BG] Books contain tons of knowledge. \nThis premise tells us that books are a source of knowledge, but it doesn't directly relate to the conclusion.\n\nPremise 2: [BG] When a person reads a book, that person gains knowledge. \nThis premise tells us that reading a book leads to gaining knowledge, which is a crucial connection between the premises and the conclusion.\n\nPremise 3: [BG] If a person gains knowledge, they become smarter. \nThis premise tells us that gaining knowledge leads to becoming smarter, which is another crucial connection between the premises and the conclusion.\n\nNow, let's analyze the conclusion: \"A person who is smarter has gained knowledge.\"\n\nThe conclusion implies that gaining knowledge is a result of being smarter. However, the premises do not support this implication. Instead, the premises suggest that gaining knowledge leads to becoming smarter (Premise 3), not the other way around.\n\nIn other words, the premises suggest a causal relationship between gaining knowledge and becoming smarter, where gaining knowledge is the cause, and becoming smarter is the effect. The conclusion, however, reverses this causal relationship.\n\nTherefore, based on the premises provided, the conclusion is uncertain. We cannot logically conclude that a person who is smarter has gained knowledge, as the premises suggest the opposite causal relationship.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the premises and see if they logically lead to the conclusion.\n\nPremise 1: [BG] Books contain tons of knowledge.\nThis premise tells us about the content of books, but it doesn't directly relate to the relationship between reading, gaining knowledge, and becoming smarter.\n\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nThis premise establishes a causal relationship between reading a book and gaining knowledge.\n\nPremise 3: [BG] If a person gains knowledge, they become smarter.\nThis premise establishes a causal relationship between gaining knowledge and becoming smarter.\n\nConclusion: A person who is smarter has gained knowledge.\n\nTo determine if the conclusion is true, false, or uncertain, let's analyze the logical flow:\n\n1. Harry read the book \"Walden\" by Henry Thoreau. (This is an additional statement that is not a premise, but it's a given fact)\n2. From Premise 2, we know that when a person reads a book, they gain knowledge. Therefore, Harry gained knowledge by reading the book.\n3. From Premise 3, we know that if a person gains knowledge, they become smarter. Therefore, since Harry gained knowledge, he must have become smarter.\n\nNow, let's examine the conclusion: A person who is smarter has gained knowledge.\n\nThe logical flow shows that Harry, who read the book and became smarter, indeed gained knowledge. This implies that the statement \"A person who is smarter has gained knowledge\" is true, as it is supported by the logical flow from the premises.\n\nHowever, we must be cautious and consider the broader context. The conclusion is a general statement that applies to all cases, not just Harry's specific situation. In general, if a person is smarter, it is reasonable to infer that they have gained knowledge, as there are no other premises that contradict this conclusion.\n\nTherefore, the conclusion \"A person who is smarter has gained knowledge\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use a logical approach by analyzing the premises and applying them to the conclusion.\n\nPremise 1: [BG] Books contain tons of knowledge.\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nPremise 3: [BG] If a person gains knowledge, they become smarter.\n\nConclusion: A person who is smarter has gained knowledge.\n\nNow, let's analyze the conclusion using the premises. \n\nFrom Premise 3, we know that if a person gains knowledge, they become smarter. \n\nFrom Premise 2, we know that when a person reads a book, they gain knowledge.\n\nWe can use these premises to make a logical argument:\n\n1. Harry read the book \u201cWalden\u201d by Henry Thoreau. (Given in the problem statement)\n2. When Harry read the book, he gained knowledge. (Premise 2)\n3. If Harry gained knowledge, he became smarter. (Premise 3)\n\nNow, we can apply the conclusion: A person who is smarter has gained knowledge.\n\nSince we know that Harry gained knowledge, we can infer that he is smarter (from Premise 3). Therefore, we can conclude that a person who is smarter (in this case, Harry) has indeed gained knowledge.\n\nSo, the conclusion is true.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: [BG] Books contain tons of knowledge.\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nPremise 3: [BG] If a person gains knowledge, they become smarter.\n\nWe are given the information that Harry read the book \u201cWalden\u201d by Henry Thoreau.\n\nFirst, let's use Premise 1 and Premise 2 to conclude that Harry gained knowledge when he read the book.\n\nPremise 1: [BG] Books contain tons of knowledge.\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\n\u2234 Harry gained knowledge when he read the book \u201cWalden\u201d by Henry Thoreau.\n\nNow, let's use Premise 3 to conclude that Harry became smarter after gaining knowledge.\n\nPremise 3: [BG] If a person gains knowledge, they become smarter.\n\u2234 Harry became smarter after gaining knowledge.\n\nThe conclusion we are given is: A person who is smarter has gained knowledge.\n\nFrom our previous conclusions, we know that Harry became smarter after gaining knowledge. Therefore, it is true that a person who is smarter (in this case, Harry) has gained knowledge.\n\nThe conclusion is: True\n\nFinal Answer: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the truth of the given conclusion, we can use a method called \"deductive reasoning\" or \"syllogism.\" We'll analyze the premises and see if they logically lead to the conclusion.\n\nPremise 1: [BG] Books contain tons of knowledge.\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nPremise 3: [BG] If a person gains knowledge, they become smarter.\nPremise 4: Harry read the book \u201cWalden\u201d by Henry Thoreau.\n\nWe need to determine the truth of the conclusion: A person who is smarter has gained knowledge.\n\nLet's break down the premises and see how they relate to the conclusion:\n\nFrom Premise 2, we know that reading a book leads to gaining knowledge.\nFrom Premise 3, we know that gaining knowledge leads to becoming smarter.\n\nNow, let's examine the relationship between the premises and the conclusion:\n\nPremise 4: Harry read the book \u201cWalden\u201d by Henry Thoreau.\n\nUsing Premise 2, we can conclude: Harry gained knowledge.\n\nUsing Premise 3, we can conclude: Harry became smarter.\n\nNow, let's examine the conclusion: A person who is smarter has gained knowledge.\n\nSince we have established that Harry gained knowledge (Premise 4 + Premise 2) and Harry became smarter (Premise 4 + Premise 3), we can logically conclude that a person who is smarter has indeed gained knowledge.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step.\n\nPremise 1: [BG] Books contain tons of knowledge.\n\nThis premise tells us that books have a lot of knowledge in them, but it doesn't directly relate to the conclusion. We can use this information to understand that reading a book can potentially lead to gaining knowledge.\n\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\n\nThis premise directly relates to reading a book and gaining knowledge. It tells us that if someone reads a book, they will gain knowledge.\n\nPremise 3: [BG] If a person gains knowledge, they become smarter.\n\nThis premise connects gaining knowledge to becoming smarter. It tells us that if someone gains knowledge, they will become smarter as a result.\n\nNow, let's apply these premises to the given conclusion: \"A person who is smarter has gained knowledge.\"\n\nWe know that Harry read the book \"Walden\" by Henry Thoreau (this information is not given in the premises but is given as additional information, so we will ignore it for now). \n\nFrom Premise 3, we can conclude that if Harry gained knowledge, then he became smarter.\n\nFrom Premise 2, we can conclude that when Harry read the book, he gained knowledge.\n\nNow, let's put these two conclusions together: If Harry gained knowledge, then he became smarter (Premise 3), and we know that Harry gained knowledge when he read the book (Premise 2).\n\nSo, the conclusion \"A person who is smarter has gained knowledge\" is actually a reversal of the original premises. We can conclude that if Harry became smarter (which we know he did from Premise 3), then it is true that he gained knowledge.\n\nTherefore, the conclusion \"A person who is smarter has gained knowledge\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the premises and the conclusion to see if they logically follow.\n\nPremise 1: [BG] Books contain tons of knowledge.\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nPremise 3: [BG] If a person gains knowledge, they become smarter.\nConclusion: A person who is smarter has gained knowledge.\n\nNow, let's analyze the relationship between the premises and the conclusion:\n\nPremise 1 and Premise 2 together imply that reading a book (a specific action) leads to gaining knowledge. \n\nPremise 3 states that gaining knowledge leads to becoming smarter.\n\nThe conclusion states that a person who is smarter has gained knowledge. This conclusion logically follows from Premise 3, as it directly states that gaining knowledge leads to becoming smarter.\n\nHowever, we can also analyze the conclusion in a different way:\n\nThe premises tell us about the relationship between reading books, gaining knowledge, and becoming smarter. They do not tell us about the inverse relationship: being smarter implies gaining knowledge.\n\nTherefore, based on the given premises, we can conclude that a person who is smarter has gained knowledge. This conclusion is logically supported by Premise 3.\n\nSo, the conclusion is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the given conclusion is true, false, or uncertain, we need to analyze the premises and see if they logically lead to the conclusion.\n\nPremise 1: [BG] Books contain tons of knowledge.\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nPremise 3: [BG] If a person gains knowledge, they become smarter.\n\nNow, let's analyze the conclusion: \"A person who is smarter has gained knowledge.\"\n\nWe can see that the conclusion is actually the reverse of the third premise, which states that \"If a person gains knowledge, they become smarter.\" This is known as a converse relationship.\n\nTo determine whether the conclusion is true, we need to check if the converse of the third premise is logically true. In general, the converse of a conditional statement is not necessarily true.\n\nHowever, in this case, we can see that the converse of the third premise is logically true because gaining knowledge is a necessary condition for becoming smarter. If a person becomes smarter, it must be because they gained knowledge, as there is no other known reason for becoming smarter.\n\nTherefore, the conclusion \"A person who is smarter has gained knowledge\" is logically true and can be inferred from the premises.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: [BG] Books contain tons of knowledge.\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nPremise 3: [BG] If a person gains knowledge, they become smarter.\n\nFrom Premise 1 and Premise 2, we can infer that reading a book is a way to gain knowledge. \n\nNow, let's examine the conclusion: \"A person who is smarter has gained knowledge.\"\n\nWe can break this down into two parts:\n1. A person is smarter.\n2. A person has gained knowledge.\n\nFrom Premise 3, we know that if a person gains knowledge, they become smarter. This is a causal relationship, indicating that gaining knowledge leads to becoming smarter.\n\nUsing Modus Ponens (a logical rule), we can infer that:\nIf a person gains knowledge (premise 2), then they become smarter (premise 3).\nTherefore, if a person is smarter (conclusion 1), it is because they gained knowledge.\n\nHence, the conclusion \"A person who is smarter has gained knowledge\" is logically true based on the given premises.\n\nFinal answer: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: [BG] Books contain tons of knowledge. \nThis premise provides information about the source of knowledge, but it doesn't directly relate to the conclusion.\n\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nThis premise establishes a direct relationship between reading a book and gaining knowledge.\n\nPremise 3: [BG] If a person gains knowledge, they become smarter.\nThis premise connects gaining knowledge with becoming smarter.\n\nNow, let's examine the conclusion: A person who is smarter has gained knowledge.\n\nFrom Premise 3, we know that if a person gains knowledge, they become smarter. This implies that gaining knowledge is a necessary condition for becoming smarter.\n\nNow, considering the conclusion, \"A person who is smarter has gained knowledge.\" This can be rephrased as, \"Being smarter is a result of gaining knowledge.\" Since gaining knowledge is a necessary condition for becoming smarter (from Premise 3), it logically follows that being smarter is indeed a result of gaining knowledge.\n\nTherefore, based on the given premises, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the premises and the conclusion using logical reasoning.\n\nPremise 1: [BG] Books contain tons of knowledge.\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nPremise 3: [BG] If a person gains knowledge, they become smarter.\n\nThe conclusion is: A person who is smarter has gained knowledge.\n\nWe can break down the argument as follows:\n\n1. Harry read the book \u201cWalden\u201d by Henry Thoreau (this is a given fact, not a premise).\n2. From Premise 2, we know that when a person reads a book, they gain knowledge. Therefore, Harry gained knowledge by reading the book.\n3. From Premise 3, we know that if a person gains knowledge, they become smarter. Therefore, since Harry gained knowledge, he must have become smarter.\n\nNow, let's evaluate the conclusion: A person who is smarter has gained knowledge.\n\nFrom the argument, we can see that the conclusion is logically true. If a person is smarter, it means they have gained knowledge (Premise 3). Therefore, the conclusion is true.\n\nSo, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the given conclusion is true, false, or uncertain, we will use the premises provided to see if we can logically deduce the conclusion.\n\nPremise 1: [BG] Books contain tons of knowledge.\nPremise 2: [BG] When a person reads a book, that person gains knowledge.\nPremise 3: [BG] If a person gains knowledge, they become smarter.\nConclusion: A person who is smarter has gained knowledge.\n\nLet's try to break it down step by step:\n\n1. We know that Harry read the book \"Walden\" by Henry Thoreau.\n2. From Premise 2, we can conclude that Harry gained knowledge because he read a book.\n3. From Premise 3, we can conclude that since Harry gained knowledge, he became smarter.\n\nNow, let's look at the conclusion: A person who is smarter has gained knowledge.\nFrom our previous steps, we know that Harry is smarter because he gained knowledge (Premise 3). Therefore, we can logically deduce that the conclusion is true for Harry.\n\nHowever, the conclusion is a general statement that applies to any person who is smarter. Since we can only verify that Harry is smarter and has gained knowledge, we cannot make a general statement about all people who are smarter.\n\nTherefore, we can conclude that the given conclusion is true for Harry, but we cannot make a general statement about all people who are smarter. This makes the conclusion uncertain in a general sense, as we cannot guarantee that it applies to all people who are smarter.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "knowledge(books)",
+          "z3_formula": "knowledge_books == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "reads(X, books) -> knowledge(X)",
+          "z3_formula": "Implies(reads_someone_books, knowledge_someone)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "knowledge(X) -> smart(X)",
+          "z3_formula": "Implies(knowledge_someone, smart_someone)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(X) -> knowledge(X)",
+          "z3_formula": "Implies(smart_someone, knowledge_someone)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "read_book_harry_walden",
+          "z3_formula": "read_book_harry_walden == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "read_book(X) -> gain_knowledge(X)",
+          "z3_formula": "Implies(read_book_harry_walden, gain_knowledge_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "gain_knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(gain_knowledge_harry, smarter_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "gain_knowledge(harry)",
+          "z3_formula": "gain_knowledge_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smarter(harry)",
+          "z3_formula": "smarter_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smarter(X) -> gain_knowledge(X)",
+          "z3_formula": "Implies(smarter_harry, gain_knowledge_harry)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "knowledge(books)",
+          "z3_formula": "knowledge_books == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "reads(harry, books)",
+          "z3_formula": "reads_harry_books == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, Y) -> knowledge(X)",
+          "z3_formula": "Implies(reads_harry_books, knowledge_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(knowledge_harry, smarter_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smarter(harry)",
+          "z3_formula": "smarter_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "knowledge(harry)",
+          "z3_formula": "knowledge_harry == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "knowledge_in_books",
+          "z3_formula": "knowledge_in_books == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "read_book_harry_walden",
+          "z3_formula": "read_book_harry_walden == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "reads_book(X) -> gains_knowledge(X)",
+          "z3_formula": "Implies(read_book_harry_walden, gains_knowledge_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "gains_knowledge_harry",
+          "z3_formula": "gains_knowledge_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "gains_knowledge_harry",
+          "z3_formula": "gains_knowledge_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(gains_knowledge_harry, smarter_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smarter_harry",
+          "z3_formula": "smarter_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smarter(X) -> gains_knowledge(X)",
+          "z3_formula": "Implies(smarter_harry, gains_knowledge_harry)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "contains_knowledge(books)",
+          "z3_formula": "contains_knowledge_books == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, book) -> gains_knowledge(X)",
+          "z3_formula": "Implies(reads_harry_walden, gains_knowledge_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(gains_knowledge_harry, smarter_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "reads(harry, walden)",
+          "z3_formula": "reads_harry_walden == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "gains_knowledge(harry)",
+          "z3_formula": "gains_knowledge_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smarter(harry)",
+          "z3_formula": "smarter_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smarter(X) -> gains_knowledge(X)",
+          "z3_formula": "Implies(smarter_harry, gains_knowledge_harry)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads_book(X) -> gains_knowledge(X)",
+          "z3_formula": "Implies(reads_book_harry, gains_knowledge_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge(X) -> becomes_smarter(X)",
+          "z3_formula": "Implies(gains_knowledge_harry, becomes_smarter_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "becomes_smarter_harry",
+          "z3_formula": "becomes_smarter_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "gains_knowledge_harry",
+          "z3_formula": "gains_knowledge_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "a_person_who_is_smarter_has_gained_knowledge",
+          "z3_formula": "becomes_smarter_harry == gains_knowledge_harry",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "knowledge_in_books",
+          "z3_formula": "knowledge_in_books == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "reads_book(X) -> gains_knowledge(X)",
+          "z3_formula": "Implies(reads_book_X, gains_knowledge_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "gains_knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(gains_knowledge_X, smarter_X)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smarter(X) -> gains_knowledge(X)",
+          "z3_formula": "Implies(smarter_X, gains_knowledge_X)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "reads_person_book -> gains_knowledge",
+          "z3_formula": "Implies(reads_person_book, gains_knowledge)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge -> smarter",
+          "z3_formula": "Implies(gains_knowledge, smarter)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smarter -> gains_knowledge",
+          "z3_formula": "Implies(smarter, gains_knowledge)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "knowledge_in_books",
+          "z3_formula": "knowledge_in_books == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "gains_knowledge_by_reading",
+          "z3_formula": "gains_knowledge_by_reading == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge -> smarter",
+          "z3_formula": "Implies(gains_knowledge_by_reading, smarter)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smarter",
+          "z3_formula": "smarter == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "gained_knowledge",
+          "z3_formula": "gained_knowledge == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "books_contain_knowledge",
+          "z3_formula": "books_contain_knowledge == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads_book(X) -> gains_knowledge(X)",
+          "z3_formula": "Implies(reads_book, gains_knowledge)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(gains_knowledge, smarter)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smarter(X) -> gains_knowledge(X)",
+          "z3_formula": "Implies(smarter, gains_knowledge)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "read(harry, walden)",
+          "z3_formula": "read_harry_walden == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "reads(X, Y) -> gains_knowledge(X)",
+          "z3_formula": "Implies(reads_harry_walden, gains_knowledge_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "gains_knowledge(harry)",
+          "z3_formula": "gains_knowledge_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(gains_knowledge_harry, smarter_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smarter(harry)",
+          "z3_formula": "smarter_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smarter(X) -> gains_knowledge(X)",
+          "z3_formula": "Implies(smarter_harry, gains_knowledge_harry)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "read(harry, walden)",
+          "z3_formula": "read_harry_walden == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "read(X, Y) -> gains_knowledge(X)",
+          "z3_formula": "Implies(read_harry_walden, gains_knowledge_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gains_knowledge(X) -> smarter(X)",
+          "z3_formula": "Implies(gains_knowledge_harry, smarter_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smarter(harry)",
+          "z3_formula": "smarter_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "gains_knowledge(harry)",
+          "z3_formula": "gains_knowledge_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smarter(X) -> gains_knowledge(X)",
+          "z3_formula": "Implies(smarter_harry, gains_knowledge_harry)",
+          "source_step": 4
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 67,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 40
+    },
+    "maxsat_stats": {
+      "satisfied": 40,
+      "excluded": 0,
+      "total_weight": 67,
+      "solve_time_ms": 0.9177057072520256
+    },
+    "timing": {
+      "trace_gen_s": 4.992,
+      "extraction_s": 10.851,
+      "dedup_s": 0.79,
+      "maxsat_s": 0.003,
+      "total_s": 16.636
+    }
+  }
+}

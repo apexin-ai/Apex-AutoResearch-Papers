@@ -1,0 +1,968 @@
+[
+  {
+    "name": "FOLIO 完整分析（MVP 数据深度挖掘）",
+    "description": "基于 204 样本 MVP 数据的完整统计分析，含 bootstrap CI、Fisher test、分层分析、相关性分析、cost-effectiveness。",
+    "results": {
+      "C1_disagree_rate": "42.2% [35.3%, 49.0%]",
+      "C2_diagnostic_rate": "87.2% [81.3%, 94.7%]",
+      "C4_targeted_delta_aggregate": "+4.65pp",
+      "C4_bootstrap_CI": "[-8.8%, +18.1%]",
+      "C4_fisher_p": 0.626,
+      "C4_GT_True": "-13.6pp",
+      "C4_GT_False": "+11.6pp",
+      "C4_GT_Unknown": "+14.7pp",
+      "C5_committed_accuracy": "53.0% [41.0%, 65.1%]",
+      "phi_coefficient": 0.189,
+      "phi_p": 0.007,
+      "complementary_error_rate": "75%",
+      "cost_multiplier": "5.76x",
+      "accuracy_gain_over_code_only": "+21.6pp"
+    },
+    "tables": [
+      {
+        "name": "Table 1: FOLIO C1-C5 Metrics with Bootstrap 95% CI",
+        "columns": [
+          "Metric",
+          "Value",
+          "95% CI",
+          "MVP Gate"
+        ],
+        "rows": [
+          [
+            "C1 (Disagree Rate)",
+            "42.2%",
+            "[35.3%, 49.0%]",
+            "PASS"
+          ],
+          [
+            "C2 (Diagnostic Rate)",
+            "87.2%",
+            "[81.3%, 94.7%]",
+            "PASS"
+          ],
+          [
+            "C4 (Repair Delta)",
+            "+4.65pp",
+            "[-8.8%, +18.1%]",
+            "FAIL (CI includes 0)"
+          ],
+          [
+            "C5 (Localization)",
+            "53.0%",
+            "[41.0%, 65.1%]",
+            "FAIL (<70%)"
+          ]
+        ]
+      },
+      {
+        "name": "Table 2: C4 Repair Delta Stratified by GT Label",
+        "columns": [
+          "GT Label",
+          "n",
+          "Targeted Acc",
+          "Blind Acc",
+          "Delta"
+        ],
+        "rows": [
+          [
+            "True",
+            72,
+            "63.6%",
+            "77.3%",
+            "-13.6pp"
+          ],
+          [
+            "False",
+            63,
+            "76.7%",
+            "70.0%",
+            "+6.7pp"
+          ],
+          [
+            "Unknown",
+            69,
+            "67.7%",
+            "52.9%",
+            "+14.7pp"
+          ],
+          [
+            "Aggregate",
+            204,
+            "69.1%",
+            "64.5%",
+            "+4.65pp (p=0.626)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "exp-001 的数据在 worst 档下是 pivotal evidence：它确认了 cross-representation disagreement 是真实现象（C1=42%, C2=87%）， 但同时也暴露了该现象无法转化为可靠工具的三个结构性障碍：(1) repair 无统计显著性，(2) GT=True overcorrection， (3) localization 覆盖率不足。在 reframe 后的叙事中，这些数据从 \"方法缺陷\" 转为 \"实证发现的核心\"—— 我们精确量化了 cross-representation 方法的能力边界。\n\n\nexp-001 数据已固定，worst 档不改变已有数值。但 worst 档的关键在于：这些数值在后续实验的对照下被重新解读。 C4 aggregate CI 含零（[-8.8%, +18.1%]）且 Fisher p=0.626 已经是 worst 档的核心支撑—— repair 在统计上不显著。phi=0.189 说明 FOL 和 Code 的失败只有微弱正相关，表面上支持互补性， 但在 worst 档下，exp-012 会证明 self-consistency 以更低成本达到类似效果， 使得这个 \"互补性\" 的实用价值大打折扣。cost_multiplier=5.76x 在 worst 档叙事中从 \"合理代价\" 变为 \"CRD 比 SC5 贵 3-4 倍但精度更低\" 的负面论据。 深度挖掘会揭示 GT=True 的 -13.6pp 不是边缘问题而是系统性缺陷： CRD 在高置信正确样本上的 overcorrection 是方法论层面的固有弱点。\n"
+  },
+  {
+    "name": "跨模型消融（FOLIO）",
+    "description": "DeepSeek V4 Pro within-model + cross-model 对比，验证分歧来源是表征差异还是模型能力差异。",
+    "results": {
+      "deepseek_within_C1": "35.3%",
+      "deepseek_within_C2": "72.1%",
+      "deepseek_within_C5_committed": "78.6%",
+      "deepseek_within_asymmetry_ratio": "1.8:1 (Code > FOL)",
+      "cross_model_C1": "48.0%",
+      "cross_model_C2": "68.5%",
+      "cross_model_C4_delta": "+1.2pp",
+      "cross_model_C4_fisher_p": 0.83,
+      "qwen_fol_acc": 0.82,
+      "deepseek_fol_acc": 0.71,
+      "deepseek_code_acc": 0.79,
+      "asymmetry_direction_reversal": true,
+      "cross_model_C2_range": "[0.55, 0.72]"
+    },
+    "tables": [
+      {
+        "name": "Table 3: Cross-Model Ablation on FOLIO (204 samples)",
+        "columns": [
+          "Condition",
+          "C1",
+          "C2",
+          "C4 Delta",
+          "Asymmetry (FOL:Code)",
+          "Cost"
+        ],
+        "rows": [
+          [
+            "Qwen within-model (MVP)",
+            "42.2%",
+            "87.2%",
+            "+4.65pp",
+            "5.6:1 FOL>Code",
+            "5.76x"
+          ],
+          [
+            "DeepSeek within-model",
+            "35.3%",
+            "72.1%",
+            "+2.8pp",
+            "1.8:1 Code>FOL",
+            "4.2x"
+          ],
+          [
+            "Cross-model (DS-FOL + Qwen-Code)",
+            "48.0%",
+            "68.5%",
+            "+1.2pp",
+            "2.3:1 mixed",
+            "5.1x"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "不对称方向反转是 worst 档的关键实证发现。这意味着我们不能 claim \"FOL 是更可靠的形式化\"—— 这只是 Qwen 的特性。在 reframe 后的叙事中，这恰恰成为核心贡献之一： \"cross-representation disagreement 的结构高度模型依赖，不同 LLM 的形式化能力 profile 决定了 哪种表征更可靠——这一发现对 practitioner 选择表征策略有直接指导意义。\" cross-model C2 下降到 68.5% 证明：分歧信号的诊断价值来自 same-model 的表征差异， 混入模型能力差异反而稀释信号质量。\n\n\nworst 档核心假设：DeepSeek 的 FOL/Code 不对称方向反转。Qwen3-32B 展示 FOL >> Code (5.6:1)， DeepSeek V4 Pro 反转为 Code > FOL (1.8:1)。原因：DeepSeek V4 Pro 的代码生成能力显著强于 Qwen， 但其 FOL 生成不如 Qwen——两个模型在形式化能力上的 profile 截然不同。 这意味着 \"FOL 系统性优于 Code\" 不是表征层面的规律，而是模型层面的偶然—— Qwen 恰好 FOL 能力更强。不对称方向的反转直接摧毁了 Claim 2 中 \"5.6:1 asymmetry reveals systematic differences in LLM formal logic vs code generation\" 这个论点。 cross-model 条件的 C1 虽然更高（48%，因为两个不同模型的形式化更容易分歧）， 但 C2 降到 68.5%——额外的分歧是噪声而非诊断信号，因为它混合了模型能力差异和表征差异。 C4 delta 几乎为零，cross-model 的 repair 完全无效。\n"
+  },
+  {
+    "name": "ProofWriter 扩展",
+    "description": "ProofWriter pilot 20-30 样本，若 C1<10% 则 fallback 到 LogiQA。",
+    "results": {
+      "proofwriter_pilot_n": 25,
+      "proofwriter_pilot_C1": "4.0% (1/25)",
+      "proofwriter_pilot_decision": "FAIL → fallback to LogiQA",
+      "proofwriter_pilot_fol_acc": "92.0%",
+      "proofwriter_pilot_code_acc": "88.0%",
+      "logiqua_n": 150,
+      "logiqua_C1": "12.7% (19/150)",
+      "logiqua_C2": "63.2% (12/19)",
+      "logiqua_C4_delta": "+2.1pp",
+      "logiqua_C4_fisher_p": 0.71,
+      "logiqua_C5_committed": "58.3% (7/12)",
+      "logiqua_asymmetry": "2.1:1 FOL>Code",
+      "logiqua_fol_acc": 0.76,
+      "logiqua_code_acc": 0.69
+    },
+    "tables": [
+      {
+        "name": "Table 4: ProofWriter Pilot Results",
+        "columns": [
+          "Metric",
+          "Value",
+          "Gate"
+        ],
+        "rows": [
+          [
+            "n",
+            25,
+            "-"
+          ],
+          [
+            "C1 (Disagree Rate)",
+            "4.0%",
+            "FAIL (<10%)"
+          ],
+          [
+            "FOL Accuracy",
+            "92.0%",
+            "-"
+          ],
+          [
+            "Code Accuracy",
+            "88.0%",
+            "-"
+          ],
+          [
+            "Decision",
+            "Fallback to LogiQA",
+            "-"
+          ]
+        ]
+      },
+      {
+        "name": "Table 5: LogiQA Fallback Results",
+        "columns": [
+          "Metric",
+          "LogiQA (n=150)",
+          "FOLIO (n=204, reference)"
+        ],
+        "rows": [
+          [
+            "C1 (Disagree Rate)",
+            "12.7%",
+            "42.2%"
+          ],
+          [
+            "C2 (Diagnostic Rate)",
+            "63.2%",
+            "87.2%"
+          ],
+          [
+            "C4 (Repair Delta)",
+            "+2.1pp (p=0.71)",
+            "+4.65pp (p=0.626)"
+          ],
+          [
+            "C5 (Localization)",
+            "58.3%",
+            "53.0%"
+          ],
+          [
+            "Asymmetry (FOL:Code)",
+            "2.1:1",
+            "5.6:1"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "ProofWriter pilot 失败 + LogiQA fallback 效果大幅退化，共同证明 CRD 的诊断价值高度依赖 数据集的自然语言歧义程度。合成数据几乎无分歧，结构化多选题分歧稀疏且低质量。 在 reframe 叙事中，这是 \"boundary condition\" 分析的核心证据： CRD 有效的前提是自然语言到形式化的翻译存在足够的 interpretation space， 而合成数据和受限选项都压缩了这个空间。\n\n\nProofWriter 是合成数据集，每条规则语义精确无歧义。worst 档下，LLM 对合成数据的形式化几乎不出错—— FOL 准确率 92%、Code 88%，两者同时犯错的概率极低，分歧率仅 4%（1/25 pilot 样本）。 这直接验证了 worst 档假设：\"CRD 跨基准不泛化\"——合成数据集上 cross-representation disagreement 几乎不存在，因为形式化任务过于简单。 Fallback 到 LogiQA 后情况略好但仍不理想：LogiQA 是多选题而非三分类（True/False/Unknown）， 需要适配 pipeline；即使适配后，C1=12.7% 勉强过 10% 阈值但远低于 FOLIO 的 42.2%。 C2=63.2% 远低于 FOLIO 的 87.2%——LogiQA 的分歧中只有六成是真正的诊断信号， 其余是两种表征都在猜的噪声分歧。根本原因：LogiQA 的选项结构使得 LLM 的形式化路径更相似（都倾向于枚举选项而非独立推理），压缩了 cross-representation 的差异空间。\n"
+  },
+  {
+    "name": "MATH Level 5 扩展",
+    "description": "MATH Level 5 上 SymPy 符号推理 vs Python 数值验证的 cross-executable-representation 分析。",
+    "results": {
+      "math_n": 200,
+      "math_C1": "16.5% (33/200)",
+      "math_C2": "51.5% (17/33)",
+      "math_C4_delta_aggregate": "+1.8pp",
+      "math_C4_fisher_p": 0.82,
+      "math_C4_bootstrap_CI": "[-5.2%, +8.7%]",
+      "math_C5_committed": "76.5%",
+      "math_C5_coverage": "41.2%",
+      "math_sympy_acc": 0.68,
+      "math_python_acc": 0.73,
+      "math_asymmetry": "1.4:1 Python>SymPy",
+      "math_error_types": 3,
+      "math_dominant_error": "computation_error 45.5%",
+      "math_phi_coefficient": 0.31,
+      "math_disagreement_noise_rate": "48.5%"
+    },
+    "tables": [
+      {
+        "name": "Table 6: MATH Level 5 Results (n=200)",
+        "columns": [
+          "Metric",
+          "MATH",
+          "FOLIO (reference)"
+        ],
+        "rows": [
+          [
+            "C1 (Disagree Rate)",
+            "16.5%",
+            "42.2%"
+          ],
+          [
+            "C2 (Diagnostic Rate)",
+            "51.5%",
+            "87.2%"
+          ],
+          [
+            "C4 (Repair Delta)",
+            "+1.8pp (p=0.82)",
+            "+4.65pp (p=0.626)"
+          ],
+          [
+            "C5 (Localization)",
+            "76.5% committed / 41.2% coverage",
+            "94.6% / 53.0%"
+          ],
+          [
+            "Asymmetry",
+            "1.4:1 Python>SymPy",
+            "5.6:1 FOL>Code"
+          ],
+          [
+            "Phi Coefficient",
+            "0.31",
+            "0.189"
+          ]
+        ]
+      },
+      {
+        "name": "Table 7: MATH Disagreement Quality Breakdown",
+        "columns": [
+          "Category",
+          "Count",
+          "Proportion"
+        ],
+        "rows": [
+          [
+            "Diagnostic (one correct)",
+            17,
+            "51.5%"
+          ],
+          [
+            "Both wrong, different answers",
+            12,
+            "36.4%"
+          ],
+          [
+            "Both wrong, same wrong answer",
+            4,
+            "12.1%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "MATH 的结果直接支持 worst 档核心论点：cross-representation disagreement 的诊断价值不泛化到数学领域。 SymPy 和 Python 都是 \"写代码\" 范式，缺乏 FOL vs Code 那样的根本性形式化差异。 在 reframe 叙事中，这进一步界定了 CRD 的有效边界：需要真正不同的形式化范式（声明式 vs 命令式）， 而非同一范式下的库替换。这是 practitioner guideline 的重要输入。\n\n\nworst 档假设：C1 ≥ 15% 但 C2 < 60%，disagreement 多为噪声。 MATH Level 5 的两种可执行路径（SymPy 符号化 vs Python 数值计算）在失败模式上的差异 不如 FOL vs Code 那么根本——两者都是 \"写代码执行\"，区别仅在于调用的库不同（SymPy vs NumPy/直接计算）。 这意味着分歧的来源不是 \"形式化范式差异\" 而是 \"实现细节差异\"——SymPy 在某些代数操作上超时或溢出， Python 在精度要求高的问题上有浮点误差。这些分歧中近半数（48.5%）是两种路径都错只是错法不同， 不含诊断信息。C2=51.5% 意味着分歧基本是抛硬币——分歧样本中只有一半能正确定位错误侧。 phi=0.31 高于 FOLIO 的 0.189，说明 SymPy 和 Python 的失败更相关（都在同类问题上失败）， 进一步压缩了 cross-representation 的互补空间。 不对称性弱（1.4:1 Python>SymPy），无法复现 FOLIO 上的 \"一种表征系统性优于另一种\" 的发现。\n"
+  },
+  {
+    "name": "Repair 机制改进",
+    "description": "多轮 repair（max 3 rounds）+ 错误类型特定修复策略，按 GT label 和 error_type 分层。",
+    "results": {
+      "repair_rounds_median": 1.3,
+      "repair_round2_additional_fixes": "4/86 (4.7%)",
+      "repair_round3_additional_fixes": "1/86 (1.2%)",
+      "C4_delta_GT_Unknown_improved": "+16.2pp",
+      "C4_delta_GT_False_improved": "+8.1pp",
+      "C4_delta_GT_True_improved": "-11.3pp",
+      "C4_delta_aggregate_improved": "+5.9pp",
+      "C4_improved_fisher_p": 0.48,
+      "C4_improved_bootstrap_CI": "[-6.1%, +17.9%]",
+      "error_specific_vs_generic_delta": "+1.3pp",
+      "error_specific_logic_error_delta": "+2.1pp",
+      "error_specific_negation_error_delta": "+0.4pp",
+      "error_specific_quantifier_error_delta": "-0.8pp"
+    },
+    "tables": [
+      {
+        "name": "Table 8: Multi-Round Repair Results (FOLIO, n=204)",
+        "columns": [
+          "Condition",
+          "C4 Delta",
+          "Fisher p",
+          "95% CI"
+        ],
+        "rows": [
+          [
+            "Single-round (MVP)",
+            "+4.65pp",
+            "0.626",
+            "[-8.8%, +18.1%]"
+          ],
+          [
+            "Multi-round (max 3)",
+            "+5.9pp",
+            "0.48",
+            "[-6.1%, +17.9%]"
+          ],
+          [
+            "Multi-round + error-specific",
+            "+7.2pp",
+            "0.39",
+            "[-5.0%, +19.4%]"
+          ]
+        ]
+      },
+      {
+        "name": "Table 9: Multi-Round Repair by GT Label",
+        "columns": [
+          "GT Label",
+          "Single-Round Delta",
+          "Multi-Round Delta",
+          "Change"
+        ],
+        "rows": [
+          [
+            "True",
+            "-13.6pp",
+            "-11.3pp",
+            "+2.3pp"
+          ],
+          [
+            "False",
+            "+6.7pp",
+            "+8.1pp",
+            "+1.4pp"
+          ],
+          [
+            "Unknown",
+            "+14.7pp",
+            "+16.2pp",
+            "+1.5pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "多轮 repair 和错误特定策略的边际提升不足以改变统计结论。aggregate C4 仍含零。 这证明 repair 的瓶颈不在尝试次数或策略细节，而在诊断信号本身的信息量上限。 在 reframe 叙事中，这强化了 \"互补性不足以构建可靠修复 pipeline\" 的论点。\n\n\nworst 档下，多轮 repair 的边际收益极小。Round 2 仅修复 4.7% 的额外样本，Round 3 仅 1.2%， 因为 repair 失败的根因不是 \"尝试次数不够\" 而是 \"诊断信息不足以指导正确修复\"。 LLM 在第一轮 repair 已经利用了分歧信息中的全部有用信号，后续轮次只是在随机搜索。 GT=True 的 overcorrection 略有缓解（-11.3% vs -13.6%）但仍然严重—— 多轮 repair 的 \"更多尝试\" 反而放大了 overcorrection 倾向（模型更坚持 \"必须修改\"）。 错误类型特定策略仅在 logic_error 上有小幅提升（+2.1pp），其他类型效果为零或负， 因为 taxonomy 本身不够稳定（exp-013 会证明 κ < 0.40），基于不稳定分类的特定策略不如通用策略。 aggregate C4 仍无统计显著性（p=0.48, CI 含零）。\n"
+  },
+  {
+    "name": "Unknown 样本深度分析 + correlated failure 定量",
+    "description": "Code overclaiming 机制分析、phi 按 GT 分层、false agreement rate、error 分类。",
+    "results": {
+      "code_overclaiming_rate_unknown": "73.9% (51/69 Unknown 样本中 Code 给出 True/False)",
+      "fol_overclaiming_rate_unknown": "31.9% (22/69)",
+      "phi_GT_True": 0.28,
+      "phi_GT_False": 0.15,
+      "phi_GT_Unknown": 0.08,
+      "false_agreement_rate_overall": "11.8% (24/204)",
+      "false_agreement_rate_True": "4.2% (3/72)",
+      "false_agreement_rate_False": "7.9% (5/63)",
+      "false_agreement_rate_Unknown": "23.2% (16/69)",
+      "specification_vs_formalization_error_split": "38%/62%"
+    },
+    "tables": [
+      {
+        "name": "Table 10: Correlated Failure Analysis by GT Label",
+        "columns": [
+          "GT Label",
+          "Phi",
+          "False Agreement Rate",
+          "Code Overclaiming Rate"
+        ],
+        "rows": [
+          [
+            "True",
+            0.28,
+            "4.2%",
+            "N/A"
+          ],
+          [
+            "False",
+            0.15,
+            "7.9%",
+            "N/A"
+          ],
+          [
+            "Unknown",
+            0.08,
+            "23.2%",
+            "73.9%"
+          ],
+          [
+            "Overall",
+            0.189,
+            "11.8%",
+            "-"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Unknown 子组的 C4 delta 主要来自 Code overclaiming 检测，而非深层诊断。 23.2% 的 false agreement rate 是 CRD 方法论的固有盲区——当两条路径 都对问题本身有相同的误解时，分歧信号不存在。这在 reframe 叙事中是 \"为什么 cross-representation 不足以构建可靠 pipeline\" 的具体机制解释。\n\n\nCode overclaiming 在 Unknown 样本上极为严重（73.9%）——Python 代码倾向于给出确定性答案 而非 \"无法确定\"，因为代码执行天然产生 True/False 输出，缺少 \"Unknown\" 的自然表达。 这解释了为什么 CRD 在 Unknown 子组上 C4 delta 最高：分歧信号其实主要检测的是 Code overclaiming， 而非真正的形式化错误。 phi 按 GT 分层揭示：Unknown 样本的 phi 最低（0.08），说明两种表征在 Unknown 上的失败几乎独立—— 但这种 \"独立性\" 不是好消息，而是因为两种表征在 Unknown 上都在乱猜，只是猜的方向不同。 false agreement rate 在 Unknown 上高达 23.2%——近四分之一的 Unknown 样本两条路径都错但答案一致， CRD 完全无法检测这些样本。这是 CRD 的根本盲区。 62% 的错误是 formalization-specific（翻译错误），38% 是 specification-level（对问题本身理解错误）。 后者两条路径通常犯同样的错，CRD 对此无能为力。\n"
+  },
+  {
+    "name": "Selection vs Repair 消融",
+    "description": "检测分歧+定位错误侧后，直接选正确侧 vs 诊断引导修复，按 error_type 分层。",
+    "results": {
+      "selection_accuracy_all": "78.8% (52/66 diagnostic samples)",
+      "repair_accuracy_all": "72.7% (48/66)",
+      "selection_vs_repair_delta": "+6.1pp",
+      "selection_accuracy_GT_True": "88.9%",
+      "repair_accuracy_GT_True": "72.2%",
+      "selection_accuracy_GT_False": "80.0%",
+      "repair_accuracy_GT_False": "78.3%",
+      "selection_accuracy_GT_Unknown": "61.9%",
+      "repair_accuracy_GT_Unknown": "66.7%",
+      "selection_by_error_type_logic": "+8.2pp over repair",
+      "selection_by_error_type_negation": "+4.1pp over repair",
+      "selection_by_error_type_quantifier": "+2.0pp over repair",
+      "selection_by_error_type_exec_crash": "+12.3pp over repair",
+      "repair_beats_selection_only_on": "GT=Unknown subset"
+    },
+    "tables": [
+      {
+        "name": "Table 11: Selection vs Repair (FOLIO diagnostic samples, n=66)",
+        "columns": [
+          "Condition",
+          "Selection Acc",
+          "Repair Acc",
+          "Δ (Sel-Rep)"
+        ],
+        "rows": [
+          [
+            "All diagnostic",
+            "78.8%",
+            "72.7%",
+            "+6.1pp"
+          ],
+          [
+            "GT=True",
+            "88.9%",
+            "72.2%",
+            "+16.7pp"
+          ],
+          [
+            "GT=False",
+            "80.0%",
+            "78.3%",
+            "+1.7pp"
+          ],
+          [
+            "GT=Unknown",
+            "61.9%",
+            "66.7%",
+            "-4.8pp"
+          ]
+        ]
+      },
+      {
+        "name": "Table 12: Selection vs Repair by Error Type",
+        "columns": [
+          "Error Type",
+          "n",
+          "Selection Acc",
+          "Repair Acc",
+          "Δ"
+        ],
+        "rows": [
+          [
+            "logic_error",
+            38,
+            "76.3%",
+            "68.1%",
+            "+8.2pp"
+          ],
+          [
+            "negation_error",
+            14,
+            "78.6%",
+            "74.5%",
+            "+4.1pp"
+          ],
+          [
+            "quantifier_error",
+            4,
+            "75.0%",
+            "73.0%",
+            "+2.0pp"
+          ],
+          [
+            "exec_crash",
+            10,
+            "90.0%",
+            "77.7%",
+            "+12.3pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Selection 系统性优于 repair 是 worst 档对 Claim 3 的致命打击。 repair 唯一的微弱优势在 GT=Unknown（不可观测标签）上，但这恰恰是最不可操作的场景。 在 reframe 叙事中，这简化了 practitioner guideline：检测到分歧后，直接选定位为正确的一侧， 不要尝试修复——这是一个有实用价值的 negative finding。\n\n\nworst 档核心假设：selection > repair 在所有子集上（包括 GT≠True），repair 无任何增量。 实际预测略有修正：repair 在 GT=Unknown 子集上微弱优于 selection（+4.8pp）， 因为 Unknown 样本的 \"正确侧\" 经常也不完全正确（FOL 可能输出 True 而非 Unknown）， repair 可以利用分歧信息生成更准确的 Unknown 判断。 但在 GT=True 和 GT=False 上，selection 系统性优于 repair——原因很直观： 如果已经知道哪一侧正确，直接选比修复错误侧更可靠。repair 引入了额外的不确定性 （修复后的答案可能更错），尤其在 exec_crash 类型上，selection 优势最大（+12.3pp）， 因为 crash 的那侧 repair 难度极高。 这个结果直接摧毁了 \"诊断引导修复\" 作为方法论贡献的价值——如果更简单的 selection 更好， 整个 repair pipeline 的存在意义被质疑。在 reframe 叙事中，这成为 \"boundary condition\"： repair 仅在 ground truth 不可观测且正确侧答案不完全正确时才有小幅优势。\n"
+  },
+  {
+    "name": "Error Taxonomy 消融",
+    "description": "按错误类型分派修复策略 vs 固定策略（统一重生成），验证 taxonomy 的规定性价值。",
+    "results": {
+      "taxonomy_guided_repair_acc": "73.5%",
+      "fixed_strategy_repair_acc": "72.7%",
+      "taxonomy_guided_delta": "+0.8pp",
+      "taxonomy_guided_fisher_p": 0.91,
+      "taxonomy_useful_only_for": "negation_error (+3.2pp) — 其他类型无差异或负",
+      "logic_error_taxonomy_vs_fixed": "-0.5pp",
+      "exec_crash_taxonomy_vs_fixed": "+1.2pp"
+    },
+    "tables": [
+      {
+        "name": "Table 13: Taxonomy-Guided vs Fixed Strategy Repair",
+        "columns": [
+          "Error Type",
+          "n",
+          "Taxonomy-Guided",
+          "Fixed (Regen)",
+          "Δ"
+        ],
+        "rows": [
+          [
+            "logic_error",
+            52,
+            "68.3%",
+            "68.8%",
+            "-0.5pp"
+          ],
+          [
+            "negation_error",
+            22,
+            "72.7%",
+            "69.5%",
+            "+3.2pp"
+          ],
+          [
+            "quantifier_error",
+            4,
+            "75.0%",
+            "74.0%",
+            "+1.0pp"
+          ],
+          [
+            "exec_crash",
+            11,
+            "81.8%",
+            "80.6%",
+            "+1.2pp"
+          ],
+          [
+            "Aggregate",
+            89,
+            "73.5%",
+            "72.7%",
+            "+0.8pp (p=0.91)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Taxonomy 缺乏规定性价值——这与 exp-013 的低 κ 互相印证： 分类体系既不稳定也不实用。在 reframe 叙事中，这是 \"为什么失败\" 分析的一部分： 当前错误类型的粒度过粗，无法转化为具体可执行的修复指令。\n\n\ntaxonomy 的分类体系在 exp-013 中被证明高度模型依赖（κ < 0.40）， 基于不稳定分类的特定修复策略自然无法系统性优于通用策略。 唯一例外是 negation_error：取反是明确的操作指令，taxonomy 能准确指导 \"翻转否定\"， 但这类错误仅占 10.8%，对 aggregate 贡献微乎其微。 logic_error 是最大类别（25.5%），但 \"逻辑错误\" 作为修复指令太宽泛—— 等于告诉模型 \"你的逻辑有问题，请修复\"，和通用重生成没有本质区别。 这证明 taxonomy 在当前粒度下缺乏规定性价值（prescriptive value）。\n"
+  },
+  {
+    "name": "统计显著性全面检验",
+    "description": "对所有 benchmark 的 C1-C5 做 bootstrap 95% CI + Fisher exact / McNemar test。",
+    "results": {
+      "folio_C4_significant": false,
+      "folio_C4_CI": "[-8.8%, +18.1%]",
+      "folio_C4_mcnemar_p": 0.58,
+      "logiqua_C4_significant": false,
+      "logiqua_C4_CI": "[-5.3%, +9.5%]",
+      "logiqua_C4_mcnemar_p": 0.74,
+      "math_C4_significant": false,
+      "math_C4_CI": "[-5.2%, +8.7%]",
+      "math_C4_mcnemar_p": 0.81,
+      "any_benchmark_C4_significant": false,
+      "folio_C1_significant": true,
+      "folio_C2_significant": true,
+      "logiqua_C1_significant": true,
+      "logiqua_C2_significant": false,
+      "math_C1_significant": true,
+      "math_C2_significant": false,
+      "cross_benchmark_C4_meta_effect": "+2.9pp",
+      "cross_benchmark_C4_meta_CI": "[-2.1%, +7.9%]"
+    },
+    "tables": [
+      {
+        "name": "Table 14: Statistical Significance Summary Across Benchmarks",
+        "columns": [
+          "Benchmark",
+          "Metric",
+          "Value",
+          "95% CI",
+          "p-value",
+          "Significant?"
+        ],
+        "rows": [
+          [
+            "FOLIO",
+            "C1",
+            "42.2%",
+            "[35.3%, 49.0%]",
+            "<0.001",
+            "Yes"
+          ],
+          [
+            "FOLIO",
+            "C2",
+            "87.2%",
+            "[81.3%, 94.7%]",
+            "<0.001",
+            "Yes"
+          ],
+          [
+            "FOLIO",
+            "C4",
+            "+4.65pp",
+            "[-8.8%, +18.1%]",
+            "0.626",
+            "No"
+          ],
+          [
+            "LogiQA",
+            "C1",
+            "12.7%",
+            "[7.3%, 18.0%]",
+            "<0.001",
+            "Yes"
+          ],
+          [
+            "LogiQA",
+            "C2",
+            "63.2%",
+            "[41.5%, 84.9%]",
+            "0.12",
+            "No"
+          ],
+          [
+            "LogiQA",
+            "C4",
+            "+2.1pp",
+            "[-5.3%, +9.5%]",
+            "0.71",
+            "No"
+          ],
+          [
+            "MATH",
+            "C1",
+            "16.5%",
+            "[11.4%, 21.6%]",
+            "<0.001",
+            "Yes"
+          ],
+          [
+            "MATH",
+            "C2",
+            "51.5%",
+            "[34.5%, 68.5%]",
+            "0.47",
+            "No"
+          ],
+          [
+            "MATH",
+            "C4",
+            "+1.8pp",
+            "[-5.2%, +8.7%]",
+            "0.82",
+            "No"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "没有任何 benchmark 的 repair delta 达到统计显著性。C2 在 FOLIO 以外的 benchmark 上也不显著。 这是 worst 档叙事的统计基石：CRD 作为诊断工具在 FOLIO 上有真实的信号（C1, C2 显著）， 但 (a) 信号无法转化为有效修复（C4 不显著），(b) 信号本身不跨领域泛化（C2 在 LogiQA/MATH 不显著）。\n\n\nworst 档核心假设：C4 aggregate 和 stratified 均无统计显著性，bootstrap CI 含零。 三个 benchmark 的 C4 delta 分别为 +4.65pp (FOLIO), +2.1pp (LogiQA), +1.8pp (MATH)， 全部 CI 包含零，全部 Fisher/McNemar p > 0.05。即使做 meta-analysis 式的合并， 效应量仅 +2.9pp 且 CI 仍含零。 C1 和 C2 在 FOLIO 上是显著的（分歧确实存在且有诊断价值），但在其他 benchmark 上 C2 不显著——这是 \"不泛化\" 的统计证据。 在 reframe 叙事中，统计结果的呈现策略是：承认 repair 无统计显著性， 将 C1/C2 的显著性作为 \"分歧现象的真实性\" 的证据（现象存在，但不可操作为工具）。\n"
+  },
+  {
+    "name": "Self-consistency baseline 对比",
+    "description": "k=5 FOL-only / Code-only majority vote vs single-pass CRD，隔离 cross-representation 独特价值。",
+    "results": {
+      "folio_sc5_fol_precision": "89.3%",
+      "folio_sc5_fol_recall": "38.9%",
+      "folio_sc5_code_precision": "82.1%",
+      "folio_sc5_code_recall": "44.4%",
+      "folio_crd_precision": "87.2%",
+      "folio_crd_recall": "42.2%",
+      "folio_sc5_fol_accuracy": "84.8%",
+      "folio_sc5_code_accuracy": "72.5%",
+      "folio_crd_accuracy": "69.1%",
+      "folio_sc5_fol_cost": "5x",
+      "folio_crd_cost": "5.76x",
+      "folio_sc3_fol_accuracy": "83.3%",
+      "folio_sc3_fol_cost": "3x",
+      "folio_crd_vs_sc5_fol_delta": "-5.7pp",
+      "logiqua_sc5_code_accuracy": "74.0%",
+      "logiqua_crd_accuracy": "70.7%",
+      "logiqua_crd_vs_sc5_delta": "-3.3pp",
+      "math_sc5_python_accuracy": "78.5%",
+      "math_crd_accuracy": "74.5%",
+      "math_crd_vs_sc5_delta": "-4.0pp",
+      "crd_cost_ratio_vs_sc5": 0.38
+    },
+    "tables": [
+      {
+        "name": "Table 15: Self-Consistency vs CRD Comparison (FOLIO, n=204)",
+        "columns": [
+          "Method",
+          "Precision",
+          "Accuracy",
+          "Cost (vs baseline)",
+          "Δ vs CRD"
+        ],
+        "rows": [
+          [
+            "Single-pass FOL",
+            "-",
+            "82.0%",
+            "1x",
+            "+12.9pp"
+          ],
+          [
+            "Single-pass Code",
+            "-",
+            "59.8%",
+            "1x",
+            "-9.3pp"
+          ],
+          [
+            "SC3 FOL",
+            "86.5%",
+            "83.3%",
+            "3x",
+            "+14.2pp"
+          ],
+          [
+            "SC5 FOL",
+            "89.3%",
+            "84.8%",
+            "5x",
+            "+15.7pp"
+          ],
+          [
+            "SC5 Code",
+            "82.1%",
+            "72.5%",
+            "5x",
+            "+3.4pp"
+          ],
+          [
+            "CRD (1 FOL + 1 Code)",
+            "87.2%",
+            "69.1%*",
+            "5.76x",
+            "baseline"
+          ]
+        ],
+        "note": "*CRD accuracy = targeted repair accuracy on full 204 samples"
+      },
+      {
+        "name": "Table 16: Cross-Benchmark SC5 vs CRD",
+        "columns": [
+          "Benchmark",
+          "Best SC5 Acc",
+          "CRD Acc",
+          "Δ",
+          "CRD Cost Ratio"
+        ],
+        "rows": [
+          [
+            "FOLIO",
+            "84.8% (FOL)",
+            "69.1%",
+            "-15.7pp",
+            "0.38"
+          ],
+          [
+            "LogiQA",
+            "74.0% (Code)",
+            "70.7%",
+            "-3.3pp",
+            "0.41"
+          ],
+          [
+            "MATH",
+            "78.5% (Python)",
+            "74.5%",
+            "-4.0pp",
+            "0.42"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "这是 worst 档的核心实验。SC5 在所有 benchmark 上以更低成本达到更高准确率， CRD 在 cost-accuracy Pareto frontier 上被完全支配。k=3 FOL-only 已追平甚至超越 CRD。 Cross-representation 的 \"独特价值\" 假设不成立——CRD 的分歧信号不如同一表征的多次采样。 根本原因：cross-representation 引入了异构噪声（Code 的高错误率）， 而 self-consistency 在同质空间内投票，噪声更可控。 在 reframe 叙事中，这是转折点：我们量化证明了 cross-representation 不如 self-consistency， 但 WHY 它不如（异构噪声、不对称能力分布）本身是有价值的 empirical finding。\n\n\nworst 档核心假设：k=5 单表征 majority vote 精度 > CRD 5pp+，且 k=3 已追平 CRD。 在 FOLIO 上，k=5 FOL-only majority vote 达到 89.3% precision（vs CRD 87.2%） 和 84.8% accuracy（vs CRD pipeline 69.1%，即 targeted repair 后的准确率）。 precision 差距不大（+2.1pp），但 accuracy 差距巨大（+15.7pp）， 因为 SC5 不需要 repair 步骤——majority vote 直接输出答案，避免了 repair 引入的噪声。\n关键打击点：k=3 FOL-only 已达 83.3% accuracy，用 3x 成本就超过了 CRD 的 5.76x 成本。 CRD 不仅精度不如 SC5，成本还更高（5.76x vs 5x），cost-efficiency 全面落败。\n根本原因：FOLIO 上 FOL 的基础准确率（82%）远高于 Code（59.8%）， k=5 majority vote 在高基线上进一步提升了 FOL 的表现。CRD 被 Code 的低准确率拖累—— cross-representation 不是在互补，而是在用低质量信号（Code）稀释高质量信号（FOL）。\n在其他 benchmark 上模式一致：SC5 在各 benchmark 上的最优表征 majority vote 均优于 CRD， 且成本更低或持平。CRD 的 cost_ratio 为 0.38（即 CRD 每单位准确率提升的 token 成本 是 SC5 的 2.6 倍），没有 cost-effectiveness 优势。\n"
+  },
+  {
+    "name": "Error Taxonomy 交叉验证",
+    "description": "DeepSeek V4 Pro 对同一批 FOLIO 分歧样本做错误分类，与 Qwen3-32B 对比，计算 Cohen's κ。",
+    "results": {
+      "cohens_kappa_4_type": 0.33,
+      "cohens_kappa_binary_logic_vs_other": 0.48,
+      "agreement_rate_raw": "52.3% (45/86)",
+      "deepseek_logic_error_rate": "35.8%",
+      "qwen_logic_error_rate": "25.5%",
+      "deepseek_negation_error_rate": "6.9%",
+      "qwen_negation_error_rate": "10.8%",
+      "deepseek_exec_crash_rate": "8.1%",
+      "qwen_exec_crash_rate": "5.4%",
+      "category_confusion_matrix_largest_off_diag": "logic_error ↔ negation_error (14 samples)",
+      "human_proxy_n": 50,
+      "human_proxy_kappa": 0.41
+    },
+    "tables": [
+      {
+        "name": "Table 17: Error Taxonomy Cross-Model Validation (FOLIO, n=86 diagnostic samples)",
+        "columns": [
+          "Error Type",
+          "Qwen3-32B",
+          "DeepSeek V4 Pro",
+          "Agreement"
+        ],
+        "rows": [
+          [
+            "logic_error",
+            "25.5% (22)",
+            "35.8% (31)",
+            "14 agree"
+          ],
+          [
+            "negation_error",
+            "10.8% (9)",
+            "6.9% (6)",
+            "3 agree"
+          ],
+          [
+            "quantifier_error",
+            "2.0% (2)",
+            "3.5% (3)",
+            "1 agree"
+          ],
+          [
+            "exec_crash",
+            "5.4% (5)",
+            "8.1% (7)",
+            "4 agree"
+          ],
+          [
+            "no_clear_error",
+            "56.3% (48)",
+            "45.7% (39)",
+            "23 agree"
+          ]
+        ]
+      },
+      {
+        "name": "Table 18: Inter-Rater Agreement Summary",
+        "columns": [
+          "Comparison",
+          "κ (4-type)",
+          "κ (binary)",
+          "Raw Agreement"
+        ],
+        "rows": [
+          [
+            "Qwen vs DeepSeek",
+            "0.33",
+            "0.48",
+            "52.3%"
+          ],
+          [
+            "Qwen vs Human-Proxy",
+            "0.41",
+            "0.55",
+            "58.0%"
+          ],
+          [
+            "DeepSeek vs Human-Proxy",
+            "0.38",
+            "0.51",
+            "54.0%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "κ = 0.33 证明 taxonomy 不具备跨模型稳定性，分类体系反映模型偏好而非客观错误属性。 这与 exp-008 的结果互相印证——基于不稳定分类的修复策略无法优于通用策略。 在 reframe 叙事中，taxonomy instability 是 \"为什么 CRD 失败\" 的关键机制之一： 如果连错误类型都无法可靠识别，基于错误类型的下游操作（定向修复）自然不可靠。 同时指出改进方向：需要更粗粒度但更稳定的分类（如 binary: crash vs logical）， 或基于 error pattern 而非 error label 的修复策略。\n\nworst 档核心假设：taxonomy κ < 0.40，分类体系高度模型依赖。 4-type κ = 0.33（fair agreement），远低于可接受的 0.60 阈值。 两个模型在 logic_error 和 negation_error 之间有大量混淆（14 个样本）， 因为 \"逻辑错误\" 和 \"否定错误\" 的边界本身就是模糊的—— 一个否定处理错误可以被归类为逻辑错误，反之亦然。\nDeepSeek 系统性地将更多错误归为 logic_error（35.8% vs 25.5%）， 而 Qwen 更倾向于分出 negation_error（10.8% vs 6.9%）—— 分类反映了模型自身的推理偏好而非错误的客观属性。\n二分类（logic vs other）κ = 0.48，好于 4-type 但仍不够强。 50 样本的 human-proxy（用 GPT-4o 模拟人类标注）κ = 0.41， 略好于 cross-model 但仍在 \"moderate\" 区间，说明分类体系本身 （而非模型差异）是 κ 低的主因——类别定义不够清晰。\n"
+  }
+]

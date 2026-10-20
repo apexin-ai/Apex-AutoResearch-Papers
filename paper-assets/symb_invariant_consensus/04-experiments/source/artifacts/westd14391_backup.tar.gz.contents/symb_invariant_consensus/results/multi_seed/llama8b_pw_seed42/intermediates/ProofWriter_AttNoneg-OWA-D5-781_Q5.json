@@ -1,0 +1,931 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-781_Q5",
+    "problem": "Anne is big. Anne is cold. Anne is round. Charlie is cold. Charlie is furry. Charlie is kind. Charlie is nice. Charlie is round. Erin is big. Gary is furry. Gary is kind. Gary is nice. Gary is quiet. Gary is round. Big things are quiet. If something is quiet and big then it is kind. If something is cold then it is round. Nice things are cold. All cold things are kind. If something is kind then it is nice. If something is nice and furry then it is quiet. All kind things are nice.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is kind.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nRound($x, bool) ::: Is x round?\nFurry($x, bool) ::: Is x furry?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nBig(Anne, True) ::: Anne is big.\nCold(Anne, True) ::: Anne is cold.\nRound(Anne, True) ::: Anne is round.\nCold(Charlie, True) ::: Charlie is cold.\nFurry(Charlie, True) ::: Charlie is furry.\nKind(Charlie, True) ::: Charlie is kind.\nNice(Charlie, True) ::: Charlie is nice.\nRound(Charlie, True) ::: Charlie is round.\nBig(Erin, True) ::: Erin is big.\nFurry(Gary, True) ::: Gary is furry.\nKind(Gary, True) ::: Gary is kind.\nNice(Gary, True) ::: Gary is nice.\nQuiet(Gary, True) ::: Gary is quiet.\nRound(Gary, True) ::: Gary is round.\n\nRules:\nBig($x, True) >>> Quiet($x, True) ::: Big things are quiet.\nQuiet($x, True) && Big($x, True) >>> Kind($x, True) ::: If something is quiet and big then it is kind.\nCold($x, True) >>> Round($x, True) ::: If something is cold then it is round.\nNice($x, True) >>> Cold($x, True) ::: Nice things are cold.\nCold($x, True) >>> Kind($x, True) ::: All cold things are kind.\nKind($x, True) >>> Nice($x, True) ::: If something is kind then it is nice.\nNice($x, True) && Furry($x, True) >>> Quiet($x, True) ::: If something is nice and furry then it is quiet.\nKind($x, True) >>> Nice($x, True) ::: All kind things are nice.\n\nQuery:\nKind(Erin, True) ::: Erin is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 134.0
+    },
+    "answer_counts": {
+      "True": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Erin is kind, we need to break down the given information and apply the rules step by step.\n\n1. Erin is big. (From the problem statement)\n\n2. Big things are quiet. (From the problem statement)\n\n   Therefore, Erin is quiet.\n\n3. If something is quiet and big then it is kind. (From the problem statement)\n\n   However, Erin is not both quiet and big. Erin is big, but we don't know if Erin is quiet, we know Erin is quiet from rule 2, but we also know Erin is not round from the next rules. However we know that round things are cold, and cold things are kind. This gives us another condition for Erin to be kind.\n\n4. If something is cold then it is round. (From the problem statement)\n\n   But we also know that Erin is big. And we know that big things are quiet. If something is quiet and big then it is kind, but it also has to be round. We know Erin is big and quiet, but we also know Erin is not round, which means Erin cannot be kind because Erin is not quiet and big.\n\n5. Erin is not kind based on the second condition, but we need to check if Erin is cold or not.\n\n   We know that Erin is big and we know that Erin is not round. However, we do know that round things are cold. But we also know that nice things are cold. And we know that all cold things are kind. So if Erin is cold then Erin is kind.\n\n6. Erin is not round and we know that Erin is big, which means Erin cannot be cold because if something is big then it is quiet. And if something is quiet and big then it is kind. But we already found that Erin is not kind because Erin is not quiet and big.\n\n7. Erin is not round, and we know that round things are cold. And we know that cold things are kind. But Erin is not cold, Erin is big.\n\n8. Based on the fact that Erin is big, we know that Erin is quiet. And we know that quiet and big things are kind. However, we know that Erin is not round, which means Erin is not cold, and we know that cold things are kind.\n\n9. We know that Erin is big and quiet, and we know that big and quiet things are kind.\n\nBut we also know that Erin is not round, which means Erin cannot be cold. And we know that cold things are kind. However, we also know that Erin is big and quiet, and we know that big and quiet things are kind. This gives us another condition for Erin to be kind.\n\n10. Therefore, Erin is kind.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Erin is big. \n2. From the statement \"Big things are quiet\", we can conclude that Erin is quiet.\n3. From the statement \"If something is quiet and big then it is kind\", we can conclude that Erin is kind.\n\nTherefore, based on the given information, the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is kind\" is true, false, or unknown, we need to break down the given information and apply the rules to find out if Erin can be classified as kind.\n\n1. Erin is big. \n2. Big things are quiet. \n3. If something is quiet and big then it is kind.\n\nFrom the given statements, we can infer that Erin is quiet and big (rules 1 and 2). According to rule 3, if something is quiet and big, then it is kind. Therefore, we can conclude that Erin is kind.\n\nSo, the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given statements and find a chain of reasoning that leads us to this conclusion.\n\n1. Erin is big.\n   Given statement: Big things are quiet.\n\n   From this, we can conclude that Erin is quiet.\n\n2. Erin is quiet.\n   Given statement: Quiet things are kind (if something is quiet and big then it is kind).\n\n   So, we can conclude that Erin is kind.\n\nTherefore, the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is kind' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is big.\n   - Anne is cold.\n   - Anne is round.\n   - Charlie is cold.\n   - Charlie is furry.\n   - Charlie is kind.\n   - Charlie is nice.\n   - Charlie is round.\n   - Erin is big.\n   - Gary is furry.\n   - Gary is kind.\n   - Gary is nice.\n   - Gary is quiet.\n   - Gary is round.\n   - Big things are quiet.\n   - If something is quiet and big then it is kind.\n   - If something is cold then it is round.\n   - Nice things are cold.\n   - All cold things are kind.\n   - If something is kind then it is nice.\n   - If something is nice and furry then it is quiet.\n   - All kind things are nice.\n\n2. We need to determine whether Erin is kind. To do this, we can analyze the information we have about Erin and see if we can draw a conclusion about her kind nature.\n\nFrom the information given, we know:\n- Erin is big.\n\nNow, let's examine the rules:\n- Big things are quiet.\nFrom this rule, we can conclude that Erin is quiet.\n\nHowever, we need to determine if Erin is kind. Since we know that if something is quiet and big then it is kind, we can use this rule to make a conclusion.\n\nSo, we have:\n- Erin is quiet and big.\n\nApplying the rule, we can conclude that Erin is kind.\n\nTherefore, the statement 'Erin is kind' is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given statements and their implications.\n\n1. Erin is big. (Statement 1)\n2. Big things are quiet. (Statement 7)\n   From Statement 1 and 7, we can infer that Erin is quiet.\n\n3. Quiet things that are big are kind. (Statement 8)\n   From Statement 1 and 8, we can infer that Erin is kind.\n\nTherefore, based on the given statements and their implications, we can conclude that Erin is indeed kind.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements to deduce the truth of the statement \"Erin is kind.\"\n\nGiven statements:\n1. Anne is big. \n2. Anne is cold. \n3. Anne is round. \n4. Charlie is cold. \n5. Charlie is furry. \n6. Charlie is kind. \n7. Charlie is nice. \n8. Charlie is round. \n9. Erin is big. \n10. Gary is furry. \n11. Gary is kind. \n12. Gary is nice. \n13. Gary is quiet. \n14. Gary is round. \n15. Big things are quiet. \n16. If something is quiet and big then it is kind. \n17. If something is cold then it is round. \n18. Nice things are cold. \n19. All cold things are kind. \n20. If something is kind then it is nice. \n21. If something is nice and furry then it is quiet. \n22. All kind things are nice.\n\nWe need to determine whether Erin is kind. To do this, we can start by looking at the given statements related to Erin.\n\n23. Erin is big. (from statement 9)\n\nNow, let's see if we can derive any information about Erin's kindness.\n\nFrom statement 15, we know that big things are quiet. \nFrom statement 23, we know Erin is big. \nSo, we can infer that Erin is quiet. (because big things are quiet)\n\nFrom statement 16, we know that if something is quiet and big then it is kind. \nSince Erin is quiet (from the previous step) and big (from statement 23), we can conclude that Erin is kind.\n\nTherefore, based on the given statements, we can determine that the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given information step by step:\n\n1. We know that Erin is big (given statement).\n2. From the premises, we know that \"Big things are quiet\" and \"If something is quiet and big then it is kind.\" \n   However, we can't directly conclude that Erin is kind using this information because there's an \"or\" condition (big things are quiet) instead of an \"if-then\" condition.\n   We'll consider this later.\n\n3. We also know that Erin is big (given statement) and \"All kind things are nice\" and \"If something is nice then it is kind.\"\n   Again, we can't directly conclude that Erin is kind using this information because there's an \"or\" condition (big things are quiet) instead of an \"if-then\" condition.\n   We'll consider this later.\n\n4. We know that Charlie is cold and Charlie is round. Since \"If something is cold then it is round,\" we can conclude that Charlie is round. However, this information doesn't directly help us with Erin.\n\n5. We know that Erin is big (given statement) and \"All cold things are kind\" and \"All kind things are nice.\"\n   But we still can't conclude that Erin is kind because we don't know if Erin is cold or not.\n\n6. We know that Erin is big (given statement) and \"Big things are quiet\" and \"If something is quiet and big then it is kind.\" \n   Since \"All kind things are nice\" and \"If something is nice then it is kind,\" if Erin is kind then Erin is nice, but we still can't directly conclude that Erin is kind using this information because we don't know if Erin is quiet or not.\n\n7. Let's consider another possibility. We know that Erin is big (given statement) and \"Big things are quiet.\" If Erin is quiet then Erin is kind (because \"If something is quiet and big then it is kind\"). But we still can't conclude that Erin is quiet because we don't know if Erin is furry or not.\n\n8. We know that Gary is furry, Gary is kind, Gary is nice, Gary is quiet, and Gary is round. However, this information doesn't directly help us with Erin.\n\n9. Let's consider another possibility. We know that \"Nice things are cold\" and \"All cold things are kind.\" If Erin is nice, then Erin is cold, and Erin is kind. But we still can't conclude that Erin is nice or cold because we don't have enough information.\n\n10. However, we know that \"If something is nice and furry then it is quiet\" and \"All kind things are nice\" and \"If something is nice then it is kind.\" \n   But we still can't conclude that Erin is nice or furry or quiet because we don't have enough information.\n\n11. Now let's use a different approach. We know that \"All kind things are nice\" and \"If something is kind then it is nice\" and \"All kind things are nice.\" \n    We also know that \"Big things are quiet\" and \"If something is quiet and big then it is kind.\" \n    However, we still can't conclude that Erin is kind using this information because we don't know if Erin is quiet or not.\n\n12. Now let's use a different approach. We know that \"All kind things are nice\" and \"If something is nice and furry then it is quiet\" and \"All kind things are nice\" and \"If something is kind then it is nice\" and \"All kind things are nice.\" \n    However, we still can't conclude that Erin is kind using this information because we don't know if Erin is nice or furry or quiet.\n\nHowever, after analyzing the information, we find a connection between Erin and the conditions. We know that \"All kind things are nice\" and \"If something is nice then it is kind\" and \"Big things are quiet\" and \"If something is quiet and big then it is kind.\" \nBut we still can't conclude that Erin is kind using this information because we don't know if Erin is quiet or not.\n\nNow let's consider another possibility. We know that \"All kind things are nice\" and \"If something is nice and furry then it is quiet\" and \"If something is quiet and big then it is kind\" and \"Big things are quiet.\" \nWe can conclude that Erin is nice (because \"Big things are quiet\" and \"If something is quiet and big then it is kind\" and \"If something is kind then it is nice\" and \"All kind things are nice\") and Erin is big (given statement) and Erin is quiet (because \"Big things are quiet\") and Erin is kind (because \"If something is quiet and big then it is kind\").\n\nTherefore, we can conclude that Erin is kind.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is kind\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. Given information:\n   - Anne is big. \n   - Anne is cold. \n   - Anne is round.\n   - Charlie is cold. \n   - Charlie is furry. \n   - Charlie is kind. \n   - Charlie is nice. \n   - Charlie is round.\n   - Erin is big. \n   - Gary is furry. \n   - Gary is kind. \n   - Gary is nice. \n   - Gary is quiet. \n   - Gary is round.\n   - Big things are quiet. \n   - If something is quiet and big then it is kind. \n   - If something is cold then it is round. \n   - Nice things are cold. \n   - All cold things are kind. \n   - If something is kind then it is nice. \n   - If something is nice and furry then it is quiet. \n   - All kind things are nice.\n\n2. We need to determine whether Erin is kind. To do this, we can use the rule \"If something is quiet and big then it is kind.\" However, we do not have any information about Erin being quiet. \n\n3. We can also use the rule \"All kind things are nice.\" If Erin is kind, then she must be nice. But we need to find out if Erin is kind first.\n\n4. Let's analyze the given information about Erin: Erin is big. Since Erin is big, she must be quiet according to the rule \"Big things are quiet.\"\n\n5. Now that we know Erin is quiet and big, we can use the rule \"If something is quiet and big then it is kind.\" This implies that Erin is kind.\n\n6. Since Erin is kind, we can conclude that she is also nice according to the rule \"All kind things are nice.\"\n\nTherefore, based on the given information and the rules, the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given information step by step.\n\n1. We know that Erin is big. (From the premises)\n\n2. Since Erin is big, and \"Big things are quiet,\" we can conclude that Erin is quiet. (From the premises)\n\n3. We also know that Erin is big. (From the premises)\n\n4. Since Erin is big, and \"If something is quiet and big then it is kind,\" we can conclude that Erin is kind. (From the premises)\n\nTherefore, based on the given information, we can determine that Erin is indeed kind.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is kind\" is true, false, or unknown, we need to analyze the given information and apply the given rules step by step.\n\n1. From the information given, we know:\n   - Erin is big.\n   - Big things are quiet.\n   - If something is quiet and big then it is kind.\n\n2. Since Erin is big, we can apply the rule that big things are quiet.\n   - Erin is quiet.\n\n3. Now, since Erin is both big and quiet, we can apply the rule that if something is quiet and big then it is kind.\n   - Erin is kind.\n\nTherefore, based on the given information and rules, we can conclude that the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given statements and apply logical reasoning.\n\nFrom the given statements, we have:\n\n1. Erin is big.\n2. Big things are quiet.\n3. If something is quiet and big then it is kind.\n\nWe can use the transitive property of implication to conclude that Erin is quiet (from 1 and 2), and since Erin is quiet and big, we can conclude that Erin is kind (from 3).\n\nHowever, we also need to consider other given statements that may affect our conclusion.\n\nFrom the given statements, we have:\n\n4. All cold things are kind.\n5. Nice things are cold.\n\nWe do not have any information about Erin being cold or nice, so we cannot use these statements to determine if Erin is kind.\n\nFrom the given statements, we have:\n\n6. If something is kind then it is nice.\n\nWe have already concluded that Erin is kind, and this statement tells us that if Erin is kind, then Erin is nice. However, this does not provide any new information about Erin being kind.\n\nFrom the given statements, we have:\n\n7. If something is nice and furry then it is quiet.\n8. All kind things are nice.\n\nWe have already concluded that Erin is kind, and this statement tells us that if Erin is kind, then Erin is nice. However, this does not provide any new information about Erin being kind.\n\nFrom the given statements, we have:\n\n9. Charlie is cold.\n10. Charlie is round.\n11. If something is cold then it is round.\n\nWe can use the transitive property of implication to conclude that since Charlie is cold, Charlie is round (from 9 and 11). However, this does not provide any new information about Erin being kind.\n\nSince we have already concluded that Erin is kind from the given statements, and none of the other statements provide any new information that contradicts or affects this conclusion, we can conclude that Erin is kind.\n\nTherefore, the statement \"Erin is kind\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_erin, quiet_erin), kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_erin, cold_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_erin, kind_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not round(erin)",
+          "z3_formula": "Not(round_erin) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(erin)",
+          "z3_formula": "Not(cold_erin) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> cold(X)",
+          "z3_formula": "Implies(round_erin, cold_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(erin)",
+          "z3_formula": "Not(cold_erin) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_erin, quiet_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_erin, quiet_erin), kind_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not round(erin)",
+          "z3_formula": "Not(round_erin) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin) -> quiet(erin)",
+          "z3_formula": "Implies(big_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_anne, round_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_charlie, cold_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_charlie, kind_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_charlie, nice_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_gary, furry_gary), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_charlie, nice_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_anne, quiet_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_erin, quiet_erin), kind_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_anne, round_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_charlie, kind_charlie)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_charlie, cold_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_charlie, kind_charlie)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_charlie, nice_charlie)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_gary, furry_gary), quiet_gary)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_gary, nice_gary)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 25
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), kind_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_anne, round_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_charlie, cold_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_charlie, kind_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_gary, furry_gary), quiet_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), kind_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> kind(X)",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_charlie, round_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_erin, furry_erin), quiet_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_charlie, round_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(nice_erin, furry_erin), quiet_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_erin, nice_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "all(cold(X), kind(X))",
+          "z3_formula": "Implies(cold_X, kind_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_X, cold_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 134,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 35
+    },
+    "maxsat_stats": {
+      "satisfied": 35,
+      "excluded": 0,
+      "total_weight": 134,
+      "solve_time_ms": 0.9537991136312485
+    },
+    "timing": {
+      "trace_gen_s": 11.94,
+      "extraction_s": 30.3,
+      "dedup_s": 1.027,
+      "maxsat_s": 0.003,
+      "total_s": 43.27
+    }
+  }
+}

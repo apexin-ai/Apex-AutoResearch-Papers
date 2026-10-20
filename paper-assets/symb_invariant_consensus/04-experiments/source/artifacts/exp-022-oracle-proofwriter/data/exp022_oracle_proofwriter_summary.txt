@@ -1,0 +1,18 @@
+exp-022 Oracle-SICA ProofWriter Results
+
+Oracle-SICA: 86.67% (520/600) vs SC: 75.17% (451/600) vs SICA(self): 75.50% (453/600)
+Delta: +11.50pp, McNemar p=9.21e-15
+Z3 gold agreement: 97.14% (577/594), Parse errors: 6/600, Solver errors: 0/7128
+
+Per-subtype:
+- RelNeg: +17.86pp (77.86% vs 60.00%)
+- RelNoneg: +13.01pp (79.45% vs 66.44%)
+- AttNoneg: +9.09pp (96.10% vs 87.01%)
+- AttNeg: +6.87pp (91.88% vs 85.00%)
+
+vs FOLIO oracle (exp-021): +8.82pp (p=6.15e-5, N=204)
+
+Data files on server:
+- Script: /root/symb_invariant_consensus/scripts/run_exp022_oracle_proofwriter.py
+- Results: /root/symb_invariant_consensus/results/exp022_oracle_proofwriter.json
+- Log: /root/symb_invariant_consensus/results/exp022_oracle_pw.log

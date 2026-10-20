@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26fa32c4c88a98aec504",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "research proofwriter survey",
+  "task_key": "worker_research_proofwriter_survey_20260514T143225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_proofwriter_survey_20260514T143225_result.json",
+    "occurrence": 1,
+    "bytes": 982,
+    "sha256": "d32aca78f5cefb28b1fc27b98a420fe05bb640214d3003236538868928456992"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `docs/proofwriter_survey.md`。核心结论：\n\n**ProofWriter OWA D5 是最佳第二数据集**，直接用 HuggingFace `smoorsmith/proofwriter` 的 600 test 样本。\n\n关键判断：\n- **格式完全兼容**：同样是 premises → conclusion → T/F/U，pipeline 适配量约 1 天\n- **与 FOLIO 互补性强**：合成模板 vs 专家标注，简单语言 vs 复杂自然语言\n- **Logic-LLM 先例**：该论文正是用 FOLIO + ProofWriter OWA-D5 做评测，审稿人容易接受\n- **不对称性预测**：ProofWriter 模板化语言会同时降低 FOL 和 Code 的翻译难度，disagree rate 预期下降，9:1 不对称性可能缩小——这恰好能说明不对称性与数据集语言复杂度相关而非方法固有偏差\n- **额外分析轴**：推理深度 D0-D5 可分析\"推理复杂度 vs 表征分歧\"的关系\n- **风险**：数据太简单导致 disagree 样本不足，可通过选择 D5 + RelNeg 配置缓解"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-proofwriter-survey.md"
+}

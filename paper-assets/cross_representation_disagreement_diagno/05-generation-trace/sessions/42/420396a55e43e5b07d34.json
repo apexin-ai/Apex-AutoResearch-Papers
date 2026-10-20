@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "420396a55e43e5b07d34",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "analysis restore metrics and c4 discrepancy",
+  "task_key": "worker_analysis_restore_metrics_and_c4_discrepancy_20260514T181207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_restore_metrics_and_c4_discrepancy_20260514T181207_result.json",
+    "occurrence": 1,
+    "bytes": 1107,
+    "sha256": "42894c474a0199f01df6dcf64b6a871483510f988dfb554abad96e359ef087da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已恢复。三项产出：\n\n### 1. evaluate_mvp.py 完整输出\n\n```\nTotal samples: 126 | Valid: 126 | Effective: 118 | GT!=Unknown: 82\n\nAll samples:\n  C1 36.4% (43/118) PASS | C2 88.4% (38/43) PASS | C3 3 types PASS\n  C4 +7.3pp (T:36/55 B:32/55) PASS | C5 80.0% (20/25) PASS\n  MVP: 5/5 PASS → PROCEED\n\nExcluding GT=Unknown:\n  C1 34.7% (26/75) PASS | C2 88.5% (23/26) PASS | C3 2 types PASS\n  C4 +0.0pp (T:22/35 B:22/35) FAIL | C5 87.5% (14/16) PASS\n  MVP: 4/5\n```\n\n### 2. C4 差异根因\n\n| | evaluate_mvp.py | c4_analysis_v2.py |\n|---|---|---|\n| 样本范围 | 所有 valid（含 AGREE） | 仅 DISAGREE |\n| 数据 | T:36/55, B:32/55 | T:31/48, B:25/48 |\n| Delta | **+7.3pp** | **+12.5pp** |\n\n7 个 `single_error` 类型样本有 repair 数据但不是 `disagree`。evaluate_mvp.py 把它们计入分母，拉低了 targeted 优势（这些样本 blind 成功率高于 targeted）。\n\n### 3. Registry 已恢复\n\n完整 C1-C5 metrics + `c4_analysis` 子字段（含差异解释和原 decline 分析），已合并写入 `mvp_pipeline_004.metrics`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-restore-metrics-and-c4-discrepancy.md"
+}

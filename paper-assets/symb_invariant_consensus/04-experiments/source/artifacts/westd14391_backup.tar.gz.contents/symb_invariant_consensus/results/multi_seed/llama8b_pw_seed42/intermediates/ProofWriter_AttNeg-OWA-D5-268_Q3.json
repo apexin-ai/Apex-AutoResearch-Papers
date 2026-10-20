@@ -1,0 +1,1288 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-268_Q3",
+    "problem": "Anne is green. Charlie is blue. Charlie is not green. Charlie is nice. Erin is young. Harry is kind. Harry is white. If something is blue then it is nice. If something is blue and not quiet then it is nice. If something is nice then it is kind. If Erin is green then Erin is white. All green things are blue. If something is young then it is white. If Harry is white then Harry is young. If Erin is nice and Erin is blue then Erin is young. All white things are green.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is young.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\nKind($x, bool) ::: Is x kind?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nBlue(Charlie, True) ::: Charlie is blue.\nGreen(Charlie, False) ::: Charlie is not green.\nNice(Charlie, True) ::: Charlie is nice.\nYoung(Erin, True) ::: Erin is young.\nKind(Harry, True) ::: Harry is kind.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nBlue($x, True) >>> Nice($x, True) ::: If something is blue then it is nice.\nBlue($x, True) && Quiet($x, False) >>> Nice($x, True) ::: If something is blue and not quiet then it is nice.\nNice($x, True) >>> Kind($x, True) ::: If something is nice then it is kind.\nGreen(Erin, True) >>> White(Erin, True) ::: If Erin is green then Erin is white.\nGreen($x, True) >>> Blue($x, True) ::: All green things are blue.\nYoung($x, True) >>> White($x, True) ::: If something is young then it is white.\nWhite(Harry, True) >>> Young(Harry, True) ::: If Harry is white then Harry is young.\nNice(Erin, True) && Blue(Erin, True) >>> Young(Erin, True) ::: If Erin is nice and Erin is blue then Erin is young.\nWhite($x, True) >>> Green($x, True) ::: All white things are green.\n\nQuery:\nYoung(Harry, True) ::: Harry is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 183.5,
+      "Unknown": 125.0
+    },
+    "answer_counts": {
+      "True": 11,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Harry is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know Harry is white. (Given)\n\n2. From the given statement \"All white things are green,\" we can infer that Harry is green. (Since Harry is white, he must be green.)\n\n3. From the given statement \"All green things are blue,\" we can infer that Harry is blue. (Since Harry is green, he must be blue.)\n\n4. We are given that Charlie is blue and Charlie is not green. (Given) However, since we've established that Harry is blue and green, we can conclude that the statement \"Charlie is not green\" does not affect our conclusion about Harry.\n\n5. We are given that if something is blue then it is nice. (Given) Since Harry is blue, we can conclude that Harry is nice.\n\n6. We are given that if something is nice then it is kind. (Given) Since Harry is nice, we can conclude that Harry is kind.\n\n7. We are given that if Harry is white then Harry is young. (Given) Since Harry is white, we can conclude that Harry is young.\n\nHowever, we have another piece of information that might affect our conclusion. We are given that if Erin is green then Erin is white. (Given) However, since we've already concluded that Harry is green, this statement does not affect our conclusion about Harry.\n\nSo, based on the given information, we can conclude that the statement \"Harry is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Harry is young, we need to analyze the given statements and their logical implications. We will start by breaking down the given statements into a set of premises and then use them to derive the conclusion.\n\nGiven statements:\n1. Anne is green.\n2. Charlie is blue.\n3. Charlie is not green.\n4. Charlie is nice.\n5. Erin is young.\n6. Harry is kind.\n7. Harry is white.\n8. If something is blue then it is nice.\n9. If something is blue and not quiet then it is nice.\n10. If something is nice then it is kind.\n11. If Erin is green then Erin is white.\n12. All green things are blue.\n13. If something is young then it is white.\n14. If Harry is white then Harry is young.\n15. If Erin is nice and Erin is blue then Erin is young.\n16. All white things are green.\n\nNow, let's analyze the given statements and their logical implications:\n\nFrom statement 7, we know that Harry is white.\nFrom statement 16, we know that all white things are green.\nTherefore, we can infer that Harry is green.\n\nFrom statement 12, we know that all green things are blue.\nTherefore, we can infer that Harry is blue.\n\nNow, we know that Harry is blue (from the previous inference) and white (from statement 7). Since Harry is blue and white, we can use statement 9, which states that if something is blue and not quiet then it is nice. However, we cannot directly conclude that Harry is nice because the statement does not explicitly state that Harry is not quiet.\n\nHowever, we can use statement 10, which states that if something is nice then it is kind. We already know that Harry is kind from statement 6. Therefore, if Harry were nice, it would be consistent with the given statements.\n\nFrom statement 10, we also know that Harry is kind and that if Harry were nice, it would be consistent with the given statements.\n\nNow, we need to determine whether Harry is young. From statement 7, we know that Harry is white.\nFrom statement 13, we know that if something is young then it is white.\nTherefore, we can infer that Harry is young.\n\nHowever, we also need to check if this conclusion is consistent with the other given statements. We know that Harry is white (from statement 7), and from statement 14, we know that if Harry is white then Harry is young.\n\nSince both inferences lead to the same conclusion, we can confidently state that Harry is indeed young.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules to determine whether Harry is young.\n\nGiven statements:\n1. Anne is green.\n2. Charlie is blue.\n3. Charlie is not green.\n4. Charlie is nice.\n5. Erin is young.\n6. Harry is kind.\n7. Harry is white.\n8. If something is blue then it is nice.\n9. If something is blue and not quiet then it is nice.\n10. If something is nice then it is kind.\n11. If Erin is green then Erin is white.\n12. All green things are blue.\n13. If something is young then it is white.\n14. If Harry is white then Harry is young.\n15. If Erin is nice and Erin is blue then Erin is young.\n16. All white things are green.\n\nFrom statements 2 and 8, we can infer that Charlie is nice, which implies that Harry is kind (from statement 10). \n\nFrom statement 12, we can infer that Anne is blue, since Anne is green (from statement 1).\n\nNow, let's analyze the relationship between white and green things. From statement 16, we know that all white things are green, and from statement 13, we can infer that all young things are white. This implies that all young things are green.\n\nWe can also infer that Erin is green, since Erin is young (from statement 5). \n\nNow, let's analyze the relationship between blue and green things. From statement 12, we know that all green things are blue. This implies that Erin is blue, since Erin is green.\n\nNow, let's analyze the relationship between Erin's properties. From statement 5, we know that Erin is young, and from statement 15, we can infer that Erin is not young, since Erin is blue (from the previous step) and Erin is not quiet. This is a contradiction, so we cannot conclude that Erin is young.\n\nHowever, we can still analyze the relationship between Harry and his properties. From statement 13, we know that all young things are white, and from statement 7, we know that Harry is white. Therefore, we can conclude that Harry is young.\n\nHowever, there is a contradiction in the conclusion that Erin is young. So the truth of Harry being young is dependent on the truth of Erin being young. If Erin is young, then Harry is not young. If Erin is not young, then Harry is young. \n\nSince there is a contradiction in the conclusion that Erin is young, we cannot determine whether Harry is young. Therefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n\n1. Harry is kind.\n2. Harry is white.\n3. If something is white, then it is green.\n4. If Erin is green, then Erin is white.\n5. If Erin is young, then Erin is white.\n6. If Harry is white, then Harry is young.\n7. If something is blue and not quiet, then it is nice.\n8. If something is blue, then it is nice.\n9. If something is nice, then it is kind.\n10. All green things are blue.\n11. Charlie is blue, Charlie is not green, Charlie is nice.\n12. Erin is young.\n13. All white things are green.\n\nStep 1: From statement 2, we know Harry is white. \n\nStep 2: From statement 13, we know all white things are green. Therefore, Harry is green.\n\nStep 3: From statement 10, we know all green things are blue. Therefore, Harry is blue.\n\nStep 4: From statement 11, we know Charlie is blue and nice. Also, from statement 8, we know if something is blue then it is nice. Therefore, being blue implies being nice.\n\nStep 5: From statement 1, we know Harry is kind. And from step 4, we know being blue implies being nice. Therefore, from statement 9, we know Harry is nice.\n\nStep 6: From statement 6, we know if Harry is white, then Harry is young. However, we have already concluded that Harry is green, and all white things are green. This doesn't provide a direct conclusion.\n\nHowever, let's analyze the statement \"If Erin is nice and Erin is blue then Erin is young.\" (Statement 12: Erin is young, and statement 10: all green things are blue) Since Erin is young and all green things are blue, this implies that Erin is blue.\n\nStep 7: From statement 7, we know if something is blue and not quiet, then it is nice. But in this case, Erin is blue, not that it's not quiet, so we cannot conclude that Erin is nice using this statement.\n\nHowever, we can conclude that Harry is nice from step 4, which says being blue implies being nice.\n\nStep 8: From statement 9, we know if something is nice, then it is kind. Therefore, since Harry is nice, Harry is kind.\n\nStep 9: From statement 5, we know if Erin is young, then Erin is white. However, we don't have any information that relates Erin's youth to Harry's youth.\n\nStep 10: From statement 1, we know Harry is kind. We also know from statement 6 that if Harry is white, then Harry is young. But we know Harry is green from step 2, so Harry is not white.\n\nHowever, from statement 6, if Harry is white, then Harry is young. But we also know Harry is green, and all white things are green. So we can conclude that Harry is white if and only if Harry is green. \n\nGiven that we know Harry is green, we can conclude that Harry is white.\n\nStep 11: Therefore, from step 6, we can conclude that Harry is young.\n\nFinal answer: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve the problem, we will analyze the given statements and their implications.\n\n1. Anne is green. \n2. Charlie is blue. \n3. Charlie is not green. \n4. Charlie is nice. \n5. Erin is young. \n6. Harry is kind. \n7. Harry is white. \n8. If something is blue then it is nice. \n9. If something is blue and not quiet then it is nice. \n10. If something is nice then it is kind. \n11. If Erin is green then Erin is white. \n12. All green things are blue. \n13. If something is young then it is white. \n14. If Harry is white then Harry is young. \n15. If Erin is nice and Erin is blue then Erin is young. \n16. All white things are green.\n\nFrom statement 8, we know that if something is blue, it is nice. \nFrom statement 2, we know that Charlie is blue, so Charlie is nice (statement 4).\n\nFrom statement 10, we know that if something is nice, it is kind. \nSince Charlie is nice (statement 4), Charlie is kind.\n\nFrom statement 7, we know that Harry is white. \nFrom statement 14, we know that if Harry is white, Harry is young. \nTherefore, Harry is young.\n\nHowever, we can further analyze the given statements to check if there is any contradiction or unknown information.\n\nFrom statement 12, we know that all green things are blue. \nFrom statement 1, we know that Anne is green, so Anne is blue.\n\nFrom statement 13, we know that if something is young, it is white. \nFrom statement 5, we know that Erin is young, so Erin is white.\n\nFrom statement 11, we know that if Erin is green, Erin is white. \nSince Erin is white (statement 13), Erin is not green.\n\nFrom statement 16, we know that all white things are green. \nSince Erin is white (statement 13), Erin is green (statement 16). \nThis is a contradiction to the previous statement that Erin is not green.\n\nTherefore, the statement \"Harry is young\" is true, and the statement \"Erin is not green\" is false, which makes the entire set of statements inconsistent. However, since the question only asks about \"Harry is young,\" we can conclude that the statement is true based on the given information.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is young\" is true, false, or unknown, we need to use the given statements and infer the information about Harry.\n\n1. Harry is white.\n2. If Harry is white then Harry is young.\n\nFrom statement (2), we can directly conclude that Harry is young because we know that Harry is white.\n\nTherefore, the statement \"Harry is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is green.\n   - Charlie is blue.\n   - Charlie is not green.\n   - Charlie is nice.\n   - Erin is young.\n   - Harry is kind.\n   - Harry is white.\n   - If something is blue then it is nice.\n   - If something is blue and not quiet then it is nice.\n   - If something is nice then it is kind.\n   - If Erin is green then Erin is white.\n   - All green things are blue.\n   - If something is young then it is white.\n   - If Harry is white then Harry is young.\n   - If Erin is nice and Erin is blue then Erin is young.\n   - All white things are green.\n\n2. Let's break down the information about Harry:\n   - Harry is kind.\n   - Harry is white.\n\n3. We can use the information \"If Harry is white then Harry is young\" to conclude that:\n   - Harry is young (because Harry is white).\n\nHowever, we need to make sure this conclusion is not contradicted by any other information. Let's analyze the given information again.\n\n4. The given information also states:\n   - Harry is white.\n   - If something is young then it is white.\n   - If Harry is white then Harry is young.\n\nFrom the information \"If something is young then it is white\" and \"Harry is white,\" we can conclude that Harry is indeed young.\n\n5. Therefore, based on the given information, the statement \"Harry is young\" is:\n   \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we'll use a series of logical deductions based on the given statements.\n\n1. Anne is green. (Given)\n2. Charlie is blue. (Given)\n3. Charlie is not green. (Given)\n4. Charlie is nice. (Given)\n5. Erin is young. (Given)\n6. Harry is kind. (Given)\n7. Harry is white. (Given)\n8. If something is blue then it is nice. (Given)\n9. If something is blue and not quiet then it is nice. (This statement can be ignored because we don't have enough information to determine if something is quiet or not.)\n10. If something is nice then it is kind. (Given)\n11. If Erin is green then Erin is white. (Given)\n12. All green things are blue. (Given)\n13. If something is young then it is white. (Given)\n14. If Harry is white then Harry is young. (Given)\n15. If Erin is nice and Erin is blue then Erin is young. (Given)\n16. All white things are green. (Given)\n\nFrom statement 2, we know Charlie is blue. Using statement 8, we can conclude that Charlie is nice (because something that is blue is nice).\n\nFrom statement 7, we know Harry is white. Using statement 16, we can conclude that Harry is green (because all white things are green).\n\nFrom statement 6, we know Harry is kind. Using statement 10, we can conclude that Harry is nice (because something that is kind is nice).\n\nNow, we have two conclusions about Harry: Harry is green and Harry is nice.\n\nFrom statement 12, we know that all green things are blue. So, Harry must be blue.\n\nNow, we have three conclusions about Harry: Harry is green, Harry is blue, and Harry is nice.\n\nUsing statement 8, we can conclude that Harry is kind (because something that is blue is nice).\n\nWe can use statement 14 to determine if Harry is young or not. From statement 14, we know that if Harry is white then Harry is young. Since Harry is white (statement 7), we can conclude that Harry is young.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Harry is young, let's break down the given information and analyze the statements.\n\nGiven statements:\n\n1. Anne is green.\n2. Charlie is blue.\n3. Charlie is not green.\n4. Charlie is nice.\n5. Erin is young.\n6. Harry is kind.\n7. Harry is white.\n8. If something is blue then it is nice.\n9. If something is blue and not quiet then it is nice.\n10. If something is nice then it is kind.\n11. If Erin is green then Erin is white.\n12. All green things are blue.\n13. If something is young then it is white.\n14. If Harry is white then Harry is young.\n15. If Erin is nice and Erin is blue then Erin is young.\n16. All white things are green.\n\nWe need to find the relationship between Harry and being young. \n\nFrom statement 7, we know that Harry is white.\n\nFrom statement 13, if something is young then it is white.\n\nHowever, we need to determine if being white is enough to conclude that Harry is young. \n\nFrom statement 16, all white things are green.\n\nNow we have a new piece of information: Harry is green. \n\nHowever, this contradicts statement 1, which says Anne is green. \n\nSince we have a contradiction, we cannot conclude that Harry is green. We cannot use this conclusion to determine if Harry is young.\n\nHowever, we know that Harry is white, and from statement 16, all white things are green.\n\nBut wait, we cannot use the conclusion that Harry is green because it contradicts statement 1. \n\nHowever, since we cannot use the conclusion that Harry is green, we can still use the information from statement 16. \n\nFrom statement 16, all white things are green.\n\nFrom statement 12, all green things are blue.\n\nSo, all white things are blue.\n\nNow, we can use the information from statement 8, which says that if something is blue then it is nice.\n\nSo, all white things are nice.\n\nFrom statement 10, if something is nice then it is kind.\n\nSo, all white things are kind.\n\nNow, let's go back to statement 5, which says Erin is young.\n\nFrom statement 13, if something is young then it is white.\n\nSo, Erin is white.\n\nFrom statement 16, all white things are green.\n\nSo, Erin is green.\n\nHowever, this contradicts statement 1, which says Anne is green. \n\nThis contradiction is the same as the one we found earlier when we tried to conclude that Harry is green.\n\nHowever, we cannot use the conclusion that Harry is green, but we can still use the information from statement 13.\n\nFrom statement 13, if something is young then it is white.\n\nFrom statement 14, if Harry is white then Harry is young.\n\nNow we have a direct conclusion: Harry is young.\n\nHowever, we still need to check if this conclusion is true or false.\n\nSince we have a direct conclusion, we can use the information from statement 7, which says Harry is white.\n\nFrom statement 14, if Harry is white then Harry is young.\n\nSo, Harry is young.\n\nTherefore, the statement \"Harry is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given statements and deduce the information about Harry being young.\n\nGiven statements:\n\n1. Anne is green.\n2. Charlie is blue.\n3. Charlie is not green.\n4. Charlie is nice.\n5. Erin is young.\n6. Harry is kind.\n7. Harry is white.\n8. If something is blue then it is nice.\n9. If something is blue and not quiet then it is nice.\n10. If something is nice then it is kind.\n11. If Erin is green then Erin is white.\n12. All green things are blue.\n13. If something is young then it is white.\n14. If Harry is white then Harry is young.\n15. If Erin is nice and Erin is blue then Erin is young.\n16. All white things are green.\n\nWe need to determine whether the statement \"Harry is young\" is true, false, or unknown.\n\nFrom statement 7, we know that Harry is white. \n\nFrom statement 13, if something is young then it is white.\n\nSo, if Harry is young, then he should be white, which we already know from statement 7.\n\nHowever, we need to confirm if Harry being white implies that he is young.\n\nFrom statement 14, if Harry is white then he is young.\n\nCombining this with the fact that Harry is white, we can conclude that Harry is indeed young.\n\nTherefore, the statement \"Harry is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given statements and determine if they provide enough information to conclude whether Harry is young.\n\n1. Anne is green.\n   This statement is irrelevant to the conclusion about Harry's age.\n\n2. Charlie is blue.\n   This statement is irrelevant to the conclusion about Harry's age.\n\n3. Charlie is not green.\n   This statement is irrelevant to the conclusion about Harry's age.\n\n4. Charlie is nice.\n   This statement is irrelevant to the conclusion about Harry's age.\n\n5. Erin is young.\n   This statement directly contradicts the conclusion about Harry's age, so it will be used later.\n\n6. Harry is kind.\n   This statement is irrelevant to the conclusion about Harry's age.\n\n7. Harry is white.\n   This statement can be used to conclude that Harry is young, based on the statement \"If Harry is white then Harry is young.\"\n\n8. If something is blue then it is nice.\n   This statement is irrelevant to the conclusion about Harry's age.\n\n9. If something is blue and not quiet then it is nice.\n   This statement is irrelevant to the conclusion about Harry's age.\n\n10. If something is nice then it is kind.\n    This statement is irrelevant to the conclusion about Harry's age.\n\n11. If Erin is green then Erin is white.\n    This statement is irrelevant to the conclusion about Harry's age.\n\n12. All green things are blue.\n    This statement can be used to conclude that Harry is blue, but it's not necessary for the conclusion about Harry's age.\n\n13. If something is young then it is white.\n    This statement is already given in statement 7, so it's a bit redundant.\n\n14. If Harry is white then Harry is young.\n    This statement is given in statement 7 and is the key to the conclusion.\n\n15. If Erin is nice and Erin is blue then Erin is young.\n    This statement is irrelevant to the conclusion about Harry's age.\n\n16. All white things are green.\n    This statement can be used to conclude that Harry is green, but it's not necessary for the conclusion about Harry's age.\n\nBased on the given statements, we can conclude that Harry is white (statement 7), and if Harry is white then Harry is young (statement 14). Therefore, the statement \"Harry is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is young\" is true, false, or unknown, we need to analyze the given statements and apply logical reasoning.\n\n1. Given statements:\n   - Anne is green.\n   - Charlie is blue.\n   - Charlie is not green.\n   - Charlie is nice.\n   - Erin is young.\n   - Harry is kind.\n   - Harry is white.\n   - If something is blue then it is nice.\n   - If something is blue and not quiet then it is nice.\n   - If something is nice then it is kind.\n   - If Erin is green then Erin is white.\n   - All green things are blue.\n   - If something is young then it is white.\n   - If Harry is white then Harry is young.\n   - If Erin is nice and Erin is blue then Erin is young.\n   - All white things are green.\n\n2. To determine whether Harry is young, we need to examine the given statements related to Harry:\n   - Harry is kind.\n   - Harry is white.\n   - If Harry is white then Harry is young.\n\n3. Since we know that Harry is white (from the given statement \"Harry is white\"), we can apply the statement \"If Harry is white then Harry is young\" to conclude that Harry is indeed young.\n\nTherefore, based on the given statements and logical reasoning, we can determine that the statement \"Harry is young\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_harry, green_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_harry, blue_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_harry, nice_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_harry, kind_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), nice_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_charlie, kind_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_erin, blue_erin), young_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_harry, green_harry)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), nice_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_charlie, kind_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(Not(young_erin), white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(Not(young_erin), blue_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_erin, blue_erin), young_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_harry, green_harry)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_harry, green_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_harry, blue_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_harry, nice_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_X, nice_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_X, blue_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie) & not green(charlie) & nice(charlie)",
+          "z3_formula": "And(blue_charlie, Not(green_charlie), nice_charlie) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_X, Not(quiet_X)), nice_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_X, nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_X, kind_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_X, blue_X)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "green(white)",
+          "z3_formula": "Implies(white_harry, green_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), nice_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_charlie, kind_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_anne, blue_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_erin, blue_erin), young_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_erin, green_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not green(erin)",
+          "z3_formula": "Not(green_erin) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), nice_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_charlie, kind_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_erin, young_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_erin, blue_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_erin, blue_erin), young_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_harry, green_harry)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), nice_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_charlie, kind_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_erin, blue_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "all green(X) are blue(X)",
+          "z3_formula": "Implies(green_X, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_erin, blue_erin), young_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "all white(X) are green(X)",
+          "z3_formula": "Implies(white_X, green_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), nice_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_charlie, kind_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(young_erin, blue_erin), young_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_anne, blue_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_harry, green_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), nice_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_charlie, kind_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_erin, young_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_erin, blue_erin), young_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_harry, green_harry)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), nice_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_charlie, kind_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_erin, nice_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "all green(X) -> blue(X)",
+          "z3_formula": "Implies(ForAll(X, And(green(X), Implies(True, blue(X)))), ForAll(X, blue(X)))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_harry, white_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_erin, blue_erin), young_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "all white(X) -> green(X)",
+          "z3_formula": "Implies(ForAll(X, white(X)), ForAll(X, green(X)))",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), nice_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_charlie, kind_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "all green(X) -> blue(X)",
+          "z3_formula": "Implies(ForAll(X, And(green_X, Not(blue_X))), False)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_erin, blue_erin), young_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "all white(X) -> green(X)",
+          "z3_formula": "Implies(ForAll(X, And(white_X, Not(green_X))), False)",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 193,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 46
+    },
+    "maxsat_stats": {
+      "satisfied": 45,
+      "excluded": 1,
+      "total_weight": 188,
+      "solve_time_ms": 1.3585304841399193
+    },
+    "timing": {
+      "trace_gen_s": 8.528,
+      "extraction_s": 29.24,
+      "dedup_s": 1.649,
+      "maxsat_s": 0.004,
+      "total_s": 39.421
+    }
+  }
+}

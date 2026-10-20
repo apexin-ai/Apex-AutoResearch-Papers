@@ -1,0 +1,1012 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-406_Q4",
+    "problem": "The bald eagle is big. The bald eagle is rough. The bald eagle sees the lion. The cat chases the lion. The cat is red. The cat is rough. The cat sees the bald eagle. The cow does not eat the bald eagle. The cow is not young. The lion eats the cow. The lion is rough. If something sees the bald eagle and the bald eagle chases the cat then it is red. If something is big and rough then it chases the cat. If something chases the cow and the cow chases the cat then it is rough. If something chases the cow then it eats the bald eagle. If something chases the cat then it sees the bald eagle. If something is red then it chases the cow. If something is round and it chases the lion then it does not eat the lion. If the cow chases the lion then the lion does not chase the bald eagle.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat does not chase the cow.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nRough($x, bool) ::: Is x rough?\nSees($x, $y, bool) ::: Does x see y?\nChases($x, $y, bool) ::: Does x chase y?\nRed($x, bool) ::: Is x red?\nEats($x, $y, bool) ::: Does x eat y?\nYoung($x, bool) ::: Is x young?\nRound($x, bool) ::: Is x round?\n\nFacts:\nBig(BaldEagle, True) ::: The bald eagle is big.\nRough(BaldEagle, True) ::: The bald eagle is rough.\nSees(BaldEagle, Lion, True) ::: The bald eagle sees the lion.\nChases(Cat, Lion, True) ::: The cat chases the lion.\nRed(Cat, True) ::: The cat is red.\nRough(Cat, True) ::: The cat is rough.\nSees(Cat, BaldEagle, True) ::: The cat sees the bald eagle.\nEats(Cow, BaldEagle, False) ::: The cow does not eat the bald eagle.\nYoung(Cow, False) ::: The cow is not young.\nEats(Lion, Cow, True) ::: The lion eats the cow.\nRough(Lion, True) ::: The lion is rough.\n\nRules:\nSees($x, BaldEagle, True) && Chases(BaldEagle, Cat, True) >>> Red($x, True) ::: If something sees the bald eagle and the bald eagle chases the cat then it is red.\nBig($x, True) && Rough($x, True) >>> Chases($x, Cat, True) ::: If something is big and rough then it chases the cat.\nChases($x, Cow, True) && Chases(Cow, Cat, True) >>> Rough($x, True) ::: If something chases the cow and the cow chases the cat then it is rough.\nChases($x, Cow, True) >>> Eats($x, BaldEagle, True) ::: If something chases the cow then it eats the bald eagle.\nChases($x, Cat, True) >>> Sees($x, BaldEagle, True) ::: If something chases the cat then it sees the bald eagle.\nRed($x, True) >>> Chases($x, Cow, True) ::: If something is red then it chases the cow.\nRound($x, True) && Chases($x, Lion, True) >>> Eats($x, Lion, False) ::: If something is round and it chases the lion then it does not eat the lion.\nChases(Cow, Lion, True) >>> Chases(Lion, BaldEagle, False) ::: If the cow chases the lion then the lion does not chase the bald eagle.\n\nQuery:\nChases(Cat, Cow, False) ::: The cat does not chase the cow."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 130.0,
+      "True": 64.0
+    },
+    "answer_counts": {
+      "False": 10,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The cat does not chase the cow\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the information given:\n\n1. The lion eats the cow. \n2. The lion is rough. \n3. The cat is red.\n4. The cat is rough.\n5. The cat sees the bald eagle.\n6. The cow does not eat the bald eagle.\n7. The cow is not young.\n\nFrom the rules given:\n\n1. If something sees the bald eagle and the bald eagle chases the cat then it is red.\n2. This rule is not applicable here as we don't have information about the bald eagle chasing the cat.\n3. If something is big and rough then it chases the cat.\n   - We can't say the cat is big, so this rule is not applicable here.\n4. If something chases the cow and the cow chases the cat then it is rough.\n   - We don't have information about the cat chasing the cow, so this rule is not applicable here.\n5. If something chases the cow then it eats the bald eagle.\n   - This rule is not applicable here as we don't have information about something chasing the cow.\n6. If something chases the cat then it sees the bald eagle.\n   - This rule is not applicable here as we don't have information about something chasing the cat.\n7. If something is red then it chases the cow.\n   - We know the cat is red, so this rule is applicable.\n   - However, we still don't have information about the cat chasing the cow.\n8. If something is round and it chases the lion then it does not eat the lion.\n   - We don't have information about a round object, so this rule is not applicable here.\n9. If the cow chases the lion then the lion does not chase the bald eagle.\n   - This rule is not applicable here as we don't have information about the cow chasing the lion.\n\nFrom the given information, we can deduce that the lion eats the cow (rule 1), and the lion is rough (rule 2). We also know the cat is red (rule 3). However, we still don't have information about the cat chasing the cow.\n\nNow, let's analyze the rules to see if we can deduce any information about the cat chasing the cow. \n\nFrom rule 7, if something is red, then it chases the cow. However, this rule doesn't say that if something is red, it must chase the cow. It only says that if something is red, then it chases the cow. This is an if-then statement, not an if-and-only-if statement.\n\nSince we know the cat is red, we can apply rule 7. However, this rule only provides a sufficient condition, not a necessary condition. Therefore, we can conclude that the cat chases the cow (by rule 7), but we can't conclude the opposite (i.e., the cat does not chase the cow).\n\nTherefore, the statement \"The cat does not chase the cow\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not chase the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we have:\n   - The cat is red.\n   - If something is red, then it chases the cow.\n\nFrom this information, we can conclude that the cat chases the cow, which means the initial statement \"The cat does not chase the cow\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications.\n\n1. The bald eagle is big. \n2. The bald eagle is rough.\n3. The bald eagle sees the lion.\n4. The cat chases the lion.\n5. The cat is red.\n6. The cat is rough.\n7. The cat sees the bald eagle.\n8. The cow does not eat the bald eagle.\n9. The cow is not young.\n10. The lion eats the cow.\n11. The lion is rough.\n\nNow, let's look at the given rules:\n12. If something sees the bald eagle and the bald eagle chases the cat then it is red.\n13. If something is big and rough then it chases the cat.\n14. If something chases the cow and the cow chases the cat then it is rough.\n15. If something chases the cow then it eats the bald eagle.\n16. If something chases the cat then it sees the bald eagle.\n17. If something is red then it chases the cow.\n18. If something is round and it chases the lion then it does not eat the lion.\n19. If the cow chases the lion then the lion does not chase the bald eagle.\n\nNow, we need to analyze the statement: The cat does not chase the cow.\n\nGiven that the cat chases the lion (4), the cow chases the lion (10), and the cow does not eat the bald eagle (8).\n\nWe can see that the cow chases the lion, and the lion eats the cow (10). This makes the cow rough (14), but the cat also chases the lion (4), and the cow chases the cat (from the fact that the cow chases the lion), so the cat is rough (14). \n\nThe cat sees the bald eagle (7), and the bald eagle chases the cat, so the cat is red (12). \n\nSince the cat is red, it chases the cow (17). Therefore, the cat does chase the cow.\n\nSo the statement is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not chase the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat is red. \n   This is a given fact.\n\n2. If something is red then it chases the cow. \n   Since the cat is red, it must chase the cow.\n\nFrom the above two steps, we can conclude that the cat does chase the cow. \n\nTherefore, the statement \"The cat does not chase the cow\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information step by step.\n\n1. The lion eats the cow. \n   This statement tells us the relationship between the lion and the cow.\n\n2. The lion is rough. \n   We can use this statement to infer information about the lion's behavior.\n\n3. If something chases the cow and the cow chases the cat then it is rough. \n   We can now substitute the lion in this statement with the information we have.\n\n   - Since the lion eats the cow, we can say that the lion chases the cow.\n   - The cow chases the cat. Therefore, the lion is rough.\n\n4. If something chases the cow then it eats the bald eagle. \n   We know that the lion chases the cow, so we can infer that the lion eats the bald eagle.\n\n5. The lion is rough. \n   We already established this earlier.\n\n6. The lion sees the bald eagle. \n   We can infer this from the information that the lion eats the bald eagle. If the lion eats the bald eagle, then it must have seen it first.\n\n7. The cat chases the lion. \n   This statement tells us the relationship between the cat and the lion.\n\n8. The cat is red. \n   This statement tells us the color of the cat.\n\n9. The cat sees the bald eagle. \n   We can infer this from the information that the cat chases the lion. If the cat chases the lion, then it must have seen the lion first, and since the lion sees the bald eagle, the cat sees the bald eagle as well.\n\n10. If something sees the bald eagle and the bald eagle chases the cat then it is red. \n    We know that the cat sees the bald eagle and the bald eagle chases the cat, so we can infer that the cat is red.\n\nHowever, we are asked to determine whether the cat does not chase the cow. To do this, let's look at the information given:\n\n11. If something chases the cow and the cow chases the cat then it is rough. \n    We know that the lion chases the cow and the cow chases the cat, so we can infer that the lion is rough.\n\n12. The cat is red. \n    We already established this earlier.\n\n13. If something is red then it chases the cow. \n    We can now substitute the cat in this statement with the information we have.\n\n    - Since the cat is red, we can say that the cat chases the cow.\n\nHowever, this contradicts our initial statement that the cat does not chase the cow. Therefore, we can conclude that:\n\nThe statement \"The cat does not chase the cow\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information into rules and use them to determine the relationship between the cat and the cow.\n\n1. If something sees the bald eagle and the bald eagle chases the cat then it is red. \n   - We know the cat sees the bald eagle, so we need to check if the bald eagle chases the cat. However, this rule is not directly related to the relationship between the cat and the cow.\n\n2. If something is big and rough then it chases the cat. \n   - There is no information about the cat being big and rough. However, we do know that the cat is red from rule 1, which doesn't directly relate to being big and rough.\n\n3. If something chases the cow and the cow chases the cat then it is rough. \n   - This rule is relevant because it involves the cow, which we know is not young and chases the lion. But we need to check if the cat chases the cow.\n\n4. If something chases the cow then it eats the bald eagle. \n   - We don't know if the cat chases the cow, so this rule is not directly relevant yet.\n\n5. If something chases the cat then it sees the bald eagle. \n   - This rule is relevant because we know the cat chases the lion, but we need to check if the cat chases the cow.\n\n6. If something is red then it chases the cow. \n   - We know the cat is red, but we need to check if the cat chases the cow.\n\n7. If something is round and it chases the lion then it does not eat the lion. \n   - This rule is not relevant because there is no information about the cat being round.\n\n8. If the cow chases the lion then the lion does not chase the bald eagle. \n   - We know the cow chases the lion, so we can infer that the lion does not chase the bald eagle.\n\nTo determine whether the cat does not chase the cow, we need to analyze the given information.\n\n- We know the cat is red (rule 1) and the cat is rough (rule 5).\n- We know the cat chases the lion (not directly related to the cat and cow, but we need to keep this in mind).\n- We know the cow does not eat the bald eagle (rule 4).\n- We know the cow is not young and chases the lion (rule 3).\n- We know the lion eats the cow (rule 3).\n\nNow, let's analyze rule 3 again: \"If something chases the cow and the cow chases the cat then it is rough.\" \n\nSince the cow chases the lion (not the cat) and the lion eats the cow (rule 3), we can't directly apply this rule to determine if the cat chases the cow.\n\nHowever, we can use the information from rule 6: \"If something is red then it chases the cow.\" \n\nSince the cat is red (rule 1), we can infer that the cat chases the cow. Therefore, the statement \"The cat does not chase the cow\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the cat does not chase the cow, we need to analyze the given statements and rules. \n\n1. The cat is red. (Given)\n2. If something is red then it chases the cow. (Rule 8)\nFrom 1 and 2, we can conclude that the cat chases the cow. However, we are asked to determine whether the cat does not chase the cow.\n\nSince the cat chases the cow according to the rules, the statement \"The cat does not chase the cow\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information step by step and use it to infer information about the cat chasing the cow.\n\n1. The bald eagle sees the lion. \n   - This statement does not give us any information about the cat chasing the cow.\n\n2. The cat chases the lion. \n   - This statement does not give us any information about the cat chasing the cow.\n\n3. The cat is red. \n   - This statement does not give us any information about the cat chasing the cow.\n\n4. The cat is rough. \n   - This statement does not give us any information about the cat chasing the cow.\n\n5. The cat sees the bald eagle. \n   - This statement does not give us any information about the cat chasing the cow.\n\n6. The cow does not eat the bald eagle. \n   - This statement does not give us any information about the cat chasing the cow.\n\n7. The cow is not young. \n   - This statement does not give us any information about the cat chasing the cow.\n\n8. The lion eats the cow. \n   - The lion eats the cow. This does not give us any information about the cat chasing the cow, but it does tell us that the cow is chased by the lion.\n\n9. The lion is rough. \n   - This statement does not give us any information about the cat chasing the cow.\n\n10. If something sees the bald eagle and the bald eagle chases the cat then it is red.\n    - This statement does not give us any information about the cat chasing the cow.\n\n11. If something is big and rough then it chases the cat.\n    - This statement does not give us any information about the cat chasing the cow.\n\n12. If something chases the cow and the cow chases the cat then it is rough.\n    - We do not have enough information to determine if the cat chases the cow, so let's call this statement unknown for now.\n\n13. If something chases the cow then it eats the bald eagle.\n    - We do not have enough information to determine if the cat chases the cow, so let's call this statement unknown for now.\n\n14. If something chases the cat then it sees the bald eagle.\n    - We do not have enough information to determine if the cat chases the cow, so let's call this statement unknown for now.\n\n15. If something is red then it chases the cow.\n    - The cat is red, but we do not have enough information to determine if it chases the cow.\n\n16. If something is round and it chases the lion then it does not eat the lion.\n    - This statement does not give us any information about the cat chasing the cow.\n\n17. If the cow chases the lion then the lion does not chase the bald eagle.\n    - We know that the lion eats the cow, which means the cow does chase the lion. Therefore, the lion does not chase the bald eagle.\n\nNow, let's go back to statement 12 and 13. We know that the cow does chase the lion, so let's try to use that information to determine if the cat chases the cow.\n\nFrom statement 12, if something chases the cow and the cow chases the cat then it is rough. We know that the lion chases the cow, and the cow chases the cat, so we can infer that the lion is rough.\n\nFrom statement 13, if something chases the cow then it eats the bald eagle. We know that the lion chases the cow, so we can infer that the lion eats the bald eagle.\n\nWe still do not have enough information to determine if the cat chases the cow. However, we can use the information that the cat chases the lion (statement 2) to determine if the cat chases the cow.\n\nFrom statement 16, if something is round and it chases the lion then it does not eat the lion. We do not have any information about the cat being round, but we do know that the cat is red (statement 3).\n\nFrom statement 15, if something is red then it chases the cow. We know that the cat is red, but we still do not have enough information to determine if it chases the cow.\n\nHowever, we can use the information that the lion is rough (statement 9) and the lion chases the cow (statement 8) to determine that the lion sees the bald eagle (statement 1). We also know that the lion is rough (statement 9), so we can infer that the lion chases the cat (statement 11).\n\nWe know that the cat chases the lion (statement 2). If the cat chases the lion, then the cat does not chase the cow. Therefore, the statement \"The cat does not chase the cow\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not chase the cow\" is true, false, or unknown, we need to analyze the given premises and their implications.\n\n1. The cat is red. (Premise)\n2. If something is red then it chases the cow. (Premise)\n\nFrom the premises, we can infer that the cat chases the cow because it is red. This implies that the cat does chase the cow.\n\nHowever, we need to check if there are any other premises that could contradict this conclusion. \n\n3. The cat sees the bald eagle. (Premise)\n4. The bald eagle chases the cat. (Premise)\n5. If the bald eagle sees the cat and the bald eagle chases the cat then it is red. (Premise)\n\nFrom premises 3 and 4, we can infer that the bald eagle is red because it chases the cat. However, this information about the bald eagle being red does not affect the initial conclusion that the cat chases the cow.\n\n6. If something is big and rough then it chases the cat. (Premise)\n7. The lion is rough. (Premise)\n8. The lion sees the bald eagle. (Premise)\n9. The cat chases the lion. (Premise)\n10. The cow does not eat the bald eagle. (Premise)\n11. The lion eats the cow. (Premise)\n\nFrom premises 6, 7, and 9, we can infer that the lion chases the cat. However, this information does not affect the conclusion that the cat chases the cow.\n\n12. If something chases the cow and the cow chases the cat then it is rough. (Premise)\n13. If something chases the cow then it eats the bald eagle. (Premise)\n14. If the cow chases the lion then the lion does not chase the bald eagle. (Premise)\n\nFrom premises 12 and 13, we can infer that if the cat chases the cow, then the cat is rough and eats the bald eagle. However, this does not affect the conclusion that the cat chases the cow.\n\n15. The cat is rough. (Premise)\n\nThis premise does not provide any new information that contradicts the conclusion.\n\nBased on the premises, we can conclude that the cat chases the cow.\n\nTherefore, the statement \"The cat does not chase the cow\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the cat does not chase the cow, we need to analyze the given information step by step.\n\n1. The lion eats the cow. \n   - From this, we can't directly conclude anything about the cat, but we know the lion eats the cow.\n\n2. The lion is rough.\n   - We already know the lion eats the cow, but this fact doesn't add any new information about the cat.\n\n3. The cat chases the lion.\n   - This statement implies the cat sees the bald eagle, but it doesn't directly relate to the cat chasing the cow.\n\n4. The cat is red.\n   - Since the cat sees the bald eagle and the bald eagle chases the cat, we can conclude that the cat is red, but this fact still doesn't relate to the cat chasing the cow.\n\n5. If something is red then it chases the cow.\n   - Since we already know the cat is red, this rule implies that the cat chases the cow.\n\nHowever, we need to check if there are any other rules that contradict this conclusion.\n\n6. If something sees the bald eagle and the bald eagle chases the cat, then it is red.\n   - This rule doesn't directly apply to the cat and cow scenario.\n\n7. If something chases the cow and the cow chases the cat, then it is rough.\n   - This rule doesn't apply to the cat and cow scenario.\n\n8. If something chases the cow then it eats the bald eagle.\n   - We can't conclude anything about the cat and cow from this rule.\n\n9. If something chases the cat then it sees the bald eagle.\n   - We can't conclude anything about the cat and cow from this rule.\n\n10. If something is big and rough then it chases the cat.\n   - We already know the lion is rough and it eats the cow. We don't know if it's big or not.\n\n11. The cow does not eat the bald eagle.\n   - This statement doesn't add any new information about the cat and cow.\n\n12. The cow is not young.\n   - This statement doesn't add any new information about the cat and cow.\n\n13. If the cow chases the lion then the lion does not chase the bald eagle.\n   - We already know the lion eats the cow and it's rough. We don't know if it chases the bald eagle or not.\n\n14. If something is round and it chases the lion then it does not eat the lion.\n   - This rule doesn't apply to the cat and cow scenario.\n\nFrom the given rules and information, we can conclude that the cat chases the cow. \n\nTherefore, the statement \"The cat does not chase the cow\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not chase the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given information:\n\n1. The cat chases the lion. (Statement 4)\n2. If something chases the cow and the cow chases the cat, then it is rough. (Statement 8)\n3. The cow does not eat the bald eagle. (Statement 7)\n4. The lion eats the cow. (Statement 9)\n5. The lion is rough. (Statement 10)\n\nFrom statement 4, we know that the cat chases the lion. Now, let's use statement 8. We don't have any information about the cow chasing the cat, so we cannot conclude that the cat is rough from statement 8. However, we can use statement 9 and 10 to infer some information about the cow and the lion. Statement 9 says that the lion eats the cow, and statement 10 says that the lion is rough. \n\nWe need to find a connection between the lion, the cow, and the cat. \n\nNow, let's look at statement 11: If something chases the cow, then it eats the bald eagle. (Statement 11) \nFrom statement 9, we know that the lion eats the cow. We can use statement 11 to conclude that the lion eats the bald eagle. \n\nWe are not given any information about the cat eating the bald eagle. \n\nNow, let's look at statement 12: If something chases the cat, then it sees the bald eagle. (Statement 12) \nFrom statement 4, we know that the cat chases the lion. We can use statement 12 to conclude that the lion sees the bald eagle.\n\nWe are given statement 1: The bald eagle sees the lion. (Statement 1) \nFrom statement 12, we know that the lion sees the bald eagle. \n\nNow, let's look at statement 13: If something is red and it chases the bald eagle, then it is red. (Statement 13) \nThis statement is not useful because it doesn't give any new information.\n\nNow, let's look at statement 14: If something is big and rough, then it chases the cat. (Statement 14) \nWe don't have any information about the cat being big or rough.\n\nNow, let's look at statement 15: If something chases the cow and the cow chases the cat, then it is rough. (Statement 15) \nWe already know that the lion eats the cow from statement 9, but we don't know if the cow chases the cat.\n\nNow, let's look at statement 16: If something chases the cow, then it eats the bald eagle. (Statement 11) \nWe already know that the lion eats the cow and we can conclude that the lion eats the bald eagle from statement 11.\n\nNow, let's look at statement 17: If something is red, then it chases the cow. (Statement 17) \nFrom statement 4, we know that the cat chases the lion, and from statement 4, we also know that the lion is rough. However, we can't conclude that the cat is red from statement 4 because statement 17 is a rule that applies to something that is red.\n\nNow, let's look at statement 18: If something chases the lion and it is round, then it does not eat the lion. (Statement 18) \nWe don't have any information about the cat being round.\n\nNow, let's look at statement 19: If the cow chases the lion, then the lion does not chase the bald eagle. (Statement 19) \nFrom statement 9, we know that the lion eats the cow. We can use statement 19 to conclude that the lion does not chase the bald eagle.\n\nWe are given statement 20: The cat is red. (Statement 5) \nFrom statement 17, we know that if something is red, then it chases the cow. We can use statement 20 to conclude that the cat chases the cow.\n\nNow, let's look at statement 21: The cat is rough. (Statement 6) \nFrom statement 14, we know that if something is big and rough, then it chases the cat. However, we don't have any information about the cat being big.\n\nNow, let's look at statement 22: The cat sees the bald eagle. (Statement 3) \nFrom statement 12, we know that if something chases the cat, then it sees the bald eagle. We already know that the lion sees the bald eagle from statement 12.\n\nFrom statement 20, we know that the cat is red. From statement 5, we know that the cat chases the lion. We can use statement 17 to conclude that the cat chases the cow.\n\nHowever, from statement 20, we know that the cat is red. From statement 4, we know that the cat chases the lion. We can use statement 17 to conclude that the cat chases the cow.\n\nSince we already know that the lion eats the cow from statement 9, we can use statement 11 to conclude that the lion eats the bald eagle.\n\nWe are given statement 6: The cat is rough. (Statement 6) \nFrom statement 14, we know that if something is big and rough, then it chases the cat. However, we don't have any information about the cat being big.\n\nNow, let's look at statement 7: The cow does not eat the bald eagle. (Statement 7) \nFrom statement 9, we know that the lion eats the cow. We can use statement 11 to conclude that the lion eats the bald eagle.\n\nWe are given statement 8: If something chases the cow and the cow chases the cat, then it is rough. (Statement 8) \nWe already know that the lion eats the cow from statement 9.\n\nWe are given statement 9: The lion eats the cow. (Statement 9) \nFrom statement 11, we can conclude that the lion eats the bald eagle.\n\nWe are given statement 10: The lion is rough. (Statement 10) \nFrom statement 9, we know that the lion eats the cow.\n\nWe are given statement 11: If something chases the cow, then it eats the bald eagle. (Statement 11) \nFrom statement 9, we know that the lion eats the cow. We can use statement 11 to conclude that the lion eats the bald eagle.\n\nWe are given statement 12: If something chases the cat, then it sees the bald eagle. (Statement 12) \nFrom statement 4, we know that the cat chases the lion. We can use statement 12 to conclude that the lion sees the bald eagle.\n\nWe are given statement 13: If something is red and it chases the bald eagle, then it is red. (Statement 13) \nThis statement is not useful because it doesn't give any new information.\n\nWe are given statement 14: If something is big and rough, then it chases the cat. (Statement 14) \nWe don't have any information about the cat being big or rough.\n\nWe are given statement 15: If something chases the cow and the cow chases the cat, then it is rough. (Statement 15) \nWe already know that the lion eats the cow from statement 9.\n\nWe are given statement 16: If something chases the cow, then it eats the bald eagle. (Statement 16) \nThis statement is the same as statement 11.\n\nWe are given statement 17: If something is red, then it chases the cow. (Statement 17) \nFrom statement 4, we know that the cat chases the lion.\n\nWe are given statement 18: If something chases the lion and it is round, then it does not eat the lion. (Statement 18) \nWe don't have any information about the cat being round.\n\nWe are given statement 19: If the cow chases the lion, then the lion does not chase the bald eagle. (Statement 19) \nFrom statement 9, we know that the lion eats the cow. We can use statement 19 to conclude that the lion does not chase the bald eagle.\n\nWe are given statement 20: The cat is red. (Statement 20) \nFrom statement 17, we can conclude that the cat chases the cow.\n\nWe are given statement 21: The cat is rough. (Statement 21) \nFrom statement 14, we know that if something is big and rough, then it chases the cat. However, we don't have any information about the cat being big.\n\nWe are given statement 22: The cat sees the bald eagle. (Statement 22) \nFrom statement 12, we can conclude that the lion sees the bald eagle.\n\nNow, let's conclude:\n\nWe know that the cat is red from statement 20. We know that the cat chases the cow from statement 20 and statement 17. We don't have any information about the cat chasing the cow from statement 20. \n\nHowever, from statement 20, we know that the cat is red. From statement 4, we know that the cat chases the lion. We can use statement 17 to conclude that the cat chases the cow.\n\nSince we already know that the lion eats the cow from statement 9, we can use statement 11 to conclude that the lion eats the bald eagle.\n\nWe are given statement 6: The cat is rough. (Statement 6) \nFrom statement 14, we know that if something is big and rough, then",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not chase the cow\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat is red. (Given)\n2. If something is red then it chases the cow. (Given)\nFrom steps 1 and 2, we can conclude that the cat chases the cow.\n\nSince we have found that the cat chases the cow, we can determine that the statement \"The cat does not chase the cow\" is false.\n\nTherefore, the final answer is: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, eagle)",
+          "z3_formula": "sees_cat_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(eagle, cow))",
+          "z3_formula": "not(eats_eagle_cow) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(young(cow))",
+          "z3_formula": "not(young_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) & chases(eagle, cat) -> red(X)",
+          "z3_formula": "Implies(And(sees_cat_eagle, chases_eagle_cat), red_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> chases(X, cat)",
+          "z3_formula": "Implies(And(big_X, rough_X), chases_X_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, cat) -> rough(X)",
+          "z3_formula": "Implies(And(chases_X_cow, chases_cow_cat), rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> eats(X, eagle)",
+          "z3_formula": "Implies(chases_X_cow, eats_X_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, eagle)",
+          "z3_formula": "Implies(chases_X_cat, sees_X_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, cow)",
+          "z3_formula": "Implies(red_X, chases_X_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & chases(X, lion) -> not(eats(X, lion))",
+          "z3_formula": "Implies(And(round_X, chases_X_lion), not(eats_X_lion))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(cow, lion) -> not(chases(lion, eagle))",
+          "z3_formula": "Implies(chases_cow_lion, not(chases_lion_eagle))",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cow)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, cow)",
+          "z3_formula": "Implies(red_cat, chases_cat_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cow)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(cow, bald_eagle))",
+          "z3_formula": "not_eats_cow_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(young(cow))",
+          "z3_formula": "not_young_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & chases(bald_eagle, cat) -> red(X)",
+          "z3_formula": "Implies(And(sees_cat_bald_eagle, chases_bald_eagle_cat), red_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> chases(X, cat)",
+          "z3_formula": "Implies(And(big_bald_eagle, rough_bald_eagle), chases_bald_eagle_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & eats(cow, cat) -> rough(X)",
+          "z3_formula": "Implies(And(chases_cow_cat, eats_cow_cat), rough_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(chases_cow_bald_eagle, eats_cow_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_cat_bald_eagle, sees_cat_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, cow)",
+          "z3_formula": "Implies(red_cat, chases_cat_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & chases(X, lion) -> not(eats(X, lion))",
+          "z3_formula": "Implies(And(round_fiona, chases_fiona_lion), not_eats_fiona_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "eats(cow, lion) -> not(chases(lion, bald_eagle))",
+          "z3_formula": "Implies(eats_cow_lion, not_chases_lion_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases(cat, cow))",
+          "z3_formula": "not_chases_cat_cow == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, cow)",
+          "z3_formula": "Implies(red_cat, chases_cat_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cow)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, cat) -> rough(X)",
+          "z3_formula": "Implies(And(chases_lion_cow, chases_cow_cat), rough_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> eats(X, eagle)",
+          "z3_formula": "Implies(chases_lion_cow, eats_lion_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, eagle)",
+          "z3_formula": "sees_lion_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "sees(cat, eagle)",
+          "z3_formula": "sees_cat_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) & chases(eagle, cat) -> red(X)",
+          "z3_formula": "Implies(And(sees_cat_eagle, chases_eagle_cat), red_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, cow)",
+          "z3_formula": "Implies(red_cat, chases_cat_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cow)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(cat, eagle)",
+          "z3_formula": "sees_cat_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, eagle) & chases(eagle, cat) -> red(X)",
+          "z3_formula": "Implies(And(sees_cat_eagle, chases_eagle_cat), red_cat)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> chases(X, cat)",
+          "z3_formula": "Implies(And(big_cat, rough_cat), chases_cat_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, lion)",
+          "z3_formula": "chases_cow_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, cat) -> rough(X)",
+          "z3_formula": "Implies(And(chases_cat_cow, chases_cow_cat), rough_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> eats(X, eagle)",
+          "z3_formula": "Implies(chases_cat_cow, eats_cat_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, eagle)",
+          "z3_formula": "Implies(chases_cat_lion, sees_cat_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, cow)",
+          "z3_formula": "Implies(red_cat, chases_cat_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(cow)",
+          "z3_formula": "young_cow == False",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, lion)",
+          "z3_formula": "chases_cow_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, cat) -> rough(X)",
+          "z3_formula": "Implies(And(chases_cat_cow, chases_cow_cat), rough_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, cat) -> rough(X)",
+          "z3_formula": "Implies(And(chases_cat_cow, chases_cow_cat), rough_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, lion)",
+          "z3_formula": "chases_cow_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(cow, lion) -> Not(chases(lion, eagle))",
+          "z3_formula": "Implies(chases_cow_lion, Not(chases_lion_eagle))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(chases(cat, cow))",
+          "z3_formula": "Not(chases_cat_cow)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, cow)",
+          "z3_formula": "Implies(red_cat, chases_cat_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cow)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bald_eagle) & chases(bald_eagle, cat) -> red(X)",
+          "z3_formula": "Implies(And(sees_bald_eagle_lion, chases_bald_eagle_cat), red_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> chases(X, cat)",
+          "z3_formula": "Implies(And(big_lion, rough_lion), chases_lion_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, cat) -> rough(X)",
+          "z3_formula": "Implies(And(chases_lion_cow, chases_cow_cat), rough_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(chases_lion_cow, eats_lion_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_lion_cat, sees_lion_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, cow)",
+          "z3_formula": "Implies(red_cat, chases_cat_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & chases(X, lion) -> not(eats(X, lion))",
+          "z3_formula": "Implies(And(round_lion, chases_lion_cat), Not(eats_lion_lion))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(cow, lion) -> not(chases(lion, bald_eagle))",
+          "z3_formula": "Implies(chases_cow_lion, Not(chases_lion_bald_eagle))",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not(chases(cat, cow))",
+          "z3_formula": "Not(chases_cat_cow) == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, cow)",
+          "z3_formula": "Implies(red_cat, chases_cat_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cow)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cat)",
+          "z3_formula": "sees_bald_eagle_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, cat)",
+          "z3_formula": "chases_bald_eagle_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, cat) & chases(X, cat) -> red(X)",
+          "z3_formula": "Implies(And(sees_bald_eagle_cat, chases_bald_eagle_cat), red_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(bald_eagle)",
+          "z3_formula": "red_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, bald_eagle)",
+          "z3_formula": "sees_lion_bald_eagle == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_eat(bald_eagle, cow)",
+          "z3_formula": "does_not_eat_bald_eagle_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> chases(X, cat)",
+          "z3_formula": "Implies(And(rough_lion, big_lion), chases_lion_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(chases_cat_cow, eats_cat_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & eats(X, lion) -> does_not_eat(X, bald_eagle)",
+          "z3_formula": "Implies(And(chases_lion_cat, eats_lion_cat), does_not_eat_cat_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(X, cat) -> rough(X)",
+          "z3_formula": "Implies(And(chases_cat_cow, chases_cat_lion), rough_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(chases_cat_cow, eats_cat_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, cow)",
+          "z3_formula": "Implies(red_cat, chases_cat_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & chases(lion, cat) -> rough(X)",
+          "z3_formula": "Implies(And(chases_cat_lion, chases_lion_cat), rough_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, cat) -> rough(X)",
+          "z3_formula": "Implies(And(chases_cat_cow, chases_cow_cat), rough_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(chases_cat_cow, eats_cat_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_cat_cow, sees_cat_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> chases(X, cat)",
+          "z3_formula": "Implies(And(big_lion, rough_lion), chases_lion_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(cow, bald_eagle))",
+          "z3_formula": "Not(eats_cow_bald_eagle) == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not(young(cow))",
+          "z3_formula": "Not(young_cow) == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(cow, lion) -> not(chases(lion, bald_eagle))",
+          "z3_formula": "Implies(chases_cow_lion, Not(chases_lion_bald_eagle))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & chases(X, lion) -> not(eats(X, lion))",
+          "z3_formula": "Implies(And(round_cat, chases_cat_lion), Not(eats_cat_lion))",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, X) -> rough(X)",
+          "z3_formula": "Implies(And(chases_cat_cow, chases_cow_cat), rough_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_eat(cow, bald_eagle)",
+          "z3_formula": "does_not_eat_cow_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(chases_cat_cow, eats_lion_bald_eagle)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cat) -> sees(X, bald_eagle)",
+          "z3_formula": "Implies(chases_lion_cat, sees_lion_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, lion)",
+          "z3_formula": "sees_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, cow)",
+          "z3_formula": "Implies(red_cat, chases_cat_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> chases(X, cat)",
+          "z3_formula": "Implies(And(big_X, rough_X), chases_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) & chases(cow, X) -> rough(X)",
+          "z3_formula": "Implies(And(chases_cat_cow, chases_cow_cat), rough_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(chases_cat_cow, eats_lion_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, cow)",
+          "z3_formula": "Implies(red_cat, chases_cat_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & round(X) -> not(eats(X, lion))",
+          "z3_formula": "Implies(And(chases_X_lion, round_X), not(eats_X_lion))",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(cow, lion) -> not(chases(lion, bald_eagle))",
+          "z3_formula": "Implies(chases_cow_lion, not(chases_lion_bald_eagle))",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "rough(cat)",
+          "z3_formula": "rough_cat == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cat, bald_eagle)",
+          "z3_formula": "sees_cat_bald_eagle == True",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(cat)",
+          "z3_formula": "red_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> chases(X, cow)",
+          "z3_formula": "Implies(red_cat, chases_cat_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, cow)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 147,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 63
+    },
+    "maxsat_stats": {
+      "satisfied": 62,
+      "excluded": 1,
+      "total_weight": 141,
+      "solve_time_ms": 1.2542977929115295
+    },
+    "timing": {
+      "trace_gen_s": 24.353,
+      "extraction_s": 27.687,
+      "dedup_s": 1.809,
+      "maxsat_s": 0.005,
+      "total_s": 53.853
+    }
+  }
+}

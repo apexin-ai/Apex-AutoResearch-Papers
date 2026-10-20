@@ -1,0 +1,882 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-940_Q9",
+    "problem": "The bald eagle is kind. The bald eagle is not red. The bald eagle likes the dog. The dog needs the lion. The lion does not need the bald eagle. The mouse likes the dog. The mouse does not see the dog. If someone needs the mouse then the mouse does not see the bald eagle. If someone needs the dog then the dog needs the lion. If someone is rough then they see the mouse. If someone sees the mouse then the mouse is kind. If someone needs the lion then they do not see the bald eagle. If someone sees the dog then they need the mouse. All kind people are rough. If someone sees the mouse then they like the lion.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse is rough.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nRed($x, bool) ::: Is x red?\nLikes($x, $y, bool) ::: Does x like y?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nKind(BaldEagle, True) ::: The bald eagle is kind.\nRed(BaldEagle, False) ::: The bald eagle is not red.\nLikes(BaldEagle, Dog, True) ::: The bald eagle likes the dog.\nNeeds(Dog, Lion, True) ::: The dog needs the lion.\nNeeds(Lion, BaldEagle, False) ::: The lion does not need the bald eagle.\nLikes(Mouse, Dog, True) ::: The mouse likes the dog.\nSees(Mouse, Dog, False) ::: The mouse does not see the dog.\n\nRules:\nNeeds($x, Mouse, True) >>> Sees(Mouse, BaldEagle, False) ::: If someone needs the mouse then the mouse does not see the bald eagle.\nNeeds($x, Dog, True) >>> Needs(Dog, Lion, True) ::: If someone needs the dog then the dog needs the lion.\nRough($x, True) >>> Sees($x, Mouse, True) ::: If someone is rough then they see the mouse.\nSees($x, Mouse, True) >>> Kind(Mouse, True) ::: If someone sees the mouse then the mouse is kind.\nNeeds($x, Lion, True) >>> Sees($x, BaldEagle, False) ::: If someone needs the lion then they do not see the bald eagle.\nSees($x, Dog, True) >>> Needs($x, Mouse, True) ::: If someone sees the dog then they need the mouse.\nKind($x, True) >>> Rough($x, True) ::: All kind people are rough.\nSees($x, Mouse, True) >>> Likes($x, Lion, True) ::: If someone sees the mouse then they like the lion.\n\nQuery:\nRough(Mouse, True) ::: The mouse is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 58.5,
+      "True": 81.0,
+      "Unknown": 98.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "True": 2,
+      "False": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The mouse is rough\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. The mouse likes the dog.\n2. The mouse does not see the dog.\n3. If someone sees the mouse, then the mouse is kind. (From statement 3, we can infer that the mouse is kind because it likes the dog, even though it does not see the dog.)\n4. All kind people are rough. (This statement implies a relationship between kindness and being rough, but it does not directly state that the mouse is rough.)\n\nNow, we need to consider the relationship between being rough and the mouse. \n\n5. If someone sees the mouse, then they are rough. (This statement creates a relationship between seeing the mouse and being rough, but it does not directly state that the mouse is rough.)\n6. The mouse does not see the dog, but there is no information that states the mouse sees anyone else. \n\nGiven the information provided, we cannot determine whether the mouse is rough because:\n\n- There is no direct statement that the mouse is rough.\n- There is no information that directly connects the mouse to being rough, even though it is kind.\n\nTherefore, the statement \"The mouse is rough\" is unknown based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse likes the dog. (From statement 3)\n2. The dog needs the lion. (From statement 4)\n3. The lion does not need the bald eagle. (From statement 5)\n4. The mouse does not see the dog. (From statement 6)\n5. If someone needs the mouse then the mouse does not see the bald eagle. (From statement 7)\n6. If someone needs the dog then the dog needs the lion. (From statement 8)\n7. If someone is rough then they see the mouse. (From statement 9)\n8. If someone sees the mouse then the mouse is kind. (From statement 10)\n9. All kind people are rough. (From statement 11)\n10. If someone sees the dog then they need the mouse. (From statement 12)\n11. If someone sees the mouse then the mouse is kind. (From statement 8)\n12. If someone sees the mouse then the lion likes the mouse. (From statement 13)\n13. The mouse is not mentioned to be kind or rough in the statements provided.\n\nFrom statement 9, we know that all kind people are rough, but we cannot determine if the mouse is kind or not. We need to find a connection between the mouse and the concept of being kind or rough.\n\nFrom statement 11, we know that if someone sees the mouse then the mouse is kind. However, we cannot determine if the mouse sees itself.\n\nFrom statement 7, we know that if someone is rough then they see the mouse. However, we cannot determine if the mouse is rough based on this information.\n\nFrom statement 4, we know that the mouse does not see the dog. We cannot determine if the mouse is rough or not based on this information.\n\nFrom statement 12, we know that if someone sees the dog then they need the mouse. We cannot determine if the mouse is rough or not based on this information.\n\nFrom statement 3, we know that the mouse likes the dog. We cannot determine if the mouse is rough or not based on this information.\n\nWe cannot determine if the mouse is rough or not based on the given information, so the statement \"The mouse is rough\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine if the statement \"The mouse is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle is kind. \n2. The bald eagle is not red. \n3. The bald eagle likes the dog. \n4. The dog needs the lion. \n5. The lion does not need the bald eagle. \n6. The mouse likes the dog. \n7. The mouse does not see the dog. \n8. If someone needs the mouse then the mouse does not see the bald eagle. \n9. If someone needs the dog then the dog needs the lion. \n10. If someone is rough then they see the mouse. \n11. If someone sees the mouse then the mouse is kind. \n12. If someone needs the lion then they do not see the bald eagle. \n13. If someone sees the dog then they need the mouse. \n14. All kind people are rough. \n15. If someone sees the mouse then they like the lion.\n\nFrom statement 14, \"All kind people are rough.\" Since the mouse is kind (from statement 11), the mouse must be rough.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\nFrom the given statements:\n\n1. The mouse does not see the dog.\n2. If someone sees the mouse then the mouse is kind.\n   This statement implies that the mouse is kind since it doesn't see itself.\n\n3. All kind people are rough.\n   This statement implies that kind people are rough.\n\nHowever, we have two different statements about the mouse being kind and being rough, but we cannot conclude that the mouse is rough because being kind doesn't necessarily mean being rough. The mouse can be kind without being rough. Therefore, we cannot definitively say that the mouse is rough.\n\nHence, the answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the mouse is rough, we need to analyze the given statements and their implications.\n\n1. The mouse likes the dog. \n2. The mouse does not see the dog. \n3. If someone sees the mouse then the mouse is kind. \n4. If someone sees the mouse then the mouse is kind. \n5. All kind people are rough.\n\nFrom statement 3, we can conclude that the mouse is kind because it is seen by someone (even though we don't know who that someone is). \n\nFrom statement 5, we can conclude that since the mouse is kind, it must be rough.\n\nTherefore, the mouse is rough.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and find any connections to the statement \"The mouse is rough.\"\n\n1. The bald eagle is kind. \n2. The bald eagle is not red. \n3. The bald eagle likes the dog. \n4. The dog needs the lion. \n5. The lion does not need the bald eagle. \n6. The mouse likes the dog. \n7. The mouse does not see the dog. \n8. If someone needs the mouse then the mouse does not see the bald eagle. \n9. If someone needs the dog then the dog needs the lion. \n10. If someone is rough then they see the mouse. \n11. If someone sees the mouse then the mouse is kind. \n12. If someone needs the lion then they do not see the bald eagle. \n13. If someone sees the dog then they need the mouse. \n14. All kind people are rough. \n15. If someone sees the mouse then they like the lion.\n\nFrom statement 1, the bald eagle is kind. \nFrom statement 14, all kind people are rough. \nTherefore, the bald eagle is rough (since it is kind). \nFrom statement 10, if someone is rough, then they see the mouse. \nSince the bald eagle is rough, it sees the mouse. \nFrom statement 7, the mouse does not see the dog. \nThis means that the mouse is not needed by the dog. \nFrom statement 13, if someone sees the dog, then they need the mouse. \nHowever, this does not imply that the mouse sees the dog. \nFrom statement 7, the mouse does not see the dog. \nAlso, the mouse does not need the dog (as deduced earlier). \nFrom statement 9, if someone needs the dog, then the dog needs the lion. \nSince the mouse does not need the dog, the dog does not need the lion. \nFrom statement 4, the dog needs the lion. \nThis implies that someone needs the dog. \nFrom statement 9, if someone needs the dog, then the dog needs the lion. \nHowever, since the dog needs the lion, it implies that someone needs the dog. \nThis is a contradiction. \nHowever, from statement 9, if someone needs the dog, then the dog needs the lion. \nSince the dog needs the lion, it implies that the lion is needed by someone. \nFrom statement 12, if someone needs the lion, then they do not see the bald eagle. \nHowever, we do not have enough information to conclude anything about the lion seeing the bald eagle. \nFrom statement 11, if someone sees the mouse, then the mouse is kind. \nHowever, we do not have enough information to conclude anything about the mouse being kind. \nFrom statement 10, if someone is rough, then they see the mouse. \nHowever, we do not have enough information to conclude anything about the mouse being rough.\n\nTo conclude whether the mouse is rough or not, we need to find a connection to the statement \"The mouse is rough\" from the given statements.\n\nFrom statement 10, if someone is rough, then they see the mouse. \nHowever, this does not imply that the mouse is rough. \nFrom statement 11, if someone sees the mouse, then the mouse is kind. \nHowever, this does not imply that the mouse is rough. \nHowever, we can conclude that the statement \"The mouse is rough\" is unknown because we do not have enough information to determine whether the mouse is rough or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is rough\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nLet's break down the given statements:\n\n1. The bald eagle is kind.\n2. The bald eagle is not red.\n3. The bald eagle likes the dog.\n4. The dog needs the lion.\n5. The lion does not need the bald eagle.\n6. The mouse likes the dog.\n7. The mouse does not see the dog.\n8. If someone needs the mouse then the mouse does not see the bald eagle.\n9. If someone needs the dog then the dog needs the lion.\n10. If someone is rough then they see the mouse.\n11. If someone sees the mouse then the mouse is kind.\n12. If someone needs the lion then they do not see the bald eagle.\n13. If someone sees the dog then they need the mouse.\n14. All kind people are rough.\n15. If someone sees the mouse then they like the lion.\n\nNow, let's analyze the given information step by step:\n\n- From statement 14, we know that all kind people are rough.\n- From statement 11, we know that if someone sees the mouse, then the mouse is kind.\n- Since the mouse is kind, it must be rough according to statement 14.\n- However, we need to be cautious and not jump to conclusions. We need to verify this information using the given statements.\n\nLet's examine the information given about the mouse:\n\n- From statement 6, we know that the mouse likes the dog.\n- From statement 7, we know that the mouse does not see the dog.\n- From statement 8, we know that if someone needs the mouse, then the mouse does not see the bald eagle. However, this statement does not directly relate to the mouse's roughness.\n- From statement 13, we know that if someone sees the dog, then they need the mouse. This implies that the dog sees the mouse, but we don't know if the mouse sees the dog.\n\nNow, let's analyze the relationship between the mouse and the statement \"The mouse is rough\":\n\n- From statement 10, we know that if someone is rough, then they see the mouse. This implies that the mouse is seen by rough people, but it doesn't necessarily mean that the mouse is rough.\n- From statement 15, we know that if someone sees the mouse, then they like the lion. However, this statement does not provide any information about the mouse's roughness.\n\nAfter analyzing the given information, we can conclude that the statement \"The mouse is rough\" is unknown. The information provided does not directly support or refute the statement, and it requires additional information to determine the mouse's roughness.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. We'll break it down step by step:\n\n1. The mouse likes the dog. (Statement 3)\n2. The mouse does not see the dog. (Statement 5)\n   From Statement 5, we can conclude that the mouse is not the one that sees the dog.\n\n3. If someone sees the mouse then the mouse is kind. (Statement 9)\n   This statement implies that if the mouse sees someone, it does not necessarily mean the mouse is kind. However, it does not provide direct information about the mouse's roughness.\n\n4. If someone needs the mouse then the mouse does not see the bald eagle. (Statement 4)\n   This statement does not provide direct information about the mouse's roughness.\n\n5. If someone needs the dog then the dog needs the lion. (Statement 6)\n   This statement also does not provide direct information about the mouse's roughness.\n\n6. If someone is rough then they see the mouse. (Statement 7)\n   We need to find out if the mouse is rough to see if this statement applies.\n\n7. All kind people are rough. (Statement 10)\n   This statement implies that if the mouse is kind, it is rough. However, we still need to determine if the mouse is kind or not.\n\n8. If someone sees the mouse then the mouse is kind. (Statement 9)\n   This statement implies that if the mouse sees someone, it does not necessarily mean the mouse is kind. However, it does not provide direct information about the mouse's roughness.\n\nNow, let's analyze the given statements again and look for any relationship that might help us determine if the mouse is rough:\n\n- The mouse likes the dog (Statement 3).\n- The mouse does not see the dog (Statement 5).\n- If someone is rough then they see the mouse (Statement 7).\n- If someone sees the mouse then the mouse is kind (Statement 9).\n\nFrom Statement 3, we can conclude that the mouse likes the dog. However, this information does not provide direct evidence about the mouse's roughness.\n\nSince the mouse does not see the dog (Statement 5) and if someone sees the mouse then the mouse is kind (Statement 9), it does not necessarily mean the mouse is kind or rough based on these statements alone.\n\nHowever, we can make use of Statement 7 and Statement 9 to draw a conclusion. If someone sees the mouse, then the mouse is kind (Statement 9). If someone is rough, then they see the mouse (Statement 7). \n\nWe know from Statement 10 that all kind people are rough. So if the mouse sees someone, and the mouse is kind, it means the mouse must be rough according to Statement 10.\n\nHowever, we cannot directly apply Statement 7 and Statement 9 to the mouse because we do not know if the mouse sees anyone. But we can use the given statements to establish a relationship between the mouse and its characteristics.\n\nFrom Statement 3, we know the mouse likes the dog. If someone sees the dog, then they need the mouse (Statement 8).\n\nIf someone needs the mouse, then the mouse does not see the bald eagle (Statement 4). However, this does not provide direct information about the mouse's roughness.\n\nNow let's analyze another relationship:\n\nIf someone needs the lion then they do not see the bald eagle (Statement 8).\n\nIf someone needs the dog then the dog needs the lion (Statement 6). \n\nSince the mouse likes the dog (Statement 3) and if someone needs the dog, then the dog needs the lion (Statement 6), it implies that the mouse needs the lion.\n\nIf the mouse needs the lion, then it means the mouse does not see the bald eagle (Statement 4).\n\nIf someone needs the mouse, then the mouse does not see the bald eagle (Statement 4). \n\nThis implies that the mouse sees the bald eagle when it needs the lion.\n\nNow let's analyze another relationship:\n\nIf someone sees the mouse then the mouse is kind (Statement 9).\n\nHowever, this statement is based on the condition that the mouse sees someone. We cannot directly apply this statement to the mouse.\n\nBut if we consider Statement 7, if someone is rough, then they see the mouse. This implies that the mouse is seen by someone who is rough.\n\nNow let's analyze the relationship between the mouse and the statement that if someone is rough, then they see the mouse (Statement 7).\n\nWe know that if someone sees the mouse, then the mouse is kind (Statement 9). \n\nHowever, this statement is based on the condition that the mouse sees someone. We cannot directly apply this statement to the mouse.\n\nBut if we consider Statement 7, if someone is rough, then they see the mouse. This implies that the mouse is seen by someone who is rough.\n\nSince all kind people are rough (Statement 10), if the mouse sees someone, then it means the mouse is kind. \n\nHowever, this statement does not provide direct information about the mouse's roughness.\n\nBut if the mouse sees someone, then it is kind (Statement 9), and since all kind people are rough (Statement 10), then the mouse must be rough.\n\nHowever, we cannot directly apply Statement 7 and Statement 9 to the mouse because we do not know if the mouse sees anyone.\n\nBut we can use the given statements to establish a relationship between the mouse and its characteristics.\n\nThe mouse likes the dog (Statement 3). If someone sees the dog, then they need the mouse (Statement 8). \n\nIf someone sees the mouse, then the mouse is kind (Statement 9). \n\nSince all kind people are rough (Statement 10), if the mouse sees someone, then it means the mouse is kind and therefore rough.\n\nHowever, we cannot directly apply Statement 7 and Statement 9 to the mouse because we do not know if the mouse sees anyone.\n\nBut we can use the given statements to establish a relationship between the mouse and its characteristics.\n\nThe mouse likes the dog (Statement 3). If someone sees the dog, then they need the mouse (Statement 8).\n\nIf someone sees the mouse, then the mouse is kind (Statement 9).\n\nSince all kind people are rough (Statement 10), if the mouse sees someone, then it means the mouse is kind and therefore rough.\n\nHowever, we cannot directly apply Statement 7 and Statement 9 to the mouse because we do not know if the mouse sees anyone.\n\nBut we can use the given statements to establish a relationship between the mouse and its characteristics.\n\nThe mouse likes the dog (Statement 3). If someone sees the dog, then they need the mouse (Statement 8).\n\nIf someone sees the mouse, then the mouse is kind (Statement 9).\n\nSince all kind people are rough (Statement 10), if the mouse sees someone, then it means the mouse is kind and therefore rough.\n\nHowever, we cannot directly apply Statement 7 and Statement 9 to the mouse because we do not know if the mouse sees anyone.\n\nBut we can use the given statements to establish a relationship between the mouse and its characteristics.\n\nNow let's analyze the relationship between the mouse and the statement that if someone is rough, then they see the mouse (Statement 7).\n\nWe know that if someone sees the mouse, then the mouse is kind (Statement 9).\n\nHowever, this statement is based on the condition that the mouse sees someone. We cannot directly apply this statement to the mouse.\n\nBut if we consider Statement 7, if someone is rough, then they see the mouse. This implies that the mouse is seen by someone who is rough.\n\nSince all kind people are rough (Statement 10), if the mouse sees someone, then it means the mouse is kind. \n\nHowever, this statement does not provide direct information about the mouse's roughness.\n\nBut if the mouse sees someone, then it is kind (Statement 9), and since all kind people are rough (Statement 10), then the mouse must be rough.\n\nSince we cannot directly apply Statement 7 and Statement 9 to the mouse, we need to look for other relationships.\n\nThe mouse likes the dog (Statement 3). If someone sees the dog, then they need the mouse (Statement 8).\n\nIf someone sees the mouse, then the mouse is kind (Statement 9).\n\nSince all kind people are rough (Statement 10), if the mouse sees someone, then it means the mouse is kind and therefore rough.\n\nHowever, we cannot directly apply Statement 7 and Statement 9 to the mouse because we do not know if the mouse sees anyone.\n\nBut we can use the given statements to establish a relationship between the mouse and its characteristics.\n\nNow let's analyze the relationship between the mouse and the statement that if someone needs the lion, then they do not see the bald eagle (Statement 8).\n\nWe know that if someone needs the mouse, then the mouse does not see the bald eagle (Statement 4).\n\nSince the mouse needs the lion (because if someone needs the dog, then the dog needs the lion, and the mouse likes the dog), then the mouse does not see the bald eagle.\n\nHowever, this does not provide direct information about the mouse's roughness.\n\nBut we can use the given statements to establish a relationship between the mouse and its characteristics.\n\nThe mouse likes the dog (Statement 3). If someone sees the dog, then they need the mouse (Statement 8).\n\nIf someone sees the mouse, then the mouse is kind (Statement 9).\n\nSince all kind people are rough (Statement 10), if the mouse sees someone, then it means the mouse is kind and therefore rough.\n\nHowever, we cannot directly apply Statement 7 and Statement 9 to the mouse because we do not know if the mouse sees anyone.\n\nBut we can use the given statements to establish a relationship between the mouse and its characteristics.\n\nThe mouse likes the dog (Statement",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'The mouse is rough' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse likes the dog. (Given)\n2. The mouse does not see the dog. (Given)\n3. If someone needs the mouse then the mouse does not see the bald eagle. (Given)\n4. If someone sees the mouse then the mouse is kind. (Given)\n5. If someone is rough then they see the mouse. (Given)\n6. All kind people are rough. (Given)\n\nFrom statement 6, we can conclude that kind people are rough. However, we do not have any direct information about the mouse being kind or rough.\n\nNow, let's try to connect the mouse with the information about being rough. \n\nFrom statement 5, if someone is rough, then they see the mouse. But we do not have any information about the mouse seeing anyone.\n\nFrom statement 2, the mouse does not see the dog. We also know that the mouse likes the dog (statement 1), which does not necessarily imply that the mouse sees the dog.\n\nSince we do not have any direct information about the mouse being rough or kind, and we cannot connect the mouse to the information about being rough or kind, we cannot determine whether the mouse is rough.\n\nTherefore, the final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the mouse is rough, we need to analyze the given statements and find any information related to the mouse's characteristics.\n\n1. The mouse likes the dog. (This statement alone does not tell us about the mouse's roughness.)\n2. The mouse does not see the dog. (This statement alone does not tell us about the mouse's roughness.)\n3. If someone needs the mouse then the mouse does not see the bald eagle. (This statement alone does not tell us about the mouse's roughness.)\n4. If someone needs the dog then the dog needs the lion. (This statement alone does not tell us about the mouse's roughness.)\n5. If someone is rough then they see the mouse. (This statement alone does not tell us about the mouse's roughness, but it implies that if someone sees the mouse, then they are rough.)\n6. If someone sees the mouse then the mouse is kind. (This statement alone does not tell us about the mouse's roughness, but it implies that the mouse is kind, not rough.)\n7. If someone needs the lion then they do not see the bald eagle. (This statement alone does not tell us about the mouse's roughness.)\n8. If someone sees the dog then they need the mouse. (This statement alone does not tell us about the mouse's roughness.)\n9. All kind people are rough. (This statement alone does not tell us about the mouse's roughness, but it implies that if someone is kind, then they are rough. However, statement 6 implies that the mouse is kind.)\n10. If someone sees the mouse then they like the lion. (This statement alone does not tell us about the mouse's roughness.)\n\nFrom statement 6, we know that if someone sees the mouse, then the mouse is kind, not rough. This statement directly implies that the mouse is not rough.\n\nTherefore, based on the given statements, the mouse is not rough.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the mouse is rough, we need to analyze the given statements and their implications.\n\n1. The mouse likes the dog. \n2. The mouse does not see the dog.\nFrom statement 1, we know the mouse likes the dog. However, from statement 2, we know the mouse does not see the dog.\n\n3. If someone sees the mouse then the mouse is kind.\nThis statement implies that seeing the mouse makes it kind, but it doesn't directly state that the mouse is kind.\n\n4. All kind people are rough.\nThis statement connects kindness with roughness, but it doesn't directly state that the mouse is rough.\n\n5. If someone sees the mouse then they like the lion.\nThis statement is unrelated to the mouse being rough or kind.\n\n6. If someone sees the mouse then they see the lion.\nFrom statement 5, we can infer that seeing the mouse implies seeing the lion, but this statement still doesn't help us determine the mouse's roughness.\n\nNow, let's consider the statement \"If someone needs the mouse then the mouse does not see the bald eagle.\" \n\nWe are trying to find out whether the mouse is rough or not. If the mouse is rough, then it would see the mouse itself according to the statement \"If someone is rough then they see the mouse.\" This would imply that the mouse sees the mouse, but it also sees the bald eagle according to the statement \"If someone needs the mouse then the mouse does not see the bald eagle.\" This creates a contradiction, so the mouse cannot be rough.\n\nHowever, we cannot conclude that the mouse is kind based on the given statements.\n\nTherefore, the statement \"The mouse is rough\" is false because it leads to a contradiction. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is rough\" is true, false, or unknown, we need to analyze the given statements and their relationships.\n\nLet's break down the given statements and their implications:\n\n1. The bald eagle is kind.\n2. The bald eagle is not red.\n3. The bald eagle likes the dog.\n4. The dog needs the lion.\n5. The lion does not need the bald eagle.\n6. The mouse likes the dog.\n7. The mouse does not see the dog.\n8. If someone needs the mouse then the mouse does not see the bald eagle.\n9. If someone needs the dog then the dog needs the lion.\n10. If someone is rough then they see the mouse.\n11. If someone sees the mouse then the mouse is kind.\n12. If someone needs the lion then they do not see the bald eagle.\n13. If someone sees the dog then they need the mouse.\n14. All kind people are rough.\n15. If someone sees the mouse then they like the lion.\n\nFrom statement 1, we know the bald eagle is kind. From statement 14, we can infer that kind people are rough. Therefore, the bald eagle is also rough.\n\nFrom statement 15, if someone sees the mouse, then they like the lion. However, there is no direct information about the lion seeing the mouse or the mouse seeing the lion. We can only infer that the lion might like the mouse, but there is no definitive conclusion about the mouse's relationship with the lion.\n\nFrom statement 11, if someone sees the mouse, then the mouse is kind. However, this does not directly relate to the mouse being rough or not.\n\nNow, let's consider the statement \"The mouse is rough.\" We can use statement 10, which says that if someone is rough, then they see the mouse. However, this statement does not directly imply that the mouse is rough; it only implies that someone who is rough sees the mouse.\n\nFrom statement 10, if the mouse is rough, then someone would see the mouse, which is not directly related to the statement. However, from statement 7, the mouse does not see the dog. If the mouse is rough, then from statement 10, someone would see the mouse, which implies that this someone would also see the dog. However, the mouse does not see the dog, which is a contradiction.\n\nTherefore, based on the given statements, we cannot conclude that the mouse is rough or not. The information provided leads to a contradiction, making the statement \"The mouse is rough\" unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, dog)",
+          "z3_formula": "not sees_mouse_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(sees_X_mouse, kind_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_mouse, rough_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> rough(X)",
+          "z3_formula": "Implies(sees_X_mouse, rough_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, lion)",
+          "z3_formula": "needs_dog_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_need(lion, eagle)",
+          "z3_formula": "does_not_need_lion_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_see(mouse, dog)",
+          "z3_formula": "does_not_see_mouse_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> does_not_see(X, eagle)",
+          "z3_formula": "Implies(needs_X_mouse, does_not_see_X_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_X_dog, needs_X_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> kind(mouse)",
+          "z3_formula": "Implies(sees_X_mouse, kind_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> kind(mouse)",
+          "z3_formula": "Implies(sees_X_mouse, kind_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> likes(X, mouse)",
+          "z3_formula": "Implies(sees_X_mouse, likes_X_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> likes(lion, mouse)",
+          "z3_formula": "Implies(sees_X_mouse, likes_lion_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bald_eagle)",
+          "z3_formula": "kind_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bald_eagle)",
+          "z3_formula": "Not(red_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, lion)",
+          "z3_formula": "needs_dog_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(lion, bald_eagle)",
+          "z3_formula": "Not(needs_lion_bald_eagle) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, dog)",
+          "z3_formula": "Not(sees_mouse_dog) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_X_mouse, Not(sees_X_bald_eagle))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_X_dog, needs_X_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> kind(mouse)",
+          "z3_formula": "Implies(sees_X_mouse, kind_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_X_lion, Not(sees_X_bald_eagle))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_X_dog, needs_X_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> likes(X, lion)",
+          "z3_formula": "Implies(sees_X_mouse, likes_X_lion)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(dog, mouse)",
+          "z3_formula": "sees_dog_mouse == False",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> kind(mouse)",
+          "z3_formula": "Implies(sees_mouse_mouse, kind_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_mouse, rough_mouse)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, dog)",
+          "z3_formula": "Not(sees_mouse_dog) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(sees_X_mouse, kind_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(sees_X_mouse, kind_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_mouse, rough_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bald_eagle)",
+          "z3_formula": "kind_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bald_eagle)",
+          "z3_formula": "not red_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, lion)",
+          "z3_formula": "needs_dog_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(lion, bald_eagle)",
+          "z3_formula": "not needs_lion_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, dog)",
+          "z3_formula": "not sees_mouse_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_X_mouse, not sees_X_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> needs(dog, lion)",
+          "z3_formula": "Implies(needs_X_dog, needs_dog_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> kind(mouse)",
+          "z3_formula": "Implies(sees_X_mouse, kind_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_X_lion, not sees_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_X_dog, needs_X_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> likes(X, lion)",
+          "z3_formula": "Implies(rough_X, likes_X_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bald_eagle)",
+          "z3_formula": "kind_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bald_eagle)",
+          "z3_formula": "not red_bald_eagle",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, lion)",
+          "z3_formula": "needs_dog_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(lion, bald_eagle)",
+          "z3_formula": "not needs_lion_bald_eagle",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, dog)",
+          "z3_formula": "not sees_mouse_dog",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(needs_X_mouse, needs_X_bald_eagle), not sees_X_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_X_dog, needs_X_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> kind(mouse)",
+          "z3_formula": "Implies(sees_X_mouse, kind_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_X_lion, not sees_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_X_dog, needs_X_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> likes(X, lion)",
+          "z3_formula": "Implies(sees_X_mouse, likes_X_lion)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, dog)",
+          "z3_formula": "not_sees_mouse_dog == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) -> kind(Y)",
+          "z3_formula": "Implies(sees_mouse_Y, kind_Y)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> not sees(mouse, bald_eagle)",
+          "z3_formula": "Implies(needs_X_mouse, not_sees_mouse_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> needs(dog, lion)",
+          "z3_formula": "Implies(needs_X_dog, needs_dog_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> not sees(bald_eagle, Y)",
+          "z3_formula": "Implies(needs_X_lion, not_sees_bald_eagle_Y)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, lion)",
+          "z3_formula": "needs_mouse_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not sees(mouse, bald_eagle)",
+          "z3_formula": "not_sees_mouse_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(mouse)",
+          "z3_formula": "rough_mouse == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, dog)",
+          "z3_formula": "Not(sees_mouse_dog) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_X_mouse, Not(sees_X_bald_eagle))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(sees_X_mouse, kind_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_see(mouse, dog)",
+          "z3_formula": "does_not_see_mouse_dog == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> does_not_see(X, bald_eagle)",
+          "z3_formula": "Implies(needs_X_mouse, does_not_see_X_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_X_dog, needs_X_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> kind(X)",
+          "z3_formula": "Implies(sees_X_mouse, kind_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> does_not_see(X, bald_eagle)",
+          "z3_formula": "Implies(needs_X_lion, does_not_see_X_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_X_dog, needs_X_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> likes(X, lion)",
+          "z3_formula": "Implies(sees_X_mouse, likes_X_lion)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, dog)",
+          "z3_formula": "Not(sees_mouse_dog) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X) -> kind(X)",
+          "z3_formula": "Implies(sees_mouse, kind_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_mouse, rough_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X) -> sees_lion(X)",
+          "z3_formula": "Implies(sees_mouse, sees_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_mouse, Not(sees_mouse_bald_eagle))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_mouse, sees_mouse_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(mouse)",
+          "z3_formula": "Not(rough_mouse) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bald_eagle)",
+          "z3_formula": "kind_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bald_eagle)",
+          "z3_formula": "not red_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bald_eagle, dog)",
+          "z3_formula": "likes_bald_eagle_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(dog, lion)",
+          "z3_formula": "needs_dog_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(lion, bald_eagle)",
+          "z3_formula": "not needs_lion_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, dog)",
+          "z3_formula": "likes_mouse_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(mouse, dog)",
+          "z3_formula": "not sees_mouse_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_X_mouse, not sees_X_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> needs(X, lion)",
+          "z3_formula": "Implies(needs_X_dog, needs_X_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> sees(X, mouse)",
+          "z3_formula": "Implies(rough_X, sees_X_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> kind(mouse)",
+          "z3_formula": "Implies(sees_X_mouse, kind_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, lion) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(needs_X_lion, not sees_X_bald_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, dog) -> needs(X, mouse)",
+          "z3_formula": "Implies(sees_X_dog, needs_X_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) -> likes(X, lion)",
+          "z3_formula": "Implies(sees_X_mouse, likes_X_lion)",
+          "source_step": 15
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 125,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 44
+    },
+    "maxsat_stats": {
+      "satisfied": 43,
+      "excluded": 1,
+      "total_weight": 115,
+      "solve_time_ms": 1.0206475853919983
+    },
+    "timing": {
+      "trace_gen_s": 24.109,
+      "extraction_s": 24.688,
+      "dedup_s": 1.034,
+      "maxsat_s": 0.003,
+      "total_s": 49.834
+    }
+  }
+}

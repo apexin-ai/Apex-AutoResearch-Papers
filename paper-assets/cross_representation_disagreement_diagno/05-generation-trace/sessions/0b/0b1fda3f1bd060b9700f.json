@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b1fda3f1bd060b9700f",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "code mvp v4 launch",
+  "task_key": "worker_code_mvp_v4_launch_20260514T105359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_v4_launch_20260514T105359_result.json",
+    "occurrence": 1,
+    "bytes": 118,
+    "sha256": "b5d04f9e7b0d518aa1716039e6c7a410940de983a89ae41362383517d6dace86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 已启动，**PID=28608**，正在运行。已加载 204 条 FOLIO 样本，正在处理中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-v4-launch.md"
+}

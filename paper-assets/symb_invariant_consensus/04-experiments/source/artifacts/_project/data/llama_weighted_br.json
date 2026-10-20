@@ -1,0 +1,32 @@
+{
+  "LLaMA-3.1-8B": {
+    "raw_br": 3.87,
+    "weighted_br": 2.6576,
+    "weighted_br_ci_low": 2.1877,
+    "weighted_br_ci_high": 3.2767,
+    "n_sica_wrong": 78,
+    "mean_weight_gold_frac": 0.273404
+  },
+  "Mistral-7B_crosscheck": {
+    "weighted_br": 4.2381,
+    "weighted_br_ci_low": 3.4498,
+    "weighted_br_ci_high": 5.3634,
+    "n_sica_wrong": 83,
+    "mean_weight_gold_frac": 0.190909
+  },
+  "old_reported_value": 2.66,
+  "method": "question-level mean of weight_gold_frac, then BR = (1-mean)/mean",
+  "bootstrap": {
+    "n_bootstraps": 10000,
+    "seed": 42,
+    "ci_level": "95%"
+  },
+  "data_source_note": {
+    "weighted_br_source": "exp-063-llama8b-folio204-16639/results.json (k=12, full SICA pipeline with MaxSAT)",
+    "raw_br_3.87_source": "llama_constraints_t0t3.json (4 traces only, constraint-count majority, 86 wrong)",
+    "discrepancy_explanation": "raw BR=3.87 uses 4-trace constraint data with 86 wrong questions; weighted BR=2.66 uses 12-trace MaxSAT scores with 78 wrong questions. Different trace counts AND different wrong-question sets cause the apparent gap. For Mistral where both use 12-trace data, the gap is much smaller (raw=4.97 vs weighted=4.24).",
+    "raw_br_from_4t_with_sica_wrong": 2.8841,
+    "raw_br_from_4t_with_constraint_majority_wrong": 3.8655,
+    "raw_4t_n_constraint_majority_wrong": 86
+  }
+}

@@ -1,0 +1,716 @@
+{
+  "problem": {
+    "id": "folio_6",
+    "problem": "Given the following premises:\nMonkeypox is an infectious disease caused by the monkeypox virus. Monkeypox virus can occur in certain animals, including humans. Humans are mammals. Mammals are animals. Symptons of Monkeypox include fever, headache, muscle pains, feeling tired, and so on. People feel tired when they get a glu.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nThere is an animal.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (OccurMonkeypoxVirus(x) \u2227 GetMonkeypox(x))",
+      "\u2203x (Animal(x) \u2227 OccurMonkeypoxVirus(x))",
+      "\u2200x (Human(x) \u2192 Mammal(x))",
+      "\u2200x (Mammal(x) \u2192 Animal(x))",
+      "\u2203x (GetMonkeypox(x) \u2227 (Fever(x) \u2228 Headache(x) \u2228 MusclePain(x) \u2228 Tired(x)))",
+      "\u2200x (Human(x) \u2227 Flu(x) \u2192 Tired(x))"
+    ],
+    "conclusion_fol": "\u2203x (Animal(x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 91.0
+    },
+    "answer_counts": {
+      "True": 11
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion \"There is an animal\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nThis premise does not directly relate to the existence of animals, so we can ignore it.\n\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nThis premise directly relates to the existence of animals, as it mentions that the virus can occur in certain animals.\n\nPremise 3: Humans are mammals.\nThis premise also relates to the existence of animals, as it classifies humans as a type of mammal.\n\nPremise 4: Mammals are animals.\nThis premise provides a general classification that links mammals to the broader category of animals.\n\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nThis premise is irrelevant to the existence of animals, so we can ignore it.\n\nPremise 6: People feel tired when they get a glu.\nThis premise is also irrelevant to the existence of animals, as it mentions a human condition (getting a \"glu\", which is likely a typo or a made-up term) rather than animals.\n\nNow, let's analyze the conclusion in light of the premises. We know that:\n\n- Humans are mammals (Premise 3)\n- Mammals are animals (Premise 4)\n- There are humans (since the premises mention humans as a specific example of animals)\n\nBased on the above information, we can conclude that there is an animal, specifically a human, which is classified as a mammal and therefore an animal.\n\nTherefore, the conclusion \"There is an animal\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the premises and their relationship to the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nPremise 3: Humans are mammals.\nPremise 4: Mammals are animals.\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nPremise 6: People feel tired when they get a flu (not glu).\n\nFirst, let's identify the relevant information related to animals. From Premise 2, we know that Monkeypox virus can occur in certain animals, including humans. From Premise 4, we know that mammals are animals. Since humans are mammals (Premise 3), we can conclude that humans are animals.\n\nNow, let's consider the conclusion: \"There is an animal.\" This conclusion is a categorical statement, and it can be classified as a universal statement because it asserts the existence of at least one animal.\n\nFrom the premises, we have established that humans are animals (Premise 3 and Premise 4). Since humans are a subset of animals, and we know that humans exist, we can infer that animals exist.\n\nTherefore, based on the given premises, the conclusion \"There is an animal\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to examine the premises and see if they logically lead to the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nThis premise does not provide any information about animals, so it is not directly relevant to the conclusion.\n\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nThis premise establishes a connection between the monkeypox virus and animals. However, it does not imply that animals exist in general.\n\nPremise 3: Humans are mammals.\nThis premise is a classification of humans, but it does not provide any information about the existence of animals in general.\n\nPremise 4: Mammals are animals.\nThis premise is a classification of mammals, which is a subset of animals. However, it does not imply that animals exist in general.\n\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nThis premise is a description of symptoms of Monkeypox and does not provide any information about the existence of animals.\n\nPremise 6: People feel tired when they get a flu.\nThis premise is a statement about the flu, not Monkeypox, and does not provide any information about the existence of animals.\n\nThe conclusion is: There is an animal.\n\nSince Premise 2 states that Monkeypox virus can occur in certain animals, including humans, we can infer that animals exist, as humans are a type of animal. This is a valid logical inference from the premises.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they logically lead to the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus. \nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nPremise 3: Humans are mammals.\nPremise 4: Mammals are animals.\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nPremise 6: People feel tired when they get a glu (presumably \"glu\" is a typo and the correct word is \"gout\", which is a medical condition, or maybe \"glue\" is being used metaphorically, but the correct premise should be that people feel tired when they get a cold or the flu).\n\nFrom Premise 2, we know that Monkeypox virus can occur in certain animals, including humans.\nFrom Premise 3 and Premise 4, we know that humans are a subset of animals.\nTherefore, we can conclude that there is an animal, which is a human.\n\nThe conclusion \"There is an animal\" is logically supported by the premises, so the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. Monkeypox is an infectious disease caused by the monkeypox virus.\n   - This premise does not provide information about animals, so we can move on.\n\n2. Monkeypox virus can occur in certain animals, including humans.\n   - This premise states that monkeypox virus can occur in animals. It does not say that animals are necessarily infected with the virus, but rather that the virus can occur in certain animals.\n\n3. Humans are mammals.\n   - This premise establishes a relationship between humans and mammals. It does not provide information about other animals, so we can move on.\n\n4. Mammals are animals.\n   - This premise establishes a relationship between mammals and animals. Since humans are mammals (premise 3), this premise implies that humans are also animals.\n\n5. Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\n   - This premise describes the symptoms of Monkeypox, but it does not provide any new information about animals.\n\n6. People feel tired when they get a glucose.\n   - This premise is irrelevant to the conclusion about animals. It is likely a distractor.\n\nNow, let's evaluate the conclusion: \"There is an animal.\"\n\nFrom the premises, we know that:\n- Monkeypox virus can occur in certain animals (premise 2)\n- Humans are animals (premise 3 and premise 4)\n- Humans are mammals (premise 3)\n\nSince we have established that humans are animals (premise 3 and premise 4), and we know that humans exist, we can conclude that there is an animal.\n\nTherefore, the conclusion \"There is an animal\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the premises and see if they logically lead to the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nPremise 3: Humans are mammals.\nPremise 4: Mammals are animals.\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nPremise 6: People feel tired when they get a glu (this is unclear, but it seems to imply that fatigue is a symptom of an unknown cause).\n\nWe are trying to determine if the conclusion \"There is an animal\" is true, false, or uncertain.\n\nFrom Premise 2, we know that Monkeypox virus can occur in certain animals, including humans. This implies that there are animals that can be infected by the Monkeypox virus.\n\nFrom Premise 3, we know that humans are mammals. \n\nFrom Premise 4, we know that mammals are animals.\n\nWe can use Premise 2, Premise 3, and Premise 4 to infer that humans are animals. \n\nAdditionally, Premise 2 also tells us that Monkeypox virus can occur in certain animals, which implies that there are animals other than humans that can be infected by the Monkeypox virus.\n\nTherefore, we can conclude that there is at least one animal (humans) and possibly other animals that can be infected by the Monkeypox virus.\n\nBased on the premises, the conclusion \"There is an animal\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the premises and see if they logically lead to the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nThis premise does not provide any information about animals, so it is not directly relevant to the conclusion.\n\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nThis premise directly relates to the conclusion, as it states that monkeypox can occur in animals.\n\nPremise 3: Humans are mammals.\nThis premise establishes a category relationship between humans and mammals.\n\nPremise 4: Mammals are animals.\nThis premise establishes a category relationship between mammals and animals.\n\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nThis premise lists the symptoms of Monkeypox, but it does not provide any information about animals.\n\nPremise 6: People feel tired when they get a glucose.\nThis premise seems unrelated to the conclusion and the rest of the premises, as it discusses the effect of glucose on people.\n\nNow, let's analyze the conclusion: \"There is an animal.\"\n\nFrom Premise 2, we know that monkeypox can occur in certain animals, including humans. From Premise 3 and 4, we know that humans are mammals, and mammals are animals. Therefore, we can conclude that there is an animal (specifically, a human) that can be affected by monkeypox.\n\nSince the premises logically lead to the conclusion, we can determine that the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they logically lead to the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus. \nThis premise does not provide any information about animals.\n\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nThis premise states that monkeypox virus can occur in animals, including humans.\n\nPremise 3: Humans are mammals.\nThis premise establishes a relationship between humans and mammals.\n\nPremise 4: Mammals are animals.\nThis premise establishes a relationship between mammals and animals.\n\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nThis premise lists symptoms of Monkeypox, but it does not provide any information about animals.\n\nPremise 6: People feel tired when they get a flu.\nThis premise provides a separate piece of information about people and fatigue.\n\nNow, we need to see if the premises logically lead to the conclusion: There is an animal.\n\nFrom Premise 4, we know that mammals are animals. From Premise 3, we know that humans are mammals. Therefore, by transitive property, we can conclude that humans are animals.\n\nThe conclusion \"There is an animal\" is uncertain because it is too general. We can conclude that there is an animal (specifically, humans), but we cannot conclude that there are other animals as well.\n\nHowever, looking more closely at premise 2, we can conclude that there is an animal.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the premises and see if they logically lead to the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nPremise 3: Humans are mammals.\nPremise 4: Mammals are animals.\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nPremise 6: People feel tired when they get a glu.\n\nFrom Premise 2, we can infer that monkeypox virus can occur in animals. \n\nFrom Premise 4, we can conclude that mammals are animals.\n\nFrom Premise 3, we know that humans are mammals. \n\nSo, combining Premise 3 and Premise 4, we can conclude that humans are animals.\n\nHowever, we are looking for a conclusion that directly relates to the existence of an animal. From Premise 2, we can directly infer that there are animals.\n\nConclusion: There is an animal.\n\nThis conclusion is supported by the premises, and it is logically true.\n\nFinal answer: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion \"There is an animal\" is true, false, or uncertain, we need to analyze the given premises and see if they provide enough information to support this conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nThis premise does not provide any information about animals.\n\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nThis premise provides a connection between the monkeypox virus and animals, but it does not guarantee the existence of animals.\n\nPremise 3: Humans are mammals.\nThis premise provides a classification of humans, but it does not provide any information about the existence of animals.\n\nPremise 4: Mammals are animals.\nThis premise provides a classification of mammals, which is a subset of animals.\n\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nThis premise provides information about the symptoms of Monkeypox, but it does not provide any information about animals.\n\nPremise 6: People feel tired when they get a flu.\nThis premise provides information about the flu, which is a different disease from Monkeypox.\n\nTo determine the truth value of the conclusion \"There is an animal\", we need to look for a premise that directly supports or guarantees the existence of animals.\n\nFrom Premise 4, we know that mammals are animals. From Premise 3, we know that humans are mammals. Therefore, we can conclude that humans are animals.\n\nSince humans are animals, we can confidently say that there is an animal.\n\nConclusion: True\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus.\nPremise 2: Monkeypox virus can occur in certain animals, including humans.\nPremise 3: Humans are mammals.\nPremise 4: Mammals are animals.\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on.\nPremise 6: People feel tired when they get a glucose (glu) spike.\n\nNow, let's examine the conclusion: \"There is an animal.\"\n\nTo evaluate this conclusion, we need to see if we can deduce it from the premises. \n\nFrom Premise 2, we know that monkeypox virus can occur in certain animals, including humans. This implies that animals do exist.\n\nFrom Premise 3, we know that humans are mammals. \n\nFrom Premise 4, we know that mammals are animals. This implies that humans are animals.\n\nFrom Premise 5, we know that people (including humans) exhibit symptoms when they have Monkeypox, such as feeling tired.\n\nFrom Premise 6, we know that people feel tired when they get a glucose spike. This premise seems unrelated to the conclusion, but we can ignore it for now.\n\nNow, let's analyze the conclusion in relation to the premises. We have Premise 2, which states that monkeypox virus can occur in certain animals, including humans. This premise tells us that animals do exist.\n\nTherefore, based on the premises, we can conclude that there is an animal. \n\nThe conclusion is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to examine the premises and see if they provide any information that directly supports or refutes the conclusion.\n\nPremise 1: Monkeypox is an infectious disease caused by the monkeypox virus. \n- This premise does not provide any information about animals.\n\nPremise 2: Monkeypox virus can occur in certain animals, including humans. \n- This premise directly supports the conclusion by stating that Monkeypox virus can occur in animals.\n\nPremise 3: Humans are mammals. \n- This premise indirectly supports the conclusion by establishing a category of animals (mammals) that includes humans.\n\nPremise 4: Mammals are animals. \n- This premise directly supports the conclusion by establishing a relationship between mammals and animals.\n\nPremise 5: Symptoms of Monkeypox include fever, headache, muscle pains, feeling tired, and so on. \n- This premise does not provide any information about animals.\n\nPremise 6: People feel tired when they get a glu. \n- This premise is unrelated to the conclusion and appears to be a non-sequitur. The word \"glu\" is not defined, so it is unclear what it refers to.\n\nBased on the premises, we can conclude that there is an animal (humans) that can be infected with the Monkeypox virus. Therefore, the conclusion \"There is an animal\" is supported by the premises.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "virus(monkeypox)",
+          "z3_formula": "virus_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox, humans)",
+          "z3_formula": "occurs_in_monkeypox_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_in_animals",
+          "z3_formula": "monkeypox_virus_in_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms_monkeypox",
+          "z3_formula": "symptoms_monkeypox == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "tired_when_flu",
+          "z3_formula": "tired_when_flu == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "monkeypox_is_infectious",
+          "z3_formula": "monkeypox_is_infectious == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_occurs_in_animals",
+          "z3_formula": "monkeypox_virus_occurs_in_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "humans_are_mammals",
+          "z3_formula": "humans_are_mammals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammals_are_animals",
+          "z3_formula": "mammals_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_has_symptoms",
+          "z3_formula": "monkeypox_has_symptoms == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "flu_makes_people_tired",
+          "z3_formula": "flu_makes_people_tired == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_virus_occurs_in_animals -> animals_exist",
+          "z3_formula": "Implies(monkeypox_virus_occurs_in_animals, animals_exist)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox, monkeypox_virus)",
+          "z3_formula": "caused_by_monkeypox_monkeypox_virus == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "virus(monkeypox_virus)",
+          "z3_formula": "virus_monkeypox_virus == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "in_animals(monkeypox_virus, humans)",
+          "z3_formula": "in_animals_monkeypox_virus_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "virus(X) -> infectious(X)",
+          "z3_formula": "Implies(virus_monkeypox_virus, infectious_monkeypox)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "in_animals(X, Y) -> in_animals(X, Z)",
+          "z3_formula": "Implies(in_animals_monkeypox_virus_humans, in_animals_monkeypox_virus_mammals)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "in_animals(monkeypox_virus, mammals)",
+          "z3_formula": "in_animals_monkeypox_virus_mammals == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "there_is_an_animal",
+          "z3_formula": "there_is_an_animal == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_occurs_in_humans",
+          "z3_formula": "monkeypox_virus_occurs_in_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "human_is_mammal",
+          "z3_formula": "human_is_mammal == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal_is_animal",
+          "z3_formula": "mammal_is_animal == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "human_is_animal",
+          "z3_formula": "human_is_animal == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "there_is_an_animal",
+          "z3_formula": "there_is_an_animal == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "virus(monkeypox)",
+          "z3_formula": "virus_monkeypox == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox, humans)",
+          "z3_formula": "occurs_in_monkeypox_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "virus(X) -> infectious(X)",
+          "z3_formula": "Implies(virus_monkeypox, infectious_monkeypox)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "occurs_in(X, Y) -> animal(Y)",
+          "z3_formula": "Implies(occurs_in_monkeypox_humans, animal_humans)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "animal(other_animals)",
+          "z3_formula": "animal_other_animals == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_occurs_in_humans",
+          "z3_formula": "monkeypox_virus_occurs_in_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "human_is_mammal",
+          "z3_formula": "human_is_mammal == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal_is_animal",
+          "z3_formula": "mammal_is_animal == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "there_is_an_animal",
+          "z3_formula": "there_is_an_animal == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_occurs_in_humans",
+          "z3_formula": "monkeypox_virus_occurs_in_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "human_is_mammal",
+          "z3_formula": "human_is_mammal == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal_is_animal",
+          "z3_formula": "mammal_is_animal == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_has_symptoms",
+          "z3_formula": "monkeypox_has_symptoms == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "flu_causes_tiredness",
+          "z3_formula": "flu_causes_tiredness == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_is_animal, animal_is_animal)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mammal(X)",
+          "z3_formula": "Implies(human_is_mammal, mammal_is_animal)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "human_is_animal",
+          "z3_formula": "animal_is_animal == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_virus_occurs_in_animal -> animal_exists",
+          "z3_formula": "Implies(monkeypox_virus_occurs_in_animal, animal_exists)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "animal_exists",
+          "z3_formula": "animal_exists == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox, monkeypox_virus)",
+          "z3_formula": "caused_by_monkeypox_monkeypox_virus == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox_virus, animals)",
+          "z3_formula": "occurs_in_monkeypox_virus_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "occurs_in(monkeypox_virus, humans)",
+          "z3_formula": "occurs_in_monkeypox_virus_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "animal(mammals)",
+          "z3_formula": "animal_mammals == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "animal",
+          "z3_formula": "animal == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "caused_by(monkeypox, monkeypox_virus)",
+          "z3_formula": "caused_by_monkeypox_monkeypox_virus == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "can_occur_in(monkeypox_virus, humans)",
+          "z3_formula": "can_occur_in_monkeypox_virus_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(humans)",
+          "z3_formula": "mammal_humans == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> animal(X)",
+          "z3_formula": "Implies(mammal_humans, animal_humans)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "animal(humans)",
+          "z3_formula": "animal_humans == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_in_animals",
+          "z3_formula": "monkeypox_virus_in_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammals_are_animals",
+          "z3_formula": "mammals_are_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "monkeypox_virus_in_animals -> animals_exist",
+          "z3_formula": "Implies(monkeypox_virus_in_animals, animals_exist)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "humans_are_mammals",
+          "z3_formula": "Implies(humans_are_mammals, mammals_are_animals)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "humans_are_mammals",
+          "z3_formula": "humans_are_mammals == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "symptoms_of_monkeypox",
+          "z3_formula": "symptoms_of_monkeypox == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "people_feel_tired",
+          "z3_formula": "people_feel_tired == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "animals_exist",
+          "z3_formula": "animals_exist == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "humans_are_animals",
+          "z3_formula": "humans_are_animals == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "there_is_an_animal",
+          "z3_formula": "there_is_an_animal == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "infectious(monkeypox)",
+          "z3_formula": "infectious_monkeypox == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "monkeypox_virus_in_animals",
+          "z3_formula": "monkeypox_virus_in_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "human_mammal",
+          "z3_formula": "human_mammal == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mammal_animal",
+          "z3_formula": "mammal_animal == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "there_is_an_animal",
+          "z3_formula": "there_is_an_animal == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 97,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 49
+    },
+    "maxsat_stats": {
+      "satisfied": 49,
+      "excluded": 0,
+      "total_weight": 97,
+      "solve_time_ms": 0.9896820411086082
+    },
+    "timing": {
+      "trace_gen_s": 4.767,
+      "extraction_s": 17.171,
+      "dedup_s": 0.929,
+      "maxsat_s": 0.004,
+      "total_s": 22.871
+    }
+  }
+}

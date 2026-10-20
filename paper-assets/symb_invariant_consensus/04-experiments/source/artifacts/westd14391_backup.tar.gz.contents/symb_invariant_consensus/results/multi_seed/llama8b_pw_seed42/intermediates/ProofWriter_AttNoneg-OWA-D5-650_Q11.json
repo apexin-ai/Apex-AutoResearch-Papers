@@ -1,0 +1,795 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-650_Q11",
+    "problem": "Anne is smart. Charlie is nice. Erin is furry. Erin is white. Fiona is smart. Fiona is white. Fiona is young. Nice, smart things are young. All young, white things are cold. White things are red. All furry, red things are nice. All young things are white. All young things are white. All smart, cold things are furry. If something is nice and white then it is smart. If Anne is furry and Anne is white then Anne is red.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is cold.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nSmart($x, bool) ::: Is x smart?\nNice($x, bool) ::: Is x nice?\nFurry($x, bool) ::: Is x furry?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\n\nFacts:\nSmart(Anne, True) ::: Anne is smart.\nNice(Charlie, True) ::: Charlie is nice.\nFurry(Erin, True) ::: Erin is furry.\nWhite(Erin, True) ::: Erin is white.\nSmart(Fiona, True) ::: Fiona is smart.\nWhite(Fiona, True) ::: Fiona is white.\nYoung(Fiona, True) ::: Fiona is young.\n\nRules:\nNice($x, True) && Smart($x, True) >>> Young($x, True) ::: Nice, smart things are young.\nYoung($x, True) && White($x, True) >>> Cold($x, True) ::: All young, white things are cold.\nWhite($x, True) >>> Red($x, True) ::: White things are red.\nFurry($x, True) && Red($x, True) >>> Nice($x, True) ::: All furry, red things are nice.\nYoung($x, True) >>> White($x, True) ::: All young things are white.\nSmart($x, True) && Cold($x, True) >>> Furry($x, True) ::: All smart, cold things are furry.\nNice($x, True) && White($x, True) >>> Smart($x, True) ::: If something is nice and white then it is smart.\nFurry(Anne, True) && White(Anne, True) >>> Red(Anne, True) ::: If Anne is furry and Anne is white then Anne is red.\n\nQuery:\nCold(Erin, True) ::: Erin is cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 95.0,
+      "Unknown": 101.5
+    },
+    "answer_counts": {
+      "Unknown": 6,
+      "True": 6
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Erin is cold, we need to analyze the given statements and their implications.\n\n1. Erin is furry. (Statement)\n2. Erin is white. (Statement)\n3. All furry, red things are nice. (Statement)\n4. If Anne is furry and Anne is white then Anne is red. (Statement)\n   - We can't directly conclude that Erin is red from this statement, as it's specifically about Anne.\n\n5. All young, white things are cold. (Statement)\n   - We don't have information about Erin's age, so we can't conclude that Erin is cold from this statement.\n\n6. All young things are white. (Statement)\n   - We don't have information about Erin's age, so we can't conclude that Erin is white from this statement. However, we already have the statement \"Erin is white\" which confirms this statement.\n\n7. If something is nice and white then it is smart. (Statement)\n   - We don't have information about Erin's niceness, so we can't conclude that Erin is smart from this statement.\n\n8. All smart, cold things are furry. (Statement)\n   - We don't have information about Erin's smartness or coldness, so we can't conclude that Erin is furry from this statement.\n\nNow, let's try to analyze the implications using the given statements:\n\nFrom statement 2 (Erin is white), statement 6 (All young things are white) does not help us here because we do not know Erin's age.\n\nFrom statement 3 (All furry, red things are nice) and statement 4 (If Anne is furry and Anne is white then Anne is red) does not help us here because we do not know Erin's age and color.\n\nFrom statement 7 (If something is nice and white then it is smart), we cannot determine Erin's niceness, so we cannot determine Erin's smartness.\n\nFrom statement 8 (All smart, cold things are furry), we cannot determine Erin's smartness and coldness.\n\nHowever, we can try to analyze the statements that give information about Erin's characteristics.\n\nFrom statement 1 (Erin is furry), statement 2 (Erin is white), and statement 5 (All young, white things are cold), we can see that there's an implication that Erin is young, but we are not given enough information to confirm this.\n\nTherefore, we cannot conclude whether Erin is cold or not because we are missing the information about Erin's age.\n\nSo the final answer is: \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given rules and determine the truth value of the statement \"Erin is cold.\" \n\nFirst, let's list all the given rules:\n\n1. Anne is smart.\n2. Charlie is nice.\n3. Erin is furry.\n4. Erin is white.\n5. Fiona is smart.\n6. Fiona is white.\n7. Fiona is young.\n8. Nice, smart things are young.\n9. All young, white things are cold.\n10. White things are red.\n11. All furry, red things are nice.\n12. All young things are white.\n13. All young things are white. (This statement seems to be a duplicate, but we will consider it as it is given.)\n14. All smart, cold things are furry.\n15. If something is nice and white then it is smart.\n16. If Anne is furry and Anne is white then Anne is red.\n\nNow, let's analyze the given statement \"Erin is cold.\"\n\nFrom rule 4, we know Erin is white. \n\nFrom rule 12, we know all young things are white. \n\nHowever, we do not have any information about Erin being young. We only have information about Fiona being young. To determine if Erin is young, we need to consider rule 13, which is the duplicate of rule 12. However, it seems that this duplicate statement does not add any new information, so we will not consider it as a separate statement.\n\nFrom rule 9, we know that all young, white things are cold. But we do not have any information about Erin being young.\n\nTherefore, we cannot determine if Erin is cold or not based on the given information.\n\nHence, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether Erin is cold, we need to analyze the given statements and find the relevant information.\n\n1. Erin is furry.\n2. Erin is white.\nFrom the statements, we know that:\n- All furry, red things are nice. (Statement 10)\n- All furry, red things are nice. This means that if Erin is furry, and Erin is red (which we will verify later), then Erin is nice. However, we need more information to determine if Erin is red.\n- All furry, red things are nice. This also means that if Erin is red, then Erin is nice.\n- All young things are white. (Statement 9)\n- All young things are white. (Statement 12)\n- All young things are white. (Statement 13)\nSince we have multiple instances of the same statement, we can only use one instance. Therefore, let's use the first instance (Statement 9) that states \"All young things are white.\"\n- Since we don't know if Erin is young, we can't directly conclude that Erin is white from this statement. However, we know that Erin is white from statement 2.\n- White things are red. (Statement 8)\n- White things are red. (Statement 11)\n- All young things are white. (Statement 9)\n- If something is nice and white then it is smart. (Statement 5)\n- All young, white things are cold. (Statement 7)\nSince we know that Erin is white, we can use this information to find if Erin is red. From Statement 8, we know that white things are red. This means that Erin is red.\n- We now know that Erin is furry and red. From Statement 1, we know that Erin is furry, and from Statement 8, we know that Erin is red. From Statement 10, we know that all furry, red things are nice. This means that Erin is nice.\n- Since we know that Erin is nice and white, we can use this information to find if Erin is smart. From Statement 5, we know that if something is nice and white, then it is smart. This means that Erin is smart.\n- Now, we know that Erin is white, and we need to determine if Erin is cold. From Statement 9, we know that all young things are white. We don't know if Erin is young, but we can use this information to find if Erin is cold. From Statement 7, we know that all young, white things are cold. We know that Erin is white, but we don't know if Erin is young. However, from Statement 8, we know that white things are red. We also know that Erin is white. Therefore, Erin is red. From Statement 9, we know that all young things are white, and we also know that Erin is white. This means that Erin is young.\n- Now that we know Erin is young and white, we can use this information to find if Erin is cold. From Statement 7, we know that all young, white things are cold. Therefore, Erin is cold.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is cold\" is true, false, or unknown, we need to analyze the given information and apply it step by step using logical reasoning.\n\n1. Given information:\n   - Erin is furry (F)\n   - Erin is white (W)\n\n2. From the given information, we have the following rules:\n   - All furry, red things are nice (F \u2229 R \u2192 N)\n   - All young things are white (Y \u2192 W)\n   - All young, white things are cold (Y \u2229 W \u2192 C)\n   - White things are red (W \u2192 R)\n   - All smart, cold things are furry (S \u2229 C \u2192 F)\n   - If something is nice and white then it is smart (N \u2229 W \u2192 S)\n   - If Anne is furry and Anne is white then Anne is red (A is F and A is W \u2192 A is R)\n\n3. Analyzing the given information about Erin:\n   - Erin is furry (F)\n   - Erin is white (W)\n\n4. From the rule \"White things are red\" (W \u2192 R), we can conclude that Erin is red (R).\n\n5. Now we have:\n   - Erin is furry (F)\n   - Erin is white (W)\n   - Erin is red (R)\n\n6. From the rule \"All furry, red things are nice\" (F \u2229 R \u2192 N), we can conclude that Erin is nice (N).\n\n7. Now we have:\n   - Erin is furry (F)\n   - Erin is white (W)\n   - Erin is red (R)\n   - Erin is nice (N)\n\n8. From the rule \"If something is nice and white then it is smart\" (N \u2229 W \u2192 S), we can conclude that Erin is smart (S).\n\n9. Now we have:\n   - Erin is furry (F)\n   - Erin is white (W)\n   - Erin is red (R)\n   - Erin is nice (N)\n   - Erin is smart (S)\n\n10. From the rule \"All smart, cold things are furry\" (S \u2229 C \u2192 F), we cannot conclude that Erin is cold (C) because we do not know if Erin is cold.\n\n11. From the rule \"All young things are white\" (Y \u2192 W), we cannot conclude that Erin is young (Y) because we do not know if Erin is young.\n\n12. However, we do have the rule \"All young, white things are cold\" (Y \u2229 W \u2192 C). If we assume that Erin is young (Y), we can conclude that Erin is cold (C).\n\nHowever, since we don't know if Erin is young (Y), we cannot conclude that Erin is cold (C). Therefore, the statement \"Erin is cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether Erin is cold, we need to analyze the given statements and apply the rules of logic.\n\nGiven statements:\n\n1. Erin is furry.\n2. Erin is white.\n3. All furry, red things are nice.\n4. All young, white things are cold.\n5. All young things are white.\n6. All young things are white. (Repeated statement, can be ignored)\n7. All smart, cold things are furry.\n8. Nice, smart things are young.\n9. All young things are white. (Repeated statement, can be ignored)\n10. White things are red.\n11. If Anne is furry and Anne is white then Anne is red. (This is a conditional statement, we will use it later)\n12. Charlie is nice.\n13. Erin is white. (Repeated statement, can be ignored)\n14. Fiona is smart.\n15. Fiona is white.\n16. Fiona is young.\n\nStep 1: Analyze the statement \"All young things are white.\"\nWe know that Fiona is young (statement 16) and white (statement 15). Since this statement is true, we can conclude that all young things are indeed white.\n\nStep 2: Analyze the statement \"All young, white things are cold.\"\nWe know that all young things are white (from step 1) and Erin is white (statement 2). Therefore, Erin is a young, white thing.\n\nStep 3: Apply the statement \"All young, white things are cold\" to Erin.\nSince Erin is a young, white thing, we can conclude that Erin is cold.\n\nHowever, we also need to consider the statement \"All young things are white\" and the fact that Erin is furry (statement 1). This means that we need to analyze the statement \"All young things are white\" further.\n\nStep 4: Analyze the statement \"All young things are white\" again.\nThis statement is repeated (statements 5 and 9), but it is also implied by the statement \"Nice, smart things are young\" (statement 8). We can conclude that all young things are indeed white.\n\nStep 5: Analyze the statement \"All young, white things are cold\" again.\nSince we have concluded that all young things are white (from step 4), we can apply this statement to Erin, who is a young, white thing.\n\nStep 6: Apply the statement \"All young, white things are cold\" to Erin.\nWe can conclude that Erin is cold.\n\nNow, we need to consider the statement \"All furry, red things are nice\" (statement 3) and the fact that Erin is furry (statement 1). However, we also know that Erin is white (statement 2), and white things are red (statement 10).\n\nStep 7: Analyze the statement \"White things are red.\"\nThis statement implies that all white things are indeed red.\n\nStep 8: Apply the statement \"White things are red\" to Erin.\nSince Erin is white (statement 2), we can conclude that Erin is red.\n\nStep 9: Analyze the statement \"All furry, red things are nice.\"\nSince Erin is furry (statement 1) and red (from step 8), we can conclude that Erin is nice.\n\nStep 10: Analyze the statement \"If Anne is furry and Anne is white then Anne is red.\"\nThis is a conditional statement that implies that if Anne is furry and white, then she is red. However, we do not know the truth value of this statement, as we are not given information about Anne being furry and white.\n\nStep 11: Analyze the statement \"Nice, smart things are young\" (statement 8).\nThis statement implies that if something is nice and smart, then it is young.\n\nStep 12: Analyze the statement \"All young, white things are cold\" (statement 4).\nThis statement implies that if something is young and white, then it is cold.\n\nStep 13: Apply the statement \"All young, white things are cold\" to Erin.\nWe can conclude that Erin is cold.\n\nNow, we have reached a conclusion about Erin being cold. We do not need to consider the remaining statements.\n\nTherefore, based on the given statements, we can conclude that:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements to derive information about Erin. \n\nGiven statements:\n1. Erin is furry.\n2. Erin is white.\n3. All furry, red things are nice.\n4. All young, white things are cold.\n5. White things are red.\n6. All young things are white.\n7. All smart, cold things are furry.\n8. If something is nice and white then it is smart.\n9. If Anne is furry and Anne is white then Anne is red.\n\nStep 1: From statement 2, we know Erin is white.\n\nStep 2: From statement 5, we know white things are red. So, Erin is red.\n\nStep 3: From statement 6, we know all young things are white. Since Erin is white, it implies Erin is young.\n\nStep 4: From statement 4, we know all young, white things are cold. Since Erin is young and white, it implies Erin is cold.\n\nHowever, we need to check if there are any other statements that can contradict this. \n\nStep 5: From statement 1, we know Erin is furry.\n\nStep 6: From statement 3, we know all furry, red things are nice. Since Erin is furry and red, it implies Erin is nice.\n\nStep 7: From statement 8, we know if something is nice and white then it is smart. Since Erin is nice and white, it implies Erin is smart.\n\nStep 8: From statement 7, we know all smart, cold things are furry. Since Erin is smart and cold, it implies Erin is furry.\n\nHowever, this statement contradicts statement 1, which says Erin is furry. \n\nBut we also need to check the last given statement.\n\nStep 9: From statement 9, we know if Anne is furry and Anne is white then Anne is red. However, this statement does not provide any information about Erin.\n\nSo, we conclude that Erin is cold.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller parts and apply the given information step by step.\n\n1. Erin is furry. (Given)\n2. Erin is white. (Given)\n\nFrom the given statements:\n- All furry, red things are nice.\n- If something is nice and white then it is smart.\n- If Anne is furry and Anne is white then Anne is red. (This statement only applies to Anne, not Erin. However, it implies that being furry and white does not necessarily make something red.)\n\nFrom the statements above, we cannot directly conclude that Erin is red. Therefore, we cannot directly conclude that Erin is nice.\n\n3. Erin is white. (Given)\n4. All young, white things are cold. \nHowever, we don't know if Erin is young. To proceed, we need to look for a statement that connects Erin's age to something else.\n\n5. All young things are white. \nThis statement implies that all white things are young, but we already know that Erin is white. So, Erin must be young.\n\n6. Erin is young. (Conclusion from step 5)\n7. Erin is white. (Given)\n8. All young, white things are cold. \nNow we can conclude that Erin is cold.\n\nTherefore, the statement \"Erin is cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Erin is cold, we need to break down the given information into a series of logical statements and then apply them to Erin.\n\n1. Erin is furry. (Given)\n2. Erin is white. (Given)\n3. All furry, red things are nice. (Given)\n4. If Anne is furry and Anne is white then Anne is red. (Given) \n   However, since we are not given information about Anne's color, we cannot apply this statement directly to Erin.\n5. Erin is not necessarily red, so we cannot apply the information about furry, red things being nice.\n6. All young things are white. (Given)\n7. All young, white things are cold. (Given)\n8. However, we are not given any information about Erin's age.\n\nFrom steps 1 and 2, we know Erin is furry and white. We cannot conclude whether Erin is red or not, as we don't have enough information about Erin's color.\n\nWe also know that Erin is white, and all young things are white (from step 6). However, we do not know Erin's age.\n\nAs a result, we cannot conclude whether Erin is cold or not because we do not have enough information about Erin's age. Therefore, the statement \"Erin is cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Erin is cold, we need to analyze the given statements and use logical reasoning.\n\n1. Erin is furry.\n2. Erin is white.\n\nFrom the given statements, we know:\n- All furry, red things are nice. (But we don't know if Erin is nice yet)\n- All furry, red things are nice.\n- All young, white things are cold. (But we don't know if Erin is young yet)\n- All young things are white.\n- All young things are white. (Duplicate statement, ignored)\n- All smart, cold things are furry.\n- If something is nice and white then it is smart.\n- If Anne is furry and Anne is white then Anne is red.\n\nLet's start from statement 2 (Erin is white):\n\n- From the statement \"All young, white things are cold,\" we need to know if Erin is young or not.\n\nFrom the statement \"All young things are white,\" we can deduce that if Erin is young, then Erin is white. However, we already know that Erin is white (from statement 2). This does not provide any new information.\n\nFrom the statement \"All young things are white,\" we can't conclude if Erin is young or not. However, we can use the statement \"All young, white things are cold\" to conclude that if Erin is young and white, then Erin is cold.\n\nHowever, we also need to consider the statement \"All young things are white.\" We can use this to conclude that if Erin is young, then Erin is white. However, we already know that Erin is white (from statement 2). This does not provide any new information.\n\nLet's consider statement 1 (Erin is furry):\n\n- From the statement \"All furry, red things are nice,\" we know that Erin is furry, but we don't know if Erin is red or not.\n\nHowever, we also know that \"If Anne is furry and Anne is white then Anne is red.\" This statement only applies to Anne, not Erin. Therefore, we cannot conclude if Erin is red or not.\n\nWe also know that \"All young, white things are cold.\" We cannot conclude if Erin is young or not. However, we can use the statement \"All young things are white\" to conclude that if Erin is young, then Erin is white. However, we already know that Erin is white (from statement 2). This does not provide any new information.\n\nLet's consider the statement \"All smart, cold things are furry.\" We cannot conclude if Erin is smart or cold.\n\nHowever, we also know that \"If something is nice and white then it is smart.\" We know that Erin is white (from statement 2), but we don't know if Erin is nice or not.\n\nWe also know that \"All furry, red things are nice.\" However, we don't know if Erin is red or not.\n\nConsidering all the statements, we still cannot conclude if Erin is cold or not. However, we can use the statement \"All young, white things are cold\" to conclude that if Erin is young and white, then Erin is cold.\n\nWe also know that \"All young things are white.\" We can use this to conclude that if Erin is young, then Erin is white. However, we already know that Erin is white (from statement 2). This does not provide any new information.\n\nIn conclusion, we cannot determine if Erin is cold or not with the given information.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is cold\" is true, false, or unknown, we need to analyze the given statements and apply them to Erin.\n\n1. Erin is furry.\n2. Erin is white.\n\nFrom the given statements, we can derive the following:\n\n- All furry, red things are nice. (Statement 8)\n- All furry, red things are nice -> All furry things are red (if we assume all red things are nice, but we cannot assume this, so this statement is uncertain).\n- All furry things are red -> Erin is red (since Erin is furry, statement 2, but we don't know if Erin is red).\n- Erin is red -> Anne is red (Statement 9, but we don't know if Erin is red).\n- All young, white things are cold. (Statement 5)\n- Erin is white -> Erin is young (Statement 6, but there's another statement that says the same thing, so it is still uncertain).\n- Erin is white -> Erin is young (Statement 6, but we don't know if Erin is young).\n- All young things are white. (Statement 7)\n- All young things are white -> Erin is white (Statement 2, but we already knew that).\n- All young, white things are cold -> Erin is cold (Statement 5).\n\nHowever, we need to consider the other statements.\n\n- If something is nice and white then it is smart. (Statement 3)\n- If Anne is furry and Anne is white then Anne is red. (Statement 10)\n\nFrom Statement 10, we can derive that Anne is red if Anne is furry and white. However, we cannot conclude that Erin is red because Statement 10 does not mention Erin.\n\nHowever, since we know Erin is white and furry, we can conclude that Erin is cold using Statement 5.\n\nSo, \"Erin is cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will use a logical approach to determine the truth of the statement \"Erin is cold.\"\n\nGiven the following premises:\n\n1. Erin is furry.\n2. Erin is white.\n3. All furry, red things are nice.\n4. All young things are white.\n5. All young, white things are cold.\n6. White things are red.\n7. All smart, cold things are furry.\n\nFrom premises 2 and 6, we can infer that Erin is red because white things are red.\n\nNow, let's analyze the statement we need to evaluate: \"Erin is cold.\"\n\nFrom premise 5, we know that all young, white things are cold. However, we do not have direct information that Erin is young. We have a premise that says \"All young things are white,\" but it does not specify that Erin is young.\n\nTo determine if Erin is cold, we need to know if Erin is young. If Erin is young, then we can conclude that Erin is cold. However, if Erin is not young, then we cannot conclude that Erin is cold.\n\nGiven the information we have, we cannot determine the age of Erin. Therefore, we cannot conclude that Erin is cold.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Erin is cold, we need to analyze the given statements and their implications.\n\n1. Erin is furry. \n2. Erin is white.\n\nFrom the statement \"All young, white things are cold,\" we can't directly apply it to Erin because we don't know if Erin is young. However, we can use another statement to find a connection.\n\n3. All young things are white.\n4. All young things are white.\n\nThis repetition of statement 3 is likely redundant or a typographical error. We can ignore the second occurrence.\n\nSince we don't know if Erin is young, we can't directly apply the information from statement 3 to Erin. However, we can use the statement \"All young, white things are cold\" if we can prove that Erin is young.\n\nFrom statement 3, \"All young things are white,\" we can infer that if Erin is young, then Erin is white, which we already know from statement 2. But this statement alone doesn't tell us if Erin is young or not.\n\nWe need to find another connection between Erin and being young. We can use the statement \"All young things are white\" in conjunction with another statement to find a connection.\n\n5. All young, white things are cold.\n\nThis statement implies that if something is young and white, then it is cold. However, we still need to find a connection between Erin and being young.\n\nFrom statement 3, \"All young things are white,\" we can infer that if Erin is young, then Erin is white, which we already know from statement 2.\n\nNow we need to find a statement that implies Erin is young. Unfortunately, we don't have a direct connection between Erin and being young. However, we can use the statement \"All young things are white\" to find a connection.\n\n6. Erin is white.\n\n7. All young things are white.\n\nWe can infer that if Erin is white, then Erin is young. This is a reversal of the original statement, but it is a valid inference.\n\nNow that we know Erin is young, we can use the statement \"All young, white things are cold\" to infer that Erin is cold.\n\nTherefore, based on the given statements, we can conclude that Erin is cold.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_erin, red_erin), nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(furry_anne, white_anne), red_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_erin, white_erin), cold_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, white_erin), smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_erin, cold_erin), furry_erin)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(smart_anne, nice_anne), young_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_X, white_X), cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> red(X)",
+          "z3_formula": "Implies(white_X, red_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_X, red_X), nice_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_X, white_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_X, cold_X), furry_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_X, white_X), smart_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) & anne(X) -> red(X)",
+          "z3_formula": "Implies(And(furry_anne, white_anne, anne_anne), red_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == Unknown",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_erin, red_erin), nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_erin, red_erin), nice_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_erin, red_erin), nice_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> red(X)",
+          "z3_formula": "Implies(white_erin, red_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> red(X)",
+          "z3_formula": "Implies(white_erin, red_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> red(X)",
+          "z3_formula": "Implies(white_erin, red_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, white_erin), smart_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_erin, white_erin), cold_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_erin, red_erin), nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> red(X)",
+          "z3_formula": "Implies(white_erin, red_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, white_erin), smart_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_erin, cold_erin), furry_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_erin, white_erin), cold_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == Unknown",
+          "source_step": 10
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_erin, red_erin), nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_erin, white_erin), cold_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> red(X)",
+          "z3_formula": "Implies(white_erin, red_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_erin, cold_erin), furry_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, white_erin), smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(furry_anne, white_anne), red_anne)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_erin, red_erin), nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, white_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(furry_anne, white_anne), red_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_erin, red_erin), nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(furry_anne, white_anne), red_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> not red(X)",
+          "z3_formula": "Implies(furry_erin, Not(red_erin))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_erin, young_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_erin, white_erin), cold_erin)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_erin, red_erin), nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_erin, red_erin), nice_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_erin, white_erin), cold_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_erin, cold_erin), furry_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, white_erin), smart_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(anne) & white(anne) -> red(anne)",
+          "z3_formula": "Implies(And(furry_anne, white_anne), red_anne)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_erin, red_erin), nice_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> furry(X)",
+          "z3_formula": "Implies(And(furry_erin, red_erin), furry_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> red(X)",
+          "z3_formula": "Implies(furry_erin, red_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> red(anne)",
+          "z3_formula": "Implies(red_erin, red_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_erin, white_erin), cold_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_erin, young_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_erin, white_erin), cold_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, white_erin), smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> red(X)",
+          "z3_formula": "Implies(And(furry_erin, white_erin), red_erin)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(furry_erin, red_erin), nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_erin, white_erin), cold_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> red(X)",
+          "z3_formula": "Implies(white_erin, red_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_erin, cold_erin), furry_erin)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(young_erin, white_erin), cold_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 111,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 34
+    },
+    "maxsat_stats": {
+      "satisfied": 33,
+      "excluded": 1,
+      "total_weight": 110,
+      "solve_time_ms": 1.2912536039948463
+    },
+    "timing": {
+      "trace_gen_s": 10.476,
+      "extraction_s": 30.342,
+      "dedup_s": 0.734,
+      "maxsat_s": 0.003,
+      "total_s": 41.555
+    }
+  }
+}

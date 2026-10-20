@@ -1,0 +1,376 @@
+{
+  "problem": {
+    "id": "folio_111",
+    "problem": "Given the following premises:\nAll fir trees are evergreens. Some objects of worship are fir trees.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSome evergreens are not objects of worship.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (FirTree(x) \u2192 Evergreen(x))",
+      "\u2203x (ObjectOfWorship(x) \u2227 FirTree(x))"
+    ],
+    "conclusion_fol": "\u2203x (Evergreen(x) \u2227 \u00acObjectOfWorship(x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 35.5
+    },
+    "answer_counts": {
+      "Unknown": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: All fir trees are evergreens.\nThis premise establishes a relationship between fir trees and evergreens, stating that all fir trees are indeed evergreens.\n\nPremise 2: Some objects of worship are fir trees.\nThis premise establishes a relationship between objects of worship and fir trees, stating that some objects of worship are fir trees.\n\nThe conclusion we need to evaluate is:\nSome evergreens are not objects of worship.\n\nTo determine the validity of this conclusion, let's analyze the relationships established by the premises:\n\n1. All fir trees are evergreens (Premise 1).\n2. Some objects of worship are fir trees (Premise 2).\n\nWe can infer that some fir trees are objects of worship (because some objects of worship are fir trees). However, we cannot conclude that all fir trees are objects of worship, as the premise only states that some objects of worship are fir trees.\n\nNow, let's relate the fir trees (evergreens) to objects of worship. We know that some fir trees are objects of worship, but we do not know if all fir trees are objects of worship.\n\nThe conclusion is that some evergreens are not objects of worship. To determine if this conclusion is true, false, or uncertain, let's analyze the relationships:\n\n- Some fir trees are evergreens (Premise 1).\n- Some fir trees are objects of worship (inference from Premise 2).\n\nWe cannot conclude that all fir trees are objects of worship, and we cannot conclude that all fir trees are not objects of worship. Therefore, we cannot determine that some evergreens are not objects of worship based on the given premises.\n\nHowever, we can infer that some fir trees (evergreens) are objects of worship. To determine if some evergreens are not objects of worship, we need to consider the possibility of other evergreen species that are not fir trees.\n\nSince the premises do not provide any information about other evergreen species or their relationship to objects of worship, we cannot determine the validity of the conclusion.\n\nTherefore, the conclusion \"Some evergreens are not objects of worship\" is uncertain, as we cannot conclude it based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we can use a technique called categorical reasoning, which involves using premises to determine the validity of a conclusion.\n\nGiven premises:\n1. All fir trees are evergreens.\n2. Some objects of worship are fir trees.\n\nWe need to determine if the following conclusion is true, false, or uncertain:\nSome evergreens are not objects of worship.\n\nLet's break it down step by step:\n\nStep 1: Understand the first premise.\nThe first premise states that all fir trees are evergreens. This means that fir trees are a subset of evergreens.\n\nStep 2: Understand the second premise.\nThe second premise states that some objects of worship are fir trees. This means that fir trees can be objects of worship.\n\nStep 3: Analyze the conclusion.\nThe conclusion states that some evergreens are not objects of worship. To evaluate this conclusion, we need to consider the relationship between evergreens and objects of worship.\n\nStep 4: Determine the relationship between fir trees and objects of worship.\nFrom the second premise, we know that some fir trees are objects of worship. However, we do not know if all fir trees are objects of worship.\n\nStep 5: Determine the relationship between fir trees and evergreens.\nFrom the first premise, we know that all fir trees are evergreens.\n\nStep 6: Analyze the relationship between evergreens and objects of worship.\nSince all fir trees are evergreens and some fir trees are objects of worship, it is possible that some evergreens are objects of worship. However, we cannot conclude that all evergreens are objects of worship, nor can we conclude that some evergreens are not objects of worship.\n\nStep 7: Conclusion.\nBased on the premises, we cannot determine with certainty whether some evergreens are not objects of worship. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion step by step.\n\n1. All fir trees are evergreens.\nThis premise tells us that fir trees are a type of evergreen. However, it does not tell us that all evergreens are fir trees.\n\n2. Some objects of worship are fir trees.\nThis premise tells us that some fir trees are objects of worship, but it does not tell us that all fir trees are objects of worship or that all objects of worship are fir trees.\n\nNow, let's analyze the conclusion:\n\nSome evergreens are not objects of worship.\n\nTo determine whether this conclusion is true, false, or uncertain, we need to consider the following:\n\n- From premise 1, we know that all fir trees are evergreens.\n- From premise 2, we know that some fir trees are objects of worship.\n\nHowever, we do not have any information about the existence of fir trees that are not objects of worship. We also do not have any information about the existence of evergreens that are not fir trees.\n\nSince the conclusion is about evergreens that are not objects of worship, we need to determine whether this conclusion is supported by the premises.\n\nWe know that fir trees are a type of evergreen, and some fir trees are objects of worship. However, this does not necessarily mean that all evergreens are objects of worship or that some evergreens are not objects of worship.\n\nIn fact, the premises do not provide any evidence to support or refute the conclusion that some evergreens are not objects of worship. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: All fir trees are evergreens.\nPremise 2: Some objects of worship are fir trees.\n\nWe are asked to evaluate the conclusion: Some evergreens are not objects of worship.\n\nFirst, let's examine Premise 1: All fir trees are evergreens. This statement implies that all fir trees belong to the category of evergreens.\n\nNext, let's examine Premise 2: Some objects of worship are fir trees. This statement implies that there are fir trees that are also objects of worship.\n\nNow, let's consider the conclusion: Some evergreens are not objects of worship. To evaluate this conclusion, we need to think about what we know from the premises.\n\nSince all fir trees are evergreens (Premise 1), and some objects of worship are fir trees (Premise 2), we can infer that some evergreens are objects of worship. However, this does not necessarily mean that some evergreens are not objects of worship.\n\nThe key point is that the premises do not provide any information about evergreens that are not fir trees. Therefore, we cannot conclude that some evergreens are not objects of worship based on the given information.\n\nIn other words, the premises do not provide any evidence to support the conclusion that some evergreens are not objects of worship. However, they also do not provide any evidence to refute this conclusion. As a result, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: All fir trees are evergreens.\nThis premise tells us that fir trees belong to the category of evergreens. It doesn't tell us anything about other types of evergreens, only that fir trees are a subset of evergreens.\n\nPremise 2: Some objects of worship are fir trees.\nThis premise tells us that fir trees are used as objects of worship. However, it doesn't tell us anything about other types of evergreens being used as objects of worship.\n\nConclusion: Some evergreens are not objects of worship.\n\nTo determine the truth value of the conclusion, we need to consider the following:\n\n- All fir trees are evergreens (Premise 1).\n- Some fir trees are objects of worship (Premise 2).\n\nFrom these premises, we can infer that some evergreens (fir trees) are objects of worship. However, this doesn't necessarily mean that all evergreens are objects of worship, nor does it mean that some evergreens are not objects of worship.\n\nTo evaluate the conclusion, let's consider the following:\n\n- If we assume that all fir trees are objects of worship (which is not necessarily true), then we could say that some evergreens (fir trees) are objects of worship. However, this would not necessarily mean that some evergreens are not objects of worship.\n- If we assume that some fir trees are not objects of worship (which is possible), then we could say that some evergreens (fir trees) are not objects of worship.\n\nSince the premises do not provide enough information to determine whether all fir trees are objects of worship or not, we cannot conclusively say that some evergreens are not objects of worship. However, we also cannot conclude that some evergreens are not objects of worship with absolute certainty.\n\nTherefore, the conclusion is uncertain, as we cannot determine its truth value with absolute certainty based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises and their relationship to the conclusion.\n\nPremise 1: All fir trees are evergreens.\nThis premise establishes a relationship between fir trees and evergreens, stating that fir trees are a type of evergreen.\n\nPremise 2: Some objects of worship are fir trees.\nThis premise establishes a relationship between objects of worship and fir trees, stating that some objects of worship are fir trees.\n\nNow, let's examine the conclusion: Some evergreens are not objects of worship.\n\nWe need to determine if this conclusion logically follows from the given premises.\n\nFrom Premise 1, we know that all fir trees are evergreens. \nFrom Premise 2, we know that some objects of worship are fir trees.\n\nSince fir trees are a type of evergreen (Premise 1), and some fir trees are objects of worship (Premise 2), we can conclude that some evergreens (specifically, fir trees) are objects of worship.\n\nHowever, this conclusion does not necessarily imply that some evergreens are not objects of worship. We only know that some evergreens (fir trees) are objects of worship, but we do not have any information about other types of evergreens.\n\nTherefore, the conclusion \"Some evergreens are not objects of worship\" is uncertain, as we do not have enough information to determine whether other types of evergreens are objects of worship or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the validity of the conclusion, let's analyze the premises and apply the rules of logical reasoning.\n\nPremise 1: All fir trees are evergreens.\nPremise 2: Some objects of worship are fir trees.\n\nFrom Premise 1, we know that fir trees are a type of evergreen. \n\nFrom Premise 2, we know that some objects of worship are fir trees. However, we cannot conclude that all objects of worship are fir trees, or that all fir trees are objects of worship.\n\nNow, let's examine the conclusion: Some evergreens are not objects of worship.\n\nTo test the validity of this conclusion, we need to see if it contradicts the premises or if it follows logically from them.\n\nFrom Premise 1, we know that all fir trees are evergreens. Since fir trees are a type of evergreen, we can infer that fir trees are evergreens. \n\nHowever, from Premise 2, we know that some objects of worship are fir trees. But we cannot conclude that all evergreens are objects of worship or that all fir trees are objects of worship. The premises do not provide enough information to determine whether evergreens (other than fir trees) are objects of worship.\n\nSince we cannot conclude that all evergreens are objects of worship, it is possible that some evergreens (other than fir trees) are not objects of worship.\n\nTherefore, the conclusion \"Some evergreens are not objects of worship\" is uncertain, as it is possible but not guaranteed based on the premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we can use a technique called categorical reasoning or syllogism. \n\nGiven premises:\n1. All fir trees are evergreens.\n2. Some objects of worship are fir trees.\n\nWe want to determine the truth value of the conclusion:\nSome evergreens are not objects of worship.\n\nStep 1: Understand the premises\nFrom premise 1, we know that fir trees are a type of evergreen. From premise 2, we know that some objects of worship are fir trees.\n\nStep 2: Analyze the conclusion\nThe conclusion states that some evergreens are not objects of worship. To determine if this is true or false, we need to find out if there are any other types of evergreen that are not fir trees and are not objects of worship.\n\nStep 3: Draw a conclusion\nSince we know that fir trees are evergreens and some objects of worship are fir trees, it does not necessarily mean that all fir trees are objects of worship. However, we cannot conclude that some evergreens are not objects of worship just based on the information given. We only know that some fir trees are objects of worship, but we do not have information about other types of evergreens.\n\nTherefore, the conclusion is uncertain, as we do not have enough information to determine if some evergreens are not objects of worship.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and apply the rules of logic.\n\nPremise 1: All fir trees are evergreens.\nThis premise establishes a relationship between fir trees and evergreens. It states that fir trees are a subset of evergreens.\n\nPremise 2: Some objects of worship are fir trees.\nThis premise establishes a relationship between fir trees and objects of worship. It states that fir trees are a subset of objects of worship.\n\nNow, let's examine the conclusion: Some evergreens are not objects of worship.\n\nTo determine the truth of this conclusion, we need to see if we can derive it from the premises.\n\nFrom Premise 1, we know that all fir trees are evergreens.\nFrom Premise 2, we know that some objects of worship are fir trees.\n\nNow, let's consider the relationship between evergreens and objects of worship. We are not given any information that would suggest all evergreens are objects of worship. In fact, the premises only tell us that fir trees are a subset of both evergreens and objects of worship.\n\nWe can infer that fir trees are a subset of evergreens (Premise 1), and a subset of objects of worship (Premise 2). However, this does not necessarily mean that all evergreens are objects of worship. It is possible that there are other types of evergreens that are not objects of worship.\n\nTherefore, based on the given premises, we cannot conclude that some evergreens are not objects of worship. The premises do not provide enough information to make this determination.\n\nConclusion: The conclusion is uncertain. We cannot determine whether the conclusion is true or false based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will use the method of categorical logic, specifically the syllogism. \n\nFirst, let's break down the given premises:\n\n1. All fir trees are evergreens.\n2. Some objects of worship are fir trees.\n\nNow, let's analyze the conclusion we need to determine the truth value for:\nSome evergreens are not objects of worship.\n\nWe can use the method of categorical logic to evaluate this conclusion. We will try to derive the conclusion from the premises.\n\nFrom premise 1, we know that all fir trees are evergreens. \n\nFrom premise 2, we know that some objects of worship are fir trees.\n\nWe can combine these two pieces of information as follows:\n\nSome objects of worship are fir trees (premise 2)\n\u2234 Some fir trees are objects of worship (by definition of \"some\")\n\nNow, we can combine this information with premise 1:\n\nAll fir trees are evergreens (premise 1)\n\u2234 Some evergreens are fir trees (by definition of \"some\")\n\nNow, we can see that some evergreens are fir trees and some fir trees are objects of worship. This does not necessarily imply that some evergreens are not objects of worship.\n\nIn fact, the only possible conclusion we can derive from the premises is that some fir trees are objects of worship, which does not provide any information about whether some evergreens are not objects of worship.\n\nTherefore, the conclusion \"Some evergreens are not objects of worship\" is uncertain, as we cannot derive it from the premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we can use a Venn diagram or a logical argument. \n\nLet's start by defining the sets:\n\n- E: Evergreens\n- O: Objects of worship\n- F: Fir trees\n\nGiven premises:\n\n1. All fir trees are evergreens: F \u2286 E\n2. Some objects of worship are fir trees: \u2203x (O \u2229 F)\n\nWe want to determine the validity of the conclusion:\n\n\"Some evergreens are not objects of worship.\"\n\nTo do this, let's examine the relationship between the sets. From premise 1, we know that all fir trees are evergreens, but this does not necessarily mean that all evergreens are fir trees. \n\nFrom premise 2, we know that some objects of worship are fir trees, but we don't know if any fir trees are not objects of worship. \n\nNow, let's consider the conclusion: \"Some evergreens are not objects of worship.\"\n\nThis means we need to find a subset of evergreens that are not objects of worship. \n\nSince all fir trees are evergreens (F \u2286 E), and some objects of worship are fir trees (\u2203x (O \u2229 F)), we can conclude that some evergreens (specifically, the fir trees that are objects of worship) are objects of worship, not that they are not objects of worship.\n\nHowever, the premises do not provide any information about fir trees that are not objects of worship, nor do they provide any information about other types of evergreens that are not objects of worship.\n\nTherefore, based on the given premises, we cannot conclude that some evergreens are not objects of worship. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises and see if they lead to the conclusion logically.\n\nPremise 1: All fir trees are evergreens.\nThis premise tells us that fir trees belong to the category of evergreens.\n\nPremise 2: Some objects of worship are fir trees.\nThis premise tells us that there exists at least one fir tree that is an object of worship.\n\nNow, let's examine the conclusion: Some evergreens are not objects of worship.\n\nTo determine if this conclusion is true or false, we need to see if it can be logically derived from the premises.\n\nFrom Premise 1, we know that fir trees are evergreens. \n\nHowever, Premise 2 only tells us that some fir trees are objects of worship, but it doesn't provide any information about the other fir trees.\n\nTherefore, we can conclude that there might exist fir trees that are not objects of worship (since we don't know about all fir trees). And since fir trees are a subset of evergreens, there might exist evergreens that are not objects of worship.\n\nSince we can't rule out the possibility that some evergreens are not objects of worship based on the given premises, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "all(fir_tree, evergreen)",
+          "z3_formula": "all_fir_tree_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir_tree)",
+          "z3_formula": "some_object_of_worship_fir_tree == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, object_of_worship)",
+          "z3_formula": "some_evergreen_object_of_worship == False",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir)",
+          "z3_formula": "some_object_of_worship_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, not(object_of_worship))",
+          "z3_formula": "some_evergreen_not_object_of_worship == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "evergreen(fir_tree)",
+          "z3_formula": "evergreen_fir_tree == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "object_of_worship(fir_tree)",
+          "z3_formula": "object_of_worship_fir_tree == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "evergreen(X) -> evergreen(fir_tree)",
+          "z3_formula": "Implies(evergreen_X, evergreen_fir_tree)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "object_of_worship(X) -> object_of_worship(fir_tree)",
+          "z3_formula": "Implies(object_of_worship_X, object_of_worship_fir_tree)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not object_of_worship(evergreen)",
+          "z3_formula": "Not(Or(object_of_worship_X, evergreen_X)) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir)",
+          "z3_formula": "some_object_of_worship_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, not object_of_worship)",
+          "z3_formula": "some_evergreen_not_object_of_worship == Unknown",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(worship_object, fir)",
+          "z3_formula": "some_worship_object_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, not(worship_object))",
+          "z3_formula": "some_evergreen_not_worship_object == Unknown",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir)",
+          "z3_formula": "some_object_of_worship_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, object_of_worship)",
+          "z3_formula": "some_evergreen_object_of_worship == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "evergreen(fir_tree)",
+          "z3_formula": "evergreen_fir_tree == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "object_of_worship(fir_tree)",
+          "z3_formula": "object_of_worship_fir_tree == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "evergreen(X) -> evergreen(fir_tree)",
+          "z3_formula": "Implies(evergreen_X, evergreen_fir_tree)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "object_of_worship(X) -> object_of_worship(fir_tree)",
+          "z3_formula": "Implies(object_of_worship_X, object_of_worship_fir_tree)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not object_of_worship(X)",
+          "z3_formula": "Not(object_of_worship_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "evergreen(X) & not object_of_worship(X)",
+          "z3_formula": "And(evergreen_X, Not(object_of_worship_X))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir)",
+          "z3_formula": "some_object_of_worship_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, not object_of_worship)",
+          "z3_formula": "some_evergreen_not_object_of_worship == Unknown",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir)",
+          "z3_formula": "some_object_of_worship_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, not(object_of_worship))",
+          "z3_formula": "Not(Implies(all_fir_evergreen, Implies(some_object_of_worship_fir, all_object_of_worship_evergreen))) == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir)",
+          "z3_formula": "some_object_of_worship_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, not(object_of_worship))",
+          "z3_formula": "some_evergreen_not_object_of_worship == False",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "F \u2286 E",
+          "z3_formula": "F_subset_E == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "\u2203x (O \u2229 F)",
+          "z3_formula": "exists_x_O_intersect_F == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "\u00ac\u2203x (E \u2229 \u00acO)",
+          "z3_formula": "Not(Exists(x, And(E_intersect_not_O))) == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(fir, evergreen)",
+          "z3_formula": "all_fir_evergreen == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "some(object_of_worship, fir)",
+          "z3_formula": "some_object_of_worship_fir == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "some(evergreen, not object_of_worship)",
+          "z3_formula": "some_evergreen_not_object_of_worship == True",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 41,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 21
+    },
+    "maxsat_stats": {
+      "satisfied": 18,
+      "excluded": 3,
+      "total_weight": 37,
+      "solve_time_ms": 0.9764200076460838
+    },
+    "timing": {
+      "trace_gen_s": 5.559,
+      "extraction_s": 8.169,
+      "dedup_s": 0.255,
+      "maxsat_s": 0.002,
+      "total_s": 13.985
+    }
+  }
+}

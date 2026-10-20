@@ -1,0 +1,1142 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1118_Q22",
+    "problem": "Bob is kind. Charlie is green. Charlie is kind. Charlie is young. Dave is young. Erin is big. Erin is young. All white, green people are young. All rough, kind people are big. If someone is green then they are young. Young people are rough. Big, rough people are furry. Kind people are green.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is kind.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nGreen($x, bool) ::: Is x green?\nYoung($x, bool) ::: Is x young?\nWhite($x, bool) ::: Is x white?\nRough($x, bool) ::: Is x rough?\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\n\nFacts:\nKind(Bob, True) ::: Bob is kind.\nGreen(Charlie, True) ::: Charlie is green.\nKind(Charlie, True) ::: Charlie is kind.\nYoung(Charlie, True) ::: Charlie is young.\nYoung(Dave, True) ::: Dave is young.\nBig(Erin, True) ::: Erin is big.\nYoung(Erin, True) ::: Erin is young.\n\nRules:\nWhite($x, True) && Green($x, True) >>> Young($x, True) ::: All white, green people are young.\nRough($x, True) && Kind($x, True) >>> Big($x, True) ::: All rough, kind people are big.\nGreen($x, True) >>> Young($x, True) ::: If someone is green then they are young.\nYoung($x, True) >>> Rough($x, True) ::: Young people are rough.\nBig($x, True) && Rough($x, True) >>> Furry($x, True) ::: Big, rough people are furry.\nKind($x, True) >>> Green($x, True) ::: Kind people are green.\n\nQuery:\nKind(Dave, True) ::: Dave is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 158.0
+    },
+    "answer_counts": {
+      "Unknown": 9
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Dave is kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is young. \n   - This is given information, so we will keep it in mind.\n\n2. All white, green people are young. \n   - This statement does not provide any information about Dave's color or whether he is white or green. Therefore, we cannot determine whether Dave is young based on this statement alone.\n\n3. Charlie is green. Charlie is kind. \n   - This statement tells us that Charlie is both green and kind. However, it does not provide any information about Dave's color or whether he is kind. Therefore, we cannot determine whether Dave is kind based on this statement alone.\n\n4. Charlie is young. \n   - This statement does not provide any new information about Dave. We already know that Dave is young.\n\n5. Dave is young. \n   - This is given information, so we will keep it in mind.\n\n6. All rough, kind people are big. \n   - This statement does not provide any information about Dave's size or whether he is rough. Therefore, we cannot determine whether Dave is big based on this statement alone.\n\n7. Young people are rough. \n   - This statement tells us that young people are rough. Since Dave is young, we can conclude that Dave is rough.\n\n8. Big, rough people are furry. \n   - This statement does not provide any information about whether Dave is big. However, we do know that Dave is rough.\n\n9. Kind people are green. \n   - This statement tells us that kind people are green. If Dave is kind, then he must be green.\n\nHowever, we also know that \"If someone is green then they are young.\" If Dave is green, then we can conclude that Dave is young, but we already knew that. \n\nSo, the only way to determine whether Dave is kind is by using the statement \"Kind people are green.\" Since we cannot determine whether Dave is green or not, we cannot determine whether Dave is kind.\n\nTherefore, the final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and determine whether the statement \"Dave is kind\" is true, false, or unknown.\n\nGiven Information:\n1. Bob is kind.\n2. Charlie is green.\n3. Charlie is kind.\n4. Charlie is young.\n5. Dave is young.\n6. Erin is big.\n7. Erin is young.\n8. All white, green people are young. (This means that white and green people are young, but it doesn't tell us anything about the color of people who are not white or green.)\n9. All rough, kind people are big. (This statement is a bit tricky, as it's talking about the relationship between rough and kind people, but it doesn't tell us that all rough people are kind or that all kind people are rough.)\n10. If someone is green then they are young.\n11. Young people are rough.\n12. Big, rough people are furry.\n13. Kind people are green.\n\nNow, let's break down the given information into two main groups: the statements that directly mention Dave, and the statements that don't mention Dave.\n\nDirectly related to Dave:\n- Dave is young (statement 5)\n\nNot directly related to Dave:\n- The statements about Bob, Charlie, Erin, and the relationships between colors, roughness, kindliness, and youth.\n\nFrom the information that doesn't directly mention Dave, we can infer that:\n- Young people are rough (statement 11)\n- Kind people are green (statement 13)\n\nHowever, we don't have enough information to determine whether Dave is kind or not. The statement \"Kind people are green\" (statement 13) implies that if someone is kind, they must be green. But we don't have any information that directly links green people with kindness or vice versa.\n\nThe only information we have about Dave is that he is young (statement 5). We know that young people are rough (statement 11), but that doesn't tell us anything about his kindliness.\n\nSince we don't have enough information to determine whether Dave is kind or not, the statement \"Dave is kind\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is kind' is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven statements:\n1. Charlie is green. \n2. Charlie is kind. \n3. Charlie is young. \n4. Dave is young. \n5. Erin is big. \n6. Erin is young. \n7. All white, green people are young. \n8. All rough, kind people are big. \n9. If someone is green then they are young. \n10. Young people are rough. \n11. Big, rough people are furry. \n12. Kind people are green.\n\nFrom statement 9, we know that if someone is green, then they are young. Since Charlie is green (statement 1), we can conclude that Charlie is young (statement 3). \n\nWe also know that Charlie is kind (statement 2). From statement 12, we know that kind people are green. This means Charlie is indeed green.\n\nNow, we have two statements that conclude Charlie is green, and Charlie is kind. \n\nFrom statement 4, we know Dave is young. From statement 9, we know that if someone is green then they are young. However, there is no information that directly connects Dave with being green or kind.\n\nHowever, we know from statement 10 that young people are rough. So, Dave being young (statement 4) implies that Dave is rough.\n\nNow, let's examine statement 8: all rough, kind people are big. This statement implies that for someone to be big, they must be both rough and kind. Since we know Dave is rough (from statement 10) but do not have information that Dave is kind or not, we cannot conclude whether Dave is big or not.\n\nThe key piece of information we need to determine whether Dave is kind is not present in the given statements. We know that kind people are green (statement 12), but we do not know if Dave is green.\n\nHowever, statement 7 says that all white, green people are young. Since we know from statement 1 that Charlie is green, Charlie is indeed young (from statement 9). But we also know from statement 3 that Charlie is young. This statement is somewhat redundant but does not give us any new information about Dave.\n\nWe cannot directly conclude whether Dave is kind or not from the given information.\n\nTherefore, the statement \"Dave is kind\" is unknown based on the given information. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we'll break it down into individual statements and use logical deductions.\n\nGiven statements:\n1. Bob is kind.\n2. Charlie is green.\n3. Charlie is kind.\n4. Charlie is young.\n5. Dave is young.\n6. Erin is big.\n7. Erin is young.\n8. All white, green people are young.\n9. All rough, kind people are big.\n10. If someone is green, then they are young.\n11. Young people are rough.\n12. Big, rough people are furry.\n13. Kind people are green.\n\nWe need to determine whether the statement \"Dave is kind\" is true, false, or unknown.\n\nStep 1: We know that \"Dave is young\" (statement 5) and \"All young people are rough\" (statement 11). This implies that Dave is rough.\n\nStep 2: Since \"Dave is rough\" and \"Big, rough people are furry\" (statement 12), we can infer that Dave is big.\n\nStep 3: Now, we have that \"Dave is big\" and \"Dave is rough\" (from step 1). From statement 9, we know that \"All rough, kind people are big.\" This implies that Dave is kind because it's a subset of the condition for being big and rough.\n\nHowever, we can also infer from statement 10 that \"All green people are young\" which was derived from statement 13 that \"Kind people are green.\" Therefore, \"If someone is kind, then they are green.\" Since we determined that \"Dave is kind,\" it must be true that \"Dave is green\" or \"Dave is young.\" \n\nHowever, statement 8 states that \"All white, green people are young.\" So if Dave is green, he must be young. \n\nSince we know Dave is young from statement 5, the statement \"Dave is kind\" is not false. We can't conclude that Dave is not kind. We can't conclude that Dave is kind because we cannot use statement 8 and statement 10 together as they imply the same conclusion.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is kind\" is true, false, or unknown, we need to analyze the given statements and apply the rules of logic.\n\n1. All white, green people are young. \n   We know that Charlie is green, so Charlie is young.\n   We are not given any information about white people.\n\n2. All rough, kind people are big. \n   We don't have any information about rough people, but we know that kind people are green.\n\n3. If someone is green then they are young. \n   This statement confirms that Charlie is young because Charlie is green.\n\n4. Young people are rough.\n   Since Charlie is young, Charlie is rough.\n\n5. Big, rough people are furry. \n   Since Charlie is rough and kind, Charlie must be big (from statement 2), so Charlie is furry.\n\n6. Kind people are green. \n   This statement confirms that Charlie is green because Charlie is kind.\n\n7. Charlie is kind. \n   This statement confirms that Charlie is indeed kind.\n\n8. Charlie is young. \n   This statement confirms that Charlie is indeed young.\n\n9. Dave is young. \n   No information is given about Dave's color or any other characteristics.\n\n10. All green people are young. \n    This statement confirms that since Charlie is green, Charlie is young, but it doesn't provide any information about Dave.\n\nNow, let's consider the statement \"Dave is kind.\"\n\nFrom statement 6, we know that kind people are green. \nWe also know that Charlie is kind and green, so Charlie is a kind person.\n\nHowever, we do not have any information about Dave's color or whether he is green.\n\nFrom statement 3, we know that if someone is green, then they are young. \nWe know Charlie is green, so Charlie is young.\n\nHowever, we do not have any information about Dave's color.\n\nFrom statement 4, we know that young people are rough. \nSince Charlie is young, Charlie is rough.\n\nHowever, we do not have any information about Dave's age.\n\nSince we cannot determine whether Dave is green, young, or rough, we cannot determine whether Dave is kind or not.\n\nTherefore, the final answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will break down the given information into the following statements and their implications:\n\n1. All white, green people are young. (Statement A)\n   - This means that if someone is white and green, then they are young.\n\n2. All rough, kind people are big. (Statement B)\n   - This means that if someone is rough and kind, then they are big.\n\n3. If someone is green then they are young. (Statement C)\n   - This is a subset of Statement A and implies that being green directly makes someone young.\n\n4. Young people are rough. (Statement D)\n   - This means that if someone is young, then they are rough.\n\n5. Big, rough people are furry. (Statement E)\n   - This means that if someone is big and rough, then they are furry.\n\n6. Kind people are green. (Statement F)\n   - This means that if someone is kind, then they are green.\n\nNow, let's analyze the information given about each person:\n\n- Charlie is green. (Statement G)\n  - From Statement C, this means Charlie is young.\n\n- Charlie is kind. (Statement H)\n  - From Statement F, this means Charlie is green (which we already know).\n\n- Charlie is young. (Statement I)\n  - This is already implied from Statement G and Statement C.\n\n- Dave is young. (Statement J)\n  - This information does not directly link to any specific trait.\n\nTo determine whether Dave is kind, we must find a direct link between Dave and the traits \"kind\" or \"not kind.\" \n\nSince Dave is young (Statement J) and young people are rough (Statement D), Dave is rough.\n\nWe don't have a direct link between Dave and being kind or not kind. However, kind people are green (Statement F), but we don't have any information that links Dave to being green or not green.\n\nGiven the lack of information directly linking Dave to being kind or not kind, the statement \"Dave is kind\" is unknown.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is kind\" is true, false, or unknown, we need to use the given information and the rules provided.\n\n1. Dave is young. (Given)\n2. Young people are rough. (Rule)\n   So, Dave is rough. (From rule 2 and statement 1)\n\n3. All rough, kind people are big. (Rule)\n   We know Dave is rough, but we don't know if he is kind yet. So, we cannot conclude that Dave is big from this rule.\n\n4. All white, green people are young. (Rule)\n   This rule does not provide any information about Dave being kind or not, so we can ignore it for now.\n\n5. Charlie is kind. Charlie is green. (Given)\n   From this, we can infer that kind people are green. (Rule)\n\n6. Charlie is young. (Given)\n   We know from rule 2 that young people are rough. So, we can infer that Charlie is rough.\n\n7. Kind people are green. (Rule from 5)\n   We know Dave is young and rough. We do not know if Dave is kind or not, but if Dave is kind, then Dave must be green from rule 7.\n\n8. If someone is green then they are young. (Rule)\n   This rule supports the fact that Dave is young, which we already know.\n\nHowever, we still don't have enough information to determine if Dave is kind or not. We only have the rules that imply:\n\n- If Dave is kind, then Dave must be green.\n- If Dave is green, then Dave is young (which we already know).\n- If Dave is young, then Dave is rough (which we already know).\n\nWe cannot conclude that Dave is kind based on the given information. The statement \"Dave is kind\" is unknown because we cannot determine its truth value with the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is kind\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. Dave is young. (Given information)\n2. All young people are rough. (Given information)\n3. All rough, kind people are big. (Given information)\n4. Kind people are green. (Given information)\n5. All white, green people are young. (Given information)\n6. Charlie is green. (Given information)\n7. Charlie is kind. (Given information)\n8. Charlie is young. (Given information)\n\nFrom statements 1 and 2, we can conclude that Dave is rough.\n\nFrom statements 3 and 4, we can conclude that rough, kind people are big and green. However, we don't have enough information to conclude that Dave is big.\n\nFrom statement 4, we can conclude that kind people are green.\n\nFrom statement 5, we can conclude that Charlie is young because he is green.\n\nNow, let's analyze the relationship between being kind and being green. We have two pieces of information:\n\n- Kind people are green. (Statement 4)\n- Charlie is kind. (Statement 7)\n- Charlie is green. (Statement 6)\n\nHowever, we cannot conclude that all green people are kind because we don't have information about other green people.\n\nWe also know that Dave is young (Statement 1) and all young people are rough (Statement 2). However, being young doesn't necessarily mean Dave is kind.\n\nWe cannot conclude that Dave is kind based on the given information because we don't have enough information about Dave being green or big, which are the only characteristics that are directly related to being kind.\n\nTherefore, the statement \"Dave is kind\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Charlie is kind.\n   - Charlie is green.\n   - Charlie is young.\n   - Dave is young.\n   - Erin is big.\n   - Erin is young.\n   - All white, green people are young. (This implies that green people are young, regardless of their color.)\n   - All rough, kind people are big. (This implies that kind people are not necessarily big.)\n   - If someone is green then they are young. (This is the same as the previous implication, but it's stated in a different way.)\n   - Young people are rough.\n   - Big, rough people are furry.\n   - Kind people are green.\n\n2. From the given information, we can conclude that:\n   - Charlie is green and kind. (From the given information.)\n   - Since Charlie is green, Charlie is young. (From the implication that green people are young.)\n   - Since Charlie is kind, Charlie is green. (From the implication that kind people are green.)\n   - Dave is young. (From the given information.)\n\n3. Now, we need to determine whether Dave is kind or not. We can do this by analyzing the implications:\n   - If Dave is green, then he is young. (From the implication that green people are young.)\n   - Since Dave is young, Dave is rough. (From the implication that young people are rough.)\n   - Since Dave is rough, Dave is not necessarily kind. (From the implication that all rough, kind people are big.)\n   - If Dave were kind, then he would be green. (From the implication that kind people are green.)\n   - However, this would mean that Dave is both green and rough. (From the implications that green people are young and young people are rough.)\n   - This would also mean that Dave is big. (From the implication that all rough, kind people are big.)\n   - But this would mean that Dave is both big and furry. (From the implication that big, rough people are furry.)\n   - This is not necessarily true. (We cannot conclude that Dave is furry from the given information.)\n\n4. Since we cannot conclude that Dave is kind, we cannot conclude that he is not kind either. Therefore, the statement \"Dave is kind\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and find a connection between them. We can start by creating a list of known facts and then use them to deduce the answer.\n\n1. All white, green people are young. \n2. All rough, kind people are big. \n3. If someone is green then they are young. \n4. Young people are rough. \n5. Big, rough people are furry. \n6. Kind people are green. \n7. Charlie is green.\n8. Charlie is kind.\n9. Charlie is young.\n10. Dave is young.\n11. Erin is big.\n12. Erin is young.\n\nFrom statement 7, we know Charlie is green. Using statement 3, we can conclude that Charlie is young.\n\nFrom statement 8, we know Charlie is kind. Using statement 6, we can conclude that Charlie is green. But we already know that from statement 7.\n\nNow, let's analyze the statement \"Dave is kind.\" \n\nWe know Dave is young from statement 10. \n\nFrom statement 4, we can conclude that young people are rough. But we cannot directly conclude that Dave is rough because we don't know if he is white or green. \n\nHowever, if Dave were green, we could use statement 3 to conclude that he is young (which we already know), and statement 6 to conclude that he is kind. But there's no information that directly links Dave to being green.\n\nSo, we cannot determine if the statement \"Dave is kind\" is true or false based on the given information.\n\nTherefore, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the rules of inference to determine whether \"Dave is kind\" is true, false, or unknown.\n\nGiven statements:\n\n1. Bob is kind.\n2. Charlie is green.\n3. Charlie is kind.\n4. Charlie is young.\n5. Dave is young.\n6. Erin is big.\n7. Erin is young.\n8. All white, green people are young.\n9. All rough, kind people are big.\n10. If someone is green then they are young.\n11. Young people are rough.\n12. Big, rough people are furry.\n13. Kind people are green.\n\nWe need to determine whether \"Dave is kind\" is true, false, or unknown. To do this, let's start by analyzing the statements related to Dave.\n\nStatement 5: Dave is young.\n\nFrom statement 10, we know that if someone is green, then they are young. However, we don't have any information about Dave being green.\n\nFrom statement 8, we know that all white, green people are young. Again, we don't have any information about Dave being white or green.\n\nStatement 11: Young people are rough.\n\nFrom statement 5, we know that Dave is young. Therefore, we can conclude that Dave is rough.\n\nNow, let's analyze the statements related to kind people.\n\nStatement 3: Charlie is kind.\n\nStatement 13: Kind people are green.\n\nFrom statement 3, we know that Charlie is kind. Therefore, we can conclude that Charlie is green.\n\nStatement 2: Charlie is green.\n\nFrom statement 10, we know that if someone is green, then they are young. Therefore, we can conclude that Charlie is young.\n\nStatement 4: Charlie is young.\n\nFrom statement 5, we know that Dave is young. However, we don't have any information about Dave being kind.\n\nNow, let's see if we can find any other statements that might be related to Dave being kind.\n\nStatement 1: Bob is kind.\n\nStatement 13: Kind people are green.\n\nFrom statement 1, we know that Bob is kind. Therefore, we can conclude that Bob is green.\n\nStatement 2: Charlie is green.\n\nFrom statement 13, we know that kind people are green. Therefore, we can conclude that Bob is green.\n\nHowever, we already know that statement 2 says Charlie is green. We cannot determine from this information whether Bob is green or not.\n\nNow let's look at statement 9: All rough, kind people are big.\n\nWe know that Dave is rough (from statement 11 and statement 5) and that kind people are green (from statement 13), but we don't know if Dave is kind. If Dave were kind, then we would know that he is green (from statement 13), and from statement 8, we would know that all white, green people are young, and from statement 10, we would know that if someone is green then they are young.\n\nHowever, we cannot determine if Dave is kind. We know that Charlie is kind, and from statement 10, we know that if someone is green, then they are young, and from statement 11, we know that young people are rough. However, we cannot determine if Dave is kind.\n\nTherefore, the statement \"Dave is kind\" is unknown.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information to determine the characteristics of Dave. \n\nFrom the given information:\n1. Charlie is green.\n2. Charlie is kind.\n3. Charlie is young.\n4. Dave is young.\n5. All white, green people are young. (This information is not relevant to our problem since we're not dealing with color combinations.)\n6. All rough, kind people are big.\n7. If someone is green then they are young.\n8. Young people are rough.\n9. Big, rough people are furry.\n10. Kind people are green.\n\nNow, let's analyze the statement: \"Dave is kind.\"\n\nWe know that Dave is young (from statement 4). From statement 7, if someone is green, then they are young. But we also know that Charlie is green (statement 1), so being green and young are not exclusive to Dave.\n\nHowever, statement 3 says Charlie is young and green, and statement 10 says kind people are green. Since Charlie is both young and green (and kind), we can conclude that being young, green, and kind are all connected.\n\nNow, let's examine Dave. We know that Dave is young (from statement 4), and statement 7 says if someone is green, then they are young. Statement 10 says kind people are green. We cannot conclude that Dave is green based on this information alone.\n\nHowever, statement 3 says Charlie is young and green, and statement 10 says kind people are green. Since Charlie is both young and green (and kind), we can conclude that being young, green, and kind are all connected.\n\nWe know that young people are rough (statement 8). Since Dave is young, we can conclude that Dave is rough.\n\nNow, let's look at the characteristics of Dave: young and rough. We know that big, rough people are furry (statement 9). However, we do not have enough information to determine whether Dave is big or not.\n\nBased on the given information, we cannot conclude that Dave is kind. We know that kind people are green (statement 10), and we know that being green, young, and kind are all connected. However, we cannot determine that Dave is green, and therefore, we cannot determine that Dave is kind.\n\nTherefore, the statement \"Dave is kind\" is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(white_dave, green_dave), young_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_dave, big_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_dave, rough_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_dave, rough_dave), furry_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_dave, green_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_dave, young_dave)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_dave, rough_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_dave, green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_dave, young_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_dave, young_dave), furry_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(kind(dave))",
+          "z3_formula": "Not(kind_dave == True) & Not(kind_dave == False)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(white_charlie, green_charlie), young_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_dave, young_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_X, young_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_charlie, green_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> big(X)",
+          "z3_formula": "Implies(And(rough_dave, kind_dave), big_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_dave, rough_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_dave, rough_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_dave, rough_dave), furry_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> kind(X)",
+          "z3_formula": "Implies(And(big_dave, rough_dave), kind_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_dave, green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_dave, young_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(white_dave, green_dave), young_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(white_charlie, green_charlie), young_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_charlie, young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_charlie, rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(rough_charlie, big_charlie), furry_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_charlie, green_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_charlie, young_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_charlie, rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_dave, green_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_dave, young_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_dave, rough_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(white_charlie, green_charlie), young_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_charlie, big_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_charlie, rough_charlie), furry_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_charlie, young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_charlie, rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_charlie, green_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_dave, rough_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_dave, rough_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> big(X)",
+          "z3_formula": "Implies(And(rough_dave, kind_dave), big_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_dave, young_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> kind(X)",
+          "z3_formula": "Implies(green_charlie, kind_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_charlie, rough_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(charlie)",
+          "z3_formula": "rough_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_dave, young_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_dave, rough_dave)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_dave, rough_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> big(X) & green(X)",
+          "z3_formula": "Implies(And(rough_dave, kind_dave), And(big_dave, green_dave))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_dave, green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(white_dave, green_dave), young_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(white_X, green_X), young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_X, young_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_X, green_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_X, rough_X), furry_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_X, young_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie) & kind(charlie)",
+          "z3_formula": "And(green_charlie, kind_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie) -> young(charlie)",
+          "z3_formula": "Implies(green_charlie, young_charlie) == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie) -> green(charlie)",
+          "z3_formula": "Implies(kind_charlie, green_charlie) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_X, young_X) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_X, young_X) == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave) -> rough(dave)",
+          "z3_formula": "Implies(young_dave, rough_dave) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave) -> not(kind(dave))",
+          "z3_formula": "Implies(rough_dave, Not(kind_dave)) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave) -> green(dave)",
+          "z3_formula": "Implies(kind_dave, green_dave) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave) & rough(dave)",
+          "z3_formula": "And(green_dave, rough_dave) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave) & rough(dave) -> big(dave)",
+          "z3_formula": "Implies(And(green_dave, rough_dave), big_dave) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave) & furry(dave)",
+          "z3_formula": "And(big_dave, furry_dave) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(big(dave) & furry(dave))",
+          "z3_formula": "Not(And(big_dave, furry_dave)) == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not(kind(dave))",
+          "z3_formula": "Not(kind_dave) == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not(not(kind(dave)))",
+          "z3_formula": "Not(Not(kind_dave)) == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave) or not(kind(dave))",
+          "z3_formula": "Or(kind_dave, Not(kind_dave)) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave) or not(kind(dave)) == True",
+          "z3_formula": "Or(kind_dave, Not(kind_dave)) == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave) or not(kind(dave)) == Unknown",
+          "z3_formula": "Or(kind_dave, Not(kind_dave)) == Unknown",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_charlie, young_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_charlie, rough_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_erin, rough_erin), furry_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_charlie, green_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_X, young_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(white_X, green_X), young_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_X, young_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_X, rough_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> big(X)",
+          "z3_formula": "Implies(And(rough_X, kind_X), big_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_X, green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_X, green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == Unknown",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(white_X, green_X), young_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_X, rough_X), furry_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_X, young_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_X, rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> green(X)",
+          "z3_formula": "Implies(kind_X, green_X)",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 169,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 55
+    },
+    "maxsat_stats": {
+      "satisfied": 51,
+      "excluded": 4,
+      "total_weight": 165,
+      "solve_time_ms": 1.8211156129837036
+    },
+    "timing": {
+      "trace_gen_s": 8.317,
+      "extraction_s": 28.672,
+      "dedup_s": 1.752,
+      "maxsat_s": 0.005,
+      "total_s": 38.746
+    }
+  }
+}

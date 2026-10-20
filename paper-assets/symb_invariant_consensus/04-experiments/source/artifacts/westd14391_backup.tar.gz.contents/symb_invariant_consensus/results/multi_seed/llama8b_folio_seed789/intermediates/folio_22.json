@@ -1,0 +1,604 @@
+{
+  "problem": {
+    "id": "folio_22",
+    "problem": "Given the following premises:\n\"Stranger Things\" is a popular Netflix show. If a Netflix show is popular, Karen will binge-watch it. If and only if Karen binge-watches a Netflix show, she will download it. Karen does not download \"Black Mirror\". \"Black Mirror\" is a Netflix show. If Karen binge-watches a Netflix show, she will share it to Lisa.\n\nDetermine whether the following conclusion is true, false, or uncertain:\n\"Black Mirror\" is popular.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "NetflixShow(strangerThings) \u2227 Popular(strangerThings)",
+      "\u2200x ((NetflixShow(x) \u2227 Popular(x)) \u2192 BingeWatch(karen, x))",
+      "\u2200x ((NetflixShow(x) \u2227 BingeWatch(karen, x)) \u2194 Download(karen, x))",
+      "\u00acDownload(karen, blackMirror)",
+      "NetflixShow(blackMirror)",
+      "\u2200x ((NetflixShow(x) \u2227 BingeWatch(karen, x)) \u2192 Share(x, lisa))"
+    ],
+    "conclusion_fol": "Popular(blackMirror)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 67.0,
+      "Unknown": 65.0
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "False": 6
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion \"Black Mirror\" is popular is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. \"Stranger Things\" is a popular Netflix show. \n   - This statement tells us that \"Stranger Things\" is popular, but it does not provide any information about \"Black Mirror\".\n\n2. If a Netflix show is popular, Karen will binge-watch it.\n   - This statement provides a condition for Karen's behavior (binge-watching) based on the popularity of the Netflix show.\n\n3. If and only if Karen binge-watches a Netflix show, she will download it.\n   - This statement establishes a condition for Karen downloading a Netflix show, which is binge-watching it.\n\n4. Karen does not download \"Black Mirror\".\n   - This statement tells us that Karen does not download \"Black Mirror\", but we cannot directly conclude anything about its popularity.\n\n5. \"Black Mirror\" is a Netflix show.\n   - This statement tells us that \"Black Mirror\" is a Netflix show, but it does not provide any information about its popularity.\n\n6. If Karen binge-watches a Netflix show, she will share it to Lisa.\n   - This statement provides a condition for Karen sharing a Netflix show, which is binge-watching it.\n\nNow, we need to determine whether the conclusion \"Black Mirror\" is popular is true, false, or uncertain based on the given premises.\n\nFrom premise 5, we know that \"Black Mirror\" is a Netflix show. However, none of the premises provide any direct information about its popularity. The premises only talk about Karen's behavior (binge-watching and downloading) and her actions (sharing) when she watches a popular Netflix show. \n\nSince there is no direct connection between \"Black Mirror\" and the conditions for Karen's behavior or actions, we cannot conclude whether \"Black Mirror\" is popular or not based on the given premises.\n\nTherefore, the conclusion \"Black Mirror\" is popular is **uncertain**.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: \"Stranger Things\" is a popular Netflix show. \n\nPremise 2: If a Netflix show is popular, Karen will binge-watch it. \n\nPremise 3: If and only if Karen binge-watches a Netflix show, she will download it. \n\nPremise 4: Karen does not download \"Black Mirror\". \n\nPremise 5: \"Black Mirror\" is a Netflix show. \n\nPremise 6: If Karen binge-watches a Netflix show, she will share it to Lisa.\n\nNow, let's apply the premises to the conclusion:\n\nConclusion: \"Black Mirror\" is popular.\n\nWe need to find out whether the conclusion logically follows from the premises.\n\nSince \"Black Mirror\" is a Netflix show (Premise 5) and Karen does not download \"Black Mirror\" (Premise 4), we can conclude that Karen did not binge-watch \"Black Mirror\" (from Premise 3).\n\nFrom Premise 2, if a Netflix show is popular, Karen will binge-watch it. However, we have concluded that Karen did not binge-watch \"Black Mirror\".\n\nFrom Premise 6, we know that if Karen binge-watches a Netflix show, she will share it to Lisa. Since we know that Karen did not binge-watch \"Black Mirror\", we cannot directly conclude that she will not share it to Lisa.\n\nHowever, we can conclude that \"Black Mirror\" being popular is not a direct consequence of the premises, as there is no information that links the popularity of \"Black Mirror\" to any of the other premises.\n\nBut there is an implication in premise 2. \"If a Netflix show is popular, Karen will binge-watch it\". To conclude that \"Black Mirror\" is popular, we must first assume that it is a popular show. If it is popular, then she will binge-watch it. If she binge-watches it, then she will download it. But we know that she does not download \"Black Mirror\". \n\nSo, we have a contradiction. If \"Black Mirror\" is popular, then Karen will binge-watch it. Then she will download it. But we know that she does not download \"Black Mirror\". This is a contradiction, which means our assumption that \"Black Mirror\" is popular must be false.\n\nTherefore, the conclusion \"Black Mirror\" is popular is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion \"Black Mirror\" is popular is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: \"Stranger Things\" is a popular Netflix show.\nPremise 2: If a Netflix show is popular, Karen will binge-watch it.\nPremise 3: If and only if Karen binge-watches a Netflix show, she will download it.\nPremise 4: Karen does not download \"Black Mirror\".\nPremise 5: \"Black Mirror\" is a Netflix show.\nPremise 6: If Karen binge-watches a Netflix show, she will share it to Lisa.\n\nWe need to find out if the conclusion \"Black Mirror\" is popular is supported by the premises.\n\nFrom Premise 2, we know that if a Netflix show is popular, Karen will binge-watch it. But Premise 4 tells us that Karen does not download \"Black Mirror\". Since downloading a show is a consequence of binge-watching it (Premise 3), this implies that Karen does not binge-watch \"Black Mirror\".\n\nNow, we are asked to determine if \"Black Mirror\" is popular. If it were popular, Karen would binge-watch it (Premise 2), which contradicts the fact that she does not binge-watch it. However, this does not necessarily mean \"Black Mirror\" is not popular. It could be that \"Black Mirror\" is not popular, but we cannot be certain about it.\n\nHowever, we do know from Premise 5 that \"Black Mirror\" is a Netflix show. We also know from Premise 1 that \"Stranger Things\" is a popular Netflix show. Therefore, it is possible that \"Black Mirror\" is not popular, but \"Stranger Things\" is.\n\nHowever, looking closely at Premise 2, if a Netflix show is popular, then Karen will binge-watch it. Therefore, if \"Black Mirror\" were popular, then Karen would binge-watch it. Then from Premise 6, she would also share it to Lisa. But there is no information that suggests that she shares it to Lisa. In this case, the information is uncertain, but we can say that \"Black Mirror\" is not popular.\n\nHowever, we can further deduce that if \"Black Mirror\" were popular, then Karen would binge-watch it, then download it (Premise 3), but we know from Premise 4 that Karen does not download \"Black Mirror\". Therefore, \"Black Mirror\" is not popular.\n\nTherefore, we can conclude that the conclusion \"Black Mirror\" is popular is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion \"Black Mirror\" is popular is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: \"Stranger Things\" is a popular Netflix show.\nPremise 2: If a Netflix show is popular, Karen will binge-watch it.\nPremise 3: If and only if Karen binge-watches a Netflix show, she will download it.\nPremise 4: Karen does not download \"Black Mirror\".\nPremise 5: \"Black Mirror\" is a Netflix show.\nPremise 6: If Karen binge-watches a Netflix show, she will share it to Lisa.\n\nWe are asked to determine whether the conclusion \"Black Mirror\" is popular is true, false, or uncertain.\n\nLet's analyze the given premises:\n\n1. From Premise 1, we know that \"Stranger Things\" is a popular Netflix show.\n2. From Premise 2, we can infer that if \"Black Mirror\" is a popular Netflix show, then Karen will binge-watch it.\n3. From Premise 3, we can infer that if Karen binge-watches \"Black Mirror\", then she will download it.\n4. However, from Premise 4, we know that Karen does not download \"Black Mirror\", which contradicts the inference in step 3.\n5. Since Karen does not download \"Black Mirror\", it implies that she did not binge-watch \"Black Mirror\".\n6. From Premise 5, we know that \"Black Mirror\" is a Netflix show.\n7. From Premise 6, we can infer that if Karen binge-watches a Netflix show, then she will share it to Lisa.\n8. Since Karen did not binge-watch \"Black Mirror\", we cannot determine whether she would share it to Lisa.\n\nFrom the given premises, we cannot directly conclude whether \"Black Mirror\" is popular or not. However, we can analyze the relationship between the premises and the conclusion.\n\nIf \"Black Mirror\" is a popular Netflix show (Conclusion), then Karen will binge-watch it (Premise 2). However, we know that Karen does not download \"Black Mirror\" (Premise 4), which contradicts the inference that she binge-watched it.\n\nSince we have a contradiction, the conclusion \"Black Mirror\" is popular is uncertain because the given premises do not provide sufficient information to determine its validity.\n\nHowever, we can also conclude that \"Black Mirror\" is not popular, because if it were, then Karen would have binge-watched it, and subsequently downloaded it, which contradicts Premise 4.\n\nTherefore, based on the given premises, we can conclude that the conclusion \"Black Mirror\" is popular is uncertain, but we can also conclude that \"Black Mirror\" is not popular.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will use the principles of logical reasoning, specifically the rules of inference. \n\nGiven premises:\n1. \"Stranger Things\" is a popular Netflix show.\n2. If a Netflix show is popular, Karen will binge-watch it.\n3. If and only if Karen binge-watches a Netflix show, she will download it.\n4. Karen does not download \"Black Mirror\".\n5. \"Black Mirror\" is a Netflix show.\n6. If Karen binge-watches a Netflix show, she will share it to Lisa.\n\nWe need to determine whether the conclusion \"Black Mirror\" is popular is true, false, or uncertain.\n\nFirst, we can conclude that:\n- Since \"Stranger Things\" is a popular Netflix show (premise 1), Karen will binge-watch it (premise 2).\n- Since Karen binge-watches \"Stranger Things\" (derived from premise 1 and 2), she will download it (premise 3).\n- However, we know Karen does not download \"Black Mirror\" (premise 4), which implies that \"Black Mirror\" is not the same as \"Stranger Things\". This also implies that the rule in premise 3 only applies to specific Netflix shows (like \"Stranger Things\"), and not all Netflix shows.\n\nNow, let's examine the relationship between the premises and the conclusion. To determine if \"Black Mirror\" is popular, we need to establish a connection between \"Black Mirror\" and the rules in premises 2 and 6.\n\nFrom premise 5, we know \"Black Mirror\" is a Netflix show. \n\nHowever, we cannot directly infer that \"Black Mirror\" is popular from the premises. There is no direct connection between the premises and the conclusion \"Black Mirror\" is popular.\n\nMoreover, premise 6 states that if Karen binge-watches a Netflix show, she will share it to Lisa. However, this premise is only relevant if we assume that Karen binge-watches \"Black Mirror\", which is not supported by the premises.\n\nTherefore, based on the given premises, we cannot determine whether \"Black Mirror\" is popular. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we will analyze each premise step by step.\n\nPremise 1: \"Stranger Things\" is a popular Netflix show. \nThis premise provides an example of a popular Netflix show but does not directly relate to the conclusion about \"Black Mirror\".\n\nPremise 2: If a Netflix show is popular, Karen will binge-watch it.\nThis premise provides a condition for Karen's behavior. It implies that if a show is popular, she will binge-watch it.\n\nPremise 3: If and only if Karen binge-watches a Netflix show, she will download it.\nThis premise is a biconditional statement, meaning that Karen will download a show only if she binge-watches it, and she will binge-watch a show only if she downloads it.\n\nPremise 4: Karen does not download \"Black Mirror\".\nThis premise directly relates to the conclusion. If Karen does not download \"Black Mirror\", then we can deduce something about its popularity.\n\nPremise 5: \"Black Mirror\" is a Netflix show.\nThis premise confirms that \"Black Mirror\" is a Netflix show, which is a necessary condition for the conclusion.\n\nPremise 6: If Karen binge-watches a Netflix show, she will share it to Lisa.\nThis premise provides additional information about Karen's behavior after binge-watching a show.\n\nNow, let's analyze the conclusion:\n\"Black Mirror\" is popular.\n\nIf \"Black Mirror\" is popular, then according to Premise 2, Karen will binge-watch it. If Karen binge-watches it, then according to Premise 3, she will download it. However, Premise 4 states that Karen does not download \"Black Mirror\". This creates a contradiction, and we cannot conclude that \"Black Mirror\" is popular.\n\nTherefore, the conclusion \"Black Mirror\" is popular is uncertain, as we have a contradiction in the premises.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the conclusion, we need to analyze the given premises step by step.\n\nPremise 1: \"Stranger Things\" is a popular Netflix show.\n\nPremise 2: If a Netflix show is popular, Karen will binge-watch it. (This is a conditional statement)\n\nPremise 3: If and only if Karen binge-watches a Netflix show, she will download it. (This is a biconditional statement, meaning it's a combination of an if-then statement and a then-if statement)\n\nPremise 4: Karen does not download \"Black Mirror\". (This premise directly relates to \"Black Mirror\")\n\nPremise 5: \"Black Mirror\" is a Netflix show. (This premise directly relates to \"Black Mirror\")\n\nPremise 6: If Karen binge-watches a Netflix show, she will share it to Lisa. (This is a conditional statement)\n\nNow, we need to evaluate the conclusion: \"Black Mirror\" is popular.\n\nTo do this, we can use a truth table or logical deduction.\n\nFrom premise 2, we know that if a Netflix show is popular, Karen will binge-watch it.\n\nFrom premise 6, we know that if Karen binge-watches a Netflix show, she will share it to Lisa.\n\nNow, let's analyze the given information about \"Black Mirror\". \n\nFrom premise 4, we know that Karen does not download \"Black Mirror\". \n\nFrom premise 3, we know that if Karen binge-watches a Netflix show, she will download it. \n\nSince Karen does not download \"Black Mirror\", we can conclude that she does not binge-watch \"Black Mirror\".\n\nNow, let's evaluate the conclusion: \"Black Mirror\" is popular.\n\nIf \"Black Mirror\" is popular, then Karen will binge-watch it (from premise 2). \n\nIf Karen binge-watches \"Black Mirror\", then she will download it (from premise 3). \n\nHowever, we know that Karen does not download \"Black Mirror\" (from premise 4). \n\nTherefore, if \"Black Mirror\" is popular, it leads to a contradiction.\n\nSince there's a contradiction, we can conclude that the conclusion \"Black Mirror\" is popular is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the truth of the conclusion \"Black Mirror\" is popular, we need to analyze the given premises and the logical rules used to arrive at the conclusion.\n\nPremises:\n1. \"Stranger Things\" is a popular Netflix show.\n2. If a Netflix show is popular, Karen will binge-watch it.\n3. If and only if Karen binge-watches a Netflix show, she will download it.\n4. Karen does not download \"Black Mirror\".\n5. \"Black Mirror\" is a Netflix show.\n6. If Karen binge-watches a Netflix show, she will share it to Lisa.\n\nConclusion: \"Black Mirror\" is popular.\n\nStep 1: Analyze premise 5: \"Black Mirror\" is a Netflix show.\nThis premise tells us that \"Black Mirror\" is a type of Netflix show, but it does not provide information about its popularity.\n\nStep 2: Analyze premise 4: Karen does not download \"Black Mirror\".\nThis premise is crucial because it tells us that Karen does not perform one of the actions that would indicate a Netflix show is popular (i.e., downloading it). If Karen did not download \"Black Mirror\" and it is a Netflix show, it might suggest that it is not popular.\n\nStep 3: Analyze premise 2: If a Netflix show is popular, Karen will binge-watch it.\nThis premise provides a condition for Karen's behavior when a Netflix show is popular. However, it does not provide information about \"Black Mirror\" specifically.\n\nStep 4: Analyze premise 1: \"Stranger Things\" is a popular Netflix show.\nThis premise tells us that at least one Netflix show is popular, but it does not provide information about \"Black Mirror\".\n\nStep 5: Analyze premise 6: If Karen binge-watches a Netflix show, she will share it to Lisa.\nThis premise is also irrelevant to determining the popularity of \"Black Mirror\".\n\nConclusion:\nBased on the given premises, we can conclude that we do not have enough information to determine whether \"Black Mirror\" is popular or not. The premises do not provide any direct information about the popularity of \"Black Mirror\". Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"Black Mirror\" is popular is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: \"Stranger Things\" is a popular Netflix show.\n\nPremise 2: If a Netflix show is popular, Karen will binge-watch it.\n\nPremise 3: If and only if Karen binge-watches a Netflix show, she will download it.\n\nPremise 4: Karen does not download \"Black Mirror\".\n\nPremise 5: \"Black Mirror\" is a Netflix show.\n\nPremise 6: If Karen binge-watches a Netflix show, she will share it to Lisa.\n\nFrom Premise 2, we can conclude that if a Netflix show is popular, Karen will binge-watch it. \n\nFrom Premise 5, we know that \"Black Mirror\" is a Netflix show. \n\nHowever, we cannot directly conclude that \"Black Mirror\" is popular from the given premises. The premises only provide information about Karen's actions if a Netflix show is popular or if she binge-watches a show, but they do not directly state the popularity of \"Black Mirror\".\n\nThe conclusion \"Black Mirror\" is popular is uncertain because we do not have enough information to determine its popularity.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion \"Black Mirror\" is popular is true, false, or uncertain, we need to analyze the given premises step by step:\n\n1. \"Stranger Things\" is a popular Netflix show. \n- This premise tells us that \"Stranger Things\" is a popular show, but it does not relate to the conclusion about \"Black Mirror\" directly.\n\n2. If a Netflix show is popular, Karen will binge-watch it.\n- This premise sets a condition that if a Netflix show is popular, Karen will binge-watch it. However, it does not tell us anything about Karen's behavior regarding \"Black Mirror\".\n\n3. If and only if Karen binge-watches a Netflix show, she will download it.\n- This premise tells us about the condition under which Karen will download a show, but it does not tell us anything about the popularity of the show.\n\n4. Karen does not download \"Black Mirror\".\n- This premise directly relates to the conclusion about \"Black Mirror\". Since Karen does not download \"Black Mirror\", it implies that the condition in premise 3 is not met.\n\n5. \"Black Mirror\" is a Netflix show.\n- This premise tells us that \"Black Mirror\" is a Netflix show, which is relevant to the conclusion.\n\n6. If Karen binge-watches a Netflix show, she will share it to Lisa.\n- This premise tells us about Karen's behavior after binge-watching a Netflix show, but it does not tell us anything about the popularity of the show.\n\nNow, we need to evaluate the conclusion \"Black Mirror\" is popular based on the given premises. \n\nSince Karen does not download \"Black Mirror\" (premise 4), it implies that Karen did not binge-watch \"Black Mirror\" (premise 3). Therefore, we cannot conclude that \"Black Mirror\" is popular based on the premises. \n\nThe premises do not directly state that \"Black Mirror\" is popular, nor do they state that \"Black Mirror\" is not popular. The premises provide information about Karen's behavior and her relationship with Netflix shows, but they do not provide enough information to determine the popularity of \"Black Mirror\".\n\nTherefore, the conclusion \"Black Mirror\" is popular is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion \"Black Mirror\" is popular is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: \"Stranger Things\" is a popular Netflix show. \nThis premise tells us that one specific show, \"Stranger Things,\" is popular, but it doesn't provide any information about the popularity of other Netflix shows.\n\nPremise 2: If a Netflix show is popular, Karen will binge-watch it.\nThis premise tells us that if a Netflix show is popular, Karen will binge-watch it. However, it doesn't provide any information about the relationship between the popularity of a show and its characteristics (e.g., being downloaded or shared).\n\nPremise 3: If and only if Karen binge-watches a Netflix show, she will download it.\nThis premise tells us that if Karen binge-watches a show, she will download it. However, it doesn't provide any information about the relationship between the popularity of a show and its downloadability.\n\nPremise 4: Karen does not download \"Black Mirror\".\nThis premise tells us that Karen doesn't download \"Black Mirror.\" However, it doesn't provide any information about the popularity of \"Black Mirror.\"\n\nPremise 5: \"Black Mirror\" is a Netflix show.\nThis premise tells us that \"Black Mirror\" is a Netflix show. However, it doesn't provide any information about its popularity.\n\nPremise 6: If Karen binge-watches a Netflix show, she will share it to Lisa.\nThis premise tells us that if Karen binge-watches a show, she will share it with Lisa. However, it doesn't provide any information about the relationship between the popularity of a show and its shareability.\n\nNow, let's analyze the conclusion \"Black Mirror\" is popular.\n\nBased on Premise 2, if \"Black Mirror\" is popular, then Karen should binge-watch it (according to Premise 2). However, we don't have any information that contradicts the premise that \"Black Mirror\" is not popular.\n\nBased on Premise 4, if Karen didn't download \"Black Mirror,\" it doesn't necessarily mean that \"Black Mirror\" is not popular. We can't conclude the popularity of \"Black Mirror\" based on this premise.\n\nBased on Premise 5, we know that \"Black Mirror\" is a Netflix show, but we still don't know if it's popular.\n\nNow, let's try to find a connection between the premises that can help us determine the conclusion.\n\nWe know that Karen doesn't download \"Black Mirror\" (Premise 4), and if Karen binge-watches a Netflix show, she will download it (Premise 3). This means that Karen didn't binge-watch \"Black Mirror\" because if she did, she would have downloaded it (Premise 3). \n\nIf Karen didn't binge-watch \"Black Mirror\" and she would share it with Lisa if she binge-watched it (Premise 6), then we can conclude that Karen didn't share \"Black Mirror\" with Lisa.\n\nWe also know that \"Stranger Things\" is popular (Premise 1), and Karen will binge-watch a show if it's popular (Premise 2). This means that Karen binge-watched \"Stranger Things\" because it's popular.\n\nIf Karen binge-watched \"Stranger Things,\" then she will share it with Lisa (Premise 6). This means that \"Stranger Things\" was shared with Lisa.\n\nNow, let's try to find a connection between the premises that can help us determine the conclusion.\n\nWe can't find a direct connection between the premises that can help us determine the conclusion. However, we can try to use the premises to find a contradiction.\n\nLet's assume that \"Black Mirror\" is popular. Then, Karen should binge-watch it (Premise 2). If she binge-watches it, she will download it (Premise 3), but we know she doesn't download it (Premise 4). This means that our assumption that \"Black Mirror\" is popular leads to a contradiction.\n\nTherefore, the conclusion \"Black Mirror\" is popular is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning based on the given premises. \n\nPremise 1: \"Stranger Things\" is a popular Netflix show.\n\nPremise 2: If a Netflix show is popular, Karen will binge-watch it. (This is a conditional statement, if P then Q, where P is \"popular\" and Q is \"binge-watch\")\n\nPremise 3: If and only if Karen binge-watches a Netflix show, she will download it. (This is a bi-conditional statement, P if and only if Q, where P is \"binge-watch\" and Q is \"download\")\n\nPremise 4: Karen does not download \"Black Mirror\".\n\nPremise 5: \"Black Mirror\" is a Netflix show.\n\nPremise 6: If Karen binge-watches a Netflix show, she will share it to Lisa.\n\nWe want to determine the conclusion: \"Black Mirror\" is popular.\n\nLet's break down the reasoning step by step:\n\n1. From Premise 1, we know that \"Stranger Things\" is a popular Netflix show.\n2. From Premise 2, if a Netflix show is popular, then Karen will binge-watch it. Therefore, since \"Stranger Things\" is popular, Karen will binge-watch \"Stranger Things\".\n3. From Premise 3, if Karen binge-watches a Netflix show, then she will download it. Therefore, since Karen will binge-watch \"Stranger Things\", she will download \"Stranger Things\".\n4. From Premise 4, Karen does not download \"Black Mirror\". This is a contradiction with the conclusion we got from Premise 3, but that is not possible. However, we can say that if Karen downloaded \"Black Mirror\", then she would have to have binge-watched it first.\n5. From Premise 6, if Karen binge-watches a Netflix show, then she will share it to Lisa. Since \"Stranger Things\" is a popular Netflix show (Premise 1), we can conclude that Karen will share \"Stranger Things\" to Lisa.\n6. Now, let's think about \"Black Mirror\". From Premise 5, \"Black Mirror\" is a Netflix show. Since Karen does not download \"Black Mirror\" (Premise 4), we can conclude that Karen did not binge-watch \"Black Mirror\" (from Premise 3).\n7. Since Karen did not binge-watch \"Black Mirror\", we can conclude that \"Black Mirror\" is not popular (from Premise 2).\n\nTherefore, the conclusion \"Black Mirror\" is popular is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "popular(stranger_things)",
+          "z3_formula": "popular_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(X) -> binge_watches_karen(X)",
+          "z3_formula": "Implies(popular_stranger_things, binge_watches_karen_stranger_things)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches_karen(X) -> downloads_karen(X)",
+          "z3_formula": "Implies(binge_watches_karen_stranger_things, downloads_karen_stranger_things)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not downloads_karen(black_mirror)",
+          "z3_formula": "Not(downloads_karen_black_mirror) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix(black_mirror)",
+          "z3_formula": "netflix_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches_karen(X) -> shares_lisa(X)",
+          "z3_formula": "Implies(binge_watches_karen_black_mirror, shares_lisa_black_mirror)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watches(netflix_show, karen)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_netflix_show_karen)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> downloads(netflix_show, karen)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, downloads_netflix_show_karen)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not downloads(netflix_show_black_mirror, karen)",
+          "z3_formula": "Not(downloads_netflix_show_black_mirror_karen) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(netflix_show_black_mirror)",
+          "z3_formula": "netflix_show_netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> shares(netflix_show, karen, lisa)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, shares_netflix_show_karen_lisa)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watches(karen, netflix_show)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_karen_netflix_show)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(karen, netflix_show) -> downloads(karen, netflix_show)",
+          "z3_formula": "Implies(binge_watches_karen_netflix_show, downloads_karen_netflix_show)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not downloads(karen, black_mirror)",
+          "z3_formula": "not downloads_karen_black_mirror == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(black_mirror)",
+          "z3_formula": "netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(karen, netflix_show) -> shares(karen, lisa, netflix_show)",
+          "z3_formula": "Implies(binge_watches_karen_netflix_show, shares_karen_lisa_netflix_show)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not popular(black_mirror)",
+          "z3_formula": "not popular_black_mirror == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "popular(netflix, stranger_things)",
+          "z3_formula": "popular_netflix_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix, X) -> binge_watches(karen, X)",
+          "z3_formula": "Implies(popular_netflix_X, binge_watches_karen_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(karen, X) -> downloads(karen, X)",
+          "z3_formula": "Implies(binge_watches_karen_X, downloads_karen_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not downloads(karen, black_mirror)",
+          "z3_formula": "not downloads_karen_black_mirror == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix(Black_Mirror)",
+          "z3_formula": "netflix_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(karen, X) -> shares(karen, lisa, X)",
+          "z3_formula": "Implies(binge_watches_karen_X, shares_karen_lisa_X)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not popular(Black_Mirror)",
+          "z3_formula": "not popular_black_mirror == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(popular(Black_Mirror))",
+          "z3_formula": "unknown_popular_black_mirror == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watches(netflix_show, karen)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_netflix_show_karen)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> downloads(netflix_show, karen)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, downloads_netflix_show_karen)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(downloads(netflix_show_black_mirror, karen))",
+          "z3_formula": "not(downloads_netflix_show_black_mirror_karen) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(netflix_show_black_mirror)",
+          "z3_formula": "netflix_show_netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> shares(netflix_show, karen, lisa)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, shares_netflix_show_karen_lisa)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(X) -> binge_watches(X, karen)",
+          "z3_formula": "Implies(popular_netflix_show_stranger_things, binge_watches_netflix_show_karen)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(X, karen) <-> downloads(X, karen)",
+          "z3_formula": "Implies(And(binge_watches_netflix_show_karen, Not(downloads_netflix_show_karen)), False)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(downloads(karen, black_mirror))",
+          "z3_formula": "Not(downloads_karen_black_mirror) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(black_mirror)",
+          "z3_formula": "netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(X, karen) -> shares(X, karen, lisa)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, shares_netflix_show_karen_lisa)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(Netflix_show) -> binge_watches_karen(Netflix_show)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_karen_netflix_show)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches_karen(Netflix_show) <-> downloads_karen(Netflix_show)",
+          "z3_formula": "Implies(And(binge_watches_karen_netflix_show, downloads_karen_netflix_show), True) & Implies(And(downloads_karen_netflix_show, binge_watches_karen_netflix_show), True)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not downloads_karen(black_mirror)",
+          "z3_formula": "not downloads_karen_black_mirror == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(black_mirror)",
+          "z3_formula": "netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches_karen(Netflix_show) -> shares_lisa(Netflix_show)",
+          "z3_formula": "Implies(binge_watches_karen_netflix_show, shares_lisa_netflix_show)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not popular(black_mirror)",
+          "z3_formula": "not popular_black_mirror == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watches(karen, netflix_show)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_karen_netflix_show)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(karen, netflix_show) -> downloads(karen, netflix_show)",
+          "z3_formula": "Implies(binge_watches_karen_netflix_show, downloads_karen_netflix_show)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(downloads(karen, black_mirror))",
+          "z3_formula": "Not(downloads_karen_black_mirror) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(black_mirror)",
+          "z3_formula": "netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(karen, netflix_show) -> shares(karen, lisa, netflix_show)",
+          "z3_formula": "Implies(binge_watches_karen_netflix_show, shares_karen_lisa_netflix_show)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "popular(stranger_things)",
+          "z3_formula": "popular_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watches(netflix_show, karen)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_netflix_show_karen)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> downloads(netflix_show, karen)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, downloads_netflix_show_karen)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not downloads(black_mirror, karen)",
+          "z3_formula": "Not(downloads_black_mirror_karen) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(black_mirror)",
+          "z3_formula": "netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> shares(netflix_show, karen, lisa)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, shares_netflix_show_karen_lisa)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show)",
+          "z3_formula": "popular_netflix_show == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watches(netflix_show, karen)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_netflix_show_karen)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> downloads(netflix_show, karen)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, downloads_netflix_show_karen)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not downloads(black_mirror, karen)",
+          "z3_formula": "not downloads_black_mirror_karen == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(black_mirror)",
+          "z3_formula": "netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> shares(netflix_show, karen, lisa)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, shares_netflix_show_karen_lisa)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watches(netflix_show, karen)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watches_netflix_show_karen)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> downloads(netflix_show, karen)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, downloads_netflix_show_karen)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(downloads(netflix_show_black_mirror, karen))",
+          "z3_formula": "not(downloads_netflix_show_black_mirror_karen) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show_black_mirror",
+          "z3_formula": "netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watches(netflix_show, karen) -> shares(netflix_show, karen, lisa)",
+          "z3_formula": "Implies(binge_watches_netflix_show_karen, shares_netflix_show_karen_lisa)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(popular(netflix_show_black_mirror))",
+          "z3_formula": "not(popular_netflix_show_black_mirror) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "popular(netflix_show_stranger_things)",
+          "z3_formula": "popular_netflix_show_stranger_things == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "popular(netflix_show) -> binge_watch(karen, netflix_show)",
+          "z3_formula": "Implies(popular_netflix_show, binge_watch_karen_netflix_show)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watch(karen, netflix_show) <-> download(karen, netflix_show)",
+          "z3_formula": "Implies(And(binge_watch_karen_netflix_show, Not(download_karen_netflix_show)), False)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "Not(download(karen, netflix_show_black_mirror))",
+          "z3_formula": "Not(download_karen_netflix_show_black_mirror) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "netflix_show(netflix_show_black_mirror)",
+          "z3_formula": "netflix_show_netflix_show_black_mirror == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "binge_watch(karen, netflix_show) -> share(karen, lisa, netflix_show)",
+          "z3_formula": "Implies(binge_watch_karen_netflix_show, share_karen_lisa_netflix_show)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(popular(netflix_show_black_mirror))",
+          "z3_formula": "Not(popular_netflix_show_black_mirror) == True",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 78,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 31
+    },
+    "maxsat_stats": {
+      "satisfied": 31,
+      "excluded": 0,
+      "total_weight": 78,
+      "solve_time_ms": 1.0552452877163887
+    },
+    "timing": {
+      "trace_gen_s": 10.241,
+      "extraction_s": 16.3,
+      "dedup_s": 0.609,
+      "maxsat_s": 0.003,
+      "total_s": 27.153
+    }
+  }
+}

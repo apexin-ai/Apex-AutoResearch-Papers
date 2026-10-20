@@ -1,0 +1,7 @@
+_next_id: 2
+constraints:
+- id: C001
+  added: 2026-05-18 17:54 UTC
+  summary: 所有实验代码写完后必须先 dry-run 验证（python 可用性、路径存在性、端口无冲突、数据文件存在）再正式部署运行
+  scope: worker
+  reason: 多次出现代码部署后才发现 python command not found、模型路径不存在、GPU/端口冲突等低级错误，浪费 GPU 时间和调试周期。用户明确要求。

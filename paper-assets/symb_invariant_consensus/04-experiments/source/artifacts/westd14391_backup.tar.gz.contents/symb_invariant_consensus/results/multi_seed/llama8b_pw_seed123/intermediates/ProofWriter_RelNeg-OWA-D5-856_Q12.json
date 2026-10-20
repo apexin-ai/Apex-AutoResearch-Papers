@@ -1,0 +1,1062 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-856_Q12",
+    "problem": "The bald eagle needs the lion. The bald eagle visits the lion. The lion is not cold. The lion does not like the tiger. The lion visits the tiger. The squirrel is kind. The squirrel is young. The squirrel likes the tiger. The squirrel does not need the lion. The squirrel visits the bald eagle. The tiger is cold. The tiger visits the bald eagle. If something visits the bald eagle then it is big. If something is big then it needs the squirrel. If something visits the squirrel and it visits the lion then it needs the squirrel. If something needs the squirrel then it is green. If something is young then it needs the tiger. Green things are young. If something is big and it visits the lion then the lion needs the squirrel. If the squirrel is big and the squirrel does not like the tiger then the tiger is not big.\n\nDetermine whether the following statement is true, false, or unknown:\nThe tiger does not need the tiger.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNeeds($x, $y, bool) ::: Does x need y?\nVisits($x, $y, bool) ::: Does x visit y?\nCold($x, bool) ::: Is x cold?\nLikes($x, $y, bool) ::: Does x like y?\nKind($x, bool) ::: Is x kind?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nNeeds(BaldEagle, Lion, True) ::: The bald eagle needs the lion.\nVisits(BaldEagle, Lion, True) ::: The bald eagle visits the lion.\nCold(Lion, False) ::: The lion is not cold.\nLikes(Lion, Tiger, False) ::: The lion does not like the tiger.\nVisits(Lion, Tiger, True) ::: The lion visits the tiger.\nKind(Squirrel, True) ::: The squirrel is kind.\nYoung(Squirrel, True) ::: The squirrel is young.\nLikes(Squirrel, Tiger, True) ::: The squirrel likes the tiger.\nNeeds(Squirrel, Lion, False) ::: The squirrel does not need the lion.\nVisits(Squirrel, BaldEagle, True) ::: The squirrel visits the bald eagle.\nCold(Tiger, True) ::: The tiger is cold.\nVisits(Tiger, BaldEagle, True) ::: The tiger visits the bald eagle.\n\nRules:\nVisits($x, BaldEagle, True) >>> Big($x, True) ::: If something visits the bald eagle then it is big.\nBig($x, True) >>> Needs($x, Squirrel, True) ::: If something is big then it needs the squirrel.\nVisits($x, Squirrel, True) && Visits($x, Lion, True) >>> Needs($x, Squirrel, True) ::: If something visits the squirrel and it visits the lion then it needs the squirrel.\nNeeds($x, Squirrel, True) >>> Green($x, True) ::: If something needs the squirrel then it is green.\nYoung($x, True) >>> Needs($x, Tiger, True) ::: If something is young then it needs the tiger.\nGreen($x, True) >>> Young($x, True) ::: Green things are young.\nBig($x, True) && Visits($x, Lion, True) >>> Needs(Lion, Squirrel, True) ::: If something is big and it visits the lion then the lion needs the squirrel.\nBig(Squirrel, True) && Likes(Squirrel, Tiger, False) >>> Big(Tiger, False) ::: If the squirrel is big and the squirrel does not like the tiger then the tiger is not big.\n\nQuery:\nNeeds(Tiger, Tiger, False) ::: The tiger does not need the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 54.0,
+      "True": 97.0,
+      "Unknown": 120.0
+    },
+    "answer_counts": {
+      "True": 3,
+      "Unknown": 5,
+      "False": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The tiger does not need the tiger\" is true, false, or unknown, we need to analyze the given information and rules.\n\nFrom the information provided, we know:\n- The tiger is cold (Rule 1).\n- The tiger visits the bald eagle (Rule 2).\n- If something visits the bald eagle then it is big (Rule 3).\n- The tiger is big (Rule 3).\n\nNow we know that the tiger is big. We need to find out if the tiger needs the squirrel. We know:\n- If something is big then it needs the squirrel (Rule 4).\n\nThis means the tiger needs the squirrel. Now we need to determine if the tiger is green or not. We know:\n- If something is big and it needs the squirrel then it is green (Rule 4).\n- Green things are young (Rule 5).\n- If something is young then it needs the tiger (Rule 6).\n\nFrom Rule 7, we have a condition where if the squirrel is big and the squirrel does not like the tiger then the tiger is not big. We do not have any information that the squirrel is big, so we cannot apply this rule yet.\n\nHowever, we cannot directly determine if the tiger is green or not because we do not know if the tiger is young. We can only infer that if the tiger is young, then it needs the tiger, but it does not make sense for an animal to need itself.\n\nTherefore, we cannot directly determine if the tiger needs the tiger.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"If something is big then it needs the squirrel,\" we can conclude that the tiger needs the squirrel since the tiger is big (from the statement \"The tiger visits the bald eagle\" and \"If something visits the bald eagle then it is big\").\n\n2. From the statement \"If something needs the squirrel then it is green,\" we can conclude that the tiger is green since the tiger needs the squirrel.\n\n3. From the statement \"Green things are young,\" we can conclude that the tiger is young since the tiger is green.\n\n4. Now we have two conclusions: the tiger is big and the tiger is young. \n\n5. From the statement \"If something is young then it needs the tiger,\" we can conclude that the tiger does not need the tiger itself, as it is already concluded that the tiger is young.\n\n6. The statement \"The tiger does not need the tiger\" seems to be true based on our analysis.\n\nHowever, to ensure that our conclusion is accurate, we should check if there are any other possible interpretations or contradictions. \n\n7. We have concluded that the tiger is both big and young. There are no other statements that directly contradict this conclusion.\n\nTherefore, based on the given information and analysis, the statement \"The tiger does not need the tiger\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to break it down step by step. \n\n1.  We are given the following information:\n    - The lion is not cold.\n    - The lion does not like the tiger.\n    - The lion visits the tiger.\n    - The squirrel is kind.\n    - The squirrel is young.\n    - The squirrel likes the tiger.\n    - The squirrel does not need the lion.\n    - The squirrel visits the bald eagle.\n    - The tiger is cold.\n    - The tiger visits the bald eagle.\n\n2.  We are also given the following rules:\n    - If something visits the bald eagle then it is big.\n    - If something is big then it needs the squirrel.\n    - If something visits the squirrel and it visits the lion then it needs the squirrel.\n    - If something needs the squirrel then it is green.\n    - If something is young then it needs the tiger.\n    - Green things are young.\n    - If something is big and it visits the lion then the lion needs the squirrel.\n    - If the squirrel is big and the squirrel does not like the tiger then the tiger is not big.\n\n3.  First, let's determine if the tiger is big or not. We know that the tiger visits the bald eagle. \n    According to the rule \"If something visits the bald eagle then it is big,\" we can conclude that the tiger is big.\n\n4.  Since the tiger is big, we can apply the rule \"If something is big then it needs the squirrel.\" This means the tiger needs the squirrel.\n\n5.  However, we are asked if the tiger does not need the tiger. This statement is about the tiger needing itself, not the squirrel.\n\n6.  Based on the given information and rules, we do not have any information that suggests the tiger needs itself. \n\n7.  Therefore, we cannot conclude whether the tiger needs itself or not. The statement \"The tiger does not need the tiger\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger does not need the tiger\" is true, false, or unknown, we need to analyze the given information and the conditions.\n\n1. The tiger is cold. (From the problem statement)\n2. The tiger visits the bald eagle. (From the problem statement)\n3. If something visits the bald eagle then it is big. (From the problem statement)\n   So, the tiger is big.\n4. If something is big then it needs the squirrel. (From the problem statement)\n   So, the tiger needs the squirrel.\n5. The statement \"The tiger does not need the tiger\" is being evaluated.\n6. If something is big and it visits the lion then the lion needs the squirrel. (From the problem statement)\n   This condition does not apply here because the tiger is the subject, and it's visiting the bald eagle, not the lion.\n7. If something needs the squirrel then it is green. (From the problem statement)\n   We do not have information about the tiger's color.\n8. Green things are young. (From the problem statement)\n   This condition does not apply here because we do not have information about the tiger's color.\n9. If something is young then it needs the tiger. (From the problem statement)\n   We do not have information about the tiger's age.\n10. The squirrel is young. (From the problem statement)\n    This condition does not apply here because we are evaluating the tiger's needs.\n11. The squirrel likes the tiger. (From the problem statement)\n    This condition does not apply here because we are evaluating the tiger's needs.\n12. The squirrel does not need the lion. (From the problem statement)\n    This condition does not apply here because we are evaluating the tiger's needs.\n13. If the squirrel is big and the squirrel does not like the tiger then the tiger is not big. (From the problem statement)\n    This condition does not apply here because the squirrel is not the subject, and we do not have information about the squirrel's size or whether it likes the tiger.\n\nFrom the given conditions, we can conclude that the tiger needs the squirrel because it is big and visiting the bald eagle. The statement \"The tiger does not need the tiger\" is false because the tiger needs the squirrel.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger does not need the tiger\" is true, false, or unknown, we need to analyze the given information and the conditions.\n\n1. We are given that the tiger is cold (Step 7). \n2. According to Step 11, if something is big, then it needs the squirrel. However, this does not directly apply to the tiger.\n3. We know that the lion is not cold (Step 3) and the lion does not like the tiger (Step 4).\n4. Since the lion does not like the tiger, we cannot directly apply the information that the squirrel does not need the lion (Step 8) to this scenario.\n5. The tiger visits the bald eagle (Step 12), but this does not directly state that the tiger is big.\n\nHowever, we can use the following steps to deduce the relationship between the tiger and its needs:\n- The lion is not cold and does not like the tiger.\n- The squirrel is kind, young, and likes the tiger (Steps 5-6).\n- The lion visits the tiger (Step 4), but we cannot apply the information that something visits the squirrel and it visits the lion then it needs the squirrel (Step 9) to this scenario because we do not know if the tiger visits the squirrel.\n\nHowever, given the statement that \"If something is young then it needs the tiger\" and that \"Green things are young,\" and the information that \"The squirrel is kind. The squirrel is young. The squirrel likes the tiger\" and that \"If something is big then it needs the squirrel,\" we can use the information about the squirrel and the tiger to make an assumption.\n\nFrom the information provided, we can see that the squirrel and the tiger have a relationship, and the squirrel is young. Therefore, we can assume that the tiger may need the squirrel, but we cannot definitively conclude that the tiger is big or that the tiger needs the tiger.\n\nThe given statement \"The tiger does not need the tiger\" cannot be directly proven true or false based on the provided information. However, we can use the information that the lion is not cold and does not like the tiger, and the information about the squirrel and the tiger to make an assumption.\n\nThe statement \"The tiger does not need the tiger\" is unknown because we cannot determine if the tiger needs itself based on the given information. \n\nHowever, based on the information that the squirrel is young, likes the tiger, and that \"Green things are young,\" and the information that \"If something is big then it needs the squirrel\" we can conclude that the tiger is not big.\n\nSince the tiger is not big, we can apply the information that \"If something is big and it visits the lion then the lion needs the squirrel.\" We can conclude that the lion does not need the squirrel because the tiger visits the lion but the tiger is not big.\n\nWe also know that \"If the squirrel is big and the squirrel does not like the tiger then the tiger is not big.\" Since the squirrel does not like the tiger, this is not directly applicable.\n\nHowever, we can use the information that \"If something is big then it needs the squirrel\" and that \"The tiger visits the squirrel,\" but we do not know if the tiger is big, we can apply the information that \"The squirrel does not need the lion\" and that the lion is not cold, but we do not know if the tiger visits the squirrel.\n\nHowever, given that we can apply the information that \"The squirrel does not like the tiger\" and that \"The squirrel is kind. The squirrel is young. The squirrel likes the tiger\" we can conclude that the squirrel is not big because the squirrel does not like the tiger.\n\nSince the squirrel is not big, we can apply the information that \"If something is big then it needs the squirrel\" to the squirrel. However, the squirrel does not need the squirrel because the squirrel is not big.\n\nSince the tiger is not big, we can apply the information that \"If something is big then it needs the squirrel\" to the tiger. However, this does not directly apply to the statement \"The tiger does not need the tiger.\"\n\nHowever, we can use the information that the lion does not need the squirrel because the tiger visits the lion but the tiger is not big, and the information that \"Green things are young\" and that \"The squirrel is kind. The squirrel is young. The squirrel likes the tiger\" and that \"If something is young then it needs the tiger\" to conclude that the tiger may need the squirrel.\n\nHowever, we cannot directly apply this information to the statement \"The tiger does not need the tiger.\"\n\nHowever, we can conclude that the tiger is not big, and we can apply the information that \"The squirrel does not need the lion\" and that the lion is not cold to the statement \"The tiger does not need the tiger.\"\n\nSince the squirrel does not need the lion, we can conclude that the tiger does not need the lion because the lion is not cold.\n\nHowever, we can apply the information that \"If something is big then it needs the squirrel\" to the lion. However, the lion does not need the squirrel because the lion is not cold.\n\nHowever, we can use the information that the lion does not need the squirrel and the information that \"The lion does not like the tiger\" to conclude that the tiger does not need the lion.\n\nHowever, we can apply the information that \"The tiger is cold\" and that \"If something is big then it needs the squirrel\" to the tiger. However, this does not directly apply to the statement \"The tiger does not need the tiger.\"\n\nHowever, we can use the information that the lion is not cold and the information that \"The lion does not like the tiger\" and the information that \"The squirrel is young. The squirrel likes the tiger\" to conclude that the tiger may need the squirrel.\n\nHowever, we can conclude that the tiger is not big, and we can apply the information that \"The squirrel does not need the lion\" and that the lion is not cold to the statement \"The tiger does not need the tiger.\"\n\nHowever, we can apply the information that \"The squirrel does not need the lion\" and that the lion is not cold to the statement \"The tiger does not need the tiger.\"\n\nHowever, we can use the information that the lion is not cold and the information that \"The lion does not like the tiger\" and the information that \"The squirrel is young. The squirrel likes the tiger\" to conclude that the tiger may need the squirrel.\n\nHowever, we can conclude that the tiger does not need the tiger because the tiger is not big and the lion does not need the squirrel.\n\nHowever, we can apply the information that \"The squirrel does not need the lion\" and that the lion is not cold to the statement \"The tiger does not need the tiger.\"\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to use the given information and the rules provided.\n\nFirst, let's break down the rules:\n\n1. If something visits the bald eagle then it is big.\n2. If something is big then it needs the squirrel.\n3. If something visits the squirrel and it visits the lion then it needs the squirrel.\n4. If something needs the squirrel then it is green.\n5. If something is young then it needs the tiger.\n6. Green things are young.\n7. If something is big and it visits the lion then the lion needs the squirrel.\n8. If the squirrel is big and the squirrel does not like the tiger then the tiger is not big.\n\nNow, let's apply these rules to the statement: \"The tiger does not need the tiger.\"\n\nFrom rule 8, we know that if the squirrel is big and the squirrel does not like the tiger then the tiger is not big. We don't have any information about the squirrel's size or its like/dislike for the tiger, so we can't determine if the tiger is big or not.\n\nHowever, we can still try to determine if the tiger needs the tiger. From rule 2, we know that if something is big then it needs the squirrel. But we don't have any information about the tiger being big or not. From rule 5, we know that if something is young then it needs the tiger. But we also know that green things are young (rule 6), and if something is green, then it needs the squirrel (rule 4). Since we don't have any information about the tiger being green or not, we can't determine if the tiger needs the tiger.\n\nHowever, let's look at the information given. We have that the tiger is cold (given information), and the tiger visits the bald eagle (given information). From rule 1, we know that if something visits the bald eagle then it is big. So, the tiger is big. Now, we can use rule 2: if something is big then it needs the squirrel. Therefore, the tiger needs the squirrel.\n\nHowever, the statement is \"The tiger does not need the tiger.\" This is a self-referential statement. We've determined that the tiger needs the squirrel, but we can't directly apply this information to the statement \"The tiger does not need the tiger.\" Since the tiger needs the squirrel, not the tiger itself, the statement \"The tiger does not need the tiger\" is true in the sense that the tiger needs the squirrel, not itself.\n\nHowever, the statement is still a bit tricky. Let's look at the statement from the perspective of the rules. The rules don't provide any direct information about the tiger needing the tiger. The rules provide information about what needs the squirrel or the tiger, but they don't provide information about what the tiger needs. In this sense, the statement \"The tiger does not need the tiger\" is unknown because we can't determine if the tiger needs itself or not based on the given information.\n\nBut since we've already established that the tiger needs the squirrel, we can say that the statement \"The tiger does not need the tiger\" is actually true because the tiger needs the squirrel, not itself.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and apply it to the statement \"The tiger does not need the tiger.\"\n\nFrom the given information, we have the following rules:\n\n1. If something visits the bald eagle then it is big.\n2. If something is big then it needs the squirrel.\n3. If something visits the squirrel and it visits the lion then it needs the squirrel.\n4. If something needs the squirrel then it is green.\n5. If something is young then it needs the tiger.\n6. Green things are young.\n7. If something is big and it visits the lion then the lion needs the squirrel.\n8. If the squirrel is big and the squirrel does not like the tiger then the tiger is not big.\n\nFrom the given story, we have the following information:\n\n- The tiger visits the bald eagle. (This means the tiger is big by rule 1)\n- The tiger is cold. (This does not provide any additional information)\n- The lion is not cold. (This does not provide any additional information)\n- The lion does not like the tiger. (This does not provide any additional information)\n- The lion visits the tiger. (This means the lion visits the squirrel and it visits the lion, so the lion needs the squirrel by rule 3)\n- The squirrel is kind. (This does not provide any additional information)\n- The squirrel is young. (This means the squirrel needs the tiger by rule 5)\n- The squirrel likes the tiger. (This does not provide any additional information)\n- The squirrel does not need the lion. (This does not provide any additional information)\n- The squirrel visits the bald eagle. (This means the squirrel is big by rule 1)\n- The tiger is cold. (This does not provide any additional information)\n- The tiger visits the bald eagle. (This has already been stated)\n\nNow, let's analyze the statement \"The tiger does not need the tiger.\"\n\nWe know that the tiger is big by rule 1. If something is big then it needs the squirrel by rule 2. However, the tiger does not visit the lion (it visits the bald eagle), so the lion does not need the squirrel by rule 7. \n\nIf the tiger needs the squirrel, then it is green by rule 4. If it is green, then it is young by rule 6. However, if it is young, then it needs the tiger by rule 5, which creates a contradiction.\n\nTherefore, since the statement \"The tiger needs the squirrel\" leads to a contradiction, we cannot conclude whether the tiger needs the tiger or not. The information is insufficient to determine the truth of the statement.\n\nThe answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement we want to evaluate is: \"The tiger does not need the tiger.\"\n   To evaluate this, we need to find if the tiger needs itself based on the given conditions.\n\n2. The conditions given are:\n   - If something visits the bald eagle then it is big.\n   - If something is big then it needs the squirrel.\n   - If something visits the squirrel and it visits the lion then it needs the squirrel.\n   - If something needs the squirrel then it is green.\n   - If something is young then it needs the tiger.\n   - Green things are young.\n   - If something is big and it visits the lion then the lion needs the squirrel.\n   - If the squirrel is big and the squirrel does not like the tiger then the tiger is not big.\n\n3. Based on the given information:\n   - The tiger visits the bald eagle (Step 6). Therefore, the tiger is big (Condition 1).\n   - Since the tiger is big, it needs the squirrel (Condition 2).\n\n4. Now, we need to determine if the tiger needs itself. Since the tiger is big and needs the squirrel, we can't directly conclude that the tiger needs itself. We need to check the conditions related to the tiger's size and the squirrel's behavior.\n\n5. The condition that might help is: \"If the squirrel is big and the squirrel does not like the tiger then the tiger is not big.\"\n   However, this condition does not directly apply to the tiger's need for itself. We are looking for a condition that states if something needs itself, but no such condition is given.\n\n6. Since we don't have a direct condition that states if something needs itself, we can't determine whether the tiger needs itself based on the given information.\n\nTherefore, the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The tiger does not need the tiger\" is true, false, or unknown, we need to analyze the given information and the rules.\n\nFrom the problem, we know:\n1. If something visits the bald eagle then it is big.\n2. If something is big then it needs the squirrel.\n3. The tiger visits the bald eagle.\nTherefore, the tiger is big (rule 1) and needs the squirrel (rule 2).\n\nHowever, we don't have any information about the tiger needing the tiger. We can use the following rules to try to find more information:\n\n4. If something visits the squirrel and it visits the lion then it needs the squirrel.\n5. The squirrel visits the bald eagle and the lion.\nHowever, we don't know if the tiger visits the squirrel or the lion, so we can't conclude anything from this rule.\n\n6. If something is young then it needs the tiger.\n7. Green things are young.\n8. If something is big and it visits the lion then the lion needs the squirrel.\n9. If the squirrel is big and the squirrel does not like the tiger then the tiger is not big.\n10. The squirrel is kind, the squirrel is young (rule 6), so the squirrel needs the tiger (rule 6).\n\nHowever, we don't know if the squirrel is big or not, so we can't conclude anything from rule 9.\n\nThe statement \"The tiger does not need the tiger\" is not directly related to the information we have. However, we can use the fact that we know the tiger needs the squirrel (rule 3). We don't have any information about the tiger needing the tiger, so we can't conclude if the statement is true or false.\n\nHowever, from the rule that states \"If something is big then it needs the squirrel\" (rule 2) and we know that the tiger is big (rule 3), we can apply rule 1 \"If something is big then it needs the squirrel\" to conclude that the tiger needs the squirrel. This implies that there is no need to apply the rule \"The tiger does not need the tiger\" because we already know that the tiger needs the squirrel. Therefore, it is safe to conclude that the statement \"The tiger does not need the tiger\" is false, because we know that the tiger needs the squirrel.\n\nSo, the final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we'll use the given statements to determine the characteristics of the animals and the relationships between them.\n\n1. The bald eagle needs the lion. \n   - The bald eagle is big (from statement 1) and needs the squirrel (from statement 5).\n\n2. The lion is not cold.\n   - The lion does not like the tiger (from statement 4).\n\n3. The lion does not like the tiger.\n   - The lion visits the tiger (from statement 6), but we already know the lion doesn't like the tiger.\n\n4. The lion visits the tiger.\n   - The lion needs the squirrel (from statement 8 because the lion visits the squirrel and the squirrel visits the lion).\n\n5. The squirrel is kind. \n   - The squirrel is young (from statement 6).\n   - The squirrel likes the tiger (from statement 6).\n\n6. The squirrel is young.\n   - The squirrel needs the tiger (from statement 9).\n\n7. The squirrel is young.\n   - Green things are young (from statement 9), and the squirrel is green (from statement 10).\n   - The squirrel needs the squirrel (from statement 10 because something needs the squirrel then it is green).\n\n8. The squirrel is young.\n   - The squirrel needs the tiger (from statement 9).\n\n9. The squirrel needs the tiger.\n   - The tiger is cold (from statement 10).\n\n10. The tiger is cold.\n    - The tiger visits the bald eagle (from statement 11).\n\n11. The tiger is cold.\n    - The tiger needs the squirrel (from statement 9).\n\n12. The tiger is cold.\n    - The tiger is big (from statement 11), and since it's big, it needs the squirrel (from statement 5).\n\n13. The tiger is big.\n    - Since the tiger is big, the lion needs the squirrel (from statement 8 because the lion is big and it visits the lion).\n\n14. The squirrel is big.\n    - The squirrel does not like the tiger (from statement 7).\n\n15. The tiger is not big.\n    - The squirrel is big and the squirrel does not like the tiger (from statement 14).\n\nWe cannot determine if the tiger needs the tiger from the given statements. \nThe tiger needs the squirrel (from statement 11), but we cannot conclude that the tiger needs the tiger itself.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller parts and analyze the given information.\n\n1. The tiger is cold. (Given)\n2. The tiger visits the bald eagle. (Given)\n   From the rule: If something visits the bald eagle then it is big.\n   So, the tiger is big.\n\n3. The tiger is big. (From step 2)\n   From the rule: If something is big then it needs the squirrel.\n   So, the tiger needs the squirrel.\n\n4. The tiger needs the squirrel. (From step 3)\n   From the rule: If something needs the squirrel then it is green.\n   So, the tiger is green.\n\n5. The tiger is green. (From step 4)\n   From the rule: Green things are young.\n   So, the tiger is young.\n\n6. The tiger is young. (From step 5)\n   From the rule: If something is young then it needs the tiger.\n   This rule is self-referential, and it creates a paradox. However, let's continue analyzing the information.\n\n7. The tiger is young. (From step 5)\n   The rule states that the tiger needs the tiger, which seems to be a paradox.\n\nHowever, given the information provided, we cannot conclude that the tiger does not need the tiger. The statement is actually unknown because we cannot determine whether the tiger needs the tiger based on the given rules and information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the given statement is true, false, or unknown, we need to break down the information provided and apply the given rules.\n\n1. The tiger is cold (from the problem statement).\n2. The tiger visits the bald eagle (from the problem statement).\n\nFrom rule 1: \"If something visits the bald eagle then it is big.\"\n   - The tiger visits the bald eagle, so the tiger is big.\n\nFrom rule 4: \"If something is big then it needs the squirrel.\"\n   - Since the tiger is big, the tiger needs the squirrel.\n\nSo, we have determined that the tiger needs the squirrel. \n\nNow, we need to determine if the tiger needs the tiger. From the problem statement, we have:\n\nThe squirrel does not like the tiger (from the problem statement).\nThe squirrel is young (from the problem statement).\n\nFrom rule 7: \"If something is young then it needs the tiger.\"\n   - Since the squirrel is young, the squirrel needs the tiger.\n\nFrom rule 3: \"If something is big and it visits the lion then the lion needs the squirrel.\"\n   - This rule does not apply to the tiger, so we cannot use it to determine the statement.\n\nFrom rule 9: \"If the squirrel is big and the squirrel does not like the tiger then the tiger is not big.\"\n   - The squirrel is young (not big), so this rule does not apply.\n\nFrom rule 6: \"If something needs the squirrel then it is green.\"\n   - This rule does not apply to the tiger.\n\nFrom rule 5: \"If something visits the squirrel and it visits the lion then it needs the squirrel.\"\n   - This rule does not apply to the tiger.\n\nWe have determined that the tiger needs the squirrel but we cannot determine if the tiger needs the tiger based on the given rules. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_tiger_bald_eagle, big_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_tiger, needs_tiger_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & needs(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(And(big_tiger, needs_tiger_squirrel), green_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_tiger, young_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_tiger, needs_tiger_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not(likes(X, tiger)) -> not(big(X))",
+          "z3_formula": "Implies(And(big_squirrel, not(likes_squirrel_tiger)), not(big_tiger))",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) -> big(X)",
+          "z3_formula": "Implies(visits_tiger_eagle, big_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(bald_eagle, X) & big(X) -> needs_squirrel(X)",
+          "z3_formula": "Implies(And(visits_bald_eagle_tiger, big_tiger), needs_squirrel_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs_squirrel(X) -> green(X)",
+          "z3_formula": "Implies(needs_squirrel_tiger, green_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_tiger, young_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs_tiger(X)",
+          "z3_formula": "Implies(young_tiger, needs_tiger_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not needs_tiger(tiger)",
+          "z3_formula": "Not(needs_tiger_tiger)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(cold(lion))",
+          "z3_formula": "not(cold_lion) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(lion, tiger))",
+          "z3_formula": "not(likes_lion_tiger) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(needs(squirrel, lion))",
+          "z3_formula": "not(needs_squirrel_lion) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_tiger_bald_eagle, big_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_tiger, needs_tiger_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits(X, lion) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(visits_tiger_squirrel, visits_tiger_lion), needs_tiger_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(needs_tiger_squirrel, green_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_tiger, young_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> needs(lion, squirrel)",
+          "z3_formula": "Implies(And(big_tiger, visits_tiger_lion), needs_lion_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(squirrel) & not(likes(squirrel, tiger)) -> not(big(tiger))",
+          "z3_formula": "Implies(And(big_squirrel, not(likes_squirrel_tiger)), not(big_tiger))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not(needs(tiger, tiger))",
+          "z3_formula": "not(needs_tiger_tiger) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_tiger_bald_eagle, big_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_tiger, needs_tiger_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_tiger, needs_tiger_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(lion)",
+          "z3_formula": "Not(cold_lion) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, tiger)",
+          "z3_formula": "Not(likes_lion_tiger) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> needs(lion, squirrel)",
+          "z3_formula": "Implies(And(big_tiger, visits_tiger_lion), needs_lion_squirrel)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_squirrel, needs_squirrel_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_squirrel, young_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_tiger, needs_tiger_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not big(tiger)",
+          "z3_formula": "Not(big_tiger) == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(lion, squirrel)",
+          "z3_formula": "Not(needs_lion_squirrel) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(tiger, lion)",
+          "z3_formula": "Not(needs_tiger_lion) == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(tiger, tiger)",
+          "z3_formula": "Not(needs_tiger_tiger) == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_tiger_bald_eagle, big_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_tiger, needs_tiger_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_tiger_bald_eagle, big_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_tiger, needs_tiger_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits(X, lion) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(visits_tiger_squirrel, visits_tiger_lion), needs_tiger_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(needs_tiger_squirrel, green_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_tiger, young_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_tiger, needs_tiger_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> needs(lion, squirrel)",
+          "z3_formula": "Implies(And(big_lion, visits_lion_tiger), needs_lion_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(squirrel) & not likes(squirrel, tiger) -> not big(tiger)",
+          "z3_formula": "Implies(And(big_squirrel, not likes_squirrel_tiger), not big_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(lion)",
+          "z3_formula": "not cold_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(lion, tiger)",
+          "z3_formula": "not likes_lion_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(squirrel, lion)",
+          "z3_formula": "not needs_squirrel_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(squirrel, bald_eagle)",
+          "z3_formula": "visits_squirrel_bald_eagle == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(tiger, tiger)",
+          "z3_formula": "not needs_tiger_tiger == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_tiger_bald_eagle, big_tiger)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_tiger, needs_tiger_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) & visits(X, lion) -> needs(X, squirrel)",
+          "z3_formula": "Implies(And(visits_tiger_squirrel, visits_tiger_lion), needs_tiger_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(needs_tiger_squirrel, green_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_tiger, needs_tiger_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_tiger, young_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & visits(X, lion) -> needs(lion, squirrel)",
+          "z3_formula": "Implies(And(big_tiger, visits_tiger_lion), needs_lion_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not likes(X, tiger) -> not big(X)",
+          "z3_formula": "Implies(And(big_squirrel, not likes_squirrel_tiger), not big_tiger)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_tiger_bald_eagle, big_tiger)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_tiger, needs_tiger_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bald_eagle)",
+          "z3_formula": "big_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bald_eagle, squirrel)",
+          "z3_formula": "needs_bald_eagle_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(lion))",
+          "z3_formula": "not(cold_lion) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(lion, tiger))",
+          "z3_formula": "not(likes_lion_tiger) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, tiger)",
+          "z3_formula": "visits_lion_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, squirrel)",
+          "z3_formula": "visits_lion_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, tiger)",
+          "z3_formula": "likes_squirrel_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(squirrel, tiger)",
+          "z3_formula": "needs_squirrel_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(squirrel)",
+          "z3_formula": "green_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_bald_eagle, needs_bald_eagle_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_tiger, needs_tiger_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_lion, needs_lion_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_squirrel, young_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(visits_lion_squirrel, needs_lion_squirrel)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(visits_tiger_lion, needs_tiger_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(visits_tiger_squirrel, needs_tiger_squirrel)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(visits_lion_tiger, needs_lion_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(visits_tiger_bald_eagle, needs_tiger_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(visits_lion_bald_eagle, needs_lion_bald_eagle)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(visits_squirrel_lion, needs_squirrel_lion)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(visits_squirrel_tiger, needs_squirrel_tiger)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, Y) -> needs(X, Y)",
+          "z3_formula": "Implies(visits_squirrel_bald_eagle, needs_squirrel_bald_eagle)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "not(cold(X)) -> not(likes(lion, X))",
+          "z3_formula": "Implies(not(cold_lion), not(likes_lion_tiger))",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "not(big(X)) -> not(likes(squirrel, X))",
+          "z3_formula": "Implies(not(big_tiger), not(likes_squirrel_tiger))",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, tiger)",
+          "z3_formula": "needs_tiger_tiger == Unknown",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, eagle)",
+          "z3_formula": "visits_tiger_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, eagle) -> big(X)",
+          "z3_formula": "Implies(visits_tiger_eagle, big_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_tiger, needs_tiger_squirrel)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, squirrel) -> green(X)",
+          "z3_formula": "Implies(needs_tiger_squirrel, green_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_tiger, young_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(tiger)",
+          "z3_formula": "young_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_tiger, needs_tiger_tiger)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visits(tiger, bald_eagle)",
+          "z3_formula": "visits_tiger_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, bald_eagle) -> big(X)",
+          "z3_formula": "Implies(visits_tiger_bald_eagle, big_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, squirrel)",
+          "z3_formula": "Implies(big_tiger, needs_tiger_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(squirrel)",
+          "z3_formula": "young_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(young_squirrel, needs_squirrel_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_like(squirrel, tiger)",
+          "z3_formula": "does_not_like_squirrel_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, tiger)",
+          "z3_formula": "needs_tiger_tiger == Unknown",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 155,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 52
+    },
+    "maxsat_stats": {
+      "satisfied": 49,
+      "excluded": 3,
+      "total_weight": 145,
+      "solve_time_ms": 1.7462270334362984
+    },
+    "timing": {
+      "trace_gen_s": 16.761,
+      "extraction_s": 36.198,
+      "dedup_s": 1.276,
+      "maxsat_s": 0.005,
+      "total_s": 54.239
+    }
+  }
+}

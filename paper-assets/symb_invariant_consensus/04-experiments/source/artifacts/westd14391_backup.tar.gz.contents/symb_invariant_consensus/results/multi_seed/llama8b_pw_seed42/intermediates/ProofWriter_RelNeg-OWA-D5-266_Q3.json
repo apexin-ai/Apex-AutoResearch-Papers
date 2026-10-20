@@ -1,0 +1,550 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-266_Q3",
+    "problem": "The bald eagle eats the cow. The bald eagle does not eat the dog. The bald eagle is rough. The cow is round. The cow sees the bald eagle. The cow does not see the dog. The cow visits the bald eagle. The cow visits the lion. The dog is rough. The lion is young. The lion does not see the bald eagle. The lion sees the cow. If someone is green and they eat the bald eagle then the bald eagle is not rough. If someone is big and they do not see the bald eagle then the bald eagle is rough. If someone is big then they visit the dog. If someone eats the lion and they are big then the lion eats the dog. If someone visits the dog then the dog eats the cow. If someone is rough and they eat the cow then they are young. If the lion eats the cow then the lion visits the bald eagle. If someone is big and they see the lion then they are green. If someone is young then they are big.\n\nDetermine whether the following statement is true, false, or unknown:\nThe lion is big.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nYoung($x, bool) ::: Is x young?\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\n\nFacts:\nEats(BaldEagle, Cow, True) ::: The bald eagle eats the cow.\nEats(BaldEagle, Dog, False) ::: The bald eagle does not eat the dog.\nRough(BaldEagle, True) ::: The bald eagle is rough.\nRound(Cow, True) ::: The cow is round.\nSees(Cow, BaldEagle, True) ::: The cow sees the bald eagle.\nSees(Cow, Dog, False) ::: The cow does not see the dog.\nVisits(Cow, BaldEagle, True) ::: The cow visits the bald eagle.\nVisits(Cow, Lion, True) ::: The cow visits the lion.\nRough(Dog, True) ::: The dog is rough.\nYoung(Lion, True) ::: The lion is young.\nSees(Lion, BaldEagle, False) ::: The lion does not see the bald eagle.\nSees(Lion, Cow, True) ::: The lion sees the cow.\n\nRules:\nGreen($x, True) && Eats($x, BaldEagle, True) >>> Rough(BaldEagle, False) ::: If someone is green and they eat the bald eagle then the bald eagle is not rough.\nBig($x, True) && Sees($x, BaldEagle, False) >>> Rough(BaldEagle, True) ::: If someone is big and they do not see the bald eagle then the bald eagle is rough.\nBig($x, True) >>> Visits($x, Dog, True) ::: If someone is big then they visit the dog.\nEats($x, Lion, True) && Big($x, True) >>> Eats(Lion, Dog, True) ::: If someone eats the lion and they are big then the lion eats the dog.\nVisits($x, Dog, True) >>> Eats(Dog, Cow, True) ::: If someone visits the dog then the dog eats the cow.\nRough($x, True) && Eats($x, Cow, True) >>> Young($x, True) ::: If someone is rough and they eat the cow then they are young.\nEats(Lion, Cow, True) >>> Visits(Lion, BaldEagle, True) ::: If the lion eats the cow then the lion visits the bald eagle.\nBig($x, True) && Sees($x, Lion, True) >>> Green($x, True) ::: If someone is big and they see the lion then they are green.\nYoung($x, True) >>> Big($x, True) ::: If someone is young then they are big.\n\nQuery:\nBig(Lion, True) ::: The lion is big."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 47.0,
+      "Unknown": 44.5
+    },
+    "answer_counts": {
+      "True": 9,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The lion is big\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The lion is young. (Given)\n\n2. If someone is young then they are big. (Given)\n\nFrom step 1 and step 2, we can conclude that:\nThe lion is big. (Logical deduction)\n\nTherefore, the statement \"The lion is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the lion is big, we need to analyze the given information step by step. \n\nFrom the information, we have:\n- The lion is young (statement 10).\n- If someone is young then they are big (statement 11).\n\nSince the lion is young, it satisfies the condition in statement 11. However, we need to check if there are any other statements that contradict this conclusion.\n\nWe also know that:\n- If someone is big and they see the lion then they are green (statement 9).\n- The lion sees the cow (statement 7).\n\nHowever, we cannot conclude that the lion is big from this information. We need to check if there are any other statements that contradict this conclusion or if we can conclude that the lion is not big.\n\nFrom the information, we have:\n- The lion is young (statement 10).\n- If someone is big then they visit the dog (statement 5).\n- The lion does not see the bald eagle (statement 8).\n\nWe cannot conclude that the lion is big from this information.\n\nHowever, we also know that:\n- The lion eats the cow (statement 14) and\n- If the lion eats the cow then the lion visits the bald eagle (statement 13).\n\nFrom this information, we can conclude that the lion visits the bald eagle. But we cannot conclude whether the lion is big or not.\n\nSince we cannot conclude that the lion is big, we need to check if there are any other statements that contradict this conclusion or if we can conclude that the lion is not big.\n\nFrom the information, we have:\n- The lion is young (statement 10).\n- If someone is young then they are big (statement 11).\n\nHowever, we also know that:\n- If someone eats the lion and they are big then the lion eats the dog (statement 7).\n\nWe cannot conclude that the lion is big from this information.\n\nHowever, we also know that:\n- The lion sees the cow (statement 7) and\n- The cow visits the lion (statement 8).\n\nFrom this information, we can conclude that the lion sees the cow. But we cannot conclude whether the lion is big or not.\n\nSince we cannot conclude that the lion is big, we need to check if there are any other statements that contradict this conclusion or if we can conclude that the lion is not big.\n\nHowever, we also know that:\n- The lion is young (statement 10).\n- If someone is young then they are big (statement 11).\n\nSince the lion is young, it satisfies the condition in statement 11.\n\nBased on the given information and the analysis, we can conclude that the lion is big.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is big\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The lion is young (Given information)\n2. If someone is young then they are big (Given information)\n   So, from (1) and (2), we can conclude that the lion is big.\n\nTherefore, the statement \"The lion is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is big\" is true, false, or unknown, we need to use the given information and the logical rules provided.\n\n1. The lion is young. (Given)\n\nFrom this, we can use the rule: If someone is young then they are big.\n\nSo, the lion is big.\n\nTherefore, the statement \"The lion is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is young. (Given)\n\n2. If someone is young then they are big. (Given)\n   This implies that the lion is big, as the lion is young.\n\nHowever, we need to check if there are any other information that can contradict this conclusion.\n\n3. The lion does not see the bald eagle. (Given)\n\n4. If someone is big and they do not see the bald eagle then the bald eagle is rough. (Given)\n   This implies that the lion is not big, as the lion does not see the bald eagle.\n\nNow we have a contradiction between steps 2 and 4. \n\nFrom step 2, we concluded that the lion is big. \nFrom step 4, we concluded that the lion is not big.\n\nThis means that we cannot determine whether the statement \"The lion is big\" is true or false based on the given information.\n\nTherefore, the final answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is big\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"If someone is young then they are big,\" we can conclude that if the lion is young, it is big. However, we don't know if the lion is young or not yet.\n\n2. The given information states that \"The lion is young.\" This is a direct statement, so we can conclude that the lion is indeed young.\n\n3. Since we determined that the lion is young in step 2, and from step 1 we know that if the lion is young, it is big, we can conclude that the lion is big.\n\nTherefore, the statement \"The lion is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the lion is big or not, let's analyze the given information step by step.\n\n1. The lion is young. (Direct statement)\n2. If someone is young then they are big. (Rule 10)\n   From this, we can conclude that the lion is big.\n\nSo, the final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to determine whether the lion is big or not. We can do this by analyzing the given statements and using logical reasoning.\n\n1. The lion is young. \nThis statement directly tells us that the lion is young, but we need to find out if it's big or not.\n\n2. If someone is young then they are big. \nThis statement directly contradicts statement 1. It implies that being young means being big, but the lion is young, which should make it big. However, the statement \"If someone is young then they are big\" might be a general rule and does not necessarily apply to the lion in this context.\n\nHowever, this statement creates a contradiction. We will have to use this statement to infer the lion's properties.\n\nLet's use the given statements to check the properties of the lion.\n\n3. The lion sees the cow. \nThis statement does not provide any direct information about the lion's size.\n\n4. The lion is young. \nThis statement already tells us that the lion is young.\n\n5. The lion does not see the bald eagle. \nThis statement does not provide any direct information about the lion's size.\n\nHowever, we can use the given statements to check the properties of the bald eagle and then infer the lion's size.\n\n1. The bald eagle eats the cow. \nThis statement does not provide any direct information about the lion's size.\n\n2. The bald eagle is rough. \nThis statement does not provide any direct information about the lion's size.\n\n3. If someone is big and they do not see the bald eagle then the bald eagle is rough. \nThis statement does not provide any direct information about the lion's size.\n\nHowever, let's analyze the properties of the bald eagle to see if we can infer the lion's size.\n\n4. The cow sees the bald eagle. \nThis statement does not provide any direct information about the lion's size.\n\n5. The cow is round. \nThis statement does not provide any direct information about the lion's size.\n\nHowever, let's analyze the properties of the cow to see if we can infer the lion's size.\n\n1. The cow visits the lion. \nThis statement tells us that the lion is visited by the cow.\n\n2. The cow is round. \nThis statement does not provide any direct information about the lion's size.\n\nHowever, let's analyze the properties of the cow to see if we can infer the lion's size.\n\n3. The cow visits the lion. \nThis statement already tells us that the lion is visited by the cow.\n\n4. The lion sees the cow. \nThis statement already tells us that the lion sees the cow.\n\nHowever, we can use the statement \"If someone visits the dog then the dog eats the cow\" to infer the lion's size.\n\n1. The lion sees the cow. \nThis statement already tells us that the lion sees the cow.\n\n2. The cow visits the lion. \nThis statement already tells us that the lion is visited by the cow.\n\n3. The lion does not see the bald eagle. \nThis statement already tells us that the lion does not see the bald eagle.\n\nHowever, let's analyze the properties of the dog to see if we can infer the lion's size.\n\n1. The dog is rough. \nThis statement does not provide any direct information about the lion's size.\n\nHowever, let's analyze the properties of the cow to see if we can infer the lion's size.\n\n1. The cow is round. \nThis statement does not provide any direct information about the lion's size.\n\nHowever, let's analyze the properties of the lion to see if we can infer its size.\n\n1. The lion sees the cow. \nThis statement already tells us that the lion sees the cow.\n\n2. The lion does not see the bald eagle. \nThis statement already tells us that the lion does not see the bald eagle.\n\n3. The lion is young. \nThis statement already tells us that the lion is young.\n\nHowever, we can use the statement \"If someone is young then they are big\" to infer the lion's size.\n\nLet's use the statement \"If someone is big and they do not see the bald eagle then the bald eagle is rough\" to check if the lion is big or not.\n\n1. The lion does not see the bald eagle. \nThis statement already tells us that the lion does not see the bald eagle.\n\n2. The lion is big or the lion is not big. \nLet's assume the lion is big.\n\n3. If someone is big and they do not see the bald eagle then the bald eagle is rough. \nSince the lion is big and does not see the bald eagle, this statement implies that the bald eagle is rough.\n\nHowever, the statement \"If someone is rough and they eat the cow then they are young\" tells us that if the lion eats the cow and is rough, it would be young, which contradicts the statement \"If someone is young then they are big.\" \n\nThis creates a contradiction.\n\nNow let's assume the lion is not big.\n\n1. If someone is big and they do not see the bald eagle then the bald eagle is rough. \nSince the lion is not big, the bald eagle is not rough.\n\nHowever, the statement \"If someone is big then they visit the dog\" tells us that if the lion is big, it would visit the dog.\n\nThis creates another contradiction.\n\nSince both assumptions lead to contradictions, we cannot determine whether the lion is big or not.\n\nTherefore, the answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and their implications. \n\nFrom the given statements, we know:\n- If someone is big and they do not see the bald eagle then the bald eagle is rough.\n- If someone is big then they visit the dog.\n- If the lion eats the cow then the lion visits the bald eagle.\n- If someone is big then they are green.\n- If someone is young then they are big.\n\nWe are asked to determine whether the statement \"The lion is big\" is true, false, or unknown.\n\nLet's start by analyzing the statement \"If someone is big then they visit the dog.\" From this statement, we can conclude that if the lion is big, it must visit the dog.\n\nNext, we analyze the statement \"If someone is big then they are green.\" This statement implies that if the lion is big, it must be green.\n\nHowever, we also know that \"If someone is big and they do not see the bald eagle then the bald eagle is rough.\" This statement implies that if the lion is big and does not see the bald eagle, the bald eagle is rough. But we already know that the bald eagle sees the cow, and the lion sees the cow. This means the lion must see the bald eagle.\n\nNow, let's analyze the statement \"If the lion eats the cow then the lion visits the bald eagle.\" Since we know the lion sees the cow, we can infer that the lion does not eat the cow.\n\nIf the lion does not eat the cow, we can analyze the statement \"If someone is rough and they eat the cow then they are young.\" This statement implies that if the bald eagle eats the cow, it is young. However, we also know that the bald eagle is rough. Therefore, the bald eagle cannot eat the cow.\n\nSince the bald eagle does not eat the cow, we can conclude that the lion does not eat the cow. Now, let's analyze the statement \"If someone eats the lion and they are big then the lion eats the dog.\" This statement implies that if someone big eats the lion, the lion eats the dog. However, we know that the lion does not eat the dog.\n\nNow, let's analyze the statement \"If someone visits the dog then the dog eats the cow.\" This statement implies that if the lion visits the dog, the dog eats the cow. However, we know that the lion does not eat the dog.\n\nFrom the statement \"If someone is big then they are green,\" we can conclude that the lion must be green if it is big.\n\nHowever, we also know that \"If someone is green and they eat the bald eagle then the bald eagle is not rough.\" This statement implies that if the lion is green, it cannot eat the bald eagle, because we already know that the bald eagle is rough.\n\nWe can now conclude that if the lion is big, it must be green, but we cannot determine whether the lion eats the bald eagle. Therefore, we cannot determine whether the lion is big.\n\nSo, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is big\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\nFrom the given information:\n- The lion is young.\n- The lion does not see the bald eagle.\n- The lion sees the cow.\n\nFrom the rules:\n- If someone is young then they are big. (Rule 13)\n- If someone is big and they see the lion then they are green. (Rule 10)\n- If someone is big and they do not see the bald eagle then the bald eagle is rough. (Rule 5)\n\nWe can use Rule 13 to conclude that the lion is big because it is young. This is based on the transitive rule \"if young then big.\"\n\nNow we can check the rules to see if there are any contradictions or additional information that can be derived from this conclusion.\n\nFrom the conclusion that the lion is big:\n- We cannot directly conclude if the lion is green or not because the lion sees the cow, not the other way around. \n- We cannot directly conclude if the bald eagle is rough or not because the lion does not see the bald eagle. \n\nHowever, we can use Rule 5 to conclude that if the lion is big and it does not see the bald eagle, the bald eagle must be rough. Since we know the lion is big from Rule 13, but we also know the lion does not see the bald eagle. So the bald eagle must be rough.\n\nSo we can conclude that the lion is big, and the statement is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the lion is big, we need to analyze the given statements and use logical deductions.\n\nFrom the given statements, we have:\n1. The lion is young.\n2. If someone is young then they are big.\n\nFrom statement 2, we can conclude that the lion is big because it is young.\n\nTherefore, the statement \"The lion is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The lion is big\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. The lion is young. \n(This statement is given directly)\n\n2. If someone is young then they are big. \n(This is a given rule)\n\nFrom statements 1 and 2, we can deduce that the lion is big.\n\nTherefore, the statement \"The lion is big\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_lion, big_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_lion, big_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cow)",
+          "z3_formula": "sees_lion_cow == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(big_lion, sees_lion_cow), green_X)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, lion)",
+          "z3_formula": "sees_cow_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_lion, visits_lion_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, cow)",
+          "z3_formula": "eats_lion_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> visits(X, eagle)",
+          "z3_formula": "Implies(eats_lion_cow, visits_lion_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(X, lion) & big(X) -> eats(X, dog)",
+          "z3_formula": "Implies(And(eats_X_lion, big_X), eats_X_dog)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_lion, big_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_lion, big_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_lion, big_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(lion, bald_eagle)",
+          "z3_formula": "not_sees_lion_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not sees(X, bald_eagle) -> rough(bald_eagle)",
+          "z3_formula": "Implies(And(big_lion, not_sees_lion_bald_eagle), rough_bald_eagle)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_lion, big_lion)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_lion, big_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_lion, big_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cow)",
+          "z3_formula": "sees_lion_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "does_not_see(lion, bald_eagle)",
+          "z3_formula": "does_not_see_lion_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & does_not_see(X, bald_eagle) -> rough(bald_eagle)",
+          "z3_formula": "Implies(And(big_lion, does_not_see_lion_bald_eagle), rough_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & eats(X, cow) -> young(X)",
+          "z3_formula": "Implies(And(rough_lion, eats_lion_cow), young_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_lion, visits_lion_dog)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bald_eagle, cow)",
+          "z3_formula": "sees_bald_eagle_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cow)",
+          "z3_formula": "sees_lion_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> visits(X, dog)",
+          "z3_formula": "Implies(big_lion, visits_lion_dog)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> green(X)",
+          "z3_formula": "Implies(big_lion, green_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & sees(X, bald_eagle) -> rough(bald_eagle)",
+          "z3_formula": "Implies(And(big_lion, sees_lion_bald_eagle), rough_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(lion, cow) -> visits(lion, bald_eagle)",
+          "z3_formula": "Implies(eats_lion_cow, visits_lion_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & eats(X, cow) -> young(X)",
+          "z3_formula": "Implies(And(rough_bald_eagle, eats_bald_eagle_cow), young_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) & big(X) -> eats(lion, dog)",
+          "z3_formula": "Implies(And(eats_X_lion, big_X), eats_lion_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> eats(dog, cow)",
+          "z3_formula": "Implies(visits_X_dog, eats_dog_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & eats(X, bald_eagle) -> Not(rough(bald_eagle))",
+          "z3_formula": "Implies(And(green_lion, eats_lion_bald_eagle), Not(rough_bald_eagle))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "Not(eats(lion, dog))",
+          "z3_formula": "Not(eats_lion_dog) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(visits(lion, dog))",
+          "z3_formula": "Not(visits_lion_dog) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(eats(dog, cow))",
+          "z3_formula": "Not(eats_dog_cow) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "Not(eats(lion, bald_eagle))",
+          "z3_formula": "Not(eats_lion_bald_eagle) == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "Not(eats(bald_eagle, cow))",
+          "z3_formula": "Not(eats_bald_eagle_cow) == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(bald_eagle))",
+          "z3_formula": "Not(rough_bald_eagle) == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "Not(young(bald_eagle))",
+          "z3_formula": "Not(young_bald_eagle) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "Not(big(X) | sees(X, bald_eagle))",
+          "z3_formula": "Not(Or(big_lion, sees_lion_bald_eagle)) == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "Not(big(X) | green(X))",
+          "z3_formula": "Not(Or(big_lion, green_lion)) == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "Not(big(X))",
+          "z3_formula": "Not(big_lion) == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not sees(lion, bald_eagle)",
+          "z3_formula": "Not(sees_lion_bald_eagle) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(lion, cow)",
+          "z3_formula": "sees_lion_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_lion, big_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(big_lion, sees_lion_lion), green_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & not sees(X, bald_eagle) -> rough(bald_eagle)",
+          "z3_formula": "Implies(And(big_lion, Not(sees_lion_bald_eagle)), rough_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_lion, big_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_lion, big_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(lion)",
+          "z3_formula": "big_lion == True",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 70,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 37
+    },
+    "maxsat_stats": {
+      "satisfied": 32,
+      "excluded": 5,
+      "total_weight": 65,
+      "solve_time_ms": 1.5211841091513634
+    },
+    "timing": {
+      "trace_gen_s": 13.428,
+      "extraction_s": 17.485,
+      "dedup_s": 0.404,
+      "maxsat_s": 0.004,
+      "total_s": 31.321
+    }
+  }
+}

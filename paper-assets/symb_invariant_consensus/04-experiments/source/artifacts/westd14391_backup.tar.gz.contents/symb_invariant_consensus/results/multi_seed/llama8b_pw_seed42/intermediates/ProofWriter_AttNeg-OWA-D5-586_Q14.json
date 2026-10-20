@@ -1,0 +1,870 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-586_Q14",
+    "problem": "Erin is smart. Fiona is quiet. Gary is blue. Gary is kind. Gary is quiet. Gary is red. Harry is smart. If Harry is smart then Harry is kind. Quiet, smart things are blue. If something is green and smart then it is not blue. Kind things are quiet. All blue, green things are smart. Red things are furry. If Harry is smart and Harry is blue then Harry is red.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is smart.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nSmart($x, bool) ::: Is x smart?\nQuiet($x, bool) ::: Is x quiet?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nKind($x, bool) ::: Is x kind?\nFurry($x, bool) ::: Is x furry?\n\nFacts:\nSmart(Erin, True) ::: Erin is smart.\nQuiet(Fiona, True) ::: Fiona is quiet.\nBlue(Gary, True) ::: Gary is blue.\nKind(Gary, True) ::: Gary is kind.\nQuiet(Gary, True) ::: Gary is quiet.\nRed(Gary, True) ::: Gary is red.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nSmart(Harry, True) >>> Kind(Harry, True) ::: If Harry is smart then Harry is kind.\nQuiet($x, True) && Smart($x, True) >>> Blue($x, True) ::: Quiet, smart things are blue.\nGreen($x, True) && Smart($x, True) >>> Blue($x, False) ::: If something is green and smart then it is not blue.\nKind($x, True) >>> Quiet($x, True) ::: Kind things are quiet.\nBlue($x, True) && Green($x, True) >>> Smart($x, True) ::: All blue, green things are smart.\nRed($x, True) >>> Furry($x, True) ::: Red things are furry.\nSmart(Harry, True) && Blue(Harry, True) >>> Red(Harry, True) ::: If Harry is smart and Harry is blue then Harry is red.\n\nQuery:\nSmart(Fiona, True) ::: Fiona is smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 117.5
+    },
+    "answer_counts": {
+      "Unknown": 11
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Given statements:\n   - Erin is smart.\n   - Fiona is quiet.\n   - Gary is blue.\n   - Gary is kind.\n   - Gary is quiet.\n   - Gary is red.\n   - Harry is smart.\n   - If Harry is smart then Harry is kind.\n   - Quiet, smart things are blue.\n   - If something is green and smart then it is not blue.\n   - Kind things are quiet.\n   - All blue, green things are smart.\n   - Red things are furry.\n   - If Harry is smart and Harry is blue then Harry is red.\n\n2. To determine whether Fiona is smart, we need to find a direct or indirect link between Fiona and the property of being smart.\n\n   - From the given statements, we know that Fiona is quiet (Statement 2), but this doesn't directly tell us if she is smart or not.\n\n   - Since we can't find any direct or indirect link between Fiona and the property of being smart, we need to analyze the given information to see if it helps us make a conclusion.\n\n   - However, we can see that the statements don't provide any explicit information about Fiona's color or whether she is kind.\n\n   - Since we can't make any conclusions based on the given information, the answer to the statement \"Fiona is smart\" is unknown.\n\n   - However, to confirm this, let's look at the last statement. The last statement \"If Harry is smart and Harry is blue then Harry is red\" doesn't help us determine Fiona's intelligence, but let's confirm that Fiona is not blue since Harry is blue and the statement is a conditional statement that doesn't include Fiona.\n\n   - Fiona is quiet, but quiet things can be blue if they are also smart. We don't know if Fiona is smart or not. However, we also know that red things are furry, but we don't know if Fiona is red or not.\n\n   - Since we can't make any conclusions about Fiona being smart based on the given information, the answer to the statement \"Fiona is smart\" is indeed unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the process of elimination to determine the truth value of the statement \"Fiona is smart.\"\n\n1. Erin is smart.\n   - This statement is not relevant to Fiona.\n\n2. Fiona is quiet.\n   - This statement is given directly.\n\n3. Gary is blue.\n   - This statement is given directly.\n\n4. Gary is kind.\n   - This statement is given directly.\n\n5. Gary is quiet.\n   - This statement is given directly.\n\n6. Gary is red.\n   - This statement is given directly.\n\n7. Harry is smart.\n   - This statement is given directly.\n\n8. If Harry is smart then Harry is kind.\n   - This statement is given as a conditional statement. It does not directly relate to Fiona, but we will keep it in mind for future analysis.\n\n9. Quiet, smart things are blue.\n   - This statement does not directly relate to Fiona, but we will keep it in mind for future analysis.\n\n10. If something is green and smart then it is not blue.\n    - This statement does not directly relate to Fiona, but we will keep it in mind for future analysis.\n\n11. Kind things are quiet.\n    - This statement does not directly relate to Fiona, but we will keep it in mind for future analysis.\n\n12. All blue, green things are smart.\n    - This statement does not directly relate to Fiona, but we will keep it in mind for future analysis.\n\n13. Red things are furry.\n    - This statement does not directly relate to Fiona, but we will keep it in mind for future analysis.\n\n14. If Harry is smart and Harry is blue then Harry is red.\n    - This statement is given as a conditional statement. It does not directly relate to Fiona, but we will keep it in mind for future analysis.\n\nNow, let's analyze the given statements to determine the truth value of \"Fiona is smart.\"\n\nWe know that Fiona is quiet (statement 2), but there is no direct information about Fiona's intelligence or color. However, we can use the given statements to make some inferences.\n\nFrom statement 9, we know that quiet, smart things are blue. However, this statement does not directly relate to Fiona, but we can use it to make a comparison with Gary. Gary is quiet (statement 5) and Gary is blue (statement 3), so Gary is an example of a quiet, smart thing that is blue.\n\nHowever, Gary is also red (statement 6), and from statement 14, we know that if Harry is smart and Harry is blue, then Harry is red. This implies that Gary is not smart, because Gary is both blue and red.\n\nNow, let's revisit the statement \"Fiona is smart.\" We know that Fiona is quiet (statement 2), but we cannot directly conclude that Fiona is smart or not smart. We can only say that if Fiona were smart, then Fiona would be blue, according to statement 9.\n\nHowever, we also know that Gary is an example of a quiet thing that is both blue and red. This implies that the statement \"quiet, smart things are blue\" is not universally true, because Gary is a counterexample.\n\nTherefore, we cannot conclude that Fiona is smart or not smart, because we do not have enough information to determine Fiona's color or intelligence. The truth value of the statement \"Fiona is smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is quiet. (Given information)\n\n2. Quiet, smart things are blue. (Given information)\n   - We don't know if Fiona is smart yet. We need to find out if this condition applies to Fiona.\n\n3. If something is green and smart then it is not blue. (Given information)\n   - We don't know if Fiona is green yet. We need to find out if this condition applies to Fiona.\n\n4. Kind things are quiet. (Given information)\n   - We know Fiona is quiet, but we don't know if she is kind yet. We need to find out if this condition applies to Fiona.\n\n5. Gary is kind. (Given information)\n   - We don't know if Fiona is Gary. We need to find out the relationship between Fiona and Gary.\n\n6. Gary is quiet. (Given information)\n   - We already know Fiona is quiet. We still need to find out the relationship between Fiona and Gary.\n\n7. Gary is blue. (Given information)\n   - We don't know if Fiona is blue yet. We need to find out if this condition applies to Fiona.\n\n8. Gary is red. (Given information)\n   - We don't know if Fiona is red yet. We need to find out if this condition applies to Fiona.\n\n9. Red things are furry. (Given information)\n   - We don't know if Fiona is furry yet. We need to find out if this condition applies to Fiona.\n\n10. If Harry is smart then Harry is kind. (Given information)\n    - We don't know if Harry is smart yet. We need to find out if this condition applies to Harry.\n\n11. Harry is smart. (Given information)\n    - We don't know if Harry is kind yet. We need to find out if this condition applies to Harry.\n\n12. All blue, green things are smart. (Given information)\n    - We don't know if Harry is blue or green yet. We need to find out if this condition applies to Harry.\n\n13. If Harry is smart and Harry is blue then Harry is red. (Given information)\n    - We don't know if Harry is blue yet. We need to find out if this condition applies to Harry.\n\nNow, let's analyze the given information again, and try to find a connection between Fiona and the conditions.\n\nFrom the given information, we can infer that:\n- Fiona is quiet (given information)\n- Quiet, smart things are blue (given information)\n- Kind things are quiet (given information)\n\nBut there is no direct information about Fiona being smart or kind. However, we can try to connect the information to Fiona.\n\nFrom the given information, we can see that Gary is quiet and kind. But there is no direct information about Fiona being Gary. However, we can try to connect the information to Fiona.\n\nSince Fiona is quiet, and kind things are quiet, we can infer that Fiona might be kind. But we still don't know if Fiona is smart.\n\nNow, let's analyze the relationship between Fiona and Harry.\n\nThere is no direct information about Fiona and Harry being the same person. But we can try to connect the information to Fiona.\n\nSince Harry is smart and kind, we can infer that Harry is quiet (kind things are quiet). But we still don't know if Fiona is smart or kind.\n\nNow, let's analyze the relationship between Fiona and Gary.\n\nThere is no direct information about Fiona and Gary being the same person. But we can try to connect the information to Fiona.\n\nSince Gary is blue, and quiet, smart things are blue, we can infer that Gary is smart. But we still don't know if Fiona is smart.\n\nHowever, we can try to connect the information to Fiona.\n\nSince Gary is red, and red things are furry, we can infer that Gary is not a quiet, smart thing (red things are not blue). But we still don't know if Fiona is smart.\n\nNow, let's analyze the given information again, and try to find a connection between Fiona and the conditions.\n\nFrom the given information, we can infer that:\n- Fiona is quiet (given information)\n- Quiet, smart things are blue (given information)\n\nWe can try to connect the information to Fiona.\n\nSince Fiona is quiet, and quiet, smart things are blue, we can infer that Fiona might be smart. But we still don't know if Fiona is blue or not.\n\nHowever, we can try to connect the information to Fiona.\n\nSince Harry is smart and blue, and if Harry is smart and blue then Harry is red, we can infer that Harry is red. But we still don't know if Fiona is smart or blue.\n\nNow, let's analyze the given information again, and try to find a connection between Fiona and the conditions.\n\nFrom the given information, we can infer that:\n- Fiona is quiet (given information)\n- Quiet, smart things are blue (given information)\n\nWe can try to connect the information to Fiona.\n\nSince Fiona is quiet, and quiet, smart things are blue, we can infer that Fiona might be smart. But we still don't know if Fiona is blue or not.\n\nHowever, we can try to connect the information to Fiona.\n\nSince all blue, green things are smart, and Fiona is not green (there is no direct information about Fiona being green), we can infer that Fiona is not a blue, green thing.\n\nBut we still don't know if Fiona is smart or blue.\n\nNow, let's analyze the given information again, and try to find a connection between Fiona and the conditions.\n\nFrom the given information, we can infer that:\n- Fiona is quiet (given information)\n- Quiet, smart things are blue (given information)\n\nWe can try to connect the information to Fiona.\n\nSince Fiona is quiet, and quiet, smart things are blue, we can infer that Fiona might be smart. But we still don't know if Fiona is blue or not.\n\nHowever, we can try to connect the information to Fiona.\n\nSince Fiona is quiet, and kind things are quiet, we can infer that Fiona might be kind. But we still don't know if Fiona is smart.\n\nNow, let's analyze the given information again, and try to find a connection between Fiona and the conditions.\n\nFrom the given information, we can infer that:\n- Fiona is quiet (given information)\n- Quiet, smart things are blue (given information)\n- If something is green and smart then it is not blue (given information)\n\nWe can try to connect the information to Fiona.\n\nSince Fiona is quiet, and quiet, smart things are blue, we can infer that Fiona might be smart. But we still don't know if Fiona is blue or not.\n\nHowever, we can try to connect the information to Fiona.\n\nSince Fiona is not green (there is no direct information about Fiona being green), we can infer that Fiona is not a green, smart thing.\n\nNow, let's analyze the given information again, and try to find a connection between Fiona and the conditions.\n\nFrom the given information, we can infer that:\n- Fiona is quiet (given information)\n- Quiet, smart things are blue (given information)\n- If something is green and smart then it is not blue (given information)\n\nWe can try to connect the information to Fiona.\n\nSince Fiona is quiet, and quiet, smart things are blue, we can infer that Fiona might be smart. But we still don't know if Fiona is blue or not.\n\nHowever, we can try to connect the information to Fiona.\n\nSince Fiona is not green (there is no direct information about Fiona being green), we can infer that Fiona is not a green, smart thing.\n\nBut we still don't know if Fiona is smart or blue.\n\nNow, let's analyze the given information again, and try to find a connection between Fiona and the conditions.\n\nFrom the given information, we can infer that:\n- Fiona is quiet (given information)\n- Quiet, smart things are blue (given information)\n- If something is green and smart then it is not blue (given information)\n\nWe can try to connect the information to Fiona.\n\nSince Fiona is quiet, and quiet, smart things are blue, we can infer that Fiona might be smart. But we still don't know if Fiona is blue or not.\n\nHowever, we can try to connect the information to Fiona.\n\nSince Fiona is not green (there is no direct information about Fiona being green), we can infer that Fiona is not a green, smart thing.\n\nBut we still don't know if Fiona is smart or blue.\n\nNow, let's analyze the given information again, and try to find a connection between Fiona and the conditions.\n\nFrom the given information, we can infer that:\n- Fiona is quiet (given information)\n- Quiet, smart things are blue (given information)\n- If something is green and smart then it is not blue (given information)\n\nWe can try to connect the information to Fiona.\n\nSince Fiona is quiet, and quiet, smart things are blue, we can infer that Fiona might be smart. But we still don't know if Fiona is blue or not.\n\nHowever, we can try to connect the information to Fiona.\n\nSince Fiona is not green (there is no direct information about Fiona being green), we can infer that Fiona is not a green, smart thing.\n\nBut we still don't know if Fiona is smart or blue.\n\nNow, let's analyze the given information again, and try to find a connection between Fiona and the conditions.\n\nFrom the given information, we can infer that:\n- Fiona is quiet (given information)\n- Quiet, smart things are blue (given information)\n- If something is green and smart then it is not blue (given information)\n\nWe can try to connect the information to Fiona.\n\nSince Fiona is quiet, and quiet, smart things are blue, we can infer that Fiona might be smart. But we still don't know if Fiona is blue or not.\n\nHowever, we can try to connect the",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Fiona is smart, we need to analyze the given statements and their implications.\n\n1. Erin is smart. (No information about Fiona)\n2. Fiona is quiet. (No information about Fiona's intelligence)\n3. Gary is blue. (No information about Fiona)\n4. Gary is kind. (No information about Fiona)\n5. Gary is quiet. (No information about Fiona)\n6. Gary is red. (No information about Fiona)\n7. Harry is smart. (No information about Fiona)\n8. If Harry is smart then Harry is kind. (No information about Fiona)\n9. Quiet, smart things are blue. (No information about Fiona)\n10. If something is green and smart then it is not blue. (No information about Fiona)\n11. Kind things are quiet. (No information about Fiona)\n12. All blue, green things are smart. (No information about Fiona)\n13. Red things are furry. (No information about Fiona)\n14. If Harry is smart and Harry is blue then Harry is red.\n\nFrom statement 2, we know Fiona is quiet. Now we need to find if there's any relation between being quiet and being smart.\n\nFrom statement 8, we can say that if something is smart then it is kind. And from statement 11, if something is kind then it is quiet. Therefore, if something is smart, it must be quiet.\n\nFrom statement 9, if something is quiet and smart, then it is blue.\n\nNow, we know Fiona is quiet, and if Fiona is smart, then Fiona must be blue. However, statement 12 says that all blue, green things are smart. This implies that if something is blue, then it is either green or smart. We still can't conclude Fiona's intelligence from this information.\n\nFrom statement 1, Erin is smart, but there's no information about Erin's color. Therefore, we can't conclude if blue things are smart or not just because Erin is smart.\n\nHowever, statement 14 gives us some more information. It says if Harry is smart and Harry is blue then Harry is red. We can infer from this that being smart and blue is not exclusive to Harry. So, if Fiona is blue and smart, then she must be red.\n\nNow we have to check if there's any statement that contradicts the idea of Fiona being red. From statement 13, we know that red things are furry.\n\nWe still can't determine Fiona's intelligence from the given statements.\n\nSo, the final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information and apply the rules of inference.\n\nGiven information:\n\n1. Erin is smart.\n2. Fiona is quiet.\n3. Gary is blue.\n4. Gary is kind.\n5. Gary is quiet.\n6. Gary is red.\n7. Harry is smart.\n8. If Harry is smart then Harry is kind. (Rule 1)\n9. Quiet, smart things are blue. (Rule 2)\n10. If something is green and smart then it is not blue. (Rule 3)\n11. Kind things are quiet. (Rule 4)\n12. All blue, green things are smart. (Rule 5)\n13. Red things are furry. (Rule 6)\n14. If Harry is smart and Harry is blue then Harry is red. (Rule 7)\n\nNow, let's apply the rules of inference to the statement \"Fiona is smart\".\n\nFrom Rule 2, we know that quiet, smart things are blue. However, we do not have any information about Fiona being quiet and smart at the same time. Therefore, we cannot conclude that Fiona is blue.\n\nFrom Rule 1, we know that if Harry is smart then Harry is kind. However, this rule does not apply to Fiona. We cannot conclude that Fiona is kind.\n\nFrom Rule 4, we know that kind things are quiet. However, this rule does not apply to Fiona. We cannot conclude that Fiona is quiet.\n\nFrom Rule 7, we know that if Harry is smart and Harry is blue then Harry is red. However, this rule does not apply to Fiona. We cannot conclude that Fiona is red.\n\nWe have not found any rule that directly applies to Fiona. Therefore, we cannot conclude that Fiona is smart or not.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given information is in the form of statements and their implications. We will break down each statement and analyze its implications.\n\n2. Let's represent the given information in a more structured way using logical variables:\n- S: Smart\n- Q: Quiet\n- B: Blue\n- G: Green\n- K: Kind\n- R: Red\n- F: Furry\n\n3. Given information:\n- Erin is smart: S\n- Fiona is quiet: Q\n- Gary is blue: B\n- Gary is kind: K\n- Gary is quiet: Q\n- Gary is red: R\n- Harry is smart: S\n- Harry is kind: K\n- Quiet, smart things are blue: Q \u2229 S \u2192 B\n- If something is green and smart then it is not blue: G \u2229 S \u2192 \u00acB\n- Kind things are quiet: K \u2192 Q\n- All blue, green things are smart: B \u2229 G \u2192 S\n- Red things are furry: R \u2192 F\n- If Harry is smart and Harry is blue then Harry is red: S \u2229 B \u2192 R\n\n4. Now, let's analyze the statement \"Fiona is smart.\" \nTo determine whether Fiona is smart, we need to find any information that directly or indirectly connects Fiona to being smart.\n\n5. We know that Fiona is quiet (Q). We need to see if there's any connection between quiet things and smart things.\n- From the given information, we have: Quiet, smart things are blue: Q \u2229 S \u2192 B\n- However, we don't have any information that directly connects Fiona to being blue or green, or any other property that would help us determine if she's smart.\n\n6. The only connection we have is that Fiona is quiet, but there's no direct implication that quiet things are smart. We also don't have enough information to conclude that Fiona is blue, green, or any other color, which would help us determine if she's smart.\n\n7. Since we can't conclude that Fiona is smart using the given information, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information and apply it to the statement we want to evaluate: \"Fiona is smart.\"\n\nGiven Information:\n\n1. Erin is smart.\n2. Fiona is quiet.\n3. Gary is blue.\n4. Gary is kind.\n5. Gary is quiet.\n6. Gary is red.\n7. Harry is smart.\n8. If Harry is smart then Harry is kind.\n9. Quiet, smart things are blue.\n10. If something is green and smart then it is not blue.\n11. Kind things are quiet.\n12. All blue, green things are smart.\n13. Red things are furry.\n14. If Harry is smart and Harry is blue then Harry is red.\n\nWe need to determine if Fiona is smart. To do this, we will analyze the given information and look for any connections or implications that might affect Fiona's smartness.\n\nFrom statement 2, we know that Fiona is quiet. \n\nNow, we need to find a connection between being quiet and being smart. We can look for relevant information in the given statements:\n\n- Statement 9: Quiet, smart things are blue.\n- Statement 11: Kind things are quiet.\n- Statement 2: Fiona is quiet.\n- Statement 8: If Harry is smart then Harry is kind.\n\nWe can see that being quiet and being smart are related, as stated in statement 9. However, we cannot directly conclude that Fiona is smart based on this information alone, as we do not know if Fiona is blue or not.\n\nLet's analyze the information about blue things:\n\n- Statement 3: Gary is blue.\n- Statement 9: Quiet, smart things are blue.\n- Statement 2: Fiona is quiet.\n- Statement 13: Red things are furry.\n- Statement 6: Gary is red.\n\nWe know that Gary is both blue and red. However, this does not provide any information about Fiona.\n\nLet's analyze the information about green things:\n\n- Statement 10: If something is green and smart then it is not blue.\n- Statement 12: All blue, green things are smart.\n\nWe do not have any information about Fiona being green, so we cannot apply this information to her.\n\nNow, let's analyze the information about Harry:\n\n- Statement 7: Harry is smart.\n- Statement 8: If Harry is smart then Harry is kind.\n- Statement 11: Kind things are quiet.\n- Statement 14: If Harry is smart and Harry is blue then Harry is red.\n\nWe know that Harry is smart, but we do not have any information about Fiona being related to Harry in any way.\n\nIn conclusion, we do not have enough information to determine whether Fiona is smart or not. There are no direct connections or implications that affect Fiona's smartness based on the given information.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Let's start by identifying what we know about Fiona:\n\n   - Fiona is quiet. (Directly stated)\n   - There is no direct information about Fiona being smart, blue, green, kind, or red.\n\n2. Now, let's examine the information about other individuals:\n\n   - Erin is smart. (Directly stated, but this information is not relevant to Fiona.)\n   - Gary is blue. (Directly stated, but this information is not relevant to Fiona.)\n   - Gary is kind. (Directly stated, but this information is not relevant to Fiona.)\n   - Gary is quiet. (Directly stated, but this information is not relevant to Fiona.)\n   - Gary is red. (Directly stated, but this information is not relevant to Fiona.)\n   - Harry is smart. (Directly stated)\n   - If Harry is smart then Harry is kind. (This is a conditional statement, but it is relevant to Harry, not Fiona.)\n   - Quiet, smart things are blue. (This statement is not directly relevant to Fiona.)\n   - If something is green and smart then it is not blue. (This statement is not directly relevant to Fiona.)\n   - Kind things are quiet. (This statement is not directly relevant to Fiona.)\n   - All blue, green things are smart. (This statement is not directly relevant to Fiona.)\n   - Red things are furry. (This statement is not directly relevant to Fiona.)\n   - If Harry is smart and Harry is blue then Harry is red. (This statement is not directly relevant to Fiona.)\n\n3. Now, let's try to find a connection between the information about Fiona and the information about other individuals.\n\n   - Since Fiona is quiet and there is a statement that says \"Kind things are quiet,\" it might seem like Fiona is kind. However, this statement is not directly relevant to Fiona, and we need more information to confirm that Fiona is kind.\n\n   - We know that quiet, smart things are blue, but this statement is not directly relevant to Fiona. We also know that Gary is blue, but this information is not relevant to Fiona.\n\n   - The statement \"If something is green and smart then it is not blue\" is not relevant to Fiona.\n\n   - The statement \"All blue, green things are smart\" is not relevant to Fiona.\n\n   - The statement \"Red things are furry\" is not relevant to Fiona.\n\n4. Now, let's try to find a connection between Fiona's characteristics and the characteristics of other individuals.\n\n   - We know that Gary is quiet, but this information is not relevant to Fiona.\n\n   - We know that Harry is smart, but this information is not directly relevant to Fiona.\n\n   - We know that if Harry is smart then Harry is kind, but this information is not directly relevant to Fiona.\n\n5. After examining the given information, we can see that there is no direct information about Fiona being smart. However, there is no information that contradicts the possibility of Fiona being smart.\n\nTherefore, the statement \"Fiona is smart\" is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information and apply it to the statement.\n\nGiven statements:\n\n1. Erin is smart.\n2. Fiona is quiet.\n3. Gary is blue.\n4. Gary is kind.\n5. Gary is quiet.\n6. Gary is red.\n7. Harry is smart.\n8. If Harry is smart then Harry is kind.\n9. Quiet, smart things are blue.\n10. If something is green and smart then it is not blue.\n11. Kind things are quiet.\n12. All blue, green things are smart.\n13. Red things are furry.\n14. If Harry is smart and Harry is blue then Harry is red.\n\nStatement to evaluate: Fiona is smart.\n\nLet's start by analyzing the information we have about Fiona:\n\n- Fiona is quiet (statement 2)\n\nNow, let's examine the possible connections between \"quiet\" and the other attributes (smart, kind, blue, green, red).\n\nFrom statement 9, we know that quiet, smart things are blue. This means that if Fiona is quiet and smart, she would be blue.\n\nHowever, we don't have any direct information about Fiona's color. We can't conclude that Fiona is blue, green, or red based on the given information.\n\nNow, let's examine the information we have about Fiona's potential smartness:\n\n- We don't have any direct information about Fiona's smartness from the given statements.\n- We know that Harry is smart (statement 7) and that if Harry is smart, then Harry is kind (statement 8). However, this information doesn't provide any evidence for or against Fiona's smartness.\n\nBased on the given information, we cannot conclude whether Fiona is smart or not. Therefore, the statement \"Fiona is smart\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given statements and find a connection to Fiona being smart. \n\n1. Erin is smart. \n2. Fiona is quiet.\n3. Gary is blue.\n4. Gary is kind.\n5. Gary is quiet.\n6. Gary is red.\n7. Harry is smart.\n8. If Harry is smart then Harry is kind.\n9. Quiet, smart things are blue.\n10. If something is green and smart then it is not blue.\n11. Kind things are quiet.\n12. All blue, green things are smart.\n13. Red things are furry.\n14. If Harry is smart and Harry is blue then Harry is red.\n\nFrom statement 2, we know Fiona is quiet. We don't have any information about Fiona being smart, so we cannot conclude anything from this statement alone.\n\nFrom statement 7, we know Harry is smart. But we need to find a connection between Harry being smart and Fiona being smart.\n\nFrom statement 8, we know that if Harry is smart then he is kind. We don't have any information about Fiona being kind or not, but we know Fiona is quiet from statement 2.\n\nFrom statement 9, we know that quiet, smart things are blue. But we cannot conclude that Fiona is blue from this statement alone.\n\nFrom statement 10, we know that if something is green and smart then it is not blue. But we don't have any information about Fiona being green or not.\n\nFrom statement 11, we know that kind things are quiet. We know Gary is kind from statement 4 and Gary is quiet from statement 5. But we don't have any information about Fiona being kind or not.\n\nFrom statement 12, we know that all blue, green things are smart. But we cannot conclude that Fiona is smart from this statement alone.\n\nFrom statement 13, we know that red things are furry. We know Gary is red from statement 6, but we don't have any information about Fiona being red or not.\n\nFrom statement 14, we know that if Harry is smart and Harry is blue then Harry is red. We know Harry is smart from statement 7, and if Harry is blue then he is red. But we cannot conclude that Fiona is smart from this statement alone.\n\nHowever, we can see that there is no direct connection between Harry being smart and Fiona being smart. But we can use the fact that all blue, green things are smart (statement 12) and if something is green and smart then it is not blue (statement 10) to conclude that Fiona is not smart if she is green. But we don't have any information about Fiona being green or not.\n\nSince we don't have any information about Fiona being green or not, and we don't have any direct connection between Harry being smart and Fiona being smart, we cannot conclude whether Fiona is smart or not.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given statements are:\n   - Erin is smart.\n   - Fiona is quiet.\n   - Gary is blue.\n   - Gary is kind.\n   - Gary is quiet.\n   - Gary is red.\n   - Harry is smart.\n   - If Harry is smart then Harry is kind.\n   - Quiet, smart things are blue.\n   - If something is green and smart then it is not blue.\n   - Kind things are quiet.\n   - All blue, green things are smart.\n   - Red things are furry.\n   - If Harry is smart and Harry is blue then Harry is red.\n\n2. From the given statements, we have \"Fiona is quiet.\" and \"Kind things are quiet.\" We also have \"Gary is kind\" and \"Gary is quiet.\" However, there is no information about Fiona being kind. Therefore, we cannot determine whether Fiona is smart or not based on this information alone.\n\n3. We also have \"Quiet, smart things are blue.\" and \"Gary is quiet\" and \"Gary is not blue\" (since Gary is red). We cannot conclude that Gary is smart based on this information alone.\n\n4. We also have \"All blue, green things are smart.\" and \"Gary is blue\" and \"Gary is not green\" (since Gary is red). We cannot conclude that Gary is smart based on this information alone.\n\n5. However, we have \"If something is green and smart then it is not blue.\" We have no information about Fiona being green or smart. Therefore, we cannot determine whether Fiona is smart or not based on this information alone.\n\n6. We have \"Red things are furry\" and \"Gary is red.\" However, there is no information about Fiona being red. Therefore, we cannot determine whether Fiona is smart or not based on this information alone.\n\n7. We also have \"If Harry is smart and Harry is blue then Harry is red.\" We know that Harry is smart, but we do not know whether Harry is blue. However, we do not have any information about Fiona being blue.\n\n8. We also have \"Kind things are quiet.\" and \"Gary is kind\" and \"Gary is quiet.\" However, there is no information about Fiona being kind.\n\n9. We also have \"Quiet, smart things are blue.\" and \"Gary is quiet\" and \"Gary is not blue\" (since Gary is red). We cannot conclude that Gary is smart based on this information alone.\n\n10. We also have \"All blue, green things are smart.\" and \"Gary is blue\" and \"Gary is not green\" (since Gary is red). We cannot conclude that Gary is smart based on this information alone.\n\n11. We also have \"If Harry is smart then Harry is kind.\" We know that Harry is smart, but we do not know whether Harry is kind.\n\n12. From the given statements, we have no direct information about Fiona being smart or not. However, we can use the information \"Kind things are quiet\" and \"Gary is kind\" and \"Gary is quiet\" to conclude that Gary is kind, which is quiet. But we don't have any information that links Fiona's quietness to her being kind or not kind.\n\nBased on the given information, we cannot determine whether Fiona is smart or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is smart\" is true, false, or unknown, we need to analyze the given information and the conditions that lead to the conclusion that something is smart.\n\nFrom the given information:\n- Quiet, smart things are blue.\n- All blue, green things are smart.\n- If something is green and smart then it is not blue.\n- Fiona is quiet.\n\nFrom the information above, we know that Fiona is quiet, but we don't know if she is green or blue. \n\nHowever, if Fiona is blue, then she is smart because quiet, smart things are blue. But if Fiona is green and smart, then she is not blue. \n\nHowever, there is no information that says Fiona is green or blue. \n\nTherefore, we cannot conclude that Fiona is smart based on the given information. The statement \"Fiona is smart\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_gary, smart_gary), blue_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_X, smart_X), Not(blue_X))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_gary, quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), red_harry)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_X, smart_X), Not(blue_X))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_X, quiet_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, green_X), smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_X, furry_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(Harry) & blue(Harry) -> red(Harry)",
+          "z3_formula": "Implies(And(smart_Harry, blue_Harry), red_Harry)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "Not(smart(gary))",
+          "z3_formula": "Not(smart_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "Not(smart(fiona))",
+          "z3_formula": "Not(smart_fiona)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_fiona, smart_fiona), blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_fiona, smart_fiona), Not(blue_fiona))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_fiona, quiet_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), red_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "all_blue_green(X) -> smart(X)",
+          "z3_formula": "Implies(all_blue_green_fiona, smart_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not green(fiona)",
+          "z3_formula": "Not(green_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_fiona, furry_fiona)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_X, kind_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_X, quiet_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Or(green_X, smart_X)",
+          "z3_formula": "Implies(blue_X, Or(green_X, smart_X))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_X, blue_X), red_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_X, furry_X)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_fiona, smart_fiona), blue_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_X, smart_X), Not(blue_X))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_gary, quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), red_harry)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "Q & S -> B",
+          "z3_formula": "Implies(And(quiet_erin, smart_erin), blue_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "G & S -> \u00acB",
+          "z3_formula": "Implies(And(green_erin, smart_erin), Not(blue_erin))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "K -> Q",
+          "z3_formula": "Implies(kind_gary, quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "B & G -> S",
+          "z3_formula": "Implies(And(blue_gary, green_gary), smart_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "R -> F",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "S & B -> R",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), red_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == Unknown",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_fiona, smart_fiona), blue_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_fiona, smart_fiona), Not(blue_fiona))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_gary, quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), red_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(X)",
+          "z3_formula": "green_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == Unknown",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(harry) -> kind(harry)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_X, smart_X), Not(blue_X))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_X, quiet_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, green_X), smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_X, furry_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(harry) & blue(harry) -> red(harry)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), red_harry)",
+          "source_step": 14
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_harry, smart_harry), blue_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_X, smart_X), Not(blue_X))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_gary, quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & green(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, green_X), smart_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> furry(X)",
+          "z3_formula": "Implies(red_gary, furry_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(smart_harry, blue_harry), red_harry)",
+          "source_step": 14
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_fiona, smart_fiona), blue_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_fiona, smart_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> Not(blue(X))",
+          "z3_formula": "Implies(And(green_fiona, smart_fiona), Not(blue_fiona))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == Unknown",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 124,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 39
+    },
+    "maxsat_stats": {
+      "satisfied": 38,
+      "excluded": 1,
+      "total_weight": 123,
+      "solve_time_ms": 1.4354567974805832
+    },
+    "timing": {
+      "trace_gen_s": 24.108,
+      "extraction_s": 41.266,
+      "dedup_s": 0.941,
+      "maxsat_s": 0.004,
+      "total_s": 66.319
+    }
+  }
+}

@@ -1,0 +1,490 @@
+{
+  "problem": {
+    "id": "folio_132",
+    "problem": "Given the following premises:\n[BG] Some mammals have teeth. Platypus have no teeth. Platypus are mammals.  Humans have teeth.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nPlatypus are mammals with no teeth.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (Mammal(x) \u2227 Have(x, teeth))",
+      "\u00acHave(platypus, teeth)",
+      "Mammal(platypus)",
+      "Have(humans, teeth)"
+    ],
+    "conclusion_fol": "Mammal(platypus) \u2227 \u00acHave(platypus, teeth)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 18.0,
+      "True": 48.0,
+      "Unknown": 30.5
+    },
+    "answer_counts": {
+      "True": 8,
+      "False": 1,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will use the rules of predicate logic, specifically the rules for universal and existential quantifiers, and the rules for conjunction and negation.\n\nLet's break down the premises:\n\n1. Some mammals have teeth. (BG)\n   This can be expressed as: \u2203x (M(x) \u2227 T(x)) where M(x) means x is a mammal, and T(x) means x has teeth.\n\n2. Platypus have no teeth. (PT)\n   This can be expressed as: \u2200x (P(x) \u2192 \u00acT(x)) where P(x) means x is a platypus.\n\n3. Platypus are mammals. (PM)\n   This can be expressed as: \u2200x (P(x) \u2192 M(x))\n\n4. Humans have teeth. (HT)\n   This can be expressed as: \u2200x (H(x) \u2192 T(x)) where H(x) means x is a human.\n\nNow, let's analyze the conclusion:\n\nPlatypus are mammals with no teeth.\nThis can be expressed as: \u2200x (P(x) \u2192 (M(x) \u2227 \u00acT(x)))\n\nUsing the rules of predicate logic, we can analyze the conclusion as follows:\n\n1. From (PM), we know that platypus are mammals.\n2. From (PT), we know that platypus have no teeth.\n3. Since (PM) and (PT) are both universally quantified, we can combine them using conjunction: \u2200x (P(x) \u2192 (M(x) \u2227 \u00acT(x)))\n\nNow, let's compare this with the conclusion. The conclusion is also universally quantified, and it matches the conjunction of (PM) and (PT).\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "Let's analyze the given premises step by step:\n\n1. Some mammals have teeth. (BG)\n   This premise indicates that not all mammals have teeth, but at least some do. It doesn't provide any information about platypus specifically.\n\n2. Platypus have no teeth. \n   This premise directly contradicts the initial premise that some mammals have teeth. However, it also doesn't provide any information about platypus being mammals.\n\n3. Platypus are mammals.\n   This premise provides a direct statement about platypus, indicating that they are indeed mammals. This conclusion can be drawn from this premise alone.\n\n4. Humans have teeth.\n   This premise is unrelated to the conclusion we're trying to evaluate and doesn't provide any information about platypus.\n\nNow, let's evaluate the conclusion: \"Platypus are mammals with no teeth.\"\n\nBased on the premises:\n- We know that platypus are mammals (premise 3).\n- We know that platypus have no teeth (premise 2).\n\nThe conclusion that \"Platypus are mammals with no teeth\" can be logically drawn from the premises. It's not uncertain or false; it's actually a valid conclusion based on the information provided.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "Let's analyze the given premises step by step:\n\n1. Some mammals have teeth. \nThis premise tells us that not all mammals have teeth, but it does not exclude the possibility that some mammals have teeth.\n\n2. Platypus have no teeth.\nThis premise provides specific information about platypus, stating that they do not have teeth.\n\n3. Platypus are mammals.\nThis premise establishes a relationship between platypus and mammals, stating that platypus are indeed mammals.\n\n4. Humans have teeth.\nThis premise provides information about humans, stating that they do have teeth.\n\nNow, let's examine the conclusion:\n\nPlatypus are mammals with no teeth.\n\nUsing the premises, we can substitute the information provided:\n\n- From premise 3, we know that platypus are mammals.\n- From premise 2, we know that platypus have no teeth.\n\nCombining these two pieces of information, we can conclude that:\n\nPlatypus are mammals with no teeth.\n\nThis conclusion is supported by the premises, and there is no information that contradicts it. Therefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion \"Platypus are mammals with no teeth\" is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. [BG] Some mammals have teeth. \n   This premise tells us that not all mammals have teeth, but it doesn't tell us anything about platypus specifically. It's a general statement.\n\n2. Platypus have no teeth.\n   This premise directly states that platypus do not have teeth. We can use this information later.\n\n3. Platypus are mammals.\n   This premise directly states that platypus are mammals. This is important because it connects platypus to the general statement in premise 1.\n\nNow, let's examine the conclusion \"Platypus are mammals with no teeth.\"\n\nThe conclusion is true if both parts of the statement are true:\n\n- Part 1: Platypus are mammals. (Premise 3 confirms this.)\n- Part 2: Platypus have no teeth. (Premise 2 confirms this.)\n\nSince both parts of the conclusion are confirmed by the premises, the conclusion is true.\n\nTherefore, the conclusion \"Platypus are mammals with no teeth\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: Some mammals have teeth.\nThis premise tells us that not all mammals have teeth, but it does not specify any particular mammal. It sets up a general condition for mammals.\n\nPremise 2: Platypus have no teeth.\nThis premise directly contradicts the general condition mentioned in Premise 1. Since Platypus have no teeth, they cannot be classified as mammals that have teeth.\n\nPremise 3: Platypus are mammals.\nThis premise directly contradicts the conclusion we are evaluating, but it is actually consistent with the given premises. Since we know that Platypus have no teeth, this premise can be used to evaluate the conclusion.\n\nPremise 4: Humans have teeth.\nThis premise is irrelevant to the conclusion because it only mentions humans, who are not the subject of the conclusion.\n\nNow, let's evaluate the conclusion:\nPlatypus are mammals with no teeth.\n\nFrom Premise 2, we know that Platypus have no teeth. This part of the conclusion is true.\n\nFrom Premise 3, we know that Platypus are mammals. This part of the conclusion is true.\n\nHowever, the combination of Premise 1 and Premise 2 tells us that not all mammals have teeth. Therefore, the conclusion \"Platypus are mammals with no teeth\" is actually a contradiction, because it implies that Platypus are a specific example of mammals that have teeth (despite having no teeth).\n\nIn this case, the conclusion is uncertain because it is based on a contradiction. The premises do not provide enough information to determine whether the conclusion is true or false, but they do indicate that the conclusion is not entirely accurate.\n\nHowever, considering the original question, and that this is a classical syllogism, the answer would be: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use the principles of categorical logic. \n\nFirst, let's break down the given premises:\n\n1. [BG] Some mammals have teeth. \nThis premise is in the form of \"Some A are B,\" where A is the category of mammals and B is the category of having teeth. \n\n2. Platypus have no teeth. \nThis premise is a simple statement about platypus.\n\n3. Platypus are mammals. \nThis premise is a simple statement about platypus.\n\n4. Humans have teeth. \nThis premise is a simple statement about humans.\n\nNow, let's analyze the conclusion:\n\nPlatypus are mammals with no teeth.\n\nTo determine whether this conclusion is true, false, or uncertain, we need to examine the premises and see if they support the conclusion.\n\nFrom premise 3, we know that platypus are mammals. This supports the first part of the conclusion.\n\nFrom premise 2, we know that platypus have no teeth. This supports the second part of the conclusion.\n\nHowever, the conclusion combines these two premises to form a new statement. The problem is that the first premise, [BG] Some mammals have teeth, does not necessarily imply that all mammals have teeth. \n\nIn other words, the fact that some mammals have teeth does not exclude the possibility that other mammals, like platypus, may not have teeth. \n\nTherefore, we cannot conclude that platypus are mammals with no teeth based on the given premises. The conclusion is uncertain because it relies on an implicit assumption that is not supported by the premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step:\n\n1. Premise: Some mammals have teeth.\n   This premise tells us that not all mammals have teeth, but some do.\n\n2. Premise: Platypus have no teeth.\n   This premise directly states the dental characteristics of platypus, which is that they have no teeth.\n\n3. Premise: Platypus are mammals.\n   This premise tells us that platypus belong to the class of mammals, despite their unique characteristics.\n\n4. Premise: Humans have teeth.\n   This premise tells us that humans have teeth and are part of the mammal group.\n\nNow, let's analyze the conclusion:\n\nConclusion: Platypus are mammals with no teeth.\n\nTo determine the validity of this conclusion, we need to see if it follows from the given premises. \n\nWe know that:\n- Platypus are mammals (premise 3).\n- Platypus have no teeth (premise 2).\n\nHowever, premise 1 states that some mammals have teeth. This premise creates a contradiction for the conclusion that all mammals have teeth. Since we know some mammals have teeth, we cannot conclude that platypus are mammals with no teeth because we have a premise that states that not all mammals lack teeth.\n\nTherefore, the conclusion is uncertain because it is based on a contradiction between the premises. We can't conclude that platypus are mammals with no teeth because we have a premise stating that some mammals have teeth.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the validity of the conclusion \"Platypus are mammals with no teeth,\" let's analyze the given premises step by step:\n\n1. Premise: Some mammals have teeth.\n   This premise tells us that not all mammals have teeth, but at least some do. It doesn't provide information about platypus, so we can't directly conclude anything about them from this statement.\n\n2. Premise: Platypus have no teeth.\n   This premise directly states that platypus do not have teeth. \n\n3. Premise: Platypus are mammals.\n   This premise tells us that platypus belong to the class of mammals.\n\nNow, let's combine these premises to analyze the conclusion:\n\nThe conclusion states: Platypus are mammals with no teeth.\n\nGiven the premises:\n- We know platypus have no teeth (Premise 2).\n- We know platypus are mammals (Premise 3).\n\nThe only premise that could potentially conflict with the conclusion is the first premise (Some mammals have teeth). However, this premise does not affect the conclusion about platypus because it doesn't mention them. The conclusion only requires that platypus are mammals and have no teeth, both of which are supported by the premises.\n\nTherefore, based on the given premises, the conclusion \"Platypus are mammals with no teeth\" is true.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: [BG] Some mammals have teeth. \nThis premise tells us that there is at least one mammal that has teeth. However, it does not tell us anything about all mammals or a specific mammal like platypus.\n\nPremise 2: Platypus have no teeth. \nThis premise directly states that platypus do not have teeth. This information is independent of the other premises.\n\nPremise 3: Platypus are mammals. \nThis premise tells us that platypus belong to the category of mammals. This information is also independent of the other premises.\n\nPremise 4: Humans have teeth. \nThis premise tells us that humans, another mammal, have teeth. This information is not directly relevant to the conclusion about platypus.\n\nNow, let's analyze the conclusion: \"Platypus are mammals with no teeth.\"\n\nFrom Premise 2, we know that platypus have no teeth. From Premise 3, we know that platypus are mammals. Combining these two pieces of information, we can conclude that platypus are indeed mammals with no teeth.\n\nTherefore, the conclusion \"Platypus are mammals with no teeth\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion \"Platypus are mammals with no teeth\" is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: Some mammals have teeth. \nThis premise tells us that not all mammals have teeth, but some do.\n\nPremise 2: Platypus have no teeth.\nThis premise directly states that platypus do not have teeth.\n\nPremise 3: Platypus are mammals.\nThis premise tells us that platypus belong to the mammal category.\n\nPremise 4: Humans have teeth.\nThis premise is not directly relevant to the conclusion, but it helps to reinforce the idea that not all mammals have teeth.\n\nNow, let's analyze the conclusion: \"Platypus are mammals with no teeth.\"\n\nTo determine whether this conclusion is true, false, or uncertain, we need to check if it is supported by the premises.\n\nThe premises tell us that platypus are mammals (Premise 3) and that they have no teeth (Premise 2). \n\nTherefore, the conclusion \"Platypus are mammals with no teeth\" is indeed supported by the premises. It is not false because it accurately reflects the information provided in the premises. It is also not uncertain because it is a direct conclusion based on the premises.\n\nSo, the conclusion \"Platypus are mammals with no teeth\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we'll use logical reasoning based on the given premises.\n\nPremise 1: Some mammals have teeth. \nPremise 2: Platypus have no teeth. \nPremise 3: Platypus are mammals. \nPremise 4: Humans have teeth.\n\nConclusion: Platypus are mammals with no teeth.\n\nFrom Premise 1, we know that \"some\" mammals have teeth. This means it's possible for mammals to have teeth, but it's not a universal property of all mammals.\n\nFrom Premise 2, we know that Platypus have no teeth.\n\nFrom Premise 3, we know that Platypus are mammals.\n\nNow, let's analyze the conclusion. We're trying to determine if \"Platypus are mammals with no teeth.\" \n\nBased on Premise 2, we already know that Platypus have no teeth. \n\nBased on Premise 3, we know that Platypus are mammals.\n\nThe only thing we're trying to establish is whether this combination (\"mammals with no teeth\") is true for Platypus. Since we have evidence (Premise 2) that Platypus have no teeth, and we have evidence (Premise 3) that Platypus are mammals, we can conclude that:\n\nPlatypus are indeed mammals, and \nPlatypus have no teeth.\n\nTherefore, the conclusion \"Platypus are mammals with no teeth\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the validity of the conclusion, let's analyze the given premises step by step.\n\n1. Premise: Some mammals have teeth.\n   - This premise tells us that not all mammals have teeth, but some do. It doesn't provide any information about platypus, humans, or their characteristics.\n\n2. Premise: Platypus have no teeth.\n   - This premise directly states the characteristic of platypus, which is that they have no teeth.\n\n3. Premise: Platypus are mammals.\n   - This premise connects platypus with the group of mammals. Given the previous premise, we know that platypus are mammals but have no teeth.\n\n4. Premise: Humans have teeth.\n   - This premise tells us that humans are among the mammals that have teeth, but it doesn't provide any information about platypus.\n\nNow, let's analyze the conclusion:\n\nConclusion: Platypus are mammals with no teeth.\n\nBased on the given premises, we have the following information:\n\n- Some mammals have teeth (Premise 1).\n- Platypus have no teeth (Premise 2).\n- Platypus are mammals (Premise 3).\n\nGiven this information, we can conclude that platypus are indeed mammals, and they have no teeth. This conclusion is consistent with all the premises.\n\nTherefore, the conclusion \"Platypus are mammals with no teeth\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "\u2203x (M(x) \u2227 T(x))",
+          "z3_formula": "Exists(x, And(M_x, T_x))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "\u2200x (P(x) \u2192 \u00acT(x))",
+          "z3_formula": "Forall(x, Implies(P_x, Not(T_x)))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "\u2200x (P(x) \u2192 M(x))",
+          "z3_formula": "Forall(x, Implies(P_x, M_x))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "\u2200x (H(x) \u2192 T(x))",
+          "z3_formula": "Forall(x, Implies(H_x, T_x))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "\u2200x (P(x) \u2192 (M(x) \u2227 \u00acT(x)))",
+          "z3_formula": "Forall(x, Implies(P_x, And(M_x, Not(T_x))))",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "some_mammals_have_teeth",
+          "z3_formula": "some_mammals_have_teeth == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "humans_have_teeth",
+          "z3_formula": "humans_have_teeth == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> some_mammals_have_teeth",
+          "z3_formula": "Implies(mammal_platypus, some_mammals_have_teeth)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> no_teeth(X)",
+          "z3_formula": "Implies(mammal_platypus, no_teeth_platypus)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "mammal(platypus) & no_teeth(platypus)",
+          "z3_formula": "And(mammal_platypus, no_teeth_platypus) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "teeth(mammal)",
+          "z3_formula": "teeth_mammal == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(platypus) == False",
+          "z3_formula": "teeth_platypus == False",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(human) == True",
+          "z3_formula": "teeth_human == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) & ~teeth(X) -> mammal_with_no_teeth(X)",
+          "z3_formula": "Implies(And(mammal_platypus, Not(teeth_platypus)), mammal_with_no_teeth_platypus)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "mammal_with_no_teeth(platypus)",
+          "z3_formula": "mammal_with_no_teeth_platypus == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "teeth(mammals)",
+          "z3_formula": "teeth_mammals == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(teeth(platypus))",
+          "z3_formula": "Not(teeth_platypus) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(humans)",
+          "z3_formula": "teeth_humans == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(human)",
+          "z3_formula": "mammal_human == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(human)",
+          "z3_formula": "teeth_human == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "Some A are B",
+          "z3_formula": "Exists(X, And(mammal(X), teeth(X)))",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "mammal(platypus) & no_teeth(platypus)",
+          "z3_formula": "And(mammal_platypus, no_teeth_platypus)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "teeth(mammal)",
+          "z3_formula": "teeth_mammal == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(human)",
+          "z3_formula": "teeth_human == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> teeth(X)",
+          "z3_formula": "Implies(mammal_platypus, teeth_platypus)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "mammal(platypus) & no_teeth(platypus)",
+          "z3_formula": "And(mammal_platypus, no_teeth_platypus)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "some_mammals_have_teeth",
+          "z3_formula": "some_mammals_have_teeth == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "platypus_have_no_teeth",
+          "z3_formula": "platypus_have_no_teeth == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "platypus_are_mammals",
+          "z3_formula": "platypus_are_mammals == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "platypus_are_mammals_with_no_teeth",
+          "z3_formula": "And(platypus_are_mammals, platypus_have_no_teeth) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(humans)",
+          "z3_formula": "teeth_humans == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) & no_teeth(X) -> mammals_with_no_teeth(X)",
+          "z3_formula": "Implies(And(mammal_platypus, no_teeth_platypus), mammals_with_no_teeth_platypus)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "mammals_with_no_teeth(platypus)",
+          "z3_formula": "mammals_with_no_teeth_platypus == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "some_mammals_have_teeth",
+          "z3_formula": "some_mammals_have_teeth == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "mammal(X) -> some_mammals_have_teeth",
+          "z3_formula": "Implies(mammal_platypus, some_mammals_have_teeth)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "mammal(platypus) & no_teeth(platypus)",
+          "z3_formula": "And(mammal_platypus, no_teeth_platypus) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "teeth(mammals)",
+          "z3_formula": "teeth_mammals == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(humans)",
+          "z3_formula": "teeth_humans == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "teeth(mammal)",
+          "z3_formula": "teeth_mammal == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "no_teeth(platypus)",
+          "z3_formula": "no_teeth_platypus == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mammal(platypus)",
+          "z3_formula": "mammal_platypus == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "teeth(human)",
+          "z3_formula": "teeth_human == True",
+          "source_step": 4
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 59,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 21
+    },
+    "maxsat_stats": {
+      "satisfied": 20,
+      "excluded": 1,
+      "total_weight": 52,
+      "solve_time_ms": 1.1087479069828987
+    },
+    "timing": {
+      "trace_gen_s": 4.864,
+      "extraction_s": 10.176,
+      "dedup_s": 0.273,
+      "maxsat_s": 0.002,
+      "total_s": 15.317
+    }
+  }
+}

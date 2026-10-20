@@ -1,0 +1,916 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-54_Q5",
+    "problem": "Anne is kind. Anne is nice. Anne is quiet. Anne is round. Bob is not round. Dave is furry. Erin is nice. If something is nice then it is quiet. All nice, kind things are not young. If something is furry then it is cold. Quiet, nice things are cold. If Erin is young then Erin is not kind. Furry, quiet things are kind. All cold things are kind. If Erin is young then Erin is not quiet. If something is kind and not young then it is round.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is cold.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nNotRound($x, bool) ::: Is x not round?\nFurry($x, bool) ::: Is x furry?\nCold($x, bool) ::: Is x cold?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nKind(Anne, True) ::: Anne is kind.\nNice(Anne, True) ::: Anne is nice.\nQuiet(Anne, True) ::: Anne is quiet.\nRound(Anne, True) ::: Anne is round.\nNotRound(Bob, True) ::: Bob is not round.\nFurry(Dave, True) ::: Dave is furry.\nNice(Erin, True) ::: Erin is nice.\n\nRules:\nNice($x, True) >>> Quiet($x, True) ::: If something is nice then it is quiet.\nNice($x, True) && Kind($x, True) >>> Young($x, False) ::: All nice, kind things are not young.\nFurry($x, True) >>> Cold($x, True) ::: If something is furry then it is cold.\nQuiet($x, True) && Nice($x, True) >>> Cold($x, True) ::: Quiet, nice things are cold.\nYoung(Erin, True) >>> Kind(Erin, False) ::: If Erin is young then Erin is not kind.\nFurry($x, True) && Quiet($x, True) >>> Kind($x, True) ::: Furry, quiet things are kind.\nCold($x, True) >>> Kind($x, True) ::: All cold things are kind.\nYoung(Erin, True) >>> Quiet(Erin, False) ::: If Erin is young then Erin is not quiet.\nKind($x, True) && Young($x, False) >>> Round($x, True) ::: If something is kind and not young then it is round.\n\nQuery:\nCold(Erin, True) ::: Erin is cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 125.0,
+      "Unknown": 96.5
+    },
+    "answer_counts": {
+      "True": 10,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Erin is cold, we need to analyze the given statements and use the rules of inference to deduce information about Erin.\n\n1. Dave is furry. (Given)\n2. If something is furry then it is cold. (Rule)\n   From (1) and (2), we can conclude that Dave is cold. However, we are asked about Erin, not Dave.\n\n3. Erin is nice. (Given)\n4. If something is nice then it is quiet. (Rule)\n   From (3) and (4), we can conclude that Erin is quiet.\n\n5. Quiet, nice things are cold. (Rule)\n   From (3) and (4), and this rule, we can conclude that Erin is cold.\n\nHowever, we need to be cautious and ensure that this conclusion does not depend on any contradictory information.\n\n6. Erin is young or Erin is not young. (Law of excluded middle)\n   We do not know whether Erin is young or not, but we can continue analyzing the given information to see if we can draw any conclusions about Erin being young.\n\n7. Erin is quiet and nice. (From steps 3 and 4)\n   If Erin is young, then Erin is not kind (rule 6), but we also know that all nice, kind things are not young (rule), which would mean Erin is not young.\n   If Erin is not young, then Erin is kind (rule), and since Erin is nice (rule 3), we can conclude that Erin is round (rule), but we do not need this information to conclude about Erin being cold.\n\n8. Erin is furry. (Given)\n   However, this is not a given fact; it is not explicitly mentioned in the original problem. We can use the rule that furry, quiet things are kind (rule), but this would require Erin to be quiet and furry.\n\nCombining the information, we know that Erin is quiet (step 4) and nice (rule 3), which means Erin is cold (rule 5). We can conclude that Erin is cold without any contradictory information.\n\nTherefore, the statement \"Erin is cold\" is \\boxed{true}.",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is cold\" is true, false, or unknown, we need to analyze the given information and the logical implications.\n\n1. Dave is furry. \n   Since something that is furry is cold (given information), Dave is cold.\n\n2. Erin is nice. \n   Since something that is nice is quiet (given information), Erin is quiet.\n\n3. Quiet, nice things are cold. \n   Since Erin is quiet and nice, Erin is cold.\n\nBased on the given information, we can conclude that the statement \"Erin is cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether Erin is cold, we need to break down the given information and the conditions that lead to Erin being cold.\n\n1. Dave is furry. \n   Since Dave is furry, then Dave is cold. (Rule: If something is furry then it is cold)\n\n2. Erin is nice. \n   Since Erin is nice, then Erin is quiet. (Rule: If something is nice then it is quiet)\n\n3. Quiet, nice things are cold. \n   Since Erin is quiet and nice, then Erin is cold. (Rule: Quiet, nice things are cold)\n\nFrom the given information, we can conclude that Erin is indeed cold.\n\nTherefore, the statement \"Erin is cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Erin is cold, we need to analyze the given statements and their relationships. \n\nGiven statements:\n1. Anne is kind. \n2. Anne is nice. \n3. Anne is quiet. \n4. Anne is round. \n5. Bob is not round. \n6. Dave is furry. \n7. Erin is nice. \n8. If something is nice then it is quiet. \n9. All nice, kind things are not young. \n10. If something is furry then it is cold. \n11. Quiet, nice things are cold. \n12. If Erin is young then Erin is not kind. \n13. Furry, quiet things are kind. \n14. All cold things are kind. \n15. If Erin is young then Erin is not quiet. \n16. If something is kind and not young then it is round.\n\nFrom statement 8, we know that Erin is nice, so Erin is quiet (statement 2).\n\nFrom statement 15, we know that if Erin is young, then Erin is not quiet. However, we cannot determine Erin's age yet. \n\nFrom statement 13, we know that furry, quiet things are kind. But we do not know if Erin is furry.\n\nFrom statement 10, we know that furry things are cold.\n\nNow, let's analyze Erin's age. If Erin is young, then from statement 15, Erin is not quiet. But we already know Erin is quiet (statement 2). Therefore, Erin is not young.\n\nNow, since Erin is not young, from statement 9, Erin is kind. And from statement 16, if Erin is kind and not young, then Erin is round.\n\nWe know that Erin is quiet (statement 2) and kind (since Erin is not young). From statement 11, quiet, nice things are cold. Therefore, Erin is cold.\n\nSo, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is nice. (Given)\n2. If something is nice then it is quiet. (Given)\n   From (1) and (2), Erin is quiet.\n\n3. Quiet, nice things are cold. (Given)\n   Since Erin is quiet and nice (from (1) and (2)), Erin is cold.\n\nTherefore, the statement \"Erin is cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Erin is cold, we need to analyze the given statements and their relationships. \n\nGiven statements:\n1. Anne is kind.\n2. Anne is nice.\n3. Anne is quiet.\n4. Anne is round.\n5. Bob is not round.\n6. Dave is furry.\n7. Erin is nice.\n8. If something is nice then it is quiet.\n9. All nice, kind things are not young.\n10. If something is furry then it is cold.\n11. Quiet, nice things are cold.\n12. If Erin is young then Erin is not kind.\n13. Furry, quiet things are kind.\n14. All cold things are kind.\n15. If Erin is young then Erin is not quiet.\n16. If something is kind and not young then it is round.\n\nFrom statement 7, we know Erin is nice. From statement 8, we know that if something is nice, then it is quiet. Therefore, Erin is quiet.\n\nFrom statement 15, we know that if Erin is young, then Erin is not quiet. However, we cannot conclude that Erin is not young from this statement. We will come back to this later.\n\nNow, let's consider the relationship between Erin's age and her being quiet or kind.\n\nFrom statement 9, we know that all nice, kind things are not young. We know Erin is nice, but we don't know if she is kind yet. From statement 12, we know that if Erin is young, then Erin is not kind. This implies that if Erin is kind, then she is not young.\n\nFrom statement 13, we know that furry, quiet things are kind. We know Erin is quiet, but we don't know if she is furry yet. From statement 10, we know that if something is furry, then it is cold.\n\nFrom statement 11, we know that quiet, nice things are cold. We know Erin is quiet and nice, so she could be cold.\n\nFrom statement 14, we know that all cold things are kind. If Erin is cold, then she is kind.\n\nNow, we need to analyze Erin's roundness. From statement 16, we know that if something is kind and not young, then it is round. We know Erin is kind, but we don't know if she is young or not.\n\nHowever, we can conclude that Erin is not round if she is young. From statement 15, we know that if Erin is young, then Erin is not quiet. And from statement 3, we know Anne is quiet. Therefore, Erin is not Anne, and if Erin is young, she is not round.\n\nConsidering all the relationships, we cannot directly conclude whether Erin is cold or not. However, we can derive a conclusion based on Erin's possible age.\n\nIf Erin is young, then:\n- Erin is not kind (from statement 12)\n- Erin is not quiet (from statement 15)\n- Erin is not round (from the previous analysis)\n\nIf Erin is not young, then:\n- Erin is kind (from statement 12)\n- Erin is quiet (from statement 8)\n- Erin is round (from statement 16)\n\nNow, let's go back to Erin's coldness. If Erin is young, we cannot conclude her coldness. If Erin is not young, then:\n- Erin is kind (from statement 12)\n- Erin is quiet (from statement 8)\n- Erin is round (from statement 16)\n- Erin is cold (from statement 11)\n\nTherefore, we can conclude that Erin is cold if Erin is not young.\n\nSince we cannot directly conclude Erin's age, we cannot directly conclude her coldness. However, we can say that Erin is cold if Erin is not young.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether Erin is cold, we need to analyze the given information and use logical deductions.\n\n1. Dave is furry. \n   From this, we can deduce that Dave is cold, as it is stated that \"If something is furry then it is cold.\"\n\n2. Erin is nice. \n   We know that \"Quiet, nice things are cold.\" However, we cannot directly determine if Erin is quiet yet. We will come back to this statement later.\n\n3. Erin is young. \n   This statement creates a conflict, as it is also given that \"If Erin is young then Erin is not kind\" and \"If Erin is young then Erin is not quiet.\" This suggests that Erin's age is contradictory to her other attributes.\n\nHowever, to determine if Erin is cold, we need to look at the other statements. \n\n4. All nice, kind things are not young. \n   Since Erin is nice, this statement implies that Erin is not young. However, we already know that Erin is young, which is a contradiction.\n\n5. Furry, quiet things are kind. \n   Dave is furry, but we do not know if Dave is quiet or not. This does not directly affect Erin's coldness.\n\n6. All cold things are kind. \n   If Erin is cold, then she is kind.\n\n7. If something is kind and not young then it is round. \n   Since Erin is nice, we cannot directly determine her age or roundness from this statement.\n\nNow, let's analyze the statement \"If Erin is young then Erin is not kind.\" This statement implies that Erin is not kind if she is young. However, we also know that \"All nice, kind things are not young.\" This suggests that Erin cannot be both young and kind at the same time.\n\nGiven the information, we cannot directly determine if Erin is cold or not. However, we can use the information to find a contradiction. \n\nSince Erin is nice, she is not young, as stated in \"All nice, kind things are not young.\" However, we also know that Erin is young, which is a contradiction. This means that Erin's age is unknown, and we cannot determine if she is cold or not based on the given information.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Erin is cold, we need to analyze the given statements and their relationships. \n\n1. Erin is nice. (Statement 1)\n2. If something is nice then it is quiet. (Statement 2)\n   - From Statement 1 and Statement 2, we can conclude that Erin is quiet. (Statement 3)\n\n3. Quiet, nice things are cold. (Statement 4)\n   - From Statement 3 and Statement 4, we can conclude that Erin is cold.\n\nHowever, there's another possibility we need to consider before making a final conclusion. \n\nIf Erin is young, then Erin is not kind. (Statement 5)\nIf Erin is young, then Erin is not quiet. (Statement 6)\nDave is furry. (Statement 7)\nIf something is furry then it is cold. (Statement 8)\nFurry, quiet things are kind. (Statement 9)\nAll cold things are kind. (Statement 10)\n\nFrom Statement 7 and Statement 8, we can conclude that Dave is cold.\n\nIf Dave is cold, then Dave is kind. (From Statement 10)\nErin is quiet. (Statement 3)\nFurry, quiet things are kind. (Statement 9)\nSince Erin is quiet, we can conclude that Erin is kind.\n\nIf Erin is young, then Erin is not kind. (Statement 5)\nHowever, we've concluded that Erin is kind.\n\nTherefore, Erin is not young.\n\nIf something is kind and not young then it is round. (Statement 11)\nErin is kind. (From previous conclusion)\nErin is not young. (From previous conclusion)\nFrom Statement 11, we can conclude that Erin is round.\n\nNow, we have two conclusions about Erin - Erin is cold (from Statement 4) and Erin is round (from Statement 11). Since both conclusions are possible based on the given statements, we can say that Erin is cold is a possible conclusion, but it is not a definitive answer.\n\nTherefore, the answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Erin is cold, we need to analyze the given statements and their implications.\n\n1. Erin is nice (from the given statements).\n2. If something is nice, then it is quiet. (From statement: \"If something is nice then it is quiet.\")\n   So, Erin is quiet.\n\n3. Quiet, nice things are cold. (From statement: \"Quiet, nice things are cold.\")\n   Since Erin is both quiet and nice, we can conclude that Erin is cold.\n\nTherefore, the statement \"Erin is cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller parts and use the given information to deduce the answer.\n\n1. Erin is nice (from the premises: Erin is nice)\n2. Since something is nice then it is quiet (from the premises: If something is nice then it is quiet), Erin is quiet.\n3. Quiet, nice things are cold (from the premises: Quiet, nice things are cold), Erin is cold.\n\nTherefore, based on the given information, Erin is indeed cold.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information to determine if Erin is cold. We will break down the information step by step.\n\n1. Erin is nice. (Given)\n\n2. If something is nice then it is quiet. (Given)\n   Therefore, Erin is quiet. (From step 1 and step 2)\n\n3. Quiet, nice things are cold. (Given)\n   Since Erin is quiet and nice (from steps 1 and 2), Erin is cold.\n\nNow, we can conclude that Erin is indeed cold.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Erin is cold, we need to analyze the given statements and use logical reasoning to deduce the information about Erin.\n\n1. Anne is kind. Anne is nice. Anne is quiet. Anne is round.\n2. Bob is not round.\n3. Dave is furry. \n4. Erin is nice.\n5. If something is nice then it is quiet.\n6. All nice, kind things are not young.\n7. If something is furry then it is cold.\n8. Quiet, nice things are cold.\n9. If Erin is young then Erin is not kind.\n10. Furry, quiet things are kind.\n11. All cold things are kind.\n12. If Erin is young then Erin is not quiet.\n13. If something is kind and not young then it is round.\n\nFrom statement 4, we know Erin is nice. \n\nUsing statement 5, since Erin is nice, Erin is quiet.\n\nFrom statement 7, since Dave is furry, Dave is cold.\n\nHowever, since we don't have information about Erin being furry, we can't directly conclude that Erin is cold from statement 7.\n\nBut we can analyze other information. From statement 8, since Erin is nice and quiet, Erin is cold.\n\nAlternatively, from statement 10, since Erin is quiet and we don't know if Erin is furry, we can't conclude that Erin is kind from statement 10. \n\nHowever, using statement 9, since Erin is young (this is an assumption for this part of the problem, we will see if it holds), then Erin is not kind.\n\nHowever, from statement 11, since Erin is cold, Erin is kind.\n\nFrom statement 13, since Erin is kind and not young (as assumed), Erin is round.\n\nWe can check if Erin is young or not. If Erin is young, then Erin is not kind (statement 9). But we know Erin is kind from statement 11. \n\nSo, Erin is not young.\n\nThus, our assumption that Erin is young was incorrect.\n\nWe can also check if Erin is round. We already know Erin is round from statement 13.\n\nNow, we can analyze if Erin is cold. \n\nFrom statement 5, Erin is quiet.\n\nFrom statement 8, since Erin is nice and quiet, Erin is cold.\n\nSo, we have two ways to conclude that Erin is cold.\n\nTherefore, the statement \"Erin is cold\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_dave, cold_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_erin, nice_erin), cold_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin) & nice(erin)",
+          "z3_formula": "And(quiet_erin, nice_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> ~kind(X)",
+          "z3_formula": "Implies(young_erin, Not(kind_erin))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & kind(X) -> ~young(X)",
+          "z3_formula": "Implies(And(nice_erin, kind_erin), Not(young_erin))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> kind(X)",
+          "z3_formula": "Implies(And(furry_erin, quiet_erin), kind_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_dave, cold_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_erin, nice_erin), cold_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_dave, cold_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_erin, nice_erin), cold_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(bob))",
+          "z3_formula": "Not(round_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(young(X)) -> not(young(X))",
+          "z3_formula": "Implies(And(kind_anne, Not(young_anne)), Not(young_anne))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_dave, cold_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_erin, nice_erin), cold_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> not(kind(X))",
+          "z3_formula": "Implies(young_erin, Not(kind_erin))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> kind(X)",
+          "z3_formula": "Implies(And(furry_erin, quiet_erin), kind_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_erin, kind_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> not(quiet(X))",
+          "z3_formula": "Implies(young_erin, Not(quiet_erin))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(young(X)) -> round(X)",
+          "z3_formula": "Implies(And(kind_anne, Not(young_anne)), round_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(young(erin))",
+          "z3_formula": "Not(young_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_erin, nice_erin), cold_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(bob))",
+          "z3_formula": "Not(round_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & kind(X) -> not(young(X))",
+          "z3_formula": "Implies(And(nice_erin, kind_erin), Not(young_erin))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_erin, cold_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_erin, nice_erin), cold_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_erin, kind_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> not(kind(X))",
+          "z3_formula": "Implies(young_erin, Not(kind_erin))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> kind(X)",
+          "z3_formula": "Implies(And(furry_erin, quiet_erin), kind_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(young(X)) -> round(X)",
+          "z3_formula": "Implies(And(kind_erin, Not(young_erin)), round_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> not(quiet(X))",
+          "z3_formula": "Implies(young_erin, Not(quiet_erin))",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_dave, cold_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_erin, nice_erin), cold_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(erin) -> not(kind(erin))",
+          "z3_formula": "Implies(young_erin, Not(kind_erin))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(erin) -> not(quiet(erin))",
+          "z3_formula": "Implies(young_erin, Not(quiet_erin))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not(young(X)) -> round(X)",
+          "z3_formula": "Implies(And(nice_erin, Not(young_erin)), round_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not(young(X))",
+          "z3_formula": "Implies(kind_erin, Not(young_erin))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_erin, kind_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(young(X)) -> round(X)",
+          "z3_formula": "Implies(And(kind_erin, Not(young_erin)), round_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "not(young(X)) -> not(kind(X))",
+          "z3_formula": "Implies(Not(young_erin), Not(kind_erin))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(young(erin))",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(kind(erin))",
+          "z3_formula": "Not(kind_erin) == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_erin, nice_erin), cold_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> not kind(X)",
+          "z3_formula": "Implies(young_erin, Not(kind_erin))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> not quiet(X)",
+          "z3_formula": "Implies(young_erin, Not(quiet_erin))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_dave, cold_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(dave)",
+          "z3_formula": "cold_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_dave, kind_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> kind(X)",
+          "z3_formula": "Implies(And(furry_erin, quiet_erin), kind_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> not kind(X)",
+          "z3_formula": "Implies(young_erin, Not(kind_erin))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not young(erin)",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not young(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_erin, Not(young_erin)), round_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_erin, nice_erin), cold_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_erin, nice_erin), cold_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_erin, nice_erin), cold_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(bob))",
+          "z3_formula": "Not(round_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_erin, quiet_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not(young(X)) -> round(X)",
+          "z3_formula": "Implies(And(kind_erin, Not(young_erin)), round_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_dave, cold_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & nice(X) -> cold(X)",
+          "z3_formula": "Implies(And(quiet_erin, nice_erin), cold_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & quiet(X) -> kind(X)",
+          "z3_formula": "Implies(And(furry_erin, quiet_erin), kind_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> not(kind(X))",
+          "z3_formula": "Implies(young_erin, Not(kind_erin))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_erin, kind_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 14
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 131,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 33
+    },
+    "maxsat_stats": {
+      "satisfied": 30,
+      "excluded": 3,
+      "total_weight": 128,
+      "solve_time_ms": 1.5310589224100113
+    },
+    "timing": {
+      "trace_gen_s": 9.24,
+      "extraction_s": 23.37,
+      "dedup_s": 0.862,
+      "maxsat_s": 0.003,
+      "total_s": 33.476
+    }
+  }
+}

@@ -1,0 +1,908 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-108_Q15",
+    "problem": "Anne is green. Bob is big. Bob is furry. Dave is green. Erin is furry. Erin is green. Erin is round. If Anne is white and Anne is big then Anne is not furry. Furry people are kind. If someone is kind then they are white. If someone is white then they are big. If someone is rough then they are green. If someone is kind and not big then they are not rough. Furry, white people are rough. Green, kind people are round. If someone is white and not green then they are round.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not white.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nBig($x, bool) ::: Is x big?\nFurry($x, bool) ::: Is x furry?\nWhite($x, bool) ::: Is x white?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nBig(Bob, True) ::: Bob is big.\nFurry(Bob, True) ::: Bob is furry.\nGreen(Dave, True) ::: Dave is green.\nFurry(Erin, True) ::: Erin is furry.\nGreen(Erin, True) ::: Erin is green.\nRound(Erin, True) ::: Erin is round.\n\nRules:\nWhite(Anne, True) && Big(Anne, True) >>> Furry(Anne, False) ::: If Anne is white and Anne is big then Anne is not furry.\nFurry($x, True) >>> Kind($x, True) ::: Furry people are kind.\nKind($x, True) >>> White($x, True) ::: If someone is kind then they are white.\nWhite($x, True) >>> Big($x, True) ::: If someone is white then they are big.\nRough($x, True) >>> Green($x, True) ::: If someone is rough then they are green.\nKind($x, True) && Big($x, False) >>> Rough($x, False) ::: If someone is kind and not big then they are not rough.\nFurry($x, True) && White($x, True) >>> Rough($x, True) ::: Furry, white people are rough.\nGreen($x, True) && Kind($x, True) >>> Round($x, True) ::: Green, kind people are round.\nWhite($x, True) && Green($x, False) >>> Round($x, True) ::: If someone is white and not green then they are round.\n\nQuery:\nWhite(Dave, False) ::: Dave is not white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 39.0,
+      "Unknown": 109.5
+    },
+    "answer_counts": {
+      "True": 1,
+      "Unknown": 8
+    },
+    "traces": [
+      {
+        "trace": "To solve the problem, we need to break it down into smaller statements and use the given information to determine the relationships between the properties.\n\n1. Anne is green.\n   But, we also know Anne is white and big.\n   So, we can infer that Anne being green is contradictory, but since we're given multiple statements about Anne, we can ignore this for now.\n\n2. Bob is big.\n   Bob is furry.\n   We don't have enough information about Bob's color.\n\n3. Dave is green.\n   We don't have enough information about Dave's other properties.\n\n4. Erin is furry.\n   Erin is green.\n   Erin is round.\n\n5. From the given information, we have the following relationships:\n   - If someone is kind, then they are white.\n   - If someone is white, then they are big.\n   - If someone is kind and not big, then they are not rough.\n   - Furry people are kind.\n   - Furry, white people are rough.\n   - Green, kind people are round.\n   - If someone is white and not green, then they are round.\n   - If someone is rough then they are green.\n\nNow, let's analyze the statement \"Dave is not white.\"\n\nTo determine whether this statement is true, false, or unknown, we need to find the relationships between Dave's properties and the given information.\n\nSince we know Dave is green, we can use the relationship \"If someone is rough then they are green\" and \"Furry, white people are rough\" to infer that Dave cannot be white because if he were, he would be rough, and he is green. However, we don't have enough information about Dave's other properties.\n\nHowever, we do know Dave is green and we can look at our relationship about roughness.  Green people are rough. Since we don't know if Dave is furry or not, we can look at other relationships. \n\nWe also know that Erin is furry, green, and round. From the information given, we can see that furry people are kind. Since Erin is furry, we can infer that Erin is kind.\n\nNow, we can look at the relationship \"Green, kind people are round.\" We can infer that Dave is round because he is green and kind (as Erin is furry, green, and kind, we can infer that kind people are furry or green).\n\nNow, we have the following information about Dave:\n- Dave is green.\n- Dave is round.\n\nSince we also know that \"If someone is white and not green, then they are round,\" we can infer that Dave is not white.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know:\n   - Anne is green.\n   - Bob is big.\n   - Bob is furry.\n   - Dave is green.\n   - Erin is furry.\n   - Erin is green.\n   - Erin is round.\n   - If Anne is white and Anne is big, then Anne is not furry.\n   - Furry people are kind.\n   - If someone is kind, then they are white.\n   - If someone is white, then they are big.\n   - If someone is rough, then they are green.\n   - If someone is kind and not big, then they are not rough.\n   - Furry, white people are rough.\n   - Green, kind people are round.\n   - If someone is white and not green, then they are round.\n\n2. Analyze the information about Anne:\n   - Anne is white.\n   - Anne is big.\n   - From the given condition, if Anne is white and Anne is big, then Anne is not furry.\n   - Since Anne is big and white, it confirms that Anne is not furry.\n\n3. Analyze the information about Erin:\n   - Erin is furry.\n   - Erin is green.\n   - Erin is round.\n   - Since Erin is furry and green, we can conclude that Erin is kind (from the condition \"Furry people are kind\").\n   - Since Erin is kind, Erin is white (from the condition \"If someone is kind, then they are white\").\n   - Since Erin is white, Erin is big (from the condition \"If someone is white, then they are big\").\n   - However, this contradicts the given information that Erin is green, which means Erin cannot be both green and white. This creates a contradiction.\n\n4. Analyze the information about Dave:\n   - Dave is green.\n   - Since Dave is green, it does not directly provide any information about whether Dave is white or not.\n\n5. From the given conditions:\n   - If someone is white and not green, then they are round.\n   - This condition does not provide any information about Dave being white or not.\n\n6. From the given conditions:\n   - Furry, white people are rough.\n   - Since Erin is furry and white, Erin should be rough, but this contradicts the information that Erin is green (from the condition \"If someone is rough, then they are green\").\n\n7. Since there is a contradiction in the information about Erin (being both green and white), we cannot accurately determine whether Dave is white or not.\n\nTherefore, the statement \"Dave is not white\" is unknown.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n\n1. Anne is green.\n2. Bob is big.\n3. Bob is furry.\n4. Dave is green.\n5. Erin is furry.\n6. Erin is green.\n7. Erin is round.\n8. Anne is white.\n9. Anne is big.\n10. If Anne is white and Anne is big then Anne is not furry. (Contradicts statement 3, so statement 3 is false.)\n11. Furry people are kind.\n12. If someone is kind then they are white.\n13. If someone is white then they are big.\n14. If someone is rough then they are green.\n15. If someone is kind and not big then they are not rough.\n16. Furry, white people are rough.\n17. Green, kind people are round.\n18. If someone is white and not green then they are round.\n\nNow, let's analyze the information about Dave:\n\n1. Dave is green. (Statement 4)\n2. Since Dave is green, we can consider statement 14: If someone is rough then they are green. This does not provide any direct information about Dave being rough, but it tells us that if Dave is rough, he is green.\n\nNow, let's analyze the information about Erin and its relation to Dave:\n\n1. Erin is green. (Statement 6)\n2. Erin is furry. (Statement 5)\n3. Erin is round. (Statement 7)\n4. From statement 11, we know that furry people are kind.\n5. From statement 12, we know that if someone is kind, they are white.\n6. From statement 13, we know that if someone is white, they are big.\n7. Since Erin is furry, she is kind (Statement 11).\n8. Since Erin is kind, she is white (Statement 12).\n9. Since Erin is white, she is big (Statement 13).\n10. From statement 16, we know that furry, white people are rough.\n11. Since Erin is furry and white, she is rough (Statement 16).\n12. From statement 17, we know that green, kind people are round.\n13. Since Erin is green and kind, she is round (Statement 17).\n\nNow, let's analyze the information about Dave's characteristics in relation to Erin's characteristics:\n\n1. Dave is green (Statement 4).\n2. Erin is green (Statement 6).\n3. Since Erin is green and kind (Statement 11), we know from statement 17 that Erin is round.\n4. From statement 14, we know that if someone is rough then they are green. This does not provide any direct information about Dave being rough, but it tells us that if Dave is rough, he is green.\n\nNow, let's analyze the information about Dave's color:\n\n1. Since Dave is green (Statement 4), we can consider statement 14: If someone is rough then they are green. However, we do not have enough information to determine whether Dave is rough or not.\n2. Since Dave is green, we can consider statement 14 again: If someone is rough then they are green. However, this does not provide any direct information about Dave being rough or not.\n3. From statement 14, we know that if someone is rough then they are green. We do not have enough information to determine whether Dave is rough or not.\n4. From statement 18, we know that if someone is white and not green then they are round. However, we do not have enough information to determine whether Dave is white or not.\n\nNow, let's analyze the information about Dave's color in relation to the information about Erin:\n\n1. Erin is green (Statement 6).\n2. Erin is round (Statement 7).\n3. From statement 17, we know that green, kind people are round.\n4. Since Erin is green and kind, she is round (Statement 17).\n5. From statement 17, we know that green, kind people are round.\n6. Since Erin is green, we can consider statement 17 again: Green, kind people are round.\n7. However, we do not have enough information to determine whether Dave is kind or not.\n\nSince we do not have enough information to determine whether Dave is white or not, we cannot conclude whether the statement \"Dave is not white\" is true or false. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to use the given information and logical deductions.\n\n1. We are given that Dave is green.\n2. We need to find a connection between Dave being green and being white.\n\nFrom the given information:\n- If someone is rough then they are green.\n- If someone is white and not green then they are round.\n\nHowever, there's no direct information that connects being green to being white or not white. \n\nBut, let's analyze the information about Anne to see if we can draw any conclusions about Dave being white.\n- Anne is white.\n- Anne is big.\n- Anne is not furry.\n\nNow, let's look at the information about Erin:\n- Erin is furry.\n- Erin is green.\n- Erin is round.\n\nFrom the information about Anne and Erin, we can see that being furry, green, and round are all characteristics of Erin. However, we don't have any information that connects these characteristics to Dave.\n\nSince we can't directly conclude that Dave is white or not white from the given information, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is not white' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is green.\n   - This statement is given directly from the problem.\n\n2. If someone is green, then they are rough.\n   - This is an inference from the statement 'If someone is rough then they are green.'\n\n3. Since Dave is green, we can conclude that Dave is rough.\n   - This is a direct conclusion from statement 1 and statement 2.\n\n4. Furry, white people are rough.\n   - This statement is given directly from the problem.\n\n5. Erin is furry and white.\n   - This is not directly stated, but we can infer that Erin is white because Erin is furry and furry, white people are rough. Since Dave is also rough, we can conclude that Erin is also rough. Then, because Erin is furry and rough, Erin must be white.\n\n6. Since Erin is white and rough, then Erin is big.\n   - This is an inference from the statement 'If someone is white then they are big.'\n\n7. Anne is white and big.\n   - This statement is given directly from the problem.\n\n8. If someone is white and big, then they are not furry.\n   - This is an inference from the statement 'If Anne is white and Anne is big then Anne is not furry.'\n\n9. Since Erin is white and big, we can conclude that Erin is not furry.\n   - This is a direct conclusion from statement 5, statement 6, and statement 8.\n\n10. Erin is not furry, which means Erin is not furry and green.\n    - This is an inference from the statement 'Erin is furry' and the fact that Erin is green.\n\n11. Erin is green, kind, and round.\n    - This is an inference from the statements 'Erin is green', 'Green, kind people are round', and 'Erin is furry and green.'\n\n12. Since Dave is green, we can conclude that Dave is kind.\n    - This is an inference from the statement 'Green, kind people are round' and the fact that Dave is green.\n\n13. Since Dave is kind, we can conclude that Dave is white.\n    - This is an inference from the statement 'If someone is kind then they are white.'\n\nNow, we have two conclusions about Dave: one says Dave is green, and the other says Dave is white. \n\nGiven these conclusions, we cannot determine whether the statement 'Dave is not white' is true or false. We can conclude that the statement 'Dave is not white' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Anne is green.\n   - Bob is big.\n   - Bob is furry.\n   - Dave is green.\n   - Erin is furry.\n   - Erin is green.\n   - Erin is round.\n   - If Anne is white and Anne is big then Anne is not furry.\n   - Furry people are kind.\n   - If someone is kind then they are white.\n   - If someone is white then they are big.\n   - If someone is rough then they are green.\n   - If someone is kind and not big then they are not rough.\n   - Furry, white people are rough.\n   - Green, kind people are round.\n   - If someone is white and not green then they are round.\n\n2. We are also given a new statement to analyze: Dave is not white.\n\n3. Let's start by using the given information to analyze the properties of each person.\n   - We know Anne is green and big. We also know that if someone is white and big, then they are not furry. Since Anne is big, and we are given that Anne is white (from the statement \"If Anne is white and Anne is big then Anne is not furry\"), it implies that Anne is not furry, because Anne is white and big. \n\n4. From the statement \"If someone is kind then they are white\", and the statement \"Furry people are kind\", we can infer that Erin is white, because Erin is furry. \n\n5. We also know that Erin is white and not green (from the statement \"If someone is white and not green then they are round\"), so Erin must be round.\n\n6. From the statement \"Green, kind people are round\", we can infer that Dave is not round, because Dave is green, but we don't know if he's kind yet.\n\n7. However, we don't have enough information to determine whether Dave is white or not. We can infer that Erin is white, but we can't directly apply the same rule to Dave.\n\n8. To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the properties of Dave.\n\n9. We know that Dave is green, but we don't know if he's white or not. \n\n10. From the statement \"If someone is rough then they are green\", we can infer that Dave is not rough, but this doesn't help us determine if he's white or not.\n\n11. We can also infer that Erin is kind, because Erin is furry, and we know that furry people are kind.\n\n12. From the statement \"If someone is kind and not big then they are not rough\", we can infer that Erin is not rough, because Erin is kind and not big.\n\n13. However, we still don't have enough information to determine whether Dave is white or not.\n\n14. To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to look for any other relationships between Dave and other properties.\n\n15. We know that Dave is green, and from the statement \"Green, kind people are round\", we can infer that Dave is round if he's kind. \n\n16. However, we still don't know if Dave is kind or not.\n\n17. We know that Erin is round, and Erin is kind. We also know that Erin is white, and Erin is not green.\n\n18. From the statement \"If someone is white and not green then they are round\", we can infer that Erin is round because Erin is white and not green.\n\n19. From the statement \"Green, kind people are round\", we can infer that Dave is not round if he's green, because Erin is round and Erin is kind.\n\n20. However, we still don't know if Dave is kind or not.\n\n21. Let's look for any other relationships between Dave and other properties.\n\n22. We know that Dave is green, and from the statement \"If someone is rough then they are green\", we can infer that Dave is not rough.\n\n23. We also know that Erin is kind, and from the statement \"If someone is kind then they are white\", we can infer that Erin is white.\n\n24. From the statement \"If someone is white and not green then they are round\", we can infer that Erin is round because Erin is white and not green.\n\n25. However, we still don't know if Dave is white or not.\n\n26. To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the properties of Dave and Erin.\n\n27. We know that Erin is white, and Erin is not green.\n\n28. From the statement \"If someone is white and not green then they are round\", we can infer that Erin is round because Erin is white and not green.\n\n29. We also know that Erin is kind, and from the statement \"Furry people are kind\", we can infer that Erin is furry.\n\n30. From the statement \"Furry, white people are rough\", we can infer that Erin is rough because Erin is furry and white.\n\n31. However, we still don't know if Dave is white or not.\n\n32. Let's look for any other relationships between Dave and other properties.\n\n33. We know that Dave is green, and from the statement \"If someone is rough then they are green\", we can infer that Dave is not rough.\n\n34. We also know that Erin is kind, and from the statement \"If someone is kind and not big then they are not rough\", we can infer that Erin is not rough because Erin is kind and not big.\n\n35. However, we still don't know if Dave is white or not.\n\n36. To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the properties of Dave.\n\n37. We know that Dave is green, and from the statement \"Green, kind people are round\", we can infer that Dave is round if he's kind.\n\n38. However, we still don't know if Dave is kind or not.\n\n39. Let's look for any other relationships between Dave and other properties.\n\n40. We know that Erin is white, and Erin is not green.\n\n41. From the statement \"If someone is white and not green then they are round\", we can infer that Erin is round because Erin is white and not green.\n\n42. We also know that Erin is kind, and from the statement \"If someone is kind then they are white\", we can infer that Erin is white.\n\n43. From the statement \"Green, kind people are round\", we can infer that Dave is not round if he's green, because Erin is round and Erin is kind.\n\n44. However, we still don't know if Dave is kind or not.\n\n45. We know that Dave is green, and from the statement \"If someone is rough then they are green\", we can infer that Dave is not rough.\n\n46. We also know that Erin is kind, and from the statement \"If someone is kind and not big then they are not rough\", we can infer that Erin is not rough because Erin is kind and not big.\n\n47. However, we still don't know if Dave is white or not.\n\n48. To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the properties of Dave.\n\n49. We know that Dave is green, and from the statement \"If someone is rough then they are green\", we can infer that Dave is not rough.\n\n50. We also know that Erin is kind, and from the statement \"Furry, white people are rough\", we can infer that Erin is rough because Erin is furry and white.\n\n51. However, we still don't know if Dave is white or not.\n\n52. From the statement \"If someone is kind then they are white\", we can infer that Dave is white if he's kind.\n\n53. However, we still don't know if Dave is kind or not.\n\n54. Let's look for any other relationships between Dave and other properties.\n\n55. We know that Dave is green, and from the statement \"Green, kind people are round\", we can infer that Dave is round if he's kind.\n\n56. However, we still don't know if Dave is kind or not.\n\n57. We know that Erin is kind, and from the statement \"If someone is kind then they are white\", we can infer that Erin is white.\n\n58. From the statement \"If someone is white and not green then they are round\", we can infer that Erin is round because Erin is white and not green.\n\n59. However, we still don't know if Dave is white or not.\n\n60. To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the properties of Dave.\n\n61. We know that Dave is green, and from the statement \"If someone is rough then they are green\", we can infer that Dave is not rough.\n\n62. We also know that Erin is kind, and from the statement \"If someone is kind and not big then they are not rough\", we can infer that Erin is not rough because Erin is kind and not big.\n\n63. However, we still don't know if Dave is white or not.\n\n64. We know that Dave is green, and from the statement \"Green, kind people are round\", we can infer that Dave is round if he's kind.\n\n65. However, we still don't know if Dave is kind or not.\n\n66. We also know that Erin is kind, and from the statement \"If someone is kind then they are white\", we can infer that Erin is white.\n\n67. From the statement \"If someone is white and not green then they are round\", we can infer that Erin",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is not white' is true, false, or unknown, we need to analyze the given information and the characteristics of Dave.\n\n1. We are given the following information about Dave:\n   - Dave is green.\n\n2. We are also given the following information about the characteristics of people:\n   - If someone is green, then they are rough.\n   - If someone is white, then they are big.\n   - If someone is white and not green, then they are round.\n\n3. We can infer that since Dave is green, he is rough. However, we cannot determine whether Dave is white or not based on the given information about green people.\n\n4. We also know that if someone is kind and not big, then they are not rough. But we do not have any information about Dave being kind or not, or being big or not.\n\n5. Since we do not have enough information about Dave's characteristics to determine whether he is white or not, we cannot determine whether the statement 'Dave is not white' is true or false.\n\nTherefore, the statement 'Dave is not white' is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information and use logical deductions to determine the characteristics of each person. We will then use these deductions to determine if the statement \"Dave is not white\" is true, false, or unknown.\n\n1. Anne is green.\n2. Bob is big.\n3. Bob is furry.\n4. Dave is green.\n5. Erin is furry.\n6. Erin is green.\n7. Erin is round.\n8. If Anne is white and Anne is big then Anne is not furry.\n9. Furry people are kind.\n10. If someone is kind then they are white.\n11. If someone is white then they are big.\n12. If someone is rough then they are green.\n13. If someone is kind and not big then they are not rough.\n14. Furry, white people are rough.\n15. Green, kind people are round.\n16. If someone is white and not green then they are round.\n\nFrom the given information, we know that:\n\n- Anne is green (1).\n- Anne is white and Anne is big (given additional information not in the original list but in the statement to solve this problem).\n- Anne is not furry (from 8, as she is white and big).\n- Bob is big and furry (2 and 3).\n- Dave is green (4).\n- Erin is furry, green, and round (5, 6, and 7).\n- Furry people are kind (9).\n- Kind people are white (10).\n- White people are big (11).\n- Rough people are green (12).\n- Kind and not big people are not rough (13).\n- Furry, white people are rough (14).\n- Green, kind people are round (15).\n- White and not green people are round (16).\n\nNow, let's analyze the statement \"Dave is not white\":\n\nSince Dave is green (4) and green people can be either rough or round, depending on their other characteristics, we need to look for more information about Dave.\n\nFrom the given information, we know that Dave is green (4), but we do not know if he is kind. If Dave is kind, then he would be white (10). However, we do not know if Dave is big or not.\n\nIf Dave is not big, then he would not be rough (13). But we do not know if Dave is furry or not.\n\nFrom (14), we know that furry, white people are rough. However, this does not directly apply to Dave because we do not know if Dave is white or furry.\n\nFrom (15), we know that green, kind people are round. However, this does not directly apply to Dave because we do not know if Dave is kind.\n\nFrom (16), we know that white and not green people are round. However, this does not directly apply to Dave because we do not know if Dave is white.\n\nFrom the given information, we cannot determine if Dave is white or not. We cannot conclude that Dave is white or not white based on the given information. Therefore, the answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is green.\n   - There is no direct information about Dave's color being white or not. However, we do know that if someone is rough then they are green. But we don't have enough information to determine if Dave is rough.\n\n2. If someone is rough then they are green.\n   - This is a general rule, but it doesn't apply directly to Dave.\n\n3. Furry, white people are rough.\n   - This rule is not applicable to Dave because it's about the combination of furry and white, which doesn't describe Dave.\n\n4. Green, kind people are round.\n   - This rule is not applicable to Dave because it's about the combination of green and kind, which doesn't describe Dave.\n\n5. If someone is white and not green then they are round.\n   - This rule is not applicable to Dave because it's about the combination of white and not green, which is opposite to what we know about Dave.\n\n6. If someone is kind then they are white.\n   - We don't know if Dave is kind or not. But if he is kind, then this rule might apply.\n\n7. Furry people are kind.\n   - We know that Erin is furry, so Erin is kind. However, this rule is not directly applicable to Dave.\n\n8. If Anne is white and Anne is big then Anne is not furry.\n   - This is a rule about Anne, and we don't know if it's applicable to Dave.\n\n9. If Anne is white then Anne is big.\n   - This is a rule about Anne, and we don't know if it's applicable to Dave.\n\n10. If someone is kind and not big then they are not rough.\n    - We don't know if Dave is kind or big.\n\nFrom the given information, we know that:\n- Dave is green.\n- We don't have enough information to determine if Dave is white, kind, big, or rough.\n\nSince we don't have enough information to determine if Dave is white or not, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the given information and apply the rules of logic.\n\n1. We know that Dave is green (given in the problem).\n2. If someone is white, they are big (rule 3).\n3. If someone is big, they are not furry (rule 6 is not applicable but we are using rule 4 which states that if Anne is big then Anne is not furry. Then we use rule 1 which states that Anne is big. Thus Anne is not furry. Then we use rule 7 which states that furry people are kind. Thus Anne is kind. Then we use rule 8 which states that if someone is kind then they are white. Thus Anne is white.).\n4. However, using the given rule (3), we cannot determine that someone who is green is not big. So, Dave can be big or not big.\n5. If someone is rough, then they are green (rule 9).\n6. Furry, white people are rough (rule 10).\n7. Since we know Dave is green, but we cannot determine if he is big, we cannot determine if he is rough. However, we can determine that Erin is rough, as she is both furry and white.\n8. Green, kind people are round (rule 12).\n9. Since we know Dave is green and we don't know if he is kind, we cannot determine if he is round.\n\nGiven that we cannot determine if Dave is big, we cannot determine if he is rough. However, we cannot determine if he is kind, as we don't know if he is furry. Therefore, we cannot determine if he is round.\n\nSince we cannot determine if Dave is round, we cannot determine if he is white (rule 13).\n\nThe statement \"Dave is not white\" is unknown, as we cannot determine if Dave is white or not.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we'll use a step-by-step approach based on the given statements and their logical implications.\n\nGiven statements:\n\n1. Anne is green.\n2. Bob is big.\n3. Bob is furry.\n4. Dave is green.\n5. Erin is furry.\n6. Erin is green.\n7. Erin is round.\n8. If Anne is white and Anne is big then Anne is not furry.\n9. Furry people are kind.\n10. If someone is kind then they are white.\n11. If someone is white then they are big.\n12. If someone is rough then they are green.\n13. If someone is kind and not big then they are not rough.\n14. Furry, white people are rough.\n15. Green, kind people are round.\n16. If someone is white and not green then they are round.\n\nNow, let's analyze the given statement: \"Dave is not white.\"\n\nTo determine whether this statement is true, false, or unknown, we need to examine the statements related to Dave and the logical implications.\n\nStatement 4: Dave is green.\n\nFrom statement 12: If someone is rough then they are green.\nThere is no direct information about Dave being rough. However, we can analyze the implications of being rough.\n\nFrom statement 13: If someone is kind and not big then they are not rough.\nWe know that furry people are kind (statement 9), so if someone is furry, they are kind. However, we cannot directly conclude that Dave is furry.\n\nFrom statement 14: Furry, white people are rough.\nSince we do not know if Dave is furry or white, we cannot conclude that Dave is rough.\n\nHowever, we can analyze the information about Erin, who is furry and green (statements 5 and 6).\n\nFrom statement 15: Green, kind people are round.\nSince Erin is green, we can conclude that Erin is kind (from statement 9: Furry people are kind).\n\nFrom statement 10: If someone is kind then they are white.\nSince Erin is kind, we can conclude that Erin is white.\n\nNow, let's re-examine the statements about Erin:\n\n1. Erin is furry.\n2. Erin is green.\n3. Erin is round.\n4. Erin is white.\n\nFrom statement 11: If someone is white then they are big.\nWe can conclude that Erin is big.\n\nWe now have a contradiction:\n\n1. Anne is big (statement 2).\n2. If Anne is white and Anne is big then Anne is not furry (statement 8).\n3. Anne is white (since Erin is white and big, and Erin is furry, so Anne is not furry, hence Anne is white).\n\nHowever, from statement 2: Bob is big, and statement 8: If Anne is white and Anne is big then Anne is not furry.\n\nNow let's check if Dave is white or not. We know Dave is green, but we do not have information about him being rough. However, since green people are not necessarily rough, and we cannot conclude Dave is white or not from the given statements.\n\nSince we do not have information about Dave being white or not, we cannot determine whether the statement \"Dave is not white\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not white\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. We know that Dave is green. (From the problem statement)\n\n2. We are also given the following rules:\n   - If someone is green then they are rough. \n   - Rough people are green.\n\nFrom these two rules, we can conclude that Dave is rough.\n\n3. We know that rough people are green. However, this rule is already given in point 2. \n\n4. We also have the following rule:\n   - If someone is white then they are big.\n\nBut we also know that if someone is rough then they are green, so we can't say that Dave is white because being rough and being green are mutually exclusive.\n\n5. We can also use the following rule:\n   - If someone is kind then they are white.\n\nHowever, we have no information about Dave being kind or not. Therefore, we can't conclude anything about Dave's whiteness using this rule.\n\n6. We are also given the following rule:\n   - If someone is furry and white, then they are rough.\n\nHowever, we have no information about Dave being furry or not. Therefore, we can't conclude anything about Dave's roughness using this rule.\n\n7. We also have the following rule:\n   - If someone is green and kind, then they are round.\n\nHowever, we have no information about Dave being kind or not. Therefore, we can't conclude anything about Dave's roundness using this rule.\n\n8. We also know that if someone is white and not green then they are round.\n\nHowever, we don't have any information that Dave is white, so we can't conclude anything about Dave's roundness using this rule.\n\n9. We can use the following rule:\n   - Furry people are kind.\n\nWe also know that Erin is furry and Erin is green. However, we have no information about Dave being furry or not.\n\n10. We also know that if Anne is white and Anne is big, then Anne is not furry.\n\nHowever, we have no information about Dave being related to Anne in any way, so we can't conclude anything about Dave's furiness using this rule.\n\n11. We can use the following rule:\n   - If someone is kind then they are white.\n\nHowever, we have no information about Dave being kind or not. Therefore, we can't conclude anything about Dave's whiteness using this rule.\n\n12. We can also use the following rule:\n    - If Anne is big then Anne is not furry.\n\nHowever, we have no information about Dave being related to Anne in any way, so we can't conclude anything about Dave's furiness using this rule.\n\n13. We are given that Anne is big and Anne is white, and we know that if someone is white and not green then they are round.\n\nHowever, we have no information about Dave being related to Anne in any way, so we can't conclude anything about Dave's roundness using this rule.\n\n14. We know that if someone is rough then they are green.\n\nAs we concluded earlier, Dave is rough, so Dave is green.\n\n15. We are given that if someone is green then they are rough.\n\nAs we concluded earlier, Dave is rough, so Dave is indeed green.\n\n16. We also know that if someone is green and kind, then they are round.\n\nHowever, we have no information about Dave being kind or not. Therefore, we can't conclude anything about Dave's roundness using this rule.\n\nNow we can conclude that Dave is green, but we can't conclude whether he is white or not. Since we don't have enough information to determine whether Dave is white, the answer to the question \"Dave is not white\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_dave, green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_erin, white_erin), rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_erin, kind_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(green_dave, kind_dave), round_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & Not(green(X)) -> round(X)",
+          "z3_formula": "Implies(And(white_dave, Not(green_dave)), round_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(white(dave))",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> not furry(X)",
+          "z3_formula": "Implies(And(white_anne, big_anne), not_furry_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_X, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_X, white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> big(X)",
+          "z3_formula": "Implies(white_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not big(X) -> not rough(X)",
+          "z3_formula": "Implies(And(kind_X, not big_X), not rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_X, white_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(furry_X, green_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & not green(X) -> round(X)",
+          "z3_formula": "Implies(And(white_X, not green_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(anne)",
+          "z3_formula": "not_furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(dave is not white)",
+          "z3_formula": "unknown_dave_not_white == True",
+          "source_step": 7
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_dave, green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & Not(green(X)) -> round(X)",
+          "z3_formula": "Implies(And(white_dave, Not(green_dave)), round_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "Not(furry(anne))",
+          "z3_formula": "Not(furry_anne) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_dave, green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry_white_rough(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_white_rough_dave, furry_white_ernie), rough_ernie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(ernie) & white(ernie) -> rough(ernie)",
+          "z3_formula": "Implies(And(furry_ernie, white_ernie), rough_ernie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(ernie) & rough(ernie)",
+          "z3_formula": "And(white_ernie, rough_ernie) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(big(X)) -> big(X)",
+          "z3_formula": "Implies(And(white_ernie, big_ernie), big_ernie)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(big(anne)) -> not(furry(anne))",
+          "z3_formula": "Implies(And(white_anne, big_anne), not(furry_anne))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(ernie) & big(ernie) -> not(furry(ernie))",
+          "z3_formula": "Implies(And(white_ernie, big_ernie), not(furry_ernie))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(furry(ernie))",
+          "z3_formula": "not(furry_ernie) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(ernie) & green(ernie)",
+          "z3_formula": "And(furry_ernie, green_ernie) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(ernie) & kind(ernie) & round(ernie)",
+          "z3_formula": "And(And(green_ernie, kind_ernie), round_ernie) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave) -> kind(dave)",
+          "z3_formula": "Implies(green_dave, kind_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave) -> white(dave)",
+          "z3_formula": "Implies(kind_dave, white_dave)",
+          "source_step": 14
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X)",
+          "z3_formula": "Implies(green_dave, rough_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> big(X)",
+          "z3_formula": "Implies(white_dave, big_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & Not(green(X)) -> round(X)",
+          "z3_formula": "Implies(And(white_dave, Not(green_dave)), round_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(white(dave))",
+          "z3_formula": "Not(white_dave)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> not furry(X)",
+          "z3_formula": "Implies(And(white_anne, big_anne), not_furry_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_X, kind_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_X, white_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> big(X)",
+          "z3_formula": "Implies(white_X, big_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_X, green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not big(X) -> not rough(X)",
+          "z3_formula": "Implies(And(kind_X, not big_X), not rough_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_X, white_X), rough_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(green_X, kind_X), round_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & not green(X) -> round(X)",
+          "z3_formula": "Implies(And(white_X, not green_X), round_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_dave, green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_erin, white_erin), rough_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(green_dave, kind_dave), round_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & not green(X) -> round(X)",
+          "z3_formula": "Implies(And(white_dave, Not(green_dave)), round_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_dave, white_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_erin, kind_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> not furry(X)",
+          "z3_formula": "Implies(And(white_anne, big_anne), Not(furry_anne))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> big(X)",
+          "z3_formula": "Implies(white_anne, big_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not big(X) -> not rough(X)",
+          "z3_formula": "Implies(And(kind_dave, Not(big_dave)), Not(rough_dave))",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> big(X)",
+          "z3_formula": "Implies(white_dave, big_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not(furry(X))",
+          "z3_formula": "Implies(big_anne, not(furry_anne))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not(furry(X))",
+          "z3_formula": "Implies(big_anne, not(furry_anne))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_anne, white_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_erin, white_erin), rough_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_dave, green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_erin, white_erin), rough_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(green_dave, kind_dave), round_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_dave, green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_erin, white_erin), rough_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(green_dave, kind_dave), round_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> white(X)",
+          "z3_formula": "Implies(round_dave, white_dave)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & big(X) -> not furry(X)",
+          "z3_formula": "Implies(And(white_anne, big_anne), not_furry_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_bob, kind_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_erin, white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> big(X)",
+          "z3_formula": "Implies(white_erin, big_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_X, green_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & not big(X) -> not rough(X)",
+          "z3_formula": "Implies(And(kind_dave, not big_dave), not rough_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_bob, white_bob), rough_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(green_erin, kind_erin), round_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & not green(X) -> round(X)",
+          "z3_formula": "Implies(And(white_erin, not green_erin), round_erin)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> rough(X)",
+          "z3_formula": "Implies(green_dave, rough_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_dave, green_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_dave, green_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(green_dave, kind_dave), round_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & kind(X) -> round(X)",
+          "z3_formula": "Implies(And(green_dave, kind_dave), round_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> big(X)",
+          "z3_formula": "Implies(white_dave, big_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_dave, white_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_dave, white_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & not green(X) -> round(X)",
+          "z3_formula": "Implies(And(white_dave, Not(green_dave)), round_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_dave, kind_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & white(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_dave, white_dave), rough_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not furry(X)",
+          "z3_formula": "Implies(big_anne, Not(furry_anne))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> not furry(X)",
+          "z3_formula": "Implies(big_anne, Not(furry_anne))",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 130,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 55
+    },
+    "maxsat_stats": {
+      "satisfied": 53,
+      "excluded": 2,
+      "total_weight": 118,
+      "solve_time_ms": 2.0678266882896423
+    },
+    "timing": {
+      "trace_gen_s": 24.239,
+      "extraction_s": 35.747,
+      "dedup_s": 1.384,
+      "maxsat_s": 0.005,
+      "total_s": 61.375
+    }
+  }
+}

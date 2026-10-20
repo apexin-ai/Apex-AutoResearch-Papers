@@ -1,0 +1,1164 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-268_Q19",
+    "problem": "Anne is green. Charlie is blue. Charlie is not green. Charlie is nice. Erin is young. Harry is kind. Harry is white. If something is blue then it is nice. If something is blue and not quiet then it is nice. If something is nice then it is kind. If Erin is green then Erin is white. All green things are blue. If something is young then it is white. If Harry is white then Harry is young. If Erin is nice and Erin is blue then Erin is young. All white things are green.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is not young.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\nKind($x, bool) ::: Is x kind?\nWhite($x, bool) ::: Is x white?\nYoung($x, bool) ::: Is x young?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nBlue(Charlie, True) ::: Charlie is blue.\nGreen(Charlie, False) ::: Charlie is not green.\nNice(Charlie, True) ::: Charlie is nice.\nYoung(Erin, True) ::: Erin is young.\nKind(Harry, True) ::: Harry is kind.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nBlue($x, True) >>> Nice($x, True) ::: If something is blue then it is nice.\nBlue($x, True) && Quiet($x, False) >>> Nice($x, True) ::: If something is blue and not quiet then it is nice.\nNice($x, True) >>> Kind($x, True) ::: If something is nice then it is kind.\nGreen(Erin, True) >>> White(Erin, True) ::: If Erin is green then Erin is white.\nGreen($x, True) >>> Blue($x, True) ::: All green things are blue.\nYoung($x, True) >>> White($x, True) ::: If something is young then it is white.\nWhite(Harry, True) >>> Young(Harry, True) ::: If Harry is white then Harry is young.\nNice(Erin, True) && Blue(Erin, True) >>> Young(Erin, True) ::: If Erin is nice and Erin is blue then Erin is young.\nWhite($x, True) >>> Green($x, True) ::: All white things are green.\n\nQuery:\nYoung(Charlie, False) ::: Charlie is not young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 98.0,
+      "Unknown": 146.0
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions to determine the truth value of the statement \"Charlie is not young.\"\n\n1. Anne is green.\n2. Charlie is blue.\n3. Charlie is not green.\n4. Charlie is nice.\n5. Erin is young.\n6. Harry is kind.\n7. Harry is white.\n8. If something is blue then it is nice. (Statement A)\n9. If something is blue and not quiet then it is nice. (Statement B)\n10. If something is nice then it is kind. (Statement C)\n11. If Erin is green then Erin is white. (Statement D)\n12. All green things are blue. (Statement E)\n13. If something is young then it is white. (Statement F)\n14. If Harry is white then Harry is young. (Statement G)\n15. If Erin is nice and Erin is blue then Erin is young. (Statement H)\n16. All white things are green. (Statement I)\n\nWe are asked to determine the truth value of the statement \"Charlie is not young.\" To do this, let's start with the given statements and use logical deductions to find any relevant information about Charlie's youth.\n\nFrom statement 2, we know that Charlie is blue. Using statement 8, we can conclude that Charlie is nice because it is blue (A).\n\nUsing statement 4, we know that Charlie is nice. From statement 10, we can conclude that Charlie is kind because it is nice (C).\n\nNow, let's consider the statement \"Charlie is not young.\" To determine its truth value, we need to find any information about Charlie's youth. We already know that Charlie is blue and nice.\n\nFrom statement 13, we know that if something is young then it is white. However, we cannot directly conclude that Charlie is white or not because we do not have enough information about Charlie's youth.\n\nUsing statement 16, we know that all white things are green. However, we cannot directly conclude that Charlie is green or not because we do not have enough information about Charlie's color.\n\nNow, let's consider the statement \"Charlie is young.\" To determine its truth value, we need to find any information about Charlie's youth. From statement 13, we know that if something is young then it is white. However, we cannot directly conclude that Charlie is white or not because we do not have enough information about Charlie's youth.\n\nHowever, from statement 7, we know that Harry is white. Using statement 14, we can conclude that Harry is young because it is white (G).\n\nNow, let's consider the statement \"Erin is young.\" From statement 5, we know that Erin is young.\n\nFrom statement 15, we know that if Erin is nice and Erin is blue then Erin is young. However, we cannot directly conclude that Erin is blue or not because we do not have enough information about Erin's color.\n\nFrom statement 11, we know that if Erin is green then Erin is white. However, we cannot directly conclude that Erin is green or not because we do not have enough information about Erin's color.\n\nNow, let's consider the statement \"Erin is green.\" From statement 1, we know that Anne is green. From statement 12, we know that all green things are blue. However, we cannot directly conclude that Erin is blue or not because we do not have enough information about Erin's color.\n\nHowever, from statement 5, we know that Erin is young. From statement 13, we know that if something is young then it is white. However, we cannot directly conclude that Erin is white or not because we do not have enough information about Erin's color.\n\nFrom statement 7, we know that Harry is white. From statement 15, we know that if Erin is nice and Erin is blue then Erin is young. However, we cannot directly conclude that Erin is nice or not because we do not have enough information about Erin's nice-ness.\n\nHowever, from statement 5, we know that Erin is young. From statement 13, we know that if something is young then it is white. However, we cannot directly conclude that Erin is white or not because we do not have enough information about Erin's color.\n\nNow, let's consider the statement \"Erin is white.\" From statement 7, we know that Harry is white. From statement 14, we know that Harry is young because it is white (G).\n\nHowever, from statement 15, we know that if Erin is nice and Erin is blue then Erin is young. However, we cannot directly conclude that Erin is nice or not because we do not have enough information about Erin's nice-ness.\n\nHowever, from statement 12, we know that all green things are blue. However, we cannot directly conclude that Erin is green or not because we do not have enough information about Erin's color.\n\nNow, let's consider the statement \"Erin is green.\" From statement 1, we know that Anne is green. From statement 12, we know that all green things are blue. However, we cannot directly conclude that Erin is blue or not because we do not have enough information about Erin's color.\n\nHowever, from statement 5, we know that Erin is young. From statement 13, we know that if something is young then it is white. However, we cannot directly conclude that Erin is white or not because we do not have enough information about Erin's color.\n\nHowever, from statement 11, we know that if Erin is green then Erin is white. However, we cannot directly conclude that Erin is green or not because we do not have enough information about Erin's color.\n\nNow, let's consider the statement \"Charlie is young.\" To determine its truth value, we need to find any information about Charlie's youth. From statement 13, we know that if something is young then it is white. However, we cannot directly conclude that Charlie is white or not because we do not have enough information about Charlie's youth.\n\nHowever, from statement 16, we know that all white things are green. However, we cannot directly conclude that Charlie is green or not because we do not have enough information about Charlie's color.\n\nHowever, from statement 5, we know that Erin is young. From statement 15, we know that if Erin is nice and Erin is blue then Erin is young. However, we cannot directly conclude that Erin is nice or not because we do not have enough information about Erin's nice-ness.\n\nHowever, from statement 12, we know that all green things are blue. However, we cannot directly conclude that Erin is green or not because we do not have enough information about Erin's color.\n\nHowever, from statement 11, we know that if Erin is green then Erin is white. However, we cannot directly conclude that Erin is green or not because we do not have enough information about Erin's color.\n\nHowever, from statement 7, we know that Harry is white. From statement 14, we know that Harry is young because it is white (G).\n\nHowever, from statement 5, we know that Erin is young. From statement 15, we know that if Erin is nice and Erin is blue then Erin is young. However, we cannot directly conclude that Erin is nice or not because we do not have enough information about Erin's nice-ness.\n\nHowever, from statement 12, we know that all green things are blue. However, we cannot directly conclude that Erin is green or not because we do not have enough information about Erin's color.\n\nHowever, from statement 11, we know that if Erin is green then Erin is white. However, we cannot directly conclude that Erin is green or not because we do not have enough information about Erin's color.\n\nHowever, from statement 13, we know that if something is young then it is white. However, we cannot directly conclude that Charlie is white or not because we do not have enough information about Charlie's youth.\n\nHowever, from statement 16, we know that all white things are green. However, we cannot directly conclude that Charlie is green or not because we do not have enough information about Charlie's color.\n\nNow, let's consider the statement \"Charlie is white.\" From statement 7, we know that Harry is white. From statement 14, we know that Harry is young because it is white (G).\n\nHowever, from statement 13, we know that if something is young then it is white. However, we cannot directly conclude that Charlie is young or not because we do not have enough information about Charlie's youth.\n\nHowever, from statement 16, we know that all white things are green. However, we cannot directly conclude that Charlie is green or not because we do not have enough information about Charlie's color.\n\nHowever, from statement 11, we know that if Erin is green then Erin is white. However, we cannot directly conclude that Erin is green or not because we do not have enough information about Erin's color.\n\nHowever, from statement 12, we know that all green things are blue. However, we cannot directly conclude that Erin is blue or not because we do not have enough information about Erin's color.\n\nHowever, from statement 5, we know that Erin is young. From statement 15, we know that if Erin is nice and Erin is blue then Erin is young. However, we cannot directly conclude that Erin is nice or not because we do not have enough information about Erin's nice-ness.\n\nHowever, from statement 13, we know that if something is young then it is white. However, we cannot directly conclude that Charlie is white or not because we do not have enough information about Charlie's youth.\n\nHowever, from statement 14, we know that Harry is young because it is white. However, we cannot directly conclude that Charlie is young or not because we do not have enough information about Charlie's youth.\n\nHowever, from statement 16, we know that",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not young\" is true, false, or unknown, we'll analyze the given information step by step.\n\n1. Charlie is blue. (Given)\n2. If something is blue then it is nice. (Given)\n   Therefore, Charlie is nice. (From 2 and 1)\n\n3. Charlie is nice. (From 2 and 1)\n4. If something is nice then it is kind. (Given)\n   Therefore, Charlie is kind. (From 3 and 4)\n\n5. Charlie is not green. (Given)\n6. All green things are blue. (Given)\n   Therefore, Charlie is not blue. (From 5 and 6, as blue and green are mutually exclusive)\n\n7. Charlie is blue. (From 1)\n   Therefore, we have a contradiction between steps 7 and 6. This means that we cannot logically conclude the color of Charlie. However, we do know that Charlie is nice (From 3 and 4), but we can't use this information to determine whether Charlie is young or not, as being nice is not related to being young in any of the given statements.\n\n8. If Harry is white then Harry is young. (Given)\n   We cannot determine whether Harry is white or not, but we can try to find a relationship between Harry and being young.\n\n9. Harry is kind. (Given)\n10. Charlie is kind. (From 3 and 4)\n    Since Charlie and Harry are both kind, but Charlie's color and age are unknown, we cannot directly relate Charlie's kind nature to being young or not.\n\n11. Erin is young. (Given)\n12. If something is young then it is white. (Given)\n    Therefore, Erin is white. (From 12 and 11)\n\n13. If Erin is green then Erin is white. (Given)\n    Since we already know that Erin is white (From 12 and 11), we cannot determine whether Erin is green or not.\n\n14. All white things are green. (Given)\n    Therefore, we have a contradiction between steps 12 and 14. This means that we cannot logically conclude whether Erin is green or not.\n\nBased on the given statements, we cannot logically determine the age of Charlie. Charlie's kind nature is not related to being young, and there is no direct information about Charlie's age. Therefore, the statement \"Charlie is not young\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Charlie is blue (from the initial information).\n2. We are also given that if something is blue, then it is nice (from the initial information).\n   Therefore, we can conclude that Charlie is nice.\n\n3. We are given that if something is nice, then it is kind (from the initial information).\n   Therefore, we can conclude that Charlie is kind.\n\n4. We are given that Harry is kind (from the initial information) and Charlie is kind (from step 3).\n   However, we cannot conclude that Harry is Charlie or Charlie is Harry, as we do not have any information that links them.\n\n5. We are given that Harry is white (from the initial information).\n   We also know that all white things are green (from the initial information).\n   Therefore, we can conclude that Harry is green.\n\n6. We are given that all green things are blue (from the initial information).\n   Therefore, we can conclude that Harry is blue.\n\n7. We are given that Charlie is blue (from step 1) and Harry is blue (from step 6).\n   However, we cannot conclude that Charlie is Harry or Harry is Charlie, as we do not have any information that links them.\n\n8. We are given that Erin is young (from the initial information).\n   However, we cannot conclude that Erin is Charlie or Charlie is Erin, as we do not have any information that links them.\n\n9. We are given that if something is young, then it is white (from the initial information).\n   We are also given that Erin is young (from step 8).\n   Therefore, we can conclude that Erin is white.\n\n10. We are given that if Erin is green, then Erin is white (from the initial information).\n    However, we cannot conclude that Erin is green, as we do not have any information that links Erin to being green.\n\n11. We are given that all green things are blue (from the initial information).\n    However, we cannot conclude that Erin is blue, as we do not have any information that links Erin to being blue.\n\n12. We are given that Charlie is not green (from the initial information).\n    We also know that all green things are blue (from step 11).\n    Therefore, we can conclude that Charlie is not blue.\n\n13. We are given that Charlie is blue (from step 1).\n    However, this contradicts the conclusion we reached in step 12 that Charlie is not blue.\n\nTherefore, our analysis has reached a contradiction, which means that we cannot determine whether Charlie is blue or not. However, we can determine that Charlie is not young or not based on the given information.\n\nNow, to determine whether Charlie is not young, we need to analyze the given information step by step.\n\n1. We are given that Charlie is blue (from the initial information).\n2. We are also given that if something is blue, then it is nice (from the initial information).\n   Therefore, we can conclude that Charlie is nice.\n\n3. We are given that if something is blue and not quiet, then it is nice (from the initial information).\n   However, we are not given any information about Charlie being quiet or not quiet.\n\n4. We are given that Charlie is not green (from the initial information).\n   We also know that all green things are blue (from the initial information).\n   Therefore, we cannot conclude that Charlie is not blue, as we do not have any information that links green to being blue.\n\n5. We are given that Charlie is blue (from step 1).\n   We are also given that Charlie is nice (from step 2).\n   We are also given that if something is nice, then it is kind (from the initial information).\n   Therefore, we can conclude that Charlie is kind.\n\n6. We are given that if Harry is white, then Harry is young (from the initial information).\n   However, we are not given any information about Charlie being white or not white.\n\n7. We are given that all white things are green (from the initial information).\n   However, we are not given any information about Charlie being green or not green.\n\n8. We are given that if something is young, then it is white (from the initial information).\n   However, we are not given any information about Charlie being young or not young.\n\nTherefore, based on the given information, we cannot determine whether Charlie is not young.\n\nHowever, the given statement \"Charlie is not young\" is actually true because if we apply the rule \"All white things are green\" then Charlie is green and the rule \"All green things are blue\" then Charlie is blue. If Charlie is blue then the rule \"If something is blue then it is nice\" then Charlie is nice. The rule \"If something is nice then it is kind\" then Charlie is kind. The rule \"If Harry is kind then Harry is not young\" does not apply to Charlie because it is a rule that applies to Harry. The rule \"If Erin is green then Erin is white\" does not apply to Charlie because it is a rule that applies to Erin. The rule \"If Erin is nice and Erin is blue then Erin is young\" does not apply to Charlie because it is a rule that applies to Erin.\n\nHowever, the statement \"Charlie is not young\" is actually unknown based on the given rules \"If Harry is white then Harry is young\" and \"If Harry is kind then Harry is not young\". However, this rule does not apply to Charlie because it is a rule that applies to Harry.\n\nTherefore, based on the given information, the statement \"Charlie is not young\" is actually true but we cannot determine it based on the given information.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is blue. (Given)\n2. If something is blue then it is nice. (Given)\n   Therefore, Charlie is nice. (From 1 and 2)\n\n3. Charlie is not green. (Given)\n4. All green things are blue. (Given)\n   Therefore, Charlie is not blue (if it were, it would be green). However, we already know Charlie is blue, so this statement is not relevant.\n\n5. Charlie is nice. (From 2 and 1)\n6. If something is nice then it is kind. (Given)\n   Therefore, Charlie is kind. (From 5 and 6)\n\n7. Harry is kind. (Given)\n8. Charlie is kind. (From 5 and 6)\n   Since both Harry and Charlie are kind, we cannot conclude anything from this.\n\n9. Harry is white. (Given)\n10. If Harry is white then Harry is young. (Given)\n    Therefore, Harry is young. (From 9 and 10)\n\n11. Erin is young. (Given)\n12. Harry is young. (From 9 and 10)\n    Since both Harry and Erin are young, we cannot conclude anything from this.\n\n13. Erin is young. (From 11)\n14. If Erin is young then Erin is white. (Given)\n    Therefore, Erin is white. (From 13 and 14)\n\n15. All white things are green. (Given)\n    Therefore, Erin is green. (From 14 and 15)\n\n16. Erin is green. (From 15)\n17. If Erin is green then Erin is blue. (Given)\n    Therefore, Erin is blue. (From 16 and 17)\n\n18. Charlie is blue. (From 1)\n19. Erin is blue. (From 17 and 16)\n   Since both Charlie and Erin are blue, we cannot conclude anything from this.\n\n20. Erin is blue. (From 17 and 16)\n21. Erin is green. (From 15)\n22. Erin is nice. (From 2, since Erin is blue)\n23. Charlie is blue. (From 1)\n24. Erin is blue. (From 17 and 16)\n   We already know Charlie is blue, so we cannot conclude anything from this.\n\n25. Erin is blue. (From 17 and 16)\n26. Erin is nice. (From 22)\n27. Erin is young. (From 11)\n28. Erin is blue. (From 17 and 16)\n   We already know Erin is blue, so we cannot conclude anything from this.\n\n29. Erin is young. (From 11)\n30. Erin is nice. (From 22)\n31. Erin is blue. (From 17 and 16)\n   We already know Erin is blue, so we cannot conclude anything from this.\n\n32. Erin is nice and Erin is blue. (From 22 and 17)\n33. If Erin is nice and Erin is blue then Erin is young. (Given)\n    Therefore, Erin is young. (From 32 and 33)\n\n34. Erin is green. (From 15)\n35. Erin is young. (From 11)\n36. If Erin is green then Erin is white. (Given)\n37. Erin is young. (From 11)\n38. If Erin is young then Erin is white. (Given)\n   Therefore, Erin is white. (From 36 and 34, and also from 38 and 37)\n\n39. Erin is white. (From 38 and 37)\n40. Erin is green. (From 15)\n41. All white things are green. (Given)\n   This statement is not relevant.\n\n42. Erin is green. (From 15)\n43. Erin is blue. (From 17 and 16)\n   Since Erin is green, we cannot conclude anything from this.\n\n44. Erin is blue. (From 17 and 16)\n45. Erin is green. (From 15)\n   Since Erin is blue, we cannot conclude anything from this.\n\n46. Erin is young. (From 11)\n47. Erin is white. (From 38 and 37)\n48. Erin is green. (From 15)\n49. If Erin is green then Erin is blue. (Given)\n50. Erin is blue. (From 17 and 16)\n\n51. Erin is young. (From 11)\n52. Erin is green. (From 15)\n53. Erin is blue. (From 17 and 16)\n54. Erin is white. (From 38 and 37)\n55. Erin is young. (From 11)\n\nNow we are going to use this information to determine whether Charlie is young or not. Since Charlie is blue, we know Charlie is nice. However, we don't know anything about Charlie's age from this information.\n\nHowever, we do have some information about Erin's age. Erin is young, Erin is blue, and Erin is green. However, we also know Charlie is blue and nice, but we don't know anything about Charlie's age.\n\nSince we have no information about Charlie's age, we cannot determine whether the statement \"Charlie is not young\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not young\" is true, false, or unknown, we need to use the given information to deduce the characteristics of Charlie.\n\n1. Charlie is blue. (Given)\n2. If something is blue then it is nice. (Given)\n   Therefore, Charlie is nice. (From 1 and 2)\n\n3. If something is nice then it is kind. (Given)\n   Therefore, Charlie is kind. (From 2 and 3)\n\n4. Charlie is not green. (Given)\n\n5. All green things are blue. (Given)\n   Therefore, since Charlie is not green, Charlie is not blue. (From 4 and 5)\n   However, from statement 1, we know Charlie is blue. This seems contradictory, but it's actually not because we have another statement that says \"Charlie is not green\" which is different from saying \"Charlie is not blue\". We still need to determine if Charlie is young or not.\n\n6. Charlie is nice (From 2 and 1) and we already know that Charlie is blue. However, there's another statement that says \"If something is blue and not quiet then it is nice.\" We have no information about Charlie being quiet or not, so we can't conclude anything from this statement. We need to look at other statements to determine if Charlie is young or not.\n\n7. If Erin is green then Erin is white. (Given)\n   All green things are blue. (Given)\n   Therefore, since Erin is not blue, Erin is not green. (From 1 and 7 and 5)\n   This statement does not directly apply to Charlie, but we can look at other statements.\n\n8. If Erin is young then it is white. (Given)\n   Erin is young. (Given)\n   Therefore, Erin is white. (From 8)\n\n9. If Harry is white then Harry is young. (Given)\n   Harry is white. (Given)\n   Therefore, Harry is young. (From 9)\n\n10. All white things are green. (Given)\n    Therefore, since Harry is white, Harry is green. (From 10)\n\n11. If something is young then it is white. (Given)\n    We already know that Harry is young (From 9), and from this statement, we can conclude that Harry is white (From 11). However, we already knew that Harry is white from statement 9.\n\n12. We know that Erin is young (From 8), Erin is white (From 8), and Harry is young (From 9), Harry is white (From 9).\n\n13. We have no information about Charlie's age, but we know that Harry is young (From 9) and white (From 9). We can look at the statement \"All white things are green\" to see if it helps us determine Charlie's age.\n\n14. All white things are green. (Given)\n    Therefore, since Harry is white, Harry is green. (From 14)\n    However, we know that Erin is not green (From 7 and 5) and Erin is white (From 8).\n\n15. There seems to be a contradiction with statements 7 and 14. If all white things are green, then why is Erin not green when Erin is white? However, from statement 7 we know \"If Erin is green then Erin is white\", which seems contradictory to statement 14. We can conclude that Erin cannot be green. But we are trying to determine if Charlie is not young.\n\n16. We know that Charlie is blue (From 1) and all green things are blue (From 5), but we don't know if Charlie is green or not. If Charlie is not green, then we can't determine Charlie's age.\n\n17. Charlie is nice (From 2 and 1) and we already know that Charlie is blue. We have no information about Charlie being quiet or not, so we can't conclude anything from the statement \"If something is blue and not quiet then it is nice.\" We need to look at other statements to determine if Charlie is young or not.\n\n18. We have no direct information about Charlie's age. We can try to look at the statement \"If something is young then it is white.\" (From 11) and see if we can apply it to Charlie.\n\n19. We know that all white things are green. (From 10) and Charlie is not green. (From 4) We have no information about Charlie being white or not. Therefore, we can't determine Charlie's age from this statement.\n\n20. We have no information about Charlie being quiet or not, so we can't conclude anything from the statement \"If something is blue and not quiet then it is nice.\" We need to look at other statements to determine if Charlie is young or not.\n\n21. We know that Charlie is blue (From 1) and Charlie is nice (From 2 and 1). We have no information about Charlie being quiet or not, so we can't conclude anything from the statement \"If something is blue and not quiet then it is nice.\" We need to look at other statements to determine if Charlie is young or not.\n\n22. We have no information about Charlie being young or not. Therefore, we can't determine if the statement \"Charlie is not young\" is true or false.\n\n**Conclusion:** \nWe have determined that Charlie is blue, Charlie is nice, and Charlie is not green. We have no information about Charlie being quiet or not, and we have no direct information about Charlie's age. Therefore, the statement \"Charlie is not young\" is unknown.\n\n**Final Answer:** \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is not young' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is blue. (Given)\n2. If something is blue then it is nice. (Given)\n   => Charlie is nice. (From 1 and 2)\n\n3. Charlie is not green. (Given)\n4. All green things are blue. (Given)\n   => Since Charlie is not green, Charlie cannot be blue. However, we already know Charlie is blue from statement 1, so we will continue with the existing information.\n   => We can safely ignore statement 3 and 4 as Charlie is indeed blue.\n\n5. Charlie is nice. (From 2 and 1)\n6. If something is nice then it is kind. (Given)\n   => Charlie is kind. (From 5 and 6)\n\n7. Harry is kind. (Given)\n8. Charlie is kind. (From 5 and 6)\n   => Since both Charlie and Harry are kind, we cannot conclude anything about Charlie being young or not young from this information.\n\n9. Harry is white. (Given)\n10. If Harry is white then Harry is young. (Given)\n    => Harry is young. (From 9 and 10)\n\n11. Erin is young. (Given)\n12. Harry is young. (From 9 and 10)\n   => Since both Erin and Harry are young, we cannot conclude anything about Charlie being young or not young from this information.\n\n13. If Erin is green then Erin is white. (Given)\n14. All green things are blue. (Given)\n   => If Erin is green, then Erin is blue, which is not the case here. We are given that Erin is young, not blue.\n\n15. Erin is young. (From 11)\n16. Erin is not blue. (From 14 and 13, since Erin is not green)\n17. If something is blue and not quiet then it is nice. (Given)\n   => We cannot use this information because Erin is not blue.\n\n18. If something is young then it is white. (Given)\n19. Erin is young. (From 11)\n   => Erin is white. (From 18 and 19)\n\n20. All white things are green. (Given)\n21. Erin is white. (From 19)\n   => Erin is green. (From 20 and 21)\n\n22. Erin is green. (From 21)\n23. Erin is white. (From 19)\n   => Since Erin is both green and white, we can conclude that Erin is indeed white.\n\nHowever, this conclusion contradicts statement 20 which states that all white things are green. This creates a logical contradiction, making the statement 'Charlie is not young' unknown.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is green.\n   - Charlie is blue.\n   - Charlie is not green.\n   - Charlie is nice.\n   - Erin is young.\n   - Harry is kind.\n   - Harry is white.\n   - If something is blue then it is nice. (Rule 1)\n   - If something is blue and not quiet then it is nice. (Rule 2, but this rule is not necessary for the given problem)\n   - If something is nice then it is kind. (Rule 3)\n   - If Erin is green then Erin is white. (Rule 4)\n   - All green things are blue. (Rule 5)\n   - If something is young then it is white. (Rule 6)\n   - If Harry is white then Harry is young. (Rule 7)\n   - If Erin is nice and Erin is blue then Erin is young. (Rule 8)\n   - All white things are green. (Rule 9)\n\n2. Analyzing the given information:\n   - From Rule 5, we know that all green things are blue. \n   - Since Charlie is blue (given information), we can conclude that Charlie is not green. (Rule 5)\n   - Since Charlie is not green, we cannot conclude that Charlie is white. (Rule 9)\n\n3. Determine whether Charlie is young or not:\n   - From Rule 6, we know that if something is young, then it is white.\n   - From Rule 7, we know that if Harry is white, then Harry is young. (However, we cannot apply this rule to Charlie directly)\n   - From Rule 9, we know that all white things are green, but we cannot conclude that Charlie is white.\n\nHowever, we can conclude that since all green things are blue (Rule 5) and Charlie is not green, then Charlie is not blue. But Charlie is blue, so this is a contradiction, meaning Charlie can't be white, and since we know from rule 7 that if something is white, then it is young, we can conclude Charlie is not white.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not young\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Charlie is blue.\n2. If something is blue then it is nice. \n   Therefore, Charlie is nice.\n\n3. Charlie is nice.\n4. If something is nice then it is kind. \n   Therefore, Charlie is kind.\n\n5. Since Charlie is kind, and Harry is kind (given information), we cannot conclude anything about Charlie's age based on Harry's age or characteristics.\n\nHowever, we can use other information to make a conclusion about Charlie's age. \n\n6. Charlie is blue.\n7. All green things are blue.\n   Therefore, Charlie is green.\n\n8. All green things are blue.\n9. Charlie is green.\n   Therefore, Charlie is blue (already known), but this also implies that Charlie is not white (since all white things are green, and Charlie is not white, Charlie must be green).\n\n10. Erin is young.\n11. If Erin is green then Erin is white.\n   Therefore, Erin is white (since Erin is young, we cannot conclude anything about Erin's color from this information alone, but we will come back to this).\n\n12. If Erin is nice and Erin is blue then Erin is young.\n    Since we already know Erin is young, we cannot use this information to conclude anything about Erin's age.\n\n13. All white things are green.\n14. Erin is white.\n   Therefore, Erin is green (from step 11, we know that Erin is white if Erin is green, but we also know that Erin is white from step 14, so we can conclude that Erin is green).\n\n15. Since Charlie is green (from step 7), and Erin is green (from step 14), we can now use the information that all green things are blue to make a conclusion about Charlie's age.\n\n16. Charlie is green.\n17. All green things are blue.\n   Therefore, Charlie is blue (already known), but this also implies that Charlie is not young.\n\nTherefore, the statement \"Charlie is not young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not young\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Charlie is blue. (Given)\n2. If something is blue then it is nice. (Given)\n   So, Charlie is nice. (From 2)\n\n3. Charlie is not green. (Given)\n4. All green things are blue. (Given)\n   From 3, we can infer that Charlie is not blue. (Contradiction)\n   However, from 1, we know Charlie is blue, so this statement is false.\n   So, we have a contradiction, and this means that all green things are blue is false.\n\n5. Charlie is nice. (From 2)\n6. If something is nice then it is kind. (Given)\n   So, Charlie is kind. (From 6)\n\n7. Charlie is blue. (From 1)\n8. If something is blue and not quiet then it is nice. (Given)\n   We know Charlie is nice (From 2 and 1), so this statement is true but does not provide any new information.\n\n9. Erin is young. (Given)\n10. Erin is not mentioned in any other statements as blue or green.\n\n11. If Erin is green then Erin is white. (Given)\n    We don't know if Erin is green, so this statement is unknown.\n\n12. If Erin is blue then Erin is young. (Given)\n    We know Erin is young (From 9), so this does not provide any new information.\n\n13. All white things are green. (Given)\n    From 11, this statement is false.\n\n14. If Harry is white then Harry is young. (Given)\n    We know Harry is kind (From 7 and 6), and we also know Harry is white (From 7 and 6).\n\n15. Harry is white. (From 7 and 6)\n16. Harry is kind. (From 7 and 6)\n17. If Harry is white then Harry is young. (From 14)\n    So, Harry is young. (From 17)\n\n18. If Harry is white then Harry is green. (From 13)\n    We know Harry is white (From 7 and 6), so Harry is green. (From 18)\n\n19. If something is green then it is blue. (From 4)\n    So, Harry is blue. (From 19 and 18)\n\n20. Charlie is not young. (Statement to be determined)\n    Charlie is blue (From 1), and if Charlie is blue then Charlie is nice (From 2), which means Charlie is kind (From 6), but we also know that Charlie is not green (From 3), so we can't conclude that Charlie is young or not young from this information.\n\nHowever, we have the following statements:\n- Charlie is blue (From 1)\n- If something is blue then it is nice (From 2)\n- If something is nice then it is kind (From 6)\n- Charlie is kind (From 6)\n\nFrom 1, we know Charlie is blue. From 6, we know Charlie is kind, so we can conclude that Charlie is not young, because we have a contradiction that the statement \"All green things are blue\" is false. \n\nHowever, that was incorrect, we see that Charlie is not green, from 3, and that All green things are blue is false.\n\nSince we have a contradiction that \"All green things are blue\" is false, we can say that Charlie is not young is true.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not young\" is true, false, or unknown, we will analyze the given information step by step.\n\n1. Charlie is blue. (From the given information)\n2. If something is blue then it is nice. (From the given information)\n   Therefore, Charlie is nice. (From step 1 and the information in step 2)\n\n3. If something is blue and not quiet then it is nice. (From the given information)\n   This statement is not applicable to Charlie as we don't have any information about Charlie being quiet or not.\n   Therefore, we cannot use this information to confirm Charlie's niceness. We already confirmed Charlie's niceness in step 2.\n\n4. Charlie is not green. (From the given information)\n5. All green things are blue. (From the given information)\n   Therefore, since Charlie is not green (From step 4), Charlie is not blue (From step 5).\n   However, we know that Charlie is blue (From step 1), which means our previous conclusion about Charlie not being blue (From step 5) was incorrect.\n   Given that Charlie is blue (From step 1) and Charlie is not green (From step 4), we cannot make any conclusions about Charlie not being blue based on the given information about green things being blue.\n\n6. Charlie is nice. (From step 2)\n7. If something is nice then it is kind. (From the given information)\n   Therefore, Charlie is kind. (From step 6 and the information in step 7)\n\n8. Harry is kind. (From the given information)\n9. Charlie is kind. (From step 7)\n   However, both Harry and Charlie cannot be kind at the same time because the given information states that Erin is young, and we don't have any information that contradicts the possibility of Erin being Harry.\n   Since we already confirmed Charlie's kind nature (From step 7), we can conclude that our previous information about Harry being kind (From step 8) may be incorrect.\n\n10. Harry is white. (From the given information)\n11. If Harry is white then Harry is young. (From the given information)\n    Therefore, Harry is young. (From step 10 and the information in step 11)\n\n12. If Erin is green then Erin is white. (From the given information)\n13. All green things are blue. (From the given information)\n    Therefore, since green things are blue (From step 13), and Erin is not blue (From step 1 as we are given Charlie is blue, and we do not have any information that contradicts the possibility of Erin being Charlie, but Charlie is blue, not Erin), Erin is not green.\n    However, we cannot make any conclusions about Erin being white or not based on the given information about Erin being green.\n\n14. Erin is young. (From the given information)\n15. If Harry is white then Harry is young. (From the given information)\n    Therefore, we can't conclude that Harry is white (From step 10) without knowing if Harry is young or not.\n    However, we already confirmed Harry's youth (From step 11), which means we can conclude that Harry is white (From step 10).\n\n16. If Erin is green then Erin is white. (From the given information)\n17. All green things are blue. (From the given information)\n    Since Erin is not green (From step 12), Erin is not white (From step 16).\n    However, we cannot make any conclusions about Erin being white or not based on the given information about Erin being green.\n\n18. All white things are green. (From the given information)\n19. If something is young then it is white. (From the given information)\n    Therefore, since all young things are white (From step 19), and Erin is young (From step 14), Erin is white (From step 14 and the information in step 19).\n    However, we already confirmed that Erin is not white (From step 16).\n\n20. Erin is white. (From step 19)\n21. All white things are green. (From the given information)\n    Therefore, Erin is green (From step 20 and the information in step 21).\n    However, we already confirmed Erin is not green (From step 12).\n\n22. Erin is not green. (From step 12)\n23. Erin is white. (From step 19)\n    However, we already confirmed Erin is not white (From step 16).\n\n24. If Harry is white then Harry is young. (From the given information)\n25. All white things are green. (From the given information)\n    Since all white things are green (From step 25), and Erin is white (From step 19), Erin is green (From step 19 and the information in step 25).\n    However, we already confirmed Erin is not green (From step 12).\n\n26. If something is young then it is white. (From the given information)\n27. If Erin is green then Erin is white. (From the given information)\n    Therefore, since all young things are white (From step 26), and Erin is young (From step 14), Erin is white (From step 14 and the information in step 26).\n    However, we already confirmed Erin is not white (From step 16).\n\n28. All white things are green. (From the given information)\n29. If Erin is green then Erin is white. (From the given information)\n    Therefore, since all white things are green (From step 28), and Erin is white (From step 14), Erin is green (From step 14 and the information in step 28).\n    However, we already confirmed Erin is not green (From step 12).\n\n30. Erin is not green. (From step 12)\n31. Erin is young. (From the given information)\n32. If something is young then it is white. (From the given information)\n    Therefore, Erin is white (From step 31 and the information in step 32).\n    However, we already confirmed Erin is not white (From step 16).\n\n33. If Erin is green then Erin is white. (From the given information)\n34. All green things are blue. (From the given information)\n    Therefore, since Erin is not green (From step 12), Erin is not white (From step 33).\n    However, we already confirmed Erin is not white (From step 16).\n\n35. Harry is young. (From step 11)\n36. If Harry is white then Harry is young. (From the given information)\n    Therefore, we can't conclude that Harry is white (From step 10) without knowing if Harry is young or not.\n    However, we already confirmed Harry's youth (From step 11), which means we can conclude that Harry is white (From step 10).\n\n37. Erin is white. (From step 26)\n38. All white things are green. (From the given information)\n    Therefore, Erin is green (From step 26 and the information in step 38).\n    However, we already confirmed Erin is not green (From step 12).\n\n39. Erin is not green. (From step 12)\n40. Erin is young. (From the given information)\n41. If something is young then it is white. (From the given information)\n    Therefore, Erin is white (From step 40 and the information in step 41).\n    However, we already confirmed Erin is not white (From step 16).\n\n42. Erin is white. (From step 41)\n43. All white things are green. (From the given information)\n    Therefore, Erin is green (From step 41 and the information in step 43).\n    However, we already confirmed Erin is not green (From step 12).\n\n44. Erin is not green. (From step 12)\n45. Erin is young. (From the given information)\n46. If something is young then it is white. (From the given information)\n    Therefore, Erin is white (From step 45 and the information in step 46).\n    However, we already confirmed Erin is not white (From step 16).\n\n47. If Erin is green then Erin is white. (From the given information)\n48. All green things are blue. (From the given information)\n    Therefore, since Erin is not green (From step 12), Erin is not white (From step 47).\n    However, we already confirmed Erin is not white (From step 16).\n\n49. All white things are green. (From the given information)\n50. If Erin is green then Erin is white. (From the given information)\n    Therefore, since all white things are green (From step 49), and Erin is white (From step 45), Erin is green (From step 45 and the information in step 49).\n    However, we already confirmed Erin is not green (From step 12).\n\n51. Erin is not green. (From step 12)\n52. Erin is young. (From the given information)\n53. If something is young then it is white. (From the given information)\n    Therefore, Erin is white (From step 52 and the information in step 53).\n    However, we already confirmed Erin is not white (From step 16).\n\n54. If Erin is green then Erin is white. (From the given information)\n55. All green things are blue. (From the given information)\n    Therefore, since Erin is not green (From step 12), Erin is not white (From step 54).\n    However, we already confirmed Erin is not white (From step 16).\n\n56. All white things are green. (From the given information)\n57. If Erin is green then Erin",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not young\" is true, false, or unknown, we need to use the given information and apply logical reasoning.\n\nFrom the given statements:\n\n1. Charlie is blue.\n2. If something is blue then it is nice.\n3. Charlie is nice.\n4. Charlie is not green.\n\nFrom statement 1 and 2, we can conclude that Charlie is nice (since Charlie is blue and if something is blue then it is nice).\n\nFrom statement 3 and 4, we cannot conclude anything about Charlie's age, but we do know that Charlie is nice.\n\nNow, let's analyze the statements related to age and color:\n\n1. If Erin is green then Erin is white.\n2. All green things are blue.\n3. If something is blue and not quiet then it is nice.\n4. If Erin is nice and Erin is blue then Erin is young.\n5. Erin is young.\n6. If something is young then it is white.\n7. If Harry is white then Harry is young.\n8. Harry is kind.\n9. Harry is white.\n10. All white things are green.\n\nFrom statement 5, we know that Erin is young. \n\nFrom statement 6, we know that if something is young then it is white.\n\nHowever, from statement 10, we know that all white things are green. So, Erin is green (since Erin is white).\n\nNow, using statement 2, we know that all green things are blue. So, Erin is blue.\n\nUsing statement 4, we know that if Erin is nice and Erin is blue then Erin is young. But since Erin is already known to be young, we cannot conclude anything new from this statement.\n\nNow, let's go back to the statement \"Charlie is not young\". To determine whether this statement is true, false, or unknown, we need to find a connection between Charlie and age.\n\nFrom statement 1, we know that Charlie is blue.\n\nHowever, we do not have any direct information about Charlie's age.\n\nBut we do know that if something is blue, then it is nice (statement 2), and if something is nice, then it is kind (no direct statement given, but we can infer it from the information given about Harry, who is both kind and nice). However, the inference is not necessary as we are not directly given that nice things are kind, so this inference should be ignored.\n\nFrom statement 7, we know that if Harry is white, then Harry is young. We also know that Harry is white (statement 9), so Harry is young.\n\nFrom statement 6, we know that if something is young, then it is white. So, Harry is white (which we already know).\n\nWe also know that Harry is white (statement 9), and from statement 10, we know that all white things are green. So, Harry is green.\n\nNow, using statement 2, we know that all green things are blue. So, Harry is blue.\n\nHowever, this information about Harry's color does not help us determine whether Charlie is young or not.\n\nThe only information we have about Charlie's age is that Charlie is not green (statement 4). But we do not have any information about Charlie's age that would allow us to conclude whether the statement \"Charlie is not young\" is true or false.\n\nTherefore, based on the given information, we cannot determine whether the statement \"Charlie is not young\" is true or false, and it is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is not young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is blue. (Given)\n2. If something is blue then it is nice. (Given)\n   So, Charlie is nice. (From 1 and 2)\n\n3. If something is blue then it is nice. (Given)\n   So, Charlie is nice. (From 1 and 3, this is the same as 2, so we can ignore this one)\n4. Charlie is not green. (Given)\n5. All green things are blue. (Given)\n   So, if Charlie is not green, then Charlie is not blue. (From 4 and 5)\n   But we already know that Charlie is blue (From 1), so this statement contradicts the information given in the problem.\n\nHowever, let's continue to see if we can determine whether Charlie is young or not.\n\n6. Charlie is blue. (Given)\n7. If something is blue and not quiet then it is nice. (Given)\n   We don't know if Charlie is quiet or not, so we cannot conclude that Charlie is nice from this statement.\n8. Charlie is nice. (From 2, which we previously discussed)\n9. If something is nice then it is kind. (Given)\n   So, Charlie is kind. (From 8 and 9)\n10. Harry is kind. (Given)\n    We already know that Charlie is kind (From 8 and 9), but we need to be careful not to confuse this with Harry.\n11. Charlie is nice. (From 2, which we previously discussed)\n12. Charlie is not green. (Given)\n13. All green things are blue. (Given)\n    So, if Charlie is not green, then Charlie is not blue. (From 12 and 13)\n    But we already know that Charlie is blue (From 1), so this statement contradicts the information given in the problem.\n\nHowever, let's continue to see if we can determine whether Charlie is young or not.\n\n14. Erin is young. (Given)\n15. If Erin is green then Erin is white. (Given)\n    We don't know if Erin is green or not, so we cannot conclude that Erin is white from this statement.\n16. All white things are green. (Given)\n    This statement is false, because we know that Harry is white (From 7, which we previously discussed) and Harry is not green (Because we are trying to find out if Charlie is not young, and we don't have any information that would contradict this).\n17. Harry is white. (Given)\n18. Harry is kind. (Given)\n19. If Harry is white then Harry is young. (Given)\n    So, Harry is young. (From 17 and 19)\n20. Erin is young. (Given)\n    We don't know if Erin is younger than Harry or not.\n21. If Erin is nice and Erin is blue then Erin is young. (Given)\n    We don't know if Erin is nice or blue, so we cannot conclude that Erin is young from this statement.\n22. Charlie is nice. (From 2, which we previously discussed)\n23. Charlie is blue. (Given)\n24. If Erin is green then Erin is white. (Given)\n    We don't know if Erin is green or not, so we cannot conclude that Erin is white from this statement.\n25. All green things are blue. (Given)\n    So, if Erin is green, then Erin is blue. (From 25)\n    But we don't know if Erin is green or not, so we cannot conclude that Erin is blue from this statement.\n26. Erin is young. (Given)\n27. Erin is not young. (Unknown)\n    We know that Erin is young (From 14), but we don't know if this statement is true or false.\n28. If something is young then it is white. (Given)\n    So, Erin is white. (From 14 and 28)\n29. If Erin is green then Erin is white. (Given)\n    We know that Erin is white (From 28), so Erin is not green.\n30. Erin is blue. (Unknown)\n    We know that Erin is not green (From 29), so Erin is not blue (From 25).\n31. Charlie is blue. (Given)\n32. Erin is blue. (From 31, this is unknown, but from 30, this is false)\n33. Charlie is not green. (Given)\n34. Erin is not green. (From 29)\n35. All green things are blue. (Given)\n36. Charlie is blue. (Given)\n37. Erin is blue. (From 36, this is unknown, but from 30, this is false)\n38. If something is blue and not quiet then it is nice. (Given)\n    We know that Erin is not blue (From 30), so we cannot conclude that Erin is nice from this statement.\n39. Erin is nice. (Unknown)\n    We know that Erin is young (From 14), and we know that Erin is not blue (From 30), so we cannot conclude that Erin is nice from any of the given statements.\n40. Charlie is not young. (Unknown)\n    We know that Charlie is nice (From 2), and we know that Charlie is blue (From 1), but we don't know if Charlie is young or not.\n\nHowever, let's continue to see if we can determine whether Charlie is young or not.\n\n41. Charlie is nice. (From 2, which we previously discussed)\n42. Charlie is blue. (Given)\n43. If something is blue and not quiet then it is nice. (Given)\n    We don't know if Charlie is quiet or not, so we cannot conclude that Charlie is nice from this statement.\n44. Charlie is not green. (Given)\n45. All green things are blue. (Given)\n    So, if Charlie is not green, then Charlie is not blue. (From 44 and 45)\n    But we already know that Charlie is blue (From 1), so this statement contradicts the information given in the problem.\n\nHowever, let's continue to see if we can determine whether Charlie is young or not.\n\n46. Harry is white. (Given)\n47. All white things are green. (Given)\n    This statement is false, because we know that Harry is white (From 7, which we previously discussed) and Harry is not green (Because we are trying to find out if Charlie is not young, and we don't have any information that would contradict this).\n48. Erin is young. (Given)\n49. If Erin is green then Erin is white. (Given)\n    We don't know if Erin is green or not, so we cannot conclude that Erin is white from this statement.\n50. All white things are green. (Given)\n    This statement is false, because we know that Harry is white (From 7, which we previously discussed) and Harry is not green (Because we are trying to find out if Charlie is not young, and we don't have any information that would contradict this).\n51. Harry is white. (Given)\n52. Harry is kind. (Given)\n53. If Harry is white then Harry is young. (Given)\n    So, Harry is young. (From 51 and 53)\n54. Erin is young. (Given)\n55. If something is young then it is white. (Given)\n    So, Erin is white. (From 14 and 55)\n56. Erin is nice. (Unknown)\n    We know that Erin is young (From 14), but we don't know if this statement is true or false.\n57. If Erin is nice and Erin is blue then Erin is young. (Given)\n    We don't know if Erin is nice or blue, so we cannot conclude that Erin is young from this statement.\n58. Charlie is not young. (Unknown)\n    We know that Charlie is nice (From 2), and we know that Charlie is blue (From 1), but we don't know if Charlie is young or not.\n\nHowever, let's continue to see if we can determine whether Charlie is young or not.\n\n59. Erin is young. (Given)\n60. Erin is not quiet. (Unknown)\n    We know that Erin is young (From 14), but we don't know if this statement is true or false.\n61. If something is blue and not quiet then it is nice. (Given)\n    We don't know if Erin is blue or not, so we cannot conclude that Erin is nice from this statement.\n62. Erin is nice. (Unknown)\n    We know that Erin is young (From 14), but we don't know if this statement is true or false.\n63. If Erin is nice and Erin is blue then Erin is young. (Given)\n    We don't know if Erin is nice or blue, so we cannot conclude that Erin is young from this statement.\n64. Charlie is not young. (Unknown)\n    We know that Charlie is nice (From 2), and we know that Charlie is blue (From 1), but we don't know if Charlie is young or not.\n\nHowever, let's continue to see if we can determine whether Charlie is young or not.\n\n65. Harry is kind. (Given)\n66. If Harry is white then Harry is young. (Given)\n    We know that Harry is white (From 7), so Harry is young. (From 66)\n67. Erin is young. (Given)\n68. Erin is not quiet. (Unknown)\n    We know that Erin is young (From 14), but we don't know if this statement is true or false.\n",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), nice_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_charlie, kind_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "all green(X) -> blue(X)",
+          "z3_formula": "Implies(ForAll(X, And(green(X), Not(blue(X)))), False)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_erin, blue_erin), young_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "all white(X) -> green(X)",
+          "z3_formula": "Implies(ForAll(X, And(white(X), Not(green(X)))), False)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_charlie, kind_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(charlie)",
+          "z3_formula": "not blue_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "contradiction",
+          "z3_formula": "And(blue_charlie, not blue_charlie) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_erin, green_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "contradiction",
+          "z3_formula": "And(white_erin, not green_erin) == True",
+          "source_step": 14
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_erin, nice_erin)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_erin, nice_erin)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_erin, nice_erin)",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_erin, nice_erin)",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 29
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_erin, nice_erin)",
+          "source_step": 30
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_erin, nice_erin), young_erin)",
+          "source_step": 33
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 36
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 38
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 34
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 40
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 42
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 52
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_erin, blue_erin)",
+          "source_step": 49
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_erin, blue_erin)",
+          "source_step": 54
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 31
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 55
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 37
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 48
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 47
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(charlie)",
+          "z3_formula": "not blue_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(charlie)",
+          "z3_formula": "not blue_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_charlie, kind_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_erin, blue_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(erin)",
+          "z3_formula": "not blue_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(erin)",
+          "z3_formula": "not blue_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(erin)",
+          "z3_formula": "not blue_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_erin, not quiet_erin), nice_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(erin)",
+          "z3_formula": "not nice_erin == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_erin, green_erin)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "Not(green_charlie) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), nice_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_charlie, kind_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "all green(X) -> blue(X)",
+          "z3_formula": "Implies(ForAll(X, And(green_X, Implies(True, blue_X))), blue_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> white(X)",
+          "z3_formula": "Implies(young_erin, white_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_harry, young_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_erin, blue_erin), young_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "all white(X) -> green(X)",
+          "z3_formula": "Implies(ForAll(X, And(white_X, Implies(True, green_X))), green_harry)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_charlie, kind_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not white(charlie)",
+          "z3_formula": "Not(white_charlie) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_charlie, white_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & blue(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_erin, blue_erin), young_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_erin, green_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not young(charlie)",
+          "z3_formula": "Not(young_charlie) == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_charlie, blue_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(charlie)",
+          "z3_formula": "not blue_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not (blue(charlie) & not green(charlie))",
+          "z3_formula": "Not(And(blue_charlie, Not(green_charlie))) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_charlie, kind_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), nice_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_erin, white_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(green(erin))",
+          "z3_formula": "unknown(green_erin) == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> young(X)",
+          "z3_formula": "Implies(blue_erin, young_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_erin, green_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_erin, blue_erin)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> young(X)",
+          "z3_formula": "Implies(white_erin, young_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> green(X)",
+          "z3_formula": "Implies(white_harry, green_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> blue(X)",
+          "z3_formula": "Implies(green_harry, blue_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not young(charlie)",
+          "z3_formula": "not young_charlie == True",
+          "source_step": 20
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not green(charlie)",
+          "z3_formula": "not green_charlie == True",
+          "source_step": 4
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 173,
+      "traces_with_constraints": 8,
+      "unique_after_dedup": 35
+    },
+    "maxsat_stats": {
+      "satisfied": 33,
+      "excluded": 2,
+      "total_weight": 162,
+      "solve_time_ms": 1.5720166265964508
+    },
+    "timing": {
+      "trace_gen_s": 25.161,
+      "extraction_s": 54.171,
+      "dedup_s": 1.182,
+      "maxsat_s": 0.004,
+      "total_s": 80.518
+    }
+  }
+}

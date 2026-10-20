@@ -1,0 +1,396 @@
+{
+  "problem": {
+    "id": "folio_33",
+    "problem": "Given the following premises:\nDiamond Mine is a professional wrestling stable, formed in WWE. Roderick Strong leads Diamond Mine. Diamond Mine includes the Creed Brothers, and Ivy Nile. Imperium has a feud with Diamond Mine.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nRoderick strong leads a professional wrestling stable.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "ProfessionalWrestlingStable(diamondmine) \u2227 FormedIn(diamondmine, wwe)",
+      "Leads(roderickstrong, diamondmine)",
+      "Includes(diamondmine, creedbrothers) \u2227 Includes(diamondmine, ivynile)",
+      "HasFeud(imperium, diamondmine)"
+    ],
+    "conclusion_fol": "\u2203x (Leads(roderickstrong, x) \u2227 ProfessionalWrestlingStable(x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 41.0
+    },
+    "answer_counts": {
+      "True": 10
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we will analyze the given premises and the conclusion.\n\nPremise 1: Diamond Mine is a professional wrestling stable, formed in WWE.\nPremise 2: Roderick Strong leads Diamond Mine.\nPremise 3: Diamond Mine includes the Creed Brothers, and Ivy Nile.\nPremise 4: Imperium has a feud with Diamond Mine.\n\nConclusion: Roderick Strong leads a professional wrestling stable.\n\nAnalysis:\n\nFrom Premise 1, we know that Diamond Mine is a professional wrestling stable. This premise directly supports the conclusion.\n\nFrom Premise 2, we know that Roderick Strong leads Diamond Mine. This premise directly supports the conclusion by stating that Roderick Strong is the leader of a professional wrestling stable.\n\nThere is no conflicting information in the premises that would make the conclusion false.\n\nSince the premises directly support the conclusion, we can conclude that the conclusion is true.\n\nTherefore, the answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises.\n\nPremise 1: Diamond Mine is a professional wrestling stable, formed in WWE.\nPremise 2: Roderick Strong leads Diamond Mine.\nPremise 3: Diamond Mine includes the Creed Brothers, and Ivy Nile.\nPremise 4: Imperium has a feud with Diamond Mine.\n\nConclusion: Roderick strong leads a professional wrestling stable.\n\nFrom Premise 1, we know that Diamond Mine is a professional wrestling stable. \n\nFrom Premise 2, we know that Roderick Strong leads Diamond Mine. \n\nSince Diamond Mine is a professional wrestling stable (Premise 1), and Roderick Strong leads Diamond Mine (Premise 2), we can conclude that Roderick Strong leads a professional wrestling stable.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremises:\n1. Diamond Mine is a professional wrestling stable, formed in WWE.\n2. Roderick Strong leads Diamond Mine.\n3. Diamond Mine includes the Creed Brothers, and Ivy Nile.\n4. Imperium has a feud with Diamond Mine.\n\nConclusion: Roderick Strong leads a professional wrestling stable.\n\nStep 1: From premise 1, we know that Diamond Mine is a professional wrestling stable. This supports the conclusion.\n\nStep 2: From premise 2, we know that Roderick Strong leads Diamond Mine. This directly supports the conclusion.\n\nSince both premises 1 and 2 support the conclusion, and there is no information in the premises that contradicts the conclusion, the conclusion can be considered true.\n\nTherefore, the conclusion is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's break down the information given and apply it to the conclusion.\n\nPremises:\n1. Diamond Mine is a professional wrestling stable, formed in WWE.\n2. Roderick Strong leads Diamond Mine.\n3. Diamond Mine includes the Creed Brothers, and Ivy Nile.\n4. Imperium has a feud with Diamond Mine.\n\nConclusion:\nRoderick Strong leads a professional wrestling stable.\n\nAnalysis:\n\n- Premise 1 states that Diamond Mine is a professional wrestling stable. This establishes that Diamond Mine is indeed a professional wrestling stable.\n- Premise 2 states that Roderick Strong leads Diamond Mine. This establishes that Roderick Strong is the leader of Diamond Mine, a professional wrestling stable.\n- Premises 3 and 4 provide additional information about Diamond Mine and its feud with Imperium, but this information is not relevant to determining whether Roderick Strong leads a professional wrestling stable.\n\nFrom the premises, we can infer that Diamond Mine is a professional wrestling stable, and Roderick Strong is its leader.\n\nSince the conclusion \"Roderick Strong leads a professional wrestling stable\" is supported by the premises, we can conclude that the statement is true.\n\nTherefore, the final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the given premises and their logical connection to the conclusion.\n\nPremise 1: Diamond Mine is a professional wrestling stable, formed in WWE.\nPremise 2: Roderick Strong leads Diamond Mine.\nPremise 3: Diamond Mine includes the Creed Brothers, and Ivy Nile.\nPremise 4: Imperium has a feud with Diamond Mine.\n\nConclusion: Roderick Strong leads a professional wrestling stable.\n\nTo evaluate the conclusion, we need to identify the implicit assumption that Roderick Strong leads Diamond Mine and then infer that he leads a professional wrestling stable.\n\nPremise 1 establishes that Diamond Mine is a professional wrestling stable, and Premise 2 states that Roderick Strong leads Diamond Mine. Given that Diamond Mine is a professional wrestling stable, it logically follows that Roderick Strong leads a professional wrestling stable.\n\nTherefore, the conclusion is true because the premises logically support it.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: Diamond Mine is a professional wrestling stable, formed in WWE.\nPremise 2: Roderick Strong leads Diamond Mine.\nPremise 3: Diamond Mine includes the Creed Brothers, and Ivy Nile.\nPremise 4: Imperium has a feud with Diamond Mine.\n\nNow, let's analyze the conclusion: Roderick Strong leads a professional wrestling stable.\n\nConclusion: This conclusion is directly supported by Premise 2, which states that Roderick Strong leads Diamond Mine. A stable is a group of wrestlers led by a specific leader. Since Roderick Strong leads Diamond Mine, it is true that he leads a professional wrestling stable.\n\nThere are no premises that contradict this conclusion, and it is not uncertain based on the information provided.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremises:\n\n1. Diamond Mine is a professional wrestling stable, formed in WWE.\n2. Roderick Strong leads Diamond Mine.\n3. Diamond Mine includes the Creed Brothers, and Ivy Nile.\n4. Imperium has a feud with Diamond Mine.\n\nConclusion: Roderick Strong leads a professional wrestling stable.\n\nAnalysis:\n\nFrom premise 1, we know that Diamond Mine is a professional wrestling stable. This information is relevant to the conclusion, as it confirms that Diamond Mine is indeed a professional wrestling stable.\n\nFrom premise 2, we know that Roderick Strong leads Diamond Mine. This is directly related to the conclusion, which states that Roderick Strong leads a professional wrestling stable. Since Diamond Mine is a professional wrestling stable (premise 1), it can be inferred that the stable in question is indeed Diamond Mine.\n\nThe remaining premises (3 and 4) provide additional information about Diamond Mine and its feud with Imperium, but they do not affect the conclusion directly.\n\nConclusion: Based on the given premises, it can be logically concluded that Roderick Strong leads a professional wrestling stable. The information in premises 1 and 2 directly supports this conclusion.\n\nTherefore, the conclusion is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises.\n\nPremise 1: Diamond Mine is a professional wrestling stable, formed in WWE.\nPremise 2: Roderick Strong leads Diamond Mine.\nPremise 3: Diamond Mine includes the Creed Brothers, and Ivy Nile.\nPremise 4: Imperium has a feud with Diamond Mine.\n\nNow, let's examine the conclusion: \"Roderick strong leads a professional wrestling stable.\"\n\nFrom Premise 1, we know that Diamond Mine is a professional wrestling stable. \nFrom Premise 2, we know that Roderick Strong leads Diamond Mine.\n\nSince the conclusion directly follows from the information provided in the premises, we can conclude that the statement is true.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and the conclusion.\n\nPremises:\n\n1. Diamond Mine is a professional wrestling stable, formed in WWE.\n2. Roderick Strong leads Diamond Mine.\n3. Diamond Mine includes the Creed Brothers, and Ivy Nile.\n4. Imperium has a feud with Diamond Mine.\n\nConclusion:\nRoderick Strong leads a professional wrestling stable.\n\nAnalysis:\n\n- Premise 1 confirms that Diamond Mine is a professional wrestling stable.\n- Premise 2 explicitly states that Roderick Strong leads Diamond Mine.\n- The information about the Creed Brothers, Ivy Nile, and Imperium is not relevant to the conclusion.\n\nSince the conclusion directly follows from premise 2, we can conclude that:\n\nThe conclusion is true.\n\nFinal Answer: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Diamond Mine is a professional wrestling stable, formed in WWE.\nPremise 2: Roderick Strong leads Diamond Mine.\nPremise 3: Diamond Mine includes the Creed Brothers, and Ivy Nile.\nPremise 4: Imperium has a feud with Diamond Mine.\n\nWe need to evaluate if the conclusion \"Roderick Strong leads a professional wrestling stable\" is logically supported by the premises.\n\nFrom the premises, we know that:\n- Diamond Mine is a professional wrestling stable (Premise 1).\n- Roderick Strong leads Diamond Mine (Premise 2).\n\nThe conclusion \"Roderick Strong leads a professional wrestling stable\" is directly supported by Premise 2, which explicitly states that Roderick Strong leads Diamond Mine.\n\nSince Diamond Mine is a professional wrestling stable (Premise 1), it can be inferred that Roderick Strong leads a professional wrestling stable.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the validity of the conclusion, let's analyze the premises step by step.\n\nPremise 1: Diamond Mine is a professional wrestling stable, formed in WWE.\nThis premise tells us that Diamond Mine is a group of wrestlers that competes in WWE. It does not provide any information about who leads this group, but it establishes the fact that Diamond Mine is a professional wrestling stable.\n\nPremise 2: Roderick Strong leads Diamond Mine.\nThis premise directly states that Roderick Strong is the leader of Diamond Mine. Since Diamond Mine is a professional wrestling stable (from Premise 1), and Roderick Strong is its leader (from Premise 2), we can conclude that Roderick Strong leads a professional wrestling stable.\n\nConclusion: Roderick strong leads a professional wrestling stable.\n\nBased on the analysis, the conclusion is true because it directly follows from the information provided in the premises.",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: Diamond Mine is a professional wrestling stable, formed in WWE.\nPremise 2: Roderick Strong leads Diamond Mine.\nPremise 3: Diamond Mine includes the Creed Brothers, and Ivy Nile.\nPremise 4: Imperium has a feud with Diamond Mine.\n\nNow, let's analyze the premises to see if they logically lead to the conclusion:\n\nConclusion: Roderick Strong leads a professional wrestling stable.\n\nFrom Premise 1, we know that Diamond Mine is a professional wrestling stable. From Premise 2, we know that Roderick Strong leads Diamond Mine. This directly supports the conclusion.\n\nThere is no information in the premises that contradicts or casts doubt on the conclusion. The other premises provide additional context about Diamond Mine, but they do not affect the truth of the conclusion.\n\nTherefore, based on the given premises, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "diamond_mine_is_professional_wrestling_stable",
+          "z3_formula": "diamond_mine_is_professional_wrestling_stable == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "roderick_strong_leads_diamond_mine",
+          "z3_formula": "roderick_strong_leads_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "diamond_mine_has_feud_with_imperium",
+          "z3_formula": "diamond_mine_has_feud_with_imperium == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "is_professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "is_professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leads(diamond_mine, roderick_strong)",
+          "z3_formula": "leads_diamond_mine_roderick_strong == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "leads(roderick_strong, professional_wrestling_stable)",
+          "z3_formula": "leads_roderick_strong_professional_wrestling_stable == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leads(roderick_strong, diamond_mine)",
+          "z3_formula": "leads_roderick_strong_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "leads(roderick_strong, professional_wrestling_stable)",
+          "z3_formula": "leads_roderick_strong_professional_wrestling_stable == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leads(roderick_strong, diamond_mine)",
+          "z3_formula": "leads_roderick_strong_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "leads(roderick_strong, professional_wrestling_stable)",
+          "z3_formula": "leads_roderick_strong_professional_wrestling_stable == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leads(roderick_strong, diamond_mine)",
+          "z3_formula": "leads_roderick_strong_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "leads(X, Y) & professional_wrestling_stable(Y) -> leads(X, professional_wrestling_stable)",
+          "z3_formula": "Implies(And(leads_roderick_strong_diamond_mine, professional_wrestling_stable_diamond_mine), leads_roderick_strong_professional_wrestling_stable)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "leads(roderick_strong, professional_wrestling_stable)",
+          "z3_formula": "leads_roderick_strong_professional_wrestling_stable == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "diamond_mine_is_professional_wrestling_stable",
+          "z3_formula": "diamond_mine_is_professional_wrestling_stable == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "roderick_strong_leads_diamond_mine",
+          "z3_formula": "roderick_strong_leads_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "diamond_mine_includes_creeds_brothers_and_ivy_nile",
+          "z3_formula": "diamond_mine_includes_creeds_brothers_and_ivy_nile == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "imperium_has_feud_with_diamond_mine",
+          "z3_formula": "imperium_has_feud_with_diamond_mine == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "roderick_strong_leads_professional_wrestling_stable",
+          "z3_formula": "roderick_strong_leads_professional_wrestling_stable == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "diamond_mine_is_professional_wrestling_stable",
+          "z3_formula": "diamond_mine_is_professional_wrestling_stable == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "roderick_strong_leads_diamond_mine",
+          "z3_formula": "roderick_strong_leads_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "diamond_mine_is_professional_wrestling_stable -> roderick_strong_leads_professional_wrestling_stable",
+          "z3_formula": "Implies(diamond_mine_is_professional_wrestling_stable, roderick_strong_leads_professional_wrestling_stable)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "roderick_strong_leads_professional_wrestling_stable",
+          "z3_formula": "roderick_strong_leads_professional_wrestling_stable == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leads(roderick_strong, diamond_mine)",
+          "z3_formula": "leads_roderick_strong_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "leads(roderick_strong, professional_wrestling_stable)",
+          "z3_formula": "leads_roderick_strong_professional_wrestling_stable == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "diamond_mine_is_professional_wrestling_stable",
+          "z3_formula": "diamond_mine_is_professional_wrestling_stable == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "roderick_strong_leads_diamond_mine",
+          "z3_formula": "roderick_strong_leads_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "roderick_strong_leads_professional_wrestling_stable",
+          "z3_formula": "roderick_strong_leads_professional_wrestling_stable == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leads(roderick_strong, diamond_mine)",
+          "z3_formula": "leads_roderick_strong_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "leads(roderick_strong, professional_wrestling_stable)",
+          "z3_formula": "leads_roderick_strong_professional_wrestling_stable == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leader(diamond_mine, roderick_strong)",
+          "z3_formula": "leader_diamond_mine_roderick_strong == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "leader(roderick_strong, professional_wrestling_stable)",
+          "z3_formula": "leader_roderick_strong_professional_wrestling_stable == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "professional_wrestling_stable(diamond_mine)",
+          "z3_formula": "professional_wrestling_stable_diamond_mine == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "leads(roderick_strong, diamond_mine)",
+          "z3_formula": "leads_roderick_strong_diamond_mine == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "includes(diamond_mine, creed_brothers)",
+          "z3_formula": "includes_diamond_mine_creed_brothers == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "includes(diamond_mine, ivy_nile)",
+          "z3_formula": "includes_diamond_mine_ivy_nile == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "feud(imperium, diamond_mine)",
+          "z3_formula": "feud_imperium_diamond_mine == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "professional_wrestling_stable(X) & leads(Y, X) -> leads(Y, professional_wrestling_stable(X))",
+          "z3_formula": "Implies(And(professional_wrestling_stable_diamond_mine, leads_roderick_strong_diamond_mine), leads_roderick_strong_professional_wrestling_stable_diamond_mine)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "leads(roderick_strong, professional_wrestling_stable(diamond_mine))",
+          "z3_formula": "leads_roderick_strong_professional_wrestling_stable_diamond_mine == True",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 44,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 20
+    },
+    "maxsat_stats": {
+      "satisfied": 20,
+      "excluded": 0,
+      "total_weight": 44,
+      "solve_time_ms": 0.752527266740799
+    },
+    "timing": {
+      "trace_gen_s": 3.301,
+      "extraction_s": 12.544,
+      "dedup_s": 0.253,
+      "maxsat_s": 0.002,
+      "total_s": 16.1
+    }
+  }
+}

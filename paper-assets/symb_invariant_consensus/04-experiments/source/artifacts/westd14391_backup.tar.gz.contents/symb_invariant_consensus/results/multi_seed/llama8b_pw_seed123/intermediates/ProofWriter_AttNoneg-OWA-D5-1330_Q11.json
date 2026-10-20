@@ -1,0 +1,1121 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1330_Q11",
+    "problem": "Bob is red. Bob is young. Charlie is big. Charlie is green. Charlie is red. Charlie is rough. Charlie is young. Dave is big. Harry is rough. Harry is round. Harry is young. All rough, white things are young. All big things are round. All white, red things are rough. All round things are green. All big things are white. If Harry is round then Harry is big. All rough, young things are red. If something is young then it is green. All green things are red.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is young.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nRough($x, bool) ::: Is x rough?\nRound($x, bool) ::: Is x round?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nRed(Bob, True) ::: Bob is red.\nYoung(Bob, True) ::: Bob is young.\nBig(Charlie, True) ::: Charlie is big.\nGreen(Charlie, True) ::: Charlie is green.\nRed(Charlie, True) ::: Charlie is red.\nRough(Charlie, True) ::: Charlie is rough.\nYoung(Charlie, True) ::: Charlie is young.\nBig(Dave, True) ::: Dave is big.\nRough(Harry, True) ::: Harry is rough.\nRound(Harry, True) ::: Harry is round.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nRough($x, True) && White($x, True) >>> Young($x, True) ::: All rough, white things are young.\nBig($x, True) >>> Round($x, True) ::: All big things are round.\nWhite($x, True) && Red($x, True) >>> Rough($x, True) ::: All white, red things are rough.\nRound($x, True) >>> Green($x, True) ::: All round things are green.\nBig($x, True) >>> White($x, True) ::: All big things are white.\nRound(Harry, True) >>> Big(Harry, True) ::: If Harry is round then Harry is big.\nRough($x, True) && Young($x, True) >>> Red($x, True) ::: All rough, young things are red.\nYoung($x, True) >>> Green($x, True) ::: If something is young then it is green.\nGreen($x, True) >>> Red($x, True) ::: All green things are red.\n\nQuery:\nYoung(Dave, True) ::: Dave is young."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 103.5,
+      "True": 146.0,
+      "Unknown": 111.0
+    },
+    "answer_counts": {
+      "True": 6,
+      "Unknown": 2,
+      "False": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine if the statement \"Dave is young\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nGiven Information:\n1. All rough, white things are rough. (This statement seems incorrect, but we'll ignore the repetition of \"rough\" and proceed with the given information.)\n2. All white, red things are rough.\n3. All round things are green.\n4. All big things are white.\n5. All rough, young things are red.\n6. If something is young then it is green.\n7. If Harry is round then Harry is big.\n8. All green things are red.\n\nNow, let's apply these rules to the information about Dave:\n\nWe are given that Dave is big (rule 4), which means Dave is white (rule 4).\n\nWe know that all white, red things are rough (rule 2). But since we don't know if Dave is red, we cannot conclude if Dave is rough.\n\nHowever, since Dave is big, we can conclude that Harry is also big (rule 7) because it's given that Harry is round (rule 1, although this is not explicitly stated, but given in the problem, and although it seems like the statement \"All rough, white things are rough\" is incorrect, we will use rule 1 as \"All round things are green\", \"All big things are white\" and \"All big things are round\" to conclude that Harry is big).\n\nWe can't conclude if Dave is young because it is not directly related to the information provided about Dave being big.\n\nHowever, we are given that all rough, young things are red (rule 5). If Dave is young, then Dave must be green (rule 6), and since all green things are red (rule 8), Dave would be red. But this information is not enough to conclude if Dave is young.\n\nLet's try to find more information. We are given that Charlie is big (rule 3), which means Charlie is white (rule 4). But this information does not help us conclude if Dave is young.\n\nNow, let's consider Harry again. Since Harry is round (rule 1), we know Harry is green (rule 3). We know Harry is rough (rule 1, although this is not explicitly stated, but given in the problem). Since Harry is rough, young, and green, we can conclude that Harry is red (rule 5 and rule 8).\n\nNow, let's look at rule 1 again. If we ignore the statement \"All rough, white things are rough\" because it seems incorrect, and focus on the correct statements, we can conclude that Harry is round, so Harry is green (rule 3), and Harry is rough (rule 1). Since Harry is rough, young, and green, we can conclude that Harry is red (rule 5 and rule 8).\n\nWe have a problem here. We are given that Charlie is red (rule 4), and we know that Harry is red (rule 5 and rule 8). Since all red things are green (rule 8), we can conclude that all red things are young (rule 6).\n\nWe can conclude that Dave is not young because if Dave were young, Dave would be red (rule 5), which would make Dave green (rule 8), but since all green things are red (rule 8), and all red things are green (rule 8), this would create a contradiction.\n\nTherefore, the statement \"Dave is young\" is false.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is young\" is true, false, or unknown, we need to use the given information and logical deductions. \n\n1. We start by looking at the information given about Dave: \"Dave is big.\"\n   - From the given information, we know \"All big things are white\" and \"All big things are round.\"\n\n2. We now know Dave is both round and white. \n   - From the information, we know \"All round things are green\" and \"All white things are red.\" However, we also have information that says \"All green things are red.\" This would suggest Dave is both green and red. However, the information about red is split between \"All white, red things are rough\" and \"Bob is red. Bob is young.\"\n\n3. However, we can also look at the information about round things and white things independently of each other. \n   - Since \"All round things are green,\" and we know Dave is round, Dave must be green. \n   - Since \"All white things are red,\" and we know Dave is white, Dave must be red.\n\n4. We have two conflicting pieces of information about Dave's color. \n   - We know Dave is green from \"All round things are green\" and we know Dave is red from \"All white things are red.\" However, from the information given, we know \"Charlie is green. Charlie is red.\" This means that something can be both green and red. \n\n5. Now we can look at the information given about Dave's age. \n   - We know \"All big things are round,\" and we know Dave is big. This means Dave must be round. \n   - From the information, we know \"All round things are green,\" and we know Dave is round. This means Dave must be green. \n   - We also know \"If something is young then it is green.\" Since we know Dave is green, Dave must be young.\n\nTherefore, the statement \"Dave is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements one by one and analyze the information.\n\n1. All rough, white things are rough. \n   This statement is incomplete; let's call it statement 1a: All white, red things are rough.\n\n2. All round things are green.\n   Statement 2\n\n3. All big things are white.\n   Statement 3\n\n4. If Harry is round then Harry is big.\n   Statement 4\n\n5. Harry is round.\n   Statement 5\n\nFrom statement 5 and 4, we can conclude that Harry is big.\n\n6. Harry is big.\n   Statement 6 (derived from 5 and 4)\n\n7. Harry is big.\n   Statement 7 (from 3, since all big things are white)\n\n8. Harry is white.\n   Statement 8 (derived from 6 and 7)\n\n9. Harry is rough.\n   Statement 9 (from 1a, since all white, red things are rough)\n\n10. Harry is young.\n    Statement 10 (from 9 and 5, since all rough, young things are red, but also since all rough, young things are red, which means all rough, young things are red. And since Harry is rough, and all rough, young things are red, it must be the case that Harry is young. However, since all rough, young things are red, and Harry is red, it also must be the case that Harry is young)\n\n11. Dave is big.\n    Statement 11\n\n12. Dave is white.\n    Statement 12 (derived from 11 and 3)\n\n13. Dave is rough.\n    Statement 13 (from 12 and 1a)\n\n14. Since Dave is rough, and all rough, young things are red (from statement 10), it must be the case that Dave is young.\n\nGiven the information, the statement \"Dave is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the rules of inference to deduce the truth value of the statement \"Dave is young.\"\n\n1. From the statement \"All big things are round,\" we can infer that Dave is round because it is given that Dave is big. \n\n   Given: Dave is big.\n   Rule: All big things are round.\n   Inference: Dave is round.\n\n2. From the statement \"All round things are green,\" we can infer that Dave is green because we have already established that Dave is round.\n\n   Given: Dave is round.\n   Rule: All round things are green.\n   Inference: Dave is green.\n\n3. From the statement \"All green things are red,\" we can infer that Dave is red because we have already established that Dave is green.\n\n   Given: Dave is green.\n   Rule: All green things are red.\n   Inference: Dave is red.\n\n4. From the statement \"All big things are white,\" we can infer that Dave is white because we have already established that Dave is big.\n\n   Given: Dave is big.\n   Rule: All big things are white.\n   Inference: Dave is white.\n\n5. From the statement \"All white, red things are rough,\" we can infer that Dave is rough because we have already established that Dave is both white and red.\n\n   Given: Dave is white, Dave is red.\n   Rule: All white, red things are rough.\n   Inference: Dave is rough.\n\n6. From the statement \"All rough, white things are young,\" we cannot infer that Dave is young. This is because the statement \"All rough, white things are young\" does not account for the additional characteristic \"red\" that we have established for Dave. \n\n7. However, from the statement \"All rough, young things are red,\" we can infer that Dave is young because we have already established that Dave is both rough and red.\n\n   Given: Dave is rough, Dave is red.\n   Rule: All rough, young things are red.\n   Inference: Dave is young.\n\nTherefore, based on the given statements, we can conclude that the statement \"Dave is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is young\" is true, false, or unknown, we need to analyze the given information and apply it to the statement.\n\nGiven information:\n1. Bob is red. \n2. Bob is young. \n3. Charlie is big. \n4. Charlie is green. \n5. Charlie is red. \n6. Charlie is rough. \n7. Charlie is young. \n8. Dave is big. \n9. Harry is rough. \n10. Harry is round. \n11. Harry is young. \n12. All rough, white things are young. \n13. All big things are round. \n14. All white, red things are rough. \n15. All round things are green. \n16. All big things are white. \n17. If Harry is round then Harry is big. \n18. All rough, young things are red. \n19. If something is young then it is green. \n20. All green things are red.\n\nNow, let's apply this information to the statement \"Dave is young\".\n\nFrom statements 8 and 16, we know that Dave is big and Dave is white.\n\nFrom statement 13, we know that all big things are round.\n\nSo, Dave is round.\n\nFrom statement 15, we know that all round things are green.\n\nSo, Dave is green.\n\nFrom statement 19, we know that if something is young then it is green.\n\nHowever, we don't know if Dave is young yet.\n\nFrom statement 20, we know that all green things are red.\n\nSo, Dave is red.\n\nFrom statement 18, we know that all rough, young things are red.\n\nThis implies that if Dave is young, then Dave must be rough.\n\nHowever, we don't know if Dave is rough yet.\n\nFrom statement 12, we know that all rough, white things are young.\n\nSo, if Dave is rough and white, then Dave is young.\n\nBut we don't know if Dave is rough yet.\n\nHowever, we do know that Dave is white and Dave is round. From statement 14, we know that all white, red things are rough.\n\nSo, Dave is rough.\n\nNow, we can conclude that Dave is young.\n\nTherefore, the statement \"Dave is young\" is:\n\n\\boxed{true}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is young\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is big. (Given)\n\n2. All big things are round. (From given information)\n\n3. Harry is round. (Given)\n\n4. If Harry is round then Harry is big. (From given information) \n\nThis means that Harry being round is not a strong enough statement to determine if Harry is big or not because it is already given that Harry is big.\n\n5. All round things are green. (From given information)\n\nThis means that all round things are green, but it doesn't necessarily mean that Harry is green because Harry is already given to be round, but Harry is also big, which means that Harry can be either round and green or big and white. However, since Harry is round and it is given that all round things are green, then Harry is indeed green.\n\n6. Charlie is green. (Given)\n\n7. Charlie is big. (Given)\n\n8. All big things are white. (From given information)\n\nThis means that Charlie being big is enough to conclude that Charlie is white.\n\n9. Harry is green. (From step 5)\n\n10. All green things are red. (From given information)\n\nThis means that Harry being green is enough to conclude that Harry is red.\n\n11. Harry is round. (Given)\n\n12. If Harry is round then Harry is big. (From given information) \n\nThis means that Harry being round is enough to conclude that Harry is big.\n\n13. All round things are green. (From given information)\n\nThis means that Harry being round is enough to conclude that Harry is green.\n\n14. All green things are red. (From given information)\n\nThis means that Harry being green is enough to conclude that Harry is red.\n\n15. Dave is big. (Given)\n\n16. All big things are round. (From given information)\n\nThis means that Dave being big is enough to conclude that Dave is round.\n\n17. All round things are green. (From given information)\n\nThis means that Dave being round is enough to conclude that Dave is green.\n\n18. All green things are red. (From given information)\n\nThis means that Dave being green is enough to conclude that Dave is red.\n\n19. All green, red things are rough. (From given information)\n\nThis means that Dave being green and red is enough to conclude that Dave is rough.\n\n20. Dave is big. (Given)\n\n21. Dave is round. (From step 16)\n\n22. Dave is green. (From step 17)\n\n23. Dave is red. (From step 18)\n\n24. Dave is rough. (From step 19)\n\n25. All rough, young things are red. (From given information)\n\nThis means that Dave being rough is enough to conclude that Dave is young.\n\nSo, we can conclude that the statement \"Dave is young\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is young\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. Dave is big. (Direct information)\n\n2. All big things are round. (Rule)\n   - Since Dave is big, it follows that Dave is round.\n\n3. All round things are green. (Rule)\n   - Since Dave is round, it follows that Dave is green.\n\n4. All green things are red. (Rule)\n   - Since Dave is green, it follows that Dave is red.\n\n5. All red things are young. (Rule)\n   - Since Dave is red, it follows that Dave is young.\n\nFrom the given information and the rules applied, we can conclude that \"Dave is young\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply them to the statement \"Dave is young.\"\n\n1. Given statements:\n   - All big things are round.\n   - All round things are green.\n   - All big things are white.\n   - All white, red things are rough.\n   - All rough, young things are red.\n   - If something is young then it is green.\n   - All green things are red.\n   - If Harry is round then Harry is big.\n   - Dave is big.\n\n2. We are given that Dave is big.\n   - According to the statement \"All big things are white,\" Dave is white.\n\n3. Now, we have two possibilities for Dave:\n   - Dave is white and big.\n   - Dave is white and round.\n\n4. If Dave is white and big, we can apply the statement \"All white, red things are rough\" and conclude that Dave is rough.\n\n5. Since Dave is rough and young, we can apply the statement \"All rough, young things are red\" and conclude that Dave is red.\n\n6. According to the statement \"If something is young then it is green,\" Dave is green.\n\n7. Since Dave is green, we can apply the statement \"All green things are red\" and conclude that Dave is red.\n\n8. Now, we have two conclusions: Dave is red and Dave is green. \n\nHowever, we know that Charlie is green and red, and Bob is red, but we don't know if Charlie and Bob are the same as Dave. \n\nTherefore, we can't conclude that Dave is young based on the information given. The correct answer is \"unknown\" since we can't find a definitive conclusion.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is young' is true, false, or unknown, we need to analyze the given information and apply the rules of inference.\n\nFrom the given information:\n1. All big things are round.\n2. Dave is big.\nFrom rule 1 and statement 2, we can infer:\n3. Dave is round.\n\nFrom the given information:\n4. All round things are green.\nFrom rule 4 and statement 3, we can infer:\n5. Dave is green.\n\nFrom the given information:\n6. All green things are red.\nFrom rule 6 and statement 5, we can infer:\n7. Dave is red.\n\nFrom the given information:\n8. All white, red things are rough.\nWe don't know if Dave is white or not, but we know Dave is red. So, we can say that Dave is rough or unknown if Dave is white.\n\nNow, we have two possibilities:\n- Dave is young (the statement we want to evaluate)\n- Dave is rough\n\nFrom the given information:\n9. All rough, young things are red.\n10. All rough things are young.\n\nFrom rule 10 and statement 8, we can say that Dave is young if Dave is rough. \n\nHowever, Dave is rough or unknown if Dave is white (from statement 8). If Dave is white, then Dave is young (from statement 10). So, the statement 'Dave is young' is true if Dave is white.\n\nWe don't have enough information to conclude whether Dave is white or not. Therefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is young\" is true, false, or unknown, we need to analyze the given information and apply the rules of logic.\n\nFrom the information given, we can create the following statements:\n\n1. If something is young, then it is green. (Rule 8)\n2. If something is green, then it is red. (Rule 12)\n3. If something is red, then it is rough. (Rule 10)\n4. If something is rough, then it is young. (Rule 9)\n5. All big things are round. (Rule 2)\n6. All big things are white. (Rule 5)\n7. If Harry is round, then Harry is big. (Rule 6)\n8. All round things are green. (Rule 4)\n9. All green things are red. (Rule 12)\n10. If something is young, then it is green. (Rule 8)\n11. Dave is big. (Given statement)\n\nFrom statement 11, we know that Dave is big. Using rule 5, we can conclude that Dave is round. \n\nUsing rule 7, we can conclude that Harry is big. \nUsing rule 5, we can conclude that Harry is white. \nUsing rule 6, we can conclude that Harry is big. \nUsing rule 5, we can conclude that Harry is white. \nUsing rule 6, we can conclude that Harry is white.\nWe already know that Harry is round. \n\nUsing rule 8, we can conclude that Harry is green. \n\nUsing rule 9, we can conclude that Harry is red.\n\nUsing rule 3, we can conclude that Harry is rough.\n\nUsing rule 4, we can conclude that Harry is young.\n\nNow we have the following information about Harry:\n\n- Harry is young.\n- Harry is green.\n- Harry is red.\n- Harry is rough.\n\nUsing rule 10, we can conclude that since Harry is young, then Harry is green. \nUsing rule 8, we can conclude that since Harry is green, then Harry is red. \nUsing rule 3, we can conclude that since Harry is red, then Harry is rough. \nUsing rule 4, we can conclude that since Harry is rough, then Harry is young. \n\nWe are trying to find out whether Dave is young or not.\n\nUsing rule 4, we can conclude that since Dave is round, then Dave is green.\nUsing rule 9, we can conclude that since Dave is green, then Dave is red.\nUsing rule 3, we can conclude that since Dave is red, then Dave is rough.\nUsing rule 9, we can conclude that since Dave is green, then Dave is red.\nUsing rule 3, we can conclude that since Dave is red, then Dave is rough.\n\nHowever, we know that Dave is big. Using rule 5, we can conclude that Dave is round. \n\nUsing rule 6, we can conclude that Dave is white.\n\nNow we have the following information about Dave:\n\n- Dave is big.\n- Dave is round.\n- Dave is white.\n\nUsing rule 5, we can conclude that since Dave is big, then Dave is white.\n\nWe can conclude that Dave is white and that all white things are young.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we'll use a step-by-step approach by analyzing the given statements and their implications.\n\n1. All big things are round. \n   - From this statement, we can infer that if something is big, it must be round.\n\n2. Dave is big.\n   - Using statement 1, we can conclude that since Dave is big, he must be round.\n\n3. All round things are green.\n   - From this statement, we can infer that if something is round, it must be green.\n\n4. Combining statements 2 and 3, we can conclude that since Dave is big (and therefore round), he must be green.\n\n5. All green things are red.\n   - From this statement, we can infer that if something is green, it must be red.\n\n6. Combining statements 4 and 5, we can conclude that since Dave is green (and therefore round), he must be red.\n\n7. Charlie is green.\n   - This statement doesn't affect our conclusion about Dave but is relevant for other statements.\n\n8. Charlie is red.\n   - This statement is also not relevant to Dave but provides information about Charlie.\n\n9. All rough, white things are young.\n   - This statement is not relevant to Dave, as we don't have information about him being white or rough.\n\n10. All big things are white.\n    - This statement is also not relevant to Dave, as we already concluded he is round (not big) and green.\n\n11. All white, red things are rough.\n    - This statement is also not relevant to Dave, as we concluded he is green and not white.\n\n12. All green things are red.\n    - As mentioned earlier, this statement is true, and it doesn't affect our conclusion about Dave.\n\n13. All rough, young things are red.\n    - This statement is not relevant to Dave, as we don't have information about him being rough or young.\n\n14. If something is young then it is green.\n    - This statement is not relevant to Dave, as we already concluded he is green.\n\n15. Charlie is young.\n    - This statement doesn't affect our conclusion about Dave.\n\n16. Charlie is rough.\n    - This statement doesn't affect our conclusion about Dave.\n\n17. Harry is round.\n    - This statement is not relevant to Dave.\n\n18. Harry is big.\n    - This statement is not relevant to Dave.\n\n19. Harry is young.\n    - This statement is not relevant to Dave.\n\n20. All rough, white things are young.\n    - As mentioned earlier, this statement is not relevant to Dave.\n\nNow, let's analyze the statements related to youth:\n\n- All green things are red. (Statement 12)\n- If something is young then it is green. (Statement 14)\n- All rough, young things are red. (Statement 13)\n- Charlie is young and green. (Statement 15 and implication from statement 14)\n- All green things are red. (Statement 12)\n- Charlie is red. (Statement 8)\n\nNow, we need to determine if Dave is young. We have concluded that Dave is round (statement 2), and all round things are green (statement 3). However, we also know that all green things are red (statement 12), and all rough, young things are red (statement 13).\n\nWe can infer that Dave is not young based on the following:\n\n- If Dave is young, then he must be green (statement 14).\n- Since Dave is green, he must be red (statement 12).\n- However, we also know that all rough, young things are red (statement 13).\n- We can conclude that if Dave is young, then he must be rough (statement 13).\n- But we know that all round things are green (statement 3), and all green things are red (statement 12).\n- Since Dave is round (statement 2), he must be green (statement 3).\n- However, this implies that Dave cannot be rough (statement 3 and 12), which contradicts the implication that if Dave is young, then he must be rough (statement 13).\n\nTherefore, Dave cannot be young based on the given statements.\n\nThe final answer is: $\\boxed{\\text{False}}$",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and the rules to determine if \"Dave is young\" is true, false, or unknown.\n\nGiven statements:\n1. Bob is red.\n2. Bob is young.\n3. Charlie is big.\n4. Charlie is green.\n5. Charlie is red.\n6. Charlie is rough.\n7. Charlie is young.\n8. Dave is big.\n9. Harry is rough.\n10. Harry is round.\n11. Harry is young.\n12. All rough, white things are young.\n13. All big things are round.\n14. All white, red things are rough.\n15. All round things are green.\n16. All big things are white.\n17. If Harry is round then Harry is big.\n18. All rough, young things are red.\n19. If something is young then it is green.\n20. All green things are red.\n\nNow, let's analyze the statements to find any information related to Dave being young.\n\nFrom statement 8, we know that Dave is big. \n\nFrom statement 16, we know that all big things are white.\n\nNow, let's analyze the statements to find any information related to white things.\n\nFrom statement 12, we know that all rough, white things are young.\n\nHowever, we do not have any information about Dave being rough. \n\nWe also have statement 19, which says \"If something is young then it is green.\" But we do not have any information about Dave being young.\n\nWe also have statement 20, which says \"All green things are red.\" But we do not have any information about Dave being green.\n\nHowever, from statement 18, we know that all rough, young things are red. This implies that if Dave is young, then he is red. \n\nNow, let's analyze the statements to find any information related to red things.\n\nFrom statement 5, we know that Charlie is red.\n\nFrom statement 15, we know that all round things are green.\n\nHowever, we do not have any information about Dave being round.\n\nFrom statement 17, we know that \"If Harry is round then Harry is big.\"\n\nHowever, from statement 10, we know that Harry is round.\n\nSo, from statement 17, we know that Harry is big.\n\nFrom statement 9, we know that Harry is rough.\n\nFrom statement 4, we know that Charlie is green.\n\nFrom statement 20, we know that all green things are red.\n\nHowever, we do not have any information about Dave being green.\n\nHowever, from statement 14, we know that all white, red things are rough.\n\nFrom statement 16, we know that all big things are white.\n\nSo, we can conclude that Dave is white.\n\nNow, let's analyze the statements to find any information related to white, young things.\n\nFrom statement 12, we know that all rough, white things are young.\n\nHowever, we do not have any information about Dave being rough.\n\nBut we do not need any information about Dave being rough to conclude that Dave is young. \n\nFrom statement 19, we know that \"If something is young then it is green.\" \n\nHowever, we do not have any information about Dave being green.\n\nFrom statement 20, we know that all green things are red.\n\nHowever, we do not have any information about Dave being green.\n\nHowever, from statement 18, we know that all rough, young things are red.\n\nSince we know that Dave is white and all white, red things are rough (statement 14), then we can conclude that Dave is rough.\n\nNow, let's analyze the statements to find any information related to rough, young things.\n\nFrom statement 18, we know that all rough, young things are red.\n\nHowever, we do not have any information about Dave being green.\n\nBut we know that Dave is red.\n\nFrom statement 18, we know that all rough, young things are red.\n\nHowever, we do not have any information about Dave being young.\n\nBut we know that Dave is red.\n\nFrom statement 7, we know that Charlie is young.\n\nFrom statement 19, we know that \"If something is young then it is green.\" \n\nHowever, we do not have any information about Dave being green.\n\nBut we know that Dave is red.\n\nHowever, from statement 19, we know that \"If something is young then it is green.\" \n\nThis implies that Dave is not young because if he were young, then he would be green.\n\nSo, we can conclude that \"Dave is young\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> white(X)",
+          "z3_formula": "Implies(big_dave, white_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_dave, red_dave), rough_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_dave, red_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_harry, green_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_harry, big_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> white(X)",
+          "z3_formula": "Implies(big_harry, white_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_harry, green_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_harry, young_harry), red_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_harry, red_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_harry, green_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_harry, young_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_harry, green_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_harry, red_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_harry, green_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_harry, red_harry)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_dave, red_dave)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_dave, green_dave)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_dave, red_dave)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_dave, green_dave)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not young(dave)",
+          "z3_formula": "Not(young_dave) == True",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> white(X)",
+          "z3_formula": "Implies(big_dave, white_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_dave, round_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> red(X)",
+          "z3_formula": "Implies(white_dave, red_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_dave, red_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_dave, red_dave), rough_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(charlie)",
+          "z3_formula": "red_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_white_red(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_red_X, red_X), rough_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_round_green(X)",
+          "z3_formula": "all_round_green_X == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_big_white(X)",
+          "z3_formula": "all_big_white_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_harry, big_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_dave, round_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_dave, red_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> white(X)",
+          "z3_formula": "Implies(big_dave, white_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_dave, red_dave), rough_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_dave, young_dave), red_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_dave, round_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_dave, red_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_dave, young_dave), red_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_dave, red_dave), rough_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_dave, round_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_harry, big_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> white(X)",
+          "z3_formula": "Implies(big_charlie, white_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_harry, red_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> big(X)",
+          "z3_formula": "Implies(round_harry, big_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_harry, red_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_dave, round_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_dave, red_dave)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(green_dave, red_dave), rough_dave)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "rough(dave)",
+          "z3_formula": "rough_dave == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_dave, young_dave), red_dave)",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_dave, round_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_dave, red_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> young(X)",
+          "z3_formula": "Implies(red_dave, young_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> white(X)",
+          "z3_formula": "Implies(big_dave, white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_dave, red_dave), rough_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_dave, young_dave), red_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_dave, red_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry) -> big(harry)",
+          "z3_formula": "Implies(round_harry, big_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_dave, round_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> white(X)",
+          "z3_formula": "Implies(big_dave, white_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_dave, red_dave), rough_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_dave, red_dave), rough_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_dave, young_dave), red_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_dave, red_dave)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_dave, red_dave)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == Unknown",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all(big(X), round(X))",
+          "z3_formula": "Implies(big_dave, round_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all(round(X), green(X))",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all(green(X), red(X))",
+          "z3_formula": "Implies(green_dave, red_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "all(white(X), red(X)) -> rough(X)",
+          "z3_formula": "Implies(And(white_dave, red_dave), rough_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dave) | white(dave)",
+          "z3_formula": "Or(rough_dave, white_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "all(rough(X), young(X))",
+          "z3_formula": "Implies(rough_dave, young_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "all(rough(X), young(X))",
+          "z3_formula": "Implies(rough_dave, young_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(dave) | white(dave)",
+          "z3_formula": "Or(young_dave, white_dave)",
+          "source_step": 10
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_dave, round_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_dave, green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_dave, red_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_dave, red_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & rough(X) -> red(X)",
+          "z3_formula": "Implies(And(young_dave, rough_dave), red_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not young(dave)",
+          "z3_formula": "Not(young_dave)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> white(X)",
+          "z3_formula": "Implies(big_dave, white_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(white_dave, red_dave), rough_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_dave, young_dave), red_dave)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_dave, green_dave)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> red(X)",
+          "z3_formula": "Implies(green_dave, red_dave)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not young(dave)",
+          "z3_formula": "Not(young_dave) == True",
+          "source_step": 19
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 165,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 44
+    },
+    "maxsat_stats": {
+      "satisfied": 43,
+      "excluded": 1,
+      "total_weight": 162,
+      "solve_time_ms": 1.1600786820054054
+    },
+    "timing": {
+      "trace_gen_s": 11.204,
+      "extraction_s": 38.512,
+      "dedup_s": 1.58,
+      "maxsat_s": 0.004,
+      "total_s": 51.3
+    }
+  }
+}

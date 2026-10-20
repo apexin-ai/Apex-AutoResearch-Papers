@@ -1,0 +1,472 @@
+{
+  "problem": {
+    "id": "folio_156",
+    "problem": "Given the following premises:\nAll humans are mortal. All Greeks are humans.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nSome Greeks are mortal.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Human(x) \u2192 Mortal(x))",
+      "\u2200x (Greek(x) \u2192 Human(x))"
+    ],
+    "conclusion_fol": "\u2203x (Greek(x) \u2227 Mortal(x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 57.0
+    },
+    "answer_counts": {
+      "True": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion \"Some Greeks are mortal\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: All humans are mortal.\nPremise 2: All Greeks are humans.\n\nThe first premise tells us that being a human is sufficient for being mortal. The second premise tells us that being a Greek is sufficient for being a human.\n\nWe can combine these premises to infer that being a Greek is sufficient for being mortal. This is because if someone is a Greek (which implies they are human), then they must also be mortal (since all humans are mortal).\n\nThis reasoning is an example of a logical syllogism:\n\nAll Greeks (\u2192 All humans)\nAll humans (\u2192 All are mortal)\n\u2234 All Greeks (\u2192 All are mortal)\n\nSince all Greeks are mortal, it logically follows that some Greeks are mortal (as a subset of the larger group of Greeks).\n\nTherefore, the conclusion \"Some Greeks are mortal\" is **true**.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will use the rules of categorical syllogism. \n\nFirst, let's break down the premises into their categorical form:\n\n1. All humans are mortal. (Universal Affirmative)\n   All A are B\n\n2. All Greeks are humans. (Universal Affirmative)\n   All C are A\n\nNow, we need to determine if the conclusion \"Some Greeks are mortal\" is true or false based on the given premises.\n\nTo do this, we need to find the intersection of the categories. We can do this by combining the two premises:\n\n   All C are A (All Greeks are humans)\n   All A are B (All humans are mortal)\n\nCombining these two, we get:\n\n   All C are B (All Greeks are mortal)\n\nHowever, the conclusion we are trying to evaluate is \"Some Greeks are mortal,\" not \"All Greeks are mortal.\" Since \"Some\" is a particular affirmation, we cannot directly conclude that from the premises.\n\nHowever, we can conclude that \"All Greeks are mortal\" is true from the premises, and \"Some Greeks are mortal\" is a subset of \"All Greeks are mortal.\" Therefore, if \"All Greeks are mortal\" is true, then \"Some Greeks are mortal\" must also be true.\n\nSo, the conclusion \"Some Greeks are mortal\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some Greeks are mortal\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: All humans are mortal.\nThis means that every individual who is a human will also be mortal.\n\nPremise 2: All Greeks are humans.\nThis means that every individual who is a Greek will also be a human.\n\nFrom these premises, we can conclude that all Greeks are mortal because they are both humans and all humans are mortal. \n\nUsing the rule of syllogism, we can write this as:\n\nAll humans are mortal. \nAll Greeks are humans.\n\u2234 All Greeks are mortal.\n\nHowever, we need to determine whether some Greeks are mortal. The conclusion \"All Greeks are mortal\" tells us that every Greek is mortal, but it does not tell us whether there are any Greeks that are not mortal. \n\nIn this case, since all Greeks are mortal, it also implies that some Greeks are mortal. So, the conclusion \"Some Greeks are mortal\" is true.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we will use the method of deduction with the given premises.\n\nPremise 1: All humans are mortal. \nThis can be written in a logical statement as: H \u2192 M (If something is human, then it is mortal)\n\nPremise 2: All Greeks are humans.\nThis can be written in a logical statement as: G \u2192 H (If something is Greek, then it is human)\n\nNow, we will try to deduce the conclusion: Some Greeks are mortal.\n\nWe can write the conclusion as: \u2203G (G \u2227 M), which means \"There exists some Greek (G) who is mortal (M)\"\n\nTo connect the premises to the conclusion, we need to use the definition of the conclusion. \n\n\u2203G (G \u2227 M) \n\nThis can be rewritten as: \u2203G (G \u2192 H) \u2227 (H \u2192 M)\n\nUsing the premise 2 (All Greeks are humans), we can substitute G \u2192 H with the truth that G and H are equivalent.\n\n\u2203G (H \u2227 (H \u2192 M))\n\nUsing the definition of implication, (H \u2192 M) is equivalent to (\u00acH \u2228 M).\n\n\u2203G (H \u2227 (\u00acH \u2228 M))\n\nApplying the distributive property of logic (\u2203G (A \u2227 (B \u2228 C)) is equivalent to \u2203G ((A \u2227 B) \u2228 (A \u2227 C))) , we get:\n\n\u2203G ((H \u2227 \u00acH) \u2228 (H \u2227 M))\n\nNow, (H \u2227 \u00acH) is a contradiction, and the truth table of (\u00acH \u2228 M) shows that it is true whenever (H \u2227 \u00acH) is false. But (H \u2227 \u00acH) is always false.\n\n\u2203G (\u00ac(H \u2227 \u00acH) \u2228 (H \u2227 M))\n\nSince (H \u2227 \u00acH) is always false, the first part of the disjunction \u00ac(H \u2227 \u00acH) is always true.\n\n\u2203G (True \u2228 (H \u2227 M))\n\nUsing the distributive property of disjunction (\u2203G (True \u2228 A) is equivalent to \u2203G (True) \u2228 A), we get:\n\nTrue \u2228 \u2203G (H \u2227 M)\n\nNow, since True \u2228 A is always true, we can conclude that the original conclusion \"Some Greeks are mortal\" is true.\n\nTherefore, the answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some Greeks are mortal\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: All humans are mortal.\nPremise 2: All Greeks are humans.\n\nFrom Premise 2, we can infer that being a Greek is a subset of being a human. \n\nNow, let's consider the conclusion: \"Some Greeks are mortal.\"\n\nWe know that all humans are mortal (Premise 1). Since all Greeks are humans (Premise 2), it logically follows that all Greeks are also mortal. \n\nTherefore, if we consider the subset of Greeks, we can say that at least some Greeks are mortal. In fact, we can conclude that all Greeks are mortal.\n\nSo, the conclusion \"Some Greeks are mortal\" is true, but it's more accurate to say that it's actually \"All Greeks are mortal.\" However, since the question asks for \"Some Greeks are mortal,\" the answer is still true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we'll use a technique called deductive reasoning, which involves using premises to arrive at a conclusion.\n\nGiven premises:\n1. All humans are mortal.\n2. All Greeks are humans.\n\nWe want to determine the truth of the conclusion:\n\"Some Greeks are mortal.\"\n\nStep 1: Analyze the premises\nPremise 1 states that all humans are mortal, which means that every individual who is a human will also be mortal.\n\nPremise 2 states that all Greeks are humans, which means that every individual who is a Greek is also a human.\n\nStep 2: Apply the premises to the conclusion\nSince all Greeks are humans (Premise 2), we can substitute \"Greeks\" with \"humans\" in the conclusion. This gives us:\n\n\"Some humans are mortal.\"\n\nNow, we can use Premise 1, which states that all humans are mortal. This means that every individual who is a human is also mortal, including those who are Greeks.\n\nStep 3: Draw the conclusion\nSince every Greek is a human (Premise 2) and all humans are mortal (Premise 1), we can conclude that some Greeks are indeed mortal.\n\nTherefore, the conclusion \"Some Greeks are mortal\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the validity of the conclusion, let's analyze the premises and the conclusion step by step.\n\nPremise 1: All humans are mortal.\nThis statement means that every individual who is a human is also a mortal. It implies that there are no humans who are not mortal.\n\nPremise 2: All Greeks are humans.\nThis statement means that every individual who is a Greek is also a human. It implies that there are no Greeks who are not humans.\n\nConclusion: Some Greeks are mortal.\n\nWe can start by asking if we can conclude that all Greeks are mortal based on the premises. If we can conclude that all Greeks are mortal, then it follows that some Greeks are mortal, and the conclusion would be true.\n\nTo check if we can conclude that all Greeks are mortal, we can use a technique called modus ponens. Modus ponens is a logical rule that states:\n\nIf P implies Q, and P is true, then Q is true.\n\nIn this case, we can rewrite the premises as:\n\nP: All Greeks are humans.\nQ: All humans are mortal.\n\nFrom Premise 2, we know that P is true. From Premise 1, we know that Q is true.\n\nUsing modus ponens, we can conclude that:\n\nIf all Greeks are humans, and all humans are mortal, then all Greeks are mortal.\n\nHowever, we cannot conclude that all Greeks are mortal. The premises only tell us that all humans are mortal and all Greeks are humans, but they do not tell us that all Greeks are mortal. We can only conclude that some Greeks are mortal, because there may be some Greeks who are not mortal.\n\nTherefore, the conclusion \"Some Greeks are mortal\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some Greeks are mortal\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: All humans are mortal.\nPremise 2: All Greeks are humans.\n\nFrom Premise 2, we can conclude that all Greeks are also humans. Since all humans are mortal (Premise 1), it follows that all Greeks, being humans, are also mortal.\n\nHowever, the conclusion \"Some Greeks are mortal\" is a different statement. The word \"some\" implies that there is a possibility that not all Greeks are mortal. But from our previous conclusion, we know that all Greeks are mortal.\n\nTherefore, the conclusion \"Some Greeks are mortal\" is actually equivalent to \"All Greeks are mortal,\" which is a true statement.\n\nSo, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some Greeks are mortal\" is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: All humans are mortal.\nThis means that every individual who is human is also mortal.\n\nPremise 2: All Greeks are humans.\nThis means that every individual who is Greek is also human.\n\nFrom these premises, we can deduce the following:\n\n1. If a person is Greek, they are also human (Premise 2).\n2. If a person is human, they are also mortal (Premise 1).\n\nNow, let's apply these deductions to the conclusion:\n\n\"Some Greeks are mortal.\"\n\nSince being Greek implies being human (Premise 2), and being human implies being mortal (Premise 1), we can conclude that being Greek implies being mortal.\n\nTherefore, it is not uncertain whether some Greeks are mortal. Instead, we can infer that all Greeks are mortal, since being Greek is a subset of being human, which is a subset of being mortal.\n\nHence, the conclusion \"Some Greeks are mortal\" is actually an understatement, and the correct conclusion is:\n\n\"All Greeks are mortal.\"\n\nSo, the original conclusion \"Some Greeks are mortal\" is true, but it is an incomplete conclusion. A more accurate conclusion would be \"All Greeks are mortal.\"\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we will use the principles of deductive reasoning and the rules of syllogisms.\n\nGiven premises:\n1. All humans are mortal.\n2. All Greeks are humans.\n\nWe need to determine whether the conclusion:\n\"Some Greeks are mortal\"\n\nis true, false, or uncertain.\n\nTo do this, let's analyze the premises and the conclusion using the following steps:\n\nStep 1: Identify the universal and particular statements.\n\nPremise 1 is a universal statement: \"All humans are mortal\" (A is A)\n\nPremise 2 is a universal statement: \"All Greeks are humans\" (B is A)\n\nConclusion: \"Some Greeks are mortal\" is a particular statement (some B are A)\n\nStep 2: Check if the premises allow us to infer the conclusion.\n\nFrom Premise 2, we know that all Greeks are humans. This means that every Greek is also mortal, as stated in Premise 1. Therefore, we can infer that all Greeks are mortal.\n\nSince we have a universal statement that all Greeks are mortal, we can conclude that some Greeks are indeed mortal. This is because a universal statement implies that every individual within the category is a member of the universal set.\n\nStep 3: Determine the validity of the conclusion.\n\nThe conclusion \"Some Greeks are mortal\" is a logical consequence of the premises. We can deduce this conclusion using the rules of syllogisms and the information provided by the premises.\n\nTherefore, the conclusion \"Some Greeks are mortal\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we can use the rules of categorical logic. \n\nWe are given the following premises:\n\n1. All humans are mortal.\n2. All Greeks are humans.\n\nWe want to determine the validity of the conclusion: Some Greeks are mortal.\n\nTo evaluate this conclusion, we can use the process of categorical syllogism. \n\nFirst, let's categorize the statements based on the following categories: \n- All A are B (A is a subset of B)\n- Some A are B (A is partially contained in B)\n- No A are B (A is disjoint from B)\n- Some A are not B (A is partially disjoint from B)\n\nFrom premise 2, we can categorize it as: All Greeks are humans (All A are B, where A is Greeks and B is humans).\n\nFrom premise 1, we can categorize it as: All humans are mortal (All A are B, where A is humans and B is mortal).\n\nNow, let's see if we can derive the conclusion \"Some Greeks are mortal\" from these premises. \n\nSince we know that All Greeks are humans and All humans are mortal, we can use the transitive property of equality (A = B and B = C implies A = C) to conclude that All Greeks are mortal. \n\nHowever, the conclusion \"All Greeks are mortal\" is not the same as the conclusion \"Some Greeks are mortal.\" \n\nTherefore, the conclusion \"Some Greeks are mortal\" is uncertain because we can derive the conclusion \"All Greeks are mortal\" from the premises, but not the conclusion \"Some Greeks are mortal.\"\n\nHowever, we can further deduce that \"Some Greeks are mortal\" must be true because if All Greeks are mortal, then it also means that Some Greeks are mortal. \n\nHence, the conclusion \"Some Greeks are mortal\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion \"Some Greeks are mortal\" is true, false, or uncertain, we will use the method of logical deduction. This involves analyzing the given premises and applying the rules of logic.\n\n**Premise 1:** All humans are mortal.\n**Premise 2:** All Greeks are humans.\n\nWe need to evaluate the conclusion \"Some Greeks are mortal.\" To do this, we can use a Venn diagram or the rules of categorical logic.\n\nLet's break down the premises:\n\n1. All humans are mortal: This means that if something is a human, then it is also mortal.\n2. All Greeks are humans: This means that if something is a Greek, then it is also a human.\n\nNow, let's consider the conclusion: \"Some Greeks are mortal.\" We want to determine whether this conclusion follows logically from the premises.\n\nUsing the rules of categorical logic, we can deduce the following:\n\n- If all Greeks are humans, and all humans are mortal, then it is possible that some Greeks are mortal. This is because being a Greek does not necessarily mean that someone is not mortal (since all humans are mortal).\n\nTo illustrate this, consider the following:\n\nLet's say we have a set of all Greeks (G) and a set of all humans (H). We can represent the premises as follows:\n\nG \u2286 H (All Greeks are humans)\nH \u2286 M (All humans are mortal)\n\nUsing the rules of set theory, we can deduce that:\n\nG \u2286 M (Some Greeks are mortal)\n\nHowever, we cannot conclude that all Greeks are mortal, only that some Greeks are mortal.\n\n**Conclusion:** The conclusion \"Some Greeks are mortal\" is true, given the premises.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "all_humans_mortal",
+          "z3_formula": "all_humans_mortal == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_greeks_humans",
+          "z3_formula": "all_greeks_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "all_greeks -> all_humans",
+          "z3_formula": "Implies(all_greeks, all_humans)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "all_humans -> all_mortal",
+          "z3_formula": "Implies(all_humans, all_mortal)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "all_greeks -> all_mortal",
+          "z3_formula": "Implies(all_greeks, all_mortal)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "some_greeks_mortal",
+          "z3_formula": "some_greeks_mortal == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mortal(human)",
+          "z3_formula": "mortal_human == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greek)",
+          "z3_formula": "human_greek == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_greek, mortal_greek)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greek)",
+          "z3_formula": "mortal_greek == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some(greek, mortal)",
+          "z3_formula": "some_greek_mortal == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all(humans, mortal)",
+          "z3_formula": "all_humans_mortal == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all(greeks, humans)",
+          "z3_formula": "all_greeks_humans == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "all(X, Y) -> all(X, Z) Implies(all(Y, Z)",
+          "z3_formula": "Implies(all_humans_mortal, all_greeks_mortal)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "all(greeks, mortal)",
+          "z3_formula": "all_greeks_mortal == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "H \u2192 M",
+          "z3_formula": "Implies(human_mortal, mortal)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "G \u2192 H",
+          "z3_formula": "Implies(greek_human, human)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "\u2203G (G \u2227 M)",
+          "z3_formula": "Or(True, And(human, mortal))",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mortal(human)",
+          "z3_formula": "mortal_human == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greek)",
+          "z3_formula": "human_greek == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_greek, mortal_greek)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greek)",
+          "z3_formula": "mortal_greek == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some(greek, mortal)",
+          "z3_formula": "some_greek_mortal == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mortal(humans)",
+          "z3_formula": "mortal_humans == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greeks)",
+          "z3_formula": "human_greeks == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greeks)",
+          "z3_formula": "mortal_greeks == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mortal(human)",
+          "z3_formula": "mortal_human == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_X, mortal_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greek)",
+          "z3_formula": "human_greek == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "greek(X) -> human(X)",
+          "z3_formula": "Implies(greek_X, human_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greek)",
+          "z3_formula": "mortal_greek == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mortal(human)",
+          "z3_formula": "mortal_human == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greek)",
+          "z3_formula": "human_greek == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_greek, mortal_greek)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greek)",
+          "z3_formula": "mortal_greek == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some(greek, mortal)",
+          "z3_formula": "some_greek_mortal == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mortal(human)",
+          "z3_formula": "mortal_human == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_X, mortal_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greek)",
+          "z3_formula": "human_greek == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "greek(X) -> human(X)",
+          "z3_formula": "Implies(greek_X, human_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greek)",
+          "z3_formula": "mortal_greek == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mortal(human)",
+          "z3_formula": "mortal_human == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greek)",
+          "z3_formula": "human_greek == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_greek, mortal_greek)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greek)",
+          "z3_formula": "mortal_greek == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "some(greek, mortal)",
+          "z3_formula": "some_greek_mortal == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mortal(humans)",
+          "z3_formula": "mortal_humans == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greeks)",
+          "z3_formula": "human_greeks == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_greeks, mortal_greeks)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greeks)",
+          "z3_formula": "mortal_greeks == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "All A are B -> Some A are B",
+          "z3_formula": "Implies(Implies(human_greeks, mortal_greeks), Implies(human_greeks, mortal_greeks))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "some(greeks, mortal)",
+          "z3_formula": "some_greeks_mortal == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "mortal(human)",
+          "z3_formula": "mortal_human == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "human(X) -> mortal(X)",
+          "z3_formula": "Implies(human_X, mortal_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "human(greek)",
+          "z3_formula": "human_greek == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "greek(X) -> human(X)",
+          "z3_formula": "Implies(greek_X, human_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "mortal(greek)",
+          "z3_formula": "mortal_greek == True",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 57,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 22
+    },
+    "maxsat_stats": {
+      "satisfied": 22,
+      "excluded": 0,
+      "total_weight": 57,
+      "solve_time_ms": 0.7776608690619469
+    },
+    "timing": {
+      "trace_gen_s": 5.883,
+      "extraction_s": 9.308,
+      "dedup_s": 0.405,
+      "maxsat_s": 0.002,
+      "total_s": 15.599
+    }
+  }
+}

@@ -1,0 +1,872 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1110_Q3",
+    "problem": "Bob is blue. Bob is cold. Bob is nice. Bob is round. Bob is smart. Bob is white. Dave is cold. Dave is white. Erin is blue. Erin is cold. Erin is nice. Erin is round. Erin is smart. Fiona is blue. Fiona is nice. Fiona is smart. White people are nice. All rough people are smart. If someone is blue and rough then they are smart. All nice, rough people are smart. If someone is nice and round then they are rough. White, smart people are blue. All blue people are nice. Nice people are round.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is rough.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nBlue(Bob, True) ::: Bob is blue.\nCold(Bob, True) ::: Bob is cold.\nNice(Bob, True) ::: Bob is nice.\nRound(Bob, True) ::: Bob is round.\nSmart(Bob, True) ::: Bob is smart.\nWhite(Bob, True) ::: Bob is white.\nCold(Dave, True) ::: Dave is cold.\nWhite(Dave, True) ::: Dave is white.\nBlue(Erin, True) ::: Erin is blue.\nCold(Erin, True) ::: Erin is cold.\nNice(Erin, True) ::: Erin is nice.\nRound(Erin, True) ::: Erin is round.\nSmart(Erin, True) ::: Erin is smart.\nBlue(Fiona, True) ::: Fiona is blue.\nNice(Fiona, True) ::: Fiona is nice.\nSmart(Fiona, True) ::: Fiona is smart.\n\nRules:\nWhite($x, True) >>> Nice($x, True) ::: White people are nice.\nRough($x, True) >>> Smart($x, True) ::: All rough people are smart.\nBlue($x, True) && Rough($x, True) >>> Smart($x, True) ::: If someone is blue and rough then they are smart.\nNice($x, True) && Rough($x, True) >>> Smart($x, True) ::: All nice, rough people are smart.\nNice($x, True) && Round($x, True) >>> Rough($x, True) ::: If someone is nice and round then they are rough.\nWhite($x, True) && Smart($x, True) >>> Blue($x, True) ::: White, smart people are blue.\nBlue($x, True) >>> Nice($x, True) ::: All blue people are nice.\nNice($x, True) >>> Round($x, True) ::: Nice people are round.\n\nQuery:\nRough(Erin, True) ::: Erin is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 123.0
+    },
+    "answer_counts": {
+      "True": 10
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Erin is rough, we need to analyze the given information step by step. \n\nFrom the given information, we have the following statements:\n\n1. Erin is blue.\n2. Erin is cold.\n3. Erin is nice.\n4. Erin is round.\n5. Erin is smart.\n\nStatement 1: Erin is blue.\nWe can conclude that Erin is nice (Statement 3) because All blue people are nice.\n\nStatement 5: Erin is smart.\nWe have a few statements that relate to smart people: \n- All rough people are smart (Statement 7).\n- All nice, rough people are smart (Statement 10).\n- White, smart people are blue (Statement 9), but we do not have enough information to determine if Erin is white or not.\n\nHowever, we do not have a direct statement that relates to Erin being smart and then concludes whether Erin is rough or not. But we can conclude that Erin is not rough based on the following statement:\n\nStatement 6: Erin is nice.\nStatement 4: Erin is round.\nStatement 11: If someone is nice and round then they are rough.\nThis statement contradicts with the information we have for Erin (nice and round, but not rough).",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is rough\" is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\n1. Erin is blue. (Given)\n2. Erin is cold. (Given)\n3. Erin is nice. (Given)\n4. Erin is round. (Given)\n5. Erin is smart. (Given)\n\nFrom the given information, we know that:\n- All blue people are nice. (From statement: \"All blue people are nice.\")\n- Erin is blue (Step 1), so Erin is nice (since all blue people are nice).\n- We already know Erin is nice (Step 3), so this is consistent with the information.\n- If someone is nice and round, then they are rough. (From statement: \"If someone is nice and round then they are rough.\")\n- Erin is nice (Step 3) and Erin is round (Step 4), so Erin is rough (since nice and round people are rough).\n\nTherefore, the statement \"Erin is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements to deduce the characteristics of Erin. \n\nFrom the given statements, we can start by identifying the characteristics of Erin:\n\n- Erin is blue.\n- Erin is cold.\n- Erin is nice.\n- Erin is round.\n- Erin is smart.\n\nNow, let's analyze the given statements and see if they provide any additional information about Erin's characteristics.\n\n1. \"Bob is blue. Bob is cold. Bob is nice. Bob is round. Bob is smart. Bob is white. Dave is cold. Dave is white. Erin is blue. Erin is cold. Erin is nice. Erin is round. Erin is smart. Fiona is blue. Fiona is nice. Fiona is smart.\"\n   These statements do not provide any additional information about Erin's characteristics.\n\n2. \"White people are nice.\"\n   This statement does not provide any information about Erin's characteristics since Erin is blue, not white.\n\n3. \"All rough people are smart.\"\n   We do not know if Erin is rough or not. We need to analyze the remaining statements to determine Erin's characteristics.\n\n4. \"If someone is blue and rough then they are smart.\"\n   This statement is not relevant yet since we do not know if Erin is rough or not.\n\n5. \"All nice, rough people are smart.\"\n   This statement is also not relevant yet since we do not know if Erin is rough or not.\n\n6. \"If someone is nice and round then they are rough.\"\n   This statement is not relevant yet since we do not know if Erin is rough or not.\n\n7. \"White, smart people are blue.\"\n   This statement does not provide any information about Erin's characteristics since Erin is blue, not white.\n\n8. \"All blue people are nice.\"\n   This statement is already given in the characteristics of Erin.\n\n9. \"Nice people are round.\"\n   This statement is already given in the characteristics of Erin.\n\nNow, let's analyze the given statements to determine if Erin is rough or not.\n\nFrom statement 3, \"All rough people are smart,\" we can infer that if Erin is rough, then Erin is smart. However, we already know that Erin is smart. Therefore, we cannot conclude anything new from this statement.\n\nFrom statement 4, \"If someone is blue and rough then they are smart,\" we can infer that if Erin is blue and rough, then Erin is smart. However, we already know that Erin is blue and smart. Therefore, we cannot conclude anything new from this statement.\n\nFrom statement 5, \"All nice, rough people are smart,\" we can infer that if Erin is nice and rough, then Erin is smart. However, we already know that Erin is nice and smart. Therefore, we cannot conclude anything new from this statement.\n\nFrom statement 6, \"If someone is nice and round then they are rough,\" we can infer that if Erin is nice and round, then Erin is rough. We already know that Erin is nice and round. Therefore, Erin is rough.\n\nNow that we know Erin is rough, we can analyze the given statements to confirm our conclusion.\n\nFrom statement 8, \"All blue people are nice,\" we can confirm that Erin is nice.\n\nFrom statement 9, \"Nice people are round,\" we can confirm that Erin is round.\n\nFrom statement 3, \"All rough people are smart,\" we can confirm that Erin is smart.\n\nFrom statement 4, \"If someone is blue and rough then they are smart,\" we can confirm that Erin is smart.\n\nFrom statement 5, \"All nice, rough people are smart,\" we can confirm that Erin is smart.\n\nFrom statement 6, \"If someone is nice and round then they are rough,\" we can confirm that Erin is rough.\n\nTherefore, based on the given statements, we can conclude that Erin is rough.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is rough\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the given information:\n\n1. Erin is blue.\n2. Erin is cold.\n3. Erin is nice.\n4. Erin is round.\n5. Erin is smart.\n\nNow, let's analyze the given rules:\n\n1. If someone is blue and rough then they are smart. (Rule 1)\n2. All nice, rough people are smart. (Rule 2)\n3. If someone is nice and round then they are rough. (Rule 3)\n4. White people are nice. (Rule 4)\n5. All rough people are smart. (Rule 5)\n6. White, smart people are blue. (Rule 6)\n7. All blue people are nice. (Rule 7)\n8. Nice people are round. (Rule 8)\n\nTo determine whether Erin is rough, we need to find a rule that applies to her. We know that Erin is blue (Statement 1) and nice (Statement 3).\n\nFrom Rule 7, we know that all blue people are nice. Since Erin is blue, we can conclude that Erin is nice.\n\nFrom Rule 8, we know that all nice people are round. Since Erin is nice, we can conclude that Erin is round.\n\nHowever, we are still unsure whether Erin is rough. Let's look for a rule that relates Erin's properties to being rough.\n\nFrom Rule 3, we know that if someone is nice and round then they are rough. Since Erin is nice (Statement 3) and round (Statement 4), we can apply Rule 3 to conclude that Erin is rough.\n\nTherefore, based on the given information and logical reasoning, we can conclude that the statement \"Erin is rough\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is blue. (Given)\n2. Erin is cold. (Given)\n3. Erin is nice. (Given)\n4. Erin is round. (Given)\n5. Erin is smart. (Given)\n\nFrom the given information, we know the following:\n\n- All blue people are nice. (From the statement \"All blue people are nice.\")\n- Erin is blue (from step 1) and nice (from step 3). Therefore, Erin is indeed nice (matching the statement).\n\n- All nice people are round. (From the statement \"All nice people are round.\")\n- Erin is nice (from step 3) and round (from step 4). This matches the statement.\n\n- If someone is nice and round, then they are rough. (From the statement \"If someone is nice and round then they are rough.\")\n- Erin is nice (from step 3) and round (from step 4). Therefore, Erin is rough (based on this statement).\n\nFrom the given information, we also know the following:\n\n- All white, smart people are blue. (From the statement \"White, smart people are blue.\")\n- Erin is not white (Dave is white, but Erin is not mentioned as white). Therefore, we cannot determine if Erin is blue based on this statement.\n\n- All nice, rough people are smart. (From the statement \"All nice, rough people are smart.\")\n- Erin is nice (from step 3) and rough (based on the statement in step 5). Therefore, Erin is indeed smart (based on this statement).\n\nBased on the analysis, we can conclude that Erin is indeed rough.\n\nTherefore, the final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Erin is rough, we need to analyze the given statements and apply the rules of inference.\n\n1. Erin is blue. (Statement 3)\n2. Erin is cold. (Statement 3)\n3. Erin is nice. (Statement 3)\n4. Erin is round. (Statement 3)\n5. Erin is smart. (Statement 3)\n\nFrom the given statements, we can infer that Erin is nice, round, and smart. We need to check if these properties imply that Erin is rough.\n\n1. If someone is nice and round, then they are rough. (Statement 9)\nSince Erin is nice and round, we can conclude that Erin is rough.\n\nTherefore, the statement \"Erin is rough\" is true.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether Erin is rough, we need to analyze the given information step by step.\n\n1. We are given the following facts:\n   - Erin is blue.\n   - Erin is cold.\n   - Erin is nice.\n   - Erin is round.\n   - Erin is smart.\n\n2. We are also given the following rules:\n   - All rough people are smart. (rule 1)\n   - If someone is blue and rough then they are smart. (rule 2)\n   - All nice, rough people are smart. (rule 3)\n   - If someone is nice and round then they are rough. (rule 4)\n   - White people are nice. (rule 5)\n   - All blue people are nice. (rule 6)\n   - Nice people are round. (rule 7)\n   - White, smart people are blue. (rule 8)\n\n3. Now, let's try to determine whether Erin is rough by analyzing the given information.\n   - From rule 6, we know that all blue people are nice. Since Erin is blue, Erin is nice. (from fact 4)\n   - From rule 7, we know that nice people are round. Since Erin is nice, Erin is round. (from fact 5)\n   - Now we have two possibilities:\n     1. Erin is round because Erin is nice (rule 7).\n     2. Erin is round because Erin is round (fact 5). This is a self-contradictory statement, so we can ignore this possibility.\n\n   - Since Erin is round because Erin is nice (rule 7), we can apply rule 4: If someone is nice and round then they are rough. Therefore, Erin is rough.\n\nSo, based on the given information, the statement \"Erin is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is rough\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the information given, we have the following statements:\n\n1. Erin is blue.\n2. Erin is cold.\n3. Erin is nice.\n4. Erin is round.\n5. Erin is smart.\n\nWe also have the following implications:\n\n1. If someone is blue and rough, then they are smart.\n2. If someone is blue, then they are nice.\n3. If someone is nice and round, then they are rough.\n4. All nice people are round.\n5. All blue people are nice.\n\nNow, let's analyze the statement \"Erin is rough.\"\n\nFrom statement 3, we know that Erin is nice, and from statement 4, we know that Erin is round.\n\nUsing implication 3, if someone is nice and round, then they are rough. Since Erin is both nice (statement 3) and round (statement 4), we can conclude that Erin is rough.\n\nTherefore, the statement \"Erin is rough\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Erin is rough, we need to analyze the given statements and their implications.\n\n1. Erin is blue. \n2. Erin is cold.\n3. Erin is nice.\n4. Erin is round.\n5. Erin is smart.\n\nFrom statements 1 and 3, we know that Erin is both blue and nice. Given that all blue people are nice (statement 8), this is consistent with the information provided.\n\nNow, we need to find a connection between Erin and the concept of being rough. We can do this by looking at statements related to roughness:\n\n6. All nice, rough people are smart.\n7. If someone is nice and round then they are rough.\n\nFrom statement 7, if Erin is round (statement 4) and nice (statement 3), then she must be rough. However, before we conclude this, we need to check if this implies any other properties.\n\nNow that we know Erin is rough, we can look at statement 6: All nice, rough people are smart. This means that Erin, being both rough and nice, must be smart (which is consistent with statement 5).\n\nSo, we have determined that Erin is rough based on the information provided.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply the rules to determine the characteristics of Erin.\n\n1. We are given the following information about Erin:\n   - Erin is blue.\n   - Erin is cold.\n   - Erin is nice.\n   - Erin is round.\n   - Erin is smart.\n\n2. Let's analyze the given rules:\n   - All rough people are smart. (Rule 1)\n   - If someone is blue and rough then they are smart. (Rule 2)\n   - All nice, rough people are smart. (Rule 3)\n   - If someone is nice and round then they are rough. (Rule 4)\n   - White people are nice. (Rule 5)\n   - All blue people are nice. (Rule 6)\n   - Nice people are round. (Rule 7)\n   - White, smart people are blue. (Rule 8)\n   - All blue people are nice. (Rule 6) This rule is repeated but we can ignore this since it does not add any new information.\n\n3. Now, we need to apply these rules to Erin's characteristics. We are asked to determine whether Erin is rough.\n\n   - From Rule 1, we know that all rough people are smart, but we cannot conclude that Erin is rough yet.\n   - From Rule 2, we know that if Erin is blue and rough, then she is smart. But we already know that Erin is smart, so this rule does not provide any new information.\n   - From Rule 3, we know that all nice, rough people are smart. Again, this rule does not provide any new information because we already know that Erin is nice and smart.\n   - From Rule 4, we know that if someone is nice and round, then they are rough. Since Erin is nice and round, we can conclude that Erin is rough.\n\n4. Therefore, based on the given information and rules, we can conclude that Erin is rough.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is blue. Erin is cold. Erin is nice. Erin is round. Erin is smart.\n\nFrom the statement \"All blue people are nice,\" we can infer that Erin is nice because Erin is blue.\n\n2. We also know that Erin is nice. From the statement \"If someone is nice and round then they are rough,\" we can infer that Erin is rough because Erin is nice and round.\n\nTherefore, based on the given information, the statement \"Erin is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and apply the rules of logic to determine the truth value of the statement \"Erin is rough\".\n\nGiven statements:\n1. Bob is blue.\n2. Bob is cold.\n3. Bob is nice.\n4. Bob is round.\n5. Bob is smart.\n6. Bob is white.\n7. Dave is cold.\n8. Dave is white.\n9. Erin is blue.\n10. Erin is cold.\n11. Erin is nice.\n12. Erin is round.\n13. Erin is smart.\n14. Fiona is blue.\n15. Fiona is nice.\n16. Fiona is smart.\n17. White people are nice.\n18. All rough people are smart.\n19. If someone is blue and rough then they are smart.\n20. All nice, rough people are smart.\n21. If someone is nice and round then they are rough.\n22. White, smart people are blue.\n23. All blue people are nice.\n24. Nice people are round.\n\nWe want to determine whether Erin is rough. To do this, we can start by looking at the statements that contain information about Erin.\n\nStatement 9: Erin is blue.\nStatement 10: Erin is cold.\nStatement 11: Erin is nice.\nStatement 12: Erin is round.\nStatement 13: Erin is smart.\n\nWe can use these statements to derive new information about Erin. \n\nFrom statement 23, we know that all blue people are nice. Since Erin is blue (Statement 9), we can conclude that Erin is nice.\n\nFrom statement 24, we know that nice people are round. Since Erin is nice (derived from Statement 11 and 23), we can conclude that Erin is round.\n\nFrom statement 21, we know that if someone is nice and round, then they are rough. Since Erin is nice (derived from Statement 11 and 23) and Erin is round (derived from Statement 12 and 24), we can conclude that Erin is rough.\n\nTherefore, based on the given statements, we can conclude that the statement \"Erin is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_erin, nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_erin, smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, rough_erin), smart_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_erin, smart_erin), blue_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), rough_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(erin))",
+          "z3_formula": "Not(rough_erin)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_erin, nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), rough_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_erin, smart_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_erin, rough_erin), smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), rough_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_erin, rough_erin), smart_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, rough_erin), smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), rough_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_erin, smart_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_erin, smart_erin), blue_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_erin, nice_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_erin, round_erin)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_erin, nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_erin, round_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), rough_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_erin, smart_erin), blue_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, rough_erin), smart_erin)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), rough_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_erin, rough_erin), smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, rough_erin), smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), rough_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_erin, round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_erin, smart_erin), blue_erin)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_erin, rough_erin), smart_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_erin, nice_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), rough_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_erin, round_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_erin, blue_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_erin, nice_erin), nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, rough_erin), smart_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), rough_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> smart(X)",
+          "z3_formula": "Implies(rough_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_erin, rough_erin), smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & rough(X) -> smart(X)",
+          "z3_formula": "Implies(And(nice_erin, rough_erin), smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), rough_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_erin, nice_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_erin, round_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_erin, smart_erin), blue_erin)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), rough_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> nice(X)",
+          "z3_formula": "Implies(blue_erin, nice_erin)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> round(X)",
+          "z3_formula": "Implies(nice_erin, round_erin)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(nice_erin, round_erin), rough_erin)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 25
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 124,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 17
+    },
+    "maxsat_stats": {
+      "satisfied": 16,
+      "excluded": 1,
+      "total_weight": 123,
+      "solve_time_ms": 0.830397941172123
+    },
+    "timing": {
+      "trace_gen_s": 9.436,
+      "extraction_s": 18.28,
+      "dedup_s": 0.511,
+      "maxsat_s": 0.002,
+      "total_s": 28.229
+    }
+  }
+}

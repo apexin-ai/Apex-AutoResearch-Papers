@@ -1,0 +1,1109 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-692_Q4",
+    "problem": "Charlie is quiet. Dave is big. Dave is red. Dave is smart. Dave is young. Erin is big. Erin is blue. Erin is quiet. Erin is smart. Harry is big. Harry is furry. Harry is young. Blue people are red. If someone is quiet then they are big. If someone is furry then they are quiet. All quiet, big people are furry. If someone is young then they are blue. If someone is young then they are quiet. If Erin is furry then Erin is young. Blue people are quiet. If someone is furry then they are young.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is not red.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nQuiet($x, bool) ::: Is x quiet?\nBig($x, bool) ::: Is x big?\nRed($x, bool) ::: Is x red?\nSmart($x, bool) ::: Is x smart?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nFurry($x, bool) ::: Is x furry?\n\nFacts:\nQuiet(Charlie, True) ::: Charlie is quiet.\nBig(Dave, True) ::: Dave is big.\nRed(Dave, True) ::: Dave is red.\nSmart(Dave, True) ::: Dave is smart.\nYoung(Dave, True) ::: Dave is young.\nBig(Erin, True) ::: Erin is big.\nBlue(Erin, True) ::: Erin is blue.\nQuiet(Erin, True) ::: Erin is quiet.\nSmart(Erin, True) ::: Erin is smart.\nBig(Harry, True) ::: Harry is big.\nFurry(Harry, True) ::: Harry is furry.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nBlue($x, True) >>> Red($x, True) ::: Blue people are red.\nQuiet($x, True) >>> Big($x, True) ::: If someone is quiet then they are big.\nFurry($x, True) >>> Quiet($x, True) ::: If someone is furry then they are quiet.\nQuiet($x, True) && Big($x, True) >>> Furry($x, True) ::: All quiet, big people are furry.\nYoung($x, True) >>> Blue($x, True) ::: If someone is young then they are blue.\nYoung($x, True) >>> Quiet($x, True) ::: If someone is young then they are quiet.\nFurry(Erin, True) >>> Young(Erin, True) ::: If Erin is furry then Erin is young.\nBlue($x, True) >>> Quiet($x, True) ::: Blue people are quiet.\nFurry($x, True) >>> Young($x, True) ::: If someone is furry then they are young.\n\nQuery:\nRed(Erin, False) ::: Erin is not red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 141.5,
+      "True": 101.5,
+      "Unknown": 131.5
+    },
+    "answer_counts": {
+      "Unknown": 3,
+      "True": 3,
+      "False": 5
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Erin is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is big. (Direct statement)\n2. Erin is blue. (Direct statement)\n3. Erin is quiet. (Direct statement)\n4. Erin is smart. (Direct statement)\n5. Blue people are red. (Contradictory statement - If someone is blue, then they are red)\n6. If someone is quiet then they are big. (Rule - If A, then B)\n7. If someone is furry then they are quiet. (Rule - If A, then B)\n8. All quiet, big people are furry. (Rule - If A and B, then C)\n9. If someone is young then they are blue. (Rule - If A, then B)\n10. If someone is young then they are quiet. (Rule - If A, then B)\n11. If Erin is furry then Erin is young. (Rule - If A, then B)\n12. Blue people are quiet. (Rule - If A, then B)\n13. If someone is furry then they are young. (Rule - If A, then B)\n\nFrom the information given, we can make the following conclusions:\n\n- Since Erin is blue (Statement 2), Erin is red (Statement 5).\n- Since Erin is big (Statement 1), Erin is quiet (Statement 6).\n- Since Erin is quiet (Statement 3), Erin is furry (Statement 8).\n- Since Erin is furry (Statement 11), Erin is young (Statement 11).\n\nHowever, there is a contradiction in the information given. \n\nIf Erin is young (Statement 11), then Erin is blue (Statement 9). \nIf Erin is blue (Statement 2), then Erin is red (Statement 5). \nBut, if Erin is red (Statement 5), then Erin is not blue (by definition).\n\nSince there is a contradiction, we cannot conclude whether Erin is red or not. Therefore, the statement \"Erin is not red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is red. (This statement does not affect Erin, but we will use it later.)\n\n2. Erin is blue. (From this, we can conclude that Erin is not red, but we will continue analyzing other statements to see if there's any contradiction.)\n\n3. Blue people are quiet. (This statement doesn't affect Erin directly.)\n\n4. Erin is quiet. (This statement doesn't affect Erin's color, but we can use it later.)\n\n5. If someone is quiet then they are big. (From Erin is quiet, we can conclude that Erin is big.)\n\n6. Erin is big. (This is consistent with our previous conclusion.)\n\n7. Erin is not red, as Erin is blue. \n\nSince we have already concluded that Erin is blue, we can say that the statement \"Erin is not red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is not red' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is big. (From the given statements)\n2. Erin is blue. (From the given statements)\n3. Blue people are red. (From the given statements)\n\nFrom the statement 3, we can conclude that since Erin is blue, she must be red. This directly contradicts the statement that Erin is blue. However, based on our previous conclusion, we cannot say for sure if Erin is red or blue. Hence, we should continue analyzing the given information.\n\n4. Erin is quiet. (From the given statements)\n5. If someone is quiet then they are big. (From the given statements)\n6. If someone is quiet then they are blue. (From the given statements)\n\nFrom the statements 4 and 5, we can conclude that Erin is big. We already know that from statement 1. From the statements 4 and 6, we can conclude that Erin is blue. We already know that from statement 2.\n\n7. Erin is smart. (From the given statements)\n8. All quiet, big people are furry. (From the given statements)\n9. If Erin is furry then Erin is young. (From the given statements)\n\nSince we concluded in statement 5 that Erin is big and in statement 4 that Erin is quiet, we can apply statement 8 and conclude that Erin must be furry. From statement 9, we can conclude that Erin is young.\n\nNow, let's analyze the information about Erin's color again. We previously concluded that Erin is red (from statement 3). Now, we have concluded that Erin is blue (from statement 2). However, based on the given information, we know that blue people are quiet (from statement 6) and Erin is quiet (from statement 4). Since Erin is quiet and blue, we can conclude that Erin is indeed blue. However, we must still determine if Erin is red.\n\n10. If someone is young then they are blue. (From the given statements)\n11. If someone is young then they are quiet. (From the given statements)\n\nFrom the statements 10 and 11, we can conclude that young people are blue and quiet. Since we concluded that Erin is young (from statement 9), we can confirm that Erin is indeed blue and quiet.\n\nHowever, we still need to determine if Erin is red. We previously concluded that Erin is red (from statement 3). However, since we concluded that Erin is blue (from statement 2) and blue people are quiet (from statement 6) and Erin is quiet (from statement 4), we can confirm that Erin is indeed blue.\n\nNow, we need to re-analyze the statement 'Blue people are red' (from statement 3) with the information that we have. This statement is actually a contradiction, as it implies that blue people are red. However, we have concluded that Erin is blue and Erin is quiet.\n\n12. If someone is furry then they are quiet. (From the given statements)\n\nWe already concluded that Erin is furry (from statement 8). From statement 12, we can conclude that Erin is indeed quiet.\n\nHowever, we are trying to determine if Erin is red. Based on the previous conclusion, Erin is blue. However, we know that blue people are red (from statement 3). This implies that Erin is indeed red.\n\nHowever, there is a contradiction. If Erin is blue, then Erin is indeed red. However, if Erin is blue, then Erin is quiet and young (from statements 10 and 11). Since Erin is quiet and young, Erin must be furry (from statement 8).\n\nNow, let's analyze the statement 'Blue people are red' (from statement 3) again. This statement implies that blue people are red. However, we know that blue people are quiet (from statement 6) and Erin is quiet (from statement 4). Since Erin is quiet and blue, Erin must be red.\n\nHowever, this is still a contradiction, as we have concluded that Erin is blue and Erin is red. However, Erin is blue and Erin is quiet. Since Erin is quiet, Erin is big (from statement 5). Since Erin is big, Erin is blue (from statement 2). Since Erin is blue, Erin is indeed red (from statement 3).\n\nHowever, we need to re-analyze the information. Since Erin is big (from statement 1), Erin is blue (from statement 2), and Erin is red (from statement 3), we can conclude that Erin is indeed blue and red. However, we know that Erin is quiet (from statement 4). Since Erin is quiet, Erin is big (from statement 5). Since Erin is big, Erin is indeed blue (from statement 2).\n\nHowever, we are trying to determine if Erin is red. Based on the previous conclusion, Erin is blue and red. However, since Erin is quiet and blue, Erin must be red (from statement 3).\n\nHowever, there is a contradiction. If Erin is red, then Erin is blue (from statement 3). However, we already concluded that Erin is blue and red.\n\nIn conclusion, since Erin is blue, Erin is indeed red. Hence, the statement 'Erin is not red' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is not red' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is red.\n2. Erin is big.\n3. Erin is blue.\n4. Erin is quiet.\n5. Erin is smart.\n\nNow, let's consider the given rules:\n\n1. If someone is quiet then they are big.\n2. If someone is furry then they are quiet.\n3. All quiet, big people are furry.\n4. If someone is young then they are blue.\n5. If someone is young then they are quiet.\n6. If Erin is furry then Erin is young.\n7. Blue people are quiet.\n8. If someone is furry then they are young.\n\nNow, let's apply the rules to the information:\n\nFrom rule 4 and 5, we can conclude that Erin is young because Erin is quiet.\n\nFrom rule 6, since Erin is furry, we can conclude that Erin is young (which we already concluded) and Erin is quiet.\n\nFrom rule 7, we can conclude that Erin is quiet because Erin is blue.\n\nFrom rule 2, we can conclude that Erin is big because Erin is quiet.\n\nNow, we have a contradiction between the information given in rule 3 and the information we have about Erin. Rule 3 states that all quiet, big people are furry, but we already know that Erin is furry and young (rule 5). This means Erin is both big and furry, which aligns with rule 3.\n\nHowever, we still need to determine if Erin is red or not. From rule 1, we know that blue people are red. But rule 4 states that if someone is young then they are blue, which we concluded about Erin. So, Erin being young means Erin is blue. From rule 1, we can conclude that Erin is red.\n\nNow, we have a conclusion about Erin: Erin is big, Erin is blue, Erin is quiet, Erin is smart, and Erin is red.\n\nThe statement 'Erin is not red' is false because we have concluded that Erin is red.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not red\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. Erin is big. (From the given statements)\n2. Erin is blue. (From the given statements)\n3. Blue people are red. (From the given statements)\n   However, the statement \"Blue people are red\" can be rewritten as \"If someone is blue then they are red.\" This statement is a conditional statement, which means it is not necessarily true for all cases. It may be true for some cases but not all. Therefore, we cannot conclude that Erin is red.\n\nNow, let's analyze the statement \"Erin is not red\" using the above information:\n\n- If someone is blue, then they are red (rule 3). However, this is a conditional statement and not an if-then statement. This means that being blue does not necessarily mean being red. We can rewrite this as \"Blue people can be red.\"\n- Erin is blue. (From the given statements)\n\nGiven the information above, we can say that Erin is blue. However, we cannot conclude that Erin is red because \"Blue people can be red\" is not the same as \"Blue people are red.\" \n\nBut we can use rule 3 to say that blue people can be red. Now, we also have another rule that states \"If someone is quiet then they are big.\" We also know that Erin is big. So we can say that \"If Erin is quiet, then Erin is big.\" We also know that Erin is blue. Therefore we can say that \"If Erin is blue, then Erin is quiet.\" We also have a rule that states \"Blue people are quiet.\" This rule can be rewritten as \"If someone is blue, then they are quiet.\" This rule is the same as the previous rule \"If Erin is blue, then Erin is quiet.\" Therefore, we can conclude that \"Erin is quiet.\"\n\nNow we have that \"Erin is quiet\" and \"If someone is quiet then they are big.\" Therefore we can say that \"Erin is big.\" We also know that \"If someone is big then they are not necessarily red.\" Therefore we can conclude that \"Erin is not necessarily red.\"\n\nHowever, we also have a rule that states \"All quiet, big people are furry.\" We know that Erin is quiet and Erin is big. Therefore we can say that \"Erin is furry.\" We also know that \"If Erin is furry then Erin is young.\" Therefore we can conclude that \"Erin is young.\"\n\nNow we have that \"Erin is young\" and \"If someone is young then they are blue.\" Therefore we can conclude that \"Erin is blue.\" We also know that \"Blue people can be red.\" Therefore we can conclude that \"Erin can be red.\" However, we also know that \"Blue people are quiet.\" We also know that \"If someone is quiet then they are big.\" We also know that \"If someone is big then they are not necessarily red.\" Therefore we can conclude that \"Erin is not red.\"\n\nTherefore, the final answer is \\boxed{True}.",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements one by one and see if we can derive any conclusions about Erin.\n\n1. Dave is big. Dave is red. Dave is smart. Dave is young. \n   - We know Dave is big, but we don't know much about Erin yet.\n\n2. Erin is big. Erin is blue. Erin is quiet. Erin is smart.\n   - We know Erin is big, blue, quiet, and smart, but we still don't know much about her color.\n\n3. Harry is big. Harry is furry. Harry is young.\n   - This statement doesn't give us any information about Erin.\n\n4. Blue people are red.\n   - This statement contradicts the statement in step 2 that Erin is blue. However, we can't conclude that Erin is red yet.\n\n5. If someone is quiet then they are big.\n   - Erin is quiet (from step 2), so Erin is big.\n\n6. If someone is furry then they are quiet.\n   - We don't know if Erin is furry yet, so we can't conclude anything about Erin's quietness from this statement.\n\n7. All quiet, big people are furry.\n   - Since we know Erin is quiet and big (from steps 2 and 5), Erin must be furry.\n\n8. If someone is young then they are blue.\n   - This statement contradicts the statement in step 7 that Erin is furry, because furry people are young (from step 6).\n\n9. If someone is young then they are quiet.\n   - This statement contradicts the statement in step 6 that furry people are quiet, because furry people are young.\n\n10. If Erin is furry then Erin is young.\n    - Since Erin is furry (from step 7), Erin is young.\n\n11. Blue people are quiet.\n    - Erin is blue (from step 2), so Erin is quiet.\n\n12. If someone is furry then they are young.\n    - This statement contradicts the statement in step 7 that quiet, big people are furry, because furry people are young.\n\nNow, let's go back to our original question: Determine whether the following statement is true, false, or unknown: Erin is not red.\n\nWe know from step 4 that blue people are red. However, we also know that Erin is blue (from step 2) and young (from step 10). But we also know from statement 11 that blue people are quiet.  However, we also know from statement 5 that all quiet people are big, and from statement 7 that all quiet, big people are furry. From statement 10, all furry people are young, so Erin is young. From statement 7, all quiet, big people are furry, so Erin is furry. But since Erin is furry, Erin is young from statement 10. But since Erin is young, Erin is blue from statement 8. Since Erin is blue, Erin is red from statement 4.\n\nTherefore, the statement \"Erin is not red\" is:\n\n\\boxed{false}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is not red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Erin is blue.\n   - Blue people are red.\n\n   From these two statements, we can conclude that Erin is red because the statement \"Blue people are red\" implies that Erin, being blue, is also red.\n\n2. We are given the following statements:\n   - Erin is quiet.\n   - Erin is big.\n   - If someone is quiet then they are big.\n\n   These statements do not provide any new information about Erin's color.\n\n3. We are given the following statements:\n   - Erin is smart.\n   - If someone is smart then we cannot determine anything about their other properties.\n\n   This statement also does not provide any new information about Erin's color.\n\n4. We are given the following statements:\n   - Erin is not mentioned in the following statements.\n   - Blue people are red.\n   - If someone is young then they are blue.\n   - If someone is young then they are quiet.\n   - If Erin is furry then Erin is young.\n   - Blue people are quiet.\n   - If someone is furry then they are young.\n\n   We have already determined that Erin is red based on the statement \"Blue people are red\" and \"Erin is blue.\" We cannot determine anything new about Erin's color from these statements.\n\nSince we have already determined that Erin is red, we can conclude that the statement \"Erin is not red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical reasoning to determine the truth value of the statement \"Erin is not red.\"\n\nStep 1: Analyze the statements about Erin\nFrom the given statements, we have:\n\n- Erin is big.\n- Erin is blue.\n- Erin is quiet.\n- Erin is smart.\n- If Erin is furry then Erin is young.\n\nWe also have the statement \"Blue people are red,\" but this is a general statement, not specific to Erin. However, since Erin is blue, we can infer that Erin might be red based on this statement.\n\nStep 2: Analyze the statements about the relationships between characteristics\nFrom the given statements, we have:\n\n- If someone is quiet then they are big.\n- If someone is furry then they are quiet.\n- All quiet, big people are furry.\n- If someone is young then they are blue.\n- If someone is young then they are quiet.\n- If Erin is furry then Erin is young.\n- Blue people are quiet.\n- If someone is furry then they are young.\n\nStep 3: Determine the relationship between Erin's characteristics\nBased on the statements, we can see that Erin is blue, which makes Erin young (since \"If someone is young then they are blue\"). Also, since Erin is young, Erin is quiet (since \"If someone is young then they are quiet\"). However, this creates a contradiction with the statement \"If Erin is furry then Erin is young,\" because if Erin is furry, Erin would be young, and since Erin is young, Erin would be quiet, which would imply that Erin is furry, and so on. This creates an infinite loop, making it unknown whether Erin is furry or not.\n\nStep 4: Determine the truth value of the statement \"Erin is not red\"\nSince Erin is blue and \"Blue people are red,\" we can infer that Erin might be red. However, we cannot conclusively determine whether Erin is red or not because of the infinite loop created by the statements about Erin's youth and quietness. Therefore, the truth value of the statement \"Erin is not red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is not red' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Erin is blue. \n2. Blue people are red. \nFrom these two statements, we can conclude that Erin is indeed red because blue people are classified as red.\n\nNow, let's analyze the given statement 'Erin is not red' in light of this conclusion. \n\nSince Erin is red (as concluded from the previous statement), the statement 'Erin is not red' is false.\n\nSo, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information to deduce the characteristics of Erin and then determine if she is red or not.\n\n1. Erin is big. (Given)\n2. Erin is blue. (Given)\n3. Blue people are red. (Given)\n   From this, we can conclude that Erin is indeed red, but we need to verify this conclusion using other information.\n\n4. Erin is quiet. (Given)\n5. If someone is quiet then they are big. (Given)\n   This is true for Erin, as she is quiet and big.\n6. All quiet, big people are furry. (Given)\n   Since Erin is quiet and big, we can conclude that she is furry.\n7. If Erin is furry then Erin is young. (Given)\n   This contradicts our initial information that Erin is big and blue, and also young.\n   We need to resolve this contradiction.\n\n8. Blue people are quiet. (Given)\n9. If someone is blue then they are quiet. (Given)\n   This means that Erin is quiet because she is blue, which is consistent with information (4).\n10. If someone is young then they are blue. (Given)\n11. If someone is young then they are quiet. (Given)\n    These two statements are contradictory to our previous conclusion that blue people are quiet.\n12. If someone is furry then they are young. (Given)\n    Since Erin is furry, we can conclude that she is young.\n\nNow we have a contradiction in our conclusions:\n- Erin is young (from information 12)\n- Erin is blue (from information 2)\n- Erin is quiet (from information 4)\n- Blue people are quiet (from information 8)\n- Blue people are red (from information 3)\n- If someone is quiet then they are big (from information 5)\n- All quiet, big people are furry (from information 6)\n- If Erin is furry then Erin is young (from information 7)\n- Erin is big (from information 1)\n\nTo resolve this, we will follow the information that states that Blue people are quiet, and that Blue people are red. This means that Erin being blue makes her red. But if Erin is red then the information stating that Blue people are red is wrong and this means that Erin is not blue. \n\nSince we have concluded that Erin is not blue, we can then say that Erin is not young because if someone is young then they are blue. This means that Erin is not furry because if someone is furry then they are young.\n\nWe can now say that Erin is big (from information 1), Erin is not quiet because all quiet, big people are furry (from information 6) and Erin is not furry. This means that Erin is not young, and Erin is not blue. This means that Erin is not red because Blue people are red (from information 3).\n\nWe can conclude that Erin is big, Erin is not quiet, Erin is not furry, Erin is not young, Erin is not blue, and Erin is not red.\n\nThe final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given statements and deduce the information about Erin.\n\nGiven statements:\n1. Charlie is quiet.\n2. Dave is big.\n3. Dave is red.\n4. Dave is smart.\n5. Dave is young.\n6. Erin is big.\n7. Erin is blue.\n8. Erin is quiet.\n9. Erin is smart.\n10. Harry is big.\n11. Harry is furry.\n12. Harry is young.\n13. Blue people are red.\n14. If someone is quiet then they are big.\n15. If someone is furry then they are quiet.\n16. All quiet, big people are furry.\n17. If someone is young then they are blue.\n18. If someone is young then they are quiet.\n19. If Erin is furry then Erin is young.\n20. Blue people are quiet.\n21. If someone is furry then they are young.\n\nNow, let's analyze the statements related to Erin:\n- Erin is big (statement 6).\n- Erin is blue (statement 7).\n- Erin is quiet (statement 8).\n- Erin is smart (statement 9).\n\nWe need to determine whether Erin is not red. To do this, we'll look for any information that might relate to Erin's color.\n\nFrom statement 13, we know that blue people are red. This means that if Erin is blue, she could also be red. However, we need to find out if there's any statement that contradicts this.\n\nFrom statement 14, we know that if someone is quiet, then they are big. Since Erin is quiet (statement 8), we can conclude that Erin is big (statement 6). \n\nFrom statement 16, we know that all quiet, big people are furry. However, statement 15 says that if someone is furry, then they are quiet. This creates a loop, but it doesn't directly relate to Erin's color.\n\nFrom statement 19, we know that if Erin is furry, then Erin is young. However, statement 21 says that if someone is furry, then they are young. This statement is contradictory to statement 18, which says that if someone is young, then they are blue.\n\nConsidering the given statements, we can conclude that Erin is blue (statement 7), but we cannot confirm whether Erin is red or not because of the contradictory information. \n\nHowever, we can deduce that the statement \"Erin is not red\" cannot be confirmed as true or false using the given information, as the information about Erin being red is indirect and based on the statement \"Blue people are red.\" Since Erin is blue and we don't have any information that contradicts her being red, we cannot conclude that she is not red. \n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will use logical deductions based on the given information.\n\n1. Dave is big.\n2. Dave is red.\n3. Dave is smart.\n4. Dave is young.\n5. Erin is big.\n6. Erin is blue.\n7. Erin is quiet.\n8. Erin is smart.\n9. Harry is big.\n10. Harry is furry.\n11. Harry is young.\n\nFrom the given statements:\n- If someone is quiet then they are big. (This means that quiet people are big.)\n- If someone is furry then they are quiet. (This means that furry people are quiet.)\n- All quiet, big people are furry. (This means that big, quiet people are furry.)\n- If someone is young then they are blue. (This means that young people are blue.)\n- If someone is young then they are quiet. (This means that young people are quiet.)\n- If Erin is furry then Erin is young. (This means that if Erin is furry, then she is young.)\n- Blue people are quiet. (This means that blue people are quiet.)\n- If someone is furry then they are young. (This means that furry people are young.)\n\nNow let's analyze the statement \"Erin is not red.\"\nFrom the given information, we know:\n- Erin is blue. (From statement 6)\n- Blue people are red. (From statement 12)\n\nFrom the previous conclusion, it seems to be a contradiction that Erin is both blue and red. However, we should look into this further.\n\n- Blue people are red. (From statement 12)\n- Blue people are quiet. (From statement 16)\n\nWe now have the conclusion that blue people are both red and quiet. We can now use the information that all quiet, big people are furry. We also know Erin is quiet from statement 7 and big from statement 5.\n\n- All quiet, big people are furry. (From statement 13)\n- Erin is quiet. (From statement 7)\n- Erin is big. (From statement 5)\n\nTherefore, Erin is furry because she is a quiet, big person.\n\n- If Erin is furry then Erin is young. (From statement 17)\n\nSo Erin is young. \n\n- If someone is young then they are blue. (From statement 14)\n- If someone is young then they are quiet. (From statement 15)\n\nWe know Erin is both young and blue, which is consistent with the information that blue people are red.\n\n- Blue people are red. (From statement 12)\n\nTherefore, Erin is red.\n\nThe statement \"Erin is not red\" is false because we have concluded that Erin is red.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_erin, red_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_erin, big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_erin, quiet_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), furry_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_erin, blue_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_erin, quiet_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_erin, young_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_erin, quiet_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_erin, young_erin)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_erin, quiet_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_erin, big_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not red(erin)",
+          "z3_formula": "Not(red_erin) == True",
+          "source_step": 8
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_erin, big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_erin, quiet_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), furry_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_erin, blue_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_erin, quiet_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_erin, young_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_erin, quiet_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_erin, red_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_erin, red_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_erin, big_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_erin, quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), furry_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_erin, young_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_erin, blue_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not red(erin)",
+          "z3_formula": "Not(red_erin) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_erin, red_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_erin, big_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), furry_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_erin, young_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_erin, quiet_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_erin, young_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_erin, red_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_erin, big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> unknown(X)",
+          "z3_formula": "Implies(smart_erin, unknown_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(fur(erin))",
+          "z3_formula": "Not(fur_erin) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_erin, blue_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_erin, quiet_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "fur(X) -> young(X)",
+          "z3_formula": "Implies(fur_erin, young_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_erin, quiet_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "fur(X) -> young(X)",
+          "z3_formula": "Implies(fur_erin, young_erin)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_erin, young_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_erin, big_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & quiet(X) -> furry(X)",
+          "z3_formula": "Implies(And(big_erin, quiet_erin), furry_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_erin, blue_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_erin, young_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_erin, red_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == Unknown",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_erin, red_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(erin))",
+          "z3_formula": "Not(red_erin) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_erin, red_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_erin, big_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), furry_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_erin, young_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_erin, quiet_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_erin, quiet_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_erin, blue_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_erin, quiet_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_erin, young_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(furry(erin))",
+          "z3_formula": "Not(furry_erin) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(young(erin))",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not(quiet(erin))",
+          "z3_formula": "Not(quiet_erin) == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not(blue(erin))",
+          "z3_formula": "Not(blue_erin) == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not(red(erin))",
+          "z3_formula": "Not(red_erin) == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_erin, red_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_erin, big_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_erin, big_erin), furry_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_erin, quiet_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_erin, young_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_erin, blue_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_erin, quiet_erin)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_erin, young_erin)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_erin, quiet_erin)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not red(erin)",
+          "z3_formula": "Not(red_erin)",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(dave)",
+          "z3_formula": "young_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_X, big_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_X, quiet_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & big(X) -> furry(X)",
+          "z3_formula": "Implies(And(quiet_X, big_X), furry_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_X, blue_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_X, quiet_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> young(X)",
+          "z3_formula": "Implies(furry_X, young_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_X, red_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> quiet(X)",
+          "z3_formula": "Implies(blue_X, quiet_X)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 22
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 163,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 40
+    },
+    "maxsat_stats": {
+      "satisfied": 35,
+      "excluded": 5,
+      "total_weight": 154,
+      "solve_time_ms": 1.1837556958198547
+    },
+    "timing": {
+      "trace_gen_s": 13.299,
+      "extraction_s": 30.317,
+      "dedup_s": 1.094,
+      "maxsat_s": 0.003,
+      "total_s": 44.714
+    }
+  }
+}

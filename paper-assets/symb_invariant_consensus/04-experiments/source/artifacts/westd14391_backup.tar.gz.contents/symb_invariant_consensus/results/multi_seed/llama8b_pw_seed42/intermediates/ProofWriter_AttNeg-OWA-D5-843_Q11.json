@@ -1,0 +1,1175 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-843_Q11",
+    "problem": "Charlie is blue. Charlie is quiet. Dave is not blue. Dave is green. Dave is quiet. Dave is round. Dave is not white. Erin is blue. Erin is green. Erin is quiet. Gary is green. Gary is quiet. If someone is blue and not quiet then they are round. If someone is green then they are round. Blue, cold people are green. All blue people are cold. If Charlie is not quiet then Charlie is not round. If Gary is blue and Gary is round then Gary is not cold. All round people are not furry. If someone is cold and not furry then they are white.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is white.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nQuiet($x, bool) ::: Is x quiet?\nGreen($x, bool) ::: Is x green?\nRound($x, bool) ::: Is x round?\nWhite($x, bool) ::: Is x white?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\n\nFacts:\nBlue(Charlie, True) ::: Charlie is blue.\nQuiet(Charlie, True) ::: Charlie is quiet.\nBlue(Dave, False) ::: Dave is not blue.\nGreen(Dave, True) ::: Dave is green.\nQuiet(Dave, True) ::: Dave is quiet.\nRound(Dave, True) ::: Dave is round.\nWhite(Dave, False) ::: Dave is not white.\nBlue(Erin, True) ::: Erin is blue.\nGreen(Erin, True) ::: Erin is green.\nQuiet(Erin, True) ::: Erin is quiet.\nGreen(Gary, True) ::: Gary is green.\nQuiet(Gary, True) ::: Gary is quiet.\n\nRules:\nBlue($x, True) && Quiet($x, False) >>> Round($x, True) ::: If someone is blue and not quiet then they are round.\nGreen($x, True) >>> Round($x, True) ::: If someone is green then they are round.\nBlue($x, True) && Cold($x, True) >>> Green($x, True) ::: Blue, cold people are green.\nBlue($x, True) >>> Cold($x, True) ::: All blue people are cold.\nQuiet(Charlie, False) >>> Round(Charlie, False) ::: If Charlie is not quiet then Charlie is not round.\nBlue(Gary, True) && Round(Gary, True) >>> Cold(Gary, False) ::: If Gary is blue and Gary is round then Gary is not cold.\nRound($x, True) >>> Furry($x, False) ::: All round people are not furry.\nCold($x, True) && Furry($x, False) >>> White($x, True) ::: If someone is cold and not furry then they are white.\n\nQuery:\nWhite(Charlie, True) ::: Charlie is white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 114.5,
+      "True": 151.5,
+      "Unknown": 123.0
+    },
+    "answer_counts": {
+      "Unknown": 3,
+      "False": 2,
+      "True": 5
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement 'Charlie is white' is true, false, or unknown, we need to use the given information and logical deductions.\n\nGiven information:\n1. Charlie is blue.\n2. Charlie is quiet.\n3. If someone is blue and not quiet then they are round.\n4. If Charlie is not quiet then Charlie is not round.\n5. All round people are not furry.\n6. If someone is cold and not furry then they are white.\n7. All blue people are cold.\n\nFrom (1), we know Charlie is blue.\nFrom (2), we know Charlie is quiet.\nFrom (3), since Charlie is blue and quiet, we can conclude that Charlie is round.\nHowever, from (4), since Charlie is quiet, we can conclude that Charlie is not round. This creates a contradiction.\n\nSince we have a contradiction, we cannot determine whether Charlie is round or not. However, we know that Charlie is blue and all blue people are cold (from (7)).\n\nFrom (5), we know that all round people are not furry. However, we cannot determine whether Charlie is round or not, so we cannot determine whether Charlie is furry or not.\n\nNow, we know that Charlie is blue and cold. From (6), if someone is cold and not furry, then they are white. However, we cannot determine whether Charlie is furry or not, so we cannot determine whether Charlie is white or not.\n\nTherefore, the statement 'Charlie is white' is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given statements:\n   - Charlie is blue. (1)\n   - Charlie is quiet. (2)\n   - If someone is blue and not quiet then they are round. (3)\n   \n   Since Charlie is blue and quiet, we can't conclude that Charlie is round using statement (3). So, we cannot determine if Charlie is round or not.\n\n2. We also know:\n   - Charlie is not round if Charlie is not quiet. (4)\n   - Charlie is quiet. (2)\n   From (4) and (2), we can conclude that Charlie is not round.\n\n3. Now, we know:\n   - Charlie is not blue if Dave is not blue. (5)\n   - Dave is not blue. (6)\n   - Dave is green. (7)\n   From (6) and (7), we can conclude that Charlie is green. (By process of elimination)\n   \n   Since Charlie is green, we can conclude that Charlie is round using statement (8).\n\n4. We also know:\n   - Blue, cold people are green. (9)\n   - All blue people are cold. (10)\n   - Erin is blue. (11)\n   - Erin is green. (12)\n   - Erin is quiet. (13)\n   - Gary is green. (14)\n   - Gary is quiet. (15)\n   - If Charlie is not quiet then Charlie is not round. (16)\n   - Charlie is not round if Charlie is blue. (17)\n   - Gary is blue and Gary is round then Gary is not cold. (18)\n   - All round people are not furry. (19)\n   - If someone is cold and not furry then they are white. (20)\n   \n   From (10) and (11), we can conclude that Erin is cold. Since Erin is green, we can conclude that Erin is round.\n   \n   From (9), (11), and (16), we can conclude that Charlie is cold and Charlie is round.\n   \n   From (20) and (16), we can conclude that Charlie is not white.\n\nTherefore, the statement \"Charlie is white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"All blue people are cold,\" we can infer that Charlie is cold because Charlie is blue.\n\n2. From the statement \"All blue people are cold,\" we can also infer that Erin is cold because Erin is blue.\n\n3. From the statement \"Blue, cold people are green,\" we can infer that Charlie is green because Charlie is blue and cold.\n\n4. From the statement \"Dave is green,\" we can infer that Dave is round because someone who is green is round.\n\n5. From the statement \"If someone is green then they are round,\" we can infer that Charlie is round because Charlie is green.\n\n6. From the statement \"If someone is blue and not quiet then they are round,\" we cannot infer that Charlie is round because it contradicts the fact that Charlie is quiet.\n\n7. However, we can infer that Charlie is not round because if Charlie is not quiet then Charlie is not round. Since Charlie is quiet, Charlie is not round.\n\n8. Since Charlie is not round, we cannot determine if Charlie is white or not.\n\n9. However, from the statement \"All round people are not furry,\" we can infer that Charlie is furry because Charlie is not round.\n\n10. From the statement \"If someone is cold and not furry then they are white,\" we cannot infer that Charlie is white because Charlie is furry.\n\n11. From the statement \"All round people are not furry,\" we cannot infer that Erin is furry because Erin is round.\n\n12. From the statement \"If someone is cold and not furry then they are white,\" we can infer that Erin is white because Erin is cold and we cannot determine if Erin is furry or not.\n\nHowever, we are trying to find out if Charlie is white, not Erin. We can still conclude that Charlie is not white because Charlie is furry, but we cannot be 100% certain of the statement's truth or falsity.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given statements, we know:\n   - Charlie is blue.\n   - Charlie is quiet.\n\n2. We also know:\n   - If someone is blue and not quiet, then they are round.\n   - Since Charlie is blue, if he is not quiet, then he is round. However, we also know that Charlie is quiet.\n\n3. So, Charlie being quiet and blue does not directly imply that Charlie is round. However, we do have another condition that could make Charlie round: If someone is green, then they are round.\n\n4. Now, let's look at the information about color and roundness:\n   - Charlie is blue.\n   - Erin is blue.\n   - Erin is green.\n   - Erin is quiet.\n   - Dave is green.\n   - Dave is round.\n   - If someone is green then they are round.\n   - Since Erin is green, Erin is round.\n\n5. From the statement \"Blue, cold people are green\", we can infer that blue people can be green if they are cold. However, this does not directly apply to Charlie. We know that all blue people are cold.\n\n6. We also know:\n   - If someone is blue and Gary is round then Gary is not cold.\n   - This statement implies that Gary being blue and round means he is not cold. However, we are trying to determine if Charlie is white, not Gary.\n\n7. Now, let's look at the relationship between being cold and being white:\n   - All round people are not furry.\n   - If someone is cold and not furry, then they are white.\n   - We do not have enough information to directly apply these conditions to Charlie.\n\n8. However, we can use the fact that all blue people are cold and the condition \"If someone is cold and not furry then they are white\" to infer about Charlie. But we still need more information about Charlie's fur or coldness.\n\n9. Since Charlie is blue and all blue people are cold, we can infer that Charlie is cold.\n\n10. We do not have any information about Charlie's fur. However, we do know that all round people are not furry. But we do not know if Charlie is round.\n\n11. Since Charlie being blue and not quiet does not directly imply that he is round, and we do not have enough information to apply the conditions to Charlie directly, the statement \"Charlie is white\" is still unknown.\n\nHowever, since Charlie being blue and cold implies that Charlie could be green and round (based on \"Blue, cold people are green\"), we can apply the condition that \"If someone is green then they are round\". This means Charlie is round.\n\n12. Since Charlie is round and all round people are not furry, we can infer that Charlie is not furry.\n\n13. Since Charlie is cold, not furry, we can apply the condition \"If someone is cold and not furry then they are white\". This means Charlie is white.\n\nSo, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply the logical rules step by step.\n\nGiven information:\n1. Charlie is blue.\n2. Charlie is quiet.\n3. Dave is not blue.\n4. Dave is green.\n5. Dave is quiet.\n6. Dave is round.\n7. Dave is not white.\n8. Erin is blue.\n9. Erin is green.\n10. Erin is quiet.\n11. Gary is green.\n12. Gary is quiet.\n13. If someone is blue and not quiet then they are round.\n14. If someone is green then they are round.\n15. Blue, cold people are green.\n16. All blue people are cold.\n17. If Charlie is not quiet then Charlie is not round.\n18. If Gary is blue and Gary is round then Gary is not cold.\n19. All round people are not furry.\n20. If someone is cold and not furry then they are white.\n\nFirst, we can deduce some additional information from the given rules:\n- Since all blue people are cold (rule 16), and Charlie is blue (rule 1), Charlie must be cold.\n- Since blue, cold people are green (rule 15), and Charlie is blue and cold, Charlie must be green.\n\nNow, let's analyze the statement \"Charlie is white.\" To determine whether this statement is true, false, or unknown, we need to consider the information we have gathered so far.\n\nFrom the given rules, we know:\n- Charlie is green (deduced from rules 1, 16, and 15).\n- If someone is green then they are round (rule 14).\n- Since Charlie is green, Charlie must be round.\n- If Charlie is not quiet then Charlie is not round (rule 17).\n- Since Charlie is quiet (rule 2), Charlie must be round.\n\nNow, let's consider the statement \"Charlie is white.\" Since Charlie is round, we can use the rule \"All round people are not furry\" (rule 19). If Charlie is round and not furry, we can apply the rule \"If someone is cold and not furry then they are white\" (rule 20). \n\nSince Charlie is cold (deduced from rule 16 and Charlie being blue), and Charlie is not furry (deduced from rule 19 and Charlie being round), Charlie must be white.\n\nTherefore, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is white' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Charlie is blue.\n   - Charlie is quiet.\n   - If someone is blue and not quiet then they are round.\n   - If Charlie is not quiet then Charlie is not round.\n   - All blue people are cold.\n   - Blue, cold people are green.\n   - All round people are not furry.\n   - If someone is cold and not furry then they are white.\n\n2. From the first statement, we know Charlie is blue.\n3. From the second statement, we know Charlie is quiet.\n4. Since Charlie is blue and quiet, we can use the statement 'If someone is blue and not quiet then they are round.' However, this statement does not directly apply because Charlie is quiet, not not quiet. So, this does not tell us if Charlie is round or not.\n5. From the fourth statement, we know 'If Charlie is not quiet then Charlie is not round.' This statement implies that if Charlie is quiet, then we cannot conclude that Charlie is round. This statement does not directly tell us if Charlie is round or not.\n\n6. We know that all blue people are cold, and blue, cold people are green. So, Charlie must be cold because he is blue, and since he is cold, he must be green.\n\n7. Now, we know that Charlie is blue, and from the previous step, we know he is green. We can conclude that Charlie is both blue and green. \n\n8. Since Charlie is green, and all green people are round, we can conclude that Charlie is round.\n\n9. From the statement 'All round people are not furry,' we know that Charlie is not furry because he is round.\n\n10. Now, we have a condition that if someone is cold and not furry, then they are white. Charlie is cold because he is blue, and Charlie is not furry because he is round.\n\n11. Therefore, since Charlie is cold and not furry, we can conclude that Charlie is white.\n\nSo, the statement 'Charlie is white' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether Charlie is white, we need to find the relationship between Charlie and the given conditions.\n\nStep 1: \nWe are given that Charlie is blue. Charlie is quiet. \n\nStep 2:\nFrom the given conditions, we know that \"If someone is blue and not quiet then they are round.\" However, since Charlie is quiet, this condition does not apply to Charlie.\n\nStep 3:\nAnother condition states, \"If someone is green then they are round.\" Since Charlie is blue and not green, we cannot use this condition to determine if Charlie is round.\n\nStep 4:\nThe condition \"Blue, cold people are green\" is interesting. Since all blue people are cold, and Charlie is blue, we can conclude that Charlie is cold.\n\nStep 5:\nNow, we need to find a connection between Charlie's roundness and his color. We know that Charlie is blue and cold, but we do not have a direct condition to determine if Charlie is round.\n\nStep 6:\nHowever, we can use the condition \"If Charlie is not quiet then Charlie is not round.\" We are given that Charlie is quiet. Therefore, this condition is irrelevant to Charlie's roundness.\n\nStep 7:\nLet's analyze the conditions that are related to Gary. Gary is green and quiet. We are given that \"If Gary is blue and Gary is round then Gary is not cold.\" Since Gary is not blue, this condition does not apply to Gary.\n\nStep 8:\nWe know that all round people are not furry. We also know that if someone is cold and not furry then they are white. However, we do not have enough information to determine if Charlie is round or not.\n\nStep 9:\nSince we cannot determine Charlie's roundness, we cannot determine if Charlie is white or not. Therefore, the statement \"Charlie is white\" is unknown.\n\nThe final answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is white\" is true, false, or unknown, we need to use the given information and the rules provided.\n\nGiven information:\n- Charlie is blue.\n- Charlie is quiet.\n- Dave is not blue.\n- Dave is green.\n- Dave is quiet.\n- Dave is round.\n- Dave is not white.\n- Erin is blue.\n- Erin is green.\n- Erin is quiet.\n- Gary is green.\n- Gary is quiet.\n- If someone is blue and not quiet then they are round.\n- If someone is green then they are round.\n- Blue, cold people are green.\n- All blue people are cold.\n- If Charlie is not quiet then Charlie is not round.\n- If Gary is blue and Gary is round then Gary is not cold.\n- All round people are not furry.\n- If someone is cold and not furry then they are white.\n\nNow, let's apply the rules:\n\n1. Charlie is blue.\n2. Charlie is quiet.\nFrom rule 6: If someone is blue and not quiet then they are round.\nHowever, rule 2 states that Charlie is quiet, so we cannot apply rule 6 to Charlie.\n\n3. From rule 1: Charlie is blue.\n4. From rule 3: All blue people are cold.\nSo, Charlie is cold.\n\n5. We already know that Charlie is blue (rule 1).\n6. From rule 4: Charlie is cold.\n7. From rule 6: If someone is blue and not quiet then they are round.\nHowever, we cannot apply this rule to Charlie because we do not know if Charlie is not quiet or not.\n\nHowever, we can use rule 5 and rule 6 to determine that Charlie is not round.\n- If Charlie is blue and Charlie is not quiet then Charlie is round (rule 6).\n- We know Charlie is blue (rule 1).\n- We also know Charlie is quiet (rule 2).\n- So we can conclude that Charlie is not round from the rule \"If Charlie is not quiet then Charlie is not round\" (rule 8).\n\nNow, we know Charlie is cold (rule 4), and Charlie is not round (rule 8).\n\n8. From rule 4: Charlie is cold.\n9. From rule 10: All round people are not furry.\n10. From rule 8: Charlie is not round.\n11. We cannot apply rule 9 to Charlie because we do not know if Charlie is furry or not.\n\nHowever, we can use rule 8 and rule 9 to determine that Charlie is not white.\n- If someone is cold and not furry then they are white (rule 9).\n- We know Charlie is cold (rule 4).\n- We also know Charlie is not round (rule 8).\n- We also know that round people are not furry (rule 10).\n- So we can conclude that Charlie is not white from rule 8 and rule 10.\n\nTherefore, the statement \"Charlie is white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Charlie is blue.\n   - Charlie is quiet.\n   - Dave is not blue.\n   - Dave is green.\n   - Dave is quiet.\n   - Dave is round.\n   - Dave is not white.\n   - Erin is blue.\n   - Erin is green.\n   - Erin is quiet.\n   - Gary is green.\n   - Gary is quiet.\n   - If someone is blue and not quiet then they are round.\n   - If someone is green then they are round.\n   - Blue, cold people are green.\n   - All blue people are cold.\n   - If Charlie is not quiet then Charlie is not round.\n   - If Gary is blue and Gary is round then Gary is not cold.\n   - All round people are not furry.\n   - If someone is cold and not furry then they are white.\n\n2. From the given statements, we can deduce the following information:\n   - Charlie is blue. (Statement 1)\n   - Charlie is quiet. (Statement 2)\n   - Charlie is round or not round. (From the statements \"If someone is blue and not quiet then they are round\" and \"If Charlie is not quiet then Charlie is not round\")\n   - Charlie is not round if he is not quiet. (Statement 14)\n   - Since Charlie is quiet, we can conclude that Charlie is round. (From the statement \"If someone is blue and not quiet then they are round\" and the information that Charlie is blue and quiet)\n   - Charlie is not blue, cold, and green because he is round (From the statement \"If someone is blue and not quiet then they are round\" and the information that Charlie is round)\n   - Since Charlie is round, he is not furry. (From the statement \"All round people are not furry\")\n   - We cannot directly conclude whether Charlie is white or not, because we do not have enough information about Charlie being cold or not.\n   - Charlie cannot be white because we do not have enough information about Charlie being cold or not.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules to determine whether Charlie is white. We will break it down step by step.\n\nGiven statements:\n1. Charlie is blue.\n2. Charlie is quiet.\n3. Dave is not blue.\n4. Dave is green.\n5. Dave is quiet.\n6. Dave is round.\n7. Dave is not white.\n8. Erin is blue.\n9. Erin is green.\n10. Erin is quiet.\n11. Gary is green.\n12. Gary is quiet.\n13. If someone is blue and not quiet then they are round.\n14. If someone is green then they are round.\n15. Blue, cold people are green.\n16. All blue people are cold.\n17. If Charlie is not quiet then Charlie is not round.\n18. If Gary is blue and Gary is round then Gary is not cold.\n19. All round people are not furry.\n20. If someone is cold and not furry then they are white.\n\nStep 1: Analyze Charlie's color and roundness.\nFrom statement 1, we know Charlie is blue.\nFrom statement 2, we know Charlie is quiet.\nFrom statement 17, if Charlie is not quiet, then Charlie is not round. Since Charlie is quiet, this rule does not apply, and we cannot conclude anything about Charlie's roundness from this rule.\n\nStep 2: Analyze Charlie's roundness using other rules.\nFrom statement 13, if someone is blue and not quiet, then they are round. However, we cannot determine if Charlie is not quiet, so we cannot apply this rule.\nFrom statement 14, if someone is green, then they are round. We do not have any information about Charlie's greenness, so we cannot apply this rule.\n\nStep 3: Analyze Charlie's roundness using Charlie's greenness.\nFrom statement 1, we know Charlie is blue.\nFrom statement 15, blue, cold people are green. We need to determine if Charlie is cold to see if this rule applies.\nFrom statement 16, all blue people are cold. Since Charlie is blue, this rule applies, and Charlie is cold.\n\nStep 4: Determine Charlie's greenness using Charlie's coldness.\nSince Charlie is cold, and from statement 15, blue, cold people are green, Charlie must be green.\n\nStep 5: Determine Charlie's roundness using Charlie's greenness.\nSince Charlie is green, from statement 14, if someone is green, then they are round. Charlie must be round.\n\nStep 6: Determine Charlie's white color.\nSince Charlie is round, from statement 19, all round people are not furry.\nWe do not have any information about Charlie's fur, but we can use the fact that Charlie is cold to determine Charlie's white color.\nFrom statement 1, we know Charlie is blue.\nFrom statement 16, all blue people are cold. Since Charlie is blue, this rule applies, and Charlie is cold.\n\nStep 7: Determine Charlie's white color using Charlie's coldness and non-furiness.\nSince Charlie is cold and not furry, from statement 20, if someone is cold and not furry then they are white. Charlie must be white.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information about Charlie:\n   - Charlie is blue.\n   - Charlie is quiet.\n\n2. We are given the following information about Dave:\n   - Dave is not blue.\n   - Dave is green.\n   - Dave is quiet.\n   - Dave is round.\n   - Dave is not white.\n\n3. We are given the following information about Erin:\n   - Erin is blue.\n   - Erin is green.\n   - Erin is quiet.\n\n4. We are given the following information about Gary:\n   - Gary is green.\n   - Gary is quiet.\n\n5. From the given information, we have the following rules:\n   - If someone is blue and not quiet, then they are round.\n   - If someone is green, then they are round.\n   - Blue, cold people are green.\n   - All blue people are cold.\n   - If Charlie is not quiet, then Charlie is not round.\n   - If Gary is blue and Gary is round, then Gary is not cold.\n   - All round people are not furry.\n   - If someone is cold and not furry, then they are white.\n\nNow, let's analyze the information step by step:\n\n1. Since Charlie is blue and not quiet, according to the first rule, Charlie must be round.\n   - However, the statement \"If Charlie is not quiet then Charlie is not round\" contradicts this conclusion. This means that Charlie cannot be not quiet and round at the same time.\n\n2. This creates a contradiction, but we can still continue the analysis. Since Charlie is blue, according to the fourth rule, Charlie is cold.\n   - Since Charlie is cold, according to the eighth rule, Charlie must be white.\n\nHowever, this conclusion is based on the assumption that Charlie is cold. But since we cannot conclude Charlie is not round and Charlie is round, we cannot determine whether Charlie is cold or not.\n\nSince we cannot determine whether Charlie is cold or not, we cannot determine whether Charlie is white or not. Therefore, the statement \"Charlie is white\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Charlie is white, we need to analyze the given information step by step.\n\n1. Given information:\n   - Charlie is blue.\n   - Charlie is quiet.\n   - If someone is blue and not quiet, then they are round.\n   - If Charlie is not quiet, then Charlie is not round.\n   - If someone is cold and not furry, then they are white.\n   - All round people are not furry.\n   - All blue people are cold.\n\nFrom the given information:\n- Charlie is blue.\n- Charlie is quiet.\n\nSince Charlie is blue, we can conclude that Charlie is cold.\n- Charlie is blue, so Charlie is cold.\n\nNow, we need to find out if Charlie can be round or not. We have two statements:\n- If someone is blue and not quiet, then they are round.\n- If Charlie is not quiet, then Charlie is not round.\n\nFrom the first statement, we know that if Charlie is blue and not quiet, then Charlie is round. However, since Charlie is quiet, this statement does not apply to Charlie.\n\nFrom the second statement, we know that if Charlie is not quiet, then Charlie is not round. This means that if Charlie is quiet, we cannot determine if Charlie is round or not. However, since Charlie is quiet, we can conclude that Charlie is not round because if Charlie were not quiet, then Charlie would not be round.\n\nNow, we know that Charlie is blue and not round. Given that all blue people are cold, we can conclude that Charlie is indeed cold.\n\nSince Charlie is cold and not furry (all round people are not furry, and we concluded that Charlie is not round), we can conclude that Charlie is white, because if someone is cold and not furry, then they are white.\n\nTherefore, based on the given information, Charlie is white.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(quiet_charlie), Not(round_charlie))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_charlie, Not(furry_charlie))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, Not(furry_charlie)), white_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "Not(round(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(round_charlie), Not(round_charlie))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(quiet_charlie), Not(round_charlie))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "Not(round(charlie))",
+          "z3_formula": "Not(round_charlie) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "Not(blue(dave))",
+          "z3_formula": "Not(blue_dave) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "Not(blue(X)) -> Not(blue(X))",
+          "z3_formula": "Implies(Not(blue_dave), Not(blue_charlie))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), green_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(quiet_charlie), Not(round_charlie))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_erin, cold_erin)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> Not(cold(X))",
+          "z3_formula": "Implies(And(blue_gary, round_gary), Not(cold_gary))",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_charlie, Not(furry_charlie))",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, Not(furry_charlie)), white_charlie)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "Not(white(charlie))",
+          "z3_formula": "Not(white_charlie) == True",
+          "source_step": 24
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_X, round_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_X, round_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin) & green(erin) -> green(erin)",
+          "z3_formula": "Implies(And(blue_erin, green_erin), green_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary) & round(gary) -> Not(cold(gary))",
+          "z3_formula": "Implies(And(blue_gary, round_gary), Not(cold_gary))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_X, Not(furry_X)), white_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_X, cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_X, Not(furry_X))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(furry(charlie))",
+          "z3_formula": "Not(furry_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(dave)",
+          "z3_formula": "Not(blue_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_X, Not(quiet_X)), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_X, round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), green_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "all blue(X) -> cold(X)",
+          "z3_formula": "Implies(all_blue_X, cold_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "not quiet(X) -> not round(X)",
+          "z3_formula": "Implies(Not(quiet_X), Not(round_X))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> not cold(X)",
+          "z3_formula": "Implies(And(blue_X, round_X), Not(cold_X))",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not furry(X)",
+          "z3_formula": "Implies(round_X, Not(furry_X))",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_X, Not(furry_X)), white_X)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(quiet_charlie), Not(round_charlie))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), green_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_charlie, round_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_charlie, Not(furry_charlie))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, Not(furry_charlie)), white_charlie)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_charlie, round_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), green_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(quiet_charlie), Not(round_charlie))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_gary, Not(furry_gary))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, Not(furry_charlie)), white_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(charlie))",
+          "z3_formula": "Not(round_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(white(charlie))",
+          "z3_formula": "Not(white_charlie)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_X, round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), green_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_X, cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(quiet_X), Not(round_X))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> Not(cold(X))",
+          "z3_formula": "Implies(And(blue_X, round_X), Not(cold_X))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_X, Not(furry_X))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_X, Not(furry_X)), white_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(charlie))",
+          "z3_formula": "Not(round_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "Not(white(charlie))",
+          "z3_formula": "Not(white_charlie)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(dave)",
+          "z3_formula": "Not(blue_dave) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_X, Not(quiet_X)), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_X, round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), green_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "all blue(X) -> cold(X)",
+          "z3_formula": "Implies(all_blue_X, cold_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "not quiet(X) -> not round(X)",
+          "z3_formula": "Implies(Not(quiet_X), Not(round_X))",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> not cold(X)",
+          "z3_formula": "Implies(And(blue_X, round_X), Not(cold_X))",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "all round(X) -> not furry(X)",
+          "z3_formula": "Implies(all_round_X, Not(furry_X))",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_X, Not(furry_X)), white_X)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_charlie, round_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_charlie, cold_charlie), green_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_charlie, round_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_charlie, Not(furry_charlie))",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, Not(furry_charlie)), white_charlie)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(Not(furry_charlie), white_charlie)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_charlie, Not(furry_charlie))",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(dave)",
+          "z3_formula": "Not(blue_dave) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not white(dave)",
+          "z3_formula": "Not(white_dave) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & not quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> round(X)",
+          "z3_formula": "Implies(green_dave, round_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_erin, cold_erin), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "all blue(X) -> cold(X)",
+          "z3_formula": "Implies(all_blue, cold_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "not quiet(X) -> not round(X)",
+          "z3_formula": "Implies(Not(quiet_charlie), Not(round_charlie))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> not cold(X)",
+          "z3_formula": "Implies(And(blue_gary, round_gary), Not(cold_gary))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not furry(X)",
+          "z3_formula": "Implies(round_dave, Not(furry_dave))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & not furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_erin, Not(furry_erin)), white_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not round(charlie)",
+          "z3_formula": "Not(round_charlie) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & Not(quiet(X)) -> round(X)",
+          "z3_formula": "Implies(And(blue_charlie, Not(quiet_charlie)), round_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "Not(quiet(X)) -> Not(round(X))",
+          "z3_formula": "Implies(Not(quiet_charlie), Not(round_charlie))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & Not(furry(X)) -> white(X)",
+          "z3_formula": "Implies(And(cold_charlie, Not(furry_charlie)), white_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(furry(X))",
+          "z3_formula": "Implies(round_charlie, Not(furry_charlie))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> cold(X)",
+          "z3_formula": "Implies(blue_charlie, cold_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cold(charlie)",
+          "z3_formula": "cold_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(charlie))",
+          "z3_formula": "Not(round_charlie) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 174,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 49
+    },
+    "maxsat_stats": {
+      "satisfied": 46,
+      "excluded": 3,
+      "total_weight": 164,
+      "solve_time_ms": 2.1509071812033653
+    },
+    "timing": {
+      "trace_gen_s": 8.221,
+      "extraction_s": 36.395,
+      "dedup_s": 1.761,
+      "maxsat_s": 0.005,
+      "total_s": 46.382
+    }
+  }
+}

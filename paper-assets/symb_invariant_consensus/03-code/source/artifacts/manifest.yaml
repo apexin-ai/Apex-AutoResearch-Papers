@@ -1,0 +1,3022 @@
+- id: art_20260515_7fe495
+  name: constraint_extractor_timeout_fix
+  type: intermediate
+  description: 修复 extraction hang bug：添加 HTTP timeout(120s)、future timeout(180s)、batch
+    timeout(600s)、Semaphore(6) 并发限制、vLLM 健康检查
+  path: projects/symb_invariant_consensus/artifacts/sica_aime30_v2/intermediate/extraction_hang_fix.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: sica_aime30_v2
+  skill: ''
+  created_at: '2026-05-15T13:24:43.856581+00:00'
+  tags:
+  - bugfix
+  - extraction
+  - timeout
+- id: art_20260515_38436d
+  name: code_verify_report
+  type: report
+  description: D006 bug fix验证报告：7个fix全部PASS，vLLM健康，run_math50_fixed.sh和run_proofwriter.sh就绪
+  path: projects/symb_invariant_consensus/artifacts/_project/report/code_verify_report.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:11:02.350656+00:00'
+  tags:
+  - infra
+  - verification
+  - d006
+- id: art_20260515_50a7d3
+  name: aime30_v2_partial_analysis
+  type: report
+  description: AIME v2前4题+MATH smoke 5题对比分析：矛盾检测弱阳性，SICA/SC答案全部一致（SC投票太集中），需更难题目验证差异化
+  path: projects/symb_invariant_consensus/artifacts/sica_aime30_v2/report/aime30_v2_partial_analysis.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: sica_aime30_v2
+  skill: ''
+  created_at: '2026-05-15T16:11:26.690371+00:00'
+  tags:
+  - analysis
+  - aime
+  - sica-vs-sc
+- id: art_20260515_a2da2f
+  name: scorer_improvement_analysis
+  type: report
+  description: Scorer.py深度分析：SICA=SC根因（SC unanimous→单候选+satisfied信号不足+excluded信息浪费），三个改进方向评估（推荐A+C），附3个额外发现
+  path: projects/symb_invariant_consensus/artifacts/_project/report/scorer_improvement_analysis.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:29:14.724960+00:00'
+  tags:
+  - analysis
+  - scorer
+  - methodology
+  - sica-vs-sc
+- id: art_20260515_7b1d8d
+  name: scorer_ac_implementation
+  type: report
+  description: Scorer A+C方案实现：P5从选错→选对，fallback模式利用excluded负信号区分候选。含rescore_all.py批量重打分脚本。
+  path: projects/symb_invariant_consensus/artifacts/_project/report/scorer_ac_implementation.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:38:48.904509+00:00'
+  tags:
+  - scorer
+  - a-plus-c
+  - implementation
+  - methodology
+- id: art_20260515_f8c24e
+  name: z3_parser_comprehensive_fix
+  type: report
+  description: parse_z3_formula全面修复：56.1%→92.9%。P7 36%→96%，P3/P4→100%。新增4个函数处理链式比较/Python逻辑/modulo/NL前缀。剩余7个需prompt侧修复。
+  path: projects/symb_invariant_consensus/artifacts/_project/report/z3_parser_comprehensive_fix.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:46:06.594825+00:00'
+  tags:
+  - parser
+  - z3
+  - fix
+  - critical
+- id: art_20260516_778777
+  name: math_domain_negative_analysis
+  type: report
+  description: 数学域 SICA≡SC negative analysis：QwQ-32B 在 MATH-500/AIME 2024 上 multi-candidate
+    rate=0%，SICA 结构性退化为 SC 的根因分析与论文价值评估
+  path: projects/symb_invariant_consensus/artifacts/_project/report/math_domain_negative_analysis.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:24:37.133615+00:00'
+  tags:
+  - negative-result
+  - math-domain
+  - domain-boundary
+  - paper-material
+- id: art_20260516_6b96f9
+  name: proofwriter30_v2_interim_analysis
+  type: report
+  description: 'ProofWriter30 v2 中间分析 (16/30): D012指标预估、每题详情、SICA vs SC对比、风险评估'
+  path: projects/symb_invariant_consensus/artifacts/proofwriter30_v2/report/proofwriter30_v2_interim_analysis.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: proofwriter30_v2
+  skill: ''
+  created_at: '2026-05-16T01:26:32.388928+00:00'
+  tags:
+  - d012
+  - interim
+  - proofwriter
+  - sica
+- id: art_20260516_f41096
+  name: MaxSAT根因诊断报告-ProofWriter30v2
+  type: report
+  description: MaxSAT satisfied_ratio=1.000 全场问题的根因诊断：提取失败54%、一致trace产出一致约束、变量名隔离三重叠加
+  path: projects/symb_invariant_consensus/artifacts/_project/report/maxsat_diagnosis_proofwriter30_v2.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:37:52.046719+00:00'
+  tags:
+  - diagnosis
+  - maxsat
+  - proofwriter
+  - constraint-extraction
+- id: art_20260516_85b8dc
+  name: FOLIO C0 Precheck Report
+  type: report
+  description: FOLIO 10题 C0 多候选率预检：0/10=0%，QwQ-32B 在 FOLIO 上零 trace 分歧，D012 C0 确定性
+    FAIL
+  path: projects/symb_invariant_consensus/artifacts/sica_folio30/report/folio_c0_precheck_report.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: sica_folio30
+  skill: ''
+  created_at: '2026-05-16T02:47:42.131583+00:00'
+  tags:
+  - c0
+  - folio
+  - precheck
+  - d012
+- id: art_20260516_e2774d
+  name: d016_model_pivot_report
+  type: report
+  description: 'D016 Model Pivot complete report: QwQ-32B → Qwen2.5-14B-Instruct deployment,
+    C0 precheck (46% multi-candidate PASS, 73% SC accuracy), and SICA pipeline smoke
+    test on westd-32608'
+  path: projects/symb_invariant_consensus/artifacts/_project/report/d016_model_pivot_report.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T03:38:00.388235+00:00'
+  tags:
+  - d016
+  - model-pivot
+  - qwen2.5-14b
+  - c0-precheck
+  - smoke-test
+- id: art_20260516_351c89
+  name: paper_prep_audit
+  type: report
+  description: D012 论文准备度审查：paper_framing/writing_plan/literature_map 均缺失，实验格子状态，ready/not-ready
+    清单
+  path: projects/symb_invariant_consensus/artifacts/_project/report/paper_prep_audit.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T04:46:08.350852+00:00'
+  tags:
+  - paper
+  - audit
+  - d012
+- id: art_20260516_951d6a
+  name: D012 Full Evaluation Report - sica_d012_14b
+  type: report
+  description: D012 full evaluation report for SICA with Qwen2.5-14B-Instruct on ProofWriter-30
+    + FOLIO-30, K=12. All 4 criteria PASS.
+  path: projects/symb_invariant_consensus/artifacts/sica_d012_14b/report/d012_report_sica_d012_14b.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: sica_d012_14b
+  skill: ''
+  created_at: '2026-05-16T05:08:15.679808+00:00'
+  tags:
+  - d012
+  - evaluation
+  - 14b
+  - proofwriter
+  - folio
+- id: art_20260516_47de9d
+  name: D017 Tiebreak Baseline Analysis
+  type: report
+  description: D012 60题 tiebreak 策略对比：SICA 80% vs Random 50% vs Alphabetical 60% vs
+    First-seen 40% vs Majority-of-first-6 60%。5题平局中 SICA 4/5 正确。
+  path: projects/symb_invariant_consensus/artifacts/sica_d012_14b/report/tiebreak_analysis_report.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: sica_d012_14b
+  skill: ''
+  created_at: '2026-05-16T05:15:02.642859+00:00'
+  tags:
+  - d017
+  - tiebreak
+  - analysis
+  - cpu
+- id: art_20260516_ec6d16
+  name: sica_expanded_14b
+  type: data
+  description: 'SICA expanded evaluation: 804 problems (600 ProofWriter D5 + 204 FOLIO
+    full), K=12, Qwen2.5-14B, seed=42'
+  path: projects/symb_invariant_consensus/artifacts/sica_expanded_14b/data/sica_expanded_14b_config.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: sica_expanded_14b
+  skill: ''
+  created_at: '2026-05-16T05:15:40.338346+00:00'
+  tags:
+  - sica
+  - expanded
+  - proofwriter
+  - folio
+  - 14b
+- id: art_20260516_877e3f
+  name: QwQ-32B Operating Regime Analysis Report
+  type: report
+  description: 'exp-005: QwQ-32B negative results table for Operating Regime Analysis
+    section. Combined effective C0=2.6%, SICA≡SC on math, SICA 5.9pp worse than SC
+    on logic. Supports model pivot to 14B.'
+  path: projects/symb_invariant_consensus/artifacts/exp-005/report/qwq_operating_regime.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-005
+  skill: ''
+  created_at: '2026-05-16T05:30:46.602025+00:00'
+  tags:
+  - qwq-32b
+  - operating-regime
+  - negative-results
+  - c0-analysis
+  - paper
+- id: art_20260516_b064a6
+  name: QwQ-32B Operating Regime Structured Data
+  type: data
+  description: 'exp-005: Structured JSON with all QwQ-32B experiment metrics, multi-candidate
+    details, and combined stats.'
+  path: projects/symb_invariant_consensus/artifacts/exp-005/data/qwq_operating_regime_summary.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-005
+  skill: ''
+  created_at: '2026-05-16T05:31:05.828356+00:00'
+  tags:
+  - qwq-32b
+  - operating-regime
+  - negative-results
+  - structured-data
+- id: art_20260516_fd45ed
+  name: gsm8k_200_dataset
+  type: data
+  description: GSM8K 200题采样数据集 + 评估脚本，用于 exp-012 跨域验证
+  path: projects/symb_invariant_consensus/artifacts/gsm8k_pilot_14b/data/gsm8k_200_metadata.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: gsm8k_pilot_14b
+  skill: ''
+  created_at: '2026-05-16T06:57:11.833388+00:00'
+  tags:
+  - gsm8k
+  - exp-012
+  - cross-domain
+- id: art_20260516_2f9ebd
+  name: constraint_ablation_script
+  type: intermediate
+  description: exp-013 constraint ablation 脚本 (MaxSAT vs count-only vs random-weight)，需
+    exp-001 constraint cache 才能跑精确模式
+  path: projects/symb_invariant_consensus/artifacts/constraint_ablation/intermediate/constraint_ablation_info.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: constraint_ablation
+  skill: ''
+  created_at: '2026-05-16T06:58:11.005031+00:00'
+  tags:
+  - exp-013
+  - ablation
+  - cpu-only
+- id: art_20260516_27ada9
+  name: exp001_full_analysis
+  type: report
+  description: sica_expanded_14b (N=804) 分析报告：SICA +0.25pp (p=0.74), 65% disagreements
+    是 tiebreak, D012 +3.3pp 是小样本噪声
+  path: projects/symb_invariant_consensus/artifacts/sica_expanded_14b/report/exp001_analysis_summary.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: sica_expanded_14b
+  skill: ''
+  created_at: '2026-05-16T20:02:39.199610+00:00'
+  tags:
+  - analysis
+  - exp-001
+  - pivot
+- id: art_20260516_890595
+  name: exp-009 overhead analysis (JSON)
+  type: data
+  description: Structured per-stage timing breakdown of SICA pipeline overhead from
+    804-problem exp-001 run
+  path: projects/symb_invariant_consensus/artifacts/exp-009/data/overhead_analysis.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-009
+  skill: ''
+  created_at: '2026-05-16T20:31:59.012114+00:00'
+  tags:
+  - overhead
+  - timing
+  - pipeline
+- id: art_20260516_e85558
+  name: exp-009 overhead report
+  type: report
+  description: 'Readable analysis of SICA pipeline overhead: 94.8% extra wall time
+    over SC, dominated by constraint extraction stage'
+  path: projects/symb_invariant_consensus/artifacts/exp-009/report/overhead_report.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-009
+  skill: ''
+  created_at: '2026-05-16T20:32:00.936957+00:00'
+  tags:
+  - overhead
+  - timing
+  - pipeline
+  - analysis
+- id: art_20260516_92eca0
+  name: exp-011 preparation report
+  type: report
+  description: exp-011 (LLaMA-3.1-8B-Instruct SICA cross-family validation) environment
+    readiness report and launch instructions
+  path: projects/symb_invariant_consensus/artifacts/exp-011/report/exp011_preparation_report.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-011
+  skill: ''
+  created_at: '2026-05-16T20:49:26.137743+00:00'
+  tags:
+  - exp-011
+  - llama
+  - cross-family
+  - preparation
+- id: art_20260516_bf444f
+  name: exp-005 QwQ Operating Regime Data
+  type: data
+  description: QwQ-32B operating regime analysis - structured JSON with all experiment
+    metrics, cross-model C0 comparison, and per-problem details
+  path: projects/symb_invariant_consensus/artifacts/exp-005/data/operating_regime_data.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-005
+  skill: ''
+  created_at: '2026-05-16T20:52:32.649663+00:00'
+  tags:
+  - operating-regime
+  - qwq-32b
+  - c0-analysis
+  - paper-claim2
+- id: art_20260516_d6966d
+  name: exp-005 QwQ Operating Regime Report
+  type: report
+  description: Paper-ready Operating Regime Analysis section draft - evidence for
+    Claim 2, QwQ-32B vs Qwen2.5-14B C0 comparison, capability trap analysis
+  path: projects/symb_invariant_consensus/artifacts/exp-005/report/operating_regime_report.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-005
+  skill: ''
+  created_at: '2026-05-16T20:52:35.621470+00:00'
+  tags:
+  - operating-regime
+  - paper-draft
+  - claim2
+  - capability-trap
+- id: art_20260516_c7cc07
+  name: exp-016 Weighted SC Report
+  type: report
+  description: Weighted Self-Consistency baselines (uniform/length/inv-length/constraint-count)
+    on 804 problems. All methods n.s. vs SC. Length-weighting hurts (-1pp), inv-length
+    marginal (+0.5pp).
+  path: projects/symb_invariant_consensus/artifacts/exp-016/report/weighted_sc_report.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-016
+  skill: ''
+  created_at: '2026-05-16T20:56:10.478672+00:00'
+  tags:
+  - weighted-sc
+  - baseline
+  - ablation
+- id: art_20260516_7eef43
+  name: exp-016 Weighted SC Results JSON
+  type: data
+  description: 'Per-method accuracy, McNemar tests, per-dataset breakdown, flip analysis
+    for 4 weighted SC methods on 804 problems. Server path: /root/symb_invariant_consensus/results/weighted_sc_results.json'
+  path: projects/symb_invariant_consensus/artifacts/exp-016/data/weighted_sc_results_pointer.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-016
+  skill: ''
+  created_at: '2026-05-16T20:56:47.096315+00:00'
+  tags:
+  - weighted-sc
+  - baseline
+  - data
+- id: art_20260517_2c1577
+  name: k_sensitivity_14b_diagnosis
+  type: report
+  description: 'Diagnosis of sica_k_sensitivity_14b experiment: confirmed completed
+    successfully despite EXIT_CODE=129. K-ablation results show SICA never outperforms
+    SC across K={6,8,11,12,16,20}.'
+  path: projects/symb_invariant_consensus/artifacts/sica_k_sensitivity_14b/report/k_sensitivity_14b_diagnosis.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: sica_k_sensitivity_14b
+  skill: ''
+  created_at: '2026-05-17T02:12:38.351862+00:00'
+  tags:
+  - diagnosis
+  - k-ablation
+  - negative-result
+- id: art_20260517_fb6663
+  name: exp-017-strategyqa-v3 analysis
+  type: report
+  description: 'Analysis of exp-017 StrategyQA v3: SICA 56.67% vs SC 53.33%, +3.33pp
+    n.s. (p=0.13). Supports capability trap cross-domain generalization.'
+  path: projects/symb_invariant_consensus/artifacts/exp-017-strategyqa-v3/report/exp-017-strategyqa-v3_analysis.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-017-strategyqa-v3
+  skill: ''
+  created_at: '2026-05-17T04:30:35.505915+00:00'
+  tags:
+  - strategyqa
+  - capability-trap
+  - cross-domain
+- id: art_20260517_8ac5e3
+  name: exp011_truncation_bias_analysis
+  type: report
+  description: 'Analysis of whether truncation bias affects exp-011-llama8b-v3 results.
+    Conclusion: no bias detected, +6.67pp SICA advantage is real.'
+  path: projects/symb_invariant_consensus/artifacts/exp-011/report/exp011_truncation_bias_analysis.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-011
+  skill: ''
+  created_at: '2026-05-17T08:34:58.429902+00:00'
+  tags:
+  - truncation
+  - bias-analysis
+  - exp-011
+  - validity
+- id: art_20260517_6f8c0b
+  name: evidence_summary
+  type: report
+  description: 'Full evidence table for Methods Paper D030: Operating Regime (inverted-U),
+    Mechanism Vacuousness (ablation/weighting/K/filtering), Cross-domain, with claims
+    mapping'
+  path: projects/symb_invariant_consensus/artifacts/_project/report/evidence_summary.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T10:47:57.112924+00:00'
+  tags:
+  - D030
+  - evidence
+  - capability-trap
+  - operating-regime
+- id: art_20260517_f32441
+  name: constraint_quality_correlation_csv
+  type: data
+  description: Constraint quality metrics across all experiments (model, domain, N,
+    SC, SICA, delta, C0, unique constraints, density, sat ratio) for paper hero figure
+    F2
+  path: projects/symb_invariant_consensus/artifacts/_project/data/quality_metrics.csv
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T11:56:28.550697+00:00'
+  tags:
+  - D035
+  - F2
+  - constraint-quality
+  - paper
+- id: art_20260517_11f2a5
+  name: exp019_constraint_quality_analysis
+  type: data
+  description: 'Constraint quality correlation analysis across 7 (model, domain) pairs
+    for hero figure F2. C0 vs constraint quality proxies. Files on server: /root/symb_invariant_consensus/results/exp019_constraint_quality_analysis.json
+    and exp019_constraint_quality_summary.csv'
+  path: projects/symb_invariant_consensus/artifacts/exp-019/data/exp019_constraint_quality_pointer.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-019
+  skill: ''
+  created_at: '2026-05-17T12:08:47.882285+00:00'
+  tags:
+  - correlation
+  - constraint-quality
+  - capability-trap
+  - hero-figure
+- id: art_20260517_c29c72
+  name: f2_per_problem_csv
+  type: data
+  description: 'Per-problem analysis for F2 hero figure: 307 multi-candidate problems
+    from exp-001 (sica_expanded_14b), with vote_entropy, constraint_count, constraint_exclusion_rate,
+    sica/sc correctness, flip status'
+  path: projects/symb_invariant_consensus/artifacts/exp-001/data/f2_per_problem_metadata.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-001
+  skill: ''
+  created_at: '2026-05-17T13:42:17.216303+00:00'
+  tags:
+  - f2
+  - hero-figure
+  - per-problem
+  - analysis
+- id: art_20260517_7352ef
+  name: constraint_quality_analysis_c0_fixed
+  type: data
+  description: Constraint quality correlation analysis with fixed c0_multi_candidate_rate
+    (true multi-candidate from sc_vote_distribution>1) and new c0_disagree_rate field.
+    Fixes bug where c0 was computed as SICA-SC disagree rate.
+  path: projects/symb_invariant_consensus/artifacts/_project/data/exp019_constraint_quality_analysis_c0_fixed.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T13:43:51.025524+00:00'
+  tags:
+  - c0-fix
+  - constraint-quality
+  - correlation
+- id: art_20260517_0148e9
+  name: constraint_quality_summary_csv_c0_fixed
+  type: data
+  description: Constraint quality summary CSV with corrected c0_multi_candidate_rate
+    and added c0_disagree_rate column.
+  path: projects/symb_invariant_consensus/artifacts/_project/data/exp019_constraint_quality_summary_c0_fixed.csv
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T13:43:58.324650+00:00'
+  tags:
+  - c0-fix
+  - constraint-quality
+- id: art_20260517_e65085
+  name: F2 Per-problem Constraint Analysis Scatter
+  type: chart
+  description: 'Per-problem scatter plot: vote entropy vs constraint exclusion rate,
+    colored by dataset (ProofWriter/FOLIO), with markers distinguishing no-flip/correct-flip/wrong-flip.
+    Shows flip rate increases with entropy but flip quality is ~50/50. Located at
+    /root/symb_invariant_consensus/artifacts/figures/f2_per_problem_scatter.pdf on
+    westd-32608.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/f2_per_problem_scatter_info.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T16:33:18.401778+00:00'
+  tags:
+  - figure
+  - paper
+  - f2
+  - hero-figure
+- id: art_20260517_1099ef
+  name: F4 C0 vs SICA-SC Gap
+  type: chart
+  description: 'Experiment-level scatter: multi-candidate rate (C0) vs SICA-SC gap
+    (delta_pp) across 10 model x domain conditions. Shows delta fluctuates around
+    0 regardless of C0. Located at /root/symb_invariant_consensus/artifacts/figures/f4_c0_vs_gap.pdf
+    on westd-32608.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/f4_c0_vs_gap_info.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T16:33:20.540650+00:00'
+  tags:
+  - figure
+  - paper
+  - f4
+  - hero-figure
+- id: art_20260517_f30176
+  name: F4 C0 vs SICA-SC Gap (fixed)
+  type: chart
+  description: Fixed F4 scatter plot on westd-32608:/root/symb_invariant_consensus/artifacts/figures/f4_c0_vs_gap.{pdf,png}.
+    Removed 2 superseded points (exp-011 LLaMA-8B D012, Qwen-14B D012), added QwQ-32B
+    PW (n=17, delta=-5.9pp), marker size ~ sqrt(n), 95% CI error bars, 8 data points.
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/f4_c0_vs_gap_fixed.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T16:41:10.292797+00:00'
+  tags:
+  - figure
+  - f4
+  - reviewer-fix
+- id: art_20260517_ab86fe
+  name: exp021_oracle_folio_results
+  type: data
+  description: 'Exp-021 Oracle FOL Extraction results: Oracle-SICA 88.24% vs SC/SICA
+    79.41% (+8.82pp, p less than 0.0001) on FOLIO 204 problems'
+  path: projects/symb_invariant_consensus/artifacts/exp-021-oracle-folio/data/exp021_summary.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-021-oracle-folio
+  skill: ''
+  created_at: '2026-05-17T16:46:31.689439+00:00'
+  tags:
+  - oracle
+  - folio
+  - z3
+  - ablation
+- id: art_20260517_3aaa87
+  name: experiments_section_draft
+  type: paper
+  description: 'Experiments section draft (§4): 5 subsections (Setup, Main Results
+    Table 1, Oracle Control, Diagnostics Table 2, Ablation Table 3). Covers 8 conditions,
+    5 models, N>1300. Narrative: null result → oracle +8.82pp → diagnostics → MAX-SAT
+    degenerates to counting.'
+  path: projects/symb_invariant_consensus/artifacts/_project/paper/experiments.tex
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T17:14:15.516040+00:00'
+  tags:
+  - paper
+  - experiments
+  - draft
+- id: art_20260517_6a54d2
+  name: fig1_pipeline
+  type: chart
+  description: 'SICA Pipeline concept figure (Figure 1): shows SICA pipeline stages
+    (sampling, FOL extraction, dedup+weighting, MAX-SAT), SC baseline comparison,
+    and oracle branch. Okabe-Ito color scheme, PDF format.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig1_pipeline.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T17:27:19.425551+00:00'
+  tags:
+  - paper
+  - figure
+  - pipeline
+  - fig1
+- id: art_20260517_e18f41
+  name: fig1_pipeline
+  type: chart
+  description: 'SICA pipeline diagram: K traces → FOL extraction → deduplication →
+    weighted partial MAX-SAT → answer selection. Data sources: method.tex pipeline
+    description.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig1_pipeline_e18f41.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-17T17:52:13.108274+00:00'
+  tags:
+  - paper
+  - method
+  - pipeline
+- id: art_20260517_29e001
+  name: fig3_operating_regime
+  type: chart
+  description: 'Operating regime scatter: C0 (multi-candidate rate) vs SICA-SC gap
+    for all 10 model-domain conditions. Shows gap centered around zero regardless
+    of C0. Includes QwQ-32B (C0=2.6%) and GSM8K (C0=13.3%). Data sources: exp-001
+    through exp-021.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig3_operating_regime.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-17T17:54:22.264290+00:00'
+  tags:
+  - paper
+  - experiments
+  - operating_regime
+  - fig3
+- id: art_20260517_6f44c8
+  name: fig2_capability_scatter
+  type: chart
+  description: 'Per-problem scatter: vote entropy vs constraint exclusion rate for
+    307 multi-candidate problems (Qwen2.5-14B, FOLIO+ProofWriter). Shows constraints
+    are non-discriminative regardless of diversity. Data source: exp-001 f2_per_problem.csv.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig2_capability_scatter.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-17T17:57:14.583259+00:00'
+  tags:
+  - paper
+  - experiments
+  - capability_scatter
+  - fig2
+- id: art_20260517_dd50ad
+  name: related_work_section_draft
+  type: paper
+  description: 'Related Work section draft (§2): 6 paragraphs (SC extensions, neuro-symbolic,
+    test-time compute, verification/reranking, constraint satisfaction, debate/multi-agent).
+    ~920 words, zero dashes, positions capability trap relative to all major research
+    threads.'
+  path: projects/symb_invariant_consensus/artifacts/_project/paper/related_work.tex
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T18:13:45.563254+00:00'
+  tags:
+  - paper
+  - related-work
+  - draft
+- id: art_20260517_be3d5a
+  name: power_analysis_bootstrap_cis
+  type: data
+  description: 'Power analysis (MDE at 80% power) + Bootstrap 95% CIs for all 10 experiment
+    conditions. Key: all conditions underpowered, all CIs include 0, n=804 MDE=1.86pp
+    but observed Δ=0.25pp. Oracle +8.82pp well above MDE.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/power_analysis_summary.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T18:15:26.617294+00:00'
+  tags:
+  - statistics
+  - power-analysis
+  - bootstrap
+  - paper
+- id: art_20260517_edd523
+  name: appendix_prompt_template
+  type: paper
+  description: Complete FOL constraint extraction prompt templates (system + math
+    + logic domains), JSON schema, 2 real examples, LLM config. For paper appendix.
+  path: projects/symb_invariant_consensus/artifacts/_project/paper/appendix_prompt_template.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T18:18:13.832461+00:00'
+  tags:
+  - paper
+  - appendix
+  - prompt
+  - constraint-extraction
+- id: art_20260517_b2f2fb
+  name: discussion.tex v1
+  type: paper
+  description: 'Discussion section (~460 words, 4 paragraphs): oracle as causal intervention
+    with precedent citations, why published methods succeed, constructive directions,
+    C0 diagnostic. Agreement numbers corrected from 802→803 (MaxSAT vs Count-only).'
+  path: projects/symb_invariant_consensus/artifacts/_project/paper/discussion.tex
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T18:41:20.506600+00:00'
+  tags:
+  - paper
+  - discussion
+  - phase2
+- id: art_20260517_9ea847
+  name: experiments.tex v2 (Table 3 fix)
+  type: paper
+  description: 'Experiments section with corrected Table 3: agreement dual-column
+    (w/ SC + w/ Count-only), random-weight accuracy 75.87%, narrative rewritten for
+    MaxSAT vs Count-only 803/804 degeneration evidence.'
+  path: projects/symb_invariant_consensus/artifacts/_project/paper/experiments_9ea847.tex
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T18:41:24.272168+00:00'
+  tags:
+  - paper
+  - experiments
+  - table3-fix
+- id: art_20260517_b9688e
+  name: related_work.tex v2 (DeepSeek-R1 C0 fix)
+  type: paper
+  description: 'Related work section with DeepSeek-R1 C0 error corrected: QwQ-32B
+    C0=2.6%, DeepSeek-R1-Distill-Qwen-7B C0=58.3% (instruction-scale behavior).'
+  path: projects/symb_invariant_consensus/artifacts/_project/paper/related_work_b9688e.tex
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T18:41:26.426005+00:00'
+  tags:
+  - paper
+  - related-work
+  - deepseek-c0-fix
+- id: art_20260517_1e7c33
+  name: conclusion.tex v1
+  type: paper
+  description: 'Conclusion section (~253 words, 3 paragraphs): capability trap finding,
+    oracle isolation, C0 diagnostic + future directions. Zero dash, clean style.'
+  path: projects/symb_invariant_consensus/artifacts/_project/paper/conclusion.tex
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T18:44:18.429922+00:00'
+  tags:
+  - paper
+  - conclusion
+  - phase2
+- id: art_20260517_049002
+  name: introduction.tex v1
+  type: paper
+  description: 'Introduction section (~850 words, 5 paragraphs + 4 contributions):
+    SC baseline → practitioner cost/benefit → gap in same-model self-extraction evaluation
+    → SICA + capability trap + oracle → contributions mapped to sections. Zero dash.'
+  path: projects/symb_invariant_consensus/artifacts/_project/paper/introduction.tex
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T18:46:23.273031+00:00'
+  tags:
+  - paper
+  - introduction
+  - phase2
+- id: art_20260517_c7022e
+  name: abstract.tex v1
+  type: paper
+  description: 'Abstract (224 words): SC baseline → SICA pipeline → negative result
+    across 5 models/4 domains/N>1300 → capability trap mechanism → 803/804 degeneration
+    → oracle +8.82pp → C0 diagnostic. Zero dash.'
+  path: projects/symb_invariant_consensus/artifacts/_project/paper/abstract.tex
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T18:48:15.791448+00:00'
+  tags:
+  - paper
+  - abstract
+  - phase2
+- id: art_20260517_930a6b
+  name: pilot_discriminative_constraint_analysis
+  type: data
+  description: 'Pilot discriminative constraint analysis (43 problems, 23 multi-answer):
+    414/3614 unique constraints (11.5%) are discriminative. Source for the 11.5% figure
+    in Introduction and Discussion.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/worker_analysis_pilot-constraint-discriminative_20260517T053102_result.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T19:17:29.914757+00:00'
+  tags:
+  - constraint-quality
+  - paper-data
+  - 11.5%
+- id: art_20260518_abdc05
+  name: exp022_oracle_proofwriter
+  type: report
+  description: 'Exp-022 Oracle-SICA ProofWriter OWA-D5: oracle 86.67% vs SC 75.17%,
+    +11.50pp, McNemar p=9.2e-15. Z3 gold agreement 97.1%.'
+  path: projects/symb_invariant_consensus/artifacts/exp-022/report/exp022_report.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-022
+  skill: ''
+  created_at: '2026-05-18T03:46:14.843788+00:00'
+  tags:
+  - oracle-sica
+  - proofwriter
+  - z3
+  - experiment
+- id: art_20260518_deed42
+  name: exp-022 Oracle-SICA ProofWriter Results
+  type: data
+  description: ProofWriter 600题 Oracle-SICA 实验结果：+11.50pp (p=9.2e-15)，含 per-subtype
+    breakdown
+  path: projects/symb_invariant_consensus/artifacts/exp-022-oracle-proofwriter/data/exp022_oracle_proofwriter_summary.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-022-oracle-proofwriter
+  skill: ''
+  created_at: '2026-05-18T03:48:49.396896+00:00'
+  tags:
+  - oracle
+  - proofwriter
+  - z3
+  - key-result
+- id: art_20260518_61c108
+  name: exp-023 Discriminative Rate Full 804
+  type: data
+  description: 'Full 804-instance discriminative rate analysis: source-trace 38.6%
+    by weight, Z3 semantic 8.2%, addressing R3 W1+W3'
+  path: projects/symb_invariant_consensus/artifacts/exp-023-discriminative-rate/data/exp023_discriminative_rate_summary.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-023-discriminative-rate
+  skill: ''
+  created_at: '2026-05-18T04:26:03.403721+00:00'
+  tags:
+  - discriminative-rate
+  - w1-w3
+  - r3-review
+- id: art_20260518_c8edef
+  name: f2_discriminative_analysis
+  type: report
+  description: 'F2 per-problem discriminative constraint analysis: 307 multi-candidate
+    problems, cc-ER correlation r=-0.58, entropy=1.0 sweet spot +10.5pp, capability
+    trap evidence (12pp gap high-cc/low-ER vs low-cc/high-ER)'
+  path: projects/symb_invariant_consensus/artifacts/exp-023-discriminative-rate/report/f2_discriminative_analysis.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-023-discriminative-rate
+  skill: ''
+  created_at: '2026-05-18T11:26:30.687925+00:00'
+  tags:
+  - discriminative
+  - capability-trap
+  - f2
+  - analysis
+- id: art_20260518_5c50be
+  name: exp-031 Oracle SICA Summary
+  type: report
+  description: Oracle SICA results for FOLIO-204 using gold FOL + Z3 entailment on
+    exp-026 traces. Oracle=89.71% vs SC=75.49% (+14.22pp, p=2.0e-07).
+  path: projects/symb_invariant_consensus/artifacts/exp-031-oracle-folio-regen/report/exp031_oracle_summary.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-031-oracle-folio-regen
+  skill: ''
+  created_at: '2026-05-18T15:50:14.631232+00:00'
+  tags:
+  - oracle
+  - folio
+  - z3
+  - gold-fol
+- id: art_20260518_32cb23
+  name: exp-030 Cross-model Mistral Results
+  type: report
+  description: 'Cross-model extraction: Mistral-7B on Qwen traces, FOLIO 204. discriminative_rate=0%,
+    recovery_rate=0%'
+  path: projects/symb_invariant_consensus/artifacts/exp-030-crossmodel-mistral-folio204/report/exp030_report.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-030-crossmodel-mistral-folio204
+  skill: ''
+  created_at: '2026-05-18T15:56:07.089130+00:00'
+  tags:
+  - cross-model
+  - mistral-7b
+  - folio
+- id: art_20260518_83cfbc
+  name: exp-007 run script
+  type: intermediate
+  description: Qwen2.5-72B-Instruct-AWQ 4-bit D012 SICA run script (30 PW + 30 FOLIO,
+    K=12, T=0.7, cuda:0)
+  path: projects/symb_invariant_consensus/artifacts/exp-007-qwen72b-awq/intermediate/run_exp007_72b_awq.sh
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-007-qwen72b-awq
+  skill: ''
+  created_at: '2026-05-18T16:21:47.353185+00:00'
+  tags:
+  - exp-007
+  - 72b
+  - awq
+  - scaling
+- id: art_20260518_de1051
+  name: westd16639_crash_diagnosis
+  type: report
+  description: westd-16639 全 GPU 进程归零根因分析：AutoDL 平台两波 kill（00:05:54 + 00:16:16），含
+    exp034 StrategyQA extraction prompt 不匹配分析
+  path: projects/symb_invariant_consensus/artifacts/_project/report/westd16639_crash_diagnosis.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T16:43:20.588774+00:00'
+  tags:
+  - diagnosis
+  - westd-16639
+  - crash
+  - exp032
+  - exp033
+  - exp034
+  - exp035
+- id: art_20260518_ef1ef8
+  name: westd25068_downloads_report
+  type: report
+  description: westd-25068 模型下载启动状态与实验进度报告 (2026-05-19)
+  path: projects/symb_invariant_consensus/artifacts/_project/report/westd25068_downloads_report.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T17:07:47.204738+00:00'
+  tags:
+  - model-download
+  - server-status
+  - westd-25068
+- id: art_20260518_c33e69
+  name: westd16639_recovery_report
+  type: report
+  description: westd-16639 稳定性验证、磁盘空间、模型下载、实验恢复状态报告
+  path: projects/symb_invariant_consensus/artifacts/_project/report/westd16639_recovery_report.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T17:10:24.810830+00:00'
+  tags:
+  - westd-16639
+  - recovery
+  - gpu-test
+  - model-download
+- id: art_20260518_f41a44
+  name: westd16639_recovery_report
+  type: report
+  description: 'westd-16639 SIGTERM 后稳定性验证+恢复报告: GPU/vLLM 测试通过, 4 个模型下载状态 (2 个完成中,
+    2 个 403 需 token), 实验 intermediates 清点 (exp032/qwen3_14b_pw600 各 500+ 条可续跑)'
+  path: projects/symb_invariant_consensus/artifacts/_project/report/westd16639_recovery_report_f41a44.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T17:17:53.048405+00:00'
+  tags:
+  - recovery
+  - westd-16639
+  - model-download
+  - vllm
+- id: art_20260518_4c1b22
+  name: westd25068_gpu_saturation_report
+  type: report
+  description: 'GPU saturation report: network fix, cached models, exp-027 results,
+    3 new experiments deployed on westd-25068 (100% GPU utilization)'
+  path: projects/symb_invariant_consensus/artifacts/_project/report/westd25068_gpu_saturation_report.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T17:49:47.402164+00:00'
+  tags:
+  - gpu-saturation
+  - westd-25068
+  - exp-033
+  - exp-034
+  - exp-035
+- id: art_20260518_d0294f
+  name: westd16639_gpu_saturation_report
+  type: report
+  description: 'westd-16639 recovery and 4-GPU saturation report: system status, 4
+    experiments launched (exp032/033/036/038), Mistral corruption issue, deviations
+    from plan'
+  path: projects/symb_invariant_consensus/artifacts/_project/report/westd16639_gpu_saturation_report.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T17:52:07.616192+00:00'
+  tags:
+  - gpu-saturation
+  - westd-16639
+  - experiment-launch
+- id: art_20260518_3167d9
+  name: analysis_exp045_backward_verification
+  type: report
+  description: 'Analysis report for exp-045-backward-verification: NEGATIVE result,
+    BV accuracy 53.92% vs SC 75.00% (-21.08pp), systematic True bias and Z3 lacking
+    discriminative power'
+  path: projects/symb_invariant_consensus/artifacts/exp-045-backward-verification/report/analysis_exp045.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-045-backward-verification
+  skill: ''
+  created_at: '2026-05-18T19:45:40.708289+00:00'
+  tags:
+  - analysis
+  - backward-verification
+  - negative
+- id: art_20260518_85ccf0
+  name: constraint_precision_comparison_mistral_vs_qwen
+  type: report
+  description: 'Per-problem constraint precision对比: Mistral-7B (exp-033) vs Qwen-14B
+    (exp-026)。包含 entropy-conditioned 分析、confirmation bias 量化、override precision、solver
+    triviality 等 regime-dependent capability trap 核心证据。'
+  path: projects/symb_invariant_consensus/artifacts/_project/report/exp033_analysis.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T20:15:35.602130+00:00'
+  tags:
+  - analysis
+  - regime-dependent
+  - entropy
+  - paper-evidence
+- id: art_20260518_fb53a5
+  name: entropy_conditioned_analysis_exp038
+  type: report
+  description: Entropy-conditioned SICA vs SC analysis for exp-038 (Qwen2.5-14B LogiQA-200)
+  path: projects/symb_invariant_consensus/artifacts/exp-038/report/entropy_conditioned_exp038.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-038
+  skill: ''
+  created_at: '2026-05-18T21:11:56.033133+00:00'
+  tags:
+  - entropy
+  - exp-038
+  - logiqa
+  - analysis
+- id: art_20260519_203d02
+  name: exp046_analysis
+  type: report
+  description: 'exp-046 results analysis: Mistral-7B on ProofWriter-600 (OWA-D5),
+    SICA vs SC. SICA underperforms SC by -2.83pp (p=0.0095).'
+  path: projects/symb_invariant_consensus/artifacts/exp-046/report/exp046_analysis.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-046
+  skill: ''
+  created_at: '2026-05-19T01:14:56.918685+00:00'
+  tags:
+  - exp-046
+  - mistral-7b
+  - proofwriter
+  - sica
+  - negative-result
+- id: art_20260519_a7d924
+  name: fleiss_kappa_results
+  type: data
+  description: Fleiss' Kappa and Effective-K computed from per-problem trace answer
+    distributions for all available experiments. Covers exp-026/041, exp-052, exp-053,
+    exp-038, plus bonus experiments. 5 experiments unavailable (westd-25068 inaccessible).
+  path: projects/symb_invariant_consensus/artifacts/_project/data/fleiss_kappa_results_a7d924.yaml
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T03:04:33.112340+00:00'
+  tags:
+  - fleiss-kappa
+  - effective-k
+  - inter-rater-agreement
+  - analysis
+- id: art_20260519_fe35df
+  name: fig2_regime_scatter
+  type: chart
+  description: 'Hero figure: scatter plot showing SICA effectiveness depends on baseline
+    SC accuracy regime. Goldilocks zone (50-55% SC) shows significant gains, Type
+    A (≥60%) shows no benefit, Type C (≤40%) hurts. 17 data points across 7 model
+    families.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/f2_regime_scatter.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T03:22:20.229568+00:00'
+  tags:
+  - paper
+  - figure2
+  - hero-figure
+  - regime-scatter
+- id: art_20260519_cbaf78
+  name: fig2_regime_scatter
+  type: chart
+  description: 'Hero scatter: SC accuracy (x) vs SICA Δpp (y), 17 model-domain conditions.
+    Regime zones (Type C, Goldilocks, Type A) with 3-seed replication. Data from exp-033,
+    exp-052, exp-053, exp-046, exp-049b, exp-050b, exp-035, exp-038, exp-020, exp-027,
+    exp-019, exp-044b, exp-014, exp-017, exp-012, sica_aime30_v3, sica_expanded_14b.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/f2_regime_scatter_cbaf78.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-19T03:31:33.678523+00:00'
+  tags:
+  - paper
+  - experiments
+  - scatter
+  - regime
+- id: art_20260519_48f207
+  name: fig3_k_sensitivity
+  type: chart
+  description: 'Two-panel figure. (a) K sensitivity inverted-U: K=4/8/12/16 vs SICA
+    Δpp, K=12 peak (+4.90pp p=0.013). (b) Independence deficit: nominal K=12 vs Eff-K
+    bars for 4 conditions (Qwen-14B LogiQA κ=0.82 Eff-K=1.20, Qwen-14B FOLIO κ=0.74
+    Eff-K=1.31, Mistral-7B FOLIO s456 κ=0.40 Eff-K=2.22, s123 κ=0.41 Eff-K=2.17).
+    Uses Worker-verified κ values from comp-1.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/f3_k_sensitivity.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-19T03:33:16.219576+00:00'
+  tags:
+  - paper
+  - analysis
+  - k_sensitivity
+  - eff_k
+  - independence
+- id: art_20260519_1d3518
+  name: fleiss_kappa_raw_all
+  type: data
+  description: 'Fleiss kappa computed on raw answers (no T/F/U normalization) for
+    all conditions: 3 seeds, 3 temps, 4 K values, 4 models, 2 datasets. For Table
+    1 consistency.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/fleiss_kappa_raw_all.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T05:23:05.376954+00:00'
+  tags:
+  - fleiss-kappa
+  - raw
+  - D062
+  - table1
+- id: art_20260519_4e2710
+  name: SC Tiebreak Revalidation Report
+  type: report
+  description: Full revalidation of SC accuracy across all experiments after fixing
+    tie-breaking to deterministic alphabetical order. Covers 15 experiment configs
+    on 2 servers.
+  path: projects/symb_invariant_consensus/artifacts/_project/report/sc_tiebreak_revalidation.py
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T06:01:45.066115+00:00'
+  tags:
+  - tiebreaking
+  - sc
+  - revalidation
+  - data-integrity
+- id: art_20260519_3bbd83
+  name: entropy_breakdown_crossmodel
+  type: data
+  description: 'Cross-model entropy breakdown: SC vs SICA accuracy by majority-vote
+    entropy group (high ≤8/12, low ≥9/12) across 8 experiments (Mistral-7B, Qwen2.5-14B,
+    Qwen2.5-7B, LLaMA-8B on FOLIO/PW/LogiQA). Computed directly from raw experiment
+    JSONs.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/entropy_breakdown_crossmodel.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T06:18:32.022644+00:00'
+  tags:
+  - entropy
+  - breakdown
+  - cross-model
+  - D063
+- id: art_20260519_8548f2
+  name: exp060-qwen25-14b-cross-extraction-results
+  type: data
+  description: Qwen2.5-14B cross-model FOL extraction on Mistral-7B FOLIO-204 traces.
+    SICA=58.33% vs Mistral self-extraction 59.31% (-0.98pp), SC=55.88%. 204 problems,
+    12 disagreements.
+  path: projects/symb_invariant_consensus/artifacts/exp-060-cross-qwen25-14b-extractor/data/exp060_summary.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-060-cross-qwen25-14b-extractor
+  skill: ''
+  created_at: '2026-05-19T08:32:41.997931+00:00'
+  tags: []
+- id: art_20260519_d87da8
+  name: GPU Status Check — Loop 10
+  type: report
+  description: GPU occupancy and experiment status across westd-25068 and westd-16639,
+    2026-05-19 19:18 UTC
+  path: projects/symb_invariant_consensus/artifacts/_project/report/report_gpu_status_loop10.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T11:21:32.910922+00:00'
+  tags:
+  - gpu-status
+  - loop10
+- id: art_20260519_589a64
+  name: exp-064-diagnosis
+  type: report
+  description: exp-064 DeepSeek-R1-Qwen3-8B FOLIO-204 进程异常退出诊断：实验实际已正常完成 204/204，Cron
+    因缺少 sentinel/W&B 误报为 failed
+  path: projects/symb_invariant_consensus/artifacts/exp-064/report/exp-064-diagnosis.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-064
+  skill: ''
+  created_at: '2026-05-19T18:14:32.106021+00:00'
+  tags:
+  - diagnosis
+  - exp-064
+  - deepseek-r1
+  - folio204
+- id: art_20260519_72cf81
+  name: patch_debate_logiqa
+  type: intermediate
+  description: 'Python patch script adding LogiQA (4-choice multichoice) support to
+    run_debate.py: _CHOICE_ANSWER_PATTERNS, dataset-aware extract_debate_answer, --dataset
+    CLI arg, dynamic domain setting'
+  path: projects/symb_invariant_consensus/artifacts/exp-078-debate-mistral-logiqa200/intermediate/patch_debate_logiqa.py
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-078-debate-mistral-logiqa200
+  skill: ''
+  created_at: '2026-05-19T18:52:11.710741+00:00'
+  tags:
+  - logiqa
+  - debate
+  - patch
+  - multichoice
+- id: art_20260519_e47b71
+  name: f2_regime_scatter
+  type: chart
+  description: Scatter plot of SC baseline accuracy vs SICA Δpp across all model-domain
+    conditions. Shows Type C, Intermediate-SC, and Type A regimes. Significant effects
+    (p<0.05) highlighted with bold outlines.
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/f2_regime_scatter_e47b71.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-19T21:30:17.683306+00:00'
+  tags:
+  - paper
+  - figure
+  - emnlp2026
+  - regime-scatter
+- id: art_20260519_01a8e8
+  name: f2_regime_scatter
+  type: chart
+  description: 'Hero figure: SC baseline accuracy vs SICA Δpp scatter. 15 conditions
+    across 4 model families, 4-seed replication. Regime bands (Type C / Intermediate-SC
+    / Type A). Data from exp-033/052/053/067/046/063/061/040/038/041/026/035/039/027/019/044b/049b.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/f2_regime_scatter_01a8e8.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-19T21:43:46.177230+00:00'
+  tags:
+  - paper
+  - experiments
+  - hero
+- id: art_20260520_148a54
+  name: exp-013 constraint ablation summary
+  type: data
+  description: 'Constraint aggregation ablation: MaxSAT vs count-only vs random-weight
+    accuracy on 804 problems (FOLIO+PW, Mistral-7B). MaxSAT=42.3%, count-only=42.2%,
+    SC=43.2%. MaxSAT adds +0.12pp over naive counting.'
+  path: projects/symb_invariant_consensus/artifacts/exp-013-constraint-ablation/data/constraint_ablation_summary.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-013-constraint-ablation
+  skill: ''
+  created_at: '2026-05-20T00:08:33.691337+00:00'
+  tags:
+  - ablation
+  - constraint
+  - maxsat
+  - count-only
+  - random-weight
+- id: art_20260520_087dc0
+  name: McNemar Method vs SC Experiments
+  type: data
+  description: McNemar's paired chi-squared test for 5 method experiments (Debate/Contrastive/ICG)
+    vs SC baseline. 3/5 significant degradation.
+  path: projects/symb_invariant_consensus/artifacts/_project/data/mcnemar_method_experiments.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T00:14:49.977299+00:00'
+  tags:
+  - mcnemar
+  - statistical-test
+  - method-comparison
+  - significance
+- id: art_20260520_67637a
+  name: error_categorization_discordant
+  type: data
+  description: 'Discordant pair failure mode analysis: Debate (60 items) and Contrastive
+    (34 items) on FOLIO, with overlap analysis and answer-type flip rates'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/error_categorization_discordant.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T00:28:05.495613+00:00'
+  tags:
+  - error-analysis
+  - mcnemar
+  - folio
+  - debate
+  - contrastive
+- id: art_20260520_50738c
+  name: constraint_quality_crossmethod
+  type: data
+  description: 'Cross-method constraint quality metrics: SICA vs ICG vs Contrastive
+    vs Debate on FOLIO-204 (Mistral-7B). Covers parse_rate, unique_per_q, discriminative_ratio,
+    trivially_satisfied_ratio.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/constraint_quality_crossmethod.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T01:43:15.493386+00:00'
+  tags:
+  - analysis
+  - constraint-quality
+  - cross-method
+  - folio
+- id: art_20260520_40424e
+  name: icg_kappa_corrected
+  type: data
+  description: 'ICG corrected Fleiss kappa (Method B: per-constraint-set independent
+    MAX-SAT raters). kappa=0.4649, Eff-K=1.93. Replaces bootstrap kappa=0.72.'
+  path: projects/symb_invariant_consensus/artifacts/exp-074/data/icg_kappa_corrected.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-074
+  skill: ''
+  created_at: '2026-05-20T02:08:04.640146+00:00'
+  tags:
+  - kappa
+  - fleiss
+  - icg
+  - independence
+  - reviewer-response
+- id: art_20260520_3ef6ac
+  name: f6_kappa_accuracy_scatter
+  type: chart
+  description: 'Independence-Accuracy scatter plot: 4 methods (Debate, Diverse-Prompt,
+    SC, ICG) plotted by Fleiss'' κ vs Accuracy%, showing same-model ceiling region
+    and SC baseline. Hero figure demonstrating that same-model methods are locked
+    in κ≈0.40-0.47, and reducing κ (Debate) causes catastrophic accuracy loss.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/f6_kappa_accuracy_scatter.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T02:47:40.048072+00:00'
+  tags:
+  - paper
+  - figure
+  - hero
+  - kappa
+  - scatter
+- id: art_20260520_e0f2ba
+  name: qwen14b_kappa_analysis
+  type: data
+  description: 'Qwen2.5-14B Fleiss'' κ analysis from exp-001 traces: FOLIO-204 κ=0.738
+    Eff-K=1.32, PW-600 κ=0.617 Eff-K=1.54, combined κ=0.656 Eff-K=1.46'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/qwen14b_kappa_analysis.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T03:13:09.693338+00:00'
+  tags:
+  - kappa
+  - qwen14b
+  - independence-bottleneck
+  - cross-model
+- id: art_20260520_40ef11
+  name: cross_model_kappa_results
+  type: data
+  description: 'Cross-model Fleiss kappa analysis: Mistral-7B, LLaMA-3.1-8B, Qwen2.5-7B
+    on FOLIO-204. Variable-K and strict methods. Key finding: cross-model kappa 16.5%
+    lower than within-model, Effective-K gain 26.3%.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/cross_model_kappa_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T06:19:08.514943+00:00'
+  tags:
+  - kappa
+  - cross-model
+  - fleiss
+  - folio
+  - phase1
+- id: art_20260520_404744
+  name: cross_model_kappa_results
+  type: data
+  description: 'Cross-model Fleiss'' κ analysis: 10 combinations (3 same-model K=4,
+    3 same-model K=12, 3 cross-model K=8, 1 three-model mix K=12). Key finding: cross-model
+    κ=0.422 vs same-model κ=0.532, 16.5% reduction, Eff-K 2.11 vs 1.52.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/cross_model_kappa_results_404744.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T06:26:25.169964+00:00'
+  tags:
+  - kappa
+  - cross-model
+  - phase1
+  - independence
+- id: art_20260520_7451a6
+  name: wild1_max_unsat_results
+  type: data
+  description: 'Wild 1: MAX-SAT vs MIN-UNSAT scoring comparison on Mistral-7B FOLIO-204.
+    MIN-UNSAT hypothesis rejected — degrades accuracy by 6-7pp due to insufficient
+    exclusion signal (mean 1.3 excluded constraints per problem).'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/wild1_max_unsat_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:32:14.720175+00:00'
+  tags:
+  - wild1
+  - min-unsat
+  - scoring
+  - folio204
+  - mistral-7b
+  - negative-result
+- id: art_20260520_3f4668
+  name: wild6_kappa_aware_sc_results
+  type: data
+  description: 'Wild 6: κ-aware adaptive SC threshold analysis — negative result,
+    11 experiments across 5 models and 2 datasets'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/wild6_kappa_aware_sc_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:37:14.893568+00:00'
+  tags:
+  - wild6
+  - kappa
+  - adaptive-sc
+  - negative-result
+- id: art_20260520_dce4f9
+  name: direction_e_abstention_results
+  type: data
+  description: 'Direction E: Selective Abstention results — accuracy-coverage curves,
+    AUROC, entropy/majority-fraction calibration on FOLIO-204 (Mistral-7B, 2 seeds)'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/direction_e_abstention.py
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:45:43.270653+00:00'
+  tags:
+  - direction-e
+  - abstention
+  - calibration
+  - folio
+- id: art_20260520_c33b1b
+  name: direction_e_abstention_results_json
+  type: data
+  description: 'Direction E: Selective Abstention — full results JSON with coverage
+    tables, AUROC, and multi-seed aggregate'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/direction_e_abstention_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:46:24.125266+00:00'
+  tags:
+  - direction-e
+  - abstention
+  - results
+- id: art_20260520_5c5dfb
+  name: wild2_ascii_perturbation_results
+  type: data
+  description: 'Wild 2 ASCII Perturbation experiment: 3-group comparison (standard/fixed/variable
+    ASCII padding) on FOLIO-204 with Mistral-7B, K=4, measuring Fleiss'' kappa. Key
+    finding: κ nearly identical across groups (0.39/0.40/0.36), ASCII padding does
+    NOT degrade inter-trace agreement.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/wild2_ascii_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:05:21.703207+00:00'
+  tags:
+  - wild2
+  - ascii_perturbation
+  - fleiss_kappa
+  - folio
+  - mistral-7b
+- id: art_20260520_09b472
+  name: direction_b_deepconf_results
+  type: data
+  description: 'Direction B: DeepConf confidence filtering + SICA on FOLIO-204 with
+    Mistral-7B. Negative result - logprob-based filtering does not improve accuracy.
+    Key finding: model is equally overconfident about correct and incorrect answers.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/direction_b_deepconf_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:08:03.612771+00:00'
+  tags:
+  - direction-b
+  - deepconf
+  - logprob
+  - folio
+  - mistral-7b
+  - negative-result
+- id: art_20260520_021ef3
+  name: cross_model_sica_results
+  type: data
+  description: 'Cross-model SC vs SICA experiment results on FOLIO-204: 3 models (Mistral-7B,
+    LLaMA-3.1-8B, Qwen2.5-7B) × 4 traces = 12 total. SC=74.51%, SICA=74.02%, Δ=-0.49pp,
+    McNemar p=1.0. Includes same-model baselines and per-problem details.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/cross_model_sica_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:09:40.774797+00:00'
+  tags:
+  - cross-model
+  - sica
+  - sc
+  - folio-204
+  - phase-2
+  - exp-a
+  - exp-b
+- id: art_20260520_539712
+  name: wild4_process_kappa_results
+  type: data
+  description: 'Wild 4: Process-κ vs Answer-κ analysis on Mistral-7B FOLIO-204 K=12.
+    Fleiss κ=0.41, mean cosine=0.69, no correlation (r=-0.06), 9.3% same-answer-different-process
+    pairs.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/wild4_process_kappa_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:12:23.395687+00:00'
+  tags:
+  - wild4
+  - process_kappa
+  - fleiss_kappa
+  - tfidf_cosine
+  - folio204
+  - mistral_7b
+- id: art_20260520_425d8b
+  name: wild3_perturbation_results
+  type: data
+  description: 'Wild 3 Problem Perturbation: κ comparison (original vs perturbed vs
+    mixed) for 30 FOLIO problems with Qwen2.5-7B. Result: κ(mixed)≈κ(original), correlation
+    mainly from model bias not surface form.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/wild3_perturbation_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:22:44.461943+00:00'
+  tags:
+  - wild3
+  - perturbation
+  - kappa
+  - folio
+- id: art_20260520_400e41
+  name: Direction A PROVE Results
+  type: data
+  description: 'PROVE code-verification experiment results: Qwen2.5-7B on FOLIO-204.
+    Code gen 15.2%, PROVE+SC 71.6% < SC baseline 73.5%. Negative result.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/direction_a_prove_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:34:38.932162+00:00'
+  tags:
+  - direction-a
+  - prove
+  - folio
+  - qwen2.5-7b
+  - negative-result
+- id: art_20260520_cae829
+  name: Confirmation Bias Analysis
+  type: data
+  description: 'Confirmation bias quantification for SICA: 94% of SICA-wrong cases
+    follow SC, bias ratio 4.97x. Constraints overwhelmingly support trace''s own answer.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/confirmation_bias_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:34:41.067550+00:00'
+  tags:
+  - confirmation-bias
+  - sica
+  - exp033
+  - mistral-7b
+  - folio
+  - analysis
+- id: art_20260520_5cbce6
+  name: Direction D CEGIS Results (Partial)
+  type: data
+  description: CEGIS counterexample-guided refinement partial results (125/204). R1
+    +2.4pp over SC, refinement saturates at R1, net +3 correct flips.
+  path: projects/symb_invariant_consensus/artifacts/_project/data/direction_d_cegis_results_partial.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:36:42.841433+00:00'
+  tags:
+  - direction-d
+  - cegis
+  - folio
+  - qwen2.5-7b
+  - partial
+- id: art_20260520_3762cb
+  name: Direction A PROVE Results
+  type: data
+  description: PROVE code-as-verifier experiment on FOLIO-204 with Qwen2.5-7B-Instruct.
+    Code gen 15.2%, conclusive 7.8%, conclusive acc 50%. PROVE+fallback 71.6% < SC
+    73.5%. Negative result.
+  path: projects/symb_invariant_consensus/artifacts/_project/data/direction_a_prove_results_3762cb.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:46:15.961140+00:00'
+  tags:
+  - direction_a
+  - prove
+  - folio
+  - qwen2.5-7b
+  - negative_result
+- id: art_20260520_a6e677
+  name: wild3_perturbation_results
+  type: data
+  description: 'Wild 3 Problem Perturbation: Original κ=0.590 vs Perturbed κ=0.696
+    vs Mixed κ=0.627. Negative — perturbation increases κ, confirming trace correlation
+    is model bias not surface form.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/wild3_perturbation_results.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:46:44.701987+00:00'
+  tags:
+  - kappa
+  - perturbation
+  - negative
+  - wild3
+- id: art_20260520_ef0542
+  name: direction_i_z3_filter_results
+  type: data
+  description: Z3 per-trace consistency filter on exp-033 (Mistral-7B, FOLIO-204).
+    Filters UNSAT traces then re-votes. Delta=-0.49%, filter precision ~50%.
+  path: projects/symb_invariant_consensus/artifacts/_project/data/direction_i_z3_filter_pointer.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T09:04:31.469862+00:00'
+  tags:
+  - direction-i
+  - z3
+  - filter
+  - exp033
+  - folio
+- id: art_20260520_392590
+  name: Direction J Bootstrap Results
+  type: data
+  description: 'Direction J: Bootstrapped Gold Approximation on FOLIO-204 with Mistral-7B.
+    SC baseline 54.41%, R1 peak 56.86% (+2.45pp), final R5 52.45%. Iterative refinement
+    oscillates; R1 captures main signal like CEGIS.'
+  path: projects/symb_invariant_consensus/artifacts/direction_j/data/direction_j_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: direction_j
+  skill: ''
+  created_at: '2026-05-20T09:17:34.609482+00:00'
+  tags:
+  - direction_j
+  - bootstrap
+  - folio204
+  - mistral7b
+- id: art_20260520_dbd2a0
+  name: cross_dataset_replication_script
+  type: intermediate
+  description: Unified cross-dataset replication script (SC + SICA + Selective Abstention
+    + McNemar)
+  path: projects/symb_invariant_consensus/artifacts/_project/intermediate/cross_dataset_replication_info.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T10:40:55.390854+00:00'
+  tags: []
+- id: art_20260520_0096e7
+  name: proofwriter_30_data
+  type: data
+  description: 30 ProofWriter problems (10T/10F/10U, seed=42) for cross-dataset replication
+  path: projects/symb_invariant_consensus/artifacts/_project/data/proofwriter_30_meta.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T10:41:02.591940+00:00'
+  tags: []
+- id: art_20260520_70b535
+  name: logiqa_30_data
+  type: data
+  description: 30 LogiQA problems (A=8/B=8/C=7/D=7, seed=42) for cross-dataset replication
+  path: projects/symb_invariant_consensus/artifacts/_project/data/logiqa_30_meta.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T10:41:04.192020+00:00'
+  tags: []
+- id: art_20260520_43f918
+  name: direction_r_nli_large_results
+  type: data
+  description: 'Direction R: DeBERTa-large-mnli as external NLI verifier on FOLIO-204.
+    Standalone 49.51%, SC-combo(w=3) 58.82% vs SC baseline 54.41%.'
+  path: projects/symb_invariant_consensus/artifacts/direction_r_nli_large/data/direction_r_nli_large_pointer.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: direction_r_nli_large
+  skill: ''
+  created_at: '2026-05-20T10:42:28.360979+00:00'
+  tags:
+  - direction_r
+  - nli
+  - deberta
+  - folio
+- id: art_20260520_11e173
+  name: fig3_process_kappa_scatter
+  type: chart
+  description: 'Process-κ scatter plot: per-problem answer agreement vs CoT cosine
+    similarity (204 FOLIO problems, Mistral-7B K=12). r=-0.06, p=0.36 — no correlation.
+    Mean cosine=0.69. For §5.3.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig3_process_kappa_scatter.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T10:45:51.939168+00:00'
+  tags:
+  - paper
+  - figure
+  - scatter
+  - process_kappa
+  - wild4
+  - fig3
+- id: art_20260520_49667e
+  name: fig3_process_kappa_scatter
+  type: chart
+  description: 'Process-κ scatter: per-problem answer agreement vs CoT cosine similarity
+    (204 FOLIO problems, Mistral-7B). r=-0.06, p=0.36. Data: exp-wild4-process-kappa.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig3_process_kappa_scatter_49667e.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-20T10:58:20.944607+00:00'
+  tags:
+  - paper
+  - analysis
+  - process-kappa
+  - main-text
+- id: art_20260520_9c8f7f
+  name: fig_app_interventions_summary
+  type: chart
+  description: Horizontal bar chart showing Δpp vs Self-Consistency for all 23 intervention
+    methods across 3 categories (Prompt-Level, Method-Level, Additional Directions).
+    All bars at or below zero, demonstrating comprehensive failure of interventions.
+    Debate outlier (-18.63pp) clipped with annotation.
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig_app_interventions_summary.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T11:02:05.996350+00:00'
+  tags:
+  - paper
+  - appendix
+  - interventions
+  - bar-chart
+- id: art_20260520_49c82f
+  name: fig_app_interventions_summary
+  type: chart
+  description: '22+ interventions horizontal bar chart: all Δpp vs SC grouped by category
+    (Prompt/Method/Additional). All at or below zero. Debate truncated at -11.5 with
+    annotation. Appendix figure.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig_app_interventions_summary_49c82f.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-20T11:21:12.739049+00:00'
+  tags:
+  - paper
+  - appendix
+  - interventions
+  - remediation
+- id: art_20260520_33967c
+  name: aime_bias_ratio_analysis
+  type: data
+  description: 'Direction 3A: AIME cross-task bias ratio analysis. FOLIO=4.97x confirmed.
+    AIME bias ratio structurally undefined (zero answer diversity with QwQ-32B). Inconclusive
+    for cross-task generalization due to model strength confound.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/aime_bias_ratio_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T13:48:19.114029+00:00'
+  tags:
+  - direction-3A
+  - bias-ratio
+  - aime
+  - folio
+  - cross-task
+- id: art_20260520_5a9b05
+  name: tost_equivalence_table1
+  type: data
+  description: TOST equivalence test results for all 15 Table 1 conditions. 4/15 equivalent
+    at ±2pp, 8/15 at ±3pp.
+  path: projects/symb_invariant_consensus/artifacts/_project/data/tost_equivalence_table1.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T15:31:43.996526+00:00'
+  tags:
+  - statistics
+  - tost
+  - equivalence
+  - table1
+- id: art_20260520_139de0
+  name: capability_gap_scatter
+  type: chart
+  description: 'Scatter plot: combo gain vs capability gap (verifier standalone -
+    generator SC) at w=3. Shows 4 DeBERTa conditions + RoBERTa + BART on ProofWriter.
+    Sigmoid fit (R²=0.97) reveals phase transition near gap≈1pp. Used in §6 Figure
+    3.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/capability_gap_scatter.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-20T19:09:12.572763+00:00'
+  tags:
+  - paper
+  - figure3
+  - capability-gap
+  - cross-architecture
+- id: art_20260521_62ae42
+  name: sub_population_results
+  type: data
+  description: 'Sub-population analysis results: SICA vs SC by answer type and constraint
+    count tertile for Mistral-7B on FOLIO-204 and PW-600. Includes McNemar exact p-values.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/sub_population_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T01:05:57.795790+00:00'
+  tags:
+  - analysis
+  - sub-population
+  - mistral-7b
+  - mcnemar
+- id: art_20260521_b14d4e
+  name: sub_population_appendix_draft
+  type: paper
+  description: Draft LaTeX appendix for sub-population analysis (2 tables + interpretation).
+    For Director review before merging into appendix.tex.
+  path: projects/symb_invariant_consensus/artifacts/_project/paper/sub_population_appendix_draft.tex
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T01:06:00.220555+00:00'
+  tags:
+  - paper
+  - appendix
+  - sub-population
+  - draft
+- id: art_20260521_916484
+  name: nli_tiebreaking_audit
+  type: report
+  description: 'P0 audit: NLI combo tiebreaking inconsistency — Counter.most_common()
+    vs alphabetical. Mistral combo_w3 changes from 42.83% to 46.00% (+3.17pp).'
+  path: projects/symb_invariant_consensus/artifacts/_project/report/nli_tiebreaking_audit.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:16:25.730637+00:00'
+  tags:
+  - tiebreaking
+  - nli-combo
+  - audit
+  - p0
+- id: art_20260521_f45299
+  name: NLI Combo Recomputed (Alphabetical Tiebreaking)
+  type: data
+  description: 'All NLI combo results recomputed with alphabetical tiebreaking: PW600
+    (4 generators × w1/3/5), FOLIO (Mistral w1/3), Spearman ρ, BH correction. SC baselines
+    shifted for LLaMA(+15), Qwen2.5(+3), Qwen3(+5). Only Mistral w3/w5 survive BH.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/nli_combo_recomputed.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:30:37.563125+00:00'
+  tags:
+  - nli
+  - combo
+  - tiebreaking
+  - recompute
+  - mcnemar
+  - bh
+- id: art_20260521_673623
+  name: NLI Multi-Verifier Recomputed (Alphabetical Tiebreaking)
+  type: data
+  description: Recomputed RoBERTa/BART/DeBERTa NLI combo with alphabetical tiebreaking,
+    McNemar p-values, and exact permutation Spearman (PW6 rho=1.0 p=0.003, All9 rho=0.84
+    p=0.007)
+  path: projects/symb_invariant_consensus/artifacts/_project/data/nli_multi_verifier_recomputed.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T06:19:25.038022+00:00'
+  tags:
+  - nli
+  - tiebreaking
+  - spearman
+  - recomputed
+- id: art_20260521_b79bf3
+  name: nli_multi_verifier_recomputed
+  type: data
+  description: Recomputed RoBERTa/BART/DeBERTa NLI combo results with alphabetical
+    tiebreaking on Mistral-7B ProofWriter (n=600). Includes 6-point PW Spearman (ρ=1.0,
+    exact p=0.003) and 9-point all-condition Spearman (ρ=0.836, p=0.007).
+  path: projects/symb_invariant_consensus/artifacts/_project/data/nli_multi_verifier_recomputed_b79bf3.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T06:23:32.267315+00:00'
+  tags:
+  - nli-combo
+  - tiebreaking-fix
+  - spearman
+  - v14
+- id: art_20260521_22d66b
+  name: capability_gap_scatter_v2
+  type: chart
+  description: Capability gap scatter plot with 6 PW data points (3 NLI verifiers
+    × Mistral-7B + DeBERTa × 3 other generators). Corrected with alphabetical tiebreaking.
+    ρ=1.0, exact p=0.003.
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/capability_gap_scatter_v2.png
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T06:27:18.709109+00:00'
+  tags:
+  - figure
+  - capability-gap
+  - v14
+- id: art_20260521_ba15d8
+  name: text_ablation_results
+  type: data
+  description: 'T_ext ablation results: 5 temperature values for constraint extraction
+    on FOLIO-204 with Mistral-7B. Best: T_ext=0.3 (59.31%, +4.9pp, p=0.013)'
+  path: projects/symb_invariant_consensus/artifacts/exp_text_ablation/data/text_ablation_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp_text_ablation
+  skill: ''
+  created_at: '2026-05-21T06:41:58.977855+00:00'
+  tags:
+  - ablation
+  - t_ext
+  - folio
+  - mistral
+- id: art_20260521_8ce47f
+  name: BR Bootstrap CI
+  type: data
+  description: 95% bootstrap confidence intervals for Symbolic Confirmation Bias Ratio
+    across 3 generators (Mistral-7B, Qwen2.5-14B, LLaMA-3.1-8B). 10000 question-level
+    resamples.
+  path: projects/symb_invariant_consensus/artifacts/_project/data/br_bootstrap_ci.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T07:09:56.778323+00:00'
+  tags:
+  - bias_ratio
+  - bootstrap
+  - confidence_interval
+  - confirmation_bias
+- id: art_20260521_57fabb
+  name: missing_citations_r10
+  type: data
+  description: '4 BibTeX entries for R10-I2 missing citations: wan2025unveiling (CoT
+    confirmation bias, ACL 2025), jhaveri2026failing (LM confirmation bias), miya2025eidoku
+    (neuro-symbolic verification gate), yao2023tree (Tree of Thoughts, NeurIPS 2023)'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/missing_citations_r10.bib
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T07:25:07.079948+00:00'
+  tags:
+  - citations
+  - bibtex
+  - R10
+  - review
+- id: art_20260521_0f4298
+  name: tost_sensitivity
+  type: data
+  description: TOST equivalence sensitivity analysis at ±1pp, ±2pp, ±3pp margins for
+    16 SICA-SC comparisons. SE derived from McNemar z-statistic (6 conditions) or
+    estimated via paired proportion model with r=0.95 (10 conditions with raw_p=1.0).
+  path: projects/symb_invariant_consensus/artifacts/_project/data/tost_sensitivity.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T07:32:16.236770+00:00'
+  tags:
+  - statistics
+  - tost
+  - sensitivity
+  - rebuttal
+- id: art_20260521_e2b664
+  name: llama_weighted_br
+  type: data
+  description: LLaMA-3.1-8B weighted bias ratio recomputation with bootstrap CI, plus
+    Mistral cross-check and data source discrepancy analysis
+  path: projects/symb_invariant_consensus/artifacts/_project/data/llama_weighted_br.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T07:34:04.809156+00:00'
+  tags:
+  - confirmation_bias
+  - cross_model
+  - llama
+  - weighted_br
+  - bootstrap
+- id: art_20260521_797ae7
+  name: tost_exact_16conditions
+  type: data
+  description: 'Exact TOST equivalence test (±2pp) for all 16 non-degenerate Table
+    1 conditions using McNemar discordant pair counts (b,c). Result: 4 equivalent,
+    2 different, 10 underpowered.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/tost_exact_16conditions.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T07:58:54.612218+00:00'
+  tags:
+  - tost
+  - equivalence
+  - table1
+  - mcnemar
+  - statistics
+- id: art_20260521_b907ed
+  name: drc_folio_results
+  type: data
+  description: 'DRC Cascade results on FOLIO-204 (Mistral-7B + DeBERTa-large-mnli).
+    τ sweep {0.3-0.9}, w={1,3}. Key: τ=0.7/w=3 recovers 83.3% gain at 34.8% cost.'
+  path: projects/symb_invariant_consensus/artifacts/exp-d126-drc-folio/data/drc_folio_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-d126-drc-folio
+  skill: ''
+  created_at: '2026-05-21T08:25:18.354571+00:00'
+  tags:
+  - drc
+  - folio
+  - cascade
+  - nli-combo
+- id: art_20260521_64ac51
+  name: process_br_decomposition
+  type: data
+  description: 'Process-conditional BR decomposition (exp-d134): BR by constraint
+    position (early/mid/late), question difficulty (easy/hard), and constraint type
+    (universal/existential/conditional/other). Key findings: (1) BR is uniform across
+    positions (~5.2-5.4, p=0.71), (2) BR_easy=18.8 >> BR_hard=2.7 (p≈0, reversed from
+    prediction), (3) conditional BR=5.69 vs other BR=4.91 (p=0.06, borderline).'
+  path: projects/symb_invariant_consensus/artifacts/exp-d134-process-br/data/process_br_decomposition.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-d134-process-br
+  skill: ''
+  created_at: '2026-05-21T08:26:20.979229+00:00'
+  tags:
+  - confirmation_bias
+  - br_decomposition
+  - process_analysis
+  - exp033
+- id: art_20260521_aca436
+  name: baf_decoupled_results
+  type: data
+  description: 'exp-d134 BAF decoupled extraction: BR analysis comparing full-trace
+    vs truncated-trace constraint extraction on FOLIO-204. Truncation does NOT significantly
+    reduce BR (all Wilcoxon p>0.12) but significantly hurts accuracy (-5pp, McNemar
+    p<0.013).'
+  path: projects/symb_invariant_consensus/artifacts/exp-d134-baf-decoupled/data/baf_decoupled_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-d134-baf-decoupled
+  skill: ''
+  created_at: '2026-05-21T08:46:48.135174+00:00'
+  tags:
+  - br
+  - decoupling
+  - confirmation-bias
+  - folio
+  - mistral
+- id: art_20260521_b33882
+  name: CIL Results
+  type: data
+  description: CIL (Cumulative Information Lift) computation for 10 generator-verifier
+    pairs. Spearman rho=0.762 (p=0.028) between CIL and combo gain. Cross-architecture
+    NLI verifiers show positive CIL (+1.4 to +1.9) when paired with weak Mistral generator
+    on PW-600, while SICA shows strongly negative CIL (-2.9 to -4.6) due to correlated
+    errors.
+  path: projects/symb_invariant_consensus/artifacts/exp-d134-cil/data/cil_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-d134-cil
+  skill: ''
+  created_at: '2026-05-21T08:51:05.361463+00:00'
+  tags:
+  - cil
+  - complementarity
+  - nli
+  - sica
+  - combo-gain
+- id: art_20260521_8b8714
+  name: CIL vs Combo Gain Scatter Plot
+  type: chart
+  description: 'Scatter plot of CIL (bits) vs Combo Gain (pp) for 8 generator-verifier
+    pairs. NLI verifiers (blue circles) cluster in positive CIL region, SICA (orange
+    squares) in negative CIL region. Server path: /root/symb_invariant_consensus/results/exp_d134_cil/cil_vs_gain_scatter.png'
+  path: projects/symb_invariant_consensus/artifacts/exp-d134-cil/chart/cil_vs_gain_scatter_location.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-d134-cil
+  skill: ''
+  created_at: '2026-05-21T08:51:11.672423+00:00'
+  tags:
+  - cil
+  - scatter-plot
+  - visualization
+- id: art_20260521_175a47
+  name: cil_results_corrected
+  type: data
+  description: CIL results with 3 SC baseline corrections (Mistral+DeBERTa FOLIO,
+    Mistral+SICA FOLIO, Qwen14B+DeBERTa PW). Correlations recomputed.
+  path: projects/symb_invariant_consensus/artifacts/exp_d134_cil/data/cil_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp_d134_cil
+  skill: ''
+  created_at: '2026-05-21T09:47:28.299677+00:00'
+  tags:
+  - cil
+  - correlation
+  - corrected
+- id: art_20260521_81f25a
+  name: qwen14b_pw_sc_audit
+  type: report
+  description: 'Audit of Qwen2.5-14B PW-600 SC accuracy discrepancy: 75.17% vs 74.00%
+    vs 70.33% traced to three different experiment runs'
+  path: projects/symb_invariant_consensus/artifacts/_project/report/qwen14b_pw_sc_audit.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T09:59:35.379143+00:00'
+  tags:
+  - audit
+  - qwen14b
+  - proofwriter
+  - sc-accuracy
+  - consistency
+- id: art_20260521_efd432
+  name: qwen14b_pw_canonical_audit
+  type: data
+  description: 'Canonical SC audit for Qwen2.5-14B PW-600: resolves 75.17/74.0/70.33
+    discrepancy. Canonical SC=74.00% (444/600, alphabetical tiebreaking, exp032).
+    All downstream metrics (TOST, CIL, correlation) recomputed from exp032 data.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/qwen14b_pw_canonical_audit.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T10:20:41.656255+00:00'
+  tags:
+  - qwen14b
+  - canonical
+  - sc-audit
+  - pw600
+  - cil
+  - tost
+- id: art_20260521_b377f7
+  name: qwen14b_pw_oracle_exp032
+  type: data
+  description: Oracle-SICA evaluation on Qwen2.5-14B PW600 using exp032 canonical
+    traces. Oracle accuracy 91.17% (547/600), up from exp-022 86.67%. Z3 gold match
+    rate 97.14%.
+  path: projects/symb_invariant_consensus/artifacts/exp032/data/run_exp032_oracle_pw.py
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp032
+  skill: ''
+  created_at: '2026-05-21T10:43:43.577417+00:00'
+  tags:
+  - oracle
+  - proofwriter
+  - qwen14b
+  - exp032
+  - main-table
+- id: art_20260521_668477
+  name: r11_relative_tost
+  type: data
+  description: 'R11 relative TOST reanalysis: ±5% of SC baseline vs absolute ±2pp.
+    4 conditions changed (all underpowered→equivalent), result: 8 equiv / 2 diff /
+    6 underpowered.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/r11_relative_tost.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T11:42:40.124444+00:00'
+  tags:
+  - rebuttal
+  - R11
+  - TOST
+  - equivalence
+- id: art_20260521_5db77a
+  name: R11 3-Verifier NLI Combo BH Significance
+  type: data
+  description: 'R11 审稿回复: 3 NLI verifier combo significance with BH correction. Mistral-7B
+    on ProofWriter D5-600. 3 DeBERTa variants (large, base, v3-large). 9/15 tests
+    significant at BH α=0.05. 3-verifier majority vote: +9.50pp (w3), all significant.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/r11_3verifier_combo.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T11:45:27.643372+00:00'
+  tags:
+  - r11
+  - rebuttal
+  - significance
+  - bh-correction
+  - nli-combo
+- id: art_20260521_21f741
+  name: r11_sbert_process_kappa
+  type: data
+  description: 'R11 Q5: SBERT vs TF-IDF Process-κ comparison on Mistral-7B FOLIO-204
+    K=12. SBERT(0.91) >> TF-IDF(0.74) >> Answer κ(0.55), confirming process-level
+    consensus robustness across embedding methods.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/r11_sbert_process_kappa.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T11:53:04.005632+00:00'
+  tags:
+  - r11
+  - rebuttal
+  - sbert
+  - process-kappa
+  - robustness
+- id: art_20260521_0c36fe
+  name: r11_3verifier_canonical
+  type: data
+  description: 'R11 Q3: 3-verifier (DeBERTa/RoBERTa/BART) canonical analysis on ProofWriter-D5
+    × Mistral-7B SC. Hard-vote combo + alphabetical tiebreaking. Individual combos,
+    ensemble majority, additive 3-verifier, McNemar tests, BH correction (10/15 significant).
+    DeBERTa w3 = +6.67pp (p=1.13e-05) matches paper canonical.'
+  path: projects/symb_invariant_consensus/artifacts/r11/data/r11_3verifier_canonical.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: r11
+  skill: ''
+  created_at: '2026-05-21T12:27:11.937251+00:00'
+  tags:
+  - r11
+  - nli-verifier
+  - 3-verifier
+  - bh-correction
+  - mcnemar
+  - proofwriter
+  - canonical
+- id: art_20260521_7c1301
+  name: e6_gpt4o_folio_results
+  type: data
+  description: 'GPT-4o FOLIO-204 partial results (154/204): SICA 71.4%, SC 73.4%.
+    Process exited without error at problem 155.'
+  path: projects/symb_invariant_consensus/artifacts/exp-d134-e6-closed-model/data/e6_gpt4o_folio_results.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-d134-e6-closed-model
+  skill: ''
+  created_at: '2026-05-21T14:15:11.443342+00:00'
+  tags:
+  - gpt-4o
+  - folio
+  - sica
+  - partial
+- id: art_20260521_c3dc84
+  name: gpt4o_br_process_kappa
+  type: data
+  description: 'GPT-4o FOLIO-204 BR (bias ratio) and Process-κ metrics: mean_BR=2.94,
+    Process-κ=0.79, Answer Fleiss-κ=0.80'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/gpt4o_br_process_kappa.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T14:36:05.533540+00:00'
+  tags:
+  - gpt-4o
+  - folio
+  - br
+  - process-kappa
+  - fleiss-kappa
+- id: art_20260522_318da6
+  name: alpha-ablation-mf3
+  type: data
+  description: 'α ablation for MAX-SAT vs count-only agreement: α∈{0.1,0.3,0.5,0.7,0.9}
+    × 2 conditions (Mistral FOLIO, Qwen2.5 FOLIO). Agreement ≥99% throughout.'
+  path: projects/symb_invariant_consensus/artifacts/exp-013-constraint-ablation/data/alpha_ablation_results.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: exp-013-constraint-ablation
+  skill: ''
+  created_at: '2026-05-22T08:20:37.835612+00:00'
+  tags:
+  - mf3
+  - alpha-ablation
+  - constraint-ablation
+  - reviewer-response
+- id: art_20260522_c8ec0c
+  name: D061 NLI tiebreaking recompute exp-091 exp-092
+  type: data
+  description: D061 canonical alphabetical tiebreaking recompute for exp-091 (Qwen2.5-14B)
+    and exp-092 (LLaMA-8B) NLI combo
+  path: projects/symb_invariant_consensus/artifacts/_project/data/nli_recompute_exp091_exp092.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:16:01.064333+00:00'
+  tags:
+  - D061
+  - tiebreaking
+  - exp-091
+  - exp-092
+  - NLI-combo
+  - recompute
+- id: art_20260522_0dacc4
+  name: Figure 7 Capability Gap Scatter Plot
+  type: chart
+  description: 'Figure 7: capability gap vs combo gain scatter plot. Spearman ρ=0.955
+    (n=7, p=0.0008). Generated on westd-16639.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/figure7_capability_gap_scatter_info.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T16:58:08.036506+00:00'
+  tags:
+  - figure7
+  - scatter
+  - capability-gap
+  - paper
+- id: art_20260523_9a2021
+  name: CIL Analysis + Q5 + Q6
+  type: report
+  description: Comprehensive CIL (Conditional Information Lift) analysis across 15
+    conditions, BR on SC-correct subset (Q5), and training-free remediation significance
+    analysis (Q6)
+  path: projects/symb_invariant_consensus/artifacts/_project/report/cil_analysis.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T01:14:33.155666+00:00'
+  tags:
+  - cil
+  - analysis
+  - q5
+  - q6
+  - reviewer-response
+- id: art_20260523_dcba11
+  name: Q5 Q6 Answers - Round 15
+  type: report
+  description: Round 15 reviewer Q5 (BR on SC-correct subset) and Q6 (BH-corrected
+    remediation significance) answers with full data tables
+  path: projects/symb_invariant_consensus/artifacts/_project/report/q5_q6_answers.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T01:19:01.253216+00:00'
+  tags:
+  - rebuttal
+  - round15
+  - bias-ratio
+  - remediation
+  - BH-correction
+- id: art_20260523_85bd41
+  name: CIL Analysis + Q5/Q6 Answers
+  type: report
+  description: CIL conditional mutual information for all self/cross conditions, Q5
+    (BR on SC-correct subset), Q6 (BH pre-correction significant conditions). Self
+    CIL=0.028, Cross-ZS=0.108, Cross-FT=1.177 bits.
+  path: projects/symb_invariant_consensus/artifacts/_project/report/cil_analysis_85bd41.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T01:25:06.289479+00:00'
+  tags:
+  - cil
+  - q5
+  - q6
+  - theory
+  - direction-b
+- id: art_20260523_a43592
+  name: Causal DAG TikZ (Direction D)
+  type: paper
+  description: 'TikZ code for SCB causal DAG: M→T→A→C→S with Y exogenous, A highlighted
+    as bottleneck, C⊥Y|A d-separation annotation. Standalone-compilable + figure environment
+    for paper.'
+  path: projects/symb_invariant_consensus/artifacts/_project/paper/causal_dag_tikz.tex
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T01:25:06.702911+00:00'
+  tags:
+  - tikz
+  - causal-dag
+  - theory
+  - direction-d
+- id: art_20260523_2bbd9c
+  name: 'Proposition 1: SCB Structural Proof'
+  type: paper
+  description: 'LaTeX proof: (i) BR≥1 deterministic under source attribution, (ii)
+    DPI information ceiling I(C;Y)≤I(T;Y). Only needs A1+A2. Includes Remark on semantic
+    attribution boundary.'
+  path: projects/symb_invariant_consensus/artifacts/_project/paper/proposition1_scb_proof.tex
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T01:25:49.507611+00:00'
+  tags:
+  - theory
+  - direction-a
+  - proposition
+  - proof
+- id: art_20260523_1e8080
+  name: r17_argmax_br_metrics
+  type: data
+  description: 'Round 17 Proposition 1 metrics: Argmax Agreement Rate (90.8% overall)
+    and BR Decomposition (excess BR negative in all conditions). Computed from 6 model×dataset
+    conditions.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/r17_argmax_br_metrics.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T09:53:58.594459+00:00'
+  tags:
+  - round17
+  - proposition1
+  - argmax
+  - BR
+  - paper-data
+- id: art_20260523_d5b601
+  name: r17_data_consistency_audit_t1_t2
+  type: report
+  description: 'Table 1 & Table 2 data consistency audit. CRITICAL: gpt-4o row in
+    Table 2 has wrong SC/BR/Δ values. 2 minor issues in o3 and Gemini rows.'
+  path: projects/symb_invariant_consensus/artifacts/_project/report/audit_table1_table2.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T10:43:32.644254+00:00'
+  tags:
+  - audit
+  - data-consistency
+  - critical
+  - table1
+  - table2
+- id: art_20260523_a0ba63
+  name: Table 3 数据修复报告
+  type: report
+  description: Table 3 SC baseline 修复、94.4% 引用修复、BH 校正重算，含级联影响分析
+  path: projects/symb_invariant_consensus/artifacts/_project/report/table3_fix_report.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T11:32:55.550294+00:00'
+  tags:
+  - paper-fix
+  - data-audit
+  - table3
+- id: art_20260523_121749
+  name: Table 3 Tiebreaking Fix Report
+  type: report
+  description: 'Recomputation results for Table 3/28 NLI combo tiebreaking fix: old→new
+    values, BH correction (3→2 significant), capability gap monotonicity preserved,
+    Figure 7 regenerated.'
+  path: projects/symb_invariant_consensus/artifacts/_project/report/table3_tiebreak_fix_report.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T11:42:15.375205+00:00'
+  tags:
+  - fix
+  - table3
+  - tiebreaking
+  - nli-combo
+  - proofwriter
+- id: art_20260523_a07d28
+  name: gpu_and_multiseed_status_20260523
+  type: report
+  description: GPU状态(3台服务器8张卡) + 多种子实验进度汇总 + 重复实验/空闲GPU清单
+  path: projects/symb_invariant_consensus/artifacts/_project/report/gpu_and_multiseed_status.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T12:35:14.979920+00:00'
+  tags:
+  - gpu
+  - multi-seed
+  - infrastructure
+- id: art_20260523_0ae153
+  name: cross_model_sc_ablation
+  type: data
+  description: 'Cross-model SC ablation: 4 generators × 2 datasets × 3 weights. Cross-model
+    SC outperforms NLI combo for weak generators but hurts strong ones, supporting
+    structural independence argument.'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/cross_model_sc_ablation_pointer.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T14:42:59.301256+00:00'
+  tags:
+  - ablation
+  - cross-model
+  - R19
+  - rebuttal
+- id: art_20260523_ed04b0
+  name: cross_model_sc_ablation_results
+  type: data
+  description: 'Cross-model SC vs NLI combo ablation: 8 conditions (4 generators x
+    2 datasets), 回应 R19 MF-3'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/cross_model_sc_ablation_ref.txt
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T14:55:01.945476+00:00'
+  tags:
+  - ablation
+  - R19
+  - cross-model
+- id: art_20260523_b28c5f
+  name: cross_model_sc_mistral_voter
+  type: data
+  description: Cross-model SC ablation with Mistral-7B (SC=39.33%) as cross voter
+    on ProofWriter, controlling for voter capability confound
+  path: projects/symb_invariant_consensus/artifacts/_project/data/cross_model_sc_mistral_voter.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T15:00:03.112561+00:00'
+  tags:
+  - cross-model-sc
+  - ablation
+  - mistral
+  - proofwriter
+- id: art_20260523_b39e3b
+  name: PW NLI Combo BART+RoBERTa results
+  type: data
+  description: 'ProofWriter NLI combo results: BART-large-mnli and RoBERTa-large-mnli
+    verifiers, 4 generators × 3 weights each, alphabetical tiebreaking. Remote paths:
+    results/pw_nli_combo_bart.json, results/pw_nli_combo_roberta.json on westd-16639'
+  path: projects/symb_invariant_consensus/artifacts/_project/data/pw_nli_combo_bart_roberta_summary.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T16:19:45.723437+00:00'
+  tags:
+  - proofwriter
+  - nli-combo
+  - bart
+  - roberta
+  - experiment
+- id: art_20260523_4140cb
+  name: folio_nli_combo_results
+  type: report
+  description: 'FOLIO NLI combo results: 3 NLI verifiers (DeBERTa/BART/RoBERTa) ×
+    4 generators × 3 weights, with McNemar exact test'
+  path: projects/symb_invariant_consensus/artifacts/_project/report/folio_nli_combo_results.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T17:00:40.640534+00:00'
+  tags:
+  - folio
+  - nli
+  - combo
+  - deberta
+  - bart
+  - roberta
+  - mcnemar
+- id: art_20260523_2c0e3e
+  name: LogiQA NLI Combo Results
+  type: report
+  description: 'NLI combo voting results on LogiQA-200: 3 verifiers (DeBERTa/BART/RoBERTa-large-mnli)
+    × 4 generators × 3 weights. 0/36 significant — NLI combo ineffective on LogiQA
+    due to near-random NLI standalone accuracy.'
+  path: projects/symb_invariant_consensus/artifacts/_project/report/logiqa_nli_combo_results.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T17:04:44.584769+00:00'
+  tags:
+  - logiqa
+  - nli-combo
+  - negative-result
+  - experiment
+- id: art_20260523_cac8a7
+  name: experiment_status_20260524
+  type: report
+  description: Experiment status and GPU utilization report for westd-16639 and westd-30973
+    as of 2026-05-24 01:25 UTC
+  path: projects/symb_invariant_consensus/artifacts/_project/report/experiment_status_20260524.md
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T17:26:11.766265+00:00'
+  tags:
+  - status
+  - gpu
+  - multi-seed
+- id: art_20260524_a74f32
+  name: fig3_causal_dag
+  type: chart
+  description: 'Figure 3: Causal DAG of the SICA pipeline showing M→T→A→C→S chain
+    with Y (ground truth) above A, red bottleneck arrow A→C, and conditional independence
+    annotation C⊥Y|A. Generated via PaperBanana (3 external iterations).'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig3_causal_dag_pb.png
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-24T09:24:55.120935+00:00'
+  tags:
+  - figure
+  - causal-dag
+  - paper
+  - paperbanana
+- id: art_20260524_37733f
+  name: fig3_causal_dag_v2_png
+  type: chart
+  description: 'Figure 3: Causal DAG (M→T→A→C→S with exogenous Y). Thin-line Pearl-style
+    edges, crimson bottleneck A→C, blocked Y→C path, C⊥⊥Y|A annotation. Hand-written
+    matplotlib, 300 DPI.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig3_causal_dag_pb_v2.png
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T09:58:31.495158+00:00'
+  tags:
+  - figure
+  - causal-dag
+  - paper
+  - v2
+- id: art_20260524_3456bc
+  name: fig3_causal_dag_v2_pdf
+  type: chart
+  description: 'Figure 3 PDF version: Causal DAG for LaTeX inclusion.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig3_causal_dag_pb_v2.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T09:58:33.078431+00:00'
+  tags:
+  - figure
+  - causal-dag
+  - paper
+  - v2
+  - pdf
+- id: art_20260524_6f2cbe
+  name: fig1_pipeline_pb_v2
+  type: chart
+  description: 'Figure 1: SICA Pipeline diagram (PaperBanana v2). Shows Question →
+    LLM K-sampling → K Traces → Extract FOL Constraints → Dedup+Weight → MAX-SAT (Z3)
+    → Answer a*. Red dashed box highlights Independence Bottleneck. SC baseline and
+    Oracle branches below.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig1_pipeline_pb_v2.png
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-24T10:03:58.307828+00:00'
+  tags:
+  - figure1
+  - pipeline
+  - paperbanana
+  - paper
+- id: art_20260524_1e2ceb
+  name: fig1_pipeline_pb_v2_pdf
+  type: chart
+  description: 'Figure 1: SICA Pipeline diagram PDF version for LaTeX inclusion.'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig1_pipeline_pb_v2.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-24T10:04:00.013903+00:00'
+  tags:
+  - figure1
+  - pipeline
+  - paperbanana
+  - paper
+  - pdf
+- id: art_20260524_881dfc
+  name: fig3_causal_dag_v3
+  type: chart
+  description: Figure 3 Causal DAG v3 with 3D depth effect (gradients, drop shadows,
+    highlights). PaperBanana + post-processed white background.
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig3_causal_dag_pb_v3.png
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-24T10:29:41.368651+00:00'
+  tags:
+  - figure
+  - causal-dag
+  - paper
+  - v3
+- id: art_20260524_ff4aa3
+  name: fig1_pipeline_pb_v3
+  type: chart
+  description: SICA Pipeline Figure 1 v3 — matplotlib with 3D depth effects (multi-layer
+    soft shadows, gradient fills, inner highlights, stacked cards). 5 iterations.
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig1_pipeline_pb_v3.png
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T10:31:27.576352+00:00'
+  tags:
+  - figure1
+  - pipeline
+  - v3
+  - 3d-depth
+- id: art_20260524_fdf31e
+  name: fig1_pipeline_pb_v4
+  type: chart
+  description: SICA pipeline Figure 1 v4 — PaperBanana generated, 3D depth with gradients/shadows/highlights,
+    Independence Bottleneck annotation
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig1_pipeline_pb_v4.png
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-24T10:46:56.702004+00:00'
+  tags:
+  - figure1
+  - pipeline
+  - paper-banana
+  - v4
+- id: art_20260524_609625
+  name: fig2_kappa_delta
+  type: chart
+  description: 'Fig 2: κ vs Δ scatter plot. 低κ条件Δ散布±3pp，高κ条件Δ收敛至0附近。趋势线已移除(r=0.14不显著)。PDF
+    33KB + PNG 105KB。'
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig2_kappa_delta.pdf
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T13:23:16.384898+00:00'
+  tags:
+  - figure
+  - paper
+  - kappa
+  - scatter
+- id: art_20260525_4d46ab
+  name: fig1_pipeline_v11
+  type: chart
+  description: Figure 1 SICA Pipeline diagram v11 (PaperBanana, 3-round iteration).
+    Replaces v10.
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig1_pipeline_v11.png
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-25T16:34:54.778236+00:00'
+  tags:
+  - figure
+  - pipeline
+  - paperbanana
+- id: art_20260525_79685b
+  name: fig3_causal_dag_v12
+  type: chart
+  description: Figure 3 Causal DAG v12 (PaperBanana, 3-round iteration). Replaces
+    v11 TikZ standalone.
+  path: projects/symb_invariant_consensus/artifacts/_project/chart/fig3_causal_dag_v12.png
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-25T16:34:56.577078+00:00'
+  tags:
+  - figure
+  - causal-dag
+  - paperbanana
+- id: art_20260525_915f9d
+  name: audit_c1_gpt4o_fix
+  type: report
+  description: 'C1 audit fix: gpt-4o Table frontier-scb row corrected from unsourced
+    values (76.96/47/2.65/-1.96) to registry-backed values (73.91/42/2.94/-1.86, n=161)'
+  path: projects/symb_invariant_consensus/artifacts/_project/report/audit_c1_gpt4o_fix.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:19:35.218591+00:00'
+  tags:
+  - audit
+  - data-integrity
+  - submission
+- id: art_20260525_58b64c
+  name: audit_c2_llama_br_fix
+  type: report
+  description: 'C2 audit fix: LLaMA BR unified from 2.88 (4t SICA-wrong subset) to
+    3.87 (br_bootstrap_ci consistent method)'
+  path: projects/symb_invariant_consensus/artifacts/_project/report/audit_c2_llama_br_fix.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:19:38.106055+00:00'
+  tags:
+  - audit
+  - data-integrity
+  - submission
+- id: art_20260525_f0e48c
+  name: audit_m1_qwen_br_fix
+  type: report
+  description: 'M1 audit fix: Qwen2.5-14B BR corrected from 3.85 (no artifact) to
+    3.93 (br_bootstrap_ci.json, n=52)'
+  path: projects/symb_invariant_consensus/artifacts/_project/report/audit_m1_qwen_br_fix.json
+  url: null
+  project: symb_invariant_consensus
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:19:39.988131+00:00'
+  tags:
+  - audit
+  - data-integrity
+  - submission

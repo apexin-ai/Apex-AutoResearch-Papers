@@ -1,0 +1,755 @@
+{
+  "pid": "folio_98",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals)",
+          "z3_formula": "loved_by_tourists_animals == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(animals) -> max_favorite(animals)",
+          "z3_formula": "Implies(loved_by_tourists_animals, max_favorite_animals)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_australia(animals)",
+          "z3_formula": "all_australia_animals == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_quokkas(animals)",
+          "z3_formula": "all_quokkas_animals == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "loved_by_tourists(quokkas)",
+          "z3_formula": "loved_by_tourists_quokkas == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> max_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_quokkas, max_favorite_quokkas)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "all_max_favorite(animals)",
+          "z3_formula": "all_max_favorite_animals == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "max_favorite(quokkas)",
+          "z3_formula": "max_favorite_quokkas == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "all_max_favorite_fluffy(animals)",
+          "z3_formula": "all_max_favorite_fluffy_animals == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "fluffy(quokkas)",
+          "z3_formula": "fluffy_quokkas == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy(koala) -> not_quokka(koala)",
+          "z3_formula": "Implies(fluffy_koala, not_quokka_koala)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not_quokka(koala)",
+          "z3_formula": "not_quokka_koala == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "quokka(koala) -> (sleep(koala) | fluffy(koala))",
+          "z3_formula": "Implies(quokka_koala, Or(sleep_koala, fluffy_koala))",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals)",
+          "z3_formula": "loved_by_tourists_animals == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> max_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals, max_favorite_animals)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animals_from_australia(quokka)",
+          "z3_formula": "animals_from_australia_quokka == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "loved_by_tourists(quokka)",
+          "z3_formula": "loved_by_tourists_quokka == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "max_favorite(quokka)",
+          "z3_formula": "max_favorite_quokka == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "max_favorite_fluffy(X)",
+          "z3_formula": "max_favorite_fluffy == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "max_favorite_sleep(X)",
+          "z3_formula": "max_favorite_sleep == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(fluffy_koala, not_quokka_koala)",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals_from_australia)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_animals_from_australia_are_loved_by_tourists",
+          "z3_formula": "all_animals_from_australia_are_loved_by_tourists == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_quokkas_are_animals_from_australia",
+          "z3_formula": "all_quokkas_are_animals_from_australia == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> max_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals_from_australia, max_favorite_animals_from_australia)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, very_fluffy_animals_from_australia)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> loves_to_sleep(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, loves_to_sleep_animals_from_australia)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(very_fluffy_animals_from_australia, not_quokka_animals_from_australia)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "all_quokkas_are_loved_by_tourists",
+          "z3_formula": "all_quokkas_are_loved_by_tourists == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "all_quokkas_are_max_favorite",
+          "z3_formula": "all_quokkas_are_max_favorite == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "if_quokka_then_loves_to_sleep_or_very_fluffy",
+          "z3_formula": "Or(loves_to_sleep_quokka, very_fluffy_quokka)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "if_quokka_then_very_fluffy",
+          "z3_formula": "very_fluffy_quokka == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "if_quokka_then_not_very_fluffy",
+          "z3_formula": "Not(very_fluffy_quokka) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "if_quokka_then_loves_to_sleep_or_very_fluffy_is_false",
+          "z3_formula": "Not(Or(loves_to_sleep_quokka, very_fluffy_quokka)) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "if_quokka_then_loves_to_sleep_or_very_fluffy_is_uncertain",
+          "z3_formula": "If(If(If(loves_to_sleep_quokka, True, False), True, False), If(If(very_fluffy_quokka, True, False), True, False), If(If(very_fluffy_quokka, True, False), True, False)) == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals)",
+          "z3_formula": "loved_by_tourists_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "from_australia(quokka)",
+          "z3_formula": "from_australia_quokka == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(animals) -> max_favorite(animals)",
+          "z3_formula": "Implies(loved_by_tourists_animals, max_favorite_animals)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "from_australia(X) -> loved_by_tourists(X)",
+          "z3_formula": "Implies(from_australia_quokka, loved_by_tourists_quokka)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "loved_by_tourists(quokka)",
+          "z3_formula": "loved_by_tourists_quokka == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "max_favorite(quokka)",
+          "z3_formula": "max_favorite_quokka == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "max_favorite(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(max_favorite_quokka, very_fluffy_quokka)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "max_favorite(X) -> loves_to_sleep(X)",
+          "z3_formula": "Implies(max_favorite_quokka, loves_to_sleep_quokka)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "very_fluffy(quokka)",
+          "z3_formula": "very_fluffy_quokka == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "loves_to_sleep(quokka)",
+          "z3_formula": "loves_to_sleep_quokka == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(X) -> not quokka(X)",
+          "z3_formula": "Implies(very_fluffy_koala, not_quokka_koala)",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals_from_australia)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_animals_from_australia(animals_from_australia)",
+          "z3_formula": "all_animals_from_australia_animals_from_australia == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_quokka(animals_from_australia)",
+          "z3_formula": "all_quokka_animals_from_australia == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> max_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals_from_australia, max_favorite_animals_from_australia)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, very_fluffy_animals_from_australia)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> loves_to_sleep(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, loves_to_sleep_animals_from_australia)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(very_fluffy_animals_from_australia, not_quokka_animals_from_australia)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "loves_to_sleep_or_very_fluffy(animals_from_australia)",
+          "z3_formula": "Or(loves_to_sleep_animals_from_australia, very_fluffy_animals_from_australia)",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals)",
+          "z3_formula": "loved_by_tourists_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animals_from_australia(quokkas)",
+          "z3_formula": "animals_from_australia_quokkas == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals_from_australia)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(animals) -> max_favorite_animals(animals)",
+          "z3_formula": "Implies(loved_by_tourists_animals, max_favorite_animals_animals)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite_animals(animals) -> very_fluffy(animals)",
+          "z3_formula": "Implies(max_favorite_animals_animals, very_fluffy_animals)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite_animals(animals) -> loves_to_sleep(animals)",
+          "z3_formula": "Implies(max_favorite_animals_animals, loves_to_sleep_animals)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(animals) -> not quokkas(animals)",
+          "z3_formula": "Implies(very_fluffy_animals, not_quokkas_animals)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quokkas(animals)",
+          "z3_formula": "quokkas_animals == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "max_favorite_animals(quokkas)",
+          "z3_formula": "max_favorite_animals_quokkas == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "very_fluffy(quokkas)",
+          "z3_formula": "very_fluffy_quokkas == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "loves_to_sleep(quokkas)",
+          "z3_formula": "loves_to_sleep_quokkas == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "quokkas(animals) -> very_fluffy(animals) | loves_to_sleep(animals)",
+          "z3_formula": "Implies(quokkas_animals, Or(very_fluffy_animals, loves_to_sleep_animals))",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals_from_australia)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_quokka_are_animals_from_australia",
+          "z3_formula": "all_quokka_are_animals_from_australia == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_max_favorite_animals_love_to_sleep",
+          "z3_formula": "all_max_favorite_animals_love_to_sleep == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "all_max_favorite_animals_are_very_fluffy",
+          "z3_formula": "all_max_favorite_animals_are_very_fluffy == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> max_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals_from_australia, max_favorite_animals_from_australia)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> loves_to_sleep(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, loves_to_sleep_animals_from_australia)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, very_fluffy_animals_from_australia)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(very_fluffy_animals_from_australia, not_quokka_animals_from_australia)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "loves_to_sleep_or_very_fluffy",
+          "z3_formula": "Or(loves_to_sleep_animals_from_australia, very_fluffy_animals_from_australia)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": []
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals_from_australia)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_animals_from_australia(animals_from_australia)",
+          "z3_formula": "all_animals_from_australia_animals_from_australia == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_quokkas(animals_from_australia)",
+          "z3_formula": "all_quokkas_animals_from_australia == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> maxs_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals_from_australia, maxs_favorite_animals_from_australia)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "maxs_favorite(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(maxs_favorite_animals_from_australia, very_fluffy_animals_from_australia)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "maxs_favorite(X) -> loves_to_sleep(X)",
+          "z3_formula": "Implies(maxs_favorite_animals_from_australia, loves_to_sleep_animals_from_australia)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "koala(X) & very_fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(And(koala_X, very_fluffy_X), Not(quokka_X))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "loved_by_tourists(quokkas)",
+          "z3_formula": "loved_by_tourists_quokkas == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "maxs_favorite(quokkas)",
+          "z3_formula": "maxs_favorite_quokkas == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "koala(X) & quokka(X) -> loves_to_sleep(X) | very_fluffy(X)",
+          "z3_formula": "Implies(And(koala_X, quokka_X), Or(loves_to_sleep_X, very_fluffy_X))",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals_from_australia)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_animals_from_australia(animals_from_australia)",
+          "z3_formula": "all_animals_from_australia_animals_from_australia == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_quokkas(animals_from_australia)",
+          "z3_formula": "all_quokkas_animals_from_australia == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> max_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals_from_australia, max_favorite_animals_from_australia)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, very_fluffy_animals_from_australia)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> loves_to_sleep(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, loves_to_sleep_animals_from_australia)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(very_fluffy_animals_from_australia, not_quokka_animals_from_australia)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "all_quokkas_love_to_sleep",
+          "z3_formula": "loves_to_sleep_animals_from_australia == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals)",
+          "z3_formula": "loved_by_tourists_animals == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "animal_from_australia(quokka)",
+          "z3_formula": "animal_from_australia_quokka == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(animals) -> max_favorite_animals(animals)",
+          "z3_formula": "Implies(loved_by_tourists_animals, max_favorite_animals_animals)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "animal_from_australia(X) -> loved_by_tourists(X)",
+          "z3_formula": "Implies(animal_from_australia_quokka, loved_by_tourists_quokka)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite_animals(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(max_favorite_animals_animals, very_fluffy_animals)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite_animals(X) -> loves_to_sleep(X)",
+          "z3_formula": "Implies(max_favorite_animals_animals, loves_to_sleep_animals)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(X) -> not quokka(X)",
+          "z3_formula": "Implies(very_fluffy_animals, not_quokka_animals)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "very_fluffy(quokka)",
+          "z3_formula": "very_fluffy_quokka == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "loves_to_sleep(quokka)",
+          "z3_formula": "loves_to_sleep_quokka == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quokka(X) -> very_fluffy(X) | loves_to_sleep(X)",
+          "z3_formula": "Or(very_fluffy_quokka, loves_to_sleep_quokka)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "loved_by_tourists(animals_from_australia)",
+          "z3_formula": "loved_by_tourists_animals_from_australia == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all_animals_from_australia(animals_from_australia)",
+          "z3_formula": "all_animals_from_australia_animals_from_australia == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "all_quokka(animals_from_australia)",
+          "z3_formula": "all_quokka_animals_from_australia == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "loved_by_tourists(X) -> max_favorite(X)",
+          "z3_formula": "Implies(loved_by_tourists_animals_from_australia, max_favorite_animals_from_australia)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> very_fluffy(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, very_fluffy_animals_from_australia)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "max_favorite(X) -> loves_to_sleep(X)",
+          "z3_formula": "Implies(max_favorite_animals_from_australia, loves_to_sleep_animals_from_australia)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "very_fluffy(X) -> not_quokka(X)",
+          "z3_formula": "Implies(very_fluffy_koala, not_quokka_koala)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "max_favorite(quokka)",
+          "z3_formula": "max_favorite_quokka == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "very_fluffy(quokka)",
+          "z3_formula": "very_fluffy_quokka == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not_quokka(koala) | loves_to_sleep(koala)",
+          "z3_formula": "Or(Not(quokka_koala), loves_to_sleep_koala)",
+          "source_step": 11
+        }
+      ]
+    }
+  ]
+}

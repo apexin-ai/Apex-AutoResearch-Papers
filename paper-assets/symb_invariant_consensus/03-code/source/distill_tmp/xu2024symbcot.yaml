@@ -1,0 +1,92 @@
+paper_key: "xu2024symbcot"
+title: "Faithful Logical Reasoning via Symbolic Chain-of-Thought"
+venue: "ACL 2024"
+full_text_available: true
+
+research:
+  baselines: ["Naive Prompting", "CoT", "CoT-SC", "ToT", "CR (Cumulative Reasoning)", "DetermLR", "Logic-LM"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "execution_rate", direction: "higher_better"}
+    - {name: "faithfulness_rate", direction: "higher_better"}
+  datasets:
+    - {name: "PrOntoQA", size: "500"}
+    - {name: "ProofWriter", size: "600"}
+    - {name: "FOLIO", size: "204"}
+    - {name: "LogicalDeduction", size: "300"}
+    - {name: "AR-LSAT", size: "230"}
+  ablation_dimensions: ["module_contribution (Translator/Planner/Solver/Verifier)", "symbolic_structure (FOL vs CO)", "model_type (GPT-3.5 vs GPT-4)", "reasoning_depth"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A", model: "GPT-3.5-turbo-0613, GPT-4-0613"}
+  method_family: "fully LLM-based symbolic CoT (no external solver)"
+
+positioning:
+  core_claim: "A fully LLM-based framework that integrates symbolic expressions and logic rules into CoT achieves better robustness, faithfulness, and accuracy than external-solver approaches, while scaling better with stronger models"
+  key_results: "GPT-4 avg 88.47% (+7.88% over Logic-LM); 100% execution rate (vs Logic-LM ~80%); unfaithful reasoning reduced from 6% to 0% with Verifier; +24.3% improvement from GPT-3.5→GPT-4 (vs Logic-LM +19.9%)"
+  limitations:
+    - "Only evaluated FOL and Constraint Optimization symbolic structures"
+    - "High API cost due to extended symbolic reasoning chains"
+    - "Does not enhance LLM's planning capability — relies on LLM's inherent planning"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Achieving human-like logical reasoning capabilities is crucial for realizing AGI"
+  tension: "Existing neurosymbolic systems (LINC, Logic-LM) use LLMs merely as translators, not enhancing LLM's own reasoning; over-reliance on external solvers causes inflexibility, information loss, and unexplainability"
+  key_insight: "Section 3 — combining symbolic expressions with natural language in CoT leverages mutual strengths: 'freely expressed implicit intents and contextual information in natural language and rigorous expression in symbolic forms'"
+  argument_chain: "CoT unfaithful for logic → external solvers lose information → hybrid symbolic+NL CoT → plan-then-solve with verification → 5-dataset validation + faithfulness analysis"
+  contribution_framing: "3 contributions: (1) fully LLM-based framework without external tools, (2) integration of symbolic+NL expressions, (3) plan-then-solve + verification for faithfulness"
+  intro_structure: "6 paragraphs: (1) AGI motivation, (2) CoT background, (3) CoT limitations for logic, (4) SymbCoT design with 3 aspects, (5) experimental results, (6) contribution list"
+  notable_technique: "Positioning against existing neurosymbolic systems by reframing external solvers as a liability (information loss, inflexibility) rather than a strength"
+
+figures:
+  figure_count: 8
+  figure1:
+    type: "problem_illustration"
+    description: "Side-by-side comparison of CoT (overgeneralizes) vs SymbCoT (correctly reasons with symbolic premises and verification) on a logical reasoning problem"
+    narrative_role: "Demonstrates CoT's unfaithfulness and SymbCoT's faithfulness on a concrete example"
+    design_elements: ["side-by-side layout", "red X / green check marks", "highlighted error text", "symbolic formula display"]
+    visual_style: "Two-column with color-coded correctness annotations, showing both the reasoning process and final answer"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Accuracy across reasoning depths (0-5) on ProofWriter"
+      how_gain_highlighted: "SymbCoT maintains high accuracy while baselines degrade; red dual-head arrow shows improvement gap"
+      design_note: "Critical depth analysis showing advantage grows with complexity — same pattern as LINC and Logic-LM"
+    - figure_id: "Figure 5"
+      viz_type: "bar_chart"
+      what_compared: "Execution rate across 5 datasets: Logic-LM vs SymbCoT"
+      how_gain_highlighted: "SymbCoT achieves 100% across all datasets vs Logic-LM's variable rates"
+      design_note: "Strongest evidence against external-solver approaches"
+    - figure_id: "Figure 8"
+      viz_type: "bar_chart"
+      what_compared: "GPT-3.5 vs GPT-4 improvement for each method"
+      how_gain_highlighted: "SymbCoT shows largest improvement (+24.3%), demonstrating better scaling with model capability"
+      design_note: "Model scaling argument — fully LLM-based approach benefits more from stronger models"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["module combinations: full vs w/o Planner&Solver&Verifier vs w/o Translator&Planner&Solver&Verifier"]
+      design_note: "6-panel ablation across datasets, color-coded by module configuration"
+  figure_narrative_role: "Fig1(motivation) → Fig2(method overview) → Fig3(ablation) → Fig4(depth) → Fig5(execution rate) → Fig6(error analysis) → Fig7(faithfulness) → Fig8(model scaling)"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets (PrOntoQA, ProofWriter, FOLIO) + Avg"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best + underline_second"
+    statistical_reporting: "delta improvement in brackets below best"
+    num_baselines: 7
+    design_note: "Split by GPT-3.5 and GPT-4 sections; includes many baselines (7) for comprehensive comparison"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["symbolic representation: CO on LogicalDeduction and AR-LSAT"]
+      variation_style: "full_numbers"
+      design_note: "Demonstrates generalizability across symbolic structures"
+  supplementary_tables:
+    in_appendix: true
+    content: "Symbolic structure details, dataset descriptions, baseline configurations, full prompt templates"
+    reason: "Detailed prompt engineering and configuration too long for main text"

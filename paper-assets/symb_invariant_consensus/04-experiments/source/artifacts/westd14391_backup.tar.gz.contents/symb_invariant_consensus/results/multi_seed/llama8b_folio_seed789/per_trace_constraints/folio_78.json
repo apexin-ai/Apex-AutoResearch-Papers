@@ -1,0 +1,792 @@
+{
+  "pid": "folio_78",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "works_in_student_jobs_on_campus(mary)",
+          "z3_formula": "works_in_student_jobs_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs_to_earn_money_to_help_pay_for_college_tuition(mary)",
+          "z3_formula": "needs_to_earn_money_to_help_pay_for_college_tuition_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "orders_takeout_frequently_in_college(mary)",
+          "z3_formula": "orders_takeout_frequently_in_college_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "enjoys_dining_hall_meals_and_recipes(mary)",
+          "z3_formula": "enjoys_dining_hall_meals_and_recipes_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "is_picky_eater(mary)",
+          "z3_formula": "is_picky_eater_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) & needs_to_earn_money_to_help_pay_for_college_tuition(X) -> not is_picky_eater(X) & not needs_to_earn_money_to_help_pay_for_college_tuition(X)",
+          "z3_formula": "Implies(And(works_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary), And(Not(is_picky_eater_mary), Not(needs_to_earn_money_to_help_pay_for_college_tuition_mary)))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) -> works_in_student_jobs_on_campus(X)",
+          "z3_formula": "Implies(orders_takeout_frequently_in_college_mary, works_in_student_jobs_on_campus_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) | enjoys_dining_hall_meals_and_recipes(X)",
+          "z3_formula": "Or(orders_takeout_frequently_in_college_mary, enjoys_dining_hall_meals_and_recipes_mary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> not is_picky_eater(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, Not(is_picky_eater_mary))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "is_picky_eater(X) -> not enjoys_dining_hall_meals_and_recipes(X)",
+          "z3_formula": "Implies(is_picky_eater_mary, Not(enjoys_dining_hall_meals_and_recipes_mary))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "is_picky_eater(X) -> orders_takeout_frequently_in_college(X)",
+          "z3_formula": "Implies(is_picky_eater_mary, orders_takeout_frequently_in_college_mary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(X)",
+          "z3_formula": "Implies(orders_takeout_frequently_in_college_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "is_picky_eater(mary) | (is_picky_eater(mary) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(mary))",
+          "z3_formula": "Or(is_picky_eater_mary, Implies(is_picky_eater_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary))",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "works_in_student_jobs_on_campus(mary)",
+          "z3_formula": "works_in_student_jobs_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs_to_earn_money_to_help_pay_for_college_tuition(mary)",
+          "z3_formula": "needs_to_earn_money_to_help_pay_for_college_tuition_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) -> needs_to_earn_money_to_help_pay_for_college_tuition(X)",
+          "z3_formula": "Implies(work_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) -> works_in_student_jobs_on_campus(X)",
+          "z3_formula": "Implies(orders_takeout_frequently_in_college_mary, works_in_student_jobs_on_campus_mary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) | enjoys_dining_hall_meals_and_recipes(X)",
+          "z3_formula": "Or(orders_takeout_frequently_in_college_mary, enjoys_dining_hall_meals_and_recipes_mary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> not(picky_eater(X))",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, not(picky_eater_mary))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) & needs_to_earn_money_to_help_pay_for_college_tuition(X) -> not(picky_eater(X)) & not(needs_to_earn_money_to_help_pay_for_college_tuition(X))",
+          "z3_formula": "Implies(And(work_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary), And(not(picky_eater_mary), not(needs_to_earn_money_to_help_pay_for_college_tuition_mary)))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(picky_eater(mary)) | spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(mary)",
+          "z3_formula": "Or(not(picky_eater_mary), spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(orders_takeout_frequently_in_college(mary))",
+          "z3_formula": "Not(orders_takeout_frequently_in_college_mary)",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "works_in_student_jobs_on_campus(mary)",
+          "z3_formula": "works_in_student_jobs_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) -> needs_to_earn_money(X)",
+          "z3_formula": "Implies(work_in_student_jobs_on_campus_mary, needs_to_earn_money_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) -> works_in_student_jobs_on_campus(X)",
+          "z3_formula": "Implies(orders_takeout_frequently_in_college_mary, works_in_student_jobs_on_campus_mary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) | enjoys_dining_hall_meals_and_recipes(X)",
+          "z3_formula": "Or(orders_takeout_frequently_in_college_mary, enjoys_dining_hall_meals_and_recipes_mary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> not_picky(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, not_picky_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> spends_time_eating_and_catching_up_with_friends(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, spends_time_eating_and_catching_up_with_friends_mary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) & needs_to_earn_money(X) -> not_picky(X) & not_needs_to_earn_money(X)",
+          "z3_formula": "Implies(And(work_in_student_jobs_on_campus_mary, needs_to_earn_money_mary), And(not_picky_mary, not_needs_to_earn_money_mary))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) -> needs_to_earn_money_to_help_pay_for_college_tuition(X)",
+          "z3_formula": "Implies(works_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) -> works_in_student_jobs_on_campus(X)",
+          "z3_formula": "Implies(orders_takeout_frequently_in_college_mary, works_in_student_jobs_on_campus_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) | enjoys_dining_hall_meals_and_recipes(X)",
+          "z3_formula": "Or(orders_takeout_frequently_in_college_mary, enjoys_dining_hall_meals_and_recipes_mary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> not(picky_eater(X))",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, not(picky_eater_mary))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) & needs_to_earn_money_to_help_pay_for_college_tuition(X) -> not(picky_eater(X)) & not(needs_to_earn_money_to_help_pay_for_college_tuition(X))",
+          "z3_formula": "Implies(And(works_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary), And(not(picky_eater_mary), not(needs_to_earn_money_to_help_pay_for_college_tuition_mary)))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(picky_eater_mary) | (picky_eater_mary & spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "z3_formula": "Or(not(picky_eater_mary), And(picky_eater_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "M",
+          "z3_formula": "M == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "M -> N",
+          "z3_formula": "Implies(M, N)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "O",
+          "z3_formula": "O == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "O -> M",
+          "z3_formula": "Implies(O, M)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "O | E",
+          "z3_formula": "Or(O, E) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "E -> ~P",
+          "z3_formula": "Implies(E, Not(P))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "E -> C",
+          "z3_formula": "Implies(E, C)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "(M & N) -> (~P & ~N)",
+          "z3_formula": "Implies(And(M, N), And(Not(P), Not(N)))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "~P | (P -> E)",
+          "z3_formula": "Or(Not(P), Implies(P, E)) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "works_in_student_jobs_on_campus(mary)",
+          "z3_formula": "works_in_student_jobs_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs_to_earn_money_to_help_pay_for_college_tuition(mary)",
+          "z3_formula": "needs_to_earn_money_to_help_pay_for_college_tuition_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) & needs_to_earn_money_to_help_pay_for_college_tuition(X) -> not(picky_eater(X)) & not(needs_to_earn_money_to_help_pay_for_college_tuition(X))",
+          "z3_formula": "Implies(And(works_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary), And(Not(picky_eater_mary), Not(needs_to_earn_money_to_help_pay_for_college_tuition_mary)))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) -> works_in_student_jobs_on_campus(X)",
+          "z3_formula": "Implies(orders_takeout_frequently_in_college_mary, works_in_student_jobs_on_campus_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) -> needs_to_earn_money_to_help_pay_for_college_tuition(X)",
+          "z3_formula": "Implies(works_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) | enjoys_dining_hall_meals_and_recipes(X)",
+          "z3_formula": "Or(orders_takeout_frequently_in_college_mary, enjoys_dining_hall_meals_and_recipes_mary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> not(picky_eater(X))",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, Not(picky_eater_mary))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "picky_eater(mary) | (picky_eater(mary) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(mary))",
+          "z3_formula": "Or(picky_eater_mary, Implies(picky_eater_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "work_in_student_jobs_on_campus(mary)",
+          "z3_formula": "work_in_student_jobs_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "work_in_student_jobs_on_campus(X) -> needs_to_earn_money_to_help_pay_for_college_tuition(X)",
+          "z3_formula": "Implies(work_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "order_takeout_frequently_in_college(mary)",
+          "z3_formula": "order_takeout_frequently_in_college_mary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout_frequently_in_college(X) -> work_in_student_jobs_on_campus(X)",
+          "z3_formula": "Implies(order_takeout_frequently_in_college_mary, work_in_student_jobs_on_campus_mary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "work_in_student_jobs_on_campus(X) & needs_to_earn_money_to_help_pay_for_college_tuition(X) -> not(picky_eater(X)) & not(needs_to_earn_money_to_help_pay_for_college_tuition(X))",
+          "z3_formula": "Implies(And(work_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary), And(Not(picky_eater_mary), Not(needs_to_earn_money_to_help_pay_for_college_tuition_mary)))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "order_takeout_frequently_in_college(mary) | enjoys_dining_hall_meals_and_recipes(mary)",
+          "z3_formula": "Or(order_takeout_frequently_in_college_mary, enjoys_dining_hall_meals_and_recipes_mary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout_frequently_in_college(X) -> work_in_student_jobs_on_campus(X)",
+          "z3_formula": "Implies(order_takeout_frequently_in_college_mary, work_in_student_jobs_on_campus_mary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> not(picky_eater(X))",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, Not(picky_eater_mary))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> spends_a_lot_of_time_eating_and-catching_up_with_friends_in_campus_dining_halls(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, spends_a_lot_of_time_eating_and-catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(picky_eater(mary)) | (picky_eater(mary) -> spends_a_lot_of_time_eating_and-catching_up_with_friends_in_campus_dining_halls(mary))",
+          "z3_formula": "Or(Not(picky_eater_mary), Implies(picky_eater_mary, spends_a_lot_of_time_eating_and-catching_up_with_friends_in_campus_dining_halls_mary))",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "works_in_student_jobs_on_campus(mary)",
+          "z3_formula": "works_in_student_jobs_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) -> needs_to_earn_money_to_help_pay_for_college_tuition(X)",
+          "z3_formula": "Implies(work_in_student_jobs_on_campus_mary, needs_to_earn_money_to_help_pay_for_college_tuition_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "orders_takeout_frequently_in_college(mary)",
+          "z3_formula": "orders_takeout_frequently_in_college_mary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) -> works_in_student_jobs_on_campus(X)",
+          "z3_formula": "Implies(orders_takeout_frequently_in_college_mary, works_in_student_jobs_on_campus_mary)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "orders_takeout_frequently_in_college(mary) | enjoys_dining_hall_meals_and_recipes(mary)",
+          "z3_formula": "Or(orders_takeout_frequently_in_college_mary, enjoys_dining_hall_meals_and_recipes_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> not_picky_eater(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, not_picky_eater_mary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not_picky_eater(mary) | (not_picky_eater(mary) -> spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(mary))",
+          "z3_formula": "Or(not_picky_eater_mary, Implies(not_picky_eater_mary, spends_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary))",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "student_job_on_campus(mary)",
+          "z3_formula": "student_job_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "student_job_on_campus(X) -> needs_money(X)",
+          "z3_formula": "Implies(student_job_on_campus_mary, needs_money_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "order_takeout_frequently(mary)",
+          "z3_formula": "order_takeout_frequently_mary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout_frequently(X) -> student_job_on_campus(X)",
+          "z3_formula": "Implies(order_takeout_frequently_mary, student_job_on_campus_mary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout_frequently(X) -> needs_money(X)",
+          "z3_formula": "Implies(order_takeout_frequently_mary, needs_money_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "enjoy_dining_hall_meals(mary)",
+          "z3_formula": "enjoy_dining_hall_meals_mary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "enjoy_dining_hall_meals(X) -> not_picky(X)",
+          "z3_formula": "Implies(enjoy_dining_hall_meals_mary, not_picky_mary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "enjoy_dining_hall_meals(X) -> spend_time_eating(X)",
+          "z3_formula": "Implies(enjoy_dining_hall_meals_mary, spend_time_eating_mary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout_frequently(X) -> not_enjoy_dining_hall_meals(X)",
+          "z3_formula": "Implies(order_takeout_frequently_mary, Not(enjoy_dining_hall_meals_mary))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "student_job_on_campus(X) & needs_money(X) -> not_picky(X) & not_needs_money(X)",
+          "z3_formula": "Implies(And(student_job_on_campus_mary, needs_money_mary), And(Not(not_picky_mary), Not(needs_money_mary)))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not_picky_mary == True | (picky_mary & spend_time_eating_mary)",
+          "z3_formula": "Or(Not(not_picky_mary), And(picky_mary, spend_time_eating_mary))",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "student_job_on_campus(mary)",
+          "z3_formula": "student_job_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "student_job_on_campus(X) -> needs_money(X)",
+          "z3_formula": "Implies(student_job_on_campus_mary, needs_money_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "student_job_on_campus(X) & needs_money(X) -> not(picky(X)) & not(needs_money(X))",
+          "z3_formula": "Implies(And(student_job_on_campus_mary, needs_money_mary), And(not(picky_mary), not(needs_money_mary)))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "order_takeout_frequently_in_college(mary)",
+          "z3_formula": "order_takeout_frequently_in_college_mary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout_frequently_in_college(X) -> student_job_on_campus(X)",
+          "z3_formula": "Implies(order_takeout_frequently_in_college_mary, student_job_on_campus_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout_frequently_in_college(X) -> student_job_on_campus(X)",
+          "z3_formula": "Implies(order_takeout_frequently_in_college_mary, student_job_on_campus_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout_frequently_in_college(X) -> student_job_on_campus(X)",
+          "z3_formula": "Implies(order_takeout_frequently_in_college_mary, student_job_on_campus_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "enjoy_dining_hall_meals_and_recipes(mary)",
+          "z3_formula": "enjoy_dining_hall_meals_and_recipes_mary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "enjoy_dining_hall_meals_and_recipes(X) -> not(picky(X))",
+          "z3_formula": "Implies(enjoy_dining_hall_meals_and_recipes_mary, not(picky_mary))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "enjoy_dining_hall_meals_and_recipes(X) -> spends_time_eating(X)",
+          "z3_formula": "Implies(enjoy_dining_hall_meals_and_recipes_mary, spends_time_eating_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(picky(mary)) | (picky(mary) -> spends_time_eating(mary))",
+          "z3_formula": "Or(not(picky_mary), Implies(picky_mary, spends_time_eating_mary))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "work_in_student_jobs_on_campus(mary)",
+          "z3_formula": "work_in_student_jobs_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "need_to_earn_money_to_help_pay_for_college_tuition(mary)",
+          "z3_formula": "need_to_earn_money_to_help_pay_for_college_tuition_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "order_takeout_frequently_in_college(mary)",
+          "z3_formula": "order_takeout_frequently_in_college_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "enjoy_dining_hall_meals_and_recipes(mary)",
+          "z3_formula": "enjoy_dining_hall_meals_and_recipes_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not_picky_eater(mary)",
+          "z3_formula": "not_picky_eater_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "spend_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(mary)",
+          "z3_formula": "spend_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "work_in_student_jobs_on_campus(X) -> need_to_earn_money_to_help_pay_for_college_tuition(X)",
+          "z3_formula": "Implies(work_in_student_jobs_on_campus_mary, need_to_earn_money_to_help_pay_for_college_tuition_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout_frequently_in_college(X) -> work_in_student_jobs_on_campus(X)",
+          "z3_formula": "Implies(order_takeout_frequently_in_college_mary, work_in_student_jobs_on_campus_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "order_takeout_frequently_in_college(X) | enjoy_dining_hall_meals_and_recipes(X)",
+          "z3_formula": "Or(order_takeout_frequently_in_college_mary, enjoy_dining_hall_meals_and_recipes_mary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "enjoy_dining_hall_meals_and_recipes(X) -> not_picky_eater(X)",
+          "z3_formula": "Implies(enjoy_dining_hall_meals_and_recipes_mary, not_picky_eater_mary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "enjoy_dining_hall_meals_and_recipes(X) -> spend_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(X)",
+          "z3_formula": "Implies(enjoy_dining_hall_meals_and_recipes_mary, spend_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "work_in_student_jobs_on_campus(X) & need_to_earn_money_to_help_pay_for_college_tuition(X) -> not_picky_eater(X) & not need_to_earn_money_to_help_pay_for_college_tuition(X)",
+          "z3_formula": "Implies(And(work_in_student_jobs_on_campus_mary, need_to_earn_money_to_help_pay_for_college_tuition_mary), And(not_picky_eater_mary, not need_to_earn_money_to_help_pay_for_college_tuition_mary))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not_picky_eater(mary) | (picky_eater(mary) -> spend_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls(mary))",
+          "z3_formula": "Or(not_picky_eater_mary, Implies(picky_eater_mary, spend_a_lot_of_time_eating_and_catching_up_with_friends_in_campus_dining_halls_mary))",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "works_in_student_jobs_on_campus(mary)",
+          "z3_formula": "works_in_student_jobs_on_campus_mary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) -> needs_to_earn_money(X)",
+          "z3_formula": "Implies(work_in_student_jobs_on_campus_mary, needs_to_earn_money_mary)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "orders_takeout_frequently_in_college(mary)",
+          "z3_formula": "orders_takeout_frequently_in_college_mary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "orders_takeout_frequently_in_college(X) -> works_in_student_jobs_on_campus(X)",
+          "z3_formula": "Implies(orders_takeout_frequently_in_college_mary, works_in_student_jobs_on_campus_mary)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "enjoys_dining_hall_meals_and_recipes(mary)",
+          "z3_formula": "enjoys_dining_hall_meals_and_recipes_mary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> not(picky(X))",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, not(picky_mary))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "enjoys_dining_hall_meals_and_recipes(X) -> spends_a_lot_of_time_eating(X)",
+          "z3_formula": "Implies(enjoys_dining_hall_meals_and_recipes_mary, spends_a_lot_of_time_eating_mary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_student_jobs_on_campus(X) & needs_to_earn_money(X) -> not(picky(X))",
+          "z3_formula": "Implies(And(work_in_student_jobs_on_campus_mary, needs_to_earn_money_mary), not(picky_mary))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(picky(mary))",
+          "z3_formula": "not(picky_mary) == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "spends_a_lot_of_time_eating(mary)",
+          "z3_formula": "spends_a_lot_of_time_eating_mary == True",
+          "source_step": 10
+        }
+      ]
+    }
+  ]
+}

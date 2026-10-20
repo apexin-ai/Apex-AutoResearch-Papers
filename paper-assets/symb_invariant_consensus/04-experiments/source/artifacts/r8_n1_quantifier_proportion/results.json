@@ -1,0 +1,197 @@
+{
+  "conditions": [
+    {
+      "model": "Mistral-7B",
+      "domain": "FOLIO",
+      "name": "Mistral-7B × FOLIO",
+      "total_constraints": 14084,
+      "total_unique_expressions": 7677,
+      "n_problems": 204,
+      "categories": {
+        "quantified": {
+          "count": 429,
+          "pct": 0.0305,
+          "unique_expressions": 336,
+          "unique_pct": 0.0438
+        },
+        "grounded_fol": {
+          "count": 4680,
+          "pct": 0.3323,
+          "unique_expressions": 2718,
+          "unique_pct": 0.354
+        },
+        "ground_atom": {
+          "count": 7461,
+          "pct": 0.5298,
+          "unique_expressions": 3532,
+          "unique_pct": 0.4601
+        },
+        "propositional": {
+          "count": 1514,
+          "pct": 0.1075,
+          "unique_expressions": 1091,
+          "unique_pct": 0.1421
+        }
+      },
+      "examples": {
+        "quantified": [
+          "ForAll(X, gentleman(X) -> handsome(X))",
+          "ForAll(X, CEO(X) -> gentleman(X))",
+          "gre_cost(X) <= 300"
+        ],
+        "grounded_fol": [
+          "performs_in_school_talent_shows_often(X) -> attends_and_engaged_with_school_events(X) & student(X)",
+          "performs_in_school_talent_shows_often(X) | inactive_and_disinterested_member(X)",
+          "chaperones_high_school_dances(X) -> !student(X)"
+        ],
+        "ground_atom": [
+          "school_talent_show(bonnie)",
+          "Unknown(performs_in_school_talent_shows_often_bonnie)",
+          "performs_school_talent_shows(bonnie) -> attends_school_events(bonnie) & engaged_school_events(bonnie)"
+        ],
+        "propositional": [
+          "young_children_and_teenagers_who_wish_to_further_their_academic_careers_and_educational_opportunities -> student_attends_school_X",
+          "Bonnie -> (attends_school_events_and_engaged_Bonnie or not_attends_school_events_and_not_engaged_Bonnie)",
+          "Or(And(attends_bonnie, very_engaged_bonnie), Not(And(attends_bonnie, very_engaged_bonnie)))"
+        ]
+      }
+    },
+    {
+      "model": "Qwen2.5-14B",
+      "domain": "FOLIO",
+      "name": "Qwen2.5-14B × FOLIO",
+      "total_constraints": 5208,
+      "total_unique_expressions": 2162,
+      "n_problems": 154,
+      "categories": {
+        "quantified": {
+          "count": 40,
+          "pct": 0.0077,
+          "unique_expressions": 19,
+          "unique_pct": 0.0088
+        },
+        "grounded_fol": {
+          "count": 1976,
+          "pct": 0.3794,
+          "unique_expressions": 673,
+          "unique_pct": 0.3113
+        },
+        "ground_atom": {
+          "count": 1759,
+          "pct": 0.3377,
+          "unique_expressions": 731,
+          "unique_pct": 0.3381
+        },
+        "propositional": {
+          "count": 1433,
+          "pct": 0.2752,
+          "unique_expressions": 739,
+          "unique_pct": 0.3418
+        }
+      },
+      "examples": {
+        "quantified": [
+          "some_objects_of_worship_are_fir_trees",
+          "some_evergreens_are_objects_of_worship",
+          "some_evergreens_are_not_objects_of_worship"
+        ],
+        "grounded_fol": [
+          "perform_often(X) -> attend_engaged(X)",
+          "perform_often(X) | inactive_disinterested(X)",
+          "chaperone_dances(X) -> not_student(X)"
+        ],
+        "ground_atom": [
+          "Not(perform_often(bonnie))",
+          "(attend_engaged(bonnie) & student_attends_school(bonnie)) | (Not(attend_engaged(bonnie)) & Not(student_attends_school(bonnie)))",
+          "perform_often(bonnie)"
+        ],
+        "propositional": [
+          "P -> A",
+          "P ∨ I",
+          "C -> S'"
+        ]
+      }
+    },
+    {
+      "model": "Mistral-7B",
+      "domain": "ProofWriter",
+      "name": "Mistral-7B × ProofWriter",
+      "total_constraints": 53972,
+      "total_unique_expressions": 18146,
+      "n_problems": 599,
+      "categories": {
+        "quantified": {
+          "count": 286,
+          "pct": 0.0053,
+          "unique_expressions": 271,
+          "unique_pct": 0.0149
+        },
+        "grounded_fol": {
+          "count": 25705,
+          "pct": 0.4763,
+          "unique_expressions": 8984,
+          "unique_pct": 0.4951
+        },
+        "ground_atom": {
+          "count": 23806,
+          "pct": 0.4411,
+          "unique_expressions": 5868,
+          "unique_pct": 0.3234
+        },
+        "propositional": {
+          "count": 4175,
+          "pct": 0.0774,
+          "unique_expressions": 3023,
+          "unique_pct": 0.1666
+        }
+      },
+      "examples": {
+        "quantified": [
+          "furry(person)",
+          "Forall(x, (quiet(x) & furry(x)) -> green(x))",
+          "Forall(x, (big(x) & quiet(x)) -> Not(smart_x))"
+        ],
+        "grounded_fol": [
+          "smart(X) -> nice(X)",
+          "big(X) & quiet(X) -> Not(smart(X))",
+          "quiet(X) & smart(X) -> round(X)"
+        ],
+        "ground_atom": [
+          "green(furry_erin)",
+          "smart(erin)",
+          "big(green_erin)"
+        ],
+        "propositional": [
+          "Not(furry_erin)",
+          "Not(quiet_dave) V Or(smart_dave, Not(smart_dave))",
+          "Not(round_dave)"
+        ]
+      }
+    }
+  ],
+  "aggregate": {
+    "total": 73264,
+    "quantified": {
+      "count": 755,
+      "pct": 0.0103
+    },
+    "grounded_fol": {
+      "count": 32361,
+      "pct": 0.4417
+    },
+    "ground_atom": {
+      "count": 33026,
+      "pct": 0.4508
+    },
+    "propositional": {
+      "count": 7122,
+      "pct": 0.0972
+    },
+    "effectively_propositional": {
+      "count": 72509,
+      "pct": 0.9897
+    }
+  },
+  "summary_table": "| Condition | Total | Quantified | Grounded FOL | Ground Atom | Propositional |\n|-----------|-------|------------|--------------|-------------|---------------|\n| Mistral-7B × FOLIO | 14084 | 429 (3.0%) | 4680 (33.2%) | 7461 (53.0%) | 1514 (10.8%) |\n| Qwen2.5-14B × FOLIO | 5208 | 40 (0.8%) | 1976 (37.9%) | 1759 (33.8%) | 1433 (27.5%) |\n| Mistral-7B × ProofWriter | 53972 | 286 (0.5%) | 25705 (47.6%) | 23806 (44.1%) | 4175 (7.7%) |\n| **Aggregate** | **73264** | **755 (1.0%)** | **32361 (44.2%)** | **33026 (45.1%)** | **7122 (9.7%)** |",
+  "collapsed_table": "| Condition | Total | Truly Quantified (FOL) | Effectively Propositional |\n|-----------|-------|------------------------|---------------------------|\n| Mistral-7B × FOLIO | 14084 | 429 (3.0%) | 13655 (97.0%) |\n| Qwen2.5-14B × FOLIO | 5208 | 40 (0.8%) | 5168 (99.2%) |\n| Mistral-7B × ProofWriter | 53972 | 286 (0.5%) | 53686 (99.5%) |\n| **Aggregate** | **73264** | **755 (1.0%)** | **72509 (99.0%)** |"
+}

@@ -1,0 +1,893 @@
+{
+  "problem": {
+    "id": "folio_116",
+    "problem": "Given the following premises:\nIf a man is taller than another man, the taller one can block the other's shooting. Michael is a man who is taller than everyone else in his class. If person x is taller than person y, and person y is taller than person z, than x is taller than z Peter is a man who is taller than Michael. Michael can block any shooting from a person as long as the person does not jump when shooting. Michael cannot block Windy's shooting. Every shooter who can jump when shooting is a great shooter.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nWindy is a great shooter.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x \u2200y (IsMan(x) \u2227 IsMan(y) \u2227 Taller(x, y) \u2192 CanBlock(x, y))",
+      "\u2200x (IsMan(x) \u2227 SameClass(x, michael) \u2227 \u00acBe(x, michael) \u2192 Taller(michael, x))",
+      "\u2200x \u2200y \u2200z ((Taller(x, y) \u2227 Taller(y, z)) \u2192 Taller(x, z))",
+      "IsMan(peter) \u2227 Taller(peter, michael)",
+      "\u2200x (\u00acJumpWhenShooting(x) \u2192 CanBlock(michael, x))",
+      "\u00acCanBlock(michael, windy)",
+      "\u2200x (JumpWhenShooting(x) \u2192 GreatShooter(x))"
+    ],
+    "conclusion_fol": "GreatShooter(windy)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 63.0,
+      "Unknown": 97.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: If a man is taller than another man, the taller one can block the other's shooting. \nThis premise establishes a relationship between height and shooting-blocking ability.\n\nPremise 2: Michael is a man who is taller than everyone else in his class. \nThis premise states that Michael is the tallest person in his class.\n\nPremise 3: If person x is taller than person y, and person y is taller than person z, then x is taller than z. \nThis premise extends the relationship between height to a chain of people.\n\nPremise 4: Peter is a man who is taller than Michael. \nThis premise introduces a new person, Peter, who is taller than Michael.\n\nPremise 5: Michael can block any shooting from a person as long as the person does not jump when shooting. \nThis premise adds a condition to Michael's shooting-blocking ability, requiring the person to not jump.\n\nPremise 6: Michael cannot block Windy's shooting. \nThis premise directly relates to Windy's shooting ability and Michael's inability to block it.\n\nPremise 7: Every shooter who can jump when shooting is a great shooter. \nThis premise connects a person's jumping ability to their status as a great shooter.\n\nThe conclusion we need to evaluate is: Windy is a great shooter.\n\nTo determine whether this conclusion is true, false, or uncertain, we need to analyze the given premises and see if they lead to a definitive conclusion about Windy's status as a great shooter.\n\nFrom Premise 6, we know that Michael cannot block Windy's shooting. This does not directly indicate Windy's status as a great shooter, but it does imply that Windy's shooting is not blocked by Michael, which may be related to Windy's jumping ability.\n\nFrom Premise 7, we know that every shooter who can jump when shooting is a great shooter. This premise provides a clear condition for a person to be considered a great shooter, which is to be able to jump when shooting.\n\nHowever, Premise 6 does not explicitly state that Windy can jump when shooting, only that Michael cannot block Windy's shooting. To determine if Windy is a great shooter, we need to know if Windy can jump when shooting.\n\nSince the premises do not explicitly state that Windy can jump when shooting, we cannot conclude that Windy is a great shooter based solely on the given information.\n\nTherefore, the conclusion is uncertain, as we do not have enough information to determine whether Windy is a great shooter.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. Given: If a man is taller than another man, the taller one can block the other's shooting.\n\n   This premise implies that if person A is taller than person B, then person A can block person B's shooting.\n\n2. Given: Michael is a man who is taller than everyone else in his class.\n\n   This premise implies that Michael is taller than all the other men in his class.\n\n3. Given: If person x is taller than person y, and person y is taller than person z, then x is taller than z.\n\n   This premise implies transitive height relationships, meaning if person A is taller than person B, and person B is taller than person C, then person A is taller than person C.\n\n4. Given: Peter is a man who is taller than Michael.\n\n   Using the transitive height relationship premise (step 3), we can infer that Peter is taller than everyone else in Michael's class, including Michael himself.\n\n5. Given: Michael can block any shooting from a person as long as the person does not jump when shooting.\n\n   This premise implies that Michael's blocking ability is dependent on the shooter not jumping.\n\n6. Given: Michael cannot block Windy's shooting.\n\n   This premise directly states that Michael cannot block Windy's shooting, regardless of whether Windy jumps or not.\n\n7. Given: Every shooter who can jump when shooting is a great shooter.\n\n   This premise implies that if a person can jump when shooting, then they are a great shooter.\n\nNow, let's analyze the conclusion:\n\nConclusion: Windy is a great shooter.\n\nFrom premise 6, we know that Michael cannot block Windy's shooting. This implies that Windy can shoot without Michael blocking her. However, premise 5 states that Michael can block any shooting as long as the person does not jump. Since Windy can shoot without Michael blocking her, it does not necessarily mean that Windy can jump.\n\nHowever, there is an unstated premise that we can infer from the given information. If Windy can shoot without Michael blocking her, and Michael can only block non-jumping shooters, then it is likely that Windy can jump. This is because if Windy could not jump, then Michael could block her shooting based on premise 5.\n\nGiven this inference, we can apply premise 7: Every shooter who can jump when shooting is a great shooter. Since Windy can jump (based on the inference), Windy is a great shooter.\n\nTherefore, the conclusion \"Windy is a great shooter\" is true.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step.\n\n1. Michael is taller than everyone else in his class. \nThis means that Michael is taller than everyone in his class, including Peter (since Peter is taller than Michael is not possible).\n\n2. If person x is taller than person y, and person y is taller than person z, then x is taller than z.\nThis is a transitive property, which means that if we have a chain of taller people, we can apply this property to find the tallest one.\n\n3. Peter is a man who is taller than Michael.\nThis contradicts the first premise, which states that Michael is taller than everyone else in his class. Therefore, this statement cannot be true.\n\nHowever, there is an error in our analysis, and we must consider the fact that the statement 'Peter is a man who is taller than Michael' does not necessarily contradict the first premise. \n\nGiven the first premise, there is no information about Peter being in the same class as Michael. \n\nTherefore, we can safely say that Peter is indeed taller than Michael. \n\n4. Michael can block any shooting from a person as long as the person does not jump when shooting.\nThis implies that Michael can block the shooting of anyone who cannot jump.\n\n5. Michael cannot block Windy's shooting.\nThis implies that Windy can jump when shooting, or Windy is not blocked by Michael for some other reason.\n\n6. Every shooter who can jump when shooting is a great shooter.\nIf Windy can jump when shooting, then Windy is a great shooter.\n\nNow, let's analyze the conclusion.\n\nConclusion: Windy is a great shooter.\n\nFrom the premises, we know that Windy's shooting is not blocked by Michael. This could be because Windy can jump when shooting (in which case Windy is a great shooter) or because Windy is not blocked by Michael for some other reason.\n\nHowever, the premises do not provide any information about why Michael cannot block Windy's shooting. They only tell us that Michael cannot block Windy's shooting, which does not necessarily mean that Windy can jump.\n\nTherefore, we cannot conclude that Windy is a great shooter with certainty. The conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Windy is a great shooter, we need to analyze the given premises and see if they lead to the conclusion.\n\nPremise 1: If a man is taller than another man, the taller one can block the other's shooting. (This means that if person A is taller than person B, then person A can block person B's shooting.)\n\nPremise 2: Michael is a man who is taller than everyone else in his class. (This means that Michael can block any shooting from a person in his class, as long as the person does not jump.)\n\nPremise 3: If person x is taller than person y, and person y is taller than person z, then x is taller than z. (This is a transitive property, which means that if person A is taller than person B, and person B is taller than person C, then person A is taller than person C.)\n\nPremise 4: Peter is a man who is taller than Michael. (This means that Peter is taller than everyone in Michael's class, as Michael is the tallest in his class.)\n\nPremise 5: Michael can block any shooting from a person as long as the person does not jump when shooting. (This means that Michael can block any shooting from a person in his class, as long as the person does not jump.)\n\nPremise 6: Michael cannot block Windy's shooting. (This means that Windy is not in Michael's class, or Windy can jump when shooting.)\n\nPremise 7: Every shooter who can jump when shooting is a great shooter. (This is the key premise that connects jumping ability to being a great shooter.)\n\nFrom Premise 4, we know that Peter is taller than Michael. From Premise 2, we know that Michael is the tallest in his class. Therefore, Peter is taller than everyone in Michael's class, including Michael himself.\n\nSince Peter is taller than Michael, and Michael can block any shooting from a person as long as the person does not jump (Premise 5), it means that Peter can also block any shooting from a person in Michael's class, as long as the person does not jump. This implies that Peter is also in Michael's class.\n\nHowever, this contradicts the fact that Peter is taller than Michael (Premise 4). Therefore, Peter cannot be in Michael's class, which means that Windy is not in Michael's class.\n\nSince Windy is not in Michael's class (Premise 6), Michael cannot block Windy's shooting. This does not directly imply that Windy is a great shooter, as there is no information that Windy can jump.\n\nHowever, since Windy's shooting is not blocked by Michael, and there is no information that Windy is in Michael's class, it is uncertain whether Windy can jump or not.\n\nTherefore, the conclusion that Windy is a great shooter is uncertain, as we do not have enough information to determine whether Windy can jump or not.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given premises step by step.\n\n1.  \"If a man is taller than another man, the taller one can block the other's shooting.\" \n    This premise tells us that height determines the ability to block shooting.\n\n2.  \"Michael is a man who is taller than everyone else in his class.\"\n    This premise indicates that Michael is the tallest person in his class.\n\n3.  \"If person x is taller than person y, and person y is taller than person z, than x is taller than z.\"\n    This premise is a transitive property of height, which means that if person x is taller than person y, and person y is taller than person z, then person x is also taller than person z.\n\n4.  \"Peter is a man who is taller than Michael.\"\n    This premise indicates that Peter is taller than Michael, who is the tallest person in his class.\n\n5.  \"Michael can block any shooting from a person as long as the person does not jump when shooting.\"\n    This premise indicates that Michael's blocking ability is limited to non-jumping shooters.\n\n6.  \"Michael cannot block Windy's shooting.\"\n    This premise indicates that Windy is not blocked by Michael, possibly because Windy can jump when shooting.\n\n7.  \"Every shooter who can jump when shooting is a great shooter.\"\n    This premise tells us that the ability to jump while shooting is a characteristic of great shooters.\n\nNow, we need to determine whether Windy is a great shooter. Based on the premises, we know that:\n\n- Windy is not blocked by Michael, which means Windy can jump when shooting (premises 6 and 7).\n- Every shooter who can jump when shooting is a great shooter (premise 7).\n\nTherefore, since Windy can jump when shooting (premise 6) and can be classified as a great shooter (premise 7), the conclusion that Windy is a great shooter is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "Let's break down the given premises and analyze them step by step.\n\n1. If a man is taller than another man, the taller one can block the other's shooting. \nThis premise establishes a relationship between height and shooting blocking ability.\n\n2. Michael is a man who is taller than everyone else in his class.\nThis premise establishes Michael's height relative to the other men in his class.\n\n3. If person x is taller than person y, and person y is taller than person z, than x is taller than z\nThis premise is a transitive property that allows us to extend the comparison of height across multiple individuals.\n\n4. Peter is a man who is taller than Michael.\nThis premise establishes Peter's height relative to Michael.\n\n5. Michael can block any shooting from a person as long as the person does not jump when shooting.\nThis premise further refines the relationship between Michael's height and his shooting blocking ability, but with a limitation on the type of shot (non-jumping).\n\n6. Michael cannot block Windy's shooting.\nThis premise suggests that Windy's shooting is not blocked by Michael, which implies that Windy is not shorter than Michael.\n\n7. Every shooter who can jump when shooting is a great shooter.\nThis premise establishes the relationship between a shooter's ability to jump and their classification as a great shooter.\n\nNow, let's analyze the conclusion: Windy is a great shooter.\n\nFrom premise 6, we know that Michael cannot block Windy's shooting. This implies that Windy is either taller than Michael or can jump when shooting. \n\nHowever, from premise 4, we know that Peter is taller than Michael, and from premise 2, we know that Michael is taller than everyone else in his class. This implies that Peter is taller than everyone else in his class, including Windy.\n\nSince Windy is not taller than Michael (as we deduced from premise 6), and since Peter is taller than Michael, it is uncertain whether Windy can jump or not.\n\nHowever, we can conclude that it is uncertain whether Windy is a great shooter or not, because we do not have enough information to determine if Windy can jump or not.\n\nTherefore, the conclusion is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether Windy is a great shooter, we need to analyze the given premises step by step.\n\nPremise 1: If a man is taller than another man, the taller one can block the other's shooting.\nThis premise implies that if person A is taller than person B, then person A can block person B's shooting, unless person B can jump when shooting.\n\nPremise 2: Michael is a man who is taller than everyone else in his class.\nThis means Michael can block any shooting from anyone in his class, unless the person can jump when shooting.\n\nPremise 3: If person x is taller than person y, and person y is taller than person z, then x is taller than z.\nThis premise is a transitive relation, which means it helps us compare the heights of people.\n\nPremise 4: Peter is a man who is taller than Michael.\nThis premise indicates that Peter is even taller than the tallest person in the class, which is Michael.\n\nPremise 5: Michael can block any shooting from a person as long as the person does not jump when shooting.\nThis premise is consistent with Premise 1 and reiterates that Michael's ability to block shooting depends on the person's ability to jump.\n\nPremise 6: Michael cannot block Windy's shooting.\nThis premise implies that Windy can jump when shooting, because if Windy couldn't jump, Michael (being taller) would be able to block Windy's shooting.\n\nPremise 7: Every shooter who can jump when shooting is a great shooter.\nThis premise directly relates to the ability to jump and being a great shooter.\n\nFrom Premise 6, we know that Windy can jump when shooting. According to Premise 7, anyone who can jump when shooting is a great shooter. Therefore, Windy is a great shooter.\n\nFinal answer: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion \"Windy is a great shooter\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: If a man is taller than another man, the taller one can block the other's shooting.\n\nPremise 2: Michael is a man who is taller than everyone else in his class.\n\nPremise 3: If person x is taller than person y, and person y is taller than person z, then x is taller than z.\n\nPremise 4: Peter is a man who is taller than Michael.\n\nPremise 5: Michael can block any shooting from a person as long as the person does not jump when shooting.\n\nPremise 6: Michael cannot block Windy's shooting.\n\nPremise 7: Every shooter who can jump when shooting is a great shooter.\n\nNow, let's break down the information:\n\n- From Premise 2 and Premise 4, we can conclude that Peter is taller than everyone in his class, including Michael, and Michael is taller than everyone else in his class. This means Peter is taller than Michael.\n\n- Since Michael cannot block Windy's shooting (Premise 6), it implies that Windy is not shorter than Michael. If Windy were shorter than Michael, Michael would be able to block Windy's shooting, which contradicts the given information.\n\n- Given that Michael is taller than everyone in his class (except Peter, but Peter's height is not relevant to the conclusion about Windy), and Windy is not shorter than Michael, it means that Windy is either the same height as Michael or taller than Michael.\n\n- However, the premise that \"Every shooter who can jump when shooting is a great shooter\" (Premise 7) implies that we need to know whether Windy can jump when shooting to determine if Windy is a great shooter.\n\n- Unfortunately, we have no information about whether Windy can jump when shooting. \n\nTherefore, based on the given premises, we cannot conclude whether Windy is a great shooter. The information provided does not allow us to determine whether Windy can jump when shooting, which is necessary to make the conclusion. So, the answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion.\n\nPremise 1: If a man is taller than another man, the taller one can block the other's shooting.\nPremise 2: Michael is a man who is taller than everyone else in his class.\nPremise 3: If person x is taller than person y, and person y is taller than person z, then x is taller than z.\nPremise 4: Peter is a man who is taller than Michael.\nPremise 5: Michael can block any shooting from a person as long as the person does not jump when shooting.\nPremise 6: Michael cannot block Windy's shooting.\nPremise 7: Every shooter who can jump when shooting is a great shooter.\n\nFrom Premise 2, we know Michael is the tallest person in his class. \nFrom Premise 4, we know Peter is taller than Michael. \nFrom Premise 3, we can conclude that Peter is the tallest person.\n\nNow, we need to examine the relationship between Michael and Windy. \nFrom Premise 6, we know Michael cannot block Windy's shooting. \nThis does not directly tell us if Windy can block Michael's shooting, but we know that Michael can block any shooting from a person as long as the person does not jump when shooting (Premise 5).\n\nHowever, we are trying to determine if Windy is a great shooter. \nFrom Premise 7, we know that every shooter who can jump when shooting is a great shooter.\n\nWe cannot conclude that Windy is a great shooter directly from the premises. \nHowever, since we know that Michael cannot block Windy's shooting, and we know that Michael can block any shooting from a person as long as the person does not jump when shooting, we can infer that Windy must be able to jump when shooting.\n\nTherefore, since Windy can jump when shooting, and from Premise 7, every shooter who can jump when shooting is a great shooter, we can conclude that Windy is a great shooter.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Windy is a great shooter, we need to analyze the given premises and their implications.\n\n1. \"If a man is taller than another man, the taller one can block the other's shooting.\"\n   This premise implies that height determines the ability to block shooting, but it does not directly relate to the ability to shoot.\n\n2. \"Michael is a man who is taller than everyone else in his class.\"\n   This premise tells us about Michael's height relative to others in his class but does not provide information about Windy.\n\n3. \"If person x is taller than person y, and person y is taller than person z, than x is taller than z.\"\n   This premise is a transitive statement that reinforces the idea of height-based comparisons.\n\n4. \"Peter is a man who is taller than Michael.\"\n   This premise indicates that Peter is taller than Michael, which is consistent with the previous statements about Michael's height.\n\n5. \"Michael can block any shooting from a person as long as the person does not jump when shooting.\"\n   This premise clarifies the condition under which Michael can block a shot. However, it still doesn't provide information about Windy's shooting ability.\n\n6. \"Michael cannot block Windy's shooting.\"\n   This premise directly relates to Windy and Michael. Since Michael cannot block Windy's shooting, it implies that Windy's shooting is not dependent on Michael's height.\n\n7. \"Every shooter who can jump when shooting is a great shooter.\"\n   This premise defines a great shooter as someone who can jump while shooting.\n\nNow, let's analyze the conclusion:\n\nWindy is a great shooter.\n\nFrom premise 6, we know that Michael cannot block Windy's shooting, which implies that Windy's shooting is not dependent on Michael's height. However, premise 1 states that height determines the ability to block shooting. Therefore, if Windy's shooting is not dependent on Michael's height, it suggests that Windy is not blocked by Michael. \n\nHowever, there is no information available that Windy can jump when shooting or that Windy is blocked by anyone else.\n\nSince there is no information available about Windy's ability to jump when shooting, we cannot conclude that Windy is a great shooter with certainty.\n\nTherefore, the conclusion is:\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: If a man is taller than another man, the taller one can block the other's shooting. \n\nThis premise implies that if person x is taller than person y, person x can block person y's shooting.\n\nPremise 2: Michael is a man who is taller than everyone else in his class. \n\nThis premise implies that Michael can block any shooting from a person as long as the person does not jump when shooting.\n\nHowever, Premise 3 states that Michael cannot block Windy's shooting. This implies that Windy is an exception to the rule in Premise 1.\n\nPremise 4: If person x is taller than person y, and person y is taller than person z, then x is taller than z. \n\nThis premise provides information about the relative heights of Peter, Michael, and other individuals.\n\nPremise 5: Peter is a man who is taller than Michael. \n\nThis premise implies that Peter is taller than Michael, which means Peter can block Michael's shooting.\n\nHowever, we already know from Premise 2 that Michael is taller than everyone else in his class. This seems to be a contradiction.\n\nTo resolve this contradiction, we need to analyze the given information again.\n\nFrom Premise 2, we know that Michael is taller than everyone else in his class. However, Premise 5 states that Peter is taller than Michael. This means that Peter is an exception to the rule in Premise 2.\n\nNow, we can use this information to analyze the conclusion.\n\nThe conclusion is: Windy is a great shooter.\n\nTo determine whether this conclusion is true, false, or uncertain, we need to analyze the given premises again.\n\nPremise 6: Every shooter who can jump when shooting is a great shooter.\n\nThis premise provides the definition of a great shooter.\n\nWe also know that Michael cannot block Windy's shooting (Premise 3).\n\nIf Michael cannot block Windy's shooting, it means that Windy can shoot when Michael is trying to block. However, we do not have any information about whether Windy can jump when shooting.\n\nFrom Premise 2, we know that Michael can block any shooting from a person as long as the person does not jump when shooting. However, this premise does not provide any information about whether Windy can jump when shooting.\n\nTherefore, we cannot determine whether Windy is a great shooter based on the given premises.\n\nThe conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion \"Windy is a great shooter\" is true, false, or uncertain, we need to analyze the given premises and see if we can logically derive the conclusion.\n\nPremise 1: If a man is taller than another man, the taller one can block the other's shooting.\nThis premise tells us that there is a relationship between height and the ability to block shooting. However, it doesn't tell us anything about the ability to jump.\n\nPremise 2: Michael is a man who is taller than everyone else in his class.\nThis premise tells us about Michael's height relative to his class, but we don't know anything about the height of people outside his class.\n\nPremise 3: If person x is taller than person y, and person y is taller than person z, then x is taller than z.\nThis premise is a transitive property of height, which is useful but doesn't provide any new information.\n\nPremise 4: Peter is a man who is taller than Michael.\nThis premise tells us that Peter is taller than Michael, and since Michael is taller than everyone else in his class, Peter must be taller than everyone in his class.\n\nPremise 5: Michael can block any shooting from a person as long as the person does not jump when shooting.\nThis premise tells us that Michael can block shooting, but only if the shooter doesn't jump. This suggests that jumping is a key factor in determining whether a person can be blocked.\n\nPremise 6: Michael cannot block Windy's shooting.\nThis premise tells us that Windy's shooting is not blocked by Michael, which means either Windy doesn't jump or Windy is not a great shooter.\n\nPremise 7: Every shooter who can jump when shooting is a great shooter.\nThis premise tells us that the ability to jump is a characteristic of great shooters.\n\nNow, let's analyze the conclusion \"Windy is a great shooter.\" \n\nIf Windy is a great shooter, then Windy must be able to jump when shooting (Premise 7). However, if Windy can jump, then Michael should be able to block Windy's shooting (Premise 5), which contradicts Premise 6. Therefore, if Windy is a great shooter, then Windy must not be able to jump.\n\nHowever, if Windy is not a great shooter and cannot jump, then there is no contradiction. \n\nThus, we cannot logically derive the conclusion \"Windy is a great shooter\" from the given premises, which means the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "man(michael)",
+          "z3_formula": "man_michael == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "taller(michael, y)",
+          "z3_formula": "taller_michael_y == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_y, taller_y_z), taller_michael_z)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "man(peter)",
+          "z3_formula": "man_peter == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "man(X) & taller(X, Y) -> can_block(Y, X)",
+          "z3_formula": "Implies(And(man_michael, taller_michael_y), can_block_y_michael)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "man(windy)",
+          "z3_formula": "man_windy == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cannot_block_michael(windy)",
+          "z3_formula": "cannot_block_michael_windy == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "can_block(X, Y) -> can_block(X, Y) & not(jump(Y))",
+          "z3_formula": "Implies(can_block_y_michael, And(can_block_y_michael, not(jump_y_michael)))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "great_shooter(jump(Y))",
+          "z3_formula": "great_shooter_jump_y == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "taller(michael, everyone)",
+          "z3_formula": "taller_michael_everyone == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_everyone, taller_X_Y), taller_X_Z)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_peter_michael, taller_michael_everyone), taller_peter_everyone)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_michael_everyone, can_block_michael_everyone)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, windy)",
+          "z3_formula": "can_block_michael_windy == False",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "can_block(X, Y) -> not(jumping(Y))",
+          "z3_formula": "Implies(can_block_michael_windy, not(jumping_windy))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "jumping(windy)",
+          "z3_formula": "jumping_windy == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "jumping(X) -> great_shooter(X)",
+          "z3_formula": "Implies(jumping_windy, great_shooter_windy)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "taller(michael, everyone_else)",
+          "z3_formula": "taller_michael_everyone_else == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "taller(x, y) & taller(y, z) -> taller(x, z)",
+          "z3_formula": "Implies(And(taller_x_y, taller_y_z), taller_x_z)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, shooter) -> not(jumps(shooter) | shooter == windy)",
+          "z3_formula": "Implies(can_block_michael_shooter, Or(Not(jumps_shooter), shooter == windy))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(can_block(michael, windy))",
+          "z3_formula": "Not(can_block_michael_windy) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not(jumps(shooter) | shooter == windy) -> great_shooter(shooter)",
+          "z3_formula": "Implies(Or(Not(jumps_shooter), shooter == windy), great_shooter_shooter)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == Unknown",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "man(michael)",
+          "z3_formula": "man_michael == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "taller(michael, x)",
+          "z3_formula": "taller_michael_x == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & man(Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(And(taller_michael_x, man_x), can_block_michael_x)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "man(peter)",
+          "z3_formula": "man_peter == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_peter_michael, taller_michael_x), taller_peter_x)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "can_block(X, Y) -> can_block(X, Z)",
+          "z3_formula": "Implies(can_block_michael_x, can_block_michael_z)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, x)",
+          "z3_formula": "can_block_michael_x == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not can_block(michael, windy)",
+          "z3_formula": "Not(can_block_michael_windy) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "can_jump(Y) -> great_shooter(Y)",
+          "z3_formula": "Implies(can_jump_windy, great_shooter_windy)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(great_shooter(windy))",
+          "z3_formula": "Or(Not(can_jump_windy), Not(Not(can_jump_windy))) == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_man_man, can_block_man_man)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "taller(michael, Y)",
+          "z3_formula": "taller_michael_Y == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_Y, taller_Y_Z), taller_michael_Z)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_peter_michael, can_block_peter_michael)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not can_block(michael, windy)",
+          "z3_formula": "Not(can_block_michael_windy) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "can_jump(X) -> great_shooter(X)",
+          "z3_formula": "Implies(can_jump_windy, great_shooter_windy)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "can_jump(windy)",
+          "z3_formula": "can_jump_windy == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "taller(michael, x)",
+          "z3_formula": "taller_michael_x == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_x, taller_x_y), taller_michael_z)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_michael_x, can_block_michael_x)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cannot_block(michael, windy)",
+          "z3_formula": "cannot_block_michael_windy == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cannot_block(X, Y) -> (taller(Y, X) | can_jump(Y))",
+          "z3_formula": "Implies(cannot_block_michael_windy, Or(taller_windy_michael, can_jump_windy))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "taller(michael, x)",
+          "z3_formula": "taller_michael_x == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_peter_michael, taller_michael_x), taller_peter_x)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "can_jump(X) -> great_shooter(X)",
+          "z3_formula": "Implies(can_jump_windy, great_shooter_windy)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_man_man, can_block_man_man)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "taller(michael, everyone)",
+          "z3_formula": "taller_michael_everyone == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_everyone, taller_everyone_michael), taller_michael_everyone)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, everyone) unless jump",
+          "z3_formula": "can_block_michael_everyone == True unless jump",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, windy)",
+          "z3_formula": "can_block_michael_windy == False",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "can_block(X, Y) -> jump(Y)",
+          "z3_formula": "Implies(can_block_michael_windy, jump_windy)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "jump(windy)",
+          "z3_formula": "jump_windy == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "jump(X) -> great_shooter(X)",
+          "z3_formula": "Implies(jump_windy, great_shooter_windy)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "taller(michael, x)",
+          "z3_formula": "taller_michael_x == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_x, taller_x_y), taller_michael_y)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_peter_michael, can_block_peter_michael)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, x)",
+          "z3_formula": "can_block_michael_x == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not can_block(michael, windy)",
+          "z3_formula": "Not(can_block_michael_windy) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "not can_block(X, Y) -> not shorter(Y, X)",
+          "z3_formula": "Implies(Not(can_block_michael_windy), Not(shorter_windy_michael))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> not shorter(Y, X)",
+          "z3_formula": "Implies(taller_michael_x, Not(shorter_x_michael))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "not shorter(Y, X) -> (Y == X) | taller(Y, X)",
+          "z3_formula": "Implies(Not(shorter_windy_michael), Or(windy_michael == True, taller_windy_michael))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "can_jump(X) -> great_shooter(X)",
+          "z3_formula": "Implies(can_jump_windy, great_shooter_windy)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "taller(michael, x)",
+          "z3_formula": "taller_michael_x == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> taller(X, Z) | taller(Y, Z)",
+          "z3_formula": "Implies(And(taller_michael_x, taller_x_y), Or(taller_michael_x, taller_y_z))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> taller(X, Z) | taller(Y, Z)",
+          "z3_formula": "Implies(And(taller_peter_michael, taller_x_y), Or(taller_peter_michael, taller_y_z))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "taller(peter, x)",
+          "z3_formula": "taller_peter_x == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, x) | jump(x)",
+          "z3_formula": "Or(can_block_michael_x, jump_x)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not can_block(michael, windy)",
+          "z3_formula": "Not(can_block_michael_windy)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "can_block(X, Y) -> not jump(Y)",
+          "z3_formula": "Implies(can_block_michael_x, Not(jump_x))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "jump(windy)",
+          "z3_formula": "jump_windy == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "great_shooter(x) | jump(x)",
+          "z3_formula": "Or(great_shooter_x, jump_x)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "taller(michael, everyone_else)",
+          "z3_formula": "taller_michael_everyone_else == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_everyone_else, taller_everyone_else_windy), taller_michael_windy)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_peter_michael, can_block_peter_michael)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cannot_block_michael_windy == True",
+          "z3_formula": "cannot_block_michael_windy == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "can_block(X, Y) -> depends_on_height(X, Y)",
+          "z3_formula": "Implies(can_block_peter_michael, depends_on_height_peter_michael)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not depends_on_height_windy",
+          "z3_formula": "Not(depends_on_height_windy)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "depends_on_height(X, Y) -> cannot_block(X, Y)",
+          "z3_formula": "Implies(depends_on_height_peter_michael, cannot_block_peter_michael)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not cannot_block_windy",
+          "z3_formula": "Not(cannot_block_windy)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "great_shooter(X) <- can_jump(X) | cannot_block(X)",
+          "z3_formula": "Implies(Or(can_jump_windy, cannot_block_windy), great_shooter_windy)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "man(michael)",
+          "z3_formula": "man_michael == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "taller(michael, x)",
+          "z3_formula": "taller_michael_x == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> can_block(X, Y)",
+          "z3_formula": "Implies(taller_michael_x, can_block_michael_x)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "man(windy)",
+          "z3_formula": "man_windy == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(windy, x)",
+          "z3_formula": "can_block_windy_x == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_peter, taller_peter_x), taller_michael_x)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "taller(michael, peter)",
+          "z3_formula": "taller_michael_peter == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, windy)",
+          "z3_formula": "can_block_michael_windy == False",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "can_block(X, Y) -> not(jump(Y))",
+          "z3_formula": "Implies(can_block_michael_x, Not(jump_x))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "jump(windy)",
+          "z3_formula": "jump_windy == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "great_shooter(X) -> shooter(X)",
+          "z3_formula": "Implies(great_shooter_windy, shooter_windy)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "shooter(windy)",
+          "z3_formula": "shooter_windy == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "great_shooter(windy)",
+          "z3_formula": "great_shooter_windy == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "taller(michael, everyone_else_in_class)",
+          "z3_formula": "taller_michael_everyone_else_in_class == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) & taller(Y, Z) -> taller(X, Z)",
+          "z3_formula": "Implies(And(taller_michael_everyone_else_in_class, taller_everyone_else_in_class_someone_else), taller_michael_someone_else)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "taller(peter, michael)",
+          "z3_formula": "taller_peter_michael == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "taller(X, Y) -> taller(X, everyone_else_in_class)",
+          "z3_formula": "Implies(taller_peter_michael, taller_peter_everyone_else_in_class)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "can_block(michael, shooting) & not(jump(shooter))",
+          "z3_formula": "And(can_block_michael_shooting, not(jump_shooter)) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(can_block(michael, windy))",
+          "z3_formula": "not(can_block_michael_windy) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "great_shooter(X) -> jump(X)",
+          "z3_formula": "Implies(great_shooter_windy, jump_windy)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "jump(X) -> can_block(Y, shooting(X))",
+          "z3_formula": "Implies(jump_windy, can_block_michael_shooting_windy)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not(great_shooter(windy))",
+          "z3_formula": "not(great_shooter_windy) == True",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 126,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 64
+    },
+    "maxsat_stats": {
+      "satisfied": 64,
+      "excluded": 0,
+      "total_weight": 122,
+      "solve_time_ms": 1.5967721119523048
+    },
+    "timing": {
+      "trace_gen_s": 7.464,
+      "extraction_s": 22.433,
+      "dedup_s": 1.849,
+      "maxsat_s": 0.005,
+      "total_s": 31.751
+    }
+  }
+}

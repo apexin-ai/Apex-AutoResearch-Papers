@@ -1,0 +1,952 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-269_Q5",
+    "problem": "Charlie is blue. Charlie is round. Fiona is big. Fiona is cold. Gary is nice. Harry is nice. Harry is round. All rough, blue things are red. All nice things are cold. Big, cold things are rough. If something is red and blue then it is rough. All blue, cold things are nice. All red things are blue. If something is round and cold then it is blue. Blue things are big. If Charlie is big then Charlie is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is blue.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nRound($x, bool) ::: Is x round?\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nRed($x, bool) ::: Is x red?\n\nFacts:\nBlue(Charlie, True) ::: Charlie is blue.\nRound(Charlie, True) ::: Charlie is round.\nBig(Fiona, True) ::: Fiona is big.\nCold(Fiona, True) ::: Fiona is cold.\nNice(Gary, True) ::: Gary is nice.\nNice(Harry, True) ::: Harry is nice.\nRound(Harry, True) ::: Harry is round.\n\nRules:\nRough($x, True) && Blue($x, True) >>> Red($x, True) ::: All rough, blue things are red.\nNice($x, True) >>> Cold($x, True) ::: All nice things are cold.\nBig($x, True) && Cold($x, True) >>> Rough($x, True) ::: Big, cold things are rough.\nRed($x, True) && Blue($x, True) >>> Rough($x, True) ::: If something is red and blue then it is rough.\nBlue($x, True) && Cold($x, True) >>> Nice($x, True) ::: All blue, cold things are nice.\nRed($x, True) >>> Blue($x, True) ::: All red things are blue.\nRound($x, True) && Cold($x, True) >>> Blue($x, True) ::: If something is round and cold then it is blue.\nBlue($x, True) >>> Big($x, True) ::: Blue things are big.\nBig(Charlie, True) >>> Blue(Charlie, True) ::: If Charlie is big then Charlie is blue.\n\nQuery:\nBlue(Harry, True) ::: Harry is blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 133.0,
+      "Unknown": 91.0
+    },
+    "answer_counts": {
+      "True": 9,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Harry is blue\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\n1. From the given information:\n   - Harry is nice (Gary is nice, Harry is nice)\n   - Harry is round (Harry is round)\n   - All nice things are cold\n   - All round, cold things are blue\n\n2. Since Harry is nice, he must be cold.\n3. Since Harry is round and cold, he must be blue.\n\nBased on the conditions provided, we can conclude that Harry is blue.\n\nHowever, we need to be careful because the information about Harry is blue might seem to conflict with the statement \"All rough, blue things are red\" if we initially think that Harry is blue because he's rough. However, the correct path to determining Harry's color is through the fact that Harry is round and cold.\n\nTherefore, the statement \"Harry is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is blue\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\n1. Harry is round (Given)\n2. Harry is nice (Given)\n3. All rough, blue things are red. (Given)\n4. All nice things are cold. (Given)\n5. Big, cold things are rough. (Given)\n6. If something is red and blue then it is rough. (Given)\n7. All blue, cold things are nice. (Given)\n8. All red things are blue. (Given)\n9. If something is round and cold then it is blue. (Given)\n10. Blue things are big. (Given)\n11. If Charlie is big then Charlie is blue. (Given)\n\nFrom (4), we can deduce that Harry is cold since he is nice.\n\nFrom (9), we can deduce that Harry is blue since he is round and cold.\n\nHowever, from (1), (2), (10), and (11), we cannot conclude that Charlie is blue. The statement \"If Charlie is big then Charlie is blue\" (11) does not necessarily mean that Charlie is blue since Charlie's size is not given.\n\nTherefore, based on the given information, we cannot determine whether Charlie is blue, and consequently, we cannot determine whether the statement \"Harry is blue\" is true or false. The answer is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is blue\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. We are given the following information about Harry: Harry is nice. Harry is round.\n2. The rules state that all nice things are cold. So, Harry is cold.\n3. Since Harry is round and cold, the rule states that all round and cold things are blue. Therefore, Harry is blue.\n\nHowever, there is another rule that says if Charlie is big then Charlie is blue. We don't have any information about Charlie being big, but we do have information about Charlie being blue. The rule also says that blue things are big. \n\nTherefore, it's possible that Charlie is blue because Charlie is big, but there's no information that directly links Charlie's size to Harry's color.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is nice. (Given information)\n2. All nice things are cold. (Given information)\n   From (1) and (2), we can conclude that Harry is cold.\n\n3. Harry is round. (Given information)\n4. If something is round and cold then it is blue. (Given information)\n   From (3) and (4), we can conclude that Harry is blue.\n\nHowever, we need to check if there's any conflicting information that might make our conclusion uncertain.\n\n5. All blue things are big. (Given information)\n6. If Charlie is big then Charlie is blue. (Given information)\n   This information seems to be related to Charlie, not Harry.\n\n7. All blue, cold things are nice. (Given information)\n   Since we've already concluded that Harry is cold and blue, this statement doesn't provide any new information.\n\n8. All rough, blue things are red. (Given information)\n   We've concluded that Harry is blue, but we don't know if Harry is rough or red yet.\n\n9. If something is red and blue then it is rough. (Given information)\n   This statement seems to be related to red and blue things being rough, but we don't know if Harry is red or not.\n\n10. All red things are blue. (Given information)\n    This statement seems to be contradictory to the usual meaning of the words. However, based on the given information, we can conclude that if Harry is red, then he is blue.\n\nFrom the given information, we can't determine if Harry is red or not. However, we've concluded that Harry is cold and blue.\n\nSo, the statement \"Harry is blue\" is true based on our analysis, but we can't be certain about the redness of Harry.\n\nTherefore, the answer is \\boxed{True}.",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is blue\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\nGiven statements:\n1. Charlie is blue.\n2. Charlie is round.\n3. Fiona is big.\n4. Fiona is cold.\n5. Gary is nice.\n6. Harry is nice.\n7. Harry is round.\n8. All rough, blue things are red.\n9. All nice things are cold.\n10. Big, cold things are rough.\n11. If something is red and blue then it is rough.\n12. All blue, cold things are nice.\n13. All red things are blue.\n14. If something is round and cold then it is blue.\n15. Blue things are big.\n16. If Charlie is big then Charlie is blue.\n\nNow, let's analyze the implications of these statements.\n\nFrom (8), we know that all rough, blue things are red.\nFrom (13), we know that all red things are blue. So, all rough, blue things are blue.\nFrom (14), we know that if something is round and cold then it is blue.\nFrom (15), we know that blue things are big.\nFrom (16), we know that if Charlie is big then Charlie is blue.\n\nNow, let's consider Harry.\nFrom (7), we know that Harry is round.\nFrom (6), we know that Harry is nice.\nFrom (9), we know that all nice things are cold.\nFrom (14), we know that if something is round and cold then it is blue.\nTherefore, Harry is round and cold, so Harry is blue.\n\nNow, let's consider the implications of this statement on the original statement \"Harry is blue\".\nFrom (15), we know that blue things are big.\nFrom (7), we know that Harry is round.\nFrom (14), we know that if something is round and cold then it is blue.\nFrom (9), we know that all nice things are cold.\nSo, Harry is round, and we cannot conclude that Harry is big.\n\nHowever, we can conclude that Harry is blue, and we cannot conclude that Harry is not big. \n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is blue' is true, false, or unknown, we need to analyze the given information and its implications.\n\n1. Harry is nice. (Given)\n2. All nice things are cold. (Given)\n   From this, we can conclude that Harry is cold.\n\n3. Harry is round. (Given)\n4. If something is round and cold, then it is blue. (Given)\n   From this, we can conclude that Harry is blue.\n\nTherefore, based on the given information, the statement 'Harry is blue' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is nice (Given)\n2. All nice things are cold (Given)\n   - Since Harry is nice, it must be cold.\n\n3. Harry is round (Given)\n4. If something is round and cold, then it is blue (Given)\n   - Since Harry is round and cold, it must be blue.\n\nHowever, we also have:\n5. All blue things are big (Given)\n   - Since Harry is blue, it must be big.\n\nNow, let's consider the statement \"If Charlie is big then Charlie is blue\" (Given). We have no information about Charlie's color or size, but we know that Harry is big and blue. This statement does not directly relate to Harry, but it indicates that being big does not necessarily mean something is blue.\n\nThe critical information is that all rough, blue things are red (Given). This means that if something is blue, it must be red. Since we established that Harry is blue, it must be red.\n\nHowever, we also know that all blue, cold things are nice (Given), and Harry is nice (Given). This seems to create a contradiction because Harry cannot be both red (because it's blue) and blue (because it's red).\n\nTo resolve this, we must consider the information that all blue things are big (Given). If Harry is blue, it must be big. However, we have no information that a big, red thing is blue or not. This creates ambiguity, and we cannot conclude whether Harry is blue or not based on the given information.\n\nTherefore, the answer to the statement \"Harry is blue\" is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Charlie is blue.\n   - Charlie is round.\n   - Fiona is big.\n   - Fiona is cold.\n   - Gary is nice.\n   - Harry is nice.\n   - Harry is round.\n   - All rough, blue things are red.\n   - All nice things are cold.\n   - Big, cold things are rough.\n   - If something is red and blue then it is rough.\n   - All blue, cold things are nice.\n   - All red things are blue.\n   - If something is round and cold then it is blue.\n   - Blue things are big.\n   - If Charlie is big then Charlie is blue.\n\n2. Let's break down the given information:\n   - We have two pieces of information that relate to Harry: \"Harry is nice\" and \"Harry is round.\"\n   - From \"All nice things are cold,\" we can conclude that Harry is cold.\n   - From \"If something is round and cold then it is blue,\" we can conclude that Harry is blue.\n\nHowever, we have to consider other information that might contradict this conclusion. We will check if any of the given conditions that relate to blue things can be used to contradict the conclusion that Harry is blue.\n\n- From \"Harry is round\" and \"Harry is cold,\" we can conclude that Harry is blue.\n- We have \"All blue things are big.\" However, we don't have any information about Harry's size.\n- We have \"If Charlie is big then Charlie is blue,\" but we don't know if Charlie is big, and even if Charlie is big, this information doesn't apply to Harry.\n\nNow we need to check if any of the given conditions can contradict the conclusion that Harry is blue. We will check if any conditions that relate to blue things can be used to contradict the conclusion.\n\n- We have \"All blue, cold things are nice.\" We already know that Harry is nice and cold, so this condition doesn't contradict the conclusion.\n- We have \"All red things are blue.\" However, this condition relates to red things, and we don't have any information about Harry being red.\n- We have \"Blue things are big.\" However, we don't have any information about Harry's size.\n\nWe have checked all the given conditions that relate to blue things, and none of them can be used to contradict the conclusion that Harry is blue. Therefore, the statement \"Harry is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is round. (Given)\n2. Harry is nice. (Given)\n3. All nice things are cold. (Given)\n   Since Harry is nice, he must be cold.\n\n4. Harry is cold. (From step 2 and 3)\n5. All round and cold things are blue. (From the given information, if something is round and cold then it is blue)\n   Since Harry is round and cold, he must be blue.\n\nHowever, we also have another piece of information that might affect our conclusion:\n6. All blue, cold things are nice. (Given)\n   But we have already concluded that Harry is blue and cold, so this statement is consistent with our previous conclusion.\n\n7. All red things are blue. (Given)\n   However, this does not affect our conclusion about Harry being blue.\n\nSo, considering all the given information, we can conclude that Harry is indeed blue.\n\nTherefore, the final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is round. (Given information)\n2. Harry is nice. (Given information)\n3. All rough, blue things are red. (Given information)\n4. All nice things are cold. (Given information)\n5. Big, cold things are rough. (Given information)\n6. If something is red and blue then it is rough. (Given information)\n7. All blue, cold things are nice. (Given information)\n8. All red things are blue. (Given information)\n9. If something is round and cold then it is blue. (Given information)\n10. Blue things are big. (Given information)\n11. If Charlie is big then Charlie is blue. (Given information)\n\nHowever, we are trying to determine the color of Harry. To do that, let's analyze the given information again.\n\nFrom point 9, we know that if something is round and cold then it is blue. Since Harry is round (point 1) and nice (point 2), and all nice things are cold (point 4), we can conclude that Harry is cold.\n\nNow we know that Harry is cold and round, so from point 9, Harry is blue.\n\nThe final answer is \\boxed{true}.",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is blue\" is true, false, or unknown, we need to use the given information and apply logical reasoning step by step.\n\n1. Harry is nice. (Given statement)\n2. All nice things are cold. (Given information)\n   So, Harry is cold. (From step 1 and 2)\n\n3. Harry is round. (Given statement)\n4. If something is round and cold then it is blue. (Given information)\n   So, Harry is blue. (From step 3 and 4)\n\nTherefore, based on the given information, the statement \"Harry is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The given information is:\n   - Charlie is blue.\n   - Charlie is round.\n   - Fiona is big.\n   - Fiona is cold.\n   - Gary is nice.\n   - Harry is nice.\n   - Harry is round.\n   - All rough, blue things are red.\n   - All nice things are cold.\n   - Big, cold things are rough.\n   - If something is red and blue then it is rough.\n   - All blue, cold things are nice.\n   - All red things are blue.\n   - If something is round and cold then it is blue.\n   - Blue things are big.\n   - If Charlie is big then Charlie is blue.\n\n2. From the information, we can conclude that Charlie is blue because Charlie is round and blue things are big.\n\n3. Now, we need to find a connection between Harry and blue. Since Harry is round and cold, we can use the rule: If something is round and cold then it is blue.\n\n4. So, Harry is blue.\n\nTherefore, the final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_harry, cold_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, cold_harry), blue_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_harry, blue_harry), red_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_harry, cold_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_harry, cold_harry), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_harry, blue_harry), rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_harry, cold_harry), nice_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_harry, blue_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, cold_harry), blue_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_harry, big_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_harry, cold_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, cold_harry), blue_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_charlie, big_charlie)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_harry, cold_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, cold_harry), blue_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_harry, big_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie) -> blue(charlie)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_harry, cold_harry), nice_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_harry, blue_harry), red_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_harry, blue_harry), rough_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_harry, blue_harry)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_blue_X, blue_X), red_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_X, cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_X, cold_X), rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_X, blue_X), rough_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), nice_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_X, blue_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, cold_X), blue_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_X, big_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(charlie) -> blue(charlie)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry) | Not(big(harry))",
+          "z3_formula": "Or(blue_harry, Not(big_harry))",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_harry, cold_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, cold_harry), blue_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_harry, cold_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, cold_harry), blue_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_harry, big_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(charlie) -> blue(charlie)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_X, blue_X), red_X)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), nice_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_blue_X, blue_X), red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_X, cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_cold_X, cold_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_X, blue_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_cold_X, cold_X), nice_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_cold_X, cold_X), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(charlie) -> blue(charlie)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_harry, cold_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, cold_harry), blue_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_harry, cold_harry), nice_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_harry, blue_harry)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_harry, blue_harry), red_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_harry, cold_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_harry, cold_harry), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_harry, blue_harry), rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_harry, cold_harry), nice_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_harry, blue_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, cold_harry), blue_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_harry, big_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> blue(X)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_harry, cold_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, cold_harry), blue_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(rough_X, blue_X), red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> cold(X)",
+          "z3_formula": "Implies(nice_X, cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & cold(X) -> rough(X)",
+          "z3_formula": "Implies(And(big_X, cold_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & blue(X) -> rough(X)",
+          "z3_formula": "Implies(And(red_X, blue_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_X, cold_X), nice_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> blue(X)",
+          "z3_formula": "Implies(red_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, cold_X), blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_X, big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(charlie) -> blue(charlie)",
+          "z3_formula": "Implies(big_charlie, blue_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & cold(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, cold_X), blue_X)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 4
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 137,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 34
+    },
+    "maxsat_stats": {
+      "satisfied": 34,
+      "excluded": 0,
+      "total_weight": 137,
+      "solve_time_ms": 1.074671745300293
+    },
+    "timing": {
+      "trace_gen_s": 6.426,
+      "extraction_s": 24.504,
+      "dedup_s": 0.959,
+      "maxsat_s": 0.003,
+      "total_s": 31.892
+    }
+  }
+}

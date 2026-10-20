@@ -1,0 +1,870 @@
+{
+  "pid": "ProofWriter_AttNeg-OWA-D5-1229_Q3",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_gary, cold_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_bob, furry_bob), blue_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> Not(furry(X))",
+          "z3_formula": "Implies(And(cold_gary, blue_gary), Not(furry_gary))",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_gary, cold_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_bob, furry_bob), blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "not white(X) -> smart(X)",
+          "z3_formula": "Implies(Not(white_bob), smart_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> not furry(X)",
+          "z3_formula": "Implies(And(cold_gary, blue_gary), Not(furry_gary))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == False",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "Not(white(X)) -> smart(X)",
+          "z3_formula": "Implies(Not(white_bob), smart_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_bob, smart_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> Not(furry(X))",
+          "z3_formula": "Implies(And(blue_bob, cold_bob), Not(furry_bob))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_gary, cold_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_gary, smart_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> Not(furry(X))",
+          "z3_formula": "Implies(And(cold_gary, blue_gary), Not(furry_gary))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_bob, furry_bob), blue_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 19
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 3
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "Not(white(X)) -> smart(X)",
+          "z3_formula": "Implies(Not(white_bob), smart_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 16
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_gary, cold_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_anne, quiet_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_gary, furry_gary), blue_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> not furry(X)",
+          "z3_formula": "Implies(And(cold_gary, blue_gary), Not(furry_gary))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(gary)",
+          "z3_formula": "Not(furry_gary) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_dave, smart_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_gary, cold_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_bob, quiet_bob), blue_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_bob, furry_bob), white_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_gary, furry_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> not furry(X)",
+          "z3_formula": "Implies(And(cold_gary, blue_gary), Not(furry_gary))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "not white(X) -> smart(X)",
+          "z3_formula": "Implies(Not(white_bob), smart_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(gary)",
+          "z3_formula": "Not(furry_gary) == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(bob)",
+          "z3_formula": "Not(furry_bob)",
+          "source_step": 21
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "Not(white(X)) -> smart(X)",
+          "z3_formula": "Implies(Not(white_bob), smart_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "Not(white(X)) -> Or(blue(X), Not(blue(X)))",
+          "z3_formula": "Implies(Not(white_bob), Or(blue_bob, Not(blue_bob)))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_bob, smart_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> cold(X)",
+          "z3_formula": "Implies(smart_bob, cold_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "Not(white(X)) & blue(X) -> Not(furry(X))",
+          "z3_formula": "Implies(And(Not(white_bob), blue_bob), Not(furry_bob))",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_bob, furry_bob), blue_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "Not(white(X)) -> smart(X)",
+          "z3_formula": "Implies(Not(white_bob), smart_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> blue(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), blue_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> smart(X)",
+          "z3_formula": "Implies(blue_bob, smart_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_bob, quiet_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "Not(white(X)) -> smart(X)",
+          "z3_formula": "Implies(Not(white_bob), smart_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(white_bob, furry_bob), blue_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 9
+        }
+      ]
+    }
+  ]
+}

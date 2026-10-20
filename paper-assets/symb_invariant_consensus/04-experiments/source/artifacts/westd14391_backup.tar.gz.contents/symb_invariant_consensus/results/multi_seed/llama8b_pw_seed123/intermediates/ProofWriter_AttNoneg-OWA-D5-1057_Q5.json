@@ -1,0 +1,940 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1057_Q5",
+    "problem": "Bob is kind. Bob is quiet. Bob is white. Charlie is quiet. Erin is furry. Erin is quiet. Erin is white. Fiona is blue. Fiona is furry. Fiona is kind. Fiona is quiet. All kind, rough people are furry. Green, furry people are quiet. If someone is rough then they are kind. If someone is quiet and kind then they are rough. If someone is white then they are quiet. If someone is blue and white then they are kind. If someone is white then they are blue. If Charlie is quiet then Charlie is white.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is kind.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nWhite($x, bool) ::: Is x white?\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nBlue($x, bool) ::: Is x blue?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nKind(Bob, True) ::: Bob is kind.\nQuiet(Bob, True) ::: Bob is quiet.\nWhite(Bob, True) ::: Bob is white.\nQuiet(Charlie, True) ::: Charlie is quiet.\nFurry(Erin, True) ::: Erin is furry.\nQuiet(Erin, True) ::: Erin is quiet.\nWhite(Erin, True) ::: Erin is white.\nBlue(Fiona, True) ::: Fiona is blue.\nFurry(Fiona, True) ::: Fiona is furry.\nKind(Fiona, True) ::: Fiona is kind.\nQuiet(Fiona, True) ::: Fiona is quiet.\n\nRules:\nKind($x, True) && Rough($x, True) >>> Furry($x, True) ::: All kind, rough people are furry.\nGreen($x, True) && Furry($x, True) >>> Quiet($x, True) ::: Green, furry people are quiet.\nRough($x, True) >>> Kind($x, True) ::: If someone is rough then they are kind.\nQuiet($x, True) && Kind($x, True) >>> Rough($x, True) ::: If someone is quiet and kind then they are rough.\nWhite($x, True) >>> Quiet($x, True) ::: If someone is white then they are quiet.\nBlue($x, True) && White($x, True) >>> Kind($x, True) ::: If someone is blue and white then they are kind.\nWhite($x, True) >>> Blue($x, True) ::: If someone is white then they are blue.\nQuiet(Charlie, True) >>> White(Charlie, True) ::: If Charlie is quiet then Charlie is white.\n\nQuery:\nKind(Erin, True) ::: Erin is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 120.0,
+      "Unknown": 76.0
+    },
+    "answer_counts": {
+      "True": 9,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement 'Erin is kind' is true, false, or unknown, we need to analyze the given information.\n\n1. Erin is furry. (Statement 1)\n2. Erin is quiet. (Statement 2)\n3. Erin is white. (Statement 3)\n\nFrom the given premises, we have the following rules:\n- If someone is white then they are quiet. (Rule 1)\n- If someone is quiet and kind then they are rough. (Rule 2)\n- If someone is rough then they are kind. (Rule 3)\n- All kind, rough people are furry. (Rule 4)\n- Green, furry people are quiet. (Rule 5)\n- If someone is white then they are blue. (Rule 6)\n- If someone is blue and white then they are kind. (Rule 7)\n- If Charlie is quiet then Charlie is white. (Rule 8)\n\nWe need to find a connection between Erin's characteristics and the rules provided.\n\nFrom Statement 1 and Statement 3, we know Erin is both furry and white. \n\nFrom Rule 1, if someone is white, they are quiet. Since Erin is white, it is true that Erin is quiet (which we already knew from Statement 2).\n\nNow, we need to determine if Erin is kind. \n\nSince Erin is quiet (Rule 1), and Erin is white (Statement 3), and from Rule 6, we know that if someone is white then they are blue. Therefore, Erin is blue.\n\nFrom Rule 7, if someone is blue and white, then they are kind. Since Erin is both blue and white, Erin is kind.\n\nTherefore, the statement 'Erin is kind' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the information provided about Erin. \n\n1. Erin is furry. Erin is quiet. Erin is white.\n   From the statement \"If someone is white then they are quiet,\" we can conclude that Erin is quiet because she is white.\n\n2. We are asked to determine if Erin is kind.\n   To do this, we need to look for relationships between Erin's characteristics (furry, quiet, white) and the given rules.\n\n3. From the statement \"All kind, rough people are furry,\" we know that kind people can be furry if they are rough. However, we cannot conclude that Erin is kind or rough yet.\n\n4. The statement \"If someone is quiet and kind then they are rough\" implies that someone can be quiet and kind, but we cannot directly determine if Erin is rough or not.\n\n5. Since Erin is white, from the statement \"If someone is white then they are quiet,\" we already know that Erin is quiet. However, we still do not know if Erin is kind or rough.\n\n6. From the statement \"If someone is white then they are blue,\" we know that Erin is blue because she is white.\n\n7. Now we have two new pieces of information: Erin is blue and Erin is white. From the statement \"If someone is blue and white then they are kind,\" we can conclude that Erin is kind.\n\nTherefore, based on the given statements and information, we can conclude that Erin is kind.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given statements and their implications.\n\n1. Erin is furry. Erin is quiet. Erin is white.\n   From the given statements, we can see that Erin is furry, quiet, and white.\n\n2. All kind, rough people are furry.\n   Since Erin is furry, we can deduce that Erin might be kind or rough, but we don't know yet.\n\n3. If someone is rough then they are kind.\n   This statement implies that a person can be both rough and kind. However, we still can't conclude that Erin is kind based on this statement.\n\n4. If someone is quiet and kind then they are rough.\n   This statement introduces a relationship between quiet, kind, and rough. However, we still can't conclude that Erin is kind based on this statement.\n\n5. If someone is white then they are quiet.\n   Since Erin is white, we can conclude that Erin is quiet.\n\n6. If someone is white then they are blue.\n   This statement is irrelevant to determining Erin's kind nature.\n\n7. If Charlie is quiet then Charlie is white.\n   This statement is also irrelevant to determining Erin's kind nature.\n\n8. Fiona is blue. Fiona is furry. Fiona is kind. Fiona is quiet.\n   Fiona's characteristics don't affect our conclusion about Erin.\n\nHowever, we can use the following statement to infer Erin's kind nature:\n\n9. If someone is blue and white then they are kind.\n   Since Erin is white and white people are quiet (from statement 5), we can conclude that Erin is blue (because white people are blue, from statement 6). Now, since Erin is blue and white, we can conclude that Erin is kind (from statement 9).\n\nBased on the given statements and their implications, we can conclude that Erin is indeed kind.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use them to determine whether Erin is kind. \n\nFrom the given statements, we have:\n\n1. Erin is furry. Erin is quiet. Erin is white.\n2. All kind, rough people are furry. \n3. If someone is rough then they are kind.\n4. If someone is quiet and kind then they are rough.\n5. If someone is white then they are quiet.\n6. If someone is blue and white then they are kind.\n7. If someone is white then they are blue.\n8. If Charlie is quiet then Charlie is white.\n\nWe will start by using statement 5 to infer that Erin is quiet because Erin is white.\n\nFrom statement 1, we know that Erin is furry and quiet. \n\nWe can use statement 2 to infer that since Erin is furry, Erin must be kind (because Erin is furry and all kind, rough people are furry). \n\nHowever, we also need to consider statement 4, which says that if someone is quiet and kind, then they are rough. \n\nSince Erin is quiet and kind, we can infer that Erin is rough.\n\nBut we also need to consider statement 3, which says that if someone is rough, then they are kind. \n\nThis statement contradicts the result we obtained from statement 4, so we need to analyze this further.\n\nWe can use statement 1 to infer that Erin is furry, quiet, and white.\n\nWe can use statement 7 to infer that Erin is white and blue (because if someone is white then they are blue).\n\nNow we can use statement 6 to infer that Erin is kind (because Erin is blue and white, and if someone is blue and white, then they are kind).\n\nTherefore, the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and use it to determine whether Erin is kind or not.\n\n1. All kind, rough people are furry. \n   - We don't have enough information about Erin's roughness, so we can't conclude anything about her fur from this statement.\n\n2. Green, furry people are quiet. \n   - This statement doesn't contain any information about Erin, so we can ignore it.\n\n3. If someone is rough then they are kind. \n   - We don't know if Erin is rough, so we can't conclude anything about her kindness from this statement.\n\n4. If someone is quiet and kind then they are rough. \n   - We know Erin is quiet, but we still don't know if she's kind or rough. We need more information.\n\n5. If someone is white then they are quiet. \n   - We know Erin is white, so she must be quiet.\n\n6. If someone is white then they are blue. \n   - This statement seems to be contradictory to statement 5. However, we'll continue with the given information.\n\n7. If someone is blue and white then they are kind. \n   - We know Erin is blue and white, so she could be kind, but we still need more information to confirm.\n\n8. If someone is white then they are blue. \n   - This statement is the same as statement 6, which seems to be contradictory. However, we'll continue with the given information.\n\n9. If Charlie is quiet then Charlie is white. \n   - We don't have any information about Erin, so we can ignore this statement.\n\n10. Erin is furry. \n    - We have this information directly from the problem statement.\n\n11. Erin is white. \n    - We already concluded this from statement 5.\n\n12. Erin is quiet. \n    - We already concluded this from statement 5.\n\nNow, let's analyze the statements again with the new information:\n\n- We know Erin is quiet, white, and furry.\n\n- From statement 7, we know that if someone is blue and white, they are kind. We also know Erin is white and blue (from statements 6 and 11), so Erin could be kind.\n\nHowever, we still need more information to confirm Erin's kindness. But we can't find any contradictory information. So, the final answer is based on the given information.\n\nSince we have no other information about Erin's kindness, the answer is unknown.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given information and use logical deductions.\n\n1. We know that Erin is furry (given information).\n2. We know that Erin is quiet (given information).\n3. We know that Erin is white (given information).\n\nFrom the given information, we also have the following rules:\n- All kind, rough people are furry. (Rule 1)\n- Green, furry people are quiet. (Rule 2) - This rule does not apply to Erin as it does not have a color mentioned.\n- If someone is rough then they are kind. (Rule 3)\n- If someone is quiet and kind then they are rough. (Rule 4)\n- If someone is white then they are quiet. (Rule 5)\n- If someone is blue and white then they are kind. (Rule 6)\n- If someone is white then they are blue. (Rule 7)\n- If Charlie is quiet then Charlie is white. (Rule 8) - This rule does not apply to Erin as it is about Charlie.\n\nWe need to determine whether Erin is kind. To do this, we need to consider the possible attributes of Erin (furry, quiet, and white) and how they relate to the rules.\n\nFrom Rule 1, we know that all kind, rough people are furry. However, we do not know if Erin is rough. If Erin is kind, then she must be rough according to Rule 4, but this would make her furry according to Rule 1. Since Erin is indeed furry, this is consistent with Erin being kind and rough.\n\nHowever, we need to consider another possibility. From Rule 5, we know that if someone is white then they are quiet. We know that Erin is white, so Erin is quiet. \n\nNow we need to determine if Erin can be kind based on her being quiet. If Erin is kind, then she must be rough according to Rule 4. However, from Rule 3, if someone is rough then they are kind. This creates a loop where we cannot determine if Erin is kind based on her being quiet and rough.\n\nWe can try to break this loop by using Rule 7, which states that if someone is white then they are blue. We know that Erin is white, so Erin is blue.\n\nNow we can use Rule 6, which states that if someone is blue and white then they are kind. Since Erin is both blue and white, this rule applies to Erin, making her kind.\n\nHowever, we should also consider Rule 3, which states that if someone is rough then they are kind. We do not have enough information to determine if Erin is rough.\n\nTo determine if Erin is kind, we can use Rule 4, which states that if someone is quiet and kind then they are rough. We know that Erin is quiet, and we have determined that Erin is kind. Therefore, Erin must be rough.\n\nSince Erin is rough, we can use Rule 3, which states that if someone is rough then they are kind. This confirms that Erin is indeed kind.\n\nTherefore, based on the given information and the rules, we can conclude that Erin is kind.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether Erin is kind, we need to use the given statements and the rules provided to deduce the characteristics of Erin.\n\nGiven statements:\n- Erin is furry.\n- Erin is quiet.\n- Erin is white.\n\nRules:\n1. All kind, rough people are furry.\n2. Green, furry people are quiet. (This rule is irrelevant to our case since we have no information about Erin's color being green.)\n3. If someone is rough then they are kind.\n4. If someone is quiet and kind then they are rough.\n5. If someone is white then they are quiet.\n6. If someone is blue and white then they are kind.\n7. If someone is white then they are blue.\n8. If Charlie is quiet then Charlie is white. (This rule is irrelevant to our case since we are analyzing Erin, not Charlie.)\n\nWe can analyze the statements using the rules provided:\n\n1. We don't have any information about Erin being rough or not. So, we can't conclude whether Erin is kind or not using rule 1 or 3.\n2. We don't have any information about Erin's color being green. So, rule 2 is irrelevant.\n3. Since we don't know whether Erin is rough or not, we can't conclude whether Erin is kind or not using rule 4.\n4. Erin is quiet (rule 5). However, we still don't know if Erin is white or not.\n5. Erin is white (given statement). \n6. Since Erin is white (rule 5), we can apply rule 7 to get that Erin is blue.\n\nNow we can apply rule 6 to our case: Erin is blue and white, so Erin is kind.\n\nTherefore, our final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know Erin is furry and Erin is quiet. \n2. We also know that Erin is white. \n3. There is a statement that says \"If someone is white then they are quiet.\" \n4. Since we already know Erin is quiet, this statement does not give us any new information about Erin. \n5. However, we also know that \"If someone is white then they are blue.\" \n6. From this, we can deduce that Erin is blue, because Erin is white. \n7. Now we have two pieces of information: Erin is blue and Erin is furry. \n8. We know that there is a statement that says \"Green, furry people are quiet.\" \n9. However, this statement does not mention blue people. It mentions green people. \n10. So, we cannot conclude that Erin is quiet from this statement. \n11. We also have another statement that says \"If someone is furry and kind then they are rough.\" \n12. However, we do not know if Erin is kind or not. \n13. The only other statement that involves Erin is \"Erin is quiet.\" \n14. We have already established that Erin is quiet, so this statement does not give us any new information. \n15. However, we also know that there is a statement that says \"If someone is quiet and kind then they are rough.\" \n16. However, we cannot conclude that Erin is kind or not from this statement. \n17. We also know that there is a statement that says \"If someone is quiet then they are white.\" \n18. However, we already know that Erin is white. \n19. We also have a statement that says \"If someone is white then they are blue.\" \n20. We already know that Erin is white, so this statement does not give us any new information. \n21. However, we do have a statement that says \"If someone is blue and white then they are kind.\" \n22. We already know that Erin is blue and Erin is white. \n23. Therefore, we can conclude that Erin is kind.\n\nSo, the statement \"Erin is kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the rules to determine whether Erin is kind or not.\n\n1. Erin is furry. (Statement)\n2. Erin is quiet. (Statement)\n3. Erin is white. (Statement)\n4. All kind, rough people are furry. (Rule)\n5. Green, furry people are quiet. (Rule)\n6. If someone is rough then they are kind. (Rule)\n7. If someone is quiet and kind then they are rough. (Rule)\n8. If someone is white then they are quiet. (Rule)\n9. If someone is blue and white then they are kind. (Rule)\n10. If someone is white then they are blue. (Rule)\n11. If Charlie is quiet then Charlie is white. (Rule)\n\nFrom statement 1, Erin is furry.\nFrom statement 2, Erin is quiet.\nFrom statement 3, Erin is white.\n\nUsing rule 8, since Erin is white, Erin is quiet. This is consistent with statement 2.\n\nNow, we need to determine whether Erin is kind or not. To do this, we can use rule 7: If someone is quiet and kind then they are rough. However, we do not have any information about Erin being kind or rough.\n\nHowever, we can also use rule 6: If someone is rough then they are kind. But since we do not have any information about Erin being rough, we cannot conclude that Erin is kind.\n\nNow, let's examine the relationship between being white and being kind. From rule 10, if someone is white, then they are blue. And from rule 9, if someone is blue and white, then they are kind. \n\nSince Erin is white (statement 3), we can conclude that Erin is blue (rule 10).\n\nNow that we know Erin is blue and white, we can use rule 9: If someone is blue and white, then they are kind.\n\nTherefore, Erin is kind.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Erin is kind, we need to analyze the given statements and use the rules to infer information about Erin.\n\n1. Erin is furry.\n2. Erin is quiet.\n3. Erin is white.\n\nFrom the rules, we have:\n- If someone is white then they are quiet. (Rule 7)\n- Since Erin is white, we can infer that Erin is quiet. This is consistent with statement 2.\n\nNow, let's examine the relationship between being furry, quiet, and kind.\n\n- All kind, rough people are furry. (Rule 4)\n- If someone is quiet and kind then they are rough. (Rule 6)\n- If someone is rough then they are kind. (Rule 5)\n\nFrom these rules, we can conclude that:\n- If someone is kind, then they must be rough.\n- If someone is rough, then they must be kind.\n- Therefore, being kind and being rough are equivalent.\n\nNow, let's analyze Erin's characteristics:\n- Erin is furry.\n- Erin is quiet.\n\nTo determine if Erin is kind, we need to consider the rules:\n- All kind, rough people are furry. (Rule 4)\n- If someone is quiet and kind then they are rough. (Rule 6)\n- Since Erin is furry and quiet, we cannot directly conclude that Erin is kind.\n\nHowever, we can infer that Erin might not be kind because:\n- If Erin is kind, then Erin must be rough. (From the equivalence of being kind and being rough)\n- If Erin is rough, then Erin must be furry. (From Rule 4)\n- However, Erin is already furry, so this does not provide new information.\n- But, we cannot conclude that Erin is rough because being quiet and kind would make Erin rough, but Erin is quiet and furry.\n\nWe have a problem. We cannot determine if Erin is kind because we cannot determine if Erin is rough. The information provided does not allow us to make a conclusion about Erin's kindness.\n\nTherefore, the answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is kind\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. Erin is furry. (Given)\n2. Erin is white. (Given)\n3. Erin is quiet. (Given)\n4. If someone is rough then they are kind. (Rule)\n5. If someone is quiet and kind then they are rough. (Rule)\n6. If someone is quiet then they are white. (Rule)\n7. If someone is white then they are quiet. (Rule)\n8. If someone is white then they are blue. (Rule)\n9. If someone is blue and white then they are kind. (Rule)\n10. Charlie is quiet. (Given)\n11. Charlie is white. (Rule from 10)\n\nFrom rule 5, if someone is quiet and kind, then they are rough. However, from rule 7, if someone is white, then they are quiet. And from rule 6, if someone is quiet, then they are white. So, from rule 7 and rule 6, if someone is white, then they are quiet, and if someone is quiet, then they are white, which implies that if someone is white, then they are white. This creates a loop where we cannot determine if someone is kind or rough based solely on the fact that they are white. This means we cannot directly apply rule 5 to Erin because we don't know if Erin is kind or rough.\n\nFrom rule 4, if someone is rough, then they are kind. But from rule 5, if someone is quiet and kind, then they are rough. This implies that if someone is quiet, then they are kind, but we also know that if someone is rough, then they are kind. However, from rule 8, if someone is white, then they are blue. And from rule 9, if someone is blue and white, then they are kind. This implies that if someone is white, then they are kind.\n\nNow, let's analyze Erin's characteristics:\n1. Erin is furry. (Given)\n2. Erin is white. (Given)\n3. Erin is quiet. (Given)\n\nSince Erin is white, from rule 8, Erin is blue. From rule 9, if someone is blue and white, then they are kind.\n\nTherefore, Erin is kind.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and rules to deduce whether Erin is kind or not.\n\n1. Given statements:\n   - Bob is kind.\n   - Bob is quiet.\n   - Bob is white.\n   - Charlie is quiet.\n   - Erin is furry.\n   - Erin is quiet.\n   - Erin is white.\n   - Fiona is blue.\n   - Fiona is furry.\n   - Fiona is kind.\n   - Fiona is quiet.\n   - All kind, rough people are furry.\n   - Green, furry people are quiet.\n   - If someone is rough then they are kind.\n   - If someone is quiet and kind then they are rough.\n   - If someone is white then they are quiet.\n   - If someone is blue and white then they are kind.\n   - If someone is white then they are blue.\n   - If Charlie is quiet then Charlie is white.\n\n2. We can start by analyzing the properties of each person.\n   - Erin is furry and quiet. \n   - Erin is not blue (because she is not white) and not white (because white and blue people are kind, but Erin is not kind).\n   - Erin is white (by rule 8: If someone is white then they are quiet) but not kind (because kind people are blue and white).\n\nHowever, we can also say that Erin is not rough because she is not furry (all kind, rough people are furry).",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), quiet_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> white(charlie)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> kind(X)",
+          "z3_formula": "Implies(quiet_erin, kind_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_erin, white_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> white(charlie)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_erin, white_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), quiet_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(furry_erin, kind_erin), rough_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_erin, white_erin)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_erin, furry_erin), quiet_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_erin, rough_erin), furry_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_erin, kind_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_erin, kind_erin), rough_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> white(X)",
+          "z3_formula": "Implies(quiet_erin, white_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_erin, quiet_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_erin, blue_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_erin, white_erin), kind_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(charlie)",
+          "z3_formula": "quiet_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(erin)",
+          "z3_formula": "furry_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> furry(X)",
+          "z3_formula": "Implies(And(kind_X, rough_X), furry_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_X, furry_X), quiet_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_X, kind_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_X, kind_X), rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> quiet(X)",
+          "z3_formula": "Implies(white_X, quiet_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_X, white_X), kind_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_X, blue_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(charlie) -> white(charlie)",
+          "z3_formula": "Implies(quiet_charlie, white_charlie)",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 135,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 31
+    },
+    "maxsat_stats": {
+      "satisfied": 31,
+      "excluded": 0,
+      "total_weight": 135,
+      "solve_time_ms": 0.9809741750359535
+    },
+    "timing": {
+      "trace_gen_s": 7.881,
+      "extraction_s": 24.664,
+      "dedup_s": 0.684,
+      "maxsat_s": 0.003,
+      "total_s": 33.231
+    }
+  }
+}

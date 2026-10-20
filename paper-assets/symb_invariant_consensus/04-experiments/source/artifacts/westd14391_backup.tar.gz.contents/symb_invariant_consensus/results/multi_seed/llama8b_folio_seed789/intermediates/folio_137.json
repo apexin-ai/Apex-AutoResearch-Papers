@@ -1,0 +1,609 @@
+{
+  "problem": {
+    "id": "folio_137",
+    "problem": "Given the following premises:\nPlungers suck. Vacuums suck. Vampires suck. Space is a vacuum. A duster is a household appliance that doesn't suck.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf something is a household appliance, it sucks.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (Plunger(x) \u2192 Suck(x))",
+      "\u2200x (Vacuum(x) \u2192 Suck(x))",
+      "\u2200x (Vampire(x) \u2192 Suck(x))",
+      "Vacuum(space)",
+      "HouseHoldApp(duster) \u2227 \u00ac Suck(duster)"
+    ],
+    "conclusion_fol": "\u2200x (HouseHoldApp(x) \u2192 Suck(x))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 52.0,
+      "Unknown": 78.0
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "False": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we'll analyze each premise and see how they relate to the conclusion.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nFrom Premise 4, we can conclude that a vacuum is a household appliance (since it's something found in a house) because Space is a vacuum, but we don't know if Space is a house. However, from the context, we can infer that a vacuum is indeed a household appliance.\n\nNow, we know that Vacuums suck (Premise 2) and a vacuum is a household appliance. So, we can conclude that a household appliance can suck.\n\nHowever, we also have a duster as a household appliance that doesn't suck (Premise 5). \n\nGiven that we have two household appliances, one that sucks (vacuum) and one that doesn't suck (duster), we cannot make a universal conclusion that all household appliances suck.\n\nTherefore, the conclusion \"If something is a household appliance, it sucks\" is uncertain, as there is at least one household appliance (duster) that doesn't meet this condition.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and apply them to the conclusion.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nNow, let's analyze the conclusion: If something is a household appliance, it sucks.\n\nFrom Premise 5, we know that a duster is a household appliance that doesn't suck. This means that the conclusion is not universally true, as there is a counterexample (a duster) that is a household appliance but does not suck.\n\nHowever, we also know from Premise 2 that vacuums suck. And from Premise 4, we know that space is a vacuum. This means that vacuums are indeed household appliances that suck, as they are used for cleaning and are often found in households.\n\nSo, while there is a counterexample (a duster) that is a household appliance but does not suck, there is also evidence that supports the conclusion (vacuums are household appliances that suck).\n\nTherefore, the conclusion is uncertain, as it is supported by some evidence but also has a counterexample.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "Let's break down the problem step by step.\n\n1. We are given the following premises:\n   - Plungers suck.\n   - Vacuums suck.\n   - Vampires suck.\n   - Space is a vacuum.\n   - A duster is a household appliance that doesn't suck.\n\n2. The conclusion we need to evaluate is:\n   - If something is a household appliance, it sucks.\n\nTo determine the truth of the conclusion, let's analyze the premises:\n\n- Plungers suck: This premise tells us that plungers have a sucking action. However, it does not provide information about all household appliances.\n- Vacuums suck: Similar to plungers, this premise tells us that vacuums have a sucking action. Again, it does not provide information about all household appliances.\n- Vampires suck: This premise is unrelated to household appliances. Vampires are fictional creatures, and their sucking action is a characteristic of their mythological nature.\n- Space is a vacuum: This premise tells us that space has a sucking action due to its low air pressure. However, it does not provide information about household appliances.\n- A duster is a household appliance that doesn't suck: This premise tells us that at least one household appliance (duster) does not have a sucking action.\n\nNow, let's evaluate the conclusion:\n\nIf something is a household appliance, it sucks.\n\nWe have two pieces of information that are relevant to the conclusion:\n\n1. Some household appliances (plungers, vacuums) have a sucking action.\n2. At least one household appliance (duster) does not have a sucking action.\n\nSince we know that not all household appliances have a sucking action (duster), we cannot conclude that all household appliances suck.\n\nTherefore, the conclusion is uncertain because it is not supported by all the premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's break down the premises and analyze the information step by step:\n\n1. \"Plungers suck.\"\n   - This premise establishes that plungers have the property of sucking. However, it does not imply that all household appliances suck.\n\n2. \"Vacuums suck.\"\n   - Similar to the first premise, this establishes that vacuums have the property of sucking. Again, it does not imply that all household appliances suck.\n\n3. \"Vampires suck.\"\n   - This premise is a common idiomatic expression and has no relation to the concept of sucking as a property of household appliances.\n\n4. \"Space is a vacuum.\"\n   - This premise is a scientific fact and has no direct relation to household appliances or their properties.\n\n5. \"A duster is a household appliance that doesn't suck.\"\n   - This premise directly contradicts the conclusion we are trying to evaluate. If a duster is a household appliance that doesn't suck, then it suggests that not all household appliances suck.\n\nGiven these premises, let's analyze the conclusion: \"If something is a household appliance, it sucks.\"\n\nFrom the premises, we have two pieces of information that relate to household appliances and sucking:\n- Plungers and vacuums are household appliances that suck.\n- A duster is a household appliance that doesn't suck.\n\nThese two pieces of information indicate that the property of sucking is not exclusive to all household appliances. Since a duster is a household appliance that doesn't suck, the conclusion that \"if something is a household appliance, it sucks\" cannot be universally true.\n\nTherefore, based on the given premises, the conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nWe are given the conclusion: If something is a household appliance, it sucks.\n\nLet's break down the information step by step:\n\n1. From Premise 5, we know that a duster is a household appliance, but it doesn't suck.\n2. This means that not all household appliances suck. We have an exception with the duster.\n3. However, we cannot conclude that no household appliance sucks based on this information alone, because we don't know about other household appliances.\n\nNow, let's analyze the conclusion: If something is a household appliance, it sucks.\n\nTo evaluate this conclusion, we need to consider whether the premises support it. Since Premise 5 provides an exception (the duster), we cannot conclude that all household appliances suck.\n\nHowever, we can also consider the fact that not all non-household appliances suck (e.g., a broom is not a household appliance, but it doesn't suck either). Therefore, the fact that some household appliances don't suck (e.g., the duster) doesn't necessarily imply that all household appliances don't suck.\n\nIn conclusion, based on the given premises, we cannot determine whether the conclusion is true or false. There is not enough information to support or refute the statement \"If something is a household appliance, it sucks.\" Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and apply logical reasoning to determine the validity of the conclusion.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nFrom Premise 4, we can conclude that since space is a vacuum, and vacuums suck (from Premise 2), then space sucks. However, this is a semantic argument and not directly relevant to the conclusion we are trying to make about household appliances.\n\nPremise 3 tells us that vampires suck, but this is a metaphorical expression and doesn't relate to the physical properties of household appliances.\n\nPremise 5 tells us that a duster is a household appliance that doesn't suck. This premise is crucial in determining the validity of the conclusion.\n\nNow, let's analyze the conclusion: If something is a household appliance, it sucks.\n\nFrom the given premises, we have a counterexample that challenges the conclusion. A duster is a household appliance (from Premise 5), but it doesn't suck. This counterexample makes the conclusion uncertain.\n\nTherefore, we cannot conclude that all household appliances suck, as there is a specific example (duster) that contradicts this statement.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine the validity of the conclusion, let's analyze the premises and see if we can derive the conclusion from them.\n\n1. Plungers suck. \n2. Vacuums suck. \n3. Vampires suck. \n4. Space is a vacuum. \n5. A duster is a household appliance that doesn't suck.\n\nFrom the premises, we can see that there are two types of household appliances: those that suck (plungers and vacuums) and those that don't suck (dusters).\n\nThe conclusion states: \"If something is a household appliance, it sucks.\"\n\nTo test this conclusion, let's consider the following:\n\n- Plungers are household appliances and they suck (premise 1).\n- Vacuums are household appliances and they suck (premise 2).\n- However, we also have a household appliance (duster) that does not suck (premise 5).\n\nSince there are household appliances that both suck and do not suck, we cannot say that all household appliances suck.\n\nTherefore, the conclusion \"If something is a household appliance, it sucks\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the validity of the conclusion, let's analyze the given premises step by step:\n\n1. Premise 1: Plungers suck.\n   - This statement does not provide any information about plunger being a household appliance. It only states that plungers suck.\n\n2. Premise 2: Vacuums suck.\n   - Like Premise 1, this statement does not provide any information about vacuums being household appliances. It only states that vacuums suck.\n\n3. Premise 3: Vampires suck.\n   - This statement is unrelated to household appliances. It only provides information about vampires.\n\n4. Premise 4: Space is a vacuum.\n   - This statement is unrelated to household appliances as well. It provides information about the nature of space.\n\n5. Premise 5: A duster is a household appliance that doesn't suck.\n   - This statement provides information about dusters being household appliances and explicitly states that they do not suck.\n\nNow, let's try to derive the conclusion from the given premises:\n\nThe conclusion is: If something is a household appliance, it sucks.\n\nFrom Premise 5, we know that dusters are household appliances and do not suck. However, this does not support the conclusion. \n\nThere is no direct information linking the characteristics of household appliances to sucking. The conclusion is not supported by any of the premises, and we cannot infer it with certainty.\n\nTherefore, the conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and apply logical reasoning to determine the validity of the conclusion.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nWe need to evaluate the conclusion: If something is a household appliance, it sucks.\n\nFrom Premise 1, we can see that not all household appliances suck, as dusters (which are household appliances) do not suck according to Premise 5.\n\nWe can also analyze the other premises, but they do not provide any information that would allow us to conclude that all household appliances suck. For example, Premise 2 and Premise 3 are irrelevant to the conclusion because they do not relate to household appliances. Premise 4 is also irrelevant because it talks about space, not household appliances.\n\nSince we have a specific example (duster) of a household appliance that does not suck, we cannot conclude that all household appliances suck. Therefore, the conclusion is uncertain.\n\nHowever, if we try to prove that the conclusion is false or true, we can use a logical argument called modus tollens. \n\nIf we assume the conclusion is true, then we can say that all household appliances suck. \n\nBut then, we have Premise 5 which says that a duster is a household appliance that doesn't suck. This directly contradicts our assumption that all household appliances suck. Therefore, our assumption must be false.\n\nSo, we can conclude that the conclusion \"If something is a household appliance, it sucks\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the given conclusion is true, false, or uncertain, we need to analyze the premises step by step.\n\n1. \"Plungers suck.\" - This statement establishes that plungers have the property of sucking. However, in the context of household appliances, sucking can mean either the action of drawing something in or the action of removing something, like dirt or stains.\n\n2. \"Vacuums suck.\" - This statement further reinforces the idea that sucking is a property of certain household appliances. In this case, it's clear that vacuums are designed to draw in dirt, dust, and other particles.\n\n3. \"Vampires suck.\" - This statement introduces a metaphorical or figurative sense of sucking, implying that vampires have a negative or undesirable influence. This does not relate directly to the literal sense of sucking in household appliances.\n\n4. \"Space is a vacuum.\" - This statement is used to describe the state of space as being devoid of matter or air. It's a scientific concept rather than a household appliance.\n\n5. \"A duster is a household appliance that doesn't suck.\" - This statement explicitly defines dusters as household appliances that do not have the property of sucking. This suggests that sucking is not an essential property of all household appliances.\n\nNow, we can analyze the conclusion: \"If something is a household appliance, it sucks.\" To determine whether this conclusion is true, false, or uncertain, we need to consider whether the premises provide enough evidence to support it.\n\nBased on the premises, we know that not all household appliances suck (dusters don't). We also know that some household appliances do suck (plungers and vacuums), but that's not a universal property of all household appliances.\n\nTherefore, the conclusion is uncertain because we have evidence of household appliances that do suck and evidence of household appliances that don't suck. We cannot definitively say that all household appliances suck.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises and see if they lead to the conclusion logically.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nFrom Premise 4, we can conclude that a vacuum is a type of space, but it's not a household appliance in the context of Premise 5. \n\nPremise 3 mentions vampires sucking, which is a metaphorical expression and doesn't relate to household appliances.\n\nNow, let's examine the conclusion: If something is a household appliance, it sucks.\n\nFrom the given premises, we know that:\n- A plunger (a household appliance) sucks (Premise 1).\n- A vacuum (a household appliance) sucks (Premise 2, but it's a vacuum, not just any household appliance).\n- A duster (a household appliance) doesn't suck (Premise 5).\n\nThe conclusion tries to make a general statement that all household appliances suck. However, we have a counterexample in Premise 5, which states that a duster (a household appliance) doesn't suck.\n\nBased on the given premises, we cannot conclude that all household appliances suck. There is a specific example of a duster, which is a household appliance but doesn't suck.\n\nTherefore, the conclusion is uncertain, as it's based on a general statement that can't be proven true with the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the validity of the conclusion, let's analyze the given premises and their implications.\n\nPremise 1: Plungers suck.\nPremise 2: Vacuums suck.\nPremise 3: Vampires suck.\nPremise 4: Space is a vacuum.\nPremise 5: A duster is a household appliance that doesn't suck.\n\nFrom these premises, we can identify two types of household appliances: those that suck (plungers and vacuums) and one that doesn't suck (dusters).\n\nNow, let's examine the conclusion: If something is a household appliance, it sucks.\n\nThe conclusion is trying to make a general statement about all household appliances. However, Premise 5 introduces a counterexample - a duster, which is a household appliance but does not suck. This creates uncertainty about the conclusion's validity.\n\nWe cannot confidently say that all household appliances suck, as the duster provides an exception. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "appliance(duster)",
+          "z3_formula": "appliance_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "vacuum(X) -> appliance(X)",
+          "z3_formula": "Implies(vacuum_space, appliance_vacuum)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "appliance(vacuum)",
+          "z3_formula": "appliance_vacuum == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "appliance(X) -> suck(X)",
+          "z3_formula": "Implies(appliance_vacuum, suck_vacuum)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(suck(duster))",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "appliance(duster) & not(suck(duster))",
+          "z3_formula": "And(appliance_duster, not_suck_duster)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "appliance(X) & suck(X)",
+          "z3_formula": "And(appliance_vacuum, suck_vacuum)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Or(appliance(X) & suck(X), appliance(X) & not(suck(X)))",
+          "z3_formula": "Or(And(appliance_vacuum, suck_vacuum), And(appliance_duster, not_suck_duster))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(Forall(X, Implies(appliance(X), suck(X)))",
+          "z3_formula": "Not(Forall(X, Implies(appliance_X, suck_X)))",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "plungers_suck",
+          "z3_formula": "plungers_suck == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "vacuums_suck",
+          "z3_formula": "vacuums_suck == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "vampires_suck",
+          "z3_formula": "vampires_suck == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "space_is_vacuum",
+          "z3_formula": "space_is_vacuum == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "duster_is_household_appliance",
+          "z3_formula": "duster_is_household_appliance == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "duster_does_not_suck",
+          "z3_formula": "duster_does_not_suck == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "household_appliance(X) -> sucks(X)",
+          "z3_formula": "Implies(household_appliance, sucks)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain",
+          "z3_formula": "Or(sucks, Not(sucks))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_suck(duster)",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "household_appliance(X) -> suck(X)",
+          "z3_formula": "Implies(household_appliance_X, suck_X)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(suck(duster))",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "household_appliance(X) -> suck(X)",
+          "z3_formula": "Implies(household_appliance, suck)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_suck(duster)",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "household_appliance(X) -> suck(X)",
+          "z3_formula": "Implies(household_appliance_X, suck_X)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "appliance(duster)",
+          "z3_formula": "appliance_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "vacuum(X) -> suck(X)",
+          "z3_formula": "Implies(vacuum_space, suck_space)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "household_appliance(X) -> suck(X)",
+          "z3_formula": "Implies(household_appliance_X, suck_X)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "suck(duster)",
+          "z3_formula": "suck_duster == False",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_suck(duster)",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "household_appliance(X) -> suck(X)",
+          "z3_formula": "Implies(household_appliance_X, suck_X)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_suck(duster)",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "household_appliance(X) -> suck(X)",
+          "z3_formula": "Implies(household_appliance_X, suck_X)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_suck(duster)",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "household_appliance(X) -> suck(X)",
+          "z3_formula": "Implies(household_appliance_X, suck_X)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not_suck(duster)",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "household_appliance(X) -> suck(X)",
+          "z3_formula": "Implies(household_appliance, suck)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "plunger_sucks",
+          "z3_formula": "plunger_sucks == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum_sucks",
+          "z3_formula": "vacuum_sucks == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "vampire_sucks",
+          "z3_formula": "vampire_sucks == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "space_is_vacuum",
+          "z3_formula": "space_is_vacuum == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "duster_not_suck",
+          "z3_formula": "duster_not_suck == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "household_appliance(X) -> sucks(X)",
+          "z3_formula": "Implies(household_appliance, sucks)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "suck(plunger)",
+          "z3_formula": "suck_plunger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vacuum)",
+          "z3_formula": "suck_vacuum == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "suck(vampire)",
+          "z3_formula": "suck_vampire == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "vacuum(space)",
+          "z3_formula": "vacuum_space == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not_suck(duster)",
+          "z3_formula": "not_suck_duster == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "household_appliance(X) -> suck(X)",
+          "z3_formula": "Implies(household_appliance_X, suck_X)",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 79,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 28
+    },
+    "maxsat_stats": {
+      "satisfied": 28,
+      "excluded": 0,
+      "total_weight": 78,
+      "solve_time_ms": 0.817837193608284
+    },
+    "timing": {
+      "trace_gen_s": 4.864,
+      "extraction_s": 12.585,
+      "dedup_s": 0.457,
+      "maxsat_s": 0.003,
+      "total_s": 17.909
+    }
+  }
+}

@@ -1,0 +1,14 @@
+Experiment: sica_expanded_14b
+Server: westd-32608
+GPU: cuda:0
+Model: Qwen2.5-14B-Instruct (vLLM, port 8000)
+
+Data:
+- ProofWriter D5 full: 600 problems (True=200, False=200, Unknown=200)
+- FOLIO full: 204 problems (True=72, False=63, Unknown=69)
+- Total: 804 problems
+
+Config: K=12, temp=0.7, max_tokens=4096, seed=42, save_intermediates=True
+Output: results/sica_expanded_14b.json
+Log: ~/runs/symb_invariant_consensus/sica_expanded_14b.log
+Estimated runtime: ~13 hours

@@ -1,0 +1,473 @@
+{
+  "problem": {
+    "id": "folio_177",
+    "problem": "Given the following premises:\n[BG] The Olympic games is a sporting event.  The last Olympic games was in Tokyo. The United States won the most medals in Tokyo.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nThe last Olympic games were not in Tokyo.",
+    "solution": "",
+    "answer": "False",
+    "level": "validation",
+    "premises_fol": [
+      "SportingEvent(olympics)",
+      "LastOlympics(tokyo)",
+      "MostMedals(unitedStates, tokyo)"
+    ],
+    "conclusion_fol": "\u00acLastOlympics(tokyo)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 40.0
+    },
+    "answer_counts": {
+      "False": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to the conclusion.\n\nPremise 1: The Olympic games is a sporting event.\nThis premise doesn't give us any information about the location of the Olympic games.\n\nPremise 2: The last Olympic games was in Tokyo.\nThis premise directly contradicts the conclusion, which states that the last Olympic games were not in Tokyo. \n\nPremise 3: The United States won the most medals in Tokyo.\nThis premise also doesn't give us any information about the location of the Olympic games, but it confirms that the Olympic games were indeed held in Tokyo (since it mentions \"in Tokyo\").\n\nNow, let's analyze the conclusion: \"The last Olympic games were not in Tokyo.\"\nGiven that Premise 2 directly states that the last Olympic games were in Tokyo, and Premise 3 confirms the same, we can conclude that the given premises contradict the conclusion.\n\nSince the premises directly contradict the conclusion, we can logically conclude that the conclusion is false.\n\nTherefore, the final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: The Olympic games is a sporting event.\n- This premise is a general statement about the Olympic games and does not provide any specific information about the location of the last Olympic games.\n\nPremise 2: The last Olympic games was in Tokyo.\n- This premise directly states that the last Olympic games was held in Tokyo. It does not leave any ambiguity.\n\nPremise 3: The United States won the most medals in Tokyo.\n- This premise also refers to the last Olympic games being held in Tokyo and provides additional information about the outcome of the games.\n\nNow, let's examine the conclusion:\n\n\"The last Olympic games were not in Tokyo.\"\n\nGiven the information from premises 2 and 3, we can see that the conclusion directly contradicts premise 2, which states that the last Olympic games was in Tokyo.\n\nTherefore, based on the given premises, the conclusion \"The last Olympic games were not in Tokyo\" is:\n\n**False**\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the premises and see if they provide enough information to support the conclusion.\n\nPremise 1: The Olympic games is a sporting event.\nThis premise is a general statement and doesn't provide any specific information about the location of the Olympic games.\n\nPremise 2: The last Olympic games was in Tokyo.\nThis premise directly states that the last Olympic games took place in Tokyo, which is a specific location.\n\nPremise 3: The United States won the most medals in Tokyo.\nThis premise also refers to the Olympic games in Tokyo, which is the same location mentioned in Premise 2.\n\nNow, let's examine the conclusion:\n\nConclusion: The last Olympic games were not in Tokyo.\n\nGiven the information from Premise 2 and Premise 3, which both confirm that the last Olympic games took place in Tokyo, we can conclude that the information in the premises contradicts the conclusion.\n\nTherefore, based on the premises, the conclusion is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion \"The last Olympic games were not in Tokyo\" is true, false, or uncertain based on the given premises, let's analyze each premise step by step:\n\n1. Premise: The Olympic games is a sporting event. \n   - This premise provides general information about the Olympic games but doesn't provide any specific information about the location of the last Olympic games. So, it's irrelevant to the conclusion.\n\n2. Premise: The last Olympic games was in Tokyo.\n   - This premise directly states that the last Olympic games were held in Tokyo. This premise directly opposes the conclusion.\n\n3. Premise: The United States won the most medals in Tokyo.\n   - This premise provides additional information about the last Olympic games but is not relevant to determining the location of the last Olympic games. So, it's also irrelevant to the conclusion.\n\nGiven the premises, we have a direct statement that the last Olympic games were in Tokyo, which contradicts the conclusion that they were not in Tokyo.\n\nTherefore, based on the given information, the conclusion is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the premises and see if they support the conclusion.\n\nPremise 1: The Olympic games is a sporting event. \nThis premise does not provide any information about the location of the Olympic games, so it does not directly support or contradict the conclusion.\n\nPremise 2: The last Olympic games was in Tokyo.\nThis premise directly contradicts the conclusion, which states that the last Olympic games were not in Tokyo. If the last Olympic games was in Tokyo, then it was indeed in Tokyo.\n\nPremise 3: The United States won the most medals in Tokyo.\nThis premise also supports the fact that the last Olympic games was in Tokyo, as it mentions Tokyo specifically.\n\nSince Premise 2 directly contradicts the conclusion, and Premise 3 supports Premise 2, we can conclude that the conclusion is false. The premises provide evidence that the last Olympic games was indeed in Tokyo.\n\nTherefore, the conclusion is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the premises.\n\nPremise 1: The Olympic games is a sporting event. \nThis premise does not provide any information about the location of the Olympic games, so it does not directly relate to the conclusion.\n\nPremise 2: The last Olympic games was in Tokyo. \nThis premise directly contradicts the conclusion, which states that the last Olympic games were not in Tokyo. \n\nPremise 3: The United States won the most medals in Tokyo. \nThis premise also confirms that the last Olympic games were in Tokyo, as it mentions the location.\n\nBased on the analysis of the premises, we can conclude that the conclusion is false. The premises provide information that confirms the last Olympic games were indeed in Tokyo, contradicting the conclusion. \n\nTherefore, the conclusion is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion \"The last Olympic games were not in Tokyo\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: [BG] The Olympic games is a sporting event.\n\nThis premise alone doesn't provide any information about the location of the last Olympic games. So, it's not relevant to the conclusion.\n\nPremise 2: The last Olympic games was in Tokyo.\n\nThis premise directly contradicts the conclusion. It explicitly states that the last Olympic games were in Tokyo, which makes the conclusion false.\n\nPremise 3: The United States won the most medals in Tokyo.\n\nThis premise also confirms that the last Olympic games were indeed in Tokyo, as it mentions the location \"Tokyo\" specifically. This further supports the fact that the conclusion is false.\n\nTherefore, based on the given premises, the conclusion \"The last Olympic games were not in Tokyo\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the premises and see if they support the conclusion.\n\nPremise 1: The Olympic games is a sporting event. \nThis premise is a general statement about the Olympic games and doesn't provide any specific information about the location of the last Olympic games.\n\nPremise 2: The last Olympic games was in Tokyo.\nThis premise directly contradicts the conclusion we're trying to determine. If the last Olympic games was indeed in Tokyo, then the conclusion that \"The last Olympic games were not in Tokyo\" would be false.\n\nPremise 3: The United States won the most medals in Tokyo.\nThis premise also provides information about the last Olympic games being in Tokyo. The fact that the United States won the most medals in Tokyo further supports the idea that the last Olympic games was indeed in Tokyo.\n\nBased on the premises, we can see that Premise 2 directly states that the last Olympic games was in Tokyo, which contradicts the conclusion. Therefore, the conclusion that \"The last Olympic games were not in Tokyo\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they support the conclusion.\n\nPremise 1: The Olympic games is a sporting event. \nThis premise does not provide any information about the location of the Olympic games, so it's irrelevant to the conclusion.\n\nPremise 2: The last Olympic games was in Tokyo. \nThis premise directly contradicts the conclusion, which states that the last Olympic games were not in Tokyo. Therefore, the conclusion cannot be true.\n\nPremise 3: The United States won the most medals in Tokyo. \nThis premise also supports the fact that the last Olympic games were in Tokyo, as it mentions Tokyo specifically.\n\nBased on the premises, we can conclude that the conclusion is false. The last Olympic games were indeed in Tokyo, as stated in premises 2 and 3.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: The Olympic games is a sporting event. \nThis premise is irrelevant to the conclusion and does not provide any information about the location of the last Olympic games.\n\nPremise 2: The last Olympic games was in Tokyo.\nThis premise directly contradicts the conclusion, which states that the last Olympic games were not in Tokyo. \n\nPremise 3: The United States won the most medals in Tokyo.\nThis premise also supports the fact that the last Olympic games were in Tokyo, as it provides additional information about the location.\n\nBased on the analysis of the premises, we can conclude that the conclusion \"The last Olympic games were not in Tokyo\" is false. This is because Premise 2 directly states that the last Olympic games were in Tokyo, which contradicts the conclusion.\n\nTherefore, the answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: The Olympic games is a sporting event.\nThis premise does not provide any information about the location of the Olympic games, so it does not directly support or contradict the conclusion.\n\nPremise 2: The last Olympic games was in Tokyo.\nThis premise directly contradicts the conclusion, which states that the last Olympic games were not in Tokyo.\n\nPremise 3: The United States won the most medals in Tokyo.\nThis premise also does not provide any information about the location of the Olympic games. However, it is consistent with Premise 2, which states that the last Olympic games was in Tokyo.\n\nBased on the analysis of the premises, we can conclude that the conclusion is false because it contradicts Premise 2, which is supported by Premise 3.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and see if they lead to the conclusion.\n\nPremise 1: The Olympic games is a sporting event.\n- This premise doesn't provide any specific information about the location of the last Olympic games. It simply states that the Olympic games is a sporting event.\n\nPremise 2: The last Olympic games was in Tokyo.\n- This premise directly states that the last Olympic games was held in Tokyo. \n\nPremise 3: The United States won the most medals in Tokyo.\n- This premise also doesn't provide any information about the location of the last Olympic games. However, it does confirm that the last Olympic games was indeed held in Tokyo, as it mentions that the United States won the most medals in Tokyo.\n\nNow, let's evaluate the conclusion:\nThe last Olympic games were not in Tokyo.\n\nGiven the information from the premises, especially Premise 2, we know that the last Olympic games was indeed held in Tokyo. This directly contradicts the conclusion that the last Olympic games were not in Tokyo.\n\nTherefore, the conclusion is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games_in_tokyo",
+          "z3_formula": "olympic_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "united_states_won_most_medals_in_tokyo",
+          "z3_formula": "united_states_won_most_medals_in_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not olympic_games_in_tokyo",
+          "z3_formula": "Not(olympic_games_in_tokyo) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "location(last_olympic_games, tokyo)",
+          "z3_formula": "location_last_olympic_games_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "medal_winner(united_states, last_olympic_games)",
+          "z3_formula": "medal_winner_united_states_last_olympic_games == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not location(last_olympic_games, tokyo)",
+          "z3_formula": "Not(location_last_olympic_games_tokyo) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "location(last_olympic_games, tokyo)",
+          "z3_formula": "location_last_olympic_games_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "medals_won(united_states, tokyo)",
+          "z3_formula": "medals_won_united_states_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not location(last_olympic_games, tokyo)",
+          "z3_formula": "Not(location_last_olympic_games_tokyo)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games_in_tokyo",
+          "z3_formula": "olympic_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "us_won_most_medals_in_tokyo",
+          "z3_formula": "us_won_most_medals_in_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not olympic_games_in_tokyo",
+          "z3_formula": "Not(olympic_games_in_tokyo) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "location(olympic_games, tokyo)",
+          "z3_formula": "location_olympic_games_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "medal_winner(united_states, tokyo)",
+          "z3_formula": "medal_winner_united_states_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sporting_event(X) -> ?(location(X, Y))",
+          "z3_formula": "Implies(sporting_event_olympic_games, ?(location_olympic_games_Y))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "location(X, Y) -> X = Y",
+          "z3_formula": "Implies(location_olympic_games_tokyo, olympic_games == tokyo)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "medal_winner(X, Y) -> Y = location(Z, Y)",
+          "z3_formula": "Implies(medal_winner_united_states_tokyo, tokyo == location(Z, tokyo))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "olympic_games != tokyo",
+          "z3_formula": "Not(olympic_games == tokyo)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games(tokyo)",
+          "z3_formula": "olympic_games_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "won_most_medals(united_states, tokyo)",
+          "z3_formula": "won_most_medals_united_states_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not last_olympic_games(tokyo)",
+          "z3_formula": "Not(last_olympic_games_tokyo)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "olympic_games_sporting_event == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games_in_tokyo",
+          "z3_formula": "olympic_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "tokyo_won_most_medals",
+          "z3_formula": "tokyo_won_most_medals == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games_in_tokyo",
+          "z3_formula": "olympic_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "united_states_won_most_medals_in_tokyo",
+          "z3_formula": "united_states_won_most_medals_in_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not olympic_games_in_tokyo",
+          "z3_formula": "Not(olympic_games_in_tokyo) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games(tokyo)",
+          "z3_formula": "olympic_games_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "won_most_medals(us, tokyo)",
+          "z3_formula": "won_most_medals_us_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not last_olympic_games(tokyo)",
+          "z3_formula": "Not(last_olympic_games_tokyo)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "location(last_olympic_games, tokyo)",
+          "z3_formula": "location_last_olympic_games_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "medal_winner(united_states, tokyo)",
+          "z3_formula": "medal_winner_united_states_tokyo == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "olympic_games(tokyo)",
+          "z3_formula": "olympic_games_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "won_most_medals(us, tokyo)",
+          "z3_formula": "won_most_medals_us_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sporting_event(X) -> ?(location(X))",
+          "z3_formula": "Implies(sporting_event_olympic_games, ?(location_olympic_games))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not location(olympic_games)",
+          "z3_formula": "Not(location_olympic_games) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "olympic_games(X) -> location(X)",
+          "z3_formula": "Implies(olympic_games_tokyo, location_tokyo)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "location(olympic_games)",
+          "z3_formula": "location_tokyo == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "location(X) -> not ?(location(X))",
+          "z3_formula": "Implies(location_tokyo, Not(?location_tokyo))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not ?(location(olympic_games))",
+          "z3_formula": "Not(?location_tokyo) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "won_most_medals(X, Y) -> olympic_games(Y)",
+          "z3_formula": "Implies(won_most_medals_us_tokyo, olympic_games_tokyo)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "olympic_games(tokyo)",
+          "z3_formula": "olympic_games_tokyo == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not location(olympic_games)",
+          "z3_formula": "Not(location_tokyo) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sporting_event(olympic_games)",
+          "z3_formula": "sporting_event_olympic_games == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "last_olympic_games_in_tokyo",
+          "z3_formula": "last_olympic_games_in_tokyo == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "united_states_won_most_medals_in_tokyo",
+          "z3_formula": "united_states_won_most_medals_in_tokyo == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not last_olympic_games_in_tokyo",
+          "z3_formula": "Not(last_olympic_games_in_tokyo) == True",
+          "source_step": 4
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 57,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 26
+    },
+    "maxsat_stats": {
+      "satisfied": 21,
+      "excluded": 5,
+      "total_weight": 44,
+      "solve_time_ms": 1.0016867890954018
+    },
+    "timing": {
+      "trace_gen_s": 2.838,
+      "extraction_s": 12.914,
+      "dedup_s": 0.31,
+      "maxsat_s": 0.003,
+      "total_s": 16.065
+    }
+  }
+}

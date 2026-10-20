@@ -1,0 +1,934 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1149_Q12",
+    "problem": "Anne is kind. Charlie is not big. Charlie is green. Erin is green. Erin is not kind. Harry is big. Harry is green. All big, green things are young. Big things are young. All red things are green. If something is kind then it is not red. All furry things are kind. If Harry is young then Harry is cold. If something is young and cold then it is furry.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is red.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nYoung($x, bool) ::: Is x young?\nFurry($x, bool) ::: Is x furry?\nCold($x, bool) ::: Is x cold?\n\nFacts:\nKind(Anne, True) ::: Anne is kind.\nBig(Charlie, False) ::: Charlie is not big.\nGreen(Charlie, True) ::: Charlie is green.\nGreen(Erin, True) ::: Erin is green.\nKind(Erin, False) ::: Erin is not kind.\nBig(Harry, True) ::: Harry is big.\nGreen(Harry, True) ::: Harry is green.\n\nRules:\nBig($x, True) && Green($x, True) >>> Young($x, True) ::: All big, green things are young.\nBig($x, True) >>> Young($x, True) ::: Big things are young.\nRed($x, True) >>> Green($x, True) ::: All red things are green.\nKind($x, True) >>> Red($x, False) ::: If something is kind then it is not red.\nFurry($x, True) >>> Kind($x, True) ::: All furry things are kind.\nYoung(Harry, True) >>> Cold(Harry, True) ::: If Harry is young then Harry is cold.\nYoung($x, True) && Cold($x, True) >>> Furry($x, True) ::: If something is young and cold then it is furry.\n\nQuery:\nRed(Harry, True) ::: Harry is red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 132.0,
+      "Unknown": 122.0
+    },
+    "answer_counts": {
+      "False": 9,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Harry is red, we need to analyze the given statements and use the process of elimination.\n\n1. Harry is big (given)\n2. Harry is green (given)\n3. All big, green things are young (given)\n   From (3), we can conclude that Harry is young.\n4. If Harry is young, then Harry is cold (given)\n   From (3) and (4), we can conclude that Harry is cold.\n5. If something is young and cold, then it is furry (given)\n   From (4) and (5), we can conclude that Harry is furry.\n6. All furry things are kind (given)\n   From (5), we can conclude that Harry is kind.\n7. If something is kind, then it is not red (given)\n   From (6), we can conclude that Harry is not red.\n\nTherefore, the statement \"Harry is red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will use the principles of deductive reasoning and analyze the given statements one by one.\n\nGiven Statements:\n\n1. Anne is kind.\n2. Charlie is not big.\n3. Charlie is green.\n4. Erin is green.\n5. Erin is not kind.\n6. Harry is big.\n7. Harry is green.\n8. All big, green things are young.\n9. Big things are young.\n10. All red things are green.\n11. If something is kind then it is not red.\n12. All furry things are kind.\n13. If Harry is young then Harry is cold.\n14. If something is young and cold then it is furry.\n\nNow, we need to determine whether the statement \"Harry is red\" is true, false, or unknown.\n\nLet's start by analyzing the given statements:\n\n- From statements 8 and 9, we can conclude that since Harry is big (statement 6) and Harry is green (statement 7), Harry must be young.\n\n- Since Harry is young (derived from statements 6, 7, 8, and 9) and Harry is green (statement 7), we can conclude that Harry is not red. This is because statement 10 says all red things are green, but we know Harry is green and young, not just green.\n\n- From statement 13, we can conclude that since Harry is young (derived from statements 6, 7, 8, and 9), Harry must be cold.\n\n- From statement 14, we can conclude that since Harry is young (derived from statements 6, 7, 8, and 9) and Harry is cold (derived from statement 13), Harry must be furry.\n\n- From statement 12, we can conclude that since Harry is furry (derived from statements 13 and 14), Harry must be kind.\n\n- Since Harry is kind (derived from statement 12) and statement 11 says if something is kind then it is not red, we can conclude that Harry is not red.\n\nTherefore, the statement \"Harry is red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is red\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. From the given information, we have:\n   - Harry is big.\n   - Harry is green.\n   - All big, green things are young. (So, Harry is young.)\n   - All big things are young. (This is a redundant statement as it's already covered in the previous statement.)\n   - All red things are green. (This statement is problematic because it implies that red and green are equivalent, but in the context of colors, this is not true. We can ignore this statement for now.)\n   - If something is kind then it is not red. (This statement implies that red and not kind are equivalent, which is useful for our analysis.)\n   - All furry things are kind. (This statement is useful for our analysis.)\n   - If Harry is young then Harry is cold. (This statement is useful for our analysis.)\n   - If something is young and cold then it is furry. (This statement is useful for our analysis.)\n\n2. From the given statements, we can deduce the following:\n   - Harry is young (as mentioned earlier).\n   - If Harry is young, then Harry is cold.\n   - If Harry is young and cold, then Harry is furry.\n   - Since Harry is furry, Harry is kind.\n   - If Harry is kind, then Harry is not red.\n\n3. Based on the deductions, we can conclude that the statement \"Harry is red\" is false because if Harry is kind, then Harry is not red.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is big. (Given)\n2. All big, green things are young. (Given)\n3. Big things are young. (Given)\n   From this, we can conclude that Harry is young, but we don't know if Harry is green yet. However, we will come back to this point later.\n\n4. All red things are green. (Given)\n   This means that if something is red, it must also be green. However, we don't know if Harry is red or not yet.\n\n5. If Harry is young then Harry is cold. (Given)\n   From the information in step 3, we know Harry is young. So, we can conclude that Harry is cold.\n\n6. If something is young and cold then it is furry. (Given)\n   From the information in steps 3 and 5, we know Harry is young and cold. So, we can conclude that Harry is furry.\n\n7. All furry things are kind. (Given)\n   From the information in step 6, we know Harry is furry. So, we can conclude that Harry is kind.\n\n8. If something is kind then it is not red. (Given)\n   From the information in step 7, we know Harry is kind. So, we can conclude that Harry is not red.\n\nNow, let's analyze the information we have about Harry's color:\n- We know that all red things are green. (step 4)\n- We know that Harry is not red. (step 8)\n- However, we don't have any information that says all green things are not red or that all red things are not green.\n\nBut, we do have this:\n- Harry is green. (Given)\n- We cannot conclude that Harry is red from this information alone.\n\nSince we know Harry is not red from step 8 and we don't have any information that directly says Harry is red or that Harry is not green, we cannot conclude that Harry is red or not red.\n\nTherefore, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All red things are green. \nThis statement implies that if something is red, then it is green. However, it does not directly say that Harry is red. \n\n2. If something is kind then it is not red. \nThis statement implies that if something is red, then it is not kind. However, it does not directly say that Harry is red. \n\n3. All big, green things are young. \nFrom this statement, we know that Harry is big and green, so we can conclude that Harry is young.\n\n4. Big things are young. \nThis statement is a repetition of statement 3 and does not provide any new information.\n\n5. All furry things are kind. \nThis statement implies that if something is furry, then it is kind. However, it does not directly say that Harry is furry.\n\n6. If Harry is young then Harry is cold. \nSince we know that Harry is young (from statement 3), we can conclude that Harry is cold.\n\n7. If something is young and cold then it is furry. \nSince we know that Harry is young and cold, we can conclude that Harry is furry.\n\n8. All furry things are kind. \nSince we know that Harry is furry (from statement 7), we can conclude that Harry is kind.\n\nNow, we can combine the information to determine whether the statement \"Harry is red\" is true, false, or unknown. \n\nFrom statement 1, if something is red, then it is green. However, we do not have any direct information about Harry being red. But we know from statement 8 that Harry is kind. \n\nFrom statement 2, if something is kind, then it is not red. Since we know that Harry is kind, we can conclude that Harry is not red.\n\nTherefore, the statement \"Harry is red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information: \"All big, green things are young.\" and \"Harry is big. Harry is green.\" We can infer that Harry is young.\n   - So, we have: Harry is young.\n\n2. From the information: \"If Harry is young then Harry is cold.\" We can infer that Harry is cold.\n   - So, we have: Harry is young and Harry is cold.\n\n3. From the information: \"If something is young and cold then it is furry.\" We can infer that Harry is furry.\n   - So, we have: Harry is furry.\n\n4. From the information: \"All furry things are kind.\" We can infer that Harry is kind.\n   - So, we have: Harry is kind.\n\n5. From the information: \"If something is kind then it is not red.\" We can infer that Harry is not red.\n   - So, we have: Harry is not red.\n\nBased on the analysis, we can conclude that the statement \"Harry is red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1.  Harry is big (Given)\n2.  All big, green things are young (Given)\n3.  All big things are young (Given) - This is a more general statement than the first one, which means it can be ignored since it's already covered by the first statement.\n4.  Harry is green (Given)\n5.  All red things are green (Given) - This statement is counterintuitive, but we will use it to analyze the situation.\n6.  If something is kind then it is not red (Given)\n7.  All furry things are kind (Given)\n8.  If Harry is young then Harry is cold (Given)\n9.  If something is young and cold then it is furry (Given)\n\nNow, let's analyze the statements:\n\n- From statements 1, 2, and 4, we can conclude that Harry is young.\n- Since Harry is young, from statement 8, we can conclude that Harry is cold.\n- From statement 9, since Harry is young and cold, we can conclude that Harry is furry.\n- From statement 7, since Harry is furry, we can conclude that Harry is kind.\n- From statement 6, since Harry is kind, we can conclude that Harry is not red.\n\nHowever, we cannot directly conclude that Harry is red from the given information. The statement \"All red things are green\" (statement 5) implies that if something is red, then it is green, but it does not imply that if something is green, then it is red.\n\nSo, we can conclude that Harry is not red, but we cannot conclude that Harry is red. Therefore, the statement \"Harry is red\" is unknown because we have enough information to prove that Harry is not red, but we do not have enough information to prove that Harry is red.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is red\" is true, false, or unknown, we need to analyze the given information step by step and use logical deductions.\n\n1. Harry is big. (Directly given)\n2. Harry is green. (Directly given)\n3. All big, green things are young. (Given)\n   So, Harry is young. (Logical deduction)\n\n4. If Harry is young, then Harry is cold. (Given)\n   So, Harry is cold. (Logical deduction)\n\n5. If something is young and cold, then it is furry. (Given)\n   So, Harry is furry. (Logical deduction)\n\n6. All furry things are kind. (Given)\n   So, Harry is kind. (Logical deduction)\n\n7. If something is kind, then it is not red. (Given)\n   So, Harry is not red. (Logical deduction)\n\nTherefore, the statement \"Harry is red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is red\" is true, false, or unknown, we need to analyze the given information step by step and see if we can conclude anything about Harry being red.\n\n1. All red things are green. \nThis statement is not logically consistent, as it implies that all red things are also green. However, we will consider it as a given for now and see where it leads us.\n\n2. If something is kind then it is not red. \nWe don't know if Harry is kind or not, so we cannot conclude anything about Harry being red from this statement.\n\n3. All furry things are kind. \nWe don't know if Harry is furry or not, so we cannot conclude anything about Harry being red from this statement.\n\n4. If Harry is young then Harry is cold. \nWe need to find out if Harry is young or not.\n\n5. All big, green things are young. \nWe know Harry is big and green. So, from this statement, we can conclude that Harry is young.\n\n6. If something is young and cold then it is furry. \nWe know Harry is young (from statement 5) and we need to find out if Harry is cold or not.\n\n7. If Harry is young then Harry is cold. \nWe already know that if Harry is young, then Harry is cold (from statement 4). So, we can conclude that Harry is cold.\n\n8. If something is young and cold then it is furry. \nWe know Harry is young and cold. So, from this statement, we can conclude that Harry is furry.\n\n9. All furry things are kind. \nWe know Harry is furry. So, from this statement, we can conclude that Harry is kind.\n\n10. If something is kind then it is not red. \nWe know Harry is kind. So, from this statement, we can conclude that Harry is not red.\n\nConsidering the statements and the information we gathered, we can conclude that the statement \"Harry is red\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information, we know:\n   - Harry is big (Step 1)\n   - Harry is green (Step 1)\n   - All big, green things are young (Step 2)\n   - Big things are young (Step 2)\n   - All red things are green (Step 3)\n   - If something is kind then it is not red (Step 3)\n   - All furry things are kind (Step 3)\n   - If Harry is young then Harry is cold (Step 4)\n   - If something is young and cold then it is furry (Step 4)\n\n2. Since Harry is big and green, we can conclude that Harry is young (from Step 2).\n\n3. As Harry is young, we can conclude that Harry is cold (from Step 4).\n\n4. Since Harry is young and cold, we can conclude that Harry is furry (from Step 4).\n\n5. As Harry is furry, we can conclude that Harry is kind (from Step 3).\n\n6. Now, since Harry is kind, we can conclude that Harry is not red (from Step 3).\n\n7. From Step 3, we also know that all red things are green. But we already know that Harry is green (Step 1). This does not directly help us determine if Harry is red, but it's worth noting.\n\n8. From Steps 6 and 7, we can conclude that if Harry is red, then Harry would be both red and green, which contradicts the fact that Harry is kind (from Step 6). However, since we've already established that Harry is kind and therefore not red, this line of reasoning does not affect our conclusion.\n\n9. Based on the information given, we have concluded that Harry is not red, because Harry is kind (from Step 6).\n\nTherefore, the statement \"Harry is red\" is:\n\n\\boxed{false}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is red\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information \"All red things are green,\" we can infer that if something is red, then it is green. However, this does not directly tell us about Harry's color.\n\n2. Since \"All big, green things are young\" and \"Harry is big,\" we can infer that Harry is young.\n\n3. From \"If something is young and cold then it is furry\" and \"If Harry is young then Harry is cold,\" we can infer that Harry is furry. Since \"All furry things are kind,\" we can conclude that Harry is kind.\n\n4. From the information \"If something is kind then it is not red,\" we can infer that if Harry is kind, then Harry is not red.\n\nNow, let's consider the statement \"Harry is red.\" If Harry is red, then from the information \"All red things are green,\" we can conclude that Harry is green. However, we already know that Harry is big and green, which means he is young. We can then conclude that Harry is furry and kind.\n\nHowever, this does not directly answer whether Harry is red or not. The statement \"Harry is red\" is true if Harry being red is consistent with all the other information we have. \n\nSince we cannot conclude that Harry is red from the information we have, the statement \"Harry is red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Harry is red, we need to analyze the given statements and their implications.\n\n1. All big, green things are young. \n   - Harry is big and green (from the problem statement), so Harry is young.\n\n2. If Harry is young, then Harry is cold.\n   - Since Harry is young (from the previous implication), Harry is cold.\n\n3. If something is young and cold, then it is furry.\n   - Since Harry is young and cold, Harry is furry.\n\n4. All furry things are kind.\n   - Since Harry is furry, Harry is kind.\n\n5. If something is kind, then it is not red.\n   - Since Harry is kind, Harry is not red.\n\nFrom these implications, we can conclude that Harry is not red. \n\nTherefore, the statement \"Harry is red\" is:\n\n\\boxed{false}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(big_harry, green_harry), young_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_harry, cold_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), furry_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> Not(red(X))",
+          "z3_formula": "Implies(kind_harry, Not(red_harry))",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "Not(red(harry))",
+          "z3_formula": "Not(red_harry) == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not big(charlie)",
+          "z3_formula": "not big_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "not kind_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(big_harry, green_harry), young_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_X, green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not red(X)",
+          "z3_formula": "Implies(kind_X, not red_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_X, kind_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_harry, cold_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), furry_harry)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(big_harry, green_harry), young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_harry, green_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> Not(red(X))",
+          "z3_formula": "Implies(kind_harry, Not(red_harry))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_harry, cold_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), furry_harry)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_harry, cold_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> Not(red(X))",
+          "z3_formula": "Implies(kind_harry, Not(red_harry))",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "Not(red(harry))",
+          "z3_formula": "Not(red_harry) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_harry, green_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all red things are green",
+          "z3_formula": "Implies(red_harry, green_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not red(X)",
+          "z3_formula": "Implies(kind_harry, Not(red_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "all big, green things are young",
+          "z3_formula": "Implies(And(big_harry, green_harry), young_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big things are young",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "if young then cold",
+          "z3_formula": "Implies(young_harry, cold_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "if young and cold then furry",
+          "z3_formula": "Implies(And(young_harry, cold_harry), furry_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry things are kind",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "if kind then not red",
+          "z3_formula": "Implies(kind_harry, Not(red_harry))",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(big_harry, green_harry), young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_harry, cold_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> Not(red(X))",
+          "z3_formula": "Implies(kind_harry, Not(red_harry))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Not(red(harry))",
+          "z3_formula": "Not(red_harry) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(big_harry, green_harry), young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_harry, cold_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> Not(red(X))",
+          "z3_formula": "Implies(kind_harry, Not(red_harry))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_harry, green_harry)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(big_harry, green_harry), young_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_harry, cold_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), furry_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> Not(red(X))",
+          "z3_formula": "Implies(kind_harry, Not(red_harry))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(red(harry))",
+          "z3_formula": "Not(red_harry) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_red_things_are_green",
+          "z3_formula": "all_red_things_are_green == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not_red(X)",
+          "z3_formula": "Implies(kind_harry, not_red_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "if_young_then_cold_harry",
+          "z3_formula": "if_young_then_cold_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(big_harry, green_harry), young_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "if_young_then_cold_harry",
+          "z3_formula": "if_young_then_cold_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not_red(X)",
+          "z3_formula": "Implies(kind_harry, not_red_harry)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(big_harry, green_harry), young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> young(X)",
+          "z3_formula": "Implies(big_harry, young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_harry, green_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> Not(red(X))",
+          "z3_formula": "Implies(kind_harry, Not(red_harry))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_harry, cold_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), furry_harry)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_red_things_are_green",
+          "z3_formula": "all_red_things_are_green == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_harry, green_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(big_harry, green_harry), young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_harry, cold_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), furry_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not_red(X)",
+          "z3_formula": "Implies(kind_harry, not_red_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not_red(harry)",
+          "z3_formula": "not_red_harry == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(green, harry)",
+          "z3_formula": "big_green_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(big_green_harry, green_harry), young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_harry, cold_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & cold(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_harry, cold_harry), furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> kind(X)",
+          "z3_formula": "Implies(furry_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> Not(red(X))",
+          "z3_formula": "Implies(kind_harry, Not(red_harry))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(red(harry))",
+          "z3_formula": "Not(red_harry) == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 134,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 26
+    },
+    "maxsat_stats": {
+      "satisfied": 26,
+      "excluded": 0,
+      "total_weight": 133,
+      "solve_time_ms": 0.9111994877457619
+    },
+    "timing": {
+      "trace_gen_s": 5.392,
+      "extraction_s": 20.838,
+      "dedup_s": 0.729,
+      "maxsat_s": 0.003,
+      "total_s": 26.963
+    }
+  }
+}

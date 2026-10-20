@@ -1,0 +1,1588 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1201_Q18",
+    "problem": "Anne is furry. Bob is furry. Gary is blue. Gary is cold. Gary is furry. Gary is quiet. Gary is round. Harry is blue. Harry is cold. Harry is quiet. Harry is round. Harry is young. Cold, blue things are quiet. All round, furry things are quiet. If Bob is blue and Bob is round then Bob is young. If something is round then it is blue. If something is young and round then it is blue. If Harry is quiet and Harry is furry then Harry is blue. Furry things are cold. Cold things are round. If something is young and furry then it is rough.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is furry.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nFurry(Anne, True) ::: Anne is furry.\nFurry(Bob, True) ::: Bob is furry.\nBlue(Gary, True) ::: Gary is blue.\nCold(Gary, True) ::: Gary is cold.\nFurry(Gary, True) ::: Gary is furry.\nQuiet(Gary, True) ::: Gary is quiet.\nRound(Gary, True) ::: Gary is round.\nBlue(Harry, True) ::: Harry is blue.\nCold(Harry, True) ::: Harry is cold.\nQuiet(Harry, True) ::: Harry is quiet.\nRound(Harry, True) ::: Harry is round.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nCold($x, True) && Blue($x, True) >>> Quiet($x, True) ::: Cold, blue things are quiet.\nRound($x, True) && Furry($x, True) >>> Quiet($x, True) ::: All round, furry things are quiet.\nBlue(Bob, True) && Round(Bob, True) >>> Young(Bob, True) ::: If Bob is blue and Bob is round then Bob is young.\nRound($x, True) >>> Blue($x, True) ::: If something is round then it is blue.\nYoung($x, True) && Round($x, True) >>> Blue($x, True) ::: If something is young and round then it is blue.\nQuiet(Harry, True) && Furry(Harry, True) >>> Blue(Harry, True) ::: If Harry is quiet and Harry is furry then Harry is blue.\nFurry($x, True) >>> Cold($x, True) ::: Furry things are cold.\nCold($x, True) >>> Round($x, True) ::: Cold things are round.\nYoung($x, True) && Furry($x, True) >>> Rough($x, True) ::: If something is young and furry then it is rough.\n\nQuery:\nFurry(Harry, True) ::: Harry is furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 167.0,
+      "Unknown": 242.0
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Harry is furry, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Anne is furry.\n   - Bob is furry.\n   - Gary is blue.\n   - Gary is cold.\n   - Gary is furry.\n   - Gary is quiet.\n   - Gary is round.\n   - Harry is blue.\n   - Harry is cold.\n   - Harry is quiet.\n   - Harry is round.\n   - Harry is young.\n   - Cold, blue things are quiet.\n   - All round, furry things are quiet.\n   - If Bob is blue and Bob is round then Bob is young.\n   - If something is round then it is blue.\n   - If something is young and round then it is blue.\n   - If Harry is quiet and Harry is furry then Harry is blue.\n   - Furry things are cold.\n   - Cold things are round.\n   - If something is young and furry then it is rough.\n\n2. Analyze given statements to derive the relationship between being furry and being young:\n   - Since Gary is furry and Gary is round, we can say Gary is quiet from the statement \"All round, furry things are quiet.\"\n   - From the statement \"Cold things are round,\" we know Gary is round because Gary is cold.\n   - From the statement \"Gary is round,\" we can conclude Gary is blue from the statement \"If something is round then it is blue.\"\n   - Since Harry is blue and Harry is round, we can conclude Harry is quiet from the statement \"Cold, blue things are quiet.\"\n   - Since Harry is quiet and Harry is furry, we can conclude Harry is blue from the statement \"If Harry is quiet and Harry is furry then Harry is blue.\"\n   - Since Harry is young, we cannot conclude anything directly about Harry being furry or not from the given statements.\n\n3. Based on the derived relationships and given statements, we cannot conclude whether Harry is furry or not with certainty.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is blue. (Given)\n2. Harry is cold. (Given)\n3. Harry is quiet. (Given)\n4. Harry is round. (Given)\n5. Harry is young. (Given)\n\nFrom the given information, we have the following rules:\n\n- Cold, blue things are quiet. (Rule)\n- All round, furry things are quiet. (Rule)\n- If Bob is blue and Bob is round then Bob is young. (Rule, not applicable to Harry)\n- If something is round then it is blue. (Rule)\n- If something is young and round then it is blue. (Rule)\n- If Harry is quiet and Harry is furry then Harry is blue. (Rule)\n- Furry things are cold. (Rule)\n- Cold things are round. (Rule)\n- If something is young and furry then it is rough. (Rule, not applicable to Harry)\n\nNow, let's try to infer information about Harry:\n\n- From rule 1 and rule 3, we know Harry is quiet because Harry is blue and cold, which satisfies the condition of rule 1.\n- We know Harry is round because Harry is cold, which satisfies rule 8.\n- From rule 2 and rule 6, we know Harry is blue because Harry is round and cold, which satisfies the condition of rule 6.\n- However, we cannot conclude that Harry is furry because we have two possible conclusions:\n  a. If Harry is furry, then Harry is blue (rule 6), which is true, but then Harry must be round (rule 7), and then Harry must be young (rule 9).\n  b. If Harry is not furry, then Harry is not cold (rule 7), which contradicts the fact that Harry is cold.\n\nSince we cannot conclude that Harry is furry or not furry, we have an inconsistency in the given information.\n\nTherefore, the statement \"Harry is furry\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that:\n   - Harry is blue. (Given)\n   - Harry is cold. (Given)\n   - Harry is quiet. (Given)\n   - Harry is round. (Given)\n   - Harry is young. (Given)\n   - Cold, blue things are quiet. (Given)\n   - All round, furry things are quiet. (Given)\n   - If Bob is blue and Bob is round then Bob is young. (Given)\n   - If something is round then it is blue. (Given)\n   - If something is young and round then it is blue. (Given)\n   - If Harry is quiet and Harry is furry then Harry is blue. (Given)\n   - Furry things are cold. (Given)\n   - Cold things are round. (Given)\n   - If something is young and furry then it is rough. (Given)\n\n2. Since Harry is blue, and round, we can use the given information to determine more properties of Harry.\n   - If something is round then it is blue. (Given)\n   - If something is young and round then it is blue. (Given)\n   - Since Harry is round, it is blue. (Using the first statement)\n   - Since Harry is round, it is young. (Using the second statement)\n\n3. Now we know that Harry is blue, and young.\n   - If Harry is quiet and Harry is furry then Harry is blue. (Given)\n   - Since Harry is blue, we need to determine if it is furry or quiet.\n   - We know that if Harry is furry, it will be blue, but the statement also says that if Harry is quiet and furry then Harry is blue. So, we cannot conclude that Harry is furry from this statement.\n\n4. Now, we have to look for other relationships between Harry and being furry.\n   - Furry things are cold. (Given)\n   - Cold things are round. (Given)\n   - Since Harry is cold, it is round. (Using the second statement)\n\n5. Now we know that Harry is round.\n   - If something is round then it is blue. (Given)\n   - Since Harry is round, it is blue. (Using the first statement)\n\n6. Since Harry is blue, and round, we can use the given information to determine more properties of Harry.\n   - If something is young and round then it is blue. (Given)\n   - Since Harry is round, it is young. (Using the second statement)\n   - Since Harry is young and round, it is blue. (Using the first statement)\n\n7. Now we know that Harry is blue, young, and round.\n   - We also know that Harry is cold, and quiet.\n   - We do not have enough information to conclude if Harry is furry or not.\n\nTherefore, we cannot determine whether the statement \"Harry is furry\" is true or false based on the given information. It is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is furry\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Given information:\n   - Harry is blue.\n   - Harry is cold.\n   - Harry is quiet.\n   - Harry is round.\n   - Harry is young.\n\n2. From the given premises:\n   - Cold, blue things are quiet. (This is a general rule, but we can't conclude that Harry is furry from this statement alone.)\n   - All round, furry things are quiet. (We can't conclude that Harry is furry from this statement alone.)\n   - If Harry is quiet and Harry is furry then Harry is blue. (This statement is given, but we are trying to determine if Harry is furry. We need more information.)\n   - Furry things are cold. (We can't conclude that Harry is furry from this statement alone.)\n   - Cold things are round. (We can't conclude that Harry is furry from this statement alone.)\n   - If something is round then it is blue. (We can't conclude that Harry is furry from this statement alone.)\n   - If something is young and round then it is blue. (We can't conclude that Harry is furry from this statement alone.)\n   - If Bob is blue and Bob is round then Bob is young. (This statement is about Bob, not Harry.)\n   - If something is young and furry then it is rough. (We can't conclude that Harry is furry from this statement alone.)\n\n3. Analyzing the statements about Harry:\n   - We know that Harry is blue, cold, quiet, round, and young.\n   - From the given premises, we know that cold, blue things are quiet, which supports the fact that Harry is quiet. However, we still can't conclude that Harry is furry.\n   - We know that Harry is round, and from the given premises, we know that if something is round then it is blue. This supports the fact that Harry is blue. However, we still can't conclude that Harry is furry.\n   - We know that Harry is young and round, and from the given premises, we know that if something is young and round then it is blue. This supports the fact that Harry is blue. However, we still can't conclude that Harry is furry.\n\n4. Conclusion:\n   - We have analyzed all the given premises and statements about Harry, and we still can't conclude that Harry is furry.\n   - The only statement that could potentially link Harry to being furry is \"If Harry is quiet and Harry is furry then Harry is blue.\" However, we already know that Harry is blue from other premises, so this statement doesn't provide any new information.\n   - Therefore, based on the given information, we cannot determine whether Harry is furry or not, so the answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether Harry is furry, we need to analyze the given information and the relationships between the properties.\n\nGiven information:\n\n1. Gary is blue.\n2. Gary is cold.\n3. Gary is furry.\n4. Gary is quiet.\n5. Gary is round.\n6. Harry is blue.\n7. Harry is cold.\n8. Harry is quiet.\n9. Harry is round.\n10. Harry is young.\n11. Cold, blue things are quiet.\n12. All round, furry things are quiet.\n13. If Bob is blue and Bob is round then Bob is young.\n14. If something is round then it is blue.\n15. If something is young and round then it is blue.\n16. If Harry is quiet and Harry is furry then Harry is blue.\n17. Furry things are cold.\n18. Cold things are round.\n19. If something is young and furry then it is rough.\n\nProperties of Harry:\n\n1. Harry is blue. (from statement 6)\n2. Harry is cold. (from statement 7)\n3. Harry is quiet. (from statement 8)\n4. Harry is round. (from statement 9)\n5. Harry is young. (from statement 10)\n\nNow, let's analyze the relationships:\n\n1. Since Harry is round (property 4) and we know that if something is round then it is blue (statement 14), we can conclude that Harry is indeed blue (already known from statement 6).\n2. Since Harry is cold (property 2) and we know that cold things are round (statement 18), we can conclude that Harry is indeed round (already known from property 4).\n3. Since Harry is round (property 4) and we know that all round, furry things are quiet (statement 12), we can conclude that Harry is indeed quiet (already known from statement 8).\n4. Since Harry is young (property 5) and round (property 4), we know that Harry is blue (statement 15).\n\nNow, let's analyze the relationship between Harry's properties and his being furry:\n\nWe know that Harry is cold (property 2), and furry things are cold (statement 17). However, this does not directly imply that Harry is furry.\n\nWe also know that Harry is quiet (property 3), and all round, furry things are quiet (statement 12). However, this does not directly imply that Harry is furry.\n\nWe also know that Harry is young (property 5), but this does not directly imply that Harry is furry. In fact, if something is young and furry, it is rough (statement 19), which does not provide any information about Harry being furry.\n\nWe also know that if Harry is quiet and Harry is furry then Harry is blue (statement 16). However, this statement is only applicable if Harry is indeed furry. We still do not know if Harry is furry or not.\n\nTherefore, based on the given information and the relationships between the properties, we cannot determine whether Harry is furry or not. The statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Harry is furry, we need to analyze the given statements and their implications. \n\nGiven statements:\n1. Anne is furry.\n2. Bob is furry.\n3. Gary is blue.\n4. Gary is cold.\n5. Gary is furry.\n6. Gary is quiet.\n7. Gary is round.\n8. Harry is blue.\n9. Harry is cold.\n10. Harry is quiet.\n11. Harry is round.\n12. Harry is young.\n13. Cold, blue things are quiet.\n14. All round, furry things are quiet.\n15. If Bob is blue and Bob is round then Bob is young.\n16. If something is round then it is blue.\n17. If something is young and round then it is blue.\n18. If Harry is quiet and Harry is furry then Harry is blue.\n19. Furry things are cold.\n20. Cold things are round.\n21. If something is young and furry then it is rough.\n\nTo determine if Harry is furry, let's first examine the statements related to Harry:\n- Harry is blue (statement 8).\n- Harry is cold (statement 9).\n- Harry is quiet (statement 10).\n- Harry is round (statement 11).\n- Harry is young (statement 12).\n\nFrom statement 13, we know cold, blue things are quiet, and this indeed holds for Harry since he is blue and cold. \n\nFrom statement 14, we know all round, furry things are quiet. However, we do not know if Harry is furry, so this statement is inconclusive regarding Harry.\n\nFrom statement 15, we know if Bob is blue and Bob is round then Bob is young. However, this statement does not apply to Harry, so it is inconclusive.\n\nFrom statement 16, we know if something is round then it is blue. This holds for Harry since he is both round and blue.\n\nFrom statement 17, we know if something is young and round then it is blue. This also holds for Harry since he is young and round.\n\nFrom statement 18, we know if Harry is quiet and Harry is furry then Harry is blue. Since Harry is quiet and blue, this statement implies that Harry might be furry. However, it does not directly prove that Harry is furry.\n\nFrom statement 19, we know furry things are cold. This indeed holds for Harry since he is cold.\n\nFrom statement 20, we know cold things are round. This also holds for Harry since he is round and cold.\n\nFrom statement 21, we know if something is young and furry then it is rough. However, this statement does not apply to Harry since we do not know if he is furry.\n\nNow, we need to determine if Harry is furry or not. Given the implications, we cannot directly prove that Harry is furry. However, statement 18 implies that if Harry is furry, then he is blue. Since Harry is blue, this creates a possible implication that Harry might be furry.\n\nSince we cannot directly prove that Harry is not furry, and there is a possible implication that Harry might be furry, the answer to whether Harry is furry is \"unknown\" until we can further deduce his furiness.\n\nTherefore, the final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply it to the statement \"Harry is furry.\"\n\nGiven information:\n\n1. Gary is blue.\n2. Gary is cold.\n3. Gary is furry.\n4. Gary is quiet.\n5. Gary is round.\n6. Harry is blue.\n7. Harry is cold.\n8. Harry is quiet.\n9. Harry is round.\n10. Harry is young.\n11. Cold, blue things are quiet.\n12. All round, furry things are quiet.\n13. If Bob is blue and Bob is round then Bob is young.\n14. If something is round then it is blue.\n15. If something is young and round then it is blue.\n16. If Harry is quiet and Harry is furry then Harry is blue.\n17. Furry things are cold.\n18. Cold things are round.\n19. If something is young and furry then it is rough.\n\nNow, let's analyze the statement \"Harry is furry\" using the given information.\n\nWe know the following about Harry:\n- Harry is blue (6)\n- Harry is cold (7)\n- Harry is quiet (8)\n- Harry is round (9)\n- Harry is young (10)\n\nUsing the given information, we can conclude that:\n- Since Harry is round, it is also blue (14)\n- Since Harry is young and round, it is also blue (15)\n- Since Harry is blue and cold, it is also quiet (11)\n\nHowever, the information about Harry being furry is not directly given. We need to determine if Harry can be furry based on the given information.\n\nFrom the given information, we have:\n- Furry things are cold (17)\n- Cold things are round (18)\n- If Harry is quiet and Harry is furry then Harry is blue (16)\n\nWe can conclude that Harry is cold (17), and since Harry is cold, it is also round (18).\n\nNow, let's examine the statement \"Harry is furry.\" We cannot directly conclude that Harry is furry based on the given information. However, we can use the information that if Harry is quiet and Harry is furry, then Harry is blue (16).\n\nSince Harry is blue (6), we can use this information to conclude that Harry is not furry, as this would create a contradiction with the statement \"Harry is blue\" (6).\n\nHowever, we cannot conclude that Harry is not furry with absolute certainty. There is a possibility that Harry is furry, but this would require additional information that is not provided in the given statements.\n\nTherefore, the answer is: \n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Harry is furry, we need to analyze the given information and the premises.\n\nGiven information:\n- Harry is blue.\n- Harry is cold.\n- Harry is quiet.\n- Harry is round.\n- Harry is young.\n\nPremises:\n1. Cold, blue things are quiet.\n2. All round, furry things are quiet.\n3. If Bob is blue and Bob is round then Bob is young.\n4. If something is round then it is blue.\n5. If something is young and round then it is blue.\n6. If Harry is quiet and Harry is furry then Harry is blue.\n7. Furry things are cold.\n8. Cold things are round.\n9. If something is young and furry then it is rough.\n\nFrom premise 1, since Harry is cold and blue, we know that Harry is quiet.\n\nFrom premise 2, since Harry is round and furry, we would expect Harry to be quiet. However, we already know that Harry is quiet from premise 1.\n\nFrom premise 3, we have a condition that only applies to Bob, so it doesn't give us any information about Harry.\n\nFrom premise 4, since Harry is round, we know that Harry is blue. But we already know this from premise 1.\n\nFrom premise 5, since Harry is young and round, we know that Harry is blue. But we already know this from premise 1.\n\nFrom premise 6, we have a condition that applies to Harry, but it's a conditional statement. If Harry is quiet and furry, then Harry is blue. We know that Harry is quiet from premise 1, but we don't know if Harry is furry yet.\n\nFrom premise 7, since furry things are cold, and we know that Harry is cold, we can't conclude that Harry is furry. This premise only tells us that furry things are cold, not the other way around.\n\nFrom premise 8, since cold things are round, and we know that Harry is cold, we can't conclude that Harry is round. This premise only tells us that cold things are round, not the other way around.\n\nFrom premise 9, since something is young and furry then it is rough. This doesn't give us any information about Harry being furry.\n\nSince we don't have enough information to conclude that Harry is furry or not, the statement \"Harry is furry\" is unknown.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Harry is furry, we need to analyze the given statements and use logical deductions.\n\n1. We are given the statement: Harry is furry.\nHowever, we can use other statements to determine this. We can analyze the statements in the following order:\n\n2. Harry is quiet. Harry is round. Harry is blue. Harry is young.\n\n3. We are given: Cold, blue things are quiet.\nFrom this, we can deduce that Harry is cold because Harry is blue and quiet.\n\n4. We are given: Cold things are round.\nFrom this, we can deduce that Harry is round because Harry is cold.\n\n5. We are given: Round, blue things are quiet.\nFrom this, we can deduce that Harry is quiet because Harry is round and blue.\n\n6. We are given: Harry is round. Harry is blue. Harry is quiet. Harry is young.\nWe are also given: If something is round then it is blue.\nThis is a redundant statement since we already know Harry is blue.\n\n7. We are given: If Harry is quiet and Harry is furry then Harry is blue.\nSince we already know Harry is blue, we cannot deduce anything from this statement.\n\n8. We are given: Furry things are cold.\nWe are also given: Gary is cold. Gary is furry.\nHowever, this does not provide any information about Harry.\n\n9. We are given: If something is young and round then it is blue.\nWe are also given: Harry is round. Harry is young.\nFrom this, we can deduce that Harry is blue.\n\n10. We are given: If Bob is blue and Bob is round then Bob is young.\nHowever, this does not provide any information about Harry.\n\n11. We are given: If something is round then it is blue.\nWe are also given: Harry is round.\nFrom this, we can deduce that Harry is blue.\n\n12. We are given: Harry is blue. Harry is round. Harry is young. Harry is quiet.\nWe are also given: Harry is furry.\nHowever, we can use other statements to determine this. We can analyze the statements in the following order:\n\n13. We are given: If Harry is quiet and Harry is furry then Harry is blue.\nHowever, this is already known, and we cannot deduce anything from this statement.\n\n14. We are given: Furry things are cold.\nWe are also given: Harry is furry.\nFrom this, we can deduce that Harry is cold.\n\n15. We are given: Cold things are round.\nWe are also given: Harry is cold.\nFrom this, we can deduce that Harry is round.\n\n16. We are given: Round things are blue.\nWe are also given: Harry is round.\nFrom this, we can deduce that Harry is blue.\n\n17. We are given: Harry is round. Harry is blue.\nWe are also given: If something is round then it is blue.\nThis is a redundant statement since we already know Harry is blue.\n\n18. We are given: Harry is round. Harry is blue. Harry is young.\nWe are also given: If something is young and round then it is blue.\nThis is a redundant statement since we already know Harry is blue.\n\n19. We are given: Harry is round. Harry is blue. Harry is quiet.\nWe are also given: If Harry is quiet and Harry is furry then Harry is blue.\nHowever, this is already known, and we cannot deduce anything from this statement.\n\n20. We are given: If Bob is blue and Bob is round then Bob is young.\nHowever, this does not provide any information about Harry.\n\n21. We are given: If something is young and furry then it is rough.\nHowever, this does not provide any information about Harry.\n\nNow we know Harry is blue, round, and young. However, we still need to determine if Harry is furry.\n\n22. We are given: Furry things are cold.\nWe are also given: Harry is cold.\nFrom this, we can deduce that Harry is furry because Harry is cold.\n\nBased on the above analysis, we can conclude that Harry is furry.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given facts:\n   - Gary is blue.\n   - Gary is cold.\n   - Gary is furry.\n   - Gary is quiet.\n   - Gary is round.\n   - Harry is blue.\n   - Harry is cold.\n   - Harry is quiet.\n   - Harry is round.\n   - Harry is young.\n   - Cold, blue things are quiet.\n   - All round, furry things are quiet.\n   - If Bob is blue and Bob is round then Bob is young.\n   - If something is round then it is blue.\n   - If something is young and round then it is blue.\n   - If Harry is quiet and Harry is furry then Harry is blue.\n   - Furry things are cold.\n   - Cold things are round.\n   - If something is young and furry then it is rough.\n\n2. We are trying to find out if Harry is furry.\n\n3. We know that Harry is round and Harry is cold (from the given facts). Using the rule \"Cold things are round,\" we can conclude that Harry being cold indeed makes it round.\n\n4. Since Harry is round, we can apply the rule \"If something is round then it is blue,\" and conclude that Harry is blue.\n\n5. We know Harry is blue and Harry is round. Applying the rule \"If Bob is blue and Bob is round then Bob is young,\" does not directly apply to Harry, but we do know that Harry is young from the given facts.\n\n6. Now, we need to find out if Harry is furry. We know that if Harry is quiet and Harry is furry, then Harry is blue. However, we already know that Harry is blue from the given facts. This does not provide any new information about Harry's furiness.\n\n7. Since we have not found any direct information about Harry's furiness from the given facts, we cannot conclude that Harry is furry or not. The statement is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is furry' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that 'Cold, blue things are quiet.' However, this statement doesn't directly relate to Harry's characteristics.\n\n2. We also know that 'All round, furry things are quiet.' This doesn't provide any direct information about Harry's characteristics either.\n\n3. We're given that 'If Bob is blue and Bob is round then Bob is young.' This is a specific case and doesn't apply to Harry.\n\n4. We're also given that 'If something is round then it is blue.' This statement can be used to derive information, but we don't know if Harry is round or not.\n\n5. We know that 'If something is young and round then it is blue.' This statement also can be used to derive information, but we don't know if Harry is young or not.\n\n6. We're given that 'If Harry is quiet and Harry is furry then Harry is blue.' However, this statement can only be applied if we know that Harry is furry and quiet.\n\n7. We know that 'Furry things are cold.' This statement can be used to derive information, but we don't know if Harry is furry or not.\n\n8. We're also given that 'Cold things are round.' This statement can be used to derive information, but we don't know if Harry is cold or not.\n\n9. We know that 'If something is young and furry then it is rough.' This statement can be used to derive information, but we don't know if Harry is young or furry.\n\nNow, let's analyze the given information about Harry:\n\n- Harry is blue.\n- Harry is cold.\n- Harry is quiet.\n- Harry is round.\n- Harry is young.\n\nFrom these statements, we can derive information using the given rules:\n\n- Since Harry is round, then Harry is blue (Rule 4).\n- Since Harry is young and round, then Harry is blue (Rule 5), which we already know.\n- Since Harry is cold, then Harry is round (Rule 8), which we already know.\n\nNow, let's analyze the given information about Harry's fur:\n\n- We don't know if Harry is furry or not.\n\nHowever, we can derive some information:\n\n- If Harry is furry, then Harry is cold (Rule 7).\n- Since Harry is cold, then Harry is round (Rule 8), which we already know.\n\nWe can't directly apply any rule to determine if Harry is furry or not. However, we can try to prove that Harry is furry by contradiction:\n\n- If Harry is not furry, then we can't derive any information that contradicts the given statements.\n- However, if we assume that Harry is not furry and round, then we can't derive any information that contradicts the given statements.\n- But, if we assume that Harry is not furry and not round, then we can't derive any information that contradicts the given statements.\n- However, if we assume that Harry is not furry and round, then Harry is not cold (Rule 8), which contradicts the given statement that Harry is cold.\n\nThis means that if Harry is not furry and round, then Harry is not cold, which contradicts the given statement that Harry is cold. Therefore, Harry must be furry and round.\n\nHowever, we can't conclude that Harry is furry because we can't directly apply any rule to determine if Harry is furry or not. We can only conclude that if Harry is not furry and round, then Harry is not cold, which contradicts the given statement that Harry is cold.\n\nBut, we can also analyze the given information about Bob:\n\n- Bob is furry.\n- Bob is blue.\n- Bob is round.\n- Bob is young.\n\nFrom these statements, we can derive information using the given rules:\n\n- Since Bob is round, then Bob is blue (Rule 4).\n- Since Bob is young and round, then Bob is blue (Rule 5), which we already know.\n\nWe can also analyze the given information about Gary:\n\n- Gary is blue.\n- Gary is cold.\n- Gary is furry.\n- Gary is quiet.\n- Gary is round.\n\nFrom these statements, we can derive information using the given rules:\n\n- Since Gary is round, then Gary is blue (Rule 4).\n- Since Gary is cold, then Gary is round (Rule 8), which we already know.\n\nWe can also analyze the given information about Harry:\n\n- Harry is blue.\n- Harry is cold.\n- Harry is quiet.\n- Harry is round.\n- Harry is young.\n\nFrom these statements, we can derive information using the given rules:\n\n- Since Harry is round, then Harry is blue (Rule 4).\n- Since Harry is young and round, then Harry is blue (Rule 5), which we already know.\n- Since Harry is cold, then Harry is round (Rule 8), which we already know.\n\nNow, let's analyze the given information about Harry's fur:\n\n- We don't know if Harry is furry or not.\n\nHowever, we can derive some information:\n\n- If Harry is furry, then Harry is cold (Rule 7).\n- Since Harry is cold, then Harry is round (Rule 8), which we already know.\n\nWe can also analyze the given information about Harry's roundness:\n\n- Harry is round.\n\nWe can also analyze the given information about Harry's color:\n\n- Harry is blue.\n\nWe can also analyze the given information about Harry's youth:\n\n- Harry is young.\n\nHowever, we can't directly apply any rule to determine if Harry is furry or not. However, we can try to prove that Harry is furry by contradiction:\n\n- If Harry is not furry, then we can't derive any information that contradicts the given statements.\n- However, if we assume that Harry is not furry and round, then we can't derive any information that contradicts the given statements.\n- But, if we assume that Harry is not furry and not round, then we can't derive any information that contradicts the given statements.\n- However, if we assume that Harry is not furry and round, then Harry is not cold (Rule 8), which contradicts the given statement that Harry is cold.\n\nThis means that if Harry is not furry and round, then Harry is not cold, which contradicts the given statement that Harry is cold. Therefore, Harry must be furry and round.\n\nHowever, we can also analyze the given information about Harry's roundness, color, and youth:\n\n- Harry is round.\n- Harry is blue.\n- Harry is young.\n\nFrom these statements, we can derive information using the given rules:\n\n- Since Harry is round, then Harry is blue (Rule 4).\n- Since Harry is young and round, then Harry is blue (Rule 5), which we already know.\n\nWe can also analyze the given information about Harry's youth:\n\n- Harry is young.\n\nWe can also analyze the given information about Harry's roundness:\n\n- Harry is round.\n\nWe can also analyze the given information about Harry's color:\n\n- Harry is blue.\n\nWe can also analyze the given information about Harry's coldness:\n\n- Harry is cold.\n\nWe can also analyze the given information about Harry's quietness:\n\n- Harry is quiet.\n\nHowever, we can't directly apply any rule to determine if Harry is furry or not. However, we can try to prove that Harry is furry by contradiction:\n\n- If Harry is not furry, then we can't derive any information that contradicts the given statements.\n- However, if we assume that Harry is not furry and round, then we can't derive any information that contradicts the given statements.\n- But, if we assume that Harry is not furry and not round, then we can't derive any information that contradicts the given statements.\n- However, if we assume that Harry is not furry and round, then Harry is not cold (Rule 8), which contradicts the given statement that Harry is cold.\n\nThis means that if Harry is not furry and round, then Harry is not cold, which contradicts the given statement that Harry is cold. Therefore, Harry must be furry and round.\n\nHowever, we can also analyze the given information about Harry's fur:\n\n- We don't know if Harry is furry or not.\n\nHowever, we can derive some information:\n\n- If Harry is furry, then Harry is cold (Rule 7).\n- Since Harry is cold, then Harry is round (Rule 8), which we already know.\n\nWe can also analyze the given information about Harry's roundness:\n\n- Harry is round.\n\nWe can also analyze the given information about Harry's color:\n\n- Harry is blue.\n\nWe can also analyze the given information about Harry's youth:\n\n- Harry is young.\n\nHowever, we can't directly apply any rule to determine if Harry is furry or not. However, we can try to prove that Harry is furry by contradiction:\n\n- If Harry is not furry, then we can't derive any information that contradicts the given statements.\n- However, if we assume that Harry is not furry and round, then we can't derive any information that contradicts the given statements.\n- But, if we assume that Harry is not furry and not round, then we can't derive any information that contradicts the given statements.\n- However, if we assume that Harry is not furry and round, then Harry is not cold (Rule 8), which contradicts the given statement that Harry is cold.\n\nThis means that if Harry is not furry and round, then Harry is not cold, which contradicts the given statement that Harry is cold. Therefore, Harry must be furry and round.\n\nHowever, we can also analyze the given information about Harry's fur:\n\n- We don't know if Harry is furry or not.\n\nHowever, we can derive some information:\n\n- If Harry is furry, then Harry is cold (Rule 7).\n- Since Harry is cold, then Harry is round (Rule 8), which we already know.\n\nWe can also",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is furry\" is true, false, or unknown, we need to analyze the given information and apply the rules provided.\n\nGiven information:\n1. Harry is blue.\n2. Harry is cold.\n3. Harry is quiet.\n4. Harry is round.\n5. Harry is young.\n\nRules:\n1. Cold, blue things are quiet.\n2. All round, furry things are quiet.\n3. If Bob is blue and Bob is round then Bob is young. (This rule is not directly applicable to Harry, but we can use it to check for consistency.)\n4. If something is round then it is blue.\n5. If something is young and round then it is blue.\n6. If Harry is quiet and Harry is furry then Harry is blue. (This rule is specific to Harry, but we need to consider it carefully.)\n7. Furry things are cold.\n8. Cold things are round.\n9. If something is young and furry then it is rough.\n\nNow, let's analyze the statement \"Harry is furry.\"\n\nFrom rule 6, if Harry is quiet and Harry is furry, then Harry is blue. We know that Harry is blue (given information 1), but we need to check if Harry is quiet and furry.\n\nFrom rule 8, if something is cold, then it is round. We know that Harry is cold (given information 2), and from rule 8, it is round (given information 4). \n\nFrom rule 2, all round, furry things are quiet. Since Harry is round (given information 4), and if Harry is furry, then it would make Harry quiet.\n\nNow, let's check the consistency of the given information with the rules.\n\nFrom given information 1 (Harry is blue) and 4 (Harry is round), we can infer that Harry is young from rule 5 (If something is young and round then it is blue).\n\nNow, we need to check the statement \"Harry is furry.\"\n\nIf Harry is furry, then from rule 7 (Furry things are cold), Harry is cold (given information 2), which is consistent. \n\nHowever, if Harry is furry, then from rule 8 (Cold things are round), Harry is round (given information 4), which is consistent.\n\nNow, if Harry is furry, then from rule 6 (If Harry is quiet and Harry is furry then Harry is blue), we need to check if Harry is quiet and furry. We already know that Harry is round (given information 4), and if Harry is furry, then it would make Harry quiet (rule 2). However, from given information 3 (Harry is quiet), it is already established.\n\nNow, we need to check if the statement \"Harry is furry\" is consistent with the rule \"If something is young and furry then it is rough\" (rule 9). If Harry is furry, then it would make Harry young (rule 9). We already know that Harry is young (given information 5), which is consistent.\n\nNow, let's summarize the information we have gathered.\n\nIf Harry is furry, then it is consistent with the given information and rules. \n\nTherefore, the statement \"Harry is furry\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), young_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_gary, blue_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), blue_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), blue_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_gary, round_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, furry_gary), rough_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> quiet(X)",
+          "z3_formula": "Implies(And(blue_gary, round_gary), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_gary, furry_gary), quiet_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == Unknown",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> quiet(X)",
+          "z3_formula": "Implies(And(blue_harry, cold_harry), quiet_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), quiet_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_harry, round_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), blue_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), blue_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_harry, cold_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, furry_harry), rough_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_harry, blue_harry), quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_harry, round_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), blue_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), blue_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_harry, cold_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, furry_harry), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_harry, blue_harry), quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), quiet_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), blue_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_harry, cold_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_harry, blue_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), blue_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, furry_harry), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_harry, round_harry), young_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_X, blue_X), quiet_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_X, furry_X), quiet_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_X, round_X), young_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_X, round_X), blue_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_X, furry_X), blue_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_X, cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_X, round_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, furry_X), rough_X)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & cold(X) -> quiet(X)",
+          "z3_formula": "Implies(And(blue_gary, cold_gary), quiet_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_gary, furry_gary), quiet_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), young_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_gary, blue_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_gary, round_gary), blue_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), blue_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_gary, cold_gary)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_gary, round_gary)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, furry_gary), rough_gary)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_harry, blue_harry), quiet_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), quiet_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_harry, round_harry), young_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_harry, blue_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), blue_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), blue_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_harry, cold_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, furry_harry), rough_harry)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_harry, blue_harry), quiet_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), quiet_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_harry, round_harry), young_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_harry, blue_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), blue_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), blue_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_harry, cold_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, furry_harry), rough_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_harry, blue_harry), quiet_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_harry, blue_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_harry, blue_harry), quiet_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), blue_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_harry, blue_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_harry, blue_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), blue_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_harry, blue_harry)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, furry_harry), rough_harry)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_harry, cold_harry)",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_harry, round_harry), young_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_harry, blue_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), blue_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), blue_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_harry, cold_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, furry_harry), rough_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == Unknown",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_harry, blue_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), blue_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_harry, cold_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & blue(X) -> quiet(X)",
+          "z3_formula": "Implies(And(cold_harry, blue_harry), quiet_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_harry, furry_harry), quiet_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_harry, blue_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), blue_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> blue(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), blue_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> cold(X)",
+          "z3_formula": "Implies(furry_harry, cold_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> round(X)",
+          "z3_formula": "Implies(cold_harry, round_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & furry(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, furry_harry), rough_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 14
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 243,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 43
+    },
+    "maxsat_stats": {
+      "satisfied": 43,
+      "excluded": 0,
+      "total_weight": 243,
+      "solve_time_ms": 1.233329065144062
+    },
+    "timing": {
+      "trace_gen_s": 24.224,
+      "extraction_s": 35.648,
+      "dedup_s": 2.172,
+      "maxsat_s": 0.004,
+      "total_s": 62.048
+    }
+  }
+}

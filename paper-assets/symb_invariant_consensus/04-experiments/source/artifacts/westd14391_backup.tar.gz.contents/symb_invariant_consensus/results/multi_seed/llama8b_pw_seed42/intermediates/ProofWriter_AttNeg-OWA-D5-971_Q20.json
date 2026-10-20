@@ -1,0 +1,1479 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-971_Q20",
+    "problem": "Anne is cold. Anne is red. Anne is rough. Anne is not white. Dave is quiet. Dave is white. Fiona is not quiet. Gary is cold. Gary is quiet. Gary is red. Gary is rough. Gary is white. If Fiona is white and Fiona is green then Fiona is not quiet. All rough things are young. If something is cold then it is red. Young things are cold. If something is quiet and green then it is rough. All quiet things are green.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is white.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nCold($x, bool) ::: Is x cold?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nWhite($x, bool) ::: Is x white?\nQuiet($x, bool) ::: Is x quiet?\nGreen($x, bool) ::: Is x green?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nCold(Anne, True) ::: Anne is cold.\nRed(Anne, True) ::: Anne is red.\nRough(Anne, True) ::: Anne is rough.\nWhite(Anne, False) ::: Anne is not white.\nQuiet(Dave, True) ::: Dave is quiet.\nWhite(Dave, True) ::: Dave is white.\nQuiet(Fiona, False) ::: Fiona is not quiet.\nCold(Gary, True) ::: Gary is cold.\nQuiet(Gary, True) ::: Gary is quiet.\nRed(Gary, True) ::: Gary is red.\nRough(Gary, True) ::: Gary is rough.\nWhite(Gary, True) ::: Gary is white.\n\nRules:\nWhite(Fiona, True) && Green(Fiona, True) >>> Quiet(Fiona, False) ::: If Fiona is white and Fiona is green then Fiona is not quiet.\nRough($x, True) >>> Young($x, True) ::: All rough things are young.\nCold($x, True) >>> Red($x, True) ::: If something is cold then it is red.\nYoung($x, True) >>> Cold($x, True) ::: Young things are cold.\nQuiet($x, True) && Green($x, True) >>> Rough($x, True) ::: If something is quiet and green then it is rough.\nQuiet($x, True) >>> Green($x, True) ::: All quiet things are green.\n\nQuery:\nWhite(Fiona, True) ::: Fiona is white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 181.0,
+      "Unknown": 215.5
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "True": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine if the statement \"Fiona is white\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven statements:\n\n1. Anne is cold.\n2. Anne is red.\n3. Anne is rough.\n4. Anne is not white.\n5. Dave is quiet.\n6. Dave is white.\n7. Fiona is not quiet.\n8. Gary is cold.\n9. Gary is quiet.\n10. Gary is red.\n11. Gary is rough.\n12. Gary is white.\n13. If Fiona is white and Fiona is green then Fiona is not quiet.\n14. All rough things are young.\n15. If something is cold then it is red.\n16. Young things are cold.\n17. If something is quiet and green then it is rough.\n18. All quiet things are green.\n\nWe are asked to determine if Fiona is white.\n\nFrom statement 18, we know that all quiet things are green. But from statement 7, we know that Fiona is not quiet. This implies that Fiona cannot be a quiet thing.\n\nNow, let's consider the statement \"Fiona is white and Fiona is green.\" If this statement were true, then from statement 13, we would conclude that Fiona is not quiet. But we already know that Fiona is not quiet (statement 7). However, this would create a contradiction because if Fiona is quiet, then it cannot be green (statement 18).\n\nSo, if Fiona is white, then it must be the case that Fiona is not green. But if Fiona is not green, then it cannot be quiet (statement 17). Now, let's consider the statement \"Fiona is white.\" If this statement is true, then Fiona is not quiet. But we already know that Fiona is not quiet (statement 7). However, this would create a contradiction because if Fiona is quiet, then it must be green (statement 18).\n\nFrom statement 7, we know that Fiona is not quiet. If Fiona is not quiet, then it cannot be green (statement 17). However, this is not enough to conclude that Fiona is white. We need to find another property that applies to Fiona.\n\nFrom statement 16, we know that young things are cold. If Fiona is young, then it must be cold (statement 16). But if Fiona is cold, then it must be red (statement 15). Now, let's consider the statement \"Fiona is young.\" If this statement is true, then Fiona is cold (statement 16) and Fiona is red (statement 15).\n\nNow, let's analyze the properties of Gary. Gary is quiet (statement 9), and Gary is young (statement 14). This means that Gary is cold (statement 16) and Gary is red (statement 15). However, we also know that Gary is white (statement 12).\n\nNow, let's analyze the properties of Fiona. Fiona is not quiet (statement 7), and we know that young things are cold (statement 16). If Fiona is young, then it must be cold, which means it must be red (statement 15).\n\nBut we also know that all quiet things are green (statement 18), and all rough things are young (statement 14). If Fiona is not quiet, then it cannot be green (statement 17). However, this is not enough to conclude that Fiona is white.\n\nFrom statement 7, we know that Fiona is not quiet. If Fiona is not quiet, then it cannot be green (statement 17). However, this is not enough to conclude that Fiona is white.\n\nSince we cannot determine if Fiona is white based on the given statements, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Initially, we have the following information:\n   - Anne is cold.\n   - Anne is red.\n   - Anne is rough.\n   - Anne is not white.\n   - Dave is quiet.\n   - Dave is white.\n   - Fiona is not quiet.\n   - Gary is cold.\n   - Gary is quiet.\n   - Gary is red.\n   - Gary is rough.\n   - Gary is white.\n   - If Fiona is white and Fiona is green then Fiona is not quiet.\n   - All rough things are young.\n   - If something is cold then it is red.\n   - Young things are cold.\n   - If something is quiet and green then it is rough.\n   - All quiet things are green.\n\n2. From the information, we can make the following conclusions:\n   - Since Gary is quiet and all quiet things are green, Gary is green.\n   - Since Gary is green and quiet, and if something is quiet and green then it is rough, Gary is rough (already given).\n   - Since Gary is rough, all rough things are young, Gary is young.\n   - Since Gary is young and young things are cold, Gary is cold (already given).\n   - Since Gary is cold and if something is cold then it is red, Gary is red (already given).\n\n3. Now, we will analyze the given information about Fiona:\n   - Fiona is not quiet (given).\n   - If Fiona is white and Fiona is green then Fiona is not quiet (given). This implies that Fiona cannot be both white and green.\n\n4. To determine whether the statement \"Fiona is white\" is true, false, or unknown, we need to look for any other information related to Fiona's color.\n\n5. From the given information, we cannot directly conclude whether Fiona is white or not. However, since all quiet things are green and Fiona is not quiet, Fiona is not green. But we still do not have any information about Fiona's color.\n\n6. However, since we cannot find any other information about Fiona's color, we cannot conclude that Fiona is white. We can only conclude that Fiona is not green. Therefore, we do not have enough information to determine whether the statement \"Fiona is white\" is true or false.\n\nHence, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Anne is cold.\n   - Anne is red.\n   - Anne is rough.\n   - Anne is not white.\n   - Dave is quiet.\n   - Dave is white.\n   - Fiona is not quiet.\n   - Gary is cold.\n   - Gary is quiet.\n   - Gary is red.\n   - Gary is rough.\n   - Gary is white.\n   - If Fiona is white and Fiona is green then Fiona is not quiet.\n   - All rough things are young.\n   - If something is cold then it is red.\n   - Young things are cold.\n   - If something is quiet and green then it is rough.\n   - All quiet things are green.\n\n2. Analyzing the given information:\n   - From statement 12, we have: All quiet things are green.\n   - From statement 15, we have: All quiet things are green.\n   - Both statements 12 and 15 confirm the same information.\n   - From statement 14, we have: If something is quiet and green then it is rough.\n   - Since quiet things are green, we can infer that all quiet things are also rough.\n   - From statement 9, we have: Gary is quiet.\n   - Therefore, Gary is also rough (as inferred from statement 14).\n   - From statement 3, we have: Gary is rough.\n   - From statement 10, we have: Gary is rough.\n   - Both statements 3 and 10 confirm the same information.\n   - From statement 7, we have: Fiona is not quiet.\n   - From statement 14, we have: If something is quiet and green then it is rough.\n   - We cannot conclude that Fiona is rough from this information.\n   - From statement 13, we have: If something is quiet and green then it is rough.\n   - This implies that if Fiona is quiet, she would be green and rough.\n   - However, we already know that Fiona is not quiet (from statement 7).\n   - So, this information is irrelevant to Fiona's color or roughness.\n   - From statement 1, we have: Anne is cold.\n   - From statement 5, we have: Dave is quiet.\n   - We cannot conclude anything about Fiona from this information.\n   - From statement 4, we have: Anne is not white.\n   - We cannot conclude anything about Fiona from this information.\n   - From statement 8, we have: Gary is cold.\n   - From statement 6, we have: Dave is quiet.\n   - We cannot conclude anything about Fiona from this information.\n   - From statement 11, we have: All rough things are young.\n   - From statement 2, we have: Anne is rough.\n   - We cannot conclude anything about Fiona from this information.\n   - From statement 16, we have: If something is cold then it is red.\n   - From statement 7, we have: Fiona is not quiet.\n   - We cannot conclude anything about Fiona's color from this information.\n   - From statement 17, we have: Young things are cold.\n   - From statement 11, we have: All rough things are young.\n   - Therefore, all rough things are also cold.\n   - From statement 3, we have: Gary is rough.\n   - Therefore, Gary is also cold (as inferred from statement 17).\n   - From statement 8, we have: Gary is cold.\n   - From statement 17, we have: Young things are cold.\n   - We cannot conclude anything about Fiona's youth from this information.\n   - From statement 18, we have: If something is quiet and green then it is rough.\n   - We already know that Fiona is not quiet (from statement 7).\n   - So, this information is irrelevant to Fiona's color or roughness.\n   - From statement 19, we have: All quiet things are green.\n   - We already know that Fiona is not quiet (from statement 7).\n   - So, this information is irrelevant to Fiona's color or roughness.\n   - From statement 20, we have: If Fiona is white and Fiona is green then Fiona is not quiet.\n   - We know that Fiona is not quiet (from statement 7).\n   - However, we cannot determine Fiona's color or whether she is green or white from this information alone.\n\n3. Combining the information:\n   - We know that Fiona is not quiet (from statement 7).\n   - We know that quiet things are green (from statement 12 and 15).\n   - We know that quiet things are rough (from statement 14).\n   - We know that all rough things are young (from statement 11).\n   - We know that all rough things are cold (from statement 17).\n   - We do not know whether Fiona is white or green.\n\n4. Determining the statement:\n   - The statement is: Fiona is white.\n   - We do not have enough information to conclude whether Fiona is white or not.\n\nTherefore, the final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is cold.\n   - Anne is red.\n   - Anne is rough.\n   - Anne is not white.\n   - Dave is quiet.\n   - Dave is white.\n   - Fiona is not quiet.\n   - Gary is cold.\n   - Gary is quiet.\n   - Gary is red.\n   - Gary is rough.\n   - Gary is white.\n   - If Fiona is white and Fiona is green then Fiona is not quiet.\n   - All rough things are young.\n   - If something is cold then it is red.\n   - Young things are cold.\n   - If something is quiet and green then it is rough.\n   - All quiet things are green.\n\n2. We are given the statement to check: \"Fiona is white.\"\n\nTo check this, we need to see if there is any information that directly supports or contradicts it. However, the given statement \"Fiona is white\" does not have any direct information about it. \n\nHowever, there is a related statement that says: \"If Fiona is white and Fiona is green then Fiona is not quiet.\" But this does not tell us anything about the statement \"Fiona is white\" without the condition of \"Fiona is green.\"\n\nSince we don't have any direct information about \"Fiona is white,\" we need to see if there is any indirect information that could help us determine its truth value. \n\nOne way to check this is to look for related information that could help us determine if Fiona is white or not.\n\nLet's analyze the given statement: \"If Fiona is white and Fiona is green then Fiona is not quiet.\" We can rewrite this as: \n- Fiona is white \u2192 Fiona is green \u2192 Fiona is not quiet (by implication)\n\nHowever, we also know that: \n- All quiet things are green.\n- If something is quiet and green then it is rough.\n\nThis implies that: \n- If Fiona is quiet and green, then Fiona is rough (by implication)\n\nNow, let's analyze the information about Fiona:\n- Fiona is not quiet.\n\nSince we know that if Fiona is quiet and green, then Fiona is rough, and Fiona is not quiet, it is possible that Fiona is not green. However, we cannot conclude this with certainty.\n\nAlso, we know that: \n- Gary is quiet and white, and Gary is rough.\n- Dave is quiet and white.\n\nThis implies that being quiet and white does not necessarily mean that something is rough. However, it is possible that Fiona is white, but this information alone does not tell us anything about Fiona's color or roughness.\n\nSince we have indirect information about Fiona being white but it is not confirmed by the given information, we cannot determine the truth value of the statement \"Fiona is white\" as true or false.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and deduce the properties of Fiona. \n\nGiven statements:\n1. Anne is cold.\n2. Anne is red.\n3. Anne is rough.\n4. Anne is not white.\n5. Dave is quiet.\n6. Dave is white.\n7. Fiona is not quiet.\n8. Gary is cold.\n9. Gary is quiet.\n10. Gary is red.\n11. Gary is rough.\n12. Gary is white.\n13. If Fiona is white and Fiona is green then Fiona is not quiet. \n14. All rough things are young.\n15. If something is cold then it is red.\n16. Young things are cold.\n17. If something is quiet and green then it is rough.\n18. All quiet things are green.\n\nNow, let's analyze the statements related to Fiona:\n- Statement 7 says Fiona is not quiet. \n- Statement 13 says if Fiona is white and Fiona is green then Fiona is not quiet.\n\nSince we don't know the color of Fiona yet, let's consider the possible colors:\n- If Fiona is green, then from statement 18, she is quiet, which contradicts statement 7. So, Fiona is not green.\n- If Fiona is white, then from statement 13, she is not quiet, which contradicts statement 7. So, Fiona is not white.\n\nSince Fiona is neither green nor white, we can't conclude anything about Fiona's color from statement 13. Therefore, the statement \"Fiona is white\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know that Dave is quiet and white. However, this information does not directly relate to Fiona.\n\n2. We are given that Fiona is not quiet. This information is directly related to Fiona.\n\n3. We are also given that Fiona is white and green. However, we already know that Fiona is not quiet.\n\n4. Now, we need to find a relationship between being quiet, green, and white for Fiona. We are given that if something is quiet and green, then it is rough. However, this does not apply to Fiona since Fiona is not quiet.\n\n5. We are given that all quiet things are green. However, we already know that Fiona is not quiet, so this information does not apply to Fiona.\n\n6. We are given that all rough things are young. However, we are not given any direct information about Fiona being young or old.\n\n7. We are given that if Fiona is white and green, then Fiona is not quiet. This information is directly related to Fiona.\n\n8. From the information given, we can conclude that the statement \"Fiona is white\" is true, but the statement \"Fiona is green\" is also true. However, we need to determine the relationship between Fiona being white and being quiet or rough.\n\n9. Since Fiona is white and green, then Fiona is not quiet. However, we are not given any direct information about Fiona being rough or not rough.\n\n10. We are given that if something is cold then it is red. We are also given that Gary is cold and Gary is red. However, this information does not directly relate to Fiona.\n\n11. We are given that all rough things are young. However, we are not given any direct information about Fiona being young or old.\n\n12. We are given that if something is quiet and green then it is rough. However, this does not apply to Fiona since Fiona is not quiet.\n\n13. We are given that all quiet things are green. However, we already know that Fiona is not quiet, so this information does not apply to Fiona.\n\n14. Since we are given that all quiet things are green, we can conclude that green and quiet are related. However, we are not given any direct information about Fiona being rough or not rough.\n\n15. We are given that if Fiona is white and green, then Fiona is not quiet. Since we know that Fiona is white and green, then Fiona is not quiet.\n\nBased on the given information, we can conclude that the statement \"Fiona is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is white\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nStep 1: \nFrom the given information, we know that:\n- Fiona is not quiet.\n- If Fiona is white and Fiona is green then Fiona is not quiet.\n\nSince Fiona is not quiet, we can't conclude that she is white from the second statement.\n\nStep 2:\nLet's consider the other statements that might be relevant to Fiona.\n- All quiet things are green.\n- If something is quiet and green then it is rough.\nFrom the first statement, we can't directly conclude that Fiona is green because it says \"quiet things\" and we know that Fiona is not quiet.\nHowever, the second statement implies that if Fiona were quiet and green, she would be rough. But since we know Fiona is not quiet, this doesn't directly affect our conclusion.\n\nStep 3:\nNow, let's analyze the given statements about Anne and Gary to see if they provide any useful information about Fiona.\n- Anne is cold. Anne is red. Anne is rough. Anne is not white.\n- Dave is quiet. Dave is white.\n- Gary is cold. Gary is quiet. Gary is red. Gary is rough. Gary is white.\nFrom these statements, we can conclude that Gary is white, but we can't directly conclude anything about Fiona from this.\n\nStep 4:\nNow let's examine the general statements that might be useful for this problem.\n- If something is cold then it is red.\n- Young things are cold.\n- All rough things are young.\n- All quiet things are green.\nFrom these statements, we can conclude that Gary is young because Gary is cold and young things are cold.\n\nStep 5:\nNow let's use the general statement \"All quiet things are green\" to conclude that Gary is green because Gary is quiet and quiet things are green.\n\nStep 6:\nNow let's analyze the statement \"All quiet things are green\" in conjunction with the statement \"If something is quiet and green then it is rough.\"\nWe can conclude that Gary is rough because Gary is quiet, Gary is green, and quiet green things are rough.\n\nStep 7:\nNow let's examine the given statement \"All rough things are young\" to conclude that Gary is young because Gary is rough and all rough things are young.\n\nStep 8:\nNow let's examine the general statement \"Young things are cold\" to conclude that Gary is cold because Gary is young and young things are cold.\n\nStep 9:\nNow let's examine the general statement \"If something is cold then it is red\" to conclude that Gary is red because Gary is cold and cold things are red.\n\nStep 10:\nNow let's examine the statement \"Fiona is not quiet\" in conjunction with the statement \"All quiet things are green\" to conclude that Fiona is not green.\n\nStep 11:\nHowever, there is no statement that tells us whether Fiona is white or not. We can only conclude that Fiona is not quiet, not green, and the rest of the attributes are unknown.\n\nThe final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is cold.\n   - Anne is red.\n   - Anne is rough.\n   - Anne is not white.\n   - Dave is quiet.\n   - Dave is white.\n   - Fiona is not quiet.\n   - Gary is cold.\n   - Gary is quiet.\n   - Gary is red.\n   - Gary is rough.\n   - Gary is white.\n   - If Fiona is white and Fiona is green then Fiona is not quiet.\n   - All rough things are young.\n   - If something is cold then it is red.\n   - Young things are cold.\n   - If something is quiet and green then it is rough.\n   - All quiet things are green.\n\n2. Analyzing the given information:\n   - From the statement \"If Fiona is white and Fiona is green then Fiona is not quiet.\" we know that Fiona being white and green results in her not being quiet. \n   - However, there's another statement \"Fiona is not quiet\" which is a standalone statement and doesn't have any conditions. This statement contradicts the first statement about Fiona being white and green.\n   - So, we need to determine whether Fiona is white and green or just not quiet. We'll proceed with this information.\n\n3. To solve the problem, we'll create a truth table for the statement \"Fiona is white\".\n\n   Let's denote:\n   - W: Fiona is white\n   - G: Fiona is green\n   - Q: Fiona is quiet\n\n   From the given information:\n   - If Fiona is white and Fiona is green then Fiona is not quiet.\n   - All quiet things are green.\n   - Fiona is not quiet.\n\n   We can create the following truth table:\n\n   | W | G | Q | Fiona is white and green then not quiet |\n   | --- | --- | --- | --- |\n   | T | T | T | F |\n   | T | T | F | T |\n   | T | F | T | U |\n   | T | F | F | U |\n   | F | T | T | U |\n   | F | T | F | U |\n   | F | F | T | U |\n   | F | F | F | U |\n\n   Note that in this truth table, U stands for \"Unknown\" because we cannot determine whether the statement is true or false.\n\n4. Based on the given information, there are multiple possibilities for Fiona being white and green or just not quiet, which results in an \"Unknown\" outcome.\n\n   Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve the problem, we will use the given statements and apply logical reasoning. \n\nWe are given the following statements:\n1. Anne is cold. \n2. Anne is red. \n3. Anne is rough. \n4. Anne is not white. \n5. Dave is quiet. \n6. Dave is white. \n7. Fiona is not quiet. \n8. Gary is cold. \n9. Gary is quiet. \n10. Gary is red. \n11. Gary is rough. \n12. Gary is white. \n13. If Fiona is white and Fiona is green then Fiona is not quiet. \n14. All rough things are young. \n15. If something is cold then it is red. \n16. Young things are cold. \n17. If something is quiet and green then it is rough. \n18. All quiet things are green.\n\nWe are asked to determine whether the statement \"Fiona is white\" is true, false, or unknown.\n\nFirst, let's analyze the statements:\n- From statement 18, we know all quiet things are green.\n- From statement 17, we know if something is quiet and green then it is rough.\n- However, we cannot determine if Fiona is quiet or green directly. \n\nHowever, let's examine the information we have about Fiona:\n- Statement 7 says Fiona is not quiet.\n- Statement 13 says if Fiona is white and green then Fiona is not quiet. This statement does not directly apply to Fiona, but it implies that if Fiona were white and green, then she would not be quiet. However, statement 13 does not say that Fiona is not white and green, only that if she is white and green then she is not quiet.\n\nLet's examine the information we have about Fiona's color:\n- We cannot directly determine Fiona's color from the given statements.\n\nHowever, we can analyze the statements about colors and other properties:\n- From statement 5, we know Dave is quiet and white.\n- From statement 6, we know Dave is white.\n- From statement 12, we know Gary is white.\n- However, we cannot determine if Fiona is white based on the given information alone.\n\nGiven the information we have, we cannot determine if Fiona is white or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is cold.\n   - Anne is red.\n   - Anne is rough.\n   - Anne is not white.\n   - Dave is quiet.\n   - Dave is white.\n   - Fiona is not quiet.\n   - Gary is cold.\n   - Gary is quiet.\n   - Gary is red.\n   - Gary is rough.\n   - Gary is white.\n   - If Fiona is white and Fiona is green then Fiona is not quiet.\n   - All rough things are young.\n   - If something is cold then it is red.\n   - Young things are cold.\n   - If something is quiet and green then it is rough.\n   - All quiet things are green.\n\n2. Analyzing the information:\n   - We know that Gary is both quiet and white, so all quiet things must be white. (From Dave being quiet and white, and Gary being quiet and white)\n   - We also know that Gary is white, and all quiet things are white. Therefore, Gary must be quiet. (Since all quiet things are white, and Gary is white)\n   - Since Gary is quiet, and all quiet things are green, then Gary must be green. (From the fact that all quiet things are green)\n   - However, we know that Gary is red, and if something is cold then it is red. We also know that Gary is cold, and young things are cold. Therefore, Gary must be young. (From the fact that young things are cold, and Gary is cold)\n   - Since Gary is young, and all rough things are young, then Gary must be rough. (From the fact that all rough things are young)\n   - We know that Gary is rough, and if something is quiet and green then it is rough. However, Gary is not quiet (as we previously established), so this information is not applicable to Gary.\n\n3. Now let's analyze the statement \"Fiona is white.\"\n   - We know that if Fiona is white and Fiona is green then Fiona is not quiet. However, we cannot determine whether Fiona is white or green from the given information. The statement \"Fiona is green\" is actually a part of a conditional statement, which is not the same as a statement about Fiona being green. Therefore, we cannot determine whether the statement \"Fiona is white\" is true or false.\n\n4. Therefore, the statement \"Fiona is white\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is cold.\n   - Anne is red.\n   - Anne is rough.\n   - Anne is not white.\n   - Dave is quiet.\n   - Dave is white.\n   - Fiona is not quiet.\n   - Gary is cold.\n   - Gary is quiet.\n   - Gary is red.\n   - Gary is rough.\n   - Gary is white.\n   - If Fiona is white and Fiona is green then Fiona is not quiet.\n   - All rough things are young.\n   - If something is cold then it is red.\n   - Young things are cold.\n   - If something is quiet and green then it is rough.\n   - All quiet things are green.\n\n2. Analyzing the information:\n   - We know that if something is quiet and green, it is rough. \n   - We also know that all quiet things are green, and all rough things are young.\n\n3. From the information, we can deduce that if Fiona is quiet, she is rough and young. But we already know that Fiona is not quiet.\n\n4. Now let's analyze the statement: Fiona is white.\n   - We have two pieces of information related to Fiona:\n     - Fiona is not quiet.\n     - If Fiona is white and green then Fiona is not quiet.\n\n5. Since Fiona is not quiet, we can't directly conclude that Fiona is white from the second statement. However, we do know that Fiona is white from the original statement \"Fiona is white and Fiona is green.\" The problem states \"If Fiona is white and Fiona is green then Fiona is not quiet.\" This implies that Fiona can be white and not quiet, but it doesn't directly state that Fiona is white.\n\n6. However, this information can be used to find the answer by using the following information:\n   - Gary is quiet.\n   - Gary is white.\n   - All quiet things are green.\n   - If something is quiet and green then it is rough.\n   - All rough things are young.\n   - Young things are cold.\n   - If something is cold then it is red.\n\n7. From the information, we can deduce that Gary is young, cold, and red. Since Gary is cold, we can infer that Gary is red.\n\n8. Now let's analyze the statement: Fiona is white.\n   - We know that Gary is white, but we don't have any information about Fiona being white or not white. However, we can use the information about Anne to find the answer. \n   - Anne is not white.\n   - Dave is white.\n\n9. We can't directly conclude whether Fiona is white or not from the given information. However, we do know that Fiona is not quiet, and if something is quiet and green then it is rough.\n\n10. Since we can't find any direct information about Fiona being white or not white, the answer is unknown.\n\nHowever, there is a missing conclusion that can be inferred from the information given about Gary being white and quiet, and the information that all quiet things are green, and if something is quiet and green then it is rough. \n\nGary is white and quiet. Therefore, Gary is green and rough. \n\nAll young things are cold. Gary is young. Therefore, Gary is cold. \n\nIf something is cold then it is red. Therefore, Gary is red. \n\nWe can now find the answer to the original question. \n\nThe original question states that if Fiona is white and Fiona is green, then Fiona is not quiet. We can now conclude that Gary is white, and since Gary is quiet, we can infer that Gary is not green. \n\nTherefore, the statement \"Fiona is white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is cold.\n   - Anne is red.\n   - Anne is rough.\n   - Anne is not white.\n   - Dave is quiet.\n   - Dave is white.\n   - Fiona is not quiet.\n   - Gary is cold.\n   - Gary is quiet.\n   - Gary is red.\n   - Gary is rough.\n   - Gary is white.\n   - If Fiona is white and Fiona is green then Fiona is not quiet.\n   - All rough things are young.\n   - If something is cold then it is red.\n   - Young things are cold.\n   - If something is quiet and green then it is rough.\n   - All quiet things are green.\n\n2. To determine whether Fiona is white, we should analyze the related information about Fiona.\n   - Fiona is not quiet. (Given)\n   - We don't have direct information about Fiona's color, but we know that \"All quiet things are green\" and \"All rough things are young.\" Since Fiona is not quiet, we can't directly apply this information to conclude Fiona's color.\n\n3. However, we have another related statement:\n   - If Fiona is white and Fiona is green then Fiona is not quiet.\n   This statement implies that Fiona being white and green would mean Fiona is not quiet. But we already know Fiona is not quiet (Given). This statement doesn't provide any new information about Fiona's color.\n\n4. We can use the information about Gary to try to find a connection.\n   - Gary is quiet.\n   - Gary is white.\n   - Gary is red.\n   - Gary is rough.\n   - Gary is cold.\n   - From \"If something is quiet and green then it is rough,\" we can conclude that Gary is green because it is quiet and rough. However, this contradicts with the fact that Gary is white.\n\n5. Let's analyze the statement \"All quiet things are green.\"\n   If all quiet things are green, then Gary should be green, not white. This contradicts the given information about Gary.\n\n6. Now let's analyze the statement \"If something is quiet and green then it is rough.\"\n   This statement is true if all quiet things are green. But from step 5, we have a contradiction.\n\n7. We need to find another approach to determine whether Fiona is white.\n\nLet's analyze the statement \"If Fiona is white and Fiona is green then Fiona is not quiet.\"\nWe don't have information about Fiona being green. But we have \"Fiona is not quiet\" (Given). We can use this statement to try to find a connection.\n\n8. We can use the information about Gary to try to find a connection.\n   - Gary is quiet.\n   - Gary is white.\n   - Gary is red.\n   - Gary is rough.\n   - Gary is cold.\n   - From \"If something is cold then it is red,\" we can conclude that Gary is red because it is cold.\n\n9. Now let's analyze the statement \"Young things are cold.\"\n   This statement implies that Gary is young because Gary is cold.\n\n10. Now let's analyze the statement \"All rough things are young.\"\n    This statement implies that Gary is young because Gary is rough.\n\n11. Now let's analyze the statement \"Young things are cold.\"\n    This statement implies that Gary is cold because Gary is young.\n\n12. Now we have a problem. We have multiple statements that imply Gary is young, cold, and red. However, we have another statement that says \"If something is quiet and green then it is rough.\"\n    If Gary is quiet and green, then Gary is rough. But we already know Gary is rough. This statement doesn't provide any new information about Gary's color.\n\n13. Now let's analyze the statement \"All quiet things are green.\"\n    This statement implies that Gary is green because Gary is quiet. However, this contradicts the fact that Gary is white.\n\n14. Now we have a problem. We have multiple statements that imply Gary is white. However, we also have statements that contradict this fact.\n\n15. We need to find another approach to determine whether Fiona is white.\n\nLet's analyze the statement \"All quiet things are green.\"\nWe don't have information about Fiona being quiet. But we have \"Fiona is not quiet\" (Given). We can use this statement to try to find a connection.\n\nHowever, we can't find a connection between Fiona and the color white or any other color.\n\nTherefore, the statement \"Fiona is white\" is unknown.",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not white(anne)",
+          "z3_formula": "Not(white_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(white_fiona, green_fiona), Not(quiet_fiona))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_anne, young_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_anne, red_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_gary, green_gary), rough_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_gary, green_gary)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not white(fiona)",
+          "z3_formula": "Not(white_fiona)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "Not(green_fiona)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "cold(fiona)",
+          "z3_formula": "cold_fiona == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not white(anne)",
+          "z3_formula": "Not(white_anne) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(white_fiona, green_fiona), Not(quiet_fiona))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_gary, young_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_gary, red_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_gary, cold_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_gary, green_gary), rough_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_gary, green_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "Not(green_fiona) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not white(fiona)",
+          "z3_formula": "Not(white_fiona) == True",
+          "source_step": 14
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not white(anne)",
+          "z3_formula": "Not(white_anne) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(white_fiona, green_fiona), Not(quiet_fiona))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) == young(X)",
+          "z3_formula": "rough_X == young_X",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_X, green_X), rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_X, green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not white(anne)",
+          "z3_formula": "Not(white_anne) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(white_fiona, green_fiona), Not(quiet_fiona))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_X, young_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_X, green_X), rough_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_X, green_X)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_X, green_X), rough_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_X, green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(white_X, green_X), Not(quiet_X))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(white_fiona, green_fiona), Not(quiet_fiona))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_X, green_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_X, green_X), rough_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not white(anne)",
+          "z3_formula": "Not(white_anne) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_X, young_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_X, green_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_X, green_X), rough_X)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "not green(fiona)",
+          "z3_formula": "Not(green_fiona) == True",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not white(anne)",
+          "z3_formula": "Not(white_anne) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(white_fiona, green_fiona), Not(quiet_fiona))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_fiona, green_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_anne, young_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_anne, red_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_gary, green_gary), rough_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_gary, green_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True or white_fiona == False or white_fiona == Unknown",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not white(anne)",
+          "z3_formula": "Not(white_anne) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(white_fiona, green_fiona), Not(quiet_fiona))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_anne, young_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_anne, red_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_anne, cold_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_fiona, green_fiona), rough_fiona)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_dave, green_dave)",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not white(anne)",
+          "z3_formula": "Not(white_anne) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(white_fiona, green_fiona), Not(quiet_fiona))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_anne, young_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_gary, red_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_gary, cold_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_gary, green_gary), rough_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_gary, green_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not white(anne)",
+          "z3_formula": "Not(white_anne) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(white_fiona, green_fiona), Not(quiet_fiona))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_X, young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_X, green_X), rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> green(X)",
+          "z3_formula": "Implies(quiet_X, green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not green(gary)",
+          "z3_formula": "Not(green_gary) == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not white(anne)",
+          "z3_formula": "Not(white_anne) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(gary)",
+          "z3_formula": "cold_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & green(X) -> not quiet(X)",
+          "z3_formula": "Implies(And(white_fiona, green_fiona), Not(quiet_fiona))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> young(X)",
+          "z3_formula": "Implies(rough_X, young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> cold(X)",
+          "z3_formula": "Implies(young_X, cold_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_X, green_X), rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "all quiet(X) -> green(X)",
+          "z3_formula": "Implies(all_quiet_X, green_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not white(fiona)",
+          "z3_formula": "Not(white_fiona) == Unknown",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 225,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 44
+    },
+    "maxsat_stats": {
+      "satisfied": 40,
+      "excluded": 4,
+      "total_weight": 220,
+      "solve_time_ms": 1.2618731707334518
+    },
+    "timing": {
+      "trace_gen_s": 12.989,
+      "extraction_s": 40.035,
+      "dedup_s": 1.772,
+      "maxsat_s": 0.004,
+      "total_s": 54.801
+    }
+  }
+}

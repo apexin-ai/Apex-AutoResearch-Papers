@@ -1,0 +1,87 @@
+{
+  "experiment": "exp-d134-process-br",
+  "description": "Process-conditional BR Decomposition using Dir-H provenance data (exp033 constraint cache)",
+  "source_data": "exp033_mistral_7b_folio204",
+  "n_problems_analyzed": 204,
+  "n_sica_wrong": 83,
+  "position_decomposition": {
+    "early": {
+      "br": 5.3673,
+      "n_constraints": 1439,
+      "wrong_support": 1213,
+      "gold_support": 226
+    },
+    "mid": {
+      "br": 5.2454,
+      "n_constraints": 1705,
+      "wrong_support": 1432,
+      "gold_support": 273
+    },
+    "late": {
+      "br": 5.1577,
+      "n_constraints": 2069,
+      "wrong_support": 1733,
+      "gold_support": 336
+    },
+    "fisher_early_vs_late": {
+      "odds_ratio": 0.961,
+      "p_value": 0.708183
+    },
+    "fisher_mid_vs_late": {
+      "odds_ratio": 0.9833,
+      "p_value": 0.858961
+    }
+  },
+  "difficulty_decomposition": {
+    "easy_ge10": {
+      "br": 18.8182,
+      "n_questions_total": 61,
+      "n_questions_sica_wrong": 17,
+      "total_gold_constraints": 55,
+      "total_wrong_constraints": 1035,
+      "br_all_problems": 0.5193
+    },
+    "hard_le6": {
+      "br": 2.7123,
+      "n_questions_total": 62,
+      "n_questions_sica_wrong": 33,
+      "total_gold_constraints": 511,
+      "total_wrong_constraints": 1386,
+      "br_all_problems": 1.6505
+    },
+    "fisher_test": {
+      "odds_ratio": 0.1441,
+      "p_value": 0.0
+    }
+  },
+  "type_decomposition": {
+    "universal": {
+      "br": 10.0,
+      "n": 11,
+      "wrong_support": 10,
+      "gold_support": 1
+    },
+    "existential": {
+      "br": 8.0,
+      "n": 27,
+      "wrong_support": 24,
+      "gold_support": 3
+    },
+    "conditional": {
+      "br": 5.6905,
+      "n": 2248,
+      "wrong_support": 1912,
+      "gold_support": 336
+    },
+    "other": {
+      "br": 4.9131,
+      "n": 2927,
+      "wrong_support": 2432,
+      "gold_support": 495
+    },
+    "fisher_conditional_vs_other": {
+      "odds_ratio": 1.1582,
+      "p_value": 0.061235
+    }
+  }
+}

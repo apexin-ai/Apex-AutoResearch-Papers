@@ -1,0 +1,970 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-766_Q5",
+    "problem": "Bob is big. Bob is round. Charlie is not cold. Charlie is green. Fiona is big. Fiona is green. Fiona is nice. Fiona is round. Harry is cold. Harry is nice. If someone is rough then they are not nice. All green people are nice. If someone is cold then they are nice. All big people are round. All green, blue people are big. If someone is round then they are not rough. All nice people are blue.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is blue.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nRound($x, bool) ::: Is x round?\nCold($x, bool) ::: Is x cold?\nGreen($x, bool) ::: Is x green?\nNice($x, bool) ::: Is x nice?\nRough($x, bool) ::: Is x rough?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nRound(Bob, True) ::: Bob is round.\nCold(Charlie, False) ::: Charlie is not cold.\nGreen(Charlie, True) ::: Charlie is green.\nBig(Fiona, True) ::: Fiona is big.\nGreen(Fiona, True) ::: Fiona is green.\nNice(Fiona, True) ::: Fiona is nice.\nRound(Fiona, True) ::: Fiona is round.\nCold(Harry, True) ::: Harry is cold.\nNice(Harry, True) ::: Harry is nice.\n\nRules:\nRough($x, True) >>> Nice($x, False) ::: If someone is rough then they are not nice.\nGreen($x, True) >>> Nice($x, True) ::: All green people are nice.\nCold($x, True) >>> Nice($x, True) ::: If someone is cold then they are nice.\nBig($x, True) >>> Round($x, True) ::: All big people are round.\nGreen($x, True) && Blue($x, True) >>> Big($x, True) ::: All green, blue people are big.\nRound($x, True) >>> Rough($x, False) ::: If someone is round then they are not rough.\nNice($x, True) >>> Blue($x, True) ::: All nice people are blue.\n\nQuery:\nBlue(Charlie, True) ::: Charlie is blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 133.0,
+      "Unknown": 102.0
+    },
+    "answer_counts": {
+      "Unknown": 2,
+      "True": 10
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Charlie is blue, we need to analyze the given information step by step.\n\n1. Charlie is not cold. \n2. Charlie is green.\n\nFrom statement 2, we know Charlie is green. We also know that all green people are nice (from the given information). However, we cannot conclude that Charlie is blue yet.\n\n3. All green people are nice.\nSince Charlie is green, Charlie must be nice.\n\n4. If someone is nice, then they are blue.\nHowever, we also have another statement: \nAll nice people are blue.\n\nThese two statements seem to contradict each other. Statement 4 is more specific and suggests that being nice is a sufficient condition for being blue, but statement 5 implies that being blue is a sufficient condition for being nice. \n\nHowever, the problem does not explicitly state that Charlie is round, big, or cold. We do not know enough information to determine Charlie's color, so we cannot conclude that Charlie is blue.\n\nGiven the available information, we cannot definitively say whether Charlie is blue or not. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is not cold. \n   From the information given: \n   - If someone is cold then they are nice.\n   So, Charlie is nice.\n\n2. Charlie is green. \n   From the information given: \n   - All green people are nice.\n   We already know Charlie is nice, so this confirms it.\n\n3. Since Charlie is green, and all green people are nice, we can also conclude: \n   - Charlie is not rough (because all green people are nice, and if someone is rough, then they are not nice).\n\n4. Now, we need to determine Charlie's color. We know Charlie is nice (from step 1) and green (from step 2). We also know:\n   - All green, blue people are big.\n   But we don't have enough information to determine if Charlie is big or not. However, we do know:\n   - All nice people are blue.\n   So, since Charlie is nice (from step 1), we can conclude that Charlie is blue.\n\nTherefore, the statement \"Charlie is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is blue\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Charlie is not cold. (Given)\n2. If someone is cold then they are nice. (Given)\n   However, since Charlie is not cold, we cannot conclude that Charlie is nice or not nice.\n3. Charlie is green. (Given)\n4. All green people are nice. (Given)\n   Since Charlie is green, we can conclude that Charlie is nice.\n\nNow, let's find a relationship between \"nice\" and \"blue\".\n\n1. All nice people are blue. (Given)\n   Since Charlie is nice (from step 4), we can conclude that Charlie is blue.\n\nTherefore, based on the given information, we can conclude that the statement \"Charlie is blue\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is blue' is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\n1. Given statements:\n   - Bob is big. Bob is round.\n   - Charlie is not cold. Charlie is green.\n   - Fiona is big. Fiona is green. Fiona is nice. Fiona is round.\n   - Harry is cold. Harry is nice.\n   - If someone is rough then they are not nice.\n   - All green people are nice.\n   - If someone is cold then they are nice.\n   - All big people are round.\n   - All green, blue people are big.\n   - If someone is round then they are not rough.\n   - All nice people are blue.\n\n2. We need to determine whether Charlie is blue. To do this, let's find the relationships between the statements.\n\n   - Charlie is green, so according to the statement 'All green people are nice,' Charlie is nice.\n   - Since Charlie is nice, according to the statement 'All nice people are blue,' Charlie is blue.\n\nBased on the given information and logical deductions, we can conclude that Charlie is indeed blue. \n\nTherefore, the statement 'Charlie is blue' is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information about Charlie:\n   - Charlie is not cold.\n   - Charlie is green.\n\n2. We are given the following information about green people:\n   - All green people are nice.\n\n3. Since Charlie is green and all green people are nice, we can conclude that Charlie is nice.\n\n4. We are given the following information about nice people:\n   - All nice people are blue.\n\n5. Since Charlie is nice and all nice people are blue, we can conclude that Charlie is blue.\n\nTherefore, based on the given information, the statement \"Charlie is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is not cold. \n2. Charlie is green. \n   We know from the information that all green people are nice. So, Charlie is nice.\n\n3. Since Charlie is nice, and all nice people are blue, we can conclude that Charlie is blue.\n\nTherefore, the statement \"Charlie is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Charlie is green. \n   Given statement: Fiona is green. Fiona is big. Fiona is nice. Fiona is round.\n   From the given information, we can deduce that all green people are nice.\n   Since Charlie is green and all green people are nice, we can conclude that Charlie is nice.\n\n2. We also know that Charlie is not cold.\n   Given statement: Harry is cold. Harry is nice.\n   From the given information, we can deduce that if someone is cold then they are nice.\n   However, since Charlie is not cold and we already know that Charlie is nice, this information doesn't provide any additional insight.\n\n3. Now, we need to determine whether Charlie is blue or not.\n   Given statement: If someone is round then they are not rough.\n   Given statement: All nice people are blue.\n   From the given information, we can deduce that all big people are round.\n   Since Charlie is nice and all nice people are blue, we can conclude that Charlie is blue.\n\nTherefore, the statement \"Charlie is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Charlie is not cold. \n   From the given information, if someone is cold then they are nice. \n   However, we don't know if Charlie is nice or not, so this statement alone does not give us any information about Charlie's color.\n\n2. We are also given that Charlie is green.\n   However, we don't know if being green is enough to determine Charlie's color, so we need to continue analyzing.\n\n3. We know that all green people are nice. \n   However, we don't know if all nice people are green, so we need to consider other information.\n\n4. We are given that all nice people are blue.\n   This statement directly contradicts the previous statement that all green people are nice.\n   However, we still don't know if Charlie is nice or not.\n\n5. To resolve this contradiction, we need to consider other information.\n   We are given that if someone is rough then they are not nice.\n   However, we don't know if Charlie is rough or not, so we need to continue analyzing.\n\n6. We know that all round people are not rough.\n   We are given that Fiona is round, and we are also given that Fiona is nice.\n   Since all nice people are blue, Fiona must be blue.\n\n7. We are given that all big people are round.\n   We are also given that Fiona is big, so Fiona must be round, which we already know.\n\n8. We are given that all green, blue people are big.\n   However, we don't know if all green people are blue, so we need to consider other information.\n\n9. We know that all green people are nice, and all nice people are blue.\n   This implies that all green people are blue.\n\n10. Since Charlie is green and all green people are blue, Charlie must be blue.\n\nTherefore, the statement \"Charlie is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is not cold.\n   From this, we cannot directly determine whether Charlie is blue, but we can conclude that Charlie is not cold, so the statement \"If someone is cold then they are nice\" does not apply to Charlie. However, we also know that \"If someone is cold then they are nice,\" and \"All nice people are blue.\" This does not directly imply Charlie is blue but we can't rule it out either.\n\n2. Charlie is green.\n   Since Charlie is green, and \"All green people are nice,\" we can conclude that Charlie is nice.\n\n3. Since Charlie is nice, from the statement \"All nice people are blue,\" we can conclude that Charlie is blue.\n\nSo, after analyzing all the given information, we can determine that the statement \"Charlie is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is not cold. (Given)\n2. Charlie is green. (Given)\n   We can use the information that all green people are nice. Therefore, we can conclude that Charlie is nice.\n\n3. All green, blue people are big. (Given)\n   We know Charlie is green, but we cannot conclude that he is blue yet. We need more information about the relationship between green, blue people and the other properties.\n\n4. If someone is cold then they are nice. (Given)\n   We know Harry is cold (given) and we can conclude that Harry is nice.\n\n5. Fiona is big. (Given)\n   We can use the information that all big people are round. Therefore, we can conclude that Fiona is round.\n\n6. If someone is round then they are not rough. (Given)\n   We know that Fiona is round (from step 5), and since all round people are not rough, we can conclude that Fiona is not rough.\n\n7. All nice people are blue. (Given)\n   Since we know that Fiona is nice (from step 2) and we concluded that Fiona is not rough (from step 6), we can use the information that if someone is rough then they are not nice. However, we do not know if Fiona is nice because Fiona is green, and we do not have any information about green people being rough. We will come back to this conclusion.\n\n8. Fiona is green. (Given)\n   We can use the information that all green people are nice. Therefore, we can conclude that Fiona is nice.\n\n9. Fiona is nice. (From step 8)\n   Since we know that Fiona is nice and all nice people are blue (from step 7), we can conclude that Fiona is blue.\n\n10. Fiona is big. (From step 5)\n    Since we know that all big people are round (from step 5) and we concluded that Fiona is big (from step 10), we can conclude that Fiona is round.\n\n11. All green, blue people are big. (From step 3)\n    Since we know that Fiona is green and blue (from steps 9 and 10), we can conclude that Fiona is big.\n\nHowever, we need to come back to step 7. From step 8, we concluded that Fiona is nice. We know that all green people are nice, and we know that Fiona is green. From step 9, we concluded that Fiona is blue. However, we cannot conclude that Charlie is blue because we do not have any information about Charlie being blue or not. \n\nFrom step 8, we concluded that Charlie is nice. We know that all green people are nice, and we know that Charlie is green. However, we cannot conclude that Charlie is blue because we do not have any information about green, blue people.\n\nFrom step 10, we concluded that all nice people are blue. However, we know that Charlie is nice, but we cannot conclude that Charlie is blue because we do not have any information about Charlie being blue or not.\n\nFrom step 11, we concluded that all green, blue people are big. However, we know that Charlie is green, but we cannot conclude that Charlie is blue because we do not have any information about Charlie being blue or not.\n\nHowever, we can conclude that the statement \"Charlie is blue\" is unknown because we do not have enough information to determine whether Charlie is blue or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is not cold. (Given)\n   Harry is cold. (Given)\n   If someone is cold then they are nice. (Given)\n   So, Harry is nice. (From 1 and 3)\n\n2. Fiona is big. (Given)\n   Fiona is green. (Given)\n   Fiona is nice. (Given)\n   Fiona is round. (Given)\n   All big people are round. (Given)\n   So, Fiona is round. (From 2 and 5)\n\n   All green people are nice. (Given)\n   Since Fiona is green, Fiona is nice. (From 2 and 6)\n\n   If someone is round then they are not rough. (Given)\n   So, Fiona is not rough. (From 2 and 7)\n\n3. Charlie is green. (Given)\n   All green people are nice. (Given)\n   So, Charlie is nice. (From 3 and 6)\n\n4. If someone is rough then they are not nice. (Given)\n   Since Charlie is nice (From 3), Charlie is not rough.\n\n5. All nice people are blue. (Given)\n   Since Charlie is nice (From 3), Charlie is blue.\n\nBased on the analysis, the statement \"Charlie is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know the following about Charlie:\n   - Charlie is not cold.\n   - Charlie is green.\n\n2. From the given information, we also know:\n   - All green people are nice.\n   - All nice people are blue.\n\n   Since Charlie is green, and all green people are nice, Charlie must be nice.\n\n3. Given that Charlie is nice, and all nice people are blue, we can conclude that Charlie is blue.\n\nSo, the statement \"Charlie is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "not(cold(charlie))",
+          "z3_formula": "Not(cold_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_charlie, nice_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_charlie, blue_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_charlie, blue_charlie)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not cold(charlie)",
+          "z3_formula": "not cold_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_charlie, nice_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not rough(X)",
+          "z3_formula": "Implies(green_charlie, not rough_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(charlie)",
+          "z3_formula": "not rough_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(green_charlie, blue_charlie), big_charlie)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_charlie, blue_charlie)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(cold(charlie))",
+          "z3_formula": "Not(cold_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_charlie, nice_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_charlie, blue_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(charlie))",
+          "z3_formula": "Not(cold_charlie) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> not(nice(X))",
+          "z3_formula": "Implies(rough_X, Not(nice_X))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_X, nice_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_X, nice_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_X, round_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(green_X, blue_X), big_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not(rough(X))",
+          "z3_formula": "Implies(round_X, Not(rough_X))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_X, blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not cold(charlie)",
+          "z3_formula": "Not(cold_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_charlie, nice_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_charlie, blue_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not cold(charlie)",
+          "z3_formula": "Not(cold_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_charlie, blue_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(cold(charlie))",
+          "z3_formula": "Not(cold_charlie) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_harry, nice_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not(rough(X))",
+          "z3_formula": "Implies(round_fiona, Not(rough_fiona))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_fiona, round_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_charlie, blue_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(cold(charlie))",
+          "z3_formula": "Not(cold_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_charlie, nice_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_charlie, blue_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(rough(charlie))",
+          "z3_formula": "Not(rough_charlie) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> not(nice(X))",
+          "z3_formula": "Implies(rough_charlie, Not(nice_charlie))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not(rough(X))",
+          "z3_formula": "Implies(round_fiona, Not(rough_fiona))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_fiona, round_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & blue(X) -> big(X)",
+          "z3_formula": "Implies(And(green_charlie, blue_charlie), big_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_charlie, nice_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_charlie, blue_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(cold(charlie))",
+          "z3_formula": "Not(cold_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_charlie, nice_charlie)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(charlie)",
+          "z3_formula": "kind_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_charlie, blue_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_charlie, nice_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(cold(charlie))",
+          "z3_formula": "Not(cold_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_charlie, nice_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(blue) -> big(blue)",
+          "z3_formula": "Implies(And(green_blue, blue_blue), big_blue)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_harry, nice_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_fiona, round_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> Not(rough(X))",
+          "z3_formula": "Implies(round_fiona, Not(rough_fiona))",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_fiona, blue_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "rough(X) -> Not(nice(X))",
+          "z3_formula": "Implies(rough_fiona, Not(nice_fiona))",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_fiona, nice_fiona)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(cold(charlie))",
+          "z3_formula": "Not(cold_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> nice(X)",
+          "z3_formula": "Implies(cold_harry, nice_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> round(X)",
+          "z3_formula": "Implies(big_fiona, round_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_fiona, nice_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not(rough(X))",
+          "z3_formula": "Implies(round_fiona, Not(rough_fiona))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(fiona))",
+          "z3_formula": "Not(rough_fiona) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_charlie, nice_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> not(nice(X))",
+          "z3_formula": "Implies(rough_charlie, Not(nice_charlie))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(rough(charlie))",
+          "z3_formula": "Not(rough_charlie) == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_charlie, blue_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not(cold(charlie))",
+          "z3_formula": "Not(cold_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> nice(X)",
+          "z3_formula": "Implies(green_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_charlie, blue_charlie)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 140,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 38
+    },
+    "maxsat_stats": {
+      "satisfied": 38,
+      "excluded": 0,
+      "total_weight": 139,
+      "solve_time_ms": 1.0457802563905716
+    },
+    "timing": {
+      "trace_gen_s": 8.733,
+      "extraction_s": 21.636,
+      "dedup_s": 0.967,
+      "maxsat_s": 0.003,
+      "total_s": 31.339
+    }
+  }
+}

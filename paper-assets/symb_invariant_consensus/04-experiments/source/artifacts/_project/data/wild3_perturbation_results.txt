@@ -1,0 +1,10 @@
+Wild 3 Problem Perturbation Results
+Model: Qwen2.5-7B (Blackwell GPU compat)
+Dataset: FOLIO-204 (30 perturbed questions)
+Conclusion: Negative
+
+Original-only (K=4): kappa=0.590, Eff-K=1.44, SC=80.0%
+Perturbed-only (K=4): kappa=0.696, Eff-K=1.30, SC=76.7%
+Mixed Orig+Pert (K=8): kappa=0.627, Eff-K=1.48, SC=80.0%
+
+Finding: Perturbation increases kappa (+0.037 mixed vs original), disproving hypothesis that surface form drives trace correlation. Correlation is architectural.

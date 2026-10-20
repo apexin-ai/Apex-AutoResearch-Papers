@@ -1,0 +1,1516 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-630_Q10",
+    "problem": "Bob is big. Bob is nice. Bob is quiet. Dave is green. Dave is quiet. Gary is green. Gary is red. Gary is round. Harry is green. Harry is red. Harry is round. Nice, quiet people are big. If someone is red and round then they are smart. All quiet people are round. If someone is big and nice then they are quiet. If someone is big and red then they are nice. If someone is quiet and round then they are red. If someone is red and round then they are smart. If Bob is green then Bob is big. All quiet, smart people are nice.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not nice.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nNice(Bob, True) ::: Bob is nice.\nQuiet(Bob, True) ::: Bob is quiet.\nGreen(Dave, True) ::: Dave is green.\nQuiet(Dave, True) ::: Dave is quiet.\nGreen(Gary, True) ::: Gary is green.\nRed(Gary, True) ::: Gary is red.\nRound(Gary, True) ::: Gary is round.\nGreen(Harry, True) ::: Harry is green.\nRed(Harry, True) ::: Harry is red.\nRound(Harry, True) ::: Harry is round.\n\nRules:\nNice($x, True) && Quiet($x, True) >>> Big($x, True) ::: Nice, quiet people are big.\nRed($x, True) && Round($x, True) >>> Smart($x, True) ::: If someone is red and round then they are smart.\nQuiet($x, True) >>> Round($x, True) ::: All quiet people are round.\nBig($x, True) && Nice($x, True) >>> Quiet($x, True) ::: If someone is big and nice then they are quiet.\nBig($x, True) && Red($x, True) >>> Nice($x, True) ::: If someone is big and red then they are nice.\nQuiet($x, True) && Round($x, True) >>> Red($x, True) ::: If someone is quiet and round then they are red.\nRed($x, True) && Round($x, True) >>> Smart($x, True) ::: If someone is red and round then they are smart.\nGreen(Bob, True) >>> Big(Bob, True) ::: If Bob is green then Bob is big.\nQuiet($x, True) && Smart($x, True) >>> Nice($x, True) ::: All quiet, smart people are nice.\n\nQuery:\nNice(Dave, False) ::: Dave is not nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 215.0,
+      "True": 168.0
+    },
+    "answer_counts": {
+      "False": 10,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical reasoning to determine whether the statement \"Dave is not nice\" is true, false, or unknown.\n\nGiven statements:\n\n1. Bob is big. Bob is nice. Bob is quiet.\n2. Dave is green. Dave is quiet.\n3. Gary is green. Gary is red. Gary is round. Gary is round.\n4. Harry is green. Harry is red. Harry is round.\n5. Nice, quiet people are big.\n6. If someone is red and round then they are smart.\n7. All quiet people are round.\n8. If someone is big and nice then they are quiet.\n9. If someone is big and red then they are nice.\n10. If someone is quiet and round then they are red.\n11. If someone is red and round then they are smart.\n12. If someone is big and quiet then they are nice.\n13. If someone is quiet and round then they are red.\n14. If Bob is green then Bob is big.\n15. All quiet, smart people are nice.\n\nWe need to determine whether Dave is not nice. To do this, we need to find a statement that directly relates to Dave being nice or not nice.\n\nFrom statement 2, we know that Dave is green and quiet. \n\nNow, let's see if we can find any information about Dave being nice or not nice. We can use a process of elimination and see if we can derive a conclusion from the given statements.\n\nFrom statement 7, we know that all quiet people are round. Since Dave is quiet, we can conclude that Dave is round.\n\nFrom statement 13, we know that if someone is quiet and round then they are red. Since Dave is quiet and round, we can conclude that Dave is red.\n\nFrom statement 6, we know that if someone is red and round then they are smart. Since Dave is red and round, we can conclude that Dave is smart.\n\nFrom statement 15, we know that all quiet, smart people are nice. Since Dave is quiet and smart, we can conclude that Dave is nice.\n\nTherefore, the statement \"Dave is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. We are given the following statements:\n   - Bob is big.\n   - Bob is nice.\n   - Bob is quiet.\n   - Dave is green.\n   - Dave is quiet.\n   - Gary is green.\n   - Gary is red.\n   - Gary is round.\n   - Harry is green.\n   - Harry is red.\n   - Harry is round.\n   - Nice, quiet people are big.\n   - If someone is red and round then they are smart.\n   - All quiet people are round.\n   - If someone is big and nice then they are quiet.\n   - If someone is big and red then they are nice.\n   - If someone is quiet and round then they are red.\n   - If someone is red and round then they are smart.\n   - If Bob is green then Bob is big.\n   - All quiet, smart people are nice.\n\n2. Let's start by analyzing the given information about Dave:\n   - Dave is green.\n   - Dave is quiet.\n\nFrom the rule \"All quiet people are round,\" we can conclude that Dave is round.\n\n3. Now, we know that Dave is quiet, round, and green. Using the rule \"If someone is quiet and round then they are red,\" we can conclude that Dave is red.\n\n4. Since Dave is red and round, using the rule \"If someone is red and round then they are smart,\" we can conclude that Dave is smart.\n\n5. Now, we know that Dave is smart and quiet. Using the rule \"All quiet, smart people are nice,\" we can conclude that Dave is nice.\n\nTherefore, the statement \"Dave is not nice\" is **false**.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following information about Dave:\n   - Dave is green.\n   - Dave is quiet.\n\n2. From the information, we can deduce that:\n   - If someone is quiet and round then they are red. (Rule 7)\n   - All quiet people are round. (Rule 3)\n   - If someone is quiet then they are round, and therefore red. (From Rule 3 and Rule 7)\n   - Since Dave is quiet, Dave is red. (From the above deduction)\n   - If someone is red and round then they are smart. (Rule 5)\n   - Since Dave is red, Dave is smart. (From the above deduction)\n\n3. Now we need to determine whether Dave is nice or not. We know that:\n   - Nice, quiet people are big. (Rule 1)\n   - Dave is quiet. (From step 2)\n   - If someone is big and nice then they are quiet. (Rule 4)\n   - If someone is big and nice then they are quiet. This rule implies that being nice does not necessarily mean being quiet; it only means being quiet if being big.\n   - We cannot conclude that Dave is big or nice based on the given information. \n\n4. To determine whether Dave is nice or not, we need to consider the given rules again. We are given that:\n   - If someone is big and red then they are nice. (Rule 6)\n   - We don't know whether Dave is big or not, but we do know that Dave is red. (From step 2)\n   - We cannot conclude whether Dave is nice or not based on the given information.\n\nHowever, there is another rule that might help us: \n- All quiet, smart people are nice. (Rule 9)\n\n5. From step 2, we know that Dave is quiet and smart. \n- If someone is quiet and smart then they are nice. (From Rule 9)\n- Therefore, Dave is nice.\n\nNow, we need to determine the truth value of the statement \"Dave is not nice\".\n\nSince Dave is nice (from step 5), the statement \"Dave is not nice\" is false.\n\nThe final answer is \\boxed{false}.",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we'll break down the given statements and use them to find the relationship between the variables.\n\n1. Bob is big. \n2. Bob is nice. \n3. Bob is quiet. \n4. Dave is green. \n5. Dave is quiet. \n6. Gary is green. \n7. Gary is red. \n8. Gary is round. \n9. Harry is green. \n10. Harry is red. \n11. Harry is round. \n12. Nice, quiet people are big. \n13. If someone is red and round then they are smart. \n14. All quiet people are round. \n15. If someone is big and nice then they are quiet. \n16. If someone is big and red then they are nice. \n17. If someone is quiet and round then they are red. \n18. If someone is red and round then they are smart. \n19. If someone is big and nice then they are quiet. \n20. If someone is quiet and round then they are red. \n21. If someone is red and round then they are smart. \n22. If Bob is green then Bob is big. \n23. All quiet, smart people are nice.\n\nNow, let's analyze the given statements and determine the relationship between the variables:\n\nFrom statement 12, we know that nice, quiet people are big. \nFrom statement 2, we know that Bob is nice. \nFrom statement 3, we know that Bob is quiet. \nSo, from statement 12, we can conclude that Bob is big (statement 1).\n\nFrom statement 15, we know that if someone is big and nice, then they are quiet. \nSince we know Bob is big (from above) and Bob is nice (statement 2), \nwe can conclude that Bob is quiet (which we already know from statement 3).\n\nFrom statement 22, we know that if Bob is green, then Bob is big. \nBut we know Bob is big (from above). \nThis does not give us any new information, but it confirms the existing information.\n\nFrom statement 5, we know that Dave is quiet. \nFrom statement 14, we know that all quiet people are round. \nSo, we can conclude that Dave is round.\n\nFrom statement 13, we know that if someone is red and round, then they are smart. \nBut we don't know if Dave is red or not.\n\nFrom statement 20, we know that if someone is quiet and round, then they are red. \nSince we know Dave is quiet (statement 5) and Dave is round (from above), \nwe can conclude that Dave is red.\n\nNow, let's analyze the given statements and determine the relationship between the variables for the final statement:\n\nDave is not nice.\n\nFrom statement 16, we know that if someone is big and red, then they are nice. \nWe don't know if Dave is big or not, but we know Dave is red (from above).\n\nFrom statement 1, we know that Bob is big. \nBut we don't know if Dave is big or not.\n\nHowever, we can conclude that Dave is not big because if Dave were big, then we could use statement 16 to conclude that Dave is nice, which contradicts the given statement \"Dave is not nice\".\n\nFrom statement 7, we know that Gary is red. \nFrom statement 8, we know that Gary is round. \nFrom statement 13, we know that if someone is red and round, then they are smart. \nSo, we can conclude that Gary is smart.\n\nFrom statement 6, we know that Gary is green. \nHowever, we can't conclude that Gary is not nice, because Gary is red (statement 7) and round (statement 8), so Gary is smart (from above), and statement 23 says that all quiet, smart people are nice, but we don't know if Gary is quiet or not.\n\nFrom statement 9, we know that Harry is green. \nFrom statement 10, we know that Harry is red. \nFrom statement 11, we know that Harry is round. \nFrom statement 13, we know that if someone is red and round, then they are smart. \nSo, we can conclude that Harry is smart.\n\nFrom statement 6 and 9, we know that Gary and Harry are both green. \nHowever, we can't conclude that either Gary or Harry is not nice, because we know that both Gary and Harry are red and round, so both are smart (from above), and statement 23 says that all quiet, smart people are nice, but we don't know if Gary or Harry is quiet or not.\n\nHowever, we can conclude that Dave is not nice, because we know that Dave is not big (from above), and we know that Dave is red (from above), so if Dave were nice, then we could use statement 16 to conclude that Dave is big, which contradicts the fact that Dave is not big.\n\nTherefore, the statement \"Dave is not nice\" is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\nGiven information:\n1. Bob is big. \n2. Bob is nice. \n3. Bob is quiet. \n4. Dave is green. \n5. Dave is quiet. \n6. Gary is green. \n7. Gary is quiet. \n8. Gary is red. \n9. Gary is round. \n10. Harry is green. \n11. Harry is red. \n12. Harry is round. \n13. Nice, quiet people are big. \n14. If someone is red and round then they are smart. \n15. All quiet people are round. \n16. If someone is big and nice then they are quiet. \n17. If someone is big and red then they are nice. \n18. If someone is quiet and round then they are red. \n19. If someone is red and round then they are smart. \n20. If someone is big and nice then they are quiet. \n21. If someone is quiet and round then they are red. \n22. If someone is red and round then they are smart. \n23. If Bob is green then Bob is big. \n24. All quiet, smart people are nice.\n\nWe need to analyze the information related to Dave:\nDave is quiet (5) and green (4). \n\nFrom (15), all quiet people are round, so Dave must be round.\nFrom (18), if someone is quiet and round then they are red, so Dave must be red.\nFrom (14), if someone is red and round then they are smart, so Dave must be smart.\nFrom (24), all quiet, smart people are nice, so Dave must be nice.\n\nNow we have information that Dave is nice, which directly contradicts the given statement \"Dave is not nice\". \n\nSince the information directly contradicts the statement, we can determine that the statement \"Dave is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller steps and use the given statements to determine whether each statement is true or false. \n\n1. Dave is green. (Given)\n2. Dave is quiet. (Given)\n3. If someone is quiet, then they are round. (All quiet people are round)\n   So, Dave is round. (From 2 and 3)\n\n4. If someone is quiet and round, then they are red. (If someone is quiet and round then they are red)\n   So, Dave is red. (From 2 and 3, and 4)\n\n5. If someone is red and round, then they are smart. (If someone is red and round then they are smart)\n   So, Dave is smart. (From 3 and 4, and 5)\n\n6. If someone is red, then they are nice or big. (From the given statements, we can derive this implication)\n   However, we know that Dave is red (From 4), so he must be either nice or big.\n\n7. If someone is quiet and round, then they are red. (If someone is quiet and round then they are red)\n   We know that Dave is quiet and round (From 2 and 3), so he must be red (From 7).\n\n8. We know that Dave is red (From 4), so he must be either nice or big (From 6).\n\n9. If someone is big and red, then they are nice. (If someone is big and red then they are nice)\n   However, we know that Dave is red (From 4) and we are trying to determine whether he is nice or not. \n\n10. If someone is red and round, then they are smart. (If someone is red and round then they are smart)\n    We know that Dave is red and round (From 3 and 4), so he must be smart (From 10).\n\n11. All quiet, smart people are nice. (Given)\n    We know that Dave is quiet and smart (From 2, 5, and 10), so he must be nice.\n\nNow, we need to determine whether the statement \"Dave is not nice\" is true or false. We know that Dave is smart and quiet, and all quiet, smart people are nice. However, we also know that Dave is red, and if someone is red and round, then they are smart. We do not know whether Dave is nice or big, but we can derive that he must be either nice or big (From 6).\n\nTo determine whether Dave is nice, we need to determine whether he is big. If he is big, then he must be nice (From 9). However, we do not have enough information to determine whether he is big.\n\nTherefore, the statement \"Dave is not nice\" is unknown.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Dave is quiet. (From the statement \"Dave is quiet.\")\n\n2. We also know that all quiet people are round. (From the statement \"All quiet people are round.\")\n\nSo, Dave is round. (From step 1 and step 2)\n\n3. Since Dave is round and quiet, we can conclude that Dave is red. (From the statement \"If someone is quiet and round then they are red.\")\n\n4. Now, we need to find a relationship between being red and being nice. \n\nFrom the statement \"If someone is red and round then they are smart,\" we can't conclude that being red implies being nice, because being round is also required. However, we also have a statement \"If someone is quiet and round then they are red.\" Therefore, we can't conclude that Dave is nice just yet.\n\n5. However, we also have the statement \"If someone is big and nice then they are quiet.\" This statement is not directly applicable to Dave. \n\n6. We also have the statement \"If someone is red and round then they are smart.\" This also doesn't help us determine if Dave is nice.\n\n7. Now, let's analyze the statement \"All quiet, smart people are nice.\" Since Dave is quiet and round, and therefore red and smart, this statement implies that Dave is nice.\n\nTherefore, the statement \"Dave is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. Dave is green. (Given information)\n2. Dave is quiet. (Given information)\n3. Nice, quiet people are big. (Given information) \n   Since Dave is quiet, it means Dave is big according to this rule.\n4. If someone is big and nice then they are quiet. (Given information)\n   Since Dave is big (from step 3), if Dave is also nice, then this rule would be applied, which would imply that Dave is quiet. However, Dave is already quiet (from step 2). So, this rule does not provide any new information.\n5. If someone is big and red then they are nice. (Given information)\n   Since Dave is big (from step 3), if Dave is also red, then this rule would be applied, which would imply that Dave is nice. However, we cannot conclude that Dave is red from this rule. We need to consider other rules.\n6. If someone is quiet and round then they are red. (Given information)\n   Since Dave is quiet (from step 2), if Dave is also round, then this rule would be applied, which would imply that Dave is red. However, we cannot conclude that Dave is round from this rule. We need to consider other rules.\n7. All quiet people are round. (Given information)\n   Since Dave is quiet (from step 2), this rule implies that Dave is round.\n8. If someone is quiet and round then they are red. (Given information)\n   Since Dave is quiet (from step 2) and round (from step 7), this rule implies that Dave is red.\n9. If someone is red and round then they are smart. (Given information)\n   Since Dave is red (from step 8) and round (from step 7), this rule implies that Dave is smart.\n10. All quiet, smart people are nice. (Given information)\n    Since Dave is quiet (from step 2) and smart (from step 9), this rule implies that Dave is nice.\n\nFrom the above steps, we can conclude that Dave is nice. Therefore, the statement \"Dave is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Bob is big.\n   - Bob is nice.\n   - Bob is quiet.\n   - Dave is green.\n   - Dave is quiet.\n   - Gary is green.\n   - Gary is red.\n   - Gary is round.\n   - Harry is green.\n   - Harry is red.\n   - Harry is round.\n   - Nice, quiet people are big.\n   - If someone is red and round then they are smart.\n   - All quiet people are round.\n   - If someone is big and nice then they are quiet.\n   - If someone is big and red then they are nice.\n   - If someone is quiet and round then they are red.\n   - If someone is red and round then they are smart.\n   - If Bob is green then Bob is big.\n   - All quiet, smart people are nice.\n\n2. From the statement \"Dave is quiet,\" we can conclude that Dave is round because all quiet people are round (Statement 10).\n   - So, Dave is round.\n\n3. From the statement \"Dave is round,\" we can conclude that Dave is red because if someone is quiet and round then they are red (Statement 9).\n   - So, Dave is red.\n\n4. From the statements \"Dave is red\" and \"Dave is round,\" we can conclude that Dave is smart because if someone is red and round then they are smart (Statement 6).\n   - So, Dave is smart.\n\n5. From the statement \"Dave is smart,\" we can conclude that Dave is not nice because all quiet, smart people are nice (Statement 13) - This statement is contradictory to the given fact that Dave is not nice. Hence, Dave is nice because he is smart.\n   - So, Dave is nice.\n\nBased on the analysis, the statement \"Dave is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we'll analyze the given statements and their implications step by step.\n\n1. At the end, we need to determine if the statement \"Dave is not nice\" is true, false, or unknown.\n\nGiven statements:\n\n1. Bob is big. \n2. Bob is nice. \n3. Bob is quiet. \n4. Dave is green. \n5. Dave is quiet. \n6. Gary is green. \n7. Gary is red. \n8. Gary is round. \n9. Harry is green. \n10. Harry is red. \n11. Harry is round. \n12. Nice, quiet people are big. \n13. If someone is red and round then they are smart. \n14. All quiet people are round. \n15. If someone is big and nice then they are quiet. \n16. If someone is big and red then they are nice. \n17. If someone is quiet and round then they are red. \n18. If someone is red and round then they are smart. \n19. If someone is big and nice then they are quiet. \n20. If someone is big and red then they are nice. \n21. If someone is quiet and round then they are red. \n22. If someone is red and round then they are smart. \n23. If Bob is green then Bob is big. \n24. All quiet, smart people are nice.\n\nFrom statement 3, we know that Dave is quiet. \nFrom statement 14, we know that all quiet people are round. \nTherefore, Dave is round.\n\nFrom statement 5, we know that Dave is quiet and round. \nFrom statement 17, we know that if someone is quiet and round then they are red. \nTherefore, Dave is red.\n\nFrom statement 13, we know that if someone is red and round then they are smart. \nFrom the previous steps, we know that Dave is red and round. \nTherefore, Dave is smart.\n\nFrom statement 24, we know that all quiet, smart people are nice. \nFrom the previous steps, we know that Dave is quiet and smart. \nTherefore, Dave is nice.\n\nNow, we need to determine if the statement \"Dave is not nice\" is true, false, or unknown.\n\nSince we found out that Dave is nice, the statement \"Dave is not nice\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is green. Dave is quiet.\n   From the information given, we know:\n   - All quiet people are round. (Statement 3)\n   So, Dave is round.\n   - If someone is red and round then they are smart. (Statement 4)\n   However, there is no information that says Dave is red. We cannot conclude that Dave is smart yet.\n\n2. Gary is green. Gary is red. Gary is round.\n   From the information given, we know:\n   - If someone is red and round then they are smart. (Statement 4)\n   So, Gary is smart.\n\n3. Harry is green. Harry is red. Harry is round.\n   From the information given, we know:\n   - If someone is red and round then they are smart. (Statement 4)\n   So, Harry is smart.\n\n4. Nice, quiet people are big. (Statement 2)\n   - Bob is quiet. (Statement 1)\n   However, there is no information that says Bob is nice or big. We cannot conclude Bob's size yet.\n\n5. If someone is big and nice then they are quiet. (Statement 5)\n   - This statement does not help us conclude anything about Bob or Dave yet.\n\n6. If someone is big and red then they are nice. (Statement 6)\n   - This statement does not help us conclude anything about Bob or Dave yet.\n\n7. If someone is quiet and round then they are red. (Statement 7)\n   - Dave is quiet and round (from Statement 1 and Statement 3).\n   So, Dave is red.\n\n8. All quiet, smart people are nice. (Statement 9)\n   - Dave is quiet and smart (from Statement 1 and Statement 3, and Statement 7).\n   So, Dave is nice.\n\nNow, considering the statement \"Dave is not nice,\" we can conclude that it is FALSE because Dave is actually nice.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information and the properties of the people mentioned.\n\nFrom the information provided:\n\n1. Bob is big. Bob is nice. Bob is quiet.\n2. Dave is green. Dave is quiet.\n3. Gary is green. Gary is red. Gary is round. Gary is not mentioned as being quiet or big.\n4. Harry is green. Harry is red. Harry is round. Harry is not mentioned as being quiet or big.\n5. Nice, quiet people are big.\n6. If someone is red and round then they are smart.\n7. All quiet people are round.\n8. If someone is big and nice then they are quiet.\n9. If someone is big and red then they are nice.\n10. If someone is quiet and round then they are red.\n11. If someone is red and round then they are smart.\n12. If someone is big and nice then they are quiet.\n13. If someone is big and red then they are nice.\n14. If someone is quiet and round then they are red.\n15. If someone is red and round then they are smart.\n16. If Bob is green then Bob is big.\n17. All quiet, smart people are nice.\n\nFrom the given statements, we can conclude the following:\n\n- Since Dave is quiet, he must be round (from statement 7).\n- Since Dave is round, he must be red (from statement 10).\n- Since Dave is red and round, he must be smart (from statement 6).\n- Since Dave is quiet and smart, he must be nice (from statement 17).\n\nTherefore, the statement \"Dave is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_dave, round_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_dave, round_dave), red_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_dave, round_dave), smart_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(quiet_dave, smart_dave), nice_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_gary, round_gary), smart_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_dave, round_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_dave, round_dave), red_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_dave, round_dave), smart_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_bob, nice_bob), quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_bob, red_bob), nice_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_dave, round_dave), red_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_bob, big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(quiet_dave, smart_dave), nice_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_dave, round_dave), red_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_dave, round_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_dave, round_dave), smart_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_dave, quiet_dave), big_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_dave, nice_dave), quiet_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_dave, nice_dave), quiet_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_dave, red_dave), nice_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(dave)",
+          "z3_formula": "Not(nice_dave) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), big_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_bob, quiet_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_dave, round_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_dave, round_dave), smart_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_dave, round_dave), red_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_gary, round_gary), smart_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_harry, round_harry), smart_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(dave)",
+          "z3_formula": "not nice_dave == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_dave, red_dave), nice_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not big(dave)",
+          "z3_formula": "not big_dave == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(dave)",
+          "z3_formula": "not nice_dave == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_gary, nice_gary)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_harry, nice_harry)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), big_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_gary, round_gary), smart_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_gary, round_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_gary, round_gary), red_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_bob, nice_bob), quiet_bob)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_bob, red_bob), nice_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_gary, round_gary), red_gary)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_gary, round_gary), smart_gary)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_gary, round_gary), red_gary)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_gary, round_gary), smart_gary)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_bob, big_bob)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(quiet_bob, smart_bob), nice_bob)",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_dave, round_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_dave, round_dave), red_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_dave, round_dave), smart_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X) | big(X)",
+          "z3_formula": "Implies(red_dave, Or(nice_dave, big_dave))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_dave, round_dave), red_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> nice(X) | big(X)",
+          "z3_formula": "Implies(red_dave, Or(nice_dave, big_dave))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_dave, red_dave), nice_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_dave, round_dave), smart_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(quiet_dave, smart_dave), nice_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_dave, round_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_dave, round_dave), red_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> smart(X)",
+          "z3_formula": "Implies(And(round_dave, red_dave), smart_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(quiet_dave, smart_dave), nice_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> big(X)",
+          "z3_formula": "Implies(quiet_dave, big_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_dave, nice_dave), quiet_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_dave, red_dave), nice_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_dave, round_dave), red_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_dave, round_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_dave, round_dave), red_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_dave, round_dave), smart_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(quiet_dave, smart_dave), nice_dave)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_gary, round_gary), smart_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_bob, round_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_bob, nice_bob), quiet_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_bob, red_bob), nice_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_bob, round_bob), red_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_bob, round_bob), smart_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_bob, big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(quiet_bob, smart_bob), nice_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), big_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_gary, round_gary), smart_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_dave, round_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_bob, nice_bob), quiet_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_bob, red_bob), nice_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_dave, round_dave), red_dave)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_gary, round_gary), smart_gary)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_bob, nice_bob), quiet_bob)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_bob, red_bob), nice_bob)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_dave, round_dave), red_dave)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_gary, round_gary), smart_gary)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_bob, big_bob)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(quiet_dave, smart_dave), nice_dave)",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(dave)",
+          "z3_formula": "Not(nice_dave) == True",
+          "source_step": 29
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_dave, round_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_dave, round_dave), smart_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(gary)",
+          "z3_formula": "round_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & quiet(X) -> big(X)",
+          "z3_formula": "Implies(And(nice_bob, quiet_bob), big_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_gary, round_gary), smart_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_dave, round_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> red(X)",
+          "z3_formula": "Implies(round_dave, red_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_dave, round_dave), smart_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(quiet_dave, smart_dave), nice_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_bob, nice_bob), quiet_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_bob, red_bob), nice_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & round(X) -> red(X)",
+          "z3_formula": "Implies(And(quiet_dave, round_dave), red_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(red_dave, round_dave), smart_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> big(X)",
+          "z3_formula": "Implies(green_bob, big_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(quiet_dave, smart_dave), nice_dave)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 20
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 231,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 47
+    },
+    "maxsat_stats": {
+      "satisfied": 46,
+      "excluded": 1,
+      "total_weight": 229,
+      "solve_time_ms": 1.1858120560646057
+    },
+    "timing": {
+      "trace_gen_s": 12.623,
+      "extraction_s": 37.229,
+      "dedup_s": 1.875,
+      "maxsat_s": 0.004,
+      "total_s": 51.731
+    }
+  }
+}

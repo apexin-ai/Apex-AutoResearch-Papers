@@ -1,0 +1,388 @@
+[
+  {
+    "name": "sica_k_ablation_14b",
+    "description": "K=6/8/11/12/16/20 sensitivity on D012 60q, Qwen2.5-14B",
+    "results": {
+      "K6_delta_pp": 0.0,
+      "K8_delta_pp": -1.7,
+      "K11_delta_pp": 0.0,
+      "K12_delta_pp": -5.0,
+      "K16_delta_pp": -3.3,
+      "K20_delta_pp": -3.3,
+      "inverted_u_visual": "无——SICA 在所有 K 均 ≤ SC，随 K 增大单调恶化",
+      "K11_odd_k_gap": 0.0
+    },
+    "tables": [
+      "T5 (partial): K sensitivity — 仅 14B 列"
+    ],
+    "figures": [],
+    "analysis": "14B K ablation 在 worst tier 下完全符合 Type A 预期——SC 太高时 SICA 无论 K 取何值都无法超越。 这本身不是 worst tier 的关键问题（实际已完成数据也如此），关键是 Mistral K ablation (exp-051) 也无 clean pattern 时，整个 K sensitivity 叙事崩塌。\n\n\nQwen-14B SC≈75% (Type A regime)，confirmation bias 主导。K 增大只增加冗余 correlated constraints， 不增加独立信息。Eff-K≈1.3 意味着 K=6 和 K=20 的 effective voters 几乎相同（~1.3）。 无 inverted-U 因为 14B 在此 regime 下 SICA 本身就没有正向效应，K 的变化只引入更多 noise。 K=11 odd-K 消除 tiebreak 后 gap=0 进一步确认 14B 效应完全是 tiebreak artifact。\n"
+  },
+  {
+    "name": "tiebreak_baseline_analysis",
+    "description": "SICA vs SC-random-tiebreak vs SC-deterministic, CPU-only",
+    "results": {
+      "sica_tiebreak_accuracy_pct": 80.0,
+      "random_tiebreak_accuracy_pct": 50.0,
+      "alphabetical_tiebreak_accuracy_pct": 60.0,
+      "first_seen_tiebreak_accuracy_pct": 40.0,
+      "n_tiebreak_problems": 5
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Tiebreak 80% 看似有意义但 n=5 完全无 statistical significance。 Worst tier 下 reviewer 直接忽略此 result (\"interesting but underpowered\")。\n\n\nTiebreak 分析在 worst tier 下结果不变（已完成的 CPU 分析）。问题在于 n=5 tiebreak cases 太少， reviewer 会质疑 80% (4/5) 的 statistical power。且 SICA 的 tiebreak 优势仅在极少数问题上体现， 不构成 compelling evidence。在 worst tier 下 reviewer 将此视为 anecdotal。\n"
+  },
+  {
+    "name": "sica_7b_scaling",
+    "description": "Qwen2.5-7B on D012 60q, test C0-as-predictor",
+    "results": {
+      "sica_accuracy": 0.683,
+      "sc_accuracy": 0.683,
+      "delta_pp": 0.0,
+      "multi_candidate_rate": 0.433,
+      "mcnemar_p": 1.0,
+      "discordant_sica_wins": 2,
+      "discordant_sc_wins": 2
+    },
+    "tables": [
+      "T1: Qwen-7B 行"
+    ],
+    "figures": [],
+    "analysis": "Qwen-7B 支持跨模型 Eff-K 叙事（Qwen 家族 Eff-K 低→0 gain）但在 worst tier 下 reviewer 认为这只是\"同家族 same behavior\"，不算独立 evidence。\n\n\n7B SC≈68% 仍在 Type A regime 上沿（C0=43% 比 14B 高但仍不够）。 Qwen 家族内 Eff-K 普遍 ≈1.2-1.3，7B 的 lower capability 提高 C0 但不提高 constraint quality。 Constraints 仍然 mirror 模型偏差。Delta=0 确认 Qwen 家族 SICA 无效。 Worst case: 与 14B 结果一致，无法单独贡献 regime boundary 叙事。\n"
+  },
+  {
+    "name": "qwq_32b_operating_regime",
+    "description": "QwQ-32B negative control, data from MVP phase",
+    "results": {
+      "aggregate_c0_effective_pct": 2.6,
+      "aime_delta_pp": 0.0,
+      "proofwriter_delta_pp": -5.9,
+      "total_problems": 46,
+      "c0_below_threshold": true
+    },
+    "tables": [
+      "T1: QwQ-32B 行",
+      "Appendix: QwQ negative control detail"
+    ],
+    "figures": [],
+    "analysis": "QwQ-32B C0<5% 是最 clean 的 negative result，但 worst tier 下 reviewer 视为 obvious—— \"当然 reasoning model 不需要 SICA\"。价值被低估。\n\n\nReasoning model 的 deterministic chain 产生近乎相同 traces (C0 effective≈2.6%)。 SICA≡SC 是必然——无 multi-candidate problems，MAX-SAT 无从发挥。 PW delta=-5.9pp 因 n=17 不 significant 但方向 negative。 Worst case: reviewer 认为 QwQ 是 trivially expected negative control，不算 contribution。\n"
+  },
+  {
+    "name": "c0_diagnostic_validation",
+    "description": "C0 vs SICA-SC gap scatter across all models/K values",
+    "results": {
+      "conditions_plotted": 12,
+      "c0_delta_correlation_r": 0.31,
+      "c0_delta_correlation_p": 0.33,
+      "correctly_predicted_direction": 5,
+      "total_conditions": 12,
+      "prediction_accuracy_pct": 41.7
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "C0 diagnostic 在 worst tier 下失去 predictive power。只能做 necessary condition (C0<5% → SICA≡SC) 但 sufficient condition 不成立。Reviewer 会说 \"C0 just tells you there's variance, not that SICA helps\"。 降级为 \"deployment screening tool\" (排除 SICA 必然无用的 cases) 而非 \"predictor\"。\n\n\nWorst tier 核心假设: Eff-K+SC joint prediction ≤6/12 conditions 方向正确。 C0 单独作为 predictor 更差——Mistral PW-600 (C0 high, delta negative) 和  LLaMA-8B FOLIO (C0 high, delta negative) 都是反例。 Scatter plot 呈现 no clean trend，high C0 对应 both positive 和 negative deltas。 Correlation r≈0.31 不 significant (p>0.3, n=12)。\n"
+  },
+  {
+    "name": "sica_72b_awq",
+    "description": "Qwen2.5-72B-AWQ 4-bit on D012 60q",
+    "results": {
+      "sica_accuracy": 0.817,
+      "sc_accuracy": 0.833,
+      "delta_pp": -1.67,
+      "multi_candidate_rate": 0.2,
+      "mcnemar_p": 0.625,
+      "extraction_rate": 0.95
+    },
+    "tables": [
+      "T1: Qwen-72B 行"
+    ],
+    "figures": [],
+    "analysis": "72B 进一步确认 Type A regime。但 worst tier 下 reviewer 说 \"you're just showing that SICA doesn't help strong models — this is obvious\"。缺乏新 insight。\n\n\n72B SC≈83% (deep Type A regime)。C0 进一步降至 ~20% 因为更大模型更 unanimous。 SICA 因 confirmation bias 甚至略 negative——constraints 强化已有高置信度答案， 少数 override 方向是错的。Qwen 家族 pattern 延续: 更大模型→更高 SC→更低 C0→更无用 SICA。\n"
+  },
+  {
+    "name": "constraint_quality_case_studies",
+    "description": "5-10 representative questions 的 constraint 质量定性分析",
+    "results": {
+      "cases_analyzed": 8,
+      "trivially_satisfied_pct": 45,
+      "confirmation_bias_cases": 6,
+      "genuinely_informative_constraints": 1,
+      "constraint_mirrors_model_answer_pct": 78
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Case studies 支持 confirmation bias 叙事但在 worst tier 下 reviewer 认为 n=8 qualitative analysis 不算 rigorous evidence。\"Show me this at scale\" → 需要 exp-019 的 correlation， 但 exp-019 也 noisy。\n\n\n定性分析在 worst tier 下揭示 constraints 几乎完全 mirror 模型的 chain-of-thought 结论。 Even \"discriminative\" constraints 的 discriminative direction 与模型偏差一致。 唯一 genuinely informative case 是模型恰好 extract 了 premise 中的 explicit logical structure。 但 reviewer 可能认为 case studies 是 cherry-picked。\n"
+  },
+  {
+    "name": "overhead_analysis",
+    "description": "Wall-time breakdown per question",
+    "results": {
+      "mean_total_wall_s": 61.6,
+      "trace_gen_pct": 51.3,
+      "extraction_pct": 47.0,
+      "maxsat_pct": 0.005,
+      "sica_overhead_pct": 48.7
+    },
+    "tables": [
+      "Appendix: overhead breakdown table"
+    ],
+    "figures": [],
+    "analysis": "Overhead analysis 在 worst tier 下变成 anti-argument: \"你花了 2× compute 得到了 noise\"。 但可以 reframe 为 \"extraction is the bottleneck, not solving\" (MAX-SAT <0.01% time)， 说明未来研究应聚焦 extraction quality 而非 solver improvements。\n\n\nSICA 几乎 doubles wall time (49% overhead) 但 delta≈0 across most conditions。 Worst tier 下 cost-benefit 极差: 2× compute for 0 gain in majority of conditions, fragile +4.9pp in one specific setting (Mistral/FOLIO/T=0.7/K=12/s42)。 Reviewer: \"this is not practical\"。\n"
+  },
+  {
+    "name": "sica_llama_8b",
+    "description": "LLaMA-3.1-8B on D012 60q",
+    "results": {
+      "sica_accuracy": 0.667,
+      "sc_accuracy": 0.6,
+      "delta_pp": 6.67,
+      "multi_candidate_rate": 0.617,
+      "mcnemar_p": 0.219,
+      "truncated_traces": 44,
+      "answer_extraction_rate": 0.896
+    },
+    "tables": [
+      "T1: LLaMA-8B 行"
+    ],
+    "figures": [],
+    "analysis": "LLaMA-8B 是 worst tier 的典型 case: small-n positive 被 larger-n 反转。 Reviewer 会直接引用 FOLIO-204 result dismiss D012 result。 Combined evidence: SICA on LLaMA 是 noise。\n\n\nLLaMA-8B delta=+6.67pp 看似 positive 但 p=0.219 (n=60) 完全 n.s.。 且 truncated_traces=44 和 answer_extraction_rate=89.6% 说明 pipeline 对 LLaMA 有 artifacts。 Worst tier 下 reviewer 质疑: (1) n.s. result; (2) 44 truncated traces 是否 confound; (3) answer extraction 失败的 traces 是否 systematically biased。 扩展到 FOLIO-204 (exp-020) 后 delta 反转为 -2.45pp → D012 的 +6.67pp 是 small-n artifact。\n"
+  },
+  {
+    "name": "gsm8k_pilot_14b",
+    "description": "Qwen2.5-14B on GSM8K 30q pilot",
+    "results": {
+      "sica_accuracy": 0.967,
+      "sc_accuracy": 0.967,
+      "delta_pp": 0.0,
+      "multi_candidate_rate": 0.133,
+      "extraction_success_rate": 0.147
+    },
+    "tables": [
+      "T1: GSM8K 行 (footnote: extraction failure)"
+    ],
+    "figures": [],
+    "analysis": "GSM8K 在 worst tier 下是 domain 不匹配的 obvious failure。Reviewer 不会 penalize 但也不加分。 Reframe 为 Type B (domain not formalizable as FOL) 的 additional evidence。\n\n\n14B 在 GSM8K 准确率极高 (97%)，C0=13.3% 低于 threshold。 更关键的是 FOL extraction 几乎完全失败 (success=14.7%) — math domain 的 constraints 需要 numerical reasoning 而非 propositional logic，SICA pipeline 在此 domain 根本不适用。 这不是 SICA 的 negative evidence 而是 domain mismatch。\n"
+  },
+  {
+    "name": "constraint_ablation",
+    "description": "MaxSAT vs count-only vs random-weight, CPU-only on exp-001 data",
+    "results": {
+      "maxsat_accuracy": 0.765,
+      "count_only_accuracy": 0.766,
+      "random_weight_accuracy": 0.759,
+      "sc_baseline_accuracy": 0.762,
+      "agreement_maxsat_vs_countonly": "803/804",
+      "mcnemar_p_all_gt_05": true
+    },
+    "tables": [
+      "Appendix: constraint ablation comparison"
+    ],
+    "figures": [],
+    "analysis": "MaxSAT≈count-only 在 worst tier 下是 devastating: 论文的 \"symbolic\" 框架核心价值被掏空。 但可 reframe 为 evidence: \"even the most powerful aggregation mechanism cannot help  when constraints are non-independent\"。即 solver 能力不是瓶颈，constraint quality/independence 才是。\n\n\nMaxSAT 和 count-only 在 804 题中仅 1 题不同。这证明 MAX-SAT solver 几乎无贡献—— 简单 count constraints per answer 就等价。原因: constraints 的 satisfiability weights  几乎不区分 answers (mean_sat_ratio≈0.96，接近 1.0)。 Worst tier 下 reviewer: \"所以 SAT solver 是 over-engineering，constraint counting 就够了—— 但 counting 本身也不 work (delta≈0)\"。双重打击。\n"
+  },
+  {
+    "name": "sica_deepseek_r1_llama_8b",
+    "description": "DeepSeek-R1-Distill-Qwen-7B on D012 60q",
+    "results": {
+      "sica_accuracy": 0.683,
+      "sc_accuracy": 0.717,
+      "delta_pp": -3.33,
+      "multi_candidate_rate": 0.583,
+      "truncated_traces": 72,
+      "mcnemar_p": 0.48
+    },
+    "tables": [
+      "T1: DeepSeek-R1 行"
+    ],
+    "figures": [],
+    "analysis": "DeepSeek-R1 delta=-3.33pp 在 worst tier 下补充了 exp-046 (Mistral-PW) 的 evidence: high C0 但 low constraint quality → negative delta。但 reviewer 可能归咎于 truncation artifact 而非 fundamental。\n\n\nReasoning model distillation 产生 longer traces (72 truncated) 但 reasoning quality  不 translate to better constraints。High C0 (58.3%) 但 delta negative —  与 Mistral-PW600 类似的 pattern (high diversity + low quality = negative)。 Truncation 是额外 confound: 被截断的 traces 产生 incomplete constraints。\n"
+  },
+  {
+    "name": "logic_lm_baseline",
+    "description": "Logic-LM × K + majority vote on FOLIO, CPU-only",
+    "results": {
+      "logic_lm_k_vote_accuracy": 0.755,
+      "sica_accuracy": 0.745,
+      "sc_accuracy": 0.75,
+      "logic_lm_vs_sc_delta_pp": 0.5,
+      "logic_lm_vs_sica_delta_pp": 1.0
+    },
+    "tables": [
+      "Appendix: Logic-LM comparison"
+    ],
+    "figures": [],
+    "analysis": "Logic-LM baseline 在 worst tier 下进一步削弱 MAX-SAT aggregation 的 novelty。 但可以 reframe: \"即使 Logic-LM style 的 approach 也不超过 SC， 问题在 extraction 而非 aggregation strategy\"——与 oracle gap 叙事一致。\n\n\nLogic-LM 单 trace FOL verification × K 然后 vote 的精度 ≈ SC ≈ SICA。 原因: 单 trace FOL 质量和多 trace aggregated FOL 质量差不多——因为 traces 高度相关， 多 trace 不增加新 constraint information。 Worst tier: reviewer 说 \"Logic-LM × K 就和 SICA 一样好，那 MAX-SAT aggregation 的意义是什么？\"\n"
+  },
+  {
+    "name": "weighted_sc_baseline",
+    "description": "Weighted SC (length/logprob/constraint-count) on exp-001 data",
+    "results": {
+      "sc_uniform_accuracy": 0.762,
+      "inv_length_accuracy": 0.767,
+      "length_weighted_accuracy": 0.753,
+      "constraint_count_accuracy": 0.753,
+      "all_nonsignificant": true,
+      "inv_length_vs_sc_p": 0.453
+    },
+    "tables": [
+      "Appendix: weighted SC comparison"
+    ],
+    "figures": [],
+    "analysis": "Weighted SC 无效在 worst tier 下实际是 neutral-to-positive: 证明 simple weighting  也不能 beat SC，strengthens \"independence is the bottleneck not aggregation strategy\"。 但 reviewer 可能说 \"you should try more sophisticated weighting (e.g., diversity-weighted)\"。\n\n\n所有 weighting schemes 与 uniform SC 无 significant 差异。 Inv-length 略好 (+0.5pp) 但完全 n.s.。Constraint-count weighting 和 length-weighting  甚至略 worse。原因: weighting 不解决 independence 问题——如果 votes 本身高度相关， re-weighting 相关 votes 不改变结果。\n"
+  },
+  {
+    "name": "sica_strategyqa_14b",
+    "description": "Qwen2.5-14B on StrategyQA 60q",
+    "results": {
+      "sica_accuracy": 0.567,
+      "sc_accuracy": 0.533,
+      "delta_pp": 3.33,
+      "multi_candidate_rate": 0.1,
+      "mcnemar_p": "n.s.",
+      "bootstrap_p": 0.135,
+      "extraction_rate_trace": 0.704
+    },
+    "tables": [
+      "T1: StrategyQA 行"
+    ],
+    "figures": [],
+    "analysis": "StrategyQA 的 positive-but-n.s. delta 在 worst tier 下是 problematic:  不够 clean 作为 null result (方向 positive)，又不够 significant 作为 positive result。 Reviewer 可能要求 larger n 来 resolve ambiguity。\n\n\nStrategyQA C0=10% 远低于 FOLIO (38%)。Binary format + commonsense domain →  大多数问题 SC unanimous。Delta=+3.33pp 来自仅 2 个 discordant problems (n=60)， 完全 n.s.。Extraction rate 低 (70%) 因为 commonsense reasoning 难以形式化为 FOL。 Worst tier: reviewer 视为 Type B (domain 不可形式化) 的 additional evidence， 但 +3.33pp 不是 clean null (creates ambiguity)。\n"
+  },
+  {
+    "name": "sica_arc_challenge_14b",
+    "description": "Qwen2.5-14B on ARC-Challenge 60q",
+    "results": {
+      "sica_accuracy": 0.95,
+      "sc_accuracy": 0.967,
+      "delta_pp": -1.67,
+      "multi_candidate_rate": 0.05,
+      "discordant_sica_wins": 0,
+      "discordant_sc_wins": 1
+    },
+    "tables": [
+      "T1: ARC 行"
+    ],
+    "figures": [],
+    "analysis": "ARC 是 clean Type A negative。Worst tier 下 reviewer 不 surprised 但也不 impressed。 \"Of course SICA doesn't help a 97% baseline\" — trivially expected。\n\n\n14B 在 ARC-Challenge 极强 (SC≈97%)，C0=5% — 几乎所有问题 unanimous。 SICA 在唯一 discordant problem 上选错 → delta=-1.67pp。 Deep Type A regime: 模型已经极度 confident 且正确，constraints 无法 add value。\n"
+  },
+  {
+    "name": "constraint_quality_correlation",
+    "description": "Constraint precision per domain × model, correlate with C0 and delta",
+    "results": {
+      "conditions_analyzed": 10,
+      "constraint_precision_delta_r": 0.28,
+      "constraint_precision_delta_p": 0.43,
+      "c0_precision_r": -0.15,
+      "c0_precision_p": 0.68,
+      "high_c0_low_quality_conditions": 3,
+      "high_c0_high_quality_conditions": 2
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "exp-019 在 worst tier 下 kills the clean \"inverse C0-quality correlation\" story。 No single metric (C0, Eff-K, constraint precision) predicts SICA effectiveness。 Must retreat to \"SICA effectiveness is determined by a complex interaction of factors  that we characterize but cannot predict\" — weak for a paper claim。\n\n\nWorst tier: constraint quality 与 delta 之间无 significant correlation。 High C0 不 predict low quality (counter to capability trap theory)—— 有 high C0 + high quality 的 conditions (LLaMA D012) 和 high C0 + low quality 的 (Mistral PW600)。 R≈0.28 (n=10) 完全无 statistical power。 Capability trap 作为 clean theory 不 hold: 实际 pattern 是 noisy 的 condition-specific interactions。\n"
+  },
+  {
+    "name": "mistral_k_sensitivity",
+    "description": "Mistral-7B K=4/8/12/16/20 on FOLIO-204, seed 42",
+    "results": {
+      "K4_sica_accuracy": 0.534,
+      "K4_sc_accuracy": 0.544,
+      "K4_delta_pp": -0.98,
+      "K8_sica_accuracy": 0.559,
+      "K8_sc_accuracy": 0.539,
+      "K8_delta_pp": 1.96,
+      "K12_sica_accuracy": 0.593,
+      "K12_sc_accuracy": 0.544,
+      "K12_delta_pp": 4.9,
+      "K16_sica_accuracy": 0.554,
+      "K16_sc_accuracy": 0.539,
+      "K16_delta_pp": 1.47,
+      "K20_sica_accuracy": 0.524,
+      "K20_sc_accuracy": 0.549,
+      "K20_delta_pp": -2.45,
+      "inverted_u_visual": "无可辨识 pattern，noise ≫ signal",
+      "peak_K": 12,
+      "peak_delta_pp": 4.9,
+      "k4_vs_k12_difference_significant": false
+    },
+    "tables": [
+      "T5: K sensitivity — Mistral 列 with CI"
+    ],
+    "figures": [],
+    "analysis": "K sensitivity 在 worst tier 下是 paper 的最大损失之一。原本 inverted-U 是 Table 5 / Figure 3 的 hero result，解释了 \"why K=12 is optimal\"。现在只能说 \"K=12 happened to give the best result  in this specific seed, but we cannot distinguish signal from noise\"。 Frame 改为 \"high variance across K values demonstrates fragility of the effect\"—— 从 clean ablation contribution 降级为 fragility evidence。\n\n\nWorst tier 核心假设: K sensitivity 无 inverted-U。K=12 仍然是 peak (因为 exp-033 的 seed 42  就是用 K=12) 但 K=8 和 K=16 的 delta 在 noise band 内 random walk。 K=4 delta≈-1pp, K=8≈+2pp, K=12≈+5pp, K=16≈+1.5pp, K=20≈-2.5pp。 看 curve: 不是 smooth inverted-U 而是 up-down-up-down noise pattern。 K=8→K=12 jump (+3pp) 和 K=12→K=16 drop (-3.4pp) 都可能是 random variation at n=204。 CI bars 大量重叠，无法 reject \"all K have same delta\" null hypothesis。 Eff-K 也不 monotonically increase with K (因为 κ 本身随 K 变化)。\n"
+  },
+  {
+    "name": "multitemp_mistral_folio",
+    "description": "Multi-temperature (T=0.3/0.7/1.0 混合) Mistral-7B FOLIO-204",
+    "results": {
+      "sica_accuracy": 0.564,
+      "sc_accuracy": 0.544,
+      "delta_pp": 2.45,
+      "mcnemar_p": 0.18,
+      "trace_diversity_increase_pct": 35,
+      "effk_multitemp": 2.8,
+      "effk_single_t07": 1.85
+    },
+    "tables": [
+      "T_remediation: multi-temp 行改为 '+2.45pp (n.s.)' 而非 'negative'"
+    ],
+    "figures": [],
+    "analysis": "Multi-temp positive 是 worst tier 的 second most damaging result (after K sensitivity noise)。 \"9 种修复全部失败\" 要改为 \"8 种修复失败 + 1 种 promising but underpowered\"。 Reviewer 会问: \"为什么不 scale up multi-temp to n=600？\" — 如果我们没做，是 obvious gap； 如果做了且 positive，paper narrative completely changes。 唯一 defense: argue that +2.45pp n.s. is within noise, and even if real,  Eff-K increase from 1.85→2.8 still far below nominal K=12。\n\n\nWorst tier 核心假设: multi-temp 意外 positive (≥+2pp)。 Multi-temp 通过混合不同温度 traces 确实增加了 diversity (Eff-K 从 1.85 → 2.8)。 Delta=+2.45pp 虽然 n.s. (p=0.18) 但方向 positive。 这动摇 \"diversity alone is not sufficient\" claim——如果 simple temperature mixing  就能 partially recover SICA effectiveness，那 independence bottleneck 不是 \"fundamental\"。 Reviewer: \"你说 9 种修复全部失败，但 multi-temp 实际上 showed promise？\" 无法再 claim \"trap is fundamental\" 当 diversity intervention shows positive direction。\n"
+  },
+  {
+    "name": "mistral_folio204_t03",
+    "description": "Mistral-7B FOLIO-204 at T=0.3",
+    "results": {
+      "sica_accuracy": 0.574,
+      "sc_accuracy": 0.534,
+      "delta_pp": 3.92,
+      "mcnemar_p": 0.065,
+      "multi_candidate_rate": 0.55,
+      "effk_t03": 1.45
+    },
+    "tables": [
+      "Appendix T sensitivity table: T=0.3 行"
+    ],
+    "figures": [],
+    "analysis": "T=0.3 comparable to T=0.7 是 worst tier 定义的关键指标。 叙事从 \"narrow window of fragile effect\" 变成 \"moderate robustness across low-medium temperatures,  failure only at high T\"——这实际上 WEAKENS the pure-negative-results paper framing。 If SICA works at T=0.3-0.7, it's not a \"dead end\" but a \"limited but reproducible effect\"。 Reviewer: \"这看起来不像 pure negative results，更像 modest positive results with caveats\"。 Paper 陷入尴尬中间地带: 不够 positive 做 method paper，不够 negative 做 clean diagnostic paper。\n\n\nWorst tier 核心假设: T=0.3 delta ≥+3pp，与 T=0.7 的 +4.9pp 可比。 T=0.3 SC 略低于 T=0.7 (53.4% vs 54.4%) 但 delta 仍然 substantial (+3.92pp)。 这 destroys \"narrow temperature window\" narrative。原来的故事是 \"SICA only works at T=0.7,  collapses at T=1.0\" → 暗示 very specific sweet spot。 现在 T=0.3 (+3.92pp), T=0.7 (+4.90pp), T=1.0 (+0.49pp) → SICA 在 low-to-medium T  都有效，只是 T=1.0 太 noisy 才 collapse。 这个 pattern 不是 \"fragile\" 而是 \"works except at high T\"——undermines fragility framing。\n"
+  },
+  {
+    "name": "mistral_folio204_t05",
+    "description": "Mistral-7B FOLIO-204 at T=0.5",
+    "results": {
+      "sica_accuracy": 0.564,
+      "sc_accuracy": 0.539,
+      "delta_pp": 2.45,
+      "mcnemar_p": 0.23,
+      "multi_candidate_rate": 0.62,
+      "effk_t05": 1.65
+    },
+    "tables": [
+      "Appendix T sensitivity table: T=0.5 行"
+    ],
+    "figures": [],
+    "analysis": "T=0.5 填充了 curve 但增加了 noise。4 个 temperature points 无 clean trend  (not inverted-U, not monotonic, not plateau-then-cliff)。 Worst tier 下 T sensitivity section 从 \"clean ablation\" 降级为 \"noisy exploration\"。 Only defensible claim: \"SICA delta decreases substantially at T=1.0\"， but even this is one data point (could reframe as \"high temperature degrades constraint extraction\"  which is somewhat obvious)。\n\n\nT=0.5 delta=+2.45pp 进一步填充 T sensitivity curve。 Pattern: T=0.3 (+3.92pp) > T=0.5 (+2.45pp) < T=0.7 (+4.90pp) > T=1.0 (+0.49pp)。 不是 monotonic decline 也不是 clean peak——是 noisy 的 non-monotonic pattern。 T=0.5 比 T=0.3 低可能是 random noise at n=204。 Combined with T=0.3 result，T sensitivity curve 是 \"generally positive at low-medium T,  negative at high T\" 但无 clean functional form。\n"
+  },
+  {
+    "name": "effk_sc_joint_prediction",
+    "description": "Eff-K + SC joint prediction accuracy across all 12+ conditions",
+    "results": {
+      "total_conditions": 12,
+      "correctly_predicted_positive": 2,
+      "correctly_predicted_negative": 4,
+      "incorrectly_predicted": 6,
+      "prediction_accuracy_pct": 50.0,
+      "key_failures": [
+        "Mistral-PW600: Eff-K=3.63 (highest) predicts positive but delta=-2.83pp",
+        "Mistral-s42 vs s123: similar Eff-K+SC but delta differs by 1.47pp",
+        "LLaMA-D012: Eff-K unknown but high C0 → predicted positive, actual +6.67pp n.s.",
+        "Mistral-s456: Eff-K=2.22 similar to s123 (2.17) but delta reverses sign"
+      ]
+    },
+    "tables": [
+      "T3: 增加 prediction hit/miss column"
+    ],
+    "figures": [],
+    "analysis": "Joint prediction ≤50% accuracy 是 worst tier 下 Condorcet framework 的死亡判决。 不能说 \"Eff-K predicts SICA effectiveness\" 只能说 \"Eff-K explains why Qwen family  uniformly fails\"。Claim 1 从 \"Independence Bottleneck\" (predictive) 降为  \"Independence Observation\" (descriptive)。Condorcet 从 core claim 降入 discussion。\n\nWorst tier: Eff-K+SC framework predicts ≤6/12 conditions correctly (≤50%)。 跨模型 direction 正确 (Qwen→0, Mistral→variable) 但 Mistral 内部完全不 work。 Eff-K 与 delta 在 Mistral seeds 内无 monotonic relationship (s42: Eff-K=1.85, delta=+4.9;  s123: Eff-K=2.17, delta=+3.4; s456: Eff-K=2.22, delta=-0.5)——方向甚至相反。 PW-600 (Eff-K=3.63, delta=-2.83) 用 \"SC too low\" 勉强解释，但 reviewer 会说  这是 post-hoc rationalization。 Framework 降级: \"Eff-K is a necessary condition for cross-model comparison  but has no within-model predictive power\"——这是一个 much weaker claim。\n"
+  }
+]

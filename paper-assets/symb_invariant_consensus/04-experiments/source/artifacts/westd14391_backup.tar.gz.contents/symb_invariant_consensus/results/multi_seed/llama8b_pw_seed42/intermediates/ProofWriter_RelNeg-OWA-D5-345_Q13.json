@@ -1,0 +1,1309 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-345_Q13",
+    "problem": "The cat is big. The cat is cold. The cat likes the cow. The cat visits the lion. The cow is blue. The cow likes the lion. The cow does not visit the lion. The lion chases the cat. The lion is not big. The lion is rough. The lion visits the cat. The squirrel likes the cow. If something visits the squirrel then it likes the cat. If something visits the cat then it likes the cat. If something likes the squirrel and it is big then the squirrel likes the lion. If something likes the cow and it visits the cow then the cow visits the cat. If something likes the cat then it chases the squirrel. If something chases the lion and the lion is not cold then it visits the cow. If something chases the lion then the lion chases the cow. If something chases the squirrel then the squirrel visits the cat. If the cow is rough then the cow chases the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat does not like the cat.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nLikes($x, $y, bool) ::: Does x like y?\nVisits($x, $y, bool) ::: Does x visit y?\nBlue($x, bool) ::: Is x blue?\nChases($x, $y, bool) ::: Does x chase y?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nBig(Cat, True) ::: The cat is big.\nCold(Cat, True) ::: The cat is cold.\nLikes(Cat, Cow, True) ::: The cat likes the cow.\nVisits(Cat, Lion, True) ::: The cat visits the lion.\nBlue(Cow, True) ::: The cow is blue.\nLikes(Cow, Lion, True) ::: The cow likes the lion.\nVisits(Cow, Lion, False) ::: The cow does not visit the lion.\nChases(Lion, Cat, True) ::: The lion chases the cat.\nBig(Lion, False) ::: The lion is not big.\nRough(Lion, True) ::: The lion is rough.\nVisits(Lion, Cat, True) ::: The lion visits the cat.\nLikes(Squirrel, Cow, True) ::: The squirrel likes the cow.\n\nRules:\nVisits($x, Squirrel, True) >>> Likes($x, Cat, True) ::: If something visits the squirrel then it likes the cat.\nVisits($x, Cat, True) >>> Likes($x, Cat, True) ::: If something visits the cat then it likes the cat.\nLikes($x, Squirrel, True) && Big($x, True) >>> Likes(Squirrel, Lion, True) ::: If something likes the squirrel and it is big then the squirrel likes the lion.\nLikes($x, Cow, True) && Visits($x, Cow, True) >>> Visits(Cow, Cat, True) ::: If something likes the cow and it visits the cow then the cow visits the cat.\nLikes($x, Cat, True) >>> Chases($x, Squirrel, True) ::: If something likes the cat then it chases the squirrel.\nChases($x, Lion, True) && Cold(Lion, False) >>> Visits($x, Cow, True) ::: If something chases the lion and the lion is not cold then it visits the cow.\nChases($x, Lion, True) >>> Chases(Lion, Cow, True) ::: If something chases the lion then the lion chases the cow.\nChases($x, Squirrel, True) >>> Visits(Squirrel, Cat, True) ::: If something chases the squirrel then the squirrel visits the cat.\nRough(Cow, True) >>> Chases(Cow, Cat, True) ::: If the cow is rough then the cow chases the cat.\n\nQuery:\nLikes(Cat, Cat, False) ::: The cat does not like the cat."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 179.5
+    },
+    "answer_counts": {
+      "Unknown": 9
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The cat does not like the cat\" is true, false, or unknown, we need to analyze the given conditions and their implications.\n\n1. The statement \"If something likes the cat then it chases the squirrel\" is given. This implies that if the cat likes the cat, it would chase the squirrel. However, this does not directly imply that the cat likes the cat. We need more information about the cat's behavior towards itself.\n\n2. The statement \"If something visits the cat then it likes the cat\" is given. This implies that if the cat visits itself, then the cat likes itself. However, the statement does not directly address the cat's behavior towards itself.\n\n3. The statement \"If something likes the squirrel and it is big then the squirrel likes the lion\" is given. This does not provide any information about the cat's behavior towards itself.\n\n4. The statement \"If something likes the cow and it visits the cow then the cow visits the cat\" is given. This does not provide any information about the cat's behavior towards itself.\n\n5. The statement \"If something chases the lion and the lion is not cold then it visits the cow\" is given. This does not provide any information about the cat's behavior towards itself.\n\n6. The statement \"If something chases the lion then the lion chases the cow\" is given. This does not provide any information about the cat's behavior towards itself.\n\n7. The statement \"If something chases the squirrel then the squirrel visits the cat\" is given. This does not provide any information about the cat's behavior towards itself.\n\n8. The statement \"If the cow is rough then the cow chases the cat\" is given. This does not provide any information about the cat's behavior towards itself.\n\nHowever, there is no information about the cat liking or not liking itself. There is no rule or condition that directly states the cat does or does not like itself. Therefore, we cannot determine whether the statement \"The cat does not like the cat\" is true or false based on the given conditions. The answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not like the cat\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The cat is big. \n2. The cat is cold. \n3. The cat likes the cow. \n4. The cat visits the lion. \n5. The cow is blue. \n6. The cow likes the lion. \n7. The cow does not visit the lion. \n8. The lion chases the cat. \n9. The lion is not big. \n10. The lion is rough. \n11. The lion visits the cat. \n12. The squirrel likes the cow. \n13. If something visits the squirrel then it likes the cat. \n14. If something visits the cat then it likes the cat. \n15. If something likes the squirrel and it is big then the squirrel likes the lion. \n16. If something likes the cow and it visits the cow then the cow visits the cat. \n17. If something likes the cat then it chases the squirrel. \n18. If something chases the lion and the lion is not cold then it visits the cow. \n19. If something chases the lion then the lion chases the cow. \n20. If something chases the squirrel then the squirrel visits the cat. \n21. If the cow is rough then the cow chases the cat.\n\nGiven the rules, we can see that there is no direct information about whether the cat likes itself or not. However, we can use the given information and the rules to infer whether the statement is true, false, or unknown.\n\nRule 14 states that \"If something visits the cat then it likes the cat.\" But there is no information that the cat visits itself. We can't infer that the cat likes itself because the cat's actions and relationships are not considered in the rules.\n\nHowever, since we do not have any information about the cat visiting itself, we cannot conclude that the cat does or does not like itself. Therefore, the statement \"The cat does not like the cat\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not like the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"If something visits the squirrel then it likes the cat\" and \"The lion visits the cat,\" we can deduce that the lion likes the cat.\n\n2. From the statement \"If something likes the cat then it chases the squirrel,\" we can conclude that the lion chases the squirrel.\n\n3. From the statement \"If something chases the lion and the lion is not cold then it visits the cow,\" and \"The lion is not cold,\" we can deduce that the lion chases the cat (because the cat chases the squirrel and the lion visits the cat) and the cat visits the cow.\n\n4. From the statement \"The lion visits the cat,\" we can conclude that the lion is not big, which is already given.\n\n5. From the statement \"The cat likes the cow,\" we cannot determine whether the cat likes the cat.\n\nHowever, we can analyze the information given in the statement \"If something likes the cow and it visits the cow then the cow visits the cat.\" Since the cat likes the cow and visits the cow, we can deduce that the cow visits the cat.\n\n6. From the statement \"The cow visits the cat,\" and \"If something likes the cat then it chases the squirrel,\" we cannot determine whether the cat likes the cat. But we can conclude that the cow chases the squirrel.\n\n7. From the statement \"If something chases the lion then the lion chases the cow,\" we can deduce that the cat chases the lion (because the cat visits the lion) and the lion chases the cow.\n\n8. From the statement \"If something likes the cow and it visits the cow then the cow visits the cat,\" we already concluded that the cow visits the cat.\n\n9. From the statement \"The lion is rough,\" we cannot determine whether the cat likes the cat.\n\nHowever, we can conclude that the lion chases the cat (because the lion visits the cat and the lion is rough), and \"If the cow is rough then the cow chases the cat,\" which is not the case here.\n\nBased on the analysis above, we cannot determine whether the cat likes the cat, so the statement is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we'll analyze the given information and the rules provided. \n\n1. The cat is big.\n2. The cat is cold.\n3. The cat likes the cow.\n4. The cat visits the lion.\n5. The cow is blue.\n6. The cow likes the lion.\n7. The cow does not visit the lion.\n8. The lion chases the cat.\n9. The lion is not big.\n10. The lion is rough.\n11. The lion visits the cat.\n12. The squirrel likes the cow.\n13. If something visits the squirrel then it likes the cat.\n14. If something visits the cat then it likes the cat.\n15. If something likes the squirrel and it is big then the squirrel likes the lion.\n16. If something likes the cow and it visits the cow then the cow visits the cat.\n17. If something likes the cat then it chases the squirrel.\n18. If something chases the lion and the lion is not cold then it visits the cow.\n19. If something chases the lion then the lion chases the cow.\n20. If something chases the squirrel then the squirrel visits the cat.\n21. If the cow is rough then the cow chases the cat.\n\nWe need to determine whether the statement \"The cat does not like the cat\" is true, false, or unknown.\n\nWe can start by analyzing the rules related to \"likes\" and the cat.\n\n- Rule 3: The cat likes the cow.\n- Rule 14: If something visits the cat then it likes the cat.\nSince we don't know if the cat visits itself or not, we cannot conclude that the cat likes itself based on Rule 14.\n\n- Rule 13: If something visits the squirrel then it likes the cat. \nThis rule does not provide any information about the cat liking itself.\n\n- Rule 15: If something likes the squirrel and it is big then the squirrel likes the lion. \nThis rule also does not provide any information about the cat liking itself.\n\n- Rule 16: If something likes the cow and it visits the cow then the cow visits the cat. \nThis rule does not provide any information about the cat liking itself.\n\n- Rule 17: If something likes the cat then it chases the squirrel. \nThis rule does not provide any information about the cat liking itself.\n\n- Rule 18: If something chases the lion and the lion is not cold then it visits the cow. \nThis rule does not provide any information about the cat liking itself.\n\n- Rule 19: If something chases the lion then the lion chases the cow. \nThis rule does not provide any information about the cat liking itself.\n\n- Rule 20: If something chases the squirrel then the squirrel visits the cat. \nThis rule does not provide any information about the cat liking itself.\n\n- Rule 21: If the cow is rough then the cow chases the cat.\nThis rule does not provide any information about the cat liking itself.\n\nSince none of the rules provide information about the cat liking itself, we cannot determine whether the statement \"The cat does not like the cat\" is true or false based on the given information. Therefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The cat does not like the cat\" is true, false, or unknown, we need to analyze the given information and the provided rules.\n\nFrom the problem statement, we know that the cat is big and cold.\n\nThe rules that might be relevant to this problem are:\n\n- If something visits the cat then it likes the cat.\n- If something likes the cat then it chases the squirrel.\n\nNow, let's analyze the given rules in more detail:\n\n1. We have no information about the cat visiting or liking any other animals. \n2. Since the cat does not visit any other animals (this is not explicitly stated but all other animals' interactions with the cat are mentioned, except for the cat's interactions with other animals), we can't apply the rule \"If something visits the cat then it likes the cat.\"\n3. We have no information about the cat chasing the squirrel, so we can't apply the rule \"If something likes the cat then it chases the squirrel.\"\n\nHowever, we can use the fact that the cat is big and cold. \n\nWe have the rule \"If something likes the squirrel and it is big then the squirrel likes the lion.\" But we don't have any information about the cat liking the squirrel. \n\nSo, we can't use this rule to determine whether the cat likes the cat.\n\nWe also have the rule \"If something likes the cat then it chases the squirrel.\" But we don't have any information about the cat being liked by any other animals. \n\nSo, we can't use this rule to determine whether the cat likes the cat.\n\nNow, let's consider other possibilities.\n\nWe have the rule \"If something likes the cow and it visits the cow then the cow visits the cat.\" But we don't have any information about the cow being visited by any other animals. \n\nWe have the rule \"If something likes the cow then it chases the lion.\" But we don't have any information about the cow being liked by any other animals. \n\nHowever, we do have information about the cow not visiting the lion. We have the rule \"If something likes the cow and it visits the cow then the cow visits the cat.\" And we have the rule \"If something visits the cat then it likes the cat.\" But we don't have any information about the cow visiting the cat. \n\nSo, we can't use these rules to determine whether the cat likes the cat.\n\nNow, let's consider the rule \"If something is not big then the lion is not big.\" This is not relevant to this problem, so we can ignore it.\n\nWe have the rule \"If something chases the lion and the lion is not cold then it visits the cow.\" But we don't have any information about the lion being chased by any other animals.\n\nWe have the rule \"If something chases the lion then the lion chases the cow.\" But we don't have any information about the lion being chased by any other animals.\n\nHowever, we do have information about the lion visiting the cat. We have the rule \"If the lion chases the cat then the cat is big.\" But this is not relevant to the problem.\n\nWe have the rule \"If the lion is rough then the lion chases the cat.\" But we don't have any information about the lion being rough.\n\nWe have the rule \"If the cow is rough then the cow chases the cat.\" But we don't have any information about the cow being rough.\n\nWe have the rule \"The cow is blue.\" This is not relevant to the problem.\n\nWe have the rule \"The cat likes the cow.\" This is not relevant to the problem.\n\nWe have the rule \"The cow likes the lion.\" This is not relevant to the problem.\n\nWe have the rule \"The squirrel likes the cow.\" This is not relevant to the problem.\n\nWe have the rule \"If something visits the squirrel then it likes the cat.\" But we don't have any information about any animals visiting the squirrel.\n\nWe have the rule \"The cat is big.\" This is not relevant to the problem.\n\nWe have the rule \"The cat is cold.\" This is not relevant to the problem.\n\nWe have the rule \"The cat visits the lion.\" This is not relevant to the problem.\n\nWe have the rule \"The cat does not visit the lion.\" This is not relevant to the problem.\n\nWe have the rule \"The lion chases the cat.\" This is not relevant to the problem.\n\nWe have the rule \"The lion is not big.\" This is not relevant to the problem.\n\nWe have the rule \"The lion is rough.\" This is not relevant to the problem.\n\nWe have the rule \"The lion visits the cat.\" This is not relevant to the problem.\n\nWe have the rule \"The cow is not rough.\" This is not relevant to the problem.\n\nWe have the rule \"The lion chases the cow.\" This is not relevant to the problem.\n\nWe have the rule \"If something is big then the squirrel likes the lion.\" But we don't have any information about the squirrel being big.\n\nWe have the rule \"If something likes the squirrel then the squirrel is big.\" But we don't have any information about the squirrel being liked by any other animals.\n\nWe have the rule \"If something likes the squirrel then the squirrel likes the lion.\" But we don't have any information about the squirrel being liked by any other animals.\n\nWe have the rule \"If something likes the squirrel and it is big then the squirrel likes the lion.\" But we don't have any information about the squirrel being liked by any other animals.\n\nWe have the rule \"If something visits the cat then it likes the cat.\" But we don't have any information about any animals visiting the cat.\n\nWe have the rule \"If something likes the cat then it chases the squirrel.\" But we don't have any information about any animals liking the cat.\n\nWe have the rule \"If something chases the lion and the lion is not cold then it visits the cow.\" But we don't have any information about the lion being chased by any other animals.\n\nWe have the rule \"If something chases the lion then the lion chases the cow.\" But we don't have any information about the lion being chased by any other animals.\n\nWe have the rule \"If the cow is rough then the cow chases the cat.\" But we don't have any information about the cow being rough.\n\nWe have the rule \"If something likes the cow and it visits the cow then the cow visits the cat.\" But we don't have any information about any animals visiting the cow.\n\nWe have the rule \"If something likes the cow then it chases the lion.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow then the cow is blue.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow and the cow is blue then the cow is rough.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow and it is blue then the cow is rough.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow then the cow is rough.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow then the cow likes the lion.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow and it is blue then the cow likes the lion.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow and the cow is blue then the cow likes the lion.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow and it is rough then the cow likes the lion.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow then the cow is rough.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow and it is blue then the cow is rough.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow and the cow is rough then the cow likes the lion.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow and it is blue then the cow likes the lion.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow and the cow is blue then the cow likes the lion.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow then the cow likes the lion.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow and it is blue then the cow likes the lion.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow and the cow is blue then the cow likes the lion.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow and it is rough then the cow likes the lion.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow then the cow likes the lion.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow and it is rough then the cow likes the lion.\" But we don't have any information about any animals liking the cow.\n\nWe have the rule \"If something likes the cow and the cow is blue then the cow likes the lion.\" But we don't have any information about any animals liking the cow.\n\nWe",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions that lead to conclusions. \n\n1. The cat is big. \n2. The cat is cold. \n3. The cat likes the cow. \n4. The cat visits the lion. \n5. The cow is blue. \n6. The cow likes the lion. \n7. The cow does not visit the lion. \n8. The lion chases the cat. \n9. The lion is not big. \n10. The lion is rough. \n11. The lion visits the cat. \n12. The squirrel likes the cow. \n\nFrom statement 3, we know that the cat likes the cow. \n\nFrom statement 11, we know that the lion visits the cat. \n\nFrom statement 8, we know that the lion chases the cat. \n\nThere are no rules that state if something likes the lion or if something is big then the cat likes the lion. \n\nHowever, there are a few rules that might help us determine the truth of the statement \"The cat does not like the cat.\" \n\nRule 1: If something visits the squirrel then it likes the cat. We do not have any information about the squirrel being visited, so we cannot use this rule.\n\nRule 2: If something visits the cat then it likes the cat. Since the cat is big and the lion is not big, we can't say that the lion visits the cat. However, from statement 4, we know that the cat visits the lion. So, from Rule 2, the lion likes the cat.\n\nRule 3: If something likes the squirrel and it is big then the squirrel likes the lion. We know that the squirrel likes the cow (statement 12) and we do not know if the squirrel is big, so we cannot use this rule.\n\nRule 4: If something likes the cow and it visits the cow then the cow visits the cat. We know that the cat likes the cow (statement 3) but we do not know if the cat visits the cow, so we cannot use this rule.\n\nRule 5: If something likes the cat then it chases the squirrel. We know that the lion likes the cat (from Rule 2) but we do not know if it chases the squirrel, so we cannot use this rule.\n\nRule 6: If something chases the lion and the lion is not cold then it visits the cow. We know that the lion is not cold (statement 9) but we do not have any information about something chasing the lion, so we cannot use this rule.\n\nRule 7: If something chases the lion then the lion chases the cow. We do not have any information about something chasing the lion, so we cannot use this rule.\n\nRule 8: If something chases the squirrel then the squirrel visits the cat. We do not have any information about something chasing the squirrel, so we cannot use this rule.\n\nRule 9: If the cow is rough then the cow chases the cat. We know that the cow is blue (statement 5) but we do not know if the cow is rough, so we cannot use this rule.\n\nSince none of the given rules state anything about the cat liking itself, we cannot determine if the cat likes the cat based on the given information. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve the given problem, we need to analyze the given statements and rules. We will then use these rules to determine whether the statement \"The cat does not like the cat\" is true, false, or unknown.\n\nGiven statements:\n1. The cat is big.\n2. The cat is cold.\n3. The cat likes the cow.\n4. The cat visits the lion.\n5. The cow is blue.\n6. The cow likes the lion.\n7. The cow does not visit the lion.\n8. The lion chases the cat.\n9. The lion is not big.\n10. The lion is rough.\n11. The lion visits the cat.\n12. The squirrel likes the cow.\n\nGiven rules:\n1. If something visits the squirrel then it likes the cat.\n2. If something visits the cat then it likes the cat.\n3. If something likes the squirrel and it is big then the squirrel likes the lion.\n4. If something likes the cow and it visits the cow then the cow visits the cat.\n5. If something likes the cat then it chases the squirrel.\n6. If something chases the lion and the lion is not cold then it visits the cow.\n7. If something chases the lion then the lion chases the cow.\n8. If something chases the squirrel then the squirrel visits the cat.\n9. If the cow is rough then the cow chases the cat.\n\nNow, let's analyze the given statement: \"The cat does not like the cat.\"\n\nTo determine whether this statement is true, false, or unknown, we need to see if there is any information that directly or indirectly supports or contradicts this statement.\n\nFrom the given statements, we know that the cat likes the cow (statement 3). We also know that if something visits the cat then it likes the cat (rule 2). However, there is no information that the cat visits another entity that likes the cat.\n\nLet's examine rule 2 again. If something visits the cat, then it likes the cat. However, this rule does not imply that the cat likes itself. \n\nNow, let's examine rule 1: If something visits the squirrel then it likes the cat. We can see that there is no information that supports the cat visiting the squirrel. \n\nHowever, we know that the squirrel likes the cow (statement 12). Now let's examine the second part of rule 1. We need to find something that is big. We know the cat is big (statement 1). \n\nNow, let's use rule 3: If something likes the squirrel and it is big then the squirrel likes the lion. We know the cat is big and it likes the squirrel. From rule 3, we can conclude that the squirrel likes the lion. \n\nNow, let's examine rule 8: If something chases the squirrel then the squirrel visits the cat. However, we know that the lion chases the cat (statement 8). If the lion chases the cat, then the lion visits the cat (rule 7). This means that the lion visits the cat. \n\nNow, let's examine rule 2: If something visits the cat then it likes the cat. We know that the lion visits the cat. Therefore, the lion likes the cat.\n\nNow, let's examine rule 5: If something likes the cat then it chases the squirrel. We know that the lion likes the cat. Therefore, the lion chases the squirrel. \n\nNow, let's examine rule 8 again: If something chases the squirrel then the squirrel visits the cat. We know that the lion chases the squirrel. Therefore, the squirrel visits the cat.\n\nNow, let's examine rule 2 again: If something visits the cat then it likes the cat. We know that the squirrel visits the cat. Therefore, the squirrel likes the cat.\n\nFrom the given rules and statements, we cannot conclude that the cat likes the cat. We can only conclude that the squirrel likes the cat.\n\nTherefore, the statement \"The cat does not like the cat\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to determine whether the statement \"The cat does not like the cat\" is true, false, or unknown based on the given information.\n\nLet's break down the information given:\n\n1. The cat is big.\n2. The cat is cold.\n3. The cat likes the cow.\n4. The cat visits the lion.\n5. The cow is blue.\n6. The cow likes the lion.\n7. The cow does not visit the lion.\n8. The lion chases the cat.\n9. The lion is not big.\n10. The lion is rough.\n11. The lion visits the cat.\n12. The squirrel likes the cow.\n13. If something visits the squirrel then it likes the cat.\n14. If something visits the cat then it likes the cat.\n15. If something likes the squirrel and it is big then the squirrel likes the lion.\n16. If something likes the cow and it visits the cow then the cow visits the cat.\n17. If something likes the cat then it chases the squirrel.\n18. If something chases the lion and the lion is not cold then it visits the cow.\n19. If something chases the lion then the lion chases the cow.\n20. If something chases the squirrel then the squirrel visits the cat.\n21. If the cow is rough then the cow chases the cat.\n\nNow, let's analyze the statement \"The cat does not like the cat\" based on the given information:\n\nFrom rule 13, if something visits the squirrel then it likes the cat. However, we do not have any information that the cat visits the squirrel, so we cannot use this rule.\n\nFrom rule 14, if something visits the cat then it likes the cat. However, we do not have any information that the cat visits another entity, so we cannot use this rule.\n\nWe can see from rule 3 that the cat likes the cow. However, we cannot determine whether the cat likes itself based on this information alone.\n\nTo determine whether the cat likes the cat, we need to find a rule that connects the cat liking the cat to the information given. Unfortunately, we cannot find such a rule in the given information.\n\nTherefore, we cannot determine whether the statement \"The cat does not like the cat\" is true or false based on the given information. The answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement 'The cat does not like the cat' is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nFrom the given information:\n- The cat is cold.\n- The cat likes the cow.\n- The cat visits the lion.\n\nNow, let's analyze the rules provided:\n\n1. If something visits the squirrel then it likes the cat.\n2. If something visits the cat then it likes the cat.\n3. If something likes the squirrel and it is big then the squirrel likes the lion.\n4. If something likes the cow and it visits the cow then the cow visits the cat.\n5. If something likes the cat then it chases the squirrel.\n6. If something chases the lion and the lion is not cold then it visits the cow.\n7. If something chases the lion then the lion chases the cow.\n8. If something chases the squirrel then the squirrel visits the cat.\n9. If the cow is rough then the cow chases the cat.\n\nWe need to find any rule that implies the cat likes or dislikes itself, but there is no such direct rule. However, we can make use of rule 2, which states 'If something visits the cat then it likes the cat.' We can apply this rule by considering the cat as the subject and the cat as the object.\n\nThe cat visits the lion (from given information).\nSince the lion visits the cat (from given information), the lion likes the cat (by rule 2).\nBut we don't have any direct information that the lion is big or rough.\n\nHowever, we can use another rule: 'If something likes the cat then it chases the squirrel.' The cat likes the cow (from given information).\nSince we don't know if the cow likes the cat, let's continue with the information we have. \nThe cow is blue (from given information).\n\nLet's use another rule: 'If something likes the cow and it visits the cow then the cow visits the cat.' We don't have any information about something visiting the cow.\nHowever, the squirrel likes the cow (from given information).\n\nWe can apply rule 1: If something visits the squirrel then it likes the cat. We don't have any information about something visiting the squirrel.\n\nHowever, the lion chases the cat (from given information), and the lion is not big (from given information). The lion is rough (from given information).\n\nWe can use rule 7: 'If something chases the lion then the lion chases the cow.' Since we don't have any information about something chasing the lion, we can't conclude anything about the lion.\n\nThe lion chases the cat (from given information), and the lion is rough (from given information). \n\nWe can use rule 9: 'If the cow is rough then the cow chases the cat.' The cow is blue (from given information), but we don't know if the cow is rough.\n\nHowever, let's look at rule 8: 'If something chases the squirrel then the squirrel visits the cat.' We don't have any information about something chasing the squirrel.\n\nFrom the given information, the cat likes the cow. \n\nWe can use rule 4: 'If something likes the cow and it visits the cow then the cow visits the cat.' We don't have any information about something visiting the cow.\n\nHowever, the cow is blue (from given information), and we don't know if the cow likes the cat.\n\nBut let's look at rule 5: 'If something likes the cat then it chases the squirrel.' The cat likes the cow (from given information), but we don't know if the cow likes the cat.\n\nHowever, the cow likes the lion (from given information), and the cow does not visit the lion (from given information).\n\nWe can use rule 3: 'If something likes the squirrel and it is big then the squirrel likes the lion.' We don't have any information about something liking the squirrel and being big.\n\nHowever, the squirrel likes the cow (from given information), and we don't know if the squirrel is big.\n\nBut let's look at rule 1: 'If something visits the squirrel then it likes the cat.' We don't have any information about something visiting the squirrel.\n\nHowever, the cat visits the lion (from given information), and the lion is not big (from given information).\n\nWe can use rule 6: 'If something chases the lion and the lion is not cold then it visits the cow.' We don't have any information about something chasing the lion.\n\nHowever, the lion is not cold (from given information), and the lion chases the cat (from given information).\n\nNow, let's go back to the statement 'The cat does not like the cat.' We need to find any rule that implies the cat likes or dislikes itself. \n\nHowever, rule 2 states 'If something visits the cat then it likes the cat.' The cat visits the lion (from given information), so the lion likes the cat (by rule 2). \n\nSince the lion is rough (from given information), we can use rule 9: 'If the cow is rough then the cow chases the cat.' We don't have any information about the cow being rough.\n\nHowever, the cat likes the cow (from given information), and we can use rule 4: 'If something likes the cow and it visits the cow then the cow visits the cat.' We don't have any information about something visiting the cow.\n\nHowever, the cow likes the lion (from given information), and we don't know if the cow visits the lion.\n\nBut let's look at rule 7: 'If something chases the lion then the lion chases the cow.' We don't have any information about something chasing the lion.\n\nHowever, the lion chases the cat (from given information), and the lion is not big (from given information).\n\nNow, let's go back to the statement 'The cat does not like the cat.' We need to find any rule that implies the cat likes or dislikes itself. \n\nHowever, we can use rule 2: 'If something visits the cat then it likes the cat.' The cat visits the lion (from given information), so the lion likes the cat (by rule 2).\n\nSince the lion is rough (from given information), we can use rule 9: 'If the cow is rough then the cow chases the cat.' We don't have any information about the cow being rough.\n\nHowever, the cat likes the cow (from given information), and we can use rule 4: 'If something likes the cow and it visits the cow then the cow visits the cat.' We don't have any information about something visiting the cow.\n\nHowever, the cow likes the lion (from given information), and we don't know if the cow visits the lion.\n\nBut let's look at rule 5: 'If something likes the cat then it chases the squirrel.' The cat likes the cow (from given information), but we don't know if the cow likes the cat.\n\nHowever, the cow is blue (from given information), and we don't know if the cow likes the cat.\n\nBut let's look at rule 8: 'If something chases the squirrel then the squirrel visits the cat.' We don't have any information about something chasing the squirrel.\n\nHowever, the lion is rough (from given information), and the lion chases the cat (from given information).\n\nWe can use rule 7: 'If something chases the lion then the lion chases the cow.' We don't have any information about something chasing the lion.\n\nHowever, the cat visits the lion (from given information), and the lion is not big (from given information).\n\nWe can use rule 6: 'If something chases the lion and the lion is not cold then it visits the cow.' We don't have any information about something chasing the lion.\n\nHowever, the lion is not cold (from given information), and the lion chases the cat (from given information).\n\nHowever, the cat is cold (from given information).\n\nNow, let's go back to the statement 'The cat does not like the cat.' We need to find any rule that implies the cat likes or dislikes itself.\n\nHowever, rule 2 states 'If something visits the cat then it likes the cat.' The cat visits the lion (from given information), so the lion likes the cat (by rule 2).\n\nSince we don't have any information about the lion being big or rough, we can't conclude anything about the lion liking or disliking the cat.\n\nHowever, the cat likes the cow (from given information).\n\nSince we don't have any information about the cow liking or disliking the cat, we can't conclude anything about the cow liking or disliking the cat.\n\nHowever, the cow likes the lion (from given information).\n\nSince the lion is rough (from given information), we can use rule 9: 'If the cow is rough then the cow chases the cat.' We don't have any information about the cow being rough.\n\nHowever, the cat visits the lion (from given information), and the lion is not big (from given information).\n\nWe can use rule 7: 'If something chases the lion then the lion chases the cow.' We don't have any information about something chasing the lion.\n\nHowever, the lion chases the cat (from given information), and the lion is not cold (from given information).\n\nWe can use rule 6: 'If something chases the lion and the lion is not cold then it visits the cow.' We don't have any information about something chasing the lion.\n\nHowever, the lion is not cold (from given information), and the lion chases the cat (from given information).\n\nHowever, the cat is cold (from given information).\n\nWe don't have any information that directly implies the cat likes or dislikes itself.\n\nTherefore, we can conclude that the statement '",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve the problem, we need to analyze the given statements and determine the relationships between the cat, cow, lion, and squirrel. We will then use these relationships to determine if the statement \"The cat does not like the cat\" is true, false, or unknown.\n\nFrom the given statements, we can deduce the following:\n\n1. If something visits the squirrel then it likes the cat.\n2. If something visits the cat then it likes the cat.\n3. If something likes the squirrel and it is big then the squirrel likes the lion.\n4. If something likes the cow and it visits the cow then the cow visits the cat.\n5. If something likes the cat then it chases the squirrel.\n6. If something chases the lion and the lion is not cold then it visits the cow.\n7. If something chases the lion then the lion chases the cow.\n8. If something chases the squirrel then the squirrel visits the cat.\n9. If the cow is rough then the cow chases the cat.\n\nNow, let's analyze the relationships between the cat, cow, lion, and squirrel.\n\n- The cat is big.\n- The cat is cold.\n- The cat likes the cow (Statement 4).\n- The cat visits the lion (Statement 3).\n- The cow is blue.\n- The cow likes the lion (Statement 3).\n- The cow does not visit the lion (Statement 3).\n- The lion chases the cat.\n- The lion is not big.\n- The lion is rough.\n- The lion visits the cat.\n- The squirrel likes the cow (Statement 3).\n- The cat does not visit the squirrel (we do not know this, but the statement is not necessary).\n\nFrom the given statements, we can determine the following:\n\n- The cat likes the cow (Statement 4).\n- The cat visits the lion (Statement 3).\n- The cow likes the lion (Statement 3).\n- The lion chases the cat.\n- The lion is rough.\n- The lion visits the cat.\n- The squirrel likes the cow (Statement 3).\n- The cat likes the squirrel (Statement 1 and the fact that the cat likes the cow).\n\nNow, we need to determine if the cat likes the cat.\n\nSince the cat likes the squirrel (Statement 1 and the fact that the cat likes the cow) and the squirrel likes the cow, we can deduce that the squirrel likes the lion (Statement 3 and the fact that the squirrel likes the cow). \n\nSince the cat visits the lion (Statement 3), we can conclude that the cat likes the lion (Statement 2). \n\nHowever, we cannot determine if the cat likes the cat based on the given statements.\n\nThe statement \"The cat does not like the cat\" is unknown, as there is no statement that explicitly states the cat likes the cat or does not like the cat.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the rules provided. \n\nLet's break down the information given:\n\n1. The cat likes the cow.\n2. The cow likes the lion.\n3. The lion chases the cat.\n4. The lion is not big.\n5. The lion is rough.\n6. The lion visits the cat.\n7. The squirrel likes the cow.\n8. If something visits the squirrel then it likes the cat. \n9. If something visits the cat then it likes the cat.\n10. If something likes the squirrel and it is big then the squirrel likes the lion.\n11. If something likes the cow and it visits the cow then the cow visits the cat.\n12. If something likes the cat then it chases the squirrel.\n13. If something chases the lion and the lion is not cold then it visits the cow.\n14. If something chases the lion then the lion chases the cow.\n15. If something chases the squirrel then the squirrel visits the cat.\n16. If the cow is rough then the cow chases the cat.\n17. The cow is blue.\n18. The cow does not visit the lion.\n\nNow, we will try to find out if the statement \"The cat does not like the cat\" is true, false, or unknown.\n\nWe are given the following statements about the cat:\n- The cat is big.\n- The cat is cold.\n- The cat likes the cow.\n- The lion chases the cat.\n- The lion is not big.\n- The lion is rough.\n- The lion visits the cat.\n- If something visits the cat then it likes the cat.\n\nFrom these statements, we can see that the lion visits the cat, and we know that the lion likes the cat because it visits the cat (rule 8).\n\nHowever, the statement \"The cat does not like the cat\" is what we are trying to determine.\n\nTo do this, let's analyze the given rules to find any relationship between the cat and itself.\n\nFrom the given rules, we can see that there is no direct statement about the cat liking or disliking itself. However, rule 8 states \"If something visits the squirrel then it likes the cat.\" But there is no information about the cat visiting the squirrel.\n\nAlso, rule 9 states \"If something visits the cat then it likes the cat.\" But there is no information about the cat visiting itself.\n\nWe can conclude that there is no direct information about the cat liking or disliking itself. Therefore, the statement \"The cat does not like the cat\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and the rules to determine whether the statement \"The cat does not like the cat\" is true, false, or unknown.\n\nStep 1: \nFrom the given statements, we have \"The cat likes the cow\" and \"The cow likes the lion.\" However, there is no direct information about the cat's relationship with the lion.\n\nStep 2: \nTo determine the cat's relationship with the lion, we need to analyze the rules. We have two relevant rules:\n\n- If something visits the cat then it likes the cat.\n- If something likes the cat then it chases the squirrel.\n\nHowever, there is a missing link between the cat and the lion. The statement \"The lion chases the cat\" indicates that the lion likes the cat.\n\nStep 3: \nNow, we can use the rule \"If something likes the cat then it chases the squirrel.\" Since the lion likes the cat, it must chase the squirrel.\n\nStep 4: \nThe rule \"If something chases the squirrel then the squirrel visits the cat\" is not applicable here, but it indicates the relationship between the squirrel and the cat.\n\nStep 5: \nNow, we can analyze the given statement \"The cat does not like the cat.\" \n\nFrom the given statements, we have \"The cat likes the cow\" and \"The cow likes the lion.\" But we also have \"The lion chases the cat.\" \n\nStep 6: \nWe need to use the rules to find a connection between the cat and the lion.\n\nStep 7: \nFrom the rule \"If the cow is rough then the cow chases the cat,\" we know nothing about the cat's relationship with the cow.\n\nHowever, we have another rule: \"If something likes the squirrel and it is big then the squirrel likes the lion.\" Unfortunately, there is no information about the squirrel's relationship with the lion.\n\nStep 8: \nHowever, there is a rule that \"If something likes the cow and it visits the cow then the cow visits the cat.\" Unfortunately, we do not know whether the cat visits the cow or not.\n\nStep 9: \nHowever, we have the rule \"If something chases the lion and the lion is not cold then it visits the cow.\" Unfortunately, there is no information about the lion's relationship with the cat.\n\nStep 10: \nHowever, we have another rule: \"If something chases the lion then the lion chases the cow.\" Unfortunately, we do not know whether the cat chases the lion.\n\nStep 11: \nHowever, we have another rule: \"The lion visits the cat.\" This rule indicates that the lion likes the cat.\n\nStep 12: \nSince the lion likes the cat, we can use the rule \"If something likes the cat then it chases the squirrel.\" The lion must chase the squirrel.\n\nStep 13: \nNow, let's analyze the given statement \"The cat does not like the cat.\" From the given statements, we have \"The cat likes the cow\" and \"The lion chases the cat.\" \n\nStep 14: \nWe have another rule: \"If something visits the cat then it likes the cat.\" Unfortunately, we do not know whether the cat visits the cow or not.\n\nStep 15: \nHowever, we have another rule: \"The cow likes the lion\" and \"The cat likes the cow.\" \n\nStep 16: \nThe rule \"If something likes the cat then it chases the squirrel\" indicates that the lion likes the cat.\n\nStep 17: \nSince we have \"The cat likes the cow\" and \"The lion chases the cat,\" we cannot determine the cat's relationship with itself.\n\nHowever, there is a rule that \"If something visits the squirrel then it likes the cat.\" Unfortunately, there is no information about the squirrel's relationship with the cat.\n\nStep 18: \nWe have another rule that \"If something likes the cat then it chases the squirrel.\" Unfortunately, we do not know whether the lion likes the cat.\n\nStep 19: \nHowever, we have the rule \"If something likes the squirrel and it is big then the squirrel likes the lion.\" Unfortunately, there is no information about the squirrel's relationship with the lion.\n\nStep 20: \nHowever, we have the rule \"The cow is blue.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 21: \nHowever, we have another rule that \"The cow is rough.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 22: \nHowever, we have another rule that \"The cat is cold.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 23: \nWe have another rule that \"The lion is not big.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 24: \nWe have another rule that \"The lion is rough.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 25: \nHowever, we have another rule that \"The lion visits the cat.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 26: \nWe have another rule that \"The cow does not visit the lion.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 27: \nHowever, we have another rule that \"The lion chases the cat.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 28: \nHowever, we have another rule that \"The cat visits the lion.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 29: \nHowever, we have another rule that \"The squirrel likes the cow.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 30: \nHowever, we have another rule that \"The cat likes the cow.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 31: \nHowever, we have another rule that \"The cow likes the lion.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 32: \nHowever, we have another rule that \"The lion chases the cow.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 33: \nHowever, we have another rule that \"The lion is not cold.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 34: \nHowever, we have another rule that \"If something chases the lion and the lion is not cold then it visits the cow.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 35: \nHowever, we have another rule that \"If something likes the cow and it visits the cow then the cow visits the cat.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 36: \nHowever, we have another rule that \"If something likes the squirrel and it is big then the squirrel likes the lion.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 37: \nHowever, we have another rule that \"If something likes the cat then it chases the squirrel.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 38: \nHowever, we have another rule that \"If something chases the squirrel then the squirrel visits the cat.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 39: \nHowever, we have another rule that \"The lion chases the cat.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 40: \nHowever, we have another rule that \"The cat is big.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 41: \nHowever, we have another rule that \"The cat is cold.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 42: \nHowever, we have another rule that \"The lion is rough.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 43: \nHowever, we have another rule that \"The lion visits the cat.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 44: \nHowever, we have another rule that \"The cat likes the cow.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 45: \nHowever, we have another rule that \"The cow is blue.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 46: \nHowever, we have another rule that \"The cow does not visit the lion.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 47: \nHowever, we have another rule that \"The lion chases the cow.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 48: \nHowever, we have another rule that \"The lion is not cold.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 49: \nHowever, we have another rule that \"If something chases the lion and the lion is not cold then it visits the cow.\" Unfortunately, this rule does not provide any information about the cat's relationship with itself.\n\nStep 50: \nHowever, we have another rule that \"If something likes the cow and it visits the cow then the cow visits the cat.\" Unfortunately, this rule does not provide any information about",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "likes(cat, cat)",
+          "z3_formula": "likes_cat_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_cat_cat, chases_cat_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_cat_cat, likes_cat_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & big(X) -> likes(squirrel, lion)",
+          "z3_formula": "Implies(And(likes_cat_squirrel, big_cat), likes_squirrel_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & visits(X, cow) -> visits(cow, cat)",
+          "z3_formula": "Implies(And(likes_cat_cow, visits_cat_cow), visits_cow_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & Not(cold(lion)) -> visits(X, cow)",
+          "z3_formula": "Implies(And(chases_cat_lion, Not(cold_lion)), visits_cat_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, cow)",
+          "z3_formula": "Implies(chases_cat_lion, chases_lion_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(squirrel, cat)",
+          "z3_formula": "Implies(chases_cat_squirrel, visits_squirrel_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(rough_cow, chases_cow_cat)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(cow, lion))",
+          "z3_formula": "Not(visits_cow_lion) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(lion))",
+          "z3_formula": "Not(big_lion) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_X_squirrel, likes_X_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_X_cat, likes_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & big(X) -> likes(squirrel, lion)",
+          "z3_formula": "Implies(And(likes_X_squirrel, big_X), likes_squirrel_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & visits(X, cow) -> visits(cow, cat)",
+          "z3_formula": "Implies(And(likes_X_cow, visits_X_cow), visits_cow_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_X_cat, chases_X_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & not(cold(lion)) -> visits(X, cow)",
+          "z3_formula": "Implies(And(chases_X_lion, Not(cold_lion)), visits_X_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, cow)",
+          "z3_formula": "Implies(chases_X_lion, chases_lion_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(squirrel, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, visits_squirrel_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "rough(cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(rough_cow, chases_cow_cat)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_lion_squirrel, likes_lion_cat)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, squirrel)",
+          "z3_formula": "chases_lion_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_lion_cat, chases_lion_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, squirrel)",
+          "z3_formula": "chases_lion_squirrel == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not big(lion)",
+          "z3_formula": "Not(big_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & visits(X, cow) -> visits(X, cat)",
+          "z3_formula": "Implies(And(likes_cat_cow, visits_cat_cow), visits_cat_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cat_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_cat_cat, chases_cat_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cow, squirrel)",
+          "z3_formula": "chases_cat_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, X)",
+          "z3_formula": "Implies(chases_cat_lion, chases_lion_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cat, lion)",
+          "z3_formula": "chases_cat_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & visits(X, cow) -> visits(X, cat)",
+          "z3_formula": "Implies(And(likes_cat_cow, visits_cat_cow), visits_cat_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "visits(cow, cat)",
+          "z3_formula": "visits_cat_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> chases(X, cat)",
+          "z3_formula": "Implies(rough_lion, chases_lion_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cow, cat)",
+          "z3_formula": "chases_cat_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> chases(X, cat)",
+          "z3_formula": "Implies(rough_cow, chases_cow_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not likes(cat, cat)",
+          "z3_formula": "Not(likes_cat_cat)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, lion)",
+          "z3_formula": "likes_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(cow, lion))",
+          "z3_formula": "Not(likes_cow_lion) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(lion))",
+          "z3_formula": "Not(big_lion) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_squirrel, likes_squirrel_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_cat, likes_cat_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & big(X) -> likes(squirrel, lion)",
+          "z3_formula": "Implies(And(likes_squirrel_cat, big_cat), likes_squirrel_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & visits(X, cow) -> visits(cow, cat)",
+          "z3_formula": "Implies(And(likes_cow_cat, visits_cow_cat), visits_cow_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_squirrel_cat, chases_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & not(cold(lion)) -> visits(X, cow)",
+          "z3_formula": "Implies(And(chases_lion, Not(cold_lion)), visits_lion_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, cow)",
+          "z3_formula": "Implies(chases_lion, chases_lion_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(squirrel, cat)",
+          "z3_formula": "Implies(chases_squirrel, visits_squirrel_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "rough(cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(rough_cow, chases_cow_cat)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(cow, lion))",
+          "z3_formula": "not(visits_cow_lion) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(lion))",
+          "z3_formula": "not(big_lion) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_X_squirrel, likes_X_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_X_cat, likes_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & big(X) -> likes(squirrel, lion)",
+          "z3_formula": "Implies(And(likes_X_squirrel, big_X), likes_squirrel_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & visits(X, cow) -> visits(cow, cat)",
+          "z3_formula": "Implies(And(likes_X_cow, visits_X_cow), visits_cow_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_X_cat, chases_X_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & not(cold(lion)) -> visits(X, cow)",
+          "z3_formula": "Implies(And(chases_X_lion, not(cold_lion)), visits_X_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, cow)",
+          "z3_formula": "Implies(chases_X_lion, chases_lion_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(squirrel, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, visits_squirrel_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "rough(cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(rough_cow, chases_cow_cat)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "squirrel_likes(cow)",
+          "z3_formula": "squirrel_likes_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_X_squirrel, likes_X_cat)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_X_cat, likes_X_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & big(X) -> likes_squirrel_lion",
+          "z3_formula": "Implies(And(likes_X_squirrel, big_X), likes_squirrel_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & visits(X, cow) -> visits_cow_cat",
+          "z3_formula": "Implies(And(likes_X_cow, visits_X_cow), visits_cow_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_X_cat, chases_X_squirrel)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & not(cold(lion)) -> visits(X, cow)",
+          "z3_formula": "Implies(And(chases_X_lion, Not(cold_lion)), visits_X_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases_lion_cow",
+          "z3_formula": "Implies(chases_X_lion, chases_lion_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits_squirrel_cat",
+          "z3_formula": "Implies(chases_X_squirrel, visits_squirrel_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(cow) -> chases_cow_cat",
+          "z3_formula": "Implies(rough_cow, chases_cow_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not(likes(cat, cat))",
+          "z3_formula": "Not(likes_cat_cat)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(cow, lion))",
+          "z3_formula": "not(visits_cow_lion) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(lion))",
+          "z3_formula": "not(big_lion) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_X_squirrel, likes_X_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_X_cat, likes_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & big(X) -> likes(squirrel, lion)",
+          "z3_formula": "Implies(And(likes_X_squirrel, big_X), likes_squirrel_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & visits(X, cow) -> visits(cow, cat)",
+          "z3_formula": "Implies(And(likes_X_cow, visits_X_cow), visits_cow_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_X_cat, chases_X_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & not(cold(lion)) -> visits(X, cow)",
+          "z3_formula": "Implies(And(chases_X_lion, not(cold_lion)), visits_X_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, cow)",
+          "z3_formula": "Implies(chases_X_lion, chases_lion_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(squirrel, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, visits_squirrel_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "rough(cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(rough_cow, chases_cow_cat)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_squirrel, likes_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_cat, likes_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & big(X) -> likes(squirrel, lion)",
+          "z3_formula": "Implies(And(likes_squirrel, big_X), likes_lion_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & visits(X, cow) -> visits(cow, cat)",
+          "z3_formula": "Implies(And(likes_cow, visits_cow), visits_cow_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_cat, chases_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & Not(cold(lion)) -> visits(X, cow)",
+          "z3_formula": "Implies(And(chases_lion, Not(cold_lion)), visits_X_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, cow)",
+          "z3_formula": "Implies(chases_lion, chases_lion_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(rough_cow, chases_cow_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "likes(lion, cat)",
+          "z3_formula": "likes_lion_cat == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cow, cat)",
+          "z3_formula": "likes_cow_cat == Unknown",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "chases(cow, cat)",
+          "z3_formula": "chases_cow_cat == Unknown",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, cat)",
+          "z3_formula": "likes_cat_cat == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cat, lion)",
+          "z3_formula": "visits_cat_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, lion)",
+          "z3_formula": "likes_cow_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(cow, lion))",
+          "z3_formula": "Not(visits_cow_lion) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(lion))",
+          "z3_formula": "Not(big_lion) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(squirrel, cow)",
+          "z3_formula": "likes_squirrel_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_X_squirrel, likes_X_cat)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_X_cat, likes_X_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & big(X) -> likes(squirrel, lion)",
+          "z3_formula": "Implies(And(likes_X_squirrel, big_X), likes_squirrel_lion)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & visits(X, cow) -> visits(cow, cat)",
+          "z3_formula": "Implies(And(likes_X_cow, visits_X_cow), visits_cow_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_X_cat, chases_X_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & not(cold(lion)) -> visits(X, cow)",
+          "z3_formula": "Implies(And(chases_X_lion, Not(cold_lion)), visits_X_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, cow)",
+          "z3_formula": "Implies(chases_X_lion, chases_lion_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(squirrel, cat)",
+          "z3_formula": "Implies(chases_X_squirrel, visits_squirrel_cat)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "rough(cow) -> chases(cow, cat)",
+          "z3_formula": "Implies(rough_cow, chases_cow_cat)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "likes(cat, cat)",
+          "z3_formula": "likes_cat_cat == Unknown",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(cat)",
+          "z3_formula": "big_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(cat)",
+          "z3_formula": "cold_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cat, cow)",
+          "z3_formula": "likes_cat_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(lion, cat)",
+          "z3_formula": "chases_lion_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(big(lion))",
+          "z3_formula": "not(big_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(lion)",
+          "z3_formula": "rough_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(lion, cat)",
+          "z3_formula": "visits_lion_cat == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, squirrel) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_squirrel_squirrel, likes_squirrel_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, cat) -> likes(X, cat)",
+          "z3_formula": "Implies(visits_cat_cat, likes_cat_cat)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, squirrel) & big(X) -> likes(squirrel, lion)",
+          "z3_formula": "Implies(And(likes_squirrel_squirrel, big_squirrel), likes_squirrel_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) & visits(X, cow) -> visits(cow, cat)",
+          "z3_formula": "Implies(And(likes_cow_cow, visits_cow_cow), visits_cow_cat)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cat) -> chases(X, squirrel)",
+          "z3_formula": "Implies(likes_cat_cat, chases_cat_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) & not(cold(lion)) -> visits(X, cow)",
+          "z3_formula": "Implies(And(chases_lion_lion, not(cold_lion)), visits_lion_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, lion) -> chases(lion, cow)",
+          "z3_formula": "Implies(chases_lion_lion, chases_lion_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, squirrel) -> visits(squirrel, cat)",
+          "z3_formula": "Implies(chases_squirrel_squirrel, visits_squirrel_cat)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> chases(X, cat)",
+          "z3_formula": "Implies(rough_cow, chases_cow_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(cow, lion))",
+          "z3_formula": "not(visits_cow_lion)",
+          "source_step": 18
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 197,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 66
+    },
+    "maxsat_stats": {
+      "satisfied": 64,
+      "excluded": 2,
+      "total_weight": 189,
+      "solve_time_ms": 2.0825564861297607
+    },
+    "timing": {
+      "trace_gen_s": 25.178,
+      "extraction_s": 52.624,
+      "dedup_s": 2.546,
+      "maxsat_s": 0.006,
+      "total_s": 80.354
+    }
+  }
+}

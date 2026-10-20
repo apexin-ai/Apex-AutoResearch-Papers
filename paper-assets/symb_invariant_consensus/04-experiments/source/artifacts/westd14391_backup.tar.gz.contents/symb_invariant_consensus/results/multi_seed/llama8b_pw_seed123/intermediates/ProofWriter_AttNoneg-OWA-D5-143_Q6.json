@@ -1,0 +1,1538 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-143_Q6",
+    "problem": "Anne is round. Bob is blue. Bob is kind. Bob is red. Dave is big. Dave is kind. Dave is smart. Fiona is big. Fiona is red. Fiona is rough. Fiona is round. If Bob is round and Bob is red then Bob is rough. Big people are kind. All blue people are big. All round people are blue. All smart, red people are kind. All kind people are rough. All rough, big people are smart. Round, smart people are blue. If Fiona is smart and Fiona is red then Fiona is big.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not smart.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\nRed($x, bool) ::: Is x red?\nBig($x, bool) ::: Is x big?\nSmart($x, bool) ::: Is x smart?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nRound(Anne, True) ::: Anne is round.\nBlue(Bob, True) ::: Bob is blue.\nKind(Bob, True) ::: Bob is kind.\nRed(Bob, True) ::: Bob is red.\nBig(Dave, True) ::: Dave is big.\nKind(Dave, True) ::: Dave is kind.\nSmart(Dave, True) ::: Dave is smart.\nBig(Fiona, True) ::: Fiona is big.\nRed(Fiona, True) ::: Fiona is red.\nRough(Fiona, True) ::: Fiona is rough.\nRound(Fiona, True) ::: Fiona is round.\n\nRules:\nRound(Bob, True) && Red(Bob, True) >>> Rough(Bob, True) ::: If Bob is round and Bob is red then Bob is rough.\nBig($x, True) >>> Kind($x, True) ::: Big people are kind.\nBlue($x, True) >>> Big($x, True) ::: All blue people are big.\nRound($x, True) >>> Blue($x, True) ::: All round people are blue.\nSmart($x, True) && Red($x, True) >>> Kind($x, True) ::: All smart, red people are kind.\nKind($x, True) >>> Rough($x, True) ::: All kind people are rough.\nRough($x, True) && Big($x, True) >>> Smart($x, True) ::: All rough, big people are smart.\nRound($x, True) && Smart($x, True) >>> Blue($x, True) ::: Round, smart people are blue.\nSmart(Fiona, True) && Red(Fiona, True) >>> Big(Fiona, True) ::: If Fiona is smart and Fiona is red then Fiona is big.\n\nQuery:\nSmart(Bob, False) ::: Bob is not smart."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 210.0,
+      "Unknown": 222.0
+    },
+    "answer_counts": {
+      "False": 4,
+      "Unknown": 5
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply logical reasoning to determine whether the statement \"Bob is not smart\" is true, false, or unknown.\n\nGiven statements:\n\n1. Anne is round.\n2. Bob is blue.\n3. Bob is kind.\n4. Bob is red.\n5. Dave is big.\n6. Dave is kind.\n7. Dave is smart.\n8. Fiona is big.\n9. Fiona is red.\n10. Fiona is rough.\n11. Fiona is round.\n12. If Bob is round and Bob is red then Bob is rough.\n13. Big people are kind.\n14. All blue people are big.\n15. All round people are blue.\n16. All smart, red people are kind.\n17. All kind people are rough.\n18. All rough, big people are smart.\n19. Round, smart people are blue.\n20. If Fiona is smart and Fiona is red then Fiona is big.\n\nTo determine whether Bob is smart or not, we need to analyze the given statements and find any information that directly relates to Bob's smartness.\n\nFrom statement 2, we know that Bob is blue.\nFrom statement 4, we know that Bob is red.\nFrom statement 5, we know that Dave is big.\nFrom statement 6, we know that Dave is kind.\nFrom statement 7, we know that Dave is smart.\n\nStatement 15 says that all blue people are big. Since Bob is blue, we can conclude that Bob is big.\n\nStatement 18 says that all rough, big people are smart. However, we cannot directly conclude that Bob is rough, as statement 2 only states that Bob is blue, which does not necessarily mean Bob is round.\n\nHowever, from statement 11 and statement 1, we know that Fiona is round and Anne is round. Also, from statement 2, we know that Bob is blue. From statement 15, we know that all round people are blue. Since Fiona is blue, we can conclude that Fiona is round from statement 15. However, Fiona is round, so from statement 2 we can conclude that Bob is round, because all round people are blue from statement 15. \n\nFrom statement 4 and statement 2, we know that Bob is red and Bob is blue. However, from statement 12, we know that if Bob is round and Bob is red then Bob is rough. Since we have concluded that Bob is round from the previous conclusion, we can apply this rule to conclude that Bob is rough.\n\nNow we know that Bob is big (from statement 15), Bob is rough (from statement 12), and Bob is rough, big (from statement 11 and statement 15).\n\nFrom statement 18, we know that all rough, big people are smart. Since Bob is big and Bob is rough, we can conclude that Bob is smart.\n\nTherefore, the statement \"Bob is not smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is not smart' is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\n1. Given information:\n   - Anne is round.\n   - Bob is blue.\n   - Bob is kind.\n   - Bob is red.\n   - Dave is big.\n   - Dave is kind.\n   - Dave is smart.\n   - Fiona is big.\n   - Fiona is red.\n   - Fiona is rough.\n   - Fiona is round.\n   - If Bob is round and Bob is red then Bob is rough.\n   - Big people are kind.\n   - All blue people are big.\n   - All round people are blue.\n   - All smart, red people are kind.\n   - All kind people are rough.\n   - All rough, big people are smart.\n   - Round, smart people are blue.\n   - If Fiona is smart and Fiona is red then Fiona is big.\n\n2. To determine whether Bob is smart or not, let's consider the given information about Bob.\n   - Bob is blue.\n   - Bob is kind.\n   - Bob is red.\n\n3. From the given information, we know that all blue people are big (1), and all round people are blue (1). Since Bob is blue, it implies that Bob is big because all blue people are big.\n\n4. As Bob is big, and all big people are kind (1), it means that Bob is indeed kind.\n\n5. Now, let's consider the statement 'Bob is round and Bob is red, then Bob is rough' (1). We already know that Bob is blue, red, and big. But we need to check if Bob is round to conclude whether Bob is rough or not.\n\n6. Since all round people are blue (1), and Bob is blue, it implies that Bob is round.\n\n7. Now that we know Bob is round and red, we can apply the rule 'If Bob is round and Bob is red then Bob is rough' (1). Therefore, Bob is indeed rough.\n\n8. From the rule 'All kind people are rough' (1), we know that Bob being kind implies Bob is rough, which we already concluded.\n\n9. Now, let's analyze the statement 'All rough, big people are smart' (1). We know that Bob is rough and big, but this does not directly imply that Bob is smart.\n\n10. To conclude whether Bob is smart or not, we need to look at the rule 'Round, smart people are blue' (1). Since Bob is round and blue, if Bob were smart, it would imply that Bob is indeed smart.\n\n11. However, we also know that 'All smart, red people are kind' (1). As Bob is red and kind, if Bob were smart, it would imply that Bob is indeed smart.\n\n12. From the given information, we don't have a direct rule that states 'Bob is not smart'. Therefore, we cannot conclude that the statement 'Bob is not smart' is true.\n\n13. However, we have multiple conditions that imply Bob could be smart (from steps 10 and 11), but we cannot conclude it with certainty. The only way to conclude 'Bob is smart' is if we apply the rule 'Round, smart people are blue' or 'All smart, red people are kind'. \n\n14. Since we do not have a direct rule that states 'Bob is not smart', and we cannot conclude that Bob is smart with certainty, we cannot conclude that the statement 'Bob is not smart' is true or false. Therefore, the answer is 'unknown'.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know:\n   - Bob is blue.\n   - Bob is kind.\n   - Bob is red.\n   - If Bob is round and Bob is red, then Bob is rough.\n\n2. We also know the following rules:\n   - All blue people are big. (Rule 2)\n   - All round people are blue. (Rule 4)\n   - All smart, red people are kind. (Rule 6)\n   - All kind people are rough. (Rule 7)\n   - All rough, big people are smart. (Rule 8)\n   - Round, smart people are blue. (Rule 9)\n\n3. From Rule 4, since all round people are blue, and we already know that Bob is blue (Rule 1), it means Bob is round.\n4. From Rule 1, since Bob is blue and all blue people are big (Rule 2), it means Bob is big.\n5. From Rules 8 and 7, we can conclude that since all kind people are rough (Rule 7) and all rough, big people are smart (Rule 8), it means Bob is smart.\n\nNow, let's consider the given statement: \"Bob is not smart.\"\n\nFrom our analysis in steps 3-5, we concluded that Bob is smart. Therefore, the statement \"Bob is not smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve the problem, we'll use a process of elimination and logical reasoning based on the given information.\n\n1. All blue people are big. \n   Since Bob is blue, Bob is big. (This is a conclusion we can draw from the first statement)\n\n2. All round people are blue.\n   Since Bob is round, Bob is blue. (From the second statement and the first conclusion)\n\n3. Bob is round and Bob is red. \n   Given that Bob is blue and round, we can't conclude anything new from this statement. However, it matches our previous conclusions.\n\n4. If Bob is blue and Bob is red, then Bob is rough. \n   Since we already know Bob is blue, we can conclude that Bob is rough.\n\n5. All kind people are rough. \n   Since Bob is rough, Bob is kind. (From the fifth statement)\n\n6. Dave is kind. \n   This statement doesn't provide any new information about Bob.\n\n7. All big people are kind. \n   This statement is already covered by the fifth statement, so it doesn't provide any new information.\n\n8. All blue people are big. \n   This is the same as the first statement and doesn't provide any new information.\n\n9. All round people are blue. \n   This is the same as the second statement and doesn't provide any new information.\n\n10. Fiona is red and Fiona is smart. \n    Since Fiona is smart and red, Fiona is big. (From the tenth statement and the first statement)\n\n11. Fiona is big. \n    This is already a conclusion we drew from the tenth statement.\n\n12. All big people are kind. \n    This statement is already covered by the fifth statement, so it doesn't provide any new information.\n\n13. All round people are blue. \n    This is the same as the second statement and doesn't provide any new information.\n\n14. All round people are blue. \n    This is the same as the second statement and doesn't provide any new information.\n\n15. Fiona is round. \n    Since Fiona is round, Fiona is blue. (From the second statement)\n\n16. All round people are blue. \n    This is the same as the second statement and doesn't provide any new information.\n\n17. All smart, red people are kind. \n    This statement doesn't provide any new information about Bob.\n\n18. All kind people are rough. \n    This is already covered by the fifth statement, so it doesn't provide any new information.\n\n19. All blue people are big. \n    This is the same as the first statement and doesn't provide any new information.\n\n20. Round, smart people are blue. \n    This statement doesn't provide any new information about Bob.\n\nBased on the given information, we can conclude that Bob is kind, rough, blue, and big. However, we cannot determine whether Bob is smart or not.\n\nTherefore, the statement \"Bob is not smart\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is not smart' is true, false, or unknown, we need to analyze the given information step by step.\n\n1.  All round people are blue. \n    Since Bob is round, we can conclude that Bob is blue.\n\n2.  All blue people are big. \n    Since Bob is blue, we can conclude that Bob is big.\n\n3.  Dave is big. Dave is kind. Dave is smart. \n    We can conclude that big people are kind, so all big people are kind.\n\n4.  All kind people are rough. \n    Since Bob is kind (because he is big), we can conclude that Bob is rough.\n\n5.  Bob is red. Fiona is red. Fiona is rough. Fiona is round. \n    Since Bob is red and all red people who are rough are also round, we can conclude that Bob is round (because we already concluded that Bob is rough).\n\n6.  Bob is kind. Bob is red. Bob is round. \n    Since Bob is red and round, and all round people are blue, we can conclude that Bob is blue.\n\n7.  All blue people are big. \n    Since we already concluded that Bob is blue, we can confirm that Bob is big.\n\n8.  All smart, red people are kind. \n    We already concluded that Bob is red and kind, but we cannot conclude that Bob is smart from this statement.\n\n9.  All round people are blue. \n    Since Bob is round, we already concluded that Bob is blue.\n\n10. All blue people are big. \n    We already concluded that Bob is big.\n\n11. If Fiona is smart and Fiona is red then Fiona is big. \n    We know that Fiona is red, and from the conclusion that round people are blue and all red people who are rough are also round, we can conclude that Fiona is round.\n\n12. Since Fiona is red and round, we can conclude that Fiona is blue.\n\n13. Since Fiona is blue, we can conclude that Fiona is big.\n\n14. All kind people are rough. \n    Since we already concluded that Bob is kind, we can conclude that Bob is rough.\n\n15. All rough, big people are smart. \n    We already concluded that Bob is rough and big, so we can conclude that Bob is smart.\n\nFrom steps 8 and 15, we can conclude that the statement 'Bob is not smart' is false.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not smart\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nFrom the information given, we know:\n\n1. Bob is blue.\n2. All blue people are big.\n3. All big people are kind.\n4. Bob is kind.\n\nHowever, the information about Bob being blue does not directly tell us about his intelligence. We need to find a connection between Bob's characteristics and the characteristics of smart people.\n\nWe know that:\n\n1. All kind people are rough.\n2. All rough, big people are smart.\n\nSince Bob is kind (from statement 4), we can conclude that Bob is rough (from statement 1). Now, we can connect Bob's roughness with his size. Since Bob is big (from statement 2), we can conclude that Bob is smart (from statement 2).\n\nHowever, we also know that:\n- Bob is red.\n- Bob is round.\n- All blue people are big, but we don't know the color of all big people. However, we do know that all round people are blue.\n\nThis information leads us to a contradiction. Since Bob is round, he must be blue. However, we already know that Bob is blue. This creates a paradox because we can't have both conditions satisfied.\n\nIn this case, we can't determine whether Bob is smart or not because the given information creates a contradiction. The statement \"Bob is not smart\" can't be proven true or false based on the given information.\n\nTherefore, the final answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not smart\" is true, false, or unknown, we need to analyze the given information.\n\nFrom the information provided:\n\n1. Bob is blue. \n2. All blue people are big. \n3. All big people are kind. \n4. All kind people are rough.\n5. All round people are blue. \n6. Bob is round, so Bob is blue (which we already know).\n7. Bob is red, and all round people are blue, so we cannot conclude that Bob is blue from this information. \n8. All round people are blue, so Bob is blue (which we already know).\n9. All blue people are big, so Bob is big.\n10. Bob is kind, which we know from rule 3.\n\nNow, let's look at the information that can help us conclude whether Bob is smart or not. \n\n11. Bob is red, and all smart, red people are kind. However, we already know that Bob is kind, so we cannot conclude that Bob is smart from this information.\n\n12. All rough, big people are smart. Since we know Bob is big and kind, we can conclude that Bob is rough. \n\n13. All rough, big people are smart. Since we know Bob is big and rough, we can conclude that Bob is smart.\n\nHowever, we can also use information 6. Bob is round, so Bob is blue (which we already know). \nWe can use information 5. All round people are blue. \nAnd we can use information 2. All blue people are big. \nWe can then use information 3. All big people are kind. \nWe can use information 4. All kind people are rough.\nAnd we can use information 12. All rough, big people are smart.\n\nThis information can also be used to conclude that Bob is smart.\n\nSince we can conclude from different paths that Bob is smart, the statement \"Bob is not smart\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will use a combination of logical deductions based on the given statements. We will break down the information step by step to determine whether the statement 'Bob is not smart' is true, false, or unknown.\n\nGiven statements:\n1. Anne is round.\n2. Bob is blue.\n3. Bob is kind.\n4. Bob is red.\n5. Dave is big.\n6. Dave is kind.\n7. Dave is smart.\n8. Fiona is big.\n9. Fiona is red.\n10. Fiona is rough.\n11. Fiona is round.\n12. If Bob is round and Bob is red then Bob is rough.\n13. Big people are kind.\n14. All blue people are big.\n15. All round people are blue.\n16. All smart, red people are kind.\n17. All kind people are rough.\n18. All rough, big people are smart.\n19. Round, smart people are blue.\n20. If Fiona is smart and Fiona is red then Fiona is big.\n\nWe will analyze the information step by step to determine the characteristics of Bob.\n\nFrom statement 2, we know that Bob is blue.\nFrom statement 15, we know that all round people are blue.\nFrom statement 11, we know that Fiona is round. \nFrom statement 2, we know that Bob is blue. \nFrom statement 15, we know that all round people are blue. \nHowever, from statement 11, we also know that Fiona is round, but Fiona is blue is not mentioned, we can not conclude Bob is blue because he is round.\nHowever from statement 2, we know that Bob is blue. \n\nFrom statement 15, we know that all round people are blue. \nFrom statement 11, we know that Fiona is round. \nFrom statement 2, we know that Bob is blue. \nHowever we can conclude that Fiona is blue because she is round.\nNow we can conclude that Fiona is blue, but we are looking for information about Bob.\n\nFrom statement 2, we know that Bob is blue.\nFrom statement 14, we know that all blue people are big.\n\nFrom statement 2, we know that Bob is blue.\nFrom statement 14, we know that all blue people are big.\nFrom statement 3, we know that Bob is kind.\nFrom statement 13, we know that big people are kind.\nFrom statement 4, we know that Bob is red.\n\nFrom statement 16, we know that all smart, red people are kind.\nFrom statement 7, we know that Dave is smart.\nFrom statement 6, we know that Dave is kind.\nFrom statement 5, we know that Dave is big.\nFrom statement 3, we know that Bob is kind.\nFrom statement 17, we know that all kind people are rough.\nFrom statement 10, we know that Fiona is rough.\nFrom statement 8, we know that Fiona is big.\n\nFrom statement 18, we know that all rough, big people are smart.\nFrom statement 10, we know that Fiona is rough.\nFrom statement 8, we know that Fiona is big.\nFrom statement 7, we know that Dave is smart.\nHowever we can conclude that Fiona is smart.\n\nFrom statement 19, we know that round, smart people are blue.\nFrom statement 7, we know that Dave is smart.\nFrom statement 11, we know that Fiona is round.\nFrom statement 11, we know that Fiona is round.\nFrom statement 2, we know that Bob is blue.\nFrom statement 15, we know that all round people are blue.\nHowever we can conclude that Fiona is blue because she is round.\n\nHowever, we are looking for information about Bob, we can not conclude that Bob is smart or not from the statements about Fiona.\n\nNow let's look at the statement 'If Bob is round and Bob is red then Bob is rough.'\nFrom statement 4, we know that Bob is red.\nFrom statement 11, we know that Fiona is round.\nFrom statement 2, we know that Bob is blue.\nHowever we can not conclude that Bob is round.\n\nHowever, we can not conclude that Bob is round or not, but we can conclude that Bob is blue.\n\nHowever, we know that Bob is blue, but we do not know if Bob is round or not.\nFrom statement 15, we know that all round people are blue.\nFrom statement 11, we know that Fiona is round.\nHowever, we know that Bob is blue, but we do not know if Bob is round or not.\nHowever, we can not conclude that Bob is not round.\n\nFrom statement 11, we know that Fiona is round.\nHowever, we can not conclude that Bob is not round.\n\nHowever, we can not conclude that Bob is round or not.\n\nNow let's look at the statement 'If Bob is red and Bob is kind then Bob is smart.'\nFrom statement 4, we know that Bob is red.\nFrom statement 3, we know that Bob is kind.\nHowever, we can not conclude that Bob is smart.\n\nFrom statement 16, we know that all smart, red people are kind.\nHowever, we can not conclude that Bob is smart.\n\nHowever, we can not conclude that Bob is smart or not.\n\nNow let's look at the statement 'If Bob is blue then Bob is big.'\nFrom statement 2, we know that Bob is blue.\nHowever, we can not conclude that Bob is big.\n\nHowever, we can not conclude that Bob is big.\n\nHowever, from statement 14, we know that all blue people are big.\nHowever, we can conclude that Bob is big because he is blue.\n\nHowever, we can conclude that Bob is big because he is blue.\n\nFrom statement 4, we know that Bob is red.\nHowever, we can not conclude that Bob is big.\n\nHowever, we can not conclude that Bob is big.\n\nHowever, we can conclude that Bob is big because he is blue.\n\nNow let's look at the statement 'Bob is not smart.'\nFrom statement 7, we know that Dave is smart.\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is smart or not.\n\nHowever, we can not conclude that Bob is not smart.\n\nFrom statement 7, we know that Dave is smart.\nFrom statement 7, we know that Dave is smart.\nFrom statement 6, we know that Dave is kind.\nFrom statement 5, we know that Dave is big.\nHowever, we can not conclude that Bob is not smart.\n\nFrom statement 7, we know that Dave is smart.\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is smart or not.\n\nFrom statement 7, we know that Dave is smart.\nFrom statement 7, we know that Dave is smart.\nFrom statement 6, we know that Dave is kind.\nFrom statement 5, we know that Dave is big.\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is smart or not.\n\nFrom statement 7, we know that Dave is smart.\nFrom statement 7, we know that Dave is smart.\nFrom statement 6, we know that Dave is kind.\nFrom statement 5, we know that Dave is big.\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is smart or not.\n\nFrom statement 7, we know that Dave is smart.\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nFrom statement 7, we know that Dave is smart.\nFrom statement 3, we know that Bob is kind.\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is smart or not.\n\nFrom statement 7, we know that Dave is smart.\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nFrom statement 7, we know that Dave is smart.\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is smart or not.\n\nFrom statement 7, we know that Dave is smart.\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nFrom statement 7, we know that Dave is smart.\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is smart or not.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is smart or not.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever, we can not conclude that Bob is not smart.\n\nHowever",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is round. (Premise)\n2. Bob is red. (Premise)\n3. All round people are blue. (Premise)\n   Therefore, Bob is blue. (Inference)\n\nNow, we know that Bob is blue, but we need to find more information about Bob's characteristics.\n\n4. Bob is blue. (From step 3)\n5. All blue people are big. (Premise)\n   Therefore, Bob is big. (Inference)\n\nWe now know that Bob is big and blue.\n\n6. Bob is big. (From step 5)\n7. Bob is blue. (From step 4)\n8. All blue people are big. (Premise)\n   Therefore, Bob is kind. (Inference, because big people are kind)\n\nHowever, we need to check if Bob is smart or not.\n\n9. Bob is blue. (From step 3)\n10. Bob is red. (Premise)\n11. All round people are blue. (Premise)\n12. Bob is round. (Premise)\n    Therefore, Bob is blue. (Inference, which we already know)\n13. Bob is red. (Premise)\n14. Bob is round. (Premise)\n15. Bob is kind. (From step 8)\n    Therefore, Bob is rough. (Inference, because all kind people are rough)\n\nHowever, we still don't know if Bob is smart or not.\n\n16. Bob is blue. (From step 3)\n17. Bob is big. (From step 5)\n18. Bob is red. (Premise)\n19. Bob is rough. (From step 15)\n    Therefore, Bob is smart. (Inference, because rough, big people are smart)\n\nNow, we have a contradiction. We previously found that Bob is kind (step 8), but we also found that Bob is smart (step 19). However, all smart, red people are kind (Premise). This means that if Bob is red and smart, then he must be kind, but we already know that he is kind (step 8).\n\nLet's analyze this further:\n\n20. Bob is red. (Premise)\n21. Bob is smart. (From step 19)\n22. All smart, red people are kind. (Premise)\n    Therefore, Bob is kind. (Inference, which we already know)\n\nWe still have a contradiction, but it seems that the given premises do not lead to a definite conclusion about Bob's smartness.\n\nHowever, we can conclude that the given information does not directly contradict the statement \"Bob is not smart.\" Since we cannot conclude that Bob is smart or not based on the given information, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine if the statement \"Bob is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Bob is blue. (Given)\n2. All blue people are big. (Given)\n   Therefore, Bob is big. (From 1 and 2)\n\n3. Bob is round. (Given)\n4. All round people are blue. (Given)\n   Therefore, Bob is blue. (From 3 and 4)\n   But we already know Bob is blue from (1), so this does not add any new information.\n\n5. Bob is red. (Given)\n6. Bob is kind. (Given)\n7. If Bob is round and Bob is red then Bob is rough. (Given)\n   We know Bob is round from (3) and Bob is red from (5), so Bob is rough. (From 3, 5, and 7)\n\n8. All round people are blue. (Given)\n   We already know Bob is round from (3) and Bob is blue from (1), but we can also conclude that Bob is blue because all round people are blue.\n\n9. Dave is big. (Given)\n10. Dave is kind. (Given)\n11. Dave is smart. (Given)\n12. Fiona is big. (Given)\n13. Fiona is red. (Given)\n14. Fiona is rough. (Given)\n15. Fiona is round. (Given)\n16. All blue people are big. (Given)\n   We know Bob is blue from (1), so Bob is big from (16).\n\n17. All big people are kind. (Given)\n   We know Dave is big from (9) and Fiona is big from (12), so Dave and Fiona are kind from (17).\n\n18. All round people are blue. (Given)\n   We know Bob is round from (3), so Bob is blue from (18).\n\n19. All round, smart people are blue. (Given)\n   We know Bob is round from (3) and Bob is smart from (11), but we cannot conclude Bob is blue because we already know Bob is blue from (1).\n\n20. If Fiona is smart and Fiona is red then Fiona is big. (Given)\n   We know Fiona is smart from (11) and Fiona is red from (13), so Fiona is big from (20).\n\n21. All rough, big people are smart. (Given)\n   We know Fiona is rough from (14) and Fiona is big from (20), so Fiona is smart from (21).\n\n22. All kind people are rough. (Given)\n   We know Dave is kind from (10) and Fiona is kind from (17), so Dave and Fiona are rough from (22).\n\n23. All smart, red people are kind. (Given)\n   We know Dave is smart from (11) and Dave is red from (11), but we cannot conclude Dave is kind because we already know Dave is kind from (10).\n\n24. All round people are blue. (Given)\n   We know Fiona is round from (15), so Fiona is blue from (24).\n\n25. All big people are kind. (Given)\n   We know Fiona is big from (20), so Fiona is kind from (25).\n\n26. If Bob is round and Bob is red then Bob is rough. (Given)\n   We know Bob is round from (3) and Bob is red from (5), so Bob is rough from (26).\n\n27. All round, smart people are blue. (Given)\n   We know Bob is round from (3) and Bob is smart from (11), but we cannot conclude Bob is blue because we already know Bob is blue from (1).\n\n28. All kind people are rough. (Given)\n   We know Dave is kind from (10) and Fiona is kind from (17), so Dave and Fiona are rough from (28).\n\n29. All smart, red people are kind. (Given)\n   We know Fiona is smart from (21) and Fiona is red from (13), so Fiona is kind from (29).\n\n30. All rough, big people are smart. (Given)\n   We know Fiona is rough from (14) and Fiona is big from (20), so Fiona is smart from (30).\n\n31. Round, smart people are blue. (Given)\n   We know Bob is round from (3) and Bob is smart from (11), but we cannot conclude Bob is blue because we already know Bob is blue from (1).\n\n32. All blue people are big. (Given)\n   We know Bob is blue from (1), so Bob is big from (32).\n\n33. All round people are blue. (Given)\n   We know Bob is round from (3), so Bob is blue from (33).\n\n34. All big people are kind. (Given)\n   We know Fiona is big from (20), so Fiona is kind from (34).\n\n35. All kind people are rough. (Given)\n   We know Dave is kind from (10) and Fiona is kind from (34), so Dave and Fiona are rough from (35).\n\n36. All smart, red people are kind. (Given)\n   We know Dave is smart from (11) and Dave is red from (11), but we cannot conclude Dave is kind because we already know Dave is kind from (10).\n\n37. All rough, big people are smart. (Given)\n   We know Fiona is rough from (14) and Fiona is big from (20), so Fiona is smart from (37).\n\n38. Round, smart people are blue. (Given)\n   We know Bob is round from (3) and Bob is smart from (11), but we cannot conclude Bob is blue because we already know Bob is blue from (1).\n\n39. All blue people are big. (Given)\n   We know Bob is blue from (1), so Bob is big from (39).\n\n40. All round people are blue. (Given)\n   We know Bob is round from (3), so Bob is blue from (40).\n\n41. All big people are kind. (Given)\n   We know Fiona is big from (20), so Fiona is kind from (41).\n\n42. All kind people are rough. (Given)\n   We know Dave is kind from (10) and Fiona is kind from (41), so Dave and Fiona are rough from (42).\n\n43. All smart, red people are kind. (Given)\n   We know Dave is smart from (11) and Dave is red from (11), but we cannot conclude Dave is kind because we already know Dave is kind from (10).\n\n44. All rough, big people are smart. (Given)\n   We know Fiona is rough from (14) and Fiona is big from (20), so Fiona is smart from (44).\n\n45. Round, smart people are blue. (Given)\n   We know Bob is round from (3) and Bob is smart from (11), but we cannot conclude Bob is blue because we already know Bob is blue from (1).\n\n46. All blue people are big. (Given)\n   We know Bob is blue from (1), so Bob is big from (46).\n\n47. All round people are blue. (Given)\n   We know Bob is round from (3), so Bob is blue from (47).\n\n48. All big people are kind. (Given)\n   We know Fiona is big from (20), so Fiona is kind from (48).\n\n49. All kind people are rough. (Given)\n   We know Dave is kind from (10) and Fiona is kind from (48), so Dave and Fiona are rough from (49).\n\n50. All smart, red people are kind. (Given)\n   We know Dave is smart from (11) and Dave is red from (11), but we cannot conclude Dave is kind because we already know Dave is kind from (10).\n\n51. All rough, big people are smart. (Given)\n   We know Fiona is rough from (14) and Fiona is big from (20), so Fiona is smart from (51).\n\n52. Round, smart people are blue. (Given)\n   We know Bob is round from (3) and Bob is smart from (11), but we cannot conclude Bob is blue because we already know Bob is blue from (1).\n\n53. All blue people are big. (Given)\n   We know Bob is blue from (1), so Bob is big from (53).\n\n54. All round people are blue. (Given)\n   We know Bob is round from (3), so Bob is blue from (54).\n\n55. All big people are kind. (Given)\n   We know Fiona is big from (20), so Fiona is kind from (55).\n\n56. All kind people are rough. (Given)\n   We know Dave is kind from (10) and Fiona is kind from (55), so Dave and Fiona are rough from (56).\n\n57. All smart, red people are kind. (Given)\n   We know Dave is smart from (11) and Dave is red from (11), but we cannot conclude Dave is kind because we already know Dave is kind from (10).\n\n58. All rough, big people are smart. (Given)\n   We know Fiona is rough from (14) and Fiona is big from (20), so Fiona is smart from (58).\n\n59. Round, smart people are blue. (Given)\n   We know Bob is round from (3) and Bob is smart from (11), but we cannot conclude Bob is blue because we already know Bob is blue from (1).\n\n60. All blue people are big. (Given)\n   We know Bob is blue from (1), so Bob is big from (60).\n\n61. All round people are blue. (Given)\n   We know Bob is round from (3), so Bob is blue from (61).\n\n62. All big people are kind.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not smart\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Anne is round.\n   - Bob is blue.\n   - Bob is kind.\n   - Bob is red.\n   - Dave is big.\n   - Dave is kind.\n   - Dave is smart.\n   - Fiona is big.\n   - Fiona is red.\n   - Fiona is rough.\n   - Fiona is round.\n   - If Bob is round and Bob is red then Bob is rough.\n   - Big people are kind.\n   - All blue people are big.\n   - All round people are blue.\n   - All smart, red people are kind.\n   - All kind people are rough.\n   - All rough, big people are smart.\n   - Round, smart people are blue.\n   - If Fiona is smart and Fiona is red then Fiona is big.\n\n2. We can start by analyzing the given statements about Bob. \n   - Bob is blue (given)\n   - Bob is red (given)\n\n3. From the statement \"If Bob is round and Bob is red then Bob is rough,\" we can't directly conclude Bob's roughness because we don't know if Bob is round. However, we can look at other statements.\n\n4. We know that all round people are blue (given).\n   - Since Bob is blue (given), we can't conclude if Bob is round because we don't know if blue people are round in all cases.\n\n5. However, from the statement \"All blue people are big\" (given), we can conclude that Bob is big.\n\n6. From the statement \"Big people are kind\" (given), we can conclude that Bob is kind.\n\n7. From the statement \"All kind people are rough\" (given), we can conclude that Bob is rough.\n\n8. We don't have any information about Bob being smart. Therefore, we cannot conclude if the statement \"Bob is not smart\" is true or false. We are also not able to conclude it's false because we don't have any information about Bob being smart.\n\n   Therefore, the statement \"Bob is not smart\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not smart\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nFrom the given information:\n- Bob is blue.\n- Bob is kind.\n- Bob is red.\n- Bob is round.\n\nWe also have the following rules:\n1. All blue people are big.\n2. All round people are blue.\n3. All blue people are big.\n4. All round people are blue.\n5. All blue people are big. (Repeated, but still a valid rule)\n6. If Bob is round and Bob is red then Bob is rough.\n7. Big people are kind.\n8. All blue people are big.\n9. All round people are blue.\n10. All kind people are rough.\n11. All rough, big people are smart.\n12. Round, smart people are blue.\n\nFrom rule 2 and the fact that Bob is round, we can conclude that Bob is blue (rule 2: all round people are blue).\nFrom rule 1 and the fact that Bob is blue, we can conclude that Bob is big (rule 1: all blue people are big).\nFrom rule 7 and the fact that Bob is big, we can conclude that Bob is kind (rule 7: big people are kind).\nFrom rule 10 and the fact that Bob is kind, we can conclude that Bob is rough (rule 10: all kind people are rough).\n\nHowever, we cannot determine Bob's intelligence (smart or not smart) directly from the given information and rules. The rules do not provide any direct relationship between being blue, being big, being kind, or being round and being smart.\n\nBut we can use rule 11 (all rough, big people are smart) and rule 6 (if Bob is round and Bob is red then Bob is rough). We know that Bob is round and Bob is red (given information), so from rule 6, we can conclude that Bob is rough. \nSince we know that Bob is big (rule 1), rough (rule 6), and big (rule 1), we can apply rule 11, and conclude that Bob is smart.\n\nTherefore, the statement \"Bob is not smart\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_bob, red_bob), rough_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_X, kind_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_X, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_X, red_X), kind_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_X, big_X), smart_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, smart_X), blue_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_X, red_X), big_X)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_bob, red_bob), rough_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_X, kind_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_X, big_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_X, red_X), kind_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_X, big_X), smart_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, smart_X), blue_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_X, red_X), kind_X)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": "Unknown"
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_bob, red_bob), rough_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_bob, big_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_bob, red_bob), kind_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_bob, rough_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_bob, big_bob), smart_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_bob, smart_bob), blue_bob)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_bob, big_bob)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob) & red(bob)",
+          "z3_formula": "And(round_bob, red_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(blue_bob, red_bob), rough_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_bob, kind_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_bob, kind_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(red_fiona, smart_fiona), big_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_fiona, blue_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "smart(fiona) & red(fiona)",
+          "z3_formula": "And(smart_fiona, red_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_fiona, red_fiona), kind_fiona)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not smart(bob)",
+          "z3_formula": "Not(smart_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not smart(bob)",
+          "z3_formula": "Not(smart_bob)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_bob, big_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_dave, kind_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(X)",
+          "z3_formula": "kind_X == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(red_bob, rough_bob), round_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_bob, big_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & kind(X) -> kind(X)",
+          "z3_formula": "Implies(And(red_bob, kind_bob), kind_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & rough(X) -> round(X)",
+          "z3_formula": "Implies(And(red_bob, rough_bob), round_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_bob, big_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & kind(X) -> kind(X)",
+          "z3_formula": "Implies(And(red_bob, kind_bob), kind_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(red_bob, round_bob), blue_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_bob, big_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & smart(X) -> kind(X)",
+          "z3_formula": "Implies(And(red_bob, smart_bob), kind_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_fiona, blue_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_fiona, big_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_bob, rough_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_bob, big_bob), smart_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_bob, big_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_bob, kind_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_bob, big_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_bob, kind_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_bob, rough_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_bob, big_bob), smart_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 11
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_bob, red_bob), rough_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_X, kind_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_X, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_X, red_X), kind_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_X, big_X), smart_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, smart_X), blue_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_X, red_X), big_X)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_bob, big_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_bob, big_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_bob, red_bob), kind_bob)",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 24
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_bob, red_bob), rough_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_X, kind_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_X, big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> round(X)",
+          "z3_formula": "Implies(blue_X, round_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & red(X) -> kind(X)",
+          "z3_formula": "Implies(And(smart_X, red_X), kind_X)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_X, rough_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_X, big_X), smart_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, smart_X), blue_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_X, red_X), big_X)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> big(X)",
+          "z3_formula": "Implies(blue_bob, big_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_bob, red_bob), rough_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_bob, kind_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> rough(X)",
+          "z3_formula": "Implies(kind_bob, rough_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> smart(X)",
+          "z3_formula": "Implies(And(rough_bob, big_bob), smart_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & smart(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_bob, smart_bob), blue_bob)",
+          "source_step": 11
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 235,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 49
+    },
+    "maxsat_stats": {
+      "satisfied": 48,
+      "excluded": 1,
+      "total_weight": 233,
+      "solve_time_ms": 1.2830868363380432
+    },
+    "timing": {
+      "trace_gen_s": 24.768,
+      "extraction_s": 54.926,
+      "dedup_s": 2.235,
+      "maxsat_s": 0.004,
+      "total_s": 81.933
+    }
+  }
+}

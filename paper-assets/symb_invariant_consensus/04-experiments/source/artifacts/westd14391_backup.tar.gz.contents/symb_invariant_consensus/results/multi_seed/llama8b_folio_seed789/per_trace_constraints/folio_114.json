@@ -1,0 +1,479 @@
+{
+  "pid": "folio_114",
+  "gt": "False",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mountain_range(picuris_mountains, new_mexico) | mountain_range(picuris_mountains, texas)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico == True | mountain_range_picuris_mountains_texas == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(juan_de_onate, picuris_mountains)",
+          "z3_formula": "visited_juan_de_onate_picuris_mountains == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "donated(harding_pegmatite_mine)",
+          "z3_formula": "donated_harding_pegmatite_mine == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_donated_mines_in_texas",
+          "z3_formula": "no_donated_mines_in_texas == True",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mountain_range_in_new_mexico_or_texas(picuris_mountains)",
+          "z3_formula": "mountain_range_in_new_mexico_or_texas_picuris_mountains == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(juan_de_onate, picuris_mountains)",
+          "z3_formula": "visited_juan_de_onate_picuris_mountains == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "donated(harding_pegmatite_mine, picuris_mountains)",
+          "z3_formula": "donated_harding_pegmatite_mine_picuris_mountains == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_donated_mines_in_texas",
+          "z3_formula": "no_donated_mines_in_texas == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not mountain_range_in_new_mexico(picuris_mountains)",
+          "z3_formula": "Not(mountain_range_in_new_mexico_picuris_mountains)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mountain_range(picuris_mountains, new_mexico) | mountain_range(picuris_mountains, texas)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico == True | mountain_range_picuris_mountains_texas == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(juan_de_onate, picuris_mountains)",
+          "z3_formula": "visited_juan_de_onate_picuris_mountains == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(harding_pegmatite_mine, picuris_mountains)",
+          "z3_formula": "located_in_harding_pegmatite_mine_picuris_mountains == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "donated(harding_pegmatite_mine)",
+          "z3_formula": "donated_harding_pegmatite_mine == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not (mountain_range(X, texas) & donated_mine(Y, X))",
+          "z3_formula": "Not(And(mountain_range_X_texas, donated_mine_Y_X))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not mountain_range(picuris_mountains, new_mexico)",
+          "z3_formula": "Not(mountain_range_picuris_mountains_new_mexico)",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mountain_range_in_new_mexico_or_texas(picuris_mountains)",
+          "z3_formula": "mountain_range_in_new_mexico_or_texas_picuris_mountains == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(picuris_mountains, juan_de_onate)",
+          "z3_formula": "visited_picuris_mountains_juan_de_onate == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "donated(harding_pegmatite_mine, picuris_mountains)",
+          "z3_formula": "donated_harding_pegmatite_mine_picuris_mountains == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_donated_mines_in_texas",
+          "z3_formula": "no_donated_mines_in_texas == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mountain_range_in_new_mexico_or_texas(X) -> (located_in_new_mexico(X) | located_in_texas(X))",
+          "z3_formula": "Implies(mountain_range_in_new_mexico_or_texas_picuris_mountains, Or(located_in_new_mexico_picuris_mountains, located_in_texas_picuris_mountains))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_picuris_mountains(X) -> located_in_new_mexico_or_texas(X)",
+          "z3_formula": "Implies(located_in_picuris_mountains_harding_pegmatite_mine, mountain_range_in_new_mexico_or_texas_picuris_mountains)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_texas(X) & donated(X) -> contradiction",
+          "z3_formula": "Implies(And(located_in_texas_harding_pegmatite_mine, donated_harding_pegmatite_mine_picuris_mountains), Not(True))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_new_mexico(picuris_mountains)",
+          "z3_formula": "located_in_new_mexico_picuris_mountains == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_picuris_mountains(harding_pegmatite_mine)",
+          "z3_formula": "located_in_picuris_mountains_harding_pegmatite_mine == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not located_in_new_mexico(picuris_mountains)",
+          "z3_formula": "Not(located_in_new_mexico_picuris_mountains) == True",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mountain_range(picuris_mountains, new_mexico) | mountain_range(picuris_mountains, texas)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico == True | mountain_range_picuris_mountains_texas == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(picuris_mountains, juan_de_onate)",
+          "z3_formula": "visited_picuris_mountains_juan_de_onate == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mine(harding_pegmatite_mine, picuris_mountains) & donated(harding_pegmatite_mine)",
+          "z3_formula": "mine_harding_pegmatite_mine_picuris_mountains == True & donated_harding_pegmatite_mine == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(mountain_range(_, texas) & mine(_, texas) & donated(_))",
+          "z3_formula": "Not(And(mountain_range_texas, mine_texas, donated_texas))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mountain_range(picuris_mountains, texas) -> mine(harding_pegmatite_mine, texas) -> donated(harding_pegmatite_mine)",
+          "z3_formula": "Implies(mountain_range_picuris_mountains_texas, Implies(mine_harding_pegmatite_mine_picuris_mountains_texas, donated_harding_pegmatite_mine))",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(mountain_range(picuris_mountains, new_mexico))",
+          "z3_formula": "Not(mountain_range_picuris_mountains_new_mexico)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "False",
+      "constraints": []
+    },
+    {
+      "trace_idx": 6,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mountain_range(picuris_mountains, new_mexico) | mountain_range(picuris_mountains, texas)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico == True | mountain_range_picuris_mountains_texas == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(juan_de_onate, picuris_mountains)",
+          "z3_formula": "visited_juan_de_onate_picuris_mountains == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(harding_pegmatite_mine, picuris_mountains) & donated(harding_pegmatite_mine)",
+          "z3_formula": "located_in_harding_pegmatite_mine_picuris_mountains == True & donated_harding_pegmatite_mine == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "not (mountain_range(X, texas) & donated_mine(X))",
+          "z3_formula": "Not(And(mountain_range_X_texas, donated_mine_X))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "mountain_range(picuris_mountains, new_mexico)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not located_in(harding_pegmatite_mine, mountain_range_in_new_mexico)",
+          "z3_formula": "Not(located_in_harding_pegmatite_mine_mountain_range_in_new_mexico)",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mountain_range(picuris_mountains, new_mexico) | mountain_range(picuris_mountains, texas)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico == True | mountain_range_picuris_mountains_texas == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(juan_de_onate, picuris_mountains)",
+          "z3_formula": "visited_juan_de_onate_picuris_mountains == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(harding_pegmatite_mine, picuris_mountains)",
+          "z3_formula": "located_in_harding_pegmatite_mine_picuris_mountains == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "donated(harding_pegmatite_mine)",
+          "z3_formula": "donated_harding_pegmatite_mine == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "no_donated_mines_in_texas",
+          "z3_formula": "no_donated_mines_in_texas == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "no_donated_mines_in_texas -> not(mountain_range(picuris_mountains, texas))",
+          "z3_formula": "Implies(no_donated_mines_in_texas, Not(mountain_range_picuris_mountains_texas))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(mountain_range(picuris_mountains, new_mexico))",
+          "z3_formula": "Not(mountain_range_picuris_mountains_new_mexico) == True",
+          "source_step": 7
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mountain_range(picuris_mountains, new_mexico) | mountain_range(picuris_mountains, texas)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico == True | mountain_range_picuris_mountains_texas == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(juan_de_onate, picuris_mountains)",
+          "z3_formula": "visited_juan_de_onate_picuris_mountains == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(harding_pegmatite_mine, picuris_mountains)",
+          "z3_formula": "located_in_harding_pegmatite_mine_picuris_mountains == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "donated(harding_pegmatite_mine)",
+          "z3_formula": "donated_harding_pegmatite_mine == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "mountain_range(X, texas) & donated_mine(Y, X) -> False",
+          "z3_formula": "Implies(And(mountain_range_picuris_mountains_texas, donated_mine_harding_pegmatite_mine_picuris_mountains), False)",
+          "source_step": 4
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mountain_range(picuris_mountains, new_mexico) | mountain_range(picuris_mountains, texas)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico == True | mountain_range_picuris_mountains_texas == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(juan_de_onate, picuris_mountains)",
+          "z3_formula": "visited_juan_de_onate_picuris_mountains == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(harding_pegmatite_mine, picuris_mountains)",
+          "z3_formula": "located_in_harding_pegmatite_mine_picuris_mountains == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_donated_mines_in_texas",
+          "z3_formula": "no_donated_mines_in_texas == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not mountain_range(picuris_mountains, texas)",
+          "z3_formula": "Not(mountain_range_picuris_mountains_texas) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "mountain_range(picuris_mountains, new_mexico)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "located_in(harding_pegmatite_mine, new_mexico)",
+          "z3_formula": "located_in_harding_pegmatite_mine_new_mexico == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not located_in(harding_pegmatite_mine, new_mexico)",
+          "z3_formula": "Not(located_in_harding_pegmatite_mine_new_mexico) == False",
+          "source_step": 8
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mountain_range(picuris_mountains, new_mexico) | mountain_range(picuris_mountains, texas)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico == True | mountain_range_picuris_mountains_texas == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(juan_de_onate, picuris_mountains)",
+          "z3_formula": "visited_juan_de_onate_picuris_mountains == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(harding_pegmatite_mine, picuris_mountains)",
+          "z3_formula": "located_in_harding_pegmatite_mine_picuris_mountains == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "no_donated_mines_in_texas",
+          "z3_formula": "no_donated_mines_in_texas == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "located_in(harding_pegmatite_mine, new_mexico)",
+          "z3_formula": "located_in_harding_pegmatite_mine_new_mexico == True",
+          "source_step": 5
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "False",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "mountain_range(picuris_mountains, new_mexico) | mountain_range(picuris_mountains, texas)",
+          "z3_formula": "mountain_range_picuris_mountains_new_mexico == True | mountain_range_picuris_mountains_texas == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "visited(juan_de_onate, picuris_mountains)",
+          "z3_formula": "visited_juan_de_onate_picuris_mountains == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in(harding_pegmatite_mine, picuris_mountains)",
+          "z3_formula": "located_in_harding_pegmatite_mine_picuris_mountains == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "located_in(X, Y) & donated(X) -> mountain_range(Y, new_mexico)",
+          "z3_formula": "Implies(And(located_in_harding_pegmatite_mine_picuris_mountains, donated_harding_pegmatite_mine), mountain_range_picuris_mountains_new_mexico)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not mountain_range(picuris_mountains, new_mexico)",
+          "z3_formula": "Not(mountain_range_picuris_mountains_new_mexico)",
+          "source_step": 5
+        }
+      ]
+    }
+  ]
+}

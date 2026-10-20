@@ -1,0 +1,801 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-528_Q6",
+    "problem": "Charlie is big. Dave is nice. Dave is round. Erin is big. Erin is nice. Fiona is red. Fiona is rough. If someone is red and big then they are nice. If Dave is round and Dave is rough then Dave is big. If someone is round and young then they are big. All nice people are young. If Charlie is round and Charlie is big then Charlie is young. If someone is red then they are big. All rough, green people are round. If someone is big then they are red. Young people are green.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not nice.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nRound($x, bool) ::: Is x round?\nRed($x, bool) ::: Is x red?\nRough($x, bool) ::: Is x rough?\nGreen($x, bool) ::: Is x green?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nBig(Charlie, True) ::: Charlie is big.\nNice(Dave, True) ::: Dave is nice.\nRound(Dave, True) ::: Dave is round.\nBig(Erin, True) ::: Erin is big.\nNice(Erin, True) ::: Erin is nice.\nRed(Fiona, True) ::: Fiona is red.\nRough(Fiona, True) ::: Fiona is rough.\n\nRules:\nRed($x, True) && Big($x, True) >>> Nice($x, True) ::: If someone is red and big then they are nice.\nRound(Dave, True) && Rough(Dave, True) >>> Big(Dave, True) ::: If Dave is round and Dave is rough then Dave is big.\nRound($x, True) && Young($x, True) >>> Big($x, True) ::: If someone is round and young then they are big.\nNice($x, True) >>> Young($x, True) ::: All nice people are young.\nRound(Charlie, True) && Big(Charlie, True) >>> Young(Charlie, True) ::: If Charlie is round and Charlie is big then Charlie is young.\nRed($x, True) >>> Big($x, True) ::: If someone is red then they are big.\nRough($x, True) && Green($x, True) >>> Round($x, True) ::: All rough, green people are round.\nBig($x, True) >>> Red($x, True) ::: If someone is big then they are red.\nYoung($x, True) >>> Green($x, True) ::: Young people are green.\n\nQuery:\nNice(Fiona, False) ::: Fiona is not nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 109.0,
+      "Unknown": 53.0
+    },
+    "answer_counts": {
+      "False": 11,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Fiona is not nice\" is true, false, or unknown, we need to use the given premises and apply logical reasoning.\n\nStep 1: Analyze the premises and identify relevant information about Fiona.\n- Fiona is red (F1)\n- Fiona is rough (F2)\n\nStep 2: Apply the premises to determine if Fiona is big.\n- If someone is red and big then they are nice. (P1)\n- If someone is red then they are big. (P3)\nSince Fiona is red (F1), we can infer that Fiona is big (B) because of P3.\n\nStep 3: Determine if Fiona is nice based on the information gathered.\n- Since Fiona is big (B), we know from P1 that she must be nice (N) if she is red and big. However, we already know Fiona is red, so we can conclude that Fiona is indeed nice (N).\n\nStep 4: Evaluate the statement \"Fiona is not nice.\"\n- Given that we have determined Fiona is nice (N), we can conclude that the statement \"Fiona is not nice\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not nice\" is true, false, or unknown, we need to analyze the given information and the logical deductions that can be made from it.\n\n1. Fiona is red. (Given)\n2. Fiona is rough. (Given)\n3. All rough, green people are round. (Given)\n   Since Fiona is not green, this statement doesn't apply to Fiona.\n4. If someone is red and big then they are nice. (Given)\n5. If someone is big then they are red. (Given)\n   This implies that Fiona being big would also make her red, which contradicts statement 4. So, we cannot conclude that Fiona is nice based on this statement alone.\n6. Young people are green. (Given)\n   We cannot conclude that Fiona is young based on this statement alone because Fiona can also be round.\n7. If Dave is round and Dave is rough then Dave is big. (Given)\n   This statement does not apply to Fiona.\n8. Charlie is big. (Given)\n   This statement does not apply to Fiona.\n9. Erin is big. (Given)\n   This statement does not apply to Fiona.\n10. If someone is round and young then they are big. (Given)\n    We cannot conclude that Fiona is big based on this statement alone because Fiona can also be rough.\n\nFrom the given information, we cannot conclude that Fiona is nice or not nice. Therefore, the statement \"Fiona is not nice\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Given statements:\n   - Fiona is red. (F1)\n   - Fiona is rough. (F2)\n   - If someone is red and big then they are nice. (R1)\n   - If Dave is round and Dave is rough then Dave is big. (D1)\n   - If someone is round and young then they are big. (D2)\n   - All nice people are young. (N1)\n   - If Charlie is round and Charlie is big then Charlie is young. (C1)\n   - If someone is red then they are big. (R2)\n   - All rough, green people are round. (R3)\n   - If someone is big then they are red. (R4)\n   - Young people are green. (Y1)\n\n2. Deductions:\n   - From (F1) and (R2), we can conclude that Fiona is big. (F3)\n   - From (F1), we can conclude that Fiona is nice using (R1). (F4)\n   - Now, we can directly check the given statement \"Fiona is not nice.\"\n\n3. Conclusion:\n   - Since Fiona is nice, the statement \"Fiona is not nice\" is false.\n\nSo, the final answer is: \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether Fiona is not nice, we need to analyze the given statements and their implications. \n\nGiven statements:\n\n1. If someone is red and big then they are nice.\n2. If Dave is round and Dave is rough then Dave is big.\n3. If someone is round and young then they are big.\n4. All nice people are young.\n5. If Charlie is round and Charlie is big then Charlie is young.\n6. If someone is red then they are big.\n7. All rough, green people are round.\n8. If someone is big then they are red.\n9. Young people are green.\n\nWe can start by analyzing the given information about Fiona:\n\n- Fiona is red (from statement 6).\n- Fiona is rough (from the initial statement).\n- Since Fiona is rough and green (from statement 9, young people are green, and since all nice people are young from statement 4), then from statement 7, all rough, green people are round. Therefore, Fiona is round.\n\nNow, let's consider Fiona's size:\n- Fiona is red and big (from statement 6 and the fact that all rough, green people are round, which means Fiona is big).\n- Since Fiona is big, then from statement 8, Fiona is red. This does not provide any new information.\n\nNow let's analyze Fiona's niceness:\n- Since Fiona is red and big, then from statement 1, Fiona is nice.\n\nConsidering this, we can conclude that Fiona is nice, which means the statement \"Fiona is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to apply the given rules and statements step by step.\n\nGiven statements:\n1. Charlie is big.\n2. Dave is nice.\n3. Dave is round.\n4. Erin is big.\n5. Erin is nice.\n6. Fiona is red.\n7. Fiona is rough.\n8. If someone is red and big then they are nice.\n9. If Dave is round and Dave is rough then Dave is big.\n10. If someone is round and young then they are big.\n11. If all nice people are young, then this implies that everyone is young because all nice people are young (including Erin, who is nice), and Erin is big. Therefore, because everyone is young, and all rough, green people are round, this implies all people are round.\n12. If Charlie is round and Charlie is big then Charlie is young.\n13. If someone is red then they are big.\n14. All rough, green people are round.\n15. If someone is big then they are red.\n16. Young people are green.\n\nFrom statement 16, we know that young people are green. Also, from statement 11, we know that everyone is round.\n\nNow let's determine whether Fiona is nice or not.\n\nFiona is red (statement 7), and if someone is red (statement 13), then they are big. So, Fiona is big.\n\nSince Fiona is red and big (statements 6 and 13), and according to rule 8, if someone is red and big, then they are nice. Therefore, Fiona is nice.\n\nGiven that Fiona is nice, the statement \"Fiona is not nice\" is false.\n\nSo the final answer is \\boxed{false}.",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not nice' is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven statements:\n\n1. If someone is red and big then they are nice.\n2. If Dave is round and Dave is rough then Dave is big.\n3. If someone is round and young then they are big.\n4. All nice people are young.\n5. If Charlie is round and Charlie is big then Charlie is young.\n6. If someone is red then they are big.\n7. All rough, green people are round.\n8. If someone is big then they are red.\n9. Young people are green.\n\nWe are trying to determine the niceness of Fiona, so let's analyze the given information related to Fiona:\n\n1. Fiona is red. (Statement 6)\n2. Fiona is rough. (Given statement)\n3. Since Fiona is rough and green, she is round. (Statement 7)\n4. Fiona is big. (Statement 8)\n\nNow, let's analyze the given information related to the properties of being nice:\n\n1. If someone is red and big then they are nice. (Statement 1)\n2. All nice people are young. (Statement 4)\n3. Young people are green. (Statement 9)\n\nSince Fiona is red and big, we can conclude that Fiona is nice based on Statement 1.\n\nHowever, the statement 'Fiona is not nice' is being asked. Given the analysis above, this statement is false because we have established that Fiona is indeed nice.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not nice\" is true, false, or unknown, we need to analyze the given information and apply the rules step by step.\n\n1. Fiona is red. (Given)\n2. If someone is red and big then they are nice. (Rule 1)\n   - However, we don't know if Fiona is big yet. We will come back to this point.\n\n3. If someone is red then they are big. (Rule 6)\n   - This means that since Fiona is red, she must be big.\n\n4. Since Fiona is big and red, using Rule 1, we can conclude that Fiona is nice.\n\nNow, let's analyze the statement \"Fiona is not nice.\"\n\nBased on the information we've gathered, Fiona is nice (from step 4). Therefore, the statement \"Fiona is not nice\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know that:\n   - Fiona is red.\n   - Fiona is rough.\n\n2. We also know that:\n   - If someone is red and big then they are nice.\n   - However, we also know that if someone is big, then they are red. But, this creates a contradiction with the statement above since if someone is red and big then they are nice, but if someone is big then they are red, so it could be that they are red and big, which implies that they are nice.\n\n3. Now, we need to find more information about Fiona being big or not. \n   - From the given information, we know that all rough, green people are round.\n   - However, we don't know if Fiona is green or not, but we do know that she is rough.\n\n4. Now we need to find more information about Fiona being green or not.\n   - From the given information, we know that young people are green.\n   - However, we also know that all nice people are young.\n   - We don't know if Fiona is nice or not, but we do know that if someone is red and big then they are nice.\n\n5. Let's assume Fiona is not nice. Then we know that she is not big (since if someone is big then they are nice).\n   - We also know that if someone is big then they are red, so Fiona is not red.\n\n6. Now we can analyze the information we have about Fiona.\n   - We know that Fiona is red (from the given information) and not red (from step 5), which is a contradiction. \n   - So, we can conclude that our assumption that Fiona is not nice is incorrect.\n\n7. Now, let's analyze the information we have about Fiona being round or not.\n   - From the given information, we know that all rough, green people are round.\n   - However, we don't know if Fiona is green or not, but we do know that she is rough.\n\n8. Now we need to find more information about Fiona being green or not.\n   - From the given information, we know that young people are green.\n   - However, we also know that all nice people are young.\n   - We don't know if Fiona is nice or not, but we do know that if someone is red and big then they are nice.\n\n9. Let's analyze the information we have about Fiona.\n   - We know that Fiona is red and round (from the given information) and we also know that she is rough.\n   - We also know that if someone is big then they are red.\n\n10. From the given information, we know that if Dave is round and Dave is rough then Dave is big. However, this is a separate case and doesn't apply to Fiona since we are talking about Fiona.\n\nHowever, we can use this information to conclude that if someone is round and young then they are big. And we also know that all nice people are young.\n\n11. Since we know that if someone is red and big then they are nice, and we also know that if someone is big then they are red, and we know that Fiona is red and round, and we also know that if someone is round and young then they are big, and we also know that all nice people are young, we can conclude that Fiona is young.\n\n12. Since we know that Fiona is young, and we also know that young people are green, we can conclude that Fiona is green.\n\n13. Since we know that all rough, green people are round, and we also know that Fiona is rough and green, we can conclude that Fiona is round.\n\n14. Since we know that Fiona is red and round, and we also know that if someone is round and young then they are big, and we also know that all nice people are young, we can conclude that Fiona is big.\n\n15. Since we know that Fiona is big, and we also know that if someone is big then they are red, and we also know that if someone is red and big then they are nice, we can conclude that Fiona is nice.\n\nHowever, this contradicts our initial assumption that Fiona is not nice, so our assumption must be incorrect.\n\nTherefore, the statement \"Fiona is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is red (Given information)\n2. If someone is red and big then they are nice. However, we don't have information about Fiona being big yet.\n3. If someone is big then they are red. This rule can be used to infer that Fiona is big because she is already red. So, Fiona is big (Rule 3 and Rule 1).\n4. Now we have information about Fiona being both red and big, so according to Rule 2, Fiona is nice.\n5. Since Fiona is nice, we can infer that she is young. This is because all nice people are young (Given information).\n\nNow, let's evaluate the statement \"Fiona is not nice.\" Based on the analysis, we know that Fiona is nice. Therefore, the statement \"Fiona is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not nice\" is true, false, or unknown, we need to analyze the given information and apply it to the statement.\n\n1. We know that Fiona is red. \n2. We also know that if someone is red and big then they are nice.\n3. However, we cannot conclude that Fiona is big from this statement alone.\n\nHowever, we can use another piece of information to determine Fiona's size. \n4. We know that if someone is big then they are red.\n5. Since Fiona is already red, we can conclude that Fiona is indeed big.\n\nNow, we have two pieces of information that contradict each other when trying to use the statement about red and big people being nice.\n6. If someone is red and big then they are nice.\n7. However, we cannot directly use the statement about red and big people being nice, because we don't know if Fiona is big or not from that statement.\n\nHowever, we can use another piece of information to help us with the statement about red and big people being nice. \n8. If someone is big then they are red.\n9. Since we already concluded that Fiona is big, we can use this information to say that Fiona is indeed red.\n\nNow we have the following information:\n10. Fiona is red.\n11. We know that if someone is red then they are big.\n12. Therefore, Fiona is indeed big.\n\nNow we have the following information:\n13. Fiona is big.\n14. Fiona is red.\n15. We know that if someone is red and big then they are nice.\n\nSo, based on the information given, we can conclude that Fiona is indeed nice.\n\nNow, let's analyze the statement \"Fiona is not nice.\"\nThe statement is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not nice\" is true, false, or unknown, we need to analyze the given information and apply the rules to find out if we can conclude anything about Fiona's niceness.\n\nGiven statements:\n1. If someone is red and big then they are nice. \n2. If Dave is round and Dave is rough then Dave is big. \n3. If someone is round and young then they are big. \n4. All nice people are young. \n5. If Charlie is round and Charlie is big then Charlie is young. \n6. If someone is red then they are big. \n7. All rough, green people are round. \n8. If someone is big then they are red. \n9. Young people are green.\n\nWe are given the following information about Fiona:\n- Fiona is red (rule 6)\n- Fiona is rough (given)\n- Fiona is rough and green (rule 7)\n- Young people are green (rule 9)\n\nNow, we will follow the rules to see if we can conclude anything about Fiona's niceness.\n\nFrom rule 7, we know that since Fiona is rough and green, she is round.\n\nNow, since Fiona is round and young (rule 9), we can apply rule 3, which states that if someone is round and young then they are big. Therefore, Fiona is big.\n\nNow that we know Fiona is big, we can apply rule 8, which states that if someone is big then they are red. Since we already know that Fiona is red, this rule is redundant.\n\nFinally, since Fiona is big and red, we can apply rule 1, which states that if someone is red and big then they are nice. Therefore, Fiona is nice.\n\nHowever, we were asked to determine whether the statement \"Fiona is not nice\" is true, false, or unknown. Since we have concluded that Fiona is nice, the statement \"Fiona is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether Fiona is not nice, we need to analyze the given statements and apply the rules of inference.\n\n1. Fiona is red. Fiona is rough.\n   From rule 1: If someone is red and big then they are nice. \n   But we don't have information that Fiona is big, so we can't conclude that Fiona is nice yet.\n   From rule 6: If someone is red then they are big. \n   Since Fiona is red, we can conclude that Fiona is big.\n   Now we can apply rule 1: If someone is red and big then they are nice.\n   Since Fiona is red and big, we can conclude that Fiona is nice.\n\n2. Now we have a contradiction. We initially concluded that Fiona is nice, but the problem statement asks us to determine whether Fiona is not nice.\n   Since we have a contradiction, the statement \"Fiona is not nice\" is false.\n\nFinal Answer:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(red_fiona, big_fiona), nice_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(fiona)",
+          "z3_formula": "Not(nice_fiona) == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(red_fiona, big_fiona), nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_fiona, red_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_fiona, green_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(round_fiona, rough_fiona), big_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & young(X) -> big(X)",
+          "z3_formula": "Implies(And(round_fiona, young_fiona), big_fiona)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(fiona)",
+          "z3_formula": "kind_fiona == False",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(red_fiona, big_fiona), nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(round_dave, rough_dave), big_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & young(X) -> big(X)",
+          "z3_formula": "Implies(And(round_charlie, young_charlie), big_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & young(X) -> big(X)",
+          "z3_formula": "Implies(And(round_X, young_X), big_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_fiona, big_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_X, green_X), rough_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_fiona, red_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_X, green_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_fiona, young_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> big(X)",
+          "z3_formula": "Implies(young_fiona, big_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_fiona, green_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> young(X)",
+          "z3_formula": "Implies(And(round_fiona, big_fiona), young_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_fiona, big_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_fiona, red_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(red_fiona, big_fiona), nice_fiona)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(charlie)",
+          "z3_formula": "big_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(red_X, big_X), nice_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(round_X, rough_X), big_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & young(X) -> big(X)",
+          "z3_formula": "Implies(And(round_X, young_X), big_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_X, young_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X)",
+          "z3_formula": "Implies(round_X, young_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_X, big_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(round_X, green_X), round_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_X, red_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_X, young_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round(X)",
+          "z3_formula": "round_X == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(fiona)",
+          "z3_formula": "Not(nice_fiona) == True",
+          "source_step": 17
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(red_fiona, big_fiona), nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_fiona, big_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(red_fiona, big_fiona), nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_fiona, red_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & young(X) -> big(X)",
+          "z3_formula": "Implies(And(round_fiona, young_fiona), big_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & rough(X) -> big(X)",
+          "z3_formula": "Implies(And(round_fiona, rough_fiona), big_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(red_fiona, big_fiona), nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_fiona, red_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> young(X)",
+          "z3_formula": "Implies(nice_fiona, young_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_fiona, big_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> red(X)",
+          "z3_formula": "Implies(big_fiona, red_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(red_fiona, big_fiona), nice_fiona)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona) & green(fiona)",
+          "z3_formula": "And(rough_fiona, green_fiona) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> green(X)",
+          "z3_formula": "Implies(young_fiona, green_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(rough_fiona, green_fiona), round_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & young(X) -> big(X)",
+          "z3_formula": "Implies(And(round_fiona, young_fiona), big_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_fiona, big_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & red(X) -> nice(X)",
+          "z3_formula": "Implies(And(big_fiona, red_fiona), nice_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(fiona)",
+          "z3_formula": "rough_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & big(X) -> nice(X)",
+          "z3_formula": "Implies(And(red_fiona, big_fiona), nice_fiona)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> big(X)",
+          "z3_formula": "Implies(red_fiona, big_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 112,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 42
+    },
+    "maxsat_stats": {
+      "satisfied": 41,
+      "excluded": 1,
+      "total_weight": 110,
+      "solve_time_ms": 1.0348949581384659
+    },
+    "timing": {
+      "trace_gen_s": 10.819,
+      "extraction_s": 30.233,
+      "dedup_s": 0.837,
+      "maxsat_s": 0.003,
+      "total_s": 41.892
+    }
+  }
+}

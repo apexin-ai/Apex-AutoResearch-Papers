@@ -1,0 +1,1247 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-455_Q9",
+    "problem": "The bald eagle chases the squirrel. The bald eagle does not eat the lion. The bald eagle eats the squirrel. The bald eagle does not see the rabbit. The lion does not chase the rabbit. The lion is kind. The rabbit chases the bald eagle. The rabbit eats the bald eagle. The rabbit is big. The rabbit is cold. The rabbit sees the squirrel. The squirrel is blue. The squirrel is cold. The squirrel is kind. If something chases the rabbit then it is kind. If something sees the lion then it chases the rabbit. If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green. If something eats the lion then the lion chases the squirrel. If something eats the rabbit then the rabbit sees the lion. If something is kind then it eats the rabbit. If something sees the lion and it does not eat the lion then it eats the bald eagle. If something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold.\n\nDetermine whether the following statement is true, false, or unknown:\nThe rabbit is kind.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nEats($x, $y, bool) ::: Does x eat y?\nSees($x, $y, bool) ::: Does x see y?\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\nCold($x, bool) ::: Is x cold?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nChases(BaldEagle, Squirrel, True) ::: The bald eagle chases the squirrel.\nEats(BaldEagle, Lion, False) ::: The bald eagle does not eat the lion.\nEats(BaldEagle, Squirrel, True) ::: The bald eagle eats the squirrel.\nSees(BaldEagle, Rabbit, False) ::: The bald eagle does not see the rabbit.\nChases(Lion, Rabbit, False) ::: The lion does not chase the rabbit.\nKind(Lion, True) ::: The lion is kind.\nChases(Rabbit, BaldEagle, True) ::: The rabbit chases the bald eagle.\nEats(Rabbit, BaldEagle, True) ::: The rabbit eats the bald eagle.\nBig(Rabbit, True) ::: The rabbit is big.\nCold(Rabbit, True) ::: The rabbit is cold.\nSees(Rabbit, Squirrel, True) ::: The rabbit sees the squirrel.\nBlue(Squirrel, True) ::: The squirrel is blue.\nCold(Squirrel, True) ::: The squirrel is cold.\nKind(Squirrel, True) ::: The squirrel is kind.\n\nRules:\nChases($x, Rabbit, True) >>> Kind($x, True) ::: If something chases the rabbit then it is kind.\nSees($x, Lion, True) >>> Chases($x, Rabbit, True) ::: If something sees the lion then it chases the rabbit.\nSees(Rabbit, Squirrel, True) && Eats(Squirrel, Rabbit, True) >>> Green(Rabbit, True) ::: If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green.\nEats($x, Lion, True) >>> Chases(Lion, Squirrel, True) ::: If something eats the lion then the lion chases the squirrel.\nEats($x, Rabbit, True) >>> Sees(Rabbit, Lion, True) ::: If something eats the rabbit then the rabbit sees the lion.\nKind($x, True) >>> Eats($x, Rabbit, True) ::: If something is kind then it eats the rabbit.\nSees($x, Lion, True) && Eats($x, Lion, False) >>> Eats($x, BaldEagle, True) ::: If something sees the lion and it does not eat the lion then it eats the bald eagle.\nEats($x, Squirrel, True) && Eats(Squirrel, BaldEagle, True) >>> Cold($x, True) ::: If something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold.\n\nQuery:\nKind(Rabbit, True) ::: The rabbit is kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 100.0,
+      "True": 90.0,
+      "Unknown": 142.5
+    },
+    "answer_counts": {
+      "Unknown": 5,
+      "True": 1,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the rabbit is kind, let's break down the given information step by step:\n\n1. The lion is kind. (Given)\n2. The rabbit chases the bald eagle. (Given)\n3. The rabbit eats the bald eagle. (Given)\n4. If something chases the rabbit then it is kind. (Rule 1)\n   - From (3), we know the rabbit eats the bald eagle, but we don't have information that the bald eagle chases the rabbit. This rule is not applicable here.\n5. The rabbit sees the squirrel. (Given)\n6. The squirrel eats the rabbit. (Given)\n7. The rabbit is big. (Given)\n8. The rabbit is cold. (Given)\n9. If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green. (Rule 3)\n   - From (5) and (6), we know the rabbit sees the squirrel and the squirrel eats the rabbit. However, we are not concerned with whether the rabbit is green or not; we are concerned with whether it is kind.\n10. If something eats the rabbit then the rabbit sees the lion. (Rule 5)\n    - From (6), we know the squirrel eats the rabbit, but we don't have information that the squirrel sees the lion. This rule is not applicable here.\n11. If something is kind then it eats the rabbit. (Rule 6)\n    - From (1), we know the lion is kind, but we are not concerned with the lion. We are concerned with the rabbit.\n12. If something sees the lion and it does not eat the lion then it eats the bald eagle. (Rule 7)\n    - This rule is not applicable here because we don't have any information about something seeing the lion and not eating the lion in relation to the rabbit.\n13. If something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold. (Rule 8)\n    - From (13), we know the squirrel eats the bald eagle, but we don't have information that relates to whether the squirrel is cold or not in this context.\n\nFrom the given information, we can see that there is no direct relationship between the rabbit's actions and the definition of being kind. The rules provided do not directly relate to the rabbit's kindness.\n\nHowever, we know the lion is kind. There is no rule that directly states the lion's kind behavior applies to the rabbit.\n\nTherefore, we cannot determine whether the rabbit is kind based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'The rabbit is kind' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit chases the bald eagle. (This does not directly relate to the statement, but it's worth noting.)\n\n2. The rabbit eats the bald eagle. (This statement does not support or contradict the statement that the rabbit is kind.)\n\n3. The rabbit is big. (This statement does not support or contradict the statement that the rabbit is kind.)\n\n4. The rabbit is cold. (This statement does not support or contradict the statement that the rabbit is kind.)\n\n5. The rabbit sees the squirrel. (This statement does not support or contradict the statement that the rabbit is kind.)\n\n6. The squirrel is blue. (This statement does not support or contradict the statement that the rabbit is kind.)\n\n7. The squirrel is cold. (This statement does not support or contradict the statement that the rabbit is kind.)\n\n8. The squirrel is kind. (This statement does not support or contradict the statement that the rabbit is kind.)\n\nNow, let's examine the rules given:\n\n1. If something chases the rabbit then it is kind. (This rule might seem relevant, but we have to look for any information that the rabbit chases.)\n\n2. If something sees the lion then it chases the rabbit. (This rule is irrelevant for determining the rabbit's kind nature.)\n\n3. If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green. (This rule is irrelevant for determining the rabbit's kind nature.)\n\n4. If something eats the lion then the lion chases the squirrel. (This rule is irrelevant for determining the rabbit's kind nature.)\n\n5. If something eats the rabbit then the rabbit sees the lion. (This rule is irrelevant for determining the rabbit's kind nature.)\n\n6. If something is kind then it eats the rabbit. (This rule is relevant, as we are trying to determine the rabbit's kind nature.)\n\n7. If something sees the lion and it does not eat the lion then it eats the bald eagle. (This rule is irrelevant for determining the rabbit's kind nature.)\n\n8. If something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold. (This rule is irrelevant for determining the rabbit's kind nature.)\n\nNow, we need to consider the information that the lion is kind (rule 6). Since the lion is kind, it follows that the lion eats the rabbit (rule 6). However, there's no information to suggest that the lion eats the rabbit. Instead, we are given that the rabbit eats the bald eagle and that the bald eagle eats the squirrel. \n\nHowever, we have to look at the information that the squirrel is blue. And the information that the squirrel is kind. Therefore, we can't conclude that the squirrel is cold using rule 8.\n\nWe can also consider the information that the rabbit sees the squirrel. However, we are not given that the squirrel eats the rabbit.\n\nSince we are not given that the squirrel eats the rabbit, we cannot conclude that the rabbit is green using rule 3.\n\nWe also know that the lion does not eat the bald eagle. Since the lion does not eat the bald eagle, it must eat the bald eagle if it sees the bald eagle, according to rule 7. But we don't have any information that the lion sees the bald eagle. \n\nHowever, we have the information that the rabbit chases the bald eagle and the rabbit eats the bald eagle. We have no information that the bald eagle eats the lion. But we do have the information that the bald eagle does not eat the lion.\n\nNow, we can consider the information that the squirrel is kind. Since the squirrel is kind, we can use rule 6, which states that if something is kind, then it eats the rabbit. However, we already know that the rabbit eats the bald eagle, and the squirrel is kind. But we are not given that the squirrel eats the rabbit.\n\nTherefore, we can't conclude that the rabbit is kind using rule 6.\n\nHowever, we do have the information that the squirrel sees the lion. But we are not given that the squirrel chases the rabbit.\n\nWe are given that the lion does not eat the bald eagle. However, we are not given that the lion sees the bald eagle.\n\nWe are also given that the lion is kind. Since the lion is kind, it follows that the lion does not chase the rabbit, according to rule 1. However, we are given that the lion does not chase the rabbit.\n\nWe can also consider the information that the rabbit eats the bald eagle. However, we are not given that the bald eagle sees the lion.\n\nWe can also consider the information that the rabbit is big. However, we are not given that the rabbit eats the lion.\n\nWe are given that the rabbit chases the bald eagle. However, we are not given that the bald eagle sees the lion.\n\nWe are also given that the rabbit is cold. However, we are not given that the rabbit eats the lion.\n\nWe are given that the squirrel is blue. However, we are not given that the squirrel sees the lion.\n\nWe are also given that the squirrel is kind. Since the squirrel is kind, we can use rule 6, which states that if something is kind, then it eats the rabbit.\n\nHowever, we already know that the rabbit eats the bald eagle. But we are not given that the squirrel eats the rabbit.\n\nTherefore, we can't conclude that the rabbit is kind using rule 6.\n\nHowever, we do have the information that the lion sees the squirrel. Since the lion sees the squirrel, it must chase the rabbit, according to rule 2. However, we already know that the lion does not chase the rabbit.\n\nWe can also consider the information that the squirrel is cold. However, we are not given that the squirrel eats the bald eagle.\n\nHowever, we are given that the squirrel eats the bald eagle. Therefore, the squirrel is cold, according to rule 8.\n\nWe are given that the lion is kind. Since the lion is kind, we can use rule 6, which states that if something is kind, then it eats the rabbit.\n\nHowever, we already know that the lion does not eat the rabbit.\n\nHowever, we are not given that the lion eats the bald eagle. But we do have the information that the lion does not eat the bald eagle.\n\nTherefore, we can't conclude that the rabbit is kind using rule 6.\n\nHowever, we do have the information that the lion sees the squirrel. Since the lion sees the squirrel, it must chase the rabbit, according to rule 2. However, we already know that the lion does not chase the rabbit.\n\nHowever, we can consider the information that the squirrel sees the lion. Since the squirrel sees the lion, it must chase the rabbit, according to rule 2. But we are not given that the squirrel chases the rabbit.\n\nHowever, we are given that the lion does not eat the bald eagle. Since the lion does not eat the bald eagle, it must eat the bald eagle if it sees the bald eagle, according to rule 7. But we are not given that the lion sees the bald eagle.\n\nHowever, we are given that the bald eagle does not eat the lion. Since the bald eagle does not eat the lion, it must eat the lion if it sees the lion, according to rule 7. However, we are not given that the bald eagle sees the lion.\n\nHowever, we are given that the rabbit sees the squirrel. Since the rabbit sees the squirrel, it must chase the squirrel if it sees the squirrel and the squirrel eats the rabbit. However, we are not given that the squirrel eats the rabbit.\n\nHowever, we are given that the squirrel eats the bald eagle. Since the squirrel eats the bald eagle, we can use rule 8, which states that if something eats the squirrel and the squirrel eats the bald eagle, then the squirrel is cold. However, we are not given that the squirrel eats the rabbit.\n\nHowever, we are given that the squirrel is kind. Since the squirrel is kind, we can use rule 6, which states that if something is kind, then it eats the rabbit.\n\nHowever, we are not given that the squirrel eats the rabbit.\n\nHowever, we can consider the information that the rabbit sees the squirrel. Since the rabbit sees the squirrel, it must chase the squirrel if it sees the squirrel and the squirrel eats the rabbit. However, we are not given that the squirrel eats the rabbit.\n\nHowever, we are given that the lion is kind. Since the lion is kind, we can use rule 6, which states that if something is kind, then it eats the rabbit.\n\nHowever, we already know that the lion does not eat the rabbit.\n\nHowever, we can consider the information that the lion sees the squirrel. Since the lion sees the squirrel, it must chase the rabbit, according to rule 2. However, we already know that the lion does not chase the rabbit.\n\nHowever, we are given that the rabbit eats the bald eagle. Since the rabbit eats the bald eagle, we can consider the information that the bald eagle does not eat the lion. Since the bald eagle does not eat the lion, it must eat the lion if it sees the lion, according to rule 7. However, we are not given that the bald eagle sees the lion.\n\nHowever, we are given that the rabbit is big. However, we are not given that the rabbit eats the lion.\n\nHowever, we are given that the rabbit is cold. However, we are not given that the rabbit eats the lion.\n\nHowever, we are given that the squirrel is blue. However, we are not given that the squirrel sees the lion.\n\nHowever, we are given that the squirrel is kind. Since the squirrel is kind, we can use rule 6, which states that if something is kind, then it eats the rabbit.\n\nHowever, we are not given that the squirrel",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is kind\" is true, false, or unknown, we will analyze the given information step by step.\n\nFrom the given information:\n1. The rabbit chases the bald eagle.\n2. The rabbit eats the bald eagle.\n3. The rabbit is big.\n4. The rabbit is cold.\n5. The rabbit sees the squirrel.\n6. The squirrel is blue.\n7. The squirrel is cold.\n8. The squirrel is kind.\n\nNow, we need to use the given conditions to analyze the situation:\n\nCondition 1: If something chases the rabbit then it is kind.\nWe don't know any other thing that chases the rabbit except for the bald eagle and lion. But we can see that the rabbit chases the bald eagle (statement 1), and this doesn't tell us anything about the rabbit being kind based on this condition because the bald eagle is not the thing being chased by the rabbit but rather being chased by the rabbit.\n\nCondition 2: If something sees the lion then it chases the rabbit.\nWe can see that the rabbit sees the squirrel (statement 5). However, this does not directly tell us about the rabbit being kind based on this condition because the rabbit sees the squirrel, not the lion.\n\nCondition 3: If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green.\nWe don't have any information that the squirrel eats the rabbit. So, this condition does not apply.\n\nCondition 4: If something eats the lion then the lion chases the squirrel.\nWe can see that the bald eagle does not eat the lion (statement 2). However, this does not directly tell us about the rabbit being kind.\n\nCondition 5: If something eats the rabbit then the rabbit sees the lion.\nWe can see that the rabbit eats the bald eagle (statement 2). However, this does not directly tell us about the rabbit being kind.\n\nCondition 6: If something is kind then it eats the rabbit.\nThe squirrel is kind (statement 8). However, the squirrel eats the bald eagle (statement 3), not the rabbit.\n\nCondition 7: If something sees the lion and it does not eat the lion then it eats the bald eagle.\nWe can see that the rabbit sees the lion (indirectly - the rabbit sees the squirrel which eats the bald eagle and the bald eagle sees the lion). But the rabbit eats the bald eagle (statement 2), not the bald eagle eating the lion.\n\nCondition 8: If something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold.\nWe can see that the squirrel eats the bald eagle (statement 3). However, this does not directly tell us about the rabbit being kind.\n\nWe have not found any condition that directly tells us that the rabbit is kind. The only information we have about the rabbit is that it chases the bald eagle, eats the bald eagle, is big, is cold, sees the squirrel, and the squirrel is kind. There is no information that directly connects the rabbit's behavior to kindness.\n\nTherefore, the statement \"The rabbit is kind\" is unknown.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is kind. \n2. If the rabbit sees the lion then it is kind. \n   We don't have any information about the rabbit seeing the lion yet.\n\n3. The rabbit chases the bald eagle.\n4. The rabbit eats the bald eagle.\n5. If something eats the rabbit then the rabbit sees the lion.\n   Since the rabbit eats the bald eagle, it does not directly tell us that the rabbit sees the lion. However, we can conclude that the rabbit eats the bald eagle but does not directly see the lion.\n\n6. The rabbit is big. \n7. The rabbit is cold. \n8. The rabbit sees the squirrel.\n9. The squirrel is blue.\n10. The squirrel is cold.\n11. The squirrel is kind.\n\n12. If something chases the rabbit then it is kind.\n   We don't have any information about something chasing the rabbit.\n\n13. If something sees the lion then it chases the rabbit.\n   We don't have any information about something seeing the lion.\n\n14. If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green.\n   We don't have any information about the squirrel eating the rabbit.\n\n15. If something eats the lion then the lion chases the squirrel.\n   We don't have any information about something eating the lion.\n\n16. If something eats the rabbit then the rabbit sees the lion.\n   Since the rabbit eats the bald eagle, it does not directly tell us that the rabbit sees the lion. However, we can conclude that the rabbit eats the bald eagle but does not directly see the lion.\n\n17. If something is kind then it eats the rabbit.\n   The lion is kind, but we don't have any information about it eating the rabbit.\n\n18. If something sees the lion and it does not eat the lion then it eats the bald eagle.\n   We don't have any information about something seeing the lion and not eating it.\n\n19. If something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold.\n   We don't have any information about something eating the squirrel.\n\nNow, let's combine the given information:\n\nFrom (8), we know the rabbit sees the squirrel.\nFrom (11), we know the squirrel is kind.\nFrom (12), if something chases the rabbit then it is kind. Since the rabbit is kind is what we want to determine, we need to find out if something chases the rabbit.\n\nFrom (3), the rabbit chases the bald eagle.\nFrom (13), if something sees the lion then it chases the rabbit. However, we don't have any information about the rabbit seeing the lion.\n\nSince the rabbit sees the squirrel and the squirrel is kind, we need to find out if the squirrel chases the rabbit or if something else chases the rabbit.\n\nFrom (1), the lion is kind.\nFrom (16), if something eats the rabbit then the rabbit sees the lion. Since the rabbit eats the bald eagle, it does not directly tell us that the rabbit sees the lion.\n\nHowever, from (4), the rabbit eats the bald eagle. Since the squirrel eats the bald eagle (from statement not given in the problem but implied from the fact that the bald eagle is eaten and we know the rabbit eats the bald eagle, and the fact that the rabbit eats the bald eagle is given), we can apply rule (19).\n\nFrom (19), if something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold. Since the squirrel is cold, we can apply rule (10). \n\nHowever, we still need to determine if the rabbit is kind or not.\n\nFrom (3), the rabbit chases the bald eagle. However, we don't have any information about the rabbit seeing the lion.\n\nHowever, we do know the following:\n- The rabbit sees the squirrel (from (8)).\n- The squirrel is kind (from (11)).\n- If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green. However, we don't have any information about the squirrel eating the rabbit.\n\nHowever, we can apply rule (12): if something chases the rabbit then it is kind. Since the rabbit is kind is what we want to determine, we need to find out if something chases the rabbit.\n\nFrom (3), the rabbit chases the bald eagle. However, we don't have any information about the bald eagle chasing the rabbit.\n\nHowever, from (1), the lion is kind. From (13), if something sees the lion then it chases the rabbit. Since the rabbit sees the squirrel (from (8)) and the squirrel is kind (from (11)), we don't know if the squirrel sees the lion or not.\n\nHowever, we do know the following:\n- The squirrel is kind (from (11)).\n- If the squirrel sees the lion and the lion does not eat the lion then it eats the bald eagle. However, we don't have any information about the squirrel seeing the lion or the lion eating the lion.\n\nHowever, from (17), if something is kind then it eats the rabbit. Since the squirrel is kind (from (11)), we can apply this rule.\n\nThe squirrel is kind, so it eats the rabbit (from (17)). This means the rabbit is eaten by the squirrel.\n\nFrom (16), if something eats the rabbit then the rabbit sees the lion. Since the rabbit is eaten by the squirrel, we can conclude that the rabbit sees the lion.\n\nNow we can apply rule (13): if something sees the lion then it chases the rabbit.\n\nSince the rabbit sees the lion (from (16)), the squirrel sees the lion (from (8)) and the squirrel is kind (from (11)), we can apply rule (13).\n\nThe squirrel sees the lion, so the squirrel chases the rabbit (from (13)).\n\nHowever, we already know that the squirrel eats the rabbit (from (17)).\n\nNow we can apply rule (12): if something chases the rabbit then it is kind.\n\nThe squirrel chases the rabbit (from (13)), so the squirrel is kind (from (12)).\n\nNow we can apply rule (17): if something is kind then it eats the rabbit.\n\nThe squirrel is kind (from (12)), so the squirrel eats the rabbit (from (17)).\n\nFrom (16), if something eats the rabbit then the rabbit sees the lion. Since the rabbit is eaten by the squirrel, we can conclude that the rabbit sees the lion.\n\nHowever, we already know the following:\n- The rabbit is kind is what we want to determine.\n- The rabbit eats the bald eagle (from (4)).\n- The rabbit sees the squirrel (from (8)).\n- The squirrel is kind (from (11)).\n- The squirrel chases the rabbit (from (13)).\n- The squirrel eats the rabbit (from (17)).\n- The rabbit sees the lion (from (16)).\n\nWe can conclude that the squirrel is kind, but it doesn't tell us directly if the rabbit is kind or not.\n\nHowever, we know the following:\n- The squirrel eats the rabbit (from (17)).\n- The squirrel is kind (from (11)).\n\nSince the squirrel eats the rabbit and the squirrel is kind, we can conclude that the squirrel is kind.\n\nHowever, we also know the following:\n- The squirrel eats the bald eagle (from statement not given in the problem but implied from the fact that the bald eagle is eaten and we know the rabbit eats the bald eagle, and the fact that the rabbit eats the bald eagle is given).\n- The squirrel is cold (from (10)).\n\nHowever, we can apply rule (19): if something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold.\n\nSince the squirrel is cold (from (10)), we can apply rule (10).\n\nHowever, we still need to determine if the rabbit is kind or not.\n\nWe can conclude that the squirrel is kind.\n\nHowever, we can apply rule (17): if something is kind then it eats the rabbit.\n\nThe squirrel is kind, so it eats the rabbit (from (17)).\n\nHowever, we already know that the squirrel eats the rabbit (from (17)).\n\nSince the squirrel eats the rabbit, the rabbit is eaten by the squirrel.\n\nHowever, we can apply rule (12): if something chases the rabbit then it is kind.\n\nSince the squirrel chases the rabbit (from (13)) and the squirrel is kind (from (11)), we can apply rule (12).\n\nThe squirrel chases the rabbit, so the squirrel is kind (from (12)).\n\nHowever, we already know that the squirrel is kind.\n\nNow, let's go back to the statement \"The rabbit is kind.\"\n\nFrom (1), the lion is kind.\n\nFrom (16), if something eats the rabbit then the rabbit sees the lion.\n\nHowever, we don't have any information about the lion eating the rabbit.\n\nFrom (3), the rabbit chases the bald eagle.\n\nFrom (13), if something sees the lion then it chases the rabbit.\n\nHowever, we don't have any information about something seeing the lion.\n\nHowever, we can apply rule (12): if something chases the rabbit then it is kind.\n\nSince the rabbit is kind is what we want to determine, we need to find out if something chases the rabbit.\n\nHowever, we can apply rule (17): if something is kind then it eats the rabbit.\n\nSince the squirrel is kind (from (11)), we can apply this rule.\n\nThe squirrel is kind, so it eats the rabbit (from (17)).\n\nHowever, we already know that the squirrel eats the rabbit (from (17)).\n\nSince the squirrel eats the rabbit, the rabbit is eaten by the squirrel.\n\nHowever, we can apply rule (16): if something eats the rabbit then the rabbit sees the lion.\n\nSince the",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit chases the bald eagle. (This does not provide any information about the rabbit's kind nature.)\n2. The rabbit eats the bald eagle. (This does not provide any information about the rabbit's kind nature.)\n3. The rabbit is big. (This does not provide any information about the rabbit's kind nature.)\n4. The rabbit is cold. (This does not provide any information about the rabbit's kind nature.)\n5. The rabbit sees the squirrel. (This does not provide any information about the rabbit's kind nature.)\n6. The squirrel is blue. (This does not provide any information about the rabbit's kind nature.)\n7. The squirrel is cold. (This does not provide any information about the rabbit's kind nature.)\n8. The squirrel is kind. (This does not provide any information about the rabbit's kind nature.)\n\nHowever, we also have some conditional statements that might be relevant:\n\n1. If something chases the rabbit then it is kind. (This does not directly apply to the rabbit since we're looking for information about the rabbit's kind nature, not something else's.)\n2. If something sees the lion then it chases the rabbit. (This does not directly apply to the rabbit since we're looking for information about the rabbit's kind nature, not something else's.)\n3. If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green. (This is a conditional statement, but it doesn't provide any information about the rabbit's kind nature.)\n4. If something eats the lion then the lion chases the squirrel. (This does not directly apply to the rabbit since we're looking for information about the rabbit's kind nature, not something else's.)\n5. If something eats the rabbit then the rabbit sees the lion. (This does not directly apply to the rabbit since we're looking for information about the rabbit's kind nature, not something else's.)\n6. If something is kind then it eats the rabbit. (This is a conditional statement, and we need to determine if the rabbit is kind or not to see if this applies.)\n7. If something sees the lion and it does not eat the lion then it eats the bald eagle. (This does not directly apply to the rabbit since we're looking for information about the rabbit's kind nature, not something else's.)\n8. If something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold. (This does not provide any information about the rabbit's kind nature.)\n\nHowever, since we don't have any information about the rabbit's kind nature, and none of the conditional statements directly apply to the rabbit, we are left with the statement that the rabbit is kind. But we know that the rabbit sees the squirrel and the squirrel is kind. Using the statement \"If something sees the lion then it chases the rabbit\" we can infer that the squirrel does not see the lion, but since we know that the squirrel eats the bald eagle and the bald eagle does not eat the lion, we can infer that the squirrel does not see the lion. Since the squirrel is kind, we can use the statement \"If something chases the rabbit then it is kind\" to infer that the squirrel does not chase the rabbit.\n\nHowever, we also know that the rabbit sees the squirrel and the squirrel eats the bald eagle. We can use the statement \"If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green\" to infer that the rabbit does not eat the squirrel.\n\nNow we need to use the statement \"If something is kind then it eats the rabbit\" to determine if the rabbit is kind or not. Since the squirrel is kind, the squirrel eats the rabbit. However, we also know that the squirrel sees the lion, but the lion does not eat the squirrel. Using the statement \"If something sees the lion and it does not eat the lion then it eats the bald eagle\" we can infer that the squirrel does not eat the lion. However, the squirrel does eat the bald eagle, which does not eat the lion.\n\nHowever, since we know that the rabbit sees the squirrel and the squirrel eats the rabbit, and the squirrel is kind, we can use the statement \"If something sees the lion then it chases the rabbit\" to infer that the squirrel does not see the lion. But since the squirrel eats the bald eagle and the bald eagle does not eat the lion, we can infer that the squirrel does not see the lion. Since the squirrel is kind, we can use the statement \"If something chases the rabbit then it is kind\" to infer that the squirrel does not chase the rabbit.\n\nHowever, we also know that the rabbit eats the bald eagle, which does not eat the lion. Since the squirrel eats the bald eagle, we can use the statement \"If something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold\" to infer that the squirrel is cold.\n\nSince we know that the rabbit eats the bald eagle, and the squirrel eats the bald eagle, we can infer that the rabbit and the squirrel both eat the bald eagle. However, we also know that the squirrel is kind, and the squirrel sees the lion. Using the statement \"If something sees the lion then it chases the rabbit\" we can infer that the squirrel chases the rabbit.\n\nHowever, we also know that the rabbit sees the squirrel and the squirrel eats the rabbit. Using the statement \"If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green\" to infer that the rabbit does not eat the squirrel.\n\nBut we also know that the rabbit sees the squirrel and the squirrel is kind. Using the statement \"If something sees the lion then it chases the rabbit\" we can infer that the squirrel does not see the lion. Since the squirrel eats the bald eagle, which does not eat the lion, we can infer that the squirrel does not see the lion.\n\nHowever, we know that the rabbit eats the bald eagle. Since the squirrel eats the bald eagle, we can use the statement \"If something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold\" to infer that the squirrel is cold.\n\nNow we can use the statement \"If something is kind then it eats the rabbit\" to determine if the rabbit is kind or not. Since the squirrel is kind, the squirrel eats the rabbit. However, we also know that the rabbit sees the squirrel and the squirrel eats the rabbit. Since the squirrel is kind, we can use the statement \"If something chases the rabbit then it is kind\" to infer that the squirrel does not chase the rabbit.\n\nHowever, since the rabbit sees the squirrel and the squirrel eats the rabbit, and the squirrel is kind, we can use the statement \"If something sees the lion then it chases the rabbit\" to infer that the squirrel does not see the lion. Since the squirrel eats the bald eagle, which does not eat the lion, we can infer that the squirrel does not see the lion.\n\nSince the squirrel is kind, the squirrel eats the rabbit. However, we also know that the squirrel eats the bald eagle, which does not eat the lion. Using the statement \"If something sees the lion and it does not eat the lion then it eats the bald eagle\" we can infer that the squirrel does not eat the lion.\n\nHowever, we know that the rabbit sees the squirrel and the squirrel eats the rabbit. Since the squirrel is kind, we can use the statement \"If something chases the rabbit then it is kind\" to infer that the squirrel does not chase the rabbit.\n\nHowever, since the rabbit eats the bald eagle, which does not eat the lion, we can use the statement \"If something sees the lion and it does not eat the lion then it eats the bald eagle\" to infer that the squirrel does not eat the lion.\n\nNow we can use the statement \"If something is kind then it eats the rabbit\" to determine if the rabbit is kind or not. Since the squirrel is kind, the squirrel eats the rabbit. However, we also know that the rabbit sees the squirrel and the squirrel eats the rabbit. Since the squirrel is kind, we can use the statement \"If something chases the rabbit then it is kind\" to infer that the squirrel does not chase the rabbit.\n\nSince the rabbit sees the squirrel and the squirrel eats the rabbit, we can infer that the rabbit is not kind, because the squirrel is kind and the squirrel eats the rabbit.\n\nHowever, since the rabbit sees the squirrel and the squirrel eats the rabbit, and the squirrel is kind, we can use the statement \"If something sees the lion then it chases the rabbit\" to infer that the squirrel does not see the lion. Since the squirrel eats the bald eagle, which does not eat the lion, we can infer that the squirrel does not see the lion.\n\nHowever, since the rabbit sees the squirrel and the squirrel is kind, we can use the statement \"If something chases the rabbit then it is kind\" to infer that the rabbit does not see the lion.\n\nSince the rabbit sees the squirrel and the squirrel is kind, we can use the statement \"If something chases the rabbit then it is kind\" to infer that the rabbit does not chase the rabbit.\n\nHowever, since the rabbit eats the bald eagle, which does not eat the lion, we can use the statement \"If something sees the lion and it does not eat the lion then it eats the bald eagle\" to infer that the squirrel does not eat the lion.\n\nNow we can use the statement \"If something is kind then it eats the rabbit\" to determine if the rabbit is kind or not. Since the squirrel is kind, the squirrel eats the rabbit. However, we also know that the rabbit sees the squirrel and the squirrel eats the rabbit. Since the squirrel is kind, we can use the statement \"If something chases the rabbit then it is kind\" to infer that",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement \"The lion is kind\" is given. This statement is used to infer the kindness of other animals.\n\n2. If something chases the rabbit then it is kind. However, we cannot find any information that directly links the rabbit's kindness to its behavior.\n\n3. There is no statement that directly links the rabbit's behavior to its kindness. \n\n4. We can conclude that if the lion is kind, then the lion does not eat the rabbit because the statement \"The bald eagle does not eat the lion\" does not imply the lion eats the rabbit, and the lion is not the same as the bald eagle.\n\n5. We can also conclude that the rabbit eats the bald eagle from the statement \"The rabbit eats the bald eagle.\"\n\n6. The statement \"If the rabbit eats the bald eagle then the rabbit sees the lion\" is not given in the problem. However, if the statement \"The rabbit sees the lion\" is true, we can infer that the rabbit sees the lion.\n\n7. From the statement \"If the rabbit sees the lion and it does not eat the lion then it eats the bald eagle\", we cannot conclude the rabbit eats the lion because the statement only implies that the rabbit eats the bald eagle.\n\n8. If something sees the lion then it chases the rabbit. However, we do not know whether the rabbit sees the lion, so we cannot conclude that the rabbit chases itself.\n\n9. The statement \"The rabbit is kind\" is the statement we are trying to determine. However, we cannot conclude the rabbit is kind based on the given information.\n\nTherefore, we cannot determine whether the statement \"The rabbit is kind\" is true or false based on the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The rabbit chases the bald eagle.\n2. The rabbit eats the bald eagle.\n3. If something eats the rabbit then the rabbit sees the lion.\n   - This statement is not directly applicable here because the given information is the reverse (the rabbit eats the bald eagle).\n   - However, we can see that the bald eagle eats the squirrel (from statement 3), but this does not provide any information about the rabbit.\n4. The rabbit is big.\n5. The rabbit is cold.\n6. The rabbit sees the squirrel.\n7. If something chases the rabbit then it is kind.\n   - There is no information in the given statements that the rabbit is being chased.\n8. The squirrel is blue.\n9. The squirrel is cold.\n10. The squirrel is kind.\n11. The bald eagle does not see the rabbit.\n12. The lion does not chase the rabbit.\n13. The lion is kind.\n\nNow, we need to look at the rules and determine if any of them apply to the rabbit being kind.\n\nFrom the information given, we can see that the lion is kind (rule 13), and there is no information that directly contradicts the lion's kindness. However, there is no information that directly states the rabbit is kind.\n\nHowever, we also have the rule: \"If something chases the rabbit then it is kind.\" This rule could apply if we knew what chases the rabbit. But we do not have this information. \n\nBased on the given information, there is no direct evidence that the rabbit is kind or not. Therefore, we can conclude that the statement \"The rabbit is kind\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is kind. (Given statement)\n2. If something sees the lion then it chases the rabbit. \n   - Since the rabbit sees the lion, the rabbit chases the rabbit. However, this is a contradiction because an animal can't chase itself. But since there's no other information given about the rabbit seeing the lion, we cannot conclude that the rabbit chases the rabbit from this statement. \n   - So we can't use this information yet to determine the kindness of the rabbit.\n3. If something eats the lion then the lion chases the squirrel. \n   - Since the rabbit does not eat the lion, we cannot use this information yet to determine the kindness of the rabbit.\n4. If something eats the rabbit then the rabbit sees the lion. \n   - Since the rabbit eats the bald eagle, the rabbit sees the lion. (From the given statement)\n5. The lion does not chase the squirrel. (Given statement)\n6. If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green. \n   - Since the rabbit sees the squirrel and the squirrel does not eat the rabbit (the rabbit eats the bald eagle), we cannot use this information yet to determine the kindness of the rabbit.\n7. The rabbit eats the bald eagle. (Given statement)\n8. If something eats the rabbit then the rabbit sees the lion. \n   - Since the rabbit eats the bald eagle, the rabbit sees the lion. (From statement 4)\n9. If something is kind then it eats the rabbit. \n   - Since the rabbit is cold, we cannot use this information yet to determine the kindness of the rabbit.\n10. The rabbit is big. (Given statement)\n11. The rabbit is cold. (Given statement)\n12. The rabbit chases the bald eagle. (Given statement)\n13. If something chases the rabbit then it is kind. \n   - Since the rabbit chases the bald eagle, the bald eagle is kind. However, we are trying to determine whether the rabbit is kind, not the bald eagle.\n14. The rabbit sees the squirrel. (Given statement)\n15. The squirrel is blue. (Given statement)\n16. The squirrel is cold. (Given statement)\n17. The squirrel is kind. (Given statement)\n18. The squirrel eats the bald eagle. (Given statement)\n19. If something sees the lion and it does not eat the lion then it eats the bald eagle. \n   - Since the squirrel sees the lion and it does not eat the lion, the squirrel eats the bald eagle. (From statement 18)\n20. If something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold. \n   - Since the rabbit does not eat the squirrel, we cannot use this information yet to determine the kindness of the rabbit.\n\nFrom the given statements, we cannot directly conclude whether the rabbit is kind or not. However, we can conclude the following:\n\n- The rabbit sees the lion. (Statement 4 and 8)\n- The rabbit eats the bald eagle. (Given statement)\n- The rabbit chases the bald eagle. (Given statement)\n\nSince there is no information about the rabbit eating the lion, and since the lion is kind (Statement 1), we cannot use the information in statement 9 (If something is kind then it eats the rabbit) to determine the kindness of the rabbit.\n\nHowever, from statement 13 (If something chases the rabbit then it is kind), we cannot use this information because we are trying to determine whether the rabbit is kind, not the other animals.\n\nIn conclusion, we cannot directly determine whether the rabbit is kind or not from the given information. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use the logical rules provided to determine the truth value of the statement \"The rabbit is kind.\"\n\n1. The rabbit chases the bald eagle. (This statement is given directly)\n2. The rabbit eats the bald eagle. (This statement is given directly)\n3. If something eats the rabbit, then the rabbit sees the lion. (This rule will be used later)\n\nFrom the given statements, we have the rabbit eating the bald eagle. Now, we need to check if this situation leads to the rabbit seeing the lion, and then if that leads to the rabbit being kind.\n\n4. The bald eagle does not see the rabbit. (This statement is given directly)\n5. The lion does not chase the rabbit. (This statement is given directly)\n6. The lion is kind. (This statement is given directly)\n\nNow, we need to check the rules related to the lion and the rabbit.\n\n7. If something sees the lion then it chases the rabbit. (This rule will be used later)\n\nSince the bald eagle does not see the rabbit (statement 4), it does not lead to the bald eagle chasing the rabbit. Also, since the lion does not chase the rabbit (statement 5), it does not lead to the lion being related to the rabbit in this context.\n\nNow, let's examine the rule that the rabbit is kind if it sees the lion and eats the lion, which is not the case here. However, we have the rule that if something eats the lion, then the lion chases the squirrel. This means the lion is related to the squirrel.\n\n8. The squirrel is blue. (This statement is given directly)\n9. The squirrel is cold. (This statement is given directly)\n10. The squirrel is kind. (This statement is given directly)\n\nWe have a situation where the rabbit eats the bald eagle, but it does not directly lead to the rabbit seeing the lion. However, we can use the rule that if something sees the lion then it chases the rabbit. We can infer that the bald eagle does not see the lion because it eats the bald eagle, but the bald eagle itself does not see the lion. So, we cannot use this rule to conclude that the rabbit sees the lion.\n\nHowever, we have the rule that if something eats the rabbit then the rabbit sees the lion. We need to check if this applies to the rabbit eating the bald eagle. If it does, then the rabbit sees the lion, and if the rabbit is kind.\n\nNow, we need to examine if the situation where the rabbit eats the bald eagle leads to the rabbit seeing the lion. We have the rule that if something eats the lion then the lion chases the squirrel. This means the lion is related to the squirrel, but this does not directly help us in determining if the rabbit sees the lion.\n\nHowever, we can use the rule that if something eats the rabbit then the rabbit sees the lion. This rule applies to the situation where the rabbit eats the bald eagle, but we need to check the relationship between the bald eagle and the lion.\n\nWe have the statement that the lion does not chase the rabbit, but we also have the statement that the lion is kind. We cannot directly conclude that the rabbit sees the lion from this information.\n\nHowever, we have the rule that if something sees the lion then it chases the rabbit. This rule implies that if the bald eagle sees the lion, it would chase the rabbit. Since the bald eagle does not see the lion (because the lion is kind, but that does not directly imply that the bald eagle sees the lion), it does not lead to the conclusion that the rabbit sees the lion.\n\nWe have the rule that if the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green. This does not apply to the situation where the rabbit eats the bald eagle.\n\nWe have the rule that if something eats the rabbit then the rabbit sees the lion. This applies to the situation where the rabbit eats the bald eagle, but we cannot conclude that the rabbit sees the lion.\n\nWe have the rule that if something sees the lion then it chases the rabbit. This does not directly apply to the situation where the rabbit eats the bald eagle.\n\nWe have the rule that if something eats the lion then the lion chases the squirrel. This means the lion is related to the squirrel, but this does not directly help us in determining if the rabbit sees the lion.\n\nHowever, we can use the rule that if something eats the rabbit then the rabbit sees the lion. This rule applies to the situation where the rabbit eats the bald eagle.\n\nNow, let's examine the rule that if something eats the rabbit then the rabbit sees the lion. We can use this rule to conclude that the rabbit sees the lion because the rabbit eats the bald eagle, but we cannot directly conclude that the rabbit is kind.\n\nHowever, we have the rule that if something eats the lion then the lion chases the squirrel. This rule does not directly apply to the situation where the rabbit eats the bald eagle.\n\nWe have the rule that if the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green. This does not apply to the situation where the rabbit eats the bald eagle.\n\nWe have the rule that if something eats the rabbit then the rabbit sees the lion. This applies to the situation where the rabbit eats the bald eagle, but we cannot conclude that the rabbit is kind.\n\nHowever, we have the rule that if something sees the lion then it chases the rabbit. This rule does not directly apply to the situation where the rabbit eats the bald eagle.\n\nWe have the rule that if something eats the lion then the lion chases the squirrel. This means the lion is related to the squirrel, but this does not directly help us in determining if the rabbit sees the lion.\n\nHowever, we can use the rule that if something eats the rabbit then the rabbit sees the lion. This rule applies to the situation where the rabbit eats the bald eagle.\n\nNow, let's examine the rule that if something eats the rabbit then the rabbit sees the lion. We can use this rule to conclude that the rabbit sees the lion because the rabbit eats the bald eagle. Since the rabbit sees the lion, and the lion is kind, we can use the rule that if something is kind then it eats the rabbit. However, this rule applies to the lion, which does not eat the rabbit.\n\nHowever, we can use the rule that if something eats the lion and the lion chases the squirrel, then this does not directly apply to the situation where the rabbit eats the bald eagle.\n\nWe have the rule that if something eats the lion then the lion chases the squirrel. This rule does not directly apply to the situation where the rabbit eats the bald eagle.\n\nWe have the rule that if something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold. This means the squirrel is cold because it eats the bald eagle. However, this does not directly help us in determining if the rabbit is kind.\n\nHowever, we can use the rule that if something is kind then it eats the rabbit. Since the lion is kind (statement 6), and it does not eat the rabbit (statement 5), it does not directly lead to the conclusion that the lion eats the rabbit. However, we have the rule that if something sees the lion then it chases the rabbit. We cannot use this rule to conclude that the rabbit is kind because it does not directly apply to the situation.\n\nWe have the rule that if something eats the rabbit then the rabbit sees the lion. This rule applies to the situation where the rabbit eats the bald eagle. Since the rabbit sees the lion, and the lion is kind, we can use the rule that if something is kind then it eats the rabbit. However, this rule applies to the lion, which does not eat the rabbit.\n\nHowever, we can use the rule that if something sees the lion then it chases the rabbit. This rule does not directly apply to the situation where the rabbit eats the bald eagle.\n\nWe have the rule that if something eats the rabbit then the rabbit sees the lion. This rule applies to the situation where the rabbit eats the bald eagle. Since the rabbit sees the lion, and the lion is kind, we can use the rule that if something sees the lion then it chases the rabbit. However, this rule does not directly apply to the situation where the rabbit eats the bald eagle.\n\nHowever, we can use the rule that if something eats the lion then the lion chases the squirrel. This rule does not directly apply to the situation where the rabbit eats the bald eagle.\n\nWe have the rule that if something eats the rabbit then the rabbit sees the lion. This rule applies to the situation where the rabbit eats the bald eagle. Since the rabbit sees the lion, and the lion is kind, we can use the rule that if something is kind then it eats the rabbit. However, this rule applies to the lion, which does not eat the rabbit.\n\nHowever, we can use the rule that if something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold. This rule applies to the situation where the rabbit eats the bald eagle, and the squirrel eats the bald eagle. Since the squirrel is cold (statement 9), we can use this information.\n\nWe have the rule that if something eats the lion then the lion chases the squirrel. This rule does not directly apply to the situation where the rabbit eats the bald eagle.\n\nHowever, we can use the rule that if something eats the rabbit then the rabbit sees the lion. This rule applies to the situation where the rabbit eats the bald eagle. Since the rabbit sees the lion, and the lion is kind, we can use the rule that if something is kind then it eats the rabbit. However, this rule applies to the lion, which does not eat the rabbit.\n\nHowever, we can use the rule that if something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold. This rule",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is kind\" is true, false, or unknown, we need to analyze the given information.\n\n1. The lion is kind. \n2. If something sees the lion then it chases the rabbit.\n3. The rabbit sees the lion. \n   From (1) and (2), since the lion is kind, it must chase the rabbit.\n4. The rabbit chases the bald eagle.\n   We don't know if the bald eagle sees the lion or not, so we cannot conclude anything about the bald eagle yet.\n5. The rabbit eats the bald eagle.\n   This contradicts (4), which states that the rabbit chases the bald eagle. This creates a contradiction, but we can't conclude anything from this yet.\n6. The rabbit is big. \n7. The rabbit is cold. \n8. The rabbit sees the squirrel. \n9. The squirrel is blue. \n10. The squirrel is cold. \n11. The squirrel is kind. \n12. If something chases the rabbit then it is kind.\n   From (4), the rabbit chases the bald eagle, but we don't know if the bald eagle is kind or not.\n13. If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green.\n   We don't know if the squirrel eats the rabbit or not.\n14. If something eats the rabbit then the rabbit sees the lion.\n   We already know that the rabbit sees the lion from (3).\n15. If something is kind then it eats the rabbit.\n   We don't know if the rabbit is kind or not, but we can conclude that if the rabbit is kind, then it must eat the rabbit itself.\n16. If something sees the lion and it does not eat the lion then it eats the bald eagle.\n   We don't know if the bald eagle sees the lion or not.\n17. If something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold.\n   We know the squirrel is cold from (10).\n\nTo determine if the rabbit is kind or not, we need to analyze the given statements again.\n\nFrom (12), if the rabbit chases something, then it must be kind. We know that the rabbit chases the bald eagle (from (4)). Therefore, the rabbit must be kind.\n\nNow, we also know from (15) that if the rabbit is kind, then it must eat the rabbit itself. But since the rabbit cannot eat itself, we have a contradiction.\n\nHowever, since we concluded that the rabbit must be kind from (12), and then we found a contradiction, the information is actually consistent, but we can't conclude the rabbit is kind because of the contradiction.\n\nSince we have a contradiction that doesn't affect the conclusion about the rabbit's kindness, we can conclude that the statement \"The rabbit is kind\" is actually true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion is kind. \n   - This statement tells us that the lion is kind, but it does not provide any information about the rabbit.\n\n2. The rabbit chases the bald eagle.\n   - This statement tells us about the behavior of the rabbit but does not provide any information about the kind nature of the rabbit.\n\n3. The rabbit eats the bald eagle.\n   - Similar to the previous statement, this one tells us about the behavior of the rabbit but does not provide any information about the kind nature of the rabbit.\n\n4. The rabbit is big.\n   - This statement provides information about the physical characteristics of the rabbit but does not provide any information about the kind nature of the rabbit.\n\n5. The rabbit is cold.\n   - This statement provides information about the temperature of the rabbit but does not provide any information about the kind nature of the rabbit.\n\n6. The rabbit sees the squirrel.\n   - This statement tells us about the behavior of the rabbit but does not provide any information about the kind nature of the rabbit.\n\n7. The squirrel is blue.\n   - This statement provides information about the color of the squirrel but does not provide any information about the kind nature of the rabbit.\n\n8. The squirrel is cold.\n   - This statement provides information about the temperature of the squirrel but does not provide any information about the kind nature of the rabbit.\n\n9. The squirrel is kind.\n   - This statement tells us that the squirrel is kind, but it does not provide any information about the rabbit.\n\nNow, we need to examine the given rules:\n\n1. If something chases the rabbit then it is kind.\n   - We do not have any information about anything chasing the rabbit.\n\n2. If something sees the lion then it chases the rabbit.\n   - We do not have any information about anything seeing the lion and chasing the rabbit.\n\n3. If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green.\n   - This rule does not provide any information about the kind nature of the rabbit.\n\n4. If something eats the lion then the lion chases the squirrel.\n   - We do not have any information about anything eating the lion.\n\n5. If something eats the rabbit then the rabbit sees the lion.\n   - We do not have any information about anything eating the rabbit.\n\n6. If something is kind then it eats the rabbit.\n   - We do not have any information about the kind nature of the rabbit or anything eating the rabbit.\n\n7. If something sees the lion and it does not eat the lion then it eats the bald eagle.\n   - We do not have any information about anything seeing the lion and not eating it.\n\n8. If something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold.\n   - We do not have any information about anything eating the squirrel.\n\nHowever, we have one more rule that we can apply:\n\n9. The bald eagle does not see the rabbit.\n   - This statement tells us that the bald eagle does not see the rabbit, but it does not provide any information about the kind nature of the rabbit.\n\n10. The bald eagle does not eat the lion.\n    - This statement tells us that the bald eagle does not eat the lion, but it does not provide any information about the kind nature of the rabbit.\n\n11. The bald eagle eats the squirrel.\n    - This statement tells us about the behavior of the bald eagle and the squirrel but does not provide any information about the kind nature of the rabbit.\n\n12. The squirrel eats the bald eagle.\n    - This statement tells us about the behavior of the squirrel and the bald eagle but does not provide any information about the kind nature of the rabbit.\n\n13. The squirrel is blue.\n    - This statement provides information about the color of the squirrel but does not provide any information about the kind nature of the rabbit.\n\n14. The squirrel is cold.\n    - This statement provides information about the temperature of the squirrel but does not provide any information about the kind nature of the rabbit.\n\n15. The squirrel is kind.\n    - This statement tells us that the squirrel is kind, but it does not provide any information about the rabbit.\n\nHowever, we can apply rule 6 to the information given to us:\n\nThe bald eagle eats the squirrel (Rule 11).\nThe squirrel eats the bald eagle (Rule 12).\nThe squirrel is kind (Statement 15).\n\nNow, we can apply rule 6 to these statements:\n\nIf something is kind then it eats the rabbit.\nThe squirrel is kind.\nTherefore, the squirrel eats the rabbit.\n\nNow, we can apply rule 5 to these statements:\n\nIf something eats the rabbit then the rabbit sees the lion.\nThe squirrel eats the rabbit.\nTherefore, the rabbit sees the lion.\n\nNow, we can apply rule 2 to these statements:\n\nIf something sees the lion then it chases the rabbit.\nThe rabbit sees the lion.\nTherefore, the rabbit chases the rabbit.\n\nHowever, we cannot determine the kind nature of the rabbit from this information. \n\nTherefore, our answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The rabbit is kind\" is true, false, or unknown, let's analyze the given information step by step.\n\n1. The lion is kind. (Given)\n\n2. If something eats the lion then the lion chases the squirrel. (Given)\n   - This implies that the rabbit does not eat the lion, because if it did, the lion would chase the squirrel.\n\n3. The rabbit eats the bald eagle. (Given)\n   - This implies that the rabbit eats something, but we cannot directly conclude that it eats the lion.\n\n4. If something eats the lion then the lion chases the squirrel. (Given)\n   - Since the rabbit does not eat the lion (from step 2), this condition is not met.\n\n5. The rabbit is big. (Given)\n   - This information does not affect the conclusion.\n\n6. The rabbit is cold. (Given)\n   - This information does not affect the conclusion.\n\n7. The rabbit sees the squirrel. (Given)\n   - This information does not affect the conclusion.\n\n8. The squirrel is blue. (Given)\n   - This information does not affect the conclusion.\n\n9. The squirrel is cold. (Given)\n   - This information does not affect the conclusion.\n\n10. The squirrel is kind. (Given)\n    - This information does not affect the conclusion.\n\n11. If something chases the rabbit then it is kind. (Given)\n    - Since we do not know if the rabbit is kind or not, we cannot determine if the condition is met.\n\n12. The lion does not chase the rabbit. (Given)\n    - This implies that the lion does not chase the rabbit, but we cannot conclude that the lion is not kind.\n\n13. If something sees the lion then it chases the rabbit. (Given)\n    - We cannot determine if the rabbit sees the lion or not, so we cannot conclude that the rabbit chases itself.\n\n14. If the rabbit sees the squirrel and the squirrel eats the rabbit then the rabbit is green. (Given)\n    - This implies that the rabbit does not eat the squirrel, because if it did, the condition would be met.\n\n15. If something eats the rabbit then the rabbit sees the lion. (Given)\n    - This implies that the condition is met when the rabbit is eaten by something, but we cannot conclude that the rabbit sees the lion.\n\n16. If something is kind then it eats the rabbit. (Given)\n    - We cannot determine if the rabbit is kind or not, so we cannot conclude if the condition is met.\n\n17. If something sees the lion and it does not eat the lion then it eats the bald eagle. (Given)\n    - We cannot determine if the rabbit sees the lion or not, so we cannot conclude if the condition is met.\n\n18. If something eats the squirrel and the squirrel eats the bald eagle then the squirrel is cold. (Given)\n    - This implies that the squirrel is cold, but we cannot conclude if the condition is met.\n\n19. The bald eagle chases the squirrel. (Given)\n    - This implies that the condition is met when the squirrel eats the bald eagle.\n\n20. The bald eagle does not see the rabbit. (Given)\n    - This implies that the condition is met when the squirrel eats the bald eagle.\n\n21. The rabbit chases the bald eagle. (Given)\n    - This implies that the condition is met when the squirrel eats the bald eagle.\n\n22. The rabbit eats the bald eagle. (Given)\n    - This implies that the condition is met when the squirrel eats the bald eagle.\n\nFrom the given information, we cannot directly conclude if the rabbit is kind or not. However, we can conclude that if the rabbit is kind, then it eats the rabbit itself (from step 16). This would imply that the rabbit eats the rabbit, which contradicts the fact that the rabbit does not eat the squirrel (from step 14). Therefore, the statement \"The rabbit is kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, eagle)",
+          "z3_formula": "chases_rabbit_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, eagle)",
+          "z3_formula": "eats_rabbit_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> kind(X)",
+          "z3_formula": "Implies(chases_X_rabbit, kind_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & eats(squirrel, X) -> green(X)",
+          "z3_formula": "Implies(And(sees_X_squirrel, eats_squirrel_X), green_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> sees(X, lion)",
+          "z3_formula": "Implies(eats_X_rabbit, sees_X_lion)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(kind_X, eats_X_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & Not(eats(X, lion)) -> eats(X, eagle)",
+          "z3_formula": "Implies(And(sees_X_lion, Not(eats_X_lion)), eats_X_eagle)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, eagle) -> cold(squirrel)",
+          "z3_formula": "Implies(And(eats_X_squirrel, eats_squirrel_eagle), cold_squirrel)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bald_eagle)",
+          "z3_formula": "chases_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> kind(X)",
+          "z3_formula": "Implies(chases_X_rabbit, kind_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> chases(X, rabbit)",
+          "z3_formula": "Implies(sees_X_lion, chases_X_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & eats(squirrel, rabbit) -> chases(X, squirrel)",
+          "z3_formula": "Implies(And(sees_X_squirrel, eats_squirrel_rabbit), chases_X_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> chases(lion, squirrel)",
+          "z3_formula": "Implies(eats_X_lion, chases_lion_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> sees(X, lion)",
+          "z3_formula": "Implies(eats_X_rabbit, sees_X_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> big(X)",
+          "z3_formula": "Implies(eats_X_rabbit, big_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> cold(X)",
+          "z3_formula": "Implies(eats_X_rabbit, cold_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, bald_eagle) -> cold(squirrel)",
+          "z3_formula": "Implies(And(eats_X_squirrel, eats_squirrel_bald_eagle), cold_squirrel)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(kind_X, eats_X_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bald_eagle)",
+          "z3_formula": "chases_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> kind(X)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, kind_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> chases(X, rabbit)",
+          "z3_formula": "Implies(sees_squirrel_lion, chases_squirrel_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & eats(squirrel, X) -> green(X)",
+          "z3_formula": "Implies(And(sees_squirrel_squirrel, eats_squirrel_rabbit), green_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> chases(lion, squirrel)",
+          "z3_formula": "Implies(eats_bald_eagle_lion, chases_lion_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> sees(X, lion)",
+          "z3_formula": "Implies(eats_rabbit_bald_eagle, sees_bald_eagle_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(kind_squirrel, eats_squirrel_rabbit)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & Not(eats(X, lion)) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_squirrel_lion, Not(eats_squirrel_lion)), eats_squirrel_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(And(eats_rabbit_squirrel, eats_squirrel_bald_eagle), cold_rabbit)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> chases(X, rabbit)",
+          "z3_formula": "Implies(sees_lion_rabbit, chases_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> kind(X)",
+          "z3_formula": "Implies(chases_rabbit, kind_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(kind_squirrel, eats_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats_squirrel -> cold(X)",
+          "z3_formula": "Implies(And(eats_squirrel, eats_squirrel), cold_squirrel)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> kind(X)",
+          "z3_formula": "Implies(cold_squirrel, kind_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bald_eagle)",
+          "z3_formula": "chases_rabbit_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, rabbit)",
+          "z3_formula": "eats_bald_eagle_rabbit == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bald_eagle)",
+          "z3_formula": "eats_squirrel_bald_eagle == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(rabbit)",
+          "z3_formula": "blue_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, squirrel)",
+          "z3_formula": "eats_bald_eagle_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, squirrel)",
+          "z3_formula": "eats_rabbit_squirrel == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bald_eagle)",
+          "z3_formula": "chases_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> kind(X)",
+          "z3_formula": "Implies(chases_X_rabbit, kind_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> chases(X, rabbit)",
+          "z3_formula": "Implies(sees_X_lion, chases_X_rabbit)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & eats(squirrel, X) -> green(X)",
+          "z3_formula": "Implies(And(sees_X_squirrel, eats_squirrel_X), green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> chases(lion, squirrel)",
+          "z3_formula": "Implies(eats_X_lion, chases_lion_squirrel)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> sees(X, lion)",
+          "z3_formula": "Implies(eats_X_rabbit, sees_X_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(squirrel, X) & eats(X, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(And(eats_squirrel_X, eats_X_bald_eagle), cold_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == False",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == False",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> kind(X)",
+          "z3_formula": "Implies(chases_X_rabbit, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not eats_lion_rabbit",
+          "z3_formula": "Not(eats_lion_rabbit)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats_rabbit_eagle",
+          "z3_formula": "eats_rabbit_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats_rabbit_eagle -> sees_rabbit_lion",
+          "z3_formula": "Implies(eats_rabbit_eagle, sees_rabbit_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees_rabbit_lion & not eats_lion_rabbit -> eats_rabbit_eagle",
+          "z3_formula": "Implies(And(sees_rabbit_lion, Not(eats_lion_rabbit)), eats_rabbit_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees_lion(X) -> chases(X, rabbit)",
+          "z3_formula": "Implies(sees_lion_X, chases_X_rabbit)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not kind_rabbit",
+          "z3_formula": "Not(kind_rabbit)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bald_eagle)",
+          "z3_formula": "chases_rabbit_bald_eagle == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> sees_lion(X)",
+          "z3_formula": "Implies(eats_bald_eagle_rabbit, sees_lion_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> kind(X)",
+          "z3_formula": "Implies(chases_X_rabbit, kind_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not(sees(bald_eagle, rabbit))",
+          "z3_formula": "Not(sees_bald_eagle_rabbit) == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, rabbit))",
+          "z3_formula": "Not(chases_lion_rabbit) == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bald_eagle)",
+          "z3_formula": "chases_rabbit_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bald_eagle)",
+          "z3_formula": "eats_squirrel_bald_eagle == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(sees_rabbit_lion, eats_rabbit_bald_eagle)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, bald_eagle) -> cold(X)",
+          "z3_formula": "Implies(And(eats_rabbit_squirrel, eats_squirrel_bald_eagle), cold_rabbit)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(kind_lion, eats_lion_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> kind(X)",
+          "z3_formula": "Implies(chases_bald_eagle_rabbit, kind_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 16
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> chases(X, rabbit)",
+          "z3_formula": "Implies(sees_lion_rabbit, chases_rabbit_rabbit)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, lion)",
+          "z3_formula": "chases_rabbit_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bald_eagle)",
+          "z3_formula": "chases_rabbit_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> kind(X)",
+          "z3_formula": "Implies(chases_rabbit_X, kind_X)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "kind(rabbit)",
+          "z3_formula": "kind_rabbit == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, squirrel) & eats(squirrel, X) -> green(X)",
+          "z3_formula": "Implies(And(sees_squirrel_X, eats_squirrel_X), green_X)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "green(rabbit)",
+          "z3_formula": "green_rabbit == Unknown",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> sees(X, lion)",
+          "z3_formula": "Implies(eats_rabbit_X, sees_X_lion)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(kind_rabbit, eats_rabbit_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "eats(rabbit, rabbit)",
+          "z3_formula": "eats_rabbit_rabbit == Unknown",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & Not(eats(X, lion)) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_X_lion, Not(eats_X_lion)), eats_X_bald_eagle)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "eats(bald_eagle, squirrel)",
+          "z3_formula": "eats_bald_eagle_squirrel == Unknown",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, Y) -> cold(Y)",
+          "z3_formula": "Implies(And(eats_X_squirrel, eats_squirrel_Y), cold_Y)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bald_eagle)",
+          "z3_formula": "cold_bald_eagle == Unknown",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bald_eagle)",
+          "z3_formula": "chases_rabbit_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> kind(X)",
+          "z3_formula": "Implies(chases_X_rabbit, kind_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> chases(X, rabbit)",
+          "z3_formula": "Implies(sees_X_lion, chases_X_rabbit)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(rabbit, squirrel) & eats(squirrel, rabbit) -> green(rabbit)",
+          "z3_formula": "Implies(And(sees_rabbit_squirrel, eats_squirrel_rabbit), green_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> chases(lion, squirrel)",
+          "z3_formula": "Implies(eats_X_lion, chases_lion_squirrel)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> sees(rabbit, lion)",
+          "z3_formula": "Implies(eats_X_rabbit, sees_rabbit_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(kind_X, eats_X_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & Not(eats(X, lion)) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_X_lion, Not(eats_X_lion)), eats_X_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) & eats(squirrel, bald_eagle) -> cold(squirrel)",
+          "z3_formula": "Implies(And(eats_X_squirrel, eats_squirrel_bald_eagle), cold_squirrel)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "Not(sees(bald_eagle, rabbit))",
+          "z3_formula": "Not(sees_bald_eagle_rabbit) == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "Not(eats(bald_eagle, lion))",
+          "z3_formula": "Not(eats_bald_eagle_lion) == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, squirrel)",
+          "z3_formula": "eats_bald_eagle_squirrel == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "eats(squirrel, bald_eagle)",
+          "z3_formula": "eats_squirrel_bald_eagle == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "eats(squirrel, rabbit)",
+          "z3_formula": "eats_squirrel_rabbit == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "sees(rabbit, lion)",
+          "z3_formula": "sees_rabbit_lion == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "chases(rabbit, rabbit)",
+          "z3_formula": "chases_rabbit_rabbit == True",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(lion)",
+          "z3_formula": "kind_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> lion_chases(squirrel)",
+          "z3_formula": "Implies(eats_lion_squirrel, lion_chases_squirrel)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, lion) -> lion_chases(squirrel)",
+          "z3_formula": "Implies(eats_lion_squirrel, lion_chases_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(rabbit)",
+          "z3_formula": "big_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "cold(rabbit)",
+          "z3_formula": "cold_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, squirrel)",
+          "z3_formula": "sees_rabbit_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "cold(squirrel)",
+          "z3_formula": "cold_squirrel == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(squirrel)",
+          "z3_formula": "kind_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, rabbit) -> kind(X)",
+          "z3_formula": "Implies(chases_rabbit_lion, kind_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(lion, rabbit))",
+          "z3_formula": "Not(chases_lion_rabbit) == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> chases(X, rabbit)",
+          "z3_formula": "Implies(sees_lion_rabbit, chases_rabbit_rabbit)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(rabbit, squirrel))",
+          "z3_formula": "Not(eats_rabbit_squirrel) == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, rabbit) -> sees(X, lion)",
+          "z3_formula": "Implies(eats_rabbit_lion, sees_lion_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) -> eats(X, rabbit)",
+          "z3_formula": "Implies(kind_rabbit, eats_rabbit_rabbit)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & not(eats(X, lion)) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(sees_lion_rabbit, Not(eats_lion_rabbit)), eats_rabbit_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, squirrel)",
+          "z3_formula": "eats_bald_eagle_squirrel == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "not(sees(bald_eagle, rabbit))",
+          "z3_formula": "Not(sees_bald_eagle_rabbit) == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "chases(bald_eagle, squirrel)",
+          "z3_formula": "chases_bald_eagle_squirrel == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "chases(rabbit, bald_eagle)",
+          "z3_formula": "chases_rabbit_bald_eagle == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "eats(rabbit, bald_eagle)",
+          "z3_formula": "eats_rabbit_bald_eagle == True",
+          "source_step": 22
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 186,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 79
+    },
+    "maxsat_stats": {
+      "satisfied": 75,
+      "excluded": 4,
+      "total_weight": 181,
+      "solve_time_ms": 2.3992685601115227
+    },
+    "timing": {
+      "trace_gen_s": 25.099,
+      "extraction_s": 42.065,
+      "dedup_s": 2.879,
+      "maxsat_s": 0.007,
+      "total_s": 70.05
+    }
+  }
+}

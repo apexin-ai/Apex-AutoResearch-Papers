@@ -1,0 +1,1061 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1203_Q17",
+    "problem": "Anne is nice. Erin is red. Erin is not round. Fiona is not nice. Harry is not blue. Harry is red. Harry is young. If Harry is blue and Harry is nice then Harry is red. If something is young and round then it is rough. All young, nice things are rough. Round, quiet things are young. If Erin is young and Erin is round then Erin is blue. Nice things are quiet. All quiet things are round. Rough things are not red. If something is round and red then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not round.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nNice($x, bool) ::: Is x nice?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nNotNice($x, bool) ::: Is x not nice?\nNotBlue($x, bool) ::: Is x not blue?\nYoung($x, bool) ::: Is x young?\nRough($x, bool) ::: Is x rough?\nQuiet($x, bool) ::: Is x quiet?\nBlue($x, bool) ::: Is x blue?\nNotRound($x, bool) ::: Is x not round?\nNotRed($x, bool) ::: Is x not red?\n\nFacts:\nNice(Anne, True) ::: Anne is nice.\nRed(Erin, True) ::: Erin is red.\nNotRound(Erin, True) ::: Erin is not round.\nNotNice(Fiona, True) ::: Fiona is not nice.\nNotBlue(Harry, True) ::: Harry is not blue.\nRed(Harry, True) ::: Harry is red.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nBlue(Harry, True) && Nice(Harry, True) >>> Red(Harry, True) ::: If Harry is blue and Harry is nice then Harry is red.\nYoung($x, True) && Round($x, True) >>> Rough($x, True) ::: If something is young and round then it is rough.\nYoung($x, True) && Nice($x, True) >>> Rough($x, True) ::: All young, nice things are rough.\nRound($x, True) && Quiet($x, True) >>> Young($x, True) ::: Round, quiet things are young.\nYoung(Erin, True) && Round(Erin, True) >>> Blue(Erin, True) ::: If Erin is young and Erin is round then Erin is blue.\nNice($x, True) >>> Quiet($x, True) ::: Nice things are quiet.\nQuiet($x, True) >>> Round($x, True) ::: All quiet things are round.\nRough($x, True) >>> NotRed($x, True) ::: Rough things are not red.\nRound($x, True) && Red($x, True) >>> Blue($x, True) ::: If something is round and red then it is blue.\n\nQuery:\nNotRound(Harry, True) ::: Harry is not round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 74.5,
+      "True": 135.5,
+      "Unknown": 117.0
+    },
+    "answer_counts": {
+      "True": 8,
+      "False": 1,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we'll use the given statements and apply logical reasoning. \n\nGiven statements:\n\n1. Anne is nice.\n2. Erin is red.\n3. Erin is not round.\n4. Fiona is not nice.\n5. Harry is not blue.\n6. Harry is red.\n7. Harry is young.\n8. If Harry is blue and Harry is nice then Harry is red.\n9. If something is young and round then it is rough.\n10. All young, nice things are rough.\n11. Round, quiet things are young.\n12. If Erin is young and Erin is round then Erin is blue.\n13. Nice things are quiet.\n14. All quiet things are round.\n15. Rough things are not red.\n16. If something is round and red then it is blue.\n\nNow, let's determine whether the statement \"Harry is not round\" is true, false, or unknown.\n\nFrom statement 7, we know Harry is young.\n\nFrom statement 13, we know that nice things are quiet.\n\nFrom statement 6, we know Harry is red.\n\nFrom statement 15, we know that rough things are not red. However, this doesn't directly apply to Harry, but it will help us in our reasoning process.\n\nFrom statement 16, we know that if something is round and red, then it is blue. But we don't know if Harry is round yet.\n\nNow, let's analyze the possibilities:\n\nIf Harry is round, then from statement 16, Harry is blue, which contradicts statement 5 (Harry is not blue). So, Harry cannot be round.\n\nHowever, we need to verify if this conclusion is correct by checking all the possible implications of the given statements.\n\nFrom statement 10, we know all young, nice things are rough. Since Harry is young (statement 7), if Harry is nice, then Harry is rough.\n\nFrom statement 14, we know all quiet things are round. Since Harry is quiet (by transitive property from statement 13 and statement 6, nice things are quiet, and Harry is red, so Harry is nice), Harry is round.\n\nHowever, we have already concluded that Harry cannot be round. This appears to be a contradiction.\n\nTo resolve this contradiction, we need to find an inconsistency in our reasoning. Upon closer inspection, we find that the contradiction arises from the assumption that if Harry is nice, then Harry is round. This is not necessarily true. The correct interpretation is that if Harry is young and nice, then Harry is rough.\n\nSince we have found an inconsistency in our reasoning, we conclude that the original assumption that Harry is not round is indeed true.\n\nTherefore, the statement \"Harry is not round\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is red. \n2. Harry is not blue.\n3. Harry is young.\n\nFrom the information given, we have no direct evidence that Harry is round or not. So, let's try to derive the information about Harry's roundness from other premises.\n\n4. If Harry is blue and Harry is nice then Harry is red. (This premise does not help us directly because we do not have any information about Harry being blue or nice.)\n\n5. If something is young and round then it is rough. (This premise does not help us directly because we do not have any information about Harry being round.)\n\n6. All young, nice things are rough. (This premise does not help us directly because we do not have any information about Harry being nice.)\n\n7. Round, quiet things are young. (This premise does not help us directly because we do not have any information about Harry being quiet or round.)\n\n8. If Erin is young and Erin is round then Erin is blue. (This premise does not help us directly because we are analyzing Harry, not Erin.)\n\n9. Nice things are quiet. (This premise does not help us directly because we do not have any information about Harry being nice.)\n\n10. All quiet things are round. (This premise does not help us directly because we do not have any information about Harry being quiet.)\n\n11. Rough things are not red. (This premise does not help us directly because we do not have any information about Harry being rough.)\n\n12. If something is round and red then it is blue. (This premise does not help us directly because we do not have any information about Harry being round.)\n\nFrom the information given in the problem, the only relevant information about Harry is that he is red and young. We still do not know if Harry is round or not. \n\nHowever, we can analyze the given information again by combining the information about Erin and the information about round things being blue. We have information that Erin is red and not round. But we also have information that if something is round and red, it is blue. So, Erin cannot be round, but if Erin were round, she would be blue. This helps us understand the properties of round and red objects, but it still does not help us determine whether Harry is round or not.\n\nHowever, we can analyze the given information about Erin and Harry's color. We know that Harry is red and Erin is red, but Erin is not round and if Erin were round, she would be blue. This tells us that red and round do not always mean blue, but it still does not help us determine whether Harry is round or not.\n\nThe given information about Erin being red and not round, and Harry being red and young, still does not tell us whether Harry is round or not.\n\nHowever, we can use the following information: \nWe have information that all quiet things are round. We have information that nice things are quiet. We have information that all young, nice things are rough, and we have information that rough things are not red. This information tells us that if Harry were nice, then Harry would be quiet, and if Harry were quiet, then Harry would be round. But this would also mean that Harry would be rough, and rough things are not red. However, we already know that Harry is red.\n\nThis means that Harry cannot be nice, and if Harry cannot be nice, then Harry cannot be quiet. And if Harry cannot be quiet, then Harry cannot be round.\n\nTherefore, from the given information, we can conclude that Harry is not round.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we will use a series of logical deductions based on the given statements.\n\n1. We are given the following statements:\n   - Anne is nice.\n   - Erin is red.\n   - Erin is not round.\n   - Fiona is not nice.\n   - Harry is not blue.\n   - Harry is red.\n   - Harry is young.\n   - If Harry is blue and Harry is nice then Harry is red.\n   - If something is young and round then it is rough.\n   - All young, nice things are rough.\n   - Round, quiet things are young.\n   - If Erin is young and Erin is round then Erin is blue.\n   - Nice things are quiet.\n   - All quiet things are round.\n   - Rough things are not red.\n   - If something is round and red then it is blue.\n\n2. We will start with the statement we need to evaluate: \"Harry is not round.\"\n\n3. To determine if this statement is true, false, or unknown, we need to see if we can deduce any information about Harry's roundness from the given statements.\n\n4. From the statement \"Harry is young,\" we can deduce that Harry is either round or rough, as stated in the rule \"If something is young and round then it is rough.\"\n\n5. However, we do not know if Harry is round or rough. This information is not sufficient to determine if the statement \"Harry is not round\" is true or false.\n\n6. Let's consider another rule: \"All young, nice things are rough.\" We don't know if Harry is nice, but we do know that if Harry is nice, then he is rough. However, we also know that Harry is red, and from the rule \"Rough things are not red,\" we can deduce that Harry cannot be rough.\n\n7. Since Harry cannot be rough, and we know that Harry is young, we can conclude that Harry must be round. This is because the only other option for a young thing is to be round (as stated in the rule \"If something is young and round then it is rough\").\n\n8. Therefore, we can deduce that Harry is round.\n\n9. Since we have deduced that Harry is round, we can now determine that the statement \"Harry is not round\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following facts:\n   - Harry is red.\n   - Harry is not blue.\n   - Harry is young.\n   - If Harry is blue and Harry is nice then Harry is red.\n   - If something is young and round then it is rough.\n   - All young, nice things are rough.\n   - Round, quiet things are young.\n   - If Erin is young and Erin is round then Erin is blue.\n   - Nice things are quiet.\n   - All quiet things are round.\n   - Rough things are not red.\n   - If something is round and red then it is blue.\n\n2. From the given facts, we can deduce the following:\n   - Since Harry is young, and young things can be round, Harry might be round.\n   - Since Harry is red, and round things that are red are blue, Harry might be blue.\n\n3. However, we also have the fact that \"Harry is not blue.\" This contradicts the possibility that Harry might be blue.\n\n4. Now, we need to examine the statement \"Harry is not round\" in relation to the given facts.\n\n5. If Harry is round, then from the fact \"If something is young and round then it is rough,\" we know that Harry would be rough.\n   - However, from the fact \"Rough things are not red,\" we can deduce that Harry would not be red, which contradicts the fact that Harry is red.\n\n6. This contradiction means that Harry cannot be round. Therefore, we can conclude that \"Harry is not round\" is true.\n\nSo, the final answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether Harry is not round, we need to find out if Harry is round or not. To do this, we can use the given statements and apply logical reasoning.\n\nGiven statements:\n\n1. Erin is red.\n2. Erin is not round.\n3. Fiona is not nice.\n4. Harry is not blue.\n5. Harry is red.\n6. Harry is young.\n7. If Harry is blue and Harry is nice then Harry is red.\n8. If something is young and round then it is rough.\n9. All young, nice things are rough.\n10. Round, quiet things are young.\n11. If Erin is young and Erin is round then Erin is blue.\n12. Nice things are quiet.\n13. All quiet things are round.\n14. Rough things are not red.\n15. If something is round and red then it is blue.\n\nTo determine whether Harry is round or not, we can first see if we can conclude that Harry is round using the given statements.\n\nFrom statement 10, we know that round, quiet things are young. However, we cannot conclude that Harry is quiet or round yet.\n\nFrom statement 6, we know that Harry is young. We can use this to find out if Harry is round or not.\n\nFrom statement 8, we know that if something is young and round then it is rough. But from statement 14, we know that rough things are not red, which contradicts statement 5 that says Harry is red.\n\nHowever, we can also use statement 5 and statement 15 to find out if Harry is round. From statement 5, we know that Harry is red. From statement 15, we know that if something is round and red then it is blue. If Harry were round, then it would be blue, which contradicts statement 4 that says Harry is not blue.\n\nThis means that if Harry is round, then Harry would be blue, which is false. Therefore, Harry is not round.\n\nThe final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve the problem, let's break down the given information and the statement we need to evaluate.\n\nGiven Information:\n\n1. Anne is nice.\n2. Erin is red.\n3. Erin is not round.\n4. Fiona is not nice.\n5. Harry is not blue.\n6. Harry is red.\n7. Harry is young.\n8. If Harry is blue and Harry is nice then Harry is red.\n9. If something is young and round then it is rough.\n10. All young, nice things are rough.\n11. Round, quiet things are young.\n12. If Erin is young and Erin is round then Erin is blue.\n13. Nice things are quiet.\n14. All quiet things are round.\n15. Rough things are not red.\n16. If something is round and red then it is blue.\n\nStatement to Evaluate: Harry is not round.\n\nTo determine whether the statement is true, false, or unknown, we'll analyze the information step by step.\n\nFrom statement 9, we know that if something is young and round, then it is rough. Given that Harry is young (statement 7), we can deduce that if Harry is round, then Harry is rough.\n\nHowever, statement 15 states that rough things are not red, but statement 8 states that if Harry is blue and Harry is nice, then Harry is red. Since Harry is not blue (statement 5), this condition is not met.\n\nFrom statement 6, we know that Harry is red. If Harry is round, then from statement 9, Harry would be rough, and from statement 15, Harry would not be red, which contradicts statement 6.\n\nTherefore, the only way to avoid this contradiction is to conclude that Harry is not round.\n\nHowever, we must also consider the statement \"Round, quiet things are young\" (statement 11). If Harry is not round, then we cannot conclude that he is young or not. \n\nHowever, we do know from statement 7 that Harry is young. If Harry is round, then from statement 11, Harry would be quiet, and from statement 13, Harry would be nice. Since Harry is young (statement 7) and nice (derived from statement 13), from statement 10, Harry would be rough, which would contradict statement 15.\n\nHowever, we know that from statement 7, Harry is young. We also know that Harry is not blue (statement 5) and from statement 6, Harry is red. \n\nFrom statement 8, if Harry is blue and Harry is nice, then Harry is red. Since Harry is not blue, this condition is not met.\n\nHowever, from statement 12, if Erin is young and Erin is round, then Erin is blue. Since Erin is not round (statement 3), this condition is not met.\n\nFrom statement 14, all quiet things are round. If Harry is quiet, then from statement 14, Harry is round. \n\nHowever, this would mean that from statement 11, Harry is young, and from statement 9, Harry is rough. From statement 15, rough things are not red, which would contradict statement 6.\n\nTherefore, Harry is not quiet. Since Harry is not quiet, from statement 13, Harry is not nice.\n\nFrom statement 7, Harry is young, and from statement 6, Harry is red. Since Harry is young (statement 7), from statement 9, Harry is rough.\n\nHowever, since Harry is not round, from statement 15, Harry would be red.\n\nGiven that Harry is red (statement 6), and Harry is young (statement 7), we cannot conclude that Harry is not round. \n\nTherefore, the statement \"Harry is not round\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that \"If something is young and round then it is rough.\"\n   From this, we can infer that \"If something is round then it is young or rough.\"\n\n2. We are also given that \"If Erin is young and Erin is round then Erin is blue.\"\n   From this, we cannot directly infer anything about Harry. However, this statement will be useful in the future.\n\n3. We have the following information about Harry: \"Harry is young\" and \"Harry is not blue.\"\n   Since we know that \"If something is round then it is young or rough\" and \"Harry is young,\" we can infer that \"Harry is not rough\" because we already know Harry's age.\n\n4. We are given that \"Rough things are not red.\"\n   From this, we can infer that \"Rough things are either blue or green\" (not given in the problem, but we can assume blue for the sake of simplicity).\n\n5. We have the following information about Erin: \"Erin is red\" and \"Erin is not round.\"\n   We also know that \"If Erin is young and Erin is round then Erin is blue.\"\n   From this, we can conclude that \"Erin is not young\" because if Erin is young, then Erin must be round and blue, which contradicts the given information that Erin is red.\n\n6. We are given that \"All young, nice things are rough\" and \"All quiet things are round.\"\n   Since we know that \"Nice things are quiet\" and \"Harry is young\" and \"Harry is nice\" is unknown, we cannot conclude that Harry is rough or round from this statement.\n\n7. We are given that \"Round, quiet things are young.\"\n   We already know that \"All quiet things are round,\" so this statement is consistent with the given information.\n\n8. We have the following information about Harry: \"Harry is red\" and \"Harry is not blue.\"\n   From the statement \"If something is round and red then it is blue,\" we cannot conclude that Harry is round because we do not know if Harry is round or not. However, we can infer that \"If Harry is round then Harry is blue,\" which contradicts the given information that Harry is not blue.\n\n9. We are given that \"If Harry is blue and Harry is nice then Harry is red.\"\n   From this statement, we cannot conclude anything about Harry being round or not.\n\n10. Since we have not found any information that directly contradicts the statement \"Harry is not round,\" we cannot conclude that Harry is round or not. Therefore, the statement \"Harry is not round\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Harry is not round, we need to analyze the given information.\n\nFrom the statements:\n- Harry is red.\n- Harry is young.\n- Harry is not blue.\n- If Harry is blue and Harry is nice then Harry is red.\n- If something is young and round then it is rough.\n- All young, nice things are rough.\n- Round, quiet things are young.\n- Nice things are quiet.\n- All quiet things are round.\n- Rough things are not red.\n- If something is round and red then it is blue.\n\nFrom the given statements, we can infer the following:\n\n1. Harry is red (directly given).\n2. Since Harry is red and round would make it blue (according to the rule \"If something is round and red then it is blue\"), but we already know Harry is not blue.\n3. Given that Harry is young (directly given), we can see that a young and round thing is rough (rule 1), but this is irrelevant because we are trying to figure out if Harry is round.\n4. A round and quiet thing is young (rule 3), but a quiet thing is round (rule 4), so this also leads to the fact that a quiet thing is young and round. But since quiet things are round (rule 4) and all quiet things are round (rule 4), it only makes sense that a quiet thing is round. This doesn't directly help us figure out if Harry is round, but it gives us a clue about the roundness of quiet things.\n5. Since Harry is red and rough things are not red (rule 6), we can conclude that Harry is not rough.\n6. If Harry is blue and Harry is nice then Harry is red (rule 2), but Harry is not blue (directly given), so we can't conclude that Harry is red from this rule. We already know Harry is red from the directly given statement.\n7. Nice things are quiet (rule 5), and if Harry is nice, he would be quiet. But we know Harry is young (directly given), so if Harry is quiet, then Harry is round (rule 3). This is a circular argument, so we can't conclude that Harry is round from this rule.\n8. All quiet things are round (rule 4), but a quiet thing is round (rule 3), which implies that a quiet thing is young and round, but we already know that quiet things are round.\n\nFrom the statements above, we still can't conclude if Harry is round. However, if we look at the rule \"If Erin is young and Erin is round then Erin is blue\" (rule 8), this rule implies that if Erin is round, Erin is young. However, Erin is not round (directly given). Since a round and quiet thing is young (rule 3), and a quiet thing is round (rule 4), we can see that a round and quiet thing is young. But we know that Erin is not round, so Erin is not young.\n\nHowever, we know that Erin is young (directly given), so this is a contradiction. Therefore, we can conclude that the statement \"Erin is not round\" is false, which implies that Erin is round.\n\nNow we can conclude that since Erin is round, Erin is young (rule 8), which implies that a round thing is young. But we know that a round and quiet thing is young (rule 3), and a quiet thing is round (rule 4). Since a quiet thing is round, we can conclude that a quiet thing is young.\n\nNow we can see that since a quiet thing is round and young, we can conclude that a quiet thing is round.\n\nSince a quiet thing is round and a round thing is young (rule 8), we can conclude that a quiet thing is young. Since a quiet thing is young and round, we can conclude that a quiet thing is round.\n\nHowever, we know that Harry is young (directly given), so we can conclude that a young thing is round (rule 8), which implies that a young thing is round. But we also know that a quiet thing is round (rule 4), and a quiet thing is young (rule 3), so we can conclude that a quiet thing is round.\n\nHowever, we also know that all quiet things are round (rule 4). Since a quiet thing is round, we can conclude that a quiet thing is round.\n\nSince a quiet thing is round and a round thing is young (rule 8), we can conclude that a quiet thing is young.\n\nSince Harry is young (directly given), we can conclude that a young thing is quiet (rule 3). However, a quiet thing is young (rule 3). Since a quiet thing is young, we can conclude that a quiet thing is round (rule 4).\n\nTherefore, a quiet thing is round.\n\nSince a quiet thing is round (rule 4) and a round thing is young (rule 8), we can conclude that a quiet thing is young.\n\nNow we can conclude that a quiet thing is round (rule 4).\n\nNow we can conclude that a quiet thing is young (rule 3).\n\nSince a quiet thing is young (rule 3), we can conclude that a quiet thing is round (rule 4).\n\nSince a quiet thing is round (rule 4), we can conclude that a quiet thing is young (rule 8).\n\nSince a quiet thing is young (rule 3), we can conclude that a quiet thing is round (rule 4).\n\nSince a quiet thing is round (rule 4), we can conclude that a quiet thing is young (rule 8).\n\nSince a quiet thing is young (rule 3), we can conclude that a quiet thing is round (rule 4).\n\nHowever, we know that all quiet things are round (rule 4), which implies that a quiet thing is round.\n\nSince a quiet thing is round (rule 4), we can conclude that a quiet thing is young (rule 8).\n\nSince a quiet thing is young (rule 3), we can conclude that a quiet thing is round (rule 4).\n\nNow we can conclude that Harry is not round.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions.\n\nGiven statements:\n\n1. Anne is nice.\n2. Erin is red.\n3. Erin is not round.\n4. Fiona is not nice.\n5. Harry is not blue.\n6. Harry is red.\n7. Harry is young.\n8. If Harry is blue and Harry is nice then Harry is red.\n9. If something is young and round then it is rough.\n10. All young, nice things are rough.\n11. Round, quiet things are young.\n12. If Erin is young and Erin is round then Erin is blue.\n13. Nice things are quiet.\n14. All quiet things are round.\n15. Rough things are not red.\n16. If something is round and red then it is blue.\n\nNow, let's analyze the statements related to Harry:\n\n- Harry is young (statement 7)\n- Harry is red (statement 6)\n- Harry is not blue (statement 5)\n\nFrom statement 11, we know that round, quiet things are young. But from statement 13, we know that nice things are quiet. Therefore, Harry is nice (since being young and quiet makes him nice).\n\nNow, let's use statement 8: \"If Harry is blue and Harry is nice then Harry is red.\" We can deduce that since Harry is nice, this condition is met, but it says that he would be red if he is blue, but we already know he is red.\n\nNow, let's use statement 9: \"If something is young and round then it is rough.\" Since Harry is young and round (we still don't know if he is round), this condition is met.\n\nFrom statement 10, we know that all young, nice things are rough. Since Harry is young and nice, he must be rough.\n\nFrom statement 15, we know that rough things are not red. This creates a contradiction, since we already know Harry is red.\n\nHowever, this contradiction doesn't tell us directly if Harry is round or not. We need to use more statements.\n\nFrom statement 12, we know that if Erin is young and Erin is round, then Erin is blue. This statement doesn't directly relate to Harry, but we can use the fact that Harry is young (statement 7) to relate to Erin. We don't know if Erin is round or not, but if we assume Erin is round, we would get a contradiction (since Erin is red, and if something is round and red then it is blue, which contradicts the fact that Erin is red).\n\nNow, let's analyze the statements related to roundness. We know that round, quiet things are young (statement 11), and all quiet things are round (statement 14). This creates a loop where round things are young, and quiet things are round, and we can't deduce if Harry is round or not.\n\nHowever, we can use the fact that Harry is not blue (statement 5) to analyze the statements related to colors. From statement 16, we know that if something is round and red then it is blue. This statement creates a contradiction if Harry is round, since we know he is red, but we don't know if he is blue or not.\n\nSince we can't deduce if Harry is round or not from the given statements, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Harry is red. (From the statement: Harry is red)\n2. We also know that Harry is not blue. (From the statement: Harry is not blue)\n3. Since Harry is red and not blue, we can't directly conclude whether Harry is round or not from the given information. However, we have a few clues to consider:\n   - Round, quiet things are young. (From the statement: Round, quiet things are young)\n   - Nice things are quiet. (From the statement: Nice things are quiet)\n   - All quiet things are round. (From the statement: All quiet things are round)\n   - All young, nice things are rough. (From the statement: All young, nice things are rough)\n   - If something is young and round then it is rough. (From the statement: If something is young and round then it is rough)\n   - Rough things are not red. (From the statement: Rough things are not red)\n\nLet's assume that Harry is round. If Harry is round, then he must be young and quiet, as round and quiet things are young. But if Harry is young, then he must be rough (since all young, nice things are rough) and red (since Harry is already red). However, this leads to a contradiction because rough things are not red.\n\nSo, if we assume that Harry is round, it leads to an inconsistency. Therefore, Harry cannot be round.\n\nThe statement \"Harry is not round\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will use a truth table and logical deductions. Let's assign the following variables:\n\n- N: Nice\n- E: Erin\n- R: Red\n- R1 (for Harry): Red\n- H: Harry\n- F: Fiona\n- Y: Young\n- B: Blue\n- Q: Quiet\n- O: Round\n\nGiven statements:\n1. Anne is nice. - This information is not necessary for our solution.\n2. Erin is red. - E = R\n3. Erin is not round. - Not O\n4. Fiona is not nice. - Not N\n5. Harry is not blue. - Not B\n6. Harry is red. - H = R1\n7. Harry is young. - H = Y\n8. If Harry is blue and Harry is nice then Harry is red. - (B \u2227 N) \u2192 R1\n9. If something is young and round then it is rough. - Y \u2227 O \u2192 R\n10. All young, nice things are rough. - Y \u2227 N \u2192 R\n11. Round, quiet things are young. - O \u2227 Q \u2192 Y\n12. If Erin is young and Erin is round then Erin is blue. - (E = Y \u2227 E = O) \u2192 E = B\n13. Nice things are quiet. - N \u2192 Q\n14. All quiet things are round. - Q \u2192 O\n15. Rough things are not red. - Not (R \u2227 R)\n16. If something is round and red then it is blue. - O \u2227 R \u2192 B\n\nNow, we will evaluate each statement using the given information and our assigned variables.\n\nGiven E = R, we know Erin is red.\n\nFrom statement 3, we know Erin is not round.\n\nFrom statement 7, we know Harry is young.\n\nFrom statement 6, we know Harry is red.\n\nSince Harry is young and red, we can infer that he is rough (using statement 9).\n\nUsing statement 10, since Harry is young and we are trying to determine if he is nice, we must first determine if he is nice or not. If he is not nice, then he is not rough. But we already know Harry is rough. Therefore, Harry is nice.\n\nUsing statement 13, since Harry is nice, he is quiet.\n\nUsing statement 14, since Harry is quiet, he is round.\n\nHowever, using statement 15, since Harry is rough and rough things are not red, we can infer that Harry is not red.\n\nThis contradicts our previous information that Harry is red (from statement 6). Therefore, we must conclude that our initial assumption that Harry is not red (because he is rough) is incorrect.\n\nGiven this information, we can infer that Harry is blue (from statement 5 and statement 8). \n\nTherefore, we can conclude that Harry is blue.\n\nNow, we can analyze the statement \"Harry is not round.\" \n\nGiven our previous conclusion that Harry is round, we can see that this statement is false.\n\nHowever, given that the statement \"If something is round and red then it is blue\" is actually false because we know Harry is round and red, but he is not blue, we can infer that this statement is false.\n\nThus, we can conclude that Harry is not round.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Harry is red. (From the given statement: \"Erin is red. Erin is not round. Fiona is not nice. Harry is not blue. Harry is red. Harry is young.\")\n\n2. We also know that Harry is young. (From the given statement: \"Harry is young.\")\n\n3. From the statement \"If something is young and round then it is rough,\" we can conclude that if Harry is round, then Harry is rough.\n\n4. However, we also know that Harry is red. From the statement \"Rough things are not red,\" we can conclude that Harry cannot be rough.\n\n5. Since Harry cannot be rough (Step 4) and if Harry is round (Step 3), we can conclude that Harry is not round.\n\nTherefore, based on the given information, we can conclude that Harry is not round.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(erin))",
+          "z3_formula": "Not(round_erin) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(nice(fiona))",
+          "z3_formula": "Not(nice_fiona) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(blue(harry))",
+          "z3_formula": "Not(blue_harry) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(harry) & nice(harry) -> red(harry)",
+          "z3_formula": "Implies(And(blue_harry, nice_harry), red_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, round_X), rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, nice_X), rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(round_X, quiet_X), young_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_X, quiet_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_X, round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> not(red(X))",
+          "z3_formula": "Implies(rough_X, Not(red_X))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, red_X), blue_X)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(harry)",
+          "z3_formula": "Not(blue_harry) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_harry, nice_harry), red_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, nice_harry), rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> Not(red(X))",
+          "z3_formula": "Implies(rough_harry, Not(red_harry))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), blue_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_harry, quiet_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(harry))",
+          "z3_formula": "Not(round_harry) == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(erin))",
+          "z3_formula": "Not(round_erin) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(nice(fiona))",
+          "z3_formula": "Not(nice_fiona) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(blue(harry))",
+          "z3_formula": "Not(blue_harry) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(harry) & nice(harry) -> red(harry)",
+          "z3_formula": "Implies(And(blue_harry, nice_harry), red_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, round_X), rough_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, nice_X), rough_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(round_X, quiet_X), young_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, round_X), rough_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, round_X), rough_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, round_X), rough_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, red_X), blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(harry))",
+          "z3_formula": "Not(round_harry) == False",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(harry)",
+          "z3_formula": "Not(blue_harry) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_harry, nice_harry), red_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, nice_harry), rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(round_harry, quiet_harry), young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_erin, round_erin), blue_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_harry, quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> not red(X)",
+          "z3_formula": "Implies(rough_harry, Not(red_harry))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), blue_harry)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(erin))",
+          "z3_formula": "Not(round_erin) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(nice(fiona))",
+          "z3_formula": "Not(nice_fiona) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(blue(harry))",
+          "z3_formula": "Not(blue_harry) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(harry) & nice(harry) -> red(harry)",
+          "z3_formula": "Implies(And(blue_harry, nice_harry), red_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, round_X), rough_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, nice_X), rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(round_X, quiet_X), young_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, round_X), rough_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, round_X), rough_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_X, round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, red_X), blue_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(harry))",
+          "z3_formula": "Not(round_harry) == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(erin))",
+          "z3_formula": "Not(round_erin) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(nice(fiona))",
+          "z3_formula": "Not(nice_fiona) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(blue(harry))",
+          "z3_formula": "Not(blue_harry) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_harry, nice_harry), red_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), rough_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, nice_harry), rough_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(round_harry, quiet_harry), young_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_harry, quiet_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> not(red(X))",
+          "z3_formula": "Implies(rough_harry, Not(red_harry))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), blue_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(harry))",
+          "z3_formula": "Not(round_harry) == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & young(X) -> rough(X)",
+          "z3_formula": "Implies(And(round_harry, young_harry), rough_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) -> young(X) | rough(X)",
+          "z3_formula": "Implies(round_harry, Or(young_harry, rough_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(harry)",
+          "z3_formula": "not blue_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> young(X) | rough(X)",
+          "z3_formula": "Implies(round_harry, Or(young_harry, rough_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(harry)",
+          "z3_formula": "not rough_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> not red(X)",
+          "z3_formula": "Implies(rough_harry, not red_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(X) -> blue(X) | green(X)",
+          "z3_formula": "Implies(rough_harry, Or(blue_harry, green_harry))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not round(erin)",
+          "z3_formula": "not round_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> blue(X)",
+          "z3_formula": "Implies(And(young_erin, round_erin), blue_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not young(erin)",
+          "z3_formula": "not young_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, nice_harry), rough_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(round_harry, quiet_harry), young_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(harry)",
+          "z3_formula": "not blue_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), blue_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_harry, blue_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_harry, nice_harry), red_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not round(harry)",
+          "z3_formula": "not round_harry == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(harry)",
+          "z3_formula": "Not(blue_harry) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_harry, nice_harry), red_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, nice_harry), rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(round_harry, quiet_harry), young_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> quiet(X)",
+          "z3_formula": "Implies(round_harry, quiet_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> round(X)",
+          "z3_formula": "Implies(quiet_harry, round_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), blue_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(harry)",
+          "z3_formula": "Not(rough_harry) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not round(harry)",
+          "z3_formula": "Not(round_harry) == True",
+          "source_step": 13
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(harry)",
+          "z3_formula": "Not(blue_harry) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(round_harry, quiet_harry), young_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> quiet(X)",
+          "z3_formula": "Implies(nice_harry, quiet_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "All(X, round(X) & quiet(X)) -> round(X)",
+          "z3_formula": "Implies(ForAll(X, And(round_X, quiet_X)), round_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, nice_X), rough_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, round_X), rough_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> Not(red(X))",
+          "z3_formula": "Implies(rough_X, Not(red_X))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not round(harry)",
+          "z3_formula": "Not(round_harry) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(erin))",
+          "z3_formula": "Not(round_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(nice(fiona))",
+          "z3_formula": "Not(nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(blue(harry))",
+          "z3_formula": "Not(blue_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & nice(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_harry, nice_harry), red_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), rough_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & nice(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, nice_harry), rough_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & quiet(X) -> young(X)",
+          "z3_formula": "Implies(And(round_harry, quiet_harry), young_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> young(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), young_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> red(X)",
+          "z3_formula": "Implies(red_harry, red_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & red(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, red_harry), blue_harry)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "nice(harry)",
+          "z3_formula": "nice_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not(red(harry))",
+          "z3_formula": "Not(red_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(harry))",
+          "z3_formula": "Not(round_harry)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(X) & red(X) -> blue(X))",
+          "z3_formula": "Not(Implies(And(round_harry, red_harry), blue_harry))",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & round(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, round_harry), rough_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> Not(red(X))",
+          "z3_formula": "Implies(rough_harry, Not(red_harry))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "Not(round(harry))",
+          "z3_formula": "Not(round_harry) == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 155,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 38
+    },
+    "maxsat_stats": {
+      "satisfied": 31,
+      "excluded": 7,
+      "total_weight": 144,
+      "solve_time_ms": 1.9933078438043594
+    },
+    "timing": {
+      "trace_gen_s": 15.276,
+      "extraction_s": 41.36,
+      "dedup_s": 1.288,
+      "maxsat_s": 0.004,
+      "total_s": 57.928
+    }
+  }
+}

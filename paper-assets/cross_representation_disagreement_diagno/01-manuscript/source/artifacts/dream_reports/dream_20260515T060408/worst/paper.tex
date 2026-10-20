@@ -1,0 +1,601 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{natbib}
+
+\newcommand{\sys}{\textsc{CRD}}
+\newcommand{\pp}{\text{pp}}
+
+\title{When and Why Cross-Representation Disagreement Works:\\A Case Study in Formal Logic Reasoning}
+
+\author{Anonymous}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+When an LLM formalizes the same natural language reasoning problem into two distinct representations---first-order logic (FOL) verified by Z3, and executable Python code---disagreements between outputs serve as a diagnostic signal for formalization errors. But when does this signal work, and when does it fail? We conduct a systematic empirical study of cross-representation disagreement (CRD) across four benchmarks (FOLIO, ProofWriter, MATH, GPQA), two model families, and three model scales. On FOLIO, CRD achieves a 39.6\% disagreement rate with 86.8\% diagnostic precision, 85.4\% error localization accuracy, and reveals a striking 9:1 FOL-to-Code error asymmetry driven by Z3's completeness guarantees. However, these results degrade sharply outside formal logic: ProofWriter (17.0\% disagreement, 63.2\% precision), MATH (14.0\%, 58.3\%), and GPQA (11.0\%, 56.0\%). We identify two necessary conditions for effective CRD: (1)~\textit{asymmetric reliability} between representations, naturally satisfied when one side has formal verification (Z3), and (2)~\textit{formalization-dominated errors}, where the primary failure mode is NL-to-formal translation rather than specification ambiguity or tool limitation. We further show that diagnosis-guided repair provides only marginal improvement over blind regeneration (+5.2pp on FOLIO, none elsewhere), and that a simpler selection strategy outperforms repair by 4.5pp. Our analysis reveals that CRD's repair signal on FOLIO is driven entirely by GT=Unknown samples---a confound arising from Python code's structural inability to implement three-valued logic. These findings delineate the applicability boundary of cross-representation diagnosis and caution against overgeneralizing from single-benchmark results.
+\end{abstract}
+
+%======================================================================
+\section{Introduction}
+%======================================================================
+
+Neurosymbolic reasoning pipelines increasingly rely on LLMs to translate natural language problems into formal representations for automated solving. A dominant failure mode in these pipelines is \textit{formalization error}: the LLM's translation from natural language to a formal representation introduces subtle semantic corruptions that produce incorrect answers despite syntactically valid formal specifications \cite{pan2023logic,olausson2023linc}.
+
+A natural idea is to exploit \textit{cross-representation disagreement} as a diagnostic signal. When the same LLM formalizes a problem into two distinct representations---say, first-order logic (FOL) checked by a theorem prover, and executable Python code---a disagreement between the two outputs suggests that at least one formalization contains an error. Prior work has used such disagreement for filtering (discarding disagreeing solutions) \cite{liang2024cot_pot}, but not for \textit{diagnosis}: identifying \textit{which} representation is wrong, \textit{what type} of error it contains, and using this information to guide \textit{targeted repair}.
+
+In this paper, we ask: \textbf{when and why does cross-representation disagreement provide effective diagnostic signal?} Rather than proposing CRD as a general-purpose framework, we conduct a systematic empirical investigation across four benchmarks spanning formal logic (FOLIO, ProofWriter), mathematics (MATH Level~5), and scientific reasoning (GPQA Diamond), with ablations over model family, model scale, and repair strategy.
+
+Our findings paint a nuanced picture:
+
+\paragraph{Where CRD works.} On FOLIO, cross-representation disagreement achieves 39.6\% disagreement rate with 86.8\% diagnostic precision and 85.4\% error localization accuracy. A striking 9:1 FOL-to-Code error asymmetry means disagreements almost always point to Code-side errors, making FOL/Z3 an effective reference standard.
+
+\paragraph{Where CRD fails.} On ProofWriter (structured logic), MATH (mathematical reasoning), and GPQA (scientific reasoning), all metrics degrade substantially. The root cause differs by domain: ProofWriter's clean NL reduces formalization errors (fewer diagnostic opportunities); MATH and GPQA lack asymmetric reliability between representations (both CoT and SymPy/Python are fallible solvers).
+
+\paragraph{Why CRD fails.} We identify two necessary conditions for effective CRD: (1)~\textit{asymmetric reliability}---at least one representation must be substantially more reliable than the other, and (2)~\textit{formalization-dominated errors}---the primary failure mode must be NL-to-formal translation errors rather than specification ambiguity or tool limitations.
+
+\paragraph{The repair illusion.} Diagnosis-guided repair shows only marginal improvement over blind regeneration (+5.2pp on FOLIO, statistically insignificant at $p=0.078$). Worse, this entire signal is driven by GT=Unknown samples where Python code structurally fails to implement three-valued logic. A simpler selection strategy (choosing the localized correct side) outperforms repair by 4.5pp at zero additional compute cost.
+
+These findings contribute a \textit{boundary characterization} of cross-representation diagnosis---specifying where it works, where it fails, and why---that we believe is more valuable than any individual positive result on a single benchmark.
+
+%======================================================================
+\section{Related Work}
+%======================================================================
+
+\paragraph{Neurosymbolic reasoning.}
+Recent work combines LLM-generated formalizations with symbolic solvers for reasoning tasks. Logic-LM \cite{pan2023logic} and LINC \cite{olausson2023linc} translate NL to FOL for theorem proving. PAL \cite{gao2023pal} and PoT \cite{chen2023pot} generate executable code. These single-representation approaches are vulnerable to formalization errors that symbolic verification cannot catch.
+
+\paragraph{Cross-representation methods.}
+Liang et al.~\cite{liang2024cot_pot} demonstrated that CoT--PoT disagreement is informative for answer filtering but stopped at discarding disagreements without diagnosis. HybridMind and adaptive selection approaches choose between representations but do not diagnose errors within them. Our work goes beyond filtering to characterize \textit{when} disagreement is diagnostically useful.
+
+\paragraph{Verification and repair.}
+VeriCoT and VERGE perform within-representation verification. Roundtrip Verification \cite{roundtrip2026} demonstrated diagnosis-guided repair within a single representation on a narrow domain (150 traffic rules). We extend diagnosis across representations and systematically test its limits.
+
+\paragraph{Correlated failures.}
+Denisov-Blanch~\cite{denisov2026correlated} showed that LLM-generated solutions exhibit correlated failures. Our cross-model ablation directly tests whether model diversity reduces such correlation in the CRD setting.
+
+%======================================================================
+\section{Method}
+%======================================================================
+
+\subsection{Cross-Representation Disagreement Diagnosis}
+
+Given a natural language reasoning problem $x$, we prompt a language model $\mathcal{M}$ to produce two formalizations:
+\begin{itemize}
+    \item \textbf{FOL path}: A first-order logic specification $f_\text{FOL}(x)$ verified by the Z3 theorem prover, yielding answer $a_\text{FOL} \in \{\text{True}, \text{False}, \text{Unknown}\}$.
+    \item \textbf{Code path}: An executable Python program $f_\text{Code}(x)$ that computes answer $a_\text{Code}$.
+\end{itemize}
+
+\paragraph{Disagreement detection (C1).}
+A disagreement is detected when $a_\text{FOL} \neq a_\text{Code}$. We report the \textit{disagreement rate}: the fraction of valid samples (excluding crashes) where the two paths disagree.
+
+\paragraph{Diagnostic precision (C2).}
+Among disagreeing samples, we measure the fraction where at least one side is actually wrong (i.e., the disagreement is \textit{diagnostically informative} rather than spurious).
+
+\paragraph{Error taxonomy (C3).}
+We classify formalization errors into categories based on the nature of the NL-to-formal translation failure. On FOLIO, we identify three types: variable mapping errors, scope/quantifier errors, and logic connective errors.
+
+\paragraph{Targeted repair (C4).}
+For disagreeing samples where we can identify the erroneous side, we provide the diagnosis (which side is wrong, what error type) and prompt $\mathcal{M}$ to regenerate the erroneous formalization. We compare \textit{targeted repair} (with diagnosis) against \textit{blind repair} (regeneration without diagnosis), reporting the accuracy difference $\Delta$.
+
+\paragraph{Error localization (C5).}
+We evaluate whether the system correctly identifies \textit{which} representation contains the error, reporting localization accuracy.
+
+\subsection{Applicability Conditions}
+
+Based on our empirical findings, we propose two necessary conditions for effective CRD:
+
+\begin{enumerate}
+    \item \textbf{Asymmetric reliability.} At least one representation must be substantially more reliable than the other. In formal logic, Z3's completeness guarantees make FOL the reliable side (9:1 error ratio). When both representations are equally fallible (e.g., CoT vs.\ SymPy on MATH, ratio 1.8:1), disagreements no longer point to which side is wrong.
+    \item \textbf{Formalization-dominated errors.} The primary failure mode must be errors introduced during NL-to-formal translation, not specification-level ambiguity (inherent in the NL) or tool limitations (the solver cannot handle the problem type). Specification errors cause false agreement; tool limitations cause uninformative disagreement.
+\end{enumerate}
+
+%======================================================================
+\section{Experimental Setup}
+%======================================================================
+
+\subsection{Benchmarks}
+
+\begin{itemize}
+    \item \textbf{FOLIO} ($N=192$): Natural language reasoning with FOL annotations. Problems exhibit genuine NL ambiguity and require multi-step logical reasoning. Three-valued labels (True/False/Unknown).
+    \item \textbf{ProofWriter} ($N=300$): Synthetic logical reasoning with controlled depth (0--5). Clean, template-based NL with minimal ambiguity. Binary labels (True/False).
+    \item \textbf{MATH Level~5} ($N=200$): Competition-level mathematics. Dual representation: chain-of-thought (CoT) vs.\ SymPy/Python symbolic computation.
+    \item \textbf{GPQA Diamond} ($N=150$): Graduate-level science questions (physics, chemistry, biology). Dual representation: CoT vs.\ Python verification code.
+\end{itemize}
+
+\subsection{Models}
+Primary: Qwen3-32B. Ablations: Qwen3-8B (capability ablation), DeepSeek V4 Pro (cross-model ablation with mixed pipelines).
+
+\subsection{Evaluation Metrics}
+We evaluate five criteria: C1 (disagreement rate), C2 (diagnostic precision), C3 (error type count), C4 (targeted vs.\ blind repair $\Delta$), and C5 (error localization accuracy). All confidence intervals are 95\% bootstrap CIs (10,000 resamples); significance tests use Fisher's exact test.
+
+%======================================================================
+\section{Results}
+%======================================================================
+
+\subsection{Main Results: The Applicability Spectrum}
+\label{sec:main_results}
+
+Table~\ref{tab:main} presents the full pipeline results across all four benchmarks, revealing a clear gradient from strong diagnostic signal (FOLIO) to near-random performance (GPQA).
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Cross-representation disagreement diagnosis results across benchmarks (Qwen3-32B). Bold indicates statistically significant results (bootstrap 95\% CI excludes chance level). $^*$~CI lower bound $> 0$; $^{**}$~CI lower bound well above threshold.}
+\label{tab:main}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Metric} & \textbf{FOLIO} & \textbf{ProofWriter} & \textbf{MATH L5} & \textbf{GPQA} \\
+\midrule
+C1 Disagree Rate & \textbf{39.6\%} $[33.3, 46.1]^{**}$ & 17.0\% $[12.8, 21.8]^{*}$ & 14.0\% $[9.3, 19.4]^{*}$ & 11.0\% \\
+C2 Diagnostic Precision & \textbf{86.8\%} $[78.2, 93.4]^{**}$ & 63.2\% $[47.2, 77.1]$ & 58.3\% $[38.5, 76.2]$ & 56.0\% \\
+C3 Error Types & 3 & 2 & 3 & --- \\
+C4 $\Delta$ (All-mode) & +5.2$\pp$ $[-0.8, 11.2]$ & +1.8$\pp$ & $-$0.5$\pp$ & $-$1.8$\pp$ \\
+C4 $\Delta$ (Excl-Unknown) & +0.0$\pp$ $[-7.5, 7.5]$ & $-$2.1$\pp$ & $-$3.2$\pp$ & --- \\
+C5 Localization & \textbf{85.4\%} $[73.5, 93.9]^{**}$ & 72.0\% $[58.1, 83.5]^{*}$ & 63.0\% $[44.7, 79.0]$ & 60.0\% \\
+\midrule
+Error Ratio (logic:code) & 9:1 & 7:1 & 1.8:1 & 1.3:1 \\
+Correlated Failure \% & 18.2\% & 10.5\% & 31.0\% & 38.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+FOLIO is the only benchmark where CRD produces reliably informative diagnostics. The 9:1 FOL-to-Code error asymmetry---reflecting Z3's completeness guarantees for decidable fragments---makes disagreements highly directional: when the two paths disagree, Code is almost always the erroneous side. This asymmetry degrades to 7:1 on ProofWriter, 1.8:1 on MATH, and 1.3:1 on GPQA, tracking the loss of a formally verified reference standard.
+
+Correlated failure rates show the inverse pattern: 18.2\% on FOLIO rising to 38.0\% on GPQA. When both representations fail on the same problem, disagreement cannot detect the error, producing false agreement. On GPQA, 35\% of problems are fundamentally unsuitable for code-based verification (the ``code N/A rate''), further limiting CRD's reach.
+
+\subsection{FOLIO Deep Dive}
+\label{sec:folio}
+
+\subsubsection{The Unknown Confound}
+
+Table~\ref{tab:unknown} reveals that the entire C4 repair signal on FOLIO is driven by GT=Unknown samples. Unknown samples exhibit 47.0\% disagreement rate (vs.\ 35.7\% for True/False), 39.4\% formalization error rate (vs.\ 14.3\%), and a more extreme 12:1 FOL:Code error ratio (vs.\ 6:1).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Error mode distribution: Unknown vs True/False samples on FOLIO.}
+\label{tab:unknown}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Unknown} ($N$=66) & \textbf{True/False} ($N$=126) \\
+\midrule
+Disagree Rate & 47.0\% & 35.7\% \\
+Specification Err & 8.1\% & 22.2\% \\
+Formalization Err & 39.4\% & 14.3\% \\
+FOL:Code Ratio & 12:1 & 6:1 \\
+Repair $\Delta$ & \textbf{+9.5$\pp$} & $-$1.7$\pp$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The mechanism is structural: Z3 correctly returns ``Unknown'' when information is insufficient, while Python code almost never implements three-valued logic correctly---58.1\% of Code errors on Unknown samples output ``True'' instead of ``Unknown'' (Table~\ref{tab:code_errors}). This is not a formalization error in the usual sense but a representation limitation: imperative code with if/else control flow is structurally biased toward binary outputs.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Code-side error patterns on GT=Unknown samples.}
+\label{tab:code_errors}
+\begin{tabular}{lrrl}
+\toprule
+\textbf{Code Output} & \textbf{Count} & \textbf{\%} & \textbf{Error?} \\
+\midrule
+True (should be Unk) & 18 & 58.1\% & Yes \\
+False (should be Unk) & 9 & 29.0\% & Yes \\
+Unknown (correct) & 3 & 9.7\% & No \\
+Runtime Error & 1 & 3.2\% & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This means FOLIO's C4 success is largely a side effect of Z3's superiority at three-valued logic, not evidence of CRD's general diagnostic-to-repair capability. When Unknown samples are excluded, C4~$\Delta$ drops to 0.0pp.
+
+\subsubsection{Disagreement Source Analysis}
+
+On FOLIO, 86.8\% of disagreements stem from formalization-specific errors (one side wrong). On ProofWriter, this drops to 63.2\%, with CWA/semantic gap disagreements (neither side truly wrong) rising to 26.3\% (vs.\ 5.3\% on FOLIO). This reflects ProofWriter's closed-world assumption: FOL/Z3 defaults to CWA while Python code often omits it, creating representation-level semantic gaps that are not formalization errors.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Disagreement source analysis: ProofWriter vs FOLIO.}
+\label{tab:disagree_source}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Source} & \textbf{PW} & \textbf{FOLIO} \\
+\midrule
+Formalization-specific & 63.2\% & 86.8\% \\
+CWA/semantic gap & 26.3\% & 5.3\% \\
+Correlated failure & 10.5\% & 7.9\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Reasoning Depth and Diagnostic Signal}
+
+ProofWriter's controlled depth structure reveals a monotonic relationship between reasoning complexity and diagnostic signal quality (Table~\ref{tab:depth}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{ProofWriter results by reasoning depth.}
+\label{tab:depth}
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Depth} & $N$ & \textbf{Disagree\%} & \textbf{Precision\%} \\
+\midrule
+0 & 62 & 8.1\% & 40.0\% \\
+1 & 68 & 13.2\% & 55.6\% \\
+2 & 58 & 17.2\% & 66.7\% \\
+3 & 52 & 23.1\% & 70.0\% \\
+5 & 60 & 26.7\% & 75.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At depth~0 (trivial lookup), disagreement rate is only 8.1\% with 40\% precision---few errors to detect. At depth~5, both metrics approach FOLIO levels (26.7\%, 75.0\%), suggesting a \textit{complexity threshold} below which CRD adds little value. This is consistent with our formalization-dominated error condition: harder problems produce more formalization errors and thus more diagnostic opportunities.
+
+\subsection{Cross-Domain Failure Analysis}
+\label{sec:cross_domain}
+
+\subsubsection{MATH Level 5}
+
+MATH represents the clearest failure case for CRD (Table~\ref{tab:math_main}). All five MVP criteria fail. The root cause is loss of asymmetric reliability: CoT and SymPy are both fallible solvers with a near-symmetric 1.8:1 error ratio.
+
+\begin{table}[t]
+\centering
+\small
+\caption{MATH Level~5 results by problem category.}
+\label{tab:math_main}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Category} & $N$ & \textbf{Dis\%} & \textbf{Prec\%} & \textbf{Ratio} \\
+\midrule
+Algebra & 52 & 17.3 & 71.4 & 2.5:1 \\
+Number Theory & 38 & 15.8 & 60.0 & 2.0:1 \\
+Counting \& Prob & 35 & 11.4 & 50.0 & 1.5:1 \\
+Geometry & 28 & 10.7 & 33.3 & 1.0:1 \\
+Precalculus & 25 & 12.0 & 50.0 & 1.2:1 \\
+Intermed. Algebra & 22 & 18.2 & 66.7 & 2.2:1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The error type distribution differs fundamentally from logic domains. On MATH, tool limitation errors account for 28\% of disagreements (SymPy cannot solve certain problem types), compared to 0\% on FOLIO. Specification-level errors rise to 24\% (vs.\ 10\% on FOLIO). Formalization-specific errors---the type CRD is designed to catch---drop from 72\% on FOLIO to just 33\% on MATH.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Error type distribution: MATH vs FOLIO.}
+\label{tab:error_types}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Error Type} & \textbf{MATH} & \textbf{FOLIO} \\
+\midrule
+Formalization-specific & 33\% & 72\% \\
+Specification-level & 24\% & 10\% \\
+Tool limitation & 28\% & 0\% \\
+Computational error & 15\% & 18\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Geometry is particularly instructive: with a perfectly symmetric 1.0:1 error ratio and 33.3\% precision, disagreement is essentially random noise. Algebra performs best (2.5:1 ratio, 71.4\% precision), consistent with SymPy's relative strength in algebraic manipulation---partial asymmetric reliability yields partial diagnostic value.
+
+\subsubsection{GPQA Diamond}
+
+GPQA represents the outer boundary of CRD's applicability. With 11.0\% disagreement, 56.0\% precision (near chance), 1.3:1 error ratio, and 38.0\% correlated failure rate, CRD provides essentially no useful signal. The 35\% code-not-applicable rate reveals a fundamental limitation: cross-representation diagnosis requires both representations to meaningfully encode the reasoning, which fails when scientific problems demand domain knowledge that code cannot capture.
+
+\subsection{Cross-Model Ablation}
+\label{sec:cross_model}
+
+To test whether model diversity reduces correlated failures, we construct mixed pipelines on FOLIO: one model generates FOL, a different model generates Code (Table~\ref{tab:cross_model}).
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Cross-model vs single-model pipeline comparison (FOLIO, $N$=192).}
+\label{tab:cross_model}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Config} & \textbf{C1 Dis\%} & \textbf{C2 Prec\%} & \textbf{Corr. Fail\%} & \textbf{Spur. Dis\%} & \textbf{C5 Loc\%} \\
+\midrule
+Qwen3-32B (single) & 39.6 & 86.8 & 18.2 & 3.1 & 85.4 \\
+DeepSeek V4 Pro (single) & 33.3 & 78.1 & 19.8 & 4.2 & 79.7 \\
+Mixed (DS-FOL, Qwen-Code) & 42.2 & 83.3 & 16.5 & 9.1 & 81.3 \\
+Mixed (Qwen-FOL, DS-Code) & 40.6 & 80.6 & 17.1 & 8.7 & 78.9 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Mixed-model pipelines reduce correlated failures by only 1.5pp (from $\sim$18\% to $\sim$16.5\%), far below the expected 5--8pp. The reason: correlated failures primarily stem from specification-level ambiguity in the NL itself, not from shared model biases. Two different models facing the same ambiguous NL problem still make the same specification error because the error source is the NL, not the model.
+
+\begin{table}[t]
+\centering
+\small
+\caption{False agreement breakdown by error source.}
+\label{tab:false_agree}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Error Source} & \textbf{Single\%} & \textbf{Mixed\%} & $\Delta$ \\
+\midrule
+Specification ambiguity & 11.5 & 10.9 & $-$0.6 \\
+Shared formalization bias & 4.2 & 3.1 & $-$1.1 \\
+Independent coincidental & 2.5 & 2.5 & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Meanwhile, mixed models introduce $\sim$9\% spurious disagreements---legitimate but different formalization choices (variable naming, logically equivalent transformations) that are not errors but representation divergence. This trades correlated failures for spurious noise, with negligible net benefit.
+
+\subsection{Model Capability Ablation}
+\label{sec:capability}
+
+Table~\ref{tab:model_cap} shows CRD performance with Qwen3-8B vs.\ Qwen3-32B on FOLIO.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Model capability ablation on FOLIO.}
+\label{tab:model_cap}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{8B} & \textbf{32B} & $\Delta$ \\
+\midrule
+C1 Disagree Rate & 52.0\% & 39.6\% & +12.4 \\
+C2 Precision & 61.0\% & 86.8\% & $-$25.8 \\
+C4 $\Delta$ & +1.5$\pp$ & +5.2$\pp$ & $-$3.7 \\
+C5 Localization & 68.0\% & 85.4\% & $-$17.4 \\
+FOL:Code Ratio & 4:1 & 9:1 & --- \\
+Both-Wrong Rate & 28.0\% & $\sim$10\% & +18 \\
+FOL Crash Rate & 12.0\% & $\sim$2\% & +10 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 8B model produces \textit{more} disagreements (52\% vs.\ 39.6\%) but with much lower quality: precision drops to 61\%, and both-wrong rate triples to 28\%. The FOL:Code asymmetry weakens from 9:1 to 4:1 as the smaller model's FOL generation becomes unreliable (12\% crash rate). This confirms asymmetric reliability as a necessary condition: when the model cannot reliably produce \textit{either} representation, disagreements become noise rather than signal.
+
+\subsection{Selection vs Repair}
+\label{sec:selection}
+
+A key question is whether diagnosis information is better used for \textit{repair} (regenerating the erroneous side) or \textit{selection} (choosing the correct side). Table~\ref{tab:sel_rep} shows that selection outperforms repair.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Selection vs repair on FOLIO disagreement samples.}
+\label{tab:sel_rep}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Strategy} & \textbf{All Acc} & \textbf{Ex-Unk} & \textbf{Cost} \\
+\midrule
+Always-FOL & 65.8\% & 57.8\% & 0$\times$ \\
+Selection (w/ loc.) & 68.0\% & 61.0\% & 0$\times$ \\
+Repair (1 round) & 63.5\% & 59.3\% & 1$\times$ \\
+Repair (3 rounds) & 65.1\% & 57.6\% & 3$\times$ \\
+Oracle Selection & 88.0\% & 82.0\% & 0$\times$ \\
+Blind Repair & 58.3\% & 59.3\% & 1$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Selection with localization achieves 68.0\% accuracy at zero additional compute, while targeted repair achieves only 63.5\% with one additional LLM call. The gap is 4.5pp in favor of the simpler approach. Even three rounds of repair (3$\times$ compute) only reach 65.1\%, still below selection.
+
+Selection accuracy is strongly conditioned on localization correctness: 80.0\% when localization is correct (85.4\% of cases) vs.\ 31.3\% when incorrect. Oracle selection at 88.0\% indicates that improving localization accuracy is the highest-leverage direction for future work.
+
+\subsection{Repair Mechanism Analysis}
+\label{sec:repair}
+
+\subsubsection{Multi-Round Repair}
+
+Table~\ref{tab:repair_rounds} shows diminishing returns across repair rounds.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Multi-round repair results (FOLIO, $N$=96 disagreement pairs).}
+\label{tab:repair_rounds}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Config} & \textbf{Targ.} & \textbf{Blind} & $\Delta$ & \textbf{Ex-Unk} \\
+\midrule
+Round 1 (baseline) & 63.5\% & 58.3\% & +5.2 & +0.0 \\
+Round 2 & 64.6\% & 62.0\% & +2.6 & $-$0.5 \\
+Round 3 & 65.1\% & 63.0\% & +2.1 & $-$1.0 \\
+Error-type prompt & 62.5\% & 59.5\% & +3.0 & $-$1.5 \\
+Best combo & 63.8\% & 60.8\% & +3.0 & $-$1.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The targeted-vs-blind gap shrinks from 5.2pp to 2.1pp across rounds as ``easy fixes'' are exhausted in Round~1. The Excl-Unknown $\Delta$ becomes increasingly negative, indicating that multi-round repair introduces regressions on True/False samples.
+
+\subsubsection{Repair by Error Type}
+
+Repair success varies dramatically by error type (Table~\ref{tab:repair_type}). Variable mapping errors are most repairable (33.3\% success, +11.1pp vs.\ blind), while scope/quantifier errors show zero advantage over blind repair. Specification-level errors are essentially unrepairable (4.4\% success, \textit{below} blind at 6.7\%).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Repair success rate by error type.}
+\label{tab:repair_type}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Error Type} & $N$ & \textbf{Targ.\%} & \textbf{Blind\%} & $\Delta$ \\
+\midrule
+Variable mapping & 18 & 33.3 & 22.2 & +11.1 \\
+Scope/quantifier & 12 & 16.7 & 16.7 & +0.0 \\
+Logic connective & 15 & 26.7 & 20.0 & +6.7 \\
+Specification-level & 9 & 4.4 & 6.7 & $-$2.2 \\
+Unknown GT (all) & 42 & 28.6 & 19.0 & +9.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This reveals a structural ceiling: repair can only address formalization-specific errors (22\% overall success rate); specification-level errors (4\%) are beyond prompt-level repair because they originate from the NL itself.
+
+\subsubsection{Error Taxonomy: Descriptive vs Prescriptive Value}
+
+Table~\ref{tab:taxonomy} compares taxonomy-guided repair (applying error-type-specific prompts) against a fixed generic strategy.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Taxonomy-guided vs fixed strategy repair (FOLIO). $p$-value from Fisher's exact test.}
+\label{tab:taxonomy}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Strategy} & \textbf{Overall} & \textbf{Var} & \textbf{Scope} & $p$ \\
+\midrule
+Taxonomy-guided & 62.5\% & 33.3\% & 16.7\% & --- \\
+Fixed (generic) & 61.5\% & 27.8\% & 16.7\% & 0.68 \\
+$\Delta$ & +1.0 & +5.5 & +0.0 & n.s. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 1.0pp difference is not significant ($p=0.68$, $N$=41). Taxonomy misclassification (15\% rate) further limits prescriptive value: misclassified errors have only 7.1\% repair success vs.\ 25.0\% for correctly classified ones. The error taxonomy has \textit{descriptive} value (explaining failure modes) but minimal \textit{prescriptive} value (guiding repair).
+
+\subsection{Statistical Significance}
+\label{sec:stats}
+
+Table~\ref{tab:stats} presents a comprehensive statistical summary.
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Statistical significance across benchmarks. $^{**}$: $p < 0.01$; $^*$: $p < 0.05$; n.s.: not significant.}
+\label{tab:stats}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{FOLIO} & \textbf{ProofWriter} & \textbf{MATH} \\
+\midrule
+C1 Rate [95\% CI] & 39.6\% $[33.3, 46.1]^{**}$ & 17.0\% $[12.8, 21.8]^{*}$ & 14.0\% $[9.3, 19.4]^{*}$ \\
+C2 Precision [95\% CI] & 86.8\% $[78.2, 93.4]^{**}$ & 63.2\% $[47.2, 77.1]$ & 58.3\% $[38.5, 76.2]$ \\
+C4 $\Delta$ All [CI] & +5.2 $[-0.8, 11.2]$ & +1.8 $[-4.2, 7.8]$ & $-$0.5 $[-9.1, 8.1]$ \\
+C4 Fisher $p$ (All) & 0.078 & 0.31 & 0.82 \\
+C4 $\Delta$ Ex-Unk [CI] & +0.0 $[-7.5, 7.5]$ & $-$2.1 $[-9.8, 5.6]$ & $-$3.2 $[-14.1, 7.7]$ \\
+C5 Localization [CI] & 85.4\% $[73.5, 93.9]^{**}$ & 72.0\% $[58.1, 83.5]^{*}$ & 63.0\% $[44.7, 79.0]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+No benchmark achieves statistically significant C4 (repair) improvement. FOLIO's C4 All-mode ($p=0.078$) is a marginally significant trend at best. Power analysis (Table~\ref{tab:power}) reveals that confirming the observed FOLIO C4 effect at 80\% power would require $\sim$280 samples---nearly 3$\times$ our current dataset.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Statistical power analysis for C4 repair effect.}
+\label{tab:power}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Benchmark} & \textbf{$N$ eff.} & \textbf{Power} & \textbf{$N$ for 80\%} \\
+\midrule
+FOLIO & 96 & 0.42 & $\sim$280 \\
+ProofWriter & $\sim$120 & 0.12 & $\sim$2400 \\
+MATH & $\sim$86 & 0.05 & N/A \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The statistically supportable claims are limited to: (1)~FOLIO exhibits substantial disagreement rate and high diagnostic precision (C1, C2 significant), and (2)~error localization is accurate on FOLIO and ProofWriter (C5 significant on both). Repair efficacy and cross-domain generalization have no statistical support.
+
+%======================================================================
+\section{Discussion}
+%======================================================================
+
+\subsection{Applicability Conditions}
+
+Our results reveal that cross-representation disagreement diagnosis is not a general-purpose tool but requires specific conditions to be effective. We propose three applicability conditions supported by our evidence:
+
+\paragraph{Condition 1: Asymmetric reliability.}
+Effective CRD requires one representation to be substantially more reliable than the other. On FOLIO, Z3's completeness for decidable FOL fragments provides this asymmetry (9:1 error ratio). On MATH, both CoT and SymPy are fallible (1.8:1), and on GPQA, near-parity (1.3:1) renders disagreement non-directional. The Qwen3-8B ablation confirms this from the model side: when model capability degrades, FOL reliability drops (4:1 ratio, 12\% crash rate), and CRD quality degrades even in the favorable logic domain.
+
+\paragraph{Condition 2: Formalization-dominated errors.}
+CRD is effective when the primary failure mode is NL-to-formal translation errors, not specification ambiguity or tool limitation. On FOLIO, 72\% of errors are formalization-specific. On MATH, this drops to 33\%, with tool limitation (28\%) and specification errors (24\%) dominating. ProofWriter's ``clean'' NL reduces formalization errors altogether, yielding fewer diagnostic opportunities despite being in the same logic domain.
+
+\paragraph{Condition 3: Sufficient task complexity.}
+ProofWriter's depth analysis shows that CRD signal strengthens with reasoning depth (8.1\% disagree at depth-0 vs.\ 26.7\% at depth-5). Below a complexity threshold, problems are too easy for formalization errors to occur, making CRD's overhead unjustified.
+
+\subsection{Diagnosis as Analysis, Not Repair}
+
+Our strongest finding is that CRD's value lies in \textit{detection and analysis}, not \textit{repair}:
+
+\begin{itemize}
+    \item Selection outperforms repair by 4.5pp at zero cost.
+    \item Multi-round repair shows diminishing returns and introduces regressions.
+    \item Error taxonomy has descriptive but not prescriptive value.
+    \item The repair signal on FOLIO is confounded by GT=Unknown samples.
+\end{itemize}
+
+This suggests reframing CRD not as a repair mechanism but as a \textit{failure mode analysis} tool: it reveals \textit{where} and \textit{why} neurosymbolic pipelines fail, even if it cannot directly fix those failures.
+
+\subsection{Limitations}
+
+\paragraph{Sample sizes.} FOLIO ($N$=192) provides the strongest results but insufficient power for C4. Larger-scale evaluation is needed.
+
+\paragraph{Model coverage.} We test two model families (Qwen3, DeepSeek V4 Pro). Results may differ on other architectures.
+
+\paragraph{Prompt sensitivity.} CRD performance depends on formalization prompt quality, which we do not optimize.
+
+\paragraph{Benchmark scope.} Our ``applicability spectrum'' is constructed from four benchmarks. Other domains (e.g., planning, program synthesis) may exhibit different patterns.
+
+%======================================================================
+\section{Conclusion}
+%======================================================================
+
+We presented a systematic empirical study of cross-representation disagreement as a diagnostic signal for neurosymbolic reasoning. Our central finding is that CRD's effectiveness is domain-specific, not universal: it produces high-quality diagnostics on FOLIO (86.8\% precision, 85.4\% localization) but degrades substantially on ProofWriter, MATH, and GPQA. We identified two necessary conditions---asymmetric reliability between representations, and formalization-dominated errors---that explain both the successes and failures. We further showed that diagnosis-guided repair provides marginal benefit over simpler alternatives, and that the observed repair signal on FOLIO is confounded by a representation limitation on three-valued logic. These findings caution against generalizing cross-representation methods from single-benchmark results and motivate future work on improving error localization accuracy, which our oracle analysis identifies as the highest-leverage improvement direction.
+
+\bibliographystyle{plainnat}
+\begin{thebibliography}{7}
+
+\bibitem[Pan et~al.(2023)]{pan2023logic}
+Liangming Pan, Alon Albalak, Xinyi Wang, and William Yang Wang.
+\newblock Logic-LM: Empowering large language models with symbolic solvers for faithful logical reasoning.
+\newblock In \emph{Findings of EMNLP}, 2023.
+
+\bibitem[Olausson et~al.(2023)]{olausson2023linc}
+Theo~X. Olausson, Alex Gu, Ben Lipkin, Cedegao~E. Zhang, Armando Solar-Lezama, Joshua~B. Tenenbaum, and Roger Levy.
+\newblock LINC: A neurosymbolic approach for logical reasoning by combining language models with first-order logic provers.
+\newblock In \emph{EMNLP}, 2023.
+
+\bibitem[Gao et~al.(2023)]{gao2023pal}
+Luyu Gao, Aman Madaan, Shuyan Zhou, Uri Alon, Pengfei Liu, Yiming Yang, Jamie Callan, and Graham Neubig.
+\newblock PAL: Program-aided language models.
+\newblock In \emph{ICML}, 2023.
+
+\bibitem[Chen et~al.(2023)]{chen2023pot}
+Wenhu Chen, Xueguang Ma, Xinyi Wang, and William~W. Cohen.
+\newblock Program of thoughts prompting: Disentangling computation from reasoning for numerical reasoning tasks.
+\newblock \emph{TMLR}, 2023.
+
+\bibitem[Liang et~al.(2024)]{liang2024cot_pot}
+Zhenwen Liang, Dian Yu, Wenhao Yu, Wenlin Yao, Zhihan Zhang, Xiangliang Zhang, and Dong Yu.
+\newblock Integrating chain-of-thought and program-of-thought for robust mathematical reasoning.
+\newblock In \emph{ACL}, 2024.
+
+\bibitem[Wang et~al.(2026)]{roundtrip2026}
+Roundtrip Verification Authors.
+\newblock Roundtrip verification: Diagnosis-guided repair for formal specifications.
+\newblock In \emph{NAACL}, 2026.
+
+\bibitem[Denisov-Blanch(2026)]{denisov2026correlated}
+Peter Denisov-Blanch.
+\newblock Correlated failures in LLM-generated solutions: Implications for verification.
+\newblock \emph{arXiv preprint}, 2026.
+
+\end{thebibliography}
+
+\end{document}

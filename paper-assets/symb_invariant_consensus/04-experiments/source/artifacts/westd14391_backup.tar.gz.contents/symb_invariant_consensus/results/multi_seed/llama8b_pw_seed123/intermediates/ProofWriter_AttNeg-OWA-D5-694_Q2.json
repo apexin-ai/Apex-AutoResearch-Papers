@@ -1,0 +1,1281 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-694_Q2",
+    "problem": "Anne is young. Charlie is not red. Gary is not blue. Gary is kind. Gary is not rough. Gary is not young. Harry is green. If Gary is green then Gary is not blue. All young people are blue. If Harry is white and Harry is young then Harry is not green. All red people are green. Blue, young people are red. If someone is green then they are white. If someone is blue and white then they are kind. All red people are not rough. If someone is young and not white then they are rough.\n\nDetermine whether the following statement is true, false, or unknown:\nGary is not kind.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nYoung($x, bool) ::: Is x young?\nRed($x, bool) ::: Is x red?\nBlue($x, bool) ::: Is x blue?\nGreen($x, bool) ::: Is x green?\nWhite($x, bool) ::: Is x white?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nYoung(Anne, True) ::: Anne is young.\nRed(Charlie, False) ::: Charlie is not red.\nBlue(Gary, False) ::: Gary is not blue.\nKind(Gary, True) ::: Gary is kind.\nRough(Gary, False) ::: Gary is not rough.\nYoung(Gary, False) ::: Gary is not young.\nGreen(Harry, True) ::: Harry is green.\n\nRules:\nGreen(Gary, True) >>> Blue(Gary, False) ::: If Gary is green then Gary is not blue.\nYoung($x, True) >>> Blue($x, True) ::: All young people are blue.\nWhite(Harry, True) && Young(Harry, True) >>> Green(Harry, False) ::: If Harry is white and Harry is young then Harry is not green.\nRed($x, True) >>> Green($x, True) ::: All red people are green.\nBlue($x, True) && Young($x, True) >>> Red($x, True) ::: Blue, young people are red.\nGreen($x, True) >>> White($x, True) ::: If someone is green then they are white.\nBlue($x, True) && White($x, True) >>> Kind($x, True) ::: If someone is blue and white then they are kind.\nRed($x, True) >>> Rough($x, False) ::: All red people are not rough.\nYoung($x, True) && White($x, False) >>> Rough($x, True) ::: If someone is young and not white then they are rough.\n\nQuery:\nKind(Gary, False) ::: Gary is not kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 129.0,
+      "Unknown": 46.0
+    },
+    "answer_counts": {
+      "Unknown": 2,
+      "False": 6
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to use the given statements to deduce information about Gary. We will analyze each statement step by step.\n\n1. Charlie is not red.\n2. Gary is not blue.\n3. Gary is kind.\n4. Gary is not rough.\n5. Gary is not young.\n6. Harry is green.\n7. If Gary is green then Gary is not blue.\n8. All young people are blue.\n9. If Harry is white and Harry is young then Harry is not green.\n10. All red people are green.\n11. Blue, young people are red.\n12. If someone is green then they are white.\n13. If someone is blue and white then they are kind.\n14. All red people are not rough.\n15. If someone is young and not white then they are rough.\n\nFrom statement 8, we know that all young people are blue. Since Gary is not young (statement 5), it does not mean Gary is not blue; it just means Gary is not young. However, since Gary is not young, it cannot be concluded directly that Gary is not blue, because statement 8 only talks about all young people being blue, not that all non-young people are not blue. However, we know Gary is not blue (statement 2).\n\nFrom statement 7, we know that if Gary is green then Gary is not blue. However, statement 2 says Gary is not blue, but this doesn't directly tell us about Gary's color. We also know Gary is not young and Gary is not rough (statements 5 and 4).\n\nFrom statement 12, we know if someone is green then they are white. This means that if Gary is green, Gary is white.\n\nFrom statement 9, we know that if Harry is white and Harry is young then Harry is not green. However, we know Harry is green (statement 6), and this does not help us with determining Gary's characteristics.\n\nFrom statement 13, we know that if someone is blue and white then they are kind. However, we know Gary is not blue (statement 2), so we cannot use this statement to conclude that Gary is kind.\n\nFrom statement 6, we know Harry is green. We also know from statement 10 that all red people are green. This does not directly help us with determining Gary's characteristics.\n\nFrom statement 11, we know that blue, young people are red. However, we know Gary is not blue (statement 2), so we cannot use this statement to conclude that Gary is red.\n\nFrom statement 14, we know all red people are not rough. However, we cannot conclude that Gary is not rough using this statement.\n\nFrom statement 15, we know that if someone is young and not white then they are rough. However, we know Gary is not young (statement 5), so we cannot use this statement to conclude that Gary is rough.\n\nNow, let's look at the statement \"Gary is not kind.\" We know Gary is kind (statement 3), but we also know that if someone is blue and white then they are kind (statement 13). However, we know Gary is not blue (statement 2), so we cannot use this statement to conclude that Gary is not kind.\n\nNow, let's look at the statement \"Gary is not kind\" again. We know Gary is not blue (statement 2) and Gary is not young (statement 5), but we do not know Gary's color, Gary's roughness, or if Gary is white or not.\n\nFrom statement 7, we know that if Gary is green then Gary is not blue. However, we also know Gary is not blue (statement 2), so this statement tells us that if Gary is green, Gary is not blue. We also know Gary is not young and Gary is not rough (statements 5 and 4).\n\nFrom statement 12, we know if someone is green then they are white. This means that if Gary is green, Gary is white.\n\nWe also know that Harry is green (statement 6). Since we know Harry is green, we can use statement 7 and statement 2 to conclude that Gary is green. Since Gary is green, we can use statement 12 to conclude that Gary is white.\n\nNow that we know Gary is white, we can use statement 13 to conclude that since Gary is not blue, Gary is not kind. However, this contradicts statement 3, which says Gary is kind.\n\nThis means that the original assumption that Gary is green must be incorrect. If Gary is not green, we cannot conclude that Gary is not kind.\n\nHowever, we can conclude that the statement \"Gary is not kind\" is unknown, because we do not have enough information to determine if Gary is kind or not.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Gary is not kind' is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given statements:\n1. Gary is kind. \n2. If Gary is green then Gary is not blue. \n3. Gary is not blue. \n4. Harry is green.\n5. All young people are blue.\n6. If Harry is white and Harry is young then Harry is not green.\n7. All red people are green.\n8. Blue, young people are red.\n9. If someone is green then they are white.\n10. If someone is blue and white then they are kind.\n11. All red people are not rough.\n12. If someone is young and not white then they are rough.\n\nLet's break down the information:\n\n- Gary is kind (1)\n- Gary is not blue (3)\n- If someone is blue and white then they are kind (10), but we don't have enough information about Gary being blue and white to deduce kind, so we cannot directly conclude Gary is not kind using this statement.\n\n- Since Gary is kind (1), we can't conclude he is not kind based on this statement alone.\n\n- Gary is not young (from the statement 'Gary is not blue' and 'All young people are blue' (5) together). \n- Since Gary is not young (from the statement 'Gary is not blue' and 'All young people are blue' (5) together) and 'All young people are blue' (5), we can conclude that Gary is not blue.\n\n- We don't have enough information to conclude Gary is not kind using the other statements.\n\nHowever, we know Gary is not young (from 'Gary is not blue' and 'All young people are blue' (5)), so we can analyze the statements related to young people:\n- If someone is young and not white then they are rough (12). Since Gary is not young (from 'Gary is not blue' and 'All young people are blue' (5)), we cannot conclude that Gary is rough.\n\n- We also know Gary is not blue (3), so we can conclude that Gary is not red (from 'All red people are green' (7), 'Gary is not blue' (3), and 'If someone is green then they are white' (9) together, we can conclude that Gary is not green, but this is not necessary to solve this problem).\n\n- Since Gary is not young, we cannot conclude he is not kind directly.\n\nHowever, we know Gary is kind (1). We also know that if someone is blue and white, they are kind (10), but since Gary is not blue (3) and 'All young people are blue' (5), we cannot use this statement to conclude that Gary is not kind.\n\nWe also know that 'If someone is green then they are white' (9), but since Gary is not green, we cannot conclude that Gary is not kind using this statement.\n\nFrom 'Gary is kind' (1) we cannot conclude that Gary is not kind, but 'All young people are blue' (5) and 'Gary is not blue' (3) together imply that Gary is not young.\n\nWe also know 'Blue, young people are red' (8), but this is not necessary to solve this problem.\n\nTherefore, based on the given information and logical deductions, we cannot conclude that Gary is not kind directly. The statement 'Gary is not kind' is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not kind\" is true, false, or unknown, we will analyze the given information step by step.\n\n1. Gary is not blue (Given)\n2. Gary is kind (Given)\n3. If Gary is green then Gary is not blue (Given)\n4. Harry is green (Given)\n5. All young people are blue (Given)\n6. If Harry is white and Harry is young then Harry is not green (Given)\n7. Since Harry is green, Harry cannot be white and young.\n8. Harry is green (Given)\n9. All red people are green (Given)\n10. Blue, young people are red (Given)\n11. If someone is green then they are white (Given)\n12. Since Harry is green, Harry is white.\n13. All red people are not rough (Given)\n14. Blue, young people are red (Given)\n15. All young people are blue (Given)\n16. If someone is young and not white then they are rough (Given)\n17. Since Harry is young and not white (from step 7 and step 12), Harry is rough.\n\nNow, we have a conflict:\n- Gary is green (from step 3 and step 11)\n- If Harry is green then Harry is not green (from step 6)\nHowever, we already know Harry is green (step 4). This is a contradiction. Therefore, we can conclude that the initial assumption that Harry is white is incorrect. Harry is green (step 4) and therefore white (from step 11).\n\nNow we can continue:\n- All red people are green (step 9)\n- Blue, young people are red (step 10)\n- All young people are blue (step 5)\n- Since blue, young people are red, and all young people are blue, all young people are red.\n\n- If someone is green then they are white (step 11)\n- Since Harry is green, Harry is white (step 4).\n\n- If someone is blue and white then they are kind (step 8)\n- Since Harry is blue and white (from step 12), Harry is kind.\n\nNow, we can continue with the original statement:\nGary is not blue (step 1)\nGary is kind (step 2)\nHowever, if Gary is green, then Gary is not blue (step 3), and since Gary is green (from step 4), Gary is not blue.\n\nBut now we have another conflict:\n- Gary is green (from step 3 and step 11)\n- If Harry is green then Harry is not green (from step 6)\nHowever, we already know Harry is green (step 4). This is a contradiction. Therefore, we can conclude that the initial assumption that Harry is white is incorrect. Harry is green (step 4) and therefore white (from step 11).\n\nHowever, we already know Harry is green, white and kind (from steps 4, 12, and 18).\n\nWe can also conclude that Gary is not red (since Gary is not blue and all red people are green).\n\nBut if someone is green, then they are white (step 11). However, this also implies that all green people are white, which includes Gary.\n\nHowever, we already know Harry is green, white and kind (from steps 4, 12, and 18).\n\nNow, we have another conflict:\n- If someone is young and not white then they are rough (step 16)\n- Since Harry is young and not white (from step 7 and step 12), Harry is rough.\nHowever, we already know Harry is kind (from step 18). This is a contradiction.\n\nHowever, since all young people are blue and all red people are green (steps 5 and 9), and blue, young people are red (step 10), all young people are red.\n\nAnd since blue, young people are red (step 10), blue people are not red.\n\nNow we can continue with the original statement:\nGary is not blue (step 1)\nGary is kind (step 2)\n\nSince blue people are not red (from step 20), and all red people are green (step 9), blue people are not green.\n\nHowever, since blue, young people are red (step 10), blue people are young.\n\nNow, we have a conflict:\n- Gary is not blue (step 1)\n- Blue people are young (from step 21)\n- All young people are red (from step 20)\n- All red people are green (step 9)\n\nHowever, since Gary is not blue, Gary is not red (from step 22).\n\nBut since all red people are green (step 9), Gary is not green.\n\nHowever, we already know that if someone is green then they are white (step 11).\n\nAnd since Gary is not green, Gary is not white.\n\nNow we can continue with the original statement:\nGary is not blue (step 1)\nGary is not green (from step 24)\nGary is not white (from step 25)\n\nSince Gary is not blue, Gary is not red (from step 22).\n\nHowever, we already know that all red people are green (step 9).\n\nHowever, since Gary is not green, Gary is not red.\n\nSince Gary is not blue (step 1) and Gary is not red (from step 27), and all blue people are young (from step 21), Gary is not young.\n\nNow we can continue with the original statement:\nGary is not blue (step 1)\nGary is not green (from step 24)\nGary is not white (from step 25)\nGary is not young (from step 28)\n\nSince Gary is not blue (step 1) and Gary is not young (from step 28), and all young people are blue (step 5), Gary is not rough.\n\nHowever, we already know that if someone is young and not white then they are rough (step 16).\n\nHowever, since Gary is not young (from step 28), Gary is not rough.\n\nHowever, since Gary is not young (from step 28), and all young people are blue (step 5), Gary is not blue.\n\nHowever, we already know that all red people are green (step 9).\n\nHowever, since Gary is not blue (step 1), Gary is not red.\n\nHowever, since Gary is not red, Gary is not green.\n\nHowever, we already know that if someone is green then they are white (step 11).\n\nHowever, since Gary is not green, Gary is not white.\n\nNow we can continue with the original statement:\nGary is not blue (step 1)\nGary is not green (from step 24)\nGary is not white (from step 25)\nGary is not young (from step 28)\nGary is not rough (from step 30)\n\nSince Gary is not blue (step 1) and Gary is not young (from step 28), and all young people are blue (step 5), all young people are not rough.\n\nSince all young people are not rough (from step 31), and if someone is young and not white then they are rough (step 16), Gary is not young.\n\nHowever, we already know that all young people are blue (step 5).\n\nHowever, since Gary is not young (from step 28), Gary is not blue.\n\nHowever, we already know that all red people are green (step 9).\n\nHowever, since Gary is not blue (step 1), Gary is not red.\n\nHowever, since Gary is not red, Gary is not green.\n\nHowever, we already know that if someone is green then they are white (step 11).\n\nHowever, since Gary is not green, Gary is not white.\n\nNow we can continue with the original statement:\nGary is not blue (step 1)\nGary is not green (from step 24)\nGary is not white (from step 25)\nGary is not young (from step 28)\nGary is not rough (from step 30)\nAll young people are not rough (from step 31)\n\nSince Gary is not young (from step 28), Gary is not kind (since if someone is young then they are blue, and blue people are red, and all red people are green, and blue, young people are red, and all red people are not rough, and since Gary is not young, Gary is not red, and since Gary is not red, Gary is not green, and since Gary is not green, Gary is not white, and since Gary is not white, Gary is not kind).\n\nHowever, we already know that Gary is kind (step 2).\n\nNow we have a conflict:\n- Gary is not kind (from step 32)\n- Gary is kind (step 2)\n\nHowever, we cannot determine whether Gary is kind or not, since the information provided is contradictory.\n\nTherefore, the statement \"Gary is not kind\" is unknown.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not kind\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Gary is kind. (Given statement)\n\nFrom this statement, we can directly conclude that Gary is kind. However, we need to analyze the other statements to see if they provide any contradictory information.\n\n2. Gary is not blue. (Given statement)\n\n3. Gary is green. (Given statement)\n\n4. If Gary is green then Gary is not blue. (Given statement)\n\nThis statement is true, but it does not provide any information about Gary's color. It's already given that Gary is green, so this statement does not add any new information.\n\n5. All young people are blue. (Given statement)\n\nThis statement does not provide any information about Gary's age or color. It only states a general property of young people.\n\n6. Gary is not young. (Given statement)\n\nThis statement directly contradicts statement 5, but it does not provide any information about Gary's color or kind nature.\n\n7. Harry is green. (Given statement)\n\n8. If Harry is white and Harry is young then Harry is not green. (Given statement)\n\nSince Harry is green, we cannot conclude that Harry is white or young. This statement does not provide any information about Gary.\n\n9. All red people are green. (Given statement)\n\n10. Blue, young people are red. (Given statement)\n\nThis statement does not provide any information about Gary's color or kind nature. It only states a property of blue, young people.\n\n11. If someone is green then they are white. (Given statement)\n\nSince Gary is green, we can conclude that Gary is white.\n\n12. If someone is blue and white then they are kind. (Given statement)\n\nHowever, we have already concluded that Gary is white and Gary is not blue. Therefore, this statement does not apply to Gary.\n\n13. All red people are not rough. (Given statement)\n\nThis statement does not provide any information about Gary's rough nature.\n\n14. If someone is young and not white then they are rough. (Given statement)\n\nSince Gary is not young, this statement does not apply to Gary.\n\nNow, let's analyze the statement \"Gary is not kind.\"\n\nFrom statement 1, we know that Gary is kind. This directly contradicts the statement \"Gary is not kind.\" Therefore, the statement \"Gary is not kind\" is false.\n\nHowever, there is one more thing to consider. From statement 6, we know that Gary is not young. Since statement 5 states that all young people are blue, we cannot conclude that Gary is blue. But we cannot conclude that Gary is not blue either, because there might be other properties that make Gary blue.\n\nTherefore, the statement \"Gary is not kind\" is actually unknown, because we cannot be certain that Gary is not kind. The given statements do not provide enough information to conclude that Gary is not kind.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given: \n   - Gary is not blue.\n   - Gary is kind.\n   - Gary is not rough.\n   - Gary is not young.\n\n2. We need to determine if Gary is not kind. \n\n   From the given information, we know that Gary is kind. This directly contradicts the statement that Gary is not kind. \n\n   However, we also have some other conditions that might affect Gary's characteristics. Let's analyze those conditions:\n\n   - All young people are blue. This doesn't directly affect Gary's kind or not kind status, but it implies that if Gary is young, then he must be blue.\n   - If Gary is green, then Gary is not blue. This doesn't provide any information about Gary's kind status.\n   - Harry is green. This doesn't provide any information about Gary's kind status.\n   - If Harry is white and Harry is young, then Harry is not green. This also doesn't provide any information about Gary's kind status.\n   - All red people are green. This doesn't provide any information about Gary's kind status.\n   - Blue, young people are red. This implies that if someone is blue and young, then they must be red, which in turn means they are green. However, we already know that Gary is not blue, so this condition doesn't affect Gary's kind status.\n   - If someone is green, then they are white. This implies that if Gary is green, then he must be white. However, we know that Gary is kind, and this condition doesn't provide any information about Gary's kind status.\n   - If someone is blue and white, then they are kind. This is a potential source of conflict with the information that Gary is kind, but it's conditional on Gary being blue and white, which we know he is not blue.\n   - All red people are not rough. This doesn't provide any information about Gary's kind status.\n   - If someone is young and not white, then they are rough. This condition is not relevant to Gary because we know he is not young.\n\nGiven the information that Gary is kind, and the conditions that might affect his kind status, we can conclude that the statement \"Gary is not kind\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is kind. \n   (This statement is given directly in the problem.)\n\n2. Gary is not rough. \n   (This statement is also given directly in the problem.)\n\n3. Gary is not blue. \n   (This statement is given directly in the problem.)\n\n4. If Gary is green then Gary is not blue. \n   (This statement is given directly in the problem.)\n\n5. All young people are blue. \n   (This statement is given directly in the problem.)\n\n6. If Harry is white and Harry is young then Harry is not green. \n   (This statement is given directly in the problem.)\n\n7. All red people are green. \n   (This statement is given directly in the problem.)\n\n8. Blue, young people are red. \n   (This statement is given directly in the problem.)\n\n9. If someone is green then they are white. \n   (This statement is given directly in the problem.)\n\n10. If someone is blue and white then they are kind. \n    (This statement is given directly in the problem.)\n\n11. All red people are not rough. \n    (This statement is given directly in the problem.)\n\n12. If someone is young and not white then they are rough. \n    (This statement is given directly in the problem.)\n\nNow, let's try to find a contradiction or a clear answer to the statement \"Gary is not kind.\"\n\nFrom statement 1, we know Gary is kind. This statement directly contradicts the statement \"Gary is not kind.\"\n\nHowever, to check if there's any ambiguity, let's continue with the analysis.\n\nFrom statements 3 and 5, we can conclude that Gary is young because if he were not young, he wouldn't be blue.\n\nFrom statement 5, we know all young people are blue.\n\nFrom statement 3, we know Gary is not blue.\n\nThis creates a contradiction with the conclusion from the previous step, indicating that our analysis was incorrect.\n\nLet's re-analyze the conclusion from the previous step:\n\nFrom statement 3, we know Gary is not blue.\n\nFrom statement 5, we know all young people are blue. However, this statement only applies if a person is indeed young. Since Gary is not blue, we cannot conclude that Gary is not young based on this statement alone.\n\nFrom statement 12, we know that if someone is young and not white, they are rough. However, this statement does not directly apply to Gary because we don't know if Gary is white or not.\n\nFrom statement 1, we know Gary is kind.\n\nFrom statement 2, we know Gary is not rough.\n\nFrom statement 11, we know all red people are not rough. This means Gary is not red because if he were red, he wouldn't be rough.\n\nFrom statement 7, we know all red people are green. This means Gary is not green because if he were green, he would be red.\n\nFrom statement 4, we know that if Gary is green, then Gary is not blue. However, we already know Gary is not green.\n\nFrom statement 9, we know that if someone is green, they are white. Since Gary is not green, we cannot conclude that Gary is white.\n\nFrom statement 10, we know that if someone is blue and white, they are kind. However, we already know Gary is not blue.\n\nFrom statement 3, we know Gary is not blue.\n\nFrom statement 5, we know all young people are blue. However, we already know Gary is not blue.\n\nFrom statement 12, we know that if someone is young and not white, they are rough. However, we don't know if Gary is white or not.\n\nFrom statement 1, we know Gary is kind.\n\nFrom statement 2, we know Gary is not rough.\n\nFrom statement 11, we know all red people are not rough. This means Gary is not red because if he were red, he wouldn't be rough.\n\nFrom statement 7, we know all red people are green. This means Gary is not green because if he were green, he would be red.\n\nFrom statement 4, we know that if Gary is green, then Gary is not blue. However, we already know Gary is not green.\n\nFrom statement 9, we know that if someone is green, they are white. Since Gary is not green, we cannot conclude that Gary is white.\n\nFrom statement 10, we know that if someone is blue and white, they are kind. However, we already know Gary is not blue.\n\nFrom statement 3, we know Gary is not blue.\n\nFrom statement 5, we know all young people are blue. However, we already know Gary is not blue.\n\nFrom statement 12, we know that if someone is young and not white then they are rough. However, we don't know if Gary is white or not.\n\nFrom statement 1, we know Gary is kind.\n\nFrom statement 2, we know Gary is not rough.\n\nFrom statement 11, we know all red people are not rough. This means Gary is not red because if he were red, he wouldn't be rough.\n\nFrom statement 7, we know all red people are green. This means Gary is not green because if he were green, he would be red.\n\nFrom statement 4, we know that if Gary is green, then Gary is not blue. However, we already know Gary is not green.\n\nFrom statement 9, we know that if someone is green, they are white. Since Gary is not green, we cannot conclude that Gary is white.\n\nFrom statement 10, we know that if someone is blue and white then they are kind. However, we already know Gary is not blue.\n\nFrom statement 3, we know Gary is not blue.\n\nFrom statement 5, we know all young people are blue. However, we already know Gary is not blue.\n\nFrom statement 12, we know that if someone is young and not white then they are rough. However, we don't know if Gary is white or not.\n\nFrom statement 1, we know Gary is kind.\n\nFrom statement 2, we know Gary is not rough.\n\nFrom statement 11, we know all red people are not rough. This means Gary is not red because if he were red, he wouldn't be rough.\n\nFrom statement 7, we know all red people are green. This means Gary is not green because if he were green, he would be red.\n\nFrom statement 4, we know that if Gary is green, then Gary is not blue. However, we already know Gary is not green.\n\nFrom statement 9, we know that if someone is green, they are white. Since Gary is not green, we cannot conclude that Gary is white.\n\nFrom statement 10, we know that if someone is blue and white then they are kind. However, we already know Gary is not blue.\n\nFrom statement 3, we know Gary is not blue.\n\nFrom statement 5, we know all young people are blue. However, we already know Gary is not blue.\n\nFrom statement 12, we know that if someone is young and not white then they are rough. However, we don't know if Gary is white or not.\n\nFrom statement 1, we know Gary is kind.\n\nFrom statement 2, we know Gary is not rough.\n\nFrom statement 11, we know all red people are not rough. This means Gary is not red because if he were red, he wouldn't be rough.\n\nFrom statement 7, we know all red people are green. This means Gary is not green because if he were green, he would be red.\n\nFrom statement 4, we know that if Gary is green, then Gary is not blue. However, we already know Gary is not green.\n\nFrom statement 9, we know that if someone is green, they are white. Since Gary is not green, we cannot conclude that Gary is white.\n\nFrom statement 10, we know that if someone is blue and white then they are kind. However, we already know Gary is not blue.\n\nFrom statement 3, we know Gary is not blue.\n\nFrom statement 5, we know all young people are blue. However, we already know Gary is not blue.\n\nFrom statement 12, we know that if someone is young and not white then they are rough. However, we don't know if Gary is white or not.\n\nFrom statement 1, we know Gary is kind.\n\nFrom statement 2, we know Gary is not rough.\n\nFrom statement 11, we know all red people are not rough. This means Gary is not red because if he were red, he wouldn't be rough.\n\nFrom statement 7, we know all red people are green. This means Gary is not green because if he were green, he would be red.\n\nFrom statement 4, we know that if Gary is green, then Gary is not blue. However, we already know Gary is not green.\n\nFrom statement 9, we know that if someone is green, they are white. Since Gary is not green, we cannot conclude that Gary is white.\n\nFrom statement 10, we know that if someone is blue and white then they are kind. However, we already know Gary is not blue.\n\nFrom statement 3, we know Gary is not blue.\n\nFrom statement 5, we know all young people are blue. However, we already know Gary is not blue.\n\nFrom statement 12, we know that if someone is young and not white then they are rough. However, we don't know if Gary is white or not.\n\nFrom statement 1, we know Gary is kind.\n\nFrom statement 2, we know Gary is not rough.\n\nFrom statement 11, we know all red people are not rough. This means Gary is not red because if he were red, he wouldn't be rough",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is kind: This is given in the problem statement.\n\nFrom the statement \"Gary is kind,\" we can directly conclude that the statement \"Gary is not kind\" is false.\n\nTherefore, the answer to the problem is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is kind: This is given information.\n2. If someone is kind, we cannot directly conclude anything from this. We need more information to relate Gary's kindness to other characteristics.\n\n3. Gary is not rough: This is given information.\n4. All red people are not rough: This implies that if someone is red, they are not rough. However, we don't know if Gary is red or not.\n5. Charlie is not red: This implies that Charlie is not red, but it doesn't provide any information about Gary.\n6. Gary is not blue: This is given information.\n7. All young people are blue: This implies that if someone is young, they are blue. However, we don't know if Gary is young or not.\n8. If Gary is green then Gary is not blue: This implies that if Gary is green, then he cannot be blue. However, we don't know if Gary is green or not.\n9. Harry is green: This is given information.\n10. If Harry is white and Harry is young then Harry is not green: This implies that if Harry is white and young, then he is not green. However, we don't know if Harry is white or young.\n11. All red people are green: This implies that if someone is red, they are green. However, we don't know if Gary is red or not.\n12. Blue, young people are red: This implies that if someone is blue and young, they are red. However, we don't know if Gary is blue or young.\n13. If someone is green then they are white: This implies that if someone is green, they are white. However, we don't know if Gary is green or not.\n14. If someone is blue and white then they are kind: This implies that if someone is blue and white, they are kind. However, we don't know if Gary is blue and white or not.\n15. All red people are not rough: This is given information.\n16. If someone is young and not white then they are rough: This implies that if someone is young and not white, they are rough. However, we don't know if Gary is young or not.\n\nNow, let's analyze the given statement: \"Gary is not kind.\" To determine the truth value of this statement, we need to find out if Gary is kind or not.\n\nFrom the given information, we know that Gary is kind (step 1). However, we also know that Gary is not blue (step 6) and all young people are blue (step 7). This implies that Gary is not young.\n\nWe also know that Gary is not rough (step 3) and all young people are not white (step 16). This implies that Gary is not young.\n\nNow, let's assume that Gary is kind. We know that if someone is blue and white, they are kind (step 14). However, we don't know if Gary is blue and white or not. We also know that Gary is not blue (step 6), so he cannot be kind in this way.\n\nWe also know that if someone is green, they are white (step 13) and if someone is green, they are not blue (step 8). However, we don't know if Gary is green or not.\n\nNow, let's assume that Gary is green. We know that Gary is not blue (step 6) and if someone is green, they are not blue (step 8). This is consistent with our assumption.\n\nWe also know that if someone is green, they are white (step 13). This implies that Gary is white.\n\nWe also know that if someone is blue and white, they are kind (step 14). However, we don't know if Gary is blue or not. We do know that Gary is not blue (step 6), so he cannot be kind in this way.\n\nWe also know that all red people are not rough (step 15) and all red people are green (step 11). However, we don't know if Gary is red or not.\n\nNow, let's assume that Gary is red. We know that Gary is not blue (step 6) and all red people are green (step 11). This implies that Gary is green.\n\nWe also know that if someone is green, they are white (step 13). This implies that Gary is white.\n\nWe also know that if someone is blue and white, they are kind (step 14). However, we don't know if Gary is blue or not. We do know that Gary is not blue (step 6), so he cannot be kind in this way.\n\nWe also know that all young people are blue (step 7) and all young people are not white (step 16). However, we don't know if Gary is young or not.\n\nNow, let's assume that Gary is young. We know that Gary is not blue (step 6) and all young people are blue (step 7). This implies that Gary is not young.\n\nHowever, we also know that if someone is young and not white, they are rough (step 16). Since Gary is not young, this implies that Gary is not rough.\n\nWe also know that Gary is not rough (step 3) and all red people are not rough (step 15). This implies that Gary is not red.\n\nNow, let's assume that Gary is blue. We know that Gary is not blue (step 6), so this is a contradiction. Therefore, Gary is not blue.\n\nNow, let's assume that Gary is white. We know that if someone is green, they are white (step 13) and Gary is not blue (step 6). However, we don't know if Gary is green or not.\n\nNow, let's assume that Gary is green. We know that Gary is not blue (step 6) and if someone is green, they are not blue (step 8). This is consistent with our assumption.\n\nWe also know that if someone is green, they are white (step 13). This implies that Gary is white.\n\nWe also know that all red people are not rough (step 15) and all red people are green (step 11). However, we don't know if Gary is red or not.\n\nNow, let's assume that Gary is red. We know that Gary is not blue (step 6) and all red people are green (step 11). This implies that Gary is green.\n\nWe also know that if someone is green, they are white (step 13). This implies that Gary is white.\n\nWe also know that if someone is blue and white, they are kind (step 14). However, we don't know if Gary is blue or not. We do know that Gary is not blue (step 6), so he cannot be kind in this way.\n\nWe also know that all young people are blue (step 7) and all young people are not white (step 16). However, we don't know if Gary is young or not.\n\nNow, let's assume that Gary is young. We know that Gary is not blue (step 6) and all young people are blue (step 7). This implies that Gary is not young.\n\nHowever, we also know that if someone is young and not white, they are rough (step 16). Since Gary is not young, this implies that Gary is not rough.\n\nWe also know that Gary is not rough (step 3) and all red people are not rough (step 15). This implies that Gary is not red.\n\nNow, let's summarize what we have found out about Gary:\n\n* Gary is kind (step 1)\n* Gary is not blue (step 6)\n* Gary is not young (steps 7 and 16)\n* Gary is not rough (step 3)\n* Gary is not red (steps 15 and 20)\n\nHowever, we have not been able to determine whether Gary is green or not.\n\nNow, let's assume that Gary is green. We know that Gary is not blue (step 6) and if someone is green, they are not blue (step 8). This is consistent with our assumption.\n\nWe also know that if someone is green, they are white (step 13). This implies that Gary is white.\n\nWe also know that all red people are not rough (step 15) and all red people are green (step 11). However, we don't know if Gary is red or not.\n\nNow, let's assume that Gary is red. We know that Gary is not blue (step 6) and all red people are green (step 11). This implies that Gary is green.\n\nWe also know that if someone is green, they are white (step 13). This implies that Gary is white.\n\nWe also know that if someone is blue and white, they are kind (step 14). However, we don't know if Gary is blue or not. We do know that Gary is not blue (step 6), so he cannot be kind in this way.\n\nWe also know that all young people are blue (step 7) and all young people are not white (step 16). However, we don't know if Gary is young or not.\n\nNow, let's assume that Gary is young. We know that Gary is not blue (step 6) and all young people are blue (step 7). This implies that Gary is not young.\n\nHowever, we also know that if someone is young and not white, they are rough (step 16). Since Gary is not young, this implies that Gary is not rough.\n\nWe also know that Gary is not rough (step 3) and all red people are not rough (step 15",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we'll use a process of elimination based on the given statements.\n\nGiven statements:\n1. Anne is young.\n2. Charlie is not red.\n3. Gary is not blue.\n4. Gary is kind.\n5. Gary is not rough.\n6. Gary is not young.\n7. Harry is green.\n8. If Gary is green then Gary is not blue.\n9. All young people are blue.\n10. If Harry is white and Harry is young then Harry is not green.\n11. All red people are green.\n12. Blue, young people are red.\n13. If someone is green then they are white.\n14. If someone is blue and white then they are kind.\n15. All red people are not rough.\n16. If someone is young and not white then they are rough.\n\nNow, let's start evaluating the given statement \"Gary is not kind\" using the given statements.\n\nFrom statement 4, we know that Gary is kind. \n\nThis statement directly contradicts the given statement \"Gary is not kind.\" \n\nHowever, to ensure our answer is accurate, let's check if any of the given statements can change Gary's kind nature.\n\nStatement 8 says, \"If Gary is green then Gary is not blue.\" However, we don't have any information that Gary is green.\n\nStatement 9 says, \"All young people are blue.\" But statement 6 says, \"Gary is not young.\" Therefore, Gary's kind nature is not affected by this statement.\n\nStatement 10 says, \"If Harry is white and Harry is young then Harry is not green.\" This statement does not affect Gary's kind nature.\n\nStatement 11 says, \"All red people are green.\" But we don't have any information that Gary is red.\n\nStatement 12 says, \"Blue, young people are red.\" Again, this statement doesn't affect Gary's kind nature because he is not young.\n\nStatement 13 says, \"If someone is green then they are white.\" This statement doesn't affect Gary's kind nature.\n\nStatement 14 says, \"If someone is blue and white then they are kind.\" But this statement can't be applied to Gary because we don't have information that Gary is blue and white.\n\nStatement 15 says, \"All red people are not rough.\" This statement doesn't affect Gary's kind nature.\n\nStatement 16 says, \"If someone is young and not white then they are rough.\" This statement doesn't affect Gary's kind nature.\n\nSince none of the given statements can change Gary's kind nature, and statement 4 directly says that Gary is kind, we can confidently conclude that the statement \"Gary is not kind\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement 'Gary is not kind' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given: Gary is kind. \nThis directly contradicts the statement 'Gary is not kind.' \n\nBased on this statement alone, we can determine the answer without needing further analysis.\n\nHowever, we will continue the analysis to ensure consistency with the given information.\n\n2. Given: Gary is not blue.\nThis does not provide any information about Gary's kindness.\n\n3. Given: Gary is not rough.\nThis also does not provide any information about Gary's kindness.\n\n4. Given: Gary is not young.\nThis does not provide any information about Gary's kindness.\n\n5. Given: If Gary is green then Gary is not blue.\nThis statement is irrelevant to Gary's kindness.\n\n6. Given: Harry is green.\nThis statement is irrelevant to Gary's kindness.\n\n7. Given: All young people are blue.\nThis does not provide any information about Gary's kindness.\n\n8. Given: If Harry is white and Harry is young then Harry is not green.\nThis statement is irrelevant to Gary's kindness.\n\n9. Given: All red people are green.\nThis statement is irrelevant to Gary's kindness.\n\n10. Given: Blue, young people are red.\nThis does not provide any information about Gary's kindness.\n\n11. Given: If someone is green then they are white.\nThis statement is irrelevant to Gary's kindness.\n\n12. Given: If someone is blue and white then they are kind.\nThis statement is also irrelevant to Gary's kindness.\n\n13. Given: All red people are not rough.\nThis statement is irrelevant to Gary's kindness.\n\n14. Given: If someone is young and not white then they are rough.\nThis statement is irrelevant to Gary's kindness.\n\nSince 'Gary is kind' is directly given in the problem statement, we can confidently conclude that the statement 'Gary is not kind' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Gary is not kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Gary is kind (Statement: Gary is kind).\n2. We are also given that all red people are green, and all red people are not rough (Statement: All red people are green, All red people are not rough).\n3. Since all blue, young people are red (Statement: Blue, young people are red), it implies that all blue people are either young or red or both.\n4. Given that all young people are blue (Statement: All young people are blue), it can be inferred that all young people are either blue or red.\n5. We know that Gary is not blue (Statement: Gary is not blue) and Gary is not young (Statement: Gary is not young).\n6. Since Gary is not blue, it can be inferred that Gary is either red or not red.\n7. Given that all red people are green (Statement: All red people are green), if Gary is red, then Gary must be green.\n8. We know that if Gary is green, then Gary is not blue (Statement: If Gary is green then Gary is not blue).\n9. We also know that all people who are green are white (Statement: If someone is green then they are white).\n10. Given that Gary is not blue and Gary is green, it implies that Gary is white.\n11. Since Gary is not young and Gary is white, it can be inferred that Gary is not rough (Statement: If someone is young and not white then they are rough).\n12. Given that Gary is white and Gary is green, it implies that Gary is not rough (Statement: All red people are not rough).\n13. Since all red people are not rough, and Gary is either red or not red, it can be inferred that Gary is not red.\n14. Given that Gary is not blue and Gary is not young, it can be inferred that Gary is either red or white.\n15. Since Gary is not red, it implies that Gary is white.\n16. We know that blue, young people are red (Statement: Blue, young people are red), but we also know that all blue people are either young or red (Statement: All blue people are either young or red).\n17. Given that Gary is not blue and Gary is not young, it implies that Gary is not red.\n18. Since Gary is not blue, it can be inferred that Gary is either red or white.\n19. Given that Gary is not red, it implies that Gary is white.\n20. Given that Gary is white and Gary is not blue, it implies that Gary is kind (Statement: If someone is blue and white then they are kind).\n21. Therefore, it can be concluded that Gary is kind.\n\nBased on the given information, we have concluded that Gary is kind. So, the statement \"Gary is not kind\" is false.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Gary is not kind' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Gary is kind.\n   This statement directly contradicts the statement we are trying to evaluate. Since it directly contradicts, we can determine the outcome immediately.\n\n2. Since Gary is kind, the statement 'Gary is not kind' is false.\n\nFinal Answer: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "not red(charlie)",
+          "z3_formula": "Not(red_charlie) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(gary)",
+          "z3_formula": "Not(blue_gary) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(gary)",
+          "z3_formula": "Not(rough_gary) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not young(gary)",
+          "z3_formula": "Not(young_gary) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_gary, Not(blue_gary))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_gary, blue_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "(white(X) & young(X)) -> not green(X)",
+          "z3_formula": "Implies(And(white_harry, young_harry), Not(green_harry))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_gary, white_gary), kind_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_gary, green_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_gary, young_gary), red_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_gary, white_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_gary, white_gary), kind_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not rough(X)",
+          "z3_formula": "Implies(red_gary, Not(rough_gary))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not white(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, Not(white_gary)), rough_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(gary)",
+          "z3_formula": "Not(kind_gary) == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(gary)",
+          "z3_formula": "Not(kind_gary) == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(gary)",
+          "z3_formula": "Not(kind_gary) == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "not green(gary)",
+          "z3_formula": "Not(green_gary) == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(gary)",
+          "z3_formula": "Not(kind_gary) == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(kind_gary) | kind_gary | Unknown",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(kind_gary) | kind_gary | Unknown",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(kind_gary) | kind_gary | Unknown",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(kind_gary) | kind_gary | Unknown",
+          "source_step": 28
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "not blue(gary)",
+          "z3_formula": "Not(blue_gary) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_harry, Not(blue_harry))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_harry, white_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_harry, white_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> kind(X)",
+          "z3_formula": "Implies(And(white_harry, blue_harry), kind_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_harry, blue_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not white(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, Not(white_harry)), rough_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not white(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_harry, Not(white_harry)), rough_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_harry, blue_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_harry, red_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_harry, green_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_harry, white_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_harry, blue_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> not red(X)",
+          "z3_formula": "Implies(blue_harry, Not(red_harry))",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "not blue(X) -> not young(X)",
+          "z3_formula": "Implies(Not(blue_gary), Not(young_gary))",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "not young(X) -> not rough(X)",
+          "z3_formula": "Implies(Not(young_gary), Not(rough_gary))",
+          "source_step": 31
+        },
+        {
+          "type": "rule",
+          "expression": "not young(X) -> not blue(X)",
+          "z3_formula": "Implies(Not(young_gary), Not(blue_gary))",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "not blue(X) -> not red(X)",
+          "z3_formula": "Implies(Not(blue_gary), Not(red_gary))",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "not red(X) -> not green(X)",
+          "z3_formula": "Implies(Not(red_gary), Not(green_gary))",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "not green(X) -> not white(X)",
+          "z3_formula": "Implies(Not(green_gary), Not(white_gary))",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "not young(X) -> not kind(X)",
+          "z3_formula": "Implies(Not(young_gary), Not(kind_gary))",
+          "source_step": 32
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(gary)",
+          "z3_formula": "Not(kind_gary) == True",
+          "source_step": 32
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "unknown == True",
+          "source_step": 33
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(gary)",
+          "z3_formula": "not blue_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_gary, not blue_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_X, blue_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not young(gary)",
+          "z3_formula": "not young_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_gary, white_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_X, white_X), kind_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(gary) & white(gary)",
+          "z3_formula": "And(not blue_gary, white_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not rough(X)",
+          "z3_formula": "Implies(red_X, not rough_X)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) & not white(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, not white_X), rough_X)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not young(gary)",
+          "z3_formula": "not young_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(gary)",
+          "z3_formula": "not kind_gary == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not kind(gary)",
+          "z3_formula": "Not(kind_gary) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(gary)",
+          "z3_formula": "Not(blue_gary) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(gary)",
+          "z3_formula": "Not(rough_gary) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not young(gary)",
+          "z3_formula": "Not(young_gary) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_gary, blue_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_gary, Not(blue_gary))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & young(X) -> not green(X)",
+          "z3_formula": "Implies(And(white_harry, young_harry), Not(green_harry))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_gary, green_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_gary, young_gary), red_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_gary, white_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_gary, white_gary), kind_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not rough(X)",
+          "z3_formula": "Implies(red_gary, Not(rough_gary))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not white(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, Not(white_gary)), rough_gary)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(gary)",
+          "z3_formula": "not_rough_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(gary)",
+          "z3_formula": "not_blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_gary, not_blue_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_gary, white_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_gary, white_gary), kind_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not rough(X)",
+          "z3_formula": "Implies(red_gary, not_rough_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_gary, blue_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not white(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, not_white_gary), rough_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_gary, green_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not red(gary)",
+          "z3_formula": "not_red_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not green(gary)",
+          "z3_formula": "not_green_gary == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(gary)",
+          "z3_formula": "Not(kind_gary)",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(gary)",
+          "z3_formula": "not_rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(gary)",
+          "z3_formula": "not_blue_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X)",
+          "z3_formula": "Implies(big_gary, smart_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & cold(X) -> white(X)",
+          "z3_formula": "Implies(And(quiet_gary, cold_gary), white_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_gary, green_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not rough(X)",
+          "z3_formula": "Implies(red_gary, not_rough_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_gary, blue_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not white(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, not_white_gary), rough_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_gary, white_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_gary, white_gary), kind_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_gary, not_blue_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_gary, white_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> not white(X)",
+          "z3_formula": "Implies(young_gary, not_white_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_gary, blue_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_gary, white_gary), kind_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_gary, white_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_gary, not_blue_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_gary, green_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not rough(X)",
+          "z3_formula": "Implies(red_gary, not_rough_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_gary, blue_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not white(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, not_white_gary), rough_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_gary, white_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_gary, not_blue_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_gary, white_gary), kind_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_gary, green_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not rough(X)",
+          "z3_formula": "Implies(red_gary, not_rough_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_gary, blue_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not white(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, not_white_gary), rough_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_gary, white_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_gary, not_blue_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_gary, white_gary), kind_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_gary, green_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not rough(X)",
+          "z3_formula": "Implies(red_gary, not_rough_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_gary, blue_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not white(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, not_white_gary), rough_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_gary, white_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_gary, not_blue_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_gary, white_gary), kind_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(gary)",
+          "z3_formula": "Not(kind_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(gary)",
+          "z3_formula": "Not(kind_gary)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(charlie)",
+          "z3_formula": "Not(red_charlie) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(gary)",
+          "z3_formula": "Not(blue_gary) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(gary)",
+          "z3_formula": "Not(rough_gary) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not young(gary)",
+          "z3_formula": "Not(young_gary) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(gary) -> not blue(gary)",
+          "z3_formula": "Implies(green_gary, Not(blue_gary))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_X, blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "(white(harry) & young(harry)) -> not green(harry)",
+          "z3_formula": "Implies(And(white_harry, young_harry), Not(green_harry))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_X, green_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_X, young_X), red_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_X, white_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_X, white_X), kind_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not rough(X)",
+          "z3_formula": "Implies(red_X, Not(rough_X))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not white(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_X, Not(white_X)), rough_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(gary)",
+          "z3_formula": "Not(kind_gary) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(gary)",
+          "z3_formula": "Not(blue_gary) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not rough(gary)",
+          "z3_formula": "Not(rough_gary) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not young(gary)",
+          "z3_formula": "Not(young_gary) == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> not blue(X)",
+          "z3_formula": "Implies(green_gary, Not(blue_gary))",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> blue(X)",
+          "z3_formula": "Implies(young_harry, blue_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & young(X) -> not green(X)",
+          "z3_formula": "Implies(And(white_harry, young_harry), Not(green_harry))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_gary, green_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_harry, young_harry), red_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_harry, white_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_harry, white_harry), kind_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not rough(X)",
+          "z3_formula": "Implies(red_gary, Not(rough_gary))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & not white(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, Not(white_gary)), rough_gary)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_gary, green_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> Not(rough(X))",
+          "z3_formula": "Implies(red_gary, Not(rough_gary))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & young(X) -> red(X)",
+          "z3_formula": "Implies(And(blue_gary, young_gary), red_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> red(X)",
+          "z3_formula": "Implies(blue_gary, Or(red_gary, Not(red_gary)))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "Not(blue(gary))",
+          "z3_formula": "Not(blue_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "Not(young(gary))",
+          "z3_formula": "Not(young_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Or(red(gary), Not(red(gary)))",
+          "z3_formula": "Or(red_gary, Not(red_gary))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> Not(blue(X))",
+          "z3_formula": "Implies(green_gary, Not(blue_gary))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> white(X)",
+          "z3_formula": "Implies(green_gary, white_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> Not(rough(X))",
+          "z3_formula": "Implies(white_gary, Not(rough_gary))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "Not(rough(X))",
+          "z3_formula": "Not(rough_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "Not(red(gary))",
+          "z3_formula": "Not(red_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "Or(red(gary), white(gary))",
+          "z3_formula": "Or(red_gary, white_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "white(gary)",
+          "z3_formula": "white_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> kind(X)",
+          "z3_formula": "Implies(And(blue_gary, white_gary), kind_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 192,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 60
+    },
+    "maxsat_stats": {
+      "satisfied": 54,
+      "excluded": 6,
+      "total_weight": 173,
+      "solve_time_ms": 2.7383994311094284
+    },
+    "timing": {
+      "trace_gen_s": 24.951,
+      "extraction_s": 41.091,
+      "dedup_s": 2.114,
+      "maxsat_s": 0.006,
+      "total_s": 68.162
+    }
+  }
+}

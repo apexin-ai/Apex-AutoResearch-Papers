@@ -1,0 +1,375 @@
+{
+  "problem": {
+    "id": "folio_66",
+    "problem": "Given the following premises:\nYale University is a private Ivy League research university. Yale University moved to New Haven in 1716. Yale university's endowment was valued at $42.3 billion. Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools. A list of residential colleges at Yale: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nA private Ivy League research university moved to New Haven.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "PrivateIvyLeagueResearchUniversity(yale)",
+      "MovedTo(yale, newhaven) \u2227 MovedIn(yale, y1716)",
+      "ValuedAt(yalesendowment, y42.3billion)",
+      "\u2203x (OrganizedInto(yale, x) \u2227 ConstituentCollegesandSchools(x) \u2227 ((ResidentialCollege(x) \u2295 GraduateSchool(x)) \u2295 ProfessionalSchool(x)))",
+      "ResidentialCollege(benjaminfranklincollege) \u2227 AtYale(benjaminfranklincollege) \u2227 ResidentialCollege(berkeleycollege) \u2227 AtYale(berkeleycollege) \u2227 ResidentialCollege(branfordcollege) \u2227 AtYale(branfordcollege) \u2227 ResidentialCollege(davenportcollege) \u2227 AtYale(davenportcollege) \u2227 ResidentialCollege(ezrastilescollege) \u2227 AtYale(ezrastilescollege) \u2227 ResidentialCollege(gracehoppercollege) \u2227 AtYale(gracehoppercollege) \u2227 ResidentialCollege(jonathanedwardscollege) \u2227 AtYale(jonathanedwardscollege) \u2227 ResidentialCollege(morsecollege) \u2227 AtYale(morsecollege) \u2227 ResidentialCollege(paulimurraycollege) \u2227 AtYale(paulimurraycollege) \u2227 ResidentialCollege(piersoncollege) \u2227 AtYale(piersoncollege) \u2227 ResidentialCollege(saybrookcollege) \u2227 AtYale(saybrookcollege) \u2227 ResidentialCollege(sillimancollege) \u2227 AtYale(sillimancollege) \u2227 ResidentialCollege(timothydwightcollege) \u2227 AtYale(timothydwightcollege) \u2227 ResidentialCollege(trumbullcollege) \u2227 AtYale(trumbullcollege)"
+    ],
+    "conclusion_fol": "\u2203x (PrivateIvyLeagueResearchUniversity(x) \u2227 MovedTo(x, newhaven))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 33.0,
+      "Unknown": 29.0
+    },
+    "answer_counts": {
+      "True": 7,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the premises and see if they logically support the conclusion.\n\nPremise 1: Yale University is a private Ivy League research university.\nThis premise directly supports the conclusion that it is a private Ivy League research university, but it does not provide any information about the location.\n\nPremise 2: Yale University moved to New Haven in 1716.\nThis premise provides information about the location, but it does not specify that the university is private or an Ivy League research university. \n\nHowever, from Premise 1, we already know that Yale University is a private Ivy League research university. Therefore, the information in Premise 2 about the location can be combined with the information from Premise 1 to conclude that a private Ivy League research university (Yale University) moved to New Haven.\n\nSince both premises support the conclusion, the conclusion is considered true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to break down the given premises and analyze the conclusion.\n\nPremise 1: Yale University is a private Ivy League research university.\nPremise 2: Yale University moved to New Haven in 1716.\nPremise 3: Yale University has an endowment valued at $42.3 billion and is organized into 27 constituent colleges and schools.\nPremise 4: List of residential colleges at Yale University.\n\nConclusion: A private Ivy League research university moved to New Haven.\n\nAnalysis:\n\n- From Premise 1, we know that Yale University is a private Ivy League research university. This is a direct statement about Yale University.\n- From Premise 2, we know that Yale University moved to New Haven in 1716. This is also a direct statement about Yale University.\n- Since both Premise 1 and Premise 2 directly state facts about Yale University, we can confidently conclude that the conclusion is true.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. Yale University is a private Ivy League research university. \n   - This premise directly tells us that Yale University meets the criteria of being a private Ivy League research university.\n\n2. Yale University moved to New Haven in 1716.\n   - This premise tells us about Yale University's move to New Haven, but it does not directly tell us whether it is an Ivy League research university. However, we know from premise 1 that Yale is indeed an Ivy League research university.\n\n3. Yale university's endowment was valued at $42.3 billion.\n   - This premise provides additional information about Yale University but does not relate to the conclusion we are trying to make about it being a private Ivy League research university.\n\n4. Yale University has been organized into 27 constituent colleges and schools.\n   - This premise does not provide any information about whether Yale is a private Ivy League research university or not.\n\n5. A list of residential colleges at Yale is provided.\n   - This premise is additional information about Yale University's structure but does not affect the conclusion we are trying to make about it being a private Ivy League research university.\n\nGiven the premises provided, we can conclude that Yale University is indeed a private Ivy League research university (from premise 1). Since we already know Yale University is a private Ivy League research university, we can infer that it moved to New Haven (from premise 2), as it is one of the universities that meet the criteria.\n\nTherefore, the conclusion that \"A private Ivy League research university moved to New Haven\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Yale University is a private Ivy League research university.\nPremise 2: Yale University moved to New Haven in 1716.\n\nFrom Premise 1, we know that Yale University is a private Ivy League research university.\n\nFrom Premise 2, we know that Yale University moved to New Haven in 1716.\n\nNow, let's examine the conclusion: \"A private Ivy League research university moved to New Haven.\"\n\nWe can break down the conclusion into two parts:\n\n1. A private Ivy League research university.\n2. Moved to New Haven.\n\nPart 1 is true, as we know from Premise 1 that Yale University is a private Ivy League research university.\n\nHowever, Part 2 is uncertain. We know from Premise 2 that Yale University moved to New Haven, but the conclusion is not specifically stating that Yale University moved to New Haven. It's stating that a private Ivy League research university moved to New Haven. While we know that Yale University is a private Ivy League research university, we cannot conclude that the university mentioned in the conclusion is the same as Yale University.\n\nTherefore, the conclusion is uncertain because it's not explicitly stated that the university in the conclusion is Yale University.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine the truth of the conclusion, let's analyze the given premises step by step:\n\n1. \"Yale University is a private Ivy League research university.\" \nThis premise directly supports the conclusion. Since Yale University is a private Ivy League research university, the conclusion that a private Ivy League research university moved to New Haven can be partially supported by this information.\n\n2. \"Yale University moved to New Haven in 1716.\"\nThis premise directly supports the conclusion. It specifies that Yale University, which we know from premise 1 is a private Ivy League research university, moved to New Haven.\n\nCombining the two premises, we can conclude that Yale University, which is a private Ivy League research university, moved to New Haven.\n\nTherefore, the conclusion is true.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the premises.\n\nPremise 1: Yale University is a private Ivy League research university.\nPremise 2: Yale University moved to New Haven in 1716.\n\nFrom Premise 1, we know Yale University is a private Ivy League research university. However, we cannot infer any information about its location from this premise alone.\n\nFrom Premise 2, we know Yale University moved to New Haven in 1716. This premise does not provide any information about whether Yale University is a private Ivy League research university or not. However, it does tell us that Yale University moved to New Haven.\n\nNow, we can examine the conclusion: A private Ivy League research university moved to New Haven.\n\nFrom Premise 1, we know Yale University is a private Ivy League research university. \nFrom Premise 2, we know Yale University moved to New Haven.\n\nSince Yale University meets both conditions mentioned in the conclusion (it is a private Ivy League research university and it moved to New Haven), we can conclude that the conclusion is true.\n\nTherefore, the conclusion is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the premises step by step:\n\n1. \"Yale University is a private Ivy League research university.\"\n   - This premise confirms that Yale University is indeed a private Ivy League research university. Therefore, we can conclude that Yale University is a private Ivy League research university.\n\n2. \"Yale University moved to New Haven in 1716.\"\n   - This premise states that Yale University moved to New Haven in 1716. However, it does not specify whether it was the university that moved or just the location of the university. The information does not imply that the university itself moved; it only mentions the location change.\n\n3. \"Yale university's endowment was valued at $42.3 billion.\"\n   - This premise provides additional information about Yale University but does not relate to the conclusion we are trying to determine.\n\n4. \"Yale University has been organized into 27 constituent colleges and schools: the residential colleges, the Yale Graduate School of Arts and Sciences, and twelve professional schools.\"\n   - This premise describes the organization structure of Yale University but does not affect the conclusion.\n\n5. \"A list of residential colleges at Yale: Benjamin Franklin College, Berkeley College, Branford College, Davenport College, Ezra Stiles College, Grace Hopper College, Jonathan Edwards College, Morse College, Pauli Murray College, Pierson College, Saybrook College, Silliman College, Timothy Dwight College, and Trumbull College.\"\n   - This premise lists the residential colleges at Yale University but does not affect the conclusion.\n\nConsidering the premises, we can see that only premise 1 confirms the university's status as a private Ivy League research university. The other premises do not directly relate to the conclusion or provide enough information to determine whether the conclusion is true or false.\n\nTherefore, based on the given premises, we can conclude that the information provided is insufficient to confirm whether the conclusion is true or false. As a result, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine the validity of the conclusion, let's analyze the premises and the given conclusion step by step.\n\n1. The first premise states that Yale University is a private Ivy League research university. This premise provides general information about Yale University, specifically its affiliation with the Ivy League and its status as a research university.\n\n2. The second premise states that Yale University moved to New Haven in 1716. This premise specifically mentions the location and the year of the move. It does not mention any other universities or institutions.\n\n3. The third premise provides information about Yale University's endowment and its organization into constituent colleges and schools. This information is relevant to Yale University but does not directly relate to the conclusion.\n\n4. The fourth premise lists the residential colleges at Yale University. This information is specific to Yale University and does not affect the conclusion.\n\nNow, let's analyze the conclusion: \"A private Ivy League research university moved to New Haven.\" To determine its validity, we need to check if the premises provide sufficient evidence to support this conclusion.\n\nFrom the premises, we know that Yale University is a private Ivy League research university (Premise 1) and that it moved to New Haven in 1716 (Premise 2). However, the conclusion does not specifically mention Yale University; it mentions a private Ivy League research university without specifying which one.\n\nSince the premises do not explicitly state that the university in question is Yale University, we cannot be certain that the conclusion is true. The premises only provide information about Yale University, but the conclusion refers to a more general category of universities (private Ivy League research universities).\n\nTherefore, the conclusion is uncertain because it does not explicitly state that Yale University is the university in question.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine the truth value of the given conclusion, let's analyze the premises provided.\n\nPremise 1: Yale University is a private Ivy League research university.\nThis premise is true.\n\nPremise 2: Yale University moved to New Haven in 1716.\nThis premise is true.\n\nThe conclusion is: A private Ivy League research university moved to New Haven.\n\nWe know that Yale University is a private Ivy League research university from Premise 1, and it moved to New Haven in 1716 from Premise 2. \n\nTherefore, we can conclude that the given statement is true because both the characteristics of Yale University (being a private Ivy League research university) and its history (moving to New Haven in 1716) are supported by the premises.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremises:\n\n1. Yale University is a private Ivy League research university.\n2. Yale University moved to New Haven in 1716.\n3. Yale University has a certain endowment value and organizational structure.\n4. List of residential colleges at Yale University.\n\nConclusion: A private Ivy League research university moved to New Haven.\n\nStep 1: Identify the key components of the conclusion.\nThe conclusion mentions \"a private Ivy League research university.\" We need to determine if this description matches Yale University.\n\nStep 2: Compare the description in the conclusion with the premises.\nPremise 1 states that Yale University is a private Ivy League research university, which matches the description in the conclusion.\n\nStep 3: Determine if the university's move to New Haven is relevant to the conclusion.\nThe conclusion does not specify which private Ivy League research university moved to New Haven. However, Premise 2 states that Yale University moved to New Haven in 1716. This provides specific information about Yale University's history.\n\nStep 4: Evaluate the relevance of the premises to the conclusion.\nSince the conclusion describes a private Ivy League research university and Premise 2 specifies Yale University, which matches the description, we can infer that Yale University is the university referred to in the conclusion.\n\nStep 5: Determine the validity of the conclusion based on the premises.\nGiven that Yale University is a private Ivy League research university (Premise 1) and it moved to New Haven in 1716 (Premise 2), the conclusion is supported by the premises.\n\nConclusion: The conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to evaluate the given premises and apply logical reasoning.\n\nPremise 1: Yale University is a private Ivy League research university.\nThis premise tells us about Yale University's characteristics, but it doesn't provide information about its location.\n\nPremise 2: Yale University moved to New Haven in 1716.\nThis premise provides specific information about Yale University's location and the year it moved.\n\nConclusion: A private Ivy League research university moved to New Haven.\n\nWe can break down the conclusion into two parts:\n1. A private Ivy League research university exists.\n2. This university moved to New Haven.\n\nFrom Premise 1, we know that Yale University is a private Ivy League research university, which matches the first part of the conclusion.\n\nFrom Premise 2, we know that Yale University specifically moved to New Haven in 1716, which matches the second part of the conclusion.\n\nSince both parts of the conclusion are supported by the premises, we can logically conclude that the statement is true.\n\nTherefore, the conclusion is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the premises given.\n\nPremise 1: Yale University is a private Ivy League research university.\nThis premise provides information about Yale University's characteristics.\n\nPremise 2: Yale University moved to New Haven in 1716.\nThis premise tells us the location of Yale University but does not mention anything about it being a private Ivy League research university.\n\nNow, let's look at the conclusion:\n\nConclusion: A private Ivy League research university moved to New Haven.\n\nFrom Premise 1, we know that Yale University is a private Ivy League research university. However, Premise 2 only tells us that Yale University (which is a private Ivy League research university) moved to New Haven.\n\nThe conclusion is trying to make a general statement that a private Ivy League research university moved to New Haven. The premises do not provide information about any other private Ivy League research universities, only about Yale University.\n\nTherefore, the conclusion is uncertain because it generalizes information from one specific university (Yale University) to a broader category (a private Ivy League research university).\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_research_university(yale_university)",
+          "z3_formula": "private_ivy_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "private_ivy_research_university(X) -> private_ivy_research_university(X)",
+          "z3_formula": "Implies(private_ivy_research_university_yale_university, private_ivy_research_university_yale_university)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "private_ivy_research_university(X) & moved_to_new_haven(X, Y) -> moved_to_new_haven(private_ivy_research_university(X), Y)",
+          "z3_formula": "Implies(And(private_ivy_research_university_yale_university, moved_to_new_haven_yale_university_1716), moved_to_new_haven_private_ivy_research_university_yale_university_1716)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "moved_to_new_haven(private_ivy_research_university(yale_university), 1716)",
+          "z3_formula": "moved_to_new_haven_private_ivy_research_university_yale_university_1716 == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "private_ivy_league_research_university(yale_university) & moved_to_new_haven(yale_university, _)",
+          "z3_formula": "And(private_ivy_league_research_university_yale_university, moved_to_new_haven_yale_university_1716) == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "private_ivy_league_research_university(yale_university) & moved_to_new_haven(yale_university, _)",
+          "z3_formula": "And(private_ivy_league_research_university_yale_university, moved_to_new_haven_yale_university_1716) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "moved_to_new_haven(yale_university, _)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "moved_to_new_haven(private_ivy_league_research_university)",
+          "z3_formula": "moved_to_new_haven_private_ivy_league_research_university == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "private_ivy_league_research_university(yale_university) & moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "And(private_ivy_league_research_university_yale_university, moved_to_new_haven_yale_university_1716) == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_research(yale_university)",
+          "z3_formula": "private_ivy_research_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "endowment_42_3_billion(yale_university)",
+          "z3_formula": "endowment_42_3_billion_yale_university == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "constituent_colleges_27(yale_university)",
+          "z3_formula": "constituent_colleges_27_yale_university == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "residential_colleges_list(yale_university)",
+          "z3_formula": "residential_colleges_list_yale_university == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "private_ivy_league_research_university(X) & moved_to_new_haven(X, 1716)",
+          "z3_formula": "And(private_ivy_league_research_university_X, moved_to_new_haven_X_1716)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_research(yale_university)",
+          "z3_formula": "private_ivy_research_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "private_ivy_research(yale_university) & moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "And(private_ivy_research_yale_university, moved_to_new_haven_yale_university_1716) == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "a_private_ivy_league_research_university_moved_to_new_haven",
+          "z3_formula": "a_private_ivy_league_research_university_moved_to_new_haven == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "moved_to_new_haven(yale_university, 1716)",
+          "z3_formula": "moved_to_new_haven_yale_university_1716 == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "private_ivy_league_research_university(x) & moved_to_new_haven(x, 1716)",
+          "z3_formula": "And(private_ivy_league_research_university_x, moved_to_new_haven_x_1716)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "private_ivy_league_research_university(yale_university)",
+          "z3_formula": "private_ivy_league_research_university_yale_university == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "yale_university == new_haven",
+          "z3_formula": "yale_university_new_haven == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "private_ivy_league_research_university(X) & X == new_haven",
+          "z3_formula": "And(private_ivy_league_research_university_X, yale_university_new_haven) == True",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 40,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 18
+    },
+    "maxsat_stats": {
+      "satisfied": 18,
+      "excluded": 0,
+      "total_weight": 40,
+      "solve_time_ms": 0.7637999951839447
+    },
+    "timing": {
+      "trace_gen_s": 4.956,
+      "extraction_s": 10.414,
+      "dedup_s": 0.206,
+      "maxsat_s": 0.002,
+      "total_s": 15.579
+    }
+  }
+}

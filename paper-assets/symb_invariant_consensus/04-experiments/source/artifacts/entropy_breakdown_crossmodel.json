@@ -1,0 +1,79 @@
+{
+  "description": "Cross-model entropy breakdown analysis: SC vs SICA accuracy by majority-vote entropy group",
+  "method": "For each problem with K=12 traces, majority_count = max votes for any single answer. high_entropy: majority_count <= 8 (i.e. <=2K/3). low_entropy: majority_count >= 9.",
+  "generated": "2026-05-19",
+  "source": "Raw experiment JSONs, no dependency on prior entropy scripts",
+  "experiments": [
+    {
+      "exp": "exp033", "model": "Mistral-7B", "dataset": "FOLIO-204 (s42)", "server": "westd-25068",
+      "groups": {
+        "high_entropy": {"n": 78, "sc_pct": 35.9, "sica_pct": 48.7, "delta_pp": 12.8},
+        "low_entropy": {"n": 126, "sc_pct": 65.9, "sica_pct": 65.9, "delta_pp": 0.0},
+        "total": {"n": 204, "sc_pct": 54.4, "sica_pct": 59.3, "delta_pp": 4.9}
+      }
+    },
+    {
+      "exp": "exp052", "model": "Mistral-7B", "dataset": "FOLIO-204 (s123)", "server": "westd-16639",
+      "groups": {
+        "high_entropy": {"n": 77, "sc_pct": 37.7, "sica_pct": 46.8, "delta_pp": 9.1},
+        "low_entropy": {"n": 127, "sc_pct": 63.8, "sica_pct": 63.8, "delta_pp": 0.0},
+        "total": {"n": 204, "sc_pct": 53.9, "sica_pct": 57.4, "delta_pp": 3.5}
+      }
+    },
+    {
+      "exp": "exp053", "model": "Mistral-7B", "dataset": "FOLIO-204 (s456)", "server": "westd-16639",
+      "groups": {
+        "high_entropy": {"n": 75, "sc_pct": 41.3, "sica_pct": 40.0, "delta_pp": -1.3},
+        "low_entropy": {"n": 129, "sc_pct": 65.1, "sica_pct": 65.1, "delta_pp": 0.0},
+        "total": {"n": 204, "sc_pct": 56.4, "sica_pct": 55.9, "delta_pp": -0.5}
+      }
+    },
+    {
+      "exp": "exp046", "model": "Mistral-7B", "dataset": "PW-600", "server": "westd-25068",
+      "groups": {
+        "high_entropy": {"n": 267, "sc_pct": 33.7, "sica_pct": 28.8, "delta_pp": -4.9},
+        "low_entropy": {"n": 333, "sc_pct": 43.8, "sica_pct": 42.6, "delta_pp": -1.2},
+        "total": {"n": 600, "sc_pct": 39.3, "sica_pct": 36.5, "delta_pp": -2.8}
+      }
+    },
+    {
+      "exp": "exp036", "model": "Qwen2.5-14B", "dataset": "FOLIO-204", "server": "westd-16639",
+      "groups": {
+        "high_entropy": {"n": 37, "sc_pct": 56.8, "sica_pct": 48.6, "delta_pp": -8.2},
+        "low_entropy": {"n": 167, "sc_pct": 82.0, "sica_pct": 81.4, "delta_pp": -0.6},
+        "total": {"n": 204, "sc_pct": 77.5, "sica_pct": 75.5, "delta_pp": -2.0}
+      }
+    },
+    {
+      "exp": "exp038", "model": "Qwen2.5-14B", "dataset": "LogiQA-200", "server": "westd-16639",
+      "groups": {
+        "high_entropy": {"n": 23, "sc_pct": 65.2, "sica_pct": 60.9, "delta_pp": -4.3},
+        "low_entropy": {"n": 177, "sc_pct": 80.2, "sica_pct": 80.2, "delta_pp": 0.0},
+        "total": {"n": 200, "sc_pct": 78.5, "sica_pct": 78.0, "delta_pp": -0.5}
+      }
+    },
+    {
+      "exp": "exp035", "model": "Qwen2.5-7B", "dataset": "FOLIO-204", "server": "westd-25068",
+      "groups": {
+        "high_entropy": {"n": 47, "sc_pct": 55.3, "sica_pct": 53.2, "delta_pp": -2.1},
+        "low_entropy": {"n": 157, "sc_pct": 83.4, "sica_pct": 83.4, "delta_pp": 0.0},
+        "total": {"n": 204, "sc_pct": 77.0, "sica_pct": 76.5, "delta_pp": -0.5}
+      }
+    },
+    {
+      "exp": "exp048", "model": "LLaMA-3.1-8B", "dataset": "PW-600 (n=180, partial)", "server": "westd-16639",
+      "groups": {
+        "high_entropy": {"n": 76, "sc_pct": 61.8, "sica_pct": 57.9, "delta_pp": -3.9},
+        "low_entropy": {"n": 104, "sc_pct": 77.9, "sica_pct": 76.0, "delta_pp": -1.9},
+        "total": {"n": 180, "sc_pct": 71.1, "sica_pct": 68.3, "delta_pp": -2.8}
+      }
+    }
+  ],
+  "missing": [
+    {"exp": "exp020/exp034", "model": "LLaMA-3.1-8B", "dataset": "FOLIO-204", "reason": "exp034 directory exists on westd-25068 but only contains log file, no results JSON"}
+  ],
+  "notes": [
+    "folio_204_14b on westd-25068 is identical to exp036 on westd-16639 (same Qwen2.5-14B FOLIO run), not double-counted",
+    "exp048 LLaMA-8B PW-600 only has 180/600 problems (incomplete run)"
+  ]
+}

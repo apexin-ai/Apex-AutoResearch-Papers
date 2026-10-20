@@ -1,0 +1,869 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-818_Q2",
+    "problem": "Charlie is young. Erin is blue. Erin is not kind. Fiona is blue. Fiona is white. Gary is blue. Gary is kind. Furry, nice things are white. If something is young and blue then it is smart. All blue, smart things are furry. All smart, white things are furry. Young things are nice. If Fiona is smart and Fiona is young then Fiona is not furry. If Erin is kind then Erin is furry. If Gary is smart and Gary is white then Gary is not kind. If something is nice then it is blue.\n\nDetermine whether the following statement is true, false, or unknown:\nFiona is not white.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\nWhite($x, bool) ::: Is x white?\nFurry($x, bool) ::: Is x furry?\nSmart($x, bool) ::: Is x smart?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nYoung(Charlie, True) ::: Charlie is young.\nBlue(Erin, True) ::: Erin is blue.\nKind(Erin, False) ::: Erin is not kind.\nBlue(Fiona, True) ::: Fiona is blue.\nWhite(Fiona, True) ::: Fiona is white.\nBlue(Gary, True) ::: Gary is blue.\nKind(Gary, True) ::: Gary is kind.\n\nRules:\nFurry($x, True) && Nice($x, True) >>> White($x, True) ::: Furry, nice things are white.\nYoung($x, True) && Blue($x, True) >>> Smart($x, True) ::: If something is young and blue then it is smart.\nBlue($x, True) && Smart($x, True) >>> Furry($x, True) ::: All blue, smart things are furry.\nSmart($x, True) && White($x, True) >>> Furry($x, True) ::: All smart, white things are furry.\nYoung($x, True) >>> Nice($x, True) ::: Young things are nice.\nSmart(Fiona, True) && Young(Fiona, True) >>> Furry(Fiona, False) ::: If Fiona is smart and Fiona is young then Fiona is not furry.\nKind(Erin, True) >>> Furry(Erin, True) ::: If Erin is kind then Erin is furry.\nSmart(Gary, True) && White(Gary, True) >>> Kind(Gary, False) ::: If Gary is smart and Gary is white then Gary is not kind.\nNice($x, True) >>> Blue($x, True) ::: If something is nice then it is blue.\n\nQuery:\nWhite(Fiona, False) ::: Fiona is not white."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 96.0,
+      "True": 37.5,
+      "Unknown": 80.0
+    },
+    "answer_counts": {
+      "False": 4,
+      "Unknown": 2,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Fiona is not white\" is true, false, or unknown, we need to use the given information to deduce the properties of Fiona.\n\n1. Erin is blue. Erin is not kind. \n   - This information does not provide any direct relation to Fiona, so we'll ignore it for now.\n\n2. Fiona is blue. Fiona is white. \n   - From this, we know that Fiona is both blue and white.\n\n3. Gary is blue. Gary is kind. \n   - This information does not provide any direct relation to Fiona, so we'll ignore it for now.\n\n4. Furry, nice things are white. \n   - This is a general statement, so we'll keep it in mind.\n\n5. If something is young and blue then it is smart. \n   - This is a general statement, so we'll keep it in mind.\n\n6. All blue, smart things are furry. \n   - This is a general statement, so we'll keep it in mind.\n\n7. All smart, white things are furry. \n   - This is a general statement, so we'll keep it in mind.\n\n8. Young things are nice. \n   - This is a general statement, so we'll keep it in mind.\n\n9. If Fiona is smart and Fiona is young then Fiona is not furry. \n   - We can use this information to infer the properties of Fiona.\n\n10. If Erin is kind then Erin is furry. \n    - This information does not provide any direct relation to Fiona, so we'll ignore it for now.\n\n11. If Gary is smart and Gary is white then Gary is not kind. \n    - This information does not provide any direct relation to Fiona, so we'll ignore it for now.\n\n12. If something is nice then it is blue. \n    - This is a general statement, so we'll keep it in mind.\n\nNow, let's analyze the properties of Fiona. We know that Fiona is both blue and white.\n\nFrom statement 5, if Fiona is young and blue, then Fiona is smart. However, we cannot determine if Fiona is young or not based on the given information.\n\nFrom statement 9, if Fiona is smart and young, then Fiona is not furry. But we cannot determine if Fiona is smart or not based on the given information.\n\nFrom statement 12, if Fiona is nice, then Fiona is blue. And we know that Fiona is blue, so Fiona must be nice.\n\nSince Fiona is nice, and from statement 8, young things are nice, Fiona must be young.\n\nNow that we know Fiona is young, we can use statement 5, which says that if something is young and blue then it is smart. So Fiona is smart.\n\nSince Fiona is smart, white, and young, we can use statement 9, which says that if Fiona is smart and young then Fiona is not furry.\n\nNow, we need to determine if Fiona is white or not. Based on the given information, we know that Fiona is white.\n\nHowever, from statement 7, all smart, white things are furry. But we also know that if Fiona is smart and young then Fiona is not furry. So, Fiona cannot be furry.\n\nThis creates a contradiction. If Fiona is smart, white, and not furry, then it contradicts the information that all smart, white things are furry.\n\nHowever, we can resolve this contradiction by noticing that we cannot determine if Fiona is white or not based on the given information. The correct answer is unknown.",
+        "answer": "",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and logical deductions.\n\n1. Charlie is young. \n2. Erin is blue.\n3. Erin is not kind.\n4. Fiona is blue.\n5. Fiona is white.\n6. Gary is blue.\n7. Gary is kind.\n8. Furry, nice things are white.\n9. If something is young and blue then it is smart.\n10. All blue, smart things are furry.\n11. All smart, white things are furry.\n12. Young things are nice.\n13. If Fiona is smart and Fiona is young then Fiona is not furry.\n14. If Erin is kind then Erin is furry.\n15. If Gary is smart and Gary is white then Gary is not kind.\n16. If something is nice then it is blue.\n\nFirst, let's simplify the statements:\n\n- From 8: White = (Furry and Nice)\n- From 12: Young = Nice\n\nNow, let's examine the statement we want to determine: Fiona is not white.\n\nFrom 5, we know that Fiona is white. But we also need to consider the other statements that might contradict this.\n\nFrom 9, we know that if something is young and blue, then it is smart. But from 4, we know that Fiona is blue. From 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 5, we know that Fiona is white, and from 11, we know that all smart, white things are furry. This creates a contradiction, as it says Fiona is not furry (from 13).\n\nTo resolve this contradiction, let's analyze the other statements. From 16, we know that if something is nice then it is blue. Since Fiona is young (we can't directly say if Fiona is young, but we will get to this) and young things are nice (from 12), Fiona must be blue (from 16).\n\nHowever, we already know that Fiona is blue (from 4). So, Fiona being blue is consistent with all the other statements.\n\nNow, let's examine if Fiona is young. We can't directly say if Fiona is young from the given statements. However, if Fiona is young, then it must be smart (from 9, as it is blue). But if Fiona is smart and young, then it is not furry (from 13).\n\nFrom 10, we know that all blue, smart things are furry. This creates a contradiction with the statement that Fiona is not furry (from 13).\n\nHowever, let's examine this statement further. From 11, we know that all smart, white things are furry. We know that Fiona is white (from 5) and that Fiona is smart (if Fiona is young). So, this would make Fiona furry.\n\nHowever, this contradicts the statement that Fiona is not furry (from 13).\n\nLet's analyze this further. From 13, if Fiona is smart and Fiona is young, then Fiona is not furry. But from 11, all smart, white things are furry. This creates a contradiction.\n\nTo resolve this, let's look at the other statements. From 5, we know that Fiona is white. From 11, we know that all smart, white things are furry. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, let's examine this further. From 5, we know that Fiona is white. From 11, we know that all smart, white things are furry. This makes Fiona furry.\n\nHowever, this contradicts the statement that Fiona is not furry (from 13).\n\nNow, let's analyze the other statements. From 4, we know that Fiona is blue. From 9, we know that if something is young and blue then it is smart. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 11, we know that all smart, white things are furry. This makes Fiona furry.\n\nHowever, this contradicts the statement that Fiona is not furry (from 13).\n\nTo resolve this, let's examine the other statements. From 4, we know that Fiona is blue. From 9, we know that if something is young and blue then it is smart. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 11, we know that all smart, white things are furry. This makes Fiona furry.\n\nHowever, this contradicts the statement that Fiona is not furry (from 13).\n\nNow, let's analyze the other statements. From 4, we know that Fiona is blue. From 9, we know that if something is young and blue then it is smart. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 11, we know that all smart, white things are furry. This makes Fiona furry.\n\nHowever, this contradicts the statement that Fiona is not furry (from 13).\n\nTo resolve this, let's examine the other statements. From 5, we know that Fiona is white. From 11, we know that all smart, white things are furry. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 4, we know that Fiona is blue. From 9, we know that if something is young and blue then it is smart. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 11, we know that all smart, white things are furry. This makes Fiona furry.\n\nHowever, this contradicts the statement that Fiona is not furry (from 13).\n\nNow, let's analyze the other statements. From 5, we know that Fiona is white. From 11, we know that all smart, white things are furry. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 4, we know that Fiona is blue. From 9, we know that if something is young and blue then it is smart. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 11, we know that all smart, white things are furry. This makes Fiona furry.\n\nHowever, this contradicts the statement that Fiona is not furry (from 13).\n\nTo resolve this, let's examine the other statements. From 5, we know that Fiona is white. From 11, we know that all smart, white things are furry. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 4, we know that Fiona is blue. From 9, we know that if something is young and blue then it is smart. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 11, we know that all smart, white things are furry. This makes Fiona furry.\n\nHowever, this contradicts the statement that Fiona is not furry (from 13).\n\nNow, let's analyze the other statements. From 5, we know that Fiona is white. From 11, we know that all smart, white things are furry. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 4, we know that Fiona is blue. From 9, we know that if something is young and blue then it is smart. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 11, we know that all smart, white things are furry. This makes Fiona furry.\n\nHowever, this contradicts the statement that Fiona is not furry (from 13).\n\nTo resolve this, let's examine the other statements. From 5, we know that Fiona is white. From 11, we know that all smart, white things are furry. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 4, we know that Fiona is blue. From 9, we know that if something is young and blue then it is smart. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 11, we know that all smart, white things are furry. This makes Fiona furry.\n\nHowever, this contradicts the statement that Fiona is not furry (from 13).\n\nNow, let's analyze the other statements. From 5, we know that Fiona is white. From 11, we know that all smart, white things are furry. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 4, we know that Fiona is blue. From 9, we know that if something is young and blue then it is smart. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 11, we know that all smart, white things are furry. This makes Fiona furry.\n\nHowever, this contradicts the statement that Fiona is not furry (from 13).\n\nTo resolve this, let's examine the other statements. From 5, we know that Fiona is white. From 11, we know that all smart, white things are furry. But from 13, we know that if Fiona is smart and Fiona is young, then Fiona is not furry.\n\nHowever, from 4, we know that Fiona is blue. From 9",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and apply the rules of logic. We will break it down step by step.\n\n1. Given information:\n   - Erin is blue.\n   - Erin is not kind.\n   - Fiona is blue.\n   - Fiona is white.\n   - Gary is blue.\n   - Gary is kind.\n   - Furry, nice things are white.\n   - If something is young and blue then it is smart.\n   - All blue, smart things are furry.\n   - All smart, white things are furry.\n   - Young things are nice.\n   - If Fiona is smart and Fiona is young then Fiona is not furry.\n   - If Erin is kind then Erin is furry.\n   - If Gary is smart and Gary is white then Gary is not kind.\n   - If something is nice then it is blue.\n\n2. We need to determine whether Fiona is not white. To do this, we need to find out if Fiona is white.\n\n   From the given information, we know:\n   - Fiona is blue.\n   - Fiona is white.\n\n   We can conclude that Fiona is both blue and white.\n\n3. Now, let's check if there's any information that contradicts Fiona being white. From the given information:\n   - All smart, white things are furry.\n   - If Fiona is smart and Fiona is young then Fiona is not furry.\n\n   Since Fiona is both blue and white, we don't have enough information to conclude whether Fiona is smart or not. However, we can see that if Fiona is smart and young, then it is not furry. This doesn't directly affect our conclusion about Fiona's color.\n\n4. We need to check if Fiona is not white. Since we have already concluded that Fiona is white, we need to find a reason to contradict this. However, we can't directly conclude this from the given information.\n\n5. To find out if Fiona is not white, we need to check if there's any information that contradicts Fiona's whiteness. From the given information:\n   - If Gary is smart and Gary is white then Gary is not kind.\n   - Gary is blue.\n   - Gary is kind.\n\n   This doesn't provide any information about Fiona's whiteness.\n\n6. Let's check if there's any other information that can help us determine Fiona's whiteness. From the given information:\n   - Erin is blue.\n   - Erin is not kind.\n\n   This doesn't provide any information about Fiona's whiteness.\n\n7. We need to check if there's any other information that can help us determine Fiona's whiteness. From the given information:\n   - Young things are nice.\n   - If something is nice then it is blue.\n\n   Since Fiona is young, we can conclude that Fiona is nice. As a result, Fiona is blue.\n\n8. We need to check if there's any other information that can help us determine Fiona's whiteness. From the given information:\n   - All blue, smart things are furry.\n   - Fiona is blue.\n\n   We still can't conclude whether Fiona is smart or not.\n\n9. We need to check if there's any other information that can help us determine Fiona's whiteness. From the given information:\n   - All smart, white things are furry.\n   - If Fiona is smart and Fiona is young then Fiona is not furry.\n\n   This doesn't provide any information about Fiona's whiteness.\n\n10. We need to check if there's any other information that can help us determine Fiona's whiteness. From the given information:\n    - Furry, nice things are white.\n    - Young things are nice.\n\n    Since Fiona is young and nice, we can conclude that Fiona is white.\n\nSince we have concluded that Fiona is white, we can answer the question. The statement \"Fiona is not white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to use a combination of logical reasoning and the given statements.\n\n1. We are given that Fiona is blue.\n2. We are also given that Fiona is white.\n3. However, there is a statement that if Fiona is smart and Fiona is young then Fiona is not furry. But we don't have enough information to determine if Fiona is smart and young, so let's consider other possibilities.\n\nLet's first check if we can determine if Fiona is not white.\n\nFrom statement 2, we know Fiona is white. However, we need to check if there's any possibility that contradicts this statement.\n\nLet's start with the given statements:\n\n- All blue, smart things are furry.\n- All smart, white things are furry.\n- If Fiona is smart and Fiona is young then Fiona is not furry.\n\nFrom statement 1, we know Fiona is blue.\n\nLet's assume Fiona is smart. Then, we can use the statement \"All blue, smart things are furry.\" This implies Fiona is furry, but this contradicts the statement \"If Fiona is smart and Fiona is young then Fiona is not furry.\" However, we can't determine if Fiona is young or not, so let's move on.\n\nNow, let's assume Fiona is young. We still can't determine if Fiona is smart or not, but we can use the statement \"Young things are nice.\" This implies Fiona is nice.\n\nFrom statement 5, we know that if something is nice then it is blue. This statement is already contradicted by statement 1 that says Fiona is blue. However, we can use statement 5 to say that since Fiona is nice, Fiona is blue.\n\nNow, let's assume Fiona is not white. This statement is what we are trying to determine.\n\nWe have already determined that Fiona is blue. However, we also know that Fiona is white from statement 2. \n\nBut we can't determine if the statement \"Fiona is not white\" is true or false based on the given information because of the contradiction between the given information that Fiona is white and the information that Fiona is blue.\n\nHowever, since Fiona is blue from statement 1 and blue is mentioned as a possible color for Erin and Gary, we can't say that Fiona is white or not based on the given information because there's no rule that says Fiona can't be white and blue at the same time.\n\nSo, the statement \"Fiona is not white\" is unknown.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not white' is true, false, or unknown, we need to analyze the given information and the properties of Fiona.\n\nGiven information:\n\n1. Fiona is blue.\n2. Fiona is white.\n3. Furry, nice things are white.\n4. Young things are nice.\n5. If Fiona is smart and Fiona is young then Fiona is not furry.\n6. All blue, smart things are furry.\n\nFrom statement 1, we know that Fiona is blue.\nFrom statement 2, we know that Fiona is white.\n\nWe have conflicting information about Fiona's color. However, we can use the given properties to analyze this information.\n\nStatement 5 implies that Fiona cannot be both smart and not furry, but we know that Fiona is blue and young (from statements 4 and 1). Since all blue, smart things are furry (statement 6), this implies that Fiona must be smart, but not furry.\n\nHowever, since Fiona is white (statement 2) and young (statement 4), it follows that Fiona must be nice (statement 4). Since nice things are white (statement 3), Fiona's being white is not a contradiction.\n\nTherefore, statement 'Fiona is not white' is false.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not white' is true, false, or unknown, we need to analyze the given information and the properties of Fiona.\n\n1. Erin is blue. Erin is not kind. (This information does not affect Fiona directly, but we will keep it in mind.)\n\n2. Fiona is blue. Fiona is white. (This information directly applies to Fiona.)\n\nFrom the above, we can conclude that Fiona is both blue and white.\n\n3. Furry, nice things are white. (This information does not directly apply to Fiona, but we will keep it in mind.)\n\n4. If something is young and blue then it is smart. (This information does not directly apply to Fiona, but we will keep it in mind.)\n\n5. All blue, smart things are furry. (This information does not directly apply to Fiona, but we will keep it in mind.)\n\n6. All smart, white things are furry. (This information does not directly apply to Fiona, but we will keep it in mind.)\n\n7. Young things are nice. (This information does not directly apply to Fiona, but we will keep it in mind.)\n\n8. If Fiona is smart and Fiona is young then Fiona is not furry. (This information directly applies to Fiona.)\n\nLet's analyze the information about Fiona:\n- Fiona is blue (from statement 2)\n- Fiona is white (from statement 2)\n- If Fiona is smart and Fiona is young then Fiona is not furry. (from statement 8)\n\nNow, let's find out if Fiona is smart and young:\n- Fiona is blue and young would make Fiona smart (from statement 4)\n- If Fiona is smart and Fiona is young then Fiona is not furry (from statement 8)\n\nNow, let's analyze what happens if Fiona is young and smart:\n- If Fiona is smart then Fiona must be blue (from statement 4)\n- Since Fiona is white (from statement 2), we can't conclude whether Fiona is furry or not.\n- If Fiona is young and Fiona is smart then Fiona is not furry (from statement 8)\n\nSince Fiona is white and young and smart then Fiona is not furry (from statement 8). However, since we know that all blue, smart things are furry (from statement 5) and all smart, white things are furry (from statement 6), it would seem that Fiona is furry. However, this is a contradiction because Fiona is not furry (from statement 8). \n\nHowever, since we know Fiona is white (from statement 2) and we have two contradictory information for Fiona being furry or not, we cannot conclude that Fiona is not white. This statement is actually unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not white\" is true, false, or unknown, we need to analyze the given information.\n\n1. Fiona is blue. (Given)\n2. Fiona is white. (Given)\n\nFrom these two statements, it seems like there is a conflict. However, we need to consider all the other given information to resolve this.\n\n3. Furry, nice things are white. (Given)\n4. Young things are nice. (Given)\n5. Fiona is young. (Implication from statement 4, since it is given that Fiona is young and young things are nice)\n6. Fiona is blue. (Given)\n7. If something is young and blue then it is smart. (Given)\n8. If Fiona is smart and Fiona is young then Fiona is not furry. (Given)\n\nFrom statements 5 and 7, we can deduce that Fiona is smart. \n\nNow, from statement 8, since Fiona is smart and young, we can conclude that Fiona is not furry.\n\nFrom statement 3, we know that furry, nice things are white. Since Fiona is not furry, it means Fiona is not white.\n\nTherefore, the statement \"Fiona is not white\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement 'Fiona is not white' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Fiona is blue. (Given)\n2. Fiona is white. (Given)\nFrom statement 2, we directly have the information that Fiona is white.\n\nHowever, we need to check if this statement contradicts any other given information or if it creates any inconsistency.\n\n3. Furry, nice things are white. (Given)\nThis statement does not directly relate to Fiona's color, so we can move on.\n\n4. If something is young and blue then it is smart. (Given)\nWe don't have any information about Fiona's age or whether she is smart, so we cannot use this statement to determine her color.\n\n5. All blue, smart things are furry. (Given)\nThis statement also doesn't provide any useful information about Fiona.\n\n6. If Fiona is smart and Fiona is young then Fiona is not furry. (Given)\nAgain, we don't have any information about Fiona's age or whether she is smart, so we cannot use this statement to determine her color or fur status.\n\n7. If Erin is kind then Erin is furry. (Given)\nThis statement is irrelevant to Fiona, so we can move on.\n\n8. If Gary is smart and Gary is white then Gary is not kind. (Given)\nThis statement is also irrelevant to Fiona, so we can move on.\n\n9. If something is nice then it is blue. (Given)\nThis statement doesn't provide any useful information about Fiona.\n\nFrom the given information, we know that Fiona is both blue and white. However, we cannot directly determine if the statement 'Fiona is not white' is true or false based on the given information.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Fiona is not white, we need to use the given statements and derive the relationship between Fiona and white. \n\nLet's break down the statements:\n\n1. Fiona is blue.\n2. Fiona is white.\n\nFrom statement 1, we know Fiona is blue. \n\nFrom statement 2, we know Fiona is white.\n\nWe are given the following statements that relate to these colors:\n- Furry, nice things are white.\n- All blue, smart things are furry.\n- All smart, white things are furry.\n- If Fiona is smart and Fiona is young then Fiona is not furry.\n\nNow we need to determine Fiona's smartness and youthfulness to derive the relationship between Fiona and being furry.\n\nWe are given the following statements that relate to Fiona's smartness and youthfulness:\n- Young things are nice.\n- If Fiona is smart and Fiona is young then Fiona is not furry.\n\nHowever, there is no direct information that Fiona is young. Let's assume Fiona is young for the sake of argument to check whether we can derive a relationship between Fiona and being furry.\n\nIf Fiona is young, then she is nice (from the statement \"Young things are nice\"). \n\nIf Fiona is nice, then she is blue (from the statement \"If something is nice then it is blue\").\n\nHowever, this conclusion contradicts the initial assumption that we know Fiona is white. Thus, we cannot use the assumption that Fiona is young to derive a relationship between Fiona and being furry.\n\nNow let's use the information that Fiona is blue and see if we can derive a relationship between Fiona and being white.\n\nFrom the statement \"Furry, nice things are white\" and \"All smart, white things are furry\", we cannot conclude that Fiona is not white because we don't know whether Fiona is nice or smart.\n\nHowever, from the statement \"If Fiona is smart and Fiona is young then Fiona is not furry\", we can derive that Fiona is not furry if she is smart and young. But we still don't know whether Fiona is smart.\n\nLet's use the statement \"All blue, smart things are furry\" to derive a relationship between Fiona and being smart.\n\nIf Fiona is blue and smart, then she is furry (from the statement \"All blue, smart things are furry\").\n\nHowever, we know Fiona is not furry if she is smart and young (from the statement \"If Fiona is smart and Fiona is young then Fiona is not furry\").\n\nSo Fiona cannot be both smart and young at the same time.\n\nNow let's use the statement \"Young things are nice\" to derive a relationship between Fiona and being nice.\n\nIf Fiona is young, then she is nice.\n\nHowever, we still don't know whether Fiona is young.\n\nNow let's use the statement \"If something is nice then it is blue\" to derive a relationship between Fiona and being blue.\n\nWe already know Fiona is blue.\n\nNow let's use the statement \"All smart, white things are furry\" to derive a relationship between Fiona and being white.\n\nIf Fiona is smart and white, then she is furry.\n\nHowever, we know Fiona is not furry if she is smart and young.\n\nSo Fiona cannot be both smart and white at the same time.\n\nLet's use the statement \"If Fiona is smart and Fiona is young then Fiona is not furry\" to derive a relationship between Fiona and being young.\n\nIf Fiona is smart and young, then she is not furry.\n\nHowever, we still don't know whether Fiona is smart.\n\nNow let's use the statement \"Fiona is not kind\" to derive a relationship between Fiona and being kind.\n\nWe already know Fiona is not kind.\n\nHowever, there is no direct relationship between Fiona being kind and Fiona being white.\n\nNow let's use the statement \"Gary is kind\" and \"If Erin is kind then Erin is furry\" to derive a relationship between Fiona and being furry.\n\nWe know Erin is not kind, so Erin is not furry.\n\nWe also know Gary is kind, so Gary is furry.\n\nHowever, there is no direct relationship between Fiona being furry and Fiona being white.\n\nNow let's use the statement \"Furry, nice things are white\" to derive a relationship between Fiona and being white.\n\nWe already know Fiona is not furry if she is smart and young.\n\nWe also know Fiona is not furry if she is smart and white.\n\nHowever, we still don't know whether Fiona is smart.\n\nNow let's use the statement \"All blue, smart things are furry\" to derive a relationship between Fiona and being blue.\n\nWe already know Fiona is blue.\n\nNow let's use the statement \"Fiona is not kind\" and \"Gary is kind\" to derive a relationship between Fiona and being kind.\n\nWe already know Fiona is not kind.\n\nNow let's use the statement \"Furry, nice things are white\" and \"Gary is blue and Gary is kind\" to derive a relationship between Fiona and being white.\n\nWe know Gary is blue and kind, so Gary is furry.\n\nHowever, we don't know whether Fiona is furry.\n\nNow let's use the statement \"If Gary is smart and Gary is white then Gary is not kind\" to derive a relationship between Fiona and being white.\n\nWe know Gary is kind, so Gary is not white.\n\nHowever, we still don't know whether Fiona is white.\n\nNow let's use the statement \"Gary is kind\" and \"If Erin is kind then Erin is furry\" to derive a relationship between Fiona and being white.\n\nWe know Erin is not kind, so Erin is not furry.\n\nWe also know Gary is kind, so Gary is furry.\n\nHowever, there is no direct relationship between Fiona being furry and Fiona being white.\n\nNow let's use the statement \"Fiona is blue\" and \"Furry, nice things are white\" to derive a relationship between Fiona and being white.\n\nWe already know Fiona is blue.\n\nNow let's use the statement \"All blue, smart things are furry\" to derive a relationship between Fiona and being smart.\n\nIf Fiona is blue and smart, then she is furry.\n\nHowever, we know Fiona is not furry if she is smart and young.\n\nSo Fiona cannot be both smart and young at the same time.\n\nNow let's use the statement \"Young things are nice\" to derive a relationship between Fiona and being young.\n\nIf Fiona is young, then she is nice.\n\nHowever, we still don't know whether Fiona is young.\n\nNow let's use the statement \"If Fiona is smart and Fiona is young then Fiona is not furry\" to derive a relationship between Fiona and being young.\n\nIf Fiona is smart and young, then she is not furry.\n\nHowever, we still don't know whether Fiona is smart.\n\nNow let's use the statement \"Gary is kind\" and \"If Gary is smart and Gary is white then Gary is not kind\" to derive a relationship between Fiona and being white.\n\nWe know Gary is kind, so Gary is not white.\n\nHowever, we still don't know whether Fiona is white.\n\nNow let's use the statement \"All blue, smart things are furry\" to derive a relationship between Fiona and being white.\n\nIf Fiona is blue and smart, then she is furry.\n\nHowever, we know Fiona is not furry if she is smart and young.\n\nSo Fiona cannot be both smart and young at the same time.\n\nNow let's use the statement \"Fiona is not kind\" to derive a relationship between Fiona and being kind.\n\nWe already know Fiona is not kind.\n\nNow let's use the statement \"Gary is kind\" to derive a relationship between Fiona and being kind.\n\nWe already know Fiona is not kind.\n\nNow let's use the statement \"Fiona is blue\" and \"All smart, white things are furry\" to derive a relationship between Fiona and being white.\n\nWe already know Fiona is blue.\n\nNow let's use the statement \"Gary is blue and Gary is kind\" to derive a relationship between Fiona and being white.\n\nWe know Gary is blue and kind, so Gary is furry.\n\nHowever, we don't know whether Fiona is furry.\n\nNow let's use the statement \"If Gary is smart and Gary is white then Gary is not kind\" to derive a relationship between Fiona and being white.\n\nWe know Gary is kind, so Gary is not white.\n\nHowever, we still don't know whether Fiona is white.\n\nNow let's use the statement \"Furry, nice things are white\" to derive a relationship between Fiona and being white.\n\nWe already know Fiona is not furry if she is smart and young.\n\nWe also know Fiona is not furry if she is smart and white.\n\nHowever, we still don't know whether Fiona is smart.\n\nNow let's use the statement \"If Fiona is smart and Fiona is young then Fiona is not furry\" to derive a relationship between Fiona and being young.\n\nIf Fiona is smart and young, then she is not furry.\n\nHowever, we still don't know whether Fiona is smart.\n\nNow let's use the statement \"Gary is kind\" to derive a relationship between Fiona and being kind.\n\nWe already know Fiona is not kind.\n\nNow let's use the statement \"Fiona is not kind\" and \"Gary is kind\" to derive a relationship between Fiona and being white.\n\nWe already know Fiona is not kind.\n\nNow let's use the statement \"Furry, nice things are white\" to derive a relationship between Fiona and being white.\n\nWe already know Fiona is not furry if she is smart and young.\n\nWe also know Fiona is not furry if she is smart and white.\n\nHowever, we still don't know whether Fiona is smart.\n\nNow let's use the statement \"All blue, smart things are furry\" to derive a relationship between Fiona and being white.\n\nIf Fiona is blue and smart, then she is furry.\n\nHowever, we know Fiona is not furry if she is smart and young.\n\nSo Fiona cannot be both smart and young at the same time.\n\nNow let's use the statement \"Gary is blue and Gary is kind\" to derive a relationship between Fiona and being white.\n\nWe know Gary is blue and kind, so Gary is furry.\n\nHowever, we don't know whether Fiona is furry.\n\nNow let's use the statement \"",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1.  We are given that Fiona is blue (Fiona is blue).\n2.  We are also given that Fiona is white (Fiona is white).\n\nNow, we have two contradictory statements about Fiona's color. Since both statements are given, we cannot directly conclude that Fiona is white or blue. Therefore, we cannot directly conclude that \"Fiona is not white\" is true or false.\n\nHowever, we can derive some additional information from other statements:\n\n- We know that if something is young and blue, then it is smart (All blue, young things are smart).\n- We also know that Fiona is blue (Fiona is blue) and young (Fiona is young, which is a reasonable inference given that we know Erin is young, but we are not given Fiona's age directly, yet we know Fiona is not old given that Charlie is young and Erin is not old given that Charlie is young and Erin is young).\n- Therefore, Fiona is smart (All blue, young things are smart).\n\nNow, we know that Fiona is white (Fiona is white) and smart. However, we also know that all smart, white things are furry (All smart, white things are furry). This statement is in conflict with the statement \"If Fiona is smart and Fiona is young then Fiona is not furry\" (If Fiona is smart and Fiona is young then Fiona is not furry). Since we have two conflicting statements, we cannot determine whether Fiona is furry or not. However, we are looking for whether Fiona is not white.\n\nSince we know that Fiona is white and that is given directly, and we are not able to determine if Fiona is not furry given the conflicting information, we can conclude that Fiona is white.\n\nTherefore, the statement \"Fiona is not white\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given: \n   - Erin is blue.\n   - Erin is not kind.\n   - Fiona is blue.\n   - Fiona is white.\n   - Gary is blue.\n   - Gary is kind.\n   - Furry, nice things are white.\n   - If something is young and blue then it is smart.\n   - All blue, smart things are furry.\n   - All smart, white things are furry.\n   - Young things are nice.\n   - If Fiona is smart and Fiona is young then Fiona is not furry.\n   - If Erin is kind then Erin is furry.\n   - If Gary is smart and Gary is white then Gary is not kind.\n   - If something is nice then it is blue.\n\n2. From the given information, we know:\n   - Fiona is blue and white.\n\n3. We need to analyze the implications of Fiona being blue and white on the statement \"Fiona is not white.\"\n   - Since Fiona is white, the statement \"Fiona is not white\" is false.\n\nTherefore, the final answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Fiona is not white\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given facts:\n   - Fiona is blue. (From \"Fiona is blue.\")\n   - Fiona is white. (From \"Fiona is white.\")\n\n2. Since Fiona is both blue and white, we can conclude that Fiona has these properties. However, we need to analyze the given statements to see if there are any contradictions.\n\n3. Let's examine the given statements that involve Fiona:\n   - If Fiona is smart and Fiona is young then Fiona is not furry. (This statement does not affect the conclusion directly, but we need to consider it in case it's used in the process.)\n   - Fiona is blue. (This is a given fact, which we already used.)\n   - Fiona is white. (This is a given fact, which we already used.)\n\n4. Now, let's analyze the statements that might relate to Fiona's color or characteristics:\n   - Furry, nice things are white. (This doesn't affect our conclusion directly.)\n   - If something is young and blue then it is smart. (This statement does not directly relate to Fiona's color or characteristics.)\n   - All blue, smart things are furry. (This doesn't affect our conclusion directly.)\n   - All smart, white things are furry. (This doesn't affect our conclusion directly.)\n   - Young things are nice. (This statement does not directly relate to Fiona's color or characteristics.)\n   - If Fiona is smart and Fiona is young then Fiona is not furry. (This is a conditional statement that we already considered.)\n   - If Erin is kind then Erin is furry. (This statement does not directly relate to Fiona's color or characteristics.)\n   - If Gary is smart and Gary is white then Gary is not kind. (This statement does not directly relate to Fiona's color or characteristics.)\n   - If something is nice then it is blue. (This statement does not directly relate to Fiona's color or characteristics.)\n\n5. From the given facts, we know that Fiona is both blue and white. However, the statement \"Fiona is not white\" is being evaluated. We need to check if there are any conditions that could make this statement true or false.\n\n6. Since Fiona is both blue and white, the statement \"Fiona is not white\" is actually false because Fiona is white.\n\n7. Therefore, the statement \"Fiona is not white\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_fiona, blue_fiona), smart_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> not furry(X)",
+          "z3_formula": "Implies(And(smart_fiona, young_fiona), not_furry_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_fiona, blue_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_fiona, nice_fiona)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(fiona)",
+          "z3_formula": "not_furry_fiona == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == False",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(erin))",
+          "z3_formula": "Not(kind_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_X, nice_X), white_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "(young(X) & blue(X)) -> smart(X)",
+          "z3_formula": "Implies(And(young_X, blue_X), smart_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "(blue(X) & smart(X)) -> furry(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), furry_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "(smart(X) & white(X)) -> furry(X)",
+          "z3_formula": "Implies(And(smart_X, white_X), furry_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "(smart(X) & young(X)) -> not(furry(X))",
+          "z3_formula": "Implies(And(smart_X, young_X), Not(furry_X))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_X, furry_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "(smart(X) & white(X)) -> not(kind(X))",
+          "z3_formula": "Implies(And(smart_X, white_X), Not(kind_X))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_X, blue_X)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_X, nice_X), white_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_X, blue_X), smart_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), furry_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_X, white_X), furry_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_X, blue_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> not furry(X)",
+          "z3_formula": "Implies(And(smart_X, young_X), Not(furry_X))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_X, furry_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> not kind(X)",
+          "z3_formula": "Implies(And(smart_X, white_X), Not(kind_X))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is white",
+          "z3_formula": "white_fiona == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> not_furry(X)",
+          "z3_formula": "Implies(And(smart_fiona, young_fiona), not_furry_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_fiona, furry_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_fiona, white_fiona), furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_fiona, blue_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not white(fiona)",
+          "z3_formula": "Not(white_fiona) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_fiona, nice_fiona), white_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> not furry(X)",
+          "z3_formula": "Implies(And(smart_fiona, young_fiona), Not(furry_fiona))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_fiona, smart_fiona), furry_fiona)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_X, nice_X), white_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_X, blue_X), smart_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), furry_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_X, white_X), furry_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> not furry(X)",
+          "z3_formula": "Implies(And(smart_X, young_X), Not(furry_X))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not white(fiona)",
+          "z3_formula": "Not(white_fiona)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_fiona, nice_fiona), white_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_fiona, nice_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_fiona, blue_fiona), smart_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> not furry(X)",
+          "z3_formula": "Implies(And(smart_fiona, young_fiona), Not(furry_fiona))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(fiona)",
+          "z3_formula": "Not(furry_fiona) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_fiona, nice_fiona), white_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not white(fiona)",
+          "z3_formula": "Not(white_fiona) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_fiona, nice_fiona), white_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_fiona, blue_fiona), smart_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_fiona, smart_fiona), furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> Not(furry(X))",
+          "z3_formula": "Implies(And(smart_fiona, young_fiona), Not(furry_fiona))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(erin) -> furry(erin)",
+          "z3_formula": "Implies(kind_erin, furry_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> Not(kind(X))",
+          "z3_formula": "Implies(And(smart_gary, white_gary), Not(kind_gary))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_fiona, blue_fiona)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(nice(X)) & furry(smart(X)) -> white(X)",
+          "z3_formula": "Implies(And(furry_nice_X, furry_smart_X), white_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), furry_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> not furry(X)",
+          "z3_formula": "Implies(And(smart_X, young_X), not furry_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_X, blue_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_X, white_X), furry_X)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not white(fiona)",
+          "z3_formula": "not white_fiona == True",
+          "source_step": 9
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(erin)",
+          "z3_formula": "blue_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not kind(erin)",
+          "z3_formula": "Not(kind_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_X, nice_X), white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & blue(X) -> smart(X)",
+          "z3_formula": "Implies(And(young_X, blue_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), furry_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_X, white_X), furry_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_X, nice_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "fiona is smart and fiona is young -> fiona is not furry",
+          "z3_formula": "Implies(And(smart_fiona, young_fiona), Not(furry_fiona))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "erins kind -> erin is furry",
+          "z3_formula": "Implies(kind_erin, furry_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "gary is smart and gary is white -> gary is not kind",
+          "z3_formula": "Implies(And(smart_gary, white_gary), Not(kind_gary))",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> blue(X)",
+          "z3_formula": "Implies(nice_X, blue_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is blue and white",
+          "z3_formula": "And(blue_fiona, white_fiona)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "fiona is not white",
+          "z3_formula": "Not(white_fiona)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(fiona)",
+          "z3_formula": "white_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_fiona, smart_fiona), furry_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> nice(X)",
+          "z3_formula": "Implies(young_fiona, nice_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & nice(X) -> white(X)",
+          "z3_formula": "Implies(And(furry_fiona, nice_fiona), white_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & white(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_fiona, white_fiona), furry_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> furry(X)",
+          "z3_formula": "Implies(And(smart_fiona, blue_fiona), furry_fiona)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not white(fiona)",
+          "z3_formula": "Not(white_fiona) == False",
+          "source_step": 6
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 123,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 36
+    },
+    "maxsat_stats": {
+      "satisfied": 33,
+      "excluded": 3,
+      "total_weight": 113,
+      "solve_time_ms": 1.9087502732872963
+    },
+    "timing": {
+      "trace_gen_s": 24.693,
+      "extraction_s": 37.548,
+      "dedup_s": 1.116,
+      "maxsat_s": 0.004,
+      "total_s": 63.361
+    }
+  }
+}

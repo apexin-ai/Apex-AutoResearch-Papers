@@ -1,0 +1,83 @@
+paper_key: "xiong2024uncertainty"
+title: "Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs"
+venue: "ICLR 2024"
+full_text_available: true
+
+research:
+  baselines: ["Vanilla prompting", "white-box methods (logit-based)"]
+  metrics:
+    - {name: "ECE (Expected Calibration Error)", direction: "lower_better"}
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "AUPRC", direction: "higher_better"}
+  datasets:
+    - {name: "CommonsenseQA", size: "commonsense"}
+    - {name: "TruthfulQA", size: "commonsense"}
+    - {name: "GSM8K", size: "arithmetic"}
+    - {name: "DateUnderstanding", size: "symbolic"}
+    - {name: "Professional Law/Medicine/Psychology", size: "professional knowledge"}
+    - {name: "Business Ethics", size: "ethics"}
+  ablation_dimensions: ["prompting_strategy (Vanilla/CoT/Self-Probing/Multi-Step/Top-K)", "sampling_method (Self-Random/Prompting/Misleading)", "aggregation (Consistency/Avg-Conf/Pair-Rank)"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A", model: "GPT-3, GPT-3.5, GPT-4, Vicuna-13B, LLaMA-2-70B"}
+  method_family: "black-box confidence elicitation / uncertainty estimation"
+
+positioning:
+  core_claim: "LLMs are systematically overconfident when verbalizing confidence (concentrating in 80-100% range), but consistency-based multi-sample methods can substantially improve calibration, especially on structured reasoning tasks"
+  key_results: "GSM8K AUROC: 54.8% → 92.7% with consistency-based sampling; white-box vs black-box gap is narrow (AUROC 0.522 vs 0.605); Top-K + Self-Random + Avg-Conf is recommended pipeline"
+  limitations:
+    - "Professional knowledge tasks remain persistently challenging for all methods"
+    - "Black-box methods still trail white-box approaches"
+    - "Verbalized confidence mimics human expression patterns (multiples of 5) rather than reflecting true uncertainty"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "LLMs' tendency to be overconfident poses potential risks for safe deployment"
+  tension: "Existing uncertainty methods require model internals (logits, embeddings) — inapplicable to black-box APIs like GPT-4"
+  key_insight: "Section 3 — organizing confidence elicitation as prompting × sampling × aggregation creates a systematic design space, revealing that sampling multiple responses is the most impactful component"
+  argument_chain: "LLMs overconfident → need black-box uncertainty → systematic 3-component framework → prompting helps calibration but not failure prediction → sampling is the key lever → practical recommendation"
+  contribution_framing: "3 contributions: (1) systematic framework for confidence elicitation, (2) comprehensive evaluation across 5 reasoning types and 5 models, (3) practical recommendations"
+  intro_structure: "4 paragraphs: (1) LLM deployment risk from overconfidence, (2) black-box constraint, (3) framework overview and approach, (4) key findings and recommendations"
+  notable_technique: "The prompting × sampling × aggregation decomposition turns an empirical study into a reusable design framework"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "method_overview"
+    description: "Three-component framework: prompting strategies (5 types) → sampling methods (3 types) → aggregation techniques (3 types)"
+    narrative_role: "Establishes the systematic design space for confidence elicitation"
+    design_elements: ["three-stage pipeline", "enumeration of options at each stage", "flow arrows"]
+    visual_style: "Horizontal pipeline with branching options at each stage"
+  result_figures:
+    - figure_id: "confidence distribution figure"
+      viz_type: "bar_chart"
+      what_compared: "Distribution of verbalized confidence values"
+      how_gain_highlighted: "Shows clustering in 80-100% range, illustrating overconfidence"
+      design_note: "Powerful visual evidence for the overconfidence claim"
+  ablation_figures:
+    - figure_id: "component comparison figures"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["prompting strategy", "sampling method", "aggregation technique"]
+      design_note: "Systematic comparison across the 3-component design space"
+  figure_narrative_role: "Fig1(framework) → confidence distribution → component-wise analysis → task-specific results"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "main results table"
+    row_axis: "methods (prompting × sampling × aggregation combinations)"
+    col_axis: "datasets × metrics (ECE, AUROC, AUPRC)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "mean across datasets"
+    num_baselines: 5
+    design_note: "Large table covering 3 metrics × 8 datasets × multiple method combinations"
+  ablation_tables:
+    - table_id: "component ablation"
+      what_varied: ["prompting strategy", "sampling method", "aggregation technique"]
+      variation_style: "full_numbers"
+      design_note: "Isolates each component's contribution systematically"
+  supplementary_tables:
+    in_appendix: true
+    content: "Per-dataset breakdowns, per-model results, prompt templates"
+    reason: "Full combinatorial results too large for main text"

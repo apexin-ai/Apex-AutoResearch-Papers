@@ -1,0 +1,1093 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1054_Q3",
+    "problem": "Anne is round. Bob is big. Bob is nice. Bob is round. Dave is big. Dave is blue. Dave is furry. Dave is smart. Harry is smart. Harry is white. All blue, round people are smart. All nice, round people are furry. Smart, blue people are nice. If Anne is furry and Anne is round then Anne is big. All blue, smart people are white. Nice people are furry. All furry, big people are blue. If someone is round then they are blue.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is blue.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nBig($x, bool) ::: Is x big?\nNice($x, bool) ::: Is x nice?\nBlue($x, bool) ::: Is x blue?\nFurry($x, bool) ::: Is x furry?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nRound(Anne, True) ::: Anne is round.\nBig(Bob, True) ::: Bob is big.\nNice(Bob, True) ::: Bob is nice.\nRound(Bob, True) ::: Bob is round.\nBig(Dave, True) ::: Dave is big.\nBlue(Dave, True) ::: Dave is blue.\nFurry(Dave, True) ::: Dave is furry.\nSmart(Dave, True) ::: Dave is smart.\nSmart(Harry, True) ::: Harry is smart.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nBlue($x, True) && Round($x, True) >>> Smart($x, True) ::: All blue, round people are smart.\nNice($x, True) && Round($x, True) >>> Furry($x, True) ::: All nice, round people are furry.\nSmart($x, True) && Blue($x, True) >>> Nice($x, True) ::: Smart, blue people are nice.\nFurry(Anne, True) && Round(Anne, True) >>> Big(Anne, True) ::: If Anne is furry and Anne is round then Anne is big.\nBlue($x, True) && Smart($x, True) >>> White($x, True) ::: All blue, smart people are white.\nNice($x, True) >>> Furry($x, True) ::: Nice people are furry.\nFurry($x, True) && Big($x, True) >>> Blue($x, True) ::: All furry, big people are blue.\nRound($x, True) >>> Blue($x, True) ::: If someone is round then they are blue.\n\nQuery:\nBlue(Bob, True) ::: Bob is blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 159.0
+    },
+    "answer_counts": {
+      "True": 11
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Bob is blue\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Bob is big. \n2. Bob is nice. \n3. Bob is round. \n\nFrom statement 3, we know that Bob is round. We can use the statement \"If someone is round then they are blue\" to conclude that Bob is blue.\n\nHowever, we also have other statements that could influence the conclusion, such as \"All blue, round people are smart\" or \"All blue, smart people are white.\" But we don't need to use them in this case, as we already have a direct implication from the fact that Bob is round.\n\nTherefore, based on the given statements, the statement \"Bob is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is blue\" is true, false, or unknown, we need to analyze the given information and apply the rules of inference.\n\n1. Bob is round.\n2. All round people are blue. (From rule \"If someone is round then they are blue.\")\n\nFrom the above two statements, we can infer that:\n3. Bob is blue.\n\nHowever, we also have other information about Bob:\n4. Bob is big.\n5. Bob is nice.\n\nThese statements do not affect our conclusion that Bob is blue, because we have directly inferred Bob's color from his shape.\n\nTherefore, based on the given information and the rules of inference, we can conclude that:\nThe statement \"Bob is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is blue\" is true, false, or unknown, we need to use the given information and apply it step by step.\n\n1. We are given that Bob is round.\n2. We are given that if someone is round then they are blue.\n   Therefore, Bob is blue.\n\nHowever, we need to verify if this conclusion is consistent with the other given information.\n\n1. We are given that Bob is big and Bob is nice.\n2. We are given that all blue, round people are smart.\n   Since Bob is blue and round, Bob must be smart.\n\n3. We are given that all blue, smart people are white.\n   Since Bob is blue and smart, Bob must be white.\n\n4. We are given that all nice, round people are furry.\n   Since Bob is nice and round, Bob must be furry.\n\n5. We are given that all blue, round people are smart and smart, blue people are nice.\n   From these two statements, we can infer that all blue, round people are furry, since they are both nice and smart.\n\n6. We are given that all furry, big people are blue.\n   However, this statement does not affect our conclusion about Bob, since we already concluded that Bob is blue.\n\nTherefore, based on the given information, the statement \"Bob is blue\" is true.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is blue\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Given statements:\n   - Anne is round.\n   - Bob is big.\n   - Bob is nice.\n   - Bob is round.\n   - Dave is big.\n   - Dave is blue.\n   - Dave is furry.\n   - Dave is smart.\n   - Harry is smart.\n   - Harry is white.\n   - All blue, round people are smart.\n   - All nice, round people are furry.\n   - Smart, blue people are nice.\n   - If Anne is furry and Anne is round then Anne is big.\n   - All blue, smart people are white.\n   - Nice people are furry.\n   - All furry, big people are blue.\n   - If someone is round then they are blue.\n\n2. From the given statements, we can infer:\n   - Bob is round, so Bob is blue (by the rule \"If someone is round then they are blue\").\n   - Bob is blue, so Bob is smart (by the rule \"All blue, round people are smart\").\n   - Bob is smart and blue, so Bob is nice (by the rule \"Smart, blue people are nice\").\n\nNow, let's analyze the statement \"Bob is blue\":\n- From the given statements, we know Bob is round, which implies Bob is blue.\n- Therefore, the statement \"Bob is blue\" is true.\n\nSo, the final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine their implications. \n\n1. All blue, round people are smart. \n2. All nice, round people are furry. \n3. Smart, blue people are nice. \n4. If Anne is furry and Anne is round then Anne is big. \n5. All blue, smart people are white. \n6. Nice people are furry. \n7. All furry, big people are blue. \n8. If someone is round then they are blue.\n\nWe are asked to determine whether the statement \"Bob is blue\" is true, false, or unknown.\n\nFrom statement 8, we know that if someone is round, then they are blue. Since Bob is round (statement 2), we can conclude that Bob is blue.\n\nHowever, we need to consider other statements that may contradict this conclusion. \n\nFrom statement 2, we know that Bob is nice and round, so Bob is furry. \n\nNow, from statement 6, we know that nice people are furry. But from statement 7, we know that all furry, big people are blue. Since Bob is furry and nice, we can conclude that Bob is big.\n\nHowever, we are not given any direct information about the relationship between Bob being big and Bob being blue. \n\nWe can, however, use statement 1, which states that all blue, round people are smart. We know that Bob is round (statement 2) and blue (from the conclusion we drew earlier). But we are not given any information about Bob being smart.\n\nFrom statement 3, we know that smart, blue people are nice. But we already know that Bob is nice (statement 3). So, we can conclude that Bob is smart.\n\nNow, we can use statement 5, which states that all blue, smart people are white. Since Bob is blue and smart, we can conclude that Bob is white.\n\nHowever, we are not given any information about the relationship between Bob being white and Bob being blue. \n\nWe can, however, use statement 1 again, which states that all blue, round people are smart. We know that Bob is round (statement 2) and blue (from the conclusion we drew earlier). But we already know that Bob is smart (from the previous conclusion).\n\nSince we have not found any contradictions, we can conclude that the statement \"Bob is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n\n1. Anne is round.\n2. Bob is big.\n3. Bob is nice.\n4. Bob is round.\n5. Dave is big.\n6. Dave is blue.\n7. Dave is furry.\n8. Dave is smart.\n9. Harry is smart.\n10. Harry is white.\n11. All blue, round people are smart.\n12. All nice, round people are furry.\n13. Smart, blue people are nice.\n14. If Anne is furry and Anne is round then Anne is big.\n15. All blue, smart people are white.\n16. Nice people are furry.\n17. All furry, big people are blue.\n18. If someone is round then they are blue.\n\nFrom point 18, we can conclude that since Bob is round (point 4), he is blue.\n\nTherefore, the statement \"Bob is blue\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is blue\" is true, false, or unknown, we need to use the given statements and logical reasoning.\n\n1. Bob is big. (Given)\n2. Bob is round. (Given)\n3. If someone is round, then they are blue. (Given)\n4. Since Bob is round, we can conclude that Bob is blue. (Using statement 3)\n\nNow, let's analyze the given statements to see if there are any contradictions or additional information that can help us.\n\n1. All blue, round people are smart. (Given)\n2. All nice, round people are furry. (Given)\n3. Smart, blue people are nice. (Given)\n4. All blue, smart people are white. (Given)\n5. Nice people are furry. (Given)\n6. All furry, big people are blue. (Given)\n7. If Anne is furry and Anne is round then Anne is big. (Given)\n8. Anne is round. (Implicit, but not directly given. However, Anne being round is used to conclude Anne is big.)\n9. Anne is furry. (Given)\n10. We can conclude that Anne is big using statements 7, 8, and 9.\n\nHowever, we cannot conclude that Bob is big from the given statements. We only know that Bob is big (statement 1), but we do not have any direct connection between Bob's characteristics and being big.\n\nWe can conclude that Bob is blue from statement 4. We can use this information to check the other given statements.\n\nNow, let's see if there are any contradictions or additional information that can help us.\n\n1. Bob is big. (Given)\n2. Bob is round. (Given)\n3. Bob is blue. (Concluded from statement 4)\n4. Since Bob is blue and round, we can conclude that Bob is smart using statement 1.\n5. Since Bob is smart and blue, we can conclude that Bob is nice using statement 3.\n6. Since Bob is nice and round, we can conclude that Bob is furry using statement 2.\n7. Since Bob is furry and big, we can conclude that Bob is blue using statement 6.\n\nHowever, statement 7 is a circular argument, as we already concluded that Bob is blue. We cannot use this statement to get additional information.\n\nWe can conclude that the statement \"Bob is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given statements and use the rules of logic to determine the truth value of the statement \"Bob is blue.\"\n\nGiven statements:\n1. Anne is round.\n2. Bob is big.\n3. Bob is nice.\n4. Bob is round.\n5. Dave is big.\n6. Dave is blue.\n7. Dave is furry.\n8. Dave is smart.\n9. Harry is smart.\n10. Harry is white.\n11. All blue, round people are smart.\n12. All nice, round people are furry.\n13. Smart, blue people are nice.\n14. If Anne is furry and Anne is round then Anne is big.\n15. All blue, smart people are white.\n16. Nice people are furry.\n17. All furry, big people are blue.\n18. If someone is round then they are blue.\n\nTo determine the truth value of the statement \"Bob is blue,\" let's analyze the given statements:\n\nFrom statement 4, we know Bob is round. \n\nFrom statement 18, we know that if someone is round, then they are blue.\n\nCombining statements 4 and 18, we can conclude that Bob is blue.\n\nTherefore, the statement \"Bob is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is blue\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. We are given:\n   - Bob is big.\n   - Bob is nice.\n   - Bob is round.\n\n2. From the given information, we can deduce the following:\n   - All blue, round people are smart. (From the given statements)\n   - All nice, round people are furry. (From the given statements)\n   - Smart, blue people are nice. (From the given statements)\n   - If Anne is furry and Anne is round then Anne is big. (From the given statements, but this does not apply to Bob)\n   - All blue, smart people are white. (From the given statements)\n   - Nice people are furry. (From the given statements)\n   - All furry, big people are blue. (From the given statements)\n   - If someone is round then they are blue. (From the given statements)\n\n3. Since Bob is round, we can deduce that Bob is blue using the rule: If someone is round then they are blue.\n\nTherefore, based on the given information, we can conclude that:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and use logical deductions.\n\nGiven statements:\n1. Anne is round.\n2. Bob is big.\n3. Bob is nice.\n4. Bob is round.\n5. Dave is big.\n6. Dave is blue.\n7. Dave is furry.\n8. Dave is smart.\n9. Harry is smart.\n10. Harry is white.\n11. All blue, round people are smart.\n12. All nice, round people are furry.\n13. Smart, blue people are nice.\n14. If Anne is furry and Anne is round then Anne is big.\n15. All blue, smart people are white.\n16. Nice people are furry.\n17. All furry, big people are blue.\n18. If someone is round then they are blue.\n\nWe are asked to determine whether the statement \"Bob is blue\" is true, false, or unknown.\n\nFrom statement 4, we know Bob is round.\nFrom statement 18, we know that if someone is round, then they are blue.\nUsing modus ponens (a rule of inference), we can conclude that Bob is blue.\n\nTherefore, the statement \"Bob is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules of logic. We will start by identifying the relevant statements and then apply the rules to determine the truth of the statement \"Bob is blue.\"\n\nGiven statements:\n\n1. Anne is round.\n2. Bob is big.\n3. Bob is nice.\n4. Bob is round.\n5. Dave is big.\n6. Dave is blue.\n7. Dave is furry.\n8. Dave is smart.\n9. Harry is smart.\n10. Harry is white.\n11. All blue, round people are smart.\n12. All nice, round people are furry.\n13. Smart, blue people are nice.\n14. If Anne is furry and Anne is round then Anne is big.\n15. All blue, smart people are white.\n16. Nice people are furry.\n17. All furry, big people are blue.\n18. If someone is round then they are blue.\n\nWe need to determine the truth of the statement \"Bob is blue.\"\n\nStep 1: Analyze the statement \"Bob is round\" (statement 4) and statement 18, which says \"If someone is round then they are blue.\"\n\nFrom statement 18, we can conclude that since Bob is round (statement 4), he is blue.\n\nNow we need to verify if the statement \"Bob is blue\" is consistent with other given statements.\n\nStep 2: Analyze the statement \"Bob is blue\" and statement 16, which says \"Nice people are furry.\"\n\nSince Bob is nice (statement 3) and all nice people are furry (statement 16), Bob is furry.\n\nNow we have the following information about Bob: Bob is blue, Bob is round, Bob is nice, and Bob is furry.\n\nStep 3: Analyze the statement \"Bob is nice\" and statement 13, which says \"Smart, blue people are nice.\"\n\nSince Bob is blue (concluded in Step 1) and smart, blue people are nice (statement 13), Bob is smart.\n\nNow we have the following information about Bob: Bob is blue, Bob is round, Bob is nice, Bob is smart, and Bob is furry.\n\nStep 4: Analyze the statement \"Bob is blue\" and statement 11, which says \"All blue, round people are smart.\"\n\nSince Bob is blue (concluded in Step 1) and Bob is round (statement 4), Bob is smart.\n\nThis is consistent with the conclusion drawn in Step 3.\n\nTherefore, we have verified that the statement \"Bob is blue\" is consistent with all the given statements.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine if the statement \"Bob is blue\" is true, false, or unknown, we need to analyze the given information and apply the logical rules.\n\nGiven information:\n\n1. Bob is big. (i)\n2. Bob is nice. (ii)\n3. Bob is round. (iii)\n4. All blue, round people are smart. (iv)\n5. All nice, round people are furry. (v)\n6. Smart, blue people are nice. (vi)\n7. If Anne is furry and Anne is round then Anne is big. (vii)\n8. All blue, smart people are white. (viii)\n9. Nice people are furry. (ix)\n10. All furry, big people are blue. (x)\n11. If someone is round then they are blue. (xi)\n\nWe need to determine if Bob is blue using the given information.\n\nFrom (xi), we know that if someone is round, then they are blue. Since Bob is round (iii), we can conclude that Bob is blue. \n\nSo, the statement \"Bob is blue\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), smart_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_bob, smart_bob), white_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(nice_bob, round_bob), furry_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), furry_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_bob, big_bob), blue_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_round, round_bob), smart_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_round, round_anne), big_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_blue, blue_bob), nice_bob)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_bob, big_bob), blue_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_bob, big_bob), blue_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_bob, nice_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_bob, big_bob), blue_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_bob, smart_bob), nice_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_bob, smart_bob), nice_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> nice(X)",
+          "z3_formula": "Implies(And(blue_bob, smart_bob), nice_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_bob, smart_bob), white_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob, smart_bob), white_bob)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob, smart_bob), white_bob)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, round_X), smart_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_X, round_X), big_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, blue_X), nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_X, big_X), blue_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), smart_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_bob, blue_bob), nice_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(nice_bob, round_bob), furry_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_bob, big_bob), blue_bob)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, round_X), smart_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_X, round_X), big_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, blue_X), nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_X, round_X), big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 19
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, round_X), smart_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(nice_X, round_X), furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, blue_X), nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_X, big_X), blue_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_X, round_X), big_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_X, smart_X), white_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> furry(X)",
+          "z3_formula": "Implies(nice_X, furry_X)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(dave)",
+          "z3_formula": "smart_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_X, round_X), smart_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(nice_X, round_X), furry_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_X, blue_X), nice_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_X, big_X), blue_X)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_X, blue_X)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "furry(bob)",
+          "z3_formula": "furry_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "smart(bob)",
+          "z3_formula": "smart_bob == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(bob)",
+          "z3_formula": "nice_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & round(X) -> smart(X)",
+          "z3_formula": "Implies(And(blue_bob, round_bob), smart_bob)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & round(X) -> furry(X)",
+          "z3_formula": "Implies(And(nice_bob, round_bob), furry_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & blue(X) -> nice(X)",
+          "z3_formula": "Implies(And(smart_bob, blue_bob), nice_bob)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & round(X) -> big(X)",
+          "z3_formula": "Implies(And(furry_anne, round_anne), big_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & smart(X) -> white(X)",
+          "z3_formula": "Implies(And(blue_bob, smart_bob), white_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_bob, nice_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(furry_bob, big_bob), blue_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> blue(X)",
+          "z3_formula": "Implies(round_bob, blue_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 161,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 35
+    },
+    "maxsat_stats": {
+      "satisfied": 35,
+      "excluded": 0,
+      "total_weight": 161,
+      "solve_time_ms": 1.1188210919499397
+    },
+    "timing": {
+      "trace_gen_s": 6.549,
+      "extraction_s": 25.464,
+      "dedup_s": 1.344,
+      "maxsat_s": 0.003,
+      "total_s": 33.36
+    }
+  }
+}

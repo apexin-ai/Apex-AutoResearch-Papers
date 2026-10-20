@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "dataset": "FOLIO-204",
+    "models": ["Mistral-7B", "LLaMA-3.1-8B", "Qwen2.5-7B"],
+    "traces_per_model": 12,
+    "seed": 42,
+    "temperature": 0.7,
+    "n_common_problems": 204
+  },
+  "variable_k_results": [
+    {"combination": "Mistral-only (K=4)", "nominal_K": 4, "n_valid": 199, "avg_K": 3.37, "kappa": 0.5146, "eff_k": 1.52, "sc_acc": 0.6127},
+    {"combination": "LLaMA-only (K=4)", "nominal_K": 4, "n_valid": 201, "avg_K": 3.6, "kappa": 0.4411, "eff_k": 1.68, "sc_acc": 0.6225},
+    {"combination": "Qwen-only (K=4)", "nominal_K": 4, "n_valid": 204, "avg_K": 4.0, "kappa": 0.6392, "eff_k": 1.37, "sc_acc": 0.7451},
+    {"combination": "Mistral-only (K=12)", "nominal_K": 12, "n_valid": 204, "avg_K": 10.01, "kappa": 0.5191, "eff_k": 1.76, "sc_acc": 0.5441},
+    {"combination": "LLaMA-only (K=12)", "nominal_K": 12, "n_valid": 204, "avg_K": 10.76, "kappa": 0.4711, "eff_k": 1.92, "sc_acc": 0.6471},
+    {"combination": "Qwen-only (K=12)", "nominal_K": 12, "n_valid": 204, "avg_K": 11.99, "kappa": 0.6489, "eff_k": 1.47, "sc_acc": 0.7598},
+    {"combination": "Mistral+LLaMA (K=8)", "nominal_K": 8, "n_valid": 204, "avg_K": 6.87, "kappa": 0.4103, "eff_k": 2.02, "sc_acc": 0.6078},
+    {"combination": "Mistral+Qwen (K=8)", "nominal_K": 8, "n_valid": 204, "avg_K": 7.31, "kappa": 0.4619, "eff_k": 1.87, "sc_acc": 0.7206},
+    {"combination": "LLaMA+Qwen (K=8)", "nominal_K": 8, "n_valid": 204, "avg_K": 7.6, "kappa": 0.4591, "eff_k": 1.88, "sc_acc": 0.7402},
+    {"combination": "3-Model Mix (K=12)", "nominal_K": 12, "n_valid": 204, "avg_K": 10.87, "kappa": 0.4217, "eff_k": 2.11, "sc_acc": 0.7451}
+  ],
+  "summary": {
+    "avg_within_kappa_k4": 0.5316,
+    "avg_within_kappa_k12": 0.5464,
+    "avg_cross_kappa_k8": 0.4438,
+    "mix_kappa_k12": 0.4217,
+    "avg_effk_within_k4": 1.52,
+    "avg_effk_cross_k8": 1.92,
+    "effk_mix_k12": 2.11,
+    "kappa_reduction_pct": 16.53,
+    "effk_gain_pct": 26.32
+  }
+}

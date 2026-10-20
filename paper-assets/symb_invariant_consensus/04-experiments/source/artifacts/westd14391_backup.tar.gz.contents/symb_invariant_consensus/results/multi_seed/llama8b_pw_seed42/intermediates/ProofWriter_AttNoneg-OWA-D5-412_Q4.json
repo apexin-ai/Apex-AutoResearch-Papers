@@ -1,0 +1,1009 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-412_Q4",
+    "problem": "Dave is furry. Dave is green. Dave is quiet. Dave is red. Fiona is blue. Fiona is furry. Fiona is green. Fiona is quiet. Fiona is red. Gary is blue. Gary is nice. Gary is quiet. Gary is red. Gary is smart. Harry is blue. Harry is smart. If something is blue and furry then it is quiet. If Dave is furry then Dave is nice. If something is furry then it is blue. Quiet things are red. All furry, green things are quiet. If something is red then it is green. All nice things are furry. All smart things are nice. Red things are quiet.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is not nice.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\nQuiet($x, bool) ::: Is x quiet?\nRed($x, bool) ::: Is x red?\nBlue($x, bool) ::: Is x blue?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\n\nFacts:\nFurry(Dave, True) ::: Dave is furry.\nGreen(Dave, True) ::: Dave is green.\nQuiet(Dave, True) ::: Dave is quiet.\nRed(Dave, True) ::: Dave is red.\nBlue(Fiona, True) ::: Fiona is blue.\nFurry(Fiona, True) ::: Fiona is furry.\nGreen(Fiona, True) ::: Fiona is green.\nQuiet(Fiona, True) ::: Fiona is quiet.\nRed(Fiona, True) ::: Fiona is red.\nBlue(Gary, True) ::: Gary is blue.\nNice(Gary, True) ::: Gary is nice.\nQuiet(Gary, True) ::: Gary is quiet.\nRed(Gary, True) ::: Gary is red.\nSmart(Gary, True) ::: Gary is smart.\nBlue(Harry, True) ::: Harry is blue.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nBlue($x, True) && Furry($x, True) >>> Quiet($x, True) ::: If something is blue and furry then it is quiet.\nFurry(Dave, True) >>> Nice(Dave, True) ::: If Dave is furry then Dave is nice.\nFurry($x, True) >>> Blue($x, True) ::: If something is furry then it is blue.\nQuiet($x, True) >>> Red($x, True) ::: Quiet things are red.\nFurry($x, True) && Green($x, True) >>> Quiet($x, True) ::: All furry, green things are quiet.\nRed($x, True) >>> Green($x, True) ::: If something is red then it is green.\nNice($x, True) >>> Furry($x, True) ::: All nice things are furry.\nSmart($x, True) >>> Nice($x, True) ::: All smart things are nice.\nRed($x, True) >>> Quiet($x, True) ::: Red things are quiet.\n\nQuery:\nNice(Dave, False) ::: Dave is not nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 144.0
+    },
+    "answer_counts": {
+      "False": 11
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven statements:\n1. Dave is furry.\n2. Dave is green.\n3. Dave is quiet.\n4. Dave is red.\n5. Fiona is blue.\n6. Fiona is furry.\n7. Fiona is green.\n8. Fiona is quiet.\n9. Fiona is red.\n10. Gary is blue.\n11. Gary is nice.\n12. Gary is quiet.\n13. Gary is red.\n14. Gary is smart.\n15. Harry is blue.\n16. Harry is smart.\n17. If something is blue and furry then it is quiet.\n18. If Dave is furry then Dave is nice.\n19. If something is furry then it is blue.\n20. Quiet things are red.\n21. All furry, green things are quiet.\n22. If something is red then it is green.\n23. All nice things are furry.\n24. All smart things are nice.\n25. Red things are quiet.\n\nWe are asked to determine whether \"Dave is not nice\" is true or false.\n\nFrom statement 18, we know that \"If Dave is furry then Dave is nice.\" Since Dave is furry (statement 1), we can conclude that Dave is nice (modus ponens).\n\nNow, let's examine the statement \"Dave is not nice.\" Based on the above conclusion, we know that Dave is nice. Therefore, \"Dave is not nice\" is false.\n\nThe final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information and the given statements one by one.\n\n1. If Dave is furry then Dave is nice. \n2. If something is furry then it is blue.\n3. If something is blue and furry then it is quiet.\n4. Dave is furry. (From statement 2, Dave is blue because he is furry, and from statement 3, Dave is quiet because he is blue and furry.)\n\nNow let's analyze the given statements in relation to being nice.\n\n1. If something is furry then it is blue. \n2. If Dave is furry then Dave is nice. \n3. If something is blue and furry then it is quiet. \n4. Dave is furry. (From statement 2, Dave is blue because he is furry, and from statement 3, Dave is quiet because he is blue and furry.)\n5. Dave is quiet. (From statement 4)\n6. All quiet things are red. (From statement 5, Dave is red because he is quiet.)\n\nSince Dave is red (from statement 6), we can use the following statement:\n\n7. If something is red then it is green.\n\nSo, Dave is green.\n\nNow let's analyze the given statements in relation to being nice.\n\n1. All furry things are blue. \n2. All nice things are furry. \n3. Dave is green. (From statement 7, Dave is red and green.)\n4. Dave is furry. (From statement 1, Dave is blue because he is furry.)\n5. If Dave is furry then Dave is nice. (From statement 2, Dave is nice because he is furry.)\n\nNow that we know Dave is nice, we can determine whether the statement \"Dave is not nice\" is true or false.\n\nSince Dave is nice, the statement \"Dave is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is furry.\n2. Dave is green.\n3. Dave is quiet.\n4. Dave is red.\n5. If something is furry then it is blue. (From statement 1, we know Dave is furry, so Dave is blue.)\n6. If something is blue and furry then it is quiet. (Since we already know Dave is quiet, this statement does not provide new information.)\n7. Quiet things are red. (From statement 3, we know Dave is quiet, so Dave is red. However, this is consistent with statement 4, so we don't get any new information from this.)\n8. All furry, green things are quiet. (Since Dave is green and furry, we already know Dave is quiet from statement 3.)\n9. If Dave is furry then Dave is nice. (This is the key statement. We know Dave is furry from statement 1, so this implies that Dave is nice.)\n\nNow, we can re-evaluate the original statement \"Dave is not nice.\" Since we found that Dave is nice (from statement 9), we can conclude that the statement \"Dave is not nice\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given statements and their implications.\n\n1. Dave is furry.\n2. Dave is green.\n3. Dave is quiet.\n4. Dave is red.\n5. Fiona is blue.\n6. Fiona is furry.\n7. Fiona is green.\n8. Fiona is quiet.\n9. Fiona is red.\n10. Gary is blue.\n11. Gary is nice.\n12. Gary is quiet.\n13. Gary is red.\n14. Gary is smart.\n15. Harry is blue.\n16. Harry is smart.\n\nGiven statements with their implications:\n\n- If something is blue and furry then it is quiet. (This implies that blue furry things are quiet.)\n- If Dave is furry then Dave is nice. (This implies that Dave being furry means he is nice.)\n- If something is furry then it is blue. (This implies that furry things are blue.)\n- Quiet things are red. (This implies that quiet things are also red.)\n- All furry, green things are quiet. (This implies that furry, green things are quiet.)\n- If something is red then it is green. (This implies that red things are green.)\n- All nice things are furry. (This implies that nice things are furry.)\n- All smart things are nice. (This implies that smart things are nice.)\n- Red things are quiet. (This implies that red things are quiet.)\n\nNow, let's break down the given statements about Dave:\n\n1. Dave is furry.\n2. Dave is green.\n3. Dave is quiet.\n4. Dave is red.\n\nFrom statement (1), we know Dave is furry, which means Dave is blue (from implication \"If something is furry then it is blue\").\n\nNow, Dave is blue (from implication \"If something is furry then it is blue\") and furry (from statement (1)). From implication \"If something is blue and furry then it is quiet\", we can conclude that Dave is quiet.\n\nFrom statement (3), we already know that Dave is quiet.\n\nFrom statement (4), we know that Dave is red.\n\nNow, Dave is red (from statement (4)) and quiet (from implication \"If something is blue and furry then it is quiet\"). From implication \"Red things are quiet\", we can confirm that Dave is quiet (but we already knew that).\n\nFrom implication \"Quiet things are red\" and statement (3), we know that Dave is red (but we already knew that).\n\nFrom implication \"All furry, green things are quiet\" and statement (2), we know that Dave is quiet (but we already knew that).\n\nFrom implication \"All nice things are furry\" and statement (1), we know that Dave is furry and nice.\n\nHowever, from statement (1), we know that Dave is furry and from implication \"If something is furry then it is blue\", we know that Dave is blue.\n\nFrom implication \"If something is blue and furry then it is quiet\", we know that Dave is quiet (but we already knew that).\n\nFrom implication \"If Dave is furry then Dave is nice\", we can confirm that Dave is nice.\n\nGiven that we know Dave is nice, we can conclude that the statement \"Dave is not nice\" is false.\n\nSo the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is not nice' is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\n1. If something is furry, then it is blue. \n   We know Dave is furry, so Dave is blue. \n\n2. If something is blue and furry, then it is quiet.\n   Since Dave is both blue and furry, Dave is quiet.\n\n3. Quiet things are red. \n   Since Dave is quiet, Dave is red.\n\n4. If something is red, then it is green. \n   Since Dave is red, Dave is green.\n\n5. All furry, green things are quiet. \n   Although Dave is furry and green, we already know that Dave is quiet from step 2.\n\n6. If Dave is furry, then Dave is nice. \n   We know Dave is furry, so Dave is nice.\n\nNow that we know Dave is nice, let's look at the given statement 'Dave is not nice.' Since we have found that Dave is indeed nice, the statement 'Dave is not nice' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to use the given information and apply logical reasoning.\n\n1. Dave is furry. (Given)\n2. All nice things are furry. (Given)\nFrom 1 and 2, we can conclude that Dave is nice. However, we need to examine this conclusion carefully.\n\n3. Dave is furry. (Given)\n4. If Dave is furry then Dave is nice. (Given)\nFrom 3 and 4, we can conclude that Dave is nice. This conclusion conflicts with the conclusion we drew from 1 and 2. However, the statement \"If Dave is furry then Dave is nice\" overrides the conclusion drawn from the other two premises, since it is more specific.\n\nTherefore, based on the given information, we can conclude that Dave is nice, and hence the statement \"Dave is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is furry. \n   (From the given information)\n\n2. If something is furry, then it is blue. \n   (From the given information)\n\n   From statement 1 and statement 2, we can conclude that Dave is blue.\n\n3. Dave is red. \n   (From the given information)\n\n4. If something is red, then it is green. \n   (From the given information)\n\n   From statement 3 and statement 4, we can conclude that Dave is green.\n\n5. Dave is blue and green. \n   (Combining the conclusions from statements 2 and 4)\n\n6. All furry, green things are quiet. \n   (From the given information)\n\n   Since Dave is furry (from statement 1) and green (from statement 4), we can conclude that Dave is quiet.\n\n7. Quiet things are red. \n   (From the given information)\n\n   Since Dave is quiet (from statement 6), we can conclude that Dave is red.\n\n8. If something is furry then it is blue. \n   (From the given information)\n\n   From statement 1 and statement 8, we can conclude that Dave is blue.\n\n9. Dave is blue and furry. \n   (Combining the conclusions from statements 1 and 8)\n\n10. If something is blue and furry then it is quiet. \n    (From the given information)\n\n    From statement 9, we can conclude that Dave is quiet.\n\n11. Dave is quiet. \n    (Combining the conclusions from statements 6 and 10)\n\n12. Quiet things are red. \n    (From the given information)\n\n    Since Dave is quiet (from statement 11), we can conclude that Dave is red.\n\n13. All furry things are nice. \n    (From the given information)\n\n   Since Dave is furry (from statement 1), we can conclude that Dave is nice.\n\nNow, we have a contradiction between statement 13 (Dave is nice) and the statement \"Dave is not nice.\" \n\nSince we have found a contradiction, we can conclude that the statement \"Dave is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement 'Dave is not nice' is true, false, or unknown, we need to analyze the given information.\n\nFrom the given information, we have the following premises:\n\n1. Dave is furry.\n2. Dave is green.\n3. Dave is quiet.\n4. Dave is red.\n5. If something is furry, then it is blue.\n6. All furry, green things are quiet.\n7. If something is red, then it is green.\n8. Quiet things are red.\n9. If Dave is furry, then Dave is nice.\n\nFrom premise 5, we can conclude that Dave is blue, since Dave is furry.\n\nFrom premise 7, we can conclude that Dave is green, since Dave is red.\n\nFrom premise 6, we cannot conclude that Dave is quiet. This is because Dave is not a furry, green thing (Dave is red). So, we cannot use this premise to determine whether Dave is quiet.\n\nFrom premise 8, we cannot conclude that Dave is quiet. This is because quiet things are red, but Dave is not a red thing in the context of being quiet. \n\nFrom premise 9, we can conclude that Dave is nice, since Dave is furry.\n\nTherefore, the statement 'Dave is not nice' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and determine the truth of the statement \"Dave is not nice.\"\n\nStep 1: Analyze the given information about Dave.\n- Dave is furry.\n- Dave is green.\n- Dave is quiet.\n- Dave is red.\n\nStep 2: Analyze the given information about Fiona.\n- Fiona is blue.\n- Fiona is furry.\n- Fiona is green.\n- Fiona is quiet.\n- Fiona is red.\n\nStep 3: Analyze the given information about Gary.\n- Gary is blue.\n- Gary is nice.\n- Gary is quiet.\n- Gary is red.\n- Gary is smart.\n\nStep 4: Analyze the given information about Harry.\n- Harry is blue.\n- Harry is smart.\n\nStep 5: Now, let's analyze the given rules and see if they provide any information about Dave being nice or not.\n\nRule 1: If something is blue and furry then it is quiet.\nThere is no information about Dave being blue and furry.\n\nRule 2: If Dave is furry then Dave is nice.\nSince Dave is furry, we can use this rule.\n\nRule 3: If something is furry then it is blue.\nThere is no information about all furry things being blue.\n\nRule 4: Quiet things are red.\nThere is no information about Dave being quiet.\n\nRule 5: All furry, green things are quiet.\nThere is no information about all furry, green things.\n\nRule 6: If something is red then it is green.\nSince Dave is red, we can use this rule.\n\nRule 7: All nice things are furry.\nWe need to determine if Dave is nice to use this rule.\n\nRule 8: All smart things are nice.\nWe need to determine if Dave is smart to use this rule.\n\nRule 9: Red things are quiet.\nThere is no information about Dave being red.\n\nNow, let's analyze the rules that apply to Dave.\n\n- Since Dave is furry (Rule 2), we can conclude that Dave is nice.\n- Since Dave is red (Rule 6), we can conclude that Dave is green.\n- Since Dave is red (Rule 9), we can conclude that Dave is quiet.\n\nBased on the given information and rules, we can conclude that Dave is nice.\n\nThe statement \"Dave is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Dave is furry. \n2. Dave is green. \n3. Dave is quiet. \n4. Dave is red. \n\nFrom the given premises:\n- If something is furry then it is blue. (This contradicts Dave is green, Dave is blue. However, we can infer that if something is furry then it is blue, so Dave can't be both furry and green)\n- If Dave is furry then Dave is nice. \n\nHowever, we have a contradiction in the premises between 1, 2, and the above point. Since Dave can't be both furry and green, we can only conclude that Dave is blue, not green. \n\nNow, let's go through the rest of the premises:\n- All furry things are blue. \n- Dave is furry. \n- Dave is blue. \n\nNow we have a contradiction with point 4. Dave can't be both blue and red.\n\nHowever, let's look at another premise: \n- Quiet things are red. \n- Dave is quiet. \n- Dave is red. \n\nNow we have a contradiction with the above point. Dave can't be both red and blue. \n\nHowever, let's look at another premise: \n- All furry things are blue. \n- Dave is furry. \n- Dave is blue.\n\nNow we have a contradiction with the above point. Dave can't be both blue and red.\n\nHowever, let's look at another premise: \n- All nice things are furry. \n- If Dave is furry then Dave is nice. \n\nNow we have a contradiction with the above point. Dave can't be both blue and red.\n\nHowever, let's look at another premise: \n- All smart things are nice. \n- If something is nice then it is furry. \n- If Dave is furry then Dave is nice. \n\nNow we have a contradiction with the above point. Dave can't be both blue and red.\n\nHowever, let's look at another premise: \n- If something is red then it is green. \n- Dave is red. \n- Dave is green.\n\nNow we have a contradiction with the above point. Dave can't be both green and blue.\n\nHowever, let's look at another premise: \n- All furry, green things are quiet. \n- Dave is furry. \n- Dave is green.\n\nNow we have a contradiction with the above point. Dave can't be both green and blue.\n\nHowever, let's look at another premise: \n- Quiet things are red. \n- Dave is quiet. \n- Dave is red.\n\nNow we have a contradiction with the above point. Dave can't be both blue and red.\n\nHowever, let's look at another premise: \n- All nice things are furry. \n- If Dave is furry then Dave is nice.\n\nThis premise doesn't have any contradictions with the other premises.\n\nNow we can conclude that Dave is nice.\n\nNow we can conclude that the statement \"Dave is not nice\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we will use the given statements and the rules to determine the truth value of \"Dave is not nice.\"\n\nGiven statements:\n- Dave is furry.\n- Dave is green.\n- Dave is quiet.\n- Dave is red.\n- Fiona is blue.\n- Fiona is furry.\n- Fiona is green.\n- Fiona is quiet.\n- Fiona is red.\n- Gary is blue.\n- Gary is nice.\n- Gary is quiet.\n- Gary is red.\n- Gary is smart.\n- Harry is blue.\n- Harry is smart.\nRules:\n- If something is blue and furry then it is quiet.\n- If Dave is furry then Dave is nice.\n- If something is furry then it is blue.\n- Quiet things are red.\n- All furry, green things are quiet.\n- If something is red then it is green.\n- All nice things are furry.\n- All smart things are nice.\n- Red things are quiet.\n\nNow, let's analyze the given statements to find information about Dave being nice.\n\n1. Dave is furry.\n   Rule 3: If something is furry then it is blue.\n   Therefore, Dave is blue.\n\n2. Dave is green.\n   Rule 5: All furry, green things are quiet.\n   Therefore, Dave is quiet (since he is furry and green).\n\n3. We already know Dave is red.\n\nNow, let's find the relationship between being furry and being nice.\n- Rule 2: If Dave is furry then Dave is nice.\nSince we already know Dave is furry, we can conclude that Dave is nice.\n\nNow, we need to determine the truth value of \"Dave is not nice.\"\nSince we concluded that Dave is nice, the statement \"Dave is not nice\" is false.\n\nTherefore, the answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is not nice\" is true, false, or unknown, we need to analyze the given information and the statements we can deduce from it.\n\n1. Dave is furry.\n2. Dave is green.\n3. Dave is quiet.\n4. Dave is red.\n\nFrom the given statements:\n\n- If something is blue and furry then it is quiet. (This statement doesn't directly apply to Dave, but we'll keep it in mind.)\n- If Dave is furry then Dave is nice. (This directly applies to Dave.)\n- If something is furry then it is blue. (This statement doesn't directly apply to Dave, but we'll keep it in mind.)\n- Quiet things are red. (This statement doesn't directly apply to Dave, but we'll keep it in mind.)\n- All furry, green things are quiet. (This statement doesn't directly apply to Dave, but we'll keep it in mind.)\n- If something is red then it is green. (This statement doesn't directly apply to Dave, but we'll keep it in mind.)\n- All nice things are furry. (This statement is related to Dave.)\n- All smart things are nice. (This statement is related to Dave.)\n- Red things are quiet. (This statement doesn't directly apply to Dave, but we'll keep it in mind.)\n\nFrom statement 5, we can deduce that Dave is nice.\n\nHowever, we have two conflicting statements:\n\n- Dave is nice (from statement 5).\n- Dave is red (from statement 4).\n\nFrom statement 8, we can deduce that red things are quiet. \n\nFrom statement 3, we know Dave is quiet.\n\nNow, we have another conflicting statement:\n\n- Dave is quiet (from statement 3).\n- Quiet things are red (from statement 7).\n\nFrom statement 7, we can deduce that Dave is red.\n\nHowever, we already know that Dave is red from statement 4. \n\nNow, we can conclude that Dave is indeed red and quiet.\n\nSince we know that Dave is quiet and red, we can conclude that Dave is indeed quiet.\n\nNow, we can conclude that Dave is indeed red.\n\nFrom statement 6, we can deduce that red things are green.\n\nNow, we know that Dave is red and green.\n\nNow, we can conclude that Dave is indeed green.\n\nFrom statement 1, we know Dave is furry.\n\nFrom statement 2, we know Dave is green.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red and green.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red and quiet.\n\nNow, we can conclude that Dave is indeed red.\n\nNow, we can conclude that Dave is indeed green.\n\nFrom statement 1, we know Dave is furry.\n\nFrom statement 2, we know Dave is green.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nFrom statement 8, we can deduce that red things are quiet.\n\nFrom statement 7, we can deduce that quiet things are red.\n\nNow, we can conclude that Dave is indeed red.\n\nNow, we can conclude that Dave is indeed quiet.\n\nFrom statement 8, we can deduce that red things are quiet.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red and quiet.\n\nNow, we can conclude that Dave is indeed quiet.\n\nNow, we can conclude that Dave is indeed red.\n\nFrom statement 1, we know Dave is furry.\n\nFrom statement 2, we know Dave is green.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nFrom statement 1, we know Dave is furry.\n\nFrom statement 8, we can deduce that red things are quiet.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red and quiet.\n\nNow, we can conclude that Dave is indeed quiet.\n\nFrom statement 1, we know Dave is furry.\n\nFrom statement 2, we know Dave is green.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nFrom statement 5, we can deduce that if Dave is furry then Dave is nice.\n\nFrom statement 1, we know Dave is furry.\n\nFrom statement 5, we can deduce that Dave is nice.\n\nNow, we can conclude that Dave is indeed nice.\n\nHowever, we have two conflicting statements:\n\n- Dave is nice (from statement 5).\n- Dave is red (from statement 4).\n\nFrom statement 8, we can deduce that red things are quiet.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red and quiet.\n\nNow, we can conclude that Dave is indeed quiet.\n\nNow, we can conclude that Dave is indeed red.\n\nFrom statement 6, we can deduce that red things are green.\n\nFrom statement 2, we know Dave is green.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red and green.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red and quiet.\n\nNow, we can conclude that Dave is indeed quiet.\n\nNow, we can conclude that Dave is indeed red.\n\nNow, we can conclude that Dave is indeed green.\n\nFrom statement 1, we know Dave is furry.\n\nFrom statement 2, we know Dave is green.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nFrom statement 1, we know Dave is furry.\n\nFrom statement 8, we can deduce that red things are quiet.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red and quiet.\n\nNow, we can conclude that Dave is indeed quiet.\n\nFrom statement 1, we know Dave is furry.\n\nFrom statement 2, we know Dave is green.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red and quiet.\n\nFrom statement 7, we can deduce that quiet things are red.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 7, we can deduce that Dave is red.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red.\n\nFrom statement 1, we know Dave is furry.\n\nFrom statement 2, we know Dave is green.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red and quiet.\n\nNow, we can conclude that Dave is indeed quiet.\n\nFrom statement 5, we can deduce that if Dave is furry then Dave is nice.\n\nFrom statement 1, we know Dave is furry.\n\nFrom statement 5, we can deduce that Dave is nice.\n\nNow, we can conclude that Dave is indeed nice.\n\nHowever, we have two conflicting statements:\n\n- Dave is nice (from statement 5).\n- Dave is red (from statement 4).\n\nFrom statement 8, we can deduce that red things are quiet.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red and quiet.\n\nNow, we can conclude that Dave is indeed quiet.\n\nNow, we can conclude that Dave is indeed red.\n\nFrom statement 6, we can deduce that red things are green.\n\nFrom statement 2, we know Dave is green.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red and green.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red and quiet.\n\nNow, we can conclude that Dave is indeed quiet.\n\nNow, we can conclude that Dave is indeed red.\n\nNow, we can conclude that Dave is indeed green.\n\nFrom statement 1, we know Dave is furry.\n\nFrom statement 2, we know Dave is green.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red and quiet.\n\nFrom statement 7, we can deduce that quiet things are red.\n\nFrom statement 3, we know Dave is quiet.\n\nFrom statement 7, we can deduce that Dave is red.\n\nFrom statement 4, we know Dave is red.\n\nNow, we can conclude that Dave is indeed red.\n\nFrom statement 5, we can deduce that if Dave is furry then Dave is nice.\n\nFrom statement 1, we know Dave is furry.\n\nFrom statement 5, we can deduce that Dave is nice.\n\nNow, we can conclude that Dave is indeed nice.\n\nHowever, we have two conflicting statements:\n\n- Dave is nice (from statement 5).\n- Dave is red (from statement 4).\n\nFrom statement 5, we can deduce that if Dave is furry then Dave is nice.\n\nFrom statement 1, we know Dave is furry.\n\nFrom statement 5, we can deduce that Dave is nice.\n\nNow, we can conclude that Dave is indeed nice.\n\nHowever, we have two conflicting statements:\n\n- Dave is nice (from statement 5).\n- Dave",
+        "answer": "",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(fiona)",
+          "z3_formula": "green_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(fiona)",
+          "z3_formula": "quiet_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(fiona)",
+          "z3_formula": "red_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "nice(gary)",
+          "z3_formula": "nice_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(blue_X, furry_X), quiet_X)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_dave, nice_dave)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_X, blue_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_X, red_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_X, green_X), quiet_X)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_X, green_X)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_X, blue_X)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> furry(X)",
+          "z3_formula": "Implies(nice_X, furry_X)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_X, nice_X)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_X, red_X)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "not nice(dave)",
+          "z3_formula": "Not(nice_dave) == True",
+          "source_step": 28
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_dave, nice_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_dave, blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(blue_dave, furry_dave), quiet_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_dave, red_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_dave, green_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_dave, blue_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> furry(X)",
+          "z3_formula": "Implies(blue_dave, furry_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_dave, nice_dave)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_dave, blue_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(blue_dave, furry_dave), quiet_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_dave, red_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(green_dave, furry_dave), quiet_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_dave, nice_dave)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_dave, blue_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(blue_dave, furry_dave), quiet_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_dave, green_dave), quiet_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> quiet(X)",
+          "z3_formula": "Implies(red_dave, quiet_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_dave, red_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_dave, nice_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> furry(X)",
+          "z3_formula": "Implies(nice_dave, furry_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> nice(X)",
+          "z3_formula": "Implies(smart_dave, nice_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_dave, blue_dave)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave) & furry(dave)",
+          "z3_formula": "And(blue_dave, furry_dave) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(blue_dave, furry_dave), quiet_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_dave, red_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_dave, green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(dave) & green(dave)",
+          "z3_formula": "And(furry_dave, green_dave) == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_dave, green_dave), quiet_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_dave, nice_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(dave)",
+          "z3_formula": "Not(nice_dave) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(X) -> furry(X)",
+          "z3_formula": "Implies(nice_dave, furry_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_dave, nice_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_dave, blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_dave, green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave) & green(dave)",
+          "z3_formula": "And(blue_dave, green_dave) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(green) -> quiet(green)",
+          "z3_formula": "Implies(And(furry_dave, green_dave), quiet_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_dave, red_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_dave, blue_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave) & furry(dave)",
+          "z3_formula": "And(blue_dave, furry_dave) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(blue_dave, furry_dave), quiet_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_dave, red_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_dave, nice_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_dave, blue_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_dave, green_dave), quiet_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_dave, green_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_dave, red_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> green(X)",
+          "z3_formula": "Implies(red_dave, green_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> quiet(X)",
+          "z3_formula": "Implies(red_dave, quiet_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_dave, blue_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_dave, nice_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_dave, blue_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & red(X)",
+          "z3_formula": "And(blue_dave, red_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_dave, red_dave)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_dave, blue_dave)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_dave, blue_dave)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_dave, green_dave), quiet_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> red(X)",
+          "z3_formula": "Implies(quiet_dave, red_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_dave, nice_dave)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(dave)",
+          "z3_formula": "furry_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> blue(X)",
+          "z3_formula": "Implies(furry_dave, blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & green(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_dave, green_dave), quiet_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(dave)",
+          "z3_formula": "red_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> nice(X)",
+          "z3_formula": "Implies(furry_dave, nice_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 6
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 147,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 40
+    },
+    "maxsat_stats": {
+      "satisfied": 39,
+      "excluded": 1,
+      "total_weight": 145,
+      "solve_time_ms": 1.0606497526168823
+    },
+    "timing": {
+      "trace_gen_s": 24.093,
+      "extraction_s": 42.489,
+      "dedup_s": 1.499,
+      "maxsat_s": 0.003,
+      "total_s": 68.084
+    }
+  }
+}

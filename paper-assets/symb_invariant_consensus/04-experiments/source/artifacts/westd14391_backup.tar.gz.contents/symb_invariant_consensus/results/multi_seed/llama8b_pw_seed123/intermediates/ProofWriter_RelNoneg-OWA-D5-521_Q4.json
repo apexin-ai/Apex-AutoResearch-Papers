@@ -1,0 +1,934 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-521_Q4",
+    "problem": "The cow eats the lion. The lion eats the mouse. The lion needs the mouse. The mouse sees the lion. The tiger eats the lion. The tiger is green. The tiger is red. The tiger needs the lion. The tiger needs the mouse. The tiger sees the cow. If someone sees the lion then they are cold. If someone needs the tiger and they need the mouse then they are cold. If someone needs the tiger and the tiger eats the cow then the tiger needs the lion. All round people are green. All young, green people are round. If someone eats the mouse and the mouse sees the lion then they are green. If someone needs the tiger then the tiger sees the lion. If someone is cold and they see the lion then they need the tiger.\n\nDetermine whether the following statement is true, false, or unknown:\nThe mouse is not cold.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nGreen($x, bool) ::: Is x green?\nRed($x, bool) ::: Is x red?\nCold($x, bool) ::: Is x cold?\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nEats(Cow, Lion, True) ::: The cow eats the lion.\nEats(Lion, Mouse, True) ::: The lion eats the mouse.\nNeeds(Lion, Mouse, True) ::: The lion needs the mouse.\nSees(Mouse, Lion, True) ::: The mouse sees the lion.\nEats(Tiger, Lion, True) ::: The tiger eats the lion.\nGreen(Tiger, True) ::: The tiger is green.\nRed(Tiger, True) ::: The tiger is red.\nNeeds(Tiger, Lion, True) ::: The tiger needs the lion.\nNeeds(Tiger, Mouse, True) ::: The tiger needs the mouse.\nSees(Tiger, Cow, True) ::: The tiger sees the cow.\n\nRules:\nSees($x, Lion, True) >>> Cold($x, True) ::: If someone sees the lion then they are cold.\nNeeds($x, Tiger, True) && Needs($x, Mouse, True) >>> Cold($x, True) ::: If someone needs the tiger and they need the mouse then they are cold.\nNeeds($x, Tiger, True) && Eats(Tiger, Cow, True) >>> Needs(Tiger, Lion, True) ::: If someone needs the tiger and the tiger eats the cow then the tiger needs the lion.\nRound($x, True) >>> Green($x, True) ::: All round people are green.\nYoung($x, True) && Green($x, True) >>> Round($x, True) ::: All young, green people are round.\nEats($x, Mouse, True) && Sees(Mouse, Lion, True) >>> Green($x, True) ::: If someone eats the mouse and the mouse sees the lion then they are green.\nNeeds($x, Tiger, True) >>> Sees(Tiger, Lion, True) ::: If someone needs the tiger then the tiger sees the lion.\nCold($x, True) && Sees($x, Lion, True) >>> Needs($x, Tiger, True) ::: If someone is cold and they see the lion then they need the tiger.\n\nQuery:\nCold(Mouse, False) ::: The mouse is not cold."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 95.0,
+      "Unknown": 125.0
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "False": 4
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to carefully analyze the given information and apply it to the statement \"The mouse is not cold.\"\n\n1. The lion eats the mouse.\n   - We do not have enough information to determine whether the mouse is cold or not.\n\n2. The mouse sees the lion.\n   - We still do not have enough information to determine whether the mouse is cold or not.\n\n3. If someone sees the lion then they are cold.\n   - This statement does not directly apply to the mouse, as we are considering the mouse's condition, not someone else's.\n\n4. If someone needs the tiger and they need the mouse then they are cold.\n   - The mouse is the one being needed, not needing the tiger.\n\n5. The lion needs the mouse.\n   - This statement does not tell us whether the mouse is cold or not.\n\n6. The tiger eats the lion.\n   - This statement does not tell us whether the mouse is cold or not.\n\n7. The tiger is green.\n   - We do not have enough information to determine whether the mouse is cold or not.\n\n8. The tiger is red.\n   - We do not have enough information to determine whether the mouse is cold or not.\n\n9. The tiger needs the lion.\n   - The mouse is not the one needing the lion.\n\n10. The tiger needs the mouse.\n    - The mouse is being needed, not needing the tiger.\n\n11. The tiger sees the cow.\n    - This statement does not tell us whether the mouse is cold or not.\n\n12. If someone eats the mouse and the mouse sees the lion then they are green.\n    - The mouse is being eaten by the lion, and it sees the lion. Therefore, the lion is green.\n\n13. All round people are green.\n    - We do not have enough information to determine whether the mouse is cold or not.\n\n14. All young, green people are round.\n    - This statement does not apply to the mouse.\n\n15. If someone needs the tiger then the tiger sees the lion.\n    - We do not have enough information to determine whether the mouse is cold or not.\n\n16. If someone is cold and they see the lion then they need the tiger.\n    - The mouse sees the lion, but we do not know whether the mouse is cold or not.\n\nAfter carefully analyzing all the given information, we can conclude that we do not have enough information to determine whether the mouse is cold or not.\n\nTherefore, the answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion eats the mouse. (Given)\n2. If someone eats the mouse and the mouse sees the lion then they are green. (Given)\n   However, we need to establish whether the mouse sees the lion or not. To do this, we look at another statement:\n   The mouse sees the lion. (Given)\n   From statement 2, since the mouse eats the lion and the mouse sees the lion, then the mouse is green. (Using Given statement 2)\n3. If someone sees the lion then they are cold. (Given)\n   However, this statement is not applicable to the mouse, as we've established that the mouse sees the lion but this is not relevant to determining if the mouse is cold or not. This statement is used to analyze other characters, not the mouse.\n4. Now, we look at the statement: If someone is cold and they see the lion then they need the tiger. (Given)\n   This statement is not applicable to the mouse since we've established that the mouse does not see the lion in a context that determines if the mouse is cold. This statement will be used to analyze other characters, not the mouse.\n5. The mouse sees the lion. (Given)\n   This statement is given, but its relevance is established in statement 2. It's not used to determine the mouse's temperature.\n6. We know that the mouse eats the lion. (From Given statement 1)\n7. The lion needs the mouse. (Given)\n   The lion sees the mouse since the lion eats the mouse. However, this doesn't determine if the lion is cold or not.\n8. The statement \"If someone sees the lion then they are cold\" is used to analyze other characters, not the mouse.\n9. The mouse is not related to the given condition of \"If someone is cold and they see the lion then they need the tiger.\" \n10. However, to determine if the mouse is not cold, we must analyze the mouse's condition. We know that the mouse sees the lion and that the mouse eats the lion. We have established that the mouse is green.\n\nFrom the statement: \"If someone eats the mouse and the mouse sees the lion then they are green.\" (Given statement 2)\nSince the mouse eats the lion and the mouse sees the lion, then the mouse is green. (From Given statement 2)\n\nWe also know that the mouse is green. (From Given statement 2)\nHowever, we do not have enough information to determine the mouse's temperature (cold or not). The condition \"If someone sees the lion then they are cold\" is not applicable to the mouse because we are not analyzing the mouse's condition based on seeing the lion. \n\nThe statement \"If someone is cold and they see the lion then they need the tiger\" is also not applicable to the mouse. The mouse's condition is determined by eating the mouse and seeing the lion. \n\nSince we do not have enough information to determine the mouse's temperature (cold or not), the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is not cold\" is true, false, or unknown, we need to analyze the given information and the logical rules provided.\n\n1. The mouse sees the lion: This statement does not provide any information about the mouse's temperature.\n\n2. The lion eats the mouse: This statement implies that the mouse is a food source for the lion, but it does not provide any information about the mouse's temperature.\n\n3. The lion needs the mouse: This statement also implies that the mouse is a food source for the lion, but it does not provide any information about the mouse's temperature.\n\n4. If someone sees the lion then they are cold: This statement provides a condition for being cold, but it does not apply to the mouse directly.\n\n5. The tiger eats the lion: This statement does not provide any information about the mouse's temperature.\n\n6. The tiger is green: This statement does not provide any information about the mouse's temperature.\n\n7. The tiger needs the lion: This statement does not provide any information about the mouse's temperature.\n\n8. The tiger needs the mouse: This statement implies that the mouse is a food source for the tiger or the lion, but it does not provide any information about the mouse's temperature.\n\n9. The tiger sees the cow: This statement does not provide any information about the mouse's temperature.\n\n10. If someone needs the tiger and they need the mouse then they are cold: This statement provides a condition for being cold, but it does not apply to the mouse directly.\n\n11. If someone needs the tiger and the tiger eats the cow then the tiger needs the lion: This statement does not provide any information about the mouse's temperature.\n\n12. If someone eats the mouse and the mouse sees the lion then they are green: This statement does not apply to the mouse because the mouse is not eating itself.\n\n13. If someone needs the tiger then the tiger sees the lion: This statement does not provide any information about the mouse's temperature.\n\n14. If someone is cold and they see the lion then they need the tiger: This statement does not apply to the mouse because it does not see the lion and it is not cold.\n\n15. All round people are green: This statement does not apply to the mouse because it is not a person.\n\n16. All young, green people are round: This statement does not apply to the mouse because it is not a person.\n\nFrom the given statements, we cannot determine whether the mouse is cold or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse sees the lion. \n   - This statement does not give any direct information about the mouse's temperature.\n\n2. The lion eats the mouse. \n   - This statement does not give any direct information about the mouse's temperature.\n\n3. The lion needs the mouse. \n   - This statement does not give any direct information about the mouse's temperature.\n\n4. If someone sees the lion then they are cold.\n   - This rule does not apply to the mouse because it is not a person, and it does not say that seeing the lion makes the mouse cold.\n\n5. The tiger eats the lion. \n   - This statement does not give any direct information about the mouse's temperature.\n\n6. The tiger is green. \n   - This statement does not give any direct information about the mouse's temperature.\n\n7. The tiger is red. \n   - This statement does not give any direct information about the mouse's temperature.\n\n8. The tiger needs the lion. \n   - This statement does not give any direct information about the mouse's temperature.\n\n9. The tiger needs the mouse. \n   - This statement does not give any direct information about the mouse's temperature.\n\n10. The tiger sees the cow. \n    - This statement does not give any direct information about the mouse's temperature.\n\n11. If someone needs the tiger and they need the mouse then they are cold. \n    - This rule does not apply to the mouse because it is the one being needed, not the one needing the tiger or mouse.\n\n12. If someone needs the tiger and the tiger eats the cow then the tiger needs the lion. \n    - This rule does not apply to the mouse because it is not a person, and the tiger's actions do not directly affect the mouse.\n\n13. If someone is cold and they see the lion then they need the tiger. \n    - This rule does not apply to the mouse because it does not see the lion in the context of being cold.\n\n14. If someone eats the mouse and the mouse sees the lion then they are green. \n    - The tiger eats the lion and the lion sees the mouse (indirectly), but this rule is not applicable to the mouse because it is not the one being eaten.\n\n15. If someone needs the tiger then the tiger sees the lion. \n    - This rule does not apply to the mouse because it is the one being needed, not the one needing the tiger.\n\nWe have analyzed all the given information, and none of it directly states that the mouse is cold or not cold. However, we can make some inferences:\n\n- The mouse sees the lion, but this does not make the mouse cold according to the rules.\n- The lion eats the mouse, but this does not make the mouse cold according to the rules.\n- The mouse is not being eaten or needing anything, so we cannot directly apply any rules that relate to being cold.\n\nSince we have no direct information about the mouse being cold or not cold, we cannot determine whether the statement \"The mouse is not cold\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the mouse is not cold, we need to analyze the given information step by step.\n\n1. The lion eats the mouse. \n   Since the lion eats the mouse, we can conclude that the mouse is eaten by the lion.\n\n2. The lion needs the mouse. \n   Given that the lion needs the mouse, we can infer that the lion requires the mouse for some reason.\n\n3. The mouse sees the lion. \n   Since the mouse sees the lion, we can conclude that the mouse has visual contact with the lion.\n\nNow, let's analyze the conditions given in the problem:\n\n1. If someone sees the lion, then they are cold.\n   Since the mouse sees the lion, we can conclude that the mouse is cold. This contradicts our initial statement that the mouse is not cold.\n\nHowever, we need to further analyze the conditions to determine if there's any information that can change this conclusion. \n\n4. The tiger eats the lion. \n   Given that the tiger eats the lion, we can conclude that the tiger has consumed the lion.\n\n5. The tiger needs the mouse. \n   Since the tiger needs the mouse, we can infer that the tiger requires the mouse for some reason.\n\n6. The tiger needs the lion. \n   Given that the tiger needs the lion, we can conclude that the tiger requires the lion for some reason.\n\n7. The tiger sees the cow. \n   Since the tiger sees the cow, we can conclude that the tiger has visual contact with the cow.\n\nNow, let's analyze the conditions given in the problem:\n\n1. If someone needs the tiger and they need the mouse, then they are cold.\n   Since the tiger needs the mouse, we can conclude that anyone who needs the tiger and the mouse is cold.\n\n2. If someone sees the lion and they are cold, then they need the tiger.\n   Given that the tiger eats the lion, we can conclude that the tiger needs the lion.\n\n3. If someone needs the tiger and the tiger eats the cow, then the tiger needs the lion.\n   Since the tiger eats the lion, we can conclude that the tiger needs the lion.\n\nHowever, we don't have any information that contradicts the initial statement that the mouse is cold.\n\nTherefore, based on the given information, the statement \"The mouse is not cold\" is unknown because we have conflicting information:\n\n- From condition 1, we can conclude that the mouse is cold because the mouse sees the lion.\n- However, there is no direct information that connects the mouse's coldness to the tiger's actions or the tiger's need for the mouse.\n\nSince there's a possibility that the mouse might not be cold based on the indirect connections, we can't conclusively determine the mouse's temperature.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is not cold\" is true, false, or unknown, we need to analyze the given information and the conditions that make someone cold.\n\n1. The lion eats the mouse. (This statement alone does not make the mouse cold.)\n\n2. The lion needs the mouse. (This statement alone does not make the mouse cold.)\n\n3. The mouse sees the lion. (This statement alone does not make the mouse cold.)\n\n4. The tiger eats the lion. (This statement alone does not make the mouse cold.)\n\n5. The tiger is green. (This statement alone does not make the mouse cold.)\n\n6. The tiger is red. (This statement alone does not make the mouse cold.)\n\n7. The tiger needs the lion. (This statement alone does not make the mouse cold.)\n\n8. The tiger needs the mouse. (This statement alone does not make the mouse cold.)\n\n9. The tiger sees the cow. (This statement alone does not make the mouse cold.)\n\nNow, let's analyze the conditions that make someone cold:\n\n- If someone sees the lion then they are cold.\n- If someone needs the tiger and they need the mouse then they are cold.\n- If someone needs the tiger and the tiger eats the cow then the tiger needs the lion.\n- If someone is cold and they see the lion then they need the tiger.\n\nWe know that the lion eats the mouse, but we do not have any information that suggests the mouse is cold or not. However, we can analyze the conditions further.\n\nIf the mouse is not cold, it must not see the lion. The mouse sees the lion, so the mouse is indeed cold. \n\nTherefore, the statement \"The mouse is not cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, let's break it down into smaller parts and use a truth table to analyze the given information.\n\n1. The lion eats the mouse. \n2. The lion needs the mouse.\n3. The mouse sees the lion.\n\nFrom the information given:\n- The lion eats the mouse. (statement 1)\n- The mouse sees the lion. (statement 3)\n\nUsing the information that if someone eats the mouse and the mouse sees the lion then they are green, we can infer that the lion is green.\n\n4. The tiger eats the lion.\n5. The tiger is green.\n6. The tiger is red.\n7. The tiger needs the lion.\n8. The tiger needs the mouse.\n\nFrom the information given:\n- The tiger eats the lion. (statement 4)\n- The tiger is green. (statement 5)\n\nSince we know the lion is green and it is also mentioned that the tiger is green, we can't infer anything about the tiger's color from this information.\n\n9. The tiger sees the cow.\n\nUsing the information given:\n- If someone sees the lion then they are cold.\n- The lion is green.\n- The tiger sees the lion.\n\nWe can infer that the tiger is cold.\n\n10. If someone needs the tiger and they need the mouse then they are cold.\n- The tiger needs the mouse. (statement 8)\n- Therefore, the tiger needs the mouse, and the tiger is cold.\n\n11. If someone needs the tiger and the tiger eats the cow then the tiger needs the lion.\n- The tiger eats the lion. (statement 4)\n- The tiger needs the lion. (statement 7)\n\nWe can infer that the tiger needs the lion because the tiger eats the lion.\n\n12. If someone needs the tiger then the tiger sees the lion.\n- The tiger needs the lion. (statement 7)\n- The tiger sees the lion.\n\nWe can infer that the tiger sees the lion because the tiger needs the lion.\n\n13. If someone is cold and they see the lion then they need the tiger.\n- The tiger is cold. (inference from statement 9)\n- The tiger sees the lion. (inference from statement 12)\n\nWe can infer that the tiger needs the tiger, which is a contradictory statement.\n\nHowever, we can't directly infer that the mouse is cold from the given information.\n\nBut we can use the information that if someone is cold and they see the lion then they need the tiger and the tiger needs the mouse. Since we know the tiger needs the mouse and the mouse sees the lion, we can infer that the mouse is also cold.\n\nTherefore, the statement \"The mouse is not cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The mouse sees the lion.\n2. The lion eats the mouse.\n3. If someone eats the mouse and the mouse sees the lion, then they are green. \n   Since the mouse sees the lion, the condition is met, but this doesn't tell us about the mouse being cold.\n\n4. The lion needs the mouse.\n5. The mouse sees the lion.\n6. The lion eats the mouse.\n   These conditions do not imply that the mouse is cold.\n\n7. The tiger eats the lion.\n8. The mouse sees the lion.\n9. The tiger is green.\n   The fact that the tiger is green does not imply that the mouse is cold.\n\n10. The tiger is red.\n   This statement does not provide any information about the mouse.\n\n11. The tiger needs the mouse.\n12. The mouse sees the lion.\n13. The lion eats the mouse.\n   These conditions do not imply that the mouse is cold.\n\n14. The tiger sees the cow.\n   This statement does not provide any information about the mouse.\n\n15. If someone sees the lion then they are cold.\n   We know that the mouse sees the lion (from statement 1), but we don't know if the mouse is cold or not.\n\n16. If someone needs the tiger and they need the mouse then they are cold.\n   We know that the tiger needs the mouse (from statement 11), but we don't know if the mouse is cold or not.\n\n17. If someone needs the tiger and the tiger eats the cow then the tiger needs the lion.\n   We know that the tiger eats the lion (from statement 7), but we don't know if the mouse is cold or not.\n\n18. If someone needs the tiger then the tiger sees the lion.\n   We know that the tiger sees the lion (from statement 9), but we don't know if the mouse is cold or not.\n\n19. If someone is cold and they see the lion then they need the tiger.\n   We don't know if the mouse is cold or not.\n\nBased on the analysis, we cannot determine if the mouse is cold or not because we don't have enough information to conclude that the mouse is cold.\n\nTherefore, the final answer is:\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The mouse is not cold\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The lion eats the mouse. \n   - This statement tells us about the relationship between the lion and the mouse but does not provide any information about their temperature.\n\n2. The mouse sees the lion.\n   - This statement gives us a relationship between the mouse and the lion, but we still do not know if the mouse is cold or not.\n\n3. The tiger eats the lion.\n   - This statement gives us a relationship between the tiger and the lion but does not provide any information about the mouse's temperature.\n\n4. The tiger is green.\n   - This statement does not provide any information about the mouse's temperature.\n\n5. The tiger is red.\n   - This statement does not provide any information about the mouse's temperature.\n\n6. The tiger needs the lion.\n   - This statement gives us a relationship between the tiger and the lion but does not provide any information about the mouse's temperature.\n\n7. The tiger needs the mouse.\n   - This statement gives us a relationship between the tiger and the mouse but does not provide any information about the mouse's temperature.\n\n8. The tiger sees the cow.\n   - This statement does not provide any information about the mouse's temperature.\n\n9. If someone sees the lion then they are cold.\n   - This statement gives us a condition to determine if someone is cold, but we do not know if the mouse sees the lion or not.\n\n10. If someone needs the tiger and they need the mouse then they are cold.\n    - This statement gives us another condition to determine if someone is cold, but we do not know if the tiger needs the mouse or not.\n\n11. If someone needs the tiger and the tiger eats the cow then the tiger needs the lion.\n    - This statement gives us a condition to determine if the tiger needs the lion, but we do not know if the tiger eats the cow or not.\n\n12. If someone eats the mouse and the mouse sees the lion then they are green.\n    - This statement gives us a condition to determine if someone is green, but we do not know if the mouse sees the lion or not.\n\n13. If someone needs the tiger then the tiger sees the lion.\n    - This statement gives us a condition to determine if the tiger sees the lion, but we do not know if the tiger needs the mouse or not.\n\n14. If someone is cold and they see the lion then they need the tiger.\n    - This statement gives us a condition to determine if someone needs the tiger, but we do not know if the mouse sees the lion or not.\n\nSince we do not have enough information to determine if the mouse is cold or not, we cannot say that the statement \"The mouse is not cold\" is true or false.\n\nTherefore, the answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them step by step to determine the truth value of the statement \"The mouse is not cold.\"\n\n1. The lion eats the mouse. \nThis statement implies that the mouse sees the lion, because it was eaten by the lion.\n\n2. The mouse sees the lion.\nFrom statement 1, we already established that the mouse sees the lion.\n\n3. If someone sees the lion then they are cold.\nGiven that the mouse sees the lion, we can conclude that the mouse is cold.\n\nNow, let's analyze the given statement \"The mouse is not cold.\"\n\nFrom the analysis above, we have concluded that the mouse is cold. Therefore, the statement \"The mouse is not cold\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the mouse is not cold, we need to analyze the given statements and apply the rules to the mouse.\n\n1. The lion eats the mouse. \n   This implies that the mouse is eaten by the lion, but it does not directly tell us whether the mouse is cold or not.\n\n2. The mouse sees the lion.\n   This statement is present, but it does not give us information about the mouse's temperature.\n\nNow, let's look at the rules:\n\n1. If someone sees the lion then they are cold.\n   This rule applies to the mouse since the mouse sees the lion. However, we cannot directly apply this rule to the mouse because we do not know if the mouse is the \"someone.\"\n\n2. If someone is cold and they see the lion then they need the tiger.\n   Again, this rule applies to the mouse, but we do not know if the mouse is cold.\n\n3. If someone needs the tiger and the tiger eats the cow then the tiger needs the lion.\n   This rule does not apply to the mouse.\n\n4. If someone sees the lion and they need the mouse then they are cold.\n   This rule does not apply to the mouse.\n\n5. If someone eats the mouse and the mouse sees the lion then they are green.\n   This rule implies that the lion is green since the lion eats the mouse and the mouse sees the lion. However, we cannot directly apply this rule to the mouse.\n\n6. If someone needs the tiger then the tiger sees the lion.\n   This rule does not apply to the mouse.\n\n7. If someone is cold and they see the lion then they need the tiger.\n   This rule implies that the mouse needs the tiger if the mouse is cold and sees the lion. However, we do not know if the mouse is cold.\n\nSince we cannot directly apply any of the rules to the mouse to determine whether it is cold or not, the statement \"The mouse is not cold\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the mouse is not cold, we need to analyze the given information step by step:\n\n1. The lion eats the mouse. \nThis statement alone does not tell us anything about the mouse's temperature.\n\n2. The lion needs the mouse. \nThis statement also doesn't tell us about the mouse's temperature.\n\n3. The mouse sees the lion. \nThis statement alone doesn't tell us about the mouse's temperature.\n\n4. The tiger eats the lion. \nThis statement alone doesn't tell us about the mouse's temperature.\n\n5. The tiger is green. \nThis statement alone doesn't tell us about the mouse's temperature.\n\n6. The tiger is red. \nThis statement alone doesn't tell us about the mouse's temperature.\n\n7. The tiger needs the lion. \nThis statement alone doesn't tell us about the mouse's temperature.\n\n8. The tiger needs the mouse. \nThis statement alone doesn't tell us about the mouse's temperature.\n\n9. The tiger sees the cow. \nThis statement alone doesn't tell us about the mouse's temperature.\n\n10. If someone sees the lion then they are cold. \nWe don't know if the mouse sees the lion, but we do know the lion eats the mouse. We cannot conclude the mouse's temperature from this statement.\n\n11. If someone needs the tiger and they need the mouse then they are cold. \nThis statement doesn't apply to the mouse directly, as it's about someone who needs the tiger and the mouse.\n\n12. If someone needs the tiger and the tiger eats the cow then the tiger needs the lion. \nWe don't know if the tiger eats the cow, but we do know the tiger sees the lion. We cannot conclude the mouse's temperature from this statement.\n\n13. If someone eats the mouse and the mouse sees the lion then they are green. \nThe lion eats the mouse, and the mouse sees the lion. Therefore, the lion is green.\n\n14. If someone needs the tiger then the tiger sees the lion. \nThe lion is green because it sees the lion. Therefore, the lion needs the tiger.\n\n15. If someone is cold and they see the lion then they need the tiger. \nSince the lion is green, we can conclude that the lion is cold (from statement 10), and the lion needs the tiger.\n\nFrom the above analysis, we can conclude that the lion is cold and needs the tiger. However, we cannot directly apply these conclusions to the mouse. \n\nBut, statement 10 says if someone sees the lion then they are cold, and the mouse sees the lion. Therefore, the mouse is cold.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> cold(X)",
+          "z3_formula": "Implies(sees_mouse_lion, cold_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(Y, tiger) & needs(Y, mouse) -> cold(Y)",
+          "z3_formula": "Implies(And(needs_tiger_mouse, needs_mouse_tiger), cold_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & sees(mouse, lion) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, sees_mouse_lion), green_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_mouse, green_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(young_mouse, green_mouse), round_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> sees(tiger, lion)",
+          "z3_formula": "Implies(needs_tiger, sees_tiger_lion)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, lion) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_lion), needs_mouse_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, lion)",
+          "z3_formula": "needs_tiger_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & sees(mouse, lion) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, sees_mouse_lion), green_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_mouse, green_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(young_mouse, green_mouse), round_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> sees(tiger, lion)",
+          "z3_formula": "Implies(needs_tiger, sees_tiger_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, lion) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_lion), needs_mouse_tiger)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, lion)",
+          "z3_formula": "needs_tiger_lion == True",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & sees(mouse, lion) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, sees_mouse_lion), green_lion)",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> green(X)",
+          "z3_formula": "Implies(round_mouse, green_mouse)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & green(X) -> round(X)",
+          "z3_formula": "Implies(And(young_mouse, green_mouse), round_mouse)",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> sees(tiger, lion)",
+          "z3_formula": "Implies(needs_tiger, sees_tiger_lion)",
+          "source_step": 27
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, lion) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_lion), needs_mouse_tiger)",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == Unknown",
+          "source_step": 29
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & sees(mouse, Y) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, sees_mouse_lion), green_lion)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> cold(X)",
+          "z3_formula": "Implies(sees_lion_X, cold_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, lion) -> needs_tiger(X)",
+          "z3_formula": "Implies(And(cold_X, sees_lion_X), needs_tiger_X)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not cold(mouse)",
+          "z3_formula": "Not(cold_mouse)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> cold(X)",
+          "z3_formula": "Implies(sees_mouse_lion, cold_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & needs(X, mouse) -> cold(X)",
+          "z3_formula": "Implies(And(needs_tiger_mouse, needs_tiger_mouse), cold_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == Unknown",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> cold(X)",
+          "z3_formula": "Implies(sees_mouse_lion, cold_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & needs(X, mouse) -> cold(X)",
+          "z3_formula": "Implies(And(needs_tiger_mouse, needs_tiger_mouse), cold_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & eats(X, cow) -> needs(X, lion)",
+          "z3_formula": "Implies(And(needs_tiger_cow, eats_tiger_cow), needs_tiger_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, lion) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_lion), needs_mouse_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & sees(X, lion) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, sees_mouse_lion), green_lion)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_mouse_tiger, sees_mouse_lion)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "eaten_by(mouse, lion)",
+          "z3_formula": "eaten_by_mouse_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> cold(X)",
+          "z3_formula": "Implies(sees_mouse_lion, cold_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, lion)",
+          "z3_formula": "eats_tiger_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, lion)",
+          "z3_formula": "needs_tiger_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & needs(X, mouse) -> cold(X)",
+          "z3_formula": "Implies(And(needs_tiger_mouse, needs_tiger_mouse), cold_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & cold(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(sees_tiger_lion, cold_tiger), needs_tiger_lion)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & eats(tiger, cow) -> needs(X, lion)",
+          "z3_formula": "Implies(And(needs_tiger_mouse, eats_tiger_cow), needs_tiger_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, lion)",
+          "z3_formula": "needs_tiger_lion == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> cold(X)",
+          "z3_formula": "Implies(sees_mouse_lion, cold_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & needs(X, mouse) -> cold(X)",
+          "z3_formula": "Implies(And(needs_mouse_tiger, needs_mouse_mouse), cold_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & eats(tiger, cow) -> needs(X, lion)",
+          "z3_formula": "Implies(And(needs_mouse_tiger, eats_tiger_cow), needs_mouse_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, lion) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_lion), needs_mouse_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & sees(mouse, lion) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, sees_mouse_lion), green_lion)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "green(lion)",
+          "z3_formula": "green_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, lion)",
+          "z3_formula": "eats_tiger_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, lion)",
+          "z3_formula": "needs_tiger_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> cold(X)",
+          "z3_formula": "Implies(sees_lion_tiger, cold_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "cold(tiger)",
+          "z3_formula": "cold_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & needs(X, mouse) -> cold(X)",
+          "z3_formula": "Implies(And(needs_tiger_mouse, needs_tiger_mouse), cold_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & eats(X, cow) -> needs(X, lion)",
+          "z3_formula": "Implies(And(needs_tiger_cow, eats_tiger_cow), needs_tiger_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_tiger_lion, sees_lion_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, lion) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(cold_tiger, sees_lion_tiger), needs_tiger_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(cold(mouse))",
+          "z3_formula": "Not(cold_mouse) == False",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & sees(mouse, lion) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, sees_mouse_lion), green_lion)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(lion, mouse)",
+          "z3_formula": "needs_lion_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & sees(mouse, lion) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, sees_mouse_lion), green_lion)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, lion)",
+          "z3_formula": "eats_tiger_lion == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> cold(X)",
+          "z3_formula": "Implies(sees_mouse_lion, cold_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & needs(X, mouse) -> cold(X)",
+          "z3_formula": "Implies(And(needs_tiger_mouse, needs_tiger_mouse), cold_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & eats(X, cow) -> needs(X, lion)",
+          "z3_formula": "Implies(And(needs_tiger_cow, eats_tiger_cow), needs_tiger_lion)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> sees(X, lion)",
+          "z3_formula": "Implies(needs_tiger_lion, sees_tiger_lion)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, lion) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_lion), needs_mouse_tiger)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "eats(tiger, lion)",
+          "z3_formula": "eats_tiger_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(tiger)",
+          "z3_formula": "green_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, lion)",
+          "z3_formula": "needs_tiger_lion == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, cow)",
+          "z3_formula": "sees_tiger_cow == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> cold(X)",
+          "z3_formula": "Implies(sees_X_lion, cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & needs(X, mouse) -> cold(X)",
+          "z3_formula": "Implies(And(needs_X_tiger, needs_X_mouse), cold_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & eats(X, cow) -> needs(X, lion)",
+          "z3_formula": "Implies(And(needs_X_tiger, eats_X_cow), needs_X_lion)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & sees(mouse, lion) -> green(X)",
+          "z3_formula": "Implies(And(eats_X_mouse, sees_mouse_lion), green_X)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> sees(tiger, lion)",
+          "z3_formula": "Implies(needs_X_tiger, sees_tiger_lion)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, lion) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(cold_X, sees_X_lion), needs_X_tiger)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> cold(X)",
+          "z3_formula": "Implies(sees_mouse_lion, cold_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not cold(mouse)",
+          "z3_formula": "Not(cold_mouse) == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> cold(X)",
+          "z3_formula": "Implies(sees_mouse_lion, cold_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, lion) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_lion), needs_mouse_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, mouse) & sees(mouse, lion) -> green(X)",
+          "z3_formula": "Implies(And(eats_lion_mouse, sees_mouse_lion), green_lion)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> sees(tiger, lion)",
+          "z3_formula": "Implies(needs_mouse_tiger, sees_tiger_lion)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & sees(X, lion) -> needs(X, tiger)",
+          "z3_formula": "Implies(And(cold_mouse, sees_mouse_lion), needs_mouse_tiger)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(lion, mouse)",
+          "z3_formula": "eats_lion_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, lion)",
+          "z3_formula": "sees_mouse_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) -> cold(X)",
+          "z3_formula": "Implies(sees_mouse_lion, cold_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(mouse)",
+          "z3_formula": "cold_mouse == True",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 134,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 43
+    },
+    "maxsat_stats": {
+      "satisfied": 42,
+      "excluded": 1,
+      "total_weight": 132,
+      "solve_time_ms": 1.1601876467466354
+    },
+    "timing": {
+      "trace_gen_s": 8.087,
+      "extraction_s": 22.235,
+      "dedup_s": 1.061,
+      "maxsat_s": 0.004,
+      "total_s": 31.387
+    }
+  }
+}

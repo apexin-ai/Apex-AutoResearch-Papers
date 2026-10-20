@@ -1,0 +1,1266 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-391_Q17",
+    "problem": "Anne is round. Anne is young. Erin is cold. Erin is kind. Erin is quiet. Erin is round. Erin is smart. Erin is white. Erin is young. Gary is smart. Harry is quiet. Harry is young. If someone is white and quiet then they are smart. If someone is smart and cold then they are round. If someone is kind then they are white. Young people are quiet. Quiet, smart people are round. Kind, quiet people are round. If someone is smart then they are kind. If someone is kind then they are young. All round, white people are cold.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not kind.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nYoung($x, bool) ::: Is x young?\nCold($x, bool) ::: Is x cold?\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nWhite($x, bool) ::: Is x white?\n\nFacts:\nRound(Anne, True) ::: Anne is round.\nYoung(Anne, True) ::: Anne is young.\nCold(Erin, True) ::: Erin is cold.\nKind(Erin, True) ::: Erin is kind.\nQuiet(Erin, True) ::: Erin is quiet.\nRound(Erin, True) ::: Erin is round.\nSmart(Erin, True) ::: Erin is smart.\nWhite(Erin, True) ::: Erin is white.\nYoung(Erin, True) ::: Erin is young.\nSmart(Gary, True) ::: Gary is smart.\nQuiet(Harry, True) ::: Harry is quiet.\nYoung(Harry, True) ::: Harry is young.\n\nRules:\nWhite($x, True) && Quiet($x, True) >>> Smart($x, True) ::: If someone is white and quiet then they are smart.\nSmart($x, True) && Cold($x, True) >>> Round($x, True) ::: If someone is smart and cold then they are round.\nKind($x, True) >>> White($x, True) ::: If someone is kind then they are white.\nYoung($x, True) >>> Quiet($x, True) ::: Young people are quiet.\nQuiet($x, True) && Smart($x, True) >>> Round($x, True) ::: Quiet, smart people are round.\nKind($x, True) && Quiet($x, True) >>> Round($x, True) ::: Kind, quiet people are round.\nSmart($x, True) >>> Kind($x, True) ::: If someone is smart then they are kind.\nKind($x, True) >>> Young($x, True) ::: If someone is kind then they are young.\nRound($x, True) && White($x, True) >>> Cold($x, True) ::: All round, white people are cold.\n\nQuery:\nKind(Harry, False) ::: Harry is not kind."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 61.0,
+      "True": 81.0,
+      "Unknown": 180.5
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "True": 1,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether Harry is not kind, we need to analyze the given information and the properties of Harry.\n\n1. Harry is quiet. \n2. Harry is young.\n\nFrom the given information:\n\n- Young people are quiet. (This statement doesn't directly relate to Harry being kind, but we know Harry is young and quiet.)\n- Quiet, smart people are round. (This statement doesn't directly relate to Harry being kind, but we need to consider Harry's properties.)\n- Kind, quiet people are round. (This statement is important, but we need to establish if Harry is kind.)\n- If someone is kind then they are white. (This statement might help us determine if Harry is kind, but we need more information.)\n\nHowever, we know the following:\n\n- Harry is quiet (from statement 1) and young (from statement 2). \n- Quiet, smart people are round. (From the given information)\n- If someone is smart then they are kind. (From the given information)\n\nThis implies that Harry might be kind. If Harry is kind, then he is white (from the given information). But we also know:\n\n- All round, white people are cold. (From the given information)\n\nHowever, we cannot determine if Harry is kind directly from the given information. We only know that Harry is quiet and young. \n\nTo determine whether Harry is kind or not, we need to find a connection between Harry's properties and the properties of being kind.\n\nFrom the given information:\n\n- Gary is smart. \n- Gary is smart. (This implies that Gary is kind because if someone is smart then they are kind.)\n- Erin is kind. (Erin's properties don't directly relate to Harry's properties.)\n- Erin is white. (Erin's properties don't directly relate to Harry's properties.)\n\nHowever, if someone is white and quiet, then they are smart. (From the given information)\n\nThis implies that Harry might be smart because Harry is white and quiet (from statements 1 and 2).\n\nIf Harry is smart, then he is kind (from the given information). But we still cannot conclude whether Harry is kind or not.\n\nHowever, if someone is smart and cold then they are round. (From the given information)\n- All round, white people are cold. (From the given information)\n\nThis implies that Harry might be round because Harry is white (if Harry is kind) and cold (if Harry is round). However, we cannot conclude whether Harry is round or not.\n\nTo determine whether Harry is not kind, we need to find a connection between Harry's properties and the properties of being not kind.\n\nFrom the given information:\n\n- Erin is kind. \n- Erin is kind. (This implies that Erin is white because if someone is kind then they are white.)\n- Erin is kind. (This implies that Erin is young because if someone is kind then they are young.)\n- Erin is kind. (This implies that Erin is round because if someone is kind then they are round.)\n\nHowever, we cannot determine if Harry is not kind directly from the given information. We only know that Harry is quiet and young.\n\nWe cannot conclude whether Harry is not kind from the given information.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not kind\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know:\n   - Harry is quiet.\n   - Harry is young.\n\n2. We have the following rules:\n   - Young people are quiet. (Rule 7)\n   - This rule is already satisfied because Harry is young and quiet.\n\n3. We also have the following rules:\n   - If someone is kind, then they are young. (Rule 9)\n   - If someone is kind, then they are white. (Rule 4)\n   - If someone is kind, then they are young, but we also know that Young people are quiet, and Quiet, smart people are round. From these, we can infer that Kind people are not necessarily round, but they are white and young.\n\n4. We have another rule:\n   - If someone is smart then they are kind. (Rule 8)\n\n5. We also know:\n   - Gary is smart.\n   - If someone is smart and cold then they are round. (Rule 2)\n   - All round, white people are cold. (Rule 10)\n\n6. Since Gary is smart, we can infer:\n   - Gary is kind (from Rule 8)\n   - Gary is young (from Rule 9)\n\n7. Now, we need to find a connection between Harry and the given information.\n   - Harry is quiet and young. This means that Harry could be kind because kind people are young (Rule 9).\n\n8. Now let's examine the statement \"Harry is not kind.\"\n   - We cannot prove that Harry is not kind, but we also cannot prove that Harry is kind.\n   - Since we cannot confirm whether Harry is kind or not, we cannot determine if Harry is not kind.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not kind\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nStep 1: Analyze the given information about Harry.\n\n- Harry is quiet.\n- Harry is young.\n\nStep 2: Use the given information to infer more characteristics about Harry.\n\n- Young people are quiet. (This is consistent with the information about Harry.)\n- Quiet, smart people are round. (We cannot determine if Harry is smart or not, so we cannot conclude anything about Harry's shape.)\n- Kind, quiet people are round. (We cannot determine if Harry is kind or not, so we cannot conclude anything about Harry's shape.)\n- If someone is kind then they are young. (This implies that if Harry is kind, then he must be young, which is consistent with the information about Harry.)\n\nStep 3: Analyze the given information about kind people.\n\n- If someone is kind then they are white. (This implies that if Harry is kind, then he must be white.)\n- If someone is kind then they are young. (As mentioned earlier, this implies that if Harry is kind, then he must be young.)\n\nStep 4: Analyze the given information about smart people.\n\n- If someone is smart then they are kind. (This implies that if Harry is smart, then he must be kind.)\n- If someone is smart and cold then they are round. (We cannot determine if Harry is smart or cold, so we cannot conclude anything about Harry's shape.)\n- If someone is smart and young then they are quiet. (We already know that Harry is quiet, so this does not provide any new information.)\n\nStep 5: Analyze the given information about round people.\n\n- All round, white people are cold. (We cannot determine if Harry is round or not, but if he is round and white, then he must be cold.)\n\nStep 6: Analyze the given information about people who are white and quiet.\n\n- If someone is white and quiet then they are smart. (This implies that if Harry is white and quiet, then he must be smart.)\n\nStep 7: Combine the information about Harry.\n\n- Harry is quiet and young. (From the given information.)\n- If someone is white and quiet then they are smart. (From the given information.)\n- Kind people are white and young. (From the given information.)\n- If someone is kind then they are young. (From the given information.)\n- If someone is smart then they are kind. (From the given information.)\n\nWe can now deduce that if Harry is kind, then he is white and young. If Harry is white and quiet, then he is smart. If Harry is smart, then he is kind.\n\nHowever, we cannot determine if Harry is kind or not. If Harry is kind, then he is white, young, and smart. If Harry is white and quiet, then he is smart, which implies that he is kind. However, we cannot conclude that Harry is kind without assuming that Harry is white and quiet.\n\nTherefore, the statement \"Harry is not kind\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not kind\" is true, false, or unknown, we need to analyze the given information.\n\n1. Harry is quiet. (From the given statements)\n2. Harry is young. (From the given statements)\n3. If someone is young, then they are quiet. (From the given statements)\n   This is not a direct conclusion, but it's a general rule. However, we already know Harry is quiet, so this doesn't add any new information.\n4. If someone is kind, then they are young. (From the given statements)\n5. If someone is smart, then they are kind. (From the given statements)\n   This implies that if someone is smart, they are also young (from statement 4).\n\nNow, let's try to conclude something about Harry's kind nature.\n\nWe know Harry is young (statement 2), so from the general rule (statement 3), Harry is indeed quiet. However, we can't conclude anything about Harry's kind nature from this information.\n\nWe also know Harry is quiet (statement 1), which means Harry is not round (from the general rule that quiet, smart people are round, but we don't know if Harry is smart).\n\nLet's check if we can find any other conclusions.\n\nFrom the general rule (If someone is smart, then they are kind), we can't conclude if Harry is smart or kind, but we can try to find other information that might help us.\n\nWe know Gary is smart, but we can't conclude anything about Harry from this information.\n\nWe also know Erin is smart, but we can't conclude anything about Harry from this information.\n\nNow, let's try to find a conclusion about Harry's kind nature from the given statements.\n\nWe know Harry is young (statement 2), but we can't conclude if Harry is kind or not from this information.\n\nHowever, if we combine the information that if someone is kind, then they are white (statement 4) and if someone is young, then they are quiet (statement 3), we can't conclude anything about Harry's kind nature.\n\nBut we can conclude that if someone is kind, then they are young (statement 4), and if someone is young, then they are quiet (statement 3). This means that if someone is kind and quiet, they are young. However, this is a general rule, and we already know Harry is quiet, but we can't conclude if Harry is kind.\n\nNow, let's try to find a conclusion about Harry's kind nature from the given statements.\n\nWe know Harry is quiet (statement 1) and young (statement 2), but we can't conclude if Harry is kind or not from this information.\n\nHowever, we can conclude that if someone is kind, then they are white (statement 4), and if someone is young, then they are quiet (statement 3). This means that if someone is kind, then they are quiet (from the given statement that kind, quiet people are round). However, we already know Harry is quiet, so this doesn't add any new information.\n\nWe can also conclude that if someone is kind, then they are young (statement 4), and if someone is young, then they are quiet (statement 3). This means that if someone is kind, then they are quiet. However, we already know Harry is quiet, so this doesn't add any new information.\n\nHowever, we know that if someone is smart, then they are kind (statement 5), and if someone is kind, then they are young (statement 4). This means that if someone is smart, then they are young. However, we already know Harry is young, so this doesn't add any new information.\n\nNow, let's try to find a conclusion about Harry's kind nature from the given statements.\n\nWe know Harry is quiet (statement 1), young (statement 2), but we can't conclude if Harry is kind or not from this information.\n\nHowever, we can conclude that if someone is smart, then they are kind (statement 5), and if someone is kind, then they are white (statement 4). This means that if someone is smart, then they are white. However, we already know that all round, white people are cold (statement 7), but we can't conclude if Harry is smart or white.\n\nHowever, we know that if someone is smart and cold, then they are round (statement 6). But we already know that all round, white people are cold (statement 7), so if someone is white and cold, then they are round. However, we can't conclude if Harry is white or cold.\n\nHowever, we can conclude that if someone is kind, then they are white (statement 4), and if someone is white and quiet, then they are smart (statement 2). However, we already know Harry is quiet, but we can't conclude if Harry is kind or white.\n\nHowever, we know that if someone is smart, then they are kind (statement 5), and if someone is kind, then they are white (statement 4). This means that if someone is smart, then they are white. However, we already know that all round, white people are cold (statement 7), but we can't conclude if Harry is smart or white.\n\nHowever, we know that if someone is kind, then they are young (statement 4), and if someone is young, then they are quiet (statement 3). This means that if someone is kind, then they are quiet. However, we already know Harry is quiet, so this doesn't add any new information.\n\nHowever, we can conclude that if someone is kind, then they are white (statement 4), and if someone is kind and quiet, then they are round (statement 8). However, we already know Harry is quiet, but we can't conclude if Harry is kind or round.\n\nHowever, we know that if someone is smart, then they are kind (statement 5), and if someone is kind, then they are white (statement 4). This means that if someone is smart, then they are white. However, we already know that all round, white people are cold (statement 7), but we can't conclude if Harry is smart or white.\n\nHowever, we can conclude that if someone is kind, then they are white (statement 4), and if someone is white and quiet, then they are smart (statement 2). However, we already know Harry is quiet, but we can't conclude if Harry is kind or white.\n\nHowever, we know that if someone is kind, then they are young (statement 4), and if someone is young, then they are quiet (statement 3). This means that if someone is kind, then they are quiet. However, we already know Harry is quiet, so this doesn't add any new information.\n\nHowever, we can conclude that if someone is kind, then they are white (statement 4), and if someone is white and quiet, then they are smart (statement 2). However, we already know Harry is quiet, but we can't conclude if Harry is kind or white.\n\nHowever, we know that if someone is smart and cold, then they are round (statement 6), but we can't conclude if Harry is smart or cold.\n\nHowever, we can conclude that if someone is kind, then they are white (statement 4), and if someone is white and quiet, then they are smart (statement 2). However, we already know Harry is quiet, but we can't conclude if Harry is kind or white.\n\nHowever, we can conclude that if someone is round and white, then they are cold (statement 7), but we can't conclude if Harry is round or white.\n\nHowever, we know that if someone is smart, then they are kind (statement 5), and if someone is kind, then they are young (statement 4). This means that if someone is smart, then they are young. However, we already know Harry is young, so this doesn't add any new information.\n\nHowever, we know that if someone is kind, then they are white (statement 4), and if someone is white, then they are round (statement 7). This means that if someone is kind, then they are round. However, we already know that if someone is kind, then they are young (statement 4), and if someone is young, then they are quiet (statement 3). This means that if someone is kind, then they are quiet. However, we already know Harry is quiet, so this doesn't add any new information.\n\nHowever, we can conclude that if someone is smart, then they are kind (statement 5), and if someone is kind, then they are young (statement 4). This means that if someone is smart, then they are young. However, we already know Harry is young, so this doesn't add any new information.\n\nHowever, we can conclude that if someone is kind, then they are white (statement 4), and if someone is white and quiet, then they are smart (statement 2). However, we already know Harry is quiet, but we can't conclude if Harry is kind or white.\n\nHowever, we can conclude that if someone is round and white, then they are cold (statement 7), but we can't conclude if Harry is round or white.\n\nHowever, we can conclude that if someone is kind, then they are white (statement 4), and if someone is white and quiet, then they are smart (statement 2). However, we already know Harry is quiet, but we can't conclude if Harry is kind or white.\n\nHowever, we know that if someone is kind, then they are young (statement 4), and if someone is young, then they are quiet (statement 3). This means that if someone is kind, then they are quiet. However, we already know Harry is quiet, so",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to use a combination of logical deductions and the given statements.\n\n1. We are given the following statements:\n   - Anne is round.\n   - Anne is young.\n   - Erin is cold.\n   - Erin is kind.\n   - Erin is quiet.\n   - Erin is round.\n   - Erin is smart.\n   - Erin is white.\n   - Erin is young.\n   - Gary is smart.\n   - Harry is quiet.\n   - Harry is young.\n   - If someone is white and quiet then they are smart.\n   - If someone is smart and cold then they are round.\n   - If someone is kind then they are white.\n   - Young people are quiet.\n   - Quiet, smart people are round.\n   - Kind, quiet people are round.\n   - If someone is smart then they are kind.\n   - If someone is kind then they are young.\n   - All round, white people are cold.\n\n2. We need to determine whether Harry is not kind.\n\nFirst, let's analyze the given statements about Harry:\n   - Harry is quiet.\n   - Harry is young.\n\nFrom the statement \"Young people are quiet,\" we can deduce that since Harry is young, Harry is indeed quiet, which matches the given statement.\n\nNext, we need to analyze the relationship between Harry and being kind.\n\nFrom the statement \"Kind, quiet people are round,\" we cannot directly conclude that Harry is not kind because this statement is not the opposite of what we are trying to prove. However, we can explore other statements.\n\nFrom the statement \"If someone is kind then they are young,\" we can deduce that if Harry is not kind, then Harry is not young, which contradicts the given statement that Harry is young. Therefore, we cannot conclude that Harry is not kind based on this statement alone.\n\nHowever, we can use the statement \"If someone is smart then they are kind.\" Since Harry is smart (Gary is smart, and the problem does not state anything that would disallow Harry from being smart), then Harry is indeed kind.\n\nNow, let's see if we can use this information to determine whether Harry is kind.\n\nFrom the statement \"Harry is quiet\" and \"Harry is young,\" we can use the statement \"Young people are quiet,\" which is true. Then, since Harry is quiet and young, we can use the statement \"Quiet, smart people are round,\" which is true. However, we cannot use this statement to determine if Harry is kind because we do not know if Harry is smart.\n\nHowever, from the statement \"Harry is quiet\" and \"Harry is young,\" we can also use the statement \"Kind, quiet people are round.\" Since we already concluded that Harry is quiet and young, we can use this statement to deduce that Harry is kind.\n\nNow we have a problem: we have two conclusions that both conclude Harry is kind, and we cannot deduce that Harry is not kind from the given statements.\n\nTherefore, based on the given statements and logical deductions, we cannot conclude whether Harry is not kind.\n\nThe final answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is not kind' is true, false, or unknown, we need to analyze the given information.\n\nFrom the given statements:\n\n1. If someone is kind then they are white. \n2. If someone is kind then they are young.\n\nFrom statement 2, we can infer that if Harry is kind, then he is young. But we already know that Harry is young. This does not directly tell us if Harry is kind or not, but it gives us a possibility that Harry could be kind.\n\nHowever, we know that:\n\n3. If someone is kind then they are young. \n4. Young people are quiet. \n5. Harry is quiet.\n\nFrom statement 4 and 5, we know that Harry is young and quiet. Now, combining this with statement 3, we can infer that Harry is indeed young, which we already knew. However, being young and quiet does not necessarily mean Harry is kind.\n\nNow, let's look at the possibilities of Harry's characteristics from the given statements:\n\n- Harry is quiet (from statement 5).\n- Harry is young (from statement 4 and 5).\n- If someone is quiet and smart, they are round (statement 6).\n- Harry is not white, cold, or round (since there's no information given about Harry being these characteristics).\n\nSince there's no direct information about Harry being smart or not, we cannot conclude that Harry is round or not.\n\nNow, looking at the given information about 'kind' people:\n\n- If someone is kind then they are white (statement 1).\n- If someone is kind then they are young (statement 2).\n- Kind, quiet people are round (statement 7).\n\nWe know that Harry is quiet and young. However, we do not know if Harry is kind or not. \n\nBased on the given information, we cannot determine whether Harry is kind or not. Therefore, the statement 'Harry is not kind' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is not kind' is true, false, or unknown, we need to analyze the given information and infer the possible characteristics of Harry.\n\nFrom the given information:\n\n1. Harry is quiet. (Harry is quiet)\n2. Harry is young. (Harry is young)\n\nNow, we need to use the given rules to infer more information about Harry.\n\n3. Young people are quiet. (From the given rules, Young people are quiet. Since Harry is young, this rule applies to Harry.)\nThis rule already confirms that Harry is quiet, so it doesn't give us any new information.\n\n4. If someone is kind then they are young. (From the given rules, If someone is kind then they are young.)\nSince Harry is young (from rule 2), this rule might suggest that Harry could be kind. However, we need to consider other rules to confirm.\n\n5. Erin is kind. Erin is young. (From the given rules, Erin is kind. Erin is young.)\nThis information doesn't directly apply to Harry, but it tells us that being young and kind is consistent with the given information.\n\n6. If someone is kind then they are white. (From the given rules, If someone is kind then they are white.)\nThis rule implies that if Harry were kind, he would be white. However, we don't know if Harry is kind or not.\n\n7. If someone is smart then they are kind. (From the given rules, If someone is smart then they are kind.)\nWe know that Gary is smart (from the given rules). However, this information doesn't directly apply to Harry.\n\n8. Erin is smart. Erin is kind. Erin is young. (From the given rules, Erin is smart. Erin is kind. Erin is young.)\nThis information again doesn't directly apply to Harry but tells us that being smart, kind, and young is consistent with the given information.\n\n9. If someone is smart and cold then they are round. (From the given rules, If someone is smart and cold then they are round.)\nThis rule doesn't directly apply to Harry.\n\n10. If someone is smart then they are kind. (From the given rules, If someone is smart then they are kind.)\nIf Harry were smart, this rule would imply that Harry is kind.\n\nConsidering all the given information and the rules, we can't conclude that Harry is kind or not. Therefore, the truth value of the statement 'Harry is not kind' is 'unknown' because we have insufficient information to confirm or deny that Harry is kind.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply the rules of logic.\n\n1. Let's start by listing all the given statements:\n   - Anne is round.\n   - Anne is young.\n   - Erin is cold.\n   - Erin is kind.\n   - Erin is quiet.\n   - Erin is round.\n   - Erin is smart.\n   - Erin is white.\n   - Erin is young.\n   - Gary is smart.\n   - Harry is quiet.\n   - Harry is young.\n   - If someone is white and quiet then they are smart.\n   - If someone is smart and cold then they are round.\n   - If someone is kind then they are white.\n   - Young people are quiet.\n   - Quiet, smart people are round.\n   - Kind, quiet people are round.\n   - If someone is smart then they are kind.\n   - If someone is kind then they are young.\n   - All round, white people are cold.\n\n2. Now, let's analyze the given statements to find any implications or rules that can be applied to determine whether Harry is kind.\n\nFrom the given statements, we know:\n   - Young people are quiet (Statement 13).\n   - Harry is young (Statement 11).\n   - Therefore, Harry is quiet (Statement 13).\n\n   - Quiet, smart people are round (Statement 15).\n   - However, we do not have enough information to determine whether Harry is smart or not. Therefore, we cannot conclude whether Harry is round or not.\n\n   - If someone is kind then they are white (Statement 5).\n   - We do not have enough information to determine whether Harry is kind or not. Therefore, we cannot conclude whether Harry is white or not.\n\n   - If someone is white and quiet then they are smart (Statement 2).\n   - We do not have enough information to determine whether Harry is white or not. Therefore, we cannot conclude whether Harry is smart or not.\n\n   - If someone is smart then they are kind (Statement 14).\n   - We do not have enough information to determine whether Harry is smart or not. Therefore, we cannot conclude whether Harry is kind or not.\n\n   - If someone is kind then they are young (Statement 12).\n   - We do not have enough information to determine whether Harry is kind or not. Therefore, we cannot conclude whether Harry is young or not.\n\nSince we cannot conclude whether Harry is kind or not, the statement \"Harry is not kind\" is also unknown because it is the opposite of an unknown value.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deduction and follow the given premises. Let's analyze the statements one by one.\n\n1. If someone is white and quiet then they are smart. \n   - This statement is given as a premise.\n\n2. If someone is smart and cold then they are round. \n   - This statement is given as a premise.\n\n3. If someone is kind then they are white. \n   - This statement is given as a premise.\n\n4. Young people are quiet. \n   - This statement is given as a premise.\n\n5. Quiet, smart people are round. \n   - This statement is given as a premise.\n\n6. Kind, quiet people are round. \n   - This statement is given as a premise.\n\n7. If someone is smart then they are kind. \n   - This statement is given as a premise.\n\n8. If someone is kind then they are young. \n   - This statement is given as a premise.\n\n9. All round, white people are cold. \n   - This statement is given as a premise.\n\nNow, let's try to find out whether Harry is not kind.\n\nFrom premise 8, we know that if someone is kind then they are young. \nFrom premise 4, we know that young people are quiet. \nFrom premise 7, we know that if someone is smart then they are kind. \nFrom premise 6, we know that kind, quiet people are round.\n\nNow, let's consider the statements about Harry:\n- Harry is quiet. (premise)\n- Harry is young. (premise)\n\nWe know that quiet people are young, so it's true that Harry is young.\n\nNow, let's try to find out if Harry is smart.\n- If Harry is smart, then he is kind (premise 7).\n- If Harry is kind, then he is white (premise 3).\n\nNow, let's try to find out if Harry is white.\n- If Harry is white and quiet, then he is smart (premise 1).\n- We already know that Harry is quiet and Harry is young (premise).\n\nHowever, we still don't know if Harry is white. To determine this, we need to find out if Harry is round or not.\n\n- If Harry is round, then he is cold (premise 9).\n- If Harry is cold and smart, then he is round (premise 2).\n- We already know that Harry is quiet and Harry is young (premise).\n\nTo determine if Harry is round, we need to find out if Harry is white.\nHowever, we are trying to find out if Harry is white or not.\n\nLet's assume Harry is not white.\n\nThen, Harry cannot be smart because if Harry is white and quiet, then he is smart (premise 1).\nIf Harry is not smart, then he is not kind (premise 7).\n\nSince we assumed Harry is not white, we found out that Harry is not kind.\n\nThe statement \"Harry is not kind\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will use a method called resolution. We will convert the given statements into logical expressions and then use the rules of inference to derive conclusions.\n\nFirst, let's convert the given statements into logical expressions:\n\n1. Anne is round: R(A)\n2. Anne is young: Y(A)\n3. Erin is cold: C(E)\n4. Erin is kind: K(E)\n5. Erin is quiet: Q(E)\n6. Erin is round: R(E)\n7. Erin is smart: S(E)\n8. Erin is white: W(E)\n9. Gary is smart: S(G)\n10. Harry is quiet: Q(H)\n11. Harry is young: Y(H)\n\nNow, let's convert the given rules into logical expressions:\n\n1. If someone is white and quiet then they are smart: (W \u2227 Q) \u2192 S\n2. If someone is smart and cold then they are round: (S \u2227 C) \u2192 R\n3. If someone is kind then they are white: K \u2192 W\n4. Young people are quiet: Y \u2192 Q\n5. Quiet, smart people are round: (Q \u2227 S) \u2192 R\n6. Kind, quiet people are round: (K \u2227 Q) \u2192 R\n7. If someone is smart then they are kind: S \u2192 K\n8. If someone is kind then they are young: K \u2192 Y\n9. All round, white people are cold: (R \u2227 W) \u2192 C\n\nNow, let's analyze the given statement: Harry is not kind.\n\nWe can convert this statement into a logical expression: \u00acK(H)\n\nTo determine whether this statement is true, false, or unknown, we need to derive a conclusion from the given rules.\n\nFrom rule 4, we know that young people are quiet: Y \u2192 Q\n\nSince Harry is young (statement 11), we can conclude that Harry is quiet: Q(H)\n\nFrom rule 7, we know that if someone is kind then they are young: K \u2192 Y\n\nThis means that if Harry were kind, then Harry would be young. But we already know that Harry is young (statement 11), so this doesn't give us any new information.\n\nFrom rule 5, we know that quiet, smart people are round: (Q \u2227 S) \u2192 R\n\nWe don't know whether Harry is smart or not, so we can't conclude anything about Harry's roundness.\n\nFrom rule 6, we know that kind, quiet people are round: (K \u2227 Q) \u2192 R\n\nIf Harry were kind, then Harry would be round. But we don't know whether Harry is kind or not, so we can't conclude anything about Harry's roundness.\n\nFrom rule 1, we know that if someone is white and quiet then they are smart: (W \u2227 Q) \u2192 S\n\nSince Harry is quiet (derived from statement 11 and rule 4), we can't conclude anything about Harry's roundness.\n\nFrom rule 3, we know that if someone is kind then they are white: K \u2192 W\n\nIf Harry were kind, then Harry would be white. But we don't know whether Harry is kind or not, so we can't conclude anything about Harry's whiteness.\n\nFrom rule 8, we know that if someone is kind then they are young: K \u2192 Y\n\nThis means that if Harry were kind, then Harry would be young. But we already know that Harry is young (statement 11), so this doesn't give us any new information.\n\nFrom rule 7, we know that if someone is smart then they are kind: S \u2192 K\n\nIf Harry were smart, then Harry would be kind. But we don't know whether Harry is smart or not, so we can't conclude anything about Harry's kindness.\n\nFrom rule 2, we know that if someone is smart and cold then they are round: (S \u2227 C) \u2192 R\n\nIf Harry were smart and cold, then Harry would be round. But we don't know whether Harry is smart or cold, so we can't conclude anything about Harry's roundness.\n\nFrom rule 9, we know that all round, white people are cold: (R \u2227 W) \u2192 C\n\nIf Harry were round and white, then Harry would be cold. But we don't know whether Harry is round or white, so we can't conclude anything about Harry's coldness.\n\nNow, let's analyze the given statement: Harry is not kind.\n\nWe can convert this statement into a logical expression: \u00acK(H)\n\nFrom rule 8, we know that if someone is kind then they are young: K \u2192 Y\n\nThis means that if Harry were kind, then Harry would be young. But we already know that Harry is young (statement 11), so this doesn't give us any new information.\n\nFrom rule 7, we know that if someone is smart then they are kind: S \u2192 K\n\nIf Harry were smart, then Harry would be kind. But we don't know whether Harry is smart or not, so we can't conclude anything about Harry's kindness.\n\nFrom rule 5, we know that quiet, smart people are round: (Q \u2227 S) \u2192 R\n\nIf Harry were smart, then Harry would be round. But we don't know whether Harry is smart or not, so we can't conclude anything about Harry's roundness.\n\nFrom rule 6, we know that kind, quiet people are round: (K \u2227 Q) \u2192 R\n\nIf Harry were kind, then Harry would be round. But we don't know whether Harry is kind or not, so we can't conclude anything about Harry's roundness.\n\nFrom rule 1, we know that if someone is white and quiet then they are smart: (W \u2227 Q) \u2192 S\n\nSince Harry is quiet (derived from statement 11 and rule 4), we can't conclude anything about Harry's roundness.\n\nFrom rule 3, we know that if someone is kind then they are white: K \u2192 W\n\nIf Harry were kind, then Harry would be white. But we don't know whether Harry is kind or not, so we can't conclude anything about Harry's whiteness.\n\nFrom rule 2, we know that if someone is smart and cold then they are round: (S \u2227 C) \u2192 R\n\nIf Harry were smart and cold, then Harry would be round. But we don't know whether Harry is smart or cold, so we can't conclude anything about Harry's roundness.\n\nFrom rule 9, we know that all round, white people are cold: (R \u2227 W) \u2192 C\n\nIf Harry were round and white, then Harry would be cold. But we don't know whether Harry is round or white, so we can't conclude anything about Harry's coldness.\n\nFrom rule 8, we know that if someone is kind then they are young: K \u2192 Y\n\nThis means that if Harry were kind, then Harry would be young. But we already know that Harry is young (statement 11), so this doesn't give us any new information.\n\nWe can now conclude that Harry is quiet (derived from statement 11 and rule 4), and we can't conclude anything about Harry's kindness.\n\nHowever, from rule 7, we know that if someone is smart then they are kind: S \u2192 K\n\nIf Harry were smart, then Harry would be kind. But we don't know whether Harry is smart or not, so we can't conclude anything about Harry's kindness.\n\nFrom rule 6, we know that kind, quiet people are round: (K \u2227 Q) \u2192 R\n\nIf Harry were kind, then Harry would be round. But we don't know whether Harry is kind or not, so we can't conclude anything about Harry's roundness.\n\nHowever, from rule 5, we know that quiet, smart people are round: (Q \u2227 S) \u2192 R\n\nIf Harry were smart, then Harry would be round. But we don't know whether Harry is smart or not, so we can't conclude anything about Harry's roundness.\n\nNow, let's analyze the given statement: Harry is not kind.\n\nWe can convert this statement into a logical expression: \u00acK(H)\n\nFrom rule 7, we know that if someone is smart then they are kind: S \u2192 K\n\nIf Harry were smart, then Harry would be kind. But we don't know whether Harry is smart or not, so we can't conclude anything about Harry's kindness.\n\nHowever, we can now conclude that Harry is not smart, because if Harry were smart, then Harry would be kind, and Harry is not kind (given statement).\n\nNow, let's analyze the given statement: Harry is not kind.\n\nWe can convert this statement into a logical expression: \u00acK(H)\n\nFrom rule 7, we know that if someone is smart then they are kind: S \u2192 K\n\nIf Harry were smart, then Harry would be kind. But we don't know whether Harry is smart or not, so we can't conclude anything about Harry's kindness.\n\nHowever, we can now conclude that Harry is not smart, because if Harry were smart, then Harry would be kind, and Harry is not kind (given statement).\n\nFrom rule 7, we know that if someone is smart then they are kind: S \u2192 K\n\nIf Harry were smart, then Harry would be kind. But we don't know whether Harry is smart or not, so we can't conclude anything about Harry's kindness.\n\nHowever, we can now conclude that Harry is not smart, because if Harry were smart, then Harry would be kind, and Harry is not kind (given statement).\n\nNow, let's analyze the given statement: Harry is not kind.\n\nWe can convert this statement into a logical expression: \u00acK(H)\n\nFrom rule 8, we know that if someone is kind then they are young: K \u2192 Y\n\nThis means that if Harry were kind, then Harry would be",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not kind\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nGiven information:\n1. Erin is cold. Erin is kind. Erin is quiet. Erin is round. Erin is smart. Erin is white. Erin is young. \n2. Gary is smart.\n3. Harry is quiet. Harry is young.\n4. If someone is white and quiet then they are smart.\n5. If someone is smart and cold then they are round.\n6. If someone is kind then they are white.\n7. Young people are quiet.\n8. Quiet, smart people are round.\n9. Kind, quiet people are round.\n10. If someone is smart then they are kind.\n11. If someone is kind then they are young.\n12. All round, white people are cold.\n\nFirst, let's deduce some new information:\n- From (7), since Harry is young, he is quiet.\n- From (10), since Gary is smart, he is kind.\n- From (11), since Gary is kind, he is young.\n- From (3), we already know that Harry is young.\n- From (1), Erin is white. From (6), since Erin is kind, she is white.\n- From (1), Erin is kind, and (9) states that kind, quiet people are round. Since Erin is quiet from (1), Erin is round.\n- From (5), since Erin is smart and cold, she is round.\n- From (8), quiet, smart people are round. Since Harry is quiet and (4) does not apply to Harry, we cannot directly conclude Harry's roundness from this rule.\n- From (12), since Erin is round and white, Erin is cold.\n- Since we know Harry is quiet and young, but we cannot conclude Harry's roundness or smartness from the given information, we cannot conclude whether Harry is kind or not.\n\nHowever, from (10), since Gary is smart, he is kind. But Gary is not Harry. Therefore, we cannot conclude Harry's kind nature from Gary's kind nature.\n\nThus, based on the given information, we cannot determine whether Harry is kind or not.\n\nSo, the final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is not kind' is true, false, or unknown, we need to analyze the given information and the premises.\n\n1. The premises are:\n   - If someone is white and quiet then they are smart.\n   - If someone is smart and cold then they are round.\n   - If someone is kind then they are white.\n   - Young people are quiet.\n   - Quiet, smart people are round.\n   - Kind, quiet people are round.\n   - If someone is smart then they are kind.\n   - If someone is kind then they are young.\n   - All round, white people are cold.\n\n2. From the premises, we can deduce the following:\n   - Since Harry is quiet (given), he must be young (from 'Young people are quiet').\n   - Since Harry is young, he must be quiet (from 'Young people are quiet').\n   - Since Harry is young (deduced), he must be kind (from 'If someone is kind then they are young').\n   - Since Harry is kind, he must be white (from 'If someone is kind then they are white').\n   - Since Harry is white and quiet, he must be smart (from 'If someone is white and quiet then they are smart').\n   - Since Harry is smart, he must be kind (from 'If someone is smart then they are kind'), which we already know.\n   - Since Harry is kind (deduced) and quiet, he must be round (from 'Kind, quiet people are round').\n\nNow, let's analyze the statement 'Harry is not kind'.\n\nGiven the premises, we have deduced that Harry is kind. This means the statement 'Harry is not kind' is false.\n\nTherefore, the answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_harry, quiet_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, smart_harry), round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_harry, white_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_harry, white_harry), cold_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_harry, quiet_harry), smart_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_harry, cold_harry), round_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_harry, white_harry), cold_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == Unknown",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry)",
+          "z3_formula": "Not(kind_harry) == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_harry, quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_harry, young_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_harry, white_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(young_harry, quiet_harry), round_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> not(round(X))",
+          "z3_formula": "Implies(kind_harry, Not(round_harry))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_gary, cold_gary), round_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_gary, white_gary), cold_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(kind(harry))",
+          "z3_formula": "Not(kind_harry)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_harry, quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, smart_harry), round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, quiet_harry), round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_harry, young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_harry, cold_harry), round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & young(X) -> quiet(X)",
+          "z3_formula": "Implies(And(smart_harry, young_harry), quiet_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_harry, quiet_harry), smart_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X) & young(X)",
+          "z3_formula": "Implies(kind_harry, And(white_harry, young_harry))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_harry, quiet_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_harry, young_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> quiet(X)",
+          "z3_formula": "Implies(smart_harry, quiet_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_harry, white_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & white(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, white_harry), smart_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_harry, white_harry), cold_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_harry, cold_harry), round_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, quiet_harry), round_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == Unknown",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_X, quiet_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_X, cold_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_X, white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_X, quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_X, quiet_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_X, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_X, young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_X, white_X), cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_harry, white_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_harry, young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(young_harry, quiet_harry), round_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, smart_harry), round_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_harry, quiet_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_harry, young_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_harry, white_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_harry, cold_harry), round_harry)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_X, quiet_X), smart_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_X, cold_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_X, white_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_X, quiet_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_X, quiet_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_X, kind_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_X, young_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_X, white_X), cold_X)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == Unknown",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == Unknown",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == Unknown",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == Unknown",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry)",
+          "z3_formula": "Not(kind_harry) == Unknown",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_harry, quiet_harry), smart_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_harry, cold_harry), round_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_harry, white_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_harry, quiet_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_harry, smart_harry), round_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, quiet_harry), round_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_harry, young_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_harry, white_harry), cold_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry)",
+          "z3_formula": "Not(kind_harry) == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_X, quiet_X), smart_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_X, cold_X), round_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_X, white_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_X, quiet_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), round_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_X, quiet_X), round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_X, kind_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_X, young_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_X, white_X), cold_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "\u00ackind(harry)",
+          "z3_formula": "Not(kind_harry) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "\u00acsmart(harry)",
+          "z3_formula": "Not(smart_harry) == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(erin)",
+          "z3_formula": "cold_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(erin)",
+          "z3_formula": "round_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(erin)",
+          "z3_formula": "young_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(harry)",
+          "z3_formula": "young_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_X, quiet_X), smart_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & cold(X) -> round(X)",
+          "z3_formula": "Implies(And(smart_X, cold_X), round_X)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_X, white_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_X, quiet_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & smart(X) -> round(X)",
+          "z3_formula": "Implies(And(quiet_X, smart_X), round_X)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_X, quiet_X), round_X)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_X, kind_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_X, young_X)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_X, white_X), cold_X)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_harry, young_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(X) -> quiet(X)",
+          "z3_formula": "Implies(young_harry, quiet_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> young(X)",
+          "z3_formula": "Implies(kind_harry, young_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> white(X)",
+          "z3_formula": "Implies(kind_harry, white_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & quiet(X) -> smart(X)",
+          "z3_formula": "Implies(And(white_harry, quiet_harry), smart_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & quiet(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, quiet_harry), round_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & white(X) -> cold(X)",
+          "z3_formula": "Implies(And(round_harry, white_harry), cold_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not kind(harry)",
+          "z3_formula": "Not(kind_harry)",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 189,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 50
+    },
+    "maxsat_stats": {
+      "satisfied": 48,
+      "excluded": 2,
+      "total_weight": 186,
+      "solve_time_ms": 1.2589721009135246
+    },
+    "timing": {
+      "trace_gen_s": 24.78,
+      "extraction_s": 29.274,
+      "dedup_s": 2.342,
+      "maxsat_s": 0.004,
+      "total_s": 56.4
+    }
+  }
+}

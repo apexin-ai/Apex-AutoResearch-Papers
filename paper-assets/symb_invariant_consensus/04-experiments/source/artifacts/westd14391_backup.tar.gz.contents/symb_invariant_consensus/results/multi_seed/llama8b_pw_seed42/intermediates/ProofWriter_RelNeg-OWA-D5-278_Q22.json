@@ -1,0 +1,1106 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-278_Q22",
+    "problem": "The bald eagle eats the lion. The bald eagle is young. The cow sees the dog. The cow sees the lion. The cow does not visit the bald eagle. The cow visits the dog. The dog does not eat the cow. The dog is round. The dog does not visit the bald eagle. The dog visits the cow. The lion is round. The lion is young. If someone visits the dog and they see the cow then they do not see the bald eagle. If someone visits the dog then they eat the bald eagle. If someone eats the bald eagle then the bald eagle is rough. If someone is rough then they visit the dog. If someone visits the lion and they are not nice then the lion eats the bald eagle. If someone sees the lion and the lion eats the dog then they eat the cow. If someone visits the dog then they see the cow.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bald eagle is nice.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nYoung($x, bool) ::: Is x young?\nSees($x, $y, bool) ::: Does x see y?\nVisits($x, $y, bool) ::: Does x visit y?\nRound($x, bool) ::: Is x round?\nRough($x, bool) ::: Is x rough?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nEats(BaldEagle, Lion, True) ::: The bald eagle eats the lion.\nYoung(BaldEagle, True) ::: The bald eagle is young.\nSees(Cow, Dog, True) ::: The cow sees the dog.\nSees(Cow, Lion, True) ::: The cow sees the lion.\nVisits(Cow, BaldEagle, False) ::: The cow does not visit the bald eagle.\nVisits(Cow, Dog, True) ::: The cow visits the dog.\nEats(Dog, Cow, False) ::: The dog does not eat the cow.\nRound(Dog, True) ::: The dog is round.\nVisits(Dog, BaldEagle, False) ::: The dog does not visit the bald eagle.\nVisits(Dog, Cow, True) ::: The dog visits the cow.\nRound(Lion, True) ::: The lion is round.\nYoung(Lion, True) ::: The lion is young.\n\nRules:\nVisits($x, Dog, True) && Sees($x, Cow, True) >>> Sees($x, BaldEagle, False) ::: If someone visits the dog and they see the cow then they do not see the bald eagle.\nVisits($x, Dog, True) >>> Eats($x, BaldEagle, True) ::: If someone visits the dog then they eat the bald eagle.\nEats($x, BaldEagle, True) >>> Rough($x, True) ::: If someone eats the bald eagle then the bald eagle is rough.\nRough($x, True) >>> Visits($x, Dog, True) ::: If someone is rough then they visit the dog.\nVisits($x, Lion, True) && Nice($x, False) >>> Eats(Lion, BaldEagle, True) ::: If someone visits the lion and they are not nice then the lion eats the bald eagle.\nSees($x, Lion, True) && Eats(Lion, Dog, True) >>> Eats($x, Cow, True) ::: If someone sees the lion and the lion eats the dog then they eat the cow.\nVisits($x, Dog, True) >>> Sees($x, Cow, True) ::: If someone visits the dog then they see the cow.\n\nQuery:\nNice(BaldEagle, True) ::: The bald eagle is nice."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 142.5
+    },
+    "answer_counts": {
+      "Unknown": 10
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, let's analyze each statement and find the relationships between the entities.\n\n1. The bald eagle eats the lion. \n2. The bald eagle is young. \nFrom statement 1, we can infer that the bald eagle is not the one being eaten. \nFrom statement 2, we can infer that the bald eagle is not old.\n\n3. The cow sees the dog. \n4. The cow sees the lion. \n5. The cow does not visit the bald eagle. \n6. The cow visits the dog. \nFrom statement 5, we know the cow does not interact with the bald eagle.\nFrom statement 6, we know the cow interacts with the dog.\n\n7. The dog does not eat the cow. \n8. The dog is round. \n9. The dog does not visit the bald eagle. \n10. The dog visits the cow. \nFrom statement 10, we know the dog interacts with the cow.\n\n11. The lion is round. \n12. The lion is young. \nFrom statement 11 and 12, we can infer that the lion is similar to the bald eagle.\n\n13. If someone visits the dog and they see the cow then they do not see the bald eagle.\nFrom this statement, we can infer that visiting the dog does not guarantee seeing the bald eagle.\n\n14. If someone visits the dog then they eat the bald eagle.\nFrom this statement, we know visiting the dog is a condition for eating the bald eagle.\n\n15. If someone eats the bald eagle then the bald eagle is rough.\nFrom this statement, we can infer that the bald eagle is not rough by default.\n\n16. If someone is rough then they visit the dog.\nThis statement does not provide any information about the bald eagle.\n\n17. If someone visits the lion and they are not nice then the lion eats the bald eagle.\nThis statement does not provide any information about the bald eagle's niceness.\n\n18. If someone sees the lion and the lion eats the dog then they eat the cow.\nThis statement does not provide any information about the bald eagle's niceness.\n\n19. If someone visits the dog then they see the cow.\nThis statement is consistent with statements 3 and 10.\n\nNow, let's determine whether the statement \"The bald eagle is nice\" is true, false, or unknown. \n\nWe know from statement 14 that someone who visits the dog eats the bald eagle. From statement 15, this implies that the bald eagle is rough. Since the bald eagle is young (statement 2), we cannot directly conclude whether it is nice or not. However, we can infer that someone who eats the bald eagle is rough (statement 15) and this someone visits the dog (statement 14). From statement 16, someone who is rough visits the dog. But we cannot conclude that the bald eagle is nice.\n\nThe statement \"The bald eagle is nice\" is unknown because there is not enough information to determine its truth value.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle eats the lion. (Given)\n2. The bald eagle is young. (Given)\n3. The cow sees the lion. (Given)\n4. The cow does not visit the bald eagle. (Given)\n5. The cow visits the dog. (Given)\n6. The dog does not eat the cow. (Given)\n7. The dog is round. (Given)\n8. The dog does not visit the bald eagle. (Given)\n9. The dog visits the cow. (Given)\n10. The lion is round. (Given)\n11. The lion is young. (Given)\n12. If someone visits the dog and they see the cow then they do not see the bald eagle. (Given)\n13. If someone visits the dog then they eat the bald eagle. (Given)\n14. If someone eats the bald eagle then the bald eagle is rough. (Given)\n15. If someone is rough then they visit the dog. (Given)\n16. If someone visits the lion and they are not nice then the lion eats the bald eagle. (Given)\n17. If someone sees the lion and the lion eats the dog then they eat the cow. (Given)\n18. If someone visits the dog then they see the cow. (Given)\n\nNow, let's try to find a connection between the given information and the statement \"The bald eagle is nice.\"\n\nSince we do not have any information that directly states the bald eagle is nice, we need to look for indirect clues. From the given information, we can deduce the following:\n\n- The bald eagle eats the lion (Step 1). This could be either a nice or mean action, depending on the context.\n- If someone eats the bald eagle, then the bald eagle is rough (Step 14). This implies that being rough is a consequence of being eaten.\n- If someone is rough then they visit the dog (Step 15). This does not necessarily imply that the bald eagle being rough means it visits the dog.\n- We do not have any information that links the bald eagle being rough to being nice or mean.\n\nHowever, we can also analyze the statement from the opposite perspective. \n\n- If someone visits the dog then they eat the bald eagle (Step 13). This implies that eating the bald eagle is a consequence of visiting the dog.\n- If someone visits the dog then they see the cow (Step 18). This implies that seeing the cow is also a consequence of visiting the dog.\n\nSince visiting the dog seems to have a direct connection to eating the bald eagle and seeing the cow, we can look for someone who visits the dog and sees the cow to determine if they eat the bald eagle.\n\nLet's find such a person. We know that the cow sees the lion (Step 3) and visits the dog (Step 5). However, we do not have any information about the cow eating the bald eagle.\n\nHowever, we can look for someone who sees the lion and the lion eats the dog. We know that the lion is young (Step 11) and round (Step 10), but we do not have any information about the lion eating the dog.\n\nHowever, if we assume that the lion eats the dog and someone sees the lion, then that person eats the cow (Step 17). This implies that the lion eating the dog and someone seeing the lion would lead to eating the cow, but it does not necessarily imply that the lion eating the dog leads to the lion eating the bald eagle.\n\nHowever, we can look for someone who visits the lion and the lion eats the bald eagle. We know that if someone visits the lion and they are not nice then the lion eats the bald eagle (Step 16).\n\nSince we do not have any information about the bald eagle being nice or mean, we cannot directly determine if the statement \"The bald eagle is nice\" is true or false.\n\nHowever, if the bald eagle is nice, then it would not be eaten by the lion (Step 16). But we know that the lion is young (Step 11) and round (Step 10), and we do not have any information that directly links the lion's age and roundness to being nice or mean.\n\nHowever, if the lion is nice, then it would not eat the bald eagle (Step 16). But we know that the lion eats the dog (Step 17), which implies that the lion is not nice.\n\nSince we have a contradiction in the information (the lion is both young and round, but also eats the dog, implying it's not nice), we cannot directly determine if the statement \"The bald eagle is nice\" is true or false.\n\nHowever, we can also look for someone who visits the lion and the lion eats the bald eagle. If the lion eats the bald eagle, then the bald eagle is rough (Step 14).\n\nSince we do not have any information that directly links the bald eagle being rough to being nice or mean, we cannot directly determine if the statement \"The bald eagle is nice\" is true or false.\n\nHowever, we can look for someone who visits the dog and they do not see the bald eagle (Step 12). We know that the dog is round (Step 7) and the lion is also round (Step 10), but we do not have any information that directly links the dog's roundness to the lion's roundness.\n\nHowever, if someone visits the dog and they do not see the bald eagle, then they see the cow (Step 12). We know that the cow visits the dog (Step 5) and the dog does not eat the cow (Step 6). This implies that the dog and the cow have a relationship, but we do not have any information that directly links this relationship to the bald eagle.\n\nHowever, if the dog is round (Step 7), then the lion is also round (Step 10). This implies that the lion and the dog have a common characteristic, but we do not have any information that directly links this characteristic to the bald eagle.\n\nHowever, we can also look for someone who visits the dog and they eat the bald eagle. We know that if someone visits the dog then they eat the bald eagle (Step 13).\n\nSince we do not have any information that directly links the bald eagle eating the lion (Step 1) to being nice or mean, we cannot directly determine if the statement \"The bald eagle is nice\" is true or false.\n\nHowever, since we have multiple contradictions and unclear relationships, we cannot directly determine if the statement \"The bald eagle is nice\" is true or false.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is nice\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning.\n\nGiven statements:\n1. The bald eagle eats the lion.\n2. The bald eagle is young.\n3. The cow sees the dog.\n4. The cow sees the lion.\n5. The cow does not visit the bald eagle.\n6. The cow visits the dog.\n7. The dog does not eat the cow.\n8. The dog is round.\n9. The dog does not visit the bald eagle.\n10. The dog visits the cow.\n11. The lion is round.\n12. The lion is young.\n13. If someone visits the dog and they see the cow then they do not see the bald eagle.\n14. If someone visits the dog then they eat the bald eagle.\n15. If someone eats the bald eagle then the bald eagle is rough.\n16. If someone is rough then they visit the dog.\n17. If someone visits the lion and they are not nice then the lion eats the bald eagle.\n18. If someone sees the lion and the lion eats the dog then they eat the cow.\n19. If someone visits the dog then they see the cow.\n\nWe need to determine the relationship between the bald eagle being nice and the given statements.\n\nFrom statement 14, if someone visits the dog, then they eat the bald eagle. This implies that the action of visiting the dog leads to eating the bald eagle.\n\nHowever, statement 15 indicates that if someone eats the bald eagle, then the bald eagle is rough. This implies a cause-and-effect relationship between eating the bald eagle and being rough.\n\nNow, let's analyze statement 16, which states that if someone is rough, then they visit the dog. This implies that being rough is a prerequisite for visiting the dog.\n\nConsidering statements 14 and 16 together, we can infer that visiting the dog and eating the bald eagle are related to being rough.\n\nHowever, we cannot directly determine whether the bald eagle is nice or not from the given statements.\n\nBut let's examine the relationship between being nice and visiting the lion (statement 17), as it is related to the lion's behavior.\n\nStatement 17 states that if someone visits the lion and they are not nice, then the lion eats the bald eagle. However, we do not have any information about the lion's behavior when the visitor is nice.\n\nNow, let's examine statement 18, which states that if someone sees the lion and the lion eats the dog, then they eat the cow. This statement does not provide any information about the bald eagle's behavior or the visitor's behavior.\n\nStatement 19, which states that if someone visits the dog, then they see the cow, does not provide any information about the bald eagle's behavior or the visitor's behavior.\n\nConsidering all the given statements, we cannot determine whether the bald eagle is nice or not. The statements provide information about the relationships between the animals, their behaviors, and the actions of the visitors, but they do not provide any direct information about the bald eagle's nature (nice or not).\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle eats the lion. (This information is not relevant to the question, so we can ignore it for now.)\n2. The bald eagle is young. (This information is not relevant to the question, so we can ignore it for now.)\n3. The cow sees the dog. (This information is not relevant to the question, so we can ignore it for now.)\n4. The cow sees the lion. (This information is not relevant to the question, so we can ignore it for now.)\n5. The cow does not visit the bald eagle. (This information is not relevant to the question, so we can ignore it for now.)\n6. The cow visits the dog. (This information is not relevant to the question, so we can ignore it for now.)\n7. The dog does not eat the cow. (This information is not relevant to the question, so we can ignore it for now.)\n8. The dog is round. (This information is not relevant to the question, so we can ignore it for now.)\n9. The dog does not visit the bald eagle. (This information is not relevant to the question, so we can ignore it for now.)\n10. The dog visits the cow. (This information is not relevant to the question, so we can ignore it for now.)\n11. The lion is round. (This information is not relevant to the question, so we can ignore it for now.)\n12. The lion is young. (This information is not relevant to the question, so we can ignore it for now.)\n13. If someone visits the dog and they see the cow then they do not see the bald eagle. (This information is not relevant to the question, so we can ignore it for now.)\n14. If someone visits the dog then they eat the bald eagle. (This is a crucial piece of information. If someone visits the dog, they eat the bald eagle.)\n15. If someone eats the bald eagle then the bald eagle is rough. (This is a crucial piece of information. If someone eats the bald eagle, it implies that the person is rough.)\n16. If someone is rough then they visit the dog. (This is a crucial piece of information. If someone is rough, they visit the dog.)\n17. If someone visits the lion and they are not nice then the lion eats the bald eagle. (This information is not relevant to the question, so we can ignore it for now.)\n18. If someone sees the lion and the lion eats the dog then they eat the cow. (This information is not relevant to the question, so we can ignore it for now.)\n19. If someone visits the dog then they see the cow. (This information is not relevant to the question, so we can ignore it for now.)\n\nFrom the information in steps 14 and 16, we can infer that if someone is rough, they visit the dog, and if they visit the dog, they eat the bald eagle. This means that the bald eagle is always eaten by someone who is rough. \n\nHowever, the statement \"The bald eagle is nice\" is not directly related to the above information. There is no information that says the bald eagle is nice, or that the bald eagle is not nice. Therefore, we cannot determine whether the statement is true or false. The answer is \"unknown\".",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is nice\" is true, false, or unknown, we need to analyze the given information and apply it to the bald eagle.\n\nFrom the given statements:\n\n1. The bald eagle eats the lion.\n2. The bald eagle is young.\n3. If someone visits the dog and they see the cow then they do not see the bald eagle. (This statement does not directly relate to the bald eagle's niceness.)\n4. If someone visits the dog then they eat the bald eagle. (This statement implies that the bald eagle can be eaten, but it doesn't directly relate to its niceness.)\n5. If someone eats the bald eagle then the bald eagle is rough. (This is the key statement that relates to the bald eagle's niceness.)\n\nWe don't know who eats the bald eagle, but we can deduce that if someone eats the bald eagle, the bald eagle is rough. This implies that the bald eagle is not nice.\n\nHowever, there is another statement that might affect the bald eagle's niceness:\n\n6. If someone visits the lion and they are not nice then the lion eats the bald eagle. (This statement implies that the lion can eat the bald eagle if the person visiting the lion is not nice.)\n\nBut we also know that:\n\n7. The lion is young.\n8. If someone sees the lion and the lion eats the dog then they eat the cow. (This statement does not directly relate to the bald eagle's niceness.)\n9. The dog visits the cow. (This statement does not directly relate to the bald eagle's niceness.)\n10. If someone visits the dog then they see the cow. (This statement does not directly relate to the bald eagle's niceness.)\n\nNow, let's analyze the dog's information:\n\n11. The dog is round.\n12. The dog does not visit the bald eagle.\n13. The dog visits the cow.\n14. If someone visits the dog and they see the cow then they do not see the bald eagle. (This statement does not directly relate to the bald eagle's niceness.)\n\nHowever, we know that:\n\n15. The cow sees the lion.\n16. The cow does not visit the bald eagle.\n17. The cow visits the dog.\n\nGiven the information that the dog visits the cow and the cow sees the lion, we can conclude that the person who visits the dog and sees the cow also sees the lion. However, this does not directly relate to the bald eagle's niceness.\n\nBut we have another statement that relates to the lion:\n\n18. The lion is round.\n19. The lion is young.\n\nWe also know that:\n\n20. If someone visits the lion and they are not nice then the lion eats the bald eagle.\n\nHowever, the information provided does not directly relate to the bald eagle's niceness.\n\nFrom the statements above, we cannot directly conclude that the bald eagle is nice or not nice. The information about the bald eagle's niceness is related to the statements 5 and 20, which imply that the bald eagle can be eaten, and thus is not nice. However, the other statements provide conflicting information about the bald eagle's niceness.\n\nTherefore, the answer to the problem is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is nice\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The bald eagle eats the lion. (Rule 1)\n2. The bald eagle is young. (Rule 3)\n3. The cow sees the lion. (Rule 2)\n4. The cow sees the dog. (Rule 2)\n5. The cow does not visit the bald eagle. (Rule 2)\n6. The cow visits the dog. (Rule 2)\n7. The dog does not eat the cow. (Rule 2)\n8. The dog is round. (Rule 4)\n9. The dog does not visit the bald eagle. (Rule 2)\n10. The dog visits the cow. (Rule 2)\n11. The lion is round. (Rule 5)\n12. The lion is young. (Rule 6)\n13. If someone visits the dog and they see the cow then they do not see the bald eagle. (Rule 7)\n14. If someone visits the dog then they eat the bald eagle. (Rule 8)\n15. If someone eats the bald eagle then the bald eagle is rough. (Rule 9)\n16. If someone is rough then they visit the dog. (Rule 10)\n17. If someone visits the lion and they are not nice then the lion eats the bald eagle. (Rule 11)\n18. If someone sees the lion and the lion eats the dog then they eat the cow. (Rule 12)\n19. If someone visits the dog then they see the cow. (Rule 13)\n\nNow, let's analyze the statements related to the bald eagle being nice.\n\n- The bald eagle eats the lion (Rule 1), but this doesn't directly tell us if the bald eagle is nice or not.\n- The bald eagle is young (Rule 3), which doesn't give us any information about its niceness.\n- To determine if the bald eagle is nice, we need to see if it satisfies any of the conditions that imply being nice.\n\nFrom Rule 8, if someone visits the dog then they eat the bald eagle. However, this doesn't imply that the bald eagle is nice; rather, it implies that the person who visits the dog is nice, and then eats the bald eagle.\n\nHowever, if we look at Rule 9, it says that if someone eats the bald eagle then the bald eagle is rough. This rule implies that the bald eagle being eaten is associated with being rough, not nice.\n\nFrom Rule 10, it says that if someone is rough then they visit the dog. This rule implies that being rough is associated with visiting the dog, but not necessarily with the bald eagle being nice.\n\nNow, let's try to find out if someone sees the lion and the lion eats the dog then they eat the cow (Rule 12). This rule implies that someone who sees the lion and the lion eats the dog is associated with eating the cow, not the bald eagle. However, it does not tell us anything about the bald eagle's niceness.\n\nHowever, if someone visits the dog and they see the cow then they do not see the bald eagle (Rule 7). This rule implies that seeing the dog and the cow, but not the bald eagle, is a characteristic of the person who visits the dog.\n\nCombining this with Rule 13, which says that if someone visits the dog then they see the cow, we can conclude that the person who visits the dog is associated with seeing the cow, but not the bald eagle.\n\nNow, let's examine Rule 8 again, which says that if someone visits the dog then they eat the bald eagle. We can combine this with the previous rules to conclude that the person who visits the dog is associated with seeing the cow, but not the bald eagle, and then eating the bald eagle.\n\nSince the person who visits the dog sees the cow but not the bald eagle, and then eats the bald eagle, we can infer that the person who visits the dog is not nice, as they eat the bald eagle.\n\nHowever, we cannot conclude that the bald eagle is nice or not from this information alone. We need to examine the conditions that imply being nice.\n\nWe can see that the bald eagle is associated with being eaten by someone who visits the dog. However, we cannot conclude that the bald eagle is nice or not from this information alone.\n\nNow, let's examine Rule 11, which says that if someone visits the lion and they are not nice then the lion eats the bald eagle. This rule implies that visiting the lion and being not nice is associated with the lion eating the bald eagle. However, this does not tell us anything about the bald eagle's niceness.\n\nHowever, let's examine Rule 17 again, which says that if someone visits the lion and they are not nice then the lion eats the bald eagle. We can combine this with Rule 12, which says that if someone sees the lion and the lion eats the dog then they eat the cow. \n\nFrom Rule 12, we can see that someone who sees the lion and the lion eats the dog is associated with eating the cow. However, this does not tell us anything about the bald eagle's niceness.\n\nHowever, let's examine Rule 7 again, which says that if someone visits the dog and they see the cow then they do not see the bald eagle. We can combine this with Rule 13, which says that if someone visits the dog then they see the cow.\n\nFrom Rule 8, we can see that someone who visits the dog is associated with eating the bald eagle. \n\nNow, let's examine Rule 9 again, which says that if someone eats the bald eagle then the bald eagle is rough. \n\nHowever, we cannot conclude that the bald eagle is nice or not from this information alone.\n\nNow, let's examine Rule 10 again, which says that if someone is rough then they visit the dog. \n\nHowever, we cannot conclude that the bald eagle is nice or not from this information alone.\n\nNow, let's examine Rule 1 again, which says that the bald eagle eats the lion. \n\nHowever, we cannot conclude that the bald eagle is nice or not from this information alone.\n\nNow, let's examine Rule 3 again, which says that the bald eagle is young. \n\nHowever, we cannot conclude that the bald eagle is nice or not from this information alone.\n\nIn conclusion, we cannot determine whether the bald eagle is nice or not from the given information. \n\nTherefore, the final answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle eats the lion. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\n2. The bald eagle is young. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\n3. The cow sees the dog. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\n4. The cow sees the lion. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\n5. The cow does not visit the bald eagle. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\n6. The cow visits the dog. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\n7. The dog does not eat the cow. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\n8. The dog is round. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\n9. The dog does not visit the bald eagle. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\n10. The dog visits the cow. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\n11. The lion is round. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\n12. The lion is young. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\n13. If someone visits the dog and they see the cow then they do not see the bald eagle. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\n14. If someone visits the dog then they eat the bald eagle. (This statement implies that eating the bald eagle is related to visiting the dog, but it doesn't directly relate to the bald eagle's niceness.)\n\n15. If someone eats the bald eagle then the bald eagle is rough. (This statement tells us that being rough is related to being eaten, but it doesn't directly tell us about the bald eagle's initial niceness or roughness.)\n\n16. If someone is rough then they visit the dog. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\n17. If someone visits the lion and they are not nice then the lion eats the bald eagle. (This statement tells us that visiting the lion and not being nice is related to the lion eating the bald eagle, but it doesn't directly tell us about the bald eagle's initial niceness or roughness.)\n\n18. If someone sees the lion and the lion eats the dog then they eat the cow. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\n19. If someone visits the dog then they see the cow. (This statement doesn't give us any information about the bald eagle's niceness or roughness.)\n\nNow, we can analyze the given information in terms of the statements related to the bald eagle's niceness or roughness:\n\n- The bald eagle eats the lion (statement 1), but this doesn't tell us anything about the bald eagle's niceness.\n- The bald eagle is young (statement 2), but this doesn't tell us anything about the bald eagle's niceness.\n- If someone eats the bald eagle then the bald eagle is rough (statement 15), and if someone is rough then they visit the dog (statement 16). However, we don't have any information about someone eating the bald eagle.\n\nSince we don't have any direct information about the bald eagle's initial niceness or roughness, and the statements related to the bald eagle's niceness or roughness don't provide a clear conclusion, we cannot determine whether the statement \"The bald eagle is nice\" is true or false.\n\nTherefore, the answer is: \n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the bald eagle is nice, we need to analyze the given information and the conditions that affect the bald eagle's characteristics.\n\n1. The bald eagle eats the lion. \n   - We don't know if the lion is nice or not, so we cannot conclude that the bald eagle is nice based on this information.\n\n2. The bald eagle is young.\n   - This statement does not provide any information about the bald eagle's nature (nice or not).\n\n3. If someone eats the bald eagle then the bald eagle is rough.\n   - Since we are trying to determine if the bald eagle is nice, this statement is relevant. But we need to consider the conditions under which someone eats the bald eagle.\n\n4. If someone visits the dog and they see the cow then they do not see the bald eagle.\n   - This information does not directly relate to the bald eagle's characteristics.\n\n5. If someone visits the dog then they eat the bald eagle.\n   - This statement directly relates to the bald eagle's characteristics. To determine if the bald eagle is nice, we need to consider if anyone visits the dog and eats the bald eagle.\n\nHowever, to determine if someone visits the dog and eats the bald eagle, we need to analyze the following conditions:\n\n- The dog visits the cow.\n- The cow does not visit the bald eagle.\n- The dog does not visit the bald eagle.\n\nBased on these conditions, we cannot conclude that anyone visits the dog and eats the bald eagle.\n\n6. If someone eats the bald eagle then the bald eagle is rough.\n   - Since we cannot conclude that anyone eats the bald eagle, we cannot conclude that the bald eagle is rough.\n\nBased on the given information and conditions, we cannot determine if the bald eagle is nice, so the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle eats the lion.\n   - This implies that the bald eagle is capable of eating, but we don't know if it's nice or not.\n\n2. The bald eagle is young.\n   - This gives us additional information about the bald eagle's age, but still doesn't tell us if it's nice.\n\n3. If someone eats the bald eagle then the bald eagle is rough.\n   - This statement implies that if the bald eagle is eaten, it becomes rough. However, it doesn't provide any information about the bald eagle's initial niceness.\n\n4. If someone visits the dog and they see the cow then they do not see the bald eagle.\n   - This statement doesn't provide any information about the bald eagle's niceness.\n\n5. If someone visits the dog then they eat the bald eagle.\n   - This statement also doesn't provide any information about the bald eagle's niceness.\n\n6. The cow visits the dog.\n   - This statement doesn't provide any information about the bald eagle's niceness.\n\n7. If someone eats the bald eagle then the bald eagle is rough.\n   - As mentioned earlier, this statement only provides information about the bald eagle's condition if it's eaten.\n\n8. If someone sees the lion and the lion eats the dog then they eat the cow.\n   - This statement doesn't provide any information about the bald eagle's niceness.\n\n9. If someone visits the dog then they see the cow.\n   - This statement also doesn't provide any information about the bald eagle's niceness.\n\n10. The lion is round.\n    - This statement doesn't provide any information about the bald eagle's niceness.\n\n11. The lion is young.\n    - This statement also doesn't provide any information about the bald eagle's niceness.\n\n12. The dog does not eat the cow.\n    - This statement doesn't provide any information about the bald eagle's niceness.\n\n13. The dog is round.\n    - This statement also doesn't provide any information about the bald eagle's niceness.\n\n14. If someone is rough then they visit the dog.\n    - This statement doesn't provide any information about the bald eagle's niceness.\n\n15. If someone visits the lion and they are not nice then the lion eats the bald eagle.\n    - This statement implies that if someone visits the lion and is not nice, the lion eats the bald eagle. However, it doesn't provide any information about the bald eagle's initial niceness.\n\nAfter analyzing all the given statements, we can conclude that none of the statements directly provide information about the bald eagle's niceness. However, the statement \"If someone is rough then they visit the dog\" implies that being rough and visiting the dog are related, but it doesn't provide any information about the bald eagle's niceness.\n\nSince we don't have any direct information about the bald eagle's niceness, we cannot determine whether the statement \"The bald eagle is nice\" is true or false. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is nice\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bald eagle eats the lion.\n   - This statement doesn't provide any information about the bald eagle's niceness.\n\n2. The bald eagle is young.\n   - This statement also doesn't provide any information about the bald eagle's niceness.\n\n3. The cow sees the dog.\n   - This statement doesn't provide any information about the bald eagle's niceness.\n\n4. The cow sees the lion.\n   - This statement doesn't provide any information about the bald eagle's niceness.\n\n5. The cow does not visit the bald eagle.\n   - This statement doesn't provide any information about the bald eagle's niceness.\n\n6. The cow visits the dog.\n   - This statement doesn't provide any information about the bald eagle's niceness.\n\n7. The dog does not eat the cow.\n   - This statement doesn't provide any information about the bald eagle's niceness.\n\n8. The dog is round.\n   - This statement doesn't provide any information about the bald eagle's niceness.\n\n9. The dog does not visit the bald eagle.\n   - This statement doesn't provide any information about the bald eagle's niceness.\n\n10. The dog visits the cow.\n    - This statement doesn't provide any information about the bald eagle's niceness.\n\n11. The lion is round.\n    - This statement doesn't provide any information about the bald eagle's niceness.\n\n12. The lion is young.\n    - This statement doesn't provide any information about the bald eagle's niceness.\n\n13. If someone visits the dog and they see the cow then they do not see the bald eagle.\n    - This statement doesn't provide any information about the bald eagle's niceness.\n\n14. If someone visits the dog then they eat the bald eagle.\n    - This statement implies that the action of eating the bald eagle is a result of visiting the dog, but it doesn't provide any information about the bald eagle's niceness.\n\n15. If someone eats the bald eagle then the bald eagle is rough.\n    - This statement implies that being rough is a result of being eaten, but it doesn't provide any information about the bald eagle's niceness.\n\n16. If someone is rough then they visit the dog.\n    - This statement doesn't provide any information about the bald eagle's niceness.\n\n17. If someone visits the lion and they are not nice then the lion eats the bald eagle.\n    - This statement implies that visiting the lion and being not nice is a condition for the lion to eat the bald eagle. However, it doesn't provide any information about the bald eagle's niceness.\n\n18. If someone sees the lion and the lion eats the dog then they eat the cow.\n    - This statement doesn't provide any information about the bald eagle's niceness.\n\n19. If someone visits the dog then they see the cow.\n    - This statement implies that visiting the dog results in seeing the cow, but it doesn't provide any information about the bald eagle's niceness.\n\nNow, we need to analyze the given statements to determine the relationship between the bald eagle's niceness and the other statements.\n\nFrom statement 14, we know that if someone visits the dog, they eat the bald eagle. However, we don't know if the person who eats the bald eagle is nice or not.\n\nFrom statement 15, we know that if someone eats the bald eagle, the bald eagle is rough. However, being rough doesn't necessarily mean being not nice.\n\nFrom statement 16, we know that if someone is rough, they visit the dog. However, being rough doesn't necessarily mean being not nice.\n\nWe can't determine the bald eagle's niceness from any of the given statements. Therefore, the statement \"The bald eagle is nice\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is nice\" is true, false, or unknown, we need to analyze the given information and find any connections between the bald eagle and the other entities.\n\n1. The bald eagle eats the lion. (This does not provide any information about the bald eagle's niceness.)\n2. The bald eagle is young. (This does not provide any information about the bald eagle's niceness.)\n3. If someone eats the bald eagle then the bald eagle is rough. (This implies that if the bald eagle is rough, it must be eaten by someone. But we don't know who eats it, so we cannot determine its niceness.)\n\nHowever, there is another statement that might be useful:\n\n4. If someone visits the dog then they see the cow. (This is not directly related to the bald eagle, but it might be useful later.)\n5. If someone sees the cow then they do not see the bald eagle. (This implies that if we see the cow, we cannot see the bald eagle. This is not directly related to the bald eagle's niceness, but it might be useful later.)\n6. If someone visits the dog then they eat the bald eagle. (This statement implies that there is at least one person who eats the bald eagle. However, it does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n7. If someone is rough then they visit the dog. (This does not provide any information about the bald eagle's niceness.)\n8. If someone visits the lion and they are not nice then the lion eats the bald eagle. (This implies that if the lion eats the bald eagle, it means the person who visited the lion was not nice.)\n9. If someone sees the lion and the lion eats the dog then they eat the cow. (This does not provide any information about the bald eagle's niceness.)\n10. If someone visits the dog and they see the cow then they do not see the bald eagle. (This is the same as statement 5, and it does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n11. The dog is round. (This does not provide any information about the bald eagle's niceness.)\n12. The lion is round. (This does not provide any information about the bald eagle's niceness.)\n13. The cow sees the dog. (This does not provide any information about the bald eagle's niceness.)\n14. The cow sees the lion. (This does not provide any information about the bald eagle's niceness.)\n15. The cow does not visit the bald eagle. (This does not provide any information about the bald eagle's niceness.)\n16. The dog does not visit the bald eagle. (This does not provide any information about the bald eagle's niceness.)\n17. The lion is young. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n18. If someone visits the dog then they see the cow. (This is the same as statement 4, and it does not provide any information about the bald eagle's niceness.)\n19. If someone visits the dog then they eat the bald eagle. (This statement implies that there is at least one person who eats the bald eagle. However, it does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n20. The dog visits the cow. (This does not provide any information about the bald eagle's niceness.)\n21. The dog does not eat the cow. (This does not provide any information about the bald eagle's niceness.)\n22. If someone is rough then they visit the dog. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n23. If someone eats the bald eagle then the bald eagle is rough. (This implies that if the bald eagle is rough, it must be eaten by someone. But we don't know who eats it, so we cannot determine its niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n24. If someone visits the lion and they are not nice then the lion eats the bald eagle. (This implies that if the lion eats the bald eagle, it means the person who visited the lion was not nice.)\n\nFrom this statement, we can conclude that the person who visited the lion and was not nice must have eaten the bald eagle. Therefore, the bald eagle must be rough.\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n25. If someone sees the lion and the lion eats the dog then they eat the cow. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n26. If someone visits the dog then they see the cow. (This is the same as statement 4, and it does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n27. If someone eats the bald eagle then the bald eagle is rough. (This implies that if the bald eagle is rough, it must be eaten by someone. But we don't know who eats it, so we cannot determine its niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n28. If someone is rough then they visit the dog. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n29. The lion is round. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n30. The lion is young. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n31. The cow sees the lion. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n32. The cow does not visit the bald eagle. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n33. The dog does not visit the bald eagle. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n34. The dog is round. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n35. The dog visits the cow. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n36. The dog does not eat the cow. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n37. If someone visits the dog then they eat the bald eagle. (This statement implies that there is at least one person who eats the bald eagle. However, it does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n38. If someone is rough then they visit the dog. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n39. If someone visits the lion and they are not nice then the lion eats the bald eagle. (This implies that if the lion eats the bald eagle, it means the person who visited the lion was not nice.)\n\nFrom this statement, we can conclude that the person who visited the lion and was not nice must have eaten the bald eagle. Therefore, the bald eagle must be rough.\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n40. If someone sees the lion and the lion eats the dog then they eat the cow. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n41. If someone visits the dog and they see the cow then they do not see the bald eagle. (This is the same as statement 5, and it does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n42. If someone visits the dog then they see the cow. (This is the same as statement 4, and it does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n43. The cow sees the dog. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n44. The cow sees the lion. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n45. The cow does not visit the bald eagle. (This does not provide any information about the bald eagle's niceness.)\n\nHowever, we can use the following statements to determine the bald eagle's niceness:\n\n46. The dog does not visit the bald eagle",
+        "answer": "",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bald eagle is nice\" is true, false, or unknown, we need to analyze the given information and infer the properties of the bald eagle.\n\nFrom the given statements, we know that:\n\n1. The bald eagle eats the lion. (This does not tell us anything about the bald eagle's nature.)\n2. The bald eagle is young. (This statement alone does not determine the bald eagle's nature.)\n3. If someone eats the bald eagle then the bald eagle is rough. (This implies that eating the bald eagle makes it rough, but it does not tell us whether the bald eagle is rough in general.)\n\nHowever, from statement 3, we can infer that if the bald eagle is rough, it is because someone ate it. This means that the bald eagle's roughness is a result of its death, not its inherent nature.\n\nNow, let's analyze the statement \"If someone visits the dog then they eat the bald eagle.\" This implies that visiting the dog somehow leads to eating the bald eagle, but it does not necessarily imply that the bald eagle is eaten because it is nice or not.\n\nHowever, if we consider the entire set of statements, we can see that visiting the dog leads to eating the bald eagle, which in turn leads to the bald eagle being rough. This creates a chain of events that does not provide any information about the bald eagle's nature.\n\nHowever, there is a statement that can help us determine the bald eagle's nature: \"If someone visits the dog and they see the cow then they do not see the bald eagle.\" This does not tell us anything about the bald eagle's nature directly, but it implies that the bald eagle is not visible to someone who visits the dog and sees the cow.\n\nNow, let's analyze another statement: \"If someone eats the bald eagle then the bald eagle is rough.\" This implies that eating the bald eagle makes it rough, but it does not tell us anything about the bald eagle's nature if it is not eaten.\n\nWe can combine the statements to infer the bald eagle's nature. If the bald eagle is eaten, it becomes rough, but if it is not eaten, we cannot determine its nature.\n\nHowever, there is a more important statement that can help us determine the bald eagle's nature: \"If someone sees the lion and the lion eats the dog then they eat the cow.\" This statement does not tell us anything about the bald eagle's nature, but it implies that someone who sees the lion and eats the cow has a certain behavior.\n\nNow, let's analyze the statement \"If someone visits the dog then they eat the bald eagle.\" This implies that visiting the dog leads to eating the bald eagle, but it does not tell us anything about the bald eagle's nature.\n\nHowever, if we consider the entire set of statements, we can see that visiting the dog leads to eating the bald eagle, which in turn leads to the bald eagle being rough. This creates a chain of events that does not provide any information about the bald eagle's nature.\n\nHowever, there is a statement that can help us determine the bald eagle's nature: \"If someone is rough then they visit the dog.\" This implies that being rough is a result of visiting the dog, but it does not tell us anything about the bald eagle's nature.\n\nHowever, there is another statement that can help us determine the bald eagle's nature: \"If someone visits the lion and they are not nice then the lion eats the bald eagle.\" This implies that the lion's behavior is determined by the person's niceness, but it does not tell us anything about the bald eagle's nature.\n\nHowever, if we combine all the statements, we can see that the bald eagle's nature is not explicitly determined by any of the statements. However, we can infer that the bald eagle is not nice if someone eats it and makes it rough.\n\nHowever, there is a more important statement that can help us determine the bald eagle's nature: \"If someone visits the dog then they see the cow.\" This implies that visiting the dog leads to seeing the cow, but it does not tell us anything about the bald eagle's nature.\n\nHowever, if we combine all the statements, we can see that the bald eagle's nature is not explicitly determined by any of the statements. However, we can infer that the bald eagle's nature is unknown because none of the statements provide any information about its nature.\n\nTherefore, the final answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, lion)",
+          "z3_formula": "eats_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(lion, bald_eagle))",
+          "z3_formula": "Not(eats_lion_bald_eagle) == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, dog)",
+          "z3_formula": "sees_cow_dog == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, lion)",
+          "z3_formula": "sees_cow_lion == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(cow, bald_eagle))",
+          "z3_formula": "Not(visits_cow_bald_eagle) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, dog)",
+          "z3_formula": "visits_cow_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(dog, cow))",
+          "z3_formula": "Not(eats_dog_cow) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(dog, bald_eagle))",
+          "z3_formula": "Not(visits_dog_bald_eagle) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & sees(X, cow) -> not(sees(X, bald_eagle))",
+          "z3_formula": "Implies(And(visits_X_dog, sees_X_cow), Not(sees_X_bald_eagle))",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(visits_X_dog, eats_X_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> rough(bald_eagle)",
+          "z3_formula": "Implies(eats_X_bald_eagle, rough_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, dog)",
+          "z3_formula": "Implies(rough_X, visits_X_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & not(nice(X)) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_lion, Not(nice_X)), eats_X_bald_eagle)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & eats(X, dog) -> eats(X, cow)",
+          "z3_formula": "Implies(And(sees_X_lion, eats_X_dog), eats_X_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_dog, sees_X_cow)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(bald_eagle))",
+          "z3_formula": "Not(nice_bald_eagle) == Unknown",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, lion)",
+          "z3_formula": "eats_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion) & round(lion) -> eats(lion, dog)",
+          "z3_formula": "Implies(And(young_lion, round_lion), eats_lion_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, dog)",
+          "z3_formula": "visits_cow_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, lion)",
+          "z3_formula": "visits_cow_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, lion)",
+          "z3_formula": "sees_cow_lion == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(cow, bald_eagle))",
+          "z3_formula": "Not(visits_cow_bald_eagle) == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(dog, bald_eagle))",
+          "z3_formula": "Not(visits_dog_bald_eagle) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(dog, cow))",
+          "z3_formula": "Not(eats_dog_cow) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, lion) -> rough(bald_eagle)",
+          "z3_formula": "Implies(eats_bald_eagle_lion, rough_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "rough(bald_eagle) -> visits(bald_eagle, dog)",
+          "z3_formula": "Implies(rough_bald_eagle, visits_bald_eagle_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "visits(X, dog) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(visits_X_dog, eats_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "visits(X, lion) & not(nice(X)) -> eats(lion, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_lion, Not(nice_X)), eats_lion_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "visits(X, lion) & eats(lion, dog) -> eats(X, cow)",
+          "z3_formula": "Implies(And(visits_X_lion, eats_lion_dog), eats_X_cow)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "visits(X, dog) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_dog, sees_X_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "visits(X, dog) & sees(X, lion) -> not(sees(X, bald_eagle))",
+          "z3_formula": "Implies(And(visits_X_dog, sees_X_lion), Not(sees_X_bald_eagle))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == Unknown",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, lion)",
+          "z3_formula": "eats_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, dog)",
+          "z3_formula": "sees_cow_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, lion)",
+          "z3_formula": "sees_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(cow, bald_eagle))",
+          "z3_formula": "not(visits_cow_bald_eagle) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, dog)",
+          "z3_formula": "visits_cow_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(dog, cow))",
+          "z3_formula": "not(eats_dog_cow) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(visits(dog, bald_eagle))",
+          "z3_formula": "not(visits_dog_bald_eagle) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & sees(X, cow) -> not(sees(X, bald_eagle))",
+          "z3_formula": "Implies(And(visits_X_dog, sees_X_cow), not(sees_X_bald_eagle))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(visits_X_dog, eats_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> rough(X)",
+          "z3_formula": "Implies(eats_X_bald_eagle, rough_X)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, dog)",
+          "z3_formula": "Implies(rough_X, visits_X_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & not(nice(X)) -> eats(lion, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_lion, not(nice_X)), eats_lion_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & eats(lion, dog) -> eats(X, cow)",
+          "z3_formula": "Implies(And(sees_X_lion, eats_lion_dog), eats_X_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_dog, sees_X_cow)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(visits_dog_bald_eagle, eats_dog_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> rough(X)",
+          "z3_formula": "Implies(eats_dog_bald_eagle, rough_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, dog)",
+          "z3_formula": "Implies(rough_dog, visits_dog_bald_eagle)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(dog)",
+          "z3_formula": "rough_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "visits(dog, bald_eagle)",
+          "z3_formula": "visits_dog_bald_eagle == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "eats(dog, bald_eagle)",
+          "z3_formula": "eats_dog_bald_eagle == True",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, lion)",
+          "z3_formula": "eats_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & sees(X, cow) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_dog, sees_X_cow), not sees_X_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(visits_X_dog, eats_X_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> rough(bald_eagle)",
+          "z3_formula": "Implies(eats_X_bald_eagle, rough_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & not nice(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_lion, not nice_X), eats_X_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & eats(X, dog) -> eats(X, cow)",
+          "z3_formula": "Implies(And(sees_X_lion, eats_X_dog), eats_X_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & not nice(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_lion, not nice_X), eats_X_bald_eagle)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(dog, bald_eagle)",
+          "z3_formula": "not visits_dog_bald_eagle == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & sees(X, cow) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_dog, sees_X_cow), not sees_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, lion)",
+          "z3_formula": "sees_cow_lion == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(cow, bald_eagle)",
+          "z3_formula": "not visits_cow_bald_eagle == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, dog)",
+          "z3_formula": "visits_cow_dog == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & not nice(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_lion, not nice_X), eats_X_bald_eagle)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, lion)",
+          "z3_formula": "eats_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(visits_dog_bald_eagle, eats_dog_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> rough(bald_eagle)",
+          "z3_formula": "Implies(eats_bald_eagle_lion, rough_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, dog)",
+          "z3_formula": "Implies(rough_X, visits_X_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & not(nice(X)) -> eats(lion, bald_eagle)",
+          "z3_formula": "Implies(And(visits_lion_bald_eagle, not_nice_X), eats_lion_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & eats(lion, dog) -> eats(X, cow)",
+          "z3_formula": "Implies(And(sees_lion_cow, eats_lion_dog), eats_X_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_dog_cow, sees_dog_cow)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & sees(X, cow) -> not(sees(X, bald_eagle))",
+          "z3_formula": "Implies(And(visits_dog_cow, sees_dog_cow), not_sees_X_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(bald_eagle))",
+          "z3_formula": "not_nice_bald_eagle == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, lion)",
+          "z3_formula": "eats_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> rough(X)",
+          "z3_formula": "Implies(eats_lion_bald_eagle, rough_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, dog)",
+          "z3_formula": "Implies(rough_bald_eagle, visits_bald_eagle_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & sees(X, lion) & not(nice(X)) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_bald_eagle_dog, sees_bald_eagle_lion, Not(nice_bald_eagle)), eats_lion_bald_eagle)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, lion)",
+          "z3_formula": "eats_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> rough(bald_eagle)",
+          "z3_formula": "Implies(eats_bald_eagle_X, rough_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(Y, dog) & sees(Y, cow) -> not sees(Y, bald_eagle)",
+          "z3_formula": "Implies(And(visits_dog_Y, sees_cow_Y), Not(sees_bald_eagle_Y))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(Y, dog) -> eats(Y, bald_eagle)",
+          "z3_formula": "Implies(visits_dog_Y, eats_bald_eagle_Y)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(cow, bald_eagle)",
+          "z3_formula": "Not(visits_cow_bald_eagle) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(dog, bald_eagle)",
+          "z3_formula": "Not(visits_dog_bald_eagle) == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not eats(X, bald_eagle)",
+          "z3_formula": "Not(eats_X_bald_eagle)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not rough(bald_eagle)",
+          "z3_formula": "Not(rough_bald_eagle)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, lion)",
+          "z3_formula": "eats_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> rough(bald_eagle)",
+          "z3_formula": "Implies(eats_bald_eagle_lion, rough_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(visits_dog, eats_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(cow, dog)",
+          "z3_formula": "visits_cow_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(visits_dog, eats_bald_eagle)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & eats(lion, dog) -> eats(X, cow)",
+          "z3_formula": "Implies(And(sees_lion, eats_lion_dog), eats_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_dog, sees_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not(eats(dog, cow))",
+          "z3_formula": "Not(eats_dog_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, dog)",
+          "z3_formula": "Implies(rough_X, visits_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & not(nice(X)) -> eats(lion, bald_eagle)",
+          "z3_formula": "Implies(And(visits_lion, Not(nice_X)), eats_lion_bald_eagle)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, lion)",
+          "z3_formula": "eats_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, dog)",
+          "z3_formula": "sees_cow_dog == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, lion)",
+          "z3_formula": "sees_cow_lion == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(cow, bald_eagle)",
+          "z3_formula": "not visits_cow_bald_eagle == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not visits(dog, bald_eagle)",
+          "z3_formula": "not visits_dog_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(lion)",
+          "z3_formula": "round_lion == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "young(lion)",
+          "z3_formula": "young_lion == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & sees(X, cow) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_dog, sees_X_cow), not sees_X_bald_eagle)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(visits_X_dog, eats_X_bald_eagle)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> rough(bald_eagle)",
+          "z3_formula": "Implies(eats_X_bald_eagle, rough_bald_eagle)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> visits(X, dog)",
+          "z3_formula": "Implies(rough_X, visits_X_dog)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & not nice(X) -> eats(lion, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_lion, not nice_X), eats_lion_bald_eagle)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & eats(lion, dog) -> eats(X, cow)",
+          "z3_formula": "Implies(And(sees_X_lion, eats_lion_dog), eats_X_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_dog, sees_X_cow)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == Unknown",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, lion)",
+          "z3_formula": "eats_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> rough(bald_eagle)",
+          "z3_formula": "Implies(eats_bald_eagle_lion, rough_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "visits(dog, cow)",
+          "z3_formula": "visits_dog_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_dog_cow, sees_cow_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, lion) & eats(lion, dog) -> eats(X, cow)",
+          "z3_formula": "Implies(And(sees_cow_lion, eats_lion_dog), eats_cow_cow)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(visits_dog_bald_eagle, eats_bald_eagle_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & not(nice(X)) -> eats(lion, bald_eagle)",
+          "z3_formula": "Implies(And(visits_lion_bald_eagle, Not(nice_lion)), eats_lion_bald_eagle)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bald_eagle)",
+          "z3_formula": "rough_bald_eagle == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(bald_eagle, lion)",
+          "z3_formula": "eats_bald_eagle_lion == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bald_eagle)",
+          "z3_formula": "young_bald_eagle == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> rough(bald_eagle)",
+          "z3_formula": "Implies(eats_X_bald_eagle, rough_bald_eagle)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(visits_X_dog, eats_X_bald_eagle)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) & sees(X, cow) -> not sees(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_dog, sees_X_cow), Not(sees_X_bald_eagle))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, bald_eagle) -> rough(bald_eagle)",
+          "z3_formula": "Implies(eats_X_bald_eagle, rough_bald_eagle)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, lion) & not nice(X) -> eats(X, bald_eagle)",
+          "z3_formula": "Implies(And(visits_X_lion, Not(nice_X)), eats_X_bald_eagle)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "visits(X, dog) -> sees(X, cow)",
+          "z3_formula": "Implies(visits_X_dog, sees_X_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "nice(bald_eagle)",
+          "z3_formula": "nice_bald_eagle == Unknown",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 163,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 60
+    },
+    "maxsat_stats": {
+      "satisfied": 57,
+      "excluded": 3,
+      "total_weight": 151,
+      "solve_time_ms": 2.102506347000599
+    },
+    "timing": {
+      "trace_gen_s": 24.627,
+      "extraction_s": 32.016,
+      "dedup_s": 1.717,
+      "maxsat_s": 0.005,
+      "total_s": 58.366
+    }
+  }
+}

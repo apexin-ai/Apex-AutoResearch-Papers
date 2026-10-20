@@ -1,0 +1,718 @@
+{
+  "problem": {
+    "id": "folio_73",
+    "problem": "Given the following premises:\nAll growth companies\u2019 stocks are volatile. If the stock price is volatile, then it is not suitable for a retirement fund. Some companies\u2019 stocks are growth companies\u2019 stocks. All mature companies\u2019 stocks are suitable for a retirement fund. KO is a mature company\u2019s stock.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nIf KO is a growth company\u2019s stock or if its price is volatile, then KO is neither a company\u2019s stock nor is its price volatile.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2200x (GrowthCompanies\u2019Stocks(x) \u2192 PriceVolatile(x))",
+      " \u2200x (PriceVolatile(x) \u2192 \u00acSuitableForRetirementRund(x)) ",
+      " \u2203x (Companies\u2019Stocks(x) \u2227 GrowthCompanies\u2019Stocks(x))",
+      " \u2200x (MatureCompanies\u2019Stocks(x) \u2192 SuitableForRetirementRund(x))",
+      " MatureCompanies\u2019Stocks(kO)"
+    ],
+    "conclusion_fol": "GrowthCompanies\u2019Stocks(kO) \u2228 PriceVolatile(kO) \u2192 \u00acCompanies\u2019Stocks(kO) \u2228 \u00acPriceVolatile(kO)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 21.0,
+      "True": 13.0,
+      "Unknown": 40.5
+    },
+    "answer_counts": {
+      "False": 2,
+      "Unknown": 7,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we will use a method called categorical syllogism or logical reasoning. We'll break down the given premises and the conclusion to determine whether it is true, false, or uncertain.\n\nPremises:\n\n1. All growth companies' stocks are volatile. (All G \u2192 V)\n   - This means that if a company is a growth company, then its stock is volatile.\n\n2. If the stock price is volatile, then it is not suitable for a retirement fund. (V \u2192 \u00acS)\n   - This means that if a stock is volatile, then it is not suitable for a retirement fund.\n\n3. Some companies' stocks are growth companies' stocks. (Some G)\n   - This premise is not directly related to the conclusion, but it might be useful in later steps.\n\n4. All mature companies' stocks are suitable for a retirement fund. (All M \u2192 S)\n   - This means that if a company is mature, then its stock is suitable for a retirement fund.\n\n5. KO is a mature company's stock. (KO is M)\n\nConclusion:\nIf KO is a growth company's stock or if its price is volatile, then KO is neither a company's stock nor is its price volatile. (G \u2228 V \u2192 \u00acS \u2227 \u00acV)\n\nTo determine the truth value of the conclusion, let's break it down:\n\n- If KO is a growth company's stock (G), then its price is volatile (V) due to premise 1 (All G \u2192 V).\n- If KO's price is volatile (V), then it is not suitable for a retirement fund (\u00acS) due to premise 2 (V \u2192 \u00acS).\n- However, premise 4 states that all mature companies' stocks are suitable for a retirement fund (All M \u2192 S).\n- Since KO is a mature company's stock (premise 5, KO is M), it is suitable for a retirement fund (S).\n\nNow, let's analyze the conclusion statement: If KO is a growth company's stock or if its price is volatile, then KO is neither a company's stock nor is its price volatile.\n\n- If KO is a growth company's stock (G), then its price is volatile (V), but we know that KO is suitable for a retirement fund (S), which contradicts premise 2 (V \u2192 \u00acS).\n- If KO's price is volatile (V), then it is not suitable for a retirement fund (\u00acS), but we know that KO is suitable for a retirement fund (S), which contradicts premise 2 (V \u2192 \u00acS).\n- Since the conclusion contradicts the given premises, we can conclude that the conclusion is false.\n\nTherefore, the conclusion is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning and the premises provided.\n\nPremise 1: All growth companies' stocks are volatile.\nPremise 2: If the stock price is volatile, then it is not suitable for a retirement fund.\nPremise 3: Some companies' stocks are growth companies' stocks.\nPremise 4: All mature companies' stocks are suitable for a retirement fund.\nPremise 5: KO is a mature company's stock.\n\nNow, let's analyze the conclusion:\n\nConclusion: If KO is a growth company's stock or if its price is volatile, then KO is neither a company's stock nor is its price volatile.\n\nWe need to evaluate the truth of this conclusion using the premises provided.\n\nFirst, we can infer that KO is suitable for a retirement fund because it is a mature company's stock (Premise 4).\n\nNext, we can analyze the two conditions in the conclusion:\n\nCondition 1: If KO is a growth company's stock.\nFrom Premise 1, we know that all growth companies' stocks are volatile. Therefore, if KO is a growth company's stock, then its price is volatile.\n\nCondition 2: If KO's price is volatile.\nFrom Premise 2, we know that if the stock price is volatile, then it is not suitable for a retirement fund. However, we already know that KO is suitable for a retirement fund (Premise 4). Therefore, if KO's price is volatile, then the conclusion that KO is neither a company's stock nor its price is volatile cannot be true.\n\nHowever, there is an error in the above statement. The error is assuming that we can conclude that KO is a growth company\u2019s stock based solely on the fact that KO is volatile. This is not correct as the statement is conditional.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises and their implications.\n\nPremise 1: All growth companies' stocks are volatile.\nPremise 2: If the stock price is volatile, then it is not suitable for a retirement fund.\nPremise 3: Some companies' stocks are growth companies' stocks.\nPremise 4: All mature companies' stocks are suitable for a retirement fund.\nPremise 5: KO is a mature company's stock.\n\nNow, let's analyze the conclusion:\n\"If KO is a growth company's stock or if its price is volatile, then KO is neither a company's stock nor is its price volatile.\"\n\nWe can start by breaking down the conclusion into two separate statements:\n- If KO is a growth company's stock, then KO is neither a company's stock nor is its price volatile.\n- If KO's price is volatile, then KO is neither a company's stock nor is its price volatile.\n\nNow, let's analyze each statement based on the premises:\n\n1. If KO is a growth company's stock, then KO is neither a company's stock nor is its price volatile.\n   - Premise 3: Some companies' stocks are growth companies' stocks.\n   - Premise 1: All growth companies' stocks are volatile.\n   - From Premise 3 and 1, we can infer that if KO is a growth company's stock, then its price is volatile (modus ponens).\n   - This implies that the first statement in the conclusion is uncertain because we cannot conclude that KO is neither a company's stock nor is its price volatile based on the given premises.\n\n2. If KO's price is volatile, then KO is neither a company's stock nor is its price volatile.\n   - Premise 1: All growth companies' stocks are volatile.\n   - Premise 4: All mature companies' stocks are suitable for a retirement fund.\n   - Premise 5: KO is a mature company's stock.\n   - From Premise 4 and 5, we can infer that KO's price is suitable for a retirement fund (modus ponens).\n   - Now, suppose KO's price is volatile.\n   - From Premise 1, we can infer that KO is a growth company's stock (modus ponens).\n   - This would imply that KO's price is both volatile and suitable for a retirement fund, which is a contradiction.\n   - Therefore, we can conclude that if KO's price is volatile, then KO is neither a company's stock nor is its price volatile is false.\n\nBased on the analysis, the first statement in the conclusion is uncertain, and the second statement is false. Therefore, the conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "Let's break down the given premises and the conclusion step by step:\n\nPremise 1: All growth companies' stocks are volatile.\nThis means that if a stock is a growth company's stock, then it is volatile.\n\nPremise 2: If the stock price is volatile, then it is not suitable for a retirement fund.\nThis is an if-then statement, where being volatile is a condition for not being suitable for a retirement fund.\n\nPremise 3: Some companies' stocks are growth companies' stocks.\nThis premise doesn't provide any specific information about KO but tells us that growth companies exist.\n\nPremise 4: All mature companies' stocks are suitable for a retirement fund.\nThis premise establishes a relationship between maturity and suitability for a retirement fund.\n\nPremise 5: KO is a mature company's stock.\nThis premise directly tells us that KO is a stock of a mature company.\n\nConclusion: If KO is a growth company's stock or if its price is volatile, then KO is neither a company's stock nor is its price volatile.\n\nTo determine the validity of the conclusion, let's analyze the conditions:\n\n- If KO is a growth company's stock, then it is volatile (Premise 1).\n- If KO's price is volatile, then it is not suitable for a retirement fund (Premise 2).\n\nHowever, the conclusion doesn't directly connect these conditions to the statement \"KO is neither a company's stock nor is its price volatile.\" We need to establish a relationship between the premises and the conclusion.\n\nLet's assume KO is a growth company's stock (from Premise 3). Then, according to Premise 1, it is volatile. Since it is volatile, according to Premise 2, it is not suitable for a retirement fund.\n\nNow, consider the conclusion. If KO is a growth company's stock or if its price is volatile, we need to determine if it is neither a company's stock nor is its price volatile. If we assume KO is a growth company's stock (which is already established as a possibility), then it is volatile (Premise 1), and thus the conclusion might seem to be true in this case.\n\nHowever, this conclusion might be uncertain because the original statement of \"neither a company's stock nor is its price volatile\" is a negation of \"a company's stock and its price is volatile.\" To accurately assess the conclusion, we need to consider all possible cases.\n\nConsider the case where KO is not a growth company's stock. Since we don't have any information about KO's stock being suitable for a retirement fund, the conclusion cannot be determined to be true or false.\n\nConsider another case: if KO is a mature company's stock (Premise 5), then it is suitable for a retirement fund (Premise 4). However, we don't have any direct connection between maturity and volatility. Therefore, we cannot conclude that its price is volatile or not.\n\nHowever, we know that the price of a mature company's stock can be volatile. Therefore, if KO's price is volatile, the conclusion cannot be determined to be true or false.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we will use the principles of logical reasoning and the given premises. We will break it down step by step.\n\nPremise 1: All growth companies' stocks are volatile. \nThis can be represented as: \nGrowth \u2192 Volatile\n\nPremise 2: If the stock price is volatile, then it is not suitable for a retirement fund.\nThis can be represented as:\nVolatile \u2192 Not Suitable\n\nPremise 3: Some companies' stocks are growth companies' stocks.\nThis can be represented as:\nGrowth \u2203\n\nPremise 4: All mature companies' stocks are suitable for a retirement fund.\nThis can be represented as:\nMature \u2192 Suitable\n\nPremise 5: KO is a mature company's stock.\nThis can be represented as:\nKO \u2192 Mature\n\nConclusion: If KO is a growth company's stock or if its price is volatile, then KO is neither a company's stock nor is its price volatile.\nThis can be represented as:\n(Growth \u2228 Volatile) \u2192 Not (Company \u2228 Volatile)\n\nNow, we need to analyze the conclusion using the given premises.\n\nFirst, let's consider the first part of the conclusion: \nIf KO is a growth company's stock.\nWe know that KO is a mature company's stock (Premise 5). We also know that not all mature companies are growth companies (Premise 3). Therefore, we cannot conclude that KO is a growth company's stock.\n\nHowever, let's assume that KO is a growth company's stock for the sake of argument. Then, from Premise 1, we know that KO's stock price is volatile. This is because all growth companies' stocks are volatile.\n\nNow, let's consider the second part of the conclusion: \nIf KO's price is volatile.\nWe have already concluded that if KO is a growth company's stock, then KO's stock price is volatile. Therefore, we can conclude that KO's price is volatile.\n\nNow, we need to analyze the conclusion using the given premises. We have concluded that KO's price is volatile. We also know that if the stock price is volatile, then it is not suitable for a retirement fund (Premise 2). However, this is not relevant to the conclusion.\n\nThe conclusion states that KO is neither a company's stock nor is its price volatile. However, we know that KO is a mature company's stock (Premise 5), which means that it is a company's stock. Therefore, the conclusion is false.\n\nHowever, we have a problem. We assumed that KO is a growth company's stock. But we don't have any information that directly relates KO to a growth company. We only know that KO is a mature company's stock.\n\nTo resolve this issue, let's go back to the premises. We know that KO is a mature company's stock (Premise 5). We also know that all mature companies' stocks are suitable for a retirement fund (Premise 4). Therefore, we can conclude that KO is suitable for a retirement fund.\n\nNow, let's go back to the conclusion. We need to analyze the first part of the conclusion: \nIf KO is a growth company's stock.\nWe don't have any information that directly relates KO to a growth company. However, we do know that some companies' stocks are growth companies' stocks (Premise 3). This means that we cannot rule out the possibility that KO is a growth company's stock.\n\nNow, let's consider the second part of the conclusion: \nIf KO's price is volatile.\nWe have already concluded that if KO is a growth company's stock, then KO's stock price is volatile. However, we don't have any information that directly relates KO to a growth company.\n\nTherefore, we cannot conclude that KO's price is volatile.\n\nHowever, we do know that all growth companies' stocks are volatile (Premise 1). This means that if KO is a growth company's stock, then KO's stock price is volatile.\n\nNow, let's go back to the conclusion. We have two possibilities:\n\n1. KO is a growth company's stock.\n2. KO's price is volatile.\n\nWe have concluded that if KO is a growth company's stock, then KO's stock price is volatile. Therefore, we can conclude that if KO is a growth company's stock or if its price is volatile, then KO's stock price is volatile.\n\nHowever, we also know that if the stock price is volatile, then it is not suitable for a retirement fund (Premise 2). This means that if KO's price is volatile, then KO is not suitable for a retirement fund.\n\nBut we also know that KO is a mature company's stock (Premise 5), which means that it is suitable for a retirement fund (Premise 4).\n\nTherefore, we have a contradiction. We cannot conclude that KO's price is volatile.\n\nHowever, we do know that all growth companies' stocks are volatile (Premise 1). This means that if KO is a growth company's stock, then KO's stock price is volatile.\n\nNow, let's go back to the conclusion. We have two possibilities:\n\n1. KO is a growth company's stock.\n2. KO's price is volatile.\n\nWe have concluded that if KO is a growth company's stock, then KO's stock price is volatile. Therefore, we can conclude that if KO is a growth company's stock or if its price is volatile, then KO's stock price is volatile.\n\nHowever, we also know that if the stock price is volatile, then it is not suitable for a retirement fund (Premise 2). This means that if KO's price is volatile, then KO is not suitable for a retirement fund.\n\nBut we also know that KO is a mature company's stock (Premise 5), which means that it is suitable for a retirement fund (Premise 4).\n\nHowever, we are not asked to conclude whether KO's price is volatile or not. We are asked to conclude whether KO is neither a company's stock nor is its price volatile.\n\nWe know that KO is a mature company's stock (Premise 5), which means that it is a company's stock. Therefore, we cannot conclude that KO is neither a company's stock.\n\nHowever, we do know that if KO's price is volatile, then KO is not suitable for a retirement fund (Premise 2). But we also know that KO is a mature company's stock (Premise 5), which means that it is suitable for a retirement fund (Premise 4).\n\nTherefore, we have a contradiction. We cannot conclude that KO's price is volatile.\n\nHowever, we can conclude that KO's price is not volatile. This is because KO is a mature company's stock (Premise 5), which means that it is suitable for a retirement fund (Premise 4). And if the stock price is volatile, then it is not suitable for a retirement fund (Premise 2).\n\nTherefore, we can conclude that KO is neither a company's stock nor is its price volatile.\n\nHowever, this conclusion is not directly supported by the premises. The premises only tell us that KO is a mature company's stock. They do not tell us that KO is not a company's stock.\n\nHowever, the conclusion is not false either. The premises do not provide any information that directly contradicts the conclusion.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning and follow the rules of predicate logic.\n\nLet's define the following predicates:\n\n- G(x): x is a growth company's stock\n- M(x): x is a mature company's stock\n- S(x): x is a company's stock\n- V(x): x's price is volatile\n\nThe premises can be translated into the following logical statements:\n\n1. All growth companies' stocks are volatile:\n\u2200x (G(x) \u2192 V(x))\n\n2. If the stock price is volatile, then it is not suitable for a retirement fund:\n\u2200x (V(x) \u2192 \u00acS(x))\n\n3. Some companies' stocks are growth companies' stocks:\n\u2203x (G(x) \u2227 S(x))\n\n4. All mature companies' stocks are suitable for a retirement fund:\n\u2200x (M(x) \u2192 S(x))\n\n5. KO is a mature company's stock:\nM(KO)\n\nNow, let's examine the conclusion:\n\nIf KO is a growth company's stock or if its price is volatile, then KO is neither a company's stock nor is its price volatile:\n(G(KO) \u2228 V(KO)) \u2192 (\u00acS(KO) \u2227 \u00acV(KO))\n\nWe need to determine whether this conclusion is true, false, or uncertain.\n\nFrom premise 5, we know that KO is a mature company's stock, so we can deduce that KO is a company's stock:\nM(KO) \u2192 S(KO)\nS(KO)\n\nNow, let's consider the two parts of the conclusion separately:\n\nPart 1: G(KO) \u2228 V(KO)\n\nSince we know that KO is a mature company's stock, we can use the fact that all mature companies' stocks are suitable for a retirement fund (premise 4) to deduce that KO's price is not volatile:\nM(KO) \u2192 S(KO)\nM(KO) \u2192 \u00acV(KO)\n\nHowever, we also know that all growth companies' stocks are volatile (premise 1), so if KO were a growth company's stock, its price would be volatile:\nG(KO) \u2192 V(KO)\n\nSince KO is a mature company's stock, it cannot be a growth company's stock (because growth companies' stocks are volatile, and mature companies' stocks are not). Therefore, we can deduce that KO is not a growth company's stock:\n\u00acG(KO)\n\nNow, let's re-examine the conclusion:\n\n(G(KO) \u2228 V(KO)) \u2192 (\u00acS(KO) \u2227 \u00acV(KO))\n\nSince G(KO) is false, the only way for the antecedent to be true is if V(KO) is true.\n\nHowever, we previously deduced that M(KO) \u2192 \u00acV(KO), so we can conclude that V(KO) is false.\n\nTherefore, the conclusion (\u00acS(KO) \u2227 \u00acV(KO)) is true.\n\nSince the conclusion is true when the antecedent is false, the conclusion is not logically equivalent to the antecedent. Therefore, the conclusion is uncertain.\n\nHowever, in the context of this problem, we are looking for a determination of true, false, or uncertain, and the problem itself can be classified as false because there are no conditions under which the conclusion will be true.\n\nHence the final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will use a method called Formal Logic, specifically using a truth table or a set of premises and conclusions to determine the validity of the given statement.\n\nGiven premises:\n1. All growth companies' stocks are volatile. (G \u2192 V)\n2. If the stock price is volatile, then it is not suitable for a retirement fund. (V \u2192 \u00acS)\n3. Some companies' stocks are growth companies' stocks. (G \u2203)\n4. All mature companies' stocks are suitable for a retirement fund. (M \u2192 S)\n5. KO is a mature company's stock. (KO \u2192 M)\n\nWe need to determine whether the following conclusion is true, false, or uncertain:\nIf KO is a growth company's stock or if its price is volatile, then KO is neither a company's stock nor is its price volatile. (G \u222a V \u2192 \u00acC \u222a \u00acV)\n\nLet's break down the given premises:\n\n- Premise 1: G \u2192 V (All growth companies' stocks are volatile)\n- Premise 2: V \u2192 \u00acS (If the stock price is volatile, then it is not suitable for a retirement fund)\n- Premise 3: G \u2203 (Some companies' stocks are growth companies' stocks)\n- Premise 4: M \u2192 S (All mature companies' stocks are suitable for a retirement fund)\n- Premise 5: KO \u2192 M (KO is a mature company's stock)\n\nFrom Premise 5 (KO \u2192 M), we can conclude that KO is a mature company's stock.\n\nPremise 4 (M \u2192 S) implies that KO, being a mature company's stock, is suitable for a retirement fund (S).\n\nFrom Premise 1 (G \u2192 V), if KO is a growth company's stock, then it must be volatile (V). However, Premise 2 (V \u2192 \u00acS) implies that if KO's price is volatile, it is not suitable for a retirement fund (\u00acS), which contradicts the fact that KO is suitable for a retirement fund.\n\nWe can now analyze the given conclusion (G \u222a V \u2192 \u00acC \u222a \u00acV):\n\nIf KO is a growth company's stock or if its price is volatile, then KO is neither a company's stock nor is its price volatile.\n\nLet's analyze the two parts of the conclusion separately:\n\n- G \u222a V (KO is a growth company's stock or its price is volatile)\n- \u00acC \u222a \u00acV (KO is neither a company's stock nor is its price volatile)\n\nFrom Premise 3 (G \u2203), we know that there are companies with growth stocks, but we cannot conclude that KO is one of them. However, if KO is a growth company's stock, then it must be volatile (V) from Premise 1 (G \u2192 V).\n\nThe conclusion (G \u222a V \u2192 \u00acC \u222a \u00acV) implies that if KO is a growth company's stock or if its price is volatile, then it must be neither a company's stock nor is its price volatile.\n\nHowever, we know that KO is a mature company's stock (Premise 5), and mature company's stocks are suitable for a retirement fund (Premise 4).\n\nFrom Premise 2 (V \u2192 \u00acS), if KO's price is volatile, then it is not suitable for a retirement fund, which contradicts the fact that KO is suitable for a retirement fund.\n\nWe can conclude that the conclusion (G \u222a V \u2192 \u00acC \u222a \u00acV) is uncertain because the premises do not provide enough information to determine whether KO is a growth company's stock or if its price is volatile.\n\nThe final answer is: \n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To solve this problem, we will use the rules of predicate logic and the premises given.\n\nPremises:\n\n1. All growth companies' stocks are volatile.\n2. If the stock price is volatile, then it is not suitable for a retirement fund.\n3. Some companies' stocks are growth companies' stocks.\n4. All mature companies' stocks are suitable for a retirement fund.\n5. KO is a mature company's stock.\n\nConclusion: If KO is a growth company's stock or if its price is volatile, then KO is neither a company's stock nor is its price volatile.\n\nStep 1: Analyze the premises and conclusion.\n\n- From premise 3, we know that some companies' stocks are growth companies' stocks. Let's call the set of growth companies' stocks as G and the set of mature companies' stocks as M. From premise 5, we know that KO is a mature company's stock, which means KO is in set M.\n\nStep 2: Determine the relationship between the premises and conclusion.\n\n- From premise 1, we know that all growth companies' stocks are volatile. This implies that if a stock is volatile, it must be a growth company's stock.\n- From premise 2, we know that if the stock price is volatile, then it is not suitable for a retirement fund.\n\nStep 3: Apply the premises to the conclusion.\n\n- If KO is a growth company's stock, then it is volatile (premise 1). Since KO is a mature company's stock (premise 5), it is suitable for a retirement fund (premise 4). This contradicts the conclusion, which states that KO is neither a company's stock nor is its price volatile.\n\n- If KO is not a growth company's stock, then its price is not volatile (premise 1). Since KO is a mature company's stock (premise 5), it is suitable for a retirement fund (premise 4). This also contradicts the conclusion.\n\nHowever, we cannot directly determine if KO is a growth company's stock or not because premise 3 states that some companies' stocks are growth companies' stocks, but it does not state that all mature companies' stocks are growth companies' stocks. \n\nStep 4: Evaluate the conclusion.\n\n- Given that KO is a mature company's stock (premise 5) and all mature companies' stocks are suitable for a retirement fund (premise 4), we can say that KO is suitable for a retirement fund.\n- However, we cannot directly conclude that KO is not volatile or not a company's stock based on the given premises.\n\nTherefore, based on the analysis, the conclusion is uncertain because we cannot determine the truth value of the statement based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to break down the given premises and analyze them step by step.\n\nPremise 1: All growth companies' stocks are volatile. \nThis can be written in the form of a conditional statement: If a company is a growth company, then its stock is volatile.\n\nPremise 2: If the stock price is volatile, then it is not suitable for a retirement fund. \nThis is also a conditional statement: If the stock price is volatile, then it is not suitable for a retirement fund.\n\nPremise 3: Some companies' stocks are growth companies' stocks. \nThis statement is more of a vague assertion, and it does not directly contribute to our understanding of the relationship between growth companies and mature companies. We will come back to this premise later.\n\nPremise 4: All mature companies' stocks are suitable for a retirement fund. \nThis can be written in the form of a conditional statement: If a company is a mature company, then its stock is suitable for a retirement fund.\n\nPremise 5: KO is a mature company's stock. \nSince KO is a mature company's stock, its stock is suitable for a retirement fund (Premise 4).\n\nNow, let's analyze the conclusion: If KO is a growth company's stock or if its price is volatile, then KO is neither a company's stock nor is its price volatile.\n\nWe need to check the truth of this conclusion based on the premises we have. \n\nFrom Premise 3, we can infer that KO could be a growth company's stock (since some companies' stocks are growth companies' stocks) or a mature company's stock.\n\nFrom Premise 5, we know KO is a mature company's stock, which means its stock is suitable for a retirement fund.\n\nWe cannot conclude anything about KO being a growth company's stock from the given premises.\n\nHowever, we can analyze the second part of the conclusion: if the price of KO is volatile. \n\nFrom Premise 1, if KO is a growth company's stock, then its stock is volatile. \n\nHowever, Premise 5 states that KO is a mature company's stock, which contradicts the premise that if a company is a growth company, then its stock is volatile. Hence, we cannot conclude that the price of KO is volatile based on the premises.\n\nConsidering these points, we can conclude that the premises do not support the conclusion. The conclusion cannot be proved true or false using the given premises.\n\nTherefore, the answer is \\boxed{Uncertain}.",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will use a logical approach based on the premises given.\n\nPremises:\n\n1. All growth companies' stocks are volatile. (1)\n2. If the stock price is volatile, then it is not suitable for a retirement fund. (2)\n3. Some companies' stocks are growth companies' stocks. (3)\n4. All mature companies' stocks are suitable for a retirement fund. (4)\n5. KO is a mature company's stock. (5)\n\nWe need to evaluate the conclusion:\nIf KO is a growth company's stock or if its price is volatile, then KO is neither a company's stock nor is its price volatile.\n\nLet's analyze the conclusion step by step:\n\n- If KO is a growth company's stock, then it is volatile (from premise 1).\n- If KO is volatile, then it is not suitable for a retirement fund (from premise 2).\n- Since KO is a mature company's stock (from premise 5), it is suitable for a retirement fund (from premise 4).\n- This creates a contradiction: KO cannot be both volatile (not suitable for a retirement fund) and suitable for a retirement fund at the same time.\n\nHowever, the conclusion does not state that KO is not a company's stock or its price is not volatile. It states that if KO is a growth company's stock or if its price is volatile, then KO is neither a company's stock nor is its price volatile. This means we need to evaluate the \"or\" condition.\n\nGiven that KO is a mature company's stock, we know that its price is not volatile (because mature companies' stocks are suitable for a retirement fund, and volatility makes a stock unsuitable). The condition \"or if its price is volatile\" in the conclusion is not applicable to KO because it is a mature company's stock.\n\nSo, the conclusion should be evaluated based on the fact that KO is not volatile. The premise \"If KO is a growth company's stock, then it is volatile\" (from premise 1) does not apply to KO because it is a mature company's stock.\n\nTherefore, the conclusion is true. If KO is a growth company's stock (which is not the case) or if its price is volatile (which is not the case for a mature company's stock), then KO is neither a company's stock nor is its price volatile. Since the \"or\" condition does not apply to KO because it is not volatile, the conclusion holds true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply the rules of logic.\n\nPremises:\n\n1. All growth companies' stocks are volatile. \n   Let's denote this as: \n   A (growth companies) \u2192 V (volatile)\n\n2. If the stock price is volatile, then it is not suitable for a retirement fund. \n   Let's denote this as: \n   V \u2192 \u00acS (not suitable for a retirement fund)\n\n3. Some companies' stocks are growth companies' stocks. \n   Let's denote this as: \n   \u2203x (C(x) \u2227 G(x))\n\n4. All mature companies' stocks are suitable for a retirement fund. \n   Let's denote this as: \n   M(x) \u2192 S(x)\n\n5. KO is a mature company's stock. \n   Let's denote this as: \n   KO is M\n\nWe need to analyze the conclusion: \nIf KO is a growth company's stock or if its price is volatile, then KO is neither a company's stock nor is its price volatile. \nLet's denote this as: \n(KO is A \u2228 KO is V) \u2192 \u00ac(KO is C \u2228 KO is V)\n\nStep 1: Analyze the premises to determine the relationship between KO, growth companies, mature companies, and volatility.\n\nFrom premise 5, we know KO is a mature company's stock, so it is suitable for a retirement fund (premise 4).\n\nFrom premise 1, we know all growth companies' stocks are volatile. However, we do not know if KO is a growth company's stock.\n\nFrom premise 2, we know if the stock price is volatile, then it is not suitable for a retirement fund. But we already determined that KO is suitable for a retirement fund.\n\nStep 2: Apply the rules of logic to determine the conclusion.\n\nLet's analyze the conclusion: \n(KO is A \u2228 KO is V) \u2192 \u00ac(KO is C \u2228 KO is V)\n\nIf we assume KO is a growth company's stock (KO is A), then we know its price is volatile (premise 1). However, from premise 5, we know KO is a mature company's stock, which means it is suitable for a retirement fund (premise 4). This contradicts premise 2, which states that if the stock price is volatile, then it is not suitable for a retirement fund. Therefore, we cannot conclude that KO is a growth company's stock.\n\nNow, let's analyze the conclusion assuming KO is volatile (KO is V). We already know that KO is suitable for a retirement fund, which contradicts premise 2. Therefore, we cannot conclude that KO is volatile.\n\nHowever, since we cannot conclude that KO is a growth company's stock or volatile, we cannot conclude that KO is neither a company's stock nor its price is volatile.\n\nTherefore, the conclusion is uncertain because we cannot determine the truth value of the conclusion based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we will use the principles of logical reasoning and the given premises. We will break down the argument into smaller steps.\n\nPremises:\n\n1. All growth companies' stocks are volatile.\n2. If the stock price is volatile, then it is not suitable for a retirement fund.\n3. Some companies' stocks are growth companies' stocks.\n4. All mature companies' stocks are suitable for a retirement fund.\n5. KO is a mature company's stock.\n\nConclusion:\n\nIf KO is a growth company's stock or if its price is volatile, then KO is neither a company's stock nor is its price volatile.\n\nLet's break down the conclusion into two parts:\n\nPart 1: If KO is a growth company's stock, then KO is neither a company's stock nor is its price volatile.\nPart 2: If KO's price is volatile, then KO is neither a company's stock nor is its price volatile.\n\nTo determine the truth of the conclusion, we need to evaluate each part separately.\n\nPart 1: If KO is a growth company's stock, then KO is neither a company's stock nor is its price volatile.\n\nFrom Premise 3, we know that some companies' stocks are growth companies' stocks. This does not necessarily mean that KO is a growth company's stock, but it is possible. If KO is a growth company's stock, then from Premise 1, we know that its price is volatile. This would make the conclusion uncertain, as we are not sure if KO is a company's stock or not.\n\nHowever, we can use Premise 5 to draw a conclusion about KO. Since KO is a mature company's stock, it is suitable for a retirement fund (Premise 4). But we also know that if the stock price is volatile, then it is not suitable for a retirement fund (Premise 2). This means that KO's price is not volatile, as it is suitable for a retirement fund. \n\nSince KO's price is not volatile, and we already know that KO is a mature company's stock, we can conclude that the conclusion is true for the first part of the conclusion. \n\nPart 2: If KO's price is volatile, then KO is neither a company's stock nor is its price volatile.\n\nFrom Premise 1, we know that all growth companies' stocks are volatile. However, from Premise 5, we know that KO is a mature company's stock, and mature companies' stocks are not volatile (as they are suitable for a retirement fund). This means that KO's price is not volatile, as it is a mature company's stock.\n\nHowever, this conclusion is uncertain. We cannot conclude that KO is not a company's stock, as that is a separate statement. But we can conclude that its price is not volatile.\n\nCombining the two parts, we can see that the conclusion is true for the first part, but uncertain for the second part. However, the entire conclusion is uncertain, as the two parts are connected with an 'or' statement. The truth of the conclusion depends on the truth of both parts, and since the second part is uncertain, the entire conclusion is uncertain.\n\nTherefore, the final answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "all_growth_companies_stocks_are_volatile",
+          "z3_formula": "all_growth_companies_stocks_are_volatile == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "all_growth_companies_stocks_are_volatile -> volatile_stock_implies_not_suitable_for_retirement_fund",
+          "z3_formula": "Implies(all_growth_companies_stocks_are_volatile, volatile_stock_implies_not_suitable_for_retirement_fund)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "volatile_stock_implies_not_suitable_for_retirement_fund",
+          "z3_formula": "volatile_stock_implies_not_suitable_for_retirement_fund == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "some_companies_stocks_are_growth_companies_stocks",
+          "z3_formula": "some_companies_stocks_are_growth_companies_stocks == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "all_mature_companies_stocks_are_suitable_for_retirement_fund",
+          "z3_formula": "all_mature_companies_stocks_are_suitable_for_retirement_fund == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "ko_is_a_mature_companys_stock",
+          "z3_formula": "ko_is_a_mature_companys_stock == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "ko_is_a_growth_companys_stock_or_ko_is_volatile_stock -> ko_is_neither_a_companys_stock_nor_is_ko_is_volatile",
+          "z3_formula": "Implies(Or(ko_is_a_growth_companys_stock, ko_is_volatile_stock), And(Not(ko_is_a_companys_stock), Not(ko_is_volatile)))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_company_stock)",
+          "z3_formula": "volatile_growth_company_stock == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(growth_company_stock) -> not_suitable_for_retirement(growth_company_stock)",
+          "z3_formula": "Implies(volatile_growth_company_stock, not_suitable_for_retirement_growth_company_stock)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "growth_company_stock(X) & stock(X, KO)",
+          "z3_formula": "And(growth_company_stock_KO, stock_KO_KO)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "growth_company_stock(X) -> volatile(growth_company_stock)",
+          "z3_formula": "Implies(growth_company_stock_KO, volatile_growth_company_stock)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company_stock(X) & stock(X, KO)",
+          "z3_formula": "And(mature_company_stock_KO, stock_KO_KO)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "mature_company_stock(X) -> suitable_for_retirement(X)",
+          "z3_formula": "Implies(mature_company_stock_KO, suitable_for_retirement_KO)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(X) -> not_suitable_for_retirement(X)",
+          "z3_formula": "Implies(volatile_KO, not_suitable_for_retirement_KO)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not_suitable_for_retirement(KO) | volatile(KO)",
+          "z3_formula": "Or(not_suitable_for_retirement_KO, volatile_KO)",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "growth_company_stock(ko)",
+          "z3_formula": "growth_company_stock_ko == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "growth_company_stock(X) -> volatile_stock(X)",
+          "z3_formula": "Implies(growth_company_stock_ko, volatile_stock_ko)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "some_company_stock(ko)",
+          "z3_formula": "some_company_stock_ko == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "growth_company_stock(X) -> volatile_stock(X)",
+          "z3_formula": "Implies(growth_company_stock_ko, volatile_stock_ko)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "volatile_stock(ko)",
+          "z3_formula": "volatile_stock_ko == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company_stock(ko)",
+          "z3_formula": "mature_company_stock_ko == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "mature_company_stock(X) -> suitable_stock(X)",
+          "z3_formula": "Implies(mature_company_stock_ko, suitable_stock_ko)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "volatile_stock(X) -> not company_stock(X) & not volatile_stock(X)",
+          "z3_formula": "Implies(volatile_stock_ko, And(Not(company_stock_ko), Not(volatile_stock_ko)))",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not suitable_stock(ko)",
+          "z3_formula": "Not(suitable_stock_ko) == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "volatile_stock(X) -> growth_company_stock(X)",
+          "z3_formula": "Implies(volatile_stock_ko, growth_company_stock_ko)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "mature_company_stock(X) -> suitable_stock(X)",
+          "z3_formula": "Implies(mature_company_stock_ko, suitable_stock_ko)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not volatile_stock(ko)",
+          "z3_formula": "Not(volatile_stock_ko) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not company_stock(ko)",
+          "z3_formula": "Not(company_stock_ko) == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not volatile_stock(ko) & suitable_stock(ko)",
+          "z3_formula": "And(Not(volatile_stock_ko), suitable_stock_ko) == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not volatile_stock(ko) & suitable_stock(ko) -> False",
+          "z3_formula": "Implies(And(Not(volatile_stock_ko), suitable_stock_ko), False)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_company_stock)",
+          "z3_formula": "volatile_growth_company_stock == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "growth_company_stock(X) -> volatile(X)",
+          "z3_formula": "Implies(growth_company_stock, volatile)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(X) -> not_suitable_for_retirement(X)",
+          "z3_formula": "Implies(volatile, not_suitable_for_retirement)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "growth_company_stock_exists",
+          "z3_formula": "growth_company_stock_exists == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company_stock(X) -> suitable_for_retirement(X)",
+          "z3_formula": "Implies(mature_company_stock, suitable_for_retirement)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company_stock(ko)",
+          "z3_formula": "mature_company_stock_ko == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not_suitable_for_retirement(ko) | not volatile(ko)",
+          "z3_formula": "Or(not_suitable_for_retirement_ko, Not(volatile_ko))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "growth \u2192 volatile",
+          "z3_formula": "Implies(growth, volatile)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "volatile \u2192 not suitable",
+          "z3_formula": "Implies(volatile, not suitable)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "growth \u2203",
+          "z3_formula": "Exists(growth)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mature \u2192 suitable",
+          "z3_formula": "Implies(mature, suitable)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "ko \u2192 mature",
+          "z3_formula": "Implies(ko, mature)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "(growth \u2228 volatile) \u2192 not (company \u2228 volatile)",
+          "z3_formula": "Implies(Or(growth, volatile), Not(Or(company, volatile)))",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "G(x)",
+          "z3_formula": "G_x == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "G(x) -> V(x)",
+          "z3_formula": "Implies(G_x, V_x)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "V(x)",
+          "z3_formula": "V_x == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "V(x) -> ~S(x)",
+          "z3_formula": "Implies(V_x, Not(S_x))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "S(x)",
+          "z3_formula": "S_x == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "M(x)",
+          "z3_formula": "M_x == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "M(x) -> S(x)",
+          "z3_formula": "Implies(M_x, S_x)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "M(KO)",
+          "z3_formula": "M_KO == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "S(KO)",
+          "z3_formula": "S_KO == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "M(KO) -> ~V(KO)",
+          "z3_formula": "Implies(M_KO, Not(V_KO))",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "G(KO) -> V(KO)",
+          "z3_formula": "Implies(G_KO, V_KO)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "G(KO)",
+          "z3_formula": "G_KO == False",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "V(KO)",
+          "z3_formula": "V_KO == False",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "\u00acS(KO)",
+          "z3_formula": "Not(S_KO)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "\u00acV(KO)",
+          "z3_formula": "Not(V_KO)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "\u00acS(KO) \u2227 \u00acV(KO)",
+          "z3_formula": "And(Not(S_KO), Not(V_KO))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "(G(KO) \u2228 V(KO)) -> (\u00acS(KO) \u2227 \u00acV(KO))",
+          "z3_formula": "Implies(Or(G_KO, V_KO), And(Not(S_KO), Not(V_KO)))",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "growth(KO) -> volatile(KO)",
+          "z3_formula": "Implies(growth_KO, volatile_KO)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "volatile(KO) -> not(suitable(KO))",
+          "z3_formula": "Implies(volatile_KO, not_suitable_KO)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "mature(KO)",
+          "z3_formula": "mature_KO == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mature(KO) -> suitable(KO)",
+          "z3_formula": "Implies(mature_KO, suitable_KO)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "some(growth(KO))",
+          "z3_formula": "growth_KO == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "growth(KO) -> volatile(KO)",
+          "z3_formula": "Implies(growth_KO, volatile_KO)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "suitable(KO)",
+          "z3_formula": "suitable_KO == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "growth(KO) | volatile(KO) -> not(company(KO)) | not(volatile(KO))",
+          "z3_formula": "Implies(Or(growth_KO, volatile_KO), Or(Not(company_KO), Not(volatile_KO)))",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_company_stock)",
+          "z3_formula": "volatile_growth_company_stock == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(growth_company_stock) -> not(suitable_for_retirement_fund(growth_company_stock))",
+          "z3_formula": "Implies(volatile_growth_company_stock, not_suitable_for_retirement_fund_growth_company_stock)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "some(growth_company_stock, company_stock)",
+          "z3_formula": "some_growth_company_stock_company_stock == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mature(ko)",
+          "z3_formula": "mature_ko == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(growth_company_stock) -> not(company_stock(growth_company_stock))",
+          "z3_formula": "Implies(volatile_growth_company_stock, not_company_stock_growth_company_stock)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(growth_company_stock) -> not(volatile(growth_company_stock))",
+          "z3_formula": "Implies(volatile_growth_company_stock, not_volatile_growth_company_stock)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "not(company_stock(ko) | volatile(ko))",
+          "z3_formula": "not_or(company_stock_ko, volatile_ko)",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_company)",
+          "z3_formula": "volatile_growth_company == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "growth_company(X) -> volatile(stock(X))",
+          "z3_formula": "Implies(growth_company, volatile_stock)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "volatile(stock)",
+          "z3_formula": "volatile_stock == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(stock) -> not(suitable_for_retirement(stock))",
+          "z3_formula": "Implies(volatile_stock, not_suitable_for_retirement)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company(stock)",
+          "z3_formula": "mature_company_stock == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "mature_company(X) -> suitable_for_retirement(stock(X))",
+          "z3_formula": "Implies(mature_company_stock, suitable_for_retirement)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "suitable_for_retirement(stock)",
+          "z3_formula": "suitable_for_retirement == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "growth_company(stock) | volatile(stock)",
+          "z3_formula": "growth_company_stock | volatile_stock",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not(growth_company(stock) | volatile(stock))",
+          "z3_formula": "Not(growth_company_stock | volatile_stock)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_company_stock)",
+          "z3_formula": "volatile_growth_company_stock == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(growth_company_stock) -> not_suitable_for_retirement(growth_company_stock)",
+          "z3_formula": "Implies(volatile_growth_company_stock, not_suitable_for_retirement_growth_company_stock)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "growth_company_stock(X) & stock(X, KO)",
+          "z3_formula": "And(growth_company_stock_KO, stock_KO_KO)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "mature_company_stock(KO)",
+          "z3_formula": "mature_company_stock_KO == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "mature_company_stock(X) -> suitable_for_retirement(X)",
+          "z3_formula": "Implies(mature_company_stock_KO, suitable_for_retirement_KO)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not_suitable_for_retirement(KO)",
+          "z3_formula": "not_suitable_for_retirement_KO == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "growth_company_stock(X) | volatile(X) -> not_stock(X) | not_volatile(X)",
+          "z3_formula": "Implies(Or(growth_company_stock_KO, volatile_KO), Or(not_stock_KO, not_volatile_KO))",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "volatile(growth_companies)",
+          "z3_formula": "volatile_growth_companies == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "volatile(X) -> not_suitable_for_retirement(X)",
+          "z3_formula": "Implies(volatile_growth_companies, not_suitable_for_retirement)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "exists(x, and(C(x), G(x)))",
+          "z3_formula": "exists_x_and_C_x_and_G_x == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "mature(X) -> suitable_for_retirement(X)",
+          "z3_formula": "Implies(mature_KO, suitable_for_retirement_KO)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "mature(KO)",
+          "z3_formula": "mature_KO == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "(A(KO) or V(KO)) -> not(C(KO) or V(KO))",
+          "z3_formula": "Implies(Or(A_KO, V_KO), Not(Or(C_KO, V_KO)))",
+          "source_step": 6
+        }
+      ],
+      []
+    ],
+    "constraints_stats": {
+      "total_extracted": 97,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 79
+    },
+    "maxsat_stats": {
+      "satisfied": 73,
+      "excluded": 6,
+      "total_weight": 86,
+      "solve_time_ms": 2.026345580816269
+    },
+    "timing": {
+      "trace_gen_s": 18.013,
+      "extraction_s": 38.664,
+      "dedup_s": 1.992,
+      "maxsat_s": 0.006,
+      "total_s": 58.675
+    }
+  }
+}

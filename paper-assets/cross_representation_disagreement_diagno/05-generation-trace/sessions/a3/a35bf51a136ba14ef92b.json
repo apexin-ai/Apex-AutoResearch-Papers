@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a35bf51a136ba14ef92b",
+  "project": "cross_representation_disagreement_diagno",
+  "kind": "result",
+  "title": "fix c5 dual output",
+  "task_key": "worker_fix_c5_dual_output_20260515T065852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_c5_dual_output_20260515T065852_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "b3f8d2bb8ba627ecd93dff92262cc8dd7d4f98673aade619851b08f727a4351b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "执行完成。结果：\n\n**C5 双值输出 (All samples):**\n- `c5_committed`: **94.59%** (35/37) [skips ambiguous] — Bootstrap 95% CI: [0.8611, 1.0000]\n- `c5_coverage`: **53.03%** (35/66) [ambiguous=fail] — Bootstrap 95% CI: [0.4098, 0.6508]\n- `ambiguous_rate`: **43.94%** (29/66)\n\n**Excl GT=Unknown:**\n- `c5_committed`: **96.15%** (25/26) — CI: [0.8710, 1.0000]\n- `c5_coverage`: **65.79%** (25/38) — CI: [0.5000, 0.8056]\n- `ambiguous_rate`: **31.58%** (12/38)\n\nC1-C4 不变。JSON 已保存到 `results/eval_unified_folio_d012.json`。\n\n备注：c5_committed 比预期的 85.4% 高（94.59%），ambiguous_rate 也是 43.94% 而非 37.9%——这可能是数据版本差异，但双值拆分逻辑本身正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-c5-dual-output.md"
+}

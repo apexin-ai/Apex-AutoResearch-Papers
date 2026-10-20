@@ -1,0 +1,25 @@
+{
+  "run_id": "run_20260525_163155_d48bb9",
+  "timestamp": "2026-05-25T16:34:02.541387",
+  "vlm_provider": "gemini",
+  "vlm_model": "gemini-2.5-pro",
+  "image_provider": "google_imagen",
+  "image_model": "gemini-3-pro-image-preview",
+  "refinement_iterations": 1,
+  "seed": null,
+  "config_snapshot": {
+    "vlm_provider": "gemini",
+    "vlm_model": "gemini-2.5-pro",
+    "image_provider": "google_imagen",
+    "image_model": "gemini-3-pro-image-preview",
+    "num_retrieval_examples": 10,
+    "refinement_iterations": 5,
+    "output_resolution": "2k",
+    "reference_set_path": "data/reference_sets",
+    "guidelines_path": "data/guidelines",
+    "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513_3/projects/symb_invariant_consensus/docs/paper/figures",
+    "save_iterations": true,
+    "openrouter_api_key": [REDACTED],
+    "skip_ssl_verification": false
+  }
+}

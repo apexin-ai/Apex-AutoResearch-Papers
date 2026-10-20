@@ -1,0 +1,1696 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-500_Q8",
+    "problem": "Anne is blue. Anne is cold. Anne is furry. Anne is red. Anne is round. Anne is white. Bob is big. Dave is round. Dave is white. Harry is big. Harry is red. Harry is white. All blue things are white. If something is cold then it is red. Furry, blue things are red. If something is round and big then it is blue. If Anne is cold and Anne is red then Anne is big. All red things are round. If something is big then it is cold. If something is cold and furry then it is white.\n\nDetermine whether the following statement is true, false, or unknown:\nBob is not round.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nCold($x, bool) ::: Is x cold?\nFurry($x, bool) ::: Is x furry?\nRed($x, bool) ::: Is x red?\nRound($x, bool) ::: Is x round?\nWhite($x, bool) ::: Is x white?\nBig($x, bool) ::: Is x big?\n\nFacts:\nBlue(Anne, True) ::: Anne is blue.\nCold(Anne, True) ::: Anne is cold.\nFurry(Anne, True) ::: Anne is furry.\nRed(Anne, True) ::: Anne is red.\nRound(Anne, True) ::: Anne is round.\nWhite(Anne, True) ::: Anne is white.\nBig(Bob, True) ::: Bob is big.\nRound(Dave, True) ::: Dave is round.\nWhite(Dave, True) ::: Dave is white.\nBig(Harry, True) ::: Harry is big.\nRed(Harry, True) ::: Harry is red.\nWhite(Harry, True) ::: Harry is white.\n\nRules:\nBlue($x, True) >>> White($x, True) ::: All blue things are white.\nCold($x, True) >>> Red($x, True) ::: If something is cold then it is red.\nFurry($x, True) && Blue($x, True) >>> Red($x, True) ::: Furry, blue things are red.\nRound($x, True) && Big($x, True) >>> Blue($x, True) ::: If something is round and big then it is blue.\nCold(Anne, True) && Red(Anne, True) >>> Big(Anne, True) ::: If Anne is cold and Anne is red then Anne is big.\nRed($x, True) >>> Round($x, True) ::: All red things are round.\nBig($x, True) >>> Cold($x, True) ::: If something is big then it is cold.\nCold($x, True) && Furry($x, True) >>> White($x, True) ::: If something is cold and furry then it is white.\n\nQuery:\nRound(Bob, False) ::: Bob is not round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 242.5,
+      "Unknown": 204.5
+    },
+    "answer_counts": {
+      "False": 8,
+      "Unknown": 3
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Bob is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following premises:\n   - All blue things are white.\n   - If something is cold then it is red.\n   - Furry, blue things are red.\n   - If something is round and big then it is blue.\n   - If Anne is cold and Anne is red then Anne is big.\n   - All red things are round.\n   - If something is big then it is cold.\n   - If something is cold and furry then it is white.\n\n2. We also have the following statements:\n   - Anne is blue.\n   - Anne is cold.\n   - Anne is furry.\n   - Anne is red.\n   - Anne is round.\n   - Anne is white.\n   - Bob is big.\n   - Dave is round.\n   - Dave is white.\n   - Harry is big.\n   - Harry is red.\n   - Harry is white.\n\n3. We can start by analyzing the statement \"Bob is not round\". To determine its truth value, we need to find out if Bob is round or not.\n\n4. From the given premises, we can derive the following information:\n   - Since all red things are round and Harry is red, Harry is round.\n   - Since Bob is big and if something is big then it is cold, Bob is cold.\n   - Since Bob is cold and if something is cold then it is red, Bob is red.\n   - Since Bob is red and all red things are round, Bob is round.\n\n5. Therefore, we can conclude that the statement \"Bob is not round\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to use logical reasoning and the given premises. \n\n1. All blue things are white. \n2. Anne is blue.\n3. Anne is white. (From 2 and 1)\n\n4. Anne is cold.\n5. Anne is red.\n6. If something is cold then it is red. (From 4 and 5)\n7. If Anne is cold and Anne is red then Anne is big. (From 4 and 5)\n8. Anne is big. (From 4, 5, and 7)\n\nNow, let's consider Bob:\n9. Bob is big.\n10. If something is big then it is cold. (From 9)\n11. Bob is cold. (From 9 and 10)\n\n12. Bob is not round (We are trying to prove this statement).\n\nNow, let's analyze Dave:\n13. Dave is round.\n14. Dave is white.\n15. If something is round and big then it is blue. (However, we do not know if Dave is big.)\n\nConsidering Harry:\n16. Harry is big.\n17. Harry is red.\n18. If something is big then it is cold. (From 16)\n19. Harry is cold. (From 16 and 18)\n\nNow, let's see if we can conclude anything about Harry and Bob:\n20. If something is cold and furry then it is white. (However, we do not know if Harry or Bob is furry.)\n21. If something is cold then it is red. (From 6)\n22. Bob is red (From 10 and 11, and 21)\n\n23. All red things are round. (From 17 and 18)\n24. Bob is round. (From 22 and 23)\n\nHowever, we are trying to prove that Bob is not round. But we have found that Bob is indeed round (From 24). Therefore, the statement \"Bob is not round\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Bob is not round' is true, false, or unknown, we need to analyze the given information.\n\n1. All blue things are white.\n2. If something is cold then it is red.\n3. Furry, blue things are red.\n4. If something is round and big then it is blue.\n5. If Anne is cold and Anne is red then Anne is big.\n6. All red things are round.\n7. If something is big then it is cold.\n8. If something is cold and furry then it is white.\n\nFrom the given statements:\n\n- Bob is big (statement 8: Bob is big.).\n- Bob is big implies Bob is cold (statement 7: If something is big then it is cold).\n- Cold things are red (statement 2: If something is cold then it is red).\n- Red things are round (statement 6: All red things are round).\n- Bob is round (Since Bob is red and red things are round).\n\nNow, to determine whether 'Bob is not round,' we know that 'Bob is round.' Therefore, 'Bob is not round' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine if the statement \"Bob is not round\" is true, false, or unknown, we need to use the given premises and the properties of each person and object.\n\n1. All blue things are white.\n2. Anne is blue. \n3. Anne is white. \n   - From (1) and (2), we can conclude that Anne is white (which we already know from (3)), but this doesn't provide any new information.\n4. Anne is cold.\n5. Anne is red.\n6. Anne is furry.\n7. Anne is round.\n8. Anne is white.\n   - From (4), we know Anne is cold, and from (5), we know Anne is red.\n9. If something is cold then it is red.\n   - From (4) and (9), we can conclude that Anne is red (which we already know from (5)), but this doesn't provide any new information.\n10. Furry, blue things are red.\n    - From (6) and (2), we can conclude that Anne is blue (which we already know from (2)), but this doesn't provide any new information.\n11. If Anne is cold and Anne is red then Anne is big.\n    - From (4) and (5), we can conclude that Anne is big.\n12. All red things are round.\n    - From (5) and (12), we can conclude that Anne is round (which we already know from (7)), but this doesn't provide any new information.\n13. If something is big then it is cold.\n    - From (11), we know Anne is big and cold, which aligns with (4).\n14. If something is cold and furry then it is white.\n    - From (4) and (6), we can conclude that Anne is white (which we already know from (3)), but this doesn't provide any new information.\n15. Bob is big.\n16. Bob is round.\n17. Dave is round.\n18. Dave is white.\n19. Harry is big.\n20. Harry is red.\n21. Harry is white.\n22. Harry is round.\n23. Harry is big.\n24. Harry is red.\n25. Harry is white.\n26. If something is round and big then it is blue.\n    - From (15), we know Bob is big and round, so from (26), we can conclude that Bob is blue.\n\nFrom (1), we know that all blue things are white, but from (8), we know Anne is white. Since we cannot conclude whether Bob is white or not based on the given premises, the statement \"Bob is not round\" is unknown.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and deduce information about Bob.\n\nGiven statements:\n1. Anne is blue.\n2. Anne is cold.\n3. Anne is furry.\n4. Anne is red.\n5. Anne is round.\n6. Anne is white.\n7. Bob is big.\n8. Dave is round.\n9. Dave is white.\n10. Harry is big.\n11. Harry is red.\n12. Harry is white.\n13. All blue things are white.\n14. If something is cold then it is red.\n15. Furry, blue things are red.\n16. If something is round and big then it is blue.\n17. If Anne is cold and Anne is red then Anne is big.\n18. All red things are round.\n19. If something is big then it is cold.\n20. If something is cold and furry then it is white.\n\nStatement to evaluate: Bob is not round.\n\nLet's evaluate the given statements and use the rules to deduce information.\n\nFrom statement 19: If something is big then it is cold.\nFrom statement 7: Bob is big. \nTherefore, Bob is cold (using rule 19).\n\nFrom statement 14: If something is cold then it is red.\nSince Bob is cold, Bob is red (using rule 14).\n\nFrom statement 18: All red things are round.\nSince Bob is red, Bob is round (using rule 18).\n\nNow, let's evaluate the statement \"Bob is not round.\"\n\nWe found that Bob is round (from the previous step). Therefore, the statement \"Bob is not round\" is false.\n\nSo, the final answer is \\boxed{False}.",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we have the following statements:\n   - All blue things are white.\n   - If something is cold then it is red.\n   - Furry, blue things are red.\n   - If something is round and big then it is blue.\n   - If Anne is cold and Anne is red then Anne is big.\n   - All red things are round.\n   - If something is big then it is cold.\n   - If something is cold and furry then it is white.\n\n2. We are given information about Anne: \n   - Anne is blue.\n   - Anne is cold.\n   - Anne is furry.\n   - Anne is red.\n   - Anne is round.\n   - Anne is white.\n\n3. We are given information about Bob: \n   - Bob is big.\n\n4. We are given information about Dave: \n   - Dave is round.\n   - Dave is white.\n\n5. We are given information about Harry: \n   - Harry is big.\n   - Harry is red.\n   - Harry is white.\n\n6. To determine whether Bob is round, we need to find out the color of Bob using the given statements.\n\n7. Since Bob is big and all big things are cold, Bob must be cold.\n\n8. Since Bob is cold, Bob must be red (from the statement \"If something is cold then it is red\").\n\n9. Since Bob is red, Bob must be round (from the statement \"All red things are round\").\n\n10. Therefore, Bob is round.\n\nSince the statement \"Bob is not round\" is false, the answer is \\boxed{false}.",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not round\" is true, false, or unknown, we need to analyze the given information and apply the rules of logic.\n\n1. Given information:\n   - Anne is blue.\n   - Anne is cold.\n   - Anne is furry.\n   - Anne is red.\n   - Anne is round.\n   - Anne is white.\n   - Bob is big.\n   - Dave is round.\n   - Dave is white.\n   - Harry is big.\n   - Harry is red.\n   - Harry is white.\n   - All blue things are white.\n   - If something is cold then it is red.\n   - Furry, blue things are red.\n   - If something is round and big then it is blue.\n   - If Anne is cold and Anne is red then Anne is big.\n   - All red things are round.\n   - If something is big then it is cold.\n   - If something is cold and furry then it is white.\n\n2. The statement to be evaluated: \"Bob is not round.\"\n\n3. We need to evaluate whether Bob is round or not to determine whether the statement is true or false. \n\n4. From the given information, we have \"Bob is big.\" We need to find a rule that connects \"big\" with \"round\" to determine whether Bob is round.\n\n5. The rule that connects \"big\" with \"round\" is: \"If something is round and big then it is blue.\" However, we don't know whether this rule is applicable to Bob or not because it uses \"and,\" which means both conditions (round and big) must be true for the conclusion (blue) to be true.\n\n6. Since we don't know whether Bob is blue, we can't conclude that Bob is round using this rule. \n\n7. However, we can use another rule: \"All red things are round.\" But we don't know whether Bob is red or not.\n\n8. We can use the rule \"If something is cold then it is red,\" but we don't know whether Bob is cold or not.\n\n9. We can use the rule \"If something is big then it is cold,\" which means Bob is cold.\n\n10. Since Bob is cold, we can use another rule: \"If something is cold then it is red,\" which means Bob is red.\n\n11. Now, we can use the rule \"All red things are round,\" which means Bob is round.\n\n12. Since Bob is round, we can use the rule \"If something is round and big then it is blue,\" but we don't need to use this rule to determine whether Bob is round.\n\n13. However, we can conclude that the statement \"Bob is not round\" is false because we found that Bob is round.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not round\" is true, false, or unknown, we need to analyze the given information and apply the logical deductions.\n\n1. All blue things are white.\n2. Anne is blue. \nFrom (1) and (2), we can deduce that Anne is white.\n\n3. Anne is cold. \n4. Anne is red. \nFrom (3) and (4), we can deduce that Anne is big, since if something is cold and red, then it is big (from the given information).\n\n5. Anne is furry. \n6. Anne is red. \nFrom (5) and (6), we can deduce that Anne is red, but we already knew that. However, we can also use (5) and (6) to conclude that Anne is white, since furry, blue things are red, and we already know Anne is white.\n\n7. Bob is big. \n8. Harry is big. \nFrom (7) and (8), we know that at least two people are big.\n\n9. If something is cold then it is red. \n10. Harry is red. \nHowever, we cannot conclude that Harry is cold, since Harry can also be big.\n\n11. All red things are round. \n12. Anne is red. \nFrom (11) and (12), we can deduce that Anne is round.\n\n13. If something is round and big then it is blue. \nHowever, we cannot conclude that Anne is blue, since we already know that Anne is white.\n\n14. Dave is round. \n15. Dave is white. \nFrom (13) and (14), we can deduce that Dave is blue.\n\n16. If something is cold then it is red. \n17. If something is cold and furry then it is white. \nFrom (16) and (17), we can deduce that Anne is white, which we already knew.\n\n18. If something is big then it is cold. \nHowever, we cannot conclude that Bob is cold, since we cannot conclude that Bob is red (from (9)).\n\n19. If something is round and big then it is blue. \nHowever, we cannot conclude that Bob is blue, since we cannot conclude that Bob is cold.\n\n20. Bob is big. \nHowever, we cannot conclude that Bob is round, since we do not know if Bob is cold.\n\nSince we cannot conclude that Bob is round, the statement \"Bob is not round\" is true.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - All blue things are white.\n   - If something is cold then it is red.\n   - Furry, blue things are red.\n   - If something is round and big then it is blue.\n   - If Anne is cold and Anne is red then Anne is big.\n   - All red things are round.\n   - If something is big then it is cold.\n   - If something is cold and furry then it is white.\n\n2. From the information, we know the following about Anne:\n   - Anne is blue.\n   - Anne is cold.\n   - Anne is furry.\n   - Anne is red.\n   - Anne is round.\n   - Anne is white.\n\n3. Since Anne is blue, we can conclude that Anne is white (from the given information).\n4. Since Anne is cold, we can conclude that Anne is red (from the given information).\n5. Since Anne is red, we can conclude that Anne is round (from the given information).\n6. Since Anne is cold and Anne is red, we can conclude that Anne is big (from the given information).\n7. Since Anne is big, we can conclude that Anne is cold (from the given information).\n\n8. Now, let's analyze the information about Bob:\n   - Bob is big.\n   - Bob is not mentioned as cold, red, round, white, blue, or furry.\n   - Since Bob is big, we can conclude that Bob is cold (from the given information).\n\n9. Since Bob is cold and we have no information about Bob being furry, we cannot conclude whether Bob is white or not.\n10. Since Bob is big and we have no information about Bob being round, we cannot conclude whether Bob is blue or not.\n\n11. However, we can conclude that if Bob is blue, then Bob is white (from the given information).\n12. But we do not have enough information to determine whether Bob is blue or not.\n\n13. Since we do not have enough information to determine whether Bob is round or not, we cannot conclude whether the statement \"Bob is not round\" is true or false.\n\nTherefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine if the statement \"Bob is not round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that \"All blue things are white.\"\n2. We are given that \"Anne is blue. Anne is cold. Anne is furry. Anne is red. Anne is round. Anne is white.\"\n   From (2), we can conclude that Anne is both blue and white. This means Anne satisfies the condition of being a blue thing, which according to (1), is white.\n\n3. Since Anne is white, we can also conclude that Anne is not red because the given information states that \"All blue things are white.\" It does not state that all red things are white.\n\n4. From (2), we also know that Anne is red. This creates a contradiction because Anne cannot be both red and white at the same time, based on our previous conclusion.\n\nHowever, we need to continue analyzing the information given to determine whether the statement \"Bob is not round\" is true, false, or unknown.\n\n5. We are given that \"If something is round and big then it is blue.\"\n6. We are given that \"Bob is big. Harry is big.\"\n7. We are given that \"Harry is round.\"\n   From (6) and (7), we can conclude that Harry is big and round. Therefore, according to (5), Harry is blue.\n\n8. We are given that \"All blue things are white.\"\n   From (8), we can conclude that Harry is white.\n\n9. We are given that \"Harry is red. Harry is white.\"\n   From (9), we can conclude that Harry is both red and white. This contradicts our previous conclusion that red and white cannot coexist.\n\nHowever, we need to continue analyzing the information given to determine whether the statement \"Bob is not round\" is true, false, or unknown.\n\n10. We are given that \"All red things are round.\"\n11. We are given that \"If something is cold then it is red.\"\n12. We are given that \"Dave is round. Dave is white.\"\n13. We are given that \"If something is cold and furry then it is white.\"\n14. We are given that \"If something is cold then it is red.\"\n15. We are given that \"Anne is cold. Anne is furry. Anne is red. Anne is white.\"\n   From (14) and (15), we can conclude that Anne is cold and red, which means Anne is also cold.\n\n16. We are given that \"If something is cold then it is red.\"\n17. We are given that \"Anne is cold. Anne is red.\"\n   From (16) and (17), we can conclude that Anne is cold and red. Therefore, according to (14), Anne is red.\n\n18. We are given that \"If something is big then it is cold.\"\n19. We are given that \"Bob is big.\"\n   From (18) and (19), we can conclude that Bob is big and cold. Therefore, according to (14), Bob is red.\n\n20. We are given that \"All red things are round.\"\n   From (20), we can conclude that Bob is round.\n\nHowever, we were asked to determine whether \"Bob is not round.\" Since we have concluded that Bob is indeed round, the statement \"Bob is not round\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not round\" is true, false, or unknown, we need to analyze the given information and apply logical reasoning step by step.\n\n1. All blue things are white. (Rule 1)\n2. Anne is blue. (Given fact)\n   - From Rule 1, we can conclude that Anne is white.\n3. Anne is cold. (Given fact)\n4. Anne is red. (Given fact)\n5. If something is cold then it is red. (Rule 2)\n   - From Rule 2 and Fact 3, we can conclude that it's true that Anne is red (as already given), but we can also infer that Anne is cold.\n6. Anne is furry. (Given fact)\n7. If something is cold and furry then it is white. (Rule 10)\n   - From Rule 10 and Facts 3 and 6, we can conclude that Anne is white (as already deduced in Step 2).\n8. Anne is round. (Given fact)\n9. Anne is white. (Already deduced in Step 2)\n10. All red things are round. (Rule 9)\n    - From Rule 9, we can conclude that Anne is round (as already given in Step 8).\n11. If Anne is cold and Anne is red then Anne is big. (Rule 7)\n    - From Rule 7, we can conclude that Anne is big.\n\nNow, let's analyze the given information about Bob:\n12. Bob is big. (Given fact)\n13. If something is big then it is cold. (Rule 9)\n    - From Rule 9 and Fact 12, we can conclude that Bob is cold.\n\nNow, we need to analyze the given information about Dave:\n14. Dave is round. (Given fact)\n15. Dave is white. (Given fact)\n16. If something is round and big then it is blue. (Rule 5)\n    - We cannot conclude that Dave is big, so we cannot apply Rule 5 to conclude that Dave is blue.\n\nNow, let's analyze the given information about Harry:\n17. Harry is big. (Given fact)\n18. Harry is red. (Given fact)\n19. Harry is white. (Given fact)\n20. If something is big then it is cold. (Rule 9)\n    - From Rule 9 and Fact 17, we can conclude that Harry is cold.\n21. All red things are round. (Rule 9)\n    - From Rule 9 and Fact 18, we can conclude that Harry is round.\n\nNow, we need to analyze the statement \"Bob is not round.\"\nFrom the given information, we cannot conclude that Bob is round or not round. We cannot apply any rule to directly conclude the roundness of Bob. However, we can conclude that Bob is not necessarily round because we cannot deduce Bob's roundness using the given information and rules.\n\nTherefore, the final answer is:\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Bob is not round\" is true, false, or unknown, we need to use the given information and logical deductions.\n\n1. We are given that all blue things are white. \n2. Anne is blue. Therefore, Anne is white. \n3. Anne is cold. Since something that is cold is red, Anne is red. \n4. Since Anne is cold and furry, and something that is cold and furry is white, this creates a contradiction with the previous statement that Anne is red. But we know that Anne is blue, and a blue thing is white. So we should not use the statement that something that is cold and furry is white. \n5. Anne is furry and blue. Since furry, blue things are red, Anne is red. \n6. We have two statements saying Anne is red. We should go with statement 2.  Therefore, Anne is blue.\n7. Anne is blue, and since all blue things are white, Anne is white. \n8. Since Anne is blue, it follows that Anne is round and big, because something that is round and big is blue.\n9. Therefore, Anne is big. \n10. Since Anne is cold and Anne is big, it follows that Anne is red, but we already know that Anne is blue.\n11. Since something that is big is cold, we can conclude that Bob is big. \n12. Since Bob is big, it follows that Bob is cold. \n13. Since something that is cold is red, it follows that Bob is red. \n14. Since all red things are round, it follows that Bob is round.\n\nNow that we have found Bob is round, we can answer the question.\n\nThe statement \"Bob is not round\" is false. \n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "all(blue, white)",
+          "z3_formula": "all_blue_white == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(furry_X, blue_X), red_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, big_X), blue_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_anne, red_anne), big_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_X, round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_X, cold_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_X, furry_X), white_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_X, white_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_anne, red_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_anne, red_anne), big_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_bob, cold_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not round(bob)",
+          "z3_formula": "Not(round_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_dave, big_dave), blue_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_harry, cold_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_X, furry_X), white_X)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_harry, red_harry)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_harry, round_harry)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 24
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_blue(X) -> white(X)",
+          "z3_formula": "Implies(all_blue_X, white_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(furry_X, blue_X), red_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, big_X), blue_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_anne, red_anne), big_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_X, round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_X, cold_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_X, furry_X), white_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob) -> cold(bob)",
+          "z3_formula": "Implies(big_bob, cold_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob) -> red(bob)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob) -> round(bob)",
+          "z3_formula": "Implies(red_bob, round_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_anne, white_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_anne, red_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(furry_anne, blue_anne), red_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_anne, red_anne), big_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_anne, cold_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_anne, furry_anne), white_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_bob, big_bob), blue_bob)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == Implies(blue_bob, white_bob)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Implies(round_bob, white_bob))",
+          "source_step": 27
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_anne, white_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_anne, red_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(furry_anne, blue_anne), red_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_anne, big_anne), blue_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_anne, red_anne), big_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_anne, round_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_bob, cold_bob)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_bob, round_bob)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(bob))",
+          "z3_formula": "Not(round_bob)",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_blue(X) -> white(X)",
+          "z3_formula": "Implies(all_blue_X, white_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_X, red_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(furry_X, blue_X), red_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_X, big_X), blue_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_anne, red_anne), big_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_X, round_X)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_X, cold_X)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_X, furry_X), white_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_bob, big_bob), blue_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_bob, cold_bob)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_bob, round_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "all_blue_are_white",
+          "z3_formula": "all_blue_are_white == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue_anne",
+          "z3_formula": "blue_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "white_anne",
+          "z3_formula": "white_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold_anne",
+          "z3_formula": "cold_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red_anne",
+          "z3_formula": "red_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "big_anne",
+          "z3_formula": "big_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry_anne",
+          "z3_formula": "furry_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red_anne",
+          "z3_formula": "red_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white_anne",
+          "z3_formula": "white_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "big_bob",
+          "z3_formula": "big_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big_harry",
+          "z3_formula": "big_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "at_least_two_big",
+          "z3_formula": "Or(big_bob, big_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_harry, red_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red_harry",
+          "z3_formula": "red_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not_cold_harry",
+          "z3_formula": "Not(cold_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_anne, big_anne), blue_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "round_dave",
+          "z3_formula": "round_dave == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "white_dave",
+          "z3_formula": "white_dave == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "blue_dave",
+          "z3_formula": "blue_dave == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_anne, furry_anne), white_anne)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "not_cold_bob",
+          "z3_formula": "Not(cold_bob)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_bob, big_bob), blue_bob)",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "big_bob",
+          "z3_formula": "big_bob == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "not_round_bob",
+          "z3_formula": "Not(round_bob)",
+          "source_step": 25
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_anne, white_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_anne, red_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & blue(X) -> red(X)",
+          "z3_formula": "Implies(And(furry_anne, blue_anne), red_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_anne, big_anne), blue_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_anne, red_anne), big_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_anne, cold_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_anne, furry_anne), white_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_bob, cold_bob)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_bob, white_bob)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "white(bob)",
+          "z3_formula": "white_bob == True",
+          "source_step": "Unknown"
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == Unknown",
+          "source_step": "Unknown"
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == Unknown",
+          "source_step": "Unknown"
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_harry, big_harry), blue_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_harry, white_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_harry, round_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_harry, red_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_dave, furry_dave), white_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_dave, red_dave)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_anne, red_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_bob, cold_bob)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_bob, round_bob)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_X, white_X)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_anne, red_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_anne, furry_anne), white_anne)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_anne, round_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "round(anne)",
+          "z3_formula": "round_anne == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & red(X) -> big(X)",
+          "z3_formula": "Implies(And(cold_anne, red_anne), big_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "big(bob)",
+          "z3_formula": "big_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_bob, cold_bob)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "round(dave)",
+          "z3_formula": "round_dave == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_dave, big_dave), blue_dave)",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "big(dave)",
+          "z3_formula": "big_dave == Unknown",
+          "source_step": 21
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "white(harry)",
+          "z3_formula": "white_harry == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_harry, cold_harry)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "cold(harry)",
+          "z3_formula": "cold_harry == True",
+          "source_step": 26
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_harry, round_harry)",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 28
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_anne, white_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_anne, red_anne)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) & furry(X) -> white(X)",
+          "z3_formula": "Implies(And(cold_anne, furry_anne), white_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_anne, white_anne)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "white(anne)",
+          "z3_formula": "white_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> blue(X)",
+          "z3_formula": "Implies(And(round_anne, big_anne), blue_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "cold(anne)",
+          "z3_formula": "cold_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(anne)",
+          "z3_formula": "big_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_anne, red_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "red(anne)",
+          "z3_formula": "red_anne == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> cold(X)",
+          "z3_formula": "Implies(big_anne, cold_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "cold(bob)",
+          "z3_formula": "cold_bob == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "cold(X) -> red(X)",
+          "z3_formula": "Implies(cold_bob, red_bob)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "red(bob)",
+          "z3_formula": "red_bob == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> round(X)",
+          "z3_formula": "Implies(red_bob, round_bob)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(bob)",
+          "z3_formula": "round_bob == True",
+          "source_step": 18
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 261,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 63
+    },
+    "maxsat_stats": {
+      "satisfied": 59,
+      "excluded": 4,
+      "total_weight": 255,
+      "solve_time_ms": 1.9378196448087692
+    },
+    "timing": {
+      "trace_gen_s": 8.563,
+      "extraction_s": 38.626,
+      "dedup_s": 3.259,
+      "maxsat_s": 0.006,
+      "total_s": 50.453
+    }
+  }
+}

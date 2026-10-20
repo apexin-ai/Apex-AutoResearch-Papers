@@ -1,0 +1,875 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-523_Q7",
+    "problem": "Anne is green. Anne is young. Charlie is blue. Charlie is green. Charlie is white. Dave is white. Erin is white. If Dave is kind and Dave is white then Dave is blue. If someone is white then they are nice. If someone is white then they are nice. All nice, green people are young. If someone is green then they are quiet. Nice people are kind. If Dave is blue then Dave is white. If Anne is nice and Anne is not white then Anne is green. If Dave is white and Dave is blue then Dave is green.\n\nDetermine whether the following statement is true, false, or unknown:\nDave is blue.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nGreen($x, bool) ::: Is x green?\nYoung($x, bool) ::: Is x young?\nBlue($x, bool) ::: Is x blue?\nWhite($x, bool) ::: Is x white?\nKind($x, bool) ::: Is x kind?\nNice($x, bool) ::: Is x nice?\nQuiet($x, bool) ::: Is x quiet?\n\nFacts:\nGreen(Anne, True) ::: Anne is green.\nYoung(Anne, True) ::: Anne is young.\nBlue(Charlie, True) ::: Charlie is blue.\nGreen(Charlie, True) ::: Charlie is green.\nWhite(Charlie, True) ::: Charlie is white.\nWhite(Dave, True) ::: Dave is white.\nWhite(Erin, True) ::: Erin is white.\n\nRules:\nKind(Dave, True) && White(Dave, True) >>> Blue(Dave, True) ::: If Dave is kind and Dave is white then Dave is blue.\nWhite($x, True) >>> Nice($x, True) ::: If someone is white then they are nice.\nNice($x, True) && Green($x, True) >>> Young($x, True) ::: All nice, green people are young.\nGreen($x, True) >>> Quiet($x, True) ::: If someone is green then they are quiet.\nNice($x, True) >>> Kind($x, True) ::: Nice people are kind.\nBlue(Dave, True) >>> White(Dave, True) ::: If Dave is blue then Dave is white.\nNice(Anne, True) && White(Anne, False) >>> Green(Anne, True) ::: If Anne is nice and Anne is not white then Anne is green.\nWhite(Dave, True) && Blue(Dave, True) >>> Green(Dave, True) ::: If Dave is white and Dave is blue then Dave is green.\n\nQuery:\nBlue(Dave, True) ::: Dave is blue."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 56.5,
+      "True": 92.0,
+      "Unknown": 120.0
+    },
+    "answer_counts": {
+      "Unknown": 8,
+      "True": 1,
+      "False": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Dave is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is white. (Given)\n\n2. If Dave is white then Dave is blue. (Rule)\n   From rule 2, we can infer that Dave is blue because Dave is white (from statement 1). However, this conclusion contradicts the rule \"If Dave is blue then Dave is white\" which we will discuss later. To resolve this, we need to follow the rules in order and see if any of the subsequent rules contradict or modify this conclusion.\n\n3. Dave is white. (From statement 1)\n   Dave is kind. (Given)\n   If someone is white then they are nice. (Rule)\n   Therefore, Dave is nice. (From rule 3 and statement 3)\n\n4. Dave is white. (From statement 1)\n   Dave is nice. (From rule 3 and statement 3)\n   Nice people are kind. (Rule)\n   Therefore, Dave is kind. (From statement 3 and rule 4)\n   This conclusion is redundant as we already know Dave is kind (from statement 3).\n\n5. Dave is white. (From statement 1)\n   Dave is blue. (From rule 2)\n   If Dave is blue then Dave is white. (Rule)\n   This rule creates a loop, and we cannot determine the truth value of \"Dave is blue\" from this rule alone.\n\n6. Dave is white. (From statement 1)\n   Dave is blue. (From rule 2)\n   Dave is white. (From rule 5)\n   This creates a loop with rule 5, and we cannot determine the truth value of \"Dave is blue\" from these two rules.\n\n7. Dave is white. (From statement 1)\n   Dave is blue. (From rule 2)\n   Dave is white. (From rule 5)\n   If Dave is white and Dave is blue then Dave is green. (Rule)\n   Therefore, Dave is green. (From rule 7)\n\nNow we have two conclusions: Dave is blue (from rule 2) and Dave is green (from rule 7). These two conclusions are contradictory. We cannot determine the truth value of \"Dave is blue\" because of this contradiction.\n\nHowever, given the initial analysis that Dave is green from the rule \"If Dave is white and Dave is blue then Dave is green\" we can conclude that the initial rule \"If Dave is white then Dave is blue\" is a contradiction to the statement \"Dave is green\". Thus we cannot conclude that Dave is blue, and our answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is blue\" is true, false, or unknown, we will analyze the given information step by step.\n\n1. We are given the following information:\n   - Dave is white.\n   - Dave is kind.\n   - If Dave is white and Dave is blue, then Dave is green.\n   - If Dave is blue, then Dave is white.\n   - If someone is white then they are nice.\n   - Nice people are kind.\n   - If someone is white then they are nice.\n   - If Dave is blue then Dave is white.\n   - If Dave is white and Dave is blue then Dave is green.\n\n2. From the given information, we know that Dave is white. We also know that Dave is kind. Since we have the rule that \"If someone is white then they are nice\" and \"Nice people are kind,\" and Dave is kind, we can conclude that Dave is indeed nice.\n\n3. We are given the statement \"If Dave is blue then Dave is white.\" However, we already know that Dave is white, so this statement does not provide any new information.\n\n4. We are given the statement \"If Dave is white and Dave is blue then Dave is green.\" This statement also does not provide any new information because we already know that Dave is white.\n\n5. We are given the statement \"If Dave is blue then Dave is white.\" This statement is the same as the one in step 3.\n\n6. We are given the statement \"Dave is white.\" We are given the statement \"If Dave is white and Dave is blue then Dave is green.\" So if we could determine that Dave is blue, we would be able to determine that Dave is green.\n\n7. We are given the statement \"If Dave is blue then Dave is white.\" Since we already know that Dave is white, this statement is not helpful. But we are given the statement \"If Dave is white and Dave is blue then Dave is green.\" This statement is helpful because it gives us a condition where Dave is both white and blue, and Dave is green.\n\n8. From the given information, we know that Dave is white and Dave is kind. We also know that if someone is white then they are nice, and nice people are kind. So, we can conclude that Dave is indeed nice.\n\n9. We are given the statement \"Dave is white and Dave is blue.\" If Dave is blue, then we can say that Dave is white, which we already know. And if Dave is white, then we can say that Dave is blue, which we are trying to determine.\n\n10. Since we know that Dave is white and we are given the statement \"If Dave is white and Dave is blue then Dave is green,\" we can conclude that Dave is indeed green if he is blue. However, we are also given the statement \"If someone is green then they are quiet,\" but we are not given any information about whether being quiet is related to being blue.\n\n11. We are given the statement \"All nice, green people are young.\" We know that Dave is nice and Dave is green (if he is blue). However, we are not given any information about whether being blue is related to being young.\n\n12. We are given the statement \"If Dave is blue then Dave is white.\" However, we already know that Dave is white.\n\n13. We are given the statement \"If Anne is nice and Anne is not white then Anne is green.\" However, we are not given any information about Anne's color, and we do not have enough information to determine whether Anne is nice or not.\n\n14. We are given the statement \"If Dave is white and Dave is blue then Dave is green.\" However, we already know that Dave is white.\n\n15. We are given the statement \"If someone is green then they are quiet.\" However, we do not have enough information to determine whether Dave is quiet or not.\n\n16. We are given the statement \"If Dave is blue then Dave is white.\" However, we already know that Dave is white.\n\n17. We are given the statement \"Dave is white.\" We are given the statement \"If Dave is white and Dave is blue then Dave is green.\" However, we do not have enough information to determine whether Dave is blue or not.\n\nSince we are given the statement \"If Dave is blue then Dave is white,\" and we know that Dave is white, we can say that the statement \"Dave is blue\" is unknown because it creates a loop where we cannot determine whether Dave is blue or not.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply it to the statement \"Dave is blue.\"\n\n1. We are given the following statements:\n   - Dave is white.\n   - Dave is kind.\n   - If Dave is white and Dave is blue, then Dave is green.\n   - If Dave is blue, then Dave is white.\n\n2. First, we will analyze the statements related to Dave being white and blue.\n   - Dave is white.\n   - If Dave is white and Dave is blue, then Dave is green.\n\n   From this, we cannot directly conclude that Dave is blue, but we can say that if Dave is blue, then he would have to be white.\n\n3. Next, we will analyze the statements related to Dave being blue and kind.\n   - Dave is kind.\n   - If someone is white, then they are nice.\n   - If someone is white, then they are nice.\n   - Nice people are kind.\n\n   From this, we can conclude that Dave is nice because he is white and kind.\n\n4. Now, let's analyze the statements related to Dave being blue and green.\n   - If Dave is blue, then Dave is white (from the previous step).\n   - Dave is white (already given).\n   - If Dave is white and Dave is blue, then Dave is green.\n\n   This creates a paradox because if Dave is blue and white, then he is green. But we also know that if Dave is blue, then he is white. This means that if Dave is blue, he must be white, and if he is white, then he is green. But we cannot conclude that Dave is blue from this information.\n\n5. However, we can use another set of statements to determine whether Dave is blue or not.\n   - If Dave is blue, then Dave is white (from step 4).\n   - Dave is white (already given).\n   - If Dave is kind, then Dave is nice (from step 3).\n   - If someone is white, then they are nice.\n   - Nice people are kind.\n\n   From this, we can conclude that if Dave is blue, then he would have to be white, and if he is white, then he is nice and kind.\n\n6. Now, let's analyze the statements related to Dave being blue and green.\n   - If Dave is blue, then Dave is white (from step 4).\n   - If Dave is white, then he is nice (from step 5).\n   - Nice people are kind.\n   - Dave is kind.\n   - If someone is white, then they are quiet.\n   - If someone is green, then they are quiet.\n\n   From this, we can conclude that if Dave is blue, then he would have to be white, and if he is white, then he is nice and kind. But we also know that if someone is green, then they are quiet. However, we cannot conclude that Dave is blue from this information.\n\n7. However, we can use another set of statements to determine whether Dave is blue or not.\n   - If Dave is blue, then Dave is white (from step 4).\n   - If Dave is white, then he is nice (from step 5).\n   - If someone is green, then they are quiet.\n   - If someone is green, then they are young.\n   - All nice, green people are young.\n\n   From this, we can conclude that if Dave is blue, then he would have to be white, and if he is white, then he is nice. But we also know that if someone is green, then they are quiet and young. However, we cannot conclude that Dave is blue from this information.\n\n8. However, we can use another set of statements to determine whether Dave is blue or not.\n   - If Dave is blue, then Dave is white (from step 4).\n   - If Dave is white, then he is nice (from step 5).\n   - If someone is green, then they are quiet.\n   - If someone is green, then they are young.\n   - Anne is green.\n   - Anne is young.\n\n   From this, we can conclude that Anne is green, but we cannot conclude that Dave is blue from this information.\n\n9. However, we can use another set of statements to determine whether Dave is blue or not.\n   - If Dave is blue, then Dave is white (from step 4).\n   - If Dave is white, then he is nice (from step 5).\n   - Nice people are kind.\n   - Dave is kind.\n   - If someone is green, then they are quiet.\n   - If someone is green, then they are young.\n   - All nice, green people are young.\n   - Charlie is green.\n   - Charlie is young.\n\n   From this, we can conclude that Charlie is green and young, but we cannot conclude that Dave is blue from this information.\n\nHowever, we can use another set of statements to determine whether Dave is blue or not.\n   - If Dave is blue, then Dave is white (from step 4).\n   - If Dave is white, then he is nice (from step 5).\n   - Nice people are kind.\n   - Dave is kind.\n   - If someone is green, then they are quiet.\n   - If someone is green, then they are young.\n   - All nice, green people are young.\n   - Charlie is green.\n   - Charlie is young.\n   - If Anne is nice and Anne is not white then Anne is green.\n   - Anne is green.\n\n   From this, we can conclude that Anne is green, but we cannot conclude that Dave is blue from this information.\n\nHowever, we can use another set of statements to determine whether Dave is blue or not.\n   - If Dave is blue, then Dave is white (from step 4).\n   - If Dave is white, then he is nice (from step 5).\n   - Nice people are kind.\n   - Dave is kind.\n   - If someone is green, then they are quiet.\n   - If someone is green, then they are young.\n   - All nice, green people are young.\n   - Charlie is green.\n   - Charlie is young.\n   - If Anne is nice and Anne is not white then Anne is green.\n   - Anne is green.\n   - If Dave is white and Dave is blue then Dave is green.\n\n   From this, we can conclude that if Dave is blue, then he would have to be white, and if he is white, then he is nice and kind. But we also know that if someone is green, then they are quiet and young.\n\nNow, let's analyze the statements related to Dave being blue and green.\n   - If Dave is blue, then Dave is white (from step 4).\n   - If Dave is white, then he is nice (from step 5).\n   - Nice people are kind.\n   - Dave is kind.\n   - If someone is green, then they are quiet.\n   - If someone is green, then they are young.\n   - All nice, green people are young.\n   - Charlie is green.\n   - Charlie is young.\n   - If Anne is nice and Anne is not white then Anne is green.\n   - Anne is green.\n   - If Dave is white and Dave is blue then Dave is green.\n\n   However, we are given the following statement:\n   - If Dave is white and Dave is blue then Dave is green.\n\n   If Dave is blue, then Dave is white, and if Dave is white, then Dave is green. This creates a paradox because if Dave is blue, then he would have to be white and green. But we also know that if someone is green, then they are quiet and young. However, we cannot conclude that Dave is blue from this information.\n\nHowever, we can use another set of statements to determine whether Dave is blue or not.\n   - If Dave is blue, then Dave is white (from step 4).\n   - If Dave is white, then he is nice (from step 5).\n   - Nice people are kind.\n   - Dave is kind.\n   - If someone is green, then they are quiet.\n   - If someone is green, then they are young.\n   - All nice, green people are young.\n   - Charlie is green.\n   - Charlie is young.\n   - If Anne is nice and Anne is not white then Anne is green.\n   - Anne is green.\n   - If Dave is white and Dave is blue then Dave is green.\n   - Dave is white.\n\n   From this, we can conclude that Dave is white, but we cannot conclude that Dave is blue from this information.\n\nHowever, we can use another set of statements to determine whether Dave is blue or not.\n   - If Dave is blue, then Dave is white (from step 4).\n   - If Dave is white, then he is nice (from step 5).\n   - Nice people are kind.\n   - Dave is kind.\n   - If someone is green, then they are quiet.\n   - If someone is green, then they are young.\n   - All nice, green people are young.\n   - Charlie is green.\n   - Charlie is young.\n   - If Anne is nice and Anne is not white then Anne is green.\n   - Anne is green.\n   - If Dave is white and Dave is blue then Dave is green.\n   - Dave is white.\n   - Dave is kind.\n   - Erin is white.\n   - Erin is nice.\n   - All nice, green people are young.\n\n   From this, we can conclude that Erin is white and nice, and all nice, green people are young. However, we cannot conclude that Dave is blue from this information.\n\nHowever, we can use another set of statements to determine whether Dave is blue or not.\n   - If Dave is blue, then Dave is white (from step 4).\n   - If Dave is white, then",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and find a conclusion about Dave being blue. We can use a truth table or logical deductions. Here's a step-by-step approach:\n\nGiven statements:\n\n1. Anne is green.\n2. Anne is young.\n3. Charlie is blue.\n4. Charlie is green.\n5. Charlie is white.\n6. Dave is white.\n7. Dave is kind.\n8. If Dave is kind and Dave is white then Dave is blue.\n9. If someone is white then they are nice.\n10. If someone is white then they are nice. (Duplicate of 9)\n11. All nice, green people are young.\n12. If someone is green then they are quiet.\n13. Nice people are kind.\n14. If Anne is nice and Anne is not white then Anne is green.\n15. If Dave is blue then Dave is white.\n16. If Dave is white and Dave is blue then Dave is green.\n\nFirst, let's analyze statement 9 and 10. These statements are essentially the same, so we can ignore the duplicate.\n\nFrom statement 7 and 8, we can conclude that Dave is blue since he is both kind and white.\n\nHowever, we need to check if there are any contradictions or additional information that can affect our conclusion.\n\nStatement 15 says that if Dave is blue, then he is white. This is already given in statement 6, so it doesn't provide any new information.\n\nStatement 16 says that if Dave is white and blue, then he is green. Since we already concluded that Dave is blue, we need to check if this statement affects our conclusion.\n\nHowever, statement 16 is a superset of statement 6, which says that Dave is white. This means that statement 16 is redundant and doesn't provide any new information.\n\nIn conclusion, based on the given information, we can deduce that Dave is indeed blue.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the information, we have:\n   - Dave is white.\n   - If Dave is white, then Dave is blue.\n   - If Dave is blue, then Dave is white.\n\n   Let's analyze this cycle:\n   - If Dave is white, then he is blue (from the first statement).\n   - But if he is blue, then he is white (from the third statement).\n   - This creates a loop where Dave can be both white and blue at the same time.\n\n2. However, we also have the following information:\n   - Dave is white.\n   - If someone is white, then they are nice.\n   - Nice people are kind.\n   - Dave is kind.\n\n   From this, we can conclude that Dave is indeed nice because he is kind.\n\n3. Now let's analyze the statement \"If Dave is blue, then Dave is white\" and the information we already have.\n   - If Dave is blue, then he is white.\n   - But we already know that Dave is white.\n   - Therefore, if Dave is blue, then he is already white, which does not give us any new information.\n\n4. From the given information, we have:\n   - If Dave is blue and Dave is white, then Dave is green.\n\n   However, we already know that Dave is white. Therefore, if Dave is blue, then he is green.\n\n5. We also have:\n   - If someone is green then they are quiet.\n   - Nice people are kind.\n   - Dave is kind, which makes him nice.\n   - All nice, green people are young.\n\n   From this, we can conclude that if Dave is green, he is young.\n\nHowever, we cannot conclude that Dave is blue based on the information that he is white and kind. The information creates a loop where Dave can be both white and blue at the same time.\n\nTherefore, based on the given information, we cannot determine whether the statement \"Dave is blue\" is true or false.\n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given several statements about the colors and characteristics of Anne, Charlie, and Dave. \n   - Anne is green.\n   - Anne is young.\n   - Charlie is blue.\n   - Charlie is green.\n   - Charlie is white.\n   - Dave is white.\n   - Erin is white.\n\n2. We are also given several statements about the relationships between the colors and characteristics.\n   - If Dave is kind and Dave is white then Dave is blue.\n   - If someone is white then they are nice.\n   - If someone is white then they are nice. (This statement is redundant and can be ignored.)\n   - All nice, green people are young.\n   - If someone is green then they are quiet.\n   - Nice people are kind.\n   - If Anne is nice and Anne is not white then Anne is green.\n   - If Dave is blue then Dave is white.\n   - If Dave is white and Dave is blue then Dave is green.\n\nNow, let's analyze the statement \"Dave is blue.\"\n\nFrom the given information, we know that Dave is white. We also know that if Dave is white, then he is nice (from the statement \"If someone is white then they are nice.\") and kind (from the statement \"Nice people are kind.\").\n\nWe can also see that if Dave is kind and Dave is white, then Dave is blue (from the statement \"If Dave is kind and Dave is white then Dave is blue.\").\n\nHowever, we are not given any information that directly states Dave is blue. Instead, we have two possibilities:\n- Dave is white and kind, so Dave is blue (from the statement \"If Dave is kind and Dave is white then Dave is blue.\")\n- We also have the statement \"If Dave is blue then Dave is white,\" which is a contradictory statement that can lead to an infinite loop if we try to determine Dave's color using this statement.\n\nThe correct way to approach this problem is to look for any information that contradicts the statement \"Dave is blue.\"\n\nFrom the statement \"If Dave is white and Dave is blue then Dave is green,\" we can conclude that if Dave is green, then he must be both white and blue. However, we already know that Dave is white, so this statement implies that Dave is also blue if Dave is green.\n\nHowever, we are not given any information that states Dave is green. Therefore, we cannot conclude that Dave is blue based on this statement alone.\n\nAnother way to approach this problem is to look for any information that contradicts the statement \"Dave is white.\"\n\nWe know that Dave is white, so we can use this statement to determine if Dave is blue.\n\nFrom the statement \"If Dave is blue then Dave is white,\" we can conclude that Dave is blue if and only if Dave is white.\n\nHowever, this statement is redundant because it is the same as the original statement \"Dave is white.\"\n\nTherefore, we are left with the original statement \"Dave is white,\" and the statement \"If Dave is kind and Dave is white then Dave is blue.\"\n\nSince we know that Dave is white, we can conclude that Dave is blue if he is kind.\n\nHowever, we are not given any information that states Dave is kind. Therefore, we cannot conclude that Dave is blue based on this statement alone.\n\nThe only statement that contradicts the statement \"Dave is blue\" is the statement \"If Dave is blue then Dave is white.\"\n\nHowever, this statement is not a contradiction because it is the same as the original statement \"Dave is white.\"\n\nTherefore, we cannot conclude that the statement \"Dave is blue\" is true or false based on the given information.\n\nThe final answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Dave is white. \n   - Dave is kind. \n   - If Dave is white and Dave is blue then Dave is green. \n   - If Dave is blue then Dave is white.\n\n2. We can start by looking at the statement \"If Dave is blue then Dave is white.\" However, this statement is not conclusive because it doesn't tell us anything about Dave's color if he is indeed blue.\n\n3. Now, let's look at the statement \"If Dave is white and Dave is blue then Dave is green.\" This statement implies that if Dave is both white and blue, then he is green. But it doesn't tell us anything about Dave's color if he is white and not blue.\n\n4. From the statement \"Dave is white\" we can't directly conclude Dave's color because there are multiple possible conclusions depending on other conditions.\n\n5. Given the statement \"If Dave is blue then Dave is white\" is true then the reverse also has to be true. Therefore, if Dave is white then Dave is blue.\n\nHowever, this is a contradiction with the statement \"If Dave is white and Dave is blue then Dave is green.\" If Dave is white then he has to be either blue or not blue. If he is blue then he is white (from the first statement), and if he is not blue then he is green (from the second statement).\n\nBut we know Dave is white. Therefore, Dave has to be blue to satisfy the statement \"If Dave is white then he is either blue or not blue.\"\n\nBut we also know \"If Dave is white and Dave is blue then Dave is green.\" This means Dave is white, Dave is blue, and therefore Dave is green.\n\nSo we conclude that Dave is both blue and green.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is blue\" is true, false, or unknown, we need to analyze the given information and apply the rules of logic.\n\nStep 1: Analyze the given information\n\nFrom the given information:\n\n- Dave is white (from the statement \"Dave is white\")\n- If Dave is white, then Dave is blue (from the statement \"If Dave is white and Dave is blue then Dave is green\")\n\nStep 2: Apply the rules of logic\n\nFrom the given information, we can create a chain of implications:\n\n- Dave is white\n- If Dave is white, then Dave is blue\n- If Dave is blue, then Dave is white (this is the same statement as before, but we are trying to determine whether Dave is blue, so we will ignore this one for now)\n\nStep 3: Look for any contradictions\n\nThere are no direct contradictions in the given information.\n\nStep 4: Determine the conclusion\n\nBased on the chain of implications, we can conclude that:\n\n- Dave is white\n- If Dave is white, then Dave is blue\n\nHowever, we also have another statement that says \"If Dave is white and Dave is blue then Dave is green.\" This statement implies that if Dave is white and Dave is blue, then Dave is green. But we already know that Dave is white, so we can conclude that Dave is green if Dave is blue.\n\nSince we know that Dave is white and Dave is green if Dave is blue, we can conclude that Dave is both white and green if Dave is blue.\n\nStep 5: Look for any additional information that might help us determine the conclusion\n\nWe also know that \"If Dave is green then they are quiet.\" However, this statement does not provide any information about whether Dave is blue or not.\n\nStep 6: Look for any additional information that might help us determine the conclusion\n\nWe also know that \"If someone is green then they are quiet\" and \"All nice, green people are young.\" However, these statements do not provide any information about whether Dave is blue or not.\n\nStep 7: Look for any additional information that might help us determine the conclusion\n\nWe also know that \"If Dave is blue then Dave is white.\" However, this statement is not useful in determining whether Dave is blue or not.\n\nStep 8: Look for any additional information that might help us determine the conclusion\n\nWe also know that \"Nice people are kind\" and \"Dave is kind.\" However, this statement does not provide any information about whether Dave is blue or not.\n\nStep 9: Look for any additional information that might help us determine the conclusion\n\nWe also know that \"If Anne is nice and Anne is not white then Anne is green.\" However, this statement does not provide any information about whether Dave is blue or not.\n\nStep 10: Look for any additional information that might help us determine the conclusion\n\nWe also know that \"If Dave is white and Dave is blue then Dave is green.\" However, this statement implies that if Dave is white and Dave is blue, then Dave is green. But we already know that Dave is white, so we can conclude that Dave is green if Dave is blue.\n\nBased on the given information, we can conclude that:\n\n- Dave is white\n- If Dave is white, then Dave is blue\n- If Dave is white and Dave is blue, then Dave is green\n\nSince we know that Dave is white, we can conclude that Dave is blue if Dave is blue.\n\nThe statement \"Dave is blue\" is not directly contradicted by any of the given information. However, we can conclude that Dave is green if Dave is blue.\n\nTherefore, the final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given the following statements:\n   - Dave is white.\n   - Dave is kind.\n   - If Dave is white and Dave is blue, then Dave is green.\n\n2. From statement 1, we know that Dave is white. \n   - We are also given that if someone is white, then they are nice. \n   - This means Dave is nice.\n\n3. We are given that nice people are kind. \n   - Since Dave is nice, we can conclude that Dave is indeed kind, which we already know from statement 1.\n\n4. Now, let's analyze the statement \"If Dave is blue, then Dave is white.\" \n   - This statement is given, but it's a conditional statement. \n   - To determine if Dave is blue, we need to look at other statements.\n\n5. We are given that if Dave is white and Dave is blue, then Dave is green. \n   - Since we already know Dave is white, this statement is relevant. \n   - However, it does not directly tell us if Dave is blue.\n\n6. Now, let's look at the statement \"If someone is green, then they are quiet.\" \n   - This is not directly relevant to the statement \"Dave is blue.\"\n\n7. We are given that Dave is white. \n   - We also know that Dave is kind. \n   - We know that nice people are kind. \n   - This means Dave is nice. \n   - If someone is white, then they are nice. \n   - Therefore, Dave being white is sufficient to conclude that Dave is nice, and hence, Dave is kind.\n\n8. We have a condition that states \"If Anne is nice and Anne is not white, then Anne is green.\" \n   - However, this is not relevant to the statement \"Dave is blue.\"\n\n9. We are given that Dave is white and Dave is kind. \n   - We are also given that if Dave is white and Dave is blue, then Dave is green. \n   - However, this statement is not sufficient to conclude if Dave is blue.\n\n10. We need to find a direct or indirect link to conclude if Dave is blue.\n\n11. From the given statements, there is no direct evidence to conclude that Dave is blue. \n    - However, we can analyze the given statements in reverse to see if we can deduce the statement \"Dave is blue.\"\n\n12. We are given that Dave is white. \n    - We are also given that if someone is white, then they are nice. \n    - This means Dave is nice. \n    - We are given that nice people are kind. \n    - This means Dave is indeed kind, which we already know from statement 1.\n\n13. We are given that if Dave is blue, then Dave is white. \n    - However, we know that Dave is white. \n    - This is a circular argument and does not help us conclude if Dave is blue.\n\n14. Now, let's analyze the statement \"If Anne is green, then Anne is young.\" \n    - This is not directly relevant to the statement \"Dave is blue.\"\n\n15. We are given that if Dave is white and Dave is blue, then Dave is green. \n    - However, this statement is not sufficient to conclude if Dave is blue.\n\n16. Now, let's look at the statement \"All nice, green people are young.\" \n    - This is not directly relevant to the statement \"Dave is blue.\"\n\n17. We are given that if Dave is blue, then Dave is white. \n    - However, we know that Dave is white. \n    - This is a circular argument and does not help us conclude if Dave is blue.\n\n18. We have a condition that states \"If Dave is white and Dave is blue, then Dave is green.\" \n    - However, this statement is not sufficient to conclude if Dave is blue.\n\n19. We are given that Dave is white and Dave is kind. \n    - We are also given that if someone is white then they are nice. \n    - This means Dave is nice. \n    - We are given that nice people are kind. \n    - This means Dave is indeed kind, which we already know from statement 1.\n\n20. Now, let's analyze the statement \"Charlie is blue.\" \n    - This is not directly relevant to the statement \"Dave is blue.\"\n\n21. We are given that Dave is white. \n    - We are also given that if someone is white, then they are nice. \n    - This means Dave is nice. \n    - We are given that nice people are kind. \n    - This means Dave is indeed kind, which we already know from statement 1.\n\n22. We are given that Dave is white and Dave is blue. \n    - However, this statement is a contradiction because we already know Dave is white. \n    - This means Dave cannot be blue.\n\n23. Therefore, we can conclude that the statement \"Dave is blue\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Dave is white. \n2. If Dave is white then he is nice.\n   So, Dave is nice.\n\n3. Nice people are kind.\n   Since Dave is nice, he is kind.\n\n4. If Dave is kind and Dave is white then Dave is blue.\n   We already know that Dave is white and kind. So, we can conclude that Dave is blue.\n\nHowever, we need to verify if this conclusion is consistent with the other given statements.\n\n5. If Dave is blue then Dave is white.\n   This statement seems to create a paradox with statement 4. If Dave is blue, then he is white. But if he is white, then he is blue (from statement 4). This creates an infinite loop.\n\n6. If Dave is white and Dave is blue then Dave is green.\n   This statement also seems to create a paradox with statement 4. If Dave is white and blue, then he is green. But if he is green, then he is quiet (from the given information), which contradicts the fact that he is kind.\n\nConsidering the paradoxes created by statements 5 and 6, we cannot definitively conclude that Dave is blue. Therefore, the statement \"Dave is blue\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is blue\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\nFrom the problem, we have the following statements:\n\n1. Dave is white.\n2. If Dave is white, then Dave is blue.\n3. If Dave is blue, then Dave is white.\n\nFrom statement 1, we know Dave is white. \n\nUsing statement 2, we can conclude that since Dave is white, then Dave is blue.\n\nHowever, statement 3 suggests that if Dave is blue, then Dave is white. \n\nBut we've already established that Dave is white from statement 1. Therefore, if Dave is blue, it would imply that Dave is white. This is consistent with statement 1.\n\nSo, we have two valid conclusions:\n\n- Dave is white (from statement 1).\n- If Dave is blue, then Dave is white (from statement 3).\n\nSince Dave is white, and if being blue implies being white, then being blue is consistent with being white. \n\nHowever, we cannot confirm if the statement \"Dave is blue\" is true or false solely based on the information provided.\n\nWe also have the statement \"If Dave is blue then Dave is white\" which could be interpreted in two ways. It could mean that the statement is true, or it could mean that we cannot conclude that Dave is blue.\n\nThe statement \"If Dave is blue then Dave is white\" is more like an implication than a direct statement. However, the fact that Dave is white and \"If Dave is white then Dave is blue\" supports the idea that Dave is blue.\n\nBased on the information given, we cannot definitively say if the statement \"Dave is blue\" is true or false. \n\nTherefore, the answer to whether Dave is blue is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Dave is blue\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is green.\n   - Anne is young.\n   - Charlie is blue.\n   - Charlie is green.\n   - Charlie is white.\n   - Dave is white.\n   - Erin is white.\n   - If Dave is kind and Dave is white then Dave is blue.\n   - If someone is white then they are nice.\n   - If someone is white then they are nice. (This statement seems redundant and can be ignored.)\n   - All nice, green people are young.\n   - If someone is green then they are quiet.\n   - Nice people are kind.\n   - If Dave is blue then Dave is white.\n   - If Anne is nice and Anne is not white then Anne is green.\n   - If Dave is white and Dave is blue then Dave is green.\n\n2. Analyzing the information:\n   - From the given statements, we can conclude that Dave is white.\n   - Also, from the given statements, we can conclude that all white people are nice.\n   - Therefore, we can conclude that Dave is nice.\n   - Since nice people are kind, we can conclude that Dave is kind.\n   - Now, we have two conditions:\n     - If Dave is kind and Dave is white then Dave is blue.\n     - If Dave is white and Dave is blue then Dave is green.\n   - We already know that Dave is white and kind, so we can use the first condition to conclude that Dave is blue.\n\nHowever, we also have the condition \"If Dave is blue then Dave is white.\" This creates a paradox because if Dave is blue, then he is white, but we already know that Dave is white. This paradox means that we cannot conclusively determine whether Dave is blue or not.\n\nTherefore, the statement \"Dave is blue\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_dave, blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 17
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & nice(X) -> young(X)",
+          "z3_formula": "Implies(And(green_anne, nice_anne), young_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_anne, quiet_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not(white(X)) -> green(X)",
+          "z3_formula": "Implies(And(nice_anne, Not(white_anne)), green_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_dave, blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & white(X) -> green(X)",
+          "z3_formula": "Implies(And(blue_dave, white_dave), green_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_dave, quiet_dave)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_dave, green_dave), young_dave)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_charlie, nice_charlie)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_anne, green_anne), young_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_anne, quiet_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave) -> (blue(dave) | not(blue(dave)))",
+          "z3_formula": "Implies(white_dave, Or(blue_dave, Not(blue_dave)))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave) -> white(dave)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave) & blue(dave) -> green(dave)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave) & white(dave) -> green(dave)",
+          "z3_formula": "Implies(And(blue_dave, white_dave), green_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave) & white(dave)",
+          "z3_formula": "And(blue_dave, white_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave) & green(dave)",
+          "z3_formula": "And(blue_dave, green_dave)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> blue(X)",
+          "z3_formula": "Implies(white_dave, blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_dave, quiet_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> young(X)",
+          "z3_formula": "Implies(green_dave, young_dave)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & ~white(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_anne, Not(white_anne)), green_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == Unknown",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dave) & white(dave) -> green(dave)",
+          "z3_formula": "Implies(And(blue_dave, white_dave), green_dave)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "false(blue(dave))",
+          "z3_formula": "Not(blue_dave) == True",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "white(dave) -> blue(dave)",
+          "z3_formula": "Implies(white_dave, blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(dave) -> white(dave)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "green(anne)",
+          "z3_formula": "green_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "blue(charlie)",
+          "z3_formula": "blue_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(charlie)",
+          "z3_formula": "green_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(charlie)",
+          "z3_formula": "white_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "white(erin)",
+          "z3_formula": "white_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & white(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_dave, white_dave), blue_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_dave, nice_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) -> nice(X)",
+          "z3_formula": "Implies(white_erin, nice_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & green(X) -> young(X)",
+          "z3_formula": "Implies(And(nice_green, green_anne), young_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> quiet(X)",
+          "z3_formula": "Implies(green_anne, quiet_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> kind(X)",
+          "z3_formula": "Implies(nice_dave, kind_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> white(X)",
+          "z3_formula": "Implies(blue_dave, white_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) & not white(X) -> green(X)",
+          "z3_formula": "Implies(And(nice_anne, Not(white_anne)), green_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "white(X) & blue(X) -> green(X)",
+          "z3_formula": "Implies(And(white_dave, blue_dave), green_dave)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dave)",
+          "z3_formula": "nice_dave == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(dave)",
+          "z3_formula": "kind_dave == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "white(dave)",
+          "z3_formula": "white_dave == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "blue(dave)",
+          "z3_formula": "blue_dave == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "green(dave)",
+          "z3_formula": "green_dave == True",
+          "source_step": 9
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 124,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 32
+    },
+    "maxsat_stats": {
+      "satisfied": 31,
+      "excluded": 1,
+      "total_weight": 123,
+      "solve_time_ms": 1.195089891552925
+    },
+    "timing": {
+      "trace_gen_s": 24.31,
+      "extraction_s": 30.854,
+      "dedup_s": 0.756,
+      "maxsat_s": 0.003,
+      "total_s": 55.923
+    }
+  }
+}

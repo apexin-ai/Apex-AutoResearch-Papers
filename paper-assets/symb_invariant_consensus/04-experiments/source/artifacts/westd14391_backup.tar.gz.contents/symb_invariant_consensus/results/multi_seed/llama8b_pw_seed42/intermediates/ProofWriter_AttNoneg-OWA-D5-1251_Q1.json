@@ -1,0 +1,1584 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1251_Q1",
+    "problem": "Erin is big. Erin is green. Erin is kind. Erin is quiet. Erin is red. Erin is smart. Fiona is big. Gary is rough. Harry is quiet. Harry is smart. All smart people are kind. If Harry is rough and Harry is red then Harry is quiet. If someone is green then they are smart. All kind people are quiet. If someone is rough and big then they are green. Rough people are big.\n\nDetermine whether the following statement is true, false, or unknown:\nErin is red.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nGreen($x, bool) ::: Is x green?\nKind($x, bool) ::: Is x kind?\nQuiet($x, bool) ::: Is x quiet?\nRed($x, bool) ::: Is x red?\nSmart($x, bool) ::: Is x smart?\nRough($x, bool) ::: Is x rough?\n\nFacts:\nBig(Erin, True) ::: Erin is big.\nGreen(Erin, True) ::: Erin is green.\nKind(Erin, True) ::: Erin is kind.\nQuiet(Erin, True) ::: Erin is quiet.\nRed(Erin, True) ::: Erin is red.\nSmart(Erin, True) ::: Erin is smart.\nBig(Fiona, True) ::: Fiona is big.\nRough(Gary, True) ::: Gary is rough.\nQuiet(Harry, True) ::: Harry is quiet.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nSmart($x, True) >>> Kind($x, True) ::: All smart people are kind.\nRough(Harry, True) && Red(Harry, True) >>> Quiet(Harry, True) ::: If Harry is rough and Harry is red then Harry is quiet.\nGreen($x, True) >>> Smart($x, True) ::: If someone is green then they are smart.\nKind($x, True) >>> Quiet($x, True) ::: All kind people are quiet.\nRough($x, True) && Big($x, True) >>> Green($x, True) ::: If someone is rough and big then they are green.\nRough($x, True) >>> Big($x, True) ::: Rough people are big.\n\nQuery:\nRed(Erin, True) ::: Erin is red."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 187.0,
+      "True": 187.0,
+      "Unknown": 222.0
+    },
+    "answer_counts": {
+      "False": 3,
+      "True": 5,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given information and apply logical reasoning.\n\n1. Erin is big. (1)\n2. Erin is green. (2)\n3. Erin is kind. (3)\n4. Erin is quiet. (4)\n5. Erin is red. (5) - This is the statement we want to determine.\n6. Erin is smart. (6)\n\nFrom statements 2 and 6, we can conclude that being green implies being smart. However, statement 2 says Erin is green, so Erin must be smart.\n\nNow, let's look at statement 3, which says all smart people are kind. Since Erin is smart (from statement 6), Erin must be kind.\n\nFrom statement 4, we know Erin is quiet.\n\nNow, let's look at statement 5, which says Erin is red. This is the statement we want to determine.\n\nWe can see that statement 5 directly says Erin is red. However, we need to check if this statement is consistent with the other information.\n\nStatement 1 says Erin is big, and statement 4 says Erin is quiet. Statement 3 says all kind people are quiet. However, statement 6 says Erin is smart, and statement 3 says all smart people are kind. Therefore, Erin must be kind and quiet.\n\nFrom statement 4, we know Erin is quiet. Now, statement 3 says all kind people are quiet. Therefore, being quiet implies being kind.\n\nNow, let's look at the information about Harry. We are given the following statements about Harry:\n- Harry is quiet. (7)\n- Harry is smart. (8)\n- Harry is rough. (9)\n- Harry is red. (10)\n\nFrom statement 8, we know Harry is smart. Since all smart people are kind (from statement 3), Harry must be kind. From statement 3, we know all kind people are quiet. Therefore, statement 7 is consistent with the information.\n\nNow, let's analyze the information about being rough. Statement 9 says Harry is rough.\n\nFrom statement 1, we know Erin is big. Statement 9 says Harry is rough, and statement 1 says all rough people are big. Therefore, Harry must be big.\n\nFrom statement 9, we know Harry is rough. Statement 10 says Harry is red.\n\nNow, let's analyze the information about being big and rough. Statement 1 says all rough people are big. Therefore, being big implies being rough.\n\nFrom statement 10, we know Harry is red. Statement 8 says Harry is smart, and statement 2 says all green people are smart. However, statement 2 says Erin is green (not Harry), so we cannot conclude that Harry is green.\n\nNow, let's analyze the information about being green. Statement 2 says all green people are smart. However, statement 10 says Harry is red, and statement 10 is inconsistent with the information.\n\nHowever, we can look at the information about Erin. Statement 2 says Erin is green, and statement 6 says Erin is smart. Therefore, Erin must be green.\n\nNow, let's analyze the information about being green. Statement 2 says Erin is green, and statement 6 says Erin is smart. Therefore, being green implies being smart.\n\nHowever, statement 10 says Harry is red. Statement 8 says Harry is smart, and statement 2 says all green people are smart. However, statement 2 says Erin is green, not Harry.\n\nFrom statement 2, we know Erin is green. Statement 6 says Erin is smart, and statement 2 says all green people are smart. Therefore, being green implies being smart.\n\nNow, let's analyze the information about being red. Statement 10 says Harry is red. Statement 9 says Harry is rough, and statement 1 says all rough people are big. Therefore, Harry must be big.\n\nHowever, statement 1 says all rough people are big. Therefore, being big implies being rough.\n\nHowever, statement 2 says Erin is green. Statement 6 says Erin is smart, and statement 2 says all green people are smart. Therefore, being green implies being smart.\n\nNow, let's analyze the information about being red and being green. Statement 10 says Harry is red, and statement 2 says Erin is green.\n\nHowever, statement 2 says all green people are smart. Therefore, being green implies being smart.\n\nNow, let's look at the information about Erin and Harry. Statement 5 says Erin is red. Statement 10 says Harry is red.\n\nHowever, statement 2 says Erin is green, and statement 10 says Harry is red. Therefore, Erin and Harry cannot both be red.\n\nNow, let's analyze the information about Erin and Harry. Statement 2 says Erin is green, and statement 6 says Erin is smart. Therefore, Erin must be green.\n\nFrom statement 2, we know Erin is green. Statement 6 says Erin is smart, and statement 2 says all green people are smart. Therefore, being green implies being smart.\n\nHowever, statement 10 says Harry is red. Statement 9 says Harry is rough, and statement 1 says all rough people are big. Therefore, Harry must be big.\n\nHowever, statement 2 says Erin is green. Statement 6 says Erin is smart, and statement 2 says all green people are smart. Therefore, being green implies being smart.\n\nNow, let's analyze the information about being red. Statement 10 says Harry is red.\n\nHowever, statement 10 says Harry is red, and statement 5 says Erin is red. However, statement 2 says Erin is green, and statement 10 says Harry is red. Therefore, Erin and Harry cannot both be red.\n\nNow, let's look at the information about Erin. Statement 2 says Erin is green, and statement 6 says Erin is smart.\n\nHowever, statement 2 says all green people are smart. Therefore, being green implies being smart.\n\nHowever, statement 2 says Erin is green. Statement 6 says Erin is smart, and statement 2 says all green people are smart. Therefore, being green implies being smart.\n\nHowever, statement 5 says Erin is red. Statement 2 says Erin is green, and statement 6 says Erin is smart. Therefore, Erin cannot be red.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we will use the rules and information given to determine the truth value of the statement \"Erin is red.\"\n\n1. Given rules:\n   - Erin is big.\n   - Erin is green.\n   - Erin is kind.\n   - Erin is quiet.\n   - Erin is red.\n   - Erin is smart.\n   - Fiona is big.\n   - Gary is rough.\n   - Harry is quiet.\n   - Harry is smart.\n   - All smart people are kind.\n   - If Harry is rough and Harry is red then Harry is quiet.\n   - If someone is green then they are smart.\n   - All kind people are quiet.\n   - If someone is rough and big then they are green.\n   - Rough people are big.\n\n2. Analyze the statement \"Erin is red\" in relation to the given rules.\n\nFrom the rules, we have two statements that directly apply to Erin:\n   - Erin is green.\n   - Erin is red.\n\nSince both statements describe Erin, and there are no rules that contradict these statements, we can conclude that the statement \"Erin is red\" is indeed true.\n\nTherefore, the answer is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is red' is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\n1. We know the following facts:\n   - Erin is big.\n   - Erin is green.\n   - Erin is kind.\n   - Erin is quiet.\n   - Erin is red.\n   - Erin is smart.\n\n2. However, we also have the following deductions from the given information:\n   - All smart people are kind. (Given)\n   - If someone is green then they are smart. (Given)\n   - All kind people are quiet. (Given)\n   - If someone is rough and big then they are green. (Given)\n   - Rough people are big. (Given)\n   - If Harry is rough and Harry is red then Harry is quiet. (Given)\n   - Fiona is big. (Given)\n   - Gary is rough. (Given)\n   - Harry is quiet. (Given)\n   - Harry is smart. (Given)\n\n3. Analyzing the information, we see that Erin is both green and red, but we also have the information that if someone is green, then they are smart. This creates a contradiction, as Erin cannot be both green and red if we consider the given statement that if someone is green, then they are smart.\n\n4. However, we also have the information that 'All kind people are quiet.' and 'All smart people are kind.' Therefore, if Erin is smart, then Erin must be kind, and consequently, Erin must be quiet.\n\n5. We also know that 'If Harry is rough and Harry is red then Harry is quiet.' However, this statement does not directly relate to Erin.\n\n6. To determine whether the statement 'Erin is red' is true, false, or unknown, we need to analyze the information that 'If someone is green then they are smart.' Since Erin is green, Erin must be smart.\n\n7. Given that Erin is smart and 'All smart people are kind,' Erin must be kind.\n\n8. Given that Erin is kind and 'All kind people are quiet,' Erin must be quiet.\n\n9. However, since Erin is both green and red, and given that 'If someone is green then they are smart,' Erin must be smart. However, this creates a contradiction because Erin cannot be both green and red.\n\n10. Therefore, considering the given information, we can conclude that the statement 'Erin is red' is false because Erin cannot be both green and red.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine the truth value of the statement \"Erin is red.\"\n\nGiven statements:\n\n1. Erin is big.\n2. Erin is green.\n3. Erin is kind.\n4. Erin is quiet.\n5. Erin is red.\n6. Erin is smart.\n7. Fiona is big.\n8. Gary is rough.\n9. Harry is quiet.\n10. Harry is smart.\n11. All smart people are kind.\n12. If Harry is rough and Harry is red then Harry is quiet.\n13. If someone is green then they are smart.\n14. All kind people are quiet.\n15. If someone is rough and big then they are green.\n16. Rough people are big.\n\nWe need to use these statements to determine the truth value of \"Erin is red.\"\n\nFrom statement 16, we know that rough people are big. Since Gary is rough (statement 8), Gary is big (statement 7 is not relevant to Gary's characteristics).\n\nFrom statement 15, if someone is rough and big, then they are green. Since Gary is rough and big, Gary is green (statement 8 and statement 7 are not relevant to Gary's characteristics).\n\nFrom statement 13, if someone is green, then they are smart. Since Gary is green, Gary is smart (statement 8 and statement 7 are not relevant to Gary's characteristics).\n\nFrom statement 11, all smart people are kind. Since Gary is smart, Gary is kind (statement 8 and statement 7 are not relevant to Gary's characteristics).\n\nFrom statement 14, all kind people are quiet. Since Gary is kind, Gary is quiet (statement 8 and statement 7 are not relevant to Gary's characteristics).\n\nNow, let's look at Harry. From statement 9, Harry is quiet. From statement 10, Harry is smart. From statement 12, if Harry is rough and Harry is red, then Harry is quiet. We know Harry is quiet, so this statement does not provide any new information.\n\nFrom statement 16, we know that rough people are big. Since Harry is rough, Harry is big.\n\nFrom statement 15, if someone is rough and big, then they are green. Since Harry is rough and big, Harry is green.\n\nFrom statement 13, if someone is green, then they are smart. Since Harry is green, Harry is smart.\n\nFrom statement 11, all smart people are kind. Since Harry is smart, Harry is kind.\n\nFrom statement 14, all kind people are quiet. Since Harry is kind, Harry is quiet. However, we already know this from statement 9.\n\nNow, let's look at Erin. We are trying to determine whether Erin is red.\n\nFrom statement 2, Erin is green. From statement 6, Erin is smart. From statement 13, if someone is green, then they are smart. This statement does not provide any new information.\n\nFrom statement 11, all smart people are kind. Since Erin is smart, Erin is kind (statement 2 is not relevant to Erin's characteristics).\n\nFrom statement 14, all kind people are quiet. Since Erin is kind, Erin is quiet (statement 2 is not relevant to Erin's characteristics).\n\nNow we have two pieces of information about Erin: Erin is green and Erin is quiet. We do not have enough information to determine whether Erin is red or not.\n\nTherefore, the final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Erin is red' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. All smart people are kind. \nThis statement gives us a relationship between 'smart' and 'kind.' However, it does not directly relate to 'Erin' or 'red.'\n\n2. If someone is green then they are smart. \nThis statement gives us a relationship between 'green' and 'smart.' \n\n3. Erin is green. \nFrom statement 2, we can conclude that Erin is smart.\n\n4. Erin is smart. \nThis conclusion is consistent with the given information.\n\n5. All kind people are quiet. \nThis statement gives us a relationship between 'kind' and 'quiet.' \n\n6. All smart people are kind. \nFrom statement 1, we can conclude that Erin is kind.\n\n7. Erin is kind. \nThis conclusion is consistent with the given information.\n\n8. All kind people are quiet. \nFrom statement 5, we can conclude that Erin is quiet.\n\n9. Erin is quiet. \nThis conclusion is consistent with the given information.\n\n10. Erin is red. \nThe given information directly states this, but we need to verify if this conclusion is true or false based on the other information.\n\n11. If Harry is rough and Harry is red then Harry is quiet. \nThis statement gives us a relationship between 'rough,' 'red,' and 'quiet,' but it does not directly relate to 'Erin.'\n\n12. Gary is rough. \nThis statement gives us information about 'Gary' but does not directly relate to 'Erin' or 'red.'\n\n13. Rough people are big. \nThis statement gives us a relationship between 'rough' and 'big.' \n\n14. If someone is green then they are smart. \nThis statement gives us a relationship between 'green' and 'smart.' \n\n15. Erin is green. \nFrom statement 14, we can conclude that Erin is smart.\n\n16. Erin is green. \nThis conclusion is consistent with the given information.\n\n17. Erin is red. \nThis conclusion is consistent with the given information.\n\n18. Erin is red. \nFrom the information given, we have found that Erin is indeed red.\n\nSince we have found that Erin is red based on the given information, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether Erin is red, we need to analyze the given information step by step.\n\n1. Given statements:\n   - Erin is big.\n   - Erin is green.\n   - Erin is kind.\n   - Erin is quiet.\n   - Erin is red.\n   - Erin is smart.\n   - Fiona is big.\n   - Gary is rough.\n   - Harry is quiet.\n   - Harry is smart.\n   - All smart people are kind.\n   - If Harry is rough and Harry is red then Harry is quiet. \n   - If someone is green then they are smart.\n   - All kind people are quiet.\n   - If someone is rough and big then they are green.\n   - Rough people are big.\n\n2. Now, let's analyze the given statements one by one.\n\n   - From the statement 'All smart people are kind,' we can infer that since Erin is smart, Erin must be kind.\n   - From the statement 'All kind people are quiet,' we can infer that since Erin is kind, Erin must be quiet.\n   - However, the statement also says that Erin is quiet, so this is consistent with the previous inference.\n   - Now let's look at the statement 'Erin is green.' If someone is green, then they must be smart. But Erin is already known to be smart, so Erin being green is consistent with the information given.\n   - Now let's look at the statement 'If someone is rough and big then they are green.' If Erin is rough and big, then Erin must be green. However, Erin is already known to be green, so this statement is consistent with the information given.\n   - Now let's look at the statement 'Rough people are big.' If Erin is rough, then Erin must be big. However, Erin is already known to be big, so this statement is consistent with the information given.\n   - Now let's look at the statement 'Erin is red.' If someone is red and Harry is red, then it does not mean Harry is Erin or Erin is Harry. However, there's a statement that says 'If Harry is rough and Harry is red then Harry is quiet.' This statement is not applicable to Erin. However, Erin is already known to be quiet.\n\n3. Based on the above analysis, we can conclude that all the statements about Erin being big, green, kind, quiet, and smart are consistent with the given information. However, the statement 'Erin is red' does not have any direct contradiction with the given information. Since there's no direct contradiction, we can say that the statement 'Erin is red' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Erin is red\" is true, false, or unknown, we need to analyze the given information and apply logical deductions.\n\n1. Given information:\n   - Erin is big.\n   - Erin is green.\n   - Erin is kind.\n   - Erin is quiet.\n   - Erin is red.\n   - Erin is smart.\n   - Fiona is big.\n   - Gary is rough.\n   - Harry is quiet.\n   - Harry is smart.\n   - All smart people are kind.\n   - If Harry is rough and Harry is red then Harry is quiet.\n   - If someone is green then they are smart.\n   - All kind people are quiet.\n   - If someone is rough and big then they are green.\n   - Rough people are big.\n\n2. Analyzing the information:\n   - Since Erin is smart and all smart people are kind, Erin is kind.\n   - Since Erin is kind and all kind people are quiet, Erin is quiet.\n   - Since Erin is red and it is not given that red people are not quiet or not kind, we cannot determine if Erin is red based on these facts alone.\n   - Since Erin is big, we can't directly conclude if Erin is red or not.\n\n3. Now let's examine the information given for Harry:\n   - If Harry is rough and Harry is red, then Harry is quiet.\n   - Since Harry is quiet, this statement does not contradict any information given for Erin.\n\n4. We can eliminate some possibilities for Erin's color using the information given for Gary and Harry:\n   - If someone is rough and big then they are green.\n   - Since Gary is rough and big, Gary is green.\n   - But we also know that rough people are big, so all rough people are big and green.\n   - However, we don't have any information that says all big people are rough.\n\n5. Looking at the information given for Harry again:\n   - If Harry is rough and Harry is red, then Harry is quiet.\n   - If someone is rough and big then they are green.\n   - Since Harry is quiet, and if Harry were red, then this statement would be true.\n   - However, if Harry were green, then he would be smart, which contradicts the information that all kind people are quiet since Harry is smart.\n\n6. Now we can use this information to deduce the truth value of \"Erin is red.\"\n   - Since Harry is quiet and smart, and all kind people are quiet, Harry is kind.\n   - But then Harry would be both quiet and kind, which is true.\n   - However, this does not tell us if Erin is red or not.\n   - We do know that Erin is red and Erin is big. We also know that all rough people are big and green, but we don't know if all big people are rough.\n\n7. Analyzing the statement \"Rough people are big\" and \"If someone is rough and big then they are green\":\n   - We know that all rough people are big and green.\n   - However, we also know that all big people are not necessarily rough.\n\n8. Now let's examine the statement \"Erin is red\" in light of the information we've deduced:\n   - Erin is big.\n   - Erin is red.\n   - We also know that Erin is kind, and Erin is smart.\n   - We also know that Erin is quiet.\n\n9. We can now use the information given for Harry and Gary to make a conclusion about Erin's color:\n   - Since Erin is big and Erin is red, we can't determine if Erin is red based on these facts alone.\n   - However, since Erin is big and Erin is red, and we know that all rough people are big and green, we can't conclude that Erin is red based on this information.\n\n10. Now let's look at the information given for Erin and Harry:\n    - Since Erin is big and Erin is red, and we know that all rough people are big and green, we can't conclude that Erin is red based on this information.\n    - However, we do know that Erin is big and Erin is red.\n\n11. Analyzing the statement \"Rough people are big\" and \"If someone is rough and big then they are green\":\n    - We know that all rough people are big and green.\n    - However, we also know that all big people are not necessarily rough.\n\n12. Now let's examine the statement \"Erin is red\" in light of the information we've deduced:\n    - Erin is big.\n    - Erin is red.\n    - We also know that Erin is kind, and Erin is smart.\n    - We also know that Erin is quiet.\n\n13. Since we can't conclude that Erin is red based on the information given, we can't determine the truth value of the statement \"Erin is red.\"\n\nTherefore, the statement \"Erin is red\" is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether Erin is red, we need to analyze the given information step by step.\n\n1. We have two pieces of information about Erin:\n   - Erin is big.\n   - Erin is red.\n\n2. We also have information about other people:\n   - Fiona is big.\n   - Gary is rough.\n   - Harry is quiet.\n   - Harry is smart.\n\n3. There are several statements with logical implications:\n   - If Harry is rough and Harry is red, then Harry is quiet.\n   - If someone is green, then they are smart.\n   - All kind people are quiet.\n   - If someone is rough and big, then they are green.\n   - Rough people are big.\n   - All smart people are kind.\n\n4. Since the statements are quite complex, we need to simplify them and analyze the relationships between the attributes.\n\n5. From the statement \"Rough people are big,\" we can infer that being big is a characteristic of rough people, but we cannot directly conclude that a big person is rough.\n\n6. From \"Rough people are big,\" \"Gary is rough,\" and \"If someone is rough and big, then they are green,\" we can conclude that Gary is big (because Gary is rough) and Gary is green (because someone who is rough and big is green).\n\n7. Since Gary is green, and \"If someone is green, then they are smart,\" we can conclude that Gary is smart.\n\n8. From \"Gary is smart\" and \"All smart people are kind,\" we can conclude that Gary is kind.\n\n9. Since \"All kind people are quiet\" and \"Gary is kind,\" we can conclude that Gary is quiet.\n\n10. Now, let's focus on Harry. We know that Harry is quiet and Harry is smart. However, we cannot conclude that Harry is red based on the given information.\n\n11. Since Erin is big, and there is no information about Erin being rough or green, we cannot directly conclude that Erin is red based on the statements about Gary or Harry.\n\n12. However, we do not have any information that contradicts Erin being red.\n\n13. Based on the given information, we cannot determine whether Erin is red or not. Therefore, the statement \"Erin is red\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and apply them to the statement we're trying to determine.\n\nGiven statements:\n1. Erin is big.\n2. Erin is green.\n3. Erin is kind.\n4. Erin is quiet.\n5. Erin is red.\n6. Erin is smart.\n7. Fiona is big.\n8. Gary is rough.\n9. Harry is quiet.\n10. Harry is smart.\n11. All smart people are kind.\n12. If Harry is rough and Harry is red then Harry is quiet.\n13. If someone is green then they are smart.\n14. All kind people are quiet.\n15. If someone is rough and big then they are green.\n16. Rough people are big.\n\nWe're trying to determine if the statement \"Erin is red\" is true, false, or unknown.\n\nFrom statement 13, we know that if someone is green, then they are smart. But statement 2 says Erin is green. Therefore, Erin is smart (statement 6 is already given but this is a second verification).\n\nFrom statement 5, we know Erin is red.\n\nSince we have verified Erin is smart and Erin is red, we can conclude that the statement \"Erin is red\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Erin is red, we need to analyze the given statements and their implications.\n\n1. Erin is big. \n2. Erin is green. \n3. Erin is kind. \n4. Erin is quiet. \n5. Erin is red. \n6. Erin is smart.\n\nFrom statement 6, we know Erin is smart. \n\nNow, let's examine the given implications:\n\n1. All smart people are kind. \nSince Erin is smart, Erin must be kind (from statement 3 and implication 1).\n\n2. All kind people are quiet. \nSince Erin is kind, Erin must be quiet (from statement 4 and implication 2).\n\nNow, let's examine the statements about Harry:\n\n1. Harry is quiet. \n2. Harry is smart. \n3. Harry is rough. \n4. Harry is red. \n\nFrom statement 2 and implication 1, Harry must be kind. But from implication 2, since Harry is kind, Harry must be quiet. This matches statement 1.\n\nNow, let's examine the given implications related to Harry:\n\n1. If Harry is rough and Harry is red then Harry is quiet. \nThis statement is true because we know Harry is quiet from statement 1, and Harry is both rough and red from statements 3 and 4.\n\n2. If someone is green then they are smart. \nThis statement is true because we know Erin is green and Erin is smart (from statement 6).\n\n3. All kind people are quiet. \nThis statement is true because we know Erin is kind and Erin is quiet (from statements 3 and 4).\n\n4. If someone is rough and big then they are green. \nThis statement is true because we know Harry is rough, Harry is big (from statement 5 and implication 1), and Harry is green (from implication 4).\n\n5. Rough people are big. \nThis statement is true because we know Harry is rough and Harry is big (from statement 5 and implication 4).\n\nNow, let's examine the implications related to the colors:\n\n1. If Erin is red then Erin is not green. \nWe cannot conclude this from the given statements.\n\n2. If Erin is red then Erin is not quiet. \nWe cannot conclude this from the given statements.\n\nNow, we know that Erin is smart, Erin is kind, and Erin is quiet. We also know that Erin is green and Erin is big.\n\nHowever, we cannot conclude that Erin is red or not red from the given statements.\n\nTherefore, the answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to apply the rules and statements given to us. \n\n1. Erin is big. \n2. Erin is green. \n3. Erin is kind. \n4. Erin is quiet. \n5. Erin is red. \n6. Fiona is big. \n7. Gary is rough. \n8. Harry is quiet. \n9. Harry is smart. \n10. All smart people are kind. \n11. If Harry is rough and Harry is red then Harry is quiet. \n12. If someone is green then they are smart. \n13. All kind people are quiet. \n14. If someone is rough and big then they are green. \n15. Rough people are big.\n\nWe are asked to determine whether the statement \"Erin is red\" is true, false, or unknown.\n\nFrom statement 14, we know that if someone is rough and big then they are green. But we also know from statement 15 that rough people are big. Therefore, we can conclude that all rough people are green.\n\nFrom statement 2, we know that Erin is green. And from statement 12, we know that if someone is green then they are smart. Therefore, we can conclude that Erin is smart.\n\nFrom statement 10, we know that all smart people are kind. Therefore, we can conclude that Erin is kind.\n\nFrom statement 13, we know that all kind people are quiet. Therefore, we can conclude that Erin is quiet.\n\nSince we have concluded that Erin is green, smart, kind, and quiet, we can now examine the original statements to see if we can find any contradictions. \n\nFrom statement 11, we know that if Harry is rough and Harry is red then Harry is quiet. But we also know that Erin is red (from the original statement we are trying to determine), and Erin is quiet. However, statement 11 is about Harry, not Erin, so we cannot use this statement to contradict Erin being red.\n\nWe have not found any contradictions, but we still need to examine all the statements to see if we can find any information about Erin being red. \n\nFrom statement 15, we know that rough people are big. But statement 14 tells us that if someone is rough and big then they are green. So, we can conclude that rough people are green.\n\nWe know that Erin is big (from statement 1) and Erin is green (from statement 2). But we also know that Erin is red (from the original statement we are trying to determine). \n\nSince Erin is green and Erin is red, we can use the information from statement 14, which tells us that if someone is rough and big then they are green. Therefore, we can conclude that Erin is rough and big.\n\nWe know that Erin is big (from statement 1) and Erin is rough (from the previous conclusion). But we also know that Erin is green (from statement 2). \n\nFrom the previous conclusion, we know that Erin is rough and big. And statement 15 tells us that rough people are big. Therefore, we can conclude that Erin is a rough person.\n\nWe know that Erin is a rough person and Erin is big. Therefore, from statement 14, we can conclude that Erin is green.\n\nWe already know that Erin is green (from statement 2) and Erin is big (from statement 1). \n\nFrom statement 12, we know that if someone is green then they are smart. We already know that Erin is green (from statement 2). Therefore, we can conclude that Erin is smart.\n\nFrom statement 10, we know that all smart people are kind. We already know that Erin is smart (from the previous conclusion). Therefore, we can conclude that Erin is kind.\n\nFrom statement 13, we know that all kind people are quiet. We already know that Erin is kind (from the previous conclusion). Therefore, we can conclude that Erin is quiet.\n\nWe know that Erin is red (from the original statement we are trying to determine), and we have concluded that Erin is green. However, we can find a contradiction with the statement \"All kind people are quiet\" (from statement 13) and \"All smart people are kind\" (from statement 10). \n\nWe know that all smart people are kind (from statement 10). And we know that Erin is smart (from the previous conclusion). Therefore, we can conclude that Erin is kind.\n\nWe know that Erin is kind (from the previous conclusion) and Erin is smart (from the previous conclusion). But we also know that Erin is red (from the original statement we are trying to determine), and Erin is green (from statement 2). \n\nFrom statement 11, we know that if Harry is rough and Harry is red then Harry is quiet. But we cannot use this statement to contradict Erin being red, because statement 11 is about Harry, not Erin.\n\nFrom statement 14, we know that if someone is rough and big then they are green. But we already know that Erin is green (from statement 2).\n\nFrom statement 15, we know that rough people are big. But we already know that Erin is big (from statement 1) and Erin is green (from statement 2).\n\nWe know that Erin is big (from statement 1) and Erin is green (from statement 2). But we also know that Erin is red (from the original statement we are trying to determine). \n\nFrom the previous conclusions, we know that Erin is kind, Erin is smart, and Erin is quiet. However, we still cannot find a contradiction with the statement \"Erin is red\" being true or false.\n\nLet's examine the statements again. \n\nWe know that Erin is big (from statement 1) and Erin is red (from the original statement we are trying to determine). \n\nFrom statement 14, we know that if someone is rough and big then they are green. But we already know that Erin is green (from statement 2).\n\nFrom statement 15, we know that rough people are big. But we already know that Erin is big (from statement 1) and Erin is green (from statement 2).\n\nWe know that Erin is green (from statement 2), Erin is big (from statement 1), and Erin is red (from the original statement we are trying to determine). \n\nFrom statement 12, we know that if someone is green then they are smart. We already know that Erin is green (from statement 2). Therefore, we can conclude that Erin is smart.\n\nFrom statement 10, we know that all smart people are kind. We already know that Erin is smart (from the previous conclusion). Therefore, we can conclude that Erin is kind.\n\nFrom statement 13, we know that all kind people are quiet. We already know that Erin is kind (from the previous conclusion). Therefore, we can conclude that Erin is quiet.\n\nWe have concluded that Erin is green, smart, kind, and quiet. However, we still cannot find a contradiction with the statement \"Erin is red\" being true or false.\n\nWe have examined all the statements, and we have not found a contradiction with the statement \"Erin is red\" being true or false. Therefore, we cannot conclude that the statement \"Erin is red\" is true or false. \n\nHowever, this is not the same as saying \"unknown.\" In logic, \"unknown\" would mean that there is no way to determine the truth of a statement based on the given statements. \n\nIn this case, we have examined all the statements and have found that there is no way to determine the truth of the statement \"Erin is red\" based on the given statements. However, this is because we have concluded that all rough people are green, and Erin is green, which means Erin is not rough. Therefore, we cannot conclude that Erin is red, because statement 11 only applies to Harry, not Erin.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to use logical deductions based on the given statements.\n\n1. Erin is big. \n2. Erin is green. \n3. Erin is kind. \n4. Erin is quiet. \n5. Erin is red. \n6. Fiona is big. \n7. Gary is rough. \n8. Harry is quiet. \n9. Harry is smart. \n10. All smart people are kind. \n11. If Harry is rough and Harry is red then Harry is quiet. \n12. If someone is green then they are smart. \n13. All kind people are quiet. \n14. If someone is rough and big then they are green. \n15. Rough people are big.\n\nWe are asked to determine whether statement 5 (Erin is red) is true, false, or unknown.\n\nLet's analyze the statements:\n\n- From statement 15, we know that rough people are big. \n- From statement 14, if someone is rough and big then they are green. \n- This implies that all rough people are green, since they are big. \n- From statement 12, if someone is green then they are smart. \n- This implies that all green people are smart, since they are green. \n- From statement 2, Erin is green. \n- Therefore, Erin is smart (from statement 12). \n- From statement 3, Erin is kind. \n- From statement 10, all smart people are kind. \n- This implies that all smart people are also kind. \n- Since we already know Erin is smart and kind, this statement does not provide any new information.\n\nNow, let's analyze the possible values for statement 5 (Erin is red):\n\n- If Erin is red, then statement 5 is true. \n- If Erin is not red, then we need to consider the other statements. \n- From statement 11, if Harry is rough and Harry is red then Harry is quiet. \n- Since we already know Harry is quiet (statement 8), this statement does not provide any new information. \n- From statement 13, all kind people are quiet. \n- Since Erin is kind (statement 3) and quiet (statement 4), this statement does not provide any new information. \n\nHowever, we still need to consider the fact that Erin is big (statement 1) and green (statement 2). \n- From statement 14, if someone is rough and big then they are green. \n- This implies that all rough people are green, since they are big. \n- Since Erin is big and green, this statement does not provide any new information.\n\nHowever, statement 1 (Erin is big) and statement 7 (Gary is rough) do not provide any information about Erin's color, but it does inform us that Gary is rough and Erin is big, and since rough people are big (statement 15), Gary and Erin are both big.\n\nSince Erin is big and green, if Erin is not red, then we can conclude that Erin is not red, because if Erin is not red then Erin is green, and since Erin is big, Erin would be green, and green people are smart (from statement 12), and smart people are kind (from statement 10), and since all kind people are quiet (from statement 13), Erin would be quiet.\n\nHowever, we know Erin is quiet (statement 4), and all quiet people are kind (from statement 13), and kind people are smart (from statement 10), and smart people are green (from statement 12), and green people are big (from statement 14), and big people are rough (from statement 15), and rough people are green (from statement 14), so Erin is quiet, Erin is kind, Erin is smart, Erin is green, and Erin is big.\n\nNow, since Erin is big, Erin is green, Erin is smart, and Erin is kind, we can conclude that Erin is quiet. \n\nHowever, we also know that Erin is quiet (statement 4), and all quiet people are kind (from statement 13), and kind people are smart (from statement 10), and smart people are green (from statement 12), and green people are big (from statement 14), and big people are rough (from statement 15), and rough people are green (from statement 14), so Erin is quiet, Erin is kind, Erin is smart, Erin is green, and Erin is big.\n\nWe now have the following information about Erin:\n\n- Erin is big.\n- Erin is green.\n- Erin is smart.\n- Erin is kind.\n- Erin is quiet.\n\nWe are still trying to determine whether Erin is red. \n\nSince Erin is big and green, if Erin is not red, then we can conclude that Erin is not red, because if Erin is not red then Erin is green, and since Erin is big, Erin would be green, and green people are smart (from statement 12), and smart people are kind (from statement 10), and since all kind people are quiet (from statement 13), Erin would be quiet.\n\nHowever, we know Erin is quiet (statement 4), and all quiet people are kind (from statement 13), and kind people are smart (from statement 10), and smart people are green (from statement 12), and green people are big (from statement 14), and big people are rough (from statement 15), and rough people are green (from statement 14), so Erin is quiet, Erin is kind, Erin is smart, Erin is green, and Erin is big.\n\nSince Erin is big and green, if Erin is not red, then we can conclude that Erin is not red, because if Erin is not red then Erin is green, and since Erin is big, Erin would be green, and green people are smart (from statement 12), and smart people are kind (from statement 10), and since all kind people are quiet (from statement 13), Erin would be quiet.\n\nHowever, we know Erin is quiet (statement 4), and all quiet people are kind (from statement 13), and kind people are smart (from statement 10), and smart people are green (from statement 12), and green people are big (from statement 14), and big people are rough (from statement 15), and rough people are green (from statement 14), so Erin is quiet, Erin is kind, Erin is smart, Erin is green, and Erin is big.\n\nWe now have the following information about Erin:\n\n- Erin is big.\n- Erin is green.\n- Erin is smart.\n- Erin is kind.\n- Erin is quiet.\n\nSince Erin is big and green, if Erin is not red, then we can conclude that Erin is not red, because if Erin is not red then Erin is green, and since Erin is big, Erin would be green, and green people are smart (from statement 12), and smart people are kind (from statement 10), and since all kind people are quiet (from statement 13), Erin would be quiet.\n\nHowever, we know Erin is quiet (statement 4), and all quiet people are kind (from statement 13), and kind people are smart (from statement 10), and smart people are green (from statement 12), and green people are big (from statement 14), and big people are rough (from statement 15), and rough people are green (from statement 14), so Erin is quiet, Erin is kind, Erin is smart, Erin is green, and Erin is big.\n\nWe now have the following information about Erin:\n\n- Erin is big.\n- Erin is green.\n- Erin is smart.\n- Erin is kind.\n- Erin is quiet.\n\nSince Erin is big and green, if Erin is not red, then we can conclude that Erin is not red, because if Erin is not red then Erin is green, and since Erin is big, Erin would be green, and green people are smart (from statement 12), and smart people are kind (from statement 10), and since all kind people are quiet (from statement 13), Erin would be quiet.\n\nHowever, we know Erin is quiet (statement 4), and all quiet people are kind (from statement 13), and kind people are smart (from statement 10), and smart people are green (from statement 12), and green people are big (from statement 14), and big people are rough (from statement 15), and rough people are green (from statement 14), so Erin is quiet, Erin is kind, Erin is smart, Erin is green, and Erin is big.\n\nSince Erin is big and green, if Erin is not red, then we can conclude that Erin is not red, because if Erin is not red then Erin is green, and since Erin is big, Erin would be green, and green people are smart (from statement 12), and smart people are kind (from statement 10), and since all kind people are quiet (from statement 13), Erin would be quiet.\n\nHowever, we know Erin is quiet (statement 4), and all quiet people are kind (from statement 13), and kind people are smart (from statement 10), and smart people are green (from statement 12), and green people are big (from statement 14), and big people are rough (from statement 15), and rough people are green (from statement 14), so Erin is quiet, Erin is kind, Erin is smart, Erin is green, and Erin is big.\n\nNow, since Erin is big, Erin is green, Erin is smart, Erin is kind, and Erin is quiet, we can conclude that Erin is red.\n\nHowever, this contradicts the assumption that Erin is not red.\n\nTherefore, Erin must be red.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_erin, smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not red(erin)",
+          "z3_formula": "Not(red_erin) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_harry, rough_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not green(harry)",
+          "z3_formula": "Not(green_harry) == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_harry, smart_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not red(harry) & red(erin)",
+          "z3_formula": "And(Not(red_harry), red_erin) == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "not red(harry) & green(erin)",
+          "z3_formula": "And(Not(red_harry), green_erin) == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, red_harry), quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(rough_gary, big_gary), green_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_gary, big_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_erin, smart_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(rough_erin, big_erin), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_erin, big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, red_harry), quiet_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == False",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "red(gary)",
+          "z3_formula": "red_gary == False",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_gary, big_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(rough_gary, big_gary), green_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_gary, smart_gary)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_gary, kind_gary)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_gary, quiet_gary)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, red_harry), quiet_harry)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(rough_harry, big_harry), green_harry)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_harry, smart_harry)",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 23
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_harry, quiet_harry)",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == False",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 28
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 29
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_erin, smart_erin)",
+          "source_step": 30
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 31
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 32
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == Unknown",
+          "source_step": 33
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, red_harry), quiet_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_gary, big_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_erin, smart_erin)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 18
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_erin, smart_erin)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(rough_erin, big_erin), green_erin)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_erin, big_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, red_harry), quiet_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, red_harry), quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_erin, smart_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(rough_gary, big_gary), green_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_gary, big_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry) & quiet(harry)",
+          "z3_formula": "And(smart_harry, quiet_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin) & red(erin)",
+          "z3_formula": "And(big_erin, red_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin) & red(erin)",
+          "z3_formula": "And(big_erin, red_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin) & red(erin)",
+          "z3_formula": "And(big_erin, red_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "unknown",
+          "z3_formula": "Not(Or(And(big_erin, red_erin), Not(And(big_erin, red_erin))))",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, red_harry), quiet_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_X, smart_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_X, quiet_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(rough_X, big_X), green_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_X, big_X)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(gary)",
+          "z3_formula": "big_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "green(gary)",
+          "z3_formula": "green_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(red(erin))",
+          "z3_formula": "Not(Or(And(big_erin, Not(Or(And(rough_erin, red_erin), And(rough_erin, big_erin)))), And(big_erin, Not(Or(And(rough_erin, red_erin), And(rough_erin, big_erin))))))",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "big(fiona)",
+          "z3_formula": "big_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, red_harry), quiet_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_erin, smart_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(rough_gary, big_gary), green_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_gary, rough_gary)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(harry)",
+          "z3_formula": "red_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, red_harry), quiet_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_erin, smart_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(rough_harry, big_harry), green_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_harry, big_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == Unknown",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(rough_erin, big_erin), green_erin)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_erin, smart_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_erin, big_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & red(X) -> quiet(X)",
+          "z3_formula": "Implies(And(rough_harry, red_harry), quiet_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_erin, rough_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(erin)",
+          "z3_formula": "rough_erin == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == False",
+          "source_step": 22
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> big(X)",
+          "z3_formula": "Implies(rough_gary, big_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & big(X) -> green(X)",
+          "z3_formula": "Implies(And(rough_gary, big_gary), green_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> smart(X)",
+          "z3_formula": "Implies(green_erin, smart_erin)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_erin, kind_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> quiet(X)",
+          "z3_formula": "Implies(kind_erin, quiet_erin)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> rough(X)",
+          "z3_formula": "Implies(big_gary, rough_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> green(X)",
+          "z3_formula": "Implies(rough_gary, green_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(erin)",
+          "z3_formula": "kind_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(erin)",
+          "z3_formula": "quiet_erin == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "green(erin)",
+          "z3_formula": "green_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(erin)",
+          "z3_formula": "big_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 16
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 242,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 55
+    },
+    "maxsat_stats": {
+      "satisfied": 49,
+      "excluded": 6,
+      "total_weight": 234,
+      "solve_time_ms": 2.112327143549919
+    },
+    "timing": {
+      "trace_gen_s": 24.393,
+      "extraction_s": 34.566,
+      "dedup_s": 2.001,
+      "maxsat_s": 0.005,
+      "total_s": 60.965
+    }
+  }
+}

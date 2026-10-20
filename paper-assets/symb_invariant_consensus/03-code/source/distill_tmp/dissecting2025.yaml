@@ -1,0 +1,86 @@
+paper_key: "dissecting2025"
+title: "Dissecting Logical Reasoning in LLMs: A Fine-Grained Evaluation"
+venue: "EMNLP Findings 2025"
+full_text_available: true
+
+research:
+  baselines: ["LLaMA-3.1-8B", "Gemma-2-9B", "Mistral-v0.3-7B", "CoT", "SFT-NL", "SFT-Symbolic"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "atomicity", direction: "higher_better"}
+    - {name: "CSS", direction: "higher_better"}
+    - {name: "NSD", direction: "higher_better"}
+    - {name: "RFI", direction: "higher_better"}
+  datasets:
+    - {name: "FLD", size: "multi-depth"}
+    - {name: "FOLIO", size: "204"}
+    - {name: "ProntoQA", size: "500"}
+  ablation_dimensions: ["supervision_type_NL_vs_symbolic", "reasoning_depth", "model_family"]
+  training_recipe: {optimizer: "AdamW", lr: "1e-6", hardware: "4xA100, ~2h per model"}
+  method_family: "evaluation framework (accuracy + soundness + probing)"
+
+positioning:
+  core_claim: "Three-dimensional evaluation (accuracy + stepwise soundness + representation probing) reveals NL supervision generalizes better but symbolic supervision produces more structurally sound reasoning chains"
+  key_results: "SFT-NL: 67.5% on FLD (from 31.7%); symbolic has higher atomicity (24.7% vs 13.0%); probing shows SFT improves generation but not internalized understanding"
+  limitations:
+    - "Limited to propositional/FOL reasoning"
+    - "Probing only captures linear representations"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "LLMs show improved reasoning but we lack tools to understand what exactly improves"
+  tension: "Single-metric evaluation (accuracy) masks critical differences in reasoning quality"
+  key_insight: "Section 4 — decomposing evaluation into accuracy/soundness/probing reveals a fundamental NL-vs-symbolic tradeoff"
+  argument_chain: "opaque evaluation → 3-dimensional framework → NL vs symbolic comparison → surprising probing results → implications for training design"
+  contribution_framing: "3 contributions: evaluation framework, NL-vs-symbolic findings, probing insights"
+  intro_structure: "5 paragraphs: (1) LLM reasoning progress, (2) evaluation limitations, (3) proposed framework, (4) key findings preview, (5) paper structure"
+  notable_technique: "Previewing surprising findings in intro to create anticipation for the full analysis"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "Three-dimensional evaluation framework: accuracy, soundness, probing"
+    narrative_role: "Establishes the evaluation methodology upfront"
+    design_elements: ["three parallel tracks", "metric labels", "color coding"]
+    visual_style: "Schematic diagram with three evaluation dimensions"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Accuracy across reasoning depths for NL vs symbolic supervision"
+      how_gain_highlighted: "Symbolic degrades more gracefully at higher depths"
+      design_note: "Depth-accuracy curves are the strongest evidence"
+    - figure_id: "Figure 4"
+      viz_type: "heatmap"
+      what_compared: "Probing results (CSS, NSD, RFI) across models and training types"
+      how_gain_highlighted: "Color intensity shows where SFT helps vs doesn't"
+      design_note: "Compact visualization of multi-dimensional probing results"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "bar_chart"
+      dimensions_varied: ["model_family", "supervision_type"]
+      design_note: "Cross-model consistency check"
+  figure_narrative_role: "Fig1(framework) → Fig2(accuracy overview) → Fig3(depth analysis) → Fig4(probing) → Fig5(cross-model)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets × metrics (accuracy + soundness)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 6
+    design_note: "Dual-metric reporting (accuracy and soundness side-by-side)"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["supervision_type", "reasoning_depth"]
+      variation_style: "full_numbers"
+      design_note: "Depth-stratified comparison"
+  supplementary_tables:
+    in_appendix: true
+    content: "Full probing results, additional model comparisons"
+    reason: "Probing methodology details too extensive for main text"

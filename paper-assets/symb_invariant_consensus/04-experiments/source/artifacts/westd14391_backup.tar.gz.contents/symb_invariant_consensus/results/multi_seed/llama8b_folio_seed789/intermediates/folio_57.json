@@ -1,0 +1,480 @@
+{
+  "problem": {
+    "id": "folio_57",
+    "problem": "Given the following premises:\nRobert Lewandowski is a striker. [BG] Strikers are soccer players. Robert Lewandowski left Bayern Munchen. [BG] If a player left a team they no longer play for that team.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nRobert Lewandowski is a star.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "validation",
+    "premises_fol": [
+      "IsStriker(robertLewandowski)",
+      "\u2200x (IsStriker(x) \u2192 IsSoccerPlayer(x))",
+      "LeftTeam(robertLewandowski, bayernMunchen)",
+      "\u2200x \u2200y (LeftTeam(x, y) \u2192 \u00acPlaysForTeam(x, y))"
+    ],
+    "conclusion_fol": "IsSoccerStar(robertLewandowski)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "Unknown": 54.0
+    },
+    "answer_counts": {
+      "Unknown": 11
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion \"Robert Lewandowski is a star\" is true, false, or uncertain, we need to analyze the given premises and see if they logically lead to this conclusion.\n\nPremise 1: Robert Lewandowski is a striker. [BG]\nPremise 2: Strikers are soccer players. [BG]\nPremise 3: Robert Lewandowski left Bayern Munchen. [BG]\nPremise 4: If a player left a team, they no longer play for that team. [BG]\n\nFrom Premise 1 and Premise 2, we can infer that Robert Lewandowski is a soccer player.\n\nPremise 3 and Premise 4 tell us that since Robert Lewandowski left Bayern Munchen, he no longer plays for Bayern Munchen. However, this information does not provide any insight into his current team or his current playing status.\n\nThe premises do not provide any information about Robert Lewandowski's skills, achievements, or fame, which are the characteristics typically associated with being a star in soccer.\n\nTherefore, based on the given premises, we cannot logically conclude whether Robert Lewandowski is a star or not. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"Robert Lewandowski is a star\" is true, false, or uncertain, we need to analyze the premises and see if they logically lead to the conclusion.\n\nPremise 1: Robert Lewandowski is a striker. [BG]\nPremise 2: Strikers are soccer players. [BG]\nPremise 3: Robert Lewandowski left Bayern Munchen. [BG]\nPremise 4: If a player left a team they no longer play for that team.\n\nFrom Premise 1 and Premise 2, we can conclude that Robert Lewandowski is a soccer player, but this does not directly relate to whether he is a star.\n\nPremise 3 and Premise 4 lead us to a conclusion about Robert Lewandowski's current team affiliation, but again, this does not directly relate to whether he is a star.\n\nThe premises do not provide any information about Robert Lewandowski's skills, achievements, or reputation as a soccer player, which are the factors that would determine whether he is a star.\n\nTherefore, based on the given premises, the conclusion \"Robert Lewandowski is a star\" is uncertain because it cannot be logically deduced from the information provided.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the validity of the conclusion, let's analyze the premises and the conclusion.\n\nPremises:\n1. Robert Lewandowski is a striker. [BG]\n2. Strikers are soccer players. [BG]\n3. Robert Lewandowski left Bayern Munchen. [BG]\n4. If a player left a team, they no longer play for that team. [BG]\n\nConclusion:\nRobert Lewandowski is a star.\n\nFrom premise 1, we know Robert Lewandowski is a striker. From premise 2, we can infer that he is also a soccer player.\n\nHowever, there is no direct connection between being a striker/soccer player and being a star. The premises do not provide any information about Robert Lewandowski's skills, achievements, or fame. They only describe his role as a soccer player.\n\nPremise 3 and premise 4 provide information about Robert Lewandowski's relationship with Bayern Munchen, but this does not affect his status as a star.\n\nTherefore, the conclusion \"Robert Lewandowski is a star\" is uncertain because it cannot be directly inferred from the given premises. We cannot determine whether Robert Lewandowski is a star or not based on the information provided.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and see if they provide enough information to support the conclusion.\n\nPremise 1: Robert Lewandowski is a striker. \nPremise 2: Strikers are soccer players.\nPremise 3: Robert Lewandowski left Bayern Munchen.\nPremise 4: If a player left a team, they no longer play for that team.\n\nThe conclusion we are evaluating is: Robert Lewandowski is a star.\n\nFrom Premise 1 and Premise 2, we can infer that Robert Lewandowski is a soccer player.\n\nHowever, Premises 1-4 do not provide any information about Robert Lewandowski being a \"star.\" Being a star in soccer is not directly related to being a striker or a soccer player. It's a term often used to describe a player who is exceptionally skilled or successful, but it's not a formal category in the premises.\n\nTherefore, based on the given premises, we cannot determine whether Robert Lewandowski is a star or not. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion \"Robert Lewandowski is a star\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Robert Lewandowski is a striker. \nPremise 2: Strikers are soccer players.\nPremise 3: Robert Lewandowski left Bayern Munchen.\nPremise 4: If a player left a team, they no longer play for that team.\n\nFrom Premise 1 and Premise 2, we can infer that Robert Lewandowski is a soccer player.\n\nHowever, Premise 3 and Premise 4 do not provide any information about Robert Lewandowski's current or past playing status. They only state that he left Bayern Munchen and that a player who leaves a team no longer plays for that team.\n\nNow, let's examine the conclusion: \"Robert Lewandowski is a star.\" This conclusion is not related to any of the given premises. The premises only discuss Robert Lewandowski's role as a striker and his past relationship with Bayern Munchen.\n\nSince there is no logical connection between the premises and the conclusion, we cannot determine the truth value of the conclusion based on the given information.\n\nTherefore, the conclusion \"Robert Lewandowski is a star\" is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use the rules of argumentation, specifically the method of using premises to evaluate the validity of a conclusion.\n\nGiven premises:\n\n1. Robert Lewandowski is a striker. [BG] (Premise 1)\n2. Strikers are soccer players. [BG] (Premise 2)\n3. Robert Lewandowski left Bayern Munchen. [BG] (Premise 3)\n4. If a player left a team they no longer play for that team. [BG] (Premise 4)\n\nConclusion: Robert Lewandowski is a star.\n\nTo evaluate this conclusion, we can use the premises to see if they support the conclusion. However, there is no direct relationship between being a striker (Premise 1) and being a star. The premises do not provide sufficient information to conclude that Robert Lewandowski is a star.\n\nPremise 1 (Robert Lewandowski is a striker) does not necessarily imply that he is a star, as many soccer players are strikers but not stars. Premise 2 (Strikers are soccer players) also does not provide any information about being a star.\n\nPremise 3 (Robert Lewandowski left Bayern Munchen) and Premise 4 (If a player left a team they no longer play for that team) provide information about Robert Lewandowski's team affiliation, but this does not provide any information about his skill level or fame, which are characteristics that might make someone a star.\n\nSince the premises do not provide sufficient information to conclude that Robert Lewandowski is a star, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion \"Robert Lewandowski is a star\" is true, false, or uncertain, we need to analyze the given premises and see if they provide any information that can lead to this conclusion.\n\nPremise 1: Robert Lewandowski is a striker.\nPremise 2: Strikers are soccer players.\nPremise 3: Robert Lewandowski left Bayern Munchen.\nPremise 4: If a player left a team they no longer play for that team.\n\nFrom Premise 1, we know that Robert Lewandowski is a striker. However, being a striker doesn't tell us anything about his skill level or fame, so we can't conclude that he's a star from this premise alone.\n\nFrom Premise 2, we know that strikers are soccer players. This is a general statement and doesn't provide any information about Robert Lewandowski's specific situation.\n\nFrom Premise 3, we know that Robert Lewandowski left Bayern Munchen. This premise is related to Premise 4, which states that if a player left a team, they no longer play for that team. However, this doesn't provide any information about Robert Lewandowski's current team or his performance.\n\nFrom Premise 4, we know that if a player left a team, they no longer play for that team. However, this premise doesn't provide any information about Robert Lewandowski's current team or his performance.\n\nSince none of the premises provide any information that directly relates to the conclusion \"Robert Lewandowski is a star\", we can't determine whether this conclusion is true or false based on the given information. Therefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion \"Robert Lewandowski is a star\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Robert Lewandowski is a striker. \nPremise 2: Strikers are soccer players. \nPremise 3: Robert Lewandowski left Bayern Munchen. \nPremise 4: If a player left a team they no longer play for that team.\n\nFrom Premise 1 and Premise 2, we can infer that Robert Lewandowski is a soccer player.\n\nHowever, Premise 3 and Premise 4 provide additional information about Robert Lewandowski's relationship with Bayern Munchen. Premise 4 is a conditional statement that if a player left a team, they no longer play for that team. \n\nSince we know that Robert Lewandowski left Bayern Munchen (Premise 3), we can conclude that he no longer plays for Bayern Munchen (from Premise 4).\n\nThe given premises do not provide any information about Robert Lewandowski being a \"star\" or his skill level in soccer. They only provide information about his role as a striker, his relationship with Bayern Munchen, and his current status with the team.\n\nTherefore, based on the given premises, we cannot determine whether the conclusion \"Robert Lewandowski is a star\" is true or false. It is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we will use a form of logical reasoning called propositional logic or sentential logic. \n\nStep 1: Understand the premises and the conclusion.\n\nPremises:\n1. Robert Lewandowski is a striker. [BG] (BG denotes a background premise, which is a premise that is generally accepted to be true, but is not necessarily directly related to the conclusion we want to draw.)\n2. Strikers are soccer players. [BG]\n3. Robert Lewandowski left Bayern Munchen. [BG]\n4. If a player left a team, they no longer play for that team. (This is a conditional statement that we will use to make a conclusion about Robert Lewandowski's status with Bayern Munchen.)\n\nConclusion:\nRobert Lewandowski is a star.\n\nStep 2: Break down the conclusion into its component parts and relate it to the premises.\n\nTo determine whether the conclusion is true, false, or uncertain, we need to see if we can derive it from the premises using the rules of logical reasoning. \n\nHowever, we cannot derive the conclusion directly from the premises because \"Robert Lewandowski is a star\" is not related to the premises provided. Being a star is not a property that can be derived from being a striker, playing soccer, leaving a team, or any other information in the premises.\n\nStep 3: Evaluate the uncertainty of the conclusion.\n\nSince we cannot derive the conclusion from the premises, we cannot say that it is definitely true or false. The conclusion is uncertain because it is not supported by the information given in the premises.\n\nHowever, we can still make an educated guess about Robert Lewandowski's status as a star. As a well-known soccer player, Robert Lewandowski is indeed considered a star in the soccer world. But this information is not provided in the premises, so we cannot use it to make a logical conclusion.\n\nFinal Answer:\nSince we cannot derive the conclusion from the premises, the best answer we can give is that the conclusion is uncertain.",
+        "answer": "",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we'll use the given premises to determine the validity of the conclusion.\n\nGiven premises:\n1. Robert Lewandowski is a striker. [BG] \n2. Strikers are soccer players. [BG]\n3. Robert Lewandowski left Bayern Munchen. [BG]\n4. If a player left a team they no longer play for that team. [BG]\n\nWe can start by analyzing the first two premises:\n\n1. Robert Lewandowski is a striker. [BG]\n2. Strikers are soccer players. [BG]\n\nFrom the second premise, we can infer that Robert Lewandowski is a soccer player.\n\nHowever, the conclusion we need to evaluate is:\nRobert Lewandowski is a star.\n\nThere is no direct connection between being a soccer player and being a star. Being a soccer player is a fact about Robert Lewandowski's profession, but it doesn't provide any information about his skill level or status in the soccer world.\n\nThe third premise:\nRobert Lewandowski left Bayern Munchen. [BG]\n\nThis premise can be used with the fourth premise:\nIf a player left a team they no longer play for that team. [BG]\n\nBut again, there is no connection between leaving a team and being a star.\n\nTherefore, based on the given premises, we cannot determine whether Robert Lewandowski is a star or not. The premises provide no information about his skill level or status in the soccer world.\n\nSo, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion \"Robert Lewandowski is a star\" is true, false, or uncertain based on the given premises, let's analyze the information provided.\n\nPremises:\n\n1. Robert Lewandowski is a striker. [BG]\n2. Strikers are soccer players. [BG]\n3. Robert Lewandowski left Bayern Munchen. [BG]\n4. If a player left a team, they no longer play for that team. [BG]\n\nAnalysis:\n\nFrom premise 1, we know that Robert Lewandowski is a striker. From premise 2, we can infer that he is also a soccer player.\n\nHowever, premise 3 and 4 do not provide any information about Robert Lewandowski's skills or abilities as a soccer player. They only inform us about his current team affiliation.\n\nThe conclusion \"Robert Lewandowski is a star\" implies that he is a highly skilled or talented soccer player. This conclusion cannot be directly inferred from the given premises.\n\nSince the premises do not provide any information about Robert Lewandowski's skills or abilities as a soccer player, the conclusion \"Robert Lewandowski is a star\" is uncertain.\n\nTherefore, the final answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion \"Robert Lewandowski is a star\" is true, false, or uncertain, we need to analyze the given premises and see if they provide any relevant information.\n\nPremise 1: Robert Lewandowski is a striker.\nPremise 2: Strikers are soccer players.\nPremise 3: Robert Lewandowski left Bayern Munchen.\nPremise 4: If a player left a team they no longer play for that team.\n\nFrom Premise 1 and Premise 2, we can conclude that Robert Lewandowski is a soccer player. However, this does not provide any information about whether he is a star or not.\n\nPremise 3 and Premise 4 tell us that Robert Lewandowski is no longer a player for Bayern Munchen. This is a fact about his past employment, but it doesn't provide any information about his current status or abilities.\n\nThe conclusion \"Robert Lewandowski is a star\" is a statement about Robert Lewandowski's abilities or achievements. However, none of the premises provide any direct or indirect evidence to support or refute this conclusion.\n\nTherefore, we cannot conclude that Robert Lewandowski is a star based on the given premises. The conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not plays(X, Y)",
+          "z3_formula": "Implies(left_robert_lewandowski_bayern_munchen, Not(plays_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "soccer_player(robert_lewandowski)",
+          "z3_formula": "soccer_player_robert_lewandowski == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not plays(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "Not(plays_robert_lewandowski_bayern_munchen) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "star(robert_lewandowski)",
+          "z3_formula": "star_robert_lewandowski == Unknown",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not(currently_plays(X, Y))",
+          "z3_formula": "Implies(left_robert_lewandowski_bayern_munchen, Not(currently_plays_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "soccer_player(robert_lewandowski)",
+          "z3_formula": "soccer_player_robert_lewandowski == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(currently_plays(robert_lewandowski, bayern_munchen))",
+          "z3_formula": "Not(currently_plays_robert_lewandowski_bayern_munchen) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "star(robert_lewandowski)",
+          "z3_formula": "star_robert_lewandowski == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not(play(X, Y))",
+          "z3_formula": "Implies(And(left_robert_lewandowski_bayern_munchen, play_robert_lewandowski_bayern_munchen), Not(play_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "soccer_player(striker)",
+          "z3_formula": "soccer_player_striker == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not(play(X, Y))",
+          "z3_formula": "Implies(left_robert_lewandowski_bayern_munchen, not(play_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left_bayern_munchen(robert_lewandowski)",
+          "z3_formula": "left_bayern_munchen_robert_lewandowski == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left_team(X) -> not plays_for(X, team)",
+          "z3_formula": "Implies(left_bayern_munchen_robert_lewandowski, not plays_for_robert_lewandowski_bayern_munchen)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "soccer_player(robert_lewandowski)",
+          "z3_formula": "soccer_player_robert_lewandowski == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "soccer_player(striker)",
+          "z3_formula": "soccer_player_striker == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left_bayern_munchen(robert_lewandowski)",
+          "z3_formula": "left_bayern_munchen_robert_lewandowski == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left_team(X) -> not_play_for_team(X, Y)",
+          "z3_formula": "Implies(left_bayern_munchen_robert_lewandowski, not_play_for_team_robert_lewandowski_bayern_munchen)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "star(robert_lewandowski)",
+          "z3_formula": "star_robert_lewandowski == Unknown",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not plays(X, Y)",
+          "z3_formula": "Implies(And(left_robert_lewandowski_bayern_munchen, not plays_robert_lewandowski_bayern_munchen)",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not(plays(X, Y))",
+          "z3_formula": "Implies(left_robert_lewandowski_bayern_munchen, Not(plays_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "soccer_player(striker)",
+          "z3_formula": "soccer_player_striker == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left_bayern_munchen(robert_lewandowski)",
+          "z3_formula": "left_bayern_munchen_robert_lewandowski == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left_team(X) -> not plays_for_team(X, Y)",
+          "z3_formula": "Implies(left_bayern_munchen_robert_lewandowski, Not(plays_for_team_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "soccer_player(striker)",
+          "z3_formula": "soccer_player_striker == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "soccer_player(robert_lewandowski)",
+          "z3_formula": "soccer_player_robert_lewandowski == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left_bayern_munchen(robert_lewandowski)",
+          "z3_formula": "left_bayern_munchen_robert_lewandowski == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left_team(X) -> not_play_for_team(X, Y)",
+          "z3_formula": "Implies(left_bayern_munchen_robert_lewandowski, not_play_for_team_robert_lewandowski_bayern_munchen)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "not_play_for_team(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "not_play_for_team_robert_lewandowski_bayern_munchen == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "striker(robert_lewandowski)",
+          "z3_formula": "striker_robert_lewandowski == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "striker(X) -> soccer_player(X)",
+          "z3_formula": "Implies(striker_robert_lewandowski, soccer_player_robert_lewandowski)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "left(robert_lewandowski, bayern_munchen)",
+          "z3_formula": "left_robert_lewandowski_bayern_munchen == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "left(X, Y) -> not(play(X, Y))",
+          "z3_formula": "Implies(And(left_robert_lewandowski_bayern_munchen, play_robert_lewandowski_bayern_munchen), Not(play_robert_lewandowski_bayern_munchen))",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "soccer_player(robert_lewandowski)",
+          "z3_formula": "soccer_player_robert_lewandowski == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> nice(X)",
+          "z3_formula": "Implies(kind_anne, nice_anne)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "nice(anne)",
+          "z3_formula": "nice_anne == True",
+          "source_step": 3
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 58,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 19
+    },
+    "maxsat_stats": {
+      "satisfied": 19,
+      "excluded": 0,
+      "total_weight": 55,
+      "solve_time_ms": 0.8268905803561211
+    },
+    "timing": {
+      "trace_gen_s": 5.049,
+      "extraction_s": 18.301,
+      "dedup_s": 0.276,
+      "maxsat_s": 0.002,
+      "total_s": 23.628
+    }
+  }
+}

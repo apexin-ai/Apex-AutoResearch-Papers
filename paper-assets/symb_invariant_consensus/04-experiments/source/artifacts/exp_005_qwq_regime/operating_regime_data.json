@@ -1,0 +1,132 @@
+{
+  "exp_id": "exp-005",
+  "title": "QwQ-32B Operating Regime Analysis",
+  "model": "QwQ-32B-Preview",
+  "comparison_model": "Qwen2.5-14B-Instruct",
+  "date": "2026-05-16",
+
+  "aggregate_c0": {
+    "nominal": 10.3,
+    "effective": 2.6,
+    "note": "effective = problems with multi-candidate AND successful constraint extraction"
+  },
+  "comparison_c0": 46.0,
+  "diversity_ratio": 17.7,
+  "diversity_ratio_note": "46.0 / 2.6 = 17.7x (effective C0); 46.0 / 10.3 = 4.5x (nominal C0)",
+
+  "experiments": [
+    {
+      "exp_id": "sica_aime30_v3",
+      "dataset": "AIME 2024",
+      "domain": "math",
+      "n_completed": 22,
+      "n_planned": 30,
+      "status": "killed",
+      "K": 12,
+      "T": 0.7,
+      "multi_candidate_rate_nominal": 0.0,
+      "multi_candidate_rate_effective": 0.0,
+      "sica_accuracy": 0.7273,
+      "sc_accuracy": 0.7273,
+      "delta_pp": 0.0,
+      "zero_vote_problems": 6,
+      "extraction_success_rate": 0.7273,
+      "per_problem_vote_distribution": "all 22 problems have exactly 1 candidate answer",
+      "conclusion": "SICA structurally identical to SC; zero answer divergence across all 22 problems",
+      "wall_time_h": 5.9
+    },
+    {
+      "exp_id": "sica_proofwriter30_v2",
+      "dataset": "ProofWriter D5",
+      "domain": "logic",
+      "n_completed": 17,
+      "n_planned": 30,
+      "status": "killed",
+      "K": 12,
+      "T": 0.7,
+      "multi_candidate_rate_nominal": 0.2353,
+      "multi_candidate_rate_effective": 0.0588,
+      "sica_accuracy": 0.8235,
+      "sc_accuracy": 0.8824,
+      "delta_pp": -5.9,
+      "extraction_failure_rate": 0.544,
+      "multi_candidate_details": [
+        {"id": "616_Q7", "gt": "True", "votes": {"False": 7, "True": 5}, "constraints": 0, "sica": "False", "sc": "False", "sica_ok": false, "sc_ok": false},
+        {"id": "498_Q8", "gt": "False", "votes": {"False": 11, "True": 1}, "constraints": 41, "sica": "True", "sc": "False", "sica_ok": false, "sc_ok": true, "note": "SICA scored minority True=38 > majority False=27, flipping correct SC answer"},
+        {"id": "251_Q10", "gt": "False", "votes": {"Unknown": 3, "False": 7, "True": 2}, "constraints": 0, "sica": "False", "sc": "False", "sica_ok": true, "sc_ok": true},
+        {"id": "31_Q12", "gt": "False", "votes": {"False": 4, "Unknown": 8}, "constraints": 0, "sica": "Unknown", "sc": "Unknown", "sica_ok": false, "sc_ok": false}
+      ],
+      "root_cause": "QwQ-32B re-reasons during extraction prompt instead of outputting structured JSON; 3/4 multi-candidate problems got 0 constraints",
+      "conclusion": "SICA 5.9pp worse than SC; constraint extraction failure + scoring bias"
+    },
+    {
+      "exp_id": "sica_folio30",
+      "dataset": "FOLIO",
+      "domain": "logic",
+      "n_completed": 2,
+      "n_planned": 30,
+      "status": "killed",
+      "K": 4,
+      "T": 0.7,
+      "multi_candidate_rate_nominal": 0.0,
+      "sica_accuracy": 1.0,
+      "sc_accuracy": 1.0,
+      "delta_pp": 0.0,
+      "note": "Only 2-problem live test completed before model pivot; N too small for analysis",
+      "conclusion": "SICA identical to SC; insufficient data"
+    },
+    {
+      "exp_id": "sica_temp_diversity",
+      "dataset": "MATH L4-5",
+      "domain": "math",
+      "n_completed": 5,
+      "status": "done",
+      "K": 12,
+      "temperatures_tested": [0.7, 0.9, 1.0],
+      "multi_candidate_rate": 0.0,
+      "conclusion": "Zero answer divergence even at T=1.0; reasoning model's deterministic chain dominates sampling randomness"
+    }
+  ],
+
+  "comparison_experiment": {
+    "exp_id": "sica_d016_c0_precheck",
+    "model": "Qwen2.5-14B-Instruct",
+    "dataset": "FOLIO-10 + ProofWriter-16 (same problems)",
+    "n_problems": 26,
+    "K": 6,
+    "T": 0.7,
+    "multi_candidate_rate_combined": 0.46,
+    "multi_candidate_rate_folio": 0.40,
+    "multi_candidate_rate_proofwriter": 0.50,
+    "sc_accuracy": 0.73,
+    "c0_gate": "PASS (46% >= 20%)"
+  },
+
+  "combined_stats": {
+    "total_problems_main": 39,
+    "breakdown": "AIME(22) + ProofWriter(17), both K=12",
+    "nominal_c0_pct": 10.3,
+    "effective_c0_pct": 2.6,
+    "total_problems_all": 46,
+    "breakdown_all": "Including FOLIO(2,K=4) + MATH-temp(5,K=12)"
+  },
+
+  "key_findings": [
+    "QwQ-32B produces near-zero answer divergence on math domain (AIME: 0/22 problems with >1 candidate, MATH: 0/5 across 3 temperatures)",
+    "Logic domain shows some nominal diversity (23.5%) but constraint extraction fails on 75% of multi-candidate problems",
+    "The ONE problem where SICA had constraints + multi-candidate (498_Q8), it picked the WRONG answer (minority with higher constraint score)",
+    "Net effect: SICA identical to SC on math, 5.9pp WORSE than SC on logic",
+    "Root cause: reasoning model's extended chain-of-thought produces deterministic conclusions regardless of sampling temperature",
+    "Qwen2.5-14B-Instruct achieves C0=46% on same problem types, validating that SICA requires non-reasoning models for trace diversity"
+  ],
+
+  "operating_regime_boundary": {
+    "c0_threshold": 20,
+    "qwq_effective_c0": 2.6,
+    "qwen14b_c0": 46.0,
+    "verdict": "QwQ-32B operates outside SICA's effective regime (C0=2.6% << 20% threshold). Reasoning models eliminate trace diversity, making constraint-based aggregation structurally vacuous.",
+    "implication_for_paper": "Validates Claim 2: SICA has a well-defined operating regime bounded by model capability. Too-strong models (reasoning) collapse diversity; SICA degenerates to SC or worse."
+  },
+
+  "conclusion": "Reasoning models eliminate trace diversity, making constraint-based aggregation structurally vacuous. SICA requires sufficient answer disagreement (C0 >= 20%) to provide value over simple majority voting."
+}

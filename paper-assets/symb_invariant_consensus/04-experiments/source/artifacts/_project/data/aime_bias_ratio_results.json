@@ -1,0 +1,160 @@
+{
+  "analysis": "Direction 3A — AIME Cross-Task Bias Ratio",
+  "date": "2026-05-20",
+  "folio_summary": {
+    "dataset": "FOLIO-204",
+    "model": "Mistral-7B-Instruct-v0.3",
+    "domain": "logic",
+    "n_problems": 204,
+    "sica_accuracy": 0.5931,
+    "sc_accuracy": 0.5441,
+    "multi_candidate_rate": "high (3-category answer space, model produces diverse answers)",
+    "bias_ratio_sica_wrong": 4.9746,
+    "bias_ratio_both_wrong": 5.2391,
+    "bias_ratio_sica_correct": 0.2808,
+    "bias_ratio_both_correct": 0.2205,
+    "sica_wrong_follows_sc_rate": 0.9398,
+    "interpretation": "When SICA gets wrong answer, 83.3% of constraints support the SC majority (wrong) answer vs 16.7% for gold. Bias ratio = 4.97x. Constraints are not independent of LLM majority — they systematically mirror the model's collective error."
+  },
+  "aime_analysis": {
+    "dataset": "AIME-2024",
+    "model": "QwQ-32B",
+    "domain": "math",
+    "n_completed": 22,
+    "n_planned": 30,
+    "sica_accuracy": 0.7273,
+    "sc_accuracy": 0.7273,
+    "sica_eq_sc": true,
+    "structural_analysis": {
+      "multi_candidate_rate": 0.0,
+      "n_candidates_per_problem": 1,
+      "bias_ratio_computable": false,
+      "reason": "All 16 valid AIME problems have exactly 1 candidate answer (multi_candidate_rate = 0%). The FOLIO-style bias ratio requires at least 2 candidate answers to compare constraint support for majority vs gold. With 1 candidate: P(support majority) = 1.0, P(support non-majority) = 0.0, ratio is undefined (division by zero)."
+    },
+    "exclusion_analysis": {
+      "overall_exclusion_rate": 0.387,
+      "partial_data_exclusion_rates": {
+        "AIME_II_01": 0.152,
+        "AIME_II_03": 0.0,
+        "AIME_II_04": 0.2
+      },
+      "correct_problems_avg_exclusion": 0.11733333333333333,
+      "interpretation": "Even with unanimous correct answers, 15-20% of constraints are excluded as self-contradictory. This suggests constraints encode reasoning errors even when the final answer is correct, but these errors don't manifest as answer-level bias because answer diversity = 0."
+    },
+    "extraction_failure_analysis": {
+      "zero_vote_problems": 6,
+      "zero_vote_rate": 0.2727272727272727,
+      "extraction_success_rate": 0.7272727272727273,
+      "all_wrong_are_extraction_failures": true,
+      "interpretation": "All 6 wrong problems had 0 extractable votes. The 'bias' in AIME manifests as complete extraction failure rather than biased constraints — the LLM either solves the problem correctly (with unanimous answer) or fails so completely that no answer/constraints can be extracted."
+    }
+  },
+  "cross_task_comparison": {
+    "folio_bias_ratio": 4.9746,
+    "aime_bias_ratio": "undefined (degenerate — zero answer diversity)",
+    "aime_bias_ratio_numeric": null,
+    "cross_task_generalizable": "inconclusive",
+    "root_cause_analysis": {
+      "folio": {
+        "answer_diversity": "high (3 categories, model frequently disagrees across traces)",
+        "constraint_bias": "4.97x toward majority → Symbolic Mirage confirmed",
+        "mechanism": "Constraints from each trace inherit that trace's answer direction. When majority is wrong, constraints overwhelmingly support wrong answer."
+      },
+      "aime": {
+        "answer_diversity": "zero (reasoning model converges to single answer)",
+        "constraint_bias": "cannot measure (no minority answer to compare)",
+        "mechanism": "QwQ-32B as a reasoning model produces near-deterministic traces. Failure mode is binary: unanimous-correct OR complete-extraction-failure."
+      },
+      "confound": "FOLIO uses Mistral-7B (weaker), AIME uses QwQ-32B (stronger reasoning model). The zero-diversity result may be model-driven (QwQ-32B is too deterministic) rather than task-driven (AIME vs FOLIO). To disentangle: need AIME experiment with Mistral-7B or FOLIO experiment with QwQ-32B."
+    },
+    "available_comparisons": {
+      "model_strength_evidence": {
+        "QwQ-32B_effective_C0": "2.6%",
+        "Qwen2.5-14B_C0": "46.0%",
+        "diversity_ratio": "17.7x (14B has 17.7x more answer diversity than QwQ-32B)",
+        "source": "exp-005 operating regime analysis"
+      },
+      "conclusion": "The lack of answer diversity on AIME is primarily a MODEL effect (strong reasoning model → deterministic output), not a TASK effect. QwQ-32B also shows near-zero diversity on ProofWriter (logic domain, same answer space as FOLIO). Cross-task generalization of Symbolic Mirage cannot be tested without matching model strength."
+    },
+    "recommended_followup": [
+      "Run AIME with Mistral-7B or Qwen2.5-14B to get answer diversity",
+      "Run FOLIO with QwQ-32B to confirm zero-diversity is model-driven",
+      "If 14B on AIME shows diversity: compute bias ratio for direct comparison"
+    ],
+    "statistical_caveats": [
+      "AIME N=22 (8 incomplete), FOLIO N=204 — very different sample sizes",
+      "AIME partial data: only 4/22 problems have detailed constraint breakdown",
+      "Raw AIME traces lost (westd-32608 server decommissioned)",
+      "Different models between tasks prevents clean cross-task comparison"
+    ]
+  },
+  "aime_per_question": [
+    {
+      "problem_id": "AIME_II_01",
+      "gold_answer": 73,
+      "sica_answer": 73,
+      "sc_answer": 73,
+      "sica_correct": true,
+      "n_candidates": 1,
+      "total_constraints": 56,
+      "unique_constraints": 33,
+      "exclusion_rate": 0.152,
+      "constraints_for_majority_frac": 1.0,
+      "constraints_for_gold_frac": 1.0,
+      "bias_ratio": null,
+      "bias_ratio_note": "undefined: only 1 candidate answer"
+    },
+    {
+      "problem_id": "AIME_II_02",
+      "gold_answer": 236,
+      "sica_answer": null,
+      "sc_answer": null,
+      "sica_correct": false,
+      "n_candidates": 0,
+      "total_constraints": 0,
+      "unique_constraints": 0,
+      "exclusion_rate": null,
+      "constraints_for_majority_frac": null,
+      "constraints_for_gold_frac": null,
+      "bias_ratio": null,
+      "bias_ratio_note": "no constraints extracted"
+    },
+    {
+      "problem_id": "AIME_II_03",
+      "gold_answer": 45,
+      "sica_answer": 45,
+      "sc_answer": 45,
+      "sica_correct": true,
+      "n_candidates": 1,
+      "total_constraints": 51,
+      "unique_constraints": 18,
+      "exclusion_rate": 0.0,
+      "constraints_for_majority_frac": 1.0,
+      "constraints_for_gold_frac": 1.0,
+      "bias_ratio": null,
+      "bias_ratio_note": "undefined: only 1 candidate answer"
+    },
+    {
+      "problem_id": "AIME_II_04",
+      "gold_answer": 33,
+      "sica_answer": 33,
+      "sc_answer": 33,
+      "sica_correct": true,
+      "n_candidates": 1,
+      "total_constraints": 20,
+      "unique_constraints": 5,
+      "exclusion_rate": 0.2,
+      "constraints_for_majority_frac": 1.0,
+      "constraints_for_gold_frac": 1.0,
+      "bias_ratio": null,
+      "bias_ratio_note": "undefined: only 1 candidate answer"
+    }
+  ],
+  "headline_result": {
+    "folio_bias_ratio": 4.97,
+    "aime_bias_ratio": null,
+    "aime_bias_ratio_status": "structurally undefined",
+    "is_cross_task": "inconclusive — confounded by model strength difference",
+    "key_finding": "AIME (QwQ-32B) produces zero answer diversity (multi_candidate_rate=0%), making the FOLIO-style bias ratio structurally undefined. This is primarily a MODEL effect (strong reasoning model → deterministic output), not a TASK effect. The Symbolic Mirage may still exist in math reasoning but cannot be measured without weaker model experiments. FOLIO bias ratio (Mistral-7B) = 4.97x remains the only confirmed datapoint."
+  }
+}

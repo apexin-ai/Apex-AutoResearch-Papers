@@ -1,0 +1,839 @@
+{
+  "pid": "folio_158",
+  "gt": "True",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not works_in_library(computer_science_department)",
+          "z3_formula": "not works_in_library_computer_science_department == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_library(X) -> part_time_job_university(X)",
+          "z3_formula": "Implies(works_in_library_university, part_time_job_university)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "part_time_job_university(X) -> works_in_library(X)",
+          "z3_formula": "Implies(part_time_job_university, works_in_library_university)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "database_course(X) -> computer_science_department(X)",
+          "z3_formula": "Implies(database_course, computer_science_department)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "instructed_by_david(X) -> database_course(X)",
+          "z3_formula": "Implies(instructed_by_david, database_course)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "lab(X) -> instructed_by_david(X)",
+          "z3_formula": "Implies(lab, instructed_by_david)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "lab(james)",
+          "z3_formula": "lab_james == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "instructed_by_david(james)",
+          "z3_formula": "instructed_by_david_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "database_course(james)",
+          "z3_formula": "database_course_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "computer_science_department(james)",
+          "z3_formula": "computer_science_department_james == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "not works_in_library(james)",
+          "z3_formula": "not works_in_library_james == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "part_time_job_university(james)",
+          "z3_formula": "part_time_job_university_james == Unknown",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not_from_computer_science(library)",
+          "z3_formula": "not_from_computer_science_library == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "part_time_job_university(X) -> library(X)",
+          "z3_formula": "Implies(part_time_job_university, library)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "from_computer_science(database)",
+          "z3_formula": "from_computer_science_database == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "instructed_by_david(X) -> database(X)",
+          "z3_formula": "Implies(instructed_by_david, database)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "instructed_by_david(lab)",
+          "z3_formula": "instructed_by_david_lab == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "lab(X) -> instructed_by_david(X)",
+          "z3_formula": "Implies(lab, instructed_by_david)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "lab(james)",
+          "z3_formula": "lab_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not_part_time_job_university(jack)",
+          "z3_formula": "not_part_time_job_university_jack == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "instructed_by_david(james)",
+          "z3_formula": "instructed_by_david_james == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "database(james)",
+          "z3_formula": "database_james == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "from_computer_science(james)",
+          "z3_formula": "from_computer_science_james == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not_library(james)",
+          "z3_formula": "not_library_james == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not_part_time_job_university(james)",
+          "z3_formula": "not_part_time_job_university_james == Unknown",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not library_student(X) & computer_science(X)",
+          "z3_formula": "Not(library_student_X & computer_science_X) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "university_part_time_job(X) -> library_student(X)",
+          "z3_formula": "Implies(university_part_time_job_X, library_student_X)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "database_course(X) -> computer_science(X)",
+          "z3_formula": "Implies(database_course_X, computer_science_X)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "professor_david(X) -> database_course(X)",
+          "z3_formula": "Implies(professor_david_X, database_course_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "lab_student(X) -> professor_david(X)",
+          "z3_formula": "Implies(lab_student_X, professor_david_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "lab_student(james)",
+          "z3_formula": "lab_student_james == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "professor_david(james)",
+          "z3_formula": "professor_david_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "database_course(james)",
+          "z3_formula": "database_course_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not university_part_time_job(jack) & not lab_student(jack)",
+          "z3_formula": "Not(university_part_time_job_jack & lab_student_jack) == True",
+          "source_step": 9
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not computer_science_library(X)",
+          "z3_formula": "Not(computer_science_library_X)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "university_job(X) -> library(X)",
+          "z3_formula": "Implies(university_job_X, library_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "database(X) -> computer_science(X)",
+          "z3_formula": "Implies(database_X, computer_science_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "david(X) -> database(X)",
+          "z3_formula": "Implies(david_X, database_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "lab(X) -> david(X)",
+          "z3_formula": "Implies(lab_X, david_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "lab(james)",
+          "z3_formula": "lab_james == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "david(james)",
+          "z3_formula": "david_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "database(james)",
+          "z3_formula": "database_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "computer_science(james)",
+          "z3_formula": "computer_science_james == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "library(X) -> computer_science_library(X)",
+          "z3_formula": "Implies(library_X, computer_science_library_X)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not computer_science_library(james)",
+          "z3_formula": "Not(computer_science_library_james)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "not (university_job(jack) | lab(jack))",
+          "z3_formula": "Not(Or(university_job_jack, lab_jack))",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not university_job(james)",
+          "z3_formula": "Not(university_job_james)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not(library_computer_science)",
+          "z3_formula": "Not(library_computer_science) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "library(X) -> not(computer_science(X))",
+          "z3_formula": "Implies(library_X, Not(computer_science_X))",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "university_job(library)",
+          "z3_formula": "university_job_library == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "university_job(X) -> library(X)",
+          "z3_formula": "Implies(university_job_X, library_X)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "database_computer_science",
+          "z3_formula": "database_computer_science == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "database(X) -> computer_science(X)",
+          "z3_formula": "Implies(database_X, computer_science_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "david_database",
+          "z3_formula": "david_database == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "david(X) -> database(X)",
+          "z3_formula": "Implies(david_X, database_X)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "lab_david",
+          "z3_formula": "lab_david == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "lab(X) -> david(X)",
+          "z3_formula": "Implies(lab_X, david_X)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "james_lab",
+          "z3_formula": "james_lab == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "david(james)",
+          "z3_formula": "david_james == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "computer_science(james)",
+          "z3_formula": "computer_science_james == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(university_job_james)",
+          "z3_formula": "Not(university_job_james) == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not student_from_computer_science(library_worker)",
+          "z3_formula": "Not(student_from_computer_science_library_worker) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "university_part_time_job(X) -> library_worker(X)",
+          "z3_formula": "Implies(university_part_time_job, library_worker)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "database_course(X) -> student_from_computer_science(X)",
+          "z3_formula": "Implies(database_course, student_from_computer_science)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "instructed_by_david(X) -> database_course(X)",
+          "z3_formula": "Implies(instructed_by_david, database_course)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "lab_worker(X) -> instructed_by_david(X)",
+          "z3_formula": "Implies(lab_worker, instructed_by_david)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "instructed_by_david(X) -> database_course(X)",
+          "z3_formula": "Implies(instructed_by_david, database_course)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "database_course(X) -> student_from_computer_science(X)",
+          "z3_formula": "Implies(database_course, student_from_computer_science)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "lab_worker(james)",
+          "z3_formula": "lab_worker_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "university_part_time_job(X) -> library_worker(X)",
+          "z3_formula": "Implies(university_part_time_job, library_worker)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not library_worker(james)",
+          "z3_formula": "Not(library_worker_james) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "not university_part_time_job(jack)",
+          "z3_formula": "Not(university_part_time_job_jack) == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "True",
+      "constraints": []
+    },
+    {
+      "trace_idx": 7,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not works_in_library(X) | ~from_computer_science(X)",
+          "z3_formula": "Not(Or(works_in_library_james, from_computer_science_james))",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "works_in_lab(X) -> instructed_by_david(X)",
+          "z3_formula": "Implies(works_in_lab_james, instructed_by_david_james)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "instructed_by_david(X) -> takes_database_course(X)",
+          "z3_formula": "Implies(instructed_by_david_james, takes_database_course_james)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "takes_database_course(X) -> from_computer_science(X)",
+          "z3_formula": "Implies(takes_database_course_james, from_computer_science_james)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "works_in_lab(james)",
+          "z3_formula": "works_in_lab_james == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "from_computer_science(james)",
+          "z3_formula": "from_computer_science_james == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not works_in_library(X) | ~has_part_time_job_university(X)",
+          "z3_formula": "Not(Or(works_in_library_james, has_part_time_job_university_james))",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "has_part_time_job_university(X) -> works_in_library(X)",
+          "z3_formula": "Implies(has_part_time_job_university_james, works_in_library_james)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "not has_part_time_job_university(james)",
+          "z3_formula": "Not(has_part_time_job_university_james)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "unknown has_part_time_job_university(james)",
+          "z3_formula": "Or(has_part_time_job_university_james, Not(has_part_time_job_university_james))",
+          "source_step": 10
+        }
+      ]
+    },
+    {
+      "trace_idx": 8,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not (from_computer_science(X) & works_in_library(X))",
+          "z3_formula": "Not(And(from_computer_science_X, works_in_library_X)) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_library(X) -> from_university(X)",
+          "z3_formula": "Implies(works_in_library_X, from_university_X)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "from_university(X) -> works_in_library(X)",
+          "z3_formula": "Implies(from_university_X, works_in_library_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_university(X) -> from_computer_science(X)",
+          "z3_formula": "Implies(from_university_X, from_computer_science_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "instructed_by_david(X) -> from_computer_science(X)",
+          "z3_formula": "Implies(instructed_by_david_X, from_computer_science_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "works_in_lab(X) -> instructed_by_david(X)",
+          "z3_formula": "Implies(works_in_lab_X, instructed_by_david_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "works_in_lab(james)",
+          "z3_formula": "works_in_lab_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "instructed_by_david(james)",
+          "z3_formula": "instructed_by_david_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "instructed_by_david(X) -> takes_database(X)",
+          "z3_formula": "Implies(instructed_by_david_X, takes_database_X)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "takes_database(james)",
+          "z3_formula": "takes_database_james == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "takes_database(X) -> from_computer_science(X)",
+          "z3_formula": "Implies(takes_database_X, from_computer_science_X)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "from_computer_science(james)",
+          "z3_formula": "from_computer_science_james == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_library(X) -> from_university(X)",
+          "z3_formula": "Implies(works_in_library_X, from_university_X)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not from_university(james)",
+          "z3_formula": "Not(from_university_james) == True",
+          "source_step": 14
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not from_library(X) & from_computer_science(X)",
+          "z3_formula": "Not(And(from_library_student, from_computer_science_student)) == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "part_time_university(X) -> from_library(X)",
+          "z3_formula": "Implies(part_time_university_student, from_library_student)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "from_database_course(X) -> from_computer_science(X)",
+          "z3_formula": "Implies(from_database_course_student, from_computer_science_student)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "instructed_by_david(X) -> from_database_course(X)",
+          "z3_formula": "Implies(instructed_by_david_student, from_database_course_student)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "works_in_lab(X) -> instructed_by_david(X)",
+          "z3_formula": "Implies(works_in_lab_student, instructed_by_david_student)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "works_in_lab(james)",
+          "z3_formula": "works_in_lab_james == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "instructed_by_david(james)",
+          "z3_formula": "instructed_by_david_james == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "from_database_course(james)",
+          "z3_formula": "from_database_course_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "from_computer_science(james)",
+          "z3_formula": "from_computer_science_james == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not part_time_university(jack) & not works_in_lab(jack)",
+          "z3_formula": "Not(And(part_time_university_jack, works_in_lab_jack)) == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "part_time_university(james)",
+          "z3_formula": "part_time_university_james == Unknown",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not from_library(james)",
+          "z3_formula": "not from_library_james == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not from_computer_science(james)",
+          "z3_formula": "not from_computer_science_james == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "from_computer_science(X) -> from_library(X)",
+          "z3_formula": "Implies(from_computer_science_james, from_library_james)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "from_library(X) -> has_part_time_job_university(X)",
+          "z3_formula": "Implies(from_library_james, has_part_time_job_university_james)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not has_part_time_job_university(james)",
+          "z3_formula": "not has_part_time_job_university_james == True",
+          "source_step": 12
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "not from_library(cs)",
+          "z3_formula": "Not(from_library_cs)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "from_library(job_university)",
+          "z3_formula": "from_library_job_university == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "job_university(X) -> from_library(X)",
+          "z3_formula": "Implies(from_library_job_university, from_library_X)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "from_cs(database)",
+          "z3_formula": "from_cs_database == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "database(X) -> from_cs(X)",
+          "z3_formula": "Implies(from_cs_database, from_cs_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "database(david)",
+          "z3_formula": "database_david == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "david(X) -> database(X)",
+          "z3_formula": "Implies(david_X, database_X)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "lab(david)",
+          "z3_formula": "lab_david == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "lab(X) -> david(X)",
+          "z3_formula": "Implies(lab_X, david_X)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "lab(james)",
+          "z3_formula": "lab_james == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "david(james)",
+          "z3_formula": "david_james == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "database(james)",
+          "z3_formula": "database_james == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "from_cs(james)",
+          "z3_formula": "from_cs_james == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not job_university(jack) & not lab(jack)",
+          "z3_formula": "Not(And(Not(job_university_jack), Not(lab_jack)))",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "uncertain(job_university(james))",
+          "z3_formula": "uncertain(job_university_james)",
+          "source_step": 15
+        }
+      ]
+    }
+  ]
+}

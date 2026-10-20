@@ -1,0 +1,994 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-294_Q3",
+    "problem": "The cat eats the squirrel. The cat is round. The cat needs the dog. The cat needs the squirrel. The dog likes the cat. The dog likes the tiger. The squirrel is blue. The squirrel is not round. The tiger is blue. The tiger is kind. The tiger is round. The tiger needs the squirrel. If something likes the tiger and the tiger needs the dog then it is round. If something eats the cat then it needs the dog. If something is big then it needs the dog. If the dog likes the tiger and the tiger likes the dog then the dog does not like the squirrel. If something is round then it eats the cat. If something needs the cat and it eats the tiger then the tiger needs the dog. If something needs the dog and it does not eat the tiger then it is blue. If the dog is round then the dog eats the squirrel. If something likes the tiger and it is kind then the tiger likes the cat.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cat eats the cat.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nEats($x, $y, bool) ::: Does x eat y?\nRound($x, bool) ::: Is x round?\nNeeds($x, $y, bool) ::: Does x need y?\nLikes($x, $y, bool) ::: Does x like y?\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\nBig($x, bool) ::: Is x big?\n\nFacts:\nEats(Cat, Squirrel, True) ::: The cat eats the squirrel.\nRound(Cat, True) ::: The cat is round.\nNeeds(Cat, Dog, True) ::: The cat needs the dog.\nNeeds(Cat, Squirrel, True) ::: The cat needs the squirrel.\nLikes(Dog, Cat, True) ::: The dog likes the cat.\nLikes(Dog, Tiger, True) ::: The dog likes the tiger.\nBlue(Squirrel, True) ::: The squirrel is blue.\nRound(Squirrel, False) ::: The squirrel is not round.\nBlue(Tiger, True) ::: The tiger is blue.\nKind(Tiger, True) ::: The tiger is kind.\nRound(Tiger, True) ::: The tiger is round.\nNeeds(Tiger, Squirrel, True) ::: The tiger needs the squirrel.\n\nRules:\nLikes($x, Tiger, True) && Needs(Tiger, Dog, True) >>> Round($x, True) ::: If something likes the tiger and the tiger needs the dog then it is round.\nEats($x, Cat, True) >>> Needs($x, Dog, True) ::: If something eats the cat then it needs the dog.\nBig($x, True) >>> Needs($x, Dog, True) ::: If something is big then it needs the dog.\nLikes(Dog, Tiger, True) && Likes(Tiger, Dog, True) >>> Likes(Dog, Squirrel, False) ::: If the dog likes the tiger and the tiger likes the dog then the dog does not like the squirrel.\nRound($x, True) >>> Eats($x, Cat, True) ::: If something is round then it eats the cat.\nNeeds($x, Cat, True) && Eats($x, Tiger, True) >>> Needs(Tiger, Dog, True) ::: If something needs the cat and it eats the tiger then the tiger needs the dog.\nNeeds($x, Dog, True) && Eats($x, Tiger, False) >>> Blue($x, True) ::: If something needs the dog and it does not eat the tiger then it is blue.\nRound(Dog, True) >>> Eats(Dog, Squirrel, True) ::: If the dog is round then the dog eats the squirrel.\nLikes($x, Tiger, True) && Kind($x, True) >>> Likes(Tiger, Cat, True) ::: If something likes the tiger and it is kind then the tiger likes the cat.\n\nQuery:\nEats(Cat, Cat, True) ::: The cat eats the cat."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 134.0,
+      "Unknown": 107.5
+    },
+    "answer_counts": {
+      "Unknown": 2,
+      "True": 10
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"The cat eats the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement we need to evaluate is \"The cat eats the cat.\"\n   There is no direct information about the cat eating itself, so we cannot conclude its truth value based on the given statements alone.\n\nHowever, there are a few statements that imply the cat's behavior. We need to look for any clues related to the cat eating something or needing the dog.\n\n2. From the statement: \"If something eats the cat then it needs the dog.\"\n   This statement does not tell us about the cat eating itself, but it tells us about what needs the dog.\n\n3. Another clue is the statement: \"If something is round then it eats the cat.\"\n   We know that \"The cat is round.\" However, this statement does not directly tell us whether the cat eats the cat or not, but it tells us the cat's eating behavior.\n\n4. We can also look at the statement: \"The cat needs the squirrel.\"\n   However, this statement alone does not tell us about the cat's eating behavior.\n\n5. To summarize, we have two statements related to the cat's behavior:\n   - The cat is round.\n   - The cat needs the squirrel.\n\nHowever, we still cannot determine the truth value of \"The cat eats the cat\" directly from these statements.\n\nSince we cannot directly determine the truth value of \"The cat eats the cat\" based on the given information, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"The cat eats the cat\" is true, false, or unknown, we need to analyze the given conditions and rules.\n\nFrom the given conditions and rules, we have the following information:\n\n1. The cat eats the squirrel.\n2. If something eats the cat then it needs the dog. (This implies that the cat is eaten by something, but that something is not specified yet.)\n3. The cat is round.\n4. If something is round then it eats the cat. (This is a crucial rule.)\n\nLet's analyze the rules:\n\n- If the cat is round, then it eats the cat. (From rule 4)\n- The cat is round (From condition 3)\n- So, the cat eats the cat.\n\nNow, we can conclude that the statement \"The cat eats the cat\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and apply it to the statement \"The cat eats the cat.\"\n\nLet's start by analyzing the statement. We are given that the cat eats the squirrel, but we don't have any information about the cat eating itself. We need to find a way to connect the cat eating the squirrel to the cat eating the cat.\n\nFrom the given information, we have the following chain of implications:\n\n1. The cat eats the squirrel. (Given)\n2. If something eats the cat, then it needs the dog. (Given)\n3. The cat is round. (Given)\n4. If something is round, then it eats the cat. (Given)\n\nFrom step 3 and step 4, we can conclude that the cat eats the cat. However, we must note that this conclusion is based on the assumption that the cat is round, which is given in the problem statement.\n\nTherefore, the statement \"The cat eats the cat\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The cat eats the cat\" is true, false, or unknown, we need to analyze the given information step by step and find any relevant relationships between the cat, the cat itself, and other entities.\n\nFrom the given information, we know that:\n- The cat eats the squirrel. \n- The cat is round.\n- The cat needs the dog.\n\nNow, to check the statement \"The cat eats the cat\", we need to see if there is any information that directly or indirectly states that the cat eats the cat.\n\nHowever, we have the following statements related to the cat eating something:\n- If something eats the cat then it needs the dog.\nFrom this, we can conclude that the cat needs the dog because the cat eats the squirrel. But this does not provide any information about the cat eating the cat.\n\nWe also have the following statements related to something being round:\n- If something is round then it eats the cat.\nSince the cat is round, we can use this information to infer that the cat eats the cat. Therefore, the statement \"The cat eats the cat\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we'll analyze the given statements and use the rules to determine the truth value of the statement \"The cat eats the cat.\"\n\n1. The cat eats the squirrel.\n2. The cat is round.\n3. The cat needs the dog.\n4. The cat needs the squirrel.\n5. The dog likes the cat.\n6. The dog likes the tiger.\n7. The squirrel is blue.\n8. The squirrel is not round.\n9. The tiger is blue.\n10. The tiger is not kind.\n11. The tiger is round.\n12. The tiger needs the squirrel.\n13. If something likes the tiger and the tiger needs the dog then it is round.\n14. If something eats the cat then it needs the dog.\n15. If something is big then it needs the dog.\n16. If the dog likes the tiger and the tiger likes the dog then the dog does not like the squirrel.\n17. If something is round then it eats the cat.\n18. If something needs the cat and it eats the tiger then the tiger needs the dog.\n19. If something needs the dog and it does not eat the tiger then it is blue.\n20. If the dog is round then the dog eats the squirrel.\n21. If something likes the tiger and it is kind then the tiger likes the cat.\n\nTo determine whether the cat eats the cat, let's analyze the rules:\n\n- Rule 14: If something eats the cat, then it needs the dog. \n- Rule 17: If something is round, then it eats the cat.\n\nFrom statement 2, we know the cat is round. \n\nUsing Rule 14: If the cat eats the cat, then it needs the dog. \nUsing Rule 3: The cat already needs the dog.\n\nHowever, there is a problem here. We do not know whether the cat eats the cat or not. Let's analyze rule 17 and statement 2 together.\n\nUsing Rule 17: If the cat is round then it eats the cat.\nFrom statement 2: The cat is round.\n\nNow, we have a problem. If the cat eats the cat, then it contradicts statement 1, which says \"The cat eats the squirrel.\" \n\nHowever, this is not the end of it. Let's go back to Rule 17 and statement 2. They imply that the cat eats the cat. \n\nNow, we can use Rule 14. If the cat eats the cat, then it needs the dog. \n\nWe already know this from statement 3.\n\nHowever, we still don't know whether the cat eats the cat or not. \n\nLet's try to find more information.\n\nFrom Rule 14: If the cat eats the cat, then it needs the dog.\nFrom statement 3: The cat already needs the dog.\n\nThis means that if the cat eats the cat, it would still need the dog. \n\nNow, let's analyze Rule 17: If something is round then it eats the cat.\nFrom statement 2: The cat is round.\n\nUsing Rule 17 and statement 2 together, we can conclude that the cat eats the cat.\n\nTherefore, the statement \"The cat eats the cat\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"The cat eats the cat\" is true, false, or unknown, we need to analyze the given information and the provided rules. \n\nFirst, let's break down the given information:\n1. The cat eats the squirrel.\n2. The cat is round.\n3. The cat needs the dog.\n4. The dog likes the cat.\n5. The dog likes the tiger.\n6. The squirrel is blue.\n7. The squirrel is not round.\n8. The tiger is blue.\n9. The tiger is not kind (since the statement \"The tiger is kind\" is given, but we cannot assume this without the opposite statement, so we will treat it as not kind for this problem).\n10. The tiger is round.\n11. The tiger needs the squirrel.\n\nNow, let's examine the rules:\n1. If something likes the tiger and the tiger needs the dog then it is round.\n2. If something eats the cat then it needs the dog.\n3. If something is big then it needs the dog.\n4. If the dog likes the tiger and the tiger likes the dog then the dog does not like the squirrel.\n5. If something is round then it eats the cat.\n6. If something needs the cat and it eats the tiger then the tiger needs the dog.\n7. If something needs the dog and it does not eat the tiger then it is blue.\n8. If the dog is round then the dog eats the squirrel.\n9. If something likes the tiger and it is kind then the tiger likes the cat.\n\nWe need to determine if the statement \"The cat eats the cat\" is true, false, or unknown based on the information and rules provided.\n\nUsing rule 5, we know that \"If something is round then it eats the cat.\" Since the cat is round (rule 2), we can conclude that the cat eats the cat.\n\nTherefore, the statement \"The cat eats the cat\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information and use logical deductions to determine the truth value of the statement \"The cat eats the cat.\"\n\nLet's break down the given information:\n\n1. The cat eats the squirrel. (Statement 1)\n2. The cat is round. (Statement 2)\n3. The cat needs the dog. (Statement 3)\n4. The cat needs the squirrel. (Statement 4)\n5. The dog likes the cat. (Statement 5)\n6. The dog likes the tiger. (Statement 6)\n7. The squirrel is blue. (Statement 7)\n8. The squirrel is not round. (Statement 8)\n9. The tiger is blue. (Statement 9)\n10. The tiger is not kind. (No statement mentions the tiger is kind, so this is an inference error)\n11. The tiger is round. (Statement 10)\n12. The tiger needs the squirrel. (Statement 11)\n13. If something likes the tiger and the tiger needs the dog then it is round. (Rule 1)\n14. If something eats the cat then it needs the dog. (Rule 2)\n15. If something is big then it needs the dog. (Rule 3)\n16. If the dog likes the tiger and the tiger likes the dog then the dog does not like the squirrel. (Rule 4)\n17. If something is round then it eats the cat. (Rule 5)\n18. If something needs the cat and it eats the tiger then the tiger needs the dog. (Rule 6)\n19. If something needs the dog and it does not eat the tiger then it is blue. (Rule 7)\n20. If the dog is round then the dog eats the squirrel. (Rule 8)\n21. If something likes the tiger and it is kind then the tiger likes the cat. (Rule 9)\n\nNow, let's analyze the statement \"The cat eats the cat.\"\n\nFrom Statement 2, we know the cat is round. \n\nFrom Rule 5, if something is round then it eats the cat. \n\nTherefore, the cat eats the cat.\n\nHowever, Statement 1 tells us the cat eats the squirrel, which is a different conclusion than the one we obtained from the rules. \n\nSince Statement 1 and the conclusion obtained from Rule 5 are mutually exclusive, we cannot determine the truth value of \"The cat eats the cat\" based on the given information alone.\n\nTherefore, the answer is \\boxed{unknown}.",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The cat eats the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the statement \"The cat eats the cat,\" we can infer that the cat needs the dog. This is based on the rule \"If something eats the cat then it needs the dog.\"\n\n2. Since the cat needs the dog, we can look for a rule that connects the cat needing the dog to its properties. \n\n3. The rules that mention the cat needing the dog are:\n   - \"If something eats the cat then it needs the dog.\"\n   - \"If something needs the dog and it does not eat the tiger then it is blue.\"\n   - \"If the dog is round then the dog eats the squirrel.\"\n   - \"If something is big then it needs the dog.\"\n\n4. Since the cat is round (given in the statement \"The cat is round\"), we can look for a rule that connects the cat being round to its actions. \n\n5. The rules that mention the cat being round are:\n   - \"The cat is round.\"\n   - \"The tiger is round.\"\n   - \"If something is round then it eats the cat.\"\n\n6. From rule 5, we can conclude that the cat eats the cat because it is round.\n\nHowever, from the information given in the problem, we know that the cat is round. Therefore, based on rule 5, \"If something is round then it eats the cat,\" we can conclude that the statement \"The cat eats the cat\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and determine their implications.\n\n1. The cat eats the squirrel.\n2. The cat is round.\n3. The cat needs the dog.\n4. The cat needs the squirrel.\n5. The dog likes the cat.\n6. The dog likes the tiger.\n7. The squirrel is blue.\n8. The squirrel is not round.\n9. The tiger is blue.\n10. The tiger is kind.\n11. The tiger is round.\n12. The tiger needs the squirrel.\n\nNow, let's use the given rules to derive new information.\n\nFrom rule 5 and rule 6, we have: The dog likes both the cat and the tiger. \n\nFrom rule 11, we know the tiger is round. \n\nNow, let's apply rule 3 and rule 12: Since the cat needs the dog and the tiger needs the squirrel, the cat does not need the squirrel (rule 3 and rule 12). This implies that statement 4 is false.\n\nNow, let's determine if the cat eats the cat. \n\nFrom rule 5 and rule 11, we know the tiger likes the cat and the tiger is round. \n\nFrom rule 1 and rule 2, we know the cat eats the squirrel and the cat is round. \n\nFrom rule 5 and rule 6, we know the dog likes the cat and the dog likes the tiger. \n\nNow, let's apply rule 1: Since the cat is round, it eats the cat (rule 1).\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, let's break it down step by step using the given information.\n\nFrom the given statements, we have:\n1. The cat is round. \n2. If something is round then it eats the cat.\nFrom statement 1 and 2, we can conclude that the cat eats the cat.\n\nHowever, we need to check if there's any information that contradicts this or if it's uncertain.\n\nNow, let's see if we can find any information that contradicts the cat eating the cat.\n\nWe have:\n3. The squirrel is blue.\n4. The squirrel is not round.\n5. The squirrel is eaten by the cat (implied by the statement \"The cat needs the squirrel\").\nHowever, we cannot conclude that the cat eats the squirrel based on the statements alone because we do not know the order of events.\n\nWe also have:\n6. The tiger is kind.\n7. The tiger likes the cat.\n8. The tiger is round.\n9. The tiger needs the squirrel.\n\nNow, let's analyze the statements related to the dog:\n\n10. The dog likes the cat.\n11. The dog likes the tiger.\n12. If the dog likes the tiger and the tiger likes the dog then the dog does not like the squirrel.\n13. If something is round then it eats the cat.\nHowever, we already know that the cat is round and eats the cat.\n\nThe given statements also mention the size of the animals, but we do not have enough information to determine their sizes.\n\nFrom the information provided, we can conclude that the cat eats the cat.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The cat eats the cat\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The cat eats the squirrel. \nThis tells us that the cat has a relationship with the squirrel but doesn't provide any information about the cat's behavior.\n\n2. The cat is round.\nThis information alone doesn't tell us whether the cat eats itself or not.\n\n3. The cat needs the dog.\nThis relationship is given but doesn't provide any direct information about the cat's behavior.\n\nNow, let's look at the given rules:\n\n1. If something likes the tiger and the tiger needs the dog then it is round.\n2. If something eats the cat then it needs the dog.\n3. If something is big then it needs the dog.\n4. If the dog likes the tiger and the tiger likes the dog then the dog does not like the squirrel.\n5. If something is round then it eats the cat.\n6. If something needs the cat and it eats the tiger then the tiger needs the dog.\n7. If something needs the dog and it does not eat the tiger then it is blue.\n8. If the dog is round then the dog eats the squirrel.\n9. If something likes the tiger and it is kind then the tiger likes the cat.\n\nNow, let's apply these rules to determine if the statement is true or false.\n\nSince the cat is round (rule 2), we can conclude that it eats the cat (rule 5). \n\nSo, the final answer is: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine if the statement \"The cat eats the cat\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\nRule 1: If something is round, then it eats the cat.\nGiven: The cat is round.\nConclusion: The cat eats the cat. (Based on Rule 1)\n\nHowever, we also need to consider other rules that might contradict or provide additional information about the cat eating itself.\n\nRule 3: If something needs the dog, then it eats the cat.\nGiven: The cat needs the dog.\nConclusion: The cat eats the cat. (Based on Rule 3)\n\nHowever, we also need to consider other rules that might contradict or provide additional information about the cat eating itself.\n\nFrom the two conclusions above, we can see that both Rule 1 and Rule 3 lead to the conclusion that the cat eats the cat.\n\nTherefore, the statement \"The cat eats the cat\" is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_cat_cat, needs_cat_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, squirrel)",
+          "z3_formula": "needs_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "eats_cat_cat == False",
+          "z3_formula": "Not(eats_cat_cat) == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "Unknown",
+          "z3_formula": "Not(eats_cat_cat) == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_cat_squirrel, needs_cat_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_cat_squirrel, needs_cat_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_cat_squirrel, needs_cat_dog)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, squirrel)",
+          "z3_formula": "needs_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, tiger)",
+          "z3_formula": "likes_dog_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(squirrel))",
+          "z3_formula": "Not(round_squirrel) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(tiger))",
+          "z3_formula": "Not(kind_tiger) == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & needs(tiger, dog) -> round(X)",
+          "z3_formula": "Implies(And(likes_dog_tiger, needs_tiger_dog), round_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_X_cat, needs_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, dog)",
+          "z3_formula": "Implies(big_X, needs_X_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & likes(tiger, dog) -> not(likes(X, squirrel))",
+          "z3_formula": "Implies(And(likes_X_tiger, likes_tiger_dog), Not(likes_X_squirrel))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_X, eats_X_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & eats(X, tiger) -> needs(tiger, dog)",
+          "z3_formula": "Implies(And(needs_X_cat, eats_X_tiger), needs_tiger_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & not(eats(X, tiger)) -> blue(X)",
+          "z3_formula": "Implies(And(needs_X_dog, Not(eats_X_tiger)), blue_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(dog) -> eats(dog, squirrel)",
+          "z3_formula": "Implies(round_dog, eats_dog_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & kind(X) -> likes(tiger, cat)",
+          "z3_formula": "Implies(And(likes_X_tiger, kind_X), likes_tiger_cat)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, tiger)",
+          "z3_formula": "likes_dog_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(squirrel))",
+          "z3_formula": "Not(round_squirrel) == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(tiger))",
+          "z3_formula": "Not(kind_tiger) == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & needs(tiger, dog) -> round(X)",
+          "z3_formula": "Implies(And(likes_dog_tiger, needs_tiger_dog), round_cat)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_cat_squirrel, needs_cat_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, dog)",
+          "z3_formula": "Implies(big_cat, needs_cat_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & likes(tiger, X) -> not(likes(X, squirrel))",
+          "z3_formula": "Implies(And(likes_dog_tiger, likes_tiger_dog), Not(likes_dog_squirrel))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & eats(tiger, X) -> needs(tiger, dog)",
+          "z3_formula": "Implies(And(needs_cat_cat, eats_tiger_squirrel), needs_tiger_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & not(eats(X, tiger)) -> blue(X)",
+          "z3_formula": "Implies(And(needs_cat_dog, Not(eats_cat_tiger)), blue_cat)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, squirrel)",
+          "z3_formula": "needs_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, tiger)",
+          "z3_formula": "likes_dog_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(squirrel))",
+          "z3_formula": "Not(round_squirrel)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not(kind(tiger))",
+          "z3_formula": "Not(kind_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & needs(tiger, dog) -> round(X)",
+          "z3_formula": "Implies(And(likes_dog_tiger, needs_tiger_dog), round_X)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_X_cat, needs_X_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, dog)",
+          "z3_formula": "Implies(big_X, needs_X_dog)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & likes(tiger, dog) -> not(likes(X, squirrel))",
+          "z3_formula": "Implies(And(likes_X_tiger, likes_tiger_dog), Not(likes_X_squirrel))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_X, eats_X_cat)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & eats(X, tiger) -> needs(tiger, dog)",
+          "z3_formula": "Implies(And(needs_X_cat, eats_X_tiger), needs_tiger_dog)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & not(eats(X, tiger)) -> blue(X)",
+          "z3_formula": "Implies(And(needs_X_dog, Not(eats_X_tiger)), blue_X)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(dog) -> eats(dog, squirrel)",
+          "z3_formula": "Implies(round_dog, eats_dog_squirrel)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & kind(X) -> likes(tiger, cat)",
+          "z3_formula": "Implies(And(likes_X_tiger, kind_X), likes_tiger_cat)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "round_cat",
+          "z3_formula": "round_cat == True",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "round_cat -> eats_cat_cat",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "eats_cat_squirrel",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "round_cat & eats_cat_squirrel",
+          "z3_formula": "And(round_cat, eats_cat_squirrel)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "round_cat & eats_cat_squirrel == False",
+          "z3_formula": "Not(And(round_cat, eats_cat_squirrel))",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_cat_cat, needs_cat_dog)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & ~eats(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(And(needs_cat_dog, Not(eats_cat_tiger)), blue_cat)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(dog) -> eats(dog, squirrel)",
+          "z3_formula": "Implies(round_dog, eats_dog_squirrel)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, dog)",
+          "z3_formula": "Implies(big_cat, needs_cat_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, squirrel)",
+          "z3_formula": "needs_cat_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, tiger)",
+          "z3_formula": "likes_dog_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(squirrel))",
+          "z3_formula": "Not(round_squirrel) == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "blue(tiger)",
+          "z3_formula": "blue_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, Y) & likes(X, Z) -> likes(X, Y & Z)",
+          "z3_formula": "Implies(And(likes_dog_cat, likes_dog_tiger), likes_dog_cat_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, X)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "likes(dog, cat & tiger)",
+          "z3_formula": "likes_dog_cat_tiger == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "blue(squirrel)",
+          "z3_formula": "blue_squirrel == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not round(squirrel)",
+          "z3_formula": "Not(round_squirrel) == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(tiger)",
+          "z3_formula": "kind_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, cat)",
+          "z3_formula": "likes_tiger_cat == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(tiger)",
+          "z3_formula": "round_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, squirrel)",
+          "z3_formula": "needs_tiger_squirrel == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, cat)",
+          "z3_formula": "likes_dog_cat == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(dog, tiger)",
+          "z3_formula": "likes_dog_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & likes(tiger, X) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_dog_tiger, likes_tiger_dog), Not(likes_dog_squirrel))",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "eats(cat, squirrel)",
+          "z3_formula": "eats_cat_squirrel == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & needs(tiger, dog) -> round(X)",
+          "z3_formula": "Implies(And(likes_cat_tiger, needs_tiger_dog), round_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cat) -> needs(X, dog)",
+          "z3_formula": "Implies(eats_cat_squirrel, needs_cat_dog)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, dog)",
+          "z3_formula": "Implies(big_X, needs_X_dog)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & likes(tiger, X) -> not likes(X, squirrel)",
+          "z3_formula": "Implies(And(likes_tiger_dog, likes_dog_tiger), not likes_tiger_squirrel)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, cat) & eats(tiger, X) -> needs(tiger, dog)",
+          "z3_formula": "Implies(And(needs_tiger_cat, eats_tiger_squirrel), needs_tiger_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) & not eats(X, tiger) -> blue(X)",
+          "z3_formula": "Implies(And(needs_X_dog, not eats_X_tiger), blue_X)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(dog) -> eats(dog, squirrel)",
+          "z3_formula": "Implies(round_dog, eats_dog_squirrel)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) & kind(X) -> likes(tiger, cat)",
+          "z3_formula": "Implies(And(likes_X_tiger, kind_X), likes_tiger_cat)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(cat)",
+          "z3_formula": "round_cat == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> eats(X, cat)",
+          "z3_formula": "Implies(round_cat, eats_cat_cat)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cat, dog)",
+          "z3_formula": "needs_cat_dog == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, dog) -> eats(X, cat)",
+          "z3_formula": "Implies(needs_cat_dog, eats_cat_cat)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "eats(cat, cat)",
+          "z3_formula": "eats_cat_cat == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 144,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 41
+    },
+    "maxsat_stats": {
+      "satisfied": 38,
+      "excluded": 3,
+      "total_weight": 137,
+      "solve_time_ms": 1.544012688100338
+    },
+    "timing": {
+      "trace_gen_s": 7.928,
+      "extraction_s": 25.358,
+      "dedup_s": 1.069,
+      "maxsat_s": 0.004,
+      "total_s": 34.36
+    }
+  }
+}

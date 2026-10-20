@@ -1,0 +1,661 @@
+{
+  "problem": {
+    "id": "folio_119",
+    "problem": "Given the following premises:\nBarutin Cove is named after the Bulgarian settlement of Barutin. Barutin Cove is on the southwest coast of Snow Island. The South Shetland Islands include Snow Island, Greenwich Island, and Deception Island. The South Shetland Islands are considered part of Antarctica. If A is located in B and B is located in C, then A is located in C.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nThere is at least one cove in Antarctica named after a place in Bulgaria.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "Cove(barutin) \u2227 NameAfter(barutin, settlement) \u2227 Locate(settlement, bulgaria)",
+      "Locate(barutin, snow)",
+      "Locate(snow, shetland) \u2227 Locate(greenwich, shetland) \u2227 Locate(deception, shetland)",
+      "Locate(shetland, antarctica)",
+      "\u2200x \u2200y \u2200z ((Locate(x, y) \u2227 Locate(y, z)) \u2192 Locate(x, z))"
+    ],
+    "conclusion_fol": "\u2203x \u2203y (Cove(x) \u2227 NameAfter(x, y) \u2227 Locate(y, bulgaria))",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 88.0
+    },
+    "answer_counts": {
+      "True": 12
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply the rule \"If A is located in B and B is located in C, then A is located in C.\"\n\nPremise 1: Barutin Cove is named after the Bulgarian settlement of Barutin.\nPremise 2: Barutin Cove is on the southwest coast of Snow Island.\nPremise 3: The South Shetland Islands include Snow Island, Greenwich Island, and Deception Island.\nPremise 4: The South Shetland Islands are considered part of Antarctica.\n\nNow, let's apply the rule:\n\n1. Barutin Cove is located in Snow Island (Premise 2).\n2. Snow Island is located in the South Shetland Islands (Premise 3).\n3. The South Shetland Islands are located in Antarctica (Premise 4).\n\nBy applying the rule, we can conclude that Barutin Cove is located in Antarctica.\n\nTherefore, the conclusion \"There is at least one cove in Antarctica named after a place in Bulgaria\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises and apply the logical rules.\n\nPremise 1: Barutin Cove is named after the Bulgarian settlement of Barutin.\nThis premise establishes a direct relationship between Barutin Cove and Bulgaria.\n\nPremise 2: Barutin Cove is on the southwest coast of Snow Island.\nThis premise establishes a location of Barutin Cove within Snow Island.\n\nPremise 3: The South Shetland Islands include Snow Island, Greenwich Island, and Deception Island.\nThis premise establishes that Snow Island is part of the South Shetland Islands.\n\nPremise 4: The South Shetland Islands are considered part of Antarctica.\nThis premise establishes that the South Shetland Islands, and therefore Snow Island, are part of Antarctica.\n\nNow, let's apply the logical rule: If A is located in B and B is located in C, then A is located in C.\nWe can break down this rule as follows:\n- A is located in B (Barutin Cove is on the southwest coast of Snow Island)\n- B is located in C (Snow Island is part of the South Shetland Islands, and the South Shetland Islands are part of Antarctica)\nTherefore, Barutin Cove is located in Antarctica.\n\nConclusion: There is at least one cove in Antarctica named after a place in Bulgaria (Barutin Cove is named after the Bulgarian settlement of Barutin, and it is located in Antarctica).\n\nFinal answer: \n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and apply the rules of logical reasoning.\n\nPremise 1: Barutin Cove is named after the Bulgarian settlement of Barutin.\nThis premise directly states that Barutin Cove is named after a Bulgarian settlement.\n\nPremise 2: Barutin Cove is on the southwest coast of Snow Island.\nThis premise provides the location of Barutin Cove.\n\nPremise 3: The South Shetland Islands include Snow Island, Greenwich Island, and Deception Island.\nThis premise establishes the relationship between Snow Island and the South Shetland Islands.\n\nPremise 4: The South Shetland Islands are considered part of Antarctica.\nThis premise indicates that the South Shetland Islands, which include Snow Island, are part of Antarctica.\n\nConclusion: There is at least one cove in Antarctica named after a place in Bulgaria.\n\nNow, let's apply the rules of logical reasoning:\n\n1. Barutin Cove is named after a Bulgarian settlement (Premise 1).\n2. Barutin Cove is located on Snow Island (Premise 2).\n3. Snow Island is part of the South Shetland Islands (Premise 3).\n4. The South Shetland Islands are part of Antarctica (Premise 4).\n\nUsing the rule \"If A is located in B and B is located in C, then A is located in C,\" we can conclude that:\n\nBarutin Cove is located in Antarctica.\n\nSince Barutin Cove is named after a Bulgarian settlement (Premise 1), we can conclude that:\n\nThere is at least one cove in Antarctica named after a place in Bulgaria.\n\nTherefore, the conclusion is **true**.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we need to follow the given premises and use the logical reasoning provided.\n\nPremise 1: Barutin Cove is named after the Bulgarian settlement of Barutin.\nThis premise directly states that Barutin Cove has a connection to Bulgaria.\n\nPremise 2: Barutin Cove is on the southwest coast of Snow Island.\nThis premise tells us the location of Barutin Cove.\n\nPremise 3: The South Shetland Islands include Snow Island, Greenwich Island, and Deception Island.\nThis premise provides information about the geographical location of Snow Island.\n\nPremise 4: The South Shetland Islands are considered part of Antarctica.\nThis premise tells us that the South Shetland Islands, which include Snow Island, are part of Antarctica.\n\nFrom Premise 4, we can infer that Snow Island is also part of Antarctica.\n\nUsing the logical reasoning given (If A is located in B and B is located in C, then A is located in C), we can conclude that since Snow Island is part of Antarctica and Barutin Cove is on the southwest coast of Snow Island, Barutin Cove is also located in Antarctica.\n\nNow, considering Premise 1, which states that Barutin Cove is named after the Bulgarian settlement of Barutin, we can conclude that there is at least one cove in Antarctica named after a place in Bulgaria.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply them to the conclusion.\n\n1.  Barutin Cove is named after the Bulgarian settlement of Barutin.\n2.  Barutin Cove is on the southwest coast of Snow Island.\n3.  The South Shetland Islands include Snow Island, Greenwich Island, and Deception Island.\n4.  The South Shetland Islands are considered part of Antarctica.\n5.  If A is located in B and B is located in C, then A is located in C.\n\nFrom premise 5, we can infer that if A is a location and B is a location that contains A, and C is a location that contains B, then A is a location in C. This is a transitive property.\n\nNow, let's apply this transitive property to the given premises:\n\n- Barutin Cove (A) is named after the Bulgarian settlement of Barutin (premise 1).\n- Barutin Cove (A) is located on Snow Island (B) (premise 2).\n- Snow Island (B) is part of the South Shetland Islands (C) (premise 3 and 4).\n\nUsing the transitive property, we can conclude that Barutin Cove (A) is located in the South Shetland Islands (C). Since the South Shetland Islands are considered part of Antarctica (premise 4), Barutin Cove is also located in Antarctica.\n\nTherefore, we can conclude that there is at least one cove in Antarctica named after a place in Bulgaria, which is Barutin Cove.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine the truth value of the conclusion, we need to analyze the given premises and apply them step by step.\n\nPremise 1: Barutin Cove is named after the Bulgarian settlement of Barutin.\nThis premise directly tells us that there is a cove named Barutin Cove, which is named after a Bulgarian settlement.\n\nPremise 2: Barutin Cove is on the southwest coast of Snow Island.\nThis premise tells us the location of Barutin Cove.\n\nPremise 3: The South Shetland Islands include Snow Island, Greenwich Island, and Deception Island.\nThis premise tells us that Snow Island is part of the South Shetland Islands.\n\nPremise 4: The South Shetland Islands are considered part of Antarctica.\nThis premise tells us that the South Shetland Islands are part of Antarctica.\n\nConclusion: There is at least one cove in Antarctica named after a place in Bulgaria.\n\nFrom Premise 1, we know that Barutin Cove is named after a Bulgarian settlement.\n\nFrom Premise 2, we know that Barutin Cove is located on Snow Island.\n\nFrom Premise 3, we know that Snow Island is part of the South Shetland Islands.\n\nFrom Premise 4, we know that the South Shetland Islands are part of Antarctica.\n\nUsing the rule given in the problem: If A is located in B and B is located in C, then A is located in C, we can apply it as follows:\n- Barutin Cove is located in Snow Island (B).\n- Snow Island is located in the South Shetland Islands (C).\nTherefore, Barutin Cove is located in the South Shetland Islands (C).\n\nFrom Premise 1 and the location of Barutin Cove in the South Shetland Islands, we can conclude that there is at least one cove in Antarctica named after a place in Bulgaria.\n\nTherefore, the conclusion is TRUE.\n\n\\boxed{TRUE}",
+        "answer": "True",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we will break it down step by step:\n\n1. Barutin Cove is named after the Bulgarian settlement of Barutin. \nThis premise tells us that the name of Barutin Cove originates from Bulgaria.\n\n2. Barutin Cove is on the southwest coast of Snow Island. \nThis premise tells us the geographical location of Barutin Cove, but it does not provide any information about Antarctica.\n\n3. The South Shetland Islands include Snow Island, Greenwich Island, and Deception Island. \nThis premise tells us that Snow Island is a part of the South Shetland Islands, but it does not provide any information about Antarctica.\n\n4. The South Shetland Islands are considered part of Antarctica. \nThis premise tells us that the South Shetland Islands are geographically located within Antarctica.\n\nUsing the given premises, we can apply the rule: \"If A is located in B and B is located in C, then A is located in C.\" \n\nApplying the rule to the premises:\n- Barutin Cove is located in Snow Island (premise 1).\n- Snow Island is located in the South Shetland Islands (premise 3 and 4).\n\nTherefore, we can conclude that Barutin Cove is located in the South Shetland Islands, and subsequently, in Antarctica.\n\nSince the conclusion states that there is at least one cove in Antarctica named after a place in Bulgaria (Barutin Cove), we can determine that this conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and apply the given rules.\n\nPremise 1: Barutin Cove is named after the Bulgarian settlement of Barutin.\n- This premise establishes a direct connection between Barutin Cove and Bulgaria.\n\nPremise 2: Barutin Cove is on the southwest coast of Snow Island.\n- This premise locates Barutin Cove on a specific island, but it does not directly connect to the location of Antarctica.\n\nPremise 3: The South Shetland Islands include Snow Island, Greenwich Island, and Deception Island.\n- This premise provides information about the location of Snow Island within the South Shetland Islands.\n\nPremise 4: The South Shetland Islands are considered part of Antarctica.\n- This premise connects the South Shetland Islands to Antarctica.\n\nRule: If A is located in B and B is located in C, then A is located in C.\n- This rule allows us to make a hierarchical location determination.\n\nNow, let's apply the rule:\n\n1. Barutin Cove is located in Snow Island (Premise 2).\n2. Snow Island is located in the South Shetland Islands (Premise 3).\n3. The South Shetland Islands are located in Antarctica (Premise 4).\n\nUsing the rule, we can conclude that:\n\nBarutin Cove is located in Antarctica.\n\nSince Barutin Cove is named after a place in Bulgaria (Premise 1), we can determine that there is at least one cove in Antarctica named after a place in Bulgaria.\n\nTherefore, the conclusion is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\nPremise 1: Barutin Cove is named after the Bulgarian settlement of Barutin.\nThis premise tells us that Barutin Cove is named after a place in Bulgaria.\n\nPremise 2: Barutin Cove is on the southwest coast of Snow Island.\nThis premise tells us where Barutin Cove is located.\n\nPremise 3: The South Shetland Islands include Snow Island, Greenwich Island, and Deception Island.\nThis premise tells us that Snow Island is part of the South Shetland Islands.\n\nPremise 4: The South Shetland Islands are considered part of Antarctica.\nThis premise tells us that the South Shetland Islands, and therefore Snow Island, are part of Antarctica.\n\nUsing the given rule: If A is located in B and B is located in C, then A is located in C.\n\nWe can conclude that:\n- Snow Island is part of Antarctica (Premise 3 and 4).\n- Barutin Cove is on the southwest coast of Snow Island (Premise 2).\n- Therefore, Barutin Cove is part of Antarctica (using the rule).\n\nSince Barutin Cove is part of Antarctica and it is named after a place in Bulgaria (Premise 1), the conclusion is:\nThere is at least one cove in Antarctica named after a place in Bulgaria.\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the premises and apply the given inference rule.\n\nPremise 1: Barutin Cove is named after the Bulgarian settlement of Barutin.\nPremise 2: Barutin Cove is on the southwest coast of Snow Island.\nPremise 3: The South Shetland Islands include Snow Island, Greenwich Island, and Deception Island.\nPremise 4: The South Shetland Islands are considered part of Antarctica.\nInference rule: If A is located in B and B is located in C, then A is located in C.\n\nNow, let's apply the inference rule to the premises:\n\nFrom Premise 3, we can say Snow Island is located in the South Shetland Islands (B).\nFrom Premise 2, we can say Barutin Cove is located in Snow Island (A).\nUsing the inference rule, we can conclude that Barutin Cove is located in the South Shetland Islands (C).\n\nNow, from Premise 4, we can say the South Shetland Islands are located in Antarctica (B).\nUsing the inference rule again, we can conclude that Barutin Cove is located in Antarctica (C).\n\nSince we have concluded that Barutin Cove is located in Antarctica and it is named after a place in Bulgaria (Premise 1), we can determine that there is at least one cove in Antarctica named after a place in Bulgaria.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the premises and the conclusion step by step.\n\n1. Barutin Cove is named after the Bulgarian settlement of Barutin. \n   - This premise tells us that Barutin Cove has a Bulgarian origin.\n\n2. Barutin Cove is on the southwest coast of Snow Island.\n   - This premise tells us the location of Barutin Cove, which is on Snow Island.\n\n3. The South Shetland Islands include Snow Island, Greenwich Island, and Deception Island.\n   - This premise tells us that Snow Island is a part of the South Shetland Islands.\n\n4. The South Shetland Islands are considered part of Antarctica.\n   - This premise tells us that the South Shetland Islands, which include Snow Island, are part of Antarctica.\n\nUsing the given rule: If A is located in B and B is located in C, then A is located in C, we can apply it to our premises. \n\n- Barutin Cove is on Snow Island (B), and Snow Island is on the South Shetland Islands (C).\n- Therefore, Barutin Cove is located on the South Shetland Islands.\n\nSince the South Shetland Islands are part of Antarctica, we can conclude that Barutin Cove is located in Antarctica.\n\nThe conclusion states: There is at least one cove in Antarctica named after a place in Bulgaria.\n- We have found that Barutin Cove is located in Antarctica and has a Bulgarian origin.\n- Therefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine the truth of the conclusion, we need to analyze the given premises step by step.\n\nPremise 1: Barutin Cove is named after the Bulgarian settlement of Barutin.\n- This premise directly states that Barutin Cove has a Bulgarian origin, which is what we're looking for.\n\nPremise 2: Barutin Cove is on the southwest coast of Snow Island.\n- This premise tells us the location of Barutin Cove but doesn't provide any information about the location of Snow Island.\n\nPremise 3: The South Shetland Islands include Snow Island, Greenwich Island, and Deception Island.\n- This premise gives us information about the group of islands where Snow Island is located.\n\nPremise 4: The South Shetland Islands are considered part of Antarctica.\n- This premise connects the group of islands (South Shetland Islands) to Antarctica.\n\nApplying the rule stated in the problem (if A is located in B and B is located in C, then A is located in C), we can deduce that:\n\n- Since Barutin Cove is on Snow Island (Premise 2),\n- And Snow Island is part of the South Shetland Islands (Premise 3),\n- And the South Shetland Islands are part of Antarctica (Premise 4),\n- Therefore, Barutin Cove is part of Antarctica.\n\nNow, combining this with Premise 1, we can conclude that there is at least one cove in Antarctica named after a place in Bulgaria.\n\nThe conclusion is true. \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "named_after_barutin_cove",
+          "z3_formula": "named_after_barutin_cove == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_barutin_cove(snow_island)",
+          "z3_formula": "located_in_barutin_cove_snow_island == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_snow_island(south_shetland_islands)",
+          "z3_formula": "located_in_snow_island_south_shetland_islands == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_south_shetland_islands(antarctica)",
+          "z3_formula": "located_in_south_shetland_islands_antarctica == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "located_in(X, Y) & located_in(Y, Z) -> located_in(X, Z)",
+          "z3_formula": "Implies(And(located_in_barutin_cove_snow_island, located_in_snow_island_south_shetland_islands), located_in_barutin_cove_south_shetland_islands)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_barutin_cove(antarctica)",
+          "z3_formula": "located_in_barutin_cove_antarctica == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "named_after_barutin_cove(bulgaria)",
+          "z3_formula": "named_after_barutin_cove_bulgaria == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "on_snow_island(barutin_cove)",
+          "z3_formula": "on_snow_island_barutin_cove == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_south_shetland_islands(snow_island)",
+          "z3_formula": "part_of_south_shetland_islands_snow_island == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_south_shetland_islands(south_shetland_islands)",
+          "z3_formula": "part_of_south_shetland_islands_south_shetland_islands == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_antarctica(south_shetland_islands)",
+          "z3_formula": "part_of_antarctica_south_shetland_islands == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "on_B(A) & on_B(B) -> on_B(A)",
+          "z3_formula": "Implies(And(on_snow_island_barutin_cove, part_of_south_shetland_islands_snow_island), part_of_antarctica_barutin_cove)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "part_of_antarctica(barutin_cove)",
+          "z3_formula": "part_of_antarctica_barutin_cove == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "named_after_bulgarian_settlement(barutin_cove)",
+          "z3_formula": "named_after_bulgarian_settlement_barutin_cove == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "located_on_snow_island(barutin_cove)",
+          "z3_formula": "located_on_snow_island_barutin_cove == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_south_shetland_islands(snow_island)",
+          "z3_formula": "part_of_south_shetland_islands_snow_island == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_antarctica(south_shetland_islands)",
+          "z3_formula": "part_of_antarctica_south_shetland_islands == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_b & located_in_c -> located_in_c",
+          "z3_formula": "Implies(And(located_on_snow_island_barutin_cove, part_of_south_shetland_islands_snow_island), part_of_antarctica_snow_island)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_antarctica(barutin_cove)",
+          "z3_formula": "located_in_antarctica_barutin_cove == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "named_after_bulgarian_settlement(A) -> named_after_bulgarian_settlement(A)",
+          "z3_formula": "Implies(named_after_bulgarian_settlement_barutin_cove, named_after_bulgarian_settlement_barutin_cove)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "named_after_bulgarian_settlement(barutin_cove)",
+          "z3_formula": "named_after_bulgarian_settlement_barutin_cove == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "named_after_barutin_cove",
+          "z3_formula": "named_after_barutin_cove == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "on_southwest_coast_of_snow_island",
+          "z3_formula": "on_southwest_coast_of_snow_island == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "south_shetland_islands_include_snow_island",
+          "z3_formula": "south_shetland_islands_include_snow_island == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "south_shetland_islands_are_part_of_antarctica",
+          "z3_formula": "south_shetland_islands_are_part_of_antarctica == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "A is located in B & B is located in C -> A is located in C",
+          "z3_formula": "Implies(And(on_southwest_coast_of_snow_island, south_shetland_islands_are_part_of_antarctica), located_in_antarctica)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_antarctica",
+          "z3_formula": "located_in_antarctica == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "named_after_bulgarian_settlement",
+          "z3_formula": "named_after_bulgarian_settlement == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "there_is_at_least_one_cove_named_after_bulgaria",
+          "z3_formula": "there_is_at_least_one_cove_named_after_bulgaria == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "named_after_barutin_cove(barutin)",
+          "z3_formula": "named_after_barutin_cove_barutin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "on_snow_island(barutin_cove)",
+          "z3_formula": "on_snow_island_barutin_cove == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "includes_snow_island(south_shetland_islands)",
+          "z3_formula": "includes_snow_island_south_shetland_islands == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_antarctica(south_shetland_islands)",
+          "z3_formula": "part_of_antarctica_south_shetland_islands == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_b(located_in_a, located_in_c) -> located_in_c(located_in_a)",
+          "z3_formula": "Implies(And(located_in_b, located_in_c), located_in_c)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_south_shetland_islands(barutin_cove)",
+          "z3_formula": "located_in_south_shetland_islands_barutin_cove == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_antarctica(barutin_cove)",
+          "z3_formula": "located_in_antarctica_barutin_cove == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "named_after_bulgarian_settlement(barutin_cove)",
+          "z3_formula": "named_after_bulgarian_settlement_barutin_cove == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "on_southwest_coast_of_snow_island(barutin_cove)",
+          "z3_formula": "on_southwest_coast_of_snow_island_barutin_cove == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_south_shetland_islands(snow_island)",
+          "z3_formula": "part_of_south_shetland_islands_snow_island == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_antarctica(south_shetland_islands)",
+          "z3_formula": "part_of_antarctica_south_shetland_islands == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "on(X, Y) & on(Y, Z) -> on(X, Z)",
+          "z3_formula": "Implies(And(on_southwest_coast_of_snow_island_barutin_cove, part_of_south_shetland_islands_snow_island), on_southwest_coast_of_south_shetland_islands_barutin_cove)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "on_southwest_coast_of_south_shetland_islands(barutin_cove)",
+          "z3_formula": "on_southwest_coast_of_south_shetland_islands_barutin_cove == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "named_after_bulgarian_settlement(barutin_cove) & on_southwest_coast_of_south_shetland_islands(barutin_cove)",
+          "z3_formula": "And(named_after_bulgarian_settlement_barutin_cove, on_southwest_coast_of_south_shetland_islands_barutin_cove) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "named_after_barutin_cove(bulgaria)",
+          "z3_formula": "named_after_barutin_cove_bulgaria == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_barutin_cove(snow_island)",
+          "z3_formula": "located_in_barutin_cove_snow_island == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "includes_snow_island(south_shetland_islands)",
+          "z3_formula": "includes_snow_island_south_shetland_islands == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_antarctica(south_shetland_islands)",
+          "z3_formula": "part_of_antarctica_south_shetland_islands == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_A(B) & located_in_B(C) -> located_in_A(C)",
+          "z3_formula": "Implies(And(located_in_barutin_cove_snow_island, And(located_in_snow_island_south_shetland_islands, part_of_antarctica_south_shetland_islands)), located_in_barutin_cove_south_shetland_islands)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_barutin_cove(south_shetland_islands)",
+          "z3_formula": "located_in_barutin_cove_south_shetland_islands == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_barutin_cove(antarctica)",
+          "z3_formula": "located_in_barutin_cove_antarctica == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "named_after_barutin_cove(bulgaria)",
+          "z3_formula": "named_after_barutin_cove_bulgaria == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_barutin_cove(snow_island)",
+          "z3_formula": "located_in_barutin_cove_snow_island == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "includes_snow_island(south_shetland_islands)",
+          "z3_formula": "includes_snow_island_south_shetland_islands == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_south_shetland_islands(antarctica)",
+          "z3_formula": "part_of_south_shetland_islands_antarctica == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "located_in(A, B) & located_in(B, C) -> located_in(A, C)",
+          "z3_formula": "Implies(And(located_in_barutin_cove_snow_island, includes_snow_island_south_shetland_islands), located_in_barutin_cove_antarctica)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_barutin_cove(antarctica)",
+          "z3_formula": "located_in_barutin_cove_antarctica == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "named_after_bulgaria(barutin_cove)",
+          "z3_formula": "named_after_bulgaria_barutin_cove == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "on_southwest_coast_snow_island(barutin_cove)",
+          "z3_formula": "on_southwest_coast_snow_island_barutin_cove == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_south_shetland_islands(snow_island)",
+          "z3_formula": "part_of_south_shetland_islands_snow_island == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of_antarctica(south_shetland_islands)",
+          "z3_formula": "part_of_antarctica_south_shetland_islands == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_b & located_in_c -> located_in_c",
+          "z3_formula": "Implies(And(on_southwest_coast_snow_island_barutin_cove, part_of_south_shetland_islands_snow_island), part_of_antarctica_barutin_cove)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "part_of_antarctica(barutin_cove)",
+          "z3_formula": "part_of_antarctica_barutin_cove == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "named_after_bulgaria(barutin_cove) & part_of_antarctica(barutin_cove)",
+          "z3_formula": "And(noted_after_bulgaria_barutin_cove, part_of_antarctica_barutin_cove) == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "named_after_bulgarian_settlement(barutin_cove)",
+          "z3_formula": "named_after_bulgarian_settlement_barutin_cove == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "located_in_snow_island(barutin_cove)",
+          "z3_formula": "located_in_snow_island_barutin_cove == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "south_shetland_islands_include_snow_island_greenwich_island_deception_island",
+          "z3_formula": "south_shetland_islands_include_snow_island_greenwich_island_deception_island == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "south_shetland_islands_are_part_of_antarctica",
+          "z3_formula": "south_shetland_islands_are_part_of_antarctica == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_b & located_in_c -> located_in_c",
+          "z3_formula": "Implies(And(located_in_snow_island_barutin_cove, located_in_south_shetland_islands_barutin_cove), located_in_south_shetland_islands_barutin_cove)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_south_shetland_islands(barutin_cove)",
+          "z3_formula": "located_in_south_shetland_islands_barutin_cove == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "located_in_b & located_in_c -> located_in_c",
+          "z3_formula": "Implies(And(located_in_south_shetland_islands_barutin_cove, located_in_antarctica_barutin_cove), located_in_antarctica_barutin_cove)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "located_in_antarctica(barutin_cove)",
+          "z3_formula": "located_in_antarctica_barutin_cove == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "bulgarian_origin(barutin_cove)",
+          "z3_formula": "bulgarian_origin_barutin_cove == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "location(barutin_cove, snow_island)",
+          "z3_formula": "location_barutin_cove_snow_island == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "location(snow_island, south_shetland_islands)",
+          "z3_formula": "location_snow_island_south_shetland_islands == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "part_of(south_shetland_islands, antarctica)",
+          "z3_formula": "part_of_south_shetland_islands_antarctica == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "location(A, B) & location(B, C) -> location(A, C)",
+          "z3_formula": "Implies(And(location_barutin_cove_snow_island, location_snow_island_south_shetland_islands), location_barutin_cove_south_shetland_islands)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "location(barutin_cove, south_shetland_islands)",
+          "z3_formula": "location_barutin_cove_south_shetland_islands == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "location(barutin_cove, antarctica)",
+          "z3_formula": "location_barutin_cove_antarctica == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "bulgarian_origin(barutin_cove)",
+          "z3_formula": "bulgarian_origin_barutin_cove == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "bulgarian_origin(barutin_cove) & location(barutin_cove, antarctica)",
+          "z3_formula": "And(bulgarian_origin_barutin_cove, location_barutin_cove_antarctica) == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "bulgarian_origin(barutin_cove)",
+          "z3_formula": "bulgarian_origin_barutin_cove == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "on_snow_island(barutin_cove)",
+          "z3_formula": "on_snow_island_barutin_cove == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "south_shetland_islands_include(snow_island)",
+          "z3_formula": "south_shetland_islands_include_snow_island == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "south_shetland_islands_part_of_antarctica",
+          "z3_formula": "south_shetland_islands_part_of_antarctica == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "on(X, Y) & part_of(Y, Z) -> on(X, Z)",
+          "z3_formula": "Implies(And(on_snow_island_barutin_cove, south_shetland_islands_include_snow_island), on_barutin_cove_antarctica)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "on(barutin_cove, antarctica)",
+          "z3_formula": "on_barutin_cove_antarctica == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "bulgarian_origin(barutin_cove)",
+          "z3_formula": "bulgarian_origin_barutin_cove == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "bulgarian_named_cove_in_antarctica",
+          "z3_formula": "bulgarian_named_cove_in_antarctica == True",
+          "source_step": 8
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 88,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 53
+    },
+    "maxsat_stats": {
+      "satisfied": 53,
+      "excluded": 0,
+      "total_weight": 88,
+      "solve_time_ms": 1.1085737496614456
+    },
+    "timing": {
+      "trace_gen_s": 4.723,
+      "extraction_s": 18.838,
+      "dedup_s": 1.101,
+      "maxsat_s": 0.004,
+      "total_s": 24.667
+    }
+  }
+}

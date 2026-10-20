@@ -1,0 +1,567 @@
+{
+  "problem": {
+    "id": "folio_150",
+    "problem": "Given the following premises:\nNew Vessel Press is a publishing house which specializes in translating foreign literature into English. All of New Vessel Press's published books are in English. Neapolitan Chronicles is a book published by New Vessel Press. Neapolitan Chronicles was translated from Italian. Palace of Flies is a book published by New Vessel Press.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nNeapolitan Chronicles is an English book.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "PublishingHouse(newvesselpress) \u2227 SpecializesIn(newvessel, translatingforeignliteratureintoenglish)",
+      "\u2200x (Book(x) \u2227 PublishedBy(x, newvesselpress) \u2192 In(x, english))",
+      "Book(neapolitanchronicles) \u2227 PublishedBy(neapolitanchronicles, newvesselpress)",
+      "TranslatedFrom(neapolitanchronicles, italian)",
+      "Book(palaceofflies) \u2227 PublishedBy(palaceofflies, newvesselpress)"
+    ],
+    "conclusion_fol": "Book(neapolitanchronicles) \u2227 In(neapolitanchronicles, english)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 62.5,
+      "Unknown": 28.0
+    },
+    "answer_counts": {
+      "True": 9,
+      "Unknown": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to analyze the given premises and apply logical reasoning to determine the truth of the conclusion.\n\nPremises:\n\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n2. All of New Vessel Press's published books are in English.\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n4. Neapolitan Chronicles was translated from Italian.\n5. Palace of Flies is a book published by New Vessel Press.\n\nConclusion: Neapolitan Chronicles is an English book.\n\nAnalysis:\n\nFrom premise 1, we know that New Vessel Press specializes in translating foreign literature into English. This means that the books published by New Vessel Press are translations of books from other languages, but they are translated into English.\n\nFrom premise 2, we know that all of New Vessel Press's published books are in English. This supports the idea that the books published by New Vessel Press are indeed translated into English.\n\nFrom premise 3, we know that Neapolitan Chronicles is a book published by New Vessel Press.\n\nFrom premise 4, we know that Neapolitan Chronicles was translated from Italian. This means that the original book was in Italian, but it was translated into English.\n\nNow, let's combine the information from premises 1, 2, and 4. We know that New Vessel Press specializes in translating foreign literature into English, and Neapolitan Chronicles was translated from Italian into English. This means that Neapolitan Chronicles is indeed an English book.\n\nConclusion: The conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion \"Neapolitan Chronicles is an English book\" is true, false, or uncertain, we need to analyze the given premises.\n\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English. \n   - This premise tells us that New Vessel Press translates foreign literature into English, but it does not specify that all their books are in English.\n\n2. All of New Vessel Press's published books are in English.\n   - This premise directly contradicts the first premise, as the first premise states that they translate foreign literature into English, implying that not all their books are in English. This premise is more specific and directly states that all their books are in English.\n\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n   - This premise tells us that Neapolitan Chronicles is one of the books published by New Vessel Press.\n\n4. Neapolitan Chronicles was translated from Italian.\n   - This premise tells us that Neapolitan Chronicles was originally in Italian and was translated into English.\n\nGiven these premises, we can conclude that Neapolitan Chronicles is an English book. \n\nThe first premise suggests that New Vessel Press translates foreign literature into English, but the fourth premise directly states that Neapolitan Chronicles was translated from Italian, which means it is an English translation of the original Italian text.\n\nThe second premise states that all of New Vessel Press's published books are in English. \n\nTherefore, since Neapolitan Chronicles is a book published by New Vessel Press and was translated from Italian into English, and all of New Vessel Press's published books are in English, it is certain that Neapolitan Chronicles is an English book.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the conclusion \"Neapolitan Chronicles is an English book\" is true, false, or uncertain, let's analyze the given premises step by step.\n\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n   This premise tells us that New Vessel Press is involved in translating books from other languages into English. However, it does not necessarily mean that all their books are translations. It only gives information about their specialization.\n\n2. All of New Vessel Press's published books are in English.\n   This premise directly states that all books published by New Vessel Press are in English. This means that regardless of whether the book is an original work or a translation, the final product is in English.\n\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n   This premise simply states that Neapolitan Chronicles is one of the books published by New Vessel Press, but it does not provide any information about the language of the book.\n\n4. Neapolitan Chronicles was translated from Italian.\n   This premise tells us that Neapolitan Chronicles is a translation from Italian. However, we already know from premise 2 that all books published by New Vessel Press are in English.\n\nNow, let's analyze the conclusion: \"Neapolitan Chronicles is an English book.\"\n\nGiven that Neapolitan Chronicles is a translation (premise 4) and all books published by New Vessel Press are in English (premise 2), we can logically conclude that Neapolitan Chronicles is indeed an English book.\n\nSo, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n- This premise tells us that New Vessel Press translates foreign books into English, but it does not directly state that all their books are in English.\n\nPremise 2: All of New Vessel Press's published books are in English.\n- This premise directly states that all books published by New Vessel Press are in English.\n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\n- This premise tells us that Neapolitan Chronicles is one of the books published by New Vessel Press.\n\nPremise 4: Neapolitan Chronicles was translated from Italian.\n- This premise tells us that Neapolitan Chronicles was originally in Italian and was translated into another language.\n\nPremise 5: Palace of Flies is a book published by New Vessel Press.\n- This premise is not relevant to determining the language of Neapolitan Chronicles.\n\nFrom Premise 3 and Premise 2, we can conclude that Neapolitan Chronicles is an English book because it is published by New Vessel Press, and all their books are in English.\n\nTherefore, the conclusion \"Neapolitan Chronicles is an English book\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n- This premise tells us that New Vessel Press translates books from other languages into English. However, it doesn't tell us that all their books are translated, only that they specialize in translation.\n\nPremise 2: All of New Vessel Press's published books are in English.\n- This premise directly states that all books published by New Vessel Press are in English. \n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\n- This premise tells us that Neapolitan Chronicles is one of the books published by New Vessel Press.\n\nPremise 4: Neapolitan Chronicles was translated from Italian.\n- This premise tells us the language that Neapolitan Chronicles was translated from, but it also implies that it was translated into English (since New Vessel Press specializes in translating foreign literature into English).\n\nGiven these premises, we can now evaluate the conclusion.\n\nConclusion: Neapolitan Chronicles is an English book.\n- Since Neapolitan Chronicles was translated from Italian (Premise 4) and New Vessel Press specializes in translating foreign literature into English (Premise 1), we can logically conclude that Neapolitan Chronicles is indeed an English book.\n\nTherefore, the conclusion is true.",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion \"Neapolitan Chronicles is an English book\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n- This premise tells us that New Vessel Press translates foreign literature into English, but it doesn't say that all their books are translated from English.\n\nPremise 2: All of New Vessel Press's published books are in English.\n- This premise directly contradicts the first premise. Since it states that all their books are in English, it implies that they do not translate foreign literature into English. Instead, they likely publish books that are originally in English.\n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\n- This premise links Neapolitan Chronicles to New Vessel Press, but it doesn't provide any information about the book's original language.\n\nPremise 4: Neapolitan Chronicles was translated from Italian.\n- This premise tells us that Neapolitan Chronicles was translated from Italian, which means it was not originally in English.\n\nGiven these premises, we can conclude that Neapolitan Chronicles is a book published by New Vessel Press, but it was translated from Italian, not originally in English. This contradicts Premise 2, which states that all of New Vessel Press's published books are in English.\n\nHowever, since Premise 2 is directly contradicted by the other premises, we can say that the conclusion \"Neapolitan Chronicles is an English book\" is uncertain. The premises contain an inconsistency, and the conclusion cannot be definitively determined as true or false.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n- This means that all the books published by New Vessel Press are translations of foreign literature into English.\n\nPremise 2: All of New Vessel Press's published books are in English.\n- This seems to be a repetition of the information in Premise 1. However, it's essential to consider it as an additional piece of information.\n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\n- This tells us that Neapolitan Chronicles is one of the books published by New Vessel Press.\n\nPremise 4: Neapolitan Chronicles was translated from Italian.\n- This tells us the original language of the book, but not the language of the translated version.\n\nNow, let's consider the conclusion: Neapolitan Chronicles is an English book.\n\nFrom Premise 1 and Premise 2, we can infer that all the books published by New Vessel Press are translations of foreign literature into English. Since Neapolitan Chronicles was translated from Italian (Premise 4), it is likely that it is in English.\n\nHowever, we cannot be 100% certain about the conclusion because we do not have any information about the translation process. It is possible that the book was not translated correctly or that the translation was incomplete. Therefore, the conclusion can be uncertain.\n\nHowever, we can reason out that the conclusion is likely to be true based on the given premises. The book was translated from Italian, and the publishing house specializes in translating foreign literature into English.\n\nHowever, there is a small chance that the book was not translated correctly or that the publishing house published a book that was not translated. \n\nGiven all this information, I would say that the conclusion is likely to be true but we cannot be certain about it.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremises:\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n2. All of New Vessel Press's published books are in English.\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n4. Neapolitan Chronicles was translated from Italian.\n5. Palace of Flies is a book published by New Vessel Press.\n\nAnalysis:\nFrom premise 1, we know that New Vessel Press specializes in translating foreign literature into English. This implies that their published books are translations of foreign literature into English.\nFrom premise 2, we know that all of New Vessel Press's published books are in English.\nFrom premise 3, we know that Neapolitan Chronicles is a book published by New Vessel Press.\nFrom premise 4, we know that Neapolitan Chronicles was translated from Italian, which means it is a translation of foreign literature into English.\n\nConclusion:\nSince Neapolitan Chronicles is a book published by New Vessel Press (premise 3) and it was translated from Italian (premise 4), and we know that New Vessel Press's published books are translations of foreign literature into English (premises 1 and 2), we can conclude that Neapolitan Chronicles is indeed an English book, translated from Italian.\n\nFinal Answer:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion \"Neapolitan Chronicles is an English book\" is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: New Vessel Press is a publishing house which specializes in translating foreign literature into English.\nThis premise tells us that New Vessel Press translates foreign books into English, but it does not necessarily mean that all their published books are in English.\n\nPremise 2: All of New Vessel Press's published books are in English.\nThis premise directly contradicts Premise 1. It states that all published books by New Vessel Press are in English, which implies that they do not translate foreign books into English.\n\nPremise 3: Neapolitan Chronicles is a book published by New Vessel Press.\nThis premise tells us that Neapolitan Chronicles is one of the books published by New Vessel Press.\n\nPremise 4: Neapolitan Chronicles was translated from Italian.\nThis premise tells us that Neapolitan Chronicles is a translated book from Italian.\n\nNow, let's analyze the conclusion:\n\"Neapolitan Chronicles is an English book.\"\n\nSince we know from Premise 2 that all published books by New Vessel Press are in English, and Neapolitan Chronicles is a book published by New Vessel Press (Premise 3), it follows that Neapolitan Chronicles is an English book.\n\nHowever, we also know from Premise 4 that Neapolitan Chronicles was translated from Italian, which means it is not originally in English. But, since it is published by New Vessel Press, and all their published books are in English, we can conclude that Neapolitan Chronicles has been translated into English.\n\nTherefore, the conclusion \"Neapolitan Chronicles is an English book\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion \"Neapolitan Chronicles is an English book\" is true, false, or uncertain, let's analyze the given premises step by step.\n\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n   This premise tells us that New Vessel Press focuses on translating literature from other languages into English, but it does not directly state that all their published books are in English.\n\n2. All of New Vessel Press's published books are in English.\n   This premise directly states that all the books published by New Vessel Press are in English, regardless of their original language.\n\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n   This premise connects Neapolitan Chronicles to New Vessel Press, implying that it is one of their published books.\n\n4. Neapolitan Chronicles was translated from Italian.\n   This premise tells us that Neapolitan Chronicles was originally written in Italian and was translated into English.\n\nNow, let's use the given premises to determine whether Neapolitan Chronicles is an English book.\n\nFrom premise 4, we know that Neapolitan Chronicles was translated from Italian, which means it was originally written in Italian. However, from premise 2, we know that all of New Vessel Press's published books are in English. Since Neapolitan Chronicles is a book published by New Vessel Press (premise 3), it must be in English.\n\nTherefore, based on the given premises, the conclusion \"Neapolitan Chronicles is an English book\" is **true**.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n   This premise tells us that New Vessel Press translates foreign literature (not originally in English) into English. However, it does not specify that all of their books are translated from foreign languages.\n\n2. All of New Vessel Press's published books are in English.\n   This premise directly states that all the books published by New Vessel Press are in English. \n\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n   This premise tells us that Neapolitan Chronicles is one of the books published by New Vessel Press.\n\n4. Neapolitan Chronicles was translated from Italian.\n   This premise tells us that Neapolitan Chronicles was originally in Italian, but it was translated into English by New Vessel Press.\n\nNow, let's connect the premises to determine whether the conclusion is true or false:\n\n- Since Neapolitan Chronicles was translated from Italian (Premise 4), it was not originally in English.\n- However, New Vessel Press translated it into English (Premise 4 and Premise 1).\n- According to Premise 2, all of New Vessel Press's published books are in English, which includes Neapolitan Chronicles.\n\nTherefore, based on the given premises, Neapolitan Chronicles is indeed an English book.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. New Vessel Press is a publishing house which specializes in translating foreign literature into English.\n   This premise tells us that New Vessel Press translates books from other languages into English, but it does not directly state that all their books are in English.\n\n2. All of New Vessel Press's published books are in English.\n   This premise directly contradicts the information in premise 1. It tells us that all the books published by New Vessel Press are indeed in English, but this is a general statement that may not apply to specific cases.\n\n3. Neapolitan Chronicles is a book published by New Vessel Press.\n   This premise tells us that Neapolitan Chronicles is one of the books published by New Vessel Press.\n\n4. Neapolitan Chronicles was translated from Italian.\n   This premise tells us that Neapolitan Chronicles was translated from another language (Italian) into English.\n\nNow, let's evaluate the conclusion:\nNeapolitan Chronicles is an English book.\n\nSince Neapolitan Chronicles was translated from Italian (premise 4), it must be an English book. The translation of a book from another language to English means that the resulting book is in English.\n\nThe premises do not provide any information that contradicts this conclusion. \n\nHowever, it is essential to note that this conclusion could be considered certain because it directly follows from the information given in the premises, specifically premise 4.\n\nTherefore, the conclusion is:\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press, english)",
+          "z3_formula": "publishing_house_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_new_vessel_press_in_english",
+          "z3_formula": "all_books_new_vessel_press_in_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "book(neapolitan_chronicles, new_vessel_press)",
+          "z3_formula": "book_neapolitan_chronicles_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "book(palace_of_flies, new_vessel_press)",
+          "z3_formula": "book_palace_of_flies_new_vessel_press == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "publishing_house(X, english) & translated_from_foreign_language(Y) -> translated_into_english(Y)",
+          "z3_formula": "Implies(And(publishing_house_new_vessel_press_english, translated_from_foreign_language_neapolitan_chronicles), translated_into_english_neapolitan_chronicles)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "translated_into_english(X) -> in_english(X)",
+          "z3_formula": "Implies(translated_into_english_neapolitan_chronicles, in_english_neapolitan_chronicles)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "in_english(neapolitan_chronicles)",
+          "z3_formula": "in_english_neapolitan_chronicles == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishes_in_english(new_vessel_press)",
+          "z3_formula": "publishes_in_english_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "book_of(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "book_of_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "english_book(neapolitan_chronicles)",
+          "z3_formula": "english_book_neapolitan_chronicles == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "specializes_in_translating_foreign_literature(new_vessel_press, english)",
+          "z3_formula": "specializes_in_translating_foreign_literature_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "english_book(neapolitan_chronicles)",
+          "z3_formula": "english_book_neapolitan_chronicles == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "is_publishing_house(new_vessel_press)",
+          "z3_formula": "is_publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "specializes_in_translating_foreign_literature(new_vessel_press)",
+          "z3_formula": "specializes_in_translating_foreign_literature_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "published_by(X, Y) & all_books_in_english(X) -> book_in_english(Y)",
+          "z3_formula": "Implies(And(published_by_new_vessel_press_neapolitan_chronicles, all_books_in_english_new_vessel_press), book_in_english_neapolitan_chronicles)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "book_in_english(neapolitan_chronicles)",
+          "z3_formula": "book_in_english_neapolitan_chronicles == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "specializes_in_translation(new_vessel_press)",
+          "z3_formula": "specializes_in_translation_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "specializes_in_translation(X) -> all_books_in_english(X)",
+          "z3_formula": "Implies(specializes_in_translation_new_vessel_press, all_books_in_english_new_vessel_press)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "english_book(neapolitan_chronicles)",
+          "z3_formula": "english_book_neapolitan_chronicles == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishes_in_english(new_vessel_press)",
+          "z3_formula": "publishes_in_english_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "publishes_in_english(X) -> all_books_in_english(X)",
+          "z3_formula": "Implies(publishes_in_english_new_vessel_press, all_books_in_english_new_vessel_press)",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press, english)",
+          "z3_formula": "publishing_house_new_vessel_press_english == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books(new_vessel_press, english)",
+          "z3_formula": "all_books_new_vessel_press_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "book(neapolitan_chronicles, new_vessel_press)",
+          "z3_formula": "book_neapolitan_chronicles_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated(neapolitan_chronicles, italian)",
+          "z3_formula": "translated_neapolitan_chronicles_italian == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "publishing_house(X, english) & all_books(X, english) -> all_books(X, translation(X, Y, english))",
+          "z3_formula": "Implies(And(publishing_house_new_vessel_press_english, all_books_new_vessel_press_english), all_books_new_vessel_press_translation_new_vessel_press_english_english)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "likely(english(neapolitan_chronicles))",
+          "z3_formula": "english_neapolitan_chronicles == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "specializes_in_translating_foreign_literature(new_vessel_press)",
+          "z3_formula": "specializes_in_translating_foreign_literature_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_published_books_in_english(new_vessel_press)",
+          "z3_formula": "all_published_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, palace_of_flies)",
+          "z3_formula": "published_by_new_vessel_press_palace_of_flies == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "specializes_in_translating_foreign_literature(X) -> all_published_books_in_english(X)",
+          "z3_formula": "Implies(specializes_in_translating_foreign_literature_new_vessel_press, all_published_books_in_english_new_vessel_press)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "english_book(neapolitan_chronicles)",
+          "z3_formula": "english_book_neapolitan_chronicles == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishes_in_english(new_vessel_press)",
+          "z3_formula": "publishes_in_english_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_published_books_in_english(new_vessel_press)",
+          "z3_formula": "all_published_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "publishes_in_english(X) -> all_published_books_in_english(X)",
+          "z3_formula": "Implies(publishes_in_english_new_vessel_press, all_published_books_in_english_new_vessel_press)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "published_by(X, Y) & all_published_books_in_english(X) -> in_english(Y)",
+          "z3_formula": "Implies(And(published_by_new_vessel_press_neapolitan_chronicles, all_published_books_in_english_new_vessel_press), in_english_neapolitan_chronicles)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "translated_from_foreign_language(Y) -> not in_english(Y)",
+          "z3_formula": "Implies(translated_from_italian_neapolitan_chronicles, Not(in_english_neapolitan_chronicles))",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "in_english(neapolitan_chronicles)",
+          "z3_formula": "in_english_neapolitan_chronicles == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "specializes_in_translating_foreign_literature_into_english(new_vessel_press)",
+          "z3_formula": "specializes_in_translating_foreign_literature_into_english_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_published_by_new_vessel_press_are_in_english",
+          "z3_formula": "all_books_published_by_new_vessel_press_are_in_english == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "neapolitan_chronicles_is_a_book_published_by_new_vessel_press",
+          "z3_formula": "neapolitan_chronicles_is_a_book_published_by_new_vessel_press == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "neapolitan_chronicles_was_translated_from_italian",
+          "z3_formula": "neapolitan_chronicles_was_translated_from_italian == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "neapolitan_chronicles_is_an_english_book",
+          "z3_formula": "all_books_published_by_new_vessel_press_are_in_english == True & neapolitan_chronicles_is_a_book_published_by_new_vessel_press == True & Not(neapolitan_chronicles_was_translated_from_italian) == False",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "specializes_in_translating_foreign_literature(new_vessel_press)",
+          "z3_formula": "specializes_in_translating_foreign_literature_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "published_by(new_vessel_press, neapolitan_chronicles)",
+          "z3_formula": "published_by_new_vessel_press_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "english_book(neapolitan_chronicles)",
+          "z3_formula": "english_book_neapolitan_chronicles == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "publishing_house(new_vessel_press)",
+          "z3_formula": "publishing_house_new_vessel_press == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "all_books_in_english(new_vessel_press)",
+          "z3_formula": "all_books_in_english_new_vessel_press == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "book(neapolitan_chronicles)",
+          "z3_formula": "book_neapolitan_chronicles == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "translated_from_italian(neapolitan_chronicles)",
+          "z3_formula": "translated_from_italian_neapolitan_chronicles == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "english_book(neapolitan_chronicles)",
+          "z3_formula": "english_book_neapolitan_chronicles == True",
+          "source_step": 5
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 72,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 37
+    },
+    "maxsat_stats": {
+      "satisfied": 36,
+      "excluded": 1,
+      "total_weight": 70,
+      "solve_time_ms": 1.0911934077739716
+    },
+    "timing": {
+      "trace_gen_s": 4.914,
+      "extraction_s": 15.625,
+      "dedup_s": 0.6,
+      "maxsat_s": 0.003,
+      "total_s": 21.143
+    }
+  }
+}

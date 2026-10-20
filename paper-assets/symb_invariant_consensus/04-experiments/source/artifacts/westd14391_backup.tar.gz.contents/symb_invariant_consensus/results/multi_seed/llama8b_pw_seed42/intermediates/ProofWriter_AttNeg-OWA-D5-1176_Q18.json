@@ -1,0 +1,1191 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1176_Q18",
+    "problem": "Bob is not round. Charlie is furry. Charlie is nice. Charlie is smart. Erin is red. Fiona is furry. Fiona is young. All red people are not round. Red people are not blue. All young people are furry. If Erin is red and Erin is not round then Erin is nice. If someone is round and nice then they are not young. All smart people are young. Nice people are smart.\n\nDetermine whether the following statement is true, false, or unknown:\nCharlie is round.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nRound($x, bool) ::: Is x round?\nFurry($x, bool) ::: Is x furry?\nNice($x, bool) ::: Is x nice?\nSmart($x, bool) ::: Is x smart?\nRed($x, bool) ::: Is x red?\nBlue($x, bool) ::: Is x blue?\nYoung($x, bool) ::: Is x young?\n\nFacts:\nRound(Bob, False) ::: Bob is not round.\nFurry(Charlie, True) ::: Charlie is furry.\nNice(Charlie, True) ::: Charlie is nice.\nSmart(Charlie, True) ::: Charlie is smart.\nRed(Erin, True) ::: Erin is red.\nFurry(Fiona, True) ::: Fiona is furry.\nYoung(Fiona, True) ::: Fiona is young.\n\nRules:\nRed($x, True) >>> Round($x, False) ::: All red people are not round.\nRed($x, True) >>> Blue($x, False) ::: Red people are not blue.\nYoung($x, True) >>> Furry($x, True) ::: All young people are furry.\nRed(Erin, True) && Round(Erin, False) >>> Nice(Erin, True) ::: If Erin is red and Erin is not round then Erin is nice.\nRound($x, True) && Nice($x, True) >>> Young($x, False) ::: If someone is round and nice then they are not young.\nSmart($x, True) >>> Young($x, True) ::: All smart people are young.\nNice($x, True) >>> Smart($x, True) ::: Nice people are smart.\n\nQuery:\nRound(Charlie, True) ::: Charlie is round."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 148.0,
+      "Unknown": 146.0
+    },
+    "answer_counts": {
+      "False": 6,
+      "Unknown": 4
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Charlie is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Charlie is furry. (Statement 2)\n2. Charlie is nice. (Statement 3)\n3. Charlie is smart. (Statement 4)\n4. All red people are not round. (Statement 6)\n5. Red people are not blue. (Statement 7)\n6. All young people are furry. (Statement 8)\n7. If Erin is red and Erin is not round then Erin is nice. (Statement 9)\n8. If someone is round and nice then they are not young. (Statement 10)\n9. All smart people are young. (Statement 11)\n10. Nice people are smart. (Statement 12)\n\nNow, we'll analyze the statement \"Charlie is round\" using the given information.\n\nLet's assume \"Charlie is round\" is true. Then we can use the information to derive a contradiction.\n\nFrom statement 1: Charlie is furry.\nFrom statement 8: If someone is round and nice then they are not young. (This implies that if someone is round, then they cannot be young because being young contradicts being nice if they are round)\n\nHowever, from statement 11: All smart people are young, and statement 12: Nice people are smart, we can derive that Charlie is young (as Charlie is smart and nice, so Charlie is young).\n\nNow we have a contradiction: \n- If Charlie is round, then Charlie is not young (from statement 8).\n- However, we derived that Charlie is young (from statements 11 and 12).\n\nThis means our initial assumption that \"Charlie is round\" is true leads to a contradiction.\n\nTherefore, \"Charlie is round\" must be false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether Charlie is round, we need to analyze the given statements and their implications.\n\n1. Charlie is furry. (Statement 1)\n2. Charlie is nice. (Statement 2)\n3. Charlie is smart. (Statement 3)\n4. Erin is red. (Statement 4)\n5. Fiona is furry. (Statement 5)\n6. Fiona is young. (Statement 6)\n7. All red people are not round. (Statement 7)\n8. Red people are not blue. (Statement 8)\n9. All young people are furry. (Statement 9)\n10. If Erin is red and Erin is not round then Erin is nice. (Statement 10)\n11. If someone is round and nice then they are not young. (Statement 11)\n12. All smart people are young. (Statement 12)\n13. Nice people are smart. (Statement 13)\n\nNow, let's analyze the given statements to determine if Charlie is round:\n\nFrom Statement 9, all young people are furry. However, from Statement 3, Charlie is smart, and from Statement 12, all smart people are young. This implies that Charlie is young because Charlie is smart.\n\nNow, if Charlie is young, then from Statement 9, Charlie must be furry. However, we already know this from Statement 1.\n\nNow, if Charlie is young and furry, then from Statement 6, Fiona is also young and furry. However, Fiona is also young and furry from Statement 5 and Statement 9.\n\nNow, since both Charlie and Fiona are young and furry, we can't directly conclude that Charlie is round. However, we can make some more conclusions:\n\nFrom Statement 10, if Erin is red and Erin is not round, then Erin is nice. However, we know from Statement 4 that Erin is red, and from Statement 7, all red people are not round. This implies that Erin is nice.\n\nNow, since Erin is nice, from Statement 13, Erin is smart. However, we already know from Statement 4 that Erin is red.\n\nNow, if Erin is smart, then from Statement 12, Erin must be young. However, we know this from Statement 6.\n\nNow, since Erin is young and furry, we can't directly conclude that Charlie is round.\n\nHowever, we can conclude the following from Statement 11: If someone is round and nice, then they are not young. We can't conclude that Charlie is round from the given statements, but we can conclude the following:\n\nFrom Statement 2, Charlie is nice. If Charlie were round, then from Statement 11, Charlie would not be young. However, we already know from Statement 3 that Charlie is smart, and from Statement 12, all smart people are young. This implies that Charlie must be young because Charlie is smart.\n\nHowever, this is a contradiction. If Charlie were round, then Charlie would not be young, but we know that Charlie is young because Charlie is smart.\n\nTherefore, we can conclude that Charlie is not round.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Bob is not round.\n   - Charlie is furry.\n   - Charlie is nice.\n   - Charlie is smart.\n   - Erin is red.\n   - Fiona is furry.\n   - Fiona is young.\n   - All red people are not round.\n   - Red people are not blue.\n   - All young people are furry.\n   - If Erin is red and Erin is not round then Erin is nice.\n   - If someone is round and nice then they are not young.\n   - All smart people are young.\n   - Nice people are smart.\n\n2. Analyze the information to find a connection between Charlie and round:\n   - Charlie is smart (given).\n   - All smart people are young (given).\n   - Fiona is young (given).\n   - All young people are furry (given).\n   - Charlie is furry (given).\n\n3. Now we know that Charlie is young because Charlie is smart, and all smart people are young. \n\n4. Since Charlie is young, we can use the rule \"All young people are furry\" to conclude that Charlie is furry (already given), but this information is not needed for our conclusion.\n\n5. However, we still need to determine if Charlie is round. We can use the rule \"If someone is round and nice then they are not young\" to try to make a connection between Charlie's roundness and nice.\n\n6. Since Charlie is nice (given), we can try to conclude if Charlie is round by using this rule.\n\n7. From the given information, we know that Erin is red and not round, and if someone is red and not round, then they are nice. This implies that Erin is nice.\n\n8. Now, we have a connection between round and nice, but we still need to make a connection to Charlie.\n\n9. The statement \"If someone is round and nice then they are not young\" does not directly apply to Charlie, but we can use the rule \"If Erin is red and Erin is not round then Erin is nice\" to create a connection.\n\n10. We know that Erin is red, and red people are not round (given). This implies that Erin is not round.\n\n11. We also know that Erin is nice because Erin is red and not round.\n\n12. Now, we can use the rule \"If someone is round and nice then they are not young\" to conclude that Erin is not young because Erin is round (from the fact that Erin is not round, which implies that Erin is not round, but we can't directly conclude if Erin is round or not), and Erin is nice.\n\n13. However, since Charlie is young (from step 3), and Erin is not young (from step 12), this implies that Charlie and Erin are not the same person.\n\n14. Now, we still need to determine if Charlie is round. We can use the rule \"All red people are not round\" to try to make a connection.\n\n15. We know that Erin is red (given), and Erin is not round (from step 11).\n\n16. However, this rule does not directly apply to Charlie.\n\n17. Since Charlie is young (from step 3) and all young people are furry (given), we can use the rule \"All red people are not round\" to try to make a connection.\n\n18. However, this rule does not directly apply to Charlie.\n\n19. Since Charlie is furry (given) and all young people are furry (given), we can use the rule \"All young people are furry\" to conclude that Charlie is young (from step 3), but this information is not needed for our conclusion.\n\n20. We still need to determine if Charlie is round. We can use the rule \"If someone is round and nice then they are not young\" to try to make a connection.\n\n21. Since Charlie is nice (given) and Charlie is young (from step 3), we can use this rule to conclude that Charlie is not round.\n\n22. Therefore, the statement \"Charlie is round\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is round' is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. Given statements:\n   - Bob is not round.\n   - Charlie is furry.\n   - Charlie is nice.\n   - Charlie is smart.\n   - Erin is red.\n   - Fiona is furry.\n   - Fiona is young.\n   - All red people are not round.\n   - Red people are not blue.\n   - All young people are furry.\n   - If Erin is red and Erin is not round then Erin is nice.\n   - If someone is round and nice then they are not young.\n   - All smart people are young.\n   - Nice people are smart.\n\n2. Analyze the given statements:\n   - Since Charlie is furry and all young people are furry, Charlie could be young.\n   - Since Charlie is smart, all smart people are young, so Charlie must be young.\n   - If Charlie is young, then Charlie is furry.\n   - Since Charlie is furry and Fiona is furry, we cannot determine whether Charlie is young or Fiona is young.\n   - Since Charlie is young and all young people are furry, Charlie is furry.\n   - Since Charlie is furry and Charlie is young, we still cannot determine whether Charlie is round.\n\n3. Since Charlie is young and all young people are furry, Charlie is furry. Also, Charlie is furry, but we cannot determine whether Charlie is round.\n\n4. Since Charlie is nice and nice people are smart, Charlie is smart.\n   - Since Charlie is smart, all smart people are young, so Charlie must be young.\n   - Since Charlie is young, Charlie is furry.\n   - Since Charlie is furry and Charlie is young, we still cannot determine whether Charlie is round.\n\n5. Now we will analyze the relationship between Charlie's age and roundness.\n   - Since Charlie is young and all young people are furry, Charlie is furry.\n   - Since Charlie is furry, we cannot determine whether Charlie is round or not.\n\n6. Now let's analyze the relationship between Charlie's roundness and his being red.\n   - All red people are not round.\n   - Since Charlie is not red and Charlie is not round we cannot determine anything about Charlie being round.\n   - But we also know that all red people are not round and since Erin is red we can conclude that Erin is not round.\n   - If Erin is red and Erin is not round then Erin is nice.\n   - Since Charlie is nice and nice people are smart, Charlie is smart.\n   - Since Charlie is smart, all smart people are young, so Charlie must be young.\n   - Since Charlie is young, Charlie is furry.\n   - Since Charlie is furry, we still cannot determine whether Charlie is round.\n\n7. Now let's analyze the relationship between Charlie's roundness and his being young.\n   - Since Charlie is young, Charlie is furry.\n   - Since Charlie is furry and Charlie is young, we still cannot determine whether Charlie is round.\n\n8. Now let's analyze the relationship between Charlie's roundness and his being smart.\n   - Since Charlie is smart, all smart people are young, so Charlie must be young.\n   - Since Charlie is young, Charlie is furry.\n   - Since Charlie is furry, we still cannot determine whether Charlie is round.\n\n9. Now let's analyze the relationship between Charlie's roundness and his being nice.\n   - Since Charlie is nice, Charlie is smart.\n   - Since Charlie is smart, all smart people are young, so Charlie must be young.\n   - Since Charlie is young, Charlie is furry.\n   - Since Charlie is furry, we still cannot determine whether Charlie is round.\n\n10. From all the above analysis, we cannot determine whether Charlie is round or not.\n\nTherefore, the statement 'Charlie is round' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether Charlie is round, we need to analyze the given statements.\n\n1. Charlie is furry.\n2. Charlie is nice.\n3. Charlie is smart.\n\nFrom statement 6, we know that all young people are furry. However, we don't know if Charlie is young yet, so we cannot conclude that Charlie is young based on statement 1.\n\nFrom statement 7, we know that all smart people are young. Since Charlie is smart (statement 3), we can conclude that Charlie is young.\n\nNow, from statement 6, we know that all young people are furry. Since Charlie is young, we can conclude that Charlie is furry (which we already knew).\n\nFrom statement 5, we know that Fiona is young. Since Charlie is young (which we concluded earlier), we can compare Charlie and Fiona. We also know that Fiona is furry (statement 4) and Charlie is furry (which we concluded earlier). However, we don't know if Charlie is young or not, and we also don't know if Charlie is the same age as Fiona. So we cannot conclude anything about Charlie's age based on Fiona's age.\n\nFrom statement 8, we know that nice people are smart. Since Charlie is nice (statement 2), we can conclude that Charlie is smart (which we already knew).\n\nNow, from statement 9, we know that all smart people are young. Since Charlie is smart (which we concluded earlier), we can conclude that Charlie is young (which we already concluded earlier).\n\nFrom statement 2, we know that Charlie is nice. From statement 10, we know that if Erin is red and Erin is not round then Erin is nice. However, we don't know if Erin is young or not, so we cannot conclude that Erin is nice or not.\n\nFrom statement 1, we know that Charlie is furry. From statement 5, we know that Fiona is furry. We also know that Fiona is young (statement 5). However, we don't know if Charlie is young or not, so we cannot conclude anything about Charlie's age based on Fiona's age.\n\nNow, from statement 11, we know that all red people are not round. We also know that Erin is red (statement 8). So, we can conclude that Erin is not round.\n\nFrom statement 10, we know that if Erin is red and Erin is not round then Erin is nice. Since Erin is red (statement 8) and Erin is not round (which we concluded earlier), we can conclude that Erin is nice.\n\nFrom statement 9, we know that nice people are smart. Since Erin is nice (which we concluded earlier), we can conclude that Erin is smart.\n\nFrom statement 7, we know that all smart people are young. Since Erin is smart (which we concluded earlier), we can conclude that Erin is young.\n\nNow, from statement 6, we know that all young people are furry. Since Erin is young (which we concluded earlier), we can conclude that Erin is furry.\n\nFrom statement 5, we know that Fiona is young. From statement 6, we know that all young people are furry. Since Fiona is young (statement 5), we can conclude that Fiona is furry (which we already knew).\n\nFrom statement 12, we know that all red people are not blue. We also know that Erin is red (statement 8). However, we don't know if Erin is blue or not, so we cannot conclude anything about Erin's color based on statement 12.\n\nNow, from statement 5, we know that Fiona is young. From statement 9, we know that nice people are smart. However, we don't know if Fiona is nice or not, so we cannot conclude that Fiona is smart or not.\n\nFrom statement 7, we know that all smart people are young. However, we already know that Fiona is young (statement 5).\n\nFrom statement 8, we know that Erin is red. From statement 6, we know that all young people are furry. However, we don't know if Erin is young or not, so we cannot conclude that Erin is furry or not.\n\nNow, from statement 5, we know that Fiona is young. From statement 7, we know that all smart people are young. However, we don't know if Fiona is smart or not, so we cannot conclude that Fiona is young or not.\n\nNow, from statement 5, we know that Fiona is young. From statement 6, we know that all young people are furry. Since Fiona is young (statement 5), we can conclude that Fiona is furry (which we already knew).\n\nFrom statement 4, we know that Fiona is furry. From statement 6, we know that all young people are furry. However, we don't know if Fiona is young or not, so we cannot conclude that Fiona is young or not.\n\nNow, from statement 5, we know that Fiona is young. From statement 3, we know that Charlie is smart. However, we don't know if Charlie is young or not, so we cannot conclude that Charlie is smart or not.\n\nFrom statement 7, we know that all smart people are young. However, we don't know if Charlie is smart or not, so we cannot conclude that Charlie is young or not.\n\nNow, from statement 7, we know that all smart people are young. Since Charlie is smart (statement 3), we can conclude that Charlie is young.\n\nFrom statement 6, we know that all young people are furry. Since Charlie is young (which we concluded earlier), we can conclude that Charlie is furry (which we already knew).\n\nFrom statement 2, we know that Charlie is nice. From statement 9, we know that nice people are smart. Since Charlie is nice (statement 2), we can conclude that Charlie is smart (which we already knew).\n\nFrom statement 9, we know that nice people are smart. Since Charlie is nice (statement 2), we can conclude that Charlie is smart (which we already knew).\n\nFrom statement 7, we know that all smart people are young. Since Charlie is smart (which we concluded earlier), we can conclude that Charlie is young (which we already concluded earlier).\n\nNow, from statement 9, we know that nice people are smart. Since Charlie is nice (statement 2), we can conclude that Charlie is smart (which we already knew).\n\nNow, from statement 7, we know that all smart people are young. Since Charlie is smart (which we concluded earlier), we can conclude that Charlie is young.\n\nFrom statement 6, we know that all young people are furry. Since Charlie is young (which we concluded earlier), we can conclude that Charlie is furry (which we already knew).\n\nFrom statement 1, we know that Charlie is furry. From statement 6, we know that all young people are furry. However, we don't know if Charlie is young or not, so we cannot conclude that Charlie is young or not.\n\nNow, from statement 7, we know that all smart people are young. Since Charlie is smart (statement 3), we can conclude that Charlie is young.\n\nFrom statement 6, we know that all young people are furry. Since Charlie is young (which we concluded earlier), we can conclude that Charlie is furry (which we already knew).\n\nFrom statement 2, we know that Charlie is nice. From statement 8, we know that nice people are smart. However, we already know that Charlie is smart (statement 3).\n\nFrom statement 3, we know that Charlie is smart. From statement 7, we know that all smart people are young. However, we already know that Charlie is young (which we concluded earlier).\n\nFrom statement 7, we know that all smart people are young. Since Charlie is smart (statement 3), we can conclude that Charlie is young.\n\nFrom statement 6, we know that all young people are furry. Since Charlie is young (which we concluded earlier), we can conclude that Charlie is furry (which we already knew).\n\nFrom statement 1, we know that Charlie is furry. From statement 6, we know that all young people are furry. However, we don't know if Charlie is young or not, so we cannot conclude that Charlie is young or not.\n\nNow, from statement 5, we know that Fiona is young. From statement 3, we know that Charlie is smart. However, we don't know if Charlie is young or not, so we cannot conclude that Charlie is smart or not.\n\nNow, from statement 7, we know that all smart people are young. Since Charlie is smart (statement 3), we can conclude that Charlie is young.\n\nFrom statement 6, we know that all young people are furry. Since Charlie is young (which we concluded earlier), we can conclude that Charlie is furry (which we already knew).\n\nFrom statement 2, we know that Charlie is nice. From statement 9, we know that nice people are smart. However, we already know that Charlie is smart (statement 3).\n\nFrom statement 7, we know that all smart people are young. Since Charlie is smart (statement 3), we can conclude that Charlie is young.\n\nNow, from statement 6, we know that all young people are furry. Since Charlie is young (which we concluded earlier), we can conclude that Charlie is furry (which we already knew).\n\nFrom statement 3, we know that Charlie is smart. From statement 7, we know that all smart people are young. However, we already know that Charlie is young (which we concluded earlier).\n\nFrom statement 7, we know that all smart people are young. Since Charlie is smart (statement 3), we can conclude that Charlie is young.\n\nFrom statement 6, we know that all young people are furry. Since Charlie is young (which we concluded earlier), we can conclude that Charlie is furry (which we already knew).\n\nFrom statement 1, we",
+        "answer": "",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is round\" is true, false, or unknown, we need to use the given information and logical deductions.\n\nFrom the information given:\n1. Charlie is furry.\n2. Charlie is nice.\n3. Charlie is smart.\n\nNow, we'll use the given statements to make logical deductions:\n\n1. All young people are furry. \n2. All smart people are young.\n   From (2) and (3), we can deduce that Charlie is young.\n\nNow, we'll use the given statements to make more logical deductions:\n\n1. All young people are furry. \n   Since Charlie is young (deduced in step 4), Charlie must be furry.\n\nThe statement \"Charlie is round\" is not directly related to any of the given information. However, we can use the information about Erin to make a connection:\n\n1. Erin is red.\n2. Erin is not round.\n3. If Erin is red and Erin is not round then Erin is nice.\n   From (3), we can deduce that Erin is nice.\n\nNow, we'll use the given statements to make more logical deductions:\n\n1. Nice people are smart.\n   Since Erin is nice (deduced in step 8), Erin must be smart.\n\nWe can also use the information about Erin and Fiona to make a connection:\n\n1. Fiona is furry.\n2. Fiona is young.\n   From (2), we can deduce that Fiona is smart (since all young people are furry, and all smart people are young).\n\nNow, we'll use the given statements to make more logical deductions:\n\n1. Nice people are smart.\n2. Fiona is smart.\n   From (1) and (2), we can deduce that Fiona is nice.\n\nNow, we'll use the given statements to make more logical deductions:\n\n1. All young people are furry.\n2. Fiona is young.\n   From (2), we can deduce that Fiona is furry.\n\nNow, we'll use the given statements to make more logical deductions:\n\n1. All red people are not round.\n2. Erin is red.\n   From (2), we can deduce that Erin is not round.\n\nWe can also use the information about Erin to make a connection:\n\n1. Erin is red.\n2. Erin is not round.\n3. All red people are not round.\n   From (3), we can deduce that Erin is not round (this is redundant with step 19).\n\nNow, we'll use the given statements to make more logical deductions:\n\n1. Red people are not blue.\n   This statement is not useful in determining whether Charlie is round.\n\nNow, we'll use the given statements to make more logical deductions:\n\n1. If someone is round and nice then they are not young.\n   This statement is not useful in determining whether Charlie is round.\n\nNow, we'll use the given statements to make more logical deductions:\n\n1. All young people are furry.\n2. Charlie is young.\n   From (2), we can deduce that Charlie is furry (this is redundant with step 5).\n\nNow, we'll use the given statements to make more logical deductions:\n\n1. Charlie is furry.\n2. Charlie is young.\n3. All young people are furry.\n   From (2) and (3), we can deduce that Charlie is furry (this is redundant with step 5).\n\nSince Charlie is young (deduced in step 4), Charlie must be furry (deduced in step 5). The statement \"Charlie is round\" cannot be determined as true or false based on the given information.\n\nTherefore, the final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine if Charlie is round, we need to analyze the given statements and use logical deductions.\n\n1. Charlie is furry. \n2. Charlie is nice. \n3. Charlie is smart. \n\nWe need to find a connection between Charlie and the property of being round.\n\nFrom statement 4: Erin is red. \nFrom statement 5: Fiona is furry. \nFrom statement 6: Fiona is young. \n\nWe can use statement 7: All red people are not round. \nSince Erin is red (statement 4), Erin is not round. \nTherefore, we can conclude that all red people are not round, which also includes Erin.\n\nWe can use statement 8: Red people are not blue. \nThis statement does not provide any information about round people, so we will ignore it.\n\nWe can use statement 9: All young people are furry. \nSince Fiona is young (statement 6) and furry (statement 5), this statement is true.\n\nWe can use statement 10: If Erin is red and Erin is not round then Erin is nice. \nSince Erin is red (statement 4) and not round (derived from statement 7), Erin is nice. \n\nWe can use statement 11: If someone is round and nice then they are not young. \nThis statement is crucial for our problem. However, we cannot directly apply it to Charlie yet.\n\nWe can use statement 12: All smart people are young. \nSince Charlie is smart (statement 3), Charlie is young. \n\nWe can use statement 13: Nice people are smart. \nSince Erin is nice (derived from statement 10) and not round (derived from statement 7), this statement does not provide any information about Charlie.\n\nNow, let's analyze the given statements again. We can use statement 2: Charlie is nice. \nSince Charlie is nice, Charlie is smart (statement 13).\n\nSince Charlie is smart (derived from statement 13) and young (derived from statement 12), we can use statement 11: If someone is round and nice then they are not young. \nHowever, we cannot directly apply it to Charlie yet because we do not know if Charlie is round.\n\nWe need to find a connection between Charlie and the property of being round. We can use statement 1: Charlie is furry. \nSince Charlie is furry, we cannot directly apply any of the statements to determine if Charlie is round.\n\nHowever, we can use statement 14: All young people are furry. \nSince Charlie is young (derived from statement 12) and furry (statement 1), this statement is true.\n\nWe can use statement 6: Fiona is young. \nSince Fiona is young (statement 6), we can use statement 6 and statement 9: All young people are furry. \nThis statement is true.\n\nWe can use statement 9: All young people are furry. \nSince Charlie is young (derived from statement 12) and furry (statement 1), this statement is true.\n\nSince Charlie is young (derived from statement 12) and furry (statement 1), we can use statement 6: Fiona is young. \nSince Fiona is young (statement 6) and furry (statement 5), this statement is true.\n\nHowever, we still cannot determine if Charlie is round.\n\nWe need to analyze the given statements again. We can use statement 2: Charlie is nice. \nSince Charlie is nice, Charlie is smart (statement 13).\n\nSince Charlie is smart (derived from statement 13) and young (derived from statement 12), we can use statement 12: All smart people are young. \nThis statement is true.\n\nHowever, we still cannot determine if Charlie is round.\n\nWe can use statement 6: Fiona is young. \nSince Fiona is young (statement 6) and furry (statement 5), this statement is true.\n\nWe can use statement 9: All young people are furry. \nSince Fiona is young (statement 6) and furry (statement 5), this statement is true.\n\nWe can use statement 11: If someone is round and nice then they are not young. \nHowever, we cannot directly apply it to Charlie yet because we do not know if Charlie is round.\n\nWe can use statement 1: Charlie is furry. \nSince Charlie is furry, we cannot directly apply any of the statements to determine if Charlie is round.\n\nHowever, we can use statement 6: Fiona is young. \nSince Fiona is young (statement 6), we can use statement 6 and statement 9: All young people are furry. \nThis statement is true.\n\nWe can use statement 9: All young people are furry. \nSince Charlie is young (derived from statement 12) and furry (statement 1), this statement is true.\n\nSince Charlie is young (derived from statement 12) and furry (statement 1), we can use statement 6: Fiona is young. \nSince Fiona is young (statement 6) and furry (statement 5), this statement is true.\n\nHowever, we still cannot determine if Charlie is round.\n\nWe can use statement 3: Charlie is smart. \nSince Charlie is smart, Charlie is young (statement 12).\n\nWe can use statement 6: Fiona is young. \nSince Fiona is young (statement 6) and furry (statement 5), this statement is true.\n\nWe can use statement 9: All young people are furry. \nSince Charlie is young (derived from statement 12) and furry (statement 1), this statement is true.\n\nWe can use statement 11: If someone is round and nice then they are not young. \nHowever, we cannot directly apply it to Charlie yet because we do not know if Charlie is round.\n\nWe can use statement 1: Charlie is furry. \nSince Charlie is furry, we cannot directly apply any of the statements to determine if Charlie is round.\n\nHowever, we can use statement 6: Fiona is young. \nSince Fiona is young (statement 6), we can use statement 6 and statement 9: All young people are furry. \nThis statement is true.\n\nWe can use statement 9: All young people are furry. \nSince Charlie is young (derived from statement 12) and furry (statement 1), this statement is true.\n\nSince Charlie is young (derived from statement 12) and furry (statement 1), we can use statement 6: Fiona is young. \nSince Fiona is young (statement 6) and furry (statement 5), this statement is true.\n\nHowever, we still cannot determine if Charlie is round.\n\nWe can use statement 2: Charlie is nice. \nSince Charlie is nice, Charlie is smart (statement 13).\n\nSince Charlie is smart (derived from statement 13) and young (derived from statement 12), we can use statement 12: All smart people are young. \nThis statement is true.\n\nHowever, we still cannot determine if Charlie is round.\n\nWe can use statement 1: Charlie is furry. \nSince Charlie is furry, we cannot directly apply any of the statements to determine if Charlie is round.\n\nHowever, we can use statement 6: Fiona is young. \nSince Fiona is young (statement 6), we can use statement 6 and statement 9: All young people are furry. \nThis statement is true.\n\nWe can use statement 9: All young people are furry. \nSince Charlie is young (derived from statement 12) and furry (statement 1), this statement is true.\n\nSince Charlie is young (derived from statement 12) and furry (statement 1), we can use statement 6: Fiona is young. \nSince Fiona is young (statement 6) and furry (statement 5), this statement is true.\n\nHowever, we still cannot determine if Charlie is round.\n\nWe can use statement 2: Charlie is nice. \nSince Charlie is nice, Charlie is smart (statement 13).\n\nSince Charlie is smart (derived from statement 13) and young (derived from statement 12), we can use statement 12: All smart people are young. \nThis statement is true.\n\nWe can use statement 11: If someone is round and nice then they are not young. \nHowever, we cannot directly apply it to Charlie yet because we do not know if Charlie is round.\n\nWe can use statement 1: Charlie is furry. \nSince Charlie is furry, we cannot directly apply any of the statements to determine if Charlie is round.\n\nHowever, we can use statement 6: Fiona is young. \nSince Fiona is young (statement 6), we can use statement 6 and statement 9: All young people are furry. \nThis statement is true.\n\nWe can use statement 9: All young people are furry. \nSince Charlie is young (derived from statement 12) and furry (statement 1), this statement is true.\n\nSince Charlie is young (derived from statement 12) and furry (statement 1), we can use statement 6: Fiona is young. \nSince Fiona is young (statement 6) and furry (statement 5), this statement is true.\n\nHowever, we still cannot determine if Charlie is round.\n\nNow, let's try another approach.\n\nWe can use statement 2: Charlie is nice. \nSince Charlie is nice, Charlie is smart (statement 13).\n\nSince Charlie is smart (derived from statement 13) and young (derived from statement 12), we can use statement 12: All smart people are young. \nThis statement is true.\n\nWe can use statement 11: If someone is round and nice then they are not young. \nHowever, we cannot directly apply it to Charlie yet because we do not know if Charlie is round.\n\nWe can use statement 1: Charlie is furry. \nSince Charlie is furry, we cannot directly apply any of the statements to determine if Charlie is round.\n\nHowever, we can use statement 6: Fiona",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is round\" is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n1. Bob is not round.\n2. Charlie is furry.\n3. Charlie is nice.\n4. Charlie is smart.\n5. Erin is red.\n6. Fiona is furry.\n7. Fiona is young.\n8. All red people are not round.\n9. Red people are not blue.\n10. All young people are furry.\n11. If Erin is red and Erin is not round then Erin is nice.\n12. If someone is round and nice then they are not young.\n13. All smart people are young.\n14. Nice people are smart.\n\nWe want to determine if Charlie is round. To do this, let's try to derive a conclusion from the given information.\n\nFrom statement 14, we know that nice people are smart. Since Charlie is smart (statement 4), Charlie must be nice (statement 3).\n\nNow, we need to find a connection between Charlie's niceness and roundness.\n\nFrom statement 8, we know that all red people are not round. We also know that Erin is red (statement 5) and not round (since it follows that all red people are not round). Therefore, from statement 11, we can conclude that Erin is nice.\n\nHowever, we cannot conclude that Charlie is round from the given information. We can only conclude that Charlie is nice. To find out if Charlie is round, we need to analyze the given information further.\n\nFrom statement 12, we know that if someone is round and nice, then they are not young. We already know that Charlie is nice (statement 3). Let's assume Charlie is round.\n\nIf Charlie is round and nice, then from statement 12, we can conclude that Charlie is not young.\n\nHowever, we know that all young people are furry (statement 10), and Fiona is young (statement 7). Therefore, Fiona must be furry (statement 6).\n\nNow, let's analyze Charlie's furryness. We know that Charlie is furry (statement 2). However, we also know that Fiona is furry (statement 6) and young (statement 7). This does not directly help us determine Charlie's roundness.\n\nHowever, since Charlie is furry (statement 2), Charlie must be young (from statement 10).\n\nNow, we have a contradiction. If Charlie is round, then Charlie is not young (from statement 12). However, we just concluded that Charlie must be young (since Charlie is furry and all young people are furry).\n\nTherefore, we cannot conclude that Charlie is round without a contradiction.\n\nHowever, we can conclude that Charlie is not round because we found a contradiction when assuming Charlie is round. Since we have a contradiction, we can conclude that the statement \"Charlie is round\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether Charlie is round, we need to analyze the given information and use logical deductions.\n\nFrom the given statements:\n\n1. Charlie is furry.\n2. Charlie is nice.\n3. Charlie is smart.\n4. Erin is red.\n5. Fiona is furry.\n6. Fiona is young.\n7. All red people are not round.\n8. Red people are not blue.\n9. All young people are furry.\n10. If Erin is red and Erin is not round then Erin is nice.\n11. If someone is round and nice then they are not young.\n12. All smart people are young.\n13. Nice people are smart.\n\nNow, let's analyze the statement \"Charlie is round.\"\n\nFrom statement 1, Charlie is furry.\nFrom statement 9, all young people are furry.\nFrom statement 6, Fiona is young and furry, but this does not necessarily mean Charlie is young.\n\nHowever, we can deduce that Charlie might not be young because Charlie is smart (statement 3), and from statement 12, all smart people are young. This implies Charlie is young. But this would mean Charlie is furry (statement 9), which is true.\n\nNow, we need to check if Charlie being young implies Charlie is round. From statement 11, if someone is round and nice, then they are not young. However, this does not directly imply that if someone is young, then they are not round.\n\nSince we don't have any direct statement that connects Charlie being young to being round, we cannot conclude whether Charlie is round or not.\n\nTherefore, the answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve the given problem, we need to use the information provided and determine if Charlie is round. \n\nWe have the following information:\n\n1. Erin is red.\n2. Erin is not round.\n3. All red people are not round.\n4. Red people are not blue. (This statement is irrelevant to the problem, so we can ignore it.)\n5. All young people are furry.\n6. Fiona is furry.\n7. Fiona is young.\n8. If Erin is red and Erin is not round then Erin is nice.\n9. If someone is round and nice then they are not young.\n10. All smart people are young.\n11. Nice people are smart.\n12. Charlie is furry.\n13. Charlie is nice.\n14. Charlie is smart.\n\nFrom statement 6 and 7, we can conclude that Fiona is a young person.\n\nFrom statement 8, we know that Erin is nice because Erin is red and not round.\n\nFrom statement 13, we know that Charlie is smart.\n\nFrom statement 10, we know that all smart people are young, so Charlie is young.\n\nNow, let's try to determine if Charlie is round. If Charlie is round, then Charlie is not young (from statement 9). However, we already know that Charlie is young (from statement 13 and 10). This creates a contradiction.\n\nTherefore, Charlie cannot be round.\n\nThe final answer is: \\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Charlie is round\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\nFrom the given information:\n\n1. Charlie is furry.\n2. Charlie is nice.\n3. Charlie is smart.\n4. All red people are not round.\n5. Red people are not blue.\n6. All young people are furry.\n7. If Erin is red and Erin is not round then Erin is nice.\n8. If someone is round and nice then they are not young.\n9. All smart people are young.\n10. Nice people are smart.\n\nWe are trying to find the truth value of the statement \"Charlie is round\". To do this, let's start by analyzing the given statements.\n\nFrom statement 1, we know Charlie is furry. \n\nFrom statement 6, we know all young people are furry. \n\nIf Charlie is young, then Charlie is furry (statement 6). However, if Charlie is furry, then we cannot directly conclude that Charlie is young, because there could be other reasons for Charlie being furry. \n\nLet's analyze the statement \"Charlie is round\". If Charlie is round, then Charlie cannot be nice (statement 8), because nice people are not round.\n\nFrom statement 2, we know Charlie is nice. If Charlie is nice, then Charlie must be smart (statement 10), and Charlie must be young (statement 9), because all smart people are young.\n\nHowever, if Charlie is young, then Charlie is furry (statement 6). This contradicts statement 7, because statement 7 says that all red people are not round, and we don't have any information about Charlie being red. \n\nSince we cannot conclude that Charlie is not round, we cannot conclude that Charlie is round. Therefore, the truth value of the statement \"Charlie is round\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Charlie is round' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given statements:\n   - Charlie is furry.\n   - Charlie is nice.\n   - Charlie is smart.\n\n2. From the statements about Erin:\n   - Erin is red.\n   - Erin is not round.\n   - Since Erin is red and not round, then Erin is nice. (This is a given statement about Erin's properties.)\n\n3. From the statements about young people:\n   - All young people are furry.\n   - If someone is round and nice then they are not young.\n   - All smart people are young.\n\n4. Since Charlie is smart, then Charlie is young (from the statement 'All smart people are young').\n\n5. Since Charlie is young, then Charlie is furry (from the statement 'All young people are furry').\n\n6. Now we need to determine whether Charlie is round or not. If Charlie is round, then Charlie is not young (from the statement 'If someone is round and nice then they are not young'). But we already know that Charlie is young.\n\n   From the statement 'Charlie is nice' and 'Charlie is not round', we can determine whether Charlie is round or not.\n\n   If Charlie is not round, then Charlie is nice. \n\n   Given that Charlie is smart and nice, we can conclude that Charlie is young.\n\n   But from the statement 'All young people are furry', we already know that Charlie is furry.\n\n   Therefore, the statement 'Charlie is round' is False because Charlie is not round, which is a property associated with Charlie being nice.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(round(X))",
+          "z3_formula": "Implies(red_charlie, Not(round_charlie))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(blue(X))",
+          "z3_formula": "Implies(red_charlie, Not(blue_charlie))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_charlie, furry_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not(young(X))",
+          "z3_formula": "Implies(And(round_charlie, nice_charlie), Not(young_charlie))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_charlie, young_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(round(X))",
+          "z3_formula": "Implies(red_erin, not(round_erin))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(blue(X))",
+          "z3_formula": "Implies(red_erin, not(blue_erin))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_fiona, furry_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not(young(X))",
+          "z3_formula": "Implies(And(round_charlie, nice_charlie), not(young_charlie))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not(round(X)) -> nice(X)",
+          "z3_formula": "Implies(And(red_erin, not(round_erin)), nice_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_charlie, young_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(bob))",
+          "z3_formula": "Not(round_bob) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(round(X))",
+          "z3_formula": "Implies(red_erin, Not(round_erin))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(blue(X))",
+          "z3_formula": "Implies(red_erin, Not(blue_erin))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_fiona, furry_fiona)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(eats_erin_squirrel, red_squirrel)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not(young(X))",
+          "z3_formula": "Implies(And(round_charlie, nice_charlie), Not(young_charlie))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not(round(X)) -> nice(X)",
+          "z3_formula": "Implies(And(red_erin, Not(round_erin)), nice_erin)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(erin))",
+          "z3_formula": "Not(round_erin) == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(young(erin))",
+          "z3_formula": "Not(young_erin) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(charlie))",
+          "z3_formula": "Not(round_charlie) == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(bob))",
+          "z3_formula": "Not(round_bob)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(round(X))",
+          "z3_formula": "Implies(red_erin, Not(round_erin))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(blue(X))",
+          "z3_formula": "Implies(red_erin, Not(blue_erin))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_fiona, furry_fiona)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(eats_bob_squirrel, red_squirrel)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not(young(X))",
+          "z3_formula": "Implies(And(round_charlie, nice_charlie), Not(young_charlie))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_charlie, young_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == Unknown",
+          "source_step": 10
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_charlie, furry_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_charlie, young_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(erin))",
+          "z3_formula": "not(round_erin) == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not(round(X)) -> nice(X)",
+          "z3_formula": "Implies(And(red_erin, not(round_erin)), nice_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "nice(erin)",
+          "z3_formula": "nice_erin == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_erin, smart_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "smart(erin)",
+          "z3_formula": "smart_erin == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "smart(fiona)",
+          "z3_formula": "smart_fiona == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_fiona, smart_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "nice(fiona)",
+          "z3_formula": "nice_fiona == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_fiona, furry_fiona)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(erin))",
+          "z3_formula": "not(round_erin) == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(round(X))",
+          "z3_formula": "Implies(red_erin, not(round_erin))",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(erin))",
+          "z3_formula": "not(round_erin) == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(blue(X))",
+          "z3_formula": "Implies(red_erin, not(blue_erin))",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "not(blue(erin))",
+          "z3_formula": "not(blue_erin) == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not(young(X))",
+          "z3_formula": "Implies(And(round_charlie, nice_charlie), not(young_charlie))",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(charlie))",
+          "z3_formula": "not(round_charlie) == Unknown",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(round(X))",
+          "z3_formula": "Implies(red_erin, Not(round_erin))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(blue(X))",
+          "z3_formula": "Implies(red_erin, Not(blue_erin))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(And(young_fiona, Not(furry_fiona)), False)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not(round(X)) -> nice(X)",
+          "z3_formula": "Implies(And(red_erin, Not(round_erin)), nice_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not(young(X))",
+          "z3_formula": "Implies(And(round_charlie, nice_charlie), Not(young_charlie))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_charlie, young_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 13
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "not round(bob)",
+          "z3_formula": "not round_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not round(X)",
+          "z3_formula": "Implies(red_erin, not round_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not blue(X)",
+          "z3_formula": "Implies(red_erin, not blue_erin)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, squirrel) -> red(squirrel)",
+          "z3_formula": "Implies(red_erin, red_squirrel)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not young(X)",
+          "z3_formula": "Implies(And(round_charlie, nice_charlie), not young_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_fiona, furry_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_charlie, nice_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not young(X)",
+          "z3_formula": "Implies(round_charlie, not young_charlie)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_charlie, furry_charlie)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True | Not(round_charlie) | Unknown",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True | Not(round_charlie) | Unknown",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == False",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(round(X))",
+          "z3_formula": "Implies(red_erin, Not(round_erin))",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(blue(X))",
+          "z3_formula": "Implies(red_erin, Not(blue_erin))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_fiona, furry_fiona)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not(round(X)) -> nice(X)",
+          "z3_formula": "Implies(And(red_erin, Not(round_erin)), nice_erin)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not(young(X))",
+          "z3_formula": "Implies(And(round_charlie, nice_charlie), Not(young_charlie))",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> smart(X)",
+          "z3_formula": "Implies(young_charlie, smart_charlie)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_charlie, young_charlie)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(erin))",
+          "z3_formula": "Not(round_erin)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(round(X))",
+          "z3_formula": "Implies(red_erin, Not(round_erin))",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(blue(X))",
+          "z3_formula": "Implies(red_erin, Not(blue_erin))",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(fiona)",
+          "z3_formula": "young_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_fiona, furry_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not(round(X)) -> nice(X)",
+          "z3_formula": "Implies(And(red_erin, Not(round_erin)), nice_erin)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not(young(X))",
+          "z3_formula": "Implies(And(round_charlie, nice_charlie), Not(young_charlie))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_charlie, young_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(round(X))",
+          "z3_formula": "Implies(red_charlie, Not(round_charlie))",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> not(blue(X))",
+          "z3_formula": "Implies(red_charlie, Not(blue_charlie))",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_charlie, furry_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not(young(X))",
+          "z3_formula": "Implies(And(round_charlie, nice_charlie), Not(young_charlie))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_charlie, furry_charlie)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> not(nice(X))",
+          "z3_formula": "Implies(round_charlie, Not(nice_charlie))",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> smart(X)",
+          "z3_formula": "Implies(nice_charlie, smart_charlie)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_charlie, young_charlie)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "nice(charlie)",
+          "z3_formula": "nice_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(charlie)",
+          "z3_formula": "smart_charlie == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(erin)",
+          "z3_formula": "red_erin == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(erin))",
+          "z3_formula": "Not(round_erin) == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) & not(round(X)) -> nice(X)",
+          "z3_formula": "Implies(And(red_erin, Not(round_erin)), nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> nice(X)",
+          "z3_formula": "Implies(nice_erin, nice_erin)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> furry(X)",
+          "z3_formula": "Implies(young_charlie, furry_charlie)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & nice(X) -> not(young(X))",
+          "z3_formula": "Implies(And(round_charlie, nice_charlie), Not(young_charlie))",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> young(X)",
+          "z3_formula": "Implies(smart_charlie, young_charlie)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "young(charlie)",
+          "z3_formula": "young_charlie == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(charlie)",
+          "z3_formula": "furry_charlie == True",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not(round(charlie))",
+          "z3_formula": "Not(round_charlie) == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "round(charlie)",
+          "z3_formula": "round_charlie == False",
+          "source_step": 7
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 177,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 36
+    },
+    "maxsat_stats": {
+      "satisfied": 35,
+      "excluded": 1,
+      "total_weight": 159,
+      "solve_time_ms": 1.2340676039457321
+    },
+    "timing": {
+      "trace_gen_s": 24.74,
+      "extraction_s": 33.372,
+      "dedup_s": 1.077,
+      "maxsat_s": 0.003,
+      "total_s": 59.192
+    }
+  }
+}

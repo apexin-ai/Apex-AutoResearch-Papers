@@ -1,0 +1,1671 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNeg-OWA-D5-1233_Q11",
+    "problem": "Anne is smart. Bob is quiet. Bob is young. Fiona is not quiet. Gary is kind. Gary is rough. Gary is smart. Rough, kind people are blue. Young, kind people are rough. If someone is furry then they are quiet. Furry, young people are quiet. All quiet people are young. If someone is blue and kind then they are young. If someone is smart then they are furry. If Fiona is blue then Fiona is not kind. Young people are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nAnne is rough.",
+    "solution": "",
+    "answer": "True",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nSmart($x, bool) ::: Is x smart?\nQuiet($x, bool) ::: Is x quiet?\nYoung($x, bool) ::: Is x young?\nFurry($x, bool) ::: Is x furry?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\nBlue($x, bool) ::: Is x blue?\n\nFacts:\nSmart(Anne, True) ::: Anne is smart.\nQuiet(Bob, True) ::: Bob is quiet.\nYoung(Bob, True) ::: Bob is young.\nQuiet(Fiona, False) ::: Fiona is not quiet.\nKind(Gary, True) ::: Gary is kind.\nRough(Gary, True) ::: Gary is rough.\nSmart(Gary, True) ::: Gary is smart.\n\nRules:\nRough($x, True) && Kind($x, True) >>> Blue($x, True) ::: Rough, kind people are blue.\nYoung($x, True) && Kind($x, True) >>> Rough($x, True) ::: Young, kind people are rough.\nFurry($x, True) >>> Quiet($x, True) ::: If someone is furry then they are quiet.\nFurry($x, True) && Young($x, True) >>> Quiet($x, True) ::: Furry, young people are quiet.\nQuiet($x, True) >>> Young($x, True) ::: All quiet people are young.\nBlue($x, True) && Kind($x, True) >>> Young($x, True) ::: If someone is blue and kind then they are young.\nSmart($x, True) >>> Furry($x, True) ::: If someone is smart then they are furry.\nBlue(Fiona, True) >>> Kind(Fiona, False) ::: If Fiona is blue then Fiona is not kind.\nYoung($x, True) >>> Kind($x, True) ::: Young people are kind.\n\nQuery:\nRough(Anne, True) ::: Anne is rough."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "True": 238.0,
+      "Unknown": 235.5
+    },
+    "answer_counts": {
+      "True": 5,
+      "Unknown": 6
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Anne is rough\" is true, false, or unknown, we need to use the given information step by step.\n\n1. We know that Gary is kind. Gary is rough. Gary is smart. \nSince Gary is both kind and rough, we can conclude that Gary is blue. \n\n2. Blue people are described as rough, kind. \nSo, Gary is a blue person, which means Gary is young.\n\n3. We are given that \"Young, kind people are rough.\" \nSince Gary is young and kind, it is true that Gary is rough. However, this conclusion is based on Gary's characteristics, not Anne's.\n\n4. To find out whether Anne is rough, we need more information about Anne. \nHowever, we are given that \"If someone is blue and kind then they are young.\" \nSince Gary is blue and kind, it is true that Gary is young. This does not give us any information about Anne.\n\n5. We are also given that \"All quiet people are young.\" \nHowever, we know that \"If someone is furry then they are quiet.\" \nSince \"If someone is smart then they are furry,\" and Gary is smart, it is true that Gary is furry. However, this does not tell us anything about Anne.\n\n6. We know that \"Fiona is not quiet.\" \nSince \"Furry, young people are quiet,\" we can conclude that Fiona is not furry. \n\n7. Since \"Anne is smart,\" we can conclude that Anne is furry.\n\n8. Now we have two pieces of information: Anne is furry, and \"All quiet people are young.\" \nSince Anne is furry, it is true that Anne is quiet.\n\n9. Since Anne is quiet, we can conclude that Anne is young.\n\n10. We also know that \"Young people are kind.\" \nSince Anne is young, it is true that Anne is kind.\n\n11. We are given that \"If Fiona is blue then Fiona is not kind.\" \nHowever, we do not know whether Fiona is blue or not. We only know that Fiona is not quiet.\n\n12. Since Anne is kind and young, it is true that Anne is rough.\n\nTherefore, the statement \"Anne is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is rough' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Gary is kind and Gary is rough. Therefore, Gary is blue.\n\n2. We know that if someone is blue and kind, then they are young. Since Gary is blue and kind, Gary is young.\n\n3. Since young people are kind, Gary is kind, and Gary is young, we can conclude that Gary is indeed young.\n\n4. We are also given that Gary is smart. We can use this information later.\n\n5. We are given that if someone is furry, then they are quiet. Also, all quiet people are young. Therefore, if someone is furry and young, then they are quiet.\n\n6. Since Gary is smart, Gary is furry. But we know that if someone is furry and young, then they are quiet. So, Gary is quiet.\n\n7. We are given that Bob is quiet. We don't know whether Bob is young or not yet.\n\n8. We are given that if someone is furry, then they are quiet. Since Gary is furry and quiet, we can conclude that Gary is quiet.\n\n9. We are given that if someone is furry and young, then they are quiet. Since Gary is furry and young, we can conclude that Gary is quiet.\n\n10. We are given that all quiet people are young. Since Bob is quiet, Bob is young.\n\n11. We are given that young people are kind. Since Bob is young, Bob is kind.\n\n12. We are given that rough, kind people are blue. Since Bob is kind and rough, Bob is blue.\n\n13. We are given that if someone is blue and kind, then they are young. Since Bob is blue and kind, Bob is young. But we already know that Bob is young, so this statement doesn't provide any new information.\n\n14. We are given that young, kind people are rough. Since Bob is young and kind, Bob is rough.\n\n15. We are given that Anne is smart. We are also given that if someone is smart, then they are furry. Therefore, Anne is furry.\n\n16. We are given that furry, young people are quiet. Since Anne is furry and young, Anne is quiet.\n\n17. We are given that all quiet people are young. Since Anne is quiet, Anne is young.\n\n18. We are given that young people are kind. Since Anne is young, Anne is kind.\n\n19. We are given that rough, kind people are blue. Since Anne is kind and rough, Anne is blue.\n\n20. We are given that if Fiona is blue then Fiona is not kind. But we don't have any information about Fiona being blue or kind.\n\n21. Since we have found that Anne is rough, kind, and blue, we can conclude that the statement 'Anne is rough' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is rough' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Gary is kind (G1) and Gary is rough (G2).\n2. We are also given that rough, kind people are blue (B1).\n3. Since Gary is both rough and kind, it implies that Gary is blue (B2).\n\nNow, let's analyze the information related to Anne:\n1. We have no direct information about Anne's personality traits or characteristics.\n\nHowever, we need to consider the relationship between Anne and the other characters. We can start by analyzing the relationship between Anne and Gary:\n1. Gary is smart (G3).\n2. Since Gary is smart (G3), it implies that Gary is furry (G4).\n3. If someone is furry and young, they are quiet (Q1).\n4. If someone is furry, they are smart (Q2).\n5. Since Gary is furry (G4), it implies that Gary is smart (G3), which we already know.\n\nNow, let's analyze the relationship between Anne and Bob:\n1. Bob is quiet (B5).\n2. Since Bob is quiet (B5), it implies that Bob is young (B6).\n3. If someone is quiet, they are young (Q3).\n\nWe also know that if someone is blue and kind then they are young (Y1).\n\nHowever, we do not have any direct information about Anne's relationship with the other characters. But, we can see that Anne is not explicitly mentioned in the given statements.\n\nTo determine whether the statement 'Anne is rough' is true or false, we need to find a relationship between Anne and the other characters.\n\nLet's analyze the relationship between Anne and Fiona:\n1. Fiona is not quiet (F1).\n2. Since Fiona is not quiet (F1), it implies that Fiona is not young (F2).\n3. We know that young people are kind (Y2), so Fiona is not kind (F3).\n\nHowever, this does not provide any information about Anne.\n\nLet's analyze the relationship between Anne and Gary:\n1. Gary is smart (G3).\n2. Since Gary is smart (G3), it implies that Gary is furry (G4).\n3. We know that Anne is not mentioned in the given statements, but we can see that there is no direct relationship between Anne and Gary.\n\nNow, let's analyze the relationship between Anne and Bob:\n1. Bob is quiet (B5).\n2. Since Bob is quiet (B5), it implies that Bob is young (B6).\n3. If someone is blue and kind then they are young (Y1), but this does not provide any information about Anne.\n\nNow, let's analyze the relationship between Anne and Fiona:\n1. Fiona is not quiet (F1).\n2. Since Fiona is not quiet (F1), it implies that Fiona is not young (F2).\n3. We know that young people are kind (Y2), so Fiona is not kind (F3).\n4. If Fiona is blue then Fiona is not kind (F4), but this does not provide any information about Anne.\n\nHowever, we can see that there is no direct relationship between Anne and the other characters.\n\nNow, let's analyze the relationship between Anne and the colors:\n1. We know that rough, kind people are blue (B1).\n2. Since Gary is both rough and kind, it implies that Gary is blue (B2).\n3. If someone is blue and kind then they are young (Y1).\n4. However, we do not have any information about Anne being blue or kind.\n\nNow, let's analyze the relationship between Anne and the characteristics:\n1. We know that young people are kind (Y2).\n2. However, we do not have any information about Anne being young or kind.\n\nNow, let's analyze the relationship between Anne and the characteristics:\n1. We know that furry, young people are quiet (Q1).\n2. Since Gary is furry (G4) and young (Y3), it implies that Gary is quiet (Q4).\n3. However, we do not have any information about Anne being furry or young.\n\nNow, let's analyze the relationship between Anne and the characteristics:\n1. We know that all quiet people are young (Q5).\n2. Since Bob is quiet (B5), it implies that Bob is young (B6).\n3. However, we do not have any information about Anne being quiet.\n\nHowever, we can see that there is no direct relationship between Anne and the other characters.\n\nBut, we can use the following statement:\nIf someone is furry then they are quiet (Q1).\nIf someone is furry and young, they are quiet (Q1).\nAll quiet people are young (Q5).\nIf someone is blue and kind then they are young (Y1).\nIf someone is furry, they are smart (Q2).\nRough, kind people are blue (B1).\nGary is rough (G2).\nGary is kind (G1).\nGary is smart (G3).\nGary is furry (G4).\nGary is blue (B2).\nGary is young (Y3).\nGary is quiet (Q4).\n\nFrom the above statements, we can conclude that Gary is both rough and blue (B1), and Gary is both kind and blue (B2). Since rough, kind people are blue (B1), it implies that Gary is blue (B2).\n\nIf someone is blue and kind then they are young (Y1), and Gary is both blue and kind, so Gary is young (Y3).\n\nGary is furry (G4), and furry people are smart (Q2), so Gary is smart (G3).\n\nSince Gary is young (Y3), it implies that Gary is kind (Y2), and Gary is rough (G2).\n\nNow, let's analyze the relationship between Anne and Gary:\n1. Gary is smart (G3).\n2. Since Gary is smart (G3), it implies that Gary is furry (G4).\n3. Gary is rough (G2).\n4. Gary is kind (G1).\n5. Gary is blue (B2).\n6. Gary is young (Y3).\n7. Gary is quiet (Q4).\n\nWe know that rough, kind people are blue (B1), and Gary is both rough and kind, so Gary is blue (B2).\n\nIf someone is blue and kind then they are young (Y1), and Gary is both blue and kind, so Gary is young (Y3).\n\nGary is furry (G4), and furry people are smart (Q2), so Gary is smart (G3).\n\nSince Gary is young (Y3), it implies that Gary is kind (Y2), and Gary is rough (G2).\n\nHowever, we do not have any direct information about Anne being rough.\n\nBut, we can see that there is no direct relationship between Anne and the other characters.\n\nHowever, we can conclude that the statement 'Anne is rough' is unknown because we do not have any direct information about Anne being rough.\n\nBut, we can analyze the relationship between Anne and the other characters.\n\nWe know that young people are kind (Y2), but we do not have any information about Anne being young.\n\nHowever, we can see that there is no direct relationship between Anne and the other characters.\n\nSo, the statement 'Anne is rough' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Gary is kind and Gary is rough. This does not provide any information about Anne.\n\n2. We are given the rule \"Rough, kind people are blue.\" However, this rule does not provide any information about Anne.\n\n3. We know that Anne is smart. We also know that \"If someone is smart then they are furry.\" Therefore, we can conclude that Anne is furry.\n\n4. We are given the rule \"Furry, young people are quiet.\" However, we do not know whether Anne is young or not.\n\n5. We know that Bob is quiet and Bob is young. We also know that \"All quiet people are young.\" Therefore, we can conclude that all quiet people are indeed young.\n\n6. We know that Fiona is not quiet. We also know that \"Furry, young people are quiet.\" This implies that Fiona is either not young or not furry.\n\n7. We are given the rule \"If Fiona is blue then Fiona is not kind.\" However, this rule does not provide any information about Anne.\n\n8. We are given the rule \"If someone is blue and kind then they are young.\" This rule does not provide any information about Anne.\n\n9. We know that Gary is kind and Gary is rough. We also know that Gary is blue. This implies that Gary is young (from the rule \"Young, kind people are rough\"). However, this does not provide any information about Anne.\n\n10. We know that Gary is smart and Gary is furry. We also know that Gary is blue and Gary is young. However, this does not provide any information about Anne.\n\n11. We are given the rule \"Young people are kind.\" This rule does not provide any information about Anne.\n\n12. Since we know that Anne is furry and young, we can conclude that Anne is quiet (from the rule \"Furry, young people are quiet\").\n\n13. Since we know that Anne is quiet and young, we can conclude that Anne is indeed young.\n\n14. Therefore, since Anne is young, we can conclude that Anne is kind (from the rule \"Young people are kind\").\n\n15. Since we know that Anne is kind and rough, we can conclude that Anne is indeed blue (from the rule \"Rough, kind people are blue\").\n\n16. Since Anne is blue and kind, we can conclude that Anne is indeed young (from the rule \"If someone is blue and kind then they are young\").\n\n17. However, this does not provide any additional information about Anne being rough or not.\n\nTherefore, based on the given information, we cannot determine whether Anne is rough or not. The statement \"Anne is rough\" is therefore **unknown**.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Gary is kind (G is K). We also know that Gary is rough (G is R). We are also told that rough, kind people are blue (R \u2229 K = B).\n\nFrom this information, we can deduce that Gary is blue (G is B).\n\n2. We know that if someone is blue and kind then they are young (B \u2229 K = Y). Since Gary is blue (G is B) and Gary is kind (G is K), Gary must be young (G is Y).\n\n3. We know that Gary is young (G is Y) and Gary is rough (G is R). We are also told that young, kind people are rough (Y \u2229 K = R). From this information, we can deduce that Gary is kind (G is K), which we already knew.\n\n4. We know that Gary is smart (G is S). We are also told that if someone is smart then they are furry (S = F). Therefore, Gary is furry (G is F).\n\n5. We know that all quiet people are young (Q = Y). We are also told that furry, young people are quiet (F \u2229 Y = Q). Since Gary is furry (G is F) and Gary is young (G is Y), Gary must be quiet (G is Q).\n\n6. We know that if someone is furry then they are quiet (F = Q). Since Gary is furry (G is F), Gary must be quiet (G is Q), which we already deduced.\n\n7. We know that Bob is quiet (B is Q). We are also told that all quiet people are young (Q = Y). Therefore, Bob is young (B is Y).\n\n8. We know that Bob is young (B is Y) and Bob is quiet (B is Q). We are also told that quiet, young people are not necessarily rough. However, we cannot conclude that Bob is not rough.\n\n9. We know that Anne is smart (A is S). We are also told that if someone is smart then they are furry (S = F). Therefore, Anne is furry (A is F).\n\n10. We know that Anne is furry (A is F) and Anne is smart (A is S). We are also told that rough, kind people are blue (R \u2229 K = B), young, kind people are rough (Y \u2229 K = R), and if someone is blue and kind then they are young (B \u2229 K = Y). However, we cannot conclude that Anne is blue, rough, or young.\n\nSince we cannot conclude that Anne is rough, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is rough' is true, false, or unknown, we need to analyze the given information step by step.\n\nGiven information:\n\n1. Gary is kind.\n2. Gary is rough.\n3. Gary is smart.\n4. Rough, kind people are blue.\n5. Young, kind people are rough.\n6. If someone is furry then they are quiet.\n7. Furry, young people are quiet.\n8. All quiet people are young.\n9. If someone is blue and kind then they are young.\n10. If someone is smart then they are furry.\n11. If Fiona is blue then Fiona is not kind.\n12. Young people are kind.\n\nFrom statement 3, we know Gary is smart, and from statement 10, we know that if someone is smart then they are furry. Therefore, Gary is furry (since Gary is smart).\n\nFrom statement 2, we know Gary is rough. Since Gary is furry and rough, and from statement 4, we know that rough, kind people are blue. Therefore, Gary is blue.\n\nFrom statement 1, we know Gary is kind. Since Gary is blue and kind, and from statement 9, we know that if someone is blue and kind then they are young. Therefore, Gary is young.\n\nNow, we know that Gary is young and kind. From statement 5, we know that young, kind people are rough. Therefore, Gary is rough (which we already knew) and since young people are kind (statement 12), Gary is indeed young and kind.\n\nNow, let's consider Anne. We don't know anything about Anne from the given information, except for the fact that she is smart (from statement 7). \n\nFrom statement 10, we know that if someone is smart then they are furry. Therefore, Anne is furry (since Anne is smart).\n\nNow, let's try to derive more information about Anne. Since Anne is furry, and from statement 6, we know that if someone is furry then they are quiet. Therefore, Anne is quiet.\n\nFrom statement 8, we know that all quiet people are young. Therefore, Anne is young.\n\nSince Anne is young, and from statement 12, we know that young people are kind. Therefore, Anne is kind.\n\nHowever, we don't know whether Anne is rough or not. We only know that young, kind people are rough (statement 5), but we cannot conclude that Anne is rough. There is no information that directly relates Anne to the characteristic 'rough.' \n\nTherefore, the statement 'Anne is rough' is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine if the statement \"Anne is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - Anne is smart.\n   - Bob is quiet.\n   - Bob is young.\n   - Fiona is not quiet.\n   - Gary is kind.\n   - Gary is rough.\n   - Gary is smart.\n   - Rough, kind people are blue.\n   - Young, kind people are rough.\n   - If someone is furry then they are quiet.\n   - Furry, young people are quiet.\n   - All quiet people are young.\n   - If someone is blue and kind then they are young.\n   - If someone is smart then they are furry.\n   - If Fiona is blue then Fiona is not kind.\n   - Young people are kind.\n\n2. Analyze the statement: Anne is rough.\n\nFrom the given information:\n- Gary is rough.\n- Gary is smart.\n- If someone is smart then they are furry.\n- If someone is furry then they are quiet.\n- All quiet people are young.\n- Young people are kind.\n\nGary is rough, but there's no direct information about Anne being rough. However, since Anne is smart, we can infer that Anne is furry (If someone is smart then they are furry).\n\nSince Anne is furry, we can infer that Anne is quiet (If someone is furry then they are quiet). But we cannot directly infer if Anne is rough or not. We only know Gary is rough.\n\nHowever, we can analyze other given statements:\n- Young people are kind.\n- Anne is smart, and smart people are furry, which makes Anne furry and quiet.\n- Young people are kind, which makes Anne kind as well.\n\nNow, we can use another given statement: Young, kind people are rough.\n- Since Anne is young and kind, we can infer that Anne is rough.\n\nTherefore, the statement \"Anne is rough\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement 'Anne is rough' is true, false, or unknown, we need to use the given information to find out the characteristics of Anne.\n\nStep 1: From the given statements, we know that Gary is kind and Gary is rough. We also know that rough, kind people are blue.\n\nFrom the information, we can conclude that Gary is blue.\n\nStep 2: We know that Gary is smart. We also know that if someone is smart then they are furry.\n\nSo, Gary is furry.\n\nStep 3: We know that Gary is kind. We also know that if someone is blue and kind then they are young.\n\nSo, Gary is young.\n\nStep 4: We know that Gary is rough. We also know that young, kind people are rough.\n\nThis statement is true for Gary, but we don't know if it's true for Anne yet.\n\nStep 5: We know that Anne is smart. We also know that if someone is smart then they are furry.\n\nSo, Anne is furry.\n\nStep 6: We know that all quiet people are young. We also know that furry people are not necessarily quiet (Gary is furry and young, but we don't know if he's quiet).\n\nWe also know that if someone is furry then they are not necessarily quiet (Gary is furry, but we don't know if he's quiet).\n\nHowever, we don't know if Anne is quiet or not. If Anne is quiet, then she is young. If Anne is not quiet, then we don't know her age.\n\nStep 7: We know that Anne is smart. We also know that smart people are furry.\n\nHowever, we don't know if Anne is rough or not. We can't conclude that Anne is rough based on the given information.\n\nTherefore, the statement 'Anne is rough' is unknown.",
+        "answer": "",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Gary is kind and Gary is rough. \n   Therefore, Gary is a rough, kind person, which means Gary is blue.\n\n2. We also know that Gary is smart. \n   Since Gary is smart, and smart people are furry, Gary is furry.\n\n3. Now we need to determine whether Anne is rough. \n   To do this, let's analyze the relationship between rough, kind people (blue) and furry, young people.\n\n4. From the information given, we can infer the following:\n   - If someone is furry, then they are quiet.\n   - If someone is furry, then they are smart (from the fact that smart people are furry).\n   - If someone is furry and young, then they are quiet.\n   - All quiet people are young.\n   - Young people are kind.\n   - If someone is blue and kind, then they are young.\n   - If Fiona is blue, then Fiona is not kind.\n\n5. We know that Gary is furry and young, which means Gary is quiet.\n   Since Gary is quiet, and all quiet people are young, Gary is young.\n\n6. Now we need to determine whether Gary is blue.\n   Since Gary is blue and kind, and he is young, the statement that \"If someone is blue and kind then they are young\" holds true for Gary.\n\n7. Now we know that Gary is blue, kind, and young, and since young people are kind, we can conclude that Gary is indeed a young, kind person.\n\n8. We also know that Gary is rough. \n   Therefore, we can infer that rough, kind people (blue) are also young, since Gary is a young, kind person.\n\n9. Now let's examine the relationship between rough, kind people (blue) and furry, young people.\n   - Since Gary is young, kind, and furry, and Gary is blue, we can conclude that a blue person can also be furry and young.\n\n10. Now we can re-examine the statement \"Anne is rough\".\n    - If Anne is rough, then she must be a rough, kind person (blue).\n    - Since rough, kind people (blue) are young, and young people are kind, we can conclude that Anne is young and kind.\n    - Since Anne is young and kind, and all young people are kind, Anne must be a young person.\n\n11. Now we need to determine whether Anne is furry.\n    - Since Anne is young and kind, and young people are kind, we can conclude that Anne is indeed a young, kind person.\n    - Since Gary is young, kind, and furry, and a young, kind person can be furry, Anne may or may not be furry.\n\n12. Since we cannot determine whether Anne is furry with certainty, we cannot determine whether Anne is quiet with certainty.\n    - If Anne is furry, then she is quiet.\n    - If Anne is not furry, then we cannot determine whether she is quiet.\n\n13. Since we cannot determine whether Anne is quiet with certainty, we cannot determine whether Anne is young with certainty.\n    - If Anne is quiet, then she is young.\n    - If Anne is not quiet, then we cannot determine whether she is young.\n\n14. Since we cannot determine whether Anne is young with certainty, we cannot determine whether Anne is kind with certainty.\n    - If Anne is young, then she is kind.\n    - If Anne is not young, then we cannot determine whether she is kind.\n\n15. Since we cannot determine whether Anne is kind with certainty, we cannot determine whether Anne is blue with certainty.\n    - If Anne is kind, then she is blue.\n    - If Anne is not kind, then we cannot determine whether she is blue.\n\n16. Therefore, we cannot determine whether Anne is rough with certainty, because we cannot determine whether Anne is blue with certainty.\n\nSince we cannot determine whether Anne is blue with certainty, we cannot determine whether the statement \"Anne is rough\" is true, false, or unknown with certainty.\n\nHowever, we can say that we do not have enough information to determine whether the statement \"Anne is rough\" is true or false.\n\nSo, the final answer is: \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Anne is rough, we need to analyze the given information and apply the rules to deduce the characteristics of Anne.\n\nGiven statements:\n1. Anne is smart.\n2. Bob is quiet.\n3. Bob is young.\n4. Fiona is not quiet.\n5. Gary is kind.\n6. Gary is rough.\n7. Gary is smart.\n8. Rough, kind people are blue.\n9. Young, kind people are rough.\n10. If someone is furry then they are quiet.\n11. Furry, young people are quiet.\n12. All quiet people are young.\n13. If someone is blue and kind then they are young.\n14. If someone is smart then they are furry.\n15. If Fiona is blue then Fiona is not kind.\n16. Young people are kind.\n\nStep 1: Determine if Anne is young\nSince we don't have any information that directly states Anne's age, we need to find a connection to determine her age. We know that all quiet people are young, but we don't know if Anne is quiet yet. We will need to analyze this further.\n\nStep 2: Determine if Anne is quiet\nSince we don't have any information that directly states Anne is quiet, we need to find a connection to determine if she is quiet. We know that if someone is furry then they are quiet, but we don't know if Anne is furry yet. We will need to analyze this further.\n\nStep 3: Determine if Anne is furry\nSince we don't have any information that directly states Anne is furry, we need to find a connection to determine if she is furry. We know that if someone is smart then they are furry, but we already know that Anne is smart. So, we can conclude that Anne is furry.\n\nStep 4: Determine if Anne is quiet\nSince we now know that Anne is furry, we can conclude that she is quiet, as furry people are quiet.\n\nStep 5: Determine if Anne is young\nSince we now know that Anne is quiet, we can conclude that she is young, as all quiet people are young.\n\nStep 6: Determine if Anne is rough\nSince we now know that Anne is young, we can conclude that she is rough, as young, kind people are rough. We also know that Anne is smart, but we don't know if she is kind. However, we can use the rule that if someone is blue and kind then they are young. Since we know that Anne is young, we can conclude that she is not blue (because if she were blue, she would be young because she is kind, but we already know she is young, so she can't be both). We don't know if Anne is kind, but since she is smart, we can't conclude that she is kind. However, since we know that Anne is young, and young people are kind, we can conclude that Anne is kind.\n\nTherefore, since Anne is young and kind, we can conclude that she is rough.\n\nThe answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to use the given statements and apply them step by step to determine if Anne is rough. \n\nGiven statements:\n1. Anne is smart.\n2. Bob is quiet.\n3. Bob is young.\n4. Fiona is not quiet.\n5. Gary is kind.\n6. Gary is rough.\n7. Gary is smart.\n8. Rough, kind people are blue.\n9. Young, kind people are rough.\n10. If someone is furry then they are quiet.\n11. Furry, young people are quiet.\n12. All quiet people are young.\n13. If someone is blue and kind then they are young.\n14. If someone is smart then they are furry.\n15. If Fiona is blue then Fiona is not kind.\n16. Young people are kind.\n\nTo determine if Anne is rough, we need to find a relationship between Anne and the characteristics 'rough' and 'young.'\n\nFrom statement 14, if someone is smart, then they are furry. Since Anne is smart (statement 1), we can conclude that Anne is furry (statement 14).\n\nFrom statement 10, if someone is furry, then they are quiet. Since Anne is furry, we can conclude that Anne is quiet (statement 10).\n\nFrom statement 12, all quiet people are young. Since Anne is quiet, we can conclude that Anne is young (statement 12).\n\nFrom statement 16, young people are kind. Since Anne is young, we can conclude that Anne is kind (statement 16).\n\nFrom statement 9, young, kind people are rough. Since Anne is young and kind, we can conclude that Anne is rough (statement 9).\n\nTherefore, the statement 'Anne is rough' is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"Anne is rough\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. There is no direct information given about Anne's age, kind, or quietness. However, we can start by determining whether Anne is smart or not.\n\n2. From the given information: \"Gary is smart. Gary is rough. Gary is kind.\" We can infer that being smart doesn't necessarily make someone rough or kind.\n\n3. However, we don't have any information that links Gary's characteristics to Anne's. Therefore, we cannot conclude anything about Anne's characteristics based on Gary's.\n\n4. The only information given about Anne is that she is \"smart.\" We need to find out if being smart makes someone rough or not.\n\n5. From the given information: \"If someone is smart then they are furry.\" This implies that being smart does not necessarily make someone rough, but it makes them furry.\n\n6. However, we also know that \"If someone is furry then they are quiet.\" So, being smart makes someone furry, and being furry makes someone quiet.\n\n7. The information also states that \"All quiet people are young.\" Therefore, being smart makes someone quiet, and being quiet makes someone young.\n\n8. Now we know that Anne is young, but we still don't know if she is rough or not.\n\n9. The given information states that \"Young people are kind.\" Therefore, being young makes someone kind.\n\n10. However, we still don't know if Anne is rough or not. To determine that, we need to find out if being kind and young makes someone rough.\n\n11. The given information states that \"Rough, kind people are blue.\" However, it also states that \"If someone is blue and kind then they are young.\" This implies that being blue and kind makes someone young, but it doesn't necessarily make them rough.\n\n12. Therefore, being kind and young does not necessarily make someone rough. We cannot conclude that Anne is rough.\n\n13. Based on the given information, we can conclude that Anne is young and smart. However, we cannot determine whether Anne is rough or not. \n\nTherefore, the statement \"Anne is rough\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_gary, kind_gary), young_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, kind_gary), rough_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_gary, kind_gary), young_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, kind_gary), rough_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_gary, furry_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_gary, quiet_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_gary, young_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_gary, kind_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "fiona != quiet",
+          "z3_formula": "Not(quiet_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_fiona, young_fiona), quiet_fiona)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "furry(fiona)",
+          "z3_formula": "Not(furry_fiona)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona) == False",
+          "z3_formula": "Not(furry_fiona) == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_anne, quiet_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_anne, young_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_anne, kind_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(kind(X))",
+          "z3_formula": "Implies(blue_fiona, Not(kind_fiona))",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "Not(kind(fiona))",
+          "z3_formula": "Not(kind_fiona)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "fiona != quiet",
+          "z3_formula": "Not(quiet_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_anne, kind_anne), rough_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_gary, kind_gary), young_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_gary, quiet_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_gary, young_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_gary, young_gary), quiet_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_bob, kind_bob)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "kind(bob)",
+          "z3_formula": "kind_bob == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_bob, kind_bob), blue_bob)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(bob)",
+          "z3_formula": "blue_bob == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_anne, furry_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_anne, young_anne), quiet_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_anne, kind_anne)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 22
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_anne, kind_anne), blue_anne)",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == True",
+          "source_step": 24
+        },
+        {
+          "type": "fact",
+          "expression": "blue(fiona)",
+          "z3_formula": "blue_fiona == True",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> Not(kind(X))",
+          "z3_formula": "Implies(blue_fiona, Not(kind_fiona))",
+          "source_step": 26
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), blue_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_gary, kind_gary), young_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_gary, smart_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_gary, kind_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_gary, rough_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_gary, quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_gary, young_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_anne, kind_anne), blue_anne)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_anne, kind_anne), young_anne)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> smart(X)",
+          "z3_formula": "Implies(furry_anne, smart_anne)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_anne, kind_anne)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> rough(X)",
+          "z3_formula": "Implies(young_anne, rough_anne)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_anne, quiet_anne)",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_anne, young_anne)",
+          "source_step": 22
+        },
+        {
+          "type": "derived",
+          "expression": "unknown(anne)",
+          "z3_formula": "Not(Or(rough_anne, Not(rough_anne)))",
+          "source_step": 23
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), blue_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_anne, furry_anne)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_bob, young_bob)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_anne, young_anne), quiet_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_anne, kind_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_anne, kind_anne), blue_anne)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_anne, kind_anne), young_anne)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & rough(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_gary, rough_gary), blue_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_gary, kind_gary), young_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, kind_gary), rough_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_gary, furry_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_gary, quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(gary)",
+          "z3_formula": "quiet_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_bob, young_bob)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & quiet(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_bob, quiet_bob), rough_bob)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "rough(bob)",
+          "z3_formula": "rough_bob == Unknown",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_anne, furry_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_anne, kind_anne), blue_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_anne, kind_anne), rough_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_anne, kind_anne), young_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == Unknown",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(anne)",
+          "z3_formula": "blue_anne == Unknown",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), blue_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, kind_gary), rough_gary)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_gary, quiet_gary)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_gary, young_gary), quiet_gary)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_gary, young_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_gary, kind_gary), young_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_gary, furry_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_anne, quiet_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_anne, young_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_anne, kind_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 20
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == Unknown",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), blue_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, kind_gary), rough_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_gary, quiet_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_gary, young_gary), quiet_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_gary, young_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_gary, kind_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_gary, kind_gary), young_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_gary, furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "fiona == blue -> not kind(fiona)",
+          "z3_formula": "Implies(fiona == True, Not(kind_fiona))",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(anne)",
+          "z3_formula": "quiet_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 3
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), blue_gary)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "blue(gary)",
+          "z3_formula": "blue_gary == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_gary, furry_gary)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "furry(gary)",
+          "z3_formula": "furry_gary == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_gary, kind_gary), young_gary)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "young(gary)",
+          "z3_formula": "young_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, kind_gary), rough_gary)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_anne, furry_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_X, young_X)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> Not(quiet(X))",
+          "z3_formula": "Implies(furry_X, Not(quiet_X))",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "Not(quiet(anne) | furry(anne))",
+          "z3_formula": "Not(Or(quiet_anne, furry_anne))",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_anne, furry_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(anne)",
+          "z3_formula": "furry_anne == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "Not(rough(anne))",
+          "z3_formula": "Not(rough_anne)",
+          "source_step": 7
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), blue_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_anne, kind_anne), rough_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_anne, quiet_anne)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_anne, young_anne), quiet_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_anne, young_anne)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_anne, kind_anne), young_anne)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_anne, furry_anne)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "fiona == blue -> not kind(fiona)",
+          "z3_formula": "Implies(fiona == True, Not(kind_fiona))",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_anne, kind_anne)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(bob)",
+          "z3_formula": "quiet_bob == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "young(bob)",
+          "z3_formula": "young_bob == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(fiona)",
+          "z3_formula": "Not(quiet_fiona) == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "smart(gary)",
+          "z3_formula": "smart_gary == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) & kind(X) -> blue(X)",
+          "z3_formula": "Implies(And(rough_gary, kind_gary), blue_gary)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(young_gary, kind_gary), rough_gary)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_gary, quiet_gary)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & young(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_gary, young_gary), quiet_gary)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_gary, young_gary)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_gary, kind_gary), young_gary)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_gary, furry_gary)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_gary, quiet_gary)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> not kind(X)",
+          "z3_formula": "Implies(blue_fiona, Not(kind_fiona))",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_gary, kind_gary)",
+          "source_step": 17
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "smart(anne)",
+          "z3_formula": "smart_anne == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "rough(gary)",
+          "z3_formula": "rough_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(gary)",
+          "z3_formula": "kind_gary == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> furry(X)",
+          "z3_formula": "Implies(smart_anne, furry_anne)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> quiet(X)",
+          "z3_formula": "Implies(furry_anne, quiet_anne)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> young(X)",
+          "z3_formula": "Implies(quiet_anne, young_anne)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> kind(X)",
+          "z3_formula": "Implies(young_anne, kind_anne)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & young(X) -> blue(X)",
+          "z3_formula": "Implies(And(kind_anne, young_anne), blue_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) & kind(X) -> young(X)",
+          "z3_formula": "Implies(And(blue_anne, kind_anne), young_anne)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "young(anne)",
+          "z3_formula": "young_anne == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(anne)",
+          "z3_formula": "kind_anne == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "rough(anne)",
+          "z3_formula": "rough_anne == Unknown",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 257,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 59
+    },
+    "maxsat_stats": {
+      "satisfied": 56,
+      "excluded": 3,
+      "total_weight": 254,
+      "solve_time_ms": 1.5330538153648376
+    },
+    "timing": {
+      "trace_gen_s": 18.377,
+      "extraction_s": 49.957,
+      "dedup_s": 2.897,
+      "maxsat_s": 0.005,
+      "total_s": 71.236
+    }
+  }
+}

@@ -1,0 +1,1022 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNeg-OWA-D5-156_Q15",
+    "problem": "The bear chases the cow. The bear is not red. The bear sees the tiger. The cow chases the bear. The mouse chases the tiger. The tiger does not chase the mouse. The tiger needs the mouse. If someone sees the tiger then the tiger is nice. If someone chases the mouse and the mouse does not need the bear then the mouse is not young. If someone chases the cow then they are big. If someone needs the tiger then the tiger sees the bear. If someone is big then they need the tiger. If the tiger sees the bear and the tiger needs the mouse then the tiger is big. If someone is young then they need the mouse.\n\nDetermine whether the following statement is true, false, or unknown:\nThe cow does not need the tiger.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nChases($x, $y, bool) ::: Does x chase y?\nRed($x, bool) ::: Is x red?\nSees($x, $y, bool) ::: Does x see y?\nNeeds($x, $y, bool) ::: Does x need y?\nNice($x, bool) ::: Is x nice?\nYoung($x, bool) ::: Is x young?\nBig($x, bool) ::: Is x big?\n\nFacts:\nChases(Bear, Cow, True) ::: The bear chases the cow.\nRed(Bear, False) ::: The bear is not red.\nSees(Bear, Tiger, True) ::: The bear sees the tiger.\nChases(Cow, Bear, True) ::: The cow chases the bear.\nChases(Mouse, Tiger, True) ::: The mouse chases the tiger.\nChases(Tiger, Mouse, False) ::: The tiger does not chase the mouse.\nNeeds(Tiger, Mouse, True) ::: The tiger needs the mouse.\n\nRules:\nSees($x, Tiger, True) >>> Nice(Tiger, True) ::: If someone sees the tiger then the tiger is nice.\nChases($x, Mouse, True) && Needs(Mouse, Bear, False) >>> Young($x, False) ::: If someone chases the mouse and the mouse does not need the bear then the mouse is not young.\nChases($x, Cow, True) >>> Big($x, True) ::: If someone chases the cow then they are big.\nNeeds($x, Tiger, True) >>> Sees(Tiger, Bear, True) ::: If someone needs the tiger then the tiger sees the bear.\nBig($x, True) >>> Needs($x, Tiger, True) ::: If someone is big then they need the tiger.\nSees(Tiger, Bear, True) && Needs(Tiger, Mouse, True) >>> Big(Tiger, True) ::: If the tiger sees the bear and the tiger needs the mouse then the tiger is big.\nYoung($x, True) >>> Needs($x, Mouse, True) ::: If someone is young then they need the mouse.\n\nQuery:\nNeeds(Cow, Tiger, False) ::: The cow does not need the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 132.0,
+      "True": 28.0
+    },
+    "answer_counts": {
+      "False": 8,
+      "True": 3
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to break it down into smaller parts and analyze each statement.\n\n1. The bear chases the cow.\n   - This statement does not give us any information about the relationship between the bear and the tiger.\n\n2. The bear is not red.\n   - This statement does not give us any information about the relationship between the bear, the cow, the tiger, or the mouse.\n\n3. The bear sees the tiger.\n   - This statement does not give us any information about the relationship between the bear and the cow.\n\n4. The cow chases the bear.\n   - This statement gives us the information that the cow is big (from statement 7).\n\n5. The mouse chases the tiger.\n   - This statement gives us the information that the mouse is not young (from statement 6) and the mouse needs the tiger (from statement 3).\n\n6. The tiger does not chase the mouse.\n   - This statement is true, but it does not give us any information about the relationship between the tiger, the bear, the cow, or the mouse.\n\n7. If someone chases the cow then they are big.\n   - This statement is true, but it does not give us any information about the relationship between the bear and the cow.\n\n8. If someone needs the tiger then the tiger sees the bear.\n   - This statement is true, but it does not give us any information about the relationship between the tiger, the bear, the cow, or the mouse.\n\n9. If someone is big then they need the tiger.\n   - This statement is true, but it does not give us any information about the relationship between the bear, the cow, the tiger, or the mouse.\n\n10. If the tiger sees the bear and the tiger needs the mouse then the tiger is big.\n    - This statement does not give us any information about the relationship between the tiger, the bear, the cow, or the mouse.\n\n11. If someone is young then they need the mouse.\n    - This statement does not give us any information about the relationship between the bear, the cow, the tiger, or the mouse.\n\nFrom the statements above, we know that the cow is big (from statement 4 and statement 7) and the mouse needs the tiger (from statement 5).\n\nWe also know that if someone is big then they need the tiger (from statement 9) and the mouse is not young (from statement 5).\n\nNow, let's analyze the statement \"The cow does not need the tiger.\"\nIf the cow is big (from statement 4 and statement 7), then the cow needs the tiger (from statement 9).\n\nSo, the statement \"The cow does not need the tiger\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given information into individual statements and their relationships. Let's represent the animals as follows: B for bear, C for cow, M for mouse, and T for tiger.\n\nWe are given the following statements:\n\n1. The bear chases the cow. (B chases C)\n2. The bear is not red. (This statement is irrelevant to the problem.)\n3. The bear sees the tiger. (B sees T)\n4. The cow chases the bear. (C chases B)\n5. The mouse chases the tiger. (M chases T)\n6. The tiger does not chase the mouse. (T does not chase M)\n7. The tiger needs the mouse. (T needs M)\n8. If someone sees the tiger then the tiger is nice. (This statement is irrelevant to the problem.)\n9. If someone chases the mouse and the mouse does not need the bear then the mouse is not young. (This statement is irrelevant to the problem.)\n10. If someone chases the cow then they are big. (If B chases C or C chases B, then they are big)\n11. If someone needs the tiger then the tiger sees the bear. (If X needs T, then T sees B)\n12. If someone is big then they need the tiger. (If X is big, then X needs T)\n13. If the tiger sees the bear and the tiger needs the mouse then the tiger is big. (If T sees B and T needs M, then T is big)\n14. If someone is young then they need the mouse. (If X is young, then X needs M)\n\nFrom statement 4, we know that C chases B.\n\nFrom statement 11, if C needs T, then T sees B. Since T sees B (statement 3), we can conclude that C needs T.\n\nFrom statement 12, since C is big (statement 10), C needs T, which we already concluded.\n\nFrom statement 14, if C is young, then C needs M. However, we know that C is big (statement 10), so C cannot be young.\n\nTherefore, C does not need M.\n\nNow, let's consider the statement \"The cow does not need the tiger.\"\n\nFrom statement 7, T needs M.\n\nFrom statement 13, if T sees B and T needs M, then T is big. Since T sees B (statement 3) and T needs M (statement 7), we can conclude that T is big.\n\nFrom statement 12, since T is big, T needs M.\n\nSince T needs M (statement 7), we can conclude that the statement \"The cow does not need the tiger\" is FALSE.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and deduce the required information. Let's break down the statements and their implications:\n\n1. The bear chases the cow.\n2. The bear is not red.\n3. The bear sees the tiger.\n4. The cow chases the bear.\n5. The mouse chases the tiger.\n6. The tiger does not chase the mouse.\n7. The tiger needs the mouse.\n8. If someone sees the tiger then the tiger is nice.\n9. If someone chases the mouse and the mouse does not need the bear then the mouse is not young.\n10. If someone chases the cow then they are big.\n11. If someone needs the tiger then the tiger sees the bear.\n12. If someone is big then they need the tiger.\n13. If the tiger sees the bear and the tiger needs the mouse then the tiger is big.\n14. If someone is young then they need the mouse.\n\nLet's analyze statement 14: \"If someone is young then they need the mouse.\" From this statement, we can conclude that the mouse is young because it needs the mouse itself (statement 7).\n\nNow, let's analyze statement 9: \"If someone chases the mouse and the mouse does not need the bear then the mouse is not young.\" Since we already concluded that the mouse is young, and it needs the mouse itself, it implies that the mouse needs the bear. This contradicts statement 7, which states that the tiger needs the mouse. However, we know that the mouse chases the tiger (statement 5), and the tiger does not chase the mouse (statement 6). Therefore, the mouse needs the bear because the mouse chases the tiger, and the tiger needs the mouse.\n\nNow, let's analyze statement 14 again: \"If someone is young then they need the mouse.\" Since the mouse is young, it implies that the mouse needs the mouse, which is a contradiction. However, we already concluded that the mouse needs the bear because the mouse chases the tiger, and the tiger needs the mouse.\n\nNow, let's analyze statement 12: \"If someone is big then they need the tiger.\" From statement 10, we know that if someone chases the cow then they are big. Since the cow chases the bear (statement 4), it implies that the cow is big, and therefore the cow needs the tiger (statement 12).\n\nNow, let's analyze statement 11: \"If someone needs the tiger then the tiger sees the bear.\" Since the cow needs the tiger (statement 12), it implies that the tiger sees the bear (statement 11). However, we know that the bear sees the tiger (statement 3), and the tiger does not chase the mouse (statement 6). Therefore, the tiger is not big because it does not chase the mouse.\n\nHowever, we also know that the bear is not red, which does not provide any useful information. Now, let's analyze statement 13: \"If the tiger sees the bear and the tiger needs the mouse then the tiger is big.\" Since the tiger sees the bear (statement 11), and the tiger needs the mouse (statement 7), it implies that the tiger is big (statement 13). This contradicts our previous conclusion that the tiger is not big.\n\nHowever, we know that the tiger sees the bear (statement 11), and the tiger needs the mouse (statement 7). We also know that the mouse chases the tiger (statement 5), and the tiger does not chase the mouse (statement 6). Therefore, the tiger is big.\n\nNow, let's analyze the original question: \"The cow does not need the tiger.\" From statement 12, we know that if someone is big then they need the tiger. We already concluded that the cow is big (statement 10), and therefore the cow needs the tiger (statement 12). This implies that the statement \"The cow does not need the tiger\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To solve this problem, we will use logical reasoning and break down the given statements into a set of premises and conclusions.\n\nGiven statements:\n\n1. The bear chases the cow.\n2. The bear is not red.\n3. The bear sees the tiger.\n4. The cow chases the bear.\n5. The mouse chases the tiger.\n6. The tiger does not chase the mouse.\n7. The tiger needs the mouse.\n8. If someone sees the tiger then the tiger is nice.\n9. If someone chases the mouse and the mouse does not need the bear then the mouse is not young.\n10. If someone chases the cow then they are big.\n11. If someone needs the tiger then the tiger sees the bear.\n12. If someone is big then they need the tiger.\n13. If the tiger sees the bear and the tiger needs the mouse then the tiger is big.\n14. If someone is young then they need the mouse.\n\nWe want to determine whether the following statement is true, false, or unknown:\n\nThe cow does not need the tiger.\n\nLet's start by analyzing the statements.\n\nFrom statement 4, we know that the cow chases the bear. \nFrom statement 10, if someone chases the cow then they are big. \nHowever, statement 4 does not say who chases the cow. \nTherefore, we do not know if the cow is being chased by someone big or not. \nBut from statement 4 and 10, we can conclude that the bear chases the cow and the bear is big.\n\nNow, let's analyze the relationship between the bear, tiger, and mouse.\n\nFrom statement 5, the mouse chases the tiger. \nFrom statement 11, if someone needs the tiger then the tiger sees the bear. \nHowever, we do not know if the mouse needs the tiger or not. \nBut from statement 7, the tiger needs the mouse.\n\nFrom statement 13, if the tiger sees the bear and the tiger needs the mouse then the tiger is big. \nSince the tiger needs the mouse (statement 7), we can conclude that the tiger is big.\n\nNow, let's analyze the relationship between the tiger and the mouse.\n\nFrom statement 7, the tiger needs the mouse. \nFrom statement 7, we also know that the mouse chases the tiger (statement 5).\nHowever, from statement 6, the tiger does not chase the mouse.\n\nSince the mouse chases the tiger and the tiger does not chase the mouse, we can conclude that the mouse is young (statement 14).\n\nNow, let's analyze the relationship between the bear, cow, and the big animal.\n\nFrom statement 13, if the tiger sees the bear and the tiger needs the mouse then the tiger is big. \nSince the tiger needs the mouse (statement 7), we can conclude that the tiger is big.\n\nFrom statement 12, if someone is big then they need the tiger. \nSince the tiger is big (from statement 13), we can conclude that the tiger needs the tiger.\n\nFrom statement 8, if someone sees the tiger then the tiger is nice. \nHowever, we do not know who sees the tiger or not. \nBut since the tiger is big (from statement 13), we can conclude that the tiger sees the bear.\n\nNow, let's analyze the relationship between the cow and the big animal.\n\nFrom statement 1, the bear chases the cow. \nFrom statement 10, if someone chases the cow then they are big. \nSince the bear chases the cow, we can conclude that the bear is big.\n\nFrom statement 12, if someone is big then they need the tiger. \nSince the bear is big, we can conclude that the bear needs the tiger.\n\nHowever, we do not know if the cow needs the tiger or not. \nBut from statement 1, the bear chases the cow. \nFrom statement 4, the cow chases the bear. \nTherefore, the cow and the bear are chasing each other.\n\nNow, let's analyze the relationship between the cow and the tiger.\n\nFrom statement 4, the cow chases the bear. \nFrom statement 11, if someone needs the tiger then the tiger sees the bear. \nHowever, we do not know if the cow needs the tiger or not. \nBut from statement 3, the bear sees the tiger. \nFrom statement 1, the bear chases the cow. \nTherefore, we can conclude that the cow does not need the tiger.\n\nTherefore, the final answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 3
+      },
+      {
+        "trace": "Let's break down the given information and rules into a more understandable format:\n\n1. The bear chases the cow. \n2. The bear is not red.\n3. The bear sees the tiger.\n4. The cow chases the bear.\n5. The mouse chases the tiger.\n6. The tiger does not chase the mouse.\n7. The tiger needs the mouse.\n8. If someone sees the tiger then the tiger is nice.\n9. If someone chases the mouse and the mouse does not need the bear then the mouse is not young.\n10. If someone chases the cow then they are big.\n11. If someone needs the tiger then the tiger sees the bear.\n12. If someone is big then they need the tiger.\n13. If the tiger sees the bear and the tiger needs the mouse then the tiger is big.\n14. If someone is young then they need the mouse.\n\nNow, let's analyze the statement \"The cow does not need the tiger.\"\n\nTo determine whether the statement is true, false, or unknown, we need to use the given rules.\n\nFrom rule 1, we know that the bear chases the cow, which means the bear is big (rule 10). \n\nFrom rule 12, if someone is big then they need the tiger. Since the bear is big, the bear needs the tiger.\n\nHowever, we cannot directly determine whether the cow needs the tiger or not from the given rules.\n\nBut we can analyze the rules related to the cow. From rule 4, the cow chases the bear. This means the cow is big (rule 10). \n\nNow, since the cow is big (rule 12), the cow needs the tiger.\n\nHowever, we are given that the cow needs the tiger, but we need to determine if this is true or false.\n\nFrom the information above, the cow is big because it chases the bear (rule 4). Since the cow is big, it needs the tiger (rule 12). The bear needs the tiger because it is big (rule 1 and rule 12).\n\nThe tiger needs the mouse (rule 7), and the mouse chases the tiger (rule 5). The mouse chases the tiger, but we do not know if the mouse needs the bear. \n\nHowever, we can determine that the mouse is young because the mouse chases the tiger and the mouse needs the tiger (rule 13 and 7), but we do not know if the mouse needs the bear.\n\nSince we do not know if the mouse needs the bear, we cannot directly determine if the cow needs the tiger or not.\n\nHowever, we can determine that the tiger is big because the bear sees the tiger and the tiger needs the mouse (rule 3 and rule 13).\n\nNow, since the tiger is big, it needs the mouse (rule 12). The mouse needs the tiger, and the tiger is big (rule 12). The mouse is young, and it needs the tiger (rule 14). The bear is not red (rule 2).\n\nSince the bear is not red, the cow is big (rule 4), and the cow is not mentioned as needing the tiger, we cannot conclude that the cow does not need the tiger.\n\nHowever, we can conclude that the cow needs the tiger because it is big (rule 4 and rule 12).\n\nTherefore, the statement \"The cow does not need the tiger\" is FALSE.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To solve this problem, we will use a series of deductions based on the given statements.\n\n1. The bear chases the cow.\n2. The bear is not red.\n3. The bear sees the tiger.\n4. The cow chases the bear.\n5. The mouse chases the tiger.\n6. The tiger does not chase the mouse.\n7. The tiger needs the mouse.\n8. If someone sees the tiger then the tiger is nice.\n9. If someone chases the mouse and the mouse does not need the bear then the mouse is not young.\n10. If someone chases the cow then they are big.\n11. If someone needs the tiger then the tiger sees the bear.\n12. If someone is big then they need the tiger.\n13. If the tiger sees the bear and the tiger needs the mouse then the tiger is big.\n14. If someone is young then they need the mouse.\n\nFirst, let's identify the known facts about the relationships between the animals.\n\n- The bear chases the cow.\n- The cow chases the bear.\n- The mouse chases the tiger.\n- The tiger needs the mouse.\n\nFrom statement 14, we can deduce that the mouse is young since the mouse needs the mouse. \n\nFrom statement 9, we can deduce that the mouse is young because the mouse chases the mouse does not need the bear.",
+        "answer": "",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To solve this problem, we need to use a logical approach and break down the given information into a series of steps.\n\n1. The tiger needs the mouse. (Given)\n2. If someone sees the tiger then the tiger is nice. (Given)\n3. The mouse chases the tiger. (Given)\n4. From step 2, we can conclude that the tiger is nice because it is being chased.\n5. We don't have enough information to directly conclude that the tiger is nice from step 3. We need a statement that says if someone chases the tiger then the tiger is nice. We do not have that statement. So we cannot determine if the tiger is nice from this information.\n\n6. The cow chases the bear. (Given)\n7. If someone chases the cow then they are big. (Given)\n8. From step 7, we can conclude that the bear is big because it is chasing the cow.\n\n9. The bear is not red. (Given)\n10. We don't have enough information to determine if the bear is big or not from step 9. We need a statement that says if someone is not red then they are big. We do not have that statement.\n\n11. The tiger sees the bear. (Given)\n12. If someone needs the tiger then the tiger sees the bear. (Given)\n13. We can't determine if the tiger needs the bear from the given information. We need a statement that says if the mouse needs the bear then the tiger sees the bear. We do not have that statement.\n\n14. If the tiger sees the bear and the tiger needs the mouse then the tiger is big. (Given)\n15. We can't determine if the tiger is big from step 14 because we don't know if the tiger sees the bear. We need a statement that says if the tiger sees the bear then the tiger is big. We do not have that statement.\n\n16. If someone is big then they need the tiger. (Given)\n17. From step 8, we can conclude that the bear is big.\n18. From step 16, we can conclude that the bear needs the tiger.\n\n19. If the bear needs the tiger then the tiger is nice. (We cannot determine this from the given information. We need a statement that says if the bear needs the tiger then the tiger is nice. We do not have that statement.)\n\n20. If someone is young then they need the mouse. (Given)\n21. The mouse chases the tiger. (Given)\n22. We can't determine if the mouse is young from step 21. We need a statement that says if someone chases the tiger then they are young. We do not have that statement.\n\n23. The mouse chases the tiger. (Given)\n24. The mouse needs the bear. (We cannot determine this from the given information. We need a statement that says if the mouse chases the tiger then the mouse needs the bear. We do not have that statement.)\n\n25. The tiger does not chase the mouse. (Given)\n26. The cow chases the bear. (Given)\n27. The bear is not red. (Given)\n28. The bear sees the tiger. (Given)\n29. The cow does not need the tiger. (We need to determine this)\n\nNow let's analyze the given statement:\nThe cow does not need the tiger.\n\n30. If someone chases the cow then they are big. (Given)\n31. The cow chases the bear. (Given)\n32. From step 30, we can conclude that the bear is big.\n33. If someone is big then they need the tiger. (Given)\n34. From step 33, we can conclude that the bear needs the tiger.\n35. The bear is not red. (Given)\n36. The bear sees the tiger. (Given)\n37. The tiger needs the mouse. (Given)\n38. We cannot determine if the cow needs the tiger from the given information. We need a statement that says if the bear needs the tiger then the cow does not need the tiger. We do not have that statement.\n\nHowever, we can try to use the information to derive a statement. \n\n39. The cow chases the bear. (Given)\n40. If someone sees the tiger then the tiger is nice. (Given)\n41. We can't determine if the cow sees the tiger from the given information. We need a statement that says if the cow chases the bear then the cow sees the tiger. We do not have that statement.\n\n42. The bear sees the tiger. (Given)\n43. We can't determine if the cow sees the tiger from the given information. We need a statement that says if the bear sees the tiger then the cow sees the tiger. We do not have that statement.\n\n44. The cow does not need the tiger.\n\nFrom steps 33, 34, and 35, we can conclude that the bear needs the tiger. However, we do not have enough information to determine if the cow needs the tiger. We can try to use the information to derive a statement.\n\nFrom steps 39, 42, and 43, we can conclude that the cow may or may not see the tiger. However, we do not have enough information to determine if the cow needs the tiger. We can try to use the information to derive a statement.\n\nFrom steps 26, 27, 28, and 38, we can conclude that the cow does not need the tiger.\n\nTherefore, the final answer is: \n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not need the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear chases the cow. (Given)\n2. The bear is not red. (Given, but this information is irrelevant to our problem)\n3. The bear sees the tiger. (Given)\n4. The cow chases the bear. (Given)\n5. The mouse chases the tiger. (Given)\n6. The tiger does not chase the mouse. (Given)\n7. The tiger needs the mouse. (Given)\n8. If someone sees the tiger then the tiger is nice. (This is a conclusion, not a premise, so we can't use it directly)\n9. If someone chases the mouse and the mouse does not need the bear then the mouse is not young. (This is a conclusion, not a premise, so we can't use it directly)\n10. If someone chases the cow then they are big. (Given)\n11. If someone needs the tiger then the tiger sees the bear. (Given)\n12. If someone is big then they need the tiger. (Given)\n13. If the tiger sees the bear and the tiger needs the mouse then the tiger is big. (Given)\n14. If someone is young then they need the mouse. (Given)\n\nWe can start by analyzing the relationships between the animals:\n\n- The bear sees the tiger (3).\n- The cow chases the bear (4).\n- The tiger needs the mouse (7).\n\nFrom (11), we know that if someone needs the tiger, then the tiger sees the bear. We don't know if the cow needs the tiger or not, but we can analyze the information given.\n\nLet's assume the cow needs the tiger. Then, according to (11), the tiger sees the bear. We already know the bear sees the tiger (3). This creates a loop, but it doesn't provide any information about the cow needing the tiger.\n\nNow, let's assume the cow does not need the tiger. We can't determine the truth of this statement directly from the given information.\n\nHowever, we can analyze the statement \"The cow does not need the tiger\" using the information given.\n\nIf someone is big then they need the tiger (12). If the cow chases the bear, then the cow is big (10). If the cow is big, then the cow needs the tiger (12). This creates a contradiction, as we assumed the cow does not need the tiger.\n\nTherefore, the statement \"The cow does not need the tiger\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and use logical deductions to determine the relationship between the cow and the tiger.\n\nGiven statements:\n1. The bear chases the cow.\n2. The bear is not red.\n3. The bear sees the tiger.\n4. The cow chases the bear.\n5. The mouse chases the tiger.\n6. The tiger does not chase the mouse.\n7. The tiger needs the mouse.\n8. If someone sees the tiger then the tiger is nice.\n9. If someone chases the mouse and the mouse does not need the bear then the mouse is not young.\n10. If someone chases the cow then they are big.\n11. If someone needs the tiger then the tiger sees the bear.\n12. If someone is big then they need the tiger.\n13. If the tiger sees the bear and the tiger needs the mouse then the tiger is big.\n14. If someone is young then they need the mouse.\n\nStatement to be determined: The cow does not need the tiger.\n\nLet's start with statement 14: If someone is young then they need the mouse.\n\nFrom statement 1: The bear chases the cow. This implies that the bear is not young because if the bear were young, it would need the mouse (statement 14), but there is no indication that the bear needs the mouse.\n\nFrom statement 12: If someone is big then they need the tiger.\n\nFrom statement 10: If someone chases the cow then they are big. Since the bear chases the cow (statement 1), the bear is big.\n\nFrom statement 11: If someone needs the tiger then the tiger sees the bear.\n\nSince the bear is big (from above), the bear needs the tiger (statement 12). Therefore, the tiger sees the bear (statement 11).\n\nNow, let's look at statement 13: If the tiger sees the bear and the tiger needs the mouse then the tiger is big.\n\nWe already know that the tiger sees the bear (from above). We also know that the tiger needs the mouse (statement 7).\n\nTherefore, from statement 13, the tiger is big.\n\nSince the tiger is big, the tiger needs the mouse (statement 12).\n\nNow, let's look at statement 5: The mouse chases the tiger.\n\nFrom statement 12: If someone is big then they need the tiger. Since the mouse chases the tiger (statement 5), the mouse is big.\n\nNow, let's look at statement 7: The tiger needs the mouse.\n\nSince the tiger is big (from above), the tiger needs the mouse (statement 12).\n\nNow, let's look at statement 14: If someone is young then they need the mouse.\n\nFrom statement 5: The mouse chases the tiger. This implies that the mouse is not young because if the mouse were young, it would need the mouse (statement 14), which creates a contradiction.\n\nNow, let's look at statement 9: If someone chases the mouse and the mouse does not need the bear then the mouse is not young.\n\nFrom statement 5: The mouse chases the tiger. This implies that the mouse does not need the bear. Therefore, from statement 9, the mouse is not young.\n\nNow, let's look at statement 4: The cow chases the bear.\n\nFrom statement 10: If someone chases the cow then they are big. Therefore, the bear is big.\n\nSince the bear is big, the bear needs the tiger (statement 12). Therefore, the bear sees the tiger (statement 11).\n\nNow, let's look at statement 8: If someone sees the tiger then the tiger is nice.\n\nThe bear sees the tiger (from above), so the tiger is nice.\n\nNow, let's look at statement 6: The tiger does not chase the mouse.\n\nFrom statement 7: The tiger needs the mouse. Since the tiger is nice (from above), the tiger does not chase the mouse (statement 6).\n\nNow, let's look at statement 5: The mouse chases the tiger.\n\nFrom statement 7: The tiger needs the mouse. Since the tiger is big (from above), the tiger needs the mouse (statement 12).\n\nSince the tiger is big, the tiger needs the mouse (statement 12). Therefore, the mouse chases the tiger (statement 5).\n\nNow, let's look at statement 4: The cow chases the bear.\n\nFrom statement 10: If someone chases the cow then they are big. Since the cow chases the bear (statement 4), the cow is big.\n\nNow, let's look at statement 12: If someone is big then they need the tiger.\n\nSince the cow is big (from above), the cow needs the tiger.\n\nTherefore, the statement \"The cow does not need the tiger\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not need the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear chases the cow. \n   We don't know if the bear needs the tiger yet.\n\n2. The bear is not red.\n   This information does not affect the relationship between the bear, the cow, and the tiger.\n\n3. The bear sees the tiger.\n   Still, we don't know if the bear needs the tiger.\n\n4. The cow chases the bear.\n   This implies that the cow is big (rule 5). Since someone is big, they need the tiger (rule 6).\n\n5. The mouse chases the tiger.\n   The mouse needs the tiger (rule 7). \n\n6. The tiger does not chase the mouse.\n   This implies nothing about the needs of the tiger.\n\n7. The tiger needs the mouse.\n   We already know this (rule 5).\n\n8. If someone sees the tiger then the tiger is nice.\n   We don't have enough information to determine if the tiger is nice or not.\n\n9. If someone chases the mouse and the mouse does not need the bear then the mouse is not young.\n   We know the mouse needs the tiger (rule 5), so we don't know if the mouse needs the bear or not.\n\n10. If someone chases the cow then they are big.\n    We know the cow chases the bear (rule 4), so the cow is big.\n\n11. If someone needs the tiger then the tiger sees the bear.\n    We know the cow needs the tiger (rule 10), so the tiger sees the bear.\n\n12. If someone is big then they need the tiger.\n    We know the cow is big (rule 10), so the cow needs the tiger.\n\n13. If the tiger sees the bear and the tiger needs the mouse then the tiger is big.\n    We know the tiger sees the bear (rule 11) and the tiger needs the mouse (rule 7), so the tiger is big.\n\n14. If someone is young then they need the mouse.\n    We don't have enough information to determine if the bear, the mouse, or the tiger is young.\n\nFrom the given information, we know the following:\n- The cow is big.\n- The cow needs the tiger.\n- The tiger is big.\n- The tiger sees the bear.\n- The tiger needs the mouse.\n- The mouse needs the tiger.\n\nWe still don't know if the bear, the mouse, or the tiger is young.\n\nThe statement \"The cow does not need the tiger\" contradicts the fact that we know the cow needs the tiger (rule 12). Therefore, the statement is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given information step by step.\n\n1. The bear chases the cow.\n   - This statement does not give any information about the bear needing the tiger.\n\n2. The bear is not red.\n   - This statement is irrelevant to the problem of determining whether the cow needs the tiger.\n\n3. The bear sees the tiger.\n   - This statement does not give any information about the bear needing the tiger.\n\n4. The cow chases the bear.\n   - This statement does not give any information about the cow needing the tiger.\n\n5. The mouse chases the tiger.\n   - This statement does not give any information about the mouse needing the bear or the tiger needing the mouse.\n\n6. The tiger does not chase the mouse.\n   - This statement is irrelevant to the problem of determining whether the cow needs the tiger.\n\n7. The tiger needs the mouse.\n   - This statement is relevant to determining the relationship between the tiger and the mouse.\n\n8. If someone sees the tiger then the tiger is nice.\n   - This statement does not provide any information about the relationship between the tiger, the bear, and the mouse.\n\n9. If someone chases the mouse and the mouse does not need the bear then the mouse is not young.\n   - This statement is irrelevant to the problem of determining whether the cow needs the tiger.\n\n10. If someone chases the cow then they are big.\n    - This statement is relevant to determining whether the cow needs the tiger, as it gives information about the relationship between the cow and the entities that chase the cow.\n\n11. If someone needs the tiger then the tiger sees the bear.\n    - This statement is relevant to determining whether the cow needs the tiger, as it gives information about the relationship between the entities that need the tiger and the bear.\n\n12. If someone is big then they need the tiger.\n    - This statement is relevant to determining whether the cow needs the tiger, as it gives information about the relationship between the entities that are big and the tiger.\n\n13. If the tiger sees the bear and the tiger needs the mouse then the tiger is big.\n    - This statement is relevant to determining whether the cow needs the tiger, as it gives information about the relationship between the tiger, the bear, and the mouse.\n\n14. If someone is young then they need the mouse.\n    - This statement is relevant to determining the relationship between the entities that are young and the mouse.\n\nNow we will use the given information to analyze the relationship between the entities. We are trying to determine whether the cow needs the tiger.\n\nFrom statement 10, we know that if someone chases the cow then they are big. However, we do not know who chases the cow. We know from statement 1 that the bear chases the cow.\n\nFrom statement 12, we know that if someone is big then they need the tiger. We also know from statement 10 that if someone chases the cow then they are big. However, we do not know if the bear needs the tiger.\n\nFrom statement 11, we know that if someone needs the tiger then the tiger sees the bear. We also know from statement 3 that the bear sees the tiger. However, we do not know if the bear needs the tiger.\n\nFrom statement 13, we know that if the tiger sees the bear and the tiger needs the mouse then the tiger is big. We also know from statement 7 that the tiger needs the mouse.\n\nNow we will use the given information to determine whether the cow needs the tiger.\n\nWe know from statement 10 that if someone chases the cow then they are big. We also know from statement 1 that the bear chases the cow. However, we do not know if the bear is big.\n\nWe know from statement 12 that if someone is big then they need the tiger. We also know from statement 10 that if someone chases the cow then they are big. However, we do not know if the bear chases the cow and needs the tiger.\n\nWe know from statement 13 that if the tiger sees the bear and the tiger needs the mouse then the tiger is big. We also know from statement 7 that the tiger needs the mouse.\n\nHowever, we do not know if the tiger sees the bear. From statement 3, we know that the bear sees the tiger, not the other way around.\n\nWe can conclude that the cow does not need the tiger because there is not enough information to determine that the cow needs the tiger.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The cow does not need the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear chases the cow.\nFrom this statement, we cannot conclude anything about the bear or the cow needing the tiger.\n\n2. The bear is not red.\nThis statement is irrelevant to the problem.\n\n3. The bear sees the tiger.\nThis statement is also irrelevant to the problem.\n\n4. The cow chases the bear.\nFrom this statement, we can infer that the cow is big, because the problem states \"If someone chases the cow then they are big.\"\n\n5. The mouse chases the tiger.\nFrom this statement, we cannot conclude anything about the mouse or the tiger needing each other.\n\n6. The tiger does not chase the mouse.\nThis statement is also irrelevant to the problem.\n\n7. The tiger needs the mouse.\nFrom this statement, we can infer that the mouse is not young, because the problem states \"If someone needs the tiger then the mouse is not young.\"\n\n8. If someone sees the tiger then the tiger is nice.\nThis statement is irrelevant to the problem.\n\n9. If someone chases the mouse and the mouse does not need the bear then the mouse is not young.\nThis statement is also irrelevant to the problem.\n\n10. If someone chases the cow then they are big.\nWe already know this from statement 4.\n\n11. If someone needs the tiger then the tiger sees the bear.\nThis statement is irrelevant to the problem.\n\n12. If someone is big then they need the tiger.\nFrom statement 4, we know the cow is big, but we cannot conclude whether the cow needs the tiger.\n\n13. If the tiger sees the bear and the tiger needs the mouse then the tiger is big.\nFrom statement 3, we know the bear sees the tiger, not the other way around. However, this statement is not directly relevant to determining whether the cow needs the tiger.\n\n14. If someone is young then they need the mouse.\nThis statement is irrelevant to the problem.\n\nNow, let's try to find a connection between the given information and the statement \"The cow does not need the tiger.\"\n\nFrom statement 4, we know the cow is big. From statement 12, we know that if someone is big, they need the tiger. Therefore, we can conclude that the cow needs the tiger.\n\nSince we have concluded that the cow needs the tiger, the statement \"The cow does not need the tiger\" is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not(red(bear))",
+          "z3_formula": "not(red_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, tiger)",
+          "z3_formula": "chases_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not(chases(tiger, mouse))",
+          "z3_formula": "not(chases_tiger_mouse) == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_cow_bear, big_cow)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> sees(tiger, bear)",
+          "z3_formula": "Implies(needs_tiger_mouse, sees_tiger_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_cow, needs_cow_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(tiger, bear) & needs(tiger, mouse) -> big(tiger)",
+          "z3_formula": "Implies(And(sees_tiger_bear, needs_tiger_mouse), big_tiger)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, mouse)",
+          "z3_formula": "Implies(young_X, needs_X_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, tiger)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "not(young(mouse))",
+          "z3_formula": "not(young_mouse) == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not(needs(cow, tiger))",
+          "z3_formula": "not(needs_cow_tiger) == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> big(X)",
+          "z3_formula": "Implies(Or(chases_cow_bear, chases_bear_cow), big_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, T) -> sees(T, bear)",
+          "z3_formula": "Implies(Or(needs_cow_T, needs_bear_T), sees_T_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, T)",
+          "z3_formula": "Implies(big_cow, needs_cow_T)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(T, bear) & needs(T, M) -> big(T)",
+          "z3_formula": "Implies(And(sees_T_bear, needs_T_M), big_T)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, M)",
+          "z3_formula": "Implies(young_cow, needs_cow_M)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(cow, tiger)",
+          "z3_formula": "Not(needs_cow_T)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_T == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_T_M == True",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger) -> needs(tiger, mouse)",
+          "z3_formula": "Implies(big_T, needs_T_M)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(cow, tiger)",
+          "z3_formula": "Not(needs_cow_T)",
+          "source_step": 19
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bear)",
+          "z3_formula": "Not(red_bear) == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, tiger)",
+          "z3_formula": "sees_bear_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, tiger)",
+          "z3_formula": "chases_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(tiger, mouse)",
+          "z3_formula": "Not(chases_tiger_mouse) == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> nice(tiger)",
+          "z3_formula": "Implies(sees_tiger, nice_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) & not needs(X, bear) -> not young(X)",
+          "z3_formula": "Implies(And(chases_mouse, Not(needs_bear)), Not(young_mouse))",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, bear)",
+          "z3_formula": "needs_mouse_bear == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, mouse)",
+          "z3_formula": "Implies(young_mouse, needs_mouse_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_cow, big_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_cow, needs_cow_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, tiger)",
+          "z3_formula": "needs_cow_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> sees(tiger, bear)",
+          "z3_formula": "Implies(needs_cow_tiger, sees_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "sees(tiger, bear) & needs(tiger, mouse) -> big(tiger)",
+          "z3_formula": "Implies(And(sees_tiger_bear, needs_tiger_mouse), big_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "not needs(cow, tiger)",
+          "z3_formula": "Not(needs_cow_tiger) == True",
+          "source_step": 21
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> big(X)",
+          "z3_formula": "Implies(chases_bear_cow, big_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_bear, needs_bear_tiger)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> big(X)",
+          "z3_formula": "Implies(needs_bear_tiger, big_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> big(X)",
+          "z3_formula": "Implies(chases_cow_bear, big_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_cow, needs_cow_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(cow, tiger)",
+          "z3_formula": "needs_cow_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, tiger)",
+          "z3_formula": "needs_cow_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger) -> needs(tiger, mouse)",
+          "z3_formula": "Implies(big_tiger, needs_tiger_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, mouse) -> young(mouse)",
+          "z3_formula": "Implies(needs_tiger_mouse, young_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, tiger)",
+          "z3_formula": "chases_mouse_tiger == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> big(X)",
+          "z3_formula": "Implies(chases_mouse_tiger, big_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_mouse, needs_mouse_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) & needs(X, mouse) -> big(X)",
+          "z3_formula": "Implies(And(needs_mouse_tiger, needs_mouse_tiger), big_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_mouse, needs_mouse_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, mouse)",
+          "z3_formula": "Implies(young_mouse, needs_mouse_mouse)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bear)",
+          "z3_formula": "not red_bear",
+          "source_step": 23
+        },
+        {
+          "type": "derived",
+          "expression": "not red(bear)",
+          "z3_formula": "not red_bear",
+          "source_step": 24
+        },
+        {
+          "type": "derived",
+          "expression": "not red(bear) -> big(cow)",
+          "z3_formula": "Implies(not red_bear, big_cow)",
+          "source_step": 25
+        },
+        {
+          "type": "derived",
+          "expression": "big(cow) -> needs(cow, tiger)",
+          "z3_formula": "Implies(big_cow, needs_cow_tiger)",
+          "source_step": 26
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, tiger)",
+          "z3_formula": "needs_cow_tiger == True",
+          "source_step": 27
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(cow, tiger)",
+          "z3_formula": "not needs_cow_tiger",
+          "source_step": 28
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(cow, tiger)",
+          "z3_formula": "not needs_cow_tiger",
+          "source_step": 29
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, tiger)",
+          "z3_formula": "chases_mouse_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "young(mouse)",
+          "z3_formula": "young_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> nice(tiger)",
+          "z3_formula": "Implies(sees_tiger_bear, nice_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) & ~needs(X, bear) -> ~young(X)",
+          "z3_formula": "Implies(And(chases_mouse_tiger, Not(needs_mouse_bear)), Not(young_mouse))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_cow_bear, big_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> sees(X, bear)",
+          "z3_formula": "Implies(needs_tiger_bear, sees_bear_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_bear, needs_bear_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & needs(X, mouse) -> big(X)",
+          "z3_formula": "Implies(And(sees_bear_tiger, needs_tiger_mouse), big_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, mouse)",
+          "z3_formula": "Implies(young_mouse, needs_mouse_mouse)",
+          "source_step": 14
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bear)",
+          "z3_formula": "not red_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, tiger)",
+          "z3_formula": "sees_bear_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, tiger)",
+          "z3_formula": "chases_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(tiger, mouse)",
+          "z3_formula": "not chases_tiger_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> nice(tiger)",
+          "z3_formula": "Implies(sees_bear_tiger, nice_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) & not needs(X, bear) -> not young(X)",
+          "z3_formula": "Implies(And(chases_mouse_tiger, not needs_mouse_bear), not young_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_cow_bear, big_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> sees(tiger, bear)",
+          "z3_formula": "Implies(needs_tiger_mouse, sees_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_cow, needs_cow_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(tiger, bear) & needs(tiger, mouse) -> big(tiger)",
+          "z3_formula": "Implies(And(sees_tiger_bear, needs_tiger_mouse), big_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, mouse)",
+          "z3_formula": "Implies(young_mouse, needs_mouse_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(cow, tiger)",
+          "z3_formula": "not needs_cow_tiger == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bear)",
+          "z3_formula": "not red_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, tiger)",
+          "z3_formula": "chases_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not chases(tiger, mouse)",
+          "z3_formula": "not chases_tiger_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, tiger) -> nice(tiger)",
+          "z3_formula": "Implies(sees_tiger_bear, nice_tiger)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, mouse) & not needs(X, bear) -> not young(X)",
+          "z3_formula": "Implies(And(chases_mouse_tiger, not needs_bear_mouse), not young_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_cow_bear, big_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_bear, needs_bear_tiger)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> sees(X, bear)",
+          "z3_formula": "Implies(needs_bear_tiger, sees_bear_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_cow, needs_cow_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & needs(X, mouse) -> big(X)",
+          "z3_formula": "Implies(And(sees_bear_tiger, needs_tiger_mouse), big_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, mouse)",
+          "z3_formula": "Implies(young_mouse, needs_mouse_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "not needs(cow, tiger)",
+          "z3_formula": "not needs_cow_tiger == True",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "not red(bear)",
+          "z3_formula": "not red_bear == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, tiger)",
+          "z3_formula": "sees_bear_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "chases(cow, bear)",
+          "z3_formula": "chases_cow_bear == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> big(X)",
+          "z3_formula": "Implies(chases_cow_bear, big_cow)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_cow, needs_cow_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "chases(mouse, tiger)",
+          "z3_formula": "chases_mouse_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) & needs(Y, Z) -> not needs(X, Z)",
+          "z3_formula": "Implies(And(chases_mouse_tiger, needs_tiger_mouse), not needs_mouse_bear)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, Y) -> big(X)",
+          "z3_formula": "Implies(chases_cow_bear, big_cow)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, Y) -> sees(Y, bear)",
+          "z3_formula": "Implies(needs_cow_tiger, sees_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_cow, needs_cow_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, bear) & needs(X, Y) -> big(X)",
+          "z3_formula": "Implies(And(sees_tiger_bear, needs_tiger_mouse), big_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "young(X) -> needs(X, mouse)",
+          "z3_formula": "Implies(young_bear, needs_bear_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "big(cow)",
+          "z3_formula": "big_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, tiger)",
+          "z3_formula": "needs_cow_tiger == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(tiger)",
+          "z3_formula": "big_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "needs(tiger, mouse)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "needs(mouse, tiger)",
+          "z3_formula": "needs_mouse_tiger == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_bear_cow, big_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs_tiger(X)",
+          "z3_formula": "Implies(big_bear, needs_tiger_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs_tiger(X) -> sees_tiger(X, bear)",
+          "z3_formula": "Implies(needs_tiger_bear, sees_tiger_bear)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees_tiger(X, bear) & needs_mouse(X) -> big(X)",
+          "z3_formula": "Implies(And(sees_tiger_bear, needs_tiger_mouse), big_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, tiger)",
+          "z3_formula": "sees_bear_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs_mouse(tiger)",
+          "z3_formula": "needs_tiger_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "not needs_tiger(cow)",
+          "z3_formula": "Not(needs_tiger_cow)",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "chases(bear, cow)",
+          "z3_formula": "chases_bear_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "chases(X, cow) -> big(X)",
+          "z3_formula": "Implies(chases_bear_cow, big_cow)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> needs(X, tiger)",
+          "z3_formula": "Implies(big_cow, needs_cow_tiger)",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "needs(cow, tiger)",
+          "z3_formula": "needs_cow_tiger == True",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 149,
+      "traces_with_constraints": 10,
+      "unique_after_dedup": 56
+    },
+    "maxsat_stats": {
+      "satisfied": 54,
+      "excluded": 2,
+      "total_weight": 139,
+      "solve_time_ms": 1.834934577345848
+    },
+    "timing": {
+      "trace_gen_s": 13.914,
+      "extraction_s": 37.365,
+      "dedup_s": 1.566,
+      "maxsat_s": 0.005,
+      "total_s": 52.851
+    }
+  }
+}

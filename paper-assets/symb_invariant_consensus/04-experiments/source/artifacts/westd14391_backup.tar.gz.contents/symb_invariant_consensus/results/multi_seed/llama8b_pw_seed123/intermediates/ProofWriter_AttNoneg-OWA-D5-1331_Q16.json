@@ -1,0 +1,1073 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-1331_Q16",
+    "problem": "Bob is big. Dave is big. Dave is quiet. Dave is round. Fiona is round. Harry is kind. Harry is smart. Big people are kind. All kind, big people are round. If someone is smart then they are kind. If someone is green and smart then they are furry. If someone is quiet and furry then they are smart. Furry, big people are quiet. All smart, kind people are big. If someone is furry then they are big. Round people are furry.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is green.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nQuiet($x, bool) ::: Is x quiet?\nRound($x, bool) ::: Is x round?\nKind($x, bool) ::: Is x kind?\nSmart($x, bool) ::: Is x smart?\nFurry($x, bool) ::: Is x furry?\nGreen($x, bool) ::: Is x green?\n\nFacts:\nBig(Bob, True) ::: Bob is big.\nBig(Dave, True) ::: Dave is big.\nQuiet(Dave, True) ::: Dave is quiet.\nRound(Dave, True) ::: Dave is round.\nRound(Fiona, True) ::: Fiona is round.\nKind(Harry, True) ::: Harry is kind.\nSmart(Harry, True) ::: Harry is smart.\n\nRules:\nBig($x, True) >>> Kind($x, True) ::: Big people are kind.\nKind($x, True) && Big($x, True) >>> Round($x, True) ::: All kind, big people are round.\nSmart($x, True) >>> Kind($x, True) ::: If someone is smart then they are kind.\nGreen($x, True) && Smart($x, True) >>> Furry($x, True) ::: If someone is green and smart then they are furry.\nQuiet($x, True) && Furry($x, True) >>> Smart($x, True) ::: If someone is quiet and furry then they are smart.\nFurry($x, True) && Big($x, True) >>> Quiet($x, True) ::: Furry, big people are quiet.\nSmart($x, True) && Kind($x, True) >>> Big($x, True) ::: All smart, kind people are big.\nFurry($x, True) >>> Big($x, True) ::: If someone is furry then they are big.\nRound($x, True) >>> Furry($x, True) ::: Round people are furry.\n\nQuery:\nGreen(Harry, True) ::: Harry is green."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "False": 129.0,
+      "True": 118.0,
+      "Unknown": 145.0
+    },
+    "answer_counts": {
+      "Unknown": 9,
+      "False": 1,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement 'Harry is green' is true, false, or unknown, we need to analyze the given information and apply it step by step.\n\n1. Given statements:\n   - Harry is kind.\n   - Harry is smart.\n   - Big people are kind.\n   - All kind, big people are round.\n   - If someone is smart then they are kind.\n   - If someone is green and smart then they are furry.\n   - If someone is quiet and furry then they are smart.\n   - Furry, big people are quiet.\n   - All smart, kind people are big.\n   - If someone is furry then they are big.\n   - Round people are furry.\n\n2. From the given statements, we can conclude that:\n   - Since Harry is kind, and all kind people are smart (if someone is smart then they are kind), Harry is smart.\n   - Since Harry is smart, and all smart, kind people are big, Harry is big.\n   - Since Harry is big, and all kind people are big (big people are kind), Harry is kind (already given).\n   - Since Harry is big, and all kind, big people are round, Harry is round.\n   - Since Harry is round, and round people are furry, Harry is furry.\n\n3. Now, we need to find out if Harry is green. The given statements do not directly relate Harry to being green. However, we can analyze the information about green people:\n   - If someone is green and smart then they are furry. This implies that green people can be furry.\n   - However, we do not have any information that directly connects green people with being big, kind, or round.\n   - From our previous conclusions, we know Harry is big, kind, and round, which means he is furry. But we cannot conclude anything about Harry being green based on the given information.\n\nTherefore, the statement 'Harry is green' is unknown, as we do not have enough information to determine whether it is true or false.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is kind. (Statement 7)\n2. Harry is smart. (Statement 8)\n3. Big people are kind. (Statement 3)\n   From Statement 8 and 3, we can deduce that Harry is big, since he is both kind and smart. \n\n4. All kind, big people are round. (Statement 4)\n   Since Harry is big and kind, we can conclude that Harry is round.\n\n5. Round people are furry. (Statement 13)\n   Since Harry is round, we can conclude that Harry is furry.\n\n6. If someone is green and smart then they are furry. (Statement 9)\n   However, we already know that Harry is furry (from Step 5), so we cannot use this statement to conclude anything about Harry being green.\n\n7. If someone is quiet and furry then they are smart. (Statement 10)\n   We don't know if Harry is quiet, so we cannot use this statement to conclude anything about Harry's smartness.\n\n8. If someone is furry then they are big. (Statement 11)\n   We already know that Harry is big (from Step 3), so we cannot use this statement to conclude anything about Harry being furry.\n\n9. If someone is furry then they are big. (Statement 11)\n   Since Harry is furry (from Step 5), we can conclude that Harry is big.\n\n10. All smart, kind people are big. (Statement 12)\n    Since Harry is both smart and kind, we can conclude that Harry is indeed big, which we already knew.\n\n11. Furry, big people are quiet. (Statement 12)\n    We already know that Harry is big (from Step 3) and furry (from Step 5), so we can conclude that Harry is quiet.\n\n12. If someone is quiet and furry then they are smart. (Statement 10)\n    Since Harry is quiet and furry, we can conclude that Harry is indeed smart, which we already knew.\n\nHowever, we are still unable to determine whether Harry is green.\n\n13. If someone is green and smart then they are furry. (Statement 9)\n   This is the only statement that mentions being green, but we don't know anything about Harry being green.\n\nSince we cannot use the given information to determine whether Harry is green, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is kind. (Given)\n2. Harry is smart. (Given)\n3. Big people are kind. (Given)\n4. All kind, big people are round. (Given)\n5. Smart people are kind. (Implication from steps 2 and 1)\n6. All smart, kind people are big. (Given)\n7. If someone is smart then they are kind. (Given)\n8. If someone is green and smart then they are furry. (Given)\n9. If someone is quiet and furry then they are smart. (Given)\n10. Furry, big people are quiet. (Given)\n11. Round people are furry. (Given)\n12. If someone is furry then they are big. (Implication from steps 11 and 8, 9, and 10)\n\nFrom steps 1 and 2, we know Harry is both kind and smart.\n\nFrom step 6, since Harry is smart and kind, Harry must be big.\n\nFrom step 11, since Harry is round, Harry must be furry.\n\nFrom step 12, since Harry is furry, Harry must be big. (This is a repeated conclusion, which is still valid)\n\nFrom step 10, since Harry is big and furry, Harry must be quiet.\n\nNow, we can conclude that Harry is big, furry, quiet, and round, but we don't have any information about his color.\n\nHowever, there is no direct or indirect information that connects Harry's color to any of the other characteristics. Therefore, we cannot determine whether the statement \"Harry is green\" is true or false based on the given information.\n\nThe answer is: \\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is kind. (Given)\n2. Harry is smart. (Given)\n3. Big people are kind. (Given)\n4. All kind, big people are round. (Given)\n5. Smart, kind people are big. (Given)\n6. If someone is smart then they are kind. (Given)\n7. All smart, kind people are big. (From steps 5 and 6)\n8. Since Harry is smart and kind (steps 1 and 2), we can conclude that Harry is big (step 7).\n\nNow, we need to determine if Harry is round or not. We know:\n9. Round people are furry. (Given)\n10. Since Harry is big (step 8) and round people are furry (step 9), we can conclude that Harry is furry.\n\nWe are given that:\n11. If someone is furry then they are big. (Given)\n12. Furry, big people are quiet. (Given)\n13. We already know that Harry is big (step 8) and furry (step 10).\n14. Therefore, we can conclude that Harry is quiet (step 12).\n\nNow, we need to determine if Harry is green or not. We are given that:\n15. If someone is green and smart then they are furry. (Given)\n16. We already know that Harry is smart (step 2), but we cannot conclude that Harry is green from this information. \n\nHowever, we can conclude that Harry is not green because we already know that Harry is furry (step 10), and there's no information that directly links Harry being green and furry together. But since we know that furry people are big and Harry is big, we can use the fact that \"If someone is green and smart then they are furry\" to infer that Harry is not green. This is because if Harry were green, then he would be furry (step 15), which we already know he is, but we would also know that he is big and furry, which leads to the fact that he is quiet (step 12), and there's no information that links Harry being green and quiet together. Therefore, since we can't link Harry being green and quiet, we can conclude that Harry is not green.\n\nThe final answer is: $\\boxed{\\text{False}}$",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is green' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is kind. (Given)\n2. Harry is smart. (Given)\n3. If someone is smart then they are kind. (Given) - This statement does not add any new information since we already know Harry is kind.\n4. If someone is smart and kind then they are big. (Given)\n5. Since Harry is both smart and kind, he must be big. (From steps 2, 3, and 4)\n\nNow, let's analyze the information related to green color:\n\n1. If someone is green and smart then they are furry. (Given)\n2. Round people are furry. (Given)\n3. Fiona is round. (Given)\n4. Fiona is not mentioned to be green, but we can use this information to understand the relationship between being round and furry.\n5. If someone is round then they are furry. (From steps 2 and 3)\n\nHowever, the information about green color does not directly relate to Harry. To determine whether Harry is green, we need to find a connection between green and Harry.\n\n1. If someone is green and smart then they are furry. (Given)\n2. If someone is furry then they are big. (Given)\n3. All big, furry people are quiet. (Given)\n4. Since Harry is big (From step 5), we know he is not furry because if he were furry, he would be quiet, but he is not mentioned to be quiet. \n\nHowever, even though Harry is big and not furry, we still cannot determine whether Harry is green or not because we do not have any information that links being green with being big, smart, kind, or round.\n\nTherefore, the answer is: \n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is kind. (Given)\n2. Harry is smart. (Given)\n3. Big people are kind. (Given)\n4. All kind, big people are round. (Given)\n5. If someone is smart then they are kind. (Given)\n   Since Harry is smart, we can infer that Harry is kind. (From steps 2 and 5)\n6. Since Harry is kind (From step 1) and also kind (From step 5), we can infer that Harry is big. (From step 3)\n7. All smart, kind people are big. (Given)\n   Since Harry is smart and kind (From steps 1, 2, and 5), we can confirm that Harry is big. (From step 6 and this statement)\n8. Harry is big. (Confirmed from steps 6 and 7)\n9. Round people are furry. (Given)\n   Since Harry is big (From step 8) and all kind, big people are round (From step 4), we can infer that Harry is round.\n10. Since Harry is round (From step 9), we can infer that Harry is furry. (From step 8)\n\nHowever, we still haven't addressed the original question of whether Harry is green. We have information about green people being furry (From step 5) and furry people being big (From step 10) and quiet (From step 10), but nothing about Harry being green.\n\nGiven the provided information, we cannot conclude whether Harry is green or not. Therefore, the answer is:\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is green\" is true, false, or unknown, we need to analyze the given information step by step and use logical deductions.\n\n1. Harry is kind. (Given)\n2. Harry is smart. (Given)\n3. Big people are kind. (Given)\n4. All kind, big people are round. (Given)\n5. If someone is smart then they are kind. (Given)\n   From this, we can conclude that since Harry is smart, he must be kind. This is already given in statement (1).\n\n6. All smart, kind people are big. (Given)\n   Since Harry is both smart and kind, we can conclude that he is big.\n\n7. If someone is furry then they are big. (Given)\n   However, we don't know if Harry is furry yet, so we can't conclude anything from this statement.\n8. Round people are furry. (Given)\n   Since we know Harry is big (from statement (6)) and all kind, big people are round (from statement (4)), we can conclude that Harry is round.\n9. From statement (8), since Harry is round, he must be furry.\n10. From statement (7), since Harry is furry, he must be big. (This conclusion is already made in statement (6), so it's redundant.)\n11. If someone is quiet and furry then they are smart. (Given)\n   However, we don't know if Harry is quiet yet, so we can't conclude anything from this statement.\n12. Dave is quiet. (Given)\n   We don't have any information that links Harry to Dave's qualities, so we can't conclude anything about Harry from this statement.\n\nNow, to determine if Harry is green, let's analyze the remaining information:\n13. If someone is green and smart then they are furry. (Given)\n   Since Harry is smart (from statement (2)), we can use this statement to draw a conclusion about Harry's color. However, we don't know if Harry is green yet.\n\nWe have not found any information that directly links Harry to being green. However, we do have a statement that links being green to being smart and furry (statement (13)). We have also concluded that Harry is furry (from statement (9)).\n\nSince we know Harry is furry and smart, we can conclude that he must be green, based on statement (13).\n\nTherefore, the statement \"Harry is green\" is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is green\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is kind. (Given)\n2. Harry is smart. (Given)\n3. All kind, big people are round. (Given)\n4. All kind people are kind. (Implicit from the given statement, but not directly stated)\n5. Big people are kind. (Given)\n6. If someone is smart then they are kind. (Given)\n7. All smart, kind people are big. (Given)\n8. If someone is smart then they are kind. (Given)\n9. If someone is round and big then they are quiet. (Implicit from the given statement, but not directly stated)\n10. Round people are furry. (Given)\n11. If someone is quiet and furry then they are smart. (Given)\n12. If someone is furry then they are big. (Given)\n\nFrom statements 1 and 6, we know Harry is kind and smart. \nFrom statement 7, we know that all smart, kind people are big, so Harry must be big.\n\nNow, from statement 10, we know that round people are furry, and we already know that all kind, big people are round (statement 3), so Harry must be furry.\n\nNow, from statement 12, we know that furry people are big, but we already know that Harry is big, so this statement doesn't give us any new information.\n\nNow, from statement 11, we know that quiet and furry people are smart, but we already know that Harry is smart, so this statement doesn't give us any new information.\n\nNow, from statement 5, we know that big people are kind, and we already know that Harry is big, so this statement doesn't give us any new information.\n\nNow, from statement 4, we know that all kind people are kind, but we already know that Harry is kind, so this statement doesn't give us any new information.\n\nFrom the above analysis, we can conclude that Harry is big, smart, kind, and furry, but there is no information about Harry being green.\n\nTherefore, the statement \"Harry is green\" is unknown because there is no information provided to support or deny this statement.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is green\" is true, false, or unknown, we need to analyze the given information and use logical deductions.\n\n1. From the given information:\n   - Harry is kind.\n   - Harry is smart.\n   - Big people are kind.\n   - All kind, big people are round.\n   - If someone is smart then they are kind.\n   - All smart, kind people are big.\n   - If someone is furry then they are big.\n   - Round people are furry.\n\n2. From the statement \"Harry is kind\" and \"Harry is smart\":\n   - We can deduce that Harry is kind and smart, which means he is big, since all smart, kind people are big.\n   - Since Harry is big, he is round, as all kind, big people are round.\n   - As round people are furry, Harry is furry.\n\n3. Now, we are given a new condition: \"If someone is green and smart then they are furry.\"\n   - However, we already know that Harry is smart and furry. \n   - But this does not tell us if Harry is green or not.\n\n4. The only way to determine if Harry is green is if we have information that links green to one of the characteristics we already know about Harry (kind, smart, big, round, furry).\n   - Unfortunately, we don't have any information that links green to any of these characteristics.\n\nTherefore, based on the given information, we cannot determine whether Harry is green or not. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether Harry is green, we need to analyze the given statements and their logical implications.\n\n1. Harry is kind. (Given)\n2. Harry is smart. (Given)\n3. Big people are kind. (Given)\n4. All kind, big people are round. (Given)\n5. If someone is smart then they are kind. (Given)\n6. If someone is smart then they are kind. This implies that all smart people are kind, and since Harry is smart, he is kind. (From statement 5 and 1)\n7. All kind, big people are round. This implies that if someone is kind and big, they are round. Since Harry is kind, we need to determine if he is big. (From statement 4 and 6)\n8. All smart, kind people are big. (Given)\n9. Since Harry is smart and kind, he must be big. (From statement 8 and 6)\n10. Since Harry is big and kind, he is round. (From statement 4 and 9)\n11. Round people are furry. (Given)\n12. Since Harry is round, he is furry. (From statement 11 and 10)\n13. If someone is furry then they are big. (Given)\n14. Since Harry is furry, he is big. (From statement 13 and 12)\n15. Furry, big people are quiet. (Given)\n16. Since Harry is big and furry, he is quiet. (From statement 15 and 14)\n17. If someone is quiet and furry then they are smart. (Given)\n18. Since Harry is quiet and furry, he is smart. (From statement 17 and 16)\n19. We know Harry is green, but from all of the above steps, we have found that he is big, round, furry, kind, and smart. However, we have not found any information that links Harry's greenness to any of these characteristics.\n20. We cannot infer Harry's greenness from the given information, as there is no direct or indirect connection between Harry's characteristics and being green.\n\nTherefore, the statement \"Harry is green\" is unknown.",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is green\" is true, false, or unknown, we need to analyze the given statements and use the process of elimination.\n\n1. Harry is kind. (Statement 1)\n2. Harry is smart. (Statement 2)\n3. Big people are kind. (Statement 3)\n4. All kind, big people are round. (Statement 4)\n5. If someone is smart then they are kind. (Statement 5)\n6. If someone is green and smart then they are furry. (Statement 6)\n7. If someone is quiet and furry then they are smart. (Statement 7)\n8. Furry, big people are quiet. (Statement 8)\n9. All smart, kind people are big. (Statement 9)\n10. If someone is furry then they are big. (Statement 10)\n11. Round people are furry. (Statement 11)\n\nFrom Statement 5, we can conclude that since Harry is smart (Statement 2), he must be kind (Statement 1).\n\nFrom Statement 3, we can conclude that since Harry is kind (Statement 1), he must be big.\n\nFrom Statement 9, we can conclude that since Harry is smart (Statement 2) and kind (Statement 1), he must be big.\n\nFrom Statement 10, we can conclude that since Harry is furry (Statement 11, and we will get to that in a minute), he must be big.\n\nFrom Statement 11, we can conclude that since Harry is round (Statement 4, and we will get to that in a minute), he must be furry.\n\nFrom Statement 4, we can conclude that since Harry is kind (Statement 1) and big (Statement 3), he must be round.\n\nNow we have: \n- Harry is kind (Statement 1)\n- Harry is big (Statements 3 and 9)\n- Harry is round (Statement 4)\n- Harry is furry (Statements 11 and 4)\n\nWe are given the statement: \n- If someone is green and smart then they are furry. (Statement 6)\n\nTo determine whether Harry is green, we need to see if he is furry (Statement 11) and smart (Statement 2).\n\nWe have already established that Harry is furry (Statements 11 and 4).\n\nHowever, Statement 6 implies that if someone is green and smart, then they are furry. This means that we cannot conclude that Harry is green based solely on him being furry.\n\nStatement 6 does not tell us that if someone is furry, then they are green and smart. \n\nHowever, we know that Harry is smart (Statement 2) and furry (Statements 11 and 4), but we do not have enough information to determine whether he is green.\n\nTherefore, the statement \"Harry is green\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To solve this problem, we need to break it down into smaller steps and analyze each piece of information given.\n\n1. Harry is kind.\n2. Harry is smart.\n3. All kind, big people are round. (We don't know if Harry is big yet, so we can't conclude Harry is round from this statement alone.)\n4. All smart, kind people are big. (From statements 1 and 2, we know Harry is both smart and kind, so we can conclude Harry is big.)\n5. Big people are kind. (This statement is redundant because we already know Harry is kind.)\n6. If someone is green and smart then they are furry. (We don't have any information about Harry being green yet, so we can't use this statement to conclude anything about Harry.)\n7. Round people are furry. (We know Harry is big from statement 4, but we don't know if he is round yet. However, we can use this statement to conclude that if Harry is round, then he is furry.)\n8. If someone is quiet and furry then they are smart. (We don't have any information about Harry being quiet or furry yet.)\n9. All kind, big people are round. (We already concluded Harry is big from statement 4, so we can use this statement to conclude that Harry is round.)\n10. Round people are furry. (Now that we know Harry is round, we can conclude that he is furry.)\n11. If someone is furry then they are big. (We already know Harry is furry from statement 10 and big from statement 4, so this statement is redundant.)\n12. Furry, big people are quiet. (We know Harry is furry and big, so we can conclude that Harry is quiet.)\n\nNow, let's get back to the statement \"Harry is green.\" \n\nFrom the information given, we have not seen any connection between being green and any of the other characteristics. Therefore, we cannot determine if the statement \"Harry is green\" is true, false, or unknown based on the information provided.\n\nHowever, if we apply a bit of logical thinking, we can conclude that since Harry is quiet, furry, big, kind, and smart (from the statements we deduced earlier), and since we don't see any contradiction with the statement \"Harry is green\" (there is no statement saying that being green contradicts being quiet, furry, big, kind, or smart), we can say that the statement \"Harry is green\" is not necessarily false or unknown. But we can't prove it true based on the given information.\n\nGiven the information we do have and considering the structure of the problem, the most accurate answer would be that the statement is \"unknown\" because we cannot confirm it as true or false with the given information.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, big_harry), round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, smart_harry), furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), smart_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_harry, big_harry), quiet_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> smart(X) & kind(X)",
+          "z3_formula": "Implies(big_harry, And(smart_harry, kind_harry))",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_harry, big_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == Unknown",
+          "source_step": 17
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, big_harry), round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry) & smart(harry)",
+          "z3_formula": "And(kind_harry, smart_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry) -> kind(harry)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry) & smart(harry) -> big(harry)",
+          "z3_formula": "Implies(And(kind_harry, smart_harry), big_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "green(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, smart_harry), furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), smart_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_harry, big_harry), quiet_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_harry, big_harry)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, big_harry), round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_harry, kind_harry), big_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_harry, big_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_harry, big_harry), quiet_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, smart_harry), furry_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "Not(furry_harry | (green_harry & smart_harry)) == False",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_harry, kind_harry), big_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, smart_harry), furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_fiona, furry_fiona)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(fiona)",
+          "z3_formula": "round_fiona == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "furry(fiona)",
+          "z3_formula": "furry_fiona == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_fiona, furry_fiona)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_harry, big_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & furry(X) -> quiet(X)",
+          "z3_formula": "Implies(And(big_harry, furry_harry), quiet_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not quiet(harry)",
+          "z3_formula": "Not(quiet_harry) == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(harry)",
+          "z3_formula": "Not(furry_harry) == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> ?(X)",
+          "z3_formula": "Implies(green_harry, ?_harry)",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, big_harry), round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_harry, kind_harry), big_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, big_harry), round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> big(X)",
+          "z3_formula": "Implies(And(kind_harry, big_harry), big_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_harry, big_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_harry, big_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_dave, furry_harry), smart_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(dave)",
+          "z3_formula": "quiet_dave == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, smart_harry), furry_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "kind(big(X))",
+          "z3_formula": "kind_big_X == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "big(kind(X))",
+          "z3_formula": "big_kind_X == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(big(X))",
+          "z3_formula": "kind_big_X == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "smart(kind(X)) -> big(X)",
+          "z3_formula": "Implies(And(smart_harry, kind_harry), big_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> kind(X)",
+          "z3_formula": "kind_harry == kind_harry",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_harry, kind_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(round_harry, big_harry), quiet_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(big(X))",
+          "z3_formula": "round_big_X == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), smart_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_harry, big_harry)",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_harry, kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, big_harry), round_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & smart(X) -> big(X)",
+          "z3_formula": "Implies(And(kind_harry, smart_harry), big_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_harry, big_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, smart_harry), furry_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 5
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, big_harry), round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, big_harry), round_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry) & smart(harry) -> big(harry)",
+          "z3_formula": "Implies(And(kind_harry, smart_harry), big_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_harry, big_harry)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "furry(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_harry, big_harry), quiet_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), smart_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry) == False",
+          "z3_formula": "Not(green_harry) == True",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_harry, kind_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, big_harry), round_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) -> kind(X)",
+          "z3_formula": "Implies(smart_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, smart_harry), furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_harry, big_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "round(harry)",
+          "z3_formula": "round_harry == True",
+          "source_step": 14
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "green(harry)",
+          "z3_formula": "green_harry == Unknown",
+          "source_step": 16
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "smart(harry)",
+          "z3_formula": "smart_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, big_harry), round_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "smart(X) & kind(X) -> big(X)",
+          "z3_formula": "Implies(And(smart_harry, kind_harry), big_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> kind(X)",
+          "z3_formula": "Implies(big_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) & smart(X) -> furry(X)",
+          "z3_formula": "Implies(And(green_harry, smart_harry), furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & furry(X) -> smart(X)",
+          "z3_formula": "Implies(And(quiet_harry, furry_harry), smart_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> round(X)",
+          "z3_formula": "Implies(And(kind_harry, big_harry), round_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> furry(X)",
+          "z3_formula": "Implies(round_harry, furry_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) -> big(X)",
+          "z3_formula": "Implies(furry_harry, big_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "furry(X) & big(X) -> quiet(X)",
+          "z3_formula": "Implies(And(furry_harry, big_harry), quiet_harry)",
+          "source_step": 12
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 157,
+      "traces_with_constraints": 11,
+      "unique_after_dedup": 33
+    },
+    "maxsat_stats": {
+      "satisfied": 30,
+      "excluded": 3,
+      "total_weight": 153,
+      "solve_time_ms": 1.1045858263969421
+    },
+    "timing": {
+      "trace_gen_s": 7.159,
+      "extraction_s": 27.039,
+      "dedup_s": 0.929,
+      "maxsat_s": 0.003,
+      "total_s": 35.131
+    }
+  }
+}

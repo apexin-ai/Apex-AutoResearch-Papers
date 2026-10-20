@@ -1,0 +1,1175 @@
+{
+  "pid": "ProofWriter_RelNeg-OWA-D5-498_Q15",
+  "gt": "Unknown",
+  "per_trace": [
+    {
+      "trace_idx": 0,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_mouse, likes_mouse_tiger)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> green(X)",
+          "z3_formula": "Implies(likes_mouse_tiger, green_mouse)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cow)",
+          "z3_formula": "likes_mouse_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(tiger)",
+          "z3_formula": "not nice_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(tiger, mouse)",
+          "z3_formula": "not likes_tiger_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, mouse)",
+          "z3_formula": "sees_tiger_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & not likes(X, mouse) -> blue(mouse)",
+          "z3_formula": "Implies(And(sees_tiger_mouse, not likes_tiger_mouse), blue_mouse)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, mouse)",
+          "z3_formula": "sees_cow_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(cow, mouse)",
+          "z3_formula": "not likes_cow_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & not likes(X, mouse) -> blue(mouse)",
+          "z3_formula": "Implies(And(sees_cow_mouse, not likes_cow_mouse), blue_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_mouse, likes_mouse_tiger)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> nice(X)",
+          "z3_formula": "Implies(eats_cow_dog, nice_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, dog)",
+          "z3_formula": "eats_cow_dog == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & not likes(X, mouse) -> blue(mouse)",
+          "z3_formula": "Implies(And(sees_cow_mouse, not likes_cow_mouse), blue_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_mouse, likes_mouse_tiger)",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "not green(mouse)",
+          "z3_formula": "not green_mouse == True",
+          "source_step": 11
+        }
+      ]
+    },
+    {
+      "trace_idx": 1,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_mouse, likes_mouse_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cow)",
+          "z3_formula": "likes_mouse_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(tiger)",
+          "z3_formula": "not nice_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> sees(X, cow)",
+          "z3_formula": "Implies(likes_mouse_tiger, sees_mouse_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & not likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(And(sees_X_mouse, not likes_X_mouse), blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 33
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(mouse)",
+          "z3_formula": "not blue_mouse == True",
+          "source_step": 34
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, dog)",
+          "z3_formula": "Implies(nice_cow, eats_cow_dog)",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, dog)",
+          "z3_formula": "eats_cow_dog == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> not likes(X, cow)",
+          "z3_formula": "Implies(nice_tiger, not likes_tiger_cow)",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(tiger)",
+          "z3_formula": "not nice_tiger == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, dog) -> green(X)",
+          "z3_formula": "Implies(And(round_dog, eats_dog_dog), green_dog)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, cow) -> green(X)",
+          "z3_formula": "Implies(And(round_dog, eats_dog_cow), green_dog)",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cow)",
+          "z3_formula": "likes_mouse_cow == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 28
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(cow, mouse)",
+          "z3_formula": "not likes_cow_mouse == True",
+          "source_step": 31
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 32
+        },
+        {
+          "type": "fact",
+          "expression": "not blue(mouse)",
+          "z3_formula": "not blue_mouse == True",
+          "source_step": 33
+        },
+        {
+          "type": "derived",
+          "expression": "not green(mouse)",
+          "z3_formula": "not green_mouse == True",
+          "source_step": 35
+        }
+      ]
+    },
+    {
+      "trace_idx": 2,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "nice(mouse)",
+          "z3_formula": "nice_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, dog)",
+          "z3_formula": "Implies(nice_mouse, eats_mouse_dog)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> likes(X, cow)",
+          "z3_formula": "Implies(eats_dog_cow, likes_dog_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(dog, cow)",
+          "z3_formula": "Not(likes_dog_cow)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(X, cow)",
+          "z3_formula": "Implies(eats_mouse_dog, eats_mouse_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> likes(X, cow)",
+          "z3_formula": "Implies(eats_mouse_cow, likes_mouse_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, cow)",
+          "z3_formula": "Not(likes_mouse_cow)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> likes(X, cow)",
+          "z3_formula": "Implies(eats_dog_cow, likes_dog_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(dog, cow)",
+          "z3_formula": "Not(likes_dog_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, dog) -> eats(X, cow)",
+          "z3_formula": "Implies(eats_mouse_dog, eats_mouse_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> likes(X, cow)",
+          "z3_formula": "Implies(eats_mouse_cow, likes_mouse_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(mouse, cow)",
+          "z3_formula": "Not(likes_mouse_cow)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & not likes(X, mouse) -> blue(mouse)",
+          "z3_formula": "Implies(And(sees_cow_mouse, Not(likes_cow_mouse)), blue_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, mouse)",
+          "z3_formula": "sees_cow_mouse == True",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(cow, mouse)",
+          "z3_formula": "Not(likes_cow_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_mouse, likes_mouse_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "not green(mouse)",
+          "z3_formula": "Not(green_mouse)",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 3,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_mouse, likes_mouse_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> sees(tiger, X)",
+          "z3_formula": "Implies(likes_mouse_tiger, sees_tiger_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(tiger)",
+          "z3_formula": "not nice_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(tiger, mouse)",
+          "z3_formula": "not likes_mouse_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, mouse)",
+          "z3_formula": "sees_tiger_mouse == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 4,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cow)",
+          "z3_formula": "likes_mouse_cow == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "not(round(mouse))",
+          "z3_formula": "Not(round_mouse)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_mouse, nice_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "not(nice(mouse))",
+          "z3_formula": "Not(nice_mouse)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> green(X)",
+          "z3_formula": "Implies(likes_tiger_mouse, green_mouse)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "not(green(mouse))",
+          "z3_formula": "Not(green_mouse)",
+          "source_step": 20
+        }
+      ]
+    },
+    {
+      "trace_idx": 5,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cow)",
+          "z3_formula": "likes_mouse_cow == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "cow(eats, mouse)",
+          "z3_formula": "cow_eats_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> likes(X, Y)",
+          "z3_formula": "Implies(cow_eats_mouse, likes_mouse_cow)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_X, likes_X_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & !likes(X, mouse) -> blue(mouse)",
+          "z3_formula": "Implies(And(sees_X_mouse, Not(likes_X_mouse)), blue_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_X, nice_X)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, dog) -> green(X)",
+          "z3_formula": "Implies(And(round_X, eats_X_dog), green_X)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == Unknown",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 6,
+      "answer": "",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cow)",
+          "z3_formula": "likes_mouse_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_mouse, likes_mouse_tiger)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & not likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(And(sees_tiger_mouse, not likes_tiger_mouse), blue_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "not blue(mouse)",
+          "z3_formula": "Not(blue_mouse) == True",
+          "source_step": 6
+        }
+      ]
+    },
+    {
+      "trace_idx": 7,
+      "answer": "",
+      "constraints": []
+    },
+    {
+      "trace_idx": 8,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cow)",
+          "z3_formula": "likes_mouse_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "not(nice(tiger))",
+          "z3_formula": "not_nice_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not(likes(tiger, mouse))",
+          "z3_formula": "not_likes_tiger_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, mouse)",
+          "z3_formula": "sees_tiger_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_mouse, likes_mouse_tiger)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> sees(X, cow)",
+          "z3_formula": "Implies(likes_mouse_tiger, sees_mouse_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & not(likes(X, mouse)) -> blue(X)",
+          "z3_formula": "Implies(And(sees_tiger_mouse, not_likes_tiger_mouse), blue_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, dog)",
+          "z3_formula": "Implies(nice_X, eats_X_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "nice(tiger) -> not(likes(tiger, cow))",
+          "z3_formula": "Implies(nice_tiger, not_likes_tiger_cow)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, dog) -> green(X)",
+          "z3_formula": "Implies(And(round_dog, eats_dog_dog), green_dog)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, cow) -> likes(X, cow)",
+          "z3_formula": "Implies(eats_dog_cow, likes_dog_cow)",
+          "source_step": 13
+        }
+      ]
+    },
+    {
+      "trace_idx": 9,
+      "answer": "True",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cow)",
+          "z3_formula": "likes_mouse_cow == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_mouse, likes_mouse_tiger)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(tiger)",
+          "z3_formula": "not nice_tiger == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(tiger, mouse)",
+          "z3_formula": "not likes_tiger_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, mouse)",
+          "z3_formula": "sees_tiger_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> sees(X, cow)",
+          "z3_formula": "Implies(likes_mouse_tiger, sees_mouse_cow)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "not mentioned(mouse, green(X) -> likes(X, tiger))",
+          "z3_formula": "not mentioned_mouse_green_X_likes_X_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "not mentioned(mouse, likes(X, tiger) -> sees(X, cow))",
+          "z3_formula": "not mentioned_mouse_likes_X_tiger_sees_X_cow == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & not likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(And(sees_X_mouse, not likes_X_mouse), blue_X)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, mouse)",
+          "z3_formula": "sees_cow_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(cow, mouse)",
+          "z3_formula": "not likes_cow_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(cow, mouse)",
+          "z3_formula": "not likes_cow_mouse == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cow)",
+          "z3_formula": "likes_mouse_cow == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, cow) -> eats(X, cow)",
+          "z3_formula": "Implies(likes_mouse_cow, eats_mouse_cow)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "sees(dog, tiger)",
+          "z3_formula": "sees_dog_tiger == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "nice(dog)",
+          "z3_formula": "nice_dog == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, dog)",
+          "z3_formula": "Implies(nice_dog, eats_dog_dog)",
+          "source_step": 25
+        },
+        {
+          "type": "fact",
+          "expression": "nice(cow)",
+          "z3_formula": "nice_cow == True",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, mouse)",
+          "z3_formula": "eats_cow_mouse == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(cow)",
+          "z3_formula": "not nice_cow == True",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, dog) -> green(X)",
+          "z3_formula": "Implies(And(round_cow, eats_cow_dog), green_cow)",
+          "source_step": 29
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 30
+        },
+        {
+          "type": "fact",
+          "expression": "eats(cow, dog)",
+          "z3_formula": "eats_cow_dog == True",
+          "source_step": 31
+        },
+        {
+          "type": "derived",
+          "expression": "green(cow)",
+          "z3_formula": "green_cow == False",
+          "source_step": 32
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & not likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(And(sees_X_mouse, not likes_X_mouse), blue_X)",
+          "source_step": 33
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, mouse)",
+          "z3_formula": "sees_cow_mouse == True",
+          "source_step": 34
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(cow, mouse)",
+          "z3_formula": "not likes_cow_mouse == True",
+          "source_step": 35
+        },
+        {
+          "type": "derived",
+          "expression": "blue(mouse)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 36
+        }
+      ]
+    },
+    {
+      "trace_idx": 10,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_mouse, likes_mouse_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, cow)",
+          "z3_formula": "likes_mouse_cow == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, cow)",
+          "z3_formula": "sees_mouse_cow == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & ~likes(X, mouse) -> blue(X)",
+          "z3_formula": "Implies(And(sees_X_mouse, ~likes_X_mouse), blue_X)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(dog)",
+          "z3_formula": "blue_dog == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) -> nice(X)",
+          "z3_formula": "Implies(round_dog, nice_dog)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, dog) -> green(X)",
+          "z3_formula": "Implies(And(round_dog, eats_dog_dog), green_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "nice(tiger) -> ~likes(tiger, cow)",
+          "z3_formula": "Implies(nice_tiger, ~likes_tiger_cow)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(tiger, mouse)",
+          "z3_formula": "sees_tiger_mouse == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "not nice(tiger)",
+          "z3_formula": "not nice_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "not likes(tiger, mouse)",
+          "z3_formula": "not likes_tiger_mouse == True",
+          "source_step": 15
+        }
+      ]
+    },
+    {
+      "trace_idx": 11,
+      "answer": "Unknown",
+      "constraints": [
+        {
+          "type": "fact",
+          "expression": "kind(mouse)",
+          "z3_formula": "kind_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "green(X) -> likes(X, tiger)",
+          "z3_formula": "Implies(green_mouse, likes_mouse_tiger)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, tiger) -> sees(X, cow)",
+          "z3_formula": "Implies(likes_mouse_tiger, sees_mouse_cow)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, Y) & ~likes(X, Y) -> blue(Y)",
+          "z3_formula": "Implies(And(sees_mouse_cow, ~likes_mouse_cow), blue_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(cow, mouse)",
+          "z3_formula": "sees_cow_mouse == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(cow, mouse)",
+          "z3_formula": "likes_cow_mouse == False",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "blue(Y)",
+          "z3_formula": "blue_mouse == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> eats(X, dog)",
+          "z3_formula": "Implies(nice_mouse, eats_mouse_dog)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "nice(tiger) -> ~likes(tiger, cow)",
+          "z3_formula": "Implies(nice_tiger, ~likes_tiger_cow)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "nice(tiger)",
+          "z3_formula": "nice_tiger == False",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & eats(X, dog) -> green(X)",
+          "z3_formula": "Implies(And(round_dog, eats_dog_cow), green_dog)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "round(dog)",
+          "z3_formula": "round_dog == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "eats(dog, cow)",
+          "z3_formula": "eats_dog_cow == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "blue(cow)",
+          "z3_formula": "blue_cow == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "eats(X, Y) -> likes(X, Y)",
+          "z3_formula": "Implies(eats_dog_cow, likes_dog_cow)",
+          "source_step": 15
+        }
+      ]
+    }
+  ]
+}

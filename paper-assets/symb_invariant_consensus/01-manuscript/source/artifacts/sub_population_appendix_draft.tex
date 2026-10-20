@@ -1,0 +1,62 @@
+% Sub-population Analysis: SICA vs SC (Mistral-7B)
+% Corrected SC baseline (alphabetical tiebreaking)
+% Draft for Director review — do NOT merge directly into appendix.tex
+
+\subsection{Sub-population Analysis}
+\label{app:subpopulation}
+
+% ────────────────────────────────────────────────
+% Table 1: By Answer Type
+% ────────────────────────────────────────────────
+\begin{table}[h]
+\centering
+\small
+\caption{SICA vs.\ SC accuracy by gold-label type (Mistral-7B). Corrected SC baseline uses alphabetical tiebreaking. $\Delta$\,pp = SICA $-$ SC. $p$-values from exact McNemar test (two-sided).}
+\label{tab:subpop-answer-type}
+\begin{tabular}{ll rrr rr}
+\toprule
+\textbf{Dataset} & \textbf{Label} & $n$ & \textbf{SC} & \textbf{SICA} & $\Delta$\,pp & $p$ \\
+\midrule
+\multirow{4}{*}{FOLIO-204}
+ & True    &  72 & 56.9 & 62.5 & $+$5.6 & .125 \\
+ & False   &  63 & 42.9 & 42.9 & $\pm$0.0 & 1.0\hphantom{00} \\
+ & Unknown &  69 & 66.7 & 71.0 & $+$4.3 & .250 \\
+ & \textit{Overall} & 204 & 55.9 & 59.3 & $+$3.4 & .092 \\
+\midrule
+\multirow{4}{*}{PW-600}
+ & True    & 200 &  8.5 &  6.0 & $-$2.5 & .063 \\
+ & False   & 200 & 19.5 & 14.5 & $-$5.0 & .076 \\
+ & Unknown & 200 & 90.0 & 89.0 & $-$1.0 & .774 \\
+ & \textit{Overall} & 600 & 39.3 & 36.5 & $-$2.8 & .014\rlap{*} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ────────────────────────────────────────────────
+% Table 2: By Constraint Count (tertiles)
+% ────────────────────────────────────────────────
+\begin{table}[h]
+\centering
+\small
+\caption{SICA vs.\ SC accuracy by extracted constraint count tertile (Mistral-7B). Corrected SC baseline (alphabetical tiebreaking). Constraint counts are unique deduplicated constraints per problem.}
+\label{tab:subpop-constraint}
+\begin{tabular}{ll rr rrr rr}
+\toprule
+\textbf{Dataset} & \textbf{Tertile} & $n$ & $\bar{c}$ & \textbf{SC} & \textbf{SICA} & $\Delta$\,pp & $p$ \\
+\midrule
+\multirow{3}{*}{FOLIO-204}
+ & Low \scriptsize{[0--32]}   &  74 & 21.7 & 62.2 & 63.5 & $+$1.4 & 1.0\hphantom{00} \\
+ & Mid \scriptsize{[33--47]}  &  64 & 39.7 & 50.0 & 59.4 & $+$9.4 & .031\rlap{*} \\
+ & High \scriptsize{[48--83]} &  66 & 58.7 & 54.5 & 54.5 & $\pm$0.0 & 1.0\hphantom{00} \\
+\midrule
+\multirow{3}{*}{PW-600}
+ & Low \scriptsize{[0--39]}   & 212 & 28.8 & 43.9 & 39.6 & $-$4.3 & .078 \\
+ & Mid \scriptsize{[40--52]}  & 196 & 45.8 & 40.8 & 37.2 & $-$3.6 & .143 \\
+ & High \scriptsize{[53--99]} & 192 & 63.7 & 32.8 & 32.3 & $-$0.5 & 1.0\hphantom{00} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On FOLIO-204 with the corrected SC baseline (alphabetical tiebreaking), SICA improves over SC by $+$3.4\,pp overall (55.9\% $\to$ 59.3\%), though the aggregate McNemar test is marginally non-significant ($p{=}.092$).
+The gain concentrates in the mid-constraint tertile ($+$9.4\,pp, $p{=}.031$), where sufficient symbolic evidence exists for MaxSAT to meaningfully re-rank answers; in the low- and high-constraint groups the methods perform comparably.
+On ProofWriter-600, SICA shows a small uniform degradation consistent with the main results, attenuating in the high-constraint tertile ($\Delta{=}{-}0.5$\,pp, $p{=}1.0$).

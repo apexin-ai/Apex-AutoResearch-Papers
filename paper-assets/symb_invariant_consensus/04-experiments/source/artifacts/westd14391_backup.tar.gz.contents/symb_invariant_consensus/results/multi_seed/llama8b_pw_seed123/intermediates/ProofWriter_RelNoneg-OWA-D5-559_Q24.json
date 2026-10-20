@@ -1,0 +1,1327 @@
+{
+  "problem": {
+    "id": "ProofWriter_RelNoneg-OWA-D5-559_Q24",
+    "problem": "The bear is big. The bear needs the rabbit. The bear sees the rabbit. The mouse likes the tiger. The mouse needs the rabbit. The mouse sees the rabbit. The mouse sees the tiger. The rabbit is round. The rabbit likes the tiger. The rabbit needs the tiger. The tiger is red. The tiger likes the mouse. If something sees the mouse and it likes the mouse then it sees the bear. If something needs the tiger then it likes the mouse. If something is red then it likes the mouse. If something likes the mouse then it sees the mouse. If something needs the mouse then the mouse sees the tiger. If the rabbit is nice then the rabbit likes the bear. If something is big and nice then it needs the bear. If something is round and it sees the bear then the bear likes the mouse. If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit.\n\nDetermine whether the following statement is true, false, or unknown:\nThe bear likes the tiger.",
+    "solution": "",
+    "answer": "Unknown",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBig($x, bool) ::: Is x big?\nNeeds($x, $y, bool) ::: Does x need y?\nSees($x, $y, bool) ::: Does x see y?\nLikes($x, $y, bool) ::: Does x like y?\nRound($x, bool) ::: Is x round?\nRed($x, bool) ::: Is x red?\nNice($x, bool) ::: Is x nice?\n\nFacts:\nBig(Bear, True) ::: The bear is big.\nNeeds(Bear, Rabbit, True) ::: The bear needs the rabbit.\nSees(Bear, Rabbit, True) ::: The bear sees the rabbit.\nLikes(Mouse, Tiger, True) ::: The mouse likes the tiger.\nNeeds(Mouse, Rabbit, True) ::: The mouse needs the rabbit.\nSees(Mouse, Rabbit, True) ::: The mouse sees the rabbit.\nSees(Mouse, Tiger, True) ::: The mouse sees the tiger.\nRound(Rabbit, True) ::: The rabbit is round.\nLikes(Rabbit, Tiger, True) ::: The rabbit likes the tiger.\nNeeds(Rabbit, Tiger, True) ::: The rabbit needs the tiger.\nRed(Tiger, True) ::: The tiger is red.\nLikes(Tiger, Mouse, True) ::: The tiger likes the mouse.\n\nRules:\nSees($x, Mouse, True) && Likes($x, Mouse, True) >>> Sees($x, Bear, True) ::: If something sees the mouse and it likes the mouse then it sees the bear.\nNeeds($x, Tiger, True) >>> Likes($x, Mouse, True) ::: If something needs the tiger then it likes the mouse.\nRed($x, True) >>> Likes($x, Mouse, True) ::: If something is red then it likes the mouse.\nLikes($x, Mouse, True) >>> Sees($x, Mouse, True) ::: If something likes the mouse then it sees the mouse.\nNeeds($x, Mouse, True) >>> Sees(Mouse, Tiger, True) ::: If something needs the mouse then the mouse sees the tiger.\nNice(Rabbit, True) >>> Likes(Rabbit, Bear, True) ::: If the rabbit is nice then the rabbit likes the bear.\nBig($x, True) && Nice($x, True) >>> Needs($x, Bear, True) ::: If something is big and nice then it needs the bear.\nRound($x, True) && Sees($x, Bear, True) >>> Likes(Bear, Mouse, True) ::: If something is round and it sees the bear then the bear likes the mouse.\nLikes($x, Rabbit, True) && Needs(Rabbit, Tiger, True) >>> Likes(Tiger, Rabbit, True) ::: If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit.\n\nQuery:\nLikes(Bear, Tiger, True) ::: The bear likes the tiger."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "Unknown",
+    "scores": {
+      "True": 126.0,
+      "Unknown": 179.0
+    },
+    "answer_counts": {
+      "Unknown": 7,
+      "True": 1
+    },
+    "traces": [
+      {
+        "trace": "To solve this problem, we need to break down the given information and rules into individual statements and then determine the relationship between the bear and the tiger.\n\n1. The bear is big. \n2. The bear needs the rabbit. \n3. The bear sees the rabbit. \n4. The mouse likes the tiger. \n5. The mouse needs the rabbit. \n6. The mouse sees the rabbit. \n7. The mouse sees the tiger. \n8. The rabbit is round. \n9. The rabbit likes the tiger. \n10. The rabbit needs the tiger. \n11. The tiger is red. \n12. The tiger likes the mouse. \n13. If something sees the mouse and it likes the mouse then it sees the bear.\n14. If something needs the tiger then it likes the mouse.\n15. If something is red then it likes the mouse.\n16. If something likes the mouse then it sees the mouse.\n17. If something needs the mouse then the mouse sees the tiger.\n18. If the rabbit is nice then the rabbit likes the bear.\n19. If something is big and nice then it needs the bear.\n20. If something is round and it sees the bear then the bear likes the mouse.\n21. If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit.\n\nNow, let's analyze the given statement: The bear likes the tiger.\n\nTo determine if this statement is true, false, or unknown, we need to find a rule that connects the bear and the tiger. \n\nFrom statement 13, we know that if something sees the mouse and it likes the mouse then it sees the bear. However, we don't have enough information about the mouse's relationship with the bear.\n\nFrom statement 14, we know that if something needs the tiger then it likes the mouse. However, this doesn't directly connect the bear and the tiger.\n\nFrom statement 15, we know that if something is red then it likes the mouse. However, the bear is not red, so this rule doesn't apply to the bear.\n\nFrom statement 16, we know that if something likes the mouse then it sees the mouse. However, this doesn't directly connect the bear and the tiger.\n\nFrom statement 17, we know that if something needs the mouse then the mouse sees the tiger. However, this doesn't directly connect the bear and the tiger.\n\nFrom statement 18, we know that if the rabbit is nice then the rabbit likes the bear. However, we don't know if the rabbit is nice.\n\nFrom statement 19, we know that if something is big and nice then it needs the bear. However, we don't know if the bear is nice.\n\nFrom statement 20, we know that if something is round and it sees the bear then the bear likes the mouse. However, the rabbit is round and sees the bear, so this rule applies to the bear and the mouse, not the bear and the tiger.\n\nFrom statement 21, we know that if something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit. However, this doesn't directly connect the bear and the tiger.\n\nWe can't find a rule that directly connects the bear and the tiger, so the statement \"The bear likes the tiger\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the bear likes the tiger, we need to analyze the given information step by step.\n\n1. The bear sees the rabbit. (Given)\n2. The rabbit sees the mouse. (Given)\n3. The mouse sees the tiger. (Given)\n4. The mouse likes the tiger. (Given)\n5. If something sees the mouse and it likes the mouse then it sees the bear. (Given)\n   However, since the mouse likes the tiger, we need to check the mouse's relationship with the bear.\n\n6. The mouse likes the tiger. (From step 4)\n7. If something likes the mouse then it sees the mouse. (Given)\n   Since the mouse likes the tiger, we know the tiger sees the mouse.\n8. The tiger sees the mouse. (From step 7)\n9. The mouse sees the bear. (From step 5)\n10. The mouse sees the bear. (From step 9)\n11. The tiger sees the mouse and the mouse sees the bear, so the tiger sees the bear. (From steps 8 and 10)\n\n12. The tiger is red. (Given)\n13. If something is red then it likes the mouse. (Given)\n   However, we need to determine the tiger's relationship with the bear.\n\n14. The bear is big. (Given)\n15. The rabbit is round. (Given)\n16. The rabbit sees the bear. (Given)\n17. The rabbit is round and it sees the bear, then the bear likes the mouse. (Given)\n   We cannot conclude the bear's relationship with the mouse directly from the given information.\n\n18. The rabbit is round. (From step 15)\n19. The rabbit sees the bear. (From step 16)\n20. The bear is big. (From step 14)\n21. The rabbit is round and the bear is big, so the rabbit needs the bear. (From steps 18, 19, and 20)\n22. The rabbit needs the bear. (From step 21)\n23. The rabbit likes the bear. (Given)\n24. The rabbit needs the tiger. (Given)\n25. The rabbit likes the tiger. (Given)\n26. If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit. (Given)\n   We cannot conclude the tiger's relationship with the bear directly from the given information.\n\n27. The tiger likes the rabbit. (From step 25 and step 26)\n28. The tiger is red. (From step 12)\n29. The tiger is red, so the tiger likes the mouse. (From step 13)\n30. The mouse needs the rabbit. (Given)\n31. If something needs the tiger then it likes the mouse. (Given)\n   We cannot conclude the mouse's relationship with the bear directly from the given information.\n\n32. The mouse needs the rabbit. (From step 30)\n33. The mouse needs the tiger. (Given)\n34. If something needs the tiger then it likes the mouse. (From step 31)\n   Since the mouse needs the tiger, we know the mouse likes the mouse.\n\n35. The mouse needs the tiger. (From step 33)\n36. The mouse likes the mouse. (From step 34)\n37. The mouse likes the mouse. (From step 36)\n38. The mouse sees the bear. (From step 5)\n\n39. The mouse sees the bear. (From step 38)\n40. The tiger sees the bear. (From steps 8 and 10)\n41. The bear is big. (Given)\n42. The rabbit is nice. (Unknown)\n43. If something is big and nice then it needs the bear. (Given)\n   We cannot conclude the bear's relationship with the tiger directly from the given information.\n\n44. The bear is big. (From step 41)\n45. The bear sees the rabbit. (From step 1)\n46. The rabbit is round. (From step 15)\n47. The rabbit sees the bear. (From step 16)\n48. The rabbit is round and it sees the bear, then the bear likes the mouse. (From step 17)\n   We cannot conclude the bear's relationship with the tiger directly from the given information.\n\n49. The rabbit is round. (From step 15)\n50. The rabbit sees the bear. (From step 16)\n51. The bear is big. (From step 41)\n52. The rabbit is round and the bear is big, so the rabbit needs the bear. (From steps 15, 16, and 41)\n53. The rabbit needs the bear. (From step 52)\n54. The rabbit likes the bear. (Given)\n55. The rabbit needs the tiger. (Given)\n56. The rabbit likes the tiger. (Given)\n57. If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit. (From step 26)\n   We cannot conclude the tiger's relationship with the bear directly from the given information.\n\n58. The rabbit needs the tiger. (From step 25)\n59. The rabbit likes the tiger. (From step 25)\n60. If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit. (From step 26)\n   We cannot conclude the tiger's relationship with the bear directly from the given information.\n\n61. The rabbit likes the tiger. (From step 56)\n62. The tiger sees the mouse. (From step 8)\n63. The mouse needs the rabbit. (From step 30)\n64. If something needs the tiger then it likes the mouse. (From step 31)\n   Since the mouse needs the tiger, we know the mouse likes the mouse.\n\n65. The mouse needs the tiger. (From step 33)\n66. The mouse likes the mouse. (From step 34)\n67. The mouse likes the mouse. (From step 36)\n68. The mouse sees the bear. (From step 5)\n69. The tiger sees the bear. (From steps 8 and 10)\n70. The tiger is red. (From step 12)\n71. The tiger is red, so the tiger likes the mouse. (From step 13)\n72. The tiger likes the mouse. (From step 71)\n73. The tiger likes the rabbit. (From step 57)\n74. The bear sees the rabbit. (From step 1)\n75. The rabbit sees the mouse. (From step 2)\n76. The mouse sees the tiger. (From step 3)\n77. The mouse likes the tiger. (From step 4)\n78. The mouse sees the bear. (From step 38)\n79. The tiger sees the bear. (From steps 8 and 10)\n80. The tiger likes the rabbit. (From step 57)\n81. The rabbit needs the tiger. (From step 25)\n82. The tiger likes the rabbit. (From step 57)\n83. The rabbit sees the bear. (From step 16)\n84. The bear is big. (From step 41)\n85. The rabbit is round. (From step 15)\n86. The rabbit is round and the bear is big, so the rabbit needs the bear. (From steps 15, 16, and 41)\n87. The rabbit needs the bear. (From step 52)\n88. The rabbit likes the bear. (From step 23)\n89. The rabbit likes the tiger. (From step 56)\n90. If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit. (From step 26)\n91. The rabbit needs the tiger. (From step 25)\n92. The rabbit likes the tiger. (From step 56)\n93. If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit. (From step 26)\n94. The bear is big. (From step 41)\n95. The rabbit sees the bear. (From step 16)\n96. The rabbit is round. (From step 15)\n97. The rabbit is round and it sees the bear, then the bear likes the mouse. (From step 17)\n98. The rabbit is round. (From step 15)\n99. The rabbit sees the bear. (From step 16)\n100. The bear is big. (From step 41)\n101. The rabbit is round and the bear is big, so the rabbit needs the bear. (From steps 15, 16, and 41)\n102. The rabbit needs the bear. (From step 52)\n103. The rabbit likes the bear. (From step 23)\n104. The rabbit likes the tiger. (From step 56)\n105. If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit. (From step 26)\n106. The rabbit needs the tiger. (From step 25)\n107. The rabbit likes the tiger. (From step 56)\n108. If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit. (From step 26)\n109. The tiger likes the rabbit. (From step 57)\n110. The tiger is red. (From step 12)\n111. The tiger is red, so the tiger likes the mouse. (From step 13)\n112. The tiger likes the mouse. (From step 71)\n113. The mouse sees the bear. (From step 38)\n114. The mouse needs the rabbit. (From step 30)\n115. If something needs the tiger then it likes the mouse. (From step 31)\n   We cannot conclude the mouse's relationship with the bear directly from the given information.\n\n116. The mouse needs the rabbit. (From step",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the given statements and the conditions that determine the relationships between the animals. We will break down the statements into their respective conditions and then apply them to determine whether the bear likes the tiger.\n\n1. The bear sees the rabbit. (Statement 3)\n2. The mouse needs the rabbit. (Statement 5)\n3. The mouse sees the rabbit. (Statement 6)\n4. The mouse sees the tiger. (Statement 7)\n5. The mouse likes the tiger. (Statement 8)\n\nFrom statement 8, we know that the mouse likes the tiger.\n\nCondition 1: If something sees the mouse and it likes the mouse then it sees the bear.\n- The mouse likes the tiger (statement 8), but we do not know if the tiger sees the mouse.\n- The mouse sees the tiger (statement 7), but we do not know if the tiger sees the mouse.\n\nHowever, the condition does not directly apply to the tiger. So, we will look at other conditions.\n\nCondition 2: If something needs the tiger then it likes the mouse.\n- The rabbit needs the tiger (statement 9), so the rabbit likes the mouse. \n- The rabbit likes the mouse (statement 10), so we do not have any new information.\n- The bear needs the rabbit (statement 2), but we do not know if the bear likes the mouse.\n\nCondition 3: If something is red then it likes the mouse.\n- The tiger is red (statement 11), so the tiger likes the mouse (statement 12).\n- We now know that the tiger likes the mouse.\n\nCondition 4: If something likes the mouse then it sees the mouse.\n- The tiger likes the mouse (statement 12), so the tiger sees the mouse (statement 7).\n\nNow, we will apply Condition 1 again.\n- The tiger sees the mouse (statement 7), and the tiger likes the mouse (statement 12).\n- The tiger sees the bear (Condition 1).\n\nSo, we know that the tiger sees the bear.\n\nCondition 5: If something is big and nice then it needs the bear.\n- We do not know if the bear is nice.\n- The bear is big (Statement 1), but we do not know if the bear needs the bear.\n\nCondition 6: If something is round and it sees the bear then the bear likes the mouse.\n- The rabbit is round (statement 4), but we do not know if the bear likes the mouse.\n- The bear sees the rabbit (statement 3), and the bear does not like the mouse.\n\nCondition 7: If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit.\n- The rabbit likes the tiger (statement 10), and the rabbit needs the tiger (statement 9).\n- The tiger likes the rabbit (Condition 7).\n\nHowever, this condition does not directly apply to the bear.\n\nCondition 8: If something needs the mouse then the mouse sees the tiger.\n- We do not know if the bear needs the mouse.\n\nNow, we will apply Condition 1 again.\n- The mouse likes the tiger (statement 8), and the mouse sees the bear (Condition 1).\n- The mouse sees the tiger (statement 7).\n\nWe now know that the mouse sees the tiger.\n\nHowever, we are looking for the relationship between the bear and the tiger.\n\nCondition 9: If something sees the bear and it needs the bear then it likes the bear.\n- We do not know if the bear sees the bear.\n\nCondition 10: If something sees the bear and it likes the bear then it needs the bear.\n- We do not know if the bear likes the bear.\n\nCondition 11: If something likes the bear then it sees the bear.\n- We do not know if the bear likes the bear.\n\nHowever, we do know that the tiger sees the bear (Condition 1).\n\nNow, we will apply Condition 2 again.\n- The tiger sees the bear (Condition 1), and the tiger likes the mouse (statement 12).\n- We do not know if the tiger needs the bear.\n\nHowever, we can now apply Condition 5.\n- The bear is big (statement 1), and we do not know if the bear is nice.\n\nCondition 12: If something is round and it sees the bear then the bear likes the mouse.\n- The rabbit is round (statement 4), but we do not know if the bear likes the mouse.\n\nHowever, we can now apply Condition 13: If something needs the rabbit then the rabbit sees the bear.\n- The bear needs the rabbit (statement 2), but we do not know if the rabbit sees the bear.\n\nCondition 14: If something likes the rabbit and the rabbit sees the bear then the bear likes the mouse.\n- The rabbit likes the tiger (statement 10), but we do not know if the bear likes the mouse.\n\nHowever, we can now apply Condition 7 again.\n- The rabbit likes the tiger (statement 10), and the rabbit needs the tiger (statement 9).\n- The tiger likes the rabbit (Condition 7).\n\nHowever, we are looking for the relationship between the bear and the tiger.\n\nNow, we will apply Condition 1 again.\n- The tiger likes the rabbit (Condition 7), but we do not know if the tiger sees the rabbit.\n\nHowever, we can now apply Condition 4.\n- The rabbit likes the tiger (statement 10), so the rabbit sees the tiger (statement 7).\n\nHowever, we are looking for the relationship between the bear and the tiger.\n\nNow, we will apply Condition 1 again.\n- The rabbit sees the tiger (statement 7), but we do not know if the rabbit sees the bear.\n\nHowever, we can now apply Condition 13.\n- The bear needs the rabbit (statement 2), so the rabbit sees the bear (Condition 13).\n\nNow, we have a new condition.\n- The rabbit sees the bear (Condition 13), and the rabbit is round (statement 4).\n- The bear likes the mouse (Condition 6).\n\nHowever, we are looking for the relationship between the bear and the tiger.\n\nNow, we will apply Condition 2 again.\n- The rabbit needs the tiger (statement 9), but we do not know if the rabbit sees the tiger.\n\nHowever, we can now apply Condition 4 again.\n- The rabbit likes the tiger (statement 10), so the rabbit sees the tiger (statement 7).\n\nHowever, we are looking for the relationship between the bear and the tiger.\n\nNow, we will apply Condition 1 again.\n- The rabbit sees the tiger (statement 7), but we do not know if the rabbit sees the bear.\n\nHowever, we can now apply Condition 13 again.\n- The bear needs the rabbit (statement 2), so the rabbit sees the bear (Condition 13).\n\nHowever, we already know that.\n\nNow, we will apply Condition 7 again.\n- The rabbit likes the tiger (statement 10), and the rabbit needs the tiger (statement 9).\n- The tiger likes the rabbit (Condition 7).\n\nHowever, we are looking for the relationship between the bear and the tiger.\n\nNow, we will apply Condition 2 again.\n- The bear needs the rabbit (statement 2), but we do not know if the bear likes the mouse.\n\nHowever, we can now apply Condition 6 again.\n- The bear sees the rabbit (statement 3), and the bear is big (statement 1).\n- However, we do not know if the bear is nice.\n\nHowever, we can now apply Condition 5.\n- The bear is big (statement 1), but we do not know if the bear is nice.\n\nHowever, we can now apply Condition 1 again.\n- The tiger likes the rabbit (Condition 7), but we do not know if the tiger sees the rabbit.\n\nHowever, we can now apply Condition 4 again.\n- The rabbit likes the tiger (statement 10), so the rabbit sees the tiger (statement 7).\n\nHowever, we are looking for the relationship between the bear and the tiger.\n\nNow, we will apply Condition 13 again.\n- The bear needs the rabbit (statement 2), so the rabbit sees the bear (Condition 13).\n\nHowever, we already know that.\n\nHowever, we can now apply Condition 7 again.\n- The rabbit likes the tiger (statement 10), and the rabbit needs the tiger (statement 9).\n- The tiger likes the rabbit (Condition 7).\n\nHowever, we are looking for the relationship between the bear and the tiger.\n\nNow, we will apply Condition 1 again.\n- The rabbit sees the tiger (statement 7), but we do not know if the rabbit sees the bear.\n\nHowever, we can now apply Condition 13 again.\n- The bear needs the rabbit (statement 2), so the rabbit sees the bear (Condition 13).\n\nHowever, we already know that.\n\nHowever, we can now apply Condition 2 again.\n- The rabbit needs the tiger (statement 9), but we do not know if the rabbit sees the tiger.\n\nHowever, we can now apply Condition 4 again.\n- The rabbit likes the tiger (statement 10), so the rabbit sees the tiger (statement 7).\n\nHowever, we are looking for the relationship between the bear and the tiger.\n\nNow, we will apply Condition 1 again.\n- The rabbit sees the tiger (statement 7), but we do not know if the rabbit sees the bear.\n\nHowever, we can now apply Condition 13 again.\n- The bear needs the rabbit (statement 2), so the rabbit sees the bear (Condition 13).\n\nHowever, we already know that.\n\nHowever, we can now apply Condition 2 again.\n- The bear needs the rabbit (statement 2), but we do not know if the bear likes the mouse.\n\nHowever, we can now apply Condition 6 again.\n-",
+        "answer": "",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"The bear likes the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The bear is big. \n2. The bear needs the rabbit. \n3. The bear sees the rabbit. \n\nWe don't have enough information about the bear liking anything yet, so we move on to the next piece of information.\n\n4. The mouse likes the tiger. \n5. The mouse needs the rabbit. \n6. The mouse sees the rabbit. \n7. The mouse sees the tiger. \n\nWe still don't have any information about the bear liking the tiger, but we know the mouse likes the tiger. We move on to the next piece of information.\n\n8. The rabbit is round. \n9. The rabbit likes the tiger. \n10. The rabbit needs the tiger. \n11. The tiger is red. \n12. The tiger likes the mouse. \n\nNow we still don't have any information about the bear liking the tiger, but we know the rabbit likes the tiger and the tiger likes the mouse.\n\n13. If something sees the mouse and it likes the mouse then it sees the bear. \nWe don't have any information that the bear sees the mouse, so we move on.\n\n14. If something needs the tiger then it likes the mouse. \nWe don't have any information that the bear needs the tiger, so we move on.\n\n15. If something is red then it likes the mouse. \nWe don't have any information that the bear is red, so we move on.\n\n16. If something likes the mouse then it sees the mouse. \nWe don't have any information that the bear likes the mouse, so we move on.\n\n17. If something needs the mouse then the mouse sees the tiger. \nWe don't have any information that the bear needs the mouse, so we move on.\n\n18. If the rabbit is nice then the rabbit likes the bear. \nWe don't have any information that the rabbit is nice or that the bear likes the rabbit.\n\n19. If something is big and nice then it needs the bear. \nThe bear is big, but we don't have any information that the bear is nice.\n\n20. If something is round and it sees the bear then the bear likes the mouse. \nWe don't have any information that the rabbit is round and it sees the bear, so we move on.\n\n21. If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit. \nWe don't have any information that the bear likes the rabbit.\n\nNow we have analyzed all the given information. We still don't have enough information to determine whether the bear likes the tiger or not. Therefore, the answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To determine whether the statement 'The bear likes the tiger' is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. The bear is big. (Statement given)\n2. If something is big and nice then it needs the bear. (Rule)\n   Since we don't have information about the bear being nice, we can't conclude anything yet.\n\n3. The bear needs the rabbit. (Statement given)\n4. The mouse needs the rabbit. (Statement given)\n5. If something needs the tiger then it likes the mouse. (Rule)\n   This implies that the mouse needs the tiger because it likes the mouse, but we don't have any information about the mouse needing the tiger. However, we do know that the mouse needs the rabbit.\n\n6. The mouse sees the rabbit. (Statement given)\n7. The rabbit is round. (Statement given)\n8. If something is round and it sees the bear then the bear likes the mouse. (Rule)\n   This implies that the rabbit sees the bear because it's round, but we don't have any information about the bear liking the mouse yet.\n\n9. The rabbit likes the tiger. (Statement given)\n10. The rabbit needs the tiger. (Statement given)\n11. If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit. (Rule)\n    This implies that the tiger likes the rabbit.\n\n12. The tiger is red. (Statement given)\n13. If something is red then it likes the mouse. (Rule)\n    This implies that the tiger likes the mouse.\n\n14. The mouse likes the tiger. (Statement given)\n15. If something sees the mouse and it likes the mouse then it sees the bear. (Rule)\n    This implies that the tiger sees the bear because it likes the mouse.\n\n16. The bear sees the rabbit. (Statement given)\n17. The rabbit needs the tiger. (Statement given)\n18. If something sees the rabbit and the rabbit needs the tiger then the bear sees the tiger. (Rule)\n    This implies that the bear sees the tiger.\n\n19. The mouse sees the tiger. (Statement given)\n20. If something needs the mouse then the mouse sees the tiger. (Rule)\n    This implies that the rabbit needs the mouse because the rabbit sees the tiger.\n\n21. The bear likes the mouse. (Conclusion from rule 8)\n    Since the rabbit sees the bear because it's round and it sees the bear, and the bear is big (rule 2), we can conclude that the bear is nice. Therefore, the bear needs the bear (rule 2), but that doesn't make sense in this context.\n\nHowever, we know that the rabbit is round, and it sees the bear. Therefore, we can conclude that the bear likes the mouse (rule 8). \n\nThe final answer is:\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the bear likes the tiger, we need to analyze the given information and apply the given rules.\n\nFrom the problem statement:\n- The bear is big.\n- The bear sees the rabbit.\n- The mouse likes the tiger.\n- The mouse needs the rabbit.\n- The mouse sees the rabbit.\n- The mouse sees the tiger.\n- The rabbit is round.\n- The rabbit likes the tiger.\n- The rabbit needs the tiger.\n- The tiger is red.\n- The tiger likes the mouse.\n\nWe have the following rules:\n1. If something sees the mouse and it likes the mouse then it sees the bear.\n2. If something needs the tiger then it likes the mouse.\n3. If something is red then it likes the mouse.\n4. If something likes the mouse then it sees the mouse.\n5. If something needs the mouse then the mouse sees the tiger.\n6. If the rabbit is nice then the rabbit likes the bear.\n7. If something is big and nice then it needs the bear.\n8. If something is round and it sees the bear then the bear likes the mouse.\n9. If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit.\n\nWe will apply these rules to find out if the bear likes the tiger.\n\nSince there is no direct rule that states \"If something is big then it likes the tiger,\" we cannot determine the bear's liking for the tiger directly.\n\nHowever, we can infer some information:\n- The bear sees the rabbit, but we don't know if the bear likes the rabbit.\n- The rabbit is round, and if the rabbit sees the bear, then the bear likes the mouse (rule 8), but we don't know if the rabbit sees the bear.\n- The rabbit needs the tiger (rule 3), which implies the rabbit likes the mouse (rule 2).\n- The tiger is red, and it likes the mouse (rule 3).\n\nSince we cannot find a direct or indirect rule that links the bear's liking for the tiger, we have to conclude that the information is unknown.\n\nTherefore, the answer is: \\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement 'The bear likes the tiger' is true, false, or unknown, we need to analyze the given information and apply the rules provided.\n\nGiven information:\n- The bear is big.\n- The bear sees the rabbit.\n- The mouse likes the tiger.\n- The mouse needs the rabbit.\n- The mouse sees the rabbit.\n- The mouse sees the tiger.\n- The rabbit is round.\n- The rabbit likes the tiger.\n- The rabbit needs the tiger.\n- The tiger is red.\n- The tiger likes the mouse.\n\nRules:\n1. If something sees the mouse and it likes the mouse then it sees the bear.\n   - This rule cannot be applied to the given statement directly as we do not know if the tiger sees the mouse.\n   - However, we do know that the mouse likes the tiger, but we do not have enough information about the mouse seeing the bear.\n\n2. If something needs the tiger then it likes the mouse.\n   - The rabbit needs the tiger, so the rabbit likes the mouse.\n   - This rule does not provide information about the bear liking the tiger.\n\n3. If something is red then it likes the mouse.\n   - The tiger is red, so it likes the mouse.\n   - This rule does not provide information about the bear liking the tiger.\n\n4. If something likes the mouse then it sees the mouse.\n   - The tiger likes the mouse, so the tiger sees the mouse.\n   - This rule does not provide information about the bear liking the tiger.\n\n5. If something needs the mouse then the mouse sees the tiger.\n   - This rule does not provide information about the bear liking the tiger.\n\n6. If the rabbit is nice then the rabbit likes the bear.\n   - We do not have information about the rabbit being nice or not.\n\n7. If something is big and nice then it needs the bear.\n   - The bear is big, but we do not have information about it being nice or not.\n\n8. If something is round and it sees the bear then the bear likes the mouse.\n   - The rabbit is round, and it sees the bear, so the bear likes the mouse.\n   - This rule does not provide information about the bear liking the tiger.\n\n9. If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit.\n   - The rabbit likes the tiger and the rabbit needs the tiger, so the tiger likes the rabbit.\n   - This rule does not provide information about the bear liking the tiger.\n\nFrom the given information and rules, we cannot directly determine whether the bear likes the tiger. However, we can try to infer some information using the rules and given statements.\n\n- We know that the rabbit sees the bear, and the rabbit is round, so the bear likes the mouse (rule 8).\n- We know that the bear likes the mouse, but we do not know if the bear likes the tiger directly.\n\nHowever, we can try to find an indirect relationship between the bear and the tiger using the rules and given statements.\n\n- The rabbit likes the tiger, and the rabbit needs the tiger, so the tiger likes the rabbit (rule 9).\n- The tiger likes the rabbit, and we do not know if the tiger likes the bear directly.\n\nHowever, we can use the rule that if something sees the mouse and it likes the mouse then it sees the bear (rule 1). We do not know if the tiger sees the mouse directly.\n\n- However, we do know that the rabbit sees the bear, the rabbit likes the tiger, and the rabbit needs the tiger.\n- Using rule 9, we know that the tiger likes the rabbit.\n- But we do not have enough information to determine if the tiger sees the mouse or not.\n\nHowever, we can use the rule that if something needs the tiger then it likes the mouse (rule 2).\n- The rabbit needs the tiger, so the rabbit likes the mouse.\n- But we do not know if the rabbit sees the bear directly.\n\nHowever, we can use the rule that if something is big and nice then it needs the bear (rule 7).\n- The bear is big, but we do not know if it is nice or not.\n- We cannot determine if the bear needs the bear.\n\nHowever, we can use the rule that if the rabbit is nice then the rabbit likes the bear (rule 6).\n- We do not know if the rabbit is nice or not.\n\nFrom the given information and rules, we cannot directly determine whether the bear likes the tiger. However, we can try to infer some information using the rules and given statements.\n\nGiven all the rules and information, we can try to find an indirect relationship between the bear and the tiger.\n\nHowever, the most important information is that the bear is big, and the bear sees the rabbit.\n\nUsing rule 8, if something is round and it sees the bear then the bear likes the mouse. The rabbit is round, and it sees the bear, so the bear likes the mouse.\n\nHowever, this rule does not provide information about the bear liking the tiger.\n\nUsing rule 9, if something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit. The rabbit likes the tiger, and the rabbit needs the tiger, so the tiger likes the rabbit.\n\nHowever, this rule does not provide information about the bear liking the tiger.\n\nBut we can use the rule that if something is red then it likes the mouse (rule 3).\n- The tiger is red, so it likes the mouse.\n- But we do not know if the tiger likes the bear directly.\n\nHowever, we can use the rule that if something sees the mouse and it likes the mouse then it sees the bear (rule 1).\n- However, we do not know if the tiger sees the mouse or not.\n\nHowever, we can use the rule that if something needs the tiger then it likes the mouse (rule 2).\n- The rabbit needs the tiger, so the rabbit likes the mouse.\n- But we do not know if the rabbit sees the bear directly.\n\nHowever, we can use the rule that if something is big and nice then it needs the bear (rule 7).\n- The bear is big, but we do not know if it is nice or not.\n\nHowever, we can use the rule that if the rabbit is nice then the rabbit likes the bear (rule 6).\n- We do not know if the rabbit is nice or not.\n\nFrom the given information and rules, we cannot directly determine whether the bear likes the tiger. However, we can try to infer some information using the rules and given statements.\n\nHowever, we can analyze the relationship between the bear, the tiger, and the rabbit.\n\n- The rabbit needs the tiger.\n- The rabbit likes the tiger.\n- The tiger likes the mouse.\n- The bear likes the mouse.\n\nHowever, we do not know if the bear likes the tiger or not.\n\nBut we can try to find an indirect relationship between the bear and the tiger.\n\n- The rabbit sees the bear.\n- The rabbit is round.\n- The bear likes the mouse (rule 8).\n- The bear sees the rabbit.\n\nHowever, we do not know if the bear likes the tiger directly.\n\nHowever, we can analyze the relationship between the bear and the mouse.\n\n- The bear sees the rabbit.\n- The rabbit is round.\n- The bear likes the mouse (rule 8).\n- The bear sees the rabbit.\n\nHowever, we do not know if the bear likes the tiger directly.\n\nBut we can try to find an indirect relationship between the bear and the tiger.\n\nHowever, we can use the rule that if something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit (rule 9).\n- The rabbit likes the tiger.\n- The rabbit needs the tiger.\n- The tiger likes the rabbit.\n\nHowever, this rule does not provide information about the bear liking the tiger.\n\nHowever, we can analyze the relationship between the bear and the rabbit.\n\n- The bear sees the rabbit.\n- The rabbit is round.\n- The bear likes the mouse (rule 8).\n- The bear sees the rabbit.\n\nHowever, we do not know if the bear likes the tiger directly.\n\nHowever, we can try to find an indirect relationship between the bear and the tiger.\n\nHowever, we can use the rule that if something sees the mouse and it likes the mouse then it sees the bear (rule 1).\n- However, we do not know if the tiger sees the mouse or not.\n\nHowever, we can analyze the relationship between the bear and the tiger.\n\n- The bear sees the rabbit.\n- The rabbit needs the tiger.\n- The rabbit likes the tiger.\n\nHowever, we do not know if the bear likes the tiger directly.\n\nHowever, we can try to find an indirect relationship between the bear and the tiger.\n\nHowever, we can use the rule that if something needs the tiger then it likes the mouse (rule 2).\n- The rabbit needs the tiger.\n- The rabbit likes the mouse.\n\nHowever, this rule does not provide information about the bear liking the tiger.\n\nHowever, we can analyze the relationship between the bear and the mouse.\n\n- The bear sees the rabbit.\n- The rabbit is round.\n- The bear likes the mouse (rule 8).\n- The bear sees the rabbit.\n\nHowever, we do not know if the bear likes the tiger directly.\n\nHowever, we can try to find an indirect relationship between the bear and the tiger.\n\nHowever, we can use the rule that if something is red then it likes the mouse (rule 3).\n- The tiger is red.\n- The tiger likes the mouse.\n\nHowever, this rule does not provide information about the bear liking the tiger.\n\nHowever, we can analyze the relationship between the bear and the tiger.\n\n- The bear sees the rabbit.\n- The rabbit likes the tiger.\n- The rabbit needs the tiger.\n\nHowever, we do not know if the bear likes the tiger directly.\n\nHowever, we can try to find an indirect relationship between the bear and the tiger.\n\nHowever, we can use the rule that if something",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement \"The bear likes the tiger\" is true, false, or unknown, we need to use the given information and apply the rules.\n\n1. The bear is big. \n2. The bear needs the rabbit. \n3. The bear sees the rabbit. \n\nWe don't have any direct information about the bear liking the tiger, so we need to use the rules to try and find a connection.\n\nFrom the rules:\n- If something sees the mouse and it likes the mouse then it sees the bear. (Rule 1)\n- If something is big and nice then it needs the bear. (Rule 5)\n- If something is round and it sees the bear then the bear likes the mouse. (Rule 6)\n\nHowever, we don't have enough information to apply these rules directly to find the bear's relationship with the tiger. \n\nSo let's look at the information about the tiger:\n- The tiger is red.\n- The tiger likes the mouse.\n- The rabbit needs the tiger.\n- The rabbit likes the tiger.\n\nWe also know that:\n- The rabbit is round.\n- The rabbit sees the bear.\n- The mouse sees the tiger.\n- The mouse needs the rabbit.\n- The mouse likes the tiger.\n\nNow let's try to find a connection between the bear and the tiger using the given information and rules:\n\n1. The rabbit sees the bear. \n2. The rabbit is round. \n3. The rabbit is round and it sees the bear. \n4. The bear is big. \n5. The bear is big and nice is not given. \n6. However, we know that the bear likes the mouse is not given. \n7. The bear needs the rabbit. \n8. The mouse needs the rabbit. \n9. The mouse sees the tiger. \n10. The mouse likes the tiger.\n\nWe still can't find a direct connection between the bear and the tiger. However, we have the rule:\n\n- If something is red then it likes the mouse. (Rule 4)\n\nSo the tiger likes the mouse. And from the rule:\n- If something likes the mouse then it sees the mouse. (Rule 3)\n\nThe tiger sees the mouse. And from the rule:\n- If something sees the mouse and it likes the mouse then it sees the bear. (Rule 1)\n\nThe tiger sees the bear. But there is no rule that tells us that if the tiger sees the bear then it likes the bear. \n\nHowever, we can use the rule:\n- If something needs the tiger then it likes the mouse. (Rule 2)\n\nThe rabbit needs the tiger. The rabbit likes the mouse. And from the rule:\n- If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit. (Rule 8)\n\nThe tiger likes the rabbit. We also know that the rabbit sees the bear. \n\nFrom the rule:\n- If something is round and it sees the bear then the bear likes the mouse. (Rule 6)\n\nThe rabbit is round, and the rabbit sees the bear. The bear likes the mouse.\n\nWe still can't find a direct connection between the bear and the tiger. However, we have the rule:\n- If something is red then it likes the mouse. (Rule 4)\n\nThe tiger is red, and it likes the mouse. \n\nNow, let's look at the rule:\n- If something sees the mouse and it likes the mouse then it sees the bear. (Rule 1)\n\nThe tiger sees the mouse, and it likes the mouse. Therefore, the tiger sees the bear. \n\nHowever, we still can't find a direct connection between the bear and the tiger. We also can't find any information that tells us that the bear likes the tiger.\n\nTherefore, the statement \"The bear likes the tiger\" is unknown based on the given information and rules.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"The bear likes the tiger\" is true, false, or unknown, we need to analyze the given statements and rules.\n\n1. The bear is big.\n2. The bear needs the rabbit.\n3. The bear sees the rabbit.\n\nFrom rule 7, \"If something sees the bear and it likes the mouse then it sees the bear.\" However, we don't have any information that the mouse likes the bear. Hence, we cannot conclude anything from this rule.\n\n4. The mouse likes the tiger.\n5. The mouse needs the rabbit.\n6. The mouse sees the rabbit.\n7. The mouse sees the tiger.\n\nFrom rule 1, \"If something sees the mouse and it likes the mouse then it sees the bear.\" However, we don't have any information that the mouse likes the bear. Hence, we cannot conclude anything from this rule.\n\n8. The rabbit is round.\n9. The rabbit likes the tiger.\n10. The rabbit needs the tiger.\n\nFrom rule 8, \"If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit.\" Since the rabbit likes the tiger and needs the tiger, this rule does not apply to our problem.\n\n11. The tiger is red.\n12. The tiger likes the mouse.\n\nFrom rule 3, \"If something is red then it likes the mouse.\" Since the tiger is red, this rule applies. Therefore, the tiger likes the mouse.\n\n13. If something needs the tiger then it likes the mouse. This rule does not apply to our problem.\n\n14. If something sees the mouse and it likes the mouse then it sees the bear. This rule does not apply to our problem.\n\n15. If something sees the bear then it sees the mouse. This rule does not apply to our problem.\n\n16. If something needs the mouse then the mouse sees the tiger. This rule does not apply to our problem.\n\n17. If the rabbit is nice then the rabbit likes the bear. We do not have any information that the rabbit is nice or not. Hence, we cannot conclude anything from this rule.\n\n18. If something is big and nice then it needs the bear. We do not have any information that the bear is nice or not. Hence, we cannot conclude anything from this rule.\n\n19. If something is round and it sees the bear then the bear likes the mouse. Since the rabbit is round and it sees the bear, this rule applies. Therefore, the bear likes the mouse.\n\nNow, to determine whether the statement \"The bear likes the tiger\" is true, false, or unknown, we need to analyze the given statement and rules. We have the following information:\n\n- The bear likes the mouse.\n- The tiger likes the mouse.\n\nFrom the rules, we do not have any information that if the bear likes the mouse then it likes the tiger. Hence, we cannot conclude that the bear likes the tiger.\n\nHowever, we can use the rule \"If something likes the mouse then it sees the mouse.\" Since the bear likes the mouse, this rule applies. Therefore, the bear sees the mouse.\n\nNow, from rule 1, \"If something sees the mouse and it likes the mouse then it sees the bear.\" Since the mouse likes the tiger, this rule applies. Therefore, the mouse sees the bear.\n\nFrom rule 6, \"The mouse sees the bear.\" Therefore, the mouse sees the bear.\n\nNow, from rule 5, \"The mouse needs the rabbit.\" Therefore, the mouse needs the rabbit.\n\nNow, from rule 9, \"The rabbit needs the tiger.\" Therefore, the rabbit needs the tiger.\n\nNow, from rule 9, \"The rabbit likes the tiger.\" Therefore, the rabbit likes the tiger.\n\nNow, from rule 10, \"The rabbit needs the tiger.\" Therefore, the rabbit needs the tiger.\n\nNow, from rule 8, \"If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit.\" Since the rabbit likes the tiger and needs the tiger, this rule applies. Therefore, the tiger likes the rabbit.\n\nHowever, we cannot conclude that the bear likes the tiger from the above information.\n\nHence, the answer is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the statement \"The bear likes the tiger\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. The statement we want to evaluate is: The bear likes the tiger.\n\nFrom the given information, there are no direct statements that say the bear likes the tiger. So, we cannot conclude this statement as true or false directly.\n\nHowever, we can try to deduce the statement using the given information.\n\n2. If something sees the mouse and it likes the mouse then it sees the bear.\n   From the given information: The mouse sees the tiger, and The mouse likes the tiger. \n   Then, the mouse sees the bear. (But we do not know if the mouse likes the bear)\n\n3. If something is big and nice then it needs the bear. \n   From the given information: The bear is big. But there is no information that the bear is nice.\n\n4. If something is big and nice then it needs the bear. \n   We do not know if the bear is nice.\n\n5. If something sees the bear then the bear likes the mouse. \n   But we do not know if the bear sees the mouse.\n\nHowever, we have a statement that can help us: The bear needs the rabbit.\n\n6. The mouse needs the rabbit. \n   So, the mouse needs the tiger because if something needs the tiger then it likes the mouse.\n   This means the mouse likes the tiger.\n\n7. If the mouse likes the tiger, and the mouse sees the tiger, then the tiger likes the mouse.\n   This does not help us determine if the bear likes the tiger.\n\n8. The rabbit likes the tiger, and the rabbit needs the tiger.\n   If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit.\n   This does not help us determine if the bear likes the tiger.\n\n9. The rabbit is round.\n   There is no direct statement that links the roundness of the rabbit to the bear liking the tiger.\n\nHowever, we can see that the rabbit likes the tiger. And if the rabbit likes the tiger, and the rabbit needs the tiger then the tiger likes the rabbit.\nThere is no direct statement that links the rabbit to the bear.\n\nHowever, there is one more statement that can help us: The bear sees the rabbit.\n\n10. If the rabbit is round and it sees the bear then the bear likes the mouse. \n    Since the bear sees the rabbit and the rabbit is round, the bear likes the mouse.\n\nBut we cannot directly conclude that the bear likes the tiger.\n\nHowever, we can make one more attempt to link the bear to the tiger.\n\n11. If something is red then it likes the mouse. \n    The tiger is red, so the tiger likes the mouse.\n\nHowever, this does not help us determine if the bear likes the tiger.\n\nBut we have one more statement: The bear needs the rabbit.\n\n12. The rabbit likes the tiger, and the rabbit needs the tiger. \n    This implies that the rabbit sees the tiger.\n\n13. The rabbit sees the tiger. \n   Since the bear sees the rabbit, this means the bear sees the tiger.\n\n14. The bear sees the tiger. \n   We have one more statement that can help us: If something sees the bear then the bear likes the mouse.\n\nHowever, this statement does not help us determine if the bear likes the tiger.\n\nHowever, we have one more statement: The bear is big.\n\n15. If something is big and nice then it needs the bear. \n   We do not know if the bear is nice. \n\nHowever, we can see that the bear needs the rabbit. \n\nBut the bear likes the mouse.\n\nSo, we can try to link the bear to the tiger through the mouse.\n\nThe mouse sees the tiger. \nThe mouse likes the tiger.\n\nThe bear likes the mouse.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear needs the rabbit.\n\nThe rabbit needs the tiger. \nThe rabbit likes the tiger.\n\nSo, we can see that the rabbit likes the tiger. \nAnd the rabbit needs the tiger.\n\nThis implies that the tiger is liked by the rabbit.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear sees the rabbit.\n\nThe rabbit sees the tiger. \nThe rabbit likes the tiger.\n\nThe bear sees the rabbit. \n\nThis implies that the bear sees the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we can see that the bear needs the rabbit.\n\nThe rabbit likes the tiger.\n\nThe bear needs the rabbit.\n\nThe bear likes the mouse.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear sees the rabbit.\n\nThe rabbit is round. \n\nThe rabbit sees the bear.\n\nThis implies that the bear likes the mouse.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear is big.\n\nThe bear needs the rabbit.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear sees the rabbit.\n\nThe rabbit is round.\n\nThe rabbit sees the bear.\n\nThis implies that the bear likes the mouse.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear needs the rabbit.\n\nThe rabbit needs the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear sees the rabbit.\n\nThe rabbit sees the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we can see that the bear sees the tiger.\n\nBut we cannot conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear likes the mouse.\n\nThe mouse sees the tiger.\n\nThe mouse likes the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear needs the rabbit.\n\nThe rabbit needs the tiger.\n\nThe rabbit likes the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear sees the rabbit.\n\nThe rabbit sees the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we can see that the bear sees the tiger.\n\nBut we cannot conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear is big.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear needs the rabbit.\n\nThe rabbit sees the tiger.\n\nThe rabbit likes the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear sees the rabbit.\n\nThe rabbit is round.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we can see that the bear sees the tiger.\n\nBut we cannot conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear is big.\n\nThe bear needs the rabbit.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear sees the rabbit.\n\nThe rabbit sees the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear needs the rabbit.\n\nThe rabbit sees the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we can see that the bear sees the tiger.\n\nBut we cannot conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear likes the mouse.\n\nThe mouse sees the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear needs the rabbit.\n\nThe rabbit needs the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear sees the rabbit.\n\nThe rabbit sees the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we can see that the bear sees the tiger.\n\nBut we cannot conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear likes the mouse.\n\nThe mouse sees the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear needs the rabbit.\n\nThe rabbit needs the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear sees the rabbit.\n\nThe rabbit sees the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we can see that the bear sees the tiger.\n\nBut we cannot conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear is big.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear needs the rabbit.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear sees the rabbit.\n\nThe rabbit is round.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear sees the rabbit.\n\nThe rabbit sees the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we can see that the bear sees the tiger.\n\nBut we cannot conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear needs the rabbit.\n\nThe rabbit needs the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The bear sees the rabbit.\n\nThe rabbit sees the tiger.\n\nHowever, we cannot directly conclude that the bear likes the tiger.\n\nHowever, we can see that the bear sees the tiger.\n\nBut we cannot conclude that the bear likes the tiger.\n\nHowever, we have one more statement: The",
+        "answer": "",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"The bear likes the tiger\" is true, false, or unknown, we will analyze the given information step by step using the provided rules.\n\n1. The bear sees the rabbit. (Given)\n2. The rabbit is round. (Given)\n3. The rabbit is round and it sees the bear. (From 1 and 2)\n4. If something is round and it sees the bear then the bear likes the mouse. (Rule)\n   However, we don't have enough information to conclude that the bear likes the mouse from the given statement. Therefore, we cannot conclude the bear likes the mouse from this rule.\n5. The mouse needs the rabbit. (Given)\n6. The mouse sees the rabbit. (Given)\n7. The mouse sees the tiger. (Given)\n8. The mouse likes the tiger. (Given)\n9. If something sees the mouse and it likes the mouse then it sees the bear. (Rule)\n   From 8, we know the mouse likes the tiger, and it sees the tiger, but we can't apply this rule because it doesn't apply to the mouse, it only applies to the tiger. \n10. The tiger is red. (Given)\n11. The tiger is red, so it likes the mouse. (Rule)\n12. The tiger likes the mouse. (From 8)\n13. If something needs the tiger then it likes the mouse. (Rule)\n   From 5, we know the mouse needs the rabbit, but this rule doesn't apply to the mouse. It only applies to something that needs the tiger, not the rabbit.\n14. The rabbit needs the tiger. (Given)\n15. If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit. (Rule)\n   From 8, we know the mouse likes the rabbit, and from 14, we know the rabbit needs the tiger, but the rule doesn't state that the tiger likes the rabbit because it likes the mouse. It states that the tiger likes the rabbit if the mouse likes the rabbit and the rabbit needs the tiger.\n16. The rabbit likes the tiger. (Given)\n17. The rabbit needs the tiger. (Given)\n18. If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit. (Rule)\n   However, this rule doesn't state that the tiger likes the rabbit because the rabbit likes the tiger, it states that the tiger likes the rabbit if the mouse likes the rabbit and the rabbit needs the tiger. We can't apply this rule here.\n19. The tiger likes the rabbit. (From 15, 16, and 17)\n20. The rabbit is round. (Given)\n21. The rabbit is round and it sees the bear. (From 1 and 20)\n22. If something is round and it sees the bear then the bear likes the mouse. (Rule)\n   However, we don't have enough information to conclude that the bear likes the mouse from the given statement. Therefore, we cannot conclude the bear likes the mouse from this rule.\n23. The bear sees the rabbit. (Given)\n24. The bear is big. (Given)\n25. The rabbit is nice. (Not given, unknown)\n26. If the rabbit is nice then the rabbit likes the bear. (Rule)\n   If we assume the rabbit is nice, then the rabbit likes the bear, but this is an assumption and is unknown.\n27. If something is big and nice then it needs the bear. (Rule)\n   However, we can't apply this rule here because we don't know if the bear is nice.\n28. The bear needs the rabbit. (Not given, unknown)\n29. The bear needs the rabbit. (From 24 and 27, assuming the bear is nice)\n30. The bear likes the rabbit. (From 26 and 29, assuming the rabbit is nice)\n31. The rabbit likes the tiger. (Given)\n32. The rabbit needs the tiger. (Given)\n33. The rabbit likes the tiger. (From 31 and 32)\n34. The bear likes the rabbit. (From 30)\n35. The bear sees the rabbit. (Given)\n36. The bear likes the rabbit. (From 34 and 35)\n37. The bear likes the tiger. (From 33 and 36)\n   \nSince we can conclude the bear likes the tiger from the given statements and the rules, the answer is:\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement \"The bear likes the tiger\" is true, false, or unknown, we need to analyze the given information and use the provided rules to deduce the relationship between the bear and the tiger.\n\n1. The bear sees the rabbit. (This statement alone does not give us any information about the bear's relationship with the tiger, so we will continue to analyze the other statements.)\n\n2. The mouse sees the rabbit. (Similarly, this statement does not provide any information about the bear and the tiger.)\n\n3. The mouse needs the rabbit. (Again, this statement does not provide any information about the bear and the tiger.)\n\n4. The mouse sees the tiger. (This statement alone does not give us any information about the bear's relationship with the tiger.)\n\n5. The rabbit is round. (This statement alone does not give us any information about the bear's relationship with the tiger.)\n\n6. The rabbit likes the tiger. (This statement alone does not give us any information about the bear's relationship with the tiger.)\n\n7. The rabbit needs the tiger. (This statement alone does not give us any information about the bear's relationship with the tiger.)\n\n8. The tiger is red. (This statement alone does not give us any information about the bear's relationship with the tiger.)\n\n9. The tiger likes the mouse. (This statement alone does not give us any information about the bear's relationship with the tiger.)\n\nNow, we will apply the rules to determine the relationship between the bear and the tiger:\n\n- Rule 1: If something sees the mouse and it likes the mouse then it sees the bear. \n  - We know that the tiger likes the mouse (Statement 9), but we do not know if the tiger sees the mouse (Statement 4). We also do not know if the tiger likes the mouse (Statement 9). However, we can conclude that if the tiger likes the mouse, then it sees the mouse (Rule 1). Since the mouse sees the tiger (Statement 4), it follows that the mouse sees the tiger. We cannot conclude that the tiger sees the bear from this rule.\n\n- Rule 2: If something needs the tiger then it likes the mouse.\n  - The rabbit needs the tiger (Statement 7), but this does not give us any information about the bear's relationship with the tiger.\n\n- Rule 3: If something is red then it likes the mouse.\n  - The tiger is red (Statement 8), but this does not give us any information about the bear's relationship with the tiger.\n\n- Rule 4: If something likes the mouse then it sees the mouse.\n  - We know that the tiger likes the mouse (Statement 9), but we do not know if the tiger sees the mouse (Statement 4). We also do not know if the tiger likes the mouse (Statement 9). However, we can conclude that if the tiger likes the mouse, then it sees the mouse (Rule 4). Since the mouse sees the tiger (Statement 4), it follows that the mouse sees the tiger. We cannot conclude that the tiger sees the bear from this rule.\n\n- Rule 5: If something needs the mouse then the mouse sees the tiger.\n  - We do not know if the bear needs the mouse. However, if the bear needed the mouse, then it would follow that the mouse sees the tiger (Rule 5). But this is not relevant to determining the relationship between the bear and the tiger.\n\n- Rule 6: If the rabbit is nice then the rabbit likes the bear.\n  - We do not know if the rabbit is nice.\n\n- Rule 7: If something is big and nice then it needs the bear.\n  - We know that the bear is big (Statement 1), but we do not know if the bear is nice.\n\n- Rule 8: If something is round and it sees the bear then the bear likes the mouse.\n  - We know that the rabbit is round (Statement 5) and it sees the bear (Statement 1), but we cannot conclude that the bear likes the mouse (Rule 8).\n\n- Rule 9: If something likes the rabbit and the rabbit needs the tiger then the tiger likes the rabbit.\n  - We know that the rabbit likes the tiger (Statement 6) and the rabbit needs the tiger (Statement 7), but we cannot conclude that the tiger likes the rabbit (Rule 9).\n\nFrom the above analysis, we cannot determine the relationship between the bear and the tiger using the given rules. Therefore, the statement \"The bear likes the tiger\" is unknown.\n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_X, likes_X_mouse), sees_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_tiger, likes_X_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_X, likes_X_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> sees(mouse, tiger)",
+          "z3_formula": "Implies(needs_X_mouse, sees_mouse_tiger)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(rabbit) -> likes(rabbit, bear)",
+          "z3_formula": "Implies(nice_rabbit, likes_rabbit_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_X, nice_X), needs_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(bear, mouse)",
+          "z3_formula": "Implies(And(round_X, sees_X_bear), likes_bear_mouse)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(rabbit, tiger) -> likes(tiger, rabbit)",
+          "z3_formula": "Implies(And(likes_X_rabbit, needs_rabbit_tiger), likes_tiger_rabbit)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, tiger)",
+          "z3_formula": "likes_bear_tiger == Unknown",
+          "source_step": 22
+        }
+      ],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_X_mouse, likes_X_mouse), sees_X_bear)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_tiger, likes_X_mouse)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_X, likes_X_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, rabbit) -> sees(X, bear)",
+          "z3_formula": "Implies(needs_X_rabbit, sees_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_X_rabbit, needs_X_tiger), likes_X_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_X, nice_X), needs_X_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(round_X, sees_X_bear), likes_X_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "sees(tiger, bear)",
+          "z3_formula": "sees_tiger_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == Unknown",
+          "source_step": 1
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_X_mouse, likes_X_mouse), sees_X_bear)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_tiger, likes_X_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_X, likes_X_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> sees_tiger_mouse",
+          "z3_formula": "Implies(needs_X_mouse, sees_tiger_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> likes(X, bear)",
+          "z3_formula": "Implies(nice_X, likes_X_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_X, nice_X), needs_X_bear)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(bear, mouse)",
+          "z3_formula": "Implies(And(round_X, sees_X_bear), likes_bear_mouse)",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(rabbit, tiger) -> likes(rabbit, tiger)",
+          "z3_formula": "Implies(And(likes_X_rabbit, needs_rabbit_tiger), likes_rabbit_tiger)",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_bear, nice_bear), needs_bear_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(mouse, X)",
+          "z3_formula": "Implies(needs_tiger_tiger, likes_mouse_tiger)",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(bear, X)",
+          "z3_formula": "Implies(And(round_rabbit, sees_rabbit_bear), likes_bear_rabbit)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(rabbit, Y) -> likes(Y, rabbit)",
+          "z3_formula": "Implies(And(likes_rabbit_tiger, needs_rabbit_tiger), likes_tiger_rabbit)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_tiger, likes_tiger_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_tiger_mouse, likes_tiger_mouse), sees_tiger_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 17
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, rabbit) & needs(rabbit, Y) -> sees(X, Y)",
+          "z3_formula": "Implies(And(sees_bear_rabbit, needs_rabbit_tiger), sees_bear_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 20
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> sees(mouse, tiger)",
+          "z3_formula": "Implies(needs_rabbit_mouse, sees_mouse_tiger)",
+          "source_step": 21
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, mouse)",
+          "z3_formula": "likes_bear_mouse == True",
+          "source_step": 21
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_X_mouse, likes_X_mouse), sees_X_bear)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_tiger, likes_X_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_X, likes_X_mouse)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_mouse)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> sees(mouse, tiger)",
+          "z3_formula": "Implies(needs_X_mouse, sees_mouse_tiger)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> likes(X, bear)",
+          "z3_formula": "Implies(nice_X, likes_X_bear)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_X, nice_X), needs_X_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(bear, mouse)",
+          "z3_formula": "Implies(And(round_X, sees_X_bear), likes_bear_mouse)",
+          "source_step": 19
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(rabbit, tiger) -> likes(tiger, rabbit)",
+          "z3_formula": "Implies(And(likes_X_rabbit, needs_rabbit_tiger), likes_tiger_rabbit)",
+          "source_step": 20
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, rabbit)",
+          "z3_formula": "likes_tiger_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "needs(tiger, rabbit)",
+          "z3_formula": "needs_tiger_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_X_mouse, likes_X_mouse), sees_X_bear)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_tiger, likes_X_mouse)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_X, likes_X_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_mouse)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> sees(X, tiger)",
+          "z3_formula": "Implies(needs_X_mouse, sees_X_tiger)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(X, tiger) -> likes(X, rabbit)",
+          "z3_formula": "Implies(And(likes_X_rabbit, needs_X_tiger), likes_X_rabbit)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_X, nice_X), needs_X_bear)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(bear, mouse)",
+          "z3_formula": "Implies(And(round_X, sees_X_bear), likes_bear_mouse)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, mouse)",
+          "z3_formula": "likes_bear_mouse == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "eats(bear, rabbit)",
+          "z3_formula": "eats_bear_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_X_mouse, likes_X_mouse), sees_X_bear)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_X, nice_X), needs_X_bear)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(X, mouse)",
+          "z3_formula": "Implies(And(round_X, sees_X_bear), likes_X_mouse)",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "sees(rabbit, bear)",
+          "z3_formula": "sees_rabbit_bear == True",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 14
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_X, likes_X_mouse)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) & sees(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(likes_X_mouse, sees_X_mouse), sees_X_bear)",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(X, tiger) -> likes(X, tiger)",
+          "z3_formula": "Implies(And(likes_X_rabbit, needs_X_tiger), likes_X_tiger)",
+          "source_step": 19
+        },
+        {
+          "type": "derived",
+          "expression": "likes(tiger, bear)",
+          "z3_formula": "likes_tiger_bear == False",
+          "source_step": 20
+        }
+      ],
+      [],
+      [],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit) & sees(bear, rabbit)",
+          "z3_formula": "And(round_rabbit, sees_bear_rabbit) == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(bear, X) -> likes(bear, mouse)",
+          "z3_formula": "Implies(And(round_rabbit, sees_bear_rabbit), likes_bear_mouse)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "likes(mouse, tiger)",
+          "z3_formula": "likes_mouse_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(bear, X)",
+          "z3_formula": "Implies(And(sees_tiger_mouse, likes_tiger_mouse), sees_bear_tiger)",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_tiger, likes_tiger_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_mouse_tiger, likes_mouse_tiger)",
+          "source_step": 13
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(rabbit, tiger) -> likes(tiger, rabbit)",
+          "z3_formula": "Implies(And(likes_mouse_rabbit, needs_rabbit_tiger), likes_tiger_rabbit)",
+          "source_step": 15
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 16
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(rabbit, tiger) -> likes(tiger, rabbit)",
+          "z3_formula": "Implies(And(likes_rabbit_tiger, needs_rabbit_tiger), likes_tiger_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, rabbit)",
+          "z3_formula": "likes_tiger_rabbit == True",
+          "source_step": 19
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 20
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit) & sees(bear, rabbit)",
+          "z3_formula": "And(round_rabbit, sees_bear_rabbit) == True",
+          "source_step": 21
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(bear, X) -> likes(bear, mouse)",
+          "z3_formula": "Implies(And(round_rabbit, sees_bear_rabbit), likes_bear_mouse)",
+          "source_step": 22
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 23
+        },
+        {
+          "type": "fact",
+          "expression": "big(bear)",
+          "z3_formula": "big_bear == True",
+          "source_step": 24
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> likes(X, bear)",
+          "z3_formula": "Implies(nice_rabbit, likes_rabbit_bear)",
+          "source_step": 25
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_bear, nice_bear), needs_bear_bear)",
+          "source_step": 26
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 27
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 28
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_bear, nice_bear), needs_bear_bear)",
+          "source_step": 29
+        },
+        {
+          "type": "fact",
+          "expression": "needs(bear, rabbit)",
+          "z3_formula": "needs_bear_rabbit == True",
+          "source_step": 30
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, rabbit)",
+          "z3_formula": "likes_bear_rabbit == True",
+          "source_step": 31
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 32
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, rabbit)",
+          "z3_formula": "likes_bear_rabbit == True",
+          "source_step": 33
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, tiger)",
+          "z3_formula": "likes_bear_tiger == True",
+          "source_step": 34
+        },
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 35
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, rabbit)",
+          "z3_formula": "likes_bear_rabbit == True",
+          "source_step": 36
+        },
+        {
+          "type": "fact",
+          "expression": "likes(bear, tiger)",
+          "z3_formula": "likes_bear_tiger == True",
+          "source_step": 37
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "sees(bear, rabbit)",
+          "z3_formula": "sees_bear_rabbit == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, rabbit)",
+          "z3_formula": "sees_mouse_rabbit == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "needs(mouse, rabbit)",
+          "z3_formula": "needs_mouse_rabbit == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "sees(mouse, tiger)",
+          "z3_formula": "sees_mouse_tiger == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "round(rabbit)",
+          "z3_formula": "round_rabbit == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "likes(rabbit, tiger)",
+          "z3_formula": "likes_rabbit_tiger == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "needs(rabbit, tiger)",
+          "z3_formula": "needs_rabbit_tiger == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "red(tiger)",
+          "z3_formula": "red_tiger == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "likes(tiger, mouse)",
+          "z3_formula": "likes_tiger_mouse == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "sees(X, mouse) & likes(X, mouse) -> sees(X, bear)",
+          "z3_formula": "Implies(And(sees_X_mouse, likes_X_mouse), sees_X_bear)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, tiger) -> likes(X, mouse)",
+          "z3_formula": "Implies(needs_X_tiger, likes_X_mouse)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "red(X) -> likes(X, mouse)",
+          "z3_formula": "Implies(red_X, likes_X_mouse)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, mouse) -> sees(X, mouse)",
+          "z3_formula": "Implies(likes_X_mouse, sees_X_mouse)",
+          "source_step": 13
+        },
+        {
+          "type": "rule",
+          "expression": "needs(X, mouse) -> sees(mouse, tiger)",
+          "z3_formula": "Implies(needs_X_mouse, sees_mouse_tiger)",
+          "source_step": 14
+        },
+        {
+          "type": "rule",
+          "expression": "nice(X) -> likes(X, bear)",
+          "z3_formula": "Implies(nice_X, likes_X_bear)",
+          "source_step": 15
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) & nice(X) -> needs(X, bear)",
+          "z3_formula": "Implies(And(big_X, nice_X), needs_X_bear)",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "round(X) & sees(X, bear) -> likes(bear, mouse)",
+          "z3_formula": "Implies(And(round_X, sees_X_bear), likes_bear_mouse)",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "likes(X, rabbit) & needs(X, tiger) -> likes(tiger, rabbit)",
+          "z3_formula": "Implies(And(likes_X_rabbit, needs_X_tiger), likes_tiger_rabbit)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "likes(bear, tiger)",
+          "z3_formula": "likes_bear_tiger == Unknown",
+          "source_step": 19
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 200,
+      "traces_with_constraints": 9,
+      "unique_after_dedup": 55
+    },
+    "maxsat_stats": {
+      "satisfied": 55,
+      "excluded": 0,
+      "total_weight": 200,
+      "solve_time_ms": 1.338193193078041
+    },
+    "timing": {
+      "trace_gen_s": 25.108,
+      "extraction_s": 53.677,
+      "dedup_s": 1.974,
+      "maxsat_s": 0.004,
+      "total_s": 80.764
+    }
+  }
+}

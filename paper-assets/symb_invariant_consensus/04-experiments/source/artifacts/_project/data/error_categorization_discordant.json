@@ -1,0 +1,116 @@
+{
+  "debate_discordant": {
+    "n": 60,
+    "premise_distribution": {
+      "5-6": 39,
+      "3-4": 10,
+      "2": 4,
+      "7+": 7
+    },
+    "answer_distribution": {
+      "Unknown": 13,
+      "True": 23,
+      "False": 24
+    },
+    "fallback_rate": 0.0,
+    "mean_constraints_from_debate": 16.3,
+    "mean_valid_debates": 2.93,
+    "negation_rate": 0.767,
+    "conditional_rate": 0.6,
+    "quantifier_rate": 0.683,
+    "discordant_ids": [
+      "folio_105", "folio_111", "folio_115", "folio_119", "folio_12",
+      "folio_120", "folio_122", "folio_124", "folio_128", "folio_131",
+      "folio_137", "folio_138", "folio_14", "folio_140", "folio_143",
+      "folio_15", "folio_152", "folio_157", "folio_158", "folio_164",
+      "folio_169", "folio_170", "folio_177", "folio_184", "folio_187",
+      "folio_193", "folio_196", "folio_199", "folio_20", "folio_201",
+      "folio_21", "folio_28", "folio_35", "folio_37", "folio_43",
+      "folio_50", "folio_51", "folio_52", "folio_55", "folio_56",
+      "folio_57", "folio_58", "folio_59", "folio_60", "folio_64",
+      "folio_68", "folio_69", "folio_7", "folio_72", "folio_74",
+      "folio_75", "folio_80", "folio_82", "folio_83", "folio_87",
+      "folio_89", "folio_9", "folio_92", "folio_93", "folio_96"
+    ]
+  },
+  "contrastive_discordant": {
+    "n": 34,
+    "premise_distribution": {
+      "5-6": 26,
+      "7+": 5,
+      "3-4": 3
+    },
+    "answer_distribution": {
+      "Unknown": 14,
+      "False": 7,
+      "True": 13
+    },
+    "degenerate_rate": 0.0,
+    "degenerate_count": 0,
+    "mean_pro_con_imbalance": 1.0,
+    "mean_pro_constraints": 8.32,
+    "mean_con_constraints": 7.32,
+    "negation_rate": 0.971,
+    "conditional_rate": 0.824,
+    "quantifier_rate": 0.794,
+    "discordant_ids": [
+      "folio_0", "folio_10", "folio_100", "folio_101", "folio_108",
+      "folio_130", "folio_138", "folio_14", "folio_140", "folio_146",
+      "folio_148", "folio_153", "folio_158", "folio_16", "folio_175",
+      "folio_184", "folio_185", "folio_196", "folio_28", "folio_31",
+      "folio_4", "folio_42", "folio_43", "folio_48", "folio_50",
+      "folio_51", "folio_55", "folio_56", "folio_58", "folio_76",
+      "folio_80", "folio_84", "folio_95", "folio_96"
+    ]
+  },
+  "overlap_analysis": {
+    "debate_only": 45,
+    "contrastive_only": 19,
+    "both": 15,
+    "jaccard": 0.1899,
+    "both_ids": [
+      "folio_138", "folio_14", "folio_140", "folio_158", "folio_184",
+      "folio_196", "folio_28", "folio_43", "folio_50", "folio_51",
+      "folio_55", "folio_56", "folio_58", "folio_80", "folio_96"
+    ],
+    "debate_only_stats": {
+      "n": 45,
+      "answer_dist": {"Unknown": 9, "True": 17, "False": 19},
+      "premise_dist": {"5-6": 28, "3-4": 7, "2": 4, "7+": 6},
+      "negation_rate": 0.689,
+      "conditional_rate": 0.533,
+      "quantifier_rate": 0.667
+    },
+    "contrastive_only_stats": {
+      "n": 19,
+      "answer_dist": {"Unknown": 10, "False": 2, "True": 7},
+      "premise_dist": {"5-6": 15, "7+": 4},
+      "negation_rate": 0.947,
+      "conditional_rate": 0.842,
+      "quantifier_rate": 0.842
+    },
+    "both_stats": {
+      "n": 15,
+      "answer_dist": {"False": 5, "True": 6, "Unknown": 4},
+      "premise_dist": {"3-4": 3, "5-6": 11, "7+": 1},
+      "negation_rate": 1.0,
+      "conditional_rate": 0.8,
+      "quantifier_rate": 0.733
+    }
+  },
+  "full_dataset_baseline": {
+    "n": 204,
+    "premise_distribution": {"5-6": 136, "7+": 26, "3-4": 31, "2": 11},
+    "answer_distribution": {"Unknown": 69, "True": 72, "False": 63},
+    "mean_constraints_from_debate": 18.02,
+    "fallback_rate": 0.049,
+    "mean_valid_debates": 2.52,
+    "degenerate_rate": 0.201,
+    "mean_pro_con_imbalance": 0.68,
+    "mean_pro_constraints": 4.97,
+    "mean_con_constraints": 4.28,
+    "negation_rate": 0.765,
+    "conditional_rate": 0.618,
+    "quantifier_rate": 0.706
+  }
+}

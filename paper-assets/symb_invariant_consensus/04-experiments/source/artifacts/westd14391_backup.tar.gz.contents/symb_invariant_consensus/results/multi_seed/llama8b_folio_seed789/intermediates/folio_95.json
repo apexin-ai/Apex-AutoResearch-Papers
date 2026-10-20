@@ -1,0 +1,869 @@
+{
+  "problem": {
+    "id": "folio_95",
+    "problem": "Given the following premises:\nPets are allowed in some managed buildings. [BG] A deposit is required to rent an apartment in a managed building. The security deposit can be either equal to one month's rent or more. Fluffy is Tom's cat. Cats are pets. The Olive Garden is a managed building. The monthly rent at the Olive Garden is $2000. Tom will rent an apartment in a managed building if and only if he is allowed to move in with Fluffy, and the security deposit is no more than $1500. 2000$ is more than $1500.\n\nDetermine whether the following conclusion is true, false, or uncertain:\nThe security deposit at the Olive Garden is either $2000 or more.",
+    "solution": "",
+    "answer": "True",
+    "level": "validation",
+    "premises_fol": [
+      "\u2203x (ManagedBuilding(x) \u2227 AllowPet(x))",
+      "\u2200x (ManagedBuilding(x) \u2192 RequireDeposit(x))",
+      "\u2200x (Rent2000(x) \u2194 \u00acDepositNoMoreThan1500(x))",
+      "\u2200x (Rent2000(x) \u2194 DepositNoLessThan2000(x))",
+      "Cat(fluffy)",
+      "\u2200x (Cat(x) \u2192 Pet(x))",
+      "ManagedBuilding(oliveGarden)",
+      "Rent2000(oliveGarden)",
+      "\u2200x (TomRent(x) \u2194 (ManagedBuilding(x) \u2227 AllowPet(x) \u2227 DepositNoMoreThan1500(x)))"
+    ],
+    "conclusion_fol": "DepositNoLessThan2000(oliveGarden)",
+    "dataset": "folio"
+  },
+  "sica_result": {
+    "answer": "True",
+    "scores": {
+      "False": 52.0,
+      "True": 62.5,
+      "Uncertain, but leaning towards True": 9.0,
+      "Unknown": 62.0
+    },
+    "answer_counts": {
+      "False": 1,
+      "Unknown": 3,
+      "True": 4,
+      "Uncertain, but leaning towards True": 1
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises.\n\nPremise 1: Pets are allowed in some managed buildings. [BG]\nThis premise tells us that pets are allowed in some managed buildings but not all managed buildings. It doesn't provide specific information about the Olive Garden.\n\nPremise 2: A deposit is required to rent an apartment in a managed building.\nThis premise tells us that a deposit is necessary for renting an apartment in a managed building, but it doesn't provide information about the amount of the deposit.\n\nPremise 3: The security deposit can be either equal to one month's rent or more.\nThis premise provides information about the possible amounts of the security deposit, which can be equal to one month's rent or more.\n\nPremise 4: Fluffy is Tom's cat.\nThis premise tells us that Fluffy is Tom's cat, but it doesn't provide information about the Olive Garden or the security deposit.\n\nPremise 5: Cats are pets.\nThis premise tells us that cats are considered pets, which aligns with premise 1.\n\nPremise 6: The Olive Garden is a managed building.\nThis premise tells us that the Olive Garden is a managed building, which aligns with premise 2.\n\nPremise 7: The monthly rent at the Olive Garden is $2000.\nThis premise tells us that the monthly rent at the Olive Garden is $2000, which is relevant to premise 3.\n\nPremise 8: Tom will rent an apartment in a managed building if and only if he is allowed to move in with Fluffy, and the security deposit is no more than $1500.\nThis premise tells us about the conditions under which Tom will rent an apartment in a managed building. Since the monthly rent is $2000, which is more than $1500, and Tom is allowed to move in with Fluffy (because cats are pets and the Olive Garden is a managed building), the security deposit must be no more than $1500.\n\nConclusion: The security deposit at the Olive Garden is either $2000 or more.\nTo determine the truth of the conclusion, we need to consider the information from premises 3 and 7. Premise 3 states that the security deposit can be either equal to one month's rent or more. Premise 7 states that the monthly rent is $2000, so the security deposit can be $2000 or more. However, premise 8 states that the security deposit is no more than $1500, which contradicts the conclusion.\n\nSince premise 8 explicitly states that the security deposit is no more than $1500, the conclusion \"The security deposit at the Olive Garden is either $2000 or more\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conditions under which Tom will rent an apartment in a managed building.\n\n1. Pets are allowed in some managed buildings. [BG] \nThis premise does not provide specific information about the Olive Garden, but it does establish that pets are allowed in some managed buildings.\n\n2. A deposit is required to rent an apartment in a managed building. \nThis premise is relevant to the Olive Garden since it is a managed building, and it confirms that a security deposit is required.\n\n3. The security deposit can be either equal to one month's rent or more. \nThis premise establishes the possible values for the security deposit, which could be relevant to the Olive Garden.\n\n4. Fluffy is Tom's cat. \nThis premise is relevant because it links Fluffy to Tom, who will be renting an apartment.\n\n5. Cats are pets. \nThis premise is a general statement that confirms Fluffy is a pet.\n\n6. The Olive Garden is a managed building. \nThis premise confirms that the Olive Garden meets the conditions established in premise 2.\n\n7. The monthly rent at the Olive Garden is $2000. \nThis premise establishes the monthly rent for the Olive Garden, which is relevant to the possible values for the security deposit.\n\n8. Tom will rent an apartment in a managed building if and only if he is allowed to move in with Fluffy, and the security deposit is no more than $1500. \nThis premise establishes the specific conditions under which Tom will rent an apartment in a managed building.\n\n9. 2000 is more than $1500. \nThis premise is a simple mathematical comparison and is relevant to the conditions established in premise 8.\n\nGiven these premises, let's examine the conditions for Tom to rent an apartment in a managed building:\n\n- He must be allowed to move in with Fluffy, which is a pet (premises 4 and 5).\n- The security deposit must be no more than $1500 (premise 8).\n\nSince the monthly rent at the Olive Garden is $2000 (premise 7), and 2000 is more than $1500 (premise 9), the security deposit at the Olive Garden can be equal to the monthly rent, which is $2000, or more (premise 3).\n\nHowever, premise 8 states that Tom will rent an apartment in a managed building if and only if the security deposit is no more than $1500. This implies that the security deposit at the Olive Garden is not more than $1500.\n\nNow, let's consider the conclusion:\n\"The security deposit at the Olive Garden is either $2000 or more.\"\n\nWe have established that the security deposit at the Olive Garden can be $2000 or more (premise 3). However, premise 8 implies that the security deposit is not more than $1500, which seems to be a contradiction.\n\nTo resolve this apparent contradiction, we need to analyze the conditions under which Tom will rent an apartment in a managed building. Since premise 8 states that Tom will rent an apartment if and only if the security deposit is no more than $1500, it implies that the security deposit at the Olive Garden is indeed no more than $1500.\n\nHowever, premise 8 also implies that if the security deposit is not more than $1500, Tom will rent an apartment. But premise 8 does not imply that the security deposit is more than $1500.\n\nNow, let's analyze the conclusion again. The security deposit at the Olive Garden is either $2000 or more (premise 3). However, premise 8 implies that the security deposit is no more than $1500. Since 2000 is more than $1500 (premise 9), the security deposit at the Olive Garden cannot be $2000 or more.\n\nTherefore, the conclusion \"The security deposit at the Olive Garden is either $2000 or more\" is uncertain, because it contradicts the conditions established by premise 8. However, given the premises 8, 7, 9, we can conclude that the security deposit at the Olive Garden is no more than $1500, which is true.\n\nTherefore, the conclusion \"The security deposit at the Olive Garden is either $2000 or more\" is uncertain.",
+        "answer": "",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine the validity of the conclusion, we need to analyze the given premises and their implications.\n\nPremise 1: Pets are allowed in some managed buildings. [BG]\nThis premise does not provide any specific information about the Olive Garden, but it indicates that pets are allowed in managed buildings in general.\n\nPremise 2: A deposit is required to rent an apartment in a managed building.\nThis premise establishes that a deposit is necessary for renting an apartment in a managed building, but it does not provide any information about the amount of the deposit.\n\nPremise 3: The security deposit can be either equal to one month's rent or more.\nThis premise provides information about the possible amounts of the security deposit, but it does not specify which amount applies to the Olive Garden.\n\nPremise 4: Fluffy is Tom's cat.\nThis premise is irrelevant to the conclusion about the security deposit at the Olive Garden.\n\nPremise 5: Cats are pets.\nThis premise is also irrelevant to the conclusion about the security deposit at the Olive Garden.\n\nPremise 6: The Olive Garden is a managed building.\nThis premise establishes that the Olive Garden is a managed building, but it does not provide any information about the security deposit.\n\nPremise 7: The monthly rent at the Olive Garden is $2000.\nThis premise provides information about the monthly rent, but it does not directly relate to the security deposit.\n\nPremise 8: Tom will rent an apartment in a managed building if and only if he is allowed to move in with Fluffy, and the security deposit is no more than $1500.\nThis premise provides a condition for Tom to rent an apartment, but it does not provide any information about the security deposit at the Olive Garden.\n\nGiven these premises, we can analyze the conclusion as follows:\n\nConclusion: The security deposit at the Olive Garden is either $2000 or more.\n\nSince the monthly rent at the Olive Garden is $2000 (Premise 7), and 2000 is more than 1500 (Premise 8), the security deposit could be either equal to one month's rent ($2000) or more (Premise 3). However, we do not have any information that confirms the security deposit is $2000 or more at the Olive Garden.\n\nThe conclusion is uncertain because we cannot determine with certainty whether the security deposit at the Olive Garden is $2000 or more. It is possible, but not confirmed by the premises.\n\nTherefore, the final answer is:\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and the conclusion step by step.\n\n1. **Premise 1:** Pets are allowed in some managed buildings. [BG]\nThis premise does not specify that all managed buildings allow pets, so we cannot conclude that all managed buildings allow pets.\n\n2. **Premise 2:** A deposit is required to rent an apartment in a managed building.\nThis premise only states that a deposit is required, not that the deposit is equal to or greater than a certain amount.\n\n3. **Premise 3:** The security deposit can be either equal to one month's rent or more.\nThis premise gives a condition for the security deposit, but it does not specify that this condition applies to all managed buildings.\n\n4. **Premise 4:** Fluffy is Tom's cat.\nThis premise is irrelevant to the conclusion and can be ignored.\n\n5. **Premise 5:** Cats are pets.\nThis premise is also irrelevant to the conclusion and can be ignored.\n\n6. **Premise 6:** The Olive Garden is a managed building.\nThis premise only tells us that the Olive Garden is a managed building, but it does not provide any information about its policies.\n\n7. **Premise 7:** The monthly rent at the Olive Garden is $2000.\nThis premise only gives information about the rent, not the security deposit.\n\n8. **Premise 8:** Tom will rent an apartment in a managed building if and only if he is allowed to move in with Fluffy, and the security deposit is no more than $1500.\nThis premise gives a condition for Tom to rent an apartment, but it does not specify that the security deposit is $2000 or more.\n\n9. **Premise 9:** $2000 is more than $1500.\nThis premise is used to compare the amounts, but it does not provide any information about the security deposit at the Olive Garden.\n\nNow, we need to analyze the conclusion:\n\n**Conclusion:** The security deposit at the Olive Garden is either $2000 or more.\n\nWe cannot conclude that the security deposit is $2000 or more because:\n\n* The Olive Garden is a managed building, but we do not know its specific policies about security deposits.\n* The security deposit can be either equal to one month's rent or more (Premise 3), but we do not know if this condition applies to the Olive Garden.\n* Tom will rent an apartment if the security deposit is no more than $1500 (Premise 8), but this does not provide any information about the security deposit being $2000 or more.\n\nTherefore, the conclusion is **uncertain**.",
+        "answer": "",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to break down the given premises and use them to deduce the conclusion.\n\nPremise 1: Pets are allowed in some managed buildings. [BG] \nThis premise states that pets are allowed in some managed buildings, but it does not specify which buildings. It also does not state that pets are allowed in all managed buildings.\n\nPremise 2: A deposit is required to rent an apartment in a managed building. \nThis premise states that a deposit is required to rent an apartment in a managed building. However, it does not specify the amount of the deposit.\n\nPremise 3: The security deposit can be either equal to one month's rent or more. \nThis premise states that the security deposit can be either equal to one month's rent or more. However, it does not specify which month's rent.\n\nPremise 4: Fluffy is Tom's cat. \nThis premise states that Fluffy is Tom's cat. This information is not relevant to determining the security deposit.\n\nPremise 5: Cats are pets. \nThis premise states that cats are pets. This information is not relevant to determining the security deposit.\n\nPremise 6: The Olive Garden is a managed building. \nThis premise states that the Olive Garden is a managed building. However, it does not specify any details about the security deposit.\n\nPremise 7: The monthly rent at the Olive Garden is $2000. \nThis premise states that the monthly rent at the Olive Garden is $2000. This information is not directly related to the security deposit, but it will be useful in a later step.\n\nPremise 8: Tom will rent an apartment in a managed building if and only if he is allowed to move in with Fluffy, and the security deposit is no more than $1500. \nThis premise states that Tom will rent an apartment in a managed building if and only if he is allowed to move in with Fluffy, and the security deposit is no more than $1500. This premise is relevant to determining the security deposit.\n\nPremise 9: 2000 is more than $1500. \nThis premise states that 2000 is more than $1500. This information will be useful in a later step.\n\nNow, let's analyze the conclusion:\n\nConclusion: The security deposit at the Olive Garden is either $2000 or more.\n\nTo determine whether this conclusion is true, false, or uncertain, we need to analyze the premises.\n\nPremise 8 states that Tom will rent an apartment in a managed building if and only if he is allowed to move in with Fluffy, and the security deposit is no more than $1500. This premise implies that the security deposit at the Olive Garden cannot be more than $1500, because if it were, Tom would not be able to rent an apartment there.\n\nHowever, Premise 7 states that the monthly rent at the Olive Garden is $2000, and Premise 9 states that 2000 is more than $1500. This implies that the security deposit at the Olive Garden must be $2000 or more, because the security deposit can be either equal to one month's rent or more (Premise 3).\n\nTherefore, the conclusion is true.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we will analyze the given premises step by step.\n\n1. Pets are allowed in some managed buildings. [BG]\n   This premise only tells us that there are some managed buildings where pets are allowed. It does not give us any information about the Olive Garden specifically.\n\n2. A deposit is required to rent an apartment in a managed building.\n   This premise is also general and does not provide any information about the Olive Garden.\n\n3. The security deposit can be either equal to one month's rent or more.\n   This premise tells us that the security deposit can be at least as much as one month's rent. However, it does not tell us the maximum amount of the security deposit.\n\n4. Fluffy is Tom's cat.\n   This premise is irrelevant to the problem at hand. It only provides information about Fluffy's relationship with Tom.\n\n5. Cats are pets.\n   This premise is also irrelevant. We already know that pets are allowed in some managed buildings.\n\n6. The Olive Garden is a managed building.\n   This premise tells us that the Olive Garden is one of the managed buildings mentioned in premise 1. However, it does not give us any information about the specific rules or policies of the Olive Garden.\n\n7. The monthly rent at the Olive Garden is $2000.\n   This premise tells us the monthly rent at the Olive Garden. However, it does not give us any information about the security deposit.\n\n8. Tom will rent an apartment in a managed building if and only if he is allowed to move in with Fluffy, and the security deposit is no more than $1500.\n   This premise tells us Tom's conditions for renting an apartment in a managed building. However, it does not give us any information about the security deposit at the Olive Garden specifically.\n\n9. $2000$ is more than $1500.\n   This premise is a simple comparison between two numbers. It does not provide any information about the security deposit at the Olive Garden.\n\nNow, let's consider the given conclusion:\nThe security deposit at the Olive Garden is either $2000 or more.\n\nWe need to determine whether this conclusion follows logically from the given premises.\n\nSince premise 8 states that Tom will rent an apartment if and only if the security deposit is no more than $1500, and premise 9 states that $2000 is more than $1500, it follows that the security deposit at the Olive Garden must be at least $1500 for Tom to rent an apartment.\n\nHowever, we cannot conclude that the security deposit at the Olive Garden is either $2000 or more. Premise 3 tells us that the security deposit can be at least as much as one month's rent, which is $2000. However, it does not tell us that the security deposit must be at least $2000.\n\nTherefore, we cannot logically conclude that the security deposit at the Olive Garden is either $2000 or more based on the given premises.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step:\n\n1. \"Pets are allowed in some managed buildings.\" [BG] - This premise tells us that pets are allowed in some managed buildings, but it doesn't specify which ones. We don't know if the Olive Garden is one of those buildings.\n\n2. \"A deposit is required to rent an apartment in a managed building.\" - This premise states that a deposit is required for a managed building, but it doesn't specify the amount.\n\n3. \"The security deposit can be either equal to one month's rent or more.\" - This premise tells us that the security deposit can be equal to one month's rent or more. This gives us some information about the possible values of the security deposit.\n\n4. \"Fluffy is Tom's cat.\" - This premise is irrelevant to the conclusion, as it's not directly related to the security deposit at the Olive Garden.\n\n5. \"Cats are pets.\" - This premise is also irrelevant, for the same reason as the previous one.\n\n6. \"The Olive Garden is a managed building.\" - This premise tells us that the Olive Garden is indeed a managed building. This is a crucial piece of information.\n\n7. \"The monthly rent at the Olive Garden is $2000.\" - This premise tells us the monthly rent, but we don't know if the security deposit is equal to the monthly rent or more.\n\n8. \"Tom will rent an apartment in a managed building if and only if he is allowed to move in with Fluffy, and the security deposit is no more than $1500.\" - This premise tells us the conditions under which Tom will rent an apartment in a managed building. We know that the security deposit must be no more than $1500, but we don't know if the security deposit is equal to the monthly rent or more.\n\nNow, let's examine the conclusion:\n\n\"The security deposit at the Olive Garden is either $2000 or more.\"\n\nFrom premise 3, we know that the security deposit can be equal to one month's rent or more. From premise 6, we know that the Olive Garden is a managed building. From premise 7, we know that the monthly rent is $2000.\n\nWe can use the information from premises 7 and 8 to determine the possible values of the security deposit at the Olive Garden. If the security deposit is less than $1500, Tom won't rent the apartment. However, the security deposit can be equal to one month's rent or more (premise 3). Since the monthly rent is $2000, the security deposit can be $2000 or more.\n\nTherefore, the conclusion is true, but only under the assumption that the security deposit is equal to the monthly rent or more. If the security deposit is less than the monthly rent but more than $1500, the conclusion would be uncertain.",
+        "answer": "",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. Pets are allowed in some managed buildings. [BG]\n   This premise tells us that pets are allowed in some managed buildings, but it doesn't specify which buildings or the conditions.\n\n2. A deposit is required to rent an apartment in a managed building.\n   This premise tells us that a deposit is required for renting an apartment in a managed building, but it doesn't specify the amount.\n\n3. The security deposit can be either equal to one month's rent or more.\n   This premise tells us that the security deposit can be equal to one month's rent or more. However, it doesn't specify which building or the conditions.\n\n4. Fluffy is Tom's cat.\n   This premise tells us that Fluffy is Tom's cat, but it doesn't have any direct relation to the conclusion.\n\n5. Cats are pets.\n   This premise is a general statement that cats are pets, but it's already given in premise 1.\n\n6. The Olive Garden is a managed building.\n   This premise tells us that The Olive Garden is a managed building, but it doesn't specify any conditions or information about the security deposit.\n\n7. The monthly rent at the Olive Garden is $2000.\n   This premise tells us that the monthly rent at The Olive Garden is $2000, but it doesn't directly relate to the security deposit.\n\n8. Tom will rent an apartment in a managed building if and only if he is allowed to move in with Fluffy, and the security deposit is no more than $1500.\n   This premise tells us that Tom will rent an apartment in a managed building if two conditions are met: he is allowed to move in with Fluffy, and the security deposit is no more than $1500.\n\nNow, we need to analyze the conclusion:\nThe security deposit at the Olive Garden is either $2000 or more.\n\nBased on the premises, we know that The Olive Garden is a managed building (premise 6), and the monthly rent is $2000 (premise 7). However, we don't know the security deposit amount directly from the premises.\n\nHowever, from premise 8, we know that Tom will rent an apartment in a managed building if the security deposit is no more than $1500. But, we also know that $2000 is more than $1500. This doesn't directly tell us the security deposit amount, but it implies that the security deposit might be $2000 since it's the only value we know is more than $1500.\n\nFrom premise 3, we know that the security deposit can be equal to one month's rent or more. Since the monthly rent is $2000, the security deposit could be $2000 or more.\n\nTherefore, the conclusion \"The security deposit at the Olive Garden is either $2000 or more\" is uncertain, but leaning towards being true, as it's a possible scenario given the premises.\n\n\\boxed{Uncertain, but leaning towards True}",
+        "answer": "Uncertain, but leaning towards True",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises step by step.\n\n1. \"Pets are allowed in some managed buildings.\" [BG]\n   This premise does not provide specific information about the Olive Garden, but it does tell us that pets are allowed in some managed buildings.\n\n2. \"A deposit is required to rent an apartment in a managed building.\"\n   This premise is also general and does not provide specific information about the Olive Garden.\n\n3. \"The security deposit can be either equal to one month's rent or more.\"\n   This premise gives us some information about the possible values of the security deposit, but it does not tell us which specific managed building we are talking about.\n\n4. \"Fluffy is Tom's cat.\"\n   This premise is a specific fact about Tom's pet, but it does not provide any information about the security deposit at the Olive Garden.\n\n5. \"Cats are pets.\"\n   This premise is a general fact and does not provide any specific information about the security deposit at the Olive Garden.\n\n6. \"The Olive Garden is a managed building.\"\n   This premise tells us that the Olive Garden is a managed building, which means that a deposit is required to rent an apartment there (premise 2).\n\n7. \"The monthly rent at the Olive Garden is $2000.\"\n   This premise gives us information about the monthly rent at the Olive Garden, but it does not tell us the security deposit.\n\n8. \"Tom will rent an apartment in a managed building if and only if he is allowed to move in with Fluffy, and the security deposit is no more than $1500.\"\n   This premise tells us that Tom will rent an apartment in a managed building if and only if two conditions are met: he is allowed to move in with his pet, and the security deposit is no more than $1500.\n\n9. \"2000 is more than $1500.\"\n   This premise is a general fact and does not provide any specific information about the security deposit at the Olive Garden.\n\nNow, let's analyze the conclusion:\n\n\"The security deposit at the Olive Garden is either $2000 or more.\"\n\nBased on the premises, we know that the security deposit at the Olive Garden must be no more than $1500, because Tom will rent an apartment there only if the security deposit is no more than $1500 (premise 8). However, we also know that the monthly rent at the Olive Garden is $2000 (premise 7), which means that the security deposit could be either equal to one month's rent ($2000) or more (premise 3). \n\nTherefore, based on the premises, we can conclude that the security deposit at the Olive Garden is either $2000 or more.\n\n\\boxed{True}",
+        "answer": "True",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, let's analyze the given premises step by step.\n\n1.  Pets are allowed in some managed buildings. [BG]\n   This premise states that pets are allowed in some managed buildings, but it does not imply that all managed buildings allow pets.\n\n2.  A deposit is required to rent an apartment in a managed building.\n   This premise states that a deposit is required, but it does not specify the amount.\n\n3.  The security deposit can be either equal to one month's rent or more.\n   This premise specifies the possible amounts of the security deposit, which can be equal to one month's rent or more.\n\n4.  Fluffy is Tom's cat.\n   This premise simply states that Fluffy is Tom's cat.\n\n5.  Cats are pets.\n   This premise is a general statement that cats are pets.\n\n6.  The Olive Garden is a managed building.\n   This premise states that the Olive Garden is a managed building.\n\n7.  The monthly rent at the Olive Garden is $2000.\n   This premise specifies the monthly rent at the Olive Garden.\n\n8.  Tom will rent an apartment in a managed building if and only if he is allowed to move in with Fluffy, and the security deposit is no more than $1500.\n   This premise is a conditional statement that Tom will rent an apartment if two conditions are met: pets are allowed, and the security deposit is no more than $1500.\n\nNow, let's examine the conclusion: \"The security deposit at the Olive Garden is either $2000 or more.\"\n\nFrom premise 3, we know that the security deposit can be equal to one month's rent or more. Since the monthly rent at the Olive Garden is $2000 (premise 7), the security deposit at the Olive Garden can be equal to $2000 or more.\n\nHowever, we cannot conclude that the security deposit at the Olive Garden is exactly $2000 because premise 3 also states that the security deposit can be more than one month's rent.\n\nFrom premise 8, we know that Tom will rent an apartment if the security deposit is no more than $1500. However, we are considering the conclusion \"The security deposit at the Olive Garden is either $2000 or more.\" Since $2000 is more than $1500, the conclusion does not contradict premise 8.\n\nTherefore, based on the given premises, we can conclude that the security deposit at the Olive Garden is either $2000 or more.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To solve this problem, we need to analyze the premises and the conclusion step by step.\n\nPremise 1: Pets are allowed in some managed buildings. [BG]\nThis premise tells us that not all managed buildings allow pets, but some do.\n\nPremise 2: A deposit is required to rent an apartment in a managed building.\nThis premise tells us that in a managed building, a security deposit is a necessary requirement.\n\nPremise 3: The security deposit can be either equal to one month's rent or more.\nThis premise gives us the possible range of the security deposit.\n\nPremise 4: Fluffy is Tom's cat.\nThis premise establishes the relationship between Tom and Fluffy.\n\nPremise 5: Cats are pets.\nThis premise tells us that Fluffy is a pet.\n\nPremise 6: The Olive Garden is a managed building.\nThis premise tells us that the Olive Garden is one of the managed buildings that allow pets, as per premise 1.\n\nPremise 7: The monthly rent at the Olive Garden is $2000.\nThis premise gives us the monthly rent of the Olive Garden.\n\nPremise 8: Tom will rent an apartment in a managed building if and only if he is allowed to move in with Fluffy, and the security deposit is no more than $1500.\nThis premise tells us the conditions under which Tom will rent an apartment.\n\nGiven that the monthly rent is $2000, we know that $2000 is more than $1500 (premise 8).\n\nNow, let's consider the conclusion:\n\nConclusion: The security deposit at the Olive Garden is either $2000 or more.\n\nTo determine whether the conclusion is true, false, or uncertain, we need to analyze the premises again.\n\nFrom premise 8, we know that Tom will rent an apartment if the security deposit is no more than $1500. However, since $2000 is more than $1500, it doesn't meet this condition. Therefore, Tom will not rent an apartment at the Olive Garden.\n\nFrom premise 6, we know that the Olive Garden is a managed building that allows pets. Since Fluffy is a pet (premise 5) and allowed in the building (premise 6), it meets the first condition of premise 8.\n\nHowever, the second condition of premise 8 is not met because the security deposit is $2000, which is more than $1500. \n\nSince Tom will not rent an apartment at the Olive Garden, we can't conclude anything about the security deposit based on the information given.\n\nTherefore, the conclusion is uncertain.\n\n\\boxed{Uncertain}",
+        "answer": "Unknown",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the conclusion is true, false, or uncertain, we need to analyze the given premises and apply logical reasoning.\n\nPremise 1: Pets are allowed in some managed buildings. [BG]\nThis premise indicates that not all managed buildings allow pets, but some do.\n\nPremise 2: A deposit is required to rent an apartment in a managed building.\nThis premise establishes a necessary condition for renting an apartment in a managed building.\n\nPremise 3: The security deposit can be either equal to one month's rent or more.\nThis premise gives us a possible range for the security deposit.\n\nPremise 4: Fluffy is Tom's cat.\nThis premise introduces a specific cat, Fluffy, which is related to Tom.\n\nPremise 5: Cats are pets.\nThis premise categorizes cats as pets.\n\nPremise 6: The Olive Garden is a managed building.\nThis premise identifies the Olive Garden as a managed building.\n\nPremise 7: The monthly rent at the Olive Garden is $2000.\nThis premise provides specific information about the rent at the Olive Garden.\n\nPremise 8: Tom will rent an apartment in a managed building if and only if he is allowed to move in with Fluffy, and the security deposit is no more than $1500.\nThis premise gives us a condition for Tom to rent an apartment in a managed building.\n\nPremise 9: 2000 is more than $1500.\nThis premise compares two numbers and establishes a relationship between them.\n\nTo determine the truth value of the conclusion, we need to examine the possible security deposits at the Olive Garden. Since the security deposit can be either equal to one month's rent or more, and the monthly rent at the Olive Garden is $2000, the security deposit can be $2000 or more. However, we also need to consider the condition for Tom to rent an apartment in a managed building, which requires the security deposit to be no more than $1500.\n\nGiven that the monthly rent is $2000, which is more than $1500, we can infer that Tom is allowed to rent an apartment in a managed building, and the security deposit is indeed $2000. Therefore, the conclusion that the security deposit at the Olive Garden is either $2000 or more is true.\n\nThe final answer is: \\boxed{True}",
+        "answer": "True",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "pets(allowed_in_some_managed_buildings)",
+          "z3_formula": "pets_allowed_in_some_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_to_rent_apartment_in_managed_building",
+          "z3_formula": "deposit_required_to_rent_apartment_in_managed_building == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_to_one_months_rent_or_more",
+          "z3_formula": "security_deposit_can_be_equal_to_one_months_rent_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent_apartment_in_managed_building_if_and_only_if_allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500",
+          "z3_formula": "Implies(And(allowed_to_move_in_with_fluffy, security_deposit_no_more_than_1500), tom_will_rent_apartment_in_managed_building)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_either_2000_or_more",
+          "z3_formula": "security_deposit_at_olive_garden_is_either_2000_or_more == False",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_in_managed_buildings",
+          "z3_formula": "pets_allowed_in_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_in_managed_building",
+          "z3_formula": "deposit_required_in_managed_building == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_to_one_months_rent_or_more",
+          "z3_formula": "security_deposit_can_be_equal_to_one_months_rent_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent_if_allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500",
+          "z3_formula": "Implies(And(allowed_to_move_in_with_fluffy, security_deposit_no_more_than_1500), tom_will_rent)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "2000_is_more_than_1500",
+          "z3_formula": "2000_is_more_than_1500 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_no_more_than_1500",
+          "z3_formula": "security_deposit_at_olive_garden_is_no_more_than_1500 == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_either_2000_or_more",
+          "z3_formula": "security_deposit_at_olive_garden_is_either_2000_or_more == False",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "managed_building(olive_garden)",
+          "z3_formula": "managed_building_olive_garden == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent(olive_garden, 2000)",
+          "z3_formula": "monthly_rent_olive_garden_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "managed_building(X) -> pets_allowed(X)",
+          "z3_formula": "Implies(managed_building_olive_garden, pets_allowed_olive_garden)",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required(olive_garden)",
+          "z3_formula": "deposit_required_olive_garden == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "deposit_required(X) -> deposit_amount(X, >= 1 * monthly_rent(X))",
+          "z3_formula": "Implies(deposit_required_olive_garden, And(deposit_amount_olive_garden, >= 1 * monthly_rent_olive_garden_2000))",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent(olive_garden, 2000)",
+          "z3_formula": "monthly_rent_olive_garden_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "deposit_amount(X, >= 1 * monthly_rent(X)) | deposit_amount(X, > 1 * monthly_rent(X))",
+          "z3_formula": "Or(deposit_amount_olive_garden, >= 1 * monthly_rent_olive_garden_2000, deposit_amount_olive_garden, > 1 * monthly_rent_olive_garden_2000)",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "tom_will_rent(olive_garden, if pets_allowed(olive_garden) & deposit_amount(olive_garden, <= 1500))",
+          "z3_formula": "tom_will_rent_olive_garden_if_And(pets_allowed_olive_garden, deposit_amount_olive_garden, <= 1500) == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent(X, if A) -> deposit_amount(X, <= 1500)",
+          "z3_formula": "Implies(tom_will_rent_olive_garden_if_And(pets_allowed_olive_garden, deposit_amount_olive_garden, <= 1500), deposit_amount_olive_garden, <= 1500)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "deposit_amount(olive_garden, >= 2000)",
+          "z3_formula": "deposit_amount_olive_garden, >= 2000 == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "pets(allowed_in_some_managed_buildings)",
+          "z3_formula": "pets_allowed_in_some_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_to_rent_apartment_in_managed_building",
+          "z3_formula": "deposit_required_to_rent_apartment_in_managed_building == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_to_one_months_rent_or_more",
+          "z3_formula": "security_deposit_can_be_equal_to_one_months_rent_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "tom_will_rent_apartment_in_managed_building_if_allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500",
+          "z3_formula": "tom_will_rent_apartment_in_managed_building_if_allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500 == True",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "2000_is_more_than_1500",
+          "z3_formula": "2000_is_more_than_1500 == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "managed_building -> pets_allowed",
+          "z3_formula": "Implies(olive_garden_is_managed_building, pets_allowed_in_olive_garden)",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "deposit_required_to_rent_apartment_in_managed_building -> security_deposit_can_be_equal_to_one_months_rent_or_more",
+          "z3_formula": "Implies(deposit_required_to_rent_apartment_in_managed_building, security_deposit_can_be_equal_to_one_months_rent_or_more)",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "security_deposit_can_be_equal_to_one_months_rent_or_more -> security_deposit_at_olive_garden_is_2000_or_more",
+          "z3_formula": "Implies(security_deposit_can_be_equal_to_one_months_rent_or_more, security_deposit_at_olive_garden_is_2000_or_more)",
+          "source_step": 12
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent_apartment_in_managed_building_if_allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500 -> security_deposit_at_olive_garden_is_2000_or_more",
+          "z3_formula": "Implies(tom_will_rent_apartment_in_managed_building_if_allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500, security_deposit_at_olive_garden_is_2000_or_more)",
+          "source_step": 13
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_2000_or_more",
+          "z3_formula": "security_deposit_at_olive_garden_is_2000_or_more == Unknown",
+          "source_step": 14
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_in_some_managed_buildings",
+          "z3_formula": "pets_allowed_in_some_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_to_rent_in_managed_building",
+          "z3_formula": "deposit_required_to_rent_in_managed_building == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_to_one_months_rent_or_more",
+          "z3_formula": "security_deposit_can_be_equal_to_one_months_rent_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500 -> tom_will_rent_in_managed_building",
+          "z3_formula": "Implies(And(allowed_to_move_in_with_fluffy, security_deposit_no_more_than_1500), tom_will_rent_in_managed_building)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "2000_is_more_than_1500",
+          "z3_formula": "2000_is_more_than_1500 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_either_2000_or_more",
+          "z3_formula": "security_deposit_at_olive_garden_is_either_2000_or_more == True",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_in_managed_buildings",
+          "z3_formula": "pets_allowed_in_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_to_rent_apartment",
+          "z3_formula": "deposit_required_to_rent_apartment == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_at_least_one_months_rent",
+          "z3_formula": "security_deposit_can_be_at_least_one_months_rent == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent_if_allowed_to_move_in_with_fluffy_and_security_deposit_is_no_more_than_1500",
+          "z3_formula": "Implies(And(tom_is_allowed_to_move_in_with_fluffy, security_deposit_is_no_more_than_1500), tom_will_rent)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "2000_is_more_than_1500",
+          "z3_formula": "2000_is_more_than_1500 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_must_be_at_least_1500",
+          "z3_formula": "security_deposit_at_olive_garden_must_be_at_least_1500 == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_uncertain",
+          "z3_formula": "security_deposit_at_olive_garden_is_uncertain == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_managed_buildings",
+          "z3_formula": "pets_allowed_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_managed_building",
+          "z3_formula": "deposit_required_managed_building == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_or_more",
+          "z3_formula": "security_deposit_can_be_equal_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden",
+          "z3_formula": "monthly_rent_at_olive_garden == 2000",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "allowed_to_move_in_with_fluffy_and_security_deposit_not_more_than_1500 -> tom_will_rent",
+          "z3_formula": "Implies(And(allowed_to_move_in_with_fluffy, security_deposit_not_more_than_1500), tom_will_rent)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_either_2000_or_more",
+          "z3_formula": "security_deposit_at_olive_garden == 2000 | security_deposit_at_olive_garden == True",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "managed_building(olive_garden)",
+          "z3_formula": "managed_building_olive_garden == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent(olive_garden, 2000)",
+          "z3_formula": "monthly_rent_olive_garden_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "managed_building(X) & monthly_rent(X, Y) -> security_deposit(X, Y) | security_deposit(X, Y+1)",
+          "z3_formula": "Implies(And(managed_building_olive_garden, monthly_rent_olive_garden_2000), Or(security_deposit_olive_garden_2000, security_deposit_olive_garden_2001))",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_limit(1500)",
+          "z3_formula": "security_deposit_limit_1500 == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "security_deposit_limit(X) -> security_deposit(Y, X)",
+          "z3_formula": "Implies(security_deposit_limit_1500, security_deposit_olive_garden_1500)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit(olive_garden, 2000) | security_deposit(olive_garden, 2001)",
+          "z3_formula": "Or(security_deposit_olive_garden_2000, security_deposit_olive_garden_2001)",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_in_managed_buildings",
+          "z3_formula": "pets_allowed_in_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_in_managed_building",
+          "z3_formula": "deposit_required_in_managed_building == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_to_one_months_rent_or_more",
+          "z3_formula": "security_deposit_can_be_equal_to_one_months_rent_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent_if_allowed_to_move_in_with_pet_and_security_deposit_is_no_more_than_1500",
+          "z3_formula": "Implies(And(allowed_to_move_in_with_pet, security_deposit_is_no_more_than_1500), tom_will_rent)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "2000_is_more_than_1500",
+          "z3_formula": "2000_is_more_than_1500 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_either_2000_or_more",
+          "z3_formula": "Or(security_deposit_at_olive_garden == 2000, security_deposit_at_olive_garden > 2000)",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_in_managed_buildings",
+          "z3_formula": "pets_allowed_in_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_to_rent",
+          "z3_formula": "deposit_required_to_rent == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_to_one_month_rent_or_more",
+          "z3_formula": "security_deposit_can_be_equal_to_one_month_rent_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_tom_cat",
+          "z3_formula": "fluffy_is_tom_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent_if_allowed_to_move_in_with_fluffy_and_security_deposit_is_no_more_than_1500",
+          "z3_formula": "Implies(And(pets_allowed_in_managed_buildings, And(And(fluffy_is_tom_cat, cats_are_pets), And(deposit_required_to_rent, And(security_deposit_can_be_equal_to_one_month_rent_or_more, Not(And(security_deposit_can_be_equal_to_one_month_rent_or_more, GreaterThan(security_deposit, 1500))))))), tom_will_rent)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_either_2000_or_more",
+          "z3_formula": "Or(security_deposit_at_olive_garden == 2000, security_deposit_at_olive_garden == True)",
+          "source_step": 9
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_in_managed_buildings",
+          "z3_formula": "pets_allowed_in_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_to_rent_apartment",
+          "z3_formula": "deposit_required_to_rent_apartment == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_range",
+          "z3_formula": "security_deposit_range == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden",
+          "z3_formula": "monthly_rent_at_olive_garden == 2000",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "tom_will_rent_if_allowed_with_fluffy_and_deposit_not_more_than_1500",
+          "z3_formula": "tom_will_rent_if_allowed_with_fluffy_and_deposit_not_more_than_1500 == True",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "2000_is_more_than_1500",
+          "z3_formula": "2000_is_more_than_1500 == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "tom_will_rent_if_deposit_not_more_than_1500",
+          "z3_formula": "Implies(And(olive_garden_is_managed_building, Not(tom_will_rent_if_allowed_with_fluffy_and_deposit_not_more_than_1500)), Not(tom_will_rent_if_allowed_with_fluffy_and_deposit_not_more_than_1500))",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "tom_will_not_rent_at_olive_garden",
+          "z3_formula": "tom_will_not_rent_at_olive_garden == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_uncertain",
+          "z3_formula": "security_deposit_at_olive_garden_is_uncertain == True",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "pets_allowed_in_some_managed_buildings",
+          "z3_formula": "pets_allowed_in_some_managed_buildings == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "deposit_required_to_rent_in_managed_building",
+          "z3_formula": "deposit_required_to_rent_in_managed_building == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "security_deposit_can_be_equal_to_one_months_rent_or_more",
+          "z3_formula": "security_deposit_can_be_equal_to_one_months_rent_or_more == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "fluffy_is_toms_cat",
+          "z3_formula": "fluffy_is_toms_cat == True",
+          "source_step": 4
+        },
+        {
+          "type": "fact",
+          "expression": "cats_are_pets",
+          "z3_formula": "cats_are_pets == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "olive_garden_is_managed_building",
+          "z3_formula": "olive_garden_is_managed_building == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "monthly_rent_at_olive_garden_is_2000",
+          "z3_formula": "monthly_rent_at_olive_garden_is_2000 == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "allowed_to_move_in_with_fluffy_and_security_deposit_no_more_than_1500 -> tom_will_rent_in_managed_building",
+          "z3_formula": "Implies(And(allowed_to_move_in_with_fluffy, security_deposit_no_more_than_1500), tom_will_rent_in_managed_building)",
+          "source_step": 8
+        },
+        {
+          "type": "fact",
+          "expression": "2000_is_more_than_1500",
+          "z3_formula": "2000_is_more_than_1500 == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "security_deposit_at_olive_garden_is_2000_or_more",
+          "z3_formula": "security_deposit_at_olive_garden_is_2000_or_more == True",
+          "source_step": 10
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 121,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 49
+    },
+    "maxsat_stats": {
+      "satisfied": 48,
+      "excluded": 1,
+      "total_weight": 104,
+      "solve_time_ms": 1.284036785364151
+    },
+    "timing": {
+      "trace_gen_s": 10.754,
+      "extraction_s": 25.45,
+      "dedup_s": 0.942,
+      "maxsat_s": 0.004,
+      "total_s": 37.151
+    }
+  }
+}

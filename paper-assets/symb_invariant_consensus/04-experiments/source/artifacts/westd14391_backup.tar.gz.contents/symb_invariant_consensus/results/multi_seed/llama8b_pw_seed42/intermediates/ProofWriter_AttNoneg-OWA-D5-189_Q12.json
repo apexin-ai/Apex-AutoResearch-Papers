@@ -1,0 +1,964 @@
+{
+  "problem": {
+    "id": "ProofWriter_AttNoneg-OWA-D5-189_Q12",
+    "problem": "Dave is blue. Dave is kind. Dave is rough. Erin is blue. Erin is furry. Erin is quiet. Erin is smart. Gary is blue. Gary is quiet. Harry is big. All blue things are rough. If something is kind and furry then it is big. If something is kind and big then it is rough. All quiet, kind things are rough. All kind things are furry. If something is big then it is quiet. Quiet things are blue. Rough things are kind.\n\nDetermine whether the following statement is true, false, or unknown:\nHarry is not furry.",
+    "solution": "",
+    "answer": "False",
+    "level": "OWA-D5",
+    "raw_logic_programs": [
+      "Predicates:\nBlue($x, bool) ::: Is x blue?\nKind($x, bool) ::: Is x kind?\nRough($x, bool) ::: Is x rough?\nFurry($x, bool) ::: Is x furry?\nQuiet($x, bool) ::: Is x quiet?\nSmart($x, bool) ::: Is x smart?\nBig($x, bool) ::: Is x big?\n\nFacts:\nBlue(Dave, True) ::: Dave is blue.\nKind(Dave, True) ::: Dave is kind.\nRough(Dave, True) ::: Dave is rough.\nBlue(Erin, True) ::: Erin is blue.\nFurry(Erin, True) ::: Erin is furry.\nQuiet(Erin, True) ::: Erin is quiet.\nSmart(Erin, True) ::: Erin is smart.\nBlue(Gary, True) ::: Gary is blue.\nQuiet(Gary, True) ::: Gary is quiet.\nBig(Harry, True) ::: Harry is big.\n\nRules:\nBlue($x, True) >>> Rough($x, True) ::: All blue things are rough.\nKind($x, True) && Furry($x, True) >>> Big($x, True) ::: If something is kind and furry then it is big.\nKind($x, True) && Big($x, True) >>> Rough($x, True) ::: If something is kind and big then it is rough.\nQuiet($x, True) && Kind($x, True) >>> Rough($x, True) ::: All quiet, kind things are rough.\nKind($x, True) >>> Furry($x, True) ::: All kind things are furry.\nBig($x, True) >>> Quiet($x, True) ::: If something is big then it is quiet.\nQuiet($x, True) >>> Blue($x, True) ::: Quiet things are blue.\nRough($x, True) >>> Kind($x, True) ::: Rough things are kind.\n\nQuery:\nFurry(Harry, False) ::: Harry is not furry."
+    ],
+    "dataset": "proofwriter"
+  },
+  "sica_result": {
+    "answer": "False",
+    "scores": {
+      "False": 134.0,
+      "Unknown": 132.5
+    },
+    "answer_counts": {
+      "False": 10,
+      "Unknown": 2
+    },
+    "traces": [
+      {
+        "trace": "To determine whether the statement \"Harry is not furry\" is true, false, or unknown, we need to use the given information and the rules provided.\n\n1. Given information:\n   - Harry is big.\n   - All blue things are rough.\n   - If something is kind and furry then it is big.\n   - If something is kind and big then it is rough.\n   - All quiet, kind things are rough.\n   - All kind things are furry.\n   - If something is big then it is quiet.\n   - Quiet things are blue.\n   - Rough things are kind.\n\n2. Determine Harry's characteristics:\n   - Harry is big. (From given information)\n   - If something is big then it is quiet. (Rule 8)\n     - Harry is quiet. (Inference)\n   - Quiet things are blue. (Rule 9)\n     - Harry is blue. (Inference)\n   - All blue things are rough. (Rule 2)\n     - Harry is rough. (Inference)\n   - Rough things are kind. (Rule 10)\n     - Harry is kind. (Inference)\n\n3. Determine if Harry is furry:\n   - Harry is kind. (Inference)\n   - Harry is furry or Harry is big. (From given information - Not explicitly stated but can be inferred from the statement \"If something is kind and furry then it is big\" which implies that if something is kind and big then it must be furry, but we cannot directly infer that something is furry if it is kind without the other condition)\n   - Harry is big. (Inference)\n   - Harry is furry or Harry is big. (From given information - Not explicitly stated but can be inferred from the statement \"If something is kind and furry then it is big\" which implies that if something is kind and big then it must be furry, but we cannot directly infer that something is furry if it is kind without the other condition)\n   - All kind things are furry. (Rule 6)\n     - Since we have already concluded that Harry is kind and big, we can use this rule to conclude that Harry is furry.\n\n4. Determine the truth value of the statement \"Harry is not furry\":\n   - Since we have concluded that Harry is furry (Inference), the statement \"Harry is not furry\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 0
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not furry\" is true, false, or unknown, we need to analyze the given information and deduce the properties of Harry.\n\n1. Harry is big. \n   (Given)\n\n2. If something is big then it is quiet. \n   (Given)\n\n   Therefore, Harry is quiet. \n   (From 1 and 2)\n\n3. Quiet things are blue. \n   (Given)\n\n   Therefore, Harry is blue. \n   (From 2 and 3)\n\n4. All blue things are rough. \n   (Given)\n\n   Therefore, Harry is rough. \n   (From 3 and 4)\n\n5. Quiet, kind things are rough. \n   (Given)\n\n   Since Harry is quiet (from 2) and rough (from 4), Harry must be kind. \n   (From 5)\n\nNow that we have found that Harry is kind, we need to analyze the remaining information.\n\n6. All kind things are furry. \n   (Given)\n\n   Therefore, Harry is furry. \n   (From 5 and 6)\n\nNow, we have enough information to determine whether the statement \"Harry is not furry\" is true, false, or unknown.\n\nSince we have found that Harry is furry (from 6), we can conclude that the statement \"Harry is not furry\" is false.\n\nTherefore, the final answer is: \n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 1
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Given information:\n   - All blue things are rough.\n   - If something is kind and furry then it is big.\n   - If something is kind and big then it is rough.\n   - All quiet, kind things are rough.\n   - All kind things are furry.\n   - If something is big then it is quiet.\n   - Quiet things are blue.\n   - Rough things are kind.\n   \n2. We know Harry is big (given statement).\n   - So, Harry is quiet (because all big things are quiet).\n   - And, Harry is blue (because quiet things are blue).\n\n3. Now, we need to check if Harry is furry or not. To determine this, we need to find a relationship between Harry's characteristics and the given conditions.\n   - If Harry is kind (which we don't know yet), then he could be furry (all kind things are furry).\n   - However, we cannot conclude that Harry is furry yet because we don't know if he is kind.\n\n4. Now, let's analyze the possibilities:\n   - If Harry is kind, then he is furry (all kind things are furry).\n   - If Harry is not kind, then we cannot conclude anything about his furiness because there's no direct information about non-kind things and their relationship to furiness.\n\n5. However, we can analyze the given conditions in a different way:\n   - We know Harry is big (given statement).\n   - And, we know that all big things are quiet (given condition).\n   - And, we know that quiet things are blue (given condition).\n   - And, we know that blue things are rough (given condition).\n   - And, we know that rough things are kind (given condition).\n   - So, Harry is kind (because rough things are kind).\n   - And, we already know that Harry is big (given statement).\n   - Therefore, we can conclude that Harry is kind and big.\n\n6. Now that we know Harry is kind and big, we can analyze the given conditions again:\n   - If something is kind and big then it is rough (given condition).\n   - Therefore, Harry is rough (because he is kind and big).\n\n7. Now, we know Harry is kind, big, and rough.\n   - We already know that all kind things are furry (given condition).\n   - Therefore, Harry is furry (because he is kind).\n\n8. Now that we know Harry is furry, we can conclude that the statement \"Harry is not furry\" is false.\n\nTherefore, the answer is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 2
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. Harry is big. (Given)\n\n2. If something is big, then it is quiet. (From the given information)\n\n3. Harry is quiet. (From step 1 and step 2)\n\n4. Quiet things are blue. (From the given information)\n\n5. Harry is blue. (From step 3 and step 4)\n\n6. All blue things are rough. (From the given information)\n\n7. Harry is rough. (From step 5 and step 6)\n\n8. All quiet, kind things are rough. (From the given information)\n\n9. Since Harry is quiet (step 3), and Harry is rough (step 7), Harry must be kind. (From step 8)\n\n10. All kind things are furry. (From the given information)\n\n11. Harry is furry. (From step 9 and step 10)\n\nSince we have found that Harry is furry (step 11), the statement \"Harry is not furry\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 3
+      },
+      {
+        "trace": "To solve this problem, we need to use the given information and apply it step by step to determine the truth value of the statement \"Harry is not furry.\"\n\n1. We are given the following information about Harry: Harry is big.\n\n2. We also know that \"If something is big then it is quiet.\" Therefore, Harry is quiet.\n\n3. From the statement \"Quiet things are blue,\" we can conclude that Harry is blue.\n\n4. Since Harry is blue, we can use the statement \"All blue things are rough\" to determine that Harry is rough.\n\n5. Now, we know that Harry is rough. From the statement \"Rough things are kind,\" we can conclude that Harry is kind.\n\n6. We have found that Harry is kind. We also know that \"If something is kind and furry then it is big.\" However, we do not have any information about Harry being furry.\n\n7. Since Harry is kind, we can use the statement \"All kind things are furry\" to conclude that Harry is furry.\n\n8. We have found that Harry is furry.\n\nNow, let's go back to the statement we need to evaluate: \"Harry is not furry.\"\n\nBased on our analysis, we found that Harry is furry. Therefore, the statement \"Harry is not furry\" is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 4
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We know that Harry is big (given information).\n2. All big things are quiet (given information).\n3. Quiet things are blue (given information).\n4. We can conclude that Harry is blue because he is quiet and quiet things are blue.\n\nNow, let's analyze the statement \"Harry is not furry.\"\n\n5. We know that all blue things are rough (given information).\n6. We can conclude that Harry is rough because he is blue and all blue things are rough.\n\n7. All rough things are kind (given information).\n8. We can conclude that Harry is kind because he is rough and all rough things are kind.\n\n9. All kind things are furry (given information).\n10. We can conclude that Harry is furry because he is kind and all kind things are furry.\n\nSince we have concluded that Harry is furry, we can now determine whether the statement \"Harry is not furry\" is true or false.\n\nTherefore, the statement \"Harry is not furry\" is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 5
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not furry\" is true, false, or unknown, we need to analyze the given information and the rules provided.\n\n1. All blue things are rough.\n2. If something is kind and furry then it is big.\n3. If something is kind and big then it is rough.\n4. All quiet, kind things are rough.\n5. All kind things are furry.\n6. If something is big then it is quiet.\n7. Quiet things are blue.\n8. Rough things are kind.\n\nLet's start by analyzing Harry's characteristics:\n\n- Harry is big (given information)\n- If Harry is big, then he is quiet (rule 6)\n- If Harry is quiet, then he is blue (rule 7)\n- Blue things are rough (rule 1)\n- Rough things are kind (rule 8)\n\nSo, Harry is blue, quiet, big, and rough. From the given information and rules, we can conclude that Harry is blue and rough.\n\nNow, let's analyze whether Harry is furry or not:\n\n- Harry is kind (because rough things are kind, rule 8)\n- If Harry is kind and big, then he is rough (rule 3), but we already know Harry is rough\n- If Harry is kind and furry, then he is big (rule 2)\n- Since Harry is big, we already know he is quiet (rule 6) and blue (rule 7)\n- We cannot directly determine if Harry is furry or not from the given information and rules.\n\nTherefore, we cannot conclude whether Harry is furry or not from the given information and rules. The statement \"Harry is not furry\" is unknown. \n\n\\boxed{Unknown}",
+        "answer": "Unknown",
+        "trace_idx": 6
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is not furry' is true, false, or unknown, we need to analyze the given information step by step.\n\n1. We are given that Harry is big. \n2. From the information, 'If something is big then it is quiet.' So, Harry is quiet.\n3. We also know that 'Quiet things are blue.' Therefore, Harry is blue.\n4. From the given information, 'All blue things are rough.' So, Harry is rough.\n5. We have 'Rough things are kind.' Hence, Harry is kind.\n6. Now, we need to check the relationship between being kind and being furry. From the given information, 'All kind things are furry.' Therefore, Harry is furry.\n\nSince we have found that Harry is furry, the statement 'Harry is not furry' is false.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 7
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not furry\" is true, false, or unknown, we need to analyze the given information step by step.\n\n1. From the given information, we know:\n   - Harry is big.\n   - If something is big, then it is quiet.\n   - Quiet things are blue.\n   - Rough things are kind.\n   - All kind things are furry.\n\n2. Since Harry is big, we can conclude that Harry is quiet. (Rule 2)\n   - We can conclude that Harry is blue. (Rule 3)\n   - We cannot directly determine if Harry is kind or rough from the given information.\n\n3. We are given that all kind things are furry, but we also know that all rough things are kind. This creates a conflict, as Harry is both quiet and blue. Since all quiet, kind things are rough (Rule 6), we can conclude that Harry is rough. (Rule 6)\n   - If Harry is rough, then Harry is kind. (Rule 7)\n   - Since Harry is kind, we can conclude that Harry is furry. (Rule 8)\n\nGiven this analysis, we can determine that Harry is indeed furry.\n\nTherefore, the statement \"Harry is not furry\" is:\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 8
+      },
+      {
+        "trace": "To solve this problem, we will analyze the given statements and use a process of elimination to determine the truth value of the statement \"Harry is not furry.\"\n\nGiven statements:\n\n1. Dave is blue.\n2. Dave is kind.\n3. Dave is rough.\n4. Erin is blue.\n5. Erin is furry.\n6. Erin is quiet.\n7. Erin is smart.\n8. Gary is blue.\n9. Gary is quiet.\n10. Harry is big.\n11. All blue things are rough.\n12. If something is kind and furry then it is big.\n13. If something is kind and big then it is rough.\n14. All quiet, kind things are rough.\n15. All kind things are furry.\n16. If something is big then it is quiet.\n17. Quiet things are blue.\n18. Rough things are kind.\n\nNow, we will analyze the statement \"Harry is not furry.\"\n\nTo do this, let's first determine what we know about Harry from the given statements:\n\n- Harry is big (Statement 10)\n\nWe can use Statement 16, which says \"If something is big then it is quiet,\" to conclude that Harry is quiet.\n\n- Harry is big\n- If something is big then it is quiet\n- Therefore, Harry is quiet\n\nNow, we can use Statement 17, which says \"Quiet things are blue,\" to conclude that Harry is blue.\n\n- Harry is quiet\n- Quiet things are blue\n- Therefore, Harry is blue\n\nSince Harry is blue, we can use Statement 11, which says \"All blue things are rough,\" to conclude that Harry is rough.\n\n- Harry is blue\n- All blue things are rough\n- Therefore, Harry is rough\n\nNow, we can use Statement 18, which says \"Rough things are kind,\" to conclude that Harry is kind.\n\n- Harry is rough\n- Rough things are kind\n- Therefore, Harry is kind\n\nNow that we know Harry is kind, we can analyze Statement 12, which says \"If something is kind and furry then it is big.\" We already know Harry is kind, but we don't know if he is furry.\n\nTo determine if Harry is furry, we need to analyze the statements that involve Harry being furry. We don't have any direct statements that say Harry is furry, but we can use the statements that involve Harry being kind and big to try to determine if he is furry.\n\nWe know Harry is big (Statement 10), and we also know that if something is kind and big then it is rough (Statement 13). However, we already concluded that Harry is rough, so we can't use this information to determine if he is furry.\n\nWe also know that Harry is kind, and we know that all kind things are furry (Statement 15). This implies that Harry is furry.\n\n- Harry is kind\n- All kind things are furry\n- Therefore, Harry is furry\n\nNow that we know Harry is furry, we can re-evaluate the statement \"Harry is not furry.\" We previously concluded that Harry is furry, so this statement is false.\n\nTherefore, the final answer is:\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 9
+      },
+      {
+        "trace": "To determine whether the statement \"Harry is not furry\" is true, false, or unknown, we need to analyze the given information and the conditions provided.\n\n1. Harry is big. (Given)\n2. If something is big then it is quiet. (Given)\n   So, Harry is quiet. (From 1 and 2)\n3. Quiet things are blue. (Given)\n   So, Harry is blue. (From 2 and 3)\n4. All blue things are rough. (Given)\n   So, Harry is rough. (From 3)\n5. Rough things are kind. (Given)\n   So, Harry is kind. (From 4)\n6. If something is kind and furry then it is big. (Given)\n   We already know Harry is big (From 1), but we are trying to determine if he is furry.\n   If Harry is furry, then he would be big, which we already know. However, we need to check if there's a condition that says Harry is not furry based on the given conditions.\n7. All kind things are furry. (Given)\n   Since we already determined Harry is kind (From 5), this implies Harry is furry. (From 7)\n   \nHowever, we have a conflict between steps 6 and 7. If Harry is furry, then he must be big (From 6), but this doesn't give us any new information. If Harry is kind and big, then he is rough (From the condition \"If something is kind and big then it is rough\"). However, we already determined Harry is rough (From 4).\n\nGiven the conditions, if Harry is furry, it leads to a contradiction because it implies Harry is big, which we already know. But, since all kind things are furry, and Harry is kind, this implies Harry is furry.\n\nHowever, in step 6, it says if something is kind and furry then it is big. We already know Harry is big. This condition is essentially saying something is big if it is kind and furry. This does not tell us whether Harry is furry or not. \n\nSince we determined Harry is kind, furry, blue, rough, and quiet from the given conditions, we can conclude that the statement \"Harry is not furry\" is false because we know Harry is furry.\n\n\\boxed{False}",
+        "answer": "False",
+        "trace_idx": 10
+      },
+      {
+        "trace": "To determine whether the statement 'Harry is not furry' is true, false, or unknown, we need to analyze the given information and use logical reasoning.\n\n1. Harry is big. (Given)\n2. All big things are quiet. (From given information)\n   Since Harry is big, we can conclude that Harry is quiet.\n\n3. Quiet things are blue. (From given information)\n   Since Harry is quiet, we can conclude that Harry is blue.\n\n4. All blue things are rough. (From given information)\n   Since Harry is blue, we can conclude that Harry is rough.\n\n5. All quiet, kind things are rough. (From given information)\n   However, we cannot conclude that Harry is kind yet. We need more information to determine this.\n\n6. All kind things are furry. (From given information)\n   If Harry is kind, then he must be furry. But we still don't know if Harry is kind.\n\n7. All kind and furry things are big. (From given information)\n   We already know Harry is big, but we still need to determine if he is kind.\n\n8. All kind things are furry. (From given information)\n   This statement implies that all kind things are furry, but it does not directly tell us if Harry is kind.\n\nNow, let's examine the statement 'Harry is not furry' using the given information:\n- If Harry is kind, then he must be furry (Statement 6).\n- But if Harry is not furry, then he cannot be kind (Statement 6).\n\nHowever, we already know Harry is rough (Statement 4). We need to examine the given information regarding rough things:\n- All quiet, kind things are rough (Statement 5).\n- All kind things are furry (Statement 6).\n- Rough things are kind (Statement 7).\n\nNow, we have a conflict because we already know Harry is rough, and we know that all quiet things are blue (Statement 3). This means that Harry is blue and rough. \n\nGiven that all blue things are rough (Statement 4), and rough things are kind (Statement 8), then we can conclude that Harry is kind.\n\nSince Harry is kind, he must be furry (Statement 6).\n\nHowever, if Harry is furry, we already know that Harry is big (Statement 1), and all big things are quiet (Statement 2). This is a contradiction because we know Harry is not quiet.\n\nThe given information does not provide a conclusive answer, but it does provide a contradiction.\n\nTherefore, we can say that the statement 'Harry is not furry' is unknown because the given information leads to a contradiction, and we cannot determine the truth value of this statement.\n\n\\boxed{unknown}",
+        "answer": "Unknown",
+        "trace_idx": 11
+      }
+    ],
+    "per_trace_constraints": [
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_harry, rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(kind_harry, furry_harry), big_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_harry, big_harry), rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_harry, kind_harry), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_harry, quiet_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_harry, blue_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_harry, kind_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_harry, quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_harry, blue_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_harry, rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_harry, kind_harry), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "fact",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_harry, quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_harry, blue_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_harry, rough_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_harry, kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & big(X) -> rough(X)",
+          "z3_formula": "Implies(And(kind_harry, big_harry), rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 8
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_harry, quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry) -> blue(harry)",
+          "z3_formula": "Implies(quiet_harry, blue_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(harry) -> rough(harry)",
+          "z3_formula": "Implies(blue_harry, rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_harry, kind_harry), rough_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "fact",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_harry, quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_harry, blue_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_harry, rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_harry, kind_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(kind_harry, furry_harry), big_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not furry(harry)",
+          "z3_formula": "Not(furry_harry)",
+          "source_step": 12
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "fact",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_harry, quiet_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_harry, blue_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_harry, rough_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_harry, kind_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 11
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_harry, quiet_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_harry, blue_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "fact",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_harry, rough_harry)",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_harry, kind_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(kind_harry, furry_harry), big_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_harry, quiet_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_harry, blue_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == Unknown",
+          "source_step": 10
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_harry, quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_harry, blue_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_harry, rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 6
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_harry, quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_harry, blue_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_harry, kind_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_harry, kind_harry), rough_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 4
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_harry, quiet_harry)",
+          "source_step": 16
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 16
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_harry, blue_harry)",
+          "source_step": 17
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 17
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_harry, rough_harry)",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_harry, kind_harry)",
+          "source_step": 18
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(kind_harry, furry_harry), big_harry)",
+          "source_step": 12
+        },
+        {
+          "type": "fact",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 18
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 15
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 15
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_harry, quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_harry, blue_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_harry, rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_harry, kind_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(kind_harry, furry_harry), big_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 7
+        }
+      ],
+      [
+        {
+          "type": "fact",
+          "expression": "big(harry)",
+          "z3_formula": "big_harry == True",
+          "source_step": 1
+        },
+        {
+          "type": "rule",
+          "expression": "big(X) -> quiet(X)",
+          "z3_formula": "Implies(big_harry, quiet_harry)",
+          "source_step": 2
+        },
+        {
+          "type": "derived",
+          "expression": "quiet(harry)",
+          "z3_formula": "quiet_harry == True",
+          "source_step": 2
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) -> blue(X)",
+          "z3_formula": "Implies(quiet_harry, blue_harry)",
+          "source_step": 3
+        },
+        {
+          "type": "derived",
+          "expression": "blue(harry)",
+          "z3_formula": "blue_harry == True",
+          "source_step": 3
+        },
+        {
+          "type": "rule",
+          "expression": "blue(X) -> rough(X)",
+          "z3_formula": "Implies(blue_harry, rough_harry)",
+          "source_step": 4
+        },
+        {
+          "type": "derived",
+          "expression": "rough(harry)",
+          "z3_formula": "rough_harry == True",
+          "source_step": 4
+        },
+        {
+          "type": "rule",
+          "expression": "quiet(X) & kind(X) -> rough(X)",
+          "z3_formula": "Implies(And(quiet_harry, kind_harry), rough_harry)",
+          "source_step": 5
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 6
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) & furry(X) -> big(X)",
+          "z3_formula": "Implies(And(kind_harry, furry_harry), big_harry)",
+          "source_step": 7
+        },
+        {
+          "type": "rule",
+          "expression": "kind(X) -> furry(X)",
+          "z3_formula": "Implies(kind_harry, furry_harry)",
+          "source_step": 8
+        },
+        {
+          "type": "rule",
+          "expression": "rough(X) -> kind(X)",
+          "z3_formula": "Implies(rough_harry, kind_harry)",
+          "source_step": 9
+        },
+        {
+          "type": "derived",
+          "expression": "kind(harry)",
+          "z3_formula": "kind_harry == True",
+          "source_step": 10
+        },
+        {
+          "type": "derived",
+          "expression": "furry(harry)",
+          "z3_formula": "furry_harry == True",
+          "source_step": 11
+        },
+        {
+          "type": "derived",
+          "expression": "not(furry(harry))",
+          "z3_formula": "Not(furry_harry) == True",
+          "source_step": 12
+        },
+        {
+          "type": "derived",
+          "expression": "not(kind(harry))",
+          "z3_formula": "Not(kind_harry) == True",
+          "source_step": 13
+        }
+      ]
+    ],
+    "constraints_stats": {
+      "total_extracted": 139,
+      "traces_with_constraints": 12,
+      "unique_after_dedup": 17
+    },
+    "maxsat_stats": {
+      "satisfied": 15,
+      "excluded": 2,
+      "total_weight": 136,
+      "solve_time_ms": 0.9138807654380798
+    },
+    "timing": {
+      "trace_gen_s": 7.731,
+      "extraction_s": 20.969,
+      "dedup_s": 0.754,
+      "maxsat_s": 0.002,
+      "total_s": 29.457
+    }
+  }
+}

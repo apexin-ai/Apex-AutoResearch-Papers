@@ -1,0 +1,79 @@
+paper_key: "olausson2023linc"
+title: "LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers"
+venue: "EMNLP 2023"
+full_text_available: true
+
+research:
+  baselines: ["Naive (direct)", "Scratchpad (FOL gen + LLM judge)", "CoT"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "ProofWriter", size: "OOD split"}
+    - {name: "FOLIO", size: "204"}
+  ablation_dimensions: ["K_majority_vote", "model_type", "proof_depth"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "neurosymbolic (LLM → FOL → Prover9)"
+
+positioning:
+  core_claim: "Two-stage LLM-to-FOL-to-Prover9 pipeline with majority vote achieves near-perfect accuracy on synthetic FOL tasks and maintains robustness across proof depths"
+  key_results: "ProofWriter: StarCoder++ LINC 82.1% vs 37.8% best baseline; GPT-3.5 LINC 96.4%; GPT-4 LINC 98.3%. FOLIO: gains for smaller models, not significant for GPT-4"
+  limitations:
+    - "FOL is lossy for naturalistic language"
+    - "Scalability unclear with more premises"
+    - "FOL expressiveness insufficient for higher-order/non-classical logic"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "LLMs struggle with multi-step deduction despite general language understanding"
+  tension: "CoT provides reasoning steps but can't guarantee logical soundness"
+  key_insight: "Section 3 — the Scratchpad baseline isolates the prover's contribution: generating FOL alone (without symbolic execution) doesn't help"
+  argument_chain: "LLM deduction weakness → separate understanding from reasoning → LLM parses, prover reasons → Scratchpad control proves prover is key → depth analysis confirms robustness"
+  contribution_framing: "2 contributions: LINC system, Scratchpad diagnostic baseline"
+  intro_structure: "4 paragraphs: (1) LLM reasoning gap, (2) neurosymbolic opportunity, (3) LINC and Scratchpad, (4) key findings"
+  notable_technique: "Scratchpad as diagnostic baseline — isolates the symbolic prover's causal contribution beyond just generating FOL"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "LINC pipeline: NL → LLM → FOL → Prover9 → answer, with K-way majority vote"
+    narrative_role: "Establishes the two-stage architecture"
+    design_elements: ["pipeline flow", "LLM and Prover9 components", "majority vote aggregation"]
+    visual_style: "Left-to-right pipeline diagram"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "Methods across models on ProofWriter and FOLIO"
+      how_gain_highlighted: "LINC bars clearly above baselines"
+      design_note: "Grouped by model, color by method"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Accuracy across proof depths (0-5)"
+      how_gain_highlighted: "LINC maintains near-perfect accuracy while baselines degrade"
+      design_note: "Strongest evidence for robustness — depth-accuracy curves"
+    - figure_id: "Figure 5"
+      viz_type: "qualitative_comparison"
+      what_compared: "Error types: LINC vs CoT"
+      how_gain_highlighted: "Only 21/74 errors shared — methods are complementary"
+      design_note: "Error analysis Venn diagram / taxonomy"
+  ablation_figures: []
+  figure_narrative_role: "Fig1(pipeline) → Fig2(FOL examples) → Fig3(main results bars) → Fig4(depth analysis) → Fig5(error analysis)"
+
+tables:
+  table_count: 0
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "p-values for significance"
+    num_baselines: 3
+    design_note: "No tables — all results presented as bar charts and line plots. Unusual but effective given small experimental grid"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Prompt templates, FOL examples, additional error analysis"
+    reason: "Qualitative content doesn't fit tabular format"
